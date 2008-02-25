@@ -86,6 +86,13 @@ $messages = array(
 'thursday'      => 'Loron-kinta',
 'friday'        => 'Loron-sesta',
 'saturday'      => 'Loron-sábadu',
+'sun'           => 'Dom',
+'mon'           => 'Seg',
+'tue'           => 'Ter',
+'wed'           => 'Kua',
+'thu'           => 'Kin',
+'fri'           => 'Ses',
+'sat'           => 'Sáb',
 'january'       => 'Janeiru',
 'february'      => 'Fevereiru',
 'march'         => 'Marsu',
@@ -181,6 +188,7 @@ $messages = array(
 'viewtalkpage'      => 'Haree diskusaun',
 'otherlanguages'    => 'Iha lian seluk',
 'protectedpage'     => "Pájina ne'ebé naproteje",
+'jumpto'            => 'Bá:',
 'jumptonavigation'  => 'hatudu-dalan',
 'jumptosearch'      => 'buka',
 
@@ -192,6 +200,7 @@ $messages = array(
 'currentevents-url' => 'Project:Mamosuk atuál sira',
 'disclaimers'       => 'Avisu legál',
 'disclaimerpage'    => 'Project:Avisu legál',
+'edithelp'          => 'Ajuda kona-ba edita',
 'edithelppage'      => 'Help:Edita',
 'mainpage'          => 'Pájina Mahuluk',
 'portal'            => 'Portál komunidade nian',
@@ -236,10 +245,12 @@ $messages = array(
 'nosuchspecialpage' => "Pájina espesiál ne'e lá'os",
 
 # General errors
-'error' => 'Sala',
+'error'         => 'Sala',
+'viewsourcefor' => 'ba $1',
 
 # Login and logout pages
 'yourname'                  => "Naran uza-n'in:",
+'userlogin'                 => 'Log in / kriar konta ida',
 'nologinlink'               => 'Registrar',
 'createaccount'             => "Registrar uza-na'in",
 'userexists'                => "Uza-na'in ne'e ona iha wiki. Favór ida lori naran seluk.",
@@ -284,6 +295,7 @@ $messages = array(
 'currentrevisionlink' => 'Versaun atuál',
 'cur'                 => 'atuál',
 'next'                => 'oinmai',
+'last'                => 'ikus',
 'page_first'          => 'uluk',
 'histfirst'           => 'sedu liu hotu',
 'historyempty'        => '(mamuk)',
@@ -296,12 +308,16 @@ $messages = array(
 'revisiondelete'      => 'Halakon/restaurar versaun',
 'revdelete-hide-user' => "Subar naran edita-na'in/IP",
 
+# Diffs
+'lineno' => 'Liña $1:',
+
 # Search results
 'prevn'       => 'molok $1',
 'nextn'       => 'oinmai $1',
 'powersearch' => 'Buka',
 
 # Preferences page
+'mypreferences'     => "Ha'u-nia preferénsia",
 'prefs-rc'          => 'Mudansa foufoun sira',
 'prefs-watchlist'   => 'Lista hateke',
 'textboxsize'       => 'Edita',
@@ -365,6 +381,7 @@ $messages = array(
 'filehist-datetime'  => 'Loron/Tempu',
 'filehist-user'      => "Uza-na'in",
 'filehist-comment'   => 'Komentáriu',
+'imagelinks'         => 'Ligasaun',
 'imagelist_name'     => 'Naran',
 'imagelist_user'     => "Uza-na'in",
 
@@ -410,9 +427,10 @@ $messages = array(
 'specialloguserlabel' => "Uza-na'in:",
 
 # Special:Allpages
-'nextpage'     => 'Pájina oinmai ($1)',
-'allarticles'  => 'Pájina hotu',
-'allpagesnext' => 'Oinmai',
+'nextpage'       => 'Pájina oinmai ($1)',
+'allarticles'    => 'Pájina hotu',
+'allpagesnext'   => 'Oinmai',
+'allpagessubmit' => 'Bá',
 
 # Special:Listusers
 'listusers-submit' => 'Hatudu',
@@ -433,6 +451,10 @@ $messages = array(
 'watchlist-hide-own'   => "Hamsumik edita ha'u-nia",
 'watchlist-show-minor' => 'Hatudu osan-rahun',
 'watchlist-hide-minor' => 'Subar osan-rahun',
+
+# Displayed when you click the "watch" button and it's in the process of watching
+'watching'   => 'Hateke...',
+'unwatching' => 'La hateke...',
 
 'enotif_newpagetext'           => "Ne'e pájina foun.",
 'enotif_impersonal_salutation' => "Uza-na'in {{SITENAME}} nian",
@@ -461,6 +483,9 @@ $messages = array(
 'undeletecomment'    => 'Komentáriu:',
 'undeletedarticle'   => 'restaurar "[[$1]]"',
 'undeletedrevisions' => 'restaurar $1 versaun',
+
+# Namespace form on various pages
+'blanknamespace' => '(Prinsipál)',
 
 # Contributions
 'contributions' => "Kontribuisaun uza-na'in",
@@ -511,16 +536,27 @@ $messages = array(
 'import-logentry-interwiki-detail' => '$1 versaun husi $2',
 
 # Tooltip help for the actions
+'tooltip-pt-userpage'     => "Ha'u-nia pájina uza-na'in",
+'tooltip-pt-mytalk'       => "Ha'u-nia pájina diskusaun",
+'tooltip-pt-preferences'  => "Ha'u-nia preferénsia",
+'tooltip-pt-mycontris'    => "Lista ha'u-nia kontribuisaun",
 'tooltip-ca-protect'      => "Proteje pájina ne'e",
 'tooltip-ca-delete'       => "Halakon pájina ne'e",
 'tooltip-ca-move'         => "Buka pájina ne'e",
 'tooltip-search'          => 'Buka iha {{SITENAME}}',
 'tooltip-n-mainpage'      => 'Vizita Pájina Mahuluk',
+'tooltip-n-portal'        => "Kona-ba projetu, ne'ebé ó bele halo, iha ne'ebé ó hetan saida",
 'tooltip-n-recentchanges' => "Lista mudansa foufoun sira iha wiki ne'e.",
 'tooltip-n-randompage'    => 'Hola pájina ruma',
+'tooltip-n-help'          => 'Hatudu pájina ajuda.',
+'tooltip-n-sitesupport'   => 'Tulun ami',
 'tooltip-t-contributions' => "Haree lista kontribuisaun uza-na'in ne'e nian",
+'tooltip-t-upload'        => 'Tau iha arkivu laran',
 'tooltip-t-specialpages'  => 'Lista pájina espesiál hotu nian',
 'tooltip-ca-nstab-user'   => "Haree pájina uza-na'in",
+
+# Spam protection
+'listingcontinuesabbrev' => 'kont.',
 
 # Browsing diffs
 'previousdiff' => '←Diferensa molok',

@@ -7,6 +7,7 @@
  * @author Svetko
  * @author Nike
  * @author Siebrand
+ * @author Wolliger Mensch
  */
 
 $separatorTransformTable = array(
@@ -142,11 +143,11 @@ $messages = array(
 'jumptosearch'     => 'поискъ',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
-'currentevents' => 'Текѫща събыти',
+'currentevents' => 'Нынѣщьнꙗ събытиꙗ',
 'mainpage'      => 'Главьна страница',
 'portal'        => 'Обьщины съвѣтъ',
 'portal-url'    => 'Project:Обьщени съвѣтъ',
-'sitesupport'   => 'Дани',
+'sitesupport'   => 'Даꙗниꙗ',
 
 'editsection' => 'исправи',
 'editold'     => 'исправи',

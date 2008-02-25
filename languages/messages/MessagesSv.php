@@ -167,7 +167,7 @@ $messages = array(
 'tog-showtoc'                 => 'Visa innehållsförteckning (för sidor som har minst fyra rubriker)',
 'tog-rememberpassword'        => 'Kom ihåg lösenordet till nästa besök',
 'tog-editwidth'               => 'Full bredd på redigeringsrutan',
-'tog-watchcreations'          => 'Lägg till sidor jag skapar i min övervakningslista',
+'tog-watchcreations'          => 'Lägg till sidor jag skapar till min övervakningslista',
 'tog-watchdefault'            => 'Lägg till sidor jag redigerar i min övervakningslista',
 'tog-watchmoves'              => 'Lägg till sidor jag flyttar i min övervakningslista',
 'tog-watchdeletion'           => 'Lägg till sidor jag raderar i min övervakningslista',
@@ -393,11 +393,13 @@ $messages = array(
 'viewdeleted'             => 'Visa $1?',
 'restorelink'             => '{{PLURAL:$1|en raderad version|$1 raderade versioner}}',
 'feedlinks'               => 'Matning:',
-'feed-invalid'            => 'Ugyldig abonnementsype.',
+'feed-invalid'            => 'Ogiltig matningstyp.',
+'feed-unavailable'        => 'Webbmatningar (feeds) är inte tillgängliga på {{SITENAME}}',
 'site-rss-feed'           => '$1 RSS-matning',
 'site-atom-feed'          => '$1 Atom-matning',
 'page-rss-feed'           => '"$1" RSS-matning',
 'page-atom-feed'          => '"$1" Atom-matning',
+'red-link-title'          => '$1 (inte skriven än)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Sida',
@@ -969,7 +971,7 @@ $2 Lista omdirigeringar &nbsp; Sök efter $3 $9',
 # User rights log
 'rightslog'      => 'Användarrättighetslogg',
 'rightslogtext'  => 'Detta är en logg över ändringar av användares rättigheter.',
-'rightslogentry' => 'grupptillhörighet för $1 ändrad från $2 till $3',
+'rightslogentry' => 'ändrade grupptillhörighet för $1 från $2 till $3',
 'rightsnone'     => '(inga)',
 
 # Recent changes
@@ -1141,7 +1143,8 @@ PICT # allmänt bildprefix
 'nolinkstoimage'            => 'Inga sidor länkar till den här bilden.',
 'sharedupload'              => 'Denna fil är uppladdad som delad, och kan användas av andra projekt.',
 'shareduploadwiki'          => 'Vänligen se $1 för mer information.',
-'shareduploadwiki-linktext' => 'Filens beskrivningssida',
+'shareduploadwiki-desc'     => 'Beskrivningen på $1 visas nedan.',
+'shareduploadwiki-linktext' => 'filens beskrivningssida',
 'noimage'                   => 'Det finns ingen fil med detta namn. Du kan $1.',
 'noimage-linktext'          => 'ladda upp den',
 'uploadnewversion-linktext' => 'Ladda upp en ny version av denna fil',

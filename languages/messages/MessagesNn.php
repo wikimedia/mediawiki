@@ -13,6 +13,7 @@
  * @author Jon Harald Søby
  * @author SPQRobin
  * @author Dittaeva
+ * @author M.M.S.
  */
 
 /**
@@ -1432,7 +1433,7 @@ Alle sidene er vortne viste {{PLURAL:$3|'''éin''' gong|'''$3''' gonger}} og end
 'watchnologin'         => 'Ikkje innlogga',
 'watchnologintext'     => 'Du lyt vera [[Special:Userlogin|innlogga]] for å kunna endre overvakingslista.',
 'addedwatch'           => 'Lagt til overvakingslista',
-'addedwatchtext'       => "Sida «<nowiki>\$1</nowiki>» er lagt til [[Special:Watchlist|overvakingslista]] di. Framtidige endringar av denne sida og den tilhøyrande diskusjonssida vil bli oppførde her, og sida vil vera '''utheva''' på «[[Special:Recentchanges|siste endringar]]» for å gjera deg merksam på henne.
+'addedwatchtext'       => "Sida «<nowiki>$1</nowiki>» er lagt til [[Special:Watchlist|overvakingslista]] di. Framtidige endringar av denne sida og den tilhøyrande diskusjonssida vil bli oppførde her, og sida vil vera '''utheva''' på «[[Special:Recentchanges|siste endringar]]» for å gjera deg merksam på henne.
 
 Om du seinere vil fjerne sida frå overvakingslista, klikk på «Fjern overvaking» på den aktuelle sida.",
 'removedwatch'         => 'Fjerna frå overvakingslista',
@@ -1590,6 +1591,7 @@ Her er dei noverande innstillingane for sida <strong>$1</strong>:',
 'undeleterevision-missing'     => 'Ugyldig eller manglande versjon. Lenkja kan vere feil, eller han kan vere fjerna frå arkivet.',
 'undelete-nodiff'              => 'Fann ingen eldre versjonar.',
 'undeletebtn'                  => 'Attopprett!',
+'undeletelink'                 => 'attopprett',
 'undeletereset'                => 'Nullstill',
 'undeletecomment'              => 'Kommentar:',
 'undeletedarticle'             => 'attoppretta «[[$1]]»',
@@ -1631,7 +1633,7 @@ $1',
 'sp-contributions-username'    => 'IP-adresse eller brukarnamn:',
 'sp-contributions-submit'      => 'Søk',
 
-'sp-newimages-showfrom' => 'Vis nye bilete frå og med $1',
+'sp-newimages-showfrom' => 'Vis nye filer frå og med $1',
 
 # What links here
 'whatlinkshere'       => 'Lenkjer hit',
@@ -1816,7 +1818,7 @@ Dersom du berre vil ha den siste versjonen kan du òg bruke ei lenkje, t.d. [[{{
 'import-interwiki-submit' => 'Importer',
 'importtext'              => 'Du må først eksportere sida du vil importere til ei fil som du lagrar på maskina di, deretter kan du laste ho inn her.
 For å eksportere bruker du [[Special:Export|eksportsida]] på kjeldewikien; hugs at kjelda òg må bruke MediaWiki-programvaren.',
-'importstart'             => 'Importerer sider...',
+'importstart'             => 'Importerer sidene…',
 'import-revision-count'   => '$1 {{PLURAL:$1|versjon|versjonar}}',
 'importnopages'           => 'Ingen sider å importere.',
 'importfailed'            => 'Importeringa var mislukka: $1',
@@ -1888,7 +1890,7 @@ For å eksportere bruker du [[Special:Export|eksportsida]] på kjeldewikien; hug
 'tooltip-compareselectedversions' => 'Sjå endringane mellom dei valde versjonane av denne sida.',
 'tooltip-watch'                   => 'Legg denne sida til i overvakingslista di [alt-w]',
 'tooltip-recreate'                => 'Ved å trykkje på «Nyopprett» vert sida oppretta på nytt.',
-'tooltip-upload'                  => 'Start opplasting',
+'tooltip-upload'                  => 'Start opplastinga',
 
 # Stylesheets
 'monobook.css' => '/* CSS-tekst som vert plassert her, endrar utsjånaden til sidedrakta Monobook */',
@@ -2087,6 +2089,7 @@ slått av. Dei andre felta er gøymde som standard.
 # EXIF attributes
 'exif-compression-1' => 'Ukomprimert',
 
+'exif-orientation-1' => 'Normal', # 0th row: top; 0th column: left
 'exif-orientation-2' => 'Spegla vassrett', # 0th row: top; 0th column: right
 'exif-orientation-3' => 'Rotert 180°', # 0th row: bottom; 0th column: right
 'exif-orientation-4' => 'Spegla loddrett', # 0th row: bottom; 0th column: left
@@ -2270,6 +2273,7 @@ $1',
 # Multipage image navigation
 'imgmultipageprev' => '← førre side',
 'imgmultipagenext' => 'neste side →',
+'imgmultigo'       => 'Gå!',
 'imgmultigotopre'  => 'Gå til side',
 
 # Table pager

@@ -17,6 +17,7 @@
  * @author Villate
  * @author Nike
  * @author MCruz
+ * @author Minh Nguyen
  */
 
 $namespaceNames = array(
@@ -402,10 +403,12 @@ $messages = array(
 'restorelink'             => '{{PLURAL:$1|uma edição eliminada|$1 edições eliminadas}}',
 'feedlinks'               => 'Feed:',
 'feed-invalid'            => 'Tipo de subscrição feed inválido.',
+'feed-unavailable'        => '"Feeds" de publicação múltipla não estão disponíveis em {{SITENAME}}',
 'site-rss-feed'           => 'Feed RSS $1',
 'site-atom-feed'          => 'Feed Atom $1',
 'page-rss-feed'           => 'Feed RSS de "$1"',
 'page-atom-feed'          => 'Feed Atom de "$1"',
+'red-link-title'          => '$1 (ainda não escrito)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Página',
@@ -610,7 +613,7 @@ Você pode ignorar esta mensagem caso a conta tenha sido criada por engano.',
 'image_sample'    => 'Exemplo.jpg',
 'image_tip'       => 'Imagem anexa',
 'media_sample'    => 'Exemplo.ogg',
-'media_tip'       => 'Ligação a ficheiro interno de multimédia',
+'media_tip'       => 'Ligação para ficheiro',
 'sig_tip'         => 'Sua assinatura, com hora e data',
 'hr_tip'          => 'Linha horizontal (utilize moderadamente)',
 
@@ -886,6 +889,7 @@ Certifique-se de que tal alteração manterá a continuidade das ações.
 'searchsubtitleinvalid' => 'Você pesquisou por "$1"',
 'noexactmatch'          => "'''Não existe uma página com o título \"\$1\".''' Você pode [[:\$1|criar tal página]].",
 'noexactmatch-nocreate' => "'''Não há uma página intitulada como \"\$1\".'''",
+'toomanymatches'        => 'Foram retornados demasiados resultados. Por favor, tente um filtro de pesquisa diferente',
 'titlematches'          => 'Resultados nos títulos das páginas',
 'notitlematches'        => 'Nenhum título de página coincide',
 'textmatches'           => 'Resultados dos textos das páginas',
@@ -1082,7 +1086,7 @@ Para incluír a imagem numa página, utilize o link na forma de
 'largefileserver'             => 'O tamanho deste ficheiro é superior ao qual o servidor encontra-se configurado para permitir.',
 'emptyfile'                   => 'O ficheiro que está a tentar carregar parece encontrar-se vazio. Isto poderá ser devido a um erro na escrita do nome do ficheiro. Por favor verifique se realmente deseja carregar este ficheiro.',
 'fileexists'                  => 'Já existe um ficheiro com este nome. Por favor, verifique <strong><tt>$1</tt></strong> caso não tenha a certeza se deseja alterar o ficheiro actual.',
-'filepageexists'              => 'Já existe uma página &mdash; e não uma imagem &mdash; com este nome. Por gentileza, verifique <strong><tt>$1</tt></strong> caso não tenha certeza se é isso que deseja alterar.',
+'filepageexists'              => 'Já existe uma página (e não um ficheiro) com este nome. Por favor, verifique <strong><tt>$1</tt></strong> caso não tenha certeza se é isso que deseja alterar.',
 'fileexists-extension'        => 'Já existe um ficheiro de nome similar:<br />
 Nome do ficheiro que está sendo enviado: <strong><tt>$1</tt></strong><br />
 Nome do ficheiro existente: <strong><tt>$2</tt></strong><br />
@@ -1175,7 +1179,8 @@ PICT # misc.
 'nolinkstoimage'            => 'Nenhuma página aponta para este ficheiro.',
 'sharedupload'              => 'Este ficheiro encontra-se partilhado e pode ser utilizado por outros projectos.',
 'shareduploadwiki'          => 'Por favor, consulte a $1 para mais informações.',
-'shareduploadwiki-linktext' => 'página de descrição',
+'shareduploadwiki-desc'     => 'A descrição na sua $1 é mostrada abaixo.',
+'shareduploadwiki-linktext' => 'página de descrição de ficheiro',
 'noimage'                   => 'Não existe nenhum ficheiro com este nome. Se desejar, pode $1',
 'noimage-linktext'          => 'carregá-lo',
 'uploadnewversion-linktext' => 'Carregar uma nova versão deste ficheiro',
@@ -1578,6 +1583,7 @@ Se uma nova página foi criada com o mesmo nome desde a eliminação, as ediçõ
 'undeleterevision-missing'     => 'Edição inválida ou não encontrada. Talvez você esteja com um link incorrecto ou talvez a edição foi restaurada ou removida dos arquivos.',
 'undelete-nodiff'              => 'Não foram encontradas edições anteriores.',
 'undeletebtn'                  => 'Restaurar',
+'undeletelink'                 => 'restaurar',
 'undeletereset'                => 'Limpar',
 'undeletecomment'              => 'Comentário:',
 'undeletedarticle'             => 'restaurado "[[$1]]"',

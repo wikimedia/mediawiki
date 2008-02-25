@@ -304,6 +304,7 @@ i [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Vodič za suradnike] 
 'site-atom-feed'          => '$1 Atom izvor',
 'page-rss-feed'           => '"$1" RSS izvor',
 'page-atom-feed'          => '"$1" Atom izvor',
+'red-link-title'          => '$1 (još nije napisano)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Članak',
@@ -791,6 +792,7 @@ Primijetite da uporaba navigacijskih poveznica resetira vaše izbore u koloni.',
 'searchsubtitleinvalid' => 'Za upit "$1"',
 'noexactmatch'          => "'''Ne postoji stranica naziva \"\$1\".''' Možete [[:\$1|kreirati tu stranicu]].",
 'noexactmatch-nocreate' => "'''Nema stranice s imenom: \"\$1\".'''",
+'toomanymatches'        => 'Preveliki broj rezultata, molimo probajte drukčiji upit',
 'titlematches'          => 'Pronađene stranice prema naslovu',
 'notitlematches'        => 'Nema pronađenih stranica prema naslovu',
 'textmatches'           => 'Pronađene stranice prema tekstu članka',
@@ -958,7 +960,7 @@ Neoznačene skupine neće se promijeniti. Skupinu možete deselektirati istovrem
 'uploadnologintext'           => 'Za postavljanje datoteka morate biti  [[Special:Userlogin|prijavljeni]].',
 'upload_directory_read_only'  => 'Server ne može pisati u direktorij za postavljanje ($1).',
 'uploaderror'                 => 'Pogreška kod postavljanja',
-'uploadtext'                  => "Ovaj obrazac služi za postavljanje novih slika. Za pregledavanje i pretraživanje već postavljenih slika
+'uploadtext'                  => "Ovaj obrazac služi za postavljanje slika. Za pregledavanje i pretraživanje već postavljenih slika
 vidi [[Special:Imagelist|popis postavljenih datoteka]]. Postavljanja i brisanja bilježe se i u [[Special:Log|evidenciji]].
 
 Stavljanjem oznake u odgovarajući kvadratić morate potvrditi da postavljanjem slike ne kršite ničija autorska prava.
@@ -1073,6 +1075,7 @@ Slijedi evidencija brisanja ove datoteke s obrazloženjem prethodnog brisanja:",
 'nolinkstoimage'            => 'Nijedna stranica ne povezuje na ovu sliku.',
 'sharedupload'              => 'Ova je datoteka postavljena na zajedničkom poslužitelju i mogu je koristiti i ostali wikiji',
 'shareduploadwiki'          => 'Za podrobnije informacije vidi $1.',
+'shareduploadwiki-desc'     => 'Opis na njegovoj stranici $1 je prikazan ispod.',
 'shareduploadwiki-linktext' => 'stranica s opisom datoteke',
 'noimage'                   => 'Ne postoji datoteka s ovim imenom. Možete ju $1.',
 'noimage-linktext'          => 'postaviti',
@@ -1190,7 +1193,7 @@ koja obično ukazuje na "pravu" odredišnu stranicu, na koju bi trebalo pokaziva
 'lonelypagestext'         => 'Na sljedeće članke ne vode poveznice s drugih stranica na ovom wikiju ({{SITENAME}}).',
 'uncategorizedpages'      => 'Nekategorizirane stranice',
 'uncategorizedcategories' => 'Nekategorizirane kategorije',
-'uncategorizedimages'     => 'Nekategorizirane slike',
+'uncategorizedimages'     => 'Nekategorizirane datoteke',
 'uncategorizedtemplates'  => 'Nekategorizirani predlošci',
 'unusedcategories'        => 'Nekorištene kategorije',
 'unusedimages'            => 'Nekorištene slike',
@@ -1490,6 +1493,7 @@ Tekst izbrisanih inačica dostupan je samo administratorima.',
 ili je promjena vraćena ili uklonjena iz arhive.',
 'undelete-nodiff'              => 'Prethodne promjene nisu nađene.',
 'undeletebtn'                  => 'Vrati!',
+'undeletelink'                 => 'vrati',
 'undeletereset'                => 'Obriši razlog',
 'undeletecomment'              => 'Komentar:',
 'undeletedarticle'             => 'vraćena stranica "$1"',
@@ -1951,10 +1955,10 @@ $1',
 'noimages'     => 'Nema slika.',
 
 # Bad image list
-'bad_image_list' => "Rabi se slijedeći format:
+'bad_image_list' => "Rabi se sljedeći format:
 
 Samo retci koji počinju sa zvjezdicom su prikazani. Prva poveznica u retku mora biti poveznica na nevaljanu sliku.
-Svaka slijedeća poveznica u istom retku je izuzetak, npr. kod stranica gdje se slike pojavljuju ''inline''.",
+Svaka sljedeća poveznica u istom retku je izuzetak, npr. kod stranica gdje se slike pojavljuju ''inline''.",
 
 # Variants for Serbian language
 'variantname-sr-ec' => 'ћирилица',

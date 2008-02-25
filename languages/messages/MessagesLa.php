@@ -350,6 +350,7 @@ $messages = array(
 'hidetoc'                 => 'celare',
 'thisisdeleted'           => 'Videre aut restituere $1?',
 'restorelink'             => '{{PLURAL:$1|unam emendationem deletam|$1 emendationes deletas}}',
+'red-link-title'          => '$1 (pagina nondum scripta est)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Res',

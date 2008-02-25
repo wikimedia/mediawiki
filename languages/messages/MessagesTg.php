@@ -309,10 +309,12 @@ $messages = array(
 'restorelink'             => '{{PLURAL:$1|вироиши ҳазфшуда|$1 вироишоти ҳазфшудаҳо}}',
 'feedlinks'               => 'Хабархон:',
 'feed-invalid'            => 'Ишкол дар обунаи хабархон.',
+'feed-unavailable'        => 'Хабархонҳо дар {{SITENAME}} қобили истифода нестанд',
 'site-rss-feed'           => 'Барои $1 RSS Хабархон',
 'site-atom-feed'          => 'Барои $1 Atom Хабархон',
 'page-rss-feed'           => 'Барои "$1" RSS Хабархон',
 'page-atom-feed'          => 'Барои "$1" Atom Хабархон',
+'red-link-title'          => '$1 (ҳанӯз эҷод нашуда)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Мақола',
@@ -816,6 +818,7 @@ your old password.
 'prefs-watchlist'          => 'Феҳристи пайгириҳо',
 'prefs-watchlist-days'     => 'Теъдоди рӯзҳое ки бояд дар феҳристи пайгириҳои намоиш дода шавад:',
 'prefs-watchlist-edits'    => 'Теъдоди вироишҳои нишондода дар феҳристи пайгириҳои густаришёфта:',
+'prefs-misc'               => 'Танзимоти ҳархела',
 'saveprefs'                => 'Захираи тарҷиҳот',
 'resetprefs'               => 'Сифр кардани тарҷиҳот',
 'oldpassword'              => 'Калимаи кӯҳнаи убур:',
@@ -851,6 +854,7 @@ your old password.
 'userrights-groupsmember'          => 'Аъзои:',
 'userrights-groupsremovable'       => 'Гурӯҳҳои қобили ҳазф:',
 'userrights-groupsavailable'       => 'Гурӯҳҳои мавҷуд:',
+'userrights-groupshelp'            => 'Гурӯҳҳое ки мехоҳед як корбар аз онҳо ҳазф ё илова шавад, интихоб кунед. Барои ин ки як гуруҳро мехоҳед аз ҳолати интихоб шудан ҷудо кунед, тугмаи CTRL-ро нигоҳ доред ва клики чап кунед',
 'userrights-reason'                => 'Иллати тағйир:',
 'userrights-available-none'        => 'Шумо узвияти дар гурӯҳҳоро наметавонед тағйир диҳед.',
 'userrights-available-add'         => 'Шумо метавонед корбаронеро ба ин {{PLURAL:$2|гурӯҳ|гурӯҳо}}: $1 илова кунед.',
@@ -955,6 +959,11 @@ your old password.
 'filetype-unwanted-type'      => "'''\".\$1\"''' як навъи парвандаи номатлубе аст. Навъҳои матлуби парванда \$2 мебошанд.",
 'filetype-banned-type'        => "'''\".\$1\"''' як навъи парвандаи иҷозатдодашуда нест.  Навъҳои иҷозатдодашудаи парванда \$2 мебошанд.",
 'filetype-missing'            => 'Парванда пасванд надорад (монанди ".jpg").',
+'large-file'                  => 'Тавсия шудааст, ки парвандаҳо бузургтар аз $1 набошанд; ин парванда $2 аст.',
+'largefileserver'             => 'Ин парванда аз андозаи иҷозат шудаи андозаҳои парванда дар хидматгор бурзургтар аст.',
+'emptyfile'                   => 'Парвандаи боршуда холӣ ба назар мерасад. Ин масъала мумкин аст хатои навишт дар номи парванда рух дода бошад. Лутфан таъйид кунед, ки оё шумо дар ҳақиқат мехоҳед ин парвандаро бо ҳамин шароит бор кунед.',
+'fileexists'                  => 'Дар ҳоли ҳозир парвандае бо ҳамин ном мавҷуд аст. Агар боварӣ надоред, ки мехоҳед он парвандаро тағйир диҳед, лутфан <strong><tt>$1</tt></strong>-ро баррасӣ кунед.',
+'filepageexists'              => 'Як саҳифа (на парванда) бо ҳамин ном мавҷуд аст. Агар боварӣ надоред, ки мехоҳед он парвандаро тағйир диҳед, лутфан <strong><tt>$1</tt></strong>-ро баррасӣ кунед.',
 'fileexists-extension'        => 'Парвандае бо номи мушобеҳ вуҷуд дорад:<br />
 Номи парвандаи боргузоришуда истода: <strong><tt>$1</tt></strong><br />
 Номи парвандаи вуҷуд дошта: <strong><tt>$2</tt></strong><br />
@@ -993,7 +1002,10 @@ your old password.
 
 # Image list
 'imagelist'                 => 'Рӯйхати файлҳо',
+'imagelisttext'             => "Дар зер феҳристи '''$1''' {{PLURAL:$1|парвандаи|парвандаҳои}} ба тартиб оварда шуда, омадааст $2.",
+'getimagelist'              => 'дар ҳоли фарохонии феҳристи аксҳо',
 'ilsubmit'                  => 'Ҷустуҷӯи',
+'showlast'                  => 'Намоиши охирин $1 парвандаҳои ба тартиб оварда шуда $2.',
 'byname'                    => 'аз рӯи ном',
 'bydate'                    => 'аз рӯи сана',
 'bysize'                    => 'аз рӯи ҳаҷм',
@@ -1016,6 +1028,7 @@ your old password.
 'nolinkstoimage'            => 'Ҳеҷ саҳифае ба ин акс пайванд надорад.',
 'sharedupload'              => 'Ин парванда бо таври умумӣ бор карда шудааст ва шояд аз тарафи дигар лоиҳаҳо мавриди истифода бошад.',
 'shareduploadwiki'          => 'Лутфан барои иттилооти бештар ба $1 нигаред.',
+'shareduploadwiki-desc'     => 'Тавзеҳот дар мавриди $1 он дар зер нишон дода шудааст.',
 'shareduploadwiki-linktext' => 'саҳифаи тавсифи парванда',
 'noimage'                   => 'Ҳеҷ парвандае бо ин ном мавҷуд нест, шумо метавонед $1.',
 'noimage-linktext'          => 'онро бор кунед',
@@ -1028,12 +1041,13 @@ your old password.
 'imagelist_search_for'      => 'Ҷустуҷӯи номи акс:',
 
 # File reversion
-'filerevert'            => 'Вогардонии $1',
-'filerevert-legend'     => 'Вогардонии парванда',
-'filerevert-intro'      => '<span class="plainlinks">Шумо дар ҳоли вогардонии \'\'\'[[Media:$1|$1]]\'\'\' ба [$4 нусхаи аз $3, $2] ҳастед.</span>',
-'filerevert-comment'    => 'Тавзеҳ:',
-'filerevert-submit'     => 'бирав',
-'filerevert-badversion' => 'Нусхаи кӯҳнатаре аз ин парванда вуҷуд надошт.',
+'filerevert'                => 'Вогардонии $1',
+'filerevert-legend'         => 'Вогардонии парванда',
+'filerevert-intro'          => '<span class="plainlinks">Шумо дар ҳоли вогардонии \'\'\'[[Media:$1|$1]]\'\'\' ба [$4 нусхаи аз $3, $2] ҳастед.</span>',
+'filerevert-comment'        => 'Тавзеҳ:',
+'filerevert-defaultcomment' => 'Вогардонӣ ба нусхаи $2, $1',
+'filerevert-submit'         => 'бирав',
+'filerevert-badversion'     => 'Нусхаи кӯҳнатаре аз ин парванда вуҷуд надошт.',
 
 # File deletion
 'filedelete'                  => 'Ҳазфи $1',
@@ -1042,6 +1056,9 @@ your old password.
 'filedelete-comment'          => 'Сабаби ҳазф:',
 'filedelete-submit'           => 'Ҳазф',
 'filedelete-success'          => "'''$1''' ҳазф шуд.",
+'filedelete-nofile'           => "'''$1''' дар {{SITENAME}} вуҷуд надорад.",
+'filedelete-nofile-old'       => "Нусхаи бойгонӣ шудае аз '''$1''' бо мушаххасоти дода шуда, вуҷуд надорад.",
+'filedelete-iscurrent'        => 'Шумо мехоҳед, ки охирин нусхаи ин парвандаро ҳазф кунед. Лутфан ибтидо парвандеро ба як нусхаи кӯҳнатар вогардонӣ кунед.',
 'filedelete-otherreason'      => 'Далели дигар/изофӣ:',
 'filedelete-reason-otherlist' => 'Дигар далел',
 'filedelete-reason-dropdown'  => '*Далелҳои умумии ҳазф
@@ -1060,8 +1077,9 @@ your old password.
 'listredirects' => 'Рӯйхати саҳифаҳои равонакунӣ',
 
 # Unused templates
-'unusedtemplates'    => 'Шаблонҳои истифоданашуда',
-'unusedtemplateswlh' => 'дигар пайвандҳо',
+'unusedtemplates'     => 'Шаблонҳои истифоданашуда',
+'unusedtemplatestext' => 'Ин саҳифа ҳамаи саҳифаҳои дар фазоиноми шаблонро ки дар ҳеҷ саҳифаҳо ба кор нарафтаанд, феҳрист мекунад. Лутфан пеш аз пок кардани ин саҳифаҳо пайвандҳои дигар ба онҳоро баррасӣ кунед.',
+'unusedtemplateswlh'  => 'дигар пайвандҳо',
 
 # Random page
 'randompage'         => 'Саҳифаҳои тасодуфӣ',
@@ -1176,6 +1194,7 @@ your old password.
 'log-search-legend'    => 'Ба дунболи гузоришҳо ҷустуҷӯ кун',
 'log-search-submit'    => 'Бирав',
 'logempty'             => 'Мавриди мутобиқ ба манзури шумо дар гузориш пайдо нашуд.',
+'log-title-wildcard'   => 'Саҳифаҳоеро ҷустуҷӯ кунед, ки унвонашон бо ин матн оғоз мешаванд',
 
 # Special:Allpages
 'nextpage'          => 'Саҳифаи баъдина ($1)',
@@ -1216,11 +1235,13 @@ your old password.
 'emailsenttext'   => 'Номаи почтаи электронии шумо фиристода шуд.',
 
 # Watchlist
-'watchlist'            => 'Феҳристи назаротӣ ман',
+'watchlist'            => 'Феҳристи назароти ман',
 'mywatchlist'          => 'Феҳристи назаротӣ ман',
 'watchlistfor'         => "(барои '''$1''')",
 'nowatchlist'          => 'Дар феҳристи пайгириҳои шумо ҳеҷ мавриде нест.',
+'watchlistanontext'    => 'Лутфан барои мушоҳида ва вироиши феҳристи пайгириҳои худ аз $1 истифода кунед.',
 'watchnologin'         => 'Вуруд нашуда',
+'watchnologintext'     => 'Барои тағйири феҳристи пайгириҳои худ бояд [[Special:Userlogin|ба систем ворид шавед]].',
 'addedwatch'           => 'Ба феҳристи пайгириҳо илова карда шуд',
 'addedwatchtext'       => "Ин саҳифа \"[[:\$1]]\" ва [[{{ns:special}}:Watchlist|феҳристи назаротӣ]] Шумо илова шуд.
 Дигаргуниҳои ояндаи ин саҳифа ва саҳифи баҳси алоқаманд дар рӯихати онҷо хоҳад шуд,
@@ -1234,11 +1255,15 @@ your old password.
 'unwatch'              => 'Назар накардан',
 'unwatchthispage'      => 'Тавқифи пайгирии ин саҳифа',
 'notanarticle'         => 'Мақола нест',
+'watchnochange'        => 'Ягон мавриди пайгириҳои шумо дар давраи замони намоишёфта вироиш нашуда аст.',
 'watchlist-details'    => '{{PLURAL:$1|$1 саҳифаи|$1 саҳифаҳои}} бидуни ҳисоби саҳифаҳои баҳс.',
 'wlheader-enotif'      => '* Иттилоорасонии тариқи почтаи электронӣ (E-mail) имконпазир аст.',
 'wlheader-showupdated' => "* Саҳифаҳое, ки пас аз охирин сар заданатон ба онҳо тағйир кардаанд '''пурранг''' нишон дода шудаанд",
 'watchmethod-recent'   => 'баррасии вироишҳои охир барои саҳифаҳои пайгиришуда',
 'watchmethod-list'     => 'баррасии саҳифаҳои пайгиришуда барои вироишҳои охир',
+'watchlistcontains'    => 'Феҳристи пайгириҳои шумо $1 {{PLURAL:$1|саҳифаро|саҳифаҳоро}} дар бар мегирад.',
+'iteminvalidname'      => "Мушкилӣ бо мавриди '$1', номи номӯътабар аст...",
+'wlnote'               => "Дар зер {{PLURAL:$1|охирин тағйир|'''$1''' охирин тағйирот}} дар $2 соати охир {{PLURAL:омадааст|омадаанд}}.",
 'wlshowlast'           => 'Намоиши охирин $1 соат $2 рӯзҳо $3',
 'watchlist-show-bots'  => 'Намоиши вироишҳои роботҳо',
 'watchlist-hide-bots'  => 'Пинҳон кардани вироишҳои роботҳо',
@@ -1326,7 +1351,9 @@ $NEWPAGE
 'sessionfailure'              => 'Ба назар мерасад, мушкилие дар мавриди нишасти корбарии шумо вуҷуд дорад; амали дархостшуда ба унвони иқдоми пешгирона дар баробари рабуда шудани иттилооти нишасти корбарӣ, лағв шуд. Лутфан тугмаи "бозгашт"-ро дар мурургари худ пахш кунед ва саҳифае, ки аз он инҷо расидаед муҷаддадан фарохонӣ кунед, сипас муҷаддадан боз саъй кунед.',
 'protectlogpage'              => 'Гузориши муҳофизат',
 'protectedarticle'            => '"[[$1]]" муҳофизат шуд',
+'modifiedarticleprotection'   => 'сатҳи муҳофизати саҳифаи "[[$1]]" тағйир дода шуд',
 'unprotectedarticle'          => 'аз муҳофизат озод шуда "[[$1]]"',
+'protectsub'                  => '(Дар ҳоли гузоштани сатҳи муҳофизат барои "$1")',
 'confirmprotect'              => 'Тасдиқи муҳофизат',
 'protectcomment'              => 'Далели муҳофизат:',
 'protectexpiry'               => 'Замони саромадан:',
@@ -1366,10 +1393,12 @@ $NEWPAGE
 'undelete'               => 'Эҳёи саҳифаҳои ҳазфшуда',
 'undeletepage'           => 'Намоиш ва эҳёи саҳифаҳои ҳазфшуда',
 'viewdeletedpage'        => 'Намоиши саҳифаҳои ҳазфшуда',
+'undeleterevisions'      => '$1 нусха бойгонӣ {{PLURAL:$1|шудааст|шудаанд}}',
 'undeletehistory'        => 'Агар ин саҳифаро эҳё кунед, ҳамаи нусхаҳои он дар таърихча эҳё хоҳанд шуд. Агар саҳифаи ҷадиде бо номи яксон аз замони ҳазф эҷод шуда бошад, нусхаҳои эҳёшуда дар таърихчаи қабули хоҳанд омад. Ва нусхаи фаъоли саҳифаи зинда ба таври худкорӣ ҷойгузин нахоҳад шуд.',
 'undeletehistorynoadmin' => 'Ин мақола ҳазв карда шудааст. Сабаби ҳазв дар эзоҳ дар зер бо дигар маълумотҳои корбар ки ин саҳифаро ҳазф кард оварда шудааст. Матни аслии ин вироишоти ҳазфшуда фақат ба мудирон-администраторон дастрас аст.',
 'undelete-nodiff'        => 'Нусхаи кӯҳнатаре ёфт нашуд.',
 'undeletebtn'            => 'Барқарор кардан',
+'undeletelink'           => 'барқарор кардан',
 'undeletereset'          => 'Аз нав',
 'undeletecomment'        => 'Тавзеҳ:',
 'undeletedarticle'       => 'эҳё "[[$1]]" {{PLURAL:$1|шуд|шуданд}}',
@@ -1594,15 +1623,19 @@ $1',
 'import-nonewrevisions'      => 'Тамоми саҳифаҳо қаблан боргузорӣ шудаанд.',
 
 # Import log
-'importlogpage' => 'Вориди гузоришҳо',
+'importlogpage'             => 'Вориди гузоришҳо',
+'import-logentry-interwiki' => '$1 трансвикишуда',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'             => 'Саҳифаи корбарии ман',
+'tooltip-pt-anonuserpage'         => 'Саҳифаи корбари IP, ки бо он шумо вироиш мекунед',
 'tooltip-pt-mytalk'               => 'Саҳифаи баҳси ман',
+'tooltip-pt-anontalk'             => 'Баҳси пиромуни вироишҳо аз ин нишонаи IP',
 'tooltip-pt-preferences'          => 'Тарҷиҳоти ман',
 'tooltip-pt-watchlist'            => 'Рӯйхати саҳифаҳое, ки тағйиротҳояшонро Шумо назорат мекунед',
 'tooltip-pt-mycontris'            => 'Рӯихати ҳиссагузориҳои ман',
 'tooltip-pt-login'                => 'Тавсия мешавад ки ба систем ворид шавад, лекин иҷборӣ нест.',
+'tooltip-pt-anonlogin'            => 'Ба шумо тавзеҳ мешавад, ки ба систем ворид шавед, лекин ин иҷборӣ нест.',
 'tooltip-pt-logout'               => 'Хуруҷ аз систем',
 'tooltip-ca-talk'                 => 'Баҳси матни таркибии ин саҳифа',
 'tooltip-ca-edit'                 => 'Шумо ин саҳифаро вироиш карда метавонед. Пеш аз захира кардани саҳифа пешнамоишро истифода баред.',
@@ -1627,15 +1660,22 @@ $1',
 'tooltip-n-help'                  => 'Гузаштан ба Роҳнамо.',
 'tooltip-n-sitesupport'           => 'Моро дастгирӣ намоед',
 'tooltip-t-whatlinkshere'         => 'Рӯйхати ҳамаи саҳифаҳое, ки ба ин саҳифа пайванд доранд',
+'tooltip-t-recentchangeslinked'   => 'Тағйироти охир ин саҳифаҳое, ки ин саҳифа ба онҳо пайванд дорад',
+'tooltip-feed-rss'                => 'Хабарномаи RSS барои ин саҳифа',
+'tooltip-feed-atom'               => 'Хабарномаи Atom барои ин саҳифа',
 'tooltip-t-contributions'         => 'Мушоҳидаи феҳристи ҳиссагузориҳои ин корбар',
 'tooltip-t-emailuser'             => 'Фиристодани почтаи электронӣ ба ин корбар',
 'tooltip-t-upload'                => 'Фиристодани аксҳо ё медиа-файлҳо',
 'tooltip-t-specialpages'          => 'Рӯихати ҳамаи саҳифаҳои вижа',
 'tooltip-t-print'                 => 'Нусхаи чопии ин саҳифа',
+'tooltip-t-permalink'             => 'Пайванди доимӣ ба ин нусха аз ин саҳифа',
+'tooltip-ca-nstab-main'           => 'Дидани саҳифаи мӯҳтавиёт',
 'tooltip-ca-nstab-user'           => 'Намоиши саҳифаи корбар',
+'tooltip-ca-nstab-media'          => 'Дидани саҳифаи расона',
 'tooltip-ca-nstab-special'        => 'Ин саҳифаи махсус мебошад, Шумо онро вироиш карда наметавонед',
 'tooltip-ca-nstab-project'        => 'Намоиши саҳифаи лоиҳа',
-'tooltip-ca-nstab-image'          => 'Намоиши саҳифаи акс',
+'tooltip-ca-nstab-image'          => 'Дидани саҳифаи парванда',
+'tooltip-ca-nstab-mediawiki'      => 'Дидани пайғоми системавӣ',
 'tooltip-ca-nstab-template'       => 'Намоиши шаблон',
 'tooltip-ca-nstab-help'           => 'Намоиши саҳифаи роҳнамо',
 'tooltip-ca-nstab-category'       => 'Намоиши саҳифаи гурӯҳ',
@@ -1645,11 +1685,23 @@ $1',
 'tooltip-diff'                    => 'Намоиши тағйиротҳое, ки Шумо бо матн кардаед',
 'tooltip-compareselectedversions' => 'Намоиши фарқияти байни ду нусхаи интихобкардашудаи ин саҳифа.',
 'tooltip-watch'                   => 'Ин саҳифаро ба рӯихатӣ назароти худ илова кунед',
+'tooltip-recreate'                => 'Эҷоди дубораи саҳифаи сарфи назар аз ҳазф шудани қаблии он',
+'tooltip-upload'                  => 'Шурӯъ ба боргузорӣ',
+
+# Metadata
+'nodublincore'      => 'Метадода Dublin Core RDF барои ин коргузор ғайри фаъол шудааст.',
+'nocreativecommons' => 'Метадодаи Creative Commons RDF барои ин коргузор ғайри фаъол шудааст.',
+'notacceptable'     => 'Коргузори ин вики аз ирсоли дода ба шакле ки барномаи шумо битавонад намоиш диҳад, пешкаш карда наметавонад.',
 
 # Attribution
-'siteuser'  => 'Википедиа user $1',
-'others'    => 'дигарон',
-'siteusers' => 'Википедиа user(s) $1',
+'anonymous'        => 'Корбари (они) гумномӣ {{SITENAME}}',
+'siteuser'         => 'Википедиа user $1',
+'lastmodifiedatby' => 'Ин саҳифа охирин маротиба дар $2, $1 аз тарафи $3 тағйир дода шудааст.', # $1 date, $2 time, $3 user
+'othercontribs'    => 'Дар асоси коре аз тарафи $1.',
+'others'           => 'дигарон',
+'siteusers'        => 'Википедиа user(s) $1',
+'creditspage'      => 'Эътибороти ин саҳифа',
+'nocredits'        => 'Иттилооти созандагони ин саҳифа мавҷуд нест.',
 
 # Spam protection
 'spamprotectiontitle'    => 'Филтри муҳофизат аз спам',
@@ -1658,11 +1710,41 @@ $1',
 'category-media-count'   => '{{PLURAL:$1|парванда|$1 парвандаҳо}} дар ин гурӯҳ вуҷуд дорад.',
 'listingcontinuesabbrev' => 'идома',
 
+# Info page
+'infosubtitle' => 'Иттилоот дар мавриди саҳифа',
+'numedits'     => 'Теъдоди вироишҳо (саҳифа): $1',
+'numtalkedits' => 'Теъдоди вироишҳо (саҳифаи баҳс): $1',
+'numwatchers'  => 'Шумораи пайгирикунандагон: $1',
+
+# Patrolling
+'markaspatrolleddiff'                 => 'Ба унвони баррасишуда аломат бизан',
+'markaspatrolledtext'                 => 'Ин мақоларо ба унвони баррасишуда аломат бизан',
+'markedaspatrolled'                   => 'Ба унвони баррасишуда аломат зада шуд',
+'markedaspatrolledtext'               => 'Нусхаи интихобшуда ба унвони баррасишуда аломат зада шуд.',
+'rcpatroldisabled'                    => 'Баррасии Тағйироти Охир фаъол нест',
+'rcpatroldisabledtext'                => 'Имкони Баррасии Тағйироти Охир дар ҳоли ҳозир ғайрифаъол аст.',
+'markedaspatrollederror'              => 'Аломати баррасӣ зада нашуд',
+'markedaspatrollederrortext'          => 'Бояд як нусхаро мушаххас кунед то барчасб ба унвони баррасишуда аломат бихӯрад.',
+'markedaspatrollederror-noautopatrol' => 'Шумо наметавонед ба тағйироти анҷом шуда тавассути худатон аломати баррасӣ бизанед.',
+
+# Patrol log
+'patrol-log-page' => 'Гузоришҳои нигаҳбонӣ',
+'patrol-log-line' => '$1 аз $2-ро ба сурати посбонишуда аломат зад $3',
+'patrol-log-auto' => '(худкор)',
+
+# Image deletion
+'deletedrevision'                 => 'Нусхаи ҳазфшудаи кӯҳнаи $1',
+'filedeleteerror-short'           => 'Хато дар ҳазфи парванда: $1',
+'filedelete-current-unregistered' => 'Парвандае бо номи "$1" дар пойгоҳи дода мавҷуд нест.',
+'filedelete-archive-read-only'    => 'Имкони навиштан дар пӯшаи "$1" вуҷуд надорад.',
+
 # Browsing diffs
 'previousdiff' => '← Фарқияти аввалина',
 'nextdiff'     => 'Фарқияти баъдина →',
 
 # Media information
+'widthheightpage'      => '$1×$2, $3 саҳифаҳо',
+'file-info'            => '(андозаи парванда: $1, навъи MIME: $2)',
 'file-info-size'       => '($1 × $2 пиксел, ҳаҷми парванда: $3, навъи MIME: $4)',
 'file-nohires'         => '<small>Нусхаи ҳаҷман ва сифатан баландтар дастрас нест.</small>',
 'svg-long-desc'        => '(SVG парванда, исмӣ $1 × $2 пиксел, андозаи парванда: $3)',
@@ -1672,6 +1754,7 @@ $1',
 # Special:Newimages
 'newimages'    => 'Намоишгоҳи парвандаҳои ҷадид',
 'showhidebots' => '($1 ботҳо)',
+'noimages'     => 'Чизе барои дидан нест.',
 
 # Bad image list
 'bad_image_list' => 'Иттилоотро бояд бо ин шакл ворид кунед:
@@ -1680,7 +1763,7 @@ $1',
 
 # Metadata
 'metadata'          => 'Метадода',
-'metadata-help'     => 'Ин парванда иттилооти иловагиро дар бар мегирад, эҳтимол аз аксбардораки рақамӣ ё сканер дар вақти сохтан ва рақамӣ кардан, илова шуда. Агар парванда аз вазъияти ибтидоиаш тағйир дода бошад, мумкин аст, шарҳу тафсилоти мавҷуди иттилооти аксро тамоман бозтоб надиҳад.',
+'metadata-help'     => 'Ин парванда иттилооти иловагиро дар бар мегирад, эҳтимол аз аксбардораки рақамӣ ё сканер дар вақти сохтан ва рақамӣ кардан, илова шудааст. Агар парванда аз вазъияти ибтидоиаш тағйир дода бошад, мумкин аст, шарҳу тафсилоти мавҷуди иттилооти аксро тамоман бозтоб надиҳад.',
 'metadata-expand'   => 'Намоиши ҷузъиёти тафсилӣ',
 'metadata-collapse' => 'Пинҳон кардани ҷузъиёти тафсилӣ',
 'metadata-fields'   => 'EXIF фосилаҳои додаҳо, ки дар ин паём оварда шудаанд дар ҷадвали акс ҷамъ шуда бошанд ҳам, намоиш дода хоҳанд шуд. Бақия онҳо танҳо дар вақти боз кардани ҷадвал нишон дода хоҳанд шуд.
@@ -1692,7 +1775,122 @@ $1',
 * focallength', # Do not translate list items
 
 # EXIF tags
-'exif-artist' => 'Муаллиф',
+'exif-imagewidth'                  => 'Васеъӣ',
+'exif-imagelength'                 => 'Баландӣ',
+'exif-bitspersample'               => 'Нуқта дар ҳар ҷузъ',
+'exif-compression'                 => 'Тарҳи фишурдасозӣ',
+'exif-photometricinterpretation'   => 'Таркиби нуқот',
+'exif-orientation'                 => 'Ҷиҳатёбӣ',
+'exif-samplesperpixel'             => 'Теъдоди қисмҳо',
+'exif-planarconfiguration'         => 'Тартиби додаҳо',
+'exif-ycbcrsubsampling'            => 'Нисбати зернамунаи Y ба C',
+'exif-ycbcrpositioning'            => 'Мавқеияти Y ва C',
+'exif-xresolution'                 => 'Таҳлилпазирии уфуқӣ',
+'exif-yresolution'                 => 'Таҳлилпазирии амудӣ',
+'exif-resolutionunit'              => 'Воҳиди тафкикпазирии X ва Y',
+'exif-stripoffsets'                => 'Ҷойгоҳи додаҳои акс',
+'exif-rowsperstrip'                => 'Теъдоди радифҳо дар ҳар навор',
+'exif-stripbytecounts'             => 'Байт дар ҳар навори фишурда',
+'exif-jpeginterchangeformat'       => 'Ҷабъаи ҷойи нисбат ба JPEG SOI',
+'exif-jpeginterchangeformatlength' => 'Байт додаи JPEG',
+'exif-transferfunction'            => 'Тобеияти табдил',
+'exif-whitepoint'                  => 'Рангинагии нуқтаи сафед',
+'exif-primarychromaticities'       => 'Рангпазирии аввалиятҳо',
+'exif-referenceblackwhite'         => 'Ҷуфти қиммати муроҷиаи сиёҳ ва сафед',
+'exif-datetime'                    => 'Таърих ва вақти тағйири парванда',
+'exif-imagedescription'            => 'Унвони акс',
+'exif-make'                        => 'Ширкати созандаи аксбардорак',
+'exif-model'                       => 'Модели аксбардорак',
+'exif-software'                    => 'Нармафзори истифодашуда',
+'exif-artist'                      => 'Муаллиф',
+'exif-copyright'                   => 'Дорандаи ҳаққи таксир',
+'exif-exifversion'                 => 'Нусхаи exif',
+'exif-flashpixversion'             => 'Нусхаи пуштибонишудаи Flashpix',
+'exif-colorspace'                  => 'Фазои ранг',
+'exif-componentsconfiguration'     => 'Маънии ҳар як аз қисмҳо',
+'exif-compressedbitsperpixel'      => 'Ҳолати фишурдасозии акс',
+'exif-pixelydimension'             => 'Арзи акси мӯътабар',
+'exif-pixelxdimension'             => 'Тӯли акси мӯътабар',
+'exif-makernote'                   => 'Тавзеҳоти ширкати созанда',
+'exif-usercomment'                 => 'Тавзеҳоти корбар',
+'exif-relatedsoundfile'            => 'Парвандаи сабти алоқаманд',
+'exif-datetimeoriginal'            => 'Таърих ва вақти тавлиди додаҳо',
+'exif-datetimedigitized'           => 'Таърих ва замони рақамӣ(диҷиталӣ) шудан',
+'exif-subsectime'                  => 'Касри сонияи таърих ва замон',
+'exif-subsectimeoriginal'          => 'Касри сонияи замони аслӣ',
+'exif-subsectimedigitized'         => 'Касри сонияи замони рақамӣ(диҷиталӣ) шуда',
+'exif-exposuretime'                => 'Замони нурдиҳӣ',
+'exif-exposuretime-format'         => '$1 сония ($2)',
+'exif-fnumber'                     => 'F Рақам',
+'exif-exposureprogram'             => 'Барномаи Нурдиҳӣ',
+'exif-spectralsensitivity'         => 'Ҳасосияти тифӣ',
+'exif-isospeedratings'             => 'Дараҷабандии суръати ISO',
+'exif-oecf'                        => 'Амали табдили нурӣ-электронӣ',
+'exif-shutterspeedvalue'           => 'Суръати парда',
+'exif-aperturevalue'               => 'Андозаи диафрагм',
+'exif-brightnessvalue'             => 'Равшанӣ',
+'exif-exposurebiasvalue'           => 'Хатои нурдиҳӣ',
+'exif-maxaperturevalue'            => 'Ҳадди аксар кушодагии замин',
+'exif-subjectdistance'             => 'Фосилаи ҷисм',
+'exif-meteringmode'                => 'Ҳолати санҷиши фосила',
+'exif-lightsource'                 => 'Манбаи нур',
+'exif-flash'                       => 'Флеш',
+'exif-focallength'                 => 'Фосилаи марказии адасӣ',
+'exif-subjectarea'                 => 'Масоҳати ҷисм',
+'exif-flashenergy'                 => 'Қудрати флеш',
+'exif-spatialfrequencyresponse'    => 'Посухи фосилаи фазогӣ',
+'exif-focalplanexresolution'       => 'Сафҳаи марказии X тафкикпазирӣ',
+'exif-focalplaneyresolution'       => 'Сафҳаи марказии Y тафкикпазирӣ',
+'exif-focalplaneresolutionunit'    => 'Воҳиди тафкикпазирии сафҳаи марказӣ',
+'exif-subjectlocation'             => 'Макони ҷисм',
+'exif-exposureindex'               => 'Шохиси нурдиҳӣ',
+'exif-sensingmethod'               => 'Равиши ҳисгарӣ',
+'exif-filesource'                  => 'Манбаи парванда',
+'exif-scenetype'                   => 'Навъи саҳна',
+'exif-cfapattern'                  => 'Қолаби CFA',
+'exif-customrendered'              => 'Пардозиши акс',
+'exif-exposuremode'                => 'Ҳолати нурдиҳӣ',
+'exif-whitebalance'                => 'Мувозинаи ранги сафед',
+'exif-focallengthin35mmfilm'       => 'Фосилаи марказӣ барои филми 35 мм',
+'exif-scenecapturetype'            => 'Навъи сабти саҳна',
+'exif-gaincontrol'                 => 'Танзими саҳна',
+'exif-contrast'                    => 'Контраст',
+'exif-saturation'                  => 'Серобшавӣ',
+'exif-sharpness'                   => 'Рӯшанӣ',
+'exif-devicesettingdescription'    => 'Шарҳи танзимоти дастгоҳ',
+'exif-subjectdistancerange'        => 'Ҳудуди фосилаи ҷисм',
+'exif-imageuniqueid'               => 'Шиносаи ягонаи акс',
+'exif-gpsversionid'                => 'Нусхаи барчасби ҶПС',
+'exif-gpslatituderef'              => 'Арзи ҷуғрофии шимолӣ ё ҷанубӣ',
+'exif-gpslatitude'                 => 'Арзи ҷуғрофӣ',
+'exif-gpslongituderef'             => 'Тӯли ҷуғрофии шарқӣ ё ғарбӣ',
+'exif-gpslongitude'                => 'Тӯли ҷуғрофӣ',
+'exif-gpsaltituderef'              => 'Нуқтаи муроҷиаи фароз',
+'exif-gpsaltitude'                 => 'Фароз',
+'exif-gpstimestamp'                => 'Вақти ҶПС (соати атомӣ)',
+'exif-gpssatellites'               => 'Моҳвораҳои истифодашуда барои андозагирӣ',
+'exif-gpsstatus'                   => 'Вазъияти гиранда',
+'exif-gpsmeasuremode'              => 'Ҳолати андозагирӣ',
+'exif-gpsdop'                      => 'Диққати андозагирӣ',
+'exif-gpsspeedref'                 => 'Воҳиди суръат',
+'exif-gpsspeed'                    => 'Суръати гирандаи ҶПС',
+'exif-gpstrackref'                 => 'Муроҷиа барои самти ҳаракат',
+'exif-gpstrack'                    => 'Самти ҳаракат',
+'exif-gpsimgdirectionref'          => 'Муроҷиа барои самти акс',
+'exif-gpsimgdirection'             => 'Самти акс',
+'exif-gpsmapdatum'                 => 'Иттилооти нақшабардории Geodetic истифода шудааст',
+'exif-gpsdestlatituderef'          => 'Муроҷиа барои арзи ҷуғрофии мақсад',
+'exif-gpsdestlatitude'             => 'Арзи ҷуғрофии мақсад',
+'exif-gpsdestlongituderef'         => 'Муроҷиа барои тӯли ҷуғрофии мақсад',
+'exif-gpsdestlongitude'            => 'Тӯли ҷуғрофии мақсад',
+'exif-gpsdestbearingref'           => 'Муроҷиа барои самти мақсад',
+'exif-gpsdestbearing'              => 'Самти мақсад',
+'exif-gpsdestdistanceref'          => 'Муроҷиа барои фосила то мақсад',
+'exif-gpsdestdistance'             => 'Фосила то мақсад',
+'exif-gpsprocessingmethod'         => 'Номи равиш пардозиши ҶПС',
+'exif-gpsareainformation'          => 'Номи масоҳати ҶПС',
+'exif-gpsdatestamp'                => 'Таърихи ҶПС',
+'exif-gpsdifferential'             => 'Тасҳеҳи ҷузъии ҶПС',
 
 # EXIF attributes
 'exif-compression-1' => 'Ғайрифишурда',
@@ -1700,7 +1898,13 @@ $1',
 'exif-unknowndate' => 'Таърихи номаълум',
 
 'exif-orientation-1' => 'Оддӣ', # 0th row: top; 0th column: left
+'exif-orientation-2' => 'Уфуқӣ пуштурӯ шуда', # 0th row: top; 0th column: right
 'exif-orientation-3' => '180° дараҷа чархида', # 0th row: bottom; 0th column: right
+'exif-orientation-4' => 'Амудӣ пуштурӯ шуда', # 0th row: bottom; 0th column: left
+'exif-orientation-5' => '90° бо ақрабаки соат чархида ва амудӣ пуштурӯ шуда', # 0th row: left; 0th column: top
+'exif-orientation-6' => '90° ақрабаки соат чархида', # 0th row: right; 0th column: top
+'exif-orientation-7' => '90° ақрабаки соат чархида ва амудӣ пуштурӯ шуда', # 0th row: right; 0th column: bottom
+'exif-orientation-8' => '90° бо ақрабаки соат чархида', # 0th row: left; 0th column: bottom
 
 'exif-planarconfiguration-1' => 'Қолаби фарбеҳ',
 'exif-planarconfiguration-2' => 'қолаби сатҳӣ',
@@ -1712,6 +1916,10 @@ $1',
 'exif-exposureprogram-2' => 'Барномаи оддӣ',
 'exif-exposureprogram-3' => 'Аввалияти диафрагм',
 'exif-exposureprogram-4' => 'Аввалияти шаттер (Shutter priority)',
+'exif-exposureprogram-5' => 'Барномаи эҷодӣ (бо гироиш ба самти қаър медон)',
+'exif-exposureprogram-6' => 'Барномаи пурҷунбиш (бо гироиш ба самти суръати тези парда)',
+'exif-exposureprogram-7' => 'Ҳолати портрет (барои аксҳои наздик бо пасзаминаи хориҷ аз фосилаи марказ аст)',
+'exif-exposureprogram-8' => 'Ҳолати манзара (барои аксҳои манзара бо пасзамина дар фосилаи марказ)',
 
 'exif-subjectdistance-value' => '$1 метр',
 
@@ -1727,6 +1935,7 @@ $1',
 'exif-lightsource-0'   => 'Номаълум',
 'exif-lightsource-1'   => 'Рӯшноии рӯз',
 'exif-lightsource-2'   => 'Флуоресент',
+'exif-lightsource-3'   => 'Тунгстен (нур бидуни гармо)',
 'exif-lightsource-4'   => 'Флаш',
 'exif-lightsource-9'   => 'Ҳавои хуб',
 'exif-lightsource-10'  => 'Осмони абрӣ',
@@ -1744,6 +1953,10 @@ $1',
 'exif-focalplaneresolutionunit-2' => 'инч',
 
 'exif-sensingmethod-1' => 'Таърифнашуда',
+'exif-sensingmethod-2' => 'Ҳисгари ноҳияи ранги як тарошае',
+'exif-sensingmethod-3' => 'Ҳисгари ноҳияи ранги ду тарошае',
+'exif-sensingmethod-4' => 'Ҳисгари ноҳияи ранги се тарошае',
+'exif-sensingmethod-5' => 'Ҳисгари ноҳияи тартиби рангҳо',
 'exif-sensingmethod-7' => 'Ҳисгари сехатӣ',
 'exif-sensingmethod-8' => 'Ҳисгари хати тартибии рангҳо',
 
@@ -1839,17 +2052,31 @@ $1',
 'confirmemail_loggedin'   => 'Нишонаи почтаи электронии шумо тасдиқ шуд.',
 'confirmemail_error'      => 'Ҳангоми захираи таъйиди шумо ба мушкилие бархӯрда шуд.',
 'confirmemail_subject'    => '{{SITENAME}} тасдиқи нишонаи почтаи электронӣ',
+'confirmemail_body'       => 'Як нафар, эҳтимолан худи шумо, аз ин нишонаи IP $1, ҳисоби корбарие бо номи "$2" бо истифодаи ин нишонаи почтаи электронӣ дар {{SITENAME}} эҷод кардааст.
+
+Барои тасдиқи ин ҳисоб ки дар ҳақиқат ба шумо таалуқ дорад ва низ барои фаъолсозии имконоти почтаи электронӣ дар {{SITENAME}}, ин парвандаро дар мурургари Интернетӣ боз кунед:
+
+$3
+
+Агар ин шумо *нестед*, лутфан пайвандро дунбол накунед.
+Ин коди тасдиқ дар $4 сипарӣ хоҳад шуд.',
 
 # Scary transclusion
-'scarytranscludetoolong' => '[URL-Нишонаи интернетии мавриди назар беш аз андоза дароз буд; бубахшед]',
+'scarytranscludedisabled' => '[Ғунҷоиши байнивикиёна фаъол нест]',
+'scarytranscludefailed'   => '[Фарохонии шаблон барои $1 муяссар нашуд; бубахшед]',
+'scarytranscludetoolong'  => '[URL-Нишонаи интернетии мавриди назар беш аз андоза дароз буд; бубахшед]',
 
 # Trackbacks
+'trackbackbox'      => '<div id="mw_trackbacks">Бозтоби ин саҳифа дар вебнавиштҳо:<br />$1</div>',
 'trackbackremove'   => ' ([$1 Ҳазф])',
 'trackbacklink'     => 'Бозтоб',
 'trackbackdeleteok' => 'Бозтоби саҳифа бо муваффақият ҳазф шуд.',
 
 # Delete conflict
 'deletedwhileediting' => 'Огоҳӣ: Ин саҳифа баъди ба вироиш шурӯъ кардани шумо ҳазф шуда буд!',
+'confirmrecreate'     => "Корбар [[User:$1|$1]] ([[User talk:$1|баҳс]]) ин мақоларо пас аз он ки огоз ба вироиши он намудаед бо далели зерин ҳазф кардааст:
+: ''$2''
+Лутфан таъйид кунед, ки муҷаддадан мехоҳед ин мақоларо эҷод кунед.",
 'recreate'            => 'Аз нав созед',
 
 # HTML dump
@@ -1875,6 +2102,8 @@ $1',
 'imgmultigotopre'  => 'рафтан ба саҳифа',
 
 # Table pager
+'ascending_abbrev'         => 'афзуншаванда',
+'descending_abbrev'        => 'поёнӣ',
 'table_pager_next'         => 'Саҳифаи навбатӣ',
 'table_pager_prev'         => 'Саҳифаи гузашта',
 'table_pager_first'        => 'Саҳифаи аввал',
@@ -1894,6 +2123,9 @@ $1',
 'livepreview-ready'   => 'Бор шудан… Омода!',
 'livepreview-failed'  => 'Пешнамоиши зинда ба мушкилӣ бархӯрд! Лутфан аз пешнамоиши оддӣ истифода кунед.',
 'livepreview-error'   => 'Иртибот ба мушкилӣ бархӯрд: $1 "$2". Аз пешнамоиши оддӣ истифода кунед.',
+
+# Friendlier slave lag warnings
+'lag-warn-normal' => 'Мумкин аст тағйироти тозатар аз $1 сония дар ин феҳрист нишон дода нашавад.',
 
 # Watchlist editor
 'watchlistedit-noitems'       => 'Феҳристи пайгириҳои шумо холӣ аст.',

@@ -337,6 +337,7 @@ $magicWords = array(
 	'defaultsort'            => array( 1,    'DEFAULTSORT:', 'DEFAULTSORTKEY:', 'DEFAULTCATEGORYSORT:' ),
 	'filepath'               => array( 0,    'FILEPATH:'              ),
 	'tag'                    => array( 0,    'tag'                    ),
+	'hiddencat'              => array( 1,    '__HIDDENCAT__'          ),
 );
 
 /**
@@ -710,6 +711,7 @@ XHTML id names.
 'restorelink'                  => '{{PLURAL:$1|one deleted edit|$1 deleted edits}}',
 'feedlinks'                    => 'Feed:',
 'feed-invalid'                 => 'Invalid subscription feed type.',
+'feed-unavailable'             => 'Syndication feeds are not available on {{SITENAME}}',
 'site-rss-feed'                => '$1 RSS Feed',
 'site-atom-feed'               => '$1 Atom Feed',
 'page-rss-feed'                => '"$1" RSS Feed',
@@ -719,6 +721,7 @@ XHTML id names.
 'sitenotice'                   => '-', # the equivalent to wgSiteNotice; don't translate or duplicate this message to other languages
 'anonnotice'                   => '-', # don't translate or duplicate this message to other languages
 'newsectionheaderdefaultlevel' => '== $1 ==', # don't translate or duplicate this message to other languages
+'red-link-title'               => '$1 (not yet written)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Page',
@@ -1513,6 +1516,7 @@ PICT # misc.
 'nolinkstoimage'            => 'There are no pages that link to this file.',
 'sharedupload'              => 'This file is a shared upload and may be used by other projects.',
 'shareduploadwiki'          => 'Please see the $1 for further information.',
+'shareduploadwiki-desc'     => 'The description on its $1 there is shown below.',
 'shareduploadwiki-linktext' => 'file description page',
 'shareddescriptionfollows'  => '-', # don't translate or duplicate this message to other languages
 'noimage'                   => 'No file by this name exists, you can $1.',

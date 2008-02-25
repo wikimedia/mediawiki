@@ -309,10 +309,12 @@ $messages = array(
 'restorelink'             => '{{PLURAL:$1|yona modificacion èfaciê|$1 modificacions èfaciês}}',
 'feedlinks'               => 'Flux :',
 'feed-invalid'            => 'Tipo de flux envalido.',
+'feed-unavailable'        => 'Los flux de sindicacion sont pas disponiblos dessus {{SITENAME}}',
 'site-rss-feed'           => 'Flux RSS de $1',
 'site-atom-feed'          => 'Flux Atom de $1',
 'page-rss-feed'           => 'Flux RSS de « $1 »',
 'page-atom-feed'          => 'Flux Atom de « $1 »',
+'red-link-title'          => '$1 (portant pas rèdigiê)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Articllo',
@@ -584,8 +586,8 @@ Voutra adrèce IP est $3 et voutron identifiant de blocâjo est #$5. Volyéd los
 'noarticletext'             => 'Y at por lo moment gins de tèxte sur ceta pâge ; vos pouede [[Special:Search/{{PAGENAME}}|fâre una rechèrche sur lo titro de ceta pâge]] ou ben [{{fullurl:{{NAMESPACE}}:{{FULLPAGENAME}}|action=edit}} la modifiar].',
 'userpage-userdoesnotexist' => 'Lo compto utilisator « $1 » est pas enregistrâ. Endicâd se vos voléd crèar ou ben èditar cela pâge.',
 'clearyourcache'            => "'''Nota :''' aprés avêr sôvâ, vos dête forciér lo rechargement de la pâge por vêre los changements : '''Mozilla / Firefox :''' ''Shift-Ctrl-R'' (''Shift-Cmd-R'' en '''Apple Mac'''), '''IE :''' ''Ctrl-F5'', '''Opera :''' ''F5'', '''Safari :''' ''⌘-R'', '''Konqueror :''' ''Ctrl-R''.",
-'usercssjsyoucanpreview'    => "'''Combina :''' utilisâd lo boton « Prèvisualisacion » por èprovar voutra novèla fôlye css/js devant que l’enregistrar.",
-'usercsspreview'            => "'''Rapelâd-vos que vos éte aprés prèvisualisar voutra prôpra fôlye css et qu’el at p’oncor étâ enregistrâ !'''",
+'usercssjsyoucanpreview'    => "'''Combina :''' utilisâd lo boton « Prèvisualisacion » por èprovar voutra novèla fôlye CSS/JS devant que l’enregistrar.",
+'usercsspreview'            => "'''Rapelâd-vos que vos éte aprés prèvisualisar voutra prôpra fôlye CSS et qu’el at p’oncor étâ enregistrâ !'''",
 'userjspreview'             => "'''Rapelâd-vos que vos éte aprés visualisar ou èprovar voutron code JavaScript et qu’il at p’oncor étâ enregistrâ !'''",
 'userinvalidcssjstitle'     => "'''Atencion :''' ègziste pas d’entèrface « $1 ». Rapelâd-vos que les pâges a sè avouéc èxtensions .css et .js utilisont des titros en petiôtes lètres aprés lo nom d’utilisator et la bârra de fraccion /.<br />D’ense, {{ns:user}}:Foo/monobook.css est valido, pendent que {{ns:user}}:Foo/Monobook.css serat una fôlye de stilo envalida.",
 'updated'                   => '(Betâ a jorn)',
@@ -778,6 +780,7 @@ Assurâd-vos que cél changement pouesse consèrvar la continuitât de l’histo
 'searchsubtitleinvalid' => "Vos éd rechèrchiê '''« $1 »'''.",
 'noexactmatch'          => "'''Niona pâge avouéc lo titro « $1 » ègziste.''' Vos pouede [[:$1|crèar cél articllo]].",
 'noexactmatch-nocreate' => "'''Ègziste gins de pâge avouéc lo titro « $1 ».'''",
+'toomanymatches'        => 'Trop d’ocasions ont étâ trovâs, vos éte preyê de sometre una requéta difèrenta.',
 'titlematches'          => 'Corrèspondances dens los titros d’articllos',
 'notitlematches'        => 'Nion titro d’articllo corrèspond a la rechèrche.',
 'textmatches'           => 'Corrèspondances dens lo tèxte d’articllos',
@@ -1071,6 +1074,7 @@ PICT # de totes sôrtes
 'nolinkstoimage'            => 'Niona pâge contint ceta émâge.',
 'sharedupload'              => 'Ceti fichiér est partagiê et pôt étre utilisâ per d’ôtros projèts.',
 'shareduploadwiki'          => 'Reportâd-vos a la [$1 pâge de dèscripcion] por més d’enformacions.',
+'shareduploadwiki-desc'     => 'La dèscripcion de son $1 est lé afichiê ce-desot.',
 'shareduploadwiki-linktext' => 'Pâge de dèscripcion du fichiér',
 'noimage'                   => 'Nion fichiér èyent cél nom ègziste, vos pouede $1.',
 'noimage-linktext'          => 'nen importar yon',
@@ -1477,6 +1481,7 @@ les vèrsions rèstorâs aparètront dens l’historico prècèdent et la vèrsi
 'undeleterevision-missing'     => 'Vèrsion envalida ou manquenta. Vos avéd pôt-étre un môvés lim, ou la vèrsion at étâ rèstorâ ou suprimâ de les arch·ives.',
 'undelete-nodiff'              => 'Niona vèrsion prècèdenta trovâ.',
 'undeletebtn'                  => 'Rèstorar !',
+'undeletelink'                 => 'rèstorar',
 'undeletereset'                => 'Tornar inicialisar',
 'undeletecomment'              => 'Rèsumâ :',
 'undeletedarticle'             => 'at rèstorâ « [[$1]] »',
@@ -1841,8 +1846,8 @@ Totes les accions d’importacion entèrvouiqui sont consèrvâs dens lo [[Speci
 'tooltip-upload'                  => 'Comenciér l’impôrt',
 
 # Stylesheets
-'common.css'   => '/* Lo css placiê ique serat aplicâ a totes les entèrfaces. */',
-'monobook.css' => '/* Lo css placiê ique afècterat los utilisators de l’entèrface Monobook. */',
+'common.css'   => '/* Lo CSS placiê ique serat aplicâ a totes les entèrfaces. */',
+'monobook.css' => '/* Lo CSS placiê ique afècterat los utilisators de l’entèrface Monobook. */',
 
 # Scripts
 'common.js'   => '/* Quint que seye lo JavaScript placiê ique serat chargiê por tôs los utilisators et por châque pâge accèdâ. */',

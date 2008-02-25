@@ -400,9 +400,10 @@ Jéelaleel bataaxal bii su fekkee ci njuumte nga sosee mii sàq.',
 'headline_tip'    => 'Ron-koj 2° dayoo',
 'nowiki_sample'   => 'Duggalal fii mbind mi ñu daytalul',
 'nowiki_tip'      => 'Jéelaleel mbindinu wiki',
-'image_tip'       => 'Nataal bu roofu',
+'image_tip'       => 'Roof ab nataal',
+'media_tip'       => 'Lëkkalekaay buy jëme cib dencukaay',
 'sig_tip'         => 'Xaatimee waxtu wi',
-'hr_tip'          => 'Buum bu tëdd (bul ci ëppal)',
+'hr_tip'          => 'Rëbb wu tëdd (bul ci ëppal)',
 
 # Edit pages
 'summary'                   => 'Koj&nbsp;',
@@ -848,7 +849,7 @@ $2 boole ci xëti yoonalaat yi<br /> Seet $3 $9',
 
 # Contributions
 'contributions' => 'Li jëfëndikookat bii indi',
-'mycontris'     => 'Li ma indiwoon',
+'mycontris'     => 'Samay cërute',
 'nocontribs'    => 'Amul benn coppite bu melokaanoo nii bu ñu gis.',
 'month'         => 'Tambalee ci weeru (ak yi jiitu) :',
 'year'          => 'Tambalee ci attum (ak yi jiitu) :',

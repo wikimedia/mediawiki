@@ -9,6 +9,7 @@
  * @author Pdxx
  * @author Garas
  * @author SPQRobin
+ * @author Hugo.arg
  */
 
 $namespaceNames = array(
@@ -309,6 +310,7 @@ $messages = array(
 'site-atom-feed'          => '$1 Atom šaltinis',
 'page-rss-feed'           => '„$1“ RSS šaltinis',
 'page-atom-feed'          => '„$1“ Atom šaltinis',
+'red-link-title'          => '$1 (dar neparašytas)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Puslapis',
@@ -790,6 +792,7 @@ Kiti administratoriai šiame projekte vis dar galės pasiekti paslėptą turinį
 'searchsubtitleinvalid' => "Ieškoma '''$1'''",
 'noexactmatch'          => "'''Nėra jokio puslapio, pavadinto „$1“.''' Jūs galite [[:$1|sukurti šį puslapį]].",
 'noexactmatch-nocreate' => "'''Nėra puslapio su pavadinimu „$1“.'''",
+'toomanymatches'        => 'Perdaug atitikmenų buvo grąžinta. Prašome pabandyti kitokią užklausą',
 'titlematches'          => 'Puslapių pavadinimų atitikmenys',
 'notitlematches'        => 'Jokių pavadinimo atitikmenų',
 'textmatches'           => 'Puslapio turinio atitikmenys',
@@ -1474,6 +1477,7 @@ Failų versijos, kurių neturite teisių žiūrėti, nebus atkurtos.',
 'undeleterevision-missing'     => 'Neteisinga arba dingusi versija. Jūs turbūt turite blogą nuorodą, arba versija buvo atkurta arba pašalinta iš archyvo.',
 'undelete-nodiff'              => 'Nerasta jokių ankstesnių versijų.',
 'undeletebtn'                  => 'Atkurti',
+'undeletelink'                 => 'atstatyti',
 'undeletereset'                => 'Iš naujo',
 'undeletecomment'              => 'Komentaras:',
 'undeletedarticle'             => 'atkurta „[[$1]]“',
@@ -2361,16 +2365,19 @@ $1',
 'unknown_extension_tag' => 'Nežinoma priedo žymė „$1“',
 
 # Special:Version
-'version-extensions'       => 'Instaliuoti priedai',
-'version-specialpages'     => 'Specialieji puslapiai',
-'version-variables'        => 'Kintamieji',
-'version-other'            => 'Kita',
-'version-mediahandlers'    => 'Media dresiruotojai',
-'version-version'          => 'versija',
-'version-license'          => 'Licenzija',
-'version-software'         => 'Instaliuota programinė įranga',
-'version-software-product' => 'Produktas',
-'version-software-version' => 'Versija',
+'version-extensions'               => 'Instaliuoti priedai',
+'version-specialpages'             => 'Specialieji puslapiai',
+'version-variables'                => 'Kintamieji',
+'version-other'                    => 'Kita',
+'version-mediahandlers'            => 'Media dresiruotojai',
+'version-extension-functions'      => 'Papildomos funkcijos',
+'version-skin-extension-functions' => 'Išvaizdos papildinių funkcijos',
+'version-hook-subscribedby'        => 'Užsakyta',
+'version-version'                  => 'versija',
+'version-license'                  => 'Licenzija',
+'version-software'                 => 'Instaliuota programinė įranga',
+'version-software-product'         => 'Produktas',
+'version-software-version'         => 'Versija',
 
 # Special:Filepath
 'filepath'         => 'Failo kelias',

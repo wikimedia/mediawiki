@@ -350,10 +350,12 @@ $messages = array(
 'restorelink'             => '{{PLURAL:$1|1 wušmórnjenu wersiju|$1 wušmórnjenej wersiji|$1 wušmórnjene wersije|$1 wušmórnjenych wersijow}}',
 'feedlinks'               => 'Kanal:',
 'feed-invalid'            => 'Njepłaćiwy typ abonementa.',
+'feed-unavailable'        => 'Syndikaciske kanale na {{GRAMMAR:lokatiw|{{SITENAME}}}} k dispoziciji njesteja',
 'site-rss-feed'           => '$1 RSS kanal',
 'site-atom-feed'          => 'Atom-kanal za $1',
 'page-rss-feed'           => 'RSS-kanal za „$1“',
 'page-atom-feed'          => 'Atom-Kanal za „$1“',
+'red-link-title'          => '$1 (strona hišće njepisana)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Nastawk',
@@ -821,6 +823,7 @@ Zawěsć, zo tuta změna stawiznisku kontinuitu strony wobchowuje.
 
 Móžeš [[{{ns:special}}:Allpages|alfabetiski indeks přepytować]] abo [[:$1|stronu wutworić]].',
 'noexactmatch-nocreate' => "'''Njeje strona z titulom \"\$1\".'''",
+'toomanymatches'        => 'Přewjele pytanskich wuslědkow, prošu spytaj druhe wotprašenje.',
 'titlematches'          => 'Strony z wotpowědowacym titulom',
 'notitlematches'        => 'Žane strony z wotpowědowacym titulom',
 'textmatches'           => 'Strony z wotpowědowacym tekstom',
@@ -1109,6 +1112,7 @@ PICT # misc.
 'nolinkstoimage'            => 'Njejsu strony, kotrež na tutu dataju wotkazuja.',
 'sharedupload'              => 'Tuta dataja je zhromadne nahraće a móže so přez druhe projekty wužiwać.',
 'shareduploadwiki'          => 'Za dalše informacije hlej $1.',
+'shareduploadwiki-desc'     => 'Wopisanje na $1 so deleka pokazuje.',
 'shareduploadwiki-linktext' => 'stronu datajoweho wopisanja',
 'noimage'                   => 'Žana dataja z tutym mjenom njeeksistuje. Móžeš $1.',
 'noimage-linktext'          => 'ju nahrać',
@@ -1530,6 +1534,7 @@ Poslednja změna bě wot wužiwarja [[User:$3|$3]] ([[User talk:$3|Diskusija]]).
 'undeleterevision-missing'     => 'Njepłaćiwa abo pobrachowaca wersija. Pak je wotkaz wopačny, pak bu wotpowědna wersija z archiwa wobnowjena abo wotstronjena.',
 'undelete-nodiff'              => 'Předchadna wersija njeeksistuje.',
 'undeletebtn'                  => 'Wobnowić',
+'undeletelink'                 => 'wobnowić',
 'undeletereset'                => 'Cofnyć',
 'undeletecomment'              => 'Přičina:',
 'undeletedarticle'             => 'Strona „$1” bu wuspěšnje wobnowjena.',

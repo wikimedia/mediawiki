@@ -991,6 +991,7 @@ Kyk na $2 vir \'n rekord van onlangse skrappings.',
 'undeletehistory'        => "As jy die bladsy herstel, sal alle weergawes herstel word.
 As 'n nuwe bladsy met dieselfde naam sedert die skrapping geskep is, sal die herstelde weergawes in die nuwe bladsy se voorgeskiedenis verskyn en die huidige weergawe van die lewendige bladsy sal nie outomaties vervang word nie.",
 'undeletebtn'            => 'Herstel',
+'undeletelink'           => 'herstel',
 'undeletedarticle'       => 'het "$1" herstel',
 'cannotundelete'         => 'Skrapping onsuksesvol; miskien het iemand anders dié bladsy al geskrap.',
 'undelete-search-submit' => 'Soek',

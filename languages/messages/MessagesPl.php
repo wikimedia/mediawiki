@@ -370,10 +370,12 @@ $messages = array(
 'restorelink'             => '{{PLURAL:$1|jedną usuniętą wersję|$1 usunięte wersje|$1 usuniętych wersji}}',
 'feedlinks'               => 'Kanały:',
 'feed-invalid'            => 'Niewłaściwy typ kanału informacyjnego.',
+'feed-unavailable'        => 'Kanały informacyjne nie są dostępne na {{GRAMMAR:Ms.lp|{{SITENAME}}}}',
 'site-rss-feed'           => 'Kanał RSS {{grammar:D.lp|$1}}',
 'site-atom-feed'          => 'Kanał Atom {{grammar:D.lp|$1}}',
 'page-rss-feed'           => 'Kanał RSS "$1"',
 'page-atom-feed'          => 'Kanał Atom "$1"',
+'red-link-title'          => '$1 (jeszcze nie utworzona)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Artykuł',
@@ -572,7 +574,7 @@ Możesz zignorować tą wiadomość, jeśli konto zostało stworzone przez pomy�
 'nowiki_sample'   => 'Wstaw tu tekst niesformatowany',
 'nowiki_tip'      => 'Zignoruj formatowanie wiki',
 'image_sample'    => 'Przyklad.jpg',
-'image_tip'       => 'Grafika osadzona',
+'image_tip'       => 'Plik osadzony',
 'media_sample'    => 'Przyklad.ogg',
 'media_tip'       => 'Link do pliku',
 'sig_tip'         => 'Twój podpis wraz z datą i czasem',
@@ -829,6 +831,7 @@ Upewnij się, że zmiany będą zapewniać ciągłość historyczną edycji stro
 'searchsubtitleinvalid' => 'Dla zapytania "$1"',
 'noexactmatch'          => 'Nie ma stron zatytułowanych "$1". Możesz [[:$1|utworzyć tę stronę]] lub spróbować pełnego przeszukiwania.',
 'noexactmatch-nocreate' => "'''Brak strony \"\$1\".'''",
+'toomanymatches'        => 'Zbyt wiele elementów pasujących do wzorca, spróbuj innego zapytania',
 'titlematches'          => 'Znaleziono w tytułach:',
 'notitlematches'        => 'Nie znaleziono w tytułach',
 'textmatches'           => 'Znaleziono na stronach:',
@@ -1017,7 +1020,7 @@ Upewnij się, że zmiany będą zapewniać ciągłość historyczną edycji stro
 'largefileserver'             => 'Plik jest większy niż maksymalny dozwolony rozmiar.',
 'emptyfile'                   => 'Przesłany plik wydaje się być pusty. Może być to spowodowane literówką w nazwie pliku. Sprawdź, czy nazwa jest prawidłowa.',
 'fileexists'                  => 'Plik o takiej nazwie już istnieje! Załadowanie nowej grafiki nieodwacalnie usunie już istniejącą ($1)! Upewnij się, że wiesz, co robisz.',
-'filepageexists'              => 'Istnieje już strona o tej nazwie (nie grafika), sprawdź <strong><tt>$1</tt></strong> jeżeli nie jesteś pewien czy chcesz ją zmienić.',
+'filepageexists'              => 'Istnieje już strona o tej nazwie (nie plik), sprawdź <strong><tt>$1</tt></strong> jeżeli nie jesteś pewien czy chcesz ją zmienić.',
 'fileexists-extension'        => 'Plik o podobnej nazwie już istnieje:<br />
 Nazwa przesyłanego pliku: <strong><tt>$1</tt></strong><br />
 Nazwa istniejącego pliku: <strong><tt>$2</tt></strong><br />
@@ -1096,6 +1099,7 @@ Rejestr usunięć tego pliku jest dla wygody podany poniżej:",
 'nolinkstoimage'            => 'Żadna strona nie odwołuje się do tego pliku.',
 'sharedupload'              => 'Ten plik znajduje się na wspólnym serwerze plików i może być używany na innych projektach.',
 'shareduploadwiki'          => 'Zobacz $1 aby dowiedzieć się więcej.',
+'shareduploadwiki-desc'     => 'Opis znajdujący się na $1 możesz zobaczyć poniżej.',
 'shareduploadwiki-linktext' => 'stronę opisu grafiki',
 'noimage'                   => 'Nie istnieje plik o tej nazwie. Możesz go $1.',
 'noimage-linktext'          => 'przesłać',
@@ -1295,7 +1299,7 @@ Długość [http://meta.wikimedia.org/wiki/Help:Job_queue kolejki zadań] to '''
 'allpagessubmit'    => 'Pokaż',
 'allpagesprefix'    => 'Pokaż zaczynające się od:',
 'allpagesbadtitle'  => 'Podana nazwa jest nieprawidłowa, zawiera prefiks międzyprojektowy lub międzyjęzykowy. Może ona także zawierać w sobie jeden lub więcej znaków których użycie w nazwach jest niedozwolone.',
-'allpages-bad-ns'   => 'W serwisie {{SITENAME}} nie istnieje przestrzeń nazw "$1".',
+'allpages-bad-ns'   => 'W {{GRAMMAR:Ms.lp|{{SITENAME}}}} nie istnieje przestrzeń nazw "$1".',
 
 # Special:Listusers
 'listusersfrom'      => 'Wyświetl użytkowników zaczynając od:',
@@ -1494,6 +1498,7 @@ Naciśnij "wstecz", przeładuj stronę, po czym ponownie wydaj polecenie.',
 'undeleterevision-missing'     => 'Nieprawidłowa lub brakująca wersja. Możesz mieć zły link lub wersja mogła zostać odtworzona lub usunięta z archiwum.',
 'undelete-nodiff'              => 'Nie znaleziono poprzednich wersji.',
 'undeletebtn'                  => 'Odtwórz',
+'undeletelink'                 => 'odtwórz',
 'undeletereset'                => 'Wyczyść',
 'undeletecomment'              => 'Powód odtworzenia:',
 'undeletedarticle'             => 'odtworzono "$1"',
@@ -1935,9 +1940,9 @@ $1',
 'noimages'     => 'Nic.',
 
 # Bad image list
-'bad_image_list' => 'Format jest następujący:
+'bad_image_list' => 'Dane należy prowadzić w formacie:
 
-Jedynie elementy listy (linijki zaczynające się od znaku *) są brane pod uwagę. Pierwszy link w linii musi być linkiem do złej grafiki. Następne linki w linii są traktowane jako wyjątki, tzn. strony, gdzie grafika może być wstawiona.',
+Jedynie elementy listy (linie zaczynające się od znaku *) brane są pod uwagę. Pierwszy link w linii musi być linkiem do zabronionego pliku. Następne linki w linii są traktowane jako wyjątki, są to nazwy stron, gdzie plik o zabronionej nazwie może być wstawiony.',
 
 # Metadata
 'metadata'          => 'Metadane',

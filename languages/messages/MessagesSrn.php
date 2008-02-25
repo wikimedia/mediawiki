@@ -6,6 +6,7 @@
  * @author Adfokati
  * @author Jordi
  * @author Siebrand
+ * @author Ooswesthoesbes
  */
 
 $fallback = 'nl';
@@ -339,7 +340,7 @@ Kon na yu a abi kisi.',
 'nowiki_sample'   => 'Presi dyaso a si fu a no wiki-opomeki',
 'nowiki_tip'      => 'No wiki-opomeki',
 'image_tip'       => 'Gefre',
-'media_tip'       => 'Skaki na wan gefre',
+'media_tip'       => 'Skaki na a gefre',
 'sig_tip'         => 'Yu sinaturi nanga datum nanga ten',
 'hr_tip'          => 'Lina dy lupiti ben (teki sparsa)',
 
@@ -829,7 +830,7 @@ Iksi yu wan papira no langar wana si, go na a papira nanga du opo \"No si\" ini 
 'deletedtext'                 => '"<nowiki>$1</nowiki>" ben e trowe. Si a $2 fu wan sibuku fu bakaseywan trowe.',
 'deletedarticle'              => 'abi "[[$1]]" e trowe',
 'dellogpage'                  => 'Trowebuku',
-'deletecomment'               => 'Yesikrari fu trowe',
+'deletecomment'               => 'Yesikrari fu trowe:',
 'deleteotherreason'           => 'Trawan/okwan yesikrari:',
 'deletereasonotherlist'       => 'Trawan yesikrari',
 'rollbacklink'                => 'draywatra',
@@ -1026,7 +1027,7 @@ Ala trawan skaki dy opo se lina ben, ben awroko leki spesyal, leki fru eksempre 
 
 # Metadata
 'metadata'          => 'Metadata',
-'metadata-help'     => 'Disi gefre abi eksra infrumasi, dy via wan fotokamera, skennar efu fotokenki-aplikasi presi kan ben. Leki a gefre ben kenki, kan infrumasi ski no gu ben nanga a kenki gefre.',
+'metadata-help'     => 'Disi gefre e abi eksra infrumasi, dy via wan fotokamera, skennar efu fotokenki-aplikasi e presi kan ben. Leki a gefre ben kenki, kan infrumasi ski no gu ben nanga a kenki gefre.',
 'metadata-expand'   => 'Granmeki infrumasi libi si',
 'metadata-collapse' => 'Granmeki infrumasi no libi si',
 'metadata-fields'   => 'Den EXIF-metadatabox ini disi boskopu sey ok libi si opo wan gefrepapira leki a metadatatabel ben inipotu. Trawan box sey no libi si.

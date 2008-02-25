@@ -53,6 +53,11 @@ $namespaceNames = array(
 	NS_CATEGORY_TALK    => 'Обсуждение_категории',
 );
 
+$namespaceAliases = array(
+	'Участница'            => NS_USER,
+	'Обсуждение участницы' => NS_USER_TALK,
+);
+
 $skinNames = array(
 	'standard' => 'Стандартное',
 	'nostalgia' => 'Ностальгия',
@@ -461,10 +466,12 @@ $messages = array(
 'restorelink'             => '{{PLURAL:$1|$1 удалённую правку|$1 удалённые правки|$1 удалённых правок}}',
 'feedlinks'               => 'В виде:',
 'feed-invalid'            => 'Неправильный тип канала для подписки.',
+'feed-unavailable'        => 'Ленты синдикации не доступны на сайте {{SITENAME}}',
 'site-rss-feed'           => '$1 - RSS лента',
 'site-atom-feed'          => '$1 - Atom лента',
 'page-rss-feed'           => '«$1» - RSS лента',
 'page-atom-feed'          => '«$1» - Atom лента',
+'red-link-title'          => '$1 (ещё не написано)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Статья',
@@ -939,6 +946,7 @@ $3 указал следующую причину: ''$2''",
 'searchsubtitleinvalid' => 'По запросу «$1»',
 'noexactmatch'          => "'''Страницы с названием «$1» не существует.''' [[:$1|Создать страницу]].",
 'noexactmatch-nocreate' => 'Страницы с названием «$1» не существует.',
+'toomanymatches'        => 'Найдено слишком много соответствий, пожалуйста, попробуйте другой запрос',
 'titlematches'          => 'Совпадения в названиях статей',
 'notitlematches'        => 'Нет совпадений в названиях статей',
 'textmatches'           => 'Совпадения в текстах статей',
@@ -1216,6 +1224,7 @@ $3 указал следующую причину: ''$2''",
 'nolinkstoimage'            => 'Нет страниц, ссылающихся на данный файл.',
 'sharedupload'              => 'Этот файл загружен в общее для нескольких проектов хранилище.',
 'shareduploadwiki'          => 'Дополнительную информацию можно найти на $1.',
+'shareduploadwiki-desc'     => 'Описание, указанное на его $1, показано ниже.',
 'shareduploadwiki-linktext' => 'странице описания файла',
 'noimage'                   => 'Файла с таким именем не существует, вы можете $1.',
 'noimage-linktext'          => 'загрузить его',
@@ -1611,6 +1620,7 @@ $NEWPAGE
 'undeleterevision-missing'     => 'Неверная или отсутствующая версия. Возможно, вы перешли по неправильной ссылке, либо версия могла быть удалена из архива.',
 'undelete-nodiff'              => 'Не найдено предыдущей версии.',
 'undeletebtn'                  => 'Восстановить',
+'undeletelink'                 => 'восстановить',
 'undeletereset'                => 'Очистить',
 'undeletecomment'              => 'Комментарий:',
 'undeletedarticle'             => 'восстановлена «[[$1]]»',
