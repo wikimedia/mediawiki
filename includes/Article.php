@@ -1771,7 +1771,6 @@ class Article {
 				if ( $cascade )
 					$comment .= "$cascade_description";
 				
-				$rowsAffected = false;
 				# Update restrictions table
 				foreach( $limit as $action => $restrictions ) {
 					if ($restrictions != '' ) {
