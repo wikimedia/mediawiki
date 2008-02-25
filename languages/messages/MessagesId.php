@@ -517,12 +517,14 @@ $messages = array(
 'thisisdeleted'           => 'Lihat atau kembalikan $1?',
 'viewdeleted'             => 'Lihat $1?',
 'restorelink'             => '$1 {{PLURAL:$1|suntingan|suntingan}} yang telah dihapus',
-'feedlinks'               => 'Asupan:',
-'feed-invalid'            => 'Tipe permintaan asupan tidak tepat.',
+'feedlinks'               => 'Umpan:',
+'feed-invalid'            => 'Tipe permintaan umpan tidak tepat.',
+'feed-unavailable'        => 'Umpan sindikasi tidak tersedia di {{SITENAME}}',
 'site-rss-feed'           => 'Umpan RSS $1',
 'site-atom-feed'          => 'Umpan Atom $1',
 'page-rss-feed'           => 'Umpan RSS "$1"',
 'page-atom-feed'          => 'Umpan Atom "$1"',
+'red-link-title'          => '$1 (belum dibuat)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Artikel',
@@ -942,6 +944,7 @@ Pengurus lain akan dapat mengakses isi tersebunyi dan dapat membatalkan penghapu
 'searchsubtitleinvalid' => "Anda mencari '''$1'''",
 'noexactmatch'          => "'''Tidak ada halaman yang berjudul \"\$1\".''' Anda dapat [[:\$1|membuat halaman ini]].",
 'noexactmatch-nocreate' => "'''Tidak ada halaman berjudul \"\$1\".'''",
+'toomanymatches'        => 'Pencarian menghasilkan terlalu banyak hasil, silakan masukkan kueri lain',
 'titlematches'          => 'Judul artikel yang sama',
 'notitlematches'        => 'Tidak ada judul halaman yang cocok',
 'textmatches'           => 'Teks artikel yang cocok',
@@ -1215,6 +1218,7 @@ Log penghapusan berkas adalah sebagai berikut:",
 'nolinkstoimage'            => 'Tidak ada halaman yang memiliki pranala ke berkas ini.',
 'sharedupload'              => 'Berkas ini adalah pemuatan bersama yang mungkin juga dipakai oleh proyek lain.',
 'shareduploadwiki'          => 'Lihat $1 untuk informasi lebih lanjut.',
+'shareduploadwiki-desc'     => 'Deskripsi pada $1 ditampilkan di bawah.',
 'shareduploadwiki-linktext' => 'halaman deskripsi berkas',
 'noimage'                   => 'Tidak ada berkas dengan nama tersebut, Anda dapat $1.',
 'noimage-linktext'          => 'memuat berkas',
@@ -1590,6 +1594,7 @@ Umpan balik dan bantuan lanjutan:
 'undeleterevision-missing'     => 'Revisi salah atau tak ditemukan. Anda mungkin mengikuti pranala yang salah, atau revisi tersebut telah dipulihkan atau dibuang dari arsip.',
 'undelete-nodiff'              => 'Tidak ada revisi yang lebih lama.',
 'undeletebtn'                  => 'Kembalikan!',
+'undeletelink'                 => 'kembalikan',
 'undeletereset'                => 'Reset',
 'undeletecomment'              => 'Komentar:',
 'undeletedarticle'             => '"$1" telah dikembalikan',
@@ -1853,6 +1858,9 @@ Jika Anda hanya ingin mengimpor versi sekarang, Anda juga dapat melakukan hal in
 'importuploaderrorpartial'   => 'Pemuatan berkas impor gagal. Hanya sebagian berkas yang berhasil dimuat.',
 'importuploaderrortemp'      => 'Pemuatan berkas gagal. Sebuah direktori sementara dibutuhkan.',
 'import-parse-failure'       => 'Proses impor XML gagal',
+'import-noarticle'           => 'Tak ada halaman yang dapat diimpor!',
+'import-nonewrevisions'      => 'Semua revisi telah pernah diimpor sebelumnya.',
+'xml-error-string'           => '$1 pada baris $2, kolom $3 (bita $4): $5',
 
 # Import log
 'importlogpage'                    => 'Log impor',
@@ -1885,6 +1893,8 @@ Jika Anda hanya ingin mengimpor versi sekarang, Anda juga dapat melakukan hal in
 'tooltip-ca-watch'                => 'Tambahkan halaman ini ke daftar pantauan Anda',
 'tooltip-ca-unwatch'              => 'Hapus halaman ini dari daftar pantauan Anda',
 'tooltip-search'                  => 'Cari dalam wiki ini',
+'tooltip-search-go'               => 'Cari suatu halaman dengan nama yang persis seperti ini jika tersedia',
+'tooltip-search-fulltext'         => 'Cari halaman yang memiliki teks seperti ini',
 'tooltip-p-logo'                  => 'Halaman Utama',
 'tooltip-n-mainpage'              => 'Kunjungi Halaman Utama',
 'tooltip-n-portal'                => 'Tentang proyek, apa yang dapat anda lakukan, di mana mencari sesuatu',
@@ -2026,6 +2036,7 @@ Hanya butir daftar (baris yang diawali dengan tanda *) yang diperhitungkan. Pran
 Pranala-pranala selanjutnya pada baris yang sama dianggap sebagai pengecualian, yaitu artikel yang dapat menampilkan berkas tersebut.',
 
 # Metadata
+'metadata'          => 'Metadata',
 'metadata-help'     => 'Berkas ini mengandung informasi tambahan yang mungkin ditambahkan oleh kamera digital atau pemindai yang digunakan untuk membuat atau mendigitalisasi berkas. Jika berkas ini telah mengalami modifikasi, detil yang ada mungkin tidak secara penuh merefleksikan informasi dari gambar yang sudah dimodifikasi ini.',
 'metadata-expand'   => 'Tampilkan detil tambahan',
 'metadata-collapse' => 'Sembunyikan detil tambahan',
@@ -2147,7 +2158,8 @@ Pranala-pranala selanjutnya pada baris yang sama dianggap sebagai pengecualian, 
 'exif-gpsdestlatitude'             => 'Lintang tujuan',
 'exif-gpsdestlongituderef'         => 'Referensi bujur dari tujuan',
 'exif-gpsdestlongitude'            => 'Bujur tujuan',
-'exif-gpsdestbearingref'           => 'Referensi bearing of destination',
+'exif-gpsdestbearingref'           => 'Referensi bearing tujuan',
+'exif-gpsdestbearing'              => 'Bearing tujuan',
 'exif-gpsdestdistanceref'          => 'Referensi jarak dari tujuan',
 'exif-gpsdestdistance'             => 'Jarak dari tujuan',
 'exif-gpsprocessingmethod'         => 'Nama metode proses GPS',
@@ -2160,6 +2172,7 @@ Pranala-pranala selanjutnya pada baris yang sama dianggap sebagai pengecualian, 
 
 'exif-unknowndate' => 'Tanggal tak diketahui',
 
+'exif-orientation-1' => 'Normal', # 0th row: top; 0th column: left
 'exif-orientation-2' => 'Dibalik horizontal', # 0th row: top; 0th column: right
 'exif-orientation-3' => 'Diputar 180°', # 0th row: bottom; 0th column: right
 'exif-orientation-4' => 'Dibalik vertikal', # 0th row: bottom; 0th column: left
@@ -2174,6 +2187,7 @@ Pranala-pranala selanjutnya pada baris yang sama dianggap sebagai pengecualian, 
 'exif-componentsconfiguration-0' => 'tak tersedia',
 
 'exif-exposureprogram-0' => 'Tak terdefinisi',
+'exif-exposureprogram-1' => 'Manual',
 'exif-exposureprogram-2' => 'Program normal',
 'exif-exposureprogram-3' => 'Prioritas bukaan',
 'exif-exposureprogram-4' => 'Prioritas penutup',
@@ -2208,6 +2222,7 @@ Pranala-pranala selanjutnya pada baris yang sama dianggap sebagai pengecualian, 
 'exif-lightsource-17'  => 'Cahaya standar A',
 'exif-lightsource-18'  => 'Cahaya standar B',
 'exif-lightsource-19'  => 'Cahaya standar C',
+'exif-lightsource-24'  => 'ISO studio tungsten',
 'exif-lightsource-255' => 'Sumber cahaya lain',
 
 'exif-focalplaneresolutionunit-2' => 'inci',
@@ -2238,6 +2253,10 @@ Pranala-pranala selanjutnya pada baris yang sama dianggap sebagai pengecualian, 
 'exif-scenecapturetype-3' => 'Pemandangan malam',
 
 'exif-gaincontrol-0' => 'Tak ada',
+'exif-gaincontrol-1' => 'Low gain up',
+'exif-gaincontrol-2' => 'High gain up',
+'exif-gaincontrol-3' => 'Low gain down',
+'exif-gaincontrol-4' => 'High gain down',
 
 'exif-contrast-0' => 'Normal',
 'exif-contrast-1' => 'Lembut',
@@ -2410,9 +2429,33 @@ Coba dengan pratayang normal.',
 # Core parser functions
 'unknown_extension_tag' => 'Tag ekstensi tidak dikenal "$1"',
 
+# Special:Version
+'version-extensions'               => 'Ekstensi terinstal',
+'version-specialpages'             => 'Halaman istimewa',
+'version-parserhooks'              => 'Kait parser',
+'version-variables'                => 'Variabel',
+'version-other'                    => 'Lainnya',
+'version-mediahandlers'            => 'Penanganan media',
+'version-hooks'                    => 'Kait',
+'version-extension-functions'      => 'Fungsi ekstensi',
+'version-parser-extensiontags'     => 'Tag ekstensi parser',
+'version-parser-function-hooks'    => 'Kait fungsi parser',
+'version-skin-extension-functions' => 'Fungsi ekstensi kulit',
+'version-hook-name'                => 'Nama kait',
+'version-hook-subscribedby'        => 'Dilanggani oleh',
+'version-version'                  => 'Versi',
+'version-license'                  => 'Lisensi',
+'version-software'                 => 'Perangkat lunat terinstal',
+'version-software-product'         => 'Produk',
+'version-software-version'         => 'Versi',
+
 # Special:Filepath
-'filepath'        => 'Lokasi berkas',
-'filepath-page'   => 'Berkas:',
-'filepath-submit' => 'Lokasi',
+'filepath'         => 'Lokasi berkas',
+'filepath-page'    => 'Berkas:',
+'filepath-submit'  => 'Lokasi',
+'filepath-summary' => 'Halaman istimewa ini menampilkan jalur lengkap untuk suatu berkas.
+Gambar ditampilkan dalam resolusi penuh dan tipe lain berkas akan dibuka langsung dengan program terkaitnya.
+
+Masukkan nama berkas tanpa prefiks "{{ns:image}}:"-nya.',
 
 );
