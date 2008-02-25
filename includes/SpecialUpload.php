@@ -612,7 +612,7 @@ class UploadForm {
 				$dlink2 = '';
 			}
 
-			$warning .= '<li>' . wfMsgExt( 'fileexists', 'parseinline', $dlink ) . '</li>' . $dlink2;
+			$warning .= '<li>' . wfMsgExt( 'fileexists', array('parseinline','replaceafter'), $dlink ) . '</li>' . $dlink2;
 
 		} elseif( $file->getTitle()->getArticleID() ) {
 			$lnk = $sk->makeKnownLinkObj( $file->getTitle(), '', 'redirect=no' );

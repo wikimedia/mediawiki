@@ -30,6 +30,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   article. This is so that readers who don't know what a red link is aren't 
   confused when they are told they are range-blocked.
 * One can turn off syndicatino feeds by setting $wgFeed to false
+* (bug 13137) Bots now able to edit protected pages.
 
 === Bug fixes in 1.13 ===
 
@@ -37,8 +38,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 13084) Increase size of source/destination filename fields in upload form
 * (bug 13115) rebuildrecentchanges should print the current value of $wgRCMaxAge
 * (bug 13132) Unable to unprotect pages protected with earlier versions of MediaWiki
-* (bug 13137) Bots to edit protected pages
 * (bug 13140) Show parent categories in category namespace
+* (bug 13149) Correctly format 'fileexists' message on Upload page.
 
 === API changes in 1.13 ===
 
