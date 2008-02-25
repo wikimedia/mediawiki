@@ -370,10 +370,12 @@ $messages = array(
 'restorelink'             => '{{PLURAL:$1|jedną usuniętą wersję|$1 usunięte wersje|$1 usuniętych wersji}}',
 'feedlinks'               => 'Kanały:',
 'feed-invalid'            => 'Niewłaściwy typ kanału informacyjnego.',
+'feed-unavailable'        => 'Kanały informacyjne nie są dostępne na {{GRAMMAR:Ms.lp|{{SITENAME}}}}',
 'site-rss-feed'           => 'Kanał RSS {{grammar:D.lp|$1}}',
 'site-atom-feed'          => 'Kanał Atom {{grammar:D.lp|$1}}',
 'page-rss-feed'           => 'Kanał RSS "$1"',
 'page-atom-feed'          => 'Kanał Atom "$1"',
+'red-link-title'          => '$1 (jeszcze nie utworzona)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Artykuł',
