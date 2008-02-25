@@ -580,8 +580,11 @@ class UploadForm {
 			$partname = $file->getName();
 			$rawExtension = '';
 		} else {
-			list( $partname, $rawExtension ) = explode( '.', $file->getName(), 2 );
+			$n = strrpos( $file->getName(), '.' );
+			$rawExtension = substr( $file->getName(), $n + 1 );
+			$partname = substr( $file->getName(), 0, $n );
 		}
+
 		$sk = $wgUser->getSkin();
 
 		if ( $rawExtension != $file->getExtension() ) {
