@@ -1098,9 +1098,9 @@ dän Software häär, man schoadet fääre niks.)</small>',
 'userstats'              => 'Benutserstatistik',
 'sitestatstext'          => "Dät rakt mädnunner '''$1''' {{PLURAL:$1|Siede|Sieden}} in ju Doatenboank.
 Dät slut Diskussionssieden, Sieden uur {{SITENAME}}, litje Sieden, Fäärelaitengen un uur Sieden ien,
-do der eventuell nit as Artikkele wäided wäide konnen.
+do der eventuell nit as Sieden wäided wäide konnen.
 
-Disse uutgenuumen rakt et '''$2''' {{PLURAL:$2|Siede|Sieden}}, do der as Artikkel wäided wäide {{PLURAL:$2|kon|konnen}}.
+Disse uutgenuumen rakt et '''$2''' {{PLURAL:$2|Siede|Sieden}}, do der as Siede wäided wäide {{PLURAL:$2|kon|konnen}}.
 
 Mädnunner {{PLURAL:$8|wuude '''1''' Doatäi|wuuden '''$8''' Doatäie}} hoochleeden.
 

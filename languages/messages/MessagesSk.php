@@ -193,6 +193,7 @@ $messages = array(
 'tog-nolangconversion'        => 'Vypnúť konverziu variantov',
 'tog-ccmeonemails'            => 'Posielať mi kópie mojich emailov, ktoré pošlem ostatným používateľom',
 'tog-diffonly'                => 'Nezobrazovať obsah stránky pod rozdielmi',
+'tog-showhiddencats'          => 'Zobraziť skryté kategórie',
 
 'underline-always'  => 'Vždy',
 'underline-never'   => 'Nikdy',
@@ -253,12 +254,14 @@ $messages = array(
 'dec'           => 'dec',
 
 # Bits of text used by many pages
-'categories'            => '{{PLURAL:$1|Kategória|Kategórie|Kategórie}}',
-'pagecategories'        => '{{PLURAL:$1|Kategória|Kategórie|Kategórie}}',
-'category_header'       => 'stránky v kategórii „$1“',
-'subcategories'         => 'Podkategórie',
-'category-media-header' => 'Multimediálne súbory v kategórii „$1“',
-'category-empty'        => "''Táto kategória momentálne neobsahuje články ani multimediálne súbory.''",
+'categories'               => '{{PLURAL:$1|Kategória|Kategórie|Kategórie}}',
+'pagecategories'           => '{{PLURAL:$1|Kategória|Kategórie|Kategórie}}',
+'category_header'          => 'stránky v kategórii „$1“',
+'subcategories'            => 'Podkategórie',
+'category-media-header'    => 'Multimediálne súbory v kategórii „$1“',
+'category-empty'           => "''Táto kategória momentálne neobsahuje články ani multimediálne súbory.''",
+'hidden-categories'        => '{{PLURAL:$1|Skrytá kategória|Skryté kategórie}}',
+'hidden-category-category' => 'Skryté kategórie', # Name of the category where hidden categories will be listed
 
 'mainpagetext'      => "<big>'''Softvér MediaWiki bol úspešne nainštalovaný.'''</big>",
 'mainpagedocfooter' => 'Informácie ako používať wiki softvér nájdete v [http://meta.wikimedia.org/wiki/Help:Contents Používateľskej príručke].
@@ -748,6 +751,7 @@ text do textového súboru a uložiť si ho na neskôr.</strong>',
 'templatesusedsection'      => 'Šablóny použité v tejto sekcii:',
 'template-protected'        => '(zamknutá)',
 'template-semiprotected'    => '(čiastočne zamknutá)',
+'hiddencategories'          => 'Táto stránka patrí do {{PLURAL:$1|1 skrytej kategórie|$1 skrytých kategórií}}:',
 'edittools'                 => '<!-- Tento text sa zobrazí pod upravovacím a nahrávacím formulárom. -->',
 'nocreatetitle'             => 'Tvorba nových stránok bola obmedzená',
 'nocreatetext'              => 'Na {{GRAMMAR:lokál|{{SITENAME}}}} je tvorba nových stránok obmedzená.
@@ -1097,7 +1101,7 @@ alebo pre priamy odkaz na súbor
 'largefileserver'             => 'Tento súbor je väčší ako je možné nahrať na server (z dôvodu obmedzenia veľkosti súboru v konfigurácii servera).',
 'emptyfile'                   => 'Zdá sa, že súbor, ktorý ste nahrali je prázdny. Mohlo sa stať, že ste urobili v názve súboru preklep. Prosím, skontrolujte, či skutočne chcete nahrať tento súbor.',
 'fileexists'                  => 'Súbor s týmto názvom už existuje, prosím skontrolujte $1 ak nie ste si istý, či ho chcete zmeniť.',
-'filepageexists'              => 'Stránka (nie súbor) s týmto názvom už existuje. Prosím, skontrolujte <strong><tt>$1</tt></strong> ak si nie ste istý, či to chcete zmeniť.',
+'filepageexists'              => 'Popisná stránka tohto súboru už bola vytvorená na <strong><tt>$1</tt></strong>, ale žiadny súbor s týmto názvom momentálne neexistuje. Zhrnutie, ktoré zadáte sa neobjaví na popisnej stránke. Aby sa zhrnutie objavilo na popisnej stránke, budete ho musieť ručne upraviť.',
 'fileexists-extension'        => 'Súbor s podobným názvom už existuje:<br />
 Názov súboru, ktoý nahrávate: <strong><tt>$1</tt></strong><br />
 Názov existujúceho súboru: <strong><tt>$2</tt></strong><br />

@@ -844,7 +844,7 @@ Uuden ja vanhan sivun muutoksien pitää muodostaa jatkumo – ne eivät saa men
 'searchsubtitleinvalid' => 'Haku termeillä $1',
 'noexactmatch'          => 'Sivua ”$1” ei ole olemassa. Voit [[$1|luoda aiheesta uuden sivun]].',
 'noexactmatch-nocreate' => "'''Sivua nimeltä ”$1” ei ole.'''",
-'toomanymatches'        => 'Liian monta osumaa, kokeile erilaista kyselyä.',
+'toomanymatches'        => 'Liian monta osumaa. Kokeile erilaista kyselyä.',
 'titlematches'          => 'Osumat sivujen otsikoissa',
 'notitlematches'        => 'Hakusanaa ei löytynyt minkään sivun otsikosta',
 'textmatches'           => 'Osumat sivujen teksteissä',

@@ -293,7 +293,7 @@ $messages = array(
 'hidetoc'                 => 'cuddio',
 'thisisdeleted'           => 'Edrychwch at, neu atgyweirio $1?',
 'viewdeleted'             => 'Gweld $1?',
-'restorelink'             => '$1 golygiadau wedi eu dileuo',
+'restorelink'             => "$1 {{PLURAL:$1|golygiad sydd wedi'i ddileu|golygiad sydd wedi'i ddileu|olygiad sydd wedi'u dileu|golygiad sydd wedi'u dileu|golygiad sydd wedi'u dileu|golygiad sydd wedi'u dileu}}",
 'feedlinks'               => 'Porthiant:',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
@@ -1198,6 +1198,7 @@ Gwelwch y $2 am gofnod o\'r dileuon diweddar.',
 'unprotectsub'                => '(Yn dad-ddiogelu "$1")',
 'protect-unchain'             => 'Datgloi hawliau symud',
 'protect-text'                => 'Yma, gallwch weld a newid y lefel diogelu ar gyfer y dudalen <strong><nowiki>$1</nowiki></strong>.',
+'protect-cascadeon'           => "Mae'r dudalen hon wedi ei diogelu ar hyn o bryd oherwydd ei bod wedi ei chynnwys yn y {{PLURAL:$1|dudalen|dudalen|tudalennau|tudalennau|tudalennau|tudalennau}} canlynol sydd wedi {{PLURAL:$1|ei|ei|eu|eu|eu|eu}} diogelu'n rhaeadrol.  Gallwch newid lefel diogelu'r dudalen hon, ond ni fydd hynny'n effeithio ar y diogelu rhaeadrol.",
 'protect-default'             => '(rhagosodedig)',
 'protect-level-autoconfirmed' => 'Blocio defnyddwyr heb gyfrif',
 'protect-level-sysop'         => 'Gweinyddwyr yn unig',

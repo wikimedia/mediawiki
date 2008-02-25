@@ -1,5 +1,5 @@
 <?php
-/** მარგალური (მარგალური)
+/** Mingrelian (მარგალური)
  *
  * @addtogroup Language
  *
@@ -278,9 +278,10 @@ $messages = array(
 'version'        => 'ვერსია',
 
 # Special:Log
-'specialloguserlabel' => 'მომხმარებელ:',
-'log'                 => 'ჟურნალეფ',
-'all-logs-page'       => 'ირ ჟურნალ',
+'specialloguserlabel'  => 'მომხმარებელ:',
+'speciallogtitlelabel' => 'სათაურ:',
+'log'                  => 'ჟურნალეფ',
+'all-logs-page'        => 'ირ ჟურნალ',
 
 # Special:Allpages
 'nextpage'       => 'უკულ გვერდ ($1)',
@@ -304,6 +305,7 @@ $messages = array(
 'protect-default'             => '(სტანდარტულ)',
 'protect-level-autoconfirmed' => 'ვარეგისტრირებულ მომხმარებელეფიშ დაბლოკვა',
 'protect-level-sysop'         => 'ხოლო ადმინისტრატორეფ',
+'restriction-type'            => 'უფლება',
 
 # Undelete
 'undelete-search-submit' => 'გორუა',

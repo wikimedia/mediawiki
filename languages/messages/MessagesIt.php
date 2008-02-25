@@ -171,6 +171,7 @@ $messages = array(
 'tog-nolangconversion'        => 'Disattiva la conversione tra varianti linguistiche',
 'tog-ccmeonemails'            => 'Inviami una copia dei messaggi spediti agli altri utenti',
 'tog-diffonly'                => 'Non visualizzare il contenuto della pagina dopo il confronto tra versioni',
+'tog-showhiddencats'          => 'Mostra categorie nascoste',
 
 'underline-always'  => 'Sempre',
 'underline-never'   => 'Mai',
@@ -231,12 +232,14 @@ $messages = array(
 'dec'           => 'dic',
 
 # Bits of text used by many pages
-'categories'            => 'Categorie',
-'pagecategories'        => '{{PLURAL:$1|Categoria|Categorie}}',
-'category_header'       => 'Pagine nella categoria "$1"',
-'subcategories'         => 'Sottocategorie',
-'category-media-header' => 'File nella categoria "$1"',
-'category-empty'        => "''Al momento la categoria non contiene alcuna pagina né file multimediale.''",
+'categories'               => 'Categorie',
+'pagecategories'           => '{{PLURAL:$1|Categoria|Categorie}}',
+'category_header'          => 'Pagine nella categoria "$1"',
+'subcategories'            => 'Sottocategorie',
+'category-media-header'    => 'File nella categoria "$1"',
+'category-empty'           => "''Al momento la categoria non contiene alcuna pagina né file multimediale.''",
+'hidden-categories'        => '{{PLURAL:$1|Categoria nascosta|Categorie nascoste}}',
+'hidden-category-category' => 'Categorie nascoste', # Name of the category where hidden categories will be listed
 
 'mainpagetext'      => "<big>'''Installazione di MediaWiki completata correttamente.'''</big>",
 'mainpagedocfooter' => "Consultare la [http://meta.wikimedia.org/wiki/Aiuto:Sommario Guida utente] per maggiori informazioni sull'uso di questo software wiki.
@@ -701,6 +704,7 @@ Con l'invio del testo dichiari inoltre, sotto la tua responsabilità, che il tes
 'templatesusedsection'      => 'Template utilizzati in questa sezione:',
 'template-protected'        => '(protetto)',
 'template-semiprotected'    => '(semiprotetto)',
+'hiddencategories'          => '{{PLURAL:$1|Categoria nascosta della quale|Categorie nascoste delle quali}} questa pagina fa parte:',
 'edittools'                 => '<!-- Testo che appare al di sotto del modulo di modifica e di upload. -->',
 'nocreatetitle'             => 'Creazione delle pagine limitata',
 'nocreatetext'              => 'La possibilità di creare nuove pagine su {{SITENAME}} è stata limitata ai soli utenti registrati. È possibile tornare indietro e modificare una pagina esistente, oppure [[Special:Userlogin|entrare o creare un nuovo accesso]].',
@@ -1038,7 +1042,7 @@ per generare un collegamento diretto al file.",
 'largefileserver'             => 'Il file supera le dimensioni consentite dalla configurazione del server.',
 'emptyfile'                   => 'Il file appena caricato sembra essere vuoto. Ciò potrebbe essere dovuto ad un errore nel nome del file. Verificare che si intenda realmente caricare questo file.',
 'fileexists'                  => 'Un file con questo nome esiste già. Verificare prima $1 se non si è sicuri di volerlo sovrascrivere.',
-'filepageexists'              => 'Una pagina (ma non un file) con questo nome esiste già. Verificare prima <strong><tt>$1</tt></strong> se non si è sicuri di volerla modificare.',
+'filepageexists'              => "La pagina di descrizione di questo file è già stata creata all'indirizzo <strong><tt>$1</tt></strong>, anche se non esiste ancora un file con questo nome. La descrizione dell'oggetto inserita in fase di caricamento non apparirà sulla pagina di discussione. Per far sì che l'oggetto compaia sulla pagina di discussione, sarà necessario modificarla manualmente",
 'fileexists-extension'        => "Un file con nome simile a questo esiste già; l'unica differenza è l'uso delle maiuscole nell'estensione:<br />
 Nome del file caricato: <strong><tt>$1</tt></strong><br />
 Nome del file esistente: <strong><tt>$2</tt></strong><br />

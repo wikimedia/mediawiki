@@ -308,6 +308,7 @@ $messages = array(
 'tog-nolangconversion'        => 'Variantomzetting uitschakelen',
 'tog-ccmeonemails'            => 'Mij een kopie zenden van e-mails die ik naar andere gebruikers stuur',
 'tog-diffonly'                => 'Pagina-inhoud onder wijzigingen niet tonen',
+'tog-showhiddencats'          => 'Verborgen categorieën tonen',
 
 'underline-always'  => 'Altijd',
 'underline-never'   => 'Nooit',
@@ -368,12 +369,14 @@ $messages = array(
 'dec'           => 'dec',
 
 # Bits of text used by many pages
-'categories'            => 'Categorieën',
-'pagecategories'        => '{{PLURAL:$1|Categorie|Categorieën}}',
-'category_header'       => 'Pagina’s in categorie “$1”',
-'subcategories'         => 'Ondercategorieën',
-'category-media-header' => 'Media in categorie “$1”',
-'category-empty'        => "''Deze categorie bevat geen pagina’s of media.''",
+'categories'               => 'Categorieën',
+'pagecategories'           => '{{PLURAL:$1|Categorie|Categorieën}}',
+'category_header'          => 'Pagina’s in categorie “$1”',
+'subcategories'            => 'Ondercategorieën',
+'category-media-header'    => 'Media in categorie “$1”',
+'category-empty'           => "''Deze categorie bevat geen pagina’s of media.''",
+'hidden-categories'        => 'Verborgen {{PLURAL:$1|categorie|categorieën}}',
+'hidden-category-category' => 'Verborgen categorieën', # Name of the category where hidden categories will be listed
 
 'mainpagetext'      => "<big>'''De installatie van MediaWiki is geslaagd.'''</big>",
 'mainpagedocfooter' => 'Raadpleeg de [http://meta.wikimedia.org/wiki/NL_Help:Inhoudsopgave handleiding] voor informatie over het gebruik van de wikisoftware.
@@ -845,6 +848,7 @@ groot, wat groter is dan het maximum van $2 kilobyte. Opslaan is niet mogelijk.<
 'templatesusedsection'      => 'Sjablonen die gebruikt worden in deze subkop:',
 'template-protected'        => '(beveiligd)',
 'template-semiprotected'    => '(semibeveiligd)',
+'hiddencategories'          => 'Deze pagina valt in de volgende verborgen {{PLURAL:$1|categorie|categorieën}}:',
 'edittools'                 => '<!-- Deze tekst wordt weergegeven onder bewerkings- en uploadformulieren. -->',
 'nocreatetitle'             => "Het aanmaken van pagina's is beperkt",
 'nocreatetext'              => "{{SITENAME}} heeft de mogelijkheid om nieuwe pagina's te maken beperkt.
@@ -1181,7 +1185,7 @@ De laatste link is bedoeld voor mediabestanden die geen afbeelding zijn.",
 'largefileserver'             => 'Het bestand is groter dan de instelling van de server toestaat.',
 'emptyfile'                   => 'Het bestand dat u heeft geüpload lijkt leeg te zijn. Dit zou kunnen komen door een typefout in de bestandsnaam. Ga a.u.b. na of u dit bestand werkelijk bedoelde te uploaden.',
 'fileexists'                  => 'Er bestaat al een bestand met deze naam. Controleer $1 als u niet zeker weet of u het huidige bestand wilt overschrijven.',
-'filepageexists'              => 'Een pagina (geen bestand) met deze naam bestaat al. Controleer <strong><tt>$1</tt></strong> alstublieft als u niet zeker bent of u het wilt wijzigen.',
+'filepageexists'              => 'De beschrijvingspagina voor dit bestand bestaat al op <strong><tt>$1</tt></strong>, maar er bestaat geen bestand met deze naam. De samenvatting die u heeft opgegeven zal niet op de beschrijvingspagina verschijnen. Bewerk de pagina handmatig om uw beschrijving daar te tonen.',
 'fileexists-extension'        => 'Een bestand met dezelfde naam bestaat al:<br />
 Naam van het geüploade bestand: <strong><tt>$1</tt></strong><br />
 Naam van het bestaande bestand: <strong><tt>$2</tt></strong><br />

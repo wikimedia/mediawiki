@@ -325,7 +325,7 @@ $messages = array(
 'red-link-title'          => '$1 (ยังไม่ได้สร้าง)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
-'nstab-main'      => 'เนื้อหาหลัก',
+'nstab-main'      => 'บทความ',
 'nstab-user'      => 'หน้าผู้ใช้',
 'nstab-media'     => 'หน้าสื่อ',
 'nstab-special'   => 'พิเศษ',

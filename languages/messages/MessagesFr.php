@@ -252,6 +252,7 @@ $messages = array(
 'tog-nolangconversion'        => 'Désactiver la conversion des variantes de langue',
 'tog-ccmeonemails'            => 'M’envoyer une copie des courriels que j’envoie aux autres utilisateurs',
 'tog-diffonly'                => 'Ne pas montrer le contenu des pages sous les diffs',
+'tog-showhiddencats'          => 'Afficher les catégories cachées',
 
 'underline-always'  => 'Toujours',
 'underline-never'   => 'Jamais',
@@ -312,12 +313,14 @@ $messages = array(
 'dec'           => 'déc',
 
 # Bits of text used by many pages
-'categories'            => 'Catégories',
-'pagecategories'        => '{{PLURAL:$1|Catégorie |Catégories }}',
-'category_header'       => 'Pages dans la catégorie « $1 »',
-'subcategories'         => 'Sous-catégories',
-'category-media-header' => 'Fichiers multimédia dans la catégorie « $1 »',
-'category-empty'        => "''Cette catégorie ne contient aucun article, sous-catégorie ou fichier multimédia.''",
+'categories'               => 'Catégories',
+'pagecategories'           => '{{PLURAL:$1|Catégorie |Catégories }}',
+'category_header'          => 'Pages dans la catégorie « $1 »',
+'subcategories'            => 'Sous-catégories',
+'category-media-header'    => 'Fichiers multimédia dans la catégorie « $1 »',
+'category-empty'           => "''Cette catégorie ne contient aucun article, sous-catégorie ou fichier multimédia.''",
+'hidden-categories'        => '{{PLURAL:$1|Catégorie cachée|Catégories cachées}}',
+'hidden-category-category' => 'Catégories cachées', # Name of the category where hidden categories will be listed
 
 'mainpagetext'      => "<big>'''MediaWiki a été installé avec succès.'''</big>",
 'mainpagedocfooter' => 'Consultez le [http://meta.wikimedia.org/wiki/Aide:Contenu Guide de l’utilisateur] pour plus d’informations sur l’utilisation de ce logiciel.
@@ -459,7 +462,7 @@ $messages = array(
 'site-atom-feed'          => 'Flux Atom de $1',
 'page-rss-feed'           => 'Flux RSS de "$1"',
 'page-atom-feed'          => 'Flux Atom de "$1"',
-'red-link-title'          => '$1 (néanmoins pas rédigé)',
+'red-link-title'          => '$1 (pas encore rédigé)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Article',
@@ -616,7 +619,7 @@ Avant qu’un autre courriel ne soit envoyé à ce compte, vous devrez suivre le
 'noemailprefs'               => '<strong>Aucune adresse électronique n’a été indiquée,</strong> les fonctions suivantes ne seront pas disponibles.',
 'emailconfirmlink'           => 'Confirmez votre adresse de courriel',
 'invalidemailaddress'        => 'Cette adresse de courriel ne peut pas être acceptée car elle semble avoir un format invalide. Veuillez entrer une adresse valide ou laisser ce champ vide.',
-'accountcreated'             => 'Compte créé.',
+'accountcreated'             => 'Compte créé',
 'accountcreatedtext'         => 'Le compte utilisateur pour $1 a été créé.',
 'createaccount-title'        => "Création d'un compte pour {{SITENAME}}",
 'createaccount-text'         => "Quelqu'un a créé un compte pour votre adresse courriel sur {{SITENAME}} ($4) intitulé « $2 », avec pour mot de passe « $3 ».Vous devriez ouvrir une session et changer, dès à présent, ce mot de passe.
@@ -633,7 +636,7 @@ Ignorez ce message si ce compte a été créé par erreur.",
 'resetpass_success'       => 'Votre mot de passe a été changé avec succès ! Enregistrement en cours...',
 'resetpass_bad_temporary' => 'Mot de passe temporaire invalide. Vous avez peut-être déjà changé votre mot de passe avec succès, ou demandé un nouveau mot de passe temporaire.',
 'resetpass_forbidden'     => 'Les mots de passe ne peuvent pas être changés sur ce wiki',
-'resetpass_missing'       => 'Aucune donnée entrée.',
+'resetpass_missing'       => 'Aucune donnée entrée',
 
 # Edit page toolbar
 'bold_sample'     => 'Texte gras',
@@ -743,7 +746,7 @@ Votre adresse IP est $3 et votre identifiant de blocage est #$5. Veuillez les pr
 'yourtext'                  => 'Votre texte',
 'storedversion'             => 'Version enregistrée',
 'nonunicodebrowser'         => '<strong>Attention : Votre navigateur ne supporte pas l’Unicode. Une solution temporaire a été trouvée pour vous permettre de modifier en toute sûreté un article : les caractères non-ASCII apparaîtront dans votre boîte de modification en tant que codes hexadécimaux. Vous devriez utiliser un navigateur plus récent.</strong>',
-'editingold'                => '<strong>Attention : vous êtes en train de modifier une version désuète de cette page. Si vous sauvegardez, toutes les modifications effectuées depuis cette version seront perdues.</strong>',
+'editingold'                => '<strong>Attention : vous êtes en train de modifier une ancienne version de cette page. Si vous sauvegardez, toutes les modifications effectuées depuis cette version seront perdues.</strong>',
 'yourdiff'                  => 'Différences',
 'copyrightwarning'          => "Toutes les contributions à {{SITENAME}} sont considérées comme publiées sous les termes de la $2 (voir $1 pour plus de détails). Si vous ne désirez pas que vos écrits soient modifiés et distribués à volonté, merci de ne pas les soumettre ici.<br />
 Vous nous promettez aussi que vous avez écrit ceci vous-même, ou que vous l’avez copié d’une source provenant du domaine public, ou d’une ressource libre. <strong>N’UTILISEZ PAS DE TRAVAUX SOUS DROIT D'AUTEUR SANS AUTORISATION EXPRESSE !</strong>",
@@ -765,6 +768,7 @@ Seuls les utilisateurs ayant le statut d’administrateur peuvent la modifier..'
 'templatesusedsection'      => 'Modèles utilisés dans cette section :',
 'template-protected'        => '(protégé)',
 'template-semiprotected'    => '(semi-protégé)',
+'hiddencategories'          => '{{PLURAL:$1|Catégorie cachée|Catégories cachées}} dont cette page fait partie :',
 'edittools'                 => '<!-- Tout texte entré ici sera affiché sous les boîtes de modification ou d’import de fichier. -->',
 'nocreatetitle'             => 'Création de page limitée',
 'nocreatetext'              => 'Ce site a restreint la possibilité de créer de nouvelles pages. Vous pouvez revenir en arrière et modifier une page existante, [[Special:Userlogin|vous connecter ou créer un compte]].',
@@ -1094,7 +1098,7 @@ Pour inclure une image dans une page, utilisez un lien de la forme
 'largefileserver'             => 'La taille de ce fichier est supérieure au maximum autorisé.',
 'emptyfile'                   => 'Le fichier que vous voulez importer semble vide. Ceci peut être dû à une erreur dans le nom du fichier. Veuillez vérifier que vous désirez vraiment copier ce fichier.',
 'fileexists'                  => 'Un fichier avec ce nom existe déjà. Merci de vérifier $1. Êtes-vous certain de vouloir modifier ce fichier ?',
-'filepageexists'              => "Une page (pas un fichier) avec ce nom existe déjà. Veuillez vérifier <strong><tt>$1</tt></strong> si vous n'êtes pas sûr de vouloir la modifier.",
+'filepageexists'              => 'La page de description pour ce fichier a déjà été créée ici <strong><tt>$1</tt></strong>, mais aucun fichier de ce nom n’existe actuellement. Le résumé que vous allez écrire ne remplacera pas le texte précédent ; pour ce faire vous devrez éditer manuellement la page.',
 'fileexists-extension'        => 'Un fichier avec un nom similaire existe déjà :<br />
 Nom du fichier à importer : <strong><tt>$1</tt></strong><br />
 Nom du fichier existant : <strong><tt>$2</tt></strong><br />
@@ -1112,7 +1116,7 @@ Si vous disposez du fichier en haute résolution, importez-le, sinon veuillez ch
 'uploadedimage'               => 'a importé « [[$1]] »',
 'overwroteimage'              => 'a importé une nouvelle version de « [[$1]] »',
 'uploaddisabled'              => "Désolé, l'envoi de fichiers est désactivé.",
-'uploaddisabledtext'          => "L'import de fichiers sur le serveur est désactivé sur {{SITENAME}}.",
+'uploaddisabledtext'          => 'L’import de fichiers vers le serveur est désactivé sur {{SITENAME}}.',
 'uploadscripted'              => 'Ce fichier contient du code HTML ou un script qui pourrait être interprété de façon incorrecte par un navigateur Internet.',
 'uploadcorrupt'               => 'Ce fichier est corrompu, a une taille nulle ou possède une extension invalide.
 Veuillez vérifer le fichier.',
@@ -1332,7 +1336,7 @@ Il y a {{PLURAL:$7|'''$7''' article|'''$7''' articles}} dans [[meta:Help:Job_que
 'booksources'               => 'Ouvrages de référence',
 'booksources-search-legend' => 'Rechercher parmi des ouvrages de référence',
 'booksources-go'            => 'Valider',
-'booksources-text'          => 'Voici une liste de liens vers d’autres sites qui vendent des livres neufs et d’occasion et sur lesquels vous trouverez peut-être des informations sur les ouvrages que vous cherchez. {{SITENAME}} n’étant liée à aucune de ces sociétés, elle n’a aucunement l’intention d’en faire la promotion.',
+'booksources-text'          => 'Voici une liste de liens vers des sites vendant des livres neufs et d’occasion et sur lesquels vous trouverez peut-être des informations sur les ouvrages que vous cherchez. Ces liens ne sont fournis que dans le but de faciliter les recherches aux utilisateurs, {{SITENAME}} n’étant liée à aucune de ces sociétés.',
 
 'categoriespagetext' => 'Les catégories suivantes existent dans le wiki.',
 'data'               => 'Données',
@@ -1465,7 +1469,7 @@ Retour et assistance :
 {{fullurl:{{MediaWiki:Helppage}}}}',
 
 # Delete/protect/revert
-'deletepage'                  => 'Supprimer une page',
+'deletepage'                  => 'Supprimer la page',
 'confirm'                     => 'Confirmer',
 'excontent'                   => 'contenant « $1 »',
 'excontentauthor'             => 'Le contenu était : « $1 » et l’unique contributeur en était « [[Utilisateur:$2|$2]] » ([[Special:Contributions/$2|Contributions]])',
@@ -1599,7 +1603,7 @@ $1',
 'blanknamespace' => '(principal)',
 
 # Contributions
-'contributions' => 'Contributions de cet utilisateur',
+'contributions' => 'Contributions',
 'mycontris'     => 'Contributions',
 'contribsub2'   => 'Liste des contributions de $1 ($2). Les pages qui ont été effacées ne sont pas affichées.',
 'nocontribs'    => 'Aucune modification correspondant à ces critères n’a été trouvée.',
@@ -1781,7 +1785,7 @@ Veuillez vérifier qu’il n’existe aucune double redirection, et corrigez cel
 
 L’article de destination « [[$1]] » existe déjà. Voulez-vous le supprimer pour permettre le renommage ?',
 'delete_and_move_confirm' => 'Oui, j’accepte de supprimer la page de destination pour permettre le renommage.',
-'delete_and_move_reason'  => 'Page supprimée pour permettre un renommage',
+'delete_and_move_reason'  => 'Page supprimée automatiquement pour permettre un renommage',
 'selfmove'                => 'Les titres d’origine et de destination sont les mêmes : impossible de renommer une page sur elle-même.',
 'immobile_namespace'      => 'Le titre de destination est d’un type spécial ; il est impossible de renommer des pages vers cet espace de noms.',
 
@@ -2074,7 +2078,7 @@ Les autres liens sur la même ligne sont considérés comme des exceptions, par 
 'exif-exifversion'                 => 'Version EXIF',
 'exif-flashpixversion'             => 'Version FlashPix',
 'exif-colorspace'                  => 'Espace colorimétrique',
-'exif-componentsconfiguration'     => 'Configuration des composantes',
+'exif-componentsconfiguration'     => 'Signification de chaque composante',
 'exif-compressedbitsperpixel'      => 'Taux de compression de l’image',
 'exif-pixelydimension'             => 'Hauteur d’image valide',
 'exif-pixelxdimension'             => 'Largeur d’image valide',
