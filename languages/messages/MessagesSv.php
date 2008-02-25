@@ -1143,7 +1143,7 @@ PICT # allmänt bildprefix
 'nolinkstoimage'            => 'Inga sidor länkar till den här bilden.',
 'sharedupload'              => 'Denna fil är uppladdad som delad, och kan användas av andra projekt.',
 'shareduploadwiki'          => 'Vänligen se $1 för mer information.',
-'shareduploadwiki-desc'     => 'Beskrivningen på $1 där visas nedan.',
+'shareduploadwiki-desc'     => 'Beskrivningen på $1 visas nedan.',
 'shareduploadwiki-linktext' => 'filens beskrivningssida',
 'noimage'                   => 'Det finns ingen fil med detta namn. Du kan $1.',
 'noimage-linktext'          => 'ladda upp den',

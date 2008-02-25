@@ -450,7 +450,7 @@ $messages = array(
 'red-link-title'          => '$1 (ekki enn skrifuð)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
-'nstab-main'      => 'Grein',
+'nstab-main'      => 'Síða',
 'nstab-user'      => 'Notandi',
 'nstab-media'     => 'Margmiðlunarsíða',
 'nstab-special'   => 'Kerfissíða',

@@ -1098,9 +1098,9 @@ dän Software häär, man schoadet fääre niks.)</small>',
 'userstats'              => 'Benutserstatistik',
 'sitestatstext'          => "Dät rakt mädnunner '''$1''' {{PLURAL:$1|Siede|Sieden}} in ju Doatenboank.
 Dät slut Diskussionssieden, Sieden uur {{SITENAME}}, litje Sieden, Fäärelaitengen un uur Sieden ien,
-do der eventuell nit as Sieden wäided wäide konnen.
+do der eventuell nit as Artikkele wäided wäide konnen.
 
-Disse uutgenuumen rakt et '''$2''' {{PLURAL:$2|Siede|Sieden}}, do der as Siede wäided wäide {{PLURAL:$2|kon|konnen}}.
+Disse uutgenuumen rakt et '''$2''' {{PLURAL:$2|Siede|Sieden}}, do der as Artikkel wäided wäide {{PLURAL:$2|kon|konnen}}.
 
 Mädnunner {{PLURAL:$8|wuude '''1''' Doatäi|wuuden '''$8''' Doatäie}} hoochleeden.
 
@@ -1108,8 +1108,8 @@ Mädnunner roat et '''$3''' {{PLURAL:$3|Siedenouroup|Siedenouroupe}} un '''$4'''
 Deeruut reeke sik '''$5''' Beoarbaidengen pro Siede un '''$6''' Siedenouroupe pro Beoarbaidenge.
 
 Laangte fon ju [http://meta.wikimedia.org/wiki/Help:Job_queue „Job queue“]: '''$7'''",
-'userstatstext'          => "Dät rakt '''$1''' {{PLURAL:$1|registrierde|registrierde}} [[Special:Listusers|Benutser]].
-Deerfon {{PLURAL:$2|häd|hääbe}} '''$2''' Benutser (=$4 %) $5-Rechte.",
+'userstatstext'          => "Dät rakt '''$1''' {{PLURAL:$1|registrierde|registrierde}} [[Special:Listusers|Benutsere]].
+Deerfon {{PLURAL:$2|häd|hääbe}} '''$2''' {{PLURAL:$2|Benutser|Benutsere}} (=$4 %) $5-Gjuchte.",
 'statistics-mostpopular' => 'Maast besoachte Sieden',
 
 'disambiguations'      => 'Begriepskläärengssieden',
@@ -1378,7 +1378,7 @@ Annerengen an disse Siede foarnuumen häd.<br />Ju lääste Annerenge stamt fon 
 'protect_expiry_old'          => 'Ju Speertied lait in ju fergeene Tied.',
 'unprotectsub'                => '(Aphieuwenge fon ju Speerenge fon "$1")',
 'protect-unchain'             => 'Ferschuuweschuts annerje',
-'protect-text'                => "Hier koast du dän Schutsstoatus foar ju Siede '''<nowiki>\$1</nowiki>''' ienkiekje un annerje.",
+'protect-text'                => "Hier koast du dän Schutsstoatus foar ju Siede '''<nowiki>$1</nowiki>''' ienkiekje un annerje.",
 'protect-locked-blocked'      => 'Du koast dän Siedenschuts nit annerje, deer dien Benutserkonto speerd is. Hier sunt do aktuelle Siedenschuts-Ienstaalengen foar ju Siede <strong>„$1“:</strong>',
 'protect-locked-dblock'       => 'Ju Doatenboank is speerd, die Siedenschuts kon deeruum nit annerd wäide. Hier sunt do aktuelle Siedenschuts-Ienstaalengen foar ju Siede <strong>„$1“:</strong>',
 'protect-locked-access'       => 'Du bäst nit begjuchtiged, dän Siedenschutsstoatus tou annerjen. Hier is die aktuälle Schutsstoatus fon ju Siede <strong>$1</strong>:',
