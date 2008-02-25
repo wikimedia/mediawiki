@@ -401,7 +401,7 @@ $messages = array(
 'category-media-header'    => 'קובצי מדיה בקטגוריה "$1"',
 'category-empty'           => "'''קטגוריה זו אינה כוללת דפים או קובצי מדיה.'''",
 'hidden-categories'        => '{{plural:$1|קטגוריה מוסתרת|קטגוריות מוסתרות}}',
-'hidden-category-category' => 'קטגוריות מוסתרות',
+'hidden-category-category' => 'קטגוריות מוסתרות', # Name of the category where hidden categories will be listed
 
 'mainpagetext'      => "'''תוכנת מדיה־ויקי הותקנה בהצלחה.'''",
 'mainpagedocfooter' => 'היעזרו ב[http://meta.wikimedia.org/wiki/Help:Contents מדריך למשתמש] למידע על שימוש בתוכנת הוויקי.
