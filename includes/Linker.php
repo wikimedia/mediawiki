@@ -1377,7 +1377,7 @@ class Linker {
 		if ( count( $hiddencats ) > 0 ) {
 			# Construct the HTML
 			$outText = '<div class="mw-hiddenCategoriesExplanation">';
-			$outText .= wfMsgExt( 'hiddencategories', array( 'parse' ) );
+			$outText .= wfMsgExt( 'hiddencategories', array( 'parse' ), count( $hiddencats ) );
 			$outText .= '</div><ul>';
 
 			foreach ( $hiddencats as $titleObj ) {
@@ -1388,7 +1388,7 @@ class Linker {
 		wfProfileOut( __METHOD__  );
 		return $outText;
 	}
-	
+
 	/**
 	 * Format a size in bytes for output, using an appropriate
 	 * unit (B, KB, MB or GB) according to the magnitude in question
