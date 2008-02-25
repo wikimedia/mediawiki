@@ -39,7 +39,6 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 10677) Add link to the file description page on the shared repository
 * (bug 13084) Increase size of source/destination filename fields in upload form
 * (bug 13115) rebuildrecentchanges should print the current value of $wgRCMaxAge
-* (bug 13132) Unable to unprotect pages protected with earlier versions of MediaWiki
 * (bug 13140) Show parent categories in category namespace
 * (bug 13149) Correctly format 'fileexists' message on Upload page.
 * Make filepageexists accurate.
