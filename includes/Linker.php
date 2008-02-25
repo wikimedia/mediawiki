@@ -1368,7 +1368,7 @@ class Linker {
 	 * @return string HTML output
 	 */
 	public function formatHiddenCategories( $hiddencats) {
-		global $wgUser;
+		global $wgUser, $wgLang;
 		wfProfileIn( __METHOD__ );
 
 		$sk = $wgUser->getSkin();
@@ -1377,7 +1377,7 @@ class Linker {
 		if ( count( $hiddencats ) > 0 ) {
 			# Construct the HTML
 			$outText = '<div class="mw-hiddenCategoriesExplanation">';
-			$outText .= wfMsgExt( 'hiddencategories', array( 'parse' ), count( $hiddencats ) );
+			$outText .= wfMsgExt( 'hiddencategories', array( 'parse' ), $wgLang->formatnum( count( $hiddencats ) ) );
 			$outText .= '</div><ul>';
 
 			foreach ( $hiddencats as $titleObj ) {
