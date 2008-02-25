@@ -37,6 +37,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 13084) Increase size of source/destination filename fields in upload form
 * (bug 13115) rebuildrecentchanges should print the current value of $wgRCMaxAge
 * (bug 13132) Unable to unprotect pages protected with earlier versions of MediaWiki
+* (bug 13137) Bots to edit protected pages
 
 === API changes in 1.13 ===
 

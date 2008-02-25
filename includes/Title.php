@@ -1195,7 +1195,7 @@ class Title {
 		foreach( $this->getRestrictions($action) as $right ) {
 			// Backwards compatibility, rewrite sysop -> protect
 			if ( $right == 'sysop' ) {
-				$right = 'protect';
+				$right = 'editprotected';
 			}
 			if( '' != $right && !$user->isAllowed( $right ) ) {
 				$errors[] = array( 'protectedpagetext', $right );
