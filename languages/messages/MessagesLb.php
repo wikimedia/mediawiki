@@ -161,6 +161,7 @@ $messages = array(
 'tog-watchlisthideminor'      => 'Kleng Ännerungen op menger Iwwerwaachungslëscht verstoppen',
 'tog-ccmeonemails'            => 'Schéck mir eng Kopie vun de Mailen, déi ech anere Benotzer schécken.',
 'tog-diffonly'                => "Weis bei Versiounevergläicher just d'Ënnerscheeder an net déi ganz Säit",
+'tog-showhiddencats'          => 'Verstoppte Kategorie weisen',
 
 'underline-always'  => 'ëmmer',
 'underline-never'   => 'Ni',
@@ -221,12 +222,14 @@ $messages = array(
 'dec'           => 'Dez.',
 
 # Bits of text used by many pages
-'categories'            => 'Kategorien',
-'pagecategories'        => '{{PLURAL:$1|Kategorie|Kategorien}}',
-'category_header'       => 'Säiten an der Kategorie "$1"',
-'subcategories'         => 'Souskategorien',
-'category-media-header' => 'Medien an der Kategorie "$1"',
-'category-empty'        => "''Dës Kategorie ass fir den Ament nach eidel''",
+'categories'               => 'Kategorien',
+'pagecategories'           => '{{PLURAL:$1|Kategorie|Kategorien}}',
+'category_header'          => 'Säiten an der Kategorie "$1"',
+'subcategories'            => 'Souskategorien',
+'category-media-header'    => 'Medien an der Kategorie "$1"',
+'category-empty'           => "''Dës Kategorie ass fir den Ament nach eidel''",
+'hidden-categories'        => '{{PLURAL:$1|Verstoppte Kategorie|Verstoppte Kategorien}}',
+'hidden-category-category' => 'Verstoppte Kategorien', # Name of the category where hidden categories will be listed
 
 'mainpagetext'      => "<big>'''MediaWiki gouf mat Succès installéiert.'''</big>",
 'mainpagedocfooter' => "Kuckt w.e.g. [http://meta.wikimedia.org/wiki/Help:Contents d'Benotzerhandbuch] fir den Interface ze personnaliséieren. 
@@ -671,6 +674,7 @@ Iwwerleet w.e.g., ob eng Opdeelung vun der Säit a méi kleng Abschnitter méigl
 'templatesusedsection'      => 'Schablounen déi an dësem Abschnitt am Gebrauch sinn:',
 'template-protected'        => '(protegéiert)',
 'template-semiprotected'    => '(gespaart fir net-ugemellten an nei Benotzer)',
+'hiddencategories'          => 'Dës Säit gehéiert zu {{PLURAL:$1|1 verstoppter Kategorie|$1 verstoppte Kategorien}}:',
 'nocreatetitle'             => "D'Uleeë vun neie Säiten ass limitéiert.",
 'nocreatetext'              => "Op {{SITENAME}} gouf d'Schafe vun neie Säite limitéiert. Dir kënnt Säiten déi scho bestinn änneren oder Iech [[Special:Userlogin|umellen]].",
 'nocreate-loggedin'         => 'Dir hutt keng Berechtigung fir nei Säiten op {{SITENAME}} unzeleeën.',

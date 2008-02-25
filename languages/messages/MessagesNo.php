@@ -1,5 +1,5 @@
 <?php
-/** Norwegian (‪Norsk (bokmål)‬)
+/** Norwegian (bokmål)‬ (‪Norsk (bokmål)‬)
  *
  * @addtogroup Language
  *
@@ -182,6 +182,7 @@ $messages = array(
 'tog-nolangconversion'        => 'Slå av variantkonvertering',
 'tog-ccmeonemails'            => 'Send meg kopier av e-poster jeg sender til andre brukere',
 'tog-diffonly'                => 'Ikke vis sideinnhold under differ',
+'tog-showhiddencats'          => 'Vis skjulte kategorier',
 
 'underline-always'  => 'Alltid',
 'underline-never'   => 'Aldri',
@@ -242,12 +243,14 @@ $messages = array(
 'dec'           => 'des',
 
 # Bits of text used by many pages
-'categories'            => 'Kategorier',
-'pagecategories'        => '{{PLURAL:$1|Kategori|Kategorier}}',
-'category_header'       => 'Artikler i kategorien «$1»',
-'subcategories'         => 'Underkategorier',
-'category-media-header' => 'Filer i kategorien «$1»',
-'category-empty'        => "''Denne kategorien ineholder for tiden ingen artikler eller filer.''",
+'categories'               => 'Kategorier',
+'pagecategories'           => '{{PLURAL:$1|Kategori|Kategorier}}',
+'category_header'          => 'Artikler i kategorien «$1»',
+'subcategories'            => 'Underkategorier',
+'category-media-header'    => 'Filer i kategorien «$1»',
+'category-empty'           => "''Denne kategorien ineholder for tiden ingen artikler eller filer.''",
+'hidden-categories'        => '{{PLURAL:$1|Skjult kategori|Skjulte kategorier}}',
+'hidden-category-category' => 'Skjulte kategorier', # Name of the category where hidden categories will be listed
 
 'mainpagetext'      => "<big>'''MediaWiki-programvaren er nå installert.'''</big>",
 'mainpagedocfooter' => 'Se [http://meta.wikimedia.org/wiki/Help:Contents brukerveiledningen] for informasjon om hvordan du bruker wiki-programvaren.
@@ -693,6 +696,7 @@ kopiere teksten din til en tekstfil, så du kan lagre den til senere.</strong>',
 'templatesusedsection'      => 'Maler brukt i denne seksjonen:',
 'template-protected'        => '(beskyttet)',
 'template-semiprotected'    => '(halvbeskyttet)',
+'hiddencategories'          => 'Denne siden er medlem i følgende skjulte {{PLURAL:$1|kategori|kategorier}}:',
 'edittools'                 => '<!-- Teksten her vil vises under redigerings- og opplastingsboksene. -->',
 'nocreatetitle'             => 'Sideoppretting er begrenset',
 'nocreatetext'              => '{{SITENAME}} har begrensede muligheter for oppretting av nye sider. Du kan gå tilbake og redigere en eksisterende side, eller [[Special:Userlogin|logge inn eller opprette en ny konto]].',
@@ -1022,7 +1026,7 @@ For å lenke direkte til filen, skriv:
 'largefileserver'             => 'Denne fila er større enn det tjeneren er konfigurert til å tillate.',
 'emptyfile'                   => 'Fila du lastet opp ser ut til å være tom. Dette kan komme av en skrivefeil i filnavnet. Sjekk om du virkelig vil laste opp denne fila.',
 'fileexists'                  => 'Ei fil med dette navnet finnes allerede. Sjekk $1 hvis du ikke er sikker på at du vil forandre den.',
-'filepageexists'              => 'En side (ikke fil) med dette navnet finnes allerede, sjekk <strong><tt>$1</tt></strong> om du ikke er sikker på om du vil endre den.',
+'filepageexists'              => 'Beskrivelsessiden for denne filen finnes allerede på <strong><tt>$1</tt></strong>, men ingen filer med dette navnet finnes. Sammendragen du skriver iknn vil ikke vises på beskrivelsessiden. For at det skal dukke opp der må du skrive det inn manuelt etter å ha lastet opp filen.',
 'fileexists-extension'        => 'En fil med et lignende navn finnes:<br />
 Navnet på din fil: <strong><tt>$1</tt></strong><br />
 Navn på eksisterende fil: <strong><tt>$2</tt></strong><br />

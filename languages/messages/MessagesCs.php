@@ -319,6 +319,7 @@ $messages = array(
 'tog-nolangconversion'        => 'Vypnout konverzi variant',
 'tog-ccmeonemails'            => 'Zasílat mi kopie e-mailů, které pošlu jiným uživatelům',
 'tog-diffonly'                => 'Nezobrazovat obsah stránky pod rozdílem verzí',
+'tog-showhiddencats'          => 'Zobrazit skryté kategorie',
 
 'underline-always'  => 'Vždy',
 'underline-never'   => 'Nikdy',
@@ -379,12 +380,14 @@ $messages = array(
 'dec'           => '12.',
 
 # Bits of text used by many pages
-'categories'            => 'Kategorie',
-'pagecategories'        => 'Kategorie',
-'category_header'       => 'Stránky v kategorii „$1“',
-'subcategories'         => 'Podkategorie',
-'category-media-header' => 'Soubory v kategorii „$1“',
-'category-empty'        => "''Tato kategorie neobsahuje žádné stránky či soubory.''",
+'categories'               => 'Kategorie',
+'pagecategories'           => 'Kategorie',
+'category_header'          => 'Stránky v kategorii „$1“',
+'subcategories'            => 'Podkategorie',
+'category-media-header'    => 'Soubory v kategorii „$1“',
+'category-empty'           => "''Tato kategorie neobsahuje žádné stránky či soubory.''",
+'hidden-categories'        => '{{PLURAL:$1|Skrytá kategorie|Skryté kategorie|Skryté kategorie}}',
+'hidden-category-category' => 'Skryté kategorie', # Name of the category where hidden categories will be listed
 
 'mainpagetext'      => "<big>'''MediaWiki bylo úspěšně nainstalováno.'''</big>",
 'mainpagedocfooter' => '[http://meta.wikimedia.org/wiki/Help:Contents Průvodce uživatele] Vám napoví jak používat MediaWiki.
@@ -850,6 +853,7 @@ Uložením příspěvku se zavazujete, že je vaším dílem nebo je zkopírová
 'templatesusedsection'      => 'Šablony používané v této části stránky:',
 'template-protected'        => '(zamčena)',
 'template-semiprotected'    => '(polozamčena)',
+'hiddencategories'          => 'Tato stránka je zařazena {{PLURAL:$1|v jedné skryté kategorii|ve $1 skrytých kategoriích|v $1 skrytých kategoriích}}:',
 'edittools'                 => '<!-- Tento text bude zobrazen pod formuláři pro editaci stránek a načítání souborů. -->',
 'nocreatetitle'             => 'Vytváření nových stránek je omezeno',
 'nocreatetext'              => 'Na {{grammar:6sg|{{SITENAME}}}} je možnost vytváření nových stránek omezena.
@@ -1211,7 +1215,7 @@ váš uživatelský účet zablokován.',
 'largefileserver'             => 'Velikost tohoto souboru překračuje limit nastavený na serveru.',
 'emptyfile'                   => 'Soubor, který jste vložili, se zdá být prázdný. Mohl to způsobit překlep v názvu souboru. Prosím zkontrolujte, zda jste opravdu chtěli vložit tento soubor.',
 'fileexists'                  => 'Soubor s tímto jménem již existuje, prosím podívejte se na <strong><tt>$1</tt></strong>, pokud nevíte jistě, zda chcete tento soubor nahradit.',
-'filepageexists'              => 'Stránka (nikoliv soubor) s tímto jménem již existuje, prosím podívejte se na <strong><tt>$1</tt></strong> pokud nevíte jistě, zda to chcete nahradit.',
+'filepageexists'              => 'Popisná stránka pro soubor s tímto jménem již existuje na <strong><tt>$1</tt></strong>, avšak soubor s tímto jménem dosud neexistuje. Shrnutí, které zde uvedete, se na popisné stránce nezobrazí. Budete muset příslušnou stránku editovat ručně.',
 'fileexists-extension'        => 'Již existuje soubor s podobným jménem:<br />
 Jméno načítaného souboru: <strong><tt>$1</tt></strong><br />
 Jméno existujícího souboru: <strong><tt>$2</tt></strong><br />

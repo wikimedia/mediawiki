@@ -272,6 +272,8 @@ $messages = array(
 'restorelink'             => '{{PLURAL:$1|qullusqa hukchasqa|$1 qullusqa hukchasqa}}',
 'feedlinks'               => 'Mikhuchiy:',
 'feed-invalid'            => 'Willaykuna mikhuchina layaqa manam allinchu.',
+'feed-unavailable'        => '{{SITENAME}}piqa manam sindikasyun mikhuchinachu',
+'red-link-title'          => '$1 (manaraq qillqasqa)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Qillqa',
@@ -732,6 +734,7 @@ Takyachikuy kay hukchayqa allin wiñay kawsay ñiqita ama waqllichunchu chaylla.
 'searchsubtitleinvalid' => '"$1" nisqatam maskanki',
 'noexactmatch'          => "'''Manam kanchu \"\$1\" sutiyuq p'anqa.''' Munaspaykiqa [[:\$1|kamarillay]].",
 'noexactmatch-nocreate' => "'''\"\$1\" sutiyuq p'anqaqa manam kanchu.'''",
+'toomanymatches'        => 'Nisyu taripasqakunam kutisqa, ama hina kaspa, huk taripanawan ruraykachay',
 'titlematches'          => "P'anqakunap sutinkunapi tarisqa",
 'notitlematches'        => "Manam ima p'anqakunap sutinkunapipas tarisqachu",
 'textmatches'           => "P'anqakunap qillqankunapi tarisqa",
@@ -932,7 +935,7 @@ Rikchata huk p'anqaman ch'aqtanaykipaqqa kay hunt'ana p'anqapi t'inkita llamk'ac
 *'''Internet Explorer''' / '''Opera''': '''ctrl-f5'''
 *'''Safari''': '''cmd-r'''
 *'''Konqueror''': '''ctrl-r'''",
-'filepageexists'              => "Kachkanñam kay sutiyuq p'anqa (manam rikchachu), ama hina kaspa, <strong><tt>$1</tt></strong> nisqata llanchiy, hukchana munayniykita mana yachaspaykiqa.",
+'filepageexists'              => "Kay willañiqipaq sut'ichana p'anqaqa kamarisqañam <strong><tt>$1</tt></strong> nisqapi, ichataq kay sutiyuq willañiqi manaraqmi kanchu. Willanayki pisichayqa manam rikch'akunqachu sut'ichana p'anqapi, kikiykip makiykiwanmi llamk'apunayki tiyanqa.",
 'fileexists-extension'        => 'Kay willañiqip sutinman yaqa kaqlla sutiyuq willañiqim kachkanña:<br />
 Churkunayasqayki willañiqip sutin: <strong><tt>$1</tt></strong><br />
 Kachkaqña willañiqip sutin: <strong><tt>$2</tt></strong><br />
@@ -1011,6 +1014,7 @@ Kay qatiqpiqa willañiqimanta qulluy hallch'atam rikunki:",
 'nolinkstoimage'            => "Kay rikchamanqa manam ima p'anqakunachu t'inkimun.",
 'sharedupload'              => "Kay p'anqaqa rakinakusqallam churkusqa huk ruraykamaykunapipas llamk'achinapaq.",
 'shareduploadwiki'          => '$1-ta qhaway astawan willasunaykipaq.',
+'shareduploadwiki-desc'     => "Chaypi kaq $1npi sut'ichanataqa kay qatiqpim rikunki.",
 'shareduploadwiki-linktext' => "willañiqimanta t'iktuna p'anqa",
 'noimage'                   => 'Manam kanchu kay sutiyuq willañiqi, $1ta atinki.',
 'noimage-linktext'          => 'churkuy',
@@ -1356,7 +1360,7 @@ Ama hina kaspa, llika wamp'unaykipi \"Ñawpaqman\" (\"Back\") ñit'ispa ñawpaq 
 'protect_expiry_old'          => 'Amachaypa puchukay pachanqa ñawpa pachapim.',
 'unprotectsub'                => '(Amachasqa "$1"-ta paskaspa)',
 'protect-unchain'             => "Astana saqillaykunata llamk'apuy chaylla",
-'protect-text'                => "<strong><nowiki>\$1</nowiki></strong> sutiyuq p'anqap amachasqa kachkaynintaqa kaypim qhawayta hukchaytapas atinki.",
+'protect-text'                => "<strong><nowiki>$1</nowiki></strong> sutiyuq p'anqap amachasqa kachkaynintaqa kaypim qhawayta hukchaytapas atinki.",
 'protect-locked-blocked'      => "Hark'asqa kaspayki manam atinkichu amachasqa kachkayninta hukchayta. Kay qatiqpiqa <strong>$1</strong> sutiyuq p'anqap kunan allinkachinankunatam rikunki:",
 'protect-locked-dblock'       => "Willañiqintin hark'asqa kachkaptinmi, manam atinkichu amachaypa kachkayninkunata hukchayta.
 Kay qatiqpiqa <strong>$1</strong> sutiyuq p'anqap kunan allinkachinankunatam rikunki:",
@@ -1401,6 +1405,7 @@ Kay qatiqpiqa <strong>$1</strong> sutiyuq p'anqap kunan allinkachinankunatam rik
 'undeleterevision-missing'     => "Llamk'apusqaqa manam allinchu icha chinkasqam. Mana allin t'inkichá, icha llamk'apusqaqa hallch'amanta qullusqachá icha musuqmanta paqarichisqachá.",
 'undelete-nodiff'              => "Manam tarinichu ñawpaq llamk'apusqata.",
 'undeletebtn'                  => 'Paqarichiy!',
+'undeletelink'                 => 'paqarichiy',
 'undeletereset'                => 'Mana imapas',
 'undeletecomment'              => 'Imarayku paqarichisqa:',
 'undeletedarticle'             => 'qullurqasqa "$1" paqarisqa',

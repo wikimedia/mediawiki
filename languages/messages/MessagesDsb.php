@@ -385,10 +385,12 @@ $messages = array(
 'restorelink'             => '{{PLURAL:$1|1 wulašowana wersija|$1 wulašowanej wersiji|$1 wulašowane wersije}}',
 'feedlinks'               => 'Nowosći:',
 'feed-invalid'            => 'Njepłaśecy typ abonementa.',
+'feed-unavailable'        => 'Syndikaciske kanale na {{GRAMMAR:lokatiw|{{SITENAME}}}} k dispoziciji njestoje',
 'site-rss-feed'           => '$1 RSS Feed',
 'site-atom-feed'          => '$1 Atom Feed',
 'page-rss-feed'           => '"$1" RSS Feed',
 'page-atom-feed'          => '"$1" Atom Feed',
+'red-link-title'          => '$1 (dotychměst njenapórany)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Nastawk',
@@ -1042,7 +1044,7 @@ Aby dataju do boka zapśimjeł, wužyj wótkaz we formje
 'largefileserver'             => 'Dataja jo wětša ako serwer dopušćijo.',
 'emptyfile'                   => 'Dataja jo prozna. Pśicyna togo móžo byś zmólka w mjenju dataje. Kontrolěruj pšosym, lic coš dataju napšawdu uploadowaś.',
 'fileexists'                  => 'Dataja z toś tym mjenim južo eksistěrujo. Tłocyš-lic na "Dataju składowaś", ga se dataja pśepišo. Pšosym kontrolěruj <strong><tt>$1</tt></strong>, gaž njejsy se kradu wěsty.',
-'filepageexists'              => 'Bok (žedna dataja) z toś tym mjenim juž eksistujo, pšosym pśeglědaj <strong><tt>$1</tt></strong>, jolic njejsy se wěsty, lěc coš jen změniś.',
+'filepageexists'              => 'Wopisański bok za toś tu dataju bu južo na <strong><tt>$1</tt></strong> napórany, ale dataja z toś tym mjenim njeeksistujo. Zespominanje, kótarež sy zapódał, se na wopisańskem boku njezjawijo. Aby se twóje zespominanje tam zjawiło, dejš jen manuelnje wobźěłaś.',
 'fileexists-extension'        => 'Eksistěrujo južo dataja z pódobnym mjenim:<br />
 Mě dataje, kótaraž dej se uploadowaś: <strong><tt>$1</tt></strong><br />
 Mě eksistěrujuceje dataje: <strong><tt>$2</tt></strong><br />

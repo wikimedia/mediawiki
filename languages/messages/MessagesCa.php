@@ -191,6 +191,7 @@ $messages = array(
 'tog-nolangconversion'        => 'Desactiva la conversió de variants',
 'tog-ccmeonemails'            => "Envia'm còpies dels missatges que enviï als altres usuaris.",
 'tog-diffonly'                => 'Amaga el contingut de la pàgina davall de la taula de diferències',
+'tog-showhiddencats'          => 'Mostra les categories ocultes',
 
 'underline-always'  => 'Sempre',
 'underline-never'   => 'Mai',
@@ -251,12 +252,14 @@ $messages = array(
 'dec'           => 'des',
 
 # Bits of text used by many pages
-'categories'            => 'Categories',
-'pagecategories'        => '{{PLURAL:$1|Categoria|Categories}}',
-'category_header'       => 'Pàgines a la categoria «$1»',
-'subcategories'         => 'Subcategories',
-'category-media-header' => 'Contingut multimèdia en la categoria «$1»',
-'category-empty'        => "''Aquesta categoria no té cap pàgina ni fitxer.''",
+'categories'               => 'Categories',
+'pagecategories'           => '{{PLURAL:$1|Categoria|Categories}}',
+'category_header'          => 'Pàgines a la categoria «$1»',
+'subcategories'            => 'Subcategories',
+'category-media-header'    => 'Contingut multimèdia en la categoria «$1»',
+'category-empty'           => "''Aquesta categoria no té cap pàgina ni fitxer.''",
+'hidden-categories'        => '{{PLURAL:$1|Categoria oculta|Categories ocultes}}',
+'hidden-category-category' => 'Categories ocultes', # Name of the category where hidden categories will be listed
 
 'mainpagetext'      => "<big>'''El programari del MediaWiki s'ha instal·lat correctament.'''</big>",
 'mainpagedocfooter' => "Consulteu la [http://meta.wikimedia.org/wiki/Help:Contents Guia d'Usuari] per a més informació sobre com utilitzar-lo.
@@ -727,6 +730,7 @@ en un fitxer de text i desar-lo més tard.</strong>',
 'templatesusedsection'      => 'Plantilles usades en aquesta secció:',
 'template-protected'        => '(protegida)',
 'template-semiprotected'    => '(semiprotegida)',
+'hiddencategories'          => 'Aquesta pàgina forma part de {{PLURAL:$1|la següent categoria oculta|les següents categories ocultes}}:',
 'edittools'                 => "<!-- Es mostrarà als formularis d'edició i de càrrega el text que hi haja després d'aquesta línia. -->",
 'nocreatetitle'             => "S'ha limitat la creació de pàgines",
 'nocreatetext'              => "El projecte {{SITENAME}} ha restringit la possibilitat de crear noves pàgines.
@@ -1072,7 +1076,7 @@ Totes les hores són les del servidor (UTC).",
 'largefileserver'             => 'Aquest fitxer és més gran del que el servidor permet.',
 'emptyfile'                   => 'El fitxer que heu carregat sembla estar buit. Açò por ser degut a un mal caràcter en el nom del fitxer. Si us plau, reviseu si realment voleu carregar aquest arxiu.',
 'fileexists'                  => 'Ja hi existeix un fitxer amb aquest nom, si us plau, verifiqueu $1 si no esteu segurs de voler substituir-lo.',
-'filepageexists'              => 'Una pàgina (no un fitxer) amb aquest nom ja existeix, comproveu <strong><tt>$1</tt></strong> si no esteu segur de voler canviar-li el nom.',
+'filepageexists'              => "La pàgina de descripció d'aquest fitxer ja ha estat creada (<strong><tt>$1</tt></strong>), però de moment no hi ha cap arxiu amb aquest nom. La descripció que heu posat no apareixerà a la pàgina de descripció. Si voleu que hi aparegui haureu d'editar-la manualment.",
 'fileexists-extension'        => 'Ja existeix un fitxer amb un nom semblant:<br />
 Nom del fitxer que es puja: <strong><tt>$1</tt></strong><br />
 Nom del fitxer existent: <strong><tt>$2</tt></strong><br />

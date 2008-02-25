@@ -169,6 +169,7 @@ $messages = array(
 'tog-nolangconversion'        => 'Tắt chuyển đổi biến thể',
 'tog-ccmeonemails'            => 'Gửi bản sao cho tôi khi gửi thư điện tử cho người khác',
 'tog-diffonly'                => 'Không hiển thị nội dung trang dưới phần so sánh phiên bản',
+'tog-showhiddencats'          => 'Xem những thể loại ẩn',
 
 'underline-always'  => 'Luôn luôn',
 'underline-never'   => 'Không bao giờ',
@@ -229,12 +230,14 @@ $messages = array(
 'dec'           => 'tháng 12',
 
 # Bits of text used by many pages
-'categories'            => 'Thể loại',
-'pagecategories'        => 'Thể loại ($1)',
-'category_header'       => 'Các trang trong thể loại “$1”',
-'subcategories'         => 'Tiểu thể loại',
-'category-media-header' => 'Các tập tin trong thể loại “$1”',
-'category-empty'        => "''Thể loại này hiện không có trang hay tập tin.''",
+'categories'               => 'Thể loại',
+'pagecategories'           => 'Thể loại ($1)',
+'category_header'          => 'Các trang trong thể loại “$1”',
+'subcategories'            => 'Tiểu thể loại',
+'category-media-header'    => 'Các tập tin trong thể loại “$1”',
+'category-empty'           => "''Thể loại này hiện không có trang hay tập tin.''",
+'hidden-categories'        => 'Thể loại ẩn',
+'hidden-category-category' => 'Thể loại ẩn', # Name of the category where hidden categories will be listed
 
 'mainpagetext'      => "<big>'''MediaWiki đã được cài đặt thành công.'''</big>",
 'mainpagedocfooter' => 'Xin đọc [http://meta.wikimedia.org/wiki/Help:Contents Hướng dẫn sử dụng] để biết thêm thông tin về cách sử dụng phần mềm wiki.
@@ -683,6 +686,7 @@ Bạn phải đảm bảo với chúng tôi rằng chính bạn là người vi�
 'templatesusedsection'      => 'Các tiêu bản sẽ được dùng trong phần này:',
 'template-protected'        => '(khóa hoàn toàn)',
 'template-semiprotected'    => '(bị hạn chế sửa đổi)',
+'hiddencategories'          => 'Các thể loại ẩn bao gồm trang này:',
 'edittools'                 => '<!-- Văn bản dưới đây sẽ xuất hiện phía dưới mẫu sửa đổi và tải lên. -->',
 'nocreatetitle'             => 'Khả năng tạo trang bị hạn chế',
 'nocreatetext'              => '{{SITENAME}} đã hạn chế khả năng tạo trang mới.
@@ -1020,7 +1024,7 @@ Xin hãy bảo đảm tính liên tục của lịch sử trang.
 'largefileserver'             => 'Tập tin này quá lớn so với khả năng phục vụ của máy chủ.',
 'emptyfile'                   => 'Tập tin bạn vừa mới tải lên có vẻ trống không. Điều này có thể xảy ra khi bạn đánh sai tên tập tin. Xin hãy chắc chắn rằng bạn thật sự muốn tải lên tập tin này.',
 'fileexists'                  => 'Một tập tin với tên này đã tồn tại, xin hãy kiểm tra lại <strong><tt>$1</tt></strong> nếu bạn không chắc bạn có muốn thay đổi nó hay không.',
-'filepageexists'              => 'Đã có một trang (không phải tập tin) tồn tại ở tên này. Xin hãy đánh dấu chọn <strong><tt>$1</tt></strong> nếu bạn không chắc chắn mình có muốn đổi tập tin hay không.',
+'filepageexists'              => 'Trang miêu tả tập tin này đã tồn tại ở <strong><tt>$1</tt></strong>, nhưng chưa có tập tin với tên này. Lời tóm tắt sẽ không hiện ra ở trang miêu tả; để làm nó hiện ra, bạn cần sửa đổi trang đó bằng tay.',
 'fileexists-extension'        => 'Hiện có một tập tin trùng tên:<br />
 Tên tập tin đang tải lên: <strong><tt>$1</tt></strong><br />
 Tên tập tin có từ trước: <strong><tt>$2</tt></strong><br />

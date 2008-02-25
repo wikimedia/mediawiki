@@ -192,6 +192,7 @@ $messages = array(
 'tog-nolangconversion'        => 'Konvertera inte mellan språkvarianter',
 'tog-ccmeonemails'            => 'Skicka mig kopior av epost jag skickar till andra användare',
 'tog-diffonly'                => 'Visa inte sidinnehåll under diffar',
+'tog-showhiddencats'          => 'Visa dolda kategorier',
 
 'underline-always'  => 'Alltid',
 'underline-never'   => 'Aldrig',
@@ -252,12 +253,14 @@ $messages = array(
 'dec'           => 'dec',
 
 # Bits of text used by many pages
-'categories'            => 'Kategorier',
-'pagecategories'        => '{{PLURAL:$1|Kategori|Kategorier}}',
-'category_header'       => 'Sidor i kategorin "$1"',
-'subcategories'         => 'Underkategorier',
-'category-media-header' => 'Media i kategorin "$1"',
-'category-empty'        => "''Den här kategorin innehåller just nu inga sidor eller filer.''",
+'categories'               => 'Kategorier',
+'pagecategories'           => '{{PLURAL:$1|Kategori|Kategorier}}',
+'category_header'          => 'Sidor i kategorin "$1"',
+'subcategories'            => 'Underkategorier',
+'category-media-header'    => 'Media i kategorin "$1"',
+'category-empty'           => "''Den här kategorin innehåller just nu inga sidor eller filer.''",
+'hidden-categories'        => '{{PLURAL:$1|Dold kategori|Dolda kategorier}}',
+'hidden-category-category' => 'Dolda kategorier', # Name of the category where hidden categories will be listed
 
 'mainpagetext'      => "<big>'''MediaWiki har installerats utan problem.'''</big>",
 'mainpagedocfooter' => 'Information om hur wiki-programvaran används finns i [http://meta.wikimedia.org/wiki/Help:Contents användarguiden].
@@ -714,6 +717,7 @@ Försäkra dig om att du följer riktlinjerna för redigering av skyddade sidor.
 'templatesusedsection'      => 'Mallar som används i det här avsnittet:',
 'template-protected'        => '(skyddad)',
 'template-semiprotected'    => '(delvis skyddad)',
+'hiddencategories'          => 'Denna sida är medlem i följande dolda {{PLURAL:$1|kategori|kategorier}}:',
 'edittools'                 => '<!-- Denna text kommer att visas nedanför redigeringsrutor och uppladdningsformulär. -->',
 'nocreatetitle'             => 'Skapande av sidor begränsat',
 'nocreatetext'              => '{{SITENAME}} har begränsat möjligheterna att skapa nya sidor.
@@ -1049,7 +1053,7 @@ Använd en länk på något av följande format för att infoga en bild på en s
 'largefileserver'             => 'Denna fil är större än vad servern ställts in att tillåta.',
 'emptyfile'                   => 'Filen du laddade upp verkar vara tom; felet kan bero på ett stavfel i filnamnet. Kontrollera om du verkligen vill ladda upp denna fil.',
 'fileexists'                  => 'Det finns redan en fil med detta namn. Titta på $1, såvida du inte är säker på att du vill ändra den.',
-'filepageexists'              => 'Det finns redan en sida (men inte någon fil) med det här namnet. Kontrollera <strong><tt>$1</tt></strong> om du är osäker på om du vill ändra sidan.',
+'filepageexists'              => 'Beskrivningssidan för denna fil har redan skapats på <strong><tt>$1</tt></strong>, men just nu finns ingen fil med detta namn. Den sammanfattning du skriver här kommer inte visas på beskrivningssidan. För att din sammanfattning ska visas där, så måste du redigera beskrivningssidan manuellt.',
 'fileexists-extension'        => 'En fil med ett liknande namn finns redan:<br />
 Namn på den fil du försöker ladda upp: <strong><tt>$1</tt></strong><br />
 Namn på filen som redan finns: <strong><tt>$2</tt></strong><br />

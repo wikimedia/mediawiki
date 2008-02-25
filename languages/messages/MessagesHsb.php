@@ -1017,7 +1017,8 @@ Zo by dataju do strony zapřijał, wužij wotkaz we formje
 'largefileserver'             => 'Dataja je wjetša hač serwer dowoluje.',
 'emptyfile'                   => 'Dataja, kotruž sy nahrał, zda so prózdna być. Z přičinu móhł pisanski zmylk w mjenje dataje być. Prošu pruwuj hač chceš ju woprawdźe nahrać.',
 'fileexists'                  => 'Dataja z tutym mjenom hižo eksistuje. Jeli kliknješ na „Składować”, so wona přepisuje. Prošu pruwuj $1 jeli njejsy wěsty hač chceš ju změnić.',
-'filepageexists'              => 'Strona (žadyn wobraz) z tutym mjenom hižo eksistuje, prošu přepruwuj <strong><tt>$1</tt></strong>, jeli njejsy sej wěsty, hač chceš je změnić.',
+'filepageexists'              => 'Wopisanska strona za tutu dataju bu hižo pola <strong><tt>$1</tt></strong> wutworjena,
+ale tuchwilu dataja z tutym mjeno njeeksistuje. Zjeće, kotrež zapodaš, njezjewi so na wopisanskej stronje. Zo by so twoje zjeće tam jewiło, dyrbiš ju manuelnje wobdźěłać.',
 'fileexists-extension'        => 'Dataja z podobnym mjenom hižo eksistuje:<br />
 Mjeno dataje, kotruž chceš nahrać: <strong><tt>$1</tt></strong><br />
 Mjeno eksistowaceje dataje: <strong><tt>$2</tt></strong><br />
