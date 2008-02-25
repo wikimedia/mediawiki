@@ -570,7 +570,7 @@ XHTML id names.
 'category-media-header'    => 'Media in category "$1"',
 'category-empty'           => "''This category currently contains no pages or media.''",
 'hidden-categories'        => '{{PLURAL:$1|Hidden category|Hidden categories}}',
-'hidden-category-category' => 'Hidden categories',
+'hidden-category-category' => 'Hidden categories', # Name of the category where hidden categories will be listed
 
 'linkprefix'        => '/^(.*?)([a-zA-Z\x80-\xff]+)$/sD', # only translate this message to other languages if you have to change it
 'mainpagetext'      => "<big>'''MediaWiki has been successfully installed.'''</big>",

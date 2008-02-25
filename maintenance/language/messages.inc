@@ -2560,6 +2560,7 @@ Variants for Chinese language",
 
 /** Short comments for standalone messages */
 $wgMessageComments = array(
+	'hidden-category-category'    => 'Name of the category where hidden categories will be listed',
 	'lastmodifiedat'              => '$1 date, $2 time',
 	'sitenotice'                  => 'the equivalent to wgSiteNotice',
 	'history-feed-item-nocomment' => 'user at time',
