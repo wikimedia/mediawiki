@@ -76,6 +76,7 @@ class User {
 		'watchlisthideminor',
 		'ccmeonemails',
 		'diffonly',
+		'showhiddencats',
 	);
 
 	/**

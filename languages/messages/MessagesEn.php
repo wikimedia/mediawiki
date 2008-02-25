@@ -501,6 +501,7 @@ XHTML id names.
 'tog-nolangconversion'        => 'Disable variants conversion', # only translate this message to other languages if you have to change it
 'tog-ccmeonemails'            => 'Send me copies of emails I send to other users',
 'tog-diffonly'                => "Don't show page content below diffs",
+'tog-showhiddencats'          => 'Show hidden categories',
 
 'underline-always'  => 'Always',
 'underline-never'   => 'Never',
@@ -568,6 +569,8 @@ XHTML id names.
 'subcategories'         => 'Subcategories',
 'category-media-header' => 'Media in category "$1"',
 'category-empty'        => "''This category currently contains no pages or media.''",
+'hidden-categories'     => '{{PLURAL:$1|Hidden category|Hidden categories}}',
+'hidden-category-category' => 'Hidden categories', # Name of the category where hidden categories will be listed
 
 'linkprefix'        => '/^(.*?)([a-zA-Z\x80-\xff]+)$/sD', # only translate this message to other languages if you have to change it
 'mainpagetext'      => "<big>'''MediaWiki has been successfully installed.'''</big>",
