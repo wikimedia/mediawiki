@@ -333,6 +333,7 @@ $messages = array(
 'tog-nolangconversion'        => 'ביטול המרת גרסאות שפה',
 'tog-ccmeonemails'            => 'שלח אלי העתקים של הודעות דואר אלקטרוני שאני שולח למשתמשים אחרים',
 'tog-diffonly'                => 'ביטול הצגת תוכן הדף מתחת להשוואות הגרסאות',
+'tog-showhiddencats'          => 'הצגת קטגוריות מוסתרות',
 
 'underline-always'  => 'תמיד',
 'underline-never'   => 'אף פעם',
@@ -393,12 +394,14 @@ $messages = array(
 'dec'           => "דצמ'",
 
 # Bits of text used by many pages
-'categories'            => 'קטגוריות',
-'pagecategories'        => '{{plural:$1|קטגוריה|קטגוריות}}',
-'category_header'       => 'דפים בקטגוריה "$1"',
-'subcategories'         => 'קטגוריות משנה',
-'category-media-header' => 'קובצי מדיה בקטגוריה "$1"',
-'category-empty'        => "'''קטגוריה זו אינה כוללת דפים או קובצי מדיה.'''",
+'categories'               => 'קטגוריות',
+'pagecategories'           => '{{plural:$1|קטגוריה|קטגוריות}}',
+'category_header'          => 'דפים בקטגוריה "$1"',
+'subcategories'            => 'קטגוריות משנה',
+'category-media-header'    => 'קובצי מדיה בקטגוריה "$1"',
+'category-empty'           => "'''קטגוריה זו אינה כוללת דפים או קובצי מדיה.'''",
+'hidden-categories'        => '{{plural:$1|קטגוריה מוסתרת|קטגוריות מוסתרות}}',
+'hidden-category-category' => 'קטגוריות מוסתרות',
 
 'mainpagetext'      => "'''תוכנת מדיה־ויקי הותקנה בהצלחה.'''",
 'mainpagedocfooter' => 'היעזרו ב[http://meta.wikimedia.org/wiki/Help:Contents מדריך למשתמש] למידע על שימוש בתוכנת הוויקי.
@@ -878,6 +881,7 @@ $2',
 'templatesusedsection'      => 'תבניות המופיעות בפיסקה זו:',
 'template-protected'        => '(מוגנת)',
 'template-semiprotected'    => '(מוגנת חלקית)',
+'hiddencategories'          => 'קטגוריות מוסתרות שדף זה חבר בהן:',
 'edittools'                 => '<!-- הטקסט הנכתב כאן יוצג מתחת לטפסי עריכת דפים והעלאת קבצים, ולפיכך ניתן לכתוב להציג בו תווים קשים לכתיבה, קטעים מוכנים של טקסט ועוד. -->',
 'nocreatetitle'             => 'יצירת הדפים הוגבלה',
 'nocreatetext'              => 'אתר זה מגביל את האפשרות ליצור דפים חדשים. באפשרותכם לחזור אחורה ולערוך דף קיים, או [[Special:Userlogin|להיכנס לחשבון]].',
