@@ -572,7 +572,7 @@ XHTML id names.
 'hidden-categories'        => '{{PLURAL:$1|Hidden category|Hidden categories}}',
 'hidden-category-category' => 'Hidden categories',
 
-'linkprefix'        => '/^(.*?)([a-zA-Z\\x80-\\xff]+)$/sD', # only translate this message to other languages if you have to change it
+'linkprefix'        => '/^(.*?)([a-zA-Z\x80-\xff]+)$/sD', # only translate this message to other languages if you have to change it
 'mainpagetext'      => "<big>'''MediaWiki has been successfully installed.'''</big>",
 'mainpagedocfooter' => "Consult the [http://meta.wikimedia.org/wiki/Help:Contents User's Guide] for information on using the wiki software.
 
