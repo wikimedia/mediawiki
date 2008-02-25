@@ -239,6 +239,7 @@ $magicWords = array(
 	'defaultsort'         => array( '1', 'ترتيب_قياسي:', 'ترتيب_افتراضي:', 'مفتاح_ترتيب_قياسي:', 'مفتاح_ترتيب_افتراضي:', 'ترتيب_تصنيف_قياسي:', 'ترتيب_تصنيف_افتراضي:', 'DEFAULTSORT:', 'DEFAULTSORTKEY:', 'DEFAULTCATEGORYSORT:' ),
 	'filepath'            => array( '0', 'مسار_الملف:', 'مسار_ملف:', 'FILEPATH:' ),
 	'tag'                 => array( '0', 'وسم', 'tag' ),
+	'hiddencat'           => array( '1', '__تصنيف_مخفي__', '__HIDDENCAT__' ),
 );
 
 $skinNames = array(
