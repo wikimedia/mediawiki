@@ -1421,7 +1421,7 @@ To include a file in a page, use a link in the form
 'largefileserver'             => 'This file is bigger than the server is configured to allow.',
 'emptyfile'                   => 'The file you uploaded seems to be empty. This might be due to a typo in the file name. Please check whether you really want to upload this file.',
 'fileexists'                  => 'A file with this name exists already, please check <strong><tt>$1</tt></strong> if you are not sure if you want to change it.',
-'filepageexists'              => 'A page (not a file) with this name exists already, please check <strong><tt>$1</tt></strong> if you are not sure if you want to change it.',
+'filepageexists'              => "The description page for this file has already been created at <strong><tt>$1</tt></strong>, but no file with this name currently exists. The summary you enter will not appear on the description page. To make your summary appear there, you will need to manually edit it",
 'fileexists-extension'        => 'A file with a similar name exists:<br />
 Name of the uploading file: <strong><tt>$1</tt></strong><br />
 Name of the existing file: <strong><tt>$2</tt></strong><br />
