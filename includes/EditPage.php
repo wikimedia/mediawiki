@@ -1248,6 +1248,9 @@ class EditPage {
 		$templates = ($this->preview || $this->section != '') ? $this->mPreviewTemplates : $this->mArticle->getUsedTemplates();
 		$formattedtemplates = $sk->formatTemplates( $templates, $this->preview, $this->section != '');
 
+		$hiddencats = $this->mArticle->getHiddenCategories();
+		$formattedhiddencats = $sk->formatHiddenCategories( $hiddencats );
+
 		global $wgUseMetadataEdit ;
 		if ( $wgUseMetadataEdit ) {
 			$metadata = $this->mMetaData ;
@@ -1346,7 +1349,10 @@ END
 <div class='templatesUsed'>
 {$formattedtemplates}
 </div>
-" );
+<div class='hiddencats'>
+{$formattedhiddencats}
+</div>
+");
 
 		/**
 		 * To make it harder for someone to slip a user a page

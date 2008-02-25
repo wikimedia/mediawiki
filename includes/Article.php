@@ -3072,6 +3072,36 @@ class Article {
 	}
 
 	/**
+	 * Returns a list of hidden categories this page is a member of.
+	 * Uses the page_props and categorylinks tables.
+	 *
+	 * @return array Array of Title objects
+	 */
+	function getHiddenCategories() {
+		$result = array();
+		$id = $this->mTitle->getArticleID();
+		if( $id == 0 ) {
+			return array();
+		}
+
+		$dbr = wfGetDB( DB_SLAVE );
+		$res = $dbr->select( array( 'categorylinks', 'page_props', 'page' ),
+			array( 'cl_to' ),
+			array( 'cl_from' => $id, 'pp_page=page_id', 'pp_propname' => 'hiddencat', 
+				'page_namespace' => NS_CATEGORY, 'page_title=cl_to'),
+			'Article:getHiddenCategories' );
+		if ( false !== $res ) {
+			if ( $dbr->numRows( $res ) ) {
+				while ( $row = $dbr->fetchObject( $res ) ) {
+					$result[] = Title::makeTitle( NS_CATEGORY, $row->cl_to );
+				}
+			}
+		}
+		$dbr->freeResult( $res );
+		return $result;
+	}
+
+	/**
 	 * Return an auto-generated summary if the text provided is a redirect.
 	 *
 	 * @param  string $text The wikitext to check

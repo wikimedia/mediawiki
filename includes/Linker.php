@@ -1359,6 +1359,35 @@ class Linker {
 		wfProfileOut( __METHOD__  );
 		return $outText;
 	}
+
+	/**
+	 * Returns HTML for the "hidden categories on this page" list.
+	 *
+	 * @param array $hiddencats Array of hidden categories from Article::getHiddenCategories
+	 * or similar
+	 * @return string HTML output
+	 */
+	public function formatHiddenCategories( $hiddencats) {
+		global $wgUser;
+		wfProfileIn( __METHOD__ );
+
+		$sk = $wgUser->getSkin();
+
+		$outText = '';
+		if ( count( $hiddencats ) > 0 ) {
+			# Construct the HTML
+			$outText = '<div class="mw-hiddenCategoriesExplanation">';
+			$outText .= wfMsgExt( 'hiddencategories', array( 'parse' ) );
+			$outText .= '</div><ul>';
+
+			foreach ( $hiddencats as $titleObj ) {
+				$outText .= '<li>' . $sk->makeKnownLinkObj( $titleObj ) . '</li>'; # If it's hidden, it must exist - no need to check with a LinkBatch
+			}
+			$outText .= '</ul>';
+		}
+		wfProfileOut( __METHOD__  );
+		return $outText;
+	}
 	
 	/**
 	 * Format a size in bytes for output, using an appropriate

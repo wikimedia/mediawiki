@@ -1063,6 +1063,7 @@ Please consider breaking the page into smaller sections.</strong>',
 'templatesusedsection'      => 'Templates used in this section:',
 'template-protected'        => '(protected)',
 'template-semiprotected'    => '(semi-protected)',
+'hiddencategories'	    => 'Hidden categories this page is a member of:',
 'edittools'                 => '<!-- Text here will be shown below edit and upload forms. -->', # only translate this message to other languages if you have to change it
 'nocreatetitle'             => 'Page creation limited',
 'nocreatetext'              => '{{SITENAME}} has restricted the ability to create new pages.
