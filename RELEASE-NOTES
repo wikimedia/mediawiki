@@ -42,6 +42,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 13140) Show parent categories in category namespace
 * (bug 13149) Correctly format 'fileexists' message on Upload page.
 * Make filepageexists accurate.
+* (bug 12988) $wgMinimalPasswordLength no longer breaks create user by email
 
 === API changes in 1.13 ===
 

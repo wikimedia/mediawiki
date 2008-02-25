@@ -271,8 +271,8 @@ class LoginForm {
 				return false;
 			} else {
 				# do not force a password for account creation by email
-				# set pseudo password, it will be replaced later by a random generated password
-				$this->mPassword = '-';
+				# set invalid password, it will be replaced later by a random generated password
+				$this->mPassword = null;
 			}
 		}
 
