@@ -265,7 +265,7 @@ Bitte beachten Sie, dass, genau wie bei normalen Seiteninhalten, andere Benutzer
 'illegalfilename'             => 'Der Dateiname „$1“ enthält mindestens ein nicht erlaubtes Zeichen. Bitte benennen Sie die Datei um und versuchen Sie sie erneut hochzuladen.',
 'emptyfile'                   => 'Die hochgeladene Datei ist leer. Der Grund kann ein Tippfehler im Dateinamen sein. Bitte kontrollieren Sie, ob Sie die Datei wirklich hochladen wollen.',
 'fileexists'                  => 'Eine Datei mit diesem Namen existiert bereits. Wenn Sie auf „Datei speichern“ klicken, wird die Datei überschrieben. Bitte prüfen Sie <strong><tt>$1</tt></strong>, wenn Sie sich nicht sicher sind.',
-'filepageexists'              => 'Eine Seite (keine Datei) mit diesem Namen existiert bereits. Bitte prüfen Sie <strong><tt>$1</tt></strong>, ob Sie eine Datei unter diesem Namen hochladen wollen.',
+'filepageexists'              => "Eine Beschreibungsseite wurde bereits als <strong><tt>$1</tt></strong> erstellt, es ist aber keine Datei mit diesem Namen vorhanden. Die eingegebene Beschreibung wird nicht auf die Beschreibungsseite übernommen. Die Beschreibungsseite müssen Sie nach dem Hochladen der Datei noch manuell bearbeiten.",
 'fileexists-extension'        => 'Eine Datei mit ähnlichem Namen existiert bereits:<br />
 Name der hochzuladenden Datei: <strong><tt>$1</tt></strong><br />
 Name der vorhandenen Datei: <strong><tt>$2</tt></strong><br />
