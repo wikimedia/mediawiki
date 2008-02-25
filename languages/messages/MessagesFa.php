@@ -308,6 +308,7 @@ $messages = array(
 'tog-nolangconversion'        => 'غیرفعال کردن تبدیل زبان‌ها',
 'tog-ccmeonemails'            => 'فرستادن رونوشت نامه‌های الکترونیکی که به دیگران ارسال می‌کنم به خودم.',
 'tog-diffonly'                => 'محتوای صفحه، زیر تفاوت نمایش داده نشود',
+'tog-showhiddencats'          => 'رده‌های پنهان را نمایش بده',
 
 'underline-always'  => 'همیشه',
 'underline-never'   => 'هرگز',
@@ -368,12 +369,14 @@ $messages = array(
 'dec'           => 'دسامبر',
 
 # Bits of text used by many pages
-'categories'            => 'رده‌های صفحه',
-'pagecategories'        => '{{PLURAL:$1|رده‌های صفحه|رده‌های صفحه}}',
-'category_header'       => 'مقاله‌های ردهٔ «$1»',
-'subcategories'         => 'زیررده‌ها',
-'category-media-header' => 'پرونده‌های ردهٔ «$1»',
-'category-empty'        => 'این رده شامل هیچ صفحه یا پرونده‌ای نمی‌شود.',
+'categories'               => 'رده‌های صفحه',
+'pagecategories'           => '{{PLURAL:$1|رده‌های صفحه|رده‌های صفحه}}',
+'category_header'          => 'مقاله‌های ردهٔ «$1»',
+'subcategories'            => 'زیررده‌ها',
+'category-media-header'    => 'پرونده‌های ردهٔ «$1»',
+'category-empty'           => 'این رده شامل هیچ صفحه یا پرونده‌ای نمی‌شود.',
+'hidden-categories'        => '{{PLURAL:$1|ردهٔ پنهان|رده‌های پنهان}}',
+'hidden-category-category' => 'رده‌های پنهان',
 
 'mainpagetext'      => 'نرم‌افزار ویکی با موفقیت نصب شد.',
 'mainpagedocfooter' => 'از [http://meta.wikimedia.org/wiki/Help:Contents راهنمای کاربران]
@@ -877,6 +880,7 @@ your old password.
 'templatesusedsection'      => 'الگوهای استفاده‌شده در این بخش:',
 'template-protected'        => '(حفاظت‌شده)',
 'template-semiprotected'    => '(نیمه حفاظت‌شده)',
+'hiddencategories'          => 'رده‌های پنهانی که این صفحه در آن‌ها قرار دارد:',
 'edittools'                 => '<!-- متن این قسمت زیر صفحه‌های ویرایش و بارگذاری نشان داده می‌شود -->',
 'nocreatetitle'             => 'ایجاد صفحه محدود شده‌است.',
 'nocreatetext'              => 'این وبگاه قابلیت ایجاد صفحه‌های جدید را محدود کرده‌است. می‌توانید بازگردید و صفحه‌ای موجود را ویرایش کنید یا اینکه  [[Special:Userlogin|به سیستم وارد شوید یا حساب کاربری ایجاد کنید]].',

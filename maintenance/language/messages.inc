@@ -50,6 +50,7 @@ $wgMessageStructure = array(
 		'tog-nolangconversion',
 		'tog-ccmeonemails',
 		'tog-diffonly',
+		'tog-showhiddencats',
 	),
 	'underline' => array(
 		'underline-always',
@@ -119,6 +120,8 @@ $wgMessageStructure = array(
 		'subcategories',
 		'category-media-header',
 		'category-empty',
+		'hidden-categories',
+		'hidden-category-category',
 	),
 	'mainpage' => array(
 		'linkprefix',
@@ -532,6 +535,7 @@ $wgMessageStructure = array(
 		'templatesusedsection',
 		'template-protected',
 		'template-semiprotected',
+		'hiddencategories',
 		'edittools',
 		'nocreatetitle',
 		'nocreatetext',
