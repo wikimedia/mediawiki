@@ -271,14 +271,12 @@ class OutputPage {
 	 * Add an array of categories, with names in the keys
 	 */
 	public function addCategoryLinks( $categories ) {
-		global $wgUser, $wgContLang, $wgTitle;
+		global $wgUser, $wgContLang;
 
-		if ( !is_array( $categories ) ) {
+		if ( !is_array( $categories ) || count( $categories ) == 0 ) {
 			return;
 		}
-		if ( count( $categories ) == 0 ) {
-			return;
-		}
+
 		# Add the links to a LinkBatch
 		$arr = array( NS_CATEGORY => $categories );
 		$lb = new LinkBatch;
@@ -287,8 +285,8 @@ class OutputPage {
 		# Fetch existence plus the hiddencat property
 		$dbr = wfGetDB( DB_SLAVE );
 		$pageTable = $dbr->tableName( 'page' );
-		$propsTable = $dbr->tableName( 'page_props' );
 		$where = $lb->constructSet( 'page', $dbr );
+		$propsTable = $dbr->tableName( 'page_props' );
 		$sql = "SELECT page_id, page_namespace, page_title, pp_value FROM $pageTable LEFT JOIN $propsTable " . 
 			" ON pp_propname='hiddencat' AND pp_page=page_id WHERE $where";
 		$res = $dbr->query( $sql, __METHOD__ );
@@ -296,19 +294,23 @@ class OutputPage {
 		# Add the results to the link cache
 		$lb->addResultToCache( LinkCache::singleton(), $res );
 
-		# Remove categories with hiddencat
+		# Set all the values to 'normal'. This can be done with array_fill_keys in PHP 5.2.0+
+		$categories = array_combine( array_keys( $categories ),
+			array_fill( 0, count( $categories ), 'normal' ) );
+
+		# Mark hidden categories
 		foreach ( $res as $row ) {
-			if ( isset( $row->pp_value ) and $wgTitle->getNamespace() != NS_CATEGORY ) {
-				unset( $categories[$row->page_title] );
+			if ( isset( $row->pp_value ) ) {
+				$categories[$row->page_title] = 'hidden';
 			}
 		}
-		
+
 		# Add the remaining categories to the skin
 		$sk = $wgUser->getSkin();
-		foreach ( $categories as $category => $unused ) {
+		foreach ( $categories as $category => $type ) {
 			$title = Title::makeTitleSafe( NS_CATEGORY, $category );
 			$text = $wgContLang->convertHtml( $title->getText() );
-			$this->mCategoryLinks[] = $sk->makeLinkObj( $title, $text );
+			$this->mCategoryLinks[$type][] = $sk->makeLinkObj( $title, $text );
 		}
 	}
 

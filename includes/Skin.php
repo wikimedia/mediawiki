@@ -300,7 +300,7 @@ class Skin extends Linker {
 		global $wgScript, $wgStylePath, $wgUser;
 		global $wgArticlePath, $wgScriptPath, $wgServer, $wgContLang, $wgLang;
 		global $wgTitle, $wgCanonicalNamespaceNames, $wgOut, $wgArticle;
-		global $wgBreakFrames, $wgRequest;
+		global $wgBreakFrames, $wgRequest, $wgVariantArticlePath, $wgActionPaths;
 		global $wgUseAjax, $wgAjaxWatch;
 		global $wgVersion, $wgEnableAPI, $wgEnableWriteAPI;
 
@@ -313,6 +313,8 @@ class Skin extends Linker {
 			'wgArticlePath' => $wgArticlePath,
 			'wgScriptPath' => $wgScriptPath,
 			'wgScript' => $wgScript,
+			'wgVariantArticlePath' => $wgVariantArticlePath,
+			'wgActionPaths' => $wgActionPaths,
 			'wgServer' => $wgServer,
 			'wgCanonicalNamespace' => $nsname,
 			'wgCanonicalSpecialPageName' => SpecialPage::resolveAlias( $wgTitle->getDBkey() ),
@@ -627,7 +629,7 @@ END;
 
 	function getCategoryLinks () {
 		global $wgOut, $wgTitle, $wgUseCategoryBrowser;
-		global $wgContLang;
+		global $wgContLang, $wgUser;
 
 		if( count( $wgOut->mCategoryLinks ) == 0 ) return '';
 
@@ -639,11 +641,32 @@ END;
 		$dir = $wgContLang->isRTL() ? 'rtl' : 'ltr';
 		$embed = "<span dir='$dir'>";
 		$pop = '</span>';
-		$t = $embed . implode ( "{$pop} {$sep} {$embed}" , $wgOut->mCategoryLinks ) . $pop;
 
-		$msg = wfMsgExt( 'pagecategories', array( 'parsemag', 'escape' ), count( $wgOut->mCategoryLinks ) );
-		$s = $this->makeLinkObj( Title::newFromText( wfMsgForContent('pagecategorieslink') ), $msg )
-			. ': ' . $t;
+		$allCats = $wgOut->getCategoryLinks();
+		$s = '';
+		if ( !empty( $allCats['normal'] ) ) {
+			$t = $embed . implode ( "{$pop} {$sep} {$embed}" , $allCats['normal'] ) . $pop;
+	
+			$msg = wfMsgExt( 'pagecategories', array( 'parsemag', 'escape' ), count( $allCats['normal'] ) );
+			$s .= '<div id="mw-normal-catlinks">' .
+				$this->makeLinkObj( Title::newFromText( wfMsgForContent('pagecategorieslink') ), $msg )
+				. ': ' . $t . '</div>';
+		}
+
+		# Hidden categories
+		if ( isset( $allCats['hidden'] ) ) {
+			if ( $wgUser->getBoolOption( 'showhiddencats' ) ) {
+				$class ='mw-hidden-cats-user-shown';
+			} elseif ( $wgTitle->getNamespace() == NS_CATEGORY ) {
+				$class = 'mw-hidden-cats-ns-shown';
+			} else {
+				$class = 'mw-hidden-cats-hidden';
+			}
+			$s .= "<div id=\"mw-hidden-catlinks\" class=\"$class\">" . 
+				wfMsgExt( 'hidden-categories', array( 'parsemag', 'escape' ), count( $allCats['hidden'] ) ) . 
+				': ' . $embed . implode( "$pop $sep $embed", $allCats['hidden'] ) . $pop .
+				"</div>";
+		}
 
 		# optional 'dmoz-like' category browser. Will be shown under the list
 		# of categories an article belong to
@@ -690,7 +713,7 @@ END;
 	function getCategories() {
 		$catlinks=$this->getCategoryLinks();
 		if(!empty($catlinks)) {
-			return "<p class='catlinks'>{$catlinks}</p>";
+			return "<div class='catlinks'>{$catlinks}</div>";
 		}
 	}
 
