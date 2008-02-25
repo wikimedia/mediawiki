@@ -30,7 +30,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   article. This is so that readers who don't know what a red link is aren't 
   confused when they are told they are range-blocked.
 * One can turn off syndicatino feeds by setting $wgFeed to false
-* (bug 13137) Bots now able to edit protected pages.
+* (bug 13137) Allow setting 'editprotected' right separately from 'protect',
+  so groups may optionally edit protected pages without being able to protect
+  pages themselves
 
 === Bug fixes in 1.13 ===
 
