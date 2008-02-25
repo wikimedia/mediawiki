@@ -271,7 +271,7 @@ class OutputPage {
 	 * Add an array of categories, with names in the keys
 	 */
 	public function addCategoryLinks( $categories ) {
-		global $wgUser, $wgContLang;
+		global $wgUser, $wgContLang, $wgTitle;
 
 		if ( !is_array( $categories ) ) {
 			return;
@@ -298,7 +298,7 @@ class OutputPage {
 
 		# Remove categories with hiddencat
 		foreach ( $res as $row ) {
-			if ( isset( $row->pp_value ) ) {
+			if ( isset( $row->pp_value ) and $wgTitle->getNamespace() != NS_CATEGORY ) {
 				unset( $categories[$row->page_title] );
 			}
 		}
