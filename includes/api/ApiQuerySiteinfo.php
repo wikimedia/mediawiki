@@ -93,7 +93,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 	}
 	
 	protected function appendNamespaces($property) {
-		global $wgContLang;
+		global $wgContLang, $wgNamespacesWithSubpages;
 		
 		$data = array ();
 		foreach ($wgContLang->getFormattedNamespaces() as $ns => $title) {
@@ -101,6 +101,8 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 				'id' => $ns
 			);
 			ApiResult :: setContent($data[$ns], $title);
+			if(@$wgNamespacesWithSubpages[$ns])
+				$data[$ns]['subpages'] = '';
 		}
 		
 		$this->getResult()->setIndexedTagName($data, 'ns');
