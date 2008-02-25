@@ -238,6 +238,7 @@ class RecentChange
 	 * Mark a given change as patrolled
 	 *
 	 * @param mixed $change RecentChange or corresponding rc_id
+	 * @returns integer number of affected rows
 	 */
 	public static function markPatrolled( $change ) {
 		$rcid = $change instanceof RecentChange
@@ -254,6 +255,7 @@ class RecentChange
 			),
 			__METHOD__
 		);
+		return $dbw->affectedRows();
 	}
 
 	# Makes an entry in the database corresponding to an edit
