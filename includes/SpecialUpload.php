@@ -141,7 +141,8 @@ class UploadForm {
 		$this->mTempPath       = $local_file;
 		$this->mFileSize       = 0; # Will be set by curlCopy
 		$this->mCurlError      = $this->curlCopy( $url, $local_file );
-		$this->mSrcName        = array_pop( explode( '/', $url ) );
+		$pathParts             = explode( '/', $url );
+		$this->mSrcName        = array_pop( $pathParts );
 		$this->mSessionKey     = false;
 		$this->mStashed        = false;
 
