@@ -435,7 +435,7 @@ class ParserTest {
 			'site_stats', 'hitcounter',	'ipblocks', 'image', 'oldimage',
 			'recentchanges', 'watchlist', 'math', 'interwiki',
 			'querycache', 'objectcache', 'job', 'redirect', 'querycachetwo',
-			'archive', 'user_groups'
+			'archive', 'user_groups', 'page_props'
 		);
 
 		if ($wgDBtype === 'mysql') 
