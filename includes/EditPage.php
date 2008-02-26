@@ -531,6 +531,9 @@ class EditPage {
 		$fname = 'EditPage::importFormData';
 		wfProfileIn( $fname );
 
+		# Section edit can come from either the form or a link
+		$this->section = $request->getVal( 'wpSection', $request->getVal( 'section' ) );
+
 		if( $request->wasPosted() ) {
 			# These fields need to be checked for encoding.
 			# Also remove trailing whitespace, but don't remove _initial_
@@ -614,12 +617,13 @@ class EditPage {
 			$this->minoredit = false;
 			$this->watchthis = false;
 			$this->recreate  = false;
+
+			if ( $this->section == 'new' && $request->getVal( 'preloadtitle' ) ) {
+				$this->summary = $request->getVal( 'preloadtitle' );
+			}
 		}
 
 		$this->oldid = $request->getInt( 'oldid' );
-
-		# Section edit can come from either the form or a link
-		$this->section = $request->getVal( 'wpSection', $request->getVal( 'section' ) );
 
 		$this->live = $request->getCheck( 'live' );
 		$this->editintro = $request->getText( 'editintro' );
