@@ -43,6 +43,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 13149) Correctly format 'fileexists' message on Upload page.
 * Make filepageexists accurate.
 * (bug 12988) $wgMinimalPasswordLength no longer breaks create user by email
+* (bug 13022) Fix upload from URL on PHP 5.0.x
 
 === API changes in 1.13 ===
 
