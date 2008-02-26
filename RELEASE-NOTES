@@ -397,6 +397,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 13005) DISPLAYTITLE does not work on preview
 * (bug 13004) Fix error on Postgres searches that return too many results.
 * (bug 13022) Fix upload from URL on PHP 5.0.x
+* (bug 13139, 13074) Fix request data for parameters with numeric names
+* (bug 13086) Trackbacks were returning invalid XML (extra whitespace)
 
 == Parser changes in 1.12 ==
 
