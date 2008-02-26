@@ -394,10 +394,6 @@ class EditPage {
 			wfProfileOut( __METHOD__ );
 			return;
 		} else {
-			if( $wgRequest->getVal( 'action' ) == 'editredlink' ) {
-				$wgOut->redirect( $this->mTitle->getFullUrl( 'action=edit' ) );
-				return;
-			}
 			if ( $this->save ) {
 				$this->formtype = 'save';
 			} else if ( $this->preview ) {
@@ -485,11 +481,11 @@ class EditPage {
 	/**
 	 * Show a read-only error
 	 * Parameters are the same as OutputPage:readOnlyPage()
-	 * Redirect to the article page if action=editredlink
+	 * Redirect to the article page if redlink=1
 	 */
 	function readOnlyPage( $source = null, $protected = false, $reasons = array() ) {
 		global $wgRequest, $wgOut;
-		if ( $wgRequest->getVal( 'action' ) === 'editredlink' ) {
+		if ( $wgRequest->getBool( 'redlink' ) ) {
 			// The edit page was reached via a red link.
 			// Redirect to the article page and let them click the edit tab if 
 			// they really want a permission error.
