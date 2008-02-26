@@ -205,7 +205,7 @@ span.subpages { display: block; }
     margin: 0.1em 0 0 0;
     clear: both;
 }
-p.catlinks { margin: 0; padding: 0; }
+.catlinks { margin: 0; padding: 0; }
 
 
 /* currently unused, intended to be used by a metadata box

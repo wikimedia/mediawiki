@@ -347,7 +347,7 @@ a.new,
 li.new {
 	text-decoration: line-through;
 }
-p.catlinks {
+.catlinks {
   text-align: center;
   width: 80%;
   margin-left: auto;
