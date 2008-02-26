@@ -11,8 +11,7 @@ require_once( './includes/DatabaseFunctions.php' );
  */
 function XMLsuccess() {
 	header("Content-Type: application/xml; charset=utf-8");
-	echo "
-<?xml version=\"1.0\" encoding=\"utf-8\"?>
+	echo "<?xml version=\"1.0\" encoding=\"utf-8\"?>
 <response>
 <error>0</error>
 </response>
@@ -23,8 +22,7 @@ function XMLsuccess() {
 function XMLerror($err = "Invalid request.") {
 	header("HTTP/1.0 400 Bad Request");
 	header("Content-Type: application/xml; charset=utf-8");
-	echo "
-<?xml version=\"1.0\" encoding=\"utf-8\"?>
+	echo "<?xml version=\"1.0\" encoding=\"utf-8\"?>
 <response>
 <error>1</error>
 <message>Invalid request: $err</message>
