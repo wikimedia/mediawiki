@@ -74,6 +74,7 @@ $messages = array(
 'tog-nolangconversion'        => 'Simi kutiyman ama niy',
 'tog-ccmeonemails'            => 'Huk ruraqkunaman kachasqay e-chaskikunamanta iskaychasqakunata kachamuway',
 'tog-diffonly'                => "Huk kaykunap uranpi kaq p'anqap samiqninta ama rikuchiychu",
+'tog-showhiddencats'          => 'Pakasqa katiguriyakunata rikuchiy',
 
 'underline-always'  => "Hayk'appas",
 'underline-never'   => "Mana hayk'appas",
@@ -134,12 +135,14 @@ $messages = array(
 'dec'           => 'dis',
 
 # Bits of text used by many pages
-'categories'            => 'Katiguriyakuna',
-'pagecategories'        => '{{PLURAL:$1|Katiguriya|Katiguriyakuna}}',
-'category_header'       => '"$1" sutiyuq katiguriyapi qillqakuna',
-'subcategories'         => 'Urin katiguriyakuna',
-'category-media-header' => '"$1" sutiyuq katiguriyapi multimidya willañiqikuna',
-'category-empty'        => "''Kay katiguriyaqa ch'usaqmi.''",
+'categories'               => 'Katiguriyakuna',
+'pagecategories'           => '{{PLURAL:$1|Katiguriya|Katiguriyakuna}}',
+'category_header'          => '"$1" sutiyuq katiguriyapi qillqakuna',
+'subcategories'            => 'Urin katiguriyakuna',
+'category-media-header'    => '"$1" sutiyuq katiguriyapi multimidya willañiqikuna',
+'category-empty'           => "''Kay katiguriyaqa ch'usaqmi.''",
+'hidden-categories'        => '{{PLURAL:$1|Pakasqa katiguriya|Pakasqa katiguriyakuna}}',
+'hidden-category-category' => 'Pakasqa katiguriyakuna', # Name of the category where hidden categories will be listed
 
 'mainpagetext'      => "''MediaWiki'' nisqa llamp'u kaqqa aypaylla takyachisqañam.",
 'mainpagedocfooter' => "Wiki llamp'u kaqmanta willasunaykipaqqa [http://meta.wikimedia.org/wiki/Help:Contents Ruraqpaq yanapana] ''(User's Guide)'' sutiyuq p'anqata qhaway.
@@ -592,6 +595,7 @@ Qillqasqaykita iskaychaspa antañiqiqniykipi willañiqiman llut'amuspa chaypi wa
 'templatesusedsection'      => "Kay p'anqa rakipi llamk'achisqa plantillakuna:",
 'template-protected'        => '(amachasqa)',
 'template-semiprotected'    => '(rakilla amachasqa)',
+'hiddencategories'          => "Kay p'anqaqa {{PLURAL:$1|1 pakasqa katiguriya|$1 pakasqa katiguriyakuna}}manmi kapun:",
 'nocreatetitle'             => "P'anqa kamariyqa saywachasqam",
 'nocreatetext'              => "{{SITENAME}}piqa saywachasqam musuq p'anqakunata kamariy. Ñawpaqman kutiytam atinkiman kachkaqña p'anqata llamk'apuspa. Astawantaq, [[Special:Userlogin|yaykuy icha musuq rakiqunata kichariy]].",
 'nocreate-loggedin'         => "Manam saqillasunkichu {{SITENAME}}pi musuq p'anqakunata kamariyta.",

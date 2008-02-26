@@ -221,11 +221,13 @@ $messages = array(
 # General errors
 'error'             => 'Qalad',
 'databaseerror'     => 'Qalad ka dhacay database;ka',
+'laggedslavemode'   => 'Digniin: Waxaa lagayaabaa bogaan in uusan wax cusub ku kordhin.',
 'cannotdelete'      => 'Lamatirtirikaro bogga ama faylka aad dooratay. (Waxaa laga yaabaa in qofkale uu horey u tirtiray.)',
 'badtitle'          => 'Cinwaan qaldan',
 'protectedpagetext' => 'Beyjkan wuu xiranyahay si aan war loogabadalin.',
 
 # Login and logout pages
+'logouttitle'                => 'Isticmaalaha ka bax',
 'logouttext'                 => '<strong>Hada waa aad ka baxday.</strong>
 
 Waad sii isticmaali kartaa {{SITENAME}}han adoonlagu aqoon, ama gudaha ayaad gali kartaa markale adiga oo isticmaalaya gudagalkaagii hore ama mid kaduwan. OGEYSIIS waxaa lagayabaa beyjajka qaarkood in ay yiraahdaa wali gudaha ayaad kujirtaa, ilaa aad internet barowsarkaaaga aad nadiifiso.',

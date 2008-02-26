@@ -6,6 +6,7 @@
  * @author SPQRobin
  * @author Ahmed-Najib-Biabani-Ibrahimkhel
  * @author לערי ריינהארט
+ * @author Siebrand
  */
 
 $rtl = true;
@@ -162,6 +163,7 @@ $messages = array(
 'currentevents'     => 'اوسنۍ پېښې',
 'currentevents-url' => 'اوسنۍ پېښې',
 'disclaimers'       => 'ردادعاليکونه',
+'disclaimerpage'    => 'پروژه:ټولګړی ردادعاليک',
 'edithelp'          => 'د لارښود سماد',
 'helppage'          => 'لارښود:لړليک',
 'mainpage'          => 'لومړی مخ',
@@ -376,6 +378,7 @@ $messages = array(
 'rev-delundel' => 'ښکاره کول/ پټول',
 
 # Diffs
+'difference'              => '(د بڼو تر مېنځ توپير)',
 'lineno'                  => '$1 کرښه:',
 'compareselectedversions' => 'ټاکلې بڼې سره پرتله کول',
 'editundo'                => 'ناکړ',
@@ -449,6 +452,7 @@ $messages = array(
 'recentchangestext'              => 'په همدې مخ باندې د ويکي ترټولو تازه وروستي بدلونونه وڅارۍ.',
 'recentchanges-feed-description' => 'همدلته د ويکي ترټولو تازه وروستي بدلونونه وڅارۍ او وګورۍ چې څه پېښ شوي.',
 'rcnote'                         => "دلته لاندې {{PLURAL:$1|وروستی '''1''' بدلون دی|وروستي '''$1''' بدلونونه دي}} چې په {{PLURAL:$2|يوې ورځ|'''$2''' ورځو}}، کې تر $3 پېښ شوي.",
+'rcnotefrom'                     => 'په همدې ځای کې لاندې هغه بدلونونه دي چې د <b>$2</b> نه راپدېخوا پېښ شوي(تر <b>$1</b> پورې ښکاره شوي).',
 'rclistfrom'                     => 'هغه بدلونونه ښکاره کړی چې له $1 نه پيلېږي',
 'rcshowhideminor'                => 'وړې سمادېدنې $1',
 'rcshowhidebots'                 => 'bots $1',
@@ -532,6 +536,7 @@ $messages = array(
 'nolinkstoimage'            => 'داسې هېڅ کوم مخ نه شته چې د دغې دوتنې سره تړنې ولري.',
 'shareduploadwiki'          => 'لطفاً د لا نورو مالوماتو لپاره $1 وګورۍ.',
 'shareduploadwiki-linktext' => 'د دوتنې د څرګندونې مخ',
+'noimage'                   => 'په دې نوم هېڅ کومه دوتنه نه شته، تاسو کولای شی چې $1.',
 'noimage-linktext'          => 'همدا غونډال ته پورته کول',
 'uploadnewversion-linktext' => 'د همدغې دوتنې نوې بڼه پورته کول',
 'imagelist_date'            => 'نېټه',
@@ -723,6 +728,7 @@ $messages = array(
 'confirmprotect'        => 'د ژغورلو پخلی کول',
 'protectcomment'        => 'تبصره:',
 'protect-default'       => '(اصلي بڼه)',
+'restriction-type'      => 'اجازه:',
 'minimum-size'          => 'وړه کچه',
 
 # Restrictions (nouns)
@@ -749,6 +755,7 @@ $messages = array(
 'contributions' => 'د کارونکي ونډې',
 'mycontris'     => 'زما ونډې',
 'contribsub2'   => 'د $1 لپاره ($2)',
+'uctop'         => '(سرپاڼه)',
 'month'         => 'له ټاکلې مياشتې نه راپدېخوا (او تر دې پخواني):',
 'year'          => 'له ټاکلي کال نه راپدېخوا (او تر دې پخواني):',
 
@@ -844,6 +851,8 @@ $messages = array(
 'tooltip-pt-login'           => 'تاسو ته په غونډال کې د ننوتنې سپارښتنه کوو، که څه هم چې دا يو اړين کار نه دی.',
 'tooltip-pt-anonlogin'       => 'تاسو ته په غونډال کې د ننوتنې سپارښتنه کوو، که څه هم چې دا يو اړين کار نه دی.',
 'tooltip-pt-logout'          => 'وتنه',
+'tooltip-ca-addsection'      => 'د خبرواترو همدغه مخ کې يوه تبصره ورګډول.',
+'tooltip-ca-viewsource'      => 'همدا مخ ژغورل شوی. تاسو کولای شی چې د همدې مخ سرجينه وګورۍ.',
 'tooltip-ca-protect'         => 'همدا مخ ژغورل',
 'tooltip-ca-delete'          => 'همدا مخ ړنګول',
 'tooltip-ca-move'            => 'همدا مخ لېږدول',
@@ -866,6 +875,7 @@ $messages = array(
 'tooltip-ca-nstab-mediawiki' => 'د غونډال پيغامونه ښکاره کول',
 'tooltip-ca-nstab-template'  => 'کينډۍ ښکاره کول',
 'tooltip-ca-nstab-help'      => 'د لارښود مخ کتل',
+'tooltip-ca-nstab-category'  => 'د وېشنيزې مخ ښکاره کول',
 'tooltip-minoredit'          => 'دا لکه يوه وړه سمادېدنه په نښه کوي[alt-i]',
 'tooltip-save'               => 'ستاسو بدلونونه خوندي کوي',
 'tooltip-preview'            => 'ستاسو بدلونونه ښکاره کوي, لطفاً دا کړنه د خوندي کولو دمخه وکاروۍ! [alt-p]',

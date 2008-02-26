@@ -201,6 +201,7 @@ $messages = array(
 'tog-nolangconversion'        => 'Desabilitar conversão de variantes de idioma',
 'tog-ccmeonemails'            => 'Enviar para mim cópias de e-mails que eu enviar a outros utilizadores',
 'tog-diffonly'                => 'Não mostrar o conteúdo da página ao comparar duas edições',
+'tog-showhiddencats'          => 'Exibir categorias ocultas',
 
 'underline-always'  => 'Sempre',
 'underline-never'   => 'Nunca',
@@ -261,12 +262,14 @@ $messages = array(
 'dec'           => 'Dez',
 
 # Bits of text used by many pages
-'categories'            => 'Categorias',
-'pagecategories'        => '{{PLURAL:$1|Categoria|Categorias}}',
-'category_header'       => 'Páginas na categoria "$1"',
-'subcategories'         => 'Subcategorias',
-'category-media-header' => 'Multimédia na categoria "$1"',
-'category-empty'        => "''Esta categoria de momento não possui nenhuma página de conteúdo ou ficheiro multimédia.''",
+'categories'               => 'Categorias',
+'pagecategories'           => '{{PLURAL:$1|Categoria|Categorias}}',
+'category_header'          => 'Páginas na categoria "$1"',
+'subcategories'            => 'Subcategorias',
+'category-media-header'    => 'Multimédia na categoria "$1"',
+'category-empty'           => "''Esta categoria de momento não possui nenhuma página de conteúdo ou ficheiro multimédia.''",
+'hidden-categories'        => '{{PLURAL:$1|Categoria oculta|Categorias ocultas}}',
+'hidden-category-category' => 'Categorias ocultas', # Name of the category where hidden categories will be listed
 
 'mainpagetext'      => "<big>'''MediaWiki instalado com sucesso.'''</big>",
 'mainpagedocfooter' => 'Consulte o [http://meta.wikimedia.org/wiki/Help:Contents Guia de Utilizadores] para informações acerca de como utilizar o software wiki.
@@ -744,6 +747,7 @@ Por favor, considere seccionar a página em secções de menor dimensão.</stron
 'templatesusedsection'      => 'Predefinições utilizadas nesta secção:',
 'template-protected'        => '(protegida)',
 'template-semiprotected'    => '(semi-protegida)',
+'hiddencategories'          => 'Esta página integra {{PLURAL:$1|uma categoria oculta|$1 categorias ocultas}}:',
 'edittools'                 => '<!-- O texto aqui disponibilizado será exibido abaixo dos formulários de edição e de envio de ficheiros. -->',
 'nocreatetitle'             => 'A criação de páginas encontra-se limitada',
 'nocreatetext'              => '{{SITENAME}} tem restringida a habilidade de criar novas páginas.
@@ -1086,7 +1090,7 @@ Para incluír a imagem numa página, utilize o link na forma de
 'largefileserver'             => 'O tamanho deste ficheiro é superior ao qual o servidor encontra-se configurado para permitir.',
 'emptyfile'                   => 'O ficheiro que está a tentar carregar parece encontrar-se vazio. Isto poderá ser devido a um erro na escrita do nome do ficheiro. Por favor verifique se realmente deseja carregar este ficheiro.',
 'fileexists'                  => 'Já existe um ficheiro com este nome. Por favor, verifique <strong><tt>$1</tt></strong> caso não tenha a certeza se deseja alterar o ficheiro actual.',
-'filepageexists'              => 'Já existe uma página (e não um ficheiro) com este nome. Por favor, verifique <strong><tt>$1</tt></strong> caso não tenha certeza se é isso que deseja alterar.',
+'filepageexists'              => 'A página de descrição deste ficheiro já foi criada em <strong><tt>$1</tt></strong>, mas actualmente não existe nenhum ficheiro com este nome. O sumário que introduziu não aparecerá na página de descrição. Para o fazer aparecer, terá que o editar manualmente',
 'fileexists-extension'        => 'Já existe um ficheiro de nome similar:<br />
 Nome do ficheiro que está sendo enviado: <strong><tt>$1</tt></strong><br />
 Nome do ficheiro existente: <strong><tt>$2</tt></strong><br />

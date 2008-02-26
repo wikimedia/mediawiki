@@ -605,7 +605,7 @@ A felhasználói környezetedet létrehoztuk. Ne felejtsd el átnézni a személ
 'yourpasswordagain'          => 'Jelszavad ismét:',
 'remembermypassword'         => 'Ne léptessen ki a böngésző bezárásakor.',
 'yourdomainname'             => 'A domainneved:',
-'externaldberror'            => 'Hiba történt a külső adatbázis hitelesítése közben, vagy nem vagy jogosult a a külső fiókod frissítésére.',
+'externaldberror'            => 'Hiba történt a külső adatbázis hitelesítése közben, vagy nem vagy jogosult a külső fiókod frissítésére.',
 'loginproblem'               => '<b>Hiba történt a bejelentkezésed során.</b><br />Kérlek, próbálkozz újra!',
 'login'                      => 'Bejelentkezés',
 'loginprompt'                => 'Engedélyezned kell a cookie-kat, hogy bejelentkezhess a {{grammar:be|{{SITENAME}}}}.',

@@ -8,9 +8,27 @@
  * @author M.M.S.
  */
 
-$messages = array(
-'about' => 'Pillugu',
 
+
+$messages = array(
+# Dates
+'january'   => 'Januaari',
+'february'  => 'Februaari',
+'march'     => 'Marsi',
+'april'     => 'Apriili',
+'may_long'  => 'Maaji',
+'june'      => 'Juuni',
+'july'      => 'Juuli',
+'august'    => 'Aggusti',
+'september' => 'Septembari',
+'october'   => 'Oktobari',
+'november'  => 'Novembari',
+'december'  => 'Decembari',
+
+'about'  => 'Pillugu',
+'qbedit' => 'Aaqqissuutiguk',
+
+'errorpagetitle'   => 'Kukkuneq',
 'help'             => 'Ikiortissamik',
 'search'           => 'Ujaarlerit',
 'searchbutton'     => 'Ujaarlerit',
@@ -30,7 +48,13 @@ $messages = array(
 'mainpage'      => 'Saqqaa',
 'portal'        => 'Allaatiginnittartup saqqai',
 
-'editsection' => 'aaqqissuutiguk',
+'editsection'     => 'aaqqissuutiguk',
+'editold'         => 'aaqqissuutiguk',
+'editsectionhint' => 'Aaqqissuutiguk immikkoortoq: $1',
+
+# Short words for each namespace, by default used in the namespace tab in monobook
+'nstab-template' => 'Skabeloni',
+'nstab-category' => 'Suussuseq',
 
 # Login and logout pages
 'acct_creation_throttle_hit' => 'Utoqqatterpunga, $1 kontonik pilersereersimavutit. Pilersitseqqissinnaanngilatit.',
@@ -38,18 +62,24 @@ $messages = array(
 # Edit pages
 'accmailtitle' => 'Password-i nassiunneqarsimavoq.',
 'accmailtext'  => 'Password-i "$1" $2-mut nassiunneqarsimavoq.',
+'newarticle'   => '(Nuutaq)',
 
 # Search results
 'powersearch' => 'Ujaarlerit',
 
 # Recent changes
 'recentchanges' => 'Allannguutit kingulliit',
+'newpageletter' => 'N',
+'boteditletter' => 'b',
 
 # Recent changes linked
 'recentchangeslinked' => 'Allannguutit naleqqiussat',
 
 # Upload
 'upload' => 'Læg en fil op',
+
+# Image list
+'filehist-user' => 'Pineqartoq',
 
 # Random page
 'randompage' => 'Nalaatsorluni atuagassianut ilanngutassiaq',

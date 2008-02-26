@@ -98,6 +98,7 @@ $messages = array(
 'tog-nolangconversion'        => '字形変換を無効にする',
 'tog-ccmeonemails'            => '他ユーザーに送信したメールの控えを自分にも送る',
 'tog-diffonly'                => '差分表示の下に記事本文を表示しない',
+'tog-showhiddencats'          => '非公開カテゴリを表示する',
 
 'underline-always'  => '常に付ける',
 'underline-never'   => '常に付けない',
@@ -158,12 +159,14 @@ $messages = array(
 'dec'           => '12月',
 
 # Bits of text used by many pages
-'categories'            => 'カテゴリ',
-'pagecategories'        => 'カテゴリ',
-'category_header'       => 'カテゴリ “$1” にあるページ',
-'subcategories'         => 'サブカテゴリ',
-'category-media-header' => 'カテゴリ “$1” にあるメディア',
-'category-empty'        => 'このカテゴリにはページまたはメディアがひとつもありません。',
+'categories'               => 'カテゴリ',
+'pagecategories'           => 'カテゴリ',
+'category_header'          => 'カテゴリ “$1” にあるページ',
+'subcategories'            => 'サブカテゴリ',
+'category-media-header'    => 'カテゴリ “$1” にあるメディア',
+'category-empty'           => 'このカテゴリにはページまたはメディアがひとつもありません。',
+'hidden-categories'        => '{{PLURAL:$1|非公開カテゴリ|非公開カテゴリ}}',
+'hidden-category-category' => '非公開カテゴリ', # Name of the category where hidden categories will be listed
 
 'mainpagetext'      => 'MediaWikiが正常にインストールされました。',
 'mainpagedocfooter' => '使い方・設定に関しては[http://meta.wikimedia.org/wiki/ヘルプ:目次 ユーザーズガイド]を参照してください。
@@ -622,6 +625,7 @@ $1 または他の[[{{int:grouppage-sysop}}|{{int:group-sysop}}]]にこの件に
 'templatesusedsection'      => 'この節で使われているテンプレート:',
 'template-protected'        => '（保護）',
 'template-semiprotected'    => '（半保護）',
+'hiddencategories'          => 'このページは{{PLURAL:$1|1個の非公開カテゴリ|$1個の非公開カテゴリ}}に属しています:',
 'edittools'                 => '<!-- ここに書いたテキストは編集及びアップロードのフォームの下に表示されます。 -->',
 'nocreatetitle'             => 'ページを作成できません',
 'nocreatetext'              => '{{SITENAME}} ではページの新規作成を制限しています。元のページに戻って既存のページを編集するか、[[Special:Userlogin|ログインまたはアカウントを作成]]してください。',

@@ -91,6 +91,7 @@ $messages = array(
 'tog-watchlisthideminor'      => 'माझ्या पहार्‍याच्या सूचीतून छोटे बदल लपवा',
 'tog-ccmeonemails'            => 'मी इतर सदस्यांना पाठविलेल्या इमेल च्या प्रती मलाही पाठवा',
 'tog-diffonly'                => 'निवडलेल्या आवृत्त्यांमधील बदल दाखवताना जुनी आवृत्ती दाखवू नका.',
+'tog-showhiddencats'          => 'लपविलेले वर्ग दाखवा',
 
 'underline-always'  => 'नेहमी',
 'underline-never'   => 'कधीच नाही',
@@ -151,12 +152,14 @@ $messages = array(
 'dec'           => 'डिसें.',
 
 # Bits of text used by many pages
-'categories'            => 'वर्ग',
-'pagecategories'        => '{{PLURAL:$1|वर्ग|वर्ग}}',
-'category_header'       => '"$1" वर्गातील लेख',
-'subcategories'         => 'उपवर्ग',
-'category-media-header' => '"$1" वर्गातील माध्यमे',
-'category-empty'        => "''या वर्गात अद्याप एकही लेख नाही.''",
+'categories'               => 'वर्ग',
+'pagecategories'           => '{{PLURAL:$1|वर्ग|वर्ग}}',
+'category_header'          => '"$1" वर्गातील लेख',
+'subcategories'            => 'उपवर्ग',
+'category-media-header'    => '"$1" वर्गातील माध्यमे',
+'category-empty'           => "''या वर्गात अद्याप एकही लेख नाही.''",
+'hidden-categories'        => '{{PLURAL:$1|लपविलेला वर्ग|लपविलेले वर्ग}}',
+'hidden-category-category' => 'लपविलेले वर्ग', # Name of the category where hidden categories will be listed
 
 'mainpagetext'      => "<big>'''मीडियाविकीचे इन्स्टॉलेशन पूर्ण'''</big>",
 'mainpagedocfooter' => 'विकी सॉफ्टवेअर वापरण्याकरिता [http://meta.wikimedia.org/wiki/Help:Contents यूजर गाईड] पहा.
@@ -620,6 +623,7 @@ $2',
 'templatesusedsection'      => 'या विभागात वापरलेले साचे:',
 'template-protected'        => '(सुरक्षित)',
 'template-semiprotected'    => '(अर्ध-सुरक्षीत)',
+'hiddencategories'          => 'हे पान खालील {{PLURAL:$1|एका लपविलेल्या वर्गामध्ये|$1 लपविलेल्या वर्गांमध्ये}} आहे:',
 'nocreatetitle'             => 'पान निर्मीतीस मर्यादा',
 'nocreatetext'              => '{{SITENAME}}वर नवीन लेख लिहिण्यास मज्जाव करण्यात आलेला आहे. आपण परत जाऊन अस्तित्वात असलेल्या लेखांचे संपादन करू शकता अथवा [[Special:Userlogin|नवीन सदस्यत्व घ्या/ प्रवेश करा]].',
 'nocreate-loggedin'         => '{{SITENAME}}वर तुम्हाला नवीन पाने बनवण्याची परवानगी नाही.',
@@ -959,7 +963,7 @@ $3ने ''$2'' कारण दिले आहे.",
 'largefileserver'             => 'सेवा संगणकावर (सर्वर) निर्धारित केलेल्या आकारापेक्षा या संचिकेचा आकार मोठा आहे.',
 'emptyfile'                   => 'चढवलेली संचिका रिकामी आहे. हे संचिकानाम चुकीचे लिहिल्याने असू शकते. कृपया तुम्हाला हीच संचिका चढवायची आहे का ते तपासा.',
 'fileexists'                  => 'या नावाची संचिका आधीच अस्तित्वात आहे, कृपया ही संचिका बदलण्याबद्दल तुम्ही साशंक असाल तर <strong><tt>$1</tt></strong> तपासा.',
-'filepageexists'              => 'या नावाचा एक लेख (संचिका नव्हे) अगोदरच अस्तित्त्वात आहे. कृपया जर आपणांस त्यात बदल करायचा नसेल तर <strong><tt>$1</tt></strong> तपासा.',
+'filepageexists'              => 'या नावाचे एक माहितीपृष्ठ (संचिका नव्हे) अगोदरच अस्तित्त्वात आहे. कृपया जर आपणांस त्यात बदल करायचा नसेल तर <strong><tt>$1</tt></strong> तपासा.',
 'fileexists-extension'        => 'या नावाची संचिका अस्तित्वात आहे:<br />
 चढवित असलेल्या संचिकेचे नाव: <strong><tt>$1</tt></strong><br />
 अस्तित्वात असलेल्या संचिकेचे नाव: <strong><tt>$2</tt></strong><br />

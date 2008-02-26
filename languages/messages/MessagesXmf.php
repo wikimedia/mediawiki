@@ -27,6 +27,11 @@ $messages = array(
 'saturday'      => 'საბატონი',
 'sun'           => 'ჟაშ',
 'mon'           => 'თუთ',
+'tue'           => 'თახ',
+'wed'           => 'ჯუმ',
+'thu'           => 'ცაა',
+'fri'           => 'ობი',
+'sat'           => 'საბ',
 'january'       => 'იანარი',
 'february'      => 'ფრევალი',
 'march'         => 'მარტი',
@@ -133,7 +138,7 @@ $messages = array(
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'     => 'სტატია',
-'nstab-user'     => 'მომხმარებელიშ გვერდ',
+'nstab-user'     => 'ხვარებელიშ გვერდ',
 'nstab-media'    => 'მედიაშ გვერდ',
 'nstab-special'  => 'სპეციალურ',
 'nstab-project'  => 'პროექტიშ გვერდ',
@@ -147,7 +152,7 @@ $messages = array(
 'viewsourcefor' => '$1-იშ',
 
 # Login and logout pages
-'yourname'           => 'მომხმარებელ',
+'yourname'           => 'ხვარებელ',
 'yourpassword'       => 'პაროლ',
 'yourdomainname'     => 'თქვან დომენ',
 'login'              => 'მინულა',
@@ -162,13 +167,13 @@ $messages = array(
 # Edit page toolbar
 'italic_sample'   => 'კურსივ',
 'italic_tip'      => 'კურსივ',
-'link_sample'     => 'ბმულიშ სახელ',
-'link_tip'        => 'დინახალენ ბმული',
-'extlink_sample'  => 'http://www.example.com ბმულიშ სახელ',
-'headline_sample' => 'სახელიშ ტექსტ',
+'link_sample'     => 'ბუნიშ სახელ',
+'link_tip'        => 'დინახალენ ბუნ',
+'extlink_sample'  => 'http://www.example.com ბუნიშ სათაურ',
+'headline_sample' => 'სათაურიშ ტექსტ',
 'math_tip'        => 'მათემატიკურ ფორმულა (LaTeX)',
 'nowiki_tip'      => 'ვიკიშ ფორმატირებიშ იგნორირება',
-'media_tip'       => 'ბმულ ფაილს',
+'media_tip'       => 'ბუნ ფაილს',
 'sig_tip'         => 'თქვან ხემოჭარა დო ჟამ',
 'hr_tip'          => 'ჰორიზონტალურ ღაზ (ნუ გამოიყენებთ ხშირას)',
 
@@ -214,6 +219,7 @@ $messages = array(
 # Search results
 'noexactmatch' => "'''გვერდ თე სახელით \"\$1\" ვა არსეენც.''' თქვან შეგიძლიათ [[:\$1|შექმნათ თენა გვერდ]].",
 'nextn'        => 'უკულ $1',
+'viewprevnext' => 'ქოძირ  ($1) ($2) ($3).',
 'powersearch'  => 'გორუა',
 
 # Preferences page
@@ -223,27 +229,30 @@ $messages = array(
 'grouppage-sysop' => '{{ns:project}}:ადმინისტრატორეფ',
 
 # User rights log
-'rightslog' => 'მომხმარებელიშ უფლებეფიშ ჟურნალ',
+'rightslog' => 'ხვარებელიშ უფლებეფიშ ჟურნალ',
 
 # Recent changes
 'nchanges'        => '$1 თირუა',
 'recentchanges'   => 'ბოლო თირუალეფ',
 'rclistfrom'      => 'ახალ თირუალეფიშ ძირაფა დოჭყაფულ $1-იშე',
+'rcshowhideminor' => 'ჭიჭე რედაქტირებაშ $1',
 'rcshowhidebots'  => 'რობოტეფიშ  $1',
-'rcshowhideliu'   => 'რეგისტრირებულ მომხმარებელეფიშ $1',
-'rcshowhideanons' => 'ანონიმურ მომხმარებელეფიშ $1',
+'rcshowhideliu'   => 'რეგისტრირებულ ხვარებელეფიშ $1',
+'rcshowhideanons' => 'ანონიმურ ხვარებელეფიშ $1',
 'rcshowhidemine'  => 'ჩქიმ რედაქტირებაშ $1',
 'hist'            => 'ისტ.',
 'show'            => 'ძირაფა',
 'minoreditletter' => 'ჭ',
+'newpageletter'   => 'ა',
+'boteditletter'   => 'რ',
 
 # Image list
 'filehist'            => 'ფაილიშ ისტორია',
-'filehist-user'       => 'მომხმარებელ',
+'filehist-user'       => 'ხვარებელ',
 'filehist-dimensions' => 'განზომილებეფ',
 'filehist-filesize'   => 'ფაილიშ ზომა',
 'filehist-comment'    => 'კომენტარ',
-'imagelinks'          => 'ბმულეფ',
+'imagelinks'          => 'ბუნეფ',
 'imagelist_name'      => 'სახელ',
 
 # MIME search
@@ -255,7 +264,7 @@ $messages = array(
 # Statistics
 'statistics' => 'სტატისტიკა',
 
-'withoutinterwiki' => 'გვერდეფ ნინაშ ბმულეფიშ გარეშე',
+'withoutinterwiki' => 'გვერდეფ ნინაშ ბუნეფიშ გარეშე',
 
 # Miscellaneous special pages
 'nbytes'                  => '$1 ბაიტ',
@@ -278,7 +287,7 @@ $messages = array(
 'version'        => 'ვერსია',
 
 # Special:Log
-'specialloguserlabel'  => 'მომხმარებელ:',
+'specialloguserlabel'  => 'ხვარებელ:',
 'speciallogtitlelabel' => 'სათაურ:',
 'log'                  => 'ჟურნალეფ',
 'all-logs-page'        => 'ირ ჟურნალ',
@@ -297,13 +306,14 @@ $messages = array(
 'watch'            => 'კონტროლ',
 'watchthispage'    => 'თე გვერდიშ კონტროლ',
 'unwatch'          => 'კონტროლიშ გაუქვება',
+'wlshowlast'       => 'ძირაფა ბოლო $1 საათიშ $2 დღაშ $3',
 
 # Delete/protect/revert
 'rollbacklink'                => 'გაუქვება',
 'protectcomment'              => 'კომენტარ:',
 'protectexpiry'               => 'ვადა',
 'protect-default'             => '(სტანდარტულ)',
-'protect-level-autoconfirmed' => 'ვარეგისტრირებულ მომხმარებელეფიშ დაბლოკვა',
+'protect-level-autoconfirmed' => 'ვარეგისტრირებულ ხვარებელეფიშ დაბლოკვა',
 'protect-level-sysop'         => 'ხოლო ადმინისტრატორეფ',
 'restriction-type'            => 'უფლება',
 
@@ -315,7 +325,7 @@ $messages = array(
 'blanknamespace' => '(თავარ)',
 
 # Contributions
-'contributions' => 'მომხმარებელიშ ხანდა',
+'contributions' => 'ხვარებელიშ ხანდა',
 'mycontris'     => 'ჩქიმ ხანდა',
 'contribsub2'   => '$1 ($2) შენი',
 'uctop'         => '(დუდ)',
@@ -326,7 +336,7 @@ $messages = array(
 
 # What links here
 'whatlinkshere-page'  => 'გვერდ:',
-'linklistsub'         => '(ბმულეფ)',
+'linklistsub'         => '(ბუნეფ)',
 'nolinkshere'         => 'თე გვერდც ვარე ბმულ',
 'whatlinkshere-next'  => '{{PLURAL:$1|უკულიან|უკულიან $1}}',
 'whatlinkshere-links' => '← ბმულეფ',
@@ -342,7 +352,7 @@ $messages = array(
 # Move page
 'movepage'       => 'გვერდიშ გინოღალა',
 'movearticle'    => 'გვერდიშ გინოღალა',
-'newtitle'       => 'ახალ სახელ',
+'newtitle'       => 'ახალ სათაურ',
 'move-watch'     => 'თე გვერდიშ კონტროლ',
 'movepagebtn'    => 'გვერდიშ გინოღალა',
 'movepage-moved' => '<big>\'\'\'"$1" გინოღალულ რე "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
@@ -371,14 +381,15 @@ $messages = array(
 'tooltip-n-mainpage'              => 'თავარ გვერდიშ ძირაფა',
 'tooltip-n-recentchanges'         => 'ვიკის ბოლო თირუალეფ',
 'tooltip-n-sitesupport'           => 'ხუჯ დომკინით',
-'tooltip-t-contributions'         => 'თე მომხმარებელის ხანდა',
+'tooltip-t-contributions'         => 'ქოძირეთ თე ხვარებელიშ ხანდა',
 'tooltip-t-specialpages'          => 'არძა სპეციალურ გვერდ',
-'tooltip-ca-nstab-user'           => 'მომხმარებელიშ გვერდიშ ხილუა',
+'tooltip-ca-nstab-user'           => 'ხვარებელიშ გვერდიშ ძირაფა',
 'tooltip-ca-nstab-project'        => 'პროექტიშ გვერდ',
-'tooltip-ca-nstab-help'           => 'ძირეთ დახვარებაშ გვერდ',
+'tooltip-ca-nstab-image'          => 'სურათიშ გვერდიშ ძირაფა',
+'tooltip-ca-nstab-help'           => 'ქოძირეთ დახვარებაშ გვერდ',
 'tooltip-ca-nstab-category'       => 'გვერდიშ კატეგორიაშ ძირა',
 'tooltip-save'                    => 'თირუაშ ჩუალა [alt-s]',
-'tooltip-compareselectedversions' => 'ძირეთ თე გვერდიშ ჟირ გიშაგორილ ვერსიაშ განშხვავებეფ. [alt-v]',
+'tooltip-compareselectedversions' => 'ქოძირეთ თე გვერდიშ ჟირ გიშაგორილ ვერსიაშ განშხვავებეფ. [alt-v]',
 
 # Spam protection
 'subcategorycount'     => 'თე კატეგორიას $1 ქვეკატეგორია რე.',
@@ -400,7 +411,7 @@ $messages = array(
 'metadata-expand' => 'დეტალეფიშ ძირაფა სრულო',
 
 # External editor support
-'edit-externally-help' => 'სრულ ინფორმაციაშ გურშენ ძირეთ [http://meta.wikimedia.org/wiki/Help:External_editors ჩადგმიშ ინსტრუქციეფ].',
+'edit-externally-help' => 'სრულ ინფორმაციაშენ ქოძირეთ [http://meta.wikimedia.org/wiki/Help:External_editors ჩადგმიშ ინსტრუქციეფ].',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'არძა',

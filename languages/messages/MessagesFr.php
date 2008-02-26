@@ -421,7 +421,7 @@ $messages = array(
 'edithelppage'      => 'Help:Comment modifier une page',
 'faq'               => 'FAQ',
 'faqpage'           => 'Project:FAQ',
-'helppage'          => 'Help:Aide',
+'helppage'          => 'Help:Accueil',
 'mainpage'          => 'Accueil',
 'policy-url'        => 'Project:règles',
 'portal'            => 'Communauté',
@@ -819,7 +819,7 @@ La raison donnée par $3 était ''$2''.",
 'history-feed-title'          => 'Historique des versions',
 'history-feed-description'    => 'Historique pour cette page sur le wiki',
 'history-feed-item-nocomment' => '$1 le $2', # user at time
-'history-feed-empty'          => 'La page demandée n’existe pas. Elle a peut-être été supprimée du wiki ou renommée. Vous pouvez essayer de [[Special:Search|rechercher dans le wiki]] des pages pertinentes récentes.',
+'history-feed-empty'          => 'La page demandée n\'existe pas. Elle a peut-être été <span class="plainlinks">[{{fullurl:Special:Log|type=delete&page={{FULLPAGENAMEE}}}} effacée]</span> ou renommée. Essayez [[{{ns:special}}:Search/{{PAGENAME}}|de rechercher sur le wiki]] pour trouver des pages en rapport.',
 
 # Revision deletion
 'rev-deleted-comment'         => '(commentaire supprimé)',
@@ -1129,6 +1129,20 @@ Veuillez vérifer le fichier.',
 
 Vous devriez considérer s’il est opportun de continuer l'envoi de ce fichier. L’historique des suppressions vous donnera des éléments d’information.",
 'filename-bad-prefix'         => 'Le nom du fichier que vous importez commence par <strong>"$1"</strong> qui est un nom généralement donné par les appareils photo numériques. Veuillez choisir un nom de fichier descriptif.',
+'filename-prefix-blacklist'   => ' #<!-- laisser cette ligne telle quelle --> <pre>
+# La syntaxe est la suivante : 
+#   * Tout ce qui suit le caractère "#" jusqu\'à la fin de la ligne est un commentaire
+#   * Toute ligne non vide est un préfixe typique de nom de fichier assigné automatiquement par les appareils numériques
+CIMG # Casio
+DSC_ # Nikon
+DSCF # Fuji
+DSCN # Nikon
+DUW # some mobil phones
+IMG # generic
+JD # Jenoptik
+MGP # Pentax
+PICT # misc.
+ #</pre> <!-- laisser cette ligne telle quelle -->',
 
 'upload-proto-error'      => 'Protocole incorrect',
 'upload-proto-error-text' => "L'import à distance requiert des URLs commençant par <code>http://</code> ou <code>ftp://</code>.",
@@ -1250,7 +1264,7 @@ Vous devriez considérer s’il est opportun de continuer l'envoi de ce fichier.
 
 Ce chiffre inclut les pages « discussion », les pages relatives à {{SITENAME}}, les pages minimales (« ébauches »), les pages de redirection, ainsi que d’autres pages qui ne sont pas considérées comme des articles. Si l’on exclut ces pages, il reste {{PLURAL:$2|'''$2''' page qui est probablement un véritable article|'''$2''' pages qui sont probablement de véritables articles}}.
 
-{{PLURAL:$8|'''$8''' fichier a été téléversé|'''$8''' fichiers ont été téléversés}}.
+{{PLURAL:$8|'''$8''' fichier a été téléversé|'''$8''' fichiers ont été importés}}.
 
 {{PLURAL:$3|'''$3''' page a été consultée|'''$3''' pages ont été consultées}} et {{PLURAL:$4|'''$4''' page modifiée|'''$4''' pages modifiées}}.
 
@@ -1555,7 +1569,7 @@ Voici les réglages actuels de la page <strong>$1</strong> :',
 
 # Undelete
 'undelete'                     => 'Voir les pages supprimées',
-'undeletepage'                 => 'Voir et restaurer la page supprimée',
+'undeletepage'                 => 'Voir et restaurer une page supprimée',
 'viewdeletedpage'              => 'Historique de la page supprimée',
 'undeletepagetext'             => 'Ces pages ont été supprimées et se trouvent dans l’archive. Elles figurent toujours dans la base de données et peuvent être restaurées.
 L’archive peut être effacée périodiquement.',
@@ -1624,7 +1638,7 @@ $1',
 
 # What links here
 'whatlinkshere'       => 'Pages liées',
-'whatlinkshere-title' => 'Pages ayant des liens pointant vers $1',
+'whatlinkshere-title' => 'Pages ayant un lien vers $1',
 'whatlinkshere-page'  => 'Page :',
 'linklistsub'         => '(Liste de liens)',
 'linkshere'           => 'Les pages ci-dessous contiennent un lien vers <b>[[:$1]]</b> :',
@@ -1848,7 +1862,7 @@ Toutes les actions d’importation interwiki sont consignées dans l’[[Special
 'importnofile'               => 'Aucun fichier n’a été importé.',
 'importuploaderrorsize'      => "L'envoi du fichier a échoué. Sa taille est supérieure au maximum autorisé.",
 'importuploaderrorpartial'   => "L'envoi du fichier a échoué. Il n'a été envoyé que partiellement.",
-'importuploaderrortemp'      => 'Le téléversement du fichier à importer a échoué. Un dossier temporaire est manquant.',
+'importuploaderrortemp'      => "L'envoi du fichier à importer a échoué. Un dossier temporaire est manquant.",
 'import-parse-failure'       => "Rupture dans l'analyse de l'import XML",
 'import-noarticle'           => 'Aucune page à importer !',
 'import-nonewrevisions'      => 'Toute les révisions ont été importées auparavant.',
@@ -1857,9 +1871,9 @@ Toutes les actions d’importation interwiki sont consignées dans l’[[Special
 # Import log
 'importlogpage'                    => 'Historique des importations de pages',
 'importlogpagetext'                => 'Imports administratifs de pages avec l’historique à partir des autres wikis.',
-'import-logentry-upload'           => 'a importé (téléversement) $1',
+'import-logentry-upload'           => 'a importé [[$1]]',
 'import-logentry-upload-detail'    => '$1 {{PLURAL:$1|version|versions}}',
-'import-logentry-interwiki'        => 'a importé (transwiki) $1',
+'import-logentry-interwiki'        => 'a importé (transwiki) [[$1]]',
 'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|version|versions}} depuis $2',
 
 # Tooltip help for the actions
@@ -2079,7 +2093,7 @@ Les autres liens sur la même ligne sont considérés comme des exceptions, par 
 'exif-flashpixversion'             => 'Version FlashPix',
 'exif-colorspace'                  => 'Espace colorimétrique',
 'exif-componentsconfiguration'     => 'Signification de chaque composante',
-'exif-compressedbitsperpixel'      => 'Taux de compression de l’image',
+'exif-compressedbitsperpixel'      => 'Mode de compression de l’image',
 'exif-pixelydimension'             => 'Hauteur d’image valide',
 'exif-pixelxdimension'             => 'Largeur d’image valide',
 'exif-makernote'                   => 'Notes du fabricant',
@@ -2184,6 +2198,7 @@ Les autres liens sur la même ligne sont considérés comme des exceptions, par 
 'exif-colorspace-ffff.h' => 'Non calibré',
 
 'exif-componentsconfiguration-0' => 'N’existe pas',
+'exif-componentsconfiguration-5' => 'V',
 
 'exif-exposureprogram-0' => 'Indéfini',
 'exif-exposureprogram-1' => 'Manuel',
