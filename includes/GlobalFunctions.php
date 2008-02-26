@@ -1980,6 +1980,28 @@ function wfRelativePath( $path, $from ) {
 }
 
 /**
+ * array_merge() does awful things with "numeric" indexes, including
+ * string indexes when happen to look like integers. When we want
+ * to merge arrays with arbitrary string indexes, we don't want our
+ * arrays to be randomly corrupted just because some of them consist
+ * of numbers.
+ *
+ * Fuck you, PHP. Fuck you in the ear!
+ *
+ * @param array $array1, [$array2, [...]]
+ * @return array
+ */
+function wfArrayMerge( $array1/* ... */ ) {
+	$out = $array1;
+	for( $i = 1; $i < func_num_args(); $i++ ) {
+		foreach( func_get_arg( $i ) as $key => $value ) {
+			$out[$key] = $value;
+		}
+	}
+	return $out;
+}
+
+/**
  * Make a URL index, appropriate for the el_index field of externallinks.
  */
 function wfMakeUrlIndex( $url ) {

@@ -54,7 +54,7 @@ class WebRequest {
 		
 		// POST overrides GET data
 		// We don't use $_REQUEST here to avoid interference from cookies...
-		$this->data = array_merge( $_GET, $_POST );
+		$this->data = wfArrayMerge( $_GET, $_POST );
 	}
 	
 	/**
