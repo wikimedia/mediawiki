@@ -122,6 +122,7 @@ $messages = array(
 'tog-nolangconversion'        => '不进行用字转换',
 'tog-ccmeonemails'            => '把我发送给其他用户的邮件同时发送副本给我自己',
 'tog-diffonly'                => '在比较两个修订版本差异时不显示页面内容',
+'tog-showhiddencats'          => '显示隐藏分类',
 
 'underline-always'  => '总是使用',
 'underline-never'   => '从不使用',
@@ -182,12 +183,14 @@ $messages = array(
 'dec'           => '12月',
 
 # Bits of text used by many pages
-'categories'            => '页面分类',
-'pagecategories'        => '$1个分类',
-'category_header'       => '"$1"分类中的页面',
-'subcategories'         => '亚类',
-'category-media-header' => '"$1"分类中的媒体',
-'category-empty'        => "''这个分类中尚未包含任何页面或媒体。''",
+'categories'               => '页面分类',
+'pagecategories'           => '$1个分类',
+'category_header'          => '"$1"分类中的页面',
+'subcategories'            => '亚类',
+'category-media-header'    => '"$1"分类中的媒体',
+'category-empty'           => "''这个分类中尚未包含任何页面或媒体。''",
+'hidden-categories'        => '$1个隐藏分类',
+'hidden-category-category' => '隐藏分类', # Name of the category where hidden categories will be listed
 
 'mainpagetext'      => "<big>'''已成功安装 MediaWiki!'''</big>",
 'mainpagedocfooter' => '请访问 [http://meta.wikimedia.org/wiki/Help:Contents 用户手册] 以获得使用此 wiki 软件的信息！
@@ -324,6 +327,7 @@ $messages = array(
 'restorelink'             => '$1个被删除的版本',
 'feedlinks'               => '订阅:',
 'feed-invalid'            => '无效的订阅类型。',
+'feed-unavailable'        => '联合订阅并无于{{SITENAME}}上提供',
 'site-rss-feed'           => '$1的RSS订阅',
 'site-atom-feed'          => '$1的Atom订阅',
 'page-rss-feed'           => '“$1”的RSS订阅',
@@ -650,6 +654,7 @@ $2',
 'templatesusedsection'      => '在这个段落上使用的模板有:',
 'template-protected'        => '(保护)',
 'template-semiprotected'    => '(半保护)',
+'hiddencategories'          => '这个页面是属于$1个隐藏分类的成员:',
 'edittools'                 => '<!-- 此处的文本将被显示在以下编辑和上传表单中。 -->',
 'nocreatetitle'             => '创建页面受限',
 'nocreatetext'              => '{{SITENAME}}限制了创建新页面的功能。你可以返回并编辑已有的页面，或者[[Special:Userlogin|登录或创建新账户]]。',
@@ -987,7 +992,7 @@ $2',
 'largefileserver'             => '这个文件的大小比服务器配置允许的大小还要大。',
 'emptyfile'                   => '您所上传的文件不存在。这可能是由于文件名键入错误。请检查您是否真的要上传此文件。',
 'fileexists'                  => '已存在相同名称的文件，如果您无法确定您是否要改变它，请检查<strong><tt>$1</tt></strong>。',
-'filepageexists'              => '已存在相同名称的页面（不是文件），如果您无法确定您是否要改变它，请检查<strong><tt>$1</tt></strong>。',
+'filepageexists'              => '这个文件的描述页已经在<strong><tt>$1</tt></strong>创建，但是这个名称的文件尚未存在。您输入了的摘要是不会显示在该描述页中。要令该摘要在该处中出现，您便要手动地去编辑它。',
 'fileexists-extension'        => '一个相似名称的文件已经存在:<br />
 上载文件的档名: <strong><tt>$1</tt></strong><br />
 现有文件的档名: <strong><tt>$2</tt></strong><br />

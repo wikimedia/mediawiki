@@ -177,6 +177,7 @@ $messages = array(
 'tog-nolangconversion'        => '唔要用字轉換',
 'tog-ccmeonemails'            => '當我寄電郵畀其他人嗰陣寄返封副本畀我',
 'tog-diffonly'                => '響差異下面唔顯示頁面內容',
+'tog-showhiddencats'          => '顯示隱藏類',
 
 'underline-always'  => '全部',
 'underline-never'   => '永不',
@@ -237,12 +238,14 @@ $messages = array(
 'dec'           => '12月',
 
 # Bits of text used by many pages
-'categories'            => '類',
-'pagecategories'        => '屬於$1類',
-'category_header'       => '"$1" 類中嘅版',
-'subcategories'         => '分類',
-'category-media-header' => ' "$1" 類嘅媒體',
-'category-empty'        => "''呢類無任何版或媒體檔。''",
+'categories'               => '類',
+'pagecategories'           => '屬於$1類',
+'category_header'          => '"$1" 類中嘅版',
+'subcategories'            => '分類',
+'category-media-header'    => ' "$1" 類嘅媒體',
+'category-empty'           => "''呢類無任何版或媒體檔。''",
+'hidden-categories'        => '屬於$1隱類',
+'hidden-category-category' => '隱藏類', # Name of the category where hidden categories will be listed
 
 'mainpagetext'      => "<big>'''MediaWiki已經裝好。'''</big>",
 'mainpagedocfooter' => '參閱[http://meta.wikimedia.org/wiki/Help:Contents 用戶指引]（英），裏面有資料講點用wiki軟件。
@@ -378,6 +381,7 @@ $messages = array(
 'restorelink'             => '$1 次已刪除嘅編輯',
 'feedlinks'               => 'Feed:',
 'feed-invalid'            => '唔啱嘅 feed 類型。',
+'feed-unavailable'        => '聯合 feeds 並唔係響{{SITENAME}}度提供',
 'site-rss-feed'           => '$1嘅RSS Feed',
 'site-atom-feed'          => '$1嘅Atom Feed',
 'page-rss-feed'           => '"$1"嘅RSS Feed',
@@ -703,6 +707,7 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'templatesusedsection'      => '喺呢一小節所用嘅模：',
 'template-protected'        => '(保護)',
 'template-semiprotected'    => '(半保護)',
+'hiddencategories'          => '呢一版係屬於$1個隱藏類嘅成員:',
 'edittools'                 => '<!-- 喺呢度嘅文字會喺編輯框下面同埋上載表格中顯示。 -->',
 'nocreatetitle'             => '頁面建立被限制',
 'nocreatetext'              => '{{SITENAME}}已經限制咗起新版嘅能力。
@@ -1040,7 +1045,7 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'largefileserver'             => '呢個檔案超過咗伺服器設定允許嘅大細。',
 'emptyfile'                   => '你上載嘅檔案似乎係空嘅。噉樣可能係因為你打錯咗個檔名。請檢查吓你係唔係真係要上載呢個檔案。',
 'fileexists'                  => '呢個檔名已經存在，如果你唔肯定係唔係要更改<strong><tt>$1</tt></strong>，請先檢查佢。',
-'filepageexists'              => '有一版同名嘅頁（唔係檔案）已經存在，如果你唔肯定係唔係要更改<strong><tt>$1</tt></strong>，請先檢查佢。',
+'filepageexists'              => '呢個檔嘅描述頁已經響<strong><tt>$1</tt></strong>開咗，但係呢個名嘅檔案重未存在。你輸入咗嘅摘要係唔會顯示響個描述頁度。要令到個摘要響嗰度出現，你就要手動噉去編輯佢。',
 'fileexists-extension'        => '一個相似檔名嘅檔案已經存在:<br />
 上載檔案嘅檔名: <strong><tt>$1</tt></strong><br />
 現有檔案嘅檔名: <strong><tt>$2</tt></strong><br />
