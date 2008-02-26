@@ -1658,6 +1658,8 @@ class Title {
 
 		$this->mRestrictions['edit'] = array();
 		$this->mRestrictions['move'] = array();
+		$this->mCascadeRestriction = false;
+		$this->mRestrictionsExpiry = Block::decodeExpiry('');
 
 		# Backwards-compatibility: also load the restrictions from the page record (old format).
 
@@ -1679,8 +1681,6 @@ class Title {
 			}
 
 			$this->mOldRestrictions = true;
-			$this->mCascadeRestriction = false;
-			$this->mRestrictionsExpiry = Block::decodeExpiry('');
 
 		}
 

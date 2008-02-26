@@ -45,6 +45,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Make the default filepageexists message accurate
 * (bug 12988) $wgMinimalPasswordLength no longer breaks create user by email
 * (bug 13022) Fix upload from URL on PHP 5.0.x
+* (bug 13132) Unable to unprotect pages protected with earlier versions of MediaWiki
 
 === API changes in 1.13 ===
 
