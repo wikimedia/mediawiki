@@ -496,7 +496,9 @@ class Linker {
 	}
 
 	/**
-	 * Make an image link
+	 * Given parameters derived from [[Image:Foo|options...]], generate the
+	 * HTML that that syntax inserts in the page.
+	 *
 	 * @param Title $title Title object
 	 * @param File $file File object, or false if it doesn't exist
 	 *
@@ -519,8 +521,15 @@ class Linker {
 	 * @param array $handlerParams Associative array of media handler parameters, to be passed 
 	 *       to transform(). Typical keys are "width" and "page". 
 	 * @param string $time, timestamp of the file, set as false for current
+	 * @return string HTML for an image, with links, wrappers, etc.
 	 */
 	function makeImageLink2( Title $title, $file, $frameParams = array(), $handlerParams = array(), $time = false ) {
+		$res = null;
+		if( !wfRunHooks( 'ImageBeforeProduceHTML', array( &$this, &$title,
+		&$file, &$frameParams, &$handlerParams, &$time, &$res ) ) ) {
+			return $res;
+		}
+
 		global $wgContLang, $wgUser, $wgThumbLimits, $wgThumbUpright;
 		if ( $file && !$file->allowInlineDisplay() ) {
 			wfDebug( __METHOD__.': '.$title->getPrefixedDBkey()." does not allow inline display\n" );

@@ -602,9 +602,23 @@ $result: User permissions error to add. If none, return true.
 'getUserPermissionsErrorsExpensive': Absolutely the same, but is called only
 	if expensive checks are enabled.
 
-'ImageOpenShowImageInlineBefore': Call potential extension just before showing the image on an image page
+'ImageOpenShowImageInlineBefore': Call potential extension just before showing
+	the image on an image page
 $imagePage: ImagePage object ($this)
 $output: $wgOut
+
+'ImageBeforeProduceHTML': Called before producing the HTML created by a wiki
+	image insertion.  You can skip the default logic entirely by returning
+	false, or just modify a	few things using call-by-reference.
+&$this: Skin object
+&$title: Title object of the image
+&$file: File object, or false if it doesn't exist
+&$frameParams: Various parameters with special meanings; see documentation in
+	includes/Linker.php for Linker::makeImageLink2
+&$handlerParams: Various parameters with special meanings; see documentation in
+	includes/Linker.php for Linker::makeImageLink2
+&$time: Timestamp of file in 'YYYYMMDDHHIISS' string form, or false for current
+&$res: Final HTML output, used if you return false
 
 'InitPreferencesForm': called at the end of PreferencesForm's constructor
 $form: the PreferencesForm
