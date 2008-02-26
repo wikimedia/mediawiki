@@ -34,6 +34,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   confused when they are told they are range-blocked.
 * Add a new hook ImageBeforeProduceHTML to allow extensions to modify wikitext
   image syntax output.
+* (bug 13100) Added 'preloadtitle' parameter to action=edit&section=new that
+  pre-fills the section title field.
 
 === Bug fixes in 1.13 ===
 
