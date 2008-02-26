@@ -344,9 +344,9 @@ class Linker {
 		if( $nt->getNamespace() == NS_SPECIAL ) {
 			$q = $query;
 		} else if ( '' == $query ) {
-			$q = 'action=editredlink';
+			$q = 'action=edit&redlink=1';
 		} else {
-			$q = 'action=editredlink&'.$query;
+			$q = 'action=edit&redlink=1&'.$query;
 		}
 		$u = $nt->escapeLocalURL( $q );
 
