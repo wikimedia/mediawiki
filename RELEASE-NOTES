@@ -20,7 +20,10 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 
 === Configuration changes in 1.13 ===
 
-* ...
+* New option $wgFeed can be set false to turn off syndication feeds
+* (bug 13137) Allow setting 'editprotected' right separately from 'protect',
+  so groups may optionally edit protected pages without being able to protect
+  pages themselves
 
 === New features in 1.13 ===
 
@@ -29,10 +32,6 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Don't show edit permissions errors on a red link click, just redirect to the 
   article. This is so that readers who don't know what a red link is aren't 
   confused when they are told they are range-blocked.
-* One can turn off syndicatino feeds by setting $wgFeed to false
-* (bug 13137) Allow setting 'editprotected' right separately from 'protect',
-  so groups may optionally edit protected pages without being able to protect
-  pages themselves
 
 === Bug fixes in 1.13 ===
 
@@ -40,8 +39,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 13084) Increase size of source/destination filename fields in upload form
 * (bug 13115) rebuildrecentchanges should print the current value of $wgRCMaxAge
 * (bug 13140) Show parent categories in category namespace
-* (bug 13149) Correctly format 'fileexists' message on Upload page.
-* Make filepageexists accurate.
+* (bug 13149) Correctly format 'fileexists' message on Upload page
+* Make the default filepageexists message accurate
 * (bug 12988) $wgMinimalPasswordLength no longer breaks create user by email
 * (bug 13022) Fix upload from URL on PHP 5.0.x
 
