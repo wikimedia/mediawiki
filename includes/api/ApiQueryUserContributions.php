@@ -59,12 +59,21 @@ class ApiQueryContributions extends ApiQueryBase {
 		$this->selectNamedDB('contributions', DB_SLAVE, 'contributions');
 		$db = $this->getDB();
 
-		// Prepare query
-		$this->usernames = array();
-		if(!is_array($this->params['user']))
-			$this->params['user'] = array($this->params['user']);
-		foreach($this->params['user'] as $u)
-			$this->prepareUsername($u);
+
+		if(isset($this->params['userprefix']))
+		{
+			$this->prefixMode = true;
+			$this->userprefix = $this->params['userprefix'];
+		}
+		else
+		{
+			$this->usernames = array();
+			if(!is_array($this->params['user']))
+				$this->params['user'] = array($this->params['user']);
+			foreach($this->params['user'] as $u)
+				$this->prepareUsername($u);
+			$this->prefixMode = false;
+		}
 		$this->prepareQuery();
 
 		//Do the actual query.
@@ -127,7 +136,10 @@ class ApiQueryContributions extends ApiQueryBase {
 		
 		$this->addWhereFld('rev_deleted', 0);
 		// We only want pages by the specified users.
-		$this->addWhereFld( 'rev_user_text', $this->usernames );
+		if($this->prefixMode)
+			$this->addWhere("rev_user_text LIKE '" . $this->getDb()->escapeLike(ApiQueryBase::titleToKey($this->userprefix)) . "%'");
+		else 
+			$this->addWhereFld( 'rev_user_text', $this->usernames );
 		// ... and in the specified timeframe.
 		$this->addWhereRange('rev_timestamp', 
 			$this->params['dir'], $this->params['start'], $this->params['end'] );
@@ -214,6 +226,7 @@ class ApiQueryContributions extends ApiQueryBase {
 			'user' => array (
 				ApiBase :: PARAM_ISMULTI => true
 			),
+			'userprefix' => null,
 			'dir' => array (
 				ApiBase :: PARAM_DFLT => 'older',
 				ApiBase :: PARAM_TYPE => array (
@@ -252,6 +265,7 @@ class ApiQueryContributions extends ApiQueryBase {
 			'start' => 'The start timestamp to return from.',
 			'end' => 'The end timestamp to return to.',
 			'user' => 'The user to retrieve contributions for.',
+			'userprefix' => 'Retrieve contibutions for all users whose names begin with this value. Overrides ucuser.',
 			'dir' => 'The direction to search (older or newer).',
 			'namespace' => 'Only list contributions in these namespaces',
 			'prop' => 'Include additional pieces of information',
@@ -265,7 +279,8 @@ class ApiQueryContributions extends ApiQueryBase {
 
 	protected function getExamples() {
 		return array (
-			'api.php?action=query&list=usercontribs&ucuser=YurikBot'
+			'api.php?action=query&list=usercontribs&ucuser=YurikBot',
+			'api.php?action=query&list=usercontribs&ucuserprefix=217.121.114.',
 		);
 	}
 

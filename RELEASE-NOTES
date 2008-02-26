@@ -50,6 +50,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 13128) Add patrolled flag to list=recentchanges
 * Implemented {bl,ei,iu}redirect (lists links through redirects as well)
 * (bug 13154) Introducing subpages flag to meta=siteinfo&siprop=namespaces
+* (bug 13157) Adding ucuserprefix parameter to list=usercontibs
 
 === Languages updated in 1.13 ===
 
