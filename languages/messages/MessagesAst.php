@@ -88,6 +88,7 @@ $messages = array(
 'tog-nolangconversion'        => 'Deshabilitar la conversión de variantes de llingua',
 'tog-ccmeonemails'            => 'Mandame copies de los correos que mando a otros usuarios',
 'tog-diffonly'                => 'Nun amosar el conteníu de la páxina embaxo de les diferencies',
+'tog-showhiddencats'          => 'Amosar categoríes ocultes',
 
 'underline-always'  => 'Siempre',
 'underline-never'   => 'Nunca',
@@ -148,12 +149,14 @@ $messages = array(
 'dec'           => 'avi',
 
 # Bits of text used by many pages
-'categories'            => 'Categoríes',
-'pagecategories'        => '{{PLURAL:$1|Categoría|Categoríes}}',
-'category_header'       => 'Páxines na categoría "$1"',
-'subcategories'         => 'Subcategoríes',
-'category-media-header' => 'Archivos multimedia na categoría "$1"',
-'category-empty'        => "''Esta categoría nun tien anguaño nengún artículu o ficheru multimedia.''",
+'categories'               => 'Categoríes',
+'pagecategories'           => '{{PLURAL:$1|Categoría|Categoríes}}',
+'category_header'          => 'Páxines na categoría "$1"',
+'subcategories'            => 'Subcategoríes',
+'category-media-header'    => 'Archivos multimedia na categoría "$1"',
+'category-empty'           => "''Esta categoría nun tien anguaño nengún artículu o ficheru multimedia.''",
+'hidden-categories'        => '{{PLURAL:$1|Categoría oculta|Categoríes ocultes}}',
+'hidden-category-category' => 'Categoríes ocultes', # Name of the category where hidden categories will be listed
 
 'mainpagetext'      => "<big>'''MediaWiki instalóse correchamente.'''</big>",
 'mainpagedocfooter' => "Visita la [http://meta.wikimedia.org/wiki/Help:Contents Guía d'usuariu] pa saber cómo usar esti software wiki.
@@ -638,6 +641,7 @@ el testu nun archivu de testu y grabalu pa intentalo lluéu. </strong>',
 'templatesusedsection'      => 'Plantíes usaes nesta seición:',
 'template-protected'        => '(protexida)',
 'template-semiprotected'    => '(semi-protexida)',
+'hiddencategories'          => 'Esta páxina pertenez a {{PLURAL:$1|una categoría oculta|$1 categoríes ocultes}}:',
 'nocreatetitle'             => 'Creación de páxines limitada',
 'nocreatetext'              => '{{SITENAME}} tien restrinxida la capacidá de crear páxines nueves.
 Pues volver atrás y editar una páxina esistente, o bien [[Special:Userlogin|identificate o crear una cuenta]].',
@@ -983,7 +987,7 @@ P'amiestar un archivu nuna páxina, usa un enllaz col formatu
 'largefileserver'             => 'Esti archivu ye mayor de lo que permite la configuración del servidor.',
 'emptyfile'                   => "L'archivu que xubisti paez tar vaciu. Esto podría ser pola mor d'un enquivocu nel nome l'archivu. Por favor, camienta si daveres quies xubir esti archivu.",
 'fileexists'                  => 'Yá esiste un archivu con esti nome, por favor comprueba <strong><tt>$1</tt></strong> si nun tas seguru de quere camudalu.',
-'filepageexists'              => 'Yá esiste una páxina (que nun ye un archivu) con esti nome, por favor revisa <strong><tt>$1</tt></strong> por si nun tas seguru de querer camudala.',
+'filepageexists'              => "La páxina de descripción d'esti archivu yá foi creada en <strong><tt>$1</tt></strong>, pero nestos momentos nun esiste nengún archivu con esti nome. El resume que pongas nun va apaecer na páxina de descripción. Pa facer que'l to resume apaeza vas tener que lu editar manualmente.",
 'fileexists-extension'        => 'Yá esiste un archivu con un nome asemeyáu:<br />
 Nome del archivu que se quier xubir: <strong><tt>$1</tt></strong><br />
 Nome del archivu esistente: <strong><tt>$2</tt></strong><br />

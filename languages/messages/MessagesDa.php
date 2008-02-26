@@ -891,7 +891,7 @@ Vær opmæksom på at bevare kontinuiteten i sidehistorikken.
 'prefs-watchlist'          => 'Overvågningsliste',
 'prefs-watchlist-days'     => 'Antal dage, som overvågningslisten standardmæssigt skal omfatte:',
 'prefs-watchlist-edits'    => 'Antal redigeringer der vises i udvidet overvågningsliste:',
-'prefs-misc'               => 'Forskelligt',
+'prefs-misc'               => 'Diverse',
 'saveprefs'                => 'Gem indstillinger',
 'resetprefs'               => 'Gendan indstillinger',
 'oldpassword'              => 'Gammel adgangskode',

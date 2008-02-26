@@ -173,6 +173,7 @@ $messages = array(
 'tog-watchlisthideown'        => 'Celare meas recensiones in paginarum custoditarum indice',
 'tog-watchlisthidebots'       => 'Celare recensiones automatarias in paginarum custoditarum indice',
 'tog-watchlisthideminor'      => 'Celare recensiones minores in paginarum custoditarum indice',
+'tog-showhiddencats'          => 'Categorias celatas monstrare',
 
 'underline-always'  => 'Semper',
 'underline-never'   => 'Numquam',
@@ -233,12 +234,14 @@ $messages = array(
 'dec'           => 'Dec',
 
 # Bits of text used by many pages
-'categories'            => 'Categoriae',
-'pagecategories'        => '{{PLURAL:$1|Categoria|Categoriae}}',
-'category_header'       => 'Paginae in categoria "$1"',
-'subcategories'         => 'Subcategoriae',
-'category-media-header' => 'Media in categoria "$1"',
-'category-empty'        => "''Huic categoriae non sunt paginae vel fasciculi.''",
+'categories'               => 'Categoriae',
+'pagecategories'           => '{{PLURAL:$1|Categoria|Categoriae}}',
+'category_header'          => 'Paginae in categoria "$1"',
+'subcategories'            => 'Subcategoriae',
+'category-media-header'    => 'Media in categoria "$1"',
+'category-empty'           => "''Huic categoriae non sunt paginae vel fasciculi.''",
+'hidden-categories'        => '{{PLURAL:$1|Categoria celata|Categoriae celatae}}',
+'hidden-category-category' => 'Categoriae celatae', # Name of the category where hidden categories will be listed
 
 'about'          => 'De',
 'article'        => 'Pagina contenta continens',
@@ -582,6 +585,7 @@ Considera paginam in partes minores frangere.',
 'templatesusedsection'      => 'Formulae hac in parte adhibitae:',
 'template-protected'        => '(protecta)',
 'template-semiprotected'    => '(semi-protecta)',
+'hiddencategories'          => 'Haec pagina ad {{PLURAL:$1|unam categoriam celatam|$1 categorias celatas}} pertinet:',
 'permissionserrors'         => 'Errores permissionis',
 
 # "Undo" feature

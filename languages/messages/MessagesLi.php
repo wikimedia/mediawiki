@@ -104,6 +104,7 @@ $messages = array(
 'tog-nolangconversion'        => 'Variantconversie oetsjakele',
 'tog-ccmeonemails'            => "'ne Kopie nao mich verzende van de e-mail dae ich nao anger gebroekers sjtuur",
 'tog-diffonly'                => 'Pazjena-inhawd zonger verangeringe neet tune',
+'tog-showhiddencats'          => 'Verbórge categorië toeane',
 
 'underline-always'  => 'Altiejd',
 'underline-never'   => 'Nooits',
@@ -164,12 +165,14 @@ $messages = array(
 'dec'           => 'dec',
 
 # Bits of text used by many pages
-'categories'            => '{{PLURAL:$1|Categorie|Categorieë}}',
-'pagecategories'        => '{{PLURAL:$1|Categorie|Categorieë}}',
-'category_header'       => 'Artikele in categorie "$1"',
-'subcategories'         => 'Subkattegorië',
-'category-media-header' => 'Media in de categorie "$1"',
-'category-empty'        => "''Deze categorie is laeg, hae bevat op 't memènt gén artiekele of media.''",
+'categories'               => '{{PLURAL:$1|Categorie|Categorieë}}',
+'pagecategories'           => '{{PLURAL:$1|Categorie|Categorieë}}',
+'category_header'          => 'Artikele in categorie "$1"',
+'subcategories'            => 'Subkattegorië',
+'category-media-header'    => 'Media in de categorie "$1"',
+'category-empty'           => "''Deze categorie is laeg, hae bevat op 't memènt gén artiekele of media.''",
+'hidden-categories'        => 'Verbórge {{PLURAL:$1|categorie|categorië}}',
+'hidden-category-category' => 'Verbórge categorië', # Name of the category where hidden categories will be listed
 
 'mainpagetext'      => 'Wiki software succesvol geïnsjtalleerd.',
 'mainpagedocfooter' => "Raodpleeg de [http://meta.wikimedia.org/wiki/NL_Help:Inhoudsopgave handjleiding] veur informatie euver 't gebroek van de wikisoftware.
@@ -608,6 +611,7 @@ groot, wat groter is dan 't maximum van $2 kilobyte. Opslaon is neet meugelik.</
 'templatesusedsection'      => 'Sjablone die gebroek waere in deze subkop:',
 'template-protected'        => '(besjörmp)',
 'template-semiprotected'    => '(semi-besjörmp)',
+'hiddencategories'          => 'Dees pazjena velt in de volgendje verbórge {{PLURAL:$1|categorie|categorië}}:',
 'nocreatetitle'             => "'t Aanmake van pazjena's is beperk",
 'nocreatetext'              => "{{SITENAME}} haet de meugelikheid om nuuje pazjena's te make bepèrk.
 Doe kins al besjtaonde pazjena's verangere, of doe kins [[Special:Userlogin|dich aanmelje of 'ne gebroeker aanmake]].",
@@ -950,7 +954,7 @@ De letste link is bedoeld veur mediabestenj die gein aafbeilding zeen.",
 'largefileserver'             => "'t Bestandj is groter dan de instelling van de server toestuit.",
 'emptyfile'                   => "'t Besjtand wats re höbs geupload is laeg. Dit kump waorsjienliek door 'n typfout in de besjtandsnaom. Kiek estebleef ofs te dit besjtand wirkelik wils uploade.",
 'fileexists'                  => "D'r is al e besjtand mit dees naam, bekiek $1 of se dat besjtand mesjien wils vervange.",
-'filepageexists'              => "'ne Pazjena (gein aafbeilding) mit deze naam besteit al, geleve <strong><tt>$1</tt></strong> te controlere es geer neet zeker böntj of geer 'm wil verangere.",
+'filepageexists'              => "De besjrievingspazjena veur dit bestandj besteit al op <strong><tt>$1</tt></strong>, meh d'r besteit gein bestandj mit deze naam. De samevatting dae geer höb opgegaeve zal neet op de besjrievingspazjena versjiene. Bewèrk de pazjena handjmaotig óm uche besjrieving dao te toeane.",
 'fileexists-extension'        => "'n bestand met dezelfde naam bestuit al:<br />
 Naam van 't geüploade bestand: <strong><tt>$1</tt></strong><br />
 Naam van 't bestaonde bestand: <strong><tt>$2</tt></strong><br />

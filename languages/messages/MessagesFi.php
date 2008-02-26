@@ -212,6 +212,7 @@ $messages = array(
 'tog-nolangconversion'        => 'Älä tee muunnoksia kielivarianttien välillä',
 'tog-ccmeonemails'            => 'Lähetä minulle kopio MediaWikin kautta lähetetyistä sähköposteista',
 'tog-diffonly'                => 'Älä näytä sivun sisältöä versioita vertailtaessa',
+'tog-showhiddencats'          => 'Näytä piilotetut luokat',
 
 'underline-always'  => 'Aina',
 'underline-never'   => 'Ei koskaan',
@@ -272,12 +273,14 @@ $messages = array(
 'dec'           => 'joulukuu',
 
 # Bits of text used by many pages
-'categories'            => 'Luokat',
-'pagecategories'        => '{{PLURAL:$1|Luokka|Luokat}}',
-'category_header'       => 'Sivut, jotka ovat luokassa $1',
-'subcategories'         => 'Alaluokat',
-'category-media-header' => 'Luokan ”$1” sisältämät tiedostot',
-'category-empty'        => "''Tässä luokassa ei ole sivuja eikä tiedostoja.''",
+'categories'               => 'Luokat',
+'pagecategories'           => '{{PLURAL:$1|Luokka|Luokat}}',
+'category_header'          => 'Sivut, jotka ovat luokassa $1',
+'subcategories'            => 'Alaluokat',
+'category-media-header'    => 'Luokan ”$1” sisältämät tiedostot',
+'category-empty'           => "''Tässä luokassa ei ole sivuja eikä tiedostoja.''",
+'hidden-categories'        => '{{PLURAL:$1|Piilotettu luokka|Piilotetut luokat}}',
+'hidden-category-category' => 'Piilotetut luokat', # Name of the category where hidden categories will be listed
 
 'mainpagetext'      => "'''MediaWiki on onnistuneesti asennettu.'''",
 'mainpagedocfooter' => "Lisätietoja käytöstä on sivulla [http://meta.wikimedia.org/wiki/Help:Contents User's Guide].
@@ -711,6 +714,7 @@ Yritä uudelleen. Jos ongelma ei katoa, yritä kirjautua ulos ja takaisin sisä�
 'templatesusedsection'      => 'Tässä osiossa mukana olevat mallineet:',
 'template-protected'        => '(suojattu)',
 'template-semiprotected'    => '(suojattu anonyymeiltä ja uusilta käyttäjiltä)',
+'hiddencategories'          => 'Tämä sivu kuuluu {{PLURAL:$1|piilotettuun luokkaan|piilotettuihin luokkiin}}:',
 'edittools'                 => '<!-- Tässä oleva teksti näytetään muokkauskentän alla. -->',
 'nocreatetitle'             => 'Sivujen luominen on rajoitettu',
 'nocreatetext'              => 'Et voi luoda uusia sivuja. Voit muokata olemassa olevia sivuja tai luoda [[Special:Userlogin|käyttäjätunnuksen]].',
@@ -1040,7 +1044,7 @@ Voit käyttää tiedostoja wikisivuilla seuraavilla tavoilla:
 'largefileserver'             => 'Tämä tiedosto on suurempi kuin mitä palvelin sallii.',
 'emptyfile'                   => 'Tiedosto, jota yritit lähettää, näyttää olevan tyhjä. Tarkista, että kirjoitit polun ja nimen oikein ja että se ei ole liian suuri kohdepalvelimelle.',
 'fileexists'                  => 'Samanniminen tiedosto on jo olemassa. Katso tiedoston sivu $1, jos et ole varma, haluatko muuttaa sitä.',
-'filepageexists'              => 'Sivu (ei tiedosto) on jo olemassa tällä nimellä. Tarkista sivu <strong><tt>$1</tt></strong>, jos et ole varma että haluat muuttaa sitä.',
+'filepageexists'              => 'Kuvaussivu on jo olemassa tällä nimellä <strong><tt>$1</tt></strong>, mutta ei tiedostoa tällä nimellä. Kirjoittamasi yhteenveto ei ilmesty kuvaussivulle. Muuttaaksesi uuden yhteenvedon kuvaussivulle, sinun täytyy manuaalisesti muokata sitä.',
 'fileexists-extension'        => 'Tiedosto, jolla on samankaltainen nimi, on jo olemassa:<br />
 Tallennetun tiedoston nimi: <strong><tt>$1</tt></strong><br />
 Olemassa olevan tiedoston nimi: <strong><tt>$2</tt></strong><br />

@@ -534,7 +534,7 @@ I greu'r dudalen, dechreuwch deipio yn y blwch isod
 (gweler y [[{{MediaWiki:Helppage}}|dudalen gymorth]] am fwy o wybodaeth).
 Os daethoch yma ar ddamwain, cliciwch botwm '''n&ocirc;l''' y porwr.",
 'anontalkpagetext'        => "---- ''Dyma dudalen sgwrs defnyddiwr sydd heb greu cyfrif, neu nad yw'n defnyddio'i gyfrif. Mae'n rhaid i ni ddefnyddio'r cyfeiriad IP i'w (h)adnabod. Mae'n bosib fod sawl defnyddiwr yn rhannu'r un cyfeiriad IP. Os ydych chi'n ddefnyddiwr anhysbys ac yn teimlo'ch bod wedi derbyn sylwadau amherthnasol, [[Special:Userlogin|crëwch gyfrif neu mewngofnodwch]] i osgoi dryswch gyda defnyddwyr anhysbys yn y dyfodol.''",
-'noarticletext'           => '(Does dim testun yn y tudalen hon eto)',
+'noarticletext'           => "Mae'r dudalen hon yn wag. Gallwch [[Special:Search/{{PAGENAME}}|chwilio am y teitl hwn]] ar dudalennau eraill neu [{{fullurl:{{FULLPAGENAME}}|action=edit}} golygu'r dudalen].",
 'clearyourcache'          => "'''Sylwer:''' Wedi i chi roi'r dudalen ar gadw, efallai y bydd angen mynd heibio celc eich porwr er mwyn gweld y newidiadau. '''Mozilla / Firefox / Safari:''' pwyswch ar ''Shift'' tra'n clicio ''Ail-lwytho/Reload'', neu gwasgwch ''Ctrl-Shift-R'' (''Cmd-Shift-R'' ar Apple Mac); '''IE:''' pwyswch ar ''Ctrl'' tra'n clicio ''Adnewyddu/Refresh'', neu gwasgwch ''Ctrl-F5''; '''Konqueror:''': cliciwch y botwm ''Ail-lwytho/Reload'', neu gwasgwch ''F5''; '''Opera''': efallai y bydd angen gwacau'r celc yn llwyr yn ''Offer→Dewisiadau / Tools→Preferences''.",
 'usercssjsyoucanpreview'  => "<strong>Tip:</strong> Defnyddiwch y botwm 'Dangos rhagolwg' er mwyn profi eich css/js newydd cyn ei gadw.",
 'usercsspreview'          => "'''Cofiwch -- dim ond rhagolwg o'ch css defnyddiwr yw hwn; nid yw wedi'i gadw!'''",
@@ -613,8 +613,10 @@ Eglurhad: (cyf.) = gwahaniaethau rhyngddo a'r fersiwn cyfredol,
 
 # Revision deletion
 'revdelete-selected'  => "Y {{PLURAL:$2|golygiad|golygiad|golygiadau|golygiadau|golygiadau|golygiadau}} dewisedig o '''$1:'''",
+'logdelete-selected'  => "{{PLURAL:$2|Digwyddiad|Digwyddiad|Digwyddiadau|Digwyddiadau|Digwyddiadau|Digwyddiadau}} dewisedig y lòg ar gyfer '''$1:'''",
 'logdelete-logentry'  => 'newidiwyd y gallu i weld y digwyddiad [[$1]]',
 'revdelete-logaction' => "Gosodwyd $1 {{PLURAL:$1|diwygiad|diwygiad|ddiwygiad|diwygiad|diwygiad|diwygiad}} i'r modd $2",
+'logdelete-logaction' => "$1 {{PLURAL:$1|digwyddiad|digwyddiad|ddigwyddiad|digwyddiad|digwyddiad|digwyddiad}} i [[$3]] {{PLURAL:$1|wedi'i osod|wedi'i osod|wedi'u gosod|wedi'u gosod|wedi'u gosod|wedi'u gosod}} i'r modd $2",
 'logdelete-success'   => "Llwyddwyd i guddio'r digwyddiad.",
 
 # Oversight log
@@ -763,7 +765,7 @@ i setio ffafraethau defnyddwr.',
 'rightslogtext' => 'Dyma log o newidiadau i hawliau defnyddwyr.',
 
 # Recent changes
-'nchanges'                          => '$1 newidiad',
+'nchanges'                          => '$1 {{PLURAL:$1|newid|newid|newid|newid|newid|o newidiadau}}',
 'recentchanges'                     => 'Newidiadau diweddar',
 'recentchangestext'                 => "Traciwch y newidiadau mor diweddar i'r {{SITENAME}} ac i'r tudalen hon.",
 'rcnote'                            => "Isod mae'r '''$1''' newidiad diweddaraf yn ystod y '''$2''' {{PLURAL:$2|diwrnod|diwrnod|ddiwrnod|diwrnod|diwrnod|diwrnod}} diwethaf, hyd at $3.",
@@ -971,12 +973,12 @@ Mae gan '''$2''' (neu '''$4%''') ohonynt alluoedd $5.",
 'fewestrevisions' => "Erthyglau â'r nifer lleiaf o olygiadau iddynt",
 
 # Miscellaneous special pages
-'nbytes'                  => '$1 beit',
+'nbytes'                  => '$1 {{PLURAL:$1|beit|beit|feit|beit|beit|beit}}',
 'ncategories'             => '$1 {{PLURAL:$1|categori|categori|gategori|chategori|chategori|categori}}',
-'nlinks'                  => '$1 cysylltiadau',
-'nmembers'                => '$1 {{PLURAL:$1|aelod|aelod}}',
-'nrevisions'              => '$1 diwygiad',
-'nviews'                  => '$1 golwgfeydd',
+'nlinks'                  => '$1 {{PLURAL:$1|cyswllt|cyswllt|gyswllt|chyswllt|chyswllt|cyswllt}}',
+'nmembers'                => '$1 {{PLURAL:$1|aelod|aelod|aelod|aelod|aelod|aelod}}',
+'nrevisions'              => '$1 {{PLURAL:$1|diwygiad|diwygiad|ddiwygiad|diwygiad|diwygiad|diwygiad}}',
+'nviews'                  => '$1 {{PLURAL:$1|ymweliad|ymweliad|ymweliad|ymweliad|ymweliad|ymweliad}}',
 'specialpage-empty'       => "Mae'r dudalen hon yn wag.",
 'lonelypages'             => 'Erthyglau heb gysylltiadau iddynt',
 'lonelypagestext'         => 'Nid oes cysylltiad yn arwain at y tudalennau canlynol oddi wrth unrhyw dudalen arall yn {{SITENAME}}.',
@@ -1310,6 +1312,7 @@ Ceir cofnod o'r tudalennau a ddilëwyd neu a adferwyd yn ddiweddar ar y [[Specia
 'infiniteblock'               => 'bloc parhaus',
 'expiringblock'               => 'yn dod i ben $1',
 'anononlyblock'               => 'ataliwyd dim ond pan nad yw wedi mewngofnodi',
+'noautoblockblock'            => 'analluogwyd blocio awtomatig',
 'createaccountblock'          => 'ataliwyd y gallu i greu cyfrif',
 'emailblock'                  => 'rhwystrwyd e-bostio',
 'ipblocklist-empty'           => "Mae'r rhestr blociau'n wag.",
