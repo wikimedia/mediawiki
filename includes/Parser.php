@@ -3290,7 +3290,7 @@ class Parser
 		if ( isset( $this->mDoubleUnderscores['hiddencat'] ) ) {
 			$this->mOutput->setProperty( 'hiddencat', 'y' );
 
-			$containerCategory = Title::makeTitleSafe( NS_CATEGORY, wfMsg( 'hidden-category-category' ) );
+			$containerCategory = Title::makeTitleSafe( NS_CATEGORY, wfMsgForContent( 'hidden-category-category' ) );
 			if ( $containerCategory ) {
 				$this->mOutput->addCategory( $containerCategory->getDBkey(), $this->getDefaultSort() );
 			} else {
