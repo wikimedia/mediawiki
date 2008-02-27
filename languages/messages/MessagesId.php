@@ -671,10 +671,9 @@ Akun Anda telah dibuat. Jangan lupa mengatur konfigurasi {{SITENAME}} Anda.',
 'accountcreated'             => 'Akun dibuat',
 'accountcreatedtext'         => 'Akun pengguna untuk $1 telah dibuat.',
 'createaccount-title'        => 'Pembuatan akun untuk {{SITENAME}}',
-'createaccount-text'         => 'Seseorang ($1) telah membuat sebuah akun untuk $2 di {{SITENAME}}
-($4). Kata sandi untuk "$2" adalah "$3". Anda dianjurkan untuk log masuk dan mengganti kata sandi Anda sekarang.
+'createaccount-text'         => 'Seseorang telah membuat sebuah akun untuk alamat surat-e Anda di {{SITENAME}} ($4) dengan nama "$2" dan kata sandi "$3". Anda dianjurkan untuk masuk log dan mengganti kata sandi Anda sekarang.
 
-Jika akun ini dibuat karena suatu kesalahan, abaikan pesan ini.',
+Anda dapat mengabaikan pesan nini jika akun ini dibuat karena suatu kesalahan.',
 'loginlanguagelabel'         => 'Bahasa: $1',
 
 # Password reset dialog
@@ -1143,7 +1142,7 @@ Untuk menampilkan atau menyertakan berkas atau gambar pada suatu halaman, gunaka
 'largefileserver'             => 'Berkas ini lebih besar dari pada yang diizinkan server.',
 'emptyfile'                   => 'Berkas yang Anda muatkan kelihatannya kosong. Hal ini mungkin disebabkan karena adanya kesalahan ketik pada nama berkas. Silakan pastikan apakah Anda benar-benar ingin memuatkan berkas ini.',
 'fileexists'                  => 'Suatu berkas dengan nama tersebut telah ada, harap periksa <strong><tt>$1</tt></strong> jika Anda tidak yakin untuk mengubahnya.',
-'filepageexists'              => 'Berkas (bukan gambar) dengan nama ini telah ada, harap periksa <strong><tt>$1</tt></strong> jika Anda tidak yakin apakah Anda ingin merubahnya.',
+'filepageexists'              => 'Halaman deskripsi untuk berkas ini telah dibuat di <strong><tt>$1</tt></strong>, tapi saat ini tak ditemukan berkas dengan nama tersebut. Ringkasan yang Anda masukkan tidak akan tampil pada halaman deskripsi. Untuk memunculkannya, Anda perlu untuk menyuntingnya secara manual',
 'fileexists-extension'        => 'Berkas dengan nama serupa telah ada:<br />
 Nama berkas yang akan dimuat: <strong><tt>$1</tt></strong><br />
 Nama berkas yang telah ada: <strong><tt>$2</tt></strong><br />
