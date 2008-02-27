@@ -85,8 +85,8 @@ class BitmapHandler extends ImageHandler {
 		}
 
 		if ( !wfMkdirParents( dirname( $dstPath ) ) ) {
-			return new MediaTransformError( 'thumbnail_error', $clientWidth, $clientHeight, 
-				wfMsg( 'thumbnail_dest_directory' ) );
+			wfDebug( "Unable to create thumbnail destination directory, falling back to client scaling\n" );
+			return new ThumbnailImage( $image, $image->getURL(), $clientWidth, $clientHeight, $srcPath );
 		}
 
 		if ( $scaler == 'im' ) {
