@@ -156,7 +156,6 @@ searchindex
 trackbacks
 transcache
 user_newtalk
-page_props
 ';
 
 ## Make sure all tables in main tables.sql are accounted for int the parsertest.
