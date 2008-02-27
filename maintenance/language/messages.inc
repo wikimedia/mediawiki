@@ -677,6 +677,9 @@ $wgMessageStructure = array(
 		'searchdisabled',
 		'googlesearch',
 	),
+	'opensearch' => array(
+		'opensearch-desc',
+	),
 	'preferences' => array(
 		'preferences',
 		'preferences-summary',
@@ -2418,6 +2421,7 @@ XHTML id names.",
 	'mergelog'            => 'Merge log',
 	'diffs'               => 'Diffs',
 	'search'              => 'Search results',
+	'opensearch'          => 'OpenSearch description',
 	'preferences'         => 'Preferences page',
 	'userrights'          => 'User rights',
 	'group'               => 'Groups',
