@@ -56,10 +56,11 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 === API changes in 1.13 ===
 
 * Fixing main page display in meta=siteinfo
-* (bug 13128) Add patrolled flag to list=recentchanges
+* (bug 13128) Added patrolled flag to list=recentchanges
 * Implemented {bl,ei,iu}redirect (lists links through redirects as well)
-* (bug 13154) Introducing subpages flag to meta=siteinfo&siprop=namespaces
-* (bug 13157) Adding ucuserprefix parameter to list=usercontibs
+* (bug 13154) Introduced subpages flag to meta=siteinfo&siprop=namespaces
+* (bug 13157) Added ucuserprefix parameter to list=usercontibs
+* (bug 12394) Added rctitles parameter to list=recentchanges, making rcid retrieval easier
 
 === Languages updated in 1.13 ===
 

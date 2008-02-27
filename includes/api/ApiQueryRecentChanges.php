@@ -49,7 +49,7 @@ class ApiQueryRecentChanges extends ApiQueryBase {
 	 */
 	public function execute() {
 		/* Initialize vars */
-		$limit = $prop = $namespace = $show = $type = $dir = $start = $end = null;
+		$limit = $prop = $namespace = $titles = $show = $type = $dir = $start = $end = null;
 		
 		/* Get the parameters of the request. */
 		extract($this->extractRequestParams());
@@ -63,6 +63,26 @@ class ApiQueryRecentChanges extends ApiQueryBase {
 		$this->addWhereRange('rc_timestamp', $dir, $start, $end);
 		$this->addWhereFld('rc_namespace', $namespace);
 		$this->addWhereFld('rc_deleted', 0);
+		if(!empty($titles))
+		{
+			$lb = new LinkBatch;
+			foreach($titles as $t)
+			{
+				$obj = Title::newFromText($t);
+				$lb->addObj($obj);
+				if($obj->getNamespace() < 0)
+				{
+					// LinkBatch refuses these, but we need them anyway
+					if(!array_key_exists($obj->getNamespace(), $lb->data))
+						$lb->data[$obj->getNamespace()] = array();
+					$lb->data[$obj->getNamespace()][$obj->getDbKey()] = 1;
+				}
+			}
+			$where = $lb->constructSet('rc', $this->getDb());
+			if($where != '')
+				$this->addWhere($where);
+		}
+				
 		if(!is_null($type))
 				$this->addWhereFld('rc_type', $this->parseRCType($type));
 
@@ -289,6 +309,9 @@ class ApiQueryRecentChanges extends ApiQueryBase {
 				ApiBase :: PARAM_ISMULTI => true,
 				ApiBase :: PARAM_TYPE => 'namespace'
 			),
+			'titles' => array(
+				ApiBase :: PARAM_ISMULTI => true
+			),
 			'prop' => array (
 				ApiBase :: PARAM_ISMULTI => true,
 				ApiBase :: PARAM_DFLT => 'title|timestamp|ids',
@@ -338,6 +361,7 @@ class ApiQueryRecentChanges extends ApiQueryBase {
 			'end' => 'The timestamp to end enumerating.',
 			'dir' => 'In which direction to enumerate.',
 			'namespace' => 'Filter log entries to only this namespace(s)',
+			'titles' => 'Filter log entries to only these page titles',
 			'prop' => 'Include additional pieces of information',
 			'show' => array (
 				'Show only items that meet this criteria.',
