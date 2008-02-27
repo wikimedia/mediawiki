@@ -2039,10 +2039,11 @@ class Database {
 	}
 
 	/**
-	 * Rollback a transaction
+	 * Rollback a transaction.
+	 * No-op on non-transactional databases.
 	 */
 	function rollback( $fname = 'Database::rollback' ) {
-		$this->query( 'ROLLBACK', $fname );
+		$this->query( 'ROLLBACK', $fname, true );
 		$this->mTrxLevel = 0;
 	}
 
