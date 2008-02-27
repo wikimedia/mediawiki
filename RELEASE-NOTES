@@ -27,10 +27,10 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 
 === New features in 1.13 ===
 
-* __HIDDENCAT__ on a category page causes the category to be hidden on the 
+* __HIDDENCAT__ on a category page causes the category to be hidden on the
   article page.
-* Don't show edit permissions errors on a red link click, just redirect to the 
-  article. This is so that readers who don't know what a red link is aren't 
+* Don't show edit permissions errors on a red link click, just redirect to the
+  article. This is so that readers who don't know what a red link is aren't
   confused when they are told they are range-blocked.
 * Add a new hook ImageBeforeProduceHTML to allow extensions to modify wikitext
   image syntax output.
@@ -95,6 +95,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Croatian (hr)
 * Upper Sorbian (hsb)
 * Hungarian (hu)
+* Indonesian (id)
 * Eastern Canadian (Unified Canadian Aboriginal Syllabics) (ike-cans)
 * Icelandic (is)
 * Italian (it)
