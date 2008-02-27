@@ -1239,6 +1239,9 @@ Make sure that this change will maintain historical page continuity.
   </div>
 </form>', # don't translate or duplicate this message to other languages
 
+# OpenSearch description
+'opensearch-shortname'     => '{{SITENAME}} ({{CONTENTLANGUAGE}})',
+
 # Preferences page
 'preferences'              => 'Preferences',
 'preferences-summary'      => '', # only translate this message to other languages if you have to change it

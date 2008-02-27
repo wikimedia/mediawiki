@@ -6,7 +6,8 @@
 
 require_once( dirname(__FILE__) . '/includes/WebStart.php' );
 require_once( dirname(__FILE__) . '/languages/Names.php' );
-$fullName = "$wgSitename ({$wgLanguageNames[$wgLanguageCode]})";
+$fullName = "$wgSitename ($wgLanguageCode)";
+$fullName = wfMsg( 'opensearch-shortname' );
 $shortName = htmlspecialchars( mb_substr( $fullName, 0, 24 ) );
 $siteName = htmlspecialchars( $fullName );
 
@@ -20,7 +21,13 @@ $suggest = htmlspecialchars($wgServer . $wgScriptPath . '/api.php?action=opensea
 
 
 $response = $wgRequest->response();
-$response->header( 'Content-type: application/opensearchdescription+xml' );
+if( $wgRequest->getVal( 'ctype' ) == 'application/xml' ) {
+	// Makes testing tweaks about a billion times easier
+	$ctype = 'application/xml';
+} else {
+	$ctype = 'application/opensearchdescription+xml';
+}
+$response->header( "Content-type: $ctype" );
 
 # Set an Expires header so that squid can cache it for a short time
 # Short enough so that the sysadmin barely notices when $wgSitename is changed
