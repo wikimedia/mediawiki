@@ -333,8 +333,8 @@ class UserrightsPage extends SpecialPage {
 		}
 		$wgOut->addHTML(
 			Xml::openElement( 'form', array( 'method' => 'post', 'action' => $this->getTitle()->escapeLocalURL(), 'name' => 'editGroup' ) ) .
-			Xml::hidden( 'user', $user->getName() ) .
-			Xml::hidden( 'wpEditToken', $wgUser->editToken( $user->getName() ) ) .
+			Xml::hidden( 'user', $this->mTarget ) .
+			Xml::hidden( 'wpEditToken', $wgUser->editToken( $this->mTarget ) ) .
 			Xml::openElement( 'fieldset' ) .
 			Xml::element( 'legend', array(), wfMsg( 'userrights-editusergroup' ) ) .
 			wfMsgExt( 'editinguser', array( 'parse' ),
