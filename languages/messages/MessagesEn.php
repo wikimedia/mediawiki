@@ -1240,7 +1240,7 @@ Make sure that this change will maintain historical page continuity.
 </form>', # don't translate or duplicate this message to other languages
 
 # OpenSearch description
-'opensearch-shortname'     => '{{SITENAME}} ({{CONTENTLANGUAGE}})',
+'opensearch-desc'          => '{{SITENAME}} ({{CONTENTLANGUAGE}})',
 
 # Preferences page
 'preferences'              => 'Preferences',

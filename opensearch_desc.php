@@ -6,8 +6,7 @@
 
 require_once( dirname(__FILE__) . '/includes/WebStart.php' );
 require_once( dirname(__FILE__) . '/languages/Names.php' );
-$fullName = "$wgSitename ($wgLanguageCode)";
-$fullName = wfMsg( 'opensearch-shortname' );
+$fullName = wfMsgForContent( 'opensearch-desc' );
 $shortName = htmlspecialchars( mb_substr( $fullName, 0, 24 ) );
 $siteName = htmlspecialchars( $fullName );
 
