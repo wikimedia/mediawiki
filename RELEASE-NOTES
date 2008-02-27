@@ -48,6 +48,10 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 12988) $wgMinimalPasswordLength no longer breaks create user by email
 * (bug 13022) Fix upload from URL on PHP 5.0.x
 * (bug 13132) Unable to unprotect pages protected with earlier versions of MediaWiki
+* (bug 12723) OpenSearch description name now uses more compact language code
+  to avoid passing the length limit as often, is customizable per site via
+  'opensearch-shortname' message.
+
 
 === API changes in 1.13 ===
 
