@@ -49,6 +49,7 @@ $specialPageAliases = array(
 	'Disambiguations'           => array( 'Homonymie' ),
 	'Userlogin'                 => array( 'Umellen' ),
 	'Userlogout'                => array( 'Ofmellen' ),
+	'CreateAccount'             => array( 'Benotzerkont_opmaachen' ),
 	'Preferences'               => array( 'Astellungen' ),
 	'Watchlist'                 => array( 'Iwwerwaachungslëscht' ),
 	'Recentchanges'             => array( 'Rezent_Ännerungen' ),
@@ -120,6 +121,7 @@ $specialPageAliases = array(
 	'Resetpass'                 => array( 'Passwuert_zrécksetzen' ),
 	'Withoutinterwiki'          => array( 'Säiten_ouni_Interwiki-Linken' ),
 	'MergeHistory'              => array( 'Versiounen_zesummeleeën' ),
+	'Filepath'                  => array( 'Pad_bäi_de_Fichier' ),
 );
 
 $messages = array(
