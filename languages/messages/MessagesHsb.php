@@ -148,6 +148,7 @@ $messages = array(
 'tog-nolangconversion'        => 'Konwertowanje rěčnych wariantow znjemóžnić',
 'tog-ccmeonemails'            => 'Kopije mejlkow dóstać, kiž druhim wužiwarjam pósćelu',
 'tog-diffonly'                => 'Jenož rozdźěle pokazać (nic pak zbytny wobsah)',
+'tog-showhiddencats'          => 'Schowane kategorije pokazać',
 
 'underline-always'  => 'přeco',
 'underline-never'   => 'ženje',
@@ -208,12 +209,14 @@ $messages = array(
 'dec'           => 'dec',
 
 # Bits of text used by many pages
-'categories'            => '{{PLURAL:$1|Kategorija|Kategoriji|Kategorije|Kategorije}}',
-'pagecategories'        => '{{PLURAL:$1|Kategorija|Kategoriji|Kategorije|Kategorije}}',
-'category_header'       => 'Nastawki w kategoriji „$1”',
-'subcategories'         => 'Podkategorije',
-'category-media-header' => 'Dataje w kategoriji „$1”',
-'category-empty'        => "''Tuta kategorija tuchwilu žane nastawki abo medije njewobsahuje.''",
+'categories'               => '{{PLURAL:$1|Kategorija|Kategoriji|Kategorije|Kategorije}}',
+'pagecategories'           => '{{PLURAL:$1|Kategorija|Kategoriji|Kategorije|Kategorije}}',
+'category_header'          => 'Nastawki w kategoriji „$1”',
+'subcategories'            => 'Podkategorije',
+'category-media-header'    => 'Dataje w kategoriji „$1”',
+'category-empty'           => "''Tuta kategorija tuchwilu žane nastawki abo medije njewobsahuje.''",
+'hidden-categories'        => '{{PLURAL:$1|Schowana kategorija|Schowane kategorije}}',
+'hidden-category-category' => 'Schowane kategorije', # Name of the category where hidden categories will be listed
 
 'mainpagetext'      => '<big><b>MediaWiki bu wuspěšnje instalowany.</b></big>',
 'mainpagedocfooter' => 'Prošu hlej [http://meta.wikimedia.org/wiki/Help:Contents dokumentaciju] za informacije wo wužiwanju softwary.
@@ -687,6 +690,7 @@ Lubiš nam tež, zo sy jón sam napisał abo ze zjawneje domejny abo z podobneho
 'templatesusedsection'      => 'W tutym wotrězku wužiwane předłohi:',
 'template-protected'        => '(škitana)',
 'template-semiprotected'    => '(škitana za njepřizjewjenych wužiwarjow a nowačkow)',
+'hiddencategories'          => 'Tuta strona je čłon w {{PLURAL:$1|1 schowanej kategoriji|$1 schowanymaj kategorijomaj|$1 schowanych kategorijach|$1 schowanych kategorijach}}:',
 'edittools'                 => '<!-- Tutón tekst so spody wobdźěłowanskich a nahrawanskich formularow pokazuje. -->',
 'nocreatetitle'             => 'Wutworjenje stron je wobmjezowane.',
 'nocreatetext'              => 'Na {{GRAMMAR:Lokatiw|{{SITENAME}}}} bu wutworjenje nowych stronow wobmjezowane. Móžeš wobstejace strony wobdźěłać abo [[Special:Userlogin|so přizjewić abo wužiwarske konto wutworić]].',

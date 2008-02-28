@@ -154,6 +154,7 @@ $messages = array(
 'tog-nolangconversion'        => 'Desautibar conversión de bariants',
 'tog-ccmeonemails'            => 'Rezibir copias de os correus que nimbío ta atros usuarios',
 'tog-diffonly'                => "No amostrar o conteniu d'a pachina debaxo d'as esferenzias",
+'tog-showhiddencats'          => 'Amostrar categorías amagatas',
 
 'underline-always'  => 'Siempre',
 'underline-never'   => 'Nunca',
@@ -214,12 +215,14 @@ $messages = array(
 'dec'           => 'abi',
 
 # Bits of text used by many pages
-'categories'            => 'Categorías',
-'pagecategories'        => '{{PLURAL:$1|Categoría|Categorías}}',
-'category_header'       => 'Articlos en a categoría "$1"',
-'subcategories'         => 'Subcategorías',
-'category-media-header' => 'Contenius multimedia en a categoría "$1"',
-'category-empty'        => "''Ista categoría no tiene por agora garra articlo ni conteniu multimedia''",
+'categories'               => 'Categorías',
+'pagecategories'           => '{{PLURAL:$1|Categoría|Categorías}}',
+'category_header'          => 'Articlos en a categoría "$1"',
+'subcategories'            => 'Subcategorías',
+'category-media-header'    => 'Contenius multimedia en a categoría "$1"',
+'category-empty'           => "''Ista categoría no tiene por agora garra articlo ni conteniu multimedia''",
+'hidden-categories'        => '{{PLURAL:$1|Categoría amagata|Categorías amagatas}}',
+'hidden-category-category' => 'Categorías amagatas', # Name of the category where hidden categories will be listed
 
 'mainpagetext'      => "O programa MediaWiki s'ha instalato correutament.",
 'mainpagedocfooter' => "Consulta a [http://meta.wikimedia.org/wiki/Help:Contents Guía d'usuario] ta mirar informazión sobre cómo usar o software wiki.
@@ -674,6 +677,7 @@ Considere, por fabor, a posibilidat de troxar ista pachina en trestallos más ch
 'templatesusedsection'      => 'Plantillas usatas en ista sezión:',
 'template-protected'        => '(protechita)',
 'template-semiprotected'    => '(semiprotechita)',
+'hiddencategories'          => 'Ista pachina fa parte de {{PLURAL:$1|1 categoría amagata|$1 categorías amagatas}}:',
 'edittools'                 => "<!-- Iste testo amanixerá baxo os formularios d'edizión y carga. -->",
 'nocreatetitle'             => "S'ha restrinchito a creyazión de pachinas",
 'nocreatetext'              => '{{SITENAME}} ha restrinchito a creyazión de nuebas pachinas. Puede tornar entazaga y editar una pachina ya esistent, [[Special:Userlogin|identificarse u creyar una cuenta]].',
@@ -1020,7 +1024,7 @@ To include a file in a page, use a link in the form
 *'''Internet Explorer''' / '''Opera''': '''ctrl-f5'''
 *'''Safari''': '''cmd-r'''
 *'''Konqueror''': '''ctrl-r''",
-'filepageexists'              => 'Ya bi ha una pachina (no una imachen) con iste nombre, por fabor, mire-se <strong><tt>$1</tt></strong> si no ye seguro si quiere cambiar-la.',
+'filepageexists'              => "A pachina de descripzión ta iste archibo ya ye creyata en <strong><tt>$1</tt></strong>, pero no esiste garra archibo con iste nombre. O resumen que escriba no amaneixerá en a pachina de descripzión. Si quiere que o suyo resumen amaneixca aquí, abrá d'editar-lo manualment",
 'fileexists-extension'        => "Ya bi ha un archibo con un nombre parexiu:<br />
 Nombre de l'archibo que ye cargando: <strong><tt>$1</tt></strong><br />
 Nombre de l'archibo ya esistent: <strong><tt>$2</tt></strong><br />

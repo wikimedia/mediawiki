@@ -146,7 +146,7 @@ $messages = array(
 'category_header'       => 'Artikels in "$1"-kategorie',
 'subcategories'         => 'Subkategorieë',
 'category-media-header' => 'Media in kategorie "$1"',
-'category-empty'        => "''Hierdie kategorie bevat geen artikels of media.''",
+'category-empty'        => "''Hierdie kategorie bevat geen artikels of media nie.''",
 
 'mainpagetext' => "<big>'''MediaWiki is suksesvol geïnstalleer.'''</big>",
 
@@ -1183,7 +1183,7 @@ Die teikenartikel "[[$1]]" bestaan reeds. Wil u dit skrap om plek te maak vir di
 'tooltip-feed-atom'               => 'Atom-voed vir hierdie bladsy',
 'tooltip-t-contributions'         => "Bekyk 'n lys van bydraes deur hierdie gebruiker",
 'tooltip-t-emailuser'             => "Stuur 'n e-pos aan hierdie gebruiker",
-'tooltip-t-upload'                => 'Laai beelde of ander medialêers op',
+'tooltip-t-upload'                => 'Laai lêers op',
 'tooltip-t-specialpages'          => "'n Lys van al die spesiale bladsye",
 'tooltip-t-print'                 => 'Drukbare weergawe van hierdie bladsy',
 'tooltip-t-permalink'             => "'n Permanente skakel na hierdie weergawe van die bladsy",
@@ -1192,7 +1192,7 @@ Die teikenartikel "[[$1]]" bestaan reeds. Wil u dit skrap om plek te maak vir di
 'tooltip-ca-nstab-media'          => 'Bekyk die mediabladsy',
 'tooltip-ca-nstab-special'        => "Hierdie is 'n spesiale bladsy; u kan dit nie wysig nie",
 'tooltip-ca-nstab-project'        => 'Bekyk die projekbladsy',
-'tooltip-ca-nstab-image'          => 'Bekyk die beeldbladsy',
+'tooltip-ca-nstab-image'          => 'Bekyk die leêrbladsy',
 'tooltip-ca-nstab-mediawiki'      => 'Bekyk die stelselboodskap',
 'tooltip-ca-nstab-template'       => 'Bekyk die sjabloon',
 'tooltip-ca-nstab-help'           => 'Bekyk die hulpbladsy',

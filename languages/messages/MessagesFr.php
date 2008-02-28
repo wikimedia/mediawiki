@@ -1027,7 +1027,7 @@ $2 Inclure les pages de redirection<br /> Rechercher $3 $9',
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|modification|modifications}}',
 'recentchanges'                     => 'Modifications récentes',
-'recentchangestext'                 => 'Suivez sur cette page les dernières modifications de {{SITENAME}}.',
+'recentchangestext'                 => 'Piste les changements les plus récents du wiki sur cette page.',
 'recentchanges-feed-description'    => 'Suivre les dernières modifications de ce wiki dans un flux.',
 'rcnote'                            => 'Voici {{PLURAL:$1|la dernière modification|les $1 dernières modifications}} depuis {{PLURAL:$2|le dernier jour|les <b>$2</b> derniers jours}}, déterminée{{PLURAL:$1||s}} ce $3.',
 'rcnotefrom'                        => 'Voici les modifications effectuées depuis le <strong>$2</strong> (<b>$1</b> au maximum).',

@@ -1114,6 +1114,10 @@ Is in am an freastalaí (UTC) iad na hamanna anseo thíos.',
 'reverted'                    => 'Tá eagrán níos luaithe in úsáid anois',
 'deletecomment'               => 'Cúis don scriosadh',
 'deletereasonotherlist'       => 'Fáth eile',
+'deletereason-dropdown'       => '*Fáthanna coitianta scriosta
+** Iarratas ón údar
+** Sárú cóipchirt
+** Loitiméireacht',
 'rollback'                    => 'Athúsáid seanathruithe',
 'rollback_short'              => 'Roll siar',
 'rollbacklink'                => 'athúsáid',

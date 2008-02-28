@@ -114,6 +114,7 @@ $messages = array(
 'tog-nolangconversion'        => 'Desactivar la conversion de las variantas de lenga',
 'tog-ccmeonemails'            => 'Mandatz-me una còpia dels corrièrs electronics que mandi als autres utilizaires',
 'tog-diffonly'                => 'Mostrar pas lo contengut de las paginas jos las difs',
+'tog-showhiddencats'          => 'Afichar las categorias amagadas',
 
 'underline-always'  => 'Totjorn',
 'underline-never'   => 'Pas jamai',
@@ -174,12 +175,14 @@ $messages = array(
 'dec'           => 'de dec',
 
 # Bits of text used by many pages
-'categories'            => 'Categorias de la pagina',
-'pagecategories'        => '{{PLURAL:$1|Categoria|Categorias}} de la pagina',
-'category_header'       => 'Articles dins la categoria "$1"',
-'subcategories'         => 'Soscategorias',
-'category-media-header' => 'Fichièrs multimèdia dins la categoria "$1"',
-'category-empty'        => "''Actualament, aquesta categoria conten pas cap d'articles o de mèdia.''",
+'categories'               => 'Categorias de la pagina',
+'pagecategories'           => '{{PLURAL:$1|Categoria|Categorias}} de la pagina',
+'category_header'          => 'Articles dins la categoria "$1"',
+'subcategories'            => 'Soscategorias',
+'category-media-header'    => 'Fichièrs multimèdia dins la categoria "$1"',
+'category-empty'           => "''Actualament, aquesta categoria conten pas cap d'articles o de mèdia.''",
+'hidden-categories'        => '{{PLURAL:$1|Categoria amagada|Categorias amagadas}}',
+'hidden-category-category' => 'Categorias amagadas', # Name of the category where hidden categories will be listed
 
 'mainpagetext'      => 'Logicial {{SITENAME}} installat.',
 'mainpagedocfooter' => "Referissètz-vos a [http://meta.wikimedia.org/wiki/Help:Contents User's Guide] a prepaus de la personalizacion de l'interfàcia.
@@ -316,10 +319,12 @@ $messages = array(
 'restorelink'             => '{{PLURAL:$1|una edicion escafada|$1 edicions escafadas}}',
 'feedlinks'               => 'Flus:',
 'feed-invalid'            => 'Tipe de flus invalid.',
+'feed-unavailable'        => 'Los fluses de sindicacion son pas disponibles sus {{SITENAME}}',
 'site-rss-feed'           => 'Flus RSS de $1',
 'site-atom-feed'          => 'Flus Atom de $1',
 'page-rss-feed'           => 'Flus RSS de "$1"',
 'page-atom-feed'          => 'Flus Atom de "$1"',
+'red-link-title'          => '$1 (pas encara redigit)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Article',
@@ -619,6 +624,7 @@ La zòna d'edicion superiora conten lo tèxt tal coma es enregistrat actualament
 'templatesusedsection'      => 'Modèls utilizats dins aquesta seccion :',
 'template-protected'        => '(protegit)',
 'template-semiprotected'    => '(semiprotegit)',
+'hiddencategories'          => "{{PLURAL:$1|Categoria amagada|Categorias amagadas}} qu'aquesta pagina ne fa partida :",
 'edittools'                 => '<!-- Tot tèxt picat aicí serà afichat jos las boitas de modificacion o d’impòrt de fichièr. -->',
 'nocreatetitle'             => 'Creacion de pagina limitada',
 'nocreatetext'              => '{{SITENAME}} a restrenhut la possibilitat de crear de paginas novèlas.
@@ -753,6 +759,7 @@ D’autres administrators sus {{SITENAME}} poiràn totjorn accedir al contengut 
 'searchsubtitleinvalid' => 'Per la requèsta "$1"',
 'noexactmatch'          => 'Cap de pagina amb lo títol "$1" existís pas, ensajatz amb la recèrca complèta. Si que non, podètz [[:$1|crear aquesta pagina]]',
 'noexactmatch-nocreate' => "'''I a pas de pagina intitolada \"\$1\".'''",
+'toomanymatches'        => 'Tròp d’occuréncias son estadas trobadas, sètz pregat de sometre una requèsta diferenta.',
 'titlematches'          => 'Correspondéncias dins los títols',
 'notitlematches'        => "Cap de títol d'article conten pas lo(s) mot(s) demandat(s)",
 'textmatches'           => 'Correspondéncias dins los tèxtes',
@@ -923,12 +930,13 @@ Los gropes pas seleccionats seràn pas modificats. Podètz deseleccionar un grop
 per copiar de fichièrs sul serveire.',
 'upload_directory_read_only'  => 'Lo serveire Web pòt escriure dins lo dorsièr cibla ($1).',
 'uploaderror'                 => 'Error',
-'uploadtext'                  => "Utilizatz lo formulari çai jos per copiar d'imatges novèls sul serveire. Per veire los imatges ja plaçats sul serveire o per efectuar una recèrca demèst eles, anatz a [[Special:Imagelist|la lista dels imatges]]. Los uploads e las supressions son listats dins lo [[Special:Log/upload|jornal dels uploads]].
+'uploadtext'                  => "Utilizatz lo formulari çaijós per mandar de fichièrs sul serveire.
+Per veire o recercar d'imatges precedentament mandats, consultatz [[Special:Imagelist|la lista dels imatges]]. Las còpias e las supressions tanben son enregistradas dins lo [[Special:Log/upload|jornal dels uploads]].
 
-Per inclure un imatge dins una pagina, utilizatz un dels modèls seguents:
-'''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:File.jpg]]</nowiki>''',
-'''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:File.png|alt text]]</nowiki>''' o
-'''<nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki>''' per un ligam dirèct vèrs lo fichièr.",
+Per inclòure un imatge dins una pagina, utilizatz un ligam de la forma
+'''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:Fichièr.jpg]]</nowiki></b>,
+'''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:Fichièr.png|tèxt alternatiu]]</nowiki></b> o
+'''<nowiki>[[</nowiki>{{ns:media}}<nowiki>:Fichièr.ogg]]</nowiki></b> per ligar dirèctament vèrs lo fichièr.",
 'upload-permitted'            => 'Formats de fichièrs autorizats : $1.',
 'upload-preferred'            => 'Formats de fichièrs preferits : $1.',
 'upload-prohibited'           => 'Formats de fichièrs interdiches : $1.',
@@ -955,6 +963,7 @@ L'ora indicada es la del serveire (UTC).",
 'largefileserver'             => "La talha d'aqueste fichièr es superiora al maximom autorizat.",
 'emptyfile'                   => 'Lo fichièr que volètz importar sembla void. Aquò pòt èsser degut a una error dins lo nom del fichièr. Verificatz que desiratz vertadièrament copiar aqueste fichièr.',
 'fileexists'                  => 'Un fichièr amb aqueste nom existís ja. Mercé de verificar $1. Sètz segur de voler modificar aqueste fichièr ?',
+'filepageexists'              => "La pagina de descripcion per aqueste fichièr ja es estada creada aicí <strong><tt>$1</tt></strong>, mas cap de fichièr d'aqueste nom existís pas actualament. Lo resumit qu'anatz escriure remplaçarà pas lo tèxt precedent ; per aquò far, deuretz editar manualament la pagina.",
 'fileexists-extension'        => "Un fichièr amb un nom similar existís ja :<br /> Nom del fichièr d'importar : <strong><tt>$1</tt></strong><br /> Nom del fichièr existent : <strong><tt>$2</tt></strong><br /> la sola diferéncia es la cassa (majusculas / minusculas) de l’extension. Verificatz que lo fichièr es diferent e cambiatz son nom.",
 'fileexists-thumb'            => "<center>'''Imatge existent'''</center>",
 'fileexists-thumbnail-yes'    => 'Lo fichièr sembla èsser un imatge en talha reducha <i>(thumbnail)</i>. Verificatz lo fichièr <strong><tt>$1</tt></strong>.<br /> Se lo fichièr verificat es lo meteis imatge (dins una resolucion melhora), es pas de besonh d’importar una version reducha.',
@@ -1025,6 +1034,7 @@ L'ora indicada es la del serveire (UTC).",
 'nolinkstoimage'            => 'Cap de pagina compòrta pas de ligam vèrs aqueste imatge.',
 'sharedupload'              => 'Aqueste fichièr es pertejat e pòt èsser utilizat per d’autres projèctes.',
 'shareduploadwiki'          => 'Reportatz-vos a la $1 per mai d’informacion.',
+'shareduploadwiki-desc'     => 'La $1 del repertòri pertejat compren la descripcion afichada çaijós.',
 'shareduploadwiki-linktext' => 'Pagina de descripcion del fichièr',
 'noimage'                   => 'Cap de fichièr possedissent aqueste nom existís pas, podètz $1.',
 'noimage-linktext'          => "n'importar un",
@@ -1034,7 +1044,7 @@ L'ora indicada es la del serveire (UTC).",
 'imagelist_user'            => 'Utilizaire',
 'imagelist_size'            => 'Talha (en octets)',
 'imagelist_description'     => 'Descripcion',
-'imagelist_search_for'      => 'Recèrca per l’imatge nomenat :',
+'imagelist_search_for'      => 'Recèrca pel mèdia nomenat :',
 
 # File reversion
 'filerevert'                => 'Revocar $1',
@@ -1058,7 +1068,11 @@ L'ora indicada es la del serveire (UTC).",
 'filedelete-nofile'           => "'''$1''' existís pas sus aqueste site.",
 'filedelete-nofile-old'       => "Existís pas cap de version archivada de '''$1''' amb los atributs indicats.",
 'filedelete-iscurrent'        => "Sètz a ensajar de suprimir la version mai recenta d'aqueste fichièr. Devètz, deperabans, restablir una version anciana d'aqueste.",
+'filedelete-otherreason'      => 'Rason diferenta/suplementària :',
 'filedelete-reason-otherlist' => 'Autra rason',
+'filedelete-reason-dropdown'  => '*Motius de supression costumièrs
+** Violacion de drech d’autor
+** Fichièr duplicat',
 
 # MIME search
 'mimesearch'         => 'Recèrca per tipe MIME',
@@ -1169,7 +1183,7 @@ I a {{PLURAL:\$7|'''\$7''' article|'''\$7''' articles}} dins [[meta:Help:Job_que
 'intl'                    => 'Ligams interlengas',
 'move'                    => 'Renomenar',
 'movethispage'            => 'Desplaçar la pagina',
-'unusedimagestext'        => "<p>Doblidetz pas que d'autres sits non occitanofònes, pòdon conténer un ligam dirèct vèrs aqueste imatge, e qu'aqueste pòt èsser plaçat dins aquesta lista alara qu'es en realitat utilizada.",
+'unusedimagestext'        => "<p>Doblidetz pas que d'autres sits pòdon conténer un ligam dirèct vèrs aqueste imatge, e qu'aqueste pòt èsser plaçat dins aquesta lista alara qu'es en realitat utilizada.</p>",
 'unusedcategoriestext'    => "Las categorias seguentas existisson mas cap d'article o de categoria los utilizan pas.",
 'notargettitle'           => 'Pas de cibla',
 'notargettext'            => 'Indicatz una pagina cibla o un utilizaire cibla.',
@@ -1425,6 +1439,7 @@ las revisions restablidas apareisseràn dins l'istoric anterior e la version cor
 'undeleterevision-missing'     => 'Version invalida o mancanta. Benlèu avètz un ligam marrit, o la version es estada restablida o suprimida de l’archiu.',
 'undelete-nodiff'              => 'Pas de revision precedenta trobada.',
 'undeletebtn'                  => 'Restablir !',
+'undeletelink'                 => 'restablir',
 'undeletereset'                => 'Reinicializar',
 'undeletecomment'              => 'Comentari:',
 'undeletedarticle'             => 'restaurat "[[$1]]"',
@@ -1695,14 +1710,17 @@ Totas las accions d’importacion interwiki son conservadas dins lo [[Special:Lo
 'importcantopen'             => "Impossible de dobrir lo fichièr d'importar",
 'importbadinterwiki'         => 'Marrit ligam interwiki',
 'importnotext'               => 'Void o sens tèxt',
-'importsuccess'              => "L'impòrt a capitat!",
+'importsuccess'              => 'Impòrt capitat!',
 'importhistoryconflict'      => "I a un conflicte dins l'istoric de las versions (aquesta pagina a pogut èsser importada de per abans).",
 'importnosources'            => 'Cap de font inter-wiki es pas estada definida e la còpia dirècta d’istoric es desactivada.',
 'importnofile'               => 'Cap de fichièr es pas estat importat.',
 'importuploaderrorsize'      => "Lo telecargament del fichièr d'importar a pas capitat. Sa talha es mai granda que la autorizada.",
 'importuploaderrorpartial'   => "Lo telecargament del fichièr d'importar a pas capitat. Aqueste o es pas estat que parcialament.",
 'importuploaderrortemp'      => "Lo telecargament del fichièr d'importar a pas capitat. Un dorsièr temporari es mancant.",
+'import-parse-failure'       => "Ruptura dins l'analisi de l'impòrt XML",
 'import-noarticle'           => "Pas de pagina d'importar !",
+'import-nonewrevisions'      => 'Totas las revisions son estadas importadas deperabans.',
+'xml-error-string'           => '$1 a la linha $2, col $3 (octet $4) : $5',
 
 # Import log
 'importlogpage'                    => 'Istoric de las importacions de paginas',
@@ -1751,7 +1769,7 @@ Totas las accions d’importacion interwiki son conservadas dins lo [[Special:Lo
 'tooltip-feed-atom'               => 'Flus Atom per aquesta pagina',
 'tooltip-t-contributions'         => "Veire la lista de las contribucions d'aqueste utilizaire",
 'tooltip-t-emailuser'             => 'Mandar un corrièr electronic a aqueste utilizaire',
-'tooltip-t-upload'                => 'Importar un imatge o fichièr mèdia sul serveire',
+'tooltip-t-upload'                => 'Mandar un imatge o fichièr mèdia sul serveire',
 'tooltip-t-specialpages'          => 'Lista de totas las paginas especialas',
 'tooltip-t-print'                 => "Version imprimibla d'aquesta pagina",
 'tooltip-t-permalink'             => 'Ligam permanent vèrs aquesta version de la pagina',
@@ -1760,7 +1778,7 @@ Totas las accions d’importacion interwiki son conservadas dins lo [[Special:Lo
 'tooltip-ca-nstab-media'          => 'Veire la pagina del mèdia',
 'tooltip-ca-nstab-special'        => 'Aquò es una pagina especiala, podètz pas la modificar.',
 'tooltip-ca-nstab-project'        => 'Veire la pagina del projècte',
-'tooltip-ca-nstab-image'          => 'Veire la pagina de l’imatge',
+'tooltip-ca-nstab-image'          => 'Veire la pagina del fichièr',
 'tooltip-ca-nstab-mediawiki'      => 'Veire lo messatge del sistèma',
 'tooltip-ca-nstab-template'       => 'Veire lo modèl',
 'tooltip-ca-nstab-help'           => 'Veire la pagina d’ajuda',
@@ -1875,12 +1893,14 @@ $1",
 'noimages'     => "Cap imatge d'afichar.",
 
 # Bad image list
-'bad_image_list' => "Lo format es lo seguent:
-Solament las linhas començant per * son presas en compte. Lo primièr ligam de la linha es lo vèrs un marrit imatge. Los autres ligams sus la meteissa linha son considerats coma d'excepcions, per exemple d'articles sulsquals l'imatge deu aparéisser.",
+'bad_image_list' => "Lo format es lo seguent :
+
+Solas las listas d'enumeracion (las linhas començant per *) son presas en compte. Lo primièr ligam d'una linha deu èsser cap a un imatge marrit. 
+Los autres ligams sus la meteissa linha son considerats coma d'excepcions, per exemple d'articles sulsquals l'imatge deu aparéisser.",
 
 # Metadata
 'metadata'          => 'Metadonadas',
-'metadata-help'     => "Aqueste fichièr conten d'informacions suplementàrias probablament ajustadas per l’aparelh de fòto o l'escanèr que l’a producha. Se lo fichièr es estat modificat, cèrts detalhs pòdon refletar pas l’imatge modificat.",
+'metadata-help'     => "Aqueste fichièr conten d'informacions suplementàrias probablament ajustadas per l’aparelh de fòto numeric o l'escanèr que las a aquesas. Se lo fichièr es estat modificat dempuèi son estat original, cèrts detalhs pòdon refletar pas entièrament l’imatge modificat.",
 'metadata-expand'   => 'Mostrar las informacions detalhadas',
 'metadata-collapse' => 'Amagar las informacions detalhadas',
 'metadata-fields'   => 'Los camps de metadonadas d’EXIF listats dins aqueste message seràn incluses dins la pagina de descripcion de l’imatge quand la taula de metadonadas serà reduccha. Los autres camps seràn amagats per defaut.
@@ -2284,8 +2304,24 @@ Ensajatz la previsualizacion normala.',
 'unknown_extension_tag' => "Balisa d'extension « $1 » desconeguda",
 
 # Special:Version
-'version-license'          => 'Licéncia',
-'version-software-product' => 'Produch',
+'version-extensions'               => 'Extensions installadas',
+'version-specialpages'             => 'Paginas especialas',
+'version-parserhooks'              => 'Extensions del parsaire',
+'version-variables'                => 'Variablas',
+'version-other'                    => 'Divèrs',
+'version-mediahandlers'            => 'Supòrts mèdia',
+'version-hooks'                    => 'Croquets',
+'version-extension-functions'      => 'Foncions de las extensions',
+'version-parser-extensiontags'     => 'Balisas suplementàrias del parsaire',
+'version-parser-function-hooks'    => 'Croquets de las foncions del parsaire',
+'version-skin-extension-functions' => "Foncions d'extension de l'interfàcia",
+'version-hook-name'                => 'Nom del croquet',
+'version-hook-subscribedby'        => 'Definit per',
+'version-version'                  => 'Version',
+'version-license'                  => 'Licéncia',
+'version-software'                 => 'Logicial installat',
+'version-software-product'         => 'Produch',
+'version-software-version'         => 'Version',
 
 # Special:Filepath
 'filepath'         => "Camin d'accès d'un fichièr",

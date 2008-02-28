@@ -193,6 +193,7 @@
 	'ms' => 'Bahasa Melayu',	# Malay
 	'mt' => 'Malti',	# Maltese
 	'mus' => 'Mvskoke',	# Muskogee/Creek
+	'mwl' => 'Mirandés',	# Mirandese
 	'my' => 'Myanmasa',		# Burmese
 	'myv' => 'эрзянь кель',         # Erzya
 	'mzn' => 'مَزِروني',		# Mazanderani

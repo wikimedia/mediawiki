@@ -546,7 +546,7 @@ W celu powstrzymania nadużyć możliwość wysyłania przypomnień została ogr
 'accountcreated'             => 'Utworzono konto',
 'accountcreatedtext'         => 'Konto dla $1 zostało utworzone.',
 'createaccount-title'        => 'Stworzenie konta na {{GRAMMAR:Ms.lp|{{SITENAME}}}}',
-'createaccount-text'         => 'Ktoś utworzył na {{GRAMMAR:Ms.pl|{{SITENAME}}}} ($4) dla Twojego adresu e-mail konto "$2". Aktualne hasło to "$3". Powinieneś się teraz zalogować i je zmienić.
+'createaccount-text'         => 'Ktoś utworzył na {{GRAMMAR:Ms.lp|{{SITENAME}}}} ($4) dla Twojego adresu e-mail konto "$2". Aktualne hasło to "$3". Powinieneś się teraz zalogować i je zmienić.
 
 Możesz zignorować tą wiadomość, jeśli konto zostało stworzone przez pomyłkę.',
 'loginlanguagelabel'         => 'Język: $1',
@@ -559,7 +559,7 @@ Możesz zignorować tą wiadomość, jeśli konto zostało stworzone przez pomy�
 'resetpass_submit'        => 'Ustaw hasło i zaloguj',
 'resetpass_success'       => 'Twoje hasło zostało pomyślnie zmienione! Trwa logowanie...',
 'resetpass_bad_temporary' => 'Nieprawidłowe hasło tymczasowe. Być może zakończyłeś już proces zmiany hasła lub poprosiłeś o nowe hasło tymczasowe.',
-'resetpass_forbidden'     => 'Hasła na {{GRAMMAR:Ms.pl|{{SITENAME}}}} nie można zmienić.',
+'resetpass_forbidden'     => 'Hasła na {{GRAMMAR:Ms.lp|{{SITENAME}}}} nie można zmienić.',
 'resetpass_missing'       => 'Brak danych formularza.',
 
 # Edit page toolbar
@@ -632,7 +632,7 @@ Identyfikator Twojej blokady to $5. Zanotuj go i podaj administratorowi.',
 'whitelistreadtitle'        => 'Przed przeczytaniem musisz się zalogować',
 'whitelistreadtext'         => 'Musisz się [[{{ns:Special}}:Userlogin|zalogować]], żeby czytać strony.',
 'whitelistacctitle'         => 'Nie wolno ci zakładać konta',
-'whitelistacctext'          => 'Zakładanie kont na {{GRAMMAR:Ms.pl|{{SITENAME}}}} wymaga [[{{ns:special}}:Userlogin|zalogowania]] oraz posiadania odpowiednich uprawnień.',
+'whitelistacctext'          => 'Zakładanie kont na {{GRAMMAR:Ms.lp|{{SITENAME}}}} wymaga [[{{ns:special}}:Userlogin|zalogowania]] oraz posiadania odpowiednich uprawnień.',
 'confirmedittitle'          => 'Wymagane potwierdzenie e-maila by móc edytować',
 'confirmedittext'           => 'Musisz podać i potwierdzić swój e-mail by móc edytować. Możesz to zrobić w [[{{ns:special}}:Preferences|swoich ustawieniach]].',
 'nosuchsectiontitle'        => 'Nieistniejąca sekcja',
@@ -659,7 +659,7 @@ Identyfikator Twojej blokady to $5. Zanotuj go i podaj administratorowi.',
 'session_fail_preview'      => '<strong>Przepraszamy! Serwer nie może przetworzyć tej edycji z powodu utraty danych sesji. Spróbuj jeszcze raz. Jeśli to nie pomoże - wyloguj się i zaloguj ponownie.</strong>',
 'session_fail_preview_html' => "<strong>Przepraszamy! Serwer nie może przetworzyć tej edycji z powodu utraty danych sesji.</strong>
 
-''Ponieważ na {{GRAMMAR:Ms.pl|{{SITENAME}}}} włączona została opcja \"raw HTML\", podgląd został ukryty w celu zabezpieczenia przed atakami JavaScript.''
+''Ponieważ na {{GRAMMAR:Ms.lp|{{SITENAME}}}} włączona została opcja \"raw HTML\", podgląd został ukryty w celu zabezpieczenia przed atakami JavaScript.''
 
 <strong>Jeśli jest to prawidłowa próba dokonania edycji, spróbuj jeszcze raz. Jeśli to nie pomoże - wyloguj się i zaloguj ponownie.</strong>",
 'token_suffix_mismatch'     => '<strong>Twoja edycja została odrzucona, ponieważ twój klient pomieszał znaki interpunkcyjne w żetonie edycyjnym. Twoja edycja została odrzucona by zapobiec zniszczeniu tekstu strony. Takie problemy zdarzają się w wypadku korzystania z wadliwych anonimowych sieciowych usług proxy.</strong>',

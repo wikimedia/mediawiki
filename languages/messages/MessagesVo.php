@@ -135,6 +135,7 @@ $messages = array(
 'tog-watchlisthideminor'      => 'Klänolöd redakamis pülik se galädalised',
 'tog-ccmeonemails'            => 'Sedolöd obe kopiedis penedas, kelis sedob gebanes votik',
 'tog-diffonly'                => 'No jonön padaninädi dis difs',
+'tog-showhiddencats'          => 'Jonön kladis peklänedöl',
 
 'underline-always'  => 'Pö jenets valik',
 'underline-never'   => 'Neföro',
@@ -195,12 +196,14 @@ $messages = array(
 'dec'           => 'dek',
 
 # Bits of text used by many pages
-'categories'            => 'Klads',
-'pagecategories'        => '{{PLURAL:$1|Klad|Klads}}',
-'category_header'       => 'Pads in klad: „$1“',
-'subcategories'         => 'Donaklads',
-'category-media-header' => 'Media in klad: "$1"',
-'category-empty'        => "''Klad at anu ninädon padis e ragivis nonikis.''",
+'categories'               => 'Klads',
+'pagecategories'           => '{{PLURAL:$1|Klad|Klads}}',
+'category_header'          => 'Pads in klad: „$1“',
+'subcategories'            => 'Donaklads',
+'category-media-header'    => 'Media in klad: "$1"',
+'category-empty'           => "''Klad at anu ninädon padis e ragivis nonikis.''",
+'hidden-categories'        => '{{PLURAL:$1|Klad|Klads}} peklänedöl',
+'hidden-category-category' => 'Klads peklänedöl', # Name of the category where hidden categories will be listed
 
 'mainpagetext'      => "<big>'''El MediaWiki pestiton benosekiko.'''</big>",
 'mainpagedocfooter' => 'Konsultolös [http://meta.wikimedia.org/wiki/Help:Contents Gebanageidian] ad tuvön nünis dö geb programema vükik.
@@ -755,6 +758,7 @@ Ninäd peklänedöl at binon ye nog lügolovik guvanes votik vüka at: kanons no
 'searchsubtitleinvalid' => "Esukol padi: '''$1'''",
 'noexactmatch'          => "'''No dabinon pad tiädü \"\$1\".''' Kanol [[:\$1|jafön oni]].",
 'noexactmatch-nocreate' => "'''No dabinon pad tiädü \"\$1\".'''",
+'toomanymatches'        => 'Pads tu mödiks labü vöd(s) pesuköl petuvons. Sukolös vödi(s) votik.',
 'titlematches'          => 'Leigon ko padatiäd',
 'notitlematches'        => 'Leigon ko padatiäds nonik',
 'textmatches'           => 'Leigon ko dil padavödema',
@@ -881,6 +885,7 @@ Ninäd peklänedöl at binon ye nog lügolovik guvanes votik vüka at: kanons no
 'newpageletter'                     => 'N',
 'boteditletter'                     => 'b',
 'number_of_watching_users_pageview' => '[{{PLURAL:$1|geban|gebans}} galädöl $1]',
+'rc_categories'                     => 'Te klads fovik (ditolös me el "|")',
 'rc_categories_any'                 => 'Alseimik',
 'newsectionsummary'                 => '/* $1 */ diläd nulik',
 
@@ -927,7 +932,7 @@ Ad pladön magodi at ini pad semik, gebolös yümi fomätü:
 'large-file'                  => 'Pakomandos, das ragivs no binons gretikums ka mö $1; ragiv at binon mö $2.',
 'emptyfile'                   => 'Ragiv fa ol pelöpüköl binon jiniko vägik. Kod atosa äbinon ba pöl pö ragivanem. Vilol-li jenöfo löpükön ragivi at?',
 'fileexists'                  => 'Ragiv labü nem at ya dabinon, logolös, begö! <strong><tt>$1</tt></strong> üf no sevol fümiko, va vilol votükön oni.',
-'filepageexists'              => 'Pad (no ragiv) labü nem at ya dabinon, logolös, begö! <strong><tt>$1</tt></strong> üf no sevol fümiko, das vilol votükön oni.',
+'filepageexists'              => 'Bepenamapad ragiva at ya pejafon (<strong><tt>$1</tt></strong>), ab ragiv nonik labü nem at abinon anu. Naböfodönuam olik no opubon su bepenamapad. Ad pübön oni us, onedol redakön oni ol it.',
 'fileexists-extension'        => 'Ragiv labü nem sümik ya dabinon:<br />
 Nem ragiva palöpüköl: <strong><tt>$1</tt></strong><br />
 Nem ragiva dabinöl: <strong><tt>$2</tt></strong><br />
