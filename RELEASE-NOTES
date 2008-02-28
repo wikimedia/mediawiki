@@ -36,6 +36,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   image syntax output.
 * (bug 13100) Added 'preloadtitle' parameter to action=edit&section=new that
   pre-fills the section title field.
+* (bug 13112) Added Special:RelatedChanges alias to Special:Recentchangeslinked
+
 
 === Bug fixes in 1.13 ===
 
