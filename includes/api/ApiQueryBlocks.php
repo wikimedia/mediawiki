@@ -229,7 +229,8 @@ class ApiQueryBlocks extends ApiQueryBase {
 	}
 
 	protected function getExamples() {
-		return array (
+		return array (	'api.php?action=query&list=blocks',
+				'api.php?action=query&list=blocks&bkusers=Alice|Bob'
 		);
 	}
 
