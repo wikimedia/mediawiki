@@ -1531,7 +1531,7 @@ class Article {
 			return;
 		}
 
-		if ( !$wgUseRCPatrol && $rc->mAttribs['rc_type'] != RC_NEW) {
+		if ( !$wgUseRCPatrol && $rc->getAttribute( 'rc_type' ) != RC_NEW) {
 			// Only new pages can be patrolled if the general patrolling is off....???
 			// @fixme -- is this necessary? Shouldn't we only bother controlling the
 			// front end here?
@@ -1554,7 +1554,7 @@ class Article {
 		}
 
 		#It would be nice to see where the user had actually come from, but for now just guess
-		$returnto = $rc->mAttribs['rc_type'] == RC_NEW ? 'Newpages' : 'Recentchanges';
+		$returnto = $rc->getAttribute( 'rc_type' ) == RC_NEW ? 'Newpages' : 'Recentchanges';
 		$return = Title::makeTitle( NS_SPECIAL, $returnto );
 
 		# If it's left up to us, check that the user is allowed to patrol this edit
@@ -1575,10 +1575,14 @@ class Article {
 			}
 		}
 
-		# Mark the edit as patrolled
-		RecentChange::markPatrolled( $rcid );
-		PatrolLog::record( $rcid );
-		wfRunHooks( 'MarkPatrolledComplete', array( &$rcid, &$wgUser, false ) );
+		# Check that the revision isn't patrolled already
+		# Prevents duplicate log entries
+		if( !$rc->getAttribute( 'rc_patrolled' ) ) {
+			# Mark the edit as patrolled
+			RecentChange::markPatrolled( $rcid );
+			PatrolLog::record( $rcid );
+			wfRunHooks( 'MarkPatrolledComplete', array( &$rcid, &$wgUser, false ) );
+		}
 
 		# Inform the user
 		$wgOut->setPageTitle( wfMsg( 'markedaspatrolled' ) );
