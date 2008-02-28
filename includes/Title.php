@@ -2720,6 +2720,7 @@ class Title {
 	 * @return array
 	 */
 	public function getParentCategoryTree( $children = array() ) {
+	  	$stack = array();
 		$parents = $this->getParentCategories();
 
 		if($parents != '') {
