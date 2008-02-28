@@ -87,11 +87,16 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 		// Check limits
 		$userMax = $fld_content ? ApiBase :: LIMIT_SML1 : ApiBase :: LIMIT_BIG1;
 		$botMax  = $fld_content ? ApiBase :: LIMIT_SML2 : ApiBase :: LIMIT_BIG2;
+
+		$limit = $params['limit'];
+
 		if( $limit == 'max' ) {
 			$limit = $this->getMain()->canApiHighLimits() ? $botMax : $userMax;
-			$this->getResult()->addValue( 'limits', 'limit', $limit );
+			$this->getResult()->addValue( 'limits', $this->getModuleName(), $limit );
 		}
-		$this->validateLimit('limit', $params['limit'], 1, $userMax, $botMax);
+		
+		$this->validateLimit('limit', $limit, 1, $userMax, $botMax);
+		
 		if($fld_token)
 			// Undelete tokens are identical for all pages, so we cache one here
 			$token = $wgUser->editToken();
