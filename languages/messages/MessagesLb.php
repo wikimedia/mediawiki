@@ -578,7 +578,7 @@ Dowéinst ass et bis ewell net méiglech, fir déi folgend Funktiounen E-Mailen 
 'missingcommentheader'      => "'''OPGEPASST:''' Dir hutt keen Titel/Sujet fir dës Bemierkung aginn. Wann Dir nach en Kéier op \"Späicheren\" klickt da gëtt àr Ännerung ouni Titel ofgespäichert.",
 'summary-preview'           => 'Resumé kucken ouni ofzespäicheren',
 'subject-preview'           => 'Sujet/Iwwerschrëft kucken',
-'blockedtitle'              => 'Benotzer ass gespärt',
+'blockedtitle'              => 'Benotzer ass gespaart',
 'blockedtext'               => "<big>Äre Benotzernumm oder är IP Adress gouf gespaart.</big>
 
 Dëse Spär gouf vum \$1 gemaach. Als Grond gouf ''\$2'' uginn.
@@ -815,6 +815,7 @@ Sich no: $3 $9',
 'dateformat'              => 'Datumsformat',
 'datedefault'             => 'Egal (Standard)',
 'datetime'                => 'Datum an Auerzäit',
+'math_failure'            => 'Parser-Feeler',
 'math_unknown_error'      => 'Onbekannte Feeler',
 'math_unknown_function'   => 'Onbekannte Funktioun',
 'math_lexing_error'       => "'Lexing'-Feeler",

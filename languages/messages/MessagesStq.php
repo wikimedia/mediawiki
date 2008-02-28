@@ -74,6 +74,7 @@ $messages = array(
 'tog-nolangconversion'        => 'Konvertierenge fon Sproakvarianten deaktivierje',
 'tog-ccmeonemails'            => 'Seend mie Kopien fon do E-Maile, do iek uur Benutsere seende.',
 'tog-diffonly'                => 'Wies bie dän Versionsfergliek bloot do Unnerscheede, nit ju fulboodige Siede',
+'tog-showhiddencats'          => 'Wies ferstatte Kategorien',
 
 'underline-always'  => 'Altied',
 'underline-never'   => 'sieläärge nit',
@@ -134,12 +135,14 @@ $messages = array(
 'dec'           => 'Dez',
 
 # Bits of text used by many pages
-'categories'            => 'Kategorien',
-'pagecategories'        => '{{PLURAL:$1|Kategorie|Kategorien}}',
-'category_header'       => 'Artikkel in ju Kategorie "$1"',
-'subcategories'         => 'Unnerkategorien',
-'category-media-header' => 'Media in Kategorie "$1"',
-'category-empty'        => "''Disse Kategorie is loos.''",
+'categories'               => 'Kategorien',
+'pagecategories'           => '{{PLURAL:$1|Kategorie|Kategorien}}',
+'category_header'          => 'Artikkel in ju Kategorie "$1"',
+'subcategories'            => 'Unnerkategorien',
+'category-media-header'    => 'Media in Kategorie "$1"',
+'category-empty'           => "''Disse Kategorie is loos.''",
+'hidden-categories'        => '{{PLURAL:$1|Ferstatte Kategorie|Ferstatte Kategorien}}',
+'hidden-category-category' => 'Verstatte Kategorien', # Name of the category where hidden categories will be listed
 
 'mainpagetext'      => 'Ju Wiki Software wuude mäd Ärfoulch installierd!',
 'mainpagedocfooter' => 'Sjuch ju [http://meta.wikimedia.org/wiki/MediaWiki_localization Dokumentation tou de Anpaasenge fon dän Benutseruurfläche] un dät [http://meta.wikimedia.org/wiki/Help:Contents Benutserhondbouk] foar Hälpe tou ju Benutsenge un Konfiguration.',
@@ -202,7 +205,7 @@ $messages = array(
 'toolbox'           => 'Reewen',
 'userpage'          => 'Benutsersiede',
 'projectpage'       => 'Meta-Text',
-'imagepage'         => 'Bieldesiede',
+'imagepage'         => 'Bekiekje Bieldesiede',
 'mediawikipage'     => 'Inhooldssiede anwiese',
 'templatepage'      => 'Foarloagensiede anwiese',
 'viewhelppage'      => 'Hälpesiede anwiese',
@@ -270,10 +273,12 @@ $messages = array(
 'restorelink'             => '{{PLURAL:$1|1 läskede Beoarbaidengsfoargang|$1 läskede Beoarbaidengsfoargange}}',
 'feedlinks'               => 'Feed:',
 'feed-invalid'            => 'Ungultigen Abonnement-Typ.',
+'feed-unavailable'        => 'Foar {{SITENAME}} stounde neen Feeds tou Ferföigenge.',
 'site-rss-feed'           => '$1 RSS-Feed',
 'site-atom-feed'          => '$1 Atom-Feed',
 'page-rss-feed'           => '"$1" RSS-Feed',
 'page-atom-feed'          => '"$1" Atom-Feed',
+'red-link-title'          => '$1 (Siede nit deer)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Artikkel',
@@ -1748,7 +1753,7 @@ Aal Transwiki-Import-Aktione wäide in dät [[Special:Log/import|Import-Logbouk]
 'tooltip-ca-nstab-media'          => 'Mediendoatäiesiede anwiese',
 'tooltip-ca-nstab-special'        => 'Dit is ne Spezialsiede. Ju kon nit ferannerd wäide.',
 'tooltip-ca-nstab-project'        => 'Projektsiede anwiese',
-'tooltip-ca-nstab-image'          => 'Bieldesiede anwiese',
+'tooltip-ca-nstab-image'          => 'Doatäisiede anwiese',
 'tooltip-ca-nstab-mediawiki'      => 'MediaWiki-Systemtext anwiese',
 'tooltip-ca-nstab-template'       => 'Foarloage anwiese',
 'tooltip-ca-nstab-help'           => 'Hälpesiede anwiese',

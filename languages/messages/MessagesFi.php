@@ -714,7 +714,7 @@ Yritä uudelleen. Jos ongelma ei katoa, yritä kirjautua ulos ja takaisin sisä�
 'templatesusedsection'      => 'Tässä osiossa mukana olevat mallineet:',
 'template-protected'        => '(suojattu)',
 'template-semiprotected'    => '(suojattu anonyymeiltä ja uusilta käyttäjiltä)',
-'hiddencategories'          => 'Tämä sivu kuuluu {{PLURAL:$1|piilotettuun luokkaan|piilotettuihin luokkiin}}:',
+'hiddencategories'          => 'Tämä sivu kuuluu {{PLURAL:$1|seuraavaan piilotettuun luokkaan|seuraaviin piilotettuihin luokkiin}}:',
 'edittools'                 => '<!-- Tässä oleva teksti näytetään muokkauskentän alla. -->',
 'nocreatetitle'             => 'Sivujen luominen on rajoitettu',
 'nocreatetext'              => 'Et voi luoda uusia sivuja. Voit muokata olemassa olevia sivuja tai luoda [[Special:Userlogin|käyttäjätunnuksen]].',

@@ -119,6 +119,7 @@ $messages = array(
 'tog-watchlisthideminor'      => 'ไม่แสดงการแก้ไขเล็กน้อยจากรายการเฝ้าดูของตนเอง',
 'tog-ccmeonemails'            => 'ส่งสำเนาอีเมลกลับมาทุกครั้งที่ส่งหาคนอื่น',
 'tog-diffonly'                => 'ไม่แสดงเนื้อหาใต้ส่วนต่างการแก้ไข',
+'tog-showhiddencats'          => 'แสดงหมวดหมู่ที่ซ่อนอยู่',
 
 'underline-always'  => 'เสมอ',
 'underline-never'   => 'ไม่เคย',
@@ -196,7 +197,7 @@ $messages = array(
 * [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce เมลลิงลิสต์ของมีเดียวิกิ]',
 
 'about'          => 'เว็บไซต์นี้',
-'article'        => 'เนื้อหาข้อความ',
+'article'        => 'บทความ',
 'newwindow'      => '(เปิดหน้าต่างใหม่)',
 'cancel'         => 'ยกเลิก',
 'qbfind'         => 'ค้นหา',
@@ -248,7 +249,7 @@ $messages = array(
 'personaltools'     => 'เครื่องมือส่วนตัว',
 'postcomment'       => 'แสดงความเห็น',
 'articlepage'       => 'แสดงเนื้อหาของหน้า',
-'talk'              => 'พูดคุย',
+'talk'              => 'อภิปราย',
 'views'             => 'ดู',
 'toolbox'           => 'เครื่องมือเพิ่ม',
 'userpage'          => 'ดูหน้าผู้ใช้',

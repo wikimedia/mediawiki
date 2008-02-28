@@ -165,7 +165,7 @@ $messages = array(
 'metadata_help' => 'ទិន្នន័យមេតា៖',
 
 'errorpagetitle'    => 'កំហុស',
-'returnto'          => "ត្រលប់ទៅកាន់ '''$1''' វិញ។",
+'returnto'          => "ត្រលប់ទៅ '''$1''' ។",
 'tagline'           => 'ពី {{SITENAME}}',
 'help'              => 'ជំនួយ',
 'search'            => 'ស្វែងរក',

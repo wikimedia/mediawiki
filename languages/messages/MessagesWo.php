@@ -448,7 +448,7 @@ Sa màkkaanu IP mooy $3 xammeekaayu téye gi mooy #$5. Di la sakku nga joxe leen
 'blockednoreason'           => 'Joxewul benn ngirte',
 'blockedoriginalsource'     => "Yoonu gongikuwaay wu wii xët '''$1''' moo ne nii ci suuf:",
 'blockededitsource'         => "Ëmbitu '''say coppite''' yi nga def fii '''$1''' mooy lii ci suuf:",
-'whitelistedittitle'        => 'Laaj na nga bindi ngir man a soppi ëmbit li',
+'whitelistedittitle'        => 'Laaj na nga bindu ngir man a soppi ëmbit li',
 'whitelistedittext'         => 'Faawu nga doon $1 ngir am sañ-sañu soppi ëmbit li.',
 'whitelistreadtitle'        => 'Laaj na nga bindu ngir man a jàng ëmbit li',
 'whitelistreadtext'         => 'Ngir man a jàng ëmbit li, laaj na nga [[Special:Userlogin|duggu]].',

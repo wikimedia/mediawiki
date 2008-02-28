@@ -95,6 +95,7 @@ $messages = array(
 'tog-watchlisthideminor'      => 'Kaŝu malgrandajn redaktojn de la atentaro',
 'tog-ccmeonemails'            => 'Sendu al mi kopiojn de retpoŝtaĵoj, kiujn mi sendis al aliaj uzuloj.',
 'tog-diffonly'                => 'Ne montru paĝan enhavon sub la ŝanĝoj',
+'tog-showhiddencats'          => 'Montru kaŝitajn kategoriojn',
 
 'underline-always'  => 'Ĉiam',
 'underline-never'   => 'Neniam',
@@ -155,12 +156,14 @@ $messages = array(
 'dec'           => 'Dec',
 
 # Bits of text used by many pages
-'categories'            => '{{PLURAL:$1|Kategorio|Kategorioj}}',
-'pagecategories'        => '{{PLURAL:$1|Kategorio|Kategorioj}}',
-'category_header'       => 'Artikoloj en kategorio "$1"',
-'subcategories'         => 'Subkategorioj',
-'category-media-header' => 'Dosieroj en kategorio "$1"',
-'category-empty'        => "''Ĉi tiu kategorio momente ne enhavas artikolojn aŭ mediojn.''",
+'categories'               => '{{PLURAL:$1|Kategorio|Kategorioj}}',
+'pagecategories'           => '{{PLURAL:$1|Kategorio|Kategorioj}}',
+'category_header'          => 'Artikoloj en kategorio "$1"',
+'subcategories'            => 'Subkategorioj',
+'category-media-header'    => 'Dosieroj en kategorio "$1"',
+'category-empty'           => "''Ĉi tiu kategorio momente ne enhavas artikolojn aŭ mediojn.''",
+'hidden-categories'        => '{{PLURAL:$1|Kaŝita kategorio|Kaŝitaj kategorioj}}',
+'hidden-category-category' => 'Kaŝitaj kategorioj', # Name of the category where hidden categories will be listed
 
 'mainpagetext'      => 'Vikisoftvaro sukcese instaliĝis.',
 'mainpagedocfooter' => "Konsultu la [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide User's Guide] por informo pri uzado de vikia programaro.
@@ -297,6 +300,7 @@ $messages = array(
 'restorelink'             => '{{PLURAL:$1|unu forigitan version|$1 forigitajn versiojn}}',
 'feedlinks'               => 'RSS-abonilo:',
 'feed-invalid'            => 'Ia nevalida abonilo.',
+'feed-unavailable'        => 'Abonrilataj enfluoj ne estas haveblaj ĉe {{SITENAME}}.',
 'site-rss-feed'           => '$1 RSS-abonilo.',
 'site-atom-feed'          => '$1 Atom-fonto',
 'page-rss-feed'           => '"$1" RSS-fonto',
@@ -637,6 +641,7 @@ la tekston al tekstdosiero por poste reenmeti ĝin al la vikio.</strong>',
 'templatesusedsection'      => 'Ŝablonoj uzataj en ĉi tiu sekcio:',
 'template-protected'        => '(protektita)',
 'template-semiprotected'    => '(duone protektita)',
+'hiddencategories'          => 'Ĉi paĝo estas membro de {{PLURAL:$1|1 kaŝita kategorio|$1 kaŝitaj kategorioj}}:',
 'edittools'                 => '<!-- Teksto ĉi tie estas montrata sub redaktaj kaj alŝutaj formularoj. -->',
 'nocreatetitle'             => 'Paĝa kreado estas limigita',
 'nocreatetext'              => '{{SITENAME}} restriktas la eblecon krei novajn paĝojn. Vi eblas reiri kaj redakti faritan paĝon, aŭ [[Special:Userlogin|ensaluti aŭ krei konton]].',
@@ -844,16 +849,25 @@ Ekzemple, por la Centra Eŭropa Horzono, indiku "1" vintre aŭ "2" dum somertemp
 'files'                    => 'Dosieroj',
 
 # User rights
-'userrights-lookup-user'     => 'Administru uzantogrupojn',
-'userrights-user-editname'   => 'Entajpu uzantonomon:',
-'editusergroup'              => 'Redaktu Uzantgrupojn',
-'userrights-editusergroup'   => 'Redaktu uzantogrupojn.',
-'saveusergroups'             => 'Konservu uzantogrupojn',
-'userrights-groupsmember'    => 'Membro de:',
-'userrights-groupsavailable' => 'Disponeblaj grupoj:',
-'userrights-groupshelp'      => 'Selektu grupojn el kiuj vi volas forigi aŭ al kiuj vi volas aldoni uzanton. Neselektitaj grupoj ne estos ŝanĝitaj. Vi povas malselekti grupon per STR.',
-'userrights-reason'          => 'Kialo por ŝanĝo:',
-'userrights-nodatabase'      => 'Datumbazo $1 ne ekzistas aŭ ne estas loka.',
+'userrights-lookup-user'           => 'Administru uzantogrupojn',
+'userrights-user-editname'         => 'Entajpu uzantonomon:',
+'editusergroup'                    => 'Redaktu Uzantgrupojn',
+'userrights-editusergroup'         => 'Redaktu uzantogrupojn.',
+'saveusergroups'                   => 'Konservu uzantogrupojn',
+'userrights-groupsmember'          => 'Membro de:',
+'userrights-groupsremovable'       => 'Forigeblaj grupoj:',
+'userrights-groupsavailable'       => 'Disponeblaj grupoj:',
+'userrights-groupshelp'            => 'Selektu grupojn el kiuj vi volas forigi aŭ al kiuj vi volas aldoni uzanton. Neselektitaj grupoj ne estos ŝanĝitaj. Vi povas malselekti grupon per STR.',
+'userrights-reason'                => 'Kialo por ŝanĝo:',
+'userrights-available-none'        => 'Vi ne eblas ŝanĝi membrecon de grupoj.',
+'userrights-available-add'         => 'Vi povas aldoni uzantojn al {{PLURAL:$2|jena grupo|jenaj grupoj}}: $1.',
+'userrights-available-remove'      => 'Vi povas forigi uzantojn al {{PLURAL:$2|jena grupo|jenaj grupoj}}: $1',
+'userrights-available-add-self'    => 'Vi povas aldoni vin al {{PLURAL:$2|jena grupo|jenaj grupoj}}: $1',
+'userrights-available-remove-self' => 'Vi povas forigi vin al {{PLURAL:$2|jena grupo|jenaj grupoj}}: $1.',
+'userrights-no-interwiki'          => 'Vi ne havas permeson redakti uzanto-rajtojn en aliaj vikioj.',
+'userrights-nodatabase'            => 'Datumbazo $1 ne ekzistas aŭ ne estas loka.',
+'userrights-nologin'               => 'Vi nepre [[Special:Userlogin|ensalutu]] kun administranto-konto doni uzanto-rajtojn.',
+'userrights-notallowed'            => 'Via konto ne havas permeson doni uzanto-rajtojn.',
 
 # Groups
 'group'               => 'Grupo:',
@@ -931,6 +945,7 @@ Por inkluzivi la dosieron en pagxon, skribu ligilon laŭ la formoj
 * '''<nowiki>[[</nowiki>{{ns:media}}<nowiki>:Dosiero.ogg]]</nowiki>''' por ligi rekte al la dosiero.",
 'upload-permitted'            => 'Permesitaj dosiertipoj: $1.',
 'upload-preferred'            => 'Preferitaj dosiertipoj: $1.',
+'upload-prohibited'           => 'Malpermesitaj dosiero-tipoj: $1.',
 'uploadlog'                   => 'loglibro de alŝutaĵoj',
 'uploadlogpage'               => 'Loglibro de alŝutaĵoj',
 'uploadlogpagetext'           => 'Jen la plej laste alŝutitaj dosieroj.
@@ -943,8 +958,12 @@ Por inkluzivi la dosieron en pagxon, skribu ligilon laŭ la formoj
 'uploadedfiles'               => 'Alŝutitaj dosieroj',
 'ignorewarning'               => 'Ignoru averton kaj konservu dosieron ĉiukaze',
 'ignorewarnings'              => 'Ignoru ĉiajn avertojn',
+'minlength1'                  => 'Nomoj de dosieroj nepre havas almenaŭ unu literon.',
 'illegalfilename'             => 'La dosiernomo $1 entenas karaktrojn kiuj ne estas permesitaj en paĝaj titoloj. Bonvolu renomi la dosieron kaj provu denove alŝuti ĝin.',
 'badfilename'                 => 'Dosiernomo estis ŝanĝita al "$1".',
+'filetype-badmime'            => 'Dosieroj de la MIME-tipo "$1" ne estas permesitaj por alŝutado.',
+'filetype-unwanted-type'      => "'''\".\$1\"''' estas nevolata dosiero-tipo. Prefereataj dosiero-tipoj estas \$2.",
+'filetype-banned-type'        => "'''\".\$1\"''' ne estas permesita dosiero-tipo. Permesitaj dosiero-tipoj estas \$2.",
 'filetype-missing'            => 'Ĉi dosiero ne inkluzivas finaĵon de dosiernomo (kiel ".jpg").',
 'large-file'                  => 'Oni rekomendas, ke dosieroj ne superu grandon de $1 bitokoj; tiu ĉi enhavas $2 bitokojn.',
 'largefileserver'             => 'Ĉi tiu dosiero estas pli granda ol permesas la servilaj preferoj.',
@@ -1106,6 +1125,7 @@ La nuna longeco de la [http://meta.wikimedia.org/wiki/Help:Job_queue laborenda v
 'nviews'                  => '{{PLURAL:$1|unufoje|$1 fojojn}}',
 'specialpage-empty'       => 'Ne estas rezultoj por ĉi tiu raporto.',
 'lonelypages'             => 'Neligitaj paĝoj',
+'lonelypagestext'         => 'Jenaj paĝoj ne estas ligitaj de aliaj paĝoj en {{SITENAME}}.',
 'uncategorizedpages'      => 'Neenkategoriitaj paĝoj',
 'uncategorizedcategories' => 'Neenkategoriitaj kategorioj',
 'uncategorizedimages'     => 'Neenkategoriigitaj dosieroj',
@@ -1131,6 +1151,8 @@ La nuna longeco de la [http://meta.wikimedia.org/wiki/Help:Job_queue laborenda v
 'protectedpagestext'      => 'La sekvaj paĝoj estas protektitaj kontraŭ movigo aŭ redaktado',
 'protectedpagesempty'     => 'Neniuj paĝoj estas momente protektitaj kun ĉi tiuj parametroj.',
 'protectedtitles'         => 'Protektitaj titoloj',
+'protectedtitlestext'     => 'La jenaj titoloj estas protektitaj kontraŭ kreado',
+'protectedtitlesempty'    => 'Neniuj titoloj estas nune protektitaj kun ĉi parametroj.',
 'listusers'               => 'Uzantaro',
 'specialpages'            => 'Specialaj paĝoj',
 'spheading'               => 'Specialaj paĝoj',
@@ -1218,6 +1240,7 @@ komprenata kiel rekomendo aŭ reklamo.',
 'mywatchlist'          => 'Atentaro',
 'watchlistfor'         => '(por <b>$1</b>)',
 'nowatchlist'          => 'Vi ne jam elektis priatenti iun ajn paĝon.',
+'watchlistanontext'    => 'Bonvolu $1 okulumi aŭ redakti la anojn de via atentaro.',
 'watchnologin'         => 'Ne ensalutinta',
 'watchnologintext'     => 'Nepras [[Special:Userlogin|ensaluti]] por ŝanĝi vian atentaron.',
 'addedwatch'           => 'Aldonis al atentaro',
@@ -1480,6 +1503,7 @@ $1',
 'ipb-unblock-addr'            => 'Malforbaru $1',
 'ipb-unblock'                 => 'Malforbaru uzantnomon aŭ IP-adreson',
 'ipb-blocklist-addr'          => 'Rigardu ekzistantajn forbarojn por $1',
+'ipb-blocklist'               => 'Rigardu ekzistantajn blokojn',
 'unblockip'                   => 'Malforbaru IP-adreson/nomon',
 'unblockiptext'               => 'Per la jena formulo vi povas repovigi al iu
 forbarita IP-adreso/nomo la povon enskribi en la vikio.',
@@ -1494,6 +1518,7 @@ forbarita IP-adreso/nomo la povon enskribi en la vikio.',
 'infiniteblock'               => 'senfina',
 'expiringblock'               => 'finiĝas je $1',
 'anononlyblock'               => 'nur anonimuloj',
+'noautoblockblock'            => 'aŭtomata blokado estas malebligita',
 'emailblock'                  => 'retpoŝto forbarita',
 'ipblocklist-empty'           => 'La forbarlibro estas malplena.',
 'blocklink'                   => 'forbaru',
@@ -1645,6 +1670,8 @@ La celartikolo "[[$1]]" jam ekzistas. Ĉu vi volas forigi ĝin por krei spacon p
 'importhistoryconflict'    => 'Malkongrua historia versio ekzistas (eble la paĝo importiĝis antaŭe)',
 'importnosources'          => 'Neniu transvikia importfonto estis difinita kaj rekta historio de alŝutoj estas malaktivigita.',
 'importnofile'             => 'Neniu import-dosiero estis alŝutita.',
+'import-noarticle'         => 'Neniu paĝo por importi!',
+'xml-error-string'         => '$1 ĉe linio $2, kolumno $3 (bitiko $4): $5',
 
 # Import log
 'importlogpage'                    => 'Loglibro de importaĵoj',
@@ -1707,6 +1734,7 @@ La celartikolo "[[$1]]" jam ekzistas. Ĉu vi volas forigi ĝin por krei spacon p
 'tooltip-diff'                    => 'Montru la sxangxojn kiujn vi faris de la teksto.',
 'tooltip-compareselectedversions' => 'Vidu la malsamojn inter ambaŭ selektitaj versioj de ĉi paĝo.',
 'tooltip-watch'                   => 'Aldonu ĉi paĝon al via atentaro',
+'tooltip-upload'                  => 'Ekalŝutu',
 
 # Attribution
 'anonymous'        => 'Anonima(j) uzanto(j) de {{SITENAME}}',
@@ -1729,9 +1757,11 @@ La celartikolo "[[$1]]" jam ekzistas. Ĉu vi volas forigi ĝin por krei spacon p
 'spam_blanking'          => 'Forviŝo de ĉiuj versioj entenate ligilojn al $1',
 
 # Info page
-'infosubtitle' => 'Informoj por paĝo',
-'numedits'     => 'Nombro de redaktoj (paĝo): $1',
-'numwatchers'  => 'Nombro de atentantoj: $1',
+'infosubtitle'   => 'Informoj por paĝo',
+'numedits'       => 'Nombro de redaktoj (paĝo): $1',
+'numwatchers'    => 'Nombro de atentantoj: $1',
+'numauthors'     => 'Nombro de apartaj aŭtoroj (paĝo): $1',
+'numtalkauthors' => 'Nombro de apartaj aŭtoroj (diskuto-paĝo): $1',
 
 # Math options
 'mw_math_png'    => 'Ĉiam krei PNG-bildon',
@@ -1801,14 +1831,17 @@ Sekvaj ligilo en la sama linio estas konsiderata kiel esceptoj (paĝoj kiel la b
 * focallength', # Do not translate list items
 
 # EXIF tags
-'exif-imagewidth'       => 'Larĝeco',
-'exif-imagelength'      => 'Alteco',
-'exif-ycbcrpositioning' => 'Y kaj C situado',
-'exif-artist'           => 'Kreinto',
-'exif-pixelxdimension'  => 'Valind image height',
-'exif-aperturevalue'    => 'Aperturo',
-'exif-brightnessvalue'  => 'Heleco',
-'exif-contrast'         => 'Kontrasto',
+'exif-imagewidth'                  => 'Larĝeco',
+'exif-imagelength'                 => 'Alteco',
+'exif-bitspersample'               => 'Bitokoj po komponanto',
+'exif-ycbcrpositioning'            => 'Y kaj C situado',
+'exif-jpeginterchangeformatlength' => 'Bitokoj de JPEG-datumo',
+'exif-imagedescription'            => 'Titolo de bildo',
+'exif-artist'                      => 'Kreinto',
+'exif-pixelxdimension'             => 'Valind image height',
+'exif-aperturevalue'               => 'Aperturo',
+'exif-brightnessvalue'             => 'Heleco',
+'exif-contrast'                    => 'Kontrasto',
 
 'exif-unknowndate' => 'Nekonata dato',
 
@@ -1819,6 +1852,8 @@ Sekvaj ligilo en la sama linio estas konsiderata kiel esceptoj (paĝoj kiel la b
 'exif-subjectdistance-value' => '$1 metroj',
 
 'exif-meteringmode-0' => 'Nekonata',
+
+'exif-saturation-0' => 'Norma',
 
 'exif-sharpness-0' => 'Ordinara',
 
