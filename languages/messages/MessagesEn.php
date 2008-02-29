@@ -1724,7 +1724,7 @@ The [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] length is '''\$7''
 'booksources-go'            => 'Go',
 'booksources-text'          => 'Below is a list of links to other sites that sell new and used books, and may also have further information about books you are looking for:',
 
-'categoriespagetext' => 'The following categories exist in the wiki.',
+'categoriespagetext' => 'The following categories contain pages or media.',
 'data'               => 'Data',
 'userrights'         => 'User rights management',
 'userrights-summary' => '', # only translate this message to other languages if you have to change it
