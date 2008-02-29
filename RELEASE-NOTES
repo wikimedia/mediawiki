@@ -58,6 +58,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 13135) Special:Userrights now passes IDs through form submission
   to allow functionality on not-quite-right usernames
 * (bug 12575) Prevent duplicate patrol log entries from being created
+* (bug 13174) __HIDDENCAT__ now applies only to category pages
 
 
 === API changes in 1.13 ===
