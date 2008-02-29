@@ -3287,7 +3287,7 @@ class Parser
 		if ( isset( $this->mDoubleUnderscores['notoc'] ) && !$this->mForceTocPosition ) {
 			$this->mShowToc = false;
 		}
-		if ( isset( $this->mDoubleUnderscores['hiddencat'] ) ) {
+		if ( isset( $this->mDoubleUnderscores['hiddencat'] ) && $this->mTitle->getNamespace() == NS_CATEGORY ) {
 			$this->mOutput->setProperty( 'hiddencat', 'y' );
 
 			$containerCategory = Title::makeTitleSafe( NS_CATEGORY, wfMsgForContent( 'hidden-category-category' ) );
