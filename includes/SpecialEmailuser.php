@@ -92,6 +92,7 @@ class EmailUserForm {
 
 	function showForm() {
 		global $wgOut, $wgUser;
+		$skin = $wgUser->getSkin();
 
 		$wgOut->setPagetitle( wfMsg( "emailpage" ) );
 		$wgOut->addWikiMsg( "emailpagetext" );
@@ -101,9 +102,11 @@ class EmailUserForm {
 		}
 
 		$emf = wfMsg( "emailfrom" );
-		$sender = $wgUser->getName();
+		$senderLink = $skin->makeLinkObj(
+			$wgUser->getUserPage(), htmlspecialchars( $wgUser->getName() ) );
 		$emt = wfMsg( "emailto" );
-		$rcpt = $this->target->getName();
+		$recipientLink = $skin->makeLinkObj(
+			$this->target->getUserPage(), htmlspecialchars( $this->target->getName() ) );
 		$emr = wfMsg( "emailsubject" );
 		$emm = wfMsg( "emailmessage" );
 		$ems = wfMsg( "emailsend" );
@@ -119,10 +122,10 @@ class EmailUserForm {
 <form id=\"emailuser\" method=\"post\" action=\"{$action}\">
 <table border='0' id='mailheader'><tr>
 <td align='right'>{$emf}:</td>
-<td align='left'><strong>" . htmlspecialchars( $sender ) . "</strong></td>
+<td align='left'><strong>{$senderLink}</strong></td>
 </tr><tr>
 <td align='right'>{$emt}:</td>
-<td align='left'><strong>" . htmlspecialchars( $rcpt ) . "</strong></td>
+<td align='left'><strong>{$recipientLink}</strong></td>
 </tr><tr>
 <td align='right'>{$emr}:</td>
 <td align='left'>
