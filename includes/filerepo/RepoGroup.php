@@ -2,7 +2,7 @@
 
 /**
  * Prioritized list of file repositories
- * @addtogroup filerepo
+ * @addtogroup FileRepo
  */
 class RepoGroup {
 	var $localRepo, $foreignRepos, $reposInitialised = false;

@@ -802,6 +802,11 @@ $varCache: varaiable cache (array)
 $parser: Parser object
 $limitReport: text that will be included (without comment tags)
 
+'ParserMakeImageParams': Called before the parser make an image link, use this to modify the parameters of the image.
+$title: title object representing the file
+$file: file object that will be used to create the image
+&$params: 2-D array of parameters
+
 'ParserTestParser': called when creating a new instance of Parser in maintenance/parserTests.inc
 $parser: Parser object created
 

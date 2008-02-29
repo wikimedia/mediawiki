@@ -41,8 +41,7 @@ function wfSpecialRevisiondelete( $par = null ) {
  */
 class RevisionDeleteForm {
 	/**
-	 * @param Title $page
-	 * @param int $oldid
+	 * @param WebRequest $request
 	 */
 	function __construct( $request ) {
 		global $wgUser;
@@ -83,17 +82,17 @@ class RevisionDeleteForm {
 		$wgOut->addWikiMsg( 'revdelete-text' );
 		
 		$items = array(
-			wfInputLabel( wfMsg( 'revdelete-log' ), 'wpReason', 'wpReason', 60 ),
-			wfSubmitButton( wfMsg( 'revdelete-submit' ) ) );
+			Xml::inputLabel( wfMsg( 'revdelete-log' ), 'wpReason', 'wpReason', 60 ),
+			Xml::submitButton( wfMsg( 'revdelete-submit' ) ) );
 		$hidden = array(
-			wfHidden( 'wpEditToken', $wgUser->editToken() ),
-			wfHidden( 'target', $this->page->getPrefixedText() ) );
+			Xml::hidden( 'wpEditToken', $wgUser->editToken() ),
+			Xml::hidden( 'target', $this->page->getPrefixedText() ) );
 		foreach( $this->revisions as $revid ) {
-			$hidden[] = wfHidden( 'oldid[]', $revid );
+			$hidden[] = Xml::hidden( 'oldid[]', $revid );
 		}
 		
 		$special = SpecialPage::getTitleFor( 'Revisiondelete' );
-		$wgOut->addHtml( wfElement( 'form', array(
+		$wgOut->addHtml( Xml::element( 'form', array(
 			'method' => 'post',
 			'action' => $special->getLocalUrl( 'action=submit' ) ),
 			null ) );
@@ -102,7 +101,7 @@ class RevisionDeleteForm {
 		foreach( $this->checks as $item ) {
 			list( $message, $name, $field ) = $item;
 			$wgOut->addHtml( '<div>' .
-				wfCheckLabel( wfMsg( $message), $name, $name, $rev->isDeleted( $field ) ) .
+				Xml::checkLabel( wfMsg( $message), $name, $name, $rev->isDeleted( $field ) ) .
 				'</div>' );
 		}
 		$wgOut->addHtml( '</fieldset>' );
@@ -228,7 +227,7 @@ class RevisionDeleter {
 		$this->db->update( 'revision',
 			array( 'rev_deleted' => $bitfield ),
 			array( 'rev_id' => $rev->getId() ),
-			'RevisionDeleter::updateRevision' );
+			__METHOD__ );
 	}
 	
 	/**
@@ -244,7 +243,7 @@ class RevisionDeleter {
 				'rc_comment' => ($bitfield & Revision::DELETED_COMMENT) ? wfMsg( 'rev-deleted-comment' ) : $rev->getComment() ),
 			array(
 				'rc_this_oldid' => $rev->getId() ),
-			'RevisionDeleter::updateRecentChanges' );
+			__METHOD__ );
 	}
 	
 	/**
