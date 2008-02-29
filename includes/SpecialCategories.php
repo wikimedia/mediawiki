@@ -22,6 +22,7 @@ function wfSpecialCategories() {
  */
 class CategoryPager extends AlphabeticPager {
 	function getQueryInfo() {
+		global $wgRequest;
 		return array(
 			'tables' => array('categorylinks'),
 			'fields' => array('cl_to','count(*) AS count'),
