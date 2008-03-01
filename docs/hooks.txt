@@ -562,8 +562,22 @@ $text: text of the mail
 &$list: List object (defaults to NULL, change it to an object instance and return
 false override the list derivative used)
 
+'FileDeleteComplete': When a file is deleted
+$file: reference to the deleted file
+$oldimage: in case of the deletion of an old image, the name of the old file
+$article: in case all revisions of the file are deleted a reference to the article 
+	  associated with the file.
+$user: user who performed the deletion
+$reason: reason
+
 'FileUpload': When a file upload occurs
 $file : Image object representing the file that was uploaded
+
+'FileUndeleteComplete': When a file is undeleted
+$title: title object to the file
+$fileVersions: array of undeleted versions. Empty if all versions were restored
+$user: user who performed the undeletion
+$reason: reason
 
 'GetBlockedStatus': after loading blocking status of an user from the database
 $user: user (object) being checked
@@ -1025,7 +1039,7 @@ string $tempName: filesystem path to the temporary file for checks
 string &$error: output: HTML error to show if upload canceled by returning false
 
 'UploadComplete': Upon completion of a file upload
-$image: Image object representing the file that was uploaded
+$uploadForm: Upload form object. File can be accessed by $uploadForm->mLocalFile.
 
 'userCan': To interrupt/advise the "user can do X to Y article" check.
 	If you want to display an error message, try getUserPermissionsErrors.

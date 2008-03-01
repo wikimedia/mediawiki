@@ -1055,6 +1055,11 @@ class UndeleteForm {
 				$this->mFileVersions );
 
 			if( is_array($ok) ) {
+				if ( $ok[1] ) // Undeleted file count
+					wfRunHooks( 'FileUndeleteComplete', array(
+						$this->mTargetObj, $this->mFileVersions, 
+						$wgUser, $this->mComment) );
+			
 				$skin = $wgUser->getSkin();
 				$link = $skin->makeKnownLinkObj( $this->mTargetObj );
 				$wgOut->addHtml( wfMsgWikiHtml( 'undeletedpage', $link ) );

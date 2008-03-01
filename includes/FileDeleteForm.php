@@ -72,6 +72,8 @@ class FileDeleteForm {
 			} elseif ( $reason == 'other' ) {
 				$reason = $this->DeleteReason;
 			}
+				
+			$article = null;
 			if( $this->oldimage ) {
 				$status = $this->file->deleteOld( $this->oldimage, $reason );
 				if( $status->ok ) {
@@ -90,6 +92,9 @@ class FileDeleteForm {
 					$article->doDeleteArticle( $reason );
 				}
 			}
+			if( $status->isGood() ) wfRunHooks('FileDeleteComplete', array( 
+				&$this->file, &$this->oldimage, &$article, &$wgUser, &$reason));
+			
 			if( !$status->isGood() )
 				$wgOut->addWikiText( $status->getWikiText( 'filedeleteerror-short', 'filedeleteerror-long' ) );
 			if( $status->ok ) {
