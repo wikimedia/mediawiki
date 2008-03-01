@@ -78,7 +78,7 @@ subdirectory under the present one.
 We intend to track updates, but if you want to check for the lastest
 released version, see http://www.danga.com/memcached/apis.bml
 
-MediaWiki use three object for memcached:
+MediaWiki use three object for memcaching:
 * $wgMemc, controlled by $wgMainCacheType
 * $parserMemc, controlled by $wgParserCacheType
 * $messageMemc, controlled by $wgMessageCacheType
@@ -95,7 +95,7 @@ this is mentionned below.
 
 Ajax Search:
 	key: $wgDBname:ajaxsearch:md5( $search )
-	ex: wikidb:ajaxsearch: 
+	ex: wikidb:ajaxsearch:9565814d5d564fa898dd6111b94fae0b
 	stores: array with the result of research of a given text
 	cleared by: nothing
 	expiry: 30 minutes
