@@ -130,7 +130,7 @@ function wfIsTrustedProxy( $ip ) {
  */
 function wfProxyCheck() {
 	global $wgBlockOpenProxies, $wgProxyPorts, $wgProxyScriptPath;
-	global $wgUseMemCached, $wgMemc, $wgProxyMemcExpiry;
+	global $wgMemc, $wgProxyMemcExpiry;
 	global $wgProxyKey;
 
 	if ( !$wgBlockOpenProxies ) {
@@ -140,14 +140,9 @@ function wfProxyCheck() {
 	$ip = wfGetIP();
 
 	# Get MemCached key
-	$skip = false;
-	if ( $wgUseMemCached ) {
-		$mcKey = wfMemcKey( 'proxy', 'ip', $ip );
-		$mcValue = $wgMemc->get( $mcKey );
-		if ( $mcValue ) {
-			$skip = true;
-		}
-	}
+	$mcKey = wfMemcKey( 'proxy', 'ip', $ip );
+	$mcValue = $wgMemc->get( $mcKey );
+	$skip = (bool)$mcValue;
 
 	# Fork the processes
 	if ( !$skip ) {
@@ -165,9 +160,7 @@ function wfProxyCheck() {
 			exec( "php $params &>/dev/null &" );
 		}
 		# Set MemCached key
-		if ( $wgUseMemCached ) {
-			$wgMemc->set( $mcKey, 1, $wgProxyMemcExpiry );
-		}
+		$wgMemc->set( $mcKey, 1, $wgProxyMemcExpiry );
 	}
 }
 
