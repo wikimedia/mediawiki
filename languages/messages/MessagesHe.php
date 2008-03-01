@@ -1,12 +1,11 @@
 <?php
-/** Hebrew (עברית)
+/**
+ * Hebrew (עברית)
  *
  * @addtogroup Language
  *
  * @author Rotem Dan (July 2003)
  * @author Rotem Liss (March 2006 on)
- * @author לערי ריינהארט
- * @author Nahum
  */
 
 $rtl = true;
@@ -304,7 +303,7 @@ $messages = array(
 'tog-numberheadings'          => 'מספור כותרות אוטומטי',
 'tog-showtoolbar'             => 'הצגת סרגל העריכה',
 'tog-editondblclick'          => 'עריכת דפים בלחיצה כפולה (JavaScript)',
-'tog-editsection'             => 'הפעל עריכת פסקאות באמצעות קישורים בצורת: [עריכה]',
+'tog-editsection'             => 'עריכת פסקאות באמצעות קישורים מהצורה [עריכה]',
 'tog-editsectiononrightclick' => 'עריכת פסקאות על־ידי לחיצה ימנית על כותרות הפסקאות (JavaScript)',
 'tog-showtoc'                 => 'הצגת תוכן עניינים (עבור דפים עם יותר מ־3 כותרות)',
 'tog-rememberpassword'        => 'זכירת הכניסה שלי במחשב זה',
@@ -763,6 +762,7 @@ $2',
 'nowiki_tip'      => 'טקסט לא מעוצב (התעלם מסימני ויקי)',
 'image_sample'    => 'PictureFileName.jpg|left|thumb|250px|כיתוב תמונה',
 'image_tip'       => 'תמונה (שכבר הועלתה לשרת)',
+'media_sample'    => 'Example.ogg',
 'media_tip'       => 'קישור לקובץ מדיה',
 'sig_tip'         => 'חתימה + שעה',
 'hr_tip'          => 'קו אופקי (השתדלו להמנע משימוש בקו)',
@@ -2076,6 +2076,7 @@ $1',
 'categoryarticlecount'   => '{{plural:$1|ישנו דף אחד|ישנם $1 דפים}} בקטגוריה זו.',
 'category-media-count'   => '{{plural:$1|ישנו קובץ אחד|ישנם $1 קבצים}} בקטגוריה זו.',
 'listingcontinuesabbrev' => '(המשך)',
+'spambot_username'       => 'MediaWiki spam cleanup',
 'spam_reverting'         => 'שחזור לגרסה אחרונה שלא כוללת קישורים ל־$1',
 'spam_blanking'          => 'כל הגרסאות כוללות קישורים ל־$1, מרוקן את הדף',
 
@@ -2603,6 +2604,7 @@ $1',
 'version-variables'                => 'משתנים',
 'version-other'                    => 'אחר',
 'version-mediahandlers'            => 'מציגי מדיה',
+'version-hooks'                    => 'Hooks',
 'version-extension-functions'      => 'פונקציות של הרחבות',
 'version-parser-extensiontags'     => 'תגיות של הרחבות מפענח',
 'version-parser-function-hooks'    => 'משתנים',
