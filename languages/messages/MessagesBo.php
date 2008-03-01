@@ -1,8 +1,9 @@
 <?php
 /** Tibetan (བོད་ཡིག)
-  *
-  * @addtogroup Language
-  */
+ *
+ * @addtogroup Language
+ *
+ */
 
 $digitTransformTable = array(
 	'0' => '༠', # &#x0f20;

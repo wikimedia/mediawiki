@@ -2,6 +2,7 @@
 /** Maltese (Malti)
  *
  * @addtogroup Language
+ *
  */
 
 $messages = array(

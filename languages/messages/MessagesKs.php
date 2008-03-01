@@ -1,10 +1,10 @@
 <?php
-/** Kashmiri language file ( कश्मीरी - (ﻚﺸﻤﻳﺮﻳ) )
-  *
-  * @addtogroup Language
-  */
+/** Kashmiri (कश्मीरी - (كشميري))
+ *
+ * @addtogroup Language
+ *
+ */
 
-#FIXME: inherit almost everything for now
 $rtl = true;
 
 $digitTransformTable = array(
@@ -19,5 +19,4 @@ $digitTransformTable = array(
 	'8' => '८', # &#x096e;
 	'9' => '९', # &#x096f;
 );
-
 

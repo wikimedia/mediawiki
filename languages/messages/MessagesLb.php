@@ -488,7 +488,7 @@ Probéiert et w.e.g. nach eng Kéier!",
 'email'                      => 'E-Mail',
 'prefs-help-realname'        => 'Äre richtege Numm ass fakultativ. Wann Dir en ugitt gëtt e benotzt fir iech är Kontributiounen zouzeuerdnen.',
 'loginerror'                 => 'Feeler bäi der Umeldung',
-'prefs-help-email'           => 'E-mailadress ass optional, awer si erméiglecht et anere Benotzer, per Mail Kontakt matt iech opzehuelen, ouni datt Dir är Identitéit musst präisginn, an erméiglecht et datt dir e neit Passwuert per Mail zougeschöckt kënnt kréien.',
+'prefs-help-email'           => 'E-mailadress (fakultativ): Erméiglecht et anere Benotzer, iech per Mail ze kontaktéieren, (iwwert e Link op ärer Benotzersäit), ouni datt hinnen dobäi är E-Mailadress matgedeelt gëtt.',
 'prefs-help-email-required'  => 'Eng gülteg E-Mailadress gëtt heifir gebraucht.',
 'nocookieslogin'             => "{{SITENAME}} benotzt Cookiën beim Umelle vun de Benotzer. Dir hutt Cookiën ausgeschalt, w.e.g aktivéiert d'Cookiën a versicht et nach eng Kéier.",
 'noname'                     => 'Dir hutt kee gültege Benotzernumm uginn.',
@@ -575,7 +575,7 @@ Dowéinst ass et bis ewell net méiglech, fir déi folgend Funktiounen E-Mailen 
 'missingcommentheader'      => "'''OPGEPASST:''' Dir hutt keen Titel/Sujet fir dës Bemierkung aginn. Wann Dir nach en Kéier op \"Späicheren\" klickt da gëtt àr Ännerung ouni Titel ofgespäichert.",
 'summary-preview'           => 'Resumé kucken ouni ofzespäicheren',
 'subject-preview'           => 'Sujet/Iwwerschrëft kucken',
-'blockedtitle'              => 'Benotzer ass gespärt',
+'blockedtitle'              => 'Benotzer ass gespaart',
 'blockedtext'               => "<big>Äre Benotzernumm oder är IP Adress gouf gespaart.</big>
 
 Dëse Spär gouf vum \$1 gemaach. Als Grond gouf ''\$2'' uginn.
@@ -586,9 +586,9 @@ Dëse Spär gouf vum \$1 gemaach. Als Grond gouf ''\$2'' uginn.
  
 Dir kënnt den/d' \$1 kontaktéieren oder ee vun deenen aneren [[{{MediaWiki:Grouppage-sysop}}|Administrateuren]] fir d'Spär ze beschwetzen.
 
-Dëst sollt Der besonnesch maachen, wann der d'Gefill hutt, dass de Grond fir d'Spären net bei Iech läit. D'Ursaach dofir ass an deem Fall, datt der eng dynamesch IP hutt, iwwert en Access-Provider, iwwert deen och aner Leit fueren. Aus deem Grond ass et recommandéiert, sech e Benotzernumm zouzeleeën, fir all Mëssverständnes z'évitéieren. 
+Dëst sollt Der besonnesch maachen, wann Der d'Gefill hutt, dass de Grond fir d'Spären net bei Iech läit. D'Ursaach dofir ass an deem Fall, datt der eng dynamesch IP hutt, iwwert en Access-Provider, iwwert deen och aner Leit fueren. Aus deem Grond ass et recommandéiert, sech e Benotzernumm zouzeleeën, fir all Mëssverständnes z'évitéieren. 
 
-Dir kënnt d'Fonktioun \"Dësem Benotzer eng E-mail schécken\" nëmme benotzen, wann Dir eng gülteg E-Mail Adress bei äre [[Special:Preferences|Astellungen]] aginn hutt. Är aktuell-IP Adress ass \$3 an d'Nummer vun der Spär ass #\$5. Schreift dës w.e.g. bei all Fro dobäi.",
+Dir kënnt d'Funktioun \"Dësem Benotzer eng E-Mail schécken\" nëmme benotzen, wann Dir eng gülteg E-Mail Adress bei äre [[Special:Preferences|Astellungen]] aginn hutt. Är aktuell-IP Adress ass \$3 an d'Nummer vun der Spär ass #\$5. Schreift dës w.e.g. bei all Fro dobäi.",
 'autoblockedtext'           => 'Är IP-Adress gouf automatesch gespaart, well se vun engem anere Benotzer gebraucht gouf, an dëse vum $1 gespaart ginn ass. De Grond dofir war: 
 
 \'\'$2\'\' (<span class="plainlinks">[{{fullurl:Special:Ipblocklist|&action=search&limit=&ip=%23}}$5 Mentioun am Logbuch]</span>) 
@@ -811,6 +811,7 @@ Sich no: $3 $9',
 'dateformat'              => 'Datumsformat',
 'datedefault'             => 'Egal (Standard)',
 'datetime'                => 'Datum an Auerzäit',
+'math_failure'            => 'Parser-Feeler',
 'math_unknown_error'      => 'Onbekannte Feeler',
 'math_unknown_function'   => 'Onbekannte Funktioun',
 'math_lexing_error'       => "'Lexing'-Feeler",
@@ -959,7 +960,7 @@ Dir sollt onbedingt bedenken, datt, genee wéi bäi normale Säiten, aner Benotz
 'uploadedfiles'       => 'Eropgeluede Fichierën',
 'ignorewarning'       => 'Warnung ignoréieren an de Fichier nawell späicheren.',
 'ignorewarnings'      => 'Ignoréier all Iwwerschreiwungswarnungen',
-'minlength1'          => "D'Nimm vu Fichieren musse mindestens e Buchstaf/Caractère laang sinn.",
+'minlength1'          => "D'Nimm vu Fichiere musse mindestens e Buschtaf am Numm hunn.",
 'illegalfilename'     => 'Am Fichiernumm "$1" sti Schrëftzeechen, déi net am Numm vun enger Säit erlaabt sinn. W.e.g. nennt de Fichier anescht, a probéiert dann nach eng Kéier.',
 'badfilename'         => 'Den Numm vum Fichier gouf an "$1" ëmgeännert.',
 'filetype-badmime'    => 'Fichieren vum MIME-Typ "$1" kënnen net eropgeluede ginn.',
@@ -1253,7 +1254,7 @@ An all Rei sti Linken zur éischter an zweeter Viruleedung, souwéi déi éischt
 'mailnologintext' => 'Dir musst [[Special:Userlogin|ugemellt]] sinn an eng gülteg E-Mail Adress an äre [[Special:Preferences|Asteelunge]] aginn hunn, fir engem anere Benotzer eng E-Mail ze schécken.',
 'emailuser'       => 'Dësem Benotzer eng E-Mail schécken',
 'emailpage'       => 'Dem Benotzer eng E-Mail schécken',
-'emailpagetext'   => 'Wann dëse Benotzer eng valid E-Mail Adress a sengen Astellungen uginn huet, kënnt Dir mat dësem Formulaire e Message schécken. Déi E-Mailadress déi dir an Ären Astellungen aginn hutt, steet an der "From" Adress vun der Mail, sou datt den Destinataire Iech och äntwerte kann.',
+'emailpagetext'   => 'Wann dëse Benotzer eng valid E-Mail Adress a sengen Astellungen uginn huet, kënnt Dir mat dësem Formulaire e Message schécken. Déi E-Mailadress, déi dir an Ären Astellungen aginn hutt, steet an der "From" Adress vun der Mail, sou datt den Destinataire Iech och äntwerte kann.',
 'usermailererror' => 'E-Mail-Objet mellt deen heite Feeler:',
 'defemailsubject' => 'E-Mail vu(n) {{SITENAME}}',
 'noemailtitle'    => 'Keng E-Mailadress',
@@ -1791,13 +1792,13 @@ Duerno sti Linken déi Ausnamen definéieren, a deenen hirem Kontext dat Bild aw
 # EXIF tags
 'exif-imagewidth'                  => 'Breet',
 'exif-imagelength'                 => 'Längt',
-'exif-bitspersample'               => 'Biten pro Farfkomponent',
+'exif-bitspersample'               => 'Bite pro Faarfkomponent',
 'exif-compression'                 => 'Aart vun der Kompressioun',
 'exif-photometricinterpretation'   => 'Pixelzesummesetzung',
 'exif-orientation'                 => 'Kameraausriichtung',
 'exif-samplesperpixel'             => 'Zuel vun de Komponenten',
 'exif-planarconfiguration'         => 'Datenausriichtung',
-'exif-ycbcrpositioning'            => 'Y an C Positionéirung',
+'exif-ycbcrpositioning'            => 'Y an C Positionéierung',
 'exif-xresolution'                 => 'Horizontal Opléisung',
 'exif-yresolution'                 => 'Vertikal Opléisung',
 'exif-resolutionunit'              => 'Moosseenheet vun der Opléisung',
@@ -1815,7 +1816,7 @@ Duerno sti Linken déi Ausnamen definéieren, a deenen hirem Kontext dat Bild aw
 'exif-exifversion'                 => 'Exif-Versioun',
 'exif-colorspace'                  => 'Faarfraum',
 'exif-componentsconfiguration'     => 'Bedeitung vun eenzelne Komponenten',
-'exif-compressedbitsperpixel'      => 'Kompriméiert Biten pro Pixel',
+'exif-compressedbitsperpixel'      => 'Kompriméiert Bite pro Pixel',
 'exif-makernote'                   => 'Notize vum Fabrikant',
 'exif-usercomment'                 => 'Bemierkunge vum Benotzer',
 'exif-datetimeoriginal'            => 'Erfaassungszäitpunkt',
@@ -1830,7 +1831,10 @@ Duerno sti Linken déi Ausnamen definéieren, a deenen hirem Kontext dat Bild aw
 'exif-shutterspeedvalue'           => 'Beliichtungszäitwäert',
 'exif-aperturevalue'               => 'Blendewäert',
 'exif-brightnessvalue'             => 'Hellegkeetswäert',
+'exif-exposurebiasvalue'           => 'Beliichtungsvirgab',
+'exif-maxaperturevalue'            => 'Gréisste Blend',
 'exif-subjectdistance'             => 'Distanz zum Sujet',
+'exif-meteringmode'                => 'Miessmethod',
 'exif-lightsource'                 => 'Liichtquell',
 'exif-flash'                       => 'Blëtz',
 'exif-focallength'                 => 'Brennwäit',
@@ -1841,10 +1845,11 @@ Duerno sti Linken déi Ausnamen definéieren, a deenen hirem Kontext dat Bild aw
 'exif-focalplaneresolutionunit'    => 'Eenheet vun der Sensoropléisung',
 'exif-subjectlocation'             => 'Motivstanduert',
 'exif-exposureindex'               => 'Beliichtungsindex',
+'exif-customrendered'              => 'Benotzerdefinéiert Bildveraarbechtung',
 'exif-exposuremode'                => 'Beliichtungsmodus',
 'exif-whitebalance'                => 'Wäissofgläich',
 'exif-focallengthin35mmfilm'       => 'Brennwäit (Klengbildäquivalent)',
-'exif-scenecapturetype'            => 'Opnameaart',
+'exif-scenecapturetype'            => 'Aart vun der Opnam',
 'exif-gaincontrol'                 => 'Verstäerkung',
 'exif-contrast'                    => 'Kontrast',
 'exif-sharpness'                   => 'Schäerft',
@@ -1953,7 +1958,7 @@ Duerno sti Linken déi Ausnamen definéieren, a deenen hirem Kontext dat Bild aw
 'confirmemail_text'       => "Ier der d'E-Mailfunktioune vun der {{SITENAME}} notze kënnt musst der als éischt är E-Mailadress confirméieren. Dréckt w.e.g. de Knäppchen hei ënnendrënner fir eng Confirmatiouns-E-Mail op déi Adress ze schécken déi der uginn hutt. An däer E-Mail steet e Link mat engem Code, deen der dann an ärem Browser opmaache musst fir esou ze bestätegen, datt är Adress och wierklech existéiert a valabel ass.",
 'confirmemail_send'       => 'Confirmatiouns-E-Mail schécken',
 'confirmemail_sent'       => 'Confirmatiouns-E-Mail gouf geschéckt.',
-'confirmemail_sendfailed' => "D'Confirmatiouns-E-Mail konnt net verschéckt ginn. Iwwerpréift w.e.g. är Adress op keng ongëlteg Zeechen dran enthale sinn.
+'confirmemail_sendfailed' => "D'Confirmatiouns-E-Mail konnt net verschéckt ginn. Iwwerpréift w.e.g. op keng ongëlteg Zeechen an ärer Adress sinn.
 
 Feelermeldung vum Mailserver: $1",
 'confirmemail_invalid'    => "Ongëltege Confirmatiounscode. Eventuell ass d'Gëltegkeetsdauer vum Code ofgelaf.",

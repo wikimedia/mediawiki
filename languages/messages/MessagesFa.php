@@ -4,9 +4,8 @@
  * @addtogroup Language
  *
  * @author Roozbeh Pournader <roozbeh at gmail.com>
- * @author G - ג
  * @author Huji <huji.huji at gmail.com>
- * @author Gangleri
+ * @author לערי ריינהארט
  */
 
 $skinNames = array(

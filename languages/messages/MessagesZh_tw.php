@@ -1,5 +1,5 @@
 <?php
-/** ‪Chinese (Taiwan) (‪中文(台灣)‬)
+/** ‪Tainwanese Chinese‬ (‪中文(台灣)‬)
  *
  * @addtogroup Language
  *
@@ -268,7 +268,6 @@ $messages = array(
 'versionrequired'     => '需要MediaWiki $1 版',
 'versionrequiredtext' => '需要版本$1的 MediaWiki 才能使用此頁。參見[[Special:Version|版本頁]]。',
 
-'ok'                      => 'OK',
 'retrievedfrom'           => '取自"$1"',
 'youhavenewmessages'      => '您有$1（$2）。',
 'newmessageslink'         => '新訊息',
@@ -2251,6 +2250,5 @@ $1
 'watchlisttools-view' => '檢視有關更改',
 'watchlisttools-edit' => '檢視並編輯監視列表',
 'watchlisttools-raw'  => '編輯原始監視列表',
-
 
 );

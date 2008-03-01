@@ -1,8 +1,9 @@
 <?php
 /** Belarusian in Taraškievica orthography (Беларуская тарашкевіца)
-  *
-  * @addtogroup Language
-  */
+ *
+ * @addtogroup Language
+ *
+ */
 
 $skinNames = array(
 	'standard'    => 'Клясычнае',

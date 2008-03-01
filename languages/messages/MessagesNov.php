@@ -6,7 +6,6 @@
  * @author nov.wikipedia.org sysops
  * @author Malafaya
  * @author SPQRobin
- * @author Malafaya
  */
 
 $messages = array(

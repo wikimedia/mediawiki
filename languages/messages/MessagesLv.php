@@ -230,6 +230,7 @@ $messages = array(
 'viewdeleted'         => 'Skatīt $1?',
 'restorelink'         => '$1 dzēstās versijas',
 'feedlinks'           => 'Barotne:',
+'red-link-title'      => '$1 (vēl nav uzrakstīts)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Raksts',
@@ -404,7 +405,7 @@ Tava IP adrese ir $3. Lūdzu iekļauj to visos turpmākajos pieprasījumos.',
 ** [[Special:Search/{{PAGENAME}}|spied šeit]], lai meklētu {{grammar:lokatīvs|{{SITENAME}}}} informāciju par jēdzienu \"{{PAGENAME}}\".
 </div>",
 'anontalkpagetext'         => "----''Šī ir diskusiju lapa anonīmam lietotājam, kurš vēl nav kļuvis par reģistrētu lietotāju vai arī neizmanto savu lietotājvārdu. Tādēļ mums ir jāizmanto skaitliskā [[IP adrese]], lai viņu identificētu. Šāda IP adrese var būt vairākiem lietotājiem. Ja tu esi anonīms lietotājs un uzskati, ka tev ir adresēti neatbilstoši komentāri, lūdzu, [[Special:Userlogin|kļūsti par lietotāju vai arī izmanto jau izveidotu lietotājvārdu]], lai izvairītos no turpmākām neskaidrībām un tu netiktu sajaukts ar citiem anonīmiem lietotājiem.''",
-'noarticletext'            => '(Šajā lapā šobrīd nav nekāda teksta)',
+'noarticletext'            => 'Šajā lapā šobrīd nav nekāda teksta',
 'clearyourcache'           => "'''Piezīme:''' Pēc saglabāšanas iztīri pārlūka kešatmiņu, lai pārmaiņas būtu redzamas: Mozilla/Safari/Konqueror: turi nospiestu '''Shift''' un klikšķini '''Reload''' (vai spied '''Ctrl-Shift-r'''), IE: spied '''Ctrl-F5''', Opera: spied '''F5'''.",
 'usercssjsyoucanpreview'   => '<strong>Ieteikums:</strong> Lieto pirmsskata pogu, lai pārbaudītu savu jauno CSS/JS pirms saglabāšanas.',
 'usercsspreview'           => "'''Atceries, ka šis ir tikai tava lietotāja CSS pirmskats, lapa vēl nav saglabāta!'''",

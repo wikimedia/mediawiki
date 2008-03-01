@@ -1,9 +1,9 @@
 <?php
-/**
-  * Chinese (Traditional) (中文 (傳統字))
-  *
-  * @addtogroup Language
-  */
+/** Traditional Chinese (‪中文(繁體)‬)
+ *
+ * @addtogroup Language
+ *
+ */
 
 $fallback = 'zh-hans';
 
@@ -59,7 +59,6 @@ $bookstoreList = array(
 	'天下書店' => 'http://www.cwbook.com.tw/search/result1.jsp?field=2&keyWord=$1',
 	'新絲路書店' => 'http://www.silkbook.com/function/Search_list_book_data.asp?item=5&text=$1'
 );
-
 
 $messages = array(
 # User preference toggles
@@ -287,7 +286,6 @@ $messages = array(
 'versionrequired'     => '需要MediaWiki $1 版',
 'versionrequiredtext' => '需要版本$1的 MediaWiki 才能使用此頁。參見[[Special:Version|版本頁]]。',
 
-'ok'                      => 'OK',
 'retrievedfrom'           => '取自"$1"',
 'youhavenewmessages'      => '您有$1（$2）。',
 'newmessageslink'         => '新訊息',

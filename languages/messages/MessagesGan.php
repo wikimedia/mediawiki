@@ -255,10 +255,12 @@ $messages = array(
 'restorelink'             => '$1隻拕刪吥嗰版本',
 'feedlinks'               => '鎖定:',
 'feed-invalid'            => '冇用嗰鎖定類型。',
+'feed-unavailable'        => '同步訂閱源在{{SITENAME}}冇得用',
 'site-rss-feed'           => '$1嗰RSS訊息',
 'site-atom-feed'          => '$1嗰Atom訊息',
 'page-rss-feed'           => '"$1"嗰RSS訊息',
 'page-atom-feed'          => '"$1" Atom Feed',
+'red-link-title'          => '$1 （還冇開始寫）',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => '文章',
@@ -556,7 +558,7 @@ $2',
 'edittools'                 => '<!--箇首嗰文本會到下底嗰編輯同上傳列表裡坨顯示。 -->',
 'nocreatetitle'             => '新建頁面拕限制',
 'nocreatetext'              => '箇隻網站限制新建頁面嗰功能。倷可以回頭去編輯有嘞嗰頁面，或者[[Special:Userlogin|登入或新開帳戶]]。',
-'nocreate-loggedin'         => '倷到箇隻wiki冇許可權去新開頁面。',
+'nocreate-loggedin'         => '倷在 {{SITENAME}}冇權新開頁面。',
 'permissionserrors'         => '許可權錯誤',
 'permissionserrorstext'     => '根據底下嗰{{PLURAL:$1|原因|原因}}，倷冇許可權去扤:',
 'recreate-deleted-warn'     => "'''警告: 倷正重建一隻之前拕刪吥嗰頁面。''' 
@@ -595,7 +597,7 @@ $2',
 'deletedrev'          => '[拕刪除]',
 'histfirst'           => '最早版本',
 'histlast'            => '最晏版本',
-'historysize'         => '($1 字節)',
+'historysize'         => '({{PLURAL:$1|1 字節|$1 字節}})',
 'historyempty'        => '(空)',
 
 # Revision feed
@@ -641,6 +643,24 @@ $2',
 'oversightlog'    => '監督記錄',
 'overlogpagetext' => '下底係隻最近刪除同到由操作員封鎖牽涉到嗰內容列表。眵吖底下嗰[[Special:Ipblocklist|IP封鎖列表]]去查看眼下嗰封鎖。',
 
+# History merging
+'mergehistory'                     => '合并頁面歷史',
+'mergehistory-box'                 => '合并兩隻頁面箇版本：',
+'mergehistory-from'                => '來箇頁面：',
+'mergehistory-into'                => '要去箇頁面：',
+'mergehistory-list'                => '合并得正箇修改歷史',
+'mergehistory-go'                  => '顯示合并得正箇修改',
+'mergehistory-submit'              => '合并版本',
+'mergehistory-empty'               => '冇得版本合并得正',
+'mergehistory-no-source'           => '冇得箇隻 $1 來箇頁面。',
+'mergehistory-no-destination'      => '冇得箇隻 $1 要去箇頁面。',
+'mergehistory-invalid-source'      => '來個頁面題目要對。',
+'mergehistory-invalid-destination' => '要去箇頁面題目要寫對。',
+
+# Merge log
+'mergelog'    => '合并記錄',
+'revertmerge' => '不合并',
+
 # Diffs
 'history-title'           => '歷史版本嗰 "$1"',
 'difference'              => '(修改之間差異)',
@@ -655,6 +675,8 @@ $2',
 'searchsubtitle'        => "用'''[[:$1]]'''",
 'searchsubtitleinvalid' => "用'''$1'''尋",
 'noexactmatch'          => "'''冇找到係標題\"\$1\"嗰頁面。''' 倷可以[[:\$1|新開箇隻頁面]]。",
+'noexactmatch-nocreate' => "'''冇隻題目是 \"\$1\" 箇頁面'''",
+'toomanymatches'        => '返回忒多箇結果，請試一下用別隻詞語重新尋',
 'titlematches'          => '文章標題符合',
 'notitlematches'        => '冇頁面同文章標題符合',
 'textmatches'           => '頁面內容符合',
@@ -700,7 +722,7 @@ $2',
 'prefs-personal'           => '用戶介紹',
 'prefs-rc'                 => '最近更改',
 'prefs-watchlist'          => '監視列表',
-'prefs-watchlist-days'     => '監視列表顯示記錄嗰最長時間:',
+'prefs-watchlist-days'     => '監視列表顯示最久箇工數:',
 'prefs-watchlist-edits'    => '加強版嗰監視列表顯示最多更改數目:',
 'prefs-misc'               => '雜項',
 'saveprefs'                => '存到參數',
@@ -731,18 +753,21 @@ $2',
 'files'                    => '檔案',
 
 # User rights
-'userrights-lookup-user'      => '管理用戶群',
-'userrights-user-editname'    => '輸入用戶名:',
-'editusergroup'               => '編輯用戶群',
-'userrights-editusergroup'    => '編輯用戶群',
-'saveusergroups'              => '存儲用戶群',
-'userrights-groupsmember'     => '歸到:',
-'userrights-groupsavailable'  => '可加入群:',
-'userrights-groupshelp'       => '選擇倷想讓箇隻用戶退出或加入嗰組群，反選時群伓會變。倷可以按到 CTRL + 單擊鼠標左鍵來反選',
-'userrights-reason'           => '改嗰原因:',
-'userrights-available-none'   => '倷改組伓正別嗰成員。',
-'userrights-available-add'    => '倷可以加入用戶到$1。',
-'userrights-available-remove' => '倷可以從$1踢掉用戶。',
+'userrights-lookup-user'        => '管理用戶群',
+'userrights-user-editname'      => '輸入用戶名:',
+'editusergroup'                 => '編輯用戶群',
+'userrights-editusergroup'      => '編輯用戶群',
+'saveusergroups'                => '存儲用戶群',
+'userrights-groupsmember'       => '歸到:',
+'userrights-groupsremovable'    => '移得動箇組：',
+'userrights-groupsavailable'    => '可加入群:',
+'userrights-groupshelp'         => '選擇倷想讓箇隻用戶退出或加入嗰組群，反選時群伓會變。倷可以按到 CTRL + 單擊鼠標左鍵來反選',
+'userrights-reason'             => '改嗰原因:',
+'userrights-available-none'     => '倷改組伓正別嗰成員。',
+'userrights-available-add'      => '倷可以把用戶加到{{PLURAL:$2|這隻組|這集組}}：$1。',
+'userrights-available-remove'   => '你可以把用戶從{{PLURAL:$2|箇隻組|箇集組}}開除：$1。',
+'userrights-available-add-self' => '你可以把你自己加到{{PLURAL:$2|這隻組|這些組}}： $1。',
+'userrights-nodatabase'         => '冇得這隻數據庫 $1 或是冇在本地。',
 
 # Groups
 'group'               => '群:',
@@ -817,6 +842,9 @@ $2',
 '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:File.jpg]]</nowiki>''',
 '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:File.png|alt text]]</nowiki>''' 或
 '''<nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki>''' 直接連接到箇只文件。",
+'upload-permitted'            => '做得個文件類型：$1。',
+'upload-preferred'            => '優先箇文件類型：$1。',
+'upload-prohibited'           => '做不得箇文件類型：$1。',
 'uploadlog'                   => '上傳日誌',
 'uploadlogpage'               => '上傳日誌',
 'uploadlogpagetext'           => '底下係最近上傳檔嗰通覽表。',
@@ -838,7 +866,7 @@ $2',
 'emptyfile'                   => '倷上傳嗰檔案伓存在。箇可能係因為檔案名按錯嘞。請檢查倷係否真嗰要上傳箇隻檔案。',
 'fileexists'                  => '箇隻檔案名已存在。如果倷確定伓正倷係否要改佢，請檢查<strong><tt>$1</tt></strong>。',
 'fileexists-extension'        => '有嘞隻飛像嗰檔名:<br /> 上載文檔嗰檔名: <strong><tt>$1</tt></strong><br /> 目前檔嗰檔名: <strong><tt>$2</tt></strong><br /> 請揀隻伓同嗰名字。',
-'fileexists-thumb'            => "<center>'''早就有嘍嗰圖像'''</center>",
+'fileexists-thumb'            => "<center>'''早就有嘍嗰文件'''</center>",
 'fileexists-thumbnail-yes'    => '箇隻檔案好像係一隻圖像嗰縮小版<i>(縮圖)</i>。請檢查清楚箇隻檔案<strong><tt>$1</tt></strong>。<br /> 如果檢查後嗰檔同原先圖像嗰大小係一樣嗰話，就嫑再上傳多一隻縮圖。',
 'file-thumbnail-no'           => '箇隻檔案名係以<strong><tt>$1</tt></strong>開頭。佢好像一隻圖像嗰縮小版<i>(縮圖)</i>。如果倷有箇隻圖像嗰完整版，伓然請再改過隻檔名。',
 'fileexists-forbidden'        => '箇隻檔案名已存在；請回頭並換過隻新嗰名稱來上傳箇隻檔案。[[Image:$1|thumb|center|$1]]',
@@ -849,7 +877,7 @@ $2',
 'uploadedimage'               => '上傳正嘞"[[$1]]"',
 'overwroteimage'              => '上傳正嘞"[[$1]]"嗰新版本',
 'uploaddisabled'              => '上傳伓正',
-'uploaddisabledtext'          => '檔案上傳到箇隻網站用伓正。',
+'uploaddisabledtext'          => '不準上傳文件到{{SITENAME}}。',
 'uploadscripted'              => '箇隻檔案包到可能會誤導網絡瀏覽器錯誤解釋嗰 HTML 或腳本代碼。',
 'uploadcorrupt'               => '箇隻檔案包含或者係一隻伓正確嗰副檔名。請檢查吖接到重新上傳。',
 'uploadvirus'                 => '箇隻檔案有病毒！詳情: $1',
@@ -919,7 +947,7 @@ $2',
 'imagelist_user'            => '用戶',
 'imagelist_size'            => '大細',
 'imagelist_description'     => '簡話',
-'imagelist_search_for'      => '按圖像名尋:',
+'imagelist_search_for'      => '按媒體名字尋:',
 
 # File reversion
 'filerevert'                => '恢復$1',
@@ -940,11 +968,14 @@ $2',
 'filedelete-submit'           => '刪吥',
 'filedelete-success'          => "'''$1'''刪吥嘞。",
 'filedelete-success-old'      => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\'於 $2 $3 嗰版本刪吥嘞。</span>',
-'filedelete-nofile'           => "'''$1'''到箇隻網站伓存在。",
+'filedelete-nofile'           => "'''$1'''在箇隻網站{{SITENAME}}上伓存在。",
 'filedelete-nofile-old'       => "按到指定屬性嗰情況，箇首冇'''$1'''到$2 $3嗰版本。",
 'filedelete-iscurrent'        => '眼下倷正試得刪掉箇隻檔案嗰最近版本。請拿箇隻檔案退到稍舊嗰版本再著。',
 'filedelete-otherreason'      => '別嗰/附加緣故:',
 'filedelete-reason-otherlist' => '別嗰緣故',
+'filedelete-reason-dropdown'  => '*常用刪除理由
+** 侵犯版權
+** 檔案重複',
 
 # MIME search
 'mimesearch'         => 'MIME 搜索',
@@ -1039,6 +1070,7 @@ $2',
 'protectedpages'          => '受保護頁面',
 'protectedpagestext'      => '底下頁面已經受保護以防止亂動',
 'protectedpagesempty'     => '箇兮參數下冇頁面拕保護到。',
+'protectedtitles'         => '保護題目',
 'listusers'               => '用戶列表',
 'specialpages'            => '特殊頁',
 'spheading'               => '所有用戶嗰特殊頁',
@@ -1060,7 +1092,7 @@ $2',
 'booksources-go'            => '跳到',
 'booksources-text'          => '底下係一部分網絡書店嗰連結列表，可以提供到倷要找嗰書籍嗰更多資料:',
 
-'categoriespagetext' => '箇隻wiki有底下嗰分類。',
+'categoriespagetext' => '下底箇分類包括頁面或是媒體文件。',
 'data'               => '數據',
 'userrights'         => '用戶許可權管理',
 'groups'             => '用戶群',
@@ -1201,6 +1233,10 @@ $NEWPAGE
 'deletecomment'               => '刪除嗰緣故:',
 'deleteotherreason'           => '別嗰/附加理由:',
 'deletereasonotherlist'       => '別嗰理由',
+'deletereason-dropdown'       => '*常用刪除箇理由
+** 寫個人自己要求
+** 侵犯版權
+** 忒正破壞',
 'rollback'                    => '還原修改',
 'rollback_short'              => '還原',
 'rollbacklink'                => '還原',
@@ -1247,6 +1283,7 @@ $NEWPAGE
 'restriction-level'           => '限制級別:',
 'minimum-size'                => '最細碼子',
 'maximum-size'                => '最大碼子',
+'pagesize'                    => '（字節）',
 
 # Restrictions (nouns)
 'restriction-edit'   => '編寫',
@@ -1270,7 +1307,9 @@ $NEWPAGE
 'undeletehistorynoadmin'       => '箇篇文章刪卟嘞。下底嗰摘要會話原因，刪卟之前嗰全部編寫文本同到貢獻人嗰細節資料就管理員望得到。',
 'undelete-revision'            => '刪卟$1由$3（到$2）編寫嗰修改版本:',
 'undeleterevision-missing'     => '冇用或跌掉嗰修改版本。話伓定倷碰到隻錯誤嗰連結，要卟就係箇隻版本早從存檔恢復或換卟嘞。',
+'undelete-nodiff'              => '冇尋到以前箇版本。',
 'undeletebtn'                  => '恢復',
+'undeletelink'                 => '還原',
 'undeletereset'                => '設過',
 'undeletecomment'              => '評論:',
 'undeletedarticle'             => '恢復正嗰"[[$1]]"',
@@ -1316,7 +1355,7 @@ $NEWPAGE
 'sp-contributions-username'    => 'IP地址或用戶名：',
 'sp-contributions-submit'      => '尋',
 
-'sp-newimages-showfrom' => '顯示由$1嗰新圖像',
+'sp-newimages-showfrom' => '顯示從 $1 起嗰新文件',
 
 # What links here
 'whatlinkshere'       => '有什哩連到箇首',
@@ -1406,8 +1445,8 @@ $NEWPAGE
 'proxyblocker-disabled'       => '箇只功能毛得用哩',
 'proxyblockreason'            => '倷嗰IP係一隻公開嗰代理，佢拕封到嘞。請聯絡倷嗰Internet服務提供商或技術幫助再告誦佢俚箇隻嚴重嗰安全問題。',
 'proxyblocksuccess'           => '扤正囉。',
-'sorbsreason'                 => '倷嗰IP拕 DNSBL 歸到公開代理服務器。',
-'sorbs_create_account_reason' => '由於倷嗰IP拕 DNSBL歸到公開代理服務器，倷也就新開伓正帳戶。',
+'sorbsreason'                 => '{{SITENAME}}用箇 DNSBL 查到你個IP地址是隻公開代理服務器。',
+'sorbs_create_account_reason' => '{{SITENAME}}用箇DNSBL檢查到倷嗰IP地址是隻公開代理服務器，倷也就新開伓正帳戶。',
 
 # Developer tools
 'lockdb'              => '鎖到資料庫',
@@ -1440,13 +1479,14 @@ $NEWPAGE
 'movearticle'             => '換動頁面:',
 'movenologin'             => '冇登入',
 'movenologintext'         => '倷要係登記用戶接到[[Special:Userlogin|登入]]後才移動得正頁面。',
-'movenotallowed'          => '倷到箇隻wiki冇許可權去移動頁面。',
+'movenotallowed'          => '你在{{SITENAME}}冇有權移動頁面。',
 'newtitle'                => '新標題:',
 'move-watch'              => '眏到箇頁',
 'movepagebtn'             => '換卟箇頁',
 'pagemovedsub'            => '換正嘞',
 'movepage-moved'          => "<big>'''“$1”換到嘞“$2”'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => '已經有頁面叫箇隻名字，要伓倷揀嗰名字冇用。請揀過隻名字。',
+'cantmove-titleprotected' => '你不能移動一隻頁面到這隻位置，這隻新題目已經保護起來里不準新建。',
 'talkexists'              => '頁面本身移動正嘞，但係新標題下底有嘞對話頁，所以對話頁移伓正。請手工合併兩頁。',
 'movedto'                 => '移到',
 'movetalk'                => '移動相關嗰討論頁',
@@ -1520,8 +1560,13 @@ $NEWPAGE
 'importhistoryconflict'      => '挭過仗嗰修改歷史(之前就話伓定導過箇隻頁面)',
 'importnosources'            => '跨Wiki導入源冇定義，還伓準直接嗰歷史上傳。',
 'importnofile'               => '冇上傳導入檔案。',
+'importuploaderrorsize'      => '導入文件上傳個時候冇成功。箇隻文件忒大哩，不準上傳這么大個文件。',
+'importuploaderrorpartial'   => '導入文件上傳個時候冇成功。箇隻文件只傳了一部分。',
+'importuploaderrortemp'      => '導入文件上傳個時候冇成功。冇尋到臨時文件夾。',
 'import-parse-failure'       => 'XML 導進分析失敗',
 'import-noarticle'           => '冇得頁面導入！',
+'import-nonewrevisions'      => '原先把全部版本都導進去哩。',
+'xml-error-string'           => '$1 在 $2 行，$3 列 （$4字節）：$5',
 
 # Import log
 'importlogpage'                    => '導入日誌',
@@ -1677,7 +1722,7 @@ $1',
 
 # Media information
 'mediawarning'         => "'''警告''': 話伓定箇隻檔案含到惡意代碼，執行佢話伓定會損壞倷嗰系統。<hr>",
-'imagemaxsize'         => '圖像描述頁嗰圖像大細限制到:',
+'imagemaxsize'         => '檔案解釋頁嗰圖像大細限制到:',
 'thumbsize'            => '縮略圖大細:',
 'widthheightpage'      => '$1×$2,$3頁',
 'file-info'            => '(檔案大細: $1, MIME 類型: $2)',
@@ -2020,9 +2065,10 @@ $2。請想正後再重建頁面。',
 'redirectingto' => '重定向到[[$1]]...',
 
 # action=purge
-'confirm_purge' => '想清卟箇頁嗰緩存?
+'confirm_purge'        => '想清卟箇頁嗰緩存?
 
 $1',
+'confirm_purge_button' => '做得',
 
 # AJAX search
 'searchcontaining' => "尋含到''$1''嗰文章。",
@@ -2089,8 +2135,23 @@ $1',
 # Core parser functions
 'unknown_extension_tag' => '伓認得個嗰擴展標籤 "$1"',
 
+# Special:Version
+'version-extensions'               => '已經安裝好箇插件',
+'version-specialpages'             => '忒別箇頁面',
+'version-variables'                => '變量',
+'version-other'                    => '別個',
+'version-extension-functions'      => '擴展功能',
+'version-parser-extensiontags'     => '解析器擴展標籤',
+'version-skin-extension-functions' => '封皮插件功能',
+'version-hook-name'                => '鉤子名字',
+'version-version'                  => '版本',
+'version-license'                  => '許可證',
+'version-software'                 => '已經安裝好箇軟件',
+'version-software-version'         => '版本',
+
 # Special:Filepath
-'filepath'      => '文件路徑',
-'filepath-page' => '文件：',
+'filepath'        => '文件路徑',
+'filepath-page'   => '文件：',
+'filepath-submit' => '路徑',
 
 );

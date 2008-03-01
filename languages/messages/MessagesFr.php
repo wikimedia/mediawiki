@@ -418,7 +418,7 @@ $messages = array(
 'edithelppage'      => 'Help:Comment modifier une page',
 'faq'               => 'FAQ',
 'faqpage'           => 'Project:FAQ',
-'helppage'          => 'Help:Aide',
+'helppage'          => 'Help:Accueil',
 'mainpage'          => 'Accueil',
 'policy-url'        => 'Project:règles',
 'portal'            => 'Communauté',
@@ -459,7 +459,7 @@ $messages = array(
 'site-atom-feed'          => 'Flux Atom de $1',
 'page-rss-feed'           => 'Flux RSS de "$1"',
 'page-atom-feed'          => 'Flux Atom de "$1"',
-'red-link-title'          => '$1 (néanmoins pas rédigé)',
+'red-link-title'          => '$1 (page inexistante)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Article',
@@ -616,7 +616,7 @@ Avant qu’un autre courriel ne soit envoyé à ce compte, vous devrez suivre le
 'noemailprefs'               => '<strong>Aucune adresse électronique n’a été indiquée,</strong> les fonctions suivantes ne seront pas disponibles.',
 'emailconfirmlink'           => 'Confirmez votre adresse de courriel',
 'invalidemailaddress'        => 'Cette adresse de courriel ne peut pas être acceptée car elle semble avoir un format invalide. Veuillez entrer une adresse valide ou laisser ce champ vide.',
-'accountcreated'             => 'Compte créé.',
+'accountcreated'             => 'Compte créé',
 'accountcreatedtext'         => 'Le compte utilisateur pour $1 a été créé.',
 'createaccount-title'        => "Création d'un compte pour {{SITENAME}}",
 'createaccount-text'         => "Quelqu'un a créé un compte pour votre adresse courriel sur {{SITENAME}} ($4) intitulé « $2 », avec pour mot de passe « $3 ».Vous devriez ouvrir une session et changer, dès à présent, ce mot de passe.
@@ -633,7 +633,7 @@ Ignorez ce message si ce compte a été créé par erreur.",
 'resetpass_success'       => 'Votre mot de passe a été changé avec succès ! Enregistrement en cours...',
 'resetpass_bad_temporary' => 'Mot de passe temporaire invalide. Vous avez peut-être déjà changé votre mot de passe avec succès, ou demandé un nouveau mot de passe temporaire.',
 'resetpass_forbidden'     => 'Les mots de passe ne peuvent pas être changés sur ce wiki',
-'resetpass_missing'       => 'Aucune donnée entrée.',
+'resetpass_missing'       => 'Aucune donnée entrée',
 
 # Edit page toolbar
 'bold_sample'     => 'Texte gras',
@@ -714,9 +714,11 @@ Votre adresse IP est $3 et votre identifiant de blocage est #$5. Veuillez les pr
 'accmailtitle'              => 'Mot de passe envoyé.',
 'accmailtext'               => 'Le mot de passe de « $1 » a été envoyé à l’adresse $2.',
 'newarticle'                => '(Nouveau)',
-'newarticletext'            => "Vous avez suivi un lien vers une page qui n’existe pas encore. Pour créer cette page, entrez votre texte dans la boîte ci-dessous (vous pouvez consulter [[{{MediaWiki:Helppage}}|la page d’aide]] pour plus d’information). Si vous êtes arrivé ici par erreur, cliquez sur le bouton '''retour''' de votre navigateur.",
+'newarticletext'            => "Vous avez suivi un lien vers une page qui n’existe pas encore ou qui a été [{{fullurl:Special:Log|type=delete&page={{FULLPAGENAMEE}}}} effacée].
+Pour créer cette page, entrez votre texte dans la boîte ci-dessous (vous pouvez consulter [[{{MediaWiki:Helppage}}|la page d’aide]] pour plus d’informations).
+Si vous êtes arrivé ici par erreur, cliquez sur le bouton '''retour''' de votre navigateur.",
 'anontalkpagetext'          => "---- ''Vous êtes sur la page de discussion d’un utilisateur anonyme qui n’a pas encore créé de compte ou qui n’en utilise pas. Pour cette raison, nous devons utiliser son adresse IP pour l’identifier. Une adresse IP peut être partagée par plusieurs utilisateurs. Si vous êtes un utilisateur anonyme et si vous constatez que des commentaires qui ne vous concernent pas vous ont été adressés, vous pouvez [[Special:Userlogin|créer un compte ou vous connecter]] afin d’éviter toute confusion future avec d’autres contributeurs anonymes.''",
-'noarticletext'             => 'Il n’y a pour l’instant aucun texte sur cette page ; vous pouvez [[{{ns:special}}:Search/{{PAGENAME}}|lancer une recherche sur le titre de cette page]] ou [{{fullurl:{{FULLPAGENAME}}|action=edit}} modifier cette page].',
+'noarticletext'             => "Il n’y a pour l’instant aucun texte sur cette page ; vous pouvez [[{{ns:special}}:Search/{{PAGENAME}}|lancer une recherche sur le titre de cette page]], vérifier qu'elle n'a pas été [{{fullurl:Special:Log|type=delete&page={{FULLPAGENAMEE}}}} supprimée] ou [{{fullurl:{{FULLPAGENAME}}|action=edit}} modifier cette page].",
 'userpage-userdoesnotexist' => "Le compte utilisateur « $1 » n'est pas enregistré. Indiquez si vous voulez créer ou éditer cette page.",
 'clearyourcache'            => "'''Note :''' Après avoir sauvegardé la page, vous devrez forcer son rechargement pour voir les changements : '''Mozilla / Konqueror / Firefox :''' ''Shift-Ctrl-R'', '''Internet Explorer / Opera :''' ''Ctrl-F5'', '''Safari :''' ''Cmd-R''.",
 'usercssjsyoucanpreview'    => "'''Astuce :''' utilisez le bouton « Prévisualisation » pour tester votre nouvelle feuille CSS/JS avant de l’enregistrer.",
@@ -743,7 +745,7 @@ Votre adresse IP est $3 et votre identifiant de blocage est #$5. Veuillez les pr
 'yourtext'                  => 'Votre texte',
 'storedversion'             => 'Version enregistrée',
 'nonunicodebrowser'         => '<strong>Attention : Votre navigateur ne supporte pas l’Unicode. Une solution temporaire a été trouvée pour vous permettre de modifier en toute sûreté un article : les caractères non-ASCII apparaîtront dans votre boîte de modification en tant que codes hexadécimaux. Vous devriez utiliser un navigateur plus récent.</strong>',
-'editingold'                => '<strong>Attention : vous êtes en train de modifier une version désuète de cette page. Si vous sauvegardez, toutes les modifications effectuées depuis cette version seront perdues.</strong>',
+'editingold'                => '<strong>Attention : vous êtes en train de modifier une ancienne version de cette page. Si vous sauvegardez, toutes les modifications effectuées depuis cette version seront perdues.</strong>',
 'yourdiff'                  => 'Différences',
 'copyrightwarning'          => "Toutes les contributions à {{SITENAME}} sont considérées comme publiées sous les termes de la $2 (voir $1 pour plus de détails). Si vous ne désirez pas que vos écrits soient modifiés et distribués à volonté, merci de ne pas les soumettre ici.<br />
 Vous nous promettez aussi que vous avez écrit ceci vous-même, ou que vous l’avez copié d’une source provenant du domaine public, ou d’une ressource libre. <strong>N’UTILISEZ PAS DE TRAVAUX SOUS DROIT D'AUTEUR SANS AUTORISATION EXPRESSE !</strong>",
@@ -815,7 +817,7 @@ La raison donnée par $3 était ''$2''.",
 'history-feed-title'          => 'Historique des versions',
 'history-feed-description'    => 'Historique pour cette page sur le wiki',
 'history-feed-item-nocomment' => '$1 le $2', # user at time
-'history-feed-empty'          => 'La page demandée n’existe pas. Elle a peut-être été supprimée du wiki ou renommée. Vous pouvez essayer de [[Special:Search|rechercher dans le wiki]] des pages pertinentes récentes.',
+'history-feed-empty'          => 'La page demandée n\'existe pas. Elle a peut-être été <span class="plainlinks">[{{fullurl:Special:Log|type=delete&page={{FULLPAGENAMEE}}}} effacée]</span> ou renommée. Essayez [[{{ns:special}}:Search/{{PAGENAME}}|de rechercher sur le wiki]] pour trouver des pages en rapport.',
 
 # Revision deletion
 'rev-deleted-comment'         => '(commentaire supprimé)',
@@ -1023,7 +1025,7 @@ $2 Inclure les pages de redirection<br /> Rechercher $3 $9',
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|modification|modifications}}',
 'recentchanges'                     => 'Modifications récentes',
-'recentchangestext'                 => 'Suivez sur cette page les dernières modifications de {{SITENAME}}.',
+'recentchangestext'                 => 'Piste les changements les plus récents du wiki sur cette page.',
 'recentchanges-feed-description'    => 'Suivre les dernières modifications de ce wiki dans un flux.',
 'rcnote'                            => 'Voici {{PLURAL:$1|la dernière modification|les $1 dernières modifications}} depuis {{PLURAL:$2|le dernier jour|les <b>$2</b> derniers jours}}, déterminée{{PLURAL:$1||s}} ce $3.',
 'rcnotefrom'                        => 'Voici les modifications effectuées depuis le <strong>$2</strong> (<b>$1</b> au maximum).',
@@ -1112,7 +1114,7 @@ Si vous disposez du fichier en haute résolution, importez-le, sinon veuillez ch
 'uploadedimage'               => 'a importé « [[$1]] »',
 'overwroteimage'              => 'a importé une nouvelle version de « [[$1]] »',
 'uploaddisabled'              => "Désolé, l'envoi de fichiers est désactivé.",
-'uploaddisabledtext'          => "L'import de fichiers sur le serveur est désactivé sur {{SITENAME}}.",
+'uploaddisabledtext'          => 'L’import de fichiers vers le serveur est désactivé sur {{SITENAME}}.',
 'uploadscripted'              => 'Ce fichier contient du code HTML ou un script qui pourrait être interprété de façon incorrecte par un navigateur Internet.',
 'uploadcorrupt'               => 'Ce fichier est corrompu, a une taille nulle ou possède une extension invalide.
 Veuillez vérifer le fichier.',
@@ -1125,6 +1127,20 @@ Veuillez vérifer le fichier.',
 
 Vous devriez considérer s’il est opportun de continuer l'envoi de ce fichier. L’historique des suppressions vous donnera des éléments d’information.",
 'filename-bad-prefix'         => 'Le nom du fichier que vous importez commence par <strong>"$1"</strong> qui est un nom généralement donné par les appareils photo numériques. Veuillez choisir un nom de fichier descriptif.',
+'filename-prefix-blacklist'   => ' #<!-- laisser cette ligne telle quelle --> <pre>
+# La syntaxe est la suivante : 
+#   * Tout ce qui suit le caractère "#" jusqu\'à la fin de la ligne est un commentaire
+#   * Toute ligne non vide est un préfixe typique de nom de fichier assigné automatiquement par les appareils numériques
+CIMG # Casio
+DSC_ # Nikon
+DSCF # Fuji
+DSCN # Nikon
+DUW # some mobil phones
+IMG # generic
+JD # Jenoptik
+MGP # Pentax
+PICT # misc.
+ #</pre> <!-- laisser cette ligne telle quelle -->',
 
 'upload-proto-error'      => 'Protocole incorrect',
 'upload-proto-error-text' => "L'import à distance requiert des URLs commençant par <code>http://</code> ou <code>ftp://</code>.",
@@ -1246,7 +1262,7 @@ Vous devriez considérer s’il est opportun de continuer l'envoi de ce fichier.
 
 Ce chiffre inclut les pages « discussion », les pages relatives à {{SITENAME}}, les pages minimales (« ébauches »), les pages de redirection, ainsi que d’autres pages qui ne sont pas considérées comme des articles. Si l’on exclut ces pages, il reste {{PLURAL:$2|'''$2''' page qui est probablement un véritable article|'''$2''' pages qui sont probablement de véritables articles}}.
 
-{{PLURAL:$8|'''$8''' fichier a été téléversé|'''$8''' fichiers ont été téléversés}}.
+{{PLURAL:$8|'''$8''' fichier a été téléversé|'''$8''' fichiers ont été importés}}.
 
 {{PLURAL:$3|'''$3''' page a été consultée|'''$3''' pages ont été consultées}} et {{PLURAL:$4|'''$4''' page modifiée|'''$4''' pages modifiées}}.
 
@@ -1332,7 +1348,7 @@ Il y a {{PLURAL:$7|'''$7''' article|'''$7''' articles}} dans [[meta:Help:Job_que
 'booksources'               => 'Ouvrages de référence',
 'booksources-search-legend' => 'Rechercher parmi des ouvrages de référence',
 'booksources-go'            => 'Valider',
-'booksources-text'          => 'Voici une liste de liens vers d’autres sites qui vendent des livres neufs et d’occasion et sur lesquels vous trouverez peut-être des informations sur les ouvrages que vous cherchez. {{SITENAME}} n’étant liée à aucune de ces sociétés, elle n’a aucunement l’intention d’en faire la promotion.',
+'booksources-text'          => 'Voici une liste de liens vers des sites vendant des livres neufs et d’occasion et sur lesquels vous trouverez peut-être des informations sur les ouvrages que vous cherchez. Ces liens ne sont fournis que dans le but de faciliter les recherches aux utilisateurs, {{SITENAME}} n’étant liée à aucune de ces sociétés.',
 
 'categoriespagetext' => 'Les catégories suivantes existent dans le wiki.',
 'data'               => 'Données',
@@ -1344,8 +1360,8 @@ Il y a {{PLURAL:$7|'''$7''' article|'''$7''' articles}} dans [[meta:Help:Job_que
 # Special:Log
 'specialloguserlabel'  => 'Utilisateur :',
 'speciallogtitlelabel' => 'Titre :',
-'log'                  => 'Historiques',
-'all-logs-page'        => 'Tous les historiques',
+'log'                  => 'Opérations',
+'all-logs-page'        => 'Toutes les opérations',
 'log-search-legend'    => 'Chercher dans les historiques',
 'log-search-submit'    => 'OK',
 'alllogstext'          => 'Affichage combiné des historiques de copie, suppression, protection, blocage, etc. Vous pouvez restreindre la vue en sélectionnant un type d’historique, un nom d’utilisateur ou une page ciblée.',
@@ -1356,7 +1372,7 @@ Il y a {{PLURAL:$7|'''$7''' article|'''$7''' articles}} dans [[meta:Help:Job_que
 'nextpage'          => 'Page suivante ($1)',
 'prevpage'          => 'Page précédente ($1)',
 'allpagesfrom'      => 'Afficher les pages à partir de :',
-'allarticles'       => 'Tous les articles',
+'allarticles'       => 'Toutes les pages',
 'allinnamespace'    => 'Toutes les pages (espace de noms $1)',
 'allnotinnamespace' => 'Toutes les pages (n’étant pas dans l’espace de noms $1)',
 'allpagesprev'      => 'Précédent',
@@ -1402,7 +1418,7 @@ Il y a {{PLURAL:$7|'''$7''' article|'''$7''' articles}} dans [[meta:Help:Job_que
 'watchnologin'         => 'Non connecté',
 'watchnologintext'     => 'Vous devez être [[Special:Userlogin|connecté]] pour modifier votre liste.',
 'addedwatch'           => 'Ajouté à la liste de suivi',
-'addedwatchtext'       => 'La page « <nowiki>$1</nowiki> » a été ajoutée à votre [[Special:Watchlist|liste de suivi]]. Les prochaines modifications de cette page et de la page de discussion associée y seront répertoriées, et la page apparaîtra <b>en gras</b> dans les [[Special:Recentchanges|modifications récentes]] pour être repérée plus facilement.',
+'addedwatchtext'       => 'La page « <nowiki>$1</nowiki> » a été ajoutée à votre [[Special:Watchlist|liste de suivi]].',
 'removedwatch'         => 'Retirée de la liste de suivi',
 'removedwatchtext'     => 'La page « [[:$1]] » a été retirée de votre [[Special:Watchlist|liste de suivi]].',
 'watch'                => 'Suivre',
@@ -1465,7 +1481,7 @@ Retour et assistance :
 {{fullurl:{{MediaWiki:Helppage}}}}',
 
 # Delete/protect/revert
-'deletepage'                  => 'Supprimer une page',
+'deletepage'                  => 'Supprimer la page',
 'confirm'                     => 'Confirmer',
 'excontent'                   => 'contenant « $1 »',
 'excontentauthor'             => 'Le contenu était : « $1 » et l’unique contributeur en était « [[Utilisateur:$2|$2]] » ([[Special:Contributions/$2|Contributions]])',
@@ -1551,7 +1567,7 @@ Voici les réglages actuels de la page <strong>$1</strong> :',
 
 # Undelete
 'undelete'                     => 'Voir les pages supprimées',
-'undeletepage'                 => 'Voir et restaurer la page supprimée',
+'undeletepage'                 => 'Voir et restaurer une page supprimée',
 'viewdeletedpage'              => 'Historique de la page supprimée',
 'undeletepagetext'             => 'Ces pages ont été supprimées et se trouvent dans l’archive. Elles figurent toujours dans la base de données et peuvent être restaurées.
 L’archive peut être effacée périodiquement.',
@@ -1599,7 +1615,7 @@ $1',
 'blanknamespace' => '(principal)',
 
 # Contributions
-'contributions' => 'Contributions de cet utilisateur',
+'contributions' => 'Contributions',
 'mycontris'     => 'Contributions',
 'contribsub2'   => 'Liste des contributions de $1 ($2). Les pages qui ont été effacées ne sont pas affichées.',
 'nocontribs'    => 'Aucune modification correspondant à ces critères n’a été trouvée.',
@@ -1620,7 +1636,7 @@ $1',
 
 # What links here
 'whatlinkshere'       => 'Pages liées',
-'whatlinkshere-title' => 'Pages ayant des liens pointant vers $1',
+'whatlinkshere-title' => 'Pages ayant un lien vers $1',
 'whatlinkshere-page'  => 'Page :',
 'linklistsub'         => '(Liste de liens)',
 'linkshere'           => 'Les pages ci-dessous contiennent un lien vers <b>[[:$1]]</b> :',
@@ -1781,7 +1797,7 @@ Veuillez vérifier qu’il n’existe aucune double redirection, et corrigez cel
 
 L’article de destination « [[$1]] » existe déjà. Voulez-vous le supprimer pour permettre le renommage ?',
 'delete_and_move_confirm' => 'Oui, j’accepte de supprimer la page de destination pour permettre le renommage.',
-'delete_and_move_reason'  => 'Page supprimée pour permettre un renommage',
+'delete_and_move_reason'  => 'Page supprimée automatiquement pour permettre un renommage',
 'selfmove'                => 'Les titres d’origine et de destination sont les mêmes : impossible de renommer une page sur elle-même.',
 'immobile_namespace'      => 'Le titre de destination est d’un type spécial ; il est impossible de renommer des pages vers cet espace de noms.',
 
@@ -1844,7 +1860,7 @@ Toutes les actions d’importation interwiki sont consignées dans l’[[Special
 'importnofile'               => 'Aucun fichier n’a été importé.',
 'importuploaderrorsize'      => "L'envoi du fichier a échoué. Sa taille est supérieure au maximum autorisé.",
 'importuploaderrorpartial'   => "L'envoi du fichier a échoué. Il n'a été envoyé que partiellement.",
-'importuploaderrortemp'      => 'Le téléversement du fichier à importer a échoué. Un dossier temporaire est manquant.',
+'importuploaderrortemp'      => "L'envoi du fichier à importer a échoué. Un dossier temporaire est manquant.",
 'import-parse-failure'       => "Rupture dans l'analyse de l'import XML",
 'import-noarticle'           => 'Aucune page à importer !',
 'import-nonewrevisions'      => 'Toute les révisions ont été importées auparavant.',
@@ -1853,9 +1869,9 @@ Toutes les actions d’importation interwiki sont consignées dans l’[[Special
 # Import log
 'importlogpage'                    => 'Historique des importations de pages',
 'importlogpagetext'                => 'Imports administratifs de pages avec l’historique à partir des autres wikis.',
-'import-logentry-upload'           => 'a importé (téléversement) $1',
+'import-logentry-upload'           => 'a importé [[$1]]',
 'import-logentry-upload-detail'    => '$1 {{PLURAL:$1|version|versions}}',
-'import-logentry-interwiki'        => 'a importé (transwiki) $1',
+'import-logentry-interwiki'        => 'a importé (transwiki) [[$1]]',
 'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|version|versions}} depuis $2',
 
 # Tooltip help for the actions
@@ -2074,8 +2090,8 @@ Les autres liens sur la même ligne sont considérés comme des exceptions, par 
 'exif-exifversion'                 => 'Version EXIF',
 'exif-flashpixversion'             => 'Version FlashPix',
 'exif-colorspace'                  => 'Espace colorimétrique',
-'exif-componentsconfiguration'     => 'Configuration des composantes',
-'exif-compressedbitsperpixel'      => 'Taux de compression de l’image',
+'exif-componentsconfiguration'     => 'Signification de chaque composante',
+'exif-compressedbitsperpixel'      => 'Mode de compression de l’image',
 'exif-pixelydimension'             => 'Hauteur d’image valide',
 'exif-pixelxdimension'             => 'Largeur d’image valide',
 'exif-makernote'                   => 'Notes du fabricant',
@@ -2180,6 +2196,7 @@ Les autres liens sur la même ligne sont considérés comme des exceptions, par 
 'exif-colorspace-ffff.h' => 'Non calibré',
 
 'exif-componentsconfiguration-0' => 'N’existe pas',
+'exif-componentsconfiguration-5' => 'V',
 
 'exif-exposureprogram-0' => 'Indéfini',
 'exif-exposureprogram-1' => 'Manuel',

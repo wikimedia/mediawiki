@@ -1,7 +1,8 @@
 <?php
-/** Kongo (Kikongo)
+/** Kongo (Kongo)
  *
  * @addtogroup Language
+ *
  */
 
 $messages = array(

@@ -1,10 +1,11 @@
 <?php
 /** Oriya (ଓଡ଼ିଆ)
-  *
-  * @addtogroup Language
-  *
-  * @author Ævar Arnfjörð Bjarmason <avarab@gmail.com>
-  */
+ *
+ * @addtogroup Language
+ *
+ * @author Ævar Arnfjörð Bjarmason <avarab@gmail.com>
+ */
+
 $digitTransformTable = array(
 	'0' => '୦', # &#x0b66;
 	'1' => '୧', # &#x0b67;
@@ -17,5 +18,4 @@ $digitTransformTable = array(
 	'8' => '୮', # &#x0b6e;
 	'9' => '୯', # &#x0b6f;
 );
-
 

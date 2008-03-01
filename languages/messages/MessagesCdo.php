@@ -1,9 +1,9 @@
 <?php
-/**
-  * Min Dong (Mìng-dĕ̤ng-ngṳ̄/閩東話/福州話)
-  *
-  * @addtogroup Language
-  */
+/** Min Dong Chinese (Mìng-dĕ̤ng-ngṳ̄)
+ *
+ * @addtogroup Language
+ *
+ */
 
 $datePreferences = array(
 	'default',

@@ -1,6 +1,5 @@
 <?php
-/**
- * German - formal address (Deutsch - "Sie-Anrede")
+/** German (formal address) (Deutsch (Sie-Form))
  *
  * @addtogroup Language
  *
@@ -365,7 +364,7 @@ Um die Einstellungen Ihrer Beobachtungsliste anzupassen, besuchen Sie: {{fullurl
 'sessionfailure'         => 'Es gab ein Problem mit Ihrer Benutzersitzung.
 Diese Aktion wurde aus Sicherheitsgründen abgebrochen, um eine falsche Zuordnung Ihrer Änderungen zu einem anderen Benutzer zu verhindern.
 Bitte gehen Sie zurück und versuchen Sie den Vorgang erneut auszuführen.',
-'protect-text'           => "Hier können Sie den Schutzstatus für die Seite '''<nowiki>\$1</nowiki>''' einsehen und ändern.",
+'protect-text'           => "Hier können Sie den Schutzstatus für die Seite '''<nowiki>$1</nowiki>''' einsehen und ändern.",
 'protect-locked-blocked' => 'Sie können den Seitenschutz nicht ändern, da Ihr Benutzerkonto gesperrt ist. Hier sind die aktuellen Seitenschutz-Einstellungen für die Seite <strong>„$1“:</strong>',
 'protect-locked-access'  => 'Ihr Benutzerkonto verfügt nicht über die notwendigen Rechte zur Änderung des Seitenschutzes. Hier sind die aktuellen Seitenschutzeinstellungen für die Seite <strong>„$1“:</strong>',
 'protect-cantedit'       => 'Sie können die Sperre dieser Seite nicht ändern, da Sie keine Berechtigung zum Bearbeiten der Seite haben.',

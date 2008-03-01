@@ -2,6 +2,8 @@
 /** Shona (chiShona)
  *
  * @addtogroup Language
+ *
+ * @author Hakka
  */
 
 $messages = array(

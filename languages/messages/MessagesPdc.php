@@ -3,8 +3,8 @@
  *
  * @addtogroup Language
  *
- * @author G - ג
  * @author SPQRobin
+ * @author לערי ריינהארט
  */
 
 $fallback = 'de';

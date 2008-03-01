@@ -9,8 +9,6 @@
  * @author SPQRobin
  */
 
-
-
 $messages = array(
 # Dates
 'sunday'    => 'Tondak',
@@ -114,6 +112,5 @@ $messages = array(
 
 # Contributions
 'contributions' => 'Mana engame totow inne',
-
 
 );

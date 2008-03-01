@@ -1,8 +1,9 @@
 <?php
 /** Bashkir (Башҡорт)
-  *
-  * @addtogroup Language
-  */
+ *
+ * @addtogroup Language
+ *
+ */
 
 $fallback = 'ru';
 

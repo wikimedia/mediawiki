@@ -4,10 +4,9 @@
  * @addtogroup Language
  *
  * @author Ævar Arnfjörð Bjarmason <avarab@gmail.com>, Jens Frank
- * @author Gangleri
  * @author SPQRobin
- * @author G - ג
  * @author Erwin85
+ * @author לערי ריינהארט
  * @copyright Copyright © 2005, Ævar Arnfjörð Bjarmason, Jens Frank
  * @copyright Copyright © 2007, Betawiki users
  * @license http://www.gnu.org/copyleft/gpl.html GNU General Public License 2.0 or later

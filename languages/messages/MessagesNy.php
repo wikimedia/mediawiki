@@ -2,7 +2,7 @@
 /** Nyanja (Chi-Chewa)
  *
  * @addtogroup Language
- *
+
  */
 
 $messages = array(

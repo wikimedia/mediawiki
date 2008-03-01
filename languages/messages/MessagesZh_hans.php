@@ -1,6 +1,5 @@
 <?php
-/**
- * Chinese (Simplified) (中文 (简化字))
+/** Simplified Chinese (‪中文(简体)‬)
  *
  * @addtogroup Language
  *

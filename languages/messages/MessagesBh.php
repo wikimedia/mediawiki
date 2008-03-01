@@ -1,8 +1,9 @@
 <?php
-/** Bihara (भोजपुरी)
-  *
-  * @addtogroup Language
-  */
+/** Bihari (भोजपुरी)
+ *
+ * @addtogroup Language
+ *
+ */
 
 $digitTransformTable = array(
 	'0' => '०', # &#x0966;
@@ -16,5 +17,4 @@ $digitTransformTable = array(
 	'8' => '८', # &#x096e;
 	'9' => '९', # &#x096f;
 );
-
 

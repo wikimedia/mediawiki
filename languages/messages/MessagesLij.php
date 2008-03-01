@@ -641,7 +641,7 @@ O urtimo cangiamento o l'è de [[User:$3|$3]] ([[User talk:$3|Ciæti]]).",
 'protect_expiry_invalid'      => 'Scadensa invalida.',
 'protect_expiry_old'          => 'Data de scadensa into passòu.',
 'protect-unchain'             => 'Scollegâ i permissi de stramûo',
-'protect-text'                => "Chì o l'è poscibbile vedde e modificâ o livello de protession pe-a paggina <strong><nowiki>\$1</nowiki></strong>.",
+'protect-text'                => "Chì o l'è poscibbile vedde e modificâ o livello de protession pe-a paggina <strong><nowiki>$1</nowiki></strong>.",
 'protect-locked-access'       => "No ti g'hæ permisso pe modificâ i livelli de protession da paggina.
 Queste son e impostassioîn correnti pe 'sta paggina (<strong>$1</strong>):",
 'protect-cascadeon'           => "Pe-o momento 'sta paggina chì a l'è bloccâa perché a l'è inclûsa {{PLURAL:$1|inta paggina indicâa apprêuvo, pe-a quæ|inte paggine indicæ apprêuvo, pe-e quæ}} a l'è attiva a protession recorsciva. O se pêu modificâ o livello de protession individuâle da paggina, ma l'impostassioîn derivanti da-a protession recorsciva no sajàn modificæ.",

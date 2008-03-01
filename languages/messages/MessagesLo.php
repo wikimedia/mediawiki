@@ -42,6 +42,7 @@ $digitTransformTable = array(
 
 $messages = array(
 # User preference toggles
+'tog-underline'               => 'ຂີດເສ້ນໃຕ້ລິງຄ໌:',
 'tog-hideminor'               => 'ເຊື່ອງການດັດແກ້ເລັກນ້ອຍ ໃນ ການປ່ຽນແປງຫຼ້າສຸດ',
 'tog-extendwatchlist'         => 'ຂະຫຍາຍ ລາຍການຕິດຕາມ ເພື່ອ ສະແດງທຸກໆການປ່ຽນແປງ',
 'tog-usenewrc'                => 'ສະແດງ ການປ່ຽນແປງຫຼ້າສຸດ ເປັນສີເຂັ້ມ (JavaScript)',
@@ -95,10 +96,12 @@ $messages = array(
 'subcategories'   => 'ໝວດຍ່ອຍ',
 
 'about'          => 'ກ່ຽວກັບ',
-'article'        => 'ໜ້າເນື້ອໃນ',
+'article'        => 'ບົດຄວາມ',
 'newwindow'      => '(ເປີດເປັນ ປ່ອງຢ້ຽມ(ວິນໂດ)ໃໝ່ )',
 'cancel'         => 'ລົບລ້າງ',
+'qbfind'         => 'ຊອກຫາ',
 'qbedit'         => 'ດັດແກ້',
+'qbpageoptions'  => 'ໜ້ານີ້',
 'qbspecialpages' => 'ໜ້າພິເສດ',
 'mypage'         => 'ໜ້າຂ້ອຍ',
 'mytalk'         => 'ສົນທະນາຂ້ອຍ',
@@ -107,11 +110,12 @@ $messages = array(
 'and'            => 'ແລະ',
 
 'returnto'         => 'ກັບໄປ  $1.',
-'help'             => 'ຊ່ອຍເຫຼືອ',
+'help'             => 'ຊ່ວຍເຫຼືອ',
 'search'           => 'ຊອກຫາ',
 'searchbutton'     => 'ຊອກຫາ',
+'go'               => 'ໄປ',
 'searcharticle'    => 'ໄປ',
-'history'          => 'ປະຫວັດການດັດແກ້',
+'history'          => 'ປະຫວັດ',
 'history_short'    => 'ປະຫວັດການດັດແກ້',
 'printableversion' => 'ສະບັບພິມໄດ້',
 'permalink'        => 'ລິ້ງຄ໌ຖາວອນ',

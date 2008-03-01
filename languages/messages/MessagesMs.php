@@ -3,12 +3,11 @@
  *
  * @addtogroup Language
  *
- * CHANGELOG
- * =========
- * Init - This localisation is based on a file kindly donated by the folks at MIMOS
- * http://www.asiaosc.org/enwiki/page/Knowledgebase_Home.html
- * Sep 2007 - Rewritten by the folks at ms.wikipedia.org
+ * @comment This localisation is based on a file kindly donated by the folks at MIMOS - http://www.asiaosc.org/enwiki/page/Knowledgebase_Home.html
+ * @author Rewritten by the folks at ms.wikipedia.org
  * @author Aviator
+ * @author Aurora
+ * @author לערי ריינהארט
  */
 
 # Uncomment line below to use space charecter as thousands separator
@@ -224,7 +223,7 @@ $messages = array(
 'dec'          => 'Dis',
 
 # Bits of text used by many pages
-'categories'            => 'Kategori',
+'categories'            => '{{PLURAL:$1|Kategori|Kategori}}',
 'pagecategories'        => 'Kategori',
 'category_header'       => 'Laman-laman dalam kategori "$1"',
 'subcategories'         => 'Subkategori',
@@ -397,13 +396,8 @@ Pertanyaan pangkalan data yang terakhir ialah:
 <blockquote><tt>$1</tt></blockquote> 
 dari dalam fungsi "<tt>$2</tt>".
 MySQL memulangkan ralat "<tt>$3: $4</tt>".',
-'dberrortextcl'        => 'Terdapat kesalahan pada sintaks pertanyaan pangkalan data.
-Pertanyaan pangkalan data yang terakhir ialah:
-"$1"
-dari dalam fungsi "$2".
-MySQL memulangkan ralat "$3: $4"',
-'noconnect'            => 'Harap maaf! Wiki ini dilanda sedikit masalah teknikal dan tidak dapat menghubungi pelayan pangkalan data.<br />
-$1',
+'dberrortextcl'        => 'Ada kesalahan sintaksis pada pertanyaan pangkalan data. Pertanyaan terakhir adalah: "$1" dari dalam fungsi "$2". MySQL mengembalikan ralat "$3: $4".',
+'noconnect'            => 'Maaf! Wiki ini menghadapi masalah teknikal dan tidak dapat menghubungi pelayan pangkalan data. <br />$1',
 'nodb'                 => 'Tidak dapat memilih pangkalan data $1',
 'cachederror'          => 'Berikut ialah salinan simpanan bagi laman yang diminta, dan barangkali bukan yang terkini.',
 'laggedslavemode'      => 'Amaran: Laman ini mungkin bukan yang terkini.',
@@ -459,12 +453,7 @@ Pertanyaan: $2',
 
 # Login and logout pages
 'logouttitle'                => 'Log keluar',
-'logouttext'                 => "<strong>Anda telah log keluar.</strong>
-
-Anda boleh terus menggunakan {{SITENAME}} sebagai pengguna tanpa nama, atau
-anda boleh log masuk sekali lagi sebagai pengguna lain. Sila ambil perhatian
-bahawa sesetengah laman mungkin dipaparkan seolah-olah anda masih log masuk,
-sehinggalah anda mengosongkan simpanan (''cache'') pelayar anda.",
+'logouttext'                 => 'Anda telah keluar dari sistem. Anda masih boleh menggunakan {{SITENAME}} sebagai pengguna tanpa nama jika anda tidak ingin masuk semula. Perhatikan bahawa beberapa halaman mungkin masih kelihatan seperti anda belum log keluar sehingga anda membersihkan ingatan cache pelayar anda.',
 'welcomecreation'            => '== Selamat datang, $1! ==
 
 Akaun anda telah dibuka. Jangan lupa untuk mengubah keutamaan {{SITENAME}} anda.',
@@ -517,14 +506,7 @@ Akaun anda telah dibuka. Jangan lupa untuk mengubah keutamaan {{SITENAME}} anda.
 'passwordtooshort'           => 'Kata laluan anda tidak sah atau terlalu pendek. Panjangnya mestilah sekurang-kurangnya $1 aksara dan berbeza daripada nama pengguna anda.',
 'mailmypassword'             => 'E-melkan kata laluan baru',
 'passwordremindertitle'      => 'Pengingat kata laluan daripada {{SITENAME}}',
-'passwordremindertext'       => 'Seseorang (barangkali anda, daripada alamat IP $1)
-telah memohon kata laluan baru bagi {{SITENAME}} ($4).
-Kata laluan terkini untuk pengguna "$2" ialah "$3".
-Anda disarankan supaya log masuk dan menukarkan kata laluan anda dengan segera.
-
-Jika anda tidak pernah membuat pemohonan ini atau anda telah mengingati kata
-laluan lama anda dan tidak mahu menukarnya, anda boleh mengabaikan mesej ini
-dan terus menggunakan kata laluan yang lama.',
+'passwordremindertext'       => 'Seseorang (mungkin anda, dari alamat IP $1) meminta kami menghantar kata laluan baru untuk {{SITENAME}} ($4). Kata laluan untuk pengguna "$2" ialah "$3". Anda disarankan untuk log masuk dan tukar kata laluan segera.',
 'noemail'                    => 'Tiada alamat e-mel direkodkan bagi pengguna "$1".',
 'passwordsent'               => 'Kata laluan baru telah dikirim kepada alamat
 e-mel yang didaftarkan oleh "$1".
@@ -637,7 +619,7 @@ ID sekatan anda ialah $5. Sila sertakan ID ini dalam pertanyaan anda.',
 ditunjukkan di bawah:",
 'blockededitsource'         => "Teks bagi '''suntingan anda''' terhadap '''$1''' ditunjukkan di bawah:",
 'whitelistedittitle'        => 'Log masuk dahulu untuk menyunting',
-'whitelistedittext'         => 'Anda mesti $1 terlebih dahulu untuk menyunting laman.',
+'whitelistedittext'         => 'Anda harus $1 untuk dapat menyunting rencana.',
 'whitelistreadtitle'        => 'Log masuk dahulu untuk membaca',
 'whitelistreadtext'         => 'Anda perlu [[Special:Userlogin|log masuk]] terlebih dahulu untuk membaca laman.',
 'whitelistacctitle'         => 'Anda tidak dibenarkan membuka akaun.',
@@ -746,7 +728,7 @@ Sebab yang diberikan oleh $3 ialah ''$2''",
 'viewpagelogs'        => 'Lihat log bagi laman ini',
 'nohistory'           => 'Tiada sejarah suntingan bagi laman ini.',
 'revnotfound'         => 'Semakan tidak dijumpai.',
-'revnotfoundtext'     => 'Semakan lama untuk laman yang anda minta tidak dijumpai. Sila semak URL yang anda gunakan untuk membuka laman ini.',
+'revnotfoundtext'     => 'Semakan lama untuk halaman yang anda pinta tidak dapat dijumpai. Sila semak URL yang anda gunakan untuk mencapai halaman ini.',
 'loadhist'            => 'Memuat sejarah laman',
 'currentrev'          => 'Semakan semasa',
 'revisionasof'        => 'Semakan pada $1',
@@ -863,8 +845,8 @@ Sila pastikan bahawa perubahan ini akan mengekalkan kesinambungan sejarah laman.
 'searchresults'         => 'Keputusan carian',
 'searchresulttext'      => 'Untuk maklumat lanjut tentang carian dalam {{SITENAME}}, sila lihat [[{{MediaWiki:Helppage}}|{{int:help}}]].',
 'searchsubtitle'        => 'Anda mencari "[[$1]]"',
-'searchsubtitleinvalid' => 'Anda mencari "[[$1]]"',
-'noexactmatch'          => "'''Tiada laman bertajuk \"\$1\".''' Anda boleh [[:\$1|mencipta laman ini]].",
+'searchsubtitleinvalid' => 'Untuk pertanyaan "$1"',
+'noexactmatch'          => "'''Tiada halaman bertajuk \"\$1\".''' Anda boleh [[:\$1|menciptanya]].",
 'noexactmatch-nocreate' => "'''Tiada laman bertajuk \"\$1\".'''",
 'titlematches'          => 'Padanan tajuk laman',
 'notitlematches'        => 'Tiada tajuk laman yang sepadan',
@@ -993,16 +975,16 @@ Kumpulan yang tidak dipilih tidak akan diubah. Anda boleh mengecualikan sebarang
 'recentchanges'                     => 'Perubahan terkini',
 'recentchangestext'                 => 'Jejaki perubahan terkini dalam {{SITENAME}} pada laman ini.',
 'recentchanges-feed-description'    => 'Jejaki perubahan terkini dalam {{SITENAME}} pada suapan ini.',
-'rcnote'                            => "Berikut ialah '''$1''' perubahan terakhir sejak '''$2''' hari yang lalu sehingga $3.",
+'rcnote'                            => 'Di bawah adalah <strong>$1</strong> perubahan terbaru pada <strong>$2</strong> hari yang lalu sehingga $3.',
 'rcnotefrom'                        => 'Berikut ialah semua perubahan sejak <b>$2</b> (sehingga <b>$1</b>).',
 'rclistfrom'                        => 'Tunjukkan perubahan terbaru bermula dari $1',
 'rcshowhideminor'                   => '$1 suntingan kecil',
 'rcshowhidebots'                    => '$1 bot',
-'rcshowhideliu'                     => '$1 pengguna log masuk',
+'rcshowhideliu'                     => '$1 pengguna berdaftar',
 'rcshowhideanons'                   => '$1 pengguna tanpa nama',
-'rcshowhidepatr'                    => '$1 suntingan yang telah diperiksa',
+'rcshowhidepatr'                    => '$1 suntingan dirondai',
 'rcshowhidemine'                    => '$1 suntingan saya',
-'rclinks'                           => 'Tunjukkan $1 perubahan terakhir sejak $2 hari yang lalu<br />$3',
+'rclinks'                           => 'Paparkan $1 perubahan pada $2 hari yang lalu<br />$3',
 'diff'                              => 'beza',
 'hist'                              => 'sej',
 'hide'                              => 'Sembunyi',
@@ -1208,21 +1190,12 @@ Untuk rujukan, berikut ialah log penghapusan bagi fail ini:",
 'statistics'             => 'Statistik',
 'sitestats'              => 'Statistik {{SITENAME}}',
 'userstats'              => 'Statistik pengguna',
-'sitestatstext'          => "Terdapat sejumlah '''\$1''' laman dalam pangkalan data kami.
-Jumlah ini termasuklah laman \"perbincangan\", laman mengenai {{SITENAME}}, laman ringkas,
-pelencongan, dan lain-lain yang tidak layak menjadi laman kandungan.
-Dengan mengecualikan laman-laman ini, terdapat sejumlah \$2 laman yang barangkali dikira
-sah.
+'sitestatstext'          => "Ketika ini, {{SITENAME}} mempunyai '''$2''' buah rencana. Selain itu, terdapat juga laman perbualan, laman penerangan imej, laman pengguna, laman {{SITENAME}}, laman ringkas/buntu, laman pengalihan dan templat. Kesemua laman ini menjadikan jumlah keseluruhan halaman sebanyak '''$1''' halaman.
 
-'''\$8''' fail telah dimuat naik.
+Terdapat '''$3''' paparan laman dan sebanyak '''$4''' suntingan telah dilakukan sejak wiki ini bermula; iaitu purata '''$5''' suntingan bagi setiap halaman, dan '''$6''' paparan bagi setiap suntingan.
 
-Terdapat sejumlah '''\$3''' paparan laman, dan '''\$4''' penyuntingan dilakukan
-sejak {{SITENAME}} dipasang.
-Secara purata terdapat '''\$5''' suntingan bagi setiap laman, dan '''\$6''' paparan bagi suntingan.
-
-Panjang [http://meta.wikimedia.org/wiki/Help:Job_queue barisan tugas] ialah '''\$7'''.",
-'userstatstext'          => "Terdapat '''$1''' [[Special:Listusers|pengguna]] berdaftar, dengan
-'''$2''' (atau '''$4%''') daripadanya mempunyai hak $5.",
+Sebanyak '''$8''' fail telah dimuat naik. Bilangan kerja tertunggak ialah '''$7'''.",
+'userstatstext'          => "Terdapat '''$1''' pengguna berdaftar. '''$2''' (atau '''$4''') daripadanya adalah penyelia (lihat $3).",
 'statistics-mostpopular' => 'Laman dilihat terbanyak',
 
 'disambiguations'      => 'Laman penyahtaksaan',
@@ -1287,7 +1260,7 @@ Panjang [http://meta.wikimedia.org/wiki/Help:Job_queue barisan tugas] ialah '''\
 'newpages-username'       => 'Nama pengguna:',
 'ancientpages'            => 'Laman lapuk',
 'intl'                    => 'Pautan antara bahasa',
-'move'                    => 'Pindah',
+'move'                    => 'Alih',
 'movethispage'            => 'Pindahkan laman ini',
 'unusedimagestext'        => '<p>Sila ambil perhatian bahawa
 mungkin terdapat tapak web lain yang mengandungi pautan ke imej ini
@@ -1487,7 +1460,7 @@ oleh [[User:$2|$2]] ([[User talk:$2|Perbincangan]]); terdapat pengguna yang tela
 
 Suntingan terakhir telah dibuat oleh [[User:$3|$3]] ([[User talk:$3|Perbincangan]]).',
 'editcomment'                 => 'Komen suntingan: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'                  => 'Membalikkan suntingan oleh [[Special:Contributions/$2|$2]] ([[User talk:$2|Perbincangan]]) kepada versi terakhir oleh [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'revertpage'                  => 'Suntingan [[Istimewa:Contributions/$2|$2]] dikembalikan ke versi terakhir oleh $1', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success'            => 'Membalikkan suntingan oleh $1 kepada versi terakhir oleh $2.',
 'sessionfailure'              => 'Terdapat sedikit masalah pada sesi log masuk anda.
 Tindakan ini telah dibatalkan untuk mencegah perampasan sesi.
@@ -1565,7 +1538,7 @@ atau semakan tersebut telah dipulihkan atau dibuang daripada arkib.',
 'undeletebtn'                  => 'Pulihkan',
 'undeletereset'                => 'set semula',
 'undeletecomment'              => 'Komen:',
-'undeletedarticle'             => 'memulihkan "[[$1]]"',
+'undeletedarticle'             => '"[[$1]]" telah dipulih',
 'undeletedrevisions'           => '$1 semakan dipulihkan',
 'undeletedrevisions-files'     => '$1 semakan dan $2 fail dipulihkan',
 'undeletedfiles'               => '$1 fail dipulihkan',
@@ -1709,7 +1682,7 @@ Alamat IP yang disekat secara automatik tidak disenaraikan di sini. Sila lihat
 'proxyblocker'                => 'Sekatan proksi',
 'proxyblocker-disabled'       => 'Fungsi ini dimatikan.',
 'proxyblockreason'            => 'Alamat IP anda telah disekat kerana ia merupakan proksi terbuka. Sila hubungi penyedia perkhidmatan Internet anda atau pihak sokongan teknikal dan beritahu mereka mengenai masalah berat ini.',
-'proxyblocksuccess'           => 'Siap.',
+'proxyblocksuccess'           => 'Berjaya.',
 'sorbsreason'                 => 'Alamat IP anda telah disenaraikan sebagai proksi terbuka dalam DNSBL yang digunakan oleh {{SITENAME}}.',
 'sorbs_create_account_reason' => 'Alamat IP anda telah disenaraikan sebagai proksi terbuka dalam DNSBL yang digunakan oleh {{SITENAME}}. Oleh itu, anda tidak dibenarkan membuka akaun baru.',
 
@@ -1817,7 +1790,7 @@ Dalam pilihan kedua tadi, anda juga boleh menggunakan pautan, umpamanya [[{{ns:s
 'export-templates'  => 'Sertakan templat',
 
 # Namespace 8 related
-'allmessages'               => 'Mesej sistem',
+'allmessages'               => 'Pesanan sistem',
 'allmessagesname'           => 'Nama',
 'allmessagesdefault'        => 'Teks lalai',
 'allmessagescurrent'        => 'Teks semasa',

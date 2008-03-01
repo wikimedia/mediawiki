@@ -1,9 +1,9 @@
 <?php
-/**
-  * Cantonese (粵語/廣東話)
-  *
-  * @addtogroup Language
-  */
+/** Yue (粵語)
+ *
+ * @addtogroup Language
+ *
+ */
 
 $skinNames = array(
 	'standard'    => '傳統', /* "Classic, Standard" */
@@ -340,8 +340,6 @@ $messages = array(
 'disclaimerpage'    => 'Project:一般免責聲明',
 'edithelp'          => '編輯協助',
 'edithelppage'      => 'Help:編輯',
-'faq'               => 'FAQ',
-'faqpage'           => 'Project:FAQ',
 'helppage'          => 'Help:目錄',
 'mainpage'          => '頭版',
 'policy-url'        => 'Project:政策',
@@ -361,7 +359,6 @@ $messages = array(
 'versionrequired'     => '係需要用 $1 版嘅 MediaWiki',
 'versionrequiredtext' => '要用呢一頁，要用MediaWiki版本 $1 。睇睇[[Special:Version|版本頁]]。',
 
-'ok'                      => 'OK',
 'retrievedfrom'           => '由 "$1" 收',
 'youhavenewmessages'      => '你有$1（$2）。',
 'newmessageslink'         => '新信息',
@@ -376,7 +373,6 @@ $messages = array(
 'thisisdeleted'           => '睇下定係還原 $1 ？',
 'viewdeleted'             => '去睇$1？',
 'restorelink'             => '$1 次已刪除嘅編輯',
-'feedlinks'               => 'Feed:',
 'feed-invalid'            => '唔啱嘅 feed 類型。',
 'site-rss-feed'           => '$1嘅RSS Feed',
 'site-atom-feed'          => '$1嘅Atom Feed',
@@ -657,7 +653,6 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'userjspreview'             => "'''請注意你而家只係測試／預覽緊你定義嘅JavaScript，佢嘅內容重未儲存！'''",
 'userinvalidcssjstitle'     => "'''警告：''' 無叫做 \"\$1\" 嘅畫面。請記住自訂介面的 .css 和 .js 頁面時應使用細楷，例如：{{ns:user}}:Foo/monobook.css 而唔係 {{ns:user}}:Foo/Monobook.css 。",
 'updated'                   => '(己更新)',
-'note'                      => '<strong>Note:</strong>',
 'previewnote'               => '<strong>請記住呢個只係預覽；更改嘅内容重未儲存！</strong>',
 'previewconflict'           => '呢個預覽係反映如果你選擇儲存嘅話，嘅上面嘅文字編輯區裏面嘅字會儲存落嚟。',
 'session_fail_preview'      => '<strong>對唔住！由於小節嘅資料唔見咗，我哋唔能夠處理你嘅編輯。
@@ -985,9 +980,6 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'hist'                              => '歷史',
 'hide'                              => '隱藏',
 'show'                              => '顯示',
-'minoreditletter'                   => 'm',
-'newpageletter'                     => 'N',
-'boteditletter'                     => 'b',
 'number_of_watching_users_pageview' => '[$1位用戶監視]',
 'rc_categories'                     => '限定到分類（以"|"作分隔）',
 'rc_categories_any'                 => '任何',
@@ -1221,7 +1213,6 @@ Template:搞清楚',
 'fewestrevisions' => '有最少修改嘅版',
 
 # Miscellaneous special pages
-'nbytes'                  => '$1 {{PLURAL:$1|byte|bytes}}',
 'ncategories'             => '$1 個分類',
 'nlinks'                  => '$1 條連結',
 'nmembers'                => '$1 位成員',
@@ -1484,7 +1475,6 @@ wiki: $PAGEEDITOR_WIKI
 'restriction-level'           => '限制等級:',
 'minimum-size'                => '最小大細',
 'maximum-size'                => '最大大細',
-'pagesize'                    => '(bytes)',
 
 # Restrictions (nouns)
 'restriction-edit'   => '編輯',
@@ -1995,7 +1985,6 @@ Variants for Chinese language
 'variantname-ku'      => '無變換',
 
 # Metadata
-'metadata'          => 'Metadata',
 'metadata-help'     => '呢個檔案有額外嘅資料。佢應該係數碼相機或者掃描器整出來嘅。如果佢整咗之後畀人改過，裏面嘅資料未必同改過之後相符。',
 'metadata-expand'   => '打開詳細資料',
 'metadata-collapse' => '收埋詳細資料',

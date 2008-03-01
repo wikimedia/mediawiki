@@ -7,3 +7,4 @@
  */
 
 $fallback = 'ruq-latn';
+

@@ -196,7 +196,7 @@ $messages = array(
 * [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce เมลลิงลิสต์ของมีเดียวิกิ]',
 
 'about'          => 'เว็บไซต์นี้',
-'article'        => 'เนื้อหาข้อความ',
+'article'        => 'บทความ',
 'newwindow'      => '(เปิดหน้าต่างใหม่)',
 'cancel'         => 'ยกเลิก',
 'qbfind'         => 'ค้นหา',
@@ -219,7 +219,7 @@ $messages = array(
 'errorpagetitle'    => 'มีข้อผิดพลาด',
 'returnto'          => 'กลับไปสู่ $1',
 'tagline'           => 'จาก {{SITENAME}}',
-'help'              => 'คำอธิบาย',
+'help'              => 'ช่วยเหลือ',
 'search'            => 'ค้นหา',
 'searchbutton'      => 'ค้นหา',
 'go'                => 'ไป',
@@ -248,7 +248,7 @@ $messages = array(
 'personaltools'     => 'เครื่องมือส่วนตัว',
 'postcomment'       => 'แสดงความเห็น',
 'articlepage'       => 'แสดงเนื้อหาของหน้า',
-'talk'              => 'พูดคุย',
+'talk'              => 'อภิปราย',
 'views'             => 'ดู',
 'toolbox'           => 'เครื่องมือเพิ่ม',
 'userpage'          => 'ดูหน้าผู้ใช้',
@@ -325,7 +325,7 @@ $messages = array(
 'red-link-title'          => '$1 (ยังไม่ได้สร้าง)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
-'nstab-main'      => 'เนื้อหาหลัก',
+'nstab-main'      => 'บทความ',
 'nstab-user'      => 'หน้าผู้ใช้',
 'nstab-media'     => 'หน้าสื่อ',
 'nstab-special'   => 'พิเศษ',

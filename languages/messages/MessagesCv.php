@@ -1,7 +1,8 @@
 <?php
-/** Chuvash
+/** Chuvash (Чăвашла)
  *
  * @addtogroup Language
+ *
  */
 
 $fallback = 'ru';

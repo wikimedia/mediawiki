@@ -228,6 +228,7 @@ $messages = array(
 'bugreports'        => 'Programazio-erroreen jakinarazpenak',
 'bugreportspage'    => 'Project:Programazio-erroreen jakinarazpenak',
 'copyright'         => 'Eduki guztia $1(r)en babespean dago.',
+'copyrightpagename' => '{{SITENAME}}ren egile eskubideak',
 'copyrightpage'     => '{{ns:project}}:Eskubideak',
 'currentevents'     => 'Albisteak',
 'currentevents-url' => 'Project:Albisteak',
@@ -327,6 +328,7 @@ Mesedez, administratzaileari jakinarazi, URLa bidaliz.',
 'filecopyerror'        => 'Ezin izan da "$1" fitxategia "$2"(e)ra kopiatu.',
 'filerenameerror'      => 'Ezin izan zaio "$1" fitxategiari "$2" izen berria eman.',
 'filedeleteerror'      => 'Ezin izan da "$1" fitxategia ezabatu.',
+'directorycreateerror' => 'Ezin izan da "$1" karpeta sortu.',
 'filenotfound'         => 'Ezin izan da "$1" fitxategia aurkitu.',
 'unexpected'           => 'Espero ez zen balioa: "$1"="$2".',
 'formerror'            => 'Errorea: ezin izan da formularioa bidali',
@@ -347,6 +349,7 @@ Kontsulta: $2',
 'editinginterface'     => "'''Oharra:''' Softwarearentzako interfaze testua duen orrialde bat aldatzen ari zara. Orrialde honetako aldaketek erabiltzaile guztiei eragingo die.",
 'sqlhidden'            => '(ezkutuko SQL kontsulta)',
 'namespaceprotected'   => "Ez daukazu '''$1''' izen-tarteko orrialdeak aldatzeko baimenik.",
+'customcssjsprotected' => 'Ez daukazu orrialde hau aldatzeko baimenik, beste erabiltzaile baten hobespenak definitzen dituelako.',
 
 # Login and logout pages
 'logouttitle'                => 'Saioa ixtea',
@@ -376,10 +379,10 @@ Zure kontua sortu egin da. Ez ahaztu {{SITENAME}}(e)ko hobespenak aldatzea.',
 'createaccountmail'          => 'e-postaz',
 'badretype'                  => 'Idatzitako pasahitzak ez dira berdinak.',
 'userexists'                 => 'Aukeratutako erabiltzaile izena hartuta dago. Mesedez, ezberdin bat aukeratu.',
-'youremail'                  => 'E-posta *:',
+'youremail'                  => 'E-posta:',
 'username'                   => 'Erabiltzaile izena:',
 'uid'                        => 'Erabiltzaile IDa:',
-'yourrealname'               => 'Benetako izena *:',
+'yourrealname'               => 'Benetako izena:',
 'yourlanguage'               => 'Hizkuntza:',
 'yourvariant'                => 'Aldaera',
 'yournick'                   => 'Erabiltzaile izena:',
@@ -466,6 +469,7 @@ Helbide horretara beste edozein mezu bidali aurretik, bertan azaltzen diren argi
 'subject-preview'           => 'Gaia/Izenburuaren aurreikuspena',
 'blockedtitle'              => 'Erabiltzailea blokeatuta dago',
 'blockedtext'               => 'Zure erabiltzaile izena edo IP helbidea $1(e)k blokeatu du. Emandako arrazoia honako hau da: \'\'$2\'\' $1 edo Wikipediako beste [[{{MediaWiki:Grouppage-sysop}}|administratzaile]] batekin harremanetan jarri beharko zinateke zure blokeoa eztabaidatzeko. Kontuan izan ezingo duzula "Erabiltzaile honi e-posta bidali" aukera erabili zure [[Special:Preferences|Hobespenetan]] baliozko e-posta helbide bat definitu ezean. Zure IP helbidea $3 da. Mesedez, edozein kontsulta egiterakoan, helbide hori aipatu.',
+'blockednoreason'           => 'ez da arrazoirik zehaztu',
 'blockedoriginalsource'     => "Jarraian ikus daiteke '''$1'''(r)en kodea:",
 'blockededitsource'         => "Jarraian ikus daitezke '''$1'''(e)n egin dituzun aldaketak:",
 'whitelistedittitle'        => 'Saioa hastea beharrezkoa da aldaketak egiteko',
@@ -501,7 +505,7 @@ Helbide horretara beste edozein mezu bidali aurretik, bertan azaltzen diren argi
 
 <strong>Aldaketa saiakera hau zuzena baldin bada, saiatu berriro mesedez. Arazoak jarraitzen badu, saiatu saioa itxi eta berriz hasten.</strong>",
 'editing'                   => '$1 aldatzen',
-'editinguser'               => '<b>$1</b> erabiltzailea aldatzen',
+'editinguser'               => "'''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]]) erabiltzailea aldatzen",
 'editingsection'            => '$1 aldatzen (atala)',
 'editingcomment'            => '$1 aldatzen (iruzkina)',
 'editconflict'              => 'Aldaketa gatazka: $1',
@@ -541,6 +545,9 @@ Hemen duzu orrialde honen ezabaketa erregistroa badaezpada ere:",
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Ezin izan da kontua sortu',
+'cantcreateaccount-text' => "IP helbide honetatik (<b>$1</b>) kontu berria sortzeko aukera blokeatu du [[User:$3|$3]](e)k.
+
+$3(e)k emandako arrazoia: ''$2''",
 
 # History pages
 'viewpagelogs'        => 'Orrialde honen erregistroak ikusi',
@@ -871,8 +878,9 @@ The [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] length is '''$7'''
 'userstatstext'          => "'''$1''' erabiltzaile daude izen emanda, horietatik '''$2''' (edo '''$4%''') $5 direlarik.",
 'statistics-mostpopular' => 'Orrialde bisitatuenak',
 
-'disambiguations'     => 'Argipen orrialdeak',
-'disambiguationspage' => 'Template:argipen',
+'disambiguations'      => 'Argipen orrialdeak',
+'disambiguationspage'  => 'Template:argipen',
+'disambiguations-text' => "Jarraian azaltzen diren orrialdeek '''argipen orrialde''' baterako lotura dute. Kasu bakoitzean dagokion artikulu zuzenarekin izan beharko lukete lotura.<br />Orrialde bat argipen motakoa dela antzeman ohi da [[MediaWiki:Disambiguationspage]] orrialdean agertzen den txantiloietako bat duenean.",
 
 'doubleredirects'     => 'Birzuzenketa bikoitzak',
 'doubleredirectstext' => 'Lerro bakoitzean lehen eta bigarren birzuzenketetarako loturak ikus daitezke, eta baita edukia daukan edo eduki beharko lukeen orrialderako lotura ere. Lehen birzuzenketak azken honetara zuzendu beharko luke.',
@@ -882,7 +890,8 @@ The [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] length is '''$7'''
 'brokenredirects-edit'   => '(aldatu)',
 'brokenredirects-delete' => '(ezabatu)',
 
-'withoutinterwiki' => 'Hizkuntza loturarik gabeko orrialdeak',
+'withoutinterwiki'        => 'Hizkuntza loturarik gabeko orrialdeak',
+'withoutinterwiki-header' => 'Orrialde hauek ez daukate beste hizkuntzetarako loturarik:',
 
 'fewestrevisions' => 'Berrikusketa gutxien dituzten artikuluak',
 
@@ -935,6 +944,7 @@ The [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] length is '''$7'''
 # Book sources
 'booksources'               => 'Iturri liburuak',
 'booksources-search-legend' => 'Liburuen bilaketa',
+'booksources-go'            => 'Joan',
 'booksources-text'          => 'Jarraian liburu berri eta erabiliak saltzen dituzten guneetarako loturen zerrenda bat ikus dezakezu, bilatzen ari zaren liburu horientzako informazio gehigarria aurkitzeko lagungarria izan daitekeena:',
 
 'categoriespagetext' => 'Hurrengo kategoriak daude wiki honetan:',
@@ -984,6 +994,8 @@ The [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] length is '''$7'''
 'emailsubject'    => 'Gaia',
 'emailmessage'    => 'Mezua',
 'emailsend'       => 'Mezua',
+'emailccme'       => 'Mezu honen kopia bat niri bidali.',
+'emailccsubject'  => 'Zure mezuaren kopia $1(r)i: $2',
 'emailsent'       => 'Mezua bidali egin da',
 'emailsenttext'   => 'Zure e-posta mezua bidali egin da.',
 
@@ -1024,14 +1036,16 @@ Jarraipen zerrendatik artikulua kentzeko, artikuluan ''ez jarraitu''ri eman.",
 'watching'   => 'Zerrendan gehitzen...',
 'unwatching' => 'Zerrendatik kentzen...',
 
-'enotif_mailer'      => '{{SITENAME}}(e)ko Oharpen Postaria',
-'enotif_reset'       => 'Orrialde guztiak bisitatu bezala markatu',
-'enotif_newpagetext' => 'Honako hau orrialde berria da.',
-'changed'            => 'aldatu',
-'created'            => 'sortu',
-'enotif_subject'     => '{{SITENAME}}(e)ko $PAGETITLE orrialdea $PAGEEDITOR(e)k $CHANGEDORCREATED du',
-'enotif_lastvisited' => 'Jo $1 orrialdera zure azken bisitaz geroztik izandako aldaketa guztiak ikusteko.',
-'enotif_body'        => 'Kaixo $WATCHINGUSERNAME,
+'enotif_mailer'                => '{{SITENAME}}(e)ko Oharpen Postaria',
+'enotif_reset'                 => 'Orrialde guztiak bisitatu bezala markatu',
+'enotif_newpagetext'           => 'Honako hau orrialde berria da.',
+'enotif_impersonal_salutation' => '{{SITENAME}} erabiltzailea',
+'changed'                      => 'aldatu',
+'created'                      => 'sortu',
+'enotif_subject'               => '{{SITENAME}}(e)ko $PAGETITLE orrialdea $PAGEEDITOR(e)k $CHANGEDORCREATED du',
+'enotif_lastvisited'           => 'Jo $1 orrialdera zure azken bisitaz geroztik izandako aldaketa guztiak ikusteko.',
+'enotif_lastdiff'              => 'Jo $1(e)ra aldaketa hau ikusteko.',
+'enotif_body'                  => 'Kaixo $WATCHINGUSERNAME,
 
 {{SITENAME}}(e)ko $PAGETITLE orrialdea $CHANGEDORCREATED egin du $PAGEEDITOR(e)k une honetan: $PAGEEDITDATE, ikus $PAGETITLE_URL azken bertsiorako.
 
@@ -1061,6 +1075,8 @@ Laguntza:
 'excontentauthor'             => "edukia honakoa zen: '$1' (parte hartu duen lankide bakarra: '$2')",
 'exbeforeblank'               => "hustu aurreko edukiera: '$1'",
 'exblank'                     => 'orrialdea hutsik zegoen',
+'delete-confirm'              => '"$1" ezabatu',
+'delete-legend'               => 'Ezabatu',
 'historywarning'              => 'Kontuz! Ezabatuko duzun orrialdeak honako historia du:',
 'confirmdeletetext'           => 'Orrialde edo irudi bat eta beste historia guztia datu-basetik ezabatzear zaude. Mesedez, egiaztatu hori egin nahi duzula, ondorioak zeintzuk diren badakizula, eta [[{{MediaWiki:Policy-url}}|politikak]] errespetatuz egingo duzula.',
 'actioncomplete'              => 'Ekintza burutu da',
@@ -1071,6 +1087,13 @@ Laguntza:
 'deletionlog'                 => 'ezabaketa erregistroa',
 'reverted'                    => 'Lehenagoko berrikuspen batera itzuli da',
 'deletecomment'               => 'Ezabatzeko arrazoia',
+'deletereasonotherlist'       => 'Beste arrazoi bat',
+'deletereason-dropdown'       => '*Ezabatzeko ohiko arrazoiak
+** Egileak eskatuta
+** Egile eskubideak urratzea
+** Bandalismoa',
+'delete-toobig'               => 'Orrialde honek aldaketa historia luzea du, $1 berrikuspenetik gorakoa. Orrialde horien ezabaketa mugatua dago {{SITENAME}}n ezbeharrak saihesteko.',
+'delete-warning-toobig'       => 'Orrialde honek aldaketa historia luzea du, $1 berrikuspenetik gorakoa. Ezabatzeak ezbeharrak eragin ditzake {{SITENAME}}ren datu-basean; kontu izan.',
 'rollback'                    => 'Aldaketak desegin',
 'rollback_short'              => 'Desegin',
 'rollbacklink'                => 'desegin',
@@ -1394,6 +1417,9 @@ Horrez gain, lotura zuzena ere erabil dezakezu; adibidez, [[{{ns:special}}:Expor
 'common.css'   => '/** Hemen idatzitako CSS kodeak itxura guztietan izango du eragina */',
 'monobook.css' => '/* Hemen idatzitako CSS kodeak Monobook itxuran bakarrik izango du eragina */',
 
+# Scripts
+'common.js' => '/* Hemen idatzitako JavaScript kode oro erabiltzaile guztiek edozein orrialde irekitzerakoan kargatuko da. */',
+
 # Metadata
 'nodublincore'      => 'Dublin Core RDF metadatuak ezgaitu egin dira zerbitzari honetarako.',
 'nocreativecommons' => 'Creative Commons RDF metadatuak ezgaitu egin dira zerbitzari honetarako.',
@@ -1487,6 +1513,17 @@ Zerrenda elementuak (hasieran * duten lerroak) baino ez dira kontuan hartzen. Le
 * fnumber
 * focallength', # Do not translate list items
 
+# EXIF tags
+'exif-bitspersample'           => 'Bit osagaiko',
+'exif-artist'                  => 'Egilea',
+'exif-colorspace'              => 'Kolore tartea',
+'exif-componentsconfiguration' => 'Osagai bakoitzaren esanahia',
+'exif-aperturevalue'           => 'Irekiera',
+'exif-brightnessvalue'         => 'Distira',
+'exif-cfapattern'              => 'CFA patroia',
+
+'exif-componentsconfiguration-0' => 'ez da existitzen',
+
 # External editor support
 'edit-externally'      => 'Fitxategi hau editatu kanpo-aplikazio bat erabiliz',
 'edit-externally-help' => 'Ikus [http://meta.wikimedia.org/wiki/Help:External_editors konfiguraziorako argibideak] informazio gehiagorako.',
@@ -1502,8 +1539,10 @@ Zerrenda elementuak (hasieran * duten lerroak) baino ez dira kontuan hartzen. Le
 'confirmemail'            => 'E-posta helbidea egiaztatu',
 'confirmemail_noemail'    => 'Ez daukazu e-posta helbiderik zehaztuta zure [[Special:Preferences|hobespenetan]].',
 'confirmemail_text'       => 'Wiki honetan zure e-posta helbidea egiaztatzea beharrezkoa da e-postarekin zerikusia duten ezaugarriak erabili aurretik. Beheko botoia jo zure helbidera egiaztapen mezu bat bidaltzeko. Mezuan kode bat duen lotura bat joango da atxikita; lotura hori zure nabigatzailean ireki ezazu e-posta helbidea egiaztatzeko.',
+'confirmemail_pending'    => '<div class="error">Egiaztapen kode bat bidali zaizu jada; erabiltzaile kontua duela gutxi sortu baduzu, mezua iritsi bitartean minutu batzuk itxaron beharko zenituzke kode berri bat eskatu aurretik.</div>',
 'confirmemail_send'       => 'Egiaztapen kodea e-postaz bidali',
 'confirmemail_sent'       => 'Egiaztapen mezua bidali da.',
+'confirmemail_oncreate'   => 'Egiaztapen kodea bidali zaizu zure e-posta helbidera. Kode hau ez da beharrezkoa saioa hasteko, baina bai wikiak eskaintzen dituen e-posta zerbitzuez profitatzeko.',
 'confirmemail_sendfailed' => 'Ezin izan da egiaztapen mezua bidali. Ziurtatu e-posta helbidean baliogabeko karaktererik ez dagoela. Zerbitzariaren mezua: $1',
 'confirmemail_invalid'    => 'Baliogabeko egiaztapen kodea. Baliteke kodea iraungi izana.',
 'confirmemail_needlogin'  => '$1 behar duzu zure e-posta helbidea egiaztatzeko.',
@@ -1569,7 +1608,13 @@ $1',
 
 # Auto-summaries
 'autosumm-blank'   => 'Orrialdetik eduki guztia ezabatzen',
+'autosumm-replace' => "Orrialdea '$1'(r)engatik ordezten",
 'autoredircomment' => '[[$1]] orrialdera birzuzentzentzen',
 'autosumm-new'     => 'Orrialde berria: $1',
+
+# Watchlist editing tools
+'watchlisttools-view' => 'Aldaketa garrantzitsuak ikusi',
+'watchlisttools-edit' => 'Zerrenda ikusi eta aldatu',
+'watchlisttools-raw'  => 'Zerrenda idatziz aldatu',
 
 );

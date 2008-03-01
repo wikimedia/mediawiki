@@ -28,45 +28,46 @@ $digitTransformTable = array(
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'គូសបន្ទាត់ក្រោម តំណភ្ជាប់៖',
-'tog-highlightbroken'         => 'បង្ហាញ <a href="" class="new">ជា ក្រហម </a>តំណភ្ជាប់ នានា ទៅទំព័រ មិនមាន (alternative:ដូចនេះ<a href="" class="internal">នេះ ឬ ?</a>)',
-'tog-justify'                 => 'តំរឹមកថាខណ្ឌ',
+'tog-highlightbroken'         => 'តភ្ជាប់ ទៅ ទំព័រ មិនទាន់មាន នឹង <a href="" class="new">ដូចនេះ</a> (បើមិនដូច្នោះ ៖ ដូចនេះ<a href="" class="internal">?</a>)',
+'tog-justify'                 => 'តំរឹម កថាខណ្ឌ',
 'tog-hideminor'               => 'បិទបាំង កំណែប្រែតិចតួច ក្នុងបញ្ជីបំលាស់ប្តូរថ្មីៗ',
-'tog-extendwatchlist'         => 'ពង្រីកបញ្ជីតាមដាន ដើម្បីបង្ហាញ គ្រប់បំលាស់ប្តូរ',
+'tog-extendwatchlist'         => 'ពង្រីក បញ្ជីតាមដាន ដើម្បីបង្ហាញ គ្រប់បំលាស់ប្តូរ',
 'tog-usenewrc'                => 'ធ្វើអោយ បំលាស់ប្តូរ​ថ្មីៗ(JavaScript) កាន់តែប្រសើរឡើង',
 'tog-numberheadings'          => 'វាយលេខ ចំណងជើងរង ដោយស្វ័យប្រវត្តិ',
 'tog-showtoolbar'             => 'បង្ហាញ របារឧបករកែប្រែ (JavaScript)',
-'tog-editondblclick'          => 'ចុចពីរដងដើម្បីកែប្រែទំព័រ (JavaScript)',
-'tog-editsection'             => 'អនុញ្ញាតិ អោយកែប្រែផ្នែកណាមួយ តាមរយៈតំណភ្ជាប់[កែប្រែ]',
-'tog-editsectiononrightclick' => 'អនុញ្ញាតិអោយកែប្រែ​ ផ្នែកណាមួយ(JavaScript) ដោយចុចស្តាំកណ្តុរ លើចំណងជើងរបស់វា',
-'tog-showtoc'                 => 'បង្ហាញតារាងមាតិកា(ចំពោះទំព័រដែលមានheadingsលើសពី៣)',
-'tog-rememberpassword'        => 'ចងចាំ ការពិនិត្យចូលរបស់ខ្ញុំ ក្នុងកុំព្យូទ័រនេះ',
+'tog-editondblclick'          => 'ចុចពីរដង ដើម្បីកែប្រែទំព័រ (JavaScript)',
+'tog-editsection'             => 'អនុញ្ញាតិ កែប្រែ ផ្នែកណាមួយ តាម តំណភ្ជាប់ [កែប្រែ]',
+'tog-editsectiononrightclick' => 'អនុញ្ញាតិ កែប្រែ​ ផ្នែកណាមួយ(JavaScript) ដោយ ចុចស្តាំកណ្តុរ លើ ចំណងជើង របស់វា',
+'tog-showtoc'                 => 'បង្ហាញ តារាងមាតិកា(ចំពោះទំព័រ ដែលមាន លើសពី៣ ចំណងជើងរង)',
+'tog-rememberpassword'        => 'ចងចាំ ការពិនិត្យចូលរបស់ខ្ញុំ លើខំព្យូរើនេះ',
 'tog-editwidth'               => 'បង្ហាញ បង្អួច កែប្រែ ជា ទទឹង ពេញ',
 'tog-watchcreations'          => 'បន្ថែម ទំព័រ ដែលខ្ញុំបង្កើត ទៅ បញ្ជីតាមដាន របស់ខ្ញុំ',
 'tog-watchdefault'            => 'បន្ថែម ទំព័រ ដែលខ្ញុំកែប្រែ ទៅ បញ្ជីតាមដាន របស់ខ្ញុំ',
-'tog-watchmoves'              => 'បន្ថែមទំព័រ នានា ដែល ខ្ញុំប្តូរទីតាំង ទៅ បញ្ជីតាមដាន របស់ខ្ញុំ',
-'tog-watchdeletion'           => 'បន្ថែមទំព័រ ដែលខ្ញុំលុបចេញ ទៅ បញ្ជីតាមដាន របស់ខ្ញុំ',
+'tog-watchmoves'              => 'បន្ថែម ទំព័រ ដែលខ្ញុំប្តូរទីតាំង ទៅ បញ្ជីតាមដាន របស់ខ្ញុំ',
+'tog-watchdeletion'           => 'បន្ថែម ទំព័រ ដែលខ្ញុំលុបចេញ ទៅ បញ្ជីតាមដាន របស់ខ្ញុំ',
 'tog-minordefault'            => 'ចំណាំ គ្រប់កំណែប្រែ របស់ខ្ញុំ ថាជា តិចតួច',
 'tog-previewontop'            => 'បង្ហាញ ការមើលមុន ពីលើ ប្រអប់ កែប្រែ',
 'tog-previewonfirst'          => 'បង្ហាញ ការមើលមុន ចំពោះ កំណែប្រែ ដំបូង',
+'tog-nocache'                 => 'អសកម្ម សតិភ្ជាប់ នៃ ទំព័រ',
 'tog-enotifwatchlistpages'    => 'អ៊ីមែវល៍ មកខ្ញុំ កាលបើ បញ្ជីតាមដាន របស់អ្នក បានត្រូវ ផ្លាស់ប្តូរ',
 'tog-enotifusertalkpages'     => 'អ៊ីមែវល៍មកខ្ញុំ កាលបើទំព័រពិភាក្សា របស់អ្នក បានត្រូវផ្លាស់ប្តូរ',
 'tog-enotifminoredits'        => 'អ៊ីមែវល៍មកខ្ញុំ ផងដែរ ចំពោះបំលាស់ប្តូរតិចតួច នៃទំព័រនានា',
 'tog-enotifrevealaddr'        => 'បង្ហាញ អាស័យដ្ឋានអ៊ីមែវល៍ របស់ខ្ញុំ ក្នុង មែវល៍ក្រើនរំលឹក នានា',
-'tog-shownumberswatching'     => 'បង្ហាញចំនួនអ្នកប្រើប្រាស់ ដែលតាមដានទំព័រនេះ',
+'tog-shownumberswatching'     => 'បង្ហាញ ចំនួនអ្នកប្រើប្រាស់ ដែលតាមដាន ទំព័រនេះ',
 'tog-fancysig'                => 'ហត្ថលេខាឆៅ (គ្មានតំណភ្ជាប់ ស្វ័យប្រវត្តិ)',
-'tog-externaleditor'          => 'ប្រើប្រាស់ឧបករណ៍កែប្រែខាងក្រៅតាមលំនាំដើម',
-'tog-externaldiff'            => 'ប្រើប្រាស់ឧបករ ប្រៀបធៀបក្រៅ តាមលំនាំដើម',
-'tog-showjumplinks'           => 'ធ្វើអោយសកម្ម តំណភ្ជាប់ «ត្រាច់រក» និង «ស្វែងរក» នៅផ្នែកលើ នៃទំព័រ (ចំពោះសំបក Myskin និង ផ្សេងទៀត)',
-'tog-uselivepreview'          => 'ប្រើប្រាស់ ការមើលមុនរហ័ស (JavaScript) (អ្នកមានបទពិសោធ)',
+'tog-externaleditor'          => 'ប្រើប្រាស់ ឧបករ កែប្រែខាងក្រៅ តាមលំនាំដើម',
+'tog-externaldiff'            => 'ប្រើប្រាស់ ឧបករ ប្រៀបធៀបខាងក្រៅ តាមលំនាំដើម',
+'tog-showjumplinks'           => 'សកម្ម តំណភ្ជាប់ «ត្រាច់រក» និង «ស្វែងរក» នៅផ្នែកលើ នៃទំព័រ (ចំពោះសំបក Myskin និង ផ្សេងទៀត)',
+'tog-uselivepreview'          => 'ប្រើប្រាស់ ការមើលមុនរហ័ស (JavaScript) (ពិសោធ)',
 'tog-forceeditsummary'        => 'រំលឹកខ្ញុំ កាលបើខ្ញុំទុកប្រអប់វិចារ អោយទំនេរ',
-'tog-watchlisthideown'        => 'បិទបាំងកំណែប្រែរបស់ខ្ញុំ ពីបញ្ជីតាមដាន',
-'tog-watchlisthidebots'       => 'បិទបាំងកំណែប្រែ របស់​រូបយន្ត ពីបញ្ជីតាមដាន',
+'tog-watchlisthideown'        => 'បិទបាំង កំណែប្រែ របស់ខ្ញុំ ពី បញ្ជីតាមដាន',
+'tog-watchlisthidebots'       => 'បិទបាំង កំណែប្រែ របស់​រូបយន្ត ពី បញ្ជីតាមដាន',
 'tog-watchlisthideminor'      => 'បិទបាំង កំណែប្រែតិចតួច ពីបញ្ជីតាមដាន',
 'tog-ccmeonemails'            => 'ផ្ញើខ្ញុំ ច្បាប់ចំលងអ៊ីមែវល៍ ដើម្បីខ្ញុំផ្ញើទៅ អ្នកប្រើប្រាស់ផ្សេងទៀត',
 'tog-diffonly'                => 'មិនបង្ហាញ ខ្លឹមសារទំព័រ នៅពីក្រោម ភាពខុសគ្នា',
 
 'underline-always'  => 'ជានិច្ច',
-'underline-never'   => 'ទេ',
+'underline-never'   => 'មិនដែលសោះ',
 'underline-default' => 'តាមលំនាំដើម',
 
 'skinpreview' => '(មើលមុន)',
@@ -149,10 +150,10 @@ $messages = array(
 'qbedit'         => 'កែប្រែ',
 'qbpageoptions'  => 'ទំព័រនេះ',
 'qbpageinfo'     => 'ពត៌មានទំព័រ',
-'qbmyoptions'    => 'ទំព័រ ផ្ទាល់ខ្លួនខ្ញុំ',
-'qbspecialpages' => 'ទំព័រពិសេសៗ',
+'qbmyoptions'    => 'ទំព័រនានា របស់ខ្ញុំ',
+'qbspecialpages' => 'ទំព័រ ពិសេស',
 'moredotdotdot'  => 'បន្ថែមទៀត...',
-'mypage'         => 'ទំព័រផ្ទាល់ខ្លួន',
+'mypage'         => 'ទំព័រ​ របស់ខ្ញុំ',
 'mytalk'         => 'ការពិភាក្សា របស់ខ្ញុំ',
 'anontalk'       => 'ពិភាក្សា ចំពោះ IP នេះ',
 'navigation'     => 'ទិសដៅ',
@@ -162,7 +163,7 @@ $messages = array(
 'metadata_help' => 'ទិន្នន័យមេតា៖',
 
 'errorpagetitle'    => 'កំហុស',
-'returnto'          => "ត្រលប់ទៅកាន់ '''$1''' វិញ។",
+'returnto'          => "ត្រលប់ទៅ '''$1''' ។",
 'tagline'           => 'ពី {{SITENAME}}',
 'help'              => 'ជំនួយ',
 'search'            => 'ស្វែងរក',
@@ -184,8 +185,8 @@ $messages = array(
 'protect'           => 'ការពារ',
 'protect_change'    => 'ផ្លាស់ប្តូរ ការការពារ',
 'protectthispage'   => 'ការពារ ទំព័រនេះ',
-'unprotect'         => 'ឈប់ការពារ',
-'unprotectthispage' => 'ឈប់ការពារទំព័រនេះ',
+'unprotect'         => 'លែងការពារ',
+'unprotectthispage' => 'លែងការពារ ទំព័រនេះ',
 'newpage'           => 'ទំព័រថ្មី',
 'talkpage'          => 'ពិភាក្សាទំព័រនេះ',
 'talkpagelinktext'  => 'ពិភាក្សា',
@@ -200,16 +201,16 @@ $messages = array(
 'projectpage'       => 'មើល​ទំព័រគំរោង',
 'imagepage'         => 'មើលទំព័រមីឌា',
 'mediawikipage'     => 'មើល​ទំព័រសារ',
-'templatepage'      => 'មើល​គំរូខ្នាត',
+'templatepage'      => 'មើល ទំព័រគំរូខ្នាត',
 'viewhelppage'      => 'មើលទំព័រជំនួយ',
 'categorypage'      => 'មើល​ទំព័រចំណាត់ក្រុម',
 'viewtalkpage'      => 'មើលការពិភាក្សា',
 'otherlanguages'    => 'ជាភាសាដទៃទៀត',
-'redirectedfrom'    => '(បានបញ្ជូនពី $1)',
-'redirectpagesub'   => 'ទំព័របញ្ជូន(Redirect page)',
+'redirectedfrom'    => '(ត្រូវបានប្តូរទិស ពី $1)',
+'redirectpagesub'   => 'ប្តូរទិស ទំព័រ',
 'lastmodifiedat'    => 'ទំព័រនេះ ត្រូវបានផ្លាស់ប្តូរ ចុងក្រោយ $2, $1។', # $1 date, $2 time
 'viewcount'         => "ទំព័រនេះត្រូវបានចូលមើលចំនួន'''$1'''លើក",
-'protectedpage'     => 'ទំព័របានការពារ',
+'protectedpage'     => 'ទំព័រ ត្រូវបានការពារ',
 'jumpto'            => 'ទៅកាន់៖',
 'jumptonavigation'  => 'ត្រាច់រក',
 'jumptosearch'      => 'ស្វែងរក',
@@ -267,14 +268,15 @@ $messages = array(
 'feedlinks'               => 'បំរែបំរួល៖',
 'feed-invalid'            => 'ប្រភេទ បំរែបំរួល ដែលគ្មាន សុពលភាព។',
 'site-rss-feed'           => 'បំរែបំរួល RSS នៃ $1',
-'site-atom-feed'          => 'បំរែបំរួល Atom Feed នៃ $1',
+'site-atom-feed'          => 'បំរែបំរួល Atom នៃ $1',
 'page-rss-feed'           => 'បំរែបំរួល RSS នៃ "$1"',
 'page-atom-feed'          => 'បំរែបំរួល Atom Feed នៃ "$1"',
+'red-link-title'          => '$1 (មិនទាន់ បានសរសេរ)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'ទំព័រ',
 'nstab-user'      => 'ទំព័រអ្នកប្រើប្រាស់',
-'nstab-media'     => 'ទំព័រមីឌា(Media)',
+'nstab-media'     => 'ទំព័រ មីឌា',
 'nstab-special'   => 'ពិសេស',
 'nstab-project'   => 'ទំព័រគំរោង',
 'nstab-image'     => 'ឯកសារ',
@@ -284,7 +286,7 @@ $messages = array(
 'nstab-category'  => 'ចំណាត់ក្រុម',
 
 # Main script and global functions
-'nosuchaction'      => 'គ្មានសកម្មភាពបែបនេះទេ',
+'nosuchaction'      => 'មិនមាន សកម្មភាព បែបនេះ',
 'nosuchactiontext'  => 'សកម្មភាព បានបង្ហាញដោយ URL មិនត្រូវបាន ទទួលស្គាល់ដោយ វិគី',
 'nosuchspecialpage' => 'គ្មានទំព័រពិសេស បែបនេះទេ',
 'nospecialpagetext' => "<big>'''អ្នកបានស្នើរក មួយទំព័រពិសេស ដែលមិនត្រូវបាន ទទួលស្គាល់ ដោយ វិគី។'''</big>
@@ -313,7 +315,9 @@ $1',
 'badarticleerror'      => 'សកម្មភាពនេះ មិនអាចត្រូវបានអនុវត្ត លើទំព័រនេះ។',
 'cannotdelete'         => 'មិនអាច លុបចេញ ទំព័រ ឬ ឯកសារ ដែលបានសំដៅ។ (វាអាច ត្រូវបានលុបចេញហើយ ដោយ នរណាម្នាក់ ។)',
 'badtitle'             => 'ចំណងជើង មិនត្រឹមត្រូវ',
-'viewsource'           => 'មើលកូដ',
+'perfcached'           => 'ទិន្នន័យ ទាំងនេះ ត្រូវបាន ដាក់ទៅ សតិភ្ជាប់ និង ប្រហែល រង់ចាំ ការបន្ទាន់សម័យ ។',
+'perfcachedts'         => 'ទិន្នន័យ ទាំងនេះ ត្រូវបាន ដាក់ក្នុង សតិភ្ជាប់ និង បានត្រូវ បន្ទាន់សម័យ ចុងក្រោយ នៅ $1។',
+'viewsource'           => 'មើល អក្សរកូដ',
 'viewsourcefor'        => 'សំរាប់ $1',
 'actionthrottled'      => 'សកម្មភាព ត្រូវបានកំរិត',
 'protectedpagetext'    => 'ទំព័រនេះ បានត្រូវចាក់សោ ដើម្បីការពារកំណែប្រែ។',
@@ -346,13 +350,13 @@ You can continue to use {{SITENAME}} anonymously, or you can log in again as the
 'userlogin'                  => 'ពិនិត្យចូល / បង្កើតគណនី',
 'logout'                     => 'ពិនិត្យចេញ',
 'userlogout'                 => 'ពិនិត្យចេញ',
-'notloggedin'                => 'អ្នកមិនបាន ពិនិត្យចូលទេ',
+'notloggedin'                => 'មិនបានពិនិត្យចូល',
 'nologin'                    => 'អ្នកមានគណនី ដើម្បីប្រើប្រាស់ ឬ នៅ? $1 ។',
 'nologinlink'                => 'បង្កើត មួយគណនី',
 'createaccount'              => 'បង្កើតគណនី',
 'gotaccount'                 => 'មានគណនី រួចហើយ ឬ ? $1។',
 'gotaccountlink'             => 'ពិនិត្យចូល',
-'createaccountmail'          => 'តាមរយះអ៊ីមែវល៍',
+'createaccountmail'          => 'តាម អ៊ីមែវល៍',
 'badretype'                  => 'ពាក្យសំងាត់ ដែលអ្នក បានបញ្ចូលនោះ មិនស៊ីគ្នា។',
 'userexists'                 => 'ឈ្មោះអ្នកប្រើប្រាស់ មាន គេ ប្រើប្រាស់ ហើយ។ សូម ជ្រើសរើស ឈ្មោះដទៃទៀត។',
 'youremail'                  => 'អ៊ីមែវល៍៖',
@@ -387,6 +391,10 @@ You can continue to use {{SITENAME}} anonymously, or you can log in again as the
 
 បើមានអ្នកណាផ្សេង ស្នើករណីនេះ ឬ អ្នកបែរជា បាននឹកឃើញ ពាក្យសំងាត់ចាស់ របស់អ្នក ហើយ មិនចង់ ផ្លាស់ប្តូរ ទេ, អ្នកអាចបំភ្លេច សារនេះ ព្រមទាំង បន្តប្រើប្រាស់ ពាក្យសំងាត់ ចាស់ របស់អ្នក ។',
 'noemail'                    => 'គ្មាន អាស័យដ្ឋានអ៊ីមែវល៍ ត្រូវបានថតទុក សំរាប់ អ្នកប្រើប្រាស់ "$1"។',
+'passwordsent'               => 'មួយពាក្យសំងាត់ថ្មី ត្រូវបានផ្ញើ ទៅអាស័យដ្ឋានអ៊ីមែវល៍ ដែលបានចុះបញ្ជី អោយ "$1"។ សូម ពិនិត្យចូល ឡើងវិញ បន្ទាប់ពី បានទទួលវា។',
+'blocked-mailpassword'       => 'អាស័យដ្ឋាន IP ត្រូវបានរាំងខ្ទប់ កំណែប្រែ និង មិនអនុញ្ញាតិ អោយប្រើប្រាស់ មុខងារសង្គ្រោះពាក្យសំងាត់ ដើម្បីបង្ការ ការបំពាន។',
+'eauthentsent'               => 'អ៊ីមែវល៍ បញ្ជាក់ទទួលស្គាល់ ត្រូវបានផ្ញើទៅ អាស័យដ្ឋានអ៊ីមែវល៍ ដែលបានដាក់ឈ្មោះ។ មុននឹងមាន អ៊ីមែវល៍ ផ្សេងមួយទៀត ត្រូវផ្ញើទៅ គណនីនេះ, អ្នកត្រូវតែតាមមើល សេចក្តីណែនាំ ក្នុងអ៊ីមែវល៍, ដើម្បីបញ្ជាក់ទទួលស្គាល់ ថា គណនីបច្ចុប្បន្ន ជារបស់អ្នក។',
+'throttled-mailpassword'     => 'ការរំលឹកពាក្យសំងាត់ ត្រូវបានផ្ញើទៅ អោយអ្នក ក្នុងអំឡុង $1 ម៉ោងចុងក្រោយ។ ដើម្បីបង្ការ អំពើបំពាន, អាចផ្ញើពាក្យសំងាត់ រាល់ $1 ម៉ោង ។',
 'mailerror'                  => 'កំហុស ផ្ញើមែវល៍៖ $1',
 'acct_creation_throttle_hit' => 'អភ័យទោស, អ្នកបានបង្កើត គណនី $1 រួចហើយ ។ អ្នកមិនអាច ធ្វើអ្វី បន្ថែម ទេ​ ។',
 'emailauthenticated'         => 'អាស័យដ្ឋានអ៊ីមែវល៍ របស់អ្នក ត្រូវបានទទួល ស្របច្បាប់ ថ្ងៃ $1។',
@@ -437,14 +445,15 @@ You can continue to use {{SITENAME}} anonymously, or you can log in again as the
 'summary'                   => 'សេចក្តីសង្ខេប',
 'subject'                   => 'ប្រធានបទ/ចំណងជើង',
 'minoredit'                 => 'នេះជា កំណែប្រែតិចតួចមួយ',
-'watchthis'                 => 'តាមដានទំព័រនេះ',
+'watchthis'                 => 'តាមដាន ទំព័រនេះ',
 'savearticle'               => 'រក្សាទុកទំព័រ',
 'preview'                   => 'មើលមុន',
 'showpreview'               => 'បង្ហាញ ការមើលមុន',
 'showlivepreview'           => 'មើលមុន ទាន់ចិត្ត',
 'showdiff'                  => 'បង្ហាញ បំលាស់ប្តូរ',
+'anoneditwarning'           => "''ព្រមាន ៖''' អ្នកមិនទាន់បាន ពិនិត្យចូល ទេ។ អាស័យដ្ឋាន IP របស់អ្នក នឹងត្រូវបាន ថតទុក ក្នុងប្រវត្តិកែប្រែ នៃទំព័រ នេះ។",
 'missingcommenttext'        => 'សូមបញ្ចូល មួយវិចារ នៅខាងក្រោម។',
-'summary-preview'           => 'មើលមុន សង្ខេប',
+'summary-preview'           => 'មើលមុន សេចក្តីសង្ខេប',
 'subject-preview'           => 'មើលមុន ប្រធានបទ/ចំណងជើង',
 'blockedtitle'              => 'អ្នកប្រើប្រាស់ បានត្រូវខ្ទប់',
 'blockednoreason'           => 'គ្មានហេតុផល ត្រូវបានលើកឡើង',
@@ -475,15 +484,28 @@ You can continue to use {{SITENAME}} anonymously, or you can log in again as the
 * '''Opera '''៖ ចុច ''[Tools]→[Preferences]'' ។",
 'usercssjsyoucanpreview'    => "<strong>គន្លឹះ ៖ </strong> ប្រើប្រាស់ ប្រអប់ 'បង្ហាញ មើលមុន' ដើម្បី សាកល្បង សន្លឹក CSS/JS ថ្មី របស់អ្នក មុននឹង រក្សាទុកវា ។",
 'usercsspreview'            => "'''រំលឹក ថា អ្នកគ្រាន់តែ កំពុងមើលមុន សន្លឹក CSS របស់អ្នក, វាមិនទាន់ ត្រូវបានរក្សាទុក ទេ!'''",
+'userjspreview'             => "'ចងចាំថា អ្នកគ្រាន់តែ កំពុងសាក ប្រើប្រាស់/ពិនិត្យ ទំព័រអ្នកប្រើប្រាស់  JavaScript របស់ង្នក, វាមិនទាន់ត្រូវបាន រក្សាទុក!'''",
+'userinvalidcssjstitle'     => "'''ប្រយ័ត្ន៖''' គ្មានសំបក \"\$1\"។ ចងចាំថា ទំព័រផ្ទាល់ខ្លួន .css និង .js ប្រើប្រាស់ ចំណងជើង ជាអក្សរតូច, ឧទាហរ  {{ns:user}}:Foo/monobook.css ត្រឹមត្រូវ, រីឯ {{ns:user}}:Foo/Monobook.css មិនត្រឹមត្រូវ។",
 'updated'                   => '(បានបន្ទាន់សម័យ)',
 'note'                      => '<strong>ចំណាំ៖</strong>',
 'previewnote'               => '<strong>នេះគ្រាន់តែជា ការបង្ហាញអោយ មើលជាមុន ប៉ុណ្ណោះ។ បំលាស់ប្តូរ មិនទាន់បាន រក្សាទុកទេ។</strong>',
+'session_fail_preview'      => '<strong>អភ័យទោស! យើងមិនអាច រក្សាទុក កំណែប្រែ របស់អ្នក មកពី បាត់ទិន្នន័យ វេនការងារ។
+
+សូម ព្យាយាម ម្តងទៀត។ បើនៅតែ មិនធ្វើការ, ព្យាយាម ពិនិត្យចេញ និង ពិនិត្យចូល ឡើងវិញ។</strong>',
+'session_fail_preview_html' => "<strong>អភ័យទោស! យើងមិនអាច រក្សាទុក កំណែប្រែ របស់អ្នក មកពី បាត់ទិន្នន័យ វេនការងារ។</strong>
+
+''ដោយ {{SITENAME}} មានអក្សរកូដ HTML ឆៅ ងាយប្រើប្រាស់។ 
+
+ទំព័រ មើលមុន ត្រូវបានបិទបាំង ដើម្បីចៀសវាង ការវាយលុក ដោយ JavaScript ។''
+
+<strong>បើ នេះជាការប៉ុនប៉ង កែប្រែ សមស្រប, សូម ព្យាយាម ម្តងទៀត។ បើនៅតែ មិនធ្វើការ, ព្យាយាម ពិនិត្យចេញ និង ពិនិត្យចូល ឡើងវិញ។</strong>",
 'editing'                   => 'កំណែប្រែ នៃ $1',
 'editinguser'               => "ផ្លាស់ប្តូរ សិទ្ធិអ្នកប្រើប្រាស់ នៃ អ្នកប្រើប្រាស់ '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
-'editingsection'            => 'កំណែប្រែ នៃ $1 (ផ្នែក)',
-'editingcomment'            => 'កំណែប្រែ នៃ $1 (វិចារ)',
+'editingsection'            => 'កែប្រែ $1 (ផ្នែក)',
+'editingcomment'            => 'កែប្រែ $1 (វិចារ)',
 'editconflict'              => 'ភាពឆ្គង នៃកំណែប្រែ៖ $1',
 'yourtext'                  => 'ឃ្លារបស់អ្នក',
+'storedversion'             => 'កំណែ ដែលបានតំកល់ទុក',
 'yourdiff'                  => 'ភាពខុសគ្នា នានា',
 'semiprotectedpagewarning'  => "'''សំគាល់៖''' ទំព័រនេះ បានត្រូវ ចាក់សោ ដូច្នេះ មានតែអ្នកប្រើប្រាស់ ដែលបានចុះឈ្មោះ ទើបអាចកែប្រែ វា បាន។",
 'templatesused'             => 'គំរូខ្នាតនានា បានប្រើប្រាស់ លើទំព័រនេះ៖',
@@ -497,11 +519,14 @@ You can continue to use {{SITENAME}} anonymously, or you can log in again as the
 
 # Account creation failure
 'cantcreateaccounttitle' => 'មិនអាចបង្កើត គណនី',
+'cantcreateaccount-text' => "ការបង្កើតគណនី ពីអាស័យដ្ឋាន IP (<b>$1</b>) នេះ ត្រូវបានរាំងខ្ទប់ ដោយ [[User:$3|$3]]។
+
+ហេតុផល លើកឡើង ដោយ $3 គឺ ''$2''",
 
 # History pages
 'viewpagelogs'        => 'មើលកំណត់ហេតុសំរាប់ទំព័រនេះ',
 'nohistory'           => 'មិនមាន ប្រវត្តិកំណែប្រែ ចំពោះទំព័រនេះ។',
-'revnotfound'         => 'រកមិនឃើញ កំណែ(version)',
+'revnotfound'         => 'រកមិនឃើញ កំណែ',
 'loadhist'            => 'ផ្ទុក ប្រវត្តិ នៃ ទំព័រ',
 'currentrev'          => 'កំណែបច្ចុប្បន្ន',
 'revisionasof'        => 'កំណែ របស់ $1',
@@ -512,6 +537,7 @@ You can continue to use {{SITENAME}} anonymously, or you can log in again as the
 'cur'                 => 'បច្ចុប្បន្ន',
 'next'                => 'បន្ទាប់',
 'last'                => 'ចុងក្រោយ',
+'orig'                => 'ច្បាប់ដើម',
 'page_first'          => 'ដំបូង',
 'page_last'           => 'ចុងក្រោយ',
 'deletedrev'          => '[ត្រូវបានលុបចេញ]',
@@ -530,7 +556,7 @@ You can continue to use {{SITENAME}} anonymously, or you can log in again as the
 'rev-deleted-user'          => '(ឈ្មោះអ្នកប្រើប្រាស់ ត្រូវបានដកចេញ)',
 'rev-deleted-event'         => '(អត្ថបទ ត្រូវបានដកចេញ)',
 'rev-delundel'              => 'បង្ហាញ/បិទបាំង',
-'revisiondelete'            => 'លុបចេញ/ទុកនៅដដែល កំណែ នានា',
+'revisiondelete'            => 'លុបចេញ/លែងលុបចេញ កំណែ នានា',
 'revdelete-nooldid-title'   => 'គ្មានគោលដៅ ចំពោះ កំណែ',
 'revdelete-legend'          => 'ដាក់កំហិត នានា៖',
 'revdelete-hide-text'       => 'បិទបាំង អត្ថបទ នៃ កំណែ',
@@ -538,13 +564,18 @@ You can continue to use {{SITENAME}} anonymously, or you can log in again as the
 'revdelete-hide-comment'    => 'បិទបាំង កំណែប្រែ វិចារ',
 'revdelete-hide-user'       => 'បិទបាំង ឈ្មោះអ្នកប្រើប្រាស់​ ឬ អាស័យដ្ឋាន IP នៃ អ្នករួមចំណែក',
 'revdelete-hide-restricted' => 'អនុវត្ត ការដាក់កំហិត នានា ចំពោះ អ្នកថែទាំប្រព័ន្ធ(sysops) ក៏ដូចជា អ្នកប្រើប្រាស់ ដ៏ទៃទៀត',
+'revdelete-suppress'        => 'បិទបាំង ទិន្នន័យ ពី អ្នកថែទាំប្រព័ន្ធ និង  ពី សមាជិក ដទៃទៀត',
 'revdelete-hide-image'      => 'បិទបាំង ខ្លឹមសារ នៃឯកសារ',
 'revdelete-unsuppress'      => 'ដកចេញ ការដាក់កំហិត លើកំណែ ដែលបានមកវិញ',
+'revdelete-log'             => 'វិចារ នៃកំណត់ហេតុ ៖',
 'revdelete-submit'          => 'អនុវត្ត ទៅកំណែ ដែលបានជ្រើសយក',
 'revdelete-logentry'        => 'បានផ្លាស់ប្តូរ គំហើញកំណែ នៃ [[$1]]',
 'logdelete-logentry'        => 'បានផ្លាស់ប្តូរ គំហើញហេតុការ នៃ [[$1]]',
 'revdelete-success'         => 'បានកំណត់ គំហើញកំណែ ដោយជោគជ័យ។',
 'logdelete-success'         => 'បានកំណត់ គំហើញហេតុការ ដោយជោគជ័យ។',
+
+# Oversight log
+'oversightlog' => 'កំណត់ហេតុ ត្រួតមើល',
 
 # History merging
 'mergehistory'                     => 'បញ្ចូលរួមគ្នា ប្រវត្តិទាំងឡាយ នៃ ទំព័រ',
@@ -598,7 +629,7 @@ You can continue to use {{SITENAME}} anonymously, or you can log in again as the
 'qbsettings-fixedright'    => 'តំរឹម ស្តាំ',
 'qbsettings-floatingleft'  => 'អណ្តែតឆ្វេង',
 'qbsettings-floatingright' => 'អណ្តែតស្តាំ',
-'changepassword'           => 'ប្តូរពាក្យសំងាត់',
+'changepassword'           => 'ផ្លាស់ប្តូរ ពាក្យសំងាត់',
 'skin'                     => 'សំបក',
 'math'                     => 'គណិត',
 'dateformat'               => 'ទំរង់ ថ្ងៃខែឆ្នាំ',
@@ -628,6 +659,7 @@ You can continue to use {{SITENAME}} anonymously, or you can log in again as the
 'resultsperpage'           => 'ចំនួន ចំលើយ ក្នុង មួយទំព័រ៖',
 'contextlines'             => 'ចំនួន បន្ទាត់ ក្នុង មួយចំលើយ ៖',
 'contextchars'             => 'ចំនួនអក្សរ ក្នុងមួយបន្ទាត់៖',
+'stub-threshold'           => 'កំរិត ចំពោះ <a href="#" class="stub">តំណភ្ជាប់​ទៅ ពង្រាង </a> (បៃ)៖',
 'recentchangesdays'        => 'ថ្ងៃត្រូវបង្ហាញ ក្នុងបំលាស់ប្តូរថ្មី៖',
 'recentchangescount'       => 'ចំនួនកំណែប្រែ ត្រូវបង្ហាញ ក្នុងបំលាស់ប្តូរថ្មី៖',
 'savedprefs'               => 'ចំណូលចិត្តនានា របស់អ្នក ត្រូវបានរក្សាទុកហើយ។',
@@ -636,22 +668,29 @@ You can continue to use {{SITENAME}} anonymously, or you can log in again as the
 'localtime'                => 'ម៉ោងតំបន់',
 'timezoneoffset'           => 'ទូទាត់¹',
 'servertime'               => 'ម៉ោង ម៉ាស៊ីនបំរើសេវា',
-'guesstimezone'            => 'បំពេញ ពីឧបកររាវរក',
+'guesstimezone'            => 'បំពេញ ពី ឧបកររាវរក',
 'allowemail'               => 'អាចទទួល អ៊ីមែវល៍ ពីអ្នកប្រើប្រាស់ ដទៃទៀត',
 'defaultns'                => 'ស្វែងរក តាមលំនាំដើម ក្នុង វាលឈ្មោះទាំងនេះ ៖',
 'default'                  => 'លំនាំដើម',
 'files'                    => 'ឯកសារ',
 
 # User rights
-'userrights-lookup-user'     => 'គ្រប់គ្រង ក្រុមអ្នកប្រើប្រាស់',
-'userrights-user-editname'   => 'បញ្ចូលឈ្មោះ អ្នកប្រើប្រាស់៖',
-'editusergroup'              => 'កែប្រែ ក្រុមអ្នកប្រើប្រាស់',
-'userrights-editusergroup'   => 'កែប្រែ ក្រុមអ្នកប្រើប្រាស់',
-'saveusergroups'             => 'រក្សាទុក ក្រុមអ្នកប្រើប្រាស់',
-'userrights-groupsmember'    => 'សមាជិកនៃ៖',
-'userrights-groupsremovable' => 'ក្រុម ដែលអាចដកចេញ ៖',
-'userrights-groupsavailable' => 'ក្រុម ទំនេរ ៖',
-'userrights-reason'          => 'ហេតុផល ចំពោះបំលាស់ប្តូរ៖',
+'userrights-lookup-user'           => 'គ្រប់គ្រង ក្រុមអ្នកប្រើប្រាស់',
+'userrights-user-editname'         => 'បញ្ចូលឈ្មោះ អ្នកប្រើប្រាស់៖',
+'editusergroup'                    => 'កែប្រែ ក្រុមអ្នកប្រើប្រាស់',
+'userrights-editusergroup'         => 'កែប្រែ ក្រុមអ្នកប្រើប្រាស់',
+'saveusergroups'                   => 'រក្សាទុក ក្រុមអ្នកប្រើប្រាស់',
+'userrights-groupsmember'          => 'សមាជិកនៃ៖',
+'userrights-groupsremovable'       => 'ក្រុម ដែលអាចដកចេញ ៖',
+'userrights-groupsavailable'       => 'ក្រុម ទំនេរ ៖',
+'userrights-reason'                => 'ហេតុផល ចំពោះបំលាស់ប្តូរ៖',
+'userrights-available-add'         => 'អ្នកអាចបន្ថែមអ្នកប្រើប្រាស់ ចូលទៅ {{PLURAL:$2|ក្រុមនេះ}}៖ $1។',
+'userrights-available-remove'      => 'អ្នកអាចដកចេញ អ្នកប្រើប្រាស់ ពី {{PLURAL:$2|ក្រុមនេះ|ក្រុមទាំងនេះ}}៖ $1។',
+'userrights-available-add-self'    => 'អ្នកអាចបន្ថែម អ្នកផ្ទាល់ ទៅ {{PLURAL:$2|ក្រុមនេះ|ក្រុមទាំងនេះ}} ៖ $1។',
+'userrights-available-remove-self' => 'អ្នកអាចដកចេញ អ្នកផ្ទាល់ ពី {{PLURAL:$2|ក្រុមនេះ|ក្រុមទាំងនេះ}} ៖ $1។',
+'userrights-no-interwiki'          => 'អ្នកមិនមានការអនុញ្ញាតិ កែប្រែសិទ្ធិ នៃអ្នកប្រើប្រាស់ លើ វិគី ផ្សេង ទេ។',
+'userrights-nodatabase'            => 'មូលដ្ឋានទិន្នន័យ $1 មិនមាន ឬ ថិតនៅខាងក្រៅ។',
+'userrights-nologin'               => 'អ្នកត្រូវតែ [[Special:Userlogin|ពិនិត្យចូល]] ជាគណនី អ្នកអភិបាល ដើម្បីផ្តល់សិទ្ធិ អោយអ្នកប្រើប្រាស់ ។',
 
 # Groups
 'group'               => 'ក្រុម៖',
@@ -672,8 +711,9 @@ You can continue to use {{SITENAME}} anonymously, or you can log in again as the
 'grouppage-bureaucrat'    => '{{ns:project}}:ក្រុមអ្នកការិយាល័យ',
 
 # User rights log
-'rightslog'  => 'កំណត់ហេតុ សិទ្ធិអ្នកប្រើប្រាស់',
-'rightsnone' => '(ទទេ)',
+'rightslog'     => 'កំណត់ហេតុ សិទ្ធិអ្នកប្រើប្រាស់',
+'rightslogtext' => 'នេះជា កំណត់ហេតុ នៃបំលាស់ប្តូរ ចំពោះសិទ្ធិនានា របស់ អ្នកប្រើប្រាស់ ។',
+'rightsnone'    => '(ទទេ)',
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|បំលាស់ប្តូរ|បំលាស់ប្តូរ នានា}}',
@@ -685,6 +725,7 @@ You can continue to use {{SITENAME}} anonymously, or you can log in again as the
 'rcshowhidebots'                    => '$1 រូបយន្ត',
 'rcshowhideliu'                     => '$1 អ្នកប្រើប្រាស់ ដែលបាន ពិនិត្យចូល',
 'rcshowhideanons'                   => '$1 អ្នកប្រើប្រាស់ អនាមិក',
+'rcshowhidepatr'                    => '$1 កំណែប្រែ ត្រូវបានល្បាត',
 'rcshowhidemine'                    => '$1 កំណែប្រែ របស់ខ្ញុំ',
 'rclinks'                           => 'បង្ហាញ $1 បំលាស់ប្តូរ ចុងក្រោយ ក្នុង $2 ថ្ងៃ ចុងក្រោយ<br />$3',
 'diff'                              => 'ខុសគ្នា',
@@ -699,57 +740,72 @@ You can continue to use {{SITENAME}} anonymously, or you can log in again as the
 'newsectionsummary'                 => '/* $1 */ ផ្នែកថ្មី',
 
 # Recent changes linked
-'recentchangeslinked'       => 'បំលាស់ប្តូរពាក់ព័ន្ធ',
-'recentchangeslinked-title' => 'បំលាស់ប្តូរ ទាក់ទិននឹង $1',
+'recentchangeslinked'         => 'បំលាស់ប្តូរពាក់ព័ន្ធ',
+'recentchangeslinked-title'   => 'បំលាស់ប្តូរ ទាក់ទិននឹង $1',
+'recentchangeslinked-summary' => "ទំព័រពិសេសនេះ រាយ បំលាស់ប្តូរចុងក្រោយ លើ ទំព័រ ដែលបានត្រូវ តភ្ជាប់។ ទំព័រ លើបញ្ជីតាមដាន របស់អ្នក ជា '''ដិត''' ។",
 
 # Upload
-'upload'            => 'ផ្ទុកឯកសារឡើង',
-'uploadbtn'         => 'ផ្ទុកឯកសារឡើង',
-'reupload'          => 'ផ្ទុកឡើងម្តងទៀត',
-'reuploaddesc'      => 'ត្រឡប់ទៅ បែបបទផ្ទុកឡើង។',
-'uploadnologin'     => 'មិនបាន ពិនិត្យចូល',
-'uploadnologintext' => 'អ្នកត្រូវតែ [[Special:Userlogin|បានពិនិត្យចូល]] ដើម្បីផ្ទុកឡើង ឯកសារ ទាំងឡាយ។',
-'uploaderror'       => 'កំហុសផ្ទុកឡើង',
-'upload-permitted'  => 'ទំរង់ឯកសារ ដែលត្រូវបានអនុញ្ញាតិ ៖ $1 ។',
-'upload-preferred'  => 'ទំរង់ឯកសារ ដែលគួរប្រើប្រាស់ ៖ $1 ។',
-'upload-prohibited' => 'ទំរង់ឯកសារ ដែលត្រូវបានហាម ៖ $1 ។',
-'uploadlog'         => 'កំណត់ហេតុ នៃការផ្ទុកឡើង',
-'uploadlogpage'     => 'កំណត់ហេតុ នៃការផ្ទុកឡើង',
-'uploadlogpagetext' => 'ខាងក្រោមនេះ ជាបញ្ជីនៃការផ្ទុកឡើង ថ្មីបំផុត។',
-'filename'          => 'ឈ្មោះឯកសារ',
-'filedesc'          => 'សង្ខេប',
-'fileuploadsummary' => 'សង្ខេប៖',
-'filestatus'        => 'ស្ថានភាព រក្សាសិទ្ធិ',
-'filesource'        => 'អក្សរកូដ',
-'uploadedfiles'     => 'ឯកសារនានា ត្រូវបានផ្ទុកឡើង',
-'ignorewarnings'    => 'មិនខ្វល់ ការព្រមាន ណាមួយ',
-'minlength1'        => 'ឈ្មោះឯកសារ ត្រូវមាន យ៉ាងតិច ១ អក្សរ។',
-'badfilename'       => 'ឈ្មោះឯកសារ បានត្រូវប្តូរ ជា "$1" ។',
-'filetype-missing'  => 'ឯកសារ មិនមានកន្ទុយ (ដូចជា ".jpg")។',
-'fileexists-thumb'  => "<center>'''រូបភាពមានស្រេច'''</center>",
-'successfulupload'  => 'ផ្ទុកឡើង ដោយជោគជ័យ',
-'uploadwarning'     => 'ប្រយ័ត្ន !',
-'savefile'          => 'រក្សាទុក',
-'uploadedimage'     => 'បានផ្ទុកឡើង "[[$1]]"',
-'uploaddisabled'    => 'ការផ្ទុកឡើង ឯកសារនានា ត្រូវអសកម្ម',
-'sourcefilename'    => 'ឈ្មោះឯកសារ ប្រភព',
-'destfilename'      => 'ឈ្មោះឯកសារ គោលដៅ',
-'watchthisupload'   => 'តាមដានទំព័រនេះ',
+'upload'                 => 'ផ្ទុកឯកសារឡើង',
+'uploadbtn'              => 'ផ្ទុកឯកសារឡើង',
+'reupload'               => 'ផ្ទុកឡើងម្តងទៀត',
+'reuploaddesc'           => 'ត្រឡប់ទៅ បែបបទផ្ទុកឡើង។',
+'uploadnologin'          => 'មិនបាន ពិនិត្យចូល',
+'uploadnologintext'      => 'អ្នកត្រូវតែ [[Special:Userlogin|បានពិនិត្យចូល]] ដើម្បីផ្ទុកឡើង ឯកសារ ទាំងឡាយ។',
+'uploaderror'            => 'កំហុសផ្ទុកឡើង',
+'uploadtext'             => "ប្រើប្រាស់ បែបបទ ខាងក្រោម ដើម្បី ផ្ទុកឡើង ឯកសារ​។
+ចង់មើល ឬ ស្វែងរក ឯកសារ ដែលបានផ្ទុកឡើង មុននេះ, ត្រូវចូលទៅ [[Special:Imagelist|បញ្ជី នៃ ឯកសារ ដែលបានផ្ទុកឡើង]]។ ការផ្ទុកឡើង និង ការលុបចេញ ត្រូវបានរក្សាទុក ផងដែរ ក្នុង [[Special:Log/upload|កំណត់ហេតុ នៃ បន្ទុកឡើង]]។
 
-'upload-file-error' => 'កំហុសខាងក្នុង',
+ដើម្បី ដាក់ រូបភាព ទៅក្នុងទំព័រ, អ្នកត្រូវ ប្រើប្រាស់ តំណភ្ជាប់ តាមទំរង់ 
+'''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:File.jpg]]</nowiki>''',
+'''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:File.png|alt text]]</nowiki>''' ឬ
+'''<nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki>''' ដើម្បី តភ្ជាប់ ត្រង់ ទៅ ឯកសារ។",
+'upload-permitted'       => 'ទំរង់ឯកសារ ដែលត្រូវបានអនុញ្ញាតិ ៖ $1 ។',
+'upload-preferred'       => 'ទំរង់ឯកសារ ដែលគួរប្រើប្រាស់ ៖ $1 ។',
+'upload-prohibited'      => 'ទំរង់ឯកសារ ដែលត្រូវបានហាម ៖ $1 ។',
+'uploadlog'              => 'កំណត់ហេតុ នៃការផ្ទុកឡើង',
+'uploadlogpage'          => 'កំណត់ហេតុ នៃការផ្ទុកឡើង',
+'uploadlogpagetext'      => 'ខាងក្រោមនេះ ជាបញ្ជីនៃការផ្ទុកឡើង ថ្មីបំផុត។',
+'filename'               => 'ឈ្មោះឯកសារ',
+'filedesc'               => 'សេចក្តីសង្ខេប',
+'fileuploadsummary'      => 'សេចក្តីសង្ខេប៖',
+'filestatus'             => 'ស្ថានភាព រក្សាសិទ្ធិ',
+'filesource'             => 'អក្សរកូដ',
+'uploadedfiles'          => 'ឯកសារនានា ត្រូវបានផ្ទុកឡើង',
+'ignorewarning'          => 'មិនខ្វល់ ការព្រមាន និង រក្សាទុក ឯកសារ តែម្តង។',
+'ignorewarnings'         => 'មិនខ្វល់ ការព្រមាន ណាមួយ',
+'minlength1'             => 'ឈ្មោះឯកសារ ត្រូវមាន យ៉ាងតិច ១ អក្សរ។',
+'illegalfilename'        => 'ឈ្មោះឯកសារ "$1" មាន អក្សរ ដែលមិនត្រូវបានអនុញ្ញាតិ ក្នុងចំណងជើងទំព័រ។ សូម ប្តូរឈ្មោះ ឯកសារ និង ព្យាយាមផ្ទុកឡើង វា ម្តងទៀត។',
+'badfilename'            => 'ឈ្មោះឯកសារ បានត្រូវប្តូរ ជា "$1" ។',
+'filetype-badmime'       => 'ឯកសារ ប្រភេទ MIME "$1" មិនបានត្រូវ អនុញ្ញាតិ អោយផ្ទុកឡើង។',
+'filetype-unwanted-type' => '\'".$1"\'\'\' ជា ប្រភេទឯកសារ ត្រូវ លែងចង់បាន។ រីឯ ប្រភេទឯកសារ ត្រូវបានចូលចិត្ត គឺ $2។',
+'filetype-missing'       => 'ឯកសារ មិនមានកន្ទុយ (ដូចជា ".jpg")។',
+'fileexists-thumb'       => "<center>'''រូបភាពមានស្រេច'''</center>",
+'successfulupload'       => 'ផ្ទុកឡើង ដោយជោគជ័យ',
+'uploadwarning'          => 'ប្រយ័ត្ន !',
+'savefile'               => 'រក្សាទុក ឯកសារ',
+'uploadedimage'          => 'បានផ្ទុកឡើង "[[$1]]"',
+'uploaddisabled'         => 'ការផ្ទុកឡើង ឯកសារនានា ត្រូវអសកម្ម',
+'uploadvirus'            => 'ឯកសារ មាន មេរោគ! លំអិត ៖ $1',
+'sourcefilename'         => 'ឈ្មោះឯកសារ ប្រភព',
+'destfilename'           => 'ឈ្មោះឯកសារ គោលដៅ',
+'watchthisupload'        => 'តាមដានទំព័រនេះ',
+
+'upload-file-error' => 'កំហុស ខាងក្នុង',
 'upload-misc-error' => 'កំហុសចំលែក ពេលផ្ទុកឡើង',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'  => 'មិនអាច ចូលទៅដល់ URL',
 'upload-curl-error28' => 'ផ្ទុកឡើង បានផុតកំណត់អនុញ្ញាតិ',
 
-'license'           => 'អាជ្ញាបណ្ណ',
-'nolicense'         => 'គ្មានអ្វី ត្រូវបានជ្រើសយក',
-'license-nopreview' => '(មើលមុន មិនបាន)',
+'license'            => 'អាជ្ញាបណ្ណ',
+'nolicense'          => 'គ្មានអ្វី ត្រូវបានជ្រើសយក',
+'license-nopreview'  => '(មើលមុន មិនបាន)',
+'upload_source_file' => ' (ឯកសារ លើខំព្យូរើ របស់អ្នក)',
 
 # Image list
-'imagelist'                 => 'បញ្ជីរូបភាព',
+'imagelist'                 => 'បញ្ជី រូបភាព',
 'imagelisttext'             => "នេះជា បញ្ជី '''$1''' {{PLURAL:$1|ឯកសារ|ឯកសារ}} បានរៀបតាមលំដាប់ $2 ។",
+'getimagelist'              => 'នាំមកបង្ហាញ បញ្ជីឯកសារ',
 'ilsubmit'                  => 'ស្វែងរក',
 'showlast'                  => 'បង្ហាញ $1 រូបភាពថ្មី បំផុត រៀបតាមលំដាប់ $2 ។',
 'byname'                    => 'តាម ឈ្មោះ',
@@ -762,6 +818,7 @@ You can continue to use {{SITENAME}} anonymously, or you can log in again as the
 'filehist-help'             => 'ចុចលើ ថ្ងៃខែឆ្នាំ / ពេលម៉ោង ដើម្បីមើល ឯកសារ ដូចដែល វាបាន បង្ហាញចេញ នៅពេលនោះ ។',
 'filehist-deleteall'        => 'លុបចេញ ទាំងអស់',
 'filehist-deleteone'        => 'លុបនេះចេញ',
+'filehist-revert'           => 'ត្រឡប់',
 'filehist-current'          => 'បច្ចុប្បន្ន',
 'filehist-datetime'         => 'ថ្ងៃខែឆ្នាំ/ម៉ោងពេល',
 'filehist-user'             => 'អ្នកប្រើប្រាស់',
@@ -771,6 +828,7 @@ You can continue to use {{SITENAME}} anonymously, or you can log in again as the
 'imagelinks'                => 'តំណភ្ជាប់ នានា',
 'linkstoimage'              => 'ខាងក្រោមនេះគឺជាទំព័រដែលភ្ជាប់ទៅនឹងឯកសារ(ហ្វាល់)នេះ៖',
 'nolinkstoimage'            => 'គ្មានទំព័រណាមួយ ដែលតភ្ជាប់ទៅ ឯកសារនេះ។',
+'shareduploadwiki'          => 'សូម​ មើល $1 ចំពោះ ពត៌មានបន្ថែម ។',
 'shareduploadwiki-linktext' => 'ទំព័រពិពណ៌នា ឯកសារ',
 'noimage'                   => 'គ្មានឈ្មោះ រូបភាព នេះទេ, អ្នកអាច $1 ។',
 'noimage-linktext'          => 'ផ្ទុកវាឡើង',
@@ -783,17 +841,20 @@ You can continue to use {{SITENAME}} anonymously, or you can log in again as the
 'imagelist_search_for'      => 'ស្វែងរក ឈ្មោះមីឌា៖',
 
 # File reversion
+'filerevert'         => 'ត្រឡប់ $1',
+'filerevert-legend'  => 'ត្រឡប់ ឯកសារ',
 'filerevert-comment' => 'វិចារ៖',
+'filerevert-submit'  => 'ត្រឡប់',
 
 # File deletion
 'filedelete'                  => 'លុបចេញ $1',
 'filedelete-legend'           => 'លុបចេញ ឯកសារ',
 'filedelete-intro'            => "អ្នកកំពុងលុបចេញ '''[[Media:$1|$1]]'''។",
-'filedelete-comment'          => 'ហេតុផល៖',
+'filedelete-comment'          => 'ហេតុផល ចំពោះ ការលុបចេញ ៖',
 'filedelete-submit'           => 'លុបចេញ',
 'filedelete-success'          => "'''$1''' ត្រូវបានលុបចោលហើយ",
 'filedelete-otherreason'      => 'ហេតុផល ផ្សេង/បន្ថែម៖',
-'filedelete-reason-otherlist' => 'ហេតុផល ផ្សេងទៀត',
+'filedelete-reason-otherlist' => 'ហេតុផល ផ្សេង',
 
 # MIME search
 'mimesearch' => 'ស្វែងរក MIME',
@@ -801,10 +862,13 @@ You can continue to use {{SITENAME}} anonymously, or you can log in again as the
 'download'   => 'ទាញយក',
 
 # Unwatched pages
-'unwatchedpages' => 'ទំព័រ មិនត្រូវបាន តាមមើល',
+'unwatchedpages' => 'ទំព័រ មិនត្រូវបាន តាមដាន',
+
+# List redirects
+'listredirects' => 'បញ្ជី នៃបណ្តូរទិស',
 
 # Unused templates
-'unusedtemplates'    => 'គំរូខ្នាត មិនបាន ប្រើប្រាស់',
+'unusedtemplates'    => 'គំរូខ្នាត លែងត្រូវបាន ប្រើប្រាស់',
 'unusedtemplateswlh' => 'តំណភ្ជាប់ ដទៃទៀត',
 
 # Random page
@@ -812,7 +876,7 @@ You can continue to use {{SITENAME}} anonymously, or you can log in again as the
 'randompage-nopages' => 'គ្មានទំព័រណាមួយ ក្នុងវាលឈ្មោះនេះ។',
 
 # Random redirect
-'randomredirect'         => 'ទំព័រប្តូរទិស​ ឥតព្រាងទុក',
+'randomredirect'         => 'ទំព័រ ប្តូរទិស​ ឥតព្រាងទុក',
 'randomredirect-nopages' => 'គ្មានទំព័រ ប្តូរទិសមួយណា នៅក្នុង វាលឈ្មោះនេះ ។',
 
 # Statistics
@@ -825,6 +889,7 @@ You can continue to use {{SITENAME}} anonymously, or you can log in again as the
 
 'doubleredirects' => 'ប្តូរទិស ២ ដង',
 
+'brokenredirects'        => 'ការប្តូរទិស បានត្រូវបាក់',
 'brokenredirects-edit'   => '(កែប្រែ)',
 'brokenredirects-delete' => '(លុបចេញ)',
 
@@ -832,46 +897,60 @@ You can continue to use {{SITENAME}} anonymously, or you can log in again as the
 'withoutinterwiki-header' => 'ទំព័រទាំងនេះ មិនតភ្ជាប់ ទៅកំណែភាសាដទៃ៖',
 'withoutinterwiki-submit' => 'បង្ហាញ',
 
+'fewestrevisions' => 'ទំព័រ បានកែប្រែ តិច បំផុត',
+
 # Miscellaneous special pages
 'nbytes'                  => '$1 បៃ',
 'ncategories'             => '$1 {{PLURAL:$1|ចំណាត់ក្រុម|ចំណាត់ក្រុមនានា}}',
+'nlinks'                  => '$1 {{PLURAL:$1|តំណភ្ជាប់}}',
 'nmembers'                => '$1 សមាជិក',
+'nviews'                  => '$1 {{PLURAL:$1|ការចូលមើល}}',
 'specialpage-empty'       => 'របាយការនេះ​ គ្មានលទ្ធផល។',
+'lonelypages'             => 'ទំព័រ កំព្រា',
 'uncategorizedpages'      => 'ទំព័រ មិនត្រូវបានដាក់ ចំណាត់ក្រុម',
-'uncategorizedcategories' => 'ចំណាត់ក្រុមនានា ដែលមិនបានដាក់ជា ចំណាត់ក្រុម',
+'uncategorizedcategories' => 'ចំណាត់ក្រុម ដែលមិនបានដាក់ជា ចំណាត់ក្រុម',
 'uncategorizedimages'     => 'រូបភាព មិនបានដាក់ ចំណាត់ក្រុម',
 'uncategorizedtemplates'  => 'គំរូខ្នាត មិនត្រូវបានដាក់ ចំណាត់ក្រុម',
-'unusedcategories'        => 'ចំណាត់ក្រុម នានា ដែលមិនបាន ប្រើប្រាស់',
-'unusedimages'            => 'ឯកសារ ដែលមិនត្រូវបាន ប្រើប្រាស់',
-'popularpages'            => 'ទំព័រ ដែលមាន ប្រជាប្រិយ',
-'wantedcategories'        => 'ចំណាត់ក្រុម ចាំបាច់ នានា',
-'wantedpages'             => 'ទំព័រ ដែលគេចង់បានច្រើន',
-'mostlinked'              => 'ភ្ជាប់ទៅទំព័រច្រើនជាងគេ',
+'unusedcategories'        => 'ចំណាត់ក្រុម លែងត្រូវបាន ប្រើប្រាស់',
+'unusedimages'            => 'ឯកសារ លែងត្រូវបាន ប្រើប្រាស់',
+'popularpages'            => 'ទំព័រ មាន ប្រជាប្រិយ',
+'wantedcategories'        => 'ចំណាត់ក្រុម ដែលគ្រប់គ្នា ចង់បាន',
+'wantedpages'             => 'ទំព័រ ដែល គ្រប់គ្នា ចង់បាន',
+'mostlinked'              => 'ទំព័រ ត្រូវបានតភ្ជាប់ ច្រើនបំផុត',
 'mostlinkedcategories'    => 'បានតភ្ជាប់ ច្រើនបំផុត ទៅ ចំណាត់ក្រុម​ នានា',
-'mostcategories'          => 'អត្ថបទមានចំនាត់ក្រុមច្រើនជាងគេ',
-'mostimages'              => 'រូបភាពដែលភ្ជាប់ច្រើនជាងគេ',
-'mostrevisions'           => 'អត្ថបទ មានកំណែប្រែ ច្រើនជាងគេ',
-'allpages'                => 'គ្រប់ទំព័រ',
-'shortpages'              => 'ទំព័រខ្លីៗ',
-'longpages'               => 'ទំព័រវែងៗ',
-'protectedpages'          => 'ទំព័រនានា ដែលត្រូវបានការពារ',
-'protectedtitles'         => 'ចំណងជើងនានា ដែលត្រូវបានការពារ',
+'mostlinkedtemplates'     => 'គំរូខ្នាត ត្រូវបានប្រើប្រាស់ ច្រើនប៉ផុត',
+'mostcategories'          => 'អត្ថបទ មានចំណាត់ក្រុម ច្រើនបំផុត',
+'mostimages'              => 'រូបភាព ត្រូវបានតភ្ជាប់ ច្រើនបំផុត',
+'mostrevisions'           => 'អត្ថបទ ត្រូវបានកែប្រែ ច្រើនបំផុត',
+'allpages'                => 'គ្រប់ ទំព័រ',
+'shortpages'              => 'ទំព័រ ខ្លីៗ',
+'longpages'               => 'ទំព័រ វែងៗ',
+'deadendpages'            => 'ទំព័រ ទាល់',
+'deadendpagestext'        => 'ទំព័រទាំងនេះ មិនតភ្ជាប់ ទៅ ទំព័រ ដទៃទៀត ក្នុង {{SITENAME}}។',
+'protectedpages'          => 'ទំព័រ ត្រូវបានការពារ',
+'protectedpagestext'      => 'ទំព័រទាំងនេះ ត្រូវបានការពារ ពី បណ្តូរទីតាំង ឬ ពី កំណែប្រែ',
+'protectedtitles'         => 'ចំណងជើង ត្រូវបានការពារ',
+'protectedtitlestext'     => 'ចំណងជើង ទំព័រ ត្រូវបានការពារ ពី ការបង្កើត',
 'listusers'               => 'បញ្ជី អ្នកប្រើប្រាស់',
-'specialpages'            => 'ទំព័រពិសេសៗ',
-'spheading'               => 'ទំព័រ ពិសេសៗ សំរាប់ គ្រប់អ្នកប្រើប្រាស់',
+'specialpages'            => 'ទំព័រ ពិសេស',
+'spheading'               => 'ទំព័រ ពិសេស សំរាប់ គ្រប់ អ្នកប្រើប្រាស់',
 'restrictedpheading'      => 'ទំព័រពិសេសនានា ត្រូវបាន កំរិត',
-'newpages'                => 'ទំព័រថ្មីៗ',
+'newpages'                => 'ទំព័រ ថ្មីៗ',
 'newpages-username'       => 'ឈ្មោះអ្នកប្រើប្រាស់៖',
 'ancientpages'            => 'ទំព័រ ចាស់បំផុត',
 'intl'                    => 'តំណភ្ជាប់ អន្តរភាសា នានា',
 'move'                    => 'ប្តូរទីតាំង',
 'movethispage'            => 'ប្តូរទីតាំង ទំព័រនេះ',
 'notargettitle'           => 'គ្មានគោលដៅ',
+'pager-newer-n'           => '{{PLURAL:$1|$1 ថ្មីជាង}}',
+'pager-older-n'           => '{{PLURAL:$1|$1 ចាស់ជាង}}',
 
 # Book sources
-'booksources-go' => 'ទៅ',
+'booksources'               => 'ប្រភព សៀវភៅ',
+'booksources-search-legend' => 'ស្វែងរក ប្រភពសៀវភៅ',
+'booksources-go'            => 'ទៅ',
 
-'categoriespagetext' => 'ចំណាត់ក្រុម ទាំងនេះ មាននៅក្នុង វិគី។',
+'categoriespagetext' => 'ចំណាត់ក្រុមទាំងនេះ ផ្ទុក ទំព័រ ឬ មីឌា ។',
 'data'               => 'ទិន្នន័យ',
 'userrights'         => 'ការគ្រប់គ្រង សិទ្ធិអ្នកប្រើប្រាស់',
 'groups'             => 'ក្រុមអ្នកប្រើប្រាស់ នានា',
@@ -885,16 +964,21 @@ You can continue to use {{SITENAME}} anonymously, or you can log in again as the
 'all-logs-page'        => 'គ្រប់ កំណត់ហេតុ',
 'log-search-legend'    => 'ស្វែងរក កំណត់ហេតុ',
 'log-search-submit'    => 'ទៅ',
+'logempty'             => 'គ្មានអ្វី ក្នុងកំណត់ហេតុ ត្រូវនឹងទំព័រ នេះ។',
 'log-title-wildcard'   => 'ស្វែងរក ចំណងជើងនានា ដែលចាប់ផ្តើម ដោយអត្ថបទនេះ',
 
 # Special:Allpages
-'nextpage'       => 'ទំព័របន្ទាប់ ($1)',
-'prevpage'       => 'ទំព័រមុន ($1)',
-'allpagesfrom'   => 'បង្ហាញទំព័រផ្តើមដោយ:',
-'allarticles'    => 'គ្រប់ទំព័រ',
-'allpagesprev'   => 'មុន',
-'allpagesnext'   => 'បន្ទាប់',
-'allpagessubmit' => 'ទៅ',
+'nextpage'          => 'ទំព័របន្ទាប់ ($1)',
+'prevpage'          => 'ទំព័រមុន ($1)',
+'allpagesfrom'      => 'បង្ហាញទំព័រផ្តើមដោយ:',
+'allarticles'       => 'គ្រប់ ទំព័រ',
+'allinnamespace'    => 'គ្រប់ទំព័រ ($1 វាលឈ្មោះ)',
+'allnotinnamespace' => 'គ្រប់ទំព័រ (មិននៅក្នុង $1 វាលឈ្មោះ)',
+'allpagesprev'      => 'មុន',
+'allpagesnext'      => 'បន្ទាប់',
+'allpagessubmit'    => 'ទៅ',
+'allpagesprefix'    => 'បង្ហាញទំព័រ ដែលចាប់ផ្តើម ដោយ ៖',
+'allpages-bad-ns'   => '{{SITENAME}} មិនមានវាលឈ្មោះ "$1"។',
 
 # Special:Listusers
 'listusersfrom'      => 'បង្ហាញ អ្នកប្រើប្រាស់ ចាប់ផ្តើម នៅ ៖',
@@ -906,6 +990,7 @@ You can continue to use {{SITENAME}} anonymously, or you can log in again as the
 'mailnologintext' => 'អ្នកត្រូវតែ [[Special:Userlogin|បានពិនិត្យចូល]] និងមាន អាស័យដ្ឋានអ៊ីមែវល៍មួយ ត្រឹមត្រូវ ក្នុង[[Special:Preferences|ចំណូលចិត្តនានា របស់អ្នក]] ដើម្បីផ្ញើអ៊ីមែវល៍ ទៅ អ្នកប្រើប្រាស់ ផ្សេងទៀត។',
 'emailuser'       => 'អ៊ីមែវល៍ ទៅ អ្នកប្រើប្រាស់នេះ',
 'emailpage'       => 'អ្នកប្រើប្រាស់ អ៊ីមែវល៍',
+'defemailsubject' => 'អ៊ីមែវល៍ ផ្ញើពី {{SITENAME}}',
 'noemailtitle'    => 'គ្មាន អាស័យដ្ឋានអ៊ីមែវល៍',
 'emailfrom'       => 'ពី',
 'emailto'         => 'ដល់',
@@ -913,15 +998,17 @@ You can continue to use {{SITENAME}} anonymously, or you can log in again as the
 'emailmessage'    => 'សារ',
 'emailsend'       => 'ផ្ញើ',
 'emailccme'       => 'អ៊ីមែវល៍មកខ្ញុំ មួយច្បាប់ចំលង នៃសាររបស់ខ្ញុំ។',
+'emailccsubject'  => 'ច្បាប់ចំលង នៃ សាររបស់អ្នក ចំពោះ $1 ៖  $2',
 'emailsent'       => 'អ៊ីមែវល៍ ត្រូវបាន ផ្ញើទៅហើយ',
 'emailsenttext'   => 'សារអ៊ីមែវល៍ របស់អ្នក ត្រូវបាន ផ្ញើទៅហើយ។',
 
 # Watchlist
-'watchlist'            => 'បញ្ជីតាមដាន របស់ខ្ញុំ',
+'watchlist'            => 'បញ្ជី តាមដាន របស់ខ្ញុំ',
 'mywatchlist'          => 'បញ្ជីតាមដាន របស់ខ្ញុំ',
 'watchlistfor'         => "(សំរាប់ '''$1''')",
 'nowatchlist'          => 'អ្នកគ្មានរបស់អ្វី លើបញ្ជីតាមដាន របស់អ្នក',
 'watchnologin'         => 'មិនបាន ពិនិត្យចូល',
+'watchnologintext'     => 'អ្នកត្រូវតែ [[Special:Userlogin|បានពិនិត្យចូល]] ដើម្បីផ្លាស់ប្តូរ បញ្ជីតាមដាន របស់អ្នក។',
 'addedwatch'           => 'បានបន្ថែម ទៅ បញ្ជីតាមដាន',
 'removedwatch'         => 'ត្រូវបានប្តូរទីតាំង ពី បញ្ជីតាមដាន',
 'removedwatchtext'     => 'ទំព័រ "[[:$1]]" ត្រូវបាន ដកចេញ ពី បញ្ជីតាមដាន របស់អ្នក ។',
@@ -929,7 +1016,7 @@ You can continue to use {{SITENAME}} anonymously, or you can log in again as the
 'watchthispage'        => 'តាមមើល ទំព័រនេះ',
 'unwatch'              => 'លែង តាមដាន',
 'unwatchthispage'      => 'ឈប់ តាមដាន',
-'notanarticle'         => 'មិនមែនជាទំព័រមាតិកា',
+'notanarticle'         => 'មិនមែនជា ទំព័រមាតិកា',
 'watchlist-details'    => 'អ្នកបានតាមដាន <b>$1</b> {{PLURAL:$1|ទំព័រ|ទំព័រ}} ដោយមិនរាប់ទាំង ទំព័រពិភាក្សា របស់អ្នក។',
 'wlheader-showupdated' => "* ទំព័រ ដែលត្រូវបាន ផ្លាស់ប្តូរ តាំងពីពេល ចូលមើលចុងក្រោយ របស់អ្នក ត្រូវបានបង្ហាញ '''ដិត'''",
 'watchmethod-recent'   => 'ឆែកមើល កំណែប្រែថ្មីៗ ចំពោះ ទំព័រត្រូវបានតាមដាន',
@@ -952,7 +1039,35 @@ You can continue to use {{SITENAME}} anonymously, or you can log in again as the
 'enotif_impersonal_salutation' => 'អ្នកប្រើប្រាស់ {{SITENAME}}',
 'changed'                      => 'បានផ្លាស់ប្តូរ',
 'created'                      => 'បានបង្កើត',
+'enotif_subject'               => 'ទំព័រ $PAGETITLE នៃ {{SITENAME}} ត្រូវបាន $CHANGEDORCREATED ដោយ $PAGEEDITOR',
+'enotif_lastvisited'           => 'ពិនិត្យ $1 ចំពោះគ្រប់បំលាស់ប្តូរ តាំងពីពេលចូលមើល ចុងក្រោយ។',
+'enotif_lastdiff'              => 'ពិនិត្យ $1 ដើម្បីមើលបំលាស់ប្តូរ នេះ។',
 'enotif_anon_editor'           => 'អ្នកប្រើប្រាស់ អនាមិក $1',
+'enotif_body'                  => '$WATCHINGUSERNAME ជាទីរាប់អាន,
+
+
+ទំព័រ $PAGETITLE នៃ {{SITENAME}} ត្រូវបាន  $CHANGEDORCREATED ថ្ងៃ $PAGEEDITDATE ដោយ $PAGEEDITOR, មើល $PAGETITLE_URL ចំពោះកំណែបច្ចុប្បន្ន។
+
+$NEWPAGE
+
+សេចក្តីសង្ខេប នៃអ្នកកែប្រែ ៖ $PAGESUMMARY $PAGEMINOREDIT
+
+ទាក់ទង អ្នកកែប្រែ ៖
+
+មែវល៍ ៖ $PAGEEDITOR_EMAIL
+
+វិគី ៖ $PAGEEDITOR_WIKI
+
+នឹងមិនមាន ការផ្តល់ដំណឹង ជាលាយលក្សណ៍អក្សរ ផ្សេងទៀត លើកលែងតែ អ្នកចូលមើល ទំព័រនេះ។ អ្នកក៏អាចធ្វើ អោយ ការផ្តល់ដំណឹង ត្រលប់ទៅលើកទីសូន្យ ចំពោះគ្រប់ទំព័រ នៃបញ្ជីតាមដាន របស់អ្នក។ 
+
+ប្រព័ន្ធផ្តល់ដំណឹង {{SITENAME}} ដ៏ស្និទ្ធស្នាល របស់អ្នក
+
+--
+ដើម្បីផ្លាស់ប្តូរ ការកំណត់បញ្ជីតាមដាន, សូមចូលមើល
+{{fullurl:{{ns:special}}:Watchlist/edit}}
+
+ប្រតិកម្ម និង ជំនួយបន្ថែម ៖
+{{fullurl:{{MediaWiki:Helppage}}}}',
 
 # Delete/protect/revert
 'deletepage'                  => 'លុបចេញ ទំព័រ',
@@ -966,9 +1081,15 @@ You can continue to use {{SITENAME}} anonymously, or you can log in again as the
 'dellogpage'                  => 'កំណត់ហេតុ នៃការលុបចេញ',
 'dellogpagetext'              => 'ខាងក្រោម ជាបញ្ជី នៃ ការលុបចេញថ្មីៗ បំផុត។',
 'deletionlog'                 => 'កំណត់ហេតុ នៃ ការលុបចេញ',
+'reverted'                    => 'បានត្រឡប់ ទៅកំណែមុន',
 'deletecomment'               => 'ហេតុផល ចំពោះ ការលុបចេញ៖',
 'deleteotherreason'           => 'ហេតុផល ផ្សេង/បន្ថែម៖',
 'deletereasonotherlist'       => 'ហេតុផល ដទៃ',
+'deletereason-dropdown'       => '*ហេតុផលលុបចេញ ជារួម
+** សំណើ របស់អ្នកនិពន្ធ
+** បំពាន សិទ្ធិអ្នកនិពន្ធ
+** អំពើបំផ្លាញ ទ្រព្យសម្បត្តិ ឯកជន ឬ សាធារណៈ',
+'cantrollback'                => 'មិនអាចត្រឡប់ កំណែប្រែ; អ្នករួមចំណែកចុងក្រោយ ទើបជាអ្នកនិពន្ធ​អាចត្រឡប់ ទំព័រនេះ។',
 'protectlogpage'              => 'កំណត់ហេតុ នៃការការពារ',
 'protectedarticle'            => 'បានការពារ "[[$1]]"',
 'modifiedarticleprotection'   => 'បានផ្លាស់ប្តូរ កំរិតការពារ នៃ "[[$1]]"',
@@ -979,9 +1100,12 @@ You can continue to use {{SITENAME}} anonymously, or you can log in again as the
 'protectexpiry'               => 'ផុតកំណត់៖',
 'protect_expiry_invalid'      => 'ពេលវេលា ផុតកំណត់ មិនមាន សុពលភាព។',
 'protect_expiry_old'          => 'ពេលវេលា ផុតកំណត់ ថិតក្នុង អតីតកាល។',
+'unprotectsub'                => '(លែងការពារ "$1")',
 'protect-default'             => '(លំនាំដើម)',
+'protect-fallback'            => 'តំរូវអោយមាន ការអនុញ្ញាតិ នៃ "$1"',
 'protect-level-autoconfirmed' => 'ឃាត់ អ្នកប្រើប្រាស់ ដែលមិនបាន ចុះឈ្មោះ',
 'protect-level-sysop'         => 'សំរាប់តែ អ្នកថែទាំប្រព័ន្ធ',
+'protect-expiring'            => 'ផុតកំណត់ $1 (UTC)',
 'restriction-type'            => 'ការអនុញ្ញាតិ៖',
 'minimum-size'                => 'ទំហំ អប្បបរិមា',
 'maximum-size'                => 'ទំហំ អតិបរិមា',
@@ -1000,16 +1124,17 @@ You can continue to use {{SITENAME}} anonymously, or you can log in again as the
 # Undelete
 'undelete'               => 'មើល ទំព័រនានា ដែលបានត្រូវលុបចេញ',
 'viewdeletedpage'        => 'មើល ទំព័រនានា ដែលបានត្រូវលុបចេញ',
-'undeletereset'          => 'កំណត់ ឡើងវិញ',
+'undeletereset'          => 'ធ្វើអោយ ដូចដើមវិញ',
 'undeletecomment'        => 'វិចារ៖',
 'undelete-search-box'    => 'ស្វែងរកទំព័រ ដែលបានត្រូវលុប',
 'undelete-search-prefix' => 'បង្ហាញទំព័រ ចាប់ផ្តើមដោយ៖',
 'undelete-search-submit' => 'ស្វែងរក',
-'undelete-cleanup-error' => 'កំហុស លុបចេញ បណ្ណសារ ដែលមិនបានប្រើប្រាស់ "$1" ។',
+'undelete-cleanup-error' => 'កំហុស លុបចេញ បណ្ណសារ ដែលបានលែងប្រើប្រាស់ "$1" ។',
 'undelete-error-short'   => 'កំហុស លែងលុបចេញ ឯកសារ ៖  $1',
 
 # Namespace form on various pages
 'namespace'      => 'វាលឈ្មោះ៖',
+'invert'         => 'ត្រឡប់ជំរើសយក',
 'blanknamespace' => '(ទូទៅ)',
 
 # Contributions
@@ -1024,50 +1149,71 @@ You can continue to use {{SITENAME}} anonymously, or you can log in again as the
 'sp-contributions-newbies'     => 'បង្ហាញតែ ការរួមចំណែក របស់អ្នកប្រើប្រាស់ថ្មី',
 'sp-contributions-newbies-sub' => 'ចំពោះ គណនីថ្មី នានា',
 'sp-contributions-blocklog'    => 'កំណត់ហេតុ នៃការរាំងខ្ទប់',
-'sp-contributions-search'      => 'ស្វែងរក ការរួមចំណែក នានា',
+'sp-contributions-search'      => 'រកមើល ការរួមចំណែក របស់ អ្នកប្រើប្រាស់',
 'sp-contributions-username'    => 'អាស័យដ្ឋាន IP ឬ ឈ្មោះអ្នកប្រើប្រាស់៖',
 'sp-contributions-submit'      => 'ស្វែងរក',
 
 # What links here
 'whatlinkshere'       => 'តំណភ្ជាប់ ណាខ្លះ',
-'whatlinkshere-title' => 'ទំព័រ ដែលតភ្ជាប់ ទៅ $1',
+'whatlinkshere-title' => 'ទំព័រ តភ្ជាប់ ទៅ $1',
 'whatlinkshere-page'  => 'ទំព័រ ៖',
 'linklistsub'         => '(បញ្ជី នៃ តំណភ្ជាប់)',
 'linkshere'           => "ទំព័រទាំងឡាយ តភ្ជាប់ ទៅ '''[[:$1]]''' ៖",
 'nolinkshere'         => "គ្មានទំព័រ ណាមួយ តភ្ជាប់ ទៅ '''[[:$1]]'''។",
 'nolinkshere-ns'      => "គ្មានទំព័រណាមួយ តភ្ជាប់ ទៅ '''[[:$1]]''' ក្នុងវាលឈ្មោះ ដែលបានជ្រើសរើស។",
 'isredirect'          => 'ប្តូរទិស ទំព័រ',
+'istemplate'          => 'ការរាប់បញ្ចូល',
 'whatlinkshere-prev'  => '{{PLURAL:$1|មុន|មុន $1}}',
 'whatlinkshere-next'  => '{{PLURAL:$1|បន្ទាប់|បន្ទាប់ $1}}',
 'whatlinkshere-links' => '← តំណភ្ជាប់',
 
 # Block/unblock
-'blockip'                  => 'ខ្ទប់ អ្នកប្រើប្រាស់',
-'ipaddress'                => 'អាស័យដ្ឋាន IP ៖',
-'ipadressorusername'       => 'អាស័យដ្ឋាន IP ឬ ឈ្មោះអ្នកប្រើប្រាស់៖',
-'ipbexpiry'                => 'រយៈពេលផុតកំណត់៖',
-'ipbreason'                => 'ហេតុផល៖',
-'ipbreasonotherlist'       => 'ហេតុផលដទៃទៀត',
-'ipbsubmit'                => 'ហាមឃាត់អ្នកប្រើប្រាស់នេះ',
-'ipbother'                 => 'ពេល ផ្សេងទៀត៖',
-'ipboptions'               => '៣០ នាទី:30 minutes,១ ម៉ោង:1 hours,២ ម៉ោង:2 hours,១ ថ្ងៃ:1 day,៣ ថ្ងៃ:3 days,១ សប្តាហ៍:1 week,២ សប្តាហ៍:2 weeks,១ ខែ:1 month,៣ ខែ:3 months,៦ ខែ:6 months,១ ឆ្នាំ:1 year,ជារៀងរហូត:infinite', # display1:time1,display2:time2,...
-'ipbotheroption'           => 'ផ្សេងទៀត',
-'ipbotherreason'           => 'ហេតុផល ផ្សេង/បន្ថែម៖',
-'badipaddress'             => 'អាស័យដ្ឋាន IP មិនត្រឹមត្រូវ',
-'ipblocklist'              => 'បញ្ជីអ្នកប្រើប្រាស់ និងអាស័យដ្ឋាន IP ដែលត្រូវបានហាមឃាត់',
-'ipblocklist-legend'       => 'រកមើលអ្នកប្រើប្រាស់ដែលត្រូវបានហាមឃាត់',
-'ipblocklist-username'     => 'ឈ្មោះអ្នកប្រើប្រាស់ ឬ អាស័យដ្ឋាន IP៖',
-'ipblocklist-submit'       => 'ស្វែងរក',
-'infiniteblock'            => 'ជារៀងរហូត',
-'expiringblock'            => 'ផុតកំណត់ $1',
-'anononlyblock'            => 'អនាមិក ប៉ុណ្ណោះ',
-'blocklink'                => 'ហាមឃាត់',
-'contribslink'             => 'ការរួមចំណែក',
-'blocklogpage'             => 'កំណត់ហេតុ នៃការរាំងខ្ទប់',
-'blocklogtext'             => 'នេះជា កំណត់ហេតុនៃ សកម្មភាពរាំងខ្ទប់ និង លែងរាំងខ្ទប់ អ្នកប្រើប្រាស់។ អាស័យដ្ឋាន IP ដែលត្រូវបាន រាំងខ្ទប់ ដោយស្វ័យប្រវត្តិ មិនត្រូវបាន រាយបញ្ជី ទេ។ មើល [[Special:Ipblocklist|បញ្ជីរាំងខ្ទប់ IP ]] ចំពោះបញ្ជី ហាមឃាត់ និង រាំងខ្ទប់ ថ្មីៗ ។',
-'block-log-flags-anononly' => 'សំរាប់តែ អ្នកប្រើប្រាស់អនាមិក',
-'block-log-flags-nocreate' => 'ការបង្កើត គណនី ត្រូវបានហាម',
-'proxyblocksuccess'        => 'រួចរាល់។',
+'blockip'                     => 'ខ្ទប់ អ្នកប្រើប្រាស់',
+'ipaddress'                   => 'អាស័យដ្ឋាន IP ៖',
+'ipadressorusername'          => 'អាស័យដ្ឋាន IP ឬ ឈ្មោះអ្នកប្រើប្រាស់៖',
+'ipbexpiry'                   => 'រយៈពេលផុតកំណត់៖',
+'ipbreason'                   => 'ហេតុផល៖',
+'ipbreasonotherlist'          => 'ហេតុផល ផ្សេង',
+'ipbanononly'                 => 'រាំងខ្ទប់ តែ អ្នកប្រើប្រាស់ អនាមិក',
+'ipbsubmit'                   => 'ហាមឃាត់អ្នកប្រើប្រាស់នេះ',
+'ipbother'                    => 'ពេល ផ្សេង៖',
+'ipboptions'                  => '២ ម៉ោង:2 hours,១ ថ្ងៃ:1 day,៣ ថ្ងៃ:3 days,១ សប្តាហ៍:1 week,២ សប្តាហ៍:2 weeks,១ ខែ:1 month,៣ ខែ:3 months,៦ ខែ:6 months,១ ឆ្នាំ:1 year,គ្មានកំណត់:infinite', # display1:time1,display2:time2,...
+'ipbotheroption'              => 'ផ្សេង',
+'ipbotherreason'              => 'ហេតុផល ផ្សេង/បន្ថែម៖',
+'badipaddress'                => 'អាស័យដ្ឋាន IP មិនត្រឹមត្រូវ',
+'ipb-unblock-addr'            => 'លែងរាំងខ្ទប់ $1',
+'ipb-unblock'                 => 'លែងរាំងខ្ទប់ អ្នកប្រើប្រាស់ ឬ អាស័យដ្ឋាន IP',
+'unblockip'                   => 'លែងរាំងខ្ទាប់ អ្នកប្រើប្រាស់',
+'ipusubmit'                   => 'លែងរាំងខ្ទប់ អាស័យដ្ឋាន នេះ',
+'unblocked'                   => '[[User:$1|$1]] ត្រូវបាន លែងរាំងខ្ទប់',
+'unblocked-id'                => '$1 ត្រូវបាន លែងរាំងខ្ទប់',
+'ipblocklist'                 => 'បញ្ជី អ្នកប្រើប្រាស់ និង អាស័យដ្ឋាន IP ដែលត្រូវបានរាំងខ្ទប់',
+'ipblocklist-legend'          => 'រកមើលអ្នកប្រើប្រាស់ដែលត្រូវបានហាមឃាត់',
+'ipblocklist-username'        => 'ឈ្មោះអ្នកប្រើប្រាស់ ឬ អាស័យដ្ឋាន IP៖',
+'ipblocklist-submit'          => 'ស្វែងរក',
+'blocklistline'               => '$1, $2 បានរាំងខ្ទប់ $3 (ថេរៈវេលា $4)',
+'infiniteblock'               => 'គ្មានកំណត់',
+'expiringblock'               => 'ផុតកំណត់ $1',
+'anononlyblock'               => 'អនាមិក ប៉ុណ្ណោះ',
+'noautoblockblock'            => 'មិនអាចរាំងខ្ទប់ ដោយស្វ័យប្រវត្តិ',
+'createaccountblock'          => 'ការបង្កើតគណនី បានត្រូវរាំងខ្ទប់',
+'emailblock'                  => 'អ៊ីមែវល៍ ត្រូវបានរាំងខ្ទប់',
+'ipblocklist-empty'           => 'បញ្ជីរាំងខ្ទប់ ទទេ ។',
+'blocklink'                   => 'រាំងខ្ទប់',
+'unblocklink'                 => 'លែងរាំងខ្ទប់',
+'contribslink'                => 'ការរួមចំណែក',
+'autoblocker'                 => 'អ្នកបានត្រូវ រាំងខ្ទប់ ដោយស្វ័យប្រវត្តិ ព្រោះ អាស័យដ្ឋាន IP របស់អ្នក ត្រូវបាន ប្រើប្រាស់ ដោយ "[[User:$1|$1]]"។ ហេតុផល លើកឡើង ចំពោះ ការរាំងខ្ទប់ $1 គឺ ៖ "$2"',
+'blocklogpage'                => 'កំណត់ហេតុ នៃការរាំងខ្ទប់',
+'blocklogtext'                => 'នេះជា កំណត់ហេតុនៃ សកម្មភាពរាំងខ្ទប់ និង លែងរាំងខ្ទប់ អ្នកប្រើប្រាស់។ អាស័យដ្ឋាន IP ដែលត្រូវបាន រាំងខ្ទប់ ដោយស្វ័យប្រវត្តិ មិនត្រូវបាន រាយបញ្ជី ទេ។ មើល [[Special:Ipblocklist|បញ្ជីរាំងខ្ទប់ IP ]] ចំពោះបញ្ជី ហាមឃាត់ និង រាំងខ្ទប់ ថ្មីៗ ។',
+'unblocklogentry'             => 'លែងរាំងខ្ទប់ $1',
+'block-log-flags-anononly'    => 'សំរាប់តែ អ្នកប្រើប្រាស់អនាមិក',
+'block-log-flags-nocreate'    => 'ការបង្កើត គណនី ត្រូវបានហាម',
+'block-log-flags-noautoblock' => 'មិនអាចរាំងខ្ទប់ ដោយស្វ័យប្រវត្តិ',
+'block-log-flags-noemail'     => 'អ៊ីមែវល៍ ត្រូវបានរាំងខ្ទប់',
+'ipb_already_blocked'         => '"$1" ត្រូវបានរាំងខ្ទប់​ហើយ',
+'ip_range_invalid'            => 'ដែនកំណត់ IP គ្មានសុពលភាព។',
+'blockme'                     => 'រាំងខ្ទប់ ខ្ញុំ',
+'proxyblocksuccess'           => 'រួចរាល់។',
 
 # Developer tools
 'lockdb'              => 'ចាក់សោ មូលដ្ឋានទិន្នន័យ',
@@ -1075,7 +1221,7 @@ You can continue to use {{SITENAME}} anonymously, or you can log in again as the
 'lockconfirm'         => 'បាទ/ចាស, ខ្ញុំពិតជាចង់ ចាក់សោ មូលដ្ឋានទិន្នន័យ។',
 'unlockconfirm'       => 'បាទ/ចាស, ខ្ញុំពិតជាចង់ ដោះសោ មូលដ្ឋានទិន្នន័យ។',
 'lockbtn'             => 'ចាក់សោ មូលដ្ឋានទិន្នន័យ',
-'unlockbtn'           => 'ចាក់សោ មូលដ្ឋានទិន្នន័យ',
+'unlockbtn'           => 'ដោះសោ មូលដ្ឋានទិន្នន័យ',
 'locknoconfirm'       => 'អ្នកមិនបាន ឆែកមើល ប្រអប់បញ្ជាក់ទទួលស្គាល់។',
 'unlockdbsuccesssub'  => 'សោ មូលដ្ឋានទិន្នន័យ ត្រូវបានដកចេញ',
 'unlockdbsuccesstext' => 'មូលដ្ឋានទិន្នន័យ ត្រូវបានដោះសោ រួចហើយ។',
@@ -1085,11 +1231,13 @@ You can continue to use {{SITENAME}} anonymously, or you can log in again as the
 'movepage'                => 'ប្តូរទីតាំង ទំព័រ',
 'movearticle'             => 'ប្តូរទីតាំង ទំព័រ៖',
 'movenologin'             => 'មិនបាន ពិនិត្យចូល',
+'movenotallowed'          => 'អ្នកគ្មានការអនុញ្ញាតិ ប្តូរទីតាំងទំព័រ លើ {{SITENAME}}។',
 'newtitle'                => 'ទៅ ចំណងជើងថ្មី៖',
 'move-watch'              => 'តាមដាន ទំព័រនេះ',
 'movepagebtn'             => 'ប្តូរទីតាំង ទំព័រ',
 'pagemovedsub'            => 'ប្តូទីតាំងបានសំរេច',
 'movepage-moved'          => '<big>ទំព័រ(អត្ថបទ)\'\'\'"$1" ត្រូវបានប្តូរទីតាំងទៅជាទំព័រ "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'cantmove-titleprotected' => 'អ្នកមិនអាច​ប្តូទីតាំង ទំព័រ​ ទៅទីតាំងនេះ, ព្រោះ ចំណងជើងថ្មី បានត្រូវការពារ ចំពោះការបង្កើតវា',
 'movedto'                 => 'បានប្តូរទីតាំង ទៅ',
 '1movedto2'               => '[[$1]] បានប្តូរទីតាំងទៅ [[$2]]',
 '1movedto2_redir'         => 'ទំព័រ [[$1]] ត្រូវបានប្តូរទីតាំងទៅ [[$2]] តាមរយៈការប្តូរទិស។',
@@ -1101,7 +1249,7 @@ You can continue to use {{SITENAME}} anonymously, or you can log in again as the
 'delete_and_move_confirm' => 'បាទ/ចាស, លុបចេញ ទំព័រ',
 
 # Export
-'export'            => 'នាំចេញ ទំព័រនានា',
+'export'            => 'នាំចេញ ទំព័រ នានា',
 'export-submit'     => 'នាំចេញ',
 'export-addcattext' => 'បន្ថែមទំព័រនានា ពីចំណាត់ក្រុម៖',
 'export-addcat'     => 'បន្ថែម',
@@ -1121,44 +1269,59 @@ You can continue to use {{SITENAME}} anonymously, or you can log in again as the
 'thumbnail_error'          => 'កំហុស បង្កើត កូនរូបភាព៖ $1',
 'djvu_page_error'          => 'ទំព័រ DjVu ក្រៅដែនកំណត់',
 'djvu_no_xml'              => 'មិនអាចនាំយក XML សំរាប់ឯកសារ DjVu',
+'thumbnail_invalid_params' => 'តួលេខ កូនទំព័រ គ្មានសុពលភាព',
 'thumbnail_dest_directory' => 'មិនអាច បង្កើតថតឯកសារ គោលដៅ',
 
 # Special:Import
-'import'                  => 'នាំចូល ទំព័រនានា',
-'importinterwiki'         => 'ការនាំចូល អន្តរវិគី',
-'import-interwiki-submit' => 'នាំចូល',
-'importstart'             => 'នាំចូល ទំព័រ...',
-'importnopages'           => 'គ្មានទំព័រណាមួយ ត្រូវនាំចូល។',
-'importfailed'            => 'ការនាំចូល ត្រូវបរាជ័យ ៖ <nowiki>$1</nowiki>',
-'importunknownsource'     => 'មិនស្គាល់ ប្រភេទ នៃប្រភពនាំចូល',
-'importcantopen'          => 'មិនអាចបើក ឯកសារនាំចូល',
-'importnotext'            => 'ទទេ ឬ គ្មានអត្ថបទ',
-'importsuccess'           => 'នាំចូល ត្រូវបានបញ្ចប់!',
-'importnofile'            => 'គ្មានឯកសារនាំចូល មួយណា ត្រូវបាន ផ្ទុកឡើង​។',
-'import-noarticle'        => 'គ្មានទំព័រណា ត្រូវនាំចូល!',
+'import'                     => 'នាំចូល ទំព័រនានា',
+'importinterwiki'            => 'ការនាំចូល អន្តរវិគី',
+'import-interwiki-history'   => 'ចំលង គ្រប់កំណែចាស់ នៃទំព័រនេះ',
+'import-interwiki-submit'    => 'នាំចូល',
+'import-interwiki-namespace' => 'ផ្ទេរទំព័រ នានា ទៅក្នុង វាលឈ្មោះ ៖',
+'importstart'                => 'នាំចូល ទំព័រ...',
+'importnopages'              => 'គ្មានទំព័រណាមួយ ត្រូវនាំចូល។',
+'importfailed'               => 'ការនាំចូល ត្រូវបរាជ័យ ៖ <nowiki>$1</nowiki>',
+'importunknownsource'        => 'មិនស្គាល់ ប្រភេទ នៃប្រភពនាំចូល',
+'importcantopen'             => 'មិនអាចបើក ឯកសារនាំចូល',
+'importbadinterwiki'         => 'តំណភ្ជាប់អន្តរវិគី មិនបានល្អ',
+'importnotext'               => 'ទទេ ឬ គ្មានអត្ថបទ',
+'importsuccess'              => 'នាំចូល ត្រូវបានបញ្ចប់!',
+'importnofile'               => 'គ្មានឯកសារនាំចូល មួយណា ត្រូវបាន ផ្ទុកឡើង​។',
+'import-noarticle'           => 'គ្មានទំព័រណា ត្រូវនាំចូល!',
+'xml-error-string'           => '$1 នៅ ជួរដេក $2, ជួរឈរ $3 (បៃ $4) ៖ $5',
 
 # Import log
-'importlogpage' => 'កំណត់ហេតុ នៃការនាំចូល',
+'importlogpage'                    => 'កំណត់ហេតុ នៃការនាំចូល',
+'import-logentry-upload'           => 'បាននាំចូល [[$1]] ដោយការផ្ទុកឡើង ឯកសារ',
+'import-logentry-upload-detail'    => '$1 {{PLURAL:$1|កំណែ}}',
+'import-logentry-interwiki'        => 'បាននាំចូល $1 ពីវិគី ផ្សេង',
+'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|កំណែ}} ពី $2',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'             => 'ទំព័រអ្នកប្រើប្រាស់ របស់ខ្ញុំ',
 'tooltip-pt-mytalk'               => 'ទំព័រពិភាក្សា របស់ខ្ញុំ',
+'tooltip-pt-anontalk'             => 'ការពិភាក្សា អំពីកំណែប្រែ ពី អាស័យដ្ឋាន IP នេះ',
 'tooltip-pt-preferences'          => 'ចំណូលចិត្តនានា របស់ខ្ញុំ',
 'tooltip-pt-watchlist'            => 'បញ្ជី នៃ ទំព័រ ដែលអ្នកកំពុង តាមដាន សំរាប់ បំលាស់ប្តូរ',
 'tooltip-pt-mycontris'            => 'បញ្ជីរួមចំណែក របស់ខ្ញុំ',
+'tooltip-pt-login'                => 'អ្នកត្រូវបាន លើកទឹកចិត្ត អោយពិនិត្យចូល, មិនមែនជាការបង្ខំទេ។',
+'tooltip-pt-anonlogin'            => 'អ្នកត្រូវបាន លើកទឹកចិត្ត អោយពិនិត្យចូល, មិនមែនជាការបង្ខំទេ។',
 'tooltip-pt-logout'               => 'ពិនិត្យចេញ',
+'tooltip-ca-talk'                 => 'ការពិភាក្សា អំពីទំព័រខ្លឹមសារ នេះ',
 'tooltip-ca-edit'                 => "អ្នកអាច កែប្រែ ទំព័រ នេះ ។ ប្រើប្រាស់​ប្រអប់ 'មើលមុន' មុននឹង រក្សាទុក វា  ។",
 'tooltip-ca-addsection'           => 'បន្ថែមមួយវិចារ ទៅ ការពិភាក្សានេះ។',
 'tooltip-ca-viewsource'           => 'ទំព័រ នេះ បានត្រូវការពារ ។ អ្នកអាច មើល អក្សរកូដ របស់វា ។',
-'tooltip-ca-protect'              => 'ការពារទំព័រនេះ',
+'tooltip-ca-protect'              => 'ការពារ ទំព័រនេះ',
 'tooltip-ca-delete'               => 'លុបចេញ ទំព័រនេះ',
 'tooltip-ca-move'                 => 'ប្តូរទីតាំង ទំព័រនេះ',
 'tooltip-ca-watch'                => 'បន្ថែមទំព័រនេះ ទៅបញ្ជីតាមដាន របស់អ្នក',
 'tooltip-ca-unwatch'              => 'ដកចេញ ទំព័រនេះ ពីបញ្ជីតាមដាន របស់ខ្ញុំ',
 'tooltip-search'                  => 'ស្វែងរក {{SITENAME}}',
+'tooltip-search-go'               => 'ទៅទំព័រ ដែលមាន ឈ្មោះត្រឹមត្រូវតាមនេះ បើមាន',
 'tooltip-search-fulltext'         => 'ស្វែងរក ទំព័រនានា សំរាប់ អត្ថបទនេះ',
 'tooltip-p-logo'                  => 'ទំព័រដើម',
 'tooltip-n-mainpage'              => 'ចូលមើល ទំព័រដើម',
+'tooltip-n-portal'                => 'អំពីគំរោង, វិធីប្រើប្រាស់ និង ការស្វែងរកពត៌មាន',
 'tooltip-n-recentchanges'         => 'បញ្ជី នៃ បំលាស់ប្តូរថ្មីៗ នៅក្នុងវិគី។',
 'tooltip-n-randompage'            => 'ផ្ទុក មួយទំព័រព្រាវ',
 'tooltip-n-sitesupport'           => 'គាំទ្រ យើង',
@@ -1172,6 +1335,7 @@ You can continue to use {{SITENAME}} anonymously, or you can log in again as the
 'tooltip-ca-nstab-main'           => 'មើលទំព័រ នៃ មាតិកា',
 'tooltip-ca-nstab-user'           => 'មើលទំព័រអ្នកប្រើប្រាស់',
 'tooltip-ca-nstab-media'          => 'មើលទំព័រ មីឌា',
+'tooltip-ca-nstab-special'        => 'នេះជា ទំព័រពិសេស, អ្នកមិនអាចកែប្រែ វា ទេ',
 'tooltip-ca-nstab-project'        => 'មើលទំព័រគំរោង',
 'tooltip-ca-nstab-image'          => 'មើលទំព័រ ឯកសារ',
 'tooltip-ca-nstab-mediawiki'      => 'មើលសារ នៃ ប្រព័ន្ធ',
@@ -1184,11 +1348,16 @@ You can continue to use {{SITENAME}} anonymously, or you can log in again as the
 'tooltip-diff'                    => 'បង្ហាញ បំលាស់ប្តូរ ដែលអ្នកបានធ្វើ​ ចំពោះអត្ថបទ។',
 'tooltip-compareselectedversions' => 'មើលភាពខុសគ្នា រវាងពីរកំណែ បានជ្រើសយក នៃទំព័រ នេះ។',
 'tooltip-watch'                   => 'បន្ថែម ទំព័រនេះ ទៅ បញ្ជីតាមដាន របស់អ្នក',
+'tooltip-recreate'                => 'បង្កើតទំព័រ ឡើងវិញ ថ្វីបើ វាបានត្រូវលុបចេញ',
 'tooltip-upload'                  => 'ចាប់ផ្តើម ផ្ទុកឡើង',
 
 # Attribution
-'anonymous' => 'អ្នកប្រើប្រាស់អនាមិក នៃ {{SITENAME}}',
-'others'    => 'ផ្សេងៗទៀត',
+'anonymous'        => 'អ្នកប្រើប្រាស់អនាមិក នៃ {{SITENAME}}',
+'siteuser'         => 'អ្នកប្រើប្រាស់ $1 នៃ{{SITENAME}}',
+'lastmodifiedatby' => 'ទំព័រនេះ បានត្រូវផ្លាស់ប្តូរ ចុងក្រោយ ដោយ $3 នៅវេលា $2, $1 ។', # $1 date, $2 time, $3 user
+'othercontribs'    => 'ផ្អែកលើ ការងារ របស់ $1។',
+'others'           => 'ផ្សេងៗទៀត',
+'siteusers'        => 'អ្នកប្រើប្រាស់ $1 នៃ {{SITENAME}}',
 
 # Spam protection
 'subcategorycount'       => 'មាន {{PLURAL:$1|មួយចំណាត់ក្រុមរង|$1 ចំណាត់ក្រុមរង}} ចំពោះ ចំណាត់ក្រុម ។',
@@ -1199,26 +1368,55 @@ You can continue to use {{SITENAME}} anonymously, or you can log in again as the
 'infosubtitle'   => 'ពត៌មាន សំរាប់ ទំព័រ',
 'numedits'       => 'ចំនួននៃកំណែប្រែ (អត្ថបទ)៖ $1',
 'numtalkedits'   => 'ចំនួន នៃកំណែប្រែ (ទំព័រពិភាក្សា)៖ $1',
-'numwatchers'    => 'ចំនួនអ្នកមើល: $1',
+'numwatchers'    => 'ចំនួនអ្នកតាមដាន ៖ $1',
 'numtalkauthors' => 'ចំនួនអ្នកនិពន្ធ (ទំព័រពិភាក្សា): $1',
+
+# Math options
+'mw_math_png'    => 'អោយចេញ ជានិច្ច ទំរង់ PNG',
+'mw_math_simple' => 'ជា HTML បើសាមញ្ញបំផុត ឬ ផ្ទុយទៅវិញ ជា PNG',
+'mw_math_html'   => 'ជា HTML បើអាចទៅរួច ឬ ផ្ទុយទៅវិញ ជា PNG',
+'mw_math_source' => 'ដាក់ជា TeX (ចំពោះ ឧបកររាវរក អត្ថបទ)',
+'mw_math_modern' => 'ចំពោះ ឧបកររាវរក ទំនើប (អនុសាស)',
+'mw_math_mathml' => 'MathML បើអាចទៅរួច (ពិសោធ)',
+
+# Patrolling
+'markaspatrolleddiff'    => 'ចំណាំ ថា បានល្បាត',
+'markaspatrolledtext'    => 'ចំណាំទំព័រនេះ ថា បានល្បាត',
+'markedaspatrolled'      => 'បានចំណាំថា បានល្បាត',
+'markedaspatrollederror' => 'មិនអាចចំណាំ ថា បានល្បាត',
 
 # Patrol log
 'patrol-log-page' => 'កំណត់ហេតុ នៃការល្បាត',
+'patrol-log-line' => 'បានចំណាំការល្បាត $1 នៃ $2 ថា បានត្រួតពិនិត្យ $3',
 'patrol-log-auto' => '(ស្វ័យប្រវត្តិ)',
 
 # Image deletion
-'filedeleteerror-short' => 'កំហុស លុបឯកសារ៖ $1',
+'deletedrevision'                 => 'បានលុបចេញ កំណែចាស់ $1',
+'filedeleteerror-short'           => 'កំហុស លុបឯកសារ៖ $1',
+'filedeleteerror-long'            => 'កំហុស ពេលលុបចេញ ឯកសារ ៖
+
+$1',
+'filedelete-missing'              => 'មិនអាចលុប ឯកសារ "$1"  ព្រោះ វាមិនមាន។',
+'filedelete-current-unregistered' => 'ឯកសារ "$1" មិនមាន ក្នុងមូលដ្ឋានទិន្នន័យ។',
+'filedelete-archive-read-only'    => 'ម៉ាស៊ីនបំរើសេវាវ៉ែប មិនអាច សរសេរទុក ថតបណ្ណសារ "$1" ។',
 
 # Browsing diffs
 'previousdiff' => '← ភាពខុសគ្នាមុននេះ',
+'nextdiff'     => 'ខុសគ្នាបន្ទាប់ →',
 
 # Media information
-'imagemaxsize' => 'កំណត់ ទំហំរូបភាព លើទំព័រ ពិពណ៌នារូបភាព ត្រឹម៖',
-'thumbsize'    => 'ទំហំកូនរូបភាព៖',
-'file-nohires' => '<small>គ្មានភាពម៉ត់ ដែលខ្ពស់ជាង។</small>',
+'mediawarning'         => "'''ព្រមាន''' ៖ ឯកសារនេះ អាចមានផ្ទុក អក្សរកូដពិសពុល, ខំព្យូរើ របស់អ្នក អាចមានគ្រោះថ្នាក់ បើអោយវាធ្វើការ ។<hr />",
+'imagemaxsize'         => 'កំណត់ ទំហំរូបភាព លើទំព័រ ពិពណ៌នារូបភាព ត្រឹម៖',
+'thumbsize'            => 'ទំហំកូនរូបភាព៖',
+'widthheightpage'      => '$1×$2, $3 ទំព័រ',
+'file-info'            => '(ទំហំឯកសារ៖ $1, ប្រភេទ MIME ៖ $2)',
+'file-info-size'       => '($1 × $2 ធាតុរូបភាព, ទំហំឯកសារ៖ $3, ប្រភេទ MIME ៖ $4)',
+'file-nohires'         => '<small>គ្មានភាពម៉ត់ ដែលខ្ពស់ជាង។</small>',
+'show-big-image'       => 'ភាពម៉ត់ ពេញ',
+'show-big-image-thumb' => '<small>ទំហំ នៃការមើលមុននេះ៖ $1 × $2 ធាតុរូបភាព</small>',
 
 # Special:Newimages
-'newimages'    => 'វិចិត្រសាលនៃឯកសារ(Gallery of new files)',
+'newimages'    => 'ទីតាំងពិពណ៌ រូបភាពថ្មី',
 'showhidebots' => '($1 រូបយន្ត)',
 'noimages'     => 'គ្មានឃើញអី សោះ។',
 
@@ -1229,24 +1427,41 @@ You can continue to use {{SITENAME}} anonymously, or you can log in again as the
 # EXIF tags
 'exif-imagewidth'                  => 'ទទឹង',
 'exif-imagelength'                 => 'កំពស់',
+'exif-orientation'                 => 'ការតំរង់ទិស',
+'exif-planarconfiguration'         => 'តំរៀបចំ ទិន្នន័យ',
 'exif-jpeginterchangeformatlength' => 'ទំហំ ជា បៃ របស់ ទិន្នន័យ JPEG',
 'exif-imagedescription'            => 'ចំណងជើង រូបភាព',
 'exif-software'                    => 'ផ្នែកទន់ ត្រូវបានប្រើប្រាស់',
 'exif-artist'                      => 'អ្នកនិពន្ធ',
 'exif-exifversion'                 => 'កំណែ នៃ Exif',
 'exif-flashpixversion'             => 'បានគាំទ្រ កំណែ Flashpix',
+'exif-compressedbitsperpixel'      => 'កំរិតហាប់ នៃរូបភាព (ប៊ិត/ចំណុច)',
+'exif-pixelydimension'             => 'ទទឹងសមស្រប នៃរូបភាព',
+'exif-pixelxdimension'             => 'កំពស់សមស្រប នៃរូបភាព',
 'exif-usercomment'                 => 'វិចារ នានា របស់អ្នកប្រើប្រាស់',
 'exif-relatedsoundfile'            => 'ឯកសារសំលេង ទាក់ទិន',
+'exif-gpslatitude'                 => 'រយះទទឹង',
+'exif-gpslongitude'                => 'រយះបណ្តោយ',
+'exif-gpsaltitude'                 => 'រយះកំពស់',
 'exif-gpsareainformation'          => 'ឈ្មោះ នៃ តំបន់ GPS',
 'exif-gpsdatestamp'                => 'ថ្ងៃខែឆ្នាំ GPS',
 
+# EXIF attributes
+'exif-compression-1' => 'លែងបានបង្ហាប់',
+
 'exif-unknowndate' => 'មិនដឹង ថ្ងៃខែឆ្នាំ',
+
+'exif-componentsconfiguration-0' => 'មិនមាន',
+
+'exif-exposureprogram-0' => 'មិនត្រូវបាន កំណត់',
 
 'exif-subjectdistance-value' => '$1 ម៉ែត្រ',
 
 'exif-meteringmode-0'   => 'មិនបានស្គាល់',
 'exif-meteringmode-1'   => 'មធ្យម',
-'exif-meteringmode-255' => 'ផ្សេងទៀត',
+'exif-meteringmode-255' => 'ផ្សេង',
+
+'exif-lightsource-0' => 'មិនដឹង',
 
 'exif-sensingmethod-1' => 'មិនត្រូវបានកំណត់',
 
@@ -1258,6 +1473,7 @@ You can continue to use {{SITENAME}} anonymously, or you can log in again as the
 
 'exif-sharpness-0' => 'ធម្មតា',
 
+'exif-subjectdistancerange-0' => 'មិនដឹង',
 'exif-subjectdistancerange-1' => 'ម៉ាក្រូ',
 
 # Pseudotags used for GPSLatitudeRef and GPSDestLatitudeRef
@@ -1287,6 +1503,7 @@ You can continue to use {{SITENAME}} anonymously, or you can log in again as the
 
 # E-mail address confirmation
 'confirmemail'           => 'បញ្ជាក់ទទួលស្គាល់ អាស័យដ្ឋានអ៊ីមែវល៍',
+'confirmemail_send'      => 'ផ្ញើ អក្សរកូដបញ្ជាក់ទទួលស្គាល់',
 'confirmemail_sent'      => 'បញ្ជាក់ទទួលស្គាល់ អាស័យដ្ឋានអ៊ីមែវល៍ ដែលបានផ្ញើទៅ។',
 'confirmemail_needlogin' => 'អ្នកត្រូវការ $1 ដើម្បី បញ្ជាក់ទទួលស្គាល់ អាស័យដ្ឋានអ៊ីមែវល៍ របស់អ្នក ។',
 'confirmemail_success'   => 'អាស័យដ្ឋានអ៊ីមែវល៍ របស់អ្នក ត្រូវបាន បញ្ជាក់ទទួលស្គាល់ ហើយ ។ ពេលនេះ អ្នកអាច ពិនិត្យចូល និង រីករាយ ជាមួយ វិគី ។',
@@ -1303,7 +1520,7 @@ You can continue to use {{SITENAME}} anonymously, or you can log in again as the
 'recreate'            => 'បង្កើតឡើងវិញ',
 
 # HTML dump
-'redirectingto' => 'កំពុងបញ្ជូនទៅកាន់ទំព័រ [[$1]]...',
+'redirectingto' => 'កំពុងប្តូរទិស ទៅ [[$1]]...',
 
 # action=purge
 'confirm_purge_button' => 'យល់ព្រម',
@@ -1335,11 +1552,12 @@ You can continue to use {{SITENAME}} anonymously, or you can log in again as the
 # Auto-summaries
 'autosumm-blank'   => 'ដកចេញ ខ្លឹមសារទាំងអស់ ពីទំព័រ',
 'autosumm-replace' => "ជំនួស ខ្លឹមសារ នៃទំព័រ ដោយ '$1'",
-'autoredircomment' => 'ប្តូរទីតាំងទៅ [[$1]]',
+'autoredircomment' => 'ប្តូរទិស ទៅ [[$1]]',
 'autosumm-new'     => 'ទំព័រថ្មី៖ $1',
 
 # Live preview
 'livepreview-loading' => 'កំពុង ផ្ទុក…',
+'livepreview-ready'   => 'កំពុងផ្ទុក… ហើយ!',
 
 # Friendlier slave lag warnings
 'lag-warn-normal' => 'បំលាស់ប្តូរ ថ្មីជាង $1 វិនាទី អាចមិនត្រូវបាន បង្ហាញ ក្នុងបញ្ជីនេះ ។',
@@ -1369,13 +1587,14 @@ You can continue to use {{SITENAME}} anonymously, or you can log in again as the
 'watchlisttools-raw'  => 'កែប្រែ បញ្ជីតាមដានឆៅ',
 
 # Special:Version
-'version-specialpages'     => 'ទំព័រ ពិសេសៗ',
-'version-other'            => 'ផ្សេងទៀត',
-'version-version'          => 'កំណែ',
-'version-license'          => 'អាជ្ញាបណ្ណ',
-'version-software'         => 'ផ្នែកទន់ ដែលបាន តំលើង',
-'version-software-product' => 'ផលិតផល',
-'version-software-version' => 'កំណែ',
+'version-specialpages'      => 'ទំព័រ ពិសេសៗ',
+'version-other'             => 'ផ្សេង',
+'version-hook-subscribedby' => 'បានជាវ ជាប្រចាំ ដោយ',
+'version-version'           => 'កំណែ',
+'version-license'           => 'អាជ្ញាបណ្ណ',
+'version-software'          => 'ផ្នែកទន់ ដែលបាន តំលើង',
+'version-software-product'  => 'ផលិតផល',
+'version-software-version'  => 'កំណែ',
 
 # Special:Filepath
 'filepath'         => 'ផ្លូវ នៃឯកសារ',

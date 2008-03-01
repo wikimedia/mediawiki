@@ -1,10 +1,11 @@
 <?php
-/** Dzongkha (རྫོང་ཁ)
-  *
-  * @addtogroup Language
-  *
-  * @author Ævar Arnfjörð Bjarmason <avarab@gmail.com>
-  */
+/** Dzongkha (ཇོང་ཁ)
+ *
+ * @addtogroup Language
+ *
+ * @author Ævar Arnfjörð Bjarmason <avarab@gmail.com>
+ */
+
 $digitTransformTable = array(
 	'0' => '༠', # &#x0f20;
 	'1' => '༡', # &#x0f21;
@@ -17,5 +18,4 @@ $digitTransformTable = array(
 	'8' => '༨', # &#x0f28;
 	'9' => '༩', # &#x0f29;
 );
-
 

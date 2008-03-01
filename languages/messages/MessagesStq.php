@@ -202,7 +202,7 @@ $messages = array(
 'toolbox'           => 'Reewen',
 'userpage'          => 'Benutsersiede',
 'projectpage'       => 'Meta-Text',
-'imagepage'         => 'Bieldesiede',
+'imagepage'         => 'Bekiekje Bieldesiede',
 'mediawikipage'     => 'Inhooldssiede anwiese',
 'templatepage'      => 'Foarloagensiede anwiese',
 'viewhelppage'      => 'Hälpesiede anwiese',
@@ -270,10 +270,12 @@ $messages = array(
 'restorelink'             => '{{PLURAL:$1|1 läskede Beoarbaidengsfoargang|$1 läskede Beoarbaidengsfoargange}}',
 'feedlinks'               => 'Feed:',
 'feed-invalid'            => 'Ungultigen Abonnement-Typ.',
+'feed-unavailable'        => 'Foar {{SITENAME}} stounde neen Feeds tou Ferföigenge.',
 'site-rss-feed'           => '$1 RSS-Feed',
 'site-atom-feed'          => '$1 Atom-Feed',
 'page-rss-feed'           => '"$1" RSS-Feed',
 'page-atom-feed'          => '"$1" Atom-Feed',
+'red-link-title'          => '$1 (Siede nit deer)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Artikkel',
@@ -742,6 +744,7 @@ Alternativ koast du uk dän [[Special:Allpages|alphabetisken Index]] ätter ää
 
 Wan du die mäd dät Thema uutkoanst, koast du sälwen ju Siede „[[$1]]“ ferfoatje.",
 'noexactmatch-nocreate' => "'''Der bestoant neen Siede mäd dän Tittel „$1“.'''",
+'toomanymatches'        => 'Ju Antaal fon Säikresultoate is tou groot, fersäik ne näie Oufroage.',
 'titlematches'          => 'Uureenstämmengen mäd Uurschrifte',
 'notitlematches'        => 'Neen Uureenstimmengen',
 'textmatches'           => 'Uureenstämmengen mäd Texte',
@@ -1028,6 +1031,7 @@ dän Software häär, man schoadet fääre niks.)</small>',
 'nolinkstoimage'            => 'Naan Artikkel benutset disse Bielde.',
 'sharedupload'              => 'Disse Doatäi is ne deelde Hoochleedenge un duur fon uur Projekte anwoand wäide.',
 'shareduploadwiki'          => 'Jädden sjuch dän $1 foar wiedere Information.',
+'shareduploadwiki-desc'     => 'Die Inhoold fon $1 foulget.',
 'shareduploadwiki-linktext' => 'Doatäi-Beschrieuwengssiede',
 'noimage'                   => 'Ne Doatäi mäd dissen Noome existiert nit, du koast ju oawers $1.',
 'noimage-linktext'          => 'hoochleede',
@@ -1098,9 +1102,9 @@ dän Software häär, man schoadet fääre niks.)</small>',
 'userstats'              => 'Benutserstatistik',
 'sitestatstext'          => "Dät rakt mädnunner '''$1''' {{PLURAL:$1|Siede|Sieden}} in ju Doatenboank.
 Dät slut Diskussionssieden, Sieden uur {{SITENAME}}, litje Sieden, Fäärelaitengen un uur Sieden ien,
-do der eventuell nit as Artikkele wäided wäide konnen.
+do der eventuell nit as Sieden wäided wäide konnen.
 
-Disse uutgenuumen rakt et '''$2''' {{PLURAL:$2|Siede|Sieden}}, do der as Artikkel wäided wäide {{PLURAL:$2|kon|konnen}}.
+Disse uutgenuumen rakt et '''$2''' {{PLURAL:$2|Siede|Sieden}}, do der as Siede wäided wäide {{PLURAL:$2|kon|konnen}}.
 
 Mädnunner {{PLURAL:$8|wuude '''1''' Doatäi|wuuden '''$8''' Doatäie}} hoochleeden.
 
@@ -1427,6 +1431,7 @@ Die aktuelle Text fon ju läskede Siede is bloot Administratore tougongelk.',
 'undeleterevision-missing'     => 'Uungultige of failjende Version. Äntweeder is ju Ferbiendenge falsk of ju Version wuude uut dät Archiv wier moaked of wächhoald.',
 'undelete-nodiff'              => 'Neen foargungende Version fuunen.',
 'undeletebtn'                  => 'Wier häärstaale',
+'undeletelink'                 => 'wier häärstaale',
 'undeletereset'                => 'Oubreeke',
 'undeletecomment'              => 'Gruund:',
 'undeletedarticle'             => 'häd "[[$1]]" wier häärstoald',
@@ -1474,7 +1479,7 @@ $1',
 'sp-contributions-username'    => 'IP-Adrässe af Benutsernoome:',
 'sp-contributions-submit'      => 'Säike',
 
-'sp-newimages-showfrom' => 'Wies näie Doatäie fon $1 ou',
+'sp-newimages-showfrom' => 'Wies näie Doatäie, ounfangend mäd $1',
 
 # What links here
 'whatlinkshere'       => 'Links ap disse Siede',
@@ -1748,7 +1753,7 @@ Aal Transwiki-Import-Aktione wäide in dät [[Special:Log/import|Import-Logbouk]
 'tooltip-ca-nstab-media'          => 'Mediendoatäiesiede anwiese',
 'tooltip-ca-nstab-special'        => 'Dit is ne Spezialsiede. Ju kon nit ferannerd wäide.',
 'tooltip-ca-nstab-project'        => 'Projektsiede anwiese',
-'tooltip-ca-nstab-image'          => 'Bieldesiede anwiese',
+'tooltip-ca-nstab-image'          => 'Doatäisiede anwiese',
 'tooltip-ca-nstab-mediawiki'      => 'MediaWiki-Systemtext anwiese',
 'tooltip-ca-nstab-template'       => 'Foarloage anwiese',
 'tooltip-ca-nstab-help'           => 'Hälpesiede anwiese',

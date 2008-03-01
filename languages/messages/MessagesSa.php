@@ -1,8 +1,9 @@
 <?php
 /** Sanskrit (संस्कृत)
-  *
-  * @addtogroup Language
-  */
+ *
+ * @addtogroup Language
+ *
+ */
 
 $digitTransformTable = array(
 	'0' => '०', # &#x0966;

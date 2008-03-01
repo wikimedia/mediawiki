@@ -4,8 +4,8 @@
  * @addtogroup Language
  *
  * @author Jmb
- * @author G - ג
  * @author SPQRobin
+ * @author לערי ריינהארט
  */
 
 $messages = array(

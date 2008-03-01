@@ -1,6 +1,5 @@
 <?php
-/**
- * German (Deutsch)
+/** German (Deutsch)
  *
  * @addtogroup Language
  *
@@ -8,7 +7,6 @@
  * @author Raimond Spekking (Raymond) <raimond.spekking@gmail.com> since January 2007
  * @author Tim Bartel (avatar) <wikipedistik@computerkultur.org> small changes
  */
-
 
 $namespaceNames = array(
 	NS_MEDIA            => 'Media',
@@ -241,14 +239,10 @@ $messages = array(
 'january'       => 'Januar',
 'february'      => 'Februar',
 'march'         => 'März',
-'april'         => 'April',
 'may_long'      => 'Mai',
 'june'          => 'Juni',
 'july'          => 'Juli',
-'august'        => 'August',
-'september'     => 'September',
 'october'       => 'Oktober',
-'november'      => 'November',
 'december'      => 'Dezember',
 'january-gen'   => 'Januars',
 'february-gen'  => 'Februars',
@@ -307,7 +301,6 @@ $messages = array(
 'mypage'         => 'Eigene Seite',
 'mytalk'         => 'Eigene Diskussion',
 'anontalk'       => 'Diskussionsseite dieser IP',
-'navigation'     => 'Navigation',
 'and'            => 'und',
 
 # Metadata in edit box
@@ -324,7 +317,6 @@ $messages = array(
 'history'           => 'Versionen',
 'history_short'     => 'Versionen/Autoren',
 'updatedmarker'     => '(geändert)',
-'info_short'        => 'Information',
 'printableversion'  => 'Druckversion',
 'permalink'         => 'Permanentlink',
 'print'             => 'Drucken',
@@ -380,8 +372,6 @@ $messages = array(
 'disclaimerpage'    => 'Project:Impressum',
 'edithelp'          => 'Bearbeitungshilfe',
 'edithelppage'      => 'Help:Bearbeitungshilfe',
-'faq'               => 'FAQ',
-'faqpage'           => 'Project:FAQ',
 'helppage'          => 'Help:Hilfe',
 'mainpage'          => 'Hauptseite',
 'policy-url'        => 'Project:Leitlinien',
@@ -402,7 +392,6 @@ $messages = array(
 'versionrequiredtext' => 'Version $1 von MediaWiki ist erforderlich, um diese Seite zu nutzen. Siehe die [[{{ns:special}}:Version|Versionsseite]]',
 
 'ok'                      => 'Suchen',
-'pagetitle'               => '$1 - {{SITENAME}}',
 'retrievedfrom'           => 'Von „$1“',
 'youhavenewmessages'      => 'Du hast $2 auf deiner $1.',
 'newmessageslink'         => 'Diskussionsseite',
@@ -417,7 +406,6 @@ $messages = array(
 'thisisdeleted'           => '$1 ansehen oder wiederherstellen?',
 'viewdeleted'             => '$1 anzeigen?',
 'restorelink'             => '$1 {{PLURAL:$1|gelöschte Version|gelöschte Versionen}}',
-'feedlinks'               => 'Feed:',
 'feed-invalid'            => 'Ungültiger Abonnement-Typ.',
 'site-rss-feed'           => 'RSS-Feed für $1',
 'site-atom-feed'          => 'Atom-Feed für $1',
@@ -934,7 +922,6 @@ Wenn du dich mit dem Thema auskennen, kannst du selbst die Seite „[[$1]]“ ve
 'qbsettings-floatingleft'  => 'Links, schwebend',
 'qbsettings-floatingright' => 'Rechts, schwebend',
 'changepassword'           => 'Passwort ändern',
-'skin'                     => 'Skin',
 'math'                     => 'TeX',
 'dateformat'               => 'Datumsformat',
 'datedefault'              => 'Standard',
@@ -1005,18 +992,15 @@ Wenn du dich mit dem Thema auskennen, kannst du selbst die Seite „[[$1]]“ ve
 # Groups
 'group'               => 'Gruppe:',
 'group-autoconfirmed' => 'Bestätigte Benutzer',
-'group-bot'           => 'Bots',
 'group-sysop'         => 'Administratoren',
 'group-bureaucrat'    => 'Bürokraten',
 'group-all'           => '(alle)',
 
 'group-autoconfirmed-member' => 'Bestätigter Benutzer',
-'group-bot-member'           => 'Bot',
 'group-sysop-member'         => 'Administrator',
 'group-bureaucrat-member'    => 'Bürokrat',
 
 'grouppage-autoconfirmed' => '{{ns:project}}:Bestätigte Benutzer',
-'grouppage-bot'           => '{{ns:project}}:Bots',
 'grouppage-sysop'         => '{{ns:project}}:Administratoren',
 'grouppage-bureaucrat'    => '{{ns:project}}:Bürokraten',
 
@@ -1046,7 +1030,6 @@ Wenn du dich mit dem Thema auskennen, kannst du selbst die Seite „[[$1]]“ ve
 'hide'                              => 'ausblenden',
 'show'                              => 'einblenden',
 'minoreditletter'                   => 'K',
-'newpageletter'                     => 'N',
 'boteditletter'                     => 'B',
 'number_of_watching_users_pageview' => '[$1 {{PLURAL:$1|beobachtender|beobachtende}} Benutzer]',
 'rc_categories'                     => 'Nur Seiten aus den Kategorien (getrennt mit „|“):',
@@ -1197,7 +1180,6 @@ Bitte gib der Datei einen Namen, der den Inhalt besser beschreibt.',
 'noimage-linktext'          => 'hochladen',
 'uploadnewversion-linktext' => 'Eine neue Version dieser Datei hochladen',
 'imagelist_date'            => 'Datum',
-'imagelist_name'            => 'Name',
 'imagelist_user'            => 'Benutzer',
 'imagelist_size'            => 'Größe',
 'imagelist_description'     => 'Beschreibung',
@@ -1393,7 +1375,6 @@ auf die bereits die erste Weiterleitung zeigen sollte.',
 'userrights'         => 'Benutzerrechteverwaltung',
 'groups'             => 'Benutzergruppen',
 'alphaindexline'     => '$1 bis $2',
-'version'            => 'Version',
 
 # Special:Log
 'specialloguserlabel'  => 'Benutzer:',
@@ -1573,7 +1554,7 @@ Bitte gehe zurück und versuche den Vorgang erneut auszuführen.',
 'protect_expiry_old'          => 'Die Sperrzeit liegt in der Vergangenheit.',
 'unprotectsub'                => '(Aufhebung der Sperrung von „$1“)',
 'protect-unchain'             => 'Verschiebeschutz ändern',
-'protect-text'                => "Hier kannst du den Schutzstatus für die Seite '''<nowiki>\$1</nowiki>''' einsehen und ändern.",
+'protect-text'                => "Hier kannst du den Schutzstatus für die Seite '''<nowiki>$1</nowiki>''' einsehen und ändern.",
 'protect-locked-blocked'      => 'Du kannst den Seitenschutz nicht ändern, da dein Benutzerkonto gesperrt ist. Hier sind die aktuellen Seitenschutz-Einstellungen für die Seite <strong>„$1“:</strong>',
 'protect-locked-dblock'       => 'Die Datenbank ist gesperrt, der Seitenschutz kann daher nicht geändert werden. Hier sind die aktuellen Seitenschutz-Einstellungen für die Seite <strong>„$1“:</strong>',
 'protect-locked-access'       => 'Dein Benutzerkonto verfügt nicht über die notwendigen Rechte zur Änderung des Seitenschutzes. Hier sind die aktuellen Seitenschutzeinstellungen für die Seite <strong>„$1“:</strong>',
@@ -1769,7 +1750,6 @@ Zur Aufhebung der Sperre siehe die [[{{ns:special}}:Ipblocklist|Liste aller akti
 'ipb_blocked_as_range'        => 'Fehler: Die IP-Adresse $1 wurde als Teil der Bereichssperre $2 indirekt gesperrt. Eine Entsperrung von $1 alleine ist nicht möglich.',
 'ip_range_invalid'            => 'Ungültiger IP-Adressbereich.',
 'blockme'                     => 'Sperre mich',
-'proxyblocker'                => 'Proxy blocker',
 'proxyblocker-disabled'       => 'Diese Funktion ist deaktiviert.',
 'proxyblockreason'            => 'Deine IP-Adresse wurde gesperrt, da sie ein offener Proxy ist. Bitte kontaktiere deinen Internet-Provider oder deine Systemadministratoren und informiere sie über dieses mögliche Sicherheitsproblem.',
 'proxyblocksuccess'           => 'Fertig.',
@@ -1853,7 +1833,6 @@ Alternativ ist der Export auch mit der Syntax <tt><nowiki>[[</nowiki>{{ns:specia
 
 # Namespace 8 related
 'allmessages'               => 'MediaWiki-Systemtexte',
-'allmessagesname'           => 'Name',
 'allmessagesdefault'        => 'Standardtext',
 'allmessagescurrent'        => 'Aktueller Text',
 'allmessagestext'           => 'Dies ist eine Liste der MediaWiki-Systemtexte.',
@@ -1877,7 +1856,6 @@ Alternativ ist der Export auch mit der Syntax <tt><nowiki>[[</nowiki>{{ns:specia
 Die Versionsdaten und Benutzernamen bleiben dabei erhalten.
 Alle Transwiki-Import-Aktionen werden im [[Special:Log/import|Import-Logbuch]] protokolliert.',
 'import-interwiki-history'   => 'Importiere alle Versionen dieser Seite',
-'import-interwiki-submit'    => 'Import',
 'import-interwiki-namespace' => 'Importiere die Seite in den Namensraum:',
 'importtext'                 => 'Auf dieser Spezialseite können über [[{{ns:special}}:Export]] exportierte Seiten in dieses Wiki importiert werden.',
 'importstart'                => 'Importiere Seite …',
@@ -2219,7 +2197,6 @@ Darauf folgende Seitenlinks in derselben Zeile definieren Ausnahmen, in deren Ko
 
 'exif-unknowndate' => 'Unbekanntes Datum',
 
-'exif-orientation-1' => 'Normal', # 0th row: top; 0th column: left
 'exif-orientation-2' => 'Horizontal gedreht', # 0th row: top; 0th column: right
 'exif-orientation-3' => 'Um 180° gedreht', # 0th row: bottom; 0th column: right
 'exif-orientation-4' => 'Vertikal gedreht', # 0th row: bottom; 0th column: left
@@ -2292,26 +2269,18 @@ Darauf folgende Seitenlinks in derselben Zeile definieren Ausnahmen, in deren Ko
 'exif-whitebalance-0' => 'Automatisch',
 'exif-whitebalance-1' => 'Manuell',
 
-'exif-scenecapturetype-0' => 'Standard',
 'exif-scenecapturetype-1' => 'Landschaft',
-'exif-scenecapturetype-2' => 'Portrait',
 'exif-scenecapturetype-3' => 'Nachtszene',
 
 'exif-gaincontrol-0' => 'Keine',
 'exif-gaincontrol-1' => 'Gering',
-'exif-gaincontrol-2' => 'High gain up',
-'exif-gaincontrol-3' => 'Low gain down',
-'exif-gaincontrol-4' => 'High gain down',
 
-'exif-contrast-0' => 'Normal',
 'exif-contrast-1' => 'Schwach',
 'exif-contrast-2' => 'Stark',
 
-'exif-saturation-0' => 'Normal',
 'exif-saturation-1' => 'Gering',
 'exif-saturation-2' => 'Hoch',
 
-'exif-sharpness-0' => 'Normal',
 'exif-sharpness-1' => 'Gering',
 'exif-sharpness-2' => 'Stark',
 
@@ -2398,7 +2367,6 @@ Trackbacks für diese Seite:<br />
 $1
 </div>',
 'trackbackremove'   => '([$1 löschen])',
-'trackbacklink'     => 'Trackback',
 'trackbackdeleteok' => 'Trackback wurde erfolgreich gelöscht.',
 
 # Delete conflict
@@ -2414,8 +2382,7 @@ Bitte bestätige, dass du diese Seite wirklich neu erstellen möchten.",
 'redirectingto' => 'Weitergeleitet nach [[$1]]',
 
 # action=purge
-'confirm_purge'        => 'Diese Seite aus dem Server-Cache löschen? $1',
-'confirm_purge_button' => 'OK',
+'confirm_purge' => 'Diese Seite aus dem Server-Cache löschen? $1',
 
 # AJAX search
 'searchcontaining' => "Suche nach Seiten, in denen ''$1'' vorkommt.",
@@ -2499,11 +2466,9 @@ Bitte bestätige, dass du diese Seite wirklich neu erstellen möchten.",
 'version-skin-extension-functions' => 'Skin-Erweiterungs-Funktionen',
 'version-hook-name'                => 'Schnittstellenname',
 'version-hook-subscribedby'        => 'Aufruf von',
-'version-version'                  => 'Version',
 'version-license'                  => 'Lizenz',
 'version-software'                 => 'Installierte Software',
 'version-software-product'         => 'Produkt',
-'version-software-version'         => 'Version',
 
 # Special:Filepath
 'filepath'         => 'Dateipfad',

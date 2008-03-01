@@ -385,10 +385,12 @@ $messages = array(
 'restorelink'             => '{{PLURAL:$1|1 wulašowana wersija|$1 wulašowanej wersiji|$1 wulašowane wersije}}',
 'feedlinks'               => 'Nowosći:',
 'feed-invalid'            => 'Njepłaśecy typ abonementa.',
+'feed-unavailable'        => 'Syndikaciske kanale na {{GRAMMAR:lokatiw|{{SITENAME}}}} k dispoziciji njestoje',
 'site-rss-feed'           => '$1 RSS Feed',
 'site-atom-feed'          => '$1 Atom Feed',
 'page-rss-feed'           => '"$1" RSS Feed',
 'page-atom-feed'          => '"$1" Atom Feed',
+'red-link-title'          => '$1 (dotychměst njenapórany)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Nastawk',

@@ -1,8 +1,9 @@
 <?php
-/**
-  * Kurdish (latin)
-  *
-  * @addtogroup Language
-  */
+/** Kurdish (Kurdî / كوردی)
+ *
+ * @addtogroup Language
+ *
+ */
 
 $fallback = 'ku-latn';
+

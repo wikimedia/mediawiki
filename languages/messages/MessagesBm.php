@@ -1,5 +1,5 @@
 <?php
-/** Bamanankan (Bamanankan)
+/** Bambara (Bamanankan)
  *
  * @addtogroup Language
  *

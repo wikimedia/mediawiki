@@ -3,6 +3,8 @@
  *
  * @addtogroup Language
  * @comment Macro language; kept for backward compatibility
+ *
  */
 
 $fallback = 'ike-cans';
+

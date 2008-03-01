@@ -274,6 +274,7 @@ $messages = array(
 
 'badaccess'        => 'Gabim leje',
 'badaccess-group1' => 'Ky veprim është i limituar për përdoruesit e grupit $1',
+'badaccess-group2' => 'Veprimi i kërkuar është i limituar për përdoruesit e grupit $1.',
 
 'versionrequired'     => 'Nevojitet versioni $1 i MediaWiki-it',
 'versionrequiredtext' => 'Nevojitet versioni $1 i MediaWiki-it për përdorimin e kësaj faqeje. Shikoni [[Special:Version|versionin]] tuaj.',
@@ -1590,6 +1591,7 @@ Për të eksportuar faqe, thjesht shtypni një emër për çdo rresht, ose krijo
 
 'exif-componentsconfiguration-0' => 'nuk ekziston',
 
+'exif-exposureprogram-1' => 'Doracak',
 'exif-exposureprogram-4' => 'Përparësia e mbyllësit',
 
 'exif-subjectdistance-value' => '$1 metra',
@@ -1609,6 +1611,7 @@ Për të eksportuar faqe, thjesht shtypni një emër për çdo rresht, ose krijo
 
 'exif-sensingmethod-1' => 'e Padefinuar',
 
+'exif-scenecapturetype-0' => 'Standarte',
 'exif-scenecapturetype-1' => 'Peizazh',
 'exif-scenecapturetype-2' => 'Portret',
 'exif-scenecapturetype-3' => 'Pamje nate',
@@ -1722,6 +1725,7 @@ $1',
 'hideresults'      => 'Fshih rezultatet',
 
 # Multipage image navigation
+'imgmultipageprev' => '← faqja e kaluar',
 'imgmultipagenext' => 'faqja tjetër →',
 'imgmultigo'       => 'Shko!',
 'imgmultigotopre'  => 'Shko tek kjo faqe',
@@ -1752,6 +1756,7 @@ $1',
 'watchlisttools-edit' => 'Shih dhe redakto listën mbikqyrëse.',
 
 # Special:Version
+'version-specialpages'     => 'Faqe speciale',
 'version-other'            => 'Të tjera',
 'version-version'          => 'Verzioni',
 'version-license'          => 'Liqenca',

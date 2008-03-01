@@ -1,5 +1,5 @@
 <?php
-/** Toki Pona
+/** Toki Pona (Toki Pona)
  *
  * @addtogroup Language
  *

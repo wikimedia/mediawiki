@@ -56,7 +56,6 @@ $dateFormats = array(
 $fallback8bitEncoding = "iso-8859-2";
 $separatorTransformTable = array(',' => '.', '.' => ',' );
 
-
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Podčrtavanje povezav:',
@@ -704,8 +703,6 @@ Neoznačene skupine ne bodo spremenjene. Skupino lahko odznačite z levim klikom
 'hist'                              => 'zgod',
 'hide'                              => 'skrij',
 'show'                              => 'prikaži',
-'minoreditletter'                   => 'm',
-'newpageletter'                     => 'N',
 'number_of_watching_users_pageview' => '[temo {{plural:$1|spremlja|spremljata|spremljajo|spremlja|spremlja}} $1 {{plural:$1|uporabnik|uporabnika|uporabniki|uporabnikov|uporabnikov}}]',
 'rc_categories'                     => 'Omejitev na kategorije (ločite jih z »|«)',
 'rc_categories_any'                 => 'Katero koli',
@@ -987,8 +984,8 @@ Povratna sporočila in pomoč:
 'confirmdeletetext'           => "Iz zbirke podatkov boste izbrisali stran ali sliko skupaj z vso njeno zgodovino. 
 Prosimo, '''potrdite''', da to resnično želite, da razumete posledice dejanja in da se ravnate po [[{{MediaWiki:Policy-url}}|pravilih]].",
 'actioncomplete'              => 'Poseg je končan',
-'deletedtext'                 => "»'''<nowiki>\$1</nowiki>'''« je bila izbrisana. 
-Za zapise nedavnih brisanj glej \$2.",
+'deletedtext'                 => "»'''<nowiki>$1</nowiki>'''« je bila izbrisana. 
+Za zapise nedavnih brisanj glej $2.",
 'deletedarticle'              => 'je izbrisal(-a) »$1«',
 'dellogpage'                  => 'Dnevnik brisanja',
 'dellogpagetext'              => 'Prikazan je seznam nedavnih brisanj z navedenim strežniškim časom (UTC). Vedite, da polje »Uporabnik« razlikuje med malimi in velikimi črkami.',
@@ -1016,7 +1013,7 @@ Zadnja sprememba od uporabnika [[User:$3|$3]] ([[User talk:$3|Pogovor]]).',
 'protectcomment'              => 'Razlog:',
 'unprotectsub'                => '(Odstranjujem zaščito strani »$1«)',
 'protect-unchain'             => 'Deblokiraj dovoljenja za premikanje',
-'protect-text'                => "Tu si lahko ogledate in spremenite raven zaščitenosti strani '''<nowiki>\$1</nowiki>'''.",
+'protect-text'                => "Tu si lahko ogledate in spremenite raven zaščitenosti strani '''<nowiki>$1</nowiki>'''.",
 'protect-default'             => 'Omogoči urejanje vsem uporabnikom',
 'protect-level-autoconfirmed' => 'Blokiraj neregistrirane uporabnike',
 'protect-level-sysop'         => 'Blokiraj vse uporabnike (razen administratorjev)',

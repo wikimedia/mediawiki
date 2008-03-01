@@ -348,6 +348,7 @@ Veritabanını kilitleyen operatörün açıklaması: $1',
 'perfdisabled'         => 'Özür dileriz! Bu özellik, veritabanını kullanılamayacak derecede yavaşlattığı için, geçici olarak kullanımdan çıkarıldı.',
 'perfcached'           => 'Veriler daha önceden hazırlanmış olabilir. Bu sebeple güncel olmayabilir!',
 'perfcachedts'         => 'Aşağıda saklanmış bilgiler bulunmaktadır, son güncelleme zamanı: $1.',
+'querypage-no-updates' => 'Şu an için güncellemeler devre dışı bırakıldı. Buradaki veri hemen yenilenmeyecektir.',
 'wrong_wfQuery_params' => 'wfQuery() ye yanlış parametre<br />
 Fonksiyon: $1<br />
 Sorgu: $2',
@@ -436,6 +437,7 @@ E-postadaki yönerge uygulanıp adresin size ait olduğu onaylanmadıkça başka
 'emailauthenticated'         => 'E-posta adresiniz $1 tarihinde doğrulanmıştı.',
 'emailnotauthenticated'      => 'E-posta adresiniz henüz onaylanmadı.
 Aşağıdaki işlevlerin hiçbiri için e-posta gönderilmeyecektir.',
+'noemailprefs'               => 'Bu özelliklerin çalışması için bir e-posta adresi belirtiniz.',
 'emailconfirmlink'           => 'E-posta adresinizi doğrulayın',
 'invalidemailaddress'        => 'E-posta adresi geçersizdir. Lütfen geçerli bir adres yazın ya da metin kutusunun içeriğini silin.',
 'accountcreated'             => 'Hesap açıldı',

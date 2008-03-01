@@ -4,7 +4,7 @@
  * @addtogroup Language
  *
  * @author Nike
- * @author G - ג
+ * @author לערי ריינהארט
  */
 
 $namespaceNames = array(
@@ -116,14 +116,11 @@ $messages = array(
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'      => 'A proposito di {{SITENAME}}',
-'aboutpage'      => 'Project:About',
 'bugreports'     => 'Segnalazioni di malfunzionamento',
 'bugreportspage' => 'Project:Malfunzionamenti',
-'copyrightpage'  => '{{ns:project}}:Copyrights',
 'currentevents'  => 'Attualità',
 'edithelp'       => 'Guida per la modifica o la scrittura di un articolo',
 'edithelppage'   => 'Help:Come_scrivere_un_articolo',
-'faqpage'        => 'Project:FAQ',
 'helppage'       => 'Help:Aiuto',
 'mainpage'       => 'Pàggina principali',
 

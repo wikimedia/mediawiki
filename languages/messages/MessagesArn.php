@@ -66,7 +66,7 @@ $messages = array(
 'dec'           => 'konlu disiempüre küyeṉ mew',
 
 'qbfind'      => 'Kintun',
-'qbedit'      => 'Welukan',
+'qbedit'      => 'Wirin',
 'qbmyoptions' => 'tañi nütramkawe',
 'mypage'      => 'tañi nütramkawe',
 'mytalk'      => 'Tañi nütramkawe',
@@ -81,7 +81,10 @@ $messages = array(
 'searcharticle'    => 'Amun',
 'history'          => 'Pünon',
 'history_short'    => 'Pünon',
-'edit'             => 'Welukan',
+'edit'             => 'Wirin',
+'delete'           => 'Ñamümün',
+'protect'          => 'Elulan ñi wiriael',
+'unprotect'        => 'Elun ñi wiriael',
 'talkpagelinktext' => 'Nütramkawe',
 'articlepage'      => 'adkintun artículo',
 'talk'             => 'Nütramkawe',
@@ -105,8 +108,8 @@ $messages = array(
 'youhavenewmessages'      => 'Elungeymi $1 ($2).',
 'newmessageslink'         => 'we dungu',
 'youhavenewmessagesmulti' => 'Elungeymi we dungu $1 mew.',
-'editsection'             => 'welukan',
-'editold'                 => 'welukan',
+'editsection'             => 'wirin',
+'editold'                 => 'wirin',
 'showtoc'                 => 'pengelün',
 'hidetoc'                 => 'ellkan',
 'viewdeleted'             => 'Küpaadkintuymi $1 am?',
@@ -118,8 +121,9 @@ $messages = array(
 'nstab-help'      => 'Kelluwe',
 
 # General errors
-'filenotfound' => 'Pepipelafuy "$1".',
-'badtitle'     => 'Nornongey ta üy',
+'filedeleteerror' => 'Pepiñamümüngelay "$1".',
+'filenotfound'    => 'Pepipelafuy "$1".',
+'badtitle'        => 'Nornongey ta üy',
 
 # Login and logout pages
 'yourname'           => 'Tami lludüchi üy',
@@ -170,11 +174,25 @@ $messages = array(
 'minoreditletter' => 'p',
 'newpageletter'   => 'W',
 
-# Image list
-'ilsubmit'       => 'Kintu',
-'imagelist_name' => 'Üy',
+'nolicense' => 'Chemnorume dullinnongey',
 
-'brokenredirects-edit' => '(welukan)',
+# Image list
+'ilsubmit'           => 'Kintu',
+'imgdelete'          => 'ñam',
+'filehist-deleteall' => 'kom ñamümün',
+'filehist-deleteone' => 'tüfa ñamümün',
+'imagelist_name'     => 'Üy',
+
+# File deletion
+'filedelete'         => '$1 ñamümün',
+'filedelete-intro'   => "Ñamümmekeymi '''[[Media:$1|$1]]'''.",
+'filedelete-submit'  => 'Ñamümün',
+'filedelete-success' => "'''$1''' ñamümngey.",
+
+'brokenredirects-edit'   => '(wirin)',
+'brokenredirects-delete' => '(ñamümün)',
+
+'withoutinterwiki-submit' => 'Pengelün',
 
 # Miscellaneous special pages
 'move' => 'Wiñamün',
@@ -247,7 +265,13 @@ $messages = array(
 # EXIF tags
 'exif-exposuretime-format' => '$1 sek ($2)',
 
+'exif-meteringmode-0' => 'Kimnoelchi',
+
+'exif-lightsource-0' => 'Kimnoelchi',
+
 'exif-gaincontrol-0' => 'Chemnorume',
+
+'exif-subjectdistancerange-0' => 'Kimnoelchi',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'kom',

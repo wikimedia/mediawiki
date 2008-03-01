@@ -306,6 +306,7 @@ pe titlul secţiunii (JavaScript)',
 'restorelink'             => '{{PLURAL:$1|o modificare ştearsă|$1 modificări şterse}}',
 'feedlinks'               => 'Întreţinere:',
 'feed-invalid'            => 'Tip de abonament invalid',
+'red-link-title'          => '$1 (pagină inexistentă)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Articol',

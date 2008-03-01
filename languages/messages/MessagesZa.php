@@ -1,8 +1,10 @@
 <?php
-/** Zhuang (壮语)
-  *
-  * @addtogroup Language
-  */
+/** Zhuang ((Cuengh))
+ *
+ * @addtogroup Language
+ *
+ * @author Hakka
+ */
 
 $fallback = 'zh-cn';
 

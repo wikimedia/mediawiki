@@ -2,6 +2,7 @@
 /** Maori (Māori)
  *
  * @addtogroup Language
+ *
  */
 
 $messages = array(

@@ -1,10 +1,9 @@
 <?php
-/**
- * Kurdish (Arab)
+/** Kurdish (Arab) (كوردي (عەرەبی))
  *
  * @addtogroup Language
- * @author Aras Noori
  *
+ * @author Aras Noori
  */
 
 $fallback = 'ku-latn';

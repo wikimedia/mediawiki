@@ -1,10 +1,10 @@
 <?php
-/** Winaray
- * This is the Winaray localisation file
+/** Waray (Winaray)
  *
- * @author Harvzsf (August 2007)
- * 
  * @addtogroup Language
+ *
+ * @author Harvzsf
+ * @author לערי ריינהארט
  */
 
 $messages = array(

@@ -411,6 +411,7 @@ Vinarliga rita inn eftir at tú hevur fingið hana.',
 verður sendur fyri nakað av fylgjandi hentleikum.',
 'emailconfirmlink'           => 'Vátta tína t-post adressu',
 'accountcreated'             => 'Konto upprættað',
+'loginlanguagelabel'         => 'Mál: $1',
 
 # Edit page toolbar
 'bold_sample'     => 'Feitir stavir',
