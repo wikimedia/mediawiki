@@ -2950,6 +2950,15 @@ class Article {
 	/**#@-*/
 
 	/**
+	 * Overriden by ImagePage class, only present here to avoid a fatal error
+	 * Called for ?action=revert
+	 */
+	public function revert(){
+		global $wgOut;
+		$wgOut->showErrorPage( 'nosuchaction', 'nosuchactiontext' );
+	}
+
+	/**
 	 * Info about this page
 	 * Called for ?action=info when $wgAllowPageInfo is on.
 	 *
