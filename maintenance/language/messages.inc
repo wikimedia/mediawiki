@@ -263,6 +263,7 @@ $wgMessageStructure = array(
 		'restorelink',
 		'feedlinks',
 		'feed-invalid',
+		'feed-unavailable',
 		'site-rss-feed',
 		'site-atom-feed',
 		'page-rss-feed',
@@ -272,6 +273,7 @@ $wgMessageStructure = array(
 		'sitenotice',
 		'anonnotice',
 		'newsectionheaderdefaultlevel',
+		'red-link-title',
 	),
 	'nstab' => array(
 		'nstab-main',
@@ -929,6 +931,7 @@ $wgMessageStructure = array(
 		'nolinkstoimage',
 		'sharedupload',
 		'shareduploadwiki',
+		'shareduploadwiki-desc',
 		'shareduploadwiki-linktext',
 		'shareddescriptionfollows',
 		'noimage',
