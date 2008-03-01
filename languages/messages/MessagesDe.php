@@ -1393,7 +1393,7 @@ auf die bereits die erste Weiterleitung zeigen sollte.',
 'booksources-go'            => 'Suchen',
 'booksources-text'          => 'Dies ist eine Liste mit Links zu Internetseiten, die neue und gebrauchte Bücher verkaufen. Dort kann es auch weitere Informationen über die Bücher geben. {{SITENAME}} ist mit keinem dieser Anbieter geschäftlich verbunden.',
 
-'categoriespagetext' => 'Die folgenden Kategorien existieren in {{SITENAME}}:',
+'categoriespagetext' => 'Die folgenden Kategorien in {{SITENAME}} enthalten Seiten oder Medien:',
 'data'               => 'Daten',
 'userrights'         => 'Benutzerrechteverwaltung',
 'groups'             => 'Benutzergruppen',
