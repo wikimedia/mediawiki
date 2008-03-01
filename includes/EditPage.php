@@ -992,7 +992,6 @@ class EditPage {
 	 */
 	function initialiseForm() {
 		$this->edittime = $this->mArticle->getTimestamp();
-		$this->summary = '';
 		$this->textbox1 = $this->getContent(false);
 		if ($this->textbox1 === false) return false;
 
