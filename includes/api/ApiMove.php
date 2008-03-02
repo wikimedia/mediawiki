@@ -86,7 +86,7 @@ class ApiMove extends ApiBase {
 			$this->dieUsageMsg(array($retval));
 
 		$r = array('from' => $fromTitle->getPrefixedText(), 'to' => $toTitle->getPrefixedText(), 'reason' => $params['reason']);
-		if(!$params['noredirect'])
+		if(!$params['noredirect'] || !$wgUser->isAllowed('suppressredirect'))
 			$r['redirectcreated'] = '';
 	
 		if($params['movetalk'] && $fromTalk->exists() && !$fromTitle->isTalkPage())
@@ -106,6 +106,18 @@ class ApiMove extends ApiBase {
 				$r['talkmove-error-info'] = ApiBase::$messageMap[$retval]['info'];
 			}	
 		}
+		
+		# Watch pages
+		if($params['watch'] || $wgUser->getOption('watchmoves'))
+		{
+			$wgUser->addWatch($fromTitle);
+			$wgUser->addWatch($toTitle);
+		}
+		else if($params['unwatch'])
+		{
+			$wgUser->removeWatch($fromTitle);
+			$wgUser->removeWatch($toTitle);
+		}
 		$dbw->commit(); // Make sure all changes are really written to the DB
 		$this->getResult()->addValue(null, $this->getModuleName(), $r);
 	}
@@ -119,7 +131,9 @@ class ApiMove extends ApiBase {
 			'token' => null,
 			'reason' => null,
 			'movetalk' => false,
-			'noredirect' => false
+			'noredirect' => false,
+			'watch' => false,
+			'unwatch' => false
 		);
 	}
 
@@ -130,7 +144,9 @@ class ApiMove extends ApiBase {
 			'token' => 'A move token previously retrieved through prop=info',
 			'reason' => 'Reason for the move (optional).',
 			'movetalk' => 'Move the talk page, if it exists.',
-			'noredirect' => 'Don\'t create a redirect'
+			'noredirect' => 'Don\'t create a redirect',
+			'watch' => 'Add the page and the redirect to your watchlist',
+			'unwatch' => 'Remove the page and the redirect from your watchlist'
 		);
 	}
 
