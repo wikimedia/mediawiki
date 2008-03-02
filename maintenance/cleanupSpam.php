@@ -14,9 +14,8 @@ function cleanupArticle( $id, $domain ) {
 	$rev = Revision::newFromTitle( $title );
 	$revId = $rev->getId();
 	$currentRevId = $revId;
-	$regex = LinkFilter::makeRegex( $domain );
 	
-	while ( $rev && preg_match( $regex, $rev->getText() ) ) {
+	while ( $rev && LinkFilter::matchEntry( $rev->getText() , $domain ) ) {
 		# Revision::getPrevious can't be used in this way before MW 1.6 (Revision.php 1.26)
 		#$rev = $rev->getPrevious();
 		$revId = $title->getPreviousRevisionID( $revId );
