@@ -21,9 +21,6 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 === Configuration changes in 1.13 ===
 
 * New option $wgFeed can be set false to turn off syndication feeds
-* (bug 13137) Allow setting 'editprotected' right separately from 'protect',
-  so groups may optionally edit protected pages without being able to protect
-  pages themselves
 
 === New features in 1.13 ===
 
