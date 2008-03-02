@@ -971,7 +971,7 @@ class Title {
 	}
 
 	/**
-	 * Is $wgUser is watching this page?
+	 * Is $wgUser watching this page?
 	 * @return boolean
 	 */
 	public function userIsWatching() {
