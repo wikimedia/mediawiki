@@ -68,12 +68,16 @@ class ApiDelete extends ApiBase {
 		$reason = (isset($params['reason']) ? $params['reason'] : NULL);
 		$dbw = wfGetDb(DB_MASTER);
 		$dbw->begin();
-		$retval = self::delete($articleObj, $params['token'], 	$reason);
+		$retval = self::delete($articleObj, $params['token'], $reason);
 		
 		if(!empty($retval))
 			// We don't care about multiple errors, just report one of them
 			$this->dieUsageMsg(current($retval));
-
+		
+		if($params['watch'] || $wgUser->getOption('watchdeletion'))
+			$articleObj->doWatch();
+		else if($params['unwatch'])
+			$articleObj->doUnwatch();
 		$dbw->commit();
 		$r = array('title' => $titleObj->getPrefixedText(), 'reason' => $reason);
 		$this->getResult()->addValue(null, $this->getModuleName(), $r);
@@ -125,6 +129,8 @@ class ApiDelete extends ApiBase {
 			'title' => null,
 			'token' => null,
 			'reason' => null,
+			'watch' => false,
+			'unwatch' => false
 		);
 	}
 
@@ -132,7 +138,9 @@ class ApiDelete extends ApiBase {
 		return array (
 			'title' => 'Title of the page you want to delete.',
 			'token' => 'A delete token previously retrieved through prop=info',
-			'reason' => 'Reason for the deletion. If not set, an automatically generated reason will be used.'
+			'reason' => 'Reason for the deletion. If not set, an automatically generated reason will be used.',
+			'watch' => 'Add the page to your watchlist',
+			'unwatch' => 'Remove the page from your watchlist'
 		);
 	}
 
