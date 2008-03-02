@@ -1037,6 +1037,7 @@ class Title {
 	 * FIXME: This *does not* check throttles (User::pingLimiter()).
 	 *
 	 * @param string $action action that permission needs to be checked for
+	 * @param User $user user to check
 	 * @param bool $doExpensiveQueries Set this to false to avoid doing unnecessary queries.
 	 * @return array Array of arrays of the arguments to wfMsg to explain permissions problems.
 	 */
@@ -1045,7 +1046,7 @@ class Title {
 
 		global $wgContLang;
 		global $wgLang;
-		global $wgEmailConfirmToEdit, $wgUser;
+		global $wgEmailConfirmToEdit;
 
 		if ( $wgEmailConfirmToEdit && !$user->isEmailConfirmed() ) {
 			$errors[] = array( 'confirmedittext' );
@@ -1108,6 +1109,7 @@ class Title {
 	 * checks on wfReadOnly() and blocks)
 	 *
 	 * @param string $action action that permission needs to be checked for
+	 * @param User $user user to check
 	 * @param bool $doExpensiveQueries Set this to false to avoid doing unnecessary queries.
 	 * @return array Array of arrays of the arguments to wfMsg to explain permissions problems.
 	 */
