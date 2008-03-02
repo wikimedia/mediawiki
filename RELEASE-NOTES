@@ -59,6 +59,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 13031) Add links to user pages in e-mail form
 * (bug 13147) Description for categoriespagetext (used in Special:Categories) reworded
 * (bug 11561) Fix fatal error when calling action=revert to non-image page
+* (bug 12430) Fix call to private method LinkFilter::makeRegex fatal error in
+  maintenance/cleanupSpam.php
 
 === API changes in 1.13 ===
 
