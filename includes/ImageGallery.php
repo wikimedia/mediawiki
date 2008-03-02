@@ -235,7 +235,6 @@ class ImageGallery
 		if( $this->mCaption )
 			$s .= "\n\t<caption>{$this->mCaption}</caption>";
 
-		$params = array( 'width' => $this->mWidths, 'height' => $this->mHeights );
 		$i = 0;
 		foreach ( $this->mImages as $pair ) {
 			$nt = $pair[0];
@@ -246,6 +245,12 @@ class ImageGallery
 			wfRunHooks( 'BeforeGalleryFindFile', array( &$this, &$nt, &$time ) );
 
 			$img = wfFindFile( $nt, $time );
+			
+			if ( $this->mWidths > $img->getWidth() && $this->mHeights > $img->getHeight()  ) {
+				$params = array( 'width' => $img->getWidth(), 'height' => $img->getHeight() );
+			} else {
+				$params = array( 'width' => $this->mWidths, 'height' => $this->mHeights );
+			}			
 
 			if( $nt->getNamespace() != NS_IMAGE || !$img ) {
 				# We're dealing with a non-image, spit out the name and be done with it.
