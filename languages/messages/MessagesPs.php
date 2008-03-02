@@ -9,6 +9,71 @@
  * @author Siebrand
  */
 
+$specialPageAliases = array(
+	'Shortpages'                => array( 'لنډ_مخونه' ),
+	'Longpages'                 => array( 'اوږده_مخونه' ),
+	'Newpages'                  => array( 'نوي_مخونه' ),
+	'Protectedpages'            => array( 'ژغورلي_مخونه' ),
+	'Protectedtitles'           => array( 'ژغورلي_سرليکونه' ),
+	'Allpages'                  => array( 'ټول_مخونه' ),
+	'Categories'                => array( 'وېشنيزې' ),
+	'Mypage'                    => array( 'زما_پاڼه' ),
+	'Search'                    => array( 'لټون' ),
+);
+
+$skinNames = array(
+	'standard'    => 'کلاسيک',
+	'nostalgia'   => 'نوستالژي',
+	'cologneblue' => 'شين کلون',
+	'monobook'    => 'مونوبوک',
+	'myskin'      => 'زمابڼه',
+	'chick'       => 'شيک',
+	'simple'      => 'ساده',
+	'modern'      => 'نوی',
+);
+
+$namespaceNames = array(
+	NS_MEDIA          => 'رسنۍ',
+	NS_SPECIAL        => 'ځانګړی',
+	NS_TALK           => 'خبرې_اترې',
+	NS_USER           => 'کارونکی',
+	NS_USER_TALK      => 'د_کارونکي_خبرې_اترې',
+	# NS_PROJECT set by \$wgMetaNamespace
+	NS_PROJECT_TALK   => 'د_$1_خبرې_اترې',
+	NS_IMAGE          => 'انځور',
+	NS_IMAGE_TALK     => 'د_انځور_خبرې_اترې',
+	NS_MEDIAWIKI      => 'ميډياويکي',
+	NS_MEDIAWIKI_TALK => 'د_ميډياويکي_خبرې_اترې',
+	NS_TEMPLATE       => 'کينډۍ',
+	NS_TEMPLATE_TALK  => 'د_کينډۍ_خبرې_اترې',
+	NS_HELP           => 'لارښود',
+	NS_HELP_TALK      => 'د_لارښود_خبرې_اترې',
+	NS_CATEGORY       => 'وېشنيزه',
+	NS_CATEGORY_TALK  => 'د_وېشنيزې_خبرې_اترې',
+);
+
+$magicWords = array(
+	'currentmonth'        => array( 'اوسنۍمياشت' ),
+	'currentmonthname'    => array( 'داوسنۍمياشت-نوم' ),
+	'currentday'          => array( 'ننۍورځ' ),
+	'currentday2'         => array( 'ننۍورځ۲' ),
+	'currentdayname'      => array( 'دننۍورځې-نوم' ),
+	'currentyear'         => array( 'سږکال' ),
+	'currenttime'         => array( 'دم-مهال' ),
+	'currenthour'         => array( 'دم-ګړۍ' ),
+	'localmonth'          => array( 'سيمه-يزه-مياشت' ),
+	'localmonthname'      => array( 'دسيمه-يزې-مياشتې-نوم' ),
+	'pagename'            => array( 'دپاڼې-نوم' ),
+	'pagenamee'           => array( 'دپاڼې-نومم' ),
+	'namespace'           => array( 'نوم-تشيال' ),
+	'namespacee'          => array( 'نوم-تشيالل' ),
+	'img_right'           => array( 'ښي' ),
+	'img_left'            => array( 'کيڼ' ),
+	'server'              => array( 'پالنګر' ),
+	'servername'          => array( 'دپالنګرنوم' ),
+	'language'            => array( '#ژبه:' ),
+);
+
 $rtl = true;
 $defaultUserOptionOverrides = array(
 	# Swap sidebar to right side by default

@@ -8,24 +8,24 @@
  */
 
 $namespaceNames = array(
-	NS_MEDIA            => 'ສື່ອ',
-	NS_SPECIAL          => 'ພິເສດ',
-	NS_MAIN             => '',
-	NS_TALK             => 'ສົນທະນາ',
-	NS_USER             => 'ຜູ້ໃຊ້',
-	NS_USER_TALK        => 'ສົນທະນາຂອງຜູ້ໃຊ້',
-	# NS_PROJECT set by $wgMetaNamespace
-	NS_PROJECT_TALK     => 'ສົນທະນາກ່ຽວກັບ$1',
-	NS_IMAGE            => 'ຮູບ',
-	NS_IMAGE_TALK       => 'ສົນທະນາກ່ຽວກັບຮູບ',
-	NS_MEDIAWIKI        => 'ມີເດຍວິກິ',
-	NS_MEDIAWIKI_TALK   => 'ສົນທະນາກ່ຽວກັບມີເດຍວິກິ',
-	NS_TEMPLATE         => 'ແມ່ແບບ',
-	NS_TEMPLATE_TALK    => 'ສົນທະນາກ່ຽວກັບແມ່ແບບ',
-	NS_HELP             => 'ຊ່ວຍເຫຼືອ',
-	NS_HELP_TALK        => 'ສົນທະນາກ່ຽວກັບຊ່ວຍເຫຼືອ',
-	NS_CATEGORY         => 'ໝວດ',
-	NS_CATEGORY_TALK    => 'ສົນທະນາກ່ຽວກັບໝວດ'
+	NS_MEDIA          => 'ສື່ອ',
+	NS_SPECIAL        => 'ພິເສດ',
+	NS_MAIN           => '',
+	NS_TALK           => 'ສົນທະນາ',
+	NS_USER           => 'ຜູ້ໃຊ້',
+	NS_USER_TALK      => 'ສົນທະນາຂອງຜູ້ໃຊ້',
+	# NS_PROJECT set by \$wgMetaNamespace
+	NS_PROJECT_TALK   => 'ສົນທະນາກ່ຽວກັບ$1',
+	NS_IMAGE          => 'ຮູບ',
+	NS_IMAGE_TALK     => 'ສົນທະນາກ່ຽວກັບຮູບ',
+	NS_MEDIAWIKI      => 'ມີເດຍວິກິ',
+	NS_MEDIAWIKI_TALK => 'ສົນທະນາກ່ຽວກັບມີເດຍວິກິ',
+	NS_TEMPLATE       => 'ແມ່ແບບ',
+	NS_TEMPLATE_TALK  => 'ສົນທະນາກ່ຽວກັບແມ່ແບບ',
+	NS_HELP           => 'ຊ່ວຍເຫຼືອ',
+	NS_HELP_TALK      => 'ສົນທະນາກ່ຽວກັບຊ່ວຍເຫຼືອ',
+	NS_CATEGORY       => 'ໝວດ',
+	NS_CATEGORY_TALK  => 'ສົນທະນາກ່ຽວກັບໝວດ',
 );
 
 $digitTransformTable = array(
