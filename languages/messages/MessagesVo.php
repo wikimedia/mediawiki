@@ -595,7 +595,7 @@ If binol is pölo, välolös knopi: '''geikön''' bevüresodatävöma olik.",
 'anontalkpagetext'          => "----''Bespikapad at duton lü geban nennemik, kel no nog ejafon kali, u no vilon labön u gebön oni. Sekü atos pemütobs ad gebön ladeti-IP ad dientifükön gebani at. Ladets-IP kanons pagebön fa gebans difik. If binol geban nennemik e cedol, das küpets netefik pelüodükons ole, [[Special:Userlogin|jafolös, begö! kali u nunädolös oli]] ad vitön kofudi ko gebans nennemik votik.''",
 'noarticletext'             => 'Atimo no dabinon vödem su pad at. Kanol [[{{ns:special}}:Search/{{PAGENAME}}|sukön padatiädi at]] su pads votik u [{{fullurl:{{FULLPAGENAME}}|action=edit}} redakön padi at].',
 'userpage-userdoesnotexist' => 'Gebanakal: "$1" no peregistaron. Fümükolös, va vilol jäfön/redakön padi at.',
-'clearyourcache'            => "'''Prudö!''' Pos dakip buükamas, mögos, das ozesüdos ad nedemön memi nelaidüpik bevüresodatävöma ad logön votükamis. '''Mozilla / Firefox / Safari:''' kipolöd klavi ''Shift'' dono e välolöd eli ''Reload'' (= dönulodön) me mugaparat, u dränolöd klävis ''Ctrl-Shift-R'' (''Cmd-Shift-R'' pö el Apple Mac); pro el '''IE:''' (Internet Explorer) kipolöd klavi ''Ctrl'' dono e välolöd eli ''Refresh'' (= flifädükön) me mugaparat, u dränolöd klavis ''Ctrl-F5''; '''Konqueror:''': välolöd eli ''Reload'' (= dönulodön) me mugaparat, u dränolöd klavi ''F5''; gebans ela '''Opera''' ba nedons vagükön lölöfiko memi nelaidüpik me ''Tools→Preferences'' (Stumem->Buükams).",
+'clearyourcache'            => "'''Prudö!''' Pos dakip buükamas, mögos, das ozesüdos ad nedemön memi nelaidüpik bevüresodatävöma ad logön votükamis. '''Mozilla / Firefox / Safari:''' kipolöd klavi ''Shift'' dono e välolöd eli ''Reload'' (= dönulodön) me mugaparat, u dränolöd klävis ''Ctrl-Shift-R'' (''Cmd-Shift-R'' pö el Apple Mac); pro el '''IE:''' (Internet Explorer) kipolöd klavi ''Ctrl'' dono e välolöd eli ''Refresh'' (= flifädükön) me mugaparat, u dränolöd klavis ''Ctrl-F5''; '''Konqueror:''' välolöd eli ''Reload'' (= dönulodön) me mugaparat, u dränolöd klavi ''F5''; gebans ela '''Opera''' ba nedons vagükön lölöfiko memi nelaidüpik me ''Tools→Preferences'' (Stumem->Buükams).",
 'usercssjsyoucanpreview'    => '<strong>Mob:</strong> Välolös eli „Jonön büologedi“ ad blufön eli CSS/JS nulik olik bü dakip.',
 'usercsspreview'            => "'''Memolös, das anu te büologol eli CSS olik, no nog pedakipon!'''",
 'userjspreview'             => "'''Memolös, das anu te blufol/büologol eli JavaScript olik, no nog pedakipon!'''",
@@ -646,7 +646,7 @@ Jenotalised moükama pada at pajonon is as yuf.",
 # "Undo" feature
 'undo-success' => 'Redakam at kanon pasädunön. Reidolös leigodi dono ad fümükön, va vilol vo dunön atosi, e poso dakipolös votükamis ad fisädunön redakami.',
 'undo-failure' => 'No eplöpos ad sädunön redakami at sekü konflits vü redakams vüik.',
-'undo-summary' => 'Sädunön votükami $1 fa geban: [[Special:Contributions/$2|$2]] ([[User talk:$2|Bespikapad]])',
+'undo-summary' => 'Äsädunon votükami $1 fa geban: [[Special:Contributions/$2|$2]] ([[User talk:$2|Bespikapad]])',
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Kal no kanon pajafön',

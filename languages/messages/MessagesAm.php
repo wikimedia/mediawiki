@@ -825,7 +825,12 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 
 # Block/unblock
 'blockip'                  => 'ተጠቃሚውን ለማገድ',
+'blockiptext'              => 'ከዚህ ታች ያለው ማመልከቻ በአንድ ቁጥር አድርሻ ወይም ብዕር ስም ላይ ማገጃ (ማዕቀብ) ለመጣል ይጠቀማል።  ይህ በ[[{{MediaWiki:Policy-url}}|መርመርያዎቻችን]] መሠረት ተንኮል ወይም ጉዳት ለመከልከል ብቻ እንዲደረግ ይገባል። ከዚህ ታች የተለየ ምክንያት (ለምሣሌ የተጎዳው ገጽ በማጠቆም) ይጻፉ።',
+'ipadressorusername'       => 'የቁ. አድራሻ ወይም የብዕር ስም፦',
+'ipbexpiry'                => 'የሚያልቅበት፦',
+'ipbother'                 => 'ሌላ የተወሰነ ግዜ፦',
 'ipboptions'               => '2 ሰዓቶች:2 hours,1 ቀን:1 day,3 ቀን:3 days,1 ሳምንት:1 week,2 ሳምንት:2 weeks,1 ወር:1 month,3 ወር:3 months,6 ወር:6 months,1 አመት:1 year,ዘላለም:infinite', # display1:time1,display2:time2,...
+'ipbotheroption'           => 'ሌላ',
 'ipblocklist'              => 'የአሁኑ ማገጃዎች ዝርዝር',
 'ipblocklist-legend'       => 'አንድ የታገደውን ተጠቃሚ ለመፈለግ፦',
 'ipblocklist-username'     => 'ይህ ብዕር ስም ወይም የቁጥር አድራሻ #፡',

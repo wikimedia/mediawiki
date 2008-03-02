@@ -6,13 +6,14 @@
  * @author Max sonnelid
  * @author Siebrand
  * @author Nike
+ * @author M.M.S.
  */
 
 
 
 $messages = array(
 # User preference toggles
-'tog-showtoolbar' => 'Vuesehte värrhtoedimmie dïrregeborhtje (JavaScript)',
+'tog-showtoolbar' => 'Dïrregesïeve vuesehth (JavaScript)',
 'tog-fancysig'    => 'Saajpe singnatuvreh (namhtah jïjtsistie lïenghke)',
 
 'underline-always' => 'Iktesth',
@@ -117,7 +118,7 @@ $messages = array(
 'protectthispage'  => 'Vaarjelidh dïhte bielie',
 'newpage'          => 'Orre bielie',
 'talkpage'         => 'Dïjveldidh dïhte bielie',
-'talkpagelinktext' => 'Dïerhkestidh',
+'talkpagelinktext' => 'Dïjveldeme',
 'specialpage'      => 'Joekoelaakan Bielie',
 'personaltools'    => 'Persjovne dïrregeh',
 'articlepage'      => 'Vuesehte artihkle bielie',
@@ -154,7 +155,7 @@ $messages = array(
 'faq'               => 'FAQ',
 'faqpage'           => 'Project:FAQ',
 'helppage'          => 'Help:Sisvege',
-'mainpage'          => 'Åejjiebielie',
+'mainpage'          => 'Aalkoebielie',
 'portal'            => 'Meatan portaale',
 'portal-url'        => 'Project:Meatan portaale',
 'privacy'           => 'Privaate pålisy',
@@ -166,7 +167,7 @@ $messages = array(
 'youhavenewmessages'  => 'Datne åtna $1 ($2).',
 'newmessageslink'     => 'orre bïjre',
 'newmessagesdifflink' => 'minngemes värrhtoedimmie',
-'editsection'         => 'värrhtoedimmie',
+'editsection'         => 'sjiehtedh',
 'editold'             => 'värrhtoedimmie',
 'editsectionhint'     => 'Värrhtoedimmie sektiovne: $1',
 'toc'                 => 'Sisvege',

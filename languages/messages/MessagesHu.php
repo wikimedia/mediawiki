@@ -295,6 +295,7 @@ $messages = array(
 'tog-nolangconversion'        => 'A változók átalakításának letiltása',
 'tog-ccmeonemails'            => 'A másoknak küldött e-mailekről kapjak én is egy másolatot',
 'tog-diffonly'                => 'Ne mutassa a lap tartalmát lapváltozatok közötti eltérések megtekintésekor',
+'tog-showhiddencats'          => 'Rejtett kategóriák megjelenítése',
 
 'underline-always'  => 'Mindig',
 'underline-never'   => 'Soha',
@@ -355,12 +356,14 @@ $messages = array(
 'dec'           => 'dec',
 
 # Bits of text used by many pages
-'categories'            => 'Kategóriák',
-'pagecategories'        => '{{PLURAL:$1|Kategória|Kategóriák}}',
-'category_header'       => '„$1” kategória szócikkei',
-'subcategories'         => 'Alkategóriák',
-'category-media-header' => 'A(z) „$1” kategóriába tartozó médiafájlok',
-'category-empty'        => "''Ebben a kategóriában pillanatnyilag egyetlen lap, médiafájl vagy alkategória sem szerepel.''",
+'categories'               => 'Kategóriák',
+'pagecategories'           => '{{PLURAL:$1|Kategória|Kategóriák}}',
+'category_header'          => '„$1” kategória szócikkei',
+'subcategories'            => 'Alkategóriák',
+'category-media-header'    => 'A(z) „$1” kategóriába tartozó médiafájlok',
+'category-empty'           => "''Ebben a kategóriában pillanatnyilag egyetlen lap, médiafájl vagy alkategória sem szerepel.''",
+'hidden-categories'        => '{{PLURAL:$1|Rejtett kategória|Rejtett kategóriák}}',
+'hidden-category-category' => 'Rejtett kategóriák', # Name of the category where hidden categories will be listed
 
 'mainpagetext'      => "<big>'''A MediaWiki telepítése sikerült.'''</big>",
 'mainpagedocfooter' => "Ha segítségre van szükséged a wikiszoftver használatához, akkor keresd fel a [http://meta.wikimedia.org/wiki/Help:Contents User's Guide] címet.
@@ -837,6 +840,7 @@ egy szövegfájlba, amit elmenthetsz későbbre.</strong>',
 'templatesusedsection'      => 'Szakaszban használt sablonok:',
 'template-protected'        => '(védett)',
 'template-semiprotected'    => '(félig-védett)',
+'hiddencategories'          => 'Ez a lap {{PLURAL:$1|egy|$1}} rejtett kategóriába tartozik:',
 'edittools'                 => '<!-- Ez a szöveg a szerkesztés és a feltöltés űrlap alatt lesz látható. -->',
 'nocreatetitle'             => 'A laplétrehozás korlátozott',
 'nocreatetext'              => 'Ezen a webhelyen korlátozták az új oldalak készítését.
@@ -1182,7 +1186,7 @@ Képet a következő módon illeszhetsz be egy oldalra: '''<nowiki>[[</nowiki>{{
 'largefileserver'             => 'A fájl mérete meghaladja a kiszolgálón beállított maximális értéket.',
 'emptyfile'                   => 'Az általad feltöltött fájl üresnek tűnik. Ez a fájlnévben lévő hibás karakter miatt lehet. Ellenőrizd, hogy valóban fel akarod-e tölteni ezt a fájlt.',
 'fileexists'                  => '<strong><tt>$1</tt></strong> névvel már létezik egy állomány. Ellenőrizd, hogy biztosan felül akarod-e írni!',
-'filepageexists'              => 'Egy oldal (nem fájl) már létezik ezen a néven, kérlek ellenőrizd a(z) <strong><tt>$1</tt></strong> lapot, ha nem vagy biztos benne, hogy meg szeretnéd változtatni.',
+'filepageexists'              => 'Ehhez a fájlnévhez már létezik leírás a <strong><tt>$1</tt></strong> lapon, de jelenleg nincs feltöltve ilyen nevű fájl. A leírás, amit ebbe az űrlapba írsz, nem fogja felülírni a már létezőt, és sehol nem fog megjelenni. Ha meg akarod változtatni a leírást, meg kell nyitnod szerkesztésre a lapját.',
 'fileexists-extension'        => 'Van hasonló nevű fájl:<br />
 A feltöltendő fájl neve: <strong><tt>$1</tt></strong><br />
 A létező fájl neve: <strong><tt>$2</tt></strong><br />

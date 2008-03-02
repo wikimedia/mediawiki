@@ -10,6 +10,7 @@
  * @author Teak
  * @author Siebrand
  * @author לערי ריינהארט
+ * @author SPQRobin
  */
 
 $fallback = 'it';
@@ -361,7 +362,7 @@ Query: $2',
 'protectedpagetext'    => "Sta pàgina-sì a l'è staita blocà për evité che a-j faso dle modìfiche.",
 'viewsourcetext'       => 'A peul vardé e copié la sorgiss dë sta pàgina:',
 'protectedinterface'   => "Costa pàgina-sì a l'ha andrinta un chèich-còs che a fa part d'antërfacia dël programa che a dòvro tùit; donca a l'é proteta për evité che a-i rivo dle ròbe brute.",
-'editinginterface'     => "'''Dosman!''' A l'é dapress ch'a-i travaja ansima a na pàgina ch'as dòvra për generé ël test dl'antërfacia dël programa. Le modìfiche fàite ambelessì a-j bogio l'antërfacia a tuti j'utent. Se sò but a l'é col ëd fé na tradussion, për piasì ch'a considerà la possibilità dë dovré [http://translatewiki.net/wiki/Main_Page?setlang=en Betawiki], ël proget ëd localisassion ëd MediaWiki.",
+'editinginterface'     => "'''Dosman!''' A l'é dapress ch'a-i travaja ansima a na pàgina ch'as dòvra për generé ël test dl'antërfacia dël programa. Le modìfiche fàite ambelessì a-j bogio l'antërfacia a tuti j'utent. Se sò but a l'é col ëd fé na tradussion, për piasì ch'a considerà la possibilità dë dovré [http://translatewiki.net/wiki/Main_Page?setlang=pms Betawiki], ël proget ëd localisassion ëd MediaWiki.",
 'sqlhidden'            => "(l'anterogassion SQL a l'é stërmà)",
 'cascadeprotected'     => 'Ant sta pàgina-sì as peulo pa fé ëd modìfiche, përché a-i intra ant {{PLURAL:$1|la pàgina|le pàgine}} butà sot a protession con la fonsion "a tombé" viscà ansima a: $2',
 'namespaceprotected'   => "A l'ha nen ël përmess dë feje dle modìfiche a le pàgine dlë spassi nominal '''$1'''.",
@@ -1238,7 +1239,7 @@ Vira riga a l'ha andrinta j'anliure a la prima e a la sconda rediression, ant s�
 'booksources-go'            => 'Va',
 'booksources-text'          => "Ambelessì sota a-i é na lista d'àotri sit che a vendo lìber neuv e dë sconda man, e che a peulo ëdcò smon-e dj'anformassion rësgoard a ij test che a l'é antramentr che al sërca:",
 
-'categoriespagetext' => 'An costa wiki a-i son ste categorìe-sì.',
+'categoriespagetext' => "Coste categorìe-sì a l'han andrinta dle pàgine ò dj'archivi.",
 'data'               => 'Dat',
 'userrights'         => "Gestion dij drit dj'utent",
 'groups'             => "Partìe d'utent",

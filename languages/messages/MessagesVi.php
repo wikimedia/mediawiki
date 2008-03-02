@@ -1274,7 +1274,7 @@ Có '''$8''' tập tin đã được tải lên.
 'booksources-go'            => 'Tìm kiếm',
 'booksources-text'          => 'Dưới đây là danh sách những trang bán sách mới và cũ, đồng thời có thể có thêm thông tin về những cuốn sách bạn đang tìm:',
 
-'categoriespagetext' => 'Wiki có các thể loại sau.',
+'categoriespagetext' => 'Các thể loại có chứa trang hoặc tập tin phương tiện.',
 'data'               => 'Dữ liệu',
 'userrights'         => 'Quản lý quyền thành viên',
 'groups'             => 'Nhóm thành viên',

@@ -1277,7 +1277,7 @@ d'os que '''$2''' (o '''$4%''') {{PLURAL:$1|en ye $5|en son $5}}.",
 'booksources-go'            => 'Ir-ie',
 'booksources-text'          => 'Contino ye una lista de binclos ta atros puestos an que benden libros nuebos y usatos, talment bi aiga más informazión sobre os libros que ye mirando.',
 
-'categoriespagetext' => 'En iste wiki bi son as siguients categorías.',
+'categoriespagetext' => 'As siguients categorías contienen bella pachina u archibo',
 'data'               => 'Datos',
 'userrights'         => "Confegurazión de premisos d'os usuarios",
 'groups'             => "Grupos d'usuarios",

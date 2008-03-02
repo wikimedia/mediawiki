@@ -6,6 +6,7 @@
  * @author Dato deutschland
  * @author Malafaya
  * @author Alsandro
+ * @author Nike
  */
 
 $fallback = 'ka';
@@ -389,8 +390,8 @@ $messages = array(
 'tooltip-ca-nstab-image'          => 'სურათიშ გვერდიშ ძირაფა',
 'tooltip-ca-nstab-help'           => 'ქოძირეთ დახვარებაშ გვერდ',
 'tooltip-ca-nstab-category'       => 'გვერდიშ კატეგორიაშ ძირა',
-'tooltip-save'                    => 'თირუაშ ჩუალა [alt-s]',
-'tooltip-compareselectedversions' => 'ქოძირეთ თე გვერდიშ ჟირ გიშაგორილ ვერსიაშ განშხვავებეფ. [alt-v]',
+'tooltip-save'                    => 'თირუაშ ჩუალა',
+'tooltip-compareselectedversions' => 'ქოძირეთ თე გვერდიშ ჟირ გიშაგორილ ვერსიაშ განშხვავებეფ.',
 
 # Spam protection
 'subcategorycount'     => 'თე კატეგორიას $1 ქვეკატეგორია რე.',

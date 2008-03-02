@@ -164,12 +164,14 @@ $messages = array(
 'dec'           => 'pro',
 
 # Bits of text used by many pages
-'categories'            => '{{PLURAL:$1|Kategorija|Kategorije}}',
-'pagecategories'        => '{{PLURAL:$1|Kategorija|Kategorije}}',
-'category_header'       => 'Članci u kategoriji "$1"',
-'subcategories'         => 'Potkategorije',
-'category-media-header' => 'Mediji u kategoriji "$1":',
-'category-empty'        => "''U ovoj kategoriji trenutačno nema članaka ni medija.''",
+'categories'               => '{{PLURAL:$1|Kategorija|Kategorije}}',
+'pagecategories'           => '{{PLURAL:$1|Kategorija|Kategorije}}',
+'category_header'          => 'Članci u kategoriji "$1"',
+'subcategories'            => 'Potkategorije',
+'category-media-header'    => 'Mediji u kategoriji "$1":',
+'category-empty'           => "''U ovoj kategoriji trenutačno nema članaka ni medija.''",
+'hidden-categories'        => '{{PLURAL:$1|Skrivena kategorija|Skrivene kategorije|Skrivenih kategorija}}',
+'hidden-category-category' => 'Skrivene kategorije', # Name of the category where hidden categories will be listed
 
 'mainpagetext'      => 'Softver Wiki je uspješno instaliran.',
 'mainpagedocfooter' => 'Pogledajte [http://meta.wikimedia.org/wiki/MediaWiki_localisation dokumentaciju o prilagodbi sučelja]
@@ -301,6 +303,7 @@ i [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Vodič za suradnike] 
 'restorelink'             => '{{PLURAL:$1|$1 pobrisanu izmjenu|$1 pobrisane izmjene|$1 pobrisanih izmjena}}',
 'feedlinks'               => 'Izvor:',
 'feed-invalid'            => 'Tip izvora nije valjan.',
+'feed-unavailable'        => 'RSS izvori nisu dostupni na {{SITENAME}}',
 'site-rss-feed'           => '$1 RSS izvor',
 'site-atom-feed'          => '$1 Atom izvor',
 'page-rss-feed'           => '"$1" RSS izvor',
@@ -393,7 +396,7 @@ $2',
 'namespaceprotected'   => "Ne možete uređivati stranice u imenskom prostoru '''$1'''.",
 'customcssjsprotected' => 'Ne možete uređivati ovu stranicu zato što ona sadrži osobne postavke drugog suradnika.',
 'ns-specialprotected'  => "Stranice u imenskom prostoru ''{{ns:special}}'' ne mogu se uređivati.",
-'titleprotected'       => 'Ovaj naslov je od kreiranja zaštitio korisnik [[User:$1|$1]], uz razlog: <i>$2</i>.',
+'titleprotected'       => 'Ovaj naslov je od kreiranja zaštitio suradnik [[User:$1|$1]], uz razlog: <i>$2</i>.',
 
 # Login and logout pages
 'logouttitle'                => 'Odjava suradnika',
@@ -403,7 +406,7 @@ ili se možete ponovo prijaviti pod istim ili drugim imenom. Neke se stranice mo
 prikazivati kao da ste još uvijek prijavljeni, sve dok ne očistite međuspremnik svog preglednika.',
 'welcomecreation'            => '== Dobrodošli, $1! ==
 
-Vaš je suradnički račun otvoren. Ne zaboravite podesiti korisničke postavke.',
+Vaš je suradnički račun otvoren. Ne zaboravite podesiti suradničke postavke.',
 'loginpagetitle'             => 'Prijava suradnika',
 'yourname'                   => 'Suradničko ime',
 'yourpassword'               => 'Upišite lozinku',
@@ -629,7 +632,7 @@ ove stranice. Ako je sačuvate, sve će promjene učinjene nakon ove inačice bi
 'copyrightwarning'          => '<div style="display:block;vertical-align: top;width:100%; background:#FFFFFF; color:#000000; text-align:center; font-weight:bold; font-size:100%;margin-bottom:5px;margin-top:0;margin-left:-5px;margin-right:-4px;">NE POSTAVLJAJTE RADOVE ZAŠTIĆENE AUTORSKIM PRAVIMA BEZ DOPUŠTENJA!</div> 
 *<strong>Nemojte</strong> izravno kopirati sadržaje s drugih internetskih stranica ako nemate izričito dopuštenje. Ako imate dopuštenje, napišite to na pripadnoj stranici za razgovor članka. Molimo uočite da se svi doprinosi {{SITENAME}} smatraju objavljenima pod uvjetima $2 (vidi $1 za detalje). 
 *Ako ne želite da se vaše pisanje nemilosrdno uređuje i slobodno raspačava, nemojte ga ovamo slati. Također nam obećavate da ste ovo sami napisali, ili da ste to prepisali iz nečeg što je u javnom vlasništvu ili pod sličnom slobodnom licencijom.',
-'copyrightwarning2'         => 'Svi doprinosi {{SITENAME}} mogu biti mijenjani od strane svih suradnika. Ako ne želite da se vaše pisanje nemilosrdno uređuje, nemojte ga slati ovdje.<br> Također nam obećavate da ste ovo sami napisali, ili da ste to prepisali iz nečeg što je u javnom vlasništvu ili pod sličnom slobodnom licencijom (vidi $1 za detalje). <strong>NE STAVLJAJTE ZAŠTIĆENE RADOVE BEZ DOPUŠTENJA!</strong>',
+'copyrightwarning2'         => 'Svi doprinosi {{SITENAME}} mogu biti mijenjani od strane svih suradnika. Ako ne želite da se vaše pisanje nemilosrdno uređuje, nemojte ga slati ovdje.<br /> Također nam obećavate da ste ovo sami napisali, ili da ste to prepisali iz nečeg što je u javnom vlasništvu ili pod sličnom slobodnom licencijom (vidi $1 za detalje). <strong>NE STAVLJAJTE ZAŠTIĆENE RADOVE BEZ DOPUŠTENJA!</strong>',
 'longpagewarning'           => 'PAŽNJA: Ova stranica je dugačka $1 kilobajta; neki bi preglednici mogli imati problema pri uređivanju stranica koje se približavaju ili su duže od 32 kb.
 Molimo razmislite o rastavljanju stranice na manje odjeljke.',
 'longpageerror'             => '<strong>POGRJEŠKA: Tekst koji ste unijeli dug je $1 kilobajta, što je više od maksimalnih $2 kilobajta. Nije ga moguće snimiti.</strong>',
@@ -644,6 +647,7 @@ promjene. Najbolje je da kopirate i zaljepite tekst u tekstualnu datoteku te je 
 'templatesusedsection'      => 'Predlošci koji se koriste u odjeljku:',
 'template-protected'        => '(zaštićen)',
 'template-semiprotected'    => '(djelomično zaštićen)',
+'hiddencategories'          => 'Ova stranica je član {{PLURAL:$1|1 skrivene kategorija|$1 skrivene kategorije|$1 skrivenih kategorija}}:',
 'nocreatetitle'             => 'Otvaranje novih stranica ograničeno',
 'nocreatetext'              => 'Na ovom je projektu ograničeno otvaranje novih stranica.
 Možete se vratiti i uređivati već postojeće stranice ili se [[Special:Userlogin|prijaviti ili otvoriti suradnički račun]].',
@@ -817,7 +821,7 @@ $2 Popis se preusmjerava   Traženje za $3 $9',
 'prefs-edits'              => 'Broj vaših uređivanja:',
 'prefsnologin'             => 'Niste prijavljeni',
 'prefsnologintext'         => 'Morate biti [[Special:Userlogin|prijavljeni]]
-za podešavanje korisničkih postavki.',
+za podešavanje suradničkih postavki.',
 'prefsreset'               => 'Postavke su vraćene na prvotne vrijednosti.',
 'qbsettings'               => 'Traka',
 'qbsettings-none'          => 'Bez',
@@ -2255,9 +2259,9 @@ Već vam je e-mailom poslan potvrdni kôd; ako ste upravo otvorili suradnički r
 'confirmemail_sent'       => 'Poruka s potvrdom je poslana.',
 'confirmemail_oncreate'   => 'Potvrdni kôd poslan je na vašu elektroničku adresu. 
 Ovaj kôd nije potreban za prijavljivanje, no bit će vam potreban kako biste osposobili neke od postavki na Wikipediji koje uključuju elektroničku poštu.',
-'confirmemail_sendfailed' => 'Poruka s potvrdom nije se mogla poslati. Provjerite pravilnost adrese.
+'confirmemail_sendfailed' => 'Poruka s potvrdom se nije mogla poslati. Provjerite pravilnost adrese.
 
-Poruka o grešci e-mail poslužitelja: $1',
+Poruka o pogrešci e-mail poslužitelja: $1',
 'confirmemail_invalid'    => 'Pogrešna potvrda. Kôd je možda istekao.',
 'confirmemail_needlogin'  => 'Trebate se $1, kako bi se potvrdila vaša e-mail adresa.',
 'confirmemail_success'    => 'Vaša je e-mail adresa potvrđena. Možete se prijaviti i uživati u wikiju.',

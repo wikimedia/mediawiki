@@ -1074,7 +1074,7 @@ Aqırg'ı o'shirilgenlerdin' dizimin ko'riw ushin \$2 ni qaran'",
 'protect_expiry_old'          => "Kushin joytıw waqtı o'tip ketken.",
 'unprotectsub'                => '("$1" qorg\'almawmaqta)',
 'protect-unchain'             => "Ko'shiriw ruxsatın beriw",
-'protect-text'                => "<strong><nowiki>\$1</nowiki></strong> betinin' qorg'aw da'rejesin ko're yamasa o'zgerte alasız.",
+'protect-text'                => "<strong><nowiki>$1</nowiki></strong> betinin' qorg'aw da'rejesin ko're yamasa o'zgerte alasız.",
 'protect-locked-access'       => "Akkauntın'ızdın' bettın' qorg'aw da'rejesin o'zgertiwge ruxsatı joq.
 <strong>$1</strong> betinin' ha'zirgi sazlawları:",
 'protect-cascadeon'           => "Bul bet ha'zirgi waqıtta qorg'alg'an, sebebi usı bet kaskadlı qorg'awı bar {{PLURAL:$1|betke|betlerine}} qosılg'an. Bul bettin' qorg'aw da'rejesin o'zgerte alasız, biraq bul kaskadlı qorg'awg'a ta'sir etpeydi.",

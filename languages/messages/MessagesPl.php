@@ -816,7 +816,7 @@ Upewnij się, że zmiany będą zapewniać ciągłość historyczną edycji stro
 'mergehistory-invalid-destination' => 'Strona docelowa musi mieć poprawną nazwę.',
 
 # Merge log
-'mergelog'           => 'Scal log',
+'mergelog'           => 'Scalone',
 'pagemerge-logentry' => 'Scalono [[$1]] z [[$2]] (historia zmian aż do $3)',
 'revertmerge'        => 'Rozdziel',
 'mergelogpagetext'   => 'Poniżej znajduje się lista ostatnich scaleń historii zmian stron.',
