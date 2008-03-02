@@ -153,7 +153,7 @@ class Skin extends Linker {
 	}
 
 	function initPage( &$out ) {
-		global $wgFavicon, $wgAppleTouchIcon, $wgScriptPath, $wgSitename, $wgContLang, $wgScriptExtension;
+		global $wgFavicon, $wgAppleTouchIcon, $wgScriptPath, $wgScriptExtension;
 
 		wfProfileIn( __METHOD__ );
 
@@ -165,16 +165,12 @@ class Skin extends Linker {
 			$out->addLink( array( 'rel' => 'apple-touch-icon', 'href' => $wgAppleTouchIcon ) );
 		} 		
 
-		$code = $wgContLang->getCode();
-		$name = $wgContLang->getLanguageName( $code );
-		$langName = $name ? $name : $code;
-
 		# OpenSearch description link
 		$out->addLink( array( 
 			'rel' => 'search', 
 			'type' => 'application/opensearchdescription+xml',
 			'href' => "$wgScriptPath/opensearch_desc{$wgScriptExtension}",
-			'title' => "$wgSitename ($langName)",
+			'title' => wfMsgForContent( 'opensearch-desc' ),
 		));
 
 		$this->addMetadataLinks($out);
