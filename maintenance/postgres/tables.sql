@@ -4,8 +4,7 @@
 -- This is the PostgreSQL version.
 -- For information about each table, please see the notes in maintenance/tables.sql
 -- Please make sure all dollar-quoting uses $mw$ at the start of the line
--- We can't use SERIAL everywhere: the sequence names are hard-coded into the PHP
--- TODO: Change CHAR/SMALLINT to BOOL (still needed as CHAR due to some PHP code)
+-- TODO: Change CHAR/SMALLINT to BOOL (still used in a non-bool fashion in PHP code)
 
 BEGIN;
 SET client_min_messages = 'ERROR';
@@ -290,8 +289,9 @@ CREATE INDEX oi_name_archive_name ON oldimage (oi_name,oi_archive_name);
 CREATE INDEX oi_sha1              ON oldimage (oi_sha1);
 
 
+CREATE SEQUENCE filearchive_fa_id_seq;
 CREATE TABLE filearchive (
-  fa_id                 SERIAL       NOT NULL  PRIMARY KEY,
+  fa_id                 INTEGER      NOT NULL  PRIMARY KEY DEFAULT nextval('filearchive_fa_id_seq'),
   fa_name               TEXT         NOT NULL,
   fa_archive_name       TEXT,
   fa_storage_group      TEXT,
@@ -438,8 +438,9 @@ CREATE INDEX logging_user_time ON logging (log_timestamp, log_user);
 CREATE INDEX logging_page_time ON logging (log_namespace, log_title, log_timestamp);
 
 
+CREATE SEQUENCE trackbacks_tb_id_seq;
 CREATE TABLE trackbacks (
-  tb_id     SERIAL   NOT NULL  PRIMARY KEY,
+  tb_id     INTEGER  NOT NULL  PRIMARY KEY DEFAULT nextval('trackbacks_tb_id_seq'),
   tb_page   INTEGER            REFERENCES page(page_id) ON DELETE CASCADE,
   tb_title  TEXT     NOT NULL,
   tb_url    TEXT     NOT NULL,
