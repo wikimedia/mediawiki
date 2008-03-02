@@ -68,7 +68,7 @@ class UsersPager extends AlphabeticPager {
 
 		list ($user,$user_groups,$ipblocks) = wfGetDB()->tableNamesN('user','user_groups','ipblocks');
 
-		return array(
+		$query = array(
 			'tables' => " $user LEFT JOIN $user_groups ON user_id=ug_user LEFT JOIN $ipblocks ON user_id=ipb_user AND ipb_auto=0 ",
 			'fields' => array('user_name',
 				'MAX(user_id) AS user_id',
@@ -78,6 +78,8 @@ class UsersPager extends AlphabeticPager {
 			'conds' => $conds
 		);
 
+		wfRunHooks( 'SpecialListusersQueryInfo', array( $this, &$query ) );
+		return $query;
 	}
 
 	function formatRow( $row ) {
@@ -94,8 +96,10 @@ class UsersPager extends AlphabeticPager {
 		} else {
 			$groups = '';
 		}
-
-		return '<li>' . wfSpecialList( $name, $groups ) . '</li>';
+		
+		$item = wfSpecialList( $name, $groups );
+		wfRunHooks( 'SpecialListusersFormatRow', array( &$item, $row ) );
+		return "<li>{$item}</li>";
 	}
 
 	function getBody() {
@@ -136,11 +140,14 @@ class UsersPager extends AlphabeticPager {
 			$out .= Xml::option( User::getGroupName( $group ), $group, $group == $this->requestedGroup );
 		$out .= Xml::closeElement( 'select' ) . ' ';
 
+		wfRunHooks( 'SpecialListusersHeaderForm', array( $this, &$out ) );
+
 		# Submit button and form bottom
 		if( $this->mLimit )
 			$out .= Xml::hidden( 'limit', $this->mLimit );
-		$out .= Xml::submitButton( wfMsg( 'allpagessubmit' ) ) .
-			'</fieldset>' .
+		$out .= Xml::submitButton( wfMsg( 'allpagessubmit' ) );
+		wfRunHooks( 'SpecialListusersHeader', array( $this, &$out ) );
+		$out .= '</fieldset>' .
 			Xml::closeElement( 'form' );
 
 		return $out;
@@ -156,6 +163,7 @@ class UsersPager extends AlphabeticPager {
 			$query['group'] = $this->requestedGroup;
 		if( $this->requestedUser != '' )
 			$query['username'] = $this->requestedUser;
+		wfRunHooks( 'SpecialListusersDefaultQuery', array( $this, &$query ) );
 		return $query;
 	}
 
@@ -213,5 +221,3 @@ function wfSpecialListusers( $par = null ) {
 
 	$wgOut->addHTML( $s );
 }
-
-
