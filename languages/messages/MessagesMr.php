@@ -18,23 +18,125 @@
  * @author प्रणव कुलकर्णी
  */
 
+$specialPageAliases = array(
+	'DoubleRedirects'           => array( 'दुहेरी_पुनर्निर्देशने' ),
+	'BrokenRedirects'           => array( 'चुकीची_पुनर्निर्देशने' ),
+	'Disambiguations'           => array( 'नि:संदिग्धीकरण' ),
+	'Preferences'               => array( 'पसंती' ),
+	'Watchlist'                 => array( 'पहार्‍याची_सूची' ),
+	'Recentchanges'             => array( 'अलीकडील_बदल' ),
+	'Upload'                    => array( 'चढवा' ),
+	'Imagelist'                 => array( 'चित्रयादी' ),
+	'Newimages'                 => array( 'नवीन_चित्रे' ),
+	'Listusers'                 => array( 'सदस्यांची_यादी' ),
+	'Statistics'                => array( 'सांख्यिकी' ),
+	'Randompage'                => array( 'अविशिष्ट', 'अविशिष्ट_पृष्ठ' ),
+	'Uncategorizedpages'        => array( 'अवर्गीकृत_पाने' ),
+	'Uncategorizedcategories'   => array( 'अवर्गीकृत_वर्ग' ),
+	'Uncategorizedimages'       => array( 'अवर्गीकृत_चित्रे' ),
+	'Uncategorizedtemplates'    => array( 'अवर्गीकृत_साचे' ),
+	'Unusedcategories'          => array( 'न_वापरलेले_वर्ग' ),
+	'Unusedimages'              => array( 'न_वापरलेली_चित्रे' ),
+	'Wantedpages'               => array( 'हवे_असलेले_लेख' ),
+	'Wantedcategories'          => array( 'हवे_असलेले_वर्ग' ),
+	'Shortpages'                => array( 'छोटी_पाने' ),
+	'Longpages'                 => array( 'मोठी_पाने' ),
+	'Newpages'                  => array( 'नवीन_पाने' ),
+	'Ancientpages'              => array( 'जुनी_पाने' ),
+	'Deadendpages'              => array( 'टोकाची_पाने' ),
+	'Protectedpages'            => array( 'सुरक्षित_पाने' ),
+	'Allpages'                  => array( 'सर्व_पाने' ),
+	'Whatlinkshere'             => array( 'येथे_काय_जोडले_आहे' ),
+	'Categories'                => array( 'वर्ग' ),
+	'Listadmins'                => array( 'प्रबंधकांची_यादी' ),
+	'Listbots'                  => array( 'सांगकाम्यांची_यादी' ),
+	'Search'                    => array( 'शोधा' ),
+	'Filepath'                  => array( 'संचिकेचा_पत्ता_(पाथ)' ),
+);
+
+$skinNames = array(
+	'standard'    => 'अभिजात',
+	'nostalgia'   => 'रम्य',
+	'cologneblue' => 'सुरेखनीळी',
+	'monobook'    => 'मोनोबुक',
+	'myskin'      => 'माझीकांती',
+	'chick'       => 'मस्त',
+	'simple'      => 'साधी',
+	'modern'      => 'आधुनिक',
+);
+
 $namespaceNames = array(
-	NS_MEDIA          => 'Media',
+	NS_MEDIA          => 'मिडिया',
 	NS_SPECIAL        => 'विशेष',
 	NS_MAIN           => '',
 	NS_TALK           => 'चर्चा',
 	NS_USER           => 'सदस्य',
 	NS_USER_TALK      => 'सदस्य_चर्चा',
-	# NS_PROJECT set by $wgMetaNamespace
+	# NS_PROJECT set by \$wgMetaNamespace
 	NS_PROJECT_TALK   => '$1_चर्चा',
 	NS_IMAGE          => 'चित्र',
 	NS_IMAGE_TALK     => 'चित्र_चर्चा',
-	NS_MEDIAWIKI      => 'MediaWiki',
-	NS_MEDIAWIKI_TALK => 'MediaWiki_talk',
+	NS_MEDIAWIKI      => 'मिडियाविकी',
+	NS_MEDIAWIKI_TALK => 'मिडियाविकी_चर्चा',
 	NS_TEMPLATE       => 'साचा',
 	NS_TEMPLATE_TALK  => 'साचा_चर्चा',
+	NS_HELP           => 'साहाय्य',
+	NS_HELP_TALK      => 'साहाय्य_चर्चा',
 	NS_CATEGORY       => 'वर्ग',
 	NS_CATEGORY_TALK  => 'वर्ग_चर्चा',
+);
+
+$magicWords = array(
+	'redirect'            => array( '0', '#REDIRECT', '#पुनर्निर्देशन' ),
+	'notoc'               => array( '0', '__NOTOC__', '__अनुक्रमाणिकानको__' ),
+	'forcetoc'            => array( '0', '__FORCETOC__', '__अनुक्रमाणिकाहवीच__' ),
+	'noeditsection'       => array( '0', '__NOEDITSECTION__', '__असंपादनक्षम__' ),
+	'currentmonth'        => array( '1', 'CURRENTMONTH', 'सद्यमहिना' ),
+	'currentmonthname'    => array( '1', 'CURRENTMONTHNAME', 'सद्यमहिनानाव' ),
+	'currentmonthabbrev'  => array( '1', 'CURRENTMONTHABBREV', 'सद्यमहिनासंक्षीप्त' ),
+	'currentday'          => array( '1', 'CURRENTDAY', 'सद्यदिवस' ),
+	'currentday2'         => array( '1', 'CURRENTDAY2', 'सद्यदिवस२' ),
+	'currentdayname'      => array( '1', 'CURRENTDAYNAME', 'सद्यदिवसनाव' ),
+	'currentyear'         => array( '1', 'CURRENTYEAR', 'सद्यवर्ष' ),
+	'currenttime'         => array( '1', 'CURRENTTIME', 'सद्यवेळ' ),
+	'currenthour'         => array( '1', 'CURRENTHOUR', 'सद्यतास' ),
+	'localmonth'          => array( '1', 'LOCALMONTH', 'स्थानिकमहिना' ),
+	'localmonthname'      => array( '1', 'LOCALMONTHNAME', 'स्थानिकमहिनानाव' ),
+	'localmonthabbrev'    => array( '1', 'LOCALMONTHABBREV', 'स्थानिकमहिनासंक्षीप्त' ),
+	'localday'            => array( '1', 'LOCALDAY', 'स्थानिकदिवस' ),
+	'localday2'           => array( '1', 'LOCALDAY2', 'स्थानिकदिवस२' ),
+	'localdayname'        => array( '1', 'LOCALDAYNAME', 'स्थानिकदिवसनाव' ),
+	'localyear'           => array( '1', 'LOCALYEAR', 'स्थानिकवर्ष' ),
+	'localtime'           => array( '1', 'LOCALTIME', 'स्थानिकवेळ' ),
+	'localhour'           => array( '1', 'LOCALHOUR', 'स्थानिकतास' ),
+	'numberofpages'       => array( '1', 'NUMBEROFPAGES', 'पानसंख्या' ),
+	'numberofarticles'    => array( '1', 'NUMBEROFARTICLES', 'लेखसंख्या' ),
+	'numberoffiles'       => array( '1', 'NUMBEROFFILES', 'संचिकासंख्या' ),
+	'numberofusers'       => array( '1', 'NUMBEROFUSERS', 'सदस्यसंख्या' ),
+	'numberofedits'       => array( '1', 'NUMBEROFEDITS', 'संपादनसंख्या' ),
+	'pagename'            => array( '1', 'PAGENAME', 'लेखनाव' ),
+	'namespace'           => array( '1', 'NAMESPACE', 'नामविश्व' ),
+	'img_thumbnail'       => array( '1', 'thumbnail', 'thumb', 'इवलेसे' ),
+	'img_manualthumb'     => array( '1', 'thumbnail=$1', 'thumb=$1', 'इवलेसे=$1' ),
+	'img_right'           => array( '1', 'right', 'उजवे' ),
+	'img_left'            => array( '1', 'left', 'डावे' ),
+	'img_none'            => array( '1', 'none', 'कोणतेचनाही', 'नन्ना' ),
+	'img_center'          => array( '1', 'center', 'centre', 'मध्यवर्ती' ),
+	'img_middle'          => array( '1', 'middle', 'मध्य' ),
+	'img_bottom'          => array( '1', 'bottom', 'तळ', 'बूड' ),
+	'img_text_bottom'     => array( '1', 'text-bottom', 'मजकुरतळ' ),
+	'sitename'            => array( '1', 'SITENAME', 'संकेतस्थळनाव' ),
+	'ns'                  => array( '0', 'NS:', 'नावि' ),
+	'server'              => array( '0', 'SERVER', 'विदादाता' ),
+	'servername'          => array( '0', 'SERVERNAME', 'विदादातानाव' ),
+	'grammar'             => array( '0', 'GRAMMAR:', 'व्याकरण:' ),
+	'currentweek'         => array( '1', 'CURRENTWEEK', 'सद्यआठवडा' ),
+	'localweek'           => array( '1', 'LOCALWEEK', 'स्थानिकआठवडा' ),
+	'plural'              => array( '0', 'PLURAL:', 'बहुवचन:' ),
+	'language'            => array( '0', '#LANGUAGE:', '#भाषा:', '' ),
+	'contentlanguage'     => array( '1', 'CONTENTLANGUAGE', 'CONTENTLANG', 'मसुदाभाषा', 'मजकुरभाषा' ),
+	'special'             => array( '0', 'special', 'विशेष' ),
+	'filepath'            => array( '0', 'FILEPATH:', 'संचिकामार्ग:' ),
 );
 
 $digitTransformTable = array(
@@ -49,6 +151,7 @@ $digitTransformTable = array(
 	'8' => '८', # &#x096e;
 	'9' => '९', # &#x096f;
 );
+
 $linkTrail = "/^([\xE0\xA4\x80-\xE0\xA5\xA3\xE0\xA5\xB1-\xE0\xA5\xBF\xEF\xBB\xBF\xE2\x80\x8D]+)(.*)$/sDu";
 
 $messages = array(

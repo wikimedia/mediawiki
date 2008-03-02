@@ -11,10 +11,11 @@
  */
 
 $skinNames = array(
-	'standard'     => 'Lehenetsia',
-	'nostalgia'    => 'Nostalgia',
-	'cologneblue'  => 'Cologne Blue',
+	'standard'    => 'Lehenetsia',
+	'nostalgia'   => 'Nostalgia',
+	'cologneblue' => 'Cologne Blue',
 );
+
 $namespaceNames = array(
 	NS_MEDIA          => 'Media',
 	NS_SPECIAL        => 'Aparteko',
@@ -22,7 +23,7 @@ $namespaceNames = array(
 	NS_TALK           => 'Eztabaida',
 	NS_USER           => 'Lankide',
 	NS_USER_TALK      => 'Lankide_eztabaida',
-	# NS_PROJECT set by $wgMetaNamespace
+	# NS_PROJECT set by \$wgMetaNamespace
 	NS_PROJECT_TALK   => '$1_eztabaida',
 	NS_IMAGE          => 'Irudi',
 	NS_IMAGE_TALK     => 'Irudi_eztabaida',
