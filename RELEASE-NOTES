@@ -71,6 +71,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 13154) Introduced subpages flag to meta=siteinfo&siprop=namespaces
 * (bug 13157) Added ucuserprefix parameter to list=usercontibs
 * (bug 12394) Added rctitles parameter to list=recentchanges, making rcid retrieval easier
+* (bug 13218) Fix inclusion of " character in hyperlinks
 
 === Languages updated in 1.13 ===
 
