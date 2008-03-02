@@ -366,7 +366,7 @@ $messages = array(
 
 'errorpagetitle'    => 'Ошибка',
 'returnto'          => 'Возврат к странице $1.',
-'tagline'           => 'Материал из {{grammar:genitive|{{SITENAME}}}}.',
+'tagline'           => 'Материал из {{grammar:genitive|{{SITENAME}}}}',
 'help'              => 'Справка',
 'search'            => 'Поиск',
 'searchbutton'      => 'Найти',

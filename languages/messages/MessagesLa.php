@@ -954,7 +954,7 @@ Hoc aequat fere '''$5''' mutationes per paginam, et '''$6''' visae per mutatione
 'booksources'    => 'Librorum fontes',
 'booksources-go' => 'Ire',
 
-'categoriespagetext' => 'Huic vici sunt hae categoriae.',
+'categoriespagetext' => 'Categoriae sequentes paginas vel fasciculos continent.',
 'userrights'         => 'Usorum potestas',
 'alphaindexline'     => '$1 ad $2',
 'version'            => 'Versio',

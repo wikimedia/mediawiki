@@ -81,6 +81,7 @@ $messages = array(
 'tog-watchlisthideminor'      => 'İzleme listemden küçük değişiklikleri gizle',
 'tog-ccmeonemails'            => 'Diğer kullanıcılara gönderdiğim e-postaların kopyalarını bana da gönder',
 'tog-diffonly'                => 'Geçmişin altındaki sayfaların içeriğini gösterme.',
+'tog-showhiddencats'          => 'Gizli kategorileri göster',
 
 'underline-always'  => 'Daima',
 'underline-never'   => 'Asla',
@@ -141,12 +142,14 @@ $messages = array(
 'dec'           => 'Aralık',
 
 # Bits of text used by many pages
-'categories'            => '{{PLURAL:$1|Kategori|Kategoriler}}',
-'pagecategories'        => 'Sayfa {{PLURAL:$1|kategorisi|kategorileri}}',
-'category_header'       => '"$1" kategorisindeki sayfalar',
-'subcategories'         => 'Alt Kategoriler',
-'category-media-header' => '"$1" kategorisindeki medya',
-'category-empty'        => "''Bu kategoride henüz herhangi bir madde ya da medya bulunmamaktadır.''",
+'categories'               => '{{PLURAL:$1|Kategori|Kategoriler}}',
+'pagecategories'           => 'Sayfa {{PLURAL:$1|kategorisi|kategorileri}}',
+'category_header'          => '"$1" kategorisindeki sayfalar',
+'subcategories'            => 'Alt Kategoriler',
+'category-media-header'    => '"$1" kategorisindeki medya',
+'category-empty'           => "''Bu kategoride henüz herhangi bir madde ya da medya bulunmamaktadır.''",
+'hidden-categories'        => '{{PLURAL:$1|Gizli kategori|Gizli kategoriler}}',
+'hidden-category-category' => 'Gizli kategoriler', # Name of the category where hidden categories will be listed
 
 'mainpagetext'      => "<big>'''MediaWiki başarı ile kuruldu.'''</big>",
 'mainpagedocfooter' => "Viki yazılımının kullanımı hakkında bilgi almak için[http://meta.wikimedia.org/wiki/Help:Contents User's Guide] sayfasına bakınız
@@ -348,6 +351,7 @@ Veritabanını kilitleyen operatörün açıklaması: $1',
 'perfdisabled'         => 'Özür dileriz! Bu özellik, veritabanını kullanılamayacak derecede yavaşlattığı için, geçici olarak kullanımdan çıkarıldı.',
 'perfcached'           => 'Veriler daha önceden hazırlanmış olabilir. Bu sebeple güncel olmayabilir!',
 'perfcachedts'         => 'Aşağıda saklanmış bilgiler bulunmaktadır, son güncelleme zamanı: $1.',
+'querypage-no-updates' => 'Şu an için güncellemeler devre dışı bırakıldı. Buradaki veri hemen yenilenmeyecektir.',
 'wrong_wfQuery_params' => 'wfQuery() ye yanlış parametre<br />
 Fonksiyon: $1<br />
 Sorgu: $2',
@@ -436,6 +440,7 @@ E-postadaki yönerge uygulanıp adresin size ait olduğu onaylanmadıkça başka
 'emailauthenticated'         => 'E-posta adresiniz $1 tarihinde doğrulanmıştı.',
 'emailnotauthenticated'      => 'E-posta adresiniz henüz onaylanmadı.
 Aşağıdaki işlevlerin hiçbiri için e-posta gönderilmeyecektir.',
+'noemailprefs'               => 'Bu özelliklerin çalışması için bir e-posta adresi belirtiniz.',
 'emailconfirmlink'           => 'E-posta adresinizi doğrulayın',
 'invalidemailaddress'        => 'E-posta adresi geçersizdir. Lütfen geçerli bir adres yazın ya da metin kutusunun içeriğini silin.',
 'accountcreated'             => 'Hesap açıldı',

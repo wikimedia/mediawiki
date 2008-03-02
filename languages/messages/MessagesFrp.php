@@ -107,6 +107,7 @@ $messages = array(
 'tog-nolangconversion'        => 'Dèsactivar la convèrsion de les variantes de lengoua',
 'tog-ccmeonemails'            => 'M’emmandar una copia des mèls que j/y’emmando ux ôtros utilisators',
 'tog-diffonly'                => 'Pas montrar lo contegnu de les pâges desot los difs',
+'tog-showhiddencats'          => 'Afichiér les catègories cachiês',
 
 'underline-always'  => 'tojorn',
 'underline-never'   => 'jamés',
@@ -167,12 +168,14 @@ $messages = array(
 'dec'           => 'dèc',
 
 # Bits of text used by many pages
-'categories'            => 'Catègories',
-'pagecategories'        => '{{PLURAL:$1|Catègorie |Catègories }}',
-'category_header'       => 'Pâges dens la catègorie « $1 »',
-'subcategories'         => 'Sot-catègories',
-'category-media-header' => 'Fichiérs multimèdia dens la catègorie « $1 »',
-'category-empty'        => "''Ceta catègorie contint gins d’articllo, de sot-catègorie ou de fichiér multimèdia.''",
+'categories'               => 'Catègories',
+'pagecategories'           => '{{PLURAL:$1|Catègorie |Catègories }}',
+'category_header'          => 'Pâges dens la catègorie « $1 »',
+'subcategories'            => 'Sot-catègories',
+'category-media-header'    => 'Fichiérs multimèdia dens la catègorie « $1 »',
+'category-empty'           => "''Ceta catègorie contint gins d’articllo, de sot-catègorie ou de fichiér multimèdia.''",
+'hidden-categories'        => '{{PLURAL:$1|Catègorie cachiê|Catègories cachiês}}',
+'hidden-category-category' => 'Catègories cachiês', # Name of the category where hidden categories will be listed
 
 'mainpagetext'      => "<big>'''MediaWiki at étâ enstalâ avouéc reusséta.'''</big>",
 'mainpagedocfooter' => 'Consultâd lo [http://meta.wikimedia.org/wiki/Aide:Contenu guido d’utilisator] por més d’enformacions sur l’usâjo de la programeria vouiqui.
@@ -634,6 +637,7 @@ Solèts los utilisators èyent lo statut d’administrator pôvont la modifiar.<
 'templatesusedsection'      => 'Modèlos utilisâs dens ceta sèccion :',
 'template-protected'        => '(protègiê)',
 'template-semiprotected'    => '(mié-protègiê)',
+'hiddencategories'          => '{{PLURAL:$1|Catègorie cachiê|Catègories cachiês}} que ceta pâge est avouéc :',
 'edittools'                 => '<!-- Tot tèxte entrâ ique serat afichiê desot les bouètes d’èdicion ou d’impôrt de fichiér. -->',
 'nocreatetitle'             => 'Crèacion de pâge limitâ',
 'nocreatetext'              => '{{SITENAME}} at rètrent la possibilitât de crèar de novèles pâges.
@@ -981,7 +985,7 @@ ou ben por liyér tot drêt vers lo fichiér :
 'largefileserver'             => 'La talye de ceti fichiér est d’amont lo nivô lo ples hôt ôtorisâ.',
 'emptyfile'                   => 'Lo fichiér que vos voléd importar semble vouedo. Cen pôt étre diu a una èrror dens lo nom du fichiér. Volyéd controlar que vos dèsirâd franc copiyér ceti fichiér.',
 'fileexists'                  => 'Un fichiér avouéc ceti nom ègziste ja. Marci de controlar <strong><tt>$1</tt></strong>. Éte-vos de sûr de volêr lo modifiar ?',
-'filepageexists'              => 'Una pâge (pas un fichiér) avouéc ceti nom ègziste ja. Marci de controlar <strong><tt>$1</tt></strong>. Éte-vos de sûr de volêr la modifiar ?',
+'filepageexists'              => 'La pâge de dèscripcion por ceti fichiér at ja étâ crèâ ique <strong><tt>$1</tt></strong>, mas nion fichiér de ceti nom ègziste ora. Lo rèsumâ que vos voléd ècrire remplacierat pas lo tèxte prècèdent ; por cen fâre vos devréd èditar manuèlament la pâge.',
 'fileexists-extension'        => 'Un fichiér avouéc un nom semblâblo ègziste ja :<br />
 Nom du fichiér a importar : <strong><tt>$1</tt></strong><br />
 Nom du fichiér ègzistent : <strong><tt>$2</tt></strong><br />

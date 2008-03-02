@@ -9,6 +9,7 @@
  * @author Malangali
  * @author Nike
  * @author SPQRobin
+ * @author Marcos
  */
 
 
@@ -145,7 +146,7 @@ $messages = array(
 'sitesupport-url'   => 'Project:Tuunge mkono',
 
 'retrievedfrom'       => 'Rudishwa kutoka "$1"',
-'youhavenewmessages'  => 'Una ($2)$1.',
+'youhavenewmessages'  => 'Una $1 ($2).',
 'newmessageslink'     => 'ujumbe mpya',
 'newmessagesdifflink' => 'badiliko la mwisho',
 'editsection'         => 'hariri',

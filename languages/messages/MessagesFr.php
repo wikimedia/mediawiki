@@ -462,7 +462,7 @@ $messages = array(
 'site-atom-feed'          => 'Flux Atom de $1',
 'page-rss-feed'           => 'Flux RSS de "$1"',
 'page-atom-feed'          => 'Flux Atom de "$1"',
-'red-link-title'          => '$1 (pas encore rédigé)',
+'red-link-title'          => '$1 (page inexistante)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Article',
@@ -717,9 +717,11 @@ Votre adresse IP est $3 et votre identifiant de blocage est #$5. Veuillez les pr
 'accmailtitle'              => 'Mot de passe envoyé.',
 'accmailtext'               => 'Le mot de passe de « $1 » a été envoyé à l’adresse $2.',
 'newarticle'                => '(Nouveau)',
-'newarticletext'            => "Vous avez suivi un lien vers une page qui n’existe pas encore. Pour créer cette page, entrez votre texte dans la boîte ci-dessous (vous pouvez consulter [[{{MediaWiki:Helppage}}|la page d’aide]] pour plus d’information). Si vous êtes arrivé ici par erreur, cliquez sur le bouton '''retour''' de votre navigateur.",
+'newarticletext'            => "Vous avez suivi un lien vers une page qui n’existe pas encore ou qui a été [{{fullurl:Special:Log|type=delete&page={{FULLPAGENAMEE}}}} effacée].
+Pour créer cette page, entrez votre texte dans la boîte ci-dessous (vous pouvez consulter [[{{MediaWiki:Helppage}}|la page d’aide]] pour plus d’informations).
+Si vous êtes arrivé ici par erreur, cliquez sur le bouton '''retour''' de votre navigateur.",
 'anontalkpagetext'          => "---- ''Vous êtes sur la page de discussion d’un utilisateur anonyme qui n’a pas encore créé de compte ou qui n’en utilise pas. Pour cette raison, nous devons utiliser son adresse IP pour l’identifier. Une adresse IP peut être partagée par plusieurs utilisateurs. Si vous êtes un utilisateur anonyme et si vous constatez que des commentaires qui ne vous concernent pas vous ont été adressés, vous pouvez [[Special:Userlogin|créer un compte ou vous connecter]] afin d’éviter toute confusion future avec d’autres contributeurs anonymes.''",
-'noarticletext'             => 'Il n’y a pour l’instant aucun texte sur cette page ; vous pouvez [[{{ns:special}}:Search/{{PAGENAME}}|lancer une recherche sur le titre de cette page]] ou [{{fullurl:{{FULLPAGENAME}}|action=edit}} modifier cette page].',
+'noarticletext'             => "Il n’y a pour l’instant aucun texte sur cette page ; vous pouvez [[{{ns:special}}:Search/{{PAGENAME}}|lancer une recherche sur le titre de cette page]], vérifier qu'elle n'a pas été [{{fullurl:Special:Log|type=delete&page={{FULLPAGENAMEE}}}} supprimée] ou [{{fullurl:{{FULLPAGENAME}}|action=edit}} modifier cette page].",
 'userpage-userdoesnotexist' => "Le compte utilisateur « $1 » n'est pas enregistré. Indiquez si vous voulez créer ou éditer cette page.",
 'clearyourcache'            => "'''Note :''' Après avoir sauvegardé la page, vous devrez forcer son rechargement pour voir les changements : '''Mozilla / Konqueror / Firefox :''' ''Shift-Ctrl-R'', '''Internet Explorer / Opera :''' ''Ctrl-F5'', '''Safari :''' ''Cmd-R''.",
 'usercssjsyoucanpreview'    => "'''Astuce :''' utilisez le bouton « Prévisualisation » pour tester votre nouvelle feuille CSS/JS avant de l’enregistrer.",
@@ -1362,8 +1364,8 @@ Il y a {{PLURAL:$7|'''$7''' article|'''$7''' articles}} dans [[meta:Help:Job_que
 # Special:Log
 'specialloguserlabel'  => 'Utilisateur :',
 'speciallogtitlelabel' => 'Titre :',
-'log'                  => 'Historiques',
-'all-logs-page'        => 'Tous les historiques',
+'log'                  => 'Opérations',
+'all-logs-page'        => 'Toutes les opérations',
 'log-search-legend'    => 'Chercher dans les historiques',
 'log-search-submit'    => 'OK',
 'alllogstext'          => 'Affichage combiné des historiques de copie, suppression, protection, blocage, etc. Vous pouvez restreindre la vue en sélectionnant un type d’historique, un nom d’utilisateur ou une page ciblée.',
@@ -1374,7 +1376,7 @@ Il y a {{PLURAL:$7|'''$7''' article|'''$7''' articles}} dans [[meta:Help:Job_que
 'nextpage'          => 'Page suivante ($1)',
 'prevpage'          => 'Page précédente ($1)',
 'allpagesfrom'      => 'Afficher les pages à partir de :',
-'allarticles'       => 'Tous les articles',
+'allarticles'       => 'Toutes les pages',
 'allinnamespace'    => 'Toutes les pages (espace de noms $1)',
 'allnotinnamespace' => 'Toutes les pages (n’étant pas dans l’espace de noms $1)',
 'allpagesprev'      => 'Précédent',
@@ -1420,7 +1422,7 @@ Il y a {{PLURAL:$7|'''$7''' article|'''$7''' articles}} dans [[meta:Help:Job_que
 'watchnologin'         => 'Non connecté',
 'watchnologintext'     => 'Vous devez être [[Special:Userlogin|connecté]] pour modifier votre liste.',
 'addedwatch'           => 'Ajouté à la liste de suivi',
-'addedwatchtext'       => 'La page « <nowiki>$1</nowiki> » a été ajoutée à votre [[Special:Watchlist|liste de suivi]]. Les prochaines modifications de cette page et de la page de discussion associée y seront répertoriées, et la page apparaîtra <b>en gras</b> dans les [[Special:Recentchanges|modifications récentes]] pour être repérée plus facilement.',
+'addedwatchtext'       => 'La page « <nowiki>$1</nowiki> » a été ajoutée à votre [[Special:Watchlist|liste de suivi]].',
 'removedwatch'         => 'Retirée de la liste de suivi',
 'removedwatchtext'     => 'La page « [[:$1]] » a été retirée de votre [[Special:Watchlist|liste de suivi]].',
 'watch'                => 'Suivre',

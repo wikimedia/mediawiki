@@ -735,12 +735,24 @@ Aliaj administrantoj cxe {{SITENAME}} plu povos aliri la kasxitan entenon kaj re
 'logdelete-logentry'          => 'ŝanĝis eventan videblecon de [[$1]]',
 'revdelete-logaction'         => '$1 {{PLURAL:$1|ŝanĝo|ŝanĝoj}} farita por reĝimo $2',
 'logdelete-logaction'         => '$1 {{PLURAL:$1|evento|eventoj}} al [[$3]] farita por reĝimo $2',
+'revdelete-success'           => 'Revizia videbleco estas sukcese farita.',
+'logdelete-success'           => 'Videbleco de evento sukcese farita.',
+
+# Oversight log
+'oversightlog'    => 'Loglibro de superrigardo',
+'overlogpagetext' => 'Jen sube estas listo de la plej lastatempaj forigoj kaj blokoj (baroj) koncernantaj enhavon kasxitan de administrantoj (Sysops). Vidu la [[Special:Ipblocklist|IP-an forbarliston]] por la listo de aktuale funkciantaj forbaroj kaj blokoj.',
 
 # History merging
 'mergehistory'                     => 'Kunigu historiojn de paĝoj',
+'mergehistory-header'              => "Ĉi paĝo permesas al vi kunigi reviziojn de la historio de unu fonta paĝo en pli novan paĝon.
+Certigu ke ĉi ŝanĝo tenos kontinueco de la historia paĝo.
+
+'''Almenaŭ la nuna revizio de la fonta paĝo restos.'''",
 'mergehistory-box'                 => 'Kunigu reviziojn de du paĝoj:',
 'mergehistory-from'                => 'Fontpaĝo:',
 'mergehistory-into'                => 'Celpaĝo:',
+'mergehistory-list'                => 'Kunigebla redakthistorio',
+'mergehistory-go'                  => 'Montru kunigeblajn redaktojn',
 'mergehistory-submit'              => 'Kunigu reviziojn',
 'mergehistory-empty'               => 'Neniuj reviziojn eblas kunigi',
 'mergehistory-no-source'           => 'Fontpaĝo $1 ne ekzistas.',
@@ -969,6 +981,7 @@ Por inkluzivi la dosieron en pagxon, skribu ligilon laŭ la formoj
 'largefileserver'             => 'Ĉi tiu dosiero estas pli granda ol permesas la servilaj preferoj.',
 'emptyfile'                   => 'La dosiero kiun vi alŝutis ŝajnas malplena. Tio povas esti kaŭzita sde tajperaro en la titolo. Bonvolu kontroli ĉu vi vere volas alŝuti tiun dosieron.',
 'fileexists'                  => 'Dosiero kun tia ĉi nomo jam ekzistas. Bonvolu kontroli $1 krom se vi certas ke vi konscie volas ŝanĝi ĝuste tiun.',
+'filepageexists'              => 'La priskriba paĝo por ĉi dosiero jam estis kreita ĉe <strong><tt>$1</tt></strong>, sed neniu dosiero kun ĉi nomo nune ekzistas. La resumo kiun vi entajpos ne aperos en la priskribo-paĝo. Por aperigi vian resumon, vi devos permane redakti ĝin.',
 'fileexists-thumb'            => "<center>'''Ekzistanta bildo'''</center>",
 'fileexists-forbidden'        => 'Dosiero kun tia ĉi nomo jam ekzistas; bonvole realŝutu ĉi tiun dosieron per nova nomo. [[Image:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'Dosiero kun tia ĉi nomo jam ekzistas en la komuna dosiero-deponejo; bonvole realŝutu ĉi tiun dosieron per nova nomo. [[Image:$1|thumb|center|$1]]',
@@ -985,12 +998,19 @@ Por inkluzivi la dosieron en pagxon, skribu ligilon laŭ la formoj
 'sourcefilename'              => 'Fonta dosiernomo',
 'destfilename'                => 'Celdosiernomo',
 'watchthisupload'             => 'Atentu ĉi paĝon',
+'upload-wasdeleted'           => "'''Averto: Vi alŝutas dosieron kiu estis antaŭe forigita.'''
+
+Vi konsideru ĉu taŭgas alŝuti ĉi dosiero.
+jen la loglibro pri forigado por ĉi dosiero por via oportuneco:",
 
 'upload-proto-error' => 'Nevalida protokolo',
 'upload-file-error'  => 'Interna eraro',
+'upload-misc-error'  => 'Nekonata eraro pri alŝutado.',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
-'upload-curl-error6' => 'URL-o ne estis atingebla',
+'upload-curl-error6'      => 'URL-o ne estis atingebla',
+'upload-curl-error6-text' => 'La donata URL-o ne estis atingita. Bonvolu rekontroli ke la URL-o estas korekta kaj la retejo funkcias.',
+'upload-curl-error28'     => 'Tempolimo de alŝuto atingita',
 
 'license'            => 'Permesilo',
 'nolicense'          => 'Neniu elektita',
@@ -1026,6 +1046,7 @@ Por inkluzivi la dosieron en pagxon, skribu ligilon laŭ la formoj
 'nolinkstoimage'            => 'Neniu paĝo ligas al ĉi tiu dosiero.',
 'sharedupload'              => 'Cxi tiu dosiero estas komunuma alsxuto kaj estas uzebla de aliaj projektoj.',
 'shareduploadwiki'          => 'Bonvolu vidi la $1 por plua informo.',
+'shareduploadwiki-desc'     => 'Jen la priskribo de ties $1 sube.',
 'shareduploadwiki-linktext' => 'paĝon pri dosiera priskribo',
 'noimage'                   => 'Ne ekzistas dosiero kun tia nomo vi povas $1.',
 'noimage-linktext'          => 'alŝuti ĝin',
@@ -1035,21 +1056,26 @@ Por inkluzivi la dosieron en pagxon, skribu ligilon laŭ la formoj
 'imagelist_user'            => 'Uzanto',
 'imagelist_size'            => 'Grandeco',
 'imagelist_description'     => 'Priskribo',
+'imagelist_search_for'      => 'Serĉu por dosiera nomo:',
 
 # File reversion
-'filerevert'         => 'Restarigu $1',
-'filerevert-legend'  => 'Restarigu dosieron',
-'filerevert-intro'   => '<span class="plainlinks">Vi restarigas \'\'\'[[Media:$1|$1]]\'\'\' al la [$4 versio de $3, $2].</span>',
-'filerevert-comment' => 'Komento:',
-'filerevert-submit'  => 'Restarigu',
+'filerevert'                => 'Restarigu $1',
+'filerevert-legend'         => 'Restarigu dosieron',
+'filerevert-intro'          => '<span class="plainlinks">Vi restarigas \'\'\'[[Media:$1|$1]]\'\'\' al la [$4 versio de $3, $2].</span>',
+'filerevert-comment'        => 'Komento:',
+'filerevert-defaultcomment' => 'Restarigita al versio ekde $2, $1',
+'filerevert-submit'         => 'Restarigu',
+'filerevert-badversion'     => 'Ne estas antaŭa loka versio de ĉi dosiero ĉe tiu tempo.',
 
 # File deletion
 'filedelete'                  => 'Forigu $1',
 'filedelete-legend'           => 'Forigu dosieron.',
 'filedelete-intro'            => "Vi forigas '''[[Media:$1|$1]]'''.",
+'filedelete-intro-old'        => '<span class="plainlinks">Vi forigas version de \'\'\'[[Media:$1|$1]]\'\'\' ekde [$4 $3, $2].</span>',
 'filedelete-comment'          => 'Komento:',
 'filedelete-submit'           => 'Forigu',
 'filedelete-success'          => "'''$1''' estas forigita.",
+'filedelete-success-old'      => '<span class="plainlinks">La versio de \'\'\'[[Media:$1|$1]]\'\'\' ekde $3, $2 estas forigita.</span>',
 'filedelete-nofile'           => "'''$1''' ne ekzistas en {{SITENAME}}.",
 'filedelete-otherreason'      => 'Alia/plua kialo:',
 'filedelete-reason-otherlist' => 'Alia kialo',
@@ -1343,6 +1369,7 @@ Vidu la paĝon $2 por registro de lastatempaj forigoj.',
 'alreadyrolled'               => 'Ne eblas restarigi la lastan redakton de [[$1]] de la [[User:$2|$2]] ([[User talk:$2|diskuto]]) pro tio, ke oni intertempe redaktis la paĝon. La lasta redaktinto estas [[User:$3|$3]] ([[User talk:$3|diskuto]]).',
 'editcomment'                 => "La komento estis: '<i>$1</i>'.", # only shown if there is an edit comment
 'revertpage'                  => 'Forigis redaktojn de [[Special:Contributions/$2|$2]] ([[User talk:$2|diskuto]]); restarigis al la lasta versio de [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'rollback-success'            => 'Restaris redaktojn de $1; ŝanĝis al lasta versio de $2.',
 'sessionfailure'              => 'Ŝajnas ke estas problemo kun via ensalutado;
 Ĉi ago estis nuligita por malhelpi fiensalutadon.
 Bonvolu alklalki la reirbutonon kaj reŝarĝi la paĝon el kiu vi venas, kaj provu denove.',
@@ -1519,6 +1546,7 @@ forbarita IP-adreso/nomo la povon enskribi en la vikio.',
 'expiringblock'               => 'finiĝas je $1',
 'anononlyblock'               => 'nur anonimuloj',
 'noautoblockblock'            => 'aŭtomata blokado estas malebligita',
+'createaccountblock'          => 'Kreado de kontoj forbarita',
 'emailblock'                  => 'retpoŝto forbarita',
 'ipblocklist-empty'           => 'La forbarlibro estas malplena.',
 'blocklink'                   => 'forbaru',
@@ -1535,9 +1563,11 @@ forbarita IP-adreso/nomo la povon enskribi en la vikio.',
 'block-log-flags-noemail'     => 'retpoŝto blokita',
 'ipb_expiry_invalid'          => 'Nevalida blokdaŭro.',
 'ipb_already_blocked'         => '"$1" estas jam forbarita',
+'ipb_cant_unblock'            => 'Eraro: Forbar-identigo $1 ne estas trovita. Ĝi eble estis jam malforbarita.',
 'ip_range_invalid'            => 'Nevalida IP-adresa intervalo.',
 'blockme'                     => 'Forbaru min',
 'proxyblocker'                => 'Forbarilo por prokuriloj.',
+'proxyblocker-disabled'       => 'Ĉi funkcio estas malebligita.',
 'proxyblockreason'            => 'Via IP-adreso estis forbarita ĉar ĝi estas malferma prokurilo. Bonvolu kontakti vian provizanto de retservo aŭ komputika helpisto kaj informu ilin de ĉi serioza problemo pri sekureco.',
 'proxyblocksuccess'           => 'Farita.',
 'sorbsreason'                 => 'Via IP-adreso estas listigita kiel malferma prokurilo en la DNSBL uzata de {{SITENAME}}.',
@@ -1718,6 +1748,8 @@ La celartikolo "[[$1]]" jam ekzistas. Ĉu vi volas forigi ĝin por krei spacon p
 'tooltip-t-emailuser'             => 'Sendu retmesaĝon al tiu ĉi uzanto',
 'tooltip-t-upload'                => 'Alŝutu bildojn aŭ dosierojn',
 'tooltip-t-specialpages'          => 'Listo de ĉiuj specialaj paĝoj',
+'tooltip-t-print'                 => 'Printebla versio de ĉi paĝo',
+'tooltip-t-permalink'             => 'Konstanta ligilo al ĉi versio de la paĝo',
 'tooltip-ca-nstab-main'           => 'Vidu la artikolon',
 'tooltip-ca-nstab-user'           => 'Vidu la personan paĝon de la uzanto',
 'tooltip-ca-nstab-media'          => 'Vidu la paĝon de la dosiero',
@@ -1734,7 +1766,13 @@ La celartikolo "[[$1]]" jam ekzistas. Ĉu vi volas forigi ĝin por krei spacon p
 'tooltip-diff'                    => 'Montru la sxangxojn kiujn vi faris de la teksto.',
 'tooltip-compareselectedversions' => 'Vidu la malsamojn inter ambaŭ selektitaj versioj de ĉi paĝo.',
 'tooltip-watch'                   => 'Aldonu ĉi paĝon al via atentaro',
+'tooltip-recreate'                => 'Rekreu la paĝon malgraŭ ĝi estis forigita',
 'tooltip-upload'                  => 'Ekalŝutu',
+
+# Metadata
+'nodublincore'      => 'Dublin Core RDF metadatumo estas malebligita por ĉi servilo.',
+'nocreativecommons' => 'Kreiva Komunejo RDF metadatumo estas malebligita por ĉi servilo.',
+'notacceptable'     => 'La viki-servilo ne povas doni datumon en formato kiun via kliento povas legi.',
 
 # Attribution
 'anonymous'        => 'Anonima(j) uzanto(j) de {{SITENAME}}',
@@ -1743,6 +1781,8 @@ La celartikolo "[[$1]]" jam ekzistas. Ĉu vi volas forigi ĝin por krei spacon p
 'othercontribs'    => 'Bazita sur la laboro de $1.',
 'others'           => 'aliaj',
 'siteusers'        => '{{SITENAME}} uzanto(j) $1',
+'creditspage'      => 'Atribuoj de paĝo',
+'nocredits'        => 'Ne estas informo pri atribuoj por ĉi paĝo.',
 
 # Spam protection
 'spamprotectiontitle'    => 'Filtrilo kontraŭ spamo',
@@ -1759,6 +1799,7 @@ La celartikolo "[[$1]]" jam ekzistas. Ĉu vi volas forigi ĝin por krei spacon p
 # Info page
 'infosubtitle'   => 'Informoj por paĝo',
 'numedits'       => 'Nombro de redaktoj (paĝo): $1',
+'numtalkedits'   => 'Nombro de redaktoj (diskuto-paĝo): $1',
 'numwatchers'    => 'Nombro de atentantoj: $1',
 'numauthors'     => 'Nombro de apartaj aŭtoroj (paĝo): $1',
 'numtalkauthors' => 'Nombro de apartaj aŭtoroj (diskuto-paĝo): $1',
@@ -1772,21 +1813,31 @@ La celartikolo "[[$1]]" jam ekzistas. Ĉu vi volas forigi ĝin por krei spacon p
 'mw_math_mathml' => 'MathML seeble (provizora)',
 
 # Patrolling
-'markaspatrolleddiff'   => 'Marku kiel patrolita',
-'markaspatrolledtext'   => 'Marku ĉi artikolon patrolita',
-'markedaspatrolled'     => 'Markita kiel patrolita',
-'markedaspatrolledtext' => 'La elektita versio estas markita kiel patrolita.',
-'rcpatroldisabled'      => 'Patrolado de lastaj ŝanĝoj malaktivigita',
-'rcpatroldisabledtext'  => 'La funkcio patrolado de la lastaj ŝanĝoj estas nun malaktivigita.',
+'markaspatrolleddiff'                 => 'Marku kiel patrolita',
+'markaspatrolledtext'                 => 'Marku ĉi artikolon patrolita',
+'markedaspatrolled'                   => 'Markita kiel patrolita',
+'markedaspatrolledtext'               => 'La elektita versio estas markita kiel patrolita.',
+'rcpatroldisabled'                    => 'Patrolado de lastaj ŝanĝoj malaktivigita',
+'rcpatroldisabledtext'                => 'La funkcio patrolado de la lastaj ŝanĝoj estas nun malaktivigita.',
+'markedaspatrollederror'              => 'Ne povas marki kiel patrolitan',
+'markedaspatrollederrortext'          => 'Vi devas specifi revizion por marki kiel patrolitan.',
+'markedaspatrollederror-noautopatrol' => 'Vi ne estas permesita marki viajn proprajn ŝanĝojn kiel patrolitajn.',
 
 # Patrol log
+'patrol-log-page' => 'Loglibro pri patrolado',
+'patrol-log-line' => 'markis $1 el $2 patrolitajn $3',
 'patrol-log-auto' => '(aŭtomata)',
 
 # Image deletion
-'deletedrevision'      => 'Forigita malnova versio $1',
-'filedeleteerror-long' => 'Eraroj renkontritaj kiam forigante la dosieron:
+'deletedrevision'                 => 'Forigita malnova versio $1',
+'filedeleteerror-short'           => 'Eraro dum forigo de dosiero: $1',
+'filedeleteerror-long'            => 'Eraroj renkontritaj kiam forigante la dosieron:
 
 $1',
+'filedelete-missing'              => 'La dosiero "$1" ne estas forigebla, ĉar ĝi ne ekzistas.',
+'filedelete-old-unregistered'     => 'La donita dosier-revizio "$1" ne estas en la datumbazo.',
+'filedelete-current-unregistered' => 'La entajpita dosiero "$1" ne estas en la datumbazo.',
+'filedelete-archive-read-only'    => 'La arkiva dosierujo "$1" ne estas skribebla de la retservilo.',
 
 # Browsing diffs
 'previousdiff' => '← Iru al antaŭa ŝanĝo',
@@ -1834,24 +1885,72 @@ Sekvaj ligilo en la sama linio estas konsiderata kiel esceptoj (paĝoj kiel la b
 'exif-imagewidth'                  => 'Larĝeco',
 'exif-imagelength'                 => 'Alteco',
 'exif-bitspersample'               => 'Bitokoj po komponanto',
+'exif-compression'                 => 'Densiga procedo',
+'exif-photometricinterpretation'   => 'Komponaĵo de rastrumeroj',
+'exif-orientation'                 => 'Orientiĝo',
+'exif-samplesperpixel'             => 'Nombro de komponaĵoj',
+'exif-planarconfiguration'         => 'Datuma aranĝo',
+'exif-ycbcrsubsampling'            => 'Subdiskretiga proporcio de Y al C',
 'exif-ycbcrpositioning'            => 'Y kaj C situado',
+'exif-xresolution'                 => 'Horizontala distingivo',
+'exif-yresolution'                 => 'Vertikala distingivo',
+'exif-resolutionunit'              => 'Unuo de X kaj Y distingivo',
+'exif-stripoffsets'                => 'Loko de bilda datumo',
+'exif-rowsperstrip'                => 'Nombro de vicoj por strio',
+'exif-stripbytecounts'             => 'Bitikoj por densigita strio',
 'exif-jpeginterchangeformatlength' => 'Bitokoj de JPEG-datumo',
+'exif-whitepoint'                  => 'Koloreco de blanka punkto',
+'exif-primarychromaticities'       => 'Kolorecoj de primaraĵoj',
+'exif-datetime'                    => 'Dato kaj tempo de dosiera ŝanĝo',
 'exif-imagedescription'            => 'Titolo de bildo',
+'exif-make'                        => 'Fabrikejo de fotilo',
+'exif-model'                       => 'Speco de fotilo',
+'exif-software'                    => 'Programaro uzata',
 'exif-artist'                      => 'Kreinto',
+'exif-copyright'                   => 'Posedanto de kopirajto',
+'exif-exifversion'                 => 'Exif-versio',
+'exif-colorspace'                  => 'Kolor-spaco',
+'exif-componentsconfiguration'     => 'Signifo de ĉiu kompono',
+'exif-pixelydimension'             => 'Valida larĝeco de bildo',
 'exif-pixelxdimension'             => 'Valind image height',
+'exif-makernote'                   => 'Notoj de fabrikejo',
+'exif-usercomment'                 => 'Komentoj de uzanto',
+'exif-relatedsoundfile'            => 'Rilata son-dosiero',
+'exif-datetimeoriginal'            => 'Dato kaj tempo de datuma generado',
+'exif-datetimedigitized'           => 'Dato kaj tempo de ciferecigado',
+'exif-subsectime'                  => 'DatoTempo subsekundoj',
+'exif-subsectimedigitized'         => 'DatoTempoCiferecigitaj subsekundoj',
+'exif-exposuretime'                => 'Tempo de ekspono',
+'exif-fnumber'                     => 'F-nombro',
 'exif-aperturevalue'               => 'Aperturo',
 'exif-brightnessvalue'             => 'Heleco',
 'exif-contrast'                    => 'Kontrasto',
+'exif-gpsaltitude'                 => 'Alteco',
+'exif-gpstimestamp'                => 'GPS tempo (atoma horloĝo)',
+'exif-gpssatellites'               => 'Satelitoj uzataj por mezurado',
+'exif-gpsimgdirection'             => 'Direkto de bildo',
 
 'exif-unknowndate' => 'Nekonata dato',
 
 'exif-orientation-1' => 'Normala', # 0th row: top; 0th column: left
+'exif-orientation-3' => 'Rotaciigita 180°', # 0th row: bottom; 0th column: right
 
 'exif-componentsconfiguration-0' => 'ne ekzistas',
 
 'exif-subjectdistance-value' => '$1 metroj',
 
-'exif-meteringmode-0' => 'Nekonata',
+'exif-meteringmode-0'   => 'Nekonata',
+'exif-meteringmode-255' => 'Alia',
+
+'exif-lightsource-2'  => 'Fluoreska',
+'exif-lightsource-3'  => 'Volframa (inkandeska lumo)',
+'exif-lightsource-9'  => 'Bona vetero',
+'exif-lightsource-10' => 'Nuba vetero',
+'exif-lightsource-11' => 'Ombro',
+
+'exif-focalplaneresolutionunit-2' => 'coloj',
+
+'exif-scenecapturetype-2' => 'Portreta',
 
 'exif-saturation-0' => 'Norma',
 
@@ -1940,10 +2039,12 @@ $1',
 'table_pager_prev'         => 'Antaŭa paĝo',
 'table_pager_first'        => 'Unua paĝo',
 'table_pager_last'         => 'Lasta paĝo',
+'table_pager_limit'        => 'Montru $1 aĵojn por paĝo',
 'table_pager_limit_submit' => 'Ek',
 'table_pager_empty'        => 'Neniaj rezultoj',
 
 # Auto-summaries
+'autosumm-blank'   => 'Forviŝantaj ĉion el paĝo',
 'autosumm-replace' => "Anstataŭigante paĝojn kun '$1'",
 'autoredircomment' => 'Redirektante al [[$1]]',
 'autosumm-new'     => 'Nova paĝo: $1',
@@ -1957,6 +2058,7 @@ $1',
 'watchlistedit-normal-title' => 'Redaktu atentaron',
 'watchlistedit-normal-done'  => '{{PLURAL:$1|1 titolo estis forigita|$1 titoloj estis forigitaj}} de via atentaro:',
 'watchlistedit-raw-titles'   => 'Titoloj:',
+'watchlistedit-raw-submit'   => 'Ĝisdatigu atentaron',
 'watchlistedit-raw-done'     => 'Via atentaro estas ĝisdatigita.',
 
 # Watchlist editing tools
@@ -1965,6 +2067,8 @@ $1',
 'watchlisttools-raw'  => 'Redakti krudan atentaron',
 
 # Special:Version
+'version-specialpages'     => 'Specialaj paĝoj',
+'version-variables'        => 'Variabloj',
 'version-version'          => 'Versio',
 'version-license'          => 'Permesilo',
 'version-software-version' => 'Versio',

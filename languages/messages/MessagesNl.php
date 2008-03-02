@@ -1438,7 +1438,7 @@ De lengte van de [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] is ''
 'booksources-go'            => 'Zoeken',
 'booksources-text'          => 'Hieronder staat een lijst met koppelingen naar andere websites die nieuwe of gebruikte boeken verkopen, en die wellicht meer informatie over het boek dat u zoekt hebben:',
 
-'categoriespagetext' => 'Deze wiki kent de volgende categorieën.',
+'categoriespagetext' => "De volgende categorieën bevatten pagina's of media.",
 'data'               => 'Gegevens',
 'userrights'         => 'Gebruikersrechtenbeheer',
 'groups'             => 'Gebruikersgroepen',
