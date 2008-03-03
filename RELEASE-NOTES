@@ -72,6 +72,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 12394) Added rctitles parameter to list=recentchanges, making rcid retrieval easier
 * (bug 13218) Fix inclusion of " character in hyperlinks
 * Added watch and unwatch parameters to action=delete and action=move
+* Added action=edit
 
 === Languages updated in 1.13 ===
 
