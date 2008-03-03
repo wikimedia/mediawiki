@@ -216,6 +216,10 @@ abstract class ApiQueryBase extends ApiBase {
 	}
 
 	public function getTokenFlag($tokenArr, $action) {
+		if ($this->getMain()->getRequest()->getVal('callback') !== null) {
+			// Don't do any session-specific data.
+			return false;
+		}
 		if (in_array($action, $tokenArr)) {
 			global $wgUser;
 			if ($wgUser->isAllowed($action))
