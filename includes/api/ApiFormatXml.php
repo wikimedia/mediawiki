@@ -34,6 +34,7 @@ if (!defined('MEDIAWIKI')) {
 class ApiFormatXml extends ApiFormatBase {
 
 	private $mRootElemName = 'api';
+	private $mDoubleQuote = false;
 
 	public function __construct($main, $format) {
 		parent :: __construct($main, $format);
@@ -52,6 +53,9 @@ class ApiFormatXml extends ApiFormatBase {
 	}
 
 	public function execute() {
+		$params = $this->extractRequestParams();
+		$this->mDoubleQuote = $params['xmldoublequote'];
+	
 		$this->printText('<?xml version="1.0" encoding="utf-8"?>');
 		$this->recXmlPrint($this->mRootElemName, $this->getResultData(), $this->getIsHtml() ? -2 : null);
 	}
@@ -79,9 +83,10 @@ class ApiFormatXml extends ApiFormatBase {
 
 		switch (gettype($elemValue)) {
 			case 'array' :
-
 				if (isset ($elemValue['*'])) {
-					$subElemContent = $elemValue['*'];
+					$subElemContent = $elemValue['*'];					
+					if ($this->mDoubleQuote)
+						$subElemContent = $this->doubleQuote($subElemContent);
 					unset ($elemValue['*']);
 				} else {
 					$subElemContent = null;
@@ -97,6 +102,9 @@ class ApiFormatXml extends ApiFormatBase {
 				$indElements = array ();
 				$subElements = array ();
 				foreach ($elemValue as $subElemId => & $subElemValue) {
+					if (is_string($subElemValue) && $this->mDoubleQuote)
+						$subElemValue = $this->doubleQuote($subElemValue);
+				
 					if (gettype($subElemId) === 'integer') {
 						$indElements[] = $subElemValue;
 						unset ($elemValue[$subElemId]);
@@ -136,6 +144,23 @@ class ApiFormatXml extends ApiFormatBase {
 				break;
 		}
 	}
+	private function doubleQuote( $text ) {
+		return Sanitizer::encodeAttribute( $text );
+	}
+	
+	public function getAllowedParams() {
+		return array (
+			'xmldoublequote' => false
+		);
+	}
+
+	public function getParamDescription() {
+		return array (
+			'xmldoublequote' => 'If specified, double quotes all attributes and content.',
+		);
+	}
+
+	
 	public function getDescription() {
 		return 'Output data in XML format' . parent :: getDescription();
 	}
