@@ -150,6 +150,6 @@ class ApiChangeRights extends ApiBase {
 	}
 
 	public function getVersion() {
-		return __CLASS__ . ': $Id: ApiChangeRights.php 28216 2007-12-06 18:33:18Z vasilievvv $';
+		return __CLASS__ . ': $Id$';
 	}
 }
