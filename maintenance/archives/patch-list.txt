@@ -1,0 +1,182 @@
+List of database patches and upgrades as the PediaWiki software evolves...
+
+* 2002-11-23: Search index format changed for UTF-8 wikis
+For wikis using the UTF-8 languages, the search index entries
+need to be rebuild to allow searching to work. (Other wikis
+that have been run through the old phase2->phase3 conversion
+script should also be reindexed to catch apostrophe misplacement.)
+
+Run rebuildIndex.php on your wiki.
+
+
+
+* 2002-11-27: Watchlist format changed
+Converts the user_watchlist entries out to a separate table which
+links user_id<->cur_id and can be more handily queried.
+
+Run upgradeWatchlist.php on your wiki.
+
+
+
+* 2002-12-14: Recentchanges table bot/hidden column
+Adds a column to indicate changes by registered bots (or perhaps
+later other admin actions) that should be hidden from the default
+Recentchanges list because people think they're tedious, but should
+still be available in article histories, contribs lists, and
+power-user RC lists.
+
+Run bot.sql against your database.
+
+
+
+* 2002-12-17: Watchlist format changed again
+Now using namespace, title instead of cur_id. This can track deleted/
+recreated pages better, makes it easier to handle talk pages (now with
+the auto-watch feature there's a lot more watching of talk pages!)
+and whatnot.
+
+Run patch-watchlist.sql against your database. If all is well, drop
+the oldwatchlist table which is no longer needed. (Note that this update
+also drops the vestigial user_watchlist column.)
+
+
+
+* 2002-12-26: TeX math rendering adds 'math' table
+A new 'math' table is used to cache TeX sections.
+
+Run patch-math.sql against your database, and add 'tmp' and 'math'
+subdirectories to your tree alongside the upload directory, and copy
+the 'math' source subdirectory under the wiki's PHP directory and run
+"make" to compile the texvc evaluator. (whew!)
+
+TeX support requires TeX, OCaml, and ImageMagick. If you don't want
+to use TeX support on your wiki, you can globally disable it by
+setting $wgUseTeX=false in LocalSettings.php.
+
+
+
+* 2003-01-25: searchindex table
+A new 'searchindex' table separates the fulltext index fields from
+'cur'. This enables use of InnoDB tables, which don't support fulltext
+search, for the main data, and will keep junk out of the backup dumps.
+
+Run patch-searchindex.sql on the database. If you wish to change table
+tables on the others, use 'alter table' manually. (See MySQL docs.)
+
+
+* 2003-01-24: Talk pages for anonymous users
+A new table user_newtalk contains a list of talk pages that were
+changed, both pages by anonymous and those by non-anonymous users.
+
+Run patch-usernewtalk.sql if your database was created before
+this date.
+
+
+* 2003-02-02: Math table changed
+Rerun patch-math.sql to recreate it.
+
+* 2003-02-03: Index added to USER table for performance reasons. Run
+patch-userindex.sql to create it.
+
+
+* 2003-02-09: Random table & inverse timestamps
+The random page queue table has been removed in favor of a column
+in the cur table. This eliminates the ssllooww queue refill step;
+pre-storing random indices in an indexed column means we can do the
+random sort instantly; each element is re-randomized upon selection.
+
+Also, an inverse_timestamp field has been added to the cur and old
+tables. This will allow fast index-based sorting in history lists,
+user contribs, linked recentchanges, etc with MySQL 3, which doesn't
+allow DESC ordering on an indexed field. This may be removed later
+when MySQL is found to be stable.
+
+
+* 2003-03-22: Last touched fields for caching
+'Last touched' timestamp fields have been added to the cur and user
+tables to aid in maintaining cache consistency. Web clients will
+be forced to reload a page if it has been touched since the client's
+cached copy (this will catch indirect changes like creation of
+linked pages) or if a user changes preferences or logs in anew (so
+visual changes and login status are taken into account).
+
+Run patch-cache.sql on the database to set these fields up. This is
+required for changes to OutputPage.php and elsewhere to continue
+working on an older database.
+
+
+* 2003-05-23: Index for "Oldest articles"
+"Oldest articles" needs an index on namespace, redirect and timestamp
+to be reasonably fast. (patch-oldestindex.sql)
+
+OutputPage.php User.php maintenance/buildTables.inc maintenance/patch-cache.sql maintenance/patch-list.txt
+
+* 2003-09: Ipblocks auto-expiry update
+patch-ipblocks.sql
+
+* Interwiki URL table
+Moves the interwiki prefix<->url mapping table from a static array
+into the database. If you've got a custom table, be sure to make
+your changes!
+ 
+Run patch-interwiki.sql to create the interwiki table, then the
+plain interwiki.sql to load up the default set of mappings.
+
+* 2003-05-30: File upload license fields
+Adds fields to 'image' table.
+INCOMPLETE, DO NOT USE
+
+
+* 2003-08-21: Interwiki URL table
+Moves the interwiki prefix<->url mapping table from a static array
+into the database. If you've got a custom table, be sure to make
+your changes!
+
+Run patch-interwiki.sql to create the interwiki table, then the
+plain interwiki.sql to load up the default set of mappings.
+
+* 2003-09: Ipblocks auto-expiry update
+patch-ipblocks.sql
+
+* Interwiki URL table
+Moves the interwiki prefix<->url mapping table from a static array
+into the database. If you've got a custom table, be sure to make
+your changes!
+ 
+Run patch-interwiki.sql to create the interwiki table, then the
+plain interwiki.sql to load up the default set of mappings.
+
+* 2003-11: Indexes
+Fixes up indexes on links, brokenlinks, recentchanges, watchlist,
+and archive tables to boost speed.
+
+Run patch-indexes.sql.
+
+* 2003-11: linkscc table creation
+patch-linkscc.sql
+
+
+* 2004-01-25: recentchanges additional index
+Adds an index to recentchanges to optimize Special:Newpages
+patch-rc-newindex.sql
+
+* 2004-02-14: Adds the ipb_expiry field to ipblocks
+patch-ipb_expiry.sql
+
+
+* 2004-03-11: Recreate links tables to avoid duplicating titles
+everywhere. **Rebuild your links after this with refreshLinks.php**
+
+patch-linktables.sql
+
+
+* 2004-04: Add user_real_name field
+patch-user-realname.sql
+
+* 2004-05-08: Add querycache table for caching special pages and generic
+	object cache to cover some slow operations w/o memcached.
+patch-querycache.sql
+patch-objectcache.sql
+
+* 2004-05-14: Add categorylinks table for handling category membership
+patch-categorylinks.sql

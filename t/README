@@ -1,0 +1,10 @@
+=head1 NAME
+
+F<t> - MediaWiki test tree
+
+=head1 DESCRIPTION
+
+This is the MediaWiki test tree (well, one of them), tests here
+produce TAP output, see L<TAP>.
+
+=cut

@@ -1,0 +1,28 @@
+/* This CSS file is called from absolutely every wiki that's RTL: unlike
+ * common.css, it's actually common to all skins. */
+
+/* js pref toc */
+#preftoc { float: right; }
+/* workaround for moz bug, displayed bullets on left side */
+#preftoc li { list-style: none; }
+#prefcontrol { float: right; }
+fieldset.prefsection,
+fieldset.operaprefsection { 
+    margin-left: 0;
+    margin-right: 18em;
+}
+/* page history */
+#pagehistory span.user { 
+    margin-right: 1.4em;
+    margin-left: 0.4em;
+}
+.editsection {
+	float: left;
+	margin-right: 5px;
+}
+div.tright, div.floatright {
+	clear: none;
+}
+div.tleft, div.floatleft {
+	clear: left;
+}

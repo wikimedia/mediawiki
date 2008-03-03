@@ -1,0 +1,442 @@
+/* For clarity, explicitly state some recommendations from <http://www.w3.org/
+   TR/CSS21/sample.html> to make sure the editsection links scale right */
+
+h1 { font-size: 2em; }
+h2 { font-size: 1.5em; }
+h3 { font-size: 1.17em; }
+h5 { font-size: .83em; }
+h6 { font-size: .75em; }
+h1, h2, h3, h4, h5, h6 { font-weight: bolder }
+
+/* Now the custom parts */
+
+/* Make edit sections (which are inside h# tags) normal-sized
+   and otherwise format */
+.editsection {
+	font-weight: normal;
+	float: right;
+	margin-left: 5px;
+}
+h1 .editsection { font-size: 50% }
+h2 .editsection { font-size: 66.7% }
+h3 .editsection { font-size: 85.5% }
+h5 .editsection { font-size: 120% }
+h6 .editsection { font-size: 133% }
+
+
+#toolbar {
+  display: none;
+}
+
+div.center {
+  text-align: center;
+}
+
+#contentSub {
+  padding-left: 2em;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+#column-content {
+  width: 100%;
+  float: right;
+  margin: 0 0 0.6em -12.2em;
+  padding:0;
+}
+
+#content {
+    margin: 0em 0 0 12.2em;
+    padding: 0em 1em 1.5em 1em;
+    border-left: 1px solid #959595;
+    line-height: 1.5em;
+}
+
+#column-one {
+  position: absolute;
+  top: 0px; left: 0px;
+}
+
+#footer {
+	display: none;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+#globalWrapper {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+.visualClear { clear: both; }
+
+img {
+    border: none;
+}
+p {
+    margin: 0.4em 0em 0.5em 0em;
+    line-height: 1.5em;
+}
+p img { margin: 0; }
+
+h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+    padding-top: 0.5em;
+    padding-bottom: 0.17em;
+}
+fieldset {
+    margin: 1em 0em 1em 0em;
+    padding: 0em 1em 1em 1em;
+}
+.usermessage {
+    background-color: #ffce7b;
+    border: 1px solid #ffa500;
+    color: Black;
+    font-weight: bold;
+    margin: 2em 0em 1em 0em;
+    padding: 0.5em 1em;
+    vertical-align: middle;
+}
+.error {
+    color: red;
+    font-size: larger;
+}
+
+table.rimage {
+    float:right;
+    position:relative;
+    margin-left:1em;
+    margin-bottom:1em;
+    text-align:center;
+}
+
+div.townBox {
+    position:relative;
+    float:right;
+    margin-left:1em;
+    padding:0.3em;
+    width: 200px;
+    overflow: hidden;
+    clear: right;
+}
+div.townBox dl {
+    padding: 0;
+    margin: 0 0 0.3em 0;
+}
+div.townBox dl dt {
+    background: none;
+    margin: 0.4em 0 0 0;
+}
+div.townBox dl dd {
+    margin: 0.1em 0 0 1.1em;
+}
+.portlet {
+    border: none;
+    float: none;
+    padding: 0;
+    width: 11.8em;
+    overflow: hidden;
+}
+.portlet h4 {
+    font-weight: normal;
+    white-space: nowrap;
+}
+.portlet h5 {
+  padding: 0em 1em 0em 0.5em;
+  display: inline;
+  height: 1em;
+  font-weight: normal;
+  white-space: nowrap;
+}
+.portlet h6 {
+    padding: 0em 1em 0em 1em;
+    display: block;
+    height: 1.2em;
+    font-weight: normal;
+    white-space: nowrap;
+}
+.pBody {
+    border-collapse: collapse;
+    padding: 0 0.8em 0.3em 0.5em;
+}
+.portlet h1,
+.portlet h2,
+.portlet h3,
+.portlet h4 {
+  margin: 0;
+  padding: 0;
+  font-size: small;
+}
+
+#p-search .pBody {
+    text-align: center;
+}
+
+#searchInput {
+  width: 100%;
+  clear: both;
+  margin: 0 0 0 0;
+}
+
+input.searchButton {
+    margin-top:1px;
+    padding: 0 0.4em;
+    cursor: pointer;
+}
+
+#p-search .pBody {
+    padding: 0.5em 0.4em 0.4em 0.4em;
+}
+
+textarea {
+  width: 100%;
+}
+
+#p-personal li, #p-personal ul,
+#p-tb li, #p-tb ul,
+#p-navigation li, #p-navigation ul,
+#p-cactions li, #p-cactions ul,
+#p-newlinks li, #p-newlinks ul {
+  padding-left: 0em;
+  margin-left: 0.5em;
+}
+
+#p-cactions li, #p-cactions ul {
+  margin-left: 0.7em;
+}
+
+pre {
+  margin: 2em;
+  border: solid 1px black;
+}
+
+h1.firstHeading, h2 {
+  border-bottom: solid 1px black;
+}
+#bodyContent a[href ^="http://"],
+#bodyContent a[href ^="gopher://"] {
+    background: url("external.png") center right no-repeat;
+    padding-right: 13px;
+}
+#bodyContent a[href ^="https://"],
+.link-https {
+    background: url("lock_icon.gif") center right no-repeat;
+    padding-right: 16px;
+}
+#bodyContent a[href ^="mailto:"],
+.link-mailto {
+    background: url("mail_icon.gif") center right no-repeat;
+    padding-right: 18px;
+}
+#bodyContent a[href ^="news://"] {
+    background: url("news_icon.png") center right no-repeat;
+    padding-right: 18px;
+}
+#bodyContent a[href ^="ftp://"],
+.link-ftp {
+    background: url("file_icon.gif") center right no-repeat;
+    padding-right: 18px;
+}
+#bodyContent a[href ^="irc://"],
+.link-irc {
+    background: url("discussionitem_icon.gif")  center right no-repeat;
+    padding-right: 18px;
+}
+
+#bodyContent a.extiw,
+#bodyContent a.extiw:active {
+  color: #5E7CFF;
+  background: none;
+  padding: 0;
+}
+
+td.diff-addedline {
+    background-color: #B9FFB0;
+}
+
+td.diff-deletedline {
+    background-color: #f8ffaa;
+}
+
+span.diffchange { background-color: #FFCDF3; }
+.autocomment { color:  grey; }
+#pagehistory span.user {
+    margin-left: 1.4em;
+    margin-right: 0.4em;
+}
+#pagehistory span.minor { font-weight: bold; }
+#pagehistory li.selected {
+    background-color:#f9f9f9;
+    border:1px dashed #aaaaaa;
+}
+span.urlexpansion {
+  display: none;
+}
+
+div.tocindent {
+  margin-left: 2em;
+}
+#toc {
+  text-align: left;
+  border-top: solid 1px black;
+  border-bottom: solid 1px black;
+}
+
+div.floatright, table.floatright {
+    clear: right;
+    float: right;
+    margin: 0;
+    position: relative;
+    border-width: 0.5em 0 0.8em 1.4em;
+}
+div.floatright p { font-style: italic; }
+div.floatleft, table.floatleft {
+    float: left;
+    clear: left;
+    margin: 0.3em 0.5em 0.5em 0;
+    position: relative;
+    border-width: 0.5em 1.4em 0.8em 0;
+}
+div.floatleft p { font-style: italic; }
+/* thumbnails */
+div.thumb {
+    margin-bottom: 0.5em;
+    width: auto;
+}
+div.thumb div {
+    padding: 3px !important;
+    text-align: center;
+    overflow: hidden;
+}
+
+div.thumb div div.thumbcaption {
+    border: none;
+    text-align: left;
+    line-height: 1.4;
+    padding: 0.3em 0 0.1em 0;
+}
+div.magnify {
+    float: right;
+    border: none !important;
+    background: none !important;
+}
+div.magnify a, div.magnify img {
+    display: block;
+    border: none !important;
+    background: none !important;
+}
+div.tright {
+    clear: right;
+    float: right;
+    border-width: 0.5em 0 0.8em 1.4em;
+}
+div.tleft {
+    float: left;
+    clear: left;
+    margin-right:0.5em;
+    border-width: 0.5em 1.4em 0.8em 0;
+}
+
+a.stub { color: #772233; }
+a.new,
+#p-personal a.new {
+	text-decoration: line-through;
+}
+li.new {
+	text-decoration: line-through;
+}
+p.catlinks {
+  text-align: center;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 3px;
+}
+
+#mytabs {
+  background-color: inherit;
+}
+#p-cactions {
+  background-color: inherit;
+}
+div.printfooter {
+  display: none;
+}
+
+
+#ca-addsection a:before {
+  content: "Add section";
+  font-size: 10pt;
+}
+
+#ca-addsection a {
+  font-size: 0px;
+}
+
+#n-portal,
+#n-currentevents,
+#n-help,
+#n-sitesupport {
+  display: none;
+}
+
+span.searchmatch {
+  font-weight: bold;
+}
+
+#preftoc {
+    float: left;
+    margin: 1em;
+    width: 13em;
+}
+#preftoc li {
+}
+#preftoc li.selected {
+    border: 1px dashed #aaa;
+}
+#preftoc a,
+#preftoc a:active {
+    display: block;
+}
+#prefcontrol {
+    clear: both;
+    float: left;
+    margin-top: 1em;
+}
+div.prefsectiontip {
+    font-size: 95%;
+    margin-top: 1em;
+}
+
+#mw_trackbacks {
+	border-style: groove;
+	padding: 0.2em;
+}
+
+#jump-to-nav {
+  display: none;
+}
+
+table.collapsed tr.collapsable {
+	display: none;
+}
+
+.editsection {
+	float: right;
+	margin-left: 5px;
+}
+
+.templatesUsed { margin-top: 1.5em; }
+#toolbar { clear: both; }
+
+.mw-plusminus-null { color: #aaa; }

@@ -1,0 +1,45 @@
+Release 1.0.10
+--------------
+* bug fix: changes hashing function to crc32, sprintf %u
+* feature: optional compression
+
+Release 1.0.9
+-------------
+* protocol parsing bug
+
+Release 1.0.8
+-------------
+* whitespace/punctuation/wording cleanups
+
+Release 1.0.7
+-------------
+* added 3 functions which handle error reporting
+  error() - returns error number of last error generated, else returns 0
+  error_string() - returns a string description of error number retuned
+  error_clear() - clears the last error number and error string
+* removed call to preg_match() in _loaditems()
+* only non-scalar values are serialize() before being
+  sent to the server
+* added the optional timestamp argument for delete()
+  read Documentation file for details
+* PHPDocs/PEAR style comments added
+* abstract debugging (Brion Vibber <brion@pobox.com>)
+	
+Release 1.0.6
+-------------
+* removed all array_push() calls
+* applied patch provided by Stuart Herbert<stuart@gentoo.org>
+  corrects possible endless loop. Available at
+  http://bugs.gentoo.org/show_bug.cgi?id=25385
+* fixed problem with storing large binary files
+* added more error checking, specifically on all socket functions
+* added support for the INCR and DECR commands
+  which increment or decrement a value stored in MemCached
+* Documentation removed from source and is now available
+  in the file Documentation
+
+Release 1.0.4
+-------------
+* initial release, version numbers kept
+  in sync with MemCached version
+* capable of storing any datatype in MemCached

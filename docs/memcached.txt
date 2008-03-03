@@ -1,0 +1,132 @@
+memcached support for MediaWiki:
+
+From ca August 2003, MediaWiki has optional support for memcached, a
+"high-performance, distributed memory object caching system".
+For general information on it, see: http://www.danga.com/memcached/
+
+Memcached is likely more trouble than a small site will need, but
+for a larger site with heavy load, like Wikipedia, it should help
+lighten the load on the database servers by caching data and objects
+in memory.
+
+== Requirements ==
+
+* PHP must be compiled with --enable-sockets
+
+* libevent: http://www.monkey.org/~provos/libevent/
+  (as of 2003-08-11, 0.7a is current)
+
+* optionally, epoll-rt patch for Linux kernel:
+  http://www.xmailserver.org/linux-patches/nio-improve.html
+
+* memcached: http://www.danga.com/memcached/download.bml
+  (as of this writing, 1.1.9 is current)
+  
+Memcached and libevent are under BSD-style licenses.
+
+The server should run on Linux and other Unix-like systems... you
+can run multiple servers on one machine or on multiple machines on
+a network; storage can be distributed across multiple servers, and
+multiple web servers can use the same cache cluster.
+
+
+********************* W A R N I N G ! ! ! ! ! ***********************
+Memcached has no security or authentication. Please ensure that your
+server is appropriately firewalled, and that the port(s) used for
+memcached servers are not publicly accessible. Otherwise, anyone on
+the internet can put data into and read data from your cache.
+
+An attacker familiar with MediaWiki internals could use this to give
+themselves developer access and delete all data from the wiki's
+database, as well as getting all users' password hashes and e-mail
+addresses.
+********************* W A R N I N G ! ! ! ! ! ***********************
+
+== Setup ==
+
+If you want to start small, just run one memcached on your web
+server:
+
+  memcached -d -l 127.0.0.1 -p 11000 -m 64
+
+(to run in daemon mode, accessible only via loopback interface,
+on port 11000, using up to 64MB of memory)
+
+In your LocalSettings.php file, set:
+
+  $wgUseMemCached = true;
+  $wgMemCachedServers = array( "127.0.0.1:11000" );
+
+The wiki should then use memcached to cache various data. To use
+multiple servers (physically separate boxes or multiple caches
+on one machine on a large-memory x86 box), just add more items
+to the array. To increase the weight of a server (say, because
+it has twice the memory of the others and you want to spread
+usage evenly), make its entry a subarray:
+
+  $wgMemCachedServers = array(
+    "127.0.0.1:11000", # one gig on this box
+    array("192.168.0.1:11000", 2) # two gigs on the other box
+  );
+
+
+== PHP client for memcached ==
+
+As of this writing, MediaWiki includes version 1.0.10 of the PHP
+memcached client by Ryan Gilfether <hotrodder@rocketmail.com>.
+You'll find some documentation for it in the 'php-memcached'
+subdirectory under the present one.
+
+We intend to track updates, but if you want to check for the lastest
+released version, see http://www.danga.com/memcached/apis.bml
+
+If you don't set $wgUseMemCached, we still create a MemCacheClient,
+but requests to it are no-ops and we always fall through to the
+database. If the cache daemon can't be contacted, it should also
+disable itself fairly smoothly.
+
+== Keys used ==
+
+User:
+	key: $wgDBname:user:id:$sId
+	ex: wikidb:user:id:51
+	stores: instance of class User
+	set in: User::loadFromSession()
+	cleared by: User::saveSettings(), UserTalkUpdate::doUpdate()
+	
+Newtalk:
+	key: $wgDBname:newtalk:ip:$ip
+	ex: wikidb:newtalk:ip:123.45.67.89
+	stores: integer, 0 or 1
+	set in: User::loadFromDatabase()
+	cleared by: User::saveSettings() # ?
+	expiry set to 30 minutes
+
+LinkCache:
+	key: $wgDBname:lc:title:$title
+	ex: wikidb:lc:title:Wikipedia:Welcome,_Newcomers!
+	stores: cur_id of page, or 0 if page does not exist
+	set in: LinkCache::addLink()
+	cleared by: LinkCache::clearBadLink()
+		should be cleared on page deletion and rename
+MediaWiki namespace:
+	key: $wgDBname:messages
+	ex: wikidb:messages
+	stores: an array where the keys are DB keys and the values are messages
+	set in: wfMsg(), Article::editUpdates() both call wfLoadAllMessages()
+	cleared by: nothing
+
+Watchlist:
+	key: $wgDBname:watchlist:id:$userID
+	ex: wikidb:watchlist:id:4635
+	stores: HTML string
+	cleared by: nothing, expiry time $wgWLCacheTimeout (1 hour)
+	note: emergency optimisation only
+
+IP blocks:
+	key: $wgDBname:ipblocks
+	ex: wikidb:ipblocks
+	stores: array of arrays, for the BlockCache class
+	cleared by: BlockCache:clear()
+	
+... more to come ...

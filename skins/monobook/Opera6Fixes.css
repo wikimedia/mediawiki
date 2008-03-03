@@ -1,0 +1,14 @@
+/* opera 6 fixes */
+#column-one {
+	position: relative;
+	max-width: 11.7em;
+}
+#p-personal {
+	width: 45em;
+	margin-left: 8.6em;
+	right: 0;
+}
+#bodyContent a.external {
+	background: url(external.png) center right no-repeat;
+	padding-right: 13px;
+}

@@ -1,0 +1,19 @@
+
+deferred.txt
+
+A few of the database updates required by various functions here
+can be deferred until after the result page is displayed to the
+user.  For example, updating the view counts, updating the
+linked-to tables after a save, etc.  PHP does not yet have any
+way to tell the server to actually return and disconnect while
+still running these updates (as a Java servelet could), but it
+might have such a feature in the future.
+
+We handle these by creating a deferred-update object (in a real
+O-O language these would be classes that implement an interface)
+and putting those objects on a global list, then executing the
+whole list after the page is displayed. We don't do anything
+smart like collating updates to the same table or such because
+the list is almost always going to have just one item on it, if
+that, so it's not worth the trouble.
+
