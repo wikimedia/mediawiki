@@ -401,6 +401,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 13086) Trackbacks were returning invalid XML (extra whitespace)
 * (bug 12430) Fix call to private method LinkFilter::makeRegex fatal error in
   maintenance/cleanupSpam.php
+* (bug 13211) Don't break edit buttons when Image namespace includes apostrophe
 
 == Parser changes in 1.12 ==
 
