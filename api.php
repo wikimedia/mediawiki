@@ -44,7 +44,7 @@ if( isset( $_SERVER['SCRIPT_URL'] ) ) {
 } else {
 	$url = $_SERVER['PHP_SELF'];
 }
-if( strcmp( "$wgScriptPath/api$wgScriptExtension", $url ) ) {
+if( strcmp( "$wgScriptPath/api.php", $url ) ) {
 	wfHttpError( 403, 'Forbidden',
 		'API must be accessed through the primary script entry point.' );
 	return;
