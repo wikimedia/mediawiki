@@ -95,21 +95,20 @@ $namespaceNames = array(
 	NS_SPECIAL        => 'ពិសេស',
 	NS_TALK           => 'ពិភាក្សា',
 	NS_USER           => 'អ្នកប្រើប្រាស់',
-	NS_USER_TALK      => 'អ្នកប្រើប្រាស់-ពិភាក្សា',
+	NS_USER_TALK      => 'ពិភាក្សា_អ្នកប្រើប្រាស់',
 	# NS_PROJECT set by \$wgMetaNamespace
 	NS_PROJECT_TALK   => '$1_ពិភាក្សា',
 	NS_IMAGE          => 'រូបភាព',
-	NS_IMAGE_TALK     => 'រូបភាព-ពិភាក្សា',
+	NS_IMAGE_TALK     => 'ពិភាក្សា_រូបភាព',
 	NS_MEDIAWIKI      => 'មីឌាវិគី',
-	NS_MEDIAWIKI_TALK => 'មីឌាវិគី-ពិភាក្សា',
-	NS_TEMPLATE       => 'ទំព័រគំរូ',
-	NS_TEMPLATE_TALK  => 'ទំព័រគំរូ-ពិភាក្សា',
+	NS_MEDIAWIKI_TALK => 'ពិភាក្សា_មីឌាវិគី',
+	NS_TEMPLATE       => 'គំរូខ្នាត',
+	NS_TEMPLATE_TALK  => 'ពិភាក្សា_គំរូខ្នាត',
 	NS_HELP           => 'ជំនួយ',
-	NS_HELP_TALK      => 'ជំនួយ-ពិភាក្សា',
+	NS_HELP_TALK      => 'ពិភាក្សា_ជំនួយ',
 	NS_CATEGORY       => 'ចំណាត់ក្រុម',
-	NS_CATEGORY_TALK  => 'ចំណាត់ក្រុម-ពិភាក្សា',
+	NS_CATEGORY_TALK  => 'ពិភាក្សា_ចំណាត់ក្រុម',
 );
-
 
 $messages = array(
 # User preference toggles
@@ -135,9 +134,9 @@ $messages = array(
 'tog-previewontop'            => 'បង្ហាញ ការមើលមុន ពីលើ ប្រអប់ កែប្រែ',
 'tog-previewonfirst'          => 'បង្ហាញ ការមើលមុន ចំពោះ កំណែប្រែ ដំបូង',
 'tog-nocache'                 => 'អសកម្ម សតិភ្ជាប់ នៃ ទំព័រ',
-'tog-enotifwatchlistpages'    => 'អ៊ីមែវល៍ មកខ្ញុំ កាលបើ បញ្ជីតាមដាន របស់អ្នក បានត្រូវ ផ្លាស់ប្តូរ',
-'tog-enotifusertalkpages'     => 'អ៊ីមែវល៍មកខ្ញុំ កាលបើទំព័រពិភាក្សា របស់អ្នក បានត្រូវផ្លាស់ប្តូរ',
-'tog-enotifminoredits'        => 'អ៊ីមែវល៍មកខ្ញុំ ផងដែរ ចំពោះបំលាស់ប្តូរតិចតួច នៃទំព័រនានា',
+'tog-enotifwatchlistpages'    => 'អ៊ីមែវល៍ មកខ្ញុំ កាលបើ មានបំលាស់ប្តូរ នៅទំព័រ ដែល ខ្ញុំ កំពុងតាមដាន។',
+'tog-enotifusertalkpages'     => 'អ៊ីមែវល៍ មកខ្ញុំ កាលបើ មានបំលាស់ប្តូរ នៅ ទំព័រពិភាក្សា របស់ខ្ញុំ',
+'tog-enotifminoredits'        => 'អ៊ីមែវល៍ មកខ្ញុំ ផងដែរ ចំពោះ បំលាស់ប្តូរតិចតួច នៃ ទំព័រនានា',
 'tog-enotifrevealaddr'        => 'បង្ហាញ អាស័យដ្ឋានអ៊ីមែវល៍ របស់ខ្ញុំ ក្នុង មែវល៍ក្រើនរំលឹក នានា',
 'tog-shownumberswatching'     => 'បង្ហាញ ចំនួនអ្នកប្រើប្រាស់ ដែលតាមដាន ទំព័រនេះ',
 'tog-fancysig'                => 'ហត្ថលេខាឆៅ (គ្មានតំណភ្ជាប់ ស្វ័យប្រវត្តិ)',
@@ -149,7 +148,7 @@ $messages = array(
 'tog-watchlisthideown'        => 'បិទបាំង កំណែប្រែ របស់ខ្ញុំ ពី បញ្ជីតាមដាន',
 'tog-watchlisthidebots'       => 'បិទបាំង កំណែប្រែ របស់​រូបយន្ត ពី បញ្ជីតាមដាន',
 'tog-watchlisthideminor'      => 'បិទបាំង កំណែប្រែតិចតួច ពីបញ្ជីតាមដាន',
-'tog-ccmeonemails'            => 'ផ្ញើខ្ញុំ ច្បាប់ចំលងអ៊ីមែវល៍ ដើម្បីខ្ញុំផ្ញើទៅ អ្នកប្រើប្រាស់ផ្សេង',
+'tog-ccmeonemails'            => 'ផ្ញើមកខ្ញុំ មួយច្បាប់ចំលងអ៊ីមែវល៍ ពេលខ្ញុំផ្ញើវា ទៅ អ្នកប្រើប្រាស់ផ្សេង',
 'tog-diffonly'                => 'មិនបង្ហាញ ខ្លឹមសារទំព័រ នៅពីក្រោម ភាពខុសគ្នា',
 'tog-showhiddencats'          => 'បង្ហាញ ចំណាត់ក្រុម ដែលត្រូវបានបិទបាំង',
 
@@ -216,7 +215,7 @@ $messages = array(
 'pagecategories'           => "'''$1''' ចំណាត់ក្រុម",
 'category_header'          => 'ទំព័រ ដែលមាន ក្នុងចំណាត់ក្រុម "$1"',
 'subcategories'            => 'ចំណាត់ក្រុមរង',
-'category-media-header'    => 'ឯកសារមីឌាក្នុងចំណាត់ក្រុម "$1"',
+'category-media-header'    => 'ឯកសារមីឌា ក្នុង ចំណាត់ក្រុម "$1"',
 'category-empty'           => "''ចំណាត់ក្រុមនេះ មិនមានផ្ទុកទំព័រ ឬ ឯកសារមីឌា ណាមួយទេ។''",
 'hidden-categories'        => '{{PLURAL:$1|ចំណាត់ក្រុម ត្រូវបានបិទបាំង|ចំណាត់ក្រុមនានា ត្រូវបានបិទបាំង}}',
 'hidden-category-category' => 'ចំណាត់ក្រុម ត្រូវបានបិទបាំង', # Name of the category where hidden categories will be listed
@@ -290,7 +289,7 @@ $messages = array(
 'projectpage'       => 'មើល​ទំព័រគំរោង',
 'imagepage'         => 'មើលទំព័រមីឌា',
 'mediawikipage'     => 'មើល​ទំព័រសារ',
-'templatepage'      => 'មើល ទំព័រគំរូខ្នាត',
+'templatepage'      => 'មើល ទំព័រ គំរូខ្នាត',
 'viewhelppage'      => 'មើលទំព័រជំនួយ',
 'categorypage'      => 'មើល​ទំព័រចំណាត់ក្រុម',
 'viewtalkpage'      => 'មើលការពិភាក្សា',
@@ -421,9 +420,11 @@ $1',
 
 # Login and logout pages
 'logouttitle'                => 'ការពិនិត្យចេញ របស់អ្នកប្រើប្រាស់',
-'logouttext'                 => '<strong>ឥឡូវនេះ អ្នកបានពិនិត្យចេញ ហើយ។</strong>
+'logouttext'                 => '<strong>ឥឡូវនេះ អ្នកបានពិនិត្យចេញ ហើយ ។</strong>
 
-You can continue to use {{SITENAME}} anonymously, or you can log in again as the same or as a different user. Note that some pages may continue to be displayed as if you were still logged in, until you clear your browser cache.',
+អ្នកអាចបន្ត ប្រើប្រាស់ {{SITENAME}} ជាអនាមិក, ឬ អាចពិនិត្យចូល ម្តងទៀត ជា អ្នកប្រើប្រាស់ (ឈ្មោះដដែល ឬ ឈ្មោះផ្សេង) ។ 
+
+រំលឹក ថា ទំព័រខ្លះ អាចនឹងបន្ត បង្ហាញ​ ដូចពេលបាន ពិនិត្យចូល លើកលែងតែ សតិភ្ជាប់ នៃ ឧបកររាវរក ត្រូវបានសំអាត ។',
 'welcomecreation'            => '== សូមស្វាគម $1! ==
 
 គណនីរបស់អ្នក ត្រូវបានបង្កើតហើយ។ កុំភ្លេចផ្លាស់ប្តូរ ចំណូលចិត្ត{{SITENAME}}របស់អ្នក។',
@@ -459,7 +460,7 @@ You can continue to use {{SITENAME}} anonymously, or you can log in again as the
 'email'                      => 'អ៊ីមែវល៍',
 'prefs-help-realname'        => '(ជំរើស) ៖ បើអ្នកផ្តល់អោយ, វានឹងត្រូវបាន ប្រើប្រាស់់ ដើម្បីបញ្ជាក់ ភាពជាម្ចាស់ លើការរួមចំណែក នានា របស់អ្នក។',
 'loginerror'                 => 'កំហុស ពិនិត្យចូល',
-'prefs-help-email'           => '(ជំរើស) ៖ វាព្រមអោយ អ្នកប្រើប្រាស់ដទៃ ទាក់ទងជាមួយអ្នក តាមអ៊ីមែវល៍ (ដែលតភ្ជាប់ ទំព័រអ្នកប្រើប្រាស់) ដោយមិនមើល ឃើញមែវល៍ របស់អ្នក និង ផ្ញើពាក្យសំងាត់ថ្មី អោយអ្នក បើអ្នកបានជា ភ្លេចវា។',
+'prefs-help-email'           => '(ជំរើស) ៖ វាព្រមទទួល អ្នកប្រើប្រាស់ដទៃ ទាក់ទងជាមួយអ្នក តាមអ៊ីមែវល៍ (ដែលតភ្ជាប់ ទំព័រអ្នកប្រើប្រាស់) ដោយមិនមើល ឃើញមែវល៍ របស់អ្នក និង ផ្ញើពាក្យសំងាត់ថ្មី អោយអ្នក បើអ្នកបានជា ភ្លេចវា។',
 'prefs-help-email-required'  => 'តំរូវអោយមាន អាស័យដ្ឋានអ៊ីមែវល៍។',
 'nocookiesnew'               => 'គណនីអ្នកប្រើប្រាស់ ត្រូវបានបង្កើត, ប៉ុន្តែ អ្នកមិនត្រូវបាន ពិនិត្យចូល ។ {{SITENAME}} ប្រើប្រាស់ cookies ដើម្បីពិនិត្យចូល ប៉ុន្តែ អ្នកបាន អសកម្ម ពួកវា។ ចូរ សកម្ម ពួកវា ឡើងវិញ, រួចពិនិត្យចូល ដោយ ឈ្មោះអ្នកប្រើប្រាស់ថ្មី  និង ពាក្យសំងាត់ថ្មី របស់អ្នក។',
 'noname'                     => 'អ្នកមិនបាន កំណត់ត្រឹមត្រូវ ឈ្មោះអ្នកប្រើប្រាស់ ។',
@@ -566,7 +567,7 @@ You can continue to use {{SITENAME}} anonymously, or you can log in again as the
 'newarticle'                => '(ថ្មី)',
 'noarticletext'             => 'គ្មានអត្ថបទ មួយណា ក្នុងទំព័រនេះ, អ្នកអាច [[Special:Search/{{PAGENAME}}|ស្វែងរក ចំណងជើង នៃទំព័រនេះ]] ក្នុងទំព័រ ផ្សេង ឬ [{{fullurl:{{FULLPAGENAME}}|action=edit}} កែប្រែ ទំព័រនេះ]។',
 'userpage-userdoesnotexist' => 'គណនីអ្នកប្រើប្រាស់ "$1" មិនបានត្រូវ ចុះបញ្ជី ។ ចូរឆែកមើល តើ អ្នកចង់ បង្កើត / កែប្រែ ទំព័រ នេះ ។',
-'clearyourcache'            => "'''ចំណាំ ៖''' បន្ទាប់ពីរក្សាទុក, អ្នកត្រូវតែសំអាត សតិភ្ជាប់ នៃ ឧបកររាវរក របស់អ្នក ដើម្បីមើលបំលាស់ប្តូរ។ វិធីសំអាត សតិភ្ជាប់ នៃ ឧបកររាវរក ចំពោះ កម្មវិធីរាវរក ៖ 
+'clearyourcache'            => "'''ចំណាំ ៖''' បន្ទាប់ពីរក្សាទុក, អ្នកត្រូវតែសំអាត សតិភ្ជាប់ នៃ ឧបកររាវរក របស់អ្នក ដើម្បីមើលបំលាស់ប្តូរ។ វិធីសំអាត សតិភ្ជាប់ នៃ ឧបកររាវរក ចំពោះ ៖ 
 * '''Mozilla / Firefox / Safari '''៖ ចុច [Shift]-[Ctrl]-[R] (ចំពោះ PC), ចុច [Cmd]-[Shift]-[R] (ចំពោះ Apple Mac) ។
 * '''IE(Internet Explorer) '''៖ ចុច ''[Ctrl-F5]''  
 * '''Konqueror '''៖ ចុច ''[Ctrl-F5]'' 
@@ -712,6 +713,7 @@ You can continue to use {{SITENAME}} anonymously, or you can log in again as the
 'prefs-edits'              => 'ចំនួន នៃ កំណែប្រែ៖',
 'prefsnologin'             => 'មិនបាន ពិនិត្យចូល',
 'prefsnologintext'         => 'អ្នកត្រូវតែ [[Special:Userlogin|បានពិនិត្យចូល]] ដើម្បី កំណត់ ចំណូលចិត្ត របស់ អ្នកប្រើប្រាស់។',
+'prefsreset'               => 'ចំណូលចិត្ត ផ្ទាល់ខ្លួន ត្រូវបានធ្វើអោយ ដូចដើមវិញ ពី កំណែមុននេះ ហើយ ។',
 'qbsettings'               => 'របារទាន់ចិត្ត',
 'qbsettings-none'          => 'ទទេ',
 'qbsettings-fixedleft'     => 'តំរឹម ឆ្វេង',
@@ -726,7 +728,7 @@ You can continue to use {{SITENAME}} anonymously, or you can log in again as the
 'datetime'                 => 'ថ្ងៃខែឆ្នាំ និង ពេលម៉ោង',
 'math_failure'             => 'កំហុស គណិត',
 'math_unknown_error'       => 'កំហុស មិនបានស្គាល់',
-'math_unknown_function'    => 'អនុគម មិនត្រូវបាន ស្គាល់',
+'math_unknown_function'    => 'អនុគម មិនបាន ស្គាល់',
 'math_syntax_error'        => 'កំហុស ពាក្យសម្ព័ន្ធ',
 'math_bad_tmpdir'          => 'មិនអាច សរសេរទៅ ឬ បង្កើត ថតឯកសារ គណិត បណ្តោះអាសន្ន',
 'math_bad_output'          => 'មិនអាច សរសេរទៅ ឬ បង្កើត ថតឯកសារ គណិត ទិន្នផល',
@@ -972,8 +974,18 @@ You can continue to use {{SITENAME}} anonymously, or you can log in again as the
 'statistics'             => 'ស្ថិតិ',
 'sitestats'              => 'ស្ថិតិ {{SITENAME}}',
 'userstats'              => 'ស្ថិតិ អ្នកប្រើប្រាស់',
-'userstatstext'          => "មាន[[Special:Listusers|អ្នកប្រើប្រាស់]] ​ដែលបានចុះឈ្មោះចំនួន '''$1'''នាក់
-ដែលក្នុងនោះមាន '''$2''' នាក់(ស្មើនឹង '''$4%''') មានសិទ្ធិជា $5 (អ្នកគ្រប់គ្រងថែរក្សា)។",
+'sitestatstext'          => "បច្ចុប្បន្ន មាន \$1 ទំព័រ ក្នុង មូលដ្ឋានទិន្នន័យ  ក្នុងនោះ រួមមាន ទំព័រ \"ពិភាក្សា\", ទំព័រ អំពី {{SITENAME}}, ទំព័រ ខ្លី ៗ, ទំព័រ បណ្តូរទិស, និង ទំព័រផ្សេង ដែលគ្មានខ្លឹមសារ។
+
+ក្រៅពីនោះ, មាន \$2 ទំព័រ ជា ទំព័រ​ មានខ្លឹមសារ ល្អ ។
+
+មាន '''\$8''' ឯកសារ បានត្រូវ ផ្ទុកឡើង ។
+
+សរុប មាន '''\$3''' លើក ចូលមើលទំព័រ, និង '''\$4''' កំណែប្រែ តាំងតែ ពី {{SITENAME}} ត្រូវបានបង្កើតឡើង ។ 
+
+ជាមធ្យម មាន '''\$5''' កំណែប្រែ លើ មួយទំព័រ, និង '''\$6''' លើក ចូលមើល លើ រាល់ កំណែប្រែ។
+
+ប្រវែង នៃ [http://meta.wikimedia.org/wiki/Help:Job_queue ជួររង់ចាំ] គឺ '''\$7''' ។",
+'userstatstext'          => "មាន '''$1''' [[Special:Listusers|អ្នកប្រើប្រាស់]] បានចុះឈ្មោះ, ក្នុងនោះ '''$2''' (ស្មើនឹង '''$4%''' នៃ ចំនួនសរុប) មាន $5 សិទ្ធិ ។",
 'statistics-mostpopular' => 'ទំព័រ ត្រូវបានមើល ច្រើនបំផុត',
 
 'disambiguations' => 'ទំព័រ មានន័យប្រាកដ',
@@ -1525,6 +1537,7 @@ $1',
 # EXIF tags
 'exif-imagewidth'                  => 'ទទឹង',
 'exif-imagelength'                 => 'កំពស់',
+'exif-bitspersample'               => 'ប៊ីត ក្នុង មួយអង្គផ្សំ',
 'exif-orientation'                 => 'ការតំរង់ទិស',
 'exif-planarconfiguration'         => 'តំរៀបចំ ទិន្នន័យ',
 'exif-jpeginterchangeformatlength' => 'ទំហំ ជា បៃ របស់ ទិន្នន័យ JPEG',
@@ -1662,7 +1675,7 @@ $1',
 'lag-warn-normal' => 'បំលាស់ប្តូរ ថ្មីជាង $1 វិនាទី អាចមិនត្រូវបាន បង្ហាញ ក្នុងបញ្ជីនេះ ។',
 
 # Watchlist editor
-'watchlistedit-numitems'       => 'បញ្ជីតាមដាន របស់អ្នក មាន {{PLURAL:$1|1 ចំណងជើង|$1 ចំណងជើង}}, មិនរាប់ ទំព័រពិភាក្សា ទេ ។',
+'watchlistedit-numitems'       => 'បញ្ជីតាមដាន របស់អ្នក មាន {{PLURAL:$1|1 ចំណងជើង|$1 ចំណងជើង}}, មិនរាប់ ទំព័រពិភាក្សា ។',
 'watchlistedit-noitems'        => 'បញ្ជីតាមដាន របស់អ្នក គ្មានផ្ទុក ចំណងជើង។',
 'watchlistedit-normal-title'   => 'កែប្រែ បញ្ជីតាមដាន',
 'watchlistedit-normal-legend'  => 'ដកចេញ ចំណងជើង នានា ពី បញ្ជីតាមដាន',
@@ -1670,6 +1683,7 @@ $1',
 ដើម្បី ដកចេញ មួយចំណងជើង, គូសឆែក ប្រអប់ ក្បែរ វា, រួច ចុចលើ ប្រអប់ 'ដកចេញ ចំណងជើង នានា' ។
 អ្នកអាច ផងដែរ [[Special:Watchlist/raw|កែប្រែ បញ្ជីឆៅ]] ។",
 'watchlistedit-normal-submit'  => 'ដកចេញ ចំណងជើង នានា',
+'watchlistedit-normal-done'    => '$1 ចំណងជើង ត្រូវបាន ដកចេញ ពី បញ្ជីតាមដាន របស់អ្នក ៖',
 'watchlistedit-raw-title'      => 'កែប្រែ បញ្ជីតាមដានឆៅ',
 'watchlistedit-raw-legend'     => 'កែប្រែ បញ្ជីតាមដានឆៅ',
 'watchlistedit-raw-explain'    => 'ចំណងជើង នានា លើ បញ្ជីតាមដាន របស់អ្នក ត្រូវបាន បង្ហាញខាងក្រោម, និង អាចត្រូវបាន កែប្រែ ដោយបន្ថែម ទៅ ឬ ដកចេញ ពី បញ្ជី, មួយ​ចំណងជើង ក្នុង មួយបន្ទាត់ ។ ពេល បានបញ្ចប់, ចុច បន្ទាន់សម័យ បញ្ជីតាមដាន ។
