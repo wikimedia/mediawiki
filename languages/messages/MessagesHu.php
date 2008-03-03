@@ -96,7 +96,7 @@ $specialPageAliases = array(
 	'Booksources'               => array( 'Könyvforrások' ),
 	'Categories'                => array( 'Kategóriák' ),
 	'Export'                    => array( 'Lapok_exportálása' ),
-	'Version'                   => array( 'Névjegy', 'Verziószám', 'Verzió' ),
+	'Version'                   => array( 'Névjegy', 'Verziószám' ),
 	'Allmessages'               => array( 'Rendszerüzenetek' ),
 	'Log'                       => array( 'Rendszernaplók', 'Naplók', 'Napló' ),
 	'Blockip'                   => array( 'Blokkolás' ),
@@ -144,9 +144,9 @@ $magicWords = array(
 	'redirect'            => array( '0', '#REDIRECT', '#ÁTIRÁNYÍTÁS' ),
 	'notoc'               => array( '0', '__NOTOC__', '__NINCSTARTALOMJEGYZÉK__', '__NINCSTJ__' ),
 	'nogallery'           => array( '0', '__NOGALLERY__', '__NINCSGALÉRIA__' ),
-	'forcetoc'            => array( '0', '__FORCETOC__', '__LEGYENTARTALOMJEGYZÉK__', '__LEGYENTJ__' ),
+	'forcetoc'            => array( '0', '__FORCETOC__', '__LEGYENTARTALOMJEGYZÉK__' ),
 	'toc'                 => array( '0', '__TOC__', '__TARTALOMJEGYZÉK__', '__TJ__' ),
-	'noeditsection'       => array( '0', '__NOEDITSECTION__', '__NINCSSZERKESZTÉS__', '__NINCSSZERK__' ),
+	'noeditsection'       => array( '0', '__NOEDITSECTION__', '__NINCSSZERKESZTÉS__' ),
 	'currentmonth'        => array( '1', 'CURRENTMONTH', 'JELENLEGIHÓNAP' ),
 	'currentmonthname'    => array( '1', 'CURRENTMONTHNAME', 'JELENLEGIHÓNAPNEVE' ),
 	'currentmonthabbrev'  => array( '1', 'CURRENTMONTHABBREV', 'JELENLEGIHÓNAPRÖVID' ),
@@ -167,7 +167,7 @@ $magicWords = array(
 	'localhour'           => array( '1', 'LOCALHOUR', 'HELYIÓRA' ),
 	'numberofpages'       => array( '1', 'NUMBEROFPAGES', 'OLDALAKSZÁMA', 'LAPOKSZÁMA' ),
 	'numberofarticles'    => array( '1', 'NUMBEROFARTICLES', 'SZÓCIKKEKSZÁMA' ),
-	'numberoffiles'       => array( '1', 'NUMBEROFFILES', 'FÁJLOKSZÁMA', 'KÉPEKSZÁMA' ),
+	'numberoffiles'       => array( '1', 'NUMBEROFFILES', 'FÁJLOKSZÁMA' ),
 	'numberofusers'       => array( '1', 'NUMBEROFUSERS', 'SZERKESZTŐKSZÁMA' ),
 	'numberofedits'       => array( '1', 'NUMBEROFEDITS', 'SZERKESZTÉSEKSZÁMA' ),
 	'pagename'            => array( '1', 'PAGENAME', 'OLDALNEVE' ),
@@ -187,7 +187,7 @@ $magicWords = array(
 	'talkpagename'        => array( '1', 'TALKPAGENAME', 'VITALAPNEVE' ),
 	'talkpagenamee'       => array( '1', 'TALKPAGENAMEE', 'VITALAPNEVEE' ),
 	'subjectpagename'     => array( '1', 'SUBJECTPAGENAME', 'ARTICLEPAGENAME', 'SZÓCIKKNEVE' ),
-	'subjectpagenamee'    => array( '1', 'SUBJECTPAGENAMEE', 'ARTICLEPAGENAMEE', 'SZÓCIKKNEVEE' ),
+	'subjectpagenamee'    => array( '1', 'SUBJECTPAGENAME', 'ARTICLEPAGENAME', 'SZÓCIKKNEVEE' ),
 	'msg'                 => array( '0', 'MSG:', 'ÜZENET:', 'ÜZ:' ),
 	'subst'               => array( '0', 'SUBST:', 'BEILLESZT:', 'BEMÁSOL:' ),
 	'img_thumbnail'       => array( '1', 'thumbnail', 'thumb', 'bélyegkép', 'bélyeg' ),
@@ -311,7 +311,7 @@ $messages = array(
 'thursday'      => 'csütörtök',
 'friday'        => 'péntek',
 'saturday'      => 'szombat',
-'sun'           => 'vas',
+'sun'           => 'Vas',
 'mon'           => 'hét',
 'tue'           => 'kedd',
 'wed'           => 'sze',
@@ -741,7 +741,7 @@ Kapcsolatba léphetsz $1 felhasználóval, vagy egy másik [[{{MediaWiki:Grouppa
 Az 'E-mail küldése ennek a felhasználónak' funkciót nem használhatod, ha a megadott e-mail cím a
 [[Special:Preferences|fiókbeállításaidban]] nem érvényes, és nem blokkolták annak a használatát.
 Jelenlegi IP-címed: $3, a blokkolás azonosítószáma: #$5. Kérjük, hogy érdeklődés esetén lehetőleg mindkettőt add meg.",
-'autoblockedtext'           => "Az IP-címről automatikusan blokkolva lett, mert korábban egy olyan felhasználó használta, akit $1 blokkolt, az alábbi indoklással:
+'autoblockedtext'           => "Erről az IP-címről nem lehet szerkeszteni, mert egy blokkolt felhasználó korábban szerkeszteni próbált róla, ezért a Wikipédia szoftvere automatikusan blokkolta. A felhasználót $1 blokkolta az alábbi indoklással:
 
 :''$2''
 
@@ -1441,7 +1441,7 @@ ellenére, hogy aktívan használják.</p>',
 'booksources-text'          => 'Alább látható a másik webhelyekre mutató hivatkozások listája, ahol új és használt könyveket árulnak, és
 további információkat lelhetsz ott az általad keresett könyvekről:',
 
-'categoriespagetext' => 'A következő kategóriák tartalmaznak lapokat vagy fájlokat.',
+'categoriespagetext' => 'A wikiben az alábbi kategóriák találhatóak.',
 'data'               => 'Adatok',
 'userrights'         => 'Felhasználói jogok kezelése',
 'groups'             => 'Felhasználói csoportok',
@@ -2085,7 +2085,7 @@ Valamennyi transwiki importálási művelet az [[Special:Log/import|importálás
 
 # Spam protection
 'spamprotectiontitle'    => 'Spamszűrő',
-'spamprotectiontext'     => 'Az általad elmenteni kívánt lap egyik külső hivatkozása fennakadt a spamszűrőn. A hivatkozást lehet, hogy te helyezted el a cikkben, de lehet, hogy már korábban is ott volt. Csak úgy tudod a lapot elmenteni, ha eltávolítod belőle a problémás külső hivatkozást. Ehhez és a szerkesztéshez a böngésző „vissza” gombjával tudsz visszatérni.',
+'spamprotectiontext'     => 'Az általad elmenteni kívánt lap egyik külső hivatkozása fennakadt a spamszűrőn, a hivatkozást lehet, hogy te helyezted el a cikkben, de lehet, hogy már korábban is ott volt. Csak úgy tudod elmenteni, ha eltávolítod belőle, ehhez és a szerkesztéshez a böngésző „vissza” gombjával tudsz visszatérni.',
 'spamprotectionmatch'    => 'A spamszűrőn az alábbi szöveg fennakadt: $1',
 'subcategorycount'       => 'Ebben a kategóriában $1 alkategória található.',
 'categoryarticlecount'   => 'A kategória lenti listájában {{PLURAL:$1|egy lap|$1 lap}} található.',
@@ -2604,4 +2604,3 @@ minden egyes sor egy figyelt lap címe. Ha kész vagy, kattints a lista alatt ta
 Add meg a fájlnevet a „{{ns:image}}:” prefixum nélkül.',
 
 );
-

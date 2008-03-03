@@ -10,29 +10,14 @@
  */
 
 $specialPageAliases = array(
-	'Userlogin'                 => array( 'ننوتنه' ),
-	'Userlogout'                => array( 'وتنه' ),
-	'CreateAccount'             => array( 'کارن-حساب_جوړول' ),
-	'Preferences'               => array( 'غوره_توبونه' ),
-	'Watchlist'                 => array( 'کتلی_لړليک' ),
-	'Recentchanges'             => array( 'اوسني_بدلونونه' ),
-	'Upload'                    => array( 'پورته_کول' ),
-	'Imagelist'                 => array( 'د_انځورونو_لړليک' ),
-	'Newimages'                 => array( 'نوي_انځورونه' ),
-	'Randompage'                => array( 'ناټاکلی،_ناټاکلی_مخ' ),
 	'Shortpages'                => array( 'لنډ_مخونه' ),
 	'Longpages'                 => array( 'اوږده_مخونه' ),
 	'Newpages'                  => array( 'نوي_مخونه' ),
-	'Ancientpages'              => array( 'لرغوني_مخونه' ),
 	'Protectedpages'            => array( 'ژغورلي_مخونه' ),
 	'Protectedtitles'           => array( 'ژغورلي_سرليکونه' ),
 	'Allpages'                  => array( 'ټول_مخونه' ),
-	'Specialpages'              => array( 'ځانګړي_مخونه' ),
-	'Contributions'             => array( 'ونډې' ),
 	'Categories'                => array( 'وېشنيزې' ),
-	'Export'                    => array( 'صادرول' ),
 	'Mypage'                    => array( 'زما_پاڼه' ),
-	'Mytalk'                    => array( 'زما_خبرې_اترې' ),
 	'Search'                    => array( 'لټون' ),
 );
 
@@ -68,37 +53,25 @@ $namespaceNames = array(
 );
 
 $magicWords = array(
-	'currentmonth'        => array( '1', 'CURRENTMONTH', 'اوسنۍمياشت' ),
-	'currentmonthname'    => array( '1', 'CURRENTMONTHNAME', 'داوسنۍمياشت-نوم' ),
-	'currentday'          => array( '1', 'CURRENTDAY', 'ننۍورځ' ),
-	'currentday2'         => array( '1', 'CURRENTDAY2', 'ننۍورځ۲' ),
-	'currentdayname'      => array( '1', 'CURRENTDAYNAME', 'دننۍورځې-نوم' ),
-	'currentyear'         => array( '1', 'CURRENTYEAR', 'سږکال' ),
-	'currenttime'         => array( '1', 'CURRENTTIME', 'داوخت' ),
-	'currenthour'         => array( '1', 'CURRENTHOUR', 'دم-ګړۍ' ),
-	'localmonth'          => array( '1', 'LOCALMONTH', 'سيمه-يزه-مياشت' ),
-	'localmonthname'      => array( '1', 'LOCALMONTHNAME', 'دسيمه-يزې-مياشتې-نوم' ),
-	'localday'            => array( '1', 'LOCALDAY', 'سيمه-يزه-ورځ' ),
-	'localday2'           => array( '1', 'LOCALDAY2', 'سيمه-يزه-ورځ۲' ),
-	'localyear'           => array( '1', 'LOCALYEAR', 'سيمه-يز-کال' ),
-	'localtime'           => array( '1', 'LOCALTIME', 'سيمه-يز-وخت' ),
-	'localhour'           => array( '1', 'LOCALHOUR', 'سيمه-يزه-ګړۍ' ),
-	'numberofpages'       => array( '1', 'NUMBEROFPAGES', 'دمخونوشمېر' ),
-	'numberofarticles'    => array( '1', 'NUMBEROFARTICLES', 'دليکنوشمېر' ),
-	'numberoffiles'       => array( '1', 'NUMBEROFFILES', 'ددوتنوشمېر' ),
-	'numberofusers'       => array( '1', 'NUMBEROFUSERS', 'دکارونکوشمېر' ),
-	'pagename'            => array( '1', 'PAGENAME', 'دپاڼې-نوم' ),
-	'pagenamee'           => array( '1', 'PAGENAMEE', 'دپاڼې-نومم' ),
-	'namespace'           => array( '1', 'NAMESPACE', 'نوم-تشيال' ),
-	'namespacee'          => array( '1', 'NAMESPACEE', 'نوم-تشيالل' ),
-	'img_right'           => array( '1', 'right', 'ښي' ),
-	'img_left'            => array( '1', 'leftکيڼ' ),
-	'img_none'            => array( '1', 'none', 'هېڅ' ),
-	'server'              => array( '0', 'SERVER', 'پالنګر' ),
-	'servername'          => array( '0', 'SERVERNAME', 'دپالنګرنوم' ),
-	'currentversion'      => array( '1', 'CURRENTVERSION', 'اوسنۍ بڼه' ),
-	'language'            => array( '0', '#LANGUAGE:', '#ژبه:' ),
-	'special'             => array( '0', 'special', 'ځانګړی' ),
+	'currentmonth'        => array( 'اوسنۍمياشت' ),
+	'currentmonthname'    => array( 'داوسنۍمياشت-نوم' ),
+	'currentday'          => array( 'ننۍورځ' ),
+	'currentday2'         => array( 'ننۍورځ۲' ),
+	'currentdayname'      => array( 'دننۍورځې-نوم' ),
+	'currentyear'         => array( 'سږکال' ),
+	'currenttime'         => array( 'دم-مهال' ),
+	'currenthour'         => array( 'دم-ګړۍ' ),
+	'localmonth'          => array( 'سيمه-يزه-مياشت' ),
+	'localmonthname'      => array( 'دسيمه-يزې-مياشتې-نوم' ),
+	'pagename'            => array( 'دپاڼې-نوم' ),
+	'pagenamee'           => array( 'دپاڼې-نومم' ),
+	'namespace'           => array( 'نوم-تشيال' ),
+	'namespacee'          => array( 'نوم-تشيالل' ),
+	'img_right'           => array( 'ښي' ),
+	'img_left'            => array( 'کيڼ' ),
+	'server'              => array( 'پالنګر' ),
+	'servername'          => array( 'دپالنګرنوم' ),
+	'language'            => array( '#ژبه:' ),
 );
 
 $rtl = true;
@@ -238,7 +211,6 @@ $messages = array(
 'postcomment'      => 'يوه تبصره ليکل',
 'articlepage'      => 'د مخ مېنځپانګه ښکاره کول',
 'talk'             => 'خبرې اترې',
-'views'            => 'کتنې',
 'toolbox'          => 'اوزاربکس',
 'userpage'         => 'د کاروونکي پاڼه ښکاره کول',
 'projectpage'      => 'د پروژې مخ ښکاره کول',
@@ -417,7 +389,6 @@ $messages = array(
 'headline_tip'    => 'د ۲ کچې سرليک',
 'math_sample'     => 'فورمول دلته ځای کړی',
 'math_tip'        => 'شمېرپوهنيز فورمول (LaTeX)',
-'image_tip'       => 'خښه شوې دوتنه',
 'media_tip'       => 'د رسنيزې دوتنې تړنه',
 'sig_tip'         => 'ستاسو لاسليک د وخت د ټاپې سره',
 
@@ -476,7 +447,6 @@ $messages = array(
 'viewpagelogs'        => 'د همدغه مخ يادښتونه کتل',
 'nohistory'           => 'ددې مخ لپاره د سمادېدنې هېڅ کوم پېښليک نه شته.',
 'currentrev'          => 'اوسنۍ بڼه',
-'revisionasof'        => 'د $1 پورې شته مخليدنه',
 'previousrevision'    => '← زړه بڼه',
 'nextrevision'        => 'نوې بڼه →',
 'currentrevisionlink' => 'اوسنۍ بڼه',
@@ -490,9 +460,6 @@ $messages = array(
 'histlast'            => 'تازه',
 'historysize'         => '({{PLURAL:$1|1 بايټ|$1 بايټونه}})',
 'historyempty'        => '(تش)',
-
-# Revision feed
-'history-feed-item-nocomment' => '$1 په $2', # user at time
 
 # Revision deletion
 'rev-delundel' => 'ښکاره کول/ پټول',
@@ -706,8 +673,6 @@ $messages = array(
 'withoutinterwiki'        => 'د ژبې د تړنو بې برخې مخونه',
 'withoutinterwiki-submit' => 'ښکاره کول',
 
-'fewestrevisions' => 'لږ مخليدل شوي مخونه',
-
 # Miscellaneous special pages
 'nbytes'                  => '$1 {{PLURAL:$1|بايټ|بايټونه}}',
 'ncategories'             => '$1 {{PLURAL:$1|وېشنيزه|وېشنيزې}}',
@@ -824,10 +789,6 @@ $messages = array(
 'watchlist-hide-own'   => 'زما سمادونه پټول',
 'watchlist-hide-minor' => 'وړې سمادېدنې پټول',
 
-# Displayed when you click the "watch" button and it's in the process of watching
-'watching'   => 'د کتلو په حال کې...',
-'unwatching' => 'د نه کتلو په حال کې...',
-
 'enotif_newpagetext'           => 'دا يوه نوې پاڼه ده.',
 'enotif_impersonal_salutation' => '{{SITENAME}} کارونکی',
 'changed'                      => 'بدل شو',
@@ -837,36 +798,32 @@ $messages = array(
 'enotif_anon_editor'           => 'ورکنومی کارونکی $1',
 
 # Delete/protect/revert
-'deletepage'                  => 'پاڼه ړنګول',
-'confirm'                     => 'تاييد',
-'exblank'                     => 'دا مخ تش وه',
-'delete-confirm'              => '"$1" ړنګوول',
-'delete-legend'               => 'ړنګول',
-'historywarning'              => 'پاملرنه: کومه پاڼه چې تاسو يې د ړنګولو هڅه کوی يو پېښليک لري:',
-'confirmdeletetext'           => 'تاسو د تل لپار يو مخ يا انځور د هغه ټول پېښليک سره سره د دغه ډېټابېز نه ړنګوۍ. که چېرته تاسو ددغې کړنې په پايلې پوه ياست او د دغې پاڼې د [[پروژې:تګلارې]] سره سمون خوري نو لطفاً ددغې کړنې تاييد وکړی .',
-'actioncomplete'              => 'بشپړه کړنه',
-'deletedtext'                 => '"<nowiki>$1</nowiki>" ړنګ شوی.
+'deletepage'            => 'پاڼه ړنګول',
+'confirm'               => 'تاييد',
+'exblank'               => 'دا مخ تش وه',
+'delete-confirm'        => '"$1" ړنګوول',
+'delete-legend'         => 'ړنګول',
+'historywarning'        => 'پاملرنه: کومه پاڼه چې تاسو يې د ړنګولو هڅه کوی يو پېښليک لري:',
+'confirmdeletetext'     => 'تاسو د تل لپار يو مخ يا انځور د هغه ټول پېښليک سره سره د دغه ډېټابېز نه ړنګوۍ. که چېرته تاسو ددغې کړنې په پايلې پوه ياست او د دغې پاڼې د [[پروژې:تګلارې]] سره سمون خوري نو لطفاً ددغې کړنې تاييد وکړی .',
+'actioncomplete'        => 'بشپړه کړنه',
+'deletedtext'           => '"<nowiki>$1</nowiki>" ړنګ شوی.
 د نوو ړنګ شوو سوانحو لپاره $2 وګورۍ.',
-'deletedarticle'              => 'ړنګ شو "[[$1]]"',
-'dellogpage'                  => 'د ړنګولو يادښت',
-'dellogpagetext'              => 'دا لاندې د نوو ړنګ شوو کړنو لړليک دی.',
-'deletionlog'                 => 'د ړنګولو يادښت',
-'deletecomment'               => 'د ړنګولو سبب',
-'deleteotherreason'           => 'بل/اضافه سبب:',
-'deletereasonotherlist'       => 'بل سبب',
-'protectlogpage'              => 'د ژغورنې يادښت',
-'protectedarticle'            => '"[[$1]]" وژغورلی شو',
-'confirmprotect'              => 'د ژغورلو پخلی کول',
-'protectcomment'              => 'تبصره:',
-'protectexpiry'               => 'د پای نېټه:',
-'protect-default'             => '(اصلي بڼه)',
-'protect-fallback'            => 'د "$1" اجازه پکار ده',
-'protect-level-autoconfirmed' => 'د ناثبته کارونکو مخنيوی کول',
-'protect-level-sysop'         => 'يواځې پازوالان',
-'protect-cantedit'            => 'تاسو نه شی کولای چې د همدغه مخ د ژغورنې په کچه کې بدلون راولی، دا ځکه چې تاسو د همدغه مخ د سمادولو اجازه نه لری.',
-'restriction-type'            => 'اجازه:',
-'restriction-level'           => 'د بنديز کچه:',
-'minimum-size'                => 'وړه کچه',
+'deletedarticle'        => 'ړنګ شو "[[$1]]"',
+'dellogpage'            => 'د ړنګولو يادښت',
+'dellogpagetext'        => 'دا لاندې د نوو ړنګ شوو کړنو لړليک دی.',
+'deletionlog'           => 'د ړنګولو يادښت',
+'deletecomment'         => 'د ړنګولو سبب',
+'deleteotherreason'     => 'بل/اضافه سبب:',
+'deletereasonotherlist' => 'بل سبب',
+'protectlogpage'        => 'د ژغورنې يادښت',
+'protectedarticle'      => '"[[$1]]" وژغورلی شو',
+'confirmprotect'        => 'د ژغورلو پخلی کول',
+'protectcomment'        => 'تبصره:',
+'protect-default'       => '(اصلي بڼه)',
+'protect-cantedit'      => 'تاسو نه شی کولای چې د همدغه مخ د ژغورنې په کچه کې بدلون راولی، دا ځکه چې تاسو د همدغه مخ د سمادولو اجازه نه لری.',
+'restriction-type'      => 'اجازه:',
+'restriction-level'     => 'د بنديز کچه:',
+'minimum-size'          => 'وړه کچه',
 
 # Restrictions (nouns)
 'restriction-edit'   => 'سمادول',
@@ -935,7 +892,6 @@ $messages = array(
 'infiniteblock'            => 'لامحدوده',
 'anononlyblock'            => 'يواځې ورکنومی',
 'blocklink'                => 'مخه نيول',
-'unblocklink'              => 'نامخنيول',
 'contribslink'             => 'ونډې',
 'autoblocker'              => 'په اتوماتيک ډول ستاسو مخنيوی شوی دا ځکه چې ستاسو IP پته وروستی ځل د "[[User:$1|$1]]" له خوا کارېدلې. او د $1 د مخنيوي سبب دا دی: "$2"',
 'blocklogpage'             => 'د مخنيوي يادښت',
@@ -964,7 +920,6 @@ $messages = array(
 'delete_and_move_confirm' => 'هو, دا مخ ړنګ کړه',
 
 # Export
-'export'            => 'مخونه صادرول',
 'export-addcattext' => 'مخونو د ورګډولو وېشنيزه:',
 'export-addcat'     => 'ورګډول',
 
@@ -981,9 +936,6 @@ $messages = array(
 # Thumbnails
 'thumbnail-more' => 'لويول',
 'filemissing'    => 'دوتنه ورکه ده',
-
-# Import log
-'importlogpage' => 'د واردولو يادښت',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'        => 'زما کارن مخ',
@@ -1002,7 +954,6 @@ $messages = array(
 'tooltip-ca-delete'          => 'همدا مخ ړنګول',
 'tooltip-ca-move'            => 'همدا مخ لېږدول',
 'tooltip-ca-watch'           => 'همدا مخ پخپل کتلي لړليک کې ګډول',
-'tooltip-ca-unwatch'         => 'همدا مخ خپل د کتلي لړليک نه لرې کول',
 'tooltip-search'             => 'د {{SITENAME}} لټون',
 'tooltip-p-logo'             => 'لومړی مخ',
 'tooltip-n-mainpage'         => 'لومړي مخ ته ورتلل',
@@ -1066,7 +1017,6 @@ $messages = array(
 'hours-abbrev' => 'ساعتونه',
 
 # Metadata
-'metadata'          => 'مېټاډاټا',
 'metadata-expand'   => 'غځېدلی تفصيل ښکاره کړی',
 'metadata-collapse' => 'غځېدلی تفصيل پټ کړی',
 
@@ -1162,7 +1112,6 @@ $1',
 
 # Watchlist editing tools
 'watchlisttools-view' => 'اړونده بدلونونه کتل',
-'watchlisttools-edit' => 'کتلی لړليک ليدل او سمادول',
 
 # Iranian month names
 'iranian-calendar-m1'  => 'وری',
