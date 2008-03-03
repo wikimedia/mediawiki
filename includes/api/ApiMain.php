@@ -118,6 +118,14 @@ class ApiMain extends ApiBase {
 			// If the current user cannot read, 
 			// Remove all modules other than login
 			global $wgUser;
+			
+			if( $request->getVal( 'callback' ) !== null ) {
+				// JSON callback allows cross-site reads.
+				// For safety, strip user credentials.
+				wfDebug( "API: stripping user credentials for JSON callback\n" );
+				$wgUser = new User();
+			}
+			
 			if (!$wgUser->isAllowed('read')) {
 				self::$Modules = array(
 					'login'  => self::$Modules['login'],

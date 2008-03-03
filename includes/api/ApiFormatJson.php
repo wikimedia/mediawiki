@@ -74,7 +74,7 @@ class ApiFormatJson extends ApiFormatBase {
 
 	public function getParamDescription() {
 		return array (
-			'callback' => 'If specified, wraps the output into a given function call',
+			'callback' => 'If specified, wraps the output into a given function call. For safety, all user-specific data will be restricted.',
 		);
 	}
 
