@@ -1859,7 +1859,8 @@ END
 				$cssId = $tool['id'],
 			);
 			
-			$paramList = implode( ',', array_map( 'Xml::encodeJsVar', $params ) );
+			$paramList = implode( ',',
+				array_map( array( 'Xml', 'encodeJsVar' ), $params ) );
 			$toolbar.="addButton($paramList);\n";
 		}
 
