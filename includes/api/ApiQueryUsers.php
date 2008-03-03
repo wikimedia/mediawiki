@@ -157,6 +157,6 @@ if (!defined('MEDIAWIKI')) {
 	}
 
 	public function getVersion() {
-		return __CLASS__ . ': $Id: ApiQueryUserInfo.php 30128 2008-01-24 17:59:07Z catrope $';
+		return __CLASS__ . ': $Id$';
 	}
 }
