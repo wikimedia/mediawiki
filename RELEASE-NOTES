@@ -73,6 +73,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 13218) Fix inclusion of " character in hyperlinks
 * Added watch and unwatch parameters to action=delete and action=move
 * Added action=edit
+* (bug 11401) Added xmldoublequote to xml formatter
 
 === Languages updated in 1.13 ===
 
