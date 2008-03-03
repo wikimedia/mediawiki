@@ -1755,16 +1755,16 @@ END
 		$toolarray = array(
 			array(	'image'	=> 'button_bold.png',
 				'id'	=> 'mw-editbutton-bold',
-				'open'	=> '\\\'\\\'\\\'',
-				'close'	=> '\\\'\\\'\\\'',
+				'open'	=> '\'\'\'',
+				'close'	=> '\'\'\'',
 				'sample'=> wfMsg('bold_sample'),
 				'tip'	=> wfMsg('bold_tip'),
 				'key'	=> 'B'
 			),
 			array(	'image'	=> 'button_italic.png',
 				'id'	=> 'mw-editbutton-italic',
-				'open'	=> '\\\'\\\'',
-				'close'	=> '\\\'\\\'',
+				'open'	=> '\'\'',
+				'close'	=> '\'\'',
 				'sample'=> wfMsg('italic_sample'),
 				'tip'	=> wfMsg('italic_tip'),
 				'key'	=> 'I'
@@ -1787,8 +1787,8 @@ END
 			),
 			array(	'image'	=> 'button_headline.png',
 				'id'	=> 'mw-editbutton-headline',
-				'open'	=> "\\n== ",
-				'close'	=> " ==\\n",
+				'open'	=> "\n== ",
+				'close'	=> " ==\n",
 				'sample'=> wfMsg('headline_sample'),
 				'tip'	=> wfMsg('headline_tip'),
 				'key'	=> 'H'
@@ -1812,7 +1812,7 @@ END
 			array(	'image'	=> 'button_math.png',
 				'id'	=> 'mw-editbutton-math',
 				'open'	=> "<math>",
-				'close'	=> "<\\/math>",
+				'close'	=> "</math>",
 				'sample'=> wfMsg('math_sample'),
 				'tip'	=> wfMsg('math_tip'),
 				'key'	=> 'C'
@@ -1820,7 +1820,7 @@ END
 			array(	'image'	=> 'button_nowiki.png',
 				'id'	=> 'mw-editbutton-nowiki',
 				'open'	=> "<nowiki>",
-				'close'	=> "<\\/nowiki>",
+				'close'	=> "</nowiki>",
 				'sample'=> wfMsg('nowiki_sample'),
 				'tip'	=> wfMsg('nowiki_tip'),
 				'key'	=> 'N'
@@ -1835,7 +1835,7 @@ END
 			),
 			array(	'image'	=> 'button_hr.png',
 				'id'	=> 'mw-editbutton-hr',
-				'open'	=> "\\n----\\n",
+				'open'	=> "\n----\n",
 				'close'	=> '',
 				'sample'=> '',
 				'tip'	=> wfMsg('hr_tip'),
@@ -1846,22 +1846,21 @@ END
 		$toolbar.="<script type='$wgJsMimeType'>\n/*<![CDATA[*/\n";
 
 		foreach($toolarray as $tool) {
-
-			$cssId = $tool['id'];
-			$image=$wgStylePath.'/common/images/'.$tool['image'];
-			$open=$tool['open'];
-			$close=$tool['close'];
-			$sample = wfEscapeJsString( $tool['sample'] );
-
-			// Note that we use the tip both for the ALT tag and the TITLE tag of the image.
-			// Older browsers show a "speedtip" type message only for ALT.
-			// Ideally these should be different, realistically they
-			// probably don't need to be.
-			$tip = wfEscapeJsString( $tool['tip'] );
-
-			#$key = $tool["key"];
-
-			$toolbar.="addButton('$image','$tip','$open','$close','$sample','$cssId');\n";
+			$params = array(
+				$image = $wgStylePath.'/common/images/'.$tool['image'],
+				// Note that we use the tip both for the ALT tag and the TITLE tag of the image.
+				// Older browsers show a "speedtip" type message only for ALT.
+				// Ideally these should be different, realistically they
+				// probably don't need to be.
+				$tip = $tool['tip'],
+				$open = $tool['open'],
+				$close = $tool['close'],
+				$sample = $tool['sample'],
+				$cssId = $tool['id'],
+			);
+			
+			$paramList = implode( ',', array_map( 'Xml::encodeJsVar', $params ) );
+			$toolbar.="addButton($paramList);\n";
 		}
 
 		$toolbar.="/*]]>*/\n</script>";
