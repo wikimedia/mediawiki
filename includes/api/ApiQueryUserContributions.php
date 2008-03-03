@@ -62,6 +62,10 @@ class ApiQueryContributions extends ApiQueryBase {
 
 		if(isset($this->params['userprefix']))
 		{
+			global $wgAPIUCUserPrefixMinLength;
+			if(strlen($this->params['userprefix']) < $wgAPIUCUserPrefixMinLength)
+				$this->dieUsage("User prefixes must be at least $wgAPIUCUserPrefixMinLength characters", 'userprefix-tooshort');
+
 			$this->prefixMode = true;
 			$this->userprefix = $this->params['userprefix'];
 		}

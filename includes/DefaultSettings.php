@@ -2874,6 +2874,12 @@ $wgEnableWriteAPI = false;
 $wgAPIModules = array();
 
 /**
+ * Minimum length of list=usercontribs's ucuserprefix parameter
+ * Setting this to a low value can open DOS windows on large wikis
+ */
+$wgAPIUCUserPrefixMinLength = 3;
+
+/**
  * Parser test suite files to be run by parserTests.php when no specific
  * filename is passed to it.
  *
