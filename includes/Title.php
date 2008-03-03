@@ -2107,8 +2107,9 @@ class Title {
 		$this->mUrlform = wfUrlencode( $dbkey );
 
 		$this->mTextform = str_replace( '_', ' ', $dbkey );
-
-		return true;
+		
+		# Hooks can reject titles by returning false
+		return wfRunHooks('TitleSecureAndSplit', array( $this, &$dbkey )); 
 	}
 
 	/**
