@@ -268,6 +268,14 @@ before showing the edit form ( EditPage::edit() ). This is triggered
 on &action=edit.
 $EditPage : the EditPage object
 
+'APIEditBeforeSave': before saving a page with api.php?action=edit,
+after processing request parameters. Return false to let the request
+fail, returning an error message or an <edit result="Failure"> tag
+if $resultArr was filled.
+$EditPage : the EditPage object
+$text : the new text of the article (has yet to be saved)
+$resultArr : data in this array will be added to the API result
+
 'ArticleAfterFetchContent': after fetching content of an article from the database
 $article: the article (object) being loaded from the database
 $content: the content (string) of the article

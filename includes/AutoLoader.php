@@ -370,6 +370,7 @@ function __autoload($className) {
 		#'ApiChangeRights' => 'includes/api/ApiChangeRights.php',
 		# Disabled for now
 		'ApiDelete' => 'includes/api/ApiDelete.php',
+		'ApiEditPage' => 'includes/api/ApiEditPage.php',
 		'ApiMove' => 'includes/api/ApiMove.php',
 		'ApiProtect' => 'includes/api/ApiProtect.php',
 		'ApiQueryBlocks' => 'includes/api/ApiQueryBlocks.php',
