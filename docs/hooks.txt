@@ -1029,10 +1029,6 @@ $user: user who did the move
 $pageid: database ID of the page that's been moved
 $redirid: database ID of the created redirect
 
-'TitleSecureAndSplit': At the end of Title::secureAndSplit()
-$title: The Title object
-$dbkey: The DB key
-
 'UndeleteShowRevision': called when showing a revision in Special:Undelete
 $title: title object related to the revision
 $rev: revision (object) that will be viewed
