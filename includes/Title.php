@@ -2102,17 +2102,13 @@ class Title {
 			return false;
 		}
 		
-		# Hooks can reject titles by returning false
-		if(!wfRunHooks('TitleSecureAndSplit', array( $this, &$dbkey )))
-			return false;
-		
 		# Fill fields
 		$this->mDbkeyform = $dbkey;
 		$this->mUrlform = wfUrlencode( $dbkey );
 
 		$this->mTextform = str_replace( '_', ' ', $dbkey );
-		
-		return true; 
+
+		return true;
 	}
 
 	/**
