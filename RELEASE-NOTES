@@ -61,7 +61,6 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 11561) Fix fatal error when calling action=revert to non-image page
 * (bug 12430) Fix call to private method LinkFilter::makeRegex fatal error in
   maintenance/cleanupSpam.php
-* (bug 13214) <gallery> doesn't resize images which are smaller than 120*120
 
 === API changes in 1.13 ===
 
