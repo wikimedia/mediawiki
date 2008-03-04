@@ -299,6 +299,7 @@ class Skin extends Linker {
 		global $wgBreakFrames, $wgRequest, $wgVariantArticlePath, $wgActionPaths;
 		global $wgUseAjax, $wgAjaxWatch;
 		global $wgVersion, $wgEnableAPI, $wgEnableWriteAPI;
+		global $wgRestrictionTypes, $wgLivePreview;
 
 		$ns = $wgTitle->getNamespace();
 		$nsname = isset( $wgCanonicalNamespaceNames[ $ns ] ) ? $wgCanonicalNamespaceNames[ $ns ] : $wgTitle->getNsText();
@@ -318,8 +319,6 @@ class Skin extends Linker {
 			'wgPageName' => $wgTitle->getPrefixedDBKey(),
 			'wgTitle' => $wgTitle->getText(),
 			'wgAction' => $wgRequest->getText( 'action', 'view' ),
-			'wgRestrictionEdit' => $wgTitle->getRestrictions( 'edit' ),
-			'wgRestrictionMove' => $wgTitle->getRestrictions( 'move' ),
 			'wgArticleId' => $wgTitle->getArticleId(),
 			'wgIsArticle' => $wgOut->isArticle(),
 			'wgUserName' => $wgUser->isAnon() ? NULL : $wgUser->getName(),
@@ -333,7 +332,9 @@ class Skin extends Linker {
 			'wgEnableWriteAPI' => $wgEnableWriteAPI,
 		);
 
-		global $wgLivePreview;
+		foreach( $wgRestrictionTypes as $type )
+			$vars['wgRestriction' . ucfirst( $type )] = $wgTitle->getRestrictions( $type );
+
 		if ( $wgLivePreview && $wgUser->getOption( 'uselivepreview' ) ) {
 			$vars['wgLivepreviewMessageLoading'] = wfMsg( 'livepreview-loading' );
 			$vars['wgLivepreviewMessageReady']   = wfMsg( 'livepreview-ready' );

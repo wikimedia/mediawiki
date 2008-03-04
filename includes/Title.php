@@ -942,27 +942,20 @@ class Title {
 	 * @return boolean
 	 */
 	public function isProtected( $action = '' ) {
-		global $wgRestrictionLevels;
+		global $wgRestrictionLevels, $wgRestrictionTypes;
 
 		# Special pages have inherent protection
 		if( $this->getNamespace() == NS_SPECIAL )
 			return true;
 
-		# Check regular protection levels				
-		if( $action == 'edit' || $action == '' ) {
-			$r = $this->getRestrictions( 'edit' );
-			foreach( $wgRestrictionLevels as $level ) {
-				if( in_array( $level, $r ) && $level != '' ) {
-					return( true );
-				}
-			}
-		}
-		
-		if( $action == 'move' || $action == '' ) {
-			$r = $this->getRestrictions( 'move' );
-			foreach( $wgRestrictionLevels as $level ) {
-				if( in_array( $level, $r ) && $level != '' ) {
-					return( true );
+		# Check regular protection levels
+		foreach( $wgRestrictionTypes as $type ){		
+			if( $action == $type || $action == '' ) {
+				$r = $this->getRestrictions( $type );
+				foreach( $wgRestrictionLevels as $level ) {
+					if( in_array( $level, $r ) && $level != '' ) {
+						return true;
+					}
 				}
 			}
 		}
@@ -1384,11 +1377,11 @@ class Title {
 	 */
 	public function userCanRead() {
 		global $wgUser, $wgGroupPermissions;
-		
+
 		# Shortcut for public wikis, allows skipping quite a bit of code path
 		if ($wgGroupPermissions['*']['read'])
 			return true;
-		
+
 		$result = null;
 		wfRunHooks( 'userCan', array( &$this, &$wgUser, 'read', &$result ) );
 		if ( $result !== null ) {
@@ -1414,14 +1407,14 @@ class Title {
 			if( !is_array($wgWhitelistRead) ) {
 				return false;
 			}
-			
+
 			/**
 			 * Check for explicit whitelisting
 			 */
 			$name = $this->getPrefixedText();
 			if( in_array( $name, $wgWhitelistRead, true ) )
 				return true;
-			
+
 			/**
 			 * Old settings might have the title prefixed with
 			 * a colon for main-namespace pages
@@ -1430,7 +1423,7 @@ class Title {
 				if( in_array( ':' . $name, $wgWhitelistRead ) )
 					return true;
 			}
-			
+
 			/**
 			 * If it's a special page, ditch the subpage bit
 			 * and check again
@@ -1517,14 +1510,14 @@ class Title {
 	 * @return bool
 	 */
 	public function isCssSubpage() {
-		return ( NS_USER == $this->mNamespace and preg_match("/\\/.*\\.css$/", $this->mTextform ) );
+		return ( NS_USER == $this->mNamespace && preg_match("/\\/.*\\.css$/", $this->mTextform ) );
 	}
 	/**
 	 * Is this a .js subpage of a user page?
 	 * @return bool
 	 */
 	public function isJsSubpage() {
-		return ( NS_USER == $this->mNamespace and preg_match("/\\/.*\\.js$/", $this->mTextform ) );
+		return ( NS_USER == $this->mNamespace && preg_match("/\\/.*\\.js$/", $this->mTextform ) );
 	}
 	/**
 	 * Protect css/js subpages of user pages: can $wgUser edit
@@ -1535,7 +1528,7 @@ class Title {
 	 */
 	public function userCanEditCssJsSubpage() {
 		global $wgUser;
-		return ( $wgUser->isAllowed('editusercssjs') or preg_match('/^'.preg_quote($wgUser->getName(), '/').'\//', $this->mTextform) );
+		return ( $wgUser->isAllowed('editusercssjs') || preg_match('/^'.preg_quote($wgUser->getName(), '/').'\//', $this->mTextform) );
 	}
 
 	/**
@@ -1656,10 +1649,13 @@ class Title {
 	 * @param resource $res restrictions as an SQL result.
 	 */
 	private function loadRestrictionsFromRow( $res, $oldFashionedRestrictions = NULL ) {
-		$dbr = wfGetDb( DB_SLAVE );
+		global $wgRestrictionTypes;
+		$dbr = wfGetDB( DB_SLAVE );
 
-		$this->mRestrictions['edit'] = array();
-		$this->mRestrictions['move'] = array();
+		foreach( $wgRestrictionTypes as $type ){
+			$this->mRestrictions[$type] = array();
+		}
+
 		$this->mCascadeRestriction = false;
 		$this->mRestrictionsExpiry = Block::decodeExpiry('');
 
@@ -1675,8 +1671,8 @@ class Title {
 				$temp = explode( '=', trim( $restrict ) );
 				if(count($temp) == 1) {
 					// old old format should be treated as edit/move restriction
-					$this->mRestrictions["edit"] = explode( ',', trim( $temp[0] ) );
-					$this->mRestrictions["move"] = explode( ',', trim( $temp[0] ) );
+					$this->mRestrictions['edit'] = explode( ',', trim( $temp[0] ) );
+					$this->mRestrictions['move'] = explode( ',', trim( $temp[0] ) );
 				} else {
 					$this->mRestrictions[$temp[0]] = explode( ',', trim( $temp[1] ) );
 				}
@@ -1693,6 +1689,10 @@ class Title {
 
 			while ($row = $dbr->fetchObject( $res ) ) {
 				# Cycle through all the restrictions.
+				
+				// Don't take care of restrictions types that aren't in $wgRestrictionTypes
+				if( !in_array( $row->pr_type, $wgRestrictionTypes ) )
+					continue;
 
 				// This code should be refactored, now that it's being used more generally,
 				// But I don't really see any harm in leaving it in Block for now -werdna
