@@ -539,8 +539,10 @@ END;
 			}
 			$a['onload'] .= 'setupRightClickEdit()';
 		}
-		$a['class'] = 'ns-'.$wgTitle->getNamespace().' '.($wgContLang->isRTL() ? "rtl" : "ltr").
-		' '.Sanitizer::escapeClass( 'page-'.$wgTitle->getPrefixedText() );
+		$a['class'] =
+			'mediawiki ns-'.$wgTitle->getNamespace().
+			' '.($wgContLang->isRTL() ? "rtl" : "ltr").
+			' '.Sanitizer::escapeClass( 'page-'.$wgTitle->getPrefixedText() );
 		return $a;
 	}
 
