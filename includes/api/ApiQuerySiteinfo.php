@@ -71,7 +71,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 	}
 
 	protected function appendGeneralInfo($property) {
-		global $wgSitename, $wgVersion, $wgCapitalLinks, $wgRightsCode, $wgRightsText, $wgLanguageCode, $IP;
+		global $wgSitename, $wgVersion, $wgCapitalLinks, $wgRightsCode, $wgRightsText, $wgLanguageCode, $IP, $wgEnableWriteAPI;
 		
 		$data = array ();
 		$mainPage = Title :: newFromText(wfMsgForContent('mainpage'));
@@ -88,6 +88,9 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 			$data['rightscode'] = $wgRightsCode;
 		$data['rights'] = $wgRightsText;
 		$data['lang'] = $wgLanguageCode;
+
+		if ( $wgEnableWriteAPI )
+			$data['writeapi'] = '';
 		
 		$this->getResult()->addValue('query', $property, $data);
 	}
