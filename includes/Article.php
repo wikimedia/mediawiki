@@ -138,7 +138,7 @@ class Article {
 	 * @return Return the text of this revision
 	*/
 	function getContent() {
-		global $wgUser, $wgOut;
+		global $wgUser, $wgOut, $wgMessageCache;
 
 		wfProfileIn( __METHOD__ );
 
@@ -147,6 +147,7 @@ class Article {
 			$wgOut->setRobotpolicy( 'noindex,nofollow' );
 
 			if ( $this->mTitle->getNamespace() == NS_MEDIAWIKI ) {
+				$wgMessageCache->loadAllMessages();
 				$ret = wfMsgWeirdKey ( $this->mTitle->getText() ) ;
 			} else {
 				$ret = wfMsg( $wgUser->isLoggedIn() ? 'noarticletext' : 'noarticletextanon' );

@@ -62,6 +62,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 12430) Fix call to private method LinkFilter::makeRegex fatal error in
   maintenance/cleanupSpam.php
 * All skins should have the "mediawiki" class on the body element
+* (bug 13019) Message cache for some extensions not loaded at time of editing
 
 === API changes in 1.13 ===
 
