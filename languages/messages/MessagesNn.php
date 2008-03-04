@@ -288,6 +288,7 @@ $messages = array(
 'tog-watchlisthideminor'      => 'Gøym småplukk frå overvakingslista',
 'tog-ccmeonemails'            => 'Send meg kopi av e-postane eg sender til andre brukarar',
 'tog-diffonly'                => 'Ikkje vis sideinnhaldet under skilnadene mellom versjonane',
+'tog-showhiddencats'          => 'Vis gøymde kategoriar',
 
 'underline-always'  => 'Alltid',
 'underline-never'   => 'Aldri',
@@ -354,6 +355,7 @@ $messages = array(
 'subcategories'         => 'Underkategoriar',
 'category-media-header' => 'Media i kategorien «$1»',
 'category-empty'        => "''Denne kategorien inneheld for tida ingen sider eller anna media.''",
+'hidden-categories'     => '{{PLURAL:$1|Gøymd kategori|Gøymde kategoriar}}',
 
 'mainpagetext'      => 'MediaWiki er no installert.',
 'mainpagedocfooter' => 'Sjå [http://meta.wikimedia.org/wiki/Help:Contents brukarmanualen] for informasjon om bruk og konfigurasjonshjelp for wikiprogramvaren.
@@ -489,10 +491,12 @@ $messages = array(
 'restorelink'             => '{{PLURAL:$1|Éin sletta versjon|$1 sletta versjonar}}',
 'feedlinks'               => 'Mating:',
 'feed-invalid'            => 'Ugyldig abonnementstype.',
+'feed-unavailable'        => 'Det er ingen kjelder til abonnement på {{SITENAME}}',
 'site-rss-feed'           => '$1 RSS-abonnement',
 'site-atom-feed'          => '$1 Atom-abonnement',
 'page-rss-feed'           => '«$1» RSS-abonnement',
 'page-atom-feed'          => '«$1» Atom-abonnement',
+'red-link-title'          => '$1 (ikkje oppretta endå)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Innhaldsside',
@@ -764,7 +768,6 @@ Du kan kontakte $1 eller ein annan [[{{MediaWiki:Grouppage-sysop}}|administrator
 <strong>Dersom dette er eit heilt vanleg forsøk på endring, prøv ein gong til. Dersom det framleis ikkje går, prøv å logge deg ut og inn att.</strong>",
 'token_suffix_mismatch'     => '<strong>Endringa di vart avvist fordi klienten/nettlesaren din lagar teiknfeil i teksten. Dette vart gjort for å hindre øydelegging av teksten på sida. Slikt kan av og til hende når ein brukar feilprogrammerte og vevbaserte anonyme proxytenester.</strong>',
 'editing'                   => 'Endrar $1',
-'editinguser'               => 'Endrar $1',
 'editingsection'            => 'Endrar $1 (bolk)',
 'editingcomment'            => 'Endrar $1 (kommentar)',
 'editconflict'              => 'Endringskonflikt: $1',
@@ -795,6 +798,7 @@ lang, altså lenger enn $2 kilobyte som er maksimum. Han kan difor ikkje lagrast
 'templatesusedsection'      => 'Malar som er brukte i denne bolken:',
 'template-protected'        => '(verna)',
 'template-semiprotected'    => '(delvis verna)',
+'hiddencategories'          => 'Denne sida er med i {{PLURAL:$1|éin gøymd kategori|$1 gøymde kategoriar}}:',
 'edittools'                 => '<!-- Teksten her vert synt mellom tekstboksen og «Lagre»-knappen når ein endrar ei side. -->',
 'nocreatetitle'             => 'Avgrensa sideoppretting',
 'nocreatetext'              => '{{SITENAME}} har avgrensa mogelegheita for å opprette nye sider.
@@ -929,6 +933,7 @@ Andre administratorar på {{SITENAME}} kan framleis sjå det gøymde innhaldet o
 * <big>'''Du kan [[:$1|opprette ho no]]'''</big>.<br />
 (Men du bør søkje etter andre namnevariasjonar først, slik at du ikkje lagar ei side som allereie finst under eit anna namn!)",
 'noexactmatch-nocreate' => "'''Inga side har tittelen «$1».'''",
+'toomanymatches'        => 'Søket gav for mange treff, prøv ei anna spørjing',
 'titlematches'          => 'Sidetitlar med treff på førespurnaden',
 'notitlematches'        => 'Ingen sidetitlar hadde treff på førespurnaden',
 'textmatches'           => 'Sider med treff på førespurnaden',
@@ -1008,6 +1013,7 @@ Andre administratorar på {{SITENAME}} kan framleis sjå det gøymde innhaldet o
 'userrights-lookup-user'           => 'Administrer brukargrupper',
 'userrights-user-editname'         => 'Skriv inn brukarnamn:',
 'editusergroup'                    => 'Endre brukargrupper',
+'editinguser'                      => 'Endrar $1',
 'userrights-editusergroup'         => 'Endre brukargrupper',
 'saveusergroups'                   => 'Lagre brukargrupper',
 'userrights-groupsmember'          => 'Medlem av:',
@@ -1091,21 +1097,13 @@ Andre administratorar på {{SITENAME}} kan framleis sjå det gøymde innhaldet o
 'uploadnologintext'           => 'Du lyt vera [[Special:Userlogin|innlogga]] for å kunna laste opp filer.',
 'upload_directory_read_only'  => 'Opplastingsmappa ($1) er skriveverna.',
 'uploaderror'                 => 'Feil under opplasting av fil',
-'uploadtext'                  => "Dette er sida til å laste opp filer. Nyleg opplasta filer finn du på [[Special:Imagelist|filsida]]. Opplastingar og slettingar [[Special:Log|blir loggført]].
+'uploadtext'                  => "Bruk skjemaet under for å laste opp filer. For å sjå eller søke i tidlegare opplasta filer, gå til [[Special:Imagelist|fillista]]. Opplastingane vert også lagra i [[Special:Log/upload|opplastingsloggen]].
 
-* For å bruke eit bilete på ei side, skriv inn ei lenkje av dette slaget:
-** '''<nowiki>[[{{ns:Image}}:Eksempelbilete.jpg]]</nowiki>'''
-** '''<nowiki>[[{{ns:Image}}:Eksempelbilete.png|bilettekst]]</nowiki>'''
-* eller for lydar og andre filer
-** '''<nowiki>[[{{ns:Media}}:Eksempelfil.ogg]]</nowiki>'''
-* For å leggje inn eit bilete som miniatyr, skriv
-** <tt><nowiki>[[{{ns:Image}}:Eksempelbilete.jpg|mini|Bilettekst]]</nowiki></tt>
-* Sjå [[Help:Biletsyntaks|biletesyntaks-hjelp]] for meir informasjon.
-* Om du lastar opp ei fil med same namn som ei eksisterande fil vil du bli beden om å stadfeste, og den eksisterande fila vil ikkje bli sletta.
-
-Sjå [[Help:Laste opp fil|hjelp for filopplasting]] for meir informasjon om korleis dette skjemaet verkar og korleis ein bruker filer på wikisider.
-
-For å laste opp ei fil bruker du «Bla gjennom...» eller «Browse...»-knappen som opnar ein standarddialog for val av fil. Når du vel ei fil, vil namnet på denne fila dukke opp i tekstfeltet ved sida av knappen. Skriv inn '''all''' nødvendig informasjon i ''Samandrag''-feltet, kryss av at du ikkje bryt nokon sin opphavsrett, og klikk til slutt på ''Last opp fil''.",
+For å bruke ei fil på ei side, bruk ei slik lenkje:
+*'''<nowiki>[[</nowiki>{{ns:image}}:Filnamn.jpg<nowiki>]]</nowiki>'''
+*'''<nowiki>[[</nowiki>{{ns:image}}:Filnamn.png|Alternativ tekst<nowiki>]]</nowiki>'''
+For å lenkje direkte til fila, skriv:
+*'''<nowiki>[[</nowiki>{{ns:media}}:Filnamn.ogg<nowiki>]]</nowiki>'''",
 'upload-permitted'            => 'Godtekne filtypar: $1.',
 'upload-preferred'            => 'Føretrekte filtypar: $1.',
 'upload-prohibited'           => 'Ikkje godtekne filtypar: $1.',
@@ -1131,7 +1129,7 @@ For å laste opp ei fil bruker du «Bla gjennom...» eller «Browse...»-knappen
 'largefileserver'             => 'Denne fila er større enn det tenaren tillèt.',
 'emptyfile'                   => 'Det ser ut til at fila du lasta opp er tom. Dette kan komma av ein skrivefeil i filnamnet. Sjekk og tenk etter om du verkeleg vil laste opp fila.',
 'fileexists'                  => 'Ei fil med dette namnet finst allereie, sjekk $1 om du ikkje er sikker på om du vil endre namnet.',
-'filepageexists'              => 'Ei side (ikkje ei fil) med dette namnet finst allereie, ver venleg og sjekk <strong><tt>$1</tt></strong> dersom du er usikker på om du vil endre henne.',
+'filepageexists'              => 'Skildringssida for denne fila finst allereie på <strong><tt>$1</tt></strong>, men det finst ikkje noka fil med dette namnet. Endringssamandraget du skriv inn vert ikkje vist på skildringssida. For at det skal dukke opp der, må du skrive det inn på skildringssida manuelt etter å ha lasta opp fila.',
 'fileexists-extension'        => 'Ei fil med eit liknande namn finst allereie:<br />
 Namnet på fila du lastar opp: <strong><tt>$1</tt></strong><br />
 Namnet på den eksisterande fila: <strong><tt>$2</tt></strong><br />
@@ -1210,6 +1208,7 @@ Sletteloggen for fila finn du her:",
 'nolinkstoimage'            => 'Det finst ikkje noka side med lenkje til denne fila.',
 'sharedupload'              => 'Denne fila er ei delt opplasting og kan brukast av andre prosjekt.',
 'shareduploadwiki'          => 'Sjå $1 for meir informasjon.',
+'shareduploadwiki-desc'     => 'Skildringa til $1 er vist nedanfor.',
 'shareduploadwiki-linktext' => 'filskildringssida',
 'noimage'                   => 'Det finst ikkje noka fil med dette namnet, men du kan $1',
 'noimage-linktext'          => 'laste ho opp',
@@ -1351,7 +1350,6 @@ Alle sidene er vortne viste {{PLURAL:$3|'''éin''' gong|'''$3''' gonger}} og end
 'newpages'                => 'Nye sider',
 'newpages-username'       => 'Brukarnamn:',
 'ancientpages'            => 'Eldste sider',
-'intl'                    => 'Språklenkjer',
 'move'                    => 'Flytt',
 'movethispage'            => 'Flytt side',
 'unusedimagestext'        => '<p>Merk deg at andre internettsider kan ha lenkjer til filer som er lista her. Dei kan difor vera i aktiv bruk.</p>',
@@ -1603,6 +1601,7 @@ Her er dei noverande innstillingane for sida <strong>$1</strong>:',
 'undelete-search-box'          => 'Søk i sletta sider',
 'undelete-search-prefix'       => 'Vis sider frå og med:',
 'undelete-search-submit'       => 'Søk',
+'undelete-no-results'          => 'Fann ingen treff i arkivet over sletta sider.',
 'undelete-cleanup-error'       => 'Feil ved sletting av den ubrukte arkivfila «$1».',
 'undelete-missing-filearchive' => 'Kunne ikkje attopprette filarkivet med nummer $1 fordi det ikkje ligg i databasen. Det kan allereie ver attoppretta.',
 'undelete-error-short'         => 'Veil ved sletting av fila: $1',

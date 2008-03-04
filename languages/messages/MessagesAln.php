@@ -5,6 +5,7 @@
  *
  * @author Cradel
  * @author Dardan
+ * @author Nike
  */
 
 $fallback = 'sq';
@@ -207,7 +208,7 @@ $messages = array(
 'aboutsite'         => 'Rreth {{SITENAME}}',
 'aboutpage'         => 'Project:Rreth',
 'bugreports'        => 'Kontakt',
-'bugreportspage'    => 'Projekt:Kontakt',
+'bugreportspage'    => 'Project:Kontakt',
 'copyright'         => 'Përmbajtja asht në disponim nëpërmjet liqencës $1.',
 'copyrightpagename' => '{{SITENAME}} Të drejta autori',
 'copyrightpage'     => '{{ns:project}}:Të drejta autori',
@@ -349,6 +350,7 @@ Pyetja: $2',
 'login'             => 'Hyni',
 'userlogin'         => 'Hyni ose çeleni një llogari',
 'logout'            => 'Dalje',
+'userlogout'        => 'Dalje',
 'nologinlink'       => 'Çeleni',
 'createaccountmail' => 'me email',
 'youremail'         => 'Adresa e email-it*',
@@ -357,11 +359,97 @@ Pyetja: $2',
 'yourrealname'      => 'Emri juej i vërtetë*',
 'yourlanguage'      => 'Ndërfaqja gjuhësore',
 
+# Edit page toolbar
+'bold_sample'     => 'Tekst i trashë',
+'bold_tip'        => 'Tekst i trashë',
+'italic_sample'   => 'Tekst i pjerrët',
+'italic_tip'      => 'Tekst i pjerrët',
+'link_sample'     => 'Titulli i lidhjes',
+'link_tip'        => 'Lidhje e brendshme',
+'extlink_sample'  => 'http://www.shembull.com Titulli i lidhjes',
+'extlink_tip'     => 'Lidhje e jashtme (mos e harro prefiksin http://)',
+'headline_sample' => 'Titull shembull',
+'headline_tip'    => 'Titull i nivelit 2',
+'math_sample'     => 'Vendos formulën këtu',
+'math_tip'        => 'Formulë matematike (LaTeX)',
+'nowiki_sample'   => 'Vendos tekst qi nuk duhet me u formatue',
+'nowiki_tip'      => 'Mos përdor format wiki',
+'image_tip'       => 'Vendose një figurë',
+'media_tip'       => 'Lidhje media-skedave',
+'sig_tip'         => 'Firma juej dhe koha e firmosjes',
+'hr_tip'          => 'vijë horizontale (përdoreni rallë)',
+
+# Edit pages
+'summary'            => 'Përmbledhje',
+'subject'            => 'Subjekt/Titull',
+'minoredit'          => 'Ky asht një redaktim i vogël',
+'watchthis'          => 'Mbikqyre kët faqe',
+'showpreview'        => 'Trego parapamjen',
+'showdiff'           => 'Trego ndryshimet',
+'anoneditwarning'    => 'Ju nuk jeni regjistruem. IP adresa juej do të regjistrohet në historinë e redaktimeve të kësaj faqe.',
+'newarticletext'     => "{{SITENAME}} nuk ka një ''{{NAMESPACE}} faqe'' të quajtme '''{{PAGENAME}}'''. Shtypni '''redaktoni''' ma sipër ose [[Special:Search/{{PAGENAME}}|bani një kërkim për {{PAGENAME}}]]",
+'noarticletext'      => 'Tash për tash nuk ka tekst në kët faqe, muneni me [[Special:Search/{{PAGENAME}}|kërkue]] kët titull në faqe të tjera ose muneni me [{{fullurl:{{FULLPAGENAME}}|action=edit}} fillu] atë.',
+'editing'            => 'Tuj redaktue $1',
+'copyrightwarning'   => "Kontributet te {{SITENAME}} janë të konsiderueme të dhana nën licensën $2 (shikoni $1 për hollësirat).<br />
+'''NDALOHET DHËNIA E PUNIMEVE PA PAS LEJE NGA AUTORI NË MOSPËRPUTHJE ME KËTË LICENSË!'''<br />",
+'template-protected' => '(e mbrojtme)',
+
+# History pages
+'revisionasof'     => 'Versioni i $1',
+'revision-info'    => 'Versioni me $1 nga $2',
+'previousrevision' => '← Verzion ma i vjetër',
+'cur'              => 'tash',
+'last'             => 'fund',
+
+# Diffs
+'lineno'                  => 'Rreshti $1:',
+'compareselectedversions' => 'Krahasoni versionet e zgjedhme',
+'editundo'                => 'ktheje',
+
 # Search results
-'powersearch' => 'Kërko',
+'noexactmatch' => '<span style="font-size: 135%; font-weight: bold; margin-left: .6em">Faqja me atë titull nuk asht krijue </span>
+
+<span style="display: block; margin: 1.5em 2em">
+Muneni me [[$1|fillu një artikull]] me kët titull.
+
+<span style="display:block; font-size: 89%; margin-left:.2em">Ju lutem kërkoni {{SITENAME}}-n para se me krijue një artikull të ri se munet me kánë nën një titull tjetër.</span>
+</span>',
+'viewprevnext' => 'Shikoni ($1) ($2) ($3).',
+'powersearch'  => 'Kërko',
+
+# Preferences page
+'mypreferences' => 'Parapëlqimet',
+
+# Recent changes
+'recentchanges'   => 'Ndryshimet e fundit',
+'rcnote'          => 'Ma poshtë janë <strong>$1</strong> ndryshimt e fundit gjatë <strong>$2</strong> ditëve sipas të dhanave nga $3.',
+'rcshowhideminor' => '$1 redaktimet e vogla',
+'rcshowhidepatr'  => '$1 redaktime të patrullueme',
+'rclinks'         => 'Trego $1 ndryshime gjatë $2 ditëve<br />$3',
+'diff'            => 'ndrysh',
+'hist'            => 'hist',
+'hide'            => 'msheh',
+'minoreditletter' => 'v',
+'newpageletter'   => 'R',
+'boteditletter'   => 'b',
+
+# Recent changes linked
+'recentchangeslinked'       => 'Ndryshimet fqinje',
+'recentchangeslinked-title' => 'Ndryshimet në lidhje me $1',
 
 # Upload
 'upload' => 'Ngarkoni skeda',
+
+# Image list
+'filehist'            => 'Historiku i dosjes',
+'filehist-datetime'   => 'Data/Ora',
+'filehist-user'       => 'Përdoruesi',
+'filehist-dimensions' => 'Dimenzionet',
+'filehist-filesize'   => 'Madhësia e figurës/skedës',
+'filehist-comment'    => 'Koment',
+'imagelinks'          => 'Lidhje e skedave',
+'linkstoimage'        => "K'to faqe lidhen te kjo figurë/skedë:",
+'sharedupload'        => 'Kjo skedë asht një ngarkim i përbashkët dhe munet me u përdor nga projekte të tjera.',
 
 # File deletion
 'filedelete-reason-otherlist' => 'Arsyje tjera',
@@ -369,19 +457,42 @@ Pyetja: $2',
 # MIME search
 'download' => 'shkarkim',
 
+# Random page
+'randompage' => 'Artikull i rastit',
+
+# Statistics
+'statistics' => 'Statistika',
+
 'withoutinterwiki' => 'Artikuj pa lidhje interwiki',
 
 # Miscellaneous special pages
+'nbytes'       => '$1 bytes',
+'nlinks'       => '$1 lidhje',
+'nmembers'     => '$1 anëtarë',
 'specialpages' => 'Faqet speciale',
+'move'         => 'Zhvendose',
 
 'alphaindexline' => '$1 deri në $2',
 
+# Special:Allpages
+'allpagessubmit' => 'Shko',
+
 # Watchlist
-'addedwatch'       => 'U shtu te lista mbikqyrëse',
-'removedwatch'     => 'U hjek nga lista mibkqyrëse',
-'removedwatchtext' => 'Faqja "<nowiki>$1</nowiki>" asht hjek nga lista mbikqyrëse e juej.',
+'mywatchlist'          => 'Lista mbikqyrëse',
+'addedwatch'           => 'U shtu te lista mbikqyrëse',
+'removedwatch'         => 'U hjek nga lista mibkqyrëse',
+'removedwatchtext'     => 'Faqja "<nowiki>$1</nowiki>" asht hjek nga lista mbikqyrëse e juej.',
+'watch'                => 'Mbikqyre',
+'unwatch'              => 'Çmbikqyre',
+'watchlist-hide-own'   => 'Mshehi redaktimet e mija',
+'watchlist-hide-minor' => 'Mshehi redaktimet e vogla',
+
+# Displayed when you click the "watch" button and it's in the process of watching
+'watching'   => 'Tuj mbikqyrë...',
+'unwatching' => 'Tuj çmbikqyrë...',
 
 # Delete/protect/revert
+'deletedarticle'              => 'grisi "$1"',
 'confirmprotect'              => 'Konfirmoni',
 'protectcomment'              => 'Arsyja:',
 'protectexpiry'               => 'Afáti',
@@ -399,7 +510,25 @@ Pyetja: $2',
 'restriction-type'            => 'Lejet:',
 'restriction-level'           => 'Mbrojtjet:',
 
+# Namespace form on various pages
+'namespace'      => 'Hapësira:',
+'blanknamespace' => '(Artikujt)',
+
+# Contributions
+'contributions' => 'Kontributet',
+'mycontris'     => 'Redaktimet e mia',
+
+# What links here
+'whatlinkshere'       => "Lidhjet k'tu",
+'whatlinkshere-title' => 'Faqe qi lidhen me $1',
+'linklistsub'         => '(Listë e lidhjeve)',
+'linkshere'           => "Faqet e mëposhtme lidhen k'tu:",
+'isredirect'          => 'faqe përcjellëse',
+'istemplate'          => 'përfshirë',
+'whatlinkshere-links' => '← lidhje',
+
 # Block/unblock
+'blocklink'    => 'bllokoje',
 'contribslink' => 'kontribute',
 
 # Move page
@@ -411,14 +540,62 @@ Pyetja: $2',
 'talkpagenotmoved' => 'Faqja e diskutimeve korrespondente <strong>nuk</strong> u zhvendos.',
 'movereason'       => 'Arsyja',
 
+# Thumbnails
+'thumbnail-more'  => 'Zmadho',
+'thumbnail_error' => 'Gabim gjatë krijimit të figurës përmbledhëse: $1',
+
 # Tooltip help for the actions
-'tooltip-search'          => 'Kërko në projekt',
-'tooltip-n-mainpage'      => 'Vizitojeni Faqen kryesore',
-'tooltip-n-portal'        => 'Mbi projektin, çka muneni me bá për të dhe ku gjénden faqet.',
-'tooltip-n-recentchanges' => 'Lista e ndryshimeve të fundme në projekt',
-'tooltip-n-help'          => 'Vendi ku muneni me gjetë ndihmë.',
-'tooltip-n-sitesupport'   => 'Përkraheni projektin',
-'tooltip-t-upload'        => 'Ngarkoni figura ose skeda tjera',
-'tooltip-t-specialpages'  => 'Lista e krejt faqeve speciale.',
+'tooltip-pt-userpage'             => 'Faqja juej e përdoruesit',
+'tooltip-pt-mytalk'               => 'Faqja juej e diskutimeve',
+'tooltip-pt-preferences'          => 'Parapëlqimet tuaja',
+'tooltip-pt-watchlist'            => 'Lista e faqeve nën mbikqyrjen tuej.',
+'tooltip-pt-mycontris'            => 'Lista e kontributeve tueja',
+'tooltip-pt-login'                => 'Me hy brenda nuk asht e detyrueshme, po ká shumë përparësi.',
+'tooltip-pt-logout'               => 'Dalje',
+'tooltip-ca-talk'                 => 'Diskuto për përmbajtjen e faqes',
+'tooltip-ca-edit'                 => "Ju muneni me redaktue kët faqe. Përdorni butonin >>Trego parapamjen<< para se t'i kryni ndryshimet.",
+'tooltip-ca-addsection'           => "Nis një temë t're diskutimi.",
+'tooltip-ca-viewsource'           => 'Kjo faqe asht e mbrojtme. Ju muneni veç ta shikoni burimin e tekstit.',
+'tooltip-ca-move'                 => 'Zhvendose faqen',
+'tooltip-ca-watch'                => 'Shtoje kët faqe në lisën e faqeve nën mbikqyrje',
+'tooltip-search'                  => 'Kërko në projekt',
+'tooltip-n-mainpage'              => 'Vizitojeni Faqen kryesore',
+'tooltip-n-portal'                => 'Mbi projektin, çka muneni me bá për të dhe ku gjénden faqet.',
+'tooltip-n-currentevents'         => 'Informacion rreth ngjarjeve aktuale.',
+'tooltip-n-recentchanges'         => 'Lista e ndryshimeve të fundme në projekt',
+'tooltip-n-randompage'            => 'Shikoni një artikull të rastit.',
+'tooltip-n-help'                  => 'Vendi ku muneni me gjetë ndihmë.',
+'tooltip-n-sitesupport'           => 'Përkraheni projektin',
+'tooltip-t-whatlinkshere'         => 'Lista e faqeve qi lidhen te kjo faqe',
+'tooltip-t-upload'                => 'Ngarkoni figura ose skeda tjera',
+'tooltip-t-specialpages'          => 'Lista e krejt faqeve speciale.',
+'tooltip-ca-nstab-image'          => 'Shikoni faqen e figurës',
+'tooltip-ca-nstab-category'       => 'Shikoni faqen e kategorisë',
+'tooltip-save'                    => 'Kryej ndryshimet',
+'tooltip-preview'                 => 'Shiko parapamjen e ndryshimeve, përdore këtë para se me kry ndryshimet!',
+'tooltip-diff'                    => 'Trego ndryshimet që Ju i keni bá tekstit.',
+'tooltip-compareselectedversions' => 'Shikoni krahasimin midis dy versioneve të zgjedhme të kësaj faqe.',
+
+# Spam protection
+'categoryarticlecount'   => 'Ndodhen $1 artikuj në këtë kategori.',
+'category-media-count'   => 'Ndodhen {{PLURAL:$1|një skedë|$1 skeda}} në këtë kategori.',
+'listingcontinuesabbrev' => 'vazh.',
+
+# Media information
+'file-nohires'   => '<small>Rezolucioni i plotë.</small>',
+'show-big-image' => 'Rezolucion i plotë',
+
+# Metadata
+'metadata'        => 'Metadata',
+'metadata-help'   => 'Kjo skedë përmban hollësira tjera të cilat munen qi jan shtue nga kamera ose skaneri dixhital që është përdorur për ta krijuar. Nëse se skeda asht ndryshue nga gjendja origjinale, disa hollësira munen mos me pasqyru skedën e tashme.',
+'metadata-expand' => 'Tregoji detajet',
+
+# External editor support
+'edit-externally'      => 'Ndryshoni kët figurë/skedë me një mjet të jashtëm',
+'edit-externally-help' => 'Shikoni [http://meta.wikimedia.org/wiki/Help:External_editors udhëzimet e instalimit] për ma shumë informacion.',
+
+# 'all' in various places, this might be different for inflected languages
+'watchlistall2' => 'krejt',
+'namespacesall' => 'krejt',
 
 );

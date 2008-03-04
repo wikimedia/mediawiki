@@ -13,6 +13,7 @@
  * @author Siebrand
  * @author SPQRobin
  * @author לערי ריינהארט
+ * @author M.M.S.
  */
 
 $skinNames = array(
@@ -447,6 +448,9 @@ $messages = array(
 'viewdeleted'             => 'Skoða $1?',
 'restorelink'             => '{{PLURAL:$1|eina eydda breytingu|$1 eyddar breytingar}}',
 'feedlinks'               => 'Nippan:',
+'site-rss-feed'           => '$1 RSS Feed',
+'site-atom-feed'          => '$1 Atom Feed',
+'page-rss-feed'           => '"$1" RSS Feed',
 'red-link-title'          => '$1 (ekki enn skrifuð)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
@@ -712,7 +716,6 @@ Ef þú hefur óvart vilst hingtað, veldu einfaldlega '''til baka''' á vafranu
 'session_fail_preview'     => '<strong>Því miður! Gat ekki unnið úr breytingum þínum vegna týndra lotugagna. 
 Vinsamlegast reyndu aftur síðar. Ef það virkar ekki heldur skaltu reyna að skrá þig út og inn á ný.</strong>',
 'editing'                  => 'Breyti $1',
-'editinguser'              => "Breyti réttindum '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
 'editingsection'           => 'Breyti $1 (hluta)',
 'editingcomment'           => 'Breyti $1 (athugasemd)',
 'editconflict'             => 'Breytingaárekstur: $1',
@@ -889,6 +892,7 @@ Prófaðu [[Special:Search|að leita á þessari wiki síðu]] að svipuðum sí
 'userrights-lookup-user'      => 'Yfirlit notandaflokka',
 'userrights-user-editname'    => 'Skráðu notandanafn:',
 'editusergroup'               => 'Breyta notendahópum',
+'editinguser'                 => "Breyti réttindum '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
 'userrights-editusergroup'    => 'Breyta notandaflokkum',
 'saveusergroups'              => 'Vista notandaflokka',
 'userrights-groupsmember'     => 'Meðlimur:',
@@ -1159,7 +1163,6 @@ Lengdin á [http://meta.wikimedia.org/wiki/Help:Job_queue vinnsluröðinni] er '
 'newpages'                => 'Nýjustu greinar',
 'newpages-username'       => 'Notandanafn:',
 'ancientpages'            => 'Elstu síður',
-'intl'                    => 'Tungumálatenglar',
 'move'                    => 'Færa',
 'movethispage'            => 'Færa þessa síðu',
 'unusedimagestext'        => 'Vinsamlegast athugið að aðrar vefsíður gætu tengt beint í 

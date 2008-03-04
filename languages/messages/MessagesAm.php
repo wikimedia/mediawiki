@@ -120,7 +120,7 @@ $messages = array(
 
 'about'          => 'ስለ',
 'newwindow'      => '(ባዲስ መስኮት ውስጥ ይከፈታል።)',
-'cancel'         => 'ይጥፋ',
+'cancel'         => 'ሰርዝ',
 'qbfind'         => 'አግኝ',
 'qbbrowse'       => 'ቃኝ',
 'qbedit'         => 'አርም',
@@ -145,7 +145,7 @@ $messages = array(
 'permalink'        => 'ቋሚ መያያዣ',
 'edit'             => 'አርም',
 'editthispage'     => 'ይህን ገጽ አርም',
-'delete'           => 'ስርዝ',
+'delete'           => 'ይጥፋ',
 'deletethispage'   => 'ይህን ገጽ ሰርዝ',
 'protect'          => 'ጠብቅ',
 'protect_change'   => 'የመቆለፍ ደረጃ ለመቀይር',

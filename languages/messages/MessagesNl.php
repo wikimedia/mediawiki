@@ -815,7 +815,6 @@ Probeer het opnieuw. Als het dan nog niet lukt, meld u zich dan af en weer aan.<
 <strong>Als dit een legitieme bewerking is, probeer het dan opnieuw. Als het dan nog niet lukt, meld u zich dan af en weer aan.</strong>",
 'token_suffix_mismatch'     => '<strong>Uw bewerking is geweigerd omdat uw client de leestekens in het bewerkingstoken onjuist heeft behandeld. De bewerking is geweigerd om verminking van de paginatekst te voorkomen. Dit gebeurt soms als er een webgebaseerde proxydienst wordt gebruikt die fouten bevat.</strong>',
 'editing'                   => 'Bezig met bewerken van $1',
-'editinguser'               => "Bezig met wijzigen van de gebruikersrechten van gebruiker '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
 'editingsection'            => 'Bezig met bewerken van $1 (deelpagina)',
 'editingcomment'            => 'Bezig met bewerken van $1 (opmerking)',
 'editconflict'              => 'Bewerkingsconflict: $1',
@@ -1067,6 +1066,7 @@ Wees zeker dat deze wijziging de geschiedenisdoorlopendheid van de pagina zal be
 'userrights-lookup-user'           => 'Gebruikersgroepen beheren',
 'userrights-user-editname'         => 'Voer een gebruikersnaam in:',
 'editusergroup'                    => 'Gebruikersgroepen wijzigen',
+'editinguser'                      => "Bezig met wijzigen van de gebruikersrechten van gebruiker '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
 'userrights-editusergroup'         => 'Gebruikersgroepen wijzigen',
 'saveusergroups'                   => 'Gebruikersgroepen opslaan',
 'userrights-groupsmember'          => 'Lid van:',
@@ -1422,7 +1422,6 @@ De lengte van de [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] is ''
 'newpages'                => "Nieuwe pagina's",
 'newpages-username'       => 'Gebruikersnaam:',
 'ancientpages'            => "Oudste pagina's",
-'intl'                    => 'Taallinks',
 'move'                    => 'Hernoemen',
 'movethispage'            => 'Deze pagina hernoemen',
 'unusedimagestext'        => '<p>Let op! Het is mogelijk dat er via een directe link verwezen wordt naar een bestand. Een bestand kan hier dus ten onrechte opgenomen zijn.',
@@ -2274,7 +2273,7 @@ Alle volgende links die op dezelfde regel staan, worden behandeld als uitzonderi
 
 'exif-componentsconfiguration-0' => 'bestaat niet',
 
-'exif-exposureprogram-0' => 'Niet gedefiniëerd',
+'exif-exposureprogram-0' => 'Niet bepaald',
 'exif-exposureprogram-1' => 'Handmatig',
 'exif-exposureprogram-2' => 'Normaal programma',
 'exif-exposureprogram-3' => 'Diafragmaprioriteit',

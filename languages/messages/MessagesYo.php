@@ -4,7 +4,10 @@
  * @addtogroup Language
  *
  * @author Demmy
+ * @author SPQRobin
  */
+
+
 
 $messages = array(
 # User preference toggles
@@ -23,6 +26,7 @@ $messages = array(
 'navigation'     => 'Atọ́ka',
 'and'            => 'àti',
 
+'tagline'          => "Lát'ọwọ́ {{SITENAME}}",
 'help'             => 'Ìrànlọ́wọ́',
 'search'           => 'Ṣe àwáàrí',
 'searchbutton'     => 'Ṣe àwáàrí',
@@ -103,6 +107,9 @@ A ti fi orúkọ yín s'ílẹ̀. Ẹ mọ́ gbàgbé l'áti s'àtúnṣe àwọ
 'showdiff'    => 'Àfihàn àwọn àyípadà',
 'newarticle'  => '(Tuntun)',
 
+# Search results
+'powersearch' => 'Ṣe àwáàrí',
+
 # Preferences page
 'preferences'   => 'Àwọn ìfẹ́ràn',
 'mypreferences' => 'Àwọn ìfẹ́ràn mi',
@@ -114,9 +121,20 @@ A ti fi orúkọ yín s'ílẹ̀. Ẹ mọ́ gbàgbé l'áti s'àtúnṣe àwọ
 'imagelist_name' => 'Orúkọ',
 'imagelist_user' => 'Ẹnitínṣe',
 
+# File deletion
+'filedelete'        => 'Paarẹ́ $1',
+'filedelete-submit' => 'Paarẹ́',
+
 # Miscellaneous special pages
 'allpages'          => 'Gbogbo ojúewé',
+'specialpages'      => 'Àwọn ojúewé pàtàkì',
+'spheading'         => 'Àwọn ojúewé Pàtàkì fún gbogbo àwọn ẹnitínṣe',
+'newpages'          => 'Àwọn ojúewé tuntun',
 'newpages-username' => 'Orúkọ Ẹnitínṣe:',
+
+# Special:Log
+'specialloguserlabel'  => 'Ẹnitínṣe:',
+'speciallogtitlelabel' => 'Àkọlé:',
 
 # Special:Allpages
 'allarticles'       => 'Gbogbo ojúewé',
@@ -129,9 +147,15 @@ A ti fi orúkọ yín s'ílẹ̀. Ẹ mọ́ gbàgbé l'áti s'àtúnṣe àwọ
 'unwatch'         => "Já'wọ́ ìmójútó",
 'unwatchthispage' => "Já'wọ́ ìmójútó ojúewé yi",
 
+# Namespace form on various pages
+'blanknamespace' => '(Gbangba)',
+
 # Contributions
 'contributions' => 'Àwọn àfikún ẹnitínṣe',
 'mycontris'     => 'Àwọn àfikún mi',
+
+# What links here
+'whatlinkshere-page' => 'Ojúewé:',
 
 # Namespace 8 related
 'allmessagesname' => 'Orúkọ',

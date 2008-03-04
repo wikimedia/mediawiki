@@ -211,6 +211,7 @@ $messages = array(
 'postcomment'      => 'يوه تبصره ليکل',
 'articlepage'      => 'د مخ مېنځپانګه ښکاره کول',
 'talk'             => 'خبرې اترې',
+'views'            => 'کتنې',
 'toolbox'          => 'اوزاربکس',
 'userpage'         => 'د کاروونکي پاڼه ښکاره کول',
 'projectpage'      => 'د پروژې مخ ښکاره کول',
@@ -389,6 +390,7 @@ $messages = array(
 'headline_tip'    => 'د ۲ کچې سرليک',
 'math_sample'     => 'فورمول دلته ځای کړی',
 'math_tip'        => 'شمېرپوهنيز فورمول (LaTeX)',
+'image_tip'       => 'خښه شوې دوتنه',
 'media_tip'       => 'د رسنيزې دوتنې تړنه',
 'sig_tip'         => 'ستاسو لاسليک د وخت د ټاپې سره',
 
@@ -447,6 +449,7 @@ $messages = array(
 'viewpagelogs'        => 'د همدغه مخ يادښتونه کتل',
 'nohistory'           => 'ددې مخ لپاره د سمادېدنې هېڅ کوم پېښليک نه شته.',
 'currentrev'          => 'اوسنۍ بڼه',
+'revisionasof'        => 'د $1 پورې شته مخليدنه',
 'previousrevision'    => '← زړه بڼه',
 'nextrevision'        => 'نوې بڼه →',
 'currentrevisionlink' => 'اوسنۍ بڼه',
@@ -460,6 +463,9 @@ $messages = array(
 'histlast'            => 'تازه',
 'historysize'         => '({{PLURAL:$1|1 بايټ|$1 بايټونه}})',
 'historyempty'        => '(تش)',
+
+# Revision feed
+'history-feed-item-nocomment' => '$1 په $2', # user at time
 
 # Revision deletion
 'rev-delundel' => 'ښکاره کول/ پټول',
@@ -673,6 +679,8 @@ $messages = array(
 'withoutinterwiki'        => 'د ژبې د تړنو بې برخې مخونه',
 'withoutinterwiki-submit' => 'ښکاره کول',
 
+'fewestrevisions' => 'لږ مخليدل شوي مخونه',
+
 # Miscellaneous special pages
 'nbytes'                  => '$1 {{PLURAL:$1|بايټ|بايټونه}}',
 'ncategories'             => '$1 {{PLURAL:$1|وېشنيزه|وېشنيزې}}',
@@ -708,7 +716,6 @@ $messages = array(
 'newpages'                => 'نوي مخونه',
 'newpages-username'       => 'کارن نوم:',
 'ancientpages'            => 'تر ټولو زاړه مخونه',
-'intl'                    => 'د ژبو تر مېنځ تړنې',
 'move'                    => 'لېږدول',
 'movethispage'            => 'دا مخ ولېږدوه',
 
@@ -789,6 +796,10 @@ $messages = array(
 'watchlist-hide-own'   => 'زما سمادونه پټول',
 'watchlist-hide-minor' => 'وړې سمادېدنې پټول',
 
+# Displayed when you click the "watch" button and it's in the process of watching
+'watching'   => 'د کتلو په حال کې...',
+'unwatching' => 'د نه کتلو په حال کې...',
+
 'enotif_newpagetext'           => 'دا يوه نوې پاڼه ده.',
 'enotif_impersonal_salutation' => '{{SITENAME}} کارونکی',
 'changed'                      => 'بدل شو',
@@ -798,32 +809,36 @@ $messages = array(
 'enotif_anon_editor'           => 'ورکنومی کارونکی $1',
 
 # Delete/protect/revert
-'deletepage'            => 'پاڼه ړنګول',
-'confirm'               => 'تاييد',
-'exblank'               => 'دا مخ تش وه',
-'delete-confirm'        => '"$1" ړنګوول',
-'delete-legend'         => 'ړنګول',
-'historywarning'        => 'پاملرنه: کومه پاڼه چې تاسو يې د ړنګولو هڅه کوی يو پېښليک لري:',
-'confirmdeletetext'     => 'تاسو د تل لپار يو مخ يا انځور د هغه ټول پېښليک سره سره د دغه ډېټابېز نه ړنګوۍ. که چېرته تاسو ددغې کړنې په پايلې پوه ياست او د دغې پاڼې د [[پروژې:تګلارې]] سره سمون خوري نو لطفاً ددغې کړنې تاييد وکړی .',
-'actioncomplete'        => 'بشپړه کړنه',
-'deletedtext'           => '"<nowiki>$1</nowiki>" ړنګ شوی.
+'deletepage'                  => 'پاڼه ړنګول',
+'confirm'                     => 'تاييد',
+'exblank'                     => 'دا مخ تش وه',
+'delete-confirm'              => '"$1" ړنګوول',
+'delete-legend'               => 'ړنګول',
+'historywarning'              => 'پاملرنه: کومه پاڼه چې تاسو يې د ړنګولو هڅه کوی يو پېښليک لري:',
+'confirmdeletetext'           => 'تاسو د تل لپار يو مخ يا انځور د هغه ټول پېښليک سره سره د دغه ډېټابېز نه ړنګوۍ. که چېرته تاسو ددغې کړنې په پايلې پوه ياست او د دغې پاڼې د [[پروژې:تګلارې]] سره سمون خوري نو لطفاً ددغې کړنې تاييد وکړی .',
+'actioncomplete'              => 'بشپړه کړنه',
+'deletedtext'                 => '"<nowiki>$1</nowiki>" ړنګ شوی.
 د نوو ړنګ شوو سوانحو لپاره $2 وګورۍ.',
-'deletedarticle'        => 'ړنګ شو "[[$1]]"',
-'dellogpage'            => 'د ړنګولو يادښت',
-'dellogpagetext'        => 'دا لاندې د نوو ړنګ شوو کړنو لړليک دی.',
-'deletionlog'           => 'د ړنګولو يادښت',
-'deletecomment'         => 'د ړنګولو سبب',
-'deleteotherreason'     => 'بل/اضافه سبب:',
-'deletereasonotherlist' => 'بل سبب',
-'protectlogpage'        => 'د ژغورنې يادښت',
-'protectedarticle'      => '"[[$1]]" وژغورلی شو',
-'confirmprotect'        => 'د ژغورلو پخلی کول',
-'protectcomment'        => 'تبصره:',
-'protect-default'       => '(اصلي بڼه)',
-'protect-cantedit'      => 'تاسو نه شی کولای چې د همدغه مخ د ژغورنې په کچه کې بدلون راولی، دا ځکه چې تاسو د همدغه مخ د سمادولو اجازه نه لری.',
-'restriction-type'      => 'اجازه:',
-'restriction-level'     => 'د بنديز کچه:',
-'minimum-size'          => 'وړه کچه',
+'deletedarticle'              => 'ړنګ شو "[[$1]]"',
+'dellogpage'                  => 'د ړنګولو يادښت',
+'dellogpagetext'              => 'دا لاندې د نوو ړنګ شوو کړنو لړليک دی.',
+'deletionlog'                 => 'د ړنګولو يادښت',
+'deletecomment'               => 'د ړنګولو سبب',
+'deleteotherreason'           => 'بل/اضافه سبب:',
+'deletereasonotherlist'       => 'بل سبب',
+'protectlogpage'              => 'د ژغورنې يادښت',
+'protectedarticle'            => '"[[$1]]" وژغورلی شو',
+'confirmprotect'              => 'د ژغورلو پخلی کول',
+'protectcomment'              => 'تبصره:',
+'protectexpiry'               => 'د پای نېټه:',
+'protect-default'             => '(اصلي بڼه)',
+'protect-fallback'            => 'د "$1" اجازه پکار ده',
+'protect-level-autoconfirmed' => 'د ناثبته کارونکو مخنيوی کول',
+'protect-level-sysop'         => 'يواځې پازوالان',
+'protect-cantedit'            => 'تاسو نه شی کولای چې د همدغه مخ د ژغورنې په کچه کې بدلون راولی، دا ځکه چې تاسو د همدغه مخ د سمادولو اجازه نه لری.',
+'restriction-type'            => 'اجازه:',
+'restriction-level'           => 'د بنديز کچه:',
+'minimum-size'                => 'وړه کچه',
 
 # Restrictions (nouns)
 'restriction-edit'   => 'سمادول',
@@ -892,6 +907,7 @@ $messages = array(
 'infiniteblock'            => 'لامحدوده',
 'anononlyblock'            => 'يواځې ورکنومی',
 'blocklink'                => 'مخه نيول',
+'unblocklink'              => 'نامخنيول',
 'contribslink'             => 'ونډې',
 'autoblocker'              => 'په اتوماتيک ډول ستاسو مخنيوی شوی دا ځکه چې ستاسو IP پته وروستی ځل د "[[User:$1|$1]]" له خوا کارېدلې. او د $1 د مخنيوي سبب دا دی: "$2"',
 'blocklogpage'             => 'د مخنيوي يادښت',
@@ -920,6 +936,7 @@ $messages = array(
 'delete_and_move_confirm' => 'هو, دا مخ ړنګ کړه',
 
 # Export
+'export'            => 'مخونه صادرول',
 'export-addcattext' => 'مخونو د ورګډولو وېشنيزه:',
 'export-addcat'     => 'ورګډول',
 
@@ -936,6 +953,9 @@ $messages = array(
 # Thumbnails
 'thumbnail-more' => 'لويول',
 'filemissing'    => 'دوتنه ورکه ده',
+
+# Import log
+'importlogpage' => 'د واردولو يادښت',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'        => 'زما کارن مخ',
@@ -954,6 +974,7 @@ $messages = array(
 'tooltip-ca-delete'          => 'همدا مخ ړنګول',
 'tooltip-ca-move'            => 'همدا مخ لېږدول',
 'tooltip-ca-watch'           => 'همدا مخ پخپل کتلي لړليک کې ګډول',
+'tooltip-ca-unwatch'         => 'همدا مخ خپل د کتلي لړليک نه لرې کول',
 'tooltip-search'             => 'د {{SITENAME}} لټون',
 'tooltip-p-logo'             => 'لومړی مخ',
 'tooltip-n-mainpage'         => 'لومړي مخ ته ورتلل',
@@ -1017,6 +1038,7 @@ $messages = array(
 'hours-abbrev' => 'ساعتونه',
 
 # Metadata
+'metadata'          => 'مېټاډاټا',
 'metadata-expand'   => 'غځېدلی تفصيل ښکاره کړی',
 'metadata-collapse' => 'غځېدلی تفصيل پټ کړی',
 
@@ -1112,6 +1134,7 @@ $1',
 
 # Watchlist editing tools
 'watchlisttools-view' => 'اړونده بدلونونه کتل',
+'watchlisttools-edit' => 'کتلی لړليک ليدل او سمادول',
 
 # Iranian month names
 'iranian-calendar-m1'  => 'وری',

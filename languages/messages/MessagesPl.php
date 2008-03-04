@@ -322,7 +322,7 @@ $messages = array(
 'jumptosearch'      => 'wyszukiwanie',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
-'aboutsite'         => 'O {{GRAMMAR:Ms.lp|{{SITENAME}}}}',
+'aboutsite'         => 'O {{GRAMMAR:MS.lp|{{SITENAME}}}}',
 'aboutpage'         => 'Project:O serwisie',
 'bugreports'        => 'Raport o błędach',
 'bugreportspage'    => 'Project:Błędy',
@@ -373,7 +373,7 @@ $messages = array(
 'restorelink'             => '{{PLURAL:$1|jedną usuniętą wersję|$1 usunięte wersje|$1 usuniętych wersji}}',
 'feedlinks'               => 'Kanały:',
 'feed-invalid'            => 'Niewłaściwy typ kanału informacyjnego.',
-'feed-unavailable'        => 'Kanały informacyjne nie są dostępne na {{GRAMMAR:Ms.lp|{{SITENAME}}}}',
+'feed-unavailable'        => 'Kanały informacyjne nie są dostępne na {{GRAMMAR:MS.lp|{{SITENAME}}}}',
 'site-rss-feed'           => 'Kanał RSS {{GRAMMAR:D.lp|$1}}',
 'site-atom-feed'          => 'Kanał Atom {{GRAMMAR:D.lp|$1}}',
 'page-rss-feed'           => 'Kanał RSS "$1"',
@@ -545,8 +545,8 @@ W celu powstrzymania nadużyć możliwość wysyłania przypomnień została ogr
 'invalidemailaddress'        => 'E-mail nie zostanie zaakceptowany: jego format nie spełnia formalnych wymagań. Proszę wpisać poprawny adres email lub wyczyścić pole.',
 'accountcreated'             => 'Utworzono konto',
 'accountcreatedtext'         => 'Konto dla $1 zostało utworzone.',
-'createaccount-title'        => 'Stworzenie konta na {{GRAMMAR:Ms.lp|{{SITENAME}}}}',
-'createaccount-text'         => 'Ktoś utworzył na {{GRAMMAR:Ms.lp|{{SITENAME}}}} ($4) dla Twojego adresu e-mail konto "$2". Aktualne hasło to "$3". Powinieneś się teraz zalogować i je zmienić.
+'createaccount-title'        => 'Stworzenie konta na {{GRAMMAR:MS.lp|{{SITENAME}}}}',
+'createaccount-text'         => 'Ktoś utworzył na {{GRAMMAR:MS.lp|{{SITENAME}}}} ($4) dla Twojego adresu e-mail konto "$2". Aktualne hasło to "$3". Powinieneś się teraz zalogować i je zmienić.
 
 Możesz zignorować tą wiadomość, jeśli konto zostało stworzone przez pomyłkę.',
 'loginlanguagelabel'         => 'Język: $1',
@@ -559,7 +559,7 @@ Możesz zignorować tą wiadomość, jeśli konto zostało stworzone przez pomy�
 'resetpass_submit'        => 'Ustaw hasło i zaloguj',
 'resetpass_success'       => 'Twoje hasło zostało pomyślnie zmienione! Trwa logowanie...',
 'resetpass_bad_temporary' => 'Nieprawidłowe hasło tymczasowe. Być może zakończyłeś już proces zmiany hasła lub poprosiłeś o nowe hasło tymczasowe.',
-'resetpass_forbidden'     => 'Hasła na {{GRAMMAR:Ms.lp|{{SITENAME}}}} nie można zmienić.',
+'resetpass_forbidden'     => 'Hasła na {{GRAMMAR:MS.lp|{{SITENAME}}}} nie można zmienić.',
 'resetpass_missing'       => 'Brak danych formularza.',
 
 # Edit page toolbar
@@ -632,7 +632,7 @@ Identyfikator Twojej blokady to $5. Zanotuj go i podaj administratorowi.',
 'whitelistreadtitle'        => 'Przed przeczytaniem musisz się zalogować',
 'whitelistreadtext'         => 'Musisz się [[{{ns:Special}}:Userlogin|zalogować]], żeby czytać strony.',
 'whitelistacctitle'         => 'Nie wolno ci zakładać konta',
-'whitelistacctext'          => 'Zakładanie kont na {{GRAMMAR:Ms.lp|{{SITENAME}}}} wymaga [[{{ns:special}}:Userlogin|zalogowania]] oraz posiadania odpowiednich uprawnień.',
+'whitelistacctext'          => 'Zakładanie kont na {{GRAMMAR:MS.lp|{{SITENAME}}}} wymaga [[{{ns:special}}:Userlogin|zalogowania]] oraz posiadania odpowiednich uprawnień.',
 'confirmedittitle'          => 'Wymagane potwierdzenie e-maila by móc edytować',
 'confirmedittext'           => 'Musisz podać i potwierdzić swój e-mail by móc edytować. Możesz to zrobić w [[{{ns:special}}:Preferences|swoich ustawieniach]].',
 'nosuchsectiontitle'        => 'Nieistniejąca sekcja',
@@ -659,12 +659,11 @@ Identyfikator Twojej blokady to $5. Zanotuj go i podaj administratorowi.',
 'session_fail_preview'      => '<strong>Przepraszamy! Serwer nie może przetworzyć tej edycji z powodu utraty danych sesji. Spróbuj jeszcze raz. Jeśli to nie pomoże - wyloguj się i zaloguj ponownie.</strong>',
 'session_fail_preview_html' => "<strong>Przepraszamy! Serwer nie może przetworzyć tej edycji z powodu utraty danych sesji.</strong>
 
-''Ponieważ na {{GRAMMAR:Ms.lp|{{SITENAME}}}} włączona została opcja \"raw HTML\", podgląd został ukryty w celu zabezpieczenia przed atakami JavaScript.''
+''Ponieważ na {{GRAMMAR:MS.lp|{{SITENAME}}}} włączona została opcja \"raw HTML\", podgląd został ukryty w celu zabezpieczenia przed atakami JavaScript.''
 
 <strong>Jeśli jest to prawidłowa próba dokonania edycji, spróbuj jeszcze raz. Jeśli to nie pomoże - wyloguj się i zaloguj ponownie.</strong>",
 'token_suffix_mismatch'     => '<strong>Twoja edycja została odrzucona, ponieważ twój klient pomieszał znaki interpunkcyjne w żetonie edycyjnym. Twoja edycja została odrzucona by zapobiec zniszczeniu tekstu strony. Takie problemy zdarzają się w wypadku korzystania z wadliwych anonimowych sieciowych usług proxy.</strong>',
 'editing'                   => 'Edytujesz "$1"',
-'editinguser'               => 'Edytujesz "$1"',
 'editingsection'            => 'Edytujesz "$1" (fragment)',
 'editingcomment'            => 'Edytujesz "$1" (komentarz)',
 'editconflict'              => 'Konflikt edycji: $1',
@@ -678,10 +677,10 @@ By wprowadzić swoje zmiany musisz zmodyfikować tekst z górnego pola.
 'nonunicodebrowser'         => '<strong>Uwaga! Twoja przeglądarka nie umie poprawnie rozpoznawać kodowania UTF-8 (Unicode). Z tego powodu wszystkie znaki, których Twoja przeglądarka nie jest w stanie rozpoznać, zostały zastąpione ich kodami heksadecymalnymi.</strong>',
 'editingold'                => '<strong>Ostrzeżenie: Edytujesz inną niż bieżąca wersję tej strony. Jeśli zapiszesz ją, wszystkie późniejsze zmiany zostaną skasowane.</strong>',
 'yourdiff'                  => 'Różnice',
-'copyrightwarning'          => "Proszę pamiętać o tym, że wszelki wkład do {{GRAMMAR:Ms.lp|{{SITENAME}}}} jest udostępniany na zasadach $2 (szczegóły w $1). Jeśli nie chcesz, żeby Twój tekst był dowolnie zmieniany przez każdego i rozpowszechniany bez ograniczeń, nie umieszczaj go tutaj.<br />
+'copyrightwarning'          => "Proszę pamiętać o tym, że wszelki wkład do {{GRAMMAR:MS.lp|{{SITENAME}}}} jest udostępniany na zasadach $2 (szczegóły w $1). Jeśli nie chcesz, żeby Twój tekst był dowolnie zmieniany przez każdego i rozpowszechniany bez ograniczeń, nie umieszczaj go tutaj.<br />
 Zapisując swoją edycję oświadczasz, że ten tekst jest Twoim dziełem lub pochodzi z materiałów dostępnych na zasadach ''public domain'' albo kompatybilnych.
 <strong>PROSZĘ NIE UŻYWAĆ MATERIAŁÓW CHRONIONYCH PRAWEM AUTORSKIM BEZ POZWOLENIA WŁAŚCICIELA!</strong>",
-'copyrightwarning2'         => "Proszę pamiętać o tym, że wszelki wkład do {{GRAMMAR:Ms.lp|{{SITENAME}}}} może być edytowany, zmieniany lub usunięty przez innych użytkowników. Jeśli nie chcesz, żeby Twój tekst był dowolnie zmieniany przez każdego i rozpowszechniany bez ograniczeń, nie umieszczaj go tutaj.<br />
+'copyrightwarning2'         => "Proszę pamiętać o tym, że wszelki wkład do {{GRAMMAR:MS.lp|{{SITENAME}}}} może być edytowany, zmieniany lub usunięty przez innych użytkowników. Jeśli nie chcesz, żeby Twój tekst był dowolnie zmieniany przez każdego i rozpowszechniany bez ograniczeń, nie umieszczaj go tutaj.<br />
 Zapisując swoją edycję oświadczasz, że ten tekst jest Twoim dziełem lub pochodzi z materiałów dostępnych na zasadach ''public domain'' albo kompatybilnych (zobacz także $1).
 <strong>PROSZĘ NIE UŻYWAĆ MATERIAŁÓW CHRONIONYCH PRAWEM AUTORSKIM BEZ POZWOLENIA WŁAŚCICIELA!</strong>",
 'longpagewarning'           => '<strong>Uwaga: Ta strona ma $1 kilobajt-y/-ów; w przypadku niektórych przeglądarek mogą wystąpić problemy w edycji stron mających więcej niż 32 kilobajty. Jeśli to możliwe, spróbuj podzielić tekst na mniejsze części.</strong>',
@@ -699,8 +698,8 @@ Zapisując swoją edycję oświadczasz, że ten tekst jest Twoim dziełem lub po
 'hiddencategories'          => 'Ta strona jest w {{PLURAL:$1|jednej ukrytej kategorii|$1 ukrytych kategoriach}}:',
 'edittools'                 => '<!-- Znajdujący się tutaj tekst zostanie pokazany pod polem edycji i formularzem przesyłania plików. -->',
 'nocreatetitle'             => 'Ograniczono tworzenie stron',
-'nocreatetext'              => 'Na {{GRAMMAR:Ms.lp|{{SITENAME}}}} ograniczono możliwość tworzenia nowych stron. Możesz edytować istniejące strony lub [[{{ns:special}}:Userlogin|zalogować się lub utworzyć konto]].',
-'nocreate-loggedin'         => 'Nie masz uprawnień do tworzenia stron na {{GRAMMAR:Ms.lp|{{SITENAME}}}}.',
+'nocreatetext'              => 'Na {{GRAMMAR:MS.lp|{{SITENAME}}}} ograniczono możliwość tworzenia nowych stron. Możesz edytować istniejące strony lub [[{{ns:special}}:Userlogin|zalogować się lub utworzyć konto]].',
+'nocreate-loggedin'         => 'Nie masz uprawnień do tworzenia stron na {{GRAMMAR:MS.lp|{{SITENAME}}}}.',
 'permissionserrors'         => 'Błędy uprawnień',
 'permissionserrorstext'     => 'Nie masz uprawnień do tego działania z {{PLURAL:$1|następującej przyczyny|następujących przyczyn}}:',
 'recreate-deleted-warn'     => "'''Uwaga: Próbujesz odtworzyć uprzednio skasowaną stronę.'''
@@ -760,7 +759,7 @@ Szczegóły mogą znajdować się w [{{fullurl:Special:Log/delete|page={{PAGENAM
 </div>',
 'rev-deleted-text-view'       => '<div class="mw-warning plainlinks">
 Ta wersja strony została usunięta i nie jest dostępna publicznie.
-Jednak jako administrator {{GRAMMAR:Ms.lp|{{SITENAME}}}} możesz ją obejrzeć.
+Jednak jako administrator {{GRAMMAR:MS.lp|{{SITENAME}}}} możesz ją obejrzeć.
 Powody usunięcia mogą znajdować się w [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} rejestrze usunięć].
 </div>',
 'rev-delundel'                => 'pokaż/ukryj',
@@ -849,7 +848,7 @@ Upewnij się, że zmiany będą zapewniać ciągłość historyczną edycji stro
 'nonefound'             => "'''Uwaga''': brak rezultatów wyszukiwania spowodowany jest bardzo często szukaniem najpopularniejszych słów, takich jak \"jest\" czy \"nie\", które nie są indeksowane, albo z powodu podania w zapytaniu więcej niż jednego słowa (na liście odnalezionych stron znajdą się tylko te, które zawierają wszystkie podane słowa).",
 'powersearch'           => 'Szukaj',
 'powersearchtext'       => 'Szukaj w przestrzeniach nazw:<br />$1<br />$2 Pokaż przekierowania<br />Szukany tekst $3 $9',
-'searchdisabled'        => 'Wyszukiwanie w {{GRAMMAR:Ms.lp|{{SITENAME}}}} zostało wyłączone. W międzyczasie możesz skorzystać z wyszukiwania Google. Jednak informacje o treści {{GRAMMAR:Ms.lp|{{SITENAME}}}} mogą być w Google nieaktualne.',
+'searchdisabled'        => 'Wyszukiwanie w {{GRAMMAR:MS.lp|{{SITENAME}}}} zostało wyłączone. W międzyczasie możesz skorzystać z wyszukiwania Google. Jednak informacje o treści {{GRAMMAR:MS.lp|{{SITENAME}}}} mogą być w Google nieaktualne.',
 
 # Preferences page
 'preferences'              => 'Preferencje',
@@ -916,6 +915,7 @@ Upewnij się, że zmiany będą zapewniać ciągłość historyczną edycji stro
 'userrights-lookup-user'           => 'Zarządzaj grupami użytkownika',
 'userrights-user-editname'         => 'Wprowadź nazwę użytkownika:',
 'editusergroup'                    => 'Edytuj grupy użytkownika',
+'editinguser'                      => 'Edytujesz "$1"',
 'userrights-editusergroup'         => 'Edytuj grupy użytkownika',
 'saveusergroups'                   => 'Zapisz',
 'userrights-groupsmember'          => 'Należy do:',
@@ -1135,7 +1135,7 @@ Rejestr usunięć tego pliku jest dla wygody podany poniżej:",
 'filedelete-submit'           => 'Skasuj',
 'filedelete-success'          => "Skasowano plik '''$1'''.",
 'filedelete-success-old'      => '<span class="plainlinks">Skasowano plik \'\'\'[[Media:$1|$1]]\'\'\' w wersji z $3, $2.</span>',
-'filedelete-nofile'           => "Plik '''$1''' nie istnieje w {{GRAMMAR:Ms.pl|{{SITENAME}}}}.",
+'filedelete-nofile'           => "Plik '''$1''' nie istnieje w {{GRAMMAR:MS.pl|{{SITENAME}}}}.",
 'filedelete-nofile-old'       => "Nie ma zarchiwizowanje wersji '''$1''' o podanych atrybutach.",
 'filedelete-iscurrent'        => 'Próbujesz skasować najnowszą wersję tego pliku. Musisz najpierw przywrócić starszą wersję.',
 'filedelete-otherreason'      => 'Inna/dodatkowa przyczyna:',
@@ -1215,7 +1215,7 @@ Długość [http://meta.wikimedia.org/wiki/Help:Job_queue kolejki zadań] to '''
 'nviews'                          => 'odwiedzono $1 {{PLURAL:$1|raz|razy}}',
 'specialpage-empty'               => 'Ta strona jest pusta.',
 'lonelypages'                     => 'Porzucone strony',
-'lonelypagestext'                 => 'Do poniższych stron nie odwołuje się żadna inna strona w {{GRAMMAR:Ms.lp|{{SITENAME}}}}.',
+'lonelypagestext'                 => 'Do poniższych stron nie odwołuje się żadna inna strona w {{GRAMMAR:MS.lp|{{SITENAME}}}}.',
 'uncategorizedpages'              => 'Nieskategoryzowane strony',
 'uncategorizedpages-summary'      => 'Poniżej znajduje się lista stron nienależących do żadnej kategorii.',
 'uncategorizedcategories'         => 'Nieskategoryzowane kategorie',
@@ -1236,7 +1236,7 @@ Długość [http://meta.wikimedia.org/wiki/Help:Job_queue kolejki zadań] to '''
 'mostimages'                      => 'Najczęściej linkowane pliki',
 'mostrevisions'                   => 'Najczęściej edytowane artykuły',
 'mostrevisions-summary'           => 'Poniżej znajduje się lista najczęściej edytowanych stron.',
-'allpages'                        => 'Strony',
+'allpages'                        => 'Wszystkie strony',
 'prefixindex'                     => 'Wszystkie strony według prefiksu',
 'shortpages'                      => 'Najkrótsze strony',
 'shortpages-summary'              => 'Poniżej znajduje się lista najkrótszych stron.',
@@ -1258,7 +1258,6 @@ Długość [http://meta.wikimedia.org/wiki/Help:Job_queue kolejki zadań] to '''
 'newpages'                        => 'Nowe strony',
 'newpages-username'               => 'Nazwa użytkownika:',
 'ancientpages'                    => 'Najstarsze strony',
-'intl'                            => 'Linki interwiki',
 'move'                            => 'Przenieś',
 'movethispage'                    => 'Przenieś tę stronę',
 'unusedimagestext'                => 'Pamiętaj, proszę, że inne witryny, np. projekty Wikimedia w innych językach, mogą odwoływać się do tych plików używając bezpośrednio URL. Dlatego też niektóre z plików mogą się znajdować na tej liście mimo, że żadna strona nie odwołuje się do nich.',
@@ -1304,7 +1303,7 @@ Długość [http://meta.wikimedia.org/wiki/Help:Job_queue kolejki zadań] to '''
 'allpagessubmit'    => 'Pokaż',
 'allpagesprefix'    => 'Pokaż zaczynające się od:',
 'allpagesbadtitle'  => 'Podana nazwa jest nieprawidłowa, zawiera prefiks międzyprojektowy lub międzyjęzykowy. Może ona także zawierać w sobie jeden lub więcej znaków których użycie w nazwach jest niedozwolone.',
-'allpages-bad-ns'   => 'W {{GRAMMAR:Ms.lp|{{SITENAME}}}} nie istnieje przestrzeń nazw "$1".',
+'allpages-bad-ns'   => 'W {{GRAMMAR:MS.lp|{{SITENAME}}}} nie istnieje przestrzeń nazw "$1".',
 
 # Special:Listusers
 'listusersfrom'      => 'Wyświetl użytkowników zaczynając od:',
@@ -1318,7 +1317,7 @@ Długość [http://meta.wikimedia.org/wiki/Help:Job_queue kolejki zadań] to '''
 'emailpage'       => 'Wyślij e-mail do użytkownika',
 'emailpagetext'   => 'Jeśli ten użytkownik wpisał poprawny adres e-mailowy w swoich preferencjach, to poniższy formularz umożliwi Ci wysłanie jednej wiadomości. Adres e-mailowy, który został przez Ciebie wprowadzony w Twoich preferencjach pojawi się w polu "Od", dzięki temu odbiorca będzie mógł Ci odpowiedzieć.',
 'usermailererror' => 'Obiekt Mail zwrócił błąd:',
-'defemailsubject' => 'e-mail na {{GRAMMAR:Ms.pl|{{SITENAME}}}}',
+'defemailsubject' => 'e-mail na {{GRAMMAR:MS.pl|{{SITENAME}}}}',
 'noemailtitle'    => 'Brak adresu e-mailowego',
 'noemailtext'     => 'Ten użytkownik nie podał poprawnego adresu e-mailowego, albo zadecydował, że nie chce otrzymywać e-maili od innych użytkowników.',
 'emailfrom'       => 'Od',
@@ -1374,19 +1373,19 @@ Jeśli chcesz usunąć stronę ze swojej listy obserwowanych, kliknij na zakład
 'watching'   => 'Obserwuję...',
 'unwatching' => 'Przestaję obserwować...',
 
-'enotif_mailer'                => 'Powiadomienie z {{GRAMMAR:Ms.lp|{{SITENAME}}}}',
+'enotif_mailer'                => 'Powiadomienie z {{GRAMMAR:MS.lp|{{SITENAME}}}}',
 'enotif_reset'                 => 'Zaznacz wszystkie strony jako odwiedzone',
 'enotif_newpagetext'           => 'To jest nowa strona.',
-'enotif_impersonal_salutation' => 'użytkownik na {{GRAMMAR:Ms.lp|{{SITENAME}}}}',
+'enotif_impersonal_salutation' => 'użytkownik na {{GRAMMAR:MS.lp|{{SITENAME}}}}',
 'changed'                      => 'zmieniono',
 'created'                      => 'utworzono',
-'enotif_subject'               => 'Strona $PAGETITLE w {{GRAMMAR:Ms.lp|{{SITENAME}}}} została $CHANGEDORCREATED przez użytkownika $PAGEEDITOR',
+'enotif_subject'               => 'Strona $PAGETITLE w {{GRAMMAR:MS.lp|{{SITENAME}}}} została $CHANGEDORCREATED przez użytkownika $PAGEEDITOR',
 'enotif_lastvisited'           => 'Zobacz $1 w celu obejrzenia wszystkich zmian od twojej ostatniej wizyty.',
 'enotif_lastdiff'              => 'Zobacz $1 w celu obejrzenia tej zmiany.',
 'enotif_anon_editor'           => 'użytkownik anonimowy $1',
 'enotif_body'                  => 'Drogi (droga) $WATCHINGUSERNAME,
 
-strona $PAGETITLE w {{GRAMMAR:Ms.lp|{{SITENAME}}}} została $CHANGEDORCREATED $PAGEEDITDATE przez użytkownika $PAGEEDITOR, zobacz $PAGETITLE_URL w celu obejrzenia aktualnej wersji.
+strona $PAGETITLE w {{GRAMMAR:MS.lp|{{SITENAME}}}} została $CHANGEDORCREATED $PAGEEDITDATE przez użytkownika $PAGEEDITOR, zobacz $PAGETITLE_URL w celu obejrzenia aktualnej wersji.
 
 $NEWPAGE
 
@@ -2241,7 +2240,7 @@ Program zwrócił komunikat: $1',
 'confirmemail_loggedin'   => 'Twój adres email został zweryfikowany.',
 'confirmemail_error'      => 'Pojawiły się błędy przy zapisywaniu potwierdzenia.',
 'confirmemail_subject'    => '{{SITENAME}} - potwierdzenie adresu e-mail',
-'confirmemail_body'       => 'Ktoś łącząc się z komputera o adresie IP $1 zarejestrował w {{GRAMMAR:Ms.lp|{{SITENAME}}}}
+'confirmemail_body'       => 'Ktoś łącząc się z komputera o adresie IP $1 zarejestrował w {{GRAMMAR:MS.lp|{{SITENAME}}}}
 konto "$2" podając niniejszy adres e-mail.
 
 Aby potwierdzić, że to Ty zarejestrowałeś/aś to konto oraz aby włączyć 

@@ -690,7 +690,6 @@ Esikatselu on piilotettu varokeinona JavaScript-hyökkäyksiä vastaan – täss
 Yritä uudelleen. Jos ongelma ei katoa, yritä kirjautua ulos ja takaisin sisään.',
 'token_suffix_mismatch'     => '<strong>Muokkauksesi on hylätty, koska asiakasohjelmasi ei osaa käsitellä välimerkkejä muokkaustarkisteessa. Syynä voi olla viallinen välityspalvelin.</strong>',
 'editing'                   => 'Muokataan sivua $1',
-'editinguser'               => 'Muokataan sivua $1',
 'editingsection'            => 'Muokataan osiota sivusta $1',
 'editingcomment'            => 'Muokataan kommenttia sivulla $1',
 'editconflict'              => 'Päällekkäinen muokkaus: $1',
@@ -930,6 +929,7 @@ $1 | $2',
 'userrights-lookup-user'           => 'Käyttöoikeuksien hallinta',
 'userrights-user-editname'         => 'Käyttäjätunnus',
 'editusergroup'                    => 'Muokkaa käyttäjän ryhmiä',
+'editinguser'                      => 'Muokataan sivua $1',
 'userrights-editusergroup'         => 'Käyttäjän ryhmät',
 'saveusergroups'                   => 'Tallenna',
 'userrights-groupsmember'          => 'Jäsenenä ryhmissä',
@@ -1263,7 +1263,6 @@ Ohjelmiston suorittamia ylläpitotöitä on jonossa '''$7''' {{PLURAL:$7|kappale
 'newpages'                => 'Uudet sivut',
 'newpages-username'       => 'Käyttäjätunnus',
 'ancientpages'            => 'Kauan muokkaamattomat sivut',
-'intl'                    => 'Kieltenväliset linkit',
 'move'                    => 'Siirrä',
 'movethispage'            => 'Siirrä tämä sivu',
 'unusedimagestext'        => 'Huomaa, että muut verkkosivut saattavat viitata tiedostoon suoran URL:n avulla, jolloin tiedosto saattaa olla tässä listassa, vaikka sitä käytetäänkin.',
@@ -1315,7 +1314,7 @@ Ohjelmiston suorittamia ylläpitotöitä on jonossa '''$7''' {{PLURAL:$7|kappale
 # Special:Listusers
 'listusersfrom'      => 'Katkaisuhaku',
 'listusers-submit'   => 'Hae',
-'listusers-noresult' => 'Käyttäjiä ei löytynyt. Tarkista myös eri kirjainkoot.',
+'listusers-noresult' => 'Käyttäjiä ei löytynyt.',
 
 # E-mail user
 'mailnologin'     => 'Lähettäjän osoite puuttuu',
