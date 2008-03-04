@@ -1032,7 +1032,6 @@ Please try again. If it still doesn't work, try logging out and logging back in.
 'token_suffix_mismatch'     => '<strong>Your edit has been rejected because your client mangled the punctuation characters in the edit token. The edit has been rejected to prevent corruption of the page text.
 This sometimes happens when you are using a buggy web-based anonymous proxy service.</strong>',
 'editing'                   => 'Editing $1',
-'editinguser'               => "Changing user rights of user '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
 'editingsection'            => 'Editing $1 (section)',
 'editingcomment'            => 'Editing $1 (comment)',
 'editconflict'              => 'Edit conflict: $1',
@@ -1240,7 +1239,7 @@ Make sure that this change will maintain historical page continuity.
 </form>', # don't translate or duplicate this message to other languages
 
 # OpenSearch description
-'opensearch-desc'          => '{{SITENAME}} ({{CONTENTLANGUAGE}})', # don't translate or duplicate this message to other languages
+'opensearch-desc' => '{{SITENAME}} ({{CONTENTLANGUAGE}})', # don't translate or duplicate this message to other languages
 
 # Preferences page
 'preferences'              => 'Preferences',
@@ -1308,6 +1307,7 @@ Make sure that this change will maintain historical page continuity.
 'userrights-lookup-user'           => 'Manage user groups',
 'userrights-user-editname'         => 'Enter a username:',
 'editusergroup'                    => 'Edit User Groups',
+'editinguser'                      => "Changing user rights of user '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
 'userrights-editusergroup'         => 'Edit user groups',
 'saveusergroups'                   => 'Save User Groups',
 'userrights-groupsmember'          => 'Member of:',
