@@ -1706,7 +1706,6 @@ The [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] length is '''\$7''
 'newpages-username'               => 'Username:',
 'ancientpages'                    => 'Oldest pages',
 'ancientpages-summary'            => '', # only translate this message to other languages if you have to change it
-'intl'                            => 'Interlanguage links',
 'move'                            => 'Move',
 'movethispage'                    => 'Move this page',
 'unusedimagestext'                => '<p>Please note that other web sites may link to a file with a direct URL, and so may still be listed here despite being in active use.</p>',
