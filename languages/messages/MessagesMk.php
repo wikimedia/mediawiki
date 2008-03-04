@@ -10,6 +10,7 @@
  * @author Jon Harald Søby
  * @author לערי ריינהארט
  * @author Siebrand
+ * @author Nike
  */
 
 $skinNames = array(
@@ -529,7 +530,6 @@ $1',
 
 <strong>Ако е ова е дозволен обид за уредување, ве молиме обидете се повторно. Ако сеуште не работи, пробајте да се одјавите и повторно да се најавите.</strong>",
 'editing'                   => 'Уредување на $1',
-'editinguser'               => 'Уредување на $1',
 'editingsection'            => 'Уредување на $1 (секција)',
 'editingcomment'            => 'Уредување на $1 (коментар)',
 'editconflict'              => 'Конфликтни уредувања: $1',
@@ -745,6 +745,7 @@ $1',
 'userrights-lookup-user'     => 'Управувај со корисничките групи',
 'userrights-user-editname'   => 'Внеси корисничко име:',
 'editusergroup'              => 'Уреди кориснички групи',
+'editinguser'                => 'Уредување на $1',
 'userrights-editusergroup'   => 'Уреди ги корисничките групи',
 'saveusergroups'             => 'Зачувај ги корисничките групи',
 'userrights-groupsmember'    => 'Член на:',
@@ -910,11 +911,11 @@ $1',
 # File reversion
 'filerevert'                => 'Врати $1',
 'filerevert-legend'         => 'Врати датотека',
-'filerevert-intro'          => '<span class="plainlinks">Ја враќата \'\'\'[[Медија:$1|$1]]\'\'\' на [$4 верзија од $3, $2].</span>',
+'filerevert-intro'          => '<span class="plainlinks">Ја враќата \'\'\'[[Мedia:$1|$1]]\'\'\' на [$4 верзија од $3, $2].</span>',
 'filerevert-comment'        => 'Коментар:',
 'filerevert-defaultcomment' => 'Вратена на верзија од $2, $1',
 'filerevert-submit'         => 'Врати',
-'filerevert-success'        => '<span class="plainlinks">\'\'\'[[Медија:$1|$1]]\'\'\' е вратен на [$4 верзија од $3, $2].</span>',
+'filerevert-success'        => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\' е вратен на [$4 верзија од $3, $2].</span>',
 'filerevert-badversion'     => 'Нема претходна локална верзија на оваа датотека со даденото време.',
 
 # MIME search
@@ -988,7 +989,7 @@ $1',
 'lonelypagestext'         => 'Следните страници не се поврзани од други страници на ова вики.',
 'uncategorizedpages'      => 'Некатегоризирани страници',
 'uncategorizedcategories' => 'Некатегоризирани категории',
-'uncategorizedimages'     => 'Некатегоризирани слики',
+'uncategorizedimages'     => 'Некатегоризирани податоци',
 'uncategorizedtemplates'  => 'Некатегоризирани преуредувања',
 'unusedcategories'        => 'Неискористени категории',
 'unusedimages'            => 'Неискористени слики',
@@ -1017,7 +1018,6 @@ $1',
 'newpages'                => 'Нови страници',
 'newpages-username'       => 'Корисничко име:',
 'ancientpages'            => 'Најстари статии',
-'intl'                    => 'Меѓујазични врски',
 'move'                    => 'Премести',
 'movethispage'            => 'Премести ја оваа страница',
 'unusedimagestext'        => '<p>Имајте во предвид дека други веб страници може да имаат врска кон податок со директен URL, па може сеуште да се прикажуваат иако активно се користат.</p>',

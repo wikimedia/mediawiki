@@ -4,7 +4,6 @@
  * @addtogroup Language
  *
  * @author Passawuth
- * @author Passawuth
  */
 
 $namespaceNames = array(
@@ -69,6 +68,10 @@ $messages = array(
 'tog-watchlisthidebots'       => 'ເຊື່ອງ ການດັດແກ້ ໂດຍ ບອທ໌ ໃນລາຍການຕິດຕາມຂອງຂ້ອຍ',
 'tog-watchlisthideminor'      => 'ເຊື່ອງ ການດັດແກ້ເລັກນ້ອຍ ໃນ ລາຍການຕິດຕາມຂອງຂ້ອຍ',
 'tog-ccmeonemails'            => 'ສົ່ງສຳເນົາ ອີເມລ ທີ່ ຂ້ອຍສົ່ງຫາຜູ້ອື່ນ ໃຫ້ ຂ້ອຍ',
+'tog-showhiddencats'          => 'ສະແດງໝວດທີ່ຊ່ອນ',
+
+'underline-always' => 'ທຸກຄັ້ງ',
+'underline-never'  => 'ບໍ່ຂີດ',
 
 'skinpreview' => '(ລອງເບິ່ງ)',
 
@@ -91,9 +94,14 @@ $messages = array(
 'may'       => 'ພຶດສະພາ',
 
 # Bits of text used by many pages
-'categories'      => 'ໝວດ',
-'category_header' => 'ບົດຄວາມໃນໝວດ "$1"',
-'subcategories'   => 'ໝວດຍ່ອຍ',
+'categories'            => 'ໝວດ',
+'pagecategories'        => '{{PLURAL:$1|ໝວດ|ໝວດ}}',
+'category_header'       => 'ບົດຄວາມໃນໝວດ "$1"',
+'subcategories'         => 'ໝວດຍ່ອຍ',
+'category-media-header' => 'ໜ້າຕ່າງ າ ໃນ "$1"',
+'category-empty'        => "''ບໍ່ມີໜ້າໃດຢູ່ໃນໝວດນີ້''",
+
+'mainpagetext' => "<big>'''ຕິດຕັ້ງມີເດຍວິກິນີ້ສຳເລັດແລ້ວ'''</big>",
 
 'about'          => 'ກ່ຽວກັບ',
 'article'        => 'ບົດຄວາມ',
@@ -104,12 +112,13 @@ $messages = array(
 'qbpageoptions'  => 'ໜ້ານີ້',
 'qbspecialpages' => 'ໜ້າພິເສດ',
 'mypage'         => 'ໜ້າຂ້ອຍ',
-'mytalk'         => 'ສົນທະນາຂ້ອຍ',
+'mytalk'         => 'ສົນທະນາ',
 'anontalk'       => 'ສົນທະນາ ສຳຫຼັບ IP ນີ້',
 'navigation'     => 'ນຳທິດ',
 'and'            => 'ແລະ',
 
 'returnto'         => 'ກັບໄປ  $1.',
+'tagline'          => 'ຈາກ {{SITENAME}}',
 'help'             => 'ຊ່ວຍເຫຼືອ',
 'search'           => 'ຊອກຫາ',
 'searchbutton'     => 'ຊອກຫາ',
@@ -117,6 +126,7 @@ $messages = array(
 'searcharticle'    => 'ໄປ',
 'history'          => 'ປະຫວັດ',
 'history_short'    => 'ປະຫວັດການດັດແກ້',
+'info_short'       => 'ຂ້ອມູນ',
 'printableversion' => 'ສະບັບພິມໄດ້',
 'permalink'        => 'ລິ້ງຄ໌ຖາວອນ',
 'edit'             => 'ດັດແກ້',
@@ -124,6 +134,7 @@ $messages = array(
 'delete'           => 'ລຶບ',
 'deletethispage'   => 'ລຶບໜ້ານີ້',
 'protect'          => 'ປົກປ້ອງ',
+'protectthispage'  => 'ປ້ອງກັນໜ້ານີ້',
 'unprotect'        => 'ເຊົາປົກປ້ອງ',
 'newpage'          => 'ໜ້າໃໝ່',
 'talkpage'         => 'ປຶກສາຫາລືໜ້ານີ້',
@@ -136,6 +147,7 @@ $messages = array(
 'otherlanguages'   => 'ເປັນພາສາອື່ນໆ',
 'redirectedfrom'   => '(ໂອນມາຈາກ $1)',
 'redirectpagesub'  => 'ໜ້າໂອນ',
+'lastmodifiedat'   => 'ໜ້ານີ້ຖຶກດັດແກ້ຫຼ້າສຸດ $2, $1.', # $1 date, $2 time
 'viewcount'        => 'ໜ້ານີ້ຖືກເຂົ້າເບິ່ງ {{plural:$1|ເທື່ອໜຶ່ງ|$1 ເທື່ອ}}.',
 'protectedpage'    => 'ໜ້າຖືກປົກປ້ອງ',
 'jumptonavigation' => 'ນຳທິດ',
@@ -148,13 +160,18 @@ $messages = array(
 'bugreportspage' => 'ໂຄງການ:ລາຍງານບັນຫາທາງໂປແກມ',
 'copyright'      => 'ເນື້ອໃນ ສະໜອງໃຫ້ ພາຍໃຕ້ $1.',
 'copyrightpage'  => '{{ns:project}}:ລິຂະສິດ',
+'disclaimers'    => 'ຂໍ້ປະຕິເສດຄວາມຮັບຜິດຊອບ',
+'edithelp'       => 'ວິທີດັດແກ້ໜ້າ',
 'edithelppage'   => 'Help:ການດັດແກ້',
 'helppage'       => 'Help:ເນື້ອໃນ',
 'mainpage'       => 'ໜ້າຫຼັກ',
+'privacy'        => 'ນະໂຍບາຍຄວາມເປັນສ່ວນຕັວ',
 'sitesupport'    => 'ບໍລິຈາກ',
 
 'badaccess'        => 'ການອະນຸມັດບໍ່ຖືກຕ້ອງ',
 'badaccess-group0' => 'ທ່ານ ບໍ່ໄດ້ຮັບອະນຸຍາດ ໃຫ້ປະຕິບັດການ ທີ່ ທ່ານ ສັ່ງ.',
+
+'versionrequired' => 'ຕ້ອງການເວີຣ໌ຊັ່ນ $1 ຂອງມີເດຍວິກິ',
 
 'youhavenewmessages'      => 'ທ່ານ ມີ $1 ($2).',
 'newmessageslink'         => 'ຂໍ້ຄວາມໃໝ່',
@@ -265,9 +282,10 @@ $messages = array(
 'accmailtitle'             => 'ໄດ້ສົ່ງ ລະຫັດຜ່ານ ໄປແລ້ວ.',
 'accmailtext'              => 'ລະຫັດຜ່ານ ຂອງ "$1" ໄດ້ຖືກສົ່ງໄປ  $2 ແລ້ວ.',
 'newarticle'               => '(ໃໝ່)',
+'newarticletext'           => "ທ່ານ ໄດ້ມາຮອດ ໜ້າທີ່ຍັງບໍ່ໄດ້ຖືກສ້າງຂຶ້ນເທື່ອ. ທ່ານ ສາມາດເລີ່ມ ສ້າງໜ້າ ໂດຍ ພິມໃສ່ ກັບ ຂ້າງລຸ່ມ.(ເບິ່ງລາຍລະອຽດຕື່ມ ທີ່ [[{{MediaWiki:helppage}}|ໜ້າຊ່ວຍເຫຼືອ]]).
+ຖ້າ ທ່ານ ມາຮອດນີ້ ໂດຍຄວາມຜິດພາດ, ກະລຸນາ ກົດ ປຸ່ມ '''ກັບຄືນ''', ຢູ່ ໂປຣແກຣມ ທ່ອງເວັບ ຂອງທ່ານ.",
 'previewnote'              => '<strong>ນີ້ ແມ່ນ ການລອງເບິ່ງຜົນເທົ່ານັ້ນ; ການດັດແກ້ຍັງບໍ່ທັນຖືກບັນທຶກ!</strong>',
 'editing'                  => 'ພວມດັດແກ້ $1',
-'editinguser'              => 'ຜູ້ໃຊ້ <b>$1</b> ພວມດັດແກ້',
 'editingsection'           => 'ພວມດັດແກ້ $1 (ພາກ)',
 'yourtext'                 => 'ເນື້ອໃນ',
 'yourdiff'                 => 'ສ່ວນຕ່າງ',
@@ -277,6 +295,7 @@ $messages = array(
 'copyrightwarning2'        => 'ກະລຸນາ ເຂົ້າໃຈວ່າ ທຸກໆ ການປະກອນສ່ວນ ຕໍ່ {{SITENAME}} ອາດຖືກ ດັດແກ້, ປ່ຽນແປງ, ຫຼື ລຶບ ໂດຍ ຜູ້ປະກອບສ່ວນອື່ນ. ຖ້າ ທ່ານ ບໍ່ປະສົງ ໃຫ້ ສິ່ງທີ່ ທ່ານ ຂຽນ ຖືກດັດແກ້ ຫຼື ແຈກຢາຍ ອີກ ຕາມຊອບໃຈ, ທ່ານ ບໍ່ຄວນ ຂຽນຢູ່ນີ້. <br />
 ທ່ານ ຈະຕ້ອງ ສັນຍາອີກວ່າ, ທ່ານ ຂຽນມັນຂຶ້ນມາເອງ ຫຼື ກ່າຍມັນມາຈາກ ໂດເມນ ສາທາລະນະ ຫຼື ສິ່ງບໍ່ເສຍຄ່າ ຄ້າຍຄືກັນ.  (ເບິ່ງ ລາຍລະອຽດ ທີ່ $1).
 <strong>ກະລຸນາ ຢ່າ ສົ່ງສິ່ງທີ່່ ຖືກສະຫງວນ ລິຂະສິດ ໂດຍ ບໍ່ໄດ້ຮັບອະນຸຍາດ!</strong>',
+'protectedpagewarning'     => '<strong>ເອົາໃຈໃສ່ : ໜ້ານີ້ໄດ້ຖຶກປົກປ້ອງ ສະເພາະຜູ້ບໍລິຫານລະບົບເທົ່ານັ້ນທີ່ສາມາດດັດແກ້ໜ້ານີ້ໄດ້ ຫາກກະລຸນາອຍາກປ່ຽນໜ້ານີ້ ຕິດຕໍ່ຜູ້ບໍລິຫານລະບົບ</strong>',
 'semiprotectedpagewarning' => "'''ໝາຍເຫດ:''' ໜ້ານີ້ໄດ້ຖືກປົກປ້ອງ ແລະ ມີແຕ່ຜູ້ໃຊ້ທີ່ສ້າງບັນຊີແລ້ວເທົ່ານັ້ນ ສາມາດດັດແກ້ໄດ້.",
 'templatesused'            => 'ແມ່ແບບໄດ້ໃຊ້ໃນໜ້ານີ້:',
 'templatesusedpreview'     => 'ແມ່ແບບໃຊ້ໃນການລອງເບິ່ງຜົນນີ້:',
@@ -320,7 +339,7 @@ $messages = array(
 
 # Preferences page
 'preferences'           => 'ການຕັ້ງຄ່າ',
-'mypreferences'         => 'ຕັ້ງຄ່າຂອງຂ້ອຍ',
+'mypreferences'         => 'ຕັ້ງຄ່າ',
 'changepassword'        => 'ປ່ຽນລະຫັດຜ່ານ',
 'skin'                  => 'ລວດລາຍ',
 'math'                  => 'ຄະນິດສາດ',
@@ -358,6 +377,9 @@ $messages = array(
 'defaultns'             => 'ຄົ້ນຫາ ໃນ ຂອບເຂດຊື່ ນີ້ ເວລາບໍ່ມີການລະບຸ:',
 'files'                 => 'ໄຟລ໌',
 
+# User rights
+'editinguser' => 'ຜູ້ໃຊ້ <b>$1</b> ພວມດັດແກ້',
+
 # Recent changes
 'nchanges'          => '$1 {{PLURAL:$1|ການປ່ຽນແປງ|ການປ່ຽນແປງ}}',
 'recentchanges'     => 'ການດັດແກ້ຫຼ້າສຸດ',
@@ -382,6 +404,9 @@ $messages = array(
 'filedesc'          => 'ສະຫຼຸບ',
 'fileuploadsummary' => 'ສະຫຼຸບ:',
 'badfilename'       => 'ຊື່ໄຟລ໌ ໄດ້ຖືກປ່ຽນເປັນ  "$1".',
+'large-file'        => 'ໄຟລ໌ບໍ່ຄວນມີຂະໜາດໃຫຍ່ກວ່າ $1 ແຕ່ໄຟລ໌ນີ້ມີຂະໜາດ  $2',
+'largefileserver'   => 'ໄຟລ໌ມີຂະໜາດໃຫຍ່ກວ່າຄ່າທີ່ໃຊ້ໄດ້',
+'filepageexists'    => 'ມີໜ້າສຳຫຼັບຫັວເຮື່ອງນີ້ອຍູ່ແລ້ວ (ບໍ່ໃຊ່ໄຟລ໌) ກະລຸນາຕວດສອບ <strong>$1</strong> ຫາກຄຸນບໍ່ແນ່ໃຈວ່າຕ້ອງການຈະປ່ຽນໜ້ານີ້',
 'savefile'          => 'ບັນທຶກໄຟລ໌',
 'watchthisupload'   => 'ຕິດຕາມໜ້ານີ້',
 
@@ -409,6 +434,10 @@ $messages = array(
 
 # Statistics
 'statistics' => 'ສະຖິຕິ',
+
+'disambiguations'      => 'ໜ້າແກ້ຄວາມກຳກວມ',
+'disambiguations-text' => "ໜ້າຕໍ່ໄປນີ້ເຊື່ອມໂຍງໄປຍັງ '''ໜ້າແກ້ຄວາມກຳກວມ'''&nbsp;ຊຶ່ງຄວນດັດແກ້ລິງຄ໌ໃຫ້ເຊື່ອມໂຍງໄປທີ່ໜ້າອື່ນທີ່ເໝາະສົມ<br />
+ໜ້າໃດທີ່ຮຽກໃຊ້ແມ່ແບບ [[{{ns:mediawiki}}:Disambiguationspage|ແກ້ກຳກວມ]] ໜ້າເຫຼ່ານັ້ນຖຶກເປັນໜ້າແກ້ຄວາມກຳກວມ",
 
 'doubleredirects' => 'ໂອນໜ້າ 2 ຄັ້ງ',
 
@@ -496,7 +525,7 @@ $messages = array(
 
 # Watchlist
 'watchlist'            => 'ລາຍການຕິດຕາມ',
-'mywatchlist'          => 'ລາຍການຕິດຕາມຂອງຂ້ອຍ',
+'mywatchlist'          => 'ລາຍການຕິດຕາມ',
 'watchnologin'         => 'ບໍ່ໄດ້ເຊັນເຂົ້າ',
 'addedwatch'           => 'ເພີ່ມໃສ່ລາຍການຕິດຕາມແລ້ວ',
 'addedwatchtext'       => "ໜ້າ \"[[:\$1]]\" ໄດ້ຖືກເພີ່ມໃສ່  [[Special:Watchlist|ລາຍການຕິດຕາມ]] ຂອງ ທ່ານ.
@@ -535,15 +564,20 @@ $messages = array(
 'deletionlog'        => 'ບັນທຶກ ການລຶບ',
 'deletecomment'      => 'ເຫດຜົນໃນການລຶບ',
 'cantrollback'       => 'ບໍ່ສາມາດ ປ່ຽນການດັດແກ້ກັບຄືນໄດ້; ຜູ້ປະກອບສ່ວນຫຼ້າສຸດ ແມ່ນ ຜູ້ຂຽນພຽງຜູ້ດຽວ ຂອງ ໜ້ານີ້.',
+'protectedarticle'   => 'ໄດ້ປົກປ້ອງ "[[$1]]"',
 'unprotectedarticle' => 'ໄດ້ເຊົາປົກປ້ອງ "[[$1]]"',
+'protectsub'         => '(ກຳລັງປົກປ້ອງໜ້າ "$1")',
 'confirmprotect'     => 'ຢືນຢັນ ການປົກປ້ອງ',
+'unprotectsub'       => '(ກຳລັງຍົກເລີກການປົກປ້ອງໜ້າ "$1")',
 'restriction-level'  => 'ລະດັບການຈຳກັດ:',
 
 # Restrictions (nouns)
 'restriction-edit' => 'ດັດແກ້',
 
 # Undelete
+'undelete'               => 'ຮຽກຄືນ',
 'viewdeletedpage'        => 'ເບິ່ງໜ້າທີ່ຖືກລຶບ',
+'undeletepagetext'       => 'ໜ້າຕ່ອໄປນີ້ຖຶກລຶບໄປແຕ່ຍັງຄົງຢູ່ໃນກຸທີ່ສາມາດຮຽກຄືນໄດ້ (ກຸຂໍ້ມູນອາດຖຶກລຶບເປັນລະຍະ)',
 'cannotundelete'         => 'ບໍ່ສາມາດ ກັບຄືນ ຫາສະບັບກ່ອນການລຶບ; ບາງຄົນອາດເຮັດກ່ອນແລ້ວ.',
 'undelete-search-submit' => 'ຊອກຫາ',
 
@@ -552,8 +586,8 @@ $messages = array(
 'blanknamespace' => '(ຫຼັກ)',
 
 # Contributions
-'contributions' => 'ການປະກອບສ່ວນຂອງຜູ້ໃຊ້ນີ້',
-'mycontris'     => 'ປະກອບສ່ວນຂອງຂ້ອຍ',
+'contributions' => 'ການປະກອບສ່ວນ',
+'mycontris'     => 'ປະກອບສ່ວນ',
 'contribsub2'   => 'ສຳຫຼັບ $1 ($2)',
 'nocontribs'    => 'ຍັງບໍ່ມີການປ່ຽນແປງ ໃນນີ້.',
 'month'         => 'ແຕ່ເດືອນ (ແລະກ່ອນໜ້ານັ້ນ):',
@@ -566,7 +600,7 @@ $messages = array(
 'sp-contributions-submit'   => 'ຊອກຫາ',
 
 # What links here
-'whatlinkshere'  => 'ໜ້າທີ່ເຊື່ອມຕໍ່ມາໜ້ານີ້',
+'whatlinkshere'  => 'ໜ້າທີ່ເຊື່ອມຕໍ່ມາ',
 'nolinkshere'    => "ບໍ່ມີໜ້າລິ້ງຄ໌ ຫາ '''[[:$1]]'''.",
 'nolinkshere-ns' => "ບໍ່ມີໜ້າລິ້ງຄ໌ ຫາ '''[[:$1]]''' ໃນ ຂອບເຂດຊື່ ທີ່ ທ່ານເລືອກ.",
 

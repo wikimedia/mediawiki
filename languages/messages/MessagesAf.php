@@ -258,6 +258,7 @@ $messages = array(
 'thisisdeleted'       => 'Bekyk of herstel $1?',
 'viewdeleted'         => 'Bekyk $1?',
 'restorelink'         => '{{PLURAL:$1|die geskrapte wysiging|$1 geskrapte wysigings}}',
+'red-link-title'      => '$1 (nog nie geskryf nie)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Artikel',
@@ -459,7 +460,6 @@ Indien jy per ongeluk hier is, gebruik jou blaaier se '''terug''' knop.",
 'session_fail_preview'     => '<strong>Jammer! Weens verlies aan sessie-inligting is die wysiging nie verwerk nie.
 Probeer asseblief weer. As dit steeds nie werk nie, probeer om af en weer aan te teken.</strong>',
 'editing'                  => 'Besig om $1 te wysig',
-'editinguser'              => "Besig om gebruikersrechte van gebruiker '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]]) te wysig",
 'editingsection'           => 'Besig om $1 (onderafdeling) te wysig',
 'editingcomment'           => 'Besig om $1 (kommentaar) te wysig',
 'editconflict'             => 'Wysigingskonflik: $1',
@@ -603,6 +603,7 @@ om voorkeure te spesifiseer.',
 # User rights
 'userrights-lookup-user'     => 'Beheer gebruikersgroepe',
 'editusergroup'              => 'Wysig gebruikersgroepe',
+'editinguser'                => "Besig om gebruikersrechte van gebruiker '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]]) te wysig",
 'userrights-editusergroup'   => 'wysig gebruikersgroepe',
 'saveusergroups'             => 'Stoor gebruikersgroepe',
 'userrights-groupsmember'    => 'Lid van:',
@@ -752,6 +753,9 @@ Let asseblief op dat, soos met {{SITENAME}} bladsye, mag ander jou gelaaide lêe
 'filedelete-success'          => "'''$1''' is geskrap.",
 'filedelete-success-old'      => '<span class="plainlinks">Die weergawe van \'\'\'[[Media:$1|$1]]\'\'\' op $3, $2 is geskrap.</span>',
 'filedelete-reason-otherlist' => 'Andere rede',
+'filedelete-reason-dropdown'  => '*Algemene skrappingsredes:
+** Kopieregskending
+** Duplikaatlêer',
 
 # MIME search
 'mimesearch' => 'MIME-soek',

@@ -311,7 +311,7 @@ $messages = array(
 'thursday'      => 'csütörtök',
 'friday'        => 'péntek',
 'saturday'      => 'szombat',
-'sun'           => 'Vas',
+'sun'           => 'vas',
 'mon'           => 'hét',
 'tue'           => 'kedd',
 'wed'           => 'sze',
@@ -741,7 +741,7 @@ Kapcsolatba léphetsz $1 felhasználóval, vagy egy másik [[{{MediaWiki:Grouppa
 Az 'E-mail küldése ennek a felhasználónak' funkciót nem használhatod, ha a megadott e-mail cím a
 [[Special:Preferences|fiókbeállításaidban]] nem érvényes, és nem blokkolták annak a használatát.
 Jelenlegi IP-címed: $3, a blokkolás azonosítószáma: #$5. Kérjük, hogy érdeklődés esetén lehetőleg mindkettőt add meg.",
-'autoblockedtext'           => "Erről az IP-címről nem lehet szerkeszteni, mert egy blokkolt felhasználó korábban szerkeszteni próbált róla, ezért a Wikipédia szoftvere automatikusan blokkolta. A felhasználót $1 blokkolta az alábbi indoklással:
+'autoblockedtext'           => "Az IP-címről automatikusan blokkolva lett, mert korábban egy olyan felhasználó használta, akit $1 blokkolt, az alábbi indoklással:
 
 :''$2''
 
@@ -802,7 +802,6 @@ gombját.",
 a szerkesztési vezérjelben. A szerkesztést azért utasítottuk vissza, hogy megelőzzük a cikk szövegének sérülését.
 Ez olyankor fordul elő, ha az általad használt webalapú névtelen proxy szolgáltatás hibás.</strong>',
 'editing'                   => '$1 szerkesztés alatt',
-'editinguser'               => '$1 szerkesztés alatt',
 'editingsection'            => '$1 szerkesztés alatt (szakasz)',
 'editingcomment'            => '$1 szerkesztés alatt (üzenet)',
 'editconflict'              => 'Szerkesztési ütközés: $1',
@@ -1071,6 +1070,7 @@ rendszer nem indexel, vagy több független keresési kifejezés megadása
 'userrights-lookup-user'           => 'Felhasználócsoportok kezelése',
 'userrights-user-editname'         => 'Írd be a felhasználónevet:',
 'editusergroup'                    => 'Felhasználócsoportok módosítása',
+'editinguser'                      => '$1 szerkesztés alatt',
 'userrights-editusergroup'         => 'Felhasználócsoportok módosítása',
 'saveusergroups'                   => 'Felhasználócsoportok mentése',
 'userrights-groupsmember'          => 'Csoporttag:',
@@ -1422,7 +1422,6 @@ A [http://meta.wikimedia.org/wiki/Help:Job_queue szerver számára sorban álló
 'newpages'                => 'Új lapok',
 'newpages-username'       => 'Felhasználói név:',
 'ancientpages'            => 'Régóta nem változott szócikkek',
-'intl'                    => 'Nyelvek közötti hivatkozások',
 'move'                    => 'Átnevezés',
 'movethispage'            => 'Nevezd át ezt a lapot',
 'unusedimagestext'        => '<p>Vedd figyelembe, hogy más lapok - például a nemzetközi {{grammar:k|{{SITENAME}}}} - közvetlenül
@@ -1441,7 +1440,7 @@ ellenére, hogy aktívan használják.</p>',
 'booksources-text'          => 'Alább látható a másik webhelyekre mutató hivatkozások listája, ahol új és használt könyveket árulnak, és
 további információkat lelhetsz ott az általad keresett könyvekről:',
 
-'categoriespagetext' => 'A wikiben az alábbi kategóriák találhatóak.',
+'categoriespagetext' => 'A következő kategóriák tartalmaznak lapokat vagy fájlokat.',
 'data'               => 'Adatok',
 'userrights'         => 'Felhasználói jogok kezelése',
 'groups'             => 'Felhasználói csoportok',
@@ -2085,7 +2084,7 @@ Valamennyi transwiki importálási művelet az [[Special:Log/import|importálás
 
 # Spam protection
 'spamprotectiontitle'    => 'Spamszűrő',
-'spamprotectiontext'     => 'Az általad elmenteni kívánt lap egyik külső hivatkozása fennakadt a spamszűrőn, a hivatkozást lehet, hogy te helyezted el a cikkben, de lehet, hogy már korábban is ott volt. Csak úgy tudod elmenteni, ha eltávolítod belőle, ehhez és a szerkesztéshez a böngésző „vissza” gombjával tudsz visszatérni.',
+'spamprotectiontext'     => 'Az általad elmenteni kívánt lap egyik külső hivatkozása fennakadt a spamszűrőn. A hivatkozást lehet, hogy te helyezted el a cikkben, de lehet, hogy már korábban is ott volt. Csak úgy tudod a lapot elmenteni, ha eltávolítod belőle a problémás külső hivatkozást. Ehhez és a szerkesztéshez a böngésző „vissza” gombjával tudsz visszatérni.',
 'spamprotectionmatch'    => 'A spamszűrőn az alábbi szöveg fennakadt: $1',
 'subcategorycount'       => 'Ebben a kategóriában $1 alkategória található.',
 'categoryarticlecount'   => 'A kategória lenti listájában {{PLURAL:$1|egy lap|$1 lap}} található.',

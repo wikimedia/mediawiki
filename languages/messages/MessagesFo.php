@@ -298,6 +298,7 @@ $messages = array(
 'youhavenewmessagesmulti' => 'Tú hevur nýggj boð á $1',
 'editsection'             => 'rætta',
 'editold'                 => 'rætta',
+'editsectionhint'         => 'Rætta partur: $1',
 'toc'                     => 'Innihaldsyvirlit',
 'showtoc'                 => 'skoða',
 'hidetoc'                 => 'fjal',
@@ -307,6 +308,7 @@ $messages = array(
 'feedlinks'               => 'Føðing:',
 'site-rss-feed'           => '$1 RSS Fóðurið',
 'site-atom-feed'          => '$1 Atom Fóðurið',
+'page-rss-feed'           => '"$1" RSS Feed',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Grein',
@@ -460,6 +462,7 @@ Ert tú komin higar av einum mistaki, kanst tú trýsta á '''aftur'''-knøttin 
 'previewnote'              => '<strong>Minst til at hetta bara er ein forskoðan, sum enn ikki er goymd!</strong>',
 'previewconflict'          => 'Henda forskoðanin vísir tekstin í erva soleiðis sum hann sær út, um tú velur at goyma.',
 'editing'                  => 'Tú rættar $1',
+'editingsection'           => 'Tú rættar $1 (partur)',
 'editingcomment'           => 'Tú rættar $1 (viðmerking)',
 'yourtext'                 => 'Tín tekstur',
 'storedversion'            => 'Goymd útgáva',
@@ -639,21 +642,23 @@ fyri at leggja fílur upp.',
 'nolicense' => 'Onki valt',
 
 # Image list
-'imagelist'      => 'Myndalisti',
-'ilsubmit'       => 'Leita',
-'byname'         => 'eftir navni',
-'bydate'         => 'eftir dato',
-'bysize'         => 'eftir stød',
-'imgdelete'      => 'strik',
-'imgdesc'        => 'lýs',
-'filehist'       => 'Mynd søga',
-'filehist-user'  => 'Brúkari',
-'imagelinks'     => 'Myndarslóðir',
-'linkstoimage'   => 'Hesar síður slóða til hesa mynd:',
-'nolinkstoimage' => 'Ongar síður slóða til hesa myndina.',
-'sharedupload'   => 'This file is a shared upload and may be used by other projects.',
-'imagelist_name' => 'Navn',
-'imagelist_user' => 'Brúkari',
+'imagelist'        => 'Myndalisti',
+'ilsubmit'         => 'Leita',
+'byname'           => 'eftir navni',
+'bydate'           => 'eftir dato',
+'bysize'           => 'eftir stød',
+'imgdelete'        => 'strik',
+'imgdesc'          => 'lýs',
+'filehist'         => 'Mynd søga',
+'filehist-current' => 'streymur',
+'filehist-user'    => 'Brúkari',
+'filehist-comment' => 'Viðmerking',
+'imagelinks'       => 'Myndarslóðir',
+'linkstoimage'     => 'Hesar síður slóða til hesa mynd:',
+'nolinkstoimage'   => 'Ongar síður slóða til hesa myndina.',
+'sharedupload'     => 'This file is a shared upload and may be used by other projects.',
+'imagelist_name'   => 'Navn',
+'imagelist_user'   => 'Brúkari',
 
 # File deletion
 'filedelete'        => 'Strika $1',
@@ -671,6 +676,9 @@ fyri at leggja fílur upp.',
 
 # Random page
 'randompage' => 'Tilvildarlig síða',
+
+# Random redirect
+'randomredirect' => 'Tilvildarlig ávísingarsíða',
 
 # Statistics
 'statistics'    => 'Hagtøl',
@@ -705,6 +713,7 @@ Hvørt rað inniheldur slóðir til fyrstu og aðru ávísing, umframt tekstin �
 
 'withoutinterwiki'        => 'Síður uttan mál slóðir',
 'withoutinterwiki-header' => 'Fylgjandi síður slóða ikki til útgávur á øðrum málum:',
+'withoutinterwiki-submit' => 'Skoða',
 
 'fewestrevisions' => 'Greinir við minst útgávum',
 
@@ -719,6 +728,7 @@ Hvørt rað inniheldur slóðir til fyrstu og aðru ávísing, umframt tekstin �
 'uncategorizedcategories' => 'Óbólkaðir bólkar',
 'unusedimages'            => 'Óbrúktar myndir',
 'popularpages'            => 'Umtóktar síður',
+'wantedcategories'        => 'Ynsktar bólkar',
 'wantedpages'             => 'Ynsktar síður',
 'mostcategories'          => 'Greinir við flest bólkum',
 'mostrevisions'           => 'Greinir við flest útgávum',
@@ -733,7 +743,6 @@ Hvørt rað inniheldur slóðir til fyrstu og aðru ávísing, umframt tekstin �
 'newpages'                => 'Nýggjar síður',
 'newpages-username'       => 'Brúkaranavn:',
 'ancientpages'            => 'Elstu síður',
-'intl'                    => 'Slóðir millum mál',
 'move'                    => 'Flyt',
 'movethispage'            => 'Flyt hesa síðuna',
 'unusedimagestext'        => '<p>Vinarliga legg merki til, at vevsíður kunnu slóða til eina mynd við
@@ -1069,6 +1078,9 @@ Grein við navninum "[[$1]]" finst longu. Ynskir tú at strika hana til tess at 
 # Special:Newimages
 'newimages' => 'Nýggjar myndir',
 'noimages'  => 'Einki at síggja.',
+
+# Metadata
+'metadata' => 'Metadáta',
 
 # EXIF tags
 'exif-artist'    => 'Rithøvundur',
