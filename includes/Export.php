@@ -25,6 +25,8 @@
 class WikiExporter {
 	var $list_authors = false ; # Return distinct author list (when not returning full history)
 	var $author_list = "" ;
+	
+	var $dumpUploads = false;
 
 	const FULL = 0;
 	const CURRENT = 1;
@@ -263,7 +265,11 @@ class WikiExporter {
 				$last->page_namespace != $row->page_namespace ||
 				$last->page_title     != $row->page_title ) {
 				if( isset( $last ) ) {
-					$output = $this->writer->closePage();
+					$output = '';
+					if( $this->dumpUploads ) {
+						$output .= $this->writer->writeUploads( $last );
+					}
+					$output .= $this->writer->closePage();
 					$this->sink->writeClosePage( $output );
 				}
 				$output = $this->writer->openPage( $row );
@@ -274,7 +280,12 @@ class WikiExporter {
 			$this->sink->writeRevision( $row, $output );
 		}
 		if( isset( $last ) ) {
-			$output = $this->author_list . $this->writer->closePage();
+			$output = '';
+			if( $this->dumpUploads ) {
+				$output .= $this->writer->writeUploads( $last );
+			}
+			$output .= $this->author_list;
+			$output .= $this->writer->closePage();
 			$this->sink->writeClosePage( $output );
 		}
 		$resultset->free();
@@ -415,20 +426,12 @@ class XmlDumpWriter {
 		$out  = "    <revision>\n";
 		$out .= "      " . wfElement( 'id', null, strval( $row->rev_id ) ) . "\n";
 
-		$ts = wfTimestamp( TS_ISO_8601, $row->rev_timestamp );
-		$out .= "      " . wfElement( 'timestamp', null, $ts ) . "\n";
+		$out .= $this->writeTimestamp( $row->rev_timestamp );
 
 		if( $row->rev_deleted & Revision::DELETED_USER ) {
 			$out .= "      " . wfElement( 'contributor', array( 'deleted' => 'deleted' ) ) . "\n";
 		} else {
-			$out .= "      <contributor>\n";
-			if( $row->rev_user ) {
-				$out .= "        " . wfElementClean( 'username', null, strval( $row->rev_user_text ) ) . "\n";
-				$out .= "        " . wfElement( 'id', null, strval( $row->rev_user ) ) . "\n";
-			} else {
-				$out .= "        " . wfElementClean( 'ip', null, strval( $row->rev_user_text ) ) . "\n";
-			}
-			$out .= "      </contributor>\n";
+			$out .= $this->writeContributor( $row->rev_user, $row->rev_user_text );
 		}
 
 		if( $row->rev_minor_edit ) {
@@ -459,6 +462,52 @@ class XmlDumpWriter {
 
 		wfProfileOut( $fname );
 		return $out;
+	}
+	
+	function writeTimestamp( $timestamp ) {
+		$ts = wfTimestamp( TS_ISO_8601, $timestamp );
+		return "      " . wfElement( 'timestamp', null, $ts ) . "\n";
+	}
+	
+	function writeContributor( $id, $text ) {
+		$out = "      <contributor>\n";
+		if( $id ) {
+			$out .= "        " . wfElementClean( 'username', null, strval( $text ) ) . "\n";
+			$out .= "        " . wfElement( 'id', null, strval( $id ) ) . "\n";
+		} else {
+			$out .= "        " . wfElementClean( 'ip', null, strval( $text ) ) . "\n";
+		}
+		$out .= "      </contributor>\n";
+		return $out;
+	}
+	
+	/**
+	 * Warning! This data is potentially inconsistent. :(
+	 */
+	function writeUploads( $row ) {
+		if( $row->page_namespace == NS_IMAGE ) {
+			$img = wfFindFile( $row->page_title );
+			if( $img ) {
+				$out = '';
+				foreach( array_reverse( $img->getHistory() ) as $ver ) {
+					$out .= $this->writeUpload( $ver );
+				}
+				$out .= $this->writeUpload( $img );
+				return $out;
+			}
+		}
+		return '';
+	}
+	
+	function writeUpload( $file ) {
+		return "    <upload>\n" .
+			$this->writeTimestamp( $file->getTimestamp() ) .
+			$this->writeContributor( $file->getUser( 'id' ), $file->getUser( 'text' ) ) .
+			"      " . wfElementClean( 'comment', null, $file->getDescription() ) . "\n" .
+			"      " . wfElement( 'filename', null, $file->getName() ) . "\n" .
+			"      " . wfElement( 'src', null, $file->getFullUrl() ) . "\n" .
+			"      " . wfElement( 'size', null, $file->getSize() ) . "\n" .
+			"    </upload>\n";
 	}
 
 }

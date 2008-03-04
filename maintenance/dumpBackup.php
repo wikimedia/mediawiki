@@ -54,6 +54,7 @@ if( isset( $options['end'] ) ) {
 }
 $dumper->skipHeader = isset( $options['skip-header'] );
 $dumper->skipFooter = isset( $options['skip-footer'] );
+$dumper->dumpUploads = isset( $options['uploads'] );
 
 $textMode = isset( $options['stub'] ) ? WikiExporter::STUB : WikiExporter::TEXT;
 
@@ -83,6 +84,7 @@ Options:
   --skip-header Don't output the <mediawiki> header
   --skip-footer Don't output the </mediawiki> footer
   --stub      Don't perform old_text lookups; for 2-pass dump
+  --uploads   Include upload records (experimental)
 
 Fancy stuff:
   --plugin=<class>[:<file>]   Load a dump plugin class
