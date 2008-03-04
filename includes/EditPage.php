@@ -105,7 +105,7 @@ class EditPage {
 	 * @private
 	 */
 	function getContent( $def_text = '' ) {
-		global $wgOut, $wgRequest, $wgParser;
+		global $wgOut, $wgRequest, $wgParser, $wgMessageCache;
 
 		# Get variables from query string :P
 		$section = $wgRequest->getVal( 'section' );
@@ -118,6 +118,7 @@ class EditPage {
 		$text = '';
 		if( !$this->mTitle->exists() ) {
 			if ( $this->mTitle->getNamespace() == NS_MEDIAWIKI ) {
+				$wgMessageCache->loadAllMessages();
 				# If this is a system message, get the default text. 
 				$text = wfMsgWeirdKey ( $this->mTitle->getText() ) ;
 			} else {
