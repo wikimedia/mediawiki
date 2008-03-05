@@ -857,7 +857,6 @@ $2',
 <strong>אם זהו ניסיון עריכה לגיטימי, אנא נסו שנית. אם זה לא עוזר, נסו לצאת מהחשבון ולהיכנס אליו שנית.</strong>',
 'token_suffix_mismatch'     => '<strong>עריכתכם נדחתה כיוון שהדפדפן שלכם מחק את תווי הניקוד בסימון העריכה. העריכה נדחתה כדי למנוע בעיות כאלה בטקסט של הדף. ייתכן שזה קרה בגלל שירות פרוקסי אנונימי פגום.</strong>',
 'editing'                   => 'עריכת $1',
-'editinguser'               => "משנה את הרשאות המשתמש של '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
 'editingsection'            => 'עריכת $1 (פסקה)',
 'editingcomment'            => 'עריכת $1 (הערה)',
 'editconflict'              => 'התנגשות עריכה: $1',
@@ -1101,6 +1100,7 @@ $2',
 'userrights-lookup-user'           => 'ניהול קבוצות משתמש',
 'userrights-user-editname'         => 'שם משתמש:',
 'editusergroup'                    => 'עריכת קבוצות משתמשים',
+'editinguser'                      => "משנה את הרשאות המשתמש של '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
 'userrights-editusergroup'         => 'עריכת קבוצות משתמש',
 'saveusergroups'                   => 'שמירת קבוצות משתמש',
 'userrights-groupsmember'          => 'חבר בקבוצות:',
@@ -1435,9 +1435,6 @@ $2',
 'protectedtitlestext'     => 'הכותרות הבאות מוגנות מפני יצירה:',
 'protectedtitlesempty'    => 'אין כרגע כותרות מוגנות עם הפרמטרים האלה.',
 'listusers'               => 'רשימת משתמשים',
-'specialpages'            => 'דפים מיוחדים',
-'spheading'               => 'דפים מיוחדים',
-'restrictedpheading'      => 'דפים מיוחדים מוגבלים',
 'newpages'                => 'דפים חדשים',
 'newpages-username'       => 'שם משתמש:',
 'ancientpages'            => 'דפים מוזנחים',
@@ -1449,6 +1446,30 @@ $2',
 'notargettext'            => 'לא ציינתם דף מטרה או משתמש לגביו תבוצע פעולה זו.',
 'pager-newer-n'           => '{{plural:$1|הבאה|$1 הבאות}}',
 'pager-older-n'           => '{{plural:$1|הקודמת|$1 הקודמות}}',
+
+# Special:Specialpages
+'specialpages'       => 'דפים מיוחדים',
+'specialpages-other' => 'דפים מיוחדים נוספים לכל המשתמשים',
+'restrictedpheading' => 'דפים מיוחדים מוגבלים',
+'specialpages-edit'  => 'עריכה',
+'specialpages-tpl'   => '
+<!-- פורמט: בכל שורה, השם הרגיל (באנגלית) של כל דף מיוחד
+* special:specialpagename
+כל השורות האחרות מפורשת כטקסט ויקי רגיל -->
+== רשימות דפים כלליות ==
+{{int:specialpages-tpl-lists}}
+
+== רשימות דפים לתחזוקה ==
+{{int:specialpages-tpl-maint}}
+
+== כלים ==
+{{int:specialpages-tpl-tools}}
+
+== יומנים ומידע ==
+{{int:specialpages-tpl-info}}
+
+== דפים אישיים ==
+{{int:specialpages-tpl-pers}}',
 
 # Book sources
 'booksources'               => 'משאבי ספרות חיצוניים',

@@ -1125,6 +1125,7 @@ $wgMessageStructure = array(
 		'specialpages-summary',
 		'specialpages-other',
 		'restrictedpheading',
+		'specialpages-edit',
 		'specialpages-tpl',
 		'specialpages-tpl-lists',
 		'specialpages-tpl-tools',
