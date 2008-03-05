@@ -424,16 +424,22 @@ class User {
 		|| User::isIP( $name )
 		|| strpos( $name, '/' ) !== false
 		|| strlen( $name ) > $wgMaxNameChars
-		|| $name != $wgContLang->ucfirst( $name ) )
+		|| $name != $wgContLang->ucfirst( $name ) ) {
+			wfDebugLog( 'username', __METHOD__ .
+				": '$name' invalid due to empty, IP, slash, length, or lowercase" );
 			return false;
+		}
 
 		// Ensure that the name can't be misresolved as a different title,
 		// such as with extra namespace keys at the start.
 		$parsed = Title::newFromText( $name );
 		if( is_null( $parsed )
 			|| $parsed->getNamespace()
-			|| strcmp( $name, $parsed->getPrefixedText() ) )
+			|| strcmp( $name, $parsed->getPrefixedText() ) ) {
+			wfDebugLog( 'username', __METHOD__ .
+				": '$name' invalid due to ambiguous prefixes" );
 			return false;
+		}
 		
 		// Check an additional blacklist of troublemaker characters.
 		// Should these be merged into the title char list?
@@ -446,6 +452,8 @@ class User {
 			'\x{e000}-\x{f8ff}' . # private use
 			']/u';
 		if( preg_match( $unicodeBlacklist, $name ) ) {
+			wfDebugLog( 'username', __METHOD__ .
+				": '$name' invalid due to blacklisted characters" );
 			return false;
 		}
 		
