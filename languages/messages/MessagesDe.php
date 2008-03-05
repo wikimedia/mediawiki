@@ -1367,10 +1367,6 @@ auf die bereits die erste Weiterleitung zeigen sollte.',
 'protectedtitlesempty'            => 'Zur Zeit sind mit den angegebenen Parametern keine Seiten zur Neuerstellung gesperrt.',
 'listusers'                       => 'Benutzerverzeichnis',
 'listusers-summary'               => "Diese Spezialseite listet alle registrierten Benutzer auf; die Gesamtzahl kann [[Special:Statistics|hier]] eingesehen werden. Über das Auswahlfeld ''Gruppe'' lässt sich die Abfrage auf bestimmte Benutzergruppen einschränken.",
-'specialpages'                    => 'Spezialseiten',
-'specialpages-summary'            => 'Diese Seite bietet einen Überblick aller Spezialseiten. Diese werden automatisch generiert und können nicht bearbeitet werden.',
-'spheading'                       => 'Spezialseiten für alle Benutzer',
-'restrictedpheading'              => 'Spezialseiten für Administratoren',
 'newpages'                        => 'Neue Seiten',
 'newpages-summary'                => 'Diese Spezialseite listet alle neu erstellten Seiten der letzten 30 Tage auf. Die Ausgabe kann auf einen Namensraum und/oder Benutzernamen eingeschränkt werden.',
 'newpages-username'               => 'Benutzername:',
@@ -1385,6 +1381,81 @@ auf die bereits die erste Weiterleitung zeigen sollte.',
 'notargettext'                    => 'Du hast nicht angegeben, auf welche Seite diese Funktion angewendet werden soll.',
 'pager-newer-n'                   => '{{PLURAL:$1|nächster|nächste $1}}',
 'pager-older-n'                   => '{{PLURAL:$1|vorheriger|vorherige $1}}',
+
+# Special:Specialpages
+'specialpages'         => 'Spezialseiten',
+'specialpages-summary' => 'Diese Seite bietet einen Überblick aller Spezialseiten.',
+'specialpages-other'   => 'Weitere Spezialseiten für alle Benutzer',
+'restrictedpheading'   => 'Spezialseiten für Benutzer mit erweiterten Rechten',
+'specialpages-edit'    => 'Diese Seite bearbeiten',
+'specialpages-tpl'     => '
+<!-- Format: pro Zeile ein kanonischer (englischer) Spezialseitenname:
+* special:specialpagename
+Alle anderen Zeilen werden als normaler (Wiki)Text ausgewertet -->
+== Allgemeine Listen ==
+:special:Allpages
+: special:Prefixindex
+;special:Categories
+* special:Disambiguations
+* special:Listredirects
+
+== Wartungslisten ==
+* special:Mostcategories
+* special:Fewestrevisions
+* special:Mostrevisions
+* special:BrokenRedirects
+* special:Deadendpages
+* special:DoubleRedirects
+* special:Longpages
+* special:Mostlinkedcategories
+* special:Mostimages
+* special:Mostlinked
+* special:Mostlinkedtemplates
+* special:Popularpages
+* special:Ancientpages
+* special:Lonelypages
+* special:Shortpages
+* special:Withoutinterwiki
+* special:Protectedpages
+* special:Protectedtitles
+* special:Uncategorizedcategories
+* special:Uncategorizedimages
+* special:Uncategorizedpages
+* special:Uncategorizedtemplates
+* special:Unusedcategories
+* special:Unusedimages
+* special:Unusedtemplates
+
+== Werkzeuge ==
+* special:Export
+* special:Filepath
+* special:MIMEsearch
+* special:Randompage
+* special:Randomredirect
+* special:Search
+* special:Upload
+
+== Logbücher und Informationen ==
+* special:Ipblocklist
+* special:Booksources
+* special:Imagelist
+* special:Log
+* special:Newpages
+* special:Newimages
+* special:Recentchanges
+* special:Statistics
+* special:Allmessages
+* special:Contributions
+* special:Listusers
+* special:Version
+* special:Wantedcategories
+* special:Wantedpages
+* special:Whatlinkshere
+
+== Persönliche Seiten ==
+* special:Preferences
+* special:Watchlist
+* special:Userlogin',
 
 # Book sources
 'booksources'               => 'ISBN-Suche',
