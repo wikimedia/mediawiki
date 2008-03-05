@@ -1697,6 +1697,10 @@ The [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] length is '''\$7''
 'protectedtitlesempty'            => 'No titles are currently protected with these parameters.',
 'listusers'                       => 'User list',
 'listusers-summary'               => '', # only translate this message to other languages if you have to change it
+'specialpages'                    => 'Special pages',
+'specialpages-summary'            => '', # only translate this message to other languages if you have to change it
+'spheading'                       => 'Special pages for all users',
+'restrictedpheading'              => 'Restricted special pages',
 'newpages'                        => 'New pages',
 'newpages-summary'                => '', # only translate this message to other languages if you have to change it
 'newpages-username'               => 'Username:',
@@ -1710,94 +1714,6 @@ The [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] length is '''\$7''
 'notargettext'                    => 'You have not specified a target page or user to perform this function on.',
 'pager-newer-n'                   => '{{PLURAL:$1|newer 1|newer $1}}',
 'pager-older-n'                   => '{{PLURAL:$1|older 1|older $1}}',
-
-# Special:Specialpages
-'specialpages'         => 'Special pages',
-'specialpages-summary' => '', # only translate this message to other languages if you have to change it
-'specialpages-other'   => 'More special pages for all users',
-'restrictedpheading'   => 'Restricted special pages',
-'specialpages-edit'    => 'Edit this page',
-'specialpages-tpl'     => '
-<!-- Format: per line one canonical (english) special page name:
-* special:specialpagename
-All other lines are rendered as normal (wiki)text -->
-== General page lists ==
-{{int:specialpages-tpl-lists}}
-
-== Maintenance page lists ==
-{{int:specialpages-tpl-maint}}
-
-== Tools ==
-{{int:specialpages-tpl-tools}}
-
-== Logs and information ==
-{{int:specialpages-tpl-info}}
-
-== Personal pages ==
-{{int:specialpages-tpl-pers}}',
-
-'specialpages-tpl-lists'    => '
-* special:Allpages
-* special:Prefixindex
-* special:Categories
-* special:Disambiguations
-* special:Listredirects', # don't translate or duplicate this message to other languages
-
-'specialpages-tpl-tools'    => '
-* special:Export
-* special:Filepath
-* special:MIMEsearch
-* special:Randompage
-* special:Randomredirect
-* special:Search
-* special:Upload', # don't translate or duplicate this message to other languages
-
-'specialpages-tpl-maint'     => '
-* special:Mostcategories
-* special:Fewestrevisions
-* special:Mostrevisions
-* special:BrokenRedirects
-* special:Deadendpages
-* special:DoubleRedirects
-* special:Longpages
-* special:Mostlinkedcategories
-* special:Mostimages
-* special:Mostlinked
-* special:Mostlinkedtemplates
-* special:Popularpages
-* special:Ancientpages
-* special:Lonelypages
-* special:Shortpages
-* special:Withoutinterwiki
-* special:Protectedpages
-* special:Protectedtitles
-* special:Uncategorizedcategories
-* special:Uncategorizedimages
-* special:Uncategorizedpages
-* special:Uncategorizedtemplates
-* special:Unusedcategories
-* special:Unusedimages
-* special:Unusedtemplates', # don't translate or duplicate this message to other languages
-'specialpages-tpl-info'     => '
-* special:Ipblocklist
-* special:Booksources
-* special:Imagelist
-* special:Log
-* special:Newpages
-* special:Newimages
-* special:Recentchanges
-* special:Statistics
-* special:Allmessages
-* special:Contributions
-* special:Listusers
-* special:Version
-* special:Wantedcategories
-* special:Wantedpages
-* special:Whatlinkshere', # don't translate or duplicate this message to other languages
-'specialpages-tpl-pers'     => '
-* special:Preferences
-* special:Watchlist
-* special:Userlogin', # don't translate or duplicate this message to other languages
 
 # Book sources
 'booksources'               => 'Book sources',
@@ -2092,7 +2008,7 @@ $1',
 'sp-contributions-username'    => 'IP Address or username:',
 'sp-contributions-submit'      => 'Search',
 'sp-contributions-explain'     => '', # only translate this message to other languages if you have to change it
-'sp-contributions-footer'      => '-',
+'sp-contributions-footer'      => '-', # don't translate or duplicate this message to other languages
 'sp-contributions-footer-anon' => '-', # don't translate or duplicate this message to other languages
 
 'sp-newimages-showfrom' => 'Show new files starting from $1',
@@ -3156,4 +3072,5 @@ You can also [[Special:Watchlist/edit|use the standard editor]].',
 Images are shown in full resolution, other file types are started with their associated program directly.
 
 Enter the file name without the "{{ns:image}}:" prefix.',
+
 );

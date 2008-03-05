@@ -108,11 +108,6 @@ $wgIgnoredMessages = array(
 	'talkpagetext',
 	'trackback',
 	'trackbackexcerpt',
-	'specialpages-tpl-lists',
-	'specialpages-tpl-tools',
-	'specialpages-tpl-maint',
-	'specialpages-tpl-info',
-	'specialpages-tpl-pers',
 );
 
 /** Optional messages, which may be translated only if changed in the other language. */

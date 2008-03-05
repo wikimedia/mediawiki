@@ -38,8 +38,6 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   reduce broken form submissions
 * Add --old-redirects-only option to maintenance/refreshLinks.php, to add old
   redirects to the redirect table
-* (bug 10457) Reorganize Special:Specialpages. Customizable by editing
-  [[MediaWiki:specialpages-tpl]]
 
 === Bug fixes in 1.13 ===
 
