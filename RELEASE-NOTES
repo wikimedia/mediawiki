@@ -63,6 +63,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   maintenance/cleanupSpam.php
 * All skins should have the "mediawiki" class on the body element
 * (bug 13019) Message cache for some extensions not loaded at time of editing
+* (bug 13247) Prettified ISBN links
 
 === API changes in 1.13 ===
 
