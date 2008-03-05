@@ -1722,13 +1722,37 @@ The [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] length is '''\$7''
 * special:specialpagename
 All other lines are rendered as normal (wiki)text -->
 == General page lists ==
+{{int:specialpages-tpl-lists}}
+
+== Maintenance page lists ==
+{{int:specialpages-tpl-maint}}
+
+== Tools ==
+{{int:specialpages-tpl-tools}}
+
+== Logs and information ==
+{{int:specialpages-tpl-info}}
+
+== Personal pages ==
+{{int:specialpages-tpl-pers}}',
+
+'specialpages-tpl-lists'    => '
 * special:Allpages
 * special:Prefixindex
 * special:Categories
 * special:Disambiguations
-* special:Listredirects
+* special:Listredirects', # don't translate or duplicate this message to other languages
 
-== Maintenance page lists ==
+'specialpages-tpl-tools'    => '
+* special:Export
+* special:Filepath
+* special:MIMEsearch
+* special:Randompage
+* special:Randomredirect
+* special:Search
+* special:Upload', # don't translate or duplicate this message to other languages
+
+'specialpages-tpl-maint'     => '
 * special:Mostcategories
 * special:Fewestrevisions
 * special:Mostrevisions
@@ -1753,18 +1777,8 @@ All other lines are rendered as normal (wiki)text -->
 * special:Uncategorizedtemplates
 * special:Unusedcategories
 * special:Unusedimages
-* special:Unusedtemplates
-
-== Tools ==
-* special:Export
-* special:Filepath
-* special:MIMEsearch
-* special:Randompage
-* special:Randomredirect
-* special:Search
-* special:Upload
-
-== Logs and information ==
+* special:Unusedtemplates', # don't translate or duplicate this message to other languages
+'specialpages-tpl-info'     => '
 * special:Ipblocklist
 * special:Booksources
 * special:Imagelist
@@ -1779,12 +1793,11 @@ All other lines are rendered as normal (wiki)text -->
 * special:Version
 * special:Wantedcategories
 * special:Wantedpages
-* special:Whatlinkshere
-
-== Personal pages ==
+* special:Whatlinkshere', # don't translate or duplicate this message to other languages
+'specialpages-tpl-pers'     => '
 * special:Preferences
 * special:Watchlist
-* special:Userlogin',
+* special:Userlogin', # don't translate or duplicate this message to other languages
 
 # Book sources
 'booksources'               => 'Book sources',
@@ -2079,7 +2092,7 @@ $1',
 'sp-contributions-username'    => 'IP Address or username:',
 'sp-contributions-submit'      => 'Search',
 'sp-contributions-explain'     => '', # only translate this message to other languages if you have to change it
-'sp-contributions-footer'      => '-', # don't translate or duplicate this message to other languages
+'sp-contributions-footer'      => '-',
 'sp-contributions-footer-anon' => '-', # don't translate or duplicate this message to other languages
 
 'sp-newimages-showfrom' => 'Show new files starting from $1',

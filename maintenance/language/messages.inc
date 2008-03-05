@@ -1126,6 +1126,11 @@ $wgMessageStructure = array(
 		'specialpages-other',
 		'restrictedpheading',
 		'specialpages-tpl',
+		'specialpages-tpl-lists',
+		'specialpages-tpl-tools',
+		'specialpages-tpl-maint',
+		'specialpages-tpl-info',
+		'specialpages-tpl-pers',
 	),
 	'booksources' => array(
 		'booksources',

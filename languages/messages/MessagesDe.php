@@ -1393,69 +1393,19 @@ auf die bereits die erste Weiterleitung zeigen sollte.',
 * special:specialpagename
 Alle anderen Zeilen werden als normaler (Wiki)Text ausgewertet -->
 == Allgemeine Listen ==
-* special:Allpages
-* special:Prefixindex
-* special:Categories
-* special:Disambiguations
-* special:Listredirects
+{{int:specialpages-tpl-lists}}
 
 == Wartungslisten ==
-* special:Mostcategories
-* special:Fewestrevisions
-* special:Mostrevisions
-* special:BrokenRedirects
-* special:Deadendpages
-* special:DoubleRedirects
-* special:Longpages
-* special:Mostlinkedcategories
-* special:Mostimages
-* special:Mostlinked
-* special:Mostlinkedtemplates
-* special:Popularpages
-* special:Ancientpages
-* special:Lonelypages
-* special:Shortpages
-* special:Withoutinterwiki
-* special:Protectedpages
-* special:Protectedtitles
-* special:Uncategorizedcategories
-* special:Uncategorizedimages
-* special:Uncategorizedpages
-* special:Uncategorizedtemplates
-* special:Unusedcategories
-* special:Unusedimages
-* special:Unusedtemplates
+{{int:specialpages-tpl-maint}}
 
 == Werkzeuge ==
-* special:Export
-* special:Filepath
-* special:MIMEsearch
-* special:Randompage
-* special:Randomredirect
-* special:Search
-* special:Upload
+{{int:specialpages-tpl-tools}}
 
 == Logbücher und Informationen ==
-* special:Ipblocklist
-* special:Booksources
-* special:Imagelist
-* special:Log
-* special:Newpages
-* special:Newimages
-* special:Recentchanges
-* special:Statistics
-* special:Allmessages
-* special:Contributions
-* special:Listusers
-* special:Version
-* special:Wantedcategories
-* special:Wantedpages
-* special:Whatlinkshere
+{{int:specialpages-tpl-info}}
 
 == Persönliche Seiten ==
-* special:Preferences
-* special:Watchlist
-* special:Userlogin',
+{{int:specialpages-tpl-pers}}',
 
 # Book sources
 'booksources'               => 'ISBN-Suche',
