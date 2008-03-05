@@ -11,13 +11,20 @@ require_once( "refreshLinks.inc" );
 
 if( isset( $options['help'] ) ) {
 	echo <<<TEXT
-Usage: php refreshLinks.php [<start>] [-e <end>] [-m <maxlag>] [--help] 
+Usage:
+    php refreshLinks.php --help
+    php refreshLinks.php [<start>] [-e <end>] [-m <maxlag>] [--dfn-only]
+                         [--new-only] [--redirects-only]
+    php refreshLinks.php [<start>] [-e <end>] [-m <maxlag>] --old-redirects-only
 
-    --help      : This help message
-    --dfn-only  : Delete links from nonexistent articles only
-    -m <number> : Maximum replication lag
-    <start>     : First page id to refresh
-    -e <number> : Last page id to refresh
+    --help               : This help message
+    --dfn-only           : Delete links from nonexistent articles only
+    --new-only           : Only affect articles with just a single edit
+    --redirects-only     : Only fix redirects, not all links
+    --old-redirects-only : Only fix redirects with no redirect table entry
+    -m <number>          : Maximum replication lag
+    <start>              : First page id to refresh
+    -e <number>          : Last page id to refresh
 
 TEXT;
 	exit(0);
@@ -32,7 +39,7 @@ if ( !$options['dfn-only'] ) {
 		$start = 1;
 	}
 
-	refreshLinks( $start, $options['new-only'], $options['m'], $options['e'], $options['redirects-only'] );
+	refreshLinks( $start, $options['new-only'], $options['m'], $options['e'], $options['redirects-only'], $options['old-redirects-only'] );
 }
 // this bit's bad for replication: disabling temporarily
 // --brion 2005-07-16

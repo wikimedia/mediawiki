@@ -8,7 +8,7 @@
 define( "REPORTING_INTERVAL", 100 );
 #define( "REPORTING_INTERVAL", 1 );
 
-function refreshLinks( $start, $newOnly = false, $maxLag = false, $end = 0, $redirectsOnly = false ) {
+function refreshLinks( $start, $newOnly = false, $maxLag = false, $end = 0, $redirectsOnly = false, $oldRedirectsOnly = false ) {
 	global $wgUser, $wgParser, $wgUseImageResize, $wgUseTidy;
 
 	$fname = 'refreshLinks';
@@ -25,15 +25,36 @@ function refreshLinks( $start, $newOnly = false, $maxLag = false, $end = 0, $red
 	$wgUseImageResize = false;
 	$wgUseTidy = false;
 
-	$what = ($redirectsOnly)? "redirects" : "links";
+	$what = $redirectsOnly ? "redirects" : "links";
 
-	if ( $newOnly ) {
+	if( $oldRedirectsOnly ) {
+		# This entire code path is cut-and-pasted from below.  Hurrah.
+		$res = $dbr->query(
+			"SELECT page_id ".
+			"FROM page ".
+			"LEFT JOIN redirect ON page_id=rd_from ".
+			"WHERE page_is_redirect=1 AND rd_from IS NULL AND ".
+			($end == 0 ? "page_id >= $start"
+			           : "page_id BETWEEN $start AND $end"),
+			$fname
+		);
+		$num = $dbr->numRows( $res );
+		print "Refreshing $num old redirects from $start...\n";
+
+		while( $row = $dbr->fetchObject( $res ) ) {
+			if ( !( ++$i % REPORTING_INTERVAL ) ) {
+				print "$i\n";
+				wfWaitForSlaves( $maxLag );
+			}
+			fixRedirect( $row->page_id );
+		}
+	} elseif( $newOnly ) {
 		print "Refreshing $what from ";
 		$res = $dbr->select( 'page',
 			array( 'page_id' ),
 			array(
 				'page_is_new' => 1,
-				"page_id > $start" ),
+				"page_id >= $start" ),
 			$fname
 		);
 		$num = $dbr->numRows( $res );

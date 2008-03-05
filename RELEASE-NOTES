@@ -36,7 +36,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 13112) Added Special:RelatedChanges alias to Special:Recentchangeslinked
 * (bug 13130) Moved edit token and autosummary fields above edit tools to
   reduce broken form submissions
-
+* Add --old-redirects-only option to maintenance/refreshLinks.php, to add old
+  redirects to the redirect table
 
 === Bug fixes in 1.13 ===
 
