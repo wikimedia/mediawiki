@@ -1367,6 +1367,10 @@ auf die bereits die erste Weiterleitung zeigen sollte.',
 'protectedtitlesempty'            => 'Zur Zeit sind mit den angegebenen Parametern keine Seiten zur Neuerstellung gesperrt.',
 'listusers'                       => 'Benutzerverzeichnis',
 'listusers-summary'               => "Diese Spezialseite listet alle registrierten Benutzer auf; die Gesamtzahl kann [[Special:Statistics|hier]] eingesehen werden. Über das Auswahlfeld ''Gruppe'' lässt sich die Abfrage auf bestimmte Benutzergruppen einschränken.",
+'specialpages'                    => 'Spezialseiten',
+'specialpages-summary'            => 'Diese Seite bietet einen Überblick aller Spezialseiten. Diese werden automatisch generiert und können nicht bearbeitet werden.',
+'spheading'                       => 'Spezialseiten für alle Benutzer',
+'restrictedpheading'              => 'Spezialseiten für Administratoren',
 'newpages'                        => 'Neue Seiten',
 'newpages-summary'                => 'Diese Spezialseite listet alle neu erstellten Seiten der letzten 30 Tage auf. Die Ausgabe kann auf einen Namensraum und/oder Benutzernamen eingeschränkt werden.',
 'newpages-username'               => 'Benutzername:',
@@ -1381,31 +1385,6 @@ auf die bereits die erste Weiterleitung zeigen sollte.',
 'notargettext'                    => 'Du hast nicht angegeben, auf welche Seite diese Funktion angewendet werden soll.',
 'pager-newer-n'                   => '{{PLURAL:$1|nächster|nächste $1}}',
 'pager-older-n'                   => '{{PLURAL:$1|vorheriger|vorherige $1}}',
-
-# Special:Specialpages
-'specialpages'         => 'Spezialseiten',
-'specialpages-summary' => 'Diese Seite bietet einen Überblick aller Spezialseiten.',
-'specialpages-other'   => 'Weitere Spezialseiten für alle Benutzer',
-'restrictedpheading'   => 'Spezialseiten für Benutzer mit erweiterten Rechten',
-'specialpages-edit'    => 'Diese Seite bearbeiten',
-'specialpages-tpl'     => '
-<!-- Format: pro Zeile ein kanonischer (englischer) Spezialseitenname:
-* special:specialpagename
-Alle anderen Zeilen werden als normaler (Wiki)Text ausgewertet -->
-== Allgemeine Listen ==
-{{int:specialpages-tpl-lists}}
-
-== Wartungslisten ==
-{{int:specialpages-tpl-maint}}
-
-== Werkzeuge ==
-{{int:specialpages-tpl-tools}}
-
-== Logbücher und Informationen ==
-{{int:specialpages-tpl-info}}
-
-== Persönliche Seiten ==
-{{int:specialpages-tpl-pers}}',
 
 # Book sources
 'booksources'               => 'ISBN-Suche',
