@@ -2436,6 +2436,19 @@ class Article {
 			$wgOut->rateLimited();
 			return;
 		}
+		if( isset( $result[0][0] ) && ( $result[0][0] == 'alreadyrolled' || $result[0][0] == 'cantrollback' ) ){
+			$wgOut->setPageTitle( wfMsg( 'rollbackfailed' ) );
+			$errArray = $result[0];
+			$errMsg = array_shift( $errArray );
+			$wgOut->addWikiMsgArray( $errMsg, $errArray );
+			if( isset( $details['current'] ) ){
+				$current = $details['current'];
+				if( $current->getComment() != '' ) {
+					$wgOut->addWikiMsgArray( 'editcomment', array( $wgUser->getSkin()->formatComment( $current->getComment() ) ), array( 'replaceafter' ) );
+				}
+			}
+			return;
+		}
 		# Display permissions errors before read-only message -- there's no
 		# point in misleading the user into thinking the inability to rollback
 		# is only temporary.

@@ -66,6 +66,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 13019) Message cache for some extensions not loaded at time of editing
 * (bug 13247) Prettified ISBN links
 * maintenance/refreshLinks.php did not fix page_id 1 with the --new-only option
+* (bug 13110) Don't show "Permission error" page if the edit is allready rolled
+  back when using rollback
 
 === API changes in 1.13 ===
 
