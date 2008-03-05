@@ -267,6 +267,7 @@ class Preprocessor_DOM implements Preprocessor {
 					continue;
 				}
 				$name = $matches[1];
+				$lowerName = strtolower( $name );
 				$attrStart = $i + strlen( $name ) + 1;
 
 				// Find end of tag
@@ -281,7 +282,7 @@ class Preprocessor_DOM implements Preprocessor {
 				}
 
 				// Handle ignored tags
-				if ( in_array( $name, $ignoredTags ) ) {
+				if ( in_array( $lowerName, $ignoredTags ) ) {
 					$accum .= '<ignore>' . htmlspecialchars( substr( $text, $i, $tagEndPos - $i + 1 ) ) . '</ignore>';
 					$i = $tagEndPos + 1;
 					continue;
@@ -308,7 +309,7 @@ class Preprocessor_DOM implements Preprocessor {
 					}
 				}
 				// <includeonly> and <noinclude> just become <ignore> tags
-				if ( in_array( $name, $ignoredElements ) ) {
+				if ( in_array( $lowerName, $ignoredElements ) ) {
 					$accum .= '<ignore>' . htmlspecialchars( substr( $text, $tagStartPos, $i - $tagStartPos ) ) 
 						. '</ignore>';
 					continue;

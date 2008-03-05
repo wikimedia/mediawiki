@@ -254,6 +254,7 @@ class Preprocessor_Hash implements Preprocessor {
 					continue;
 				}
 				$name = $matches[1];
+				$lowerName = strtolower( $name );
 				$attrStart = $i + strlen( $name ) + 1;
 
 				// Find end of tag
@@ -268,7 +269,7 @@ class Preprocessor_Hash implements Preprocessor {
 				}
 
 				// Handle ignored tags
-				if ( in_array( $name, $ignoredTags ) ) {
+				if ( in_array( $lowerName, $ignoredTags ) ) {
 					$accum->addNodeWithText( 'ignore', substr( $text, $i, $tagEndPos - $i + 1 ) );
 					$i = $tagEndPos + 1;
 					continue;
@@ -296,7 +297,7 @@ class Preprocessor_Hash implements Preprocessor {
 					}
 				}
 				// <includeonly> and <noinclude> just become <ignore> tags
-				if ( in_array( $name, $ignoredElements ) ) {
+				if ( in_array( $lowerName, $ignoredElements ) ) {
 					$accum->addNodeWithText(  'ignore', substr( $text, $tagStartPos, $i - $tagStartPos ) );
 					continue;
 				}
