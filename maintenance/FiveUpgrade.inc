@@ -702,7 +702,7 @@ END;
 			'major'  => '',
 			'minor'  => '' );
 
-		$magic =& wfGetMimeMagic();
+		$magic = MimeMagic::singleton();
 		$mime = $magic->guessMimeType( $filename, true );
 		list( $info['major'], $info['minor'] ) = explode( '/', $mime );
 

@@ -16,7 +16,7 @@
 class Site {
 	var $suffix, $lateral, $url;
 
-	function Site( $s, $l, $u ) {
+	function __construct( $s, $l, $u ) {
 		$this->suffix = $s;
 		$this->lateral = $l;
 		$this->url = $u;
@@ -98,7 +98,7 @@ function makeInterwikiSQL( $destDir ) {
 	}
 
 	# Extract the intermap from meta
-	$intermap = wfGetHTTP( 'http://meta.wikimedia.org/w/index.php?title=Interwiki_map&action=raw', 30 );
+	$intermap = Http::get( 'http://meta.wikimedia.org/w/index.php?title=Interwiki_map&action=raw', 30 );
 	$lines = array_map( 'trim', explode( "\n", trim( $intermap ) ) );
 
 	if ( !$lines || count( $lines ) < 2 ) {
