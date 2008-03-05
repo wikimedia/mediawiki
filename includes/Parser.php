@@ -1005,9 +1005,9 @@ class Parser
 				' ' => '',
 				'x' => 'X',
 			));
-			$titleObj = SpecialPage::getTitleFor( 'Booksources' );
+			$titleObj = SpecialPage::getTitleFor( 'Booksources', $num );
 			$text = '<a href="' .
-				$titleObj->escapeLocalUrl( "isbn=$num" ) .
+				$titleObj->escapeLocalUrl() .
 				"\" class=\"internal\">ISBN $isbn</a>";
 		} else {
 			if ( substr( $m[0], 0, 3 ) == 'RFC' ) {
