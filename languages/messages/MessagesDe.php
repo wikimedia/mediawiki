@@ -1393,9 +1393,9 @@ auf die bereits die erste Weiterleitung zeigen sollte.',
 * special:specialpagename
 Alle anderen Zeilen werden als normaler (Wiki)Text ausgewertet -->
 == Allgemeine Listen ==
-:special:Allpages
-: special:Prefixindex
-;special:Categories
+* special:Allpages
+* special:Prefixindex
+* special:Categories
 * special:Disambiguations
 * special:Listredirects
 

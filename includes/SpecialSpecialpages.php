@@ -33,14 +33,14 @@ function wfSpecialSpecialpages() {
 	# Parse the template and create a localized wikitext page
 	foreach ( explode( "\n", $tpl ) as $line ) {
 		# Look for 'special:' in the line
-		$pos = strpos( $line, 'special:' );
+		$pos = strpos( strtolower( $line ), 'special:' );
 		if( $pos >= 0 ) {
 
 			# Preserve the line start
 			$lineStart = ( $pos > 0 ) ? substr( $line, 0, $pos ) : '';
 
 			# Get the canonical special page name
-			$canonical = strtolower( trim( substr( $line, $pos + 8 ) ) );
+			$canonical = strtolower( trim( substr( $line, $pos + strlen( 'special:' ) ) ) );
 
 			# Check if it is a valid regular special page name
 			# Restricted pages will be added at the end
