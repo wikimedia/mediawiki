@@ -402,6 +402,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 12430) Fix call to private method LinkFilter::makeRegex fatal error in
   maintenance/cleanupSpam.php
 * (bug 13211) Don't break edit buttons when Image namespace includes apostrophe
+* Fix regression with upgrades from 1.4 or below.
+
 
 == Parser changes in 1.12 ==
 
