@@ -1334,9 +1334,6 @@ Il y a {{PLURAL:$7|'''$7''' article|'''$7''' articles}} dans [[meta:Help:Job_que
 'protectedtitlestext'     => 'Les titres suivants sont protégés à la création',
 'protectedtitlesempty'    => "Aucun titre n'est actuellement protégé avec ces paramètres.",
 'listusers'               => 'Liste des inscrits',
-'specialpages'            => 'Pages spéciales',
-'spheading'               => 'Pages spéciales',
-'restrictedpheading'      => 'Pages spéciales réservées',
 'newpages'                => 'Nouvelles pages',
 'newpages-username'       => 'Utilisateur :',
 'ancientpages'            => 'Articles les moins récemment modifiés',
@@ -1348,6 +1345,30 @@ Il y a {{PLURAL:$7|'''$7''' article|'''$7''' articles}} dans [[meta:Help:Job_que
 'notargettext'            => 'Indiquez une page cible ou un utilisateur cible.',
 'pager-newer-n'           => '{{PLURAL:$1|1 plus récente|$1 plus récentes}}',
 'pager-older-n'           => '{{PLURAL:$1|1 plus ancienne|$1 plus anciennes}}',
+
+# Special:Specialpages
+'specialpages'            => 'Pages spéciales',
+'specialpages-other'      => 'Autres pages spéciales pour tous les utilisateurs',
+'restrictedpheading'      => 'Pages spéciales réservées',
+'specialpages-edit'       => 'Modifier cette page',
+'specialpages-tpl'     => '
+<!-- Format: un nom canonique (en anglais) de page spéciale par ligne :
+* special:specialpagename
+Toutes les autres lignes seront considérées comme du (wiki)text normal -->
+== Pages générales ==
+{{int:specialpages-tpl-lists}}
+
+== Maintenance ==
+{{int:specialpages-tpl-maint}}
+
+== Outils ==
+{{int:specialpages-tpl-tools}}
+
+== Journaux et autres informations ==
+{{int:specialpages-tpl-info}}
+
+== Pages personnelles ==
+{{int:specialpages-tpl-pers}}',
 
 # Book sources
 'booksources'               => 'Ouvrages de référence',
