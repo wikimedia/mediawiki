@@ -274,12 +274,12 @@ $messages = array(
 
 # Bits of text used by many pages
 'categories'               => 'Luokat',
-'page-categories'           => '{{PLURAL:$1|Luokka|Luokat}}:&#32;',
+'pagecategories'           => '{{PLURAL:$1|Luokka|Luokat}}',
 'category_header'          => 'Sivut, jotka ovat luokassa $1',
 'subcategories'            => 'Alaluokat',
 'category-media-header'    => 'Luokan ”$1” sisältämät tiedostot',
 'category-empty'           => "''Tässä luokassa ei ole sivuja eikä tiedostoja.''",
-'hidden-categories'        => '{{PLURAL:$1|Piilotettu luokka|Piilotetut luokat}}:&#32;',
+'hidden-categories'        => '{{PLURAL:$1|Piilotettu luokka|Piilotetut luokat}}',
 'hidden-category-category' => 'Piilotetut luokat', # Name of the category where hidden categories will be listed
 
 'mainpagetext'      => "'''MediaWiki on onnistuneesti asennettu.'''",

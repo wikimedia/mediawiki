@@ -146,7 +146,7 @@ $messages = array(
 
 # Bits of text used by many pages
 'categories'            => 'Katõgooriaq',
-'page-categories'        => '{{PLURAL:$1|Katõgooria|Katõgooriaq}}:&#32;',
+'pagecategories'        => '{{PLURAL:$1|Katõgooria|Katõgooriaq}}',
 'category_header'       => 'Katõgooria "$1" artikliq',
 'subcategories'         => 'Allkatõgooriaq',
 'category-media-header' => 'Kiräkotus katõgoorian "$1"',

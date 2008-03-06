@@ -164,12 +164,12 @@ $messages = array(
 
 # Bits of text used by many pages
 'categories'               => '頁面分類',
-'page-categories'           => '$1個分類:&#32;',
+'pagecategories'           => '$1個分類',
 'category_header'          => '類別「$1」中的頁面',
 'subcategories'            => '附分類',
 'category-media-header'    => '"$1"分類中的媒體',
 'category-empty'           => "''這個分類中尚未包含任何頁面或媒體。''",
-'hidden-categories'        => '$1個隱藏分類:&#32;',
+'hidden-categories'        => '$1個隱藏分類',
 'hidden-category-category' => '隱藏分類', # Name of the category where hidden categories will be listed
 
 

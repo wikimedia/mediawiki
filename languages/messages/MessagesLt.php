@@ -165,7 +165,7 @@ $messages = array(
 
 # Bits of text used by many pages
 'categories'            => 'Kategorijos',
-'page-categories'        => '{{PLURAL:$1|Kategorija|Kategorijos|Kategorijų}}:&#32;',
+'pagecategories'        => '{{PLURAL:$1|Kategorija|Kategorijos|Kategorijų}}',
 'category_header'       => 'Puslapiai kategorijoje „$1“',
 'subcategories'         => 'Subkategorijos',
 'category-media-header' => 'Media kategorijoje „$1“',

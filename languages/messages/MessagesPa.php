@@ -126,7 +126,7 @@ $messages = array(
 
 # Bits of text used by many pages
 'categories'            => 'ਕੈਟਾਗਰੀਆਂ',
-'page-categories'        => '{{PLURAL:$1|ਕੈਟਾਗਰੀ|ਕੈਟਾਗਰੀਆਂ}}:&#32;',
+'pagecategories'        => '{{PLURAL:$1|ਕੈਟਾਗਰੀ|ਕੈਟਾਗਰੀਆਂ}}',
 'category_header'       => 'ਕੈਟਾਗਰੀ "$1" ਵਿੱਚ ਲੇਖ',
 'subcategories'         => 'ਸਬ-ਕੈਟਾਗਰੀਆਂ',
 'category-media-header' => 'ਕੈਟਾਗਰੀ "$1" ਵਿੱਚ ਮੀਡਿਆ',

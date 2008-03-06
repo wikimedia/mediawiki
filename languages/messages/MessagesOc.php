@@ -176,12 +176,12 @@ $messages = array(
 
 # Bits of text used by many pages
 'categories'               => 'Categorias de la pagina',
-'page-categories'           => '{{PLURAL:$1|Categoria|Categorias}} de la pagina:&#32;',
+'pagecategories'           => '{{PLURAL:$1|Categoria|Categorias}} de la pagina',
 'category_header'          => 'Articles dins la categoria "$1"',
 'subcategories'            => 'Soscategorias',
 'category-media-header'    => 'Fichièrs multimèdia dins la categoria "$1"',
 'category-empty'           => "''Actualament, aquesta categoria conten pas cap d'articles o de mèdia.''",
-'hidden-categories'        => '{{PLURAL:$1|Categoria amagada|Categorias amagadas}}:&#32;',
+'hidden-categories'        => '{{PLURAL:$1|Categoria amagada|Categorias amagadas}}',
 'hidden-category-category' => 'Categorias amagadas', # Name of the category where hidden categories will be listed
 
 'mainpagetext'      => 'Logicial {{SITENAME}} installat.',

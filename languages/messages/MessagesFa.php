@@ -370,12 +370,12 @@ $messages = array(
 
 # Bits of text used by many pages
 'categories'               => 'رده‌های صفحه',
-'page-categories'           => '{{PLURAL:$1|رده‌های صفحه|رده‌های صفحه}}:&#32;',
+'pagecategories'           => '{{PLURAL:$1|رده‌های صفحه|رده‌های صفحه}}',
 'category_header'          => 'مقاله‌های ردهٔ «$1»',
 'subcategories'            => 'زیررده‌ها',
 'category-media-header'    => 'پرونده‌های ردهٔ «$1»',
 'category-empty'           => 'این رده شامل هیچ صفحه یا پرونده‌ای نمی‌شود.',
-'hidden-categories'        => '{{PLURAL:$1|ردهٔ پنهان|رده‌های پنهان}}:&#32;',
+'hidden-categories'        => '{{PLURAL:$1|ردهٔ پنهان|رده‌های پنهان}}',
 'hidden-category-category' => 'رده‌های پنهان', # Name of the category where hidden categories will be listed
 
 'mainpagetext'      => 'نرم‌افزار ویکی با موفقیت نصب شد.',

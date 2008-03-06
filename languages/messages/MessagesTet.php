@@ -132,7 +132,7 @@ $messages = array(
 
 # Bits of text used by many pages
 'categories'      => 'Kategoría',
-'page-categories'  => '{{PLURAL:$1|Kategoría|Kategoría}}:&#32;',
+'pagecategories'  => '{{PLURAL:$1|Kategoría|Kategoría}}',
 'category_header' => 'Artigu iha kategoría "$1"',
 'category-empty'  => "''Iha kategoría ne'e agora pájina lá'os.''",
 

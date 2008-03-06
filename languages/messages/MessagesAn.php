@@ -216,12 +216,12 @@ $messages = array(
 
 # Bits of text used by many pages
 'categories'               => 'Categorías',
-'page-categories'           => '{{PLURAL:$1|Categoría|Categorías}}:&#32;',
+'pagecategories'           => '{{PLURAL:$1|Categoría|Categorías}}',
 'category_header'          => 'Articlos en a categoría "$1"',
 'subcategories'            => 'Subcategorías',
 'category-media-header'    => 'Contenius multimedia en a categoría "$1"',
 'category-empty'           => "''Ista categoría no tiene por agora garra articlo ni conteniu multimedia''",
-'hidden-categories'        => '{{PLURAL:$1|Categoría amagata|Categorías amagatas}}:&#32;',
+'hidden-categories'        => '{{PLURAL:$1|Categoría amagata|Categorías amagatas}}',
 'hidden-category-category' => 'Categorías amagatas', # Name of the category where hidden categories will be listed
 
 'mainpagetext'      => "O programa MediaWiki s'ha instalato correutament.",

@@ -159,7 +159,7 @@ $messages = array(
 
 # Bits of text used by many pages
 'categories'            => 'Roll ar rummadoù',
-'page-categories'        => '{{PLURAL:$1|Rummad |Rummad }}:&#32;',
+'pagecategories'        => '{{PLURAL:$1|Rummad |Rummad }}',
 'category_header'       => 'Niver a bennadoù er rummad "$1"',
 'subcategories'         => 'Isrummad',
 'category-media-header' => 'Restroù liesvedia er rummad "$1"',

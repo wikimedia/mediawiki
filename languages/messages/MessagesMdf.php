@@ -114,12 +114,12 @@ $messages = array(
 
 # Bits of text used by many pages
 'categories'               => 'Категориет',
-'page-categories'           => '{{PLURAL:$1|Категорие|Категориет}}:&#32;',
+'pagecategories'           => '{{PLURAL:$1|Категорие|Категориет}}',
 'category_header'          => '"$1" категориеса лопатне',
 'subcategories'            => 'Субкатегориет',
 'category-media-header'    => '"$1" категориеса медиясь',
 'category-empty'           => "''Медиа лопат тя категориеса ашет.''",
-'hidden-categories'        => '{{PLURAL:$1|Кяшф категорие|Кяшф категориет}}:&#32;',
+'hidden-categories'        => '{{PLURAL:$1|Кяшф категорие|Кяшф категориет}}',
 'hidden-category-category' => 'Кяшф категориет', # Name of the category where hidden categories will be listed
 
 'mainpagetext'      => "<big>'''МедиаВикить арафтозь лац.'''</big>",

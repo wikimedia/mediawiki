@@ -161,12 +161,12 @@ $messages = array(
 
 # Bits of text used by many pages
 'categories'               => 'వర్గాలు',
-'page-categories'           => '{{PLURAL:$1|వర్గం|వర్గాలు}}:&#32;',
+'pagecategories'           => '{{PLURAL:$1|వర్గం|వర్గాలు}}',
 'category_header'          => '"$1" వర్గంలో వ్యాసాలు',
 'subcategories'            => 'ఉపవర్గాలు',
 'category-media-header'    => '"$1" వర్గంలో ఉన్న మీడియా ఫైళ్లు',
 'category-empty'           => "''ప్రస్తుతం ఈ వర్గంలో ఎలాంటి పేజీలుగానీ మీడియా ఫైళ్లుగానీ లేవు.''",
-'hidden-categories'        => '{{PLURAL:$1|దాచిన వర్గం|దాచిన వర్గాలు}}:&#32;',
+'hidden-categories'        => '{{PLURAL:$1|దాచిన వర్గం|దాచిన వర్గాలు}}',
 'hidden-category-category' => 'దాచిన వర్గాలు', # Name of the category where hidden categories will be listed
 
 'mainpagetext'      => "<big>'''మీడియా వికీని విజయవంతంగా ప్రతిష్టించాం.'''</big>",

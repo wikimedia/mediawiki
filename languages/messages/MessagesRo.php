@@ -172,7 +172,7 @@ pe titlul secţiunii (JavaScript)',
 
 # Bits of text used by many pages
 'categories'            => '{{PLURAL:$1|Categorie|Categorii}}',
-'page-categories'        => '{{PLURAL:$1|Categorie|Categorii}}:&#32;',
+'pagecategories'        => '{{PLURAL:$1|Categorie|Categorii}}',
 'category_header'       => 'Articole din categoria "$1"',
 'subcategories'         => 'Subcategorii',
 'category-media-header' => 'Fişiere media în categoria "$1"',

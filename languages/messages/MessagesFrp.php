@@ -169,12 +169,12 @@ $messages = array(
 
 # Bits of text used by many pages
 'categories'               => 'Catègories',
-'page-categories'           => '{{PLURAL:$1|Catègorie |Catègories }}:&#32;',
+'pagecategories'           => '{{PLURAL:$1|Catègorie |Catègories }}',
 'category_header'          => 'Pâges dens la catègorie « $1 »',
 'subcategories'            => 'Sot-catègories',
 'category-media-header'    => 'Fichiérs multimèdia dens la catègorie « $1 »',
 'category-empty'           => "''Ceta catègorie contint gins d’articllo, de sot-catègorie ou de fichiér multimèdia.''",
-'hidden-categories'        => '{{PLURAL:$1|Catègorie cachiê|Catègories cachiês}}:&#32;',
+'hidden-categories'        => '{{PLURAL:$1|Catègorie cachiê|Catègories cachiês}}',
 'hidden-category-category' => 'Catègories cachiês', # Name of the category where hidden categories will be listed
 
 'mainpagetext'      => "<big>'''MediaWiki at étâ enstalâ avouéc reusséta.'''</big>",

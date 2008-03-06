@@ -256,12 +256,12 @@ $messages = array(
 
 # Bits of text used by many pages
 'categories'               => 'वर्ग',
-'page-categories'           => '{{PLURAL:$1|वर्ग|वर्ग}}:&#32;',
+'pagecategories'           => '{{PLURAL:$1|वर्ग|वर्ग}}',
 'category_header'          => '"$1" वर्गातील लेख',
 'subcategories'            => 'उपवर्ग',
 'category-media-header'    => '"$1" वर्गातील माध्यमे',
 'category-empty'           => "''या वर्गात अद्याप एकही लेख नाही.''",
-'hidden-categories'        => '{{PLURAL:$1|लपविलेला वर्ग|लपविलेले वर्ग}}:&#32;',
+'hidden-categories'        => '{{PLURAL:$1|लपविलेला वर्ग|लपविलेले वर्ग}}',
 'hidden-category-category' => 'लपविलेले वर्ग', # Name of the category where hidden categories will be listed
 
 'mainpagetext'      => "<big>'''मीडियाविकीचे इन्स्टॉलेशन पूर्ण'''</big>",

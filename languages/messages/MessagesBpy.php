@@ -144,7 +144,7 @@ $messages = array(
 
 # Bits of text used by many pages
 'categories'            => 'বিষয়রথাকহানি',
-'page-categories'        => '{{PLURAL:$1|থাক|থাকহানি}}:&#32;',
+'pagecategories'        => '{{PLURAL:$1|থাক|থাকহানি}}',
 'category_header'       => '"$1" বিষয়রথাকে আসে নিবন্ধহানি',
 'subcategories'         => 'উপথাক',
 'category-media-header' => '"$1" থাকর মিডিয়া',

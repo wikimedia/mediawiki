@@ -109,7 +109,7 @@ $messages = array(
 
 # Bits of text used by many pages
 'categories'            => 'Mga kategorya',
-'page-categories'        => '{{PLURAL:$1|Kategorya|Mga kategorya}}:&#32;',
+'pagecategories'        => '{{PLURAL:$1|Kategorya|Mga kategorya}}',
 'category_header'       => 'Mga pahina sa kategoryang "$1"',
 'subcategories'         => 'Mga subkategorya',
 'category-media-header' => 'Mga midya sa kategoryang "$1"',

@@ -120,7 +120,7 @@ $messages = array(
 
 # Bits of text used by many pages
 'categories'      => '{{PLURAL:$1|Kategorija|Kategorijas}}',
-'page-categories'  => '{{PLURAL:$1|Kategorija|Kategorijas}}:&#32;',
+'pagecategories'  => '{{PLURAL:$1|Kategorija|Kategorijas}}',
 'category_header' => 'Raksti, kas ietverti kategorijā "$1".',
 'subcategories'   => 'Apakškategorijas',
 

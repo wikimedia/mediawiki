@@ -326,12 +326,12 @@ $messages = array(
 
 # Bits of text used by many pages
 'categories'               => 'Категории',
-'page-categories'           => '{{PLURAL:$1|Категория|Категории}}:&#32;',
+'pagecategories'           => '{{PLURAL:$1|Категория|Категории}}',
 'category_header'          => 'Страници в категория „$1“',
 'subcategories'            => 'Подкатегории',
 'category-media-header'    => 'Файлове в категория „$1“',
 'category-empty'           => "''В момента тази категория не съдържа страници или файлове.''",
-'hidden-categories'        => '{{PLURAL:$1|Скрита категория|Скрити категории}}:&#32;',
+'hidden-categories'        => '{{PLURAL:$1|Скрита категория|Скрити категории}}',
 'hidden-category-category' => 'Скрити категории', # Name of the category where hidden categories will be listed
 
 'mainpagetext'      => "<big>'''Уикито беше успешно инсталирано.'''</big>",

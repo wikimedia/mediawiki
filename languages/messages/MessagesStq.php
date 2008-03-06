@@ -136,12 +136,12 @@ $messages = array(
 
 # Bits of text used by many pages
 'categories'               => 'Kategorien',
-'page-categories'           => '{{PLURAL:$1|Kategorie|Kategorien}}:&#32;',
+'pagecategories'           => '{{PLURAL:$1|Kategorie|Kategorien}}',
 'category_header'          => 'Artikkel in ju Kategorie "$1"',
 'subcategories'            => 'Unnerkategorien',
 'category-media-header'    => 'Media in Kategorie "$1"',
 'category-empty'           => "''Disse Kategorie is loos.''",
-'hidden-categories'        => '{{PLURAL:$1|Ferstatte Kategorie|Ferstatte Kategorien}}:&#32;',
+'hidden-categories'        => '{{PLURAL:$1|Ferstatte Kategorie|Ferstatte Kategorien}}',
 'hidden-category-category' => 'Verstatte Kategorien', # Name of the category where hidden categories will be listed
 
 'mainpagetext'      => 'Ju Wiki Software wuude mäd Ärfoulch installierd!',

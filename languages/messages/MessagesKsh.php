@@ -199,7 +199,7 @@ $messages = array(
 
 # Bits of text used by many pages
 'categories'            => 'Saachjruppe',
-'page-categories'        => '{{PLURAL:$1|Saachjrupp|Saachjruppe}}:&#32;',
+'pagecategories'        => '{{PLURAL:$1|Saachjrupp|Saachjruppe}}',
 'category_header'       => 'Atikkele in de Saachjrupp „$1“',
 'subcategories'         => 'Ungerjruppe',
 'category-media-header' => 'Medie en de Saachjrupp "$1"',

@@ -479,7 +479,7 @@ $messages = array(
 
 # Bits of text used by many pages
 'categories'            => 'Санаттар',
-'page-categories'        => '{{PLURAL:$1|Санат|Санаттар}}:&#32;',
+'pagecategories'        => '{{PLURAL:$1|Санат|Санаттар}}',
 'category_header'       => '«$1» санатындағы беттер',
 'subcategories'         => 'Санатшалар',
 'category-media-header' => '«$1» санатындағы таспалар',

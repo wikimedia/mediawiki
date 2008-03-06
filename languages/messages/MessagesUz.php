@@ -95,7 +95,7 @@ $messages = array(
 
 # Bits of text used by many pages
 'categories'      => 'Kategoriyalar',
-'page-categories'  => '{{PLURAL:$1|Kategoriya|Kategoriyalar}}:&#32;',
+'pagecategories'  => '{{PLURAL:$1|Kategoriya|Kategoriyalar}}',
 'category_header' => '"$1" kategoriyadagi maqolalar.',
 'subcategories'   => 'Podkategoriyalar',
 'category-empty'  => "''Ushbu kategoriyada hozircha sahifa yoki fayllar yoʻq.''",

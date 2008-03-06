@@ -133,12 +133,12 @@ $messages = array(
 
 # Bits of text used by many pages
 'categories'               => '{{PLURAL:$1|Kategorî|Kategorî}}',
-'page-categories'           => '$1 Kategorîyan:&#32;',
+'pagecategories'           => '$1 Kategorîyan',
 'category_header'          => 'Gotarên di kategoriya "$1" de',
 'subcategories'            => 'Binekategorî',
 'category-media-header'    => 'Medya di kategorîya "$1" da',
 'category-empty'           => "''Di vê kategorîyê da niha gotar ya medya tune ne.''",
-'hidden-categories'        => '{{PLURAL:$1|Kategorîya veşartî|Kategorîyên veşartî}}:&#32;',
+'hidden-categories'        => '{{PLURAL:$1|Kategorîya veşartî|Kategorîyên veşartî}}',
 'hidden-category-category' => 'Kategorîyên veşartî', # Name of the category where hidden categories will be listed
 
 'mainpagetext'      => "<big>'''MediaWiki serketî hate çêkirin.'''</big>",

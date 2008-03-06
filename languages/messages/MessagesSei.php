@@ -114,7 +114,7 @@ $messages = array(
 
 # Bits of text used by many pages
 'categories'            => 'Cayliibám',
-'page-categories'        => '{{PLURAL:$1|Cajliib|Cajliibám}}:&#32;',
+'pagecategories'        => '{{PLURAL:$1|Cajliib|Cajliibám}}',
 'category_header'       => 'Páhinám cayliibám zo iti "$1"',
 'subcategories'         => 'Subcayliibám',
 'category-media-header' => 'Mediám cayliibám zo iti "$1"',

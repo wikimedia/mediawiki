@@ -273,7 +273,7 @@ $messages = array(
 
 # Bits of text used by many pages
 'categories'            => 'വിഷയ സൂചിക',
-'page-categories'        => '{{PLURAL:$1|വിഭാഗം|വിഭാഗങ്ങള്‍}}:&#32;',
+'pagecategories'        => '{{PLURAL:$1|വിഭാഗം|വിഭാഗങ്ങള്‍}}',
 'category_header'       => '"$1" വിഭാഗത്തിലെ ലേഖനങ്ങള്‍',
 'subcategories'         => 'ഉപസൂചികകള്‍',
 'category-media-header' => '"$1" എന്ന വിഭാഗത്തിലുള്ള മീഡിയ',

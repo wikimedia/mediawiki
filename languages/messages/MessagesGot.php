@@ -9,7 +9,7 @@
 $messages = array(
 # Bits of text used by many pages
 'categories'     => '𐌺𐌿𐌽𐌾𐍉𐍃',
-'page-categories' => '{{PLURAL:$1|𐌺𐌿𐌽𐌾𐌰|𐌺𐌿𐌽𐌾𐍉𐍃}}:&#32;',
+'pagecategories' => '{{PLURAL:$1|𐌺𐌿𐌽𐌾𐌰|𐌺𐌿𐌽𐌾𐍉𐍃}}',
 
 'qbspecialpages' => '𐌿𐍃𐍃𐌹𐌽𐌳𐍃𐌴𐌹𐌳𐍉𐍃',
 'mypage'         => '𐌼𐌴𐌹𐌽 𐍃𐌴𐌹𐌳𐍉',

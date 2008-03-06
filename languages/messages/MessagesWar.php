@@ -75,7 +75,7 @@ $messages = array(
 
 # Bits of text used by many pages
 'categories'            => '{{PLURAL:$1|Kategorya|Mga Kategorya}}',
-'page-categories'        => '{{PLURAL:$1|Kategorya|Mga Kategorya}}:&#32;',
+'pagecategories'        => '{{PLURAL:$1|Kategorya|Mga Kategorya}}',
 'category_header'       => 'Mga pakli ha kategorya "$1"',
 'subcategories'         => 'Mga ilarom nga kategorya',
 'category-media-header' => 'Media ha kategorya "$1"',

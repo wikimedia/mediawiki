@@ -182,7 +182,7 @@ $messages = array(
 
 # Bits of text used by many pages
 'categories'            => 'Kategooriad',
-'page-categories'        => '{{PLURAL:$1|Kategooria|Kategooriad}}:&#32;',
+'pagecategories'        => '{{PLURAL:$1|Kategooria|Kategooriad}}',
 'category_header'       => 'Artiklid kategooriast "$1"',
 'subcategories'         => 'Allkategooriad',
 'category-media-header' => 'Meediafailid kategooriast "$1"',

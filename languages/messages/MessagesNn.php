@@ -350,12 +350,12 @@ $messages = array(
 
 # Bits of text used by many pages
 'categories'            => '{{PLURAL:$1|Kategori|Kategoriar}}',
-'page-categories'        => '{{PLURAL:$1|Kategori|Kategoriar}}:&#32;',
+'pagecategories'        => '{{PLURAL:$1|Kategori|Kategoriar}}',
 'category_header'       => 'Artiklar i kategorien «$1»',
 'subcategories'         => 'Underkategoriar',
 'category-media-header' => 'Media i kategorien «$1»',
 'category-empty'        => "''Denne kategorien inneheld for tida ingen sider eller anna media.''",
-'hidden-categories'     => '{{PLURAL:$1|Gøymd kategori|Gøymde kategoriar}}:&#32;',
+'hidden-categories'     => '{{PLURAL:$1|Gøymd kategori|Gøymde kategoriar}}',
 
 'mainpagetext'      => 'MediaWiki er no installert.',
 'mainpagedocfooter' => 'Sjå [http://meta.wikimedia.org/wiki/Help:Contents brukarmanualen] for informasjon om bruk og konfigurasjonshjelp for wikiprogramvaren.

@@ -197,12 +197,12 @@ $messages = array(
 
 # Bits of text used by many pages
 'categories'               => 'Klads',
-'page-categories'           => '{{PLURAL:$1|Klad|Klads}}:&#32;',
+'pagecategories'           => '{{PLURAL:$1|Klad|Klads}}',
 'category_header'          => 'Pads in klad: „$1“',
 'subcategories'            => 'Donaklads',
 'category-media-header'    => 'Media in klad: "$1"',
 'category-empty'           => "''Klad at anu ninädon padis e ragivis nonikis.''",
-'hidden-categories'        => '{{PLURAL:$1|Klad|Klads}} peklänedöl:&#32;',
+'hidden-categories'        => '{{PLURAL:$1|Klad|Klads}} peklänedöl',
 'hidden-category-category' => 'Klads peklänedöl', # Name of the category where hidden categories will be listed
 
 'mainpagetext'      => "<big>'''El MediaWiki pestiton benosekiko.'''</big>",

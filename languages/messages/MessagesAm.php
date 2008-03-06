@@ -112,7 +112,7 @@ $messages = array(
 
 # Bits of text used by many pages
 'categories'            => 'ምድቦች',
-'page-categories'        => '{{PLURAL:$1|ምድብ|ምድቦች}}:&#32;',
+'pagecategories'        => '{{PLURAL:$1|ምድብ|ምድቦች}}',
 'category_header'       => 'በምድብ «$1» ውስጥ የሚገኙ ገጾች',
 'subcategories'         => 'ንዑስ-ምድቦች',
 'category-media-header' => 'በመደቡ «$1» የተገኙ ፋይሎች፦',

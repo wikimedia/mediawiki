@@ -80,7 +80,7 @@ $messages = array(
 
 # Bits of text used by many pages
 'categories'            => 'Floccas',
-'page-categories'        => '{{PLURAL:$1|Flocca|Floccas}}:&#32;',
+'pagecategories'        => '{{PLURAL:$1|Flocca|Floccas}}',
 'category_header'       => 'Ġewritu in flocce "$1"',
 'subcategories'         => 'Underfloccas',
 'category-media-header' => 'Ġemynda in flocce "$1"',

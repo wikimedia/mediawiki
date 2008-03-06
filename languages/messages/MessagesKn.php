@@ -127,7 +127,7 @@ $messages = array(
 
 # Bits of text used by many pages
 'categories'      => '{{PLURAL:$1|ವರ್ಗ|ವರ್ಗಗಳು}}',
-'page-categories'  => '{{PLURAL:$1|ವರ್ಗ|ವರ್ಗಗಳು}}:&#32;',
+'pagecategories'  => '{{PLURAL:$1|ವರ್ಗ|ವರ್ಗಗಳು}}',
 'category_header' => '"$1" ವರ್ಗದಲ್ಲಿರುವ ಲೇಖನಗಳು',
 'subcategories'   => 'ಉಪವರ್ಗಗಳು',
 'category-empty'  => "''ಈ ವರ್ಗದಲ್ಲಿ ಸದ್ಯದಲ್ಲಿ ಯಾವುದೇ ಪುಟಗಳಾಗಲಿ ಅಥವ ಚಿತ್ರಗಳಾಗಲಿ ಇಲ್ಲ.''",

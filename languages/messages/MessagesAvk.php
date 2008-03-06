@@ -111,7 +111,7 @@ $messages = array(
 
 # Bits of text used by many pages
 'categories'            => 'Bulomeem',
-'page-categories'        => '{{PLURAL:$1|Loma|Loma}}:&#32;',
+'pagecategories'        => '{{PLURAL:$1|Loma|Loma}}',
 'category_header'       => 'Lomolkeem « $1 ».',
 'subcategories'         => 'volveylomeem',
 'category-media-header' => 'Ewavaf iyeltakeem koe "$1" loma',

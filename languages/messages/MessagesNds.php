@@ -276,7 +276,7 @@ Na ''Ünnerscheed wiesen'' nich de kumplette Siet wiesen",
 
 # Bits of text used by many pages
 'categories'            => '{{PLURAL:$1|Kategorie|Kategorien}}',
-'page-categories'        => '{{PLURAL:$1|Kategorie|Kategorien}}:&#32;',
+'pagecategories'        => '{{PLURAL:$1|Kategorie|Kategorien}}',
 'category_header'       => 'Sieden in de Kategorie „$1“',
 'subcategories'         => 'Ünnerkategorien',
 'category-media-header' => 'Mediendatein in de Kategorie „$1“',

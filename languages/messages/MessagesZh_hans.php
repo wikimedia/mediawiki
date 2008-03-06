@@ -184,12 +184,12 @@ $messages = array(
 
 # Bits of text used by many pages
 'categories'               => '页面分类',
-'page-categories'           => '$1个分类:&#32;',
+'pagecategories'           => '$1个分类',
 'category_header'          => '"$1"分类中的页面',
 'subcategories'            => '亚类',
 'category-media-header'    => '"$1"分类中的媒体',
 'category-empty'           => "''这个分类中尚未包含任何页面或媒体。''",
-'hidden-categories'        => '$1个隐藏分类:&#32;',
+'hidden-categories'        => '$1个隐藏分类',
 'hidden-category-category' => '隐藏分类', # Name of the category where hidden categories will be listed
 
 'mainpagetext'      => "<big>'''已成功安装 MediaWiki!'''</big>",

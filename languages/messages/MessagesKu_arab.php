@@ -129,7 +129,7 @@ $messages = array(
 
 # Bits of text used by many pages
 'categories'            => '{{PLURAL:$1|هاوپۆل|هاوپۆله‌كان}}',
-'page-categories'        => '$1 هاوپۆله‌كان:&#32;',
+'pagecategories'        => '$1 هاوپۆله‌كان',
 'category_header'       => 'په‌ڕه‌ی هاوپۆلی "$1" de',
 'subcategories'         => 'به‌شه‌هاوپۆله‌كان',
 'category-media-header' => 'میدیا له‌ هاوپۆلی "$1" دا',

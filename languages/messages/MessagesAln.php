@@ -112,12 +112,12 @@ $messages = array(
 
 # Bits of text used by many pages
 'categories'               => 'Kategori',
-'page-categories'           => '{{PLURAL:$1|Kategoria|Kategoritë}}:&#32;',
+'pagecategories'           => '{{PLURAL:$1|Kategoria|Kategoritë}}',
 'category_header'          => 'Artikuj në kategorinë "$1"',
 'subcategories'            => 'Nën-kategori',
 'category-media-header'    => 'Skeda në kategori "$1"',
 'category-empty'           => "''Kjo kategori tashpërtash nuk përmban asnji faqe apo media.''",
-'hidden-categories'        => '{{PLURAL:$1|Kategoritë e mshehta|Kategoritë e mshehta}}:&#32;',
+'hidden-categories'        => '{{PLURAL:$1|Kategoritë e mshehta|Kategoritë e mshehta}}',
 'hidden-category-category' => 'Kategori të mshehta', # Name of the category where hidden categories will be listed
 
 'mainpagetext'      => 'Wiki software u instalue me sukses.',

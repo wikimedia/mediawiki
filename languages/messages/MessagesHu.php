@@ -357,12 +357,12 @@ $messages = array(
 
 # Bits of text used by many pages
 'categories'               => 'Kategóriák',
-'page-categories'           => '{{PLURAL:$1|Kategória|Kategóriák}}:&#32;',
+'pagecategories'           => '{{PLURAL:$1|Kategória|Kategóriák}}',
 'category_header'          => '„$1” kategória szócikkei',
 'subcategories'            => 'Alkategóriák',
 'category-media-header'    => 'A(z) „$1” kategóriába tartozó médiafájlok',
 'category-empty'           => "''Ebben a kategóriában pillanatnyilag egyetlen lap, médiafájl vagy alkategória sem szerepel.''",
-'hidden-categories'        => '{{PLURAL:$1|Rejtett kategória|Rejtett kategóriák}}:&#32;',
+'hidden-categories'        => '{{PLURAL:$1|Rejtett kategória|Rejtett kategóriák}}',
 'hidden-category-category' => 'Rejtett kategóriák', # Name of the category where hidden categories will be listed
 
 'mainpagetext'      => "<big>'''A MediaWiki telepítése sikerült.'''</big>",

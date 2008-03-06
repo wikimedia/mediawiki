@@ -199,7 +199,7 @@ $messages = array(
 
 # Bits of text used by many pages
 'categories'            => 'Bólkar',
-'page-categories'        => '{{PLURAL:$1|Bólkur|Bólkar}}:&#32;',
+'pagecategories'        => '{{PLURAL:$1|Bólkur|Bólkar}}',
 'category_header'       => 'Greinir í bólki "$1"',
 'subcategories'         => 'Undirbólkur',
 'category-media-header' => 'Media í bólkur "$1"',

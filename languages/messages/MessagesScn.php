@@ -215,7 +215,7 @@ $messages = array(
 
 # Bits of text used by many pages
 'categories'            => 'Catigurìi',
-'page-categories'        => '{{PLURAL:$1|Catigurìa|Catigurìi}}:&#32;',
+'pagecategories'        => '{{PLURAL:$1|Catigurìa|Catigurìi}}',
 'category_header'       => 'Artìculi ntâ catigurìa "$1"',
 'subcategories'         => 'Suttacatigurìi',
 'category-media-header' => 'File multimidiali ntâ catigurìa "$1"',

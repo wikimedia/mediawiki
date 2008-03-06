@@ -263,12 +263,12 @@ $messages = array(
 
 # Bits of text used by many pages
 'categories'               => 'Categorias',
-'page-categories'           => '{{PLURAL:$1|Categoria|Categorias}}:&#32;',
+'pagecategories'           => '{{PLURAL:$1|Categoria|Categorias}}',
 'category_header'          => 'Páginas na categoria "$1"',
 'subcategories'            => 'Subcategorias',
 'category-media-header'    => 'Multimédia na categoria "$1"',
 'category-empty'           => "''Esta categoria de momento não possui nenhuma página de conteúdo ou ficheiro multimédia.''",
-'hidden-categories'        => '{{PLURAL:$1|Categoria oculta|Categorias ocultas}}:&#32;',
+'hidden-categories'        => '{{PLURAL:$1|Categoria oculta|Categorias ocultas}}',
 'hidden-category-category' => 'Categorias ocultas', # Name of the category where hidden categories will be listed
 
 'mainpagetext'      => "<big>'''MediaWiki instalado com sucesso.'''</big>",

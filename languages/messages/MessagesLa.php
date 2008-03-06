@@ -235,12 +235,12 @@ $messages = array(
 
 # Bits of text used by many pages
 'categories'               => 'Categoriae',
-'page-categories'           => '{{PLURAL:$1|Categoria|Categoriae}}:&#32;',
+'pagecategories'           => '{{PLURAL:$1|Categoria|Categoriae}}',
 'category_header'          => 'Paginae in categoria "$1"',
 'subcategories'            => 'Subcategoriae',
 'category-media-header'    => 'Media in categoria "$1"',
 'category-empty'           => "''Huic categoriae non sunt paginae vel fasciculi.''",
-'hidden-categories'        => '{{PLURAL:$1|Categoria celata|Categoriae celatae}}:&#32;',
+'hidden-categories'        => '{{PLURAL:$1|Categoria celata|Categoriae celatae}}',
 'hidden-category-category' => 'Categoriae celatae', # Name of the category where hidden categories will be listed
 
 'about'          => 'De',
