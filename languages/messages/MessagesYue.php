@@ -239,12 +239,12 @@ $messages = array(
 
 # Bits of text used by many pages
 'categories'               => '類',
-'page-categories'           => '屬於$1類:&#32;',
+'pagecategories'           => '屬於$1類',
 'category_header'          => '"$1" 類中嘅版',
 'subcategories'            => '分類',
 'category-media-header'    => ' "$1" 類嘅媒體',
 'category-empty'           => "''呢類無任何版或媒體檔。''",
-'hidden-categories'        => '屬於$1隱類:&#32;',
+'hidden-categories'        => '屬於$1隱類',
 'hidden-category-category' => '隱藏類', # Name of the category where hidden categories will be listed
 
 'mainpagetext'      => "<big>'''MediaWiki已經裝好。'''</big>",

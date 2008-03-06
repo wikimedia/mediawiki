@@ -167,12 +167,12 @@ $messages = array(
 
 # Bits of text used by many pages
 'categories'               => '類',
-'page-categories'           => '$1類:&#32;',
+'pagecategories'           => '$1類',
 'category_header'          => '"$1"',
 'subcategories'            => '次類',
 'category-media-header'    => '"$1"',
 'category-empty'           => "''無文也。''",
-'hidden-categories'        => '$1隱類:&#32;',
+'hidden-categories'        => '$1隱類',
 'hidden-category-category' => '隱類', # Name of the category where hidden categories will be listed
 
 'mainpagetext'      => "<big>'''媒維基安置矣'''</big>",

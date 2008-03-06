@@ -244,12 +244,12 @@ $messages = array(
 
 # Bits of text used by many pages
 'categories'               => 'Kategorier',
-'page-categories'           => '{{PLURAL:$1|Kategori|Kategorier}}:&#32;',
+'pagecategories'           => '{{PLURAL:$1|Kategori|Kategorier}}',
 'category_header'          => 'Artikler i kategorien «$1»',
 'subcategories'            => 'Underkategorier',
 'category-media-header'    => 'Filer i kategorien «$1»',
 'category-empty'           => "''Denne kategorien ineholder for tiden ingen artikler eller filer.''",
-'hidden-categories'        => '{{PLURAL:$1|Skjult kategori|Skjulte kategorier}}:&#32;',
+'hidden-categories'        => '{{PLURAL:$1|Skjult kategori|Skjulte kategorier}}',
 'hidden-category-category' => 'Skjulte kategorier', # Name of the category where hidden categories will be listed
 
 'mainpagetext'      => "<big>'''MediaWiki-programvaren er nå installert.'''</big>",

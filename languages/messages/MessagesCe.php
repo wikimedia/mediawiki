@@ -56,7 +56,7 @@ $messages = array(
 
 # Bits of text used by many pages
 'categories'            => 'Тобаш',
-'page-categories'        => '{{PLURAL:$1|Тоба|Тобаш}}:&#32;',
+'pagecategories'        => '{{PLURAL:$1|Тоба|Тобаш}}',
 'category-media-header' => 'Файлош тобашахь «$1»',
 
 'about'     => 'Цунах лаьцна',

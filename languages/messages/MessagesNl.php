@@ -370,12 +370,12 @@ $messages = array(
 
 # Bits of text used by many pages
 'categories'               => 'Categorieën',
-'page-categories'           => '{{PLURAL:$1|Categorie|Categorieën}}:&#32;',
+'pagecategories'           => '{{PLURAL:$1|Categorie|Categorieën}}',
 'category_header'          => 'Pagina’s in categorie “$1”',
 'subcategories'            => 'Ondercategorieën',
 'category-media-header'    => 'Media in categorie “$1”',
 'category-empty'           => "''Deze categorie bevat geen pagina’s of media.''",
-'hidden-categories'        => 'Verborgen {{PLURAL:$1|categorie|categorieën}}:&#32;',
+'hidden-categories'        => 'Verborgen {{PLURAL:$1|categorie|categorieën}}',
 'hidden-category-category' => 'Verborgen categorieën', # Name of the category where hidden categories will be listed
 
 'mainpagetext'      => "<big>'''De installatie van MediaWiki is geslaagd.'''</big>",

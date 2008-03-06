@@ -327,12 +327,12 @@ $messages = array(
 
 # Bits of text used by many pages
 'categories'               => 'Категории',
-'page-categories'           => '{{PLURAL:$1|Категория|Категории}}:&#32;',
+'pagecategories'           => '{{PLURAL:$1|Категория|Категории}}',
 'category_header'          => 'Статьи в категории «$1»',
 'subcategories'            => 'Подкатегории',
 'category-media-header'    => 'Файлы в категории «$1»',
 'category-empty'           => "''Эта категория в данный момент пуста.''",
-'hidden-categories'        => '{{PLURAL:$1|Скрытая категория|Скрытые категории}}:&#32;',
+'hidden-categories'        => '{{PLURAL:$1|Скрытая категория|Скрытые категории}}',
 'hidden-category-category' => 'Скрытые категории', # Name of the category where hidden categories will be listed
 
 'mainpagetext'      => '<big>Вики-движок «MediaWiki» успешно установлен.</big>',

@@ -85,7 +85,7 @@ $messages = array(
 
 # Bits of text used by many pages
 'categories'      => 'Faʻahinga',
-'page-categories'  => 'Faʻahinga:&#32;',
+'pagecategories'  => 'Faʻahinga',
 'category_header' => 'Ngaahi kupu ʻi he faʻahinga "$1"',
 'subcategories'   => 'Ngaahi faʻahinga siʻi',
 'category-empty'  => "''Ko e faʻahinga ʻeni ʻoku ʻikai ʻi ai haʻane kupu pe ʻata.''",

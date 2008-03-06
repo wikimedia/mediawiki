@@ -116,7 +116,7 @@ $messages = array(
 
 # Bits of text used by many pages
 'categories'            => 'Categuri',
-'page-categories'        => '{{PLURAL:$1|Categuria|Categuri}}:&#32;',
+'pagecategories'        => '{{PLURAL:$1|Categuria|Categuri}}',
 'category_header'       => 'Pàgini i\' la categuria "$1"',
 'subcategories'         => 'Sottucateguri',
 'category-media-header' => 'File i\' la categuria "$1"',

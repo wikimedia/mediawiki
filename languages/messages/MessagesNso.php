@@ -99,7 +99,7 @@ $messages = array(
 
 # Bits of text used by many pages
 'categories'            => 'Dihlopha',
-'page-categories'        => '{{PLURAL:$1|Sehlopha|Dihlopha}}:&#32;',
+'pagecategories'        => '{{PLURAL:$1|Sehlopha|Dihlopha}}',
 'category_header'       => 'Matlakala go sehlopha "$1"',
 'subcategories'         => 'Dihlophana',
 'category-media-header' => 'Matlakala goba difaele go sehlopha "$1"',

@@ -103,7 +103,7 @@ $messages = array(
 
 # Bits of text used by many pages
 'categories'      => 'Qeybaha',
-'page-categories'  => '{{PLURAL:$1|Qaybta|Qaybaha}}:&#32;',
+'pagecategories'  => '{{PLURAL:$1|Qaybta|Qaybaha}}',
 'category_header' => 'Maqaalada ku jirta qaybta "$1"',
 'subcategories'   => 'Qaybaha hoose',
 

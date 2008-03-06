@@ -143,12 +143,12 @@ $messages = array(
 
 # Bits of text used by many pages
 'categories'               => '{{PLURAL:$1|Kategori|Kategoriler}}',
-'page-categories'           => 'Sayfa {{PLURAL:$1|kategorisi|kategorileri}}:&#32;',
+'pagecategories'           => 'Sayfa {{PLURAL:$1|kategorisi|kategorileri}}',
 'category_header'          => '"$1" kategorisindeki sayfalar',
 'subcategories'            => 'Alt Kategoriler',
 'category-media-header'    => '"$1" kategorisindeki medya',
 'category-empty'           => "''Bu kategoride henüz herhangi bir madde ya da medya bulunmamaktadır.''",
-'hidden-categories'        => '{{PLURAL:$1|Gizli kategori|Gizli kategoriler}}:&#32;',
+'hidden-categories'        => '{{PLURAL:$1|Gizli kategori|Gizli kategoriler}}',
 'hidden-category-category' => 'Gizli kategoriler', # Name of the category where hidden categories will be listed
 
 'mainpagetext'      => "<big>'''MediaWiki başarı ile kuruldu.'''</big>",

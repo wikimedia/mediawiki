@@ -133,7 +133,7 @@ $messages = array(
 
 # Bits of text used by many pages
 'categories'            => 'Kategòrëje',
-'page-categories'        => '{{PLURAL:$1|Kategòrëjô|Kategòrëje}}:&#32;',
+'pagecategories'        => '{{PLURAL:$1|Kategòrëjô|Kategòrëje}}',
 'category_header'       => 'Artikle w kategòrëji "$1"',
 'subcategories'         => 'Pòdkategòrëje',
 'category-media-header' => 'Media w kategòrëji "$1"',

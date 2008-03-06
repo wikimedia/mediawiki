@@ -71,7 +71,7 @@ $messages = array(
 
 # Bits of text used by many pages
 'categories'            => 'Groepen',
-'page-categories'        => '{{PLURAL:$1|Groepe|Groepen}}:&#32;',
+'pagecategories'        => '{{PLURAL:$1|Groepe|Groepen}}',
 'category_header'       => 'Stroecken in groepe "$1"',
 'subcategories'         => 'Ondergroepen',
 'category-media-header' => 'Plaeten in groepe "$1"',

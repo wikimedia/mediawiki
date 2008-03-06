@@ -225,7 +225,7 @@ $messages = array(
 
 # Bits of text used by many pages
 'categories'            => 'Kategori',
-'page-categories'        => 'Kategori:&#32;',
+'pagecategories'        => 'Kategori',
 'category_header'       => 'Laman-laman dalam kategori "$1"',
 'subcategories'         => 'Subkategori',
 'category-media-header' => 'Media-media dalam kategori "$1"',

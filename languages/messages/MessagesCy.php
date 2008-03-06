@@ -172,12 +172,12 @@ $messages = array(
 
 # Bits of text used by many pages
 'categories'               => 'Categorïau',
-'page-categories'           => '{{PLURAL:$1|Categori|Categori|Categorïau|Categorïau|Categorïau|Categorïau}}:&#32;',
+'pagecategories'           => '{{PLURAL:$1|Categori|Categori|Categorïau|Categorïau|Categorïau|Categorïau}}',
 'category_header'          => 'Erthyglau yn y categori "$1"',
 'subcategories'            => 'Is-categorïau',
 'category-media-header'    => "Cyfryngau yn y categori '$1'",
 'category-empty'           => "''Ar hyn o bryd nid oes unrhyw erthyglau na ffeiliau yn y categori hwn.''",
-'hidden-categories'        => '{{PLURAL:$1|Categori cuddiedig|Categori cuddiedig|Categorïau cuddiedig|Categorïau cuddiedig|Categorïau cuddiedig|Categorïau cuddiedig}}:&#32;',
+'hidden-categories'        => '{{PLURAL:$1|Categori cuddiedig|Categori cuddiedig|Categorïau cuddiedig|Categorïau cuddiedig|Categorïau cuddiedig|Categorïau cuddiedig}}',
 'hidden-category-category' => 'Categorïau cuddiedig', # Name of the category where hidden categories will be listed
 
 'mainpagetext'      => "<big>'''Wedi llwyddo gosod meddalwedd Mediawiki yma'''</big>",

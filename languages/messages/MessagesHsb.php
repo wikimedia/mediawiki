@@ -210,12 +210,12 @@ $messages = array(
 
 # Bits of text used by many pages
 'categories'               => '{{PLURAL:$1|Kategorija|Kategoriji|Kategorije|Kategorije}}',
-'page-categories'           => '{{PLURAL:$1|Kategorija|Kategoriji|Kategorije|Kategorije}}:&#32;',
+'pagecategories'           => '{{PLURAL:$1|Kategorija|Kategoriji|Kategorije|Kategorije}}',
 'category_header'          => 'Nastawki w kategoriji „$1”',
 'subcategories'            => 'Podkategorije',
 'category-media-header'    => 'Dataje w kategoriji „$1”',
 'category-empty'           => "''Tuta kategorija tuchwilu žane nastawki abo medije njewobsahuje.''",
-'hidden-categories'        => '{{PLURAL:$1|Schowana kategorija|Schowane kategorije}}:&#32;',
+'hidden-categories'        => '{{PLURAL:$1|Schowana kategorija|Schowane kategorije}}',
 'hidden-category-category' => 'Schowane kategorije', # Name of the category where hidden categories will be listed
 
 'mainpagetext'      => '<big><b>MediaWiki bu wuspěšnje instalowany.</b></big>',

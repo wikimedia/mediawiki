@@ -160,7 +160,7 @@ $messages = array(
 
 # Bits of text used by many pages
 'categories'            => '{{PLURAL:$1|קאַטעגאָריע|קאַטעגאָריעס}}',
-'page-categories'        => '{{PLURAL:$1|קאַטעגאָריע|קאַטעגאָריעס}}:&#32;',
+'pagecategories'        => '{{PLURAL:$1|קאַטעגאָריע|קאַטעגאָריעס}}',
 'category_header'       => 'אַרטיקלען אין קאַטעגאָריע "$1"',
 'subcategories'         => 'אונטערקאַטעגאָריעס',
 'category-media-header' => 'מידיע אין קאטעגאריע "$1"',

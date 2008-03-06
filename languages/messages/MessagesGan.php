@@ -114,7 +114,7 @@ $messages = array(
 
 # Bits of text used by many pages
 'categories'            => '頁面分類',
-'page-categories'        => '$1隻分類:&#32;',
+'pagecategories'        => '$1隻分類',
 'category_header'       => '“$1”分類中嗰文章',
 'subcategories'         => '亞分類',
 'category-media-header' => '“$1”分類中嗰媒體',

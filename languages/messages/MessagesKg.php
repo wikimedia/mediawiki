@@ -28,7 +28,7 @@ $messages = array(
 
 # Bits of text used by many pages
 'categories'      => 'Bakalasi',
-'page-categories'  => '{{PLURAL:$1|Kalasi|Bakalasi}}:&#32;',
+'pagecategories'  => '{{PLURAL:$1|Kalasi|Bakalasi}}',
 'category_header' => 'Mikanda na kalasi "$1"',
 
 'article' => 'Pagina contenta continens',

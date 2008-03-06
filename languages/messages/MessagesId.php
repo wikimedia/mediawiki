@@ -379,12 +379,12 @@ $messages = array(
 
 # Bits of text used by many pages
 'categories'               => 'Daftar kategori',
-'page-categories'           => '{{PLURAL:$1|Kategori|Kategori}}:&#32;',
+'pagecategories'           => '{{PLURAL:$1|Kategori|Kategori}}',
 'category_header'          => 'Artikel dalam kategori "$1"',
 'subcategories'            => 'Subkategori',
 'category-media-header'    => 'Media dalam kategori "$1"',
 'category-empty'           => "''Kategori ini saat ini tak memiliki artikel atau media.''",
-'hidden-categories'        => '{{PLURAL:$1|Kategori tersembunyi|Kategori tersembunyi}}:&#32;',
+'hidden-categories'        => '{{PLURAL:$1|Kategori tersembunyi|Kategori tersembunyi}}',
 'hidden-category-category' => 'Kategori tersembunyi', # Name of the category where hidden categories will be listed
 
 'mainpagetext'      => "<big>'''MediaWiki telah terinstal dengan sukses'''</big>.",

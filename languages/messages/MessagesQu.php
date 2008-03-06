@@ -136,12 +136,12 @@ $messages = array(
 
 # Bits of text used by many pages
 'categories'               => 'Katiguriyakuna',
-'page-categories'           => '{{PLURAL:$1|Katiguriya|Katiguriyakuna}}:&#32;',
+'pagecategories'           => '{{PLURAL:$1|Katiguriya|Katiguriyakuna}}',
 'category_header'          => '"$1" sutiyuq katiguriyapi qillqakuna',
 'subcategories'            => 'Urin katiguriyakuna',
 'category-media-header'    => '"$1" sutiyuq katiguriyapi multimidya willañiqikuna',
 'category-empty'           => "''Kay katiguriyaqa ch'usaqmi.''",
-'hidden-categories'        => '{{PLURAL:$1|Pakasqa katiguriya|Pakasqa katiguriyakuna}}:&#32;',
+'hidden-categories'        => '{{PLURAL:$1|Pakasqa katiguriya|Pakasqa katiguriyakuna}}',
 'hidden-category-category' => 'Pakasqa katiguriyakuna', # Name of the category where hidden categories will be listed
 
 'mainpagetext'      => "''MediaWiki'' nisqa llamp'u kaqqa aypaylla takyachisqañam.",

@@ -40,7 +40,7 @@ $messages = array(
 
 # Bits of text used by many pages
 'categories'      => 'Kategories',
-'page-categories'  => '{{PLURAL:$1|Kategorie|Kategories}}:&#32;',
+'pagecategories'  => '{{PLURAL:$1|Kategorie|Kategories}}',
 'category_header' => 'Artikles in kategorie "$1"',
 
 'about'          => 'Pri',

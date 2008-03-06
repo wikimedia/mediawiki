@@ -63,7 +63,7 @@ $messages = array(
 
 # Bits of text used by many pages
 'categories'     => 'Категорисем',
-'page-categories' => 'Категорисем:&#32;',
+'pagecategories' => 'Категорисем',
 
 'qbspecialpages' => 'Ятарлӑ страницӑсем',
 'and'            => 'тата',

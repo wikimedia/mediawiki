@@ -563,13 +563,13 @@ XHTML id names.
 
 # Bits of text used by many pages
 'categories'               => 'Categories',
-'page-categories'           => '{{PLURAL:$1|Category|Categories}}:&#32;',
+'pagecategories'           => '{{PLURAL:$1|Category|Categories}}',
 'pagecategorieslink'       => 'Special:Categories', # don't translate or duplicate this message to other languages
 'category_header'          => 'Pages in category "$1"',
 'subcategories'            => 'Subcategories',
 'category-media-header'    => 'Media in category "$1"',
 'category-empty'           => "''This category currently contains no pages or media.''",
-'hidden-categories'        => '{{PLURAL:$1|Hidden category|Hidden categories}}:&#32;',
+'hidden-categories'        => '{{PLURAL:$1|Hidden category|Hidden categories}}',
 'hidden-category-category' => 'Hidden categories', # Name of the category where hidden categories will be listed
 
 'linkprefix'        => '/^(.*?)([a-zA-Z\x80-\xff]+)$/sD', # only translate this message to other languages if you have to change it

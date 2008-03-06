@@ -145,12 +145,12 @@ $messages = array(
 
 # Bits of text used by many pages
 'categories'               => '{{PLURAL:$1|பகுப்பு|பகுப்புக்கள்}}',
-'page-categories'           => '{{PLURAL:$1|பகுப்பு|பகுப்புக்கள்}}:&#32;',
+'pagecategories'           => '{{PLURAL:$1|பகுப்பு|பகுப்புக்கள்}}',
 'category_header'          => '"$1" பகுப்புலுள்ள கட்டுரைகள்',
 'subcategories'            => 'துணைப் பகுப்புகள்',
 'category-media-header'    => '"$1" பகுப்பில் உள்ள ஊடகங்கள்',
 'category-empty'           => 'இப்பகுப்பில் தற்போது ஊடகங்கள் யாதும் இல்லை.',
-'hidden-categories'        => '{{PLURAL:$1|மறைக்கப்பட்ட பகுப்பு|மறைக்கப்பட்ட பகுப்புகள்}}:&#32;',
+'hidden-categories'        => '{{PLURAL:$1|மறைக்கப்பட்ட பகுப்பு|மறைக்கப்பட்ட பகுப்புகள்}}',
 'hidden-category-category' => 'மறைக்கப்பட்ட பகுப்புக்கள்', # Name of the category where hidden categories will be listed
 
 'mainpagetext'      => "<big>'''விக்கி மென்பொருள் வெற்றிகரமாக உள்ளிடப்பட்டது.'''</big>",

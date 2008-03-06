@@ -111,7 +111,7 @@ $messages = array(
 
 # Bits of text used by many pages
 'categories'            => 'Den guru',
-'page-categories'        => '{{PLURAL:$1|Guru|Guru}}:&#32;',
+'pagecategories'        => '{{PLURAL:$1|Guru|Guru}}',
 'category_header'       => 'Peprewoysi ini guru “$1”',
 'subcategories'         => 'Subguru',
 'category-media-header' => 'Media ini guru “$1”',

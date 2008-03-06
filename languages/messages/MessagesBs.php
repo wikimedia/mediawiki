@@ -150,7 +150,7 @@ $messages = array(
 
 # Bits of text used by many pages
 'categories'      => 'Kategorije',
-'page-categories'  => 'Kategorije:&#32;',
+'pagecategories'  => 'Kategorije',
 'category_header' => 'Članaka u kategoriji "$1"',
 'subcategories'   => 'Potkategorije',
 

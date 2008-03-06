@@ -157,12 +157,12 @@ $messages = array(
 
 # Bits of text used by many pages
 'categories'               => '{{PLURAL:$1|Kategorio|Kategorioj}}',
-'page-categories'           => '{{PLURAL:$1|Kategorio|Kategorioj}}:&#32;',
+'pagecategories'           => '{{PLURAL:$1|Kategorio|Kategorioj}}',
 'category_header'          => 'Artikoloj en kategorio "$1"',
 'subcategories'            => 'Subkategorioj',
 'category-media-header'    => 'Dosieroj en kategorio "$1"',
 'category-empty'           => "''Ĉi tiu kategorio momente ne enhavas artikolojn aŭ mediojn.''",
-'hidden-categories'        => '{{PLURAL:$1|Kaŝita kategorio|Kaŝitaj kategorioj}}:&#32;',
+'hidden-categories'        => '{{PLURAL:$1|Kaŝita kategorio|Kaŝitaj kategorioj}}',
 'hidden-category-category' => 'Kaŝitaj kategorioj', # Name of the category where hidden categories will be listed
 
 'mainpagetext'      => 'Vikisoftvaro sukcese instaliĝis.',

@@ -138,12 +138,12 @@ $messages = array(
 
 # Bits of text used by many pages
 'categories'               => 'Categorías',
-'page-categories'           => '{{PLURAL:$1|Categoría|Categorías}}:&#32;',
+'pagecategories'           => '{{PLURAL:$1|Categoría|Categorías}}',
 'category_header'          => 'Artigos na categoría "$1"',
 'subcategories'            => 'Subcategorías',
 'category-media-header'    => 'Multimedia na categoría "$1"',
 'category-empty'           => "''Actualmente esta categoría non conta con ningún artigo ou arquivo multimedia.''",
-'hidden-categories'        => '{{PLURAL:$1|Categoría oculta|Categorías ocultas}}:&#32;',
+'hidden-categories'        => '{{PLURAL:$1|Categoría oculta|Categorías ocultas}}',
 'hidden-category-category' => 'Categorías ocultas', # Name of the category where hidden categories will be listed
 
 'mainpagetext'      => "<big>'''Programa Wiki instalado con éxito.'''</big>",

@@ -165,12 +165,12 @@ $messages = array(
 
 # Bits of text used by many pages
 'categories'               => 'Катэгорыі',
-'page-categories'           => '{{PLURAL:$1|Катэгорыя|Катэгорыі}}:&#32;',
+'pagecategories'           => '{{PLURAL:$1|Катэгорыя|Катэгорыі}}',
 'category_header'          => 'Складнікі ў катэгорыі “$1”',
 'subcategories'            => 'Падкатэгорыі',
 'category-media-header'    => 'Мультымедыя ў катэгорыі "$1"',
 'category-empty'           => "''Зараз у катэгорыі няма аніводнай старонкі або мультымедыйнага файла.''",
-'hidden-categories'        => '{{PLURAL:$1|Схаваная катэгорыя|Схаваныя катэгорыі}}:&#32;',
+'hidden-categories'        => '{{PLURAL:$1|Схаваная катэгорыя|Схаваныя катэгорыі}}',
 'hidden-category-category' => 'Схаваныя катэгорыі', # Name of the category where hidden categories will be listed
 
 'mainpagetext'      => "<big>'''MediaWiki паспяхова ўсталяваная.'''</big>",

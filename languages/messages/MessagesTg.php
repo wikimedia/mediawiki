@@ -170,12 +170,12 @@ $messages = array(
 
 # Bits of text used by many pages
 'categories'               => 'Гурӯҳҳо',
-'page-categories'           => '{{PLURAL:$1|Гурӯҳ|Гурӯҳҳо}}:&#32;',
+'pagecategories'           => '{{PLURAL:$1|Гурӯҳ|Гурӯҳҳо}}',
 'category_header'          => 'Мақолаҳо дар гурӯҳи "$1"',
 'subcategories'            => 'Зергурӯҳҳо',
 'category-media-header'    => 'Парвандаҳои гурӯҳ "$1"',
 'category-empty'           => "''Дар ҳоли ҳозир ин гурӯҳ дорои мақола ё парвандаҳо нест.''",
-'hidden-categories'        => '{{PLURAL:$1|Гурӯҳи пинҳон|Гурӯҳҳои пинҳон}}:&#32;',
+'hidden-categories'        => '{{PLURAL:$1|Гурӯҳи пинҳон|Гурӯҳҳои пинҳон}}',
 'hidden-category-category' => 'Гурӯҳҳои пинҳон', # Name of the category where hidden categories will be listed
 
 'mainpagetext'      => "<big>'''Нармафзори МедиаВики бо муваффақият насб шуд.'''</big>",

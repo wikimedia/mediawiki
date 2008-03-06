@@ -179,7 +179,7 @@ $messages = array(
 
 # Bits of text used by many pages
 'categories'            => 'Категории',
-'page-categories'        => '{{PLURAL:$1|Категорија|Категории}}:&#32;',
+'pagecategories'        => '{{PLURAL:$1|Категорија|Категории}}',
 'category_header'       => 'Статии во категоријата "$1"',
 'subcategories'         => 'Подкатегории',
 'category-media-header' => 'Медии во категорија „$1“',

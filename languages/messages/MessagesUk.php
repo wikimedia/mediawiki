@@ -302,12 +302,12 @@ $messages = array(
 
 # Bits of text used by many pages
 'categories'               => 'Категорії',
-'page-categories'           => '{{PLURAL:$1|Категорія|Категорії}}:&#32;',
+'pagecategories'           => '{{PLURAL:$1|Категорія|Категорії}}',
 'category_header'          => 'Статті в категорії «$1»',
 'subcategories'            => 'Підкатегорії',
 'category-media-header'    => 'Файли в категорії «$1»',
 'category-empty'           => "''Ця категорія зараз не містить статей або медіа-файлів.''",
-'hidden-categories'        => '{{PLURAL:$1|Прихована категорія|Приховані категорії}}:&#32;',
+'hidden-categories'        => '{{PLURAL:$1|Прихована категорія|Приховані категорії}}',
 'hidden-category-category' => 'Приховані категорії', # Name of the category where hidden categories will be listed
 
 'linkprefix'        => '/^(.*?)(„|«)$/sD',

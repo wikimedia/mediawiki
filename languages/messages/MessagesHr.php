@@ -165,12 +165,12 @@ $messages = array(
 
 # Bits of text used by many pages
 'categories'               => '{{PLURAL:$1|Kategorija|Kategorije}}',
-'page-categories'           => '{{PLURAL:$1|Kategorija|Kategorije}}:&#32;',
+'pagecategories'           => '{{PLURAL:$1|Kategorija|Kategorije}}',
 'category_header'          => 'Članci u kategoriji "$1"',
 'subcategories'            => 'Potkategorije',
 'category-media-header'    => 'Mediji u kategoriji "$1":',
 'category-empty'           => "''U ovoj kategoriji trenutačno nema članaka ni medija.''",
-'hidden-categories'        => '{{PLURAL:$1|Skrivena kategorija|Skrivene kategorije|Skrivenih kategorija}}:&#32;',
+'hidden-categories'        => '{{PLURAL:$1|Skrivena kategorija|Skrivene kategorije|Skrivenih kategorija}}',
 'hidden-category-category' => 'Skrivene kategorije', # Name of the category where hidden categories will be listed
 
 'mainpagetext'      => 'Softver Wiki je uspješno instaliran.',

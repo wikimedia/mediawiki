@@ -83,7 +83,7 @@ $messages = array(
 
 # Bits of text used by many pages
 'categories'      => 'Lôi-biék',
-'page-categories'  => '{{PLURAL:$1|Lôi-biék|Lôi-biék}}:&#32;',
+'pagecategories'  => '{{PLURAL:$1|Lôi-biék|Lôi-biék}}',
 'category_header' => '"$1" lôi-biék â-dā̤ gì ùng-ciŏng',
 'subcategories'   => 'Cṳ̄-lôi-biék',
 'category-empty'  => "''Ciā lôi-biék â-dā̤ hiêng-câi mò̤ ùng-ciŏng iâ mò̤ muòi-tā̤ ùng-giông.''",

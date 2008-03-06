@@ -135,7 +135,7 @@ $messages = array(
 
 # Bits of text used by many pages
 'categories'      => 'Categoriis',
-'page-categories'  => '{{PLURAL:$1|Categorie|Categoriis}}:&#32;',
+'pagecategories'  => '{{PLURAL:$1|Categorie|Categoriis}}',
 'category_header' => 'Vôs inte categorie "$1"',
 'subcategories'   => 'Sot categoriis',
 

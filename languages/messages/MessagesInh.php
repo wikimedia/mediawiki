@@ -110,7 +110,7 @@ $messages = array(
 
 # Bits of text used by many pages
 'categories'            => 'Категореш',
-'page-categories'        => '{{PLURAL:$1|Категори|Категореш}}:&#32;',
+'pagecategories'        => '{{PLURAL:$1|Категори|Категореш}}',
 'category_header'       => '"$1" категори оагIонаш',
 'subcategories'         => 'Чура-категореш',
 'category-media-header' => '"$1" категори медиа',
