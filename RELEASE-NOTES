@@ -70,7 +70,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 13110) Don't show "Permission error" page if the edit is already rolled
   back when using rollback
 * (bug 13012) Use content messages for block options when generating the
-  recentchages entry
+  recentchanges entry
 
 === API changes in 1.13 ===
 
