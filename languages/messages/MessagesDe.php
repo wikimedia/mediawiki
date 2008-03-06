@@ -1699,6 +1699,7 @@ $1',
 
 # Block/unblock
 'blockip'                     => 'IP-Adresse/Benutzer sperren',
+'blockip-legend'              => 'IP-Adresse/Benutzer sperren',
 'blockiptext'                 => 'Mit diesem Formular sperrst du eine IP-Adresse oder einen Benutzernamen, so dass von dort keine Änderungen mehr vorgenommen werden können.
 Dies sollte nur erfolgen, um Vandalismus zu verhindern und in Übereinstimmung mit den [[{{MediaWiki:Policy-url}}|Richtlinien]].
 Bitte gib den Grund für die Sperre an.',

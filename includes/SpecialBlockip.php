@@ -120,121 +120,123 @@ class IPBlockForm {
 		$wgOut->addHTML( "
 <script type=\"text/javascript\" src=\"$wgStylePath/common/block.js?$wgStyleVersion\">
 </script>
-<form id=\"blockip\" method=\"post\" action=\"{$action}\">
-	<table border='0'>
-		<tr>
-			<td align=\"$alignRight\">{$mIpaddress}</td>
-			<td>
-				" . Xml::input( 'wpBlockAddress', 45, $this->BlockAddress,
-					array(
-						'tabindex' => '1',
-						'id' => 'mw-bi-target',
-						'onchange' => 'updateBlockOptions()' ) ) . "
-			</td>
-		</tr>
-		<tr>");
-		if ($showblockoptions) {
+<form id=\"blockip\" method=\"post\" action=\"{$action}\">" .
+			Xml::openElement( 'fieldset' ) .
+			Xml::element( 'legend', null, wfMsg( 'blockip-legend' ) ) .
+			Xml::openElement( 'table', array ( 'border' => '0' ) ) .
+			"<tr>
+				<td align=\"$alignRight\">{$mIpaddress}</td>
+				<td>" .
+					Xml::input( 'wpBlockAddress', 45, $this->BlockAddress,
+						array(
+							'tabindex' => '1',
+							'id' => 'mw-bi-target',
+							'onchange' => 'updateBlockOptions()' ) ). "
+				</td>
+			</tr>
+			<tr>"
+		);
+		if ( $showblockoptions ) {
 			$wgOut->addHTML("
-			<td align=\"$alignRight\">{$mIpbexpiry}</td>
-			<td>
-				<select tabindex='2' id='wpBlockExpiry' name=\"wpBlockExpiry\" onchange=\"considerChangingExpiryFocus()\">
-					$blockExpiryFormOptions
-				</select>
-			</td>
-			");
+				<td align=\"$alignRight\">{$mIpbexpiry}</td>
+				<td>
+					<select tabindex='2' id='wpBlockExpiry' name=\"wpBlockExpiry\" onchange=\"considerChangingExpiryFocus()\">
+						$blockExpiryFormOptions
+					</select>
+				</td>"
+			);
 		}
 		$wgOut->addHTML("
-		</tr>
-		<tr id='wpBlockOther'>
-			<td align=\"$alignRight\">{$mIpbother}</td>
-			<td>
-				" . Xml::input( 'wpBlockOther', 45, $this->BlockOther,
-					array( 'tabindex' => '3', 'id' => 'mw-bi-other' ) ) . "
-			</td>
-		</tr>");
-		$wgOut->addHTML("
-		<tr>
-			<td align=\"$alignRight\">{$mIpbreasonother}</td>
-			<td>
-				$reasonDropDown
-			</td>
-		</tr>");
-		$wgOut->addHTML("
-		<tr id=\"wpBlockReason\">
-			<td align=\"$alignRight\">{$mIpbreason}</td>
-			<td>
-				" . Xml::input( 'wpBlockReason', 45, $this->BlockReason,
-					array( 'tabindex' => '5', 'id' => 'mw-bi-reason',
-			       		       'maxlength'=> '200' ) ) . "
-			</td>
-		</tr>
-		<tr id='wpAnonOnlyRow'>
-			<td>&nbsp;</td>
-			<td>
-				" . wfCheckLabel( wfMsgHtml( 'ipbanononly' ),
-					'wpAnonOnly', 'wpAnonOnly', $this->BlockAnonOnly,
-					array( 'tabindex' => '6' ) ) . "
-			</td>
-		</tr>
-		<tr id='wpCreateAccountRow'>
-			<td>&nbsp;</td>
-			<td>
-				" . wfCheckLabel( wfMsgHtml( 'ipbcreateaccount' ),
-					'wpCreateAccount', 'wpCreateAccount', $this->BlockCreateAccount,
-					array( 'tabindex' => '7' ) ) . "
-			</td>
-		</tr>
-		<tr id='wpEnableAutoblockRow'>
-			<td>&nbsp;</td>
-			<td>
-				" . wfCheckLabel( wfMsgHtml( 'ipbenableautoblock' ),
+			</tr>
+			<tr id='wpBlockOther'>
+				<td align=\"$alignRight\">{$mIpbother}</td>
+				<td>" .
+					Xml::input( 'wpBlockOther', 45, $this->BlockOther,
+						array( 'tabindex' => '3', 'id' => 'mw-bi-other' ) ) . "
+				</td>
+			</tr>
+			<tr>
+				<td align=\"$alignRight\">{$mIpbreasonother}</td>
+				<td>
+					$reasonDropDown
+				</td>
+			</tr>
+			<tr id=\"wpBlockReason\">
+				<td align=\"$alignRight\">{$mIpbreason}</td>
+				<td>" .
+					Xml::input( 'wpBlockReason', 45, $this->BlockReason,
+						array( 'tabindex' => '5', 'id' => 'mw-bi-reason', 'maxlength'=> '200' ) ) . "
+				</td>
+			</tr>
+			<tr id='wpAnonOnlyRow'>
+				<td>&nbsp;</td>
+				<td>" .
+					wfCheckLabel( wfMsgHtml( 'ipbanononly' ),
+						'wpAnonOnly', 'wpAnonOnly', $this->BlockAnonOnly,
+						array( 'tabindex' => '6' ) ) . "
+				</td>
+			</tr>
+			<tr id='wpCreateAccountRow'>
+				<td>&nbsp;</td>
+				<td>" .
+					wfCheckLabel( wfMsgHtml( 'ipbcreateaccount' ),
+						'wpCreateAccount', 'wpCreateAccount', $this->BlockCreateAccount,
+						array( 'tabindex' => '7' ) ) . "
+				</td>
+			</tr>
+			<tr id='wpEnableAutoblockRow'>
+				<td>&nbsp;</td>
+				<td>" .
+					wfCheckLabel( wfMsgHtml( 'ipbenableautoblock' ),
 						'wpEnableAutoblock', 'wpEnableAutoblock', $this->BlockEnableAutoblock,
-							array( 'tabindex' => '8' ) ) . "
-			</td>
-		</tr>
-		");
-		
+						array( 'tabindex' => '8' ) ) . "
+				</td>
+			</tr>"
+		);
+
 		global $wgSysopEmailBans;
 		if ( $wgSysopEmailBans && $wgUser->isAllowed( 'blockemail' ) ) {
 			$wgOut->addHTML("
-			<tr id='wpEnableEmailBan'>
-			<td>&nbsp;</td>
-				<td>
-					" . wfCheckLabel( wfMsgHtml( 'ipbemailban' ),
+				<tr id='wpEnableEmailBan'>
+				<td>&nbsp;</td>
+					<td>" .
+						wfCheckLabel( wfMsgHtml( 'ipbemailban' ),
 							'wpEmailBan', 'wpEmailBan', $this->BlockEmail,
-								array( 'tabindex' => '10' )) . "
-				</td>
-			</tr>
-			");
+							array( 'tabindex' => '10' )) . "
+					</td>
+				</tr>"
+			);
 		}
 
 		// Allow some users to hide name from block log, blocklist and listusers
 		if ( $wgUser->isAllowed( 'hideuser' ) ) {
 			$wgOut->addHTML("
-			<tr id='wpEnableHideUser'>
-			<td>&nbsp;</td>
-				<td>
-					" . wfCheckLabel( wfMsgHtml( 'ipbhidename' ),
+				<tr id='wpEnableHideUser'>
+				<td>&nbsp;</td>
+					<td>" .
+						wfCheckLabel( wfMsgHtml( 'ipbhidename' ),
 							'wpHideName', 'wpHideName', $this->BlockHideName,
-								array( 'tabindex' => '9' ) ) . "
-				</td>
-			</tr>
-			");
+							array( 'tabindex' => '9' ) ) . "
+					</td>
+				</tr>"
+			);
 		}
-		
+
 		$wgOut->addHTML("
-		<tr>
-			<td style='padding-top: 1em'>&nbsp;</td>
-			<td style='padding-top: 1em'>
-				" . Xml::submitButton( wfMsg( 'ipbsubmit' ),
-							array( 'name' => 'wpBlock', 'tabindex' => '11' ) ) . "
-			</td>
-		</tr>
-	</table>" .
-	Xml::hidden( 'wpEditToken', $token ) .
+			<tr>
+				<td style='padding-top: 1em'>&nbsp;</td>
+				<td style='padding-top: 1em'>" .
+					Xml::submitButton( wfMsg( 'ipbsubmit' ),
+						array( 'name' => 'wpBlock', 'tabindex' => '11' ) ) . "
+				</td>
+			</tr>" .
+			Xml::closeElement( 'table' ) .
+			Xml::hidden( 'wpEditToken', $token ) .
+			Xml::closeElement( 'fieldset' ) .
 "</form>
 <script type=\"text/javascript\">updateBlockOptions()</script>
-\n" );
+\n"
+		);
 
 		$wgOut->addHtml( $this->getConvenienceLinks() );
 
