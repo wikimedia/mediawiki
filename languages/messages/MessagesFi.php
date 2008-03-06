@@ -279,7 +279,7 @@ $messages = array(
 'subcategories'            => 'Alaluokat',
 'category-media-header'    => 'Luokan ”$1” sisältämät tiedostot',
 'category-empty'           => "''Tässä luokassa ei ole sivuja eikä tiedostoja.''",
-'hidden-categories'        => '{{PLURAL:$1|Piilotettu luokka|Piilotetut luokat}}',
+'hidden-categories'        => '{{PLURAL:$1|Piilotettu luokka|Piilotetut luokat}}:&#32;',
 'hidden-category-category' => 'Piilotetut luokat', # Name of the category where hidden categories will be listed
 
 'mainpagetext'      => "'''MediaWiki on onnistuneesti asennettu.'''",

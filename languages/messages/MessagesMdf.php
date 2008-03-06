@@ -119,7 +119,7 @@ $messages = array(
 'subcategories'            => 'Субкатегориет',
 'category-media-header'    => '"$1" категориеса медиясь',
 'category-empty'           => "''Медиа лопат тя категориеса ашет.''",
-'hidden-categories'        => '{{PLURAL:$1|Кяшф категорие|Кяшф категориет}}',
+'hidden-categories'        => '{{PLURAL:$1|Кяшф категорие|Кяшф категориет}}:&#32;',
 'hidden-category-category' => 'Кяшф категориет', # Name of the category where hidden categories will be listed
 
 'mainpagetext'      => "<big>'''МедиаВикить арафтозь лац.'''</big>",

@@ -165,7 +165,7 @@ $messages = array(
 'subcategories'            => 'サブカテゴリ',
 'category-media-header'    => 'カテゴリ “$1” にあるメディア',
 'category-empty'           => 'このカテゴリにはページまたはメディアがひとつもありません。',
-'hidden-categories'        => '{{PLURAL:$1|非公開カテゴリ|非公開カテゴリ}}',
+'hidden-categories'        => '{{PLURAL:$1|非公開カテゴリ|非公開カテゴリ}}:&#32;',
 'hidden-category-category' => '非公開カテゴリ', # Name of the category where hidden categories will be listed
 
 'mainpagetext'      => 'MediaWikiが正常にインストールされました。',

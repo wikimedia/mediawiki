@@ -259,7 +259,7 @@ $messages = array(
 'subcategories'            => 'Podkategórie',
 'category-media-header'    => 'Multimediálne súbory v kategórii „$1“',
 'category-empty'           => "''Táto kategória momentálne neobsahuje články ani multimediálne súbory.''",
-'hidden-categories'        => '{{PLURAL:$1|Skrytá kategória|Skryté kategórie}}',
+'hidden-categories'        => '{{PLURAL:$1|Skrytá kategória|Skryté kategórie}}:&#32;',
 'hidden-category-category' => 'Skryté kategórie', # Name of the category where hidden categories will be listed
 
 'mainpagetext'      => "<big>'''Softvér MediaWiki bol úspešne nainštalovaný.'''</big>",

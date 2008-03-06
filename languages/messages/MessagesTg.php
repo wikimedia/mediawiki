@@ -175,7 +175,7 @@ $messages = array(
 'subcategories'            => 'Зергурӯҳҳо',
 'category-media-header'    => 'Парвандаҳои гурӯҳ "$1"',
 'category-empty'           => "''Дар ҳоли ҳозир ин гурӯҳ дорои мақола ё парвандаҳо нест.''",
-'hidden-categories'        => '{{PLURAL:$1|Гурӯҳи пинҳон|Гурӯҳҳои пинҳон}}',
+'hidden-categories'        => '{{PLURAL:$1|Гурӯҳи пинҳон|Гурӯҳҳои пинҳон}}:&#32;',
 'hidden-category-category' => 'Гурӯҳҳои пинҳон', # Name of the category where hidden categories will be listed
 
 'mainpagetext'      => "<big>'''Нармафзори МедиаВики бо муваффақият насб шуд.'''</big>",

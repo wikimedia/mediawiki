@@ -141,7 +141,7 @@ $messages = array(
 'subcategories'            => 'Unnerkategorien',
 'category-media-header'    => 'Media in Kategorie "$1"',
 'category-empty'           => "''Disse Kategorie is loos.''",
-'hidden-categories'        => '{{PLURAL:$1|Ferstatte Kategorie|Ferstatte Kategorien}}',
+'hidden-categories'        => '{{PLURAL:$1|Ferstatte Kategorie|Ferstatte Kategorien}}:&#32;',
 'hidden-category-category' => 'Verstatte Kategorien', # Name of the category where hidden categories will be listed
 
 'mainpagetext'      => 'Ju Wiki Software wuude mäd Ärfoulch installierd!',

@@ -283,7 +283,7 @@ $messages = array(
 'subcategories'            => 'Unterkategorien',          
 'category-media-header'    => 'Medien in der Kategorie „$1“',
 'category-empty'           => "''Diese Kategorie enthält zur Zeit keine Seiten oder Medien.''",
-'hidden-categories'        => '{{PLURAL:$1|Versteckte Kategorie|Versteckte Kategorien}}',
+'hidden-categories'        => '{{PLURAL:$1|Versteckte Kategorie|Versteckte Kategorien}}:&#32;',
 'hidden-category-category' => 'Versteckte Kategorien', # Name of the category where hidden categories will be listed
 
 'mainpagetext'      => 'MediaWiki wurde erfolgreich installiert.',

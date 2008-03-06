@@ -355,7 +355,7 @@ $messages = array(
 'subcategories'         => 'Underkategoriar',
 'category-media-header' => 'Media i kategorien «$1»',
 'category-empty'        => "''Denne kategorien inneheld for tida ingen sider eller anna media.''",
-'hidden-categories'     => '{{PLURAL:$1|Gøymd kategori|Gøymde kategoriar}}',
+'hidden-categories'     => '{{PLURAL:$1|Gøymd kategori|Gøymde kategoriar}}:&#32;',
 
 'mainpagetext'      => 'MediaWiki er no installert.',
 'mainpagedocfooter' => 'Sjå [http://meta.wikimedia.org/wiki/Help:Contents brukarmanualen] for informasjon om bruk og konfigurasjonshjelp for wikiprogramvaren.

@@ -181,7 +181,7 @@ $messages = array(
 'subcategories'            => 'Soscategorias',
 'category-media-header'    => 'Fichièrs multimèdia dins la categoria "$1"',
 'category-empty'           => "''Actualament, aquesta categoria conten pas cap d'articles o de mèdia.''",
-'hidden-categories'        => '{{PLURAL:$1|Categoria amagada|Categorias amagadas}}',
+'hidden-categories'        => '{{PLURAL:$1|Categoria amagada|Categorias amagadas}}:&#32;',
 'hidden-category-category' => 'Categorias amagadas', # Name of the category where hidden categories will be listed
 
 'mainpagetext'      => 'Logicial {{SITENAME}} installat.',

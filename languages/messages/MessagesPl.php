@@ -236,7 +236,7 @@ $messages = array(
 'subcategories'            => 'Podkategorie',
 'category-media-header'    => 'Pliki w kategorii "$1"',
 'category-empty'           => "''W tej kategorii nie ma obecnie artykułów ani plików.''",
-'hidden-categories'        => '{{PLURAL:$1|Ukryta kategoria|Ukryte kategorie|Ukrytych kategorii}}',
+'hidden-categories'        => '{{PLURAL:$1|Ukryta kategoria|Ukryte kategorie|Ukrytych kategorii}}:&#32;',
 'hidden-category-category' => 'Ukryte kategorie', # Name of the category where hidden categories will be listed
 
 'mainpagetext'      => "<big>'''Instalacja MediaWiki powiodła się.'''</big>",

@@ -170,7 +170,7 @@ $messages = array(
 'subcategories'            => 'Potkategorije',
 'category-media-header'    => 'Mediji u kategoriji "$1":',
 'category-empty'           => "''U ovoj kategoriji trenutačno nema članaka ni medija.''",
-'hidden-categories'        => '{{PLURAL:$1|Skrivena kategorija|Skrivene kategorije|Skrivenih kategorija}}',
+'hidden-categories'        => '{{PLURAL:$1|Skrivena kategorija|Skrivene kategorije|Skrivenih kategorija}}:&#32;',
 'hidden-category-category' => 'Skrivene kategorije', # Name of the category where hidden categories will be listed
 
 'mainpagetext'      => 'Softver Wiki je uspješno instaliran.',

@@ -148,7 +148,7 @@ $messages = array(
 'subcategories'            => 'Alt Kategoriler',
 'category-media-header'    => '"$1" kategorisindeki medya',
 'category-empty'           => "''Bu kategoride henüz herhangi bir madde ya da medya bulunmamaktadır.''",
-'hidden-categories'        => '{{PLURAL:$1|Gizli kategori|Gizli kategoriler}}',
+'hidden-categories'        => '{{PLURAL:$1|Gizli kategori|Gizli kategoriler}}:&#32;',
 'hidden-category-category' => 'Gizli kategoriler', # Name of the category where hidden categories will be listed
 
 'mainpagetext'      => "<big>'''MediaWiki başarı ile kuruldu.'''</big>",

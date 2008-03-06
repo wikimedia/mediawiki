@@ -217,7 +217,7 @@ $messages = array(
 'subcategories'            => 'ចំណាត់ក្រុមរង',
 'category-media-header'    => 'ឯកសារមីឌា ក្នុង ចំណាត់ក្រុម "$1"',
 'category-empty'           => "''ចំណាត់ក្រុមនេះ មិនមានផ្ទុកទំព័រ ឬ ឯកសារមីឌា ណាមួយទេ។''",
-'hidden-categories'        => '{{PLURAL:$1|ចំណាត់ក្រុម ត្រូវបានបិទបាំង|ចំណាត់ក្រុមនានា ត្រូវបានបិទបាំង}}',
+'hidden-categories'        => '{{PLURAL:$1|ចំណាត់ក្រុម ត្រូវបានបិទបាំង|ចំណាត់ក្រុមនានា ត្រូវបានបិទបាំង}}:&#32;',
 'hidden-category-category' => 'ចំណាត់ក្រុម ត្រូវបានបិទបាំង', # Name of the category where hidden categories will be listed
 
 'mainpagetext'      => "<big>'''មីឌាវិគី ត្រូវបានតំលើង ដោយជោគជ័យ'''</big>",

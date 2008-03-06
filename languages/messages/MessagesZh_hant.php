@@ -169,7 +169,7 @@ $messages = array(
 'subcategories'            => '附分類',
 'category-media-header'    => '"$1"分類中的媒體',
 'category-empty'           => "''這個分類中尚未包含任何頁面或媒體。''",
-'hidden-categories'        => '$1個隱藏分類',
+'hidden-categories'        => '$1個隱藏分類:&#32;',
 'hidden-category-category' => '隱藏分類', # Name of the category where hidden categories will be listed
 
 

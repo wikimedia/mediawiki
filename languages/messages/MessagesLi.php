@@ -171,7 +171,7 @@ $messages = array(
 'subcategories'            => 'Subkattegorië',
 'category-media-header'    => 'Media in de categorie "$1"',
 'category-empty'           => "''Deze categorie is laeg, hae bevat op 't memènt gén artiekele of media.''",
-'hidden-categories'        => 'Verbórge {{PLURAL:$1|categorie|categorië}}',
+'hidden-categories'        => 'Verbórge {{PLURAL:$1|categorie|categorië}}:&#32;',
 'hidden-category-category' => 'Verbórge categorië', # Name of the category where hidden categories will be listed
 
 'mainpagetext'      => 'Wiki software succesvol geïnsjtalleerd.',

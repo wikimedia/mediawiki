@@ -138,7 +138,7 @@ $messages = array(
 'subcategories'            => 'Binekategorî',
 'category-media-header'    => 'Medya di kategorîya "$1" da',
 'category-empty'           => "''Di vê kategorîyê da niha gotar ya medya tune ne.''",
-'hidden-categories'        => '{{PLURAL:$1|Kategorîya veşartî|Kategorîyên veşartî}}',
+'hidden-categories'        => '{{PLURAL:$1|Kategorîya veşartî|Kategorîyên veşartî}}:&#32;',
 'hidden-category-category' => 'Kategorîyên veşartî', # Name of the category where hidden categories will be listed
 
 'mainpagetext'      => "<big>'''MediaWiki serketî hate çêkirin.'''</big>",

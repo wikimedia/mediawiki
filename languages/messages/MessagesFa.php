@@ -375,7 +375,7 @@ $messages = array(
 'subcategories'            => 'زیررده‌ها',
 'category-media-header'    => 'پرونده‌های ردهٔ «$1»',
 'category-empty'           => 'این رده شامل هیچ صفحه یا پرونده‌ای نمی‌شود.',
-'hidden-categories'        => '{{PLURAL:$1|ردهٔ پنهان|رده‌های پنهان}}',
+'hidden-categories'        => '{{PLURAL:$1|ردهٔ پنهان|رده‌های پنهان}}:&#32;',
 'hidden-category-category' => 'رده‌های پنهان', # Name of the category where hidden categories will be listed
 
 'mainpagetext'      => 'نرم‌افزار ویکی با موفقیت نصب شد.',

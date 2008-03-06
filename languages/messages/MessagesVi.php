@@ -236,7 +236,7 @@ $messages = array(
 'subcategories'            => 'Tiểu thể loại',
 'category-media-header'    => 'Các tập tin trong thể loại “$1”',
 'category-empty'           => "''Thể loại này hiện không có trang hay tập tin.''",
-'hidden-categories'        => 'Thể loại ẩn',
+'hidden-categories'        => 'Thể loại ẩn:&#32;',
 'hidden-category-category' => 'Thể loại ẩn', # Name of the category where hidden categories will be listed
 
 'mainpagetext'      => "<big>'''MediaWiki đã được cài đặt thành công.'''</big>",

@@ -221,7 +221,7 @@ $messages = array(
 'subcategories'            => 'Subcategorías',
 'category-media-header'    => 'Contenius multimedia en a categoría "$1"',
 'category-empty'           => "''Ista categoría no tiene por agora garra articlo ni conteniu multimedia''",
-'hidden-categories'        => '{{PLURAL:$1|Categoría amagata|Categorías amagatas}}',
+'hidden-categories'        => '{{PLURAL:$1|Categoría amagata|Categorías amagatas}}:&#32;',
 'hidden-category-category' => 'Categorías amagatas', # Name of the category where hidden categories will be listed
 
 'mainpagetext'      => "O programa MediaWiki s'ha instalato correutament.",

@@ -202,7 +202,7 @@ $messages = array(
 'subcategories'            => 'Donaklads',
 'category-media-header'    => 'Media in klad: "$1"',
 'category-empty'           => "''Klad at anu ninädon padis e ragivis nonikis.''",
-'hidden-categories'        => '{{PLURAL:$1|Klad|Klads}} peklänedöl',
+'hidden-categories'        => '{{PLURAL:$1|Klad|Klads}} peklänedöl:&#32;',
 'hidden-category-category' => 'Klads peklänedöl', # Name of the category where hidden categories will be listed
 
 'mainpagetext'      => "<big>'''El MediaWiki pestiton benosekiko.'''</big>",
