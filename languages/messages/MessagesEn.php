@@ -1566,6 +1566,7 @@ PICT # misc.
 *Common delete reasons
 ** Copyright violation
 ** Duplicated file',
+'filedelete-edit-reasonlist'  => 'Edit delete reasons',
 
 # MIME search
 'mimesearch'         => 'MIME search',
@@ -1886,6 +1887,7 @@ Please confirm that you intend to do this, that you understand the consequences,
 ** Author request
 ** Copyright violation
 ** Vandalism',
+'delete-edit-reasonlist'      => 'Edit delete reasons',
 'delete-toobig'               => 'This page has a large edit history, over $1 revisions. Deletion of such pages has been restricted to prevent accidental disruption of {{SITENAME}}.',
 'delete-warning-toobig'       => 'This page has a large edit history, over $1 revisions. Deleting it may disrupt database operations of {{SITENAME}}; proceed with caution.',
 'rollback'                    => 'Roll back edits',

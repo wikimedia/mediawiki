@@ -2128,6 +2128,12 @@ class Article {
 			Xml::hidden( 'wpEditToken', $wgUser->editToken() ) .
 			Xml::closeElement( 'form' );
 
+			if ( $wgUser->isAllowed( 'editinterface' ) ) {
+				$skin = $wgUser->getSkin();
+				$link = $skin->makeLink ( 'MediaWiki:deletereason-dropdown', wfMsgHtml( 'delete-edit-reasonlist' ) );
+				$form .= '<p class="mw-delete-editreasons">' . $link . '</p>';
+			}
+
 		$wgOut->addHTML( $form );
 		$this->showLogExtract( $wgOut );
 	}

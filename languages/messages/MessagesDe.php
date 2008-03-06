@@ -1236,6 +1236,7 @@ Bitte gib der Datei einen Namen, der den Inhalt besser beschreibt.',
 * Allgemeine Löschgründe
 ** Urheberrechtsverletzung
 ** Duplikat',
+'filedelete-edit-reasonlist'  => 'Löschgründe bearbeiten',
 
 # MIME search
 'mimesearch'         => 'Suche nach MIME-Typ',
@@ -1550,6 +1551,7 @@ Um die Einstellungen deiner Beobachtungsliste anzupassen, besuche: {{fullurl:Spe
 ** Wunsch des Autors
 ** Urheberrechtsverletzung
 ** Vandalismus',
+'delete-edit-reasonlist'      => 'Löschgründe bearbeiten',
 'delete-toobig'               => 'Diese Seite hat mit mehr als $1 Versionen eine sehr lange Versionsgeschichte. Das Löschen solcher Seiten wurde eingeschränkt, um eine versehentliche Überlastung der Server zu verhindern.',
 'delete-warning-toobig'       => 'Diese Seite hat mit mehr als $1 Versionen eine sehr lange Versionsgeschichte. Das Löschen kann zu Störungen im Datenbankbetrieb führen.',
 'rollback'                    => 'Zurücksetzen der Änderungen',

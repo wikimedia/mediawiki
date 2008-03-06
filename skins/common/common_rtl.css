@@ -28,8 +28,8 @@ div.tright, div.floatright {
 div.tleft, div.floatleft {
 	clear: left;
 }
-/* Unblock and Ipblocklist links of Special:Blockip */
-p.mw-ipb-conveniencelinks {
+/* Convenience links to edit block and delete reasons */
+p.mw-ipb-conveniencelinks, p.mw-filedelete-editreasons, p.mw-delete-editreasons {
 	float: left;
 }
 table.filehistory th {
