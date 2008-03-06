@@ -242,7 +242,7 @@ class ApiEditPage extends ApiBase {
 	protected function getExamples() {
 		return array (
 			"Edit a page (anonymous user):",
-			"    api.php?action=edit&eptitle=Test&epsummary=test%20summary&eptext=article%20content&epedittime=20070824123454&eptokenid=+%5C"
+			"    api.php?action=edit&title=Test&summary=test%20summary&text=article%20content&edittime=20070824123454&token=+%5C"
 		);
 	}
 
