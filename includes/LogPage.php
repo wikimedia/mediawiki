@@ -275,7 +275,7 @@ class LogPage {
 	 * into a more readable (and translated) form
 	 *
 	 * @param $flags Flags to format
-	 * @param $forContent Whetever to localize the message depending of the user
+	 * @param $forContent Whether to localize the message depending of the user
 	 *                    language
 	 * @return string
 	 */
@@ -294,7 +294,7 @@ class LogPage {
 	 * Translate a block log flag if possible
 	 *
 	 * @param $flag Flag to translate
-	 * @param $forContent Whetever to localize the message depending of the user
+	 * @param $forContent Whether to localize the message depending of the user
 	 *                    language
 	 * @return string
 	 */
