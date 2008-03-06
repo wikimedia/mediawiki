@@ -1958,8 +1958,18 @@ function wfRelativePath( $path, $from ) {
 	$path = str_replace( '/', DIRECTORY_SEPARATOR, $path );
 	$from = str_replace( '/', DIRECTORY_SEPARATOR, $from );
 	
+	// Trim trailing slashes -- fix for drive root
+	$path = rtrim( $path, DIRECTORY_SEPARATOR );
+	$from = rtrim( $from, DIRECTORY_SEPARATOR );
+	
 	$pieces  = explode( DIRECTORY_SEPARATOR, dirname( $path ) );
 	$against = explode( DIRECTORY_SEPARATOR, $from );
+	
+	if( $pieces[0] !== $against[0] ) {
+		// Non-matching Windows drive letters?
+		// Return a full path.
+		return $path;
+	}
 
 	// Trim off common prefix
 	while( count( $pieces ) && count( $against )
