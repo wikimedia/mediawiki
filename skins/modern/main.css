@@ -989,12 +989,6 @@ tr.sv-space td { display: none; }
 	margin: 0.1em 0;
 }
 
-/* Convenience links to edit block and delete reasons */
-p.mw-ipb-conveniencelinks, p.mw-filedelete-editreasons, p.mw-delete-editreasons {
-	font-size: 90%;
-	float: right;
-}
-
 /* Friendlier slave lag warnings */
 div.mw-lag-warn-normal,
 div.mw-lag-warn-high {
