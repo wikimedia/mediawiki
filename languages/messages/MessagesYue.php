@@ -239,7 +239,7 @@ $messages = array(
 
 # Bits of text used by many pages
 'categories'               => '類',
-'pagecategories'           => '屬於$1類',
+'page-categories'           => '屬於$1類:&#32;',
 'category_header'          => '"$1" 類中嘅版',
 'subcategories'            => '分類',
 'category-media-header'    => ' "$1" 類嘅媒體',

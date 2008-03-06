@@ -145,7 +145,7 @@ $messages = array(
 
 # Bits of text used by many pages
 'categories'               => '{{PLURAL:$1|பகுப்பு|பகுப்புக்கள்}}',
-'pagecategories'           => '{{PLURAL:$1|பகுப்பு|பகுப்புக்கள்}}',
+'page-categories'           => '{{PLURAL:$1|பகுப்பு|பகுப்புக்கள்}}:&#32;',
 'category_header'          => '"$1" பகுப்புலுள்ள கட்டுரைகள்',
 'subcategories'            => 'துணைப் பகுப்புகள்',
 'category-media-header'    => '"$1" பகுப்பில் உள்ள ஊடகங்கள்',

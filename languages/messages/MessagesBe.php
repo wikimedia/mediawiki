@@ -165,7 +165,7 @@ $messages = array(
 
 # Bits of text used by many pages
 'categories'               => 'Катэгорыі',
-'pagecategories'           => '{{PLURAL:$1|Катэгорыя|Катэгорыі}}',
+'page-categories'           => '{{PLURAL:$1|Катэгорыя|Катэгорыі}}:&#32;',
 'category_header'          => 'Складнікі ў катэгорыі “$1”',
 'subcategories'            => 'Падкатэгорыі',
 'category-media-header'    => 'Мультымедыя ў катэгорыі "$1"',

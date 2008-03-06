@@ -110,7 +110,7 @@ $messages = array(
 
 # Bits of text used by many pages
 'categories'            => '{{PLURAL:$1|Kategoriya|Kategoriyalar}}',
-'pagecategories'        => 'Sayfa {{PLURAL:$1|kategoriyası|kategoriyaları}}',
+'page-categories'        => 'Sayfa {{PLURAL:$1|kategoriyası|kategoriyaları}}:&#32;',
 'category_header'       => '"$1" kategoriyasındaki sayfalar',
 'subcategories'         => 'Alt kategoriyalar',
 'category-media-header' => '"$1" kategoriyasındaki media',

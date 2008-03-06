@@ -197,7 +197,7 @@ $messages = array(
 
 # Bits of text used by many pages
 'categories'               => 'Klads',
-'pagecategories'           => '{{PLURAL:$1|Klad|Klads}}',
+'page-categories'           => '{{PLURAL:$1|Klad|Klads}}:&#32;',
 'category_header'          => 'Pads in klad: „$1“',
 'subcategories'            => 'Donaklads',
 'category-media-header'    => 'Media in klad: "$1"',

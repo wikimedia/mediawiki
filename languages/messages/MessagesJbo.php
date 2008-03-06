@@ -48,7 +48,7 @@ $messages = array(
 
 # Bits of text used by many pages
 'categories'     => 'klesi',
-'pagecategories' => '{{PLURAL:$1|klesi|klesi}}',
+'page-categories' => '{{PLURAL:$1|klesi|klesi}}:&#32;',
 
 'qbedit'        => 'stika',
 'qbpageoptions' => 'ti ckupau',

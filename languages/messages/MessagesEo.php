@@ -157,7 +157,7 @@ $messages = array(
 
 # Bits of text used by many pages
 'categories'               => '{{PLURAL:$1|Kategorio|Kategorioj}}',
-'pagecategories'           => '{{PLURAL:$1|Kategorio|Kategorioj}}',
+'page-categories'           => '{{PLURAL:$1|Kategorio|Kategorioj}}:&#32;',
 'category_header'          => 'Artikoloj en kategorio "$1"',
 'subcategories'            => 'Subkategorioj',
 'category-media-header'    => 'Dosieroj en kategorio "$1"',

@@ -73,7 +73,7 @@ $messages = array(
 
 # Bits of text used by many pages
 'categories'            => '{{PLURAL:$1|კატეგორია|კატეგორიალეფ}}',
-'pagecategories'        => '{{PLURAL:$1|კატეგორია|კატეგორიალეფ}}',
+'page-categories'        => '{{PLURAL:$1|კატეგორია|კატეგორიალეფ}}:&#32;',
 'category_header'       => 'სტატიეფ კატეგორიას "$1"',
 'subcategories'         => 'ქვეკატეგორიალეფ',
 'category-media-header' => 'მედია კატეგორიას "$1"',

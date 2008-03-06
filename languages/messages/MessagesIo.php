@@ -105,7 +105,7 @@ $messages = array(
 
 # Bits of text used by many pages
 'categories'      => 'Kategorii',
-'pagecategories'  => '{{PLURAL:$1|Kategorio|Kategorii}}',
+'page-categories'  => '{{PLURAL:$1|Kategorio|Kategorii}}:&#32;',
 'category_header' => 'Artikli en kategorio "$1"',
 'subcategories'   => 'Subkategorii',
 'category-empty'  => "''Nuntempe existas nula pagini en ita kategorio.''",

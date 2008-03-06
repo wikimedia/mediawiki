@@ -81,7 +81,7 @@ $messages = array(
 
 # Bits of text used by many pages
 'categories'      => '{{PLURAL:$1|زمرہ|زمرہ جات}}',
-'pagecategories'  => '{{PLURAL:$1|زمرہ|زمرہ جات}}',
+'page-categories'  => '{{PLURAL:$1|زمرہ|زمرہ جات}}:&#32;',
 'category_header' => 'زمرہ "$1" میں مضامین',
 'subcategories'   => 'ذیلی ذمرہ جات',
 

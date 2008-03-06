@@ -136,7 +136,7 @@ $messages = array(
 
 # Bits of text used by many pages
 'categories'               => 'Katiguriyakuna',
-'pagecategories'           => '{{PLURAL:$1|Katiguriya|Katiguriyakuna}}',
+'page-categories'           => '{{PLURAL:$1|Katiguriya|Katiguriyakuna}}:&#32;',
 'category_header'          => '"$1" sutiyuq katiguriyapi qillqakuna',
 'subcategories'            => 'Urin katiguriyakuna',
 'category-media-header'    => '"$1" sutiyuq katiguriyapi multimidya willañiqikuna',

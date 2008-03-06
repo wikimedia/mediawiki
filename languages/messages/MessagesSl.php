@@ -146,7 +146,7 @@ $messages = array(
 
 # Bits of text used by many pages
 'categories'      => 'Kategorije',
-'pagecategories'  => '{{plural:$1|Kategorija|Kategoriji|Kategorije|Kategorije|Kategorije}}',
+'page-categories'  => '{{plural:$1|Kategorija|Kategoriji|Kategorije|Kategorije|Kategorije}}:&#32;',
 'category_header' => 'Strani v kategoriji »$1«',
 'subcategories'   => 'Podkategorije',
 

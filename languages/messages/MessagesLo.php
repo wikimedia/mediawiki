@@ -95,7 +95,7 @@ $messages = array(
 
 # Bits of text used by many pages
 'categories'            => 'ໝວດ',
-'pagecategories'        => '{{PLURAL:$1|ໝວດ|ໝວດ}}',
+'page-categories'        => '{{PLURAL:$1|ໝວດ|ໝວດ}}:&#32;',
 'category_header'       => 'ບົດຄວາມໃນໝວດ "$1"',
 'subcategories'         => 'ໝວດຍ່ອຍ',
 'category-media-header' => 'ໜ້າຕ່າງ າ ໃນ "$1"',

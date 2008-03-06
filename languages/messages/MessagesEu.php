@@ -139,7 +139,7 @@ $messages = array(
 
 # Bits of text used by many pages
 'categories'            => '{{PLURAL:$1|Kategoria|Kategoriak}}',
-'pagecategories'        => '{{PLURAL:$1|Kategoria|Kategoriak}}',
+'page-categories'        => '{{PLURAL:$1|Kategoria|Kategoriak}}:&#32;',
 'category_header'       => '"$1" kategoriako artikuluak',
 'subcategories'         => 'Azpikategoriak',
 'category-media-header' => 'Media "$1" kategorian',

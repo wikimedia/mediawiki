@@ -115,7 +115,7 @@ $messages = array(
 
 # Bits of text used by many pages
 'categories'     => 'Катигорїѩ',
-'pagecategories' => '{{PLURAL:$1|Катигорї|Катигорїи|Катигориѩ|Катигориѩ}}',
+'page-categories' => '{{PLURAL:$1|Катигорї|Катигорїи|Катигориѩ|Катигориѩ}}:&#32;',
 
 'linkprefix' => '/^(.*?)(„|«)$/sD',
 

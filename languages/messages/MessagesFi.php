@@ -274,7 +274,7 @@ $messages = array(
 
 # Bits of text used by many pages
 'categories'               => 'Luokat',
-'pagecategories'           => '{{PLURAL:$1|Luokka|Luokat}}',
+'page-categories'           => '{{PLURAL:$1|Luokka|Luokat}}:&#32;',
 'category_header'          => 'Sivut, jotka ovat luokassa $1',
 'subcategories'            => 'Alaluokat',
 'category-media-header'    => 'Luokan ”$1” sisältämät tiedostot',

@@ -145,7 +145,7 @@ $messages = array(
 
 # Bits of text used by many pages
 'categories'            => '{{PLURAL:$1|კატეგორია|კატეგორიები}}',
-'pagecategories'        => '{{PLURAL:$1|კატეგორია|კატეგორიები}}',
+'page-categories'        => '{{PLURAL:$1|კატეგორია|კატეგორიები}}:&#32;',
 'category_header'       => 'სტატიები კატეგორიაში "$1"',
 'subcategories'         => 'ქვეკატეგორიები',
 'category-media-header' => 'მედია კატეგორიაში "$1"',

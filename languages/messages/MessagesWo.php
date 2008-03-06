@@ -109,7 +109,7 @@ $messages = array(
 
 # Bits of text used by many pages
 'categories'               => 'Wàll',
-'pagecategories'           => '{{PLURAL:$1|Wàll |Wàll }}',
+'page-categories'           => '{{PLURAL:$1|Wàll |Wàll }}:&#32;',
 'category_header'          => 'Xët yi ci wàll gi « $1 »',
 'subcategories'            => 'Ron-wàll',
 'hidden-category-category' => 'Wàll yi nëbbu', # Name of the category where hidden categories will be listed

@@ -302,7 +302,7 @@ $messages = array(
 
 # Bits of text used by many pages
 'categories'      => 'Kategorije stranica',
-'pagecategories'  => '{{PLURAL:$1|Kategorija|Kategorije|Kategorije}} stranica',
+'page-categories'  => '{{PLURAL:$1|Kategorija|Kategorije|Kategorije}} stranica:&#32;',
 'category_header' => 'Članaka u kategoriji "$1"',
 'subcategories'   => 'Potkategorije',
 

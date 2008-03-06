@@ -329,7 +329,7 @@ $messages = array(
 
 # Bits of text used by many pages
 'categories'            => 'Κατηγορίες',
-'pagecategories'        => '{{PLURAL:$1|Κατηγορία|Κατηγορίες}}',
+'page-categories'        => '{{PLURAL:$1|Κατηγορία|Κατηγορίες}}:&#32;',
 'category_header'       => 'Άρθρα στην κατηγορία "$1"',
 'subcategories'         => 'Υποκατηγορίες',
 'category-media-header' => 'Πολυμέσα στην κατηγορία «$1»',

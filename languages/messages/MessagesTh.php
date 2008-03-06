@@ -181,7 +181,7 @@ $messages = array(
 
 # Bits of text used by many pages
 'categories'            => 'หมวดหมู่',
-'pagecategories'        => 'หมวดหมู่',
+'page-categories'        => 'หมวดหมู่:&#32;',
 'category_header'       => 'เนื้อหาในหมวดหมู่ "$1"',
 'subcategories'         => 'หมวดหมู่ย่อย',
 'category-media-header' => 'สื่อในหมวดหมู่ "$1"',

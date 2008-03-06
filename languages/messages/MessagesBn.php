@@ -140,7 +140,7 @@ $messages = array(
 
 # Bits of text used by many pages
 'categories'            => 'বিষয়শ্রেণীসমূহ',
-'pagecategories'        => '{{PLURAL:$1|বিষয়শ্রেণী|বিষয়শ্রেণীসমূহ}}',
+'page-categories'        => '{{PLURAL:$1|বিষয়শ্রেণী|বিষয়শ্রেণীসমূহ}}:&#32;',
 'category_header'       => '"$1" বিষয়শ্রেণীতে অন্তর্ভুক্ত পাতাগুলি',
 'subcategories'         => 'উপবিষয়শ্রেণীসমূহ',
 'category-media-header' => '"$1" বিষয়শ্রেণীতে অন্তর্ভুক্ত মিডিয়া ফাইলগুলি',

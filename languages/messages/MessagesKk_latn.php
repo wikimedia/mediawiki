@@ -481,7 +481,7 @@ $messages = array(
 
 # Bits of text used by many pages
 'categories'            => 'Sanattar',
-'pagecategories'        => '{{PLURAL:$1|Sanat|Sanattar}}',
+'page-categories'        => '{{PLURAL:$1|Sanat|Sanattar}}:&#32;',
 'category_header'       => '«$1» sanatındağı better',
 'subcategories'         => 'Sanatşalar',
 'category-media-header' => '«$1» sanatındağı taspalar',

@@ -157,7 +157,7 @@ $messages = array(
 
 # Bits of text used by many pages
 'categories'            => 'Kategori',
-'pagecategories'        => '{{PLURAL:$1|Kategoria|Kategoritë}}',
+'page-categories'        => '{{PLURAL:$1|Kategoria|Kategoritë}}:&#32;',
 'category_header'       => 'Artikuj në kategorinë "$1"',
 'subcategories'         => 'Nën-kategori',
 'category-media-header' => 'Skeda në kategori "$1"',

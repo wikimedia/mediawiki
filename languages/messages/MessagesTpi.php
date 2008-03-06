@@ -57,7 +57,7 @@ $messages = array(
 
 # Bits of text used by many pages
 'categories'            => 'Ol grup',
-'pagecategories'        => '{{PLURAL:$1|Grup|Ol grup}}',
+'page-categories'        => '{{PLURAL:$1|Grup|Ol grup}}:&#32;',
 'category_header'       => 'Ol pes insait long grup "$1"',
 'subcategories'         => 'Ol grup insait long grup',
 'category-media-header' => 'Ol media (olsem piksa) insait long grup "$1"',

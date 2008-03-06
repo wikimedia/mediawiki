@@ -563,7 +563,7 @@ XHTML id names.
 
 # Bits of text used by many pages
 'categories'               => 'Categories',
-'pagecategories'           => '{{PLURAL:$1|Category|Categories}}',
+'page-categories'           => '{{PLURAL:$1|Category|Categories}}:&#32;',
 'pagecategorieslink'       => 'Special:Categories', # don't translate or duplicate this message to other languages
 'category_header'          => 'Pages in category "$1"',
 'subcategories'            => 'Subcategories',

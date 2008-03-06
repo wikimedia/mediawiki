@@ -212,7 +212,7 @@ $messages = array(
 
 # Bits of text used by many pages
 'categories'               => 'ចំណាត់ក្រុម',
-'pagecategories'           => "'''$1''' ចំណាត់ក្រុម",
+'page-categories'           => "'''$1''' ចំណាត់ក្រុម: ",
 'category_header'          => 'ទំព័រ ដែលមាន ក្នុងចំណាត់ក្រុម "$1"',
 'subcategories'            => 'ចំណាត់ក្រុមរង',
 'category-media-header'    => 'ឯកសារមីឌា ក្នុង ចំណាត់ក្រុម "$1"',

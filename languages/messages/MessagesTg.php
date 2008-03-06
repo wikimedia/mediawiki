@@ -170,7 +170,7 @@ $messages = array(
 
 # Bits of text used by many pages
 'categories'               => 'Гурӯҳҳо',
-'pagecategories'           => '{{PLURAL:$1|Гурӯҳ|Гурӯҳҳо}}',
+'page-categories'           => '{{PLURAL:$1|Гурӯҳ|Гурӯҳҳо}}:&#32;',
 'category_header'          => 'Мақолаҳо дар гурӯҳи "$1"',
 'subcategories'            => 'Зергурӯҳҳо',
 'category-media-header'    => 'Парвандаҳои гурӯҳ "$1"',

@@ -453,7 +453,7 @@ $messages = array(
 
 # Bits of text used by many pages
 'categories'               => 'تصنيفات',
-'pagecategories'           => '{{PLURAL:$1|تصنيف|تصنيفات}}',
+'page-categories'           => '{{PLURAL:$1|تصنيف|تصنيفات}}:&#32;',
 'category_header'          => 'الصفحات في التصنيف "$1"',
 'subcategories'            => 'التصنيفات الفرعية',
 'category-media-header'    => 'ملفات الميديا في التصنيف "$1"',

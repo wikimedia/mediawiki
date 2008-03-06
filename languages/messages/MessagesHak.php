@@ -113,7 +113,7 @@ $messages = array(
 
 # Bits of text used by many pages
 'categories'            => 'Hong-mien fûn-lui',
-'pagecategories'        => '$1-ke fûn-lui',
+'page-categories'        => '$1-ke fûn-lui:&#32;',
 'category_header'       => 'Lui-phe̍t "$1" chûng ke vùn-chông',
 'subcategories'         => 'Fu-su̍k fûn-lui',
 'category-media-header' => '"$1" fûn-lui chûng ke kî-thí tóng-on',

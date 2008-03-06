@@ -153,7 +153,7 @@ $messages = array(
 
 # Bits of text used by many pages
 'categories'            => '분류',
-'pagecategories'        => '분류',
+'page-categories'        => '분류:&#32;',
 'category_header'       => '‘$1’ 분류에 속하는 문서',
 'subcategories'         => '하위 분류',
 'category-media-header' => '‘$1’ 분류에 속하는 자료',

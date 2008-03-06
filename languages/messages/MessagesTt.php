@@ -122,7 +122,7 @@ $messages = array(
 
 # Bits of text used by many pages
 'categories'      => 'Cíıntıqlar',
-'pagecategories'  => '{{PLURAL:$1|Cíıntıq|Cíıntıqlar}}',
+'page-categories'  => '{{PLURAL:$1|Cíıntıq|Cíıntıqlar}}:&#32;',
 'category_header' => '«$1» cíıntığınıñ mäqäläläre',
 'subcategories'   => 'Eçke cíıntıqlar',
 

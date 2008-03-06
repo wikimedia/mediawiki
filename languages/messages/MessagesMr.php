@@ -256,7 +256,7 @@ $messages = array(
 
 # Bits of text used by many pages
 'categories'               => 'वर्ग',
-'pagecategories'           => '{{PLURAL:$1|वर्ग|वर्ग}}',
+'page-categories'           => '{{PLURAL:$1|वर्ग|वर्ग}}:&#32;',
 'category_header'          => '"$1" वर्गातील लेख',
 'subcategories'            => 'उपवर्ग',
 'category-media-header'    => '"$1" वर्गातील माध्यमे',

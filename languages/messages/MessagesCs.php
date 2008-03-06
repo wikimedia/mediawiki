@@ -381,7 +381,7 @@ $messages = array(
 
 # Bits of text used by many pages
 'categories'               => 'Kategorie',
-'pagecategories'           => 'Kategorie',
+'page-categories'           => 'Kategorie:&#32;',
 'category_header'          => 'Stránky v kategorii „$1“',
 'subcategories'            => 'Podkategorie',
 'category-media-header'    => 'Soubory v kategorii „$1“',

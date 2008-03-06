@@ -142,7 +142,7 @@ $messages = array(
 
 # Bits of text used by many pages
 'categories'            => 'Kategorieë',
-'pagecategories'        => '{{PLURAL:$1|Kategorie|Kategorieë}}',
+'page-categories'        => '{{PLURAL:$1|Kategorie|Kategorieë}}:&#32;',
 'category_header'       => 'Artikels in "$1"-kategorie',
 'subcategories'         => 'Subkategorieë',
 'category-media-header' => 'Media in kategorie "$1"',

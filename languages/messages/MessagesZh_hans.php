@@ -184,7 +184,7 @@ $messages = array(
 
 # Bits of text used by many pages
 'categories'               => '页面分类',
-'pagecategories'           => '$1个分类',
+'page-categories'           => '$1个分类:&#32;',
 'category_header'          => '"$1"分类中的页面',
 'subcategories'            => '亚类',
 'category-media-header'    => '"$1"分类中的媒体',

@@ -379,7 +379,7 @@ $messages = array(
 
 # Bits of text used by many pages
 'categories'               => 'Daftar kategori',
-'pagecategories'           => '{{PLURAL:$1|Kategori|Kategori}}',
+'page-categories'           => '{{PLURAL:$1|Kategori|Kategori}}:&#32;',
 'category_header'          => 'Artikel dalam kategori "$1"',
 'subcategories'            => 'Subkategori',
 'category-media-header'    => 'Media dalam kategori "$1"',

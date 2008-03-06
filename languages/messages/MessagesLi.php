@@ -166,7 +166,7 @@ $messages = array(
 
 # Bits of text used by many pages
 'categories'               => '{{PLURAL:$1|Categorie|Categorieë}}',
-'pagecategories'           => '{{PLURAL:$1|Categorie|Categorieë}}',
+'page-categories'           => '{{PLURAL:$1|Categorie|Categorieë}}:&#32;',
 'category_header'          => 'Artikele in categorie "$1"',
 'subcategories'            => 'Subkattegorië',
 'category-media-header'    => 'Media in de categorie "$1"',

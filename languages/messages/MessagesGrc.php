@@ -110,7 +110,7 @@ $messages = array(
 
 # Bits of text used by many pages
 'categories'      => 'Γένη',
-'pagecategories'  => '{{PLURAL:$1|Γένος|Γένη}}',
+'page-categories'  => '{{PLURAL:$1|Γένος|Γένη}}:&#32;',
 'category_header' => 'Χρήματα ἐν γένει "$1"',
 'subcategories'   => 'Ὑπογένη',
 

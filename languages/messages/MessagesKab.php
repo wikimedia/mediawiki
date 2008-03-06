@@ -138,7 +138,7 @@ $messages = array(
 
 # Bits of text used by many pages
 'categories'            => 'Taggayin',
-'pagecategories'        => '{{PLURAL:$1|Taggayt|Taggayin}}',
+'page-categories'        => '{{PLURAL:$1|Taggayt|Taggayin}}:&#32;',
 'category_header'       => 'Imagraden deg taggayt "$1"',
 'subcategories'         => 'Taggayin tizellumin',
 'category-media-header' => 'Media deg taggayt "$1"',

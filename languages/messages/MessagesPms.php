@@ -140,7 +140,7 @@ dj'artìcol ancó pa scrit",
 
 # Bits of text used by many pages
 'categories'               => '{{PLURAL:$1|Categorìa|Categorìe}}',
-'pagecategories'           => '{{PLURAL:$1|Categorìa|Categorìe}}',
+'page-categories'           => '{{PLURAL:$1|Categorìa|Categorìe}}:&#32;',
 'category_header'          => 'Artìcoj ant la categorìa "$1"',
 'subcategories'            => 'Sotacategorìe',
 'category-media-header'    => 'Archivi ant la categorìa "$1"',
