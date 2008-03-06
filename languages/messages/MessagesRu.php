@@ -332,7 +332,7 @@ $messages = array(
 'subcategories'            => 'Подкатегории',
 'category-media-header'    => 'Файлы в категории «$1»',
 'category-empty'           => "''Эта категория в данный момент пуста.''",
-'hidden-categories'        => '{{PLURAL:$1|Скрытая категория|Скрытые категории}}',
+'hidden-categories'        => '{{PLURAL:$1|Скрытая категория|Скрытые категории}}:&#32;',
 'hidden-category-category' => 'Скрытые категории', # Name of the category where hidden categories will be listed
 
 'mainpagetext'      => '<big>Вики-движок «MediaWiki» успешно установлен.</big>',

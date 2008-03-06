@@ -331,7 +331,7 @@ $messages = array(
 'subcategories'            => 'Подкатегории',
 'category-media-header'    => 'Файлове в категория „$1“',
 'category-empty'           => "''В момента тази категория не съдържа страници или файлове.''",
-'hidden-categories'        => '{{PLURAL:$1|Скрита категория|Скрити категории}}',
+'hidden-categories'        => '{{PLURAL:$1|Скрита категория|Скрити категории}}:&#32;',
 'hidden-category-category' => 'Скрити категории', # Name of the category where hidden categories will be listed
 
 'mainpagetext'      => "<big>'''Уикито беше успешно инсталирано.'''</big>",

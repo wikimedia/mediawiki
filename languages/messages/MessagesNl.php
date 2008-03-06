@@ -375,7 +375,7 @@ $messages = array(
 'subcategories'            => 'Ondercategorieën',
 'category-media-header'    => 'Media in categorie “$1”',
 'category-empty'           => "''Deze categorie bevat geen pagina’s of media.''",
-'hidden-categories'        => 'Verborgen {{PLURAL:$1|categorie|categorieën}}',
+'hidden-categories'        => 'Verborgen {{PLURAL:$1|categorie|categorieën}}:&#32;',
 'hidden-category-category' => 'Verborgen categorieën', # Name of the category where hidden categories will be listed
 
 'mainpagetext'      => "<big>'''De installatie van MediaWiki is geslaagd.'''</big>",

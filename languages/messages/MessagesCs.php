@@ -386,7 +386,7 @@ $messages = array(
 'subcategories'            => 'Podkategorie',
 'category-media-header'    => 'Soubory v kategorii „$1“',
 'category-empty'           => "''Tato kategorie neobsahuje žádné stránky či soubory.''",
-'hidden-categories'        => '{{PLURAL:$1|Skrytá kategorie|Skryté kategorie|Skryté kategorie}}',
+'hidden-categories'        => '{{PLURAL:$1|Skrytá kategorie|Skryté kategorie|Skryté kategorie}}:&#32;',
 'hidden-category-category' => 'Skryté kategorie', # Name of the category where hidden categories will be listed
 
 'mainpagetext'      => "<big>'''MediaWiki bylo úspěšně nainstalováno.'''</big>",

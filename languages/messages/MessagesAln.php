@@ -117,7 +117,7 @@ $messages = array(
 'subcategories'            => 'Nën-kategori',
 'category-media-header'    => 'Skeda në kategori "$1"',
 'category-empty'           => "''Kjo kategori tashpërtash nuk përmban asnji faqe apo media.''",
-'hidden-categories'        => '{{PLURAL:$1|Kategoritë e mshehta|Kategoritë e mshehta}}',
+'hidden-categories'        => '{{PLURAL:$1|Kategoritë e mshehta|Kategoritë e mshehta}}:&#32;',
 'hidden-category-category' => 'Kategori të mshehta', # Name of the category where hidden categories will be listed
 
 'mainpagetext'      => 'Wiki software u instalue me sukses.',

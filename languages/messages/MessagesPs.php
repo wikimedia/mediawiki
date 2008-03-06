@@ -160,7 +160,7 @@ $messages = array(
 'subcategories'            => 'وړې-وېشنيزې',
 'category-media-header'    => '"$1" رسنۍ په وېشنيزه کې',
 'category-empty'           => "''تر اوسه پورې همدا وېشنيزه هېڅ کوم مخ يا کومه رسنيزه دوتنه نلري.''",
-'hidden-categories'        => '{{PLURAL:$1|پټه وېشنيزه|پټې وېشنيزې}}',
+'hidden-categories'        => '{{PLURAL:$1|پټه وېشنيزه|پټې وېشنيزې}}:&#32;',
 'hidden-category-category' => 'پټې وېشنيزې', # Name of the category where hidden categories will be listed
 
 'mainpagetext' => "<big>'''MediaWiki په برياليتوب سره نصب شو.'''</big>",

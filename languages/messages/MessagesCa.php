@@ -258,7 +258,7 @@ $messages = array(
 'subcategories'            => 'Subcategories',
 'category-media-header'    => 'Contingut multimèdia en la categoria «$1»',
 'category-empty'           => "''Aquesta categoria no té cap pàgina ni fitxer.''",
-'hidden-categories'        => '{{PLURAL:$1|Categoria oculta|Categories ocultes}}',
+'hidden-categories'        => '{{PLURAL:$1|Categoria oculta|Categories ocultes}}:&#32;',
 'hidden-category-category' => 'Categories ocultes', # Name of the category where hidden categories will be listed
 
 'mainpagetext'      => "<big>'''El programari del MediaWiki s'ha instal·lat correctament.'''</big>",

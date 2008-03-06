@@ -162,7 +162,7 @@ $messages = array(
 'subcategories'            => 'Subkategorioj',
 'category-media-header'    => 'Dosieroj en kategorio "$1"',
 'category-empty'           => "''Ĉi tiu kategorio momente ne enhavas artikolojn aŭ mediojn.''",
-'hidden-categories'        => '{{PLURAL:$1|Kaŝita kategorio|Kaŝitaj kategorioj}}',
+'hidden-categories'        => '{{PLURAL:$1|Kaŝita kategorio|Kaŝitaj kategorioj}}:&#32;',
 'hidden-category-category' => 'Kaŝitaj kategorioj', # Name of the category where hidden categories will be listed
 
 'mainpagetext'      => 'Vikisoftvaro sukcese instaliĝis.',

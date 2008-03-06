@@ -143,7 +143,7 @@ $messages = array(
 'subcategories'            => 'Subcategorías',
 'category-media-header'    => 'Multimedia na categoría "$1"',
 'category-empty'           => "''Actualmente esta categoría non conta con ningún artigo ou arquivo multimedia.''",
-'hidden-categories'        => '{{PLURAL:$1|Categoría oculta|Categorías ocultas}}',
+'hidden-categories'        => '{{PLURAL:$1|Categoría oculta|Categorías ocultas}}:&#32;',
 'hidden-category-category' => 'Categorías ocultas', # Name of the category where hidden categories will be listed
 
 'mainpagetext'      => "<big>'''Programa Wiki instalado con éxito.'''</big>",

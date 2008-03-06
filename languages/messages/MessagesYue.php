@@ -244,7 +244,7 @@ $messages = array(
 'subcategories'            => '分類',
 'category-media-header'    => ' "$1" 類嘅媒體',
 'category-empty'           => "''呢類無任何版或媒體檔。''",
-'hidden-categories'        => '屬於$1隱類',
+'hidden-categories'        => '屬於$1隱類:&#32;',
 'hidden-category-category' => '隱藏類', # Name of the category where hidden categories will be listed
 
 'mainpagetext'      => "<big>'''MediaWiki已經裝好。'''</big>",

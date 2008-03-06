@@ -215,7 +215,7 @@ $messages = array(
 'subcategories'            => 'Podkategorije',
 'category-media-header'    => 'Dataje w kategoriji „$1”',
 'category-empty'           => "''Tuta kategorija tuchwilu žane nastawki abo medije njewobsahuje.''",
-'hidden-categories'        => '{{PLURAL:$1|Schowana kategorija|Schowane kategorije}}',
+'hidden-categories'        => '{{PLURAL:$1|Schowana kategorija|Schowane kategorije}}:&#32;',
 'hidden-category-category' => 'Schowane kategorije', # Name of the category where hidden categories will be listed
 
 'mainpagetext'      => '<big><b>MediaWiki bu wuspěšnje instalowany.</b></big>',

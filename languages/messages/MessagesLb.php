@@ -230,7 +230,7 @@ $messages = array(
 'subcategories'            => 'Souskategorien',
 'category-media-header'    => 'Medien an der Kategorie "$1"',
 'category-empty'           => "''Dës Kategorie ass fir den Ament nach eidel''",
-'hidden-categories'        => '{{PLURAL:$1|Verstoppte Kategorie|Verstoppte Kategorien}}',
+'hidden-categories'        => '{{PLURAL:$1|Verstoppte Kategorie|Verstoppte Kategorien}}:&#32;',
 'hidden-category-category' => 'Verstoppte Kategorien', # Name of the category where hidden categories will be listed
 
 'mainpagetext'      => "<big>'''MediaWiki gouf mat Succès installéiert.'''</big>",

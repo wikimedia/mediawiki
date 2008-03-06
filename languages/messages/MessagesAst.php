@@ -155,7 +155,7 @@ $messages = array(
 'subcategories'            => 'Subcategoríes',
 'category-media-header'    => 'Archivos multimedia na categoría "$1"',
 'category-empty'           => "''Esta categoría nun tien anguaño nengún artículu o ficheru multimedia.''",
-'hidden-categories'        => '{{PLURAL:$1|Categoría oculta|Categoríes ocultes}}',
+'hidden-categories'        => '{{PLURAL:$1|Categoría oculta|Categoríes ocultes}}:&#32;',
 'hidden-category-category' => 'Categoríes ocultes', # Name of the category where hidden categories will be listed
 
 'mainpagetext'      => "<big>'''MediaWiki instalóse correchamente.'''</big>",

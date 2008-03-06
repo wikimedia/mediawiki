@@ -569,7 +569,7 @@ XHTML id names.
 'subcategories'            => 'Subcategories',
 'category-media-header'    => 'Media in category "$1"',
 'category-empty'           => "''This category currently contains no pages or media.''",
-'hidden-categories'        => '{{PLURAL:$1|Hidden category|Hidden categories}}',
+'hidden-categories'        => '{{PLURAL:$1|Hidden category|Hidden categories}}:&#32;',
 'hidden-category-category' => 'Hidden categories', # Name of the category where hidden categories will be listed
 
 'linkprefix'        => '/^(.*?)([a-zA-Z\x80-\xff]+)$/sD', # only translate this message to other languages if you have to change it

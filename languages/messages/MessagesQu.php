@@ -141,7 +141,7 @@ $messages = array(
 'subcategories'            => 'Urin katiguriyakuna',
 'category-media-header'    => '"$1" sutiyuq katiguriyapi multimidya willañiqikuna',
 'category-empty'           => "''Kay katiguriyaqa ch'usaqmi.''",
-'hidden-categories'        => '{{PLURAL:$1|Pakasqa katiguriya|Pakasqa katiguriyakuna}}',
+'hidden-categories'        => '{{PLURAL:$1|Pakasqa katiguriya|Pakasqa katiguriyakuna}}:&#32;',
 'hidden-category-category' => 'Pakasqa katiguriyakuna', # Name of the category where hidden categories will be listed
 
 'mainpagetext'      => "''MediaWiki'' nisqa llamp'u kaqqa aypaylla takyachisqañam.",

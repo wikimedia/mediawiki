@@ -172,7 +172,7 @@ $messages = array(
 'subcategories'            => '次類',
 'category-media-header'    => '"$1"',
 'category-empty'           => "''無文也。''",
-'hidden-categories'        => '$1隱類',
+'hidden-categories'        => '$1隱類:&#32;',
 'hidden-category-category' => '隱類', # Name of the category where hidden categories will be listed
 
 'mainpagetext'      => "<big>'''媒維基安置矣'''</big>",

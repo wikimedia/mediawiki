@@ -166,7 +166,7 @@ $messages = array(
 'subcategories'            => 'ఉపవర్గాలు',
 'category-media-header'    => '"$1" వర్గంలో ఉన్న మీడియా ఫైళ్లు',
 'category-empty'           => "''ప్రస్తుతం ఈ వర్గంలో ఎలాంటి పేజీలుగానీ మీడియా ఫైళ్లుగానీ లేవు.''",
-'hidden-categories'        => '{{PLURAL:$1|దాచిన వర్గం|దాచిన వర్గాలు}}',
+'hidden-categories'        => '{{PLURAL:$1|దాచిన వర్గం|దాచిన వర్గాలు}}:&#32;',
 'hidden-category-category' => 'దాచిన వర్గాలు', # Name of the category where hidden categories will be listed
 
 'mainpagetext'      => "<big>'''మీడియా వికీని విజయవంతంగా ప్రతిష్టించాం.'''</big>",

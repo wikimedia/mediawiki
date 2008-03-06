@@ -170,7 +170,7 @@ $messages = array(
 'subcategories'            => 'Падкатэгорыі',
 'category-media-header'    => 'Мультымедыя ў катэгорыі "$1"',
 'category-empty'           => "''Зараз у катэгорыі няма аніводнай старонкі або мультымедыйнага файла.''",
-'hidden-categories'        => '{{PLURAL:$1|Схаваная катэгорыя|Схаваныя катэгорыі}}',
+'hidden-categories'        => '{{PLURAL:$1|Схаваная катэгорыя|Схаваныя катэгорыі}}:&#32;',
 'hidden-category-category' => 'Схаваныя катэгорыі', # Name of the category where hidden categories will be listed
 
 'mainpagetext'      => "<big>'''MediaWiki паспяхова ўсталяваная.'''</big>",

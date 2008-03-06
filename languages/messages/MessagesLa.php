@@ -240,7 +240,7 @@ $messages = array(
 'subcategories'            => 'Subcategoriae',
 'category-media-header'    => 'Media in categoria "$1"',
 'category-empty'           => "''Huic categoriae non sunt paginae vel fasciculi.''",
-'hidden-categories'        => '{{PLURAL:$1|Categoria celata|Categoriae celatae}}',
+'hidden-categories'        => '{{PLURAL:$1|Categoria celata|Categoriae celatae}}:&#32;',
 'hidden-category-category' => 'Categoriae celatae', # Name of the category where hidden categories will be listed
 
 'about'          => 'De',

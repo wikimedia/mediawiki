@@ -145,7 +145,7 @@ dj'artìcol ancó pa scrit",
 'subcategories'            => 'Sotacategorìe',
 'category-media-header'    => 'Archivi ant la categorìa "$1"',
 'category-empty'           => "''Al dì d'ancheuj la categorìa a l'ha pa andrinta nì 'd pàgine, nì d'archivi multimojen.''",
-'hidden-categories'        => '{{PLURAL:$1|Categorìa stërmà|Categorìe stërmà}}',
+'hidden-categories'        => '{{PLURAL:$1|Categorìa stërmà|Categorìe stërmà}}:&#32;',
 'hidden-category-category' => 'Categorìe stërmà', # Name of the category where hidden categories will be listed
 
 'mainpagetext'      => "<big>'''MediaWiki a l'é staita anstalà a la perfession.'''</big>",

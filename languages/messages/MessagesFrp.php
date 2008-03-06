@@ -174,7 +174,7 @@ $messages = array(
 'subcategories'            => 'Sot-catègories',
 'category-media-header'    => 'Fichiérs multimèdia dens la catègorie « $1 »',
 'category-empty'           => "''Ceta catègorie contint gins d’articllo, de sot-catègorie ou de fichiér multimèdia.''",
-'hidden-categories'        => '{{PLURAL:$1|Catègorie cachiê|Catègories cachiês}}',
+'hidden-categories'        => '{{PLURAL:$1|Catègorie cachiê|Catègories cachiês}}:&#32;',
 'hidden-category-category' => 'Catègories cachiês', # Name of the category where hidden categories will be listed
 
 'mainpagetext'      => "<big>'''MediaWiki at étâ enstalâ avouéc reusséta.'''</big>",
