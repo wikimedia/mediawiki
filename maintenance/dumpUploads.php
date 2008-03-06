@@ -3,12 +3,12 @@
 require_once 'commandLine.inc';
 
 class UploadDumper {
-	
 	function __construct( $args ) {
 		global $IP, $wgUseSharedUploads;
-		$this->mAction = 'fetchUsed';
+		$this->mAction = 'fetchLocal';
 		$this->mBasePath = $IP;
-		$this->mShared = $wgUseSharedUploads;
+		$this->mShared = false;
+		$this->mSharedSupplement = false;
 		
 		if( isset( $args['help'] ) ) {
 			$this->mAction = 'help';
@@ -17,10 +17,31 @@ class UploadDumper {
 		if( isset( $args['base'] ) ) {
 			$this->mBasePath = $args['base'];
 		}
+		
+		if( isset( $args['local'] ) ) {
+			$this->mAction = 'fetchLocal';
+		}
+		
+		if( isset( $args['used'] ) ) {
+			$this->mAction = 'fetchUsed';
+		}
+		
+		if( isset( $args['shared'] ) ) {
+			if( isset( $args['used'] ) ) {
+				// Include shared-repo files in the used check
+				$this->mShared = true;
+			} else {
+				// Grab all local *plus* used shared
+				$this->mSharedSupplement = true;
+			}
+		}
 	}
 	
 	function run() {
-		$this->{$this->mAction}();
+		$this->{$this->mAction}( $this->mShared );
+		if( $this->mSharedSupplement ) {
+			$this->fetchUsed( true );
+		}
 	}
 	
 	function help() {
@@ -35,8 +56,6 @@ php dumpUploads.php [options] > list-o-files.txt
 Options:
 --base=<path>  Set base relative path instead of wiki include root
 
-FIXME: other options not implemented yet ;)
-
 --local        List all local files, used or not. No shared files included.
 --used         Skip local images that are not used
 --shared       Include images used from shared repository
@@ -50,7 +69,7 @@ END;
 	 * @param string $directory Base directory where files are located
 	 * @param bool $shared true to pass shared-dir settings to hash func
 	 */
-	function fetchUsed() {
+	function fetchUsed( $shared ) {
 		$dbr = wfGetDB( DB_SLAVE );
 		$image = $dbr->tableName( 'image' );
 		$imagelinks = $dbr->tableName( 'imagelinks' );
@@ -61,52 +80,38 @@ END;
 			ON il_to=img_name";
 		$result = $dbr->query( $sql );
 		
-		while( $row = $dbr->fetchObject( $result ) ) {
-			if( is_null( $row->img_name ) ) {
-				if( $this->mShared ) {
-					$this->outputShared( $row->il_to );
-				}
-			} else {
-				$this->outputLocal( $row->il_to );
-			}
+		foreach( $result as $row ) {
+			$this->outputItem( $row->il_to, $shared );
 		}
 		$dbr->freeResult( $result );
 	}
 	
-	function outputLocal( $name ) {
-		global $wgUploadDirectory;
-		return $this->outputItem( $name, $wgUploadDirectory, false );
+	function fetchLocal( $shared ) {
+		$dbr = wfGetDB( DB_SLAVE );
+		$result = $dbr->select( 'image',
+			array( 'img_name' ),
+			'',
+			__METHOD__ );
+		
+		foreach( $result as $row ) {
+			$this->outputItem( $row->img_name, $shared );
+		}
+		$dbr->freeResult( $result );
 	}
 	
-	function outputShared( $name ) {
-		global $wgSharedUploadDirectory;
-		return $this->outputItem( $name, $wgSharedUploadDirectory, true );
+	function outputItem( $name, $shared ) {
+		$file = wfFindFile( $name );
+		if( $file && $this->filterItem( $file, $shared ) ) {
+			$filename = $file->getFullPath();
+			$rel = wfRelativePath( $filename, $this->mBasePath );
+			echo "$rel\n";
+		} else {
+			wfDebug( __METHOD__ . ": base file? $name\n" );
+		}
 	}
 	
-	function outputItem( $name, $directory, $shared ) {
-		$filename = $directory .
-			wfGetHashPath( $name, $shared ) .
-			$name;
-		$rel = $this->relativePath( $filename, $this->mBasePath );
-		echo "$rel\n";
-	}
-
-	/**
-	 * Return a relative path to $path from the base directory $base
-	 * For instance relativePath( '/foo/bar/baz', '/foo' ) should return
-	 * 'bar/baz'.
-	 */
-	function relativePath( $path, $base) {
-		$path = explode( DIRECTORY_SEPARATOR, $path );
-		$base = explode( DIRECTORY_SEPARATOR, $base );
-		while( count( $base ) && $path[0] == $base[0] ) {
-			array_shift( $path );
-			array_shift( $base );
-		}
-		foreach( $base as $prefix ) {
-			array_unshift( $path, '..' );
-		}
-		return implode( DIRECTORY_SEPARATOR, $path );
+	function filterItem( $file, $shared ) {
+		return $shared || $file->isLocal();
 	}
 }
 
