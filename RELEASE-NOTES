@@ -38,6 +38,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   reduce broken form submissions
 * Add --old-redirects-only option to maintenance/refreshLinks.php, to add old
   redirects to the redirect table
+* Add links to page and file deletion forms to edit predefined delete reasons 
 
 === Bug fixes in 1.13 ===
 

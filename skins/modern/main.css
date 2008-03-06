@@ -989,8 +989,8 @@ tr.sv-space td { display: none; }
 	margin: 0.1em 0;
 }
 
-/* Convenience links on Special:Ipblocklist */
-p.mw-ipb-conveniencelinks {
+/* Convenience links to edit block and delete reasons */
+p.mw-ipb-conveniencelinks, p.mw-filedelete-editreasons, p.mw-delete-editreasons {
 	font-size: 90%;
 	float: right;
 }

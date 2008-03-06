@@ -978,6 +978,7 @@ $wgMessageStructure = array(
 		'filedelete-otherreason',
 		'filedelete-reason-otherlist',
 		'filedelete-reason-dropdown',
+		'filedelete-edit-reasonlist',
 	),
 	'mimesearch' => array(
 		'mimesearch',
@@ -1268,6 +1269,7 @@ $wgMessageStructure = array(
 		'deleteotherreason',
 		'deletereasonotherlist',
 		'deletereason-dropdown',
+		'delete-edit-reasonlist',
 		'delete-toobig',
 		'delete-warning-toobig',
 		'rollback',

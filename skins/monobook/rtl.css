@@ -215,8 +215,8 @@ input#wpSave, input#wpDiff {
 	float: right;
 	margin: 0 0 1em 3em;
 }
-/* Unblock and Ipblocklist links of Special:Blockip */
-p.mw-ipb-conveniencelinks {
+/* Convenience links to edit block and delete reasons */
+p.mw-ipb-conveniencelinks, p.mw-filedelete-editreasons, p.mw-delete-editreasons {
 	float: left;
 }
 
