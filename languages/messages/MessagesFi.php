@@ -929,7 +929,7 @@ $1 | $2',
 'userrights-lookup-user'           => 'Käyttöoikeuksien hallinta',
 'userrights-user-editname'         => 'Käyttäjätunnus',
 'editusergroup'                    => 'Muokkaa käyttäjän ryhmiä',
-'editinguser'                      => 'Muokataan sivua $1',
+'editinguser'                      => "Käyttäjän '''[[User:$1|$1]]''' oikeudet ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
 'userrights-editusergroup'         => 'Käyttäjän ryhmät',
 'saveusergroups'                   => 'Tallenna',
 'userrights-groupsmember'          => 'Jäsenenä ryhmissä',
@@ -1161,6 +1161,7 @@ Harkitse, haluatko jatkaa tämän tiedoston tallentamista. Tiedoston poistoloki 
 'filedelete-reason-dropdown'  => '*Yleiset poistosyyt
 ** Kaksoiskappale
 ** Tekijänoikeusrikkomus',
+'filedelete-edit-reasonlist'  => 'Muokkaa poistosyitä',
 
 # MIME search
 'mimesearch'         => 'MIME-haku',
@@ -1432,6 +1433,7 @@ Palaute ja lisäapu osoitteessa:
 ** Lisääjän poistopyyntö
 ** Tekijänoikeusrikkomus
 ** Roskaa',
+'delete-edit-reasonlist'      => 'Muokkaa poistosyitä',
 'delete-toobig'               => 'Tällä sivulla on pitkä muutoshistoria – yli $1 versiota. Näin suurien muutoshistorioiden poistamista on rajoitettu suorituskykysyistä.',
 'delete-warning-toobig'       => 'Tällä sivulla on pitkä muutoshistoria – yli $1 versiota. Näin suurien muutoshistorioiden poistaminen voi haitata sivuston suorituskykyä.',
 'rollback'                    => 'palauta aiempaan versioon',

@@ -915,7 +915,7 @@ Upewnij się, że zmiany będą zapewniać ciągłość historyczną edycji stro
 'userrights-lookup-user'           => 'Zarządzaj grupami użytkownika',
 'userrights-user-editname'         => 'Wprowadź nazwę użytkownika:',
 'editusergroup'                    => 'Edytuj grupy użytkownika',
-'editinguser'                      => 'Edytujesz "$1"',
+'editinguser'                      => "Zmiana uprawnień użytkownika '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
 'userrights-editusergroup'         => 'Edytuj grupy użytkownika',
 'saveusergroups'                   => 'Zapisz',
 'userrights-groupsmember'          => 'Należy do:',

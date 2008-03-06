@@ -10,6 +10,7 @@
  * @author Nike
  * @author Siebrand
  * @author SPQRobin
+ * @author M.M.S.
  */
 
 /*
@@ -170,6 +171,7 @@ $messages = array(
 'unprotectthispage' => 'Neaizsargāt šo lapu',
 'newpage'           => 'Jauna lapa',
 'talkpage'          => 'Diskusija par šo lapu',
+'talkpagelinktext'  => 'Diskusija',
 'specialpage'       => 'Īpašā Lapa',
 'personaltools'     => 'Lietotāja rīki',
 'postcomment'       => 'Pievienot komentāru',
@@ -413,7 +415,6 @@ Tava IP adrese ir $3. Lūdzu iekļauj to visos turpmākajos pieprasījumos.',
 'note'                     => '<strong>Piezīme: </strong>',
 'previewnote'              => "'''Atceries, ka šis ir tikai pirmskats un vēl nav saglabāts!'''",
 'editing'                  => 'Izmainīt $1',
-'editinguser'              => 'Izmainīt $1',
 'editingsection'           => 'Izmainīt $1 (sadaļa)',
 'editingcomment'           => 'Izmainīt $1 (komentārs)',
 'editconflict'             => 'Izmaiņu konflikts: $1',
@@ -546,6 +547,7 @@ $2 Parādīt pāradresācijas lapas   Meklēt $3 $9',
 
 # User rights
 'userrights-user-editname' => 'Ievadi lietotājvārdu:',
+'editinguser'              => 'Izmainīt $1',
 
 # Recent changes
 'recentchanges'                     => 'Pēdējās izmaiņas',

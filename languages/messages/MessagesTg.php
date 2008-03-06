@@ -868,7 +868,7 @@ your old password.
 'userrights-lookup-user'           => 'Мудирияти гурӯҳҳои корбарӣ',
 'userrights-user-editname'         => 'Номи корбарро дохил кунед:',
 'editusergroup'                    => 'Гуруҳҳои корбарро вироиш кунед',
-'editinguser'                      => 'Дар ҳоли вироиши корбар <b>$1</b>',
+'editinguser'                      => "Дар ҳоли вироиши корбар '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
 'userrights-editusergroup'         => 'Вироиши гурӯҳҳои корбарӣ',
 'saveusergroups'                   => 'Сабти гурӯҳҳои корбарӣ',
 'userrights-groupsmember'          => 'Аъзои:',

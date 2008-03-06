@@ -19,6 +19,8 @@
  * @author Piolinfax
  * @author Dmcdevit
  * @author Toniher
+ * @author Ascánder
+ * @author Technorum
  */
 
 $skinNames = array(
@@ -97,6 +99,7 @@ $messages = array(
 'tog-nolangconversion'        => 'Deshabilitar conversión de lenguajes',
 'tog-ccmeonemails'            => 'Recibir copias de los correos que envío a otros usuarios',
 'tog-diffonly'                => 'No mostrar el contenido de la página bajo las diferencias',
+'tog-showhiddencats'          => 'Mostrar categorías escondidas',
 
 'underline-always'  => 'Siempre',
 'underline-never'   => 'Nunca',
@@ -157,21 +160,23 @@ $messages = array(
 'dec'           => 'dic',
 
 # Bits of text used by many pages
-'categories'            => 'Categorías',
-'pagecategories'        => '{{PLURAL:$1|Categoría|Categorías}}',
-'category_header'       => 'Artículos en la categoría "$1"',
-'subcategories'         => 'Subcategorías',
-'category-media-header' => 'Archivos multimedia en la categoría "$1"',
-'category-empty'        => "''La categoría no contiene actualmente ningún artículo o archivo multimedia''",
+'categories'               => 'Categorías',
+'pagecategories'           => '{{PLURAL:$1|Categoría|Categorías}}',
+'category_header'          => 'Artículos en la categoría "$1"',
+'subcategories'            => 'Subcategorías',
+'category-media-header'    => 'Archivos multimedia en la categoría "$1"',
+'category-empty'           => "''La categoría no contiene actualmente ningún artículo o archivo multimedia''",
+'hidden-categories'        => '{{PLURAL:$1|Categoría escondida|Categorías escondidas}}',
+'hidden-category-category' => 'Categorías escondidas', # Name of the category where hidden categories will be listed
 
 'mainpagetext'      => 'Software wiki instalado con éxito.',
-'mainpagedocfooter' => "Consulta la [http://meta.wikimedia.org/wiki/Help:Contents User's Guide] para obtener información sobre el uso del software wiki.
+'mainpagedocfooter' => 'Consulta la [http://meta.wikimedia.org/wiki/Help:Contents Guía de usuario] para obtener información sobre el uso del software wiki.
 
 == Empezando ==
 
-* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Configuration settings list]
-* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ]
-* [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]",
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Lista de ajustes de configuración]
+* [http://www.mediawiki.org/wiki/Manual:FAQ PMF sobre MediaWiki]
+* [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Lista de correo de anuncios de distribución de MediaWiki]',
 
 'about'          => 'Acerca de',
 'article'        => 'Artículo',
@@ -294,6 +299,7 @@ $messages = array(
 'restorelink'             => '{{PLURAL:$1|una edición borrada|$1 ediciones borradas}}',
 'feedlinks'               => 'Sindicación:',
 'feed-invalid'            => 'Tipo de subscripción a sindicación de noticias inválida.',
+'feed-unavailable'        => 'Las fuentes web no están disponibles en {{SITENAME}}',
 'site-rss-feed'           => '$1 RSS feed',
 'site-atom-feed'          => '$1 Atom feed',
 'page-rss-feed'           => '"$1" RSS feed',
@@ -566,7 +572,6 @@ Tu identificador de bloqueo es $5. Por favor, incluye este identificador en cual
 
 <strong>Si éste es un intento legítimo de modificación, por favor, inténtelo de nuevo. Si aún entonces no funcionase, pruebe a cerrar la sesión y a ingresar de nuevo.</strong>",
 'editing'                   => 'Editando $1',
-'editinguser'               => 'Editando $1',
 'editingsection'            => 'Editando $1 (sección)',
 'editingcomment'            => 'Editando $1 (comentario)',
 'editconflict'              => 'Conflicto de edición: $1',
@@ -788,6 +793,7 @@ $2 Listar redirecciones   Buscar $3 $9',
 'userrights-lookup-user'     => 'Configurar grupos de usuarios',
 'userrights-user-editname'   => 'Escriba un nombre de usuario:',
 'editusergroup'              => 'Modificar grupos de usuarios',
+'editinguser'                => 'Editando $1',
 'userrights-editusergroup'   => 'Modificar grupos de usuarios',
 'saveusergroups'             => 'Guardar grupos de usuarios',
 'userrights-groupsmember'    => 'Miembro de:',
@@ -859,10 +865,12 @@ Los grupos no seleccionados no cambiarán. Puede deseleccionar pulsando la tecla
 'uploadnologintext'           => 'Tienes que [[Special:Userlogin|iniciar sesión]] para poder subir archivos.',
 'upload_directory_read_only'  => 'El servidor web no puede escribir en el directorio de subida de archivos ($1).',
 'uploaderror'                 => 'Error al intentar subir archivo',
-'uploadtext'                  => "Utiliza el formulario de abajo para subir archivos, para ver o buscar imágenes subidas previamente vete a la [[Special:Imagelist|lista de archivos subidos]], las subidas y los borrados también están registrados en el [[Special:Log/upload|registro de subidas]].
+'uploadtext'                  => "Utilize el siguiente formulario para subir archivos. Para ver o buscar archivos subidos con anterioridad, ir a [[Special:Imagelist|lista de archivos subidos]]. Lo que haya subido o borrado quedará registrado además en el [[Special:Log/upload|registro de archivos subidos]].
 
-Para incluir la imágen en una página, usa un enlace en el formulario '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:Archivo.jpg]]</nowiki>''', '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:Archivo.png|texto alternativo]]</nowiki>''' o
-'''<nowiki>[[</nowiki>{{ns:media}}<nowiki>:Archivo.ogg]]</nowiki>''' para enlazar directamente al archivo.",
+Para incluir un archivo en una página, utilice en el formulario los enlaces 
+'''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:File.jpg]]</nowiki>''',
+'''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:File.png|alt text]]</nowiki>''', o
+'''<nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki>''', para vincular directamente el archivo.",
 'uploadlog'                   => 'registro de subidas',
 'uploadlogpage'               => 'Subidas de archivos',
 'uploadlogpagetext'           => 'Abajo hay una lista de los últimos archivos subidos. Todas las horas son del servidor.',
@@ -1085,7 +1093,6 @@ Cada fila contiene enlaces al segundo y tercer redirect, así como la primera l�
 'newpages'                => 'Páginas nuevas',
 'newpages-username'       => 'Nombre de usuario',
 'ancientpages'            => 'Artículos más antiguos',
-'intl'                    => 'Enlaces interlenguaje',
 'move'                    => 'Trasladar',
 'movethispage'            => 'Trasladar esta página',
 'unusedimagestext'        => '<p>Por favor, ten en cuenta que otros sitios web pueden enlazar a una imagen directamente con su URL, y de esa manera no aparecer listados aquí pese a estar en uso.</p>',

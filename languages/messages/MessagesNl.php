@@ -1317,6 +1317,7 @@ PICT # overig
 'filedelete-reason-dropdown'  => '*Veelvoorkomende redenen voor verwijdering
 ** Auteursrechtenschending
 ** Duplicaatbestand',
+'filedelete-edit-reasonlist'  => 'Redenen voor verwijdering bewerken',
 
 # MIME search
 'mimesearch'         => 'Zoeken op MIME-type',
@@ -1592,6 +1593,7 @@ Feedback en andere assistentie:
 ** Op aanvraag van auteur
 ** Schending van auteursrechten
 ** Vandalisme',
+'delete-edit-reasonlist'      => 'Redenen voor verwijdering bewerken',
 'delete-toobig'               => "Deze pagina heeft een lange bewerkingsgeschiedenis, meer dan $1 versies. Het verwijderen van dit soort pagina's is met rechten beperkt om het per ongeluk verstoren van de werking van {{SITENAME}} te voorkomen.",
 'delete-warning-toobig'       => 'Deze pagina heeft een lange bewerkingsgeschiedenis, meer dan $1 versies. Het verwijderen van deze pagina kan de werking van de database van {{SITENAME}} verstoren. Wees voorzichtig.',
 'rollback'                    => 'Wijzigingen ongedaan maken',

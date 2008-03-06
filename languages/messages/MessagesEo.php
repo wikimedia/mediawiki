@@ -756,6 +756,7 @@ Certigu ke ĉi ŝanĝo tenos kontinueco de la historia paĝo.
 'mergehistory-submit'              => 'Kunigu reviziojn',
 'mergehistory-empty'               => 'Neniuj reviziojn eblas kunigi',
 'mergehistory-success'             => '$3 revizioj [[:$1]] sukcese kunigita en [[:$2]].',
+'mergehistory-fail'                => 'Ne eblas fari la historian kunigon; bonvolu konstati la paĝon kaj tempajn parametrojn.',
 'mergehistory-no-source'           => 'Fontpaĝo $1 ne ekzistas.',
 'mergehistory-no-destination'      => 'Celpaĝo $1 ne ekzistas.',
 'mergehistory-invalid-source'      => 'Fontpaĝo devas esti valida titolo.',
@@ -765,6 +766,7 @@ Certigu ke ĉi ŝanĝo tenos kontinueco de la historia paĝo.
 'mergelog'           => 'Loglibro de kunigoj',
 'pagemerge-logentry' => 'kunigis [[$1]] en [[$2]] (revizioj gxis $3)',
 'revertmerge'        => 'Malkunigu',
+'mergelogpagetext'   => 'Jen listo de la plej lastatempaj kunigoj de unu paĝhistorio en alian.',
 
 # Diffs
 'history-title'           => 'Redakto-historio de "$1"',
@@ -829,6 +831,7 @@ indekso pro troŝarĝita servilo. Intertempe, vi povas serĉi per <i>guglo</i> a
 'math_syntax_error'        => 'sintakseraro',
 'math_image_error'         => 'konverto al PNG malsukcesis',
 'math_bad_tmpdir'          => 'Ne povas skribi al aŭ krei matematikian labor-dosierujon.',
+'math_bad_output'          => 'Ne eblas enskribi aŭ krei matematikan eligan dosierujon',
 'prefs-personal'           => 'Uzantodatumoj',
 'prefs-rc'                 => 'Lastaj ŝanĝoj kaj elmontro de stumpoj',
 'prefs-watchlist'          => 'Atentaro',
@@ -867,7 +870,7 @@ Ekzemple, por la Centra Eŭropa Horzono, indiku "1" vintre aŭ "2" dum somertemp
 'userrights-lookup-user'           => 'Administru uzantogrupojn',
 'userrights-user-editname'         => 'Entajpu uzantonomon:',
 'editusergroup'                    => 'Redaktu Uzantgrupojn',
-'editinguser'                      => 'Redaktante $1',
+'editinguser'                      => "Redaktante uzanto-rajtojn de uzanto '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
 'userrights-editusergroup'         => 'Redaktu uzantogrupojn.',
 'saveusergroups'                   => 'Konservu uzantogrupojn',
 'userrights-groupsmember'          => 'Membro de:',
@@ -1013,10 +1016,12 @@ Se vi havas ĉi bildon en plena distingivo, alŝutu ĉi tiun, alikaze bonvolu ŝ
 
 Vi konsideru ĉu taŭgas alŝuti ĉi dosiero.
 jen la loglibro pri forigado por ĉi dosiero por via oportuneco:",
+'filename-bad-prefix'         => 'La nomo de la dosiero kiun vi alŝutas komencas kun <strong>"$1"</strong>, kiu estas nepriskriba nomo ofte aŭtomate donata de ciferecaj fotiloj. Bonvolu elekti pli priskriban nomon por via bildo.',
 
 'upload-proto-error'      => 'Nevalida protokolo',
 'upload-proto-error-text' => 'Fora alŝuto devas URL-on komence de <code>http://</code> aŭ <code>ftp://</code>.',
 'upload-file-error'       => 'Interna eraro',
+'upload-file-error-text'  => 'Interna eraro okazis provante krei labordosieron ĉe la servilo. Bonvolu kontakti sistem-administranton.',
 'upload-misc-error'       => 'Nekonata eraro pri alŝutado.',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
@@ -1078,6 +1083,7 @@ jen la loglibro pri forigado por ĉi dosiero por via oportuneco:",
 'filerevert-comment'        => 'Komento:',
 'filerevert-defaultcomment' => 'Restarigita al versio ekde $2, $1',
 'filerevert-submit'         => 'Restarigu',
+'filerevert-success'        => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\' estis restarigita al [$4 versio ekde $3, $2].</span>',
 'filerevert-badversion'     => 'Ne estas antaŭa loka versio de ĉi dosiero ĉe tiu tempo.',
 
 # File deletion
@@ -1090,6 +1096,8 @@ jen la loglibro pri forigado por ĉi dosiero por via oportuneco:",
 'filedelete-success'          => "'''$1''' estas forigita.",
 'filedelete-success-old'      => '<span class="plainlinks">La versio de \'\'\'[[Media:$1|$1]]\'\'\' ekde $3, $2 estas forigita.</span>',
 'filedelete-nofile'           => "'''$1''' ne ekzistas en {{SITENAME}}.",
+'filedelete-nofile-old'       => "Estas neniuarkivita versio de '''$1''' kun la specifigitaj atribuoj.",
+'filedelete-iscurrent'        => 'Vi provas forigi la plej lastan version de la dosiero. Bonvolu restarigi pli malnovan version antaŭe.',
 'filedelete-otherreason'      => 'Alia/plua kialo:',
 'filedelete-reason-otherlist' => 'Alia kialo',
 'filedelete-reason-dropdown'  => '* Oftaj kialoj de forigo
@@ -1097,9 +1105,10 @@ jen la loglibro pri forigado por ĉi dosiero por via oportuneco:",
 ** Duplikata dosiero',
 
 # MIME search
-'mimesearch' => 'MIME-serĉilo',
-'mimetype'   => 'MIME-tipo:',
-'download'   => 'elŝutu',
+'mimesearch'         => 'MIME-serĉilo',
+'mimesearch-summary' => 'Ĉi paĝo ebligas la filtradon de dosieroj por ties MIME-tipo. Enigu: enhavo-tipo/subtipo, ekz. <tt>image/jpeg</tt>.',
+'mimetype'           => 'MIME-tipo:',
+'download'           => 'elŝutu',
 
 # Unwatched pages
 'unwatchedpages' => 'Neatentataj paĝoj',
@@ -1681,6 +1690,8 @@ La celartikolo "[[$1]]" jam ekzistas. Ĉu vi volas forigi ĝin por krei spacon p
 'export'            => 'Eksportu paĝojn',
 'exporttext'        => 'Vi povas eksporti la tekston kaj la redaktohistorion de aparta paĝo aŭ de paĝaro kolektita en ia XML ; tio povas esti importita en alian programon funkciantan per MediaWiki-softvaro, ŝanĝita, aŭ nur prenita por propra privata uzo.',
 'exportcuronly'     => 'Entenas nur la aktualan version, ne la malnovajn.',
+'exportnohistory'   => "----
+'''Notu:''' Eksportado de la plena historio de paĝoj per ĉi paĝo estis malebligita pro funkciigaj kialoj.",
 'export-submit'     => 'Eksporti',
 'export-addcattext' => 'Aldoni paĝojn el kategorio:',
 'export-addcat'     => 'Aldoni',
@@ -1702,7 +1713,9 @@ La celartikolo "[[$1]]" jam ekzistas. Ĉu vi volas forigi ĝin por krei spacon p
 'filemissing'              => 'Mankanta dosiero',
 'thumbnail_error'          => 'Okazis eraro kreante antaŭvidan bildeton: $1',
 'djvu_page_error'          => 'DjVu-a paĝo el intervalo',
+'djvu_no_xml'              => 'Ne eblas akiri XML por DjVu dosiero',
 'thumbnail_invalid_params' => 'Nevalidaj bildetaj parametroj',
+'thumbnail_dest_directory' => 'Ne eblas krei destinan dosierujon',
 
 # Special:Import
 'import'                     => 'Importitaj paĝoj',
@@ -1718,12 +1731,16 @@ Datoj de revizioj kaj nomoj de redaktantoj estos preservitaj.
 'import-revision-count'      => '$1 {{PLURAL:$1|versio|versioj}}',
 'importnopages'              => 'Neniu paĝo por importi.',
 'importfailed'               => 'Malsukcesis la importo: $1',
+'importunknownsource'        => 'Nekonata fonta speco de alŝuto',
+'importcantopen'             => 'Ne eblas malfermi import-dosieron',
 'importbadinterwiki'         => 'Malbona intervikia ligilo',
 'importnotext'               => 'Malplena aŭ senteksta',
 'importsuccess'              => 'La importo sukcesis!',
 'importhistoryconflict'      => 'Malkongrua historia versio ekzistas (eble la paĝo importiĝis antaŭe)',
 'importnosources'            => 'Neniu transvikia importfonto estis difinita kaj rekta historio de alŝutoj estas malaktivigita.',
 'importnofile'               => 'Neniu import-dosiero estis alŝutita.',
+'importuploaderrorsize'      => 'Alŝuto de import-dosiero malsukcesis. La dosiero estas pli granda ol la permesita alŝut-pezo.',
+'importuploaderrorpartial'   => 'Alŝuto de la import-dosiero malsukcesis. La dosiero estis nur parte alŝutita.',
 'import-noarticle'           => 'Neniu paĝo por importi!',
 'import-nonewrevisions'      => 'Ĉiuj revizioj estis antaŭe importitaj.',
 'xml-error-string'           => '$1 ĉe linio $2, kolumno $3 (bitiko $4): $5',
@@ -1927,6 +1944,7 @@ Sekvaj ligilo en la sama linio estas konsiderata kiel esceptoj (paĝoj kiel la b
 'exif-rowsperstrip'                => 'Nombro de vicoj por strio',
 'exif-stripbytecounts'             => 'Bitikoj por densigita strio',
 'exif-jpeginterchangeformatlength' => 'Bitokoj de JPEG-datumo',
+'exif-transferfunction'            => 'Transiga funkcio',
 'exif-whitepoint'                  => 'Koloreco de blanka punkto',
 'exif-primarychromaticities'       => 'Kolorecoj de primaraĵoj',
 'exif-datetime'                    => 'Dato kaj tempo de dosiera ŝanĝo',
@@ -1962,6 +1980,7 @@ Sekvaj ligilo en la sama linio estas konsiderata kiel esceptoj (paĝoj kiel la b
 'exif-meteringmode'                => 'Mezurila reĝimo',
 'exif-lightsource'                 => 'Fonto de lumo',
 'exif-flash'                       => 'Fulmilo',
+'exif-focallength'                 => 'Fokusa longo de lenso',
 'exif-subjectarea'                 => 'Subjekta areo',
 'exif-flashenergy'                 => 'Fulmila energio',
 'exif-focalplanexresolution'       => 'X distingivo de fokusa ebeno',
@@ -1975,8 +1994,10 @@ Sekvaj ligilo en la sama linio estas konsiderata kiel esceptoj (paĝoj kiel la b
 'exif-exposuremode'                => 'Ekspona reĝimo',
 'exif-whitebalance'                => 'Blanka balanciĝo',
 'exif-digitalzoomratio'            => 'Cifereca zumproporcio',
+'exif-scenecapturetype'            => 'Scenkapta speco',
 'exif-gaincontrol'                 => 'Scena kontrolo',
 'exif-contrast'                    => 'Kontrasto',
+'exif-saturation'                  => 'Saturado',
 'exif-sharpness'                   => 'Akreco',
 'exif-imageuniqueid'               => 'Unika identigo de bildo',
 'exif-gpslatituderef'              => 'Norda aŭ suda latitudo',
@@ -1987,7 +2008,9 @@ Sekvaj ligilo en la sama linio estas konsiderata kiel esceptoj (paĝoj kiel la b
 'exif-gpsaltitude'                 => 'Alteco',
 'exif-gpstimestamp'                => 'GPS tempo (atoma horloĝo)',
 'exif-gpssatellites'               => 'Satelitoj uzataj por mezurado',
+'exif-gpsstatus'                   => 'Statuso de recevilo',
 'exif-gpsmeasuremode'              => 'Mezura reĝimo',
+'exif-gpsdop'                      => 'Precizeco de mezuro',
 'exif-gpsspeedref'                 => 'Unuo de rapido',
 'exif-gpsspeed'                    => 'Rapido de GPS recevilo',
 'exif-gpstrack'                    => 'Direkto de movado',
@@ -1996,6 +2019,8 @@ Sekvaj ligilo en la sama linio estas konsiderata kiel esceptoj (paĝoj kiel la b
 'exif-gpsdestlongitude'            => 'Longitudo de destino',
 'exif-gpsdestbearing'              => 'Direkto aŭ destino',
 'exif-gpsdestdistance'             => 'Distanco al destino',
+'exif-gpsprocessingmethod'         => 'Nomo de GPS procesmetodo',
+'exif-gpsareainformation'          => 'Nomo de GPS areo',
 'exif-gpsdatestamp'                => 'GPS dato',
 
 # EXIF attributes
@@ -2016,13 +2041,17 @@ Sekvaj ligilo en la sama linio estas konsiderata kiel esceptoj (paĝoj kiel la b
 'exif-exposureprogram-0' => 'Ne difinita',
 'exif-exposureprogram-1' => 'Permana',
 'exif-exposureprogram-2' => 'Normala programo',
+'exif-exposureprogram-3' => 'Diafragma prioritato <!-- vidu http://www.fw.hu/eventoj/steb/vortaroj/fotografio/fotografio.htm -->',
 'exif-exposureprogram-4' => 'Prioritato de obturatoro',
+'exif-exposureprogram-8' => 'Pejzaĝa reĝimo (por pejzaĝaj fotoj kun la fono en fokuso)',
 
 'exif-subjectdistance-value' => '$1 metroj',
 
 'exif-meteringmode-0'   => 'Nekonata',
 'exif-meteringmode-1'   => 'Averaĝo',
 'exif-meteringmode-2'   => 'CentraPezAveraĝo',
+'exif-meteringmode-3'   => 'Eksponometro selekt-angula',
+'exif-meteringmode-4'   => 'eksponometro mult-selekt-angula',
 'exif-meteringmode-5'   => 'Skemo',
 'exif-meteringmode-6'   => 'Parta',
 'exif-meteringmode-255' => 'Alia',
@@ -2035,6 +2064,9 @@ Sekvaj ligilo en la sama linio estas konsiderata kiel esceptoj (paĝoj kiel la b
 'exif-lightsource-9'   => 'Bona vetero',
 'exif-lightsource-10'  => 'Nuba vetero',
 'exif-lightsource-11'  => 'Ombro',
+'exif-lightsource-12'  => 'Tagluma fluoreska (D 5700 – 7100K)',
+'exif-lightsource-13'  => 'Tag-blanka fluoreska (N 4600 – 5400K)',
+'exif-lightsource-14'  => 'Malvarmblanka fluoreska (W 3900 – 4500K)',
 'exif-lightsource-15'  => 'Blanka fluoreska (WW 3200 – 3700K)',
 'exif-lightsource-17'  => 'Norma lumo A',
 'exif-lightsource-18'  => 'Norma lumo B',
@@ -2044,12 +2076,19 @@ Sekvaj ligilo en la sama linio estas konsiderata kiel esceptoj (paĝoj kiel la b
 'exif-focalplaneresolutionunit-2' => 'coloj',
 
 'exif-sensingmethod-1' => 'Nedefinita',
+'exif-sensingmethod-7' => 'Trilinia sensilo',
+
+'exif-scenetype-1' => 'Rekte fotita bildo',
 
 'exif-customrendered-0' => 'Norma proceso',
+'exif-customrendered-1' => 'Propra procezo',
 
 'exif-exposuremode-0' => 'Automata ekspono',
 'exif-exposuremode-1' => 'Permana ekspono',
 'exif-exposuremode-2' => 'Aŭtomata krampo',
+
+'exif-whitebalance-0' => 'Aŭtomata blank-egaleco',
+'exif-whitebalance-1' => 'Permana blank-egaleco',
 
 'exif-scenecapturetype-0' => 'Norma',
 'exif-scenecapturetype-1' => 'Pejzaĝo',
@@ -2082,6 +2121,7 @@ Sekvaj ligilo en la sama linio estas konsiderata kiel esceptoj (paĝoj kiel la b
 'exif-gpslongitude-w' => 'Uesta longitudo',
 
 'exif-gpsstatus-a' => 'Mezurado estanta',
+'exif-gpsstatus-v' => 'Mezurada interoperaciado',
 
 'exif-gpsmeasuremode-2' => '2-dimensia mezuro',
 'exif-gpsmeasuremode-3' => '3-dimensia mezuro',
@@ -2108,6 +2148,7 @@ Sekvaj ligilo en la sama linio estas konsiderata kiel esceptoj (paĝoj kiel la b
 
 # E-mail address confirmation
 'confirmemail'            => 'Konfirmu retpoŝtadreson',
+'confirmemail_noemail'    => 'Vi ne havas validan retpoŝtan adreson notitan en viaj [[Special:Preferences|Preferoj]].',
 'confirmemail_text'       => 'Ĉi tiu vikio postulas ke vi validigu vian retadreson antaŭ ol uzadi la retmesaĝpreferojn. Bonvolu alklaki la suban butonon por sendi konfirmesaĝon al via adreso. La mesaĝo entenos ligilon kun kodo; bonvolu alŝuti la ligilon en vian foliumilon por konfirmi ke via retadreso validas.',
 'confirmemail_send'       => 'Retmesaĝi konfirmkodon',
 'confirmemail_sent'       => 'Konfirma retmesaĝo estas sendita.',
@@ -2194,24 +2235,31 @@ $1',
 # Live preview
 'livepreview-loading' => 'Ŝargiĝadas…',
 'livepreview-ready'   => 'Ŝargiĝadas… Preta!',
+'livepreview-error'   => 'Malsukcesis konekti: $1 "$2". Provu norman antaŭvidon.',
 
 # Friendlier slave lag warnings
-'lag-warn-high' => 'Pro malrapideco de la servila datumbazo, ŝanĝoj pli novaj ol $1 sekundoj eble ne montriĝos en ĉi listo.',
+'lag-warn-normal' => 'Ŝanĝoj pli novaj ol $1 sekundoj eble ne estos montrataj en ĉi listo.',
+'lag-warn-high'   => 'Pro malrapideco de la servila datumbazo, ŝanĝoj pli novaj ol $1 sekundoj eble ne montriĝos en ĉi listo.',
 
 # Watchlist editor
-'watchlistedit-numitems'      => 'Via atentaro enhavas {{PLURAL:$1|1 titolon|$1 titolojn}}, escepte de diskuto-paĝoj.',
-'watchlistedit-noitems'       => 'Via atentaro enhavas neniujn titolojn.',
-'watchlistedit-normal-title'  => 'Redaktu atentaron',
-'watchlistedit-normal-legend' => 'Forigu titolojn de atentaro',
-'watchlistedit-normal-submit' => 'Forigu titolojn',
-'watchlistedit-normal-done'   => '{{PLURAL:$1|1 titolo estis forigita|$1 titoloj estis forigitaj}} de via atentaro:',
-'watchlistedit-raw-title'     => 'Redaktu krudan atentaron',
-'watchlistedit-raw-legend'    => 'Redaktu krudan atentaron',
-'watchlistedit-raw-titles'    => 'Titoloj:',
-'watchlistedit-raw-submit'    => 'Ĝisdatigu atentaron',
-'watchlistedit-raw-done'      => 'Via atentaro estas ĝisdatigita.',
-'watchlistedit-raw-added'     => '{{PLURAL:$1|1 titolo estis aldonita|$1 titoloj estis aldonitaj}}:',
-'watchlistedit-raw-removed'   => '{{PLURAL:$1|1 titolo estis forigita|$1 titoloj estis forigitaj}}:',
+'watchlistedit-numitems'       => 'Via atentaro enhavas {{PLURAL:$1|1 titolon|$1 titolojn}}, escepte de diskuto-paĝoj.',
+'watchlistedit-noitems'        => 'Via atentaro enhavas neniujn titolojn.',
+'watchlistedit-normal-title'   => 'Redaktu atentaron',
+'watchlistedit-normal-legend'  => 'Forigu titolojn de atentaro',
+'watchlistedit-normal-explain' => 'Titoloj de via atentaro estas montrata sube.
+Forigi titolon, marku la skatoleto apude de ĝi, kaj klaku Forigu Titolojn.
+Vi ankaŭ povas [[Special:Watchlist/raw|redakti la krudan liston]].',
+'watchlistedit-normal-submit'  => 'Forigu titolojn',
+'watchlistedit-normal-done'    => '{{PLURAL:$1|1 titolo estis forigita|$1 titoloj estis forigitaj}} de via atentaro:',
+'watchlistedit-raw-title'      => 'Redaktu krudan atentaron',
+'watchlistedit-raw-legend'     => 'Redaktu krudan atentaron',
+'watchlistedit-raw-explain'    => 'Titoloj en via atentaro estas montrata sube, kaj povas esti redaktita de aldono aŭ forigo de la listo: unu titolo por linio. Kiam finite, klaku Ĝisdatigu Atentaron.
+Vi povas ankaŭ [[Special:Watchlist/edit|uzu la norman redaktilon]].',
+'watchlistedit-raw-titles'     => 'Titoloj:',
+'watchlistedit-raw-submit'     => 'Ĝisdatigu atentaron',
+'watchlistedit-raw-done'       => 'Via atentaro estas ĝisdatigita.',
+'watchlistedit-raw-added'      => '{{PLURAL:$1|1 titolo estis aldonita|$1 titoloj estis aldonitaj}}:',
+'watchlistedit-raw-removed'    => '{{PLURAL:$1|1 titolo estis forigita|$1 titoloj estis forigitaj}}:',
 
 # Watchlist editing tools
 'watchlisttools-view' => 'Montru koncernajn ŝanĝojn',
@@ -2233,6 +2281,7 @@ $1',
 'version-parser-function-hooks'    => 'Hokoj de sintaksaj funkcioj',
 'version-skin-extension-functions' => 'Etendaj funkcioj pri grafika etoso',
 'version-hook-name'                => 'Nomo de hoko',
+'version-hook-subscribedby'        => 'Abonita de',
 'version-version'                  => 'Versio',
 'version-license'                  => 'Permesilo',
 'version-software'                 => 'Instalita programaro',
