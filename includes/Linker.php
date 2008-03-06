@@ -356,8 +356,9 @@ class Linker {
 		}
 		$titleAttr = wfMsg( 'red-link-title', $titleText );
 		$style = $this->getInternalLinkAttributesObj( $nt, $text, 'new', $titleAttr );
-
 		list( $inside, $trail ) = Linker::splitTrail( $trail );
+
+		wfRunHooks( 'BrokenLink', array( &$this, $nt, $query, &$u, &$style, &$prefix, &$text, &$inside, &$trail ) );
 		$s = "<a href=\"{$u}\"{$style}>{$prefix}{$text}{$inside}</a>{$trail}";
 
 		wfProfileOut( __METHOD__ );

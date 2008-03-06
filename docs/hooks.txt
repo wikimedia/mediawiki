@@ -462,6 +462,18 @@ $user: the user who did the block (not the one being blocked)
 $isbn: ISBN to show information for
 $output: OutputPage object in use
 
+'BrokenLink': Before the HTML is created for a broken (i.e. red) link
+&$this: Linker instance
+$nt: the page title
+$query: the URL query string passed in
+&$u: the URL of this link
+&$style: the inline CSS style
+&$prefix: a prefix prepended to the linked text
+&$text: the text placed by the user in the wiki-link
+&$inside: any additional alphanumeric characters placed after the wiki-link,
+that are made part of the link text
+&$trail: text placed immediately after the HTML link
+
 'CategoryPageView': before viewing a categorypage in CategoryPage::view
 $catpage: CategoryPage instance
 
