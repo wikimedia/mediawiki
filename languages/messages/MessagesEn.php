@@ -2033,6 +2033,7 @@ $1',
 
 # Block/unblock
 'blockip'                     => 'Block user',
+'blockip-legend'              => 'Block user',
 'blockiptext'                 => 'Use the form below to block write access from a specific IP address or username.
 This should be done only to prevent vandalism, and in accordance with [[{{MediaWiki:Policy-url}}|policy]].
 Fill in a specific reason below (for example, citing particular pages that were vandalized).',
