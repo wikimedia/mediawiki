@@ -175,7 +175,7 @@ $messages = array(
 'dec'           => 'de dec',
 
 # Bits of text used by many pages
-'categories'               => 'Categorias de la pagina',
+'categories'               => '{{PLURAL:$1|Categoria|Categorias}} de la pagina',
 'pagecategories'           => '{{PLURAL:$1|Categoria|Categorias}} de la pagina',
 'category_header'          => 'Articles dins la categoria "$1"',
 'subcategories'            => 'Soscategorias',
@@ -252,10 +252,10 @@ $messages = array(
 'userpage'          => "Pagina d'utilizaire",
 'projectpage'       => 'Pagina meta',
 'imagepage'         => 'Pagina del mèdia',
-'mediawikipage'     => 'Veire la pagina del messatge',
-'templatepage'      => 'Veire la pagina del modèl',
-'viewhelppage'      => "Veire la pagina d'ajuda",
-'categorypage'      => 'Veire la pagina de las categorias',
+'mediawikipage'     => 'Vejatz la pagina del messatge',
+'templatepage'      => 'Vejatz la pagina del modèl',
+'viewhelppage'      => "Vejatz la pagina d'ajuda",
+'categorypage'      => 'Vejatz la pagina de las categorias',
 'viewtalkpage'      => 'Pagina de discussion',
 'otherlanguages'    => 'Autras lengas',
 'redirectedfrom'    => '(Redirigit dempuèi $1)',
@@ -295,9 +295,9 @@ $messages = array(
 
 'badaccess'        => 'Error de permission',
 'badaccess-group0' => 'Avètz pas los dreches sufisents per realizar l’accion que demandatz.',
-'badaccess-group1' => "L’accion qu'ensajatz de realizar es pas accessibla qu’als utilizaires del grop $1.",
-'badaccess-group2' => "L’accion qu'ensajatz de realizar es pas accessibla qu’als utilizaires dels gropes $1.",
-'badaccess-groups' => "L’accion qu'ensajatz de realizar es pas accessibla qu’als utilizaires dels gropes $1.",
+'badaccess-group1' => "L'accion qu'ensajatz de realizar es accessibla pas qu'als utilizaires del grop $1.",
+'badaccess-group2' => "L'accion qu'ensajatz de realizar es accessibla pas qu'als utilizaires dels gropes $1.",
+'badaccess-groups' => "L'accion qu'ensajatz de realizar es accessibla pas qu'als utilizaires dels gropes $1.",
 
 'versionrequired'     => 'Version $1 de MediaWiki necessària',
 'versionrequiredtext' => 'La version $1 de MediaWiki es necessària per utilizar aquesta pagina. Consultatz [[Special:Version]]',
@@ -381,7 +381,7 @@ Raportatz aquesta error a un administrator, en li indicant l\'adreça de la pagi
 'formerror'            => 'Error: Impossible de sometre lo formulari',
 'badarticleerror'      => 'Aquesta accion pòt pas èsser efectuada sus aquesta pagina.',
 'cannotdelete'         => "Impossible de suprimir la pagina o l'imatge indicat.",
-'badtitle'             => 'Marrit títol',
+'badtitle'             => 'Títol marrit',
 'badtitletext'         => 'Lo títol de la pagina demandada es invalid, void o lo ligam interlenga es invalid',
 'perfdisabled'         => 'O planhèm ! Aquesta foncionalitat es temporàriament desactivada
 perque alentís la banca de donadas a un punt tal que degun
@@ -392,7 +392,7 @@ pòt pas mai utilizar lo wiki.',
 'wrong_wfQuery_params' => 'Paramètres incorrèctes sus wfQuery()<br />
 Foncion : $1<br />
 Requèsta : $2',
-'viewsource'           => 'Veire lo tèxt font',
+'viewsource'           => 'Vejatz lo tèxt font',
 'viewsourcefor'        => 'per $1',
 'actionthrottled'      => 'Accion limitada',
 'actionthrottledtext'  => "Per luchar contra lo spam, l’utilizacion d'aquesta accion es limitada a un cèrt nombre de còps dins una sosta pro corta. S'avèra qu'avètz depassat aquesta limita. Ensajatz tornamai dins qualques minutas.",
@@ -442,7 +442,7 @@ Doblidetz pas de personalizar vòstre {{SITENAME}} en consultant la pagina Prefe
 'yourlanguage'               => 'Lenga:',
 'yourvariant'                => 'Varianta:',
 'yournick'                   => 'Mon escais (per las signaturas)',
-'badsig'                     => 'Signatura bruta incorrècta ; Verificatz vòstras balisas HTML.',
+'badsig'                     => 'Signatura bruta incorrècta, verificatz vòstras balisas HTML.',
 'badsiglength'               => 'Vòstra signatura es tròp longa : la talha maximala es de $1 caractèrs.',
 'email'                      => 'Corrièr electronic',
 'prefs-help-realname'        => "* Nom vertadièr (facultatiu) : se l'especificatz, serà utilizat per l'atribucion de vòstras contribucions.",
@@ -1265,10 +1265,7 @@ L\'adreça electronica qu\'avètz indicada dins vòstras preferéncias apareisse
 'watchnologintext'     => 'Devètz èsser [[Special:Userlogin|connectat(ada)]]
 per modificar vòstra lista.',
 'addedwatch'           => 'Ajustat a la lista',
-'addedwatchtext'       => 'La pagina "<nowiki>$1</nowiki>" es estada ajustada a vòstra [[Special:Watchlist|lista de seguit]].
-Las modificacions venetas d\'aquesta pagina e de la pagina de discussion associada seràn repertoriadas aicí, e la pagina apareisserà <b>en gras</b> dins la [[Special:Recentchanges|lista dels darrièrs cambiaments]] per èsser localisada mai aisidament.
-
-Per suprimir aquesta pagina de vòstra lista de seguida, clicatz sus "Arrestar de seguir" dins lo quadre de navigacion.',
+'addedwatchtext'       => 'La pagina "<nowiki>$1</nowiki>" es estada ajustada a vòstra [[Special:Watchlist|lista de seguit]]. Las modificacions venentas d\'aquesta pagina e de la pagina de discussion associada seràn repertoriadas aicí, e la pagina apareisserà <b>en gras</b> dins la [[Special:Recentchanges|lista dels darrièrs cambiaments]] per èsser localizada mai aisidament. Per suprimir aquesta pagina de vòstra lista de seguit, clicatz sus "Arrestar de seguir" dins lo quadre de navigacion.',
 'removedwatch'         => 'Suprimida de la lista de seguit',
 'removedwatchtext'     => 'La pagina "[[:$1]]" es estada suprimida de vòstra lista de seguit.',
 'watch'                => 'Seguir',
@@ -1367,7 +1364,7 @@ L'ora indicada es la del serveire (UTC).
 'rollback_short'              => 'Revocar',
 'rollbacklink'                => 'revocar',
 'rollbackfailed'              => 'La revocacion a pas capitat',
-'cantrollback'                => 'Impossible de revocar: darrièr autor es lo sol a aver modificat aqueste article',
+'cantrollback'                => "Impossible de revocar : l'autor es la sola persona a aver efectuat de modificacions sus aqueste article",
 'alreadyrolled'               => "Impossible de revocar la darrièra modificacion de [[:$1]]
 per  [[User:$2|$2]] ([[User talk:$2|Discussion]]); qualqu'un d'autre a ja modificat o revocat l'article.
 
@@ -1531,15 +1528,15 @@ Donatz çaijós una rason precisa (per exemple en indicant las paginas que son e
 'ipbotheroption'              => 'autre',
 'ipbotherreason'              => 'Motiu diferent o suplementari',
 'ipbhidename'                 => "Amagar lo nom d’utilizaire o l’IP de l'istoric de blocatge, de la lista dels blocatges actius e de la lista dels utilizaires",
-'badipaddress'                => "L'adreça IP es pas corrècta.",
+'badipaddress'                => "L'adreça IP es incorrècta",
 'blockipsuccesssub'           => 'Blocatge capitat',
 'blockipsuccesstext'          => 'L\'adreça IP "$1" es estada blocada.
 <br />Podètz consultar sus aquesta [[Special:Ipblocklist|pagina]] la lista de las adreças IP blocadas.',
 'ipb-edit-dropdown'           => 'Modificar los motius de blocatge per defaut',
 'ipb-unblock-addr'            => 'Desblocar $1',
 'ipb-unblock'                 => "Desblocar un compte d'utilizaire o una adreça IP",
-'ipb-blocklist-addr'          => 'Veire los blocatges existents per $1',
-'ipb-blocklist'               => 'Veire los blocatges existents',
+'ipb-blocklist-addr'          => 'Vejatz los blocatges existents per $1',
+'ipb-blocklist'               => 'Vejatz los blocatges existents',
 'unblockip'                   => 'Desblocar una adreça IP',
 'unblockiptext'               => "Utilizatz lo formulari çai jos per restablir l'accès en escritura
 a partir d'una adreça IP precedentament blocada.",
@@ -1778,10 +1775,10 @@ Totas las accions d’importacion interwiki son conservadas dins lo [[Special:Lo
 'tooltip-ca-nstab-special'        => 'Aquò es una pagina especiala, podètz pas la modificar.',
 'tooltip-ca-nstab-project'        => 'Veire la pagina del projècte',
 'tooltip-ca-nstab-image'          => 'Veire la pagina del fichièr',
-'tooltip-ca-nstab-mediawiki'      => 'Veire lo messatge del sistèma',
-'tooltip-ca-nstab-template'       => 'Veire lo modèl',
-'tooltip-ca-nstab-help'           => 'Veire la pagina d’ajuda',
-'tooltip-ca-nstab-category'       => 'Veire la pagina de la categoria',
+'tooltip-ca-nstab-mediawiki'      => 'Vejatz lo messatge del sistèma',
+'tooltip-ca-nstab-template'       => 'Vejatz lo modèl',
+'tooltip-ca-nstab-help'           => 'Vejatz la pagina d’ajuda',
+'tooltip-ca-nstab-category'       => 'Vejatz la pagina de la categoria',
 'tooltip-minoredit'               => 'Marcar mas modificacions coma un cambiament menor',
 'tooltip-save'                    => 'Salvagardar vòstras modificacions',
 'tooltip-preview'                 => 'Mercé de previsualizar vòstras modificacions abans de salvagardar!',

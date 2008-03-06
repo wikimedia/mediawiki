@@ -10,6 +10,8 @@
 
 
 $messages = array(
+'underline-never' => 'Καμίαν',
+
 # Dates
 'sunday'        => 'Κερεκήν',
 'monday'        => 'Δευτέραν',
@@ -63,13 +65,28 @@ $messages = array(
 'dec'           => 'Δεκ',
 
 'mypage' => "Τ' εμόν η σελίδαν",
+'mytalk' => "Τ' εμόν η καλατσήν",
 'and'    => 'και',
 
-'search'        => 'Εύρον',
-'searchbutton'  => 'Εύρον',
-'go'            => 'Δέβα',
-'searcharticle' => 'Δέβα',
-'jumptosearch'  => 'εύρον',
+'search'            => 'αράεμαν',
+'searchbutton'      => 'Εύρον',
+'go'                => 'Δέβα',
+'searcharticle'     => 'Δέβα',
+'history'           => 'Ιστορίαν τη σελίδας',
+'history_short'     => 'Ιστορίαν',
+'edit'              => 'Άλλαγμαν',
+'delete'            => 'Τσόσιμον',
+'protect'           => 'Ασπάλιγμα',
+'protect_change'    => "Άλλαγμα τ' ασπάλιγματη",
+'protectthispage'   => 'Ασπάλιγμα ατουνού τη σελίδας',
+'unprotect'         => 'Άνοιγμα',
+'unprotectthispage' => 'Άνοιγμα ατουνού τη σελίδας',
+'talkpagelinktext'  => 'Καλατσήν',
+'talk'              => 'Καλατσήν',
+'otherlanguages'    => "Σ' άλλα γλώσσας",
+'protectedpage'     => 'Ασπαλιζμένον σελίδαν',
+'jumpto'            => 'Δέβα σο:',
+'jumptosearch'      => 'αράεμαν',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'mainpage' => 'Αρχικόν σελίδαν',
@@ -81,23 +98,47 @@ $messages = array(
 'viewsourcefor' => 'για $1',
 
 # Login and logout pages
-'logout'       => 'Αποσύνδεσε',
-'userlogout'   => 'Αποσύνδεσε',
-'username'     => 'Όνεμα χρήστε:',
-'yourlanguage' => "Τ' εσόν η γώσσαν:",
-'loginerror'   => 'Σφάλμα εγγραφές',
+'logout'        => 'οξουκά',
+'userlogout'    => 'Οξουκά',
+'nologinlink'   => 'Ποίσον λογαριασμόν',
+'createaccount' => 'Ποίσον λογαριασμόν',
+'username'      => 'Όνεμα χρήστε:',
+'yourlanguage'  => "Τ' εσόν η γώσσαν:",
+'loginerror'    => 'Σφάλμα εγγραφές',
+
+# Edit pages
+'watchthis' => 'Ωρία το σελίδαν ατό',
 
 # Search results
 'powersearch' => 'Εύρον',
 
 # Miscellaneous special pages
-'lonelypages' => 'Ορφανά σελίδας',
+'lonelypages'  => 'Ορφανά σελίδας',
+'move'         => 'Αχταρμάν',
+'movethispage' => 'Εφτάτε έναν αχταρμάν τη σελίδαν',
 
 # Book sources
 'booksources-go' => 'Δέβα',
 
 # Special:Allpages
 'allpagessubmit' => 'Δέβα',
+
+# Watchlist
+'watchlist'     => "Σελίδας ντ' ωριάζω",
+'mywatchlist'   => "Σελίδας ντ' ωριάζω",
+'watch'         => 'Ωρίαγμαν',
+'watchthispage' => 'Ωρίαν τη σελίδαν',
+
+# Contributions
+'contributions' => "Δουλείας ντ' εποίκε ο χρήστες",
+'mycontris'     => "Δουλείας ντ' εποίκα",
+
+# Block/unblock
+'contribslink' => "Δουλείας ντ' εποίκε",
+
+# Tooltip help for the actions
+'tooltip-pt-mycontris' => "Λίστα με τα δουλείας ντ' εποίκα",
+'tooltip-n-mainpage'   => 'Τερέστε την Αρχικόν σελίδαν',
 
 # Multipage image navigation
 'imgmultigo' => 'Δέβα!',

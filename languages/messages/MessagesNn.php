@@ -1013,7 +1013,7 @@ Andre administratorar på {{SITENAME}} kan framleis sjå det gøymde innhaldet o
 'userrights-lookup-user'           => 'Administrer brukargrupper',
 'userrights-user-editname'         => 'Skriv inn brukarnamn:',
 'editusergroup'                    => 'Endre brukargrupper',
-'editinguser'                      => 'Endrar $1',
+'editinguser'                      => "Endrar '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
 'userrights-editusergroup'         => 'Endre brukargrupper',
 'saveusergroups'                   => 'Lagre brukargrupper',
 'userrights-groupsmember'          => 'Medlem av:',
@@ -1786,11 +1786,9 @@ Målsida «[[$1]]» finst allereie. Vil du slette ho for å gje rom for flytting
 
 # Export
 'export'            => 'Eksporter sider',
-'exporttext'        => 'Du kan eksportere teksten og endringshistorikken til ei side eller ein serie sider, pakka inn i litt XML. I framtida kan det hende at dette att kan bli importert til ei anna wiki som brukar MediaWiki-programvaren, men det er det ikkje støtte for dette i denne versjonen av MediaWiki.
+'exporttext'        => 'Du kan eksportere teksten og endringshistorikken til ei bestemt side eller ei gruppe sider, pakka inn i litt XML. Dette kan så importerast til ein annan wiki som brukar MediaWiki-programvaren gjennom [[Special:Import|import-sida]].
 
-For å eksportere sider, skriv tittelen i tekstboksen nedanfor, ein tittel per line, og vel om du vil ha med alle versjonane eller berre siste versjon.
-
-Dersom du berre vil ha den siste versjonen kan du òg bruke ei lenkje, t.d. [[{{ns:special}}:Export/MediaWiki]] for [[MediaWiki]] sida.',
+For å eksportere sider, skriv inn titlar i tekstboksen under, ein tittel per linje, og velg om du vil ha berre noverande versjon, eller alle versjonar i historikken. Dersom du berre vil ha noverande versjon, kan du også bruke ei lenkje, til dømes [[{{ns:special}}:Export/{{MediaWiki:Mainpage}}]] for sida «[[{{Mediawiki:Mainpage}}]]».',
 'exportcuronly'     => 'Berre eksporter siste versjonen, ikkje med heile historikken.',
 'export-submit'     => 'Eksporter',
 'export-addcattext' => 'Legg til sider frå kategori:',

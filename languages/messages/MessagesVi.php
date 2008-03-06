@@ -658,7 +658,6 @@ Xin hãy thử lần nữa. Nếu vẫn không thành công, bạn hãy thử đ
 sửa đổi. Việc hủy bỏ này nhằm tránh nội dung trang bị hỏng.
 Điều này thường xảy ra khi bạn sử dụng một dịch vụ proxy vô danh trên web có vấn đề.</strong>',
 'editing'                   => 'Sửa đổi $1',
-'editinguser'               => "Thay đổi quyền hạn của thành viên '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
 'editingsection'            => 'Sửa đổi $1',
 'editingcomment'            => 'Sửa đổi $1',
 'editconflict'              => 'Sửa đổi mâu thuẫn : $1',
@@ -911,6 +910,7 @@ Xin hãy bảo đảm tính liên tục của lịch sử trang.
 'userrights-lookup-user'           => 'Quản lý nhóm thành viên',
 'userrights-user-editname'         => 'Nhập tên thành viên:',
 'editusergroup'                    => 'Sửa các nhóm thành viên',
+'editinguser'                      => "Thay đổi quyền hạn của thành viên '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
 'userrights-editusergroup'         => 'Sửa nhóm thành viên',
 'saveusergroups'                   => 'Lưu nhóm thành viên',
 'userrights-groupsmember'          => 'Thành viên của:',
@@ -1258,7 +1258,6 @@ Có '''$8''' tập tin đã được tải lên.
 'newpages'                => 'Các trang mới nhất',
 'newpages-username'       => 'Tên thành viên:',
 'ancientpages'            => 'Các trang cũ nhất',
-'intl'                    => 'Liên kết liên ngôn ngữ',
 'move'                    => 'Di chuyển',
 'movethispage'            => 'Di chuyển trang này',
 'unusedimagestext'        => '<p>Xin lưu ý là các trang Web bên ngoài có thể liên kết đến một tập tin ở đây qua một địa chỉ URL trực tiếp, do đó nhiều tập tin vẫn được liệt kê ở đây dù có thể nó đang được sử dụng.</p>',

@@ -984,7 +984,8 @@ $2 Inclure les pages de redirection<br /> Rechercher $3 $9',
 'userrights-lookup-user'           => 'Gestion des droits utilisateur',
 'userrights-user-editname'         => 'Entrez un nom d’utilisateur :',
 'editusergroup'                    => 'Modification des groupes utilisateurs',
-'editinguser'                      => 'Modification de $1',
+'editinguser'                      => "Modification des droits de l'utilisateur '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | 
+[[Special:Contributions/$1|{{int:contribslink}}]])",
 'userrights-editusergroup'         => 'Modifier les groupes de l’utilisateur',
 'saveusergroups'                   => 'Sauvegarder les groupes utilisateur',
 'userrights-groupsmember'          => 'Membre de :',
@@ -993,8 +994,8 @@ $2 Inclure les pages de redirection<br /> Rechercher $3 $9',
 'userrights-groupshelp'            => 'Choisissez les groupes desquels vous voulez retirer ou rajouter l’utilisateur. Les groupes non sélectionnés ne seront pas modifiés. Vous pouvez désélectionner un groupe avec CTRL + clic gauche.',
 'userrights-reason'                => 'Motif du changement :',
 'userrights-available-none'        => 'Vous ne pouvez pas changer l’appartenance aux différents groupes.',
-'userrights-available-add'         => 'Vous pouvez ajouter des utilisateurs à $1.',
-'userrights-available-remove'      => 'Vous pouvez enlever des utilisateurs de $1.',
+'userrights-available-add'         => 'Vous pouvez ajouter des utilisateurs à {{PLURAL:$2|ce groupe|ces groupes}}: $1.',
+'userrights-available-remove'      => 'Vous pouvez enlever des utilisateurs de {{PLURAL:$2|ce groupe|ces groupes}}: $1.',
 'userrights-available-add-self'    => 'Vous pouvez vous ajouter vous-même à {{PLURAL:$2|ce groupe|ces groupes}} : $1.',
 'userrights-available-remove-self' => 'Vous pouvez vous enlever vous-même de {{PLURAL:$2|ce groupe|ces groupes}} : $1.',
 'userrights-no-interwiki'          => "Vous n'êtes pas habilité pour modifier les droits des utilisateurs sur d'autres wikis.",
@@ -1234,6 +1235,7 @@ PICT # misc.
 'filedelete-reason-dropdown'  => '*Motifs de suppression habituels
 ** Violation de droit d’auteur
 ** Fichier dupliqué',
+'filedelete-edit-reasonlist'  => 'Modifie les motifs de la suppression',
 
 # MIME search
 'mimesearch'         => 'Recherche par type MIME',
@@ -1512,6 +1514,7 @@ L’heure indiquée est celle du serveur (UTC).',
 ** Demande de l'auteur
 ** Violation des droits d'auteur
 ** Vandalisme",
+'delete-edit-reasonlist'      => 'Modifie les motifs de la suppression',
 'delete-toobig'               => "Cette page dispose d'un historique important, dépassant $1 versions. La suppression de telles pages a été limitée afin d'éviter des perturbations accidentelles de {{SITENAME}}.",
 'delete-warning-toobig'       => "Cette page dispose d'un historique important, dépassant $1 versions. La supprimer peut perturber le fonctionnement de la base de donnée de {{SITENAME}}. À effectuer avec prudence.",
 'rollback'                    => 'révoquer modifications',
@@ -2378,9 +2381,6 @@ Veuillez confirmer que vous désirez recréer cet article.",
 'confirm_purge'        => 'Voulez-vous rafraîchir cette page (purger le cache) ? $1',
 'confirm_purge_button' => 'Confirmer',
 
-# Separators for various lists
-'colon-separator' => '&nbsp;:&#32;',
-
 # AJAX search
 'searchcontaining' => 'Chercher les articles contenant « $1 ».',
 'searchnamed'      => 'Chercher les articles nommés « $1 ».',
@@ -2481,5 +2481,8 @@ Essayez la prévisualisation normale.',
 'filepath-summary' => "Cette page affiche le chemin d'accès complet d’un fichier ; les images sont montrées en haute résolution, les fichiers audio et vidéo s’exécutent avec leur programme associé.
 
 Entrez le nom du fichier sans le préfixe « {{ns:image}}: »",
+
+# Unknown messages
+'colon-separator' => '&nbsp;:&#32;',
 
 );

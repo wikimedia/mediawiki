@@ -693,7 +693,6 @@ $2',
 'token_suffix_mismatch'     => '<strong>तुमचे संपादन रद्द करण्यात आलेले आहे कारण तुमच्या क्लायंटनी तुमच्या संपादनातील उद्गारवाचक चिन्हांमध्ये (punctuation) बदल केलेले आहेत. पानातील मजकूर खराब होऊ नये यासाठी संपादन रद्द करण्यात आलेले आहे. 
 असे कदाचित तुम्ही अनामिक proxy वापरत असल्याने होऊ शकते.</strong>',
 'editing'                   => '$1 चे संपादन होत आहे.',
-'editinguser'               => "सदस्य '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])चे सदस्य अधिकारात बदल केला जात आहे.",
 'editingsection'            => '$1 (विभाग) संपादन',
 'editingcomment'            => '$1 संपादन (प्रतिक्रीया)',
 'editconflict'              => 'वादग्रस्त संपादन: $1',
@@ -951,6 +950,7 @@ $3ने ''$2'' कारण दिले आहे.",
 'userrights-lookup-user'           => 'सदस्य गटांचे(ग्रूप्स) व्यवस्थापन करा.',
 'userrights-user-editname'         => 'सदस्य नाव टाका:',
 'editusergroup'                    => 'सदस्य गट (ग्रूप्स) संपादीत करा',
+'editinguser'                      => "सदस्य '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])चे सदस्य अधिकारात बदल केला जात आहे.",
 'userrights-editusergroup'         => 'सदस्य मंडळे संपादीत करा',
 'saveusergroups'                   => 'सदस्य मंडळ जतन करा',
 'userrights-groupsmember'          => '(चा) सभासद:',
@@ -1291,7 +1291,6 @@ Input:contenttype/subtype, e.g. <tt>image/jpeg</tt>.',
 'newpages'                => 'नवीन पाने',
 'newpages-username'       => 'सदस्य नाव:',
 'ancientpages'            => 'जुने लेख',
-'intl'                    => 'आंतर्भाषीय दुवे',
 'move'                    => 'स्थानांतरण',
 'movethispage'            => 'हे पान स्थानांतरित करा',
 'unusedimagestext'        => '<p>कृपया लक्षात घ्या की इतर संकेतस्थळे संचिकेशी थेट दुव्याने जोडल्या असू शकतात, त्यामुळे सक्रिय उपयोगात असून सुद्धा यादीत असू शकतात.</p>',
@@ -2310,7 +2309,7 @@ $3
 'recreate'            => 'पुर्ननिर्माण',
 
 # HTML dump
-'redirectingto' => '[$1]]कडे पुर्ननिर्देशीत...',
+'redirectingto' => '[[$1]]कडे पुर्ननिर्देशीत...',
 
 # action=purge
 'confirm_purge'        => 'यापानाची सय रिकामी करावयाची आहे?

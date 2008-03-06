@@ -14,7 +14,10 @@ $fallback = 'ka';
 
 $messages = array(
 # User preference toggles
-'tog-underline' => 'ხაზ გუსვი ბმულემც:',
+'tog-underline'   => 'ხაზ გუსვი ბმულემც:',
+'tog-justify'     => 'გაასწორი პარაგრაფეფ',
+'tog-hideminor'   => 'დოჩული ჭიჭე რედაქტირება ბოლო თირუემც',
+'tog-showtoolbar' => 'რედაქტირებაშ ინსტრუმენტეფიშ ძირაფა (ჯავასკრიპტ)',
 
 'underline-always' => 'ირო',
 'underline-never'  => 'შურო',
