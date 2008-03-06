@@ -154,7 +154,7 @@ class FileDeleteForm {
 
 			if ( $wgUser->isAllowed( 'editinterface' ) ) {
 				$skin = $wgUser->getSkin();
-				$link = $skin->makeLink ( 'MediaWiki:filedelete-reason-dropdown', wfMsgHtml( 'filedelete-edit-reasonlist' ) );
+				$link = $skin->makeLink ( 'MediaWiki:Filedelete-reason-dropdown', wfMsgHtml( 'filedelete-edit-reasonlist' ) );
 				$form .= '<p class="mw-filedelete-editreasons">' . $link . '</p>';
 			}
 

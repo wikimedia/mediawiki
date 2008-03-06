@@ -71,6 +71,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   back when using rollback
 * (bug 13012) Use content messages for block options when generating the
   recentchanges entry
+* (bug 13274) Change links for messages to ucfirst
 
 === API changes in 1.13 ===
 
