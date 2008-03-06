@@ -407,7 +407,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * dumpUploads.php options now actually supported
 * wfRelativePath() no longer includes spurious ".." when base path is "/"
 * wfRelativePath() now returns full path for differing Windows drives
-
+* (bug 13274) Change link for message to ucfirst
 
 == Parser changes in 1.12 ==
 
