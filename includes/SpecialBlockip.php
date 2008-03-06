@@ -75,7 +75,7 @@ class IPBlockForm {
 		if($wgSysopUserBans) {
 			$mIpaddress = Xml::label( wfMsg( 'ipadressorusername' ), 'mw-bi-target' );
 		} else {
-			$mIpaddress = Xml::label( wfMsg( 'ipadress' ), 'mw-bi-target' );
+			$mIpaddress = Xml::label( wfMsg( 'ipaddress' ), 'mw-bi-target' );
 		}
 		$mIpbexpiry = Xml::label( wfMsg( 'ipbexpiry' ), 'wpBlockExpiry' );
 		$mIpbother = Xml::label( wfMsg( 'ipbother' ), 'mw-bi-other' );
