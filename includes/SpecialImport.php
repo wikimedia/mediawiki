@@ -292,6 +292,18 @@ class WikiRevision {
 	function setMinor( $minor ) {
 		$this->minor = (bool)$minor;
 	}
+	
+	function setSrc( $src ) {
+		$this->src = $src;
+	}
+	
+	function setFilename( $filename ) {
+		$this->filename = $filename;
+	}
+	
+	function setSize( $size ) {
+		$this->size = intval( $size );
+	}
 
 	function getTitle() {
 		return $this->title;
@@ -319,6 +331,18 @@ class WikiRevision {
 
 	function getMinor() {
 		return $this->minor;
+	}
+	
+	function getSrc() {
+		return $this->src;
+	}
+	
+	function getFilename() {
+		return $this->filename;
+	}
+	
+	function getSize() {
+		return $this->size;
 	}
 
 	function importOldRevision() {
@@ -399,6 +423,93 @@ class WikiRevision {
 
 		return true;
 	}
+	
+	function importUpload() {
+		wfDebug( __METHOD__ . ": STUB\n" );
+		
+		/**
+			// from file revert...
+			$source = $this->file->getArchiveVirtualUrl( $this->oldimage );
+			$comment = $wgRequest->getText( 'wpComment' );
+			// TODO: Preserve file properties from database instead of reloading from file
+			$status = $this->file->upload( $source, $comment, $comment );
+			if( $status->isGood() ) {
+		*/
+		
+		/**
+			// from file upload...
+		$this->mLocalFile = wfLocalFile( $nt );
+		$this->mDestName = $this->mLocalFile->getName();
+		//....
+			$status = $this->mLocalFile->upload( $this->mTempPath, $this->mComment, $pageText,
+			File::DELETE_SOURCE, $this->mFileProps );
+			if ( !$status->isGood() ) {
+				$resultDetails = array( 'internal' => $status->getWikiText() );
+		*/
+		
+		// @fixme upload() uses $wgUser, which is wrong here
+		// it may also create a page without our desire, also wrong potentially.
+		// and, it will record a *current* upload, but we might want an archive version here
+		
+		$file = wfFindFile( $this->getTitle() );
+		if( !$file ) {
+			var_dump( $file );
+			wfDebug( "IMPORT: Bad file. :(\n" );
+			return false;
+		}
+		
+		$source = $this->downloadSource();
+		if( !$source ) {
+			wfDebug( "IMPORT: Could not fetch remote file. :(\n" );
+			return false;
+		}
+		
+		$status = $file->upload( $source,
+			$this->getComment(),
+			$this->getComment(), // Initial page, if none present...
+			File::DELETE_SOURCE,
+			false, // props...
+			$this->getTimestamp() );
+		
+		if( $status->isGood() ) {
+			// yay?
+			wfDebug( "IMPORT: is ok?\n" );
+			return true;
+		}
+		
+		wfDebug( "IMPORT: is bad? " . $status->getXml() . "\n" );
+		return false;
+
+	}
+	
+	function downloadSource() {
+		global $wgEnableUploads;
+		if( !$wgEnableUploads ) {
+			return false;
+		}
+		
+		$tempo = tempnam( wfTempDir(), 'download' );
+		$f = fopen( $tempo, 'wb' );
+		if( !$f ) {
+			wfDebug( "IMPORT: couldn't write to temp file $tempo\n" );
+			return false;
+		}
+		
+		// @fixme!
+		$src = $this->getSrc();
+		$data = Http::get( $src );
+		if( !$data ) {
+			wfDebug( "IMPORT: couldn't fetch source $src\n" );
+			fclose( $f );
+			unlink( $tempo );
+			return false;
+		}
+		
+		fwrite( $f, $data );
+		fclose( $f );
+		
+		return $tempo;
+	}
 
 }
 
@@ -407,15 +518,19 @@ class WikiRevision {
  * @addtogroup SpecialPage
  */
 class WikiImporter {
+	var $mDebug = false;
 	var $mSource = null;
 	var $mPageCallback = null;
 	var $mPageOutCallback = null;
 	var $mRevisionCallback = null;
+	var $mUploadCallback = null;
 	var $mTargetNamespace = null;
 	var $lastfield;
+	var $tagStack = array();
 
-	function WikiImporter( $source ) {
-		$this->setRevisionCallback( array( &$this, "importRevision" ) );
+	function __construct( $source ) {
+		$this->setRevisionCallback( array( $this, "importRevision" ) );
+		$this->setUploadCallback( array( $this, "importUpload" ) );
 		$this->mSource = $source;
 	}
 
@@ -454,7 +569,9 @@ class WikiImporter {
 	}
 
 	function debug( $data ) {
-		#wfDebug( "IMPORT: $data\n" );
+		if( $this->mDebug ) {
+			wfDebug( "IMPORT: $data\n" );
+		}
 	}
 
 	function notice( $data ) {
@@ -465,6 +582,13 @@ class WikiImporter {
 			global $wgOut;
 			$wgOut->addHTML( "<li>" . htmlspecialchars( $data ) . "</li>\n" );
 		}
+	}
+	
+	/**
+	 * Set debug mode...
+	 */
+	function setDebug( $debug ) {
+		$this->mDebug = $debug;
 	}
 
 	/**
@@ -503,6 +627,17 @@ class WikiImporter {
 		$this->mRevisionCallback = $callback;
 		return $previous;
 	}
+	
+	/**
+	 * Sets the action to perform as each file upload version is reached.
+	 * @param callable callback
+	 * @return callable
+	 */
+	function setUploadCallback( $callback ) {
+		$previous = $this->mUploadCallback;
+		$this->mUploadCallback = $callback;
+		return $previous;
+	}
 
 	/**
 	 * Set a target namespace to override the defaults
@@ -524,9 +659,18 @@ class WikiImporter {
 	 * @param WikiRevision $revision
 	 * @private
 	 */
-	function importRevision( &$revision ) {
+	function importRevision( $revision ) {
 		$dbw = wfGetDB( DB_MASTER );
-		return $dbw->deadlockLoop( array( &$revision, 'importOldRevision' ) );
+		return $dbw->deadlockLoop( array( $revision, 'importOldRevision' ) );
+	}
+	
+	/**
+	 * Dummy for now...
+	 */
+	function importUpload( $revision ) {
+		//$dbw = wfGetDB( DB_MASTER );
+		//return $dbw->deadlockLoop( array( $revision, 'importUpload' ) );
+		return false;
 	}
 
 	/**
@@ -592,8 +736,11 @@ class WikiImporter {
 		if( $name == 'siteinfo' ) {
 			xml_set_element_handler( $parser, "in_siteinfo", "out_siteinfo" );
 		} elseif( $name == 'page' ) {
+			$this->push( $name );
 			$this->workRevisionCount = 0;
 			$this->workSuccessCount = 0;
+			$this->uploadCount = 0;
+			$this->uploadSuccessCount = 0;
 			xml_set_element_handler( $parser, "in_page", "out_page" );
 		} else {
 			return $this->throwXMLerror( "Expected <page>, got <$name>" );
@@ -639,11 +786,11 @@ class WikiImporter {
 		case "restrictions":
 			$this->appendfield = $name;
 			$this->appenddata = "";
-			$this->parenttag = "page";
 			xml_set_element_handler( $parser, "in_nothing", "out_append" );
 			xml_set_character_data_handler( $parser, "char_append" );
 			break;
 		case "revision":
+			$this->push( "revision" );
 			if( is_object( $this->pageTitle ) ) {
 				$this->workRevision = new WikiRevision;
 				$this->workRevision->setTitle( $this->pageTitle );
@@ -654,6 +801,18 @@ class WikiImporter {
 			}
 			xml_set_element_handler( $parser, "in_revision", "out_revision" );
 			break;
+		case "upload":
+			$this->push( "upload" );
+			if( is_object( $this->pageTitle ) ) {
+				$this->workRevision = new WikiRevision;
+				$this->workRevision->setTitle( $this->pageTitle );
+				$this->uploadCount++;
+			} else {
+				// Skipping items due to invalid page title
+				$this->workRevision = null;
+			}
+			xml_set_element_handler( $parser, "in_upload", "out_upload" );
+			break;
 		default:
 			return $this->throwXMLerror( "Element <$name> not allowed in a <page>." );
 		}
@@ -661,6 +820,7 @@ class WikiImporter {
 
 	function out_page( $parser, $name ) {
 		$this->debug( "out_page $name" );
+		$this->pop();
 		if( $name != "page" ) {
 			return $this->throwXMLerror( "Expected </page>, got </$name>" );
 		}
@@ -690,8 +850,6 @@ class WikiImporter {
 		if( $name != $this->appendfield ) {
 			return $this->throwXMLerror( "Expected </{$this->appendfield}>, got </$name>" );
 		}
-		xml_set_element_handler( $parser, "in_$this->parenttag", "out_$this->parenttag" );
-		xml_set_character_data_handler( $parser, "donothing" );
 
 		switch( $this->appendfield ) {
 		case "title":
@@ -711,7 +869,7 @@ class WikiImporter {
 			}
 			break;
 		case "id":
-			if ( $this->parenttag == 'revision' ) {
+			if ( $this->parentTag() == 'revision' ) {
 				if( $this->workRevision )
 					$this->workRevision->setID( $this->appenddata );
 			}
@@ -740,11 +898,27 @@ class WikiImporter {
 			if( $this->workRevision )
 				$this->workRevision->setMinor( true );
 			break;
+		case "filename":
+			if( $this->workRevision )
+				$this->workRevision->setFilename( $this->appenddata );
+			break;
+		case "src":
+			if( $this->workRevision )
+				$this->workRevision->setSrc( $this->appenddata );
+			break;
+		case "size":
+			if( $this->workRevision )
+				$this->workRevision->setSize( intval( $this->appenddata ) );
+			break;
 		default:
 			$this->debug( "Bad append: {$this->appendfield}" );
 		}
 		$this->appendfield = "";
 		$this->appenddata = "";
+		
+		$parent = $this->parentTag();
+		xml_set_element_handler( $parser, "in_$parent", "out_$parent" );
+		xml_set_character_data_handler( $parser, "donothing" );
 	}
 
 	function in_revision( $parser, $name, $attribs ) {
@@ -755,12 +929,12 @@ class WikiImporter {
 		case "comment":
 		case "minor":
 		case "text":
-			$this->parenttag = "revision";
 			$this->appendfield = $name;
 			xml_set_element_handler( $parser, "in_nothing", "out_append" );
 			xml_set_character_data_handler( $parser, "char_append" );
 			break;
 		case "contributor":
+			$this->push( "contributor" );
 			xml_set_element_handler( $parser, "in_contributor", "out_contributor" );
 			break;
 		default:
@@ -770,6 +944,7 @@ class WikiImporter {
 
 	function out_revision( $parser, $name ) {
 		$this->debug( "out_revision $name" );
+		$this->pop();
 		if( $name != "revision" ) {
 			return $this->throwXMLerror( "Expected </revision>, got </$name>" );
 		}
@@ -777,9 +952,48 @@ class WikiImporter {
 
 		if( $this->workRevision ) {
 			$ok = call_user_func_array( $this->mRevisionCallback,
-				array( &$this->workRevision, &$this ) );
+				array( $this->workRevision, $this ) );
 			if( $ok ) {
 				$this->workSuccessCount++;
+			}
+		}
+	}
+	
+	function in_upload( $parser, $name, $attribs ) {
+		$this->debug( "in_upload $name" );
+		switch( $name ) {
+		case "timestamp":
+		case "comment":
+		case "text":
+		case "filename":
+		case "src":
+		case "size":
+			$this->appendfield = $name;
+			xml_set_element_handler( $parser, "in_nothing", "out_append" );
+			xml_set_character_data_handler( $parser, "char_append" );
+			break;
+		case "contributor":
+			$this->push( "contributor" );
+			xml_set_element_handler( $parser, "in_contributor", "out_contributor" );
+			break;
+		default:
+			return $this->throwXMLerror( "Element <$name> not allowed in an <upload>." );
+		}
+	}
+	
+	function out_upload( $parser, $name ) {
+		$this->debug( "out_revision $name" );
+		$this->pop();
+		if( $name != "upload" ) {
+			return $this->throwXMLerror( "Expected </upload>, got </$name>" );
+		}
+		xml_set_element_handler( $parser, "in_page", "out_page" );
+		
+		if( $this->workRevision ) {
+			$ok = call_user_func_array( $this->mUploadCallback,
+				array( $this->workRevision, $this ) );
+			if( $ok ) {
+				$this->workUploadSuccessCount++;
 			}
 		}
 	}
@@ -790,7 +1004,6 @@ class WikiImporter {
 		case "username":
 		case "ip":
 		case "id":
-			$this->parenttag = "contributor";
 			$this->appendfield = $name;
 			xml_set_element_handler( $parser, "in_nothing", "out_append" );
 			xml_set_character_data_handler( $parser, "char_append" );
@@ -802,10 +1015,29 @@ class WikiImporter {
 
 	function out_contributor( $parser, $name ) {
 		$this->debug( "out_contributor $name" );
+		$this->pop();
 		if( $name != "contributor" ) {
 			return $this->throwXMLerror( "Expected </contributor>, got </$name>" );
 		}
-		xml_set_element_handler( $parser, "in_revision", "out_revision" );
+		$parent = $this->parentTag();
+		xml_set_element_handler( $parser, "in_$parent", "out_$parent" );
+	}
+	
+	private function push( $name ) {
+		array_push( $this->tagStack, $name );
+		$this->debug( "PUSH $name" );
+	}
+	
+	private function pop() {
+		$name = array_pop( $this->tagStack );
+		$this->debug( "POP $name" );
+		return $name;
+	}
+	
+	private function parentTag() {
+		$name = $this->tagStack[count( $this->tagStack ) - 1];
+		$this->debug( "PARENT $name" );
+		return $name;
 	}
 
 }
@@ -815,7 +1047,7 @@ class WikiImporter {
  * @addtogroup SpecialPage
  */
 class ImportStringSource {
-	function ImportStringSource( $string ) {
+	function __construct( $string ) {
 		$this->mString = $string;
 		$this->mRead = false;
 	}
@@ -839,7 +1071,7 @@ class ImportStringSource {
  * @addtogroup SpecialPage
  */
 class ImportStreamSource {
-	function ImportStreamSource( $handle ) {
+	function __construct( $handle ) {
 		$this->mHandle = $handle;
 	}
 
