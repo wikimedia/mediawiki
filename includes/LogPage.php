@@ -211,7 +211,7 @@ class LogPage {
 							$params[1] = $wgContLang->translateBlockExpiry( $params[1] );
 						}
 						$params[2] = isset( $params[2] )
-										? self::formatBlockFlags( $params[2] )
+										? self::formatBlockFlags( $params[2], is_null( $skin ) )
 										: '';
 					}
 					$rv = wfMsgReal( $wgLogActions[$key], $params, true, !$skin );
@@ -275,13 +275,15 @@ class LogPage {
 	 * into a more readable (and translated) form
 	 *
 	 * @param $flags Flags to format
+	 * @param $forContent Whetever to localize the message depending of the user
+	 *                    language
 	 * @return string
 	 */
-	public static function formatBlockFlags( $flags ) {
+	public static function formatBlockFlags( $flags, $forContent = false ) {
 		$flags = explode( ',', trim( $flags ) );
 		if( count( $flags ) > 0 ) {
 			for( $i = 0; $i < count( $flags ); $i++ )
-				$flags[$i] = self::formatBlockFlag( $flags[$i] );
+				$flags[$i] = self::formatBlockFlag( $flags[$i], $forContent );
 			return '(' . implode( ', ', $flags ) . ')';
 		} else {
 			return '';
@@ -292,13 +294,18 @@ class LogPage {
 	 * Translate a block log flag if possible
 	 *
 	 * @param $flag Flag to translate
+	 * @param $forContent Whetever to localize the message depending of the user
+	 *                    language
 	 * @return string
 	 */
-	public static function formatBlockFlag( $flag ) {
+	public static function formatBlockFlag( $flag, $forContent = false ) {
 		static $messages = array();
 		if( !isset( $messages[$flag] ) ) {
 			$k = 'block-log-flags-' . $flag;
-			$msg = wfMsg( $k );
+			if( $forContent )
+				$msg = wfMsgForContent( $k );
+			else
+				$msg = wfMsg( $k );
 			$messages[$flag] = htmlspecialchars( wfEmptyMsg( $k, $msg ) ? $flag : $msg );
 		}
 		return $messages[$flag];
