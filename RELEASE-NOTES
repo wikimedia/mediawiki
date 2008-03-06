@@ -72,6 +72,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 13012) Use content messages for block options when generating the
   recentchanges entry
 * (bug 13274) Change links for messages to ucfirst
+* (bug 13273) "Categories:" message at the bottom of the page shouldn't have
+  hardcoded colon (changed message name 'pagecategories' to 'page-categories')
 
 === API changes in 1.13 ===
 

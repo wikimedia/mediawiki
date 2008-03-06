@@ -172,7 +172,7 @@ $messages = array(
 
 # Bits of text used by many pages
 'categories'               => 'Categorïau',
-'pagecategories'           => '{{PLURAL:$1|Categori|Categori|Categorïau|Categorïau|Categorïau|Categorïau}}',
+'page-categories'           => '{{PLURAL:$1|Categori|Categori|Categorïau|Categorïau|Categorïau|Categorïau}}:&#32;',
 'category_header'          => 'Erthyglau yn y categori "$1"',
 'subcategories'            => 'Is-categorïau',
 'category-media-header'    => "Cyfryngau yn y categori '$1'",

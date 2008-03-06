@@ -231,7 +231,7 @@ $messages = array(
 
 # Bits of text used by many pages
 'categories'               => 'Thể loại',
-'pagecategories'           => 'Thể loại ($1)',
+'page-categories'           => 'Thể loại ($1):&#32;',
 'category_header'          => 'Các trang trong thể loại “$1”',
 'subcategories'            => 'Tiểu thể loại',
 'category-media-header'    => 'Các tập tin trong thể loại “$1”',

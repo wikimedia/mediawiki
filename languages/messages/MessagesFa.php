@@ -370,7 +370,7 @@ $messages = array(
 
 # Bits of text used by many pages
 'categories'               => 'رده‌های صفحه',
-'pagecategories'           => '{{PLURAL:$1|رده‌های صفحه|رده‌های صفحه}}',
+'page-categories'           => '{{PLURAL:$1|رده‌های صفحه|رده‌های صفحه}}:&#32;',
 'category_header'          => 'مقاله‌های ردهٔ «$1»',
 'subcategories'            => 'زیررده‌ها',
 'category-media-header'    => 'پرونده‌های ردهٔ «$1»',

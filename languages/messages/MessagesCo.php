@@ -64,7 +64,7 @@ $messages = array(
 
 # Bits of text used by many pages
 'categories'      => 'Categurie',
-'pagecategories'  => '{{PLURAL:$1|Categuria|Categurie}}',
+'page-categories'  => '{{PLURAL:$1|Categuria|Categurie}}:&#32;',
 'category_header' => 'Articuli in a categuria "$1"',
 'subcategories'   => 'Sottucategurie',
 

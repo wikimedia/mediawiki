@@ -114,7 +114,7 @@ $messages = array(
 
 # Bits of text used by many pages
 'categories'               => 'Категориет',
-'pagecategories'           => '{{PLURAL:$1|Категорие|Категориет}}',
+'page-categories'           => '{{PLURAL:$1|Категорие|Категориет}}:&#32;',
 'category_header'          => '"$1" категориеса лопатне',
 'subcategories'            => 'Субкатегориет',
 'category-media-header'    => '"$1" категориеса медиясь',

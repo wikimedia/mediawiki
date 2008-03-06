@@ -76,7 +76,7 @@ $messages = array(
 
 # Bits of text used by many pages
 'categories'            => 'Klynger',
-'pagecategories'        => '{{PLURAL:$1|Klynge|Klynger}}',
+'page-categories'        => '{{PLURAL:$1|Klynge|Klynger}}:&#32;',
 'category_header'       => 'Ertikler i\'n klynge "$1"',
 'subcategories'         => 'Underklynger',
 'category-media-header' => "Medier i'n klynge „$1“",

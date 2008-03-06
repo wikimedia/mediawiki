@@ -167,7 +167,7 @@ $messages = array(
 
 # Bits of text used by many pages
 'categories'               => '類',
-'pagecategories'           => '$1類',
+'page-categories'           => '$1類:&#32;',
 'category_header'          => '"$1"',
 'subcategories'            => '次類',
 'category-media-header'    => '"$1"',

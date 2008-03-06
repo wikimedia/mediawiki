@@ -502,7 +502,7 @@ $messages = array(
 
 # Bits of text used by many pages
 'categories'            => 'ساناتتار',
-'pagecategories'        => '{{PLURAL:$1|سانات|ساناتتار}}',
+'page-categories'        => '{{PLURAL:$1|سانات|ساناتتار}}:&#32;',
 'category_header'       => '«$1» ساناتىنداعى بەتتەر',
 'subcategories'         => 'ساناتشالار',
 'category-media-header' => '«$1» ساناتىنداعى تاسپالار',

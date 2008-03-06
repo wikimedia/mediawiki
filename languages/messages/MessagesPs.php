@@ -155,7 +155,7 @@ $messages = array(
 
 # Bits of text used by many pages
 'categories'               => 'وېشنيزې',
-'pagecategories'           => '{{PLURAL:$1|وېشنيزه|وېشنيزې}}',
+'page-categories'           => '{{PLURAL:$1|وېشنيزه|وېشنيزې}}:&#32;',
 'category_header'          => 'د "$1" په وېشنيزه کې شته مخونه',
 'subcategories'            => 'وړې-وېشنيزې',
 'category-media-header'    => '"$1" رسنۍ په وېشنيزه کې',

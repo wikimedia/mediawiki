@@ -75,7 +75,7 @@ $messages = array(
 
 # Bits of text used by many pages
 'categories'            => 'Karegorijeh',
-'pagecategories'        => '{{PLURAL:$1|Kategorije|Kategorijeh}}',
+'page-categories'        => '{{PLURAL:$1|Kategorije|Kategorijeh}}:&#32;',
 'category_header'       => 'Bielie sïjse kategorije "$1"',
 'subcategories'         => 'Subkategorijeh',
 'category-media-header' => 'Guvvie sïjse karegorije "$1"',

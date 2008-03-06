@@ -314,7 +314,7 @@ $messages = array(
 
 # Bits of text used by many pages
 'categories'            => 'Flokkar',
-'pagecategories'        => '{{PLURAL:$1|Flokkur|Flokkar}}',
+'page-categories'        => '{{PLURAL:$1|Flokkur|Flokkar}}:&#32;',
 'category_header'       => 'Greinar í flokknum „$1“',
 'subcategories'         => 'Undirflokkar',
 'category-media-header' => 'Margmiðlunarefni í flokknum „$1“',

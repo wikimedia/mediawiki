@@ -43,7 +43,7 @@ $messages = array(
 'dec'       => 'dec',
 
 # Bits of text used by many pages
-'pagecategories'  => '{{PLURAL:$1|Categorie|Categories}}',
+'page-categories'  => '{{PLURAL:$1|Categorie|Categories}}:&#32;',
 'category_header' => 'Articules in categorie "$1"',
 
 'mainpagetext' => "<big>'''Software del wiki installat con successe.'''</big>",

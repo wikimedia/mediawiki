@@ -109,7 +109,7 @@ $messages = array(
 
 # Bits of text used by many pages
 'categories'      => 'Lūi-pia̍t',
-'pagecategories'  => '{{PLURAL:$1|Lūi-pia̍t|Lūi-pia̍t}}',
+'page-categories'  => '{{PLURAL:$1|Lūi-pia̍t|Lūi-pia̍t}}:&#32;',
 'category_header' => 'Tī "$1" chit ê lūi-pia̍t ê bûn-chiuⁿ',
 'subcategories'   => 'Ē-lūi-pia̍t',
 

@@ -113,7 +113,7 @@ $messages = array(
 
 # Bits of text used by many pages
 'categories'            => 'Classes',
-'pagecategories'        => '{{PLURAL:$1|Classe|Classes}}',
+'page-categories'        => '{{PLURAL:$1|Classe|Classes}}:&#32;',
 'category_header'       => 'Articles dans classe "$1"',
 'subcategories'         => 'Sous-classes',
 'category-media-header' => 'Média dans classe "$1"',

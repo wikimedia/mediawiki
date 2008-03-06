@@ -370,7 +370,7 @@ $messages = array(
 
 # Bits of text used by many pages
 'categories'               => 'Categorieën',
-'pagecategories'           => '{{PLURAL:$1|Categorie|Categorieën}}',
+'page-categories'           => '{{PLURAL:$1|Categorie|Categorieën}}:&#32;',
 'category_header'          => 'Pagina’s in categorie “$1”',
 'subcategories'            => 'Ondercategorieën',
 'category-media-header'    => 'Media in categorie “$1”',

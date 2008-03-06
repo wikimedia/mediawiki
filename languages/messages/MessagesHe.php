@@ -395,7 +395,7 @@ $messages = array(
 
 # Bits of text used by many pages
 'categories'               => 'קטגוריות',
-'pagecategories'           => '{{plural:$1|קטגוריה|קטגוריות}}',
+'page-categories'           => '{{plural:$1|קטגוריה|קטגוריות}}:&#32;',
 'category_header'          => 'דפים בקטגוריה "$1"',
 'subcategories'            => 'קטגוריות משנה',
 'category-media-header'    => 'קובצי מדיה בקטגוריה "$1"',

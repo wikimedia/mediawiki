@@ -53,7 +53,7 @@ $messages = array(
 
 # Bits of text used by many pages
 'categories'      => 'Категоритæ',
-'pagecategories'  => 'Категоритæ',
+'page-categories'  => 'Категоритæ:&#32;',
 'category_header' => 'Категори "$1"',
 'subcategories'   => 'Дæлкатегоритæ',
 

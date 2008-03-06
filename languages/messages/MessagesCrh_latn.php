@@ -208,7 +208,7 @@ $messages = array(
 
 # Bits of text used by many pages
 'categories'            => 'Saife kategoriyaları',
-'pagecategories'        => '{{PLURAL:$1|Saifeniñ kategoriyası|Saifeniñ kategoriyaları}}',
+'page-categories'        => '{{PLURAL:$1|Saifeniñ kategoriyası|Saifeniñ kategoriyaları}}:&#32;',
 'category_header'       => '"$1" kategoriyasındaki saifeler',
 'subcategories'         => 'Alt kategoriyalar',
 'category-media-header' => '"$1" kategoriyasındaki media faylları',

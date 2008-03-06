@@ -357,7 +357,7 @@ $messages = array(
 
 # Bits of text used by many pages
 'categories'               => 'Kategóriák',
-'pagecategories'           => '{{PLURAL:$1|Kategória|Kategóriák}}',
+'page-categories'           => '{{PLURAL:$1|Kategória|Kategóriák}}:&#32;',
 'category_header'          => '„$1” kategória szócikkei',
 'subcategories'            => 'Alkategóriák',
 'category-media-header'    => 'A(z) „$1” kategóriába tartozó médiafájlok',

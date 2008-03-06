@@ -137,7 +137,7 @@ $messages = array(
 
 # Bits of text used by many pages
 'categories'            => 'Kategori',
-'pagecategories'        => '{{PLURAL:$1|Kategori|Kategori}}',
+'page-categories'        => '{{PLURAL:$1|Kategori|Kategori}}:&#32;',
 'category_header'       => 'Artikel-artikel na kategori "$1"',
 'subcategories'         => 'Subkategori',
 'category-media-header' => 'Média dina kategori "$1"',

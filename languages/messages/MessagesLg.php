@@ -68,7 +68,7 @@ $messages = array(
 
 # Bits of text used by many pages
 'categories'            => 'Amatuluba',
-'pagecategories'        => '{{PLURAL:$1|Tuluba|Matuluba}}',
+'page-categories'        => '{{PLURAL:$1|Tuluba|Matuluba}}:&#32;',
 'category_header'       => 'Empapula eziri mu ttuluba lya "$1"',
 'subcategories'         => 'Amatabi',
 'category-media-header' => 'Mediya eziri mu ttuluba lya "$1"',

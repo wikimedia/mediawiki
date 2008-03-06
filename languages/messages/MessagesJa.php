@@ -160,7 +160,7 @@ $messages = array(
 
 # Bits of text used by many pages
 'categories'               => 'カテゴリ',
-'pagecategories'           => 'カテゴリ',
+'page-categories'           => 'カテゴリ:&#32;',
 'category_header'          => 'カテゴリ “$1” にあるページ',
 'subcategories'            => 'サブカテゴリ',
 'category-media-header'    => 'カテゴリ “$1” にあるメディア',

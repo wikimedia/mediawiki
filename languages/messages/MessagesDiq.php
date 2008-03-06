@@ -113,7 +113,7 @@ href="" class="internal"}?{/a}) bımocne.',
 
 # Bits of text used by many pages
 'categories'            => '{{PLURAL:$1|Kategoriye|Kategoriy}}',
-'pagecategories'        => '{{PLURAL:$1|Kategoriya|Kategoriyê}} perre',
+'page-categories'        => '{{PLURAL:$1|Kategoriya|Kategoriyê}} perre:&#32;',
 'category_header'       => 'Nuşteyê ke kategoriya "$1"(-i/-an) derê.',
 'subcategories'         => 'Kategoriyê bınêni',
 'category-media-header' => 'Medyawa ke kategoriya "$1" (-i/-an) dera',

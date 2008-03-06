@@ -138,7 +138,7 @@ $messages = array(
 
 # Bits of text used by many pages
 'categories'               => 'Categorías',
-'pagecategories'           => '{{PLURAL:$1|Categoría|Categorías}}',
+'page-categories'           => '{{PLURAL:$1|Categoría|Categorías}}:&#32;',
 'category_header'          => 'Artigos na categoría "$1"',
 'subcategories'            => 'Subcategorías',
 'category-media-header'    => 'Multimedia na categoría "$1"',

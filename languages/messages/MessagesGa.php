@@ -194,7 +194,7 @@ $messages = array(
 
 # Bits of text used by many pages
 'categories'            => 'Catagóirí',
-'pagecategories'        => '{{PLURAL:$1|Catagóir|Catagóirí}}',
+'page-categories'        => '{{PLURAL:$1|Catagóir|Catagóirí}}:&#32;',
 'category_header'       => 'Ailt sa chatagóir "$1"',
 'subcategories'         => 'Fo-chatagóirí',
 'category-media-header' => 'Meáin sa chatagóir "$1"',

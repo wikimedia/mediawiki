@@ -327,7 +327,7 @@ $messages = array(
 
 # Bits of text used by many pages
 'categories'               => 'Категории',
-'pagecategories'           => '{{PLURAL:$1|Категория|Категории}}',
+'page-categories'           => '{{PLURAL:$1|Категория|Категории}}:&#32;',
 'category_header'          => 'Статьи в категории «$1»',
 'subcategories'            => 'Подкатегории',
 'category-media-header'    => 'Файлы в категории «$1»',

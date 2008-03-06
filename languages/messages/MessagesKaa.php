@@ -185,7 +185,7 @@ $messages = array(
 
 # Bits of text used by many pages
 'categories'            => 'Kategoriyalar',
-'pagecategories'        => '{{PLURAL:$1|Kategoriya|Kategoriyalar}}',
+'page-categories'        => '{{PLURAL:$1|Kategoriya|Kategoriyalar}}:&#32;',
 'category_header'       => '"$1" kategoriyasindag\'ı betler',
 'subcategories'         => 'Podkategoriyalar',
 'category-media-header' => '"$1" kategoriyasindag\'ı media',

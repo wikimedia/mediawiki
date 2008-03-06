@@ -209,7 +209,7 @@ $messages = array(
 
 # Bits of text used by many pages
 'categories'            => 'Саифе категориялары',
-'pagecategories'        => '{{PLURAL:$1|Саифенинъ категориясы|Саифенинъ категориялары}}',
+'page-categories'        => '{{PLURAL:$1|Саифенинъ категориясы|Саифенинъ категориялары}}:&#32;',
 'category_header'       => '"$1" категориясындаки саифелер',
 'subcategories'         => 'Алт категориялар',
 'category-media-header' => '"$1" категориясындаки медиа файллары',

@@ -115,7 +115,7 @@ $messages = array(
 
 # Bits of text used by many pages
 'categories'            => 'Categories',
-'pagecategories'        => '{{PLURAL:$1|Category|Categories}}',
+'page-categories'        => '{{PLURAL:$1|Category|Categories}}:&#32;',
 'category_header'       => 'Pages in category "$1"',
 'subcategories'         => 'Subcategories',
 'category-media-header' => 'Eetems in category "$1"',

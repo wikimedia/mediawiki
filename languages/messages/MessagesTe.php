@@ -161,7 +161,7 @@ $messages = array(
 
 # Bits of text used by many pages
 'categories'               => 'వర్గాలు',
-'pagecategories'           => '{{PLURAL:$1|వర్గం|వర్గాలు}}',
+'page-categories'           => '{{PLURAL:$1|వర్గం|వర్గాలు}}:&#32;',
 'category_header'          => '"$1" వర్గంలో వ్యాసాలు',
 'subcategories'            => 'ఉపవర్గాలు',
 'category-media-header'    => '"$1" వర్గంలో ఉన్న మీడియా ఫైళ్లు',

@@ -168,7 +168,7 @@ $messages = array(
 
 # Bits of text used by many pages
 'categories'            => 'Kategoryen',
-'pagecategories'        => '{{PLURAL:$1|Kategory|Kategoryen}}',
+'page-categories'        => '{{PLURAL:$1|Kategory|Kategoryen}}:&#32;',
 'category_header'       => 'Siden yn kategory "$1"',
 'subcategories'         => 'Underkategoryen',
 'category-media-header' => 'Media yn kategory "$1"',

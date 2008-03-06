@@ -77,7 +77,7 @@ $messages = array(
 
 # Bits of text used by many pages
 'categories'      => 'Sokajy',
-'pagecategories'  => '{{PLURAL:$1|Sokajy|Sokajy}}',
+'page-categories'  => '{{PLURAL:$1|Sokajy|Sokajy}}:&#32;',
 'category_header' => 'Ireo lahatsoratra ao amin\'ny sokajy "$1"',
 'subcategories'   => 'Zana-tsokajy',
 

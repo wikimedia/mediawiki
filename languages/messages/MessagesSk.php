@@ -254,7 +254,7 @@ $messages = array(
 
 # Bits of text used by many pages
 'categories'               => '{{PLURAL:$1|Kategória|Kategórie|Kategórie}}',
-'pagecategories'           => '{{PLURAL:$1|Kategória|Kategórie|Kategórie}}',
+'page-categories'           => '{{PLURAL:$1|Kategória|Kategórie|Kategórie}}:&#32;',
 'category_header'          => 'stránky v kategórii „$1“',
 'subcategories'            => 'Podkategórie',
 'category-media-header'    => 'Multimediálne súbory v kategórii „$1“',

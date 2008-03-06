@@ -176,7 +176,7 @@ $messages = array(
 
 # Bits of text used by many pages
 'categories'               => 'Categorias de la pagina',
-'pagecategories'           => '{{PLURAL:$1|Categoria|Categorias}} de la pagina',
+'page-categories'           => '{{PLURAL:$1|Categoria|Categorias}} de la pagina:&#32;',
 'category_header'          => 'Articles dins la categoria "$1"',
 'subcategories'            => 'Soscategorias',
 'category-media-header'    => 'Fichièrs multimèdia dins la categoria "$1"',

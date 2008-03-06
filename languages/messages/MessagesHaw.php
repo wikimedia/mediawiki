@@ -76,7 +76,7 @@ $messages = array(
 
 # Bits of text used by many pages
 'categories'            => 'Nā mahele',
-'pagecategories'        => '{{PLURAL:$1|Mahele|Nā mahele}}',
+'page-categories'        => '{{PLURAL:$1|Mahele|Nā mahele}}:&#32;',
 'category_header'       => 'Nā mo‘olelo maloko o ka mahele "$1"',
 'subcategories'         => 'Nā lalo-mahele',
 'category-media-header' => 'Nā pāpaho maloko o ka mahele "$1"',

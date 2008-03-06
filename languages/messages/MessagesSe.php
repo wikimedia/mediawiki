@@ -108,7 +108,7 @@ $messages = array(
 
 # Bits of text used by many pages
 'categories'            => 'Luohkát',
-'pagecategories'        => '{{PLURAL:$1|Luohkká|Luohkát}}',
+'page-categories'        => '{{PLURAL:$1|Luohkká|Luohkát}}:&#32;',
 'category_header'       => 'Siiddut, mat gullet luohkkái $1',
 'subcategories'         => 'Vuolleluohkát',
 'category-media-header' => 'Fiillat luohkás ”$1”',
