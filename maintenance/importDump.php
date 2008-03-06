@@ -31,6 +31,7 @@ class BackupReader {
 	var $pageCount = 0;
 	var $revCount  = 0;
 	var $dryRun    = false;
+	var $debug     = false;
 
 	function BackupReader() {
 		$this->stderr = fopen( "php://stderr", "wt" );
@@ -55,6 +56,16 @@ class BackupReader {
 
 		if( !$this->dryRun ) {
 			call_user_func( $this->importCallback, $rev );
+		}
+	}
+	
+	function handleUpload( $data ) {
+		$this->uploadCount++;
+		//$this->report();
+		$this->progress( "upload: " . $data->getFilename() );
+		
+		if( !$this->dryRun ) {
+			call_user_func( $this->uploadCallback, $data );
 		}
 	}
 
@@ -101,9 +112,12 @@ class BackupReader {
 		$source = new ImportStreamSource( $handle );
 		$importer = new WikiImporter( $source );
 
+		$importer->setDebug( $this->debug );
 		$importer->setPageCallback( array( &$this, 'reportPage' ) );
 		$this->importCallback =  $importer->setRevisionCallback(
 			array( &$this, 'handleRevision' ) );
+		$this->uploadCallback = $importer->setUploadCallback(
+			array( &$this, 'handleUpload' ) );
 
 		return $importer->doImport();
 	}
@@ -122,6 +136,9 @@ if( isset( $options['report'] ) ) {
 }
 if( isset( $options['dry-run'] ) ) {
 	$reader->dryRun = true;
+}
+if( isset( $options['debug'] ) ) {
+	$reader->debug = true;
 }
 
 if( isset( $args[0] ) ) {

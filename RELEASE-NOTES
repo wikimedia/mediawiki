@@ -69,6 +69,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 13110) Don't show "Permission error" page if the edit is already rolled
   back when using rollback
 
+
 === API changes in 1.13 ===
 
 * Fixing main page display in meta=siteinfo
