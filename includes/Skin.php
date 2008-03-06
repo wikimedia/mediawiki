@@ -626,7 +626,7 @@ END;
 	}
 
 
-	function getCategoryLinks () {
+	function getCategoryLinks() {
 		global $wgOut, $wgTitle, $wgUseCategoryBrowser;
 		global $wgContLang, $wgUser;
 
@@ -643,13 +643,14 @@ END;
 
 		$allCats = $wgOut->getCategoryLinks();
 		$s = '';
+		$colon = wfMsgExt( 'colon-separator', 'escapenoentities' );
 		if ( !empty( $allCats['normal'] ) ) {
 			$t = $embed . implode ( "{$pop} {$sep} {$embed}" , $allCats['normal'] ) . $pop;
 	
-			$msg = wfMsgExt( 'pagecategories', array( 'parsemag', 'escape' ), count( $allCats['normal'] ) );
+			$msg = wfMsgExt( 'pagecategories', array( 'parsemag', 'escapenoentities' ), count( $allCats['normal'] ) );
 			$s .= '<div id="mw-normal-catlinks">' .
 				$this->makeLinkObj( Title::newFromText( wfMsgForContent('pagecategorieslink') ), $msg )
-				. ': ' . $t . '</div>';
+				. $colon . $t . '</div>';
 		}
 
 		# Hidden categories
@@ -662,8 +663,8 @@ END;
 				$class = 'mw-hidden-cats-hidden';
 			}
 			$s .= "<div id=\"mw-hidden-catlinks\" class=\"$class\">" . 
-				wfMsgExt( 'hidden-categories', array( 'parsemag', 'escape' ), count( $allCats['hidden'] ) ) . 
-				': ' . $embed . implode( "$pop $sep $embed", $allCats['hidden'] ) . $pop .
+				wfMsgExt( 'hidden-categories', array( 'parsemag', 'escapenoentities' ), count( $allCats['hidden'] ) ) . 
+				$colon . $embed . implode( "$pop $sep $embed", $allCats['hidden'] ) . $pop .
 				"</div>";
 		}
 
