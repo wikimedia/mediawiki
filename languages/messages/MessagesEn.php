@@ -1412,8 +1412,8 @@ To include a file in a page, use a link in the form
 'filename'                    => 'Filename',
 'filedesc'                    => 'Summary',
 'fileuploadsummary'           => 'Summary:',
-'filestatus'                  => 'Copyright status',
-'filesource'                  => 'Source',
+'filestatus'                  => 'Copyright status:',
+'filesource'                  => 'Source:',
 'uploadedfiles'               => 'Uploaded files',
 'ignorewarning'               => 'Ignore warning and save file anyway.',
 'ignorewarnings'              => 'Ignore any warnings',
@@ -1450,8 +1450,8 @@ If you have this image in full resolution upload this one, otherwise change the 
 'uploadscripted'              => 'This file contains HTML or script code that may be erroneously interpreted by a web browser.',
 'uploadcorrupt'               => 'The file is corrupt or has an incorrect extension. Please check the file and upload again.',
 'uploadvirus'                 => 'The file contains a virus! Details: $1',
-'sourcefilename'              => 'Source filename',
-'destfilename'                => 'Destination filename',
+'sourcefilename'              => 'Source filename:',
+'destfilename'                => 'Destination filename:',
 'watchthisupload'             => 'Watch this page',
 'filewasdeleted'              => 'A file of this name has been previously uploaded and subsequently deleted. You should check the $1 before proceeding to upload it again.',
 'upload-wasdeleted'           => "'''Warning: You are uploading a file that was previously deleted.'''
@@ -1487,7 +1487,7 @@ PICT # misc.
 'upload-curl-error28'      => 'Upload timeout',
 'upload-curl-error28-text' => 'The site took too long to respond. Please check the site is up, wait a short while and try again. You may want to try at a less busy time.',
 
-'license'            => 'Licensing',
+'license'            => 'Licensing:',
 'nolicense'          => 'None selected',
 'licenses'           => '-', # don't translate or duplicate this message to other languages
 'license-nopreview'  => '(Preview not available)',
