@@ -20,6 +20,7 @@ class ParserOptions
 	var $mAllowSpecialInclusion;     # Allow inclusion of special pages
 	var $mTidy;                      # Ask for tidy cleanup
 	var $mInterfaceMessage;          # Which lang to call for PLURAL and GRAMMAR
+	var $mTargetLanguage;            # Overrides above setting with arbitrary language
 	var $mMaxIncludeSize;            # Maximum size of template expansions, in bytes
 	var $mMaxPPNodeCount;            # Maximum number of nodes touched by PPFrame::expand()
 	var $mMaxTemplateDepth;          # Maximum recursion depth for templates within templates
@@ -40,6 +41,7 @@ class ParserOptions
 	function getAllowSpecialInclusion()         { return $this->mAllowSpecialInclusion; }
 	function getTidy()                          { return $this->mTidy; }
 	function getInterfaceMessage()              { return $this->mInterfaceMessage; }
+	function getTargetLanguage()                { return $this->mTargetLanguage; }
 	function getMaxIncludeSize()                { return $this->mMaxIncludeSize; }
 	function getMaxPPNodeCount()                { return $this->mMaxPPNodeCount; }
 	function getMaxTemplateDepth()              { return $this->mMaxTemplateDepth; }
@@ -80,6 +82,7 @@ class ParserOptions
 	function setTidy( $x )                      { return wfSetVar( $this->mTidy, $x); }
 	function setSkin( $x )                      { $this->mSkin = $x; }
 	function setInterfaceMessage( $x )          { return wfSetVar( $this->mInterfaceMessage, $x); }
+	function setTargetLanguage( $x )            { return wfSetVar( $this->mTargetLanguage, $x); }
 	function setMaxIncludeSize( $x )            { return wfSetVar( $this->mMaxIncludeSize, $x ); }
 	function setMaxPPNodeCount( $x )            { return wfSetVar( $this->mMaxPPNodeCount, $x ); }
 	function setMaxTemplateDepth( $x )          { return wfSetVar( $this->mMaxTemplateDepth, $x ); }
@@ -132,6 +135,7 @@ class ParserOptions
 		$this->mAllowSpecialInclusion = $wgAllowSpecialInclusion;
 		$this->mTidy = false;
 		$this->mInterfaceMessage = false;
+		$this->mTargetLanguage = null; // default depends on InterfaceMessage setting
 		$this->mMaxIncludeSize = $wgMaxArticleSize * 1024;
 		$this->mMaxPPNodeCount = $wgMaxPPNodeCount;
 		$this->mMaxTemplateDepth = $wgMaxTemplateDepth;

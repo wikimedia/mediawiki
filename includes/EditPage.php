@@ -1494,7 +1494,7 @@ END
 	 * @todo document
 	 */
 	function getPreviewText() {
-		global $wgOut, $wgUser, $wgTitle, $wgParser;
+		global $wgOut, $wgUser, $wgTitle, $wgParser, $wgLang, $wgContLang;
 
 		$fname = 'EditPage::getPreviewText';
 		wfProfileIn( $fname );
@@ -1542,7 +1542,26 @@ END
 				$toparse="== {$this->summary} ==\n\n".$toparse;
 			}
 
-			if ( $this->mMetaData != "" ) $toparse .= "\n" . $this->mMetaData ;
+			if ( $this->mMetaData != "" ) $toparse .= "\n" . $this->mMetaData;
+
+			// Parse mediawiki messages with correct target language
+			if ( $this->mTitle->getNamespace() == NS_MEDIAWIKI ) {
+				$pos = strrpos( $this->mTitle->getText(), '/' );
+				if ( $pos !== false ) {
+					$code = substr( $this->mTitle->getText(), $pos+1 );
+					switch ($code) {
+						case $wgLang->getCode():
+							$obj = $wgLang; break;
+						case $wgContLang->getCode():
+							$obj = $wgContLang; break;
+						default:
+							$obj = Language::factory( $code );
+					}
+					$parserOptions->setTargetLanguage( $obj );
+				}
+			}
+
+
 			$parserOptions->setTidy(true);
 			$parserOptions->enableLimitReport();
 			$parserOutput = $wgParser->parse( $this->mArticle->preSaveTransform( $toparse ) ."\n\n",
