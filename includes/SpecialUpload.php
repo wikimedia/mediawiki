@@ -1060,19 +1060,20 @@ wgAjaxLicensePreview = {$alp};
 		$encComment = htmlspecialchars( $this->mComment );
 		$align1 = $wgContLang->isRTL() ? 'left' : 'right';
 		$align2 = $wgContLang->isRTL() ? 'right' : 'left';
+		$colon = wfMsgExt( 'colon-separator', 'escapenoentities' );
 
 		$wgOut->addHTML( <<<EOT
 	<form id='upload' method='post' enctype='multipart/form-data' action="$action">
 		<table border='0'>
 		<tr>
-	  {$this->uploadFormTextTop}
-			<td align='$align1' valign='top'><label for='wpUploadFile'>{$sourcefilename}:</label></td>
+			{$this->uploadFormTextTop}
+			<td align='$align1' valign='top'><label for='wpUploadFile'>{$sourcefilename}$colon</label></td>
 			<td align='$align2'>
 				{$filename_form}
 			</td>
 		</tr>
 		<tr>
-			<td align='$align1'><label for='wpDestFile'>{$destfilename}:</label></td>
+			<td align='$align1'><label for='wpDestFile'>{$destfilename}$colon</label></td>
 			<td align='$align2'>
 				<input tabindex='2' type='text' name='wpDestFile' id='wpDestFile' size='60' 
 					value="$encDestName" $destOnkeyup />
@@ -1083,7 +1084,7 @@ wgAjaxLicensePreview = {$alp};
 			<td align='$align2'>
 				<textarea tabindex='3' name='wpUploadDescription' id='wpUploadDescription' rows='6' 
 					cols='{$cols}'{$width}>$encComment</textarea>
-	   {$this->uploadFormTextAfterSummary}
+					{$this->uploadFormTextAfterSummary}
 			</td>
 		</tr>
 		<tr>
@@ -1093,7 +1094,7 @@ EOT
 		if ( $licenseshtml != '' ) {
 			global $wgStylePath;
 			$wgOut->addHTML( "
-			<td align='$align1'><label for='wpLicense'>$license:</label></td>
+			<td align='$align1'><label for='wpLicense'>$license$colon</label></td>
 			<td align='$align2'>
 				<select name='wpLicense' id='wpLicense' tabindex='4'
 					onchange='licenseSelectorCheck()'>
@@ -1119,12 +1120,12 @@ EOT
 			$uploadsource = htmlspecialchars( $this->mCopyrightSource );
 
 			$wgOut->addHTML( "
-			        <td align='$align1' nowrap='nowrap'><label for='wpUploadCopyStatus'>$filestatus:</label></td>
+				<td align='$align1' nowrap='nowrap'><label for='wpUploadCopyStatus'>$filestatus$colon</label></td>
 					<td><input tabindex='5' type='text' name='wpUploadCopyStatus' id='wpUploadCopyStatus' 
 					  value=\"$copystatus\" size='60' /></td>
-		        </tr>
+			</tr>
 			<tr>
-		        	<td align='$align1'><label for='wpUploadCopyStatus'>$filesource:</label></td>
+				<td align='$align1'><label for='wpUploadCopyStatus'>$filesource$colon</label></td>
 					<td><input tabindex='6' type='text' name='wpUploadSource' id='wpUploadCopyStatus' 
 					  value=\"$uploadsource\" size='60' /></td>
 			</tr>
