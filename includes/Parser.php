@@ -459,7 +459,13 @@ class Parser
 
 	function getFunctionLang() {
 		global $wgLang, $wgContLang;
-		return $this->mOptions->getInterfaceMessage() ? $wgLang : $wgContLang;
+
+		$target = $this->mOptions->getTargetLanguage();
+		if ( $target !== null ) {
+			return $target;
+		} else {
+			return $this->mOptions->getInterfaceMessage() ? $wgLang : $wgContLang;
+		}
 	}
 
 	/**

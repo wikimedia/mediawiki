@@ -74,6 +74,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 13274) Change links for messages to ucfirst
 * (bug 13273) "Categories:" message at the bottom of the page shouldn't have
   hardcoded colon, use new 'colon-separator' message instead
+* Parse MediaWiki message translations with a correct language setting on preview
 
 === API changes in 1.13 ===
 
