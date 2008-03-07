@@ -603,8 +603,8 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 'ignorewarnings'    => 'ማስጠንቀቂያ ቸል ይበል',
 'uploadedimage'     => '«[[$1]]» ላከ',
 'overwroteimage'    => 'የ«[[$1]]» አዲስ ዕትም ላከ',
-'sourcefilename'    => 'የቆየው የፋይሉ ስም',
-'destfilename'      => 'የፋይሉ አዲስ ስም',
+'sourcefilename'    => 'የቆየው የፋይሉ ስም:',
+'destfilename'      => 'የፋይሉ አዲስ ስም:',
 'watchthisupload'   => 'ይህንን ገጽ ለመከታተል',
 
 # Image list

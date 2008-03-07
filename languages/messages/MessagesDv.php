@@ -241,8 +241,8 @@ $messages = array(
 'uploadbtn'         => 'ފައިލު ފޮނުވާ',
 'filedesc'          => 'ހުލާސާ',
 'fileuploadsummary' => 'ހުލާސާ:',
-'filestatus'        => 'ނަކަލުކުރުމުގެހައްގުގެ ހާލަތު',
-'filesource'        => 'މަސްދަރު',
+'filestatus'        => 'ނަކަލުކުރުމުގެހައްގުގެ ހާލަތު:',
+'filesource'        => 'މަސްދަރު:',
 'uploadedfiles'     => 'ފޮނުވިފައިވާ ފައިލުތައް',
 'uploadwarning'     => 'ފައިލުފޮނުއްވުމުގެ ކުރިން ދެވޭ އިންޒާރު',
 

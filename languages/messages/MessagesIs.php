@@ -997,8 +997,8 @@ Til að bæta skrá inn á síðu, notið eina af eftirfarandi aðferðum
 'uploadscripted'    => 'Þetta skjal inniheldur (X)HTML eða forskriftu sem gæti valdið villum í vöfrum.',
 'uploadcorrupt'     => 'Skráin er skemmd eða hefur ranga skráarendingu. Vinsamlegast athugaðu skrána og reyndu svo aftur.',
 'uploadvirus'       => 'Skráin inniheldur veiru! Nánari upplýsingar: $1',
-'sourcefilename'    => 'Upprunalegt skráarnafn',
-'destfilename'      => 'Skráarnafn eftir innhleðslu',
+'sourcefilename'    => 'Upprunalegt skráarnafn:',
+'destfilename'      => 'Skráarnafn eftir innhleðslu:',
 'watchthisupload'   => 'Vakta þessa síðu',
 'filewasdeleted'    => 'Skrá af sama nafni hefur áður verið hlaðið inn og síðan eytt. Þú ættir að athuga $1 áður en þú hleður skránni inn.',
 
@@ -1010,7 +1010,7 @@ Til að bæta skrá inn á síðu, notið eina af eftirfarandi aðferðum
 'upload-curl-error6'  => 'Gat ekki náð í slóðina',
 'upload-curl-error28' => 'Innhleðslutími útrunninn',
 
-'license'            => 'Leyfisupplýsingar',
+'license'            => 'Leyfisupplýsingar:',
 'nolicense'          => 'Ekkert valið',
 'upload_source_file' => '(skrá á tölvunni þinni)',
 

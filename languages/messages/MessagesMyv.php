@@ -591,8 +591,8 @@ $messages = array(
 'uploadedimage'    => 'тонгозь "[[$1]]"',
 'uploaddisabled'   => 'Совавтомась лоткавтозь',
 'uploadvirus'      => 'Те файласонть вирус програм! Информация: $1',
-'sourcefilename'   => 'Лисьмапрянть файлань лемезэ',
-'destfilename'     => 'Норовазенть файлань лемезэ',
+'sourcefilename'   => 'Лисьмапрянть файлань лемезэ:',
+'destfilename'     => 'Норовазенть файлань лемезэ:',
 'watchthisupload'  => 'Ваномс те лопанть мельга',
 
 'upload-file-error' => 'Потмонь ильведькс',

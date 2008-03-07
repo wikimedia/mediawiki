@@ -337,7 +337,7 @@ Bidde behycge þæt þu bricst þone tramet intō smalrum dǣlum.',
 'uploadnologin' => 'Ne inmeldod',
 'filename'      => 'Þrǣdnama',
 'filedesc'      => 'Scortnes',
-'filesource'    => 'Fruma',
+'filesource'    => 'Fruma:',
 'badfilename'   => 'Onlīcnesnama wearþ gewend tō "$1(e/an)".',
 'savefile'      => 'Sparian þrǣd',
 

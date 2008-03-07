@@ -293,8 +293,8 @@ Spiegazziún di símbui: (cur) = difərenza cun la versiún curénta, (ültima) 
 'fileuploadsummary' => 'Sumari:',
 'ignorewarnings'    => 'Ignora tücc i avertimeent',
 'largefileserver'   => 'Chel archivi-chí al è püssee graant che ul serviduur al sía cunfigüraa da permett.',
-'sourcefilename'    => "Nomm da l'archivi surgeent",
-'destfilename'      => "Nomm da l'archivi da destinazziun",
+'sourcefilename'    => "Nomm da l'archivi surgeent:",
+'destfilename'      => "Nomm da l'archivi da destinazziun:",
 
 # Image list
 'imagelist'  => 'Listá i imàgin',

@@ -353,8 +353,8 @@ Per integrar il maletg/purtret en tes artitgel sas ti per exempel duvrar in dals
 'ignorewarnings'    => 'Ignorar tut ils avertiments (Warnung)',
 'badfilename'       => 'Midà num dal file sin "$1".',
 'largefileserver'   => "Quest file è memia gronds. Il server è configurà uschè ch'el accepta be files enfin ina tscherta grondezza.",
-'sourcefilename'    => 'file sin tes computer',
-'destfilename'      => 'num dal file sin il server',
+'sourcefilename'    => 'file sin tes computer:',
+'destfilename'      => 'num dal file sin il server:',
 
 # Image list
 'imagelist' => 'Glista dals maletgs',

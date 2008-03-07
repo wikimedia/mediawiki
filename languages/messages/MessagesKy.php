@@ -201,7 +201,7 @@ $messages = array(
 'uploadedfiles'     => 'Жүктөлгөн файлдар',
 'savefile'          => 'Файлды сактап кой',
 
-'license' => 'Лицензиялоо',
+'license' => 'Лицензиялоо:',
 
 # Image list
 'imagelist'  => 'Файлдар тизмеси',

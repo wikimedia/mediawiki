@@ -799,7 +799,7 @@ anjî ji bo file'ên dengî
 'filename'               => 'Navê dosyayê',
 'filedesc'               => 'Kurte',
 'fileuploadsummary'      => 'Kurte:',
-'filesource'             => 'Çavkanî',
+'filesource'             => 'Çavkanî:',
 'uploadedfiles'          => 'Dosyayên bar kirî',
 'ignorewarning'          => 'Hişyarê qebûl neke û dosyayê qeyd bike.',
 'ignorewarnings'         => 'Guh nede hîşyaran',
@@ -829,8 +829,8 @@ Xêra xwe navekî din bibîne.',
 'uploaddisabled'         => 'Barkirin hatîye qedexekirin',
 'uploaddisabledtext'     => "Barkirinê data'yan di {{SITENAME}} da hatine qedexekirin.",
 'uploadvirus'            => "Di vê data'yê da vîrûsek heye! Înformasyon: $1",
-'sourcefilename'         => 'Navî wêneyê (ya tiştekî din ya mêdya)',
-'destfilename'           => 'Navî wêneyê (ya tiştekî din ya mêdya) yê xastî',
+'sourcefilename'         => 'Navî wêneyê (ya tiştekî din ya mêdya):',
+'destfilename'           => 'Navî wêneyê (ya tiştekî din ya mêdya) yê xastî:',
 'watchthisupload'        => 'Vê rûpelê bişopîne',
 'upload-wasdeleted'      => "'''Hîşyar: Tu data'yekê bardikê yê berê hatibû jêbirin.'''
 
@@ -838,7 +838,7 @@ Zanibe, ku ev barkirina kê were qebûlkirin ya na.
 
 Înformasyonan li ser jêbirinê kevin ra:",
 
-'license' => 'Lîsens',
+'license' => 'Lîsens:',
 
 # Image list
 'imagelist'                 => 'Listeya wêneyan',

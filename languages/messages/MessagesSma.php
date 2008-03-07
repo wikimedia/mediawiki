@@ -407,16 +407,16 @@ Dov dorje v채rrhtoedimmie g책책vnese bielieh, jallh [[Special:Userlogin|logge s�
 'uploadbtn'        => 'Sadde baalka',
 'uploadlogpage'    => 'Sadde logge',
 'filename'         => 'Guvvienomme',
-'filesource'       => 'Gaaltjie',
+'filesource'       => 'Gaaltjie:',
 'fileexists-thumb' => "<center>'''Lea-guvvie'''</center>",
 'savefile'         => 'Sp책책redh guvvie',
 'uploadedimage'    => 'sadde "[[$1]]"',
 'uploadvirus'      => 'Guvvie tjeekehdidh viirus! B챦evnesh: $1',
-'sourcefilename'   => 'Gaaltjie guvvienomme',
+'sourcefilename'   => 'Gaaltjie guvvienomme:',
 
 'upload-file-error' => 'Sjisjnjie b책ajhtode',
 
-'license' => 'Liseense',
+'license' => 'Liseense:',
 
 # Image list
 'imagelist'                 => 'Guvvie l채stoe',

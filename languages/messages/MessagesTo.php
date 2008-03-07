@@ -526,7 +526,7 @@ Kapau naʻe kole ia ʻe he tokotaha kehe, pea ʻosi hoʻo manatuʻi ʻo e leatap
 'filename'                    => 'Ko e faile hono hingoa',
 'filedesc'                    => 'Fakanounou',
 'fileuploadsummary'           => 'Fakanounou:',
-'filesource'                  => 'Tupunga',
+'filesource'                  => 'Tupunga:',
 'uploadedfiles'               => 'Ngaahi faile ʻosi hiki hake',
 'ignorewarning'               => 'Taʻetokaʻi fakatokanga pea haʻofakiʻi ʻa e faile',
 'ignorewarnings'              => 'Taʻetokaʻi ngaahi fakatokanga',
@@ -544,12 +544,12 @@ Kapau naʻe kole ia ʻe he tokotaha kehe, pea ʻosi hoʻo manatuʻi ʻo e leatap
 'uploaddisabledtext'          => 'ʻOku fakataʻeʻaongaʻi ha ngaahi hiki hake ʻi heni.',
 'uploadcorrupt'               => 'ʻOku kovi ʻa e failé ni pe ʻoku halaʻi hono fakalōloa. Kātaki, sivi ia pea foki hiki hake ia.',
 'uploadvirus'                 => 'ʻOku ʻi ai ha vailasi ʻi he failé ni! ʻŪ kiʻi meʻa: $1',
-'sourcefilename'              => 'Hingoa ʻo e faile tupunga',
-'destfilename'                => 'Hingoa ʻo e faile ʻe ʻalu ki ai',
+'sourcefilename'              => 'Hingoa ʻo e faile tupunga:',
+'destfilename'                => 'Hingoa ʻo e faile ʻe ʻalu ki ai:',
 'watchthisupload'             => 'Leʻo he pēsí ni',
 'filewasdeleted'              => 'Kuo hiki hake ʻa e faile mo e hingoa ʻeni pea naʻe tāmateʻi ia. Kuo pau te ke vakai ki he $1 ʻi muʻa haʻo feinga ʻo toe hiki hake ia.',
 
-'license'   => 'Laiseni',
+'license'   => 'Laiseni:',
 'nolicense' => 'ʻIkai fili ha taha',
 
 # Image list

@@ -692,8 +692,8 @@ Let asseblief op dat, soos met {{SITENAME}} bladsye, mag ander jou gelaaide lêe
 'filename'          => 'Lêernaam',
 'filedesc'          => 'Opsomming',
 'fileuploadsummary' => 'Opsomming:',
-'filestatus'        => 'Outeursregsituasie',
-'filesource'        => 'Bron',
+'filestatus'        => 'Outeursregsituasie:',
+'filesource'        => 'Bron:',
 'uploadedfiles'     => 'Gelaaide lêers',
 'ignorewarnings'    => 'Ignoreer enige waarskuwings',
 'minlength1'        => 'Prentname moet ten minste een letter lank wees.',
@@ -708,11 +708,11 @@ Let asseblief op dat, soos met {{SITENAME}} bladsye, mag ander jou gelaaide lêe
 'overwroteimage'    => 'het een nuwe weergawe van "[[$1]]" gelaai',
 'uploaddisabled'    => 'Laai is uitgeskakel',
 'uploadcorrupt'     => "Die lêer is foutief of is van 'n verkeerde tipe. Gaan asseblief die lêer na en laai weer op.",
-'sourcefilename'    => 'Bronlêernaam',
-'destfilename'      => 'Teikenlêernaam',
+'sourcefilename'    => 'Bronlêernaam:',
+'destfilename'      => 'Teikenlêernaam:',
 'watchthisupload'   => 'Hou hierdie bladsy dop',
 
-'license' => 'Lisensiëring',
+'license' => 'Lisensiëring:',
 
 # Image list
 'imagelist'                 => 'Prentelys',

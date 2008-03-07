@@ -438,7 +438,7 @@ Leggenda: (corr) = differense co-a verscion corrente, (prec) = differense co-a v
 'uploadbtn'            => "Carega 'n archivvio",
 'uploadlogpage'        => 'Log de li archivvi careghæ',
 'filename'             => 'Nomme do papê',
-'filesource'           => 'Reixe',
+'filesource'           => 'Reixe:',
 'uploadedfiles'        => 'Papê caregæ',
 'badfilename'          => 'O nomme do papê o l\'è stæto cangioö in "$1".',
 'fileexists'           => "Un papê co sto nomme o existe de zà, pe piaxei da unn'euggiâ a $1 se non ti tei seguo de voleilo cangiâ.",
@@ -448,10 +448,10 @@ Leggenda: (corr) = differense co-a verscion corrente, (prec) = differense co-a v
 'uploaddisabledtext'   => 'In {{SITENAME}} non se peu caregâ de papê.',
 'uploadcorrupt'        => "O pap6e o l'è grammo o g'ha un'extension sbalia. Pe piaxei dagghe unn'euggiâ a o papê e caregalo de neuvo.",
 'uploadvirus'          => 'O papê gha un virus!! Dettaggi: $1',
-'sourcefilename'       => "Nomme do papê d'origine",
-'destfilename'         => 'Nomme do papê de destin',
+'sourcefilename'       => "Nomme do papê d'origine:",
+'destfilename'         => 'Nomme do papê de destin:',
 
-'license' => 'Permisso',
+'license' => 'Permisso:',
 
 # Image list
 'imagelist'                 => 'Lista de li archivvi',

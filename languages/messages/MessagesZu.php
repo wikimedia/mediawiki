@@ -184,7 +184,7 @@ ikhawundi lakho liyadalwa. musa ukukhohlwa ukuguqula amakhethelo a-{{SITENAME}} 
 # Upload
 'upload'           => 'Layisha ifayili',
 'uploadbtn'        => 'Layisha ifayili',
-'filesource'       => 'Umthombo',
+'filesource'       => 'Umthombo:',
 'ignorewarnings'   => 'Duba imiyalo',
 'successfulupload' => 'Ukulayisha okuchumile',
 

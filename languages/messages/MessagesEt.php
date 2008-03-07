@@ -754,10 +754,10 @@ võidakse sinu ligipääs sulgeda.',
 'uploaddisabledtext'   => 'Vabandage, faili laadimine pole hetkel võimalik.',
 'uploadcorrupt'        => 'Fail on vigane või vale laiendiga. Palun kontrolli faili ja proovi seda uuesti üles laadida.',
 'uploadvirus'          => 'Fail sisaldab viirust! Täpsemalt: $1',
-'sourcefilename'       => 'Lähtefail',
-'destfilename'         => 'Failinimi vikis',
+'sourcefilename'       => 'Lähtefail:',
+'destfilename'         => 'Failinimi vikis:',
 
-'license'   => 'Litsents',
+'license'   => 'Litsents:',
 'nolicense' => 'pole valitud',
 
 # Image list

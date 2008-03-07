@@ -145,7 +145,7 @@ Subukan me ing [[Special:Search|searching on the wiki]] para kareng bayung bulun
 
 # Upload
 'upload'      => 'Maglulan simpan (file)',
-'filesource'  => 'Pikuanan',
+'filesource'  => 'Pikuanan:',
 'badfilename' => 'Ing pamansag ning file miyalilan yang "$1".',
 
 # Image list

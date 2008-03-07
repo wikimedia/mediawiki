@@ -969,8 +969,8 @@ ou ben por liyér tot drêt vers lo fichiér :
 'filename'                    => 'Nom du fichiér',
 'filedesc'                    => 'Dèscripcion',
 'fileuploadsummary'           => 'Dèscripcion, sôrsa (ôtor, seto Malyâjo...) :',
-'filestatus'                  => 'Statut du drêt d’ôtor',
-'filesource'                  => 'Sôrsa',
+'filestatus'                  => 'Statut du drêt d’ôtor:',
+'filesource'                  => 'Sôrsa:',
 'uploadedfiles'               => 'Fichiérs copiyês',
 'ignorewarning'               => 'Ignorar l’avèrtissement et sôvar lo fichiér.',
 'ignorewarnings'              => 'Ignorar los avèrtissements pendent l’impôrt',
@@ -1008,8 +1008,8 @@ Se vos disposâd du fichiér en rèsolucion hôta, importâd-lo, ôtrament voly�
 'uploadcorrupt'               => 'Ceti fichiér est corrompu, il at una talye nula ou ben una èxtension envalida.
 Volyéd controlar lo fichiér.',
 'uploadvirus'                 => 'Ceti fichiér contint un virus ! Por més de dètalys, consultâd : $1',
-'sourcefilename'              => 'Nom du fichiér a emmandar ',
-'destfilename'                => 'Nom desot loquint lo fichiér serat enregistrâ ',
+'sourcefilename'              => 'Nom du fichiér a emmandar :',
+'destfilename'                => 'Nom desot loquint lo fichiér serat enregistrâ :',
 'watchthisupload'             => 'Siuvre ceti fichiér',
 'filewasdeleted'              => 'Un fichiér avouéc ceti nom at ja étâ copiyê, et pués suprimâ. Vos devriâd controlar lo $1 devant que fâre una novèla copia.',
 'upload-wasdeleted'           => "'''Atencion : vos éte aprés importar un fichiér qu’at ja étâ suprimâ dês devant.'''
@@ -1044,7 +1044,7 @@ PICT # de totes sôrtes
 'upload-curl-error28'      => 'Dèpassement du dèlê pendent l’impôrt',
 'upload-curl-error28-text' => 'Lo seto at betâ trop grant-temps a rèpondre. Controlâd que lo seto est en legne, atendéd un pou et pués tornâd èprovar. Vos pouede asse-ben tornar èprovar a una hora de muendra afluence.',
 
-'license'            => 'Licence ',
+'license'            => 'Licence :',
 'nolicense'          => 'Niona licence sèlèccionâ',
 'license-nopreview'  => '(Prèvisualisacion empossibla)',
 'upload_source_url'  => ' (una URL valida et accèssibla publicament)',

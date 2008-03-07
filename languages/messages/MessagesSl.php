@@ -736,8 +736,8 @@ ali za neposredno povezavo z datoteko
 'filename'                    => 'Ime datoteke',
 'filedesc'                    => 'Povzetek',
 'fileuploadsummary'           => 'Povzetek (avtor, spletni naslov vira ipd.):',
-'filestatus'                  => 'Položaj avtorskih pravic',
-'filesource'                  => 'Vir',
+'filestatus'                  => 'Položaj avtorskih pravic:',
+'filesource'                  => 'Vir:',
 'uploadedfiles'               => 'Naložene datoteke',
 'ignorewarning'               => 'Naloži kljub opozorilu',
 'ignorewarnings'              => 'Prezri vsa opozorila',
@@ -758,11 +758,11 @@ ali za neposredno povezavo z datoteko
 'uploadscripted'              => 'Datoteka vsebuje HTML- ali skriptno kodo, ki bi jo lahko brskalnik razlagal napačno.',
 'uploadcorrupt'               => 'Datoteka je poškodovana ali pa ima napačno končnico. Prosimo, preverite jo in znova naložite.',
 'uploadvirus'                 => 'Datoteka morda vsebuje virus! Podrobnosti: $1',
-'sourcefilename'              => 'Ime izvorne datoteke',
-'destfilename'                => 'Ime ciljne datoteke',
+'sourcefilename'              => 'Ime izvorne datoteke:',
+'destfilename'                => 'Ime ciljne datoteke:',
 'filewasdeleted'              => 'Datoteka s tem imenom je bila nekoč že naložena in potem izbrisana. Preden jo znova naložite, preverite $1.',
 
-'license'   => 'Dovoljenje',
+'license'   => 'Dovoljenje:',
 'nolicense' => 'Nobeno (opomba: datoteka bo morda izbrisana)',
 
 # Image list
