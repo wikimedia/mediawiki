@@ -552,7 +552,7 @@ Raha hanisy sary ao anaty pejy, dia mampiasà rohy toy ny iray amin'ireto
 'filename'                    => 'Anarana',
 'filedesc'                    => 'Ambangovangony',
 'fileuploadsummary'           => 'Ambangovangony:',
-'filesource'                  => 'Loharano',
+'filesource'                  => 'Loharano:',
 'uploadedfiles'               => 'Rakitra voaray',
 'ignorewarning'               => 'Aza mihaino fampitandremana fa tehirizo foana ny rakitra.',
 'ignorewarnings'              => 'Aza mihaino fampitandremana',
@@ -577,8 +577,8 @@ Misy kialo HTML na fango script mety tsy ho hain'ny navigateur sasany haseho ity
 'uploadcorrupt'               => 'Misy tailana ny rakitra na diso ny extension-ny. 
 Hamarino tsara aloha dia avereno alefa indray.',
 'uploadvirus'                 => 'Misy viriosy io rakitra io! Toy izao ny antsipirihany: $1',
-'sourcefilename'              => "Anaran'ny rakitra",
-'destfilename'                => "Anaran'ny rakitra",
+'sourcefilename'              => "Anaran'ny rakitra:",
+'destfilename'                => "Anaran'ny rakitra:",
 
 'nolicense' => 'Tsy misy safidy',
 

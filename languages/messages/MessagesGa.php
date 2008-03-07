@@ -825,8 +825,8 @@ Is am an freastalaí (UTC) iad na hamanna atá anseo thíos.',
 'filename'          => 'Comhadainm',
 'filedesc'          => 'Achoimriú',
 'fileuploadsummary' => 'Achoimre:',
-'filestatus'        => 'Stádas cóipchirt',
-'filesource'        => 'Foinse',
+'filestatus'        => 'Stádas cóipchirt:',
+'filesource'        => 'Foinse:',
 'uploadedfiles'     => 'Comhaid uaslódáilte',
 'illegalfilename'   => 'Tá litreacha san comhadainm  "$1" nach ceadaítear in ainm leathanaigh. Athainmnigh
 an comhad agus déan athiarracht, más é do thoil é.',
@@ -841,8 +841,8 @@ míchruinneas é seo san ainm chomhaid. Seiceáil más é an comhad seo atá le 
 'uploadcorrupt'     => 'Tá an comhad truaillithe nó tá iarmhír comhadainm neamhbhailí aige. Scrúdaigh an comhad agus
 uaslódáil é arís, le do thoil.',
 'uploadvirus'       => 'Tá víreas ann sa comhad seo! Eolas: $1',
-'sourcefilename'    => 'Comhadainm foinse',
-'destfilename'      => 'Comhadainm sprice',
+'sourcefilename'    => 'Comhadainm foinse:',
+'destfilename'      => 'Comhadainm sprice:',
 'watchthisupload'   => 'Déan faire ar an leathanach seo',
 
 'nolicense'          => 'Níl aon cheann roghnaithe',

@@ -79,7 +79,7 @@ $messages = array(
 # Upload
 'fileuploadsummary' => 'Uñt’ayawi:',
 
-'license' => 'Iyawsawi',
+'license' => 'Iyawsawi:',
 
 # Image list
 'filehist-user'         => 'Apnaqiri',

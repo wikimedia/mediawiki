@@ -275,7 +275,7 @@ href="" class="internal"}?{/a}) bımocne.',
 'upload'     => 'Dosya bar ke',
 'uploadbtn'  => 'Dosya bar ke',
 'filename'   => 'Namey Dosya',
-'filesource' => 'Çımey',
+'filesource' => 'Çımey:',
 'savefile'   => 'Dosya qeyd ke',
 
 # Image list

@@ -589,7 +589,7 @@ $messages = array(
 'filename'             => 'د دوتنې نوم',
 'filedesc'             => 'لنډيز',
 'fileuploadsummary'    => 'لنډيز:',
-'filesource'           => 'سرچينه',
+'filesource'           => 'سرچينه:',
 'uploadedfiles'        => 'پورته شوې دوتنې',
 'ignorewarnings'       => 'هر ډول ګواښونه له پامه غورځول',
 'minlength1'           => 'پکار ده چې د دوتنو نومونه لږ تر لږه يو حرف ولري.',
@@ -605,7 +605,7 @@ $messages = array(
 'uploadedimage'        => '"[[$1]]" پورته شوه',
 'uploaddisabled'       => 'پورته کول ناچارن شوي',
 'uploadvirus'          => 'دا دوتنه ويروس لري! تفصيل: $1',
-'sourcefilename'       => 'د سرچينيزې دوتنې نوم',
+'sourcefilename'       => 'د سرچينيزې دوتنې نوم:',
 'watchthisupload'      => 'همدا مخ کتل',
 
 'upload-file-error' => 'کورنۍ ستونزه',

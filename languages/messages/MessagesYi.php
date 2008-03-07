@@ -788,7 +788,7 @@ Legend: (cur) = difference with current version,
 'emptyfile'     => 'די פייל וואס איר האט ארויפלאדירט איז ליידיג. עס קען זיין אז דער סיבה איז פשוט א טייפא. ביטע מאכט זיכער אז דאס איז די פייל וואס איר ווילט ארויפלאדירן.',
 'savefile'      => 'טעקע אױפֿהיטן',
 'uploadedimage' => 'אַרױפֿלאָדירט "[[$1]]"',
-'destfilename'  => 'דעסטינאציע פייל נאמען',
+'destfilename'  => 'דעסטינאציע פייל נאמען:',
 
 # Image list
 'imagelisttext' => 'Below is a list of $1 files sorted $2.',

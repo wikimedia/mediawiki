@@ -261,7 +261,7 @@ $messages = array(
 'upload'     => 'Incaricà un schedariu',
 'uploadbtn'  => 'Incaricà un schedariu',
 'filename'   => 'Nome di u schedariu',
-'filestatus' => "Statu di u dirittu d'autore",
+'filestatus' => "Statu di u dirittu d'autore:",
 
 'upload-file-error' => 'Errore internu',
 

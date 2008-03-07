@@ -448,7 +448,7 @@ Jeżlë jes të tuwò bez zmiłkã, le klëkni w swòjim przezérnikù knąpã '
 'filename'          => 'Miono lopka',
 'filedesc'          => 'Òpisënk',
 'fileuploadsummary' => 'Pòdrechòwanié:',
-'filesource'        => 'Zdrój',
+'filesource'        => 'Zdrój:',
 'uploadedfiles'     => 'Wladowóné lopczi',
 'badfilename'       => 'Miono òbrôzka zmienioné na "$1".',
 'successfulupload'  => 'Wladënk darzëł sã',

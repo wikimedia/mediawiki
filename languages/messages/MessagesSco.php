@@ -730,8 +730,8 @@ there micht be parteeculars in the [{{fullurl:Special:Log/delete|page={{FULLPAGE
 'uploadlog'                   => 'uplaid log',
 'uploadlogpage'               => 'Uplaid log',
 'uploadlogpagetext'           => 'Ablo is a leet o the maist recent file uplaids.',
-'filestatus'                  => 'Copyricht status',
-'filesource'                  => 'Soorce',
+'filestatus'                  => 'Copyricht status:',
+'filesource'                  => 'Soorce:',
 'uploadedfiles'               => 'Uplaidit files',
 'ignorewarning'               => 'Ignore warnin an hain file oniewey.',
 'ignorewarnings'              => 'Ignore ony warnins',
@@ -748,7 +748,7 @@ there micht be parteeculars in the [{{fullurl:Special:Log/delete|page={{FULLPAGE
 'uploadscripted'              => 'This file hauds HTML or script code that micht be wrang interpretit bi a wab brouser.',
 'uploadcorrupt'               => 'The file is corrupt or haes a wrang extension. Please check the file an uplaid again.',
 'uploadvirus'                 => 'The file hauds a virus! Details: $1',
-'sourcefilename'              => 'Soorce filename',
+'sourcefilename'              => 'Soorce filename:',
 
 'nolicense' => 'Nane selected',
 

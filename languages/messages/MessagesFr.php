@@ -1087,8 +1087,8 @@ Pour inclure une image dans une page, utilisez un lien de la forme
 'filename'                    => 'Nom du fichier',
 'filedesc'                    => 'Description',
 'fileuploadsummary'           => 'Description :',
-'filestatus'                  => "Statut du droit d'auteur",
-'filesource'                  => 'Source',
+'filestatus'                  => "Statut du droit d'auteur&nbsp;:",
+'filesource'                  => 'Source&nbsp;:',
 'uploadedfiles'               => 'Fichiers importés',
 'ignorewarning'               => 'Ignorer l’avertissement et sauvegarder le fichier.',
 'ignorewarnings'              => 'Ignorer les avertissements lors de l’import',
@@ -1126,8 +1126,8 @@ Si vous disposez du fichier en haute résolution, importez-le, sinon veuillez ch
 'uploadcorrupt'               => 'Ce fichier est corrompu, a une taille nulle ou possède une extension invalide.
 Veuillez vérifer le fichier.',
 'uploadvirus'                 => 'Ce fichier contient un virus ! Pour plus de détails, consultez : $1',
-'sourcefilename'              => 'Nom du fichier à importer',
-'destfilename'                => 'Nom sous lequel le fichier sera enregistré',
+'sourcefilename'              => 'Nom du fichier à importer&nbsp;:',
+'destfilename'                => 'Nom sous lequel le fichier sera enregistré&nbsp;:',
 'watchthisupload'             => 'Suivre ce fichier',
 'filewasdeleted'              => 'Un fichier avec ce nom a déjà été copié, puis supprimé. Vous devriez vérifier le $1 avant de procéder à une nouvelle copie.',
 'upload-wasdeleted'           => "'''Attention : Vous êtes en train de recréer un fichier qui a déjà été supprimé auparavant.'''
@@ -1162,7 +1162,7 @@ PICT # misc.
 'upload-curl-error28'      => "Dépassement du délai lors de l'import",
 'upload-curl-error28-text' => 'Le site a mis trop longtemps à répondre. Vérifiez que le site est en ligne, attendez un peu et réessayez. Vous pouvez aussi réessayer à une heure de moindre affluence.',
 
-'license'            => 'Licence',
+'license'            => 'Licence&nbsp;:',
 'nolicense'          => 'Aucune licence sélectionnée',
 'license-nopreview'  => '(Prévisualisation impossible)',
 'upload_source_url'  => ' (une URL valide et accessible publiquement)',

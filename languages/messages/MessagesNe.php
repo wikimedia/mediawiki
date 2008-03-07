@@ -303,8 +303,8 @@ $messages = array(
 'filename'          => 'फाइलनाम',
 'filedesc'          => 'सारांश',
 'fileuploadsummary' => 'सारांश:',
-'filestatus'        => 'लेखाधिकार स्थिति',
-'filesource'        => 'स्रोत',
+'filestatus'        => 'लेखाधिकार स्थिति:',
+'filesource'        => 'स्रोत:',
 'watchthisupload'   => 'यो पृष्ठ अवलोकन गर्नुहोस्',
 
 'nolicense' => 'केहिपनि छानिएन',

@@ -448,7 +448,7 @@ Siók-mìng: (dāng) = gâe̤ng dék sĭng bēng-buōng bī-piâng, (sèng) = g�
 'filename'          => 'Ùng-giông-miàng',
 'filedesc'          => 'Cūng-giék',
 'fileuploadsummary' => 'Cūng-giék:',
-'filesource'        => 'Lài-nguòng',
+'filesource'        => 'Lài-nguòng:',
 'uploadedfiles'     => 'Siông-duòng ùng-giông',
 'ignorewarning'     => 'Mò̤ sê̤ṳ gīng-gó̤ bō̤-còng ùng-giông.',
 'ignorewarnings'    => 'Mò̤ sê̤ṳ gīng-gó̤',
@@ -458,8 +458,8 @@ Siók-mìng: (dāng) = gâe̤ng dék sĭng bēng-buōng bī-piâng, (sèng) = g�
 'savefile'          => 'Bō̤-còng ùng-giông',
 'uploadedimage'     => 'siông-duòng "[[$1]]"',
 'uploadvirus'       => 'Ciā ùng-giông ô bêng-dŭk! Sá̤-ciék: $1',
-'sourcefilename'    => 'Nguòng-sṳ̄ ùng-giông-miàng',
-'destfilename'      => 'Mŭk-biĕu ùng-giông-miàng',
+'sourcefilename'    => 'Nguòng-sṳ̄ ùng-giông-miàng:',
+'destfilename'      => 'Mŭk-biĕu ùng-giông-miàng:',
 'watchthisupload'   => 'Gáng-sê ciā hiĕk',
 
 # Image list
