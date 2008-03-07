@@ -32,6 +32,7 @@ class BackupReader {
 	var $revCount  = 0;
 	var $dryRun    = false;
 	var $debug     = false;
+	var $uploads   = false;
 
 	function BackupReader() {
 		$this->stderr = fopen( "php://stderr", "wt" );
@@ -59,13 +60,18 @@ class BackupReader {
 		}
 	}
 	
-	function handleUpload( $data ) {
-		$this->uploadCount++;
-		//$this->report();
-		$this->progress( "upload: " . $data->getFilename() );
-		
-		if( !$this->dryRun ) {
-			call_user_func( $this->uploadCallback, $data );
+	function handleUpload( $revision ) {
+		if( $this->uploads ) {
+			$this->uploadCount++;
+			//$this->report();
+			$this->progress( "upload: " . $revision->getFilename() );
+			
+			if( !$this->dryRun ) {
+				// bluuuh hack
+				//call_user_func( $this->uploadCallback, $revision );
+				$dbw = wfGetDB( DB_MASTER );
+				return $dbw->deadlockLoop( array( $revision, 'importUpload' ) );
+			}
 		}
 	}
 
@@ -139,6 +145,9 @@ if( isset( $options['dry-run'] ) ) {
 }
 if( isset( $options['debug'] ) ) {
 	$reader->debug = true;
+}
+if( isset( $options['uploads'] ) ) {
+	$reader->uploads = true; // experimental!
 }
 
 if( isset( $args[0] ) ) {
