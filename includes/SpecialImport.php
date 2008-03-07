@@ -451,7 +451,7 @@ class WikiRevision {
 		// it may also create a page without our desire, also wrong potentially.
 		// and, it will record a *current* upload, but we might want an archive version here
 		
-		$file = wfFindFile( $this->getTitle() );
+		$file = wfLocalFile( $this->getTitle() );
 		if( !$file ) {
 			var_dump( $file );
 			wfDebug( "IMPORT: Bad file. :(\n" );
