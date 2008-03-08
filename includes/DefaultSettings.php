@@ -188,7 +188,7 @@ $wgFileStore['deleted']['hash'] = 3;         // 3-level subdirectory split
  *                      The core repository classes are LocalRepo, ForeignDBRepo, FSRepo.
  *
  *    name				A unique name for the repository.
- *                      
+ *
  * For all core repos:
  *    url               Base public URL
  *    hashLevels        The number of directory levels for hash-based division of files
@@ -1326,7 +1326,7 @@ $wgCacheEpoch = '20030516000000';
  * to ensure that client-side caches don't keep obsolete copies of global
  * styles.
  */
-$wgStyleVersion = '120';
+$wgStyleVersion = '121';
 
 
 # Server-side caching:

@@ -77,6 +77,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Parse MediaWiki message translations with a correct language setting on preview
 * (bug 13281) Treat X-Forwarded-For, Client-ip and User-Agent headers as
   case-insensitive names.
+* Adding the fix for lists in RTL wikis to more skins, and fixing the image toc
 
 === API changes in 1.13 ===
 
