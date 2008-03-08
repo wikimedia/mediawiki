@@ -6,6 +6,7 @@
  * @author Srtxg
  * @author Siebrand
  * @author לערי ריינהארט
+ * @author SPQRobin
  */
 
 $fallback = 'fr';
@@ -398,7 +399,7 @@ Vosse conte a stî ahivé.
 'nosuchuser'                 => "I g na nou uzeu dizo l' no «$1».
 Verifyîz çou k' vos avoz tapé, oudonbén rimplixhoz les ôtes tchamps
 et clitchîz sol boton po-z ahiver on novea conte.",
-'nosuchusershort'            => "I g na nou uzeu dizo l' no «<nowiki>\$1</nowiki>». Verifyîz çou k' vos avoz tapé.",
+'nosuchusershort'            => "I g na nou uzeu dizo l' no «<nowiki>$1</nowiki>». Verifyîz çou k' vos avoz tapé.",
 'nouserspecified'            => "Vos dvoz dner on no d' elodjaedje.",
 'wrongpassword'              => "Li scret ki vs avoz dné est måva. Rissayîz s' i vs plait.",
 'wrongpasswordempty'         => "Vos avoz dné on vude sicret. Rissayîz s' i vs plait.",
@@ -510,7 +511,6 @@ Rissayîz s' i vs plait. Si çoula n' va todi nén, sayîz di vs dislodjî eyet 
 
 <strong>Si c' est ene saye oniesse di candjî l' pådje, rissayîz s' i vs plait. Si çoula n' va todi nén, sayîz di vs dislodjî eyet di vs relodjî.</strong>",
 'editing'                   => 'Candjant $1',
-'editinguser'               => 'Candjant $1',
 'editingsection'            => 'Candjant $1 (seccion)',
 'editingcomment'            => 'Candjant $1 (comintaire)',
 'editconflict'              => 'Conflit inte deus candjmints: $1',
@@ -711,6 +711,7 @@ Les ôtes manaedjeus so ç' wiki ci pôront todi vey li contnou catchî eyet l' 
 'userrights-lookup-user'     => "Manaedjî les groupes d' èn uzeu",
 'userrights-user-editname'   => "Tapez on no d' uzeu:",
 'editusergroup'              => "Candjî les groupes di l' uzeu",
+'editinguser'                => 'Candjant $1',
 'userrights-editusergroup'   => "Candjî groupes d' uzeus",
 'saveusergroups'             => "Schaper des groupes d' uzeus",
 'userrights-groupsmember'    => 'Mimbes di:',
@@ -950,7 +951,6 @@ Li longueur del [http://meta.wikimedia.org/wiki/Help:Job_queue cawêye des bouye
 'restrictedpheading'      => 'Pådjes sipeciåles po les manaedjeus',
 'newpages'                => 'Novelès pådjes',
 'ancientpages'            => 'Viyès pådjes',
-'intl'                    => 'Loyéns eterlingaedjes',
 'move'                    => 'Displaecî',
 'movethispage'            => 'Displaecî cisse pådje',
 'unusedimagestext'        => "<p>Notez tot l' minme ki d' ôtès waibes polèt aveur des loyéns viè ces imådjes la gråcès a ene direke hårdêye. Do côp, ces imådjes aparexhèt chal, mågré k' ele soeyexhe eployeyes.</p>",
@@ -1019,7 +1019,7 @@ Do côp, c' est nén possibe di lyi evoyî èn emile.",
 'watchnologin'         => "Vos n' estoz nén elodjî",
 'watchnologintext'     => 'I vs fåt esse [[Special:Userlogin|elodjî]] po pleur candjî vosse djivêye des pådjes a shuve.',
 'addedwatch'           => 'Radjouté ås shuvous',
-'addedwatchtext'       => "Li pådje «<nowiki>\$1</nowiki>» a stî radjoutêye a vosse [[Special:Watchlist|djivêye des pådjes a shuve]].
+'addedwatchtext'       => "Li pådje «<nowiki>$1</nowiki>» a stî radjoutêye a vosse [[Special:Watchlist|djivêye des pådjes a shuve]].
 Tos les candjmints k' i gn årè di cisse pådje chal, 
 eyet di si pådje di copene, seront håynés chal, eyet li pådje serè metowe e '''cråssès letes'''
 el [[Special:Recentchanges|djivêye des dierins candjmints]] po k' ça soeye pus åjhey por vos del rimårker.
@@ -1113,7 +1113,7 @@ Li dierin candjmint a stî fwait pa [[User:$3|$3]] ([[User talk:$3|Copene]]).",
 'protectcomment'              => 'Råjhon po protedjî',
 'unprotectsub'                => '(Disprotedjant «$1»)',
 'protect-unchain'             => 'Disbloker les permissions di displaeçaedje',
-'protect-text'                => "Vos ploz droci vey eyet candjî l' livea d' protedjaedje pol pådje <strong><nowiki>\$1</nowiki></strong>.",
+'protect-text'                => "Vos ploz droci vey eyet candjî l' livea d' protedjaedje pol pådje <strong><nowiki>$1</nowiki></strong>.",
 'protect-default'             => '(prémetou)',
 'protect-level-autoconfirmed' => 'Bloker les uzeus nén eredjîstrés',
 'protect-level-sysop'         => 'Seulmint les manaedjeus',

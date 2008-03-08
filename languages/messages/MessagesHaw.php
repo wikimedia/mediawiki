@@ -6,7 +6,10 @@
  * @author SPQRobin
  * @author Singularity
  * @author Siebrand
+ * @author Node ue
  */
+
+
 
 $messages = array(
 # User preference toggles
@@ -31,7 +34,7 @@ $messages = array(
 'friday'        => 'Pō‘alima',
 'saturday'      => 'Pō‘aono',
 'sun'           => 'Lāpule',
-'mon'           => 'Pō‘akahi',
+'mon'           => 'Pōʻakahi',
 'tue'           => 'Pō‘alua',
 'wed'           => 'Pō‘akolu',
 'thu'           => 'Pō‘ahā',
@@ -201,7 +204,7 @@ Ua hana ‘ia kāu mea ho‘ohana. Mai poina e loli kāu {{SITENAME}} makemake.'
 'savearticle'           => 'E mālama i ka mea',
 'showpreview'           => "E hō'ike i ka nāmua",
 'showdiff'              => "E hō'ike hou",
-'anoneditwarning'       => "'''A‘o ‘ana:''' ‘O ‘oe ‘a‘ole ʻeʻe. E ho‘opa‘a ‘ia ana kou IP ma \"he aha i ho‘ololi ‘ia ai\" o kēia ‘ao‘ao.",
+'anoneditwarning'       => "'''Aʻo ʻana:''' ʻO ʻoe ʻaʻole ʻeʻe. E hoʻopaʻa ʻia ana kou IP ma \"he aha i hoʻololi ʻia ai\" o kēia ʻaoʻao.",
 'blockedtitle'          => 'Ua ke‘a ‘ia ka mea ho‘ohana',
 'blockednoreason'       => '‘a‘ohe kumu',
 'blockedoriginalsource' => "Aia ke kumu o '''$1''' 
@@ -272,7 +275,7 @@ hō‘ike ‘ia i lalo:",
 'filehist-user'       => 'Mea ho‘ohana',
 'filehist-dimensions' => 'Nā nui',
 'filehist-filesize'   => 'Nui o ka waihona',
-'filehist-comment'    => 'Mana‘o',
+'filehist-comment'    => 'Manaʻo',
 'imagelinks'          => 'Nā loulou',
 'linkstoimage'        => 'Loulou kēia mau ‘ao‘ao i kēia waihona:',
 

@@ -18,6 +18,7 @@
  * @author Nike
  * @author MCruz
  * @author Minh Nguyen
+ * @author Lijealso
  */
 
 $namespaceNames = array(
@@ -710,7 +711,6 @@ Por favor tente novamente. Caso continue a não funcionar, tente sair e voltar a
 'token_suffix_mismatch'     => '<strong>A sua edição foi rejeitada uma vez que seu software de navegação mutilou os sinais de pontuação do sinal de edição. A edição foi rejeitada para evitar perdas no texto da página. 
 Isso acontece ocasionalmente quando se usa um serviço de proxy anonimizador mal configurado.</strong>',
 'editing'                   => 'Editando $1',
-'editinguser'               => "Modificando privilégios do utilizador '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
 'editingsection'            => 'Editando $1 (secção)',
 'editingcomment'            => 'Editando $1 (comentário)',
 'editconflict'              => 'Conflito de edição: $1',
@@ -975,6 +975,7 @@ Note que os índices do conteúdo da {{SITENAME}} destes sites podem estar desac
 'userrights-lookup-user'           => 'Gerir grupos de utilizadores',
 'userrights-user-editname'         => 'Intruduza um nome de utilizador:',
 'editusergroup'                    => 'Editar Grupos de Utilizadores',
+'editinguser'                      => "Modificando privilégios do utilizador '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
 'userrights-editusergroup'         => 'Editar grupos do utilizador',
 'saveusergroups'                   => 'Salvar Grupos do Utilizador',
 'userrights-groupsmember'          => 'Membro de:',
@@ -1222,6 +1223,7 @@ PICT # misc.
 'filedelete-reason-dropdown'  => '*Motivos comuns para eliminação
 ** Violação de direitos de autor
 ** Ficheiro duplicado',
+'filedelete-edit-reasonlist'  => 'Editar motivos de eliminação',
 
 # MIME search
 'mimesearch'         => 'Pesquisa MIME',
@@ -1327,7 +1329,6 @@ O tamanho da [http://meta.wikimedia.org/wiki/Help:Job_queue fila de tarefas] é 
 'newpages'                => 'Páginas novas',
 'newpages-username'       => 'Nome de utilizador:',
 'ancientpages'            => 'Páginas mais antigas',
-'intl'                    => 'Ligações interlínguas',
 'move'                    => 'Mover',
 'movethispage'            => 'Mover esta página',
 'unusedimagestext'        => '<p>Por favor, note que outros websites podem apontar para uma imagem através de um URL directamente e, por isso, podem estar a não aparecer aqui, mesmo estando em uso.</p>',
@@ -1508,6 +1509,7 @@ Consulte $2 para um registo de eliminações recentes.',
 ** Pedido do autor
 ** Violação de direitos de autor
 ** Vandalismo',
+'delete-edit-reasonlist'      => 'Editar motivos de eiliminação',
 'delete-toobig'               => 'Esta página possui um longo histórico de edições, com mais de $1 revisões. A eliminação de tais páginas foi restrita, a fim de se evitarem problemas acidentais em {{SITENAME}}.',
 'delete-warning-toobig'       => 'Esta página possui um longo histórico de edições, com mais de $1 revisões. Eliminá-la poderá causar problemas na base de dados de {{SITENAME}}; prossiga com cuidado.',
 'rollback'                    => 'Reverter edições',
@@ -1653,6 +1655,7 @@ $1',
 
 # Block/unblock
 'blockip'                     => 'Bloquear utilizador',
+'blockip-legend'              => 'Bloquear utilizador',
 'blockiptext'                 => 'Utilize o formulário abaixo para bloquear o acesso à escrita de um endereço específico de IP ou nome de utilizador.
 Isto só deve ser feito para prevenir vandalismo, e de acordo com a [[{{MediaWiki:Policy-url}}|política]]. Preencha com um motivo específico a seguir (por exemplo, citando páginas que sofreram vandalismo).',
 'ipaddress'                   => 'Endereço de IP:',

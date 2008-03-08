@@ -64,6 +64,7 @@ $messages = array(
 'nov'           => 'Νοέ',
 'dec'           => 'Δεκ',
 
+'qbfind' => 'Εύρον',
 'mypage' => "Τ' εμόν η σελίδαν",
 'mytalk' => "Τ' εμόν η καλατσήν",
 'and'    => 'και',
@@ -98,6 +99,8 @@ $messages = array(
 'viewsourcefor' => 'για $1',
 
 # Login and logout pages
+'yourname'      => 'Όνεμα χρήστε:',
+'yourpassword'  => 'Σημάδι:',
 'logout'        => 'οξουκά',
 'userlogout'    => 'Οξουκά',
 'nologinlink'   => 'Ποίσον λογαριασμόν',
@@ -112,15 +115,27 @@ $messages = array(
 # Search results
 'powersearch' => 'Εύρον',
 
+# Image list
+'filehist-user' => 'Χρήστες',
+
+# Statistics
+'statistics' => 'Στατιστικήν',
+
 # Miscellaneous special pages
 'lonelypages'  => 'Ορφανά σελίδας',
+'allpages'     => 'Όλεα τα σελίδας',
+'ancientpages' => 'Ασ’ όλιον παλαιά σελίδας',
 'move'         => 'Αχταρμάν',
 'movethispage' => 'Εφτάτε έναν αχταρμάν τη σελίδαν',
 
 # Book sources
 'booksources-go' => 'Δέβα',
 
+# Special:Log
+'specialloguserlabel' => 'Χρήστες:',
+
 # Special:Allpages
+'allarticles'    => 'Όλεα τα σελίδας',
 'allpagessubmit' => 'Δέβα',
 
 # Watchlist
@@ -137,8 +152,13 @@ $messages = array(
 'contribslink' => "Δουλείας ντ' εποίκε",
 
 # Tooltip help for the actions
+'tooltip-pt-userpage'  => "Τ' εμόν η σελίδαν",
 'tooltip-pt-mycontris' => "Λίστα με τα δουλείας ντ' εποίκα",
+'tooltip-ca-protect'   => 'Ασπάλιγμα τη σελίδας',
 'tooltip-n-mainpage'   => 'Τερέστε την Αρχικόν σελίδαν',
+
+# 'all' in various places, this might be different for inflected languages
+'namespacesall' => 'όλεα',
 
 # Multipage image navigation
 'imgmultigo' => 'Δέβα!',

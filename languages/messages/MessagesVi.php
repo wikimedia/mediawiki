@@ -236,7 +236,7 @@ $messages = array(
 'subcategories'            => 'Tiểu thể loại',
 'category-media-header'    => 'Các tập tin trong thể loại “$1”',
 'category-empty'           => "''Thể loại này hiện không có trang hay tập tin.''",
-'hidden-categories'        => 'Thể loại ẩn',
+'hidden-categories'        => '{{PLURAL:$1|Thể loại ẩn|Các thể loại ẩn}}',
 'hidden-category-category' => 'Thể loại ẩn', # Name of the category where hidden categories will be listed
 
 'mainpagetext'      => "<big>'''MediaWiki đã được cài đặt thành công.'''</big>",
@@ -251,7 +251,7 @@ $messages = array(
 'about'          => 'Giới thiệu',
 'article'        => 'Trang nội dung',
 'newwindow'      => '(mở cửa sổ mới)',
-'cancel'         => 'Hủy',
+'cancel'         => 'Bãi bỏ',
 'qbfind'         => 'Tìm kiếm',
 'qbbrowse'       => 'Xem qua',
 'qbedit'         => 'Sửa',
@@ -1156,6 +1156,7 @@ PICT # khác
 'filedelete-reason-dropdown'  => '*Những lý do xóa thường gặp
 ** Vi phạm bản quyền
 ** Tập tin trùng lắp',
+'filedelete-edit-reasonlist'  => 'Sửa lý do xóa',
 
 # MIME search
 'mimesearch'         => 'Tìm kiếm theo định dạng',
@@ -1433,6 +1434,7 @@ Xin xác nhận việc bạn định làm, và hiểu rõ những hệ lụy c�
 ** Tác giả yêu cầu
 ** Vi phạm bản quyền
 ** Phá hoại',
+'delete-edit-reasonlist'      => 'Sửa lý do xóa',
 'delete-toobig'               => 'Trang này có lịch sử sửa đổi lớn, đến hơn $1 lần sửa đổi. Việc xóa các trang như vậy bị hạn chế để ngăn ngừa sự phá hoại vô ý cho {{SITENAME}}.',
 'delete-warning-toobig'       => 'Trang này có lịch sử sửa đổi lớn, đến hơn $1 lần sửa đổi. Việc xóa các trang có thể làm tổn hại đến hoạt động của cơ sở dữ liệu của {{SITENAME}}; hãy cẩn trọng khi thực hiện.',
 'rollback'                    => 'Phục hồi sửa đổi',
@@ -1577,6 +1579,7 @@ $1',
 
 # Block/unblock
 'blockip'                     => 'Cấm thành viên',
+'blockip-legend'              => 'Khóa thành viên',
 'blockiptext'                 => 'Dùng mẫu dưới để cấm một địa chỉ IP hoặc thành viên không được viết trang. Điều này chỉ nên làm để tránh phá hoại, 
 và phải theo [[{{MediaWiki:Policy-url}}|quy định]]. Điền vào lý do cụ thể ở dưới (ví dụ, chỉ ra trang nào bị phá hoại).',
 'ipaddress'                   => 'Địa chỉ IP:',

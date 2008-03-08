@@ -870,7 +870,7 @@ resultáu les páxines que contengan tolos términos de la busca).",
 'userrights-lookup-user'           => "Remanamientu de grupos d'usuariu",
 'userrights-user-editname'         => "Escribi un nome d'usuariu:",
 'editusergroup'                    => "Modificar grupos d'usuariu",
-'editinguser'                      => "Editando l'usuariu '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
+'editinguser'                      => "Camudando los drechos del usuariu '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
 'userrights-editusergroup'         => "Editar los grupos d'usuariu",
 'saveusergroups'                   => "Guardar los grupos d'usuariu",
 'userrights-groupsmember'          => 'Miembru de:',
@@ -1105,6 +1105,7 @@ Amuésase equí'l rexistru de borraos pa esti archivu a los efeutos oportunos:",
 'filedelete-reason-dropdown'  => '*Motivos comunes de borráu
 ** Violación de Copyright
 ** Archivu duplicáu',
+'filedelete-edit-reasonlist'  => 'Editar los motivos de borráu',
 
 # MIME search
 'mimesearch'         => 'Busca MIME',
@@ -1387,6 +1388,7 @@ Mira en $2 la llista de les últimes páxines borraes.',
 ** A pidimientu del autor
 ** Violación de Copyright
 ** Vandalismu',
+'delete-edit-reasonlist'      => 'Editar los motivos de borráu',
 'delete-toobig'               => "Esta páxina tien un historial d'ediciones grande, más de $1 revisiones. Restrinxóse'l borráu d'estes páxines pa evitar perturbaciones accidentales de {{SITENAME}}.",
 'delete-warning-toobig'       => "Esta páxina tien un historial d'ediciones grande, más de $1 revisiones. Borralu pue perturbar les operaciones de la base de datos de {{SITENAME}}; obra con precaución.",
 'rollback'                    => 'Revertir ediciones',
@@ -1541,6 +1543,7 @@ $1",
 
 # Block/unblock
 'blockip'                     => 'Bloquiar usuariu',
+'blockip-legend'              => 'Bloquiar usuariu',
 'blockiptext'                 => "Usa'l siguiente formulariu pa bloquiar el permisu d'escritura a una IP o a un usuariu concretu.
 Esto debería facese sólo pa prevenir vandalismu como indiquen les [[{{MediaWiki:Policy-url}}|polítiques]]. Da un motivu específicu (como por exemplu citar páxines que fueron vandalizaes).",
 'ipaddress'                   => 'Dirección IP:',

@@ -1087,8 +1087,8 @@ Pour inclure une image dans une page, utilisez un lien de la forme
 'filename'                    => 'Nom du fichier',
 'filedesc'                    => 'Description',
 'fileuploadsummary'           => 'Description :',
-'filestatus'                  => "Statut du droit d'auteur&nbsp;:",
-'filesource'                  => 'Source&nbsp;:',
+'filestatus'                  => "Statut des droits d'auteur :",
+'filesource'                  => 'Source :',
 'uploadedfiles'               => 'Fichiers importés',
 'ignorewarning'               => 'Ignorer l’avertissement et sauvegarder le fichier.',
 'ignorewarnings'              => 'Ignorer les avertissements lors de l’import',
@@ -1126,7 +1126,7 @@ Si vous disposez du fichier en haute résolution, importez-le, sinon veuillez ch
 'uploadcorrupt'               => 'Ce fichier est corrompu, a une taille nulle ou possède une extension invalide.
 Veuillez vérifer le fichier.',
 'uploadvirus'                 => 'Ce fichier contient un virus ! Pour plus de détails, consultez : $1',
-'sourcefilename'              => 'Nom du fichier à importer&nbsp;:',
+'sourcefilename'              => 'Nom du fichier source :',
 'destfilename'                => 'Nom sous lequel le fichier sera enregistré&nbsp;:',
 'watchthisupload'             => 'Suivre ce fichier',
 'filewasdeleted'              => 'Un fichier avec ce nom a déjà été copié, puis supprimé. Vous devriez vérifier le $1 avant de procéder à une nouvelle copie.',
@@ -1658,6 +1658,7 @@ $1',
 
 # Block/unblock
 'blockip'                     => 'Bloquer en écriture',
+'blockip-legend'              => 'Bloquer en écriture',
 'blockiptext'                 => 'Utilisez le formulaire ci-dessous pour bloquer l’accès en écriture à partir d’une adresse IP donnée ou d’un nom d’utilisateur.
 
 Une telle mesure ne doit être prise que pour empêcher le vandalisme et en accord avec les [[{{MediaWiki:Policy-url}}|règles internes]].

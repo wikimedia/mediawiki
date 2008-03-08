@@ -21,6 +21,7 @@
  * @author Toniher
  * @author Ascánder
  * @author Technorum
+ * @author SPQRobin
  */
 
 $skinNames = array(
@@ -793,7 +794,7 @@ $2 Listar redirecciones   Buscar $3 $9',
 'userrights-lookup-user'     => 'Configurar grupos de usuarios',
 'userrights-user-editname'   => 'Escriba un nombre de usuario:',
 'editusergroup'              => 'Modificar grupos de usuarios',
-'editinguser'                => 'Editando $1',
+'editinguser'                => "Editando '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
 'userrights-editusergroup'   => 'Modificar grupos de usuarios',
 'saveusergroups'             => 'Guardar grupos de usuarios',
 'userrights-groupsmember'    => 'Miembro de:',

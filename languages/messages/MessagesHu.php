@@ -1070,7 +1070,7 @@ rendszer nem indexel, vagy több független keresési kifejezés megadása
 'userrights-lookup-user'           => 'Felhasználócsoportok kezelése',
 'userrights-user-editname'         => 'Írd be a felhasználónevet:',
 'editusergroup'                    => 'Felhasználócsoportok módosítása',
-'editinguser'                      => '$1 szerkesztés alatt',
+'editinguser'                      => "'''[[User:$1|$1]]''' jogainak megváltoztatása ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
 'userrights-editusergroup'         => 'Felhasználócsoportok módosítása',
 'saveusergroups'                   => 'Felhasználócsoportok mentése',
 'userrights-groupsmember'          => 'Csoporttag:',
@@ -1317,6 +1317,7 @@ PICT # ált.
 'filedelete-reason-dropdown'  => '*Általános törlési okok
 ** Szerzői jog megsértése
 ** Duplikátum',
+'filedelete-edit-reasonlist'  => 'Törlési okok szerkesztése',
 
 # MIME search
 'mimesearch'         => 'Keresés MIME-típus alapján',
@@ -1610,6 +1611,7 @@ A legutóbbi törlések listájához lásd a $2 lapot.',
 ** Szerző kérésére
 ** Jogsértő
 ** Vandalizmus',
+'delete-edit-reasonlist'      => 'Törlési okok szerkesztése',
 'delete-toobig'               => 'Ennek a lapnak nagy laptörténete van, $1 változattal. Az ilyen lapok törlése korlátozott a wiki rendjének megőrzése végett.',
 'delete-warning-toobig'       => 'Ennek a lapnak nagy laptörténete van, $1 változattal. Törlése fennakadásokat okozhat a wiki adatbázisműveleteiben; óvatosan járj el.',
 'rollback'                    => 'Szerkesztések visszaállítása',
@@ -1759,6 +1761,7 @@ $1',
 
 # Block/unblock
 'blockip'                     => 'Blokkolás',
+'blockip-legend'              => 'Felhasználó blokkolása',
 'blockiptext'                 => 'Az alábbi űrlap segítségével megvonhatod egy szerkesztő vagy IP-cím szerkesztési jogait. Ügyelj rá, hogy az intézkedésed mindig legyen tekintettel a vonatkozó irányelvekre. Add meg a blokkolás okát is (például idézd a blokkolandó személy által vandalizált lapokat), és linkeld be a vonatkozó irányelveket, hogy a blokk elszenvedője tudjon tájékozódni.',
 'ipaddress'                   => 'IP-cím',
 'ipadressorusername'          => 'IP-cím vagy felhasználói név',

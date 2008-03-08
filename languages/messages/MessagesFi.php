@@ -8,6 +8,7 @@
  * @author Cimon Avaro
  * @author לערי ריינהארט
  * @author Siebrand
+ * @author M.M.S.
  */
 
 $separatorTransformTable = array(',' => "\xc2\xa0", '.' => ',' );
@@ -1061,7 +1062,7 @@ Jos sinulla on tämän kuvan alkuperäinen versio, tallenna se. Muussa tapaukses
 'savefile'                    => 'Tallenna',
 'uploadedimage'               => 'tallensi tiedoston [[$1]]',
 'overwroteimage'              => 'tallensi uuden version tiedostosta [[$1]]',
-'uploaddisabled'              => '{{GRAMMAR:genitive|{{SITENAME}}}} ei voi lisätä tiedostoja.',
+'uploaddisabled'              => '{{GRAMMAR:illative|{{SITENAME}}}} ei voi lisätä tiedostoja.',
 'uploaddisabledtext'          => 'Tiedostojen tallennus on poistettu käytöstä.',
 'uploadscripted'              => 'Tämä tiedosto sisältää HTML-koodia tai skriptejä, jotka selain saattaa virheellisesti suorittaa.',
 'uploadcorrupt'               => 'Tiedosto on vioittunut tai sillä on väärä tiedostopääte. Tarkista tiedosto ja lähetä se uudelleen.',
@@ -1568,6 +1569,7 @@ $1',
 
 # Block/unblock
 'blockip'                     => 'Aseta muokkausesto',
+'blockip-legend'              => 'Estä käyttäjä',
 'blockiptext'                 => 'Tällä lomakkeella voit estää käyttäjän tai IP-osoitteen muokkausoikeudet. Muokkausoikeuksien poistamiseen pitää olla syy, esimerkiksi sivujen vandalisointi. Kirjoita syy siihen varattuun kenttään.<br />Vapaamuotoisen vanhenemisajat noudattavat GNUn standardimuotoa, joka on kuvattu tar-manuaalissa ([http://www.gnu.org/software/tar/manual/html_node/Date-input-formats.html] [EN]), esimerkiksi ”1 hour”, ”2 days”, ”next Wednesday”, 2005-08-29”.',
 'ipaddress'                   => 'IP-osoite',
 'ipadressorusername'          => 'IP-osoite tai käyttäjätunnus',

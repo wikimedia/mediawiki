@@ -568,7 +568,6 @@ Probaran tabi giraray. Kun dai man giraray magibo, probaran na magluwas dangan m
 'token_suffix_mismatch'     => "<strong>Dai pigtogotan an hirá mo ta sinabrit kan ''client'' mo an mga ''punctuation characters''. Dai pigtogotan ining hirá para maibitaran na maraot an teksto kan páhina. 
 Nanyayari nanggad ini kun naggagamit ka nin bakong marhay asin dai bistong ''web-based proxy service''.</strong>",
 'editing'                   => 'Pighihira $1',
-'editinguser'               => 'Pighihira an parágamit na <b>$1</b>',
 'editingsection'            => 'Pighihira an $1 (seksyon)',
 'editingcomment'            => 'Pighihira an $1 (komento)',
 'editconflict'              => 'Komplikto sa paghihira: $1',
@@ -792,6 +791,7 @@ Hilingon tabî an [[Special:Ipblocklist|lista nin binagat na IP]] para sa lista 
 'userrights-lookup-user'      => 'Magmaného kan mga grupo nin parágamit',
 'userrights-user-editname'    => 'Ilaog an pangaran kan parágamit:',
 'editusergroup'               => 'Hirahón an mga Grupo kan Parágamit',
+'editinguser'                 => 'Pighihira an parágamit na <b>$1</b>',
 'userrights-editusergroup'    => 'Hirahón an mga grupo kan parágamit',
 'saveusergroups'              => 'Itagama an mga Grupo nin Páragamit',
 'userrights-groupsmember'     => 'Myembro kan:',
@@ -1106,7 +1106,6 @@ Maabot sa '''\$5''' na hira kada páhina sa medio, asin '''\$6''' na paghiling k
 'newpages'                => 'Mga bâgong páhina',
 'newpages-username'       => 'Pangaran kan parágamit:',
 'ancientpages'            => 'Mga pinakalumang páhina',
-'intl'                    => 'Mga takod sa ibang tataramon',
 'move'                    => 'Ibalyó',
 'movethispage'            => 'Ibalyó ining páhina',
 'unusedimagestext'        => "<p>Giromdomon tabî na an mga ibang ''site'' pwedeng nakatakod sa ladawan na may direktong URL, pues pwede ser na nakalista pa digdi a pesar na ini piggagamit pa.</p>",

@@ -545,7 +545,6 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 
 '''다시 저장을 해 주세요. 만약 계속해서 문제가 생긴다면 로그아웃한 다음 다시 로그인을 해 보세요.'''",
 'editing'                   => '$1 편집하기',
-'editinguser'               => "'''[[User:$1|$1]]'''([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]]) 사용자의 권한 변경",
 'editingsection'            => '$1 편집하기 (부분)',
 'editingcomment'            => '$1 편집하기 (덧붙이기)',
 'editconflict'              => '편집 충돌: $1',
@@ -724,6 +723,7 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'userrights-lookup-user'     => '사용자 권한 관리',
 'userrights-user-editname'   => '사용자 이름:',
 'editusergroup'              => '사용자 그룹 편집',
+'editinguser'                => "'''[[User:$1|$1]]'''([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]]) 사용자의 권한 변경",
 'userrights-editusergroup'   => '사용자 그룹 편집',
 'saveusergroups'             => '사용자 권한 저장',
 'userrights-groupsmember'    => '현재 권한:',
@@ -1017,7 +1017,6 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'newpages'                => '새 문서 목록',
 'newpages-username'       => '이름:',
 'ancientpages'            => '오래된 문서 목록',
-'intl'                    => '인터위키',
 'move'                    => '이동',
 'movethispage'            => '문서 이동하기',
 'unusedimagestext'        => '<p>다른 사이트에서 그림의 URL을 직접 사용하고 있을 가능성이 있고, 따라서 그림이 이 목록에 있어도 실제로 어딘가에서 사용하고 있을 수 있습니다.</p>',

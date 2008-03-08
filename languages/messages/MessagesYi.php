@@ -11,6 +11,7 @@
  * @author לערי ריינהארט
  * @author SPQRobin
  * @author פוילישער
+ * @author Jiddisch
  */
 
 $fallback = 'he';
@@ -71,7 +72,7 @@ $messages = array(
 'tog-extendwatchlist'         => 'פארברייטער אויפפאסן ליסטע צו צייגן אלע פאסענדע ענדערונגען (אנדערשט: בלויז די לעצטע ענדערונג פון יעדן בלאט)',
 'tog-usenewrc'                => 'פֿאַרבעסערטע "לעצטע ענדערונגען" (JavaScript)',
 'tog-numberheadings'          => 'נומערירן קעפלעך אויטאמאטיש',
-'tog-showtoolbar'             => 'ווייז עדיט טולבאר',
+'tog-showtoolbar'             => 'צײַג דער רעדאַקטיר־ליניע',
 'tog-editondblclick'          => 'ענדערן בלעטער דורך טאפל קליק (JavaScript)',
 'tog-editsection'             => 'ערמעגליכט אפטייל ענדערן דורך [ענדערן] לינקס',
 'tog-editsectiononrightclick' => 'באמעגליך פאראגראף ענדערונגען דורכן קוועטשן אויפן רעכטן<br />אויף אפטייל קעפל (JavaScript)',
@@ -580,7 +581,6 @@ $1 שעות.',
 
 ''ווייל די וויקי האט רויע HTML ערמעגליכט, די פאראויסדיגע ווייזונג איז באהאלטן אלס א באווארענונג אנטקעגן JavaScript אטאקירונגן.''",
 'editing'                   => 'ענדערן $1',
-'editinguser'               => 'ענדערט באנוצער $1',
 'editingsection'            => 'ענדערט $1 (אפטיילונג)',
 'editingcomment'            => 'ענדערט $1 (הערה)',
 'editconflict'              => 'ענדערן קאנפליקט: $1',
@@ -739,6 +739,7 @@ Legend: (cur) = difference with current version,
 # User rights
 'userrights-user-editname' => 'לייגט אריין א באנוצער-נאמען:',
 'editusergroup'            => 'עדיט באנוצער גרופעס',
+'editinguser'              => 'ענדערט באנוצער $1',
 'userrights-groupsmember'  => 'מיטגליד פון:',
 'userrights-reason'        => 'סיבה פארן ענדערונג:',
 

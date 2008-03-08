@@ -233,7 +233,7 @@ $messages = array(
 'hidden-categories'        => '{{PLURAL:$1|Verstoppte Kategorie|Verstoppte Kategorien}}',
 'hidden-category-category' => 'Verstoppte Kategorien', # Name of the category where hidden categories will be listed
 
-'mainpagetext'      => "<big>'''MediaWiki gouf mat Succès installéiert.'''</big>",
+'mainpagetext'      => "<big>'''MediaWiki gouf installéiert.'''</big>",
 'mainpagedocfooter' => "Kuckt w.e.g. [http://meta.wikimedia.org/wiki/Help:Contents d'Benotzerhandbuch] fir den Interface ze personnaliséieren. 
 
 == Starthëllefen ==
@@ -639,6 +639,7 @@ Dir kënnt de(n) $1 oder soss een [[{{MediaWiki:Grouppage-sysop}}|Administrateur
 'note'                      => '<strong>Notiz:</strong>',
 'previewnote'               => "<strong>Dëst ass nëmmen e Preview; D'Ännerunge sinn nach net gespäichert!</strong>",
 'previewconflict'           => 'Dir gesitt an dem ieweschten Textfeld wéi den Text ausgesi wäert, wann Dir späichert.',
+'session_fail_preview'      => "<strong>Et deet eis leed, mee är Ännerung konnt net gespäichert gi well d'Date vun ärer Sessioun verluergaange sinn. Versicht et w.e.g. nach eng Kéier. Wann de Problem dann ëmmer nach bestoe sollt, da versicht iech kuerz aus- an dann erëm anzeloggen.</strong>",
 'editing'                   => 'Ännere vun $1',
 'editingsection'            => 'Ännere vun $1 (Abschnitt)',
 'editingcomment'            => 'Ännere vun $1 (Kommentar)',
@@ -671,6 +672,7 @@ Iwwerleet w.e.g., ob eng Opdeelung vun der Säit a méi kleng Abschnitter méigl
 'readonlywarning'           => "<strong>OPGEPASST: D'Datebank gouf wéinst Maintenanceaarbechte fir Säitenànnerunge gespaart, dofir kënnt Dir déi Säit den Ament net ofspäicheren. Versuergt den Text a versicht d'Ännerunge méi spéit nach emol ze maachen.</strong>",
 'protectedpagewarning'      => '<strong>OPGEPASST: Dës Säit gouf gespaart a kann nëmme vun engem Administrateur geännert ginn.</strong>',
 'semiprotectedpagewarning'  => "'''Bemierkung:''' Dës Säit gouf esou gespaart, datt nëmme ugemellte Benotzer s'ännere kënnen.",
+'titleprotectedwarning'     => '<strong>OPGEPASST: Dës Säit gouf gespaart sou datt nëmme verschidde Benotzer se uleeë kënnen.</strong>',
 'templatesused'             => 'Schablounen déi op dëser Säit am Gebrauch sinn:',
 'templatesusedpreview'      => 'Schablounen déi an dësem Preview am Gebrauch sinn:',
 'templatesusedsection'      => 'Schablounen déi an dësem Abschnitt am Gebrauch sinn:',
@@ -757,9 +759,10 @@ Fir iech z'informéieren fannt Dir hei d'Läschlescht mat dem Grond:",
 'mergehistory-into'                => 'Zilsäit:',
 'mergehistory-submit'              => 'Versioune verschmelzen',
 'mergehistory-empty'               => 'Et kënne keng Versioune fusionéiert ginn',
-'mergehistory-success'             => '{{PLURAL:$3|1 Versioun|$3 Versiounen}} vun [[:$1]] mat Succès op [[:$2]] zesummegeluecht.',
+'mergehistory-success'             => '{{PLURAL:$3|1 Versioun gouf|$3 Versiounen goufe}} vun [[:$1]] op [[:$2]] zesummegeluecht.',
 'mergehistory-no-source'           => 'Originalsäit "$1" gëtt et net.',
 'mergehistory-no-destination'      => 'Zilsäit "$1" gëtt et net.',
+'mergehistory-invalid-source'      => "D'Originalsäit muss ee gültege Säitennumm hunn.",
 'mergehistory-invalid-destination' => 'Zilsäit muss e gültege Säitennumm sinn.',
 
 # Merge log
@@ -976,6 +979,7 @@ Dir sollt onbedingt bedenken, datt, genee wéi bäi normale Säiten, aner Benotz
 'largefileserver'     => 'Dëse Fichier ass méi grouss wéi déi um Server agestallte Maximalgréisst.',
 'emptyfile'           => 'De Fichier deen Dir eropgelueden hutt, schéngt eidel ze sinn. Dëst kann duerch en Tippfeeler am Numm vum Fichier kommen. Préift w.e.g. no, op Dir dëse Fichier wierklech eropluede wëllt.',
 'fileexists'          => 'Et gëtt schonn e Fichier mat dësem Numm, kuckt w.e.g. $1 wann Dir net sécher sidd, op Dir den Numm ännere wëllt.',
+'fileexists-thumb'    => "<center>'''Dëse Fichier gëtt et'''</center>",
 'successfulupload'    => 'Eroplueden erfollegräich',
 'uploadwarning'       => 'Opgepasst',
 'savefile'            => 'Fichier späicheren',
@@ -986,7 +990,7 @@ Dir sollt onbedingt bedenken, datt, genee wéi bäi normale Säiten, aner Benotz
 'uploadscripted'      => 'An dësem Fichier ass HTML- oder Scriptcode, de vun engem Webbrowser falsch interpretéiert kéint ginn.',
 'uploadvirus'         => 'An dësem Fichier ass ee Virus! Detailer: $1',
 'sourcefilename'      => 'Numm vum Originalfichier:',
-'destfilename'        => 'Numm op der Wiki:',
+'destfilename'        => 'Numm vum Fichier',
 'watchthisupload'     => 'Dës Säit iwwerwaachen',
 'filename-bad-prefix' => 'Den Numm vum Fichier fänkt mat <strong>„$1“</strong> un. Dësen Numm ass automatesch vun der Kamera gi ginn a seet näischt iwwert dat aus, wat drop ass. Gitt dem Fichier w.e.gl. en Numm, deen den Inhalt besser beschreift, an deen net verwiesselt ka ginn.',
 
@@ -998,7 +1002,7 @@ Dir sollt onbedingt bedenken, datt, genee wéi bäi normale Säiten, aner Benotz
 'upload-curl-error6'  => "URL ass net z'erreechen",
 'upload-curl-error28' => "D'Eroplueden huet ze laang gedauert (timeout)",
 
-'license'            => 'Lizenz:',
+'license'            => 'Lizenzéiert:',
 'nolicense'          => 'Keng Lizenz ausgewielt',
 'license-nopreview'  => '(Kucken ouni ofzespäichere geet net)',
 'upload_source_url'  => ' (gülteg, ëffentlech zougänglech URL)',
@@ -1129,9 +1133,10 @@ An all Rei sti Linken zur éischter an zweeter Viruleedung, souwéi déi éischt
 'brokenredirects-edit'    => '(änneren)',
 'brokenredirects-delete'  => '(läschen)',
 
-'withoutinterwiki'        => 'Säiten ouni Interwiki-Linken',
-'withoutinterwiki-header' => 'Dës Säiten hu keng Interwiki-Linken:',
-'withoutinterwiki-submit' => 'Weisen',
+'withoutinterwiki'         => 'Säiten ouni Interwiki-Linken',
+'withoutinterwiki-header'  => 'Dës Säiten hu keng Interwiki-Linken:',
+'withoutinterwiki-summary' => 'Op dëser Spezialsäit stinn all déi Säiten déi keng Interwikilinken hunn.',
+'withoutinterwiki-submit'  => 'Weisen',
 
 'fewestrevisions'         => 'Säite mat de mannsten Ännerungen',
 'fewestrevisions-summary' => 'Op dëser Spezialsäit stinn déi Säite mat de mansten Ännerungen.',
@@ -1158,6 +1163,7 @@ An all Rei sti Linken zur éischter an zweeter Viruleedung, souwéi déi éischt
 'unusedcategories'                => 'Onbenotzt Kategorien',
 'unusedimages'                    => 'Onbenotzte Biller',
 'popularpages'                    => 'Populär Säiten',
+'popularpages-summary'            => 'Op dëser Spezialsäit stinn déi Säiten déi am beschte verlinkt sinn.',
 'wantedcategories'                => 'Gewënschte Kategorien',
 'wantedcategories-summary'        => 'Op dëser Spezialsäit stinn all déi Kategorien, déi zwar op Säite benotzt ginn, déi awer nach net als Kategorie ugeluecht goufen.',
 'wantedpages'                     => 'Gewënschte Säiten',
@@ -1487,7 +1493,7 @@ $1',
 'ipbotheroption'              => 'Aner Dauer',
 'ipbotherreason'              => 'Aneren oder zousätzleche Grond:',
 'badipaddress'                => "D'IP-Adress huet dat falscht Format.",
-'blockipsuccesssub'           => 'Mat Succès gespaart',
+'blockipsuccesssub'           => 'Gouf gespaart',
 'blockipsuccesstext'          => "[[Special:Contributions/$1|$1]] gouf gespaart. <br />
 
 Kuckt d'[[Special:Ipblocklist|IP Spär-Lëscht]] fir all Spären ze gesin.",
@@ -1574,7 +1580,7 @@ An deene Fäll musst Dir d'Diskussiounssäit manuell réckelen oder fusionéiere
 'newtitle'                => 'Op neien Titel:',
 'move-watch'              => 'Dës Säit iwwerwaachen',
 'movepagebtn'             => 'Säit réckelen',
-'pagemovedsub'            => 'Mat Succès geréckelt',
+'pagemovedsub'            => 'Gouf geréckelt',
 'movepage-moved'          => "<big>'''D'Säit \"\$1\" gouf op \"\$2\" geréckelt.'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => 'Eng Säit mat dësem Numm gëtt et schonns, oder den Numm deen Dir gewielt hutt gëtt net akzeptéiert. Wielt w.e.g. en aneren Numm.',
 'talkexists'              => "D'Säit selwer gouf erfollegräich geréckelt, mee d'Diskussiounssäit konnt net mat eriwwergeholl gi well et schonns eng ënnert deem neien Titel gëtt. W.e.g. setzt dës manuell zesummen.",
@@ -1592,6 +1598,7 @@ An deene Fäll musst Dir d'Diskussiounssäit manuell réckelen oder fusionéiere
 'delete_and_move_text'    => '== Läsche vun der Destinatiounssäit néideg == D\'Säit "[[$1]]" existéiert schonn. Wëll der se läsche fir d\'Réckelen ze erméiglechen?',
 'delete_and_move_confirm' => "Jo, läsch d'Destinatiounssäit",
 'delete_and_move_reason'  => 'Geläscht fir Plaz ze maache fir eng Säit heihin ze réckelen',
+'selfmove'                => 'Source- an Destinatiounsnumm sinn dselwecht; eng Säit kann net op sech selwer geréckelt ginn.',
 
 # Export
 'export'            => 'Säiten exportéieren',
@@ -1719,6 +1726,7 @@ An deene Fäll musst Dir d'Diskussiounssäit manuell réckelen oder fusionéiere
 # Spam protection
 'spamprotectiontitle'    => 'Spamfilter',
 'spamprotectiontext'     => "D'Säit déi dir späichere wollt gouf vum Spamfilter gespaart. Dëst warscheinlech duerch en externe Link.",
+'spamprotectionmatch'    => "'''Dësen Text gouf vum Spamfilter fonnt: ''$1'''''",
 'subcategorycount'       => 'Fir dës Kategorie {{PLURAL:$1|gëtt et $1 Ënnerkategorie| ginn et $1 Ënnerkategorien}}.',
 'categoryarticlecount'   => 'An dëser Kategorie {{PLURAL:$1|gëtt et bis ewell 1 Säit|ginn et bis ewell $1 Säiten}}.',
 'category-media-count'   => 'Et {{PLURAL:$1|gëtt ee Fichier|ginn $1 Fichieren}} an dëser Kategorie',

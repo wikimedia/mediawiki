@@ -957,7 +957,7 @@ $2 Llista redireccions   Cerca $3 $9',
 'userrights-lookup-user'           => "Gestiona els grups d'usuari",
 'userrights-user-editname'         => "Introduïu un nom d'usuari:",
 'editusergroup'                    => "Edita els grups d'usuaris",
-'editinguser'                      => "S'està editant '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
+'editinguser'                      => "S'està canviant els permisos de l'usuari '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
 'userrights-editusergroup'         => "Edita els grups d'usuaris",
 'saveusergroups'                   => "Desa els grups d'usuari",
 'userrights-groupsmember'          => 'Membre de:',
@@ -1194,6 +1194,7 @@ A continuació teniu el registre d'eliminació per a que pugueu comprovar els mo
 'filedelete-reason-dropdown'  => "*Motius d'eliminació comuns
 ** Violació dels drets d'autor / copyright
 ** Fitxer duplicat",
+'filedelete-edit-reasonlist'  => "Edita els motius d'eliminació",
 
 # MIME search
 'mimesearch'         => 'Cerca per MIME',
@@ -1497,6 +1498,7 @@ Mostra $2 per a un registre dels esborrats més recents.',
 ** Proves
 ** Error en el nom
 ** Fer lloc a un trasllat",
+'delete-edit-reasonlist'      => "Edita els motius d'eliminació",
 'delete-toobig'               => "Aquesta pàgina té un historial d'edicions molt gran, amb més de $1 canvis. L'eliminació d'aquestes pàgines està restringida per a prevenir que hi pugui haver un desajustament seriós de la base de dades de tot el projecte {{SITENAME}} per accident.",
 'delete-warning-toobig'       => "Aquesta pàgina té un historial d'edicions molt gran, amb més de $1 canvis. Eliminar-la podria suposar un seriós desajustament de la base de dades de tot el projecte {{SITENAME}}; aneu en compte abans dur a terme l'acció.",
 'rollback'                    => 'Reverteix edicions',
@@ -1645,6 +1647,7 @@ $1",
 
 # Block/unblock
 'blockip'                     => "Bloca l'usuari",
+'blockip-legend'              => "Bloca l'usuari",
 'blockiptext'                 => "Empreu el següent formulari per blocar l'accés
 d'escriptura des d'una adreça IP específica o des d'un usuari determinat.
 això només s'hauria de fer per prevenir el vandalisme, i
