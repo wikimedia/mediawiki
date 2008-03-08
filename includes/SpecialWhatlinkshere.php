@@ -76,7 +76,7 @@ class WhatLinksHerePage {
 	function showIndirectLinks( $level, $target, $limit, $from = 0, $back = 0 ) {
 		global $wgOut;
 		$fname = 'WhatLinksHerePage::showIndirectLinks';
-		$dbr = wfGetDB( DB_READ );
+		$dbr = wfGetDB( DB_SLAVE );
 		$options = array();
 
 		$ns = $this->request->getIntOrNull( 'namespace' );
