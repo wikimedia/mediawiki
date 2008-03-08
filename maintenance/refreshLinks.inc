@@ -142,7 +142,7 @@ function deleteLinksFromNonexistent( $maxLag = 0 ) {
 
 	wfWaitForSlaves( $maxLag );
 
-	$dbw = wfGetDB( DB_WRITE );
+	$dbw = wfGetDB( DB_MASTER );
 
 	$linksTables = array(
 		'pagelinks' => 'pl_from',

@@ -353,7 +353,7 @@ class ParserTest {
 	 */
 	private function setupGlobals($opts = '') {
 		# Save the prefixed / quoted table names for later use when we make the temporaries.
-		$db = wfGetDB( DB_READ );
+		$db = wfGetDB( DB_SLAVE );
 		$this->oldTableNames = array();
 		foreach( $this->listTables() as $table ) {
 			$this->oldTableNames[$table] = $db->tableName( $table );
