@@ -9,6 +9,7 @@
  * @author Nike
  * @author Jon Harald Søby
  * @author Siebrand
+ * @author SPQRobin
  */
 
 $fallback = 'it';
@@ -579,7 +580,6 @@ La [http://meta.wikimedia.org/wiki/Help:Job_queue coda] contegne '''{{FORMATNUM|
 'restrictedpheading'      => 'Paxène speciałi par i aministradori',
 'newpages'                => 'Paxène nove',
 'ancientpages'            => 'Paxène pì vece',
-'intl'                    => 'Link a altri linguaggi',
 'unusedimagestext'        => 'Nota che altri siti web, come la {{SITENAME}} internazionale, potrebbero aver messo un link ad una immagine per mezzo di una URL diretta, perciò le immagini potrebbero essere listate qui, essendo inutilizzate in questa versione di {{SITENAME}}, anche essendo magari in uso altrove.',
 'unusedcategoriestext'    => 'Le paxène de łe categorie indicae de seguito łe xè stà creae ma non contegne nessuna paxèna né sotocategoria.',
 'notargettext'            => "Non hai specificato una pagina o un Utente in relazione al quale eseguire l'operazione richiesta.",

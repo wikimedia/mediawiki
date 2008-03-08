@@ -414,7 +414,7 @@ Creouse a súa conta. Non esqueza [[Special:Preferences|personalizar]] as súas 
 'email'                      => 'Correo electrónico',
 'prefs-help-realname'        => '* Nome real (opcional): se escolle dalo utilizarase para atribuírlle o seu traballo.',
 'loginerror'                 => 'Erro ao entrar ao sistema',
-'prefs-help-email'           => '*O correo electrónico é opcional, pero permite que outras persoas entren en contacto con vostede desde a súa páxina de usuario ou de converso sen que vostede revele a súa identidade.',
+'prefs-help-email'           => 'O correo electrónico é opcional, pero permite que outras persoas entren en contacto con vostede desde a súa páxina de usuario ou de conversa sen que vostede revele a súa identidade.',
 'prefs-help-email-required'  => 'O enderezo de correo electrónico é requirido.',
 'nocookiesnew'               => "A conta de usuario foi creada, pero non está rexistrado. {{SITENAME}} usa ''cookies'' para o rexistro. Vostede ten deshabilitadas as ''cookies''. Por favor, habilíteas, e logo rexístrese co seu novo nome de usuario e contrasinal.",
 'nocookieslogin'             => '{{SITENAME}} usa cookies para rexistrar os usuarios. Vostede ten as cookies deshabilitadas. Por favor, habilíteas e ténteo de novo.',
@@ -1100,6 +1100,7 @@ PICT # misc.
 'filedelete-reason-dropdown'  => '*Razóns comúns para eliminar:
 ** Violación do Copyright
 ** Arquivo duplicado',
+'filedelete-edit-reasonlist'  => 'Editar os motivos do borrado',
 
 # MIME search
 'mimesearch'         => 'Busca MIME',
@@ -1378,6 +1379,7 @@ Por favor, confirme que é realmente a súa intención, que comprende as consecu
 ** Petición do autor
 ** Violación de copyright
 ** Vandalismo',
+'delete-edit-reasonlist'      => 'Editar os motivos do borrado',
 'delete-toobig'               => 'Esta páxina conta cun historial longo, de máis de $1 revisións. Restrinxiuse a eliminación destas páxinas para previr problemas de funcionamento accidentais en {{SITENAME}}.',
 'delete-warning-toobig'       => 'Esta páxina conta cun historial de edicións longo, máis de $1 revisións. Se se elimina pódense provocar problemas de funcionamento nas operacións de base de datos de {{SITENAME}}; proceda con coidado.',
 'rollback'                    => 'Desfacer edicións',
@@ -1518,6 +1520,7 @@ $1',
 
 # Block/unblock
 'blockip'                     => 'Bloqueo de usuario',
+'blockip-legend'              => 'Bloquear usuario',
 'blockiptext'                 => 'Use o seguinte formulario para bloquear o acceso de escritura desde un enderezo IP ou para bloquear a un usuario específico.
 Isto debería facerse só para previr vandalismo, e de acordo coa [[{{MediaWiki:Policy-url}}|política e normas]] vixentes.
 Explique a razón específica do bloqueo (por exemplo, citando as páxinas concretas que sufriron vandalismo).',

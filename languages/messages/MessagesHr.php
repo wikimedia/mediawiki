@@ -616,7 +616,6 @@ Molimo pokušajte ponovno. Ako i dalje ne bude radilo, pokušajte se odjaviti i 
 Stoga je uređivanje odbačeno da se spriječi uništavanje stranice.
 To se događa ponekad kad rabite neispravan web-baziran anonimni proxy.</strong>',
 'editing'                   => 'Uređujete $1',
-'editinguser'               => 'Uređujete $1',
 'editingsection'            => 'Uređujete $1 (odlomak)',
 'editingcomment'            => 'Uređujete $1 (komentar)',
 'editconflict'              => 'Istovremeno uređivanje: $1',
@@ -881,6 +880,7 @@ za podešavanje suradničkih postavki.',
 'userrights-lookup-user'           => 'Upravljaj skupinama suradnika',
 'userrights-user-editname'         => 'Unesite suradničko ime:',
 'editusergroup'                    => 'Uredi suradničke skupine',
+'editinguser'                      => 'Uređujete $1',
 'userrights-editusergroup'         => 'Uredi skupine suradnika',
 'saveusergroups'                   => 'Snimi skupine suradnika',
 'userrights-groupsmember'          => 'Član:',
@@ -1231,7 +1231,6 @@ koja obično ukazuje na "pravu" odredišnu stranicu, na koju bi trebalo pokaziva
 'newpages'                => 'Nove stranice',
 'newpages-username'       => 'Suradničko ime:',
 'ancientpages'            => 'Najstarije stranice',
-'intl'                    => 'Interwiki poveznice',
 'move'                    => 'Premjesti',
 'movethispage'            => 'Premjesti ovu stranicu',
 'unusedimagestext'        => '<p>Moguće je da su druge mrežne stranice izvan ovog

@@ -13,9 +13,27 @@ $messages = array(
 # User preference toggles
 'tog-underline'        => 'Underline links:',
 'tog-rememberpassword' => "Sè'rántí ọ̀rọ̀ìpamí mi lórí kọmputa yi",
+'tog-watchcreations'   => "S'àfikún ojúewé tí mo dá mọ́ ìmójútó mi",
+'tog-watchdefault'     => "S'àfikún ojúewé tí mo s'àtúnse mọ́ ìmójútó mi",
+'tog-watchmoves'       => "S'àfikún ojúewé tí mo kó kúrò mọ́ ìmójútó mi",
+'tog-watchdeletion'    => "S'àfikún ojúewé tí mo parẹ́ mọ́ ìmójútó mi",
+'tog-minordefault'     => "Se àmì sí gbogbo àtúnse gẹ́gẹ́ bi kékeré lát'ìbẹ̀rẹ̀.",
 'tog-previewontop'     => "Se àyẹ̀wò kí ẹ tó s'àtúnṣe",
+'tog-previewonfirst'   => "S'àfihàn àgbéwò fún àtúnse àkọ́kọ́",
+'tog-nocache'          => "D'ènà fífi ojúewé pamọ́",
 
+# Dates
+'sunday'    => 'Ọjọ́àìkú',
+'monday'    => 'Ọjọ́ajé',
+'tuesday'   => 'Ọjọ́ìsẹ́gun',
+'wednesday' => 'Ọjọ́rú',
+'thursday'  => 'Ọjọ́bọ̀',
+'friday'    => 'Ọjọ́ẹtì',
+'saturday'  => 'Ọjọ́àbámẹ́ta',
+
+'about'          => 'Nípa',
 'cancel'         => "Fa'gilé",
+'qbfind'         => 'Wá rí',
 'qbedit'         => 'Àtúnṣe',
 'qbpageoptions'  => 'Ojúewé yi',
 'qbmyoptions'    => 'Àwọn ojúewé mi',
@@ -26,6 +44,7 @@ $messages = array(
 'navigation'     => 'Atọ́ka',
 'and'            => 'àti',
 
+'errorpagetitle'   => 'Àsìse',
 'tagline'          => "Lát'ọwọ́ {{SITENAME}}",
 'help'             => 'Ìrànlọ́wọ́',
 'search'           => 'Ṣe àwáàrí',

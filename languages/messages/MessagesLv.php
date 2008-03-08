@@ -547,7 +547,7 @@ $2 Parādīt pāradresācijas lapas   Meklēt $3 $9',
 
 # User rights
 'userrights-user-editname' => 'Ievadi lietotājvārdu:',
-'editinguser'              => 'Izmainīt $1',
+'editinguser'              => "Izmainīt '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
 
 # Recent changes
 'recentchanges'                     => 'Pēdējās izmaiņas',

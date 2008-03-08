@@ -824,7 +824,7 @@ Ninäd peklänedöl at binon ye nog lügolovik guvanes votik vüka at: kanons no
 'userrights-lookup-user'           => 'Guvön gebanagrupis',
 'userrights-user-editname'         => 'Penolös gebananemi:',
 'editusergroup'                    => 'Redakön Gebanagrupis',
-'editinguser'                      => 'Redakam gebanapada: <b>$1</b>',
+'editinguser'                      => "Redakam gebanapada: '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
 'userrights-editusergroup'         => 'Redakön gebanagrupis',
 'saveusergroups'                   => 'Dakipolöd gebanagrupis',
 'userrights-groupsmember'          => 'Liman grupa(s):',

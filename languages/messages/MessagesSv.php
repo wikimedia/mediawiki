@@ -1608,6 +1608,7 @@ $1',
 
 # Block/unblock
 'blockip'                     => 'Blockera användare eller IP-adress',
+'blockip-legend'              => 'Blockera användare',
 'blockiptext'                 => 'Formuläret nedan används för att blockera specifika användarnamns eller IP-adressers möjlighet att redigera sidor. Detta bör göras endast för att förhindra vandalism, och enligt gällande [[{{MediaWiki:Policy-url}}|policy]]. Ange orsaken nedan (exempelvis genom att nämna sidor som blivit vandaliserade).',
 'ipaddress'                   => 'IP-adress',
 'ipadressorusername'          => 'IP-adress eller användarnamn',

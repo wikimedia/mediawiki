@@ -1333,6 +1333,7 @@ Zde je příslušný výpis z knihy smazaných stránek:",
 'filedelete-reason-dropdown'  => '*Obvyklé důvody smazání
 ** Porušení autorských práv
 ** Nadbytečná kopie',
+'filedelete-edit-reasonlist'  => 'Editovat důvody smazání',
 
 # MIME search
 'mimesearch'         => 'Hledání podle MIME typu',
@@ -1605,6 +1606,7 @@ Rady a kontakt:
 ** Na žádost autora
 ** Porušení autorských práv
 ** Vandalismus',
+'delete-edit-reasonlist'      => 'Editovat důvody smazání',
 'delete-toobig'               => 'Tato stránka má velkou historii editací, přes $1 verzí. Mazání takových stránek je omezeno, aby se předešlo nechtěnému narušení {{grammar:2sg|{{SITENAME}}}}.',
 'delete-warning-toobig'       => 'Tato stránka má velkou historii editací, přes $1 verzí. Mazání takových stránek může narušit databázové operace {{grammar:2sg|{{SITENAME}}}}: postupujte opatrně.',
 'rollback'                    => 'Vrátit zpět editace',
@@ -1743,6 +1745,7 @@ $1',
 
 # Block/unblock
 'blockip'                     => 'Zablokovat uživatele',
+'blockip-legend'              => 'Zablokovat uživatele',
 'blockiptext'                 => 'Tento formulář slouží k zablokování editací z konkrétní IP adresy nebo uživatelského jména. Toto by mělo být používáno jen v souladu s [[{{MediaWiki:Policy-url}}|pravidly]]. Udejte přesný důvod níže (například ocitujte, které stránky byly poškozeny). Pro odblokování se podívejte na [[Special:Ipblocklist|seznam blokovaných IP adres]].',
 'ipaddress'                   => 'IP adresa',
 'ipadressorusername'          => 'IP adresa nebo uživatelské jméno',

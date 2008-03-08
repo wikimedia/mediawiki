@@ -104,6 +104,7 @@ $messages = array(
 'tog-nolangconversion'        => 'Išjungti variantų keitimą',
 'tog-ccmeonemails'            => 'Siųsti man laiškų kopijas, kuriuos siunčiu kitiems naudotojams',
 'tog-diffonly'                => 'Nerodyti puslapio turinio po skirtumais',
+'tog-showhiddencats'          => 'Rodyti paslėptas kategorijas',
 
 'underline-always'  => 'Visada',
 'underline-never'   => 'Niekada',
@@ -164,12 +165,14 @@ $messages = array(
 'dec'           => 'grd',
 
 # Bits of text used by many pages
-'categories'            => 'Kategorijos',
-'pagecategories'        => '{{PLURAL:$1|Kategorija|Kategorijos|Kategorijų}}',
-'category_header'       => 'Puslapiai kategorijoje „$1“',
-'subcategories'         => 'Subkategorijos',
-'category-media-header' => 'Media kategorijoje „$1“',
-'category-empty'        => "''Šiuo metu ši kategorija neturi jokių puslapių ar failų.''",
+'categories'               => 'Kategorijos',
+'pagecategories'           => '{{PLURAL:$1|Kategorija|Kategorijos|Kategorijų}}',
+'category_header'          => 'Puslapiai kategorijoje „$1“',
+'subcategories'            => 'Subkategorijos',
+'category-media-header'    => 'Media kategorijoje „$1“',
+'category-empty'           => "''Šiuo metu ši kategorija neturi jokių puslapių ar failų.''",
+'hidden-categories'        => '{{PLURAL:$1|Paslėpta kategorija|Paslėptos kategorijos}}',
+'hidden-category-category' => 'Paslėptos kategorijos', # Name of the category where hidden categories will be listed
 
 'mainpagetext'      => "<big>'''MediaWiki sėkmingai įdiegta.'''</big>",
 'mainpagedocfooter' => 'Informacijos apie wiki programinės įrangos naudojimą, ieškokite [http://meta.wikimedia.org/wiki/Help:Contents žinyne].
@@ -306,11 +309,12 @@ $messages = array(
 'restorelink'             => '$1 {{PLURAL:$1|ištrintą keitimą|ištrintus keitimus|ištrintų keitimų}}',
 'feedlinks'               => 'Šaltinis:',
 'feed-invalid'            => 'Neleistinas šaltinio tipas.',
+'feed-unavailable'        => 'RSS ir Atom projekte {{SITENAME}} nėra galimas',
 'site-rss-feed'           => '$1 RSS šaltinis',
 'site-atom-feed'          => '$1 Atom šaltinis',
 'page-rss-feed'           => '„$1“ RSS šaltinis',
 'page-atom-feed'          => '„$1“ Atom šaltinis',
-'red-link-title'          => '$1 (dar neparašytas)',
+'red-link-title'          => '$1 (dar nesukurtas)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Puslapis',
@@ -611,7 +615,6 @@ Prašome pamėginti vėl. Jei tai nepadeda, pamėginkite atsijungti ir prisijung
 <strong>Jei tai teisėtas keitimo bandymas, prašome pamėginti vėl. Jei tai nepadeda, pamėginkite atsijungti ir prisijungti atgal.</strong>",
 'token_suffix_mismatch'     => '<strong>Jūsų pakeitimas buvo atmestas, nes jūsų naršyklė iškraipė skyrybos ženklus keitimo žymėje. Keitimas buvo atmestas norint apsaugoti puslapio tekstą nuo sugadinimo. Taip kartais būna, kai jūs naudojate anoniminį tarpinio serverio paslaugą.</strong>',
 'editing'                   => 'Taisomas $1',
-'editinguser'               => 'Taisomas naudotojas <b>$1</b>',
 'editingsection'            => 'Taisomas $1 (skyrelis)',
 'editingcomment'            => 'Taisomas $1 (komentaras)',
 'editconflict'              => 'Išpręskite konfliktą: $1',
@@ -651,6 +654,7 @@ ir vėliau įkelti jį čia.</strong>',
 'templatesusedsection'      => 'Šablonai, naudoti šiame skyrelyje:',
 'template-protected'        => '(apsaugotas)',
 'template-semiprotected'    => '(pusiau apsaugotas)',
+'hiddencategories'          => 'Šis puslapis priklauso {{PLURAL:$1|1 paslėptai kategorijai|$1 paslėptoms kategorijoms}}:',
 'edittools'                 => '<!-- Šis tekstas bus rodomas po redagavimo ir įkėlimo formomis. -->',
 'nocreatetitle'             => 'Puslapių kūrimas apribotas',
 'nocreatetext'              => '{{SITENAME}} apribojo galimybę kurti naujus puslapius.
@@ -875,6 +879,7 @@ bus tik tie puslapiai, kuriuose bus visi paieškos žodžiai).",
 'userrights-lookup-user'           => 'Tvarkyti naudotojo grupes',
 'userrights-user-editname'         => 'Įveskite naudotojo vardą:',
 'editusergroup'                    => 'Redaguoti naudotojo grupes',
+'editinguser'                      => 'Taisomas naudotojas <b>$1</b>',
 'userrights-editusergroup'         => 'Redaguoti naudotojų grupes',
 'saveusergroups'                   => 'Saugoti naudotojų grupes',
 'userrights-groupsmember'          => 'Narys:',
@@ -1214,7 +1219,6 @@ Iš to išeina, kad vidutiniškai kiekvienas puslapis keistas '''$5''' karto, be
 'newpages'                => 'Naujausi puslapiai',
 'newpages-username'       => 'Naudotojo vardas:',
 'ancientpages'            => 'Seniausi puslapiai',
-'intl'                    => 'Tarpkalbinės nuorodos',
 'move'                    => 'Pervadinti',
 'movethispage'            => 'Pervadinti šį puslapį',
 'unusedimagestext'        => '<p>Primename, kad kitos svetainės gali būti nurodžiusios į paveikslėlį tiesioginiu URL, bet vistiek gali būti šiame sąraše, nors ir yra aktyviai naudojamas.</p>',
@@ -1852,7 +1856,7 @@ Visi tarpprojektiniai importo veiksmai yra registruojami  [[Special:Log/import|i
 'monobook.css' => '/* Čia įdėtas CSS bus rodomas Monobook išvaizdos naudotojams */',
 
 # Scripts
-'common.js'   => '/* Bet koks čia parašytas JavaScript bus paleistas kieviename puslapyje kievienam naudotojui. */',
+'common.js'   => '/* Bet koks čia parašytas JavaScript bus rodomas kiekviename puslapyje kievienam naudotojui. */',
 'monobook.js' => '/* Nebenaudojama; naudokite [[MediaWiki:common.js]] */',
 
 # Metadata

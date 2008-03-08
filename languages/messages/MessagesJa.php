@@ -596,7 +596,6 @@ $1 または他の[[{{int:grouppage-sysop}}|{{int:group-sysop}}]]にこの件に
 このページの文章が破損するのを防ぐため、あなたの編集は反映されません。
 問題のある匿名プロキシサービスを利用していると、この問題が起こることがあります。</strong>',
 'editing'                   => '$1 を編集中',
-'editinguser'               => '$1 を編集中',
 'editingsection'            => '$1 を編集中（節単位編集）',
 'editingcomment'            => '$1 を編集中（新規コメント）',
 'editconflict'              => '編集競合: $1',
@@ -842,6 +841,7 @@ $2リダイレクトを含める &nbsp; &nbsp; &nbsp; $3 $9',
 'userrights-lookup-user'           => '利用者の所属グループの管理',
 'userrights-user-editname'         => '利用者名:',
 'editusergroup'                    => '編集',
+'editinguser'                      => '$1 を編集中',
 'userrights-editusergroup'         => '利用者の所属グループ',
 'saveusergroups'                   => '利用者の所属グループを保存',
 'userrights-groupsmember'          => '所属グループ:',
@@ -1075,6 +1075,7 @@ $2リダイレクトを含める &nbsp; &nbsp; &nbsp; $3 $9',
 'filedelete-reason-dropdown'  => '*よくある削除理由
 ** 著作権侵害
 ** ファイルの重複',
+'filedelete-edit-reasonlist'  => '削除理由を編集する',
 
 # MIME search
 'mimesearch'         => 'MIMEタイプ検索',
@@ -1178,7 +1179,6 @@ $2リダイレクトを含める &nbsp; &nbsp; &nbsp; $3 $9',
 'newpages'                => '新しいページ',
 'newpages-username'       => '利用者名:',
 'ancientpages'            => '更新されていないページ',
-'intl'                    => '言語間リンク',
 'move'                    => '移動',
 'movethispage'            => 'このページを移動',
 'unusedimagestext'        => '<p>他のウェブサイトがURLを直接用いて画像にリンクしている場合もあります。以下の画像一覧には、そのような形で利用されている画像が含まれている可能性があります。</p>',
@@ -1359,6 +1359,7 @@ $NEWPAGE
 ** 投稿者依頼
 ** 著作権侵害
 ** 荒らし',
+'delete-edit-reasonlist'      => '削除理由を編集する',
 'delete-toobig'               => 'このページには、$1版を超える多くの編集履歴があります。処理負荷増大によって{{SITENAME}}に偶発的なトラブルが起こることを防ぐため、このようなページの削除は制限されています。',
 'delete-warning-toobig'       => 'このページには、$1版を超える多くの編集履歴があります。削除の際、{{SITENAME}}のデータベース処理に大きな負荷がかかりますので、十分に注意してください。',
 'rollback'                    => '編集の差し戻し',

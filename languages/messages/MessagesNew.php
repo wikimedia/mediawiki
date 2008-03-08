@@ -41,36 +41,51 @@ $digitTransformTable = array(
 );
 
 $messages = array(
+'underline-always' => 'न्ह्याबिलें',
+
 # Dates
-'sunday' => 'आइतबाः',
+'sunday'   => 'आइतबाः',
+'january'  => 'ज्यानुवरी',
+'february' => 'फेब्रुवरी',
 
 # Bits of text used by many pages
-'categories' => 'पुचःत',
+'categories'     => 'पुचःत',
+'category-empty' => "''थ्व पुचले आःईले पौ वा मिदिया मदु।''",
 
-'about'      => 'विषयक',
-'mypage'     => 'जिगु पौ',
-'mytalk'     => 'जिगु खं',
-'navigation' => 'परिवहन',
-'and'        => 'व',
+'about'         => 'विषयक',
+'moredotdotdot' => 'अप्व॰॰॰',
+'mypage'        => 'जिगु पौ',
+'mytalk'        => 'जिगु खं',
+'navigation'    => 'परिवहन',
+'and'           => 'व',
 
 'search'           => 'मालादिसं',
+'searchbutton'     => 'मालादिसँ',
+'go'               => 'झासँ',
+'searcharticle'    => 'झासँ',
+'history'          => 'पौया इतिहास',
 'history_short'    => 'इतिहास',
+'info_short'       => 'जानकारी',
 'printableversion' => 'ध्वायेज्युगु संस्करण',
 'print'            => 'ध्वानादिसँ',
 'edit'             => 'सम्पादन',
 'editthispage'     => 'थ्व पौ सम्पादन यानादिसं',
+'newpage'          => 'न्हुगु पौ',
+'talkpagelinktext' => 'खँल्हाबँल्हा',
 'specialpage'      => 'विषेश पौ',
 'personaltools'    => 'निजी ज्याब्व',
 'talk'             => 'खँलाबँला',
 'toolbox'          => 'ज्याब्व सन्दुक',
 'projectpage'      => 'ज्याखँ पौ क्येनादिसँ',
 'otherlanguages'   => 'मेमेगु भाषाय्',
+'jumptosearch'     => 'मालादिसँ',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
-'mainpage'   => 'मू पौ',
-'portal'     => 'सामाजिक दबु',
-'portal-url' => 'Project:सामाजिक दबु',
-'privacy'    => 'दुबिस्ता नियम',
+'mainpage'    => 'मू पौ',
+'portal'      => 'सामाजिक दबु',
+'portal-url'  => 'Project:सामाजिक दबु',
+'privacy'     => 'दुबिस्ता नियम',
+'sitesupport' => 'दान',
 
 'ok'              => 'ज्यु',
 'editsection'     => 'सम्पादन',

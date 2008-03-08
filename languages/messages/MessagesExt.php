@@ -551,7 +551,6 @@ Pol favol, ententa empuntala otra vezi, i si acontina marrandu, preba a afechal 
 'token_suffix_mismatch'     => "<strong>La tu eición nu á siu acetá ebiu a qu'el tu escrucaol mutiló los caráteris de puntuación nel eitol. La eición nu á siu acetá pa prevenil pobremas nel artículu.
 Esti pobrema se dá angunas vezis si estás gastandu un proxy anónimu basau en web que seya pobremáticu.</strong>",
 'editing'                   => 'Eitandu $1',
-'editinguser'               => "Chambandu los derechus del usuáriu '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
 'editingsection'            => 'Eitandu $1 (seción)',
 'editingcomment'            => 'Eitandu $1 (comentariu)',
 'editconflict'              => 'Conflitu d´eición: $1',
@@ -810,6 +809,7 @@ Asigurati e qu'esti chambu mantenga la continuiá el estorial la páhina.
 'userrights-lookup-user'           => 'Alministral alabanis d´usuárius',
 'userrights-user-editname'         => 'Escrebi un nombri d´usuáriu:',
 'editusergroup'                    => 'Eital alabanis d´usuárius',
+'editinguser'                      => "Chambandu los derechus del usuáriu '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
 'userrights-editusergroup'         => 'Eital alabanis d´usuárius',
 'saveusergroups'                   => 'Emburacal alabanis d´usuárius',
 'userrights-groupsmember'          => 'Miembru e:',
@@ -1141,7 +1141,6 @@ El longol de la [http://meta.wikimedia.org/wiki/Help:Job_queue cola e tareas] es
 'newpages'                => 'Nuevas páhinas',
 'newpages-username'       => 'Nombri d´usuáriu:',
 'ancientpages'            => 'Páhinas mas antiguas',
-'intl'                    => 'Atihus EntelGüiqui',
 'move'                    => 'Movel',
 'movethispage'            => 'Movel esta páhina',
 'unusedimagestext'        => "<p>Pol favol, fíhati en qu'otras páhinas web puein atihal a una
