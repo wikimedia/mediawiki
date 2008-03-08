@@ -24,7 +24,6 @@ To test:
 */
 body {
 	direction: rtl;
-/*    unicode-bidi: bidi-override;*/
 	unicode-bidi: embed;
 }
 #column-content {
@@ -37,7 +36,7 @@ body {
 	border-right: 1px solid #aaaaaa;
 	border-left: none;
 }
-html>body .portlet {
+html > body .portlet {
 	float: right;
 	clear: right;
 }
@@ -234,5 +233,12 @@ table.filehistory th {
  * They fix a problem ith Gecko browsers rendering lists to the right of
  * left-floated objects in an RTL layout.
  */
-html>body.rtl #bodyContent ul { display:table; }
-html>body.rtl #bodyContent ol { display:table; }
+html > body div#bodyContent ul {
+	display: table;
+}
+html > body div#bodyContent ol {
+	display: table;
+}
+html > body div#bodyContent ul#filetoc {
+	display: block;
+}

@@ -140,3 +140,19 @@ table.filehistory th {
 	border-right: none;
 	border-left: solid 1px #bbbbbb;
 }
+
+/**
+ * Lists:
+ * The following lines don't have a visible effect on non-Gecko browsers
+ * They fix a problem ith Gecko browsers rendering lists to the right of
+ * left-floated objects in an RTL layout.
+ */
+html > body div#mw_contentholder ul {
+	display: table;
+}
+html > body div#mw_contentholder ol {
+	display: table;
+}
+html > body div#mw_contentholder ul#filetoc {
+	display: block;
+}
