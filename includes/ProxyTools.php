@@ -12,9 +12,9 @@
 function wfGetForwardedFor() {
 	if( function_exists( 'apache_request_headers' ) ) {
 		// More reliable than $_SERVER due to case and -/_ folding
-	        $set = array ();
+		$set = array ();
 		foreach ( apache_request_headers() as $tempName => $tempValue ) {
-		    $set[ strtoupper( $tempName ) ] = $tempValue;
+			$set[ strtoupper( $tempName ) ] = $tempValue;
 		}
 		$index = strtoupper ( 'X-Forwarded-For' );
 		$index2 = strtoupper ( 'Client-ip' );
@@ -43,9 +43,9 @@ function wfGetForwardedFor() {
 function wfGetAgent() {
 	if( function_exists( 'apache_request_headers' ) ) {
 		// More reliable than $_SERVER due to case and -/_ folding
-	        $set = array ();
+		$set = array ();
 		foreach ( apache_request_headers() as $tempName => $tempValue ) {
-		    $set[ strtoupper( $tempName ) ] = $tempValue;
+			$set[ strtoupper( $tempName ) ] = $tempValue;
 		}
 		$index = strtoupper ( 'User-Agent' );
 	} else {
