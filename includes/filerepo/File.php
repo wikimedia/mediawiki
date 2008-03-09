@@ -378,6 +378,17 @@ abstract class File {
 		return $this->getPath() && file_exists( $this->path );
 	}
 
+	/**
+	 * Returns true if file exists in the repository and can be included in a page.
+	 * It would be unsafe to include private images, making public thumbnails inadvertently
+	 *
+	 * @return boolean Whether file exists in the repository and is includable.
+	 * @public
+	 */
+	function isVisible() { 
+		return $this->exists();
+	}
+
 	function getTransformScript() {
 		if ( !isset( $this->transformScript ) ) {
 			$this->transformScript = false;
