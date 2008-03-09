@@ -923,10 +923,13 @@ class Linker {
 	/**
 	 * Generate a user link if the current user is allowed to view it
 	 * @param $rev Revision object.
+	 * @param $isPublic, bool, show only if all users can see it
 	 * @return string HTML
 	 */
-	function revUserLink( $rev ) {
-		if( $rev->userCan( Revision::DELETED_USER ) ) {
+	function revUserLink( $rev, $isPublic = false ) {
+		if( $rev->isDeleted( Revision::DELETED_USER ) && $isPublic ) {
+			$link = wfMsgHtml( 'rev-deleted-user' );
+		} else if( $rev->userCan( Revision::DELETED_USER ) ) {
 			$link = $this->userLink( $rev->getRawUser(), $rev->getRawUserText() );
 		} else {
 			$link = wfMsgHtml( 'rev-deleted-user' );
@@ -940,18 +943,20 @@ class Linker {
 	/**
 	 * Generate a user tool link cluster if the current user is allowed to view it
 	 * @param $rev Revision object.
+	 * @param $isPublic, bool, show only if all users can see it
 	 * @return string HTML
 	 */
-	function revUserTools( $rev ) {
-		if( $rev->userCan( Revision::DELETED_USER ) ) {
+	function revUserTools( $rev, $isPublic = false ) {
+		if( $rev->isDeleted( Revision::DELETED_USER ) && $isPublic ) {
+			$link = wfMsgHtml( 'rev-deleted-user' );
+		} else if( $rev->userCan( Revision::DELETED_USER ) ) {
 			$link = $this->userLink( $rev->getRawUser(), $rev->getRawUserText() ) .
-				' ' .
-				$this->userToolLinks( $rev->getRawUser(), $rev->getRawUserText() );
+			' ' . $this->userToolLinks( $rev->getRawUser(), $rev->getRawUserText() );
 		} else {
 			$link = wfMsgHtml( 'rev-deleted-user' );
 		}
 		if( $rev->isDeleted( Revision::DELETED_USER ) ) {
-			return '<span class="history-deleted">' . $link . '</span>';
+			return ' <span class="history-deleted">' . $link . '</span>';
 		}
 		return $link;
 	}
