@@ -720,7 +720,7 @@ END;
 		}
 		
 		if(!empty($catlinks)) {
-			return "<div class='$classes'>{$catlinks}</div>";
+			return "<div id='catlinks' class='$classes'>{$catlinks}</div>";
 		}
 	}
 
