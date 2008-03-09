@@ -841,7 +841,7 @@ $2リダイレクトを含める &nbsp; &nbsp; &nbsp; $3 $9',
 'userrights-lookup-user'           => '利用者の所属グループの管理',
 'userrights-user-editname'         => '利用者名:',
 'editusergroup'                    => '編集',
-'editinguser'                      => '$1 を編集中',
+'editinguser'                      => "利用者 [[User:$1|$1]]'''（[[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]]）の権限を編集中",
 'userrights-editusergroup'         => '利用者の所属グループ',
 'saveusergroups'                   => '利用者の所属グループを保存',
 'userrights-groupsmember'          => '所属グループ:',
@@ -1500,6 +1500,7 @@ $NEWPAGE
 
 # Block/unblock
 'blockip'                     => '投稿ブロック',
+'blockip-legend'              => '利用者のブロック',
 'blockiptext'                 => '指定した利用者やIPアドレスからの投稿をブロックすることができます。',
 'ipaddress'                   => 'IPアドレス',
 'ipadressorusername'          => '利用者名 / IPアドレス',

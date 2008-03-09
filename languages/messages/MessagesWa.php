@@ -711,7 +711,7 @@ Les ôtes manaedjeus so ç' wiki ci pôront todi vey li contnou catchî eyet l' 
 'userrights-lookup-user'     => "Manaedjî les groupes d' èn uzeu",
 'userrights-user-editname'   => "Tapez on no d' uzeu:",
 'editusergroup'              => "Candjî les groupes di l' uzeu",
-'editinguser'                => 'Candjant $1',
+'editinguser'                => "Candjant '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
 'userrights-editusergroup'   => "Candjî groupes d' uzeus",
 'saveusergroups'             => "Schaper des groupes d' uzeus",
 'userrights-groupsmember'    => 'Mimbes di:',

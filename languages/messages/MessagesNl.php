@@ -836,7 +836,7 @@ U dient uw bewerkingen in te voegen in de bestaande tekst.
 'yourtext'                  => 'Uw tekst',
 'storedversion'             => 'Opgeslagen versie',
 'nonunicodebrowser'         => "<strong>WAARSCHUWING: Uw browser kan niet goed overweg met unicode.
-Hiermee wordt door de Mediawiki rekening gehouden zodat u toch zonder problemen pagina's kunt bewerken: niet-ASCII karakters worden in het bewerkingsveld weergegeven als hexadecimale codes.</strong>",
+Hiermee wordt door de MediaWiki-software rekening gehouden zodat u toch zonder problemen pagina's kunt bewerken: niet-ASCII karakters worden in het bewerkingsveld weergegeven als hexadecimale codes.</strong>",
 'editingold'                => '<strong><span style="color:#ff0000">Waarschuwing!</span> U bewerkt een oude versie van deze pagina. Als u uw bewerking opslaat, gaan alle wijzigingen die na deze versie gemaakt zijn verloren.</strong>',
 'yourdiff'                  => 'Wijzigingen',
 'copyrightwarning'          => "Opgelet: Alle bijdragen aan {{SITENAME}} worden geacht te zijn vrijgegeven onder de $2 (zie $1 voor details).
@@ -1546,6 +1546,7 @@ Indien u een pagina niet langer wilt volgen, ga dan naar de pagina en klik op \"
 'unwatch'              => 'Niet volgen',
 'unwatchthispage'      => 'Niet meer volgen',
 'notanarticle'         => 'Is geen pagina',
+'notvisiblerev'        => 'Bewerking is verwijderd',
 'watchnochange'        => "Geen van de pagina's op uw volglijst is in deze periode bewerkt.",
 'watchlist-details'    => "Er {{PLURAL:$1|staat één pagina|staan $1 pagina's}} op uw volglijst, exclusief overlegpagina's.",
 'wlheader-enotif'      => '* U wordt per e-mail gewaarschuwd',

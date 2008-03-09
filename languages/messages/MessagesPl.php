@@ -10,6 +10,7 @@
  * @author לערי ריינהארט
  * @author Nike
  * @author Sp5uhe
+ * @author Masti
  */
 
 $namespaceNames = array(
@@ -1143,6 +1144,7 @@ Rejestr usunięć tego pliku jest dla wygody podany poniżej:",
 'filedelete-reason-dropdown'  => '* Najczęstsze przyczyny usunięcia
 ** Naruszenie praw autorskich
 ** Kopia istniejącego już pliku',
+'filedelete-edit-reasonlist'  => 'Edycja powodów usunięcia strony',
 
 # MIME search
 'mimesearch'         => 'Wyszukiwanie MIME',
@@ -1352,6 +1354,7 @@ Jeśli chcesz usunąć stronę ze swojej listy obserwowanych, kliknij na zakład
 'unwatch'              => 'Nie obserwuj',
 'unwatchthispage'      => 'Przestań obserwować',
 'notanarticle'         => 'To nie artykuł',
+'notvisiblerev'        => 'Wersja została usunięta',
 'watchnochange'        => 'Żadna z obserwowanych stron nie była edytowana w podanym okresie.',
 'watchlist-details'    => '$1 {{PLURAL:$1|strona obserwowana|strony obserwowane|stron obserwowanych}}, nie licząc stron dyskusji.',
 'wlheader-enotif'      => '* Wysyłanie powiadomień na adres e-mail jest włączone.',
@@ -1432,6 +1435,7 @@ Pomoc:
 ** Prośba autora
 ** Naruszenie praw autorskich
 ** Wandalizm',
+'delete-edit-reasonlist'      => 'Edycja powodów usunięcia strony',
 'delete-toobig'               => 'Ta strona ma bardzo długą historię edycji, ponad $1 {{PLURAL:$1|zmianę|zmiany|zmian}}. Usunięcie jej mogłoby spowodować zakłócenia w pracy {{GRAMMAR:D.lp|{{SITENAME}}}} i dlatego zostało ograniczone.',
 'delete-warning-toobig'       => 'Ta strona ma bardzo długą historię edycji, ponad $1 {{PLURAL:$1|zmianę|zmiany|zmian}}. Bądź ostrożny, ponieważ usunięcie jej może spowodować zakłócenia w pracy {{GRAMMAR:D.lp|{{SITENAME}}}}.',
 'rollback'                    => 'Cofnij edycję',
@@ -1568,6 +1572,7 @@ $1',
 
 # Block/unblock
 'blockip'                     => 'Zablokuj użytkownika',
+'blockip-legend'              => 'Zablokuj użytkownika',
 'blockiptext'                 => 'Użyj poniższego formularza, aby zablokować prawo zapisu spod określonego adresu IP. Powinno się to robić jedynie po to, by zapobiec wandalizmowi, a zarazem w zgodzie z [[{{MediaWiki:Policy-url}}|zasadami]]. Podaj powód (np. umieszczając nazwy stron, na których dopuszczono się wandalizmu).',
 'ipaddress'                   => 'Adres IP',
 'ipadressorusername'          => 'Adres IP lub nazwa użytkownika',

@@ -1022,6 +1022,7 @@ Si paginam ex indice paginarum custoditarum removere vis, imprime \"decustodire\
 'unwatch'              => 'Decustodire',
 'unwatchthispage'      => 'Abrogare custoditum',
 'notanarticle'         => 'Res non est',
+'notvisiblerev'        => 'Emendatio deleta est',
 'watchnochange'        => 'Nullae paginarum custoditarum tuarum recensitae sunt in hoc tempore.',
 'watchlist-details'    => '{{PLURAL:$1|$1 pagina custodita|$1 paginae custoditae}} sine paginis disputationis.',
 'watchmethod-recent'   => 'recensita recenta quaerens pro pagina custodita',

@@ -1383,6 +1383,7 @@ Om du inte längre vill att sidan skall finnas på din övervakningslista, klick
 'unwatch'              => 'avbevaka',
 'unwatchthispage'      => 'Stoppa övervakningen av denna sida',
 'notanarticle'         => 'Inte en artikel',
+'notvisiblerev'        => 'Revisionen har raderats',
 'watchnochange'        => 'Inga av dina övervakade sidor har ändrats inom den visade tidsperioden.',
 'watchlist-details'    => '$1 {{PLURAL:$1|sida övervakad|sidor övervakade}} (utöver diskussionssidor).',
 'wlheader-enotif'      => '* Bekräftelse per e-post är aktiverad.',

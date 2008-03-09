@@ -300,10 +300,7 @@ ning [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide kasutusjuhendit].'
 'viewdeleted'         => 'Vaata lehekülge $1?',
 'restorelink'         => '{{PLURAL:$1|üks kustutatud versioon|$1 kustutatud versiooni}}',
 'feedlinks'           => 'Sööde:',
-'site-rss-feed'       => '$1 RSS Feed',
-'site-atom-feed'      => '$1 Atom Feed',
-'page-rss-feed'       => '"$1" RSS Feed',
-'page-atom-feed'      => '"$1" Atom Feed',
+'red-link-title'      => '$1 (pole veel kirjutatud)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Artikkel',

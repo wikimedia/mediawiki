@@ -381,7 +381,7 @@ $messages = array(
 'toolbox'           => 'Verkfæri',
 'userpage'          => 'Skoða notandasíðu',
 'projectpage'       => 'Sýna verkefnissíðu',
-'imagepage'         => 'Skoða myndasíðu',
+'imagepage'         => 'Skoða margmiðlunarsíðu',
 'mediawikipage'     => 'Skoða skilaboðasíðu',
 'templatepage'      => 'Skoða sniðasíðu',
 'viewhelppage'      => 'Skoða hjálparsíðu',
@@ -690,7 +690,7 @@ Vistfangið þitt er $5. Vinsamlegast taktu það fram í fyrirspurnum þínum."
 'whitelistreadtitle'       => 'Innskráningar er krafist til að lesa',
 'whitelistreadtext'        => 'Þú verður að [[Special:Userlogin|skrá þig inn]] til að lesa síður.',
 'whitelistacctitle'        => 'Þér er óheimilt að búa til aðgang',
-'whitelistacctext'         => 'Til að geta búið til aðganga í þessu Wiki, verður þú að [[Special:Userlogin|innskrá]] og hafa viðkomandi réttindi.',
+'whitelistacctext'         => 'Til að geta búið til aðganga á {{SITENAME}} verður þú að [[Special:Userlogin|innskrá]] þig og hafa viðkomandi réttindi.',
 'confirmedittitle'         => 'Netfang þarf að staðfesta til að breyta',
 'confirmedittext'          => 'Þú verður að staðfesta netfangið þitt áður en þú getur breytt síðum. Vinsamlegast stilltu og staðfestu netfangið þitt í gegnum [[Special:Preferences|stillingarnar]].',
 'nosuchsectiontitle'       => 'Hluti ekki til',
@@ -968,12 +968,13 @@ Prófaðu [[Special:Search|að leita á þessari wiki síðu]] að svipuðum sí
 'uploadnologintext' => 'Þú verður að vera [[Special:Userlogin|skráð(ur) inn]]
 til að hlaða inn skrám.',
 'uploaderror'       => 'Villa í innhlaðningu',
-'uploadtext'        => "Fyllið út í eyðurnar hér að neðan til að hala upp skrám, til að skoða eða leita í skrám sem þegar eru til skoðið [[{{ns:special}}:Imagelist|skráalistan]].  Uppflutningar og eyðingar eru skráðar í [[{{ns:special}}:Log/upload|innhlaðingarskrá]].
+'uploadtext'        => "Notaðu eyðublaðið hér fyrir neðan til að hlaða upp skrám.
+Farðu á [[Special:Imagelist|skráarlistann]] til að skoða eða leita að áður upphlöðnum skrám, einnig má finna í [[Special:Log/upload|innhlaðningarskránni]] skrár sem hafa verið hlaðið upp og eytt.
 
-Til að bæta skrá inn á síðu, notið eina af eftirfarandi aðferðum
+Til að tengja í skrána frá síðu, notaðu eftirfarandi aðferðir
 '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:Skráarheiti.jpg]]</nowiki>''',
 '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:Skráarheiti.png|alt text]]</nowiki>''' eða
-'''<nowiki>[[</nowiki>{{ns:media}}<nowiki>:Skráarheiti.ogg]]</nowiki>''' fyrir beina tengla á skránna.",
+'''<nowiki>[[</nowiki>{{ns:media}}<nowiki>:Skráarheiti.ogg]]</nowiki>''' fyrir beina tengla á skrána.",
 'uploadlog'         => 'innhlaðningarskrá',
 'uploadlogpage'     => 'Innhlaðningarskrá',
 'uploadlogpagetext' => 'Þetta er listi yfir skrár sem nýlega hefur verið hlaðið inn.',
@@ -998,7 +999,7 @@ Til að bæta skrá inn á síðu, notið eina af eftirfarandi aðferðum
 'uploadcorrupt'     => 'Skráin er skemmd eða hefur ranga skráarendingu. Vinsamlegast athugaðu skrána og reyndu svo aftur.',
 'uploadvirus'       => 'Skráin inniheldur veiru! Nánari upplýsingar: $1',
 'sourcefilename'    => 'Upprunalegt skráarnafn:',
-'destfilename'      => 'Skráarnafn eftir innhleðslu:',
+'destfilename'      => 'Móttökuskráarnafn:',
 'watchthisupload'   => 'Vakta þessa síðu',
 'filewasdeleted'    => 'Skrá af sama nafni hefur áður verið hlaðið inn og síðan eytt. Þú ættir að athuga $1 áður en þú hleður skránni inn.',
 
@@ -1133,7 +1134,7 @@ Lengdin á [http://meta.wikimedia.org/wiki/Help:Job_queue vinnsluröðinni] er '
 'nviews'                  => '$1 {{PLURAL:$1|fletting|flettingar}}',
 'specialpage-empty'       => 'Þessi síða er tóm.',
 'lonelypages'             => 'Munaðarlausar síður',
-'lonelypagestext'         => 'Eftirfarandi síður eru munaðarlausar á þessu Wiki-kerfi.',
+'lonelypagestext'         => 'Eftirfarandi síður eru munaðarlausar á {{SITENAME}}.',
 'uncategorizedpages'      => 'Óflokkaðar síður',
 'uncategorizedcategories' => 'Óflokkaðir flokkar',
 'uncategorizedimages'     => 'Óflokkaðar skrár',
@@ -1154,7 +1155,7 @@ Lengdin á [http://meta.wikimedia.org/wiki/Help:Job_queue vinnsluröðinni] er '
 'shortpages'              => 'Stuttar síður',
 'longpages'               => 'Langar síður',
 'deadendpages'            => 'Botnlangar',
-'deadendpagestext'        => 'Eftirfarandi síður tengjast ekki við aðrar síður í þessu wiki.',
+'deadendpagestext'        => 'Eftirfarandi síður tengjast ekki við aðrar síður á {{SITENAME}}.',
 'protectedpages'          => 'Verndaðar síður',
 'protectedpagestext'      => 'Eftirfarandi síður hafa verið verndaðar svo ekki sé hægt að breyta þeim eða færa þær',
 'listusers'               => 'Notendalisti',
@@ -1165,9 +1166,7 @@ Lengdin á [http://meta.wikimedia.org/wiki/Help:Job_queue vinnsluröðinni] er '
 'ancientpages'            => 'Elstu síður',
 'move'                    => 'Færa',
 'movethispage'            => 'Færa þessa síðu',
-'unusedimagestext'        => 'Vinsamlegast athugið að aðrar vefsíður gætu tengt beint í 
-skrár héðan, svo að þær gætu komið fram á þessum lista þrátt 
-fyrir að vera í notkun.',
+'unusedimagestext'        => '<p>Vinsamlegast athugið að aðrar vefsíður gætu tengt beint í skrár héðan, svo að þær gætu komið fram á þessum lista þrátt fyrir að vera í notkun.</p>',
 'unusedcategoriestext'    => 'Þessir flokkar eru til en engar síður eða flokkar eru í þeim.',
 'pager-newer-n'           => '{{PLURAL:$1|nýrri 1|nýrri $1}}',
 
@@ -1177,7 +1176,7 @@ fyrir að vera í notkun.',
 'booksources-go'            => 'Áfram',
 'booksources-text'          => 'Fyrir neðan er listi af tenglum í aðrar síður sem selja nýjar og notaðar bækur og gætu einnig haft nánari upplýsingar í sambandi við bókina sem þú varst að leita að:',
 
-'categoriespagetext' => 'Eftirfarandi flokkar fyrirfinnast í þessu wiki-kerfi.',
+'categoriespagetext' => 'Eftirfarandi flokkar innihalda síður eða margmiðlunarefni.',
 'data'               => 'Gögn',
 'userrights'         => 'Breyta notendaréttindum',
 'groups'             => 'Notendahópar',
@@ -1414,6 +1413,7 @@ Skoðaðu [[{{ns:special}}:Log/delete|eyðingaskrána]] til að skoða eyðingar
 
 # Block/unblock
 'blockip'                     => 'Banna notanda',
+'blockip-legend'              => 'Banna notanda',
 'blockiptext'                 => 'Hægt er koma í veg fyrir breytingar á {{SITENAME}} frá einstökum notendum eða vistföngum.  Aðeins ætti að banna notendur fyrir skemmdarverk og í samræmi við [[{{MediaWiki:Policy-url}}|reglur]] {{SITENAME}}.
 
 Gefðu ástæðu fyrir banninu (meðal annars að nefna síðu sem var skemmd).',
@@ -1524,7 +1524,7 @@ mjög rótækar breytingar á vinsælum síðum og valdið titringi hjá öðrum
 'movearticle'             => 'Færa',
 'movenologin'             => 'Óinnskráð(ur)',
 'movenologintext'         => 'Þú verður að vera [[{{ns:special}}:Userlogin|innskráð(ur)]] til að geta fært síður.',
-'movenotallowed'          => 'Þú hefur ekki leyfi til að færa síður á þessari wiki síðu.',
+'movenotallowed'          => 'Þú hefur ekki leyfi til að færa síður á {{SITENAME}}.',
 'newtitle'                => 'Yfir á',
 'move-watch'              => 'Vakta þessa síðu',
 'movepagebtn'             => 'Færa síðuna',
@@ -1589,7 +1589,7 @@ Allir innflutningar eru skráð í [[{{ns:special}}:Log/import|innflutningsskrá
 'importcantopen'             => 'Get ekki opnað innflutt skjal',
 'importbadinterwiki'         => 'Villa í tungumálatengli',
 'importnotext'               => 'Tómt eða enginn texti',
-'importsuccess'              => 'Innflutningur tókst!',
+'importsuccess'              => 'Innflutningi lokið!',
 
 # Import log
 'importlogpage'                    => 'Innflutningsskrá',
@@ -1788,9 +1788,7 @@ Allir innflutningar eru skráð í [[{{ns:special}}:Log/import|innflutningsskrá
 # E-mail address confirmation
 'confirmemail'            => 'Staðfesta netfang',
 'confirmemail_noemail'    => 'Þú hefur ekki gefið upp gilt netfang í [[{{ns:special}}:Preferences|notandastillingum]] þínum.',
-'confirmemail_text'       => 'Þú þarft að staðfesta netfangið þitt á þessu wiki-verkefni 
-áður en að þú gegur nýtt þér eiginleika tengda netfanginu. Smelltu á hnappinn að neðan til að fá staðfestingarpóst sendan á netfangið. Pósturinn mun innihalda tengil með kóða í sér; opnaðu tengilinn 
-í vafranum til að staðfesta að netfangið sé rétt.',
+'confirmemail_text'       => '{{SITENAME}} krefst þess að þú staðfestir netfangið þitt áður en að þú getur notað eiginleika tengt því. Smelltu á hnappinn að neðan til að fá staðfestingarpóst sendan á netfangið. Pósturinn mun innihalda tengil með kóða í sér; opnaðu tengilinn í vafranum til að staðfesta að netfangið sé rétt.',
 'confirmemail_pending'    => '<div class="error">
 Þú hefur nú þegar fengið staðfestingarpóst sendann; ef það er stutt síðan
 þú bjóst til aðganginn þinn, væri ráð að býða í nokkrar mínútur eftir póstinum

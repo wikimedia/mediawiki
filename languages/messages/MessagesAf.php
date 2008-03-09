@@ -1035,7 +1035,8 @@ As 'n nuwe bladsy met dieselfde naam sedert die skrapping geskep is, sal die her
 'whatlinkshere-links' => '← skakels',
 
 # Block/unblock
-'blockip'            => 'Blok IP-adres',
+'blockip'            => 'Blok gebruiker',
+'blockip-legend'     => 'Blok gebruiker of IP-adres',
 'blockiptext'        => "Gebruik die vorm hier onder om skryftoegang van 'n sekere IP-adres te blok.
 Dit moet net gedoen word om vandalisme te voorkom en in ooreenstemming met [[{{MediaWiki:Policy-url}}|{{SITENAME}} policy]].
 Vul 'n spesifieke rede hier onder in (haal byvoorbeeld spesifieke bladsye wat gevandaliseer is, aan).",

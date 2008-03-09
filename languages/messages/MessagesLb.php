@@ -402,7 +402,7 @@ All Spezialsäiten déi et gëtt sinn op der [[{{ns:special}}:Specialpages|Lesch
 'cachederror'          => 'Folgend Säit ass eng Kopie aus dem Cache an net onbedéngt aktuell.',
 'laggedslavemode'      => 'Opgepasst: Dës Säit ass net onbedingt um neiste Stand.',
 'readonly'             => "D'Datebank ass gespart",
-'enterlockreason'      => "Gitt w.e.g. e Grond firwat d'Datebak gespaart ass an, a wéi laang dës Spär ongeféier bestoe soll.",
+'enterlockreason'      => "Gitt w.e.g. e Grond u firwat d'Datebak gespaart ass, a wéi laang dës Spär ongeféier bestoe soll.",
 'readonlytext'         => 'Datebank ass am Moment fir all Ännerunge gespaart, wahrscheinlech wéinst Maintenance vun der Datebank, duerno ass erëm alles beim alen. 
 
 Den Administrateur huet folgend Erklärung uginn: $1',
@@ -1037,6 +1037,7 @@ Dir sollt onbedingt bedenken, datt, genee wéi bäi normale Säiten, aner Benotz
 'nolinkstoimage'            => 'Keng Säit benotzt dëse Fichier.',
 'sharedupload'              => 'Dës Fichier ass ee gemeinsam genotzten Upload a ka vun anere Projeten benotzt ginn.',
 'shareduploadwiki'          => 'Kuckt w.e.g. $1 fir méi Informatiounen.',
+'shareduploadwiki-desc'     => "D'Beschreiwung op sénger $1 steet ënnendrënner.",
 'shareduploadwiki-linktext' => 'Datei-Beschreiwungssäit',
 'noimage'                   => 'Ee Fichier mat dësem Numm gëtt et net, Dir kënnt $1.',
 'noimage-linktext'          => 'eroplueden',
@@ -1072,6 +1073,7 @@ Dir sollt onbedingt bedenken, datt, genee wéi bäi normale Säiten, aner Benotz
 'filedelete-reason-dropdown'  => "* Allgemeng Läschgrënn
 ** Verletzung vun den Droits d'auteur
 ** De Fichier gëtt et nach eng Kéier an der Datebank",
+'filedelete-edit-reasonlist'  => 'Läschgrënn änneren',
 
 # MIME search
 'mimesearch' => 'Sich no MIME-Zort',
@@ -1300,6 +1302,7 @@ Wann dir dës Säit net iwwerwaache wëllt, klickt op \"Net méi iwwerwaachen\" 
 'unwatch'              => 'Net méi iwwerwaachen',
 'unwatchthispage'      => 'Net méi iwwerwaachen',
 'notanarticle'         => 'Keng Säit',
+'notvisiblerev'        => 'Versioun gouf geläscht',
 'watchnochange'        => 'Keng vun Äre verfollegte Säite gouf während der ugewisener Zäitperiod verännert.',
 'watchlist-details'    => "Dir iwwerwaacht {{PLURAL:$1|1 Säit|$1 Säiten}} (d'Diskussiounssäite net matgezielt).",
 'wlheader-enotif'      => '* E-Mail-Bescheed ass aktivéiert.',
@@ -1355,6 +1358,7 @@ W.e.g. konfirméiert, datt Dir dëst wierklech wëllt, datt Dir d'Konsequenze ve
 ** Wonsch vum Auteur
 ** Verletzung vun engem Copyright
 ** Vandalismus',
+'delete-edit-reasonlist'      => 'Läschgrënn änneren',
 'rollback'                    => 'Ännerungen zrécksetzen',
 'rollback_short'              => 'Zrécksetzen',
 'rollbacklink'                => 'Zrécksetzen',

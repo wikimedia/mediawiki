@@ -19,6 +19,7 @@
  * @author MCruz
  * @author Minh Nguyen
  * @author Lijealso
+ * @author Siebrand
  */
 
 $namespaceNames = array(
@@ -1075,7 +1076,7 @@ Para incluír a imagem numa página, utilize o link na forma de
 'filename'                    => 'Nome do ficheiro',
 'filedesc'                    => 'Descrição do ficheiro',
 'fileuploadsummary'           => 'Sumário:',
-'filestatus'                  => 'Estado de direitos de autor:',
+'filestatus'                  => 'Estado dos direitos de autor:',
 'filesource'                  => 'Fonte:',
 'uploadedfiles'               => 'Ficheiros carregados',
 'ignorewarning'               => 'Ignorar aviso e salvar de qualquer forma.',
