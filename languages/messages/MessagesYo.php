@@ -11,16 +11,24 @@
 
 $messages = array(
 # User preference toggles
-'tog-underline'        => 'Underline links:',
-'tog-rememberpassword' => "Sè'rántí ọ̀rọ̀ìpamí mi lórí kọmputa yi",
-'tog-watchcreations'   => "S'àfikún ojúewé tí mo dá mọ́ ìmójútó mi",
-'tog-watchdefault'     => "S'àfikún ojúewé tí mo s'àtúnse mọ́ ìmójútó mi",
-'tog-watchmoves'       => "S'àfikún ojúewé tí mo kó kúrò mọ́ ìmójútó mi",
-'tog-watchdeletion'    => "S'àfikún ojúewé tí mo parẹ́ mọ́ ìmójútó mi",
-'tog-minordefault'     => "Se àmì sí gbogbo àtúnse gẹ́gẹ́ bi kékeré lát'ìbẹ̀rẹ̀.",
-'tog-previewontop'     => "Se àyẹ̀wò kí ẹ tó s'àtúnṣe",
-'tog-previewonfirst'   => "S'àfihàn àgbéwò fún àtúnse àkọ́kọ́",
-'tog-nocache'          => "D'ènà fífi ojúewé pamọ́",
+'tog-underline'            => 'Underline links:',
+'tog-justify'              => "S'àlàyé gbólóhùn ọ̀rọ̀",
+'tog-hideminor'            => "Bo àtúnse kékékèé mọ́'lẹ̀ nínú àtúnse tuntun",
+'tog-rememberpassword'     => "Sè'rántí ọ̀rọ̀ìpamí mi lórí kọmputa yi",
+'tog-watchcreations'       => "S'àfikún ojúewé tí mo dá mọ́ ìmójútó mi",
+'tog-watchdefault'         => "S'àfikún ojúewé tí mo s'àtúnse mọ́ ìmójútó mi",
+'tog-watchmoves'           => "S'àfikún ojúewé tí mo kó kúrò mọ́ ìmójútó mi",
+'tog-watchdeletion'        => "S'àfikún ojúewé tí mo parẹ́ mọ́ ìmójútó mi",
+'tog-minordefault'         => "Se àmì sí gbogbo àtúnse gẹ́gẹ́ bi kékeré lát'ìbẹ̀rẹ̀.",
+'tog-previewontop'         => "Se àyẹ̀wò kí ẹ tó s'àtúnṣe",
+'tog-previewonfirst'       => "S'àfihàn àgbéwò fún àtúnse àkọ́kọ́",
+'tog-nocache'              => "D'ènà fífi ojúewé pamọ́",
+'tog-enotifwatchlistpages' => 'Fi e-mail ránsẹ́ sími tí ojúewé tí mò ún mójútó bá yípadà',
+'tog-enotifusertalkpages'  => 'Fi e-mail ránsẹ́ sími tí ojúewé ẹnitínse mi bá yípadà',
+'tog-enotifminoredits'     => 'Fi e-mail ránsẹ́ sími bákannà fún àtúnse kékékèé sí ojúewé',
+'tog-shownumberswatching'  => "S'àfihàn iye àwọn ẹnitínse tí wọn ún mójútó",
+
+'underline-always' => 'Nígbà gbogbo',
 
 # Dates
 'sunday'    => 'Ọjọ́àìkú',
@@ -59,7 +67,7 @@ $messages = array(
 'talkpage'         => 'Kábárawasọ̀rọ̀ nípa ojúewé yi',
 'talkpagelinktext' => 'Kábárawasọ̀rọ̀',
 'specialpage'      => 'Ojúewé Pàtàkì',
-'talk'             => 'Kábárawasọ̀rọ̀',
+'talk'             => 'Ìfọ̀rọ̀wérọ̀',
 'toolbox'          => 'Àpótí irinṣẹ',
 'otherlanguages'   => 'Àwọn èdè míràn',
 'lastmodifiedat'   => 'Ọjọ́ tí a ṣe àtunṣe ojúewé yi gbẹ̀yìn ni $2, $1.', # $1 date, $2 time

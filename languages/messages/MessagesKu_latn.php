@@ -7,6 +7,7 @@
  * @author Nike
  * @author SieBot
  * @author Siebrand
+ * @author SPQRobin
  */
 
 $namespaceNames = array(
@@ -730,7 +731,7 @@ $2 Ragihandinan nîşan bide &amp;nbsp; Lêbigere: $3 $9',
 # User rights
 'userrights-lookup-user'           => 'Îdarekirina grûpan',
 'userrights-user-editname'         => 'Navî bikarhênerê têke:',
-'editinguser'                      => 'Biguherîne: "$1"',
+'editinguser'                      => "Biguherîne: '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
 'userrights-groupsmember'          => 'Endamê:',
 'userrights-reason'                => 'Sedemê guherandinê:',
 'userrights-available-add'         => 'Tu dikarê bikarhêneran têke di nav {{PLURAL:$2|vê komê|van koman}}: $1.',
@@ -838,7 +839,7 @@ Zanibe, ku ev barkirina kê were qebûlkirin ya na.
 
 Înformasyonan li ser jêbirinê kevin ra:",
 
-'license' => 'Lîsens:',
+'license' => 'Lîsens',
 
 # Image list
 'imagelist'                 => 'Listeya wêneyan',
@@ -874,22 +875,26 @@ Zanibe, ku ev barkirina kê were qebûlkirin ya na.
 'imagelist_search_for'      => 'Li navî wêneyê bigere:',
 
 # File reversion
-'filerevert'        => '"$1" şondabike',
-'filerevert-submit' => 'Şonda',
+'filerevert'         => '"$1" şondabike',
+'filerevert-comment' => 'Nivîs:',
+'filerevert-submit'  => 'Şonda',
 
 # File deletion
 'filedelete'                  => '$1 jêbibe',
 'filedelete-legend'           => 'Data jêbibe',
 'filedelete-intro'            => "Tu kê '''[[Media:$1|$1]]''' jêbibê.",
+'filedelete-intro-old'        => '<span class="plainlinks">Tu niha verzyona \'\'\'[[Media:$1|$1]]\'\'\' [$4 verzyon, ji $2, saet $3] jêdibê.</span>',
 'filedelete-comment'          => 'Nivîs:',
 'filedelete-submit'           => 'Jêbibe',
 'filedelete-success'          => "'''$1''' hate jêbirin.",
+'filedelete-success-old'      => "<span class=\"plainlinks\">Verzyona \$2 ji data'ya '''[[Media:\$1|\$1]]''' di saet \$3 da hate jêbirin.</span>",
 'filedelete-nofile'           => "'''$1''' li vê rûpelê tune.",
 'filedelete-otherreason'      => 'Sedemên din:',
 'filedelete-reason-otherlist' => 'Sedemên din',
 'filedelete-reason-dropdown'  => '*Sedemên jêbirina wêneyan
 ** wêneyeka pîs e
 ** kopîyek e',
+'filedelete-edit-reasonlist'  => 'Sedemên jêbirinê biguherîne',
 
 # MIME search
 'download' => 'dabezandin',
@@ -901,6 +906,7 @@ Zanibe, ku ev barkirina kê were qebûlkirin ya na.
 'listredirects' => "Lîsteya redirect'an",
 
 # Unused templates
+'unusedtemplates'    => 'Şablonên netên bikaranîn',
 'unusedtemplateswlh' => 'lînkên din',
 
 # Random page
@@ -922,7 +928,8 @@ Ji ber wê di nîvî de her rûpel '''$5''' carî hatiye guherandin, û nîspeta
 Dirêjahîya [http://meta.wikimedia.org/wiki/Help:Job_queue ''job queue''] '''$7''' e.",
 'userstatstext' => "Li vir {{PLURAL:$1|[[Special:Listusers|bikarhênerekî]]|'''$1''' [[Special:Listusers|bikarhênerên]]}} qeydkirî {{PLURAL:$1|heye|hene}}, ji wan '''$2''' (an '''$4%''') qebûlkirinên $5 {{PLURAL:$2|birîye|birine}}.",
 
-'disambiguations' => 'Rûpelên cudakirinê',
+'disambiguations'     => 'Rûpelên cudakirinê',
+'disambiguationspage' => 'Template:disambig',
 
 'doubleredirects' => "Redirect'ên ducarî",
 
@@ -930,7 +937,8 @@ Dirêjahîya [http://meta.wikimedia.org/wiki/Help:Job_queue ''job queue''] '''$7
 'brokenredirects-edit'   => '(biguherîne)',
 'brokenredirects-delete' => '(jêbibe)',
 
-'withoutinterwiki' => 'Rûpel vê lînkên berve zimanên din',
+'withoutinterwiki'        => 'Rûpel vê lînkên berve zimanên din',
+'withoutinterwiki-submit' => 'Nîşan bide',
 
 # Miscellaneous special pages
 'nbytes'                  => "$1 {{PLURAL:$1|byte|byte'an}}",
@@ -955,6 +963,7 @@ Dirêjahîya [http://meta.wikimedia.org/wiki/Help:Job_queue ''job queue''] '''$7
 'longpages'               => 'Rûpelên dirêj',
 'deadendpages'            => 'Rûpelên bê dergeh',
 'protectedpages'          => 'Rûpelên parastî',
+'protectedtitles'         => 'Sernavên parastî',
 'listusers'               => 'Lîsteya bikarhêneran',
 'specialpages'            => 'Rûpelên taybet',
 'spheading'               => 'Rûpelên taybet ji bo hemû bikarhêneran',
@@ -1125,6 +1134,7 @@ Eger tu dixazê lîstêya xwe yê şopandinê biguherînê, li
 ** ne girek e
 ** ne gotarek e
 ** ceribandina IP'yekê",
+'delete-edit-reasonlist'      => 'Sedemên jêbirinê biguherîne',
 'delete-toobig'               => 'Dîroka vê rûpelê pir mezin e, zêdetirî $1 guherandin. Jêbirina van rûpelan hatîye sînorkirin, ji bo pir şaşbûn (error) di {{SITENAME}} da çênebin.',
 'delete-warning-toobig'       => "Dîroka vê rûpelê pir mezin e, zêdetirî $1 guherandin. Jêbirina van rûpelan dikarin şaşbûnan di database'ê {{SITENAME}} da çêkin; zandibe tu çi dikê!",
 'rollback_short'              => 'Bizivirîne pêş',
@@ -1228,6 +1238,7 @@ Ji bo jêbirinan û çêkirinên nuh ra, xêra xwe di [[Special:Log/delete|reşa
 
 # Block/unblock
 'blockip'                     => 'Bikarhêner asteng bike',
+'blockip-legend'              => 'Bikarhêner asteng bike',
 'blockiptext'                 => 'Ji bo astengkirina nivîsandinê ji navnîşaneke IP an bi navekî bikarhêner, vê formê bikarbîne.
 Ev bes gireke were bikaranîn ji bo vandalîzmê biskinîne (bi vê [[{{MediaWiki:Policy-url}}|qebûlkirinê]]). 
 
@@ -1613,5 +1624,8 @@ $1',
 
 # Special:Version
 'version-other' => 'yên din',
+
+# Special:Filepath
+'filepath-page' => 'Data:',
 
 );

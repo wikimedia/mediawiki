@@ -9,6 +9,8 @@
  * @author Max sonnelid
  * @author Jon Harald Søby
  * @author M.M.S.
+ * @author Morten
+ * @author Peter Andersen
  */
 
 $namespaceNames = array(
@@ -187,6 +189,7 @@ $messages = array(
 'tog-nolangconversion'        => 'Deaktiver konverteringer af sprogvarianter',
 'tog-ccmeonemails'            => 'Send mig kopier af e-mails, som jeg sender til andre brugere.',
 'tog-diffonly'                => 'Vis ved versionssammenligninger kun forskelle, ikke hele siden',
+'tog-showhiddencats'          => 'Vis skjulte kategorier',
 
 'underline-always'  => 'altid',
 'underline-never'   => 'aldrig',
@@ -247,12 +250,14 @@ $messages = array(
 'dec'           => 'dec',
 
 # Bits of text used by many pages
-'categories'            => 'Kategorier',
-'pagecategories'        => '{{PLURAL:$1|Kategori|Kategorier}}',
-'category_header'       => 'Artikler i kategorien "$1"',
-'subcategories'         => 'Underkategorier',
-'category-media-header' => 'Medier i kategorien „$1“',
-'category-empty'        => "''Denne kategori indeholder for øjeblikket hverken sider eller medie-filer.''",
+'categories'               => 'Kategorier',
+'pagecategories'           => '{{PLURAL:$1|Kategori|Kategorier}}',
+'category_header'          => 'Artikler i kategorien "$1"',
+'subcategories'            => 'Underkategorier',
+'category-media-header'    => 'Medier i kategorien „$1“',
+'category-empty'           => "''Denne kategori indeholder for øjeblikket hverken sider eller medie-filer.''",
+'hidden-categories'        => '{{PLURAL:$1|Skjult kategori|Skjulte kategorier}}',
+'hidden-category-category' => 'Skjulte kategorier', # Name of the category where hidden categories will be listed
 
 'mainpagetext'      => 'MediaWiki er nu installeret.',
 'mainpagedocfooter' => 'Se vores engelsksprogede [http://meta.wikimedia.org/wiki/MediaWiki_localisation dokumentation om tilpasning af brugergrænsefladen] og [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide brugervejledningen] for oplysninger om opsætning og anvendelse.',
@@ -671,7 +676,6 @@ Prøv venligst igen. Hvis problemet fortsætter, log af og log på igen.</strong
 <strong>Forsøg venligst igen. Hvis problemet fortsætter, log af og log på igen.</strong>",
 'token_suffix_mismatch'     => '<strong>Din redigering er afvist, da din browser har forvansket tegnsætningen i redigeringskontrolfilen. Afvisningen sker for at forhindre utilsigtede ændringer i artiklen. Denne fejl opstår nogle gange, når du redigerer gennem en fejlprogrammeret webbaseret anonymiseringstjeneste.</strong>',
 'editing'                   => 'Redigerer $1',
-'editinguser'               => 'Redigerer $1',
 'editingsection'            => 'Redigerer $1 (afsnit)',
 'editingcomment'            => 'Redigerer $1 (kommentar)',
 'editconflict'              => 'Redigeringskonflikt: $1',
@@ -923,6 +927,7 @@ Vær opmæksom på at bevare kontinuiteten i sidehistorikken.
 'userrights-lookup-user'           => 'Administrér brugergrupper',
 'userrights-user-editname'         => 'Skriv et brugernavn:',
 'editusergroup'                    => 'Redigér brugergrupper',
+'editinguser'                      => 'Redigerer $1',
 'userrights-editusergroup'         => 'Redigér brugergrupper',
 'saveusergroups'                   => 'Gem brugergrupper',
 'userrights-groupsmember'          => 'Medlem af:',
@@ -1161,7 +1166,13 @@ Sletningsloggen for denne fil er gengivet herunder.",
 'filedelete-nofile'           => "'''$1''' findes ikke på dette websted.",
 'filedelete-nofile-old'       => "Der findes ikke en version af '''$1''' fra $2, $3.",
 'filedelete-iscurrent'        => 'Du har forsøgt at slette den nyeste version. Gendan en tidligere udgave først.',
+'filedelete-otherreason'      => 'Anden/uddybende begrundelse:',
 'filedelete-reason-otherlist' => 'Anden grund',
+'filedelete-reason-dropdown'  => '*Hyppige sletningsårsager
+** Brud på ophavsret
+** Licens ikke oplyst
+** Duplikeret fil
+** Ubrugt fil',
 
 # MIME search
 'mimesearch'         => 'Søge efter MIME-type',
@@ -1298,7 +1309,6 @@ deraf har '''$2''' (=$4%) $5-rettigheder.",
 'newpages-username'               => 'Brugernavn:',
 'ancientpages'                    => 'Ældste artikler',
 'ancientpages-summary'            => 'Denne specialside viser alle de sider, som i længst tid ikke er blevet ændret.',
-'intl'                            => 'Sproghenvisninger',
 'move'                            => 'Flyt',
 'movethispage'                    => 'Flyt side',
 'unusedimagestext'                => '<p>Læg mærke til, at andre websider såsom de andre internationale {{SITENAME}}er måske henviser til et billede med en direkte URL, så det kan stadig være listet her, selvom det er i aktivt brug.',

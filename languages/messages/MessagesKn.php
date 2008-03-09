@@ -11,6 +11,7 @@
  * @author Ashwath Mattur <ashwatham@gmail.com> http://en.wikipedia.org/wiki/User:Ashwatham
  * @author Siebrand
  * @author לערי ריינהארט
+ * @author SPQRobin
  */
 
 $namespaceNames = array(
@@ -450,7 +451,7 @@ $1',
 'allowemail'           => 'ಬೇರೆ ಸದಸ್ಯರಿಂದ ಈ-ಮೈಲ್‍ಗಳನ್ನು ಸ್ವೀಕರಿಸು',
 
 # User rights
-'editinguser'       => "'$1' ಲೇಖನ ಬದಲಾಯಿಸಲಾಗುತ್ತಿದೆ",
+'editinguser'       => "'''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]]) ಲೇಖನ ಬದಲಾಯಿಸಲಾಗುತ್ತಿದೆ",
 'userrights-reason' => 'ಬದಲಾವಣೆಗೆ ಕಾರಣ:',
 
 # Groups
