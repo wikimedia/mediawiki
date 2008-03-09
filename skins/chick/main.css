@@ -198,7 +198,7 @@ span.subpages { display: block; }
     color: red;
     font-size: larger;
 }
-#catlinks {
+.catlinks {
     border:1px solid #aaaaaa;
     background-color:#f9f9f9;
     padding: 2px 5px;

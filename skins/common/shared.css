@@ -82,6 +82,7 @@ body.ltr .magnify { float:right; }
  * Hidden categories
  */
 .mw-hidden-cats-hidden { display: none; }
+.catlinks-allhidden { display: none; }
 
 /* Convenience links to edit block and delete reasons */
 p.mw-ipb-conveniencelinks, p.mw-filedelete-editreasons, p.mw-delete-editreasons {

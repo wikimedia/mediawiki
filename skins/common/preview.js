@@ -104,8 +104,7 @@ function lpStatusUpdate() {
 			categoryContainer.style.display = 'block';
 		} else {
 			/* Just dump them somewhere */
-	/*		previewContainer.innerHTML += '<div id="catlinks">' +
-				categoryElement.firstChild.data + '</div>';*/
+	/*		previewContainer.innerHTML += categoryElement.firstChild.data;*/
 		}
 	} else {
 		/* Nothing to show, hide old data */

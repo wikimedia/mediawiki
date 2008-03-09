@@ -712,8 +712,15 @@ END;
 
 	function getCategories() {
 		$catlinks=$this->getCategoryLinks();
+		
+		$classes = 'catlinks';
+		
+		if(FALSE === strpos($catlinks,'<div id="mw-normal-catlinks">')) {
+			$classes .= ' catlinks-allhidden';
+		}
+		
 		if(!empty($catlinks)) {
-			return "<div class='catlinks'>{$catlinks}</div>";
+			return "<div class='$classes'>{$catlinks}</div>";
 		}
 	}
 
