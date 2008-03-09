@@ -579,7 +579,7 @@ img.thumbborder {
 	text-align: center;
 }
 
-#catlinks {
+.catlinks {
 	border: solid 1px #bbbbbb;
 	background-color: #f0f0f0;
 	padding: 0.5em 0.5em 0.5em 0.5em;
