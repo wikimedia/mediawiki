@@ -2247,7 +2247,7 @@ class Article {
 				'ar_text_id'    => 'rev_text_id',
 				'ar_text'       => '\'\'', // Be explicit to appease
 				'ar_flags'      => '\'\'', // MySQL's "strict mode"...
-				'ar_len'		=> 'rev_len',
+				'ar_len'        => 'rev_len',
 				'ar_page_id'    => 'page_id',
 				'ar_deleted'    => $bitfield
 			), array(
@@ -2690,7 +2690,7 @@ class Article {
 		$sk = $wgUser->getSkin();
 		$lnk = $current
 			? wfMsg( 'currentrevisionlink' )
-			: $lnk = $sk->makeKnownLinkObj( $this->mTitle, wfMsg( 'currentrevisionlink' ) );
+			: $sk->makeKnownLinkObj( $this->mTitle, wfMsg( 'currentrevisionlink' ) );
 		$curdiff = $current
 			? wfMsg( 'diff' )
 			: $sk->makeKnownLinkObj( $this->mTitle, wfMsg( 'diff' ), 'diff=cur&oldid='.$oldid );
