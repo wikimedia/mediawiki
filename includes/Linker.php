@@ -1124,14 +1124,16 @@ class Linker {
 	 *
 	 * @param Revision $rev
 	 * @param bool $local Whether section links should refer to local page
+	 * @param $isPublic, show only if all users can see it
 	 * @return string HTML
 	 */
-	function revComment( Revision $rev, $local = false ) {
-		if( $rev->userCan( Revision::DELETED_COMMENT ) ) {
+	function revComment( Revision $rev, $local = false, $isPublic = false ) {
+		if( $rev->isDeleted( Revision::DELETED_COMMENT ) && $isPublic ) {
+			$block = " <span class=\"comment\">" . wfMsgHtml( 'rev-deleted-comment' ) . "</span>";
+		} else if( $rev->userCan( Revision::DELETED_COMMENT ) ) {
 			$block = $this->commentBlock( $rev->getRawComment(), $rev->getTitle(), $local );
 		} else {
-			$block = " <span class=\"comment\">" .
-				wfMsgHtml( 'rev-deleted-comment' ) . "</span>";
+			$block = " <span class=\"comment\">" . wfMsgHtml( 'rev-deleted-comment' ) . "</span>";
 		}
 		if( $rev->isDeleted( Revision::DELETED_COMMENT ) ) {
 			return " <span class=\"history-deleted\">$block</span>";
