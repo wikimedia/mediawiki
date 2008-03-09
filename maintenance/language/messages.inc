@@ -1212,6 +1212,7 @@ $wgMessageStructure = array(
 		'unwatch',
 		'unwatchthispage',
 		'notanarticle',
+		'notvisiblerev',
 		'watchnochange',
 		'watchlist-details',
 		'wlheader-enotif',
