@@ -39,6 +39,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Add --old-redirects-only option to maintenance/refreshLinks.php, to add old
   redirects to the redirect table
 * Add links to page and file deletion forms to edit predefined delete reasons 
+* (bug 13269) Added MediaWiki:Uploadfooter to the bottom of Special:Upload
 
 === Bug fixes in 1.13 ===
 

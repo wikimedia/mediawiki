@@ -108,6 +108,7 @@ $wgIgnoredMessages = array(
 	'talkpagetext',
 	'trackback',
 	'trackbackexcerpt',
+	'uploadfooter',
 );
 
 /** Optional messages, which may be translated only if changed in the other language. */

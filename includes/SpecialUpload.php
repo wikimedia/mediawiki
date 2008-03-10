@@ -1027,7 +1027,7 @@ wgAjaxLicensePreview = {$alp};
 		if( $wgAllowCopyUploads && $wgUser->isAllowed( 'upload_by_url' ) ) {
 			$filename_form =
 				"<input type='radio' id='wpSourceTypeFile' name='wpSourceType' value='file' " .
-				   "onchange='toggle_element_activation(\"wpUploadFileURL\",\"wpUploadFile\")' checked />" .
+				   "onchange='toggle_element_activation(\"wpUploadFileURL\",\"wpUploadFile\")' checked='checked' />" .
 				 "<input tabindex='1' type='file' name='wpUploadFile' id='wpUploadFile' " .
 				   "onfocus='" . 
 				     "toggle_element_activation(\"wpUploadFileURL\",\"wpUploadFile\");" .
@@ -1040,7 +1040,7 @@ wgAjaxLicensePreview = {$alp};
 				  "onfocus='" .
 				    "toggle_element_activation(\"wpUploadFile\",\"wpUploadFileURL\");" .
 				    "toggle_element_check(\"wpSourceTypeURL\",\"wpSourceTypeFile\")'" .
-				($this->mDesiredDestName?"":"onchange='fillDestFilename(\"wpUploadFileURL\")' ") . "size='60' DISABLED />" .
+				($this->mDesiredDestName?"":"onchange='fillDestFilename(\"wpUploadFileURL\")' ") . "size='60' disabled='disabled' />" .
 				wfMsgHtml( 'upload_source_url' ) ;
 		} else {
 			$filename_form =
@@ -1158,6 +1158,10 @@ EOT
 	</table>
 	<input type='hidden' name='wpDestFileWarningAck' id='wpDestFileWarningAck' value=''/>
 	</form>" );
+		$uploadfooter = wfMsgNoTrans( 'uploadfooter' );
+		if( $uploadfooter != '-' && !wfEmptyMsg( 'uploadfooter', $uploadfooter ) ){
+			$wgOut->addWikiText( $uploadfooter );
+		}
 	}
 
 	/* -------------------------------------------------------------- */
