@@ -2122,12 +2122,24 @@ class Database {
 	 * Ping the server and try to reconnect if it there is no connection
 	 */
 	function ping() {
-		if( function_exists( 'mysql_ping' ) ) {
-			return mysql_ping( $this->mConn );
-		} else {
+		if( !function_exists( 'mysql_ping' ) ) {
 			wfDebug( "Tried to call mysql_ping but this is ancient PHP version. Faking it!\n" );
 			return true;
 		}
+		$ping = mysql_ping( $this->mConn );
+		if ( $ping ) {
+			return true;
+		}
+
+		// Need to reconnect manually in MySQL client 5.0.13+
+		if ( version_compare( mysql_get_client_info(), '5.0.13', '>=' ) ) {
+			mysql_close( $this->mConn );
+			$this->mOpened = false;
+			$this->mConn = false;
+			$this->open( $this->mServer, $this->mUser, $this->mPassword, $this->mDBname );
+			return true;
+		}
+		return false;
 	}
 
 	/**
