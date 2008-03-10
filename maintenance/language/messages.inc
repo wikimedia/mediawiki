@@ -840,6 +840,7 @@ $wgMessageStructure = array(
 		'upload-permitted',
 		'upload-preferred',
 		'upload-prohibited',
+		'uploadfooter',
 		'uploadlog',
 		'uploadlogpage',
 		'uploadlogpagetext',
@@ -2242,6 +2243,7 @@ $wgMessageStructure = array(
 		'catseparator',
 		'semicolon-separator',
 		'comma-separator',
+		'colon-separator',
 	),
 	'imgmulti' => array(
 		'imgmultipageprev',

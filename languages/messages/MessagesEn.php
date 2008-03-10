@@ -1406,6 +1406,7 @@ To include a file in a page, use a link in the form
 'upload-permitted'            => 'Permitted file types: $1.',
 'upload-preferred'            => 'Preferred file types: $1.',
 'upload-prohibited'           => 'Prohibited file types: $1.',
+'uploadfooter'                => '-', # don't translate or duplicate this message to other languages
 'uploadlog'                   => 'upload log',
 'uploadlogpage'               => 'Upload log',
 'uploadlogpagetext'           => 'Below is a list of the most recent file uploads.',
