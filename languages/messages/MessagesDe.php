@@ -907,7 +907,7 @@ Stelle sicher, dass die Versionsgeschichte eines Artikel historisch korrekt ist.
 Versuche es über die Volltextsuche.
 Alternativ kannst du auch den [[Special:Allpages|alphabetischen Index]] nach ähnlichen Begriffen durchsuchen.
 
-Wenn du dich mit dem Thema auskennen, kannst du selbst die Seite „[[$1]]“ verfassen.",
+Wenn du dich mit dem Thema auskennst, kannst du selbst die Seite „[[$1]]“ verfassen.",
 'noexactmatch-nocreate' => "'''Es existiert keine Seite mit dem Titel „$1“.'''",
 'toomanymatches'        => 'Es Anzahl der Suchergnisse ist zu groß, bitte versuche eine andere Abfrage.',
 'titlematches'          => 'Übereinstimmungen mit Seitentiteln',
@@ -1472,6 +1472,7 @@ Wenn du die Seite wieder von deiner Beobachtungsliste entfernen möchtest, klick
 'unwatch'              => 'nicht mehr beobachten',
 'unwatchthispage'      => 'Nicht mehr beobachten',
 'notanarticle'         => 'Keine Seite',
+'notvisiblerev'        => 'Version wurde gelöscht',
 'watchnochange'        => 'Keine der von dir beobachteten Seiten wurde während des angezeigten Zeitraums bearbeitet.',
 'watchlist-details'    => 'Du beobachtest {{PLURAL:$1|1 Seite|$1 Seiten}}.',
 'wlheader-enotif'      => '* Der E-Mail-Benachrichtigungsdienst ist aktiviert.',
