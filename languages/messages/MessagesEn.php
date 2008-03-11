@@ -2906,11 +2906,12 @@ $1',
 'hideresults'      => 'Hide results',
 'useajaxsearch'    => 'Use AJAX search',
 
-# Separators for various lists
-'catseparator'        => '|', # don't translate or duplicate this message to other languages
+# Separators for various lists, etc.
+'catseparator'        => '|', # only translate this message to other languages if you have to change it
 'semicolon-separator' => ';', # only translate this message to other languages if you have to change it
 'comma-separator'     => ',&#32;', # only translate this message to other languages if you have to change it
 'colon-separator'     => ':&#32;', # only translate this message to other languages if you have to change it
+'autocomment-prefix'  => '- ', # only translate this message to other languages if you have to change it
 
 # Multipage image navigation
 'imgmultipageprev' => '← previous page',

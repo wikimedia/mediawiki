@@ -1033,10 +1033,12 @@ class Linker {
 			}
 			$auto = $link . $auto;
 			if( $pre ) {
-				$auto = '- ' . $auto; # written summary $presep autocomment (summary /* section */)
+				# written summary $presep autocomment (summary /* section */)
+				$auto = wfMsgExt( 'autocomment-prefix', array( 'escapenoentities', 'content' ) ) . $auto;
 			}
 			if( $post ) {
-				$auto .= ': '; # autocomment $postsep written summary (/* section */ summary)
+				# autocomment $postsep written summary (/* section */ summary)
+				$auto .= wfMsgExt( 'colon-separator', array( 'escapenoentities', 'content' ) );
 			}
 			$auto = '<span class="autocomment">' . $auto . '</span>';
 			$comment = $pre . $auto . $post;
