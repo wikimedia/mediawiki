@@ -381,6 +381,10 @@ class SpecialSearch {
 		$fname = __METHOD__;
 	
 		$revision = Revision::newFromTitle( $t );
+		if( !$revision ) {
+			return '<!-- missing page -->';
+		}
+		
 		$text = $revision->getText();
 		$size = wfMsgExt( 'nbytes', array( 'parsemag', 'escape'),
 			$wgLang->formatNum( strlen( $text ) ) );
