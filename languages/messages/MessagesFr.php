@@ -1433,6 +1433,7 @@ Il y a {{PLURAL:$7|'''$7''' article|'''$7''' articles}} dans [[meta:Help:Job_que
 'unwatch'              => 'Ne plus suivre',
 'unwatchthispage'      => 'Ne plus suivre',
 'notanarticle'         => 'Pas un article',
+'notvisiblerev'        => 'La version a été supprimée',
 'watchnochange'        => 'Aucune des pages que vous suivez n’a été modifiée pendant la période affichée',
 'watchlist-details'    => 'Vous suivez <b>$1</b> {{PLURAL:$1|page|pages}}, sans compter les pages de discussion.',
 'wlheader-enotif'      => '* La notification par courriel est activée.',
@@ -2389,6 +2390,9 @@ Veuillez confirmer que vous désirez recréer cet article.",
 'hideresults'      => 'Cacher les résultats',
 'useajaxsearch'    => 'Utiliser la recherche AJAX',
 
+# Separators for various lists
+'colon-separator' => '&nbsp;:&#32;',
+
 # Multipage image navigation
 'imgmultipageprev' => '← page précédente',
 'imgmultipagenext' => 'page suivante →',
@@ -2482,8 +2486,5 @@ Essayez la prévisualisation normale.',
 'filepath-summary' => "Cette page affiche le chemin d'accès complet d’un fichier ; les images sont montrées en haute résolution, les fichiers audio et vidéo s’exécutent avec leur programme associé.
 
 Entrez le nom du fichier sans le préfixe « {{ns:image}}: »",
-
-# Unknown messages
-'colon-separator' => '&nbsp;:&#32;',
 
 );
