@@ -1885,7 +1885,8 @@ $1',
 'databasenotlocked'   => 'پایگاه داده قفل نیست.',
 
 # Move page
-'move-page-legend'                => 'انتقال صفحه',
+'move-page'               => 'انتقال $1',
+'move-page-legend'        => 'انتقال صفحه',
 'movepagetext'            => "با استفاده از فرم زیر نام صفحه تغییر خواهد کرد، و تمام تاریخچه‌اش به نام جدید منتقل خواهد شد.
 عنوان قدیمی تبدیل به یک صفحهٔ تغییر مسیر به عنوان جدید خواهد شد.
 پیوندهای که به عنوان صفحهٔ قدیمی وجود دارند، تغییر نخواهند کرد؛ حتماً تغییر مسیرهای دوتایی یا خراب را بررسی کنید.
@@ -2534,7 +2535,7 @@ $1',
 'hideresults'      => 'نهفتن نتایج',
 'useajaxsearch'    => 'از جستجوی مبتنی بر AJAX استفاده کن',
 
-# Separators for various lists
+# Separators for various lists, etc.
 'semicolon-separator' => '؛',
 
 # Multipage image navigation
