@@ -1871,7 +1871,7 @@ Bevestig dat u deze handeling wilt uitvoeren.",
 'databasenotlocked'   => 'De database is niet geblokkeerd.',
 
 # Move page
-'movepage'                => 'Pagina hernoemen',
+'move-page-legend'                => 'Pagina hernoemen',
 'movepagetext'            => "Door middel van het onderstaande formulier kunt u een pagina hernoemen.
 De geschiedenis gaat mee naar de nieuwe pagina.
 De oude naam wordt automatisch een doorverwijzing naar de nieuwe pagina.

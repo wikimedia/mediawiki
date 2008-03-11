@@ -1390,7 +1390,7 @@ N'oubliez pas de la déverrouiller lorsque vous aurez terminé votre opération 
 'databasenotlocked'   => 'Origak me zo ixatcar.',
 
 # Move page
-'movepage'                => 'Va teliz tolyoltá',
+'move-page-legend'                => 'Va teliz tolyoltá',
 'movepagetext'            => "Utilisez le formulaire ci-dessous pour renommer un article, en déplaçant toutes ses versions antérieures vers le nouveau nom.
 
 Le titre précédent deviendra une page de redirection vers le nouveau titre. Les liens vers l'ancien titre ne seront pas modifiés et la page discussion, si elle existe, ne sera pas déplacée.

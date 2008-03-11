@@ -1315,7 +1315,7 @@ Sedemekê binivîse!',
 'sorbs_create_account_reason' => "Adrêsa IP ya te ji DNSBL'a {{SITENAME}} wek proxy'eka vekirî tê naskirin. Tu nikarê account'ekê ji xwe ra çêkê.",
 
 # Move page
-'movepage'                => 'Vê rûpelê bigerîne',
+'move-page-legend'                => 'Vê rûpelê bigerîne',
 'movepagetalktext'        => "Rûpela '''guftûgoyê''' vê rûpelê wê were, eger hebe, gerandin. Lê ev tişta nameşe, eger
 
 *berê guftûgoyek bi wê navê hebe ya

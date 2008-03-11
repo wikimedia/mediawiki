@@ -427,7 +427,7 @@ $messages = array(
 'contribslink'       => 'Ἔρανοι',
 
 # Move page
-'movepage'    => 'Κινεῖν τὴν δέλτον',
+'move-page-legend'    => 'Κινεῖν τὴν δέλτον',
 'movearticle' => 'Κινεῖν τὴν δέλτον:',
 'move-watch'  => 'Ἑφορᾶν τήνδε τὴν δέλτον',
 'movereason'  => 'Ἀπολογία:',

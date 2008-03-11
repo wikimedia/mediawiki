@@ -1088,7 +1088,7 @@ Befêstigje dat dit is wat jo wolle.',
 'unlockdbsuccesstext' => 'De {{SITENAME}} databank is skriuwber makke.',
 
 # Move page
-'movepage'         => 'Werneam side',
+'move-page-legend'         => 'Werneam side',
 'movepagetext'     => "Dit werneamt in side, mei alle sideskiednis.
 De âlde titel wurdt in trochferwizing nei de nije.
 Keppelings mei de âlde side wurde net feroare;

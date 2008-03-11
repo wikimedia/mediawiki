@@ -94,7 +94,7 @@ $messages = array(
 'whatlinkshere' => 'Links auf de Seitn',
 
 # Move page
-'movepage'        => 'Seitn vaschiam',
+'move-page-legend'        => 'Seitn vaschiam',
 'move-watch'      => 'De Seitn beobachten',
 '1movedto2'       => 'håt [[$1]] nåch [[$2]] verschom',
 '1movedto2_redir' => 'håt [[$1]] nåch [[$2]] verschom und dabei a Weiterleitung überschriem',

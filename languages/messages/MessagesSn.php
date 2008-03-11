@@ -156,7 +156,7 @@ Akaunzi yako yagadzirwa. Usakanganwe kuchinga mapreferences ako eWikipedia.',
 'whatlinkshere' => 'Zvakakochekera pano',
 
 # Move page
-'movepage'    => 'Chichinura peji',
+'move-page-legend'    => 'Chichinura peji',
 'movepagebtn' => 'Chichinura peji',
 'movedto'     => 'rachichinurwa ku',
 '1movedto2'   => '[[$1]] rachichinurwa ku [[$2]]',

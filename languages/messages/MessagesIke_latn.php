@@ -302,7 +302,7 @@ pigivuq qatannguti uikipitia kiinaujaqutiqarvik isuillingaitjapaa. iqtuu suqusiq
 'block-log-flags-noemail'  => 'kigutiup sitiniqpaanga uminngasisijuq',
 
 # Move page
-'movepage'        => 'uajuq mappitaq',
+'move-page-legend'        => 'uajuq mappitaq',
 'movearticle'     => 'uajuq mappitaq',
 'movedto'         => 'uajuq',
 '1movedto2'       => '[[$1]] surramajuq [[$2]]',

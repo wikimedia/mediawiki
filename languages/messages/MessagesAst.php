@@ -1650,7 +1650,7 @@ na base de datos. Por favor confirma que ye lo quies facer.',
 'databasenotlocked'   => 'La base de datos nun ta protexida.',
 
 # Move page
-'movepage'                => 'Treslladar páxina',
+'move-page-legend'                => 'Treslladar páxina',
 'movepagetext'            => "Usando'l siguiente formulariu vas renomar una páxina, treslladando'l
 so historial al nuevu nome. El nome vieyu va convertise nuna
 redireición al nuevu. Los enllaces qu'hubiera al nome vieyu nun van

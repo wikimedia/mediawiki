@@ -460,7 +460,7 @@ $messages = array(
 'unlockbtn'   => 'डाटाबेस अनलक गर्नुहोस्',
 
 # Move page
-'movepage'                => 'पृष्ठ सार्नुहोस्',
+'move-page-legend'                => 'पृष्ठ सार्नुहोस्',
 'movearticle'             => 'पृष्ठ सार्नुहोस्',
 'movenologin'             => 'प्रवेश (लग ईन) नगरिएको',
 'movepagebtn'             => 'पृष्ठ सार्नुहोस्',

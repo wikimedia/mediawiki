@@ -920,7 +920,7 @@ $messages = array(
 'proxyblocksuccess'        => 'ترسره شو.',
 
 # Move page
-'movepage'                => 'مخ لېږدول',
+'move-page-legend'                => 'مخ لېږدول',
 'movearticle'             => 'مخ لېږدول',
 'movenologin'             => 'غونډال کې نه ياست ننوتي',
 'movenologintext'         => 'ددې لپاره چې يو مخ ولېږدوی، نو تاسو بايد يو ثبت شوی کارونکی او غونډال کې [[Special:Userlogin|ننوتي]] اوسۍ.',

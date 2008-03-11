@@ -1499,7 +1499,7 @@ Gefðu ástæðu fyrir banninu (meðal annars að nefna síðu sem var skemmd).'
 'databasenotlocked'   => 'Gagnagrunnurinn er ekki læstur.',
 
 # Move page
-'movepage'                => 'Færa síðu',
+'move-page-legend'                => 'Færa síðu',
 'movepagetext'            => "Hér er hægt að endurnefna síðu, hún mun ásamt breytingarskrá hennar
 verða færð á nýja nafnið og núverandi staðsetning mun
 breytast í tilvísun sem vísa mun á nýju staðsetninguna,

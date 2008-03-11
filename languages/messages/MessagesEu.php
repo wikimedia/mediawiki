@@ -1400,7 +1400,7 @@ $1',
 'databasenotlocked'   => 'Datu-basea ez dago blokeatuta.',
 
 # Move page
-'movepage'                => 'Orrialdea mugitu',
+'move-page-legend'                => 'Orrialdea mugitu',
 'movepagetext'            => 'Hurrengo pausoak jarraituz, artikulu edo orrialde baten izena aldatu daiteke. Izenburu zaharra, automatikoki izenburu berriari birzuzenduko zaio. 
 Gogora ezazu, orrialdearen izena ez dela aldatuko, nahi duzun izena dagoeneko sortuta badago Wikipedian; birzuzenketa bat edo historiarik gabeko orrialde bat ez bada.
 

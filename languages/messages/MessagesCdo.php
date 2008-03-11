@@ -761,7 +761,7 @@ Có̤i âu gì siŭ-gāi sê [[User:$3|$3]] ([[User talk:$3|Tō̤-lâung]]) sū 
 'databasenotlocked' => 'Só-gé̤ṳ-kó mò̤ sō̤',
 
 # Move page
-'movepage'                => 'Iè-dông hiĕk-miêng',
+'move-page-legend'                => 'Iè-dông hiĕk-miêng',
 'movepagetext'            => "Sāi-ê̤ṳng â-dā̤ gì dăng-dăng â̤ gâe̤ng hiĕk-miêng dṳ̀ng-sĭng kī-miàng, bêng-chiā ĭ ciòng-buô lĭk-sṳ̄ dŭ â̤ ké̤ṳk iè gáu sĭng miàng â-dā̤. Gô miàng â̤ biéng có̤ dṳ̀ng-dêng-hióng hiĕk-miêng. Lièng gáu gô hiĕk dà̤-mĕ̤k gì lièng-giék dŭ mò̤ gāi-biéng; chiāng káuk-nêng mò̤ huák-sĕng sĕ̤ng dṳ̀ng-dêng-hióng (''double redirect'') hĕ̤k-ciā sê ngài dṳ̀ng-dêng-hióng (''broken redirect''). Nṳ̄ ô dăng-dŏng hô-cáik lièng-giék ĭng-nguòng â̤ lièng gáu ciáng-káuk gì sū-câi.
 
 Cé̤ṳ-é, nâ ô găk sĭng dà̤-mĕ̤k gô-dā̤ mò̤ ùng-ciŏng (mò̤ bău-guăk páng hiĕk hĕ̤k-ciā sê mò̤ siŭ-gāi lĭk-sṳ̄ gì dṳ̀ng-dêng-hióng hiĕk) gì cìng-hióng â-dā̤, ciáh â̤ iè-dông. Cuòi cêu sê gōng, nṳ̄ â̤-sāi gâe̤ng hiĕk-miêng gì miàng gāi duōng go̤ iŏk-guō nṳ̄ tā-sĕng có̤ dâng go̤, dáng-sê nṳ̄ mâ̤-sāi hók-gái ī-gĭng còng-câi gì hiĕk-miêng.

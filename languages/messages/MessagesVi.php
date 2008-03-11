@@ -1689,7 +1689,7 @@ Xin hãy xác nhận đây là điều bạn định làm.',
 'databasenotlocked'   => 'Cơ sở dữ liệu không bị khóa.',
 
 # Move page
-'movepage'                => 'Di chuyển trang',
+'move-page-legend'                => 'Di chuyển trang',
 'movepagetext'            => "Dùng mẫu dưới đây để đổi tên một trang, di chuyển tất cả
 lịch sử của nó sang tên mới.
 Tên cũ sẽ trở thành trang đổi hướng sang tên mới.

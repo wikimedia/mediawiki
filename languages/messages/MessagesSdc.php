@@ -1499,7 +1499,7 @@ $1",
 'databasenotlocked'   => 'La bancadati nò è broccadda.',
 
 # Move page
-'movepage'                => 'Ippusthamentu di pàgina',
+'move-page-legend'                => 'Ippusthamentu di pàgina',
 'movepagetext'            => "Chishu mòdulu di rinominà una pàgina, ippusthendi tutta la cronologia soia a l'innòmmu nobu. La pàgina attuari sarà automatiggamenti un rinviu a lu nobu tìturu. I culleggamenti nò sarani aggiornaddi; verifigga chi l'ippusthamentu nò aggia criaddu doppi rinvi o rinvi erraddi. '''Ài la ripunsabiriddai chi li cullegamenti a la pàgina risthini curretti.'''
 
 Nota chi la pàgina '''nò''' sarà ippusthadda si n'isisthi già una cu' lu nobu tìturu, a mancu chi nò sia biodda o un rinviu a lu vécciu tìturu, chena versioni prizzidenti. In casu d'errori i' l'ippusthamentu pói turrà immediatamenti a lu tìturu vécciu, e nò pussìbiri sobbraischribì pa errori una pàgina già esisthenti.

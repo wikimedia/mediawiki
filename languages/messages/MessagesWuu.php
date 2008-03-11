@@ -674,7 +674,7 @@ $messages = array(
 'proxyblocksuccess'  => '好哉。',
 
 # Move page
-'movepage'                => '页面捅荡',
+'move-page-legend'                => '页面捅荡',
 'movepagetext'            => "下底只表格会重新命名一只页面，拿俚所有个历史也侪捅到新名字下头。
 旧个名字会变成到新名字个重定向页面。
 到旧页面个连接弗会改变；注意检查双重定向或者坏脱个重定向。

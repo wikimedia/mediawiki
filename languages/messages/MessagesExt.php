@@ -1561,7 +1561,7 @@ ena basi e datus. Pol favol, confirma qu'es lo que quieis hazel.",
 'databasenotlocked'   => 'La basi e datus nu está atarugá.',
 
 # Move page
-'movepage'                => 'Movel páhina',
+'move-page-legend'                => 'Movel páhina',
 'movepagetext'            => "Gastandu el hormuláriu d'embahu se chambará el nombri la páhina, moviendu el su estorial al nuevu nombri, i rederihiendu el entítulu antigu al nuevu.
 Los atihus al entítulu antigu nu chambarán; cúdia colas dobris redirecionis i los atihus eschangaus.
 Eris responsabri e que los atihus acontinin llevandu andi se suponi que tienin que lleval.

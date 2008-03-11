@@ -1653,7 +1653,7 @@ Prašome patvirtinti tai, ką ketinate padaryti.',
 'databasenotlocked'   => 'Duomenų bazė neužrakinta.',
 
 # Move page
-'movepage'                => 'Puslapio pervadinimas',
+'move-page-legend'                => 'Puslapio pervadinimas',
 'movepagetext'            => "Naudodamiesi žemiau pateikta forma, pervadinsite puslapį
 neprarasdami jo istorijos.
 Senasis pavadinimas taps nukreipiamuoju - rodys į naująjį.

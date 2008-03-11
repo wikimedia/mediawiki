@@ -1499,7 +1499,9 @@ $wgMessageStructure = array(
 		'databasenotlocked',
 	),
 	'movepage' => array(
-		'movepage',
+		'move-page',
+		'move-page-backlink',
+		'move-page-legend',
 		'movepagetext',
 		'movepagetalktext',
 		'movearticle',

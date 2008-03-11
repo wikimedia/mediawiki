@@ -908,7 +908,7 @@ Vakai ki he [[Special:Log/delete|hokohoko tāmateʻi]] ki he lekooti ʻo e ngaah
 'databasenotlocked'   => 'ʻOku ʻikai lokaʻi ʻa e tānekingaʻilo',
 
 # Move page
-'movepage'                => 'Peesi ʻunu',
+'move-page-legend'                => 'Peesi ʻunu',
 'movepagetext'            => "Ngāueʻaki ʻa e foomu ʻi lalo, ʻe toe fakahingoaʻi ʻa e pēsí mo hono hisitōliá.
 ʻE hoko ʻa e hingoa motuʻa ki he peesi leʻei ki he hingoa foʻou.
 ʻE ʻikai liliu ʻa e ngaahi fehokotaki ki he hingoa motuʻa, e taau te ke sivi ʻa e leʻeleʻei mo e leʻei maumau. Ko ho fatongia ʻe tuhu ai pē ngaahi fehokotaki ki ʻenau peesi totonu.

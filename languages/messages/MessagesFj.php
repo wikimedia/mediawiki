@@ -180,7 +180,7 @@ $messages = array(
 'ipbreason' => 'Vuna',
 
 # Move page
-'movepage'    => 'Toso kina yasana kadua',
+'move-page-legend'    => 'Toso kina yasana kadua',
 'movearticle' => 'Toso kina yasana kadua',
 'move-watch'  => 'Vakaraica toka na tabana oqo',
 'movepagebtn' => 'Toso kina yasana kadua',

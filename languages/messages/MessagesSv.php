@@ -1707,7 +1707,7 @@ Bekräfta att du verkligen vill göra detta, och att du kommer att låsa upp dat
 'databasenotlocked'   => 'Databasen är inte låst.',
 
 # Move page
-'movepage'                => 'Flytta sida',
+'move-page-legend'                => 'Flytta sida',
 'movepagetext'            => "Med hjälp av formuläret härunder kan du byta namn på en sida, och flytta hela dess historik till ett nytt namn. Den gamla sidtiteln kommer att göras om till en omdirigering till den nya titeln; kontrollera därför om du skapar några dubbla eller trasiga omdirigeringar. Du bör också se till att länkar fortsätter att peka dit de ska.
 
 Notera att sidan '''inte''' kan flyttas om det redan finns en sida under den nya sidtiteln, såvida inte den sidan är tom eller en omdirigiring till den gamla titeln och saknar annan versionshistorik. Det innebär att du kan flytta tillbaks en sida du just flyttat om du råkar göra fel.

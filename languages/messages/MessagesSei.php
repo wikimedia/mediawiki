@@ -1037,7 +1037,7 @@ iitom e-iitomde diijömde caitóm.',
 'databasenotlocked' => 'Database zo necoccebj lockomöx.',
 
 # Move page
-'movepage'         => 'Yacom páhina',
+'move-page-legend'         => 'Yacom páhina',
 'movearticle'      => 'Yacom páhina:',
 'movenologin'      => 'Necaápo',
 'move-watch'       => 'Cáminot jan páhina',

@@ -1445,7 +1445,7 @@ Ceir cofnod o'r tudalennau a ddilëwyd neu a adferwyd yn ddiweddar ar y [[Specia
 'unlockdbsuccesstext' => "Mae'r databas wedi'i ddatgloi.",
 
 # Move page
-'movepage'                => 'Symud tudalen',
+'move-page-legend'                => 'Symud tudalen',
 'movepagetext'            => "Wrth ddefnyddio'r ffurflen isod byddwch yn ail-enwi tudalen, gan symud ei hanes gyfan i'r enw newydd.
 Bydd yr hen deitl yn troi'n dudalen ail-gyfeirio i'r teitl newydd. 
 Ni fydd cysylltiadau i'r hen deitl yn newid; rhaid cywiro ail-gyfeiriadau dwbl ac ail-gyfeiriadau tor eich hunan.

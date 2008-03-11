@@ -153,7 +153,7 @@ O ipuletse akhaonte. O seka wa lebala go fetola tse o di dikgatlhegelo tsa gago 
 'whatlinkshere' => 'Ke eng se se gokaganang fa',
 
 # Move page
-'movepage'    => 'Sutisa tsebe',
+'move-page-legend'    => 'Sutisa tsebe',
 'movearticle' => 'Sutisa tsebe:',
 'movenologin' => 'Ga o a ikwadisa',
 'movepagebtn' => 'Sutisa tsebe',

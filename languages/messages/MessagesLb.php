@@ -1563,7 +1563,7 @@ Denkt drun [[Special:Unlockdb|d'Spär erëm ewechzehuele]] soubaal d'Maintenance
 'databasenotlocked'   => "D'Datebank ass net gespaart.",
 
 # Move page
-'movepage'                => 'Säit réckelen',
+'move-page-legend'                => 'Säit réckelen',
 'movepagetext'            => "Wann der dëse Formulaire benotzt, réckelt dir eng komplett Säit mat hirem Historique op en neien Numm. Den alen Titel déngt als Viruleedung op déi nei Säit. Linken op déi al Säit ginn net ëmgeännert; 
 
 Passt op datt keng duebel oder feelerhaft Viruleedungen am Spill sinn. Dir sidd responsabel datt d'Linke weiderhinn dohinner pointéieren, wou se hisollen.

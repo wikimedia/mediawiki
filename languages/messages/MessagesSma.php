@@ -679,7 +679,7 @@ Daaletje tjaeleste-vaarjelidh sïjsestäälninge ihke bielie <strong>$1</strong>
 'databasenotlocked' => 'Daatabaase lea ijje tjuevtedh.',
 
 # Move page
-'movepage'         => 'Jåhta bielie',
+'move-page-legend'         => 'Jåhta bielie',
 'movearticle'      => 'Jåhta bielie:',
 'newtitle'         => 'Gåajkoe orre tiitele:',
 'move-watch'       => 'Sïektjedh dïhte bielie',

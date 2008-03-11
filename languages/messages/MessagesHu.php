@@ -1866,7 +1866,7 @@ változtatni. Kérjük, erősítsd meg, hogy ezt kívánod tenni.',
 'databasenotlocked'   => 'Az adatbázis nincs lezárva.',
 
 # Move page
-'movepage'                => 'Lap átnevezése',
+'move-page-legend'                => 'Lap átnevezése',
 'movepagetext'            => "Az alábbi űrlap használatával nevezhetsz át egy lapot, és 
 helyezheted át előzményeit az új névre. 
 A régi cím az új címre átirányító lap lesz. A régi lapcímre 

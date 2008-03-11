@@ -1841,7 +1841,7 @@ $1',
 'databasenotlocked'   => 'Databáze není uzamčena.',
 
 # Move page
-'movepage'                => 'Přesunout stránku',
+'move-page-legend'                => 'Přesunout stránku',
 'movepagetext'            => 'Pomocí tohoto formuláře změníte název stránky a přesunete i celou její historii pod nový název. Původní název se stane přesměrováním na nový název. Odkazy na předchozí název <i>nebudou</i> změněny. <b>VAROVÁNÍ!</b> Toto může drastická a nečekaná změna pro oblíbené stránky. Ujistěte se, prosím, že chápete důsledky vašeho kroku před tím, než změnu provedete.',
 'movepagetalktext'        => "Přidružená diskusní stránka, pokud existuje, bude automaticky přesunuta společně se stránkou, '''pokud:'''
 * Dosud neexistuje neprázdná diskusní stránka pod novým jménem a

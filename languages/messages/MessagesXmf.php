@@ -389,7 +389,7 @@ $messages = array(
 'contribslink'       => 'ხანდა',
 
 # Move page
-'movepage'       => 'გვერდიშ გინოღალა',
+'move-page-legend'       => 'გვერდიშ გინოღალა',
 'movearticle'    => 'გვერდიშ გინოღალა',
 'newtitle'       => 'ახალ სათაურ',
 'move-watch'     => 'თე გვერდიშ კონტროლ',

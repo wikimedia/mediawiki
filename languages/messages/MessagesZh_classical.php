@@ -1377,7 +1377,7 @@ $NEWPAGE
 'databasenotlocked'   => '庫未閉焉。',
 
 # Move page
-'movepage'                => '遷文',
+'move-page-legend'                => '遷文',
 'movepagetext'            => "函下遷文，誌隨新往、舊題作渡、取佐不移。保佐正，防窮、斷渡。
 
 囑之者，新題若非空、渡、缺誌，則舊'''不遷'''焉。存頁勿覆，而誤遷可悔也。

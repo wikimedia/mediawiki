@@ -1721,7 +1721,7 @@ $1',
 'databasenotlocked'   => 'Datowa banka njejo zamknjona.',
 
 # Move page
-'movepage'                => 'Bok pśesunuś',
+'move-page-legend'                => 'Bok pśesunuś',
 'movepagetext'            => 'Z toś tym formularom móžo se bok (ze wšyknymi wersijami) pśesunuś. Stary nadpis pósrědnijo dalej na nowy. Wótkaze na stary nadpis se njezměniju.',
 'movepagetalktext'        => "Pśisłušny diskusijny bok se sobu pśesunjo, '''ale nic gaž:'''
 * eksistěrujo južo diskusijny bok z toś tym mjenim, abo gaž

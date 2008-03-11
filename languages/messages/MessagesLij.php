@@ -727,7 +727,7 @@ Veddi a [[Special:Ipblocklist|Lista de i indirissi IP affermæ]] pe e informaçi
 'databasenotlocked' => "A base de i dæti a non l'è serrâ.",
 
 # Move page
-'movepage'                => 'Mescia a paggina',
+'move-page-legend'                => 'Mescia a paggina',
 'movepagetext'            => "Chì o se pêu dâ 'n nêuvo nomme a 'na paggina, stramûando tûtta a sêu cronologîa a-o nêuvo nomme. A paggina attuâle a fa outomaticamente 'n rindirissamento a-o nêuvo tittolo. I collegamenti escistenti no sajàn aggiornæ; veriffica che 'sto stramûo o no l'agge creòu doggi rindirissamenti ò rindirissamenti sballiæ. A responsabilitæ pe tegnî i collegamenti sempre donde deivan andâ a l'è têu.
 
 A paggina a '''no''' sajà stramûâa se ghe foisse zà ûnn-a co-o nêuvo nomme, a meno c'a no segge vêua ò fæta solo da 'n rindirissamento a-a vegia e a no l'agge verscioîn preçedenti. In caso de stramûo sballiòu o se pêu tornâ sûbbito a-o vegio tittolo, e o no l'è poscibbile sorvescrive pe errô 'na paggina zà escistente.

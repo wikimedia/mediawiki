@@ -1628,7 +1628,7 @@ Kadarnait, mar plij, eo se hoc'h eus c'hoant da ober.",
 'databasenotlocked'   => "N'eo ket prennet ar bank titouroù.",
 
 # Move page
-'movepage'                => 'Adenvel ur pennad',
+'move-page-legend'                => 'Adenvel ur pennad',
 'movepagetext'            => "Grit gant ar furmskrid a-is evit adenvel ur pennad hag adkas an holl stummoù kent anezhañ war-du an anv nevez.
 Dont a raio an titl kentañ da vezañ ur bajenn adkas war-du an titl nevez.
 Ne vo ket kemmet liammoù an titl kozh ha ne vo ket dilec'hiet ar bajenn gaozeal, ma'z eus anezhi.

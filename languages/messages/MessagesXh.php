@@ -138,7 +138,7 @@ I Account yakhgo ivuliwe, ungalibali ukutshitsha izinto ozithandayo ngo {{SITENA
 'ipblocklist-submit' => 'Khangela',
 
 # Move page
-'movepage'    => 'Dlulisa eliphepha',
+'move-page-legend'    => 'Dlulisa eliphepha',
 'movepagebtn' => 'DLulisa eliphepha',
 'movedto'     => 'Lidluliselwe',
 '1movedto2'   => '[[$1]] lidluliselwe [[$2]]',

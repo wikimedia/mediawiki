@@ -1073,7 +1073,7 @@ $1 | $2',
 'unlockdbsuccesssub' => 'Diehtovuođu rahpan lihkosmuvai',
 
 # Move page
-'movepage'                => 'Sirdde siiddu',
+'move-page-legend'                => 'Sirdde siiddu',
 'movearticle'             => 'Sirdde siiddu',
 'movenologin'             => 'It leat čálligoahtán sisa',
 'newtitle'                => 'Ođđa namma siidui',

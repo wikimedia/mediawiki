@@ -324,7 +324,7 @@ De lèste bewerkienge wier gedaen deu [[User:$3|$3]] ([[User talk:$3|Overleggien
 'block-log-flags-noautoblock' => 'gin autoblokkaode',
 
 # Move page
-'movepage'        => 'Verschuuf bladzie',
+'move-page-legend'        => 'Verschuuf bladzie',
 'movearticle'     => 'Verschuuf bladzie',
 'move-watch'      => 'Volg deêze bladzie',
 'movepagebtn'     => 'Verschuuf bladzie',

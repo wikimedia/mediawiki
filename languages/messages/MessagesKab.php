@@ -1245,7 +1245,7 @@ G leɛnayek wekki ɣef taqeffalt "Back/Précédent" n browser/explorateur inek, 
 'lockdb' => 'Sekker database',
 
 # Move page
-'movepage'                => 'Smimeḍ asebter',
+'move-page-legend'                => 'Smimeḍ asebter',
 'movepagetext'            => "Mi tedsseqdceḍ talɣa deg ukessar ad ibddel isem n usebter, yesmimeḍ akk
 umezruy-is ɣer isem amaynut.
 Azwel aqdim ad yuɣal azady n wesmimeḍ ɣer azwel amaynut.

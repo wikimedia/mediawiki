@@ -762,7 +762,7 @@ Cjale $2 par une liste des ultimis eliminazions.',
 'lockbtn' => 'Bloche base di dâts',
 
 # Move page
-'movepage'         => 'Môf pagjine',
+'move-page-legend'         => 'Môf pagjine',
 'movepagetext'     => "Cun il formulari ca sot tu puedis gambiâ il non a une pagjine, movint dut il sô storic al gnûf non.
 Il vieri titul al deventarà une pagjine di reindirizament al gnûf titul. I leams ae vecje pagjine no saran gambiâts; verifiche
 par plasê che no sedin reindirizaments doplis o no funzionants.

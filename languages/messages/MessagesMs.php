@@ -1739,7 +1739,7 @@ sahkan bahawa anda betul-betul mahu melakukan tindakan ini.',
 'databasenotlocked'   => 'Pangkalan data tidak dikunci.',
 
 # Move page
-'movepage'                => 'Pindah laman',
+'move-page-legend'                => 'Pindah laman',
 'movepagetext'            => "Gunakan borang di bawah untuk mengubah nama laman dan 
 memindahkan semua maklumat sejarahnya kepada nama baru.
 Tajuk yang lama akan dijadikan pelencongan ke tajuk yang baru.

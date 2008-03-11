@@ -348,7 +348,7 @@ Ma bu toil leibh a dhubh a'dhuilleag as ur faire agaibh nas fadalache, cnap air 
 'lockdbsuccesssub' => 'Shoirbhich glasadh an stor-dàta',
 
 # Move page
-'movepage'        => 'Gluais duilleag',
+'move-page-legend'        => 'Gluais duilleag',
 'movearticle'     => 'Gluais duilleag',
 'movepagebtn'     => 'Gluais duilleag',
 'pagemovedsub'    => 'Gluasad soirbheachail',

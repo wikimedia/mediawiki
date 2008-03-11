@@ -502,7 +502,7 @@ Səhifəni izləmə sıyahınızdan çıxarmaq üçün yan lovhədəki "izləmə
 'blocklogpage'       => 'Blok qeydı',
 
 # Move page
-'movepage'        => 'Səhifənin adını dəyiş',
+'move-page-legend'        => 'Səhifənin adını dəyiş',
 'movearticle'     => 'Səhifənin adını dəyişdir',
 'newtitle'        => 'Yeni başlıq',
 'movepagebtn'     => 'Səhifənin adını dəyiş',

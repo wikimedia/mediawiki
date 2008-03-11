@@ -114,7 +114,7 @@ $messages = array(
 'lockconfirm' => 'Awɔ, je confirme que je souhaite verrouiller la base de données.',
 
 # Move page
-'movepage'    => 'Nyɛ telun',
+'move-page-legend'    => 'Nyɛ telun',
 'movearticle' => 'Nyɛ telun',
 'movepagebtn' => 'Nyɛ telun',
 

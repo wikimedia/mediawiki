@@ -1219,7 +1219,7 @@ Basqa bloklawlar ushın [[{{ns:special}}:Ipblocklist|IP bloklaw dizimin]] ko'rip
 'databasenotlocked'   => "Mag'lıwmatlar bazası qulplanbag'an",
 
 # Move page
-'movepage'                => "Betti ko'shiriw",
+'move-page-legend'                => "Betti ko'shiriw",
 'movepagetext'            => "To'mendegi forma bettin' atamasın o'zgertedi, 
 onın' barlıq tariyxın taza atamag'a ko'shiredi.
 Burıng'ı bet ataması taza atamag'a qayta bag'ıtlang'an bet bolıp qaladı.

@@ -188,7 +188,7 @@ Isape a vostrã ira adratã. Nu agãrshits s-le alãxits alidzerle-a vostre ti {
 'ipblocklist-submit' => 'Caftã',
 
 # Move page
-'movepage'    => 'Tradzets-u frãndzã',
+'move-page-legend'    => 'Tradzets-u frãndzã',
 'movearticle' => 'Tradzets-u frãndzã:',
 'move-watch'  => 'Mutrits-u frãndzã aistã',
 'movepagebtn' => 'Tradzets-u frãndzã',
