@@ -83,8 +83,8 @@ function wfExportGetLinks( $inputPages, $pageSet, $table, $fields, $join ) {
 	$dbr = wfGetDB( DB_SLAVE );
 	foreach( $inputPages as $page ) {
 		$title = Title::newFromText( $page );
-		$pageSet[$title->getPrefixedText()] = true;
 		if( $title ) {
+			$pageSet[$title->getPrefixedText()] = true;
 			/// @fixme May or may not be more efficient to batch these
 			///        by namespace when given multiple input pages.
 			$result = $dbr->select(
