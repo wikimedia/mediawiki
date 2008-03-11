@@ -196,7 +196,7 @@ $messages = array(
 'proxyblocksuccess' => "Mae'a.",
 
 # Move page
-'movepage'    => "Si'i le itulau",
+'move-page-legend'    => "Si'i le itulau",
 'movearticle' => "Si'i le itulau",
 'movenologin' => "Le'i fa'aolaina",
 'newtitle'    => "'I le ulutala fou",
