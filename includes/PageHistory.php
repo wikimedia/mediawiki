@@ -238,7 +238,7 @@ class PageHistory {
 		}
 		
 		$s .= " $link";
-		$s .= ' '.$this->mSkin->revUserTools( $rev, true );
+		$s .= " <span class='history-user'>" . $this->mSkin->revUserTools( $rev, true ) . "</span>";
 
 		if( $row->rev_minor_edit ) {
 			$s .= ' ' . Xml::element( 'span', array( 'class' => 'minor' ), wfMsg( 'minoreditletter') );
