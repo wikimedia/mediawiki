@@ -1448,7 +1448,7 @@ Perämäidsi kistutuisi ja tagasitegemiisi saat kaiaq [[Special:Log/delete|kistu
 'databasenotlocked'   => 'Teedüskoko panda-s lukku.',
 
 # Move page
-'movepage'                => 'Nõstaq artikli tõistõ paika',
+'move-page-legend'                => 'Nõstaq artikli tõistõ paika',
 'movepagetext'            => "Taad vormi pruukin saat lehe ümbre nimetäq. Lehe aolugu pandas kah vahtsõ päälkirä ala. Vana päälkiräga lehest saa vahtsõ lehe pääle ümbresaatmisõ leht. Tõisin artikliin olõvit linke, miä näütäseq vana nimega lehe pääle, ärq ei muudõdaq. Sa piät kaema, et es tulnuq katõkõrdsit ümbresaatmiisi ni et kõik jäänüq tüütämä nigu inne ümbrenimetämist. Lehte '''nimetedä-i ümbre''', ku vahtsõ nimega leht om jo olõman. Erängus om tuu, ku vana leht om tühi vai om esiq ümbresaatmisleht ja täl olõ-i toimõndamisaoluku. Tuu tähendäs, et sa saa-i kogõmalda üle kirotaq jo olõmanolõvat lehte, a saat halvastõ lännü ümbrenimetämise tagasi pöördäq. <strong>KAEQ ETTE!</strong> Või ollaq, et sa nakkat tegemä suurt ja uutmalda muutmist väega loetavahe artiklihe; inne, ku midä muudat, märgiq perrä, miä tuust tullaq või.",
 'movepagetalktext'        => "Üten artiklilehekülega pandas tõistõ paika ka arotuskülg, '''vällä arvat sis, ku:'''
 *panõt lehe ütest nimeruumist tõistõ,

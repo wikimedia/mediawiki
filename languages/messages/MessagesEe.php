@@ -169,7 +169,7 @@ $messages = array(
 'whatlinkshere' => 'Nusiwo kaa afii ŋu',
 
 # Move page
-'movepage'    => 'Ɖɔli eƒe nɔƒe',
+'move-page-legend'    => 'Ɖɔli eƒe nɔƒe',
 'movearticle' => 'Ɖɔli eƒe nɔƒe:',
 'move-watch'  => 'Le ŋku ɖe axa sia ŋu',
 'movepagebtn' => 'Ɖɔli eƒe nɔƒe',

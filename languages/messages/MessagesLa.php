@@ -1226,7 +1226,7 @@ Adfirma te basem datorum obstruere velle, et te dein basem datorum deobstruendum
 'databasenotlocked'   => 'Basis datorum non obstructa est.',
 
 # Move page
-'movepage'                => 'Paginam movere',
+'move-page-legend'                => 'Paginam movere',
 'movepagetext'            => "Formam inferam utere ad paginam renominandum et ad historiam eius ad nomen novum movendum.
 Index vetus paginam redirectionis ad indicem novum fiet.
 Nexus ad paginam veterem non mutabuntur;

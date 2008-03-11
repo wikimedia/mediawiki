@@ -1380,7 +1380,7 @@ Qorçalav altına alınğan saifeler tam cedveli [[{{ns:special}}:Protectedpages
 'lockbtn' => 'Malümat bazası kilitli',
 
 # Move page
-'movepage'                => 'Ad deñişikligi',
+'move-page-legend'                => 'Ad deñişikligi',
 'movepagetext'            => "Aşağıdaki formanı qullanıp saifeniñ adını deñiştirirsiñiz. Bunıñnen beraber deñişiklik jurnalını da yañı adğa avuştırırsıñız. Eski ad yañı adğa yollama olur. Eski adğa doğru olğan bağlantılar olğanı kibi qalır (lütfen, [[Special:DoubleRedirects|çift]] ve [[Special:BrokenRedirects|keçersiz]] yollamalar mevcüt olğanını teşkeriñiz). Bağlantılar endiden berli eskisi kibi çalışmasından emin olmalısıñız.
 
 Yañı adda bir isim zaten mevcüt olsa, ad deñişikligi '''yapılmaycaq''', ancaq mevcüt olğan saife yollama ya da boş olsa ad deñişikligi mümkün olacaqtır. Bu demek ki, saife adını yañlıştan deñiştirgen olsañız deminki adını keri qaytarıp olasıñız, amma mevcüt olğan saifeni tesadüfen yoq etalmaysıñız.

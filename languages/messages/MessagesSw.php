@@ -589,7 +589,7 @@ Hivi ni vipimo kwa ukurasa <strong>$1</strong>:',
 'blocklogentry' => '[[$1]] imezuiwa mpaka $2 $3',
 
 # Move page
-'movepage'         => 'Sogeza ukurasa',
+'move-page-legend'         => 'Sogeza ukurasa',
 'movepagetext'     => "Fomu hapo chini itabadilisha jina la ukurasa,
 na itasogeza historia yake yote katika jina jipya lile lile.
 Jina la awali litakuwa elekezo hadi jina jipya.

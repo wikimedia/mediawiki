@@ -1429,7 +1429,7 @@ Nu uita să o deblochezi după ce termini operaţiunile administrative pentru ca
 'databasenotlocked'   => 'Baza de date nu este blocată.',
 
 # Move page
-'movepage'                => 'Mută pagina',
+'move-page-legend'                => 'Mută pagina',
 'movepagetext'            => "Puteţi folosi formularul de mai jos pentru a redenumi
 o pagină, mutându-i toată istoria sub noul nume.
 Pagina veche va deveni o pagină de redirecţionare către pagina nouă.

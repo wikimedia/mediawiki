@@ -1627,7 +1627,7 @@ Por favor confirme que isto é o que quere facer.',
 'databasenotlocked'   => 'A base de datos non está bloqueada.',
 
 # Move page
-'movepage'                => 'Mover páxina',
+'move-page-legend'                => 'Mover páxina',
 'movepagetext'            => "Ao usar o formulario de embaixo vai cambiar o nome da páxina, 
 movendo todo o seu historial ao novo nome.
 O título vello vaise converter nunha páxina de redirección ao novo título.

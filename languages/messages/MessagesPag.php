@@ -307,7 +307,7 @@ Pinengneng so $2 para ed listaan na saray abural ran balo.',
 'contribslink'       => 'saray entolong to',
 
 # Move page
-'movepage'                => 'Iyales so bolong',
+'move-page-legend'                => 'Iyales so bolong',
 'movearticle'             => 'Iyales so bolong',
 'movepagebtn'             => 'Iyales so bolong',
 'pagemovedsub'            => 'Asumpal lan inyales',

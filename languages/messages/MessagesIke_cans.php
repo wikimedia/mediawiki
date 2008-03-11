@@ -331,7 +331,7 @@ $messages = array(
 'block-log-flags-noemail'  => 'ᑭᒍᑎᐅᑉ ᓯᑎᓂᖅᐹᖓ',
 
 # Move page
-'movepage'        => 'ᐅᐊᔪᖅ ᒪᑉᐱᑕᖅ',
+'move-page-legend'        => 'ᐅᐊᔪᖅ ᒪᑉᐱᑕᖅ',
 'movearticle'     => 'ᐅᐊᔪᖅ ᒪᑉᐱᑕᖅ',
 'movedto'         => 'ᐅᐊᔪᖅ',
 '1movedto2'       => '[[$1]] ᓱᕐᕋᒪᔪᖅ [[$2]]',

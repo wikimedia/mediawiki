@@ -715,7 +715,7 @@ Der aktuelle Text des gelöschten Artikels ist nur Administratoren zugänglich.'
 'unblocklogentry' => 'Blockade von [[User:$1]] aufgehoben',
 
 # Move page
-'movepage'         => 'Artikel verschiebe',
+'move-page-legend'         => 'Artikel verschiebe',
 'movepagetext'     => 'Mit däm Forumlar chasch du en Artikel verschiebe, u zwar mit syre komplette Versionsgschicht. Der alt Titel leitet zum nöie wyter, aber Links ufen alt Titel blyben unveränderet.',
 'movepagetalktext' => "D Diskussionssyte wird mitverschobe, '''ussert:'''
 *Du verschiebsch d Syten i nen andere Namensruum, oder

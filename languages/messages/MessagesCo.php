@@ -390,7 +390,7 @@ $messages = array(
 'proxyblocksuccess'  => 'Hè fattu.',
 
 # Move page
-'movepage'                => 'Move a pagina',
+'move-page-legend'                => 'Move a pagina',
 'movearticle'             => 'Move a pagina',
 'move-watch'              => 'Fighjulà issa pagina',
 'movepagebtn'             => 'Move a pagina',

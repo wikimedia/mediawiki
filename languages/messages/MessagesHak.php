@@ -1249,7 +1249,7 @@ Chhiáng chhâm-kháu [[Special:Log/delete|chhù-hi ngit-ki]] lòi chhà-chhut c
 'databasenotlocked'   => 'Chṳ̂-liau-khu mò-yû só-thin.',
 
 # Move page
-'movepage'                => 'Yì-thung vùn-chông',
+'move-page-legend'                => 'Yì-thung vùn-chông',
 'movepagetext'            => "Yung ha-mien ke péu-tân lòi chhùng-sîn min-miàng yit-ke vùn-chông, pin chiông siû-thin li̍t-sṳ́ thùng-sṳ̀ yì-thung to sîn vùn-chông. Ló-ke vùn-chông chiông sṳ̀n-vì sîn vùn-chông ke chhûng-thin hong-mien. Lièn-kiet to ló vùn-chông ke lièn-kiet pin-mò chhṳ-thung kiên-kói; chhiáng kiám-chhà sûng-chhûng fe̍t-he sún-fái chhûng-thin-hiong lièn-kiet. Yin-tông fu-chit khok-thin só-yû lièn-kiet chiông-voi lièn-to chṳ́-thin ke vùn-chông. 
 
 Chu-yi kó-yèn sîn vùn-chông yí-kîn yû nui-yùng, vùn-chông chiông '''put-voi''' pûn yì-thung, chhù-fî sîn vùn-chông mò nui-yùng fe̍t-he chhûng-thin-hiong, yì-yèn mò-yû siû-thin li̍t-sṳ́. Ngì chai pit-yeu sṳ̀ khó-yî chhai yì-thung to sîn vùn-chông heu chai yì-fì ló-ke vùn-chông, thùng-sṳ̀ ya-he vù-fap koi-hien yû hong-mien. 

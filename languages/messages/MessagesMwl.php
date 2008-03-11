@@ -192,7 +192,7 @@ $messages = array(
 'contribslink' => 'contribs',
 
 # Move page
-'movepage'    => 'Mover página',
+'move-page-legend'    => 'Mover página',
 'movepagebtn' => 'Mover página',
 'movelogpage' => 'Registo de movimentos',
 'revertmove'  => 'reverter',

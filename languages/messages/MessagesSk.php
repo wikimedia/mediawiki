@@ -1771,7 +1771,7 @@ Potvrďte, že to naozaj chcete urobiť.',
 'databasenotlocked'   => 'Databáza nie je zamknutá.',
 
 # Move page
-'movepage'                => 'Presunúť stránku',
+'move-page-legend'                => 'Presunúť stránku',
 'movepagetext'            => "Pomocou tohto formulára premenujete stránku a premiestnite všetky jej predchádzajúce verzie pod zadané nové meno.
 Starý názov sa stane presmerovacou stránkou na nový názov.
 Odkazy na starú stránku sa však nezmenia, ubezpečte sa, že ste skontrolovali

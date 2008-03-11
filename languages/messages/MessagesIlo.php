@@ -246,7 +246,7 @@ Kasta met nga ikarim kadakami a bukodmo a sinurat wenno gapuanan daytoy, wenno k
 'whatlinkshere' => 'Dagiti nakasilpo ditoy',
 
 # Move page
-'movepage'     => 'Iyakar ti panid',
+'move-page-legend'     => 'Iyakar ti panid',
 'movearticle'  => 'Iyakar ti panid',
 'movepagebtn'  => 'Iyakar ti panid',
 'pagemovedsub' => 'Balligi ti panangyakar',

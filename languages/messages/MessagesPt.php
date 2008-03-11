@@ -1754,7 +1754,7 @@ Por favor, confirme que você realmente pretende fazer isso e que vai destrancar
 'databasenotlocked'   => 'A base de dados não encontra-se bloqueada.',
 
 # Move page
-'movepage'                => 'Mover página',
+'move-page-legend'                => 'Mover página',
 'movepagetext'            => "Utilizando o seguinte formulário você poderá renomear uma página, movendo todo o histórico para o novo título. O título anterior será transformado num redireccionamento para o novo.
 
 Links para as páginas antigas não serão mudados; certifique-se de verificar por redireccionamentos quebrados ou duplos. Você é responsável por certificar-se que os links continuam apontando para onde eles deveriam apontar.

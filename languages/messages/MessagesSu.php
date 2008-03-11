@@ -1316,7 +1316,7 @@ Asupan jeung bantuan salajengna:
 'databasenotlocked'   => 'Gudang data teu kakonci.',
 
 # Move page
-'movepage'                => 'Pindahkeun kaca',
+'move-page-legend'                => 'Pindahkeun kaca',
 'movepagetext'            => "Migunakeun formulir di handap bakal ngaganti ngaran hiji kaca, mindahkeun sadaya jujutanana ka ngaran anyar.
 Judul nu heubeul bakal jadi kaca alihan ka judul nu anyar.
 Tumbu ka judul kaca nu heubeul mola robah; pastikeun yén anjeun [[Special:Maintenance|marios]] alihan ganda atawa alihan nu buntu.

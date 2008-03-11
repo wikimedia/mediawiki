@@ -618,7 +618,7 @@ $messages = array(
 'blocklogentry'     => 'ໄດ້ຫ້າມ "[[$1]]" ຈົນຮອດ $2 $3',
 
 # Move page
-'movepage'                => 'ຍ້າຍໜ້າ',
+'move-page-legend'                => 'ຍ້າຍໜ້າ',
 'movearticle'             => 'ຍ້າຍໜ້າ:',
 'movenologin'             => 'ຍັງບໍ່ໄດ້ເຊັນເຂົ້າເທື່ອ',
 'newtitle'                => 'ຫາ ຫົວຂໍ້ໃໝ່',

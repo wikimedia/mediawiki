@@ -1605,7 +1605,7 @@ Confirmatz qu'es plan çò que volètz far.",
 'databasenotlocked'   => 'La banca de donadas es pas clavada.',
 
 # Move page
-'movepage'                => 'Desplaçar un article',
+'move-page-legend'                => 'Desplaçar un article',
 'movepagetext'            => "Utilizatz lo formulari çai jos per renomenar un article, en desplaçant totas sas versions anterioras vèrs lo nom novèl.
 Lo títol precedent devendrà una pagina de redireccion vèrs lo títol novèl.
 Los ligams vèrs lo títol ancian seràn pas modificats e la pagina de discussion, s'existís, serà pas desplaçada.<br />

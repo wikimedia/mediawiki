@@ -613,7 +613,7 @@ Soñğı beterülär $2 bitendä terkälenä.',
 'unlockdbsuccesstext' => 'Bu biremlek yozağı salınğan ide.',
 
 # Move page
-'movepage'         => 'Bit küçerü',
+'move-page-legend'         => 'Bit küçerü',
 'movepagetalktext' => "Bäyle bulğan bäxäs bite kiläse oçraqlarda töp bite belän beryulı '''küçerelmi qala''':
 * Töp bit [[Yärdäm:İsemara|isemara]] arqılı küçerelä;
 * Yaña başlıq astında buş bulmağan ikençe bit bulğanda;

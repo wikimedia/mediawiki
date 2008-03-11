@@ -913,7 +913,7 @@ Azafady mba antero fa izay tokoa no tena irinao.",
 'unlockdbsuccesstext' => "Voaala soa aman-tsara ny hidin'ny banky angona.",
 
 # Move page
-'movepage'                => 'Afindrao toerana ny pejy',
+'move-page-legend'                => 'Afindrao toerana ny pejy',
 'movearticle'             => 'Afindrao toerana ny pejy',
 'movenologin'             => 'Tsy mbola tafiditra ianao',
 'movenologintext'         => 'Ny mpikambana nisoratra anarana sy [[Special:Userlogin|tafiditra]] ihany no afaka mamindra toerana takelaka.',

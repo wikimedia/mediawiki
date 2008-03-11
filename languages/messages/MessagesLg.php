@@ -446,7 +446,7 @@ Bw\'oba oyagala okulekerawo okulugoberera, nyiga ku kigambo "Suula" awo ku bbali
 'blocklogentry'     => '[[$1]] agaanidwa. Obuyinza bumuddizibwa ku $2 $3',
 
 # Move page
-'movepage'    => 'Simbuliza olupapula luno',
+'move-page-legend'    => 'Simbuliza olupapula luno',
 'movearticle' => 'Simbuliza olupapula luno',
 'move-watch'  => 'Goberera olupapula luno',
 'movepagebtn' => 'Lusimbulize',

@@ -1757,7 +1757,7 @@ Confirmeu que això és el que voleu fer.",
 'databasenotlocked'   => 'La base de dades no està bloquejada.',
 
 # Move page
-'movepage'                => 'Reanomena la pàgina',
+'move-page-legend'                => 'Reanomena la pàgina',
 'movepagetext'            => "Emprant el següent formulari reanomenareu una pàgina,
 movent tot el seu historial al nou nom.
 El títol anterior es convertirà en un redireccionament al nou títol.

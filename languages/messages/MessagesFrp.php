@@ -1659,7 +1659,7 @@ Volyéd confirmar qu’o est franc cen que vos voléd fâre.',
 'databasenotlocked'   => 'La bâsa de balyês est pas vèrrolyê.',
 
 # Move page
-'movepage'                => 'Renomar una pâge',
+'move-page-legend'                => 'Renomar una pâge',
 'movepagetext'            => "Utilisâd lo formulèro ce-desot por renomar una pâge, en dèplacient
 tot son historico vers lo novél nom.
 Lo viely titro vindrat una pâge de redirèccion vers lo novél titro.

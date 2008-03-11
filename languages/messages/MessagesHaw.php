@@ -358,7 +358,7 @@ hō‘ike ‘ia i lalo:",
 'blockme'       => 'E ke‘a ia‘u',
 
 # Move page
-'movepage'                => "E ho'ololi",
+'move-page-legend'                => "E ho'ololi",
 'movearticle'             => "E ho'ololi",
 'movepagebtn'             => "E ho'ololi",
 'movereason'              => 'Ke kumu',

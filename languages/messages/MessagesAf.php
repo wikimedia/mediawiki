@@ -1095,7 +1095,7 @@ Bevestig asseblief dat dit is wat jy wil doen.',
 'unlockdbsuccesstext' => 'Die {{SITENAME}}-databasis is ontsluit.',
 
 # Move page
-'movepage'                => 'Skuif bladsy',
+'move-page-legend'                => 'Skuif bladsy',
 'movepagetext'            => "Die vorm hieronder hernoem 'n bladsy en skuif die hele wysigingsgeskiedenis na die nuwe naam.
 Die ou bladsy sal vervang word met 'n aanstuurblad na die nuwe titel.
 '''Skakels na die ou bladsytitel sal nie outomaties verander word nie; maak seker dat dubbele aanstuurverwysings nie voorkom nie deur die \"wat skakel hierheen\"-funksie na die skuif te gebruik.''' Dit is jou verantwoordelikheid om seker te maak dat skakels steeds wys na waarheen hulle behoort te gaan.

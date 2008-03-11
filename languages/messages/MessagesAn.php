@@ -1676,7 +1676,7 @@ as pachinas que s'han bandalizatas).",
 'databasenotlocked'   => 'A base de datos no ye trancata.',
 
 # Move page
-'movepage'                => 'Tresladar pachina',
+'move-page-legend'                => 'Tresladar pachina',
 'movepagetext'            => "Si fa serbir o formulario siguient se cambiará o nombre á la pachina, tresladando tot o suyo istorial t'o nuebo nombre.
 O títol anterior se tornará en una reendrezera ta o nuebo títol.
 Os binclos ta o títol antigo d'a pachina no se cambiarán. Asegure-se de no deixar reendrezeras dobles u crebatas.

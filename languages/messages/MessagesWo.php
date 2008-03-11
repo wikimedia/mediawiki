@@ -913,7 +913,7 @@ $2 boole ci xëti yoonalaat yi<br /> Seet $3 $9',
 'block-log-flags-noemail'  => 'tere nañ sag yònneeg bataaxal',
 
 # Move page
-'movepage'        => 'Tuddewaat aw xët',
+'move-page-legend'        => 'Tuddewaat aw xët',
 'movearticle'     => 'Tuddewaatal jukki bi',
 'movenologintext' => 'Ngir man a tuddewaat aw xët, da ngaa war a [[Special:Userlogin|dugg]] ni jëfëndikookat bu bindu te saw sàq war naa am yaggaa bi mu laaj.',
 'newtitle'        => 'Koj bu bees',

@@ -1620,7 +1620,7 @@ $1',
 'databasenotlocked'   => '資料庫沒有鎖定。',
 
 # Move page
-'movepage'                => '移動頁面',
+'move-page-legend'                => '移動頁面',
 'movepagetext'            => "用下面的表單來重新命名一個頁面，並將其修訂歷史同時移動到新頁面。
 老的頁面將成為新頁面的重定向頁。
 連結到老頁面的連結並不會自動更改；

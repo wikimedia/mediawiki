@@ -2141,7 +2141,9 @@ Remember to [[Special:Unlockdb|remove the lock]] after your maintenance is compl
 'databasenotlocked'   => 'The database is not locked.',
 
 # Move page
-'movepage'                => 'Move page',
+'move-page'               => 'Move $1',
+'move-page-backlink'      => '← $1', # only translate this message to other languages if you have to change it
+'move-page-legend'        => 'Move page',
 'movepagetext'            => "Using the form below will rename a page, moving all of its history to the new name.
 The old title will become a redirect page to the new title.
 Links to the old page title will not be changed; be sure to check for double or broken redirects.

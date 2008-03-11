@@ -1476,7 +1476,7 @@ $1',
 'databasenotlocked'   => 'Lu database nun è bluccatu.',
 
 # Move page
-'movepage'                => 'Sposta la pàggina',
+'move-page-legend'                => 'Sposta la pàggina',
 'movepagetext'            => "Usannu lu formulariu ccà sutta vuatri canciati lu nomu dâ pàggina, e spustati tutta la sò storia versu la pàggina nova. Lu tìtulu vecchiu addiventa na pàggina di ''redirect'' versu lu tìtulu novu. Li liami â pàggina vecchia nun càncianu. Assicuràtivi di tistari li redirect duppi e li redirect rumputi. Vuatri siti rispunzàbbili dî liami chi avìssiru a puntari â paggina giusta.
 
 La pàggina '''nun'' è spustata siddu cc'è già na pàggina cu lu tìtulu novu, tranni chi la pàggina 'n chistioni è vacanti o è na pàggina di ''redirect'' e nun havi n'archiviu di canciamenti. Chistu signìfica chi vuatri putiti rinuminari la pàggina cu lu nomu vecchiu si aviti sbagghiatu, e chi nun putiti suprascrìviri nta na pàggina chi esisti già.

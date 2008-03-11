@@ -821,7 +821,7 @@ to upload files.',
 'lockdb' => 'ਡਾਟਾਬੇਸ ਲਾਕ',
 
 # Move page
-'movepage'        => 'ਪੇਜ਼ ਮੂਵ ਕਰੋ',
+'move-page-legend'        => 'ਪੇਜ਼ ਮੂਵ ਕਰੋ',
 'movearticle'     => 'ਪੇਜ਼ ਮੂਵ ਕਰੋ:',
 'movenologin'     => 'ਲਾਗਇਨ ਨਹੀਂ ਹੋ',
 'movenologintext' => 'ਇੱਕ ਪੇਜ਼ ਮੂਵ ਕਰਨ ਲਈ ਤੁਸੀਂ ਰਜਿਸਟਰਡ ਯੂਜ਼ਰ ਹੋਣੇ ਚਾਹੀਦੇ ਹੋ ਅਤੇ [[Special:Userlogin|logged in]] ਕੀਤਾ ਹੋਣਾ ਚਾਹੀਦਾ ਹੈ।',

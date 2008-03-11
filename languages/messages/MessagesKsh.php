@@ -1480,7 +1480,7 @@ verzäll dänne vun däm Risiko för ehr Secherheit!',
 'databasenotlocked'   => '<strong>Opjepass:</strong> De Daatebank es <strong>nit</strong> jesperrt.',
 
 # Move page
-'movepage'                => 'Sigg Ömnenne',
+'move-page-legend'                => 'Sigg Ömnenne',
 'movepagetext'            => "Hee kanns De en Sigg en de {{SITENAME}} ömnenne. Domet kritt die Sigg ene neue Name, un 
 all vörherije Versione vun dä Sigg och. Unger däm ahle Name weed automatisch en 
 Ömleitung op dä neue Name enjedrage. Links op dä 

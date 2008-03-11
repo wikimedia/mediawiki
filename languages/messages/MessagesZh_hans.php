@@ -1647,7 +1647,7 @@ $1',
 'databasenotlocked'   => '数据库没有锁定。',
 
 # Move page
-'movepage'                => '移动页面',
+'move-page-legend'                => '移动页面',
 'movepagetext'            => "用下面的表单来重命名一个页面，并将其修订历史同时移动到新页面。
 老的页面将成为新页面的重定向页。
 链接到老页面的链接并不会自动更改；

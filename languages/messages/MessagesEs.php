@@ -1495,7 +1495,7 @@ las páginas en particular que han sido objeto de vandalismo).',
 'databasenotlocked'   => 'La base de datos no está bloqueada.',
 
 # Move page
-'movepage'                => 'Renombrar página',
+'move-page-legend'                => 'Renombrar página',
 'movepagetext'            => "Usando el siguiente formulario se renombrará una página, moviendo todo su historial al nuevo nombre.
 El título anterior se convertirá en una redirección al nuevo título.
 Los enlaces al antiguo título de la página no se cambiarán.

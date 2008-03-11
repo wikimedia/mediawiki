@@ -1997,7 +1997,7 @@ Osı maqsatıñızdı quptañız.',
 'databasenotlocked'   => 'Derekqor qulıptalğan joq.',
 
 # Move page
-'movepage'                => 'Betti jıljıtw',
+'move-page-legend'                => 'Betti jıljıtw',
 'movepagetext'            => "Tömendegi pişindi qoldanıp betterdi qaýta ataýdı,
 barlıq tarïxın jaña atawğa jıljıtadı.
 Burınğı bet atawı jaña atawğa aýdatatın bet boladı.

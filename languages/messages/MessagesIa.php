@@ -643,7 +643,7 @@ Per favor confirma que iste es tu intention.',
 'unlockdbsuccesstext' => 'Le base de datos de {{SITENAME}} ha essite disblocate.',
 
 # Move page
-'movepage'         => 'Mover pagina',
+'move-page-legend'         => 'Mover pagina',
 'movepagetext'     => "Per medio del formulario infra tu pote renominar un pagina,
 movente tote su chronologia al nove nomine.
 Le titulo anterior devenira un pagina de redirection al nove titulo.

@@ -734,7 +734,7 @@ Memorez [[Special:Unlockdb|efacar la blokuso]] kande vua mantenado finos.',
 'unlockdbsuccesstext' => 'La datumaro desblokusesis.',
 
 # Move page
-'movepage'         => 'Rinomizar pagino',
+'move-page-legend'         => 'Rinomizar pagino',
 'movepagetext'     => "Uzante ica formularo onu povas rinomizar pagino, movante olua omna versionaro ad la nova titulo.
 La antea titulo konvertesos a ridirektilo a la nova titulo. La ligili a la antea titulo dil pagino ne chanjesos. Voluntez certigar ke ne esas duopla o ruptota ridirektili. Vu responsas ke la ligili duros direktante a la pagino korespondanta.
 

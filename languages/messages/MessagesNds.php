@@ -1461,7 +1461,7 @@ Schall de Datenbank-Sparr redig beennt warrn?',
 'databasenotlocked'   => 'De Datenbank is nich sparrt.',
 
 # Move page
-'movepage'                => 'Siet schuven',
+'move-page-legend'                => 'Siet schuven',
 'movepagetext'            => 'Mit dit Formular kannst du en Siet ümnömen, tosamen mit all Versionen. De ole Titel warrt to den ne’en wiederleidt. Verwiesen op den olen Titel warrt nich ännert un de Diskuschoonssiet warrt ok nich mitschaven.',
 'movepagetalktext'        => "De tohören Diskuschoonssiet warrt, wenn een dor is, mitverschaven, ''mit disse Utnahmen:''
 * Du schuffst de Siet in en annern Naamruum oder

@@ -756,7 +756,7 @@ Burada bitki seçimner <strong>$1</strong> yazı diiştirmää deyni:',
 'blocklogentry' => '"[[$1]]" $2 durduruldu. Sebep',
 
 # Move page
-'movepage'         => 'Ad diişmäklii',
+'move-page-legend'         => 'Ad diişmäklii',
 'movepagetext'     => "Aşaadaki formayı kullanılarak var nicä sayfanın adın diiştirin, onnan bilä hepsi diiştirmää jurnalı eni ada aktarılacêk. Eski ad eni ada yönnendirmäk olacêk. Eski başlaa baalantılar diişmeycek; [[Special:Maintenance|kontrol ediniz.]] [[{{ns:special}}:DoubleRedirects|çift]] yaki [[{{ns:special}}:BrokenRedirects|yannış]] yönnendirmäkleri. Läazım inanmaa ani baalantılar genä dä gösterer orayı nerä läazım göstersin.
 
 Herliim ilerdän eni adda sayfa vardı, ad diişmää '''yapılmaycêk'''. Bu o maana verer ani eer yannış olarak adını diiştirdiniz siz var nicä döndürün sayfayı eski adına.

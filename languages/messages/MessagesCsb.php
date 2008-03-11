@@ -643,7 +643,7 @@ Czej chcesz remôc starnã z lëste ùzéronëch artiklów, klikni ''Òprzestôj
 'lockbtn' => 'Zascëgôj bazã pòdôwków',
 
 # Move page
-'movepage'                => 'Przeniesë starnã',
+'move-page-legend'                => 'Przeniesë starnã',
 'movearticle'             => 'Przeniesë artikel',
 'movenologin'             => 'Felënk logòwaniô',
 'movepagebtn'             => 'Przeniesë starnã',

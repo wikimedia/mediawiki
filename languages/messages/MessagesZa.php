@@ -130,7 +130,7 @@ $messages = array(
 'ipblocklist-submit' => 'Cwmh',
 
 # Move page
-'movepage'    => 'Caen doengh mae',
+'move-page-legend'    => 'Caen doengh mae',
 'movearticle' => 'Caen doengh mae:',
 'movenologin' => 'Maengx laezhaej',
 'move-watch'  => 'Demq mae-nej',

@@ -574,7 +574,7 @@ Men reglaj pou paj <strong>$1</strong> an kounye a:',
 'blocklogentry' => 'bloke « [[$1]] » - dire : $2 $3',
 
 # Move page
-'movepage'         => 'Renonmen yon paj',
+'move-page-legend'         => 'Renonmen yon paj',
 'movepagetext'     => 'Itilize fòmilè a pou renonmen yon paj, li ap deplase tout istorik li nan nouvo non an.
 Tit anvan ke yon paj redireksyon pou ale nan nouvo paj an. Lyen vè tit anvan an pe ke chanje; souple, gade byen ke deplasman sa a pa kreye yon redireksyon de fwa. Ou dwèt asire ou ke lyen yon korèk, ke yo genyen yon bon destinasyon sou yo.
 

@@ -533,7 +533,7 @@ Per cortesia, conferma che questo è effettivamente quanto tu intendi ora effett
 'unlockdbsuccesstext' => ' Il database di {{SITENAME}} è stato sbloccato.',
 
 # Move page
-'movepage'         => 'Spostamento di pagina',
+'move-page-legend'         => 'Spostamento di pagina',
 'movepagetext'     => "Con il modulo sottostante puoi rinominare una pagina, spostando anche tutta la sua cronologia al nuovo nome.
 Il vecchior titolo diverrà automaticamente un redirect che punta al nuovo titolo.
 I link alla vecchia pagina non saranno aggiornati (e punteranno quindi al redirect); accertati di [[Special:Manutenzioni|controllare con cura]] che non si creino doppi redirects o redirects interrotti.

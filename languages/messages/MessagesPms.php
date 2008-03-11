@@ -1653,7 +1653,7 @@ Për piasì, che an conferma che sòn a l'é da bon lòn che chiel (chila) a veu
 'databasenotlocked'   => "La base dat a l'é nen blocà.",
 
 # Move page
-'movepage'                => 'Tramudé na pàgina',
+'move-page-legend'                => 'Tramudé na pàgina',
 'movepagetext'            => "Con ël mòdulo ëd domanda ambelessì sota a peul cangeje nòm a na pàgina, tramudand-je dapress ëdcò tuta soa cronologìa anvers al nòm neuv.
 Ël vej tìtol a resterà trasformà ant na ridiression che a men-a al tìtol neuv.
 J'anliure a la veja pàgina a saran NEN agiornà (e donca a men-eran la gent a la ridiression); che a fasa atension dë

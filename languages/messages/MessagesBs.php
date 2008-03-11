@@ -923,7 +923,7 @@ Molimo Vas da potvrdite da je ovo zaista ono što namijeravate da uradite.',
 'unlockdbsuccesstext' => '{{SITENAME}} baza podataka je otključana.',
 
 # Move page
-'movepage'         => 'Premjestite stranicu',
+'move-page-legend'         => 'Premjestite stranicu',
 'movepagetext'     => "Donji upitnik će preimenovati stranicu, premještajući svu
 njenu istoriju na novo ime.
 Stari naslov će postati preusmjerenje na novi naslov.

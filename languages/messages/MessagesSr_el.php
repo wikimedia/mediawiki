@@ -1410,7 +1410,7 @@ Molimo potvrdite da je ovo zaista ono što nameravate da uradite.',
 'databasenotlocked'   => 'Baza podataka nije zaključana.',
 
 # Move page
-'movepage'                => 'Premeštanje stranice',
+'move-page-legend'                => 'Premeštanje stranice',
 'movepagetext'            => "Donji upitnik će preimenovati stranicu, premeštajući svu
 njenu istoriju na novo ime.
 Stari naslov će postati preusmerenje na novi naslov.

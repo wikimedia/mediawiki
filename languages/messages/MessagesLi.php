@@ -1583,7 +1583,7 @@ Zuug de [[Special:Ipblocklist|lies van geblokkeerde IP-adresse]].',
 'databasenotlocked'   => 'De database is neet geblokkeerd.',
 
 # Move page
-'movepage'                => 'Verplaats pazjena',
+'move-page-legend'                => 'Verplaats pazjena',
 'movepagetext'            => "Mit 't óngersjtaond formuleer kans te 'n pazjena verplaatse. De historie van de ouw pazjena zal nao de nuuj mitgaon. De ouwe titel zal automatisch 'ne redirect nao de nuuj pazjena waere. Doe kans 'n pazjena allein verplaatse, es gein pazjena besjteit mit de nuje naam, of es op die pazjena allein 'ne redirect zónger historie sjteit.",
 'movepagetalktext'        => "De biebehurende euverlikpazjena weurt ouch verplaats, mer '''neet''' in de volgende gevalle:
 * es al 'n euverlikpazjena besjteit ónger de angere naam

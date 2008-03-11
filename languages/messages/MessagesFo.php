@@ -931,7 +931,7 @@ at læsa dátugrunnin upp aftur tá ið viðgerðin er liðug.',
 <br />Minst til at [[Special:Unlockdb|læsa upp]] aftur, tá ið viðgerðin er liðug.',
 
 # Move page
-'movepage'                => 'Flyt síðu',
+'move-page-legend'                => 'Flyt síðu',
 'movepagetext'            => "Við frymlinum niðanfyri kanst tú umnevna eina síðu og flyta alla
 hennara søgu við til nýggja navnið.
 Gamla navnið verður ein tilvísingarsíða til ta nýggju.

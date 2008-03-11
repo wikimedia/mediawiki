@@ -108,7 +108,7 @@ $messages = array(
 'proxyblocksuccess' => 'Finis.',
 
 # Move page
-'movepage'    => 'Muvum pej',
+'move-page-legend'    => 'Muvum pej',
 'movearticle' => 'Muvum pej:',
 
 # Namespace 8 related
