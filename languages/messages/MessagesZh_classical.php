@@ -518,7 +518,7 @@ $2',
 '''Mozilla / Firefox / Safari:'''押''Shift''並點''重新載入''，或合鍵''Ctrl-Shift-R''（Apple Mac為''Cmd-Shift-R''）。
 '''IE:'''押''Ctrl''並點''重新整理''，或合鍵''Ctrl-F5''。
 '''Konqueror:'''點''Reload''即可，或押''F5''。
-'''Opera:'''須至''Tools→Preferences''清謄本。",
+：''Opera:'''須至''Tools→Preferences''清謄本。",
 'usercssjsyoucanpreview'    => '<strong>訣：</strong>CSS/JS應先預覽而後存。',
 'usercsspreview'            => "'''預覽CSS，尚未儲焉。'''",
 'userjspreview'             => "'''預覽JavaScript，尚未儲焉。'''",
@@ -533,7 +533,6 @@ $2',
 <strong>纂文若合，惠再之。如復不成，簿重登焉。</strong>",
 'token_suffix_mismatch'     => '<strong>君修見拒，蓋因代理之故，亂事見兮。</strong>',
 'editing'                   => '纂$1',
-'editinguser'               => "正纂簿'''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]]) 之權",
 'editingsection'            => '纂節$1',
 'editingcomment'            => '贊$1',
 'editconflict'              => '纂沖$1',
@@ -556,7 +555,7 @@ $2',
 'templatesused'             => '此文用模：',
 'template-protected'        => '(錮)',
 'template-semiprotected'    => '(半錮)',
-'hiddencategories'          => '此頁屬隱類之員有$1:',
+'hiddencategories'          => '此頁屬隱類之員有$1：',
 'nocreatetitle'             => '新題謝焉',
 'nocreatetext'              => '舊題可修，新題謝焉。[[Special:Userlogin|登簿、增簿]]以逮權也。',
 'nocreate-loggedin'         => '子權未逮，新頁謝焉。',
@@ -632,9 +631,9 @@ $2',
 認之易繼留該頁之前誌也。
 
 '''以源頁之現誌必會保持。'''",
-'mergehistory-box'                 => '併二頁之誌:',
-'mergehistory-from'                => '源頁:',
-'mergehistory-into'                => '到頁:',
+'mergehistory-box'                 => '併二頁之誌：',
+'mergehistory-from'                => '源頁：',
+'mergehistory-into'                => '到頁：',
 'mergehistory-list'                => '可併之誌',
 'mergehistory-merge'               => '下[[:$1]]之誌可併至[[:$2]]。用選鈕欄以併只於定時前所建之誌。留心用導連將重設本欄也。',
 'mergehistory-go'                  => '示可併之誌',
@@ -731,10 +730,11 @@ $2',
 'userrights-lookup-user'           => '司社',
 'userrights-user-editname'         => '簿名：',
 'editusergroup'                    => '治社',
+'editinguser'               => "正纂簿'''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]]) 之權",
 'userrights-editusergroup'         => '治社',
 'saveusergroups'                   => '定之',
 'userrights-groupsmember'          => '有員：',
-'userrights-groupsremovable'       => '社可治無:',
+'userrights-groupsremovable'       => '社可治無：',
 'userrights-groupsavailable'       => '社可治有：',
 'userrights-groupshelp'            => '揀社以增員、減員，未揀者不變也。欲略之，押Ctrl並左擊。',
 'userrights-reason'                => '因：',
@@ -749,7 +749,7 @@ $2',
 'userrights-notallowed'            => '爾之簿無權定簿之權也。',
 
 # Groups
-'group'               => '社:',
+'group'               => '社：',
 'group-autoconfirmed' => '自證其簿',
 'group-bot'           => '僕',
 'group-sysop'         => '有秩',
@@ -823,8 +823,8 @@ $2',
 'filename'                   => '名',
 'filedesc'                   => '概',
 'fileuploadsummary'          => '概：',
-'filestatus'                 => '授權:',
-'filesource'                 => '源:',
+'filestatus'                 => '授權：',
+'filesource'                 => '源：',
 'uploadedfiles'              => '進獻',
 'ignorewarning'              => '強儲之。',
 'ignorewarnings'             => '警略。',
@@ -842,8 +842,8 @@ $2',
 'fileexists-thumb'           => "<center>'''現存之檔'''</center>",
 'successfulupload'           => '檔案安矣',
 'overwroteimage'             => '新置「[[$1]]」矣',
-'sourcefilename'             => '源名:',
-'destfilename'               => '欲置檔名:',
+'sourcefilename'             => '源名：',
+'destfilename'               => '欲置檔名：',
 'watchthisupload'            => '派哨',
 'upload-wasdeleted'          => "'''警示：復獻棄檔，慎續之。'''
 誌刪如下：",
@@ -909,6 +909,7 @@ $2',
 *常刪之因
 ** 侵版權
 ** 重檔',
+'filedelete-edit-reasonlist'  => '篡刪因',
 
 # MIME search
 'mimesearch'         => '篩檔',
@@ -1010,7 +1011,7 @@ $2',
 'booksources-go'            => '往',
 'booksources-text'          => '有賈售新舊書，或有助焉。茲列如下：',
 
-'categoriespagetext' => 'wiki有門如下：',
+'categoriespagetext' => '下類有頁或媒也。',
 'data'               => '訊',
 'userrights'         => '齋權管',
 'groups'             => '齋組',
@@ -1083,6 +1084,7 @@ $2',
 'unwatch'              => '撤哨',
 'unwatchthispage'      => '撤此哨',
 'notanarticle'         => '此頁非文',
+'notvisiblerev'        => '易已刪矣',
 'watchnochange'        => '皆無易也',
 'watchlist-details'    => '共$1哨，不含議論。',
 'wlheader-enotif'      => '*准報信。',
@@ -1157,6 +1159,7 @@ $NEWPAGE
 ** 作者之求
 ** 侵版權
 ** 破壞',
+'delete-edit-reasonlist'      => '篡刪因',
 'delete-toobig'               => '此頁含大誌，過$1修。刪頁限矣，防於{{SITENAME}}之亂也。',
 'delete-warning-toobig'       => '此頁含大誌，過$1修。刪之可亂{{SITENAME}}之事也；續時留神之。',
 'rollback'                    => '退修',
@@ -1286,6 +1289,7 @@ $NEWPAGE
 
 # Block/unblock
 'blockip'                     => '禁簿',
+'blockip-legend'              => '禁簿',
 'blockiptext'                 => '函下禁纂，簿、址明判；[[{{MediaWiki:Policy-url}}|秉據]]如斯，立法克亂。指罪證行，了冤無憾。',
 'ipaddress'                   => 'IP址',
 'ipadressorusername'          => 'IP或簿名',
@@ -1377,8 +1381,9 @@ $NEWPAGE
 'databasenotlocked'   => '庫未閉焉。',
 
 # Move page
-'move-page-legend'                => '遷文',
-'movepagetext'            => "函下遷文，誌隨新往、舊題作渡、取佐不移。保佐正，防窮、斷渡。
+'move-page'               => '遷$1',
+'move-page-legend'        => '遷頁',
+'movepagetext'            => "函下遷頁，誌隨新往、舊題作渡、取佐不移。保佐正，防窮、斷渡。
 
 囑之者，新題若非空、渡、缺誌，則舊'''不遷'''焉。存頁勿覆，而誤遷可悔也。
 
@@ -1716,6 +1721,7 @@ $1',
 
 # Separators for various lists
 'comma-separator' => '、',
+'colon-separator' => '：',
 
 # Multipage image navigation
 'imgmultipageprev' => '←前頁',

@@ -617,7 +617,6 @@ $2',
 'token_suffix_mismatch'     => '<strong>由于您用户端中的编辑令牌毁损了一些标点符号字元，为防止编辑的文字损坏，您的编辑已经被拒绝。
 这种情况通常出现于使用含有很多臭虫、以网络为主的匿名代理服务的时候。</strong>',
 'editing'                   => '正在编辑$1',
-'editinguser'               => "正在更改用户'''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]]) 的用户权限",
 'editingsection'            => '正在编辑$1 (段落)',
 'editingcomment'            => '正在编辑$1 (评论)',
 'editconflict'              => '编辑冲突: $1',
@@ -875,6 +874,7 @@ $2',
 'userrights-lookup-user'           => '管理用户群组',
 'userrights-user-editname'         => '输入用户名:',
 'editusergroup'                    => '编辑用户群组',
+'editinguser'                      => "正在更改用户'''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]]) 的用户权限",
 'userrights-editusergroup'         => '编辑用户群组',
 'saveusergroups'                   => '存储用户群组',
 'userrights-groupsmember'          => '隶属于:',
@@ -1110,7 +1110,8 @@ $2',
 'filedelete-reason-dropdown'  => '
 *常用删除理由
 ** 侵犯版权
-** 重覆档案',
+** 重覆文件',
+'filedelete-edit-reasonlist'  => '编辑删除埋由',
 
 # MIME search
 'mimesearch'         => 'MIME 搜索',
@@ -1223,7 +1224,6 @@ Template:消除歧義',
 'newpages'                => '最新页面',
 'newpages-username'       => '用户名:',
 'ancientpages'            => '最早页面',
-'intl'                    => '跨语言链接',
 'move'                    => '移动',
 'movethispage'            => '移动此页',
 'unusedimagestext'        => '<p>请注意其它网站可能直接通过 URL 链接此文件，所以这里列出的图像有可能依然被使用。</p>',
@@ -1239,7 +1239,7 @@ Template:消除歧義',
 'booksources-go'            => '转到',
 'booksources-text'          => '以下是一些网络书店的链接列表，其中可能有您要找的书籍的更多信息:',
 
-'categoriespagetext' => '这个wiki中存在如下分类。',
+'categoriespagetext' => '以下的分类包含页面或媒体。',
 'data'               => '数据',
 'userrights'         => '用户权限管理',
 'groups'             => '用户群组',
@@ -1320,6 +1320,7 @@ Template:消除歧義',
 'unwatch'              => '取消监视',
 'unwatchthispage'      => '停止监视',
 'notanarticle'         => '不是页面',
+'notvisiblerev'        => '修订版本已经删除',
 'watchnochange'        => '在显示的时间段内您所监视的页面没有更改。',
 'watchlist-details'    => '$1个页面(不含讨论页)被监视',
 'wlheader-enotif'      => '* 已经启动电子邮件通知功能。',
@@ -1403,6 +1404,7 @@ $NEWPAGE
 ** 作者请求
 ** 侵犯版权
 ** 破坏',
+'delete-edit-reasonlist'      => '编辑删除理由',
 'delete-toobig'               => '这个页面有一个十分大量的编辑历史，超过$1次修订。删除此类页面的动作已经被限制，以防止在{{SITENAME}}上的意外扰乱。',
 'delete-warning-toobig'       => '这个页面有一个十分大量的编辑历史，超过$1次修订。删除它可能会扰乱{{SITENAME}}的数据库操作；在继续此动作前请小心。',
 'rollback'                    => '恢复编辑',
@@ -1544,7 +1546,8 @@ $1',
 'whatlinkshere-links' => '←链入',
 
 # Block/unblock
-'blockip'                     => '查封IP地址',
+'blockip'                     => '查封用户',
+'blockip-legend'              => '查封用户',
 'blockiptext'                 => '用下面的表单来禁止来自某一特定IP地址的修改权限。
 只有在为防止破坏，及符合[[{{MediaWiki:Policy-url}}|守则]]的情况下才可采取此行动。
 请在下面输入一个具体的理由（例如引述一个被破坏的页面）。',
