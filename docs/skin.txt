@@ -5,6 +5,18 @@ This document describes the overall architecture of MediaWiki's HTML rendering
 code as well as some history about the skin system. It is placed here rather
 than in comments in the code itself to help reduce the code size.
 
+== Version 1.6 and greater ==
+
+PHPTal skins doesn't exist anymore. They were replaced by SkinTemplate skins,
+introduced since 1.4 to remove the depedency of PHPTal.
+
+A new experimental (disabled by default) callback-based template processor
+has been introduced to try to speed up the generation of html pages. See for
+example skins/disabled/MonoBookCBT.php.
+
+You can find more informations at http://www.mediawiki.org/wiki/Manual:Skins.
+
+
 == Version 1.4 ==
 
 MediaWiki still use the PHPTal skin system introduced in version 1.3 but some
