@@ -593,7 +593,6 @@ $2',
 'token_suffix_mismatch'     => '<strong>由於您用戶端中的編輯信符毀損了一些標點符號字元，為防止編輯的文字損壞，您的編輯已經被拒絕。
 這種情況通常出現於使用含有很多臭蟲、以網絡為主的匿名代理服務的時候。</strong>',
 'editing'                   => '正在編輯$1',
-'editinguser'               => "正在更改用戶'''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]]) 的用戶權限",
 'editingsection'            => '正在編輯$1 (段落)',
 'editingcomment'            => '正在編輯$1 (評論)',
 'editconflict'              => '編輯衝突：$1',
@@ -850,6 +849,7 @@ $2',
 'userrights-lookup-user'           => '管理用戶群組',
 'userrights-user-editname'         => '輸入用戶名:',
 'editusergroup'                    => '編輯用戶群組',
+'editinguser'                      => "正在更改用戶'''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]]) 的用戶權限",
 'userrights-editusergroup'         => '編輯用戶群組',
 'saveusergroups'                   => '保存用戶群組',
 'userrights-groupsmember'          => '屬於:',
@@ -1087,6 +1087,7 @@ $2',
 *常用刪除理由
 ** 侵犯版權
 ** 重覆檔案',
+'filedelete-edit-reasonlist'  => '編輯刪除埋由',
 
 # MIME search
 'mimesearch'         => 'MIME 搜索',
@@ -1199,7 +1200,6 @@ Template:消除歧義',
 'newpages'                => '最新頁面',
 'newpages-username'       => '用戶名:',
 'ancientpages'            => '最舊頁面',
-'intl'                    => '跨語言連結',
 'move'                    => '移動',
 'movethispage'            => '移動本頁',
 'unusedimagestext'        => '<p>請注意其它網站可能直接透過 URL 鏈接此檔案，所以這裡列出的圖像有可能依然被使用。</p>',
@@ -1215,7 +1215,7 @@ Template:消除歧義',
 'booksources-go'            => '送出',
 'booksources-text'          => '以下是一份銷售新書或二手書的列表，並可能有你正尋找的書的進一步訊息：',
 
-'categoriespagetext' => '以下列出所有的頁面分類。',
+'categoriespagetext' => '以下的分類包含頁面或媒體。',
 'data'               => '資料',
 'userrights'         => '用戶權限管理',
 'groups'             => '用戶群組',
@@ -1296,6 +1296,7 @@ Template:消除歧義',
 'unwatch'              => '取消監視',
 'unwatchthispage'      => '停止監視',
 'notanarticle'         => '不是頁面',
+'notvisiblerev'        => '修訂版本已經刪除',
 'watchnochange'        => '在顯示的時間段內您所監視的頁面沒有更改。',
 'watchlist-details'    => '不包含討論頁，您的監視列表共有 $1 頁。',
 'wlheader-enotif'      => '* 已經啟動電子郵件通知功能。',
@@ -1379,6 +1380,7 @@ $NEWPAGE
 ** 作者請求
 ** 侵犯版權
 ** 破壞',
+'delete-edit-reasonlist'      => '編輯刪除理由',
 'delete-toobig'               => '這個頁面有一個十分大量的編輯歷史，超過$1次修訂。刪除此類頁面的動作已經被限制，以防止在{{SITENAME}}上的意外擾亂。',
 'delete-warning-toobig'       => '這個頁面有一個十分大量的編輯歷史，超過$1次修訂。刪除它可能會擾亂{{SITENAME}}的資料庫操作；在繼續此動作前請小心。',
 'rollback'                    => '恢復編輯',
@@ -1518,7 +1520,8 @@ $1',
 'whatlinkshere-links' => '← 鏈入',
 
 # Block/unblock
-'blockip'                     => '查封IP地址',
+'blockip'                     => '查封用戶',
+'blockip-legend'              => '查封用戶',
 'blockiptext'                 => '用下面的表單來禁止來自某一特定IP地址的修改許可權。
 只有在為防止破壞，及符合[[{{MediaWiki:Policy-url}}|守則]]的情況下才可採取此行動。
 請在下面輸入一個具體的理由（例如引述一個被破壞的頁面）。',

@@ -674,7 +674,6 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'token_suffix_mismatch'     => '<strong>因為你嘅用戶端度嘅編輯幣整壞咗一啲標點符號字元，你嘅編輯已經拒絕咗。個編輯已經拒絕，以防止嗰版嘅文字損毀。 
 當你響度用緊一啲好多臭蟲，以網絡為主嘅匿名代理服務。</strong>',
 'editing'                   => '而家喺度編輯$1',
-'editinguser'               => "改緊用戶'''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]]) 嘅用戶權限",
 'editingsection'            => '而家喺度編輯$1 （小節）',
 'editingcomment'            => '而家喺度編輯$1 （評論）',
 'editconflict'              => '編輯衝突：$1',
@@ -930,6 +929,7 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'userrights-lookup-user'           => '管理用戶組',
 'userrights-user-editname'         => '輸入一個用戶名：',
 'editusergroup'                    => '編輯用戶組',
+'editinguser'                      => "改緊用戶'''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]]) 嘅用戶權限",
 'userrights-editusergroup'         => '編輯用戶組',
 'saveusergroups'                   => '儲存用戶組',
 'userrights-groupsmember'          => '屬於：',
@@ -1164,6 +1164,7 @@ MySQL 嘅錯誤回應 "$3: $4"',
 *常用刪除原因
 ** 侵犯版權
 ** 重覆檔案',
+'filedelete-edit-reasonlist'  => '編輯刪除原因',
 
 # MIME search
 'mimesearch'         => 'MIME 搜尋',
@@ -1269,7 +1270,6 @@ Template:搞清楚',
 'newpages'                => '新頁',
 'newpages-username'       => '用戶名：',
 'ancientpages'            => '舊頁面',
-'intl'                    => '跨語連結',
 'move'                    => '移動',
 'movethispage'            => '移動呢一頁',
 'unusedimagestext'        => '<p>請注意，第啲網站會用直接用URL連結到一個檔，所以呢度可能有啲用緊嘅檔。</p>',
@@ -1285,7 +1285,7 @@ Template:搞清楚',
 'booksources-go'            => '去',
 'booksources-text'          => '以下嘅連結清單列出其它一啲賣新書同二手書嘅網站，可能可以提供到有關你想搵嘅書嘅更多資料：',
 
-'categoriespagetext' => '喺呢個 wiki 中存在住以下嘅分類。',
+'categoriespagetext' => '喺呢個分類度有頁或媒體。',
 'data'               => '資料',
 'userrights'         => '用戶權限管理',
 'groups'             => '用戶組',
@@ -1360,6 +1360,7 @@ Template:搞清楚',
 'unwatch'              => '唔使監視',
 'unwatchthispage'      => '停止監視',
 'notanarticle'         => '唔係一個內容頁',
+'notvisiblerev'        => '修訂已經刪除咗',
 'watchnochange'        => '響顯示嘅時間之內，你所監視嘅頁面並無任何嘅更改。',
 'watchlist-details'    => '唔計討論頁，你個監視清單有 $1 版。',
 'wlheader-enotif'      => '* 電子郵件通知已經啟用。',
@@ -1442,6 +1443,7 @@ wiki: $PAGEEDITOR_WIKI
 ** 作者請求
 ** 侵犯版權
 ** 破壞',
+'delete-edit-reasonlist'      => '編輯刪除原因',
 'delete-toobig'               => '呢一版有一個好大量嘅編輯歷史，過咗$1次修訂。刪除呢類版嘅動作已經限制咗，以防止響{{SITENAME}}嘅意外擾亂。',
 'delete-warning-toobig'       => '呢一版有一個好大量嘅編輯歷史，過咗$1次修訂。刪除佢可能會擾亂{{SITENAME}}嘅資料庫操作；響繼續嗰陣請小心。',
 'rollback'                    => '反轉修改',
@@ -1581,6 +1583,7 @@ $1',
 
 # Block/unblock
 'blockip'                     => '封鎖用戶',
+'blockip-legend'              => '封鎖用戶',
 'blockiptext'                 => '使用以下嘅表格嚟去阻止指定嘅IP地址或用戶名嘅寫權限。
 僅當僅當為咗避免有版畀人惡意破壞嘅時候先可以使用，而且唔可以違反[[{{MediaWiki:Policy-url}}|政策]]。
 喺下面填寫阻止嘅確切原因（比如：引用咗某啲已經破壞咗嘅頁面）。',
