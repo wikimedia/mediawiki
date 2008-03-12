@@ -1351,6 +1351,7 @@ Nếu bạn muốn cho trang này ra khỏi danh sách theo dõi, nhấn vào "N
 'unwatch'              => 'Ngừng theo dõi',
 'unwatchthispage'      => 'Ngừng theo dõi',
 'notanarticle'         => 'Không phải trang nội dung',
+'notvisiblerev'        => 'Phiên bản bị xóa',
 'watchnochange'        => 'Không có trang nào bạn theo dõi được sửa đổi.',
 'watchlist-details'    => 'Bạn đang theo dõi $1 trang không kể trang thảo luận.',
 'wlheader-enotif'      => '* Đã bật thông báo qua thư điện tử.',
@@ -1579,7 +1580,7 @@ $1',
 
 # Block/unblock
 'blockip'                     => 'Cấm thành viên',
-'blockip-legend'              => 'Khóa thành viên',
+'blockip-legend'              => 'Cấm thành viên',
 'blockiptext'                 => 'Dùng mẫu dưới để cấm một địa chỉ IP hoặc thành viên không được viết trang. Điều này chỉ nên làm để tránh phá hoại, 
 và phải theo [[{{MediaWiki:Policy-url}}|quy định]]. Điền vào lý do cụ thể ở dưới (ví dụ, chỉ ra trang nào bị phá hoại).',
 'ipaddress'                   => 'Địa chỉ IP:',
@@ -1689,7 +1690,8 @@ Xin hãy xác nhận đây là điều bạn định làm.',
 'databasenotlocked'   => 'Cơ sở dữ liệu không bị khóa.',
 
 # Move page
-'move-page-legend'                => 'Di chuyển trang',
+'move-page'               => 'Di chuyển $1',
+'move-page-legend'        => 'Di chuyển trang',
 'movepagetext'            => "Dùng mẫu dưới đây để đổi tên một trang, di chuyển tất cả
 lịch sử của nó sang tên mới.
 Tên cũ sẽ trở thành trang đổi hướng sang tên mới.

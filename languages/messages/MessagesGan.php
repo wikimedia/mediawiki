@@ -53,6 +53,7 @@ $messages = array(
 'tog-nolangconversion'        => '嫑字轉換',
 'tog-ccmeonemails'            => '偶發email到人家時也發封副本到偶',
 'tog-diffonly'                => '比較兩隻版本差異時伓顯示文章內容',
+'tog-showhiddencats'          => '顯示隱藏分類',
 
 'underline-always'  => '總歸要用',
 'underline-never'   => '絕伓使用',
@@ -113,12 +114,13 @@ $messages = array(
 'dec'           => '12月',
 
 # Bits of text used by many pages
-'categories'            => '頁面分類',
-'pagecategories'        => '$1隻分類',
-'category_header'       => '“$1”分類中嗰文章',
-'subcategories'         => '亞分類',
-'category-media-header' => '“$1”分類中嗰媒體',
-'category-empty'        => '“箇隻分類有包到任何文章或媒體”',
+'categories'               => '頁面分類',
+'pagecategories'           => '$1隻分類',
+'category_header'          => '“$1”分類中嗰文章',
+'subcategories'            => '亞分類',
+'category-media-header'    => '“$1”分類中嗰媒體',
+'category-empty'           => '“箇隻分類有包到任何文章或媒體”',
+'hidden-category-category' => '隱藏哩箇分類', # Name of the category where hidden categories will be listed
 
 'mainpagetext'      => "<big>'''安裝正MediaWiki嘍!'''</big>",
 'mainpagedocfooter' => '參看[http://meta.wikimedia.org/wiki/Help:Contents 用戶指南]裡頭會話到啷用wiki軟件
@@ -1466,7 +1468,7 @@ $NEWPAGE
 'databasenotlocked'   => '資料庫冇鎖正。',
 
 # Move page
-'move-page-legend'                => '換動頁面',
+'move-page-legend'        => '換動頁面',
 'movepagetext'            => "用下底嗰表格拿一隻頁面改名，跟到拿佢嗰歷史一齊般到新頁面。舊嗰頁面就係新頁嗰重定向頁。連到舊頁面嗰連結伓會自動更改；勞煩檢查吖雙重或壞嗰重定向連結。倷有責任確保全部連結會連到指正嗰頁面。 
 
 注意如果新頁面早就有嗰話，頁面'''伓會'''搬過去，要不新頁面就係冇內容或係重定向頁，也冇修訂歷史。噉就係話必要時倷能等換到新頁面之後再又回到舊嗰頁面，跟到倷也覆蓋不正目前頁面。 

@@ -1001,7 +1001,7 @@ To include a file in a page, use a link in the form
 'filename'                    => "Nombre de l'archibo",
 'filedesc'                    => 'Resumen',
 'fileuploadsummary'           => 'Resumen:',
-'filestatus'                  => "Situazión d'os dreitos d'autor (copyright)",
+'filestatus'                  => "Estau d'os dreitos d'autor (copyright):",
 'filesource'                  => 'Fuent:',
 'uploadedfiles'               => 'Archibos cargatos',
 'ignorewarning'               => "Inorar l'abiso y alzar l'archibo en cualsiquier caso.",
@@ -1676,7 +1676,7 @@ as pachinas que s'han bandalizatas).",
 'databasenotlocked'   => 'A base de datos no ye trancata.',
 
 # Move page
-'move-page-legend'                => 'Tresladar pachina',
+'move-page-legend'        => 'Tresladar pachina',
 'movepagetext'            => "Si fa serbir o formulario siguient se cambiará o nombre á la pachina, tresladando tot o suyo istorial t'o nuebo nombre.
 O títol anterior se tornará en una reendrezera ta o nuebo títol.
 Os binclos ta o títol antigo d'a pachina no se cambiarán. Asegure-se de no deixar reendrezeras dobles u crebatas.

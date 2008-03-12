@@ -76,6 +76,7 @@ $messages = array(
 'tog-nolangconversion'        => 'Tumpurkeun konversi varian',
 'tog-ccmeonemails'            => 'Kirimkeun ogé salinan surélékna ka alamat kuring',
 'tog-diffonly'                => 'Ulah némbongkeun eusi kaca di handapeun béda éditan',
+'tog-showhiddencats'          => 'Témbongkeun kategori nyumput',
 
 'underline-always'  => 'Salawasna',
 'underline-never'   => 'Ulah',
@@ -136,12 +137,13 @@ $messages = array(
 'dec'           => 'Dés',
 
 # Bits of text used by many pages
-'categories'            => 'Kategori',
-'pagecategories'        => '{{PLURAL:$1|Kategori|Kategori}}',
-'category_header'       => 'Artikel-artikel na kategori "$1"',
-'subcategories'         => 'Subkategori',
-'category-media-header' => 'Média dina kategori "$1"',
-'category-empty'        => "''Kategori ieu, ayeuna teu ngabogaan artikel atawa gambar.''",
+'categories'               => 'Kategori',
+'pagecategories'           => '{{PLURAL:$1|Kategori|Kategori}}',
+'category_header'          => 'Artikel-artikel na kategori "$1"',
+'subcategories'            => 'Subkategori',
+'category-media-header'    => 'Média dina kategori "$1"',
+'category-empty'           => "''Kategori ieu, ayeuna teu ngabogaan artikel atawa gambar.''",
+'hidden-category-category' => 'Kategori nu nyarumput', # Name of the category where hidden categories will be listed
 
 'mainpagetext'      => "''Software'' Wiki geus diinstal.",
 'mainpagedocfooter' => "Mangga tingal ''[http://meta.wikimedia.org/wiki/MediaWiki_localisation documentation on customizing the interface]'' jeung [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Tungtunan Pamaké] pikeun pitulung maké jeung konfigurasi.",
@@ -223,6 +225,7 @@ $messages = array(
 'bugreports'        => 'Laporan kutu',
 'bugreportspage'    => 'Project:Laporan_kutu',
 'copyright'         => 'Sadaya kandungan ieu loka ditangtayungan ku $1',
+'copyrightpagename' => 'Hak cipta {{SITENAME}}',
 'copyrightpage'     => '{{ns:project}}:Hak cipta',
 'currentevents'     => 'Keur lumangsung',
 'currentevents-url' => 'Project:Keur lumangsung',
@@ -339,6 +342,7 @@ Mun lain kitu masalahna, jigana anjeun geus manggihan kutu na ''software''na. Ma
 'wrong_wfQuery_params' => 'Parameter salah ka wfQuery()<br />Fungsi: $1<br />Pamenta: $2',
 'viewsource'           => 'Témbongkeun sumber',
 'viewsourcefor'        => 'pikeun $1',
+'actionthrottledtext'  => 'Salaku tetengger anti-spam, anjeun teu diwenangkeun loba kitu peta dina jangka waktu anu sakitu heureutna. Mangga lajengkeun deui sanggeus sababaraha menit ka payun.',
 'protectedpagetext'    => 'Ieu kaca dikonci ngarah teu bisa dirobah.',
 'viewsourcetext'       => 'Anjeun bisa némbongkeun sarta nyalin sumber ieu kaca:',
 'protectedinterface'   => 'Kaca ieu eusina teks antarmuka pikeun dipaké ku pakakas beyé sarta geus dikunci pikeun ngahindar ti kasalahan.',
@@ -348,6 +352,7 @@ Mun lain kitu masalahna, jigana anjeun geus manggihan kutu na ''software''na. Ma
 'namespaceprotected'   => "Anjeun teu ngabogaan hak pikeun ngédit kaca di ngaranspasi '''$1'''.",
 'customcssjsprotected' => 'Anjeun teu ngabogaan hak ngédit kaca ieu, alatan ngandung pangaturan pribadi pamaké séjén.',
 'ns-specialprotected'  => 'Kaca dina ngaranspasi {{ns:special}} teu bisa di édit.',
+'titleprotected'       => 'Ieu judul dikonci ku [[User:$1|$1]] kalawan alesan <i>$2</i>.',
 
 # Login and logout pages
 'logouttitle'                => 'Kaluar log pamaké',
@@ -431,7 +436,7 @@ is not allowed to use the password recovery function to prevent abuse.',
 'resetpass_submit'        => 'Setél log asup katut sandina',
 'resetpass_success'       => 'Kecap sandi Anjeun geus junun dirobah! Ayeuna proses asup log Anjeun...',
 'resetpass_bad_temporary' => 'Kecap sandi samentara salah. Anjeun meureun kungsi junun ngaganti kecap sandi Anjeun atawa geus ménta kecap sandi anyar.',
-'resetpass_forbidden'     => 'Kecap sandi henteu bisa dirobah di wiki ieu',
+'resetpass_forbidden'     => 'Kecap sandi henteu bisa dirobah di {{SITENAME}}',
 'resetpass_missing'       => 'Data formulir teu dipikawanoh.',
 
 # Edit page toolbar
@@ -450,7 +455,7 @@ is not allowed to use the password recovery function to prevent abuse.',
 'nowiki_sample'   => 'Asupkeun téks nu teu diformat di dieu',
 'nowiki_tip'      => 'Format wiki tong diwaro',
 'image_sample'    => 'Conto.jpg',
-'image_tip'       => 'Asupkeun gambar',
+'image_tip'       => 'Ngasupkeun gambar',
 'media_sample'    => 'Conto.mp3',
 'media_tip'       => 'Tumbu koropak média',
 'sig_tip'         => 'Tawis leungeun anjeun tur cap wanci',
@@ -534,7 +539,7 @@ Mun anjeun ka dieu teu ngahaja, klik baé tombol '''back''' na panyungsi anjeun.
 'session_fail_preview'      => '<strong>Punten! Kami teu bisa ngolah éditan anjeun alatan leungitna data rintakan. Mangga cobian deui. Mun tetep teu bisa, cobi kaluar log lajeng lebet deui.</strong>',
 'session_fail_preview_html' => "<strong>Punten! Kami teu bisa ngolah éditan anjeun sabab leungitna data rintakan.</strong>
 
-''Kusabab ieu wiki ngawenangkeun dipakéna HTML atah, pramidangna disumputkeun pikeun nyegah panarajang JavaScript.''
+''Kusabab {{SITENAME}} ngawenangkeun dipakéna HTML atah, pramidangna disumputkeun pikeun nyegah panarajang JavaScript.''
 
 <strong>Mun ieu éditan bener, mangga cobian deui. Mun tetep teu metu, cobi kaluar log heula, lajeng lebet deui.</strong>",
 'token_suffix_mismatch'     => '<strong>Éditan anjeun ditolak sabab aplikasi klien Anjeun ngarobah karakter tanda baca dina éditan. Éditan kasebut ditolak keur nyegah kasalahan dina artikel téks. Hal ieu kadang-kadang kajadian lamun Anjeun maké proksi anonim basis web nu masalah.</strong>',
@@ -568,7 +573,7 @@ Anjeun ogé mastikeun yén ieu téh pituin tulisan anjeun, atawa salinan ti doma
 'edittools'                 => '<!-- Téks di dieu bakal némbongan di handapeun formulir édit jeung muat.-->',
 'nocreatetitle'             => 'Nyieun kaca kakara diwatesan',
 'nocreatetext'              => '{{SITENAME}} nutup kabisa nyieun kaca anyar. Mangga édit artikel nu geus aya, atawa [[{{ns:special}}:Userlogin|asup log/daptar heula]].',
-'nocreate-loggedin'         => 'Anjeun teu ngabogaan hak aksés pikeun nyieun Kaca anyar dina wiki ieu.',
+'nocreate-loggedin'         => 'Anjeun teu ngabogaan hak aksés pikeun nyieun kaca anyar di {{SITENAME}}.',
 'permissionserrors'         => 'Kasalahan Hak Aksés',
 'recreate-deleted-warn'     => "'''Awas: Anjeun keur nyieun deui kaca nu geus kungsi dihapus.'''
 
@@ -733,7 +738,7 @@ $2 Daptarkeun alihan &nbsp; Sungsi $3 $9',
 'userrights-lookup-user'      => 'Atur gorombolan pamaké',
 'userrights-user-editname'    => 'Asupkeun landihan:',
 'editusergroup'               => 'Édit Golongan Pamaké',
-'editinguser'                 => "Ngédit '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
+'editinguser'                 => "Ngarobah hak pamaké '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
 'userrights-editusergroup'    => 'Édit gorombolan pamaké',
 'saveusergroups'              => 'Simpen Grup Pamaké',
 'userrights-groupsmember'     => 'Anggota ti:',
@@ -845,6 +850,9 @@ Catet yén salaku kaca wiki, nu séjén bisa ngarobah atawa ngahapus muatan anje
 'destfilename'                => 'Ngaran koropak tujuan:',
 'watchthisupload'             => 'Awaskeun kaca ieu',
 'filewasdeleted'              => 'Ngaran koropak ieu geus di hapus. Anjeun kudu ningali ka $1 sa acan muatkeun koropak deui',
+
+# Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
+'upload-curl-error6' => 'URL teu kahontal',
 
 'nolicense'          => 'Taya nu dipilih',
 'upload_source_file' => ' (koropak dina komputer salira)',
@@ -1316,7 +1324,7 @@ Asupan jeung bantuan salajengna:
 'databasenotlocked'   => 'Gudang data teu kakonci.',
 
 # Move page
-'move-page-legend'                => 'Pindahkeun kaca',
+'move-page-legend'        => 'Pindahkeun kaca',
 'movepagetext'            => "Migunakeun formulir di handap bakal ngaganti ngaran hiji kaca, mindahkeun sadaya jujutanana ka ngaran anyar.
 Judul nu heubeul bakal jadi kaca alihan ka judul nu anyar.
 Tumbu ka judul kaca nu heubeul mola robah; pastikeun yén anjeun [[Special:Maintenance|marios]] alihan ganda atawa alihan nu buntu.

@@ -480,7 +480,7 @@ Ku taa pruukjanimi om luud kogõmaldaq, olõ-i sul vaia taast sõnomist vällä 
 'nowiki_sample'   => 'Kirodaq kujondamalda tekst',
 'nowiki_tip'      => 'Tunnistagu-i viki kujondust',
 'image_sample'    => 'Näüdüs.jpg',
-'image_tip'       => 'Pilt',
+'image_tip'       => 'Pästet pilt',
 'media_sample'    => 'Näüdüs.mp3',
 'media_tip'       => 'Meediäteedüstü',
 'sig_tip'         => 'Suq allkiri üten aotempliga',
@@ -590,7 +590,8 @@ Sul tulõ naaq viimätsehe kujjo üle viiäq. Ku klõpsahtat nuppi "Pästäq", s
 'template-protected'        => '(ärqkaidsõt)',
 'template-semiprotected'    => '(ärqkaidsõduq nimeldä ja vahtsõq pruukjaq)',
 'nocreatetitle'             => 'Lehekülgi luuminõ piiret',
-'nocreatetext'              => 'Sa ei saaq luvvaq vahtsit lehti. Võit toimõndaq olõmanolõvit lehti vai minnäq nimega sisse. Ku sul olõ-i pruukjanimme, sis võit tuu hindäle [[Special:Userlogin|tetäq]].',
+'nocreatetext'              => '{{SITENAME}} lupa-i luvvaq vahtsit lehti.
+Võit toimõndaq olõmanolõvit lehti vai [[Special:Userlogin|minnäq nimega sisse]].',
 'nocreate-loggedin'         => 'Sul olõ-i lupa seon vikin vahtsit lehti luvvaq.',
 'permissionserrors'         => 'Õigusõq ei klapiq',
 'permissionserrorstext'     => 'Sul olõ-i lubat taad tetäq, {{PLURAL:$1|tuuperäst, et|tuuperäst, et}}:',
@@ -840,6 +841,7 @@ mitmõ otsmissõna pruukminõ (sis ilmusõq õnnõ leheküleq, kon ommaq kõik o
 
 # Recent changes linked
 'recentchangeslinked'          => 'Siiäq putvaq muutmisõq',
+'recentchangeslinked-title'    => 'Muutusõq noidõ lehti pääl, kohe näüdätäs lähe päält $1',
 'recentchangeslinked-noresult' => 'Taaha putvit lehti olõ-i taa ao seen muudõt.',
 'recentchangeslinked-summary'  => "Taan nimekirän ommaq noidõ lehti muutmisõq, mink pääle näütäs linke. Naad leheq ommaq perräkaemisnimekirän märgidüq '''paksu kiräga'''.",
 
@@ -869,7 +871,7 @@ Helüteedüstü puhul: <b>[[media:teedüstü.ogg]]</b>.
 'filedesc'                    => 'Kokkovõtõq',
 'fileuploadsummary'           => 'Kokkovõtõq:',
 'filestatus'                  => 'Teedüstü tegijäõigusõq:',
-'filesource'                  => 'Kost peri:',
+'filesource'                  => 'Kost peri',
 'uploadedfiles'               => 'Üleslaadiduq teedüstüq',
 'ignorewarning'               => 'Pangu-i hoiatust tähele ja pästäq tuugiperäst.',
 'ignorewarnings'              => 'Pangu-i üttegi hoiatust tähele',
@@ -902,8 +904,8 @@ Ku ülekaet teedüstü om sama pilt alguperälidsen suurusõn, sis olõ-i vaia e
 'uploadscripted'              => 'Seol teedüstül om HTML-kuud vai skripte, minkast võrgokaeja või võlssi arvo saiaq.',
 'uploadcorrupt'               => 'Teedüstü om viganõ vai om täl võlss laendus. Olõq hää, kaeq tä üle ja laadiq vahtsõst üles.',
 'uploadvirus'                 => 'Teedüstül om viirus man! Kaeq: $1',
-'sourcefilename'              => 'Teedüstü nimi:',
-'destfilename'                => 'Teedüstü nimi vikin:',
+'sourcefilename'              => 'Teedüstü nimi',
+'destfilename'                => 'Teedüstü nimi vikin',
 'watchthisupload'             => 'Kaeq taa lehe perrä',
 'filewasdeleted'              => 'Sääntse nimega teedüstü om jo üles laadit ja sis ärq kistutõt. Kaeq üle $1 inne ku nakkat jälq üles laatma.',
 'upload-wasdeleted'           => "'''Hoiatus: Sa proovit üles laatiq teedüstüt, miä om innemb ärq kistutõt.'''
@@ -923,7 +925,7 @@ Kas olõt kimmäs, et tahat taad üles laatiq? Kaeq ka sissekirotust taa teedüs
 'upload-curl-error28'      => 'Saa-s ao pääle üles laaditus',
 'upload-curl-error28-text' => 'Taa aadrõsi päält saa-s ao pääle vastust. Oodaq vähä ja prooviq vahtsõst.',
 
-'license'            => 'Litsents:',
+'license'            => 'Litsents',
 'nolicense'          => 'Olõ-i litsentsi valit',
 'license-nopreview'  => '(Saa-i kaiaq)',
 'upload_source_url'  => ' (avalik tüütäv võrgoaadrõs)',
@@ -949,6 +951,7 @@ Kas olõt kimmäs, et tahat taad üles laatiq? Kaeq ka sissekirotust taa teedüs
 'filehist-current'          => 'parhillanõ',
 'filehist-datetime'         => 'Kuupäiv/Kelläaig',
 'filehist-user'             => 'Pruukja',
+'filehist-dimensions'       => 'Suurus',
 'filehist-filesize'         => 'Teedüstü suurus',
 'filehist-comment'          => 'Seletüs:',
 'imagelinks'                => 'Pildilingiq',
@@ -1046,7 +1049,7 @@ Taa numbri seen ommaq ka arotusküleq, abiartikliq, väega lühkeseq leheküleq,
 'lonelypagestext'         => 'Nailõ lehile olõ-i muialt vikist linke.',
 'uncategorizedpages'      => 'Katõgoorijilda leheq',
 'uncategorizedcategories' => 'Katõgoorijilda katõgooriaq',
-'uncategorizedimages'     => 'Katõgoorijilda pildiq',
+'uncategorizedimages'     => 'Katõgoorijilda teedüstüq',
 'uncategorizedtemplates'  => 'Katõgoorialdaq näüdüseq',
 'unusedcategories'        => 'Pruukmalda katõgooriaq',
 'unusedimages'            => 'Pruukmaldaq pildiq',
@@ -1057,7 +1060,7 @@ Taa numbri seen ommaq ka arotusküleq, abiartikliq, väega lühkeseq leheküleq,
 'mostlinkedcategories'    => 'Katõgooriaq, kohe om kõgõ rohkõmb linke',
 'mostlinkedtemplates'     => 'Näüdüseq, kohe näütäs kõgõ rohkõmb linke',
 'mostcategories'          => 'Artikliq, mil om kõgõ rohkõmb katõgoorijit',
-'mostimages'              => 'Pildiq, mil om kõgõ rohkõmb katõgoorijit',
+'mostimages'              => 'Kõgõ inämb pruugiduq teedüstüq',
 'mostrevisions'           => 'Artikliq, mil om kõgõ rohkõmb toimõnduisi',
 'allpages'                => 'Kõik artikliq',
 'prefixindex'             => 'Leheq päälkirä algusõ perrä',
@@ -1164,6 +1167,7 @@ ja sul piät umin [[Special:Preferences|säädmiisin]] olõma e-postiaadrõs, et
 'unwatchthispage'      => 'Lõpõdaq perräkaeminõ ärq',
 'notanarticle'         => 'Olõ-i artikli',
 'watchnochange'        => 'Taa ao seen olõ-i üttegi perräkaetavat lehte muudõt.',
+'watchlist-details'    => 'Perräkaemisnimekirän om {{PLURAL:$1|$1 leht|$1 lehte}} (rehkendämäldä arotuslehti).',
 'wlheader-enotif'      => '* E-postiga teedäqandmisõq ommaq käügin.',
 'wlheader-showupdated' => "* Leheq, midä om muudõt päält su viimäst käümist, ommaq '''paksun kirän'''",
 'watchmethod-recent'   => 'kontrollitas perräkaetavidõ lehti perämäidsi muutmiisi',
@@ -1232,6 +1236,8 @@ Kelläaoq ummaq serveriao perrä (UTC).',
 'deletionlog'                 => 'Kistutõduq leheküleq',
 'reverted'                    => 'Minti tagasi vana kujo pääle',
 'deletecomment'               => 'Kistutamisõ põhjus',
+'deleteotherreason'           => 'Muu põhjus vai täpsüstüs:',
+'deletereasonotherlist'       => 'Muu põhjus',
 'deletereason-dropdown'       => "*Hariliguq kistutamisõ põhjusõq
 ** Kirotaja hindä palvõl
 ** Tegijäõigusõ rikminõ
@@ -1264,11 +1270,13 @@ Kelläaoq ummaq serveriao perrä (UTC).',
 Tan ommaq lehe <strong>$1</strong> parhilladsõq säädmiseq:',
 'protect-cascadeon'           => 'Taa leht om kaitsõ all, selle tä om taan kaidsõtuidõ lehti nimekirän. Võit muutaq taa lehe kaitsmiisi, a tä jääs tuugiperäst kaitsõ ala, selle et tä om taan nimekirän.',
 'protect-default'             => '(harilik)',
+'protect-fallback'            => 'Om vaia "$1"-õigust',
 'protect-level-autoconfirmed' => 'Piäq kinniq vahtsõq ja kirjäpandmalda pruukjaq',
 'protect-level-sysop'         => 'Õnnõ kõrraldajaq',
 'protect-summary-cascade'     => 'laendõt',
 'protect-expiring'            => 'tähtaig $1',
 'protect-cascade'             => 'Laendaq kaitsmist - võtaq kaitsõ ala kõik seo lehe pääl olõvaq leheq.',
+'protect-cantedit'            => 'Sa tohe-i muutaq seo lehe kaitsmistasõt, selle et sul olõ-i õigust seod lehte muutaq.',
 'restriction-type'            => 'Luba',
 'restriction-level'           => 'Piirdmisastõq',
 'minimum-size'                => 'Kõgõ vähämb maht (baidõn)',
@@ -1448,7 +1456,7 @@ Perämäidsi kistutuisi ja tagasitegemiisi saat kaiaq [[Special:Log/delete|kistu
 'databasenotlocked'   => 'Teedüskoko panda-s lukku.',
 
 # Move page
-'move-page-legend'                => 'Nõstaq artikli tõistõ paika',
+'move-page-legend'        => 'Nõstaq artikli tõistõ paika',
 'movepagetext'            => "Taad vormi pruukin saat lehe ümbre nimetäq. Lehe aolugu pandas kah vahtsõ päälkirä ala. Vana päälkiräga lehest saa vahtsõ lehe pääle ümbresaatmisõ leht. Tõisin artikliin olõvit linke, miä näütäseq vana nimega lehe pääle, ärq ei muudõdaq. Sa piät kaema, et es tulnuq katõkõrdsit ümbresaatmiisi ni et kõik jäänüq tüütämä nigu inne ümbrenimetämist. Lehte '''nimetedä-i ümbre''', ku vahtsõ nimega leht om jo olõman. Erängus om tuu, ku vana leht om tühi vai om esiq ümbresaatmisleht ja täl olõ-i toimõndamisaoluku. Tuu tähendäs, et sa saa-i kogõmalda üle kirotaq jo olõmanolõvat lehte, a saat halvastõ lännü ümbrenimetämise tagasi pöördäq. <strong>KAEQ ETTE!</strong> Või ollaq, et sa nakkat tegemä suurt ja uutmalda muutmist väega loetavahe artiklihe; inne, ku midä muudat, märgiq perrä, miä tuust tullaq või.",
 'movepagetalktext'        => "Üten artiklilehekülega pandas tõistõ paika ka arotuskülg, '''vällä arvat sis, ku:'''
 *panõt lehe ütest nimeruumist tõistõ,
@@ -1590,7 +1598,7 @@ Viimädse johtumisõ kõrral võit ka pruukiq linki, nt leht {{MediaWiki:Mainpag
 'tooltip-feed-atom'               => 'Taa lehe Atom-kujo',
 'tooltip-t-contributions'         => 'Näütäq taa pruukja toimõnduisi nimekirjä',
 'tooltip-t-emailuser'             => 'Saadaq taalõ pruukjalõ e-kiri',
-'tooltip-t-upload'                => 'Panõq mano pilte vai meediäteedüstüid',
+'tooltip-t-upload'                => 'Laadiq üles teedüstüid',
 'tooltip-t-specialpages'          => 'Näütäq tallituslehekülgi',
 'tooltip-t-print'                 => 'Taa lehe trükükujo',
 'tooltip-t-permalink'             => 'Seo lehekujo püsülink',
@@ -1599,7 +1607,7 @@ Viimädse johtumisõ kõrral võit ka pruukiq linki, nt leht {{MediaWiki:Mainpag
 'tooltip-ca-nstab-media'          => 'Näütäq meediälehekülge',
 'tooltip-ca-nstab-special'        => 'Taa om tallituslehekülg',
 'tooltip-ca-nstab-project'        => 'Näütäq projektilehekülge',
-'tooltip-ca-nstab-image'          => 'Näütäq pildilehekülge',
+'tooltip-ca-nstab-image'          => 'Näütäq teedüstü lehekülge',
 'tooltip-ca-nstab-mediawiki'      => 'Näütäq tallitusteedüst',
 'tooltip-ca-nstab-template'       => 'Näütäq näüdüst',
 'tooltip-ca-nstab-help'           => 'Näütäq abilehekülge',
@@ -1694,6 +1702,7 @@ Viimädse johtumisõ kõrral võit ka pruukiq linki, nt leht {{MediaWiki:Mainpag
 'file-info'            => '$1, MIME-tüüp: $2',
 'file-info-size'       => '($1×$2 pikslit, $3, MIME-tüüp: $4)',
 'file-nohires'         => '<small>Taast terävämpä pilti olõ-i saiaq.</small>',
+'svg-long-desc'        => '(SVG-teedüstü, põhisuurus $1 × $2 pikslit, teedüstü suurus $3)',
 'show-big-image'       => 'Täüsterräv kujo',
 'show-big-image-thumb' => '<small>Proovikaemisõ suurus: $1×$2 pikslit</small>',
 
@@ -1702,9 +1711,14 @@ Viimädse johtumisõ kõrral võit ka pruukiq linki, nt leht {{MediaWiki:Mainpag
 'showhidebots' => '($1 robodiq)',
 'noimages'     => 'Olõ-i vahtsit pilte.',
 
+# Bad image list
+'bad_image_list' => 'Nimekirä muud om sääne:
+
+Õnnõ *-märgiga algajaq riaq võetasõq arvõhe. Edimäne link piät näütämä keeledü teedüstü pääle. Kõik tõõsõq lingiq ommaq eränguq, tuu tähendäs leheq, kon pilti või pruukiq.',
+
 # Metadata
 'metadata'          => 'Sisuseletüseq',
-'metadata-help'     => 'Seon teedüstün om lisateedüst, miä om arvadaq peri pildinudsijast, digikaamõrast vai pilditoimõndusprogrammist. Ku pilti om peräst timä tegemist muudõt, sis pruugi-i taa teedüs inämb õigõ ollaq.',
+'metadata-help'     => 'Seon teedüstün om lisateedüst, miä om arvadaq peri pildinudsijast, digikaamõrast vai pilditoimõndusprogrammist. Ku teedüstüt om peräst timä tegemist muudõt, sis pruugi-i taa teedüs inämb õigõ ollaq.',
 'metadata-expand'   => 'Näütäq kõiki sisuseletüisi',
 'metadata-collapse' => 'Näütäq õnnõ tähtsämbit sisuseletüisi',
 'metadata-fields'   => 'Naaq riaq ommaq nätäq pildilehe pääl, ku sisuseletüse tapõl om tühi.
@@ -2073,7 +2087,9 @@ Prooviq harilikku kaehust.',
 'watchlistedit-raw-removed'   => 'Ärq kistutõt {{PLURAL:$1|1 päälkiri|$1 päälkirjä}}:',
 
 # Watchlist editing tools
+'watchlisttools-view' => 'Näütäq muutmiisi',
 'watchlisttools-edit' => 'Kaeq ja toimõndaq perräkaemisnimekirjä',
+'watchlisttools-raw'  => 'Toimõndaq lätteteedüstüt',
 
 # Special:Filepath
 'filepath'        => 'Teedüstü aadrõs',

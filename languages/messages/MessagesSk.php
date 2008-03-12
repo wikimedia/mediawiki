@@ -981,7 +981,7 @@ $2 Zoznam presmerovaní &nbsp; Hľadanie pre $3 $9',
 'userrights-lookup-user'           => 'Spravovať skupiny používateľov',
 'userrights-user-editname'         => 'Zadajte meno používateľa:',
 'editusergroup'                    => 'Upraviť skupinu používateľa',
-'editinguser'                      => "Úprava stránky '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
+'editinguser'                      => "Zmena oprávnení používateľa '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
 'userrights-editusergroup'         => 'Upraviť skupiny používateľa',
 'saveusergroups'                   => 'Uložiť skupiny používateľa',
 'userrights-groupsmember'          => 'Člen skupiny:',
@@ -1231,6 +1231,7 @@ PICT # misc.
 'filedelete-reason-dropdown'  => '* Bežné dôvody mazania
 ** Porušenie autorských práv
 ** Duplicitný súbor',
+'filedelete-edit-reasonlist'  => 'Upraviť dôvody zmazania',
 
 # MIME search
 'mimesearch'         => 'MIME vyhľadávanie',
@@ -1434,6 +1435,7 @@ Ak budete chcieť neskôr stránku odstrániť zo sledovaných stránok, kliknit
 'unwatch'              => 'Nesledovať',
 'unwatchthispage'      => 'Prestať sledovať túto stránku',
 'notanarticle'         => 'Toto nie je stránka',
+'notvisiblerev'        => 'Revízia bola zmazaná',
 'watchnochange'        => 'V rámci zobrazeného času nebola upravená žiadna z vašich sledovaných stránok.',
 'watchlist-details'    => '{{PLURAL:$1|Jedna sledovaná stránka|$1 sledované stránky|$1 sledovaných stránok}}, nepočítajúc diskusné stránky.',
 'wlheader-enotif'      => '* Upozorňovanie e-mailom je zapnuté.',
@@ -1513,6 +1515,7 @@ Na $2 nájdete zoznam posledných zmazaní.',
 ** Na žiadosť autora
 ** Porušenie autorských práv
 ** Vandalizmus',
+'delete-edit-reasonlist'      => 'Upraviť dôvody zmazania',
 'delete-toobig'               => 'Táto stránka má veľkú históriu úprav, viac ako $1 revízií. Mazanie takýchto stránok bolo obmedzené, aby sa zabránilo náhodnému poškodeniu {{GRAMMAR:genitív|{{SITENAME}}}}.',
 'delete-warning-toobig'       => 'Táto stránka má veľkú históriu úprav, viac ako $1 revízií. Jej zmazanie by mohlo narušiť databázové operácie {{GRAMMAR:genitív|{{SITENAME}}}}; postupujte opatrne.',
 'rollback'                    => 'Rollback úprav',
@@ -1664,6 +1667,7 @@ $1',
 
 # Block/unblock
 'blockip'                     => 'Zablokovať používateľa',
+'blockip-legend'              => 'Zablokovať používateľa',
 'blockiptext'                 => 'Použite tento formulár na zablokovanie možnosti zápisov uskutočnených z konkrétnej IP adresy alebo od používateľa.
 Mali by ste to urobiť len v prípade bránenia vandalizmu a v súlade so [[{{MediaWiki:Policy-url}}|zásadami a smernicami {{GRAMMAR:genitív|{{SITENAME}}}}]].
 Nižšie uveďte konkrétny dôvod (napríklad uveďte konkrétne stránky, ktoré padli za obeť vandalizmu).',
@@ -1771,7 +1775,7 @@ Potvrďte, že to naozaj chcete urobiť.',
 'databasenotlocked'   => 'Databáza nie je zamknutá.',
 
 # Move page
-'move-page-legend'                => 'Presunúť stránku',
+'move-page-legend'        => 'Presunúť stránku',
 'movepagetext'            => "Pomocou tohto formulára premenujete stránku a premiestnite všetky jej predchádzajúce verzie pod zadané nové meno.
 Starý názov sa stane presmerovacou stránkou na nový názov.
 Odkazy na starú stránku sa však nezmenia, ubezpečte sa, že ste skontrolovali

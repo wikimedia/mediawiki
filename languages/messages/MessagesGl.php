@@ -952,7 +952,7 @@ Para incluír un ficheiro na páxina, use unha ligazón do seguinte xeito:
 'filename'                    => 'Nome do ficheiro',
 'filedesc'                    => 'Resumo',
 'fileuploadsummary'           => 'Descrición:',
-'filestatus'                  => 'Estado dos Dereitos de Autor (Copyright):',
+'filestatus'                  => 'Status do Copyright:',
 'filesource'                  => 'Fonte:',
 'uploadedfiles'               => 'Ficheiros cargados en {{SITENAME}}',
 'ignorewarning'               => 'Ignorar a advertencia e gardar o ficheiro de calquera xeito.',
@@ -1627,7 +1627,7 @@ Por favor confirme que isto é o que quere facer.',
 'databasenotlocked'   => 'A base de datos non está bloqueada.',
 
 # Move page
-'move-page-legend'                => 'Mover páxina',
+'move-page-legend'        => 'Mover páxina',
 'movepagetext'            => "Ao usar o formulario de embaixo vai cambiar o nome da páxina, 
 movendo todo o seu historial ao novo nome.
 O título vello vaise converter nunha páxina de redirección ao novo título.

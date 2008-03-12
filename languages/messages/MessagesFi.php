@@ -1029,8 +1029,8 @@ Voit käyttää tiedostoja wikisivuilla seuraavilla tavoilla:
 'filename'                    => 'Tiedoston nimi:',
 'filedesc'                    => 'Yhteenveto',
 'fileuploadsummary'           => 'Yhteenveto',
-'filestatus'                  => 'Tiedoston tekijänoikeudet:',
-'filesource'                  => 'Lähde:',
+'filestatus'                  => 'Tiedoston tekijänoikeudet',
+'filesource'                  => 'Lähde',
 'uploadedfiles'               => 'Lisätyt tiedostot',
 'ignorewarning'               => 'Tallenna tiedosto varoituksesta huolimatta.',
 'ignorewarnings'              => 'Ohita kaikki varoitukset',
@@ -1067,8 +1067,8 @@ Jos sinulla on tämän kuvan alkuperäinen versio, tallenna se. Muussa tapaukses
 'uploadscripted'              => 'Tämä tiedosto sisältää HTML-koodia tai skriptejä, jotka selain saattaa virheellisesti suorittaa.',
 'uploadcorrupt'               => 'Tiedosto on vioittunut tai sillä on väärä tiedostopääte. Tarkista tiedosto ja lähetä se uudelleen.',
 'uploadvirus'                 => 'Tiedosto sisältää viruksen. Tarkemmat tiedot: $1',
-'sourcefilename'              => 'Lähdenimi:',
-'destfilename'                => 'Kohdenimi:',
+'sourcefilename'              => 'Lähdenimi',
+'destfilename'                => 'Kohdenimi',
 'watchthisupload'             => 'Tarkkaile tätä sivua',
 'filewasdeleted'              => 'Tämän niminen tiedosto on lisätty ja poistettu aikaisemmin. Tarkista $1 ennen jatkamista.',
 'upload-wasdeleted'           => "'''Varoitus: Olet tallentamassa tiedostoa, joka on jo aikaisemmin poistettu.'''
@@ -1089,7 +1089,7 @@ Harkitse, haluatko jatkaa tämän tiedoston tallentamista. Tiedoston poistoloki 
 'upload-curl-error28'      => 'Etälähetyksen aikakatkaisu',
 'upload-curl-error28-text' => 'Antamastasi osoitteesta ei saatu vastausta määräajassa. Varmista, että sivusto on saavutettavissa ja yritä uudelleen.',
 
-'license'            => 'Lisenssi:',
+'license'            => 'Lisenssi',
 'nolicense'          => 'Ei lisenssiä',
 'license-nopreview'  => '(esikatselua ei saatavilla)',
 'upload_source_url'  => ' (julkinen verkko-osoite)',
@@ -1666,7 +1666,8 @@ $1',
 'databasenotlocked'   => 'Tietokanta ei ole lukittu.',
 
 # Move page
-'move-page-legend'                => 'Siirrä sivu',
+'move-page'               => 'Siirrä $1',
+'move-page-legend'        => 'Siirrä sivu',
 'movepagetext'            => "Alla olevalla lomakkeella voit nimetä uudelleen sivuja, jolloin niiden koko historia siirtyy uuden nimen alle. Vanhasta sivusta tulee ohjaussivu, joka osoittaa uuteen sivuun. Vanhaan sivuun suunnattuja linkkejä ei muuteta, joten muista tehdä tarkistukset kaksinkertaisten tai rikkinäisten ohjausten varalta. '''Olet vastuussa siitä, että linkit osoittavat sinne, mihin niiden on tarkoituskin osoittaa.'''<br />Huomaa, että sivua '''ei''' siirretä mikäli uusi otsikko on olemassa olevan sivun käytössä, paitsi milloin kyseessä on tyhjä sivu tai ohjaus, jolla ei ole muokkaushistoriaa. Tämä tarkoittaa sitä, että voit siirtää sivun takaisin vanhalle nimelleen mikäli teit virheen, mutta et voi kirjoittaa olemassa olevan sivun päälle. Jos sivu tarvitsee siirtää olemassa olevan sivun päälle, ota yhteyttä [[Special:Listusers/sysop|ylläpitäjään]].",
 'movepagetalktext'        => "Sivuun mahdollisesti kytketty keskustelusivu siirretään automaattisesti, '''paitsi jos''':
 *Siirrät sivua nimiavaruudesta toiseen
