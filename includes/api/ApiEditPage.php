@@ -91,6 +91,13 @@ class ApiEditPage extends ApiBase {
 			$reqArr['wpCaptchaId'] = $params['captchaid'];
 		if(!is_null($params['captchaword']))
 			$reqArr['wpCaptchaWord'] = $params['captchaword'];
+		if(!is_null($params['section']))
+		{
+			$section = intval($params['section']);
+			if($section == 0 && $params['section'] != '0' && $params['section'] != 'new')
+				$this->dieUsage("The section parameter must be set to an integer or 'new'", "invalidsection");
+			$reqArr['wpSection'] = $params['section'];
+		}
 		
 		if($params['watch'])
 			$watch = true;
@@ -204,6 +211,7 @@ class ApiEditPage extends ApiBase {
 	protected function getAllowedParams() {
 		return array (
 			'title' => null,
+			'section' => null,
 			'text' => null,
 			'token' => null,
 			'summary' => null,
@@ -222,6 +230,7 @@ class ApiEditPage extends ApiBase {
 	protected function getParamDescription() {
 		return array (
 			'title' => 'Page title',
+			'section' => 'Section number. 0 for the top section, \'new\' for a new section',
 			'text' => 'Page content',
 			'token' => 'Edit token. You can get one of these through prop=info',
 			'summary' => 'Edit summary',
