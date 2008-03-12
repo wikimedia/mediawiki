@@ -1639,6 +1639,7 @@ $NEWPAGE
 'modifiedarticleprotection'   => 'שינה את רמת ההגנה של [[$1]]',
 'unprotectedarticle'          => 'ביטל את ההגנה על [[$1]]',
 'protect-title'               => '(שינוי רמת ההגנה של "$1"',
+'protect-backlink'            => '→ $1',
 'protect-legend'              => 'אישור הפעלת ההגנה',
 'protectcomment'              => 'הערה:',
 'protectexpiry'               => 'פקיעת ההגנה:',
