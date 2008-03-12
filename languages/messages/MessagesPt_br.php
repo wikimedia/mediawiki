@@ -10,6 +10,7 @@
  * @author 555
  * @author Nike
  * @author SPQRobin
+ * @author Lijealso
  */
 
 $fallback = 'pt';
@@ -1371,7 +1372,7 @@ Por favor confirme que você realmente pretende fazer isto, e que você vai desb
 'unlockdbsuccesstext' => 'O bando de dados da {{SITENAME}} foi destrancado.',
 
 # Move page
-'move-page-legend'         => 'Mover página',
+'move-page-legend' => 'Mover página',
 'movepagetext'     => "Utilizando o seguinte formulário você poderá renomear uma página, movendo todo o histórico para o novo título. O título anterior será transformado num redirecionamento para o novo.
 
 Links para as páginas antigas não serão mudados; certifique-se de verificar por redirecionamentos quebrados ou duplos. Você é o responsável por certificar-se de que os links continuam apontando para onde eles deveriam apontar.

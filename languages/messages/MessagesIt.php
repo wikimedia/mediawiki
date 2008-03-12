@@ -925,7 +925,7 @@ Gli altri amministratori del sito potranno accedere comunque ai contenuti nascos
 'userrights-lookup-user'           => 'Gestione dei gruppi utente',
 'userrights-user-editname'         => 'Inserire il nome utente:',
 'editusergroup'                    => 'Modifica gruppi utente',
-'editinguser'                      => "Modifica di '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
+'editinguser'                      => "Modifica dei diritti assegnati all'utente '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
 'userrights-editusergroup'         => 'Modifica gruppi utente',
 'saveusergroups'                   => 'Salva gruppi utente',
 'userrights-groupsmember'          => 'Appartiene ai gruppi:',
@@ -1174,6 +1174,7 @@ PICT # misc.
 'filedelete-reason-dropdown'  => '*Motivazioni più comuni per la cancellazione
 ** Violazione di copyright
 ** File duplicato',
+'filedelete-edit-reasonlist'  => 'Modifica le motivazioni per la cancellazione',
 
 # MIME search
 'mimesearch'         => 'Ricerca in base al tipo MIME',
@@ -1370,6 +1371,7 @@ D'ora in poi, le modifiche apportate alla pagina e alla sua discussione verranno
 'unwatch'              => 'Non seguire',
 'unwatchthispage'      => 'Smetti di seguire',
 'notanarticle'         => 'Questa pagina non è una voce',
+'notvisiblerev'        => 'La revisione è stata cancellata',
 'watchnochange'        => 'Nessuna delle pagine osservate è stata modificata nel periodo selezionato.',
 'watchlist-details'    => 'La lista degli osservati speciali contiene {{PLURAL:$1|una pagina (e la rispettiva pagina di discussione)|$1 pagine (e le rispettive pagine di discussione)}}.',
 'wlheader-enotif'      => '* La notifica via e-mail è attiva.',
@@ -1449,6 +1451,7 @@ Per dare il tuo feedback e ricevere ulteriore assistenza:
 ** Richiesta dell'autore
 ** Violazione di copyright
 ** Vandalismo",
+'delete-edit-reasonlist'      => 'Modifica le motivazioni per la cancellazione',
 'delete-toobig'               => 'La cronologia di questa pagina è molto lunga (oltre $1 revisioni). La sua cancellazione è stata limitata per evitare di creare accidentalmente dei problemi di funzionamento al database di {{SITENAME}}.',
 'delete-warning-toobig'       => 'La cronologia di questa pagina è molto lunga (oltre $1 revisioni). La sua cancellazione può creare dei problemi di funzionamento al database di {{SITENAME}}; procedere con cautela.',
 'rollback'                    => 'Annulla le modifiche',
@@ -1587,6 +1590,7 @@ $1',
 
 # Block/unblock
 'blockip'                     => 'Blocco utente',
+'blockip-legend'              => "Blocca l'utente",
 'blockiptext'                 => "Usare il modulo sottostante per bloccare l'accesso in scrittura ad uno specifico utente o indirizzo IP. Il blocco dev'essere operato per prevenire atti di vandalismo e in stretta osservanza della [[{{MediaWiki:Policy-url}}|policy di {{SITENAME}}]]. Specificare in dettaglio il motivo del blocco nel campo seguente (ad es. indicando i titoli delle pagine oggetto di vandalismo).",
 'ipaddress'                   => 'Indirizzo IP:',
 'ipadressorusername'          => 'Indirizzo IP o nome utente:',
@@ -1683,7 +1687,7 @@ $1',
 'databasenotlocked'   => 'Il database non è bloccato.',
 
 # Move page
-'move-page-legend'                => 'Spostamento di pagina',
+'move-page-legend'        => 'Spostamento di pagina',
 'movepagetext'            => "Questo modulo consente di rinominare una pagina, spostando tutta la sua cronologia al nuovo nome. La pagina attuale diverrà automaticamente un redirect al nuovo titolo. I collegamenti esistenti non saranno aggiornati; verificare che lo spostamento non abbia creato doppi redirect o redirect errati. L'onere di garantire che i collegamenti alla pagina restino corretti spetta a chi la sposta.
 
 Si noti che la pagina '''non''' sarà spostata se ne esiste già una con il nuovo nome, a meno che non sia vuota o costituita solo da un redirect alla vecchia e sia priva di versioni precedenti. In caso di spostamento errato si può quindi tornare subito al vecchio titolo, e non è possibile sovrascrivere per errore una pagina già esistente.

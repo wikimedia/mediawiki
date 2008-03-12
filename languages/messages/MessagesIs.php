@@ -313,15 +313,24 @@ $messages = array(
 'dec'           => 'des',
 
 # Bits of text used by many pages
-'categories'            => 'Flokkar',
-'pagecategories'        => '{{PLURAL:$1|Flokkur|Flokkar}}',
-'category_header'       => 'Greinar í flokknum „$1“',
-'subcategories'         => 'Undirflokkar',
-'category-media-header' => 'Margmiðlunarefni í flokknum „$1“',
-'category-empty'        => "''Þessi flokkur inniheldur engar greinar eða margmiðlunarefni.''",
+'categories'               => 'Flokkar',
+'pagecategories'           => '{{PLURAL:$1|Flokkur|Flokkar}}',
+'category_header'          => 'Greinar í flokknum „$1“',
+'subcategories'            => 'Undirflokkar',
+'category-media-header'    => 'Margmiðlunarefni í flokknum „$1“',
+'category-empty'           => "''Þessi flokkur inniheldur engar greinar eða margmiðlunarefni.''",
+'hidden-categories'        => '{{PLURAL:$1|Falinn flokkur|Faldir flokkar}}',
+'hidden-category-category' => 'Faldir flokkar', # Name of the category where hidden categories will be listed
 
-'linkprefix'   => '/^(.*?)([áÁðÐéÉíÍóÓúÚýÝþÞæÆöÖA-Za-z-–]+)$/sDu',
-'mainpagetext' => "<big>'''Uppsetning á MediaWiki heppnaðist.'''</big>",
+'linkprefix'        => '/^(.*?)([áÁðÐéÉíÍóÓúÚýÝþÞæÆöÖA-Za-z-–]+)$/sDu',
+'mainpagetext'      => "<big>'''Uppsetning á MediaWiki heppnaðist.'''</big>",
+'mainpagedocfooter' => "Ráðfærðu þig við [http://meta.wikimedia.org/wiki/Help:Contents User's Guide] fyrir frekari upplýsingar um notkun wiki-kerfisins.
+
+== Fyrir byrjendur ==
+
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Listi yfir uppsetningarstillingar]
+* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki Algengar spurningar]
+* [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Póstlisti MediaWiki-útgáfa]",
 
 'about'          => 'Um',
 'article'        => 'Innihald síðu',
@@ -419,7 +428,7 @@ $messages = array(
 'portal'            => 'Samfélagsgátt',
 'portal-url'        => 'Project:Samfélagsgátt',
 'privacy'           => 'Meðferð persónuupplýsinga',
-'privacypage'       => 'Project:Stefnumál_um_friðhelgi',
+'privacypage'       => 'Project:Stefnumál um friðhelgi',
 'sitesupport'       => 'Fjárframlög',
 'sitesupport-url'   => 'Project:Fjárframlög',
 
@@ -447,10 +456,13 @@ $messages = array(
 'thisisdeleted'           => 'Endurvekja eða skoða $1?',
 'viewdeleted'             => 'Skoða $1?',
 'restorelink'             => '{{PLURAL:$1|eina eydda breytingu|$1 eyddar breytingar}}',
-'feedlinks'               => 'Nippan:',
-'site-rss-feed'           => '$1 RSS Feed',
-'site-atom-feed'          => '$1 Atom Feed',
-'page-rss-feed'           => '"$1" RSS Feed',
+'feedlinks'               => 'Streymi:',
+'feed-invalid'            => 'Röng tegund áskriftarstreymis.',
+'feed-unavailable'        => 'Streymi er ekki fáanlegt á {{SITENAME}}',
+'site-rss-feed'           => '$1 RSS-streymi',
+'site-atom-feed'          => '$1 Atom-streymi',
+'page-rss-feed'           => '„$1“ RSS-streymi',
+'page-atom-feed'          => '„$1“ Atom-streymi',
 'red-link-title'          => '$1 (ekki enn skrifuð)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
@@ -518,12 +530,14 @@ Ef þetta á ekki við, þá gæti verið að þú hafir fundið villu í hugbú
 'perfdisabled'         => 'Þessi síða hefur verið gerð óvirk þar sem notkun hennar veldur of miklu álagi á gagnagrunninum.',
 'perfcached'           => 'Eftirfarandi er afrit af umbeðinni síðu og gæti því ekki verið nýjasta útgáfa hennar:',
 'perfcachedts'         => 'Eftirfarandi gögn eru úr flýtiminni og voru síðast uppfærð $1.',
+'querypage-no-updates' => 'Lokað er fyrir uppfærslur af þessari síðu. Gögn sett hér munu ekki vistast.',
 'wrong_wfQuery_params' => 'Röng færibreyta fyrir wfQuery()<br />
 Virkni: $1<br />
 Spurn: $2',
 'viewsource'           => 'Skoða wikikóða',
 'viewsourcefor'        => 'fyrir $1',
 'actionthrottled'      => 'Aðgerðin kafnaði',
+'actionthrottledtext'  => 'Til þess að verjast ruslpósti, er ekki hægt að framkvæma þessa aðgerð of oft, og þú hefur farið fram yfir þau takmörk. Gjörðu svo vel og reyndu aftur eftir nokkrar mínútur.',
 'protectedpagetext'    => 'Þessari síðu hefur verið læst til að koma í veg fyrir breytingar.',
 'viewsourcetext'       => 'Þú getur skoðað og afritað kóðann á þessari síðu:',
 'protectedinterface'   => 'Þessi síða útvegar textann sem birtist í viðmóti hugbúnaðarins, og er þess vegna læst til að koma í veg fyrir misnotkun.',
@@ -532,6 +546,7 @@ Spurn: $2',
 'namespaceprotected'   => "Þú hefur ekki leyfi til að breyta síðum í '''$1''' nafnrýminu.",
 'customcssjsprotected' => 'Þú hefur ekki leyfi til að breyta þessari síð því hún inniheldur notendastillingar fyrir annann notanda.',
 'ns-specialprotected'  => 'Ekki er hægt að breyta síðum í {{ns:special}} nafnrýminu.',
+'titleprotected'       => 'Ekki er hægt að búa til síðu með þessum titli því hann var verndaður af [[User:$1|$1]]. Ástæðan er <i>$2</i>.',
 
 # Login and logout pages
 'logouttitle'                => 'Útskráning notanda',
@@ -707,7 +722,7 @@ Vistfangið þitt er $5. Vinsamlegast taktu það fram í fyrirspurnum þínum."
 Ef þú hefur óvart vilst hingtað, veldu einfaldlega '''til baka''' á vafranum þínum.",
 'anontalkpagetext'         => "----Þetta er spjallsíða fyrir óskráðan notanda sem hefur ekki búið til aðgang enn þá eða notar hann ekki, slíkir notendur þekkjast á vistfangi sínu. Það getur gerst að margir notendur deili sama vistfangi þannig að athugasemdum sem beint er til eins notanda geta birst á spjallsíðu annars. [[Special:Userlogin|Skráðu þig sem notanda]] til að koma í veg fyrir svona misskilning.''",
 'noarticletext'            => 'Hér er engin texti enn sem komið er, þú getur [[Special:Search/{{PAGENAME}}|leitað í öðrum síðum]] eða [{{fullurl:{{FULLPAGENAMEE}}|action=edit}} breytt henni sjálfur].',
-'clearyourcache'           => "'''Ath:''' Eftir að þú hefur vistað breytingar getur þurft að hreinsa flýtiskrár vafrans til að sjá þær. Í '''Mozilla / Konqueror''' er það gert með ''ctrl-shift-R'', '''IE / Opera:''' ''ctrl-F5'', '''Safari:''' ''slaufa-val-E'' (''command-option-E'' / ''command-alt-E'').",
+'clearyourcache'           => "'''Ath:''' Eftir að þú hefur vistað breytingar getur þurft að hreinsa flýtiminni vafrans til að sjá þær. Í '''Internet Explorer''': ýttu ''Ctrl-F5'', '''Mozilla''': haltu niðri ''Shift'' og smelltu á Reload (eða ýttu á ''Ctrl-Shift-R''), '''Opera'''/'''Konqueror''': ýttu á ''F5'', '''Safari''': ýttu á ''Cmd-Opt-E''.",
 'usercssjsyoucanpreview'   => '<strong>Ath:</strong> Hægt er að nota „Forskoða“ hnappinn til að prófa CSS og JavaScript kóða áður en hann er vistaður.',
 'usercsspreview'           => "'''Hafðu í huga að þú ert aðeins að forskoða CSS-kóðann þinn, hann hefur ekki enn verið vistaður!'''",
 'updated'                  => '(Uppfært)',
@@ -1499,7 +1514,7 @@ Gefðu ástæðu fyrir banninu (meðal annars að nefna síðu sem var skemmd).'
 'databasenotlocked'   => 'Gagnagrunnurinn er ekki læstur.',
 
 # Move page
-'move-page-legend'                => 'Færa síðu',
+'move-page-legend'        => 'Færa síðu',
 'movepagetext'            => "Hér er hægt að endurnefna síðu, hún mun ásamt breytingarskrá hennar
 verða færð á nýja nafnið og núverandi staðsetning mun
 breytast í tilvísun sem vísa mun á nýju staðsetninguna,
@@ -1818,7 +1833,7 @@ Ef þú ert *ekki* sá sem skráði þetta notandanafn skaltu alls ekki fylgja t
 
 # Scary transclusion
 'scarytranscludefailed'  => '[Gat ekki sótt snið fyrir $1; því miður]',
-'scarytranscludetoolong' => '[URL-ið er of langt; því miður]',
+'scarytranscludetoolong' => '[vefslóðin er of löng; því miður]',
 
 # Trackbacks
 'trackbackbox'      => '<div id="mw_trackbacks">
@@ -1906,6 +1921,8 @@ $1',
 
 # Special:Version
 'version-specialpages' => 'Kerfissíður',
+'version-variables'    => 'Breytur',
+'version-version'      => 'Útgáfa',
 
 # Special:Filepath
 'filepath'        => 'Slóð skráar',

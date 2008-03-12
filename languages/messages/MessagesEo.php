@@ -1306,6 +1306,7 @@ komprenata kiel rekomendo aŭ reklamo.',
 'unwatch'              => 'Malatentu',
 'unwatchthispage'      => 'Malatentu paĝon',
 'notanarticle'         => 'Ne estas artikolo',
+'notvisiblerev'        => 'Revizio estis forigita',
 'watchnochange'        => 'Neniu artikolo en via atentaro redaktiĝis dum la prispektita tempoperiodo.',
 'watchlist-details'    => 'Vi priatentas {{PLURAL:$1|$1 paĝon|$1 paĝojn}}, krom diskutpaĝoj.',
 'wlheader-enotif'      => '* Retpoŝta sciigo estas ebligita',
@@ -1636,7 +1637,8 @@ Bonvolu certigu, ke vi efektive intencas tion fari.',
 'databasenotlocked'   => 'La datumbazo ne estas ŝlosita.',
 
 # Move page
-'move-page-legend'                => 'Movu paĝon',
+'move-page'               => 'Movu $1',
+'move-page-legend'        => 'Movu paĝon',
 'movepagetext'            => "Per la jena formulo vi povas ŝanĝi la nomon de iu paĝo, kunportante
 ĝian historion de redaktoj je la nova nomo.
 La antaŭa titolo fariĝos alidirektilo al la nova titolo.
@@ -1758,6 +1760,7 @@ Datoj de revizioj kaj nomoj de redaktantoj estos preservitaj.
 
 # Import log
 'importlogpage'                    => 'Loglibro de importaĵoj',
+'importlogpagetext'                => 'Administrantecaj importoj de paĝoj kun redakto-historio de aliaj vikioj.',
 'import-logentry-upload'           => 'importita [[$1]] de dosiera alŝuto',
 'import-logentry-upload-detail'    => '$1 {{PLURAL:$1|revizio|revizioj}}',
 'import-logentry-interwiki'        => 'transvikiigita $1',
@@ -1954,6 +1957,7 @@ Sekvaj ligilo en la sama linio estas konsiderata kiel esceptoj (paĝoj kiel la b
 'exif-stripoffsets'                => 'Loko de bilda datumo',
 'exif-rowsperstrip'                => 'Nombro de vicoj por strio',
 'exif-stripbytecounts'             => 'Bitikoj por densigita strio',
+'exif-jpeginterchangeformat'       => 'Flankigu al JPEG SOI',
 'exif-jpeginterchangeformatlength' => 'Bitokoj de JPEG-datumo',
 'exif-transferfunction'            => 'Transiga funkcio',
 'exif-whitepoint'                  => 'Koloreco de blanka punkto',
@@ -2016,6 +2020,7 @@ Sekvaj ligilo en la sama linio estas konsiderata kiel esceptoj (paĝoj kiel la b
 'exif-contrast'                    => 'Kontrasto',
 'exif-saturation'                  => 'Saturado',
 'exif-sharpness'                   => 'Akreco',
+'exif-devicesettingdescription'    => 'Resumo pri aparataj reguligiloj',
 'exif-subjectdistancerange'        => 'Subjekta distanco',
 'exif-imageuniqueid'               => 'Unika identigo de bildo',
 'exif-gpsversionid'                => 'versio de GPS etikedo',

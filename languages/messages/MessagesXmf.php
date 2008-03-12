@@ -93,7 +93,7 @@ $messages = array(
 'qbspecialpages' => 'სპეციალურ გვერდეფ',
 'moredotdotdot'  => 'სრულო...',
 'mypage'         => 'ჩქიმ გვერდ',
-'mytalk'         => 'დისკუსია ჩქიმც',
+'mytalk'         => 'ჩქიმ განხილვა',
 'navigation'     => 'ნავიგაცია',
 'and'            => 'დო',
 
@@ -233,13 +233,13 @@ $messages = array(
 
 # Diffs
 'history-title'           => '"$1" თირუალეფიშ ისტორია',
-'difference'              => '(ვერსიალეფიშ დარება)',
+'difference'              => '(ვერსიეფიშ დარება)',
 'lineno'                  => 'ღაზი $1:',
 'compareselectedversions' => 'გიშაგორილ ვერსიეფიშ დარება',
 'editundo'                => 'გაუქვება',
 
 # Search results
-'noexactmatch' => "'''გვერდ თე სახელით \"\$1\" ვა არსეენც.''' თქვან შეგიძლიათ [[:\$1|შექმნათ თენა გვერდ]].",
+'noexactmatch' => "'''გვერდ თე სახელით \"\$1\" ვა არსეენც.''' თქვან შეგილებუნთ [[:\$1|თე გვერდიშ კეთება]].",
 'nextn'        => 'უკულ $1',
 'viewprevnext' => 'ქოძირ  ($1) ($2) ($3).',
 'powersearch'  => 'გორუა',
@@ -389,17 +389,17 @@ $messages = array(
 'contribslink'       => 'ხანდა',
 
 # Move page
-'move-page-legend'       => 'გვერდიშ გინოღალა',
-'movearticle'    => 'გვერდიშ გინოღალა',
-'newtitle'       => 'ახალ სათაურ',
-'move-watch'     => 'თე გვერდიშ კონტროლ',
-'movepagebtn'    => 'გვერდიშ გინოღალა',
-'pagemovedsub'   => 'გინოღალა რსულებულ რე',
-'movepage-moved' => '<big>\'\'\'"$1" გინოღალულ რე "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
-'movedto'        => 'გინაღალულ რე',
-'movelogpage'    => 'გინოღალაშ რეგისტრაცია',
-'movereason'     => 'საბაბი',
-'revertmove'     => 'გაუქვება',
+'move-page-legend' => 'გვერდიშ გინოღალა',
+'movearticle'      => 'გვერდიშ გინოღალა',
+'newtitle'         => 'ახალ სათაურ',
+'move-watch'       => 'თე გვერდიშ კონტროლ',
+'movepagebtn'      => 'გვერდიშ გინოღალა',
+'pagemovedsub'     => 'გინოღალა რსულებულ რე',
+'movepage-moved'   => '<big>\'\'\'"$1" გინოღალულ რე "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movedto'          => 'გინაღალულ რე',
+'movelogpage'      => 'გინოღალაშ რეგისტრაცია',
+'movereason'       => 'საბაბი',
+'revertmove'       => 'გაუქვება',
 
 # Export
 'export' => 'გვერდეფიშ ექსპორტ',
@@ -424,7 +424,7 @@ $messages = array(
 'tooltip-n-recentchanges'         => 'ვიკის ბოლო თირუალეფ',
 'tooltip-n-sitesupport'           => 'ხუჯ დომკინით',
 'tooltip-t-contributions'         => 'ქოძირეთ თე ხვარებელიშ ხანდა',
-'tooltip-t-specialpages'          => 'არძა სპეციალურ გვერდ',
+'tooltip-t-specialpages'          => 'ირ სპეციალურ გვერდ',
 'tooltip-ca-nstab-user'           => 'ხვარებელიშ გვერდიშ ძირაფა',
 'tooltip-ca-nstab-project'        => 'პროექტიშ გვერდ',
 'tooltip-ca-nstab-image'          => 'სურათიშ გვერდიშ ძირაფა',

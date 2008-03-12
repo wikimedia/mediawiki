@@ -1,10 +1,9 @@
 <?php
-/** Winaray
- * This is the Winaray localisation file
+/** Waray (Winaray)
  *
- * @author Harvzsf (August 2007)
- * 
  * @addtogroup Language
+ *
+ * @author Harvzsf
  */
 
 $messages = array(
@@ -131,6 +130,8 @@ $messages = array(
 'portal-url'        => 'Project:Ganghaan han Komunidad',
 'sitesupport'       => 'Mga Donasyon',
 'sitesupport-url'   => 'Project:Mga Donasyon',
+
+'badaccess-group0' => 'Diri ka gintutugutan pagbuhat han buruhaton nga imo ginhangyo.',
 
 'versionrequired'     => 'Kinahanglan an Bersion $1 han MediaWiki',
 'versionrequiredtext' => 'Kinahanglan an Bersyon $1 han MediaWiki ha paggamit hini nga pakli.  Kitaa an [[Special:Version|bersyon nga pakli]].',

@@ -1098,7 +1098,7 @@ Si teniu la imatge en resolució completa, pugeu-la, sinó mireu de canviar-li e
 'uploadscripted'              => 'Aquest fitxer conté codi HTML o de seqüències que pot ser interpretat equivocadament per un navegador.',
 'uploadcorrupt'               => 'El fitxer està corrupte o té una extensió incorrecte. Reviseu-lo i torneu-lo a pujar.',
 'uploadvirus'                 => 'El fitxer conté un virus! Detalls: $1',
-'sourcefilename'              => 'Font del nom del fitxer:',
+'sourcefilename'              => 'Nom del fitxer font:',
 'destfilename'                => 'Nom del fitxer de destinació:',
 'watchthisupload'             => 'Vigila aquesta pàgina',
 'filewasdeleted'              => "Prèviament es va carregar un fitxer d'aquest nom i després va ser esborrat. Hauríeu de verificar $1 abans de procedir a carregar-lo una altra vegada.",
@@ -1413,6 +1413,7 @@ Si voleu deixar de vigilar la pàgina, cliqueu sobre l'enllaç de «Desatén» d
 'unwatch'              => 'Desatén',
 'unwatchthispage'      => 'Desatén',
 'notanarticle'         => 'No és una pàgina amb contingut',
+'notvisiblerev'        => 'La versió ha estat esborrada',
 'watchnochange'        => "No s'ha editat cap dels elements que vigileu en el període de temps que es mostra.",
 'watchlist-details'    => '{{PLURAL:$1|$1 pàgina|$1 pàgines}} vigilades, sense comptar les pàgines de discussió',
 'wlheader-enotif'      => "* S'ha habilitat la notificació per correu electrònic.",
@@ -1757,7 +1758,8 @@ Confirmeu que això és el que voleu fer.",
 'databasenotlocked'   => 'La base de dades no està bloquejada.',
 
 # Move page
-'move-page-legend'                => 'Reanomena la pàgina',
+'move-page'               => 'Mou $1',
+'move-page-legend'        => 'Reanomena la pàgina',
 'movepagetext'            => "Emprant el següent formulari reanomenareu una pàgina,
 movent tot el seu historial al nou nom.
 El títol anterior es convertirà en un redireccionament al nou títol.

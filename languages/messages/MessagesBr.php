@@ -98,6 +98,7 @@ $messages = array(
 'tog-nolangconversion'        => "Diweredekaat an treiñ diforc'hioù yezh",
 'tog-ccmeonemails'            => 'Kas din un eilenn eus ar posteloù a gasan da implijerien all',
 'tog-diffonly'                => "Arabat diskouez danvez ar pennadoù dindan an diforc'hioù",
+'tog-showhiddencats'          => 'Diskouez ar rummadoù kuzhet',
 
 'underline-always'  => 'Atav',
 'underline-never'   => 'Morse',
@@ -158,12 +159,14 @@ $messages = array(
 'dec'           => 'Kzu',
 
 # Bits of text used by many pages
-'categories'            => 'Roll ar rummadoù',
-'pagecategories'        => '{{PLURAL:$1|Rummad |Rummad }}',
-'category_header'       => 'Niver a bennadoù er rummad "$1"',
-'subcategories'         => 'Isrummad',
-'category-media-header' => 'Restroù liesvedia er rummad "$1"',
-'category-empty'        => "''N'eus na pajenn na media ebet er rummad-mañ evit ar mare.''",
+'categories'               => 'Roll ar rummadoù',
+'pagecategories'           => '{{PLURAL:$1|Rummad |Rummad }}',
+'category_header'          => 'Niver a bennadoù er rummad "$1"',
+'subcategories'            => 'Isrummad',
+'category-media-header'    => 'Restroù liesvedia er rummad "$1"',
+'category-empty'           => "''N'eus na pajenn na media ebet er rummad-mañ evit ar mare.''",
+'hidden-categories'        => '{{PLURAL:$1|Rummad kuzhet|Rummad kuzhet}}',
+'hidden-category-category' => 'Rummadoù kuzhet', # Name of the category where hidden categories will be listed
 
 'mainpagetext'      => 'Meziant {{SITENAME}} staliet.',
 'mainpagedocfooter' => "Sellit ouzh [http://meta.wikimedia.org/wiki/Help:Contents Sturlevr an implijerien] evit gouzout hiroc'h war an doare da implijout ar meziant wiki.
@@ -300,10 +303,12 @@ $messages = array(
 'restorelink'             => "{{PLURAL:$1|ur c'hemm diverket|$1 kemm diverket}}",
 'feedlinks'               => 'Lanv :',
 'feed-invalid'            => 'Seurt lanv direizh.',
+'feed-unavailable'        => "N'haller ket implijout lanvadoù koumanantiñ war {{SITENAME}}",
 'site-rss-feed'           => 'Lanv RSS evit $1',
 'site-atom-feed'          => 'Lanv Atom evit $1',
 'page-rss-feed'           => 'Lanv RSS evit "$1"',
 'page-atom-feed'          => 'Lanv Atom evit "$1"',
+'red-link-title'          => "$1 (n'eo ket bet savet c'hoazh)",
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Pennad',
@@ -620,6 +625,7 @@ N'eus nemet an implijerien ganto ar statud merour a c'hall degas kemmoù enni.</
 'templatesusedsection'      => 'Patromoù implijet er rann-mañ :',
 'template-protected'        => '(gwarezet)',
 'template-semiprotected'    => '(damwarezet)',
+'hiddencategories'          => "{{PLURAL:$1|1 rummad kuzhet|$1 rummad kuzhet}} m'emañ rollet ar bajenn-mañ :",
 'edittools'                 => '<!-- Diskouezet e vo an destenn kinniget amañ dindan ar sternioù kemmañ ha kargañ. -->',
 'nocreatetitle'             => "Strishaet eo bet ar c'hrouiñ pajennoù",
 'nocreatetext'              => 'Strishaet eo bet an tu da grouiñ pajennoù nevez war {{SITENAME}}.
@@ -991,8 +997,8 @@ Ma'z eus ganeoc'h ur skeudenn uhel he fizhder, pellgargit anezhi; a-hend-all che
 'uploadcorrupt'               => 'Brein eo ar restr-mañ, par eo he ment da netra pe fall eo an astenn anezhi.
 Gwiriit anezhi mar plij.',
 'uploadvirus'                 => 'Viruzet eo ar restr! Titouroù : $1',
-'sourcefilename'              => 'Anv ar resr da gas:',
-'destfilename'                => "Anv a vo roet d'ar restr enrollet:",
+'sourcefilename'              => 'Anv ar restr tarzh :',
+'destfilename'                => 'Anv ma vo enrollet ar restr :',
 'watchthisupload'             => 'Evezhiañ ar bajenn-mañ',
 'filewasdeleted'              => "Ur restr gant an anv-mañ zo bet enporzhiet dija ha diverket goude-se. Mat e vefe deoc'h gwiriañ an $1 a-raok hec'h enporzhiañ en-dro.",
 'upload-wasdeleted'           => "'''Diwallit : Oc'h enporzhiañ ur bajenn bet diverket c'hoazh emaoc'h.'''
@@ -1028,7 +1034,7 @@ PICT # misc.
 'upload-curl-error28'      => "Aet dreist d'an termen",
 'upload-curl-error28-text' => "Re bell eo bet al lec'hienn o respont. Gwiriit mat emañ al lec'hienn enlinenn, gortozit ur pennadig ha klaskit en-dro. Mat e vo deoc'h adklask d'ur mare dibresoc'h marteze ivez.",
 
-'license'            => 'Aotre:',
+'license'            => 'Aotre implijout :',
 'nolicense'          => 'Hini ebet diuzet',
 'license-nopreview'  => '(Dibosupl rakwelet)',
 'upload_source_url'  => " (Un URL reizh a c'hall bezañ tizhet gant an holl)",
@@ -1628,7 +1634,7 @@ Kadarnait, mar plij, eo se hoc'h eus c'hoant da ober.",
 'databasenotlocked'   => "N'eo ket prennet ar bank titouroù.",
 
 # Move page
-'move-page-legend'                => 'Adenvel ur pennad',
+'move-page-legend'        => 'Adenvel ur pennad',
 'movepagetext'            => "Grit gant ar furmskrid a-is evit adenvel ur pennad hag adkas an holl stummoù kent anezhañ war-du an anv nevez.
 Dont a raio an titl kentañ da vezañ ur bajenn adkas war-du an titl nevez.
 Ne vo ket kemmet liammoù an titl kozh ha ne vo ket dilec'hiet ar bajenn gaozeal, ma'z eus anezhi.

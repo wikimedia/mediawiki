@@ -13,6 +13,7 @@
  * @author Eirik
  * @author Kph-no
  * @author M.M.S.
+ * @author Stigmj
  */
 
 $skinNames = array(
@@ -848,7 +849,7 @@ Andre administratorer på {{SITENAME}} vil fortsatt kunne se det skjulte innhold
 
 # Preferences page
 'preferences'              => 'Innstillinger',
-'mypreferences'            => 'Mine innstillinger',
+'mypreferences'            => 'Innstillinger',
 'prefs-edits'              => 'Antall redigeringer:',
 'prefsnologin'             => 'Ikke logget inn',
 'prefsnologintext'         => 'Du må være [[Special:Userlogin|logget inn]] for å endre brukerinnstillingene.',
@@ -1351,6 +1352,7 @@ Hvis du senere vil fjerne siden fra overvåkningslisten, klikk «Avslutt overvå
 'unwatch'              => 'Avslutt overvåkning',
 'unwatchthispage'      => 'Fjerner overvåkning',
 'notanarticle'         => 'Ikke en artikkel',
+'notvisiblerev'        => 'Revisjonen er slettet',
 'watchnochange'        => 'Ingen av sidene i overvåkningslisten er endret i den valgte perioden.',
 'watchlist-details'    => '$1 sider overvåket, utenom diskusjonssider.',
 'wlheader-enotif'      => '* E-postnotifikasjon er slått på.',
@@ -1531,7 +1533,7 @@ $1',
 
 # Contributions
 'contributions' => 'Bidrag',
-'mycontris'     => 'Mine bidrag',
+'mycontris'     => 'Egne bidrag',
 'contribsub2'   => 'For $1 ($2)',
 'nocontribs'    => 'Ingen endringer er funnet som passer disse kriteriene.',
 'ucnote'        => 'Her er denne brukerens siste <b>$1</b> endringer i de siste <b>$2</b> dagene.',
@@ -1604,7 +1606,7 @@ $1',
 'unblocked'                   => '[[User:$1|$1]] har blitt avblokkert',
 'unblocked-id'                => 'Blokkering $1 har blitt fjernet',
 'ipblocklist'                 => 'Liste over blokkerte IP-adresser og brukere',
-'ipblocklist-legend'          => 'Find en blokkert bruker',
+'ipblocklist-legend'          => 'Finn en blokkert bruker',
 'ipblocklist-username'        => 'Brukernavn eller IP-adresse:',
 'ipblocklist-submit'          => 'Søk',
 'blocklistline'               => '$1, $2 blokkerte $3 ($4)',
@@ -1624,7 +1626,7 @@ $1',
 'blocklogentry'               => 'blokkerte «[[$1]]» med en varighet på $2 $3',
 'blocklogtext'                => 'Dette er en logg som viser hvilke brukere som har blitt blokkert og avblokkert. Automatisk blokkerte IP-adresser vises ikke. Se [[Special:Ipblocklist|blokkeringslisten]] for en liste over IP-adresser som er blokkert akkurat nå.',
 'unblocklogentry'             => 'opphevet blokkeringen av $1',
-'block-log-flags-anononly'    => 'kun urgegistrerte brukere',
+'block-log-flags-anononly'    => 'kun uregistrerte brukere',
 'block-log-flags-nocreate'    => 'kontooppretting slått av',
 'block-log-flags-noautoblock' => 'autoblokkering slått av',
 'block-log-flags-noemail'     => 'e-posttjenester blokkert',
@@ -1667,7 +1669,7 @@ Bekreft at du har til hensikt å gjøre dette.',
 'databasenotlocked'   => 'Databasen er ikke låst.',
 
 # Move page
-'move-page-legend'                => 'Flytt side',
+'move-page-legend'        => 'Flytt side',
 'movepagetext'            => "Når du bruker skjemaet under, vil du få omdøpt en 
 side og flyttet hele historikken til det nye navnet.
 Den gamle tittelen vil bli en omdirigeringsside til den nye tittelen.
@@ -1870,7 +1872,7 @@ For å eksportere sider, skriv inn titler i tekstboksen under, én tittel per li
 'othercontribs'    => 'Basert på arbeid av $1.',
 'others'           => 'andre',
 'siteusers'        => '{{SITENAME}}-bruker(e) $1',
-'creditspage'      => 'Sidekreditteringer',
+'creditspage'      => 'Sidekrediteringer',
 'nocredits'        => 'Ingen krediteringer er tilgjengelig for denne siden.',
 
 # Spam protection
@@ -1896,7 +1898,7 @@ For å eksportere sider, skriv inn titler i tekstboksen under, én tittel per li
 # Math options
 'mw_math_png'    => 'Vis alltid som PNG',
 'mw_math_simple' => 'HTML hvis veldig enkel, ellers PNG',
-'mw_math_html'   => 'HTML vis mulig, ellers PNG',
+'mw_math_html'   => 'HTML hvis mulig, ellers PNG',
 'mw_math_source' => 'Behold som TeX (for tekst-nettlesere)',
 'mw_math_modern' => 'Anbefalt for moderne nettlesere',
 'mw_math_mathml' => 'MathML hvis mulig',
@@ -2248,7 +2250,7 @@ E-postsenderen ga følgende melding: $1',
 'confirmemail_needlogin'  => 'Du må $1 for å bekrefte e-postadressen din.',
 'confirmemail_success'    => 'Din e-postadresse har nå blitt bekreftet. Du kan nå logge inn og nyte wikien.',
 'confirmemail_loggedin'   => 'E-postadressen din har blitt bekreftet.',
-'confirmemail_error'      => 'Noe gitt galt i lagringa av din bekreftelse.',
+'confirmemail_error'      => 'Noe gikk galt under lagringen av din bekreftelse.',
 'confirmemail_subject'    => 'Bekreftelsesmelding fra {{SITENAME}}',
 'confirmemail_body'       => 'Noen, antageligvis deg, fra IP-adressen $1, har registrert kontoen «$2» på {{SITENAME}}, og oppgitt denne e-postadressen. For å bekrefte at kontoen virkelig tilhører deg og for å slå på e-posttjenester på {{SITENAME}}, åpne denne lenken i din nettleser: $3
 

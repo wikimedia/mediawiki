@@ -1383,7 +1383,7 @@ Om du inte längre vill att sidan skall finnas på din övervakningslista, klick
 'unwatch'              => 'avbevaka',
 'unwatchthispage'      => 'Stoppa övervakningen av denna sida',
 'notanarticle'         => 'Inte en artikel',
-'notvisiblerev'        => 'Revisionen har raderats',
+'notvisiblerev'        => 'Sidversionen har raderats',
 'watchnochange'        => 'Inga av dina övervakade sidor har ändrats inom den visade tidsperioden.',
 'watchlist-details'    => '$1 {{PLURAL:$1|sida övervakad|sidor övervakade}} (utöver diskussionssidor).',
 'wlheader-enotif'      => '* Bekräftelse per e-post är aktiverad.',
@@ -1707,7 +1707,8 @@ Bekräfta att du verkligen vill göra detta, och att du kommer att låsa upp dat
 'databasenotlocked'   => 'Databasen är inte låst.',
 
 # Move page
-'move-page-legend'                => 'Flytta sida',
+'move-page'               => 'Flytta $1',
+'move-page-legend'        => 'Flytta sida',
 'movepagetext'            => "Med hjälp av formuläret härunder kan du byta namn på en sida, och flytta hela dess historik till ett nytt namn. Den gamla sidtiteln kommer att göras om till en omdirigering till den nya titeln; kontrollera därför om du skapar några dubbla eller trasiga omdirigeringar. Du bör också se till att länkar fortsätter att peka dit de ska.
 
 Notera att sidan '''inte''' kan flyttas om det redan finns en sida under den nya sidtiteln, såvida inte den sidan är tom eller en omdirigiring till den gamla titeln och saknar annan versionshistorik. Det innebär att du kan flytta tillbaks en sida du just flyttat om du råkar göra fel.
@@ -1716,11 +1717,11 @@ Notera att sidan '''inte''' kan flyttas om det redan finns en sida under den nya
 'movepagetalktext'        => "Diskussionssidan kommer att även den automatiskt flyttas '''om inte''':
 *Det redan finns en diskussionssida som inte är tom med det nya namnet, eller
 *Du avmarkerar rutan nedan.",
-'movearticle'             => 'Flytta sida',
+'movearticle'             => 'Flytta sidan:',
 'movenologin'             => 'Inte inloggad',
 'movenologintext'         => 'För att flytta en sida måste du vara registrerad användare och [[Special:Userlogin|inloggad]].',
 'movenotallowed'          => 'Du har inte behörighet att flytta sidor på den här wikin.',
-'newtitle'                => 'Till den nya sidtiteln',
+'newtitle'                => 'Till nya titeln:',
 'move-watch'              => 'Bevaka denna sida',
 'movepagebtn'             => 'Flytta sidan',
 'pagemovedsub'            => 'Flyttningen lyckades',
@@ -1737,7 +1738,7 @@ Välj något annat namn istället.',
 '1movedto2_redir'         => 'flyttade [[$1]] till [[$2]], som var en omdirigeringssida',
 'movelogpage'             => 'Sidflyttslogg',
 'movelogpagetext'         => 'Listan nedan visar sidor som flyttats.',
-'movereason'              => 'Anledning',
+'movereason'              => 'Anledning:',
 'revertmove'              => 'flytta tillbaka',
 'delete_and_move'         => 'Radera och flytta',
 'delete_and_move_text'    => '==Radering krävs==
@@ -2360,7 +2361,7 @@ Pröva vanlig förhandsgranskning istället.',
 
 # Friendlier slave lag warnings
 'lag-warn-normal' => 'Ändringar nyare än $1 sekunder kanske inte visas i den här listan.',
-'lag-warn-high'   => 'På grund av stor fördröjinig i databasen, så visas kanske inte ändringar nyare än $1 sekunder i den här listan.',
+'lag-warn-high'   => 'På grund av stor fördröjning i databasen, så visas kanske inte ändringar nyare än $1 sekunder i den här listan.',
 
 # Watchlist editor
 'watchlistedit-numitems'       => 'Din övervakningslista innehåller {{PLURAL:$1|1 titel|$1 titlar}}, utöver diskussionsidor.',

@@ -1433,7 +1433,7 @@ Il y a {{PLURAL:$7|'''$7''' article|'''$7''' articles}} dans [[meta:Help:Job_que
 'unwatch'              => 'Ne plus suivre',
 'unwatchthispage'      => 'Ne plus suivre',
 'notanarticle'         => 'Pas un article',
-'notvisiblerev'        => 'La version a été supprimée',
+'notvisiblerev'        => 'Version supprimée',
 'watchnochange'        => 'Aucune des pages que vous suivez n’a été modifiée pendant la période affichée',
 'watchlist-details'    => 'Vous suivez <b>$1</b> {{PLURAL:$1|page|pages}}, sans compter les pages de discussion.',
 'wlheader-enotif'      => '* La notification par courriel est activée.',
@@ -1765,7 +1765,8 @@ N’oubliez pas de la déverrouiller lorsque vous aurez terminé votre opératio
 'databasenotlocked'   => 'La base de données n’est pas verrouillée.',
 
 # Move page
-'move-page-legend'                => 'Renommer une page',
+'move-page'               => 'Déplacer $1',
+'move-page-legend'        => 'Renommer une page',
 'movepagetext'            => 'Utilisez le formulaire ci-dessous pour renommer une page, en déplaçant tout son historique vers le nouveau nom. L’ancien titre deviendra une page de redirection vers le nouveau titre. Les liens vers le titre de l’ancienne page ne seront pas changés ; veuillez vérifier que ce déplacement n’a pas créé de double redirection. Vous devez vous assurer que les liens continuent de pointer vers leur destination supposée.
 
 Une page ne sera pas déplacée si la page du nouveau titre existe déjà, à moins que cette dernière soit vide ou en redirection, et qu’elle n’ait pas d’historique. Ce qui veut dire que vous pouvez renommer une page vers sa position d’origine si vous avez commis une erreur, mais que vous ne pouvez effacer une page déjà existante par ce procédé.
@@ -2390,7 +2391,7 @@ Veuillez confirmer que vous désirez recréer cet article.",
 'hideresults'      => 'Cacher les résultats',
 'useajaxsearch'    => 'Utiliser la recherche AJAX',
 
-# Separators for various lists
+# Separators for various lists, etc.
 'colon-separator' => '&nbsp;:&#32;',
 
 # Multipage image navigation
