@@ -30,6 +30,10 @@
  *
  */
 class LogPage {
+	const DELETED_ACTION = 1;
+	const DELETED_COMMENT = 2;
+	const DELETED_USER = 4;
+    const DELETED_RESTRICTED = 8;
 	/* @access private */
 	var $type, $action, $comment, $params, $target;
 	/* @acess public */
@@ -311,6 +315,40 @@ class LogPage {
 		return $messages[$flag];
 	}
 	
+	/**
+	 * Determine if the current user is allowed to view a particular
+	 * field of this log row, if it's marked as deleted.
+	 * @param Row $row
+	 * @param int $field
+	 * @return bool
+	 */
+	public static function userCan( $row, $field ) {
+		if( ( $row->log_deleted & $field ) == $field ) {
+			global $wgUser;
+			$permission = ( $row->log_deleted & self::DELETED_RESTRICTED ) == self::DELETED_RESTRICTED
+				? 'hiderevision'
+				: 'deleterevision';
+			wfDebug( "Checking for $permission due to $field match on $event->log_deleted\n" );
+			return $wgUser->isAllowed( $permission );
+		} else {
+			return true;
+		}
+	}
+
+	/**
+	 * int $field one of DELETED_* bitfield constants
+	 * @param Row $row
+	 * @return bool
+	 */
+	public static function isDeleted( $row, $field ) {
+		return ($row->log_deleted & $field) == $field;
+	}
 }
 
-
+/**
+ * Aliases for backwards compatibility with 1.6
+ */
+define( 'MW_LOG_DELETED_ACTION', LogPage::DELETED_ACTION );
+define( 'MW_LOG_DELETED_USER', LogPage::DELETED_USER );
+define( 'MW_LOG_DELETED_COMMENT', LogPage::DELETED_COMMENT );
+define( 'MW_LOG_DELETED_RESTRICTED', LogPage::DELETED_RESTRICTED );
