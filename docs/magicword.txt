@@ -1,44 +1,88 @@
 magicword.txt
 
-Magic Words are some phrases used in the wikitext. They are defined in several arrays:
-* $magicWords (includes/MagicWord.php) includes their internal names ('MAG_XXX').
-* $wgVariableIDs (includes/MagicWord.php) includes their IDs (MAG_XXX, which are constants),
-  after their internal names are used for "define()".
-* Localized arrays (languages/LanguageXX.php) include their different names to be used by the users.
+Magic Words are some phrases used in the wikitext. They are used for two things:
+* Variables (like {{PAGENAME}}, {{SERVER}}, ...): part of wikitext, that looks
+  like templates but that don't accept any parameter.
+* Parser functions (like {{fullurl:...}}, {{#special:...}}): behaves like 
+  functions and accepts parameters.
 
-The localized arrays keys are the internal IDs, and the values are an array, whose include their
-case-sensitivity and their alias forms. The first form defined is used by the program, for example,
-when moving a page and its old name should include #REDIRECT.
+The localized arrays keys are the internal name, and the values are an array, 
+whose include their case-sensitivity and their alias forms. The first form 
+defined is used by the program, for example, when moving a page and its old name
+should include #REDIRECT.
 
-Adding magic words should be done using several hooks:
-* "MagicWordMagicWords" should be used to add the internal name ('MAG_XXX') to $magicWords.
-* "MagicWordwgVariableIDs" should be used to add the ID (MAG_XXX constant) to $wgVariableIDs.
-* "LanguageGetMagic" should be used to add the different names of the magic word. Use both
-  the localized name and the English name. Get the language code by the parameter $langCode;
+They can be added in several arrays:
+* LanguageGetMagic hook, by adding a new key in $magicWords array. You can get
+  language code in the $lang parameter. Use both the localized name and the 
+  English name.
+* By adding a file to $wgExtensionMessagesFiles and defining there $magicWords.
+  This array is associative with the language code in the first dimension key
+  and then a "normal" array of magic words.
+* Localized arrays (languages/messages/LanguageXX.php) include their different 
+  names to be used by the users.
 
-For example:
+To add a new variable, you should use the "MagicWordwgVariableIDs" hook to add
+the internal name to the $magicWords array. You'll need to define the value of
+the variable with the "ParserGetVariableValueSwitch" hook.
 
-$wgHooks['MagicWordMagicWords'][] = 'wfAddCustomMagicWord';
+For example to add a new variable:
+
 $wgHooks['MagicWordwgVariableIDs'][] = 'wfAddCustomMagicWordID';
 $wgHooks['LanguageGetMagic'][] = 'wfAddCustomMagicWordLang';
-
-function wfAddCustomMagicWord( &$magicWords ) {
-	$magicWords[] = 'MAG_CUSTOM';
-	return true;
-}
+$wgHooks['ParserGetVariableValueSwitch'][] = 'wfGetCustomMagicWordValue';
 
 function wfAddCustomMagicWordID( &$magicWords ) {
-	$magicWords[] = MAG_CUSTOM;
+	$magicWords[] = 'mag_custom';
 	return true;
 }
 
 function wfAddCustomMagicWordLang( &$magicWords, $langCode ) {
 	switch ( $langCode ) {
 		case 'es':
-			$magicWords[MAG_CUSTOM] = array( 0, "#aduanero", "#custom" );
+			$magicWords['mag_custom'] = array( 1, "ADUANERO", "CUSTOM" );
 			break;
 		default:
-			$magicWords[MAG_CUSTOM] = array( 0, "#custom" );
+			$magicWords['mag_custom'] = array( 1, "CUSTOM" );
 	}
 	return true;
 }
+
+function wfGetCustomMagicWordValue( &$parser, &$varCache, &$index, &$ret ){
+	if( $index == 'mag_custom' ){
+		$ret = $varCache['mag_custom'] = "Custom value";
+	}
+	return true;
+}
+
+And to add a new parser function:
+
+$wgHooks['LanguageGetMagic'][] = 'wfAddCustomMagicWordLang';
+$wgHooks['ParserFirstCallInit'][] = 'wfRegisterCustomMagicWord';
+
+function wfAddCustomMagicWordLang( &$magicWords, $langCode ) {
+	switch ( $langCode ) {
+		case 'es':
+			$magicWords['mag_custom'] = array( 0, "aduanero", "custom" );
+			break;
+		default:
+			$magicWords['mag_custom'] = array( 0, "custom" );
+	}
+	return true;
+}
+
+function wfRegisterCustomMagicWord( &$parser ){
+	$parser->setFunctionHook( 'mag_custom', 'wfGetCustomMagicWordValue' );
+	return true;
+}
+
+function wfGetCustomMagicWordValue( &$parser, $var1, $var2 ){
+	return "custom: var1 is $var1, var2 is $var2";
+}
+
+Note: the 'ParserFirstCallInit' hook is only aviable since 1.12. To work with
+an older version, you'll need to use an extension function.
+
+Online documentation (contains more informations):
+Magic words: http://www.mediawiki.org/wiki/Manual:Magic_words
+Variables: http://www.mediawiki.org/wiki/Manual:Variable
+Parser functions: http://www.mediawiki.org/wiki/Manual:Parser_functions
