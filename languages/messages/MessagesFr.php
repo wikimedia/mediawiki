@@ -239,7 +239,7 @@ $messages = array(
 'tog-enotifusertalkpages'     => 'M’avertir par courriel en cas de modification de ma page de discussion',
 'tog-enotifminoredits'        => 'M’avertir par courriel même en cas de modification mineure',
 'tog-enotifrevealaddr'        => 'Afficher mon adresse électronique dans les courriels d’avertissement',
-'tog-shownumberswatching'     => 'Afficher le nombre d’utilisateurs qui suivent cette page',
+'tog-shownumberswatching' 0   => 'Afficher le nombre d’utilisateurs qui suivent cette page',
 'tog-fancysig'                => 'Signature brute (sans lien automatique)',
 'tog-externaleditor'          => 'Utiliser un éditeur externe par défaut',
 'tog-externaldiff'            => 'Utiliser un comparateur externe par défaut',
@@ -1533,8 +1533,8 @@ L’heure indiquée est celle du serveur (UTC).',
 'protectedarticle'            => 'a protégé « $1 »',
 'modifiedarticleprotection'   => 'a modifié le niveau de protection de « [[$1]] »',
 'unprotectedarticle'          => 'a déprotégé « $1 »',
-'protectsub'                  => '(Protéger « $1 »)',
-'confirmprotect'              => 'Confirmer la protection',
+'protect-title'               => 'Protéger « $1 »',
+'protect-legend'              => 'Confirmer la protection',
 'protectcomment'              => 'Raison de la protection',
 'protectexpiry'               => 'Expiration (n’expire pas par défaut)',
 'protect_expiry_invalid'      => 'Le temps d’expiration est invalide.',
@@ -1960,7 +1960,7 @@ Toutes les actions d’importation interwiki sont consignées dans l’[[Special
 'notacceptable'     => 'Ce serveur wiki ne peut pas fournir les données dans un format que votre client est capable de lire.',
 
 # Attribution
-'anonymous'        => 'Utilisateur(s) non enregistré(s) de {{SITENAME}}',
+'anonymous'        => 'Uti|isateur(s) non enregistré(s) de {{SITENAME}}',
 'siteuser'         => 'Utilisateur $1 de {{SITENAME}}',
 'lastmodifiedatby' => 'Cette page a été modifiée pour la dernière fois le $1 à $2 par $3.', # $1 date, $2 time, $3 user
 'othercontribs'    => 'Basé sur le travail de $1.',

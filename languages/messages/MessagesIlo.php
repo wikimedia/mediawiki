@@ -235,7 +235,7 @@ Kasta met nga ikarim kadakami a bukodmo a sinurat wenno gapuanan daytoy, wenno k
 'deletecomment'      => 'Rason no apay nga ikkaten',
 'revertpage'         => 'Naikkat ti panangbaliw ni [[Special:Contributions/$2|$2]] ([[User talk:$2|Pagtutungtongan]]), naisubli iti kaudian a version ni [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'unprotectedarticle' => 'naikkat ti saluad ti "[[$1]]"',
-'confirmprotect'     => 'Pasingkedan ti panangsaluad',
+'protect-legend'     => 'Pasingkedan ti panangsaluad',
 'protectcomment'     => 'Rason no apay a saluadan daytoy a panid',
 
 # Contributions

@@ -820,8 +820,8 @@ Lūdzu, spied \"''back''\" un atjaunini iepriekšējo lapu. Tad mēģini vēlrei
 'protectlogpage'     => 'Aizsargāšanas reģistrs',
 'protectedarticle'   => 'aizsargāja $1',
 'unprotectedarticle' => 'atcēla aizsardzību: $1',
-'protectsub'         => '(Aizsargāt "$1"?)',
-'confirmprotect'     => 'Apstiprināt aizsargāšanu',
+'protect-title'      => 'Aizsargāt "$1"?',
+'protect-legend'     => 'Apstiprināt aizsargāšanu',
 'protectcomment'     => 'Aizsargāšanas iemesls',
 
 # Undelete

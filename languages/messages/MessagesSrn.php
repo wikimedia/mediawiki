@@ -836,7 +836,7 @@ Iksi yu wan papira no langar wana si, go na a papira nanga du opo \"No si\" ini 
 'deletereasonotherlist'       => 'Trawan yesikrari',
 'rollbacklink'                => 'draywatra',
 'protectlogpage'              => 'Tapubuku',
-'confirmprotect'              => 'Gi tapu klari',
+'protect-legend'              => 'Gi tapu klari',
 'protectcomment'              => 'Opotaki:',
 'protectexpiry'               => 'Lasi:',
 'protect_expiry_invalid'      => 'A lasi ben fowtu.',

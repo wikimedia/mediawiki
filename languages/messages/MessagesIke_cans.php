@@ -295,7 +295,7 @@ $messages = array(
 # Delete/protect/revert
 'dellogpage'          => 'ᓂᐸᖅ ᓂᐱ',
 'deletionlog'         => 'ᓂᐸᖅ ᓂᐱ',
-'confirmprotect'      => 'ᐸᑎᒻᒥᕚ ᓴᐳᒻᒥᕚ',
+'protect-legend'      => 'ᐸᑎᒻᒥᕚ ᓴᐳᒻᒥᕚ',
 'protect-level-sysop' => 'ᓯᕐᓚᒃ ᑎᑎᕋᖅᓯᒪᔪᓂᒃ ᑐᖅᑯᖅᑎᕆᔨ',
 
 # Restrictions (nouns)

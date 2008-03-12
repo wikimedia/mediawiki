@@ -975,7 +975,7 @@ De lêste feroaring wie fan [[User:$3|$3]] ([[User talk:$3|Oerlis]]).',
 'editcomment'                 => 'De gearfetting wie: "<i>$1</i>".', # only shown if there is an edit comment
 'revertpage'                  => 'Tebek set ta de ferzje fan "$1"', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'protectlogpage'              => 'Befeiligingslochboek',
-'confirmprotect'              => 'Befeiliging befêstigje',
+'protect-legend'              => 'Befeiliging befêstigje',
 'protectcomment'              => 'Oanmerkings:',
 'protectexpiry'               => 'Doer:',
 'protect_expiry_invalid'      => 'De oanjûne doer is ûnjildich.',

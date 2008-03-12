@@ -213,7 +213,7 @@ $messages = array(
 'deletepage'              => 'Apagar página',
 'deletedarticle'          => 'apagado "[[$1]]"',
 'rollbacklink'            => 'voltar',
-'confirmprotect'          => 'Confirmar protecçon',
+'protect-legend'          => 'Confirmar protecçon',
 'protect-summary-cascade' => 'p. progressiva',
 
 # Undelete

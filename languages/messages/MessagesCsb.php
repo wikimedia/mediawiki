@@ -596,7 +596,7 @@ Czej chcesz remôc starnã z lëste ùzéronëch artiklów, klikni ''Òprzestôj
 Ùsôdzcą slédnej zmianë je terô [[User:$3|$3]] ([[User_talk:$3|Diskùsëjô]]).',
 'protectedarticle'   => 'zazychrowónô [[$1]]',
 'unprotectedarticle' => 'òdzychrowóny [[$1]]',
-'confirmprotect'     => 'Pòcwierdzë zazychrowanié',
+'protect-legend'     => 'Pòcwierdzë zazychrowanié',
 'protectcomment'     => 'Przëczëna zazychrowóniô',
 
 # Undelete

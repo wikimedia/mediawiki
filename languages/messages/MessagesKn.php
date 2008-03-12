@@ -691,7 +691,7 @@ $1',
 ** Vandalism',
 'protectlogpage'        => 'ಸಂರಕ್ಷಣೆ ದಿನಚರಿ',
 'protectedarticle'      => '"[[$1]]" ಸಂರಕ್ಷಿಸಲಾಗಿದೆ',
-'confirmprotect'        => 'ಸಂರಕ್ಷಣೆ ಧೃಡಪಡಿಸಿ',
+'protect-legend'        => 'ಸಂರಕ್ಷಣೆ ಧೃಡಪಡಿಸಿ',
 'protectcomment'        => 'ಸಂರಕ್ಷಿಸಲು ಕಾರಣ:',
 
 # Restriction levels

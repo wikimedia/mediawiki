@@ -1463,7 +1463,7 @@ wiki: $PAGEEDITOR_WIKI
 'protectedarticle'            => '已經保護 "[[$1]]"',
 'modifiedarticleprotection'   => '已經改咗 "[[$1]]" 嘅保護等級',
 'unprotectedarticle'          => '已經唔再保護 "[[$1]]"',
-'protectsub'                  => '（設定緊「$1」嘅保護等級）',
+'protect-title'               => '設定緊「$1」嘅保護等級',
 'confirmprotect'              => '確認保護',
 'protectcomment'              => '註解:',
 'protectexpiry'               => '到期:',

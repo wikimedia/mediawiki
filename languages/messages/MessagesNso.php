@@ -775,7 +775,7 @@ Lebelela $2 go hweetša sedi ka diphulo tša bjale.',
 'editcomment'                 => 'Ahlaahlo ya phetogo ke : "<i>$1</i>".', # only shown if there is an edit comment
 'protectlogpage'              => "''Log'' yago lota",
 'protectedarticle'            => 'lotilwe "[[$1]]"',
-'confirmprotect'              => 'Tiišetša go lota',
+'protect-legend'              => 'Tiišetša go lota',
 'protectcomment'              => 'Ahlaahla:',
 'protectexpiry'               => 'Fetatšatši:',
 'protect_expiry_invalid'      => 'Fetatšatši, nako ye ga ya dumelwa.',

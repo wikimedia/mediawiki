@@ -1221,7 +1221,7 @@ $NEWPAGE
 'protectlogpage'              => 'დაცვის ისტორია',
 'protectedarticle'            => 'დაცულია "[[$1]]"',
 'unprotectedarticle'          => 'დაცვა მოხსნილია "[[$1]]"',
-'confirmprotect'              => 'დაცვის დადასტურება',
+'protect-legend'              => 'დაცვის დადასტურება',
 'protectcomment'              => 'კომენტარი:',
 'protectexpiry'               => 'ვადა',
 'protect-default'             => '(სტანდარტული)',

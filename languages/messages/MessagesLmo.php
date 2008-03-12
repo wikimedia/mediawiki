@@ -409,8 +409,8 @@ al butún \"tegn piü d'öcc\".",
 'alreadyrolled'         => "L è mia pussibil turná indré al'ültima versiún da [[:$1]] dal [[User:$2|$2]] ([[User talk:$2|Discüssiún]]); un quaivün l á gjamò redataa o giraa indré la pagina.
 L'ültima redatazziún l eva da [[User:$3|$3]] ([[User talk:$3|Discüssiún]]).",
 'unprotectedarticle'    => 'l\'ha sblucaa "[[$1]]"',
-'protectsub'            => '(Prutezziún da "$1")',
-'confirmprotect'        => 'Cunferma de blocch',
+'protect-title'         => 'Prutezziún da "$1"',
+'protect-legend'        => 'Cunferma de blocch',
 'protectcomment'        => 'Spiega parchè ti vörat blucá la pagina',
 
 # Undelete

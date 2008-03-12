@@ -665,8 +665,8 @@ Template:Khu-pia̍t-ia̍h',
 'alreadyrolled'     => 'Bô-hoat-tō· kā [[User:$2|$2]] ([[User talk:$2|Thó-lūn]]) tùi [[:$1]] ê siu-kái ká-tńg-khì; í-keng ū lâng siu-kái a̍h-sī ká-tńg chit ia̍h. Téng 1 ūi siu-kái-chiá sī [[User:$3|$3]] ([[User talk:$3|Thó-lūn]]).',
 'editcomment'       => 'Siu-kái phêng-lūn sī: "<i>$1</i>".', # only shown if there is an edit comment
 'protectedarticle'  => 'pó-hō͘ "[[$1]]"',
-'protectsub'        => '(Pó-hō· "$1")',
-'confirmprotect'    => 'Khak-tēng beh pó-hō·',
+'protect-title'     => 'Pó-hō· "$1"',
+'protect-legend'    => 'Khak-tēng beh pó-hō·',
 'protectcomment'    => 'Pó-hō· ê lí-iû:',
 'protect-cascade'   => 'Cascading protection - pó-hō͘ jīm-hô pau-hâm tī chit ia̍h ê ia̍h.',
 

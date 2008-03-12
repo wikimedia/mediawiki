@@ -1271,7 +1271,7 @@ e-mail: $PAGEEDITOR_EMAIL
 Къорчалав алтына алынгъан саифелер там джедвели [[{{ns:special}}:Protectedpages|бу саифеде]] корип оласынъыз.',
 'protectedarticle'            => '"[[$1]]" къорчалав алтына алынды',
 'unprotectedarticle'          => 'къорчалав чыкъарлыды: "[[$1]]"',
-'confirmprotect'              => 'Къорчалавны тасдыкъла',
+'protect-legend'              => 'Къорчалавны тасдыкъла',
 'protectcomment'              => 'Къорчалав алтына алув себеби',
 'protect-text'                => '<strong>[[<nowiki>$1</nowiki>]]</strong> саифесининъ къорчалав севиесини мындан корип олур ве денъиштирип оласынъыз.',
 'protect-default'             => '(стандарт)',
