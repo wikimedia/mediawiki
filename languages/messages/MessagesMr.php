@@ -1491,7 +1491,6 @@ $NEWPAGE
 'protectexpiry'               => 'संपण्याचा कालावधी:',
 'protect_expiry_invalid'      => 'संपण्याचा कालावधी चुकीचा आहे.',
 'protect_expiry_old'          => 'संपण्याचा कालावधी उलटून गेलेला आहे.',
-'unprotectsub'                => '("$1" असुरक्षित करत आहे)',
 'protect-unchain'             => 'स्थानांतरणाची परवानगी द्या',
 'protect-text'                => '<strong><nowiki>$1</nowiki></strong> या पानाची सुरक्षापातळी तुम्ही इथे पाहू शकता अथवा बदलू शकता.',
 'protect-locked-blocked'      => 'तुम्ही प्रतिबंधीत असताना सुरक्षा पातळी बदलू शकत नाही.येथे <strong>$1</strong> पानाकरिता सध्याची मांडणावळ आहे:',

@@ -1227,7 +1227,6 @@ Daha fazla bilgi için [[Project:Koruma altına alınmış sayfa]] sayfasına ba
 'protectexpiry'               => 'Bitiş tarihi:',
 'protect_expiry_invalid'      => 'Geçersiz bitiş tarihi.',
 'protect_expiry_old'          => 'Geçmişteki son kullanma zamanı.',
-'unprotectsub'                => '(koruma kaldırılır "$1")',
 'protect-unchain'             => 'Taşıma kilidini kaldır',
 'protect-text'                => '[[$1]] sayfasının koruma durumunu buradan görebilir ve değiştirebilirsiniz. Lütfen [[Project:Koruma politikası|koruma politikasına]] uygun hareket ettiğinizden emin olunuz.',
 'protect-locked-access'       => 'Kullanıcı hesabınız sayfanın koruma düzeylerini değiştirme yetkisine sahip değil.

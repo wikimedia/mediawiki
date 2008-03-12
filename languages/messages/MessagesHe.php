@@ -1644,7 +1644,6 @@ $NEWPAGE
 'protectexpiry'               => 'פקיעת ההגנה:',
 'protect_expiry_invalid'      => 'זמן פקיעת ההגנה בלתי חוקי.',
 'protect_expiry_old'          => 'זמן פקיעת ההגנה כבר עבר.',
-'unprotectsub'                => '(ביטול ההגנה על "$1")',
 'protect-unchain'             => 'שינוי הרשאות העברה',
 'protect-text'                => 'באפשרותכם לראות ולשנות כאן את רמת ההגנה של הדף <strong><nowiki>$1</nowiki></strong>. אנא ודאו שאתם פועלים בהתאם בהתאם לנהלי האתר.',
 'protect-locked-blocked'      => 'אינכם יכולים לשנות את רמת ההגנה של הדף בעודכם חסומים.

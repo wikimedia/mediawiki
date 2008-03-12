@@ -659,7 +659,6 @@ Lasta edito esis da [[User:$3|$3]] ([[User talk:$3|Talk]]).',
 'protectsub'         => '(Protektante "$1")',
 'confirmprotect'     => 'Konfirmar protekto',
 'protectcomment'     => 'Motivo por la protekto',
-'unprotectsub'       => '(Desprotektante "$1")',
 
 # Restrictions (nouns)
 'restriction-edit' => 'Redaktar',

@@ -1415,7 +1415,6 @@ Vidu [[Special:Protectedpages|liston de protektitaj paĝoj]] por pli da informoj
 'protectexpiry'               => 'Eksvalidiĝas:',
 'protect_expiry_invalid'      => 'Nevalida findaŭro.',
 'protect_expiry_old'          => 'Eksvalidigxa tempo jam pasis.',
-'unprotectsub'                => '(Malprotektanta "$1")',
 'protect-unchain'             => 'Malŝlosu movpermesojn',
 'protect-text'                => 'Vi povas ĉi tie vidi kaj ŝanĝi la protektnivelon de la paĝo [[$1]]. Bonvolu certiĝi ke vi respektas la [[Special:Protectedpages|gvidliniojn de la projekto]].',
 'protect-locked-blocked'      => 'Vi ne povas ŝanĝi prokekto-nivelojn dum forbarita. Jen la nunaj ecoj de la paĝo <strong>$1</strong>:',

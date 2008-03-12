@@ -823,7 +823,6 @@ Lūdzu, spied \"''back''\" un atjaunini iepriekšējo lapu. Tad mēģini vēlrei
 'protectsub'         => '(Aizsargāt "$1"?)',
 'confirmprotect'     => 'Apstiprināt aizsargāšanu',
 'protectcomment'     => 'Aizsargāšanas iemesls',
-'unprotectsub'       => '(Neaizsargāt "$1"?)',
 
 # Undelete
 'undelete'           => 'Atjaunot dzēstu lapu',

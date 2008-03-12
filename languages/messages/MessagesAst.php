@@ -1417,7 +1417,6 @@ navegador pa cargar otra vuelta la páxina y vuelve a intentalo.',
 'protectexpiry'               => 'Caduca:',
 'protect_expiry_invalid'      => 'Caducidá non válida.',
 'protect_expiry_old'          => 'La fecha de caducidá ta pasada.',
-'unprotectsub'                => '(Desprotexendo "$1")',
 'protect-unchain'             => 'Camudar los permisos pa tresllaos',
 'protect-text'                => 'Equí pues ver y camudar el nivel de proteición de la páxina <strong><nowiki>$1</nowiki></strong>.',
 'protect-locked-blocked'      => 'Nun pues camudar los niveles de proteición mentes teas bloquiáu. Esta

@@ -1285,7 +1285,6 @@ Pi favuri utilizza lu tastu "\'n arreri" dû tò browser, ricàrrica la pàggina
 'protectexpiry'               => 'Scadenza',
 'protect_expiry_invalid'      => 'Scadenza nun vàlida.',
 'protect_expiry_old'          => 'Scadenza già trascursa.',
-'unprotectsub'                => '(Rèvuca prutezzioni di "$1")',
 'protect-unchain'             => 'Sblocca pirmissu di spustamentu',
 'protect-text'                => 'Ccà poi vìdiri e canciari lu liveddu di prutezzioni pi la pàggina <strong><nowiki>$1</nowiki></strong>.',
 'protect-locked-blocked'      => 'Nun pò canciari li liveddi di prutizzioni quannu sî bloccatu. Li mpostazzioni correnti pâ pàggina sugnu <strong>$1</strong>:',

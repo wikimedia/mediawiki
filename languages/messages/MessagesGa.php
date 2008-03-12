@@ -1138,7 +1138,6 @@ Féach ar [[Special:Protectedpages|Leathanach glasáilte]] chun a thuilleadh eol
 'protectsub'                  => '(Ag glasáil "$1")',
 'confirmprotect'              => 'Cinntigh an glasáil',
 'protectcomment'              => 'Cúis don glasáil',
-'unprotectsub'                => '(Ag díghlasáil "$1")',
 'protect-unchain'             => 'Díghlasáil an cead athainmithe',
 'protect-text'                => 'Is féidir leat an leibhéal glasála a athrú anseo don leathanach <strong><nowiki>$1</nowiki></strong>.',
 'protect-default'             => '(réamhshocrú)',

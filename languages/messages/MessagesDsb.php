@@ -1510,7 +1510,6 @@ Pšosym nawroś se na bok, wót kótaregož sy pśišeł a wopytaj hyšći raz.'
 'protectexpiry'               => 'cas wótběžy:',
 'protect_expiry_invalid'      => 'Zapódany cas jo njekorektny.',
 'protect_expiry_old'          => 'Zapódany cas jo wótběžał.',
-'unprotectsub'                => '(Šćitanje boka „$1“ se wótpóra)',
 'protect-unchain'             => 'Šćit pśed pśesunjenim změniś',
 'protect-text'                => "How móžoš status šćita boka '''<nowiki>$1</nowiki>''' wobglědowaś a jen změniś.",
 'protect-locked-blocked'      => 'Njamóžoš status šćita togo boka změniś, dokulaž jo twójo wužywarske konto se blokěrowało. How su aktualne nastajenja šćita za bok <strong>„$1“:</strong>.',

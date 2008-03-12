@@ -412,7 +412,6 @@ L'ültima redatazziún l eva da [[User:$3|$3]] ([[User talk:$3|Discüssiún]])."
 'protectsub'            => '(Prutezziún da "$1")',
 'confirmprotect'        => 'Cunferma de blocch',
 'protectcomment'        => 'Spiega parchè ti vörat blucá la pagina',
-'unprotectsub'          => '(Sblocch de "$1")',
 
 # Undelete
 'undelete'           => 'Varda i pagin scancelaa',

@@ -1725,7 +1725,6 @@ $NEWPAGE
 'protectexpiry'               => 'تنتهي في:',
 'protect_expiry_invalid'      => 'وقت الانتهاء غير صحيح.',
 'protect_expiry_old'          => 'وقت انتهاء المنع يقع في الماضي.',
-'unprotectsub'                => '(إزالة حماية "$1")',
 'protect-unchain'             => 'فصل سماح النقل',
 'protect-text'                => 'يمكنك هنا أن تعرض و تغير مستوى الحماية للصفحة <strong><nowiki>$1</nowiki></strong>.',
 'protect-locked-blocked'      => 'لا يمكنك تغيير مستويات الحماية وأنت ممنوع.

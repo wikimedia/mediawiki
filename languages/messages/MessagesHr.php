@@ -1443,7 +1443,6 @@ Pogledajte [[Special:Protectedpages|zaštićene stranice]] za popis trenutačno 
 'protectexpiry'               => 'Trajanje zaštite:',
 'protect_expiry_invalid'      => 'Upisani vremenski rok nije valjan.',
 'protect_expiry_old'          => 'Vrijeme isteka je u prošlosti.',
-'unprotectsub'                => '(Uklanjam zaštitu stranice "$1")',
 'protect-unchain'             => 'Otključaj ovlaštenja za premještanje',
 'protect-text'                => 'Ovdje možete pregledati i promijeniti razinu zaštite za stranicu <strong><nowiki>$1</nowiki></strong>.
 Molim pripazite da ovo radite u skladu s [[{{MediaWiki:Policy-url}}|pravilima]].',

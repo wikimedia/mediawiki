@@ -1314,7 +1314,6 @@ De letzte Ännern is vun [[User:$3|$3]]
 'protectexpiry'               => 'Löppt ut:',
 'protect_expiry_invalid'      => 'Utlooptiet ungüllig',
 'protect_expiry_old'          => 'Utlooptiet al vörbi.',
-'unprotectsub'                => '(Beennen vun de Sparr vun „$1“)',
 'protect-unchain'             => 'Schuul vör dat Schuven ännern',
 'protect-text'                => "Hier kannst du den Schuulstatus för de Siet '''<nowiki>$1</nowiki>''' ankieken un ännern.",
 'protect-locked-access'       => 'Du hest nich de nödigen Rechten, den Schuulstatus vun de Siet to ännern. Dit sünd de aktuellen Instellungen för de Siet <strong>„$1“:</strong>',

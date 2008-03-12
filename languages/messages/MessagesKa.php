@@ -1224,7 +1224,6 @@ $NEWPAGE
 'confirmprotect'              => 'დაცვის დადასტურება',
 'protectcomment'              => 'კომენტარი:',
 'protectexpiry'               => 'ვადა',
-'unprotectsub'                => '(დაცვის მოხსნა "$1")',
 'protect-default'             => '(სტანდარტული)',
 'protect-fallback'            => 'საჭიროა "$1"-ის უფლება',
 'protect-level-autoconfirmed' => 'არარეგისტრირებული მომხმარებლების დაბლოკვა',

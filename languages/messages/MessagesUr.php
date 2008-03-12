@@ -562,7 +562,6 @@ $messages = array(
 'protectedarticle'    => '"[[$1]]" کومحفوظ کردیا',
 'unprotectedarticle'  => '"[[$1]]" کوغیر محفوظ کیا',
 'protectcomment'      => 'محفوظ کرنے کی وجہ',
-'unprotectsub'        => '("$1" غیر محفوظ کی جا رہی ہے۔)',
 'protect-default'     => '(طے شدہ)',
 'protect-level-sysop' => 'صرف منتظمین',
 

@@ -1540,7 +1540,6 @@ Veja a [[Special:Protectedpages|lista de páginas protegidas]] para uma listagem
 'protectexpiry'               => 'Expiração',
 'protect_expiry_invalid'      => 'O tempo de expiração fornecido é inválido.',
 'protect_expiry_old'          => 'O tempo de expiração fornecido se situa no passado.',
-'unprotectsub'                => '(Desprotegendo "$1")',
 'protect-unchain'             => 'Desbloquear permissões de moção',
 'protect-text'                => 'Você pode, nesta página, alterar o nível de proteção para <strong><nowiki>$1</nowiki></strong>.',
 'protect-locked-blocked'      => 'Você não poderá alterar os níveis de proteção enquanto estiver bloqueado. Esta é a configuração atual para a página <strong>$1</strong>:',

@@ -917,7 +917,6 @@ an that ye'r daein this in accord wi [[{{MediaWiki:Policy-url}}]].",
 'unprotectedarticle'  => 'unprotectit "[[$1]]"',
 'protectsub'          => '(Protectin "$1")',
 'protectcomment'      => 'Raeson for protectin',
-'unprotectsub'        => '(Unprotectin "$1")',
 'protect-text'        => 'Ye can see an chynge the protection level here for the page <strong><nowiki>$1</nowiki></strong>.',
 'protect-level-sysop' => 'Juist administrators',
 

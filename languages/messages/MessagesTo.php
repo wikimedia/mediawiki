@@ -803,7 +803,6 @@ Ko e fatu fakamuimui naʻe fatu ʻe [[User:$3|$3]] ([[User talk:$3|Alea]]).',
 'protectsub'          => '(ʻOku maluʻi "$1")',
 'confirmprotect'      => 'Fakamoʻoniʻi e maluʻi',
 'protectcomment'      => 'ʻUhingha maʻa e maluʻi',
-'unprotectsub'        => '(ʻOku taʻemaluʻi "$1")',
 'protect-level-sysop' => 'Kau pule fakafounga pē',
 
 # Restrictions (nouns)

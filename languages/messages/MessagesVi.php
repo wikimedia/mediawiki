@@ -1461,7 +1461,6 @@ Sửa đổi lần cuối bởi [[User:$3|$3]] ([[User talk:$3|Thảo luận]]).
 'protectexpiry'               => 'Thời hạn:',
 'protect_expiry_invalid'      => 'Thời hạn không hợp lệ.',
 'protect_expiry_old'          => 'Thời hạn đã qua.',
-'unprotectsub'                => '(Sắp mở khóa cho “$1”)',
 'protect-unchain'             => 'Vẫn cho đổi tên trang',
 'protect-text'                => 'Bạn có thể xem và đổi kiểu khóa trang <strong><nowiki>$1</nowiki></strong> ở đây.',
 'protect-locked-blocked'      => 'Bạn không thể đổi mức khóa khi bị cấm. Đây là trạng thái

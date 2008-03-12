@@ -1348,7 +1348,6 @@ $NEWPAGE
 'protectexpiry'               => 'Шумордави:',
 'protect_expiry_invalid'      => 'Шумордама пинге аф кондясти.',
 'protect_expiry_old'          => 'Шумордама пингсь йотась.',
-'unprotectsub'                => '("$1"-нь араламать валхнема)',
 'protect-unchain'             => 'Панжемс йотафтомань мярьговома',
 'protect-text'                => 'Тондейть ули кода тяса ваномс эди полафтомс аралама виенц <strong><nowiki>$1</nowiki></strong> лопанди.',
 'protect-locked-blocked'      => 'Аш кода полафтомс араламать виенц сёлгома пингста. Лопать тяниень арафнеманза тясот <strong>$1</strong>:',

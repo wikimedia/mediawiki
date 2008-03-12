@@ -1271,7 +1271,6 @@ Qorçalav altına alınğan saifeler tam cedveli [[{{ns:special}}:Protectedpages
 'unprotectedarticle'          => 'qorçalav çıqarlıdı: "[[$1]]"',
 'confirmprotect'              => 'Qorçalavnı tasdıqla',
 'protectcomment'              => 'Qorçalav altına aluv sebebi',
-'unprotectsub'                => '(qorçalav çıqarılır "$1")',
 'protect-text'                => '<strong>[[<nowiki>$1</nowiki>]]</strong> saifesiniñ qorçalav seviyesini mından körip olur ve deñiştirip olasıñız.',
 'protect-default'             => '(standart)',
 'protect-level-autoconfirmed' => 'qayd olunmağan deñiştirmesin',

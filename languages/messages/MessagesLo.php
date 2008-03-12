@@ -568,7 +568,6 @@ $messages = array(
 'unprotectedarticle' => 'ໄດ້ເຊົາປົກປ້ອງ "[[$1]]"',
 'protectsub'         => '(ກຳລັງປົກປ້ອງໜ້າ "$1")',
 'confirmprotect'     => 'ຢືນຢັນ ການປົກປ້ອງ',
-'unprotectsub'       => '(ກຳລັງຍົກເລີກການປົກປ້ອງໜ້າ "$1")',
 'restriction-level'  => 'ລະດັບການຈຳກັດ:',
 
 # Restrictions (nouns)

@@ -1265,7 +1265,6 @@ Ultima editare a fost făcută de către [[User:$3|$3]] ([[User talk:$3|discuţi
 'protectexpiry'               => 'Expirare',
 'protect_expiry_invalid'      => 'Timpul de expirare este nevalid.',
 'protect_expiry_old'          => 'Timpul de expirare este în trecut.',
-'unprotectsub'                => '(Deprotejând "$1")',
 'protect-unchain'             => 'Deblochează permisiunile de mutare',
 'protect-text'                => 'Poţi vizualiza sau modifica nivelul de protecţie pentru pagina <strong><nowiki>$1</nowiki></strong>.',
 'protect-default'             => '(standard)',

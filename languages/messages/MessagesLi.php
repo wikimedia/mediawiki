@@ -1374,7 +1374,6 @@ De lèste bewèrking is gedaon door [[User:$3|$3]] ([[User talk:$3|euverlik]])."
 'protectexpiry'               => 'Verlöp:',
 'protect_expiry_invalid'      => "De pazjena's aangegaeve verloup is ongeldig.",
 'protect_expiry_old'          => "De pazjena verlöp in 't verleje.",
-'unprotectsub'                => '(Besjerming van "$1" opheve)',
 'protect-unchain'             => 'Maak verplaatse meugelik',
 'protect-text'                => "Hiej kinse 't beveiligingsniveau veur de pazjena <strong><nowiki>$1</nowiki></strong> bekieke en wiezige.",
 'protect-locked-blocked'      => "Doe kins 't beveiligingsniveau neet wiezige wielse geblokkeerd bös.

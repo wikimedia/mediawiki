@@ -1459,7 +1459,6 @@ Palaute ja lisäapu osoitteessa:
 'protectexpiry'               => 'Vanhenee',
 'protect_expiry_invalid'      => 'Vanhenemisaika ei kelpaa.',
 'protect_expiry_old'          => 'Vanhenemisaika on menneisyydessä.',
-'unprotectsub'                => 'Suojauksen poisto sivulta $1',
 'protect-unchain'             => 'Käytä siirtosuojausta',
 'protect-text'                => 'Voit katsoa ja muuttaa sivun ”<strong><nowiki>$1</nowiki></strong>” suojauksia.',
 'protect-locked-blocked'      => 'Et voi muuttaa sivun suojauksia, koska sinut on estetty. Alla on sivun ”<strong>$1</strong>” nykyiset suojaukset:',

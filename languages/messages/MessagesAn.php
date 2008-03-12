@@ -1465,7 +1465,6 @@ Por fabor, prete "Entazaga" en o suyo nabegador ta cargar a pachina d\'a que ben
 'protectexpiry'               => 'Calendata de caduzidat:',
 'protect_expiry_invalid'      => 'Tiempo de zircunduzión incorreuto.',
 'protect_expiry_old'          => 'O tiempo de caduzidat ye una calendata ya pasata.',
-'unprotectsub'                => '(Esprotechendo "$1")',
 'protect-unchain'             => 'Confegurar premisos ta treslaus',
 'protect-text'                => "Puede beyer y cambiar o libel e protezión d'a pachina <strong><nowiki>$1</nowiki></strong>.",
 'protect-locked-blocked'      => "No puede cambiar os libels de protezión mientres ye bloqueyato. Contino se i amuestran as opzions autuals d'a pachina <strong>$1</strong>:",

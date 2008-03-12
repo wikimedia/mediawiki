@@ -305,7 +305,6 @@ Ma bu toil leibh a dhubh a'dhuilleag as ur faire agaibh nas fadalache, cnap air 
 'protectsub'         => '(A\'dìonadh "$1")',
 'confirmprotect'     => 'Daingnich dìonadh',
 'protectcomment'     => 'Aobhar airson dìonaidh',
-'unprotectsub'       => '(A\'neo-dhìonadh "$1")',
 
 # Undelete
 'undeleterevisions' => '$1 {{PLURAL:$1|lethbhreac|lethbhreacan}} taisge',

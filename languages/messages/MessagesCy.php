@@ -1265,7 +1265,6 @@ Gwelwch y $2 am gofnod o\'r dileuon diweddar.',
 'protectexpiry'               => 'Yn dod i ben:',
 'protect_expiry_invalid'      => 'Amser terfynu annilys.',
 'protect_expiry_old'          => "Mae'r amser darfod yn y gorffennol.",
-'unprotectsub'                => '(Yn dad-ddiogelu "$1")',
 'protect-unchain'             => 'Datgloi hawliau symud',
 'protect-text'                => 'Yma, gallwch weld a newid y lefel diogelu ar gyfer y dudalen <strong><nowiki>$1</nowiki></strong>.',
 'protect-locked-access'       => "Nid yw'r gallu i newid lefel diogelu ar dudalen ynghlwm wrth eich cyfrif defnyddiwr. 

@@ -1273,7 +1273,6 @@ e-mail: $PAGEEDITOR_EMAIL
 'unprotectedarticle'          => 'къорчалав чыкъарлыды: "[[$1]]"',
 'confirmprotect'              => 'Къорчалавны тасдыкъла',
 'protectcomment'              => 'Къорчалав алтына алув себеби',
-'unprotectsub'                => '(къорчалав чыкъарылыр "$1")',
 'protect-text'                => '<strong>[[<nowiki>$1</nowiki>]]</strong> саифесининъ къорчалав севиесини мындан корип олур ве денъиштирип оласынъыз.',
 'protect-default'             => '(стандарт)',
 'protect-level-autoconfirmed' => 'къайд олунмагъан денъиштирмесин',

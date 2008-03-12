@@ -1303,7 +1303,6 @@ Pindotón tabî an \"back\" asin ikarga giraray an páhinang ginikanan mo, danga
 'protectexpiry'               => 'Minápasó:',
 'protect_expiry_invalid'      => 'Dai puede ining pahanón kan pagpasó.',
 'protect_expiry_old'          => 'Pasado na an panahón nin pagpasó.',
-'unprotectsub'                => '(Binabawi an proteksión kan "$1")',
 'protect-unchain'             => 'Bawion an kandado sa mga permiso sa pagbalyó',
 'protect-text'                => 'Pwede mong hilingón asin bâgohon an tangga nin proteksyón digdi para sa páhina <strong><nowiki>$1</nowiki></strong>.',
 'protect-locked-blocked'      => 'Dai mo pwedeng bâgohon an mga tangga kan proteksyon mientras na ika nababágat. Ini an mga presenteng pwesto kan páhina <strong>$1</strong>:',

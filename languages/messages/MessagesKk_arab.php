@@ -1783,7 +1783,6 @@ $NEWPAGE
 'protectexpiry'               => 'بىتەتىن مەرزىمى:',
 'protect_expiry_invalid'      => 'بىتەتىن ۋاقىتى جارامسىز.',
 'protect_expiry_old'          => 'بىتەتىن ۋاقىتى ٴوتىپ كەتكەن.',
-'unprotectsub'                => '(«$1» قورعاماۋدا)',
 'protect-unchain'             => 'جىلجىتۋ رۇقساتتارىن بەرۋ',
 'protect-text'                => '<strong><nowiki>$1</nowiki></strong> بەتىنىڭ قورعاۋ دەڭگەيىن قاراپ جانە وزگەرتىپ شىعا الاسىز.',
 'protect-locked-blocked'      => 'بۇعاتتاۋىڭىز وشىرىلگەنشە دەيىن قورعاۋ دەڭگەيىن وزگەرتە المايسىز.

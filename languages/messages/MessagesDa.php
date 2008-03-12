@@ -1510,7 +1510,6 @@ eller et billede sammen med hele den tilhørende historie fra databasen. Bekræf
 'protectexpiry'               => 'Udløb',
 'protect_expiry_invalid'      => 'Udløbstiden er ugyldig.',
 'protect_expiry_old'          => 'Udløbstiden ligger i fortiden.',
-'unprotectsub'                => '(Fjern beskyttelse af "$1")',
 'protect-unchain'             => 'Ændre flytningsbeskyttelse',
 'protect-text'                => "Her kan beskyttelsesstatus for siden '''<nowiki>$1</nowiki>''' ses og ændres.",
 'protect-locked-blocked'      => 'Du kan ikke ændre sidens status, da din brugerkonto er spærret. Her er de aktuelle beskyttelsesindstillinger for siden <strong>„$1“:</strong>',

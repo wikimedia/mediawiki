@@ -1219,7 +1219,6 @@ Laguntza:
 'protectexpiry'               => 'Iraungipena:',
 'protect_expiry_invalid'      => 'Baliogabeko iraungipen-data.',
 'protect_expiry_old'          => 'Iraungipen-data iragan da.',
-'unprotectsub'                => '(babesa kentzen: "$1")',
 'protect-unchain'             => 'Mugitzeko blokeoa kendu',
 'protect-text'                => '<strong><nowiki>$1</nowiki></strong> orrialdearen babes maila ikusi eta aldatu egin beharko zenuke.',
 'protect-default'             => '(lehenetsia)',

@@ -1495,7 +1495,6 @@ Poslednja změna bě wot wužiwarja [[User:$3|$3]] ([[User talk:$3|Diskusija]]).
 'protectexpiry'               => 'Čas škita:',
 'protect_expiry_invalid'      => 'Njepłaćiwy čas spadnjenja.',
 'protect_expiry_old'          => 'Čas škita leži w zańdźenosći.',
-'unprotectsub'                => '(Škit za stronu „$1” so zběhnje)',
 'protect-unchain'             => 'Škit přećiwo přesunjenju změnić',
 'protect-text'                => 'Tu móžeš status škita strony <b><nowiki>$1</nowiki></b> wobhladać a změnić.',
 'protect-locked-blocked'      => 'Njemóžeš škit strony změnič, dokelž twoje konto je zablokowane. Tu widźiš aktualne škitne nastajenja za stronu<strong>„$1“:</strong>',

@@ -1365,7 +1365,6 @@ $NEWPAGE
 'protectexpiry'               => 'Канчаецца:',
 'protect_expiry_invalid'      => 'Недапушчальны час сканчэння.',
 'protect_expiry_old'          => 'Час сканчэння — у мінулым.',
-'unprotectsub'                => '(Здымаем ахову з "$1")',
 'protect-unchain'             => 'Дазволіць пераносы',
 'protect-text'                => 'Тут можна пабачыць і паправіць узровень аховы для старонкі <strong><nowiki>$1</nowiki></strong>.',
 'protect-locked-blocked'      => 'Вы заблакаваны і не можаце мяняць узроўняў аховы. Вось актуальныя настаўленні для старонкі <strong>$1</strong>:',
