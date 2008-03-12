@@ -302,7 +302,7 @@ class SpecialSearch {
 		$terms = implode( '|', $tm );
 
 		$off = $this->offset + 1;
-		$out = "<ol start='{$off}'>\n";
+		$out = "<ol start='{$off}' id='searchResults'>\n";
 
 		while( $result = $matches->next() ) {
 			$out .= $this->showHit( $result, $terms );
@@ -352,7 +352,7 @@ class SpecialSearch {
 			if( $img ) {
 				$thumb = $img->getThumbnail( 120, 120 );
 				if( $thumb ) {
-					$extract = '<table>' .
+					$extract = '<table class="searchResultImage">' .
 						'<tr>' .
 						'<td width="120" align="center">' .
 						$sk->makeKnownLinkObj( $t, $thumb->toHtml() ) .
