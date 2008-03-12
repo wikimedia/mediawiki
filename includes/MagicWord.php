@@ -1,6 +1,8 @@
 <?php
 /**
  * File for magic words
+ * See docs/magicword.txt
+ *
  * @addtogroup Parser
  */
 
