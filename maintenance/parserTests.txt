@@ -2102,7 +2102,7 @@ Magic links: ISBN (bug 1937)
 !! input
 ISBN 0-306-40615-2
 !! result
-<p><a href="/wiki/Special:Booksources/0306406152" class="internal">ISBN 0-306-40615-2</a>
+<p><a href="/wiki/Special:BookSources/0306406152" class="internal">ISBN 0-306-40615-2</a>
 </p>
 !! end
 
@@ -3022,7 +3022,7 @@ msg
 !! input
 {{#special:Recentchanges}}
 !! result
-Special:Recentchanges
+Special:RecentChanges
 !! end
 
 !! test
@@ -3108,7 +3108,7 @@ BUG 1887: A ISBN with a thumbnail
 !! input
 [[Image:foobar.jpg|thumb|ISBN 1235467890]]
 !! result
-<div class="thumb tright"><div class="thumbinner" style="width:182px;"><a href="/wiki/Image:Foobar.jpg" class="image" title="ISBN 1235467890"><img alt="ISBN 1235467890" src="http://example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg" width="180" height="20" border="0" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/Image:Foobar.jpg" class="internal" title="Enlarge"><img src="/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div><a href="/wiki/Special:Booksources/1235467890" class="internal">ISBN 1235467890</a></div></div></div>
+<div class="thumb tright"><div class="thumbinner" style="width:182px;"><a href="/wiki/Image:Foobar.jpg" class="image" title="ISBN 1235467890"><img alt="ISBN 1235467890" src="http://example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg" width="180" height="20" border="0" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/Image:Foobar.jpg" class="internal" title="Enlarge"><img src="/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div><a href="/wiki/Special:BookSources/1235467890" class="internal">ISBN 1235467890</a></div></div></div>
 
 !! end
 
@@ -6014,7 +6014,7 @@ ISBN code coverage
 !! input
 ISBN  978-0-1234-56&#x20;789
 !! result
-<p><a href="/wiki/Special:Booksources/9780123456" class="internal">ISBN 978-0-1234-56</a>&#x20;789
+<p><a href="/wiki/Special:BookSources/9780123456" class="internal">ISBN 978-0-1234-56</a>&#x20;789
 </p>
 !! end
 
@@ -6032,7 +6032,7 @@ Double ISBN
 !! input
 ISBN ISBN 1234567890
 !! result
-<p>ISBN <a href="/wiki/Special:Booksources/1234567890" class="internal">ISBN 1234567890</a>
+<p>ISBN <a href="/wiki/Special:BookSources/1234567890" class="internal">ISBN 1234567890</a>
 </p>
 !! end
 
@@ -6341,7 +6341,7 @@ ISBN with space-delimited number
 !! input
 ISBN 92 9017 032 8
 !! result
-<p><a href="/wiki/Special:Booksources/9290170328" class="internal">ISBN 92 9017 032 8</a>
+<p><a href="/wiki/Special:BookSources/9290170328" class="internal">ISBN 92 9017 032 8</a>
 </p>
 !! end
 
@@ -6366,7 +6366,7 @@ ISBN 1234567890
 ISBN 12345678901
 !! result
 <p>ISBN 123456789
-</p><p><a href="/wiki/Special:Booksources/1234567890" class="internal">ISBN 1234567890</a>
+</p><p><a href="/wiki/Special:BookSources/1234567890" class="internal">ISBN 1234567890</a>
 </p><p>ISBN 12345678901
 </p>
 !! end
@@ -6379,8 +6379,8 @@ ISBN 1-234-56789-0 - 2006
 
 ISBN 1 234 56789 0 - 2006
 !! result
-<p><a href="/wiki/Special:Booksources/1234567890" class="internal">ISBN 1-234-56789-0</a> - 2006
-</p><p><a href="/wiki/Special:Booksources/1234567890" class="internal">ISBN 1 234 56789 0</a> - 2006
+<p><a href="/wiki/Special:BookSources/1234567890" class="internal">ISBN 1-234-56789-0</a> - 2006
+</p><p><a href="/wiki/Special:BookSources/1234567890" class="internal">ISBN 1 234 56789 0</a> - 2006
 </p>
 !! end
 
