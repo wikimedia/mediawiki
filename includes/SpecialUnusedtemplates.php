@@ -22,7 +22,8 @@ class UnusedtemplatesPage extends QueryPage {
 			FROM $page
 			LEFT JOIN $templatelinks
 			ON page_namespace = tl_namespace AND page_title = tl_title
-			WHERE page_namespace = 10 AND tl_from IS NULL";
+			WHERE page_namespace = 10 AND tl_from IS NULL
+			AND page_is_redirect = 0";
 		return $sql;
 	}
 
