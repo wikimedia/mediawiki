@@ -283,7 +283,7 @@ Si despues bo ke kita e página for di bo lista di observashon, primi \"Stop di 
 # Delete/protect/revert
 'confirm'        => 'Konfirmá',
 'actioncomplete' => 'Akshon kompletá',
-'confirmprotect' => 'Konfirmá protekshon',
+'protect-legend' => 'Konfirmá protekshon',
 
 # Undelete
 'undelete' => 'Wak páginanan kitá',

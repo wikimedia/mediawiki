@@ -558,8 +558,8 @@ Soñğı beterülär $2 bitendä terkälenä.',
 'protectlogpage'     => 'Yaqlaw_köndälege',
 'protectedarticle'   => '[[$1]] yaqlandı',
 'unprotectedarticle' => '[[$1]] ireklände',
-'protectsub'         => '(«$1» yaqlaw)',
-'confirmprotect'     => 'Yaqlawnı raslaw',
+'protect-title'      => '«$1» yaqlaw',
+'protect-legend'     => 'Yaqlawnı raslaw',
 'protectcomment'     => 'Yaqlaw säbäbe',
 
 # Undelete

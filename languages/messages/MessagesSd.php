@@ -94,7 +94,7 @@ $messages = array(
 
 # Delete/protect/revert
 'confirm'        => 'پڪ ڪريو',
-'confirmprotect' => 'تحفظڻ جي پڪ ڪريو',
+'protect-legend' => 'تحفظڻ جي پڪ ڪريو',
 
 # Contributions
 'contributions' => 'يوزر جون ڀاڱيداريون',

@@ -566,8 +566,8 @@ $messages = array(
 'cantrollback'       => 'ບໍ່ສາມາດ ປ່ຽນການດັດແກ້ກັບຄືນໄດ້; ຜູ້ປະກອບສ່ວນຫຼ້າສຸດ ແມ່ນ ຜູ້ຂຽນພຽງຜູ້ດຽວ ຂອງ ໜ້ານີ້.',
 'protectedarticle'   => 'ໄດ້ປົກປ້ອງ "[[$1]]"',
 'unprotectedarticle' => 'ໄດ້ເຊົາປົກປ້ອງ "[[$1]]"',
-'protectsub'         => '(ກຳລັງປົກປ້ອງໜ້າ "$1")',
-'confirmprotect'     => 'ຢືນຢັນ ການປົກປ້ອງ',
+'protect-title'      => 'ກຳລັງປົກປ້ອງໜ້າ "$1"',
+'protect-legend'     => 'ຢືນຢັນ ການປົກປ້ອງ',
 'restriction-level'  => 'ລະດັບການຈຳກັດ:',
 
 # Restrictions (nouns)

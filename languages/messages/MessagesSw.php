@@ -526,7 +526,7 @@ Tafadhali hakikisha kwamba unalenga kufanya hivyo, na kwamba unaelewa matokeo ya
 'deletereasonotherlist'       => 'Sababu nyingine',
 'rollbacklink'                => 'rejesha',
 'protectlogpage'              => 'Kumbukumbu ya ulindaji',
-'confirmprotect'              => 'Hakikisha ukingo',
+'protect-legend'              => 'Hakikisha ukingo',
 'protectcomment'              => 'Maoni:',
 'protectexpiry'               => 'Itakwisha:',
 'protect_expiry_invalid'      => 'Muda wa kwisha ni batilifu.',

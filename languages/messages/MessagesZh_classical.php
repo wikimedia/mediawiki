@@ -1177,7 +1177,7 @@ $NEWPAGE
 'protectedarticle'            => '緘焉"[[$1]]"',
 'modifiedarticleprotection'   => '令"$1"',
 'unprotectedarticle'          => '啟焉"[[$1]]"',
-'protectsub'                  => '（緘"$1"…）',
+'protect-title'               => '緘"$1"…',
 'confirmprotect'              => '准緘',
 'protectcomment'              => '贊曰',
 'protectexpiry'               => '屆期',

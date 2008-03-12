@@ -355,7 +355,7 @@ $messages = array(
 'exblank'                     => 'a pagina era biota',
 'actioncomplete'              => 'Azzione compia',
 'protectedarticle'            => 'prutettu "[[$1]]"',
-'confirmprotect'              => 'Cunfirmà a prutezzione',
+'protect-legend'              => 'Cunfirmà a prutezzione',
 'protect-level-autoconfirmed' => 'Bluccà i cuntributori micca arrighjistrati',
 
 # Restriction levels

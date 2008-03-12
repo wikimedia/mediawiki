@@ -468,7 +468,7 @@ Səhifəni izləmə sıyahınızdan çıxarmaq üçün yan lovhədəki "izləmə
 'deletedarticle' => 'silindi "[[$1]]"',
 'rollback'       => 'Əvvəlki versiya',
 'rollbacklink'   => 'əvvəlki halına qaytar',
-'confirmprotect' => 'Qorumayı təsdiq et',
+'protect-legend' => 'Qorumayı təsdiq et',
 
 # Undelete
 'undelete'        => 'Silinmiş səhifələri göstər',

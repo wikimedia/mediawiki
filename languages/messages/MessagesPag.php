@@ -270,7 +270,7 @@ No labay mon ekalen may bolong diad listaan na babantayan, tapik mo labat so \"e
 Pinengneng so $2 para ed listaan na saray abural ran balo.',
 'deletedarticle'      => 'binural so "[[$1]]"',
 'deletecomment'       => 'Aken buralen',
-'confirmprotect'      => 'Palitaen so pangiyagel',
+'protect-legend'      => 'Palitaen so pangiyagel',
 'protect-level-sysop' => 'Sysops labat',
 
 # Undelete

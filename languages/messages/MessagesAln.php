@@ -512,7 +512,7 @@ Muneni me [[$1|fillu një artikull]] me kët titull.
 
 # Delete/protect/revert
 'deletedarticle'              => 'grisi "$1"',
-'confirmprotect'              => 'Konfirmoni',
+'protect-legend'              => 'Konfirmoni',
 'protectcomment'              => 'Arsyja:',
 'protectexpiry'               => 'Afáti',
 'protect_expiry_invalid'      => 'Data e skadimit asht e pasaktë.',

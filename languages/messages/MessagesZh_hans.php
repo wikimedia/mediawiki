@@ -1425,7 +1425,7 @@ $NEWPAGE
 'protectedarticle'            => '已保护"[[$1]]"',
 'modifiedarticleprotection'   => '已经更改 "[[$1]]" 的保护等级',
 'unprotectedarticle'          => '已取消保护"[[$1]]"',
-'protectsub'                  => '(正在保护"$1")',
+'protect-title'               => '正在保护"$1"',
 'confirmprotect'              => '确认保护',
 'protectcomment'              => '注解:',
 'protectexpiry'               => '到期:',
