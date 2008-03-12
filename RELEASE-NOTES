@@ -80,6 +80,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 13281) Treat X-Forwarded-For, Client-ip and User-Agent headers as
   case-insensitive names.
 * Adding the fix for lists in RTL wikis to more skins, and fixing the image toc
+* (bug 8157) Remove redirects from Special:Unusedtemplates. Patch by WebBoy.
 
 === API changes in 1.13 ===
 
