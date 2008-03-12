@@ -1539,7 +1539,6 @@ L’heure indiquée est celle du serveur (UTC).',
 'protectexpiry'               => 'Expiration (n’expire pas par défaut)',
 'protect_expiry_invalid'      => 'Le temps d’expiration est invalide.',
 'protect_expiry_old'          => 'Le temps d’expiration est déjà passé.',
-'unprotectsub'                => '(Déprotéger « $1 »)',
 'protect-unchain'             => 'Débloquer les permissions de renommage',
 'protect-text'                => 'Vous pouvez consulter et modifier le niveau de protection de la page <strong><nowiki>$1</nowiki></strong>.
 Veuillez vous assurez que vous suivez les [[{{MediaWiki:Policy-url}}|règles internes]].',

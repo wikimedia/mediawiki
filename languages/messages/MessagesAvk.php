@@ -1206,7 +1206,6 @@ Ironokafa betara gan [[User:$3|$3]] ([[User talk:$3|Prilara]]) zo skuyur.',
 'protectexpiry'               => 'Edjatena :',
 'protect_expiry_invalid'      => 'Edjatena me tir enafa.',
 'protect_expiry_old'          => 'Edjatena tir abdiugalafa.',
-'unprotectsub'                => '(Dimnendara va « $1 »)',
 'protect-unchain'             => 'Volelekara va arrundararictara',
 'protect-text'                => 'Rin va nendareka ke <strong><nowiki>$1</nowiki></strong> bu batlize rowil nume robetal.',
 'protect-locked-access'       => 'Rinafa pata va betara va nendareka me rictar.

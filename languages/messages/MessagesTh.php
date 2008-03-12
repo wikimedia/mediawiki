@@ -1399,7 +1399,6 @@ $NEWPAGE
 'protectexpiry'               => 'หมดอายุ:',
 'protect_expiry_invalid'      => 'เวลาหมดอายุไม่ถูกต้อง',
 'protect_expiry_old'          => 'เวลาหมดอายุผ่านมาแล้ว',
-'unprotectsub'                => '(กำลังปลดล็อกหน้า "$1")',
 'protect-unchain'             => 'ล็อกการเปลี่ยนชื่อ',
 'protect-text'                => 'ดูและเปลี่ยนระดับการล็อกสำหรับหน้า <strong><nowiki>$1</nowiki></strong>.',
 'protect-locked-blocked'      => 'ไม่สามารถเปลี่ยนระดับการล็อกหน้าขณะที่ถูกบล็อกได้ ดูระดับการล็อกของหน้า <strong>$1</strong>:',

@@ -1383,7 +1383,6 @@ Annerengen an disse Siede foarnuumen häd.<br />Ju lääste Annerenge stamt fon 
 'protectexpiry'               => 'Speerduur:',
 'protect_expiry_invalid'      => 'Ju ienroate Duur is uungultich.',
 'protect_expiry_old'          => 'Ju Speertied lait in ju fergeene Tied.',
-'unprotectsub'                => '(Aphieuwenge fon ju Speerenge fon "$1")',
 'protect-unchain'             => 'Ferschuuweschuts annerje',
 'protect-text'                => "Hier koast du dän Schutsstoatus foar ju Siede '''<nowiki>$1</nowiki>''' ienkiekje un annerje.",
 'protect-locked-blocked'      => 'Du koast dän Siedenschuts nit annerje, deer dien Benutserkonto speerd is. Hier sunt do aktuelle Siedenschuts-Ienstaalengen foar ju Siede <strong>„$1“:</strong>',

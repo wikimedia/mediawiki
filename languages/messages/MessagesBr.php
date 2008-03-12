@@ -1418,7 +1418,6 @@ Klikit war "kent" hag adkargit ar bajenn oc\'h deuet drezi; goude klaskit en-dro
 'protectexpiry'               => 'Termen',
 'protect_expiry_invalid'      => 'Direizh eo termen ar prantad.',
 'protect_expiry_old'          => 'Echuet eo ar prantad termen.',
-'unprotectsub'                => '(Distankañ "$1")',
 'protect-unchain'             => 'Dibrennañ an aotreoù adenvel',
 'protect-text'                => "Amañ e c'hallit gwelet ha cheñch live gwareziñ ar bajenn <strong><nowiki>$1</nowiki></strong>.",
 'protect-locked-blocked'      => 'E-keit ha ma viot stanket ne viot ket evit cheñch al live gwareziñ. Setu aze arventennoù a-vremañ ar bajenn <strong>$1</strong>:',

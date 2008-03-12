@@ -1386,7 +1386,6 @@ $NEWPAGE
 'protectexpiry'               => '期間',
 'protect_expiry_invalid'      => '期間の指定が無効です。',
 'protect_expiry_old'          => '保護期限が過去の時刻です。',
-'unprotectsub'                => '"$1" の保護解除',
 'protect-unchain'             => '移動権限を操作',
 'protect-text'                => "ページ \"'''<nowiki>\$1</nowiki>'''\" の保護レベルを表示・操作できます。",
 'protect-locked-blocked'      => 'あなたはブロックされているため、保護レベルを変更できません。

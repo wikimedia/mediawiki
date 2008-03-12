@@ -1433,7 +1433,6 @@ Clicâd dessus « Prècèdent » et rechargiéd la pâge de yô que vos vegnéd,
 'protectexpiry'               => 'Èxpiracion (èxpire pas per dèfôt) :',
 'protect_expiry_invalid'      => 'Lo temps d’èxpiracion est envalido.',
 'protect_expiry_old'          => 'Lo temps d’èxpiracion est ja passâ.',
-'unprotectsub'                => '(Dèprotègiér « $1 »)',
 'protect-unchain'             => 'Dèblocar les pèrmissions de renomâjo',
 'protect-text'                => 'Vos pouede consultar et modifiar lo nivô de protèccion de la pâge <strong><nowiki>$1</nowiki></strong>.
 Volyéd vos assurar que vos siude les [[Special:Protectedpages|règlles de dedens]].',

@@ -1183,7 +1183,6 @@ $NEWPAGE
 'protectexpiry'               => '屆期',
 'protect_expiry_invalid'      => '屆期不明。',
 'protect_expiry_old'          => '屆期已過。',
-'unprotectsub'                => '（啟"$1"…）',
 'protect-unchain'             => '准遷之',
 'protect-text'                => '緘捆<strong><nowiki>$1</nowiki></strong>。',
 'protect-locked-blocked'      => '簿禁，<strong>$1</strong>緘昔如下：',

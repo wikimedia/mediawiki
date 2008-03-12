@@ -1760,7 +1760,6 @@ $NEWPAGE
 'protectexpiry'               => 'Бітетін мерзімі:',
 'protect_expiry_invalid'      => 'Бітетін уақыты жарамсыз.',
 'protect_expiry_old'          => 'Бітетін уақыты өтіп кеткен.',
-'unprotectsub'                => '(«$1» қорғамауда)',
 'protect-unchain'             => 'Жылжыту рұқсаттарын беру',
 'protect-text'                => '<strong><nowiki>$1</nowiki></strong> бетінің қорғау деңгейін қарап және өзгертіп шыға аласыз.',
 'protect-locked-blocked'      => 'Бұғаттауыңыз өшірілгенше дейін қорғау деңгейін өзгерте алмайсыз.

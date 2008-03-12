@@ -1503,7 +1503,6 @@ Sila tekan butang "back" dan muatkan semula laman yang telah anda kunjungi sebel
 'protectexpiry'               => 'Tamat pada:',
 'protect_expiry_invalid'      => 'Waktu tamat tidak sah.',
 'protect_expiry_old'          => 'Waktu tamat telah berlalu.',
-'unprotectsub'                => '(Menyahlindung "$1")',
 'protect-unchain'             => 'Buka kunci keizinan pemindahan',
 'protect-text'                => 'Anda boleh melihat dan menukar peringkat perlindungan bagi laman <strong><nowiki>$1</nowiki></strong>.',
 'protect-locked-blocked'      => 'Anda telah disekat, justeru tidak boleh menukar peringkat perlindungan.

@@ -1313,7 +1313,6 @@ Pa piazzeri, cunfèimma chi vói canzillà avveru, ch'ài cumpresu li cunsiguèn
 'protectexpiry'               => 'Ischadènzia:',
 'protect_expiry_invalid'      => 'Ischadènzia invàridda.',
 'protect_expiry_old'          => 'Ischadènzia già passadda.',
-'unprotectsub'                => '(Ibbruccu di "$1")',
 'protect-unchain'             => "Ischulliga i primmissi d'ippusthamentu",
 'protect-text'                => 'Chisthu mòdulu cunsenti di vidé e mudìfiggà lu libellu di prutizioni pa la pàgina <strong><nowiki>$1</nowiki></strong>.',
 'protect-locked-blocked'      => "Nò è pussìbiri mudìfiggà i libelli di prutizioni cand'è attibu un broccu. L'impusthazioni currenti pa la pàgina so <strong>$1</strong>:",

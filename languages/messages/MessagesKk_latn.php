@@ -1762,7 +1762,6 @@ Soñğı öñdewdi [[User:$3|$3]] ([[User_talk:$3|talqılawı]]) istegen.',
 'protectexpiry'               => 'Bitetin merzimi:',
 'protect_expiry_invalid'      => 'Bitetin waqıtı jaramsız.',
 'protect_expiry_old'          => 'Bitetin waqıtı ötip ketken.',
-'unprotectsub'                => '(«$1» qorğamawda)',
 'protect-unchain'             => 'Jıljıtw ruqsattarın berw',
 'protect-text'                => '<strong><nowiki>$1</nowiki></strong> betiniñ qorğaw deñgeýin qarap jäne özgertip şığa alasız.',
 'protect-locked-blocked'      => 'Buğattawıñız öşirilgenşe deýin qorğaw deñgeýin özgerte almaýsız.

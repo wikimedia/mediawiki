@@ -1288,7 +1288,6 @@ Por favor, pulsa "Atrás", recarga la página de la que viniste e inténtalo de 
 'protectexpiry'               => 'Caducidad:',
 'protect_expiry_invalid'      => 'Tiempo de caducidad incorrecto.',
 'protect_expiry_old'          => 'El tiempo de expiración está en el pasado.',
-'unprotectsub'                => '(Desprotegiendo "$1")',
 'protect-unchain'             => 'Configurar permisos para traslados',
 'protect-text'                => 'Puedes ver y modificar el nivel de protección de la página <strong><nowiki>$1</nowiki></strong>.',
 'protect-locked-blocked'      => 'No puede cambiar los niveles de protección estando bloqueado. A continuación se muestran las opciones actuales de la página <strong>$1</strong>:',

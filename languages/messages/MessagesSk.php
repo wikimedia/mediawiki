@@ -1544,7 +1544,6 @@ Môžete si pozrieť aj [[Special:Protectedpages|zoznam momentálne platných za
 'protectexpiry'               => 'Zamknuté do:',
 'protect_expiry_invalid'      => 'Neplatný čas vypršania.',
 'protect_expiry_old'          => 'Čas vypršania je v minulosti.',
-'unprotectsub'                => '(Odomykám „$1“)',
 'protect-unchain'             => 'Odomknúť povolenia pre presun',
 'protect-text'                => 'Tu si môžete pozrieť a zmeniť úroveň ochrany stránky <strong><nowiki>$1</nowiki></strong>.',
 'protect-locked-blocked'      => 'Nemôžete meniť úroveň ochrany, kým ste zablokovaný.

@@ -1477,7 +1477,6 @@ La modifica più recente alla pagina è stata apportata da [[User:$3|$3]] ([[Use
 'protectexpiry'               => 'Scadenza:',
 'protect_expiry_invalid'      => 'Scadenza non valida.',
 'protect_expiry_old'          => 'Scadenza già trascorsa.',
-'unprotectsub'                => '(Sblocco di "$1")',
 'protect-unchain'             => 'Scollega i permessi di spostamento',
 'protect-text'                => 'Questo modulo consente di vedere e modificare il livello di protezione per la pagina <strong><nowiki>$1</nowiki></strong>.',
 'protect-locked-blocked'      => 'Non è possibile modificare i livelli di protezione quando è attivo un blocco. Le impostazioni correnti per la pagina sono <strong>$1</strong>:',

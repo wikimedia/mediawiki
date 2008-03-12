@@ -1295,7 +1295,6 @@ $wgMessageStructure = array(
 		'protectexpiry',
 		'protect_expiry_invalid',
 		'protect_expiry_old',
-		'unprotectsub',
 		'protect-unchain',
 		'protect-text',
 		'protect-locked-blocked',

@@ -1177,7 +1177,6 @@ Asupan jeung bantuan salajengna:
 'protectexpiry'               => 'Kadaluwarsa',
 'protect_expiry_invalid'      => 'Waktu kadaluwarsa teu sah.',
 'protect_expiry_old'          => 'Waktu kadaluwarsa geus kaliwat.',
-'unprotectsub'                => '(Muka konci "$1")',
 'protect-unchain'             => 'Buka konci pamindahan',
 'protect-text'                => 'Di dieu anjeun bisa nempo sarta ngarobah hambalan pangonci pikeun kaca <strong>$1</strong>.',
 'protect-locked-access'       => 'Rekening anjeun teu wenang ngarobah hambalan pangonci kaca. Kaca <strong>$1</strong> disetél:',

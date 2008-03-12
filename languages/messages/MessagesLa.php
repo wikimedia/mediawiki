@@ -1089,7 +1089,6 @@ Adfirma quaesumus te paginam re vera delere velle, te consequentias intellere, e
 'protectcomment'            => 'Ratio protegendo:',
 'protectexpiry'             => 'Exitus:',
 'protect_expiry_invalid'    => 'Tempus exeundo invalidum fuit.',
-'unprotectsub'              => '(Deprotegere "$1")',
 'protect-level-sysop'       => 'Magistratus soli',
 'protect-expiring'          => 'exit $1',
 'protect-cascade'           => 'Formulas aliasque paginas hac in pagina adhibitas protegere (protectio quasi cataracta)',

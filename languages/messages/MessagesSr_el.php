@@ -1266,7 +1266,6 @@ Molimo kliknite "back" i ponovo učitajte stranu odakle ste došli, a onda poku�
 'protectsub'                  => '(stavljanje zaštite "$1")',
 'confirmprotect'              => 'Potvrdite zaštitu',
 'protectcomment'              => 'Razlog zaštite',
-'unprotectsub'                => '(skidanje zaštite "$1")',
 'protect-unchain'             => 'Otključaj dozvole premeštanja',
 'protect-text'                => 'Ovde možete pogledati i menjati nivo zaštite za stranicu <strong><nowiki>$1</nowiki></strong>.',
 'protect-default'             => '(standard)',

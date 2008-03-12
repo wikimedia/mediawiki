@@ -1259,7 +1259,6 @@ $NEWPAGE
 'protectexpiry'               => 'የሚያልቅበት ግዜ፦',
 'protect_expiry_invalid'      => "የተሰጠው 'የሚያልቅበት ጊዜ' ልክ አይደለም።",
 'protect_expiry_old'          => "የተሰጠው 'የሚያልቅበት ጊዜ' ባለፈው ግዜ ነበር።",
-'unprotectsub'                => '(«$1» አለመቆለፍ)',
 'protect-unchain'             => 'ገጹን የማዛወር ፈቃዶች ለመፍታት',
 'protect-text'                => 'እዚህ ለገጹ «<strong><nowiki>$1</nowiki></strong>» የመቆለፍ ደረጃ መመልከት ወይም መቀይር ይችላሉ።',
 'protect-locked-blocked'      => 'ማገጃ እያለብዎት የመቆለፍ ደረጃ ለመቀየር አይችሉም። ለገጹ <strong>$1</strong> የአሁኑኑ ደረጃ እንዲህ ነው፦',

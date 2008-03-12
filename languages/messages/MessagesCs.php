@@ -1632,7 +1632,6 @@ Stiskněte tlačítko „zpět“, obnovte stránku, ze které jste přišli a z
 'protectexpiry'               => 'Čas vypršení',
 'protect_expiry_invalid'      => 'Čas vypršení je chybný.',
 'protect_expiry_old'          => 'Čas vypršení již minul.',
-'unprotectsub'                => '(Odemyká se „$1“)',
 'protect-unchain'             => 'Oddělené ovládání zámku přesunů',
 'protect-text'                => 'Zde si můžete prohlédnout či změnit nastavení zámků stránky <strong><nowiki>$1</nowiki></strong>.',
 'protect-locked-blocked'      => 'Nemůžete měnit nastavení zámků pokud jste zablokován. Současné nastavení pro tuto stránku je: <strong>$1</strong>:',

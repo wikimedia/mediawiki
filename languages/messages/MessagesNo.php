@@ -1456,7 +1456,6 @@ Tilbakemeldinger og videre assistanse:
 'protectexpiry'               => 'Utgår',
 'protect_expiry_invalid'      => 'Utgangstiden er ugyldig.',
 'protect_expiry_old'          => 'Utgangstiden har allerede vært.',
-'unprotectsub'                => '(Åpner «$1»)',
 'protect-unchain'             => 'Spesielle flyttingstillatelser',
 'protect-text'                => 'Du kan se og forandre beskyttelsesnivået for siden <strong><nowiki>$1</nowiki></strong> her.',
 'protect-locked-blocked'      => 'Du kan ikke endre beskyttelsesnivåer mens du er blokkert. Dette er de nåværende innstillingene for siden <strong>$1</strong>:',

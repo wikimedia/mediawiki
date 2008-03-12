@@ -1510,7 +1510,6 @@ $NEWPAGE
 'protectexpiry'               => 'Истиче:',
 'protect_expiry_invalid'      => 'Време истека није одговарајуће.',
 'protect_expiry_old'          => 'Време истека је у прошлости.',
-'unprotectsub'                => '(скидање заштите "$1")',
 'protect-unchain'             => 'Откључај дозволе премештања',
 'protect-text'                => 'Овде можете погледати и мењати ниво заштите за страницу <strong><nowiki>$1</nowiki></strong>.',
 'protect-locked-access'       => 'Ваш налог нема дозволе за измену нивоа заштите странице.

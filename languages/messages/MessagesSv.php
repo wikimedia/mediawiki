@@ -1491,7 +1491,6 @@ Sidan ändrades senast av [[User:$3|$3]] ([[User talk:$3|diskussion]]).',
 'protectexpiry'               => 'Varaktighet:',
 'protect_expiry_invalid'      => 'Ogiltig varaktighetstid.',
 'protect_expiry_old'          => 'Den angivna varaktighetentiden har redan passerats.',
-'unprotectsub'                => '(Tog bort skydd av "$1")',
 'protect-unchain'             => 'Lås upp flyttillstånd',
 'protect-text'                => 'Här kan du se och ändra skyddsnivån av sidan <strong><nowiki>$1</nowiki></strong>.',
 'protect-locked-blocked'      => 'Du kan inte ändra sidors skydd medan du är blockerad. 

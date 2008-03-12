@@ -1662,7 +1662,6 @@ De meest recente bewerking is gemaakt door [[User:$3|$3]] ([[User talk:$3|overle
 'protectexpiry'               => 'Duur:',
 'protect_expiry_invalid'      => 'De aangegeven duur is ongeldig.',
 'protect_expiry_old'          => 'Verloopsdatum is in het verleden.',
-'unprotectsub'                => '(Beveiliging "$1" opgeheven)',
 'protect-unchain'             => 'Hernoemen mogelijk maken',
 'protect-text'                => 'Hier kunt u het beveiligingsniveau voor de pagina <strong><nowiki>$1</nowiki></strong> bekijken en wijzigen.',
 'protect-locked-blocked'      => 'U kunt het beveiligingsniveau niet wijzigen terwijl u geblokkeerd bent.

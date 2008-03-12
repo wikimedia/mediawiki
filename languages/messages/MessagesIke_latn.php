@@ -267,7 +267,6 @@ pigivuq qatannguti uikipitia kiinaujaqutiqarvik isuillingaitjapaa. iqtuu suqusiq
 'dellogpage'          => 'nipaq nipi',
 'deletionlog'         => 'nipaq nipi',
 'confirmprotect'      => 'patimmivaa sapummivaa',
-'unprotectsub'        => '(iq sapummivaa "$1")',
 'protect-level-sysop' => 'sirlak titiraqsimajunik tuqquqtiriji',
 
 # Restrictions (nouns)

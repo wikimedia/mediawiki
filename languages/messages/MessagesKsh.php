@@ -1332,7 +1332,6 @@ De Neuste letzte Änderung es jetz vun däm Metmaacher „[[User:$3|$3]]“ (?[[
 'protectsub'                  => '(Sigge Schotz för „$1“ ändere)',
 'confirmprotect'              => 'Sigg schötze',
 'protectcomment'              => 'Dä Jrund oder Aanlass för et Schötze',
-'unprotectsub'                => '(Schotz för „$1“ ophevve)',
 'protect-unchain'             => 'Et Schötze jäje Ömnenne extra enstelle looße',
 'protect-text'                => 'Hee kanns De dä Schotz jäje Veränderunge för de Sigg „<nowiki>$1</nowiki>“ aanluure un ändere. Em <span class="plainlinks">[{{FULLURL:Special:Log/protect|page={{FULLPAGENAMEE}}}} Logboch]</span> fings De ählere Änderunge vun däm Schotz, wann et se jitt. Bes esu jod un hald Dich aan de Rejele för esu Fäll!',
 'protect-default'             => '-(Standaad)-',

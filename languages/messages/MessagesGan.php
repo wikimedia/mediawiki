@@ -1264,7 +1264,6 @@ $NEWPAGE
 'protectexpiry'               => '期限:',
 'protect_expiry_invalid'      => '到期時間無效。',
 'protect_expiry_old'          => '到期時間已過。',
-'unprotectsub'                => '(撤銷保護“$1”中)',
 'protect-unchain'             => '莫鎖到移動許可權',
 'protect-text'                => '倷到箇首能瀏覽或修改頁面<strong><nowiki>$1</nowiki></strong>嗰保護級別。',
 'protect-locked-blocked'      => '倷改伓正拕封鎖時嗰保護級別。下底係<strong>$1</strong>現今嗰保護級別:',
