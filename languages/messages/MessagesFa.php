@@ -263,6 +263,10 @@ $magicWords = array(
 	'hiddencat'              => array( 1,    '__رده‌پنهان__', '__HIDDENCAT__' ),
 );
 
+$specialPageAliases = array(
+	'DoubleRedirects'           => array( 'تغییرمسیردوتایی' ),
+);
+
 # Harakat are intentionally not included in the linkTrail. Their addition should
 # take place after enough tests.
 $linkTrail = "/^([ابپتثجچحخدذرزژسشصضطظعغفقکگلمنوهیآأئؤة‌]+)(.*)$/sDu";
@@ -2677,4 +2681,6 @@ $1',
 
 نشانی پرونده را بدون پیشوند «{{ns:image}}:» وارد کنید.',
 
+'booksources-isbn'          => 'شابک:',
+'isbn'               => 'شابک',
 );
