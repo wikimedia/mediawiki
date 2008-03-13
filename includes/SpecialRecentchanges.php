@@ -638,9 +638,7 @@ function rcFormatDiff( $row ) {
 
 	$titleObj = Title::makeTitle( $row->rc_namespace, $row->rc_title );
 	$timestamp = wfTimestamp( TS_MW, $row->rc_timestamp );
-	# Log action
 	$actiontext = '';
-	# Add action
 	if( $row->rc_type == RC_LOG ) {
 		if( $row->rc_deleted & LogPage::DELETED_ACTION ) {
 			$actiontext = wfMsgHtml('rev-deleted-event');
