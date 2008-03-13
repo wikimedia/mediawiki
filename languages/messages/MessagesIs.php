@@ -1173,6 +1173,7 @@ Lengdin á [http://meta.wikimedia.org/wiki/Help:Job_queue vinnsluröðinni] er '
 'deadendpagestext'        => 'Eftirfarandi síður tengjast ekki við aðrar síður á {{SITENAME}}.',
 'protectedpages'          => 'Verndaðar síður',
 'protectedpagestext'      => 'Eftirfarandi síður hafa verið verndaðar svo ekki sé hægt að breyta þeim eða færa þær',
+'protectedtitles'         => 'Verndaðir titlar',
 'listusers'               => 'Notendalisti',
 'specialpages'            => 'Kerfissíður',
 'spheading'               => 'Almennar',
@@ -1513,6 +1514,7 @@ Gefðu ástæðu fyrir banninu (meðal annars að nefna síðu sem var skemmd).'
 'databasenotlocked'   => 'Gagnagrunnurinn er ekki læstur.',
 
 # Move page
+'move-page'               => 'Færa $1',
 'move-page-legend'        => 'Færa síðu',
 'movepagetext'            => "Hér er hægt að endurnefna síðu, hún mun ásamt breytingarskrá hennar
 verða færð á nýja nafnið og núverandi staðsetning mun

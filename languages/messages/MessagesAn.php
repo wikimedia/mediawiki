@@ -1046,8 +1046,8 @@ Si tienes esta imagen a toda resolución súbela, si no, por favor cambia el nom
 'uploadscripted'              => 'Iste archibo contiene codigo de script u HTML que puede estar interpretado incorreutament por un nabegador.',
 'uploadcorrupt'               => "Iste archibo ye corrompito u tiene una estensión incorreuta. Por fabor, comprebe l'archibo y cargue-lo una atra begada.",
 'uploadvirus'                 => 'Iste archibo tiene un birus! Detalles: $1',
-'sourcefilename'              => "Nombre de l'archivo d'orichen",
-'destfilename'                => "Nombre de l'archibo de destino",
+'sourcefilename'              => "Nombre de l'archivo d'orichen:",
+'destfilename'                => "Nombre de l'archibo de destín:",
 'watchthisupload'             => 'Cosirar ista pachina',
 'filewasdeleted'              => 'Una archibo con iste mesmo nombre ya se cargó denantes y estió borrato dimpués. Abría de comprebar $1 antes de tornar á cargar-lo una atra begada.',
 'upload-wasdeleted'           => "'''Pare cuenta: Ye cargando un archibo que ya estió borrato d'antes más.'''
@@ -1082,7 +1082,7 @@ PICT # misz.
 'upload-curl-error28'      => "Tiempo d'aspera sobrexito",
 'upload-curl-error28-text' => "O tiempo de respuesta d'a pachina ye masiau gran. Por fabor, comprebe si o serbidor ye funzionando, aspere bel tiempo y mire de tornar á fer-lo.  Talment deseye prebar de nuebo cuan o rete tienga menos carga.",
 
-'license'            => 'Lizenzia',
+'license'            => 'Lizenzia:',
 'nolicense'          => "No s'en ha trigato garra",
 'license-nopreview'  => '(Ambiesta prebia no disponible)',
 'upload_source_url'  => ' (una URL conforme y publicament aczesible)',
@@ -1155,6 +1155,7 @@ PICT # misz.
 'filedelete-reason-dropdown'  => "*Razons comuns ta borrar archibos
 ** Dreitos d'autor no respetatos
 ** Archibo duplicato",
+'filedelete-edit-reasonlist'  => "Editar as razons d'o borrau",
 
 # MIME search
 'mimesearch'         => 'Mirar por tipo MIME',
@@ -1352,6 +1353,7 @@ L'adreza de correu-e que endicó en as suyas preferenzias d'usuario amanixerá e
 'unwatch'              => 'Deixar de cosirar',
 'unwatchthispage'      => 'Deixar de cosirar',
 'notanarticle'         => 'No ye una pachina de conteniu',
+'notvisiblerev'        => "S'ha borrau ixa bersión",
 'watchnochange'        => "Dengún d'os articlos d'a suya lista de seguimiento no s'ha editoato en o periodo de tiempo amostrato.",
 'watchlist-details'    => '{{PLURAL:$1|$1 pachina cosirata|$1 pachinas cosiratas}} (sin contar-ie as pachinas de descusión).',
 'wlheader-enotif'      => '* A notificazión por correu eletronico ye autibata',
@@ -1440,6 +1442,7 @@ Se beiga en $2 un rechistro d\'os borraus rezients.',
 ** Á demanda d'o mesmo autor
 ** trencadura de copyright
 ** Bandalismo",
+'delete-edit-reasonlist'      => "Editar as razons d'o borrau",
 'delete-toobig'               => "Ista pachina tiene un istorial d'edizión prou largo, con más de $1 bersions. S'ha restrinchito o borrau d'ista mena de pachinas ta aprebenir d'a corrompizión azidental de {{SITENAME}}.",
 'delete-warning-toobig'       => "Ista pachina tiene un istorial d'edizión muito largo, con más de $1 bersions. Si la borra puede corromper as operazions d'a base de datos de {{SITENAME}}; contine con ficazio.",
 'rollback'                    => 'Esfer edizions',
@@ -1575,6 +1578,7 @@ $1',
 
 # Block/unblock
 'blockip'                     => 'bloqueyar usuario',
+'blockip-legend'              => 'Bloqueyar usuario',
 'blockiptext'                 => "Replena o siguient formulario ta bloqueyar l'azeso
 d'escritura dende una cuenta d'usuario u una adreza IP espezifica.
 Isto abría de fer-se sólo ta pribar bandalismos, y d'alcuerdo con
@@ -1675,6 +1679,7 @@ as pachinas que s'han bandalizatas).",
 'databasenotlocked'   => 'A base de datos no ye trancata.',
 
 # Move page
+'move-page'               => 'Tresladar $1',
 'move-page-legend'        => 'Tresladar pachina',
 'movepagetext'            => "Si fa serbir o formulario siguient se cambiará o nombre á la pachina, tresladando tot o suyo istorial t'o nuebo nombre.
 O títol anterior se tornará en una reendrezera ta o nuebo títol.

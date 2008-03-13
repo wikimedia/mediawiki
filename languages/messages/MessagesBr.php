@@ -855,8 +855,7 @@ $2 Lakaat ivez ar pajennoù adkas &nbsp; Klask $3 $9',
 'userrights-lookup-user'           => 'Merañ strolladoù an implijer',
 'userrights-user-editname'         => 'Lakait un anv implijer :',
 'editusergroup'                    => 'Kemmañ ar strolladoù implijerien',
-'editinguser'                      => "oc'h aozañ '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] |  
-[[Special:Contributions/$1|{{int:contribslink}}]])",
+'editinguser'                      => "Kemmañ gwirioù an implijer '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
 'userrights-editusergroup'         => 'Kemmañ strolladoù an implijer',
 'saveusergroups'                   => 'Enrollañ ar strolladoù implijer',
 'userrights-groupsmember'          => 'Ezel eus :',
@@ -974,7 +973,7 @@ Evit enklozañ ar skeudenn en ur pennad, lakait er pennad-se ul liamm skrivet ev
 'largefileserver'             => "Brasoc'h eo ar restr-mañ eget ar pezh a c'hall ar servijer aotren.",
 'emptyfile'                   => "Evit doare eo goullo ar restr bet karget ganeoc'h. Moarvat eo abalamour d'an tipo en anv ar restr. Gwiriit mat e fell deoc'h pellgargañ ar restr-mañ.",
 'fileexists'                  => "Ur restr all gant an anv-se zo c'hoazh. Trugarez da wiriañ $1. Ha sur oc'h da gaout c'hoant da gemmañ ar restr-mañ ?",
-'filepageexists'              => "Bez'ez eus dija ur bajenn (ket ur skeudenn) gant an anv-mañ. Gwiriit <strong><tt>$1</tt></strong> ma n'oc'h ket peursur e fell deoc'h kemmañ anezhi.",
+'filepageexists'              => "Amañ <strong><tt>$1</tt></strong> eo bet krouet ar bajenn zeskrivañ evit ar restr-mañ, padal n'eus ket restr ebet dezhi an anv-se evit c'hoazh. An diverradenn skrivet ganeoc'h ne erlec'hio ket an destenn a oa a-raok ; ret e vije deoc'h kemmañ ar bajenn gant an dorn.",
 'fileexists-extension'        => "Bez' ez eus dija ur restr gant an anv-se war-bouez nebeut :<br />
 Anv ar restr pellgarget : <strong><tt>$1</tt></strong><br />
 Anv ar restr zo anezhi dija : <strong><tt>$2</tt></strong><br />
@@ -1068,6 +1067,7 @@ PICT # misc.
 'nolinkstoimage'            => "N'eus liamm ebet war-du ar skeudenn-mañ war pajenn ebet.",
 'sharedupload'              => 'Rannet eo ar restr-mañ. Gallout a ra bezañ implijet evit raktresoù all.',
 'shareduploadwiki'          => "Gwelit an $1 mar plij evit gouzout hiroc'h.",
+'shareduploadwiki-desc'     => 'Diskouezet eo a-is an deskrivadur a-zivout $1.',
 'shareduploadwiki-linktext' => 'pajenn deskrivañ ar restr',
 'noimage'                   => "N'eus pajenn ebet anvet evel-se c'hoazh, gallout a rit $1.",
 'noimage-linktext'          => 'enporzhiañ unan',
@@ -1106,6 +1106,7 @@ PICT # misc.
 'filedelete-reason-dropdown'  => "*Abegoù diverkañ boas
 ** Gaou ouzh ar gwirioù perc'hennañ
 ** Restr zo anezhi dija",
+'filedelete-edit-reasonlist'  => 'Kemmañ a ra an abegoù diverkañ',
 
 # MIME search
 'mimesearch'         => 'Klask MIME',
@@ -1310,6 +1311,7 @@ Evit tennañ ar bajenn-mañ a-ziwar ho rollad evezhiañ. klikit war "Paouez da e
 'unwatch'              => 'paouez da evezhiañ',
 'unwatchthispage'      => 'Paouez da evezhiañ',
 'notanarticle'         => 'Pennad ebet',
+'notvisiblerev'        => 'Stumm diverket',
 'watchnochange'        => "Pajenn ebet eus ar re evezhiet ganeoc'h n'eo bet kemmet e-pad ar prantad spisaet",
 'watchlist-details'    => "Lakaet hoc'h eus $1 pajenn dindan evezh, anez kontañ ar pajennoù kaozeal.",
 'wlheader-enotif'      => "* War enaou emañ ar c'has posteloù.",
@@ -1390,6 +1392,7 @@ Sellet ouzh $2 evit roll an diverkadennoù diwezhañ.',
 ** Goulenn gant saver ar pennad
 ** Gaou ouzh ar gwirioù perc'hennañ
 ** Vandalerezh",
+'delete-edit-reasonlist'      => 'Kemmañ a ra an abegoù diverkañ',
 'delete-toobig'               => 'Bras eo istor ar bajenn-mañ, ouzhpenn $1 stumm zo. Bevennet eo bet an diverkañ pajennoù a-seurt-se kuit da zegas reuz dre fazi war {{SITENAME}}.',
 'delete-warning-toobig'       => "Bras eo istor ar bajenn-mañ, ouzhpenn $1 stumm zo. Ma tiverkit anezhi e c'hallo degas reuz war mont en-dro diaz titouroù {{SITENAME}}; taolit evezh bras.",
 'rollback'                    => "disteuler ar c'hemmoù",
@@ -1532,6 +1535,7 @@ $1',
 
 # Block/unblock
 'blockip'                     => "Stankañ ur chomlec'h IP",
+'blockip-legend'              => 'Stankañ an implijer',
 'blockiptext'                 => "Grit gant ar furmskrid a-is evit stankañ ar moned skrivañ ouzh ur chomlec'h IP pe un implijer bennak.
 Seurt diarbennoù n'hallont bezañ kemeret nemet evit mirout ouzh ar vandalerezh hag a-du gant an [[{{MediaWiki:Policy-url}}|erbedadennoù ha reolennoù da heuliañ]].
 Roit a-is an abeg resis (o verkañ, da skouer, roll ar pajennoù bet graet gaou outo).",
@@ -1633,6 +1637,7 @@ Kadarnait, mar plij, eo se hoc'h eus c'hoant da ober.",
 'databasenotlocked'   => "N'eo ket prennet ar bank titouroù.",
 
 # Move page
+'move-page'               => "Dilec'hiañ $1",
 'move-page-legend'        => 'Adenvel ur pennad',
 'movepagetext'            => "Grit gant ar furmskrid a-is evit adenvel ur pennad hag adkas an holl stummoù kent anezhañ war-du an anv nevez.
 Dont a raio an titl kentañ da vezañ ur bajenn adkas war-du an titl nevez.

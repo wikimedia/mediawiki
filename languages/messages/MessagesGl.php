@@ -366,7 +366,7 @@ Procura: $2',
 'protectedinterface'   => 'Esta páxina fornece o texto da interface para a o software e está protexida para evitar o abuso.',
 'editinginterface'     => "'''Aviso:''' Está editando unha páxina usada para fornecer o texto da interface do software. Os cambios nesta páxina afectarán á aparencia da interface para os outros usuarios. Para traducións, considere usar [http://translatewiki.net/wiki/Main_Page?setlang=gl Betawiki], o proxecto de localización de Mediawiki.",
 'sqlhidden'            => '(Procura SQL agochada)',
-'cascadeprotected'     => 'Esta páxina foi protexida fronte á edición debido a que está incluída {{PLURAL:$1|na seguinte páxina protexida, que ten|nas seguintes páxinas protexidas, que teñen}}, a "protección en serie" activada:
+'cascadeprotected'     => 'Esta páxina foi protexida fronte á edición debido a que está incluída {{PLURAL:$1|na seguinte páxina protexida, que ten|nas seguintes páxinas protexidas, que teñen}} a "protección en serie" activada:
 $2',
 'namespaceprotected'   => "Non dispón de permisos para modificar páxinas no espazo de nomes '''$1'''.",
 'customcssjsprotected' => 'Non dispón de permisos para modificar esta páxina, dado que contén a configuración persoal doutro usuario.',
@@ -1299,6 +1299,7 @@ Os cambios futuros nesta páxina e na súa páxina de conversa asociada serán l
 'unwatch'              => 'Deixar de vixiar',
 'unwatchthispage'      => 'Deixar de vixiar',
 'notanarticle'         => 'Non é unha páxina de contido',
+'notvisiblerev'        => 'A revisión foi borrada',
 'watchnochange'        => 'Ningún dos elementos baixo vixilancia foi editado no período de tempo amosado.',
 'watchlist-details'    => '{{PLURAL:$1|$1 páxina|$1 páxinas}} vixiadas sen contar as de conversa.',
 'wlheader-enotif'      => '* Está dispoñíbel a notificación por correo electrónico.',
@@ -1626,6 +1627,7 @@ Por favor confirme que isto é o que quere facer.',
 'databasenotlocked'   => 'A base de datos non está bloqueada.',
 
 # Move page
+'move-page'               => 'Mover $1',
 'move-page-legend'        => 'Mover páxina',
 'movepagetext'            => "Ao usar o formulario de embaixo vai cambiar o nome da páxina, 
 movendo todo o seu historial ao novo nome.

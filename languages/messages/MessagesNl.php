@@ -1656,7 +1656,7 @@ De meest recente bewerking is gemaakt door [[User:$3|$3]] ([[User talk:$3|overle
 'protectedarticle'            => '"[[$1]]" beveiligd',
 'modifiedarticleprotection'   => 'wijzigde beveiligingsniveau voor "[[$1]]"',
 'unprotectedarticle'          => 'beveiliging "[[$1]]" opgeheven',
-'protect-title'               => 'beveiligingsniveau voor "$1" aan het instellen',
+'protect-title'               => 'Instellen van beveiligingsniveau voor "$1"',
 'protect-legend'              => 'Beveiliging bevestigen',
 'protectcomment'              => 'Opmerkingen:',
 'protectexpiry'               => 'Duur:',

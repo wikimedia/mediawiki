@@ -871,7 +871,7 @@ Helüteedüstü puhul: <b>[[media:teedüstü.ogg]]</b>.
 'filedesc'                    => 'Kokkovõtõq',
 'fileuploadsummary'           => 'Kokkovõtõq:',
 'filestatus'                  => 'Teedüstü tegijäõigusõq:',
-'filesource'                  => 'Kost peri',
+'filesource'                  => 'Kost peri:',
 'uploadedfiles'               => 'Üleslaadiduq teedüstüq',
 'ignorewarning'               => 'Pangu-i hoiatust tähele ja pästäq tuugiperäst.',
 'ignorewarnings'              => 'Pangu-i üttegi hoiatust tähele',
@@ -904,8 +904,8 @@ Ku ülekaet teedüstü om sama pilt alguperälidsen suurusõn, sis olõ-i vaia e
 'uploadscripted'              => 'Seol teedüstül om HTML-kuud vai skripte, minkast võrgokaeja või võlssi arvo saiaq.',
 'uploadcorrupt'               => 'Teedüstü om viganõ vai om täl võlss laendus. Olõq hää, kaeq tä üle ja laadiq vahtsõst üles.',
 'uploadvirus'                 => 'Teedüstül om viirus man! Kaeq: $1',
-'sourcefilename'              => 'Teedüstü nimi',
-'destfilename'                => 'Teedüstü nimi vikin',
+'sourcefilename'              => 'Teedüstü nimi:',
+'destfilename'                => 'Teedüstü nimi vikin:',
 'watchthisupload'             => 'Kaeq taa lehe perrä',
 'filewasdeleted'              => 'Sääntse nimega teedüstü om jo üles laadit ja sis ärq kistutõt. Kaeq üle $1 inne ku nakkat jälq üles laatma.',
 'upload-wasdeleted'           => "'''Hoiatus: Sa proovit üles laatiq teedüstüt, miä om innemb ärq kistutõt.'''
@@ -925,7 +925,7 @@ Kas olõt kimmäs, et tahat taad üles laatiq? Kaeq ka sissekirotust taa teedüs
 'upload-curl-error28'      => 'Saa-s ao pääle üles laaditus',
 'upload-curl-error28-text' => 'Taa aadrõsi päält saa-s ao pääle vastust. Oodaq vähä ja prooviq vahtsõst.',
 
-'license'            => 'Litsents',
+'license'            => 'Litsents:',
 'nolicense'          => 'Olõ-i litsentsi valit',
 'license-nopreview'  => '(Saa-i kaiaq)',
 'upload_source_url'  => ' (avalik tüütäv võrgoaadrõs)',

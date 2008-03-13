@@ -843,14 +843,14 @@ egy szövegfájlba, amit elmenthetsz későbbre.</strong>',
 Visszamehetsz és szerkeszthetsz egy létező lapot, ill. [[Special:Userlogin|bejelentkezhetsz vagy létrehozhatod a fiókodat]].',
 'nocreate-loggedin'         => 'Az új lapok készítése nem engedélyezett ebben a wikiben a számodra.',
 'permissionserrors'         => 'Engedélyezési hibák',
-'permissionserrorstext'     => 'Végrehajtása nem engedélyezett a számodra, a következő {{PLURAL:$1|ok|okok}} miatt:',
+'permissionserrorstext'     => 'A művelet elvégzése nem engedélyezett a számodra, a következő {{PLURAL:$1|ok|okok}} miatt:',
 'recreate-deleted-warn'     => "'''Vigyázat: egy olyan lapot akarsz létrehozni, amelyet korábban már töröltünk.'''
 
 Mielőtt létrehoznád, nézd meg, miért került korábban törlésre és ellenőrizd,
 hogy a törlés indoka nem érvényes-e még. A törlési naplóban a lapról az alábbi bejegyzések szerepelnek:",
 
 # "Undo" feature
-'undo-success' => 'A szerkesztés visszavonható. Kérlek ellenőrizd a változásokat alább, hogy valóban ezt szeretnéd-e tenni, majd kattints a lap mentése gombra a visszavonás véglegesítéséhez.',
+'undo-success' => 'A szerkesztés visszavonható. Kérlek ellenőrizd alább a változásokat, hogy valóban ezt szeretnéd-e tenni, majd kattints a lap mentése gombra a visszavonás véglegesítéséhez.',
 'undo-failure' => 'A szerkesztést nem lehet automatikusan visszavonni vele ütköző későbbi szerkesztések miatt.',
 'undo-summary' => 'Visszavontam [[Special:Contributions/$2|$2]] ([[User talk:$2|vita]]) szerkesztését (oldid: $1)',
 
@@ -874,7 +874,7 @@ Egy IP-címet gyakran több különböző ember is használ; lehetséges, hogy e
 'nextrevision'        => 'Újabb változat→',
 'currentrevisionlink' => 'legfrissebb változat',
 'cur'                 => 'akt',
-'next'                => 'köv',
+'next'                => 'következő',
 'last'                => 'előző',
 'orig'                => 'eredeti',
 'page_first'          => 'első',
@@ -884,7 +884,7 @@ Jelmagyarázat: (akt) = eltérés az aktuális változattól, (előző) = eltér
 'deletedrev'          => '[törölve]',
 'histfirst'           => 'legkorábbi',
 'histlast'            => 'legutolsó',
-'historysize'         => '($1 byte)',
+'historysize'         => '($1 bájt)',
 'historyempty'        => '(üres)',
 
 # Revision feed
@@ -892,26 +892,23 @@ Jelmagyarázat: (akt) = eltérés az aktuális változattól, (előző) = eltér
 'history-feed-description'    => 'Az oldal laptörténete a wikiben',
 'history-feed-item-nocomment' => '$1, $2-n', # user at time
 'history-feed-empty'          => 'A kért oldal nem létezik.
-Lehet, hogy törölték a wikiből, vagy átnevezhették.
-Próbálkozz meg a témával kapcsolatos wikilapok [[Special:Search|keresésével]].',
+Lehet, hogy törölték a wikiből, vagy átnevezték.
+Próbálkozhatsz a témával kapcsolatos lapok [[Special:Search|keresésével]].',
 
 # Revision deletion
 'rev-deleted-comment'         => '(megjegyzés eltávolítva)',
-'rev-deleted-user'            => '(felhazsnálónév eltávolítva)',
+'rev-deleted-user'            => '(felhasználónév eltávolítva)',
 'rev-deleted-event'           => '(bejegyzés eltávolítva)',
 'rev-deleted-text-permission' => '<div class="mw-warning plainlinks">
-Ezt a lapjavítást eltávolították a nyilvános archívumokból.
-A részletek benne lehetnek a [{{fullurl:Special:Napló/delete|page={{FULLPAGENAMEE}}}} törlési naplóban].
-</div>',
+Ezt a változatot eltávolítottuk a nyilvános archívumokból.
+További információkat a [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} törlési naplóban] találhatsz.</div>',
 'rev-deleted-text-view'       => '<div class="mw-warning plainlinks">
-Ezt a lapváltozatot eltávolították a nyilvános archívumokból.
-Mivel adminisztrátor vagy ezen a webhelyen, te megtekintheted;
-a részletek benne lehetnek a [{{fullurl:Special:Napló/delete|page={{FULLPAGENAMEE}}}} törlési naplóban].
-</div>',
+Ezt a változatot eltávolították a nyilvános archívumokból.
+Mivel adminisztrátor vagy ezen a webhelyen, te megtekintheted; további részleteket a [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} törlési naplóban] találhatsz.</div>',
 'rev-delundel'                => 'megjelenítés/elrejtés',
-'revisiondelete'              => 'Javítások törlése/visszaállítása',
-'revdelete-nooldid-title'     => 'Nincs célváltozat',
-'revdelete-nooldid-text'      => 'Nem adtad meg a célváltozatot vagy változatokat, melyeken el akarod végezni ezt a funkciót.',
+'revisiondelete'              => 'Változatok törlése/helyreállítása',
+'revdelete-nooldid-title'     => 'Nem adtad meg a célváltozatot',
+'revdelete-nooldid-text'      => 'Nem adtad meg a célváltozatot vagy változatokat, melyeken el akarod végezni a műveletet.',
 'revdelete-selected'          => "{{PLURAL:$2|Kiválasztott változat|Kiválasztott változatok}} - '''$1:'''",
 'logdelete-selected'          => "{{PLURAL:$2|Kiválasztott naplóesemény|Kiválasztott naplóesemények}} - '''$1:'''",
 'revdelete-text'              => 'A törölt változatok és események még láthatók lesznek a lap előzményeiben és naplójában,
@@ -924,23 +921,22 @@ vissza tudja ugyanezen a kezelőfelületen keresztül állítani, ha nincs megad
 'revdelete-hide-name'         => 'Művelet és cél elrejtése',
 'revdelete-hide-comment'      => 'Megjegyzés módosításának elrejtése',
 'revdelete-hide-user'         => 'A szerkesztő felhasználónevének/IP-címének elrejtése',
-'revdelete-hide-restricted'   => 'Ezen korlátozások alkalmazása a rendszerfelelősökre is, és a többiekre is',
-'revdelete-suppress'          => 'Adatok letiltása a rendszerfelelősöktől is, és a többiektől is',
-'revdelete-hide-image'        => 'Fájltartalom elrejtése',
-'revdelete-unsuppress'        => 'A visszaállított változatok korlátozásainak eltávolítása',
-'revdelete-log'               => 'Naplómegjegyzés:',
+'revdelete-hide-restricted'   => 'Alkalmazás az adminisztrátorokra és a többi felhasználóra is',
+'revdelete-suppress'          => 'Adatok elrejtése az adminisztrátorok és a többi felhasználó elöl is',
+'revdelete-hide-image'        => 'A fájl tartalomának elrejtése',
+'revdelete-unsuppress'        => 'Korlátozások eltávolítása a visszaállított változatokról',
+'revdelete-log'               => 'Megjegyzés:',
 'revdelete-submit'            => 'Alkalmazás a kiválasztott változatra',
-'revdelete-logentry'          => 'megváltozott változat láthatóság [[$1]]',
-'logdelete-logentry'          => 'megváltozott esemény láthatóság [[$1]]',
-'revdelete-logaction'         => '$1 {{PLURAL:$1|revision|revíziók}} átállítva $2. módra',
-'logdelete-logaction'         => '$1 {{PLURAL:$1|event|események}} to [[$3]] átállítva $2. módra',
-'revdelete-success'           => 'A változat láthatóságának beállítása sikerült.',
-'logdelete-success'           => 'Az esemény láthatóságának beállítása sikerült.',
+'revdelete-logentry'          => '[[$1]] változatának láthatóságának módosítása',
+'logdelete-logentry'          => '[[$1]] eseményének láthatóságának módosítása',
+'revdelete-logaction'         => '$1 változat átállítva $2 módra',
+'logdelete-logaction'         => '[[$3]] $1 eseménye átállítva $2 módra',
+'revdelete-success'           => 'A változat láthatóságának beállítása sikeresen elvégezve.',
+'logdelete-success'           => 'Az esemény láthatóságának beállítása sikeresen elvégezve.',
 
 # Oversight log
-'oversightlog'    => 'Tévedésnapló',
-'overlogpagetext' => 'Az alábbiakban látható a rendszerfelelősök elől elrejtett legutóbbi törlések listája.
- A jelenleg érvényben lévő kitiltásokat és blokkolásokat lásd az [[Special:Ipblocklist|IP blokkolási listában]].',
+'oversightlog'    => 'Adatvédelmi biztos-napló',
+'overlogpagetext' => 'Az alábbiakban látható az adminisztrátorok elől legutóbb elrejtett törlések és blokkok listája. A jelenleg érvényben lévő kitiltásokat és blokkolásokat lásd az [[Special:Ipblocklist|Blokkolt IP-címek listáján]].',
 
 # History merging
 'mergehistory'                     => 'Laptörténetek egyesítése',

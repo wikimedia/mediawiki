@@ -169,7 +169,7 @@ $messages = array(
 'hidden-category-category' => '非公開カテゴリ', # Name of the category where hidden categories will be listed
 
 'mainpagetext'      => 'MediaWikiが正常にインストールされました。',
-'mainpagedocfooter' => '使い方・設定に関しては[http://meta.wikimedia.org/wiki/ヘルプ:目次 ユーザーズガイド]を参照してください。
+'mainpagedocfooter' => '使い方・設定に関しては[http://meta.wikimedia.org/wiki/%E3%83%98%E3%83%AB%E3%83%97:%E7%9B%AE%E6%AC%A1 ユーザーズガイド]を参照してください。
 
 == はじめましょう ==
 

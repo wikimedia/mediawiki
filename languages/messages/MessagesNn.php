@@ -1741,7 +1741,8 @@ IP-adresser som blir automatisk blokkerte er ikkje lista her. Sjå [[Special:Ipb
 'databasenotlocked'   => 'Databasen er ikkje låst.',
 
 # Move page
-'move-page-legend'                => 'Flytt side',
+'move-page'               => 'Flytt $1',
+'move-page-legend'        => 'Flytt side',
 'movepagetext'            => "Ved å bruke skjemaet nedanfor kan du få omdøypt ei side og flytt heile historikken til det nye namnet. Den gamle tittelen vil bli ei omdirigeringsside til den nye tittelen. Lenkjer til den gamle tittelen vil ikkje bli endra. Pass på å sjekke for doble eller dårlege omdirigeringar. Du er ansvarleg for at alle lenkjene stadig peiker dit det er meininga at dei skal peike.
 
 Merk at sida '''ikkje''' kan flyttast dersom det allereie finst ei side med den nye tittelen. Du kan likevel flytte ei side attende dit ho vart flytt frå dersom du gjer ein feil, så lenge den sida du flytter attende til ikkje er vorten endra sidan flyttinga.

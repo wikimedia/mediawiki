@@ -269,10 +269,13 @@ $messages = array(
 'thisisdeleted'           => 'Témbongkeun atawa simpen deui $1?',
 'viewdeleted'             => 'Témbongkeun $1?',
 'restorelink'             => '$1 éditan dihapus',
+'feedlinks'               => 'Eupan:',
 'feed-invalid'            => 'Tipe paménta asupan henteu pas.',
 'site-rss-feed'           => 'Eupan RSS $1',
 'site-atom-feed'          => 'Eupan Atom $1',
 'page-rss-feed'           => 'Eupan RSS "$1"',
+'page-atom-feed'          => 'Eupan Atom "$1"',
+'red-link-title'          => '$1 (can aya)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Artikel',
@@ -894,7 +897,7 @@ Catet yén salaku kaca wiki, nu séjén bisa ngarobah atawa ngahapus muatan anje
 'imagelist_user'            => 'Pamaké',
 'imagelist_size'            => 'Badagna',
 'imagelist_description'     => 'Pedaran',
-'imagelist_search_for'      => 'Susud ngaran gambar:',
+'imagelist_search_for'      => 'Sungsi ngaran média:',
 
 # File reversion
 'filerevert'         => 'balikkeun $1',
@@ -903,11 +906,13 @@ Catet yén salaku kaca wiki, nu séjén bisa ngarobah atawa ngahapus muatan anje
 'filerevert-submit'  => 'Balikkeun',
 
 # File deletion
-'filedelete'         => 'Ngahapus $1',
-'filedelete-legend'  => 'Ngahapus gambar',
-'filedelete-intro'   => "Anjeun ngahapus '''[[Media:$1|$1]]'''.",
-'filedelete-comment' => 'koméntar:',
-'filedelete-success' => "'''$1''' geus dihapus.",
+'filedelete'                  => 'Ngahapus $1',
+'filedelete-legend'           => 'Ngahapus gambar',
+'filedelete-intro'            => "Anjeun ngahapus '''[[Media:$1|$1]]'''.",
+'filedelete-comment'          => 'koméntar:',
+'filedelete-success'          => "'''$1''' geus dihapus.",
+'filedelete-nofile'           => "Teu aya '''$1''' di {{SITENAME}}.",
+'filedelete-reason-otherlist' => 'Alesan séjén',
 
 # MIME search
 'mimesearch'         => 'Sungsi MIME',
@@ -968,7 +973,7 @@ Jumlah-jamléh geus aya '''\$3''' kaca ulasan sarta '''\$4''' éditan ti saprak 
 'nviews'                  => '$1 témbongan',
 'specialpage-empty'       => 'Kaca ieu kosong.',
 'lonelypages'             => 'Kaca-kaca nunggelis',
-'lonelypagestext'         => 'Teu aya kaca di ieu wiki nu numbu ka kaca-kaca di handap ieu:',
+'lonelypagestext'         => 'Kaca-kaca di handap ieu teu numbu ti kaca séjén di {{SITENAME}}.',
 'uncategorizedpages'      => 'Kaca nu can dikategorikeun',
 'uncategorizedcategories' => 'Kategori nu can dikategorikeun',
 'uncategorizedimages'     => 'Gambar nu can dikategorikeun',
@@ -1006,6 +1011,8 @@ Jumlah-jamléh geus aya '''\$3''' kaca ulasan sarta '''\$4''' éditan ti saprak 
 'unusedcategoriestext'    => 'Kaca kategori di handap ieu aya, tapi taya artikel nu diasupkeun kana kategori ieu.',
 'notargettitle'           => 'Taya tujuleun',
 'notargettext'            => 'Anjeun can nangtukeun hiji targét atawa pamaké pikeun migawé sangkan fungsi ieu jalan.',
+'pager-newer-n'           => '{{PLURAL:$1|leuwih anyar 1|leuwih anyar $1}}',
+'pager-older-n'           => '{{PLURAL:$1|leuwih heubeul 1|leuwih heubeul $1}}',
 
 # Book sources
 'booksources'               => 'Sumber pustaka',
@@ -1042,6 +1049,7 @@ Jumlah-jamléh geus aya '''\$3''' kaca ulasan sarta '''\$4''' éditan ti saprak 
 'allpagessubmit'    => 'Jung',
 'allpagesprefix'    => 'Pintonkeun kaca dimimitian ku:',
 'allpagesbadtitle'  => 'Judul kaca nu dibikeun teu bener atawa mibanda awalan antarbasa atawa antarwiki, nu ngandung karakter nu teu bisa dipaké dina judul.',
+'allpages-bad-ns'   => '{{SITENAME}} teu boga spasi ngaran "$1".',
 
 # Special:Listusers
 'listusersfrom'      => 'Témbongkeun pamaké nu dimimitian ku',
@@ -1061,6 +1069,7 @@ Jumlah-jamléh geus aya '''\$3''' kaca ulasan sarta '''\$4''' éditan ti saprak 
 'emailto'         => 'Ka',
 'emailsubject'    => 'Ngeunaan',
 'emailmessage'    => 'Surat',
+'emailsend'       => 'Kirim',
 'emailccme'       => 'Tembuskeun surat kuring kana surélék.',
 'emailccsubject'  => 'Tembusan surat anjeun keur $1: $2',
 'emailsent'       => 'Surélék geus dikirim',
@@ -1144,6 +1153,8 @@ Asupan jeung bantuan salajengna:
 'excontentauthor'             => "eusina: '$1' (nu ditulis ku '$2' wungkul)",
 'exbeforeblank'               => "eusi méméh dikosongkeun nyéta: '$1'",
 'exblank'                     => 'kaca ieu kosong',
+'delete-confirm'              => 'Hapus "$1"',
+'delete-legend'               => 'Hapus',
 'historywarning'              => 'Perhatosan: Kaca nu rék dihapus mibanda',
 'confirmdeletetext'           => 'Anjeun rék ngahapus hiji kaca atawa gambar katut jujutanana tina pangkalan data, mangga yakinkeun yén anjeun mémang niat midamel ieu, yén anjeun ngartos kana sagala konsékuénsina, sarta yén anjeun ngalakukeun ieu saluyu jeung [[{{MediaWiki:Policy-url}}|kawijakan {{SITENAME}}]].',
 'actioncomplete'              => 'Peta geus réngsé',
@@ -1193,8 +1204,9 @@ Asupan jeung bantuan salajengna:
 'restriction-level'           => 'Hambalan ngonci:',
 
 # Restrictions (nouns)
-'restriction-edit' => 'Édit',
-'restriction-move' => 'Pindahkeun',
+'restriction-edit'   => 'Édit',
+'restriction-move'   => 'Pindahkeun',
+'restriction-create' => 'Jieun',
 
 # Undelete
 'undelete'               => 'Simpen deui kaca nu dihapus',
@@ -1209,6 +1221,7 @@ Asupan jeung bantuan salajengna:
 'undeletedrevisions'     => '$1 révisi disimpen deui',
 'undeletedfiles'         => '$1 koropak dibalikeun',
 'undelete-search-box'    => 'Téang kaca nu dihapus',
+'undelete-search-prefix' => 'Témbongkeun kaca dimimitian ku',
 'undelete-search-submit' => 'Téang',
 
 # Namespace form on various pages
@@ -1239,6 +1252,7 @@ Asupan jeung bantuan salajengna:
 # What links here
 'whatlinkshere'       => 'Nu numbu ka dieu',
 'whatlinkshere-title' => 'Kaca-kaca nu numbu ka $1',
+'whatlinkshere-page'  => 'Kaca:',
 'linklistsub'         => '(Daptar tumbu)',
 'linkshere'           => "Kaca di handap ieu numbu ka '''[[:$1]]''':",
 'nolinkshere'         => "Euweuh kaca nu numbu ka '''[[:$1]]'''.",
@@ -1269,6 +1283,7 @@ Asupan jeung bantuan salajengna:
 'blockipsuccesstext'          => '"$1" dipeungpeuk.
 <br />Tempo [[Special:Ipblocklist|daptar peungpeuk IP]] pikeun nempoan deui peungpeuk.',
 'ipb-unblock-addr'            => 'Buka peungpeuk $1',
+'ipb-unblock'                 => 'Nyabut peungpeuk pamaké atawa alamat IP',
 'ipb-blocklist-addr'          => 'Tempo peungpeuk nu diteurapkeun keur $1',
 'ipb-blocklist'               => 'Tempo peungpeuk nu diteurapkeun',
 'unblockip'                   => 'Buka peungpeuk pamaké',
@@ -1277,6 +1292,7 @@ Asupan jeung bantuan salajengna:
 'unblocked'                   => 'peungpeuk ka [[User:$1|$1]] geus dicabut',
 'unblocked-id'                => 'peungpeuk $1 geus dicabut',
 'ipblocklist'                 => 'Daptar alamat IP jeung ngaran pamaké nu dipeungpeuk',
+'ipblocklist-username'        => 'Landihan pamaké atawa alamat IP:',
 'ipblocklist-submit'          => 'Téang',
 'blocklistline'               => '$1, $2 dipeungpeuk $3 (kadaluwarsa $4)',
 'infiniteblock'               => 'tanpa wates',
@@ -1300,6 +1316,7 @@ Asupan jeung bantuan salajengna:
 'ipb_already_blocked'         => '"$1" geus dipeungpeuk',
 'ip_range_invalid'            => 'Angka IP teu bener.',
 'proxyblocker'                => 'Pameungpeuk proxy',
+'proxyblocker-disabled'       => 'Ieu fungsi keur ditumpurkeun.',
 'proxyblockreason'            => "Alamat IP anjeun dipeungpeuk sabab mangrupa proxy muka. Mangga tepungan ''Internet service provider'' atanapi ''tech support'' anjeun, béjakeun masalah serius ieu.",
 'proxyblocksuccess'           => 'Réngsé.',
 'sorbsreason'                 => "Alamat IP anjeun kadaptar salaku ''open proxy'' dina DNSBL.",
@@ -1540,10 +1557,9 @@ Artikel nu dituju "[[$1]]" geus aya. Badé dihapus baé sangkan bisa mindahkeun?
 'noimages'  => 'Taya nanaon.',
 
 # Bad image list
-'bad_image_list' => 'Formatnya minangka katut:
+'bad_image_list' => 'Formatna kieu:
 
-Ngan butir daptar (jajar anu dimimitian jeung tanda *) anu diitung. Tumbu kahiji dina hiji jajar kudu tumbu ka koropak anu goréng.
-Tumbu-tumbu saterusna dina jajar anu sarua dianggap minangka kajaba, nyaéta artikel anu bisa mintonkeun koropak kasebut.',
+Ngan daptar butiran (jajar anu dimimitian ku tanda *) anu diitung. Tumbu kahiji dina hiji jajar dianggap numbu ka koropak anu goréng. Tumbu-tumbu sanggeusna dina jajar anu sarua dianggap bener, nyaéta artikel anu midangkeun koropak kasebut.',
 
 # Metadata
 'metadata'          => 'Métadata',
