@@ -45,7 +45,7 @@ class NewPagesPage extends QueryPage {
 		if( $shownavigation ) {
 			// Some hopefully reasonable limits...
 			$max = array(
-				/* int */ 'offset' => 5000,
+				/* int */ 'offset' => 20000,
 				/* int */ 'limit' => 500,
 			);
 		} else {
