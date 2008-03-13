@@ -3494,8 +3494,7 @@ class Parser
 			# Save headline for section edit hint before it's escaped
 			$headlineHint = $safeHeadline;
 			$safeHeadline = Sanitizer::escapeId( $safeHeadline );
-			# lowercase headline, since some browser don't distinguish
-			# "Anchor" from "anchor" (bug #10721)
+			# HTML names must be case-insensitively unique (bug 10721)
 			$arrayKey = strtolower( $safeHeadline );
 
 			# XXX : Is $refers[$headlineCount] ever accessed, actually ?
