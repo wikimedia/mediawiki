@@ -1120,6 +1120,7 @@ Slijedi evidencija brisanja ove datoteke s obrazloženjem prethodnog brisanja:",
 ** Kršenje autorskih prava
 ** Dupla datoteka
 ** Nekorištena datoteka',
+'filedelete-edit-reasonlist'  => 'Uredi razloge za brisanje',
 
 # MIME search
 'mimesearch'         => 'MIME tražilica',
@@ -1666,7 +1667,7 @@ mijenjanje postavki, uređivanje popisa praćenja i druge stvari koje zahtijevaj
 'databasenotlocked'   => 'Baza podataka nije zaključana.',
 
 # Move page
-'move-page-legend'                => 'Premjesti stranicu',
+'move-page-legend'        => 'Premjesti stranicu',
 'movepagetext'            => "Korištenjem ovog obrasca ćete preimenovati stranicu i premjestiti sve stare izmjene
 na novo ime.
 Stari će se naslov pretvoriti u stranicu koja automatski preusmjerava na novi naslov.

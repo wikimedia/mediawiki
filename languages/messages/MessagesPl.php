@@ -1668,7 +1668,8 @@ $1',
 'databasenotlocked'   => 'Baza danych nie jest zablokowana.',
 
 # Move page
-'move-page-legend'                => 'Przeniesienie strony',
+'move-page'               => 'Przenieś $1',
+'move-page-legend'        => 'Przeniesienie strony',
 'movepagetext'            => "Za pomocą poniższego formularza zmienisz nazwę strony, przenosząc jednocześnie jej historię.
 Pod starym tytułem zostanie umieszczona strona przekierowująca. Linki do starego tytułu pozostaną niezmienione.
 Upewnij się, że uwzględniasz podwójne lub zerwane przekierowania. Odpowiadasz za to, żeby linki odnosiły się do właściwych artykułów!

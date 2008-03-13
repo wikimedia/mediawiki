@@ -570,11 +570,8 @@ Si la emburacas, tolos chambus hechus dendi esa revisión se perderán.</strong>
 Pol otra parti, al pursal el botón "emburacal" mos estás asigurandu que lo escrebiu á siu hechu pol tí, u lo as copiau dun domiñu púbricu u recursu semilal.
 <strong>Nu emburaquis labutus con Copyright sin premisu!</strong>',
 'copyrightwarning2'         => 'Tolas contribucionis a {{SITENAME}} puein sel eitás, chambás, u esborrás pol otrus colabutaoris. Si nu estás dalcuerdu, altonci nu emburaquis ná.<br />
-Pol otra parti, al pursal el botón "emburacal" mos estás asigurandu que lo escrebiu á siu hechu pol tí, u copiau dun domiñu púbricu u recursu semilal (lei $1 pa mas detallis).<br />
-{|style="width:100%;background:none;margin:-.8em 0 -.7em 0"
-|style="font-size:95%;text-align:center;white-space:nowrap;color:#000"|
-<strong>Cudia: Nu emburaquis labutus con Copyright sin premisu!</strong>
-|}',
+Pol otra parti, al pursal el botón "emburacal" mos estás asigurandu que lo escrebiu á siu hechu pol tí, u copiau dun domiñu púbricu u recursu semilal (lei $1 pa mas detallis).
+<strong>Cudia: Nu emburaquis labutus con Copyright sin premisu!</strong>',
 'longpagewarning'           => '<strong>Avisu: Esta páhina tieni un grandol de $1 kilobytes; angunus escrucaoris puein tenel pobremas al eital páhinas con mas de 32KB. Pol favol, consieri la posibiliá e devidil esta páhina en secionis mas chiqueninas.</strong>',
 'longpageerror'             => "<strong>Marru: El testu qu'as empuntau ocupa $1 kbs (siendu polo tantu mayol de $2 kbs). Nu es posibri emburacal.</strong>",
 'readonlywarning'           => '<strong>Avisu: La basi e datus s´alcuentra afechá pol mantenimientu nesti momentu,
@@ -965,7 +962,7 @@ Velaquí el antigu rustrihu d´esborrau pa esti archivu:",
 'upload-curl-error28'      => "Tiempu d'empuntu esceiu",
 'upload-curl-error28-text' => "La páhina está tardandu abondu en contestal. Pol favol, compreba qu'el sirviol hunciona, aspera un pocu i güervi a ententalu. Quiciás prefieras ententalu n'otru momentu con menus carga.",
 
-'license'            => 'Licéncia',
+'license'            => 'Licéncia:',
 'nolicense'          => 'Dengunu selecionau',
 'license-nopreview'  => '(Nu se puei previsoreal)',
 'upload_source_url'  => ' (una URL vália i acesibri)',

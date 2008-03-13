@@ -244,7 +244,7 @@ $messages = array(
 'about'          => 'A propos',
 'article'        => 'Säit',
 'newwindow'      => '(geet an enger neier Fënster op)',
-'cancel'         => 'Zeréck',
+'cancel'         => 'Zréck',
 'qbfind'         => 'Fannen',
 'qbbrowse'       => 'Duerchsichen',
 'qbedit'         => 'Änneren',
@@ -362,7 +362,7 @@ $messages = array(
 'toc'                     => 'Inhaltsverzeechnis',
 'showtoc'                 => 'weisen',
 'hidetoc'                 => 'verstoppen',
-'thisisdeleted'           => '$1 kucken oder zerécksetzen?',
+'thisisdeleted'           => '$1 kucken oder zrécksetzen?',
 'viewdeleted'             => 'Weis $1?',
 'restorelink'             => '$1 geläschte {{PLURAL:$1|Versioun|Versiounen}}',
 'feedlinks'               => 'Feed:',
@@ -1051,13 +1051,13 @@ Dir sollt onbedingt bedenken, datt, genee wéi bäi normale Säiten, aner Benotz
 'imagelist_search_for'      => 'Sicht nom Fichier:',
 
 # File reversion
-'filerevert'                => '„$1“ zerécksetzen',
-'filerevert-legend'         => 'De Fichier zerécksetzen.',
-'filerevert-intro'          => '<span class="plainlinks">Du setz de Fichier \'\'\'[[Media:$1|$1]]\'\'\' op d\'[$4 Versioun vum $2, $3 Auer] zeréck.</span>',
+'filerevert'                => '"$1" zrécksetzen',
+'filerevert-legend'         => 'De Fichier zrécksetzen.',
+'filerevert-intro'          => '<span class="plainlinks">Du setz de Fichier \'\'\'[[Media:$1|$1]]\'\'\' op d\'[$4 Versioun vum $2, $3 Auer] zréck.</span>',
 'filerevert-comment'        => 'Grond:',
-'filerevert-defaultcomment' => "zeréckgesat op d'Versioun vum $1, $2 Auer",
-'filerevert-submit'         => 'Zerécksetzen',
-'filerevert-success'        => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\' gouf op d\'[$4 Versioun vum $2, $3 Auer] zeréckgesat.</span>',
+'filerevert-defaultcomment' => "zréckgesat op d'Versioun vum $1, $2 Auer",
+'filerevert-submit'         => 'Zrécksetzen',
+'filerevert-success'        => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\' gouf op d\'[$4 Versioun vum $2, $3 Auer] zréckgesat.</span>',
 
 # File deletion
 'filedelete'                  => 'Läsch "$1"',
@@ -1219,7 +1219,7 @@ An all Rei sti Linken zur éischter an zweeter Viruleedung, souwéi déi éischt
 'notargettitle'                   => 'Dir hutt keng Säit uginn.',
 'notargettext'                    => 'Dir hutt keng Zilsäit oder keen Zilbenotzer uginn fir déi dës Funktioun ausgheféiert soll ginn.',
 'pager-newer-n'                   => '{{PLURAL:$1|nächsten|nächst $1}}',
-'pager-older-n'                   => '{{PLURAL:$1|virëschten|virëscht $1}}',
+'pager-older-n'                   => '{{PLURAL:$1|vireg|vireg $1}}',
 
 # Book sources
 'booksources'               => 'Bicherreferenzen',
@@ -1364,8 +1364,8 @@ W.e.g. konfirméiert, datt Dir dëst wierklech wëllt, datt Dir d'Konsequenze ve
 'rollback_short'              => 'Zrécksetzen',
 'rollbacklink'                => 'Zrécksetzen',
 'rollbackfailed'              => 'Zrécksetzen huet net geklappt',
-'cantrollback'                => 'Lescht Ännerung kann net zeréckgesat ginn. De leschten Auteur ass deen eenzegen Auteur vun dëser Säit.',
-'alreadyrolled'               => 'Déi lescht Ännerung vun der Säit [[$1]] vum [[User:$2|$2]] ([[User talk:$2|Diskussioun]]) kann net zeréckgesat ginn; een Aneren huet dëst entweder scho gemaach oder nei Ännerungen agedroen. Lescht Ännerung vum [[User:$3|$3]] ([[User talk:$3|Diskussioun]]).',
+'cantrollback'                => 'Lescht Ännerung kann net zréckgesat ginn. De leschten Auteur ass deen eenzegen Auteur vun dëser Säit.',
+'alreadyrolled'               => 'Déi lescht Ännerung vun der Säit [[$1]] vum [[User:$2|$2]] ([[User talk:$2|Diskussioun]]) kann net zréckgesat ginn; een Aneren huet dëst entweder scho gemaach oder nei Ännerungen agedroen. Lescht Ännerung vum [[User:$3|$3]] ([[User talk:$3|Diskussioun]]).',
 'editcomment'                 => 'Ännerungskommentar: "<i>$1</i>".', # only shown if there is an edit comment
 'revertpage'                  => 'Ännerunge vum [[User:$2|$2]] ([[Special:Contributions/$2|Kontributioune]]) geläscht an déi lescht Versioun vum [[User:$1|$1]] restauréiert', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success'            => "D'Ännerunge vum $1 goufen zréckgesat op déi lescht Versioun vum $2.",
@@ -2026,7 +2026,7 @@ $1',
 'useajaxsearch'    => 'AJAX-ënnerstetzt Sich benotzen',
 
 # Multipage image navigation
-'imgmultipageprev' => '← virëscht Säit',
+'imgmultipageprev' => '← Säit virdrun',
 'imgmultipagenext' => 'nächst Säit →',
 'imgmultigo'       => 'Lass',
 'imgmultigotopre'  => "Géi op d'Säit",

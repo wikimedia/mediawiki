@@ -906,7 +906,7 @@ Móžeš [[{{ns:special}}:Allpages|alfabetiski indeks přepytować]] abo [[:$1|s
 'userrights-lookup-user'           => 'Wužiwarske skupiny zrjadować',
 'userrights-user-editname'         => 'Wužiwarske mjeno:',
 'editusergroup'                    => 'Wužiwarske skupiny wobdźěłać',
-'editinguser'                      => 'Wužiwar <b>$1</b> so wobdźěłuje',
+'editinguser'                      => "Měnja so wužiwarske prawa wot wužiwarja '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
 'userrights-editusergroup'         => 'Wužiwarske skupiny wobdźěłać',
 'saveusergroups'                   => 'Wužiwarske skupiny składować',
 'userrights-groupsmember'          => 'Čłon skupiny:',
@@ -1386,6 +1386,7 @@ Jeli chceš stronu pozdźišo ze swojich wobkedźbowankow wotstronić, klikń na
 'unwatch'              => 'njewobkedźbować',
 'unwatchthispage'      => 'wobkedźbowanje skónčić',
 'notanarticle'         => 'njeje nastawk',
+'notvisiblerev'        => 'Wersija bu wušmórnjena',
 'watchnochange'        => 'Žana z twojich wobkedźbowanych stron njebu w podatej dobje wobdźěłana.',
 'watchlist-details'    => '{{PLURAL:$1|$1 wobkedźbowana strona|$1 wobkedźbowanej stronje|$1 wobkedźbowane strony|$1 wobkedźbowanych stronow}}, diskusijne strony wuwzate.',
 'wlheader-enotif'      => '* E-mejlowe zdźělenje je zmóžnjene.',
@@ -1706,7 +1707,8 @@ $1',
 'databasenotlocked'   => 'Datajowa banka zamknjena njeje.',
 
 # Move page
-'move-page-legend'                => 'Stronu přesunyć',
+'move-page'               => '$1 přesunyć',
+'move-page-legend'        => 'Stronu přesunyć',
 'movepagetext'            => 'Wužiwanje formulara deleka budźe stronu přemjenować, suwajo jeje cyłe stawizny pod nowe mjeno. Stary titl budźe daleposrědkowanje na nowy titl. Wotkazy na stary titl so njezměnja. Pruwuj za dwójnymi abo skóncowanymi daleposrědkowanjemi. Dyrbiš zaručić, zo wotkazy na stronu pokazuja, na kotruž dyrbja dowjesć.
 
 Wobkedźbuj, zo strona so <b>nje</b> přesunje, jeli strona z nowym titlom hizo eksistuje, chibazo wona je prózdna abo dalesposrědkowanje a nima zašłe stawizny. To woznamjenja, zo móžeš stronu tam wróćo přemjenować, hdźež bu runje přemjenowana, jeli zmylk činiš a njemóžeš wobstejacu stronu přepisować.

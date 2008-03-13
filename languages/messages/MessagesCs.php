@@ -1527,6 +1527,7 @@ Zobrazení můžete zúžit výběrem typu záznamu, uživatelského jména nebo
 'unwatch'              => 'Nesledovat',
 'unwatchthispage'      => 'Nesledovat tuto stránku',
 'notanarticle'         => 'Toto není stránka',
+'notvisiblerev'        => 'Verze byla smazána',
 'watchnochange'        => 'Žádná ze sledovaných položek nebyla editována v době, která je zobrazena.',
 'watchlist-details'    => 'Na svém seznamu sledovaných stránek máte $1 {{plural:$1|stránku|stránky|stránek}}',
 'wlheader-enotif'      => '* Upozorňování e-mailem je zapnuto.',
@@ -1840,7 +1841,8 @@ $1',
 'databasenotlocked'   => 'Databáze není uzamčena.',
 
 # Move page
-'move-page-legend'                => 'Přesunout stránku',
+'move-page'               => 'Přesunout „$1“',
+'move-page-legend'        => 'Přesunout stránku',
 'movepagetext'            => 'Pomocí tohoto formuláře změníte název stránky a přesunete i celou její historii pod nový název. Původní název se stane přesměrováním na nový název. Odkazy na předchozí název <i>nebudou</i> změněny. <b>VAROVÁNÍ!</b> Toto může drastická a nečekaná změna pro oblíbené stránky. Ujistěte se, prosím, že chápete důsledky vašeho kroku před tím, než změnu provedete.',
 'movepagetalktext'        => "Přidružená diskusní stránka, pokud existuje, bude automaticky přesunuta společně se stránkou, '''pokud:'''
 * Dosud neexistuje neprázdná diskusní stránka pod novým jménem a

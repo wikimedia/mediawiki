@@ -1764,7 +1764,7 @@ N’oubliez pas de la déverrouiller lorsque vous aurez terminé votre opératio
 'databasenotlocked'   => 'La base de données n’est pas verrouillée.',
 
 # Move page
-'move-page'               => 'Déplacer $1',
+'move-page'               => 'Renommer $1',
 'move-page-legend'        => 'Renommer une page',
 'movepagetext'            => 'Utilisez le formulaire ci-dessous pour renommer une page, en déplaçant tout son historique vers le nouveau nom. L’ancien titre deviendra une page de redirection vers le nouveau titre. Les liens vers le titre de l’ancienne page ne seront pas changés ; veuillez vérifier que ce déplacement n’a pas créé de double redirection. Vous devez vous assurer que les liens continuent de pointer vers leur destination supposée.
 
@@ -1960,7 +1960,7 @@ Toutes les actions d’importation interwiki sont consignées dans l’[[Special
 'notacceptable'     => 'Ce serveur wiki ne peut pas fournir les données dans un format que votre client est capable de lire.',
 
 # Attribution
-'anonymous'        => 'Uti|isateur(s) non enregistré(s) de {{SITENAME}}',
+'anonymous'        => 'Utilisateur(s) non enregistré(s) de {{SITENAME}}',
 'siteuser'         => 'Utilisateur $1 de {{SITENAME}}',
 'lastmodifiedatby' => 'Cette page a été modifiée pour la dernière fois le $1 à $2 par $3.', # $1 date, $2 time, $3 user
 'othercontribs'    => 'Basé sur le travail de $1.',

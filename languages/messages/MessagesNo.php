@@ -1668,6 +1668,7 @@ Bekreft at du har til hensikt å gjøre dette.',
 'databasenotlocked'   => 'Databasen er ikke låst.',
 
 # Move page
+'move-page'               => 'Flytt $1',
 'move-page-legend'        => 'Flytt side',
 'movepagetext'            => "Når du bruker skjemaet under, vil du få omdøpt en 
 side og flyttet hele historikken til det nye navnet.

@@ -328,10 +328,12 @@ $messages = array(
 'nstab-category'  => 'Categori',
 
 # Main script and global functions
-'nosuchaction'      => 'Does dim gweithred',
-'nosuchactiontext'  => "Dydy'r meddalwedd Mediawiki ddim yn deallt y gweithrediad mae'r URL yn gofyn iddo fe gwneud",
-'nosuchspecialpage' => 'Does dim tudalen arbennig',
-'nospecialpagetext' => "Yr ydych wedi gofyn am tudalen arbennig dydy'r meddalwedd Mediawiki ddim yn adnabod.",
+'nosuchaction'      => "Dim gweithred o'r fath",
+'nosuchactiontext'  => "Dydi'r wici ddim yn adnabod y weithred yn y cyfeiriad URL.",
+'nosuchspecialpage' => 'Y dudalen arbennig ddim yn bod',
+'nospecialpagetext' => "<big>'''Dyw'r wici ddim yn adnabod y dudalen arbennig y gofynnwyd amdani.'''</big>
+
+Mae rhestr o'r tudalennau arbennig dilys i'w gael [[Special:Specialpages|yma]].",
 
 # General errors
 'error'                => 'Gwall',
@@ -442,8 +444,7 @@ Mae eich accownt wedi gael eu creu. Peidiwch ac anghofio i personaleiddio eich f
 'noname'                     => 'Dydych chi ddim wedi cynnig enw defnyddiwr dilys.',
 'loginsuccesstitle'          => 'Llwyddodd y mewngofnodi',
 'loginsuccess'               => "'''Yr ydych wedi mewngofnodi i {{SITENAME}} wrth yr enw \"\$1\".'''",
-'nosuchuser'                 => 'Does dim defnyddwr gyda\'r enw "$1".
-Sicrhau rydych chi wedi sillafu\'n iawn, neu creuwch accownt newydd gyda\'r ffurflen isod.',
+'nosuchuser'                 => "Does yna'r un defnyddiwr â'r enw '$1'. Sicrhewch eich bod chi wedi'i sillafu'n iawn, neu crëwch gyfrif newydd.",
 'nosuchusershort'            => 'Does dim defnyddiwr o\'r enw "<nowiki>$1</nowiki>". Gwiriwch eich sillafu.',
 'nouserspecified'            => "Mae'n rhaid nodi enw defnyddiwr.",
 'wrongpassword'              => "Mae'r allweddair rydych wedi teipio ddim yn cywir. Triwch eto, os gwelwch yn dda.",
@@ -544,6 +545,8 @@ Cyfeirnod y bloc yw $5. Nodwch hwn wrth drafod y bloc.",
 'whitelistreadtext'         => 'Rhaid i chi [[Special:Userlogin|mewngofnodi]] i ddarllen erthyglau.',
 'whitelistacctitle'         => 'Ni chaniateir creu accownt',
 'whitelistacctext'          => 'I gael caniatâd i creu accownt yn y wiki hon, rhaid i chi [[Special:Userlogin|mewngofnodi]] a chael y caniatâd priodol.',
+'nosuchsectiontitle'        => 'Yr adran ddim yn bod',
+'nosuchsectiontext'         => "Rydych wedi ceisio golygu adran nad ydy'n bod. Gan nad oes adran o'r enw $1, ni ellir rhoi eich golygiad ar gadw.",
 'loginreqtitle'             => 'Mae angen mewngofnodi',
 'loginreqlink'              => 'mewngofnodi',
 'loginreqpagetext'          => "Mae'n rhaid $1 er mwyn gweld tudalennau eraill.",
@@ -579,7 +582,7 @@ Bydd yn rhaid i chi gyfuno eich newidiadau chi a'r testun sydd yn bodoli eisioes
 <b>Dim ond</b> y testun yn yr ardal testun <b>uchaf</b> fydd yn cael ei roi ar gadw pan wasgwch y botwm \"Cadw'r dudalen\".<br />",
 'yourtext'                  => 'Eich testun',
 'storedversion'             => 'Fersiwn wedi cadw',
-'nonunicodebrowser'         => '<strong>RHYBUDD: Nid yw eich porwr yn cydymffurfio ag Unicode. Pan fyddwch yn golygu erthyglau, bydd nodau sydd ddim yn ran o ASCII yn ymddangos yn y blwch golygu fel codau hecsadegol.</strong>',
+'nonunicodebrowser'         => '<strong>RHYBUDD: Nid yw eich porwr yn cydymffurfio ag Unicode. Serch hyn, mae modd i chi olygu tudalennau: bydd nodau sydd ddim yn ran o ASCII yn ymddangos yn y blwch golygu fel codau hecsadegol.</strong>',
 'editingold'                => "<strong>RHYBUDD: Rydych chi'n golygu hen ddiwygiad o'r dudalen hon.<br />Os caiff ei chadw, bydd unrhyw newidiadau diweddarach yn cael eu colli!</strong>",
 'yourdiff'                  => 'Gwahaniaethau',
 'copyrightwarning'          => "Mae pob cyfraniad i {{SITENAME}} yn cael ei ryddhau o dan termau'r Drwydded Ddogfen Rhydd ($2) (gwelwch $1 am fanylion). Os nad ydych chi'n fodlon i'ch gwaith gael ei olygu heb drugaredd, neu i gopïau ymddangos ar draws y we, peidiwch a'i gyfrannu yma.<br />
@@ -1027,6 +1030,7 @@ Mae gan '''$2''' (neu '''$4%''') ohonynt alluoedd $5.",
 
 'withoutinterwiki'        => 'Tudalennau heb gysylltiadau ag ieithoedd eraill',
 'withoutinterwiki-header' => 'Nid oes gysylltiad rhwng y tudalennau canlynol a thudalennau mewn ieithoedd eraill:',
+'withoutinterwiki-submit' => 'Dangos',
 
 'fewestrevisions' => "Erthyglau â'r nifer lleiaf o olygiadau iddynt",
 
@@ -1566,14 +1570,16 @@ Yn achos yr ail ddewis, mae modd defnyddio cyswllt, e.e. [[{{ns:special}}:Export
 'tooltip-n-portal'                => "Pethau i'w gwneud, adnoddau a thudalennau'r gymuned",
 'tooltip-n-currentevents'         => 'Gwybodaeth yn gysylltiedig â materion cyfoes',
 'tooltip-n-recentchanges'         => 'Rhestr y newidiadau diweddar ar y wici.',
-'tooltip-n-randompage'            => 'Llwytho tudalen ar hap',
+'tooltip-n-randompage'            => 'Dewiswch dudalen ar hap',
 'tooltip-n-help'                  => 'Tudalennau cymorth',
 'tooltip-n-sitesupport'           => "Cefnogi'n ariannol",
 'tooltip-t-whatlinkshere'         => "Rhestr o bob tudalen sy'n cysylltu â hon",
-'tooltip-t-contributions'         => "Gweld rhestr cyfraniadau'r defnyddiwr hwn",
-'tooltip-t-emailuser'             => 'Anfon e-bost at y defnyddiwr hwn',
-'tooltip-t-upload'                => 'Uwchlwytho ffeiliau',
+'tooltip-t-recentchangeslinked'   => 'Newidiadau diweddar i dudalennau sydd yn cysylltu â hon',
+'tooltip-t-contributions'         => "Gwelwch restr o gyfraniadau'r defnyddiwr hwn",
+'tooltip-t-emailuser'             => 'Anfonwch e-bost at y defnyddiwr hwn',
+'tooltip-t-upload'                => 'Uwchlwythwch ffeil delwedd, sain, fideo, ayb',
 'tooltip-t-specialpages'          => "Rhestr o'r holl dudalennau arbennig",
+'tooltip-t-print'                 => "Cynhyrchwch fersiwn o'r dudalen yn barod at ei hargraffu",
 'tooltip-ca-nstab-user'           => 'Gweld tudalen y defnyddiwr',
 'tooltip-ca-nstab-project'        => "Ymweld â'r Hafan",
 'tooltip-ca-nstab-image'          => 'Gweld tudalen y ffeil',
@@ -1590,7 +1596,7 @@ Yn achos yr ail ddewis, mae modd defnyddio cyswllt, e.e. [[{{ns:special}}:Export
 # Metadata
 'nodublincore'      => "Mae metadata RDF 'Dublin Core' wedi cael ei analluogi ar y gwasanaethwr hwn.",
 'nocreativecommons' => "Mae metadata RDF 'Creative Commons' wedi'i analluogi ar y gwasanaethwr hwn.",
-'notacceptable'     => "Dydi'r gwasanaethwr wici ddim yn medru rhoi'r data mewn fformat darllenadwy i'ch cleient.",
+'notacceptable'     => "Dydy gweinydd y wici ddim yn medru rhoi'r data mewn fformat darllenadwy i'ch cleient.",
 
 # Attribution
 'anonymous'        => 'Defnyddwyr anhysbys {{SITENAME}}',

@@ -5,6 +5,7 @@
  *
  * @author Masterches
  * @author Siebrand
+ * @author Jvm
  */
 
 $fallback = 'fr';
@@ -34,19 +35,49 @@ $linkTrail = '/^([a-zàèòÀÈÒ]+)(.*)$/sDu';
 
 $messages = array(
 # User preference toggles
-'tog-underline'       => 'Souliyen lyen yo :',
-'tog-highlightbroken' => 'Afiche <a href="" class="new">nan koulè wouj</a> lyen yo ki ap mene nan paj ki pa egziste (oubyen : tankou <a href="" class="internal">?</a>)',
-'tog-justify'         => 'Aliyen paragraf yo',
-'tog-hideminor'       => 'Kache tout modifikasyon resan yo ki pa enpòtan',
-'tog-extendwatchlist' => 'Itilize lis swivi ki miyò a',
-'tog-usenewrc'        => 'Itilize lis swivi ki miyò a (JavaScript)',
-'tog-numberheadings'  => 'Nimewote otomatiman tit yo',
-'tog-showtoolbar'     => 'Montre panèl meni modifikasyon an',
-'tog-editondblclick'  => 'Klike de fwa pou modifye yon paj (JavaScript)',
-'tog-watchcreations'  => 'Ajoute paj yo ke mwen ap kreye nan lis swivi mwen.',
+'tog-underline'               => 'Souliyen lyen yo :',
+'tog-highlightbroken'         => 'Afiche <a href="" class="new">nan koulè wouj</a> lyen yo ki ap mene nan paj ki pa egziste (oubyen : tankou <a href="" class="internal">?</a>)',
+'tog-justify'                 => 'Aliyen paragraf yo',
+'tog-hideminor'               => 'Kache tout modifikasyon resan yo ki pa enpòtan',
+'tog-extendwatchlist'         => 'Itilize lis swivi ki miyò a',
+'tog-usenewrc'                => 'Itilize lis swivi ki miyò a (JavaScript)',
+'tog-numberheadings'          => 'Nimewote otomatiman tit yo',
+'tog-showtoolbar'             => 'Montre panèl meni modifikasyon an',
+'tog-editondblclick'          => 'Klike de fwa pou modifye yon paj (JavaScript)',
+'tog-editsection'             => 'Pemèt edite yon seksyon via [edite] lyen yo',
+'tog-editsectiononrightclick' => 'Pemèt edite yon seksyon pa klike a dwat tit seksyon an (JavaScrip)',
+'tog-showtoc'                 => 'Montre tab de matyè yo (pou tout paj ki gen plis ke twa tit)',
+'tog-rememberpassword'        => 'Sonje login mwen nan òdinatè sa',
+'tog-editwidth'               => 'Lajè bwat edite-a plen',
+'tog-watchcreations'          => 'Ajoute paj yo ke mwen ap kreye nan lis swivi mwen.',
+'tog-watchdefault'            => 'Mete paj mwen edite yo nan lis veye m',
+'tog-watchmoves'              => 'Mete paj mwen deplase nan lis veye m',
+'tog-watchdeletion'           => 'Mete paj mwen delete nan lis veye m',
+'tog-minordefault'            => 'Make tout edit yo minè pa defo',
+'tog-previewontop'            => 'Montre previzializasyon anvan bwat edite',
+'tog-previewonfirst'          => 'Montre previzializasyon sou premye edit',
+'tog-nocache'                 => 'Dezame paj kapte',
+'tog-enotifwatchlistpages'    => 'E-mèl mwen kan yon paj m’ap gade chanje',
+'tog-enotifusertalkpages'     => 'E-mèl mwen kan paj itilizatè m nan chanje',
+'tog-enotifminoredits'        => 'E-mèl mwen tou pou edit minè paj yo',
+'tog-enotifrevealaddr'        => 'Montre adrès e-mèl mwen nan kominikasyon notifikasyon yo',
+'tog-shownumberswatching'     => 'Montre kantite itlizatè k’ap swiv',
+'tog-fancysig'                => 'Signati kri (san lyen otomatik)',
+'tog-externaleditor'          => 'Itilize editè exteryè pa defo',
+'tog-externaldiff'            => 'Itilize diff exteryè pa defo',
+'tog-showjumplinks'           => 'Demare « jonpe a » asesabilite lyen',
+'tog-uselivepreview'          => 'Itilize previzializasyon kouran (JavaScrip) (Experimantal)',
+'tog-forceeditsummary'        => 'Notifye m lè m’ap antre yon  sonmè edite vid',
+'tog-watchlisthideown'        => 'Kache edisyon m yo nan lis siveye-a',
+'tog-watchlisthidebots'       => 'Kache edisyon bot nan lis siveye-a',
+'tog-watchlisthideminor'      => 'Kache edisyon minè yo nan lis siveye-a',
+'tog-ccmeonemails'            => 'Voye yon kopi e-mèl mwen voye ba lòt ban mwen',
+'tog-diffonly'                => 'Piga moutre enfòmsyon yon paj piba diffs',
+'tog-showhiddencats'          => 'Moutre kategori kache yo',
 
-'underline-always' => 'Toujou',
-'underline-never'  => 'Jamè',
+'underline-always'  => 'Toujou',
+'underline-never'   => 'Jamè',
+'underline-default' => 'Brozè defo',
 
 'skinpreview' => '(Voye kout zye)',
 
@@ -61,7 +92,7 @@ $messages = array(
 'sun'           => 'dim',
 'mon'           => 'len',
 'tue'           => 'mad',
-'wed'           => 'mèr',
+'wed'           => 'mè',
 'thu'           => 'jed',
 'fri'           => 'van',
 'sat'           => 'sam',
@@ -72,7 +103,7 @@ $messages = array(
 'may_long'      => 'me',
 'june'          => 'jen',
 'july'          => 'jiyè',
-'august'        => 'out',
+'august'        => 'out, awou',
 'september'     => 'septanm',
 'october'       => 'oktòb',
 'november'      => 'novanm',
@@ -84,7 +115,7 @@ $messages = array(
 'may-gen'       => 'me',
 'june-gen'      => 'jen',
 'july-gen'      => 'jiyè',
-'august-gen'    => 'out',
+'august-gen'    => 'out, awou',
 'september-gen' => 'septanm',
 'october-gen'   => 'oktòb',
 'november-gen'  => 'novanm',
@@ -104,10 +135,12 @@ $messages = array(
 
 # Bits of text used by many pages
 'categories'            => 'Kategori yo',
+'pagecategories'        => '{{PLURAL:$1|Kategori|Kategori yo}}',
 'category_header'       => 'Paj yo ki nann  kategori « $1 »',
 'subcategories'         => 'Pitit kategori yo',
 'category-media-header' => 'Fichye miltimedya nan kategori « $1 »',
-'category-empty'        => "''Kategori sa a pa genyen atik andidan li, ni sou-kategori ni menm yon fichy miltimedya.''",
+'category-empty'        => "''Kategori sa a pa genyen atik andedan li, ni sou-kategori, ni menm yon fichye miltimedya.''",
+'hidden-categories'     => '{{PLURAL:$1|Kategori sere|Kategori sere yo}}',
 
 'about'         => 'Apwopo',
 'article'       => 'Atik',
@@ -117,6 +150,7 @@ $messages = array(
 'qbedit'        => 'Modifye',
 'qbpageoptions' => 'Opsyon Paj sa a',
 'mytalk'        => 'Paj diskisyon mwen an',
+'anontalk'      => 'Diskite avèk adrès IP sa',
 
 'errorpagetitle'   => 'Erè',
 'returnto'         => 'Ritounen nan paj $1.',
@@ -142,6 +176,7 @@ $messages = array(
 'toolbox'          => 'Bwat zouti yo',
 'redirectedfrom'   => '(Redirije depi $1)',
 'redirectpagesub'  => 'Paj pou redireksyon',
+'protectedpage'    => 'Paj proteje',
 'jumpto'           => 'Ale nan:',
 'jumptonavigation' => 'Navigasyon',
 'jumptosearch'     => 'Fouye',
@@ -248,8 +283,8 @@ Anvan yon lòt imèl voye, swiv komand ki nan mesaj imèl an epi konfime ke kont
 'math_tip'        => 'Fòmil matematik (LaTeX)',
 'nowiki_sample'   => 'Antre tèks ki pa fòmate a',
 'nowiki_tip'      => 'Pa konte sentaks wiki an',
-'image_tip'       => 'Imaj an mete',
-'media_tip'       => 'Lyen pou yon fichye medya',
+'image_tip'       => 'Dosye enkastre',
+'media_tip'       => 'Lyen pou dosye sa',
 'sig_tip'         => 'Siyati ou ak dat an',
 'hr_tip'          => 'Liy orizontal (pa abize)',
 
@@ -426,7 +461,7 @@ Mande ou byen si ou ap byen fè kreye li ankò toutbon (gade jounal paj sa a pou
 'lonelypages'             => 'Paj ki pa genyen manman',
 'uncategorizedpages'      => 'Paj yo ki pa genyen kategori',
 'uncategorizedcategories' => 'Kategori yo ki pa genyen tit/kategori',
-'uncategorizedimages'     => 'Imaj yo ki pa genyen kategori',
+'uncategorizedimages'     => 'Dosye ki pa kategorize',
 'uncategorizedtemplates'  => 'Modèl yo ki pa genyen kategori',
 'unusedcategories'        => 'Kategori yo ki pa itilize',
 'unusedimages'            => 'Imaj yo ki pa genyen manman',
@@ -436,7 +471,7 @@ Mande ou byen si ou ap byen fè kreye li ankò toutbon (gade jounal paj sa a pou
 'mostlinkedcategories'    => 'Kategori yo ki plis itilize',
 'mostlinkedtemplates'     => 'Modèl yo ki plis itilize',
 'mostcategories'          => 'Paj yo ki genyen plis kategori',
-'mostimages'              => 'Imaj yo ki plis itilize',
+'mostimages'              => 'Plis mare avèk dosye',
 'mostrevisions'           => 'Paj yo ki plis modifye',
 'allpages'                => 'Tout paj yo',
 'prefixindex'             => 'Tout paj yo ak yon prefiks (premye lèt)',
@@ -574,7 +609,7 @@ Men reglaj pou paj <strong>$1</strong> an kounye a:',
 'blocklogentry' => 'bloke « [[$1]] » - dire : $2 $3',
 
 # Move page
-'move-page-legend'         => 'Renonmen yon paj',
+'move-page-legend' => 'Renonmen yon paj',
 'movepagetext'     => 'Itilize fòmilè a pou renonmen yon paj, li ap deplase tout istorik li nan nouvo non an.
 Tit anvan ke yon paj redireksyon pou ale nan nouvo paj an. Lyen vè tit anvan an pe ke chanje; souple, gade byen ke deplasman sa a pa kreye yon redireksyon de fwa. Ou dwèt asire ou ke lyen yon korèk, ke yo genyen yon bon destinasyon sou yo.
 
@@ -648,11 +683,11 @@ Souple, byen gade ke li pa egziste pyès redireksyon de fwa epi korije yo si li 
 'tooltip-t-whatlinkshere'         => 'Lis paj yo ki lye ak paj sa a',
 'tooltip-t-contributions'         => 'Wè lis kontribisyon itilizatè sa a',
 'tooltip-t-emailuser'             => 'Voye yon imèl pou itilizatè sa a',
-'tooltip-t-upload'                => 'Chaje yon imaj oubyen yon fichye medya anlè sèvè a',
+'tooltip-t-upload'                => 'Chaje dosye',
 'tooltip-t-specialpages'          => 'Lis tout paj espesyal yo',
 'tooltip-ca-nstab-user'           => 'Wè paj itilizatè',
 'tooltip-ca-nstab-project'        => 'Wè paj pwojè a',
-'tooltip-ca-nstab-image'          => 'Wè paj imaj an',
+'tooltip-ca-nstab-image'          => 'Gade paj dokiman sa',
 'tooltip-ca-nstab-template'       => 'Wè modèl an',
 'tooltip-ca-nstab-help'           => 'Wè paj èd an',
 'tooltip-ca-nstab-category'       => 'Wè paj kategori a',
@@ -684,14 +719,14 @@ Souple, byen gade ke li pa egziste pyès redireksyon de fwa epi korije yo si li 
 'newimages' => 'Galri pou nouvo fichye yo',
 
 # Bad image list
-'bad_image_list' => 'Fòma a, se konsa li ye :
+'bad_image_list' => 'Fòmat la se konsa :
 
-Sèl liy ki komanse pa * ke konte.  Premye lyen nan liy an se sa ki ap mene kote yon move imaj.
-Lòt lyen yo nan menm liy an ke ap konsidere tankou eksepsyon, pa egzanp atik nan kilès yo imaj an dwèt parèt.',
+Se lis sèlman (lign ki kòmanse ak *) ki konsidere.  Premye lyen nan yon lign sipoze yon lyen pou yon move dosye.
+Nenpòt lòt lyen nan menm lign nan konsidere kòm yon eksèpsyon, i.e. paj kote yon dosye ka parèt nan lign.',
 
 # Metadata
 'metadata'          => 'Metadone',
-'metadata-help'     => 'Fichye sa genyen plis enfòmasyon ki petèt te ajoute pa aparèy foto ou an oubyen eskanè ki pwodui li. Si fichye a te modifye, kèk detay pa kapab koresponn ak imaj ki modifye a.',
+'metadata-help'     => 'Dosye sa genyen enfòmasyon adisyonèl, petèt adisyone soti nan yon kamera dijital oubyen yon eskennè itilize pou kreye oubyen dijitalize li.  Si dosye sa se yon modifikasyon, kèk detay ka pa menm avèk original la.',
 'metadata-expand'   => 'Montre tout enfòmasyon',
 'metadata-collapse' => 'Kache enfòmasyon ak tout detay sa yo',
 'metadata-fields'   => 'Chan metadone sa yo pou EXIF ki liste nan mesaj sa a ke nan paj deskripsyon imaj an lè tab metadone a ke pli piti. Lòt chan yo ke ap kache.

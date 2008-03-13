@@ -183,6 +183,7 @@ $messages = array(
 'tog-nolangconversion'        => 'Konwertěrowanje rěcnych wariantow znjemóžniś',
 'tog-ccmeonemails'            => 'Kopije e-mailow dostaś, kótarež drugim wužywarjam pósćelom',
 'tog-diffonly'                => 'Pśi pśirownowanju wersijow jano rozdźěle pokazaś',
+'tog-showhiddencats'          => 'Schowane kategorije pokazaś',
 
 'underline-always'  => 'pśecej',
 'underline-never'   => 'žednje',
@@ -243,12 +244,14 @@ $messages = array(
 'dec'           => 'dec',
 
 # Bits of text used by many pages
-'categories'            => 'Kategorije',
-'pagecategories'        => '{{PLURAL:$1|Kategorija|Kategoriji|Kategorije}}',
-'category_header'       => 'Nastawki w kategoriji „$1“',
-'subcategories'         => 'Pódkategorije',
-'category-media-header' => 'Dataje w kategoriji „$1“',
-'category-empty'        => "''W toś tej kategoriji njejsu něnto žedne nastawki abo medije.''",
+'categories'               => 'Kategorije',
+'pagecategories'           => '{{PLURAL:$1|Kategorija|Kategoriji|Kategorije}}',
+'category_header'          => 'Nastawki w kategoriji „$1“',
+'subcategories'            => 'Pódkategorije',
+'category-media-header'    => 'Dataje w kategoriji „$1“',
+'category-empty'           => "''W toś tej kategoriji njejsu něnto žedne nastawki abo medije.''",
+'hidden-categories'        => '{{PLURAL:$1|Schowana kategorija|Schowanej kategoriji|Schowane kategorije|Schowanych kategorijow}}',
+'hidden-category-category' => 'Schowane kategorije', # Name of the category where hidden categories will be listed
 
 'mainpagetext'      => "<big>'''MediaWiki jo se wuspěšnje instalěrowało.'''</big>",
 'mainpagedocfooter' => "Pomoc pśi wužywanju softwary wiki namakajoš pód [http://meta.wikimedia.org/wiki/Help:Contents User's Guide].
@@ -706,6 +709,7 @@ Pšosym pśemysli, lic njamóžo se bok na mjeńše wótrězki rozdźěliś.</st
 'templatesusedsection'      => 'W toś tom wótrězku su slědujuce pśedłogi se wužywali:',
 'template-protected'        => '(šćitane)',
 'template-semiprotected'    => '(poł šćitane)',
+'hiddencategories'          => 'Toś ten bok jo jadna z {{PLURAL:$1|1 schowaneje kategorije|$1 schowaneju kategorijow|$1 schowanych kategorijow|$1 schowanych kategorijow}}:',
 'edittools'                 => '<!-- Tekst how buźo wiźeś pód wobźěłowańskimi a upload-formularami. -->',
 'nocreatetitle'             => 'Załožowanje nowych bokow jo se wobgranicowało.',
 'nocreatetext'              => 'Na {{GRAMMAR:lokatiw|{{SITENAME}}}} jo se załoženje nowych bokow wót serwera wobgranicowało. Móžoš hyś slědk a eksistěrujucy bok wobźěłaś, abo se [[Special:Userlogin|pśizjawiś]].',
@@ -1066,7 +1070,7 @@ Pšosym kontrolěruj, lic maš wobraz w połnem rozpušćenju a uploaduj jen, w 
 'uploadscripted'              => 'Toś ta dataja wopśimjejo HTML abo script code, kótaryž móžo wót browsera se zamólnje wuwjasć.',
 'uploadcorrupt'               => 'Dataja jo skóńcowana abo ma njekorektnu kóńcowku. Pšosym kontrolěruj dataju a uploaduj hyšći raz.',
 'uploadvirus'                 => 'Toś ta dataja ma wirus! Nadrobnosći: $1',
-'sourcefilename'              => 'Žrědłowa dataja:',
+'sourcefilename'              => 'Mě žrědłoweje dataje:',
 'destfilename'                => 'Celowe mě:',
 'watchthisupload'             => 'Toś ten bok wobglědowaś',
 'filewasdeleted'              => 'Dataja z toś tym mjenim jo była južo raz uploadowana a mjaztym zasej wulašowana. Pšosym kontrolěruj pjerwjej $1, nježli až dataju napšawdu składujoš.',
@@ -1177,6 +1181,7 @@ PICT # misc.
 'filedelete-reason-dropdown'  => '*Powšykne pśicyny za lašowanja
 ** Pśekśiwjenje stworiśelskego pšawa
 ** Dwójna dataja',
+'filedelete-edit-reasonlist'  => 'Pśicyny za lašowanje wobźěłaś',
 
 # MIME search
 'mimesearch'         => 'MIME-typ pytaś',
@@ -1331,7 +1336,7 @@ Wót togo {{PLURAL:$2|ma|matej|maju}} (=$4%) $5-pšawa.",
 'booksources-go'            => 'Pytaś',
 'booksources-text'          => 'To jo lisćina z wótkazami na internetowe boki, kótarež pśedawaju nowe a trjebane knigły. Tam mógu teke dalšne informacije wó knigłach byś. {{SITENAME}} njezwisujo góspodarsce z žednym z toś tych póbitowarjow.',
 
-'categoriespagetext' => 'Slědujuce kategorije eksistěrujuju w(e) {{SITENAME}}:',
+'categoriespagetext' => 'Slědujuce kategorije wopśimuju boki abo medije.',
 'data'               => 'Daty',
 'userrights'         => 'Zastojanje wužywarskich pšawow',
 'groups'             => 'Wužywarske kupki',
@@ -1409,6 +1414,7 @@ Coš-lic bok zasej z twójich wobglědowańkow wulašowaś, kliknij na wótpowě
 'unwatch'              => 'Dalej njewobglědowaś',
 'unwatchthispage'      => 'Dalej njewobglědowaś',
 'notanarticle'         => 'To njejo žeden nastawk',
+'notvisiblerev'        => 'Wersija bu wulašowana',
 'watchnochange'        => 'Žeden wót tebje wobglědowany bok njejo se we wótpowědujucem casu wobźěłał.',
 'watchlist-details'    => 'Wobglědujoš {{PLURAL:$1|$1 bok|$1 boka|$1 boki}}.',
 'wlheader-enotif'      => '* E-mailowe powěsće su aktiwizěrowane.',
@@ -1485,6 +1491,7 @@ Aby nastajenja twójich wobglědowańkow změnił, woglědaj: {{fullurl:Special:
 ** Žycenje awtora
 ** Pśekśiwjenje stworiśelskego pšawa
 ** Wandalizm',
+'delete-edit-reasonlist'      => 'Pśicyny za lašowanje wobźěłaś',
 'delete-toobig'               => 'Toś ten bok ma dłujku historiju, wěcej ako $1 {{PLURAL:$1|wersiju|wersiji|wersije|wersijow}}. Lašowanje takich bokow bu wobgranicowane, aby se wobškoźenje z pśigódy {{GRAMMAR:genitiw|{{SITENAME}}}} zajźowało.',
 'rollback'                    => 'Wobźěłanja slědk wześ',
 'rollback_short'              => 'anulěrowaś',
@@ -1624,6 +1631,7 @@ $1',
 
 # Block/unblock
 'blockip'                     => 'wužywarja blokěrowaś',
+'blockip-legend'              => 'Wužywarja blokowaś',
 'blockiptext'                 => 'Wužywaj slědujucy formular, jolic až coš wěstej IP-adresy abo konkretnemu wužywarjeju pśistup znjemóžniś. Take dejało se pó [[{{MediaWiki:Policy-url}}|směrnicach]] jano staś, aby se wandalizmoju zadorało. Pšosym zapódaj pśicynu za twójo blokěrowanje (na pś. mógu se citěrowaś konkretne boki, źo jo se wandalěrowało).',
 'ipaddress'                   => 'IP-adresa',
 'ipadressorusername'          => 'IP-adresa abo wužywarske mě',
@@ -1720,7 +1728,8 @@ $1',
 'databasenotlocked'   => 'Datowa banka njejo zamknjona.',
 
 # Move page
-'move-page-legend'                => 'Bok pśesunuś',
+'move-page'               => '$1 pśesunuś',
+'move-page-legend'        => 'Bok pśesunuś',
 'movepagetext'            => 'Z toś tym formularom móžo se bok (ze wšyknymi wersijami) pśesunuś. Stary nadpis pósrědnijo dalej na nowy. Wótkaze na stary nadpis se njezměniju.',
 'movepagetalktext'        => "Pśisłušny diskusijny bok se sobu pśesunjo, '''ale nic gaž:'''
 * eksistěrujo južo diskusijny bok z toś tym mjenim, abo gaž
