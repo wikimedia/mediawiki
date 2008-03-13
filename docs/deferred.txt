@@ -1,4 +1,3 @@
-
 deferred.txt
 
 A few of the database updates required by various functions here
@@ -25,3 +24,20 @@ may be extended in the future to more general background tasks.
 Job queue items are fetched out of the queue and run either
 at a random rate during regular page views (by default) or by
 a batch process which can be run via maintenance/runJobs.php.
+
+Currently there is some differents types of Jobs:
+
+  refreshLinks
+    Used to refresh the database tables that stores the links
+    beetween pages. When a page is cleared, all pages using these
+    page are also cleared by inseting a new job for all that pages.
+    Each job refresh only one page.
+
+  htmlCacheUpdate
+    clear caches when a template is changed to ensure that changes
+    can be see. Each job clear $wgUpdateRowsPerJob pages (500 by 
+    default).
+
+  enotifNotify
+    used when $wgEnotifUseJobQ is true to send mails using the job 
+    queue.

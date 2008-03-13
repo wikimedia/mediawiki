@@ -1,4 +1,3 @@
-
 skin.txt
 
 This document describes the overall architecture of MediaWiki's HTML rendering

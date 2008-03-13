@@ -48,8 +48,11 @@ installations.
 	dumpBackup.php
 	Backup dump script
 
-	dumpHTML.php
-	Produce an HTML dump of a wiki
+	edit.php
+	Edit a page to change its content
+
+	findhooks.php
+	Find hooks that aren't documented in docs/hooks.txt
 
 	importDump.php
 	XML dump importer
@@ -59,6 +62,12 @@ installations.
 	
 	importTextFile.php
 	Import the contents of a text file into a wiki page
+
+	moveBatch.php
+	Move a batch of pages 
+
+	namespaceDupes.php
+	Check articles name to see if they conflict with new/existing namespaces
 
 	nukePage.php
 	Wipe a page and all revisions from the database
@@ -84,5 +93,17 @@ installations.
 	runJobs.php
 	Immediately complete all jobs in the job queue
 
+	stats.php
+	Show all statistics stored in memcached
+
+	undelete.php
+	Undelete all revisions of a page
+
 	update.php
 	Check and upgrade the database schema to the current version
+
+	updateRestrictions.php
+	Update pages restriction to the new schema
+
+	userOptions.php
+	Change user options
