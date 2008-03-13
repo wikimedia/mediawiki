@@ -440,23 +440,17 @@ class SpecialSearch {
 			if( '' == $name ) {
 				$name = wfMsg( 'blanknamespace' );
 			}
-			$encName = htmlspecialchars( $name );
-			$namespaces .= " <label><input type='checkbox' value=\"1\" name=\"" .
-			  "ns{$ns}\"{$checked} />{$encName}</label>\n";
+			$namespaces .= Xml::checkLabel( $name, "ns{$ns}", $name, $checked ) . "\n"; 
 		}
 
 		$checked = $this->searchRedirects
 			? ' checked="checked"'
 			: '';
-		$redirect = "<input type='checkbox' value='1' name=\"redirs\"{$checked} />\n";
+		$redirect =  Xml::check( 'redirs', $checked ) . "\n";
+		$searchField = Xml::input( 'search', 50, $term, array( 'type' => 'text', 'id' => 'powerSearchText' ) );
+		$searchButton = Xml::submitButton( wfMsg( 'powersearch' ), array( 'name' => 'searchx' ) );
 
-		$searchField = '<input type="text" id="powerSearchText" name="search" value="' .
-			htmlspecialchars( $term ) ."\" size=\"50\" />\n";
-
-		$searchButton = '<input type="submit" name="searchx" value="' .
-		  htmlspecialchars( wfMsg('powersearch') ) . "\" />\n";
-
-		$ret = wfMsg( 'powersearchtext',
+		$ret = wfMsgExt( 'powersearchtext', array( 'parse', 'replaceafter' ),
 			$namespaces, $redirect, $searchField,
 			'', '', '', '', '', # Dummy placeholders
 			$searchButton );
@@ -466,7 +460,7 @@ class SpecialSearch {
 		return "<br /><br />\n<form id=\"powersearch\" method=\"get\" " .
 		  "action=\"$action\">\n{$ret}\n</form>\n";
 	}
-	
+
 	function powerSearchFocus() {
 		return "<script type='text/javascript'>" .
 			"document.getElementById('powerSearchText').focus();" .
