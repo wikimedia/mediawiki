@@ -395,7 +395,13 @@
     function _needLiteral($value) {
       # Check whether the string contains # or : or begins with any of:
       # [ - ? , [ ] { } ! * & | > ' " % @ ` ]
-      return (bool)(preg_match("/[#:]/", $value) || preg_match("/^[-?,[\]{}!*&|>'\"%@`]/", $value));
+      # or is a number or contains newlines
+      return (bool)(gettype($value) == "string" &&
+	(is_numeric($value)  ||
+	strpos($value, "\n") ||      	
+	preg_match("/[#:]/", $value) || 
+	preg_match("/^[-?,[\]{}!*&|>'\"%@`]/", $value)));
+	
     }
   
     /**
@@ -408,7 +414,7 @@
      */ 
     function _dumpNode($key,$value,$indent) {
       // do some folding here, for blocks
-      if (strpos($value,"\n") || $this->_needLiteral($value)) {
+      if ($this->_needLiteral($value)) {
         $value = $this->_doLiteralBlock($value,$indent);
       } else {  
         $value  = $this->_doFolding($value,$indent);
