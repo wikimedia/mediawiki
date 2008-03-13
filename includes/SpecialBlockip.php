@@ -123,7 +123,7 @@ class IPBlockForm {
 <form id=\"blockip\" method=\"post\" action=\"{$action}\">" .
 			Xml::openElement( 'fieldset' ) .
 			Xml::element( 'legend', null, wfMsg( 'blockip-legend' ) ) .
-			Xml::openElement( 'table', array ( 'border' => '0' ) ) .
+			Xml::openElement( 'table', array ( 'border' => '0', 'id' => 'mw-blockip-table' ) ) .
 			"<tr>
 				<td align=\"$alignRight\">{$mIpaddress}</td>
 				<td>" .
@@ -399,7 +399,7 @@ class IPBlockForm {
 	}
 
 	function showLogFragment( $out, $title ) {
-		$out->addHtml( wfElement( 'h2', NULL, LogPage::logName( 'block' ) ) );
+		$out->addHtml( Xml::element( 'h2', NULL, LogPage::logName( 'block' ) ) );
 		$request = new FauxRequest( array( 'page' => $title->getPrefixedText(), 'type' => 'block' ) );
 		$viewer = new LogViewer( new LogReader( $request ) );
 		$viewer->showList( $out );
