@@ -634,13 +634,26 @@ function rcNamespaceForm( $namespace, $invert, $nondefaults, $categories_any ) {
  * Format a diff for the newsfeed
  */
 function rcFormatDiff( $row ) {
+	global $wgUser;
+
 	$titleObj = Title::makeTitle( $row->rc_namespace, $row->rc_title );
 	$timestamp = wfTimestamp( TS_MW, $row->rc_timestamp );
+	# Log action
+	$actiontext = '';
+	# Add action
+	if( $row->rc_type == RC_LOG ) {
+		if( $row->rc_deleted & LogPage::DELETED_ACTION ) {
+			$actiontext = wfMsgHtml('rev-deleted-event');
+		} else {
+			$actiontext = LogPage::actionText( $row->rc_log_type, $row->rc_log_action, 
+				$titleObj, $wgUser->getSkin(), LogPage::extractParams($row->rc_params,true,true) );
+		}
+	}
 	return rcFormatDiffRow( $titleObj,
 		$row->rc_last_oldid, $row->rc_this_oldid,
 		$timestamp,
 		($row->rc_deleted & Revision::DELETED_COMMENT) ? wfMsgHtml('rev-deleted-comment') : $row->rc_comment,
-		($row->rc_deleted & LogPage::DELETED_ACTION) ? wfMsgHtml('rev-deleted-event') : $row->rc_actiontext );
+		$actiontext );
 }
 
 function rcFormatDiffRow( $title, $oldid, $newid, $timestamp, $comment, $actiontext='' ) {
@@ -650,7 +663,9 @@ function rcFormatDiffRow( $title, $oldid, $newid, $timestamp, $comment, $actiont
 
 	$skin = $wgUser->getSkin();
 	# log enties
-	if( $actiontext ) $comment = "$actiontext $comment";
+	if( $actiontext ) {
+		$comment = "$actiontext $comment";
+	}
 	$completeText = '<p>' . $skin->formatComment( $comment ) . "</p>\n";
 
 	//NOTE: Check permissions for anonymous users, not current user.
