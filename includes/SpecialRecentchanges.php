@@ -430,7 +430,7 @@ function rcDoOutputFeed( $rows, &$feed ) {
 			rcFormatDiff( $obj ),
 			$title->getFullURL( 'diff=' . $obj->rc_this_oldid . '&oldid=prev' ),
 			$obj->rc_timestamp,
-			$obj->rc_user_text,
+			($obj->rc_deleted & Revision::DELETED_USER) ? wfMsgHtml('rev-deleted-user') : $obj->rc_user_text,
 			$talkpage->getFullURL()
 			);
 		$feed->outItem( $item );
@@ -639,15 +639,18 @@ function rcFormatDiff( $row ) {
 	return rcFormatDiffRow( $titleObj,
 		$row->rc_last_oldid, $row->rc_this_oldid,
 		$timestamp,
-		$row->rc_comment );
+		($row->rc_deleted & Revision::DELETED_COMMENT) ? wfMsgHtml('rev-deleted-comment') : $row->rc_comment,
+		($row->rc_deleted & LogPage::DELETED_ACTION) ? wfMsgHtml('rev-deleted-event') : $row->rc_actiontext );
 }
 
-function rcFormatDiffRow( $title, $oldid, $newid, $timestamp, $comment ) {
+function rcFormatDiffRow( $title, $oldid, $newid, $timestamp, $comment, $actiontext='' ) {
 	global $wgFeedDiffCutoff, $wgContLang, $wgUser;
 	$fname = 'rcFormatDiff';
 	wfProfileIn( $fname );
 
 	$skin = $wgUser->getSkin();
+	# log enties
+	if( $actiontext ) $comment = "$actiontext $comment";
 	$completeText = '<p>' . $skin->formatComment( $comment ) . "</p>\n";
 
 	//NOTE: Check permissions for anonymous users, not current user.
