@@ -152,7 +152,7 @@ class MovePageForm {
 			 Xml::openElement( 'form', array( 'method' => 'post', 'action' => $titleObj->getLocalURL( 'action=submit' ), 'id' => 'movepage' ) ) .
 			 Xml::openElement( 'fieldset' ) .
 			 Xml::element( 'legend', null, wfMsg( 'move-page-legend' ) ) .
-			 Xml::openElement( 'table', array( 'border' => '0' ) ) .
+			 Xml::openElement( 'table', array( 'border' => '0', 'id' => 'mw-movepage-table' ) ) .
 			 "<tr>
 			 	<td align='$end'>" .
 					wfMsgHtml( 'movearticle' ) .
