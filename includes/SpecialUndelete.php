@@ -888,14 +888,14 @@ class UndeleteForm {
 		}
 
 		# Show relevant lines from the deletion log:
-		$wgOut->addHTML( "<h2>" . htmlspecialchars( LogPage::logName( 'delete' ) ) . "</h2>\n" );
+		$wgOut->addHTML( Xml::element( 'h2', null, LogPage::logName( 'delete' ) ) . "\n" );
 		$logViewer = new LogViewer(
 			new LogReader(
 				new FauxRequest(
 					array( 
 						'page' => $this->mTargetObj->getPrefixedText(),
 						'type' => 'delete' 
-					) 
+					)
 				)
 			), LogViewer::NO_ACTION_LINK
 	   	);
@@ -907,7 +907,8 @@ class UndeleteForm {
 			$align = $wgContLang->isRtl() ? 'left' : 'right';
 			$table =
 				Xml::openElement( 'fieldset' ) .
-				Xml::openElement( 'table' ) .
+				Xml::element( 'legend', null, wfMsg( 'undelete') ).
+				Xml::openElement( 'table', array( 'id' => 'mw-undelete-table' ) ) .
 					"<tr>
 						<td colspan='2'>" .
 							wfMsgWikiHtml( 'undeleteextrahelp' ) .
@@ -934,7 +935,7 @@ class UndeleteForm {
 			$wgOut->addHtml( $table );
 		}
 
-		$wgOut->addHTML( "<h2>" . htmlspecialchars( wfMsg( "history" ) ) . "</h2>\n" );
+		$wgOut->addHTML( Xml::element( 'h2', null, wfMsg( 'history' ) ) . "\n" );
 
 		if( $haveRevisions ) {
 			# The page's stored (deleted) history:
@@ -942,7 +943,7 @@ class UndeleteForm {
 			$target = urlencode( $this->mTarget );
 			$remaining = $revisions->numRows();
 			$earliestLiveTime = $this->getEarliestTime( $this->mTargetObj );
-			
+
 			while( $row = $revisions->fetchObject() ) {
 				$remaining--;
 				$ts = wfTimestamp( TS_MW, $row->ar_timestamp );
@@ -987,7 +988,7 @@ class UndeleteForm {
 		}
 
 		if( $haveFiles ) {
-			$wgOut->addHtml( "<h2>" . wfMsgHtml( 'filehist' ) . "</h2>\n" );
+			$wgOut->addHtml( Xml::element( 'h2', null, wfMsg( 'filehist' ) ) . "\n" );
 			$wgOut->addHtml( "<ul>" );
 			while( $row = $files->fetchObject() ) {
 				$ts = wfTimestamp( TS_MW, $row->fa_timestamp );
@@ -1027,7 +1028,7 @@ class UndeleteForm {
 
 		return true;
 	}
-	
+
 	private function getEarliestTime( $title ) {
 		$dbr = wfGetDB( DB_SLAVE );
 		if( $title->exists() ) {
