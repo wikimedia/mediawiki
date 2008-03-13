@@ -2100,8 +2100,8 @@ class Article {
 		}
 
 		$form = Xml::openElement( 'form', array( 'method' => 'post', 'action' => $this->mTitle->getLocalURL( 'action=delete' . $par ), 'id' => 'deleteconfirm' ) ) .
-			Xml::openElement( 'fieldset' ) .
-			Xml::element( 'legend', array(), wfMsg( 'delete-legend' ) ) .
+			Xml::openElement( 'fieldset', array( 'id' => 'mw-delete-table' ) ) .
+			Xml::element( 'legend', null, wfMsg( 'delete-legend' ) ) .
 			Xml::openElement( 'table' ) .
 			"<tr id=\"wpDeleteReasonListRow\">
 				<td align='$align'>" .
@@ -2154,7 +2154,7 @@ class Article {
 	 * Show relevant lines from the deletion log
 	 */
 	function showLogExtract( $out ) {
-		$out->addHtml( '<h2>' . htmlspecialchars( LogPage::logName( 'delete' ) ) . '</h2>' );
+		$out->addHtml( Xml::element( 'h2', null, LogPage::logName( 'delete' ) ) );
 		$logViewer = new LogViewer(
 			new LogReader(
 				new FauxRequest(
