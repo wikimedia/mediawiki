@@ -88,7 +88,6 @@ class MovePageForm {
 			# Show the current title as a default
 			# when the form is first opened.
 			$newTitle = $oldTitle;
-			$encNewTitle = htmlspecialchars( $oldTitle );
 		} else {
 			if( $err == '' ) {
 				$nt = Title::newFromURL( $this->newTitle );
@@ -103,7 +102,6 @@ class MovePageForm {
 				}
 			}
 			$newTitle = $this->newTitle;
-			$encNewTitle = htmlspecialchars( $newTitle );
 		}
 
 		if ( $err == 'articleexists' && $wgUser->isAllowed( 'delete' ) ) {
@@ -166,7 +164,7 @@ class MovePageForm {
 					Xml::label( wfMsg( 'newtitle' ), 'wpNewTitle' ) .
 				"</td>
 				<td align='$start'>" .
-					Xml::input( 'wpNewTitle', 40, $this->newTitle, array( 'type' => 'text', 'id' => 'wpNewTitle' ) ) .
+					Xml::input( 'wpNewTitle', 40, $newTitle, array( 'type' => 'text', 'id' => 'wpNewTitle' ) ) .
 					Xml::hidden( 'wpOldTitle', $oldTitle ) .
 				"</td>
 			</tr>
