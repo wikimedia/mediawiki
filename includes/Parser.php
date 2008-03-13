@@ -3494,11 +3494,16 @@ class Parser
 			# Save headline for section edit hint before it's escaped
 			$headlineHint = $safeHeadline;
 			$safeHeadline = Sanitizer::escapeId( $safeHeadline );
+			# lowercase headline, since some browser don't distinguish
+			# "Anchor" from "anchor" (bug #10721)
+			$arrayKey = strtolower( $safeHeadline );
+
+			# XXX : Is $refers[$headlineCount] ever accessed, actually ?
 			$refers[$headlineCount] = $safeHeadline;
 
 			# count how many in assoc. array so we can track dupes in anchors
-			isset( $refers[$safeHeadline] ) ? $refers[$safeHeadline]++ : $refers[$safeHeadline] = 1;
-			$refcount[$headlineCount] = $refers[$safeHeadline];
+			isset( $refers[$arrayKey] ) ? $refers[$arrayKey]++ : $refers[$arrayKey] = 1;
+			$refcount[$headlineCount] = $refers[$arrayKey];
 
 			# Don't number the heading if it is the only one (looks silly)
 			if( $doNumberHeadings && count( $matches[3] ) > 1) {
