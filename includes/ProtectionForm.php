@@ -208,8 +208,13 @@ class ProtectionForm {
 		return $ok;
 	}
 
+	/**
+	 * Build the input form
+	 *
+	 * @return $out string HTML form
+	 */
 	function buildForm() {
-		global $wgUser;
+		global $wgUser, $wgContLang;
 
 		$out = '';
 		if( !$this->disabled ) {
@@ -243,7 +248,7 @@ class ProtectionForm {
 
 		$out .= Xml::closeElement( 'tbody' ) .
 			Xml::closeElement( 'table' ) .
-			Xml::openElement( 'table' ) .
+			Xml::openElement( 'table', array( 'id' => 'mw-protect-table2' ) ) .
 			Xml::openElement( 'tbody' );
 
 		global $wgEnableCascadingProtection;
@@ -257,8 +262,9 @@ class ProtectionForm {
 		}
 
 		$attribs = array( 'id' => 'expires' ) + $this->disabledAttrib;
-		$out .= '<tr>
-				<td>' .
+		$align = $wgContLang->isRtl() ? 'left' : 'right';
+		$out .= "<tr>
+				<td align='$align'>" .
 					Xml::label( wfMsgExt( 'protectexpiry', array( 'parseinline' ) ), 'expires' ) .
 				'</td>
 				<td>' .
@@ -269,7 +275,7 @@ class ProtectionForm {
 		if( !$this->disabled ) {
 			$id = 'mwProtect-reason';
 			$out .= "<tr>
-					<td>" .
+					<td align='$align'>" .
 						Xml::label( wfMsg( 'protectcomment' ), $id ) .
 					'</td>
 					<td>' .
