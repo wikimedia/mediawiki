@@ -306,7 +306,9 @@ class NewPagesPage extends QueryPage {
 
 		$form = Xml::openElement( 'form', array( 'method' => 'get', 'action' => $wgScript ) ) .
 			Xml::hidden( 'title', $self->getPrefixedDBkey() ) .
-			Xml::openElement( 'table' ) .
+			Xml::openElement( 'fieldset' ) .
+			Xml::element( 'legend', null, wfMsg( 'newpages' ) ) .
+			Xml::openElement( 'table', array( 'id' => 'mw-newpages-table' ) ) .
 			"<tr>
 				<td align=\"$align\">" .
 					Xml::label( wfMsg( 'namespace' ), 'namespace' ) .
@@ -328,8 +330,14 @@ class NewPagesPage extends QueryPage {
 					Xml::submitButton( wfMsg( 'allpagessubmit' ) ) .
 				"</td>
 			</tr>" .
-			"<tr><td></td><td>" . $hl . "</td></tr>" .
+			"<tr>
+				<td></td>
+				<td>" .
+					$hl .
+				"</td>
+			</tr>" .
 			Xml::closeElement( 'table' ) .
+			Xml::closeElement( 'fieldset' ) .
 			$hidden .
 			Xml::closeElement( 'form' );
 		return $form;
