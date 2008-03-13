@@ -154,6 +154,8 @@ class SpecialSearch {
 			wfProfileOut( $fname );
 			return;
 		}
+		
+		$wgOut->addHTML( $this->shortDialog( $term ) );
 
 		$search = SearchEngine::create();
 		$search->setLimitOffset( $this->limit, $this->offset );
@@ -288,6 +290,8 @@ class SpecialSearch {
 		$opt['searchx'] = 1;
 		return $opt;
 	}
+	
+
 
 	/**
 	 * @param SearchResultSet $matches
@@ -431,40 +435,73 @@ class SpecialSearch {
 	}
 
 	function powerSearchBox( $term ) {
+		global $wgScript;
+
 		$namespaces = '';
 		foreach( SearchEngine::searchableNamespaces() as $ns => $name ) {
-			$checked = in_array( $ns, $this->namespaces )
-				? ' checked="checked"'
-				: '';
 			$name = str_replace( '_', ' ', $name );
 			if( '' == $name ) {
 				$name = wfMsg( 'blanknamespace' );
 			}
-			$namespaces .= Xml::checkLabel( $name, "ns{$ns}", $name, $checked ) . "\n"; 
+			$encName = htmlspecialchars( $name );
+			$namespaces .= '<label>' .
+				Xml::check( "ns{$ns}", in_array( $ns, $this->namespaces ), 
+					array( 'value' => '1' ) ) .
+				"{$encName}</label> ";
 		}
 
-		$checked = $this->searchRedirects
-			? ' checked="checked"'
-			: '';
-		$redirect =  Xml::check( 'redirs', $checked ) . "\n";
-		$searchField = Xml::input( 'search', 50, $term, array( 'type' => 'text', 'id' => 'powerSearchText' ) );
-		$searchButton = Xml::submitButton( wfMsg( 'powersearch' ), array( 'name' => 'searchx' ) );
+		$redirect = Xml::check( 'redirs', $this->searchRedirects, 
+			array( 'value' => '1' ) );
 
-		$ret = wfMsgExt( 'powersearchtext', array( 'parse', 'replaceafter' ),
-			$namespaces, $redirect, $searchField,
-			'', '', '', '', '', # Dummy placeholders
-			$searchButton );
+		$searchField = Xml::input( 'search', 50, $term, array(
+			'type' => 'text', 'id' => 'powerSearchText' ) );
 
-		$title = SpecialPage::getTitleFor( 'Search' );
-		$action = $title->escapeLocalURL();
-		return "<br /><br />\n<form id=\"powersearch\" method=\"get\" " .
-		  "action=\"$action\">\n{$ret}\n</form>\n";
+		$searchButton = Xml::element( 'input', array( 
+			'type' => 'submit',
+			'name' => 'searchx',
+			'value' => wfMsg('powersearch')
+		) ) . "\n";
+
+		$out = Xml::openElement( 'form', array(
+				'id' => 'powersearch', 
+				'method' => 'get',
+				'action' => $wgScript ) );
+		$out .= Xml::openElement( 'fieldset' );
+		$out .= Xml::element( 'legend', array( ), wfMsg( 'powersearch' ));
+		$out .= Xml::hidden( 'title', 'Special:Search' );
+		$out .= wfMsgExt( 'powersearchtext',
+				$namespaces, $redirect, $searchField,
+				'', '', '', '', '', # Dummy placeholders
+				$searchButton );
+		$out .= Xml::closeElement( 'fieldset' );
+		$out .= Xml::closeElement( 'form' );
+
+		return $out;
 	}
-
+	
 	function powerSearchFocus() {
 		return "<script type='text/javascript'>" .
 			"document.getElementById('powerSearchText').focus();" .
 			"</script>";
+	}
+	
+	function shortDialog($term) {
+		global $wgScript;
+		
+		$out  = Xml::openElement( 'form', array(
+			'id' => 'search',
+			'method' => 'get',
+			'action' => $wgScript
+		));
+		$out .= Xml::openElement( 'fieldset' );
+		$out .= Xml::element( 'legend', array(), wfMsg( 'searchresultshead' ) );
+		$out .= Xml::hidden( 'title', 'Special:Search' );
+		$out .= Xml::inputLabel( wfMsg( 'search' ), 'search', 'searchbox', 50, $term ) . ' ';
+		$out .= Xml::submitButton( wfMsg( 'searchbutton' ) );
+		$out .= Xml::closeElement( 'fieldset' );
+		$out .= Xml::closeElement( 'form' );
+		
+		return $out;
 	}
 }
 
