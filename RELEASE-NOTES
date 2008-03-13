@@ -83,6 +83,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 8157) Remove redirects from Special:Unusedtemplates. Patch by WebBoy.
 * (bug 10721) Duplicate section anchors with differing case now disambiguated
   for Internet Explorer's sake
+* (bug 13298) Tighter limits on Special:Newpages limits when embedding
 
 
 === API changes in 1.13 ===

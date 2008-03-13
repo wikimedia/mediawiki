@@ -41,6 +41,20 @@ class NewPagesPage extends QueryPage {
 			/* int  */ 'offset' => 0,
 			/* int  */ 'limit' => 50,
 		);
+		
+		if( $shownavigation ) {
+			// Some hopefully reasonable limits...
+			$max = array(
+				/* int */ 'offset' => 5000,
+				/* int */ 'limit' => 500,
+			);
+		} else {
+			// Embedded? Be a lot more strict...
+			$max = array(
+				/* int */ 'offset' => 0,
+				/* int */ 'limit' => 200,
+			);
+		}
 
 		$options = $defaults;
 
@@ -87,9 +101,15 @@ class NewPagesPage extends QueryPage {
 		if ( $options['limit'] <= 0 ) {
 			$options['limit'] = $defaults['limit'];
 		}
+		if ( $options['limit'] > $max['limit'] ) {
+			$options['limit'] = $max['limit'];
+		}
 
 		if ( $options['offset'] < 0 ) {
 			$options['offset'] = $defaults['offset'];
+		}
+		if ( $options['offset'] > $max['offset'] ) {
+			$options['offset'] = $max['offset'];
 		}
 
 		$nondefaults = array();
