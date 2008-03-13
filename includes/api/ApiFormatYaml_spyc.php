@@ -385,6 +385,18 @@
         return false;
       }
     }
+
+    /**
+     * Find out whether a string needs to be output as a literal rather than in plain style.
+     * Added by Roan Kattouw 13-03-2008
+     * @param $value The string to check
+     * @return bool
+     */
+    function _needLiteral($value) {
+      # Check whether the string contains # or : or begins with any of:
+      # [ - ? , [ ] { } ! * & | > ' " % @ ` ]
+      return (bool)(preg_match("/[#:]/", $value) || preg_match("/^[-?,[\]{}!*&|>'\"%@`]/", $value));
+    }
   
     /**
      * Returns YAML from a key and a value
@@ -396,7 +408,7 @@
      */ 
     function _dumpNode($key,$value,$indent) {
       // do some folding here, for blocks
-      if (strpos($value,"\n")) {
+      if (strpos($value,"\n") || $this->_needLiteral($value)) {
         $value = $this->_doLiteralBlock($value,$indent);
       } else {  
         $value  = $this->_doFolding($value,$indent);
