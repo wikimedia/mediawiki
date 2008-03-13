@@ -1221,7 +1221,7 @@ Make sure that this change will maintain historical page continuity.
 'showingresults'        => "Showing below up to {{PLURAL:$1|'''1''' result|'''$1''' results}} starting with #'''$2'''.",
 'showingresultsnum'     => "Showing below {{PLURAL:$3|'''1''' result|'''$3''' results}} starting with #'''$2'''.",
 'nonefound'             => "'''Note''': Unsuccessful searches are often caused by searching for common words like \"have\" and \"from\", which are not indexed, or by specifying more than one search term (only pages containing all of the search terms will appear in the result).",
-'powersearch'           => 'Search',
+'powersearch'           => 'Advanced search',
 'powersearchtext'       => 'Search in namespaces:<br />$1<br />$2 List redirects<br />Search for $3 $9',
 'searchdisabled'        => '{{SITENAME}} search is disabled. You can search via Google in the meantime. Note that their indexes of {{SITENAME}} content may be out of date.',
 'googlesearch'          => '<form method="get" action="http://www.google.com/search" id="googlesearch">
