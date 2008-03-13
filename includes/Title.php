@@ -285,7 +285,7 @@ class Title {
 	 */
 	public static function newFromRedirect( $text ) {
 		$redir = MagicWord::get( 'redirect' );
-		if( $redir->matchStart( $text ) ) {
+		if( $redir->matchStart( trim($text) ) ) {
 			// Extract the first link and see if it's usable
 			$m = array();
 			if( preg_match( '!\[{2}(.*?)(?:\||\]{2})!', $text, $m ) ) {
