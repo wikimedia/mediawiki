@@ -469,7 +469,7 @@ class SpecialSearch {
 		$out .= Xml::openElement( 'fieldset' );
 		$out .= Xml::element( 'legend', array( ), wfMsg( 'powersearch' ));
 		$out .= Xml::hidden( 'title', 'Special:Search' );
-		$out .= wfMsgExt( 'powersearchtext',
+		$out .= wfMsgExt( 'powersearchtext', array( 'parse', 'replaceafter' ),
 				$namespaces, $redirect, $searchField,
 				'', '', '', '', '', # Dummy placeholders
 				$searchButton );
