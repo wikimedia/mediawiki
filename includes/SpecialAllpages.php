@@ -73,7 +73,7 @@ function namespaceForm ( $namespace = NS_MAIN, $from = '' ) {
 				Xml::label( wfMsg( $this->nsfromMsg ), 'nsfrom' ) .
 			"</td>
 			<td>" .
-				Xml::input( 'from', 20, htmlspecialchars ( $from ), array( 'id' => 'nsfrom' ) ) .
+				Xml::input( 'from', 20, $from, array( 'id' => 'nsfrom' ) ) .
 			"</td>
 		</tr>
 		<tr>
