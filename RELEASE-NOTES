@@ -87,6 +87,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 13298) Tighter limits on Special:Newpages limits when embedding
 * Email subject in content language instead of sending user's UI language
 * (bug 13251) Allow maintenance rebuild scripts to work with Postgres
+* (bug 2084) Fixed incorrect regex to match redirects
 
 === API changes in 1.13 ===
 
