@@ -360,7 +360,7 @@ class SpecialSearch {
 		}
 		
 		$text = $revision->getText();
-		$size = wfMsgHtml( 'search-result-size',
+		$size = wfMsgExt( 'search-result-size', array( 'parsemag' ),
 			$sk->formatSize( strlen( $text ) ),
 			str_word_count( $text ) );
 		$date = $wgLang->timeanddate( $revision->getTimestamp() );
