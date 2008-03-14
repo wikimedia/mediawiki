@@ -310,7 +310,6 @@ $1',
 'accmailtext'        => '"{{grammar:genitive|$1}}" чажыт сөстү {{grammar:directive1|$2}} чоргузуптувус.',
 'newarticle'         => '(Чаа)',
 'editing'            => '$1 деп арынны өскертип турар',
-'editinguser'        => '<b>$1</b> деп ажыглакчыны өскертип турар',
 'editingsection'     => '$1 деп арынның бөлгүмүн өскертип турар',
 'editingcomment'     => '$1 (комментарий) өскертип турар',
 'yourtext'           => 'Силерниң сөзүглелиңер',
@@ -376,6 +375,9 @@ $1',
 'servertime'         => 'Сервер шакы',
 'default'            => 'ниити',
 'files'              => 'файлдар',
+
+# User rights
+'editinguser' => '<b>$1</b> деп ажыглакчыны өскертип турар',
 
 # Groups
 'group'     => 'Бөлүк:',
@@ -614,12 +616,12 @@ $1',
 'unlockbtn' => 'Медээ шыгжамырын ажыттынар',
 
 # Move page
-'move-page-legend'        => 'Арынны шимчээр',
-'movearticle'     => 'Арынны шимчээр:',
-'move-watch'      => 'Бо арынны хайгаараар',
-'movepagebtn'     => 'Арынны шимчээр',
-'movereason'      => 'Чылдагаан:',
-'delete_and_move' => 'Ап каар болгаш шимчээр',
+'move-page-legend' => 'Арынны шимчээр',
+'movearticle'      => 'Арынны шимчээр:',
+'move-watch'       => 'Бо арынны хайгаараар',
+'movepagebtn'      => 'Арынны шимчээр',
+'movereason'       => 'Чылдагаан:',
+'delete_and_move'  => 'Ап каар болгаш шимчээр',
 
 # Namespace 8 related
 'allmessages'        => 'Системниң дыңнадыглары',

@@ -424,7 +424,9 @@ $messages = array(
 'permalink'         => 'Permanente link',
 'print'             => 'Afdrukken',
 'edit'              => 'Bewerken',
+'create'            => 'Aanmaken',
 'editthispage'      => 'Deze pagina bewerken',
+'create-this-page'  => 'Deze pagina aanmaken',
 'delete'            => 'Verwijderen',
 'deletethispage'    => 'Deze pagina verwijderen',
 'undelete_short'    => '$1 {{PLURAL:$1|bewerking|bewerkingen}} terugplaatsen',
@@ -1016,10 +1018,12 @@ Wees zeker dat deze wijziging de geschiedenisdoorlopendheid van de pagina zal be
 'prevn'                 => 'vorige $1',
 'nextn'                 => 'volgende $1',
 'viewprevnext'          => '($1) ($2) ($3) bekijken.',
+'search-result-size'    => '$1 ({{PLURAL:$2|1 woord|$2 woorden}})',
+'search-result-score'   => 'Relevantie: $1%',
 'showingresults'        => "Hieronder {{PLURAL:$1|staat '''1''' resultaat|staan '''$1''' resultaten}} vanaf #'''$2'''.",
 'showingresultsnum'     => "Hieronder {{PLURAL:$3|staat '''1''' resultaat|staan '''$3''' resultaten}} vanaf #'''$2'''.",
 'nonefound'             => "'''Opmerking''': mislukte zoekopdrachten worden vaak veroorzaakt door zoeken naar veelvoorkomende woorden als \"van\" en \"het\", die niet in de indexen worden opgenomen, of door meer dan één zoekterm op te geven. Alleen pagina's die alle zoektermen bevatten worden opgenomen in de resultaten.",
-'powersearch'           => 'Zoeken',
+'powersearch'           => 'Uitgebreid zoeken',
 'powersearchtext'       => 'Zoeken in naamruimten:<br />$1<br />$2 Doorverwijzingen weergeven<br />Zoeken naar $3 $9',
 'searchdisabled'        => 'Zoeken in {{SITENAME}} is niet mogelijk.
 U kunt gebruik maken van Google.

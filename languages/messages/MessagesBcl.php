@@ -1508,7 +1508,7 @@ IP dai nakalista digdi. Hilingon an [[Special:Ipblocklist|IP lista nin mga binag
 'databasenotlocked'   => 'Dai nakakandado an base nin datos.',
 
 # Move page
-'move-page-legend'                => 'Ibalyó an páhina',
+'move-page-legend'        => 'Ibalyó an páhina',
 'movepagetext'            => "Matatâwan nin bâgong pangaran an sarong páhina na pigbabalyo an gabos na historya kaini gamit an pormularyo sa babâ.
 An dating titulo magigin redirektang páhina sa bâgong titulo.
 Dai babâgohon an mga takod sa dating titulo kan páhina; seguradohon tabî na mayong doble o raot na mga redirekta.

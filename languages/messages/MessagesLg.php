@@ -258,7 +258,6 @@ erya '''ddayo'''.",
 'noarticletext'          => "Wano tewali kyawandiikidwawo, ky'obadde onoonya osobola [[Special:Search/{{PAGENAME}}| okukinoonyeza]] ku mpapula endala oba oyinza [{{fullurl:{{FULLPAGENAME}}|action=edit}} gwe okukiwandiikako] wano.",
 'previewnote'            => "<strong>Kuno kugezaamubugeza; by'okoze tebinnakazibwa!</strong>",
 'editing'                => 'Kati okyuusa $1',
-'editinguser'            => 'Kukyuusa ebya memba <b>$1</b>',
 'editingsection'         => 'Okyuusa $1 (kitundu)',
 'editingcomment'         => 'Kukyuusa $1 (obubaka)',
 'yourtext'               => 'Ebigambo ebibyo',
@@ -312,6 +311,9 @@ oba ku gano agali ku lupapula luno.<br />
 'oldpassword'       => 'Ekigambo ekikuumi ekikadde:',
 'newpassword'       => 'Ekigambo ekikuumi ekipya:',
 'searchresultshead' => 'Noonya',
+
+# User rights
+'editinguser' => 'Kukyuusa ebya memba <b>$1</b>',
 
 # Recent changes
 'recentchanges'     => 'Ebyakakyuusibwa',
@@ -446,12 +448,12 @@ Bw\'oba oyagala okulekerawo okulugoberera, nyiga ku kigambo "Suula" awo ku bbali
 'blocklogentry'     => '[[$1]] agaanidwa. Obuyinza bumuddizibwa ku $2 $3',
 
 # Move page
-'move-page-legend'    => 'Simbuliza olupapula luno',
-'movearticle' => 'Simbuliza olupapula luno',
-'move-watch'  => 'Goberera olupapula luno',
-'movepagebtn' => 'Lusimbulize',
-'movelogpage' => 'Ebikyusidwa manya',
-'revertmove'  => 'zaawo erinya ekkadde',
+'move-page-legend' => 'Simbuliza olupapula luno',
+'movearticle'      => 'Simbuliza olupapula luno',
+'move-watch'       => 'Goberera olupapula luno',
+'movepagebtn'      => 'Lusimbulize',
+'movelogpage'      => 'Ebikyusidwa manya',
+'revertmove'       => 'zaawo erinya ekkadde',
 
 # Export
 'export' => 'Okusomosa empapula',

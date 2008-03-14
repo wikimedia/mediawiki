@@ -533,6 +533,7 @@ Probeer asseblief die bladsy verkort en die detail na subartikels skuif sodat di
 'prevn'                 => 'vorige $1',
 'nextn'                 => 'volgende $1',
 'viewprevnext'          => 'Kyk na ($1) ($2) ($3).',
+'search-result-size'    => '$1 ({{PLURAL:$2|1 woord|$2 woorde}})',
 'showingresults'        => 'Hier volg <b>$1</b> resultate vanaf #<b>$2</b>.',
 'nonefound'             => "<strong>Nota</strong>: onsuksesvolle navrae word gewoonlik veroorsaak deur 'n soektog met algemene
 woorde wat nie geindekseer word nie, of spesifisering van meer as een woord (slegs blaaie wat alle navraagwoorde

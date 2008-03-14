@@ -11,6 +11,7 @@
  * @author Nike
  * @author Sp5uhe
  * @author Masti
+ * @author Matma Rex
  */
 
 $namespaceNames = array(
@@ -844,6 +845,8 @@ Upewnij się, że zmiany będą zapewniać ciągłość historyczną edycji stro
 'prevn'                 => 'poprzednie $1',
 'nextn'                 => 'następne $1',
 'viewprevnext'          => 'Zobacz ($1) ($2) ($3).',
+'search-result-size'    => '$1 ({{PLURAL:$2|1 słowo|$2 słowa|$2 słów}})',
+'search-result-score'   => 'Trafność: $1%',
 'showingresults'        => "Oto lista składająca się z {{PLURAL:$1|'''1''' wyniku|'''$1''' wyników}}, poczynając od numeru '''$2'''.",
 'showingresultsnum'     => "Oto lista składająca się z {{PLURAL:$3|'''1''' wyniku|'''$3''' wyników}}, poczynając od numeru '''$2'''.",
 'nonefound'             => "'''Uwaga''': brak rezultatów wyszukiwania spowodowany jest bardzo często szukaniem najpopularniejszych słów, takich jak \"jest\" czy \"nie\", które nie są indeksowane, albo z powodu podania w zapytaniu więcej niż jednego słowa (na liście odnalezionych stron znajdą się tylko te, które zawierają wszystkie podane słowa).",

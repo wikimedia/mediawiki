@@ -862,7 +862,7 @@ Seemo sa go lota ga letlakala <strong>$1</strong>:',
 'proxyblocksuccess'       => 'Phetilwe.',
 
 # Move page
-'move-page-legend'                => 'Huduša letlakala',
+'move-page-legend'        => 'Huduša letlakala',
 'movepagetext'            => "Ge o šomiša fomo ye mo tlase, letlakala le kgale le history ya lona 
 di tla huduga go ya letlakaleng le lemphsa.
 Letlakala la kgale le ba ''redirect'' go ya letlakaleng le lemphsa.

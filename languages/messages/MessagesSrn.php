@@ -902,7 +902,7 @@ Disi ben a tapunivo fu a papira <strong>[[$1]]</strong> now:",
 'blocklogentry'      => 'abi "[[$1]]" e spikru nanga wan lasi opo $2 $3',
 
 # Move page
-'move-page-legend'         => 'Dribi papira',
+'move-page-legend' => 'Dribi papira',
 'movepagetext'     => "Nanaga a ondroben box kan yu wan papira dribi. A stori go na a nyun papira. A owru nen sey wan stir na a nyun papira sey. Stir na a owru papira ben no kenki. Luku na a dribi efu da no tustir efu broko stir ben e kon. Yu ben risponsibu fu den stir.
 
 A papira kan '''wawan''' dribi sey leki a nyun papiranen:

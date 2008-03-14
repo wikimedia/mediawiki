@@ -579,7 +579,7 @@ Vòstre identificant de blocatge es $5. Precizatz-lo dins tota requèsta.',
 'accmailtext'               => "Lo senhal de '$1' es estat mandat a $2.",
 'newarticle'                => '(Novèl)',
 'newarticletext'            => 'Picatz aicí lo tèxt de vòstre article.',
-'anontalkpagetext'          => "---- ''Aquò es la pagina de discussion per un utilizaire anonim qu'a pas encara creat un compte o que l'utiliza pas. Per aqueste rason, devem utilizar l'adreça IP numerica per l'identificar. Una adreça d'aqueste tope pòt èsser pertejada entre mantun utilizaires. Se sètz un utilizaire anonim e se constatatz que de comentaris que vos concernisson pas vos son estats adreçats, podètz [[Special:Userlogin|crear un compte o vos connectar]] per evitar tota confusion venenta.",
+'anontalkpagetext'          => "---- ''Aquò es la pagina de discussion per un utilizaire anonim qu'a pas encara creat un compte o que l'utiliza pas. Per aqueste rason, devèm utilizar l'adreça IP numerica per l'identificar. Una adreça d'aqueste tipe pòt èsser pertejada entre mantuns utilizaires. Se sètz un utilizaire anonim e se constatatz que de comentaris que vos concernisson pas vos son estats adreçats, podètz [[Special:Userlogin|crear un compte o vos connectar]] per evitar tota confusion venenta.",
 'noarticletext'             => "Pel moment, i a pas cap de tèxt sus aquesta pagina ; podètz [[{{ns:special}}:Search/{{PAGENAME}}|lançar una recèrca sul títol d'aquesta pagina]] o [{{fullurl:{{NAMESPACE}}:{{FULLPAGENAME}}|action=edit}} modificar aquesta pagina].",
 'userpage-userdoesnotexist' => "Lo compte d'utilizaire « $1 » es pas enregistrat. Indicatz se volètz crear o editar aquesta pagina.",
 'clearyourcache'            => 'Nòta : Aprèp aver salvagardat, devètz forçar lo recargament de la pagina per veire los cambiaments : Mozilla / Konqueror / Firefox : ctrl-shift-r, IE / Opera : ctrl-f5, Safari : cmd-r.',
@@ -626,7 +626,7 @@ La zòna d'edicion superiora conten lo tèxt tal coma es enregistrat actualament
 'hiddencategories'          => "{{PLURAL:$1|Categoria amagada|Categorias amagadas}} qu'aquesta pagina ne fa partida :",
 'edittools'                 => '<!-- Tot tèxt picat aicí serà afichat jos las boitas de modificacion o d’impòrt de fichièr. -->',
 'nocreatetitle'             => 'Creacion de pagina limitada',
-'nocreatetext'              => '{{SITENAME}} a restrenhut la possibilitat de crear de paginas novèlas.
+'nocreatetext'              => '{{SITENAME}} a restrencha la possibilitat de crear de paginas novèlas.
 Podètz tonar en rèire e modificar una pagina existenta, [[Special:Userlogin|vos connectar o crear un compte]].',
 'nocreate-loggedin'         => 'Avètz pas la permission de crear de paginas novèlas sus aqueste wiki.',
 'permissionserrors'         => 'Error de permissions',

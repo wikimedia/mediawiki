@@ -796,7 +796,7 @@ Dir kënnt [[:\$1|déi Säit uleeën]].",
 'showingresults'        => "Hei gesitt der  {{PLURAL:$1| '''1''' Resultat|'''$1''' Resultater}}, ugefaang mat #'''$2'''.",
 'showingresultsnum'     => "Hei gesitt der  {{PLURAL:$3|'''1''' Resultat|'''$1''' Resultater}}, ugefaange mat #'''$2'''.",
 'nonefound'             => '<strong>Opgepasst</strong>: Net erfollegräich Siche geschéien dacks doduerch, datt zevill allgeméng Wierder benotzt ginn, wéi "an" oder "vun", déi net indexéiert sinn, oder wann dir méi wéi ee Wuert ugitt (dir kritt nëmmen déi Säiten ugewisen, an deenen all d\'Wierder stinn).',
-'powersearch'           => 'Sichen',
+'powersearch'           => 'Erweidert Sich',
 'powersearchtext'       => 'Sich an de Nimmraim:<br />$1
 <br />
 $2 Viruleedunge weisen<br />

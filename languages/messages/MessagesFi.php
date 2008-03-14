@@ -858,6 +858,8 @@ Uuden ja vanhan sivun muutoksien pitää muodostaa jatkumo – ne eivät saa men
 'viewprevnext'          => 'Näytä [$3] kerralla.
 
 $1 | $2',
+'search-result-size'    => '$1 ({{PLURAL:$2|1 sana|$2 sanaa}})',
+'search-result-score'   => 'Asiaankuuluvuus: $1%',
 'showingresults'        => "{{PLURAL:$1|'''Yksi''' tulos|'''$1''' tulosta}} tuloksesta '''$2''' alkaen.",
 'showingresultsnum'     => "Alla on {{PLURAL:$3|'''Yksi''' hakutulos|'''$3''' hakutulosta}} alkaen '''$2.''' tuloksesta.",
 'nonefound'             => "'''Huomautus''': Epäonnistuneet haut johtuvat usein hyvin yleisten sanojen, kuten ''on'' ja ''ei'', etsimisestä tai useamman kuin yhden hakutermin määrittelemisestä. Vain sivut, joilla on kaikki hakutermin sanat, näkyvät tuloksissa.",

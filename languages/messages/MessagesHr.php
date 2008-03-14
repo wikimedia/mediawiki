@@ -1667,6 +1667,7 @@ mijenjanje postavki, uređivanje popisa praćenja i druge stvari koje zahtijevaj
 'databasenotlocked'   => 'Baza podataka nije zaključana.',
 
 # Move page
+'move-page'               => 'Premjesti $1',
 'move-page-legend'        => 'Premjesti stranicu',
 'movepagetext'            => "Korištenjem ovog obrasca ćete preimenovati stranicu i premjestiti sve stare izmjene
 na novo ime.

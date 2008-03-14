@@ -558,9 +558,8 @@ O ID do seu bloqueo é $5. Inclúao nas consultas que faga.',
 'accmailtext'               => 'O contrasinal para "$1" foi enviado a $2.',
 'newarticle'                => '(Novo)',
 'newarticletext'            => "Seguiu unha ligazón a unha páxina que aínda non existe.
-Para crear a páxina, comece a escribir na caixa de embaixo
-(vexa a [[{{MediaWiki:Helppage}}|páxina de axuda]] para máis información).
-Se chegou aquí por erro, simplemente prema no botón '''para atrás''' do seu navegador.",
+Para crear a páxina, comece a escribir na caixa de embaixo (vexa a [[{{MediaWiki:Helppage}}|páxina de axuda]] para máis información).
+Se chegou aquí por erro, simplemente prema no botón '''atrás''' do seu navegador.",
 'anontalkpagetext'          => "---- ''Esta é a páxina de conversa dun usuario anónimo que aínda non creou unha conta ou que non a usa. Polo tanto, empregamos o enderezo IP para a súa identificación. Este enderezo IP pódeno compartir varios usuarios distintos. Se vostede pensa que foron dirixidos contra a súa persoa comentarios inadecuados, por favor [[Special:Userlogin|cree unha conta]] para evitar futuras confusións con outros usuarios anónimos.''",
 'noarticletext'             => 'Actualmente non existe texto nesta páxina. Pode [[Special:Search/{{PAGENAME}}|procurar polo título desta páxina]] noutras páxinas ou [{{fullurl:{{FULLPAGENAME}}|action=edit}} editala].',
 'userpage-userdoesnotexist' => 'A conta do usuario "$1" non está rexistrada. Comprobe se desexa crear/editar esta páxina.',
@@ -773,13 +772,12 @@ Asegúrese de que esta modificación da páxina mantén a continuidade históric
 'prevn'                 => '$1 previas',
 'nextn'                 => '$1 seguintes',
 'viewprevnext'          => 'Ver ($1) ($2) ($3).',
+'search-result-size'    => '$1 ({{PLURAL:$2|1 palabra|$2 palabras}})',
+'search-result-score'   => 'Relevancia: $1%',
 'showingresults'        => "Amósanse {{PLURAL:$1|'''1''' resultado|'''$1''' resultados}} comezando polo número '''$2'''.",
 'showingresultsnum'     => "Amosando {{PLURAL:$3|'''1''' resultado|'''$3''' resultados}} comezando co número '''$2'''.",
-'nonefound'             => "'''Nota''': as procuras sen éxito son causadas usualmente
-por procurar usando palabras usuais como \"ter\" e \"desde\",
-que non están incluídas no índice da base de datos, ou por especificar máis dunha palabra
-de procura (só van aparecer no resultado as páxinas que teñan todas as palabras).",
-'powersearch'           => 'Procurar',
+'nonefound'             => "'''Nota''': as procuras sen éxito son causadas usualmente por procurar usando palabras usuais como \"ter\" e \"desde\", que non están incluídas no índice da base de datos, ou por especificar máis dunha palabra de procura (só van aparecer no resultado as páxinas que teñan todas as palabras).",
+'powersearch'           => 'Busca avanzada',
 'powersearchtext'       => 'Procurar nos espazos de nomes:<br />
 $1<br />
 $2 Lista de redireccións<br /> 
@@ -1917,6 +1915,9 @@ $1',
 'newimages'    => 'Galería de imaxes novas',
 'showhidebots' => '($1 bots)',
 'noimages'     => 'Non hai imaxes para ver.',
+
+# Video information, used by Language::formatTimePeriod() to format lengths in the above messages
+'minutes-abbrev' => 'min',
 
 # Bad image list
 'bad_image_list' => 'O formato é o seguinte:

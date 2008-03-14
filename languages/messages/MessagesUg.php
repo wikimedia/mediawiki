@@ -1,10 +1,10 @@
 <?php
-/** Uyghur (Oyghurque)
-  *
-  * @addtogroup Language
-  *
-  * @author SPQRobin
-  */
+/** Uighur (Uyghurche‎ / ئۇيغۇرچە)
+ *
+ * @addtogroup Language
+ *
+ * @author SPQRobin
+ */
 
 $rtl = true;
 

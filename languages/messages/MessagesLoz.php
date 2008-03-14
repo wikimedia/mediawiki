@@ -884,7 +884,7 @@ Petohoni di petulo <strong>$1</strong> sa:',
 'proxyblocksuccess'  => 'Afi.',
 
 # Move page
-'move-page-legend'         => 'Nyanganyisize petulo',
+'move-page-legend' => 'Nyanganyisize petulo',
 'movepagetext'     => "A sa nyanganyisize xete bundau di nom nca e petulo.
 Xisiti nom sa petulo abezi post nyanganyisize.
 Ling'ki di xisiti nom no kenki; luku di petulo abezi bufosi e petulo abezi sa bužemi.

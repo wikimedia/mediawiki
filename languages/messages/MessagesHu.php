@@ -904,7 +904,7 @@ Ezt a változatot eltávolítottuk a nyilvános archívumokból.
 További információkat a [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} törlési naplóban] találhatsz.</div>',
 'rev-deleted-text-view'       => '<div class="mw-warning plainlinks">
 Ezt a változatot eltávolították a nyilvános archívumokból.
-Mivel adminisztrátor vagy ezen a webhelyen, te megtekintheted; további részleteket a [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} törlési naplóban] találhatsz.</div>',
+Mivel adminisztrátor vagy ezen a webhelyen, te megtekintheted; további részleteket a [{{fullurl:Special:Napló/delete|page={{FULLPAGENAMEE}}}} törlési naplóban] találhatsz.</div>',
 'rev-delundel'                => 'megjelenítés/elrejtés',
 'revisiondelete'              => 'Változatok törlése/helyreállítása',
 'revdelete-nooldid-title'     => 'Nem adtad meg a célváltozatot',
@@ -1519,6 +1519,7 @@ Ha később el akarod távolítani a lapot a figyelőlistádról, akkor ezt az o
 'unwatch'              => 'Lapfigyelés vége',
 'unwatchthispage'      => 'Figyelés leállítása',
 'notanarticle'         => 'Nem szócikk',
+'notvisiblerev'        => 'A változat törölve lett',
 'watchnochange'        => 'Egyik figyelt lap sem változott a megadott időintervallumon belül.',
 'watchlist-details'    => '<strong>$1</strong> lap van a figyelőlistádon (a vitalapokon kívül).',
 'wlheader-enotif'      => '* Email értesítés engedélyezve.',
@@ -1858,6 +1859,7 @@ változtatni. Kérjük, erősítsd meg, hogy ezt kívánod tenni.',
 'databasenotlocked'   => 'Az adatbázis nincs lezárva.',
 
 # Move page
+'move-page'               => '$1 átnevezése',
 'move-page-legend'        => 'Lap átnevezése',
 'movepagetext'            => "Az alábbi űrlap használatával nevezhetsz át egy lapot, és 
 helyezheted át előzményeit az új névre. 

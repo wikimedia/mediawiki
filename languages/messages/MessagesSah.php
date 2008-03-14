@@ -53,6 +53,7 @@ $messages = array(
 'tog-nolangconversion'        => 'Сурук систематын уларытары боп',
 'tog-ccmeonemails'            => 'Атын кыттааччыларга суруйбут суруктарбын бэйэбэр эмиэ ыыт',
 'tog-diffonly'                => 'Икки версияны тэҥнииргэ сирэй иһин көрдөрүмэ',
+'tog-showhiddencats'          => 'Кистэммит категориялары көрдөр',
 
 'underline-always'  => 'Куруук',
 'underline-never'   => 'Хаһан да',
@@ -113,12 +114,14 @@ $messages = array(
 'dec'           => 'Ахс',
 
 # Bits of text used by many pages
-'categories'            => 'Категориялар',
-'pagecategories'        => '{{PLURAL:$1|Категория|Категориялар}}',
-'category_header'       => '"$1" категория ыстатыйалара',
-'subcategories'         => 'Субкатегориялар',
-'category-media-header' => '"$1" категория билэлэрэ',
-'category-empty'        => "''Бу категорияҕа билигин туох да суох.''",
+'categories'               => 'Категориялар',
+'pagecategories'           => '{{PLURAL:$1|Категория|Категориялар}}',
+'category_header'          => '"$1" категория ыстатыйалара',
+'subcategories'            => 'Субкатегориялар',
+'category-media-header'    => '"$1" категория билэлэрэ',
+'category-empty'           => "''Бу категорияҕа билигин туох да суох.''",
+'hidden-categories'        => '{{PLURAL:$1|Кистэммит категория|Кистэммит категориялар}}',
+'hidden-category-category' => 'Кистэммит категориялар', # Name of the category where hidden categories will be listed
 
 'mainpagetext'      => "<big>'''«MediaWiki» сөпкө туруорулунна.'''</big>",
 'mainpagedocfooter' => 'Биики программатын туһунан [http://meta.wikimedia.org/wiki/Help:Contents справочникка] көрүөххүн сөп.
@@ -730,7 +733,7 @@ long, which is longer than the maximum of $2 kilobytes. It cannot be saved.</str
 'showingresults'        => 'Манна {{plural:$1|түмүк|түмүктэр}} {{plural:$1|көрдөрүлүннэ|көрдөрүлүннүлэр}} <strong>$1</strong> , мантан саҕалаан №&nbsp;<strong>$2</strong>.',
 'showingresultsnum'     => 'Манна {{plural:$3|түмүк|түмүктэр}} {{plural:$3|көрдөрөлүннэ|көрдөрүлүннүлэр}} <strong>$3</strong>, мантан саҕалаан №&nbsp;<strong>$2</strong>.',
 'nonefound'             => 'Уопсай тыллары туһаннахха көрдүүр сирэйгитин булуо суоххутун сөп - холобур "эмиэ" иҥин диэн тыллар индексацияламматтар. Аны көрдөөбүт тылларгыт барыта эрэ баар буоллахтарына сирэй көстөр.',
-'powersearch'           => 'Көрдөө',
+'powersearch'           => 'Бу бөлөхтөргө көрдөө',
 'powersearchtext'       => 'Маннык ааттар эйгэлэригэр көрдөө (Искать в пространствах имён):<br />$1<br />$2 Перенаправлениялары көрдөр<br /> Көрдөө',
 'searchdisabled'        => '{{SITENAME}} көрдүүр тэрилэ араарыллыбыт. Атын көрдүүр системаларынан наадыйар сирэйдэргитин көрдөтүөххүтүн сөп. Ол гынан баран поисковик кээһигэр баар торум эргэрбит буолуон сөп.',
 
@@ -900,7 +903,7 @@ long, which is longer than the maximum of $2 kilobytes. It cannot be saved.</str
 'filedesc'                    => 'Быһаарыы',
 'fileuploadsummary'           => 'Быһаарыы:',
 'filestatus'                  => 'Туһаныы:',
-'filesource'                  => 'Источнига:',
+'filesource'                  => 'Хантан ылыллыбыта:',
 'uploadedfiles'               => 'Киллэриллибит билэлэр',
 'ignorewarning'               => 'Сэрэтиилэри истибэккэ билэни киллэр.',
 'ignorewarnings'              => 'Сэрэтиини истимэ',
@@ -935,8 +938,8 @@ long, which is longer than the maximum of $2 kilobytes. It cannot be saved.</str
 'uploadscripted'              => 'Бу билэ HTML эбэтэр скрипт куодтаах эбит. Интэриниэт көрдөрөр бырагыраамма ону сыыһа ааҕыан сөп.',
 'uploadcorrupt'               => 'Билэ сатаан ааҕыллыбат эбэтэр атын расширениялаах. Бэрэбиэркэлээн баран өссө суруттаран көр.',
 'uploadvirus'                 => 'Бу билэ вирустаах! Көр: $1',
-'sourcefilename'              => 'Билэ бастааҥы аата:',
-'destfilename'                => 'Билэ бүтэһик аата:',
+'sourcefilename'              => 'Билэ сытар сирэ:',
+'destfilename'                => 'Билэ хайдах ааттаах буолуохтааҕа:',
 'watchthisupload'             => 'Билэни кэтииргэ',
 'filewasdeleted'              => 'Маннык ааттаах билэ урут баар эбит, ону соппуттар. $1 суруттарыах иннинэ өссө биирдэ толкуйдаа.',
 'upload-wasdeleted'           => "'''Сэрэтии: Эн суох оҥоһуллубут биэни саҥаттан суруйан эрэҕин.'''
@@ -1581,7 +1584,7 @@ $1',
 'databasenotlocked'   => 'БД уларытааһын бобуллубата.',
 
 # Move page
-'move-page-legend'                => 'Аатын уларытыы',
+'move-page-legend'        => 'Аатын уларытыы',
 'movepagetext'            => "Манна баар форманы туһанан сирэй аатын улартыаххын сөп.
 Бу түбэлтэҕэ уларытыы сурунаала саҥа сиргэ көһөр.
 Урукку аат саҥа сирэйгэ утаарар сирэйгэ кубулуйар.

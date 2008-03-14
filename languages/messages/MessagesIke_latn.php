@@ -4,6 +4,7 @@
  * @addtogroup Language
  *
  * @author SPQRobin
+ * @author M.M.S.
  */
 
 $messages = array(
@@ -102,6 +103,10 @@ $messages = array(
 'editsection'         => 'suqusiqpaa',
 'editold'             => 'suqusiqpaa',
 'editsectionhint'     => 'suqusiqpaa ilangiutititsiguti: $1',
+'site-rss-feed'       => '$1 ᕐᔅᔅ ᒥᐊᓂᕆᕚ',
+'site-atom-feed'      => '$1 ᐊᑐᒻ ᒥᐊᓂᕆᕚ',
+'page-rss-feed'       => '"$1" ᕐᔅᔅ ᒥᐊᓂᕆᕚ',
+'page-atom-feed'      => '"$1" ᐊᑐᒻ ᒥᐊᓂᕆᕚ',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'mappitaq',
@@ -153,7 +158,6 @@ pigivuq qatannguti uikipitia kiinaujaqutiqarvik isuillingaitjapaa. iqtuu suqusiq
 'blockedtitle'    => 'aaqqiksuiji uminngasisijuq',
 'loginreqlink'    => 'akunnapuq',
 'newarticle'      => '(pigivuk)',
-'editinguser'     => 'suqusiqpaa qatannguti <b>$1</b>',
 'editingsection'  => 'suqusiqpaa $1 (ilangiutititsiguti)',
 'editingcomment'  => 'suqusiqpaa $1 (ujjirijaq)',
 'editconflict'    => 'suqusiqpaa akaunngiliurutiniq: $1',
@@ -186,6 +190,9 @@ pigivuq qatannguti uikipitia kiinaujaqutiqarvik isuillingaitjapaa. iqtuu suqusiq
 'math_unknown_function' => 'tusaumajaunngituq iliurniq',
 'prefs-rc'              => 'pigivuq asianngutuq',
 'searchresultshead'     => 'ivaaqpuq',
+
+# User rights
+'editinguser' => 'suqusiqpaa qatannguti <b>$1</b>',
 
 # Recent changes
 'recentchanges' => 'pigivuq asianngutuq',
@@ -301,13 +308,13 @@ pigivuq qatannguti uikipitia kiinaujaqutiqarvik isuillingaitjapaa. iqtuu suqusiq
 'block-log-flags-noemail'  => 'kigutiup sitiniqpaanga uminngasisijuq',
 
 # Move page
-'move-page-legend'        => 'uajuq mappitaq',
-'movearticle'     => 'uajuq mappitaq',
-'movedto'         => 'uajuq',
-'1movedto2'       => '[[$1]] surramajuq [[$2]]',
-'1movedto2_redir' => '[[$1]] surramajuq [[$2]] misippaa qaningani kamagijaq aasit nakit',
-'movelogpage'     => 'uajuq nipi',
-'delete_and_move' => 'nipaqtipaa amma uajuq',
+'move-page-legend' => 'uajuq mappitaq',
+'movearticle'      => 'uajuq mappitaq',
+'movedto'          => 'uajuq',
+'1movedto2'        => '[[$1]] surramajuq [[$2]]',
+'1movedto2_redir'  => '[[$1]] surramajuq [[$2]] misippaa qaningani kamagijaq aasit nakit',
+'movelogpage'      => 'uajuq nipi',
+'delete_and_move'  => 'nipaqtipaa amma uajuq',
 
 # Namespace 8 related
 'allmessagesname'     => 'atiq',

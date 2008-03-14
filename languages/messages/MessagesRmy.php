@@ -243,7 +243,6 @@ Kana avilyan kathe doshatar, ja palpale.',
 'noarticletext'      => "Andi '''{{SITENAME}}''' nai ji akana ek lekh kadale anavesa.
 * Te shirdes (astares) te keres o lekh, ker klik  '''[{{fullurl:{{FULLPAGENAME}}|action=edit}} kathe]'''.",
 'editing'            => 'Editisaripen $1',
-'editinguser'        => 'Editisaripen $1',
 'yourtext'           => 'Tiro teksto',
 'storedversion'      => 'Akanutni versiya',
 'yourdiff'           => 'Ververimata',
@@ -303,6 +302,9 @@ Kana avilyan kathe doshatar, ja palpale.',
 'defaultns'             => 'Rod savaxt vi kai kadale riga:',
 'default'               => 'acharuno',
 'files'                 => 'Failurya',
+
+# User rights
+'editinguser' => 'Editisaripen $1',
 
 # Groups
 'group'            => 'Grupo:',
@@ -380,7 +382,6 @@ Mashkar lende <b>$2</b> si administratorurya (dikh $3).',
 'spheading'    => 'Uzalutne patrya',
 'newpages'     => 'Neve patrya',
 'ancientpages' => 'E puraneder lekha',
-'intl'         => 'Phandimata mashkar ćhiba',
 'move'         => 'Ingerdipen',
 
 'groups'  => 'Jenenge tipurya',

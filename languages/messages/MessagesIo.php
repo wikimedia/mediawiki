@@ -565,7 +565,6 @@ Publikigante vua skribajo hike, vu asertas ke olu skribesis da vu ipsa o kopiesi
 'spheading'        => 'Speciala pagini por omni',
 'newpages'         => 'Nova pagini',
 'ancientpages'     => 'Maxim anciena artikli',
-'intl'             => 'Interlinguala ligili',
 'move'             => 'Movez',
 'movethispage'     => 'Rinomizar ica pagino',
 'unusedimagestext' => '<p>Voluntez egardez ke altra ret-situi quale altra enciklopedii povus ligar a imajo per direta URL, e do ol povus esar enlistizita hike malgre olu havas aktiva uzo.</p>',
@@ -733,7 +732,7 @@ Memorez [[Special:Unlockdb|efacar la blokuso]] kande vua mantenado finos.',
 'unlockdbsuccesstext' => 'La datumaro desblokusesis.',
 
 # Move page
-'move-page-legend'         => 'Rinomizar pagino',
+'move-page-legend' => 'Rinomizar pagino',
 'movepagetext'     => "Uzante ica formularo onu povas rinomizar pagino, movante olua omna versionaro ad la nova titulo.
 La antea titulo konvertesos a ridirektilo a la nova titulo. La ligili a la antea titulo dil pagino ne chanjesos. Voluntez certigar ke ne esas duopla o ruptota ridirektili. Vu responsas ke la ligili duros direktante a la pagino korespondanta.
 

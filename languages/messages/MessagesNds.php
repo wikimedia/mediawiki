@@ -912,14 +912,18 @@ de aver nich jümmer den aktuellsten Stand weerspegelt.<p>',
 # Groups
 'group'               => 'Grupp:',
 'group-autoconfirmed' => 'Bestätigte Brukers',
+'group-bot'           => 'Bots',
 'group-sysop'         => 'Admins',
 'group-bureaucrat'    => 'Bürokraten',
+'group-all'           => '(all)',
 
 'group-autoconfirmed-member' => 'Bestätigt Bruker',
+'group-bot-member'           => 'Bot',
 'group-sysop-member'         => 'Admin',
 'group-bureaucrat-member'    => 'Bürokraat',
 
 'grouppage-autoconfirmed' => '{{ns:project}}:Bestätigte Brukers',
+'grouppage-bot'           => '{{ns:project}}:Bots',
 'grouppage-sysop'         => '{{ns:project}}:Administraters',
 'grouppage-bureaucrat'    => '{{ns:project}}:Bürokraten',
 
@@ -1325,6 +1329,26 @@ Du kannst de List körter maken, wenn du den Logbook-Typ, den Brukernaam oder de
 'changed'                      => 'ännert',
 'created'                      => 'opstellt',
 'enotif_anon_editor'           => 'Anonymen Bruker $1',
+'enotif_body'                  => 'Leve/n $WATCHINGUSERNAME,
+
+de {{SITENAME}}-Siet „$PAGETITLE“ is vun $PAGEEDITOR an’n $PAGEEDITDATE $CHANGEDORCREATED ännert worrn.
+
+Aktuelle Version: $PAGETITLE_URL
+
+$NEWPAGE
+
+Kommentar vun’n Bruker: $PAGESUMMARY $PAGEMINOREDIT
+
+Kuntakt to’n Bruker:
+E-Mail: $PAGEEDITOR_EMAIL
+Wiki: $PAGEEDITOR_WIKI
+
+Du kriggst solang keen Bescheedgeev-E-Mails mehr, bet dat du de Siet wedder besöcht hest. Op diene Oppasslist kannst du ok all Bescheedgeevmarker trüchsetten.
+
+             Dien fründlich {{SITENAME}}-Bescheedgeevsystem
+
+-- 
+De Instellungen vun dien Oppasslist to ännern, gah na: {{fullurl:Special:Watchlist/edit}}',
 
 # Delete/protect/revert
 'deletepage'                  => 'Siet wegsmieten',
@@ -1334,6 +1358,7 @@ Du kannst de List körter maken, wenn du den Logbook-Typ, den Brukernaam oder de
 'exbeforeblank'               => 'Inholt vör dat Leddigmaken vun de Siet: ‚$1‘',
 'exblank'                     => 'Siet weer leddig',
 'delete-confirm'              => '„$1“ wegsmieten',
+'delete-legend'               => 'Wegsmieten',
 'historywarning'              => 'Wohrschau: De Siet, de du bi büst to löschen, hett en Versionshistorie:',
 'confirmdeletetext'           => 'Du büst dorbi, en Siet oder en Bild un alle ölleren Versionen duersam ut de Datenbank to löschen.
 Segg to, dat du över de Folgen Bescheed weetst un dat du in Övereenstimmen mit uns [[{{MediaWiki:Policy-url}}|Leidlienen]] hannelst.',
@@ -1347,6 +1372,11 @@ Segg to, dat du över de Folgen Bescheed weetst un dat du in Övereenstimmen mit
 'deletecomment'               => 'Grund för dat Wegsmieten:',
 'deleteotherreason'           => 'Annere/tosätzliche Grünn:',
 'deletereasonotherlist'       => 'Annern Grund',
+'deletereason-dropdown'       => '* Grünn för dat Wegsmieten
+** op Wunsch vun’n Schriever
+** gegen dat Oorheverrecht
+** Vandalismus',
+'delete-edit-reasonlist'      => 'Grünn för’t Wegsmieten ännern',
 'rollback'                    => 'Trüchnahm vun de Ännern',
 'rollback_short'              => 'Trüchnehmen',
 'rollbacklink'                => 'Trüchnehmen',
@@ -1702,6 +1732,7 @@ Diskuschoonssiet nich, vun wegen dat dat dor al ene Siet mit dissen Titel gifft.
 'categoryarticlecount'   => 'To disse Kategorie höört {{PLURAL:$1|ene Siet|$1 Sieden}} to.',
 'category-media-count'   => 'Dor {{PLURAL:$1|is ene Datei|sünd $1 Datein}} in disse Kategorie.',
 'listingcontinuesabbrev' => 'wieder',
+'spambot_username'       => 'MediaWiki Spam-Oprümen',
 
 # Info page
 'infosubtitle'   => 'Informatschonen för de Siet',
@@ -1782,17 +1813,35 @@ Wat denn noch an Lenken kummt in de Reeg, dat sünd Utnahmen, bi de dat Bild lie
 'exif-imagelength'                 => 'Hööchd',
 'exif-bitspersample'               => 'Bits je Farvkomponent',
 'exif-orientation'                 => 'Utrichtung',
+'exif-xresolution'                 => 'Oplösen in de Breed',
+'exif-yresolution'                 => 'Oplösen in de Hööchd',
+'exif-resolutionunit'              => 'Eenheit vun de Oplösen',
+'exif-stripoffsets'                => 'Bilddaten-Versatz',
+'exif-rowsperstrip'                => 'Tall Regen je Striepen',
+'exif-stripbytecounts'             => 'Bytes je kumprimeert Striepen',
+'exif-jpeginterchangeformat'       => 'Offset to JPEG SOI',
 'exif-jpeginterchangeformatlength' => 'Grött vun de JPEG-Daten in Bytes',
+'exif-transferfunction'            => 'Transferfunkschoon',
+'exif-primarychromaticities'       => 'Chromatizität vun de Grundfarven',
+'exif-ycbcrcoefficients'           => 'YCbCr-Koeffizienten',
+'exif-referenceblackwhite'         => 'Swart/Witt-Referenzpunkten',
+'exif-datetime'                    => 'Spiekertiet',
 'exif-imagedescription'            => 'Bildtitel',
 'exif-make'                        => 'Kamera-Hersteller',
 'exif-model'                       => 'Kameramodell',
 'exif-software'                    => 'bruukte Software',
 'exif-artist'                      => 'Autor',
 'exif-exifversion'                 => 'Exif-Version',
+'exif-flashpixversion'             => 'ünnerstütt Flashpix-Version',
 'exif-colorspace'                  => 'Farvruum',
+'exif-componentsconfiguration'     => 'Bedüden vun elk Kumponent',
 'exif-pixelydimension'             => 'Gellen Bildbreed',
 'exif-pixelxdimension'             => 'Gellen Bildhööchd',
+'exif-makernote'                   => 'Herstellernotiz',
 'exif-usercomment'                 => 'Brukerkommentar',
+'exif-relatedsoundfile'            => 'Tohörige Toondatei',
+'exif-subsectime'                  => 'Spiekertiet (1/100 s)',
+'exif-subsectimedigitized'         => 'Tiet digital maakt (1/100 s)',
 'exif-exposuretime'                => 'Belichtungstiet',
 'exif-exposuretime-format'         => '$1 Sek. ($2)',
 'exif-fnumber'                     => 'F-Nummer',

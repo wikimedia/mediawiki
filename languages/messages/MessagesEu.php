@@ -8,6 +8,7 @@
  * @author לערי ריינהארט
  * @author Siebrand
  * @author Malafaya
+ * @author Bengoa
  */
 
 $skinNames = array(
@@ -281,7 +282,7 @@ $messages = array(
 'site-atom-feed'          => '$1 Atom Jarioa',
 'page-rss-feed'           => '"$1" RSS Jarioa',
 'page-atom-feed'          => '"$1" Atom Jarioa',
-'red-link-title'          => '$1 (sortu gabe)',
+'red-link-title'          => '$1 (sortu gabe dago)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Artikulua',
@@ -371,7 +372,7 @@ Zure kontua sortu egin da. Ez ahaztu {{SITENAME}}(e)ko hobespenak aldatzea.',
 'yourname'                   => 'Erabiltzaile izena',
 'yourpassword'               => 'Pasahitza',
 'yourpasswordagain'          => 'Pasahitza berriz',
-'remembermypassword'         => 'Nire saioa ordenagailu honetan gogoratu',
+'remembermypassword'         => 'Nire saioa ordenagailu honetan gogoratu (gomendaturikoa)',
 'yourdomainname'             => 'Zure domeinua',
 'externaldberror'            => 'Kanpoko datu-base autentifikazio errorea gertatu da edo ez duzu zure kanpo kontua eguneratzeko baimenik.',
 'loginproblem'               => '<b>Arazoa gertatu da saioa hasterakoan.</b><br />Saiatu berriz!',
@@ -462,7 +463,7 @@ Helbide horretara beste edozein mezu bidali aurretik, bertan azaltzen diren argi
 'headline_tip'    => '2. mailako goiburukoa',
 'math_sample'     => 'Formula hemen idatzi',
 'math_tip'        => 'Formula matematikoa (LaTeX)',
-'nowiki_sample'   => 'Formatu gabeko testua idatzi hemen',
+'nowiki_sample'   => 'Formatu gabeko testua hemen idatzi',
 'nowiki_tip'      => 'Ez egin jaramonik wiki formatuari',
 'image_sample'    => 'Adibidea.jpg',
 'image_tip'       => 'Txertatutako irudia',
@@ -477,7 +478,7 @@ Helbide horretara beste edozein mezu bidali aurretik, bertan azaltzen diren argi
 'minoredit'                 => 'Hau aldaketa txikia da',
 'watchthis'                 => 'Orrialde hau jarraitu',
 'savearticle'               => 'Orrialdea gorde',
-'preview'                   => 'Aurrebista',
+'preview'                   => 'Aurrebista erakutsi',
 'showpreview'               => 'Aurrebista erakutsi',
 'showlivepreview'           => 'Zuzeneko aurrebista',
 'showdiff'                  => 'Aldaketak erakutsi',
@@ -488,7 +489,7 @@ Helbide horretara beste edozein mezu bidali aurretik, bertan azaltzen diren argi
 'summary-preview'           => 'Laburpenaren aurreikuspena',
 'subject-preview'           => 'Gaia/Izenburuaren aurreikuspena',
 'blockedtitle'              => 'Erabiltzailea blokeatuta dago',
-'blockedtext'               => 'Zure erabiltzaile izena edo IP helbidea $1(e)k blokeatu du. Emandako arrazoia honako hau da: \'\'$2\'\' $1 edo Wikipediako beste [[{{MediaWiki:Grouppage-sysop}}|administratzaile]] batekin harremanetan jarri beharko zinateke zure blokeoa eztabaidatzeko. Kontuan izan ezingo duzula "Erabiltzaile honi e-posta bidali" aukera erabili zure [[Special:Preferences|Hobespenetan]] baliozko e-posta helbide bat definitu ezean. Zure IP helbidea $3 da. Mesedez, edozein kontsulta egiterakoan, helbide hori aipatu.',
+'blockedtext'               => '  Zure erabiltzaile izena edo IP helbidea $1(e)k blokeatu du. Emandako arrazoia honako hau da: \'\'$2\'\' $1 edo Wikipediako beste [[{{MediaWiki:Grouppage-sysop}}|administratzaile]] batekin harremanetan jarri beharko zinateke zure blokeoa eztabaidatzeko. Kontuan izan ezingo duzula "Erabiltzaile honi e-posta bidali" aukera erabili zure [[Special:Preferences|Hobespenetan]] baliozko e-posta helbide bat definitu ezean. Zure IP helbidea $3 da. Mesedez, edozein kontsulta egiterakoan, helbide hori aipatu.',
 'blockednoreason'           => 'ez da arrazoirik zehaztu',
 'blockedoriginalsource'     => "Jarraian ikus daiteke '''$1'''(r)en kodea:",
 'blockededitsource'         => "Jarraian ikus daitezke '''$1'''(e)n egin dituzun aldaketak:",
@@ -1399,7 +1400,7 @@ $1',
 'databasenotlocked'   => 'Datu-basea ez dago blokeatuta.',
 
 # Move page
-'move-page-legend'                => 'Orrialdea mugitu',
+'move-page-legend'        => 'Orrialdea mugitu',
 'movepagetext'            => 'Hurrengo pausoak jarraituz, artikulu edo orrialde baten izena aldatu daiteke. Izenburu zaharra, automatikoki izenburu berriari birzuzenduko zaio. 
 Gogora ezazu, orrialdearen izena ez dela aldatuko, nahi duzun izena dagoeneko sortuta badago Wikipedian; birzuzenketa bat edo historiarik gabeko orrialde bat ez bada.
 
