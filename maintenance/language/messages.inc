@@ -668,6 +668,8 @@ $wgMessageStructure = array(
 		'prevn',
 		'nextn',
 		'viewprevnext',
+		'search-result-size',
+		'search-result-score',
 		'showingresults',
 		'showingresultsnum',
 		'nonefound',
