@@ -90,6 +90,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Email subject in content language instead of sending user's UI language
 * (bug 13251) Allow maintenance rebuild scripts to work with Postgres
 * (bug 2084) Fixed incorrect regex to match redirects
+* (bug 3131) Manually-specified upload destination filename is no longer
+  overwritten by browsing for a file after you wrote it.
+
 
 === API changes in 1.13 ===
 
