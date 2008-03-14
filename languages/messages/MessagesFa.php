@@ -429,7 +429,9 @@ $messages = array(
 'permalink'         => 'پیوند دائمی',
 'print'             => 'چاپ',
 'edit'              => 'ويرايش',
+'create'            => 'ایجاد',
 'editthispage'      => 'اين صفحه را ويرايش كنيد',
+'create-this-page'  => 'این صفحه را ایجاد کنید',
 'delete'            => 'حذف',
 'deletethispage'    => 'حذف این صفحه',
 'undelete_short'    => 'احیای {{PLURAL:$1|یک ویرایش|$1 ویرایش}}',
@@ -1028,6 +1030,8 @@ $3
 'prevn'                 => '$1تای قبلی',
 'nextn'                 => '$1تای بعدی',
 'viewprevnext'          => 'نمایش ($1) ($2) ($3).',
+'search-result-size'    => '$1 ({{PLURAL:$2|یک کلمه|$2 کلمه}})',
+'search-result-score'   => 'ارتباط: $1%',
 'showingresults'        => "نمایش {{PLURAL:$1|'''1''' نتیجه|'''$1''' نتیجه}} در پایین، آغاز از #'''$2'''.",
 'showingresultsnum'     => "نمایش '''$3''' {{PLURAL:$3|نتیجه|نتیجه}} در پایین، آغاز از #'''$2'''.",
 'nonefound'             => "<strong>نکته</strong>
@@ -2681,6 +2685,4 @@ $1',
 
 نشانی پرونده را بدون پیشوند «{{ns:image}}:» وارد کنید.',
 
-'booksources-isbn'          => 'شابک:',
-'isbn'               => 'شابک',
 );
