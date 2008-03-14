@@ -288,7 +288,7 @@ class Title {
 		if( $redir->matchStart( trim($text) ) ) {
 			// Extract the first link and see if it's usable
 			$m = array();
-			if( preg_match( '!\[{2}(.*?)(?:\||\]{2})!', $text, $m ) ) {
+			if( preg_match( '!\[{2}(.*?)(?:\|.*?)?\]{2}!', $text, $m ) ) {
 				// Strip preceding colon used to "escape" categories, etc.
 				// and URL-decode links
 				if( strpos( $m[1], '%' ) !== false ) {
