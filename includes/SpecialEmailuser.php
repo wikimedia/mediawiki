@@ -98,7 +98,7 @@ class EmailUserForm {
 		$wgOut->addWikiMsg( "emailpagetext" );
 
 		if ( $this->subject === "" ) {
-			$this->subject = wfMsg( "defemailsubject" );
+			$this->subject = wfMsgForContent( "defemailsubject" );
 		}
 
 		$emf = wfMsg( "emailfrom" );
