@@ -754,7 +754,7 @@ speichern kannst. Sichere den Text und versuche die Änderungen später einzuspi
 'nocreatetitle'             => 'Die Erstellung neuer Seiten ist eingeschränkt.',
 'nocreatetext'              => 'Auf {{SITENAME}} wurde das Erstellen neuer Seiten eingeschränkt. Du kannst bestehende Seiten ändern oder dich [[Special:Userlogin|anmelden]].',
 'nocreate-loggedin'         => 'Du hast keine Berechtigung, neue Seiten in {{SITENAME}} anzulegen.',
-'permissionserrors'         => 'Berechtigungs-Fehler',
+'permissionserrors'         => 'Berechtigungsfehler',
 'permissionserrorstext'     => 'Du bist nicht berechtigt, die Aktion auszuführen. {{PLURAL:$1|Grund|Gründe}}:',
 'recreate-deleted-warn'     => "'''Achtung: Du erstellst eine Seite, die bereits früher gelöscht wurde.'''
  
@@ -2412,6 +2412,9 @@ Bitte bestätige, dass du diese Seite wirklich neu erstellen möchten.",
 'autosumm-replace' => "Der Seiteninhalt wurde durch einen anderen Text ersetzt: '$1'",
 'autoredircomment' => 'Weiterleitung nach [[$1]] erstellt',
 'autosumm-new'     => 'Die Seite wurde neu angelegt: $1',
+
+# Size units
+'size-bytes'     => '$1 Bytes', # only translate this message to other languages if you have to change it
 
 # Live preview
 'livepreview-loading' => 'Laden …',
