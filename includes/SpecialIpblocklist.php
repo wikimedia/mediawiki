@@ -76,6 +76,11 @@ class IPUnblockForm {
 		$this->reason = $reason;
 	}
 
+	/**
+	 * Generates the unblock form
+	 * @param $err string: error message
+	 * @return $out string: HTML form
+	 */
 	function showForm( $err ) {
 		global $wgOut, $wgUser, $wgSysopUserBans, $wgContLang;
 
@@ -83,8 +88,6 @@ class IPUnblockForm {
 		$wgOut->addWikiMsg( 'unblockiptext' );
 
 		$ipa = wfMsgHtml( $wgSysopUserBans ? 'ipadressorusername' : 'ipaddress' );
-		$ipr = wfMsgHtml( 'ipbreason' );
-		$ipus = wfMsgHtml( 'ipusubmit' );
 		$titleObj = SpecialPage::getTitleFor( "Ipblocklist" );
 		$action = $titleObj->getLocalURL( "action=submit" );
 		$alignRight = $wgContLang->isRtl() ? 'left' : 'right';
@@ -110,7 +113,9 @@ class IPUnblockForm {
 
 		$wgOut->addHTML(
 			Xml::openElement( 'form', array( 'method' => 'post', 'action' => $action, 'id' => 'unblockip' ) ) .
-			Xml::openElement( 'table', array( 'border' => '0' ) ).
+			Xml::openElement( 'fieldset' ) .
+			Xml::element( 'legend', null, wfMsg( 'ipb-unblock' ) ) .
+			Xml::openElement( 'table', array( 'border' => '0', 'id' => 'mw-unblock-table' ) ).
 			"<tr>
 				<td align='$alignRight'>
 					{$ipa}
@@ -120,9 +125,9 @@ class IPUnblockForm {
 				</td>
 			</tr>
 			<tr>
-				<td align='$alignRight'>
-					{$ipr}
-				</td>
+				<td align='$alignRight'>" .
+					Xml::label( wfMsg( 'ipbreason' ), 'wpUnblockReason' ) . 
+				"</td>
 				<td>" .
 					Xml::input( 'wpUnblockReason', 40, $this->reason, array( 'type' => 'text', 'tabindex' => '2' ) ) .
 				"</td>
@@ -130,10 +135,11 @@ class IPUnblockForm {
 			<tr>
 				<td>&nbsp;</td>
 				<td>" .
-					Xml::submitButton( $ipus, array( 'name' => 'wpBlock', 'tabindex' => '3' ) ) .
+					Xml::submitButton( wfMsg( 'ipusubmit' ), array( 'name' => 'wpBlock', 'tabindex' => '3' ) ) .
 				"</td>
 			</tr>" .
 			Xml::closeElement( 'table' ) .
+			Xml::closeElement( 'fieldset' ) .
 			Xml::hidden( 'wpEditToken', $token ) .
 			Xml::closeElement( 'form' ) . "\n"
 		);
