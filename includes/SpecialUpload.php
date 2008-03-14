@@ -921,10 +921,12 @@ class UploadForm {
 
 		$adc = wfBoolToStr( $useAjaxDestCheck );
 		$alp = wfBoolToStr( $useAjaxLicensePreview );
+		$autofill = wfBoolToStr( $this->mDesiredDestName == '' );
 
 		$wgOut->addScript( "<script type=\"text/javascript\">
 wgAjaxUploadDestCheck = {$adc};
 wgAjaxLicensePreview = {$alp};
+wgUploadAutoFill = {$autofill};
 </script>
 <script type=\"text/javascript\" src=\"{$wgStylePath}/common/upload.js?{$wgStyleVersion}\"></script>
 		" );
@@ -1032,7 +1034,7 @@ wgAjaxLicensePreview = {$alp};
 				   "onfocus='" . 
 				     "toggle_element_activation(\"wpUploadFileURL\",\"wpUploadFile\");" .
 				     "toggle_element_check(\"wpSourceTypeFile\",\"wpSourceTypeURL\")'" .
-				($this->mDesiredDestName?"":"onchange='fillDestFilename(\"wpUploadFile\")' ") . "size='60' />" .
+				     "onchange='fillDestFilename(\"wpUploadFile\")' size='60' />" .
 				wfMsgHTML( 'upload_source_file' ) . "<br/>" .
 				"<input type='radio' id='wpSourceTypeURL' name='wpSourceType' value='web' " .
 				  "onchange='toggle_element_activation(\"wpUploadFile\",\"wpUploadFileURL\")' />" .
@@ -1040,7 +1042,7 @@ wgAjaxLicensePreview = {$alp};
 				  "onfocus='" .
 				    "toggle_element_activation(\"wpUploadFile\",\"wpUploadFileURL\");" .
 				    "toggle_element_check(\"wpSourceTypeURL\",\"wpSourceTypeFile\")'" .
-				($this->mDesiredDestName?"":"onchange='fillDestFilename(\"wpUploadFileURL\")' ") . "size='60' disabled='disabled' />" .
+				    "onchange='fillDestFilename(\"wpUploadFileURL\")' size='60' disabled='disabled' />" .
 				wfMsgHtml( 'upload_source_url' ) ;
 		} else {
 			$filename_form =
@@ -1075,7 +1077,7 @@ wgAjaxLicensePreview = {$alp};
 			<td align='$align1'><label for='wpDestFile'>{$destfilename}</label></td>
 			<td align='$align2'>
 				<input tabindex='2' type='text' name='wpDestFile' id='wpDestFile' size='60' 
-					value="$encDestName" $destOnkeyup />
+					value="$encDestName" onchange='toggleFilenameFiller()' $destOnkeyup />
 			</td>
 		</tr>
 		<tr>
