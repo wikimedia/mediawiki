@@ -1218,6 +1218,8 @@ Make sure that this change will maintain historical page continuity.
 'prevn'                 => 'previous $1',
 'nextn'                 => 'next $1',
 'viewprevnext'          => 'View ($1) ($2) ($3)',
+'search-result-size'    => "$1 ($2 words)",
+'search-result-score'   => "Relevance: $1%",
 'showingresults'        => "Showing below up to {{PLURAL:$1|'''1''' result|'''$1''' results}} starting with #'''$2'''.",
 'showingresultsnum'     => "Showing below {{PLURAL:$3|'''1''' result|'''$3''' results}} starting with #'''$2'''.",
 'nonefound'             => "'''Note''': Unsuccessful searches are often caused by searching for common words like \"have\" and \"from\", which are not indexed, or by specifying more than one search term (only pages containing all of the search terms will appear in the result).",
