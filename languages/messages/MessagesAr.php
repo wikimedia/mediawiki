@@ -507,6 +507,7 @@ $messages = array(
 'permalink'         => 'وصلة دائمة',
 'print'             => 'طباعة',
 'edit'              => 'عدل',
+'create'            => 'ايجاد',
 'editthispage'      => 'عدل هذه الصفحة',
 'delete'            => 'حذف',
 'deletethispage'    => 'احذف هذه الصفحة',
