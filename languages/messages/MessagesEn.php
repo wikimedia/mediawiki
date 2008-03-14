@@ -1206,7 +1206,7 @@ Make sure that this change will maintain historical page continuity.
 'diff-multi'              => '({{PLURAL:$1|One intermediate revision|$1 intermediate revisions}} not shown.)',
 
 # Search results
-'searchtext'		=> '$1',
+'searchtext'            => '$1', # don't translate or duplicate this message to other languages
 'searchresults'         => 'Search results',
 'searchresulttext'      => 'For more information about searching {{SITENAME}}, see [[{{MediaWiki:Helppage}}|{{int:help}}]].',
 'searchsubtitle'        => "You searched for '''[[:$1]]'''",

@@ -94,6 +94,7 @@ $wgIgnoredMessages = array(
 	'revision-info-current',
 	'revision-nav',
 	'rfcurl',
+	'searchtext',
 	'shareddescriptionfollows',
 	'signature',
 	'signature-anon',
