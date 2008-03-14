@@ -857,10 +857,12 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'prevn'                 => '前$1',
 'nextn'                 => '後$1',
 'viewprevnext'          => '去睇 ($1) ($2) ($3)',
+'search-result-size'    => "$1 ($2個字)",
+'search-result-score'   => "相關度: $1%",
 'showingresults'        => '自#<b>$2</b>起顯示最多<b>$1</b>個結果。',
 'showingresultsnum'     => '自#<b>$2</b>起顯示<b>$3</b>個結果。',
 'nonefound'             => "'''注意'''：搵嘢結果為空通常係因為你搵嘅係\"have\"、\"from\"等太常用而唔會被索引入數據庫嘅詞，又或者係你指定咗太多嘅關鍵字（只有包含所有你指定嘅關鍵字嘅頁面先至會被搵到出嚟）。",
-'powersearch'           => '搵嘢',
+'powersearch'           => '進階搵嘢',
 'powersearchtext'       => '喺以下嘅空間名度搵 :<br />$1<br />$2 彈去清單 &nbsp; $3 嘅搜尋 $9',
 'searchdisabled'        => '{{SITENAME}}嘅搜尋功能已經關閉。你可以利用Google嚟搵。不過佢哋對{{SITENAME}}嘅索引可能唔係最新嘅。',
 
@@ -1463,8 +1465,8 @@ wiki: $PAGEEDITOR_WIKI
 'protectedarticle'            => '已經保護 "[[$1]]"',
 'modifiedarticleprotection'   => '已經改咗 "[[$1]]" 嘅保護等級',
 'unprotectedarticle'          => '已經唔再保護 "[[$1]]"',
-'protect-title'               => '設定緊「$1」嘅保護等級',
-'confirmprotect'              => '確認保護',
+'protect-title'               => '改緊「$1」嘅保護等級',
+'protect-legend'              => '確認保護',
 'protectcomment'              => '註解:',
 'protectexpiry'               => '到期:',
 'protect_expiry_invalid'      => '到期時間唔正確。',
@@ -1684,7 +1686,8 @@ $1',
 'databasenotlocked'   => '資料庫而家冇鎖到。',
 
 # Move page
-'move-page-legend'                => '搬頁',
+'move-page'               => '搬$1',
+'move-page-legend'        => '搬頁',
 'movepagetext'            => "使用以下表格會將頁面改名，兼且連同搬埋佢嘅歷史過去。
 舊標題會變成指去新標題嘅跳轉頁。
 指去舊標題嘅連結唔會修改到；請務必要檢查吓有冇雙重跳轉或者死跳轉（嘅情況發生）。

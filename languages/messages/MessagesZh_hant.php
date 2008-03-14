@@ -776,10 +776,12 @@ $2',
 'prevn'                 => '前$1個',
 'nextn'                 => '後$1個',
 'viewprevnext'          => '檢視 ($1) ($2) ($3)',
+'search-result-size'    => "$1 ($2個字)",
+'search-result-score'   => "相關度: $1%",
 'showingresults'        => '下面顯示從第<b>$2</b>條開始的<b>$1</b>條結果:',
 'showingresultsnum'     => '下面顯示從第<b>$2</b>條開始的<b>$3</b>條結果:',
 'nonefound'             => '<strong>注意：</strong>失敗的搜索往往是由於試圖搜索諸如「的」或「和」之類的常見字所引起。',
-'powersearch'           => '搜索',
+'powersearch'           => '進階搜索',
 'powersearchtext'       => '
 搜索名字空間：<br />$1<br />$2列出重定向頁面；搜索$3 $9',
 'searchdisabled'        => '{{SITENAME}}由於性能方面的原因，全文搜索已被暫時停用。您可以暫時透過Google搜索。請留意他們的索引可能會過時。',
@@ -1401,8 +1403,8 @@ $NEWPAGE
 'protectedarticle'            => '已保護"[[$1]]"',
 'modifiedarticleprotection'   => '已經更改 "[[$1]]" 的保護等級',
 'unprotectedarticle'          => '已解除保護"[[$1]]"',
-'protect-title'               => '正在保護"$1"',
-'confirmprotect'              => '確認保護',
+'protect-title'               => '正在更改"$1"的保護等級',
+'protect-legend'              => '確認保護',
 'protectcomment'              => '註解:',
 'protectexpiry'               => '到期:',
 'protect_expiry_invalid'      => '輸入的終止時間無效。',
@@ -1622,7 +1624,8 @@ $1',
 'databasenotlocked'   => '資料庫沒有鎖定。',
 
 # Move page
-'move-page-legend'                => '移動頁面',
+'move-page'               => '移動$1',
+'move-page-legend'        => '移動頁面',
 'movepagetext'            => "用下面的表單來重新命名一個頁面，並將其修訂歷史同時移動到新頁面。
 老的頁面將成為新頁面的重定向頁。
 連結到老頁面的連結並不會自動更改；

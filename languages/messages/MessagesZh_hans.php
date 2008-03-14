@@ -801,10 +801,12 @@ $2',
 'prevn'                 => '前$1个',
 'nextn'                 => '后$1个',
 'viewprevnext'          => '查看 ($1) ($2) ($3)',
+'search-result-size'    => "$1 ($2个字)",
+'search-result-score'   => "相关度: $1%",
 'showingresults'        => '下面显示从第<b>$2</b>条开始的<b>$1</b>条结果:',
 'showingresultsnum'     => '下面显示从第<b>$2</b>条开始的<b>$3</b>条结果:',
 'nonefound'             => '<strong>注意：</strong>失败的搜索往往是由于试图搜索诸如“的”或“和”之类的常见字所引起。',
-'powersearch'           => '搜索',
+'powersearch'           => '高级搜索',
 'powersearchtext'       => '
 搜索名字空间：<br />$1<br />$2列出重定向页面；搜索$3 $9',
 'searchdisabled'        => '{{SITENAME}}由于性能方面的原因，全文搜索已被暂时禁用。您可以暂时通过Google搜索。请留意他们的索引可能会过时。',
@@ -1425,8 +1427,8 @@ $NEWPAGE
 'protectedarticle'            => '已保护"[[$1]]"',
 'modifiedarticleprotection'   => '已经更改 "[[$1]]" 的保护等级',
 'unprotectedarticle'          => '已取消保护"[[$1]]"',
-'protect-title'               => '正在保护"$1"',
-'confirmprotect'              => '确认保护',
+'protect-title'               => '正在更改"$1"的保护等级',
+'protect-legend'              => '确认保护',
 'protectcomment'              => '注解:',
 'protectexpiry'               => '到期:',
 'protect_expiry_invalid'      => '输入的终止时间无效。',
@@ -1649,7 +1651,8 @@ $1',
 'databasenotlocked'   => '数据库没有锁定。',
 
 # Move page
-'move-page-legend'                => '移动页面',
+'move-page'               => '移动$1',
+'move-page-legend'        => '移动页面',
 'movepagetext'            => "用下面的表单来重命名一个页面，并将其修订历史同时移动到新页面。
 老的页面将成为新页面的重定向页。
 链接到老页面的链接并不会自动更改；
