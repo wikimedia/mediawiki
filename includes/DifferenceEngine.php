@@ -186,11 +186,11 @@ CONTROL;
 			}
 			// Build the link
 			if( $rcid ) {
-				$patrol = ' [' . $sk->makeKnownLinkObj(
+				$patrol = ' <span class="patrollink">[' . $sk->makeKnownLinkObj(
 					$this->mTitle,
 					wfMsgHtml( 'markaspatrolleddiff' ),
 					"action=markpatrolled&rcid={$rcid}"
-				) . ']';
+				) . ']</span>';
 			} else {
 				$patrol = '';
 			}
