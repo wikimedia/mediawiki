@@ -1384,7 +1384,7 @@ function do_postgres_updates() {
 		array("ipblocks",     "ipb_enable_autoblock",        "smallint", "ipb_enable_autoblock::smallint DEFAULT 1"),
 		array("ipblocks",     "ipb_block_email",        "smallint", "ipb_block_email::smallint DEFAULT 0"),
 		array("ipblocks",     "ipb_address",     "text",     "ipb_address::text"),
-		array("ipblocks",     "ipb_deleted",     "smallint", ""),
+		array("ipblocks",     "ipb_deleted",     "smallint", "ipb_deleted::smallint"),
 		array("math",         "math_inputhash",  "bytea",    "decode(math_inputhash,'escape')"),
 		array("math",         "math_outputhash", "bytea",    "decode(math_outputhash,'escape')"),
 		array("mwuser",       "user_token",      "text",     ""),
