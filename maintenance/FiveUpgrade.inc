@@ -61,9 +61,10 @@ class FiveUpgrade {
 	 * @access private
 	 */
 	function &newConnection() {
-		global $wgDBadminuser, $wgDBadminpassword;
+		global $wgDBadminuser, $wgDBadminpassword, $wgDBtype;
 		global $wgDBserver, $wgDBname;
-		$db = new Database( $wgDBserver, $wgDBadminuser, $wgDBadminpassword, $wgDBname );
+		$dbclass = 'Database' . ucfirst( $wgDBtype ) ;
+		$db = new $dbclass( $wgDBserver, $wgDBadminuser, $wgDBadminpassword, $wgDBname );
 		return $db;
 	}
 
@@ -75,11 +76,15 @@ class FiveUpgrade {
 	 * @access private
 	 */
 	function &streamConnection() {
+		global $wgDBtype;
+
 		$timeout = 3600 * 24;
 		$db =& $this->newConnection();
 		$db->bufferResults( false );
-		$db->query( "SET net_read_timeout=$timeout" );
-		$db->query( "SET net_write_timeout=$timeout" );
+        if ($wgDBtype == 'mysql') {
+			$db->query( "SET net_read_timeout=$timeout" );
+			$db->query( "SET net_write_timeout=$timeout" );
+		}
 		return $db;
 	}
 
