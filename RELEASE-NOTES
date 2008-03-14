@@ -42,6 +42,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 13269) Added MediaWiki:Uploadfooter to the bottom of Special:Upload
 * (bug 2815) Search results for media now use thumb instead of text extract
 * When a page doesn't exist, the tab should say "create", not "edit"
+* (bug 12882) Added a span with class "patrollink" arround "Mark as patrolled"
+  link on diffs
 
 === Bug fixes in 1.13 ===
 
