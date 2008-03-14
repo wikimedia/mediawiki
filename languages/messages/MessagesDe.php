@@ -332,7 +332,9 @@ $messages = array(
 'permalink'         => 'Permanentlink',
 'print'             => 'Drucken',
 'edit'              => 'Bearbeiten',
+'create'            => 'Erstellen',
 'editthispage'      => 'Seite bearbeiten',
+'create-this-page'  => 'Seite erstellen',
 'delete'            => 'Löschen',
 'deletethispage'    => 'Diese Seite löschen',
 'undelete_short'    => '{{PLURAL:$1|1 Version|$1 Versionen}} wiederherstellen',
@@ -771,7 +773,7 @@ speichern kannst. Sichere den Text und versuche die Änderungen später einzuspi
 'nocreatetitle'             => 'Die Erstellung neuer Seiten ist eingeschränkt.',
 'nocreatetext'              => 'Auf {{SITENAME}} wurde das Erstellen neuer Seiten eingeschränkt. Du kannst bestehende Seiten ändern oder dich [[Special:Userlogin|anmelden]].',
 'nocreate-loggedin'         => 'Du hast keine Berechtigung, neue Seiten in {{SITENAME}} anzulegen.',
-'permissionserrors'         => 'Berechtigungs-Fehler',
+'permissionserrors'         => 'Berechtigungsfehler',
 'permissionserrorstext'     => 'Du bist nicht berechtigt, die Aktion auszuführen. {{PLURAL:$1|Grund|Gründe}}:',
 'recreate-deleted-warn'     => "'''Achtung: Du erstellst eine Seite, die bereits früher gelöscht wurde.'''
  
@@ -917,10 +919,12 @@ Wenn du dich mit dem Thema auskennst, kannst du selbst die Seite „[[$1]]“ ve
 'prevn'                 => 'vorherige $1',
 'nextn'                 => 'nächste $1',
 'viewprevnext'          => 'Zeige ($1) ($2) ($3)',
+'search-result-size'    => "$1 ($2 Wörter)",
+'search-result-score'   => "Relevanz: $1 %",
 'showingresults'        => "Hier {{PLURAL:$1|ist '''1''' Ergebnis|sind '''$1''' Ergebnisse}}, beginnend mit Nummer '''$2'''.",
 'showingresultsnum'     => "Hier {{PLURAL:$3|ist '''1''' Ergebnis|sind '''$1''' Ergebnisse}}, beginnend mit Nummer '''$2'''.",
 'nonefound'             => '<strong>Hinweis</strong>: Erfolglose Suchanfragen werden häufig dadurch verursacht, dass mehr als ein Suchbegriff angegeben wurde. Nur Seiten die alle Suchbegriffe enthalten werden hier angezeigt. Versuche in diesem Fall die Anzahl der Suchbegriffe zu verringern.',
-'powersearch'           => 'Suche',
+'powersearch'           => 'Erweiterte Suche',
 'powersearchtext'       => 'Suche in Namensräumen:<br />$1<br />$2 Weiterleitungen anzeigen<br />Suche nach: $3 $9',
 'searchdisabled'        => 'Die {{SITENAME}} Suche wurde deaktiviert. Du kannst unterdessen mit Google suchen. Bitte bedenken, dass der Suchindex für {{SITENAME}} veraltet sein kann.',
 
@@ -2454,6 +2458,9 @@ Bitte bestätige, dass du diese Seite wirklich neu erstellen möchten.",
 'autosumm-replace' => "Der Seiteninhalt wurde durch einen anderen Text ersetzt: '$1'",
 'autoredircomment' => 'Weiterleitung nach [[$1]] erstellt',
 'autosumm-new'     => 'Die Seite wurde neu angelegt: $1',
+
+# Size units
+'size-bytes'     => '$1 Bytes', # only translate this message to other languages if you have to change it
 
 # Live preview
 'livepreview-loading' => 'Laden …',
