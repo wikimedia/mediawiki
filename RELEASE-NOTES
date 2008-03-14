@@ -3,6 +3,11 @@
 Security reminder: MediaWiki does not require PHP's register_globals
 setting since version 1.2.0. If you have it on, turn it *off* if you can.
 
+== MediaWiki 1.12.0 ==
+
+* (bug 13359) Double-escaping in Special:Allpages
+
+
 == MediaWiki 1.12.0rc1 ==
 
 This is a release candidate of the Winter 2008 quarterly snapshot release
