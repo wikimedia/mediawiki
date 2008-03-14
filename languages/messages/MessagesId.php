@@ -433,7 +433,9 @@ $messages = array(
 'permalink'         => 'Pranala permanen',
 'print'             => 'Cetak',
 'edit'              => 'Sunting',
+'create'            => 'Buat',
 'editthispage'      => 'Sunting halaman ini',
+'create-this-page'  => 'Buat halaman ini',
 'delete'            => 'Hapus',
 'deletethispage'    => 'Hapus halaman ini',
 'undelete_short'    => 'Batal hapus $1 {{PLURAL:$1|suntingan|suntingan}}',
@@ -791,7 +793,6 @@ ID pemblokiran Anda adalah $5. Tolong sertakan ID ini dalam setiap pertanyaan An
 <strong>Jika ini merupakan upaya suntingan yang sahih, silakan coba lagi. Jika masih tetap tidak berhasil, cobalah keluar log dan masuk kembali.</strong>",
 'token_suffix_mismatch'     => '<strong>Suntingan Anda ditolak karena aplikasi klien Anda mengubah karakter tanda baca pada suntingan. Suntingan tersebut ditolak untuk mencegah kesalahan pada artikel teks. Hal ini kadang terjadi jika Anda menggunakan layanan proxy anonim berbasis web yang bermasalah.</strong>',
 'editing'                   => 'Menyunting $1',
-'editinguser'               => 'Menyunting $1',
 'editingsection'            => 'Menyunting $1 (bagian)',
 'editingcomment'            => 'Menyunting $1 (komentar)',
 'editconflict'              => 'Konflik penyuntingan: $1',
@@ -955,10 +956,12 @@ Pengurus lain akan dapat mengakses isi tersebunyi dan dapat membatalkan penghapu
 'prevn'                 => '$1 sebelumnya',
 'nextn'                 => '$1 berikutnya',
 'viewprevnext'          => 'Lihat ($1) ($2) ($3)',
+'search-result-size'    => "$1 ({{PLURAL:$2|1 kata|$2 kata}})",
+'search-result-score'   => "Relevansi: $1%",
 'showingresults'        => "Di bawah ini ditampilkan hingga {{PLURAL:$1|'''1''' hasil|'''$1''' hasil}}, dimulai dari #'''$2'''.",
 'showingresultsnum'     => "Di bawah ini ditampilkan{{PLURAL:$3|'''1''' hasil|'''$3''' hasil}}, dimulai dari #'''$2'''.",
 'nonefound'             => "'''Catatan''': Kegagalan pencarian biasanya disebabkan oleh pencarian kata-kata umum dalam bahasa Inggris, seperti \"have\" dan \"from\", yang biasanya tidak diindeks, atau dengan menentukan lebih dari satu kriteria pencarian (hanya halaman yang mengandung semua kriteria pencarianlah yang akan ditampilkan dalam hasil pencarian)",
-'powersearch'           => 'Cari',
+'powersearch'           => 'Pencarian lanjut',
 'powersearchtext'       => 'Cari dalam ruang nama:<br />$1<br />$2 Juga tampilkan peralihan<br />Cari $3 $9',
 'searchdisabled'        => '<p style="margin: 1.5em 2em 1em">Mesin pencari {{SITENAME}} sementara dimatikan karena masalah kinerja. Anda dapat mencari melalui Google untuk sementara waktu. <span style="font-size: 89%; display: block; margin-left: .2em">Indeks Google untuk {{SITENAME}} mungkin belum diperbaharui. Jika istilah pencarian berisi garis bawah, gantikan dengan spasi.</span></p>',
 
@@ -1027,6 +1030,7 @@ Pengurus lain akan dapat mengakses isi tersebunyi dan dapat membatalkan penghapu
 'userrights-lookup-user'           => 'Mengatur kelompok pengguna',
 'userrights-user-editname'         => 'Masukkan nama pengguna:',
 'editusergroup'                    => 'Sunting kelompok pengguna',
+'editinguser'                      => "Mengganti hak akses pengguna '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
 'userrights-editusergroup'         => 'Sunting kelompok pengguna',
 'saveusergroups'                   => 'Simpan kelompok pengguna',
 'userrights-groupsmember'          => 'Anggota dari:',
@@ -1260,6 +1264,7 @@ Log penghapusan berkas adalah sebagai berikut:",
 'filedelete-reason-dropdown'  => '*Alasan penghapusan
 ** Pelanggaran hak cipta
 ** Berkas duplikat',
+'filedelete-edit-reasonlist'  => 'Alasan penghapusan suntingan',
 
 # MIME search
 'mimesearch'         => 'Pencarian MIME',
@@ -1360,7 +1365,6 @@ Telah dimuat sejumlah '''$8''' berkas dan sedang terjadi '''$7''' [http://meta.w
 'newpages'                => 'Halaman baru',
 'newpages-username'       => 'Nama pengguna:',
 'ancientpages'            => 'Artikel lama',
-'intl'                    => 'Pranala antarbahasa',
 'move'                    => 'Pindahkan',
 'movethispage'            => 'Pindahkan halaman ini',
 'unusedimagestext'        => '<p>Perhatikan bahwa situs web lain mungkin dapat berpaut ke sebuah berkas secara langsung, dan berkas-berkas seperti itu mungkin terdapat dalam daftar ini meskipun masih digunakan oleh situs web lain.',
@@ -1376,7 +1380,7 @@ Telah dimuat sejumlah '''$8''' berkas dan sedang terjadi '''$7''' [http://meta.w
 'booksources-go'            => 'Cari',
 'booksources-text'          => 'Di bawah ini adalah daftar pranala ke situs lain yang menjual buku baru dan bekas, dan mungkin juga mempunyai informasi lebih lanjut mengenai buku yang sedang Anda cari:',
 
-'categoriespagetext' => 'Kategori-kategori berikut ada dalam wiki.',
+'categoriespagetext' => 'Kategori-kategori berikut mengandung halaman atau media.',
 'data'               => 'Data',
 'userrights'         => 'Manajemen hak pengguna',
 'groups'             => 'Kelompok pengguna',
@@ -1450,6 +1454,7 @@ Telah dimuat sejumlah '''$8''' berkas dan sedang terjadi '''$7''' [http://meta.w
 'unwatch'              => 'Batal pantau',
 'unwatchthispage'      => 'Batal pantau halaman ini',
 'notanarticle'         => 'Bukan sebuah artikel',
+'notvisiblerev'        => 'Revisi telah dihapus',
 'watchnochange'        => 'Tak ada halaman pantauan Anda yang telah berubah dalam jangka waktu yang dipilih.',
 'watchlist-details'    => '{{PLURAL:$1|$1 halaman|$1 halaman}} dipantau, tidak termasuk halaman pembicaraan.',
 'wlheader-enotif'      => '* Notifikasi surat-e diaktifkan.',
@@ -1529,6 +1534,7 @@ Umpan balik dan bantuan lanjutan:
 ** Permintaan pengguna
 ** Pelanggaran hak cipta
 ** Vandalisme',
+'delete-edit-reasonlist'      => 'Alasan penghapusan suntingan',
 'delete-toobig'               => 'Halaman ini memiliki sejarah penyuntingan yang panjang yaitu melebihi $1 revisi. Penghapusan halaman dengan sejarah penyuntingan yang banyak tidak diperbolehkan untuk mencegah kerusakan di {{SITENAME}}.',
 'delete-warning-toobig'       => 'Halaman ini memiliki sejarah penyuntingan yang panjang yaitu melebihi $1 revisi. Menghapus halaman ini dapat menyebabkan masalah dalam operasional basis data {{SITENAME}}.',
 'rollback'                    => 'Kembalikan suntingan',
@@ -1662,6 +1668,7 @@ $1',
 
 # Block/unblock
 'blockip'                     => 'Blokir pengguna',
+'blockip-legend'              => 'Blokir pengguna',
 'blockiptext'                 => 'Gunakan formulir di bawah untuk memblokir kemampuan menulis sebuah alamat IP atau pengguna tertentu. Ini perlu dilakukan untuk mencegah vandalisme, dan sejalan dengan [[{{MediaWiki:Policy-url}}|kebijakan {{SITENAME}}]]. Masukkan alasan Anda di bawah (contohnya mengambil halaman tertentu yang telah dirusak). Untuk daftar pengguna dan alamat yang diblokir, lihat [[{{ns:special}}:Ipblocklist|halaman ini]].',
 'ipaddress'                   => 'Alamat IP:',
 'ipadressorusername'          => 'Alamat IP atau nama pengguna:',
@@ -1758,6 +1765,7 @@ $1',
 'databasenotlocked'   => 'Basis data tidak terkunci.',
 
 # Move page
+'move-page'               => 'Pindahkan $1',
 'move-page-legend'                => 'Pindahkan halaman',
 'movepagetext'            => "Formulir di bawah ini digunakan untuk mengubah nama suatu halaman dan memindahkan semua data sejarah ke nama baru. Judul yang lama akan menjadi halaman peralihan menuju judul yang baru. Pranala kepada judul lama tidak akan berubah. Pastikan untuk memeriksa terhadap peralihan halaman yang rusak atau berganda setelah pemindahan. Anda bertanggung jawab untuk memastikan bahwa pranala terus menyambung ke halaman yang seharusnya.
 
