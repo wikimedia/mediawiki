@@ -73,16 +73,16 @@ class MonoBookTemplate extends QuickTemplate {
 		<script type="<?php $this->text('jsmimetype') ?>" src="<?php $this->text('stylepath' ) ?>/common/wikibits.js?<?php echo $GLOBALS['wgStyleVersion'] ?>"><!-- wikibits js --></script>
 		<!-- Head Scripts -->
 <?php $this->html('headscripts') ?>
-<?php	if($this->data['jsvarurl'  ]) { ?>
-		<script type="<?php $this->text('jsmimetype') ?>" src="<?php $this->text('jsvarurl'  ) ?>"><!-- site js --></script>
+<?php	if($this->data['jsvarurl']) { ?>
+		<script type="<?php $this->text('jsmimetype') ?>" src="<?php $this->text('jsvarurl') ?>"><!-- site js --></script>
 <?php	} ?>
-<?php	if($this->data['pagecss'   ]) { ?>
-		<style type="text/css"><?php $this->html('pagecss'   ) ?></style>
+<?php	if($this->data['pagecss']) { ?>
+		<style type="text/css"><?php $this->html('pagecss') ?></style>
 <?php	}
-		if($this->data['usercss'   ]) { ?>
-		<style type="text/css"><?php $this->html('usercss'   ) ?></style>
+		if($this->data['usercss']) { ?>
+		<style type="text/css"><?php $this->html('usercss') ?></style>
 <?php	}
-		if($this->data['userjs'    ]) { ?>
+		if($this->data['userjs']) { ?>
 		<script type="<?php $this->text('jsmimetype') ?>" src="<?php $this->text('userjs' ) ?>"></script>
 <?php	}
 		if($this->data['userjsprev']) { ?>
@@ -91,7 +91,7 @@ class MonoBookTemplate extends QuickTemplate {
 		if($this->data['trackbackhtml']) print $this->data['trackbackhtml']; ?>
 	</head>
 <body<?php if($this->data['body_ondblclick']) { ?> ondblclick="<?php $this->text('body_ondblclick') ?>"<?php } ?>
-<?php if($this->data['body_onload'    ]) { ?> onload="<?php     $this->text('body_onload')     ?>"<?php } ?>
+<?php if($this->data['body_onload']) { ?> onload="<?php $this->text('body_onload') ?>"<?php } ?>
  class="mediawiki <?php $this->text('nsclass') ?> <?php $this->text('dir') ?> <?php $this->text('pageclass') ?>">
 	<div id="globalWrapper">
 		<div id="column-content">
