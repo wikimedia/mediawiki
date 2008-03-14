@@ -191,7 +191,7 @@ class SpecialSearch {
 					$this->powerSearchOptions(),
 					array( 'search' => $term ) ),
 					($num < $this->limit) );
-			$wgOut->addHTML( "<br />{$prevnext}\n" );
+			$wgOut->addHTML( "<p>{$prevnext}</p>\n" );
 		}
 
 		if( $titleMatches ) {
@@ -306,12 +306,12 @@ class SpecialSearch {
 		$terms = implode( '|', $tm );
 
 		$off = $this->offset + 1;
-		$out = "<ol start='{$off}' id='searchResults'>\n";
+		$out = "<ul start='{$off}' class='mw-search-results'>\n";
 
 		while( $result = $matches->next() ) {
 			$out .= $this->showHit( $result, $terms );
 		}
-		$out .= "</ol>\n";
+		$out .= "</ul>\n";
 
 		// convert the whole thing to desired language variant
 		global $wgContLang;
@@ -337,7 +337,8 @@ class SpecialSearch {
 		}
 		$sk = $wgUser->getSkin();
 
-		$contextlines = $wgUser->getOption( 'contextlines',  5 );
+		//$contextlines = $wgUser->getOption( 'contextlines',  5 );
+		$contextlines = 2; // Hardcode this. Old defaults sucked. :)
 		$contextchars = $wgUser->getOption( 'contextchars', 50 );
 
 		$link = $sk->makeKnownLinkObj( $t );
@@ -349,50 +350,73 @@ class SpecialSearch {
 			return "<li>{$link}</li>\n";
 		}
 		
-		$extract = $size = '';
+		$revision = Revision::newFromTitle( $t );
+		// If the page doesn't *exist*... our search index is out of date.
+		// The least confusing at this point is to drop the result.
+		// You may get less results, but... oh well. :P
+		if( !$revision ) {
+			return "<!-- missing page " .
+				htmlspecialchars( $t->getPrefixedText() ) . "-->\n";
+		}
+		
+		$text = $revision->getText();
+		$size = wfMsgHtml( 'search-result-size',
+			$sk->formatSize( strlen( $text ) ),
+			str_word_count( $text ) );
+		$date = $wgLang->timeanddate( $revision->getTimestamp() );
+		
+		if( is_null( $result->getScore() ) ) {
+			// Search engine doesn't report scoring info
+			$score = '';
+		} else {
+			$percent = sprintf( '%2.1f', $result->getScore() * 100 );
+			$score = wfMsg( 'search-result-score', $wgLang->formatNum( $percent ) )
+				. ' - ';
+		}
+
+		$extract = $this->extractText( $text, $terms, $contextlines, $contextchars );
+		
 		// Include a thumbnail for media files...
 		if( $t->getNamespace() == NS_IMAGE ) {
 			$img = wfFindFile( $t );
 			if( $img ) {
 				$thumb = $img->getThumbnail( 120, 120 );
 				if( $thumb ) {
-					$extract = '<table class="searchResultImage">' .
+					$desc = $img->getShortDesc();
+					wfProfileOut( $fname );
+					// Ugly table. :D
+					// Float doesn't seem to interact well with the bullets.
+					// Table messes up vertical alignment of the bullet, but I'm
+					// not sure what more I can do about that. :(
+					return "<li>" .
+						'<table class="searchResultImage">' .
 						'<tr>' .
 						'<td width="120" align="center">' .
-						$sk->makeKnownLinkObj( $t, $thumb->toHtml() ) .
+						$thumb->toHtml( array( 'desc-link' => true ) ) .
 						'</td>' .
-						'<td>' .
+						'<td valign="top">' .
 						$link .
-						'<br />' .
-						$img->getLongDesc() .
+						$extract .
+						"<div class='mw-search-result-data'>{$score}{$desc} - {$date}</div>" .
 						'</td>' .
 						'</tr>' .
-						'</table>';
-					wfProfileOut( $fname );
-					return "<li><div>{$extract}</div></li>\n";
+						'</table>' .
+						"</li>\n";
 				}
 			}
 		}
 
-		$extract = $this->extractText( $t, $terms, $contextlines, $contextchars );
 		wfProfileOut( $fname );
-		return "<li>{$link} {$extract}</li>\n";
+		return "<li>{$link} {$extract}\n" .
+			"<div class='mw-search-result-data'>{$score}{$size} - {$date}</div>" .
+			"</li>\n";
 
 	}
 	
-	private function extractText( $t, $terms, $contextlines, $contextchars ) {
+	private function extractText( $text, $terms, $contextlines, $contextchars ) {
 		global $wgLang, $wgContLang;
 		$fname = __METHOD__;
 	
-		$revision = Revision::newFromTitle( $t );
-		if( !$revision ) {
-			return '<!-- missing page -->';
-		}
-		
-		$text = $revision->getText();
-		$size = wfMsgExt( 'nbytes', array( 'parsemag', 'escape'),
-			$wgLang->formatNum( strlen( $text ) ) );
-
 		$lines = explode( "\n", $text );
 
 		$max = intval( $contextchars ) + 1;
@@ -400,7 +424,7 @@ class SpecialSearch {
 
 		$lineno = 0;
 
-		$extract = "($size)";
+		$extract = "";
 		wfProfileIn( "$fname-extract" );
 		foreach ( $lines as $line ) {
 			if ( 0 == $contextlines ) {
@@ -427,7 +451,7 @@ class SpecialSearch {
 			$line = preg_replace( $pat2,
 			  "<span class='searchmatch'>\\1</span>", $line );
 
-			$extract .= "<br /><small>{$lineno}: {$line}</small>\n";
+			$extract .= "<br /><small>{$line}</small>\n";
 		}
 		wfProfileOut( "$fname-extract" );
 		
@@ -493,12 +517,9 @@ class SpecialSearch {
 			'method' => 'get',
 			'action' => $wgScript
 		));
-		$out .= Xml::openElement( 'fieldset' );
-		$out .= Xml::element( 'legend', array(), wfMsg( 'searchresultshead' ) );
 		$out .= Xml::hidden( 'title', 'Special:Search' );
-		$out .= Xml::inputLabel( wfMsg( 'search' ), 'search', 'searchbox', 50, $term ) . ' ';
+		$out .= Xml::input( 'search', 50, $term ) . ' ';
 		$out .= Xml::submitButton( wfMsg( 'searchbutton' ) );
-		$out .= Xml::closeElement( 'fieldset' );
 		$out .= Xml::closeElement( 'form' );
 		
 		return $out;

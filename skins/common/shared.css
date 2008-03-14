@@ -89,3 +89,11 @@ p.mw-ipb-conveniencelinks, p.mw-filedelete-editreasons, p.mw-delete-editreasons 
 	font-size: 90%;
 	float: right;
 }
+
+/* Search results */
+.mw-search-results li {
+	padding-bottom: 1em;
+}
+.mw-search-result-data {
+	color: green;
+}
