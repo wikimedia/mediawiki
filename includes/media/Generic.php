@@ -400,8 +400,8 @@ abstract class ImageHandler extends MediaHandler {
 
 	function getShortDesc( $file ) {
 		global $wgLang;
-		$nbytes = '(' . wfMsgExt( 'nbytes', array( 'parsemag', 'escape' ),
-			$wgLang->formatNum( $file->getSize() ) ) . ')';
+		$nbytes = wfMsgExt( 'nbytes', array( 'parsemag', 'escape' ),
+			$wgLang->formatNum( $file->getSize() ) );
 		$widthheight = wfMsgHtml( 'widthheight', $wgLang->formatNum( $file->getWidth() ) ,$wgLang->formatNum( $file->getHeight() ) );
 
 		return "$widthheight ($nbytes)";
