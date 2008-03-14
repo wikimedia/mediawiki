@@ -187,7 +187,7 @@
 	'mi' => 'Māori',	# Maori
 	'mk' => 'Македонски',	# Macedonian
 	'ml' => 'മലയാളം',	# Malayalam
-	'mn' => 'Монгол',	# Mongolian, Peripheral
+	'mn' => 'Монгол',	# Halh Mongolian (Cyrillic) (ISO 639-3: khk)
 	'mo' => 'Молдовеняскэ',	# Moldovan
 	'mr' => 'मराठी',	# Marathi
 	'ms' => 'Bahasa Melayu',	# Malay
