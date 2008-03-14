@@ -45,7 +45,7 @@ class ApiQueryRevisions extends ApiQueryBase {
 			$fld_comment = false, $fld_user = false, $fld_content = false;
 
 	public function execute() {
-		$limit = $startid = $endid = $start = $end = $dir = $prop = $user = $excludeuser = $token = null;
+		$limit = $startid = $endid = $start = $end = $dir = $prop = $user = $excludeuser = $expandtemplates = $section = $token = null;
 		extract($this->extractRequestParams(false));
 
 		// If any of those parameters are used, work in 'enumeration' mode.
@@ -118,6 +118,10 @@ class ApiQueryRevisions extends ApiQueryBase {
 			$this->fld_content = true;
 			
 			$this->expandTemplates = $expandtemplates;
+			if(isset($section))
+				$this->section = $section;
+			else
+				$this->section = false;
 		}
 
 		$userMax = ( $this->fld_content ? ApiBase::LIMIT_SML1 : ApiBase::LIMIT_BIG1 );
@@ -270,9 +274,17 @@ class ApiQueryRevisions extends ApiQueryBase {
 		
 		
 		if ($this->fld_content) {
-			$text = Revision :: getRevisionText($row);			
+			global $wgParser;
+			$text = Revision :: getRevisionText($row);
+			# Expand templates after getting section content because
+			# template-added sections don't count and Parser::preprocess()
+			# will have less input
+			if ($this->section !== false) {
+				$text = $wgParser->getSection( $text, $this->section, false);
+				if($text === false)
+					$this->dieUsage("There is no section {$this->section} in r{$row->rev_id}", 'nosuchsection');
+			}
 			if ($this->expandTemplates) {
-				global $wgParser;
 				$text = $wgParser->preprocess( $text, $title, new ParserOptions() );
 			}
 			ApiResult :: setContent($vals, $text);
@@ -328,6 +340,9 @@ class ApiQueryRevisions extends ApiQueryBase {
 			),
 			
 			'expandtemplates' => false,
+			'section' => array(
+				ApiBase :: PARAM_TYPE => 'integer'
+			),
 			'token' => array(
 				ApiBase :: PARAM_TYPE => array(
 					'rollback'
@@ -349,6 +364,7 @@ class ApiQueryRevisions extends ApiQueryBase {
 			'user' => 'only include revisions made by user',
 			'excludeuser' => 'exclude revisions made by user',
 			'expandtemplates' => 'expand templates in revision content',
+			'section' => 'only retrieve the content of this section',
 			'token' => 'Which tokens to obtain for each revision',
 		);
 	}

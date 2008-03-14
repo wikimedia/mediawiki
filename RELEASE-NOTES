@@ -99,6 +99,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Added watch and unwatch parameters to action=delete and action=move
 * Added action=edit
 * (bug 11401) Added xmldoublequote to xml formatter
+* Added rvsection parameter to prop=revisions to allow fetching the content of a certain section only
 
 === Languages updated in 1.13 ===
 
