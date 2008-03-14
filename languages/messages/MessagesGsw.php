@@ -130,6 +130,7 @@ $messages = array(
 'unprotect'         => 'nümm schütze',
 'unprotectthispage' => 'Schutz ufhebe',
 'newpage'           => 'Nöji Syte',
+'talkpagelinktext'  => 'Diskussion',
 'specialpage'       => 'Spezialsyte',
 'personaltools'     => 'Persönlichi Wärkzüg',
 'postcomment'       => 'Kommentar abgeh',
@@ -374,7 +375,6 @@ Für d Bestätigung muesch du em Link folge, wo dir isch gmailet worde. Du chasc
 'note'                     => '<strong>Achtung: </strong>',
 'previewnote'              => 'Das isch numen e Vorschau und nonig gspycheret!',
 'editing'                  => 'Bearbeite vo «$1»',
-'editinguser'              => 'Bearbeite vo «$1»',
 'editingsection'           => 'Bearbeite vo «$1» (Absatz)',
 'editconflict'             => 'Bearbeitigs-Konflikt: «$1»',
 'explainconflict'          => "Öpper anders het dä Artikel gänderet, wo du ne sälber am Ändere bisch gsy.
@@ -394,6 +394,7 @@ Si verspräche uns usserdäm, dass Si des alles selber gschriebe oder vo nere Qu
 'protectedpagewarning'     => '<strong>WARNIG: Die Syten isch gsperrt worde, so das se nume Benutzer mit Sysop-Rechten chöi verändere.</strong>',
 'semiprotectedpagewarning' => "'''''Halbsperrung''': Diese Seite kann von angemeldeten Benutzern bearbeitet werden. Für nicht angemeldete oder gerade eben erst angemeldete Benutzer ist der Schreibzugang gesperrt.''",
 'templatesused'            => 'Selli Vorlage wärde in sellem Artikel bruucht:',
+'template-semiprotected'   => '(schrybgschützt für unaagmoldeni un neui Benutzer)',
 'edittools'                => '<!-- Selle Text wird untr em "ändere"-Formular un bim "Uffelade"-Formular aagzeigt. -->',
 
 # History pages
@@ -469,6 +470,7 @@ $2 Zeige auch REDIRECTs   Suche nach $3 $9',
 # User rights
 'userrights-lookup-user'   => 'Verwalte Gruppenzugehörigkeit',
 'editusergroup'            => 'Ändere vo Benutzerrächt',
+'editinguser'              => 'Bearbeite vo «$1»',
 'userrights-editusergroup' => 'Bearbeite Gruppenzugehörigkeit des Benutzers',
 'saveusergroups'           => 'Speichere Gruppenzugehörigkeit',
 'userrights-groupshelp'    => 'Wähle die Gruppen, aus denen der Benutzer entfernt oder zu denen er hinzugefügt werden soll.
@@ -715,7 +717,7 @@ Der aktuelle Text des gelöschten Artikels ist nur Administratoren zugänglich.'
 'unblocklogentry' => 'Blockade von [[User:$1]] aufgehoben',
 
 # Move page
-'move-page-legend'         => 'Artikel verschiebe',
+'move-page-legend' => 'Artikel verschiebe',
 'movepagetext'     => 'Mit däm Forumlar chasch du en Artikel verschiebe, u zwar mit syre komplette Versionsgschicht. Der alt Titel leitet zum nöie wyter, aber Links ufen alt Titel blyben unveränderet.',
 'movepagetalktext' => "D Diskussionssyte wird mitverschobe, '''ussert:'''
 *Du verschiebsch d Syten i nen andere Namensruum, oder

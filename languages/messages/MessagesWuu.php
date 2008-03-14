@@ -626,7 +626,6 @@ $messages = array(
 'rollbackfailed'  => '恢复失败',
 'revertpage'      => '恢复[[Special:Contributions/$2|$2]] ([[User_talk:$2|讲张]])个改动；恢复到[[User:$1|$1]]个上一版本', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'protectlogpage'  => '保护日志',
-'confirmprotect'  => '确认保护',
 'protectcomment'  => '保护理由:',
 'protect-default' => '(默认)',
 
@@ -674,7 +673,7 @@ $messages = array(
 'proxyblocksuccess'  => '好哉。',
 
 # Move page
-'move-page-legend'                => '页面捅荡',
+'move-page-legend'        => '页面捅荡',
 'movepagetext'            => "下底只表格会重新命名一只页面，拿俚所有个历史也侪捅到新名字下头。
 旧个名字会变成到新名字个重定向页面。
 到旧页面个连接弗会改变；注意检查双重定向或者坏脱个重定向。

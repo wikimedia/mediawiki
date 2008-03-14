@@ -4,40 +4,64 @@
  * @addtogroup Language
  *
  * @author SPQRobin
+ * @author Kurniasan
  */
 
 $fallback = "id";
 
 $messages = array(
+# Dates
+'january'  => 'ᨙᨍᨊᨘᨕᨑᨗ',
+'february' => 'ᨙᨄᨅᨛᨑᨘᨕᨑᨗ',
+
+# Bits of text used by many pages
+'category_header' => 'ᨒᨛᨄ ᨑᨗᨒᨒᨛ ᨙᨀᨈᨛᨁᨚᨑᨗ "$1"',
+'subcategories'   => 'ᨔᨅᨛᨙᨀᨈᨛᨁᨚᨈᨗ',
+
 'about'    => 'Atajangeng',
 'qbedit'   => 'Sunting',
 'anontalk' => 'Bicara IP',
 'and'      => 'éréngé',
 
 'help'          => 'Panginring',
-'search'        => 'Sappa',
+'search'        => 'ᨔᨄ',
+'searchbutton'  => 'ᨔᨄ',
+'go'            => 'ᨒᨕᨚ',
+'searcharticle' => 'ᨒᨕᨚ',
 'history_short' => 'Sejarah',
-'edit'          => 'Sunting',
+'edit'          => 'ᨙᨕᨉᨗ',
+'editthispage'  => 'ᨙᨕᨉᨗ ᨙᨕᨙᨉ ᨒᨛᨄ',
+'delete'        => 'ᨄᨛᨙᨉ',
 'specialpage'   => 'Halamang Istimewa',
 'imagepage'     => 'Ita halamang rapang',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite' => 'Tentang {{SITENAME}}',
-'mainpage'  => 'Halamang Utama',
+'mainpage'  => 'ᨒᨛᨄ ᨕᨗᨉᨚᨙᨕ',
 'portal'    => 'Portal komunitas',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
-'nstab-special' => 'Istimewa',
-'nstab-image'   => 'Rapang',
-'nstab-help'    => 'Panginring',
+'nstab-user'     => 'ᨒᨛᨄ ᨄᨁᨘᨊ',
+'nstab-special'  => 'Istimewa',
+'nstab-image'    => 'Rapang',
+'nstab-help'     => 'Panginring',
+'nstab-category' => 'ᨙᨀᨈᨛᨁᨚᨑᨗ',
 
 # General errors
 'badtitle' => 'Judul dek essa',
+
+# Login and logout pages
+'login'      => 'ᨒᨚᨁᨛ ᨕᨈᨆ',
+'userlogin'  => 'ᨒᨚᨁᨛ ᨕᨈᨆ / ᨕᨛᨅᨘ ᨕᨀᨕᨘᨊᨛ',
+'logout'     => 'ᨒᨚᨁᨛ ᨕᨛᨔᨘ',
+'userlogout' => 'ᨒᨚᨁᨛ ᨕᨛᨔᨘ',
+'username'   => 'ᨕᨔᨛ ᨄᨁᨘᨊ:',
 
 # Edit pages
 'accmailtitle'     => 'Ada sandi ni riantarak.',
 'accmailtext'      => 'Ada sandi "$1" riantarak ri $2.',
 'anontalkpagetext' => "----''Ini adalah halaman diskusi untuk pengguna anonim yang belum membuat rekening atau tidak menggunakannya. Karena tidak membuat rekening, kami terpaksa memakai alamat IP untuk mengenalinya. Alamat IP seperti ini dapat dipakai oleh beberapa pengguna yang berbeda. Jika Anda adalah pengguna anonim dan merasa mendapatkan komentar-komentar yang tidak berkaitan dengan anda, kami anjurkan untuk [[Special:Userlogin|membuat rekening atau masuk log]] untuk menghindari kerancuan dengan pengguna anonim lain.''",
+'editing'          => 'ᨙᨕᨉᨗᨈᨗ $1',
 
 # Recent changes
 'recentchanges' => 'Pappakapinra tanappa',

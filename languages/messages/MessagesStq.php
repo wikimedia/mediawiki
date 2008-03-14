@@ -1598,7 +1598,7 @@ Reek dän Gruund foar ju Speere oun.',
 'databasenotlocked'   => 'Ju Doatenboank is nit speerd.',
 
 # Move page
-'move-page-legend'                => 'Siede ferschuuwe',
+'move-page-legend'        => 'Siede ferschuuwe',
 'movepagetext'            => 'Mäd dissen Formular koast du ne Siede touhoope mäd aal Versione tou n uur Noome ferschuuwe. Foar dän oolde Noome wäd ne Fäärelaitenge tou dän Näie iengjucht. Ferwiese ap dän oolde Noome wäide nit annerd.',
 'movepagetalktext'        => "Ju touheerige Diskussionssiede wäd, sofier deer, mee ferschäuwen, '''of dät moast weese''' 
 * du ferschufst ju Siede in n uur [[Wikipedia:Noomensruum|Noomensruum]] 

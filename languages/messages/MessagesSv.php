@@ -862,10 +862,12 @@ Andra administratörer på {{SITENAME}} kommer fortfarande att kunna läsa det d
 'prevn'                 => 'förra $1',
 'nextn'                 => 'nästa $1',
 'viewprevnext'          => 'Visa ($1) ($2) ($3).',
+'search-result-size'    => '$1 ({{PLURAL:$2|1 ord|$2 ord}})',
+'search-result-score'   => 'Relevans: $1%',
 'showingresults'        => "Nedan visas upp till '''$1''' resultat från och med nummer #'''$2'''.",
 'showingresultsnum'     => "Nedan visas '''$3''' resultat från och med #'''$2'''.",
 'nonefound'             => '<strong>Observera:</strong>: Sökningar utan träffar beror ofta på att man försöker söka efter vanliga ord som "har" och "från", dessa ord indexeras inte och fungerar inte som söktermer. En annan orsak kan vara att du söker på flera ord, då visas bara sidor som innehåller alla orden bland sökresultaten.',
-'powersearch'           => 'Sök',
+'powersearch'           => 'Avancerad sökning',
 'powersearchtext'       => 'Sök i namnrymderna :<br />
 $1<br />
 $2 Lista omdirigeringar &nbsp; Sök efter $3 $9',

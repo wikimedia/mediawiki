@@ -4,8 +4,8 @@
  * @addtogroup Language
  *
  * @author SPQRobin
- * @author G - ג
  * @author Siebrand
+ * @author לערי ריינהארט
  */
 
 $messages = array(
@@ -105,7 +105,6 @@ $messages = array(
 'disclaimers'       => 'Impressum',
 'edithelp'          => 'agid dad editar',
 'edithelppage'      => 'Help:Prims pass',
-'faqpage'           => 'Project:FAQ',
 'helppage'          => 'Help:Cuntegn',
 'mainpage'          => 'Pagina principala',
 'portal'            => 'Portal da {{SITENAME}}',
@@ -556,9 +555,6 @@ L\'artitgel da destinaziun "[[$1]]" exista gia. Vul ti stidar el per far plaz pe
 # Stylesheets
 'common.css'   => '/** CSS placed here will be applied to all skins */',
 'monobook.css' => "/* editescha quest file per adattar il skin momobook per l'entira pagina */",
-
-# Scripts
-'monobook.js' => '/* Deprecated; use [[MediaWiki:common.js]] */',
 
 # Attribution
 'anonymous'     => 'Utilisader(s) anonim(s) da {{SITENAME}}',

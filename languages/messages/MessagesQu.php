@@ -745,6 +745,8 @@ Takyachikuy kay hukchayqa allin wiñay kawsay ñiqita ama waqllichunchu chaylla.
 'prevn'                 => '$1 ñawpaq',
 'nextn'                 => '$1 qatiq',
 'viewprevnext'          => 'Qhaway ($1) ($2) ($3).',
+'search-result-size'    => '$1 ({{PLURAL:$2|1 rima|$2 rimakuna}})',
+'search-result-score'   => 'Chaniyuq kaynin: $1%',
 'showingresults'        => "Qhipanpiqa rikuchkanki {{PLURAL:$1|'''1''' tarisqatam|'''$1'''-kama tarisqakunatam}}, '''$2''' huchhawan qallarispa.",
 'showingresultsnum'     => "Qhipanpiqa rikuchkanki {{PLURAL:$3|'''1''' tarisqatam|'''$3''' tarisqakunatam}}, '''$2''' yupaywan qallarispa.",
 'nonefound'             => '<strong>Musyay</strong>: Mana aypalla maskasqaqa paqarin ancha pasaq, mana hallch\'api kaq rimakunata ("kay", "chay", "huk") maskaptiykim, ichataq hukmanta aswan maskana rimakunata quptiykim (tukuy maskana rimayuq p\'anqakunallam paqarinqa).',
@@ -819,7 +821,7 @@ $2 Pusapunakunata rikuchiy<br />Maskay: $3 $9",
 'userrights-lookup-user'           => 'Ruraqkunap huñunkunata allinkachiy',
 'userrights-user-editname'         => 'Ruraqpa sutinta qillqamuy:',
 'editusergroup'                    => 'Ruraqkunap huñunkunata hukchay',
-'editinguser'                      => "$1-ta llamk'apuspa",
+'editinguser'                      => "Kay ruraqpa hayñinkunata hukchaspa: '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
 'userrights-editusergroup'         => 'Ruraqkunap huñunkunata hukchay',
 'saveusergroups'                   => 'Ruraq huñukunata waqaychay',
 'userrights-groupsmember'          => 'Kayman kapuq:',
@@ -916,7 +918,7 @@ Rikchata huk p'anqaman ch'aqtanaykipaqqa kay hunt'ana p'anqapi t'inkita llamk'ac
 'filename'                    => 'Willañiqip sutin',
 'filedesc'                    => 'Pisichay',
 'fileuploadsummary'           => "T'iktu:",
-'filestatus'                  => 'Ima hayñiyuq:',
+'filestatus'                  => 'Ima hina iskaychay hayñiyuq:',
 'filesource'                  => 'Pukyu:',
 'uploadedfiles'               => 'Churkusqa willañiqikuna',
 'ignorewarning'               => 'Paqtataq waqyayta qhawarparispa waqaychay.',
@@ -1256,6 +1258,7 @@ Qampa qillqakamachisqayki imamaytaqa paqarinqa kachasqayki e-chaskipi chaskiqpa 
 'unwatch'              => 'Amaña watiqaychu',
 'unwatchthispage'      => 'Amaña watiqaychu',
 'notanarticle'         => 'Manam qillqachu',
+'notvisiblerev'        => 'Musuqchasqaqa qullusqam',
 'watchnochange'        => "Manam ima watiqasqayki qillqapas llamk'apusqachu karqan rikuchisqa mit'api.",
 'watchlist-details'    => "{{PLURAL:$1|Huk watiqasqa p'anqa|$1 watiqasqa p'anqakuna}}, rimanakuna p'anqakunata mana yupaspa.",
 'wlheader-enotif'      => '* E-chaskimanta musyachinaman arí nisqañam.',
@@ -1573,7 +1576,8 @@ Willariy imaraykum hark'anki (ahinataq: sapaq wandaluchasqa p'anqakunamanta will
 'databasenotlocked'   => "Willañiqintinqa manam hark'asqachu.",
 
 # Move page
-'move-page-legend'                => "P'anqata astay",
+'move-page'               => '$1-ta astay',
+'move-page-legend'        => "P'anqata astay",
 'movepagetext'            => "Kay hunt'ana p'anqawanqa huk p'anqam tukuy wiñay kawsasqanpas astasqa kanqa. Mawk'a sutinqa musuq sutiman pusapuq p'anqam tukunqa. Mawk'a sutiman t'inkimuq p'anqakunaqa manam hukyanqachu. Paqtataq iskaylla pusapuna p'anqakunata allinchallay. Ama panta t'inkimuqkunata saqiychu.
 
 

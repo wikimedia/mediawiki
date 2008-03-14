@@ -9,6 +9,9 @@
  * http://www.asiaosc.org/enwiki/page/Knowledgebase_Home.html
  * Sep 2007 - Rewritten by the folks at ms.wikipedia.org
  * @author Aviator
+ * @author Aurora
+ * @author Siebrand
+ * @author לערי ריינהארט
  */
 
 # Uncomment line below to use space charecter as thousands separator
@@ -177,6 +180,7 @@ $messages = array(
 'tog-nolangconversion'        => 'Matikan penukaran kelainan',
 'tog-ccmeonemails'            => 'Kirim kepada saya salinan bagi e-mel yang saya hantar kepada orang lain',
 'tog-diffonly'                => 'Jangan tunjukkan kandungan laman di bawah perbezaan',
+'tog-showhiddencats'          => 'Tunjukkan kategori tersembunyi',
 
 'underline-always'  => 'Sentiasa',
 'underline-never'   => 'Jangan',
@@ -185,51 +189,66 @@ $messages = array(
 'skinpreview' => '(Pratonton)',
 
 # Dates
-'sunday'       => 'Ahad',
-'monday'       => 'Isnin',
-'tuesday'      => 'Selasa',
-'wednesday'    => 'Rabu',
-'thursday'     => 'Khamis',
-'friday'       => 'Jumaat',
-'saturday'     => 'Sabtu',
-'sun'          => 'Aha',
-'mon'          => 'Isn',
-'tue'          => 'Sel',
-'wed'          => 'Rab',
-'thu'          => 'Kha',
-'fri'          => 'Jum',
-'sat'          => 'Sab',
-'january'      => 'Januari',
-'february'     => 'Februari',
-'march'        => 'Mac',
-'may_long'     => 'Mei',
-'june'         => 'Jun',
-'july'         => 'Julai',
-'august'       => 'Ogos',
-'october'      => 'Oktober',
-'december'     => 'Disember',
-'january-gen'  => 'Januari',
-'february-gen' => 'Februari',
-'march-gen'    => 'Mac',
-'may-gen'      => 'Mei',
-'june-gen'     => 'Jun',
-'july-gen'     => 'Julai',
-'august-gen'   => 'Ogos',
-'october-gen'  => 'Oktober',
-'december-gen' => 'Disember',
-'mar'          => 'Mac',
-'may'          => 'Mei',
-'aug'          => 'Ogo',
-'oct'          => 'Okt',
-'dec'          => 'Dis',
+'sunday'        => 'Ahad',
+'monday'        => 'Isnin',
+'tuesday'       => 'Selasa',
+'wednesday'     => 'Rabu',
+'thursday'      => 'Khamis',
+'friday'        => 'Jumaat',
+'saturday'      => 'Sabtu',
+'sun'           => 'Aha',
+'mon'           => 'Isn',
+'tue'           => 'Sel',
+'wed'           => 'Rab',
+'thu'           => 'Kha',
+'fri'           => 'Jum',
+'sat'           => 'Sab',
+'january'       => 'Januari',
+'february'      => 'Februari',
+'march'         => 'Mac',
+'april'         => 'April',
+'may_long'      => 'Mei',
+'june'          => 'Jun',
+'july'          => 'Julai',
+'august'        => 'Ogos',
+'september'     => 'September',
+'october'       => 'Oktober',
+'november'      => 'November',
+'december'      => 'Disember',
+'january-gen'   => 'Januari',
+'february-gen'  => 'Februari',
+'march-gen'     => 'Mac',
+'april-gen'     => 'April',
+'may-gen'       => 'Mei',
+'june-gen'      => 'Jun',
+'july-gen'      => 'Julai',
+'august-gen'    => 'Ogos',
+'september-gen' => 'September',
+'october-gen'   => 'Oktober',
+'november-gen'  => 'November',
+'december-gen'  => 'Disember',
+'jan'           => 'Jan',
+'feb'           => 'Feb',
+'mar'           => 'Mac',
+'apr'           => 'Apr',
+'may'           => 'Mei',
+'jun'           => 'Jun',
+'jul'           => 'Jul',
+'aug'           => 'Ogo',
+'sep'           => 'Sep',
+'oct'           => 'Okt',
+'nov'           => 'Nov',
+'dec'           => 'Dis',
 
 # Bits of text used by many pages
-'categories'            => 'Kategori',
-'pagecategories'        => 'Kategori',
-'category_header'       => 'Laman-laman dalam kategori "$1"',
-'subcategories'         => 'Subkategori',
-'category-media-header' => 'Media-media dalam kategori "$1"',
-'category-empty'        => "''Kategori ini tidak mengandungi sebarang laman atau media.''",
+'categories'               => '{{PLURAL:$1|Kategori|Kategori}}',
+'pagecategories'           => 'Kategori',
+'category_header'          => 'Laman-laman dalam kategori "$1"',
+'subcategories'            => 'Subkategori',
+'category-media-header'    => 'Media-media dalam kategori "$1"',
+'category-empty'           => "''Kategori ini tidak mengandungi sebarang laman atau media.''",
+'hidden-categories'        => '{{PLURAL:$1|Kategori|Kategori}}',
+'hidden-category-category' => 'Kategori tersembunyi', # Name of the category where hidden categories will be listed
 
 'mainpagetext'      => "<big>'''MediaWiki telah dipasang.'''</big>",
 'mainpagedocfooter' => 'Sila rujuk [http://meta.wikimedia.org/wiki/Help:Contents Panduan Penggunaan] untuk maklumat mengenai penggunaan perisian wiki ini.
@@ -288,7 +307,7 @@ $messages = array(
 'talkpagelinktext'  => 'bincang',
 'specialpage'       => 'Laman Khas',
 'personaltools'     => 'Alatan peribadi',
-'postcomment'       => 'Kirim komen',
+'postcomment'       => 'Kirimkan pesanan',
 'articlepage'       => 'Lihat laman kandungan',
 'talk'              => 'Perbincangan',
 'views'             => 'Pandangan',
@@ -348,7 +367,7 @@ $messages = array(
 
 'retrievedfrom'           => 'Diambil daripada "$1"',
 'youhavenewmessages'      => 'Anda mempunyai $1 ($2).',
-'newmessageslink'         => 'mesej baru',
+'newmessageslink'         => 'pesanan baru',
 'newmessagesdifflink'     => 'perubahan terakhir',
 'youhavenewmessagesmulti' => 'Anda mempunyai mesej baru pada $1',
 'editsection'             => 'sunting',
@@ -366,6 +385,7 @@ $messages = array(
 'site-atom-feed'          => 'Suapan Atom $1',
 'page-rss-feed'           => 'Suapan RSS "$1"',
 'page-atom-feed'          => 'Suapan Atom "$1"',
+'red-link-title'          => '$1 (Laman tidak wujud)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Laman',
@@ -397,13 +417,8 @@ Pertanyaan pangkalan data yang terakhir ialah:
 <blockquote><tt>$1</tt></blockquote> 
 dari dalam fungsi "<tt>$2</tt>".
 MySQL memulangkan ralat "<tt>$3: $4</tt>".',
-'dberrortextcl'        => 'Terdapat kesalahan pada sintaks pertanyaan pangkalan data.
-Pertanyaan pangkalan data yang terakhir ialah:
-"$1"
-dari dalam fungsi "$2".
-MySQL memulangkan ralat "$3: $4"',
-'noconnect'            => 'Harap maaf! Wiki ini dilanda sedikit masalah teknikal dan tidak dapat menghubungi pelayan pangkalan data.<br />
-$1',
+'dberrortextcl'        => 'Ada kesalahan sintaksis pada pertanyaan pangkalan data. Pertanyaan terakhir adalah: "$1" dari dalam fungsi "$2". MySQL mengembalikan ralat "$3: $4".',
+'noconnect'            => 'Maaf! Wiki ini menghadapi masalah teknikal dan tidak dapat menghubungi pelayan pangkalan data. <br />$1',
 'nodb'                 => 'Tidak dapat memilih pangkalan data $1',
 'cachederror'          => 'Berikut ialah salinan simpanan bagi laman yang diminta, dan barangkali bukan yang terkini.',
 'laggedslavemode'      => 'Amaran: Laman ini mungkin bukan yang terkini.',
@@ -459,12 +474,7 @@ Pertanyaan: $2',
 
 # Login and logout pages
 'logouttitle'                => 'Log keluar',
-'logouttext'                 => "<strong>Anda telah log keluar.</strong>
-
-Anda boleh terus menggunakan {{SITENAME}} sebagai pengguna tanpa nama, atau
-anda boleh log masuk sekali lagi sebagai pengguna lain. Sila ambil perhatian
-bahawa sesetengah laman mungkin dipaparkan seolah-olah anda masih log masuk,
-sehinggalah anda mengosongkan simpanan (''cache'') pelayar anda.",
+'logouttext'                 => 'Anda telah keluar dari sistem. Anda masih boleh menggunakan {{SITENAME}} sebagai pengguna tanpa nama jika anda tidak ingin masuk semula. Perhatikan bahawa beberapa halaman mungkin masih kelihatan seperti anda belum log keluar sehingga anda membersihkan ingatan cache pelayar anda.',
 'welcomecreation'            => '== Selamat datang, $1! ==
 
 Akaun anda telah dibuka. Jangan lupa untuk mengubah keutamaan {{SITENAME}} anda.',
@@ -517,14 +527,7 @@ Akaun anda telah dibuka. Jangan lupa untuk mengubah keutamaan {{SITENAME}} anda.
 'passwordtooshort'           => 'Kata laluan anda tidak sah atau terlalu pendek. Panjangnya mestilah sekurang-kurangnya $1 aksara dan berbeza daripada nama pengguna anda.',
 'mailmypassword'             => 'E-melkan kata laluan baru',
 'passwordremindertitle'      => 'Pengingat kata laluan daripada {{SITENAME}}',
-'passwordremindertext'       => 'Seseorang (barangkali anda, daripada alamat IP $1)
-telah memohon kata laluan baru bagi {{SITENAME}} ($4).
-Kata laluan terkini untuk pengguna "$2" ialah "$3".
-Anda disarankan supaya log masuk dan menukarkan kata laluan anda dengan segera.
-
-Jika anda tidak pernah membuat pemohonan ini atau anda telah mengingati kata
-laluan lama anda dan tidak mahu menukarnya, anda boleh mengabaikan mesej ini
-dan terus menggunakan kata laluan yang lama.',
+'passwordremindertext'       => 'Seseorang (mungkin anda, dari alamat IP $1) meminta kami menghantar kata laluan baru untuk {{SITENAME}} ($4). Kata laluan untuk pengguna "$2" ialah "$3". Anda disarankan untuk log masuk dan tukar kata laluan segera.',
 'noemail'                    => 'Tiada alamat e-mel direkodkan bagi pengguna "$1".',
 'passwordsent'               => 'Kata laluan baru telah dikirim kepada alamat
 e-mel yang didaftarkan oleh "$1".
@@ -637,7 +640,7 @@ ID sekatan anda ialah $5. Sila sertakan ID ini dalam pertanyaan anda.',
 ditunjukkan di bawah:",
 'blockededitsource'         => "Teks bagi '''suntingan anda''' terhadap '''$1''' ditunjukkan di bawah:",
 'whitelistedittitle'        => 'Log masuk dahulu untuk menyunting',
-'whitelistedittext'         => 'Anda mesti $1 terlebih dahulu untuk menyunting laman.',
+'whitelistedittext'         => 'Anda harus $1 untuk dapat menyunting rencana.',
 'whitelistreadtitle'        => 'Log masuk dahulu untuk membaca',
 'whitelistreadtext'         => 'Anda perlu [[Special:Userlogin|log masuk]] terlebih dahulu untuk membaca laman.',
 'whitelistacctitle'         => 'Anda tidak dibenarkan membuka akaun.',
@@ -679,7 +682,6 @@ Sila cuba lagi. Jika masalah ini berlanjutan, log keluar dahulu, kemudian log ma
 dalam token suntingan. Suntingan tersebut telah ditolak untuk menghalang kerosakan teks laman.
 Hal ini kadangkala berlaku apabila anda menggunakan khidmat proksi tanpa nama berdasarkan web yang bermasalah.</strong>',
 'editing'                   => 'Menyunting $1',
-'editinguser'               => "Mengubah hak pengguna '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
 'editingsection'            => 'Menyunting $1 (bahagian)',
 'editingcomment'            => 'Menyunting $1 (komen)',
 'editconflict'              => 'Percanggahan penyuntingan: $1',
@@ -746,7 +748,7 @@ Sebab yang diberikan oleh $3 ialah ''$2''",
 'viewpagelogs'        => 'Lihat log bagi laman ini',
 'nohistory'           => 'Tiada sejarah suntingan bagi laman ini.',
 'revnotfound'         => 'Semakan tidak dijumpai.',
-'revnotfoundtext'     => 'Semakan lama untuk laman yang anda minta tidak dijumpai. Sila semak URL yang anda gunakan untuk membuka laman ini.',
+'revnotfoundtext'     => 'Semakan lama untuk halaman yang anda pinta tidak dapat dijumpai. Sila semak URL yang anda gunakan untuk mencapai halaman ini.',
 'loadhist'            => 'Memuat sejarah laman',
 'currentrev'          => 'Semakan semasa',
 'revisionasof'        => 'Semakan pada $1',
@@ -863,8 +865,8 @@ Sila pastikan bahawa perubahan ini akan mengekalkan kesinambungan sejarah laman.
 'searchresults'         => 'Keputusan carian',
 'searchresulttext'      => 'Untuk maklumat lanjut tentang carian dalam {{SITENAME}}, sila lihat [[{{MediaWiki:Helppage}}|{{int:help}}]].',
 'searchsubtitle'        => 'Anda mencari "[[$1]]"',
-'searchsubtitleinvalid' => 'Anda mencari "[[$1]]"',
-'noexactmatch'          => "'''Tiada laman bertajuk \"\$1\".''' Anda boleh [[:\$1|mencipta laman ini]].",
+'searchsubtitleinvalid' => 'Untuk pertanyaan "$1"',
+'noexactmatch'          => "'''Tiada halaman bertajuk \"\$1\".''' Anda boleh [[:\$1|menciptanya]].",
 'noexactmatch-nocreate' => "'''Tiada laman bertajuk \"\$1\".'''",
 'titlematches'          => 'Padanan tajuk laman',
 'notitlematches'        => 'Tiada tajuk laman yang sepadan',
@@ -947,6 +949,7 @@ daripada satu kata kunci (hanya laman yang mengandungi kesemua kata kunci akan d
 'userrights-lookup-user'           => 'Urus kumpulan pengguna',
 'userrights-user-editname'         => 'Masukkan nama pengguna:',
 'editusergroup'                    => 'Sunting Kumpulan Pengguna',
+'editinguser'                      => "Mengubah hak pengguna '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
 'userrights-editusergroup'         => 'Ubah kumpulan pengguna',
 'saveusergroups'                   => 'Simpan Kumpulan Pengguna',
 'userrights-groupsmember'          => 'Ahli bagi:',
@@ -993,22 +996,23 @@ Kumpulan yang tidak dipilih tidak akan diubah. Anda boleh mengecualikan sebarang
 'recentchanges'                     => 'Perubahan terkini',
 'recentchangestext'                 => 'Jejaki perubahan terkini dalam {{SITENAME}} pada laman ini.',
 'recentchanges-feed-description'    => 'Jejaki perubahan terkini dalam {{SITENAME}} pada suapan ini.',
-'rcnote'                            => "Berikut ialah '''$1''' perubahan terakhir sejak '''$2''' hari yang lalu sehingga $3.",
+'rcnote'                            => 'Di bawah adalah <strong>$1</strong> perubahan terbaru pada <strong>$2</strong> hari yang lalu sehingga $3.',
 'rcnotefrom'                        => 'Berikut ialah semua perubahan sejak <b>$2</b> (sehingga <b>$1</b>).',
 'rclistfrom'                        => 'Tunjukkan perubahan terbaru bermula dari $1',
 'rcshowhideminor'                   => '$1 suntingan kecil',
 'rcshowhidebots'                    => '$1 bot',
-'rcshowhideliu'                     => '$1 pengguna log masuk',
+'rcshowhideliu'                     => '$1 pengguna berdaftar',
 'rcshowhideanons'                   => '$1 pengguna tanpa nama',
-'rcshowhidepatr'                    => '$1 suntingan yang telah diperiksa',
+'rcshowhidepatr'                    => '$1 suntingan dirondai',
 'rcshowhidemine'                    => '$1 suntingan saya',
-'rclinks'                           => 'Tunjukkan $1 perubahan terakhir sejak $2 hari yang lalu<br />$3',
+'rclinks'                           => 'Paparkan $1 perubahan pada $2 hari yang lalu<br />$3',
 'diff'                              => 'beza',
 'hist'                              => 'sej',
 'hide'                              => 'Sembunyi',
 'show'                              => 'Papar',
 'minoreditletter'                   => 'k',
 'newpageletter'                     => 'B',
+'boteditletter'                     => 'b',
 'number_of_watching_users_pageview' => '[$1 pemantau]',
 'rc_categories'                     => 'Hadkan kepada kategori (asingkan dengan "|")',
 'rc_categories_any'                 => 'Semua',
@@ -1208,21 +1212,12 @@ Untuk rujukan, berikut ialah log penghapusan bagi fail ini:",
 'statistics'             => 'Statistik',
 'sitestats'              => 'Statistik {{SITENAME}}',
 'userstats'              => 'Statistik pengguna',
-'sitestatstext'          => "Terdapat sejumlah '''\$1''' laman dalam pangkalan data kami.
-Jumlah ini termasuklah laman \"perbincangan\", laman mengenai {{SITENAME}}, laman ringkas,
-pelencongan, dan lain-lain yang tidak layak menjadi laman kandungan.
-Dengan mengecualikan laman-laman ini, terdapat sejumlah \$2 laman yang barangkali dikira
-sah.
+'sitestatstext'          => "Ketika ini, {{SITENAME}} mempunyai '''$2''' buah rencana. Selain itu, terdapat juga laman perbualan, laman penerangan imej, laman pengguna, laman {{SITENAME}}, laman ringkas/buntu, laman pengalihan dan templat. Kesemua laman ini menjadikan jumlah keseluruhan halaman sebanyak '''$1''' halaman.
 
-'''\$8''' fail telah dimuat naik.
+Terdapat '''$3''' paparan laman dan sebanyak '''$4''' suntingan telah dilakukan sejak wiki ini bermula; iaitu purata '''$5''' suntingan bagi setiap halaman, dan '''$6''' paparan bagi setiap suntingan.
 
-Terdapat sejumlah '''\$3''' paparan laman, dan '''\$4''' penyuntingan dilakukan
-sejak {{SITENAME}} dipasang.
-Secara purata terdapat '''\$5''' suntingan bagi setiap laman, dan '''\$6''' paparan bagi suntingan.
-
-Panjang [http://meta.wikimedia.org/wiki/Help:Job_queue barisan tugas] ialah '''\$7'''.",
-'userstatstext'          => "Terdapat '''$1''' [[Special:Listusers|pengguna]] berdaftar, dengan
-'''$2''' (atau '''$4%''') daripadanya mempunyai hak $5.",
+Sebanyak '''$8''' fail telah dimuat naik. Bilangan kerja tertunggak ialah '''$7'''.",
+'userstatstext'          => "Terdapat '''$1''' pengguna berdaftar. '''$2''' (atau '''$4''') daripadanya adalah penyelia (lihat $3).",
 'statistics-mostpopular' => 'Laman dilihat terbanyak',
 
 'disambiguations'      => 'Laman penyahtaksaan',
@@ -1286,8 +1281,7 @@ Panjang [http://meta.wikimedia.org/wiki/Help:Job_queue barisan tugas] ialah '''\
 'newpages'                => 'Laman baru',
 'newpages-username'       => 'Nama pengguna:',
 'ancientpages'            => 'Laman lapuk',
-'intl'                    => 'Pautan antara bahasa',
-'move'                    => 'Pindah',
+'move'                    => 'Alih',
 'movethispage'            => 'Pindahkan laman ini',
 'unusedimagestext'        => '<p>Sila ambil perhatian bahawa
 mungkin terdapat tapak web lain yang mengandungi pautan ke imej ini
@@ -1487,7 +1481,7 @@ oleh [[User:$2|$2]] ([[User talk:$2|Perbincangan]]); terdapat pengguna yang tela
 
 Suntingan terakhir telah dibuat oleh [[User:$3|$3]] ([[User talk:$3|Perbincangan]]).',
 'editcomment'                 => 'Komen suntingan: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'                  => 'Membalikkan suntingan oleh [[Special:Contributions/$2|$2]] ([[User talk:$2|Perbincangan]]) kepada versi terakhir oleh [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'revertpage'                  => 'Suntingan [[Istimewa:Contributions/$2|$2]] dikembalikan ke versi terakhir oleh $1', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success'            => 'Membalikkan suntingan oleh $1 kepada versi terakhir oleh $2.',
 'sessionfailure'              => 'Terdapat sedikit masalah pada sesi log masuk anda.
 Tindakan ini telah dibatalkan untuk mencegah perampasan sesi.
@@ -1564,7 +1558,7 @@ atau semakan tersebut telah dipulihkan atau dibuang daripada arkib.',
 'undeletebtn'                  => 'Pulihkan',
 'undeletereset'                => 'set semula',
 'undeletecomment'              => 'Komen:',
-'undeletedarticle'             => 'memulihkan "[[$1]]"',
+'undeletedarticle'             => '"[[$1]]" telah dipulih',
 'undeletedrevisions'           => '$1 semakan dipulihkan',
 'undeletedrevisions-files'     => '$1 semakan dan $2 fail dipulihkan',
 'undeletedfiles'               => '$1 fail dipulihkan',
@@ -1708,7 +1702,7 @@ Alamat IP yang disekat secara automatik tidak disenaraikan di sini. Sila lihat
 'proxyblocker'                => 'Sekatan proksi',
 'proxyblocker-disabled'       => 'Fungsi ini dimatikan.',
 'proxyblockreason'            => 'Alamat IP anda telah disekat kerana ia merupakan proksi terbuka. Sila hubungi penyedia perkhidmatan Internet anda atau pihak sokongan teknikal dan beritahu mereka mengenai masalah berat ini.',
-'proxyblocksuccess'           => 'Siap.',
+'proxyblocksuccess'           => 'Berjaya.',
 'sorbsreason'                 => 'Alamat IP anda telah disenaraikan sebagai proksi terbuka dalam DNSBL yang digunakan oleh {{SITENAME}}.',
 'sorbs_create_account_reason' => 'Alamat IP anda telah disenaraikan sebagai proksi terbuka dalam DNSBL yang digunakan oleh {{SITENAME}}. Oleh itu, anda tidak dibenarkan membuka akaun baru.',
 
@@ -1738,7 +1732,7 @@ sahkan bahawa anda betul-betul mahu melakukan tindakan ini.',
 'databasenotlocked'   => 'Pangkalan data tidak dikunci.',
 
 # Move page
-'move-page-legend'                => 'Pindah laman',
+'move-page-legend'        => 'Pindah laman',
 'movepagetext'            => "Gunakan borang di bawah untuk mengubah nama laman dan 
 memindahkan semua maklumat sejarahnya kepada nama baru.
 Tajuk yang lama akan dijadikan pelencongan ke tajuk yang baru.
@@ -1816,7 +1810,7 @@ Dalam pilihan kedua tadi, anda juga boleh menggunakan pautan, umpamanya [[{{ns:s
 'export-templates'  => 'Sertakan templat',
 
 # Namespace 8 related
-'allmessages'               => 'Mesej sistem',
+'allmessages'               => 'Pesanan sistem',
 'allmessagesname'           => 'Nama',
 'allmessagesdefault'        => 'Teks lalai',
 'allmessagescurrent'        => 'Teks semasa',
@@ -2032,6 +2026,7 @@ Hanya item senarai (baris yang dimulakan dengan *) diambil kira. Pautan pertama 
 Sebarang pautan berikutnya pada baris yang sama dikira sebagai pengecualian (rencana yang dibenarkan disertakan imej).',
 
 # Metadata
+'metadata'          => 'Metadata',
 'metadata-help'     => 'Fail ini mengandungi maklumat tambahan daripada kamera digital atau pengimbas yang digunakan untuk menghasilkannya. Jika fail ini telah diubah suai daripada rupa asalnya, beberapa butiran dalam maklumat ini mungkin sudah tidak relevan.',
 'metadata-expand'   => 'Tunjukkan butiran penuh',
 'metadata-collapse' => 'Sembunyikan butiran penuh',

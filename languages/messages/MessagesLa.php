@@ -648,6 +648,8 @@ Titulus: (nov) = dissimilis ab forma novissima, (prox) = dissimilis ab forma pro
 'prevn'                 => '$1 superiores',
 'nextn'                 => '$1 proxima',
 'viewprevnext'          => 'Videre ($1) ($2) ($3).',
+'search-result-size'    => '$1 ({{PLURAL:$2|1 verbum|$2 verba}})',
+'search-result-score'   => 'Gravitas: $1%',
 'showingresults'        => "Subter monstrans {{PLURAL:$1|'''1''' eventu|'''$1''' eventibus}} tenus incipiens ab #'''$2'''.",
 'showingresultsnum'     => "Subter monstrans {{PLURAL:$3|'''1''' eventum|'''$3''' eventus}} incipiens ab #'''$2'''.",
 'nonefound'             => "'''Nota''': investigationes saepe infelices sunt propter verba frequentes huiusmodi \"que\" et \"illo\", aut quod plus unum verba quaerere designavisti (solae paginae qui tota verba investigationis continent in evento apparebit).",
@@ -1084,7 +1086,7 @@ Adfirma quaesumus te paginam re vera delere velle, te consequentias intellere, e
 'protectedarticle'          => 'protegit "[[$1]]"',
 'modifiedarticleprotection' => 'mutavit protectionem paginae "[[$1]]"',
 'unprotectedarticle'        => 'deprotegit "[[$1]]"',
-'protect-title'             => 'Protegere "$1"',
+'protect-title'             => 'Mutare protectionem paginae "$1"',
 'protect-legend'            => 'Protectionem adfirmare',
 'protectcomment'            => 'Ratio protegendo:',
 'protectexpiry'             => 'Exitus:',
@@ -1225,7 +1227,7 @@ Adfirma te basem datorum obstruere velle, et te dein basem datorum deobstruendum
 'databasenotlocked'   => 'Basis datorum non obstructa est.',
 
 # Move page
-'move-page-legend'                => 'Paginam movere',
+'move-page-legend'        => 'Paginam movere',
 'movepagetext'            => "Formam inferam utere ad paginam renominandum et ad historiam eius ad nomen novum movendum.
 Index vetus paginam redirectionis ad indicem novum fiet.
 Nexus ad paginam veterem non mutabuntur;

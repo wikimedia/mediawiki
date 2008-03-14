@@ -838,10 +838,12 @@ Xin hãy bảo đảm tính liên tục của lịch sử trang.
 'prevn'                 => '$1 trước',
 'nextn'                 => '$1 sau',
 'viewprevnext'          => 'Xem ($1) ($2) ($3).',
+'search-result-size'    => '$1 ($2 từ)',
+'search-result-score'   => 'Độ phù hợp: $1%',
 'showingresults'        => "Xem '''$1''' kết quả bắt đầu từ #'''$2'''.",
 'showingresultsnum'     => "Xem '''$3''' kết quả bắt đầu từ #'''$2'''.",
 'nonefound'             => "'''Chú ý''': Tìm kiếm thường thất bại khi tìm những từ phổ biến như “thì” và “là”, những từ này không được đánh chỉ mục, hoặc bạn đã ghi nhiều từ khóa tìm kiếm (chỉ có những trang chứa tất cả các từ khóa mới xuất hiện trong kết quả).",
-'powersearch'           => 'Tìm kiếm',
+'powersearch'           => 'Tìm kiếm nâng cao',
 'powersearchtext'       => 'Tìm trong không gian tên:<br />$1<br />$2 gồm cả trang đổi hướng<br />Tìm $3 $9',
 'searchdisabled'        => 'Chức năng tìm kiếm tại {{SITENAME}} đã bị tắt. Bạn có tìm kiếm bằng Google trong thời gian này. Chú ý rằng các chỉ mục từ {{SITENAME}} của chúng có thể đã lỗi thời.',
 

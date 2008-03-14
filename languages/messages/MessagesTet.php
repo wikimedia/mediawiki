@@ -517,7 +517,7 @@ $messages = array(
 'ipb_already_blocked'     => '"$1" nablokeiu tiha ona',
 
 # Move page
-'move-page-legend'                => 'Book pájina',
+'move-page-legend'        => 'Book pájina',
 'movearticle'             => 'Book pájina:',
 'movenotallowed'          => 'Ó la bele book pájina iha {{SITENAME}}.',
 'move-watch'              => "Hateke pájina ne'e",

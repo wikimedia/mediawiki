@@ -2,9 +2,13 @@
 /** Tigrinya (ትግርኛ)
  *
  * @addtogroup Language
+ *
  * @author Blake
  * @author Niklas Laxström
+ * @author Teak
  */
+
+
 
 $messages = array(
 'underline-always' => 'ጥራይ',
@@ -45,13 +49,13 @@ $messages = array(
 'jumptosearch'  => 'ድሉይ',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
-'aboutsite' => 'ብዛዕባ {{SITENAME}} ብጠቅላላ',
+'aboutsite' => 'ብዛዕባ ዊኪፒዲያ ብጠቅላላ',
 'mainpage'  => 'መበገሲ ገጽ',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'    => 'ፅሑፍ',
 'nstab-user'    => 'ናይ ፅሑፍ ኣባል',
-'nstab-project' => 'ናይ ፅሑፍ ዊኪፒዲያ',
+'nstab-project' => 'ናይ ፅሑፍ ፕሮጀክት',
 'nstab-image'   => 'ምስሊ',
 
 # General errors
@@ -124,6 +128,7 @@ $messages = array(
 # Special:Allpages
 'nextpage'       => 'ዝቕጽል ፅሑፍ ($1)',
 'prevpage'       => 'ናይ ቀደም ፅሑፍ ($1)',
+'allarticles'    => 'ኵሎም ፅሑፋት',
 'allpagesprev'   => 'ናይ ቀደም',
 'allpagesnext'   => 'ዝቕጽል',
 'allpagessubmit' => 'ኪድ',

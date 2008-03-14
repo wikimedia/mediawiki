@@ -671,7 +671,7 @@ Asi es la ajustas presente per la paje <strong>$1</strong>:',
 'blocklogentry'     => 'impedida [[$1]] con un tempo de fini de $2 $3',
 
 # Move page
-'move-page-legend'         => 'Move paje',
+'move-page-legend' => 'Move paje',
 'movepagetext'     => "Usa la forma a su va cambia la nom de un paje, e va move tota se istoria a la nom nova.  La titulo vea va deveni un paje de redirije a la titulo nova.  Lias a la titulo de la paje vea no va es cambiada; Tu debe vide serta ce es redirijes duple o rompeda.  Tu es respondable per es serta ce la lias va continua vade a la locas intendeda.
 
 Nota ce la paje '''no''' va es moveda si es ja un paje a la titulo nova, sin el es vacua o un redirije e no ave un istoria de editas presedente.  Esta sinifia ce tu pote cambia la nom de un paje a la loca presedente si tu era, e tu no pote scrive supra un paje ce esiste ja.

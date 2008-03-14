@@ -1,8 +1,8 @@
 <?php
 /** Zhuang (壮语)
-  *
-  * @addtogroup Language
-  */
+ *
+ * @addtogroup Language
+ */
 
 $fallback = 'zh-cn';
 
@@ -130,14 +130,14 @@ $messages = array(
 'ipblocklist-submit' => 'Cwmh',
 
 # Move page
-'move-page-legend'    => 'Caen doengh mae',
-'movearticle' => 'Caen doengh mae:',
-'movenologin' => 'Maengx laezhaej',
-'move-watch'  => 'Demq mae-nej',
-'movepagebtn' => 'Caen doengh mae',
-'movedto'     => 'Caen bei',
-'1movedto2'   => '[[$1]] caen bei [[$2]]',
-'movereason'  => 'Haujgaemj',
+'move-page-legend' => 'Caen doengh mae',
+'movearticle'      => 'Caen doengh mae:',
+'movenologin'      => 'Maengx laezhaej',
+'move-watch'       => 'Demq mae-nej',
+'movepagebtn'      => 'Caen doengh mae',
+'movedto'          => 'Caen bei',
+'1movedto2'        => '[[$1]] caen bei [[$2]]',
+'movereason'       => 'Haujgaemj',
 
 # Tooltip help for the actions
 'tooltip-pt-preferences' => 'Doenghgaeq gou hae',

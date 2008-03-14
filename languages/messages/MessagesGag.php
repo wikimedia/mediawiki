@@ -424,7 +424,6 @@ Herliim girmediniz [[Special:Preferences|seçimner]] bölümünde geçerli bir e
 'updated'                => '(Enilendi)',
 'previewnote'            => 'Bu saadä bir ön siir, hem diişmäkler henez korunmadı!',
 'editing'                => '"$1" sayfasın diiştirersiniz',
-'editinguser'            => '"$1" sayfasını diiştirersiniz',
 'editingsection'         => '"$1" sayfasında bölüm diiştirersiniz',
 'editingcomment'         => '$1 sayfasına yorum ekleersiniz.',
 'editconflict'           => 'Diişmäk konflikti: $1',
@@ -510,6 +509,9 @@ Nışannar: (bitki) = şindiki versiyalan aradaki fark,
 'preferences'   => 'Seçimner',
 'mypreferences' => 'Seçimnerim',
 'retypenew'     => 'Eni parolu tekrar girin',
+
+# User rights
+'editinguser' => '"$1" sayfasını diiştirersiniz',
 
 'grouppage-sysop' => '{{ns:project}}:Önderciler',
 
@@ -756,7 +758,7 @@ Burada bitki seçimner <strong>$1</strong> yazı diiştirmää deyni:',
 'blocklogentry' => '"[[$1]]" $2 durduruldu. Sebep',
 
 # Move page
-'move-page-legend'         => 'Ad diişmäklii',
+'move-page-legend' => 'Ad diişmäklii',
 'movepagetext'     => "Aşaadaki formayı kullanılarak var nicä sayfanın adın diiştirin, onnan bilä hepsi diiştirmää jurnalı eni ada aktarılacêk. Eski ad eni ada yönnendirmäk olacêk. Eski başlaa baalantılar diişmeycek; [[Special:Maintenance|kontrol ediniz.]] [[{{ns:special}}:DoubleRedirects|çift]] yaki [[{{ns:special}}:BrokenRedirects|yannış]] yönnendirmäkleri. Läazım inanmaa ani baalantılar genä dä gösterer orayı nerä läazım göstersin.
 
 Herliim ilerdän eni adda sayfa vardı, ad diişmää '''yapılmaycêk'''. Bu o maana verer ani eer yannış olarak adını diiştirdiniz siz var nicä döndürün sayfayı eski adına.
