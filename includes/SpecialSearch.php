@@ -173,8 +173,6 @@ class SpecialSearch {
 		}
 		$textMatches = $search->searchText( $term );
 
-		$wgOut->addHTML( '<div id="searchHeader">' );
-
 		$num = ( $titleMatches ? $titleMatches->numRows() : 0 )
 			+ ( $textMatches ? $textMatches->numRows() : 0);
 		if ( $num > 0 ) {
@@ -195,8 +193,6 @@ class SpecialSearch {
 					($num < $this->limit) );
 			$wgOut->addHTML( "<p>{$prevnext}</p>\n" );
 		}
-		
-		$wgOut->addHTML( "</div>\n" );
 
 		if( $titleMatches ) {
 			if( $titleMatches->numRows() ) {
@@ -487,7 +483,7 @@ class SpecialSearch {
 
 		$out = Xml::openElement( 'form', array(	'id' => 'powersearch', 'method' => 'get', 'action' => $wgScript ) ) .
 			Xml::openElement( 'fieldset' ) .
-			Xml::element( 'legend', array( ), wfMsg( 'searchbutton' ) ) .
+			Xml::element( 'legend', array( ), wfMsg( 'powersearch' ) ) .
 			Xml::hidden( 'title', 'Special:Search' ) .
 			wfMsgExt( 'powersearchtext', array( 'parse', 'replaceafter' ),
 				$namespaces, $redirect, $searchField,
@@ -508,17 +504,14 @@ class SpecialSearch {
 	function shortDialog($term) {
 		global $wgScript;
 		
-		$form = Xml::hidden( 'title', 'Special:Search' );
-		$form .= Xml::input( 'search', 50, $term,
-			array( 'id' => 'searchBox' ) ).' ';
-		$form .= Xml::submitButton( wfMsg( 'searchbutton' ), array( 'name' => 'fulltext' ) );
-		
 		$out  = Xml::openElement( 'form', array(
 			'id' => 'search',
 			'method' => 'get',
 			'action' => $wgScript
 		));
-		$out .= wfMsgExt( 'searchtext', array( 'parse', 'replaceafter' ), $form );
+		$out .= Xml::hidden( 'title', 'Special:Search' );
+		$out .= Xml::input( 'search', 50, $term ) . ' ';
+		$out .= Xml::submitButton( wfMsg( 'searchbutton' ), array( 'name' => 'fulltext' ) );
 		$out .= Xml::closeElement( 'form' );
 		
 		return $out;
