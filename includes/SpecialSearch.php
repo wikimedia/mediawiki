@@ -519,7 +519,7 @@ class SpecialSearch {
 		));
 		$out .= Xml::hidden( 'title', 'Special:Search' );
 		$out .= Xml::input( 'search', 50, $term ) . ' ';
-		$out .= Xml::submitButton( wfMsg( 'searchbutton' ) );
+		$out .= Xml::submitButton( wfMsg( 'searchbutton' ), array( 'name' => 'fulltext' ) );
 		$out .= Xml::closeElement( 'form' );
 		
 		return $out;
