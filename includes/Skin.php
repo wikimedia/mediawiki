@@ -1283,11 +1283,13 @@ END;
 	function editThisPage() {
 		global $wgOut, $wgTitle;
 
-		if ( ! $wgOut->isArticleRelated() ) {
+		if ( !$wgOut->isArticleRelated() ) {
 			$s = wfMsg( 'protectedpage' );
 		} else {
-			if ( $wgTitle->userCan( 'edit' ) ) {
+			if( $wgTitle->userCan( 'edit' ) && $wgTitle->exists() ) {
 				$t = wfMsg( 'editthispage' );
+			} elseif( $wgTitle->userCan( 'create' ) && !$wgTitle->exists() ) {
+				$t = wfMsg( 'create-this-page' );
 			} else {
 				$t = wfMsg( 'viewsource' );
 			}
