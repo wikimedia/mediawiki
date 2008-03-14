@@ -104,7 +104,7 @@ function wfSpecialImport( $page = '' ) {
 			Xml::openElement( 'form', array( 'enctype' => 'multipart/form-data', 'method' => 'post', 'action' => $action ) ) .
 			Xml::hidden( 'action', 'submit' ) .
 			Xml::hidden( 'source', 'upload' ) .
-			"<input type='file' name='xmlimport' value='' size='30' />" . // No Xml function for type=file? Todo?
+			Xml::input( 'xmlimport', 50, '', array( 'type' => 'file' ) ) . ' ' .
 			Xml::submitButton( wfMsg( 'uploadbtn' ) ) . 
 			Xml::closeElement( 'form' ) .
 			Xml::closeElement( 'fieldset' )
@@ -123,7 +123,7 @@ function wfSpecialImport( $page = '' ) {
 			wfMsgExt( 'import-interwiki-text', array( 'parse' ) ) .
 			Xml::hidden( 'action', 'submit' ) .
 			Xml::hidden( 'source', 'interwiki' ) .
-			Xml::openElement( 'table' ) .
+			Xml::openElement( 'table', array( 'id' => 'mw-import-table' ) ) .
 			"<tr>
 				<td>" .
 					Xml::openElement( 'select', array( 'name' => 'interwiki' ) )
