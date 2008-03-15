@@ -38,7 +38,7 @@ class MostlinkedCategoriesPage extends QueryPage {
 	function preprocessResults( $db, $res ) {
 		$batch = new LinkBatch;
 		while ( $row = $db->fetchObject( $res ) )
-			$batch->addObj( Title::makeTitleSafe( $row->namespace, $row->title ) );
+			$batch->add( $row->namespace, $row->title );
 		$batch->execute();
 
 		// Back to start for display

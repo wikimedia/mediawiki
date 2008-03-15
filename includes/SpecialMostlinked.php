@@ -43,7 +43,7 @@ class MostlinkedPage extends QueryPage {
 		if( $db->numRows( $res ) > 0 ) {
 			$linkBatch = new LinkBatch();
 			while( $row = $db->fetchObject( $res ) )
-				$linkBatch->addObj( Title::makeTitleSafe( $row->namespace, $row->title ) );
+				$linkBatch->add( $row->namespace, $row->title );
 			$db->dataSeek( $res, 0 );
 			$linkBatch->execute();
 		}

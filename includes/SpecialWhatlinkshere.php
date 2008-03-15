@@ -25,9 +25,9 @@ class WhatLinksHerePage {
 
 	private $namespace;
 
-	function WhatLinksHerePage( &$request, $par = null ) {
+	function WhatLinksHerePage( $request, $par = null ) {
 		global $wgUser;
-		$this->request =& $request;
+		$this->request = $request;
 		$this->skin = $wgUser->getSkin();
 		$this->par = $par;
 	}
