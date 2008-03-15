@@ -699,6 +699,7 @@ class User {
 	 * @deprecated use wfSetupSession()
 	 */
 	function SetupSession() {
+		trigger_error( 'Use of ' . __METHOD__ . ' is deprecated', E_USER_NOTICE );
 		wfSetupSession();
 	}
 
@@ -1163,6 +1164,7 @@ class User {
 	 * @deprecated use User::newFromId()
 	 */
 	function setID( $v ) {
+		trigger_error( 'Use of ' . __METHOD__ . ' is deprecated', E_USER_NOTICE );
 		$this->mId = $v;
 		$this->clearInstanceCache( 'id' );
 	}
@@ -1758,6 +1760,7 @@ class User {
 	 * @deprecated
 	 */
 	function isBot() {
+		trigger_error( 'Use of ' . __METHOD__ . ' is deprecated', E_USER_NOTICE );
 		return $this->isAllowed( 'bot' );
 	}
 
@@ -2208,7 +2211,9 @@ class User {
 	/**
 	 * @deprecated
 	 */
-	function setLoaded( $loaded ) {}
+	function setLoaded( $loaded ) {
+		trigger_error( 'Use of ' . __METHOD__ . ' is deprecated', E_USER_NOTICE );
+	}
 
 	/**
 	 * Get this user's personal page title.
