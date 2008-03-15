@@ -1447,6 +1447,7 @@ $NEWPAGE
 # Undelete
 'undelete'                     => '恢復被刪頁面',
 'undeletepage'                 => '瀏覽及恢復被刪頁面',
+'undeletepagetitle'            => '\'\'\'以下包含[[:$1]]的已刪除之修訂版本\'\'\'。',
 'viewdeletedpage'              => '檢視被刪除的頁面',
 'undeletepagetext'             => '以下頁面已經被刪除，但依然在檔案中並可以被恢復。
 檔案庫可能被定時清理。',

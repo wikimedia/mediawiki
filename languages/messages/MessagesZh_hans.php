@@ -1471,6 +1471,7 @@ $NEWPAGE
 # Undelete
 'undelete'                     => '恢复被删页面',
 'undeletepage'                 => '浏览及恢复被删页面',
+'undeletepagetitle'            => '\'\'\'以下包含[[:$1]]的已删除之修订版本\'\'\'。',
 'viewdeletedpage'              => '查看被删页面',
 'undeletepagetext'             => '以下页面已经被删除，但依然在档案中并可以被恢复。
 档案库可能被定时清理。',

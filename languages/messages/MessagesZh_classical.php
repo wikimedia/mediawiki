@@ -1219,6 +1219,7 @@ $NEWPAGE
 # Undelete
 'undelete'                     => '覽刪',
 'undeletepage'                 => '覽刪並還之',
+'undeletepagetitle'            => '\'\'\'如下含[[:$1]]刪之審\'\'\'。',
 'viewdeletedpage'              => '覽刪',
 'undeletepagetext'             => '如下已刪，備謄以還；曆滿乃清之。',
 'undeleteextrahelp'            => "欲還題，撤核後令'''''還刪'''''。欲還某審，核之再令。欲清核、贊，令之'''''歸白'''''。",
