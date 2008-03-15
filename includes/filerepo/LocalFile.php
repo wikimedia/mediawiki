@@ -1360,13 +1360,12 @@ class LocalFileDeleteBatch {
 		$dbw = $this->file->repo->getMasterDB();
 		if( !empty( $oldRels ) ) {
 			$res = $dbw->select( 'oldimage', 
-				array( 'oi_archive_name', 'oi_sha1' ),
+				array( 'oi_archive_name' ),
 				array( 'oi_name' => $this->file->getName(),
 					'oi_archive_name IN (' . $dbw->makeList( array_keys($oldRels) ) . ')',
 					'oi_deleted & ' . File::DELETED_FILE => File::DELETED_FILE ),
 				__METHOD__ );
 			while( $row = $dbw->fetchObject( $res ) ) {
-				$title = $this->file->getTitle();
 				$privateFiles[$row->oi_archive_name] = 1;
 			}
 		}
