@@ -285,7 +285,9 @@ $messages = array(
 'permalink'         => 'Liên kết thường trực',
 'print'             => 'In',
 'edit'              => 'Sửa đổi',
+'create'            => 'Tạo',
 'editthispage'      => 'Sửa trang này',
+'create-this-page'  => 'Tạo trang này',
 'delete'            => 'Xóa',
 'deletethispage'    => 'Xóa trang này',
 'undelete_short'    => 'Phục hồi $1 sửa đổi',
@@ -1499,6 +1501,7 @@ hiện tại của trang <strong>$1</strong>:',
 # Undelete
 'undelete'                     => 'Xem các trang bị xóa',
 'undeletepage'                 => 'Xem và phục hồi trang bị xóa',
+'undeletepagetitle'            => "'''Sau đây là những phiên bản đã bị xóa của [[:$1]].'''",
 'viewdeletedpage'              => 'Xem các trang bị xóa',
 'undeletepagetext'             => 'Các trang sau đã bị xóa nhưng vẫn nằm trong kho lưu trữ và có thể phục hồi được. Kho lưu trữ sẽ được khóa định kỳ.',
 'undeleteextrahelp'            => "Để phục hồi toàn bộ trang, hãy để trống các hộp kiểm và 

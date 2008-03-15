@@ -63,6 +63,7 @@ $messages = array(
 'editthispage'     => "S'àtúnṣe ojúewé yi",
 'delete'           => 'Paarẹ́',
 'deletethispage'   => 'Pa ojúewé yi rẹ́',
+'protect'          => 'Dábòbò',
 'newpage'          => 'Ojúewé tuntun',
 'talkpage'         => 'Kábárawasọ̀rọ̀ nípa ojúewé yi',
 'talkpagelinktext' => 'Kábárawasọ̀rọ̀',

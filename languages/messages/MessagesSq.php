@@ -795,7 +795,7 @@ $2 Lidhje përcjellëse &nbsp; Kërko për $3 $9',
 'uploadnologintext'           => 'Duhet të keni [[Special:Userlogin|hyrë brenda]] për të dhënë skeda.',
 'upload_directory_read_only'  => 'Skedari i ngarkimit ($1) nuk mund të shkruhet nga shërbyesi.',
 'uploaderror'                 => 'Gabim dhënie',
-'uploadtext'                  => " '''NDALO!''' Përpara se të jepni këtu skedë, lexoni dhe ndiqni [[Project:Rregullat e përdorimit të figurave|Rregullat e përdorimit të figurave]] të {{SITENAME}}-s. Mos jepni skeda për të cilat autori (ose ju) nuk ka dhënë të drejtë për përdorim nën licencat e përdorura nga {{SITENAME}}.
+'uploadtext'                  => "'''NDALO!''' Përpara se të jepni këtu skedë, lexoni dhe ndiqni [[Project:Rregullat e përdorimit të figurave|Rregullat e përdorimit të figurave]] të {{SITENAME}}-s. Mos jepni skeda për të cilat autori (ose ju) nuk ka dhënë të drejtë për përdorim nën licencat e përdorura nga {{SITENAME}}.
 
 Për të parë ose për të kërkuar figurat e dhëna më parë,
 shkoni tek [[Special:Imagelist|lista e figurave të dhëna]].
@@ -1305,7 +1305,7 @@ kur të mbaroni së kryeri mirëmbajtjen.',
 'unlockdbsuccesstext' => 'Regjistri i {{SITENAME}} është çbllokuar.',
 
 # Move page
-'move-page-legend'                => 'Zhvendose faqen',
+'move-page-legend'        => 'Zhvendose faqen',
 'movepagetext'            => "Duke përdorur formularin e mëposhtëm do të ndërroni titullin e një faqeje, duke zhvendosur gjithë historinë përkatëse tek titulli i ri. Titulli i vjetër do të bëhet një faqe përcjellëse tek titulli i ri. Lidhjet tek faqja e vjetër nuk do të ndryshohen; duhet të kontrolloni [[Special:SpecialPages|mirëmbajtjen]] për përcjellime të dyfishta ose të prishura.
 Keni përgjegjësinë për tu siguruar që lidhjet të vazhdojnë të jenë të sakta.
 

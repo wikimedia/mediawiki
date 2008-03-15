@@ -1702,6 +1702,7 @@ Dit zijn de huidige instellingen voor de pagina <strong>[[$1]]</strong>:",
 # Undelete
 'undelete'                     => "Verwijderde pagina's bekijken",
 'undeletepage'                 => "Verwijderde pagina's bekijken en terugplaatsen",
+'undeletepagetitle'            => "'''Het volgende bestaat uit verwijderde bewerkingen van [[:$1]]'''.",
 'viewdeletedpage'              => "Verwijderde pagina's bekijken",
 'undeletepagetext'             => "Hieronder staan pagina's die zijn verwijderd en vanuit het archief teruggeplaatst kunnen worden.",
 'undeleteextrahelp'            => "Om de hele pagina inclusief alle eerdere versies terug te plaatsen: laat alle hokjes onafgevinkt en klik op '''''Terugplaatsen'''''. Om slechts bepaalde versies terug te zetten: vink de terug te plaatsen versies aan en klik op '''''Terugplaatsen'''''. Als u op '''''Herinstellen''''' klikt wordt het toelichtingsveld leeggemaakt en worden alle versies gedeselecteerd.",

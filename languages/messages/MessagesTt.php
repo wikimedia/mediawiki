@@ -1,9 +1,11 @@
 <?php
-/**
-  *  Tatarish (Tatarça)
-  * @addtogroup Language
-  */
-
+/** Tatar (Tatarça)
+ *
+ * @addtogroup Language
+ *
+ * @author לערי ריינהארט
+ * @author Siebrand
+ */
 
 $namespaceNames = array(
         NS_MEDIA            => 'Media',
@@ -99,22 +101,16 @@ $messages = array(
 'february'  => 'Febräl',
 'march'     => 'Mart',
 'april'     => 'Äpril',
-'may_long'  => 'May',
 'june'      => 'Yün',
 'july'      => 'Yül',
-'august'    => 'August',
 'september' => 'Sentäber',
 'october'   => 'Öktäber',
 'november'  => 'Nöyäber',
 'december'  => 'Dekäber',
 'jan'       => 'Ğín',
-'feb'       => 'Feb',
-'mar'       => 'Mar',
 'apr'       => 'Äpr',
-'may'       => 'May',
 'jun'       => 'Yün',
 'jul'       => 'Yül',
-'aug'       => 'Aug',
 'sep'       => 'Sen',
 'oct'       => 'Ökt',
 'nov'       => 'Nöy',
@@ -298,9 +294,7 @@ Anı alğaç monda tağın kerep qara.',
 'math_tip'        => 'İsäpläw formulı (LaTeX)',
 'nowiki_sample'   => 'Taqır mäten urnaştıram',
 'nowiki_tip'      => 'Wiki-qalıp eşkärtmäskä',
-'image_sample'    => 'Example.jpg',
 'image_tip'       => 'Quşılğan räsem',
-'media_sample'    => 'Example.ogg',
 'sig_tip'         => 'Ímzañ belän zaman/waqıt tamğası',
 'hr_tip'          => 'Yatma sızıq (siräk qullan)',
 
@@ -368,7 +362,7 @@ Zínhar, bu bitneñ wağraq kisäklärgä bülü turında uylap qara.",
 'powersearch'       => 'Ezläw',
 
 # Preferences page
-'preferences'           => 'Köyläwlar',
+'preferences'           => 'Köyläwem',
 'mypreferences'         => 'Köyläwem',
 'prefsnologin'          => 'Kermägänseñ',
 'qbsettings'            => 'Tiztirä caylawı',
@@ -401,8 +395,6 @@ Zínhar, bu bitneñ wağraq kisäklärgä bülü turında uylap qara.",
 'defaultns'             => 'Ğädättä bu isemarada ezlise:',
 'files'                 => 'Fayllar',
 
-'group-bot-member' => 'Bot',
-
 # Recent changes
 'recentchanges'     => 'Soñğı üzgärtmälär',
 'recentchangestext' => 'Bu bittä wikidä bulğan iñ soñğı üzgärtmäläre kürsätelä.',
@@ -416,7 +408,6 @@ Zínhar, bu bitneñ wağraq kisäklärgä bülü turında uylap qara.",
 'show'              => 'kürsät',
 'minoreditletter'   => 'w',
 'newpageletter'     => 'Y',
-'boteditletter'     => 'b',
 
 # Recent changes linked
 'recentchangeslinked' => 'Bäyle üzgärmä',
@@ -493,7 +484,6 @@ säxifägä isem belän [[Special:Userlogin|keräse]].',
 'spheading'          => 'Bar keşelär öçen',
 'newpages'           => 'Yaña bitlär',
 'ancientpages'       => 'İñ iske bitlär',
-'intl'               => 'Tel-ara läñker',
 'move'               => 'Küçerü',
 'movethispage'       => 'Bu bit küçerü',
 'notargettitle'      => 'Maqsatsız',
@@ -613,7 +603,7 @@ Soñğı beterülär $2 bitendä terkälenä.',
 'unlockdbsuccesstext' => 'Bu biremlek yozağı salınğan ide.',
 
 # Move page
-'move-page-legend'         => 'Bit küçerü',
+'move-page-legend' => 'Bit küçerü',
 'movepagetalktext' => "Bäyle bulğan bäxäs bite kiläse oçraqlarda töp bite belän beryulı '''küçerelmi qala''':
 * Töp bit [[Yärdäm:İsemara|isemara]] arqılı küçerelä;
 * Yaña başlıq astında buş bulmağan ikençe bit bulğanda;
@@ -651,14 +641,10 @@ yä isä saylanğan isem yaraqsız buldı. Başqa isem sayla zínhar.',
 'tooltip-pt-userpage'           => 'Şäxsi bitem',
 'tooltip-pt-anonuserpage'       => 'The user page for the ip you',
 'tooltip-pt-mytalk'             => 'Bäxäs bitem',
-'tooltip-pt-anontalk'           => 'Discussion about edits from this ip address',
 'tooltip-pt-preferences'        => 'Köyläwlärem',
 'tooltip-pt-watchlist'          => 'The list of pages you',
 'tooltip-pt-mycontris'          => 'Qatnaşuım tezmäse',
-'tooltip-pt-login'              => 'You are encouraged to log in, it is not mandatory however.',
-'tooltip-pt-anonlogin'          => 'You are encouraged to log in, it is not mandatory however.',
 'tooltip-pt-logout'             => 'Çığış',
-'tooltip-ca-talk'               => 'Discussion about the content page',
 'tooltip-ca-edit'               => 'You can edit Bu bit. Please use the preview button before saving.',
 'tooltip-ca-addsection'         => 'Bu bäxästä yazma östäw.',
 'tooltip-ca-viewsource'         => 'Bu bit yaqlanğan ide. Anıñ çığanağın kürä alasıñ.',
@@ -672,18 +658,11 @@ yä isä saylanğan isem yaraqsız buldı. Başqa isem sayla zínhar.',
 'tooltip-search'                => 'Äydä, ezlä monı',
 'tooltip-p-logo'                => 'Täwge Bit',
 'tooltip-n-mainpage'            => 'Täwge Bitkä küçü',
-'tooltip-n-portal'              => 'About the project, what you can do, where to find things',
-'tooltip-n-currentevents'       => 'Find background information on current events',
-'tooltip-n-recentchanges'       => 'The list of recent changes in the wiki.',
 'tooltip-n-randompage'          => 'Berär nindi bit kürsätä',
-'tooltip-n-help'                => 'The place to find out.',
 'tooltip-n-sitesupport'         => 'Ximäyäçe bul',
-'tooltip-t-whatlinkshere'       => 'List of all wiki pages that link here',
 'tooltip-t-recentchangeslinked' => 'Recent changes in pages linking to Bu bit',
 'tooltip-feed-rss'              => 'Bu bitneñ RSS tasması',
 'tooltip-feed-atom'             => 'Bu bitneñ Atom tasması',
-'tooltip-t-contributions'       => 'View the list of contributions of this user',
-'tooltip-t-emailuser'           => 'Send a mail to this user',
 'tooltip-t-upload'              => 'Upload images or media files',
 'tooltip-t-specialpages'        => 'Bar maxsus bitlär tezmäse',
 'tooltip-ca-nstab-main'         => 'Bu bit eçtälegen kürü',
@@ -695,17 +674,8 @@ yä isä saylanğan isem yaraqsız buldı. Başqa isem sayla zínhar.',
 'tooltip-ca-nstab-mediawiki'    => 'Bu säxifä sätiren kürü',
 'tooltip-ca-nstab-template'     => 'Bu qalıpnı kürü',
 'tooltip-ca-nstab-help'         => 'Bu yärdäm biten kürü',
-'tooltip-ca-nstab-category'     => 'View the category page',
 'tooltip-minoredit'             => 'Bu üzgärtmä waq-töyäk dip bilgelä',
 'tooltip-save'                  => 'Üzgärtüne saqlaw',
-
-# Stylesheets
-'common.css'   => '/** CSS placed here will be applied to all skins */',
-'monobook.css' => '/* CSS placed here will affect users of the Monobook skin */',
-
-# Scripts
-'common.js'   => '/* Any JavaScript here will be loaded for all users on every page load. */',
-'monobook.js' => '/* Deprecated; use [[MediaWiki:common.js]] */',
 
 # Attribution
 'anonymous'     => "{{SITENAME}}'nıñ tanılmağan kerüçe",

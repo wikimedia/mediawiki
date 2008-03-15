@@ -196,7 +196,9 @@ $messages = array(
 'permalink'         => 'Son haline bağlantı',
 'print'             => 'Bastır',
 'edit'              => 'Değiştir',
+'create'            => 'Oluştur',
 'editthispage'      => 'Sayfayı değiştir',
+'create-this-page'  => 'Bu sayfayı oluştur',
 'delete'            => 'Sil',
 'deletethispage'    => 'Sayfayı sil',
 'undelete_short'    => '$1 değişikliği geri getir',
@@ -363,7 +365,7 @@ Sorgu: $2',
 'protectedinterface'   => 'Bu sayfa yazılımın arayüz metnini sağlamaktadır ve kötüye kullanımı önlemek için kilitlenmiştir.',
 'editinginterface'     => "'''UYARI:''' Yazılım için arayüz sağlamakta kullanılan bir sayfayı değiştirmektesiniz. Bu sayfadaki değişiklikler kullanıcı arayüzünü diğer kullanıcılar için de değiştirecektir. Çeviriler için, lütfen [http://translatewiki.net/wiki/Main_Page?setlang=tr Betawiki]'yi kullanarak MediaWiki yerelleştirme projesini dikkate alınız.",
 'sqlhidden'            => '(SQL gizli sorgu)',
-'cascadeprotected'     => 'Bu sayfa değişiklik yapılması engellenmiştir, çünkü "kademeli" seçeneği aktif hale getirilerek koruma altına alınan şu sayfalarda kullanılmaktadır:
+'cascadeprotected'     => 'Bu sayfa değişiklik yapılması engellenmiştir, çünkü  "kademeli" seçeneği aktif hale getirilerek koruma altına alınan {{PLURAL:$1|sayfada|sayfada}} kullanılmaktadır:
 $2',
 'namespaceprotected'   => "'''$1''' alandındaki sayfaları düzenlemeye izniniz bulunmamaktadır.",
 'customcssjsprotected' => 'Bu sayfayı değiştirmeye yetkiniz bulunmamaktadır, çünkü bu sayfa başka bir kullanıcının kişisel ayarlarını içermektedir.',
@@ -672,13 +674,15 @@ Bu sayfa değişikiliği kamu arşivlerinden silinmiştir.
 'mergehistory-into'                => 'Hedef sayfa:',
 'mergehistory-list'                => 'Birleştirilebilir değişikilik geçmişi.',
 'mergehistory-go'                  => 'Birleştirilebilir değişikilikleri göster',
+'mergehistory-submit'              => 'Revizyonları birleştir',
 'mergehistory-no-source'           => 'Kaynak sayfa $1 bulunmamaktadır.',
 'mergehistory-no-destination'      => 'Hedef sayfa $1 bulunmamaktadır.',
 'mergehistory-invalid-source'      => 'Kaynak sayfanın geçerli bir başlığı olmalı.',
 'mergehistory-invalid-destination' => 'Hedef sayfanın geçerli bir ismi olmalı.',
 
 # Merge log
-'mergelog' => 'Birleştirme kaydı',
+'mergelog'    => 'Birleştirme kaydı',
+'revertmerge' => 'Ayır',
 
 # Diffs
 'history-title'           => '"$1" sayfasının geçmişi',
@@ -702,9 +706,10 @@ Bu sayfa değişikiliği kamu arşivlerinden silinmiştir.
 'prevn'                 => 'önceki $1',
 'nextn'                 => 'sonraki $1',
 'viewprevnext'          => '($1) ($2) ($3).',
+'search-result-score'   => 'Uygunluk: $1%',
 'showingresults'        => '<b>$2.</b> sonuçtan başlayarak <b>$1</b> sonuç aşağıdadır:',
 'showingresultsnum'     => '<b>$2.</b> sonuçtan başlayarak <b>$3</b> sonuç aşağıdadır:',
-'powersearch'           => 'Ara',
+'powersearch'           => 'Gelişmiş arama',
 'powersearchtext'       => 'Arama yapılacak alanları seçin :<br />
 $1<br />
 $2 yönlendirmeleri listele &nbsp; Aranacak: $3 $9',
@@ -765,7 +770,7 @@ $2 yönlendirmeleri listele &nbsp; Aranacak: $3 $9',
 'userrights-lookup-user'           => 'Kullanıcı gruplarını düzenle',
 'userrights-user-editname'         => 'Kullanıcı adı giriniz:',
 'editusergroup'                    => 'Kullanıcı grupları düzenle',
-'editinguser'                      => '"$1" sayfasını değiştirmektesiniz',
+'editinguser'                      => "'''[[Kullanıcı:$1|$1]]''' ([[Kullanıcı mesaj:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]]) kullanıcısının yetkilerini değiştirmektesiniz",
 'userrights-editusergroup'         => 'Kullanıcı grupları düzenle',
 'saveusergroups'                   => 'Kullanıcı grupları kaydet',
 'userrights-groupsmember'          => 'İçinde olduğu gruplar:',
@@ -776,6 +781,8 @@ $2 yönlendirmeleri listele &nbsp; Aranacak: $3 $9',
 'userrights-available-remove'      => 'Kullanıcıları {{PLURAL:$2|bu grupdan|bu gruplardan}}: $1 silebilirsiniz.',
 'userrights-available-add-self'    => 'Kendinizi {{PLURAL:$2|bu grupa|bu gruplara}}: $1 ekleyebilirsiniz.',
 'userrights-available-remove-self' => 'Kendinizi {{PLURAL:$2|bu gruptan|bu gruplardan}}: $1 silebilirsiniz.',
+'userrights-no-interwiki'          => 'Diğer vikilerdeki kullanıcıların izinlerini değiştirmeye yetkiniz yok.',
+'userrights-nodatabase'            => '$1 veritabanı mevcut veya bölgesel değil',
 
 # Groups
 'group'            => 'Grup:',

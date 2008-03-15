@@ -270,7 +270,9 @@ $messages = array(
 'permalink'         => 'Binclo permanent',
 'print'             => 'Imprentar',
 'edit'              => 'Editar',
+'create'            => 'Creyar',
 'editthispage'      => 'Editar ista pachina',
+'create-this-page'  => 'Creyar ista pachina',
 'delete'            => 'Borrar',
 'deletethispage'    => 'Borrar ista pachina',
 'undelete_short'    => 'Restaurar {{PLURAL:$1|una edizión|$1 edizions}}',
@@ -827,10 +829,12 @@ Asegure-se que iste cambio no crebará a continidat de l'istorial d'a pachina.
 'prevn'                 => 'anteriors $1',
 'nextn'                 => 'siguiens $1',
 'viewprevnext'          => 'Beyer ($1) ($2) ($3)',
+'search-result-size'    => '$1 ({{PLURAL:$2|1 palabra|$2 palabras}})',
+'search-result-score'   => 'Relebanzia: $1%',
 'showingresults'        => "Contino se bi {{PLURAL:$1|amuestra '''1''' resultau|amuestran '''$1''' resultaus}} prenzipiando por o numero '''$2'''.",
 'showingresultsnum'     => "Contino se bi {{PLURAL:$3|amuestra '''1''' resultau|amuestran os '''$3''' resultaus}} prenzipiando por o numero '''$2'''.",
 'nonefound'             => "'''Pare cuenta''': Os fallos en mirar pachinas son causatos á ormino por prebar de mirar palabras masiau comuns como \"o\", \"a\" u \"de\", que no i son en o endize, u por escribir más d'una palabra ta mirar (sólo amaneixen en o resultau as pachinas que contiengan todas as palabras).",
-'powersearch'           => 'Mirar-lo',
+'powersearch'           => 'Busca abanzata',
 'powersearchtext'       => 'Mirar en o espazio de nombres:<br />
 $1<br />
 $2 Fer lista de reendrezeras <br />

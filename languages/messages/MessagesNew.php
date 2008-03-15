@@ -41,6 +41,12 @@ $digitTransformTable = array(
 );
 
 $messages = array(
+# User preference toggles
+'tog-justify'          => 'अनुच्छेद धंकादिसँ',
+'tog-hideminor'        => 'न्हुगु हिलेज्याय् चिधंगु सम्पादन सुचुकादिसँ',
+'tog-rememberpassword' => 'जिगु लग इन थ्व कम्प्युतरय् लुमंकादिसँ',
+'tog-watchcreations'   => 'जिं देकागु / न्ह्यथनागु पौ जिगु दृष्टिधलः(watchlist)य् तयादिसँ',
+
 'underline-always' => 'न्ह्याबिलें',
 
 # Dates
@@ -53,6 +59,7 @@ $messages = array(
 'category-empty' => "''थ्व पुचले आःईले पौ वा मिदिया मदु।''",
 
 'about'         => 'विषयक',
+'qbfind'        => 'मालादिसँ',
 'moredotdotdot' => 'अप्व॰॰॰',
 'mypage'        => 'जिगु पौ',
 'mytalk'        => 'जिगु खं',
@@ -81,35 +88,85 @@ $messages = array(
 'jumptosearch'     => 'मालादिसँ',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
-'mainpage'    => 'मू पौ',
-'portal'      => 'सामाजिक दबु',
-'portal-url'  => 'Project:सामाजिक दबु',
-'privacy'     => 'दुबिस्ता नियम',
-'sitesupport' => 'दान',
+'edithelppage' => 'ग्वहालि:सम्पादन',
+'mainpage'     => 'मू पौ',
+'policy-url'   => 'ज्याझ्वः:नीति',
+'portal'       => 'सामाजिक दबू',
+'portal-url'   => 'ज्याझ्वः:सामाजिक दबू',
+'privacy'      => 'दुबिस्ता नियम',
+'sitesupport'  => 'दान',
 
-'ok'              => 'ज्यु',
-'editsection'     => 'सम्पादन',
-'editold'         => 'सम्पादन',
-'editsectionhint' => 'खण्ड सम्पादन: $1',
+'ok'                      => 'ज्यु',
+'newmessageslink'         => 'न्हुगु सन्देश',
+'newmessagesdifflink'     => 'न्हापाया हिलेज्या',
+'youhavenewmessagesmulti' => '$1य् छित न्हुगु सन्देश वगु दु',
+'editsection'             => 'सम्पादन',
+'editold'                 => 'सम्पादन',
+'editsectionhint'         => 'खण्ड सम्पादन: $1',
+'showtoc'                 => 'क्यनादिसँ',
+
+# Short words for each namespace, by default used in the namespace tab in monobook
+'nstab-mediawiki' => 'सन्देश',
+'nstab-category'  => 'पुचः',
+
+# General errors
+'laggedslavemode' => 'चेतावनी: पतिइ न्हुगु अपदेत मदेफु ।',
+'readonly'        => 'देताबेस संरक्षित',
+'internalerror'   => 'इन्तरनल इरर',
+'viewsource'      => 'स्रोत स्वयादिसँ',
 
 # Login and logout pages
-'userlogout'     => 'पिने झासं',
-'createaccount'  => 'खाता चायेकादिसं',
-'accountcreated' => 'खाता न्ह्येथन',
+'loginpagetitle'    => 'छ्य्‌लामि दुहां झासँ',
+'yourname'          => 'छ्य्‌लामि नां:',
+'yourpassword'      => 'दुथखँग्वः (पासवर्द):',
+'yourpasswordagain' => 'दुथखँग्वः हानं तियादिसँ:',
+'yourdomainname'    => 'छिगु दोमेन:',
+'login'             => 'दुहां वनेगु',
+'logout'            => 'पिने झासँ',
+'userlogout'        => 'पिने झासँ',
+'nologinlink'       => 'खाता न्ह्यथनादिसँ',
+'createaccount'     => 'खाता चायेकादिसँ',
+'youremail'         => 'इ-मेल:',
+'username'          => 'छ्य्‌लामि नां:',
+'yourrealname'      => 'वास्तविक नां:',
+'yourlanguage'      => 'भाषा:',
+'accountcreated'    => 'खाता न्ह्येथन',
 
 # Edit pages
-'savearticle' => 'पौ मुंकादिसं',
-'preview'     => 'स्वयादिसं',
-'newarticle'  => '(न्हु)',
+'savearticle'   => 'पौ मुंकादिसं',
+'preview'       => 'स्वयादिसं',
+'newarticle'    => '(न्हु)',
+'note'          => '<strong>होस यानादिसँ:</strong>',
+'previewnote'   => '<strong>थ्व पूर्वालोकन जक्क ख। छिं यानादिगु सम्पादन स्वथंगु मदुनि!</strong>',
+'editing'       => '$1 सम्पादन जुयाच्वँगु दु',
+'editconflict'  => 'सम्पादन द्वंगु दु: $1',
+'yourtext'      => 'छिगु आखः',
+'storedversion' => 'स्वथनातगु संस्करण',
+
+# History pages
+'revisionasof'     => '$1 तक्कया संस्करण',
+'previousrevision' => '←पुलांगु संस्करण',
 
 # Search results
 'powersearch' => 'मालादिसँ',
 
 # Preferences page
-'mypreferences' => 'जिगु प्राथमिकता',
+'mypreferences'  => 'जिगु प्राथमिकता',
+'changepassword' => 'पासवर्द हिलादिसँ',
+'math'           => 'गणित',
+'datetime'       => 'दिं व ई',
+'prefs-personal' => 'छ्य्‌लामि प्रोफाइल',
+'saveprefs'      => 'स्वथनादिसँ',
+
+# User rights
+'userrights-user-editname' => 'छपू छ्य्‌लामि नां तयादिसँ:',
+
+# Groups
+'group-bot' => 'बोत',
 
 # Recent changes
 'recentchanges' => 'न्हुगु हिलेज्या',
+'show'          => 'क्यनादिसँ',
 
 # Upload
 'upload' => 'फाइल अपलोड',
@@ -118,7 +175,9 @@ $messages = array(
 'randompage' => 'छगु च्वसुइ येंकादिसं',
 
 # Statistics
-'statistics' => 'तथ्यांक',
+'statistics' => 'तथ्याङ्क',
+
+'withoutinterwiki-submit' => 'क्यनादिसँ',
 
 # Miscellaneous special pages
 'allpages'          => 'सकल पौत',

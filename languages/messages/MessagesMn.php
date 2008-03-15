@@ -11,7 +11,8 @@ $linkTrail = '/^([a-zабвгдеёжзийклмнопрстуфхцчшщъы�
 
 $messages = array(
 # User preference toggles
-'tog-underline' => 'Линкүүдийн доогуур зураас зур:',
+'tog-underline'       => 'Линкүүдийн доогуур зураас зур:',
+'tog-highlightbroken' => 'Эвдэрхий линкүүдийг <a href="" class="new">ингэж</a> үзүүлэх: (өөрөөр: ингэж<a href="" class="internal">?</a>).',
 
 # Dates
 'sunday'    => 'Ням',
@@ -50,29 +51,44 @@ $messages = array(
 'mytalk'     => 'Миний яриа',
 'navigation' => 'Залуурдах',
 
+'tagline'          => '{{SITENAME}}-с',
 'help'             => 'Тусламж',
 'search'           => 'Хайлт',
-'searchbutton'     => 'Хайлт',
+'searchbutton'     => 'Хайх',
 'go'               => 'Очих',
+'searcharticle'    => 'Явах',
 'history_short'    => 'Түүх',
 'printableversion' => 'Хэвлэх хувилбар',
-'permalink'        => 'Тогтмол холбоос',
+'permalink'        => 'Байнгын холбоос',
 'edit'             => 'Өөрчлөх',
 'protect'          => 'Хамгаал',
+'talkpagelinktext' => 'Яриа',
+'personaltools'    => 'Өөрийн багаж хэрэгслүүд',
 'talk'             => 'Хэлэлцүүлэг',
+'views'            => 'Харагдацууд',
 'toolbox'          => 'Багаж хэрэгслүүд',
 'otherlanguages'   => 'Бусад хэлээр',
 'jumptonavigation' => 'Удирдах',
 'jumptosearch'     => 'Хайлт',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
-'currentevents' => 'Сүүлийн үеийн үйл явдлууд',
-'mainpage'      => 'Нүүр хуудас',
-'portal'        => 'Бүлгэмийн портал',
-'sitesupport'   => 'Хандив',
+'aboutsite'      => '{{SITENAME}}-н тухай',
+'aboutpage'      => 'Project:Тухай',
+'currentevents'  => 'Сүүлийн үеийн үйл явдлууд',
+'disclaimers'    => 'Татгалзлууд',
+'disclaimerpage' => 'Project:Ерөнхий татгалзал',
+'mainpage'       => 'Нүүр хуудас',
+'portal'         => 'Бүлгэмийн портал',
+'privacy'        => 'Хувийн мэдээллийн талаарх баримтлал',
+'privacypage'    => 'Project:Хувийн мэдээллийн талаарх баримтлал',
+'sitesupport'    => 'Хандив',
 
-'editsection' => 'Өөрчлөх',
-'editold'     => 'Өөрчлөх',
+'retrievedfrom'   => '"$1" хуудаснаас авсан',
+'editsection'     => 'засварлах',
+'editold'         => 'Өөрчлөх',
+'editsectionhint' => 'Хэсгийг засварлах: $1',
+'site-rss-feed'   => '$1-н RSS фийд',
+'site-atom-feed'  => '$1-н Atom фийд',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main' => 'Бичлэг or Өгүүлэл',
@@ -96,7 +112,7 @@ $messages = array(
 'loginreqlink' => 'Нэвтрэх',
 
 # Search results
-'powersearch' => 'Хайлт',
+'powersearch' => 'Сонгож хайх',
 
 # Preferences page
 'preferences' => 'Хэрэглэгчийн тохиргоо',
@@ -118,6 +134,8 @@ $messages = array(
 'specialpages' => 'Тусгай хуудсууд',
 'move'         => 'Зөөх',
 
+'alphaindexline' => '$1-с $2 хүртэл',
+
 # Watchlist
 'watchlist'     => 'Миний хянаж буй хуудсууд',
 'watch'         => 'Хянах',
@@ -128,5 +146,11 @@ $messages = array(
 
 # What links here
 'whatlinkshere' => 'Энд холбогдсон хуудсууд',
+
+# Block/unblock
+'contribslink' => 'хувь нэмэр',
+
+# Tooltip help for the actions
+'tooltip-n-mainpage' => 'Нүүр хуудас руу зочлох',
 
 );

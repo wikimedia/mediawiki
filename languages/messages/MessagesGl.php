@@ -192,6 +192,7 @@ $messages = array(
 'permalink'         => 'Ligazón permanente',
 'print'             => 'Imprimir',
 'edit'              => 'Editar',
+'create'            => 'Crear',
 'editthispage'      => 'Editar esta páxina',
 'delete'            => 'Borrar',
 'deletethispage'    => 'Borrar esta páxina',
@@ -363,7 +364,7 @@ Procura: $2',
 'actionthrottledtext'  => 'Como unha medida de loita contra o spam, limítase a realización desta acción a un número determinado de veces nun curto espazo de tempo, e vostede superou este límite. Ténteo de novo nuns minutos.',
 'protectedpagetext'    => 'Esta páxina foi protexida para evitar a edición.',
 'viewsourcetext'       => 'Pode ver e copiar o código fonte desta páxina:',
-'protectedinterface'   => 'Esta páxina fornece o texto da interface para a o software e está protexida para evitar o abuso.',
+'protectedinterface'   => 'Esta páxina fornece o texto da interface do software e está protexida para evitar o seu abuso.',
 'editinginterface'     => "'''Aviso:''' Está editando unha páxina usada para fornecer o texto da interface do software. Os cambios nesta páxina afectarán á aparencia da interface para os outros usuarios. Para traducións, considere usar [http://translatewiki.net/wiki/Main_Page?setlang=gl Betawiki], o proxecto de localización de Mediawiki.",
 'sqlhidden'            => '(Procura SQL agochada)',
 'cascadeprotected'     => 'Esta páxina foi protexida fronte á edición debido a que está incluída {{PLURAL:$1|na seguinte páxina protexida, que ten|nas seguintes páxinas protexidas, que teñen}} a "protección en serie" activada:
@@ -375,8 +376,9 @@ $2',
 
 # Login and logout pages
 'logouttitle'                => 'Saída de usuario a anónimo',
-'logouttext'                 => '<strong>Agora está fóra do sistema e é un usuario anónimo.</strong><br />
-Pode continuar usando {{SITENAME}} de xeito anónimo, ou pode acceder de novo co mesmo usuario ou con outro. Note que mentres se limpa a memoria caché do navegador algunhas páxinas poden continuar a ser amosadas como se estivesen aínda dentro do sistema.',
+'logouttext'                 => "<strong>Agora está fóra do sistema.</strong>
+
+Pode continuar usando {{SITENAME}} de xeito anónimo, ou pode acceder de novo co mesmo nome de usuario ou con outro. Note que mentres se limpa a memoria ''caché'' do navegador algunhas páxinas poden continuar a ser amosadas como se estivesen aínda dentro do sistema.",
 'welcomecreation'            => '== Reciba a nosa benvida, $1! == 
 
 Creouse a súa conta. Non esqueza [[Special:Preferences|personalizar]] as súas preferencias en {{SITENAME}}.',
@@ -384,7 +386,7 @@ Creouse a súa conta. Non esqueza [[Special:Preferences|personalizar]] as súas 
 'yourname'                   => 'O seu nome de usuario:',
 'yourpassword'               => 'O seu contrasinal:',
 'yourpasswordagain'          => 'Insira o seu contrasinal outra vez:',
-'remembermypassword'         => 'Lembrar o meu contrasinal entre sesións.',
+'remembermypassword'         => 'Lembrar o meu contrasinal neste ordenador',
 'yourdomainname'             => 'O seu dominio',
 'externaldberror'            => 'Ou ben se produciu un erro da base de datos na autenticación externa ou ben non se lle permite actualizar a súa conta externa.',
 'loginproblem'               => '<b>Houbo algún problema co seu acceso.</b><br />Ténteo de novo!',
@@ -502,7 +504,8 @@ Pode facer caso omiso desta mensaxe se se creou esta conta por erro.',
 'showpreview'               => 'Mostrar vista previa',
 'showlivepreview'           => 'Vista previa',
 'showdiff'                  => 'Mostrar cambios',
-'anoneditwarning'           => "'''Aviso''': Non está dentro do sistema. O seu enderezo IP quedará rexistrado no historial de cambios desta páxina.",
+'anoneditwarning'           => "'''Aviso:''' Non está dentro do sistema.
+O seu enderezo IP quedará rexistrado no historial das revisións desta páxina.",
 'missingsummary'            => "'''Aviso:''' Esqueceu incluír o texto do campo resumo.
 Se preme en Gardar a páxina, a súa edición gardarase sen ningunha descrición da edición.",
 'missingcommenttext'        => 'Por favor escriba un comentario a continuación.',
@@ -563,7 +566,7 @@ Se chegou aquí por erro, simplemente prema no botón '''atrás''' do seu navega
 'anontalkpagetext'          => "---- ''Esta é a páxina de conversa dun usuario anónimo que aínda non creou unha conta ou que non a usa. Polo tanto, empregamos o enderezo IP para a súa identificación. Este enderezo IP pódeno compartir varios usuarios distintos. Se vostede pensa que foron dirixidos contra a súa persoa comentarios inadecuados, por favor [[Special:Userlogin|cree unha conta]] para evitar futuras confusións con outros usuarios anónimos.''",
 'noarticletext'             => 'Actualmente non existe texto nesta páxina. Pode [[Special:Search/{{PAGENAME}}|procurar polo título desta páxina]] noutras páxinas ou [{{fullurl:{{FULLPAGENAME}}|action=edit}} editala].',
 'userpage-userdoesnotexist' => 'A conta do usuario "$1" non está rexistrada. Comprobe se desexa crear/editar esta páxina.',
-'clearyourcache'            => "'''Nota:''' Despois de gravar, cómpre limpar a memoria ''caché'' do seu navegador para ver os cambios: '''Mozilla / Firefox / Safari:''' prema ''Maiúsculas'' á vez que en ''Recargar'' ou ''Ctrl-Shift-R'' (\"Cmd-Maiúsculas-R\" nos Apple Mac); '''IE:''' prema ''Ctrl'' ao tempo que clica en \"Refrescar\" ou prema \"Ctrl-F5\"; , '''Opera:''' prema ''F5''. '''Konqueror:''': simplemente prema no botón \"Recargar\" ou prema \"F5\"; os usuarios de '''Opera''' pode que teñan que limpar completamente a caché en '''Ferramentas→Preferencias'''.",
+'clearyourcache'            => "'''Nota:''' Despois de gravar, cómpre limpar a memoria ''caché'' do seu navegador para ver os cambios: '''Mozilla / Firefox / Safari:''' prema ''Maiúsculas'' á vez que en ''Recargar'' ou ''Ctrl-Shift-R'' (''Cmd-Maiúsculas-R'' nos Apple Mac); '''IE:''' prema ''Ctrl'' ao tempo que fai clic en ''Refrescar'', ou prema ''Ctrl-F5''; '''Konqueror:''' simplemente faga clic no botón ''Recargar'', ou prema ''F5''; os usuarios de '''Opera''' pode que teñan que limpar completamente a ''caché'' en ''Ferramentas→Preferencias''.",
 'usercssjsyoucanpreview'    => '<strong>Nota:</strong> Use o botón "Mostrar vista previa" para verificar o novo CSS/JS antes de gardalo.',
 'usercsspreview'            => "'''Lembre que só está avaliando o uso do css, non foi aínda gardado!'''",
 'userjspreview'             => "'''Lembre que só está testando/previsualizando o seu javascript de usuario, non foi aínda gardado!'''",
