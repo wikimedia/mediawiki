@@ -369,7 +369,9 @@ $messages = array(
 'permalink'         => 'Lien permanent',
 'print'             => 'Imprimer',
 'edit'              => 'Modifier',
+'create'            => 'Créer',
 'editthispage'      => 'Modifier cette page',
+'create-this-page'  => 'Créer cette page',
 'delete'            => 'Supprimer',
 'deletethispage'    => 'Supprimer cette page',
 'undelete_short'    => 'Restaurer {{PLURAL:$1|1 modification| $1 modifications}}',
@@ -1577,6 +1579,7 @@ Voici les réglages actuels de la page <strong>$1</strong> :',
 # Undelete
 'undelete'                     => 'Voir les pages supprimées',
 'undeletepage'                 => 'Voir et restaurer une page supprimée',
+'undeletepagetitle'            => "'''La liste suivante contient des versions supprimées de [[:$1]]'''.",
 'viewdeletedpage'              => 'Historique de la page supprimée',
 'undeletepagetext'             => 'Ces pages ont été supprimées et se trouvent dans l’archive. Elles figurent toujours dans la base de données et peuvent être restaurées.
 L’archive peut être effacée périodiquement.',
@@ -2254,7 +2257,7 @@ Les autres liens sur la même ligne sont considérés comme des exceptions, par 
 'exif-sensingmethod-2' => 'Capteur de zone de couleurs monochromatiques',
 'exif-sensingmethod-3' => 'Capteur de zone de couleurs bichromatiques',
 'exif-sensingmethod-4' => 'Capteur de zone de couleurs trichromatiques',
-'exif-sensingmethod-5' => 'Capteur couleur séquentiel',
+'exif-sensingmethod-5' => 'Capteur de couleur séquentiel',
 'exif-sensingmethod-7' => 'Capteur trilinéaire',
 'exif-sensingmethod-8' => 'Capteur couleur linéaire séquentiel',
 
