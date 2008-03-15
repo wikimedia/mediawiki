@@ -69,15 +69,14 @@ class SpecialMostlinkedtemplates extends QueryPage {
 	 * @param Database $dbr Database connection
 	 * @param int $res Result pointer
 	 */
-	public function preprocessResults( $dbr, $res ) {
+	public function preprocessResults( $db, $res ) {
 		$batch = new LinkBatch();
-		while( $row = $dbr->fetchObject( $res ) ) {
-			$title = Title::makeTitleSafe( $row->namespace, $row->title );
-			$batch->addObj( $title );
+		while( $row = $db->fetchObject( $res ) ) {
+			$batch->add( $row->namespace, $row->title );
 		}
 		$batch->execute();
-		if( $dbr->numRows( $res ) > 0 )
-			$dbr->dataSeek( $res, 0 );
+		if( $db->numRows( $res ) > 0 )
+			$db->dataSeek( $res, 0 );
 	}
 
 	/**

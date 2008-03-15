@@ -10,9 +10,17 @@
  */
 class WantedCategoriesPage extends QueryPage {
 
-	function getName() { return 'Wantedcategories'; }
-	function isExpensive() { return true; }
-	function isSyndicated() { return false; }
+	function getName() {
+		return 'Wantedcategories';
+	}
+
+	function isExpensive() {
+		return true;
+	}
+
+	function isSyndicated() {
+		return false;
+	}
 
 	function getSQL() {
 		$dbr = wfGetDB( DB_SLAVE );
@@ -40,7 +48,7 @@ class WantedCategoriesPage extends QueryPage {
 	function preprocessResults( $db, $res ) {
 		$batch = new LinkBatch;
 		while ( $row = $db->fetchObject( $res ) )
-			$batch->addObj( Title::makeTitleSafe( $row->namespace, $row->title ) );
+			$batch->add( $row->namespace, $row->title );
 		$batch->execute();
 
 		// Back to start for display

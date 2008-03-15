@@ -130,7 +130,7 @@ function showToplevel ( $namespace = NS_MAIN, $including = false ) {
 			$res = $dbr->select(
 				'page', /* FROM */
 				'page_title', /* WHAT */
-				$where + array( $chunk),
+				$where + array($chunk),
 				__METHOD__,
 				array ('LIMIT' => 2, 'OFFSET' => $this->maxPerPage - 1, 'ORDER BY' => 'page_title') );
 
@@ -174,7 +174,7 @@ function showToplevel ( $namespace = NS_MAIN, $including = false ) {
 		$out .= $this->showline ( $inpoint, $outpoint, $namespace, false );
 	}
 	$out .= '</table>';
-	$nsForm = $this->namespaceForm ( $namespace, '', false );
+	$nsForm = $this->namespaceForm( $namespace, '', false );
 
 	# Is there more?
 	if ( $including ) {
@@ -319,7 +319,7 @@ function showChunk( $namespace = NS_MAIN, $from, $including = false ) {
 			}
 		}
 
-		$nsForm = $this->namespaceForm ( $namespace, $from );
+		$nsForm = $this->namespaceForm( $namespace, $from );
 		$out2 = '<table style="background: inherit;" width="100%" cellpadding="0" cellspacing="0" border="0">';
 		$out2 .= '<tr valign="top"><td>' . $nsForm;
 		$out2 .= '</td><td align="' . $align . '" style="font-size: smaller; margin-bottom: 1em;">' .

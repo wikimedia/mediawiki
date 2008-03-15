@@ -12,7 +12,7 @@
 class ShortPagesPage extends QueryPage {
 
 	function getName() {
-		return "Shortpages";
+		return 'Shortpages';
 	}
 
 	/**
@@ -47,7 +47,7 @@ class ShortPagesPage extends QueryPage {
 		if( $this->isCached() ) {
 			$batch = new LinkBatch();
 			while( $row = $db->fetchObject( $res ) )
-				$batch->addObj( Title::makeTitleSafe( $row->namespace, $row->title ) );
+				$batch->add( $row->namespace, $row->title );
 			$batch->execute();
 			if( $db->numRows( $res ) > 0 )
 				$db->dataSeek( $res, 0 );
