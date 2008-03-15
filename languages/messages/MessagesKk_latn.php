@@ -2763,9 +2763,9 @@ Tağı da [[Special:Watchlist/edit|qalıptı öñdewişti paýdalana]] alasız.'
 'unknown_extension_tag' => 'Tanılmağan keñeýtpe belgisi «$1»',
 
 # Special:Filepath
-'filepath'         => 'Faýl ornalaswı ',
+'filepath'         => 'Faýl ornalaswı',
 'filepath-page'    => 'Faýl atı:',
-'filepath-submit'  => 'Ornalaswın tabw ',
+'filepath-submit'  => 'Ornalaswın tabw',
 'filepath-summary' => 'Bul arnaýı bet faýl ornalaswı tolıq jolın qaýtaradı. Swretter tolıq ajıratılımdığımen körsetiledi, basqa faýl türlerine qatıstı bağdarlaması twra jegiledi.
 
 Faýl atawın «{{ns:image}}:» degen bastawışsız eñgiziñiz.',
