@@ -322,12 +322,12 @@ class PageArchive {
 	 * @param array $timestamps Pass an empty array to restore all revisions, otherwise list the ones to undelete.
 	 * @param string $comment
 	 * @param array $fileVersions
-	 * @param bool $Unsuppress
+	 * @param bool $unsuppress
 	 *
 	 * @return array(number of file revisions restored, number of image revisions restored, log message)
 	 * on success, false on failure
 	 */
-	function undelete( $timestamps, $comment = '', $fileVersions = array(), $Unsuppress = false ) {
+	function undelete( $timestamps, $comment = '', $fileVersions = array(), $unsuppress = false ) {
 		// If both the set of text revisions and file revisions are empty,
 		// restore everything. Otherwise, just restore the requested items.
 		$restoreAll = empty( $timestamps ) && empty( $fileVersions );
@@ -337,14 +337,14 @@ class PageArchive {
 		
 		if( $restoreFiles && $this->title->getNamespace() == NS_IMAGE ) {
 			$img = wfLocalFile( $this->title );
-			$this->fileStatus = $img->restore( $fileVersions, $Unsuppress );
+			$this->fileStatus = $img->restore( $fileVersions, $unsuppress );
 			$filesRestored = $this->fileStatus->successCount;
 		} else {
 			$filesRestored = 0;
 		}
 		
 		if( $restoreText ) {
-			$textRestored = $this->undeleteRevisions( $timestamps, $Unsuppress );
+			$textRestored = $this->undeleteRevisions( $timestamps, $unsuppress );
 			if($textRestored === false) // It must be one of UNDELETE_*
 				return false;
 		} else {
@@ -385,11 +385,11 @@ class PageArchive {
 	 * @param array $timestamps Pass an empty array to restore all revisions, otherwise list the ones to undelete.
 	 * @param string $comment
 	 * @param array $fileVersions
-	 * @param bool $Unsuppress, remove all ar_deleted/fa_deleted restrictions of seletected revs
+	 * @param bool $unsuppress, remove all ar_deleted/fa_deleted restrictions of seletected revs
 	 *
 	 * @return mixed number of revisions restored or false on failure
 	 */
-	private function undeleteRevisions( $timestamps, $Unsuppress = false ) {
+	private function undeleteRevisions( $timestamps, $unsuppress = false ) {
 		if ( wfReadOnly() )
 			return false;
 		$restoreAll = empty( $timestamps );
@@ -473,7 +473,7 @@ class PageArchive {
 			$ret->seek( $rev_count - 1 );
 			$last = $ret->fetchObject();
 			// We don't handle well changing the top revision's settings
-			if( !$Unsuppress && $last->ar_deleted && $last->ar_timestamp > $previousTimestamp ) {
+			if( !$unsuppress && $last->ar_deleted && $last->ar_timestamp > $previousTimestamp ) {
 				wfDebug( __METHOD__.": restoration would result in a deleted top revision\n" );
 				return false;
 			}
@@ -511,7 +511,7 @@ class PageArchive {
 				'timestamp'  => $row->ar_timestamp,
 				'minor_edit' => $row->ar_minor_edit,
 				'text_id'    => $row->ar_text_id,
-				'deleted' 	 => $Unsuppress ? 0 : $row->ar_deleted,
+				'deleted' 	 => $unsuppress ? 0 : $row->ar_deleted,
 				'len'        => $row->ar_len
 				) );
 			$revision->insertOn( $dbw );

@@ -921,7 +921,7 @@ abstract class File {
 	 * Cache purging is done; logging is caller's responsibility.
 	 *
 	 * @param $reason
-	 * @param $Suppress, hide content from sysops?
+	 * @param $suppress, hide content from sysops?
 	 * @return true on success, false on some kind of failure
 	 * STUB
 	 * Overridden by LocalFile
