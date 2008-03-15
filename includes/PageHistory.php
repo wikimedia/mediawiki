@@ -196,8 +196,8 @@ class PageHistory {
 	 *
 	 * @todo document some more, and maybe clean up the code (some params redundant?)
 	 *
-	 * @param object $row The database row corresponding to the line (or is it the previous line?).
-	 * @param object $next The database row corresponding to the next line (or is it this one?).
+	 * @param Row $row The database row corresponding to the previous line.
+	 * @param mixed $next The database row corresponding to the next line.
 	 * @param int $counter Apparently a counter of what row number we're at, counted from the top row = 1.
 	 * @param $notificationtimestamp
 	 * @param bool $latest Whether this row corresponds to the page's latest revision.
@@ -294,7 +294,11 @@ class PageHistory {
 		return $s;
 	}
 	
-	/** @todo document */
+	/** 
+	* Create a link to view this revision of the page
+	* @param Revision $rev
+	* @returns string
+	*/
 	function revLink( $rev ) {
 		global $wgLang;
 		$date = $wgLang->timeanddate( wfTimestamp(TS_MW, $rev->getTimestamp()), true );
@@ -310,7 +314,12 @@ class PageHistory {
 		return $link;
 	}
 
-	/** @todo document */
+	/** 
+	* Create a diff-to-current link for this revision for this page
+	* @param Revision $rev
+	* @param Bool $latest, this is the latest revision of the page?
+	* @returns string
+	*/
 	function curLink( $rev, $latest ) {
 		$cur = $this->message['cur'];
 		if( $latest || !$rev->userCan( Revision::DELETED_TEXT ) ) {
@@ -323,25 +332,33 @@ class PageHistory {
 		}
 	}
 
-	/** @todo document */
-	function lastLink( $rev, $next, $counter ) {
+	/** 
+	* Create a diff-to-previous link for this revision for this page.
+	* @param Revision $prevRev, the previous revision
+	* @param mixed $next, the newer revision
+	* @param int $counter, what row on the history list this is
+	* @returns string
+	*/
+	function lastLink( $prevRev, $next, $counter ) {
 		$last = $this->message['last'];
-		if ( is_null( $next ) ) {
+		# $next may either be a Row, null, or "unkown"
+		$nextRev = is_object($next) ? new Revision( $next ) : $next;
+		if( is_null($next) ) {
 			# Probably no next row
 			return $last;
-		} elseif ( $next === 'unknown' ) {
+		} elseif( $next === 'unknown' ) {
 			# Next row probably exists but is unknown, use an oldid=prev link
 			return $this->mSkin->makeKnownLinkObj(
 				$this->mTitle,
 				$last,
 				"diff=" . $rev->getId() . "&oldid=prev" );
-		} elseif( !$rev->userCan( Revision::DELETED_TEXT ) ) {
+		} elseif( !$prevRev->userCan(Revision::DELETED_TEXT) || !$nextRev->userCan(Revision::DELETED_TEXT) ) {
 			return $last;
 		} else {
 			return $this->mSkin->makeKnownLinkObj(
 				$this->mTitle,
 				$last,
-				"diff=" . $rev->getId() . "&oldid={$next->rev_id}"
+				"diff=" . $prevRev->getId() . "&oldid={$next->rev_id}"
 				/*,
 				'',
 				'',
