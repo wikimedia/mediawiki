@@ -241,7 +241,7 @@ $messages = array(
 'dec'           => 'Dis',
 
 # Bits of text used by many pages
-'categories'               => '{{PLURAL:$1|Kategori|Kategori}}',
+'categories'               => 'Kategori',
 'pagecategories'           => 'Kategori',
 'category_header'          => 'Laman-laman dalam kategori "$1"',
 'subcategories'            => 'Subkategori',
@@ -277,6 +277,9 @@ $messages = array(
 'navigation'     => 'Navigasi',
 'and'            => 'dan',
 
+# Metadata in edit box
+'metadata_help' => 'Metadata:',
+
 'errorpagetitle'    => 'Ralat',
 'returnto'          => 'Kembali ke $1.',
 'tagline'           => 'Daripada {{SITENAME}}.',
@@ -293,6 +296,7 @@ $messages = array(
 'permalink'         => 'Pautan kekal',
 'print'             => 'Cetak',
 'edit'              => 'Sunting',
+'create'            => 'Cipta',
 'editthispage'      => 'Sunting laman ini',
 'delete'            => 'Hapus',
 'deletethispage'    => 'Hapuskan laman ini',
@@ -307,7 +311,7 @@ $messages = array(
 'talkpagelinktext'  => 'bincang',
 'specialpage'       => 'Laman Khas',
 'personaltools'     => 'Alatan peribadi',
-'postcomment'       => 'Kirimkan pesanan',
+'postcomment'       => 'Kirim komen',
 'articlepage'       => 'Lihat laman kandungan',
 'talk'              => 'Perbincangan',
 'views'             => 'Pandangan',
@@ -365,6 +369,7 @@ $messages = array(
 'versionrequired'     => 'MediaWiki versi $1 diperlukan',
 'versionrequiredtext' => 'MediaWiki versi $1 diperlukan untuk menggunakan laman ini. Sila lihat [[Special:Version|laman versi]].',
 
+'ok'                      => 'OK',
 'retrievedfrom'           => 'Diambil daripada "$1"',
 'youhavenewmessages'      => 'Anda mempunyai $1 ($2).',
 'newmessageslink'         => 'pesanan baru',
@@ -381,11 +386,12 @@ $messages = array(
 'restorelink'             => '{{PLURAL:$1|satu|$1}} suntingan dihapuskan',
 'feedlinks'               => 'Suapan:',
 'feed-invalid'            => 'Jenis suapan langganan tidak sah.',
+'feed-unavailable'        => 'Tiada suapan pensindiketan di {{SITENAME}}',
 'site-rss-feed'           => 'Suapan RSS $1',
 'site-atom-feed'          => 'Suapan Atom $1',
 'page-rss-feed'           => 'Suapan RSS "$1"',
 'page-atom-feed'          => 'Suapan Atom "$1"',
-'red-link-title'          => '$1 (Laman tidak wujud)',
+'red-link-title'          => '$1 (belum ditulis)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Laman',
@@ -868,6 +874,7 @@ Sila pastikan bahawa perubahan ini akan mengekalkan kesinambungan sejarah laman.
 'searchsubtitleinvalid' => 'Untuk pertanyaan "$1"',
 'noexactmatch'          => "'''Tiada halaman bertajuk \"\$1\".''' Anda boleh [[:\$1|menciptanya]].",
 'noexactmatch-nocreate' => "'''Tiada laman bertajuk \"\$1\".'''",
+'toomanymatches'        => 'Terlalu banyak padanan dipulangkan, sila cuba pertanyaan lain',
 'titlematches'          => 'Padanan tajuk laman',
 'notitlematches'        => 'Tiada tajuk laman yang sepadan',
 'textmatches'           => 'Padanan teks laman',
@@ -977,6 +984,7 @@ Kumpulan yang tidak dipilih tidak akan diubah. Anda boleh mengecualikan sebarang
 'group-all'           => '(semua)',
 
 'group-autoconfirmed-member' => 'Pengguna yang disahkan secara automatik',
+'group-bot-member'           => 'Bot',
 'group-sysop-member'         => 'Penyelia',
 'group-bureaucrat-member'    => 'Birokrat',
 
@@ -1001,7 +1009,7 @@ Kumpulan yang tidak dipilih tidak akan diubah. Anda boleh mengecualikan sebarang
 'rclistfrom'                        => 'Tunjukkan perubahan terbaru bermula dari $1',
 'rcshowhideminor'                   => '$1 suntingan kecil',
 'rcshowhidebots'                    => '$1 bot',
-'rcshowhideliu'                     => '$1 pengguna berdaftar',
+'rcshowhideliu'                     => '$1 pengguna log masuk',
 'rcshowhideanons'                   => '$1 pengguna tanpa nama',
 'rcshowhidepatr'                    => '$1 suntingan dirondai',
 'rcshowhidemine'                    => '$1 suntingan saya',
@@ -1300,6 +1308,7 @@ menggunakan URL langsung walaupun ia disenaraikan di sini.</p>',
 serta mungkin mempunyai maklumat lanjut mengenai buku yang anda cari:',
 
 'categoriespagetext' => 'Kategori-kategori berikut wujud dalam wiki ini.',
+'data'               => 'Data',
 'userrights'         => 'Pengurusan hak pengguna',
 'groups'             => 'Kumpulan pengguna',
 'alphaindexline'     => '$1 hingga $2',
@@ -1833,6 +1842,7 @@ Dalam pilihan kedua tadi, anda juga boleh menggunakan pautan, umpamanya [[{{ns:s
 Semua tarikh semakan dan nama penyunting akan dikekalkan.
 Semua tindakan import transwiki dicatatkan dalam [[Special:Log/import|log import]].',
 'import-interwiki-history'   => 'Salin semua versi sejarah bagi laman ini',
+'import-interwiki-submit'    => 'Import',
 'import-interwiki-namespace' => 'Pindahkan laman ke dalam ruang nama:',
 'importtext'                 => 'Sila eksport fail daripada sumber wiki menggunakan kemudahan Special:Export, simpan dalam komputer anda dan muat naik di sini.',
 'importstart'                => 'Mengimport laman...',
@@ -1860,6 +1870,7 @@ Semua tindakan import transwiki dicatatkan dalam [[Special:Log/import|log import
 'importlogpagetext'                => 'Senarai tindakan import laman dengan keseluruhan sejarah suntingannya daripada wiki lain.',
 'import-logentry-upload'           => 'mengimport [[$1]] dengan memuat naik fail',
 'import-logentry-upload-detail'    => '$1 semakan',
+'import-logentry-interwiki'        => '$1 dipindah ke wiki lain',
 'import-logentry-interwiki-detail' => '$1 semakan daripada $2',
 
 # Tooltip help for the actions
@@ -2163,6 +2174,7 @@ Ruangan lain akan disembunyikan.
 
 'exif-unknowndate' => 'Tarikh tidak diketahui',
 
+'exif-orientation-1' => 'Normal', # 0th row: top; 0th column: left
 'exif-orientation-2' => 'Dibalikkan secara mengufuk', # 0th row: top; 0th column: right
 'exif-orientation-3' => 'Diputar 180°', # 0th row: bottom; 0th column: right
 'exif-orientation-4' => 'Dibalikkan secara menegak', # 0th row: bottom; 0th column: left
@@ -2177,6 +2189,7 @@ Ruangan lain akan disembunyikan.
 'exif-componentsconfiguration-0' => 'tiada',
 
 'exif-exposureprogram-0' => 'Tidak ditentukan',
+'exif-exposureprogram-1' => 'Manual',
 'exif-exposureprogram-2' => 'Atur cara normal',
 'exif-exposureprogram-3' => 'Mengutamakan bukaan',
 'exif-exposureprogram-4' => 'Mengutamakan pengatup',
@@ -2236,6 +2249,7 @@ Ruangan lain akan disembunyikan.
 'exif-whitebalance-0' => 'Imbangan warna putih automatik',
 'exif-whitebalance-1' => 'Imbangan warna putih manual',
 
+'exif-scenecapturetype-0' => 'Standard',
 'exif-scenecapturetype-1' => 'Landskap',
 'exif-scenecapturetype-2' => 'Potret',
 'exif-scenecapturetype-3' => 'Malam',
@@ -2246,12 +2260,15 @@ Ruangan lain akan disembunyikan.
 'exif-gaincontrol-3' => 'Gandaan rendah bawah',
 'exif-gaincontrol-4' => 'Gandaan tinggi bawah',
 
+'exif-contrast-0' => 'Normal',
 'exif-contrast-1' => 'Lembut',
 'exif-contrast-2' => 'Keras',
 
+'exif-saturation-0' => 'Normal',
 'exif-saturation-1' => 'Kepekatan rendah',
 'exif-saturation-2' => 'Kepekatan tinggi',
 
+'exif-sharpness-0' => 'Normal',
 'exif-sharpness-1' => 'Lembut',
 'exif-sharpness-2' => 'Keras',
 
@@ -2356,9 +2373,10 @@ Sila sahkan bahawa anda mahu mencipta semula laman ini.",
 'redirectingto' => 'Melencong ke [[$1]]...',
 
 # action=purge
-'confirm_purge' => 'Kosongkan fail simpanan bagi laman ini?
+'confirm_purge'        => 'Kosongkan fail simpanan bagi laman ini?
 
 $1',
+'confirm_purge_button' => 'OK',
 
 # AJAX search
 'searchcontaining' => "Cari laman mengandungi ''$1''.",

@@ -6,6 +6,7 @@
  * @author Masterches
  * @author Siebrand
  * @author Jvm
+ * @author Nike
  */
 
 $fallback = 'fr';
@@ -236,7 +237,7 @@ $messages = array(
 'disclaimers'       => 'Avètisman',
 'disclaimerpage'    => 'Project:Avètisman jeneral yo',
 'edithelp'          => 'Edite paj èd la',
-'edithelppage'      => 'Èd:koman ou ka modifye yon paj',
+'edithelppage'      => 'Help:koman ou ka modifye yon paj',
 'faqpage'           => 'Project:FAQ',
 'helppage'          => 'Help:Èd',
 'mainpage'          => 'Akèy',

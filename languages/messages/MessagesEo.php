@@ -211,7 +211,9 @@ $messages = array(
 'permalink'         => 'Konstanta ligilo',
 'print'             => 'Printu',
 'edit'              => 'Redaktu',
+'create'            => 'Kreu',
 'editthispage'      => 'Redaktu la paĝon',
+'create-this-page'  => 'Kreu ĉi tiun paĝon',
 'delete'            => 'Forigu',
 'deletethispage'    => 'Forigu la paĝon',
 'undelete_short'    => 'Malforigu {{PLURAL:$1|redakton|$1 redaktojn}}',
@@ -358,7 +360,7 @@ La ŝlosinto lasis la jenan mesaĝon:
 artikolo, kiun ĝi devus trovi, nomita "$1".
 Ĉi tio ne estas eraro de la datumbazo, sed probable cimo en la programo.
 Bonvolu raporti ĉi tion al iu sistemestro, kaj rimarkigi la retadreson (URL).',
-'readonly_lag'         => 'La datumbazo estis auxtomate sxlosita dum la subdatumbazo atingas la cxefan datumbazon.',
+'readonly_lag'         => 'La datumbazo estis aŭtomate ŝlosita dum la subdatumbazo atingas la ĉefan datumbazon.',
 'internalerror'        => 'Interna eraro',
 'internalerror_info'   => 'Interna eraro: $1',
 'filecopyerror'        => 'Neeblis kopii dosieron  "$1" al "$2".',
@@ -385,7 +387,7 @@ Peto: $2',
 'viewsource'           => 'Vidu vikitekston',
 'viewsourcefor'        => 'por $1',
 'actionthrottled'      => 'Agado limigita',
-'actionthrottledtext'  => 'Por kontrauxigi spamon, vi estas limigita farante cxi tiun agon tro pluroble en mallonga tempdauxro, kaj vi plialtigis cxi limon. Bonvolu refaru post kelkaj minutoj.',
+'actionthrottledtext'  => 'Por kontraŭigi spamon, vi estas limigita farante cxi tiun agon tro pluroble en mallonga tempdaŭro, kaj vi plialtigis ĉi limon. Bonvolu refaru post kelkaj minutoj.',
 'protectedpagetext'    => 'Tiu ĉi paĝo estas ŝlosita por malebligi redaktadon.',
 'viewsourcetext'       => 'Vi povas rigardi kaj kopii la fonton de la paĝo:',
 'protectedinterface'   => 'Ĉi tiu paĝo provizas interfacan tekston por la softvaro, kaj estas ŝlosita por malabeligi misuzon.',
@@ -523,7 +525,7 @@ Vi povas ignori ĉi mesaĝon, se ĉi konto estis kreita erare.',
 'savearticle'               => 'Konservu ŝanĝojn',
 'preview'                   => 'Antaŭrigardo',
 'showpreview'               => 'Antaŭrigardu',
-'showlivepreview'           => 'Aktiva antauxvido',
+'showlivepreview'           => 'Aktiva antaŭvido',
 'showdiff'                  => 'Montru ŝanĝojn',
 'anoneditwarning'           => 'Vi ne estas ensalutinta. Via IP-adreso enregistriĝos en la ŝango-historio de tiu ĉi paĝo.',
 'missingsummary'            => "'''Rememorigilo:''' Vi ne provizis redaktan resumon. Se vi alklakos denove la savan butonon, via redaktaĵo estos storata sen resumo.",
@@ -634,7 +636,7 @@ la tekston al tekstdosiero por poste reenmeti ĝin al la vikio.</strong>',
 'protectedpagewarning'      => '<strong>AVERTO: Tiu ĉi paĝo estas ŝlosita kontraŭ redaktado krom de administrantoj (t.e., vi). Bv certiĝi, ke vi sekvas la normojn de la komunumo per via redaktado.</strong>',
 'semiprotectedpagewarning'  => '<strong>Notu:</strong> Ĉi paĝo estas protektita tiel ke nur [[Special:Userlogin|ensalutintaj]] uzantoj povas redakti ĝin.',
 'cascadeprotectedwarning'   => "'''Averto:''' Ĉi tiu paĝo estas ŝlosita tiel ke nur uzantoj kun administrantaj privilegioj povas redakti ĝin, ĉar ĝi estas inkludita en la {{PLURAL:$1|sekvan kaskade protektitan paĝon|sekvajn kaskade protektitajn paĝojn}}:",
-'titleprotectedwarning'     => '<strong>AVERTO: Cxi tiu pagxo estis sxlosita tial nur iuj uzantoj povas krei gxin.</strong>',
+'titleprotectedwarning'     => '<strong>AVERTO: Ĉi paĝo estis ŝlosita tial nur iuj uzantoj povas krei ĝin.</strong>',
 'templatesused'             => 'Ŝablonoj uzitaj sur ĉi paĝo:',
 'templatesusedpreview'      => 'Ŝablonoj uzataj dum ĉi tiu antaŭrigardo:',
 'templatesusedsection'      => 'Ŝablonoj uzataj en ĉi tiu sekcio:',
@@ -692,7 +694,7 @@ Bonvolu kontroli la retadreson (URL) kiun vi uzis por atingi la paĝon.\\b',
 # Revision feed
 'history-feed-title'          => 'Historio de redaktoj',
 'history-feed-description'    => 'Revizia historio por ĉi tiu paĝo en la vikio',
-'history-feed-item-nocomment' => '$1 cxe $2', # user at time
+'history-feed-item-nocomment' => '$1 ĉe $2', # user at time
 'history-feed-empty'          => 'La petata pagxo ne ekzistas.
 Gxi versxajne estis forigita de la vikio, aux alinomita.
 Provu [[Special:Search|sercxi en la vikio]] por rilataj novaj pagxoj.',
@@ -791,13 +793,15 @@ Certigu ke ĉi ŝanĝo tenos kontinueco de la historia paĝo.
 'prevn'                 => '$1 antaŭajn',
 'nextn'                 => '$1 sekvajn',
 'viewprevnext'          => 'Montru ($1) ($2) ($3).',
+'search-result-size'    => '$1 ({{PLURAL:$2|1 vorto|$2 vortoj}})',
+'search-result-score'   => 'Trafeco: $1%',
 'showingresults'        => "Montras {{PLURAL:$1|'''1''' trovitan|'''$1''' trovitajn}} ekde la #'''$2'''-a.",
 'showingresultsnum'     => "Montras {{PLURAL:$3|'''1''' trovitan|'''$3''' trovitajn}} ekde la #'''$2'''-a.",
 'nonefound'             => '<strong>Noto</strong>: malsukcesaj serĉoj ofte
 okazas ĉar oni serĉas tro da ofte uzataj vortoj, kiujn ne enhavas la indekso,
 aŭ ĉar oni petas tro da serĉvortoj (nur paĝoj kiuj enhavas ĉiun serĉvorton
 montriĝos en la rezulto).',
-'powersearch'           => 'Trovu',
+'powersearch'           => 'Progresa trovilo',
 'powersearchtext'       => '
 Serĉu en sekcioj: :<br />
 $1<br />
@@ -1962,6 +1966,7 @@ Sekvaj ligilo en la sama linio estas konsiderata kiel esceptoj (paĝoj kiel la b
 'exif-transferfunction'            => 'Transiga funkcio',
 'exif-whitepoint'                  => 'Koloreco de blanka punkto',
 'exif-primarychromaticities'       => 'Kolorecoj de primaraĵoj',
+'exif-ycbcrcoefficients'           => 'Koeficientoj de kolorspaca transformiga matrikso',
 'exif-referenceblackwhite'         => 'Paro de nigraj kaj blankaj referencaj valutoj',
 'exif-datetime'                    => 'Dato kaj tempo de dosiera ŝanĝo',
 'exif-imagedescription'            => 'Titolo de bildo',
@@ -2084,6 +2089,7 @@ Sekvaj ligilo en la sama linio estas konsiderata kiel esceptoj (paĝoj kiel la b
 'exif-exposureprogram-3' => 'Diafragma prioritato <!-- vidu http://www.fw.hu/eventoj/steb/vortaroj/fotografio/fotografio.htm -->',
 'exif-exposureprogram-4' => 'Prioritato de obturatoro',
 'exif-exposureprogram-5' => 'Kreiva programo (emata al kampa profundo)',
+'exif-exposureprogram-6' => 'Agada programo (ema al rapida ekspon-daŭro)',
 'exif-exposureprogram-7' => 'Portreta reĝimo (por apudaj fotoj kun la fono malfokusita)',
 'exif-exposureprogram-8' => 'Pejzaĝa reĝimo (por pejzaĝaj fotoj kun la fono en fokuso)',
 
@@ -2113,12 +2119,18 @@ Sekvaj ligilo en la sama linio estas konsiderata kiel esceptoj (paĝoj kiel la b
 'exif-lightsource-17'  => 'Norma lumo A',
 'exif-lightsource-18'  => 'Norma lumo B',
 'exif-lightsource-19'  => 'Norma lumo C',
+'exif-lightsource-24'  => 'ISO artefarita lumo volframa',
 'exif-lightsource-255' => 'Alia luma fonto',
 
 'exif-focalplaneresolutionunit-2' => 'coloj',
 
 'exif-sensingmethod-1' => 'Nedefinita',
+'exif-sensingmethod-2' => 'Sensilo de zono de unukromataj koloroj',
+'exif-sensingmethod-3' => 'Sensilo de zono de dukromataj koloroj',
+'exif-sensingmethod-4' => 'Sensilo de zono de trikromataj koloroj',
+'exif-sensingmethod-5' => 'Sensilo de laŭvicaj zonaj koloroj',
 'exif-sensingmethod-7' => 'Trilinia sensilo',
+'exif-sensingmethod-8' => 'Sensilo de laŭvicaj liniaj koloroj',
 
 'exif-scenetype-1' => 'Rekte fotita bildo',
 

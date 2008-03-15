@@ -307,7 +307,9 @@ $messages = array(
 'permalink'         => 'Enllaç permanent',
 'print'             => "Envia aquesta pàgina a la cua d'impressió",
 'edit'              => 'Edita',
+'create'            => 'Crea',
 'editthispage'      => 'Edita la pàgina',
+'create-this-page'  => 'Crea aquesta pàgina',
 'delete'            => 'Elimina',
 'deletethispage'    => 'Elimina la pàgina',
 'undelete_short'    => "Restaura {{PLURAL:$1|l'edició eliminada|$1 edicions eliminades}}",
@@ -879,13 +881,15 @@ Assegureu-vos que aquest canvi mantindrà la continuïtat històrica de la pàgi
 'prevn'                 => '$1 anteriors',
 'nextn'                 => '$1 següents',
 'viewprevnext'          => 'Vés a ($1) ($2) ($3).',
+'search-result-size'    => '$1 ({{PLURAL:$2|1 paraula|$2 paraules}})',
+'search-result-score'   => 'Rellevància: $1%',
 'showingresults'        => 'Tot seguit es {{PLURAL:$1|mostra el resultat|mostren els <b>$1</b> resultats començant pel número <b>$2</b>}}.',
 'showingresultsnum'     => 'Tot seguit es {{PLURAL:$3|llista el resultat|llisten els <b>$3</b> resultats començant pel número <b>$2</b>}}.',
 'nonefound'             => '<strong>Nota</strong>: les recerques sense èxit són causades tot sovint
 per recerques de paraules comunes com "la" o "de",
 que no es troben a l\'índex, o per especificar més d\'una paraula a cercar (només les pàgines
 que contenen tots els termes d\'una recerca apareixeran en el resultat).',
-'powersearch'           => 'Cerca',
+'powersearch'           => 'Cerca avançada',
 'powersearchtext'       => '
 Cerca en espais de nom :<br />
 $1<br />
@@ -1562,6 +1566,7 @@ Ací es troben els paràmetres actuals de la pàgina <strong>$1</strong>:',
 # Undelete
 'undelete'                     => 'Restaura una pàgina esborrada',
 'undeletepage'                 => 'Mostra i restaura pàgines esborrades',
+'undeletepagetitle'            => "'''El següent consisteix en revisions eliminades de [[:$1]]'''.",
 'viewdeletedpage'              => 'Visualitza les pàgines eliminades',
 'undeletepagetext'             => "S'han eliminat les pàgines següents però encara són a l'arxiu i poden ser restaurades. Pot netejar-se l'arxiu periòdicament.",
 'undeleteextrahelp'            => "Per a restaurar la pàgina sencera, deixeu totes les caselles sense seleccionar i

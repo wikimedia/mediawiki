@@ -69,10 +69,12 @@ $messages = array(
 # Bits of text used by many pages
 'category_header' => 'Páginas na categoria "$1"',
 
-'cancel' => 'Cancelar',
-'qbfind' => 'Procurar',
-'qbedit' => 'Editar',
-'mytalk' => 'Mie cumbersa',
+'about'     => 'Sobre',
+'newwindow' => '(abre numa nuoba janela)',
+'cancel'    => 'Cancelar',
+'qbfind'    => 'Procurar',
+'qbedit'    => 'Editar',
+'mytalk'    => 'Mie cumbersa',
 
 'tagline'          => 'De {{SITENAME}}',
 'help'             => 'Ajuda',
@@ -81,6 +83,7 @@ $messages = array(
 'searcharticle'    => 'Ir',
 'history'          => 'Histórico da página',
 'history_short'    => 'Histórico',
+'permalink'        => 'Ligaçon permanente',
 'edit'             => 'Editar',
 'delete'           => 'Apagar',
 'protect'          => 'Proteger',
@@ -95,20 +98,27 @@ $messages = array(
 'jumptosearch'     => 'pesquisa',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
-'aboutsite'     => 'Sobre {{SITENAME}}',
-'currentevents' => 'Amboras actuais',
-'helppage'      => 'Ayuda:Conteúdos',
-'mainpage'      => 'Página principal',
-'privacy'       => 'Política de privacidade',
-'sitesupport'   => 'Donativos',
+'aboutsite'      => 'Sobre {{SITENAME}}',
+'aboutpage'      => 'Proyecto:Sobre',
+'currentevents'  => 'Amboras actuais',
+'disclaimerpage' => 'Proyecto:Aviso_geral',
+'helppage'       => 'Ayuda:Conteúdos',
+'mainpage'       => 'Página principal',
+'privacy'        => 'Política de privacidade',
+'sitesupport'    => 'Donativos',
 
-'retrievedfrom'   => 'Obtido an "$1"',
-'editsection'     => 'eitar',
-'editold'         => 'editar',
-'editsectionhint' => 'Editar secção: $1',
-'hidetoc'         => 'çconder',
-'site-rss-feed'   => 'Feed RSS $1',
-'site-atom-feed'  => 'Feed Atom $1',
+'retrievedfrom'      => 'Obtido an "$1"',
+'youhavenewmessages' => 'Você tem $1 ($2).',
+'newmessageslink'    => 'nuobas mensages',
+'editsection'        => 'eitar',
+'editold'            => 'editar',
+'editsectionhint'    => 'Editar secção: $1',
+'toc'                => 'Tabla de contenido',
+'showtoc'            => 'mostrar',
+'hidetoc'            => 'çconder',
+'site-rss-feed'      => 'Feed RSS $1',
+'site-atom-feed'     => 'Feed Atom $1',
+'page-rss-feed'      => 'Feed RSS de "$1"',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-user'     => "Página d'utilizador",
@@ -131,15 +141,47 @@ $messages = array(
 'gotaccountlink' => 'Entrar',
 
 # Edit page toolbar
-'bold_tip'      => 'Testo negro',
-'italic_sample' => 'Testo itálico',
-'italic_tip'    => 'Testo an itálico',
+'bold_sample'     => 'Testo carregado',
+'bold_tip'        => 'Testo negro',
+'italic_sample'   => 'Testo itálico',
+'italic_tip'      => 'Testo an itálico',
+'headline_sample' => 'Testo de cabeçalho',
+'nowiki_tip'      => 'Ignorar formato wiki',
 
 # Edit pages
-'summary' => 'Sumário',
-'editing' => 'A editar $1',
+'summary'               => 'Sumário',
+'preview'               => 'Prever',
+'showpreview'           => 'Mostrar prebison',
+'blockedtext'           => '<big>O seu nome de utilizador ou endereço de IP foi bloqueado</big>
+
+O bloqueio foi realizado por $1. O motivo apresentado foi \'\'$2\'\'.
+
+* Início do bloqueio: $8
+* Expiração do bloqueio: $6
+* Destino do bloqueio: $7
+
+Você pode contactar $1 ou outro [[{{MediaWiki:Grouppage-sysop}}|administrador]] para discutir sobre o bloqueio.
+
+Note que não poderá utilizar a funcionalidade "Contactar utilizador" se não possuir uma conta neste wiki ({{SITENAME}}) com um endereço de email válido indicado nas suas [[{{ns:special}}:Preferences|preferências de utilizador]] e se tiver sido bloqueado de utilizar tal recurso.
+
+O seu endereço de IP atual é $3 e a ID de bloqueio é $5. Por favor, inclua um desses (ou ambos) dados em quaisquer tentativas de esclarecimentos.',
+'newarticle'            => '(Nuoba)',
+'newarticletext'        => "Você seguiu uma ligaçon para unhaa página que inda num existe. 
+Para criá-la, screva l sue conteúdo na caixa abaixo
+(veja a [[{{MediaWiki:Helppage}}|página de ajuda]] para mais detalhes).
+Se você chegou até aqui por angano, clique ne l boton '''boltar''' (o ''back'') de l sue navegador.",
+'editing'               => 'A editar $1',
+'copyrightwarning'      => 'Por fabor, note que todas las sues contribuiçons an {{SITENAME}} son consideradas cumo lhançadas ne ls termos de la lhicença $2 (ber $1 para detalhes). Se num deseija que o sue testo seija inexoravelmente editado i redistribuído de tal forma, num lo enbie.<br />
+Você está, al mesmo tempo, a garantir-nos que isto ye algo escrito por si, o algo copiado de unha fonte de testos an domínio público o similarmente de teor libre.
+<strong>NUM ENBIE TRABALHO PROTEGIDO POR DREITOS DE AUTOR SAN A DEBIDA PERMISSON!</strong>',
+'template-protected'    => '(protegida)',
+'recreate-deleted-warn' => "'''Atenção: Você está a criar uma página já anteriormente eliminada.'''
+
+Certifique-se de que é adequado prosseguir a edição de esta página.
+O registo de eliminação desta página é exibido a seguir, para sua comodidade:",
 
 # History pages
+'currentrev' => 'Revison actual',
 'cur'        => 'act',
 'last'       => 'último',
 'page_first' => 'purmeira',
@@ -162,11 +204,14 @@ $messages = array(
 'mypreferences' => 'Las mies preferencias',
 
 # Recent changes
+'recentchanges'   => 'Alteraçons recentes',
 'rcshowhidebots'  => '$1 robots',
+'rcshowhideliu'   => '$1 utilizadores registados',
 'rcshowhidemine'  => '$1 mies ediçons',
 'diff'            => 'dif',
 'hist'            => 'hist',
 'hide'            => 'Esconder',
+'show'            => 'Mostrar',
 'minoreditletter' => 'm',
 'newpageletter'   => 'N',
 'boteditletter'   => 'b',
@@ -180,10 +225,12 @@ $messages = array(
 
 # Image list
 'imagelist'         => 'Lista de ficheiros',
+'filehist-current'  => 'actual',
 'filehist-datetime' => 'Data/Hora',
 'filehist-user'     => 'Utilizador',
 'filehist-filesize' => 'Tamanho de ficheiro',
 'filehist-comment'  => 'Comentário',
+'imagelinks'        => 'Ligaçons (andereços web)',
 
 # Miscellaneous special pages
 'nbytes'       => '$1 {{PLURAL:$1|byte|bytes}}',
@@ -208,6 +255,8 @@ $messages = array(
 
 # Watchlist
 'watchlistfor' => "(para '''$1''')",
+'watch'        => 'Bigiar',
+'wlshowlast'   => 'Ber últimas $1 horas $2 dias $3',
 
 # Delete/protect/revert
 'deletepage'              => 'Apagar página',
@@ -231,6 +280,8 @@ $messages = array(
 
 # What links here
 'whatlinkshere'       => 'Páginas afluentes',
+'whatlinkshere-title' => 'Páginas que apontam para $1',
+'istemplate'          => 'incluson',
 'whatlinkshere-links' => '← andereços da anternet',
 
 # Block/unblock
@@ -253,6 +304,7 @@ $messages = array(
 'tooltip-pt-userpage'       => "La mie página d'utilizador",
 'tooltip-pt-mytalk'         => 'Página de mie cumbersa',
 'tooltip-pt-preferences'    => 'Las mies preferencias',
+'tooltip-pt-mycontris'      => 'Lhista das mies contribuiçons',
 'tooltip-pt-logout'         => 'Sair',
 'tooltip-ca-delete'         => 'Apagar esta página',
 'tooltip-ca-move'           => 'Mover esta página',
@@ -272,6 +324,13 @@ $messages = array(
 # Media information
 'file-info-size' => '($1 × $2 pixel, tamanho: $3, tipo MIME: $4)',
 'svg-long-desc'  => '(ficheiro SVG, de $1 × $2 pixels, tamanho: $3)',
+'show-big-image' => 'Resoluçon completa',
+
+# Bad image list
+'bad_image_list' => 'The format is as follows:
+
+Only list items (lines starting with *) are considered. The first link on a line must be a link to a bad image.
+Any subsequent links on the same line are considered to be exceptions, i.e. articles where the image may occur inline.',
 
 # Metadata
 'metadata' => 'Metadados',

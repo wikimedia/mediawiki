@@ -230,7 +230,9 @@ $messages = array(
 'permalink'         => 'Ligam permanent',
 'print'             => 'Imprimir',
 'edit'              => 'Editar',
+'create'            => 'Crear',
 'editthispage'      => 'Modificar aquesta pagina',
+'create-this-page'  => 'Crear aquesta pagina',
 'delete'            => 'Suprimir',
 'deletethispage'    => 'Suprimir aquesta pagina',
 'undelete_short'    => 'Restablir {{PLURAL:$1|1 modificacion| $1 modificacions}}',
@@ -766,12 +768,14 @@ D’autres administrators sus {{SITENAME}} poiràn totjorn accedir al contengut 
 'prevn'                 => '$1 precedents',
 'nextn'                 => '$1 seguents',
 'viewprevnext'          => 'Veire ($1) ($2) ($3).',
+'search-result-size'    => '$1 ({{PLURAL:$2|1 mot|$2 mots}})',
+'search-result-score'   => 'Pertinéncia : $1%',
 'showingresults'        => 'Afichatge de <b>$1</b> resultats a partir del #<b>$2</b>.',
 'showingresultsnum'     => 'Afichatge de <b>$3</b> resultats a partir del #<b>$2</b>.',
 'nonefound'             => '<strong>Nòta</strong>: l\'abséncia de resultat es sovent deguda a l\'emplec de tèrmes de recèrca tròp corrents, coma "a" o "de",
 que son pas indexats, o a l\'emplec de mantun tèrme de recèrca (solas las paginas
 contenent totes los tèrmes apareisson dins los resultats).',
-'powersearch'           => 'Recèrca',
+'powersearch'           => 'Recèrca avançada',
 'powersearchtext'       => 'Recercar dins los espacis :<br />
 $1<br />
 $2 Enclure las paginas de redireccions   Recercar $3 $9',
@@ -986,6 +990,20 @@ L'ora indicada es la del serveire (UTC).",
 'filewasdeleted'              => 'Un fichièr amb aqueste nom es estat copiat ja, puèi suprimit. Deuriatz verificar lo $1 abans de procedir a una còpia novèla.',
 'upload-wasdeleted'           => "'''Atencion : Sètz a importar un fichièr que ja es estat suprimit deperabans.''' Deuriatz considerar se es oportun de contunhar l'impòrt d'aqueste fichièr. Lo jornal de las supressions vos donarà los elements d'informacion.",
 'filename-bad-prefix'         => 'Lo nom del fichièr qu\'importatz comença per <strong>"$1"</strong> qu\'es un nom generalament donat pels aparelhs de fòto numerica e que decritz pas lo fichièr. Causissetz un nom de fichièr descrivent vòstre fichièr.',
+'filename-prefix-blacklist'   => ' #<!-- daissatz aquesta linha coma es --> <pre>
+# La sintaxi es la seguenta : 
+#   * Tot çò que seguís lo caractèr "#" fins a la fin de la linha es un comentari
+#   * Tota linha non vioda es un prefix tipic de nom de fichièr assignat automaticament pels aparelhs numerics
+CIMG # Casio
+DSC_ # Nikon
+DSCF # Fuji
+DSCN # Nikon
+DUW # some mobil phones
+IMG # generic
+JD # Jenoptik
+MGP # Pentax
+PICT # misc.
+ #</pre> <!-- daissatz aquesta linha coma es -->',
 
 'upload-proto-error'      => 'Protocòl incorrècte',
 'upload-proto-error-text' => "L’impòrt requerís d'URLs començant per <code>http://</code> o <code>ftp://</code>.",
@@ -1422,6 +1440,7 @@ Clicatz sus « Precedent » e recargatz la pagina d’ont venètz, puèi ensajat
 # Undelete
 'undelete'                     => 'Restablir la pagina escafada',
 'undeletepage'                 => 'Veire e restablir la pagina escafada',
+'undeletepagetitle'            => "'''La lista seguenta se compausa de versions suprimidas de [[:$1]]'''.",
 'viewdeletedpage'              => 'Istoric de la pagina suprimida',
 'undeletepagetext'             => 'Aquestas paginas son estadas escafadas e se tròban dins la corbelha, son totjorn dins la banca de donada e pòdon èsser restablidas.
 La corbelha pòt èsser escafada periodicament.',

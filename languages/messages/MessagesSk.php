@@ -308,7 +308,9 @@ $messages = array(
 'permalink'         => 'Trvalý odkaz',
 'print'             => 'Tlač',
 'edit'              => 'upraviť',
+'create'            => 'Vytvoriť',
 'editthispage'      => 'Upraviť túto stránku',
+'create-this-page'  => 'Vytvoriť túto stránku',
 'delete'            => 'Vymazať',
 'deletethispage'    => 'Vymazať túto stránku',
 'undelete_short'    => 'Obnoviť {{PLURAL:$1|jednu úpravu|$1 úpravy|$1 úprav}}',
@@ -907,6 +909,8 @@ Uistite sa, že táto zmena zachová historickú kontinuitu zmien stránky.
 'prevn'                 => 'predošlých $1',
 'nextn'                 => 'ďalších $1',
 'viewprevnext'          => 'Zobraziť ($1) ($2) ($3).',
+'search-result-size'    => '$1 ({{PLURAL:$2|1 slovo|$2 slová|$2 slov}})',
+'search-result-score'   => 'Relevancia: $1%',
 'showingresults'        => "Nižšie {{PLURAL:$1|je zobrazený jeden výsledok|sú zobrazené '''1''' výsledky|je zobrazených '''$1''' výsledkov}}, počnúc od  #<b>$2</b>.",
 'showingresultsnum'     => "Nižšie {{PLURAL:$3|je zobrazený najviac '''1''' výsledok|sú zobrazené najviac '''$3''' výsledky|je zobrazených najviac '''$3''' výsledkov}}, počnúc od  #'''$2'''.",
 'nonefound'             => "<strong>Poznámka</strong>: bezvýsledné vyhľadávania sú často spôsobené buď snahou hľadať príliš bežné, obyčajné slová (napríklad slovo ''je''), pretože tieto sa nezaraďujú do indexu vyhľadávača, alebo uvedením viac ako jedného vyhľadávaného výrazu, pretože výsledky uvádzajú len stránky obsahujúce všetky vyhľadávané výrazy.",
@@ -1580,6 +1584,7 @@ Tu sú aktuálne nastavenia stránky <strong>$1</strong>:',
 # Undelete
 'undelete'                     => 'Obnoviť zmazanú stránku',
 'undeletepage'                 => 'Zobraziť a obnoviť vymazané stránky',
+'undeletepagetitle'            => "'''Nasledovné pozostáva zo zmazaných revízií stránky [[:$1]]'''.",
 'viewdeletedpage'              => 'Zobraziť zmazané stránky',
 'undeletepagetext'             => 'Tieto stránky boli zmazané, ale sú stále v archíve a
 môžu byť obnovené. Archív môže byť pravidelne vyprázdnený.',
@@ -1774,6 +1779,7 @@ Potvrďte, že to naozaj chcete urobiť.',
 'databasenotlocked'   => 'Databáza nie je zamknutá.',
 
 # Move page
+'move-page'               => 'Presunúť $1',
 'move-page-legend'        => 'Presunúť stránku',
 'movepagetext'            => "Pomocou tohto formulára premenujete stránku a premiestnite všetky jej predchádzajúce verzie pod zadané nové meno.
 Starý názov sa stane presmerovacou stránkou na nový názov.

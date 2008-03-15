@@ -308,7 +308,9 @@ $messages = array(
 'permalink'         => 'Permanent länk',
 'print'             => 'Skriv ut',
 'edit'              => 'Redigera',
+'create'            => 'Skapa',
 'editthispage'      => 'Redigera denna sida',
+'create-this-page'  => 'Skapa denna sida',
 'delete'            => 'radera',
 'deletethispage'    => 'Radera denna sida',
 'undelete_short'    => 'Återställ {{PLURAL:$1|en version|$1 versioner}}',
@@ -1529,6 +1531,7 @@ Nuvarande skrivskyddsinställning för sidan <strong>$1</strong> är:',
 # Undelete
 'undelete'                     => 'Återställ borttagna sidor',
 'undeletepage'                 => 'Visa och återställ borttagna sidor',
+'undeletepagetitle'            => "'''Dom följande innehållen av raderade versioner av [[:$1]]'''.",
 'viewdeletedpage'              => 'Visa raderade sidor',
 'undeletepagetext'             => 'Följande sidor har blivit borttagna, men finns fortfarande i ett arkiv och kan återställas. Arkivet kan ibland rensas på gamla versioner.',
 'undeleteextrahelp'            => "* För att återställa alla versioner, välj '''Återställ''' utan att kryssa i några rutor. 

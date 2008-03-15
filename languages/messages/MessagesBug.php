@@ -20,6 +20,7 @@ $messages = array(
 
 'about'    => 'Atajangeng',
 'qbedit'   => 'Sunting',
+'mytalk'   => 'ᨕᨄᨅᨗᨌᨑᨊ ᨕᨗᨐ',
 'anontalk' => 'Bicara IP',
 'and'      => 'éréngé',
 
@@ -42,20 +43,27 @@ $messages = array(
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-user'     => 'ᨒᨛᨄ ᨄᨁᨘᨊ',
-'nstab-special'  => 'Istimewa',
+'nstab-special'  => 'ᨔᨛᨙᨄᨔᨗᨕᨒ',
 'nstab-image'    => 'Rapang',
-'nstab-help'     => 'Panginring',
+'nstab-help'     => 'ᨄᨂᨗᨋᨗ',
 'nstab-category' => 'ᨙᨀᨈᨛᨁᨚᨑᨗ',
 
 # General errors
-'badtitle' => 'Judul dek essa',
+'badtitle'   => 'Judul dek essa',
+'viewsource' => 'ᨕᨗᨈ ᨔᨚᨑᨛᨔᨛ',
 
 # Login and logout pages
 'login'      => 'ᨒᨚᨁᨛ ᨕᨈᨆ',
 'userlogin'  => 'ᨒᨚᨁᨛ ᨕᨈᨆ / ᨕᨛᨅᨘ ᨕᨀᨕᨘᨊᨛ',
 'logout'     => 'ᨒᨚᨁᨛ ᨕᨛᨔᨘ',
 'userlogout' => 'ᨒᨚᨁᨛ ᨕᨛᨔᨘ',
+'nologin'    => 'ᨙᨉᨄ ᨆᨄᨘᨊ ᨕᨀᨕᨘᨊᨛ? $1.',
+'gotaccount' => 'ᨄᨘᨑᨊᨗ ᨕᨛᨃ ᨕᨀᨘᨊᨛᨛ? $1.',
 'username'   => 'ᨕᨔᨛ ᨄᨁᨘᨊ:',
+
+# Edit page toolbar
+'bold_tip'   => 'ᨙᨈᨀᨛᨔᨛ ᨆᨕᨘᨇᨛ',
+'italic_tip' => 'ᨙᨈᨀᨛᨔᨛ ᨕᨗᨈᨒᨗᨀᨛ',
 
 # Edit pages
 'accmailtitle'     => 'Ada sandi ni riantarak.',

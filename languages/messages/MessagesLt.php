@@ -220,6 +220,7 @@ $messages = array(
 'permalink'         => 'Nuolatinė nuoroda',
 'print'             => 'Spausdinti',
 'edit'              => 'Redaguoti',
+'create'            => 'Sukurti',
 'editthispage'      => 'Redaguoti šį puslapį',
 'delete'            => 'Trinti',
 'deletethispage'    => 'Ištrinti šį puslapį',

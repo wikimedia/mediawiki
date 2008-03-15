@@ -394,7 +394,7 @@ $messages = array(
 'math_sample'     => 'فورمول دلته ځای کړی',
 'math_tip'        => 'شمېرپوهنيز فورمول (LaTeX)',
 'image_tip'       => 'خښه شوې دوتنه',
-'media_tip'       => 'د رسنيزې دوتنې تړنه',
+'media_tip'       => 'د دوتنې تړنه',
 'sig_tip'         => 'ستاسو لاسليک د وخت د ټاپې سره',
 
 # Edit pages
@@ -488,7 +488,7 @@ $messages = array(
 'prevn'                 => 'تېر $1',
 'nextn'                 => 'راتلونکي $1',
 'viewprevnext'          => '($1) ($2) ($3) ښکاره کول',
-'powersearch'           => 'لټون',
+'powersearch'           => 'پرمختللی لټون',
 'powersearchtext'       => 'په نوم-تشيالونو کې لټون:<br />$1<br />$2 لړليک بياګرځول شوی<br />د $3 $9 لټون',
 
 # Preferences page

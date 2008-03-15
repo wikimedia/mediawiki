@@ -12,6 +12,7 @@
  * @author Sp5uhe
  * @author Masti
  * @author Matma Rex
+ * @author Szczepan1990
  */
 
 $namespaceNames = array(
@@ -234,7 +235,7 @@ $messages = array(
 # Bits of text used by many pages
 'categories'               => 'Kategorie',
 'pagecategories'           => '{{PLURAL:$1|Kategoria|Kategorie|Kategorii}}',
-'category_header'          => 'Artykuły w kategorii "$1"',
+'category_header'          => 'Strony w kategorii "$1"',
 'subcategories'            => 'Podkategorie',
 'category-media-header'    => 'Pliki w kategorii "$1"',
 'category-empty'           => "''W tej kategorii nie ma obecnie artykułów ani plików.''",
@@ -250,7 +251,7 @@ $messages = array(
 * [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Komunikaty o nowych wersjach MediaWiki]',
 
 'about'          => 'O serwisie',
-'article'        => 'artykuł',
+'article'        => 'strona',
 'newwindow'      => '(otwiera się w nowym oknie)',
 'cancel'         => 'Anuluj',
 'qbfind'         => 'Znajdź',
@@ -286,7 +287,9 @@ $messages = array(
 'permalink'         => 'Bezpośredni link',
 'print'             => 'Drukuj',
 'edit'              => 'edytuj',
+'create'            => 'Utwórz',
 'editthispage'      => 'Edytuj tę stronę',
+'create-this-page'  => 'Utwórz tę stronę',
 'delete'            => 'Usuń',
 'deletethispage'    => 'Usuń tę stronę',
 'undelete_short'    => 'Odtwórz {{PLURAL:$1|jedną wersję|$1 wersje|$1 wersji}}',
@@ -383,7 +386,7 @@ $messages = array(
 'red-link-title'          => '$1 (jeszcze nie utworzona)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
-'nstab-main'      => 'Artykuł',
+'nstab-main'      => 'Strona',
 'nstab-user'      => 'Strona użytkownika',
 'nstab-media'     => 'Media',
 'nstab-special'   => 'Strona specjalna',

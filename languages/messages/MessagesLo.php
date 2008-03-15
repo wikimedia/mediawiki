@@ -130,6 +130,7 @@ $messages = array(
 'printableversion' => 'ສະບັບພິມໄດ້',
 'permalink'        => 'ລິ້ງຄ໌ຖາວອນ',
 'edit'             => 'ດັດແກ້',
+'create'           => 'ສ້າງ',
 'editthispage'     => 'ດັດແກ້ໜ້ານີ້',
 'delete'           => 'ລຶບ',
 'deletethispage'   => 'ລຶບໜ້ານີ້',
@@ -617,7 +618,7 @@ $messages = array(
 'blocklogentry'     => 'ໄດ້ຫ້າມ "[[$1]]" ຈົນຮອດ $2 $3',
 
 # Move page
-'move-page-legend'                => 'ຍ້າຍໜ້າ',
+'move-page-legend'        => 'ຍ້າຍໜ້າ',
 'movearticle'             => 'ຍ້າຍໜ້າ:',
 'movenologin'             => 'ຍັງບໍ່ໄດ້ເຊັນເຂົ້າເທື່ອ',
 'newtitle'                => 'ຫາ ຫົວຂໍ້ໃໝ່',
