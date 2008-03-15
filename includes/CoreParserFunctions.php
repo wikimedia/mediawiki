@@ -138,8 +138,12 @@ class CoreParserFunctions {
 		}
 	}
 
-	static function formatNum( $parser, $num = '' ) {
-		return $parser->getFunctionLang()->formatNum( $num );
+	static function formatNum( $parser, $num = '', $raw = null) {
+		if ( self::israw( $raw ) ) {
+			return $parser->getFunctionLang()->parseFormattedNumber( $num );
+		} else {
+			return $parser->getFunctionLang()->formatNum( $num );
+		}
 	}
 
 	static function grammar( $parser, $case = '', $word = '' ) {
