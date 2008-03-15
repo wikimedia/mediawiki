@@ -921,11 +921,12 @@ abstract class File {
 	 * Cache purging is done; logging is caller's responsibility.
 	 *
 	 * @param $reason
+	 * @param $Suppress, hide content from sysops?
 	 * @return true on success, false on some kind of failure
 	 * STUB
 	 * Overridden by LocalFile
 	 */
-	function delete( $reason ) {
+	function delete( $reason, $suppress = false ) {
 		$this->readOnlyError();
 	}
 
@@ -937,12 +938,13 @@ abstract class File {
 	 *
 	 * @param $versions set of record ids of deleted items to restore,
 	 *                    or empty to restore all revisions.
+	 * @param $unsuppress, remove restrictions on content upon restoration?
 	 * @return the number of file revisions restored if successful,
 	 *         or false on failure
 	 * STUB
 	 * Overridden by LocalFile
 	 */
-	function restore( $versions=array(), $Unsuppress=false ) {
+	function restore( $versions=array(), $unsuppress=false ) {
 		$this->readOnlyError();
 	}
 

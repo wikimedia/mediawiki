@@ -48,6 +48,9 @@ class FileDeleteForm {
 		
 		$this->oldimage = $wgRequest->getText( 'oldimage', false );
 		$token = $wgRequest->getText( 'wpEditToken' );
+		# Flag to hide all contents of the archived revisions
+		$suppress = $wgRequest->getVal( 'wpSuppress' ) && $wgUser->isAllowed('deleterevision');
+		
 		if( $this->oldimage && !$this->isValidOldSpec() ) {
 			$wgOut->showUnexpectedValueError( 'oldimage', htmlspecialchars( $this->oldimage ) );
 			return;
@@ -75,7 +78,7 @@ class FileDeleteForm {
 				
 			$article = null;
 			if( $this->oldimage ) {
-				$status = $this->file->deleteOld( $this->oldimage, $reason );
+				$status = $this->file->deleteOld( $this->oldimage, $reason, $suppress );
 				if( $status->ok ) {
 					// Need to do a log item
 					$log = new LogPage( 'delete' );
@@ -85,11 +88,11 @@ class FileDeleteForm {
 					$log->addEntry( 'delete', $this->title, $logComment );
 				}
 			} else {
-				$status = $this->file->delete( $reason );
+				$status = $this->file->delete( $reason, $suppress );
 				if( $status->ok ) {
 					// Need to delete the associated article
 					$article = new Article( $this->title );
-					$article->doDeleteArticle( $reason );
+					$article->doDeleteArticle( $reason, $suppress );
 				}
 			}
 			if( $status->isGood() ) wfRunHooks('FileDeleteComplete', array( 
@@ -118,6 +121,14 @@ class FileDeleteForm {
 		global $wgOut, $wgUser, $wgRequest, $wgContLang;
 		$align = $wgContLang->isRtl() ? 'left' : 'right';
 
+		if( $wgUser->isAllowed( 'deleterevision' ) ) {
+			$suppress = "<tr id=\"wpDeleteSuppressRow\" name=\"wpDeleteSuppressRow\"><td></td><td>";
+			$suppress .= Xml::checkLabel( wfMsg( 'revdelete-suppress' ), 'wpSuppress', 'wpSuppress', false, array( 'tabindex' => '2' ) );
+			$suppress .= "</td></tr>";
+		} else {
+			$suppress = '';
+		}
+
 		$form = Xml::openElement( 'form', array( 'method' => 'post', 'action' => $this->getAction() ) ) .
 			Xml::openElement( 'fieldset' ) .
 			Xml::element( 'legend', null, wfMsg( 'filedelete-legend' ) ) .
@@ -142,6 +153,7 @@ class FileDeleteForm {
 					Xml::input( 'wpReason', 60, $wgRequest->getText( 'wpReason' ), array( 'type' => 'text', 'maxlength' => '255', 'tabindex' => '2', 'id' => 'wpReason' ) ) .
 				"</td>
 			</tr>
+			{$suppress}
 			<tr>
 				<td></td>
 				<td>" .

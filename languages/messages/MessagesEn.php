@@ -1955,6 +1955,7 @@ Here are the current settings for the page <strong>$1</strong>:',
 # Undelete
 'undelete'                     => 'View deleted pages',
 'undeletepage'                 => 'View and restore deleted pages',
+'undeletepagetitle'            => '\'\'\'The following consists of deleted revisions of [[:$1]]\'\'\'.',
 'viewdeletedpage'              => 'View deleted pages',
 'undeletepagetext'             => 'The following pages have been deleted but are still in the archive and can be restored. The archive may be periodically cleaned out.',
 'undeleteextrahelp'            => "To restore the entire page, leave all checkboxes deselected and click '''''Restore'''''. To perform a selective restoration, check the boxes corresponding to the revisions to be restored, and click '''''Restore'''''. Clicking '''''Reset''''' will clear the comment field and all checkboxes.",
