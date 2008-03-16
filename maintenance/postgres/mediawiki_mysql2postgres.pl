@@ -274,7 +274,7 @@ $verbose and warn qq{Writing truncates to empty existing tables\n};
 for my $t (@torder, 'objectcache', 'querycache') {
 	next if $t eq '---';
 	my $tname = $special{$t}||$t;
-	printf qq{TRUNCATE TABLE %-20s\n}, qq{"$tname"};
+	printf qq{TRUNCATE TABLE %-20s;\n}, qq{"$tname"};
 }
 print "\n\n";
 
