@@ -1455,6 +1455,7 @@ Jen la aktualaj valoroj por la paĝo <strong>$1</strong>:',
 # Undelete
 'undelete'                     => 'Restarigu forigitajn paĝojn',
 'undeletepage'                 => 'Montru kaj restarigu forigitajn paĝojn',
+'undeletepagetitle'            => "'''Jen la forigitaj revizioj de [[:$1]]'''.",
 'viewdeletedpage'              => 'Rigardu forigitajn paĝojn',
 'undeletepagetext'             => 'La jenaj paĝoj estis forigitaj, sed ankoraŭ restas arkivitaj,
 kaj oni povas restarigi ilin. La arkivo povas esti malplenigita periode.',

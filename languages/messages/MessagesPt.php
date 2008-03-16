@@ -319,7 +319,9 @@ $messages = array(
 'permalink'         => 'Ligação permanente',
 'print'             => 'Imprimir',
 'edit'              => 'Editar',
+'create'            => 'Iniciar',
 'editthispage'      => 'Editar esta página',
+'create-this-page'  => 'Criar/iniciar esta página',
 'delete'            => 'Eliminar',
 'deletethispage'    => 'Eliminar esta página',
 'undelete_short'    => 'Restaurar {{PLURAL:$1|uma edição|$1 edições}}',
@@ -902,6 +904,8 @@ Certifique-se de que tal alteração manterá a continuidade das ações.
 'prevn'                 => 'anteriores $1',
 'nextn'                 => 'próximos $1',
 'viewprevnext'          => 'Ver ($1) ($2) ($3).',
+'search-result-size'    => '$1 ({{PLURAL:$2|1 palavra|$2 palavras}})',
+'search-result-score'   => 'Relevancia: $1%',
 'showingresults'        => "A seguir {{PLURAL:$1|é mostrado '''um''' resultado|são mostrados até '''$1''' resultados}}, iniciando no '''$2'''º.",
 'showingresultsnum'     => "A seguir {{PLURAL:$3|é mostrado '''um''' resultado|são mostrados '''$3''' resultados}}, iniciando com o '''$2'''º.",
 'nonefound'             => '<strong>Nota</strong>: pesquisas mal sucedidas são geralmente causadas devido ao uso de palavras muito comuns como "tem" e "de",
@@ -1428,6 +1432,7 @@ Se desejar remover a página da sua lista de vigiados clique em \"Desinteressar-
 'unwatch'              => 'Desinteressar-se',
 'unwatchthispage'      => 'Parar de vigiar esta página',
 'notanarticle'         => 'Não é uma página de conteúdo',
+'notvisiblerev'        => 'Edição eliminada',
 'watchnochange'        => 'Nenhum dos itens vigiados foram editados no período exibido.',
 'watchlist-details'    => '{{PLURAL:$1|$1 página vigiada|$1 páginas vigiadas}}, excluindo páginas de discussão.',
 'wlheader-enotif'      => '* A notificação por email encontra-se activada.',
@@ -1575,6 +1580,7 @@ Esta é a configuração atual para a página <strong>$1</strong>:',
 # Undelete
 'undelete'                     => 'Ver páginas eliminadas',
 'undeletepage'                 => 'Ver e restaurar páginas eliminadas',
+'undeletepagetitle'            => "'''Seguem-se as edições eliminadas de [[:$1]]'''.",
 'viewdeletedpage'              => 'Ver páginas eliminadas',
 'undeletepagetext'             => 'As seguintes páginas foram eliminadas, apesar de ainda permanecem na base de dados e poderem ser restauradas. O arquivo pode periodicamente ser limpo.',
 'undeleteextrahelp'            => "Para restaurar a página inteira, deixe todas as caixas de selecção desseleccionadas e clique em '''''Restaurar'''''. Para efectuar uma restauração selectiva, seleccione as caixas correspondentes às
@@ -1753,7 +1759,8 @@ Por favor, confirme que você realmente pretende fazer isso e que vai destrancar
 'databasenotlocked'   => 'A base de dados não encontra-se bloqueada.',
 
 # Move page
-'move-page-legend'                => 'Mover página',
+'move-page'               => 'Mover $1',
+'move-page-legend'        => 'Mover página',
 'movepagetext'            => "Utilizando o seguinte formulário você poderá renomear uma página, movendo todo o histórico para o novo título. O título anterior será transformado num redireccionamento para o novo.
 
 Links para as páginas antigas não serão mudados; certifique-se de verificar por redireccionamentos quebrados ou duplos. Você é responsável por certificar-se que os links continuam apontando para onde eles deveriam apontar.

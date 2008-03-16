@@ -587,6 +587,8 @@ Ne Spiekerenge kon dän Siedeninhoold fernäile. Dit geböärt bietiede truch ju
 'nonunicodebrowser'         => '<strong style="color: #330000; background: #f0e000;">Oachtenge: Dien Browser kon Unicode-Teekene nit gjucht feroarbaidje. Benutse jädden n uur Browser uum Artikkele tou beoarbaidjen.</strong>',
 'editingold'                => '<strong>OACHTENGE: Jie beoarbaidje ne oolde Version fon disse Artikkel. Wan Jie spiekerje, wäide alle näiere Versione uurschrieuwen.</strong>',
 'yourdiff'                  => 'Unnerscheede',
+'copyrightwarning'          => 'Aal Biedraage tou dän {{SITENAME}} wäide betrachted as stoundend unner ju $2 (sjuch fääre: "$1"). Fals Jie nit moaten dät Jou Oarbaid hier fon uur Ljuude ferannerd un fersprat wäd, dan drukke Jie nit ap "Spiekerje".<br />
+Iek fersicherje hiermäd, dät iek dän Biedraach sälwen ferfoated hääbe blw. dät hie neen froamd Gjucht ferlätset un willigje ien, him unner dän GNU-Lizenz für freie Dokumentation tou fereepentlikjen.',
 'copyrightwarning2'         => 'Aal Biedraage tou dän {{SITENAME}} konnen fon uur Ljuude ferannerd un fersprat wäide. Fals Jie nit moaten dät Jou Oarbaid hier fon uur Ljuude ferannerd un fersprat wäd, dan drukke Jie nit ap "Spiekerje".
 
 Jie fersicherje hiermäd uk, dät Jie dän Biedraach sälwen ferfoated hääbe blw. dät hie neen froamd Gjucht ferlätset (sjuch fääre: $1).',
@@ -935,7 +937,7 @@ Jädden beoachtje Jie, dät, juust as bie do Artikkele, uur Benutsere hiere Doat
 'filedesc'                    => 'Beschrieuwenge, Wälle',
 'fileuploadsummary'           => 'Beschrieuwenge/Wälle:',
 'filestatus'                  => 'Copyright-Stoatus:',
-'filesource'                  => 'Wälle:',
+'filesource'                  => 'Wälle',
 'uploadedfiles'               => 'Hoochleedene Doatäie',
 'ignorewarning'               => 'Woarschauenge ignorierje un Doatäi daach spiekerje.',
 'ignorewarnings'              => 'Woarschauengen ignorierje',
@@ -973,8 +975,8 @@ Pröif, of du ju Bielde in fulle Aplöösenge foarlääsen hääst un leed ju un
 'uploadscripted'              => 'Disse Doatäi änthaalt HTML- of Scriptcode, ju bie Fersjoon fon aan Webbrowser apfierd wäide kuude.',
 'uploadcorrupt'               => 'Ju Doatäi is beschäädiged of häd n falsken Noome. Uurpröiwe jädden ju Doatäi un leede ju fonnäien hooch.',
 'uploadvirus'                 => 'Disse Doatäi änthaalt n Virus! Details: $1',
-'sourcefilename'              => 'Wälledoatäi:',
-'destfilename'                => 'Sielnoome:',
+'sourcefilename'              => 'Wälledoatäi',
+'destfilename'                => 'Sielnoome',
 'watchthisupload'             => 'Disse Siede beooboachtje',
 'filewasdeleted'              => 'Ne Doatäi mäd dissen Noome wuude al moal hoochleeden un intwisken wier läsked. Pröif toueerst dän Iendraach in $1, eer du ju Doatäi wuddelk spiekerst.',
 'upload-wasdeleted'           => "'''Woarschauenge: Du laatst ne Doatäi hooch, ju der al fröier läsked wuude.'''
@@ -997,7 +999,7 @@ Reek ju Doatäi n Noome, die dän Inhoold beeter beschrift.',
 'upload-curl-error28'      => 'Toufuul Tied nöödich foar dät Hoochleeden',
 'upload-curl-error28-text' => 'Ju Siede bruukt tou loange foar ne Oantwoud. Pröif, of ju Siede online is, täif n kuuten Moment un fersäik et dan fonnäien. Dät kon sinful weese, n näien Fersäik tou ne uur Tied tou probierjen..',
 
-'license'            => 'Lizenz:',
+'license'            => 'Lizenz',
 'nolicense'          => 'naan Foaruutwoal',
 'license-nopreview'  => '(der is neen Foarschau ferföigboar)',
 'upload_source_url'  => ' (gultige, eepentelk tougongelke URL)',

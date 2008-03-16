@@ -920,8 +920,8 @@ Si tienes esta imagen a toda resolución súbela, si no, por favor cambia el nom
 'uploadscripted'              => 'Este archivo contiene script o código HTML que puede ser interpretado erróneamente por un navegador.',
 'uploadcorrupt'               => 'Este archivo está corrupto o la extensión indicada no se corresponde con el tipo de archivo. Por favor, comprueba el archivo y vuelve a subirlo.',
 'uploadvirus'                 => '¡El archivo contiene un virus! Detalles: $1',
-'sourcefilename'              => 'Nombre del archivo origen:',
-'destfilename'                => 'Nombre del archivo de destino:',
+'sourcefilename'              => 'Nombre del archivo origen',
+'destfilename'                => 'Nombre del archivo de destino',
 'watchthisupload'             => 'Vigilar esta página',
 'filewasdeleted'              => 'Un archivo con este nombre se subió con anterioridad y posteriormente ha sido borrado. Deberías revisar el $1 antes de subirlo de nuevo.',
 

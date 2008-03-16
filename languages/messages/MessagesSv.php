@@ -1531,7 +1531,7 @@ Nuvarande skrivskyddsinställning för sidan <strong>$1</strong> är:',
 # Undelete
 'undelete'                     => 'Återställ borttagna sidor',
 'undeletepage'                 => 'Visa och återställ borttagna sidor',
-'undeletepagetitle'            => "'''Dom följande innehållen av raderade versioner av [[:$1]]'''.",
+'undeletepagetitle'            => "'''Härunder visas en lista över raderade versioner av [[:$1]]'''.",
 'viewdeletedpage'              => 'Visa raderade sidor',
 'undeletepagetext'             => 'Följande sidor har blivit borttagna, men finns fortfarande i ett arkiv och kan återställas. Arkivet kan ibland rensas på gamla versioner.',
 'undeleteextrahelp'            => "* För att återställa alla versioner, välj '''Återställ''' utan att kryssa i några rutor. 

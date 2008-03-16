@@ -668,7 +668,6 @@ Kapau naʻe kole ia ʻe he tokotaha kehe, pea ʻosi hoʻo manatuʻi ʻo e leatap
 'newpages'                => 'Peesi foʻou',
 'newpages-username'       => 'Ko e ʻetita hono hingoa:',
 'ancientpages'            => 'Peesi motuʻa taha',
-'intl'                    => 'Fehokotaki fakalea kehe',
 'move'                    => 'ʻunu',
 'movethispage'            => 'ʻUnu e pēsí ni',
 'unusedimagestext'        => '<p>Kātaki, manatuʻi ʻoku lava ʻe ʻi ai ha ngaahi feituʻu fakamatamatakupenga mo honau fehokotaki ki heni, ko ia ai mahalo pē ʻoku moʻui ʻaupito ia, neongo ʻene hā ʻi he hokohoko ko ʻeni.</p>',
@@ -907,7 +906,7 @@ Vakai ki he [[Special:Log/delete|hokohoko tāmateʻi]] ki he lekooti ʻo e ngaah
 'databasenotlocked'   => 'ʻOku ʻikai lokaʻi ʻa e tānekingaʻilo',
 
 # Move page
-'move-page-legend'                => 'Peesi ʻunu',
+'move-page-legend'        => 'Peesi ʻunu',
 'movepagetext'            => "Ngāueʻaki ʻa e foomu ʻi lalo, ʻe toe fakahingoaʻi ʻa e pēsí mo hono hisitōliá.
 ʻE hoko ʻa e hingoa motuʻa ki he peesi leʻei ki he hingoa foʻou.
 ʻE ʻikai liliu ʻa e ngaahi fehokotaki ki he hingoa motuʻa, e taau te ke sivi ʻa e leʻeleʻei mo e leʻei maumau. Ko ho fatongia ʻe tuhu ai pē ngaahi fehokotaki ki ʻenau peesi totonu.

@@ -590,7 +590,6 @@ níor sábháladh é go fóill!'''",
 'previewconflict'        => 'San réamhamharc seo, feachann tú an téacs dé réir an eagarbhosca
 thuas mar a taispeáinfear é má sábháilfear é.',
 'editing'                => 'Ag athrú $1',
-'editinguser'            => 'Ag athrú $1',
 'editingsection'         => 'Ag athrú $1 (mir)',
 'editingcomment'         => 'Ag athrú $1 (tuairisc)',
 'editconflict'           => 'Coimhlint athraithe: $1',
@@ -750,6 +749,7 @@ den am an freastalaí (UTC).',
 # User rights
 'userrights-user-editname'   => 'Iontráil ainm úsáideora:',
 'editusergroup'              => 'Cuir Grúpái Úsáideoirí In Eagar',
+'editinguser'                => 'Ag athrú $1',
 'userrights-editusergroup'   => 'Cuir grúpaí na n-úsáideoirí in eagar',
 'saveusergroups'             => 'Sábháil Grúpaí na n-Úsáideoirí',
 'userrights-groupsmember'    => 'Ball de:',
@@ -953,7 +953,6 @@ ghnáth tugann sé sin an sprioc-alt "fíor".',
 'newpages'                => 'Leathanaigh nua',
 'newpages-username'       => 'Ainm úsáideora:',
 'ancientpages'            => 'Na leathanaigh is sine',
-'intl'                    => 'Naisc idirtheangacha',
 'move'                    => 'Athainmnigh',
 'movethispage'            => 'Athainmnigh an leathanach seo',
 'unusedimagestext'        => '<p>Tabhair faoi deara gur féidir le shuímh
@@ -1279,7 +1278,7 @@ Cinntigh go bhfuil an scéal seo d'intinn agat.",
 'databasenotlocked'   => 'Níl an bunachar sonraí faoi ghlas.',
 
 # Move page
-'move-page-legend'                => 'Athainmnigh an leathanach',
+'move-page-legend'        => 'Athainmnigh an leathanach',
 'movepagetext'            => "Úsáid an foirm seo thíos chun leathanach a hathainmniú. Aistreofar a chuid stair go léir chuig an teideal nua.
 Déanfar leathanach athsheolaidh den sean-theideal chuig an teideal nua. Ní athreofar naisc chuig sean-teidil an leathanaigh. Bí cinnte go ndéanfá
 [[Special:Maintenance|cuardach]] ar athsheolaidh dubáilte nó briste. Tá tú freagrach i cinnteach go leanann naisc chuig an pointe a bhfuil siad ag aimsiú ar.

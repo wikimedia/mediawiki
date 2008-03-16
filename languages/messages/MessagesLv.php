@@ -611,7 +611,7 @@ Lūdzu, ņem vērā, ka tāpat kā citas wiki lapas arī tevis augšuplādētos 
 'filedesc'             => 'Kopsavilkums',
 'fileuploadsummary'    => 'Informācija par failu:',
 'filestatus'           => 'Autortiesību statuss:',
-'filesource'           => 'Izejas kods:',
+'filesource'           => 'Izejas kods',
 'uploadedfiles'        => 'Augšupielādēja failus',
 'ignorewarning'        => 'Ignorēt brīdinājumu un saglabāt failu.',
 'ignorewarnings'       => 'Ignorēt visus brīdinājumus',
@@ -629,11 +629,11 @@ Lūdzu, ņem vērā, ka tāpat kā citas wiki lapas arī tevis augšuplādētos 
 'uploaddisabledtext'   => 'Falu augšupielāde šajā wiki ir atslēgta.',
 'uploadcorrupt'        => 'Šis fails ir bojāts, vai arī tam ir nekorekts paplašinājums. Lūdzu pārbaudi failu un augšupielādē vēlreiz.',
 'uploadvirus'          => 'Šis fails satur vīrusu! Sīkāk: $1',
-'sourcefilename'       => 'Augšuplādējamais fails:',
-'destfilename'         => 'Vajadzīgais faila nosaukums:',
+'sourcefilename'       => 'Augšuplādējamais fails',
+'destfilename'         => 'Vajadzīgais faila nosaukums',
 'watchthisupload'      => 'Uzraudzīt šo lapu',
 
-'license' => 'Licence:',
+'license' => 'Licence',
 
 # Image list
 'imagelist'                 => 'Attēlu uzskaitījums',

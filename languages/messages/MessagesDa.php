@@ -9,6 +9,7 @@
  * @author Jon Harald Søby
  * @author M.M.S.
  * @author Peter Andersen
+ * @author Siebrand
  */
 
 $namespaceNames = array(
@@ -295,7 +296,9 @@ $messages = array(
 'permalink'         => 'Permanent henvisning',
 'print'             => 'Udskriv',
 'edit'              => 'Redigér',
+'create'            => 'Oprette',
 'editthispage'      => 'Redigér side',
+'create-this-page'  => 'Oprette denne side',
 'delete'            => 'Slet',
 'deletethispage'    => 'Slet side',
 'undelete_short'    => 'Fortryd sletning af {{PLURAL:$1|$1 version|$1 versioner}}',
@@ -854,6 +857,7 @@ Vær opmæksom på at bevare kontinuiteten i sidehistorikken.
 'prevn'                 => 'forrige $1',
 'nextn'                 => 'næste $1',
 'viewprevnext'          => 'Vis ($1) ($2) ($3).',
+'search-result-size'    => '$1 ({{PLURAL:$2|1 ord|$2 ord}})',
 'showingresults'        => 'Nedenfor vises <b>$1</b> {{PLURAL:$1|resultat|resultater}} startende med nummer <b>$2</b>.',
 'showingresultsnum'     => 'Herunder vises <b>$3</b> {{PLURAL:$3|resultat|resultater}} startende med nummer <b>$2</b>.',
 'nonefound'             => '<strong>Bemærk</strong>: Søgning uden resultat skyldes at man søger efter almindelige ord som "har" og "fra", der ikke er indekseret, eller at man har angivet mere end ét søgeord (da kun sider indeholdende alle søgeordene vil blive fundet).',

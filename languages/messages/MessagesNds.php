@@ -935,7 +935,7 @@ de aver nich jümmer den aktuellsten Stand weerspegelt.<p>',
 'userrights-available-remove-self' => 'Du kannst di sülvst ut {{PLURAL:$2|disse Grupp|disse Gruppen}} rutnehmen: $1.',
 'userrights-no-interwiki'          => 'Du hest nich de Rechten, Brukerrechten in annere Wikis to setten.',
 'userrights-nodatabase'            => 'Datenbank $1 gifft dat nich oder is nich lokal.',
-'userrights-nologin'               => 'Du musst mit en Administrater-Brukerkonto [[{{#special:Userlogin}}|anmellt]] wesen, dat du Brukerrechten ännern kannst.',
+'userrights-nologin'               => 'Du musst mit en Administrater-Brukerkonto [[Special:Userlogin|anmellt]] wesen, dat du Brukerrechten ännern kannst.',
 'userrights-notallowed'            => 'Du hest nich de Rechten, Brukerrechten to setten.',
 
 # Groups

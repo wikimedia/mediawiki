@@ -863,7 +863,7 @@ Xin hãy bảo đảm tính liên tục của lịch sử trang.
 'qbsettings-floatingleft'  => 'Nổi bên trái',
 'qbsettings-floatingright' => 'Nổi bên phải',
 'changepassword'           => 'Đổi mật khẩu',
-'skin'                     => 'Ngoại hình',
+'skin'                     => 'Hình dạng',
 'math'                     => 'Công thức toán',
 'dateformat'               => 'Kiểu ngày tháng',
 'datedefault'              => 'Không lựa chọn',

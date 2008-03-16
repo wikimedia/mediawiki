@@ -425,7 +425,7 @@ blocked IP addresses are not listed. See the [[{{ns:special}}:Ipblocklist|IP blo
 the list of currently operational bans and blocks.',
 
 # Move page
-'move-page-legend'                => 'Mindhah kaca',
+'move-page-legend'        => 'Mindhah kaca',
 'movearticle'             => 'Pindhah kaca',
 'movenologin'             => 'Durung mlebu log',
 'movenologintext'         => 'Panjenengan kudu dadi panganggo sing wis ndaftar lan wis [[{{ns:special}}:Userlogin|mlebu log]] kanggo mindhah kaca.',

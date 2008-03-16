@@ -1505,6 +1505,7 @@ Contino se i amuestran as opzions autuals d'a pachina <strong>$1</strong>:",
 # Undelete
 'undelete'                     => 'Beyer pachinas borratas',
 'undeletepage'                 => 'Beyer y restaurar pachinas borratas',
+'undeletepagetitle'            => "'''Contino s'amuestran as bersión borratas de [[:$1]]'''.",
 'viewdeletedpage'              => 'Beyer pachinas borratas',
 'undeletepagetext'             => "As pachinas siguiens han siu borradas, pero encara son en l'archibo y podría estar restauradas. El archibo se borra periodicamén.",
 'undeleteextrahelp'            => "Ta restaurar a pachina antera con todas as bersions, deixe todas as caixetas sin siñalar y prete '''''Restaurar!'''''. Ta restaurar sólo belunas d'as bersions, siñale as caixetas correspondients á las bersions que quiere restaurar y punche dimpués '''''Restaurar!'''''. Punchando '''''Prenzipiar''''' se borrará o comentario y se tirarán os siñals d'as caixetas.",
