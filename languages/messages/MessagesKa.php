@@ -240,7 +240,6 @@ $messages = array(
 'aboutpage'         => 'Project:შესახებ',
 'bugreports'        => 'ანგარიში შეცდომის შესახებ',
 'bugreportspage'    => 'Project:ანგარიში შეცდომის შესახებ',
-'copyright'         => 'შინაარსი წარმოდგენილია <a class=\'internal\' href="/wiki/GFDL">GFDL</a> ლიცენზიის თანახმად.<br />ვიკიპედია<sup>®</sup> კორპ. ფონდი ვიკიმედიის რეგისტრირებული საფირმო ნიშანია.<br />',
 'copyrightpagename' => 'ვიკიპედია საავტორო უფლებები',
 'copyrightpage'     => '{{ns:project}}:საავტორო უფლებები',
 'currentevents'     => 'მიმდინარე მოვლენები',

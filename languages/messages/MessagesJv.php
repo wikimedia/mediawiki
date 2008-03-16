@@ -239,9 +239,6 @@ Yen ora sengaja tekan kene, bisa ngeklik pencetan '''back''' wae.",
 'editconflict'          => 'Konflik sunting: $1',
 'yourtext'              => 'Seratan Panjenengan',
 'yourdiff'              => 'Bentenipun',
-'copyrightwarning'      => 'Tulung dipun-gatosaken menawi sedaya kontribusi kanggé {{SITENAME}} punika dipunanggep dipunluncuraken miturut $2 GNU (mangga priksanen $1 kangge detailipun).
-Menawi panjenengan mboten kersa menawi seratan panjenengan bakal dipunsunting kaliyan dipunsebar, sampun dipundèkèk ing ngriki.<br>
-Panjenengan ugi janji menawi punapa-punapa ingkang kaserat ing ngriki, karyanipun panjenengan piyambak, utawi dipunsalin saking sumber bébas. <strong>SAMPUN NDEKEK KARYA INGKANG DIPUNREKSA DENING UNDANG-UNDANG HAK CIPTA TANPA IDIN!</strong>',
 'protectedpagewarning'  => '<strong>PÈNGET:  Kaca puniki dipunkunci dados namung para pangurus kémawon ingkang saged nyunting puniki.</strong>',
 'nocreatetext'          => 'Situs iki ngwatesi panjengan ndamel kaca anyar. Panjenengan bisa bali lan nyunting kaca sing wis ana, utawa mangga [[{{ns:special}}:Userlogin|mlebu log utawa ndaftar]]',
 
