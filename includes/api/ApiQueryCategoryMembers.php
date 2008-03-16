@@ -51,15 +51,9 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 
 		$params = $this->extractRequestParams();
 
-		if (is_null($params['category'])) {
-			if (is_null($params['title']))
-				$this->dieUsage("Either the cmcategory or the cmtitle parameter is required", 'notitle');
-			else
-				$categoryTitle = Title::newFromText($params['title']);
-		} else if(is_null($params['title']))
-			$categoryTitle = Title::makeTitleSafe(NS_CATEGORY, $params['category']);
-		else
-			$this->dieUsage("The cmcategory and cmtitle parameters can't be used together", 'titleandcategory');
+		if (is_null($params['category'])) 
+			$this->dieUsage("The cmtitle parameter is required", 'notitle');
+		$categoryTitle = Title::makeTitleSafe(NS_CATEGORY, $params['category']);
 
 		if ( is_null( $categoryTitle ) || $categoryTitle->getNamespace() != NS_CATEGORY )
 			$this->dieUsage("The category name you entered is not valid", 'invalidcategory');
@@ -182,7 +176,6 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 	public function getAllowedParams() {
 		return array (
 			'title' => null,
-			'category' => null, // DEPRECATED, will be removed in early March
 			'prop' => array (
 				ApiBase :: PARAM_DFLT => 'ids|title',
 				ApiBase :: PARAM_ISMULTI => true,
@@ -239,7 +232,6 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 			'end' => 'Timestamp to end listing at',
 			'continue' => 'For large categories, give the value retured from previous query',
 			'limit' => 'The maximum number of pages to return.',
-			'category' => 'DEPRECATED. Like title, but without the Category: prefix.',
 		);
 	}
 
