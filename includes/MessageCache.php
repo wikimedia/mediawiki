@@ -124,7 +124,7 @@ class MessageCache {
 	}
 
 	function loadFromScript( $hash ) {
-		trigger_error( 'Use of ' . __METHOD__ . ' is deprecated', E_USER_NOTICE );
+		wfDeprecated( __METHOD__ );
 		$this->loadFromLocal( $hash );
 	}
 	
