@@ -1162,7 +1162,8 @@ EOT
 	</form>" );
 		$uploadfooter = wfMsgNoTrans( 'uploadfooter' );
 		if( $uploadfooter != '-' && !wfEmptyMsg( 'uploadfooter', $uploadfooter ) ){
-			$wgOut->addWikiText( $uploadfooter );
+			$wgOut->addWikiText( Xml::tags( 'div',
+				array( 'id' => 'mw-upload-footer-message' ), $uploadfooter ) );
 		}
 	}
 
