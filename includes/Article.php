@@ -2728,8 +2728,9 @@ class Article {
 			}
 			$cdel = "(<small>$cdel</small>) ";
 		}
-		
-		$userlinks = $sk->revUserTools( $revision, true );
+		# Show user links if allowed to see them. Normally they
+		# are hidden regardless, but since we can already see the text here...
+		$userlinks = $sk->revUserTools( $revision, false );
 
 		$m = wfMsg( 'revision-info-current' );
 		$infomsg = $current && !wfEmptyMsg( 'revision-info-current', $m ) && $m != '-'
