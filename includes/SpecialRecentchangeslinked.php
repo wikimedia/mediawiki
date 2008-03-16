@@ -68,7 +68,7 @@ function wfSpecialRecentchangeslinked( $par = NULL ) {
 
 	$GROUPBY = "
 	GROUP BY rc_cur_id,rc_namespace,rc_title,
-		rc_user,rc_comment,rc_user_text,rc_timestamp,rc_minor,rc_deleted,
+		rc_user,rc_comment,rc_user_text,rc_timestamp,rc_minor,rc_log_type,rc_log_action,rc_params,rc_deleted,
 		rc_new, rc_id, rc_this_oldid, rc_last_oldid, rc_bot, rc_patrolled, rc_type, rc_old_len, rc_new_len
 " . ($uid ? ",wl_user" : "") . "
 		ORDER BY rc_timestamp DESC
@@ -95,6 +95,9 @@ function wfSpecialRecentchangeslinked( $par = NULL ) {
 				rc_type,
 				rc_old_len,
 				rc_new_len,
+				rc_log_type,
+				rc_log_action,
+				rc_params,
 				rc_deleted
 " . ($uid ? ",wl_user" : "") . "
 	    FROM $categorylinks, $recentchanges
@@ -125,6 +128,9 @@ $GROUPBY
 			rc_type,
 			rc_old_len,
 			rc_new_len,
+			rc_log_type,
+			rc_log_action,
+			rc_params,
 			rc_deleted
 " . ($uid ? ",wl_user" : "") . "
    FROM $pagelinks, $recentchanges
