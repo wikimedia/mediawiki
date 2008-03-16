@@ -25,7 +25,7 @@
  * 	rc_patrolled    boolean whether or not someone has marked this edit as patrolled
  * 	rc_old_len	integer byte length of the text before the edit
  * 	rc_new_len	the same after the edit
- *	rc_deleted		partial deletion
+  *	rc_deleted		partial deletion
  *	rc_logid		the log_id value for this log entry (or zero)
  *  rc_log_type		the log type (or null)
  *	rc_log_action	the log action (or null)
@@ -296,12 +296,7 @@ class RecentChange
 			'rc_patrolled'	=> 0,
 			'rc_new'	=> 0,  # obsolete
 			'rc_old_len'	=> $oldSize,
-			'rc_new_len'	=> $newSize,
-			'rc_deleted'	=> 0,
-			'rc_logid'		=> 0,
-			'rc_log_type'	=> null,
-			'rc_log_action'	=> '',
-			'rc_params'		=> ''
+			'rc_new_len'	=> $newSize
 		);
 
 		$rc->mExtra =  array(
@@ -348,14 +343,9 @@ class RecentChange
 			'rc_moved_to_title' => '',
 			'rc_ip'             => $ip,
 			'rc_patrolled'      => 0,
-			'rc_new'	    	=> 1, # obsolete
+			'rc_new'	    => 1, # obsolete
 			'rc_old_len'        => 0,
-			'rc_new_len'	    => $size,
-			'rc_deleted'		=> 0,
-			'rc_logid'			=> 0,
-			'rc_log_type'		=> null,
-			'rc_log_action'		=> '',
-			'rc_params'			=> ''
+			'rc_new_len'	    => $size
 		);
 
 		$rc->mExtra =  array(
@@ -402,11 +392,6 @@ class RecentChange
 			'rc_patrolled'	=> 1,
 			'rc_old_len'	=> NULL,
 			'rc_new_len'	=> NULL,
-			'rc_deleted'	=> 0,
-			'rc_logid'		=> 0, # notifyMove not used anymore
-			'rc_log_type'	=> null,
-			'rc_log_action'	=> '',
-			'rc_params'		=> ''
 		);
 
 		$rc->mExtra = array(
@@ -425,9 +410,10 @@ class RecentChange
 		RecentChange::notifyMove( $timestamp, $oldTitle, $newTitle, $user, $comment, $ip, true );
 	}
 
-	# A log entry is different to an edit in that previous revisions are not kept
+	# A log entry is different to an edit in that previous revisions are
+	# not kept
 	public static function notifyLog( $timestamp, &$title, &$user, $comment, $ip='',
-	   $type, $action, $target, $logComment, $params, $newId=0 )
+	   $type, $action, $target, $logComment, $params )
 	{
 		global $wgRequest;
 
@@ -442,14 +428,14 @@ class RecentChange
 		$rc->mAttribs = array(
 			'rc_timestamp'	=> $timestamp,
 			'rc_cur_time'	=> $timestamp,
-			'rc_namespace'	=> $target->getNamespace(),
-			'rc_title'	=> $target->getDBkey(),
+			'rc_namespace'	=> $title->getNamespace(),
+			'rc_title'	=> $title->getDBkey(),
 			'rc_type'	=> RC_LOG,
 			'rc_minor'	=> 0,
-			'rc_cur_id'	=> $target->getArticleID(),
+			'rc_cur_id'	=> $title->getArticleID(),
 			'rc_user'	=> $user->getID(),
 			'rc_user_text'	=> $user->getName(),
-			'rc_comment'	=> $logComment,
+			'rc_comment'	=> $comment,
 			'rc_this_oldid'	=> 0,
 			'rc_last_oldid'	=> 0,
 			'rc_bot'	=> $user->isAllowed( 'bot' ) ? $wgRequest->getBool( 'bot' , true ) : 0,
@@ -460,11 +446,6 @@ class RecentChange
 			'rc_new'	=> 0, # obsolete
 			'rc_old_len'	=> NULL,
 			'rc_new_len'	=> NULL,
-			'rc_deleted'	=> 0,
-			'rc_logid'		=> $newId,
-			'rc_log_type'	=> $type,
-			'rc_log_action'	=> $action,
-			'rc_params'		=> $params
 		);
 		$rc->mExtra =  array(
 			'prefixedDBkey'	=> $title->getPrefixedDBkey(),
@@ -511,11 +492,12 @@ class RecentChange
 			'rc_new' => $row->page_is_new, # obsolete
 			'rc_old_len' => $row->rc_old_len,
 			'rc_new_len' => $row->rc_new_len,
-			'rc_deleted'  => $row->rc_deleted,
-			'rc_logid'	=> $row->rc_logid,
-			'rc_log_type'	=> $row->rc_log_type,
-			'rc_log_action'	=> $row->rc_log_action,
-			'rc_params'	=> $row->rc_params
+			'rc_params' => isset($row->rc_params) ? $row->rc_params : '',
+			'rc_log_type' => isset($row->rc_log_type) ? $row->rc_log_type : null,
+			'rc_log_action' => isset($row->rc_log_action) ? $row->rc_log_action : null,
+			'rc_log_id' => isset($row->rc_log_id) ? $row->rc_log_id: 0,
+			// this one REALLY should be set...
+			'rc_deleted' => isset($row->rc_deleted) ? $row->rc_deleted: 0,
 		);
 
 		$this->mExtra = array();
