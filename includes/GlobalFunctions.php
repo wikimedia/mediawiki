@@ -2433,3 +2433,11 @@ function wfMaxlagError( $host, $lag, $maxLag ) {
 		echo "Waiting for a database server: $lag seconds lagged\n";
 	}
 }
+
+/**
+ * Throws an E_USER_NOTICE saying that $function is deprecated
+ * @param string $function
+ */
+function wfDeprecated( $function ) {
+	trigger_error( "Use of $function is deprecated", E_USER_NOTICE );
+}
