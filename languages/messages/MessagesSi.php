@@ -7,7 +7,25 @@
  * @author Nike
  */
 
-
+$namespaceNames = array(
+	NS_MEDIA          => 'මාධ්‍යය',
+	NS_SPECIAL        => 'විශේෂ',
+	NS_TALK           => 'සාකච්ඡාව',
+	NS_USER           => 'පරිශීලක',
+	NS_USER_TALK      => 'පරිශීලක_සාකච්ඡාව',
+	# NS_PROJECT set by \$wgMetaNamespace
+	NS_PROJECT_TALK   => '$1_සාකච්ඡාව',
+	NS_IMAGE          => 'රූපය',
+	NS_IMAGE_TALK     => 'රූපය_සාකච්ඡාව',
+	NS_MEDIAWIKI      => 'විකිමාධ්‍ය',
+	NS_MEDIAWIKI_TALK => 'විකිමාධ්‍ය_සාකච්ඡාව',
+	NS_TEMPLATE       => 'සැකිල්ල',
+	NS_TEMPLATE_TALK  => 'සැකිල_සාකච්ඡාව',
+	NS_HELP           => 'උදවු',
+	NS_HELP_TALK      => 'උදව_සාකච්ඡාව',
+	NS_CATEGORY       => 'ප්‍රවර්ගය',
+	NS_CATEGORY_TALK  => 'ප්‍රවර්ග_සාකච්ඡාව',
+);
 
 $messages = array(
 'skinpreview' => '(පෙරදසුන)',
