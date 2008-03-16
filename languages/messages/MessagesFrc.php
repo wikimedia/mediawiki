@@ -515,7 +515,6 @@ Exemple:  {{ns:user}}:Foo/monobook.css (bon)  {{ns:user}}:Foo/Monobook.css (mauv
 <strong>Si ça ici est un changement juste, assayez donc encore.  Si ça travaille pas toujours, assayez de déconnecter et reconnecter.</strong>",
 'token_suffix_mismatch'     => "<strong>Votre changement pouvait pas être accepté parce que votre navigateur a mélangé les caractères de ponctuation dans l'indication des changements.  Le changement a été rejeté pour empêcher la corruption du texte de l'article.  Ça arrive des fois quand vous êtes après user un proxy sans nom.</strong>",
 'editing'                   => 'Changement de $1',
-'editinguser'               => 'Changement de <b>$1</b>',
 'editingsection'            => 'Changement de $1 (section)',
 'editingcomment'            => 'Changement de $1 (remarque)',
 'editconflict'              => 'Dispute de changement: $1',
@@ -641,6 +640,9 @@ Des autres administrateurs sus ce wiki ont la permission de voir et de rétablir
 # Preferences page
 'preferences'   => 'Réglage',
 'mypreferences' => 'Mon réglage',
+
+# User rights
+'editinguser' => 'Changement de <b>$1</b>',
 
 # Miscellaneous special pages
 'move'         => 'Renommer',

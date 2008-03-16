@@ -812,7 +812,7 @@ Akken ad tessekcmeḍ tugna deg usebter, seqdec azay am wagi
 'filedesc'                    => 'Agzul',
 'fileuploadsummary'           => 'Agzul:',
 'filestatus'                  => 'Aẓayer n copyright:',
-'filesource'                  => 'Seg way yekka:',
+'filesource'                  => 'Seg way yekka',
 'uploadedfiles'               => 'Ifayluwen yettwaznen',
 'ignorewarning'               => 'Ttu aɣtal u smekti afaylu',
 'ignorewarnings'              => 'Ttu iɣtalen',
@@ -844,8 +844,8 @@ Ma tesɛiḍ tugna-nni s resolution tameqqrant, azen-it, ma ulac beddel isem-is.
 'uploadscripted'              => 'Afaylu-yagi yesɛa angal n HTML/script i yexdem agula deg browser/explorateur.',
 'uploadcorrupt'               => 'Afaylu-yagi yexser neɣ yesɛa taseggiwit (am ".jpg") mačči ṣaḥiḥ. G leɛnayek ssenqed-it.',
 'uploadvirus'                 => 'Afaylu-nni yesɛa anfafad asenselkim (virus)! Ẓer kter: $1',
-'sourcefilename'              => 'And yella afyalu:',
-'destfilename'                => 'Anda iruḥ afaylu:',
+'sourcefilename'              => 'And yella afyalu',
+'destfilename'                => 'Anda iruḥ afaylu',
 'watchthisupload'             => 'Ɛass asebter-agi',
 'filewasdeleted'              => 'Afaylu s yisem-agi yettwazen umbeɛd yettumḥa. Ssenqed $1 qbel ad tazniḍ tikelt nniḍen.',
 
@@ -862,7 +862,7 @@ Ma tesɛiḍ tugna-nni s resolution tameqqrant, azen-it, ma ulac beddel isem-is.
 'upload-curl-error28'      => 'Yekfa wakud n wazen n ufaylu',
 'upload-curl-error28-text' => 'Adeg n internet-agi iɛetṭel aṭas. G leɛnayek ssenqed adeg-nni, ggun cwiṭ umbeɛd ɛreḍ tikelt nniḍen.',
 
-'license'            => 'Turagt:',
+'license'            => 'Turagt',
 'nolicense'          => 'Ur textareḍ acemma',
 'upload_source_url'  => ' (URL saḥiḥ)',
 'upload_source_file' => ' (afaylu deg uselkim inek)',

@@ -573,7 +573,6 @@ Për piasì che a preuva n'àutra vira. Se a dovèissa mai torna riveje sossì, 
 ant ël quàder ëd modìfica. La rason che a l'é nen stait acetà a l'r për evité ch'a-i fasa darmagi al
 test ch'a-i é già. Sossì dle vire a riva quand un a dòvra un programa proxy ëd coj un pòch dla Bajòna.</strong>",
 'editing'                   => 'Modìfica ëd $1',
-'editinguser'               => 'Modìfica ëd $1',
 'editingsection'            => 'I soma dapress a modifiché $1 (session)',
 'editingcomment'            => 'I soma dapress a modifiché $1 (coment)',
 'editconflict'              => "Conflit d'edission: $1",
@@ -845,6 +844,7 @@ për podej specifiché ij sò gust.',
 'userrights-lookup-user'           => "Gestion dle partìe d'utent",
 'userrights-user-editname'         => 'Che a buta në stranòm:',
 'editusergroup'                    => "Modifiché le partìe d'Utent",
+'editinguser'                      => 'Modìfica ëd $1',
 'userrights-editusergroup'         => "Modìfiché le partìe dj'utent",
 'saveusergroups'                   => "Salva le partìe d'utent",
 'userrights-groupsmember'          => "A l'é andrinta a:",
@@ -1223,7 +1223,6 @@ Vira riga a l'ha andrinta j'anliure a la prima e a la sconda rediression, ant s�
 'newpages'                => 'Pàgine neuve',
 'newpages-username'       => 'Stranòm:',
 'ancientpages'            => 'Le pàgine pì veje',
-'intl'                    => 'Anliure antra lenghe diferente',
 'move'                    => 'Tramuda',
 'movethispage'            => 'Tramuda costa pàgina-sì',
 'unusedimagestext'        => "<p>Che ten-a present che dj'àutri sit ant sla Ragnà, coma la {{SITENAME}} antërnassional, a podrìo avej butà n'anliura a na figura con n'adrëssa direta, e donca a peul esse che le figure ant costa lista-sì, contut che son nen dovrà ant costa version-sì dla {{SITENAME}}, a sio però dovrà ant chèich àutr pòst.",
@@ -1652,7 +1651,7 @@ Për piasì, che an conferma che sòn a l'é da bon lòn che chiel (chila) a veu
 'databasenotlocked'   => "La base dat a l'é nen blocà.",
 
 # Move page
-'move-page-legend'                => 'Tramudé na pàgina',
+'move-page-legend'        => 'Tramudé na pàgina',
 'movepagetext'            => "Con ël mòdulo ëd domanda ambelessì sota a peul cangeje nòm a na pàgina, tramudand-je dapress ëdcò tuta soa cronologìa anvers al nòm neuv.
 Ël vej tìtol a resterà trasformà ant na ridiression che a men-a al tìtol neuv.
 J'anliure a la veja pàgina a saran NEN agiornà (e donca a men-eran la gent a la ridiression); che a fasa atension dë

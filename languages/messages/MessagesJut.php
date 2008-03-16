@@ -6,6 +6,7 @@
  * @author Ælsån
  * @author Huslåke
  * @author Siebrand
+ * @author Nike
  */
 
 $fallback = 'da';
@@ -232,7 +233,7 @@ $messages = array(
 'badaccess-groups' => 'Denne håndlenge ken kun udføres åf brugere, søm tilhører en åf grupperne „$1“.',
 
 'versionrequired'     => 'Kræver versje $1 åf MediaWiki',
-'versionrequiredtext' => "Versje $1 åf MediaWiki er påkrævet, før at bruge denne side. Se'n [[{{ns:special}}:Version|versjeside]]",
+'versionrequiredtext' => "Versje $1 åf MediaWiki er påkrævet, før at bruge denne side. Se'n [[Special:Version|versjeside]]",
 
 'ok'                      => 'Er åkæ',
 'retrievedfrom'           => 'Hæntet frå "$1"',
@@ -279,6 +280,37 @@ $messages = array(
 # General errors
 'error'                => 'Fejl',
 'databaseerror'        => 'Databasefejl',
+'dberrortext'          => 'Der er åpstået en syntaksfejl i en databaseførespørgsel. Dette ken være på grund åf en ugyldeg førespørgsel (sæg $5), æller det ken betyde en fejl i\'n softwær. 
+Den seneste førsøĝte databaseførespørgsel var: <blockquote><tt>$1</tt></blockquote> frå\'n funksje "<tt>$2</tt>". 
+MySQL æ returnerede fejl "<tt>$3: $4</tt>".',
+'dberrortextcl'        => 'Der er åpstået en syntaksfejl i en databaseførespørgsel. 
+Den seneste førsøĝte databaseførespørgsel var: "$1" frå\'n funksje "$2". 
+MySQL æ returnerede fejl "$3: $4".',
+'noconnect'            => "Der er pråblæmer ve {{SITENAME}} han database, vi kan desværre ekke kåm i kontakt ve den før øjeblikket. Prøv ig'n senere. <br />$1",
+'nodb'                 => "Kan ekke vælge'n database $1",
+'cachederror'          => 'Det følgende er en gemt kopi åf den ønskede side, og er måske ekke helt åpdateret.',
+'laggedslavemode'      => 'Bemærk: Den veste side endholter mulegves ekke de nyeste ændrenger.',
+'readonly'             => 'Æ database er skrevebeskyttet',
+'enterlockreason'      => "Skrev en begrundelse før æ skrevebeskyttelse, ve samt en vurderenge åf, hvornår æ skrevebeskyttelse åphæves ig'n",
+'readonlytext'         => 'Æ database er midlertedegt skrevebeskyttet. Førsøĝ venlegst senere.
+
+Årsag til æ spærrenge: $1',
+'missingarticle'       => 'Æ tekst til "$1" blev ekke fundet i\'n database.
+
+Æ side er måske slettet æller flyttet.
+
+Hves det ekke er tilfældet, harst du måske fundet en fejl i programmet. Meld det til en [[{{MediaWiki:Grouppage-sysop}}|administråtår]] ve angævelse åf æ adresse.',
+'readonly_lag'         => "Æ database er åtåmatisk blevet låst mens slæfdatabaseserverne synkroniserer ve'n master database",
+'internalerror'        => 'Intern fejl',
+'internalerror_info'   => 'Intern fejl: $1',
+'filecopyerror'        => 'Kan ekke kopiere\'n file "$1" til "$2".',
+'filerenameerror'      => 'Kan ekke omdøbe\'n file "$1" til "$2".',
+'filedeleteerror'      => 'Kan ekke slette\'n file "$1".',
+'directorycreateerror' => 'Kan ekke åprette katalåget "$1".',
+'filenotfound'         => 'Kan ekke finde\'n file "$1".',
+'fileexistserror'      => 'Kan ekke åprette "$1": æ file findes ålrede',
+'unexpected'           => 'Uventet værdi: "$1"="$2".',
+'formerror'            => 'Fejl: Kan ekke åfsende formulær',
 'badtitle'             => 'Førkert skrevselenger',
 'badtitletext'         => 'Den ønskede sides nav var ekke tilladt, tøm æller æ side er førkert henvest frå en {{SITENAME}} på et andet språĝ.',
 'wrong_wfQuery_params' => 'Ugyldeg paramæter til wfQuery()<br />
@@ -289,21 +321,45 @@ Førespørgsel: $2',
 'viewsourcetext'       => "Du ken dog se og åfskreve'n keldekode til æ side:",
 
 # Login and logout pages
-'yourname'           => 'Dit brugernav',
-'yourpassword'       => 'Din adgangskode',
-'remembermypassword' => 'Husk min adgangskode til næste gang.',
-'login'              => 'Loĝ på',
-'loginprompt'        => 'Du skal have cookies slået til før at kunne loĝge på {{SITENAME}}.',
-'userlogin'          => 'Åpret æ konto æller loĝ på',
-'logout'             => 'Loĝ åf',
-'userlogout'         => 'Loĝ åf',
-'nologin'            => 'Du har engen brugerkonto? $1.',
-'nologinlink'        => 'Åpret ny brugerkonto',
-'createaccount'      => 'Åpret en ny konto',
-'gotaccount'         => 'Du har ålerede en brugerkonto? $1.',
-'loginsuccesstitle'  => 'Du er nu loĝget på',
-'loginsuccess'       => 'Du er nu loĝget på {{SITENAME}} søm "$1".',
-'mailmypassword'     => 'Send et nyt adgangskode til min e-mail-adresse',
+'yourname'              => 'Dit brugernav',
+'yourpassword'          => 'Din adgangskode',
+'remembermypassword'    => 'Husk min adgangskode til næste gang.',
+'login'                 => 'Loĝ på',
+'loginprompt'           => 'Du skal have cookies slået til før at kunne loĝge på {{SITENAME}}.',
+'userlogin'             => 'Åpret æ konto æller loĝ på',
+'logout'                => 'Loĝ åf',
+'userlogout'            => 'Loĝ åf',
+'nologin'               => 'Du har engen brugerkonto? $1.',
+'nologinlink'           => 'Åpret ny brugerkonto',
+'createaccount'         => 'Åpret en ny konto',
+'gotaccount'            => 'Du har ålerede en brugerkonto? $1.',
+'gotaccountlink'        => 'Loĝ på',
+'yourrealname'          => 'Dit rigtege navn*',
+'prefs-help-realname'   => '* <strong>Dit rigtege navn</strong> (valgfrit): Hves du vælger at åplyse dit navn hvil dette bleve brugt til at tilskreve dig dit arbejde.',
+'loginsuccesstitle'     => 'Du er nu loĝget på',
+'loginsuccess'          => 'Du er nu loĝget på {{SITENAME}} søm "$1".',
+'nosuchuser'            => 'Der er ig\'n bruger ve navnet "$1". Kontrollér æ stavemåde ig\'n, æller brug æ formulår herunder til at åprette en ny brugerkonto.',
+'nosuchusershort'       => 'Der er ig\'n bruger ve navn "<nowiki>$1</nowiki>". Tjek din stavnenge.',
+'nouserspecified'       => 'Angæv venlegst et brugernavn.',
+'wrongpassword'         => "Den endtastede adgangskode var førkert. Prøv ig'n.",
+'wrongpasswordempty'    => "Du glemte at endtaste password. Prøv ig'n.",
+'passwordtooshort'      => 'Dit kodeort er før kårt. Det skal være mendst $1 tegn langt.',
+'mailmypassword'        => 'Send et nyt adgangskode til min e-mail-adresse',
+'passwordremindertitle' => 'Nyt password til {{SITENAME}}',
+'passwordremindertext'  => 'Nogen (sandsynlegves dig, frå\'n IP-addresse $1)
+har bedt at vi sender dig en ny adgangskode til at loĝge på {{SITENAME}} ($4)\'m.
+Æ adgangskode før bruger "$2" er nu "$3".
+Du bør loĝge på nu og ændre din adgangskode.,
+
+Hves en anden har bestilt den nye adgangskode æller hves du er kåmet i tanke dit gamle password og ekke mære vil ændre det\'m, 
+kenst du bare ignorere denne mail og førtsætte ve at bruge dit gamle password.',
+'noemail'               => 'Der er ekke åplyst en e-mail-adresse før bruger "$1".',
+'passwordsent'          => 'En ny adgangskode er sendt til æ e-mail-adresse,
+søm er registræret før "$1".
+Du bør loĝge på og ændre din adgangskode straks æfter du harst modtaget æ e-mail.',
+'eauthentsent'          => 'En bekrftelsesmail er sendt til den angævne e-mail-adresse.
+
+Før en e-mail ken modtages åf andre brugere åf æ {{SITENAME}}-mailfunksje, skel æ adresse og dens tilhørsførholt til denne bruger bekræftes. Følg venlegst anvesnengerne i denne mail.',
 
 # Edit page toolbar
 'bold_sample'     => 'Fed skrevselenger',
@@ -330,6 +386,7 @@ Førespørgsel: $2',
 'subject'                => 'Emne/åverskreft',
 'minoredit'              => "Dette'r en mendre æller lile ændrenge.",
 'watchthis'              => 'Åvervåg denne ertikel',
+'savearticle'            => 'Gem side',
 'preview'                => 'Førhåndsvesnenge',
 'showpreview'            => 'Førhåndsvesnenge',
 'showdiff'               => 'Ves ændrenger',
@@ -409,6 +466,7 @@ hersenenge, (førge) = førskel til den førge hersenenge, l = lile til mendre �
 # Preferences page
 'preferences'   => 'Endstellenger',
 'mypreferences' => 'Endstellenger',
+'retypenew'     => 'Gentag ny adgangskode',
 
 'grouppage-sysop' => '{{ns:project}}:Administråtorer',
 
@@ -554,6 +612,10 @@ hersenenge, (førge) = førskel til den førge hersenenge, l = lile til mendre �
 'watchlist'            => 'Åvervågnengsliste',
 'mywatchlist'          => 'Åvervågnengsliste',
 'watchlistfor'         => "(før '''$1''')",
+'addedwatch'           => 'Tilføjet til din åvervågnengsliste',
+'addedwatchtext'       => "Æ side \"<nowiki>\$1</nowiki>\" er blevet tilføjet til din [[Special:Watchlist|åvervågningsliste]]. Fremtidige ændrenger til denne side og den tilhørende diskusjeside hvil bleve listet der, og æ side hvil fremstå '''fremhævet''' i'n [[Special:Recentchanges|liste ve de seneste ændrenger]] før at gøre det lettere at finde den. Hves du senere hvilst fjerne'n side frå din åvervågningsliste, så klik \"Fjern åvervågnenge\".",
+'removedwatch'         => 'Fjernet frå åvervågnengsliste',
+'removedwatchtext'     => 'Æ side "<nowiki>$1</nowiki>" er blevet fjernet frå din åvervågnengsliste.',
 'watch'                => 'Åvervåg',
 'watchthispage'        => 'Åvervåg side',
 'unwatch'              => 'Fjern åvervågnenge',
@@ -568,10 +630,38 @@ hersenenge, (førge) = førskel til den førge hersenenge, l = lile til mendre �
 'unwatching' => 'Ekke åvervåge …',
 
 # Delete/protect/revert
-'deletedarticle' => 'slettede "[[$1]]"',
-'dellogpage'     => 'Sletnengslog',
-'rollbacklink'   => 'fjern redigærenge',
-'protectlogpage' => 'Liste åver beskyttede sider',
+'deletepage'                  => 'Slet side',
+'historywarning'              => 'Advarsel: Æ side du erst ve at slette har en skigte:',
+'confirmdeletetext'           => "Du erst ve permanent at slette en side
+æller et billet sammen ve hæle den tilhørende skigte frå'n database. Bekræft venlegst at du virkelg hvilst gøre dette, at du førstårst konsekvenserne, og at du gør dette i åverensstemmelse ve
+[[{{MediaWiki:Policy-url}}]].",
+'actioncomplete'              => 'Gennemført',
+'deletedtext'                 => '"<nowiki>$1</nowiki>" er slettet. Sæg $2 før en førtegnelse åver de nyeste sletnenger.',
+'deletedarticle'              => 'slettede "[[$1]]"',
+'dellogpage'                  => 'Sletnengslog',
+'deletecomment'               => 'Begrundelse før sletnenge:',
+'deleteotherreason'           => 'Anden/uddybende begrundelse:',
+'deletereasonotherlist'       => 'Anden begrundelse',
+'rollbacklink'                => 'fjern redigærenge',
+'protectlogpage'              => 'Liste åver beskyttede sider',
+'protectcomment'              => 'Begrundelse før beskyttelse',
+'protectexpiry'               => 'Udløb:',
+'protect_expiry_invalid'      => 'Æ udløbstiid er ugyldeg.',
+'protect_expiry_old'          => "Æ udløbstiid legger i'n førtiid.",
+'protect-unchain'             => 'Ændre flytnengsbeskyttelse',
+'protect-text'                => "Her ken beskyttelsesståt før æ side '''<nowiki>$1</nowiki>''' ses og ændres.",
+'protect-locked-access'       => 'Den brugerkonto har ekke de nødvendege rettegheder til at æ ændre sidebeskyttelse. Her er de aktuelle beskyttelsesendstellenger før æ side <strong>„$1“:</strong>',
+'protect-cascadeon'           => 'Denne side er del åf en nedarvet skrevebeskyttelse. Wen er endeholt i nedenstående {{PLURAL:$1|side|sider}}, søm er skrevebeskyttet ve tilvalg åf "nedarvende sidebeskyttelse" Æ sidebeskyttelse ken ændres før denne side, det påverker dog ekke\'n kaskadespærrenge:',
+'protect-default'             => 'Ål (standård)',
+'protect-fallback'            => 'Kræv "$1"-tilladelse',
+'protect-level-autoconfirmed' => 'Spærrenge før ekke registrærede brugere',
+'protect-level-sysop'         => 'Kan administratårer',
+'protect-summary-cascade'     => 'nedarvende',
+'protect-expiring'            => 'til $1 (UTC)',
+'protect-cascade'             => 'Nedarvende spærrenge – ål skabelåner, søm er endbundet i denne side spærres også.',
+'protect-cantedit'            => 'Du kenst ekke ændre beskyttelsesnivå før denne side, da du ekke kenst redigære føden.',
+'restriction-type'            => 'Beskyttelsesståt',
+'restriction-level'           => 'Beskyttelseshøjde',
 
 # Undelete
 'undeletebtn' => 'Gendan!',
@@ -615,9 +705,30 @@ hersenenge, (førge) = førskel til den førge hersenenge, l = lile til mendre �
 'blocklogentry' => 'blokerede "[[$1]]" ve\'n udløbstid på $2 $3',
 
 # Move page
-'1movedto2'   => '[[$1]] flyttet til [[$2]]',
-'movelogpage' => 'Flyttelog',
-'revertmove'  => 'gendan',
+'movepagetext'     => "Når du brugerst æ formulær herunder hvilst du få omdøbt en side og flyttet æ hæle side han skigte til det nye navn. Den gamle titel hvil bleve en omdirigærengsside til den nye titel. Henvesnenger til den gamle titel hvil ekke bleve ændret. Sørg før at tjekke før dåbelte æller dårlege omdirigærenger. Du erst ansvarleg før, at ål henvesnenger stadeg pæger derhen, hvår det er æ mænenge de skal pæge. Bemærk at æ side '''ekke''' ken flyttes hves der ålrede er en side ve den nye titel, medmendre den side er tøm æller er en omdirigærenge uden nogen skigte. Det betyder at du kenst flytte en side tilbåge hvår den kåm frå, hves du kåmer til at lave en fejl. <b>ADVARSEL!</b> Dette ken være en drastisk og uventet ændrenge før en populær side; vær sekker på, at du førstår konsekvenserne åf dette før du førtsætter.",
+'movepagetalktext' => "Den tilhørende diskusjeside, hves der er en, hvil åtåmatisk bleve flyttet ve'n side '''medmendre:''' 
+*Du flytter æ side til et andet navnerum,
+*En ekke-tøm diskusjeside ålrede eksisterer under det nye navn, æller
+*Du fjerner æ markærenge i'n boks nedenunder.
+
+I disse tilfælde er du nødt til at flytte æller sammenflette'n side manuelt.",
+'movearticle'      => 'Flyt side:',
+'newtitle'         => 'Til ny titel:',
+'move-watch'       => 'Denne side åvervåges',
+'movepagebtn'      => 'Flyt side',
+'pagemovedsub'     => 'Flytnenge gennemført',
+'movepage-moved'   => '<big>Æ side \'\'\'"$1" er flyttet til "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'articleexists'    => 'En side ve det navn eksisterer ålrede, æller det
+navn du harst valgt er ekke gyldegt. Vælg et andet navn.',
+'talkexists'       => 'Æ side blev flyttet korrekt, men den tilhørende diskusjeside ken ekke flyttes, førdi der ålrede eksisterer en ve den nye titel. Du erst nødt til at flette dem sammen manuelt.',
+'movedto'          => 'flyttet til',
+'movetalk'         => 'Flyt også\'n "diskusjeside", hves den eksisterer.',
+'talkpagemoved'    => 'Den tilhørende diskusjeside blev også flyttet.',
+'talkpagenotmoved' => 'Den tilhørende diskusjeside blev <strong>ekke</strong> flyttet.',
+'1movedto2'        => '[[$1]] flyttet til [[$2]]',
+'movelogpage'      => 'Flyttelog',
+'movereason'       => 'Begrundelse:',
+'revertmove'       => 'gendan',
 
 # Export
 'export' => 'Utgøter sider',

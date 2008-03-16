@@ -1223,7 +1223,7 @@ stî vandalijheyes).",
 'sorbs_create_account_reason' => "Voste adresse IP si trove dins l' djivêye des procsis å lådje di DNSBL. Vos n' poloz nén ahiver on conte d' uzeu.",
 
 # Move page
-'move-page-legend'                => "Displaecî l' pådje",
+'move-page-legend'        => "Displaecî l' pådje",
 'movepagetext'            => "Chal vos ploz candjî l' no d' ene pådje,
 dj' ô bén displaecî l' pådje, eyet si istwere, viè l' novea no.
 Li vî tite divénrè-st ene pådje di redjiblaedje viè l' novele.

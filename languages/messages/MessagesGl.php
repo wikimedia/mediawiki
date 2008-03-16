@@ -459,7 +459,7 @@ $1 horas.',
 ($4). O contrasinal para "$2" é "$3". Debe rexistrarse e mudar o contrasinal agora.
 
 Pode facer caso omiso desta mensaxe se se creou esta conta por erro.',
-'loginlanguagelabel'         => 'Lingua: $1',
+'loginlanguagelabel'         => 'Linguas: $1',
 
 # Password reset dialog
 'resetpass'               => 'Borrar o contrasinal da conta',

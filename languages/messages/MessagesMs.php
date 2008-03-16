@@ -1152,6 +1152,7 @@ Untuk rujukan, berikut ialah log penghapusan bagi fail ini:",
 'nolinkstoimage'            => 'Tiada laman yang mengandungi pautan ke fail ini.',
 'sharedupload'              => 'Fail ini adalah fail muat naik kongsi dan boleh digunakan oleh projek lain.',
 'shareduploadwiki'          => 'Sila lihat $1 untuk maklumat lanjut.',
+'shareduploadwiki-desc'     => 'Berikut ialah keterangannya dalam $1 di sana.',
 'shareduploadwiki-linktext' => 'laman huraian fail',
 'noimage'                   => 'Tiada fail dengan nama ini. Anda boleh $1.',
 'noimage-linktext'          => 'memuat naik fail baru',
@@ -1171,6 +1172,7 @@ Untuk rujukan, berikut ialah log penghapusan bagi fail ini:",
 'filerevert-defaultcomment' => 'Dibalikkan kepada versi pada $2, $1',
 'filerevert-submit'         => 'Balikkan',
 'filerevert-success'        => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\' telah dibalikkan kepada [$4 versi pada $3, $2].</span>',
+'filerevert-badversion'     => 'Tiada versi tempatan bagi fail ini dengan cap waktu yang dinyatakan.',
 
 # File deletion
 'filedelete'                  => 'Hapuskan $1',
@@ -1225,10 +1227,11 @@ Untuk rujukan, berikut ialah log penghapusan bagi fail ini:",
 Terdapat '''$3''' paparan laman dan sebanyak '''$4''' suntingan telah dilakukan sejak wiki ini bermula; iaitu purata '''$5''' suntingan bagi setiap halaman, dan '''$6''' paparan bagi setiap suntingan.
 
 Sebanyak '''$8''' fail telah dimuat naik. Bilangan kerja tertunggak ialah '''$7'''.",
-'userstatstext'          => "Terdapat '''$1''' pengguna berdaftar. '''$2''' (atau '''$4''') daripadanya adalah penyelia (lihat $3).",
+'userstatstext'          => "Terdapat '''$1''' pengguna berdaftar. '''$2''' (atau '''$4''') daripadanya mempunyai hak $5.",
 'statistics-mostpopular' => 'Laman dilihat terbanyak',
 
 'disambiguations'      => 'Laman penyahtaksaan',
+'disambiguationspage'  => 'Template:disambig',
 'disambiguations-text' => "Laman-laman berikut mengandungi pautan ke '''laman penyahtaksaan'''. Pautan ini sepatutnya ditujukan kepada topik yang sepatutnya.<br />Sesebuah laman dianggap sebagai laman penyahtaksaan jika ia menggunakan templat yang dipaut dari [[MediaWiki:Disambiguationspage]]",
 
 'doubleredirects'     => 'Pelencongan berganda',
@@ -1565,6 +1568,7 @@ sebelum penghapusan. Teks sebenar bagi semua semakan yang dihapuskan hanya boleh
 atau semakan tersebut telah dipulihkan atau dibuang daripada arkib.',
 'undelete-nodiff'              => 'Tiada semakan sebelumnya.',
 'undeletebtn'                  => 'Pulihkan',
+'undeletelink'                 => 'pulih',
 'undeletereset'                => 'set semula',
 'undeletecomment'              => 'Komen:',
 'undeletedarticle'             => '"[[$1]]" telah dipulih',
@@ -1832,6 +1836,8 @@ Dalam pilihan kedua tadi, anda juga boleh menggunakan pautan, umpamanya [[{{ns:s
 'thumbnail-more'           => 'Besarkan',
 'filemissing'              => 'Fail hilang',
 'thumbnail_error'          => 'Berlaku ralat ketika mencipta imej ringkas: $1',
+'djvu_page_error'          => 'Laman DjVu di luar julat',
+'djvu_no_xml'              => 'Gagal mendapatkan data XML bagi fail DjVu',
 'thumbnail_invalid_params' => 'Parameter imej ringkas tidak sah',
 'thumbnail_dest_directory' => 'Direktori destinasi gagal diciptakans',
 

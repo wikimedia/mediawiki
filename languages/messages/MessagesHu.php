@@ -817,7 +817,7 @@ A te módosításaid az alsó ablakban láthatóak.
 'editingold'                => '<strong>FIGYELMEZTETÉS: A lap egy elavult változatát szerkeszted.
 Ha elmented, akkor az ezen változat után végzett összes módosítás elvész.</strong>',
 'yourdiff'                  => 'Eltérések',
-'copyrightwarning'          => 'A szöveg elküldésével tanúsítod, hogy nem sért szerzői jogokat, és engedélyezed a(z) $2 szerinti felhasználását. Ha nem akarod, hogy az írásodat módosítsák vagy továbbterjesszék, akkor ne küldd itt be.<br />
+'copyrightwarning'          => 'A szöveg elküldésével tanúsítod, hogy nem sért szerzői jogokat, és engedélyezed a(z) $2 szerinti felhasználását (lásd $1). Ha nem akarod, hogy az írásodat módosítsák vagy továbbterjesszék, akkor ne küldd be.<br />
 <strong>Ne küldj be engedély nélkül szerzői jogilag védett munkákat!</strong>',
 'copyrightwarning2'         => 'A {{SITENAME}} tartalmát, így az általad beküldött szövegeket is más résztvevők átírhatják vagy törölhetik. Ha nem akarod, hogy a művedet átírják, ne küldd be ide.<br />
 A beküldéssel egyben azt is tanúsítod, hogy a beküldött szöveget magad írtad, vagy közkincsből vagy más szabadon felhasználható forrásból másoltad (a részletekért lásd: $1).
@@ -998,7 +998,7 @@ Győződj meg róla, hogy a laptörténet folytonossága megmarad.
 gyakori oka olyan szavak keresése (pl. \"have\" és \"from\"), amiket a
 rendszer nem indexel, vagy több független keresési kifejezés megadása
 (csak minden megadott szót tartalmazó találatok jelennek meg az eredményben).",
-'powersearch'           => 'Keresés',
+'powersearch'           => 'Részletes keresés',
 'powersearchtext'       => 'Keresés a névterekben:<br />$1<br />$2 Átirányítások listája &nbsp; Keresés:$3 $9',
 'searchdisabled'        => 'Elnézésed kérjük, de a teljes szöveges keresés terhelési okok miatt átmenetileg nem használható. Ezidő alatt használhatod a lenti Google keresést, mely viszont lehetséges, hogy nem teljesen friss adatokkal dolgozik.',
 
@@ -1673,6 +1673,7 @@ Itt vannak a(z) <strong>$1</strong> lap jelenlegi beállításai:',
 # Undelete
 'undelete'                     => 'Törölt lap helyreállítása',
 'undeletepage'                 => 'Törölt lapok megtekintése és helyreállítása',
+'undeletepagetitle'            => "'''A(z) [[:$1]] lap törölt változatai alább láthatók.'''",
 'viewdeletedpage'              => 'Törölt lapok megtekintése',
 'undeletepagetext'             => 'Az alábbi lapokat törölték, de még helyreállíthatók az archívumból
 (az archívumot időről időre üríthetik!).',
@@ -1816,7 +1817,7 @@ $1',
 'contribslink'                => 'Szerkesztései',
 'autoblocker'                 => "Az általad használt IP-cím autoblokkolva van, mivel korábban a kitiltott „[[User:$1|$1]]” használta. ($1 blokkolásának indoklása: „'''$2'''”) Ha nem te vagy $1, lépj kapcsolatba valamelyik adminisztrátorral, és kérd az autoblokk feloldását. Ne felejtsd el megírni neki, hogy kinek szóló blokkba ütköztél bele!",
 'blocklogpage'                => 'Blokkolási_napló',
-'blocklogentry'               => '„$1” blokkolva $2 időtartamra',
+'blocklogentry'               => '„$1” blokkolva $2 $3 időtartamra',
 'blocklogtext'                => 'Ez a felhasználókra helyezett blokkoknak és azok feloldásának listája. Az IP-autoblokkok nem szerepelnek a listában. Lásd még [[Special:Ipblocklist|a jelenleg életben lévő blokkok listáját]].',
 'unblocklogentry'             => '"$1" blokkolása feloldva',
 'block-log-flags-anononly'    => 'csak névtelen felhasználók',

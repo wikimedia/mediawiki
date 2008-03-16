@@ -451,15 +451,15 @@ Mae eich accownt wedi gael eu creu. Peidiwch ac anghofio i personaleiddio eich f
 'nouserspecified'            => "Mae'n rhaid nodi enw defnyddiwr.",
 'wrongpassword'              => "Mae'r allweddair rydych wedi teipio ddim yn cywir. Triwch eto, os gwelwch yn dda.",
 'wrongpasswordempty'         => 'Roedd y cyfrinair yn wag. Rhowch gynnig arall arni.',
-'passwordtooshort'           => "Mae eich cyfrinair yn rhy fyr. Mae'n rhaid cynnwys o leia $1 nôd.",
+'passwordtooshort'           => "Mae eich cyfrinair yn rhy fyr neu'n annilys. Mae'n rhaid iddo gynnwys o leia $1 nôd a bod yn wahanol i'ch enw defnyddiwr.",
 'mailmypassword'             => 'Anfoner cyfrinair newydd ataf trwy e-bost',
-'passwordremindertitle'      => 'Nodyn atgoffa allweddair oddiwrth {{SITENAME}}',
+'passwordremindertitle'      => 'Hysbysu cyfrinair dros dro newydd ar gyfer {{SITENAME}}',
 'passwordremindertext'       => "Mae rhywun (chi mwy na thebyg, o'r cyfeiriad IP $1) wedi gofyn i ni anfon cyfrinair newydd ar gyfer {{SITENAME}} atoch ($4).
 Mae cyfrinair y defnyddiwr '$2' wedi'i newid i '$3'. Dylid mewngofnodi a'i newid cyn gynted â phosib.
 
 Os mai rhywun arall a holodd am y cyfrinair, ynteu eich bod wedi cofio'r hen gyfrinair, ac nac ydych am newid y cyfrinair, rhydd i chi anwybyddu'r neges hon a pharhau i ddefnyddio'r hen un.",
 'noemail'                    => "Does dim cyfeiriad e-bost yng nghofnodion y defnyddiwr '$1'.",
-'passwordsent'               => 'Mae allweddair newydd wedi gael eu ddanfon at y cyfeiriad e-bost cofrestredig am "$1". Mewngofnodwch eto, os gwelwch yn dda, ar ol i chi dderbyn yr allweddair.',
+'passwordsent'               => 'Mae cyfrinair newydd wedi\'i ddanfon at gyfeiriad e-bost cofrestredig "$1". Mewngofnodwch eto ar ôl i chi dderbyn y cyfrinair, os gwelwch yn dda.',
 'eauthentsent'               => 'Anfonwyd e-bost o gadarnhâd at y cyfeiriad a benwyd. 
 Cyn y gellir anfon unrhywbeth arall at y cyfeiriad hwnnw rhaid i chi ddilyn y cyfarwyddiadau yn yr e-bost hwnnw er mwyn cadarnhau bod y cyfeiriad yn un dilys.',
 'mailerror'                  => 'Gwall wrth ddanfon e-bost: $1',
@@ -1084,7 +1084,7 @@ Mae gan '''$2''' (neu '''$4%''') ohonynt alluoedd $5.",
 'unusedcategoriestext'    => "Mae'r tudalennau categori isod yn bodoli er nad oes unrhyw dudalen arall yn eu defnyddio.",
 'notargettitle'           => 'Dim targed',
 'notargettext'            => 'Dydych chi ddim wedi dewis defnyddiwr neu dudalen i weithredu arno.',
-'pager-newer-n'           => '{{PLURAL:$1|y $1 mwy diweddar|y 1 mwy diweddar|y $1 mwy diweddar|y $1 mwy diweddar|y $1 mwy diweddar|y $1 mwy diweddar}}.',
+'pager-newer-n'           => '{{PLURAL:$1|y $1 mwy diweddar|yr 1 mwy diweddar|y $1 mwy diweddar|y $1 mwy diweddar|y $1 mwy diweddar|y $1 mwy diweddar}}.',
 'pager-older-n'           => '{{PLURAL:$1|y $1 cynharach|yr $1 cynharach|y $1 cynharach|y $1 cynharach|y $1 cynharach|y $1 cynharach}}',
 
 # Book sources
@@ -1291,6 +1291,7 @@ Dyma'r gosodiadau diogelu cyfredol ar gyfer y dudalen <strong>$1</strong>:",
 'restriction-level'           => 'Lefel cyfyngu:',
 'minimum-size'                => 'Maint lleiaf',
 'maximum-size'                => 'Maint mwyaf',
+'pagesize'                    => '(beit)',
 
 # Restrictions (nouns)
 'restriction-edit'   => 'Golygu',
@@ -1645,6 +1646,9 @@ Edrychwch drwy'r canlynol am batrymau sy'n cael eu blocio:",
 'rcpatroldisabled'                    => "Patrol Newidiadau Diweddar wedi'i analluogi",
 'rcpatroldisabledtext'                => 'Analluogwyd y nodwedd Patrol Newidiadau Diweddar.',
 'markedaspatrollederror-noautopatrol' => "Ni chaniateir i chi farcio'ch newidiadau eich hunan fel rhai derbyniol.",
+
+# Patrol log
+'patrol-log-auto' => '(awtomatig)',
 
 # Image deletion
 'deletedrevision'                 => 'Wedi dileu hen ddiwygiad $1.',

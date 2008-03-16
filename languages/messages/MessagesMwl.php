@@ -99,9 +99,9 @@ $messages = array(
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'      => 'Sobre {{SITENAME}}',
-'aboutpage'      => 'Proyecto:Sobre',
+'aboutpage'      => 'Project:Sobre',
 'currentevents'  => 'Amboras actuais',
-'disclaimerpage' => 'Proyecto:Aviso_geral',
+'disclaimerpage' => 'Project:Aviso geral',
 'helppage'       => 'Ayuda:Conteúdos',
 'mainpage'       => 'Página principal',
 'privacy'        => 'Política de privacidade',

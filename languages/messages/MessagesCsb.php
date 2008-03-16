@@ -342,7 +342,6 @@ Jeżlë jes të tuwò bez zmiłkã, le klëkni w swòjim przezérnikù knąpã '
 'clearyourcache'        => "'''Bôczë:''' Pò zapisanim, mòże bãdzesz mùszôł òminąc pamiãc przezérnika bë òbaczëc zmianë. '''Mozilla / Firefox / Safari:''' przëtrzëmôj ''Shift'' òbczas klëkaniô na ''Reload'', abò wcësni ''Ctrl-Shift-R'' (''Cmd-Shift-R'' na kòmpùtrach Mac); '''IE:''' przëtrzëmôj ''Ctrl'' òbczas klëkaniô na ''Refresh'', abò wcësni ''Ctrl-F5''; '''Konqueror''': prosto klëkni na knąpã ''Reload'', abò wcësni ''F5''; brëkòwnicë '''Operë''' bãdą mést mùszële wëczëszczëc pamiãc w ''Tools→Preferences''.",
 'previewnote'           => 'To je blós pòdzérk - artikel jesz nie je zapisóny!',
 'editing'               => 'Edicëjô $1',
-'editinguser'           => 'Edicëjô brëkòwnika <b>$1</b>',
 'explainconflict'       => 'Chtos sfórtowôł wprowadzëc swòją wersëjã artikla òbczôs Twòji edicëji. Górné pòle edicëji zamëkô w se tekst starnë aktualno zapisóny w pòdôwkòwi baze. Twòje zmianë są w dólnym pòlu edicëji. Bë wprowadzëc swòje zmianë mùszisz zmòdifikòwac tekst z górnégò pòla. <b>Blós</b> tekst z górnégò pòla mdze zapisóny w baze czej wcësniesz "Zapiszë".',
 'yourtext'              => 'Twój tekst',
 'yourdiff'              => 'Zjinaczi',
@@ -414,6 +413,9 @@ Jeżlë jes të tuwò bez zmiłkã, le klëkni w swòjim przezérnikù knąpã '
 'allowemail'            => 'Włączë mòżlewòtã sélaniô e-mailów òd jinëch brëkòwników',
 'defaultns'             => 'Domëslno przeszëkùjë nôslédné rëmnotë mionów:',
 'files'                 => 'Lopczi',
+
+# User rights
+'editinguser' => 'Edicëjô brëkòwnika <b>$1</b>',
 
 'grouppage-sysop' => '{{ns:project}}:Administratorzë',
 
@@ -643,7 +645,7 @@ Czej chcesz remôc starnã z lëste ùzéronëch artiklów, klikni ''Òprzestôj
 'lockbtn' => 'Zascëgôj bazã pòdôwków',
 
 # Move page
-'move-page-legend'                => 'Przeniesë starnã',
+'move-page-legend'        => 'Przeniesë starnã',
 'movearticle'             => 'Przeniesë artikel',
 'movenologin'             => 'Felënk logòwaniô',
 'movepagebtn'             => 'Przeniesë starnã',

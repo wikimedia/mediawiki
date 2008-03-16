@@ -1,14 +1,15 @@
 <?php
-/** Nahuatl
+/** Nahuatl (Nahuatl)
  *
  * @addtogroup Language
  *
  * @author Rob Church <robchur@gmail.com>
  * @author Fluence
+ * @author Nike
  *
  * @copyright Copyright © 2006-2007, Rob Church, Fluence
  * @license http://www.gnu.org/copyleft/gpl.html GNU General Public License 2.0 or later
-*/
+ */
 
 # Per conversation with a user in IRC, we inherit from Spanish and work from there
 # Nahuatl was the language of the Aztecs, and a modern speaker is most likely to
@@ -71,6 +72,7 @@ $messages = array(
 
 # Edit pages
 'summary'          => 'Mopatlaliz',
+'copyrightwarning' => '<small>Timitztlātlauhtiah xiquitta mochi mopatlaliz cana {{SITENAME}} tlatzayāna īpan [[GNU]]. Āqueh tlācah quipatlazqueh in motlahcuilōl auh tlatzayāna occeppa, intlā ahmō ticnequi īn, zātēpan ahmō titlahcuilōz nicān. Nō mitzihtoah in ōtitlahcuiloh ahmō quipiya in copyright nozo in yōllōxoxouhqui tlahcuilōlli. <strong>¡AHMŌ XITĒQUITILTILIA AHYŌLLŌXOXOUHQUI TLAHCUILŌLLI!</strong></small>',
 
 # Recent changes
 'recentchangestext' => 'Xiquitta in achi yancuīc patlaliztli huiquipan inīn zāzanilpan.',

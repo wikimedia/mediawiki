@@ -91,7 +91,7 @@ $messages = array(
 'tog-editwidth'               => "La fenèstra d'edicion s'aficha en plena largor",
 'tog-watchcreations'          => 'Ajustar las paginas que suprimissi de ma lista de seguit',
 'tog-watchdefault'            => 'Seguir los articles que crei o modifiqui',
-'tog-watchmoves'              => 'Ajustar las paginas que renomeni a ma lista de seguit',
+'tog-watchmoves'              => 'Ajustar las paginas que tòrni nomenar a ma lista de seguit',
 'tog-watchdeletion'           => 'Ajustar las paginas que suprimissi de ma lista de seguit',
 'tog-minordefault'            => 'Mas modificacions son consideradas<br /> coma menoras per defaut',
 'tog-previewontop'            => "Mostrar la previsualizacion<br />al dessús de la boita d'edicion",
@@ -374,7 +374,7 @@ Raportatz aquesta error a un administrator, en li indicant l\'adreça de la pagi
 'internalerror'        => 'Error intèrna',
 'internalerror_info'   => 'Error intèrna: $1',
 'filecopyerror'        => 'Impossible de copiar "$1" vèrs "$2".',
-'filerenameerror'      => 'Impossible de renomenar "$1" en "$2".',
+'filerenameerror'      => 'Impossible de tornar nomenar "$1" en "$2".',
 'filedeleteerror'      => 'Impossible de suprimir "$1".',
 'directorycreateerror' => 'Impossible de crear lo dorsièr « $1 ».',
 'filenotfound'         => 'Fichièr "$1" introbable.',
@@ -957,7 +957,7 @@ L'ora indicada es la del serveire (UTC).",
 'ignorewarning'               => 'Ignorar l’avertiment e salvagardar lo fichièr.',
 'ignorewarnings'              => "Ignorar los avertiments a l'ocasion de l’impòrt",
 'minlength1'                  => 'Los noms de fichièrs dèvon comprendre al mens una letra.',
-'illegalfilename'             => 'Lo nom de fichièr « $1 » conten de caractèrs interdiches dins los títols de paginas. Mercé de lo renomenar e de lo copiar tornarmai.',
+'illegalfilename'             => 'Lo nom de fichièr « $1 » conten de caractèrs interdiches dins los títols de paginas. Mercé de lo tornar nomenar e de lo copiar tornarmai.',
 'badfilename'                 => 'L\'imatge es estat renomenat "$1".',
 'filetype-badmime'            => 'Los fichièrs del tipe MIME « $1 » pòdon pas èsser importats.',
 'filetype-unwanted-type'      => '".$1" es d\'un format pas desirat. Los que son preferits son $2.',
@@ -1199,7 +1199,7 @@ I a {{PLURAL:\$7|'''\$7''' article|'''\$7''' articles}} dins [[meta:Help:Job_que
 'newpages'                => 'Paginas novèlas',
 'newpages-username'       => 'Utilizaire :',
 'ancientpages'            => 'Articles mai ancians',
-'move'                    => 'Renomenar',
+'move'                    => 'Tornar nomenar',
 'movethispage'            => 'Desplaçar la pagina',
 'unusedimagestext'        => "<p>Doblidetz pas que d'autres sits pòdon conténer un ligam dirèct vèrs aqueste imatge, e qu'aqueste pòt èsser plaçat dins aquesta lista alara qu'es en realitat utilizada.</p>",
 'unusedcategoriestext'    => "Las categorias seguentas existisson mas cap d'article o de categoria los utilizan pas.",
@@ -1629,7 +1629,7 @@ Confirmatz qu'es plan çò que volètz far.",
 # Move page
 'move-page'               => 'Desplaçar $1',
 'move-page-legend'        => 'Desplaçar un article',
-'movepagetext'            => "Utilizatz lo formulari çaijós per renomenar un article, en desplaçant totas sas versions anterioras vèrs lo nom novèl.
+'movepagetext'            => "Utilizatz lo formulari çaijós per tornar nomenar un article, en desplaçant totas sas versions anterioras vèrs lo nom novèl.
 Lo títol precedent devendrà una pagina de redireccion vèrs lo títol novèl.
 Los ligams vèrs lo títol ancian seràn pas modificats e la pagina de discussion, s'existís, serà pas desplaçada.<br />
 <b>ATENCION !</b>
@@ -1645,7 +1645,7 @@ Dins aqueste cas, deurètz desplaçar o fusionar la pagina manualament se o vol�
 'movenologin'             => 'Non connectat',
 'movenologintext'         => "Per poder desplaçar un article, devètz èsser [[Special:Userlogin|connectat]]
 en tant qu'utilizaire enregistrat.",
-'movenotallowed'          => 'Avètz pas la permission de renomenar de paginas sus {{SITENAME}}.',
+'movenotallowed'          => 'Avètz pas la permission de tornar nomenar de paginas sus {{SITENAME}}.',
 'newtitle'                => 'Títol novèl',
 'move-watch'              => 'Seguir aquesta pagina',
 'movepagebtn'             => "Desplaçar l'article",
@@ -1667,14 +1667,14 @@ jol nom novèl. Se vos plai, fusionatz-las manualament.",
 'movelogpagetext'         => 'Vaquí la lista de las darrièras paginas renomenadas.',
 'movereason'              => 'Rason del renomenatge',
 'revertmove'              => 'anullar',
-'delete_and_move'         => 'Suprimir e renomenar',
+'delete_and_move'         => 'Suprimir e tornar nomenar',
 'delete_and_move_text'    => '==Supression requesida== 
 
 L’article de destinacion « [[$1]] » existís ja. Volètz lo suprimir per permetre lo renomenatge ?',
 'delete_and_move_confirm' => 'Òc, accèpti de suprimir la pagina de destinacion per permetre lo renomenatge.',
 'delete_and_move_reason'  => 'Pagina suprimida per permetre un renomenatge',
-'selfmove'                => 'Los títols d’origina e de destinacion son los meteisses : impossible de renomenar una pagina sus ela-meteissa.',
-'immobile_namespace'      => 'Lo títol de destinacion es d’un tipe especial ; es impossible de renomenar de paginas vèrs aqueste espaci de noms.',
+'selfmove'                => 'Los títols d’origina e de destinacion son los meteisses : impossible de tornar nomenar una pagina sus ela-meteissa.',
+'immobile_namespace'      => 'Lo títol de destinacion es d’un tipe especial ; es impossible de tornar nomenar de paginas vèrs aqueste espaci de noms.',
 
 # Export
 'export'            => 'Exportar de paginas',
@@ -1768,7 +1768,7 @@ Totas las accions d’importacion interwiki son conservadas dins lo [[Special:Lo
 'tooltip-ca-protect'              => 'Protegir aquesta pagina',
 'tooltip-ca-delete'               => 'Suprimir aquesta pagina',
 'tooltip-ca-undelete'             => 'Restablir aquesta pagina',
-'tooltip-ca-move'                 => 'Renomenar aquesta pagina',
+'tooltip-ca-move'                 => 'Tornar nomenar aquesta pagina',
 'tooltip-ca-watch'                => 'Ajustatz aquesta pagina a vòstra lista de seguit',
 'tooltip-ca-unwatch'              => 'Levatz aquesta pagina de vòstra lista de seguit',
 'tooltip-search'                  => 'Cercar dins {{SITENAME}}',

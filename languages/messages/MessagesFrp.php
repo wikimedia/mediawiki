@@ -223,7 +223,9 @@ $messages = array(
 'permalink'         => 'Lim fixo',
 'print'             => 'Emprimar',
 'edit'              => 'Èditar/modifiar',
+'create'            => 'Crèar',
 'editthispage'      => 'Modifiar ceta pâge',
+'create-this-page'  => 'Crèar ceta pâge',
 'delete'            => 'Suprimar',
 'deletethispage'    => 'Suprimar ceta pâge',
 'undelete_short'    => 'Rèstorar {{PLURAL:$1|yona modificacion|$1 modificacions}}',
@@ -791,12 +793,14 @@ Assurâd-vos que cél changement pouesse consèrvar la continuitât de l’histo
 'prevn'                 => '$1 prècèdents',
 'nextn'                 => '$1 siuvents',
 'viewprevnext'          => 'Vêre ($1) ($2) ($3).',
+'search-result-size'    => '$1 ({{PLURAL:$2|1 mot|$2 mots}})',
+'search-result-score'   => 'Rapôrt : $1%',
 'showingresults'        => 'Afichâjo de <b>$1</b> {{PLURAL:$1|rèsultat|rèsultats}} dês lo #<b>$2</b>.',
 'showingresultsnum'     => 'Afichâjo de <b>$3</b> {{PLURAL:$3|rèsultat|rèsultats}} dês lo #<b>$2</b>.',
 'nonefound'             => '<strong>Nota :</strong> l’absence de rèsultat est sovent diua a l’usâjo de tèrmos de rechèrche trop corents,
 coment « a » ou « de », que sont pas endèxâs, ou ben a l’usâjo de plusiors tèrmos de rechèrche
 (solètes les pâges contegnent tôs los tèrmos aparèssont dens los rèsultats).',
-'powersearch'           => 'Rechèrchiér',
+'powersearch'           => 'Rechèrche avanciê',
 'powersearchtext'       => 'Rechèrchiér dens los èspâços de nom :<br />
 $1<br />
 $2 Encllure les pâges de redirèccion<br /> Rechèrchiér $3 $9',
@@ -1324,6 +1328,7 @@ Por suprimar cela pâge de voutra lista de siuvu, clicâd dessus « pas més siu
 'unwatch'              => 'Pas més siuvre',
 'unwatchthispage'      => 'Pas més siuvre',
 'notanarticle'         => 'Pas un articllo',
+'notvisiblerev'        => 'Vèrsion suprimâ',
 'watchnochange'        => 'Niona de les pâges que vos siude at étâ modifiâ pendent la pèrioda afichiê.',
 'watchlist-details'    => 'Vos siude <b>$1</b> {{PLURAL:$1|pâge|pâges}}, sen comptar les pâges de discussion.',
 'wlheader-enotif'      => '* La notificacion per mèl est activâ.',
@@ -1470,6 +1475,7 @@ Vê-que los règllâjos d’ora de la pâge <strong>$1</strong> :',
 # Undelete
 'undelete'                     => 'Vêre les pâges suprimâs',
 'undeletepage'                 => 'Vêre et rèstorar la pâge suprimâ',
+'undeletepagetitle'            => "'''La lista siuventa contint des vèrsions suprimâs de [[:$1]].'''",
 'viewdeletedpage'              => 'Historico de la pâge suprimâ',
 'undeletepagetext'             => 'Cetes pâges ont étâ suprimâs et sè trovont dens les arch·ives, sont adés dens la bâsa de balyês et pôvont étre rèstorâs.
 Les arch·ives pôvont étre èfaciês règuliérement.',
@@ -1658,6 +1664,7 @@ Volyéd confirmar qu’o est franc cen que vos voléd fâre.',
 'databasenotlocked'   => 'La bâsa de balyês est pas vèrrolyê.',
 
 # Move page
+'move-page'               => 'Renomar $1',
 'move-page-legend'        => 'Renomar una pâge',
 'movepagetext'            => "Utilisâd lo formulèro ce-desot por renomar una pâge, en dèplacient
 tot son historico vers lo novél nom.
