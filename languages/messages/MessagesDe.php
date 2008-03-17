@@ -793,7 +793,7 @@ Grund der Sperre: ''$2''",
 
 # History pages
 'viewpagelogs'        => 'Logbücher für diese Seite anzeigen',
-'nohistory'           => 'Es gibt keine früheren Versionen dieser Seite.',
+'nohistory'           => 'Es gibt keine Versionsgeschichte für diese Seite.',
 'revnotfound'         => 'Diese Version wurde nicht gefunden.',
 'revnotfoundtext'     => 'Die Version dieser Seite, nach der du suchst, konnte nicht gefunden werden. Bitte überprüfe die URL dieser Seite.',
 'loadhist'            => 'Lade Liste mit früheren Versionen',
@@ -925,6 +925,7 @@ Wenn du dich mit dem Thema auskennst, kannst du selbst die Seite „[[$1]]“ ve
 'showingresultsnum'     => "Hier {{PLURAL:$3|ist '''1''' Ergebnis|sind '''$1''' Ergebnisse}}, beginnend mit Nummer '''$2'''.",
 'nonefound'             => '<strong>Hinweis</strong>: Erfolglose Suchanfragen werden häufig dadurch verursacht, dass mehr als ein Suchbegriff angegeben wurde. Nur Seiten die alle Suchbegriffe enthalten werden hier angezeigt. Versuche in diesem Fall die Anzahl der Suchbegriffe zu verringern.',
 'powersearch'           => 'Erweiterte Suche',
+'powersearch-legend'    => 'Erweiterte Suche',
 'powersearchtext'       => 'Suche in Namensräumen:<br />$1<br />$2 Weiterleitungen anzeigen<br />Suche nach: $3 $9',
 'searchdisabled'        => 'Die {{SITENAME}} Suche wurde deaktiviert. Du kannst unterdessen mit Google suchen. Bitte bedenken, dass der Suchindex für {{SITENAME}} veraltet sein kann.',
 
