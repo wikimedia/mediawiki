@@ -701,7 +701,8 @@ class UndeleteForm {
 		$wgOut->addHTML( "<ul>\n" );
 		while( $row = $result->fetchObject() ) {
 			$title = Title::makeTitleSafe( $row->ar_namespace, $row->ar_title );
-			$link = $sk->makeKnownLinkObj( $undelete, htmlspecialchars( $title->getPrefixedText() ), 'target=' . $title->getPrefixedUrl() );
+			$link = $sk->makeKnownLinkObj( $undelete, htmlspecialchars( $title->getPrefixedText() ), 
+				'target=' . $title->getPrefixedUrl() );
 			#$revs = wfMsgHtml( 'undeleterevisions', $wgLang->formatNum( $row->count ) );
 			$revs = wfMsgExt( 'undeleterevisions',
 				array( 'parseinline' ),
@@ -1019,7 +1020,7 @@ class UndeleteForm {
 
 			while( $row = $revisions->fetchObject() ) {
 				$remaining--;
-				$wgOut->addHTML( $this->formatRevisionRow( $row , $sk ) );
+				$wgOut->addHTML( $this->formatRevisionRow( $row, $earliestLiveTime, $remaining, $sk ) );
 			}
 			$revisions->free();
 			$wgOut->addHTML("</ul>");
@@ -1048,7 +1049,7 @@ class UndeleteForm {
 		return true;
 	}
 
-	private function formatRevisionRow( $row, $sk ) {
+	private function formatRevisionRow( $row, $earliestLiveTime, $remaining, $sk ) {
 		global $wgUser, $wgLang;
 		
 		$rev = new Revision( array(
@@ -1071,9 +1072,11 @@ class UndeleteForm {
 			# Last link
 			if( !$rev->userCan( Revision::DELETED_TEXT ) ) {
 				$last = wfMsgHtml('diff');
-			} else {
+			} else if( $remaining > 0 || ($earliestLiveTime && $ts > $earliestLiveTime) ) {
 				$last = $sk->makeKnownLinkObj( $titleObj, wfMsgHtml('diff'), 
-				"target=" . $this->mTarget . "&timestamp=" . $row->ar_timestamp . "&diff=prev" );
+					"target=" . $this->mTargetObj->getPrefixedUrl() . "&timestamp=$ts&diff=prev" );
+			} else {
+				$last = wfMsgHtml('diff');
 			}
 		} else {
 			$checkBox = '';
@@ -1095,10 +1098,10 @@ class UndeleteForm {
 			// If revision was hidden from sysops
 				$del = wfMsgHtml('rev-delundel');			
 			} else {
+				$ts = wfTimestamp( TS_MW, $row->ar_timestamp );
 				$del = $sk->makeKnownLinkObj( $revdel,
 					wfMsgHtml('rev-delundel'),
-					'target=' . urlencode( $this->mTarget ) .
-					'&artimestamp=' . urlencode( $row->ar_timestamp ) );
+					'target=' . $this->mTargetObj->getPrefixedUrl() . "&artimestamp=$ts" );
 				// Bolden oversighted content
 				if( $rev->isDeleted( Revision::DELETED_RESTRICTED ) )
 					$del = "<strong>$del</strong>";
@@ -1143,8 +1146,8 @@ class UndeleteForm {
 			} else {
 				$del = $sk->makeKnownLinkObj( $revdel,
 					wfMsgHtml('rev-delundel'),
-					'target=' . urlencode( $this->mTarget ) .
-					'&fileid=' . urlencode( $row->fa_id ) );
+					'target=' . $this->mTargetObj->getPrefixedUrl() .
+					'&fileid=' . $row->fa_id );
 				// Bolden oversighted content
 				if( $file->isDeleted( File::DELETED_RESTRICTED ) )
 					$del = "<strong>$del</strong>";
@@ -1176,7 +1179,8 @@ class UndeleteForm {
 		if( !$rev->userCan(Revision::DELETED_TEXT) ) {
 			return '<span class="history-deleted">' . $wgLang->timeanddate( $ts, true ) . '</span>';
 		} else {
-			$link = $sk->makeKnownLinkObj( $titleObj, $wgLang->timeanddate( $ts, true ), "target={$this->mTarget}&timestamp=$ts" );
+			$link = $sk->makeKnownLinkObj( $titleObj, $wgLang->timeanddate( $ts, true ), 
+				"target=".$this->mTargetObj->getPrefixedUrl()."&timestamp=$ts" );
 			if( $rev->isDeleted(Revision::DELETED_TEXT) )
 				$link = '<span class="history-deleted">' . $link . '</span>';
 			return $link;
@@ -1193,7 +1197,8 @@ class UndeleteForm {
 		if( !$file->userCan(File::DELETED_FILE) ) {
 			return '<span class="history-deleted">' . $wgLang->timeanddate( $ts, true ) . '</span>';
 		} else {
-			$link = $sk->makeKnownLinkObj( $titleObj, $wgLang->timeanddate( $ts, true ), "target={$this->mTarget}&file=$key" );
+			$link = $sk->makeKnownLinkObj( $titleObj, $wgLang->timeanddate( $ts, true ), 
+				"target=".$this->mTargetObj->getPrefixedUrl()."&file=$key" );
 			if( $file->isDeleted(File::DELETED_FILE) )
 				$link = '<span class="history-deleted">' . $link . '</span>';
 			return $link;
