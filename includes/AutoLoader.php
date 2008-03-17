@@ -333,6 +333,7 @@ function __autoload($className) {
 		'ApiPageSet' => 'includes/api/ApiPageSet.php',
 		'ApiParamInfo' => 'includes/api/ApiParamInfo.php',
 		'ApiParse' => 'includes/api/ApiParse.php',
+		'ApiQueryAllImages' => 'includes/api/ApiQueryAllImages.php',
 		'ApiQueryAllCategories' => 'includes/api/ApiQueryAllCategories.php',
 		'ApiQueryAllLinks' => 'includes/api/ApiQueryAllLinks.php',
 		'ApiQueryAllmessages' => 'includes/api/ApiQueryAllmessages.php',
