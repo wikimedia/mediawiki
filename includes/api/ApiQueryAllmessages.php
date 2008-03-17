@@ -87,7 +87,11 @@ class ApiQueryAllmessages extends ApiQueryBase {
 		foreach( $messages as $name => $value ) {
 			$message = array();
 			$message['name'] = $name;
-			$result->setContent( $message, $value );
+			if( wfEmptyMsg( $name, $value ) ) {
+				$message['missing'] = '';
+			} else {
+				$result->setContent( $message, $value );
+			}
 			$messages_out[] = $message;
 		}
 		$result->setIndexedTagName( $messages_out, 'message' );
