@@ -58,6 +58,7 @@ class ApiQuery extends ApiBase {
 	);
 
 	private $mQueryListModules = array (
+		'allimages' => 'ApiQueryAllimages',
 		'allpages' => 'ApiQueryAllpages',
 		'alllinks' => 'ApiQueryAllLinks',
 		'allcategories' => 'ApiQueryAllCategories',
@@ -423,12 +424,14 @@ class ApiQuery extends ApiBase {
 		$this->mAllowedGenerators = array();	// Will be repopulated
 
 		$astriks = str_repeat('--- ', 8);
+		$astriks2 = str_repeat('*** ', 10);
 		$msg .= "\n$astriks Query: Prop  $astriks\n\n";
 		$msg .= $this->makeHelpMsgHelper($this->mQueryPropModules, 'prop');
 		$msg .= "\n$astriks Query: List  $astriks\n\n";
 		$msg .= $this->makeHelpMsgHelper($this->mQueryListModules, 'list');
 		$msg .= "\n$astriks Query: Meta  $astriks\n\n";
 		$msg .= $this->makeHelpMsgHelper($this->mQueryMetaModules, 'meta');
+		$msg .= "\n\n$astriks2 Modules: continuation  $astriks2\n\n";
 
 		// Perform the base call last because the $this->mAllowedGenerators
 		// will be updated inside makeHelpMsgHelper()
