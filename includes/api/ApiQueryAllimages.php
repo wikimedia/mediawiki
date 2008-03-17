@@ -46,7 +46,7 @@ class ApiQueryAllimages extends ApiQueryGeneratorBase {
 
 	public function executeGenerator($resultPageSet) {
 		if ($resultPageSet->isResolvingRedirects())
-			$this->dieUsage('Use "gaifilterredir=nonredirects" option instead of "redirects" when using allpages as a generator', 'params');
+			$this->dieUsage('Use "gaifilterredir=nonredirects" option instead of "redirects" when using allimages as a generator', 'params');
 
 		$this->run($resultPageSet);
 	}
@@ -83,16 +83,12 @@ class ApiQueryAllimages extends ApiQueryGeneratorBase {
 
 		$this->addTables('image');
 
-		$this->addFields(array (
-				'img_name',
-				'img_size',
-				'img_width',
-				'img_height',
-				'img_major_mime',
-				'img_minor_mime',
-				'img_timestamp',
-				'img_sha1',
-		));
+		$prop = array_flip($params['prop']);
+		$this->addFields('img_name');
+		$this->addFieldsIf('img_size', isset($prop['size']));
+		$this->addFieldsIf(array('img_width', 'img_height'), isset($prop['dimensions']));
+		$this->addFieldsIf(array('img_major_mime', 'img_minor_mime'), isset($prop['mime']));
+		$this->addFieldsIf('img_timestamp', isset($prop['timestamp']));
 
 		$limit = $params['limit'];
 		$this->addOption('LIMIT', $limit+1);
@@ -113,16 +109,22 @@ class ApiQueryAllimages extends ApiQueryGeneratorBase {
 
 			if (is_null($resultPageSet)) {
 				$file = wfLocalFile( $row->img_name );
-				$item = array(
-					'name' => $row->img_name,
-					'size' => $file->getSize(),
-					'width' => $file->getWidth(),
-					'height' => $file->getHeight(),
-					'mime' => $row->img_major_mime . '/' . $row->img_minor_mime,
-					'sha1' => wfBaseConvert( $file->getSha1(), 36, 16, 31 ),
-					'timestamp' => wfTimestamp(TS_ISO_8601, $file->getTimestamp()),
-					'url' => $file->getFullUrl()
-				);
+				$item['name'] = $row->img_name;
+				if(isset($prop['size']))
+					$item['size'] = $file->getSize();
+				if(isset($prop['dimensions']))
+				{
+					$item['width'] = $file->getWidth();
+					$item['height'] = $file->getHeight();
+				}
+				if(isset($prop['mime']))
+					$item['mime'] = $row->img_major_mime . '/' . $row->img_minor_mime;
+				if(isset($prop['sha1']))
+					$item['sha1'] = wfBaseConvert($file->getSha1(), 36, 16, 31);
+				if(isset($prop['timestamp']))
+					$item['timestamp'] = wfTimestamp(TS_ISO_8601, $file->getTimestamp());
+				if(isset($prop['url']))
+					$item['url'] = $file->getUrl();
 				$data[] = $item;
 			} else {
 				$data[] = Title::makeTitle( NS_IMAGE, $row->img_name );
@@ -140,8 +142,6 @@ class ApiQueryAllimages extends ApiQueryGeneratorBase {
 	}
 
 	public function getAllowedParams() {
-		global $wgRestrictionTypes, $wgRestrictionLevels;
-		
 		return array (
 			'from' => null,
 			'prefix' => null,
@@ -150,7 +150,7 @@ class ApiQueryAllimages extends ApiQueryGeneratorBase {
 			), 
 			'maxsize' => array (
 				ApiBase :: PARAM_TYPE => 'integer',
-			), 
+			),
 			'limit' => array (
 				ApiBase :: PARAM_DFLT => 10,
 				ApiBase :: PARAM_TYPE => 'limit',
@@ -167,6 +167,18 @@ class ApiQueryAllimages extends ApiQueryGeneratorBase {
 			),
 			'sha1' => null,
 			'sha1base36' => null,
+			'prop' => array (
+				ApiBase :: PARAM_TYPE => array(
+					'timestamp',
+					'url',
+					'size',
+					'dimensions',
+					'mime',
+					'sha1'
+				),
+				ApiBase :: PARAM_DFLT => 'timestamp|url',
+				ApiBase :: PARAM_ISMULTI => true
+			)
 		);
 	}
 
@@ -179,7 +191,8 @@ class ApiQueryAllimages extends ApiQueryGeneratorBase {
 			'maxsize' => 'Limit to images with at most this many bytes',
 			'limit' => 'How many total pages to return.',
 			'sha1' => 'SHA1 hash of image',
-			'sha1base36' => 'SHA1 hash of image in base 36 (used in MediaWiki)'
+			'sha1base36' => 'SHA1 hash of image in base 36 (used in MediaWiki)',
+			'prop' => 'Which properties to get',
 		);
 	}
 
