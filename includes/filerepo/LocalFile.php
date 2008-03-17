@@ -236,13 +236,7 @@ class LocalFile extends File
 			$this->$name = $value;
 		}
 		$this->fileExists = true;
-		// Check if the file is hidden...
-		if( $this->isDeleted(File::DELETED_FILE) ) {
-			$this->fileExists = false; // treat as not existing
-		} else {
-			// Check for rows from a previous schema, quietly upgrade them
-			$this->maybeUpgradeRow();
-		}
+		$this->maybeUpgradeRow();
 	}
 
 	/**
