@@ -129,9 +129,8 @@ function wfSpecialImport( $page = '' ) {
 					Xml::openElement( 'select', array( 'name' => 'interwiki' ) )
 		);
 		foreach( $wgImportSources as $prefix ) {
-			$iw = htmlspecialchars( $prefix );
-			$selected = ($interwiki === $prefix) ? ' selected="selected"' : '';
-			$wgOut->addHTML( Xml::option( $iw, $iw, $selected ) );
+			$selected = ( $interwiki === $prefix ) ? ' selected="selected"' : '';
+			$wgOut->addHTML( Xml::option( $prefix, $prefix, $selected ) );
 		}
 		$wgOut->addHTML(
 					Xml::closeElement( 'select' ) .
