@@ -1172,7 +1172,7 @@ $2',
 'boteditletter'                     => 'ב',
 'sectionlink'                       => '←',
 'number_of_watching_users_pageview' => '[{{plural:$1|משתמש אחד עוקב|$1 משתמשים עוקבים}} אחרי הדף]',
-'rc_categories'                     => 'הגבל לקטגוריות (הפרד עם "|")',
+'rc_categories'                     => 'הגבלה לקטגוריות (יש להפריד עם "|")',
 'rc_categories_any'                 => 'הכול',
 'newsectionsummary'                 => '/* $1 */ פסקה חדשה',
 
@@ -2145,7 +2145,7 @@ $1',
 
 # Media information
 'mediawarning'         => "'''אזהרה:''' קובץ זה עלול להכיל קוד זדוני, שהרצתו עלולה לסכן את המערכת שלכם.<hr />",
-'imagemaxsize'         => 'הגבל תמונות בדפי תיאור תמונה ל:',
+'imagemaxsize'         => 'הגבלת תמונות בדפי תיאור תמונה ל:',
 'thumbsize'            => 'הקטן לגודל של:',
 'widthheightpage'      => '$1×$2, $3 דפים',
 'file-info'            => '(גודל הקובץ: $1, סוג MIME: $2)',
