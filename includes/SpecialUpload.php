@@ -911,7 +911,7 @@ class UploadForm {
 	 * @access private
 	 */
 	function mainUploadForm( $msg='' ) {
-		global $wgOut, $wgUser, $wgContLang;
+		global $wgOut, $wgUser;
 		global $wgUseCopyrightUpload, $wgUseAjax, $wgAjaxUploadDestCheck, $wgAjaxLicensePreview;
 		global $wgRequest, $wgAllowCopyUploads;
 		global $wgStylePath, $wgStyleVersion;
@@ -979,25 +979,25 @@ wgUploadAutoFill = {$autofill};
 		# MIME type here, it's incomprehensible to most people and too long.
 		global $wgCheckFileExtensions, $wgStrictFileExtensions,
 		$wgFileExtensions, $wgFileBlacklist;
+
+		$allowedExtensions = '';
 		if( $wgCheckFileExtensions ) {
 			$delim = wfMsgExt( 'comma-separator', array( 'escapenoentities' ) );
 			if( $wgStrictFileExtensions ) {
 				# Everything not permitted is banned
-				$wgOut->addHTML(
+				$extensionsList =
 					'<div id="mw-upload-permitted">' .
 					wfMsgWikiHtml( 'upload-permitted', implode( $wgFileExtensions, $delim ) ) .
-					"</div>\n"
-				);
+					"</div>\n";
 			} else {
 				# We have to list both preferred and prohibited
-				$wgOut->addHTML(
+				$extensionsList =
 					'<div id="mw-upload-preferred">' .
 					wfMsgWikiHtml( 'upload-preferred', implode( $wgFileExtensions, $delim ) ) .
 					"</div>\n" .
 					'<div id="mw-upload-prohibited">' .
 					wfMsgWikiHtml( 'upload-prohibited', implode( $wgFileBlacklist, $delim ) ) .
-					"</div>\n"
-				);
+					"</div>\n";
 			}
 		}
 
@@ -1014,7 +1014,6 @@ wgUploadAutoFill = {$autofill};
 
 
 		$titleObj = SpecialPage::getTitleFor( 'Upload' );
-		$action = $titleObj->escapeLocalURL();
 
 		$encDestName = htmlspecialchars( $this->mDesiredDestName );
 
@@ -1060,57 +1059,73 @@ wgUploadAutoFill = {$autofill};
 		}
 
 		$encComment = htmlspecialchars( $this->mComment );
-		$align1 = $wgContLang->isRTL() ? 'left' : 'right';
-		$align2 = $wgContLang->isRTL() ? 'right' : 'left';
 
-		$wgOut->addHTML( <<<EOT
-	<form id='upload' method='post' enctype='multipart/form-data' action="$action">
-		<table border='0'>
-		<tr>
-			{$this->uploadFormTextTop}
-			<td align='$align1' valign='top'><label for='wpUploadFile'>{$sourcefilename}</label></td>
-			<td align='$align2'>
-				{$filename_form}
-			</td>
-		</tr>
-		<tr>
-			<td align='$align1'><label for='wpDestFile'>{$destfilename}</label></td>
-			<td align='$align2'>
-				<input tabindex='2' type='text' name='wpDestFile' id='wpDestFile' size='60' 
-					value="$encDestName" onchange='toggleFilenameFiller()' $destOnkeyup />
-			</td>
-		</tr>
-		<tr>
-			<td align='$align1'><label for='wpUploadDescription'>{$summary}</label></td>
-			<td align='$align2'>
-				<textarea tabindex='3' name='wpUploadDescription' id='wpUploadDescription' rows='6' 
-					cols='{$cols}'{$width}>$encComment</textarea>
+		$wgOut->addHTML(
+			 Xml::openElement( 'form', array( 'method' => 'post', 'action' => $titleObj->getLocalURL(), 
+				 'enctype' => 'multipart/form-data', 'id' => 'mw-upload-form' ) ) .
+			 Xml::openElement( 'fieldset' ) .
+			 Xml::element( 'legend', null, wfMsg( 'upload' ) ) .
+			 Xml::openElement( 'table', array( 'border' => '0', 'id' => 'mw-upload-table' ) ) .
+			 "<tr>
+			 	{$this->uploadFormTextTop}
+				<td class='mw-label'>
+					<label for='wpUploadFile'>{$sourcefilename}</label>
+				</td>
+				<td class='mw-input'>
+					{$filename_form}
+				</td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>
+					{$extensionsList}
+				</td>
+			</tr>
+			<tr>
+				<td class='mw-label'>
+					<label for='wpDestFile'>{$destfilename}</label>
+				</td>
+				<td class='mw-input'>
+					<input tabindex='2' type='text' name='wpDestFile' id='wpDestFile' size='60' 
+						value=\"{$encDestName}\" onchange='toggleFilenameFiller()' $destOnkeyup />
+				</td>
+			</tr>
+			<tr>
+				<td class='mw-label'>
+					<label for='wpUploadDescription'>{$summary}</label>
+				</td>
+				<td class='mw-input'>
+					<textarea tabindex='3' name='wpUploadDescription' id='wpUploadDescription' rows='6' 
+						cols='{$cols}'{$width}>$encComment</textarea>
 					{$this->uploadFormTextAfterSummary}
-			</td>
-		</tr>
-		<tr>
-EOT
+				</td>
+			</tr>
+			<tr>"
 		);
 
 		if ( $licenseshtml != '' ) {
 			global $wgStylePath;
 			$wgOut->addHTML( "
-			<td align='$align1'><label for='wpLicense'>$license</label></td>
-			<td align='$align2'>
-				<select name='wpLicense' id='wpLicense' tabindex='4'
-					onchange='licenseSelectorCheck()'>
-					<option value=''>$nolicense</option>
-					$licenseshtml
-				</select>
-			</td>
-			</tr>
-			<tr>" );
+					<td class='mw-label'>
+						<label for='wpLicense'>$license</label>
+					</td>
+					<td class='mw-input'>
+						<select name='wpLicense' id='wpLicense' tabindex='4'
+							onchange='licenseSelectorCheck()'>
+							<option value=''>$nolicense</option>
+							$licenseshtml
+						</select>
+					</td>
+				</tr>
+				<tr>"
+			);
 			if( $useAjaxLicensePreview ) {
 				$wgOut->addHtml( "
-					<td></td>
-					<td id=\"mw-license-preview\"></td>
-				</tr>
-				<tr>" );
+						<td></td>
+						<td id=\"mw-license-preview\"></td>
+					</tr>
+					<tr>"
+				);
 			}
 		}
 
@@ -1121,45 +1136,55 @@ EOT
 			$uploadsource = htmlspecialchars( $this->mCopyrightSource );
 
 			$wgOut->addHTML( "
-				<td align='$align1' nowrap='nowrap'><label for='wpUploadCopyStatus'>$filestatus</label></td>
-					<td><input tabindex='5' type='text' name='wpUploadCopyStatus' id='wpUploadCopyStatus' 
-					  value=\"$copystatus\" size='60' /></td>
-			</tr>
-			<tr>
-				<td align='$align1'><label for='wpUploadCopyStatus'>$filesource</label></td>
-					<td><input tabindex='6' type='text' name='wpUploadSource' id='wpUploadCopyStatus' 
-					  value=\"$uploadsource\" size='60' /></td>
-			</tr>
-			<tr>
-		");
+					<td class='mw-label' style='white-space: nowrap;'>
+						<label for='wpUploadCopyStatus'>$filestatus</label></td>
+					<td class='mw-input'>
+						<input tabindex='5' type='text' name='wpUploadCopyStatus' id='wpUploadCopyStatus' 
+							value=\"$copystatus\" size='60' />
+					</td>
+				</tr>
+				<tr>
+					<td class='mw-label'>
+						<label for='wpUploadCopyStatus'>$filesource</label>
+					</td>
+					<td class='mw-input'>
+						<input tabindex='6' type='text' name='wpUploadSource' id='wpUploadCopyStatus' 
+							value=\"$uploadsource\" size='60' />
+					</td>
+				</tr>
+				<tr>"
+			);
 		}
 
 		$wgOut->addHtml( "
-		<td></td>
-		<td>
-			<input tabindex='7' type='checkbox' name='wpWatchthis' id='wpWatchthis' $watchChecked value='true' />
-			<label for='wpWatchthis'>" . wfMsgHtml( 'watchthisupload' ) . "</label>
-			<input tabindex='8' type='checkbox' name='wpIgnoreWarning' id='wpIgnoreWarning' value='true' $warningChecked/>
-			<label for='wpIgnoreWarning'>" . wfMsgHtml( 'ignorewarnings' ) . "</label>
-		</td>
-	</tr>
-	$warningRow
-	<tr>
-		<td></td>
-		<td align='$align2'><input tabindex='9' type='submit' name='wpUpload' value=\"{$ulb}\"" . $wgUser->getSkin()->tooltipAndAccesskey( 'upload' ) . " /></td>
-	</tr>
-	<tr>
-		<td></td>
-		<td align='$align2'>
-		" );
+				<td></td>
+				<td>
+					<input tabindex='7' type='checkbox' name='wpWatchthis' id='wpWatchthis' $watchChecked value='true' />
+					<label for='wpWatchthis'>" . wfMsgHtml( 'watchthisupload' ) . "</label>
+					<input tabindex='8' type='checkbox' name='wpIgnoreWarning' id='wpIgnoreWarning' value='true' $warningChecked/>
+					<label for='wpIgnoreWarning'>" . wfMsgHtml( 'ignorewarnings' ) . "</label>
+				</td>
+			</tr>
+			$warningRow
+			<tr>
+				<td></td>
+					<td class='mw-input'>
+						<input tabindex='9' type='submit' name='wpUpload' value=\"{$ulb}\"" . $wgUser->getSkin()->tooltipAndAccesskey( 'upload' ) . " />
+					</td>
+			</tr>
+			<tr>
+				<td></td>
+				<td class='mw-input'>"
+		);
 		$wgOut->addWikiText( wfMsgForContent( 'edittools' ) );
 		$wgOut->addHTML( "
-		</td>
-	</tr>
-
-	</table>
-	<input type='hidden' name='wpDestFileWarningAck' id='wpDestFileWarningAck' value=''/>
-	</form>" );
+				</td>
+			</tr>" .
+			Xml::closeElement( 'table' ) .
+			Xml::hidden( 'wpDestFileWarningAck', '' ) .
+			Xml::closeElement( 'fieldset' ) .
+			Xml::closeElement( 'form' )
+		);
 		$uploadfooter = wfMsgNoTrans( 'uploadfooter' );
 		if( $uploadfooter != '-' && !wfEmptyMsg( 'uploadfooter', $uploadfooter ) ){
 			$wgOut->addWikiText( Xml::tags( 'div',
