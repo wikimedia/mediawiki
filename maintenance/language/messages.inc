@@ -676,6 +676,7 @@ $wgMessageStructure = array(
 		'showingresultsnum',
 		'nonefound',
 		'powersearch',
+		'powersearch-legend',
 		'powersearchtext',
 		'searchdisabled',
 		'googlesearch',
