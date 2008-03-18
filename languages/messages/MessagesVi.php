@@ -229,15 +229,23 @@ $messages = array(
 'nov'           => 'tháng 11',
 'dec'           => 'tháng 12',
 
-# Bits of text used by many pages
-'categories'               => 'Thể loại',
-'pagecategories'           => 'Thể loại ($1)',
-'category_header'          => 'Các trang trong thể loại “$1”',
-'subcategories'            => 'Tiểu thể loại',
-'category-media-header'    => 'Các tập tin trong thể loại “$1”',
-'category-empty'           => "''Thể loại này hiện không có trang hay tập tin.''",
-'hidden-categories'        => '{{PLURAL:$1|Thể loại ẩn|Các thể loại ẩn}}',
-'hidden-category-category' => 'Thể loại ẩn', # Name of the category where hidden categories will be listed
+# Categories related messages
+'categories'                     => 'Thể loại',
+'pagecategories'                 => 'Thể loại ($1)',
+'category_header'                => 'Các trang trong thể loại “$1”',
+'subcategories'                  => 'Tiểu thể loại',
+'category-media-header'          => 'Các tập tin trong thể loại “$1”',
+'category-empty'                 => "''Thể loại này hiện không có trang hay tập tin.''",
+'hidden-categories'              => '{{PLURAL:$1|Thể loại ẩn|Các thể loại ẩn}}',
+'hidden-category-category'       => 'Thể loại ẩn', # Name of the category where hidden categories will be listed
+'subcategorycount'               => 'Có $1 tiểu thể loại trong thể loại này.',
+'category-subcat-count'          => 'Thể loại này có {{PLURAL:$2|tiểu thể loại sau|{{PLURAL:$1||$1}} tiểu thể loại sau, trên tổng số $2 tiểu thể loại}}.',
+'category-subcat-count-limited'  => 'Thể loại này có {{PLURAL:$1||$1}} tiểu thể loại sau.',
+'category-article-count'         => '{{PLURAL:$2|Thể loại này gồm trang sau.|{{PLURAL:$1|Trang|$1 trang}} sau nằm trong thể loại này, trên tổng số $2 trang.}}',
+'category-article-count-limited' => '{{PLURAL:$1|Trang|$1 trang}} sau nằm trong thể loại hiện hành.',
+'category-file-count'            => '{{PLURAL:$2|Thể loại này có tập tin sau.|{{PLURAL:$1|Tập tin|$1 tập tin}} sau nằm trong thể loại này, trong tổng số $2 tập tin.}}',
+'category-file-count-limited'    => '{{PLURAL:$1|Tập tin|$1 tập tin}} sau nằm trong thể loại hiện hành.',
+'listingcontinuesabbrev'         => 'tiếp',
 
 'mainpagetext'      => "<big>'''MediaWiki đã được cài đặt thành công.'''</big>",
 'mainpagedocfooter' => 'Xin đọc [http://meta.wikimedia.org/wiki/Help:Contents Hướng dẫn sử dụng] để biết thêm thông tin về cách sử dụng phần mềm wiki.
@@ -846,6 +854,7 @@ Xin hãy bảo đảm tính liên tục của lịch sử trang.
 'showingresultsnum'     => "Xem '''$3''' kết quả bắt đầu từ #'''$2'''.",
 'nonefound'             => "'''Chú ý''': Tìm kiếm thường thất bại khi tìm những từ phổ biến như “thì” và “là”, những từ này không được đánh chỉ mục, hoặc bạn đã ghi nhiều từ khóa tìm kiếm (chỉ có những trang chứa tất cả các từ khóa mới xuất hiện trong kết quả).",
 'powersearch'           => 'Tìm kiếm nâng cao',
+'powersearch-legend'    => 'Tìm kiếm nâng cao',
 'powersearchtext'       => 'Tìm trong không gian tên:<br />$1<br />$2 gồm cả trang đổi hướng<br />Tìm $3 $9',
 'searchdisabled'        => 'Chức năng tìm kiếm tại {{SITENAME}} đã bị tắt. Bạn có tìm kiếm bằng Google trong thời gian này. Chú ý rằng các chỉ mục từ {{SITENAME}} của chúng có thể đã lỗi thời.',
 
@@ -1909,16 +1918,12 @@ Trong trường hợp sau bạn cũng có thể dùng một liên kết, ví d�
 'nocredits'        => 'Không có thông tin ghi nhận đóng góp cho trang này.',
 
 # Spam protection
-'spamprotectiontitle'    => 'Bộ lọc chống thư rác',
-'spamprotectiontext'     => 'Trang bạn muốn lưu bị bộ lọc thư rác chặn lại. Đây có thể do một liên kết dẫn tới một địa chỉ bên ngoài.',
-'spamprotectionmatch'    => 'Nội dung sau đây đã kích hoạt bộ lọc thư rác: $1',
-'subcategorycount'       => 'Có $1 tiểu thể loại trong thể loại này.',
-'categoryarticlecount'   => 'Có $1 trang trong thể loại này.',
-'category-media-count'   => '{{#ifeq: $1 | 0 |Không có tập tin nào|Có ít nhất $1 tập tin}} trong thể loại này.',
-'listingcontinuesabbrev' => 'tiếp',
-'spambot_username'       => 'Bộ dọn dẹp thư rác MediaWiki',
-'spam_reverting'         => 'Lùi lại đến phiên bản cuối không chứa liên kết đến $1',
-'spam_blanking'          => 'Tất cả các phiên bản có liên kết đến $1, đang tẩy trống',
+'spamprotectiontitle' => 'Bộ lọc chống thư rác',
+'spamprotectiontext'  => 'Trang bạn muốn lưu bị bộ lọc thư rác chặn lại. Đây có thể do một liên kết dẫn tới một địa chỉ bên ngoài.',
+'spamprotectionmatch' => 'Nội dung sau đây đã kích hoạt bộ lọc thư rác: $1',
+'spambot_username'    => 'Bộ dọn dẹp thư rác MediaWiki',
+'spam_reverting'      => 'Lùi lại đến phiên bản cuối không chứa liên kết đến $1',
+'spam_blanking'       => 'Tất cả các phiên bản có liên kết đến $1, đang tẩy trống',
 
 # Info page
 'infosubtitle'   => 'Thông tin về trang',

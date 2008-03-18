@@ -119,15 +119,18 @@ $messages = array(
 'nov'           => 'Сун',
 'dec'           => 'Аца',
 
-# Bits of text used by many pages
-'categories'               => 'Категорият',
-'pagecategories'           => '{{PLURAL:$1|Категория|Категорият}}',
-'category_header'          => '"$1" категориясонть лопатне',
-'subcategories'            => 'Алкскатегорият',
-'category-media-header'    => '"$1" категориясонть медиясь',
-'category-empty'           => "''Те категориясонть арасть лопат-медият.''",
-'hidden-categories'        => '{{PLURAL:$1|Кекшень категория|Кекшень категорият}}',
-'hidden-category-category' => 'Кекшень категорият', # Name of the category where hidden categories will be listed
+# Categories related messages
+'categories'                    => 'Категорият',
+'pagecategories'                => '{{PLURAL:$1|Категория|Категорият}}',
+'category_header'               => '"$1" категориясонть лопатне',
+'subcategories'                 => 'Алкскатегорият',
+'category-media-header'         => '"$1" категориясонть медиясь',
+'category-empty'                => "''Те категориясонть арасть лопат-медият.''",
+'hidden-categories'             => '{{PLURAL:$1|Кекшень категория|Кекшень категорият}}',
+'hidden-category-category'      => 'Кекшень категорият', # Name of the category where hidden categories will be listed
+'subcategorycount'              => 'Те категриясонть $1 {{PLURAL:$1|категорияньалкс|категорияньалкст|категорияньалкстнеде}}.',
+'category-subcat-count-limited' => 'Те категориясонть {{PLURAL:$1|алкс категория|$1 алкс категорият}}.',
+'listingcontinuesabbrev'        => 'поладксозо моли',
 
 'mainpagetext' => "<покш>'''МедияВикинь тевс аравтомазо парсте лиссь.'''</покш>",
 
@@ -146,7 +149,7 @@ $messages = array(
 'mypage'         => 'Монь лопам',
 'mytalk'         => 'Монь кортамом',
 'anontalk'       => 'Кортамс те IP-нть марто',
-'navigation'     => 'Навигациянть',
+'navigation'     => 'Навигация',
 'and'            => 'ды',
 
 # Metadata in edit box
@@ -154,7 +157,7 @@ $messages = array(
 
 'errorpagetitle'    => 'Ильведькс',
 'returnto'          => 'Велявтомс $1 лопантень.',
-'tagline'           => '{{SITENAME}} туртов',
+'tagline'           => '{{SITENAME}} -нь пельде',
 'help'              => 'Лезкс',
 'search'            => 'Вешнемс',
 'searchbutton'      => 'Вешнек',
@@ -168,7 +171,9 @@ $messages = array(
 'permalink'         => 'Свалшкас сюлмавомапе',
 'print'             => 'Нолдамс',
 'edit'              => 'Витнеме-петнеме',
+'create'            => 'Тейть-шкак',
 'editthispage'      => 'Витнемс-петнемс те лопанть',
+'create-this-page'  => 'Теик-шкик те лопанть',
 'delete'            => 'Нардамс',
 'deletethispage'    => 'Нардамс те лопанть',
 'undelete_short'    => 'Велявтомс нардазенть {{PLURAL:$1|вейке витнема-петнема|$1 витнемат-петнемат}}',
@@ -256,6 +261,7 @@ $messages = array(
 'site-atom-feed'          => 'Atom-нть максовкс $1-нть кисэ',
 'page-rss-feed'           => '«$1» RSS максовкс',
 'page-atom-feed'          => '«$1» Atom максовкс',
+'red-link-title'          => '$1 (зярс апак сёрмадо)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Лопа',
@@ -276,6 +282,7 @@ $messages = array(
 # General errors
 'error'                => 'Ильведькс',
 'databaseerror'        => 'Датабазань ильведькс',
+'nodb'                 => '$1 датабазась эзь кочкаво',
 'readonly'             => 'Датабазась панжома экшсэ',
 'internalerror'        => 'Потмонь ильведькс',
 'internalerror_info'   => 'Потмонь ильведькс: $1',
@@ -304,6 +311,7 @@ $messages = array(
 'yourpasswordagain'         => 'Омбоцеде сёрмадык кирдицянь леметь:',
 'remembermypassword'        => 'Ледстемс монь салава валонть те арсемашинасонть',
 'yourdomainname'            => 'Эсеть доменэть:',
+'loginproblem'              => '<b>Совамсто мезе-бути аволь истя лиссь.</b><br />Варчика одов!',
 'login'                     => 'Совамо',
 'loginprompt'               => '{{SITENAME}}-с совамга эряви нолдамс тевс cookies.',
 'userlogin'                 => 'Совамо / тейть совамотарка',
@@ -317,12 +325,14 @@ $messages = array(
 'gotaccountlink'            => 'Совамс',
 'createaccountmail'         => 'е-сёрмасо',
 'badretype'                 => 'Сёрмадыть салавань валот кавксть, сынь аволь вейкеть.',
+'userexists'                => 'Те лемесь уш саезь. Арсека эсеть лия, инеськеть.',
 'youremail'                 => 'Е-сёрма:',
 'username'                  => 'Совицянь леметь:',
 'uid'                       => 'Совицянь ID:',
 'yourrealname'              => 'Алкуксонь леметь:',
 'yourlanguage'              => 'Кель:',
 'yournick'                  => 'Путонь леметь:',
+'badsiglength'              => 'Путонь леметь пек кувака; иляст уле эйсэнзэ $1 -до ламо тешкст.',
 'email'                     => 'Е-сёрма',
 'prefs-help-realname'       => 'Алкуксонь леметь (арась мелеть, иляк путо): путсак, ды сон карми неявомо не таркатнесэ, косо тон тев теят.',
 'loginerror'                => 'Совамсто ильведькс',
@@ -405,6 +415,7 @@ $messages = array(
 
 Тынк IP-тешкстенк  — $3, сёлгоманть ID-сь — #$5. Инескеть, невтеде нетьнень тынк кевкстематнесе.",
 'blockednoreason'        => 'тувтал апак максо',
+'blockedoriginalsource'  => "'''$1''' -нть лисьмапрясь ало неяви:",
 'whitelistedittitle'     => 'Витнемань-петнемань кисэ эряви совамо лем',
 'whitelistedittext'      => 'Лопань витнемс - петнемс эряви $1.',
 'whitelistreadtitle'     => 'Ловномань кисэ эряви совамо лем',
@@ -413,11 +424,11 @@ $messages = array(
 'loginreqlink'           => 'совамс',
 'accmailtitle'           => 'Салавань вал кучозь.',
 'newarticle'             => '(Од)',
-'newarticletext'         => "Тынь молиде налткенть мельга сёрмадовксось конань эзь ульне теезь. 
-Ули меленк теемс сёрмадовкс сёрмадодо валт ало паргосонть (вандодо [[{{MediaWiki:Helppage}}|help page]] тесэ лездамо информация). 
-Кодак тынь тесэ ильветькс коряс, лепштядо '''back''' браузерсэ.",
-'noarticletext'          => "Неень шкасто те лопасонть сёрмадовксось арась. Тынь мусынк [[{{ns:special}}:Search/{{PAGENAME}}|лецтнеманть те лемензе]] лия сёрмадовкснесэ али '''[{{fullurl:{{FULLPAGENAME}}|action=edit}} теемс лопа истямо леме марто]'''.",
-'previewnote'            => '<strong>Это - ансяк икелев ваномась; полавтоматне эзть ульне ванстозь!</strong>',
+'newarticletext'         => "Молить налтке мельга сёрмадовксос, конась апак тее. 
+Ули мелеть теемс сёрмадовкс, сёрмадт валт ало паргос (вант [[{{MediaWiki:Helppage}}|help page]] тесэ лездамо информация). 
+Лисиндеряй тесэ ильведькс, лепштик браузерсэ '''back''' повнэнть.",
+'noarticletext'          => "Неень шкасто те лопасонть сёрмадовкс арась. Мусак [[{{ns:special}}:Search/{{PAGENAME}}|ледстнеманть те лемензэ]] лия сёрмадовкстнэсэ али '''[{{fullurl:{{FULLPAGENAME}}|action=edit}} теемс лопа истямо лем марто]'''.",
+'previewnote'            => '<strong>Те - ансяк икелев ваномась; полавтоматне зярс апак вансто!</strong>',
 'editing'                => 'Витнят-петнят $1',
 'editingsection'         => 'Витнемс-петнемс $1 (секциянть)',
 'yourtext'               => 'Мезе сёрмадыть',
@@ -426,12 +437,13 @@ $messages = array(
 'copyrightwarning'       => 'Инескеть тешкстынк, тынк внси путовксне {{SITENAME}}-се, кода арсетян нолдазь $2 ало (вант $1 педе пес). Кодак Тынк арась меленк тынк сермадовксось улевель витнезь-петнезь педте пес илядо сестэ путто сонзе тей.<br />
 Тынь истяжо макстад вал сень коряс - тень Тынь сёрмадынк тыньдынсь, али саинк сонзэ вейсэнь ёнксто али олячинь порталсто. 
 <strong>ИЛЯДО МАКСО ВАНСТОЗЬ ЛОМАНЕНЬ ВИДЕЧИСЭ ВАЖОДИМАНТЬ АПАК МЕЛЬТЕМЕ!</strong>',
-'longpagewarning'        => '<strong>ИКЕЛЕ КАРДОМА: Те лопанть сталмозо $1 килобайтт; кона-конат интерчаматнесэ-браузертнесэ стакасто витнемсь-петнемс сёрмадовкс 32-во кб сталмосо али седе стака.
-Инескеть, паро улевель лопанть явовтомс вишка пельксес.</strong>',
+'longpagewarning'        => '<strong>ВАНОК: Те лопанть сталмозо $1 килобайтт; конат-конат интерчаматнесэ-браузертнэсэ стакасто витнемс-петнемс сёрмадовкс 32-во кб сталмосо али седе стака.
+Инеськеть, паро улевель лопанть явомс вишка пельксекс.</strong>',
 'templatesused'          => 'Те лопасонть тевс нолдазь лопапарцунт:',
 'templatesusedpreview'   => 'Шаблонтне, конататьнень тевс нолдыть те икелеввановкссонть:',
+'templatesusedsection'   => 'Те пелькссэнть тевс нолдазь лопа парцунт:',
 'template-protected'     => '(ванстозь)',
-'template-semiprotected' => '(пельс ванстазь)',
+'template-semiprotected' => '(пельс ванстозь)',
 'nocreatetext'           => 'Те {{SITENAME}} лопасонть пирязь од лопань теемась. Тонь ули мелеть велявтомс удалов ды  питнемензе-витнемензе улиця лопанть, али [[Special:Userlogin|совамс али теемс од совама]].',
 'recreate-deleted-warn'  => "'''Икелев кардома: Тынь откстомтавтад лопанть, кона ульнесь нардазь.'''
  
@@ -464,12 +476,13 @@ $messages = array(
 'history-feed-item-nocomment' => '$1 $2-зэ', # user at time
 
 # Revision deletion
-'rev-deleted-comment'  => '(арсемась-мелесь нардазь)',
-'rev-deleted-user'     => '(совицянь лемесь нардазь)',
-'rev-deleted-event'    => '(сёрмадсткэсь нандазь)',
-'rev-delundel'         => 'невтемс/кекшемс',
-'revdelete-hide-image' => 'Кекшемс мезе файлатнесэ',
-'revdelete-log'        => 'Логто ёвтнема:',
+'rev-deleted-comment'    => '(арсемась-мелесь нардазь)',
+'rev-deleted-user'       => '(совицянь лемесь нардазь)',
+'rev-deleted-event'      => '(сёрмадсткэсь нандазь)',
+'rev-delundel'           => 'невтемс/кекшемс',
+'revdelete-hide-comment' => 'Кекшемс витнемадо-петнемадо арсематнень',
+'revdelete-hide-image'   => 'Кекшемс мезе файлатнесэ',
+'revdelete-log'          => 'Логто ёвтнема:',
 
 # History merging
 'mergehistory-from'           => 'Лисьмапря лопа:',
@@ -501,13 +514,14 @@ $messages = array(
 'prevn'                 => 'седе икелень $1',
 'nextn'                 => 'сы $1',
 'viewprevnext'          => 'Ванномс ($1) ($2) ($3)',
-'powersearch'           => 'Вешнемс',
+'powersearch'           => 'Седеяк вешнемс',
 
 # Preferences page
 'preferences'              => 'Лия ютксто явома',
 'mypreferences'            => 'Монь лия ютксто явома',
 'prefs-edits'              => 'Зяроксть витнезь-петнезь:',
 'prefsnologin'             => 'Эзить сова',
+'qbsettings'               => 'Навигациянь лазнэ',
 'qbsettings-none'          => 'Арась мезе невтемс',
 'qbsettings-fixedleft'     => 'Керш ёндо кирдезь',
 'qbsettings-fixedright'    => 'Вить ёндо кирдезь',
@@ -531,6 +545,7 @@ $messages = array(
 'retypenew'                => 'Сёрмадык омбоцеде салавань валот:',
 'textboxsize'              => 'Витнема-петнема',
 'columns'                  => 'Палманть:',
+'searchresultshead'        => 'Вешнема',
 'contextlines'             => 'Зяро рисьметь эрьва муевкссэ:',
 'timezonelegend'           => 'Часовойть каркст',
 'localtime'                => 'Тескэнь шкась',
@@ -546,22 +561,25 @@ $messages = array(
 'userrights-available-none' => 'Тонеть а мерить лиякстомтомс тень, кие кодамо сови куросо ашти.',
 
 # Groups
-'group'            => 'Группа:',
-'group-bot'        => 'Ботт',
-'group-sysop'      => 'Администраторт',
-'group-bureaucrat' => 'Бюрократт',
-'group-all'        => '(весе)',
+'group'               => 'Группа:',
+'group-autoconfirmed' => 'Сынсь кемекстазь сёрмадыцят',
+'group-bot'           => 'Ботт',
+'group-sysop'         => 'Администраторт',
+'group-bureaucrat'    => 'Бюрократт',
+'group-all'           => '(весе)',
 
-'group-bot-member'        => 'Бот',
-'group-sysop-member'      => 'Администратор',
-'group-bureaucrat-member' => 'Бюрократ',
+'group-autoconfirmed-member' => 'Сонсь кемекстазь сёрмадыця',
+'group-bot-member'           => 'Бот',
+'group-sysop-member'         => 'Администратор',
+'group-bureaucrat-member'    => 'Бюрократ',
 
 'grouppage-bot'        => '{{ns:project}}:Ботт',
 'grouppage-sysop'      => '{{ns:project}}:Администраторт',
 'grouppage-bureaucrat' => '{{ns:project}}:Бюрократт',
 
 # User rights log
-'rightslog' => 'Уськесовицянть видечинть кемекстома',
+'rightslog'  => 'Уськесовицянть видечинть кемекстома',
+'rightsnone' => '(арасть)',
 
 # Recent changes
 'nchanges'                       => '$1 {{PLURAL:$1|полавтнема|полавтнемат}}',
@@ -584,6 +602,7 @@ $messages = array(
 'minoreditletter'                => 'а',
 'newpageletter'                  => 'О',
 'boteditletter'                  => 'б',
+'newsectionsummary'              => '/* $1 */ од пелькс',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Сюлмавозь лиякстоматьне',
@@ -594,9 +613,14 @@ $messages = array(
 # Upload
 'upload'           => 'Ёкстамонзо файланть',
 'uploadbtn'        => 'Тонгомс файланть',
+'reupload'         => 'Тонгомс одов',
 'uploadnologin'    => 'Эзить сова',
+'uploaderror'      => 'Тонгомсто ильведькс',
 'uploadlogpage'    => 'Файлань тонгома журналось',
 'filename'         => 'Файлонь лем',
+'filesource'       => 'Лисьмапря:',
+'uploadedfiles'    => 'Тонгонь файлат',
+'badfilename'      => 'Файланть лемесь полавтозь "$1"-кс.',
 'successfulupload' => 'Совавтовсь кода эряви',
 'uploadwarning'    => 'Совавтомадо кардамонь пачтямо',
 'savefile'         => 'Ванстомс файланть',
@@ -611,9 +635,17 @@ $messages = array(
 
 # Image list
 'imagelist'                 => 'Файлат-мезть',
+'ilsubmit'                  => 'Вешнемс',
+'byname'                    => 'лемень коряс',
+'bydate'                    => 'чинь коряс',
+'bysize'                    => 'покшолмань коряс',
+'imgdelete'                 => 'нардамс',
 'imgfile'                   => 'файл',
 'filehist'                  => 'Файланть эрямопингезэ',
 'filehist-help'             => 'Лепштинк чиннть/шканть ланкс, сестэ вансынк коли файлось ульнесь теезь.',
+'filehist-deleteall'        => 'нардамс весе',
+'filehist-deleteone'        => 'нардамс тень',
+'filehist-revert'           => 'велявтомс мекев',
 'filehist-current'          => 'неень шкань',
 'filehist-datetime'         => 'Чи/Шка',
 'filehist-user'             => 'Совиця',
@@ -624,25 +656,33 @@ $messages = array(
 'linkstoimage'              => 'Те файлантень сюлмазь вана истят сюлмавомапеть:',
 'nolinkstoimage'            => 'Арасть вейкеяк лопать, конат сюлмавовить те файланть марто.',
 'sharedupload'              => 'Те файлась вачказезь вейксеньте знярыянь проектень ванстома таркас.',
+'shareduploadwiki'          => 'Седе ламо информация эряви, вант, инеськеть $1.',
 'noimage'                   => 'Кодамояк файла истямо лем марто арась, тынь $1 тейдяд.',
 'noimage-linktext'          => 'тонгинк тень',
 'uploadnewversion-linktext' => 'Тонгодо од версия те файланть',
 'imagelist_date'            => 'Чи',
 'imagelist_name'            => 'Лем',
+'imagelist_size'            => 'Покшолма',
 
 # File reversion
+'filerevert'         => 'Велявтомс $1 мекев',
+'filerevert-legend'  => 'Велявтомс файланть',
 'filerevert-comment' => 'Арсемат-мельть:',
+'filerevert-submit'  => 'Велявтомс мекев',
 
 # File deletion
-'filedelete'             => 'Нардамс $1',
-'filedelete-legend'      => 'Нардамс файланть',
-'filedelete-comment'     => 'Мейс нардамс:',
-'filedelete-submit'      => 'Нардамс',
-'filedelete-success'     => "'''$1'''-сь нардазь.",
-'filedelete-otherreason' => 'Лия тувтал:',
+'filedelete'                  => 'Нардамс $1',
+'filedelete-legend'           => 'Нардамс файланть',
+'filedelete-comment'          => 'Мейс нардамс:',
+'filedelete-submit'           => 'Нардамс',
+'filedelete-success'          => "'''$1'''-сь нардазь.",
+'filedelete-otherreason'      => 'Лия тувтал:',
+'filedelete-reason-otherlist' => 'Лия тувтал',
+'filedelete-edit-reasonlist'  => 'Витнемс-петнемс нардамонь тувталтнэсэ',
 
 # MIME search
 'mimesearch' => 'MIME вешнема',
+'mimetype'   => 'MIME тип:',
 'download'   => 'таргамс',
 
 # List redirects
@@ -661,17 +701,21 @@ $messages = array(
 'randomredirect-nopages' => 'Те лем таркасонть лияв ютавтомат арасть.',
 
 # Statistics
-'statistics' => 'Статистикат',
-'sitestats'  => '{{SITENAME}} статистика',
-'userstats'  => 'Совицянь статистика',
+'statistics'             => 'Статистикат',
+'sitestats'              => '{{SITENAME}} статистика',
+'userstats'              => 'Совицянь статистика',
+'statistics-mostpopular' => 'Весемеде сеедьстэ ванозь лопат',
 
 'disambiguations' => 'Лопат, конат сёрмадстовтовить ламосмустев терминтт',
 
 'doubleredirects' => 'Кавксть ютавтозь',
 
-'brokenredirects' => 'Сезезь ёнксось',
+'brokenredirects'        => 'Сезезь ёнксось',
+'brokenredirects-edit'   => '(витнемс-петнемс)',
+'brokenredirects-delete' => '(нардамс)',
 
-'withoutinterwiki' => 'Лопат келеньютковань невтевкснень теме',
+'withoutinterwiki'        => 'Лопат келеньютковань невтевкснень теме',
+'withoutinterwiki-submit' => 'Невтемс',
 
 'fewestrevisions' => 'Лопатьне седе аламонь вановкснэнь марто',
 
@@ -712,8 +756,11 @@ $messages = array(
 'movethispage'            => 'Ютавтомс те лопанть лияв',
 
 # Book sources
-'booksources' => 'Кинигань лисьмапрят',
+'booksources'               => 'Кинигань лисьмапрят',
+'booksources-search-legend' => 'Вешнемс кинигань лисьмапрят',
+'booksources-go'            => 'Адя',
 
+'groups'         => 'Совиень курот',
 'alphaindexline' => '$1-сь  $2-те',
 'version'        => 'Версия',
 
@@ -722,6 +769,7 @@ $messages = array(
 'speciallogtitlelabel' => 'Конякс:',
 'log'                  => 'Салав валось (регистрациясь)',
 'all-logs-page'        => 'Веси совамотне-кемекстамотьне',
+'log-search-submit'    => 'Адя',
 
 # Special:Allpages
 'nextpage'       => 'Сы лопа ($1)',
@@ -734,9 +782,19 @@ $messages = array(
 'allpagessubmit' => 'Молемс',
 'allpagesprefix' => 'Невтевкс лопась полаткс марто:',
 
+# Special:Listusers
+'listusers-submit' => 'Невтемс',
+
 # E-mail user
 'emailuser'       => 'Те совицянтень кучомс е-сёрма',
 'defemailsubject' => '{{SITENAME}} е-сёрма',
+'emailfrom'       => 'Кинь пельде',
+'emailto'         => 'Кинень',
+'emailsubject'    => 'Мезде',
+'emailmessage'    => 'Пачтямнэ',
+'emailsend'       => 'Кучомс',
+'emailsent'       => 'Е-сёрма кучозь',
+'emailsenttext'   => 'Е-сёрмасо пачтямнэть кучовсь.',
 
 # Watchlist
 'watchlist'            => 'Мезе мельга мон ванстнян',
@@ -750,9 +808,11 @@ $messages = array(
 'watch'                => 'Ванстнемс',
 'watchthispage'        => 'Ванстнемс те лопа мельга',
 'unwatch'              => 'А ванстнемс тень мельга',
+'notvisiblerev'        => 'Лиякстомтомась нардазь',
 'watchlist-details'    => '$1 {{plural:$1|лопа|лопат|лопатнеде}}, апак лова кортнема лопатнень.',
 'wlshowlast'           => 'Невтемс мельсе $1 цяст $2 чить $3',
 'watchlist-hide-bots'  => 'Кекшэмс мезе ботось витнесь-петнесь',
+'watchlist-show-own'   => 'Невтемс мезе мон витнинь-петнинь',
 'watchlist-hide-own'   => 'Кекшэмс мезе мон витнинь-петнинь',
 'watchlist-hide-minor' => 'Кекшэмс апокшкэ витнемат-петнемат',
 
@@ -760,11 +820,17 @@ $messages = array(
 'watching'   => 'Ванома...',
 'unwatching' => 'Аванома...',
 
+'enotif_newpagetext' => 'Те од лопа.',
+'changed'            => 'полавтозь',
+'created'            => 'теезь-шказь',
 'enotif_anon_editor' => 'лемтеме совиця $1',
 
 # Delete/protect/revert
 'deletepage'                  => 'Панемс лопанть',
 'confirm'                     => 'Кемекстамс',
+'exblank'                     => 'лопась чаволь',
+'delete-confirm'              => 'Нардамс "$1"',
+'delete-legend'               => 'Нардамс',
 'historywarning'              => 'Икелев мерема: Лопанть, конань тынь пурнатад нардамонзо улить лиякстомань историянзо:',
 'confirmdeletetext'           => 'Тынь кевкстинк пешксе нардоманть  лопанть (али невтевкс-артовксонть)ды веси сонзе лиякстомань историянзо.<br />
 Инескеть,  кемекстынк, эсинк меленк тень коряс, ды содасынк кадовкснень тень мельга,  ды тейдяд тень видечинть (правилатьнень) коряс, конат сёрмадозь [[{{MediaWiki:Policy-url}}]].',
@@ -776,8 +842,10 @@ $messages = array(
 'deletecomment'               => 'Тувтал печкеме:',
 'deleteotherreason'           => 'Лия/топавтозь тувтал:',
 'deletereasonotherlist'       => 'Лия тувтал',
+'delete-edit-reasonlist'      => 'Витнемс-петнемс нардамонь тувталтнэнь',
 'rollbacklink'                => 'кевердемс',
 'protectlogpage'              => 'Ванстомань совама-кемекстома',
+'protectedarticle'            => 'ванстозь "[[$1]]"',
 'protect-legend'              => 'Кемекстынк аравтоманть лопанть ванстоманзо',
 'protectcomment'              => 'Мельполадкс:',
 'protectexpiry'               => 'Прядови:',
@@ -797,9 +865,16 @@ $messages = array(
 'protect-cantedit'            => 'Тынь алиякставсынк ванстомань уровнянть те лопанть, тынк арасть видечинк сонзэ лиякстоманьте.',
 'restriction-type'            => 'Нолдамо:',
 'restriction-level'           => 'Нолдавксонь покшизэ:',
+'maximum-size'                => 'Покшолмань тёкш',
 'pagesize'                    => '(байтт)',
 
+# Restrictions (nouns)
+'restriction-edit'   => 'Витнемс-петнемс',
+'restriction-move'   => 'Ютавтомс лия таркас',
+'restriction-create' => 'Шкамс-теемс',
+
 # Undelete
+'viewdeletedpage'        => 'Ваномс нардазь лопатнень',
 'undeletebtn'            => 'Велявтомс мекев сенень, мезе ульнесь витнемадо-петнемадо икеле',
 'undeletecomment'        => 'Арсемат - мельть:',
 'undelete-search-prefix' => 'Невтемс лопат тестэ саезь:',
@@ -837,20 +912,33 @@ $messages = array(
 'whatlinkshere-links' => '← сюлмавомапеть',
 
 # Block/unblock
-'blockip'            => 'Пекстамондо совицянть',
-'ipaddress'          => 'IP адрес:',
-'ipadressorusername' => 'IP адрес эли совицянь лем:',
-'ipbreason'          => 'Тувтал:',
-'ipbreasonotherlist' => 'Лия тувтал',
-'ipboptions'         => '2 hours:2 част,1 day:1 чи,3 days:3 чить,1 week:1 тарго,2 weeks:2 таргот,1 month:1 ков,3 months:3 ковт,6 months:6 ковт,1 year:1 ие,infinite:певтеме', # display1:time1,display2:time2,...
-'ipblocklist'        => 'Лопась пексать IP адресстнэнь ды совицятьнень',
-'blocklink'          => 'блокось',
-'unblocklink'        => 'панжомс',
-'contribslink'       => 'лездыцят кить',
-'blocklogpage'       => 'Пекстамонь журналось',
-'blocklogentry'      => 'пектстамонзо [[$1]]  ютазь шканть марто $2 $3',
+'blockip'                 => 'Пекстамондо совицянть',
+'ipaddress'               => 'IP адрес:',
+'ipadressorusername'      => 'IP адрес эли совицянь лем:',
+'ipbreason'               => 'Тувтал:',
+'ipbreasonotherlist'      => 'Лия тувтал',
+'ipbsubmit'               => 'Озавтомс те совицянть саймес',
+'ipbother'                => 'Лия шка:',
+'ipboptions'              => '2 hours:2 част,1 day:1 чи,3 days:3 чить,1 week:1 тарго,2 weeks:2 таргот,1 month:1 ков,3 months:3 ковт,6 months:6 ковт,1 year:1 ие,infinite:певтеме', # display1:time1,display2:time2,...
+'blockipsuccesssub'       => 'Саймес озавтовсь',
+'ipb-edit-dropdown'       => 'Витнемс-петнемс саймес озавтомань тувталтнэнь',
+'ipb-unblock-addr'        => 'Нолдамс $1-нть сайместэ',
+'ipb-blocklist-addr'      => 'Ваномс те совицянть $1 саймес озавтоманзо',
+'ipb-blocklist'           => 'Ваномс саймес озавтозетнень',
+'unblockip'               => 'Нолдамс совицянть сайместэ',
+'ipblocklist'             => 'Лопась пексать IP адресстнэнь ды совицятьнень',
+'blocklink'               => 'блокось',
+'unblocklink'             => 'панжомс',
+'contribslink'            => 'лездыцят кить',
+'blocklogpage'            => 'Пекстамонь журналось',
+'blocklogentry'           => 'пектстамонзо [[$1]]  ютазь шканть марто $2 $3',
+'unblocklogentry'         => 'сайместэ нолдазь $1',
+'block-log-flags-noemail' => 'е-сёрма озавтозь саймес',
+'blockme'                 => 'Озавтомак саймес',
+'proxyblocksuccess'       => 'Озавтовсь.',
 
 # Move page
+'move-page'        => 'Ютавтомс $1 лия таркав',
 'move-page-legend' => 'Лопанть лемень полавтома',
 'movepagetext'     => "Тевс нолдазь ало лувонть,  тынь од лемдясынк лопанть, ве шкасто путсынк од таркас сонзе лиякстома журналонть.<br />
 Сыре лемезе карми тейсырьксезь од леменьте.<br />
@@ -885,17 +973,25 @@ $messages = array(
 'revertmove'       => 'велявтодо',
 
 # Export
-'export' => 'Экспортировамс лопат',
+'export'           => 'Экспортировамс лопат',
+'export-addcat'    => 'Поладомс',
+'export-download'  => 'Таргамс файлакс',
+'export-templates' => 'Поладомс лопа парцунтэнь',
 
 # Namespace 8 related
-'allmessages' => 'Систэмань вишка сёрмадовкс',
+'allmessages'        => 'Систэмань вишка сёрмадовкс',
+'allmessagescurrent' => 'Тевате текстэсь',
 
 # Thumbnails
 'thumbnail-more'  => 'Покшолгавтомс',
+'filemissing'     => 'Файлась а муеви',
 'thumbnail_error' => 'Миниатюрань тееманть ильветькс: $1',
 
 # Special:Import
-'import-revision-count' => '$1 {{PLURAL:$1|лиякстомтома|лиякстомтомат}}',
+'import'                  => 'Таргамс лопатнень',
+'import-interwiki-submit' => 'Таргамс',
+'import-revision-count'   => '$1 {{PLURAL:$1|лиякстомтома|лиякстомтомат}}',
+'import-noarticle'        => 'Совавтомс лопат арасть!',
 
 # Import log
 'importlogpage'                 => 'Импортонть журналось',
@@ -919,6 +1015,7 @@ $messages = array(
 'tooltip-ca-watch'                => 'Топавтомс те лопанть тынк ваномалопаньте',
 'tooltip-ca-unwatch'              => 'Панемензе (нардамонзо) те лопанть тынк ваномалопастонть',
 'tooltip-search'                  => 'Вешнемс вана тестэ {{SITENAME}}',
+'tooltip-p-logo'                  => 'Прякс лопа',
 'tooltip-n-mainpage'              => 'Совака прякслопантень',
 'tooltip-n-portal'                => 'Проектэнть эйстэ,  мейсэ Тынь лездатад, косо муемс курмот-кармот',
 'tooltip-n-currentevents'         => 'Муинк совавикс информациянть неень событиятнесэ',
@@ -943,12 +1040,18 @@ $messages = array(
 'tooltip-diff'                    => 'Невтемс мейсэ лиякстомтыть текстэнть.',
 'tooltip-compareselectedversions' => 'Вант явовкст кавто саезь версиятнень те лопанть.',
 'tooltip-watch'                   => 'Топавтомс те лопанть тынк ваномалопаньте',
+'tooltip-upload'                  => 'Ушодомс тонгоманть',
+
+# Attribution
+'anonymous' => '{{SITENAME}}-нь лемтеме совиця(т)',
+'siteuser'  => '{{SITENAME}}-нь совиця $1',
+'others'    => 'лият',
 
 # Spam protection
-'subcategorycount'       => 'Те категриясонть $1 {{PLURAL:$1|категорияньалкс|категорияньалкст|категорияньалкстнеде}}.',
-'categoryarticlecount'   => 'Те категориясонть $1 {{PLURAL:$1|сёрмадовкс|сёрмадовкст|сёрмадовкстнеде}}.',
-'category-media-count'   => 'Те категориясонть $1 {{PLURAL:$1|файла|файланть|файлатнеде}}.',
-'listingcontinuesabbrev' => 'поладовксось моли',
+'spamprotectiontitle' => 'Шукшто ванстома филтра',
+
+# Patrol log
+'patrol-log-auto' => '(сонсь теи)',
 
 # Browsing diffs
 'previousdiff' => '← Седе икелень diff',
@@ -966,6 +1069,7 @@ $messages = array(
 # Special:Newimages
 'newimages'    => 'Од файлатьнень галлереясь',
 'showhidebots' => '($1 ботт)',
+'noimages'     => 'Арась мезе ваномс.',
 
 # Bad image list
 'bad_image_list' => 'Лувось-форматось вана истямо:
@@ -985,6 +1089,44 @@ $messages = array(
 * fnumber
 * focallength', # Do not translate list items
 
+# EXIF tags
+'exif-imagewidth'      => 'Келе',
+'exif-imagelength'     => 'Сэрь',
+'exif-orientation'     => 'Ориентация',
+'exif-brightnessvalue' => 'Валдоксчи',
+'exif-filesource'      => 'Файланть саемазо',
+'exif-gpslongituderef' => 'Чилисемань эли чивалгомань кувалмо',
+'exif-gpslongitude'    => 'Кувалмо',
+'exif-gpsdatestamp'    => 'GPS чи',
+
+'exif-orientation-1' => 'Свалшкань', # 0th row: top; 0th column: left
+
+'exif-componentsconfiguration-0' => 'арась',
+
+'exif-subjectdistance-value' => '$1 метрат',
+
+'exif-meteringmode-0'   => 'Апак содань',
+'exif-meteringmode-6'   => 'Пелькст-пелькст',
+'exif-meteringmode-255' => 'Лия',
+
+'exif-focalplaneresolutionunit-2' => 'дуймат',
+
+'exif-sensingmethod-1' => 'Апак путо',
+
+'exif-subjectdistancerange-2' => 'Маласто неевть',
+'exif-subjectdistancerange-3' => 'Васолдонь неевть',
+
+# Pseudotags used for GPSLongitudeRef and GPSDestLongitudeRef
+'exif-gpslongitude-e' => 'Чилисемань кувалмо',
+'exif-gpslongitude-w' => 'Чивалгомань кувалмо',
+
+'exif-gpsstatus-a' => 'Онкстамозо моли',
+
+# Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
+'exif-gpsspeed-k' => 'Вайгельпеть цясозонзо',
+'exif-gpsspeed-m' => 'Милат цясозонзо',
+'exif-gpsspeed-n' => 'Сюлмот цясозонзо',
+
 # External editor support
 'edit-externally'      => 'Витнемс-петнемс те файланть, тевс нолдазь ушо ёнксонь программанть',
 'edit-externally-help' => 'Вант [http://meta.wikimedia.org/wiki/Help:External_editors аравтома инструкциятнень ] седе ламо информациянть кис.',
@@ -996,19 +1138,40 @@ $messages = array(
 'namespacesall'    => 'весе',
 'monthsall'        => 'весе',
 
+# E-mail address confirmation
+'confirmemail_error' => 'Кемекстамот ванстомсто мезе-бути лиссь.',
+
+# Delete conflict
+'recreate' => 'Шкак-тейть одов',
+
 # action=purge
 'confirm_purge_button' => 'ОК',
 
 # Multipage image navigation
-'imgmultigo' => 'Адя!',
+'imgmultigo'      => 'Адя!',
+'imgmultigotopre' => 'Адя лопас $1',
+
+# Table pager
+'table_pager_first'        => 'Васень лопась',
+'table_pager_last'         => 'Меельсе лопась',
+'table_pager_limit_submit' => 'Адя',
 
 # Auto-summaries
 'autosumm-new' => 'Од лопа: $1',
+
+# Watchlist editor
+'watchlistedit-normal-submit' => 'Нардамс конякстнэнь',
+'watchlistedit-normal-done'   => '{{PLURAL:$1|1 конякс|$1 конякст}} нардазь ваномань лопастот:',
+'watchlistedit-raw-titles'    => 'Конякст:',
 
 # Watchlist editing tools
 'watchlisttools-view' => 'Лиякстоматьне лопатнесэ потмоксстонть',
 'watchlisttools-edit' => 'Ваномс ды витнемс-петнемс мезе мельга ванстнят',
 'watchlisttools-raw'  => 'Витнедэ начко ваномалопанть',
+
+# Special:Version
+'version-specialpages' => 'Башка тевень лопат',
+'version-version'      => 'Версия',
 
 # Special:Filepath
 'filepath-page' => 'Файл:',

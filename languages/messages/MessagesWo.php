@@ -107,7 +107,7 @@ $messages = array(
 'nov'           => 'Diggi-ta',
 'dec'           => 'Tab',
 
-# Bits of text used by many pages
+# Categories related messages
 'categories'               => 'Wàll',
 'pagecategories'           => '{{PLURAL:$1|Wàll |Wàll }}',
 'category_header'          => 'Xët yi ci wàll gi « $1 »',
@@ -615,6 +615,9 @@ Yeneen yorkati {{SITENAME}} itam di nañ man a gis ëmbit yu laqu yi te loppanti
 
 # History merging
 'mergehistory'                     => 'Booleb jaar-jaar yu aw xët',
+'mergehistory-header'              => "Wii xët day tax nga man a boole sumb yépp yi ne ci jaar-jaaruw xët (di ko wax it xëtu gongikuwaay) ak jaar-jaaru weneen xët wu mujj. wóorluwul ne coppite gi du yaq jaar-jaaru xët wi.
+
+''' faaw nga denc it sumb mi teew mu xëtu gongikuwaay wi.'''",
 'mergehistory-from'                => 'Xëtu gongikuwaay :',
 'mergehistory-into'                => 'Xëtu jëmuwaay :',
 'mergehistory-list'                => 'Jaar-jaar yi boolewu',

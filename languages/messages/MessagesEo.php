@@ -155,15 +155,23 @@ $messages = array(
 'nov'           => 'Nov',
 'dec'           => 'Dec',
 
-# Bits of text used by many pages
-'categories'               => '{{PLURAL:$1|Kategorio|Kategorioj}}',
-'pagecategories'           => '{{PLURAL:$1|Kategorio|Kategorioj}}',
-'category_header'          => 'Artikoloj en kategorio "$1"',
-'subcategories'            => 'Subkategorioj',
-'category-media-header'    => 'Dosieroj en kategorio "$1"',
-'category-empty'           => "''Ĉi tiu kategorio momente ne enhavas artikolojn aŭ mediojn.''",
-'hidden-categories'        => '{{PLURAL:$1|Kaŝita kategorio|Kaŝitaj kategorioj}}',
-'hidden-category-category' => 'Kaŝitaj kategorioj', # Name of the category where hidden categories will be listed
+# Categories related messages
+'categories'                     => '{{PLURAL:$1|Kategorio|Kategorioj}}',
+'pagecategories'                 => '{{PLURAL:$1|Kategorio|Kategorioj}}',
+'category_header'                => 'Artikoloj en kategorio "$1"',
+'subcategories'                  => 'Subkategorioj',
+'category-media-header'          => 'Dosieroj en kategorio "$1"',
+'category-empty'                 => "''Ĉi tiu kategorio momente ne enhavas artikolojn aŭ mediojn.''",
+'hidden-categories'              => '{{PLURAL:$1|Kaŝita kategorio|Kaŝitaj kategorioj}}',
+'hidden-category-category'       => 'Kaŝitaj kategorioj', # Name of the category where hidden categories will be listed
+'subcategorycount'               => 'Estas {{PLURAL:$1|unu subkategorio|$1 subkategorioj}} en tiu kategorio.',
+'category-subcat-count'          => '{{PLURAL:$2|Ĉi tiu kategorio havas nur la suban subkategorion.|Ĉi tiu kategorio havas la {{PLURAL:$1|suban subkategorion|$1 subajn subkategoriojn}}, el $2 entute.}}',
+'category-subcat-count-limited'  => 'Ĉi tiu kategorio havas la {{PLURAL:$1|jenan subkategorion|jenajn $1 subkategoriojn}}.',
+'category-article-count'         => '{{PLURAL:$2|Ĉi tiu kategorio enhavas nur la jenan paĝon.|La {{PLURAL:$1|jena paĝo|jenaj $1 paĝoj}} estas en ĉi tiu kategorio, el $2 entute.}}',
+'category-article-count-limited' => 'La {{PLURAL:$1|jena paĝo|jenaj $1 paĝoj}} estas en la nuna kategorio.',
+'category-file-count'            => '{{PLURAL:$2|Ĉi tiu kategorio nur enhavas la jenan dosieron.|La {{PLURAL:$1|jena doesiero|jenaj $1 dosieroj}} estas en ĉi tiun kategorion, el $2 entute.}}',
+'category-file-count-limited'    => 'La {{PLURAL:$1|jena dosiero|jenaj $1 dosieroj}} estas en la nuna kategorio.',
+'listingcontinuesabbrev'         => 'daŭrigo',
 
 'mainpagetext'      => 'Vikisoftvaro sukcese instaliĝis.',
 'mainpagedocfooter' => "Konsultu la [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide User's Guide] por informo pri uzado de vikia programaro.
@@ -802,6 +810,7 @@ okazas ĉar oni serĉas tro da ofte uzataj vortoj, kiujn ne enhavas la indekso,
 aŭ ĉar oni petas tro da serĉvortoj (nur paĝoj kiuj enhavas ĉiun serĉvorton
 montriĝos en la rezulto).',
 'powersearch'           => 'Progresa trovilo',
+'powersearch-legend'    => 'Progresa serĉo',
 'powersearchtext'       => '
 Serĉu en sekcioj: :<br />
 $1<br />
@@ -1849,16 +1858,12 @@ Datoj de revizioj kaj nomoj de redaktantoj estos preservitaj.
 'nocredits'        => 'Ne estas informo pri atribuoj por ĉi paĝo.',
 
 # Spam protection
-'spamprotectiontitle'    => 'Filtrilo kontraŭ spamo',
-'spamprotectiontext'     => 'La paĝo kiun vi trovis konservi estis blokita per la spam-filtrilo. Ĉi tia eraro estas kaŭzata pro ekstera ligilo al malpermesata retejo.',
-'spamprotectionmatch'    => 'La jena teksto ekagigis la spam-filtrilon: $1',
-'subcategorycount'       => 'Estas {{PLURAL:$1|unu subkategorio|$1 subkategorioj}} en tiu kategorio.',
-'categoryarticlecount'   => 'Estas {{PLURAL:$1|unu artikolo|$1 artikoloj}} en tiu kategorio.',
-'category-media-count'   => 'Estas {{PLURAL:$1|unu dosiero|$1 dosieroj}} en cxi tiu kategorio.',
-'listingcontinuesabbrev' => 'daŭrigo',
-'spambot_username'       => 'Trudmesaĝa forigo de MediaWiki',
-'spam_reverting'         => 'Restarigo de lasta versio ne entenante ligilojn al $1',
-'spam_blanking'          => 'Forviŝo de ĉiuj versioj entenate ligilojn al $1',
+'spamprotectiontitle' => 'Filtrilo kontraŭ spamo',
+'spamprotectiontext'  => 'La paĝo kiun vi trovis konservi estis blokita per la spam-filtrilo. Ĉi tia eraro estas kaŭzata pro ekstera ligilo al malpermesata retejo.',
+'spamprotectionmatch' => 'La jena teksto ekagigis la spam-filtrilon: $1',
+'spambot_username'    => 'Trudmesaĝa forigo de MediaWiki',
+'spam_reverting'      => 'Restarigo de lasta versio ne entenante ligilojn al $1',
+'spam_blanking'       => 'Forviŝo de ĉiuj versioj entenate ligilojn al $1',
 
 # Info page
 'infosubtitle'   => 'Informoj por paĝo',

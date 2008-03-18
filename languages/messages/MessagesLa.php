@@ -233,15 +233,22 @@ $messages = array(
 'nov'           => 'Nov',
 'dec'           => 'Dec',
 
-# Bits of text used by many pages
-'categories'               => 'Categoriae',
-'pagecategories'           => '{{PLURAL:$1|Categoria|Categoriae}}',
-'category_header'          => 'Paginae in categoria "$1"',
-'subcategories'            => 'Subcategoriae',
-'category-media-header'    => 'Media in categoria "$1"',
-'category-empty'           => "''Huic categoriae non sunt paginae vel fasciculi.''",
-'hidden-categories'        => '{{PLURAL:$1|Categoria celata|Categoriae celatae}}',
-'hidden-category-category' => 'Categoriae celatae', # Name of the category where hidden categories will be listed
+# Categories related messages
+'categories'                     => 'Categoriae',
+'pagecategories'                 => '{{PLURAL:$1|Categoria|Categoriae}}',
+'category_header'                => 'Paginae in categoria "$1"',
+'subcategories'                  => 'Subcategoriae',
+'category-media-header'          => 'Media in categoria "$1"',
+'category-empty'                 => "''Huic categoriae non sunt paginae vel fasciculi.''",
+'hidden-categories'              => '{{PLURAL:$1|Categoria celata|Categoriae celatae}}',
+'hidden-category-category'       => 'Categoriae celatae', # Name of the category where hidden categories will be listed
+'subcategorycount'               => 'Huic categoriae {{PLURAL:$1|est una subcategoria|sunt $1 subcategoriae}}.',
+'category-subcat-count'          => '{{PLURAL:$2|Huic categoriae est solum una subcategoria.|Huic categoriae {{PLURAL:$1|est haec subcategoria|sunt hae $1 subcategoriae}} ex omnino $2 subcategoriis.}}',
+'category-subcat-count-limited'  => 'Huic categoriae {{PLURAL:$1|est haec subcategoria|sunt hae $1 subcategoriae}}.',
+'category-article-count'         => '{{PLURAL:$2|Huic categoriae est solum una pagina.|Huic categoriae {{PLURAL:$1|est haec pagina|sunt hae $1 paginae}} ex omnino $2 paginis.}}',
+'category-article-count-limited' => 'Huic categoriae {{PLURAL:$1|est haec pagina|sunt hae $1 paginae}}.',
+'category-file-count'            => '{{PLURAL:$2|Huic categoriae est solum unus fasciculus.|Huic categoriae {{PLURAL:$1|est hic fasciculus|sunt hi $1 fasciculi}} ex omnino $2 fasciculis.}}',
+'category-file-count-limited'    => 'Huic categoriae {{PLURAL:$1|est hic fasciculus|sunt hi $1 fasciculi}}.',
 
 'about'          => 'De',
 'article'        => 'Pagina contenta continens',
@@ -656,6 +663,7 @@ Titulus: (nov) = dissimilis ab forma novissima, (prox) = dissimilis ab forma pro
 'showingresultsnum'     => "Subter monstrans {{PLURAL:$3|'''1''' eventum|'''$3''' eventus}} incipiens ab #'''$2'''.",
 'nonefound'             => "'''Nota''': investigationes saepe infelices sunt propter verba frequentes huiusmodi \"que\" et \"illo\", aut quod plus unum verba quaerere designavisti (solae paginae qui tota verba investigationis continent in evento apparebit).",
 'powersearch'           => 'Quaerere',
+'powersearch-legend'    => 'Quaerere',
 'powersearchtext'       => 'Quaerere in spatiis nominalibus:<br />$1<br />$2 Monstrare redirectiones<br />Quaerere $3 $9',
 'searchdisabled'        => 'Per {{grammar:accusative|{{SITENAME}}}} ad tempus non potes quaerere. Interea per [http://www.google.com Googlem] quaeras. Nota indices {{grammar:genitive|{{SITENAME}}}} contentorum apud Googlem fortasse antiquiores esse.',
 
@@ -1353,11 +1361,6 @@ Quaesitum "[[$1]]" etiam existit. Vin tu eam delere ut moveas?',
 'anonymous'        => 'Usor ignotus {{grammar:genitive|{{SITENAME}}}}',
 'siteuser'         => '{{SITENAME}} usor $1',
 'lastmodifiedatby' => 'Ultima mutatio: $2, $1 ab $3.', # $1 date, $2 time, $3 user
-
-# Spam protection
-'subcategorycount'     => 'Huic categoriae {{PLURAL:$1|est una subcategoria|sunt $1 subcategoriae}}.',
-'categoryarticlecount' => 'Huic categoriae {{PLURAL:$1|est una pagina|sunt $1 paginae}}.',
-'category-media-count' => 'Huic categoriae {{PLURAL:$1|est unus fasciculus|sunt $1 fasciculi}}.',
 
 # Info page
 'numedits'     => 'Numerus recensionum (pagina): $1',

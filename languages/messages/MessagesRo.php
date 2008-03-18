@@ -171,7 +171,7 @@ pe titlul secţiunii (JavaScript)',
 'nov'           => 'nov',
 'dec'           => 'dec',
 
-# Bits of text used by many pages
+# Categories related messages
 'categories'               => '{{PLURAL:$1|Categorie|Categorii}}',
 'pagecategories'           => '{{PLURAL:$1|Categorie|Categorii}}',
 'category_header'          => 'Articole din categoria "$1"',
@@ -180,6 +180,8 @@ pe titlul secţiunii (JavaScript)',
 'category-empty'           => "''Această categorie nu conţine articole sau fişiere media.''",
 'hidden-categories'        => '{{PLURAL:$1|categorie ascunsă|categorii ascunse}}',
 'hidden-category-category' => 'Categorii ascunse', # Name of the category where hidden categories will be listed
+'subcategorycount'         => 'Această categorie conţine {{PLURAL:$1|o subcategorie|$1 subcategorii}}.',
+'listingcontinuesabbrev'   => ' cont.',
 
 'mainpagetext' => "<big>'''Programul Wiki a fost instalat cu succes.'''</big>",
 
@@ -880,7 +882,7 @@ Te rugăm reţine că, la fel ca şi în cazul celorlalte secţiuni din {{SITENA
 'filedesc'                    => 'Descriere fişier',
 'fileuploadsummary'           => 'Descriere:',
 'filestatus'                  => 'Statutul drepturilor de autor:',
-'filesource'                  => 'Sursa:',
+'filesource'                  => 'Sursă:',
 'uploadedfiles'               => 'Fişiere trimise',
 'ignorewarning'               => 'Ignoră avertismentul şi salvează fişierul.',
 'ignorewarnings'              => 'Ignoră orice avertismente.',
@@ -1643,16 +1645,12 @@ Articolul de destinaţie "[[$1]]" există deja. Doriţi să îl ştergeţi pentr
 'nocredits'        => 'Nu există credenţiale disponibile pentru această pagină.',
 
 # Spam protection
-'spamprotectiontitle'    => 'Filtru de protecţie spam',
-'spamprotectiontext'     => 'Pagina pe care doriţi să o salvaţi a fost blocată de filtrul spam. Aceasta se datorează probabil unei legături spre un site extern. Aţi putea verifica următoarea expresie regulată:',
-'spamprotectionmatch'    => 'Următorul text a fost oferit de filtrul de spam: $1',
-'subcategorycount'       => 'Această categorie conţine {{PLURAL:$1|o subcategorie|$1 subcategorii}}.',
-'categoryarticlecount'   => 'Această categorie conţine {{PLURAL:$1|un articol|$1 articole}}.',
-'category-media-count'   => 'Această categorie conţine {{PLURAL:$1|un articol|$1 articole}}.',
-'listingcontinuesabbrev' => ' cont.',
-'spambot_username'       => 'Curăţarea de spam a MediaWiki',
-'spam_reverting'         => 'Revenire la ultima versiune care nu conţine legături către $1',
-'spam_blanking'          => 'Toate reviziile conţinând legături către $1, au eşuat',
+'spamprotectiontitle' => 'Filtru de protecţie spam',
+'spamprotectiontext'  => 'Pagina pe care doriţi să o salvaţi a fost blocată de filtrul spam. Aceasta se datorează probabil unei legături spre un site extern. Aţi putea verifica următoarea expresie regulată:',
+'spamprotectionmatch' => 'Următorul text a fost oferit de filtrul de spam: $1',
+'spambot_username'    => 'Curăţarea de spam a MediaWiki',
+'spam_reverting'      => 'Revenire la ultima versiune care nu conţine legături către $1',
+'spam_blanking'       => 'Toate reviziile conţinând legături către $1, au eşuat',
 
 # Info page
 'infosubtitle'   => 'Informaţii pentru pagină',

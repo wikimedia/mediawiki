@@ -74,13 +74,15 @@ $messages = array(
 'nov'           => 'გერ',
 'dec'           => 'ქირ',
 
-# Bits of text used by many pages
-'categories'            => '{{PLURAL:$1|კატეგორია|კატეგორიალეფ}}',
-'pagecategories'        => '{{PLURAL:$1|კატეგორია|კატეგორიალეფ}}',
-'category_header'       => 'სტატიეფ კატეგორიას "$1"',
-'subcategories'         => 'ქვეკატეგორიალეფ',
-'category-media-header' => 'მედია კატეგორიას "$1"',
-'category-empty'        => "''თენა კატეგორიას ვა რენა გვერდეფ დო მედია''",
+# Categories related messages
+'categories'             => '{{PLURAL:$1|კატეგორია|კატეგორიალეფ}}',
+'pagecategories'         => '{{PLURAL:$1|კატეგორია|კატეგორიალეფ}}',
+'category_header'        => 'სტატიეფ კატეგორიას "$1"',
+'subcategories'          => 'ქვეკატეგორიალეფ',
+'category-media-header'  => 'მედია კატეგორიას "$1"',
+'category-empty'         => "''თენა კატეგორიას ვა რენა გვერდეფ დო მედია''",
+'subcategorycount'       => 'თე კატეგორიას $1 ქვეკატეგორია რე.',
+'listingcontinuesabbrev' => 'გინძარ.',
 
 'about'          => '-შენი',
 'article'        => 'სტატია',
@@ -377,6 +379,7 @@ $messages = array(
 'sp-contributions-blocklog' => 'ბლოკირებაშ ისტორია',
 
 # What links here
+'whatlinkshere'       => 'სო რე თენა გვერდ წურაფილი',
 'whatlinkshere-page'  => 'გვერდ:',
 'linklistsub'         => '(ბუნეფ)',
 'nolinkshere'         => 'თე გვერდც ვარე ბმულ',
@@ -419,13 +422,18 @@ $messages = array(
 'tooltip-pt-mytalk'               => 'ჩქიმ დისკუსიაშ გვერდ',
 'tooltip-pt-preferences'          => 'ჩქიმ კონფიგურაცია',
 'tooltip-pt-mycontris'            => 'ჩქიმ არძა ხანდა',
+'tooltip-pt-login'                => 'ჯგირი იჸუაფუ თქვან რეგისტრაცია, მორო აუცილებელი ვარე.',
 'tooltip-pt-logout'               => 'გუმულა',
+'tooltip-ca-edit'                 => 'თქვან შეგილებუნთ თე გვერდიშ რედაქტირება. რთხიინთ გეუნჭირით ოწმახ რწყებაშ ღილაკიშ გვერდიშ შენახაშა.',
 'tooltip-ca-delete'               => 'თე გვერდიშ შალუა',
 'tooltip-ca-move'                 => 'თე გვერდიშ გინოღალა',
 'tooltip-ca-unwatch'              => 'მონწყუმეთ თენა გვერდ თქვან კონტროლიშ გვერდეფიშე',
 'tooltip-search'                  => 'გორუა {{SITENAME}}',
 'tooltip-n-mainpage'              => 'თავარ გვერდიშ ძირაფა',
+'tooltip-n-portal'                => 'პროექტიშენი, მუშ ქიმინუა შეგილებუნთ, სოდეთ ძირჷნთ',
+'tooltip-n-currentevents'         => 'ქიჩინით რსული ინფორმაცია ასეიან მოვლენეფიშენი',
 'tooltip-n-recentchanges'         => 'ვიკის ბოლო თირუალეფ',
+'tooltip-n-help'                  => 'გვერდ, სოდეთ ძირჷნთ.',
 'tooltip-n-sitesupport'           => 'ხუჯ დომკინით',
 'tooltip-t-contributions'         => 'ქოძირეთ თე ხვარებელიშ ხანდა',
 'tooltip-t-specialpages'          => 'ირ სპეციალურ გვერდ',
@@ -436,12 +444,6 @@ $messages = array(
 'tooltip-ca-nstab-category'       => 'გვერდიშ კატეგორიაშ ძირა',
 'tooltip-save'                    => 'თირუაშ ჩუალა',
 'tooltip-compareselectedversions' => 'ქოძირეთ თე გვერდიშ ჟირ გიშაგორილ ვერსიაშ განშხვავებეფ.',
-
-# Spam protection
-'subcategorycount'       => 'თე კატეგორიას $1 ქვეკატეგორია რე.',
-'categoryarticlecount'   => 'თე კატეგორიას $1 სტატია რე.',
-'category-media-count'   => 'თე კატეგორიას $1 ფაილ რე.',
-'listingcontinuesabbrev' => 'გინძარ.',
 
 # Browsing diffs
 'previousdiff' => '← ჯვეშ თირუაშა',

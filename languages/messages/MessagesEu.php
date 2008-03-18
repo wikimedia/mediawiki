@@ -138,13 +138,15 @@ $messages = array(
 'nov'           => 'Aza',
 'dec'           => 'Abe',
 
-# Bits of text used by many pages
-'categories'            => '{{PLURAL:$1|Kategoria|Kategoriak}}',
-'pagecategories'        => '{{PLURAL:$1|Kategoria|Kategoriak}}',
-'category_header'       => '"$1" kategoriako artikuluak',
-'subcategories'         => 'Azpikategoriak',
-'category-media-header' => 'Media "$1" kategorian',
-'category-empty'        => "''Kategoria honek ez dauka artikulurik uneotan.''",
+# Categories related messages
+'categories'             => '{{PLURAL:$1|Kategoria|Kategoriak}}',
+'pagecategories'         => '{{PLURAL:$1|Kategoria|Kategoriak}}',
+'category_header'        => '"$1" kategoriako artikuluak',
+'subcategories'          => 'Azpikategoriak',
+'category-media-header'  => 'Media "$1" kategorian',
+'category-empty'         => "''Kategoria honek ez dauka artikulurik uneotan.''",
+'subcategorycount'       => '{{PLURAL:$1|Azpikategoria bat dago|$1 azpikategoria daude}} kategoria honetan.',
+'listingcontinuesabbrev' => 'jarr.',
 
 'mainpagetext'      => "<big>'''MediaWiki arrakastaz instalatu da.'''</big>",
 'mainpagedocfooter' => 'Ikus [http://meta.wikimedia.org/wiki/Help:Contents Erabiltzaile Gida] wiki softwarea erabiltzen hasteko informazio gehiagorako.
@@ -764,9 +766,9 @@ Wiki honetako beste administratzaileek ezkutuko eduki hau ikusteko aukera izango
 'group-sysop-member'         => 'Administratzaile',
 'group-bureaucrat-member'    => 'Burokrata',
 
-'grouppage-bot'           => '{{ns:project}}:Bot-ak',
-'grouppage-sysop'         => '{{ns:project}}:Administratzaileak',
-'grouppage-bureaucrat'    => '{{ns:project}}:Burokratak',
+'grouppage-bot'        => '{{ns:project}}:Bot-ak',
+'grouppage-sysop'      => '{{ns:project}}:Administratzaileak',
+'grouppage-bureaucrat' => '{{ns:project}}:Burokratak',
 
 # User rights log
 'rightslog'      => 'Erabiltzaile eskubideen erregistroa',
@@ -1524,6 +1526,7 @@ Horrez gain, lotura zuzena ere erabil dezakezu; adibidez, [[{{ns:special}}:Expor
 'tooltip-ca-watch'                => 'Orrialde hau jarraipen zerrendan gehitu',
 'tooltip-ca-unwatch'              => 'Orrialde hau jarraipen zerrendatik kendu',
 'tooltip-search'                  => 'Wiki honetan bilatu',
+'tooltip-search-fulltext'         => 'Textu honetarako orriak bilatu',
 'tooltip-p-logo'                  => 'Azala',
 'tooltip-n-mainpage'              => 'Azala bisitatu',
 'tooltip-n-portal'                => 'Proiektuaren inguruan, zer egin dezakezu, non aurkitu nahi duzuna',
@@ -1581,16 +1584,12 @@ Horrez gain, lotura zuzena ere erabil dezakezu; adibidez, [[{{ns:special}}:Expor
 'nocredits'        => 'Ez dago krediturik eskuragarri orrialde honentzako.',
 
 # Spam protection
-'spamprotectiontitle'    => 'Spam-arengandik babesteko iragazkia',
-'spamprotectiontext'     => 'Gorde nahi duzun orrialdea spam iragazkiak blokeatu du. Baliteke kanpo lotura batek sortzea arazo hori.',
-'spamprotectionmatch'    => 'Gure spam iragazkiak testu hau antzeman du: $1',
-'subcategorycount'       => '{{PLURAL:$1|Azpikategoria bat dago|$1 azpikategoria daude}} kategoria honetan.',
-'categoryarticlecount'   => 'Kategoria honetan {{PLURAL:$1|artikulu bakarra dago|$1 artikulu daude}}.',
-'category-media-count'   => 'Kategoria honetan {{PLURAL:$1|fitxategi bat dago|$1 fitxategi daude}}.',
-'listingcontinuesabbrev' => 'jarr.',
-'spambot_username'       => 'MediaWikiren spam garbiketa',
-'spam_reverting'         => '$1(e)rako loturarik ez daukan azken bertsiora itzultzen',
-'spam_blanking'          => 'Berrikuspen guztiek $1(e)rako lotura zeukaten, husten',
+'spamprotectiontitle' => 'Spam-arengandik babesteko iragazkia',
+'spamprotectiontext'  => 'Gorde nahi duzun orrialdea spam iragazkiak blokeatu du. Baliteke kanpo lotura batek sortzea arazo hori.',
+'spamprotectionmatch' => 'Gure spam iragazkiak testu hau antzeman du: $1',
+'spambot_username'    => 'MediaWikiren spam garbiketa',
+'spam_reverting'      => '$1(e)rako loturarik ez daukan azken bertsiora itzultzen',
+'spam_blanking'       => 'Berrikuspen guztiek $1(e)rako lotura zeukaten, husten',
 
 # Info page
 'infosubtitle'   => 'Orrialdearen informazioa',

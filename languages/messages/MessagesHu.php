@@ -355,7 +355,7 @@ $messages = array(
 'nov'           => 'nov',
 'dec'           => 'dec',
 
-# Bits of text used by many pages
+# Categories related messages
 'categories'               => 'Kategóriák',
 'pagecategories'           => '{{PLURAL:$1|Kategória|Kategóriák}}',
 'category_header'          => '„$1” kategória szócikkei',
@@ -364,6 +364,8 @@ $messages = array(
 'category-empty'           => "''Ebben a kategóriában pillanatnyilag egyetlen lap, médiafájl vagy alkategória sem szerepel.''",
 'hidden-categories'        => '{{PLURAL:$1|Rejtett kategória|Rejtett kategóriák}}',
 'hidden-category-category' => 'Rejtett kategóriák', # Name of the category where hidden categories will be listed
+'subcategorycount'         => 'Ebben a kategóriában $1 alkategória található.',
+'listingcontinuesabbrev'   => 'folyt.',
 
 'mainpagetext'      => "<big>'''A MediaWiki telepítése sikerült.'''</big>",
 'mainpagedocfooter' => "Ha segítségre van szükséged a wikiszoftver használatához, akkor keresd fel a [http://meta.wikimedia.org/wiki/Help:Contents User's Guide] címet.
@@ -451,7 +453,7 @@ $messages = array(
 'jumptosearch'      => 'keresés',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
-'aboutsite'         => 'A {{SITENAME}}ről',
+'aboutsite'         => 'A {{SITENAME}} wikiről',
 'aboutpage'         => 'Project:Rólunk',
 'bugreports'        => 'Hibabejelentések',
 'bugreportspage'    => 'Project:Hibabejelentések',
@@ -704,7 +706,7 @@ Ha nem kértél új azonosítót, és tévedésből kaptad ezt a levelet, nyugod
 'headline_tip'    => 'Alfejezetcím',
 'math_sample'     => 'Ide írd a képletet',
 'math_tip'        => 'Matematikai képlet (LaTeX)',
-'nowiki_sample'   => 'Ide írd a nem formázott szöveget',
+'nowiki_sample'   => 'Ide írd a nem-formázott szöveget',
 'nowiki_tip'      => 'Wiki formázás kikapcsolása',
 'image_sample'    => 'Pelda.jpg',
 'image_tip'       => 'Kép beszúrása',
@@ -831,7 +833,7 @@ ezért sajnos nem tudod majd elmenteni a szerkesztéseidet. A lap szöveget kim�
 egy szövegfájlba, amit elmenthetsz későbbre.</strong>',
 'protectedpagewarning'      => '<strong>FIGYELEM: Ez a lap védett, csak adminisztrátorok szerkeszthetik.</strong>',
 'semiprotectedpagewarning'  => "'''Megjegyzés:''' ez a lap védett, nem vagy újonnan regisztrált felhasználók nem szerkeszthetik.",
-'cascadeprotectedwarning'   => "'''Figyelmeztetés:''' Ezt az oldalt zárolták, ezért csak a rendszerfelelősi jogokkal rendelkező felhasználók szerkeszthetik, mert a következő lépcsőzetes védelmű {{PLURAL:$1|page|oldalak}} közé tartozik:",
+'cascadeprotectedwarning'   => "'''Figyelem:''' ez a lap le van zárva, csak adminisztrátorok szerkeszthetik, mert a következő kaszkádvédelemmel ellátott {{PLURAL:$1|lapon|lapokon}} szerepel beillesztve:",
 'titleprotectedwarning'     => '<strong>FIGYELEM:  Ez a lap úgy van levédve, hogy csak néhány felhasználó hozhatja létre.</strong>',
 'templatesused'             => 'Sablonok ezen a lapon:',
 'templatesusedpreview'      => 'Az előnézetben használt sablonok:',
@@ -1367,7 +1369,7 @@ A [http://meta.wikimedia.org/wiki/Help:Job_queue szerver számára sorban álló
 
 'brokenredirects'        => 'Nem létező lapra mutató átirányítások',
 'brokenredirectstext'    => 'Az alábbi átirányítások nem létező lapokra mutatnak.',
-'brokenredirects-edit'   => '(szerkeszt)',
+'brokenredirects-edit'   => '(szerkesztés)',
 'brokenredirects-delete' => '(törlés)',
 
 'withoutinterwiki'        => 'Interwikilink nélküli lapok',
@@ -1509,13 +1511,11 @@ nem kíván másoktól leveleket kapni.',
 'watchlistfor'         => "('''$1''' részére)",
 'nowatchlist'          => 'Nincs lap a figyelőlistádon.',
 'watchlistanontext'    => 'A figyelőlistád megtekintéséhez és szerkesztéséhez $1.',
-'watchnologin'         => 'Nincs belépve',
+'watchnologin'         => 'Nem vagy bejelentkezve',
 'watchnologintext'     => 'Ahhoz, hogy figyelőlistád lehessen, [[Special:Userlogin|be kell lépned]].',
 'addedwatch'           => 'Figyelőlistához hozzáfűzve',
-'addedwatchtext'       => "A(z) „<nowiki>$1</nowiki>” lapot hozzáadtam a [[Special:Watchlist|figyelőlistádhoz]].
-Ezután minden, a lapon vagy annak vitalapján történő változást ott fogsz látni, és a lap '''vastagon''' fog szerepelni a [[Special:Recentchanges|friss változtatások]] lapon, hogy könnyen észrevehető legyen.
-
-Ha később el akarod távolítani a lapot a figyelőlistádról, akkor ezt az oldalmenü „{{MediaWiki:Unwatchthispage}}” pontjával (vagy a „{{MediaWiki:Unwatch}}” füllel) teheted meg.",
+'addedwatchtext'       => "A(z) „[[:$1]]” lapot hozzáadtam a [[Special:Watchlist|figyelőlistádhoz]].
+Ezután minden, a lapon vagy annak vitalapján történő változást ott fogsz látni, és a lap '''vastagon''' fog szerepelni a [[Special:Recentchanges|friss változtatások]] lapon, hogy könnyen észrevehető legyen.",
 'removedwatch'         => 'Figyelőlistáról eltávolítva',
 'removedwatchtext'     => 'A „<nowiki>$1</nowiki>” lapot eltávolítottam a figyelőlistáról.',
 'watch'                => 'Lap figyelése',
@@ -1786,8 +1786,8 @@ $1',
 'ipbhidename'                 => 'A felhasználónév/IP elrejtése a blokkolási naplóból, az aktív blokkolási listából és a felhasználólistából',
 'badipaddress'                => 'Érvénytelen IP-cím',
 'blockipsuccesssub'           => 'Sikeres blokkolás',
-'blockipsuccesstext'          => '„[[{{ns:Special}}:Contributions/$1|$1]]” felhasználót blokkoltad.
-<br />Lásd a [[{{ns:Special}}:Ipblocklist|blokkolt IP-címek listáját]] az érvényben lévő blokkok áttekintéséhez.',
+'blockipsuccesstext'          => '„[[Special:Contributions/$1|$1]]” felhasználót blokkoltad.
+<br />Lásd a [[Special:Ipblocklist|blokkolt IP-címek listáját]] az érvényben lévő blokkok áttekintéséhez.',
 'ipb-edit-dropdown'           => 'Blokkolási okok szerkesztése',
 'ipb-unblock-addr'            => '$1 blokkjának feloldása',
 'ipb-unblock'                 => 'Felhasználónév vagy IP-cím blokkolásának feloldása',
@@ -2085,16 +2085,12 @@ Valamennyi transwiki importálási művelet az [[Special:Log/import|importálás
 'nocredits'        => 'Ennek a lapnak nincs közreműködői információja.',
 
 # Spam protection
-'spamprotectiontitle'    => 'Spamszűrő',
-'spamprotectiontext'     => 'Az általad elmenteni kívánt lap egyik külső hivatkozása fennakadt a spamszűrőn. A hivatkozást lehet, hogy te helyezted el a cikkben, de lehet, hogy már korábban is ott volt. Csak úgy tudod a lapot elmenteni, ha eltávolítod belőle a problémás külső hivatkozást. Ehhez és a szerkesztéshez a böngésző „vissza” gombjával tudsz visszatérni.',
-'spamprotectionmatch'    => 'A spamszűrőn az alábbi szöveg fennakadt: $1',
-'subcategorycount'       => 'Ebben a kategóriában $1 alkategória található.',
-'categoryarticlecount'   => 'A kategória lenti listájában {{PLURAL:$1|egy lap|$1 lap}} található.',
-'category-media-count'   => '{{PLURAL:$1|Egy fájl|$1 fájl}} található ebben a kategóriában.',
-'listingcontinuesabbrev' => 'folyt.',
-'spambot_username'       => 'MediaWiki spam kitakarítása',
-'spam_reverting'         => 'Visszatérés a $1 lapra mutató hivatkozásokat nem tartalmazó utolsó változathoz',
-'spam_blanking'          => 'Az összes változat tartalmazott a $1 lapra mutató hivatkozásokat, kiürítés',
+'spamprotectiontitle' => 'Spamszűrő',
+'spamprotectiontext'  => 'Az általad elmenteni kívánt lap egyik külső hivatkozása fennakadt a spamszűrőn. A hivatkozást lehet, hogy te helyezted el a cikkben, de lehet, hogy már korábban is ott volt. Csak úgy tudod a lapot elmenteni, ha eltávolítod belőle a problémás külső hivatkozást. Ehhez és a szerkesztéshez a böngésző „vissza” gombjával tudsz visszatérni.',
+'spamprotectionmatch' => 'A spamszűrőn az alábbi szöveg fennakadt: $1',
+'spambot_username'    => 'MediaWiki spam kitakarítása',
+'spam_reverting'      => 'Visszatérés a $1 lapra mutató hivatkozásokat nem tartalmazó utolsó változathoz',
+'spam_blanking'       => 'Az összes változat tartalmazott a $1 lapra mutató hivatkozásokat, kiürítés',
 
 # Info page
 'infosubtitle'   => 'Információk a lapról',
@@ -2446,14 +2442,8 @@ tartalmazni fogja. A többi alapértelmezésként rejtett marad.
 # E-mail address confirmation
 'confirmemail'            => 'E-mail cím megerősítése',
 'confirmemail_noemail'    => 'Nincs érvényes e-mail cím megadva a [[Special:Preferences|beállításaidnál]].',
-'confirmemail_text'       => 'Ennek a wikinek a használatához meg kell erősítened az e-mail címed,
-mielőtt használni kezded a levelezési rendszerét. Nyomd meg az alsó gombot, hogy kaphass egy e-mailt,
-melyben megtalálod a megerősítéshez szükséges kódot. Töltsd be a kódot a böngésződbe, hogy aktiválhasd az e-mail címedet. Köszönjük!',
-'confirmemail_pending'    => '<div class="error">
-A megerősítő kódot már megküldtük neked e-mailben; ha nemrég hoztad
-létre a fiókodat, akkor várhatnál néhány percet, amíg megérkezik,
-mielőtt új kódot kérnél.
-</div>',
+'confirmemail_text'       => 'Meg kell erősítened az e-mail címed, mielőtt használhatnád a(z) {{SITENAME}} levelezési rendszerét. Nyomd meg az alsó gombot, hogy kaphass egy e-mailt, melyben megtalálod a megerősítéshez szükséges kódot. Töltsd be a kódot a böngésződbe, hogy aktiválhasd az e-mail címedet.',
+'confirmemail_pending'    => '<div class="error">A megerősítő kódot már elküldtük neked e-mailben, kérjük, várj türelemmel, amíg a szükséges adatok megérkeznek az e-mailcímedre, és csak akkor kérj új kódot, ha valami technikai malőr folytán értelmes időn belül nem kapod meg a levelet.</div>',
 'confirmemail_send'       => 'Küldd el a kódot',
 'confirmemail_sent'       => 'Kaptál egy e-mailt, melyben megtalálod a megerősítéshez szükséges kódot.',
 'confirmemail_oncreate'   => 'A megerősítő kódot elküldtük az e-mail címedre.
@@ -2466,16 +2456,13 @@ mielőtt a wiki e-mail alapú szolgáltatásait igénybe veheted.',
 'confirmemail_loggedin'   => 'E-mail címed megerősítve.',
 'confirmemail_error'      => 'Hiba az e-mail címed megerősítése során.',
 'confirmemail_subject'    => '{{SITENAME}} e-mail cím megerősítés',
-'confirmemail_body'       => 'Valaki, valószínűleg te, a $1 IP címről regisztrált a "$2" azonosítóval,
-ezzel az e-maillel.
+'confirmemail_body'       => 'Valaki, valószínűleg te, ezzel az e-mail címmel regisztrált "$2" néven a {{SITENAME}} wikibe, a(z) $1 IP-címről.
 
-Annak érdekében, hogy megerősítsd, ez az azonosító valóban hozzád tartozik, és aktiválni szeretnéd az
-e-mail címedet, nyisd meg az alábbi hivatkozást a böngésződben:
+Annak érdekében, hogy megerősítsd, ez az azonosító valóban hozzád tartozik, és hogy aktiváld az e-mail címedet, nyisd meg az alábbi linket a böngésződben:
 
 $3
 
-Ha ez *nem* te vagy, ne kattints a hivatkozásra. Ennek a megerősítésre szánt kódnak
-a felhasználhatósági ideje lejár: $4.',
+Ha ez *nem* te vagy, ne kattints a hivatkozásra. A megerősítésre szánt kód felhasználhatósági ideje lejár: $4.',
 
 # Scary transclusion
 'scarytranscludedisabled' => '[Interwiki beillesztése le van tiltva]',

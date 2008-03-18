@@ -231,7 +231,7 @@ $messages = array(
 'nov'           => 'nov',
 'dec'           => 'dic',
 
-# Bits of text used by many pages
+# Categories related messages
 'categories'               => 'Categorie',
 'pagecategories'           => '{{PLURAL:$1|Categoria|Categorie}}',
 'category_header'          => 'Pagine nella categoria "$1"',
@@ -240,6 +240,8 @@ $messages = array(
 'category-empty'           => "''Al momento la categoria non contiene alcuna pagina né file multimediale.''",
 'hidden-categories'        => '{{PLURAL:$1|Categoria nascosta|Categorie nascoste}}',
 'hidden-category-category' => 'Categorie nascoste', # Name of the category where hidden categories will be listed
+'subcategorycount'         => 'Questa categoria contiene {{PLURAL:$1|una sottocategoria|$1 sottocategorie}}.',
+'listingcontinuesabbrev'   => 'cont.',
 
 'mainpagetext'      => "<big>'''Installazione di MediaWiki completata correttamente.'''</big>",
 'mainpagedocfooter' => "Consultare la [http://meta.wikimedia.org/wiki/Aiuto:Sommario Guida utente] per maggiori informazioni sull'uso di questo software wiki.
@@ -288,7 +290,9 @@ I seguenti collegamenti sono in lingua inglese:
 'permalink'         => 'Link permanente',
 'print'             => 'Stampa',
 'edit'              => 'Modifica',
+'create'            => 'Crea',
 'editthispage'      => 'Modifica questa pagina',
+'create-this-page'  => 'Crea questa pagina',
 'delete'            => 'Cancella',
 'deletethispage'    => 'Cancella questa pagina',
 'undelete_short'    => 'Recupera {{PLURAL:$1|una revisione|$1 revisioni}}',
@@ -853,6 +857,8 @@ Gli altri amministratori del sito potranno accedere comunque ai contenuti nascos
 'prevn'                 => 'precedenti $1',
 'nextn'                 => 'successivi $1',
 'viewprevnext'          => 'Vedi ($1) ($2) ($3).',
+'search-result-size'    => '$1 ({{PLURAL:$2|una parola|$2 parole}})',
+'search-result-score'   => 'Rilevanza: $1%',
 'showingresults'        => "Di seguito {{PLURAL:$1|viene presentato al massimo '''1''' risultato|vengono presentati al massimo '''$1''' risultati}} a partire dal numero '''$2'''.",
 'showingresultsnum'     => "Di seguito {{PLURAL:$3|viene presentato '''1''' risultato|vengono presentati '''$3''' risultati}} a partire dal numero '''$2'''.",
 'nonefound'             => '<strong>Nota</strong>: alcune parole comuni nella lingua inglese, come  "zero" o "more", non sono indicizzate e possono quindi dare luogo a risultati nulli, così come l\'indicazione di più termini da ricercare (solo le pagine che contengano tutti i termini richiesti vengono visualizzate fra i risultati).',
@@ -1512,6 +1518,7 @@ Le impostazioni correnti per la pagina sono <strong>$1</strong>:',
 # Undelete
 'undelete'                     => 'Visualizza pagine cancellate',
 'undeletepage'                 => 'Visualizza e recupera le pagine cancellate',
+'undeletepagetitle'            => "'''Quanto segue è composto da revisioni cancellate di [[:$1]]'''.",
 'viewdeletedpage'              => 'Visualizza le pagine cancellate',
 'undeletepagetext'             => "Le pagine indicate di seguito sono state cancellate, ma sono ancora in archivio e pertanto possono essere recuperate. L'archivio può essere svuotato periodicamente.",
 'undeleteextrahelp'            => "Per recuperare l'intera pagina, lasciare tutte le caselle deselezionate e fare clic su '''''Ripristina'''''. Per effettuare un ripristino selettivo, selezionare le caselle corrispondenti alle revisioni da ripristinare e fare clic su '''''Ripristina'''''. Facendo clic su '''''Reset''''' verranno deselezionate tutte le caselle e svuotato lo spazio per il commento.",
@@ -1686,6 +1693,7 @@ $1',
 'databasenotlocked'   => 'Il database non è bloccato.',
 
 # Move page
+'move-page'               => 'Spostamento di $1',
 'move-page-legend'        => 'Spostamento di pagina',
 'movepagetext'            => "Questo modulo consente di rinominare una pagina, spostando tutta la sua cronologia al nuovo nome. La pagina attuale diverrà automaticamente un redirect al nuovo titolo. I collegamenti esistenti non saranno aggiornati; verificare che lo spostamento non abbia creato doppi redirect o redirect errati. L'onere di garantire che i collegamenti alla pagina restino corretti spetta a chi la sposta.
 
@@ -1889,16 +1897,12 @@ Tutte le operazioni di importazione trans-wiki sono registrate nel [[Special:Log
 'nocredits'        => 'Nessuna informazione sugli autori disponibile per questa pagina.',
 
 # Spam protection
-'spamprotectiontitle'    => 'Filtro anti-spam',
-'spamprotectiontext'     => 'La pagina che si è tentato di salvare è stata bloccata dal filtro anti-spam. Ciò è probabilmente dovuto alla presenza di un collegamento a un sito esterno bloccato.',
-'spamprotectionmatch'    => 'Il filtro anti-spam è stato attivato dal seguente testo: $1',
-'subcategorycount'       => 'Questa categoria contiene {{PLURAL:$1|una sottocategoria|$1 sottocategorie}}.',
-'categoryarticlecount'   => 'Questa categoria contiene {{PLURAL:$1|una pagina|$1 pagine}}.',
-'category-media-count'   => 'Questa categoria contiene {{PLURAL:$1|un file|$1 file}}.',
-'listingcontinuesabbrev' => 'cont.',
-'spambot_username'       => 'MediaWiki - sistema di rimozione spam',
-'spam_reverting'         => "Ripristinata l'ultima versione priva di collegamenti a $1",
-'spam_blanking'          => 'Pagina svuotata, tutte le versioni contenevano collegamenti a $1',
+'spamprotectiontitle' => 'Filtro anti-spam',
+'spamprotectiontext'  => 'La pagina che si è tentato di salvare è stata bloccata dal filtro anti-spam. Ciò è probabilmente dovuto alla presenza di un collegamento a un sito esterno bloccato.',
+'spamprotectionmatch' => 'Il filtro anti-spam è stato attivato dal seguente testo: $1',
+'spambot_username'    => 'MediaWiki - sistema di rimozione spam',
+'spam_reverting'      => "Ripristinata l'ultima versione priva di collegamenti a $1",
+'spam_blanking'       => 'Pagina svuotata, tutte le versioni contenevano collegamenti a $1',
 
 # Info page
 'infosubtitle'   => 'Informazioni per la pagina',

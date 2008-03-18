@@ -134,7 +134,7 @@ $messages = array(
 'nov'           => 'Nov',
 'dec'           => 'Dez',
 
-# Bits of text used by many pages
+# Categories related messages
 'categories'               => 'Kategorien',
 'pagecategories'           => '{{PLURAL:$1|Kategorie|Kategorien}}',
 'category_header'          => 'Artikkel in ju Kategorie "$1"',
@@ -143,6 +143,8 @@ $messages = array(
 'category-empty'           => "''Disse Kategorie is loos.''",
 'hidden-categories'        => '{{PLURAL:$1|Ferstatte Kategorie|Ferstatte Kategorien}}',
 'hidden-category-category' => 'Verstatte Kategorien', # Name of the category where hidden categories will be listed
+'subcategorycount'         => 'Disse Kategorie häd {{PLURAL:$1|1 Unnerkategorie|$1 Unnerkategorien}}.',
+'listingcontinuesabbrev'   => '(Foutsättenge)',
 
 'mainpagetext'      => 'Ju Wiki Software wuude mäd Ärfoulch installierd!',
 'mainpagedocfooter' => 'Sjuch ju [http://meta.wikimedia.org/wiki/MediaWiki_localization Dokumentation tou de Anpaasenge fon dän Benutseruurfläche] un dät [http://meta.wikimedia.org/wiki/Help:Contents Benutserhondbouk] foar Hälpe tou ju Benutsenge un Konfiguration.',
@@ -1106,9 +1108,9 @@ dän Software häär, man schoadet fääre niks.)</small>',
 'userstats'              => 'Benutserstatistik',
 'sitestatstext'          => "Dät rakt mädnunner '''$1''' {{PLURAL:$1|Siede|Sieden}} in ju Doatenboank.
 Dät slut Diskussionssieden, Sieden uur {{SITENAME}}, litje Sieden, Fäärelaitengen un uur Sieden ien,
-do der eventuell nit as Sieden wäided wäide konnen.
+do der eventuell nit as Artikkele betrachted wäide konnen.
 
-Disse uutgenuumen rakt et '''$2''' {{PLURAL:$2|Siede|Sieden}}, do der as Siede wäided wäide {{PLURAL:$2|kon|konnen}}.
+Disse uutgenuumen rakt et '''$2''' {{PLURAL:$2|Siede|Sieden}}, do der as Artikkel betrachted wäide {{PLURAL:$2|kon|konnen}}.
 
 Mädnunner {{PLURAL:$8|wuude '''1''' Doatäi|wuuden '''$8''' Doatäie}} hoochleeden.
 
@@ -1793,16 +1795,12 @@ Aal Transwiki-Import-Aktione wäide in dät [[Special:Log/import|Import-Logbouk]
 'nocredits'        => 'Foar disse Siede sunt neen Informationen deer.',
 
 # Spam protection
-'spamprotectiontitle'    => 'Spamschutsfilter',
-'spamprotectiontext'     => 'Ju Siede, ju du spiekerje wolt, wuude fon dät Spamschutsfilter blokkierd. Dät lait woarschienelk an ne Ferbiendenge ätter ne externe Siede.',
-'spamprotectionmatch'    => "'''Die foulgjende Text wuude fon uus Spam-Filter fuunen: ''$1'''''",
-'subcategorycount'       => 'Disse Kategorie häd {{PLURAL:$1|1 Unnerkategorie|$1 Unnerkategorien}}.',
-'categoryarticlecount'   => 'Tou disse Kategorie heere $1 Artikkele.',
-'category-media-count'   => 'Tou disse Kategorie heere $1 Artikkele.',
-'listingcontinuesabbrev' => '(Foutsättenge)',
-'spambot_username'       => 'MediaWiki Spam-Süüwerenge',
-'spam_reverting'         => 'Lääste Version sunner Links tou $1 wier häärstoald.',
-'spam_blanking'          => 'Aal Versione äntheelden Links tou $1, scheenmoaked.',
+'spamprotectiontitle' => 'Spamschutsfilter',
+'spamprotectiontext'  => 'Ju Siede, ju du spiekerje wolt, wuude fon dät Spamschutsfilter blokkierd. Dät lait woarschienelk an ne Ferbiendenge ätter ne externe Siede.',
+'spamprotectionmatch' => "'''Die foulgjende Text wuude fon uus Spam-Filter fuunen: ''$1'''''",
+'spambot_username'    => 'MediaWiki Spam-Süüwerenge',
+'spam_reverting'      => 'Lääste Version sunner Links tou $1 wier häärstoald.',
+'spam_blanking'       => 'Aal Versione äntheelden Links tou $1, scheenmoaked.',
 
 # Info page
 'infosubtitle'   => 'Siedeninformation',

@@ -179,7 +179,7 @@ $messages = array(
 'nov'           => 'نومبر',
 'dec'           => 'ډيسمبر',
 
-# Bits of text used by many pages
+# Categories related messages
 'categories'               => 'وېشنيزې',
 'pagecategories'           => '{{PLURAL:$1|وېشنيزه|وېشنيزې}}',
 'category_header'          => 'د "$1" په وېشنيزه کې شته مخونه',
@@ -188,6 +188,8 @@ $messages = array(
 'category-empty'           => "''تر اوسه پورې همدا وېشنيزه هېڅ کوم مخ يا کومه رسنيزه دوتنه نلري.''",
 'hidden-categories'        => '{{PLURAL:$1|پټه وېشنيزه|پټې وېشنيزې}}',
 'hidden-category-category' => 'پټې وېشنيزې', # Name of the category where hidden categories will be listed
+'subcategorycount'         => 'په همدې وېشنيزه کې {{PLURAL:$1|يوازې يوه بله وړه-وېشنيزه ده|$1 نورې وړې-وېشنيزې دي}}.',
+'listingcontinuesabbrev'   => 'پرله پسې',
 
 'mainpagetext' => "<big>'''MediaWiki په برياليتوب سره نصب شو.'''</big>",
 
@@ -1034,12 +1036,6 @@ $messages = array(
 
 # Attribution
 'lastmodifiedatby' => 'دا مخ وروستی ځل د $3 لخوا په $2، $1 بدلون موندلی.', # $1 date, $2 time, $3 user
-
-# Spam protection
-'subcategorycount'       => 'په همدې وېشنيزه کې {{PLURAL:$1|يوازې يوه بله وړه-وېشنيزه ده|$1 نورې وړې-وېشنيزې دي}}.',
-'categoryarticlecount'   => 'په همدې وېشنيزه کې  {{PLURAL:$1|يو مخ دی|$1 مخونه دي}}.',
-'category-media-count'   => 'په دې وېشنيزه کې {{PLURAL:$1|يوه دوتنه ده|$1 دوتنې دي}}.',
-'listingcontinuesabbrev' => 'پرله پسې',
 
 # Info page
 'infosubtitle' => 'د مخ مالومات',

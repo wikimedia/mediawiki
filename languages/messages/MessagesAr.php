@@ -451,15 +451,23 @@ $messages = array(
 'nov'           => 'نوفمبر',
 'dec'           => 'ديسمبر',
 
-# Bits of text used by many pages
-'categories'               => 'تصنيفات',
-'pagecategories'           => '{{PLURAL:$1|تصنيف|تصنيفات}}',
-'category_header'          => 'الصفحات في التصنيف "$1"',
-'subcategories'            => 'التصنيفات الفرعية',
-'category-media-header'    => 'ملفات الميديا في التصنيف "$1"',
-'category-empty'           => "''هذا التصنيف لا يحتوي حاليا على مقالات أو ملفات ميديا.''",
-'hidden-categories'        => '{{PLURAL:$1|تصنيف مخفي|تصنيفات مخفية}}',
-'hidden-category-category' => 'تصنيفات مخفية', # Name of the category where hidden categories will be listed
+# Categories related messages
+'categories'                     => 'تصنيفات',
+'pagecategories'                 => '{{PLURAL:$1|تصنيف|تصنيفات}}',
+'category_header'                => 'الصفحات في التصنيف "$1"',
+'subcategories'                  => 'التصنيفات الفرعية',
+'category-media-header'          => 'ملفات الميديا في التصنيف "$1"',
+'category-empty'                 => "''هذا التصنيف لا يحتوي حاليا على مقالات أو ملفات ميديا.''",
+'hidden-categories'              => '{{PLURAL:$1|تصنيف مخفي|تصنيفات مخفية}}',
+'hidden-category-category'       => 'تصنيفات مخفية', # Name of the category where hidden categories will be listed
+'subcategorycount'               => 'يوجد {{PLURAL:$1|تصنيف فرعي واحد|تصنيفان فرعيان|$1 تصنيفات فرعية|$1 تصنيف فرعي|$1 تصنيفا فرعيا}} في هذا التصنيف.',
+'category-subcat-count'          => '{{PLURAL:$2|هذا التصنيف لديه فقط التصنيف الفرعي التالي.|هذا التصنيف لديه {{PLURAL:$1|تصنيف فرعي|$1 تصنيف فرعي}}، من إجمالي $2.}}',
+'category-subcat-count-limited'  => 'هذا التصنيف لديه {{PLURAL:$1|تصنيف فرعي|$1 تصنيف فرعي}} كما يلي.',
+'category-article-count'         => '{{PLURAL:$2|هذا التصنيف يحتوي فقط على الصفحة التالية.|بالأسفل {{PLURAL:$1|ملف|$1 ملف}} في هذا التصنيف، من إجمالي $2.}}',
+'category-article-count-limited' => 'بالأسفل {{PLURAL:$1|صفحة|$1 صفحة}} في التصنيف الحالي.',
+'category-file-count'            => '{{PLURAL:$2|هذا التصنيف يحتوي فقط على الملف التالي.|بالأسفل {{PLURAL:$1|ملف|$1 ملف}} في هذا التصنيف، من إجمالي $2.}}',
+'category-file-count-limited'    => 'بالأسفل {{PLURAL:$1|ملف|$1 ملف}} في التصنيف الحالي.',
+'listingcontinuesabbrev'         => 'متابعة',
 
 'mainpagetext'      => "<big>'''تم تثبيت ميدياويكي بنجاح.'''</big>",
 'mainpagedocfooter' => 'استشر [http://meta.wikimedia.org/wiki/Help:Contents دليل المستخدم] لمعلومات حول استخدام برنامج الويكي.
@@ -1095,6 +1103,7 @@ $1 ساعة.',
 'showingresultsnum'     => "معروض بالأسفل {{PLURAL:$3|'''نتيجة واحدة'''|'''$3''' نتيجة}} بدءا من رقم'''$2'''.",
 'nonefound'             => "'''ملاحظة:''' عمليات البحث غير الناجحة تكون عادة نتيجة للبحث عن كلمات شائعة مثل \"من\" و \"يمتلك\" والتي لا يتم فهرستها، وقد تنتج أيضا من استعمال أكثر من كلمة في البحث (فقط الصفحات التي تحتوي على جميع هذه الكلمات سوف تظهر في نتيجة البحث).",
 'powersearch'           => 'بحث متقدم',
+'powersearch-legend'    => 'بحث متقدم',
 'powersearchtext'       => 'ابحث في النطاقات:<br />$1<br />$2 عرض التحويلات<br />ابحث عن $3 $9',
 'searchdisabled'        => 'البحث في {{SITENAME}} معطل. يمكنك البحث من خلال جوجل في الوقت الحالي. لاحظ أن فهارسه لمحتوى {{SITENAME}} ربما تكون غير محدثة.',
 
@@ -2158,16 +2167,12 @@ $1',
 'nocredits'        => 'لا توجد معلومات حقوق متوفرة لهذه الصفحة.',
 
 # Spam protection
-'spamprotectiontitle'    => 'فلتر الحماية من السخام',
-'spamprotectiontext'     => 'تم منع حفظ الصفحة عن طريق مانع السخام. من المحتمل أن يكون هذا بسبب وصلة خارجية.',
-'spamprotectionmatch'    => 'النص التالي هو ما نشط مانع السخام الخاص بنا: $1',
-'subcategorycount'       => 'يوجد {{PLURAL:$1|تصنيف فرعي واحد|تصنيفان فرعيان|$1 تصنيفات فرعية|$1 تصنيف فرعي|$1 تصنيفا فرعيا}} في هذا التصنيف.',
-'categoryarticlecount'   => 'يوجد {{PLURAL:$1|مقال واحد|مقالان|$1 مقالات|$1 مقال|$1 مقالا}} في هذا التصنيف.',
-'category-media-count'   => 'يوجد {{PLURAL:$1|ملف واحد|$1 ملفات}} في هذا التصنيف.',
-'listingcontinuesabbrev' => 'متابعة',
-'spambot_username'       => 'تنظيف سخام ميدياويكي',
-'spam_reverting'         => 'استرجاع آخر نسخة ليس بها وصلات إلى $1',
-'spam_blanking'          => 'كل النسخ احتوت على وصلات ل $1، إفراغ',
+'spamprotectiontitle' => 'فلتر الحماية من السخام',
+'spamprotectiontext'  => 'تم منع حفظ الصفحة عن طريق مانع السخام. من المحتمل أن يكون هذا بسبب وصلة خارجية.',
+'spamprotectionmatch' => 'النص التالي هو ما نشط مانع السخام الخاص بنا: $1',
+'spambot_username'    => 'تنظيف سخام ميدياويكي',
+'spam_reverting'      => 'استرجاع آخر نسخة ليس بها وصلات إلى $1',
+'spam_blanking'       => 'كل النسخ احتوت على وصلات ل $1، إفراغ',
 
 # Info page
 'infosubtitle'   => 'المعلومات للصفحة',

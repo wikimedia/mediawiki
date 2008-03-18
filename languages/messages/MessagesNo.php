@@ -244,15 +244,23 @@ $messages = array(
 'nov'           => 'nov',
 'dec'           => 'des',
 
-# Bits of text used by many pages
-'categories'               => 'Kategorier',
-'pagecategories'           => '{{PLURAL:$1|Kategori|Kategorier}}',
-'category_header'          => 'Artikler i kategorien «$1»',
-'subcategories'            => 'Underkategorier',
-'category-media-header'    => 'Filer i kategorien «$1»',
-'category-empty'           => "''Denne kategorien inneholder for tiden ingen artikler eller filer.''",
-'hidden-categories'        => '{{PLURAL:$1|Skjult kategori|Skjulte kategorier}}',
-'hidden-category-category' => 'Skjulte kategorier', # Name of the category where hidden categories will be listed
+# Categories related messages
+'categories'                     => 'Kategorier',
+'pagecategories'                 => '{{PLURAL:$1|Kategori|Kategorier}}',
+'category_header'                => 'Artikler i kategorien «$1»',
+'subcategories'                  => 'Underkategorier',
+'category-media-header'          => 'Filer i kategorien «$1»',
+'category-empty'                 => "''Denne kategorien inneholder for tiden ingen artikler eller filer.''",
+'hidden-categories'              => '{{PLURAL:$1|Skjult kategori|Skjulte kategorier}}',
+'hidden-category-category'       => 'Skjulte kategorier', # Name of the category where hidden categories will be listed
+'subcategorycount'               => 'Det er {{PLURAL:$1|én underkategori|$1 underkategorier}} i denne kategorien.',
+'category-subcat-count'          => '{{PLURAL:$2|Denne kategorien har kun den følgende underkategorien.|Denne kategoriene har følgende {{PLURAL:$1|underkategori|$1 underkategorier}}, av totalt $2.}}',
+'category-subcat-count-limited'  => 'Kategorien har følgende {{PLURAL:$1|underkategori|$1 underkategorier}}.',
+'category-article-count'         => '{{PLURAL:$2|Denne kategorien inneholder kun den følgende siden.|Følgende {{PLURAL:$1side|$1 sider}} er i denne kategorien, av totalt $2.}}',
+'category-article-count-limited' => 'Følgende {{PLURAL:$1|side|$1 sider}} er i denne kategorien.',
+'category-file-count'            => '{{PLURAL:$2|Denne kategorien inneholder kun den følgende filen.|Følgende {{PLURAL:$1|fil|$1 filer}} er i denne kategorien, av totalt $2.}}',
+'category-file-count-limited'    => 'Følgende {{PLURAL:$1|fil|$1 filer}} er i denne kategorien.',
+'listingcontinuesabbrev'         => ' forts.',
 
 'mainpagetext'      => "<big>'''MediaWiki-programvaren er nå installert.'''</big>",
 'mainpagedocfooter' => 'Se [http://meta.wikimedia.org/wiki/Help:Contents brukerveiledningen] for informasjon om hvordan du bruker wiki-programvaren.
@@ -326,7 +334,7 @@ $messages = array(
 'mediawikipage'     => 'Vis beskjedside',
 'templatepage'      => 'Vis mal',
 'viewhelppage'      => 'Vis hjelpeside',
-'categorypage'      => 'Vis kategori',
+'categorypage'      => 'Vis kategoriside',
 'viewtalkpage'      => 'Vis diskusjon',
 'otherlanguages'    => 'Andre språk',
 'redirectedfrom'    => '(Omdirigert fra $1)',
@@ -848,6 +856,7 @@ Andre administratorer på {{SITENAME}} vil fortsatt kunne se det skjulte innhold
 'showingresultsnum'     => "Nedenfor vises {{PLURAL:$3|'''ett''' resultat|'''$3''' resultater}} fra og med nummer '''$2'''.",
 'nonefound'             => "'''Merk:''' Søk uten resultat skyldes ofte at man søker etter alminnelige ord som «i» eller «på», som ikke er indeksert, eller ved å spesifisere mer enn et søkeord (da kun sider som inneholder alle søkeordene blir funnet).",
 'powersearch'           => 'Avansert søk',
+'powersearch-legend'    => 'Avansert søk',
 'powersearchtext'       => 'Søk i navnerom:<br />$1<br />$2 List opp omdirigeringer<br />Søk etter $3 $9',
 'searchdisabled'        => 'Søkefunksjonen er slått av. Du kan søke via Google i mellomtiden. Merk at Googles indeksering av {{SITENAME}} muligens er utdatert.',
 
@@ -1881,16 +1890,12 @@ For å eksportere sider, skriv inn titler i tekstboksen under, én tittel per li
 'nocredits'        => 'Ingen krediteringer er tilgjengelig for denne siden.',
 
 # Spam protection
-'spamprotectiontitle'    => 'Søppelpostfilter',
-'spamprotectiontext'     => 'Siden du ønsket å lagre ble blokkert av spamfilteret. Dette er sannsynligvis forårsaket av en lenke til et eksternt nettsted.',
-'spamprotectionmatch'    => 'Følgende tekst er det som aktiverte spamfilteret: $1',
-'subcategorycount'       => 'Det er {{PLURAL:$1|én underkategori|$1 underkategorier}} i denne kategorien.',
-'categoryarticlecount'   => 'Det er {{PLURAL:$1|en artikkel|$1 artikler}} i denne kategorien.',
-'category-media-count'   => 'Det er {{PLURAL:$1|én fil|$1 filer}} i denne kategorien.',
-'listingcontinuesabbrev' => ' forts.',
-'spambot_username'       => 'MediaWikis spamopprydning',
-'spam_reverting'         => 'Tilbakestiller til siste versjon uten lenke til $1',
-'spam_blanking'          => 'Alle revisjoner inneholdt lenke til $1, tømmer siden',
+'spamprotectiontitle' => 'Søppelpostfilter',
+'spamprotectiontext'  => 'Siden du ønsket å lagre ble blokkert av spamfilteret. Dette er sannsynligvis forårsaket av en lenke til et eksternt nettsted.',
+'spamprotectionmatch' => 'Følgende tekst er det som aktiverte spamfilteret: $1',
+'spambot_username'    => 'MediaWikis spamopprydning',
+'spam_reverting'      => 'Tilbakestiller til siste versjon uten lenke til $1',
+'spam_blanking'       => 'Alle revisjoner inneholdt lenke til $1, tømmer siden',
 
 # Info page
 'infosubtitle'   => 'Sideinformasjon',

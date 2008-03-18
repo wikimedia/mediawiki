@@ -168,7 +168,7 @@ $messages = array(
 'nov'           => 'Нов',
 'dec'           => 'Дек',
 
-# Bits of text used by many pages
+# Categories related messages
 'categories'               => 'Гурӯҳҳо',
 'pagecategories'           => '{{PLURAL:$1|Гурӯҳ|Гурӯҳҳо}}',
 'category_header'          => 'Мақолаҳо дар гурӯҳи "$1"',
@@ -177,6 +177,8 @@ $messages = array(
 'category-empty'           => "''Дар ҳоли ҳозир ин гурӯҳ дорои мақола ё парвандаҳо нест.''",
 'hidden-categories'        => '{{PLURAL:$1|Гурӯҳи пинҳон|Гурӯҳҳои пинҳон}}',
 'hidden-category-category' => 'Гурӯҳҳои пинҳон', # Name of the category where hidden categories will be listed
+'subcategorycount'         => '{{PLURAL:$1|зергурӯҳ|$1 зергурӯҳҳо}} дар ин гурӯҳ вуҷуд дорад.',
+'listingcontinuesabbrev'   => 'идома',
 
 'mainpagetext'      => "<big>'''Нармафзори МедиаВики бо муваффақият насб шуд.'''</big>",
 'mainpagedocfooter' => 'Аз [http://meta.wikimedia.org/wiki/Help:Contents Роҳнамои Корбарон] барои истифодаи нармафзори вики кӯмак бигиред.
@@ -467,16 +469,7 @@ $1',
 'passwordtooshort'           => 'Калимаи убур хеле кӯтоҳ аст. Вай бояд ҳадди ақал $1 аломатҳо дошта бошад.',
 'mailmypassword'             => 'Калимаи убурро ба E-mail фиристед',
 'passwordremindertitle'      => 'Муваққатан калимаи убурӣ ҷадид барои {{SITENAME}}',
-'passwordremindertext'       => 'Someone (probably you, from IP address $1)
-requested that we send you a new password for {{SITENAME}} ($4).
-The password for user "$2" is now "$3".
-You should log in and change your password now.
-
-If someone else made this request or if you have remembered your password and
-you no longer wish to change it, you may ignore this message and continue using
-your old password.
-
-Як нафар (эҳтимолан худи Шумо), аз нишонаи IP $1 дархост кардааст, ки калимаи убури ҷадиде барои {{SITENAME}} ($4) барои шумо бифиристем.
+'passwordremindertext'       => 'Як нафар (эҳтимолан худи Шумо), аз нишонаи IP $1 дархост кардааст, ки калимаи убури ҷадиде барои {{SITENAME}} ($4) барои шумо бифиристем.
 Калимаи убури корбар "$2" ҳамакнун "$3" аст.
 Ҳоло бояд вориди систем шавед ва калимаи убури худро тағйир диҳед.
 
@@ -1832,16 +1825,12 @@ $1',
 'nocredits'        => 'Иттилооти созандагони ин саҳифа мавҷуд нест.',
 
 # Spam protection
-'spamprotectiontitle'    => 'Филтри муҳофизат аз спам',
-'spamprotectiontext'     => 'Саҳифае ки шумо мехоҳед захира кунед аз тарафи филтири спам баста шуд. Эҳтимолан ин аз сабаби дар бар гирифтани пайванди беруна ба сомонаи хориҷӣ бошад.',
-'spamprotectionmatch'    => 'Матни зер чизе аст, ки филтри (спам) ҳарзанигории моро ба кор андохт: $1',
-'subcategorycount'       => '{{PLURAL:$1|зергурӯҳ|$1 зергурӯҳҳо}} дар ин гурӯҳ вуҷуд дорад.',
-'categoryarticlecount'   => '{{PLURAL:$1|мақола|$1 мақолаҳо}} дар ин гурӯҳ вуҷуд дорад.',
-'category-media-count'   => '{{PLURAL:$1|парванда|$1 парвандаҳо}} дар ин гурӯҳ вуҷуд дорад.',
-'listingcontinuesabbrev' => 'идома',
-'spambot_username'       => 'Спамтозакуни МедиаВики',
-'spam_reverting'         => 'Вогардони ба охирин нусхае, ки пайванде ба $1 надорад',
-'spam_blanking'          => 'Ҳамаи нусхаҳои пайвандҳо $1 доштан, дар ҳоли холӣ кардан',
+'spamprotectiontitle' => 'Филтри муҳофизат аз спам',
+'spamprotectiontext'  => 'Саҳифае ки шумо мехоҳед захира кунед аз тарафи филтири спам баста шуд. Эҳтимолан ин аз сабаби дар бар гирифтани пайванди беруна ба сомонаи хориҷӣ бошад.',
+'spamprotectionmatch' => 'Матни зер чизе аст, ки филтри (спам) ҳарзанигории моро ба кор андохт: $1',
+'spambot_username'    => 'Спамтозакуни МедиаВики',
+'spam_reverting'      => 'Вогардони ба охирин нусхае, ки пайванде ба $1 надорад',
+'spam_blanking'       => 'Ҳамаи нусхаҳои пайвандҳо $1 доштан, дар ҳоли холӣ кардан',
 
 # Info page
 'infosubtitle'   => 'Иттилоот дар мавриди саҳифа',

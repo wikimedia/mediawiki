@@ -4,47 +4,60 @@
  * @addtogroup Language
  *
  * @author Saluyot
+ * @author לערי ריינהארט
+ * @author SPQRobin
  */
 
-$messages = array(
-# Dates
-'sunday'     => 'Domingo',
-'monday'     => 'Lunes',
-'tuesday'    => 'Martes',
-'wednesday'  => 'Miercoles',
-'thursday'   => 'Jueves',
-'friday'     => 'Viernes',
-'saturday'   => 'Sabado',
-'january'    => 'Enero',
-'february'   => 'Febrero',
-'march'      => 'Marso',
-'april'      => 'Abril',
-'may_long'   => 'Mayo',
-'june'       => 'Junio',
-'july'       => 'Julio',
-'august'     => 'Agosto',
-'september'  => 'Setiembre',
-'october'    => 'Octobre',
-'november'   => 'Noviembre',
-'december'   => 'Deciembre',
-'august-gen' => 'Agosto',
-'jan'        => 'Ene',
-'apr'        => 'Abr',
-'aug'        => 'Ago',
 
-# Bits of text used by many pages
-'categories'      => 'Dagiti Categoria',
-'category_header' => 'Dagiti articulo iti categoria "$1"',
-'subcategories'   => 'Dagiti subcategoria',
+
+$messages = array(
+# User preference toggles
+'tog-underline' => 'Ugedan iti baba dagiti panilpo:',
+
+'underline-always' => 'Kanayon',
+
+# Dates
+'sunday'      => 'Domingo',
+'monday'      => 'Lunes',
+'tuesday'     => 'Martes',
+'wednesday'   => 'Miercoles',
+'thursday'    => 'Jueves',
+'friday'      => 'Viernes',
+'saturday'    => 'Sabado',
+'january'     => 'Enero',
+'february'    => 'Febrero',
+'march'       => 'Marso',
+'april'       => 'Abril',
+'may_long'    => 'Mayo',
+'june'        => 'Junio',
+'july'        => 'Julio',
+'august'      => 'Agosto',
+'september'   => 'Setiembre',
+'october'     => 'Octobre',
+'november'    => 'Noviembre',
+'december'    => 'Deciembre',
+'january-gen' => 'Enero',
+'august-gen'  => 'Agosto',
+'jan'         => 'Ene',
+'apr'         => 'Abr',
+'aug'         => 'Ago',
+
+# Categories related messages
+'categories'       => 'Dagiti Categoria',
+'category_header'  => 'Dagiti articulo iti categoria "$1"',
+'subcategories'    => 'Dagiti subcategoria',
+'subcategorycount' => 'Addaan {{PLURAL:$1|1 subcategoria|$1 subcategorias}} daytoy a categoria.',
 
 'about'          => 'Maipapan iti',
 'newwindow'      => '(aglukat iti sabali a tawa)',
 'cancel'         => 'Ibabawi',
+'qbfind'         => 'Biroken',
 'qbspecialpages' => 'Espesial a pampanid',
 'moredotdotdot'  => 'Adu pay...',
 'mypage'         => 'Panidko',
 'mytalk'         => 'pakitungtongak',
 'navigation'     => 'Pagdaliasatan',
+'and'            => 'ken',
 
 'returnto'          => 'Agsubli iti $1.',
 'help'              => 'Tulong',
@@ -63,6 +76,7 @@ $messages = array(
 'unprotectthispage' => 'Ikkaten ti saluad daytoy a panid',
 'newpage'           => 'Baro a panid',
 'talkpage'          => 'Pagtutungtongan daytoy a panid',
+'talkpagelinktext'  => 'Makipatang',
 'specialpage'       => 'naiduma a panid',
 'postcomment'       => 'Mangipaskil iti paliiw',
 'talk'              => 'Pagtutungtongan',
@@ -110,9 +124,11 @@ $messages = array(
 'notloggedin'        => 'Saan a naka-logged in',
 'nologinlink'        => 'Mangaramid iti account',
 'createaccount'      => 'Mangaramid iti baro nga account',
+'createaccountmail'  => 'babaen ti e-mail',
 'yourrealname'       => 'Pudno a nagan:',
 'yourlanguage'       => 'Pagsasao:',
 'yournick'           => 'Birngas:',
+'loginerror'         => 'Biddut ti login',
 'loginsuccesstitle'  => 'Balligi ti panag-login',
 'loginsuccess'       => "'''Nakastrekkan iti {{SITENAME}} a kas \"\$1\".'''",
 'nosuchuser'         => 'Awan ti agar-aramat nga agnagan iti "$1". Kitaem ti espelingmo, wenno mangaramidka iti baro nga account.',
@@ -246,13 +262,13 @@ Kasta met nga ikarim kadakami a bukodmo a sinurat wenno gapuanan daytoy, wenno k
 'whatlinkshere' => 'Dagiti nakasilpo ditoy',
 
 # Move page
-'move-page-legend'     => 'Iyakar ti panid',
-'movearticle'  => 'Iyakar ti panid',
-'movepagebtn'  => 'Iyakar ti panid',
-'pagemovedsub' => 'Balligi ti panangyakar',
-'movedto'      => 'nayakar iti',
-'1movedto2'    => '[[$1]] nayakar iti [[$2]]',
-'movereason'   => 'Rason',
+'move-page-legend' => 'Iyakar ti panid',
+'movearticle'      => 'Iyakar ti panid',
+'movepagebtn'      => 'Iyakar ti panid',
+'pagemovedsub'     => 'Balligi ti panangyakar',
+'movedto'          => 'nayakar iti',
+'1movedto2'        => '[[$1]] nayakar iti [[$2]]',
+'movereason'       => 'Rason',
 
 # Namespace 8 related
 'allmessagesname' => 'Nagan',
@@ -262,8 +278,5 @@ Kasta met nga ikarim kadakami a bukodmo a sinurat wenno gapuanan daytoy, wenno k
 
 # Attribution
 'others' => 'dadduma pay',
-
-# Spam protection
-'subcategorycount' => 'Addaan {{PLURAL:$1|1 subcategoria|$1 subcategorias}} daytoy a categoria.',
 
 );

@@ -13,13 +13,17 @@
 
 $messages = array(
 # User preference toggles
-'tog-underline'        => 'Undermearcian bendas:',
-'tog-hideminor'        => 'Hȳdan smalla ādihtunga in nīwlicum wendungum',
-'tog-rememberpassword' => 'Ġeman mīn inmeldung on þissum ċircolwyrde',
-'tog-watchcreations'   => 'Ēac trametas þæt scieppe iċ tō mīnre behealdnestale',
-'tog-watchdefault'     => 'Ēac trametas þæt ādiht iċ tō mīnre behealdnestale',
-'tog-watchmoves'       => 'Ēac trametas þæt hweorfe iċ tō mīnre behealdnestale',
-'tog-watchlisthideown' => 'Hȳd mīn ādihtunga fram þǣre behealdnestale',
+'tog-underline'          => 'Undermearcian bendas:',
+'tog-hideminor'          => 'Hȳdan smalla ādihtunga in nīwlicum wendungum',
+'tog-rememberpassword'   => 'Ġemune mīne inmeldunge on þissum circolwyrde',
+'tog-watchcreations'     => 'Ēac trametas þe ic scieppe tō mīnre wæccgetale',
+'tog-watchdefault'       => 'Ēac trametas þe ic ādihte tō mīnre wæcctale',
+'tog-watchmoves'         => 'Ēac trametas þe ic hweorfe tō mīnre wæcctale',
+'tog-watchlisthideown'   => 'Hȳdan mīna ādihtunga wiþ þā behealdnestale',
+'tog-watchlisthideminor' => 'Hȳdan minlica ādihtunga wiþ þæt wæccbrede',
+'tog-ccmeonemails'       => 'Sendan mē twifealdunga þāra e-ǣrenda þe ic ōðrum brūcendum tō sende',
+'tog-diffonly'           => 'Ne scēawian trametinnunge under scādungum',
+'tog-showhiddencats'     => 'Scēawian gehȳdede floccas',
 
 'underline-always' => 'Ǣfre',
 'underline-never'  => 'Nǣfre',
@@ -78,13 +82,24 @@ $messages = array(
 'nov'           => 'Blō',
 'dec'           => 'Ġēo',
 
-# Bits of text used by many pages
-'categories'            => 'Floccas',
-'pagecategories'        => '{{PLURAL:$1|Flocca|Floccas}}',
-'category_header'       => 'Ġewritu in flocce "$1"',
-'subcategories'         => 'Underfloccas',
-'category-media-header' => 'Ġemynda in flocce "$1"',
-'category-empty'        => "''Þes flocc hæfþ nū nān ġewritu oþþe ġemynda in.''",
+# Categories related messages
+'categories'               => 'Floccas',
+'pagecategories'           => '{{PLURAL:$1|Flocc|Floccas}}',
+'category_header'          => 'Ġewritu in flocce "$1"',
+'subcategories'            => 'Underfloccas',
+'category-media-header'    => 'Ġemynda in flocce "$1"',
+'category-empty'           => "''Þes flocc hæfþ nū nān ġewritu oþþe ġemynda in.''",
+'hidden-categories'        => '{{PLURAL:$1|Gehȳded flocc|Gehȳdede floccas}}',
+'hidden-category-category' => 'Gehȳdede floccas', # Name of the category where hidden categories will be listed
+'subcategorycount'         => 'Þǣr {{PLURAL:$1|is ān underflocc|sind $1 undergecynd(a)}} tō þissum flocce.',
+
+'mainpagedocfooter' => 'Þeahtian [http://meta.wikimedia.org/wiki/Help:Contents Brūcendlǣdend] for helpe on bryce þǣre wiki software.
+
+== Onginnende ==
+
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Configuration settings list]
+* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ]
+* [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]',
 
 'about'          => 'Ymbe',
 'article'        => 'Innungtramet',
@@ -115,7 +130,7 @@ $messages = array(
 'delete'            => 'āfeorsian',
 'deletethispage'    => 'Þisne tramet āfeorsian',
 'protect'           => 'Weardian',
-'protectthispage'   => 'Wearda þisne tramet',
+'protectthispage'   => 'Weardian þisne tramet',
 'unprotect'         => 'Unweardian',
 'unprotectthispage' => 'Unwearda þisne tramet',
 'newpage'           => 'Nīwe tramet',
@@ -400,7 +415,6 @@ Bidde behycge þæt þu bricst þone tramet intō smalrum dǣlum.',
 'newpages'          => 'Nīwe trametas',
 'newpages-username' => 'Brūcendnama:',
 'ancientpages'      => 'Ieldestan Trametas',
-'intl'              => 'Betwuxsprǣclice bendas',
 'move'              => 'Gān',
 
 # Book sources
@@ -562,10 +576,6 @@ Bidde cēos ōðerne naman.',
 'anonymous' => 'Namcúþléas(e) brúcend {{SITENAME}}n',
 'siteuser'  => '{{SITENAME}}n brūcere $1',
 'others'    => 'ōðru',
-
-# Spam protection
-'subcategorycount'     => 'Þǣr {{PLURAL:$1|is ān underflocc|sind $1 undergecynd(a)}} tō þissum flocce.',
-'categoryarticlecount' => 'Þǣr sind $1 gewrita in þissum flocce.',
 
 # Info page
 'numedits'     => 'Ádihtunga tæl (gewrit): $1',

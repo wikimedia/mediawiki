@@ -223,15 +223,23 @@ $messages = array(
 'nov'           => 'Nov.',
 'dec'           => 'Dez.',
 
-# Bits of text used by many pages
-'categories'               => 'Kategorien',
-'pagecategories'           => '{{PLURAL:$1|Kategorie|Kategorien}}',
-'category_header'          => 'Säiten an der Kategorie "$1"',
-'subcategories'            => 'Souskategorien',
-'category-media-header'    => 'Medien an der Kategorie "$1"',
-'category-empty'           => "''Dës Kategorie ass fir den Ament nach eidel''",
-'hidden-categories'        => '{{PLURAL:$1|Verstoppte Kategorie|Verstoppte Kategorien}}',
-'hidden-category-category' => 'Verstoppte Kategorien', # Name of the category where hidden categories will be listed
+# Categories related messages
+'categories'                     => 'Kategorien',
+'pagecategories'                 => '{{PLURAL:$1|Kategorie|Kategorien}}',
+'category_header'                => 'Säiten an der Kategorie "$1"',
+'subcategories'                  => 'Souskategorien',
+'category-media-header'          => 'Medien an der Kategorie "$1"',
+'category-empty'                 => "''Dës Kategorie ass fir den Ament nach eidel''",
+'hidden-categories'              => '{{PLURAL:$1|Verstoppte Kategorie|Verstoppte Kategorien}}',
+'hidden-category-category'       => 'Verstoppte Kategorien', # Name of the category where hidden categories will be listed
+'subcategorycount'               => 'Fir dës Kategorie {{PLURAL:$1|gëtt et $1 Ënnerkategorie| ginn et $1 Ënnerkategorien}}.',
+'category-subcat-count'          => 'Dës Kategorie huet {{PLURAL:$2|nëmmen dës Ënnerkategorie.|dës {{PLURAL:$1|Ënnerkategorie|$1 Ënnerkategorien}}, vun $2 am Ganzen.}}',
+'category-subcat-count-limited'  => 'Dës Kategorie huet dës {{PLURAL:$1|Ënnerkategorie|$1 Ënnerkategorien}}.',
+'category-article-count'         => 'An dëser Kategorie {{PLURAL:$2|ass just dës Säit.|{{PLURAL:$1|ass just dës Säit|si(nn) $1 Säiten}}, vun $2 am Ganzen.}}',
+'category-article-count-limited' => 'Dës {{PLURAL:$1|Säit ass|$1 Säite sinn}} an dëser Kategorie.',
+'category-file-count'            => 'An dëser Kategorie {{PLURAL:$2|ass just dëse Fichier.|{{PLURAL:$1|ass just dëse Fichier|si(nn) $1 Fichieren}}, vun $2 am Ganzen.}}',
+'category-file-count-limited'    => '{{PLURAL:$1|Dëse Fichier ass|Dës $1 Ficheren sinn}} an dëser Kategorie.',
+'listingcontinuesabbrev'         => '(Fortsetzung)',
 
 'mainpagetext'      => "<big>'''MediaWiki gouf installéiert.'''</big>",
 'mainpagedocfooter' => "Kuckt w.e.g. [http://meta.wikimedia.org/wiki/Help:Contents d'Benotzerhandbuch] fir den Interface ze personnaliséieren. 
@@ -801,6 +809,7 @@ Dir kënnt [[:\$1|déi Säit uleeën]].",
 'showingresultsnum'     => "Hei gesitt der  {{PLURAL:$3|'''1''' Resultat|'''$1''' Resultater}}, ugefaange mat #'''$2'''.",
 'nonefound'             => '<strong>Opgepasst</strong>: Net erfollegräich Siche geschéien dacks doduerch, datt zevill allgeméng Wierder benotzt ginn, wéi "an" oder "vun", déi net indexéiert sinn, oder wann dir méi wéi ee Wuert ugitt (dir kritt nëmmen déi Säiten ugewisen, an deenen all d\'Wierder stinn).',
 'powersearch'           => 'Erweidert Sich',
+'powersearch-legend'    => 'Erweidert Sich',
 'powersearchtext'       => 'Sich an de Nimmraim:<br />$1
 <br />
 $2 Viruleedunge weisen<br />
@@ -1582,6 +1591,7 @@ Denkt drun [[Special:Unlockdb|d'Spär erëm ewechzehuele]] soubaal d'Maintenance
 'databasenotlocked'   => "D'Datebank ass net gespaart.",
 
 # Move page
+'move-page'               => 'Réckel $1',
 'move-page-legend'        => 'Säit réckelen',
 'movepagetext'            => "Wann der dëse Formulaire benotzt, réckelt dir eng komplett Säit mat hirem Historique op en neien Numm. Den alen Titel déngt als Viruleedung op déi nei Säit. Linken op déi al Säit ginn net ëmgeännert; 
 
@@ -1600,7 +1610,7 @@ An deene Fäll musst Dir d'Diskussiounssäit manuell réckelen oder fusionéiere
 'movearticle'             => 'Säit réckelen:',
 'movenologintext'         => 'Dir musst e registréierte Benotzer an [[Special:Userlogin|ageloggt]] sinn, fir eng Säit ze réckelen.',
 'movenotallowed'          => 'Dir hutt net déi néideg Rechter fir Säiten op {{SITENAME}} ze réckelen.',
-'newtitle'                => 'Op neien Titel:',
+'newtitle'                => 'Op den neien Titel:',
 'move-watch'              => 'Dës Säit iwwerwaachen',
 'movepagebtn'             => 'Säit réckelen',
 'pagemovedsub'            => 'Gouf geréckelt',
@@ -1748,15 +1758,11 @@ An deene Fäll musst Dir d'Diskussiounssäit manuell réckelen oder fusionéiere
 'creditspage'      => 'Quellen',
 
 # Spam protection
-'spamprotectiontitle'    => 'Spamfilter',
-'spamprotectiontext'     => "D'Säit déi dir späichere wollt gouf vum Spamfilter gespaart. Dëst warscheinlech duerch en externe Link.",
-'spamprotectionmatch'    => "'''Dësen Text gouf vum Spamfilter fonnt: ''$1'''''",
-'subcategorycount'       => 'Fir dës Kategorie {{PLURAL:$1|gëtt et $1 Ënnerkategorie| ginn et $1 Ënnerkategorien}}.',
-'categoryarticlecount'   => 'An dëser Kategorie {{PLURAL:$1|gëtt et bis ewell 1 Säit|ginn et bis ewell $1 Säiten}}.',
-'category-media-count'   => 'Et {{PLURAL:$1|gëtt ee Fichier|ginn $1 Fichieren}} an dëser Kategorie',
-'listingcontinuesabbrev' => '(Fortsetzung)',
-'spam_reverting'         => 'Déi lescht Versioun ouni Linken op $1 restauréieren.',
-'spam_blanking'          => 'An alle Versioune ware Linken op $1, et ass elo alles gebotzt.',
+'spamprotectiontitle' => 'Spamfilter',
+'spamprotectiontext'  => "D'Säit déi dir späichere wollt gouf vum Spamfilter gespaart. Dëst warscheinlech duerch en externe Link.",
+'spamprotectionmatch' => "'''Dësen Text gouf vum Spamfilter fonnt: ''$1'''''",
+'spam_reverting'      => 'Déi lescht Versioun ouni Linken op $1 restauréieren.',
+'spam_blanking'       => 'An alle Versioune ware Linken op $1, et ass elo alles gebotzt.',
 
 # Info page
 'infosubtitle'   => 'Informatioun zur Säit',

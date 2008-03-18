@@ -148,7 +148,7 @@ $messages = array(
 'nov'           => 'pay',
 'dec'           => 'avi',
 
-# Bits of text used by many pages
+# Categories related messages
 'categories'               => 'Categoríes',
 'pagecategories'           => '{{PLURAL:$1|Categoría|Categoríes}}',
 'category_header'          => 'Páxines na categoría "$1"',
@@ -157,6 +157,8 @@ $messages = array(
 'category-empty'           => "''Esta categoría nun tien anguaño nengún artículu o ficheru multimedia.''",
 'hidden-categories'        => '{{PLURAL:$1|Categoría oculta|Categoríes ocultes}}',
 'hidden-category-category' => 'Categoríes ocultes', # Name of the category where hidden categories will be listed
+'subcategorycount'         => 'Hai {{PLURAL:$1|una subcategoría|$1 subcategoríes}} nesta categoría.',
+'listingcontinuesabbrev'   => 'cont.',
 
 'mainpagetext'      => "<big>'''MediaWiki instalóse correchamente.'''</big>",
 'mainpagedocfooter' => "Visita la [http://meta.wikimedia.org/wiki/Help:Contents Guía d'usuariu] pa saber cómo usar esti software wiki.
@@ -204,7 +206,9 @@ $messages = array(
 'permalink'         => 'Enllaz permanente',
 'print'             => 'Imprentar',
 'edit'              => 'Editar',
+'create'            => 'Crear',
 'editthispage'      => 'Editar esta páxina',
+'create-this-page'  => 'Crear esta páxina',
 'delete'            => 'Borrar',
 'deletethispage'    => 'Borrar esta páxina',
 'undelete_short'    => 'Restaurar {{PLURAL:$1|una edición|$1 ediciones}}',
@@ -795,6 +799,8 @@ Asegúrate de qu'esti cambéu caltenga la continuidá del históricu de la páxi
 'prevn'                 => 'previos $1',
 'nextn'                 => 'siguientes $1',
 'viewprevnext'          => 'Ver ($1) ($2) ($3)',
+'search-result-size'    => '$1 ({{PLURAL:$2|1 pallabra|$2 pallabres}})',
+'search-result-score'   => 'Relevancia: $1%',
 'showingresults'        => "Abaxo {{PLURAL:$1|amuésase '''un''' resultáu|amuésense '''$1''' resultaos}}, entamando col #'''$2'''.",
 'showingresultsnum'     => "Abaxo {{PLURAL:$3|amuésase '''un''' resultáu|amuésense '''$3''' resultaos}}, entamando col #'''$2'''.",
 'nonefound'             => "'''Nota''': Les busques fallíes son ocasionaes davezu por buscar
@@ -802,6 +808,7 @@ pallabres comunes como \"de\" o \"a\", que nun tán indexaes, o por
 especificar más d'un términu de busca (namái van apaecer nel
 resultáu les páxines que contengan tolos términos de la busca).",
 'powersearch'           => 'Buscar',
+'powersearch-legend'    => 'Busca avanzada',
 'powersearchtext'       => 'Buscar nel espaciu de nomes:<br />$1<br />$2 Llistar redireiciones<br />Buscar $3 $9',
 'searchdisabled'        => "La busca en {{SITENAME}} ta desactivada. Mentanto, pues buscar en Google. Has fixate en que'l conteníu de los sos índices de {{SITENAME}} pue tar desfasáu.",
 
@@ -1306,6 +1313,7 @@ Si más tarde quies quitala de la llista de vixilancia calca en "Dexar de vixila
 'unwatch'              => 'Dexar de vixilar',
 'unwatchthispage'      => 'Dexar de vixilar',
 'notanarticle'         => 'Nun ye un artículu',
+'notvisiblerev'        => 'Borróse la revisión',
 'watchnochange'        => 'Nenguna de les tos páxines vixilaes foi editada nel periodu escoyíu.',
 'watchlist-details'    => "{{PLURAL:$1|$1 páxina|$1 páxines}} vixilaes ensin cuntar les páxines d'alderique.",
 'wlheader-enotif'      => '* La notificación per corréu electrónicu ta activada.',
@@ -1453,6 +1461,7 @@ Esta ye la configuración actual pa la páxina <strong>$1</strong>:',
 # Undelete
 'undelete'                     => 'Ver páxines borraes',
 'undeletepage'                 => 'Ver y restaurar páxines borraes',
+'undeletepagetitle'            => "'''Les siguientes son les revisiones borraes de [[:$1]]'''.",
 'viewdeletedpage'              => 'Ver páxines borraes',
 'undeletepagetext'             => "Les siguientes páxines foron borraes pero tovía tán nel archivu y puen
 ser restauraes. L'archivu pue ser purgáu periódicamente.",
@@ -1649,7 +1658,8 @@ na base de datos. Por favor confirma que ye lo quies facer.',
 'databasenotlocked'   => 'La base de datos nun ta protexida.',
 
 # Move page
-'move-page-legend'                => 'Treslladar páxina',
+'move-page'               => 'Treslladar $1',
+'move-page-legend'        => 'Treslladar páxina',
 'movepagetext'            => "Usando'l siguiente formulariu vas renomar una páxina, treslladando'l
 so historial al nuevu nome. El nome vieyu va convertise nuna
 redireición al nuevu. Los enllaces qu'hubiera al nome vieyu nun van
@@ -1858,16 +1868,12 @@ Toles aiciones d'importación treswiki queden rexistraes nel [[Special:Log/impor
 'nocredits'        => 'Nun hai disponible información de creitos pa esta páxina.',
 
 # Spam protection
-'spamprotectiontitle'    => 'Filtru de proteición de spam',
-'spamprotectiontext'     => 'La páxina que queríes guardas foi bloquiada pol filtru de spam. Probablemente seya causao por un enllaz a un sitiu esternu.',
-'spamprotectionmatch'    => "El testu siguiente foi'l qu'activó'l nuesu filtru de spam: $1",
-'subcategorycount'       => 'Hai {{PLURAL:$1|una subcategoría|$1 subcategoríes}} nesta categoría.',
-'categoryarticlecount'   => 'Hai {{PLURAL:$1|una páxina|$1 páxines}} nesta categoría.',
-'category-media-count'   => 'Hai {{PLURAL:$1|un archivu|$1 archivos}} nesta categoría.',
-'listingcontinuesabbrev' => 'cont.',
-'spambot_username'       => 'Llimpieza de spam de MediaWiki',
-'spam_reverting'         => 'Revirtiendo a la cabera versión que nun contién enllaces a $1',
-'spam_blanking'          => 'Toles revisiones teníen enllaces a $1; dexando en blanco',
+'spamprotectiontitle' => 'Filtru de proteición de spam',
+'spamprotectiontext'  => 'La páxina que queríes guardas foi bloquiada pol filtru de spam. Probablemente seya causao por un enllaz a un sitiu esternu.',
+'spamprotectionmatch' => "El testu siguiente foi'l qu'activó'l nuesu filtru de spam: $1",
+'spambot_username'    => 'Llimpieza de spam de MediaWiki',
+'spam_reverting'      => 'Revirtiendo a la cabera versión que nun contién enllaces a $1',
+'spam_blanking'       => 'Toles revisiones teníen enllaces a $1; dexando en blanco',
 
 # Info page
 'infosubtitle'   => 'Información de la páxina',

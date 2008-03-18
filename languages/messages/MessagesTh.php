@@ -179,13 +179,15 @@ $messages = array(
 'nov'           => 'พ.ย.',
 'dec'           => 'ธ.ค.',
 
-# Bits of text used by many pages
-'categories'            => 'หมวดหมู่',
-'pagecategories'        => 'หมวดหมู่',
-'category_header'       => 'เนื้อหาในหมวดหมู่ "$1"',
-'subcategories'         => 'หมวดหมู่ย่อย',
-'category-media-header' => 'สื่อในหมวดหมู่ "$1"',
-'category-empty'        => "''หมวดหมู่นี้ว่าง ไม่มีบทความใดอยู่''",
+# Categories related messages
+'categories'             => 'หมวดหมู่',
+'pagecategories'         => 'หมวดหมู่',
+'category_header'        => 'เนื้อหาในหมวดหมู่ "$1"',
+'subcategories'          => 'หมวดหมู่ย่อย',
+'category-media-header'  => 'สื่อในหมวดหมู่ "$1"',
+'category-empty'         => "''หมวดหมู่นี้ว่าง ไม่มีบทความใดอยู่''",
+'subcategorycount'       => 'มี $1 หมวดหมู่ย่อย ในหมวดหมู่นี้',
+'listingcontinuesabbrev' => 'ต่อไป',
 
 'mainpagetext'      => "<big>'''ซอฟต์แวร์มีเดียวิกิได้ถูกติดตั้งเรียบร้อย'''</big>",
 'mainpagedocfooter' => 'ศึกษา[http://meta.wikimedia.org/wiki/Help:Contents คู่มือการใช้งาน] สำหรับเริ่มต้นใช้งานซอฟต์แวร์วิกิ
@@ -235,6 +237,7 @@ $messages = array(
 'edit'              => 'แก้ไข',
 'create'            => 'สร้าง',
 'editthispage'      => 'แก้ไขหน้านี้',
+'create-this-page'  => 'สร้างหน้านี้',
 'delete'            => 'ลบ',
 'deletethispage'    => 'ลบหน้านี้',
 'undelete_short'    => 'เรียกคืน $1 การแก้ไข',
@@ -1808,16 +1811,12 @@ $1',
 'nocredits'        => 'ไม่มีรายชื่อผู้เป็นเกียรติที่ร่วมสร้างหน้านี้',
 
 # Spam protection
-'spamprotectiontitle'    => 'ฟิลเตอร์ป้องกันสแปม',
-'spamprotectiontext'     => 'หน้าที่คุณต้องการบันทึกถูกบล็อกจากฟิลเตอร์กรองสแปม ซึ่งอาจเกิดจากมีลิงก์สแปมในส่วนแหล่งข้อมูลอื่น',
-'spamprotectionmatch'    => 'ข้อความต่อไปนี้ได้ทำการตัวป้องกันสแปมของเราทำงาน: $1',
-'subcategorycount'       => 'มี $1 หมวดหมู่ย่อย ในหมวดหมู่นี้',
-'categoryarticlecount'   => 'มี $1 หน้า ในหมวดหมู่นี้',
-'category-media-count'   => 'มี $1 ไฟล์ ในหมวดหมู่นี้',
-'listingcontinuesabbrev' => 'ต่อไป',
-'spambot_username'       => 'กวาดล้างมีเดียวิกิสแปม',
-'spam_reverting'         => 'ย้อนกลับไปรุ่นก่อนหน้าที่ไม่มีลิงก์ไปยังเว็บ $1',
-'spam_blanking'          => 'รุ่นการปรับปรุงทุกรุ่นประกอบไปด้วยลิงก์ไปยังเว็บ $1 (ทำหน้าว่าง)',
+'spamprotectiontitle' => 'ฟิลเตอร์ป้องกันสแปม',
+'spamprotectiontext'  => 'หน้าที่คุณต้องการบันทึกถูกบล็อกจากฟิลเตอร์กรองสแปม ซึ่งอาจเกิดจากมีลิงก์สแปมในส่วนแหล่งข้อมูลอื่น',
+'spamprotectionmatch' => 'ข้อความต่อไปนี้ได้ทำการตัวป้องกันสแปมของเราทำงาน: $1',
+'spambot_username'    => 'กวาดล้างมีเดียวิกิสแปม',
+'spam_reverting'      => 'ย้อนกลับไปรุ่นก่อนหน้าที่ไม่มีลิงก์ไปยังเว็บ $1',
+'spam_blanking'       => 'รุ่นการปรับปรุงทุกรุ่นประกอบไปด้วยลิงก์ไปยังเว็บ $1 (ทำหน้าว่าง)',
 
 # Info page
 'infosubtitle'   => 'ข้อมูลของหน้า',
