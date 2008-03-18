@@ -64,28 +64,6 @@
 // {{{ requirements
 // }}}
 
-// {{{ constants
-// {{{ flags
-
-/**
- * Flag: indicates data is serialized
- */
-define("MEMCACHE_SERIALIZED", 1<<0);
-
-/**
- * Flag: indicates data is compressed
- */
-define("MEMCACHE_COMPRESSED", 1<<1);
-
-// }}}
-
-/**
- * Minimum savings to store data compressed
- */
-define("COMPRESSION_SAVINGS", 0.20);
-
-// }}}
-
 // {{{ class memcached
 /**
  * memcached client class implemented using (p)fsockopen()
@@ -97,6 +75,29 @@ class memcached
 {
    // {{{ properties
    // {{{ public
+
+		// {{{ constants
+		// {{{ flags
+
+		/**
+		 * Flag: indicates data is serialized
+		 */
+		const SERIALIZED = 1;
+
+		/**
+		 * Flag: indicates data is compressed
+		 */
+		const COMPRESSED = 2;
+
+		// }}}
+
+		/**
+		 * Minimum savings to store data compressed
+		 */
+		const COMPRESSION_SAVINGS = 0.20;
+
+		// }}}
+
 
    /**
     * Command statistics
@@ -904,12 +905,12 @@ class memcached
                return false;
             }
 
-            if ($this->_have_zlib && $flags & MEMCACHE_COMPRESSED)
+            if ($this->_have_zlib && $flags & memcached::COMPRESSED)
                $ret[$rkey] = gzuncompress($ret[$rkey]);
 
             $ret[$rkey] = rtrim($ret[$rkey]);
 
-            if ($flags & MEMCACHE_SERIALIZED)
+            if ($flags & memcached::SERIALIZED)
                $ret[$rkey] = unserialize($ret[$rkey]);
 
          } else
@@ -950,7 +951,7 @@ class memcached
       if (!is_scalar($val))
       {
          $val = serialize($val);
-         $flags |= MEMCACHE_SERIALIZED;
+         $flags |= memcached::SERIALIZED;
          if ($this->_debug)
             $this->_debugprint(sprintf("client: serializing data as it is not scalar\n"));
       }
@@ -963,13 +964,13 @@ class memcached
          $c_val = gzcompress($val, 9);
          $c_len = strlen($c_val);
 
-         if ($c_len < $len*(1 - COMPRESSION_SAVINGS))
+         if ($c_len < $len*(1 - memcached::COMPRESSION_SAVINGS))
          {
             if ($this->_debug)
                $this->_debugprint(sprintf("client: compressing data; was %d bytes is now %d bytes\n", $len, $c_len));
             $val = $c_val;
             $len = $c_len;
-            $flags |= MEMCACHE_COMPRESSED;
+            $flags |= memcached::COMPRESSED;
          }
       }
       if (!$this->_safe_fwrite($sock, "$cmd $key $flags $exp $len\r\n$val\r\n"))
@@ -979,7 +980,7 @@ class memcached
 
       if ($this->_debug)
       {
-         if ($flags & MEMCACHE_COMPRESSED)
+         if ($flags & memcached::COMPRESSED)
             $val = 'compressed data';
          $this->_debugprint(sprintf("MemCache: %s %s => %s (%s)\n", $cmd, $key, $val, $line));
       }
