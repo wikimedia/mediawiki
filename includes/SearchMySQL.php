@@ -18,11 +18,59 @@
 # http://www.gnu.org/copyleft/gpl.html
 
 /**
- * Search engine hook base class for MySQL.
- * Specific bits for MySQL 3 and 4 variants are in child classes.
+ * Search engine hook for MySQL 4+
  * @addtogroup Search
  */
 class SearchMySQL extends SearchEngine {
+	var $strictMatching = true;
+
+	/** @todo document */
+	function __construct( $db ) {
+		$this->db = $db;
+	}
+
+	/** @todo document */
+	function parseQuery( $filteredText, $fulltext ) {
+		global $wgContLang;
+		$lc = SearchEngine::legalSearchChars(); // Minus format chars
+		$searchon = '';
+		$this->searchTerms = array();
+
+		# FIXME: This doesn't handle parenthetical expressions.
+		$m = array();
+		if( preg_match_all( '/([-+<>~]?)(([' . $lc . ']+)(\*?)|"[^"]*")/',
+			  $filteredText, $m, PREG_SET_ORDER ) ) {
+			foreach( $m as $terms ) {
+				if( $searchon !== '' ) $searchon .= ' ';
+				if( $this->strictMatching && ($terms[1] == '') ) {
+					$terms[1] = '+';
+				}
+				$searchon .= $terms[1] . $wgContLang->stripForSearch( $terms[2] );
+				if( !empty( $terms[3] ) ) {
+					// Match individual terms in result highlighting...
+					$regexp = preg_quote( $terms[3], '/' );
+					if( $terms[4] ) $regexp .= "[0-9A-Za-z_]+";
+				} else {
+					// Match the quoted term in result highlighting...
+					$regexp = preg_quote( str_replace( '"', '', $terms[2] ), '/' );
+				}
+				$this->searchTerms[] = "\b$regexp\b";
+			}
+			wfDebug( "Would search with '$searchon'\n" );
+			wfDebug( 'Match with /\b' . implode( '\b|\b', $this->searchTerms ) . "\b/\n" );
+		} else {
+			wfDebug( "Can't understand search query '{$filteredText}'\n" );
+		}
+
+		$searchon = $this->db->strencode( $searchon );
+		$field = $this->getIndexField( $fulltext );
+		return " MATCH($field) AGAINST('$searchon' IN BOOLEAN MODE) ";
+	}
+
+	public static function legalSearchChars() {
+		return "\"*" . parent::legalSearchChars();
+	}
+
 	/**
 	 * Perform a full text search query and return a result set.
 	 *
@@ -154,7 +202,7 @@ class SearchMySQL extends SearchEngine {
 				'si_page' => $id,
 				'si_title' => $title,
 				'si_text' => $text
-			), 'SearchMySQL4::update' );
+			), __METHOD__ );
 	}
 
 	/**
@@ -170,7 +218,7 @@ class SearchMySQL extends SearchEngine {
 		$dbw->update( 'searchindex',
 			array( 'si_title' => $title ),
 			array( 'si_page'  => $id ),
-			'SearchMySQL4::updateTitle',
+			__METHOD__,
 			array( $dbw->lowPriorityOption() ) );
 	}
 }

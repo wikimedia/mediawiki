@@ -29,8 +29,8 @@
 class SearchTsearch2 extends SearchEngine {
 	var $strictMatching = false;
 
-	function SearchTsearch2( &$db ) {
-		$this->db =& $db;
+	function __construct( $db ) {
+		$this->db = $db;
 		$this->mRanking = true;
 	}
 
@@ -68,14 +68,14 @@ class SearchTsearch2 extends SearchEngine {
 			wfDebug( "Can't understand search query '{$this->filteredText}'\n" );
 		}
 
-		$searchon = preg_replace('/(\s+)/','&',$searchon);
+		$searchon = preg_replace( '/(\s+)/', '&', $searchon );
 		$searchon = $this->db->strencode( $searchon );
 		return $searchon;
 	}
 
-	function queryRanking($filteredTerm, $fulltext) {
+	function queryRanking( $filteredTerm, $fulltext ) {
 		$field = $this->getIndexField( $fulltext );
-		$searchon = $this->parseQuery($filteredTerm,$fulltext);
+		$searchon = $this->parseQuery( $filteredTerm, $fulltext );
 		if ($this->mRanking)
 			return " ORDER BY rank($field,to_tsquery('$searchon')) DESC";
 		else
@@ -95,16 +95,16 @@ class SearchTsearch2 extends SearchEngine {
 	}
 
 	function update( $id, $title, $text ) {
-		$dbw = wfGetDB(DB_MASTER);
+		$dbw = wfGetDB( DB_MASTER );
 		$searchindex = $dbw->tableName( 'searchindex' );
 		$sql = "DELETE FROM $searchindex WHERE si_page={$id}";
-		$dbw->query($sql,"SearchTsearch2:update");
+		$dbw->query( $sql, __METHOD__ );
 		$sql = "INSERT INTO $searchindex (si_page,si_title,si_text) ".
 			" VALUES ( $id, to_tsvector('".
 				$dbw->strencode($title).
 				"'),to_tsvector('".
 				$dbw->strencode( $text)."')) ";
-		$dbw->query($sql,"SearchTsearch2:update");
+		$dbw->query($sql, __METHOD__ );
 	}
 
 	function updateTitle($id,$title) {
@@ -114,7 +114,7 @@ class SearchTsearch2 extends SearchEngine {
 				$dbw->strencode( $title ) .
 				"') WHERE si_page={$id}";
 
-		$dbw->query( $sql, "SearchMySQL4::updateTitle" );
+		$dbw->query( $sql, __METHOD__ );
 	}
 
 }
