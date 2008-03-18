@@ -372,15 +372,23 @@ $messages = array(
 'nov'           => 'نوامبر',
 'dec'           => 'دسامبر',
 
-# Bits of text used by many pages
-'categories'               => 'رده‌های صفحه',
-'pagecategories'           => '{{PLURAL:$1|رده‌های صفحه|رده‌های صفحه}}',
-'category_header'          => 'مقاله‌های ردهٔ «$1»',
-'subcategories'            => 'زیررده‌ها',
-'category-media-header'    => 'پرونده‌های ردهٔ «$1»',
-'category-empty'           => 'این رده شامل هیچ صفحه یا پرونده‌ای نمی‌شود.',
-'hidden-categories'        => '{{PLURAL:$1|ردهٔ پنهان|رده‌های پنهان}}',
-'hidden-category-category' => 'رده‌های پنهان', # Name of the category where hidden categories will be listed
+# Categories related messages
+'categories'                     => 'رده‌های صفحه',
+'pagecategories'                 => '{{PLURAL:$1|رده‌های صفحه|رده‌های صفحه}}',
+'category_header'                => 'مقاله‌های ردهٔ «$1»',
+'subcategories'                  => 'زیررده‌ها',
+'category-media-header'          => 'پرونده‌های ردهٔ «$1»',
+'category-empty'                 => 'این رده شامل هیچ صفحه یا پرونده‌ای نمی‌شود.',
+'hidden-categories'              => '{{PLURAL:$1|ردهٔ پنهان|رده‌های پنهان}}',
+'hidden-category-category'       => 'رده‌های پنهان', # Name of the category where hidden categories will be listed
+'subcategorycount'               => '$1 زیررده در این رده وجود {{PLURAL:$1|دارد|دارند}}.',
+'category-subcat-count'          => '{{PLURAL:$2|این رده تنها حاوی زیرردهٔ زیر است.|{{PLURAL:$1|این زیررده|این $1 زیررده}} در این رده قرار {{PLURAL:$1|دارد|دارند}}؛ این رده در کل حاوی $2 زیررده است.}}',
+'category-subcat-count-limited'  => 'این رده شامل {{PLURAL:$1|یک زیررده|$1 زیررده}} زیر می‌باشد.',
+'category-article-count'         => '{{PLURAL:$2|این رده تنها حاوی صفحهٔ زیر است.|{{PLURAL:$1|این صفحه|این $1 صفحه}} در این رده قرار {{PLURAL:$1|دارد|دارند}}؛ این رده در کل حاوی $2 صفحه است.}}',
+'category-article-count-limited' => '{{PLURAL:$1|صفحهٔ|$1 صفحهٔ}} زیر در ردهٔ فعلی قرار دارند.',
+'category-file-count'            => '{{PLURAL:$2|این رده تنها حاوی پروندهٔ زیر است.|{{PLURAL:$1|این پرونده|این $1 پرونده}} در این رده قرار {{PLURAL:$1|دارد|دارند}}؛ این رده در کل حاوی $2 پرونده است.}}',
+'category-file-count-limited'    => '{{PLURAL:$1|پروندهٔ|$1 پروندهٔ}} زیر در ردهٔ فعلی قرار دارند.',
+'listingcontinuesabbrev'         => '(ادامه)',
 
 'mainpagetext'      => 'نرم‌افزار ویکی با موفقیت نصب شد.',
 'mainpagedocfooter' => 'از [http://meta.wikimedia.org/wiki/Help:Contents راهنمای کاربران]
@@ -2102,17 +2110,13 @@ $1',
 'nocredits'        => 'اطلاعات سازندگان این صفحه موجود نیست.',
 
 # Spam protection
-'spamprotectiontitle'    => 'فیلتر هرزنگاری‌ها',
-'spamprotectiontext'     => 'از ذخیره کردن صفحه توسط سامانه پالایش هرزنگاری‌ها جلوگیری شد. 
+'spamprotectiontitle' => 'فیلتر هرزنگاری‌ها',
+'spamprotectiontext'  => 'از ذخیره کردن صفحه توسط سامانه پالایش هرزنگاری‌ها جلوگیری شد. 
 معمولاً این اتفاق زمانی می‌افتد که متن جدید صفحه، حاوی پیوندی به یک نشانی وب خارجی باشد.',
-'spamprotectionmatch'    => 'متن زیر چیزی‌است که فیلتر هرزه‌نگاری ما را به کارانداخت: $1',
-'subcategorycount'       => '$1 زیررده در این رده وجود {{PLURAL:$1|دارد|دارند}}.',
-'categoryarticlecount'   => '$1 مقاله در این رده وجود {{PLURAL:$1|دارد|دارند}}.',
-'category-media-count'   => '{{PLURAL:$1|یک|$1}} پرونده در این رده وجود دارد.',
-'listingcontinuesabbrev' => '(ادامه)',
-'spambot_username'       => 'هرزه‌تمیزکارِ مدیاویکی',
-'spam_reverting'         => 'واگردانی به آخرین نسخه‌ای که پیوندی به $1 ندارد.',
-'spam_blanking'          => 'تمام نسخه‌ها حاوی پیوند به $1 بود، در حال خالی کردن',
+'spamprotectionmatch' => 'متن زیر چیزی‌است که فیلتر هرزه‌نگاری ما را به کارانداخت: $1',
+'spambot_username'    => 'هرزه‌تمیزکارِ مدیاویکی',
+'spam_reverting'      => 'واگردانی به آخرین نسخه‌ای که پیوندی به $1 ندارد.',
+'spam_blanking'       => 'تمام نسخه‌ها حاوی پیوند به $1 بود، در حال خالی کردن',
 
 # Info page
 'infosubtitle'   => 'اطلاعات در مورد صفحه',
