@@ -232,7 +232,7 @@ $messages = array(
 'nov'           => 'lis',
 'dec'           => 'gru',
 
-# Bits of text used by many pages
+# Categories related messages
 'categories'               => 'Kategorie',
 'pagecategories'           => '{{PLURAL:$1|Kategoria|Kategorie|Kategorii}}',
 'category_header'          => 'Strony w kategorii "$1"',
@@ -241,6 +241,8 @@ $messages = array(
 'category-empty'           => "''W tej kategorii nie ma obecnie artykułów ani plików.''",
 'hidden-categories'        => '{{PLURAL:$1|Ukryta kategoria|Ukryte kategorie|Ukrytych kategorii}}',
 'hidden-category-category' => 'Ukryte kategorie', # Name of the category where hidden categories will be listed
+'subcategorycount'         => 'W tej kategorii {{PLURAL:$1|jest tylko jedna podkategoria|są $1 podkategorie|jest $1 podkategorii}}.',
+'listingcontinuesabbrev'   => 'c.d.',
 
 'mainpagetext'      => "<big>'''Instalacja MediaWiki powiodła się.'''</big>",
 'mainpagedocfooter' => 'Zobacz [http://meta.wikimedia.org/wiki/Help:Contents przewodnik użytkownika] w celu uzyskania informacji o działaniu oprogramowania wiki.
@@ -854,6 +856,7 @@ Upewnij się, że zmiany będą zapewniać ciągłość historyczną edycji stro
 'showingresultsnum'     => "Oto lista składająca się z {{PLURAL:$3|'''1''' wyniku|'''$3''' wyników}}, poczynając od numeru '''$2'''.",
 'nonefound'             => "'''Uwaga''': brak rezultatów wyszukiwania spowodowany jest bardzo często szukaniem najpopularniejszych słów, takich jak \"jest\" czy \"nie\", które nie są indeksowane, albo z powodu podania w zapytaniu więcej niż jednego słowa (na liście odnalezionych stron znajdą się tylko te, które zawierają wszystkie podane słowa).",
 'powersearch'           => 'Szukaj',
+'powersearch-legend'    => 'Wyszukiwanie zaawansowane',
 'powersearchtext'       => 'Szukaj w przestrzeniach nazw:<br />$1<br />$2 Pokaż przekierowania<br />Szukany tekst $3 $9',
 'searchdisabled'        => 'Wyszukiwanie w {{GRAMMAR:MS.lp|{{SITENAME}}}} zostało wyłączone. W międzyczasie możesz skorzystać z wyszukiwania Google. Jednak informacje o treści {{GRAMMAR:MS.lp|{{SITENAME}}}} mogą być w Google nieaktualne.',
 
@@ -1880,16 +1883,12 @@ Można również użyć łącza, np. [[{{ns:special}}:Export/{{Mediawiki:mainpag
 'nocredits'        => 'Nie ma informacji o autorach tej strony.',
 
 # Spam protection
-'spamprotectiontitle'    => 'Filtr antyspamowy',
-'spamprotectiontext'     => 'Strona, którą chciałeś/aś zapisać, została zablokowana przez filtr antyspamowy. Najprawdopodobniej zostało to spowodowane przez link do zewnętrznej strony internetowej.',
-'spamprotectionmatch'    => 'Tekst, który uruchomił nasz filtr antyspamowy to: $1',
-'subcategorycount'       => 'W tej kategorii {{PLURAL:$1|jest tylko jedna podkategoria|są $1 podkategorie|jest $1 podkategorii}}.',
-'categoryarticlecount'   => 'W tej kategorii {{PLURAL:$1|jest tylko jeden artykuł|są $1 artykuły|jest $1 artykułów}}.',
-'category-media-count'   => 'W tej kategorii {{PLURAL:$1|jest tylko jeden plik|są $1 pliki|jest $1 plików}}.',
-'listingcontinuesabbrev' => 'c.d.',
-'spambot_username'       => 'MediaWiki czyszczenie spamu',
-'spam_reverting'         => 'Przywracanie ostatniej wersji nie zawierającej odnośników do $1',
-'spam_blanking'          => 'Wszystkie wersje zawierały odnośniki do $1; czyszczenie strony',
+'spamprotectiontitle' => 'Filtr antyspamowy',
+'spamprotectiontext'  => 'Strona, którą chciałeś/aś zapisać, została zablokowana przez filtr antyspamowy. Najprawdopodobniej zostało to spowodowane przez link do zewnętrznej strony internetowej.',
+'spamprotectionmatch' => 'Tekst, który uruchomił nasz filtr antyspamowy to: $1',
+'spambot_username'    => 'MediaWiki czyszczenie spamu',
+'spam_reverting'      => 'Przywracanie ostatniej wersji nie zawierającej odnośników do $1',
+'spam_blanking'       => 'Wszystkie wersje zawierały odnośniki do $1; czyszczenie strony',
 
 # Info page
 'infosubtitle'   => 'Informacja o stronie',
@@ -2239,7 +2238,7 @@ Jedynie elementy listy (linie zaczynające się od znaku *) brane są pod uwagę
 'confirmemail'            => 'Potwierdź adres e-mail',
 'confirmemail_noemail'    => 'Nie podałeś prawidłowego adresu e-mail w [[Special:Preferences|preferencjach]].',
 'confirmemail_text'       => '{{SITENAME}} wymaga potwierdzenia adresu e-mail przed użyciem funkcji korzystających z poczty. Wciśnij przycisk poniżej aby wysłać na swój adres list z linkiem do strony WWW. Następnie otwórz ten link w przeglądarce, czym potwierdzisz wiarygodność adresu e-mail.',
-'confirmemail_pending'    => '<div class="error">Kod potwierdzenia został wysłany do Ciebie. Jeśli zarejestrowałeś się niedawno, poczekaj kilka minut na dostarczenie wiadomości przed kolejną prośbą o wysłanie kodu.</div>',
+'confirmemail_pending'    => '<div class="error">Kod potwierdzenia został właśnie do Ciebie wysłany. Jeśli zarejestrowałeś się niedawno, poczekaj kilka minut na dostarczenie wiadomości przed kolejną prośbą o wysłanie kodu.</div>',
 'confirmemail_send'       => 'Wyślij kod uwierzytelniający',
 'confirmemail_sent'       => 'E-mail uwierzytelniający został wysłany.',
 'confirmemail_oncreate'   => 'Kod potwierdzenia został wysłany na Twój adres E-mail. Kod ten nie jest wymagany do zalogowania się, jednak będziesz musiał go podać przed włączeniem niektórych opcji e-mail na wiki.',

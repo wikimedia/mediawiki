@@ -253,6 +253,7 @@ $messages = array(
 'tog-watchlisthidebots'       => 'Ekki sýna breytingar vélmenna á vaktlistanum',
 'tog-watchlisthideminor'      => 'Ekki sýna minniháttar breytingar á vaktlistanum',
 'tog-ccmeonemails'            => 'Senda mér afrit af tölvupóstum sem ég sendi öðrum notendum',
+'tog-showhiddencats'          => 'Sýna falda flokka',
 
 'underline-always'  => 'Alltaf',
 'underline-never'   => 'Aldrei',
@@ -312,7 +313,7 @@ $messages = array(
 'nov'           => 'nóv',
 'dec'           => 'des',
 
-# Bits of text used by many pages
+# Categories related messages
 'categories'               => 'Flokkar',
 'pagecategories'           => '{{PLURAL:$1|Flokkur|Flokkar}}',
 'category_header'          => 'Greinar í flokknum „$1“',
@@ -321,6 +322,8 @@ $messages = array(
 'category-empty'           => "''Þessi flokkur inniheldur engar greinar eða margmiðlunarefni.''",
 'hidden-categories'        => '{{PLURAL:$1|Falinn flokkur|Faldir flokkar}}',
 'hidden-category-category' => 'Faldir flokkar', # Name of the category where hidden categories will be listed
+'subcategorycount'         => 'Það {{PLURAL:$1|er einn undirflokkur|eru $1 undirflokkar}} í þessum flokki.',
+'listingcontinuesabbrev'   => 'frh.',
 
 'linkprefix'        => '/^(.*?)([áÁðÐéÉíÍóÓúÚýÝþÞæÆöÖA-Za-z-–]+)$/sDu',
 'mainpagetext'      => "<big>'''Uppsetning á MediaWiki heppnaðist.'''</big>",
@@ -369,7 +372,9 @@ $messages = array(
 'permalink'         => 'Varanlegur tengill',
 'print'             => 'Prenta',
 'edit'              => 'Breyta',
+'create'            => 'Skapa',
 'editthispage'      => 'Breyta þessari síðu',
+'create-this-page'  => 'Skapa þessari síðu',
 'delete'            => 'Eyða',
 'deletethispage'    => 'Eyða þessari síðu',
 'undelete_short'    => 'Endurvekja {{PLURAL:$1|eina breytingu|$1 breytingar}}',
@@ -846,7 +851,7 @@ Prófaðu [[Special:Search|að leita á þessari wiki síðu]] að svipuðum sí
 'search-result-size'    => '$1 ({{PLURAL:$2|1 orð|$2 orð}})',
 'showingresults'        => "Sýni {{PLURAL:$1|'''1''' niðurstöðu|'''$1''' niðurstöður}} frá og með #'''$2'''.",
 'showingresultsnum'     => "Sýni {{PLURAL:$3|'''$3''' niðurstöðu|'''$3''' niðurstöður}} frá og með #<b>$2</b>.",
-'powersearch'           => 'Leita',
+'powersearch'           => 'Ítarleg leit',
 'powersearchtext'       => 'Leita í eftirfarandi nafnrýmum :<br />$1<br />$2 Sýna tilvísarnir<br />Leita að $3 $9',
 
 # Preferences page
@@ -1687,12 +1692,6 @@ Allir innflutningar eru skráð í [[{{ns:special}}:Log/import|innflutningsskrá
 'othercontribs'    => 'Byggt á verkum $1.',
 'siteusers'        => '{{SITENAME}} notandi/notendur $1',
 
-# Spam protection
-'subcategorycount'       => 'Það {{PLURAL:$1|er einn undirflokkur|eru $1 undirflokkar}} í þessum flokki.',
-'categoryarticlecount'   => 'Það {{PLURAL:$1|er 1 síða|eru $1 síður}} í þessum flokki.',
-'category-media-count'   => 'Það {{PLURAL:$1|er ein skrá|eru $1 skrár}} í þessum flokki.',
-'listingcontinuesabbrev' => 'frh.',
-
 # Info page
 'infosubtitle'   => 'Upplýsingar um síðu',
 'numedits'       => 'Fjöldi breytinga (síða): $1',
@@ -1782,6 +1781,7 @@ Allir innflutningar eru skráð í [[{{ns:special}}:Log/import|innflutningsskrá
 
 'exif-subjectdistance-value' => '$1 metrar',
 
+'exif-lightsource-1'  => 'Dagsbirta',
 'exif-lightsource-9'  => 'Gott veður',
 'exif-lightsource-10' => 'Skýjað',
 'exif-lightsource-11' => 'Skuggi',

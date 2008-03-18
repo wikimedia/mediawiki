@@ -161,7 +161,7 @@ $messages = array(
 'nov'           => 'nov',
 'dec'           => 'dic',
 
-# Bits of text used by many pages
+# Categories related messages
 'categories'               => 'Categorías',
 'pagecategories'           => '{{PLURAL:$1|Categoría|Categorías}}',
 'category_header'          => 'Artículos en la categoría "$1"',
@@ -170,6 +170,8 @@ $messages = array(
 'category-empty'           => "''La categoría no contiene actualmente ningún artículo o archivo multimedia''",
 'hidden-categories'        => '{{PLURAL:$1|Categoría escondida|Categorías escondidas}}',
 'hidden-category-category' => 'Categorías escondidas', # Name of the category where hidden categories will be listed
+'subcategorycount'         => 'Hay {{PLURAL:$1|una subcategoría|$1 subcategorías}} en esta categoría.',
+'listingcontinuesabbrev'   => 'cont.',
 
 'mainpagetext'      => 'Software wiki instalado con éxito.',
 'mainpagedocfooter' => 'Consulta la [http://meta.wikimedia.org/wiki/Help:Contents Guía de usuario] para obtener información sobre el uso del software wiki.
@@ -214,7 +216,9 @@ $messages = array(
 'permalink'         => 'Enlace permanente',
 'print'             => 'Imprimir',
 'edit'              => 'Editar',
+'create'            => 'Crear',
 'editthispage'      => 'Editar esta página',
+'create-this-page'  => 'Crear esta página',
 'delete'            => 'Borrar',
 'deletethispage'    => 'Borrar esta página',
 'undelete_short'    => 'Restaurar {{PLURAL:$1|una edición|$1 ediciones}}',
@@ -1697,16 +1701,12 @@ Todas las importaciones transwiki se registran en el [[Special:Log/import|regist
 'nocredits'        => 'Hay información de créditos para esta página.',
 
 # Spam protection
-'spamprotectiontitle'    => 'Filtro de protección contra spam',
-'spamprotectiontext'     => 'La página que intentas guardar ha sido bloqueada por el filtro de spam. Esto se debe probablemente a alguno de los un enlaces externos incluidos en ella.',
-'spamprotectionmatch'    => "El siguiente texto es el que activó nuestro filtro ''anti-spam'' (contra la publicidad no solicitada): $1",
-'subcategorycount'       => 'Hay {{PLURAL:$1|una subcategoría|$1 subcategorías}} en esta categoría.',
-'categoryarticlecount'   => 'Se {{PLURAL:$1|lista|listan}} $1 {{PLURAL:$1|artículo|artículos}} de esta categoría.',
-'category-media-count'   => 'Existe{{PLURAL:$1|&nbsp;un archivo|n $1 archivos}} en esta categoría.',
-'listingcontinuesabbrev' => 'cont.',
-'spambot_username'       => 'Limpieza de spam de MediaWiki',
-'spam_reverting'         => 'Revirtiendo a la última versión que no contenga enlaces a $1',
-'spam_blanking'          => 'Todas las revisiones contienen enlaces a $1, blanqueando',
+'spamprotectiontitle' => 'Filtro de protección contra spam',
+'spamprotectiontext'  => 'La página que intentas guardar ha sido bloqueada por el filtro de spam. Esto se debe probablemente a alguno de los un enlaces externos incluidos en ella.',
+'spamprotectionmatch' => "El siguiente texto es el que activó nuestro filtro ''anti-spam'' (contra la publicidad no solicitada): $1",
+'spambot_username'    => 'Limpieza de spam de MediaWiki',
+'spam_reverting'      => 'Revirtiendo a la última versión que no contenga enlaces a $1',
+'spam_blanking'       => 'Todas las revisiones contienen enlaces a $1, blanqueando',
 
 # Info page
 'infosubtitle'   => 'Información de la página',

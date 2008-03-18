@@ -263,15 +263,23 @@ $messages = array(
 'nov'           => 'Nov',
 'dec'           => 'Dez',
 
-# Bits of text used by many pages
-'categories'               => 'Categorias',
-'pagecategories'           => '{{PLURAL:$1|Categoria|Categorias}}',
-'category_header'          => 'Páginas na categoria "$1"',
-'subcategories'            => 'Subcategorias',
-'category-media-header'    => 'Multimédia na categoria "$1"',
-'category-empty'           => "''Esta categoria de momento não possui nenhuma página de conteúdo ou ficheiro multimédia.''",
-'hidden-categories'        => '{{PLURAL:$1|Categoria oculta|Categorias ocultas}}',
-'hidden-category-category' => 'Categorias ocultas', # Name of the category where hidden categories will be listed
+# Categories related messages
+'categories'                     => 'Categorias',
+'pagecategories'                 => '{{PLURAL:$1|Categoria|Categorias}}',
+'category_header'                => 'Páginas na categoria "$1"',
+'subcategories'                  => 'Subcategorias',
+'category-media-header'          => 'Multimédia na categoria "$1"',
+'category-empty'                 => "''Esta categoria de momento não possui nenhuma página de conteúdo ou ficheiro multimédia.''",
+'hidden-categories'              => '{{PLURAL:$1|Categoria oculta|Categorias ocultas}}',
+'hidden-category-category'       => 'Categorias ocultas', # Name of the category where hidden categories will be listed
+'subcategorycount'               => '{{PLURAL:$1|Existe uma subcategoria|Existem $1 subcategorias}} nesta categoria.',
+'category-subcat-count'          => '{{PLURAL:$2|Esta categoria possui apenas a sub-categoria a seguir.|Há, nesta categoria {{PLURAL:$1|uma sub-categoria|$1 sub-categorias}} (dentre um total de $2).}}',
+'category-subcat-count-limited'  => 'Esta categoria possui {{PLURAL:$1|a seguinte sub-categoria|as $1 sub-categorias a seguir}}.',
+'category-article-count'         => '{{PLURAL:$2|Esta categoria possui apenas a página a seguir.|Há, nesta categoria, {{PLURAL:$1|a página a seguir|as $1 páginas a seguir}} (dentre um total de $2).}}',
+'category-article-count-limited' => 'Há, nesta categoria, {{PLURAL:$1|a página a seguir|as $1 páginas a seguir}}.',
+'category-file-count'            => '{{PLURAL:$2|Esta categoria possui apenas o ficheiro a seguir.|Há, nesta categoria, {{PLURAL:$1|o ficheiro a seguir|os $1 seguintes ficheiros}} (dentre um total de $2.)}}',
+'category-file-count-limited'    => 'Nesta categoria há {{PLURAL:$1|um ficheiro|$1 ficheiros}}.',
+'listingcontinuesabbrev'         => 'cont.',
 
 'mainpagetext'      => "<big>'''MediaWiki instalado com sucesso.'''</big>",
 'mainpagedocfooter' => 'Consulte o [http://meta.wikimedia.org/wiki/Help:Contents Guia de Utilizadores] para informações acerca de como utilizar o software wiki.
@@ -618,7 +626,7 @@ Você pode ignorar esta mensagem caso a conta tenha sido criada por engano.',
 'nowiki_sample'   => 'Inserir texto não-formatado aqui',
 'nowiki_tip'      => 'Ignorar formato wiki',
 'image_sample'    => 'Exemplo.jpg',
-'image_tip'       => 'Imagem anexa',
+'image_tip'       => 'Ficheiro embutido',
 'media_sample'    => 'Exemplo.ogg',
 'media_tip'       => 'Ligação para ficheiro',
 'sig_tip'         => 'Sua assinatura, com hora e data',
@@ -910,7 +918,8 @@ Certifique-se de que tal alteração manterá a continuidade das ações.
 'showingresultsnum'     => "A seguir {{PLURAL:$3|é mostrado '''um''' resultado|são mostrados '''$3''' resultados}}, iniciando com o '''$2'''º.",
 'nonefound'             => '<strong>Nota</strong>: pesquisas mal sucedidas são geralmente causadas devido ao uso de palavras muito comuns como "tem" e "de",
 que não são indexadas, ou pela especificação de mais de um termo (somente as páginas contendo todos os termos aparecerão nos resultados).',
-'powersearch'           => 'Pesquisa',
+'powersearch'           => 'Pesquisa avançada',
+'powersearch-legend'    => 'Pesquisa avançada',
 'powersearchtext'       => 'Pesquisar nos espaços nominais:<br />$1<br />$2 Listar redireccionamentos<br />Pesquisar por $3 $9',
 'searchdisabled'        => 'O motor de pesquisa na {{SITENAME}} foi desactivado por motivos de desempenho. Enquanto isso pode fazer a sua pesquisa através do Google ou do Yahoo!.<br />
 Note que os índices do conteúdo da {{SITENAME}} destes sites podem estar desactualizados.',
@@ -1101,7 +1110,7 @@ Para incluír a imagem numa página, utilize o link na forma de
 Nome do ficheiro que está sendo enviado: <strong><tt>$1</tt></strong><br />
 Nome do ficheiro existente: <strong><tt>$2</tt></strong><br />
 Por gentileza, escolha um nome diferente.',
-'fileexists-thumb'            => "<center>'''Imagem existente'''</center>",
+'fileexists-thumb'            => "<center>'''Ficheiro existente'''</center>",
 'fileexists-thumbnail-yes'    => 'O ficheiro aparenta ser uma imagem de tamanho reduzido (<i>miniatura</i>, ou <i>thumbnail)</i>. Por gentileza, verifique o ficheiro <strong><tt>$1</tt></strong>.<br />
 Se o ficheiro enviado é o mesmo do de tamanho original, não é necessário enviar uma versão de miniatura adicional.',
 'file-thumbnail-no'           => 'O nome do ficheiro começa com <strong><tt>$1</tt></strong>. Isso faz parecer se tratar de uma imagem de tamanho reduzido (<i>miniatura</i>, ou <i>thumbnail)</i>.
@@ -1917,7 +1926,7 @@ Todas as acções de importação transwiki são registadas no [[{{ns:special}}:
 'tooltip-feed-atom'               => 'Feed Atom desta página',
 'tooltip-t-contributions'         => 'Ver as contribuições deste utilizador',
 'tooltip-t-emailuser'             => 'Enviar um e-mail a este utilizador',
-'tooltip-t-upload'                => 'Carregar imagens ou ficheiros media',
+'tooltip-t-upload'                => 'Carregar ficheiros',
 'tooltip-t-specialpages'          => 'Lista de páginas especiais',
 'tooltip-t-print'                 => 'Versão para impressão desta página',
 'tooltip-t-permalink'             => 'Link permanente para esta versão desta página',
@@ -1926,7 +1935,7 @@ Todas as acções de importação transwiki são registadas no [[{{ns:special}}:
 'tooltip-ca-nstab-media'          => 'Ver a página de media',
 'tooltip-ca-nstab-special'        => 'Esta é uma página especial, não pode ser editada.',
 'tooltip-ca-nstab-project'        => 'Ver a página de projecto',
-'tooltip-ca-nstab-image'          => 'Ver a página de imagem',
+'tooltip-ca-nstab-image'          => 'Ver a página de ficheiro',
 'tooltip-ca-nstab-mediawiki'      => 'Ver a mensagem de sistema',
 'tooltip-ca-nstab-template'       => 'Ver a predefinição',
 'tooltip-ca-nstab-help'           => 'Ver a página de ajuda',
@@ -1964,16 +1973,12 @@ Todas as acções de importação transwiki são registadas no [[{{ns:special}}:
 'nocredits'        => 'Não há informação disponível sobre os créditos desta página.',
 
 # Spam protection
-'spamprotectiontitle'    => 'Filtro de protecção contra spam',
-'spamprotectiontext'     => 'A página que deseja salvar foi bloqueada pelo filtro de spam. Tal bloqueio foi provavelmente causado por uma ligação para um website externo.',
-'spamprotectionmatch'    => 'O seguinte texto activou o filtro de spam: $1',
-'subcategorycount'       => '{{PLURAL:$1|Existe uma subcategoria|Existem $1 subcategorias}} nesta categoria.',
-'categoryarticlecount'   => '{{PLURAL:$1|Existe uma página|Existem $1 páginas}} nesta categoria.',
-'category-media-count'   => '{{PLURAL:$1|Há um ficheiro|Há $1 ficheiros}} nesta categoria.',
-'listingcontinuesabbrev' => 'cont.',
-'spambot_username'       => 'MediaWiki limpeza de spam',
-'spam_reverting'         => 'Revertendo para a última versão não contendo hiperligações para $1',
-'spam_blanking'          => 'Todas revisões contendo hiperligações para $1, limpando',
+'spamprotectiontitle' => 'Filtro de protecção contra spam',
+'spamprotectiontext'  => 'A página que deseja salvar foi bloqueada pelo filtro de spam. Tal bloqueio foi provavelmente causado por uma ligação para um website externo.',
+'spamprotectionmatch' => 'O seguinte texto activou o filtro de spam: $1',
+'spambot_username'    => 'MediaWiki limpeza de spam',
+'spam_reverting'      => 'Revertendo para a última versão não contendo hiperligações para $1',
+'spam_blanking'       => 'Todas revisões contendo hiperligações para $1, limpando',
 
 # Info page
 'infosubtitle'   => 'Informação para página',

@@ -8,8 +8,8 @@
  * @author Steinbach
  * @author Troefkaart
  * @author Adnergje
- * @author SPQRobin
  * @author Siebrand
+ * @author NJ
  */
 
 $fallback = 'nl';
@@ -40,33 +40,64 @@ $namespaceNames = array(
 );
 
 $messages = array(
+# User preference toggles
+'tog-underline'            => 'Lienks onderstreepn:',
+'tog-highlightbroken'      => 'Lienks nae lehe pagina\'s <a href="" class="new">zò weerheven</a> (alternatief: zò weerheven<a href="" class="internal">?</a>).',
+'tog-justify'              => 'Paragraeven uutvullen',
+'tog-hideminor'            => 'Kleine wijzigingen verbergen in recente wijzigingen',
+'tog-extendwatchlist'      => 'Uutebreide volglieste',
+'tog-usenewrc'             => 'Uutebreide lèste wiezigiengen-pagina gebruken (JavaScript vereist)',
+'tog-numberheadings'       => 'Koppn automaotisch nummern',
+'tog-showtoolbar'          => 'Bewerkiengswerkbalke weerheven (JavaScript vereist)',
+'tog-editondblclick'       => 'Dubbelklikkn voe bewerkn (JavaScript vereist)',
+'tog-editsection'          => "Bewerken van deêlpahina's meuhlijk maeken via [bewerken]-koppeliengen",
+'tog-enotifwatchlistpages' => "E-mail me bie bewerkiengen van pagina's op men volglieste",
+
 # Dates
 'sunday'       => 'zundag',
 'monday'       => 'maendag',
+'tuesday'      => 'diesendag',
+'wednesday'    => 'weusdag',
+'thursday'     => 'dunderdag',
 'friday'       => 'vriedag',
 'saturday'     => 'zaeterdag',
 'sun'          => 'zun',
 'mon'          => 'mae',
-'tue'          => 'din',
-'wed'          => 'woe',
-'thu'          => 'don',
+'tue'          => 'die',
+'wed'          => 'weu',
+'thu'          => 'dun',
 'fri'          => 'vri',
 'sat'          => 'zae',
 'january'      => 'januaori',
 'february'     => 'februaori',
 'march'        => 'maert',
+'april'        => 'april',
 'may_long'     => 'meie',
-'august'       => 'oest',
+'june'         => 'juni',
+'july'         => 'juli',
+'august'       => 'auhustus',
+'september'    => 'september',
+'october'      => 'oktober',
+'november'     => 'november',
+'december'     => 'december',
 'january-gen'  => 'januaori',
 'february-gen' => 'februaori',
 'march-gen'    => 'maert',
+'april-gen'    => 'april',
 'may-gen'      => 'meie',
 'august-gen'   => 'oest',
-'aug'          => 'oes',
+'aug'          => 'auh',
+'sep'          => 'sep',
+'oct'          => 'okt',
+'nov'          => 'nov',
+'dec'          => 'dec',
 
-# Bits of text used by many pages
-'category_header'       => 'Artikels in categorie "$1"',
-'category-media-header' => 'Media in categorie "$1".',
+# Categories related messages
+'categories'             => 'Categorieën',
+'category_header'        => 'Artikels in categorie "$1"',
+'category-media-header'  => 'Media in categorie "$1".',
+'hidden-categories'      => 'Verborhen {{PLURAL:$1|categorie|categorieën}}',
+'listingcontinuesabbrev' => 'vedder',
 
 'article'    => 'Artikel',
 'newwindow'  => '(opent een nieuw scherm)',
@@ -324,15 +355,15 @@ De lèste bewerkienge wier gedaen deu [[User:$3|$3]] ([[User talk:$3|Overleggien
 'block-log-flags-noautoblock' => 'gin autoblokkaode',
 
 # Move page
-'move-page-legend'        => 'Verschuuf bladzie',
-'movearticle'     => 'Verschuuf bladzie',
-'move-watch'      => 'Volg deêze bladzie',
-'movepagebtn'     => 'Verschuuf bladzie',
-'articleexists'   => "D'r bestaet al 'n bladzie mee dieën naem, of de naem
+'move-page-legend' => 'Verschuuf bladzie',
+'movearticle'      => 'Verschuuf bladzie',
+'move-watch'       => 'Volg deêze bladzie',
+'movepagebtn'      => 'Verschuuf bladzie',
+'articleexists'    => "D'r bestaet al 'n bladzie mee dieën naem, of de naem
 die-a je gekozen is is ongeldeg.
 Kiest 'n aore naem.",
-'1movedto2'       => '[[$1]] is verschove nae [[$2]]',
-'1movedto2_redir' => '[[$1]] is verschove nae [[$2]] over de deurverwiezienge',
+'1movedto2'        => '[[$1]] is verschove nae [[$2]]',
+'1movedto2_redir'  => '[[$1]] is verschove nae [[$2]] over de deurverwiezienge',
 
 # Namespace 8 related
 'allmessagesname'           => 'Naem',
@@ -357,11 +388,6 @@ Kiest 'n aore naem.",
 'tooltip-n-portal'        => "Praet en overleg in't Durpsuus",
 'tooltip-n-recentchanges' => 'Bekiek wat-a juust veranderd is op deêze wiki',
 'tooltip-watch'           => 'Voeg deêze bladzie toe an de volglieste',
-
-# Spam protection
-'categoryarticlecount'   => "D'r {{PLURAL:$1|is eên artikel|bin $1 artikels}} in deze catgeorie.",
-'category-media-count'   => "D'r {{PLURAL:$1|is eên bestand|bin $1 bestanden}} in deze categorie.",
-'listingcontinuesabbrev' => 'vedder',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'aol',

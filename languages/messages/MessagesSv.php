@@ -252,15 +252,23 @@ $messages = array(
 'nov'           => 'nov',
 'dec'           => 'dec',
 
-# Bits of text used by many pages
-'categories'               => 'Kategorier',
-'pagecategories'           => '{{PLURAL:$1|Kategori|Kategorier}}',
-'category_header'          => 'Sidor i kategorin "$1"',
-'subcategories'            => 'Underkategorier',
-'category-media-header'    => 'Media i kategorin "$1"',
-'category-empty'           => "''Den här kategorin innehåller just nu inga sidor eller filer.''",
-'hidden-categories'        => '{{PLURAL:$1|Dold kategori|Dolda kategorier}}',
-'hidden-category-category' => 'Dolda kategorier', # Name of the category where hidden categories will be listed
+# Categories related messages
+'categories'                     => 'Kategorier',
+'pagecategories'                 => '{{PLURAL:$1|Kategori|Kategorier}}',
+'category_header'                => 'Sidor i kategorin "$1"',
+'subcategories'                  => 'Underkategorier',
+'category-media-header'          => 'Media i kategorin "$1"',
+'category-empty'                 => "''Den här kategorin innehåller just nu inga sidor eller filer.''",
+'hidden-categories'              => '{{PLURAL:$1|Dold kategori|Dolda kategorier}}',
+'hidden-category-category'       => 'Dolda kategorier', # Name of the category where hidden categories will be listed
+'subcategorycount'               => 'Det finns {{PLURAL:$1|en underkategori|$1 underkategorier}} till den här kategorin.',
+'category-subcat-count'          => '{{PLURAL:$2|Denna kategori har endast följande underkategori.|Denna kategori har följande {{PLURAL:$1|underkategori|$1 underkategorier}}, ut av $2 totalt.}}',
+'category-subcat-count-limited'  => 'Denna kategori har följande {{PLURAL:$1|underkategori|$1 underkategorier}}.',
+'category-article-count'         => '{{PLURAL:$2|Denna kategori innehåller endast följande sida.|Följande {{PLURAL:$1|sida är|$1 sidor är}} i denna kategori, ut av $2 totalt.}}',
+'category-article-count-limited' => 'Följande {{PLURAL:$1|sida är|$1 sidor är}} i den nuvarande kategorin.',
+'category-file-count'            => '{{PLURAL:$2|Denna kategori innehåller endast följande fil.|Följande {{PLURAL:$1|fil är|$1 filer är}} i denna kategori, ut av $2 totalt.}}',
+'category-file-count-limited'    => 'Följande {{PLURAL:$1|fil är|$1 filer är}} i den nuvarande kategorin.',
+'listingcontinuesabbrev'         => 'forts.',
 
 'mainpagetext'      => "<big>'''MediaWiki har installerats utan problem.'''</big>",
 'mainpagedocfooter' => 'Information om hur wiki-programvaran används finns i [http://meta.wikimedia.org/wiki/Help:Contents användarguiden].
@@ -869,7 +877,8 @@ Andra administratörer på {{SITENAME}} kommer fortfarande att kunna läsa det d
 'showingresults'        => "Nedan visas upp till '''$1''' resultat från och med nummer #'''$2'''.",
 'showingresultsnum'     => "Nedan visas '''$3''' resultat från och med #'''$2'''.",
 'nonefound'             => '<strong>Observera:</strong>: Sökningar utan träffar beror ofta på att man försöker söka efter vanliga ord som "har" och "från", dessa ord indexeras inte och fungerar inte som söktermer. En annan orsak kan vara att du söker på flera ord, då visas bara sidor som innehåller alla orden bland sökresultaten.',
-'powersearch'           => 'Avancerad sökning',
+'powersearch'           => 'Sök',
+'powersearch-legend'    => 'Avancerad sökning',
 'powersearchtext'       => 'Sök i namnrymderna :<br />
 $1<br />
 $2 Lista omdirigeringar &nbsp; Sök efter $3 $9',
@@ -1911,16 +1920,12 @@ All överföring mellan wikier (transwiki) listas i  [[Special:Log/import|import
 'nocredits'        => 'Det finns ingen information tillgänglig om vem som bidragit till denna sida.',
 
 # Spam protection
-'spamprotectiontitle'    => 'Spamfilter',
-'spamprotectiontext'     => 'Sidan du ville spara blockerades av spamfiltret. Detta orsakades troligen av en extern länk på sidan.',
-'spamprotectionmatch'    => 'Följande text aktiverade vårt spamfilter: $1',
-'subcategorycount'       => 'Det finns {{PLURAL:$1|en underkategori|$1 underkategorier}} till den här kategorin.',
-'categoryarticlecount'   => 'Det finns {{PLURAL:$1|en sida|$1 sidor}} i den här kategorin.',
-'category-media-count'   => 'Det finns {{PLURAL:$1|en fil|$1 filer}} i den här kategorin.',
-'listingcontinuesabbrev' => 'forts.',
-'spambot_username'       => 'MediaWikis spampatrull',
-'spam_reverting'         => 'Återställer till den senaste versionen som inte innehåller länkar till $1',
-'spam_blanking'          => 'Alla versioner innehöll en länk till $1, blankar',
+'spamprotectiontitle' => 'Spamfilter',
+'spamprotectiontext'  => 'Sidan du ville spara blockerades av spamfiltret. Detta orsakades troligen av en extern länk på sidan.',
+'spamprotectionmatch' => 'Följande text aktiverade vårt spamfilter: $1',
+'spambot_username'    => 'MediaWikis spampatrull',
+'spam_reverting'      => 'Återställer till den senaste versionen som inte innehåller länkar till $1',
+'spam_blanking'       => 'Alla versioner innehöll en länk till $1, blankar',
 
 # Info page
 'infosubtitle'   => 'Information om sida',

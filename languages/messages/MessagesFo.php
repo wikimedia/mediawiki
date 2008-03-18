@@ -197,13 +197,15 @@ $messages = array(
 'nov'           => 'nov',
 'dec'           => 'des',
 
-# Bits of text used by many pages
-'categories'            => 'Bólkar',
-'pagecategories'        => '{{PLURAL:$1|Bólkur|Bólkar}}',
-'category_header'       => 'Greinir í bólki "$1"',
-'subcategories'         => 'Undirbólkur',
-'category-media-header' => 'Media í bólkur "$1"',
-'category-empty'        => "''Hesin bólkur inniheldur ongar greinir ella miðlar í løtuni.''",
+# Categories related messages
+'categories'             => 'Bólkar',
+'pagecategories'         => '{{PLURAL:$1|Bólkur|Bólkar}}',
+'category_header'        => 'Greinir í bólki "$1"',
+'subcategories'          => 'Undirbólkur',
+'category-media-header'  => 'Media í bólkur "$1"',
+'category-empty'         => "''Hesin bólkur inniheldur ongar greinir ella miðlar í løtuni.''",
+'subcategorycount'       => 'Tað {{PLURAL:$1|er ein undirbólkur|eru $1 undirbólkar}} í hesum bólki.',
+'listingcontinuesabbrev' => 'frh.',
 
 'mainpagetext' => "<big>'''Innlegging av Wiki-ritbúnaði væleydnað.'''</big>",
 
@@ -242,7 +244,7 @@ $messages = array(
 'edit'              => 'Rætta',
 'create'            => 'Stovna',
 'editthispage'      => 'Rætta hesa síðuna',
-'create-this-page'  => 'Stovna hesin síða',
+'create-this-page'  => 'Stovna hesa síðuna',
 'delete'            => 'Strika',
 'deletethispage'    => 'Strika hesa síðuna',
 'protect'           => 'Friða',
@@ -510,6 +512,9 @@ Vinarliga umhugsa at býta síðuna sundur í styttri pettir.</strong>',
 # Oversight log
 'oversightlog' => 'Yvurlits logg',
 
+# History merging
+'mergehistory-from' => 'Keldusíða:',
+
 # Diffs
 'difference'              => '(Munur millum endurskoðanir)',
 'lineno'                  => 'Linja $1:',
@@ -596,22 +601,23 @@ Vinarliga umhugsa at býta síðuna sundur í styttri pettir.</strong>',
 'grouppage-bureaucrat' => '{{ns:project}}:Embætismenn',
 
 # Recent changes
-'nchanges'        => '$1 {{PLURAL:$1|broyting|broytingar}}',
-'recentchanges'   => 'Seinastu broytingar',
-'rcnote'          => "Niðanfyri {{PLURAL:$1|stendur '''1''' tann seinasta broytingin|standa '''$1''' tær seinastu broytingarnar}} {{PLURAL:$2|seinasta dagin|seinastu '''$2''' dagarnar}}, frá $3.",
-'rcnotefrom'      => 'Niðanfyri standa broytingarnar síðani <b>$2</b>, (upp til <b>$1</b> er sýndar).',
-'rclistfrom'      => 'Sýn nýggjar broytingar byrjandi við $1',
-'rcshowhideminor' => '$1 minni rættingar',
-'rcshowhideliu'   => '$1 skrásettar brúkarar',
-'rcshowhideanons' => '$1 navnleysar brúkarar',
-'rcshowhidemine'  => '$1 mínar rættingar',
-'rclinks'         => 'Sýn seinastu $1 broytingarnar seinastu $2 dagarnar<br />$3',
-'diff'            => 'munur',
-'hist'            => 'søga',
-'hide'            => 'fjal',
-'show'            => 'Skoða',
-'minoreditletter' => 's',
-'newpageletter'   => 'N',
+'nchanges'          => '$1 {{PLURAL:$1|broyting|broytingar}}',
+'recentchanges'     => 'Seinastu broytingar',
+'rcnote'            => "Niðanfyri {{PLURAL:$1|stendur '''1''' tann seinasta broytingin|standa '''$1''' tær seinastu broytingarnar}} {{PLURAL:$2|seinasta dagin|seinastu '''$2''' dagarnar}}, frá $3.",
+'rcnotefrom'        => 'Niðanfyri standa broytingarnar síðani <b>$2</b>, (upp til <b>$1</b> er sýndar).',
+'rclistfrom'        => 'Sýn nýggjar broytingar byrjandi við $1',
+'rcshowhideminor'   => '$1 minni rættingar',
+'rcshowhideliu'     => '$1 skrásettar brúkarar',
+'rcshowhideanons'   => '$1 navnleysar brúkarar',
+'rcshowhidemine'    => '$1 mínar rættingar',
+'rclinks'           => 'Sýn seinastu $1 broytingarnar seinastu $2 dagarnar<br />$3',
+'diff'              => 'munur',
+'hist'              => 'søga',
+'hide'              => 'fjal',
+'show'              => 'Skoða',
+'minoreditletter'   => 's',
+'newpageletter'     => 'N',
+'rc_categories_any' => 'Nakar',
 
 # Recent changes linked
 'recentchangeslinked' => 'Viðkomandi broytingar',
@@ -1050,11 +1056,6 @@ Grein við navninum "[[$1]]" finst longu. Ynskir tú at strika hana til tess at 
 'others'        => 'onnur',
 'siteusers'     => '{{SITENAME}}brúkari(ar) $1',
 
-# Spam protection
-'subcategorycount'       => 'Tað {{PLURAL:$1|er ein undirbólkur|eru $1 undirbólkar}} í hesum bólki.',
-'categoryarticlecount'   => 'Tað {{PLURAL:$1|er ein grein|eru $1 greinir}} í hesum bólki.',
-'listingcontinuesabbrev' => 'frh.',
-
 # Info page
 'infosubtitle' => 'Upplýsingar um síðu',
 
@@ -1143,6 +1144,12 @@ fer úr gildi tann $4.',
 'watchlisttools-view' => 'Vís viðkomandi broytingar',
 'watchlisttools-edit' => 'Vís og rætta eftirlit',
 'watchlisttools-raw'  => 'Rætta rátt eftirlit',
+
+# Special:Version
+'version-hooks'            => 'Krókur',
+'version-hook-name'        => 'Krókurnavn',
+'version-version'          => 'Útgáva',
+'version-software-version' => 'Útgáva',
 
 # Special:Filepath
 'filepath-page' => 'Fíla:',

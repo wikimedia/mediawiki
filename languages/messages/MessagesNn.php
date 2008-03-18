@@ -348,14 +348,16 @@ $messages = array(
 'nov'           => 'nov',
 'dec'           => 'des',
 
-# Bits of text used by many pages
-'categories'            => '{{PLURAL:$1|Kategori|Kategoriar}}',
-'pagecategories'        => '{{PLURAL:$1|Kategori|Kategoriar}}',
-'category_header'       => 'Artiklar i kategorien «$1»',
-'subcategories'         => 'Underkategoriar',
-'category-media-header' => 'Media i kategorien «$1»',
-'category-empty'        => "''Denne kategorien inneheld for tida ingen sider eller anna media.''",
-'hidden-categories'     => '{{PLURAL:$1|Gøymd kategori|Gøymde kategoriar}}',
+# Categories related messages
+'categories'             => '{{PLURAL:$1|Kategori|Kategoriar}}',
+'pagecategories'         => '{{PLURAL:$1|Kategori|Kategoriar}}',
+'category_header'        => 'Artiklar i kategorien «$1»',
+'subcategories'          => 'Underkategoriar',
+'category-media-header'  => 'Media i kategorien «$1»',
+'category-empty'         => "''Denne kategorien inneheld for tida ingen sider eller anna media.''",
+'hidden-categories'      => '{{PLURAL:$1|Gøymd kategori|Gøymde kategoriar}}',
+'subcategorycount'       => 'Det er {{PLURAL:$1|éin underkategori|$1 underkategoriar}} av denne kategorien.',
+'listingcontinuesabbrev' => 'vidare',
 
 'mainpagetext'      => 'MediaWiki er no installert.',
 'mainpagedocfooter' => 'Sjå [http://meta.wikimedia.org/wiki/Help:Contents brukarmanualen] for informasjon om bruk og konfigurasjonshjelp for wikiprogramvaren.
@@ -1914,13 +1916,9 @@ For å eksportere bruker du [[Special:Export|eksportsida]] på kjeldewikien; hug
 'nocredits'        => 'Det finst ikkje ikkje nokon godskrivingsinformasjon for denne sida.',
 
 # Spam protection
-'spamprotectiontitle'    => 'Filter for vern mot reklame',
-'spamprotectiontext'     => 'Sida du prøvde å lagre vart blokkert av filteret for vern mot reklame (spam). Dette skjedde truleg på grunn av ei ekstern lenkje.',
-'spamprotectionmatch'    => 'Den følgjande teksten utløyste reklamefilteret: $1',
-'subcategorycount'       => 'Det er {{PLURAL:$1|éin underkategori|$1 underkategoriar}} av denne kategorien.',
-'categoryarticlecount'   => 'Det er {{PLURAL:$1|éi innhaldsside|$1 innhaldssider}} i denne kategorien.',
-'category-media-count'   => 'Det er {{PLURAL:$1|éi fil|$1 filer}} i denne kategorien.',
-'listingcontinuesabbrev' => 'vidare',
+'spamprotectiontitle' => 'Filter for vern mot reklame',
+'spamprotectiontext'  => 'Sida du prøvde å lagre vart blokkert av filteret for vern mot reklame (spam). Dette skjedde truleg på grunn av ei ekstern lenkje.',
+'spamprotectionmatch' => 'Den følgjande teksten utløyste reklamefilteret: $1',
 
 # Info page
 'infosubtitle'   => 'Informasjon om side',

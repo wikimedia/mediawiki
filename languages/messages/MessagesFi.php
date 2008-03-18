@@ -273,7 +273,7 @@ $messages = array(
 'nov'           => 'marraskuu',
 'dec'           => 'joulukuu',
 
-# Bits of text used by many pages
+# Categories related messages
 'categories'               => 'Luokat',
 'pagecategories'           => '{{PLURAL:$1|Luokka|Luokat}}',
 'category_header'          => 'Sivut, jotka ovat luokassa $1',
@@ -282,6 +282,8 @@ $messages = array(
 'category-empty'           => "''Tässä luokassa ei ole sivuja eikä tiedostoja.''",
 'hidden-categories'        => '{{PLURAL:$1|Piilotettu luokka|Piilotetut luokat}}',
 'hidden-category-category' => 'Piilotetut luokat', # Name of the category where hidden categories will be listed
+'subcategorycount'         => 'Tällä luokalla on {{PLURAL:$1|yksi alaluokka|$1 alaluokkaa}}.',
+'listingcontinuesabbrev'   => 'jatkuu',
 
 'mainpagetext'      => "'''MediaWiki on onnistuneesti asennettu.'''",
 'mainpagedocfooter' => "Lisätietoja käytöstä on sivulla [http://meta.wikimedia.org/wiki/Help:Contents User's Guide].
@@ -866,6 +868,7 @@ $1 | $2',
 'showingresultsnum'     => "Alla on {{PLURAL:$3|'''Yksi''' hakutulos|'''$3''' hakutulosta}} alkaen '''$2.''' tuloksesta.",
 'nonefound'             => "'''Huomautus''': Epäonnistuneet haut johtuvat usein hyvin yleisten sanojen, kuten ''on'' ja ''ei'', etsimisestä tai useamman kuin yhden hakutermin määrittelemisestä. Vain sivut, joilla on kaikki hakutermin sanat, näkyvät tuloksissa.",
 'powersearch'           => 'Etsi',
+'powersearch-legend'    => 'Laajennettu haku',
 'powersearchtext'       => 'Hae nimiavaruuksista: $1<br /><br />$2 Luettele ohjaukset<br /><br />$3 $9',
 'searchdisabled'        => 'Tekstihaku on poistettu toistaiseksi käytöstä suuren kuorman vuoksi. Voit käyttää alla olevaa Googlen hakukenttää sivujen etsimiseen, kunnes haku tulee taas käyttöön. <small>Huomaa, että ulkopuoliset kopiot {{GRAMMAR:genitive|{{SITENAME}}}} sisällöstä eivät välttämättä ole ajan tasalla.</small>',
 
@@ -1860,16 +1863,12 @@ Sivujen koko historian vienti on estetty suorituskykysyistä.',
 'nocredits'        => 'Tämän sivun tekijäluettelotietoja ei löydy.',
 
 # Spam protection
-'spamprotectiontitle'    => 'Mainossuodatin',
-'spamprotectiontext'     => 'Mainossuodatin on estänyt sivun tallentamisen. Syynä on todennäköisimmin {{GRAMMAR:genitive|{{SITENAME}}}} ulkopuolelle osoittava linkki.',
-'spamprotectionmatch'    => 'Teksti, joka ei läpäissyt mainossuodatinta: $1',
-'subcategorycount'       => 'Tällä luokalla on {{PLURAL:$1|yksi alaluokka|$1 alaluokkaa}}.',
-'categoryarticlecount'   => 'Tässä luokassa on {{PLURAL:$1|yksi sivu|$1 sivua}}.',
-'category-media-count'   => 'Tässä luokassa on {{PLURAL:$1|yksi tiedosto|$1 tiedostoa}}.',
-'listingcontinuesabbrev' => 'jatkuu',
-'spambot_username'       => 'MediaWikin mainospoistaja',
-'spam_reverting'         => 'Palautettu viimeisimpään versioon, joka ei sisällä linkkejä kohteeseen $1.',
-'spam_blanking'          => 'Kaikki versiot sisälsivät linkkejä kohteeseen $1. Sivu tyhjennetty.',
+'spamprotectiontitle' => 'Mainossuodatin',
+'spamprotectiontext'  => 'Mainossuodatin on estänyt sivun tallentamisen. Syynä on todennäköisimmin {{GRAMMAR:genitive|{{SITENAME}}}} ulkopuolelle osoittava linkki.',
+'spamprotectionmatch' => 'Teksti, joka ei läpäissyt mainossuodatinta: $1',
+'spambot_username'    => 'MediaWikin mainospoistaja',
+'spam_reverting'      => 'Palautettu viimeisimpään versioon, joka ei sisällä linkkejä kohteeseen $1.',
+'spam_blanking'       => 'Kaikki versiot sisälsivät linkkejä kohteeseen $1. Sivu tyhjennetty.',
 
 # Info page
 'infosubtitle'   => 'Tietoja sivusta',

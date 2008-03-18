@@ -42,7 +42,7 @@ $digitTransformTable = array(
 
 $messages = array(
 # User preference toggles
-'tog-underline'               => 'ຂີດເສ້ນໃຕ້ລິງຄ໌:',
+'tog-underline'               => 'ຂີດເສ້ນໃຕ້ລິງກ໌:',
 'tog-hideminor'               => 'ເຊື່ອງການດັດແກ້ເລັກນ້ອຍ ໃນ ການປ່ຽນແປງຫຼ້າສຸດ',
 'tog-extendwatchlist'         => 'ຂະຫຍາຍ ລາຍການຕິດຕາມ ເພື່ອ ສະແດງທຸກໆການປ່ຽນແປງ',
 'tog-usenewrc'                => 'ສະແດງ ການປ່ຽນແປງຫຼ້າສຸດ ເປັນສີເຂັ້ມ (JavaScript)',
@@ -93,7 +93,7 @@ $messages = array(
 'feb'       => 'ກຸມພາ',
 'may'       => 'ພຶດສະພາ',
 
-# Bits of text used by many pages
+# Categories related messages
 'categories'            => 'ໝວດ',
 'pagecategories'        => '{{PLURAL:$1|ໝວດ|ໝວດ}}',
 'category_header'       => 'ບົດຄວາມໃນໝວດ "$1"',
@@ -132,9 +132,11 @@ $messages = array(
 'edit'             => 'ດັດແກ້',
 'create'           => 'ສ້າງ',
 'editthispage'     => 'ດັດແກ້ໜ້ານີ້',
+'create-this-page' => 'ສ້າງໜ້ານີ້',
 'delete'           => 'ລຶບ',
 'deletethispage'   => 'ລຶບໜ້ານີ້',
 'protect'          => 'ປົກປ້ອງ',
+'protect_change'   => 'ປ່ຽນຮູບແບບການປົກປ້ອງ',
 'protectthispage'  => 'ປ້ອງກັນໜ້ານີ້',
 'unprotect'        => 'ເຊົາປົກປ້ອງ',
 'newpage'          => 'ໜ້າໃໝ່',
@@ -204,7 +206,7 @@ $messages = array(
 'filerenameerror'    => 'ບໍ່ສາມາດ ປ່ຽນ ຊື່ໄຟລ໌  "$1" ໄປເປັນ  "$2" ໄດ້.',
 'cannotdelete'       => 'ບໍ່ສາມາດລຶບໜ້າ ຫຼື ໄຟລ໌ ໄດ້. (ມັນອາດຈະຖືກລຶບໂດຍໃຜຜູ້ໜຶ່ງແລ້ວ.)',
 'badtitle'           => 'ຫົວຂໍ້ບໍ່ຖືກຕ້ອງ',
-'viewsource'         => 'ເບິ່ງ ຊອສ໌',
+'viewsource'         => 'ເບິ່ງຊອສ໌',
 'namespaceprotected' => "ທ່ານບໍ່ໄດ້ຮັບອະນຸຍາດ ໃຫ້ ດັດແກ້ ໜ້າ ໃນ  '''$1'''.",
 
 # Login and logout pages

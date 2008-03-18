@@ -80,7 +80,7 @@ $messages = array(
 'tog-usenewrc'                => "Fersiwn well o 'Newidiadau diweddar' (JavaScript)",
 'tog-numberheadings'          => 'Rhifwch teitlau yn awtomatig',
 'tog-showtoolbar'             => 'Dangos y bar offer golygu (JavaScript)',
-'tog-editondblclick'          => 'Golygu tudalennau gyda clic dwbwl (JavaScript)',
+'tog-editondblclick'          => 'Golygu tudalennau gyda chlic dwbwl (JavaScript)',
 'tog-editsection'             => 'Galluogi golygu adran drwy gyswllt [golygu] wrth ymyl pennawd yr adran',
 'tog-editsectiononrightclick' => 'Galluogi golygu adran drwy dde-glicio ar bennawd yr adran (JavaScript)',
 'tog-showtoc'                 => 'Dangos y daflen gynnwys (ar gyfer tudalennau sydd â mwy na 3 pennawd)',
@@ -170,7 +170,7 @@ $messages = array(
 'nov'           => 'Tach',
 'dec'           => 'Rhag',
 
-# Bits of text used by many pages
+# Categories related messages
 'categories'               => 'Categorïau',
 'pagecategories'           => '{{PLURAL:$1|Categori|Categori|Categorïau|Categorïau|Categorïau|Categorïau}}',
 'category_header'          => 'Erthyglau yn y categori "$1"',
@@ -179,6 +179,8 @@ $messages = array(
 'category-empty'           => "''Ar hyn o bryd nid oes unrhyw erthyglau na ffeiliau yn y categori hwn.''",
 'hidden-categories'        => '{{PLURAL:$1|Categori cuddiedig|Categori cuddiedig|Categorïau cuddiedig|Categorïau cuddiedig|Categorïau cuddiedig|Categorïau cuddiedig}}',
 'hidden-category-category' => 'Categorïau cuddiedig', # Name of the category where hidden categories will be listed
+'subcategorycount'         => "{{PLURAL:$1|Nid oes $1|Mae $1|Mae $1|Mae $1|Mae $1|Mae $1}} is-gategori i'r categori hwn.",
+'listingcontinuesabbrev'   => ' parh.',
 
 'mainpagetext'      => "<big>'''Wedi llwyddo gosod meddalwedd Mediawiki yma'''</big>",
 'mainpagedocfooter' => 'Ceir cymorth (yn Saesneg) ar ddefnyddio meddalwedd wici yn y [http://meta.wikimedia.org/wiki/Help:Contents Canllaw Defnyddwyr] ar wefan Wikimedia.
@@ -239,7 +241,7 @@ $messages = array(
 'talkpagelinktext'  => 'Sgwrs',
 'specialpage'       => 'Tudalen arbennig',
 'personaltools'     => 'Offer personol',
-'postcomment'       => 'Postiwch esboniad',
+'postcomment'       => 'Postiwch sylw',
 'articlepage'       => 'Dangos tudalen yn y prif barth',
 'talk'              => 'Sgwrs',
 'views'             => 'Golygon',
@@ -278,7 +280,7 @@ $messages = array(
 'faqpage'           => 'Project:Cwestiynau cyffredin',
 'helppage'          => 'Help:Cymorth',
 'mainpage'          => 'Hafan',
-'policy-url'        => 'Project:Polisi',
+'policy-url'        => 'Project:Policy',
 'portal'            => 'Porth y Gymuned',
 'portal-url'        => 'Project:Porth y Gymuned',
 'privacy'           => 'Polisi preifatrwydd',
@@ -384,7 +386,7 @@ Adroddwch y broblem i weinyddwr os gwelwch yn dda, gan roi\'r cyfeiriad gwe (URL
 'badtitle'             => 'Teitl gwael',
 'badtitletext'         => "Mae'r teitl a ofynnwyd amdano yn annilys, yn wag, neu cysylltu'n anghywir rhwng ieithoedd neu wicïau. Gall fod ynddo un nod neu ragor na ellir eu defnyddio mewn teitlau.",
 'perfdisabled'         => "Ymddiheurwn! Mae'r nodwedd hon wedi'i analluogi dros dro gan ei bod yn ormod o dreth ar y databas.",
-'perfcached'           => "Mae'r wybodaeth canlynol yn gopi cadw ac yn debygol o fod yn anghyflawn.",
+'perfcached'           => "Mae'r wybodaeth ganlynol yn gopi cadw; mae'n bosib nad y fersiwn diweddaraf ydyw.",
 'perfcachedts'         => 'Rhoddwyd y data canlynol ar gadw mewn celc a ddiweddarwyd ddiwethaf am $1.',
 'viewsource'           => 'Gwyliwch y ffynhonnell',
 'viewsourcefor'        => 'ar gyfer $1',
@@ -438,9 +440,10 @@ Mae eich accownt wedi gael eu creu. Peidiwch ac anghofio i personaleiddio eich f
 'badsig'                     => 'Llofnod crai annilys; gwiriwch y tagiau HTML.',
 'badsiglength'               => "Mae'r llysenw'n rhy hir; rhaid iddo fod yn llai na $1 llythyren o hyd.",
 'email'                      => 'E-bost',
-'prefs-help-realname'        => '* Enw iawn (dewisol): Os ydych yn dewis ei roi, fe fydd yn cael ei defnyddio er mwyn rhoi cydnabyddiaeth i chi am eich gwaith.',
+'prefs-help-realname'        => '* Enw iawn (dewisol): Os ydych yn dewis ei roi, fe fydd yn cael ei ddefnyddio er mwyn rhoi cydnabyddiaeth i chi am eich gwaith.',
 'loginerror'                 => 'Problem mewngofnodi',
 'prefs-help-email'           => "* E-bost (dewisol): Mae'n galluogi eraill i gysylltu â chi trwy eich tudalen defnyddiwr neu dudalen sgwrs, heb ddatguddio eich manylion personol.",
+'prefs-help-email-required'  => 'Cyfeiriad e-bost yn angenrheidiol.',
 'nocookiesnew'               => "Mae'r cyfrif defnyddiwr wedi cael ei greu, ond nid ydych wedi mewngofnodi. Mae {{SITENAME}} yn defnyddio cwcis wrth i ddefnyddwyr fewngofnodi. Rydych chi wedi analluogi cwcis. Mewngofnodwch eto gyda'ch enw defnyddiwr a'ch cyfrinair newydd os gwelwch yn dda, ar ôl galluogi cwcis.",
 'nocookieslogin'             => 'Mae {{SITENAME}} yn defnyddio cwcis wrth i ddefnyddwyr fewngofnodi. Rydych chi wedi analluogi cwcis. Trïwch eto os gwelwch yn dda, ar ôl galluogi cwcis.',
 'noname'                     => 'Dydych chi ddim wedi cynnig enw defnyddiwr dilys.',
@@ -610,6 +613,7 @@ testun i mewn i ffeil testun, a cadw hi tan hwyrach.</strong>",
 'nocreatetitle'             => 'Cyfyngwyd ar greu tudalennau',
 'nocreatetext'              => "Mae'r safle hwn wedi cyfyngu'r gallu i greu tudalennau newydd. Gallwch olygu tudalen sydd eisoes yn bodoli, neu [[Special:Userlogin|fewngofnodi, neu greu cyfrif]].",
 'nocreate-loggedin'         => "Nid yw'r gallu gennych i greu tudalennau ar {{SITENAME}}.",
+'permissionserrors'         => 'Gwallau Caniatâd',
 'permissionserrorstext'     => "Nid yw'r gallu ganddoch i weithredu yn yr achos yma, am y {{PLURAL:$1|rheswm|rheswm|rhesymau|rhesymau|rhesymau|rhesymau}} canlynol:",
 'recreate-deleted-warn'     => "'''Dalier sylw: Rydych yn ail-greu tudalen a ddilewyd rhywdro.'''
 
@@ -717,17 +721,16 @@ Pan yn gwneud hyn dylid sicrhau nad yw dilyniant hanes tudalennau yn cael ei ddi
 'showingresultsnum'     => "Yn dangos $3 {{PLURAL:$3|canlyniad|canlyniad|ganlyniad|chanlyniad|chanlyniad|canlyniad}} isod gan ddechrau gyda rhif '''$2'''.",
 'nonefound'             => "'''Nodyn''': Mae'r rhesymau bod chwiliad yn aflwyddiannus yn cynnwys chwilio am fwy nag un gair ar y tro (dim ond tudalennau sy'n cynnwys holl eiriau'r chwiliad a gaiff eu dychwelyd os na fydd OR rhyngddynt).",
 'powersearch'           => 'Chwilio',
-'powersearchtext'       => '
-Edrychwch mewn lle-enw:<br />
+'powersearchtext'       => 'Chwilio yn y parthau:<br />
 $1<br />
-$2 Rhestrwch ail-cyfeiriadau &nbsp; Chwiliwch am $3 $9',
+$2 Rhestri ailgyfeiriadau<br />Chwilio am $3 $9',
 'searchdisabled'        => "<p>Mae'r peiriant chwilio'r holl databas wedi cael eu troi i ffwrdd i gwneud pethau'n hawddach ar y gwasanaethwr. Gobeithiwn fydd yn bosibl i troi'r peiriant ymlaen cyn bo hir, ond yn y cyfamser mae'n posibl gofyn Google:</p>",
 
 # Preferences page
-'preferences'             => 'ffafraethau',
+'preferences'             => 'Dewisiadau',
 'mypreferences'           => 'fy newisiadau',
 'prefs-edits'             => 'Nifer y golygiadau:',
-'prefsnologin'            => 'Nid wedi mewngofnodi',
+'prefsnologin'            => 'Heb fewngofnodi',
 'prefsnologintext'        => 'Rhaid i chi [[Special:Userlogin|mewngofnodi]]
 i setio ffafraethau defnyddwr.',
 'prefsreset'              => 'Mae ffafraethau wedi gael eu ail-setio oddiwrth y storfa.',
@@ -736,7 +739,7 @@ i setio ffafraethau defnyddwr.',
 'qbsettings-fixedleft'    => 'Sefydlog chwith',
 'qbsettings-fixedright'   => 'Sefydlog de',
 'qbsettings-floatingleft' => 'Arnawf de',
-'changepassword'          => 'Newidier y cyfrinair',
+'changepassword'          => 'Newid y cyfrinair',
 'skin'                    => 'Croen',
 'math'                    => 'Mathemateg',
 'dateformat'              => 'Fformat dyddiad',
@@ -756,7 +759,7 @@ i setio ffafraethau defnyddwr.',
 'prefs-watchlist'         => 'Rhestr gwylio',
 'prefs-watchlist-days'    => "Nifer y diwrnodau i'w dangos yn y rhestr gwylio:",
 'prefs-watchlist-edits'   => "Nifer y golygiadau i'w dangos wrth ehangu'r rhestr gwylio:",
-'prefs-misc'              => 'Gosodiadau amrywiol',
+'prefs-misc'              => 'Amrywiol',
 'saveprefs'               => 'Cadw ffafraethau',
 'resetprefs'              => 'Ail-setio ffafraethau',
 'oldpassword'             => 'Hen gyfrinair:',
@@ -765,7 +768,7 @@ i setio ffafraethau defnyddwr.',
 'textboxsize'             => 'Maint y bocs testun',
 'rows'                    => 'Rhesi',
 'columns'                 => 'Colofnau:',
-'searchresultshead'       => 'Sefydliadau canlyniadau chwilio',
+'searchresultshead'       => 'Canlyniadau chwilio',
 'resultsperpage'          => 'Hitiau i ddangos ar pob tudalen',
 'contextlines'            => "Nifer y llinellau i'w dangos ar gyfer pob hit:",
 'contextchars'            => 'Characters of context per line',
@@ -829,6 +832,7 @@ i setio ffafraethau defnyddwr.',
 'rcshowhidebots'                    => '$1 botiau',
 'rcshowhideliu'                     => '$1 defnyddwyr mewngofnodedig',
 'rcshowhideanons'                   => '$1 defnyddwyr anhysbys',
+'rcshowhidepatr'                    => '$1 golygiadau wedi derbyn ymweliad patrôl',
 'rcshowhidemine'                    => '$1 fy ngolygiadau',
 'rclinks'                           => 'Dangos y $1 newidiad diweddaraf yn y $2 diwrnod diwethaf<br />$3',
 'diff'                              => 'gwahan',
@@ -1055,7 +1059,7 @@ Mae gan '''$2''' (neu '''$4%''') ohonynt alluoedd $5.",
 'uncategorizedtemplates'  => 'Nodiadau heb eu categoreiddio',
 'unusedcategories'        => 'Categorïau gwag',
 'unusedimages'            => 'Lluniau di-defnyddio',
-'popularpages'            => 'Erthyglau poblogol',
+'popularpages'            => 'Erthyglau poblogaidd',
 'wantedcategories'        => 'Categorïau sydd eu hangen',
 'wantedpages'             => 'Erthyglau mewn eisiau',
 'mostlinked'              => 'Tudalennau yn nhrefn nifer y cysylltiadau iddynt',
@@ -1065,7 +1069,7 @@ Mae gan '''$2''' (neu '''$4%''') ohonynt alluoedd $5.",
 'mostimages'              => 'Ffeiliau yn nhrefn nifer y cysylltiadau iddynt',
 'mostrevisions'           => 'Tudalennau yn nhrefn nifer golygiadau',
 'allpages'                => 'Pob tudalen',
-'prefixindex'             => 'Mynegai rhagddodiad',
+'prefixindex'             => 'Mynegai rhagddodiaid',
 'shortpages'              => 'Erthyglau byr',
 'longpages'               => 'Tudalennau hirion',
 'deadendpages'            => 'Tudalennau heb gysylltiadau ynddynt',
@@ -1228,7 +1232,7 @@ Am fwy o gymorth:
 {{fullurl:{{MediaWiki:Helppage}}}}',
 
 # Delete/protect/revert
-'deletepage'                  => 'Dilëer y dudalen',
+'deletepage'                  => 'Dilëwch y dudalen',
 'confirm'                     => 'Cadarnhau',
 'excontent'                   => "y cynnwys oedd: '$1'",
 'excontentauthor'             => "y cynnwys oedd: '$1' (a'r unig gyfrannwr oedd '[[Special:Contributions/$2|$2]]')",
@@ -1613,18 +1617,14 @@ Yn achos yr ail ddewis, mae modd defnyddio cyswllt, e.e. [[{{ns:special}}:Export
 'nocredits'        => "Does dim cydnabyddiaethau i'r dudalen hon.",
 
 # Spam protection
-'spamprotectiontitle'    => 'Hidlydd amddiffyn rhag sbam',
-'spamprotectiontext'     => "Mae'r dudalen wedi methu cadw, yn fwy na thebyg oherwydd bod cysylltiad allanol ar y dudalen wedi'i flocio gan yr hidlydd sbam.
+'spamprotectiontitle' => 'Hidlydd amddiffyn rhag sbam',
+'spamprotectiontext'  => "Mae'r dudalen wedi methu cadw, yn fwy na thebyg oherwydd bod cysylltiad allanol ar y dudalen wedi'i flocio gan yr hidlydd sbam.
 
 Edrychwch drwy'r canlynol am batrymau sy'n cael eu blocio:",
-'spamprotectionmatch'    => 'Dyma beth gychwynnodd ein hidlydd amddiffyn rhag sbam: $1',
-'subcategorycount'       => "{{PLURAL:$1|Nid oes $1|Mae $1|Mae $1|Mae $1|Mae $1|Mae $1}} is-gategori i'r categori hwn.",
-'categoryarticlecount'   => 'Mae $1 {{PLURAL:$1|erthygl|erthygl|erthygl|erthygl|erthygl|erthygl}} yn y categori hwn.',
-'category-media-count'   => 'Mae {{PLURAL:$1|ffeil|ffeil|ffeil|ffeil|ffeil|ffeil}} yn y categori hwn.',
-'listingcontinuesabbrev' => ' parh.',
-'spambot_username'       => 'Teclyn clirio sbam MediaWici',
-'spam_reverting'         => "Yn troi nôl i'r diwygiad diweddaraf sydd ddim yn cynnwys cysylltiadau i $1",
-'spam_blanking'          => 'Roedd cysylltiadau i $1 gan bob golygiad, yn blancio',
+'spamprotectionmatch' => 'Dyma beth gychwynnodd ein hidlydd amddiffyn rhag sbam: $1',
+'spambot_username'    => 'Teclyn clirio sbam MediaWici',
+'spam_reverting'      => "Yn troi nôl i'r diwygiad diweddaraf sydd ddim yn cynnwys cysylltiadau i $1",
+'spam_blanking'       => 'Roedd cysylltiadau i $1 gan bob golygiad, yn blancio',
 
 # Info page
 'infosubtitle'   => 'Gwybodaeth am y dudalen',
@@ -1648,6 +1648,8 @@ Edrychwch drwy'r canlynol am batrymau sy'n cael eu blocio:",
 'markedaspatrollederror-noautopatrol' => "Ni chaniateir i chi farcio'ch newidiadau eich hunan fel rhai derbyniol.",
 
 # Patrol log
+'patrol-log-page' => 'Lòg patrolio',
+'patrol-log-line' => 'wedi marcio bod fersiwn $1 o $2 wedi derbyn ymweliad patrôl',
 'patrol-log-auto' => '(awtomatig)',
 
 # Image deletion

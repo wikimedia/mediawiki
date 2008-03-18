@@ -66,8 +66,9 @@ $messages = array(
 'nov'           => 'Nov',
 'dec'           => 'Dez',
 
-# Bits of text used by many pages
-'category_header' => 'Páginas na categoria "$1"',
+# Categories related messages
+'category_header'        => 'Páginas na categoria "$1"',
+'listingcontinuesabbrev' => 'cont.',
 
 'about'     => 'Sobre',
 'newwindow' => '(abre numa nuoba janela)',
@@ -83,6 +84,7 @@ $messages = array(
 'searcharticle'    => 'Ir',
 'history'          => 'Histórico da página',
 'history_short'    => 'Histórico',
+'printableversion' => 'Versão para impressão',
 'permalink'        => 'Ligaçon permanente',
 'edit'             => 'Editar',
 'delete'           => 'Apagar',
@@ -101,6 +103,7 @@ $messages = array(
 'aboutsite'      => 'Sobre {{SITENAME}}',
 'aboutpage'      => 'Project:Sobre',
 'currentevents'  => 'Amboras actuais',
+'disclaimers'    => 'Alerta de Conteúdo',
 'disclaimerpage' => 'Project:Aviso geral',
 'helppage'       => 'Ayuda:Conteúdos',
 'mainpage'       => 'Página principal',
@@ -305,6 +308,7 @@ O registo de eliminação desta página é exibido a seguir, para sua comodidade
 'tooltip-pt-mytalk'         => 'Página de mie cumbersa',
 'tooltip-pt-preferences'    => 'Las mies preferencias',
 'tooltip-pt-mycontris'      => 'Lhista das mies contribuiçons',
+'tooltip-pt-login'          => 'Você é encorajado a autenticar-se, apesar disso não ser obrigatório.',
 'tooltip-pt-logout'         => 'Sair',
 'tooltip-ca-delete'         => 'Apagar esta página',
 'tooltip-ca-move'           => 'Mover esta página',
@@ -317,9 +321,6 @@ O registo de eliminação desta página é exibido a seguir, para sua comodidade
 'tooltip-ca-nstab-image'    => 'Ber la página de l ficheiro',
 'tooltip-ca-nstab-template' => 'Ber l modelo',
 'tooltip-save'              => 'Grabar sues alterações',
-
-# Spam protection
-'listingcontinuesabbrev' => 'cont.',
 
 # Media information
 'file-info-size' => '($1 × $2 pixel, tamanho: $3, tipo MIME: $4)',

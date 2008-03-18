@@ -18,7 +18,7 @@
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'በመያያዣ ስር አስምር',
-'tog-highlightbroken'         => 'የተሰበረ (ቀይ) መያያዣን <a href="" class="new">እንዲህ</a>? አለዚያ: እንዲህ<a href="" class="internal">?</a>)',
+'tog-highlightbroken'         => 'የተሰበረ (ቀይ) መያያዣን <a href="" class="new">እንዲህ</a>? አለዚያ: እንዲህ<a href="" class="internal">?</a>',
 'tog-justify'                 => 'አንቀጾችን አስተካክል',
 'tog-hideminor'               => 'አነስተኛ እርማቶችን ደብቅ',
 'tog-extendwatchlist'         => 'የሚደረጉ ለውጦችን ለማሳየት መቆጣጠሪያ-ዝርዝርን ዘርጋ',
@@ -115,7 +115,7 @@ $messages = array(
 'nov'           => 'ኖቬም.',
 'dec'           => 'ዲሴም.',
 
-# Bits of text used by many pages
+# Categories related messages
 'categories'               => 'ምድቦች',
 'pagecategories'           => '{{PLURAL:$1|ምድብ|ምድቦች}}',
 'category_header'          => 'በምድብ «$1» ውስጥ የሚገኙ ገጾች',
@@ -124,6 +124,8 @@ $messages = array(
 'category-empty'           => 'ይህ መደብ አሁን ባዶ ነው።',
 'hidden-categories'        => '{{PLURAL:$1|የተደበቀ መደብ|የተደበቁ መደቦች}}',
 'hidden-category-category' => 'የተደበቁ መደቦች', # Name of the category where hidden categories will be listed
+'subcategorycount'         => 'በዚሁ መደብ ውስጥ {{PLURAL:$1|አንድ ንዑስ-መደብ አለ|$1 ንዑስ-መደቦች አሉ}}።',
+'listingcontinuesabbrev'   => '(ተቀጥሏል)',
 
 'mainpagetext'      => "<big>'''MediaWiki በትክክል ማስገባቱ ተከናወነ።'''</big>",
 'mainpagedocfooter' => "ስለ ዊኪ ሶፍትዌር ጥቅም ለመረዳት፣ [http://meta.wikimedia.org/wiki/Help:Contents User's Guide] ያንብቡ። 
@@ -1616,13 +1618,9 @@ $1',
 'siteusers'        => '{{SITENAME}} ተጠቃሚ(ዎች) $1',
 
 # Spam protection
-'spamprotectiontitle'    => 'የስፓም መከላከል ማጣሪያ',
-'subcategorycount'       => 'በዚሁ መደብ ውስጥ {{PLURAL:$1|አንድ ንዑስ-መደብ አለ|$1 ንዑስ-መደቦች አሉ}}።',
-'categoryarticlecount'   => 'በዚሁ መደብ ውስጥ {{PLURAL:$1|አንድ መጣጥፍ አለ|$1 መጣጥፎች አሉ}}።',
-'category-media-count'   => 'በዚሁ መደብ {{PLURAL:$1|አንድ ፋይል አለ|$1 ፋይሎች አሉ}}።',
-'listingcontinuesabbrev' => '(ተቀጥሏል)',
-'spambot_username'       => 'MediaWiki የስፓም ማፅዳት',
-'spam_reverting'         => 'ወደ $1 የሚወስድ መያያዣ ወደሌለበት መጨረሻ ዕትም መለሰው',
+'spamprotectiontitle' => 'የስፓም መከላከል ማጣሪያ',
+'spambot_username'    => 'MediaWiki የስፓም ማፅዳት',
+'spam_reverting'      => 'ወደ $1 የሚወስድ መያያዣ ወደሌለበት መጨረሻ ዕትም መለሰው',
 
 # Info page
 'infosubtitle'   => 'መረጃ ለገጹ',
@@ -2060,7 +2058,7 @@ $1',
 'filepath'         => 'የፋይል መንገድ',
 'filepath-page'    => 'ፋይሉ፦',
 'filepath-submit'  => 'መንገድ',
-'filepath-summary' => 'ይህ ልዩ ገጽ ለ1 ፋይል ሙሉ መንገድ ይሰጣል።<br>
+'filepath-summary' => 'ይህ ልዩ ገጽ ለ1 ፋይል ሙሉ መንገድ ይሰጣል።<br />
 ስዕል በሙሉ ማጉላት ይታያል፤ ሌላ አይነት ፋይል በሚገባው ፕሮግራም በቀጥታ ይጀመራል።
 
 የፋይሉ ስም («{{ns:image}}:» የሚለው ባዕድ መነሻ ሳይኖር) ከዚህ ታች ይግባ፦',

@@ -132,7 +132,7 @@ $messages = array(
 'nov'           => 'ser',
 'dec'           => 'ber',
 
-# Bits of text used by many pages
+# Categories related messages
 'categories'               => '{{PLURAL:$1|Kategorî|Kategorî}}',
 'pagecategories'           => '$1 Kategorîyan',
 'category_header'          => 'Gotarên di kategoriya "$1" de',
@@ -141,6 +141,8 @@ $messages = array(
 'category-empty'           => "''Di vê kategorîyê da niha gotar ya medya tune ne.''",
 'hidden-categories'        => '{{PLURAL:$1|Kategorîya veşartî|Kategorîyên veşartî}}',
 'hidden-category-category' => 'Kategorîyên veşartî', # Name of the category where hidden categories will be listed
+'subcategorycount'         => 'Di vê kategoriyê de {{PLURAL:$1|binkategorîyek heye|$1 binkategorî hene}}.',
+'listingcontinuesabbrev'   => 'dewam',
 
 'mainpagetext'      => "<big>'''MediaWiki serketî hate çêkirin.'''</big>",
 'mainpagedocfooter' => 'Alîkarî ji bo bikaranîn û guherandin yê datayê Wîkî tu di bin [http://meta.wikimedia.org/wiki/Help:Contents pirtûka alîkarîyê ji bikarhêneran] da dikarê bibînê.
@@ -188,7 +190,9 @@ $messages = array(
 'permalink'         => 'Lînkê tim',
 'print'             => 'Çap',
 'edit'              => 'Biguherîne',
+'create'            => 'Çêke',
 'editthispage'      => 'Vê rûpelê biguherîne',
+'create-this-page'  => 'Vê rûpelê çêke',
 'delete'            => 'Jê bibe',
 'deletethispage'    => 'Vê rûpelê jê bibe',
 'undelete_short'    => 'Dîsa {{PLURAL:$1|guherandinekî|$1 guherandinan}} çêke',
@@ -742,8 +746,11 @@ $2 Ragihandinan nîşan bide &amp;nbsp; Lêbigere: $3 $9',
 # Groups
 'group'       => 'Kom:',
 'group-sysop' => 'Koordînatoran',
+'group-all'   => '(hemû)',
 
-'group-sysop-member' => 'Koordînator',
+'group-bot-member'        => 'Bot',
+'group-sysop-member'      => 'Koordînator',
+'group-bureaucrat-member' => 'Burokrat',
 
 'grouppage-sysop' => '{{ns:project}}:Admînistrator',
 
@@ -784,6 +791,7 @@ $2 Ragihandinan nîşan bide &amp;nbsp; Lêbigere: $3 $9',
 'reuploaddesc'           => 'Şonda berve rûpelê barkirinê here.',
 'uploadnologin'          => 'Xwe qeyd nekir',
 'uploadnologintext'      => 'Ji bo barkirina wêneyan divê ku tu [[Special:Userlogin|têkevî]].',
+'uploaderror'            => 'Şaşbûn bo barkirinê',
 'uploadtext'             => "Berê tu wêneyên nû bar bikî, ji bo dîtin an vedîtina wêneyên ku ji xwe hene binêre: [[Special:Imagelist|lîsteya wêneyên barkirî]]. Herwisa wêneyên ku hatine barkirin an jî jê birin li vir dikarî bibînî: [[Special:Log/upload|reşahîya barkirîyan]]. 
 
 Yek ji lînkên jêr ji bo bikarhînana wêne an file'ê di gotarê de bikar bihîne:
@@ -839,7 +847,7 @@ Zanibe, ku ev barkirina kê were qebûlkirin ya na.
 
 Înformasyonan li ser jêbirinê kevin ra:",
 
-'license' => 'Lîsens',
+'license' => 'Lîsens:',
 
 # Image list
 'imagelist'                 => 'Listeya wêneyan',
@@ -1077,6 +1085,7 @@ Li rûpela [[Special:Recentchanges|Guherandinên dawî]] jî ji bo hasan dîtina
 'watching'   => 'Bişopîne...',
 'unwatching' => 'Neşopîne...',
 
+'enotif_reset'                 => 'Hemû rûpelan wek lêsekirî nîşanbide',
 'enotif_newpagetext'           => 'Ev rûpeleke nû ye.',
 'enotif_impersonal_salutation' => 'Bikarhênerî {{SITENAME}}',
 'changed'                      => 'guhart',
@@ -1189,7 +1198,7 @@ Guhartoya dawî bi [[User:$3|$3]] ([[User talk:$3|guftûgo]]).',
 'undeletedarticle'         => '"[[$1]]" dîsa çêkir',
 'undeletedrevisions'       => '{{PLURAL:$1|Verzyonek dîsa hate|$1 verzyon dîsa hatin}} çêkirin',
 'undeletedrevisions-files' => '{{PLURAL:$1|Verzyonek|$1 verzyon}} û {{PLURAL:$2|medyayek hate|$2 medya hatin}} çêkirin',
-'undeletedfiles'           => '{{PLURAL:$2|Medyayek hate|$2 medya hatin}} çêkirin',
+'undeletedfiles'           => '{{PLURAL:$1|Medyayek hate|$1 medya hatin}} çêkirin',
 'undeletedpage'            => "<big>'''$1 dîsa hate çêkirin'''</big>
 
 Ji bo jêbirinan û çêkirinên nuh ra, xêra xwe di [[Special:Log/delete|reşahîya jêbirinê]] da seke.",
@@ -1473,13 +1482,9 @@ if (wgUserLanguage == "ku-arab")
 'siteusers' => 'Bikarhênerên $1 yên {{SITENAME}}',
 
 # Spam protection
-'spamprotectiontitle'    => 'Parastina spam',
-'spamprotectiontext'     => 'Ew rûpela yê tu dixast tomarbikê hate astengkirin ji ber ku parastina spam. Ew çêbû ji ber ku lînkekî derva di vê rûpelê da ye.',
-'spamprotectionmatch'    => 'Ev nivîsa parastinê spam vêxist: $1',
-'subcategorycount'       => 'Di vê kategoriyê de {{PLURAL:$1|binkategorîyek heye|$1 binkategorî hene}}.',
-'categoryarticlecount'   => 'Di vê kategoriyê de {{PLURAL:$1|gotarek heye|$1 gotar hene}}.',
-'category-media-count'   => "Di vê kategorîyê da {{PLURAL:|data'yek heye|$1 data hene}}.",
-'listingcontinuesabbrev' => 'dewam',
+'spamprotectiontitle' => 'Parastina spam',
+'spamprotectiontext'  => 'Ew rûpela yê tu dixast tomarbikê hate astengkirin ji ber ku parastina spam. Ew çêbû ji ber ku lînkekî derva di vê rûpelê da ye.',
+'spamprotectionmatch' => 'Ev nivîsa parastinê spam vêxist: $1',
 
 # Info page
 'numwatchers' => 'Hejmara kesên dişopînin: $1',

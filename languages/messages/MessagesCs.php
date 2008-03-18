@@ -379,15 +379,23 @@ $messages = array(
 'nov'           => '11.',
 'dec'           => '12.',
 
-# Bits of text used by many pages
-'categories'               => 'Kategorie',
-'pagecategories'           => 'Kategorie',
-'category_header'          => 'Stránky v kategorii „$1“',
-'subcategories'            => 'Podkategorie',
-'category-media-header'    => 'Soubory v kategorii „$1“',
-'category-empty'           => "''Tato kategorie neobsahuje žádné stránky či soubory.''",
-'hidden-categories'        => '{{PLURAL:$1|Skrytá kategorie|Skryté kategorie|Skryté kategorie}}',
-'hidden-category-category' => 'Skryté kategorie', # Name of the category where hidden categories will be listed
+# Categories related messages
+'categories'                     => 'Kategorie',
+'pagecategories'                 => '{{PLURAL:$1|Kategorie|Kategorie|Kategorie}}',
+'category_header'                => 'Stránky v kategorii „$1“',
+'subcategories'                  => 'Podkategorie',
+'category-media-header'          => 'Soubory v kategorii „$1“',
+'category-empty'                 => "''Tato kategorie neobsahuje žádné stránky či soubory.''",
+'hidden-categories'              => '{{PLURAL:$1|Skrytá kategorie|Skryté kategorie|Skryté kategorie}}',
+'hidden-category-category'       => 'Skryté kategorie', # Name of the category where hidden categories will be listed
+'subcategorycount'               => 'Tato kategorie obsahuje $1 {{plural:$1|podkategorii|podkategorie|podkategorií}}.',
+'category-subcat-count'          => '{{PLURAL:$2|V této kategorii je pouze následující podkategorie.|{{PLURAL:$1|Zobrazuje se jedna podkategorie|Zobrazují se $1 podkategorie|Zobrazuje se $1 podkategorií}} z celkového počtu $2 podkategorií v této kategorii.|{{PLURAL:$1|Zobrazuje se jedna podkategorie|Zobrazují se $1 podkategorie|Zobrazuje se $1 podkategorií}} z celkového počtu $2 podkategorií v této kategorii.}}',
+'category-subcat-count-limited'  => 'Tato kategorie obsahuje {{PLURAL:$1|následující podkategorii|následující $1 podkategorie|následujících $1 podkategorií}}.',
+'category-article-count'         => '{{PLURAL:$2|V této kategorii je pouze následující stránka.|{{PLURAL:$1|Zobrazuje se jedna stránka|Zobrazují se $1 stránky|Zobrazuje se  $1 stránek}} z celkového počtu $2 stránek v této kategorii.|{{PLURAL:$1|Zobrazuje se jedna stránka|Zobrazují se $1 stránky|Zobrazuje se $1 stránek}} z celkového počtu $2 stránek v této kategorii.}}',
+'category-article-count-limited' => 'Tato kategorie obsahuje {{PLURAL:$1|následující stránku|následující $1 stránky|následujících $1 stránek}}.',
+'category-file-count'            => '{{PLURAL:$2|V této kategorii je pouze následující soubor.|{{PLURAL:$1|Zobrazuje se jeden soubor|Zobrazují se $1 soubory|Zobrazuje se  $1 souborů}} z celkového počtu $2 souborů v této kategorii.|{{PLURAL:$1|Zobrazuje se jedna soubor|Zobrazují se $1 soubory|Zobrazuje se $1 souborů}} z celkového počtu $2 souborů v této kategorii.}}',
+'category-file-count-limited'    => 'Tato kategorie obsahuje {{PLURAL:$1|následující soubor|následující $1 soubory|následujících $1 souborů}}.',
+'listingcontinuesabbrev'         => 'pokrač.',
 
 'mainpagetext'      => "<big>'''MediaWiki bylo úspěšně nainstalováno.'''</big>",
 'mainpagedocfooter' => '[http://meta.wikimedia.org/wiki/Help:Contents Průvodce uživatele] Vám napoví jak používat MediaWiki.
@@ -435,7 +443,9 @@ $messages = array(
 'permalink'         => 'Trvalý odkaz',
 'print'             => 'Vytisknout',
 'edit'              => 'Editovat',
+'create'            => 'Vytvořit',
 'editthispage'      => 'Editovat stránku',
+'create-this-page'  => 'Vytvořit tuto stránku',
 'delete'            => 'Smazat',
 'deletethispage'    => 'Smazat stránku',
 'undelete_short'    => 'Obnovit $1 {{plural:$1|verzi|verze|verzí}}',
@@ -1004,10 +1014,13 @@ Ujistěte se, že tato změna udrží souvislost a posloupnost verzí v historii
 'prevn'                 => '$1 předchozích',
 'nextn'                 => '$1 následujících',
 'viewprevnext'          => 'Ukázat ($1) ($2) ($3).',
+'search-result-size'    => '$1 ({{PLURAL:$2|1 slovo|$2 slova|$2 slov}})',
+'search-result-score'   => 'Relevantnost: $1 %',
 'showingresults'        => 'Zobrazuji <strong>$1</strong> {{plural:$1|výsledek|výsledky|výsledků}} počínaje od <strong>$2</strong>.',
 'showingresultsnum'     => 'Zobrazuji <strong>$3</strong> {{plural:$3|výsledek|výsledky|výsledků}} počínaje od <strong>$2</strong>.',
 'nonefound'             => '<strong>Poznámka</strong>: neúspěšná hledání jsou často důsledkem zadání slov, která nejsou indexována, nebo uvedením mnoha slov najednou (ve výsledku se objeví jen ty stránky, které obsahují všechna zadaná slova).',
 'powersearch'           => 'Hledání',
+'powersearch-legend'    => 'Rozšířené vyhledávání',
 'powersearchtext'       => '
 Hledat ve jmenných prostorech:<br />
 $1<br />
@@ -1668,6 +1681,7 @@ Současné nastavení pro tuto stránku je: <strong>$1</strong>:',
 # Undelete
 'undelete'                     => 'Smazané stránky',
 'undeletepage'                 => 'Prohlédnout si a obnovit smazanou stránku',
+'undeletepagetitle'            => "'''Níže jsou smazané verze stránky [[:$1]]'''.",
 'viewdeletedpage'              => 'Zobrazení smazané stránky',
 'undeletepagetext'             => 'Tyto stránky jsou smazány, avšak dosud archivovány, a proto je možno je obnovit. Archiv může být pravidelně vyprazdňován.',
 'undeleteextrahelp'            => "Pro úplné obnovení stránky s kompletní historií ponechte všechny čtverečky nezaškrtnuté a klikněte na '''''Obnovit'''''. Pro částečné obnovení zašrktněte čtverečky u obnovovaných revizí a klikněte na '''''Obnovit'''''. Kliknutí na '''''Reset''''' vyprázdní komentář a zruší všechna zaškrtnutí.",
@@ -2035,16 +2049,12 @@ Do níže uvedeného editačního pole zadejte názvy stránek, které chcete ex
 'nocredits'        => 'K této stránce neexistuje informace o zásluhách.',
 
 # Spam protection
-'spamprotectiontitle'    => 'Protispamový filtr',
-'spamprotectiontext'     => 'Stránka, kterou jste se pokusil(a) uložit, byla zablokována protispamovým filtrem. Pravděpodobnou příčinou je odkaz na externí stránky. Může vás zajímat následující regulární výraz, který označuje v současné době blokované stránky:',
-'spamprotectionmatch'    => 'Následující text spustil náš filtr proti spamu: $1',
-'subcategorycount'       => 'Tato kategorie obsahuje $1 {{plural:$1|podkategorii|podkategorie|podkategorií}}.',
-'categoryarticlecount'   => 'Tato kategorie obsahuje $1 {{plural:$1|stránku|stránky|stránek}}.',
-'category-media-count'   => 'Tato kategorie obsahuje {{plural:$1|jeden soubor|$1 soubory|$1 souborů}}.',
-'listingcontinuesabbrev' => 'pokrač.',
-'spambot_username'       => 'Systémový čistič spamu',
-'spam_reverting'         => 'Revert na poslední verzi neobsahující odkazy na $1',
-'spam_blanking'          => 'Všechny revize obsahovaly odkazy na $1, vyprázdněno',
+'spamprotectiontitle' => 'Protispamový filtr',
+'spamprotectiontext'  => 'Stránka, kterou jste se pokusil(a) uložit, byla zablokována protispamovým filtrem. Pravděpodobnou příčinou je odkaz na externí stránky. Může vás zajímat následující regulární výraz, který označuje v současné době blokované stránky:',
+'spamprotectionmatch' => 'Následující text spustil náš filtr proti spamu: $1',
+'spambot_username'    => 'Systémový čistič spamu',
+'spam_reverting'      => 'Revert na poslední verzi neobsahující odkazy na $1',
+'spam_blanking'       => 'Všechny revize obsahovaly odkazy na $1, vyprázdněno',
 
 # Info page
 'infosubtitle'   => 'Informace o stránce',

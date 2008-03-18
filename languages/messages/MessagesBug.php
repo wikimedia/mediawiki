@@ -11,37 +11,50 @@ $fallback = "id";
 
 $messages = array(
 # Dates
-'january'  => 'ᨙᨍᨊᨘᨕᨑᨗ',
-'february' => 'ᨙᨄᨅᨛᨑᨘᨕᨑᨗ',
+'sunday'    => 'ᨕᨕᨖ',
+'monday'    => 'ᨕᨔᨛᨙᨊ',
+'tuesday'   => 'ᨔᨒᨔ',
+'wednesday' => 'ᨕᨑᨅ',
+'thursday'  => 'ᨀᨆᨗᨔᨗ',
+'friday'    => 'ᨍᨘᨆᨕ',
+'saturday'  => 'ᨔᨈᨘ',
+'january'   => 'ᨙᨍᨊᨘᨕᨑᨗ',
+'february'  => 'ᨙᨄᨅᨛᨑᨘᨕᨑᨗ',
 
-# Bits of text used by many pages
+# Categories related messages
 'category_header' => 'ᨒᨛᨄ ᨑᨗᨒᨒᨛ ᨙᨀᨈᨛᨁᨚᨑᨗ "$1"',
 'subcategories'   => 'ᨔᨅᨛᨙᨀᨈᨛᨁᨚᨈᨗ',
 
-'about'    => 'Atajangeng',
-'qbedit'   => 'Sunting',
-'mytalk'   => 'ᨕᨄᨅᨗᨌᨑᨊ ᨕᨗᨐ',
-'anontalk' => 'Bicara IP',
-'and'      => 'éréngé',
+'about'      => 'Atajangeng',
+'qbedit'     => 'Sunting',
+'mytalk'     => 'ᨕᨄᨅᨗᨌᨑᨊ ᨕᨗᨐ',
+'anontalk'   => 'Bicara IP',
+'navigation' => 'ᨊᨄᨗᨁᨔᨗ',
+'and'        => 'éréngé',
 
-'help'          => 'Panginring',
-'search'        => 'ᨔᨄ',
-'searchbutton'  => 'ᨔᨄ',
-'go'            => 'ᨒᨕᨚ',
-'searcharticle' => 'ᨒᨕᨚ',
-'history_short' => 'Sejarah',
-'edit'          => 'ᨙᨕᨉᨗ',
-'editthispage'  => 'ᨙᨕᨉᨗ ᨙᨕᨙᨉ ᨒᨛᨄ',
-'delete'        => 'ᨄᨛᨙᨉ',
-'specialpage'   => 'Halamang Istimewa',
-'imagepage'     => 'Ita halamang rapang',
+'help'             => 'ᨄᨂᨗᨋᨗ',
+'search'           => 'ᨔᨄ',
+'searchbutton'     => 'ᨔᨄ',
+'go'               => 'ᨒᨕᨚ',
+'searcharticle'    => 'ᨒᨕᨚ',
+'history_short'    => 'ᨔᨛᨍᨑ',
+'edit'             => 'ᨙᨕᨉᨗ',
+'create'           => 'ᨕᨛᨅᨘ',
+'editthispage'     => 'ᨙᨕᨉᨗ ᨙᨕᨙᨉ ᨒᨛᨄ',
+'delete'           => 'ᨄᨛᨙᨉ',
+'talkpagelinktext' => 'ᨅᨗᨌᨑ',
+'specialpage'      => 'ᨒᨛᨄ ᨔᨛᨙᨄᨔᨗᨕᨒ',
+'imagepage'        => 'Ita halamang rapang',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite' => 'Tentang {{SITENAME}}',
 'mainpage'  => 'ᨒᨛᨄ ᨕᨗᨉᨚᨙᨕ',
 'portal'    => 'Portal komunitas',
 
+'editsection' => 'ᨙᨕᨉᨗ',
+
 # Short words for each namespace, by default used in the namespace tab in monobook
+'nstab-main'     => 'ᨒᨛᨄ',
 'nstab-user'     => 'ᨒᨛᨄ ᨄᨁᨘᨊ',
 'nstab-special'  => 'ᨔᨛᨙᨄᨔᨗᨕᨒ',
 'nstab-image'    => 'Rapang',
@@ -66,13 +79,14 @@ $messages = array(
 'italic_tip' => 'ᨙᨈᨀᨛᨔᨛ ᨕᨗᨈᨒᨗᨀᨛ',
 
 # Edit pages
+'preview'          => 'ᨄᨛᨑᨗᨅᨗᨐᨘ',
 'accmailtitle'     => 'Ada sandi ni riantarak.',
 'accmailtext'      => 'Ada sandi "$1" riantarak ri $2.',
 'anontalkpagetext' => "----''Ini adalah halaman diskusi untuk pengguna anonim yang belum membuat rekening atau tidak menggunakannya. Karena tidak membuat rekening, kami terpaksa memakai alamat IP untuk mengenalinya. Alamat IP seperti ini dapat dipakai oleh beberapa pengguna yang berbeda. Jika Anda adalah pengguna anonim dan merasa mendapatkan komentar-komentar yang tidak berkaitan dengan anda, kami anjurkan untuk [[Special:Userlogin|membuat rekening atau masuk log]] untuk menghindari kerancuan dengan pengguna anonim lain.''",
 'editing'          => 'ᨙᨕᨉᨗᨈᨗ $1',
 
 # Recent changes
-'recentchanges' => 'Pappakapinra tanappa',
+'recentchanges' => 'ᨄᨄᨀᨗᨋ ᨈᨊᨄ',
 
 # Recent changes linked
 'recentchangeslinked' => 'Pappakapinra terkait',
@@ -81,6 +95,9 @@ $messages = array(
 'upload'    => 'Lureng berkas',
 'uploadbtn' => 'Lureng berkas',
 
+# Image list
+'ilsubmit' => 'ᨔᨄ',
+
 # Random page
 'randompage' => 'Halamang rawak',
 
@@ -88,6 +105,8 @@ $messages = array(
 'allpages'     => 'Maneng halamang',
 'specialpages' => 'Halamang Istimewa',
 'ancientpages' => 'Artikel talloa',
+'move'         => 'ᨙᨕᨔᨘ',
+'movethispage' => 'ᨙᨕᨔᨘᨀᨗ ᨕᨗᨙᨐᨙᨉ ᨒᨛᨄ',
 
 'alphaindexline' => '$1 ri $2',
 

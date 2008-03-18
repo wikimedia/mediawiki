@@ -368,15 +368,23 @@ $messages = array(
 'nov'           => 'nov',
 'dec'           => 'dec',
 
-# Bits of text used by many pages
-'categories'               => 'Categorieën',
-'pagecategories'           => '{{PLURAL:$1|Categorie|Categorieën}}',
-'category_header'          => 'Pagina’s in categorie “$1”',
-'subcategories'            => 'Ondercategorieën',
-'category-media-header'    => 'Media in categorie “$1”',
-'category-empty'           => "''Deze categorie bevat geen pagina’s of media.''",
-'hidden-categories'        => 'Verborgen {{PLURAL:$1|categorie|categorieën}}',
-'hidden-category-category' => 'Verborgen categorieën', # Name of the category where hidden categories will be listed
+# Categories related messages
+'categories'                     => 'Categorieën',
+'pagecategories'                 => '{{PLURAL:$1|Categorie|Categorieën}}',
+'category_header'                => 'Pagina’s in categorie “$1”',
+'subcategories'                  => 'Ondercategorieën',
+'category-media-header'          => 'Media in categorie “$1”',
+'category-empty'                 => "''Deze categorie bevat geen pagina’s of media.''",
+'hidden-categories'              => 'Verborgen {{PLURAL:$1|categorie|categorieën}}',
+'hidden-category-category'       => 'Verborgen categorieën', # Name of the category where hidden categories will be listed
+'subcategorycount'               => 'Er {{PLURAL:$1|is 1 ondercategorie|zijn $1 ondercategorieën}} binnen deze categorie.',
+'category-subcat-count'          => '{{PLURAL:$2|Deze categorie heeft de volgende ondercategorie.|Deze categorie heeft de volgende {{PLURAL:$1|ondercategorie|$1 ondercategorieën}}, van een totaal van $2.}}',
+'category-subcat-count-limited'  => 'Deze categorie heeft de volgende {{PLURAL:$1|ondercategorie|$1 ondercategorieën}}.',
+'category-article-count'         => "{{PLURAL:$2|Deze categorie bevat de volgende pagina.|Deze categorie bevat de volgende {{PLURAL:$1|pagina|$1 pagina's}}, van in totaal $2.}}",
+'category-article-count-limited' => "Deze categorie bevat de volgende {{PLURAL:$1|pagina|$1 pagina's}}.",
+'category-file-count'            => '{{PLURAL:$2|Deze categorie bevat het volgende bestand.|Deze categorie bevat {{PLURAL:$1|het volgende bestand|de volgende $1 bestanden}}, van in totaal $2.}}',
+'category-file-count-limited'    => 'Deze categorie bevat {{PLURAL:$1|het volgende bestand|de volgende $1 bestanden}}.',
+'listingcontinuesabbrev'         => 'meer',
 
 'mainpagetext'      => "<big>'''De installatie van MediaWiki is geslaagd.'''</big>",
 'mainpagedocfooter' => 'Raadpleeg de [http://meta.wikimedia.org/wiki/NL_Help:Inhoudsopgave handleiding] voor informatie over het gebruik van de wikisoftware.
@@ -1024,6 +1032,7 @@ Wees zeker dat deze wijziging de geschiedenisdoorlopendheid van de pagina zal be
 'showingresultsnum'     => "Hieronder {{PLURAL:$3|staat '''1''' resultaat|staan '''$3''' resultaten}} vanaf #'''$2'''.",
 'nonefound'             => "'''Opmerking''': mislukte zoekopdrachten worden vaak veroorzaakt door zoeken naar veelvoorkomende woorden als \"van\" en \"het\", die niet in de indexen worden opgenomen, of door meer dan één zoekterm op te geven. Alleen pagina's die alle zoektermen bevatten worden opgenomen in de resultaten.",
 'powersearch'           => 'Uitgebreid zoeken',
+'powersearch-legend'    => 'Uitgebreid zoeken',
 'powersearchtext'       => 'Zoeken in naamruimten:<br />$1<br />$2 Doorverwijzingen weergeven<br />Zoeken naar $3 $9',
 'searchdisabled'        => 'Zoeken in {{SITENAME}} is niet mogelijk.
 U kunt gebruik maken van Google.
@@ -2100,16 +2109,12 @@ U kunt wel de broncode bekijken.',
 'nocredits'        => 'Er is geen auteursinformatie beschikbaar voor deze pagina.',
 
 # Spam protection
-'spamprotectiontitle'    => 'Spamfilter',
-'spamprotectiontext'     => 'De pagina die u wilde opslaan is geblokkeerd door het spamfilter. Meestal wordt dit door een externe link veroorzaakt.',
-'spamprotectionmatch'    => 'De volgende tekst veroorzaakte een alarm van de spamfilter: $1',
-'subcategorycount'       => 'Er {{PLURAL:$1|is 1 ondercategorie|zijn $1 ondercategorieën}} binnen deze categorie.',
-'categoryarticlecount'   => "Er {{PLURAL:$1|bevindt zich 1 pagina|bevinden zich $1 pagina's}} in deze categorie.",
-'category-media-count'   => 'Er {{PLURAL:$1|staat één bestand|staan $1 bestanden}} in deze categorie.',
-'listingcontinuesabbrev' => 'meer',
-'spambot_username'       => 'MediaWiki opschoning spam',
-'spam_reverting'         => 'Bezig met terugdraaien naar de laatste versie die geen verwijzing heeft naar $1',
-'spam_blanking'          => 'Alle wijzigingen met een link naar $1 worden verwijderd',
+'spamprotectiontitle' => 'Spamfilter',
+'spamprotectiontext'  => 'De pagina die u wilde opslaan is geblokkeerd door het spamfilter. Meestal wordt dit door een externe link veroorzaakt.',
+'spamprotectionmatch' => 'De volgende tekst veroorzaakte een alarm van de spamfilter: $1',
+'spambot_username'    => 'MediaWiki opschoning spam',
+'spam_reverting'      => 'Bezig met terugdraaien naar de laatste versie die geen verwijzing heeft naar $1',
+'spam_blanking'       => 'Alle wijzigingen met een link naar $1 worden verwijderd',
 
 # Info page
 'infosubtitle'   => 'Informatie voor pagina',

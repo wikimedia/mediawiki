@@ -38,7 +38,7 @@ $namespaceNames = array(
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Subliñar ligazóns:',
-'tog-highlightbroken'         => 'Formatear as ligazóns crebadas <a href="" class="new">deste xeito</a> (alternativa: así<a href="" class="internal">?</a>).',
+'tog-highlightbroken'         => 'Dar formato ás ligazóns crebadas <a href="" class="new">deste xeito</a> (alternativa: así<a href="" class="internal">?</a>).',
 'tog-justify'                 => 'Xustificar parágrafos',
 'tog-hideminor'               => 'Agochar as edicións pequenas na páxina de cambios recentes',
 'tog-extendwatchlist'         => 'Listaxe de vixilancia estendida',
@@ -58,7 +58,7 @@ $messages = array(
 'tog-minordefault'            => 'Marcar por omisión todas as edicións como pequenas',
 'tog-previewontop'            => 'Mostrar botón de vista previa antes da caixa de edición e non despois dela',
 'tog-previewonfirst'          => 'Mostrar a vista previa na primeira edición',
-'tog-nocache'                 => 'Deshabilitar a memoria caché das páxinas',
+'tog-nocache'                 => 'Deshabilitar a memoria <i>caché</i> das páxinas',
 'tog-enotifwatchlistpages'    => 'Envíenme unha mensaxe de correo electrónico cando unha páxina da miña listaxe de vixilancia cambie',
 'tog-enotifusertalkpages'     => 'Envíenme unha mensaxe de correo electrónico cando a miña páxina de conversa cambie',
 'tog-enotifminoredits'        => 'Envíenme tamén unha mensaxe de correo electrónico cando se produzan pequenos cambios nas páxinas',
@@ -136,15 +136,20 @@ $messages = array(
 'nov'           => 'Nov',
 'dec'           => 'Dec',
 
-# Bits of text used by many pages
-'categories'               => 'Categorías',
-'pagecategories'           => '{{PLURAL:$1|Categoría|Categorías}}',
-'category_header'          => 'Artigos na categoría "$1"',
-'subcategories'            => 'Subcategorías',
-'category-media-header'    => 'Multimedia na categoría "$1"',
-'category-empty'           => "''Actualmente esta categoría non conta con ningún artigo ou arquivo multimedia.''",
-'hidden-categories'        => '{{PLURAL:$1|Categoría oculta|Categorías ocultas}}',
-'hidden-category-category' => 'Categorías ocultas', # Name of the category where hidden categories will be listed
+# Categories related messages
+'categories'                     => 'Categorías',
+'pagecategories'                 => '{{PLURAL:$1|Categoría|Categorías}}',
+'category_header'                => 'Artigos na categoría "$1"',
+'subcategories'                  => 'Subcategorías',
+'category-media-header'          => 'Multimedia na categoría "$1"',
+'category-empty'                 => "''Actualmente esta categoría non conta con ningún artigo ou arquivo multimedia.''",
+'hidden-categories'              => '{{PLURAL:$1|Categoría oculta|Categorías ocultas}}',
+'hidden-category-category'       => 'Categorías ocultas', # Name of the category where hidden categories will be listed
+'subcategorycount'               => 'Hai {{PLURAL:$1|unha subcategoría|$1 subcategorías}} desta categoría.',
+'category-subcat-count-limited'  => 'Esta categoría ten {{PLURAL:$1|a seguinte subcategoría|as seguintes $1 subcategorías}}.',
+'category-article-count-limited' => '{{PLURAL:$1|A seguinte páxina está|As seguintes $1 páxinas están}} na categoría actual.',
+'category-file-count-limited'    => '{{PLURAL:$1|O seguinte ficheiro está|Os seguintes $1 ficheiros están}} na categoría actual.',
+'listingcontinuesabbrev'         => 'cont.',
 
 'mainpagetext'      => "<big>'''Programa Wiki instalado con éxito.'''</big>",
 'mainpagedocfooter' => 'Consulte a [http://meta.wikimedia.org/wiki/Help:Contents Guía do Usuario] para máis información sobre como usar o software wiki.
@@ -194,6 +199,7 @@ $messages = array(
 'edit'              => 'Editar',
 'create'            => 'Crear',
 'editthispage'      => 'Editar esta páxina',
+'create-this-page'  => 'Crear esta páxina',
 'delete'            => 'Borrar',
 'deletethispage'    => 'Borrar esta páxina',
 'undelete_short'    => 'Restaurar {{PLURAL:$1|unha edición|$1 edicións}}',
@@ -394,7 +400,7 @@ Creouse a súa conta. Non esqueza [[Special:Preferences|personalizar]] as súas 
 'loginprompt'                => "Debe permitir as ''cookies'' para acceder a {{SITENAME}}.",
 'userlogin'                  => 'Rexistro',
 'logout'                     => 'Saír do sistema',
-'userlogout'                 => 'Saír a anónimo',
+'userlogout'                 => 'Saír ao anonimato',
 'notloggedin'                => 'Fóra do sistema',
 'nologin'                    => 'Non está rexistrado? $1.',
 'nologinlink'                => 'Cree unha conta',
@@ -404,17 +410,17 @@ Creouse a súa conta. Non esqueza [[Special:Preferences|personalizar]] as súas 
 'createaccountmail'          => 'por correo electrónico',
 'badretype'                  => 'Os contrasinais que inseriu non coinciden entre si.',
 'userexists'                 => 'O nome de usuario que pretende usar xa está en uso. Por favor, elixa un diferente.',
-'youremail'                  => 'O seu correo electrónico* :',
+'youremail'                  => 'O seu correo electrónico:',
 'username'                   => 'Nome de usuario:',
 'uid'                        => 'ID do usuario:',
-'yourrealname'               => 'O seu nome real* :',
+'yourrealname'               => 'O seu nome real:',
 'yourlanguage'               => 'Lingua da interface:',
 'yourvariant'                => 'Variante de idioma:',
-'yournick'                   => 'O seu alcume (para as sinaturas)',
+'yournick'                   => 'O seu alcume (para as sinaturas):',
 'badsig'                     => 'Sinatura non válida; comprobe o código HTML utilizado.',
 'badsiglength'               => 'O alcume é demasiado longo; ha de ter menos de $1 caracteres.',
 'email'                      => 'Correo electrónico',
-'prefs-help-realname'        => '* Nome real (opcional): se escolle dalo utilizarase para atribuírlle o seu traballo.',
+'prefs-help-realname'        => 'O seu nome real é opcional, pero se escolle dalo utilizarase para atribuírlle o seu traballo.',
 'loginerror'                 => 'Erro ao entrar ao sistema',
 'prefs-help-email'           => 'O correo electrónico é opcional, pero permite que outras persoas entren en contacto con vostede desde a súa páxina de usuario ou de conversa sen que vostede revele a súa identidade.',
 'prefs-help-email-required'  => 'O enderezo de correo electrónico é requirido.',
@@ -449,7 +455,7 @@ $1 horas.',
 'acct_creation_throttle_hit' => 'Sentímolo, pero xa ten creadas $1 contas. Non pode crear máis.',
 'emailauthenticated'         => 'O seu enderezo de correo electrónico foi autentificado ($1).',
 'emailnotauthenticated'      => 'O seu enderezo de correo electrónico aínda <strong>non foi autentificado</strong>. Non se enviou ningunha mensaxe por algunha das seguintes razóns.',
-'noemailprefs'               => '<strong>Especifique un enderezo de correo electrónico se quere que funcione esta opción.</strong>',
+'noemailprefs'               => 'Especifique un enderezo de correo electrónico se quere que funcione esta opción.',
 'emailconfirmlink'           => 'Confirmar o enderezo de correo electrónico',
 'invalidemailaddress'        => 'Non se pode aceptar o enderezo de correo electrónico porque parece ter un formato incorrecto. Introduza un enderezo cun formato válido ou limpe ese campo.',
 'accountcreated'             => 'Conta creada',
@@ -480,8 +486,8 @@ Pode facer caso omiso desta mensaxe se se creou esta conta por erro.',
 'link_sample'     => 'Título de ligazón',
 'link_tip'        => 'Ligazón interna',
 'extlink_sample'  => 'http://www.exemplo.com título de ligazón',
-'extlink_tip'     => 'Ligazón externa (lembre o prefixo http:// )',
-'headline_sample' => 'Texto da Cabeceira',
+'extlink_tip'     => 'Ligazón externa (lembre o prefixo http://)',
+'headline_sample' => 'Texto de cabeceira',
 'headline_tip'    => 'Cabeceira de nivel 2',
 'math_sample'     => 'Insira unha fórmula aquí',
 'math_tip'        => 'Fórmula matemática (LaTeX)',
@@ -507,7 +513,7 @@ Pode facer caso omiso desta mensaxe se se creou esta conta por erro.',
 'anoneditwarning'           => "'''Aviso:''' Non está dentro do sistema.
 O seu enderezo IP quedará rexistrado no historial das revisións desta páxina.",
 'missingsummary'            => "'''Aviso:''' Esqueceu incluír o texto do campo resumo.
-Se preme en Gardar a páxina, a súa edición gardarase sen ningunha descrición da edición.",
+Se preme en \"Gardar a páxina\", a súa edición gardarase sen ningunha descrición da edición.",
 'missingcommenttext'        => 'Por favor escriba un comentario a continuación.',
 'missingcommentheader'      => "'''Aviso:''' Non escribiu ningún texto no asunto/cabeceira deste comentario. Se preme en \"Gardar a páxina\", a súa edición gardarase sen el.",
 'summary-preview'           => 'Vista previa do resumo',
@@ -603,8 +609,8 @@ Se a garda, perderanse os cambios realizados tras esta revisión.</strong>',
 'copyrightwarning'          => 'Por favor, teña en conta que todas as contribucións a {{SITENAME}} considéranse publicadas baixo a $2 (vexa $1 para máis detalles). Se non quere que o que escriba se edite sen piedade e se redistribúa sen límites, entón non o envíe aquí.<br />
 Ao mesmo tempo, prométanos que o que escribiu é da súa autoría ou que está copiado dun recurso do dominio público ou que permite unha liberdade semellante.
 <strong>NON ENVÍE MATERIAL CON DEREITOS DE AUTOR SEN PERMISO!</strong>',
-'copyrightwarning2'         => 'Decátese de que todas as súas contribucións a {{SITENAME}} poden ser editadas, alteradas ou eliminadas por outras persoas. Se non quere que os seus escritos sexan editados sen piedade, non os envíe.<br />
-Do mesmo xeito, comprométese a que o que vostede escriba sexa da súa autoría ou copiado dunha fonte de dominio público ou recurso público semellante (ver $1 para detalles).
+'copyrightwarning2'         => 'Por favor, decátese de que todas as súas contribucións a {{SITENAME}} poden ser editadas, alteradas ou eliminadas por outras persoas. Se non quere que os seus escritos sexan editados sen piedade, non os publique aquí.<br />
+Do mesmo xeito, comprométese a que o que vostede escriba sexa da súa autoría ou copiado dunha fonte de dominio público ou recurso público semellante (vexa $1 para detalles).
 <strong>NON ENVÍE SEN PERMISO TRABALLOS CON DEREITOS DE COPIA!</strong>',
 'longpagewarning'           => "ATENCIÓN: Esta páxina ten $1 ''kilobytes''; algúns navegadores poden ter problemas editando páxinas de 32kb ou máis.
 Por favor, considere partir a páxina en seccións máis pequenas.",
@@ -620,7 +626,7 @@ polo que non vai poder gardar as súas edicións polo de agora. Se cadra pode co
 'templatesusedpreview'      => 'Modelos usados nesta vista previa:',
 'templatesusedsection'      => 'Modelos usados nesta sección:',
 'template-protected'        => '(protexido)',
-'template-semiprotected'    => '(semi-protexido)',
+'template-semiprotected'    => '(semiprotexido)',
 'hiddencategories'          => 'Esta páxina forma parte {{PLURAL:$1|dunha categoría oculta|de $1 categorías ocultas}}:',
 'edittools'                 => '<!-- O texto que apareza aquí mostrarase por debaixo dos formularios de edición e envío. -->',
 'nocreatetitle'             => 'Limitada a creación de páxinas',
@@ -781,6 +787,7 @@ Asegúrese de que esta modificación da páxina mantén a continuidade históric
 'showingresultsnum'     => "Amosando {{PLURAL:$3|'''1''' resultado|'''$3''' resultados}} comezando co número '''$2'''.",
 'nonefound'             => "'''Nota''': as procuras sen éxito son causadas usualmente por procurar usando palabras usuais como \"ter\" e \"desde\", que non están incluídas no índice da base de datos, ou por especificar máis dunha palabra de procura (só van aparecer no resultado as páxinas que teñan todas as palabras).",
 'powersearch'           => 'Busca avanzada',
+'powersearch-legend'    => 'Busca avanzada',
 'powersearchtext'       => 'Procurar nos espazos de nomes:<br />
 $1<br />
 $2 Lista de redireccións<br /> 
@@ -841,7 +848,7 @@ Procurar $3 $9',
 'timezonelegend'           => 'Zona horaria',
 'timezonetext'             => 'Insira o número de horas de diferenza entre a súa hora local e a do servidor (UTC).',
 'localtime'                => 'Visualización da hora local',
-'timezoneoffset'           => 'Desprazamento',
+'timezoneoffset'           => 'Desprazamento¹',
 'servertime'               => 'A hora do servidor agora é',
 'guesstimezone'            => 'Encher desde o navegador',
 'allowemail'               => 'Admitir mensaxes de correo electrónico doutros usuarios',
@@ -868,7 +875,7 @@ Procurar $3 $9',
 'userrights-available-remove-self' => 'Pódese retirar vostede mesmo/a {{PLURAL:$2|deste grupo|destes grupos}}: $1.',
 'userrights-no-interwiki'          => 'Non dispón de permiso para editar dereitos de usuarios noutros wikis.',
 'userrights-nodatabase'            => 'A base de datos $1 non existe ou non é local.',
-'userrights-nologin'               => 'Cómprelle [[Special:Userlogin|rexistrarse]] cunta conta de administrador para asignar dereitos de usuario.',
+'userrights-nologin'               => 'Ten que [[Special:Userlogin|rexistrarse]] cunta conta de administrador para asignar dereitos de usuario.',
 'userrights-notallowed'            => 'A súa conta non dispón de permiso para asignar dereitos de usuario.',
 
 # Groups
@@ -1377,7 +1384,8 @@ Por favor, confirme que é realmente a súa intención, que comprende as consecu
 'deletecomment'               => 'Razón para o borrado:',
 'deleteotherreason'           => 'Outros/Máis motivos:',
 'deletereasonotherlist'       => 'Outro motivo',
-'deletereason-dropdown'       => '*Motivos frecuentes para borrar
+'deletereason-dropdown'       => '
+*Motivos frecuentes para borrar
 ** Petición do autor
 ** Violación de copyright
 ** Vandalismo',
@@ -1401,7 +1409,7 @@ A última edición fíxoa [[User:$3|$3]] ([[User talk:$3|disc.]]).',
 'protectedarticle'            => '"[[$1]]" foi protexido',
 'modifiedarticleprotection'   => 'modificouse o nivel de protección de "[[$1]]"',
 'unprotectedarticle'          => 'desprotexido "[[$1]]"',
-'protect-title'               => 'Protexendo "$1"',
+'protect-title'               => 'Cambiar o nivel de protección de "$1"',
 'protect-legend'              => 'Confirmar protección',
 'protectcomment'              => 'Razón para protexelo',
 'protectexpiry'               => 'Caducidade:',
@@ -1442,6 +1450,7 @@ Velaquí a configuración actual da páxina <strong>$1</strong>:',
 # Undelete
 'undelete'                     => 'Ver páxinas borradas',
 'undeletepage'                 => 'Ver e restaurar páxinas borradas',
+'undeletepagetitle'            => "'''O que segue consiste nas revisións eliminadas de [[:$1]]'''.",
 'viewdeletedpage'              => 'Ver as páxinas borradas',
 'undeletepagetext'             => 'As seguintes páxinas foron borradas pero aínda están no arquivo e poden ser restauradas. O arquivo vai ser limpado periodicamente.',
 'undeleteextrahelp'            => "Para restaurar a páxina completa deixe todas as caixas sen marcar e prema en '''''Restaurar'''''. Para realizar unha recuperación parcial, marque só aquelas caixas que correspondan ás revisións que se queiran recuperar e a continuación prema en '''''Restaurar'''''. Premendo en '''''Borrar''''' limpa o campo comentario en todas as caixas.",
@@ -1763,7 +1772,7 @@ Todas as accións relacionadas coa importación entre wikis poden verse no [[Spe
 'tooltip-pt-mytalk'               => 'A miña páxina de conversa',
 'tooltip-pt-anontalk'             => 'Conversa acerca de edicións feitas desde este enderezo IP',
 'tooltip-pt-preferences'          => 'As miñas preferencias',
-'tooltip-pt-watchlist'            => 'A listaxe de páxinas cuxas modificacións está a seguir',
+'tooltip-pt-watchlist'            => 'Listaxe de páxinas cuxas modificacións estou a seguir',
 'tooltip-pt-mycontris'            => 'Listaxe das miñas contribucións',
 'tooltip-pt-login'                => 'Recoméndaselle rexistrarse, se ben non é obrigatorio.',
 'tooltip-pt-anonlogin'            => 'Recoméndaselle rexistrarse, se ben non é obrigatorio.',
@@ -1843,16 +1852,12 @@ Todas as accións relacionadas coa importación entre wikis poden verse no [[Spe
 'nocredits'        => 'Non hai información de créditos dispoñíbel para esta páxina.',
 
 # Spam protection
-'spamprotectiontitle'    => 'Filtro de protección de correo electrónico non solicitado (spam)',
-'spamprotectiontext'     => "A páxina que quixo gardar foi bloqueada polo filtro ''antispam''. Isto probabelmente se deba a unha ligazón cara a un sitio externo.",
-'spamprotectionmatch'    => 'O seguinte texto foi o que activou o noso filtro de correo electrónico non solicitado (spam): $1',
-'subcategorycount'       => 'Hai {{PLURAL:$1|unha subcategoría|$1 subcategorías}} desta categoría.',
-'categoryarticlecount'   => 'Hai {{PLURAL:$1|un artigo|$1 artigos}} nesta sección desta categoría.',
-'category-media-count'   => 'Hai {{PLURAL:$1|un ficheiro|$1 ficheiros}} nesta categoría.',
-'listingcontinuesabbrev' => 'cont.',
-'spambot_username'       => 'MediaWiki limpeza de spam',
-'spam_reverting'         => 'Revertida á última edición sen ligazóns a $1',
-'spam_blanking'          => 'Limpáronse todas as revisións con ligazóns a $1',
+'spamprotectiontitle' => 'Filtro de protección de correo electrónico non solicitado (spam)',
+'spamprotectiontext'  => "A páxina que quixo gardar foi bloqueada polo filtro ''antispam''. Isto probabelmente se deba a unha ligazón cara a un sitio externo.",
+'spamprotectionmatch' => 'O seguinte texto foi o que activou o noso filtro de correo electrónico non solicitado (spam): $1',
+'spambot_username'    => 'MediaWiki limpeza de spam',
+'spam_reverting'      => 'Revertida á última edición sen ligazóns a $1',
+'spam_blanking'       => 'Limpáronse todas as revisións con ligazóns a $1',
 
 # Info page
 'infosubtitle'   => 'Información da páxina',
@@ -1905,7 +1910,7 @@ $1',
 'mediawarning'         => "'''Aviso''': Este ficheiro pode conter código malicioso; o seu sistema pode quedar comprometido se chega a executalo.
 <hr />",
 'imagemaxsize'         => 'Limitar as imaxes nas páxinas de descrición de ficheiros a:',
-'thumbsize'            => 'Tamaño da miniatura (Thumbnail):',
+'thumbsize'            => "Tamaño da miniatura (''thumbnail''):",
 'widthheightpage'      => '$1×$2, $3 páxinas',
 'file-info'            => 'Tamaño do ficheiro: $1, tipo MIME: $2',
 'file-info-size'       => '($1 × $2 píxeles, tamaño do ficheiro: $3, tipo MIME: $4)',
@@ -2307,16 +2312,17 @@ Tente a vista previa normal.',
 'watchlistedit-noitems'        => 'A súa listaxe de vixilancia non contén ningún título.',
 'watchlistedit-normal-title'   => 'Editar a listaxe de vixilancia',
 'watchlistedit-normal-legend'  => 'Eliminar títulos da listaxe de vixilancia',
-'watchlistedit-normal-explain' => 'Os títulos da súa listaxe de vixilancia aparecen embaixo. Para eliminar un título, escóllao na súa caixa de selección e prema en Eliminar Títulos. Tamén pode [[Special:Watchlist/raw|editar a listaxe simple]].',
-'watchlistedit-normal-submit'  => 'Eliminar Títulos',
+'watchlistedit-normal-explain' => 'Os títulos da súa listaxe de vixilancia aparecen embaixo.
+Para eliminar un título, escóllao na súa caixa de selección e prema en "Eliminar títulos".
+Tamén pode [[Special:Watchlist/raw|editar a listaxe simple]].',
+'watchlistedit-normal-submit'  => 'Eliminar títulos',
 'watchlistedit-normal-done'    => '{{PLURAL:$1|Eliminouse un título|Elimináronse $1 títulos}} da súa listaxe de vixilancia:',
 'watchlistedit-raw-title'      => 'Editar a listaxe de vixilancia simple',
 'watchlistedit-raw-legend'     => 'Editar a listaxe de vixilancia simple',
-'watchlistedit-raw-explain'    => 'Os títulos da súa listaxe de vixilancia aparecen embaixo e pódense editar
-	engadíndoos ou retirándoos da listaxe; un título por liña. Ao rematar, prema en Actualizar Listaxe de vixilancia.
-	Tamén pode [[Special:Watchlist/edit|empregar o editor normal]].',
+'watchlistedit-raw-explain'    => 'Os títulos da súa listaxe de vixilancia aparecen embaixo e pódense editar engadíndoos ou retirándoos da listaxe; un título por liña. Ao rematar, prema en "Actualizar listaxe a de vixilancia".
+Tamén pode [[Special:Watchlist/edit|empregar o editor normal]].',
 'watchlistedit-raw-titles'     => 'Títulos:',
-'watchlistedit-raw-submit'     => 'Actualizar a Listaxe de vixilancia',
+'watchlistedit-raw-submit'     => 'Actualizar a listaxe de vixilancia',
 'watchlistedit-raw-done'       => 'Actualizouse a súa listaxe de vixilancia.',
 'watchlistedit-raw-added'      => '{{PLURAL:$1|Engadiuse un título|Engadíronse $1 títulos}}:',
 'watchlistedit-raw-removed'    => '{{PLURAL:$1|Eliminouse un título|Elimináronse $1 títulos}}:',
