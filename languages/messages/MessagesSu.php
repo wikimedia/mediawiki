@@ -954,18 +954,18 @@ Catet yén salaku kaca wiki, nu séjén bisa ngarobah atawa ngahapus muatan anje
 'upload_source_url'  => '(URL nu sohéh sarta bisa dibuka ku umum)',
 'upload_source_file' => ' (koropak dina komputer salira)',
 
-# Image list
-'imagelist'                 => 'Daptar gambar',
-'imagelisttext'             => 'Di handap ieu daptar $1 gambar nu disusun $2.',
-'getimagelist'              => 'mulut béréndélan koropak',
-'ilsubmit'                  => 'Sungsi',
-'showlast'                  => 'Témbongkeun $1 gambar ahir dumasar $2.',
-'byname'                    => 'dumasar ngaran',
-'bydate'                    => 'dumasar titimangsa',
-'bysize'                    => 'dumasar ukuran',
-'imgdelete'                 => 'hap',
-'imgdesc'                   => 'dad',
-'imgfile'                   => 'koropak',
+# Special:Imagelist
+'imagelist_search_for'  => 'Sungsi ngaran média:',
+'imgdesc'               => 'dad',
+'imgfile'               => 'koropak',
+'imagelist'             => 'Daptar gambar',
+'imagelist_date'        => 'Titimangsa',
+'imagelist_name'        => 'Ngaran',
+'imagelist_user'        => 'Pamaké',
+'imagelist_size'        => 'Badagna',
+'imagelist_description' => 'Pedaran',
+
+# Image description page
 'filehist'                  => 'Sajarah gambar',
 'filehist-help'             => 'Klik dina titimangsa pikeun nempo koropak nu aya dina mangsa éta.',
 'filehist-deleteall'        => 'hapus kabéh',
@@ -987,12 +987,6 @@ Catet yén salaku kaca wiki, nu séjén bisa ngarobah atawa ngahapus muatan anje
 'noimage'                   => 'Euweuh koropak nu ngaranna kitu, anjeun bisa $1.',
 'noimage-linktext'          => 'muatkeun',
 'uploadnewversion-linktext' => 'ngamuatkeun vérsi anyar koropak ieu',
-'imagelist_date'            => 'Titimangsa',
-'imagelist_name'            => 'Ngaran',
-'imagelist_user'            => 'Pamaké',
-'imagelist_size'            => 'Badagna',
-'imagelist_description'     => 'Pedaran',
-'imagelist_search_for'      => 'Sungsi ngaran média:',
 
 # File reversion
 'filerevert'                => 'balikkeun $1',
@@ -1403,8 +1397,6 @@ $1',
 'sp-contributions-username'    => 'Alamat IP atawa landihan:',
 'sp-contributions-submit'      => 'Téang',
 
-'sp-newimages-showfrom' => 'Témbongkeun gambar anyar ti $1',
-
 # What links here
 'whatlinkshere'       => 'Nu numbu ka dieu',
 'whatlinkshere-title' => 'Kaca-kaca nu numbu ka $1',
@@ -1745,8 +1737,12 @@ Artikel nu dituju "[[$1]]" geus aya. Badé dihapus baé sangkan bisa mindahkeun?
 'show-big-image-thumb' => '<small>Ukuran ieu pidangan: $1 × $2 piksel</small>',
 
 # Special:Newimages
-'newimages' => 'Galeri gambar anyar',
-'noimages'  => 'Taya nanaon.',
+'newimages'             => 'Galeri gambar anyar',
+'imagelisttext'         => 'Di handap ieu daptar $1 gambar nu disusun $2.',
+'noimages'              => 'Taya nanaon.',
+'ilsubmit'              => 'Sungsi',
+'bydate'                => 'dumasar titimangsa',
+'sp-newimages-showfrom' => 'Témbongkeun gambar anyar ti $1',
 
 # Bad image list
 'bad_image_list' => 'Formatna kieu:

@@ -243,7 +243,7 @@ $messages = array(
 'nov'           => 'now',
 'dec'           => 'dec',
 
-# Bits of text used by many pages
+# Categories related messages
 'categories'               => 'Kategorije',
 'pagecategories'           => '{{PLURAL:$1|Kategorija|Kategoriji|Kategorije}}',
 'category_header'          => 'Nastawki w kategoriji „$1“',
@@ -252,6 +252,8 @@ $messages = array(
 'category-empty'           => "''W toś tej kategoriji njejsu něnto žedne nastawki abo medije.''",
 'hidden-categories'        => '{{PLURAL:$1|Schowana kategorija|Schowanej kategoriji|Schowane kategorije|Schowanych kategorijow}}',
 'hidden-category-category' => 'Schowane kategorije', # Name of the category where hidden categories will be listed
+'subcategorycount'         => '{{PLURAL:$1|Pokažo se $1 pódkategorija|Pokazujotej se $1 pódkategoriji|Pokazuju se $1 pódkategorije}}.',
+'listingcontinuesabbrev'   => 'dalej',
 
 'mainpagetext'      => "<big>'''MediaWiki jo se wuspěšnje instalěrowało.'''</big>",
 'mainpagedocfooter' => "Pomoc pśi wužywanju softwary wiki namakajoš pód [http://meta.wikimedia.org/wiki/Help:Contents User's Guide].
@@ -1113,19 +1115,19 @@ PICT # misc.
 'upload_source_url'  => ' (płaśeca, zjawnje pśistupna URL)',
 'upload_source_file' => ' (dataja na twójom kompjuterje)',
 
-# Image list
-'imagelist'                 => 'Lisćina datajow',
-'imagelist-summary'         => 'Toś ten specialny bok nalicyjo wšykne uploadowane dataje. Normalnje pokazuje se te dataje, ako su slědne se uploadowali, ako prědne w lisćinje. Tłocenje na napise špaltow změnijo sortěrowanje.',
-'imagelisttext'             => "How jo lisćina '''$1''' {{PLURAL:$1|dataje|datajowu|datajow}}, sortěrowane $2.",
-'getimagelist'              => 'Lisćinu datajow lodowaś.',
-'ilsubmit'                  => 'Pytaś',
-'showlast'                  => 'Pokazaś slědne $1 datajow, sortěrowane pó $2.',
-'byname'                    => 'pó mjenju',
-'bydate'                    => 'pó datumje',
-'bysize'                    => 'pó wjelikosći',
-'imgdelete'                 => 'wulašowaś',
-'imgdesc'                   => 'Zespominanje',
-'imgfile'                   => 'dataja',
+# Special:Imagelist
+'imagelist-summary'     => 'Toś ten specialny bok nalicyjo wšykne uploadowane dataje. Normalnje pokazuje se te dataje, ako su slědne se uploadowali, ako prědne w lisćinje. Tłocenje na napise špaltow změnijo sortěrowanje.',
+'imagelist_search_for'  => 'Za medijowym mjenim pytaś:',
+'imgdesc'               => 'Zespominanje',
+'imgfile'               => 'dataja',
+'imagelist'             => 'Lisćina datajow',
+'imagelist_date'        => 'datum',
+'imagelist_name'        => 'mě dataje',
+'imagelist_user'        => 'wužywaŕ',
+'imagelist_size'        => 'Wjelikosć (byte)',
+'imagelist_description' => 'Zespominanje',
+
+# Image description page
 'filehist'                  => 'Stawizny dataje',
 'filehist-help'             => 'Tłoc na datum/cas aby tencasna wersija se lodowała.',
 'filehist-deleteall'        => 'Wšykno wulašowaś',
@@ -1147,12 +1149,6 @@ PICT # misc.
 'noimage'                   => 'Dataja z takim mjenim njeeksistěrujo, móžoš ju ale $1.',
 'noimage-linktext'          => 'pósłaś',
 'uploadnewversion-linktext' => 'Uploaduj nowu wersiju toś teje dataje.',
-'imagelist_date'            => 'datum',
-'imagelist_name'            => 'mě dataje',
-'imagelist_user'            => 'wužywaŕ',
-'imagelist_size'            => 'Wjelikosć (byte)',
-'imagelist_description'     => 'Zespominanje',
-'imagelist_search_for'      => 'Za medijowym mjenim pytaś:',
 
 # File reversion
 'filerevert'                => 'Slědk wześ $1',
@@ -1613,8 +1609,6 @@ $1',
 'sp-contributions-username'    => 'IP-adresa abo wužywarske mě:',
 'sp-contributions-submit'      => 'Pytaś',
 
-'sp-newimages-showfrom' => 'Pokaž nowe wobraze wót $1',
-
 # What links here
 'whatlinkshere'       => 'Wótkaze na toś ten bok',
 'whatlinkshere-title' => 'Boki, kótarež wótkazuju na $1',
@@ -1926,16 +1920,12 @@ Wšykne transwiki-importowe akcije protokolěruju se w [[Special:Log/import|log-
 'nocredits'        => 'Njeeksistěruju žedne informacije za toś ten bok.',
 
 # Spam protection
-'spamprotectiontitle'    => 'Spamowy filter',
-'spamprotectiontext'     => 'Bok, kótaryž což składowaś, jo wót spamowego filtera se blokěrował. To zawinujo nejskerjej wótkaz na eksterny bok.',
-'spamprotectionmatch'    => "'''Spamowy filter jo slědujucy tekst namakał: ''$1'''''",
-'subcategorycount'       => '{{PLURAL:$1|Pokažo se $1 pódkategorija|Pokazujotej se $1 pódkategoriji|Pokazuju se $1 pódkategorije}}.',
-'categoryarticlecount'   => '<small>W toś tej kategoriji {{PLURAL:$1|jo $1 bok|stej $1 boka|su $1 boki}}.</small>',
-'category-media-count'   => '<small>W toś tej kategoriji {{PLURAL:$1|jo $1 dataja|stej $1 dataji|su $1 dataje}}.</small>',
-'listingcontinuesabbrev' => 'dalej',
-'spambot_username'       => 'MediaWikijowe spamowe rěšenje',
-'spam_reverting'         => 'Nawrośijo se slědna wersija, kótaraž njejo wopśimjeła wótkaz na $1.',
-'spam_blanking'          => 'Wšykne wersije su wopśimowali wótkaze na $1, do rěcha spórane.',
+'spamprotectiontitle' => 'Spamowy filter',
+'spamprotectiontext'  => 'Bok, kótaryž což składowaś, jo wót spamowego filtera se blokěrował. To zawinujo nejskerjej wótkaz na eksterny bok.',
+'spamprotectionmatch' => "'''Spamowy filter jo slědujucy tekst namakał: ''$1'''''",
+'spambot_username'    => 'MediaWikijowe spamowe rěšenje',
+'spam_reverting'      => 'Nawrośijo se slědna wersija, kótaraž njejo wopśimjeła wótkaz na $1.',
+'spam_blanking'       => 'Wšykne wersije su wopśimowali wótkaze na $1, do rěcha spórane.',
 
 # Info page
 'infosubtitle'   => 'Informacija wó boku',
@@ -1997,10 +1987,14 @@ $1',
 'show-big-image-thumb' => '<small>wjelikosć pśeglěda: $1 × $2 pikselow</small>',
 
 # Special:Newimages
-'newimages'         => 'Nowe dataje',
-'newimages-summary' => 'Toś ten specialny bok pokazujo wobraze a dataje, kótarež ako slědne su se uploadowali.',
-'showhidebots'      => '(awtomatiske programy (boty) $1)',
-'noimages'          => 'Žedne dataje njejsu se namakali.',
+'newimages'             => 'Nowe dataje',
+'imagelisttext'         => "How jo lisćina '''$1''' {{PLURAL:$1|dataje|datajowu|datajow}}, sortěrowane $2.",
+'newimages-summary'     => 'Toś ten specialny bok pokazujo wobraze a dataje, kótarež ako slědne su se uploadowali.',
+'showhidebots'          => '(awtomatiske programy (boty) $1)',
+'noimages'              => 'Žedne dataje njejsu se namakali.',
+'ilsubmit'              => 'Pytaś',
+'bydate'                => 'pó datumje',
+'sp-newimages-showfrom' => 'Pokaž nowe wobraze wót $1',
 
 # Bad image list
 'bad_image_list' => 'Format jo slědujucy:

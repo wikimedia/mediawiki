@@ -141,7 +141,7 @@ $messages = array(
 'nov'           => 'Kasım',
 'dec'           => 'Aralık',
 
-# Bits of text used by many pages
+# Categories related messages
 'categories'               => '{{PLURAL:$1|Kategori|Kategoriler}}',
 'pagecategories'           => 'Sayfa {{PLURAL:$1|kategorisi|kategorileri}}',
 'category_header'          => '"$1" kategorisindeki sayfalar',
@@ -150,6 +150,8 @@ $messages = array(
 'category-empty'           => "''Bu kategoride henüz herhangi bir madde ya da medya bulunmamaktadır.''",
 'hidden-categories'        => '{{PLURAL:$1|Gizli kategori|Gizli kategoriler}}',
 'hidden-category-category' => 'Gizli kategoriler', # Name of the category where hidden categories will be listed
+'subcategorycount'         => 'Bu kategoride $1 altkategori var.',
+'listingcontinuesabbrev'   => '(devam)',
 
 'mainpagetext'      => "<big>'''MediaWiki başarı ile kuruldu.'''</big>",
 'mainpagedocfooter' => "Viki yazılımının kullanımı hakkında bilgi almak için[http://meta.wikimedia.org/wiki/Help:Contents User's Guide] sayfasına bakınız
@@ -898,18 +900,18 @@ veya doğrudan bağlantı için
 'upload_source_url'  => ' (geçerli, herkesin ulaşabileceği bir URL)',
 'upload_source_file' => ' (bilgisayarınızdaki bir dosya)',
 
-# Image list
-'imagelist'                 => 'Resim listesi',
-'imagelisttext'             => "Aşağıdaki liste '''$2''' göre dizilmiş '''$1''' adet dosyayı göstermektedir.",
-'getimagelist'              => 'dosya listesi hazırlanıyor',
-'ilsubmit'                  => 'Ara',
-'showlast'                  => 'En son $1 dosyayı $2 göster.',
-'byname'                    => 'alfabetik sırayla',
-'bydate'                    => 'kronolojik sırayla',
-'bysize'                    => 'boyut sırasıyla',
-'imgdelete'                 => 'sil',
-'imgdesc'                   => 'tanım',
-'imgfile'                   => 'dosya',
+# Special:Imagelist
+'imagelist_search_for'  => 'Resim adı ara:',
+'imgdesc'               => 'tanım',
+'imgfile'               => 'dosya',
+'imagelist'             => 'Resim listesi',
+'imagelist_date'        => 'Tarih',
+'imagelist_name'        => 'Ad',
+'imagelist_user'        => 'Kullanıcı',
+'imagelist_size'        => 'Boyut (bayt)',
+'imagelist_description' => 'Tanım',
+
+# Image description page
 'filehist'                  => 'Dosya geçmişi',
 'filehist-help'             => 'Dosyanın geçmişini görebilmek için Gün/Zaman bölümündeki tarihleri tıklayınız.',
 'filehist-deleteall'        => 'Hepsini sil',
@@ -929,12 +931,6 @@ veya doğrudan bağlantı için
 'noimage'                   => 'Bu isimde dosya yok. Siz $1.',
 'noimage-linktext'          => 'yükleyebilirsiniz',
 'uploadnewversion-linktext' => 'Dosyanın yenisini yükleyin',
-'imagelist_date'            => 'Tarih',
-'imagelist_name'            => 'Ad',
-'imagelist_user'            => 'Kullanıcı',
-'imagelist_size'            => 'Boyut (bayt)',
-'imagelist_description'     => 'Tanım',
-'imagelist_search_for'      => 'Resim adı ara:',
 
 # File reversion
 'filerevert'         => '$1 dosyasını eski haline döndür',
@@ -1311,8 +1307,6 @@ $1',
 'sp-contributions-username'    => 'IP veya kullanıcı:',
 'sp-contributions-submit'      => 'Ara',
 
-'sp-newimages-showfrom' => '$1 tarihi itibariyle yeni resimleri göster',
-
 # What links here
 'whatlinkshere'       => 'Sayfaya bağlantılar',
 'whatlinkshere-title' => '$1 maddesine bağlantısı olan sayfalar',
@@ -1552,12 +1546,8 @@ In the latter case you can also use a link, e.g. [[Special:Export/{{int:Mainpage
 'siteusers'        => '{{SITENAME}} kullanıcılar $1',
 
 # Spam protection
-'spamprotectiontitle'    => 'Spam karşı koruma filtresi',
-'spamprotectiontext'     => 'Kaydetmek istediğiniz sayfa spam filtresi tarafından blok edildi. Büyük ihtimalle bir dış bağlantıdan kaynaklanmaktadır.',
-'subcategorycount'       => 'Bu kategoride $1 altkategori var.',
-'categoryarticlecount'   => 'Bu kategoride $1 madde var.',
-'category-media-count'   => 'Bu kategoride {{PLURAL:$1|bir|$1 dosya}} var.',
-'listingcontinuesabbrev' => '(devam)',
+'spamprotectiontitle' => 'Spam karşı koruma filtresi',
+'spamprotectiontext'  => 'Kaydetmek istediğiniz sayfa spam filtresi tarafından blok edildi. Büyük ihtimalle bir dış bağlantıdan kaynaklanmaktadır.',
 
 # Info page
 'infosubtitle' => 'Sayfa için bilgi',
@@ -1595,9 +1585,13 @@ In the latter case you can also use a link, e.g. [[Special:Export/{{int:Mainpage
 'show-big-image-thumb' => '<small>Ön izleme boyutu: $1 × $2 piksel</small>',
 
 # Special:Newimages
-'newimages'    => 'Yeni resimler',
-'showhidebots' => '(botları $1)',
-'noimages'     => 'Görecek bir şey yok.',
+'newimages'             => 'Yeni resimler',
+'imagelisttext'         => "Aşağıdaki liste '''$2''' göre dizilmiş '''$1''' adet dosyayı göstermektedir.",
+'showhidebots'          => '(botları $1)',
+'noimages'              => 'Görecek bir şey yok.',
+'ilsubmit'              => 'Ara',
+'bydate'                => 'kronolojik sırayla',
+'sp-newimages-showfrom' => '$1 tarihi itibariyle yeni resimleri göster',
 
 # Bad image list
 'bad_image_list' => 'Format şöyle:

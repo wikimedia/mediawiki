@@ -231,12 +231,6 @@ $messages = array(
 # Upload
 'upload' => 'ફાઇલ ચડાવો',
 
-# Image list
-'ilsubmit' => 'શોધો',
-'byname'   => 'નામ પ્રમાણે',
-'bydate'   => 'તારીખ પ્રમાણે',
-'bysize'   => 'કદ પ્રમાણે',
-
 # Random page
 'randompage' => 'કોઈ પણ એક લેખ',
 
@@ -362,6 +356,8 @@ $messages = array(
 
 # Special:Newimages
 'noimages' => 'જોવા માટે કશું નથી.',
+'ilsubmit' => 'શોધો',
+'bydate'   => 'તારીખ પ્રમાણે',
 
 # EXIF tags
 'exif-imagewidth'  => 'પહોળાઈ',

@@ -84,11 +84,6 @@ $messages = array(
 'hide'          => 'witsit imin gogoro',
 'show'          => 'oduwen',
 
-# Image list
-'ilsubmit'  => 'Anani ko',
-'byname'    => 'ean eg',
-'imgdelete' => 'iya',
-
 # Random page
 'randompage' => 'Tamo peij',
 
@@ -115,5 +110,7 @@ $messages = array(
 # Contributions
 'contributions' => 'Mana engame totow inne',
 
+# Special:Newimages
+'ilsubmit' => 'Anani ko',
 
 );

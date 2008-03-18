@@ -148,11 +148,7 @@ Subukan me ing [[Special:Search|searching on the wiki]] para kareng bayung bulun
 'filesource'  => 'Pikuanan:',
 'badfilename' => 'Ing pamansag ning file miyalilan yang "$1".',
 
-# Image list
-'ilsubmit'       => 'Manintun',
-'byname'         => 'agpang keng lagyu',
-'bydate'         => 'agpang keng aldo',
-'bysize'         => 'agpang keng dagul',
+# Special:Imagelist
 'imagelist_name' => 'Lagyu',
 
 # Unwatched pages
@@ -318,12 +314,13 @@ Gumamit na kang aliwang lagyu.',
 # Attribution
 'anonymous' => 'Ing/Deng gagamit king {{SITENAME}} a e pepakilala.',
 
-# Spam protection
-'categoryarticlecount' => 'Ating {{PLURAL:$1|metung a articulu|$1 a articulu}} king categoriang ini.',
-
 # Patrolling
 'rcpatroldisabled'     => 'Makapatda ya ing Recent Changes Patrol (Talabante Kareng Bayung Miyalilan)',
 'rcpatroldisabledtext' => 'Kasalungsungan yang makapatda ing Recent Changes Patrol (Talabante Kareng Bayung Miyalilan).',
+
+# Special:Newimages
+'ilsubmit' => 'Manintun',
+'bydate'   => 'agpang keng aldo',
 
 # EXIF tags
 'exif-software'        => 'Software a megamit',

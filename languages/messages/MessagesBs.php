@@ -148,11 +148,12 @@ $messages = array(
 'nov'       => 'nov',
 'dec'       => 'dec',
 
-# Bits of text used by many pages
-'categories'      => 'Kategorije',
-'pagecategories'  => 'Kategorije',
-'category_header' => 'Članaka u kategoriji "$1"',
-'subcategories'   => 'Potkategorije',
+# Categories related messages
+'categories'       => 'Kategorije',
+'pagecategories'   => 'Kategorije',
+'category_header'  => 'Članaka u kategoriji "$1"',
+'subcategories'    => 'Potkategorije',
+'subcategorycount' => '$1 potkategorija su u ovoj kategoriji.',
 
 'mainpagetext' => 'Viki softver is uspješno instaliran.',
 
@@ -440,7 +441,6 @@ Dati razlog je sledeći:<br />''$2''<p>Možete kontaktirati $1 ili nekog drugog 
 'previewconflict'          => 'Ovaj pregled reflektuje tekst u gornjem polju
 kako će izgledati ako pritisnete "Sačuvaj članak".',
 'editing'                  => 'Uređujete $1',
-'editinguser'              => 'Uređujete $1',
 'editconflict'             => 'Sukobljenje izmjene: $1',
 'explainconflict'          => 'Neko drugi je promjenio ovu stranicu otkad ste Vi počeli da je mjenjate.
 Gornje tekstualno polje sadrži tekst stranice koji trenutno postoji.
@@ -568,6 +568,9 @@ $2 Izlistajte preusmjerenja &nbsp; Tražite $3 $9',
 'guesstimezone'           => 'Popuni iz brauzera',
 'defaultns'               => 'Uobičajeno tražite u ovim imenskim prostorima:',
 
+# User rights
+'editinguser' => 'Uređujete $1',
+
 # Recent changes
 'recentchanges'     => 'Nedavne izmjene',
 'recentchangestext' => 'Na ovoj stranici možete pratiti nedavne izmjene.',
@@ -618,17 +621,11 @@ da bi ste slali fajlove.',
 'uploaddisabled'              => 'Slanje fajlova je isključeno',
 'uploadvirus'                 => 'Fajl sadrži virus!  Detalji:  $1',
 
-# Image list
-'imagelist'      => 'Spisak slika',
-'imagelisttext'  => 'Ispod je spisak $1 slika poređanih $2.',
-'getimagelist'   => 'pribavljam spisak slika',
-'ilsubmit'       => 'Traži',
-'showlast'       => 'Prikaži poslednjih $1 slika sortiranih po $2.',
-'byname'         => 'po imenu',
-'bydate'         => 'po datumu',
-'bysize'         => 'po veličini',
-'imgdelete'      => 'obr',
-'imgdesc'        => 'opis',
+# Special:Imagelist
+'imgdesc'   => 'opis',
+'imagelist' => 'Spisak slika',
+
+# Image description page
 'imagelinks'     => 'Upotreba slike',
 'linkstoimage'   => 'Sledeće stranice koriste ovu sliku:',
 'nolinkstoimage' => 'Nema stranica koje koriste ovu sliku.',
@@ -685,7 +682,6 @@ su '''$2''' (ili '''$4%''') administratori.",
 'spheading'               => 'Posebne stranice za sve korisnike',
 'newpages'                => 'Nove stranice',
 'ancientpages'            => 'Najstarije stranice',
-'intl'                    => 'Međujezičke veze',
 'move'                    => 'Premjestite',
 'movethispage'            => 'Premjesti ovu stranicu',
 'unusedimagestext'        => '<p>Obratite pažnju da se drugi veb sajtovi, kao što su drugi
@@ -922,7 +918,7 @@ Molimo Vas da potvrdite da je ovo zaista ono što namijeravate da uradite.',
 'unlockdbsuccesstext' => '{{SITENAME}} baza podataka je otključana.',
 
 # Move page
-'move-page-legend'         => 'Premjestite stranicu',
+'move-page-legend' => 'Premjestite stranicu',
 'movepagetext'     => "Donji upitnik će preimenovati stranicu, premještajući svu
 njenu istoriju na novo ime.
 Stari naslov će postati preusmjerenje na novi naslov.
@@ -1059,7 +1055,6 @@ ili grupe stranice u XML formatu.  Ovo onda može biti uvezeno u drugi viki koji
 'spamprotectiontitle' => 'Filter za zaštitu od neželjenih poruka',
 'spamprotectiontext'  => 'Strana koju želite da sačuvate je blokirana od strane filtera za neželjene poruke.  Ovo je vjerovatno izazvao vezom ka spoljašnjem sajtu.',
 'spamprotectionmatch' => 'Sledeći tekst je izazvao naš filter za neželjene poruke: $1',
-'subcategorycount'    => '$1 potkategorija su u ovoj kategoriji.',
 
 # Patrolling
 'markaspatrolleddiff'        => 'Označi kao patrolirano',
@@ -1075,7 +1070,10 @@ ili grupe stranice u XML formatu.  Ovo onda može biti uvezeno u drugi viki koji
 'thumbsize'    => 'Veličina umanjenog prikaza:',
 
 # Special:Newimages
-'showhidebots' => '($1 botove)',
+'imagelisttext' => 'Ispod je spisak $1 slika poređanih $2.',
+'showhidebots'  => '($1 botove)',
+'ilsubmit'      => 'Traži',
+'bydate'        => 'po datumu',
 
 # Metadata
 'metadata' => 'Metapodaci',

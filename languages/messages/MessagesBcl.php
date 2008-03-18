@@ -131,13 +131,15 @@ $messages = array(
 'nov'           => 'Nob',
 'dec'           => 'Dis',
 
-# Bits of text used by many pages
-'categories'            => 'Mga Kategorya',
-'pagecategories'        => '{{PLURAL:$1|Kategorya|Mga kategorya}}',
-'category_header'       => 'Mga artikulo sa kategoryang "$1"',
-'subcategories'         => 'Mga sub-kategorya',
-'category-media-header' => 'Media sa kategoryang "$1"',
-'category-empty'        => "''An kategoryang ini mayong laog na mga artikulo o media sa ngonyan.''",
+# Categories related messages
+'categories'             => 'Mga Kategorya',
+'pagecategories'         => '{{PLURAL:$1|Kategorya|Mga kategorya}}',
+'category_header'        => 'Mga artikulo sa kategoryang "$1"',
+'subcategories'          => 'Mga sub-kategorya',
+'category-media-header'  => 'Media sa kategoryang "$1"',
+'category-empty'         => "''An kategoryang ini mayong laog na mga artikulo o media sa ngonyan.''",
+'subcategorycount'       => 'Igwang {{PLURAL:$1|na sub-kategorya|mga $1 sub-kategorya}} sa kategoryang ini.',
+'listingcontinuesabbrev' => 'sunod.',
 
 'mainpagetext'      => "<big>'''Instalado na an MediaWiki.'''</big>",
 'mainpagedocfooter' => "Konsultarón tabî an [http://meta.wikimedia.org/wiki/Help:Contents User's Guide] para sa impormasyon sa paggamit nin progama kaining wiki.
@@ -942,17 +944,17 @@ An historial nin pagparâ kan ''file'' nakakaag digdi para sa konbenyensya:",
 'upload_source_url'  => ' (sarong tama, na bukas sa publikong URL)',
 'upload_source_file' => " (sarong ''file'' sa kompyuter mo)",
 
-# Image list
-'imagelist'                 => 'Lista kan dokumento',
-'imagelisttext'             => "Mahihiling sa baba an lista nin mga  '''$1''' {{PLURAL:$1|file|files}} na linain $2.",
-'getimagelist'              => 'pigkukûa an lista kan dokumento',
-'ilsubmit'                  => 'Hanápon',
-'showlast'                  => "Ipahiling an mga huring $1 ''file'' na linain $2.",
-'byname'                    => 'sa ngaran',
-'bydate'                    => 'sa petsa',
-'bysize'                    => 'sa sukol',
-'imgdelete'                 => 'parâ',
-'imgfile'                   => 'dokumento',
+# Special:Imagelist
+'imagelist_search_for'  => 'Hanápon an pangaran kan retrato:',
+'imgfile'               => 'dokumento',
+'imagelist'             => 'Lista kan dokumento',
+'imagelist_date'        => 'Petsa',
+'imagelist_name'        => 'Pangaran',
+'imagelist_user'        => 'Parágamit',
+'imagelist_size'        => 'Sukol',
+'imagelist_description' => 'Deskripsión',
+
+# Image description page
 'filehist'                  => "Historya kan ''file''",
 'filehist-help'             => "Magpindot kan petsa/oras para mahiling an hitsura kan ''file'' sa piniling oras.",
 'filehist-deleteall'        => 'parâon gabos',
@@ -973,12 +975,6 @@ An historial nin pagparâ kan ''file'' nakakaag digdi para sa konbenyensya:",
 'noimage'                   => "Mayong ''file'' na may pangaran na arog kaini, pwede kang $1.",
 'noimage-linktext'          => 'ikarga ini',
 'uploadnewversion-linktext' => "Magkarga nin bagong bersyón kaining ''file''",
-'imagelist_date'            => 'Petsa',
-'imagelist_name'            => 'Pangaran',
-'imagelist_user'            => 'Parágamit',
-'imagelist_size'            => 'Sukol',
-'imagelist_description'     => 'Deskripsión',
-'imagelist_search_for'      => 'Hanápon an pangaran kan retrato:',
 
 # File reversion
 'filerevert'                => 'Ibalik an $1',
@@ -1397,8 +1393,6 @@ $1",
 'sp-contributions-username'    => 'IP o ngaran kan parágamit:',
 'sp-contributions-submit'      => 'Hanápon',
 
-'sp-newimages-showfrom' => 'Hilingón an mga retratong nagpopoon sa $1',
-
 # What links here
 'whatlinkshere'       => 'An nakatakod digdi',
 'whatlinkshere-title' => 'Mga pahinang nakatakod sa $1',
@@ -1698,16 +1692,12 @@ Sa kaso kan huri, pwede ka man na maggamit nin takod, arog kan [[{{ns:special}}:
 'nocredits'        => 'Mayong talastas kan kredito para sa ining pahina.',
 
 # Spam protection
-'spamprotectiontitle'    => "Proteksyon kan ''spam filter''",
-'spamprotectiontext'     => "An páhinang gusto mong itagama pigbagat kan ''spam filter''. Kawsa gayod ini kan sarong takod sa sarong panluwas na 'site'.",
-'spamprotectionmatch'    => "An minasunod na teksto iyo an nagbukas kan ''spam filter'' mi: $1",
-'subcategorycount'       => 'Igwang {{PLURAL:$1|na sub-kategorya|mga $1 sub-kategorya}} sa kategoryang ini.',
-'categoryarticlecount'   => 'Igwang {{PLURAL:$1|is one page|mga $1 páhina}} sa kategoryang ini.',
-'category-media-count'   => "Igwang {{PLURAL:$1|is one file|mga $1 ''file''}} sa kategoryang ini.",
-'listingcontinuesabbrev' => 'sunod.',
-'spambot_username'       => 'paglimpya nin spam sa MediaWiki',
-'spam_reverting'         => 'Mabalik sa huring bersion na mayong takod sa $1',
-'spam_blanking'          => 'An gabos na mga pahirá na may takod sa $1, pigblablanko',
+'spamprotectiontitle' => "Proteksyon kan ''spam filter''",
+'spamprotectiontext'  => "An páhinang gusto mong itagama pigbagat kan ''spam filter''. Kawsa gayod ini kan sarong takod sa sarong panluwas na 'site'.",
+'spamprotectionmatch' => "An minasunod na teksto iyo an nagbukas kan ''spam filter'' mi: $1",
+'spambot_username'    => 'paglimpya nin spam sa MediaWiki',
+'spam_reverting'      => 'Mabalik sa huring bersion na mayong takod sa $1',
+'spam_blanking'       => 'An gabos na mga pahirá na may takod sa $1, pigblablanko',
 
 # Info page
 'infosubtitle'   => 'Impormasyón kan páhina',
@@ -1769,9 +1759,13 @@ $1",
 'show-big-image-thumb' => '<small>Sokol kan patânaw: $1 × $2  na pixel</small>',
 
 # Special:Newimages
-'newimages'    => "Galeria nin mga bâgong ''file''",
-'showhidebots' => '($1 na bots)',
-'noimages'     => 'Mayong mahihiling.',
+'newimages'             => "Galeria nin mga bâgong ''file''",
+'imagelisttext'         => "Mahihiling sa baba an lista nin mga  '''$1''' {{PLURAL:$1|file|files}} na linain $2.",
+'showhidebots'          => '($1 na bots)',
+'noimages'              => 'Mayong mahihiling.',
+'ilsubmit'              => 'Hanápon',
+'bydate'                => 'sa petsa',
+'sp-newimages-showfrom' => 'Hilingón an mga retratong nagpopoon sa $1',
 
 # Bad image list
 'bad_image_list' => 'An pormato iyo an nasunod:

@@ -90,9 +90,6 @@ $messages = array(
 # Upload
 'upload' => 'Keworra restrenn',
 
-# Image list
-'ilsubmit' => 'Hwilas',
-
 # Random page
 'randompage' => 'Folenn war amkan',
 
@@ -114,5 +111,8 @@ $messages = array(
 
 # Tooltip help for the actions
 'tooltip-pt-preferences' => 'Teythi ow akont',
+
+# Special:Newimages
+'ilsubmit' => 'Hwilas',
 
 );

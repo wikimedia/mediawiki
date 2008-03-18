@@ -112,13 +112,14 @@ $messages = array(
 'nov'           => 'T11',
 'dec'           => 'T12',
 
-# Bits of text used by many pages
-'categories'            => 'Cayliibám',
-'pagecategories'        => '{{PLURAL:$1|Cajliib|Cajliibám}}',
-'category_header'       => 'Páhinám cayliibám zo iti "$1"',
-'subcategories'         => 'Subcayliibám',
-'category-media-header' => 'Mediám cayliibám zo iti "$1"',
-'category-empty'        => "''Cayliib danjobam nihíl''",
+# Categories related messages
+'categories'             => 'Cayliibám',
+'pagecategories'         => '{{PLURAL:$1|Cajliib|Cajliibám}}',
+'category_header'        => 'Páhinám cayliibám zo iti "$1"',
+'subcategories'          => 'Subcayliibám',
+'category-media-header'  => 'Mediám cayliibám zo iti "$1"',
+'category-empty'         => "''Cayliib danjobam nihíl''",
+'listingcontinuesabbrev' => 'korb.',
 
 'mainpagetext' => "<big>'''MediaWiki coccebj installöx successua zo mii.'''</big>",
 
@@ -786,15 +787,17 @@ Informacion: (curt) = quiíxde vercion currentua,
 'nolicense'         => 'Seleccion coccebj hun',
 'license-nopreview' => '(Necuáxiit)',
 
-# Image list
-'imagelist'                 => 'Listade ciúchán',
-'ilsubmit'                  => 'Yahöx',
-'showlast'                  => 'Cohuatlöx $1 hunciúchán sortöx $2.',
-'byname'                    => 'de nom-ID',
-'bydate'                    => 'de datum',
-'bysize'                    => 'de bajlip',
-'imgdelete'                 => 'delat',
-'imgfile'                   => 'ciúchan',
+# Special:Imagelist
+'imagelist_search_for'  => 'Yahöxde IDde ciúchan:',
+'imgfile'               => 'ciúchan',
+'imagelist'             => 'Listade ciúchán',
+'imagelist_date'        => 'Datum',
+'imagelist_name'        => 'Nom',
+'imagelist_user'        => 'Caitom',
+'imagelist_size'        => 'Bajlip',
+'imagelist_description' => 'Discripcion',
+
+# Image description page
 'filehist'                  => 'Historiade ciúchan',
 'filehist-deleteall'        => 'delatom jömde man',
 'filehist-deleteone'        => 'delatom jande man',
@@ -809,12 +812,6 @@ Informacion: (curt) = quiíxde vercion currentua,
 'shareduploadwiki-linktext' => 'discripcionde ciúchan páhina',
 'noimage-linktext'          => 'z(o) uploadan',
 'uploadnewversion-linktext' => 'Uploadan hunvercion zode jan ciúchan',
-'imagelist_date'            => 'Datum',
-'imagelist_name'            => 'Nom',
-'imagelist_user'            => 'Caitom',
-'imagelist_size'            => 'Bajlip',
-'imagelist_description'     => 'Discripcion',
-'imagelist_search_for'      => 'Yahöxde IDde ciúchan:',
 
 # File reversion
 'filerevert'                => 'Iixponintöx $1',
@@ -1097,8 +1094,7 @@ iitom e-iitomde diijömde caitóm.',
 'siteusers'     => '{{SITENAME}} cait(o/ó)m $1',
 
 # Spam protection
-'listingcontinuesabbrev' => 'korb.',
-'spambot_username'       => 'MediaWiki nespam',
+'spambot_username' => 'MediaWiki nespam',
 
 # Info page
 'infosubtitle' => 'Informacionde páhina',
@@ -1108,6 +1104,8 @@ iitom e-iitomde diijömde caitóm.',
 
 # Special:Newimages
 'showhidebots' => '($1 botám)',
+'ilsubmit'     => 'Yahöx',
+'bydate'       => 'de datum',
 
 # EXIF tags
 'exif-fnumber'      => 'F Numberam',

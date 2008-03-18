@@ -145,7 +145,7 @@ A ti fi orúkọ yín s'ílẹ̀. Ẹ mọ́ gbàgbé l'áti s'àtúnṣe àwọ
 # Recent changes
 'recentchanges' => 'Àwọn àtúnṣe tuntun',
 
-# Image list
+# Special:Imagelist
 'imagelist_name' => 'Orúkọ',
 'imagelist_user' => 'Ẹnitínṣe',
 

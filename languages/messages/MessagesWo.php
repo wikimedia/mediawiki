@@ -751,15 +751,13 @@ $2 boole ci xëti yoonalaat yi<br /> Seet $3 $9',
 'savefile'        => 'Duggal file bi',
 'watchthisupload' => 'Topp file bii',
 
-# Image list
+# Special:Imagelist
 'imagelist'      => 'Limu nataal yi',
-'ilsubmit'       => 'Seet',
-'byname'         => 'ci tur',
-'bydate'         => 'ci diir',
-'bysize'         => 'ci ngandaay',
-'imagelinks'     => 'Xët yi am bii nataal',
-'linkstoimage'   => 'Xët yii ci suuf am nañ ci seen biir bii nataal :',
 'imagelist_user' => 'Jëfëndikookat',
+
+# Image description page
+'imagelinks'   => 'Xët yi am bii nataal',
+'linkstoimage' => 'Xët yii ci suuf am nañ ci seen biir bii nataal :',
 
 # List redirects
 'listredirects' => 'Limu jubluwaat yi',
@@ -1004,6 +1002,10 @@ $2 boole ci xëti yoonalaat yi<br /> Seet $3 $9',
 'file-info'      => 'Réyaayu file bi : $1, type MIME : $2',
 'file-info-size' => '($1 × $2 pixels, réyaayu file bi : $3, type MIME : $4)',
 'show-big-image' => 'Ngandalal nataal gii',
+
+# Special:Newimages
+'ilsubmit' => 'Seet',
+'bydate'   => 'ci diir',
 
 # EXIF tags
 'exif-usercomment' => 'Kadduy jëfëndikookat bi',

@@ -1104,18 +1104,18 @@ PICT # div.
 'upload_source_url'  => ' (en gyldig, offentlig tilgjengelig adresse)',
 'upload_source_file' => ' (en fil på din datamaskin)',
 
-# Image list
-'imagelist'                 => 'Bildeliste',
-'imagelisttext'             => "Dete er en liste med '''$1''' {{PLURAL:$1|fil|filer}} sortert $2.",
-'getimagelist'              => 'henter filliste',
-'ilsubmit'                  => 'Søk',
-'showlast'                  => 'Vis de siste $1 filene sortert $2.',
-'byname'                    => 'etter navn',
-'bydate'                    => 'etter dato',
-'bysize'                    => 'etter størrelse',
-'imgdelete'                 => 'slett',
-'imgdesc'                   => 'beskrivelse',
-'imgfile'                   => 'fil',
+# Special:Imagelist
+'imagelist_search_for'  => 'Søk etter filnavn:',
+'imgdesc'               => 'beskrivelse',
+'imgfile'               => 'fil',
+'imagelist'             => 'Bildeliste',
+'imagelist_date'        => 'Dato',
+'imagelist_name'        => 'Navn',
+'imagelist_user'        => 'Bruker',
+'imagelist_size'        => 'Størrelse (bytes)',
+'imagelist_description' => 'Beskrivelse',
+
+# Image description page
 'filehist'                  => 'Filhistorikk',
 'filehist-help'             => 'Klikk på en dato/klokkeslett for å se filen slik den var på den tiden.',
 'filehist-deleteall'        => 'slett alt',
@@ -1137,12 +1137,6 @@ PICT # div.
 'noimage'                   => 'Ingen fil ved dette navnet finnes, du kan $1.',
 'noimage-linktext'          => 'laste det opp',
 'uploadnewversion-linktext' => 'Last opp en ny versjon av denne fila',
-'imagelist_date'            => 'Dato',
-'imagelist_name'            => 'Navn',
-'imagelist_user'            => 'Bruker',
-'imagelist_size'            => 'Størrelse (bytes)',
-'imagelist_description'     => 'Beskrivelse',
-'imagelist_search_for'      => 'Søk etter filnavn:',
 
 # File reversion
 'filerevert'                => 'Tilbakestill $1',
@@ -1562,8 +1556,6 @@ $1',
 'sp-contributions-username'    => 'IP-adresse eller brukernavn:',
 'sp-contributions-submit'      => 'Søk',
 
-'sp-newimages-showfrom' => 'Vis nye filer fra og med $1',
-
 # What links here
 'whatlinkshere'       => 'Lenker hit',
 'whatlinkshere-title' => 'Sider som lenker til $1',
@@ -1957,9 +1949,13 @@ $1',
 'show-big-image-thumb' => '<small>Størrelse på denne forhåndsvisningen: $1 × $2 piksler</small>',
 
 # Special:Newimages
-'newimages'    => 'Galleri over nye filer',
-'showhidebots' => '($1 roboter)',
-'noimages'     => 'Ingenting å se.',
+'newimages'             => 'Galleri over nye filer',
+'imagelisttext'         => "Dete er en liste med '''$1''' {{PLURAL:$1|fil|filer}} sortert $2.",
+'showhidebots'          => '($1 roboter)',
+'noimages'              => 'Ingenting å se.',
+'ilsubmit'              => 'Søk',
+'bydate'                => 'etter dato',
+'sp-newimages-showfrom' => 'Vis nye filer fra og med $1',
 
 # Bad image list
 'bad_image_list' => 'Formatet er slik:

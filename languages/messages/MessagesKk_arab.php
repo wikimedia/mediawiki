@@ -500,13 +500,15 @@ $messages = array(
 'nov'           => 'قار',
 'dec'           => 'جەل',
 
-# Bits of text used by many pages
-'categories'            => 'ساناتتار',
-'pagecategories'        => '{{PLURAL:$1|سانات|ساناتتار}}',
-'category_header'       => '«$1» ساناتىنداعى بەتتەر',
-'subcategories'         => 'ساناتشالار',
-'category-media-header' => '«$1» ساناتىنداعى تاسپالار',
-'category-empty'        => "''بۇل ساناتتا اعىمدا ەش بەت نە تاسپا جوق.''",
+# Categories related messages
+'categories'             => 'ساناتتار',
+'pagecategories'         => '{{PLURAL:$1|سانات|ساناتتار}}',
+'category_header'        => '«$1» ساناتىنداعى بەتتەر',
+'subcategories'          => 'ساناتشالار',
+'category-media-header'  => '«$1» ساناتىنداعى تاسپالار',
+'category-empty'         => "''بۇل ساناتتا اعىمدا ەش بەت نە تاسپا جوق.''",
+'subcategorycount'       => 'بۇل ساناتتا {{PLURAL:$1|ٴبىر|$1}} ساناتشا بار.',
+'listingcontinuesabbrev' => '(جالع.)',
 
 'mainpagetext'      => "<big>'''مەدىياۋىيكىي باعدارلاماسى ٴساتتى ورناتىلدى.'''</big>",
 'mainpagedocfooter' => 'ۋىيكىي باعدارلاماسىن پايدالانۋ اقپاراتى ٴۇشىن [http://meta.wikimedia.org/wiki/Help:Contents پايدالانۋشى نۇسقاۋلارىمەن] تانىسىڭىز.
@@ -960,7 +962,6 @@ $2',
 ەملە تاڭبالارىن كەسكىلەپ تاستادى. بەت ٴماتىنى بۇلىنبەۋ ٴۇشىن تۇزەتۋىڭىز تايدىرىلادى.
 بۇل عالامتورعا نەگىزدەلىنگەن قاتە تولعان تىركەلۋى جوق پروكسىي-سەرۆەردى پايدالانعان بولۋى مۇمكىن.</strong>',
 'editing'                   => 'وڭدەلۋدە: $1',
-'editinguser'               => 'وڭدەلۋدە: <b>$1</b> دەگەن قاتىسۋشى',
 'editingsection'            => 'وڭدەلۋدە: $1 (ٴبولىمى)',
 'editingcomment'            => 'وڭدەلۋدە: $1 (ماندەمەسى)',
 'editconflict'              => 'وڭدەۋ قاقتىعىسى: $1',
@@ -1229,6 +1230,7 @@ $3 كەلتىرىلگەن سەبەبى: ''$2''",
 'userrights-lookup-user'           => 'قاتىسۋشى توپتارىن رەتتەۋ',
 'userrights-user-editname'         => 'قاتىسۋشى اتىن ەنگىزىڭىز:',
 'editusergroup'                    => 'قاتىسۋشى توپتارىن وڭدەۋ',
+'editinguser'                      => 'وڭدەلۋدە: <b>$1</b> دەگەن قاتىسۋشى',
 'userrights-editusergroup'         => 'قاتىسۋشى توپتارىن وڭدەۋ',
 'saveusergroups'                   => 'قاتىسۋشى توپتارىن ساقتاۋ',
 'userrights-groupsmember'          => 'مۇشەلىگى:',
@@ -1394,18 +1396,18 @@ $3 كەلتىرىلگەن سەبەبى: ''$2''",
 'upload_source_url'  => ' (جارامدى, بارشاعا قاتىناۋلى URL جاي)',
 'upload_source_file' => ' (كومپيۋتەرىڭىزدەگى فايل)',
 
-# Image list
-'imagelist'                 => 'فايل ٴتىزىمى',
-'imagelisttext'             => "تومەندە $2 سۇرىپتالعان {{PLURAL:$1|'''1'''|'''$1'''}} فايل ٴتىزىمى.",
-'getimagelist'              => 'فايل ٴتىزىمىن كەلتىرۋدە',
-'ilsubmit'                  => 'ىزدە',
-'showlast'                  => 'سوڭعى $1 فايلدى $2 سۇرىپتاپ كورسەت.',
-'byname'                    => 'اتاۋىمەن',
-'bydate'                    => 'كۇن-ايىمەن',
-'bysize'                    => 'مولشەرىمەن',
-'imgdelete'                 => 'جويۋ',
-'imgdesc'                   => 'سىيپپ.',
-'imgfile'                   => 'فايل',
+# Special:Imagelist
+'imagelist_search_for'  => 'سۋرەتتى اتاۋىمەن ىزدەۋ:',
+'imgdesc'               => 'سىيپپ.',
+'imgfile'               => 'فايل',
+'imagelist'             => 'فايل ٴتىزىمى',
+'imagelist_date'        => 'كۇن-ايى',
+'imagelist_name'        => 'اتاۋى',
+'imagelist_user'        => 'قاتىسۋشى',
+'imagelist_size'        => 'مولشەرى',
+'imagelist_description' => 'سىيپاتتاماسى',
+
+# Image description page
 'filehist'                  => 'فايل تارىيحى',
 'filehist-help'             => 'فايلدىڭ قاي ۋاقىتتا قالاي كورىنەتىن ٴۇشىن كۇن-اي/ۋاقىت دەگەندى نۇقىڭىز.',
 'filehist-deleteall'        => 'بارلىعىن جوي',
@@ -1426,12 +1428,6 @@ $3 كەلتىرىلگەن سەبەبى: ''$2''",
 'noimage'                   => 'مىناداي اتاۋلى فايل جوق, $1 مۇمكىندىگىڭىز بار.',
 'noimage-linktext'          => 'بۇنى قوتارۋ',
 'uploadnewversion-linktext' => 'بۇل فايلدىڭ جاڭا نۇسقاسىن قوتارۋ',
-'imagelist_date'            => 'كۇن-ايى',
-'imagelist_name'            => 'اتاۋى',
-'imagelist_user'            => 'قاتىسۋشى',
-'imagelist_size'            => 'مولشەرى',
-'imagelist_description'     => 'سىيپاتتاماسى',
-'imagelist_search_for'      => 'سۋرەتتى اتاۋىمەن ىزدەۋ:',
 
 # File reversion
 'filerevert'                => '$1 دەگەندى قايتارۋ',
@@ -1570,7 +1566,6 @@ $3 كەلتىرىلگەن سەبەبى: ''$2''",
 'newpages'                => 'ەڭ جاڭا بەتتەر',
 'newpages-username'       => 'قاتىسۋشى اتى:',
 'ancientpages'            => 'ەڭ ەسكى بەتتەر',
-'intl'                    => 'تىلارالىق سىلتەمەلەر',
 'move'                    => 'جىلجىتۋ',
 'movethispage'            => 'بەتتى جىلجىتۋ',
 'unusedimagestext'        => '<p>اڭعارتپا: عالامتورداعى باسقا توراپتار فايلدىڭ
@@ -1888,8 +1883,6 @@ $1',
 'sp-contributions-username'    => 'IP جاي نە قاتىسۋشى اتى:',
 'sp-contributions-submit'      => 'ىزدە',
 
-'sp-newimages-showfrom' => '$1 كەزىنەن بەرى — جاڭا سۋرەتتەردى كورسەت',
-
 # What links here
 'whatlinkshere'       => 'سىلتەلگەن بەتتەر',
 'whatlinkshere-title' => '$1 دەگەنگە سىلتەيتىن بەتتەر',
@@ -2017,7 +2010,7 @@ $1',
 'databasenotlocked'   => 'دەرەكقور قۇلىپتالعان جوق.',
 
 # Move page
-'move-page-legend'                => 'بەتتى جىلجىتۋ',
+'move-page-legend'        => 'بەتتى جىلجىتۋ',
 'movepagetext'            => "تومەندەگى ٴپىشىندى قولدانىپ بەتتەردى قايتا اتايدى,
 بارلىق تارىيحىن جاڭا اتاۋعا جىلجىتادى.
 بۇرىنعى بەت اتاۋى جاڭا اتاۋعا ايداتاتىن بەت بولادى.
@@ -2229,16 +2222,12 @@ $1',
 'nocredits'        => 'بۇل بەتتى جازعاندار تۋرالى اقپارات جوق.',
 
 # Spam protection
-'spamprotectiontitle'    => '«سپام»-نان قورعايتىن سۇزگى',
-'spamprotectiontext'     => 'بۇل بەتتىڭ ساقتاۋىن «سپام» سۇزگىسى بۇعاتتادى. بۇنىڭ سەبەبى سىرتقى توراپ سىلتەمەسىنەن بولۋى مۇمكىن.',
-'spamprotectionmatch'    => 'كەلەسى «سپام» ٴماتىنى سۇزگىلەنگەن: $1',
-'subcategorycount'       => 'بۇل ساناتتا {{PLURAL:$1|ٴبىر|$1}} ساناتشا بار.',
-'categoryarticlecount'   => 'بۇل ساناتتا {{PLURAL:$1|ٴبىر|$1}} بەت بار.',
-'category-media-count'   => 'بۇل ساناتتا {{PLURAL:$1|ٴبىر|$1}} فايل بار.',
-'listingcontinuesabbrev' => '(جالع.)',
-'spambot_username'       => 'MediaWiki spam cleanup',
-'spam_reverting'         => '$1 دەگەنگە سىلتەمەسى جوق سوڭعى نۇسقاسىنا قايتارىلدى',
-'spam_blanking'          => '$1 دەگەنگە سىلتەمەسى بار بارلىق نۇسقالار تازارتىلدى',
+'spamprotectiontitle' => '«سپام»-نان قورعايتىن سۇزگى',
+'spamprotectiontext'  => 'بۇل بەتتىڭ ساقتاۋىن «سپام» سۇزگىسى بۇعاتتادى. بۇنىڭ سەبەبى سىرتقى توراپ سىلتەمەسىنەن بولۋى مۇمكىن.',
+'spamprotectionmatch' => 'كەلەسى «سپام» ٴماتىنى سۇزگىلەنگەن: $1',
+'spambot_username'    => 'MediaWiki spam cleanup',
+'spam_reverting'      => '$1 دەگەنگە سىلتەمەسى جوق سوڭعى نۇسقاسىنا قايتارىلدى',
+'spam_blanking'       => '$1 دەگەنگە سىلتەمەسى بار بارلىق نۇسقالار تازارتىلدى',
 
 # Info page
 'infosubtitle'   => 'بەت تۋرالى مالىمەت',
@@ -2302,9 +2291,13 @@ $1',
 'show-big-image-thumb' => '<small>قاراپ شىعۋ مولشەرى: $1 × $2 پىيكسەل</small>',
 
 # Special:Newimages
-'newimages'    => 'ەڭ جاڭا فايلدار قويماسى',
-'showhidebots' => '(بوتتاردى $1)',
-'noimages'     => 'كورەتىن ەشتەڭە جوق.',
+'newimages'             => 'ەڭ جاڭا فايلدار قويماسى',
+'imagelisttext'         => "تومەندە $2 سۇرىپتالعان {{PLURAL:$1|'''1'''|'''$1'''}} فايل ٴتىزىمى.",
+'showhidebots'          => '(بوتتاردى $1)',
+'noimages'              => 'كورەتىن ەشتەڭە جوق.',
+'ilsubmit'              => 'ىزدە',
+'bydate'                => 'كۇن-ايىمەن',
+'sp-newimages-showfrom' => '$1 كەزىنەن بەرى — جاڭا سۋرەتتەردى كورسەت',
 
 # Video information, used by Language::formatTimePeriod() to format lengths in the above messages
 'video-dims'     => '$1, $2 × $3',
@@ -2671,7 +2664,7 @@ $1',
 'hideresults'      => 'ناتىيجەلەردى جاسىر',
 'useajaxsearch'    => 'AJAX قولدانىپ ىزدەۋ',
 
-# Separators for various lists
+# Separators for various lists, etc.
 'semicolon-separator' => '؛',
 'comma-separator'     => '،&#32;',
 

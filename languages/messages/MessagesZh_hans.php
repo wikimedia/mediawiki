@@ -182,7 +182,7 @@ $messages = array(
 'nov'           => '11月',
 'dec'           => '12月',
 
-# Bits of text used by many pages
+# Categories related messages
 'categories'               => '页面分类',
 'pagecategories'           => '$1个分类',
 'category_header'          => '"$1"分类中的页面',
@@ -191,6 +191,8 @@ $messages = array(
 'category-empty'           => "''这个分类中尚未包含任何页面或媒体。''",
 'hidden-categories'        => '$1个隐藏分类',
 'hidden-category-category' => '隐藏分类', # Name of the category where hidden categories will be listed
+'subcategorycount'         => '在这个分类中有$1个亚类。',
+'listingcontinuesabbrev'   => '续',
 
 'mainpagetext'      => "<big>'''已成功安装 MediaWiki!'''</big>",
 'mainpagedocfooter' => '请访问 [http://meta.wikimedia.org/wiki/Help:Contents 用户手册] 以获得使用此 wiki 软件的信息！
@@ -803,8 +805,8 @@ $2',
 'prevn'                 => '前$1个',
 'nextn'                 => '后$1个',
 'viewprevnext'          => '查看 ($1) ($2) ($3)',
-'search-result-size'    => "$1 ($2个字)",
-'search-result-score'   => "相关度: $1%",
+'search-result-size'    => '$1 ($2个字)',
+'search-result-score'   => '相关度: $1%',
 'showingresults'        => '下面显示从第<b>$2</b>条开始的<b>$1</b>条结果:',
 'showingresultsnum'     => '下面显示从第<b>$2</b>条开始的<b>$3</b>条结果:',
 'nonefound'             => '<strong>注意：</strong>失败的搜索往往是由于试图搜索诸如“的”或“和”之类的常见字所引起。',
@@ -1047,18 +1049,18 @@ $2',
 'upload_source_url'  => ' (一个有效的，可公开访问的 URL)',
 'upload_source_file' => ' (在您计算机上的一个文件)',
 
-# Image list
-'imagelist'                 => '文件列表',
-'imagelisttext'             => '以下是按$2排列的$1个文件列表。',
-'getimagelist'              => '正在获取文件列表',
-'ilsubmit'                  => '搜索',
-'showlast'                  => '显示按$2排列的最后$1个文件。',
-'byname'                    => '按名字',
-'bydate'                    => '按日期',
-'bysize'                    => '按大小',
-'imgdelete'                 => '删除',
-'imgdesc'                   => '描述',
-'imgfile'                   => '文件',
+# Special:Imagelist
+'imagelist_search_for'  => '按媒体名称搜索:',
+'imgdesc'               => '描述',
+'imgfile'               => '文件',
+'imagelist'             => '文件列表',
+'imagelist_date'        => '日期',
+'imagelist_name'        => '名称',
+'imagelist_user'        => '用户',
+'imagelist_size'        => '大小',
+'imagelist_description' => '描述',
+
+# Image description page
 'filehist'                  => '文件历史',
 'filehist-help'             => '点击日期／时间以查看当时出现过的文件。',
 'filehist-deleteall'        => '删除全部',
@@ -1080,12 +1082,6 @@ $2',
 'noimage'                   => '不存在此名称的文件，您可以$1。',
 'noimage-linktext'          => '上传它',
 'uploadnewversion-linktext' => '上传该文件的新版本',
-'imagelist_date'            => '日期',
-'imagelist_name'            => '名称',
-'imagelist_user'            => '用户',
-'imagelist_size'            => '大小',
-'imagelist_description'     => '描述',
-'imagelist_search_for'      => '按媒体名称搜索:',
 
 # File reversion
 'filerevert'                => '恢复$1',
@@ -1471,7 +1467,7 @@ $NEWPAGE
 # Undelete
 'undelete'                     => '恢复被删页面',
 'undeletepage'                 => '浏览及恢复被删页面',
-'undeletepagetitle'            => '\'\'\'以下包含[[:$1]]的已删除之修订版本\'\'\'。',
+'undeletepagetitle'            => "'''以下包含[[:$1]]的已删除之修订版本'''。",
 'viewdeletedpage'              => '查看被删页面',
 'undeletepagetext'             => '以下页面已经被删除，但依然在档案中并可以被恢复。
 档案库可能被定时清理。',
@@ -1532,8 +1528,6 @@ $1',
 'sp-contributions-search'      => '搜寻贡献记录',
 'sp-contributions-username'    => 'IP地址或用户名称：',
 'sp-contributions-submit'      => '搜索',
-
-'sp-newimages-showfrom' => '从$1开始显示新文件',
 
 # What links here
 'whatlinkshere'       => '链入页面',
@@ -1869,16 +1863,12 @@ $1',
 'nocredits'        => '该页没有致谢名单信息。',
 
 # Spam protection
-'spamprotectiontitle'    => '广告保护过滤器',
-'spamprotectiontext'     => '您要保存的页面被广告过滤器阻止。这可能是由于一个到外部站点的链接引起的。',
-'spamprotectionmatch'    => '以下是触发广告过滤器的文本: $1',
-'subcategorycount'       => '在这个分类中有$1个亚类。',
-'categoryarticlecount'   => '在这个分类中有$1个页面。',
-'category-media-count'   => '在这个分类中有$1个文件。',
-'listingcontinuesabbrev' => '续',
-'spambot_username'       => 'MediaWiki 广告清除',
-'spam_reverting'         => '恢复到不包含链接至$1的最近版本',
-'spam_blanking'          => '所有包含链接至$1的修订，消隐',
+'spamprotectiontitle' => '广告保护过滤器',
+'spamprotectiontext'  => '您要保存的页面被广告过滤器阻止。这可能是由于一个到外部站点的链接引起的。',
+'spamprotectionmatch' => '以下是触发广告过滤器的文本: $1',
+'spambot_username'    => 'MediaWiki 广告清除',
+'spam_reverting'      => '恢复到不包含链接至$1的最近版本',
+'spam_blanking'       => '所有包含链接至$1的修订，消隐',
 
 # Info page
 'infosubtitle'   => '页面信息',
@@ -1940,9 +1930,13 @@ $1',
 'show-big-image-thumb' => '<small>这幅略缩图的分辨率: $1 × $2 像素</small>',
 
 # Special:Newimages
-'newimages'    => '新建图像画廊',
-'showhidebots' => '($1机器人)',
-'noimages'     => '无可查看图像。',
+'newimages'             => '新建图像画廊',
+'imagelisttext'         => '以下是按$2排列的$1个文件列表。',
+'showhidebots'          => '($1机器人)',
+'noimages'              => '无可查看图像。',
+'ilsubmit'              => '搜索',
+'bydate'                => '按日期',
+'sp-newimages-showfrom' => '从$1开始显示新文件',
 
 # Bad image list
 'bad_image_list' => '请根据以下的格式去编写:

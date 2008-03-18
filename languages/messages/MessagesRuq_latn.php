@@ -59,9 +59,10 @@ $messages = array(
 'nov'           => 'nov',
 'dec'           => 'dec',
 
-# Bits of text used by many pages
-'category_header' => 'Pažus en kategoria "$1"',
-'subcategories'   => 'Subkategorii',
+# Categories related messages
+'category_header'        => 'Pažus en kategoria "$1"',
+'subcategories'          => 'Subkategorii',
+'listingcontinuesabbrev' => 'kontinu',
 
 'about'  => 'Dajpul',
 'cancel' => 'renuntǎe',
@@ -204,7 +205,7 @@ $messages = array(
 # Upload
 'upload' => 'trimiţe fişirul',
 
-# Image list
+# Image description page
 'filehist'            => 'Historia fişirulu',
 'filehist-current'    => 'kurentu',
 'filehist-datetime'   => 'Data/Temp',
@@ -299,9 +300,6 @@ $messages = array(
 'tooltip-ca-nstab-category' => "Vu l'pažu de kategoria",
 'tooltip-minoredit'         => "ce-est n'modifikacion minoru",
 'tooltip-save'              => 'Salvaere tes modifikacions',
-
-# Spam protection
-'listingcontinuesabbrev' => 'kontinu',
 
 # Media information
 'file-nohires'   => "<small>Ce-n-est n'resolucion mai mari.</small>",

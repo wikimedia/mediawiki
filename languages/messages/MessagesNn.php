@@ -1185,18 +1185,18 @@ Sletteloggen for fila finn du her:",
 'upload_source_url'  => ' (ei gyldig, offentleg tilgjengeleg nettadresse)',
 'upload_source_file' => ' (ei fil på datamaskina di)',
 
-# Image list
-'imagelist'                 => 'Filliste',
-'imagelisttext'             => 'Her er ei liste med {{PLURAL:$1|éi fil sortert|$1 filer sorterte}} $2.',
-'getimagelist'              => 'hentar filliste',
-'ilsubmit'                  => 'Søk',
-'showlast'                  => 'Vis dei siste $1 filene sorterte $2.',
-'byname'                    => 'etter namn',
-'bydate'                    => 'etter dato',
-'bysize'                    => 'etter storleik',
-'imgdelete'                 => 'slett',
-'imgdesc'                   => 'skildring',
-'imgfile'                   => 'fil',
+# Special:Imagelist
+'imagelist_search_for'  => 'Søk etter filnamn:',
+'imgdesc'               => 'skildring',
+'imgfile'               => 'fil',
+'imagelist'             => 'Filliste',
+'imagelist_date'        => 'Dato',
+'imagelist_name'        => 'Namn',
+'imagelist_user'        => 'Brukar',
+'imagelist_size'        => 'Storleik',
+'imagelist_description' => 'Beskriving',
+
+# Image description page
 'filehist'                  => 'Filhistorikk',
 'filehist-help'             => 'Klikk på dato/klokkeslett for å sjå fila slik ho var på det tidspunktet.',
 'filehist-deleteall'        => 'slett alle',
@@ -1218,12 +1218,6 @@ Sletteloggen for fila finn du her:",
 'noimage'                   => 'Det finst ikkje noka fil med dette namnet, men du kan $1',
 'noimage-linktext'          => 'laste ho opp',
 'uploadnewversion-linktext' => 'Last opp ny versjon av denne fila',
-'imagelist_date'            => 'Dato',
-'imagelist_name'            => 'Namn',
-'imagelist_user'            => 'Brukar',
-'imagelist_size'            => 'Storleik',
-'imagelist_description'     => 'Beskriving',
-'imagelist_search_for'      => 'Søk etter filnamn:',
 
 # File reversion
 'filerevert'                => 'Rull attende $1',
@@ -1636,8 +1630,6 @@ $1',
 'sp-contributions-username'    => 'IP-adresse eller brukarnamn:',
 'sp-contributions-submit'      => 'Søk',
 
-'sp-newimages-showfrom' => 'Vis nye filer frå og med $1',
-
 # What links here
 'whatlinkshere'       => 'Lenkjer hit',
 'whatlinkshere-title' => 'Sider som har lenkje til $1',
@@ -1964,9 +1956,13 @@ For å eksportere bruker du [[Special:Export|eksportsida]] på kjeldewikien; hug
 'show-big-image-thumb' => '<small>Storleiken på denne førehandsvisinga: $1 × $2 pikslar</small>',
 
 # Special:Newimages
-'newimages'    => 'Filgalleri',
-'showhidebots' => '($1 robotar)',
-'noimages'     => 'Her er ingen filer som kan visast.',
+'newimages'             => 'Filgalleri',
+'imagelisttext'         => 'Her er ei liste med {{PLURAL:$1|éi fil sortert|$1 filer sorterte}} $2.',
+'showhidebots'          => '($1 robotar)',
+'noimages'              => 'Her er ingen filer som kan visast.',
+'ilsubmit'              => 'Søk',
+'bydate'                => 'etter dato',
+'sp-newimages-showfrom' => 'Vis nye filer frå og med $1',
 
 # Bad image list
 'bad_image_list' => 'Formatet er slik:

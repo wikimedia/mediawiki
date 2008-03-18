@@ -64,7 +64,7 @@ süi titul dai sezziún (JavaScript)',
 'oct'       => 'utu',
 'nov'       => 'nuv',
 
-# Bits of text used by many pages
+# Categories related messages
 'categories'      => 'Categurii',
 'category_header' => 'Vus in de la categuria "$1"',
 'subcategories'   => 'Sót-categurii',
@@ -296,9 +296,10 @@ Spiegazziún di símbui: (cur) = difərenza cun la versiún curénta, (ültima) 
 'sourcefilename'    => "Nomm da l'archivi surgeent:",
 'destfilename'      => "Nomm da l'archivi da destinazziun:",
 
-# Image list
-'imagelist'  => 'Listá i imàgin',
-'ilsubmit'   => 'Truvá',
+# Special:Imagelist
+'imagelist' => 'Listá i imàgin',
+
+# Image description page
 'imagelinks' => 'Ligámm',
 
 # MIME search
@@ -493,6 +494,7 @@ Cheest-chí al pöö vess un canbi dràstegh e inaspetaa par una pàgina pupüla
 
 # Special:Newimages
 'newimages' => 'Espusizziun di imàgin nööf',
+'ilsubmit'  => 'Truvá',
 
 # External editor support
 'edit-externally'      => 'Redatá chest archivi cunt un prugramari da fö',

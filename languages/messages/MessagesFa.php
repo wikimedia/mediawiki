@@ -1289,18 +1289,18 @@ $2 تغییرمسیرها فهرست شوند &nbsp; جستجو برای $3 $9',
 'upload_source_url'  => '(یک نشانی اینترنتی معتبر و قابل دسترسی برای عموم)',
 'upload_source_file' => '(پرونده‌ای در رایانهٔ شما)',
 
-# Image list
-'imagelist'                 => 'فهرست تصاویر',
-'imagelisttext'             => 'در زیر فهرست $1 {{PLURAL:$1|تصویری|تصویری}} که $2 مرتب شده است آمده است.',
-'getimagelist'              => 'در حال اخذ فهرست تصاویر',
-'ilsubmit'                  => 'جستجو',
-'showlast'                  => 'نمایش آخرین $1 تصویر مرتب‌شده $2.',
-'byname'                    => 'از روی نام',
-'bydate'                    => 'از روی تاریخ',
-'bysize'                    => 'از روی اندازه',
-'imgdelete'                 => 'حذف',
-'imgdesc'                   => 'توصیف',
-'imgfile'                   => 'پرونده',
+# Special:Imagelist
+'imagelist_search_for'  => 'جستجوی نام تصویر:',
+'imgdesc'               => 'توصیف',
+'imgfile'               => 'پرونده',
+'imagelist'             => 'فهرست تصاویر',
+'imagelist_date'        => 'تاریخ',
+'imagelist_name'        => 'نام',
+'imagelist_user'        => 'کاربر',
+'imagelist_size'        => 'اندازه (بایت)',
+'imagelist_description' => 'توصیف',
+
+# Image description page
 'filehist'                  => 'تاریخچه پرونده',
 'filehist-help'             => 'روی تاریخ‌ها کلیک کنید تا نسخهٔ مربوط را ببینید.',
 'filehist-deleteall'        => 'حذف همه',
@@ -1322,12 +1322,6 @@ $2 تغییرمسیرها فهرست شوند &nbsp; جستجو برای $3 $9',
 'noimage'                   => 'هیچ پرونده‌ای با این نام موجود نیست می‌توانید $1',
 'noimage-linktext'          => 'آن را بار کنید.',
 'uploadnewversion-linktext' => 'بارکردن نسخهٔ جدیدی از پرونده',
-'imagelist_date'            => 'تاریخ',
-'imagelist_name'            => 'نام',
-'imagelist_user'            => 'کاربر',
-'imagelist_size'            => 'اندازه (بایت)',
-'imagelist_description'     => 'توصیف',
-'imagelist_search_for'      => 'جستجوی نام تصویر:',
 
 # File reversion
 'filerevert'                => 'واگردانی $1',
@@ -1781,8 +1775,6 @@ $1',
 'sp-contributions-username'    => 'نشانی آی‌پی یا نام کاربری:',
 'sp-contributions-submit'      => 'جستجو',
 
-'sp-newimages-showfrom' => 'نشان‌دادن تصویرهای جدید از $1 به بعد',
-
 # What links here
 'whatlinkshere'        => 'پیوندهای به این صفحه',
 'whatlinkshere-title'  => 'صفحه‌هایی که به $1 پیوند دارند',
@@ -2180,9 +2172,13 @@ $1',
 'show-big-image-thumb' => '<small>اندازهٔ این پیش‌نمایش: &#8206;$1 × $2 پیکسل</small>',
 
 # Special:Newimages
-'newimages'    => 'گالری پرونده‌های جدید',
-'showhidebots' => '(ویرایش رُبات‌ها $1)',
-'noimages'     => 'چیزی برای دیدن نیست.',
+'newimages'             => 'گالری پرونده‌های جدید',
+'imagelisttext'         => 'در زیر فهرست $1 {{PLURAL:$1|تصویری|تصویری}} که $2 مرتب شده است آمده است.',
+'showhidebots'          => '(ویرایش رُبات‌ها $1)',
+'noimages'              => 'چیزی برای دیدن نیست.',
+'ilsubmit'              => 'جستجو',
+'bydate'                => 'از روی تاریخ',
+'sp-newimages-showfrom' => 'نشان‌دادن تصویرهای جدید از $1 به بعد',
 
 # Bad image list
 'bad_image_list' => 'اطلاعات را باید به این شکل وارد کنید:

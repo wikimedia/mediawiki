@@ -87,10 +87,11 @@ $messages = array(
 'nov'       => 'Nov',
 'dec'       => 'Diç',
 
-# Bits of text used by many pages
-'categories'      => '{{PLURAL:$1|Categoria|Categorie}}',
-'pagecategories'  => '{{PLURAL:$1|Categoria|Categorie}}',
-'category_header' => 'Voçi n\'te ła categoria "$1"',
+# Categories related messages
+'categories'       => '{{PLURAL:$1|Categoria|Categorie}}',
+'pagecategories'   => '{{PLURAL:$1|Categoria|Categorie}}',
+'category_header'  => 'Voçi n\'te ła categoria "$1"',
+'subcategorycount' => 'Sta categoria contegne {{PLURAL:$1|na sotocategoria|$1 sotocategorie}}.',
 
 'mainpagetext' => "'''MediaWiki xè stà instałà con sucesso.'''",
 
@@ -511,13 +512,10 @@ Tutti i tempi indicati sono calcolati sul fuso orario del server (UTC).',
 
 'nolicense' => 'Nessuna liçenzsa indicà',
 
-# Image list
-'imagelist'                 => 'Imagini',
-'imagelisttext'             => 'Qui de seguito na łista de $1 imagini, ordinae par $2.',
-'getimagelist'              => 'rizserca ne la lista de le immagini',
-'ilsubmit'                  => 'Zserca',
-'showlast'                  => 'Lista di $1, fra le ultime immagini, ordinate per $2.',
-'bysize'                    => 'peso',
+# Special:Imagelist
+'imagelist' => 'Imagini',
+
+# Image description page
 'imagelinks'                => 'Collegamenti a le immagini',
 'linkstoimage'              => 'Le paxène seguenti riciama sta imagine:',
 'nolinkstoimage'            => 'Nessuna paxèna linka sta imagine.',
@@ -732,8 +730,6 @@ Consultare el [[Special:Log/delete|log delle scancełazsioni]] par vardare łe s
 'uclinks'    => 'Vedi le ultime $1 modifiche; vedi gli ultimi $2 giorni.',
 'uctop'      => '(ultima par ła paxèna)',
 
-'sp-newimages-showfrom' => 'Mostra łe imagini pì reçenti a partire da $1',
-
 # What links here
 'whatlinkshere' => 'Paxène che le punta qua',
 'linklistsub'   => '(Lista di link)',
@@ -923,9 +919,7 @@ Tute łe operazsion de importazsion trans-wiki łe xè registrae nel [[Special:L
 'creditspage'      => 'Crediti de ła paxèna',
 
 # Spam protection
-'subcategorycount'     => 'Sta categoria contegne {{PLURAL:$1|na sotocategoria|$1 sotocategorie}}.',
-'categoryarticlecount' => 'Ghè $1 voçi in sta categoria.',
-'spam_blanking'        => 'Paxèna svodà, tute łe verzsion contegneva cołegamenti a $1',
+'spam_blanking' => 'Paxèna svodà, tute łe verzsion contegneva cołegamenti a $1',
 
 # Info page
 'infosubtitle'   => 'Informazsion par la paxèna',
@@ -950,8 +944,11 @@ Tute łe operazsion de importazsion trans-wiki łe xè registrae nel [[Special:L
 'imagemaxsize' => 'Limita łe imagini o łe paxène de descrizsion de łe imagini a:',
 
 # Special:Newimages
-'newimages' => 'Imagini nove',
-'noimages'  => 'Non ghè gnente da vardare.',
+'newimages'             => 'Imagini nove',
+'imagelisttext'         => 'Qui de seguito na łista de $1 imagini, ordinae par $2.',
+'noimages'              => 'Non ghè gnente da vardare.',
+'ilsubmit'              => 'Zserca',
+'sp-newimages-showfrom' => 'Mostra łe imagini pì reçenti a partire da $1',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Larghezsa',

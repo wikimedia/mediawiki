@@ -142,13 +142,15 @@ $messages = array(
 'nov'           => '11月',
 'dec'           => '12月',
 
-# Bits of text used by many pages
-'categories'            => '頁面分類',
-'pagecategories'        => '$1個分類',
-'category_header'       => '類別「$1」中的頁面',
-'subcategories'         => '子分類',
-'category-media-header' => '"$1"分類中的媒體',
-'category-empty'        => "''這個分類中尚未包含任何頁面或媒體。''",
+# Categories related messages
+'categories'             => '頁面分類',
+'pagecategories'         => '$1個分類',
+'category_header'        => '類別「$1」中的頁面',
+'subcategories'          => '子分類',
+'category-media-header'  => '"$1"分類中的媒體',
+'category-empty'         => "''這個分類中尚未包含任何頁面或媒體。''",
+'subcategorycount'       => '這個分類下有$1個子分類。',
+'listingcontinuesabbrev' => '續',
 
 'mainpagetext'      => "<big>'''已成功安裝 MediaWiki!'''</big>",
 'mainpagedocfooter' => '請參閱 [http://meta.wikimedia.org/wiki/Help:Contents 使用者手冊] 以獲得使用此 wiki 軟體的訊息！
@@ -563,7 +565,6 @@ $2',
 'token_suffix_mismatch'     => '<strong>由於您使用者端中的編輯信符毀損了一些標點符號字元，為防止編輯的文字損壞，您的編輯已經被拒絕。
 這種情況通常出現於使用含有很多臭蟲、以網絡為主的匿名代理服務的時候。</strong>',
 'editing'                   => '正在編輯$1',
-'editinguser'               => '正在編輯使用者<b>$1</b>',
 'editingsection'            => '正在編輯$1 (段落)',
 'editingcomment'            => '正在編輯$1 (評論)',
 'editconflict'              => '編輯衝突：$1',
@@ -812,6 +813,7 @@ $2',
 'userrights-lookup-user'      => '管理使用者群組',
 'userrights-user-editname'    => '輸入使用者帳號:',
 'editusergroup'               => '編輯使用者群組',
+'editinguser'                 => '正在編輯使用者<b>$1</b>',
 'userrights-editusergroup'    => '編輯使用者群組',
 'saveusergroups'              => '保存使用者群組',
 'userrights-groupsmember'     => '屬於:',
@@ -968,18 +970,18 @@ $2',
 'upload_source_url'  => ' (一個有效的，可公開訪問的 URL)',
 'upload_source_file' => ' (在您電腦上的一個檔案)',
 
-# Image list
-'imagelist'                 => '檔案列表',
-'imagelisttext'             => '以下是按$2排列的$1個檔案列表。',
-'getimagelist'              => '正在獲取檔案列表',
-'ilsubmit'                  => '搜尋',
-'showlast'                  => '顯示按$2排列的最後$1個檔案。',
-'byname'                    => '按名字',
-'bydate'                    => '按日期',
-'bysize'                    => '按大小',
-'imgdelete'                 => '刪除',
-'imgdesc'                   => '描述',
-'imgfile'                   => '檔案',
+# Special:Imagelist
+'imagelist_search_for'  => '按圖片名稱搜尋:',
+'imgdesc'               => '描述',
+'imgfile'               => '檔案',
+'imagelist'             => '檔案列表',
+'imagelist_date'        => '日期',
+'imagelist_name'        => '名稱',
+'imagelist_user'        => '使用者',
+'imagelist_size'        => '大小',
+'imagelist_description' => '描述',
+
+# Image description page
 'filehist'                  => '檔案歷史',
 'filehist-help'             => '點擊日期／時間以檢視當時出現過的檔案。',
 'filehist-deleteall'        => '刪除全部',
@@ -1000,12 +1002,6 @@ $2',
 'noimage'                   => '不存在此名稱的檔案，您可以$1。',
 'noimage-linktext'          => '上傳它',
 'uploadnewversion-linktext' => '上傳該檔案的新版本',
-'imagelist_date'            => '日期',
-'imagelist_name'            => '名稱',
-'imagelist_user'            => '使用者',
-'imagelist_size'            => '大小',
-'imagelist_description'     => '描述',
-'imagelist_search_for'      => '按圖片名稱搜尋:',
 
 # File reversion
 'filerevert'                => '復原$1',
@@ -1137,7 +1133,6 @@ Template:消除歧義',
 'newpages'                => '最新頁面',
 'newpages-username'       => '使用者帳號:',
 'ancientpages'            => '最舊頁面',
-'intl'                    => '跨語言連結',
 'move'                    => '移動',
 'movethispage'            => '移動本頁',
 'unusedimagestext'        => '<p>請注意其它網站可能直接透過 URL 鏈接此圖片，所以這裡列出的圖片有可能依然被使用。</p>',
@@ -1433,8 +1428,6 @@ $1',
 'sp-contributions-username'    => 'IP位址或使用者名稱：',
 'sp-contributions-submit'      => '搜尋',
 
-'sp-newimages-showfrom' => '從$1開始顯示新圖片',
-
 # What links here
 'whatlinkshere'       => '鏈入頁面',
 'whatlinkshere-title' => '鏈接到$1的頁面',
@@ -1552,7 +1545,7 @@ $1',
 'databasenotlocked'   => '資料庫沒有鎖定。',
 
 # Move page
-'move-page-legend'                => '移動頁面',
+'move-page-legend'        => '移動頁面',
 'movepagetext'            => "用下面的表單來重新命名一個頁面，並將其修訂沿革同時移動到新頁面。
 老的頁面將成為新頁面的重定向頁。
 連結到老頁面的連結並不會自動更改；
@@ -1758,16 +1751,12 @@ $1',
 'nocredits'        => '該頁沒有致謝名單訊息。',
 
 # Spam protection
-'spamprotectiontitle'    => '垃圾過濾器',
-'spamprotectiontext'     => '垃圾過濾器禁止保存您剛才提交的頁面，這可能是由於您所加入的外部網站鏈接所產生的問題。',
-'spamprotectionmatch'    => '觸發了我們的垃圾過濾器的文本如下：$1',
-'subcategorycount'       => '這個分類下有$1個子分類。',
-'categoryarticlecount'   => '這個分類中共有$1個頁面',
-'category-media-count'   => '在這個分類中有$1個檔案。',
-'listingcontinuesabbrev' => '續',
-'spambot_username'       => 'MediaWiki 廣告清除',
-'spam_reverting'         => '復原到不包含連結至$1的最近版本',
-'spam_blanking'          => '所有包含連結至$1的修訂，清空',
+'spamprotectiontitle' => '垃圾過濾器',
+'spamprotectiontext'  => '垃圾過濾器禁止保存您剛才提交的頁面，這可能是由於您所加入的外部網站鏈接所產生的問題。',
+'spamprotectionmatch' => '觸發了我們的垃圾過濾器的文本如下：$1',
+'spambot_username'    => 'MediaWiki 廣告清除',
+'spam_reverting'      => '復原到不包含連結至$1的最近版本',
+'spam_blanking'       => '所有包含連結至$1的修訂，清空',
 
 # Info page
 'infosubtitle'   => '頁面訊息',
@@ -1829,9 +1818,13 @@ $1',
 'show-big-image-thumb' => '<small>這幅縮圖的解像度: $1 × $2 像素</small>',
 
 # Special:Newimages
-'newimages'    => '新建圖片畫廊',
-'showhidebots' => '($1機器人)',
-'noimages'     => '無可檢視圖片。',
+'newimages'             => '新建圖片畫廊',
+'imagelisttext'         => '以下是按$2排列的$1個檔案列表。',
+'showhidebots'          => '($1機器人)',
+'noimages'              => '無可檢視圖片。',
+'ilsubmit'              => '搜尋',
+'bydate'                => '按日期',
+'sp-newimages-showfrom' => '從$1開始顯示新圖片',
 
 # Bad image list
 'bad_image_list' => '請根據以下的格式去編寫:
@@ -2250,6 +2243,5 @@ $1
 'watchlisttools-view' => '檢視有關更改',
 'watchlisttools-edit' => '檢視並編輯監視列表',
 'watchlisttools-raw'  => '編輯原始監視列表',
-
 
 );

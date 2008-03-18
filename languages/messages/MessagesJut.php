@@ -111,7 +111,7 @@ $messages = array(
 'nov'           => 'nov',
 'dec'           => 'des',
 
-# Bits of text used by many pages
+# Categories related messages
 'categories'               => 'Klynger',
 'pagecategories'           => '{{PLURAL:$1|Klynge|Klynger}}',
 'category_header'          => 'Ertikler i\'n klynge "$1"',
@@ -120,6 +120,8 @@ $messages = array(
 'category-empty'           => "''Denne klynge endeholter før øjeblikket æ verke sider æller medie-gøret.''",
 'hidden-categories'        => '{{PLURAL:$1|Skjult klynge|Skjulte klynger}}',
 'hidden-category-category' => 'Skjulte klynger', # Name of the category where hidden categories will be listed
+'subcategorycount'         => 'Der er $1 {{PLURAL:$1|underklynge|underklynger}} i denne klynge.',
+'listingcontinuesabbrev'   => 'førtgøte',
 
 'mainpagetext'      => 'MediaWiki er nu installeret.',
 'mainpagedocfooter' => "Se vores engelskspråĝede [http://meta.wikimedia.org/wiki/MediaWiki_localisation dokumentåsje tilpasnenge'm åf æ brugergrænseflade] og [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide æ brugervejlednenge] før åplysnenger åpsætnenge'm og anvendelse.",
@@ -507,8 +509,10 @@ hersenenge, (førge) = førskel til den førge hersenenge, l = lile til mendre �
 'uploadlogpage' => 'Åplægnengslog',
 'uploadedimage' => 'Låĝde "[[$1]]" åp',
 
-# Image list
-'imagelist'                 => 'Billetliste',
+# Special:Imagelist
+'imagelist' => 'Billetliste',
+
+# Image description page
 'filehist'                  => 'Billetskigt',
 'filehist-help'             => "Klik på'n dato/tid før at se den hersenenge åf gøret.",
 'filehist-current'          => 'nuværende',
@@ -785,12 +789,6 @@ navn du harst valgt er ekke gyldegt. Vælg et andet navn.',
 'tooltip-diff'                    => 'Ves velke ændrenger du har lavet i æ skrevselenger.',
 'tooltip-compareselectedversions' => 'Se førskellene imellem de to valgte hersenenger åf denne side.',
 'tooltip-watch'                   => 'Tilføj denne side til din åvervågnengsliste',
-
-# Spam protection
-'subcategorycount'       => 'Der er $1 {{PLURAL:$1|underklynge|underklynger}} i denne klynge.',
-'categoryarticlecount'   => 'Der er {{PLURAL:$1|et ertikel|$1 ertikler}} i denne klynge.',
-'category-media-count'   => 'Der veses {{PLURAL:$1|$1 gøret|$1 gøreter}} frå denne klynge.',
-'listingcontinuesabbrev' => 'førtgøte',
 
 # Browsing diffs
 'previousdiff' => '← Gå til førge førskel',

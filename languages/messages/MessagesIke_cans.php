@@ -62,7 +62,7 @@ $messages = array(
 'nov'           => 'ᓄᕕ',
 'dec'           => 'ᑎᓯᒻ',
 
-# Bits of text used by many pages
+# Categories related messages
 'categories' => 'ᓄᐊᑉᐳᑦ',
 
 'about'          => 'ᒥᒃᓵᓂ',
@@ -238,12 +238,6 @@ $messages = array(
 'fileuploadsummary' => 'ᓱᕕᑦ:',
 'watchthisupload'   => 'ᐅᕝᕙ',
 
-# Image list
-'ilsubmit' => 'ᐃᕚᖅᐳᖅ',
-'byname'   => 'ᓴᓂᕐᕙᖃᑎᒌᑉᐳᑦ ᐊᑐᐃᓐᓇᓯᕗᖅ ᖃᑦᓯᐹ',
-'bydate'   => 'ᐱᑖᕈᑦᑐᖅ ᐃᓅᓕᕐᕕᒃ',
-'bysize'   => 'ᓴᓂᕐᕙᖃᑎᒌᑉᐳᑦ ᐊᑐᐃᓐᓇᓯᕗᖅ ᑐᕐᕿᐹ',
-
 # List redirects
 'listredirects' => 'ᓂᐱ ᖃᓂᖓᓂ ᑲᒪᒋᔭᖅ ᐋᓯᑦ ᓇᑭᑦ',
 
@@ -375,6 +369,10 @@ $messages = array(
 # Browsing diffs
 'previousdiff' => '← ᑐᓄᓪᓕᐹᖅ ᐊᓯᐊᙳᑐᖅ',
 'nextdiff'     => 'ᑕᒡᒐ ᐊᓯᐊᙳᑐᖅ ᒪᑉᐱᑕᖅ →',
+
+# Special:Newimages
+'ilsubmit' => 'ᐃᕚᖅᐳᖅ',
+'bydate'   => 'ᐱᑖᕈᑦᑐᖅ ᐃᓅᓕᕐᕕᒃ',
 
 # EXIF tags
 'exif-imagelength'         => 'ᖁᑦᓯᖕᓂᖅ',

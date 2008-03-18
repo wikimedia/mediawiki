@@ -158,7 +158,7 @@ $messages = array(
 'nov'           => 'Du',
 'dec'           => 'Kzu',
 
-# Bits of text used by many pages
+# Categories related messages
 'categories'               => 'Roll ar rummadoù',
 'pagecategories'           => '{{PLURAL:$1|Rummad |Rummad }}',
 'category_header'          => 'Niver a bennadoù er rummad "$1"',
@@ -167,6 +167,8 @@ $messages = array(
 'category-empty'           => "''N'eus na pajenn na media ebet er rummad-mañ evit ar mare.''",
 'hidden-categories'        => '{{PLURAL:$1|Rummad kuzhet|Rummad kuzhet}}',
 'hidden-category-category' => 'Rummadoù kuzhet', # Name of the category where hidden categories will be listed
+'subcategorycount'         => "$1 isrummad zo d'ar rummad-mañ.",
+'listingcontinuesabbrev'   => "(war-lerc'h)",
 
 'mainpagetext'      => 'Meziant {{SITENAME}} staliet.',
 'mainpagedocfooter' => "Sellit ouzh [http://meta.wikimedia.org/wiki/Help:Contents Sturlevr an implijerien] evit gouzout hiroc'h war an doare da implijout ar meziant wiki.
@@ -1039,18 +1041,18 @@ PICT # misc.
 'upload_source_url'  => " (Un URL reizh a c'hall bezañ tizhet gant an holl)",
 'upload_source_file' => " (ur restr war hoc'h urzhiataer)",
 
-# Image list
-'imagelist'                 => 'Roll ar skeudennoù',
-'imagelisttext'             => 'Setu ur roll $1 skeudenn rummet $2.',
-'getimagelist'              => "Oc'h adtapout roll ar skeudennoù",
-'ilsubmit'                  => 'Klask',
-'showlast'                  => 'diskouez an/ar $1 skeudenn ziwezhañ rummet dre $2.',
-'byname'                    => 'dre o anv',
-'bydate'                    => 'dre an deiziad anezho',
-'bysize'                    => 'dre o ment',
-'imgdelete'                 => 'diverk',
-'imgdesc'                   => 'deskr',
-'imgfile'                   => 'restr',
+# Special:Imagelist
+'imagelist_search_for'  => 'Klask anv ar skeudenn :',
+'imgdesc'               => 'deskr',
+'imgfile'               => 'restr',
+'imagelist'             => 'Roll ar skeudennoù',
+'imagelist_date'        => 'Deiziad',
+'imagelist_name'        => 'Anv',
+'imagelist_user'        => 'Implijer',
+'imagelist_size'        => 'Ment (e bitoù)',
+'imagelist_description' => 'Deskrivadur',
+
+# Image description page
 'filehist'                  => 'Istor ar restr',
 'filehist-help'             => 'Klikañ war un deiziad/eur da welet ar restr evel ma oa da neuze.',
 'filehist-deleteall'        => 'diverkañ pep tra',
@@ -1072,12 +1074,6 @@ PICT # misc.
 'noimage'                   => "N'eus pajenn ebet anvet evel-se c'hoazh, gallout a rit $1.",
 'noimage-linktext'          => 'enporzhiañ unan',
 'uploadnewversion-linktext' => 'Kargañ ur stumm nevez eus ar restr-mañ',
-'imagelist_date'            => 'Deiziad',
-'imagelist_name'            => 'Anv',
-'imagelist_user'            => 'Implijer',
-'imagelist_size'            => 'Ment (e bitoù)',
-'imagelist_description'     => 'Deskrivadur',
-'imagelist_search_for'      => 'Klask anv ar skeudenn :',
 
 # File reversion
 'filerevert'                => 'Disteuler $1',
@@ -1517,8 +1513,6 @@ $1',
 'sp-contributions-username'    => "Anv implijer pe chomlec'h IP :",
 'sp-contributions-submit'      => 'Klask',
 
-'sp-newimages-showfrom' => 'Diskouez ar restroù nevez adal $1',
-
 # What links here
 'whatlinkshere'       => 'Pajennoù liammet',
 'whatlinkshere-title' => 'Pajennoù liammet ouzh $1',
@@ -1840,16 +1834,12 @@ Miret eo an holl enporzhiadennoù etrewiki e-barzh [[Special:Log/import|log an e
 'nocredits'        => "N'eus tamm titour kred hegerz ebet evit ar bajenn-mañ.",
 
 # Spam protection
-'spamprotectiontitle'    => "Pajenn warezet ent emgefre abalamour d'ar Spam",
-'spamprotectiontext'     => "Pajenn warezet ent emgefre abalamour d'ar Spam",
-'spamprotectionmatch'    => 'Dihunet eo bet an detektour Spam: $1 gant an destenn-mañ',
-'subcategorycount'       => "$1 isrummad zo d'ar rummad-mañ.",
-'categoryarticlecount'   => '$1 pennad zo er rummad-mañ.',
-'category-media-count'   => "Bez'ez eus {{PLURAL:$1|ur restr|$1 restr}} er rummad-mañ.",
-'listingcontinuesabbrev' => "(war-lerc'h)",
-'spambot_username'       => 'Naetaat spam MediaWiki',
-'spam_reverting'         => "Distreiñ d'ar stumm diwezhañ hep liamm davet $1",
-'spam_blanking'          => 'Diverkañ an holl stummoù enno liammoù davet $1',
+'spamprotectiontitle' => "Pajenn warezet ent emgefre abalamour d'ar Spam",
+'spamprotectiontext'  => "Pajenn warezet ent emgefre abalamour d'ar Spam",
+'spamprotectionmatch' => 'Dihunet eo bet an detektour Spam: $1 gant an destenn-mañ',
+'spambot_username'    => 'Naetaat spam MediaWiki',
+'spam_reverting'      => "Distreiñ d'ar stumm diwezhañ hep liamm davet $1",
+'spam_blanking'       => 'Diverkañ an holl stummoù enno liammoù davet $1',
 
 # Info page
 'infosubtitle'   => 'Titouroù evit ar bajenn',
@@ -1911,9 +1901,13 @@ $1',
 'show-big-image-thumb' => '<small>Ment ar rakweladenn-mañ : $1 × $2 piksel</small>',
 
 # Special:Newimages
-'newimages'    => 'Roll ar skeudennoù nevez',
-'showhidebots' => '($1 bot)',
-'noimages'     => 'Netra da welet.',
+'newimages'             => 'Roll ar skeudennoù nevez',
+'imagelisttext'         => 'Setu ur roll $1 skeudenn rummet $2.',
+'showhidebots'          => '($1 bot)',
+'noimages'              => 'Netra da welet.',
+'ilsubmit'              => 'Klask',
+'bydate'                => 'dre an deiziad anezho',
+'sp-newimages-showfrom' => 'Diskouez ar restroù nevez adal $1',
 
 # Bad image list
 'bad_image_list' => "Setu doare ar furmad :

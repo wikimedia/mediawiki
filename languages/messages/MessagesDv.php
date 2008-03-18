@@ -45,11 +45,12 @@ $messages = array(
 'nov'       => 'ނޮވެމްބަރ',
 'dec'       => 'ޑިސެމްބަރ',
 
-# Bits of text used by many pages
-'categories'      => 'ގިސްމުތައް',
-'category_header' => 'ގިސްމު "$1" ގައިވާ މަޒުމޫނުތައް',
-'subcategories'   => 'ކުދިގިސްމުތައް',
-'category-empty'  => "''މި ގިސްމުގައި އެއްވެއސް ސަފްހާ އެއް އަދި އެއްވެސް ފައިލެއް ނުހިމެނެއެވެ.''",
+# Categories related messages
+'categories'       => 'ގިސްމުތައް',
+'category_header'  => 'ގިސްމު "$1" ގައިވާ މަޒުމޫނުތައް',
+'subcategories'    => 'ކުދިގިސްމުތައް',
+'category-empty'   => "''މި ގިސްމުގައި އެއްވެއސް ސަފްހާ އެއް އަދި އެއްވެސް ފައިލެއް ނުހިމެނެއެވެ.''",
+'subcategorycount' => 'މި ގިސްމު ގައި $1 ކުދިގިސްމު ވެއެވެ.',
 
 'about'         => 'ތާރަފު',
 'article'       => 'ފިހުރިސްތު ޞަފްޙާ',
@@ -246,9 +247,10 @@ $messages = array(
 'uploadedfiles'     => 'ފޮނުވިފައިވާ ފައިލުތައް',
 'uploadwarning'     => 'ފައިލުފޮނުއްވުމުގެ ކުރިން ދެވޭ އިންޒާރު',
 
-# Image list
-'imagelist'  => 'ފައިލުތަކުގެ ފިހުރިސްތު',
-'ilsubmit'   => 'ހޯއްދަވާ',
+# Special:Imagelist
+'imagelist' => 'ފައިލުތަކުގެ ފިހުރިސްތު',
+
+# Image description page
 'imagelinks' => 'ފާލަންތައް',
 
 # Random page
@@ -344,7 +346,7 @@ $messages = array(
 'lockbtn' => 'ކޮށާރު ބަންދުކުރައްވާ',
 
 # Move page
-'move-page-legend'                => 'ޞަފްޙާގެ ނަން ބަދަލުކުރައްވާ',
+'move-page-legend'        => 'ޞަފްޙާގެ ނަން ބަދަލުކުރައްވާ',
 'movearticle'             => 'ޞަފްޙާގެ ނަން/ތަން ބަދަލުކުރައްވާ',
 'newtitle'                => 'އައު ނަމަކަށް',
 'move-watch'              => 'މި ޞަފްހާ އަށް ނަޒަރުބަހައްޓަވާ!',
@@ -365,12 +367,9 @@ $messages = array(
 'allmessagesdefault' => 'ކުރީގެ މަތަން',
 'allmessagescurrent' => 'މިހާރުގެ މަތަން',
 
-# Spam protection
-'subcategorycount'     => 'މި ގިސްމު ގައި $1 ކުދިގިސްމު ވެއެވެ.',
-'categoryarticlecount' => 'މި ގިސްމު ގައި $1 މަޒުމޫނު ވެއެވެ.',
-
 # Special:Newimages
 'showhidebots' => '($1 ސެއްޓި)',
+'ilsubmit'     => 'ހޯއްދަވާ',
 
 # EXIF tags
 'exif-imagedescription' => 'ތަސްވީރުގެ ސުރުހީ',

@@ -107,11 +107,13 @@ $messages = array(
 'nov'           => '11g',
 'dec'           => '12g',
 
-# Bits of text used by many pages
-'categories'      => 'Lūi-pia̍t',
-'pagecategories'  => '{{PLURAL:$1|Lūi-pia̍t|Lūi-pia̍t}}',
-'category_header' => 'Tī "$1" chit ê lūi-pia̍t ê bûn-chiuⁿ',
-'subcategories'   => 'Ē-lūi-pia̍t',
+# Categories related messages
+'categories'             => 'Lūi-pia̍t',
+'pagecategories'         => '{{PLURAL:$1|Lūi-pia̍t|Lūi-pia̍t}}',
+'category_header'        => 'Tī "$1" chit ê lūi-pia̍t ê bûn-chiuⁿ',
+'subcategories'          => 'Ē-lūi-pia̍t',
+'subcategorycount'       => 'Chit ê lūi-pia̍t ū $1 ê ē-lūi-pia̍t.',
+'listingcontinuesabbrev' => '(chiap-sòa thâu-chêng)',
 
 'about'      => 'Koan-hē',
 'newwindow'  => '(ē khui sin thang-á hián-sī)',
@@ -475,26 +477,21 @@ $messages = array(
 'destfilename'      => 'Tóng-àn sin miâ:',
 'watchthisupload'   => 'Kàm-sī chit ia̍h',
 
-# Image list
-'imagelist'             => 'Iáⁿ-siōng lia̍t-toaⁿ',
-'imagelisttext'         => "Í-hā sī '''$1''' tiuⁿ iáⁿ-siōng ê lia̍t-toaⁿ, $2 pâi-lia̍t.",
-'getimagelist'          => 'teh chhoân iáⁿ-siōng lia̍t-toaⁿ',
-'ilsubmit'              => 'Kiám-sek',
-'showlast'              => 'Hián-sī chêng $1 tiuⁿ iáⁿ-siōng ($2 pâi).',
-'byname'                => 'chiàu miâ',
-'bydate'                => 'chiàu ji̍t-kî',
-'bysize'                => 'chiàu tōa-sè',
+# Special:Imagelist
 'imgdesc'               => 'biô-su̍t',
-'imagelinks'            => 'Iáⁿ-siōng liân-kiat',
-'linkstoimage'          => 'Í-hā ê ia̍h liân kàu chit ê iáⁿ-siōng:',
-'nolinkstoimage'        => 'Bô poàⁿ ia̍h liân kàu chit tiuⁿ iáⁿ-siōng.',
-'noimage'               => 'Hō chit ê miâ ê tóng-àn bô tè chhoē. Lí ē-sái $1.',
-'noimage-linktext'      => 'kā thoân chiūⁿ bāng',
+'imagelist'             => 'Iáⁿ-siōng lia̍t-toaⁿ',
 'imagelist_date'        => 'Ji̍t-kî',
 'imagelist_name'        => 'Miâ',
 'imagelist_user'        => 'Iōng-chiá',
 'imagelist_size'        => 'Toā-sè',
 'imagelist_description' => 'Soat-bêng',
+
+# Image description page
+'imagelinks'       => 'Iáⁿ-siōng liân-kiat',
+'linkstoimage'     => 'Í-hā ê ia̍h liân kàu chit ê iáⁿ-siōng:',
+'nolinkstoimage'   => 'Bô poàⁿ ia̍h liân kàu chit tiuⁿ iáⁿ-siōng.',
+'noimage'          => 'Hō chit ê miâ ê tóng-àn bô tè chhoē. Lí ē-sái $1.',
+'noimage-linktext' => 'kā thoân chiūⁿ bāng',
 
 # MIME search
 'mimesearch' => 'MIME chhiau-chhoē',
@@ -726,7 +723,7 @@ Template:Khu-pia̍t-ia̍h',
 'locknoconfirm' => 'Lí bô kau "khak-tēng" ê keh-á.',
 
 # Move page
-'move-page-legend'         => 'Sóa ia̍h',
+'move-page-legend' => 'Sóa ia̍h',
 'movepagetext'     => 'Ē-kha chit ê form> iōng lâi kái 1 ê ia̍h ê piau-tê (miâ-chheng); só·-ū siong-koan ê le̍k-sú ē tòe leh sóa khì sin piau-tê. Kū piau-tê ē chiâⁿ-chò 1 ia̍h choán khì sin piau-tê ê choán-ia̍h. Liân khì kū piau-tê ê liân-kiat (link) bē khì tāng--tio̍h; ē-kì-tit [[Special:Maintenance|chhiau-chhōe]] siang-thâu (double) ê a̍h-sī kò·-chiòng ê choán-ia̍h. Lí ū chek-jīm khak-tēng liân-kiat kè-sio̍k liân tio̍h ūi. Sin piau-tê nā í-keng tī leh (bô phian-chi̍p koè ê khang ia̍h, choán-ia̍h bô chún-sǹg), tō bô-hoat-tō· soá khì hia. Che piaú-sī nā ū têng-tâⁿ, ē-sái kā sin ia̍h soà tńg-khì goân-lâi ê kū ia̍h. <strong>SÈ-JĪ!</strong> Tùi chē lâng tha̍k ê ia̍h lâi kóng, soá-ūi sī toā tiâu tāi-chì. Liâu--lo̍h-khì chìn-chêng, chhiáⁿ seng khak-tēng lí ū liáu-kái chiah-ê hiō-kó.',
 'movepagetalktext' => "Siong-koan ê thó-lūn-ia̍h (chún ū) oân-nâ ē chū-tōng tòe leh sóa-ūi. Í-hā ê chêng-hêng '''bô chún-sǹg''': *Beh kā chit ia̍h tùi 1 ê miâ-khong-kan (namespace) soá khì lēng-gōa 1 ê miâ-khong-kan, *Sin piau-tê í-keng ū iōng--kòe ê thó-lūn-ia̍h, he̍k-chiá *Ē-kha ê sió-keh-á bô phah-kau. Í-siōng ê chêng-hêng nā-chún tī leh, lí chí-hó iōng jîn-kang ê hong-sek sóa ia̍h a̍h-sī kā ha̍p-pèng (nā ū su-iàu).",
 'movearticle'      => 'Sóa ia̍h:',
@@ -775,11 +772,6 @@ Template:Khu-pia̍t-ia̍h',
 'othercontribs' => 'Kin-kù $1 ê kòng-hiàn.',
 'siteusers'     => '{{SITENAME}} iōng-chiá $1',
 
-# Spam protection
-'subcategorycount'       => 'Chit ê lūi-pia̍t ū $1 ê ē-lūi-pia̍t.',
-'categoryarticlecount'   => 'Chit ê lūi-pia̍t ū $1 phiⁿ bûn-chiuⁿ.',
-'listingcontinuesabbrev' => '(chiap-sòa thâu-chêng)',
-
 # Math options
 'mw_math_png'    => 'Tiāⁿ-tio̍h iōng PNG render',
 'mw_math_simple' => 'Tân-sûn ê chêng-hêng iōng HTML; kî-thaⁿ iōng PNG',
@@ -806,7 +798,10 @@ Template:Khu-pia̍t-ia̍h',
 'show-big-image-thumb' => '<small>Chit tiuⁿ ū-lám tô͘ (preview) ê toā-sè: $1 × $2 pixel</small>',
 
 # Special:Newimages
-'newimages' => 'Sin iáⁿ-siōng oē-lóng',
+'newimages'     => 'Sin iáⁿ-siōng oē-lóng',
+'imagelisttext' => "Í-hā sī '''$1''' tiuⁿ iáⁿ-siōng ê lia̍t-toaⁿ, $2 pâi-lia̍t.",
+'ilsubmit'      => 'Kiám-sek',
+'bydate'        => 'chiàu ji̍t-kî',
 
 # Metadata
 'metadata-expand'   => 'Hián-sī iù-chiat',

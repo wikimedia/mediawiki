@@ -86,7 +86,7 @@ $messages = array(
 # Preferences page
 'servertime' => 'Taem blong server',
 
-# Image list
+# Special:Imagelist
 'imagelist_name' => 'Nem',
 
 # Miscellaneous special pages
@@ -108,8 +108,8 @@ $messages = array(
 'proxyblocksuccess' => 'Finis.',
 
 # Move page
-'move-page-legend'    => 'Muvum pej',
-'movearticle' => 'Muvum pej:',
+'move-page-legend' => 'Muvum pej',
+'movearticle'      => 'Muvum pej:',
 
 # Namespace 8 related
 'allmessagesname' => 'Nem',

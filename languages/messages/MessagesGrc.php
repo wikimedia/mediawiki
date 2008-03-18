@@ -108,7 +108,7 @@ $messages = array(
 'nov'           => 'Νοέμ',
 'dec'           => 'Δεκ',
 
-# Bits of text used by many pages
+# Categories related messages
 'categories'      => 'Γένη',
 'pagecategories'  => '{{PLURAL:$1|Γένος|Γένη}}',
 'category_header' => 'Χρήματα ἐν γένει "$1"',
@@ -331,15 +331,16 @@ $messages = array(
 'fileuploadsummary' => 'Τὸ κεφάλαιον:',
 'watchthisupload'   => 'Ἐφορᾶν τήνδε τὴν δέλτον',
 
-# Image list
-'ilsubmit'              => 'Ζητεῖν',
-'filehist-user'         => 'Χρώμενος',
-'filehist-comment'      => 'Σχόλιον',
-'imagelinks'            => 'Σύνδεσμοι',
+# Special:Imagelist
 'imagelist_name'        => 'Ὄνομα',
 'imagelist_user'        => 'Χρώμενος',
 'imagelist_size'        => 'Ὁπόσος',
 'imagelist_description' => 'Διέξοδος',
+
+# Image description page
+'filehist-user'    => 'Χρώμενος',
+'filehist-comment' => 'Σχόλιον',
+'imagelinks'       => 'Σύνδεσμοι',
 
 # MIME search
 'mimesearch' => 'MIME Ζητεῖν',
@@ -427,10 +428,10 @@ $messages = array(
 'contribslink'       => 'Ἔρανοι',
 
 # Move page
-'move-page-legend'    => 'Κινεῖν τὴν δέλτον',
-'movearticle' => 'Κινεῖν τὴν δέλτον:',
-'move-watch'  => 'Ἑφορᾶν τήνδε τὴν δέλτον',
-'movereason'  => 'Ἀπολογία:',
+'move-page-legend' => 'Κινεῖν τὴν δέλτον',
+'movearticle'      => 'Κινεῖν τὴν δέλτον:',
+'move-watch'       => 'Ἑφορᾶν τήνδε τὴν δέλτον',
+'movereason'       => 'Ἀπολογία:',
 
 # Namespace 8 related
 'allmessagesname' => 'Ὄνομα',
@@ -467,6 +468,9 @@ $messages = array(
 # Browsing diffs
 'previousdiff' => '← ἡ μεταβολὴ ἡ προτέρη',
 'nextdiff'     => 'ἡ μεταβολὴ ἡ ἐχομένη →',
+
+# Special:Newimages
+'ilsubmit' => 'Ζητεῖν',
 
 'exif-componentsconfiguration-0' => 'Οὐκ ἔστι',
 

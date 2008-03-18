@@ -79,11 +79,13 @@ $messages = array(
 'december-gen'  => 'دسمبر',
 'may'           => 'مئی',
 
-# Bits of text used by many pages
-'categories'      => '{{PLURAL:$1|زمرہ|زمرہ جات}}',
-'pagecategories'  => '{{PLURAL:$1|زمرہ|زمرہ جات}}',
-'category_header' => 'زمرہ "$1" میں مضامین',
-'subcategories'   => 'ذیلی ذمرہ جات',
+# Categories related messages
+'categories'             => '{{PLURAL:$1|زمرہ|زمرہ جات}}',
+'pagecategories'         => '{{PLURAL:$1|زمرہ|زمرہ جات}}',
+'category_header'        => 'زمرہ "$1" میں مضامین',
+'subcategories'          => 'ذیلی ذمرہ جات',
+'subcategorycount'       => 'اس زمرے  {{PLURAL:$1|کا ایک ذیلی زمرہ ہے|کے $1 ذیلی زمرہ جات ہیں}}۔',
+'listingcontinuesabbrev' => '۔جاری',
 
 'mainpagetext' => "<big>'''میڈیاوکی کو کامیابی سے چالو کردیا گیا ہے۔.'''</big>",
 
@@ -422,12 +424,10 @@ $messages = array(
 'destfilename'      => 'تعین شدہ اسم ملف:',
 'watchthisupload'   => 'یہ صفحہ زیر نظر کیجیۓ',
 
-# Image list
-'imagelist'      => 'فہرست فائل',
-'ilsubmit'       => 'تلاش',
-'byname'         => 'بالحاظ اسم',
-'bydate'         => 'بالحاظ تاریخ',
-'bysize'         => 'بالحاظ جسامت',
+# Special:Imagelist
+'imagelist' => 'فہرست فائل',
+
+# Image description page
 'imagelinks'     => 'روابط',
 'linkstoimage'   => 'اس ملف (فائل) سے درج ذیل صفحات رابطہ رکھتے ہیں:',
 'nolinkstoimage' => 'ایسے کوئی صفحات نہیں جو اس ملف (فائل) سے رابطہ رکھتے ہوں۔',
@@ -646,11 +646,6 @@ $messages = array(
 'anonymous' => '{{SITENAME}} گمنام صارف',
 'others'    => 'دیگر',
 
-# Spam protection
-'subcategorycount'       => 'اس زمرے  {{PLURAL:$1|کا ایک ذیلی زمرہ ہے|کے $1 ذیلی زمرہ جات ہیں}}۔',
-'categoryarticlecount'   => 'اس زمرے میں {{PLURAL:$1|ایک مضمون ہے|$1 مضامین ہیں}}۔',
-'listingcontinuesabbrev' => '۔جاری',
-
 # Image deletion
 'deletedrevision' => 'حذف شدہ پرانی ترمیم $1۔',
 
@@ -661,6 +656,8 @@ $messages = array(
 # Special:Newimages
 'newimages'    => 'نئی فائلوں کی گیلری',
 'showhidebots' => '($1 بوٹ)',
+'ilsubmit'     => 'تلاش',
+'bydate'       => 'بالحاظ تاریخ',
 
 # Metadata
 'metadata' => 'میٹا ڈیٹا',

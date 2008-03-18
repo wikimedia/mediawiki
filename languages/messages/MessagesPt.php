@@ -1170,18 +1170,18 @@ PICT # misc.
 'upload_source_url'  => ' (um URL válido, publicamente acessível)',
 'upload_source_file' => ' (um ficheiro no seu computador)',
 
-# Image list
-'imagelist'                 => 'Lista de ficheiros',
-'imagelisttext'             => "É exibida a seguir uma listagem {{PLURAL:$1|de '''um''' ficheiro organizado|de '''$1''' ficheiros organizados}} por $2.",
-'getimagelist'              => 'carregando lista de ficheiros',
-'ilsubmit'                  => 'Procurar',
-'showlast'                  => 'Mostrar últimos $1 ficheiros organizados $2.',
-'byname'                    => 'por nome',
-'bydate'                    => 'por data',
-'bysize'                    => 'por tamanho',
-'imgdelete'                 => 'eli',
-'imgdesc'                   => 'desc',
-'imgfile'                   => 'ficheiro',
+# Special:Imagelist
+'imagelist_search_for'  => 'Pesquisar por nome de imagem:',
+'imgdesc'               => 'desc',
+'imgfile'               => 'ficheiro',
+'imagelist'             => 'Lista de ficheiros',
+'imagelist_date'        => 'Data',
+'imagelist_name'        => 'Nome',
+'imagelist_user'        => 'Utilizador',
+'imagelist_size'        => 'Tamanho',
+'imagelist_description' => 'Descrição',
+
+# Image description page
 'filehist'                  => 'Histórico do ficheiro',
 'filehist-help'             => 'Clique em uma data/horário para ver o ficheiro tal como ele se encontrava em tal momento.',
 'filehist-deleteall'        => 'eliminar todas',
@@ -1203,12 +1203,6 @@ PICT # misc.
 'noimage'                   => 'Não existe nenhum ficheiro com este nome. Se desejar, pode $1',
 'noimage-linktext'          => 'carregá-lo',
 'uploadnewversion-linktext' => 'Carregar uma nova versão deste ficheiro',
-'imagelist_date'            => 'Data',
-'imagelist_name'            => 'Nome',
-'imagelist_user'            => 'Utilizador',
-'imagelist_size'            => 'Tamanho',
-'imagelist_description'     => 'Descrição',
-'imagelist_search_for'      => 'Pesquisar por nome de imagem:',
 
 # File reversion
 'filerevert'                => 'Reverter $1',
@@ -1652,8 +1646,6 @@ $1',
 'sp-contributions-username'    => 'Endereço de IP ou utilizador:',
 'sp-contributions-submit'      => 'Pesquisar',
 
-'sp-newimages-showfrom' => 'Mostrar novas imagens começando de $1',
-
 # What links here
 'whatlinkshere'       => 'Páginas afluentes',
 'whatlinkshere-title' => 'Páginas que apontam para $1',
@@ -2040,9 +2032,13 @@ $1',
 'show-big-image-thumb' => '<small>Tamanho desta previsão: $1 × $2 pixels</small>',
 
 # Special:Newimages
-'newimages'    => 'Galeria de novos ficheiros',
-'showhidebots' => '($1 robôs)',
-'noimages'     => 'Nada para ver.',
+'newimages'             => 'Galeria de novos ficheiros',
+'imagelisttext'         => "É exibida a seguir uma listagem {{PLURAL:$1|de '''um''' ficheiro organizado|de '''$1''' ficheiros organizados}} por $2.",
+'showhidebots'          => '($1 robôs)',
+'noimages'              => 'Nada para ver.',
+'ilsubmit'              => 'Procurar',
+'bydate'                => 'por data',
+'sp-newimages-showfrom' => 'Mostrar novas imagens começando de $1',
 
 # Bad image list
 'bad_image_list' => 'The format is as follows:

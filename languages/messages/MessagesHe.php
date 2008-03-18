@@ -1281,18 +1281,18 @@ $2',
 'upload_source_url'  => ' (כתובת URL תקפה ונגישה)',
 'upload_source_file' => ' (קובץ במחשב שלך)',
 
-# Image list
-'imagelist'                 => 'רשימת תמונות',
-'imagelisttext'             => 'להלן רשימה של {{plural:$1|תמונה אחת|$1 תמונות}}, ממוינות $2:',
-'getimagelist'              => 'מושך את רשימת התמונות',
-'ilsubmit'                  => 'חיפוש',
-'showlast'                  => 'הצגת $1 תמונות אחרונות ממוינות $2',
-'byname'                    => 'לפי שם',
-'bydate'                    => 'לפי תאריך',
-'bysize'                    => 'לפי גודל',
-'imgdelete'                 => 'מחיקה',
-'imgdesc'                   => 'תיאור',
-'imgfile'                   => 'קובץ',
+# Special:Imagelist
+'imagelist_search_for'  => 'חיפוש תמונה בשם:',
+'imgdesc'               => 'תיאור',
+'imgfile'               => 'קובץ',
+'imagelist'             => 'רשימת תמונות',
+'imagelist_date'        => 'תאריך',
+'imagelist_name'        => 'שם',
+'imagelist_user'        => 'משתמש',
+'imagelist_size'        => 'גודל',
+'imagelist_description' => 'תיאור',
+
+# Image description page
 'filehist'                  => 'היסטוריית קובץ התמונה',
 'filehist-help'             => 'לחצו על תאריך/שעה כדי לראות את התמונה כפי שהופיעה בעת זו.',
 'filehist-deleteall'        => 'מחיקת כל הגרסאות',
@@ -1314,12 +1314,6 @@ $2',
 'noimage'                   => 'לא נמצא קובץ בשם זה, אך יש באפשרותכם $1 חלופי.',
 'noimage-linktext'          => 'להעלות קובץ',
 'uploadnewversion-linktext' => 'העלו גרסה חדשה של קובץ זה',
-'imagelist_date'            => 'תאריך',
-'imagelist_name'            => 'שם',
-'imagelist_user'            => 'משתמש',
-'imagelist_size'            => 'גודל',
-'imagelist_description'     => 'תיאור',
-'imagelist_search_for'      => 'חיפוש תמונה בשם:',
 
 # File reversion
 'filerevert'                => 'שחזור $1',
@@ -1755,8 +1749,6 @@ $1',
 'sp-contributions-username'    => 'שם משתמש או כתובת IP:',
 'sp-contributions-submit'      => 'חיפוש',
 
-'sp-newimages-showfrom' => 'הצגת תמונות חדשות החל מ־$1',
-
 # What links here
 'whatlinkshere'       => 'דפים המקושרים לכאן',
 'whatlinkshere-title' => 'דפים המקשרים לדף $1',
@@ -2161,9 +2153,13 @@ $1',
 'show-big-image-thumb' => '<small>גודל התצוגה הזו: $1 × $2 פיקסלים</small>',
 
 # Special:Newimages
-'newimages'    => 'גלריית תמונות חדשות',
-'showhidebots' => '($1 בוטים)',
-'noimages'     => 'אין תמונות.',
+'newimages'             => 'גלריית תמונות חדשות',
+'imagelisttext'         => 'להלן רשימה של {{plural:$1|תמונה אחת|$1 תמונות}}, ממוינות $2:',
+'showhidebots'          => '($1 בוטים)',
+'noimages'              => 'אין תמונות.',
+'ilsubmit'              => 'חיפוש',
+'bydate'                => 'לפי תאריך',
+'sp-newimages-showfrom' => 'הצגת תמונות חדשות החל מ־$1',
 
 # Bad image list
 'bad_image_list' => 'דרך הכתיבה בהודעה היא כמתואר להלן:

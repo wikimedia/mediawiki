@@ -110,7 +110,7 @@ $messages = array(
 # Upload
 'upload' => 'Тримите фишиер',
 
-# Image list
+# Image description page
 'filehist'      => 'Историкул фишиерулуй',
 'filehist-user' => 'Утилизатор',
 'imagelinks'    => 'Легэтурь',

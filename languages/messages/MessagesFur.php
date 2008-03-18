@@ -133,11 +133,13 @@ $messages = array(
 'nov'           => 'Nov',
 'dec'           => 'Dic',
 
-# Bits of text used by many pages
-'categories'      => 'Categoriis',
-'pagecategories'  => '{{PLURAL:$1|Categorie|Categoriis}}',
-'category_header' => 'Vôs inte categorie "$1"',
-'subcategories'   => 'Sot categoriis',
+# Categories related messages
+'categories'             => 'Categoriis',
+'pagecategories'         => '{{PLURAL:$1|Categorie|Categoriis}}',
+'category_header'        => 'Vôs inte categorie "$1"',
+'subcategories'          => 'Sot categoriis',
+'subcategorycount'       => 'Cheste categorie e conten {{PLURAL:$1|une sot categorie|$1 sot categoriis}}.',
+'listingcontinuesabbrev' => 'cont.',
 
 'mainpagetext' => "'''MediaWiki e je stade instalade cun sucès.'''",
 
@@ -368,7 +370,6 @@ Par plasê torne a fâ la jentrade pene che tu la âs ricevude.',
 'updated'                => '(Inzornât)',
 'previewnote'            => 'Visiti che cheste e je dome une anteprime, e no je stade ancjemò salvade!',
 'editing'                => 'Cambiament di $1',
-'editinguser'            => 'Cambiament di $1',
 'editingsection'         => 'Cambiament di $1 (sezion)',
 'editconflict'           => 'Conflit inte modifiche: $1',
 'explainconflict'        => 'Cualchidun altri al à cambiât cheste pagjine di cuant che tu âs començât a modificâle.
@@ -464,6 +465,9 @@ $2 Liste redirezions &nbsp; Cîr $3 $9',
 'guesstimezone'           => 'Cjape impostazions dal sgarfadôr',
 'default'                 => 'predeterminât',
 
+# User rights
+'editinguser' => 'Cambiament di $1',
+
 # Recent changes
 'nchanges'                       => '$1 {{PLURAL:$1|cambiament|cambiaments}}',
 'recentchanges'                  => 'Ultins cambiaments',
@@ -520,15 +524,10 @@ Par includi une figure intune pagjine, dopre un leam inte form
 'sourcefilename'     => 'Non dal file origjinâl:',
 'destfilename'       => 'Non dal file di destinazion:',
 
-# Image list
-'imagelist'                 => 'Liste des figuris',
-'imagelisttext'             => 'Ca sot e je une liste di $1 files ordenâts $2.',
-'ilsubmit'                  => 'Cîr',
-'showlast'                  => 'Mostre i ultins $1 files ordenâts $2.',
-'byname'                    => 'par non',
-'bydate'                    => 'par date',
-'bysize'                    => 'par dimension',
-'imgdelete'                 => 'eli',
+# Special:Imagelist
+'imagelist' => 'Liste des figuris',
+
+# Image description page
 'filehist'                  => 'Storic dal file',
 'filehist-current'          => 'corint',
 'filehist-datetime'         => 'Date/Ore',
@@ -618,7 +617,6 @@ The [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] length is '''\$7''
 'restrictedpheading'      => 'Pagjinis speciâls cun restrizions',
 'newpages'                => 'Gnovis pagjinis',
 'ancientpages'            => 'Pagjinis plui vecjis',
-'intl'                    => 'Leams interlengâi',
 'move'                    => 'Môf',
 'movethispage'            => 'Môf cheste pagjine',
 
@@ -762,7 +760,7 @@ Cjale $2 par une liste des ultimis eliminazions.',
 'lockbtn' => 'Bloche base di dâts',
 
 # Move page
-'move-page-legend'         => 'Môf pagjine',
+'move-page-legend' => 'Môf pagjine',
 'movepagetext'     => "Cun il formulari ca sot tu puedis gambiâ il non a une pagjine, movint dut il sô storic al gnûf non.
 Il vieri titul al deventarà une pagjine di reindirizament al gnûf titul. I leams ae vecje pagjine no saran gambiâts; verifiche
 par plasê che no sedin reindirizaments doplis o no funzionants.
@@ -873,12 +871,6 @@ Sielç par plasê un altri non.',
 'creditspage'      => 'Pagjine dai ricognossiments',
 'nocredits'        => 'Nissune informazion sui ricognossiments disponibil par cheste pagjine.',
 
-# Spam protection
-'subcategorycount'       => 'Cheste categorie e conten {{PLURAL:$1|une sot categorie|$1 sot categoriis}}.',
-'categoryarticlecount'   => 'In cheste categorie tu puedis cjatâ $1 vôs.',
-'category-media-count'   => 'Cheste categorie e conten {{PLURAL:$1|un file|$1 files}}.',
-'listingcontinuesabbrev' => 'cont.',
-
 # Info page
 'infosubtitle'   => 'Informazions pe pagjine',
 'numedits'       => 'Numar di cambiaments (vôs): $1',
@@ -907,8 +899,11 @@ Sielç par plasê un altri non.',
 'show-big-image-thumb' => '<small>Dimensions di cheste anteprime: $1 × $2 pixels</small>',
 
 # Special:Newimages
-'newimages' => 'Galarie dai gnûfs files',
-'noimages'  => 'Nuie di viodi.',
+'newimages'     => 'Galarie dai gnûfs files',
+'imagelisttext' => 'Ca sot e je une liste di $1 files ordenâts $2.',
+'noimages'      => 'Nuie di viodi.',
+'ilsubmit'      => 'Cîr',
+'bydate'        => 'par date',
 
 # Metadata
 'metadata-expand'   => 'Mostre plui detais',

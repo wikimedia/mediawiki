@@ -114,13 +114,15 @@ $messages = array(
 'nov'           => 'SAndria',
 'dec'           => 'Nad',
 
-# Bits of text used by many pages
-'categories'            => 'Categuri',
-'pagecategories'        => '{{PLURAL:$1|Categuria|Categuri}}',
-'category_header'       => 'Pàgini i\' la categuria "$1"',
-'subcategories'         => 'Sottucateguri',
-'category-media-header' => 'File i\' la categuria "$1"',
-'category-empty'        => "''Attuarmenti la categuria no cunteni nisciuna pàgina o file.''",
+# Categories related messages
+'categories'             => 'Categuri',
+'pagecategories'         => '{{PLURAL:$1|Categuria|Categuri}}',
+'category_header'        => 'Pàgini i\' la categuria "$1"',
+'subcategories'          => 'Sottucateguri',
+'category-media-header'  => 'File i\' la categuria "$1"',
+'category-empty'         => "''Attuarmenti la categuria no cunteni nisciuna pàgina o file.''",
+'subcategorycount'       => 'Chistha categuria cunteni {{PLURAL:$1|una sottocateguria|$1 sottocateguri}}.',
+'listingcontinuesabbrev' => '(séguiddu)',
 
 'mainpagetext'      => "<big>'''Isthallazioni di MediaWiki accabadda currentementi.'''</big>",
 'mainpagedocfooter' => "Cunsultha la [http://meta.wikimedia.org/wiki/Aggiuddu:Summàriu Ghia utenti] pa maggiori infuimmazioni i l'usu di chisthu software wiki.
@@ -960,18 +962,18 @@ Pa piazeri verifigga si vói carriggà avveru chisthu file; inogghi v'è lu rigi
 'upload_source_url'  => " (un'indirizzu vàriddu e pùbbriggu)",
 'upload_source_file' => " (un file i' lu propriu elaburaddori)",
 
-# Image list
-'imagelist'                 => 'Listha di li file',
-'imagelisttext'             => "Inogghi una listha di '''$1''' {{PLURAL:$1|file|file}} ordhinaddi pa $2.",
-'getimagelist'              => 'carriggamentu listha file',
-'ilsubmit'                  => 'Zercha',
-'showlast'                  => 'Musthra li ulthimi $1 file ordhinaddi pà $2.',
-'byname'                    => 'innòmu',
-'bydate'                    => 'data',
-'bysize'                    => 'misura',
-'imgdelete'                 => 'canz',
-'imgdesc'                   => "pàgina di l'immàgina",
-'imgfile'                   => 'file',
+# Special:Imagelist
+'imagelist_search_for'  => 'Zercha immàgini pa innòmu:',
+'imgdesc'               => "pàgina di l'immàgina",
+'imgfile'               => 'file',
+'imagelist'             => 'Listha di li file',
+'imagelist_date'        => 'Data',
+'imagelist_name'        => 'Innòmu',
+'imagelist_user'        => 'Utenti',
+'imagelist_size'        => 'Misuri in byte',
+'imagelist_description' => 'Deschrizioni',
+
+# Image description page
 'filehist'                  => 'Cronologia di lu file',
 'filehist-help'             => "Fà clic i' un gruppu data/ora pa vidé lu file cumenti era i' lu mamentu indicaddu.",
 'filehist-deleteall'        => 'canzella tuttu',
@@ -992,12 +994,6 @@ Pa piazeri verifigga si vói carriggà avveru chisthu file; inogghi v'è lu rigi
 'noimage'                   => "Un file cun chisth'innòmmu nò isisthi, vói $1 tu?",
 'noimage-linktext'          => 'carriggalu abà',
 'uploadnewversion-linktext' => 'Carrigga una nóba versioni di chistu file',
-'imagelist_date'            => 'Data',
-'imagelist_name'            => 'Innòmu',
-'imagelist_user'            => 'Utenti',
-'imagelist_size'            => 'Misuri in byte',
-'imagelist_description'     => 'Deschrizioni',
-'imagelist_search_for'      => 'Zercha immàgini pa innòmu:',
 
 # File reversion
 'filerevert'                => 'Turra che primma $1',
@@ -1398,8 +1394,6 @@ $1",
 'sp-contributions-username'    => 'Indirizzu IP o nommu utenti:',
 'sp-contributions-submit'      => 'Zercha',
 
-'sp-newimages-showfrom' => "Musthra l'immàgini più rizzenti a parthì da $1",
-
 # What links here
 'whatlinkshere'       => 'Pùntani inogghi',
 'whatlinkshere-title' => 'Pàgini chi pùntani a $1',
@@ -1687,16 +1681,12 @@ Tutti l'operazioni d'impurthazioni trans-wiki so rigisthraddi i' lu [[Special:Lo
 'nocredits'        => "Nisciuna infuimmazioni i' l'autori dipunìbiri pa chistha pàgina.",
 
 # Spam protection
-'spamprotectiontitle'    => 'Filthru anti-spam',
-'spamprotectiontext'     => "La pàgina ch'eri saivvendi è isthadda broccadda da lu filthru anti-spam, pó assé pa la prisènzia di un cullegamentu a un situ esthernu broccaddu.",
-'spamprotectionmatch'    => 'Lu filthru anti-spam è isthaddu attibaddu da lu testhu sighenti: $1',
-'subcategorycount'       => 'Chistha categuria cunteni {{PLURAL:$1|una sottocateguria|$1 sottocateguri}}.',
-'categoryarticlecount'   => 'Chistha categuria cunteni {{PLURAL:$1|una pàgina|$1 pàgini}}.',
-'category-media-count'   => 'Chistha categuria cunteni {{PLURAL:$1|un file|$1 file}}.',
-'listingcontinuesabbrev' => '(séguiddu)',
-'spambot_username'       => 'MediaWiki buggadda spam',
-'spam_reverting'         => "Turradda a l'ulthima versioni chena cullegamenti a $1",
-'spam_blanking'          => 'Pàgina ibbiuddadda, tutti li ribisioni abìani cullegamenti a $1',
+'spamprotectiontitle' => 'Filthru anti-spam',
+'spamprotectiontext'  => "La pàgina ch'eri saivvendi è isthadda broccadda da lu filthru anti-spam, pó assé pa la prisènzia di un cullegamentu a un situ esthernu broccaddu.",
+'spamprotectionmatch' => 'Lu filthru anti-spam è isthaddu attibaddu da lu testhu sighenti: $1',
+'spambot_username'    => 'MediaWiki buggadda spam',
+'spam_reverting'      => "Turradda a l'ulthima versioni chena cullegamenti a $1",
+'spam_blanking'       => 'Pàgina ibbiuddadda, tutti li ribisioni abìani cullegamenti a $1',
 
 # Info page
 'infosubtitle'   => 'Infuimmazioni pa la pàgina',
@@ -1758,9 +1748,13 @@ $1",
 'show-big-image-thumb' => "<small>Misuri di chisth'antiprimma: $1 × $2 punti</small>",
 
 # Special:Newimages
-'newimages'    => 'Galleria di li file nobi',
-'showhidebots' => '($1 li bot)',
-'noimages'     => "Nò v'è nudda da vidé.",
+'newimages'             => 'Galleria di li file nobi',
+'imagelisttext'         => "Inogghi una listha di '''$1''' {{PLURAL:$1|file|file}} ordhinaddi pa $2.",
+'showhidebots'          => '($1 li bot)',
+'noimages'              => "Nò v'è nudda da vidé.",
+'ilsubmit'              => 'Zercha',
+'bydate'                => 'data',
+'sp-newimages-showfrom' => "Musthra l'immàgini più rizzenti a parthì da $1",
 
 # Bad image list
 'bad_image_list' => "Lu fuimmaddu è lu sighenti:

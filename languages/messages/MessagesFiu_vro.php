@@ -144,13 +144,15 @@ $messages = array(
 'nov'           => 'märtek',
 'dec'           => 'jouluk',
 
-# Bits of text used by many pages
-'categories'            => 'Katõgooriaq',
-'pagecategories'        => '{{PLURAL:$1|Katõgooria|Katõgooriaq}}',
-'category_header'       => 'Katõgooria "$1" artikliq',
-'subcategories'         => 'Allkatõgooriaq',
-'category-media-header' => 'Kiräkotus katõgoorian "$1"',
-'category-empty'        => "''Seon katõgoorian olõ-i parhilla artikliid ega teedüstüid.''",
+# Categories related messages
+'categories'             => 'Katõgooriaq',
+'pagecategories'         => '{{PLURAL:$1|Katõgooria|Katõgooriaq}}',
+'category_header'        => 'Katõgooria "$1" artikliq',
+'subcategories'          => 'Allkatõgooriaq',
+'category-media-header'  => 'Kiräkotus katõgoorian "$1"',
+'category-empty'         => "''Seon katõgoorian olõ-i parhilla artikliid ega teedüstüid.''",
+'subcategorycount'       => 'Seol katõgoorial om {{PLURAL:$1|üts allkatõgooria|$1 allkatõgooriat}}.',
+'listingcontinuesabbrev' => 'lätt edesi',
 
 'mainpagetext'      => 'Wiki tarkvara paika säet.',
 'mainpagedocfooter' => 'Vikitarkvara pruukmisõ kotsilõ loeq mano:
@@ -931,18 +933,18 @@ Kas olõt kimmäs, et tahat taad üles laatiq? Kaeq ka sissekirotust taa teedüs
 'upload_source_url'  => ' (avalik tüütäv võrgoaadrõs)',
 'upload_source_file' => ' (teedüstü su puutrin)',
 
-# Image list
-'imagelist'                 => 'Pilte nimekiri',
-'imagelisttext'             => 'Pilte nimekirän $1 (sordiduq $2).',
-'getimagelist'              => 'hangi pilte nimekirjä',
-'ilsubmit'                  => 'Otsminõ',
-'showlast'                  => 'Näütäq viimäst $1 pilti sorditult $2.',
-'byname'                    => 'nime perrä',
-'bydate'                    => 'kuupäävä perrä',
-'bysize'                    => 'suurusõ perrä',
-'imgdelete'                 => 'kistudaq',
-'imgdesc'                   => 'seletüs',
-'imgfile'                   => 'teedüstü',
+# Special:Imagelist
+'imagelist_search_for'  => 'Pildi nime otsminõ:',
+'imgdesc'               => 'seletüs',
+'imgfile'               => 'teedüstü',
+'imagelist'             => 'Pilte nimekiri',
+'imagelist_date'        => 'Kuupäiv',
+'imagelist_name'        => 'Nimi',
+'imagelist_user'        => 'Pruukja',
+'imagelist_size'        => 'Suurus (baidõn)',
+'imagelist_description' => 'Seletüs',
+
+# Image description page
 'filehist'                  => 'Teedüstü aolugu',
 'filehist-help'             => "Klõpsaq kuupäävä/kelläao pääl, et nätäq määne taa teedüstü sis oll'.",
 'filehist-deleteall'        => 'kistudaq kõik ärq',
@@ -963,12 +965,6 @@ Kas olõt kimmäs, et tahat taad üles laatiq? Kaeq ka sissekirotust taa teedüs
 'noimage'                   => 'Olõ-i säänest teedüstüt, võit taa esiq {{SITENAME}}he $1.',
 'noimage-linktext'          => 'üles laatiq',
 'uploadnewversion-linktext' => 'Laadiq taa teedüstü vahtsõnõ kujo',
-'imagelist_date'            => 'Kuupäiv',
-'imagelist_name'            => 'Nimi',
-'imagelist_user'            => 'Pruukja',
-'imagelist_size'            => 'Suurus (baidõn)',
-'imagelist_description'     => 'Seletüs',
-'imagelist_search_for'      => 'Pildi nime otsminõ:',
 
 # File reversion
 'filerevert'         => 'Võtaq tagasi $1',
@@ -1344,8 +1340,6 @@ Perämäidsi kistutuisi ja tagasitegemiisi saat kaiaq [[Special:Log/delete|kistu
 'sp-contributions-username'    => 'Puutri võrgoaadrõs vai pruukjanimi:',
 'sp-contributions-submit'      => 'Otsiq',
 
-'sp-newimages-showfrom' => 'Näütäq vahtsit pilte kuupääväst $1 pääle',
-
 # What links here
 'whatlinkshere'       => 'Siiäq näütäjäq lingiq',
 'whatlinkshere-title' => 'Leheq, miä näütäseq lehe $1 pääle',
@@ -1644,16 +1638,12 @@ Viimädse johtumisõ kõrral võit ka pruukiq linki, nt leht {{MediaWiki:Mainpag
 'nocredits'        => 'Taa lehe tegijide nimekirjä olõ-i.',
 
 # Spam protection
-'spamprotectiontitle'    => 'Prahisõgõl',
-'spamprotectiontext'     => 'Prahisõgõl om lehe kinniq pidänüq ja lasõ-i taad pästäq. Tuu põhjus om arvadaq vikist välläpoolõ näütäjä link.',
-'spamprotectionmatch'    => 'Tekst, midä prahisõgõl läbi lasõ-s: $1',
-'subcategorycount'       => 'Seol katõgoorial om {{PLURAL:$1|üts allkatõgooria|$1 allkatõgooriat}}.',
-'categoryarticlecount'   => 'Seon katõgoorian om {{PLURAL:$1|üts leht|$1 lehte}}.',
-'category-media-count'   => 'Seon katõgoorian om {{PLURAL:$1|üts teedüstü|$1 teedüstüt}}.',
-'listingcontinuesabbrev' => 'lätt edesi',
-'spambot_username'       => 'MediaWiki prahihäötäjä',
-'spam_reverting'         => 'Tagasi pööret viimädse kujo pääle, koh olõ-i linke lehele $1',
-'spam_blanking'          => "Kõigin kujõn oll' linke lehele $1. Leht tühäs tett.",
+'spamprotectiontitle' => 'Prahisõgõl',
+'spamprotectiontext'  => 'Prahisõgõl om lehe kinniq pidänüq ja lasõ-i taad pästäq. Tuu põhjus om arvadaq vikist välläpoolõ näütäjä link.',
+'spamprotectionmatch' => 'Tekst, midä prahisõgõl läbi lasõ-s: $1',
+'spambot_username'    => 'MediaWiki prahihäötäjä',
+'spam_reverting'      => 'Tagasi pööret viimädse kujo pääle, koh olõ-i linke lehele $1',
+'spam_blanking'       => "Kõigin kujõn oll' linke lehele $1. Leht tühäs tett.",
 
 # Info page
 'infosubtitle'   => 'Teedüs lehe kotsilõ',
@@ -1706,9 +1696,13 @@ Viimädse johtumisõ kõrral võit ka pruukiq linki, nt leht {{MediaWiki:Mainpag
 'show-big-image-thumb' => '<small>Proovikaemisõ suurus: $1×$2 pikslit</small>',
 
 # Special:Newimages
-'newimages'    => 'Vahtsõq pildiq',
-'showhidebots' => '($1 robodiq)',
-'noimages'     => 'Olõ-i vahtsit pilte.',
+'newimages'             => 'Vahtsõq pildiq',
+'imagelisttext'         => 'Pilte nimekirän $1 (sordiduq $2).',
+'showhidebots'          => '($1 robodiq)',
+'noimages'              => 'Olõ-i vahtsit pilte.',
+'ilsubmit'              => 'Otsminõ',
+'bydate'                => 'kuupäävä perrä',
+'sp-newimages-showfrom' => 'Näütäq vahtsit pilte kuupääväst $1 pääle',
 
 # Bad image list
 'bad_image_list' => 'Nimekirä muud om sääne:

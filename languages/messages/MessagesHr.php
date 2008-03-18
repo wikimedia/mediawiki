@@ -164,7 +164,7 @@ $messages = array(
 'nov'           => 'stu',
 'dec'           => 'pro',
 
-# Bits of text used by many pages
+# Categories related messages
 'categories'               => '{{PLURAL:$1|Kategorija|Kategorije}}',
 'pagecategories'           => '{{PLURAL:$1|Kategorija|Kategorije}}',
 'category_header'          => 'Članci u kategoriji "$1"',
@@ -173,6 +173,8 @@ $messages = array(
 'category-empty'           => "''U ovoj kategoriji trenutačno nema članaka ni medija.''",
 'hidden-categories'        => '{{PLURAL:$1|Skrivena kategorija|Skrivene kategorije|Skrivenih kategorija}}',
 'hidden-category-category' => 'Skrivene kategorije', # Name of the category where hidden categories will be listed
+'subcategorycount'         => 'Ova kategoriji sadrži {{PLURAL:$1|$1 potkategoriju|$1 potkategorije|$1 potkategorija}}.',
+'listingcontinuesabbrev'   => 'nast.',
 
 'mainpagetext'      => 'Softver Wiki je uspješno instaliran.',
 'mainpagedocfooter' => 'Pogledajte [http://meta.wikimedia.org/wiki/MediaWiki_localisation dokumentaciju o prilagodbi sučelja]
@@ -1057,18 +1059,18 @@ Slijedi evidencija brisanja ove datoteke s obrazloženjem prethodnog brisanja:",
 'upload_source_url'  => ' (valjani, javno dostupni URL)',
 'upload_source_file' => ' (datoteka na vašem računalu)',
 
-# Image list
-'imagelist'                 => 'Popis slika',
-'imagelisttext'             => 'Ispod je popis {{PLURAL:$1|$1 slike|$1 slike|$1 slika}} složen $2.',
-'getimagelist'              => 'dobavljam popis slika',
-'ilsubmit'                  => 'Traži',
-'showlast'                  => 'Prikaži $1 slika složenih $2.',
-'byname'                    => 'po imenu',
-'bydate'                    => 'po datumu',
-'bysize'                    => 'po veličini',
-'imgdelete'                 => 'bris',
-'imgdesc'                   => 'opis',
-'imgfile'                   => 'datoteka',
+# Special:Imagelist
+'imagelist_search_for'  => 'Traži ime slike:',
+'imgdesc'               => 'opis',
+'imgfile'               => 'datoteka',
+'imagelist'             => 'Popis slika',
+'imagelist_date'        => 'Datum',
+'imagelist_name'        => 'Naziv slike',
+'imagelist_user'        => 'Suradnik',
+'imagelist_size'        => 'Veličina (u bajtovima)',
+'imagelist_description' => 'Opis',
+
+# Image description page
 'filehist'                  => 'Povijest datoteke',
 'filehist-help'             => 'Kliknite na datum/vrijeme kako biste vidjeli datoteku kakva je tada bila.',
 'filehist-deleteall'        => 'izbriši sve',
@@ -1090,12 +1092,6 @@ Slijedi evidencija brisanja ove datoteke s obrazloženjem prethodnog brisanja:",
 'noimage'                   => 'Ne postoji datoteka s ovim imenom. Možete ju $1.',
 'noimage-linktext'          => 'postaviti',
 'uploadnewversion-linktext' => 'Postavi novu inačicu datoteke',
-'imagelist_date'            => 'Datum',
-'imagelist_name'            => 'Naziv slike',
-'imagelist_user'            => 'Suradnik',
-'imagelist_size'            => 'Veličina (u bajtovima)',
-'imagelist_description'     => 'Opis',
-'imagelist_search_for'      => 'Traži ime slike:',
 
 # File reversion
 'filerevert'                => 'Ukloni ← $1',
@@ -1553,8 +1549,6 @@ $1',
 'sp-contributions-username'    => 'IP adresa ili suradnik:',
 'sp-contributions-submit'      => 'Traži',
 
-'sp-newimages-showfrom' => 'Prikaži nove slike počevši od $1',
-
 # What links here
 'whatlinkshere'       => 'Što vodi ovamo',
 'whatlinkshere-title' => 'Stranice koje vode na $1',
@@ -1890,16 +1884,12 @@ Transwiki uvoz stranica je zabilježen u [[Special:Log/import|evidenciji uvoza s
 'nocredits'        => 'Za ovu stranicu nema podataka o autorima.',
 
 # Spam protection
-'spamprotectiontitle'    => 'Zaštita od spama',
-'spamprotectiontext'     => 'Stranicu koju ste željeli snimiti blokirao je filter spama. Razlog je vjerojatno vanjska poveznica.',
-'spamprotectionmatch'    => 'Naš filter spama reagirao je na sljedeći tekst: $1',
-'subcategorycount'       => 'Ova kategoriji sadrži {{PLURAL:$1|$1 potkategoriju|$1 potkategorije|$1 potkategorija}}.',
-'categoryarticlecount'   => 'Ova kategorija sadrži {{PLURAL:$1|$1 članak|$1 članka|$1 članaka}}.',
-'category-media-count'   => 'Postoji {{PLURAL:$1|jedna datoteka|$1 datoteka}} u kategoriji.',
-'listingcontinuesabbrev' => 'nast.',
-'spambot_username'       => 'MediaWiki zaštita od spama',
-'spam_reverting'         => 'Vraćam na zadnju inačicu koja ne sadrži poveznice na $1',
-'spam_blanking'          => 'Sve inačice sadrže poveznice na $1, brišem cjelokupni sadržaj',
+'spamprotectiontitle' => 'Zaštita od spama',
+'spamprotectiontext'  => 'Stranicu koju ste željeli snimiti blokirao je filter spama. Razlog je vjerojatno vanjska poveznica.',
+'spamprotectionmatch' => 'Naš filter spama reagirao je na sljedeći tekst: $1',
+'spambot_username'    => 'MediaWiki zaštita od spama',
+'spam_reverting'      => 'Vraćam na zadnju inačicu koja ne sadrži poveznice na $1',
+'spam_blanking'       => 'Sve inačice sadrže poveznice na $1, brišem cjelokupni sadržaj',
 
 # Info page
 'infosubtitle'   => 'Podaci o stranici',
@@ -1962,9 +1952,13 @@ $1',
 'show-big-image-thumb' => '<small>Veličina pretpregleda: $1 × $2 piksela</small>',
 
 # Special:Newimages
-'newimages'    => 'Galerija novih datoteka',
-'showhidebots' => '($1 botova)',
-'noimages'     => 'Nema slika.',
+'newimages'             => 'Galerija novih datoteka',
+'imagelisttext'         => 'Ispod je popis {{PLURAL:$1|$1 slike|$1 slike|$1 slika}} složen $2.',
+'showhidebots'          => '($1 botova)',
+'noimages'              => 'Nema slika.',
+'ilsubmit'              => 'Traži',
+'bydate'                => 'po datumu',
+'sp-newimages-showfrom' => 'Prikaži nove slike počevši od $1',
 
 # Bad image list
 'bad_image_list' => "Rabi se sljedeći format:

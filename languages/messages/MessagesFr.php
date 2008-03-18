@@ -1180,18 +1180,18 @@ PICT # misc.
 'upload_source_url'  => ' (une URL valide et accessible publiquement)',
 'upload_source_file' => ' (un fichier sur votre ordinateur)',
 
-# Image list
-'imagelist'                 => 'Liste des images',
-'imagelisttext'             => "Voici une liste de '''$1''' {{PLURAL:$1|fichier|fichiers}} classée $2.",
-'getimagelist'              => 'Récupération de la liste des images',
-'ilsubmit'                  => 'Chercher',
-'showlast'                  => 'Afficher les $1 dernières images classées $2.',
-'byname'                    => 'par nom',
-'bydate'                    => 'par date',
-'bysize'                    => 'par taille',
-'imgdelete'                 => 'suppr',
-'imgdesc'                   => 'page de l’image',
-'imgfile'                   => 'fichier',
+# Special:Imagelist
+'imagelist_search_for'  => 'Recherche pour l’image nommée :',
+'imgdesc'               => 'page de l’image',
+'imgfile'               => 'fichier',
+'imagelist'             => 'Liste des images',
+'imagelist_date'        => 'Date',
+'imagelist_name'        => 'Nom',
+'imagelist_user'        => 'Utilisateur',
+'imagelist_size'        => 'Octets',
+'imagelist_description' => 'Description',
+
+# Image description page
 'filehist'                  => 'Historique du fichier',
 'filehist-help'             => 'Cliquer sur une date et une heure pour voir le fichier tel qu’il était à ce moment-là',
 'filehist-deleteall'        => 'tout supprimer',
@@ -1213,12 +1213,6 @@ PICT # misc.
 'noimage'                   => 'Aucun fichier possèdant ce nom n’existe, vous pouvez $1.',
 'noimage-linktext'          => 'en importer un',
 'uploadnewversion-linktext' => 'Importer une nouvelle version de ce fichier',
-'imagelist_date'            => 'Date',
-'imagelist_name'            => 'Nom',
-'imagelist_user'            => 'Utilisateur',
-'imagelist_size'            => 'Octets',
-'imagelist_description'     => 'Description',
-'imagelist_search_for'      => 'Recherche pour l’image nommée :',
 
 # File reversion
 'filerevert'                => 'Révoquer $1',
@@ -1653,8 +1647,6 @@ $1',
 'sp-contributions-username'    => 'Adresse IP ou nom d’utilisateur:',
 'sp-contributions-submit'      => 'Chercher',
 
-'sp-newimages-showfrom' => 'Afficher les images importées depuis le $1',
-
 # What links here
 'whatlinkshere'       => 'Pages liées',
 'whatlinkshere-title' => 'Pages ayant un lien vers $1',
@@ -2052,9 +2044,13 @@ $1',
 'show-big-image-thumb' => '<small>Taille de cet aperçu : $1 × $2 pixels</small>',
 
 # Special:Newimages
-'newimages'    => 'Galerie des nouveaux fichiers',
-'showhidebots' => '($1 bots)',
-'noimages'     => 'Aucune image à afficher.',
+'newimages'             => 'Galerie des nouveaux fichiers',
+'imagelisttext'         => "Voici une liste de '''$1''' {{PLURAL:$1|fichier|fichiers}} classée $2.",
+'showhidebots'          => '($1 bots)',
+'noimages'              => 'Aucune image à afficher.',
+'ilsubmit'              => 'Chercher',
+'bydate'                => 'par date',
+'sp-newimages-showfrom' => 'Afficher les images importées depuis le $1',
 
 # Bad image list
 'bad_image_list' => 'Le format est le suivant :
@@ -2497,4 +2493,3 @@ Essayez la prévisualisation normale.',
 Entrez le nom du fichier sans le préfixe « {{ns:image}}: »',
 
 );
-

@@ -1208,18 +1208,18 @@ $3 указал следующую причину: ''$2''",
 'upload_source_url'  => ' (правильный, публично доступный интернет-адрес)',
 'upload_source_file' => ' (файл на вашем компьютере)',
 
-# Image list
-'imagelist'                 => 'Список файлов',
-'imagelisttext'             => "Ниже представлен список из '''$1''' {{PLURAL:$1|файла|файлов|файлов}}, отсортированных $2.",
-'getimagelist'              => 'получение списка файлов',
-'ilsubmit'                  => 'Найти',
-'showlast'                  => 'Показать последние $1 {{plural:$1|файл|файла|файлов}}, {{plural:$1|отсортированные|отсортированные|отсортированных}} $2.',
-'byname'                    => 'по имени',
-'bydate'                    => 'по дате',
-'bysize'                    => 'по размеру',
-'imgdelete'                 => 'удал.',
-'imgdesc'                   => 'описание',
-'imgfile'                   => 'файл',
+# Special:Imagelist
+'imagelist_search_for'  => 'Поиск по имени изображения:',
+'imgdesc'               => 'описание',
+'imgfile'               => 'файл',
+'imagelist'             => 'Список файлов',
+'imagelist_date'        => 'Дата',
+'imagelist_name'        => 'Имя файла',
+'imagelist_user'        => 'Участник',
+'imagelist_size'        => 'Размер',
+'imagelist_description' => 'Описание',
+
+# Image description page
 'filehist'                  => 'История файла',
 'filehist-help'             => 'Нажмите на дату/время, чтобы просмотреть, как тогда выглядел файл.',
 'filehist-deleteall'        => 'удалить все',
@@ -1241,12 +1241,6 @@ $3 указал следующую причину: ''$2''",
 'noimage'                   => 'Файла с таким именем не существует, вы можете $1.',
 'noimage-linktext'          => 'загрузить его',
 'uploadnewversion-linktext' => 'Загрузить новую версию этого файла',
-'imagelist_date'            => 'Дата',
-'imagelist_name'            => 'Имя файла',
-'imagelist_user'            => 'Участник',
-'imagelist_size'            => 'Размер',
-'imagelist_description'     => 'Описание',
-'imagelist_search_for'      => 'Поиск по имени изображения:',
 
 # File reversion
 'filerevert'                => 'Возврат к старой версии $1',
@@ -1681,8 +1675,6 @@ $1',
 'sp-contributions-username'    => 'IP-адрес или имя участника:',
 'sp-contributions-submit'      => 'Найти',
 
-'sp-newimages-showfrom' => 'Показать новые изображения, начиная с $1',
-
 # What links here
 'whatlinkshere'       => 'Ссылки сюда',
 'whatlinkshere-title' => 'Страницы, ссылающиеся на $1',
@@ -2099,9 +2091,13 @@ $1',
 'show-big-image-thumb' => '<small>Размер при предпросмотре: $1 × $2 пикселов</small>',
 
 # Special:Newimages
-'newimages'    => 'Галерея новых файлов',
-'showhidebots' => '($1 ботов)',
-'noimages'     => 'Изображения отсутствуют.',
+'newimages'             => 'Галерея новых файлов',
+'imagelisttext'         => "Ниже представлен список из '''$1''' {{PLURAL:$1|файла|файлов|файлов}}, отсортированных $2.",
+'showhidebots'          => '($1 ботов)',
+'noimages'              => 'Изображения отсутствуют.',
+'ilsubmit'              => 'Найти',
+'bydate'                => 'по дате',
+'sp-newimages-showfrom' => 'Показать новые изображения, начиная с $1',
 
 # Video information, used by Language::formatTimePeriod() to format lengths in the above messages
 'video-dims'     => '$1, $2 × $3',

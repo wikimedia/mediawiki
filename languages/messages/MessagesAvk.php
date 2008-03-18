@@ -110,13 +110,15 @@ $messages = array(
 'nov'           => '11-at',
 'dec'           => '12-at',
 
-# Bits of text used by many pages
-'categories'            => 'Bulomeem',
-'pagecategories'        => '{{PLURAL:$1|Loma|Loma}}',
-'category_header'       => 'Lomolkeem « $1 ».',
-'subcategories'         => 'volveylomeem',
-'category-media-header' => 'Ewavaf iyeltakeem koe "$1" loma',
-'category-empty'        => "''Bata loma va bu ok ewava noelton me ruldar''.",
+# Categories related messages
+'categories'             => 'Bulomeem',
+'pagecategories'         => '{{PLURAL:$1|Loma|Loma}}',
+'category_header'        => 'Lomolkeem « $1 ».',
+'subcategories'          => 'volveylomeem',
+'category-media-header'  => 'Ewavaf iyeltakeem koe "$1" loma',
+'category-empty'         => "''Bata loma va bu ok ewava noelton me ruldar''.",
+'subcategorycount'       => 'Bata loma va {{PLURAL:$1|1 volveyloma|$1 volveyloma}} digir.',
+'listingcontinuesabbrev' => 'loon',
 
 'mainpagetext' => '{{SITENAME}} inkeyen talpeyot.',
 
@@ -895,18 +897,18 @@ Sulara \"log\" va batu bu krafiason batlize zo nedir :",
 'upload_source_url'  => ' (enafe sanegon rovansane URL mane)',
 'upload_source_file' => ' (iyeltak koe rinafo vusiko)',
 
-# Image list
-'imagelist'                 => 'Ewavavexala',
-'imagelisttext'             => "Tir vexala dem '''$1''' {{PLURAL:$1|iyeltak|iyeltak}} $2 pulana.",
-'getimagelist'              => 'Dimnarira va ewavavexala',
-'ilsubmit'                  => 'Aneyara',
-'showlast'                  => 'Nedira va $1 ironokafa ewava $2 pulana.',
-'byname'                    => 'kan yolt',
-'bydate'                    => 'kan evla',
-'bysize'                    => 'kan lum',
-'imgdelete'                 => 'sul-',
-'imgdesc'                   => 'pimt-',
-'imgfile'                   => 'iyeltak',
+# Special:Imagelist
+'imagelist_search_for'  => 'Aneyara va ewavayolt :',
+'imgdesc'               => 'pimt-',
+'imgfile'               => 'iyeltak',
+'imagelist'             => 'Ewavavexala',
+'imagelist_date'        => 'Evla',
+'imagelist_name'        => 'Yolt',
+'imagelist_user'        => 'Favesik',
+'imagelist_size'        => 'Lum',
+'imagelist_description' => 'Pimtara',
+
+# Image description page
 'filehist'                  => 'Iyeltakizvot',
 'filehist-help'             => 'Ta da va iyeltak wil dum in batoulon awir va evla/bartiv vulegal !',
 'filehist-deleteall'        => 'Sulara va kotcoba',
@@ -928,12 +930,6 @@ Sulara \"log\" va batu bu krafiason batlize zo nedir :",
 'noimage'                   => 'Mek iyeltak dem bat yolt, rin rotil va $1.',
 'noimage-linktext'          => 'kalvajara',
 'uploadnewversion-linktext' => 'Kalvajara va warzaf siatos ke bat iyeltak',
-'imagelist_date'            => 'Evla',
-'imagelist_name'            => 'Yolt',
-'imagelist_user'            => 'Favesik',
-'imagelist_size'            => 'Lum',
-'imagelist_description'     => 'Pimtara',
-'imagelist_search_for'      => 'Aneyara va ewavayolt :',
 
 # File reversion
 'filerevert'                => 'Dimplekura va $1',
@@ -1307,8 +1303,6 @@ $1',
 'sp-contributions-username'    => 'IP mane ok favesikyolt :',
 'sp-contributions-submit'      => 'Aneyara',
 
-'sp-newimages-showfrom' => 'Nedira va warzaf iyeltak dem toza male $1',
-
 # What links here
 'whatlinkshere'       => 'Gluyarakiraf bueem',
 'whatlinkshere-title' => 'Bueem dem gluyasiki va $1',
@@ -1573,17 +1567,13 @@ Dans ce cas, vous devrez renommer ou fusionner la page manuellement si vous le d
 'creditspage'      => 'Rostbu',
 
 # Spam protection
-'spamprotectiontitle'    => 'Page automatiquement protégée pour cause de spam',
-'spamprotectiontext'     => 'Page automatiquement protégée pour cause de spam',
-'spamprotectionmatch'    => 'Le texte suivant a déclenché le détecteur de spam: $1',
-'subcategorycount'       => 'Bata loma va {{PLURAL:$1|1 volveyloma|$1 volveyloma}} digir.',
-'categoryarticlecount'   => '{{PLURAL:$1|1 bu tir|$1 bu tid}} koe bata loma.',
-'category-media-count'   => '{{PLURAL:$1|tir 1|tid $1}} iyeltak koe bata loma.',
-'listingcontinuesabbrev' => 'loon',
-'spambot_username'       => 'Tucuara va Mediawiki "spam"
+'spamprotectiontitle' => 'Page automatiquement protégée pour cause de spam',
+'spamprotectiontext'  => 'Page automatiquement protégée pour cause de spam',
+'spamprotectionmatch' => 'Le texte suivant a déclenché le détecteur de spam: $1',
+'spambot_username'    => 'Tucuara va Mediawiki "spam"
 MediaWiki spam cleanup',
-'spam_reverting'         => 'Dimplekura va ironokaf siatos meruldas va gluyasiki do $1',
-'spam_blanking'          => 'Kot betaks ruldas va gluyasiki do $1, tuvlardara',
+'spam_reverting'      => 'Dimplekura va ironokaf siatos meruldas va gluyasiki do $1',
+'spam_blanking'       => 'Kot betaks ruldas va gluyasiki do $1, tuvlardara',
 
 # Info page
 'infosubtitle'   => 'Bugiva',
@@ -1640,9 +1630,13 @@ $1',
 'show-big-image-thumb' => '<small>Lum ke bata abdinedira : $1 × $2 pixels</small>',
 
 # Special:Newimages
-'newimages'    => 'Warzaf ewaviyeltak yo',
-'showhidebots' => '($1 stiernik)',
-'noimages'     => 'Mecoba rowina',
+'newimages'             => 'Warzaf ewaviyeltak yo',
+'imagelisttext'         => "Tir vexala dem '''$1''' {{PLURAL:$1|iyeltak|iyeltak}} $2 pulana.",
+'showhidebots'          => '($1 stiernik)',
+'noimages'              => 'Mecoba rowina',
+'ilsubmit'              => 'Aneyara',
+'bydate'                => 'kan evla',
+'sp-newimages-showfrom' => 'Nedira va warzaf iyeltak dem toza male $1',
 
 # Bad image list
 'bad_image_list' => 'Breviz tir bat :

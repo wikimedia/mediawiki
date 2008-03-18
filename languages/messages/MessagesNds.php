@@ -276,7 +276,7 @@ Na ''Ünnerscheed wiesen'' nich de kumplette Siet wiesen",
 'nov'           => 'Nov.',
 'dec'           => 'Dez',
 
-# Bits of text used by many pages
+# Categories related messages
 'categories'               => '{{PLURAL:$1|Kategorie|Kategorien}}',
 'pagecategories'           => '{{PLURAL:$1|Kategorie|Kategorien}}',
 'category_header'          => 'Sieden in de Kategorie „$1“',
@@ -285,6 +285,8 @@ Na ''Ünnerscheed wiesen'' nich de kumplette Siet wiesen",
 'category-empty'           => "''In disse Kategorie sünd aktuell kene Sieden.''",
 'hidden-categories'        => '{{PLURAL:$1|Verstekene Kategorie|Verstekene Kategorien}}',
 'hidden-category-category' => 'Verstekene Kategorien', # Name of the category where hidden categories will be listed
+'subcategorycount'         => 'Disse Kategorie hett {{PLURAL:$1|ene Ünnerkategorie|$1 Ünnerkategorien}}.',
+'listingcontinuesabbrev'   => 'wieder',
 
 'mainpagetext'      => 'De Wiki-Software is mit Spood installeert worrn.',
 'mainpagedocfooter' => 'Kiek de [http://meta.wikimedia.org/wiki/MediaWiki_localisation Dokumentatschoon för dat Anpassen vun de Brukerböversiet]
@@ -1083,18 +1085,18 @@ Dat geev en internen Fehler bi dat Anleggen vun en temporäre Datei op’n Serve
 'upload_source_url'  => ' (gellen, apen togängliche URL)',
 'upload_source_file' => ' (en Datei op dien Reekner)',
 
-# Image list
-'imagelist'                 => 'Billerlist',
-'imagelisttext'             => 'Hier is en List vun {{PLURAL:$1|een Bild|$1 Biller}}, sorteert $2.',
-'getimagelist'              => 'Billerlist laden',
-'ilsubmit'                  => 'Söken',
-'showlast'                  => 'Wies de letzten $1 Biller, sorteert $2.',
-'byname'                    => 'na Naam',
-'bydate'                    => 'na Datum',
-'bysize'                    => 'na Grött',
-'imgdelete'                 => 'wegsmieten',
-'imgdesc'                   => 'Beschrieven',
-'imgfile'                   => 'Datei',
+# Special:Imagelist
+'imagelist_search_for'  => 'Söök na Datei:',
+'imgdesc'               => 'Beschrieven',
+'imgfile'               => 'Datei',
+'imagelist'             => 'Billerlist',
+'imagelist_date'        => 'Datum',
+'imagelist_name'        => 'Naam',
+'imagelist_user'        => 'Bruker',
+'imagelist_size'        => 'Grött (Bytes)',
+'imagelist_description' => 'Beschrieven',
+
+# Image description page
 'filehist'                  => 'Datei-Historie',
 'filehist-help'             => 'Klick op de Tiet, dat du de Datei ankieken kannst, so as se do utseeg.',
 'filehist-deleteall'        => 'all wegsmieten',
@@ -1116,12 +1118,6 @@ Dat geev en internen Fehler bi dat Anleggen vun en temporäre Datei op’n Serve
 'noimage'                   => 'Ene Datei mit dissen Naam gifft dat nich, du kannst ehr $1.',
 'noimage-linktext'          => 'Hoochladen',
 'uploadnewversion-linktext' => 'Ne’e Version vun disse Datei hoochladen',
-'imagelist_date'            => 'Datum',
-'imagelist_name'            => 'Naam',
-'imagelist_user'            => 'Bruker',
-'imagelist_size'            => 'Grött (Bytes)',
-'imagelist_description'     => 'Beschrieven',
-'imagelist_search_for'      => 'Söök na Datei:',
 
 # File reversion
 'filerevert'                => '„$1“ Trüchsetten',
@@ -1518,8 +1514,6 @@ $1',
 'sp-contributions-username'    => 'IP-Adress oder Brukernaam:',
 'sp-contributions-submit'      => 'Söken',
 
-'sp-newimages-showfrom' => 'Wies ne’e Datein vun $1 af an',
-
 # What links here
 'whatlinkshere'       => 'Wat wiest na disse Siet hen',
 'whatlinkshere-title' => 'Sieden, de na „$1“ wiest',
@@ -1794,14 +1788,10 @@ Diskuschoonssiet nich, vun wegen dat dat dor al ene Siet mit dissen Titel gifft.
 'nocredits'        => 'Dor is keen Autorenlist för disse Siet verfögbor.',
 
 # Spam protection
-'spamprotectiontitle'    => 'Spamschild',
-'spamprotectiontext'     => 'De Siet, de du spiekern wullst, weer vun de Spamschild blockt. Dat kann vun en Link to en externe Siet kamen.',
-'spamprotectionmatch'    => 'Dit Text hett den Spamschild utlöst: $1',
-'subcategorycount'       => 'Disse Kategorie hett {{PLURAL:$1|ene Ünnerkategorie|$1 Ünnerkategorien}}.',
-'categoryarticlecount'   => 'To disse Kategorie höört {{PLURAL:$1|ene Siet|$1 Sieden}} to.',
-'category-media-count'   => 'Dor {{PLURAL:$1|is ene Datei|sünd $1 Datein}} in disse Kategorie.',
-'listingcontinuesabbrev' => 'wieder',
-'spambot_username'       => 'MediaWiki Spam-Oprümen',
+'spamprotectiontitle' => 'Spamschild',
+'spamprotectiontext'  => 'De Siet, de du spiekern wullst, weer vun de Spamschild blockt. Dat kann vun en Link to en externe Siet kamen.',
+'spamprotectionmatch' => 'Dit Text hett den Spamschild utlöst: $1',
+'spambot_username'    => 'MediaWiki Spam-Oprümen',
 
 # Info page
 'infosubtitle'   => 'Informatschonen för de Siet',
@@ -1854,9 +1844,13 @@ Diskuschoonssiet nich, vun wegen dat dat dor al ene Siet mit dissen Titel gifft.
 'show-big-image-thumb' => '<small>Grött vun disse Vörschau: $1 × $2 Pixels</small>',
 
 # Special:Newimages
-'newimages'    => 'Ne’e Biller',
-'showhidebots' => '($1 Bots)',
-'noimages'     => 'Kene Biller.',
+'newimages'             => 'Ne’e Biller',
+'imagelisttext'         => 'Hier is en List vun {{PLURAL:$1|een Bild|$1 Biller}}, sorteert $2.',
+'showhidebots'          => '($1 Bots)',
+'noimages'              => 'Kene Biller.',
+'ilsubmit'              => 'Söken',
+'bydate'                => 'na Datum',
+'sp-newimages-showfrom' => 'Wies ne’e Datein vun $1 af an',
 
 # Bad image list
 'bad_image_list' => 'Format:

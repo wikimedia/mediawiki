@@ -252,7 +252,7 @@ $messages = array(
 'nov'           => 'nov',
 'dec'           => 'dec',
 
-# Bits of text used by many pages
+# Categories related messages
 'categories'               => '{{PLURAL:$1|Kategória|Kategórie|Kategórie}}',
 'pagecategories'           => '{{PLURAL:$1|Kategória|Kategórie|Kategórie}}',
 'category_header'          => 'stránky v kategórii „$1“',
@@ -261,6 +261,8 @@ $messages = array(
 'category-empty'           => "''Táto kategória momentálne neobsahuje články ani multimediálne súbory.''",
 'hidden-categories'        => '{{PLURAL:$1|Skrytá kategória|Skryté kategórie}}',
 'hidden-category-category' => 'Skryté kategórie', # Name of the category where hidden categories will be listed
+'subcategorycount'         => 'V tejto kategórii {{PLURAL:$1|je jedna podkategória|sú $1 podkategórie|je $1 podkategórií}}.',
+'listingcontinuesabbrev'   => 'pokrač.',
 
 'mainpagetext'      => "<big>'''Softvér MediaWiki bol úspešne nainštalovaný.'''</big>",
 'mainpagedocfooter' => 'Informácie ako používať wiki softvér nájdete v [http://meta.wikimedia.org/wiki/Help:Contents Používateľskej príručke].
@@ -1168,18 +1170,18 @@ PICT # misc.
 'upload_source_url'  => ' (platný, verejne prístupný URL)',
 'upload_source_file' => ' (súbor na vašom počítači)',
 
-# Image list
-'imagelist'                 => 'Zoznam obrázkov',
-'imagelisttext'             => "Tu je zoznam {{PLURAL:$1|jedného súboru|'''$1''' súborov|'''$1''' súborov}} zoradený $2.",
-'getimagelist'              => 'sťahujem zoznam nahraných obrázkov',
-'ilsubmit'                  => 'Hľadať',
-'showlast'                  => 'Zobraziť posledných $1 obrázkov zoradených $2.',
-'byname'                    => 'podľa názvu',
-'bydate'                    => 'podľa dátumu',
-'bysize'                    => 'podľa veľkosti',
-'imgdelete'                 => 'zmazať',
-'imgdesc'                   => 'popis',
-'imgfile'                   => 'súbor',
+# Special:Imagelist
+'imagelist_search_for'  => 'Hľadať názov súboru:',
+'imgdesc'               => 'popis',
+'imgfile'               => 'súbor',
+'imagelist'             => 'Zoznam obrázkov',
+'imagelist_date'        => 'Dátum',
+'imagelist_name'        => 'Názov',
+'imagelist_user'        => 'Používateľ',
+'imagelist_size'        => 'Veľkosť (v bajtoch)',
+'imagelist_description' => 'Popis',
+
+# Image description page
 'filehist'                  => 'História súboru',
 'filehist-help'             => 'Po kliknutí na dátum/čas uvidíte súbor ako vyzeral vtedy.',
 'filehist-deleteall'        => 'zmazať všetky',
@@ -1201,12 +1203,6 @@ PICT # misc.
 'noimage'                   => 'Súbor s takým menom neexistuje, môžete ho $1',
 'noimage-linktext'          => 'nahrať',
 'uploadnewversion-linktext' => 'Nahrať novú verziu tohto súboru',
-'imagelist_date'            => 'Dátum',
-'imagelist_name'            => 'Názov',
-'imagelist_user'            => 'Používateľ',
-'imagelist_size'            => 'Veľkosť (v bajtoch)',
-'imagelist_description'     => 'Popis',
-'imagelist_search_for'      => 'Hľadať názov súboru:',
 
 # File reversion
 'filerevert'                => 'Obnoviť $1',
@@ -1653,8 +1649,6 @@ $1',
 'sp-contributions-username'    => 'IP adresa alebo meno používateľa:',
 'sp-contributions-submit'      => 'Hľadať',
 
-'sp-newimages-showfrom' => 'Zobraziť nové súbory počínajúc $1',
-
 # What links here
 'whatlinkshere'       => 'Odkazy na túto stránku',
 'whatlinkshere-title' => 'Stránky odkazujúce na $1',
@@ -2000,16 +1994,12 @@ Všetky transwiki importy sa zaznamenávajú v [[Special:Log/import|Zázname imp
 'nocredits'        => 'Pre túto stránku neexistujú žiadne dostupné ocenenia.',
 
 # Spam protection
-'spamprotectiontitle'    => 'Filter na ochranu pred spamom',
-'spamprotectiontext'     => 'Stránka, ktorú ste chceli uložiť, bola blokovaná filtrom na spam. Pravdepodobne to spôsobil link na externú internetovú lokalitu.',
-'spamprotectionmatch'    => 'Nasledujúci text aktivoval náš spam filter: $1',
-'subcategorycount'       => 'V tejto kategórii {{PLURAL:$1|je jedna podkategória|sú $1 podkategórie|je $1 podkategórií}}.',
-'categoryarticlecount'   => 'V tejto kategórii {{PLURAL:$1|je jedna stránka|sú $1 stránky|je $1 stránok}}.',
-'category-media-count'   => 'V tejto kategórii {{PLURAL:$1|je jeden súbor|sú $1 súbory|je $1 súborov}}.',
-'listingcontinuesabbrev' => 'pokrač.',
-'spambot_username'       => 'MediaWiki čistenie spamu',
-'spam_reverting'         => 'Vraciam poslednú verziu, ktorá neobsahuje odkazy na $1',
-'spam_blanking'          => 'Všetky revízie obsahovali odkaz na $1, odstraňujem obsah',
+'spamprotectiontitle' => 'Filter na ochranu pred spamom',
+'spamprotectiontext'  => 'Stránka, ktorú ste chceli uložiť, bola blokovaná filtrom na spam. Pravdepodobne to spôsobil link na externú internetovú lokalitu.',
+'spamprotectionmatch' => 'Nasledujúci text aktivoval náš spam filter: $1',
+'spambot_username'    => 'MediaWiki čistenie spamu',
+'spam_reverting'      => 'Vraciam poslednú verziu, ktorá neobsahuje odkazy na $1',
+'spam_blanking'       => 'Všetky revízie obsahovali odkaz na $1, odstraňujem obsah',
 
 # Info page
 'infosubtitle'   => 'Informácie o stránke',
@@ -2072,9 +2062,13 @@ $1',
 'show-big-image-thumb' => '<small>Veľkosť tohto náhľadu: $1 × $2 pixelov</small>',
 
 # Special:Newimages
-'newimages'    => 'Galéria nových obrázkov',
-'showhidebots' => '($1 botov)',
-'noimages'     => 'Niet čo zobraziť.',
+'newimages'             => 'Galéria nových obrázkov',
+'imagelisttext'         => "Tu je zoznam {{PLURAL:$1|jedného súboru|'''$1''' súborov|'''$1''' súborov}} zoradený $2.",
+'showhidebots'          => '($1 botov)',
+'noimages'              => 'Niet čo zobraziť.',
+'ilsubmit'              => 'Hľadať',
+'bydate'                => 'podľa dátumu',
+'sp-newimages-showfrom' => 'Zobraziť nové súbory počínajúc $1',
 
 # Bad image list
 'bad_image_list' => 'Formát je nasledovný:

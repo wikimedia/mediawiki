@@ -224,7 +224,6 @@ Se lo desideri, puoi contattare $1, o uno degli altri [[{{MediaWiki:Grouppage-sy
 'previewnote'     => 'Tieni presente che questa è solo una ANTEPRIMA, e che la tua versione non è ancora stata salvata!',
 'previewconflict' => "Questa anteprima rappresenta il testo nella casella di edizione di sopra, l'articolo apparirà n questa forma se sceglierai di salvare la pagina.",
 'editing'         => 'Modifica di $1',
-'editinguser'     => 'Modifica di $1',
 'editconflict'    => 'Conflitto di edizione: $1',
 'explainconflict' => 'Qualcun altro ha salvato una sua versione dell\'articolo nel tempo in cui tu stavi preparando la tua versione.<br />
 La casella di modifica di sopra contiene il testo dell\'articolo nella sua forma attuale (cioè il testo attualmente online). Le tue modifiche sono invece contenute nella casella di modifica inferiore.
@@ -306,6 +305,9 @@ per poter personalizzare le tue preferenze.',
 'localtime'                => 'Ora Locale',
 'timezoneoffset'           => 'Offset',
 
+# User rights
+'editinguser' => 'Modifica di $1',
+
 # Recent changes
 'recentchanges'   => 'Ultime Modifiche',
 'rcnote'          => 'Qui di seguito sono elencate le ultime <strong>$1</strong> pagine modificate negli ultimi <strong>$2</strong> giorni.',
@@ -362,16 +364,10 @@ Tutti i tempi indicati sono calcolati sul fuso orario del server (UTC).',
 'savefile'          => 'Salva file',
 'uploadedimage'     => 'caricato "[[$1]]"',
 
-# Image list
-'imagelist'      => 'Lista delle immagini',
-'imagelisttext'  => 'Qui di seguito una lista di $1 immagini, ordinate per $2.',
-'getimagelist'   => 'ricerca nella lista delle immagini',
-'ilsubmit'       => 'Cerca',
-'showlast'       => 'Mostra le ultime $1 immagini ordinate per $2.',
-'byname'         => 'nome',
-'bydate'         => 'data',
-'bysize'         => 'peso',
-'imgdelete'      => 'canc',
+# Special:Imagelist
+'imagelist' => 'Lista delle immagini',
+
+# Image description page
 'imagelinks'     => 'Link alle immagini',
 'linkstoimage'   => 'Le pagine seguenti linkano questa immagine:',
 'nolinkstoimage' => 'Nessuna pagina linka questa immagine.',
@@ -533,7 +529,7 @@ Per cortesia, conferma che questo è effettivamente quanto tu intendi ora effett
 'unlockdbsuccesstext' => ' Il database di {{SITENAME}} è stato sbloccato.',
 
 # Move page
-'move-page-legend'         => 'Spostamento di pagina',
+'move-page-legend' => 'Spostamento di pagina',
 'movepagetext'     => "Con il modulo sottostante puoi rinominare una pagina, spostando anche tutta la sua cronologia al nuovo nome.
 Il vecchior titolo diverrà automaticamente un redirect che punta al nuovo titolo.
 I link alla vecchia pagina non saranno aggiornati (e punteranno quindi al redirect); accertati di [[Special:Manutenzioni|controllare con cura]] che non si creino doppi redirects o redirects interrotti.
@@ -563,5 +559,10 @@ Scegli, per cortesia, un titolo diverso per l'articolo.",
 'movetalk'         => 'Sposta anche la corrispondente pagina "discussione", se possibile.',
 'talkpagemoved'    => 'Anche la corrispondente pagina di discussione è stata spostata.',
 'talkpagenotmoved' => 'La corrispondente pagina di discussione <strong>non è stata spostata</strong>.',
+
+# Special:Newimages
+'imagelisttext' => 'Qui di seguito una lista di $1 immagini, ordinate per $2.',
+'ilsubmit'      => 'Cerca',
+'bydate'        => 'data',
 
 );

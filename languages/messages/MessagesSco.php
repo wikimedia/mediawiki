@@ -113,13 +113,14 @@ $messages = array(
 'nov'           => 'Nov',
 'dec'           => 'Diz',
 
-# Bits of text used by many pages
+# Categories related messages
 'categories'            => 'Categories',
 'pagecategories'        => '{{PLURAL:$1|Category|Categories}}',
 'category_header'       => 'Pages in category "$1"',
 'subcategories'         => 'Subcategories',
 'category-media-header' => 'Eetems in category "$1"',
 'category-empty'        => "''This category haes no pages or eetems at the meenit.''",
+'subcategorycount'      => 'There {{PLURAL:$1|one subcategory|$1 subcategories}} in this category.',
 
 'mainpagetext'      => "<big>'''MediaWiki haes been installit wi speed.'''</big>",
 'mainpagedocfooter' => "Aks the [http://meta.wikimedia.org/wiki/Help:Contents Uiser's Manual] for speirins aboot using the wiki saftware.
@@ -545,7 +546,6 @@ Please try again. Gin it disnae wairk still, try loggin oot an loggin in again.<
 in the edit token. The edit haes been rejectit tae hinder corruption o the page text.
 This whiles happens when ye are uisin a bruken web-based anonymous proxy service.</strong>',
 'editing'                   => 'Editin $1',
-'editinguser'               => 'Editin uiser <b>$1</b>',
 'editingsection'            => 'Editin $1 (section)',
 'editingcomment'            => 'Editin $1 (comment)',
 'editconflict'              => 'Edit conflict: $1',
@@ -697,6 +697,7 @@ there micht be parteeculars in the [{{fullurl:Special:Log/delete|page={{FULLPAGE
 'default'            => 'defaut',
 
 # User rights
+'editinguser'             => 'Editin uiser <b>$1</b>',
 'userrights-groupsmember' => 'Member o:',
 
 # User rights log
@@ -752,15 +753,10 @@ there micht be parteeculars in the [{{fullurl:Special:Log/delete|page={{FULLPAGE
 
 'nolicense' => 'Nane selected',
 
-# Image list
-'imagelist'      => 'Eimage leet',
-'imagelisttext'  => 'Ablo is a leet o $1 {{PLURAL:$1|eimage|eimages}} sortit $2.',
-'getimagelist'   => 'fetchin eimage leet',
-'ilsubmit'       => 'Rake',
-'showlast'       => 'Shaw last $1 eimages sortit $2.',
-'byname'         => 'bi name',
-'bydate'         => 'bi date',
-'bysize'         => 'bi size',
+# Special:Imagelist
+'imagelist' => 'Eimage leet',
+
+# Image description page
 'imagelinks'     => 'Eimage airtins',
 'linkstoimage'   => 'The follaein pages airts tae this image:',
 'nolinkstoimage' => "The'r nae pages airts tae this eimage.",
@@ -824,7 +820,6 @@ The [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] length is '''\$7''
 'spheading'               => 'Byordinar pages for aa uisers',
 'restrictedpheading'      => 'Restrictit byordinar pages',
 'ancientpages'            => 'Auldest pages',
-'intl'                    => 'Interleid airtins',
 'move'                    => 'Flit',
 'movethispage'            => 'Flit this page',
 'unusedimagestext'        => '<p>Please mynd that ither wabsteids micht airt til an eimage wi a direct URL, an sae micht still be leetit here but be in aictive uiss.</p>',
@@ -997,7 +992,7 @@ tae an afore-blockit IP address or uisername.',
 'databasenotlocked'   => 'The database isna lockit.',
 
 # Move page
-'move-page-legend'                => 'Flit page',
+'move-page-legend'        => 'Flit page',
 'movepagetext'            => "Uisin the form ablo will rename a page, flittin aa its history tae the new name. The auld teitle will become a reguidal page tae the new teitle. Airtins tae the auld page teitle willna be chynged; be siccar tae [[Special:Maintenance|check]] for dooble or brucken reguidals. You ar responsible for makkin siccar that airtins continues tae pynt whaur thay ar supposed tae gang. Mynd that the page '''willna''' be flittit gin the'r aareadies a page at the new teitle, unless it is tuim or a reguidal and haes nae past edit history. This means that ye can rename a page back tae whaur it wis juist renamed frae gin ye mak a mistak, an ye canna owerwrite an existin page. <b>WARNIN!</b> This can be a drastic and unexpectit chynge for a popular page; please be siccar ye unnerstaun the consequences o this afore proceedin.",
 'movepagetalktext'        => "The associate Collogue page, gin onie, will be autaematically flittit alang wi it '''unless:''' *Ye'r flittin the page across namespaces, *A collogue page that isna tuim aareadies exists unner the new name, or *Ye tak the tick oot o the box ablo. In thae cases, ye maun flit or merge the page manually later gin ye hae saicont thochts.",
 'movearticle'             => 'Flit page:',
@@ -1076,11 +1071,8 @@ In the saicont case ye can uise an airtin forbye, for exemplar [[{{ns:special}}:
 'nocredits'     => "The'r nae credit info available for this page.",
 
 # Spam protection
-'spamprotectiontext'   => 'The page ye wanted tae save wis blockit bi the spam filter. This is maist likely caused bi an airtin til an outby site.',
-'spamprotectionmatch'  => 'The follaein text is whit triggered wir spam filter: $1',
-'subcategorycount'     => 'There {{PLURAL:$1|one subcategory|$1 subcategories}} in this category.',
-'categoryarticlecount' => "There's {{PLURAL:$1|the ae airticle|$1 airticles}} in this category.",
-'category-media-count' => "There's {{PLURAL:$1|the ae file|$1 files}} in this category.",
+'spamprotectiontext'  => 'The page ye wanted tae save wis blockit bi the spam filter. This is maist likely caused bi an airtin til an outby site.',
+'spamprotectionmatch' => 'The follaein text is whit triggered wir spam filter: $1',
 
 # Info page
 'infosubtitle'   => 'Wittins for page',
@@ -1118,8 +1110,11 @@ In the saicont case ye can uise an airtin forbye, for exemplar [[{{ns:special}}:
 'imagemaxsize' => 'Limit eimages on eimage description pages tae:',
 
 # Special:Newimages
-'newimages' => 'Gallery o new files',
-'noimages'  => 'Naething tae see.',
+'newimages'     => 'Gallery o new files',
+'imagelisttext' => 'Ablo is a leet o $1 {{PLURAL:$1|eimage|eimages}} sortit $2.',
+'noimages'      => 'Naething tae see.',
+'ilsubmit'      => 'Rake',
+'bydate'        => 'bi date',
 
 # Bad image list
 'bad_image_list' => 'The format is as follows:

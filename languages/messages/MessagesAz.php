@@ -74,11 +74,13 @@ $messages = array(
 'nov'       => 'Noyabr',
 'dec'       => 'Dekabr',
 
-# Bits of text used by many pages
-'categories'      => 'Kateqoriyalar',
-'pagecategories'  => 'Kateqoriyalar',
-'category_header' => '"$1" kategoriyasındaki məqalələr',
-'subcategories'   => 'Alt kategoriyalar',
+# Categories related messages
+'categories'             => 'Kateqoriyalar',
+'pagecategories'         => 'Kateqoriyalar',
+'category_header'        => '"$1" kategoriyasındaki məqalələr',
+'subcategories'          => 'Alt kategoriyalar',
+'subcategorycount'       => 'Bu kategoriyada $1 alt kategoriya var.',
+'listingcontinuesabbrev' => '(davam)',
 
 'about'          => 'İzah',
 'article'        => 'Mündəricat Səhifəsi',
@@ -251,7 +253,6 @@ $messages = array(
 'noarticletext'      => "Hal-hazırda bu səhifə boşdur. Başqa səhifələrdə [[Special:Search/{{PAGENAME}}|bu səhifənin adını axtara]] bilər və ya '''[{{fullurl:{{NAMESPACE}}:{{PAGENAME}}|action=edit}} səhifəni siz redaktə edəbilərsiniz]'''.",
 'previewnote'        => '<strong>Bu yalnız sınaq göstərişidir; dəyişikliklər hal-hazırda qeyd edilmemişdir!</strong>',
 'editing'            => 'Redaktə $1',
-'editinguser'        => 'Redaktə $1',
 'yourtext'           => 'Metniniz',
 'yourdiff'           => 'Fərqlər',
 'templatesused'      => 'Bu səhifədə istifadə edilmiş şablonlar:',
@@ -314,6 +315,7 @@ Açıqlama: (hh) = hal-hazırkı versiya ilə olan fərqlər,
 # User rights
 'userrights-lookup-user'   => 'İstifadəçi qruplarını idarə et',
 'userrights-user-editname' => 'İstifadəçi adınızı yazın:',
+'editinguser'              => 'Redaktə $1',
 
 # Recent changes
 'recentchanges'     => 'Son dəyişikliklər',
@@ -345,13 +347,11 @@ Açıqlama: (hh) = hal-hazırkı versiya ilə olan fərqlər,
 'uploadwarning'     => 'Yükləyiş xəbərdarlıqı',
 'savefile'          => 'Faylı qeyd et',
 
-# Image list
-'imagelist'        => 'Fayl siyahısı',
-'showlast'         => 'Show last $1 files sorted $2.',
-'byname'           => 'ada görə',
-'bydate'           => 'tarixe görə',
-'bysize'           => 'ölçüye görə',
-'imgdesc'          => 'desc',
+# Special:Imagelist
+'imgdesc'   => 'desc',
+'imagelist' => 'Fayl siyahısı',
+
+# Image description page
 'noimage-linktext' => 'faylı yüklə',
 
 # MIME search
@@ -502,16 +502,16 @@ Səhifəni izləmə sıyahınızdan çıxarmaq üçün yan lovhədəki "izləmə
 'blocklogpage'       => 'Blok qeydı',
 
 # Move page
-'move-page-legend'        => 'Səhifənin adını dəyiş',
-'movearticle'     => 'Səhifənin adını dəyişdir',
-'newtitle'        => 'Yeni başlıq',
-'movepagebtn'     => 'Səhifənin adını dəyiş',
-'movetalk'        => 'Bu səhifənin müzakirə səhifəsinin de adını dəyişdir.',
-'1movedto2'       => '[[$1]] adı dəyişildi. Yeni adı: [[$2]]',
-'1movedto2_redir' => '[[$1]] adı və məsiri dəyişildi : [[$2]]',
-'movereason'      => 'Səbəb',
-'revertmove'      => 'Əvvəlki vəziyyətinə',
-'delete_and_move' => 'Sil və apar',
+'move-page-legend' => 'Səhifənin adını dəyiş',
+'movearticle'      => 'Səhifənin adını dəyişdir',
+'newtitle'         => 'Yeni başlıq',
+'movepagebtn'      => 'Səhifənin adını dəyiş',
+'movetalk'         => 'Bu səhifənin müzakirə səhifəsinin de adını dəyişdir.',
+'1movedto2'        => '[[$1]] adı dəyişildi. Yeni adı: [[$2]]',
+'1movedto2_redir'  => '[[$1]] adı və məsiri dəyişildi : [[$2]]',
+'movereason'       => 'Səbəb',
+'revertmove'       => 'Əvvəlki vəziyyətinə',
+'delete_and_move'  => 'Sil və apar',
 
 # Export
 'export' => 'Səhifələri ixrac et',
@@ -562,11 +562,6 @@ Səhifəni izləmə sıyahınızdan çıxarmaq üçün yan lovhədəki "izləmə
 'tooltip-t-specialpages'        => 'Xüsusi səhifələrin siyahəsi',
 'tooltip-ca-nstab-help'         => 'Kömək səhifəsi',
 
-# Spam protection
-'subcategorycount'       => 'Bu kategoriyada $1 alt kategoriya var.',
-'categoryarticlecount'   => 'Bu kategoriyada $1 məqalə var.',
-'listingcontinuesabbrev' => '(davam)',
-
 # Browsing diffs
 'previousdiff' => '← Əvvəlki fərq',
 'nextdiff'     => 'Sonrakı fərq →',
@@ -577,6 +572,7 @@ Səhifəni izləmə sıyahınızdan çıxarmaq üçün yan lovhədəki "izləmə
 
 # Special:Newimages
 'newimages' => 'Yeni faylların siyahısı',
+'bydate'    => 'tarixe görə',
 
 # 'all' in various places, this might be different for inflected languages
 'imagelistall'  => 'bütün',

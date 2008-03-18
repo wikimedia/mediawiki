@@ -166,13 +166,14 @@ $messages = array(
 'nov'           => 'nôv',
 'dec'           => 'dec',
 
-# Bits of text used by many pages
+# Categories related messages
 'categories'            => 'Categoreyes',
 'pagecategories'        => '{{PLURAL:$1|Categoreye|Categoreyes}}',
 'category_header'       => 'Årtikes el categoreye «$1»',
 'subcategories'         => 'Dizo-categoreyes',
 'category-media-header' => 'Media el categoreye «$1»',
 'category-empty'        => "''Cisse categoreye ci n' a pol moumint nol årtike ni media.''",
+'subcategorycount'      => 'I gn a {{PLURAL:$1|ene dizo-categoreye|$1 dizo-categoreyes}} e cisse categoreye ci.',
 
 'mainpagetext' => "<big>'''Li programe Wiki a stî astalé a l' idêye.'''</big>",
 
@@ -822,18 +823,17 @@ ou co po les sons
 'nolicense'          => 'Nole licince tchoezeye',
 'upload_source_file' => ' (on fitchî sol copiutrece da vosse)',
 
-# Image list
-'imagelist'                 => 'Djivêye des imådjes',
-'imagelisttext'             => "Chal pa dzo c' est ene djivêye di '''$1''' {{PLURAL:$1|imådje relîte|imådjes relîtes}} $2.",
-'getimagelist'              => "dji fwait l' djivêye des imådjes",
-'ilsubmit'                  => 'Cweri',
-'showlast'                  => 'Mostrer les $1 dierinnès imådjes relîtes $2.',
-'byname'                    => 'påzès nos',
-'bydate'                    => 'pazès dates',
-'bysize'                    => 'pa grandeu',
-'imgdelete'                 => 'oist.',
-'imgdesc'                   => 'disc.',
-'imgfile'                   => 'fitchî',
+# Special:Imagelist
+'imagelist_search_for'  => "Cweri l' no d' imådje:",
+'imgdesc'               => 'disc.',
+'imgfile'               => 'fitchî',
+'imagelist'             => 'Djivêye des imådjes',
+'imagelist_name'        => 'No',
+'imagelist_user'        => 'Uzeu',
+'imagelist_size'        => 'Grandeu',
+'imagelist_description' => 'Discrijhaedje',
+
+# Image description page
 'filehist-deleteall'        => 'disfacer ttafwait',
 'filehist-deleteone'        => 'disfacer çouci',
 'filehist-datetime'         => 'Date/Eure',
@@ -849,11 +849,6 @@ ou co po les sons
 'noimage'                   => "I n' a nou fitchî avou ç' no la, vos l' poloz $1",
 'noimage-linktext'          => 'eberweter',
 'uploadnewversion-linktext' => 'Eberweter ene nouve modêye di ci fitchî ci',
-'imagelist_name'            => 'No',
-'imagelist_user'            => 'Uzeu',
-'imagelist_size'            => 'Grandeu',
-'imagelist_description'     => 'Discrijhaedje',
-'imagelist_search_for'      => "Cweri l' no d' imådje:",
 
 # File reversion
 'filerevert-comment' => 'Comintaire:',
@@ -1167,8 +1162,6 @@ Loukîz l' [[Special:Log/delete|djournå des disfaçaedjes]] po ene djivêye des
 
 'sp-contributions-submit' => 'Cweri',
 
-'sp-newimages-showfrom' => 'Mostrer les nouvès imådjes a pårti do $1',
-
 # What links here
 'whatlinkshere' => 'Pådjes ki loynut chal',
 'linklistsub'   => '(Djivêye des loyéns)',
@@ -1403,10 +1396,6 @@ Totes les accions di rcopiaedje eterwiki sont metowes e [[Special:Log/import|djo
 'creditspage'      => 'Pådje di credits',
 'nocredits'        => "I n' a pont d' infôrmåcion di credits po cisse pådje ci.",
 
-# Spam protection
-'subcategorycount'     => 'I gn a {{PLURAL:$1|ene dizo-categoreye|$1 dizo-categoreyes}} e cisse categoreye ci.',
-'categoryarticlecount' => 'I gn a {{PLURAL:$1|èn årtike|$1 årtikes}} e cisse categoreye ci.',
-
 # Info page
 'infosubtitle'   => 'Infôrmåcions pol pådje',
 'numedits'       => 'Nombe di candjmints (årtike): $1',
@@ -1436,9 +1425,13 @@ Totes les accions di rcopiaedje eterwiki sont metowes e [[Special:Log/import|djo
 'thumbsize'    => 'Grandeu po les imådjetes (thumb):',
 
 # Special:Newimages
-'newimages'    => 'Galreye des nouvès imådjes',
-'showhidebots' => '($1 robots)',
-'noimages'     => "I n' a rén a vey.",
+'newimages'             => 'Galreye des nouvès imådjes',
+'imagelisttext'         => "Chal pa dzo c' est ene djivêye di '''$1''' {{PLURAL:$1|imådje relîte|imådjes relîtes}} $2.",
+'showhidebots'          => '($1 robots)',
+'noimages'              => "I n' a rén a vey.",
+'ilsubmit'              => 'Cweri',
+'bydate'                => 'pazès dates',
+'sp-newimages-showfrom' => 'Mostrer les nouvès imådjes a pårti do $1',
 
 # Metadata
 'metadata'          => 'Meta-dnêyes',

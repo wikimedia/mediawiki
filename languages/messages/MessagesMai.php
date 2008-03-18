@@ -179,7 +179,7 @@ $messages = array(
 'uploadbtn'     => 'फाइल अपलोड',
 'uploadedimage' => 'अपलोड भेल "[[$1]]"',
 
-# Image list
+# Image description page
 'filehist'   => 'फाइल इतिहास',
 'imagelinks' => 'लिंक्स',
 

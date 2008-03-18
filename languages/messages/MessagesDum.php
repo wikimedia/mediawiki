@@ -69,7 +69,7 @@ $messages = array(
 'nov'           => 'Sla',
 'dec'           => 'Win',
 
-# Bits of text used by many pages
+# Categories related messages
 'categories'            => 'Groepen',
 'pagecategories'        => '{{PLURAL:$1|Groepe|Groepen}}',
 'category_header'       => 'Stroecken in groepe "$1"',

@@ -203,12 +203,10 @@ $messages = array(
 
 'license' => 'Лицензиялоо:',
 
-# Image list
-'imagelist'  => 'Файлдар тизмеси',
-'ilsubmit'   => 'Издөө',
-'byname'     => 'Аталышы боюнча',
-'bydate'     => 'Күнү боюнча',
-'bysize'     => 'Көлөмү боюнча',
+# Special:Imagelist
+'imagelist' => 'Файлдар тизмеси',
+
+# Image description page
 'imagelinks' => 'Шилтемелер',
 
 # Unused templates
@@ -310,6 +308,8 @@ $messages = array(
 
 # Special:Newimages
 'newimages' => 'Жаңы файлдардын галлереясы',
+'ilsubmit'  => 'Издөө',
+'bydate'    => 'Күнү боюнча',
 
 # EXIF tags
 'exif-artist'   => 'Автор',

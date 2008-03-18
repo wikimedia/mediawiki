@@ -113,7 +113,7 @@ $messages = array(
 'nov'           => '11月',
 'dec'           => '12月',
 
-# Bits of text used by many pages
+# Categories related messages
 'categories'               => '頁面分類',
 'pagecategories'           => '$1隻分類',
 'category_header'          => '“$1”分類中嗰文章',
@@ -121,6 +121,8 @@ $messages = array(
 'category-media-header'    => '“$1”分類中嗰媒體',
 'category-empty'           => '“箇隻分類有包到任何文章或媒體”',
 'hidden-category-category' => '隱藏哩箇分類', # Name of the category where hidden categories will be listed
+'subcategorycount'         => '箇隻分類有$1隻亞類。',
+'listingcontinuesabbrev'   => '續',
 
 'mainpagetext'      => "<big>'''安裝正MediaWiki嘍!'''</big>",
 'mainpagedocfooter' => '參看[http://meta.wikimedia.org/wiki/Help:Contents 用戶指南]裡頭會話到啷用wiki軟件
@@ -913,18 +915,18 @@ $2',
 'upload_source_url'  => '(一隻有效嗰，公開嗰 URL)',
 'upload_source_file' => '(倷電腦嗰一隻檔案)',
 
-# Image list
-'imagelist'                 => '檔案列表',
-'imagelisttext'             => '底下係按$2排列嗰$1隻檔案列表。',
-'getimagelist'              => '獲取檔案列表中',
-'ilsubmit'                  => '尋',
-'showlast'                  => '顯示按$2排列嗰最末$1隻檔案。',
-'byname'                    => '按名字',
-'bydate'                    => '按日子',
-'bysize'                    => '按大細',
-'imgdelete'                 => '刪',
-'imgdesc'                   => '話',
-'imgfile'                   => '檔案',
+# Special:Imagelist
+'imagelist_search_for'  => '按媒體名字尋:',
+'imgdesc'               => '話',
+'imgfile'               => '檔案',
+'imagelist'             => '檔案列表',
+'imagelist_date'        => '日期',
+'imagelist_name'        => '名稱',
+'imagelist_user'        => '用戶',
+'imagelist_size'        => '大細',
+'imagelist_description' => '簡話',
+
+# Image description page
 'filehist'                  => '檔案歷史',
 'filehist-help'             => '按到日期／時間去眵吖許時間有過嗰檔案。',
 'filehist-deleteall'        => '全部刪掉',
@@ -945,12 +947,6 @@ $2',
 'noimage'                   => '同名嗰檔案伓存在，倷可以$1。',
 'noimage-linktext'          => '上傳佢',
 'uploadnewversion-linktext' => '上傳箇隻檔案嗰新版本',
-'imagelist_date'            => '日期',
-'imagelist_name'            => '名稱',
-'imagelist_user'            => '用戶',
-'imagelist_size'            => '大細',
-'imagelist_description'     => '簡話',
-'imagelist_search_for'      => '按媒體名字尋:',
 
 # File reversion
 'filerevert'                => '恢復$1',
@@ -1358,8 +1354,6 @@ $NEWPAGE
 'sp-contributions-username'    => 'IP地址或用戶名：',
 'sp-contributions-submit'      => '尋',
 
-'sp-newimages-showfrom' => '顯示從 $1 起嗰新文件',
-
 # What links here
 'whatlinkshere'       => '有什哩連到箇首',
 'whatlinkshere-title' => '連到箇首嗰頁面',
@@ -1665,16 +1659,12 @@ $NEWPAGE
 'nocredits'        => '箇頁冇致謝名單。',
 
 # Spam protection
-'spamprotectiontitle'    => '垃圾廣告隔離器',
-'spamprotectiontext'     => '倷想存嗰頁面拕垃圾廣告隔離器測到。噉可能係外部連結扤得。',
-'spamprotectionmatch'    => '下底係觸發垃圾廣告隔離器嗰內容: $1',
-'subcategorycount'       => '箇隻分類有$1隻亞類。',
-'categoryarticlecount'   => '箇隻分類有$1篇文章。',
-'category-media-count'   => '箇隻分類有$1隻檔案。',
-'listingcontinuesabbrev' => '續',
-'spambot_username'       => 'MediaWiki 廣告清除',
-'spam_reverting'         => '返回到伓包連到$1最晏嗰版本',
-'spam_blanking'          => '全部包含連到$1嗰改動，留空',
+'spamprotectiontitle' => '垃圾廣告隔離器',
+'spamprotectiontext'  => '倷想存嗰頁面拕垃圾廣告隔離器測到。噉可能係外部連結扤得。',
+'spamprotectionmatch' => '下底係觸發垃圾廣告隔離器嗰內容: $1',
+'spambot_username'    => 'MediaWiki 廣告清除',
+'spam_reverting'      => '返回到伓包連到$1最晏嗰版本',
+'spam_blanking'       => '全部包含連到$1嗰改動，留空',
 
 # Info page
 'infosubtitle'   => '頁面嗰信息',
@@ -1736,9 +1726,13 @@ $1',
 'show-big-image-thumb' => '<small>箇幅縮略圖嗰解析度: $1 × $2 像素</small>',
 
 # Special:Newimages
-'newimages'    => '新建圖像畫廊',
-'showhidebots' => '($1機器人)',
-'noimages'     => '冇什哩可望。',
+'newimages'             => '新建圖像畫廊',
+'imagelisttext'         => '底下係按$2排列嗰$1隻檔案列表。',
+'showhidebots'          => '($1機器人)',
+'noimages'              => '冇什哩可望。',
+'ilsubmit'              => '尋',
+'bydate'                => '按日子',
+'sp-newimages-showfrom' => '顯示從 $1 起嗰新文件',
 
 # Bad image list
 'bad_image_list' => '請根據下底嗰格式去寫: 

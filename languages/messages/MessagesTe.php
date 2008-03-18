@@ -1016,18 +1016,18 @@ $3 చెప్పిన కారణం: ''$2''",
 'upload_source_url'  => ' (సార్వజనికంగా అందుబాటులో ఉన్న, సరైన URL)',
 'upload_source_file' => ' (మీ కంప్యూటర్లో ఒక ఫైలు)',
 
-# Image list
-'imagelist'                 => 'ఫైళ్ళ జాబితా',
-'imagelisttext'             => "ఇది $2 వారీగా పేర్చిన  '''$1''' {{PLURAL:$1|పైలు|ఫైళ్ళ}} జాబితా.",
-'getimagelist'              => 'ఫైలు జాబితాను తెస్తున్నాం',
-'ilsubmit'                  => 'వెతుకు',
-'showlast'                  => '$2 పేర్చిన గత $1 ఫైళ్ళను చూపించు',
-'byname'                    => 'పేర్ల వారీగ',
-'bydate'                    => 'తేదీ వారీగ',
-'bysize'                    => 'సైజు వారీగ',
-'imgdelete'                 => 'తొల',
-'imgdesc'                   => 'వివరణ',
-'imgfile'                   => 'ఫైలు',
+# Special:Imagelist
+'imagelist_search_for'  => 'మీడియా పేరుకై వెతుకు:',
+'imgdesc'               => 'వివరణ',
+'imgfile'               => 'ఫైలు',
+'imagelist'             => 'ఫైళ్ళ జాబితా',
+'imagelist_date'        => 'తేదీ',
+'imagelist_name'        => 'పేరు',
+'imagelist_user'        => 'వాడుకరి',
+'imagelist_size'        => 'పరిమాణం',
+'imagelist_description' => 'వివరణ',
+
+# Image description page
 'filehist'                  => 'ఫైలు చరితం',
 'filehist-help'             => 'తేదీ/సమయం ను నొక్కి ఆ సమయాన ఫైలు ఎలా ఉండేదో చూడవచ్చు.',
 'filehist-deleteall'        => 'అన్నిటినీ తొలగించు',
@@ -1049,12 +1049,6 @@ $3 చెప్పిన కారణం: ''$2''",
 'noimage'                   => 'ఆ పేరుతో ఫైలేమీ లేదు, మీరు $1',
 'noimage-linktext'          => 'దాన్ని అప్‌లోడు చెయ్యవచ్చు',
 'uploadnewversion-linktext' => 'ఈ ఫైలు కొత్త కూర్పును అప్‌లోడు చెయ్యండి',
-'imagelist_date'            => 'తేదీ',
-'imagelist_name'            => 'పేరు',
-'imagelist_user'            => 'వాడుకరి',
-'imagelist_size'            => 'పరిమాణం',
-'imagelist_description'     => 'వివరణ',
-'imagelist_search_for'      => 'మీడియా పేరుకై వెతుకు:',
 
 # File reversion
 'filerevert'                => '$1 ను వెనక్కు తీసుకుపో',
@@ -1495,8 +1489,6 @@ $NEWPAGE
 'sp-contributions-username'    => 'ఐ.పి.అడ్రసు లేదా సభ్యనామం:',
 'sp-contributions-submit'      => 'వెతుకు',
 
-'sp-newimages-showfrom' => '$1 తో మొదలుపెట్టి కొత్త బొమ్మలను చూపించు',
-
 # What links here
 'whatlinkshere'       => 'ఇక్కడికి లింకు చేస్తున్న పేజీలు',
 'whatlinkshere-title' => '$1 కు లింకున్న పేజీలు',
@@ -1878,9 +1870,13 @@ $1',
 'show-big-image-thumb' => '<small>ఈ మునుజూపు సైజు: $1 × $2 pixels</small>',
 
 # Special:Newimages
-'newimages'    => 'కొత్త ఫైళ్ళ కొలువు',
-'showhidebots' => '($1 బాట్లు)',
-'noimages'     => 'చూసేందుకు ఏమీ లేదు.',
+'newimages'             => 'కొత్త ఫైళ్ళ కొలువు',
+'imagelisttext'         => "ఇది $2 వారీగా పేర్చిన  '''$1''' {{PLURAL:$1|పైలు|ఫైళ్ళ}} జాబితా.",
+'showhidebots'          => '($1 బాట్లు)',
+'noimages'              => 'చూసేందుకు ఏమీ లేదు.',
+'ilsubmit'              => 'వెతుకు',
+'bydate'                => 'తేదీ వారీగ',
+'sp-newimages-showfrom' => '$1 తో మొదలుపెట్టి కొత్త బొమ్మలను చూపించు',
 
 # Bad image list
 'bad_image_list' => 'కింద తెలిపిన తీరులో కలపాలి:

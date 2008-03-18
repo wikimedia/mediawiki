@@ -192,13 +192,15 @@ $messages = array(
 'nov'           => 'Samh',
 'dec'           => 'Noll',
 
-# Bits of text used by many pages
-'categories'            => 'Catagóirí',
-'pagecategories'        => '{{PLURAL:$1|Catagóir|Catagóirí}}',
-'category_header'       => 'Ailt sa chatagóir "$1"',
-'subcategories'         => 'Fo-chatagóirí',
-'category-media-header' => 'Meáin sa chatagóir "$1"',
-'category-empty'        => "''Níl aon leathanaigh ná méid sa chatagóir ar an am seo.''",
+# Categories related messages
+'categories'             => 'Catagóirí',
+'pagecategories'         => '{{PLURAL:$1|Catagóir|Catagóirí}}',
+'category_header'        => 'Ailt sa chatagóir "$1"',
+'subcategories'          => 'Fo-chatagóirí',
+'category-media-header'  => 'Meáin sa chatagóir "$1"',
+'category-empty'         => "''Níl aon leathanaigh ná méid sa chatagóir ar an am seo.''",
+'subcategorycount'       => 'Tá $1 fo-chatagóirí sa chatagóir seo.',
+'listingcontinuesabbrev' => 'ar lean.',
 
 'mainpagetext'      => 'Suiteáladh an ríomhchlár vicí go rathúil.',
 'mainpagedocfooter' => 'Féach ar [http://meta.wikimedia.org/wiki/MediaWiki_localisation doiciméid um conas an chomhéadán a athrú]
@@ -849,17 +851,12 @@ uaslódáil é arís, le do thoil.',
 'upload_source_url'  => ' (URL bailí is féidir a rochtain go poiblí)',
 'upload_source_file' => ' (comhad ar do riomhaire)',
 
-# Image list
-'imagelist'                 => 'Liosta íomhánna',
-'imagelisttext'             => 'Is liosta é seo a leanas de $1 íomhánna, curtha in eagar le $2.',
-'getimagelist'              => 'ag fáil an liosta íomhánna',
-'ilsubmit'                  => 'Cuardaigh',
-'showlast'                  => 'Taispeáin na $1 íomhánna seo caite, curtha in eagar le $2.',
-'byname'                    => 'de réir hainm',
-'bydate'                    => 'de réir dáta',
-'bysize'                    => 'de réir méid',
-'imgdelete'                 => 'scrios',
-'imgdesc'                   => 'curs',
+# Special:Imagelist
+'imgdesc'        => 'curs',
+'imagelist'      => 'Liosta íomhánna',
+'imagelist_user' => 'Úsáideoir',
+
+# Image description page
 'filehist'                  => 'Stair comhad',
 'filehist-current'          => 'reatha',
 'filehist-datetime'         => 'Dáta/Am',
@@ -875,7 +872,6 @@ uaslódáil é arís, le do thoil.',
 'noimage'                   => 'Níl aon chomhad ann leis an ainm seo, ba féidir leat [$1 é a uaslódáil]',
 'noimage-linktext'          => 'uaslódáil é',
 'uploadnewversion-linktext' => 'Uaslódáil leagan nua den comhad seo',
-'imagelist_user'            => 'Úsáideoir',
 
 # File deletion
 'filedelete'        => 'Scrios $1',
@@ -1441,14 +1437,10 @@ ní féidir uaslódála staire díreacha a dhéanamh faoi láthair.",
 'nocredits'        => 'Níl aon eolas creidiúna le fáil don leathanach seo.',
 
 # Spam protection
-'spamprotectiontitle'    => 'Scagaire in aghaidh ríomhphost dramhála',
-'spamprotectiontext'     => 'Chuir an scagaire dramhála bac ar an leathanach a raibh tú ar
+'spamprotectiontitle' => 'Scagaire in aghaidh ríomhphost dramhála',
+'spamprotectiontext'  => 'Chuir an scagaire dramhála bac ar an leathanach a raibh tú ar
 iarradh sábháil. Is dócha gur nasc chuig suíomh seachtrach ba chúis leis.',
-'spamprotectionmatch'    => 'Truicear ár scagaire dramhála ag an téacs seo a leanas: $1',
-'subcategorycount'       => 'Tá $1 fo-chatagóirí sa chatagóir seo.',
-'categoryarticlecount'   => 'Tá $1 ailt sa chatagóir seo.',
-'category-media-count'   => 'Tá {{PLURAL:$1| comhad amháin| $1 comhaid}} sa chatagóir seo.',
-'listingcontinuesabbrev' => 'ar lean.',
+'spamprotectionmatch' => 'Truicear ár scagaire dramhála ag an téacs seo a leanas: $1',
 
 # Info page
 'infosubtitle'   => 'Eolas don leathanach',
@@ -1494,8 +1486,11 @@ iarradh sábháil. Is dócha gur nasc chuig suíomh seachtrach ba chúis leis.',
 'show-big-image-thumb' => '<small>Méid an réamhamhairc seo: $1 × $2 picteilín</small>',
 
 # Special:Newimages
-'newimages' => 'Gailearaí na n-íomhánna nua',
-'noimages'  => 'Níl aon rud le feiscint.',
+'newimages'     => 'Gailearaí na n-íomhánna nua',
+'imagelisttext' => 'Is liosta é seo a leanas de $1 íomhánna, curtha in eagar le $2.',
+'noimages'      => 'Níl aon rud le feiscint.',
+'ilsubmit'      => 'Cuardaigh',
+'bydate'        => 'de réir dáta',
 
 # Metadata
 'metadata'          => 'Meiteasonraí',

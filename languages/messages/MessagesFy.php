@@ -166,13 +166,15 @@ $messages = array(
 'nov'           => 'nov',
 'dec'           => 'des',
 
-# Bits of text used by many pages
-'categories'            => 'Kategoryen',
-'pagecategories'        => '{{PLURAL:$1|Kategory|Kategoryen}}',
-'category_header'       => 'Siden yn kategory "$1"',
-'subcategories'         => 'Underkategoryen',
-'category-media-header' => 'Media yn kategory "$1"',
-'category-empty'        => "''Dizze kategory befettet gjin siden of media.''",
+# Categories related messages
+'categories'             => 'Kategoryen',
+'pagecategories'         => '{{PLURAL:$1|Kategory|Kategoryen}}',
+'category_header'        => 'Siden yn kategory "$1"',
+'subcategories'          => 'Underkategoryen',
+'category-media-header'  => 'Media yn kategory "$1"',
+'category-empty'         => "''Dizze kategory befettet gjin siden of media.''",
+'subcategorycount'       => 'Der {{PLURAL:$1|is ien ûnderkategory|binne $1 ûnderkategoryen}} yn dizze kategory.',
+'listingcontinuesabbrev' => 'mear',
 
 'mainpagetext'      => 'Wiki-programma goed installearre.',
 'mainpagedocfooter' => "Rieplachtsje de [http://meta.wikimedia.org/wiki/Help:Ynhâldsopjefte hantlieding] foar ynformaasje oer it gebrûk fan 'e wikisoftware.
@@ -525,7 +527,6 @@ jo jo [[{{ns:special}}:Userlogin|oanmelde]], dat jo allinnich opmerkings foar jo
 'previewnote'            => 'Tink der om dat dizze side noch net fêstlein is!',
 'previewconflict'        => 'Dizze side belanget allinich it earste bewurkingsfjild oan.',
 'editing'                => 'Bewurkje "$1"',
-'editinguser'            => 'Bewurkje "$1"',
 'editingsection'         => 'Dwaande mei bewurkjen fan $1 (dielside)',
 'editconflict'           => 'Tagelyk bewurke: "$1"',
 'explainconflict'        => "In oar hat de side feroare sûnt jo begûn binne mei it bewurkjen.
@@ -663,6 +664,9 @@ mooglik. Foar now kinne jo sykje fia Google:</p>",
 'guesstimezone'            => 'Freegje de blêder',
 'defaultns'                => "Nammeromten dy't normaal trochsykje wurde:",
 
+# User rights
+'editinguser' => 'Bewurkje "$1"',
+
 'grouppage-sysop' => '{{ns:project}}:Behearders',
 
 # User rights log
@@ -744,17 +748,11 @@ meitsje fan it systeem..",
 'uploadedimage'     => ' "[[$1]]" oanbean',
 'uploaddisabled'    => 'Sorry, op dizze tsjinner kin net oanbean wurde.',
 
-# Image list
-'imagelist'                 => 'Ofbyld list',
-'imagelisttext'             => 'Dit is in list fan $1 ôfbylden, op $2.',
-'getimagelist'              => 'Ofbyld list ...',
-'ilsubmit'                  => 'Sykje',
-'showlast'                  => 'Jou lêste $1 ôfbylden, op $2.',
-'byname'                    => 'namme',
-'bydate'                    => 'datum',
-'bysize'                    => 'grutte',
-'imgdelete'                 => 'wisk',
-'imgdesc'                   => 'tekst',
+# Special:Imagelist
+'imgdesc'   => 'tekst',
+'imagelist' => 'Ofbyld list',
+
+# Image description page
 'filehist'                  => 'Triemskiednis',
 'filehist-help'             => "Klik op in datum/tiid om de triem te sjen sa't er doedestiids wie.",
 'filehist-current'          => 'rinnend',
@@ -1088,7 +1086,7 @@ Befêstigje dat dit is wat jo wolle.',
 'unlockdbsuccesstext' => 'De {{SITENAME}} databank is skriuwber makke.',
 
 # Move page
-'move-page-legend'         => 'Werneam side',
+'move-page-legend' => 'Werneam side',
 'movepagetext'     => "Dit werneamt in side, mei alle sideskiednis.
 De âlde titel wurdt in trochferwizing nei de nije.
 Keppelings mei de âlde side wurde net feroare;
@@ -1182,12 +1180,6 @@ Gearfoegje de oerlissiden hânmjittig.",
 'tooltip-compareselectedversions' => 'Sjoch de ferskillen tusken de twa keazen ferzjes fan dizze side.',
 'tooltip-watch'                   => 'Foegje dizze side ta oan jo folchlist',
 
-# Spam protection
-'subcategorycount'       => 'Der {{PLURAL:$1|is ien ûnderkategory|binne $1 ûnderkategoryen}} yn dizze kategory.',
-'categoryarticlecount'   => 'Der {{PLURAL:$1|is ien side|binne $1 siden}} yn dizze kategory.',
-'category-media-count'   => 'Der {{PLURAL:$1|stiet ien triem|steane $1 triemmen}} yn dizze kategory.',
-'listingcontinuesabbrev' => 'mear',
-
 # Math options
 'mw_math_png'    => 'Altiten as PNG ôfbyldzje',
 'mw_math_simple' => 'HTML foar ienfâldiche formules, oars PNG',
@@ -1208,7 +1200,10 @@ Gearfoegje de oerlissiden hânmjittig.",
 'show-big-image-thumb' => '<small>Grutte fan dizze ôfbylding: $1 × $2 pixels</small>',
 
 # Special:Newimages
-'newimages' => 'Nije ôfbyldings',
+'newimages'     => 'Nije ôfbyldings',
+'imagelisttext' => 'Dit is in list fan $1 ôfbylden, op $2.',
+'ilsubmit'      => 'Sykje',
+'bydate'        => 'datum',
 
 # Bad image list
 'bad_image_list' => "De opmaak is as folget:

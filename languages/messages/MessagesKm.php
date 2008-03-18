@@ -1036,18 +1036,18 @@ $2',
 'license-nopreview'  => '(មើលមុន មិនបាន)',
 'upload_source_file' => ' (ឯកសារក្នុងកុំព្យូទ័ររបស់អ្នក)',
 
-# Image list
-'imagelist'                 => 'បញ្ជីរូបភាព',
-'imagelisttext'             => "នេះជា បញ្ជី '''$1''' {{PLURAL:$1|ឯកសារ|ឯកសារ}} បានរៀបតាមលំដាប់ $2 ។",
-'getimagelist'              => 'នាំមកបង្ហាញនូវបញ្ជីឯកសារ',
-'ilsubmit'                  => 'ស្វែងរក',
-'showlast'                  => 'បង្ហាញ $1 រូបភាពថ្មី បំផុត រៀបតាមលំដាប់ $2 ។',
-'byname'                    => 'តាមឈ្មោះ',
-'bydate'                    => 'តាមកាលបរិច្ឆេទ',
-'bysize'                    => 'តាមទំហំ',
-'imgdelete'                 => 'លុបចេញ',
-'imgdesc'                   => 'លំដាប់ចុះ',
-'imgfile'                   => 'ឯកសារ',
+# Special:Imagelist
+'imagelist_search_for'  => 'ស្វែងរកឈ្មោះមេឌា៖',
+'imgdesc'               => 'លំដាប់ចុះ',
+'imgfile'               => 'ឯកសារ',
+'imagelist'             => 'បញ្ជីរូបភាព',
+'imagelist_date'        => 'កាលបរិច្ឆេទ',
+'imagelist_name'        => 'ឈ្មោះ',
+'imagelist_user'        => 'អ្នកប្រើប្រាស់',
+'imagelist_size'        => 'ទំហំ',
+'imagelist_description' => 'ការពិពណ៌នា',
+
+# Image description page
 'filehist'                  => 'ប្រវត្តិ​ឯកសារ',
 'filehist-help'             => "ចុចលើ'''ម៉ោងនិងកាលបរិច្ឆេទ'''ដើម្បីមើលឯកសារដែលបានផ្ទុកនៅពេលនោះ។",
 'filehist-deleteall'        => 'លុបទាំងអស់',
@@ -1069,12 +1069,6 @@ $2',
 'noimage'                   => 'គ្មានឈ្មោះ រូបភាព នេះទេ, អ្នកអាច $1 ។',
 'noimage-linktext'          => 'ផ្ទុកវាឡើង',
 'uploadnewversion-linktext' => 'ផ្ទុកឡើង មួយកំណែថ្មី នៃ ឯកសារនេះ',
-'imagelist_date'            => 'កាលបរិច្ឆេទ',
-'imagelist_name'            => 'ឈ្មោះ',
-'imagelist_user'            => 'អ្នកប្រើប្រាស់',
-'imagelist_size'            => 'ទំហំ',
-'imagelist_description'     => 'ការពិពណ៌នា',
-'imagelist_search_for'      => 'ស្វែងរកឈ្មោះមេឌា៖',
 
 # File reversion
 'filerevert'         => 'ត្រឡប់ $1',
@@ -1440,8 +1434,6 @@ Consult the [[Special:Log/delete|deletion log]] for a record of recent deletions
 'sp-contributions-username'    => 'អាសយដ្ឋាន IP ឬឈ្មោះអ្នកប្រើ៖',
 'sp-contributions-submit'      => 'ស្វែងរក',
 
-'sp-newimages-showfrom' => 'បង្ហាញឯកសារថ្មីៗចាប់ផ្តើមដោយ$1',
-
 # What links here
 'whatlinkshere'       => 'អ្វី​ដែលភ្ជាប់នឹង​ទីនេះ',
 'whatlinkshere-title' => 'ទំព័រ​តភ្ជាប់​ទៅ $1',
@@ -1760,9 +1752,13 @@ $1',
 'show-big-image-thumb' => '<small>ទំហំ​នៃការមើលមុននេះ៖ $1 × $2 ធាតុរូបភាព</small>',
 
 # Special:Newimages
-'newimages'    => 'វិចិត្រសាលរូបភាពថ្មីៗ (Gallery of new files)',
-'showhidebots' => '($1 រូបយន្ត)',
-'noimages'     => 'គ្មានឃើញអី សោះ។',
+'newimages'             => 'វិចិត្រសាលរូបភាពថ្មីៗ (Gallery of new files)',
+'imagelisttext'         => "នេះជា បញ្ជី '''$1''' {{PLURAL:$1|ឯកសារ|ឯកសារ}} បានរៀបតាមលំដាប់ $2 ។",
+'showhidebots'          => '($1 រូបយន្ត)',
+'noimages'              => 'គ្មានឃើញអី សោះ។',
+'ilsubmit'              => 'ស្វែងរក',
+'bydate'                => 'តាមកាលបរិច្ឆេទ',
+'sp-newimages-showfrom' => 'បង្ហាញឯកសារថ្មីៗចាប់ផ្តើមដោយ$1',
 
 # Bad image list
 'bad_image_list' => 'ទំរង់ ដូចតទៅ ៖

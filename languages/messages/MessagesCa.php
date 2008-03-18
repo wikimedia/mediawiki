@@ -251,7 +251,7 @@ $messages = array(
 'nov'           => 'nov',
 'dec'           => 'des',
 
-# Bits of text used by many pages
+# Categories related messages
 'categories'               => 'Categories',
 'pagecategories'           => '{{PLURAL:$1|Categoria|Categories}}',
 'category_header'          => 'Pàgines a la categoria «$1»',
@@ -260,6 +260,8 @@ $messages = array(
 'category-empty'           => "''Aquesta categoria no té cap pàgina ni fitxer.''",
 'hidden-categories'        => '{{PLURAL:$1|Categoria oculta|Categories ocultes}}',
 'hidden-category-category' => 'Categories ocultes', # Name of the category where hidden categories will be listed
+'subcategorycount'         => "Hi ha {{PLURAL:$1|una subcategoria|$1 subcategories}} dins d'aquesta categoria.",
+'listingcontinuesabbrev'   => ' cont.',
 
 'mainpagetext'      => "<big>'''El programari del MediaWiki s'ha instal·lat correctament.'''</big>",
 'mainpagedocfooter' => "Consulteu la [http://meta.wikimedia.org/wiki/Help:Contents Guia d'Usuari] per a més informació sobre com utilitzar-lo.
@@ -1131,18 +1133,18 @@ A continuació teniu el registre d'eliminació per a que pugueu comprovar els mo
 'upload_source_url'  => ' (un URL vàlid i accessible públicament)',
 'upload_source_file' => ' (un fitxer en el vostre ordinador)',
 
-# Image list
-'imagelist'                 => 'Llista de fitxers',
-'imagelisttext'             => "Llista {{plural:$1|d'un sol fitxer|de '''$1''' fitxers ordenats $2}}.",
-'getimagelist'              => " s'està recuperant la llista de fitxers",
-'ilsubmit'                  => 'Cerca',
-'showlast'                  => 'Mostra les darreres $1 imatges ordenades $2.',
-'byname'                    => 'per nom',
-'bydate'                    => 'per data',
-'bysize'                    => 'per mida',
-'imgdelete'                 => 'edi',
-'imgdesc'                   => 'desc',
-'imgfile'                   => 'fitxer',
+# Special:Imagelist
+'imagelist_search_for'  => "Cerca el nom d'un fitxer de medis:",
+'imgdesc'               => 'desc',
+'imgfile'               => 'fitxer',
+'imagelist'             => 'Llista de fitxers',
+'imagelist_date'        => 'Data',
+'imagelist_name'        => 'Nom',
+'imagelist_user'        => 'Usuari',
+'imagelist_size'        => 'Mida (octets)',
+'imagelist_description' => 'Descripció',
+
+# Image description page
 'filehist'                  => 'Historial del fitxer',
 'filehist-help'             => 'Cliqueu una data/hora per veure el fitxer tal com era aleshores.',
 'filehist-deleteall'        => 'elimina-ho tot',
@@ -1164,12 +1166,6 @@ A continuació teniu el registre d'eliminació per a que pugueu comprovar els mo
 'noimage'                   => 'No existeix cap fitxer amb aquest nom, però podeu $1.',
 'noimage-linktext'          => 'Carrega',
 'uploadnewversion-linktext' => "Carrega una nova versió d'aquest fitxer",
-'imagelist_date'            => 'Data',
-'imagelist_name'            => 'Nom',
-'imagelist_user'            => 'Usuari',
-'imagelist_size'            => 'Mida (octets)',
-'imagelist_description'     => 'Descripció',
-'imagelist_search_for'      => "Cerca el nom d'un fitxer de medis:",
 
 # File reversion
 'filerevert'                => 'Reverteix $1',
@@ -1634,8 +1630,6 @@ $1",
 'sp-contributions-username'    => "Adreça IP o nom d'usuari:",
 'sp-contributions-submit'      => 'Cerca',
 
-'sp-newimages-showfrom' => 'Mostra fitxers nous des de $1',
-
 # What links here
 'whatlinkshere'       => 'Què hi enllaça',
 'whatlinkshere-title' => 'Pàgines que enllacen a $1',
@@ -1974,16 +1968,12 @@ Totes les accions d'importació interwiki es conserven al [[Special:Log/import|r
 'nocredits'        => 'No hi ha títols disponibles per aquesta pàgina.',
 
 # Spam protection
-'spamprotectiontitle'    => 'Filtre de protecció de brossa',
-'spamprotectiontext'     => 'La pàgina que volíeu desar va ser blocada pel filtre de brossa. Probablement per un enllaç a un lloc extern.',
-'spamprotectionmatch'    => 'El següent text és el que va disparar el nostre filtre de brossa: $1',
-'subcategorycount'       => "Hi ha {{PLURAL:$1|una subcategoria|$1 subcategories}} dins d'aquesta categoria.",
-'categoryarticlecount'   => 'Hi ha {{PLURAL:$1|una pàgina|$1 pàgines}} en aquesta categoria.',
-'category-media-count'   => 'Aquesta categoria conté {{PLURAL:$1|un fitxer|$1 fitxers}}.',
-'listingcontinuesabbrev' => ' cont.',
-'spambot_username'       => 'Neteja de brossa del MediaWiki',
-'spam_reverting'         => 'Es reverteix a la darrera versió que no conté enllaços a $1',
-'spam_blanking'          => "Totes les revisions contenien enllaços $1, s'està deixant en blanc",
+'spamprotectiontitle' => 'Filtre de protecció de brossa',
+'spamprotectiontext'  => 'La pàgina que volíeu desar va ser blocada pel filtre de brossa. Probablement per un enllaç a un lloc extern.',
+'spamprotectionmatch' => 'El següent text és el que va disparar el nostre filtre de brossa: $1',
+'spambot_username'    => 'Neteja de brossa del MediaWiki',
+'spam_reverting'      => 'Es reverteix a la darrera versió que no conté enllaços a $1',
+'spam_blanking'       => "Totes les revisions contenien enllaços $1, s'està deixant en blanc",
 
 # Info page
 'infosubtitle'   => 'Informació de la pàgina',
@@ -2045,9 +2035,13 @@ $1",
 'show-big-image-thumb' => "<small>Mida d'aquesta previsualització: $1 × $2 píxels</small>",
 
 # Special:Newimages
-'newimages'    => 'Galeria de nous fitxers',
-'showhidebots' => '($1 bots)',
-'noimages'     => 'Res per veure.',
+'newimages'             => 'Galeria de nous fitxers',
+'imagelisttext'         => "Llista {{plural:$1|d'un sol fitxer|de '''$1''' fitxers ordenats $2}}.",
+'showhidebots'          => '($1 bots)',
+'noimages'              => 'Res per veure.',
+'ilsubmit'              => 'Cerca',
+'bydate'                => 'per data',
+'sp-newimages-showfrom' => 'Mostra fitxers nous des de $1',
 
 # Bad image list
 'bad_image_list' => "El format ha de ser el següent:

@@ -181,13 +181,15 @@ $messages = array(
 'nov'           => 'nov',
 'dec'           => 'dets',
 
-# Bits of text used by many pages
-'categories'            => 'Kategooriad',
-'pagecategories'        => '{{PLURAL:$1|Kategooria|Kategooriad}}',
-'category_header'       => 'Artiklid kategooriast "$1"',
-'subcategories'         => 'Allkategooriad',
-'category-media-header' => 'Meediafailid kategooriast "$1"',
-'category-empty'        => "''Selles kategoorias pole ühtegi artiklit ega meediafaili.''",
+# Categories related messages
+'categories'             => 'Kategooriad',
+'pagecategories'         => '{{PLURAL:$1|Kategooria|Kategooriad}}',
+'category_header'        => 'Artiklid kategooriast "$1"',
+'subcategories'          => 'Allkategooriad',
+'category-media-header'  => 'Meediafailid kategooriast "$1"',
+'category-empty'         => "''Selles kategoorias pole ühtegi artiklit ega meediafaili.''",
+'subcategorycount'       => 'Sellel kategoorial on {{PLURAL:$1|üks allkategooria|$1 allkategooriat}}.',
+'listingcontinuesabbrev' => 'jätk',
 
 'mainpagetext'      => "<big>'''Wiki tarkvara installeeritud.'''</big>",
 'mainpagedocfooter' => 'Juhiste saamiseks kasutamise ning konfigureerimise kohta vaata palun inglisekeelset [http://meta.wikimedia.org/wiki/MediaWiki_localisation dokumentatsiooni liidese kohaldamisest]
@@ -764,17 +766,11 @@ võidakse sinu ligipääs sulgeda.',
 'license'   => 'Litsents:',
 'nolicense' => 'pole valitud',
 
-# Image list
-'imagelist'        => 'Piltide loend',
-'imagelisttext'    => 'Piltide arv järgnevas loendis: $1. Sorteeritud $2.',
-'getimagelist'     => 'hangin piltide nimekirja',
-'ilsubmit'         => 'Otsi',
-'showlast'         => 'Näita viimast $1 pilti sorteerituna $2.',
-'byname'           => 'nime järgi',
-'bydate'           => 'kuupäeva järgi',
-'bysize'           => 'suuruse järgi',
-'imgdelete'        => 'kust',
-'imgdesc'          => 'kirj',
+# Special:Imagelist
+'imgdesc'   => 'kirj',
+'imagelist' => 'Piltide loend',
+
+# Image description page
 'filehist-user'    => 'Kasutaja',
 'filehist-comment' => 'Kommentaar',
 'imagelinks'       => 'Viited pildile',
@@ -1031,8 +1027,6 @@ versioonid varasema ajaloona. Kehtivat versiooni automaatselt välja ei vahetata
 'uclinks'       => 'Näita viimast $1 muudatust; viimase $2 päeva jooksul.',
 'uctop'         => ' (üles)',
 
-'sp-newimages-showfrom' => 'Näita uusi pilte alates $1',
-
 # What links here
 'whatlinkshere'      => 'Viidad siia',
 'linklistsub'        => '(Linkide loend)',
@@ -1092,7 +1086,7 @@ Kindlasti tuleb täita ka väli \"põhjus\", paigutades sinna näiteks viited ko
 'unlockdbsuccesstext' => 'Andmebaasi kirjutuspääs on taastatud.',
 
 # Move page
-'move-page-legend'         => 'Teisalda artikkel',
+'move-page-legend' => 'Teisalda artikkel',
 'movepagetext'     => "Allolevat vormi kasutades saate lehekülje ümber nimetada. Lehekülje ajalugu tõstetakse uue pealkirja alla automaatselt. Praeguse pealkirjaga leheküljest saab ümbersuunamisleht uuele leheküljele. Teistes artiklites olevaid linke praeguse nimega leheküljele automaatselt ei muudeta. Teie kohuseks on hoolitseda, et ei tekiks topeltümbersuunamisi ning et kõik jääks toimima nagu enne ümbernimetamist.
 
 Lehekülge '''ei nimetata ümber''' juhul, kui uue nimega lehekülg on juba olemas. Erandiks on juhud, kui olemasolev lehekülg on tühi või ümbersuunamislehekülg ja sellel pole redigeerimisajalugu. See tähendab, et te ei saa kogemata üle kirjutada juba olemasolevat lehekülge, kuid saate ebaõnnestunud ümbernimetamise tagasi pöörata.
@@ -1208,12 +1202,6 @@ kasutajaks ja [[Special:Userlogin|sisse logima]]',
 'others'    => 'teised',
 'siteusers' => 'Viki kasutaja(d) $1',
 
-# Spam protection
-'subcategorycount'       => 'Sellel kategoorial on {{PLURAL:$1|üks allkategooria|$1 allkategooriat}}.',
-'categoryarticlecount'   => 'Lehel kuvatakse $1 kategooriasse {{PLURAL:$1|kuuluv artikkel|kuuluvat artiklit}}.',
-'category-media-count'   => 'Lehel kuvatakse $1 kategooriasse {{PLURAL:$1|kuuluv fail|kuuluvat faili}}.',
-'listingcontinuesabbrev' => 'jätk',
-
 # Math options
 'mw_math_png'    => 'Alati PNG',
 'mw_math_simple' => 'Kui väga lihtne, siis HTML, muidu PNG',
@@ -1232,8 +1220,12 @@ kasutajaks ja [[Special:Userlogin|sisse logima]]',
 'thumbsize'    => 'Pisipildi suurus:',
 
 # Special:Newimages
-'newimages'    => 'Uute meediafailide galerii',
-'showhidebots' => '($1 bottide kaastööd)',
+'newimages'             => 'Uute meediafailide galerii',
+'imagelisttext'         => 'Piltide arv järgnevas loendis: $1. Sorteeritud $2.',
+'showhidebots'          => '($1 bottide kaastööd)',
+'ilsubmit'              => 'Otsi',
+'bydate'                => 'kuupäeva järgi',
+'sp-newimages-showfrom' => 'Näita uusi pilte alates $1',
 
 # EXIF tags
 'exif-artist'          => 'Autor',

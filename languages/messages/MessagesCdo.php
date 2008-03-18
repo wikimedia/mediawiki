@@ -81,12 +81,14 @@ $messages = array(
 'nov'           => '11ng',
 'dec'           => '12ng',
 
-# Bits of text used by many pages
-'categories'      => 'Lôi-biék',
-'pagecategories'  => '{{PLURAL:$1|Lôi-biék|Lôi-biék}}',
-'category_header' => '"$1" lôi-biék â-dā̤ gì ùng-ciŏng',
-'subcategories'   => 'Cṳ̄-lôi-biék',
-'category-empty'  => "''Ciā lôi-biék â-dā̤ hiêng-câi mò̤ ùng-ciŏng iâ mò̤ muòi-tā̤ ùng-giông.''",
+# Categories related messages
+'categories'             => 'Lôi-biék',
+'pagecategories'         => '{{PLURAL:$1|Lôi-biék|Lôi-biék}}',
+'category_header'        => '"$1" lôi-biék â-dā̤ gì ùng-ciŏng',
+'subcategories'          => 'Cṳ̄-lôi-biék',
+'category-empty'         => "''Ciā lôi-biék â-dā̤ hiêng-câi mò̤ ùng-ciŏng iâ mò̤ muòi-tā̤ ùng-giông.''",
+'subcategorycount'       => 'Ciā lôi-biék â-dā̤ gê̤ṳng-cūng ô {{PLURAL:$1|ék|$1}} bĭk cṳ̄-lôi-biék.',
+'listingcontinuesabbrev' => '(gié-sṳ̆k sèng-dāu)',
 
 'about'          => 'Guăng-ṳ̀',
 'article'        => 'Ùng-ciŏng',
@@ -462,23 +464,20 @@ Siók-mìng: (dāng) = gâe̤ng dék sĭng bēng-buōng bī-piâng, (sèng) = g�
 'destfilename'      => 'Mŭk-biĕu ùng-giông-miàng:',
 'watchthisupload'   => 'Gáng-sê ciā hiĕk',
 
-# Image list
-'imagelist'                 => 'Ùng-giông dăng-dăng',
-'ilsubmit'                  => 'Sìng-tō̤',
-'byname'                    => 'áng miàng-cê',
-'bydate'                    => 'áng nĭk-gĭ',
-'bysize'                    => 'áng chióh-cháung',
-'imgdelete'                 => 'chēng',
-'imgfile'                   => 'ùng-giông',
+# Special:Imagelist
+'imgfile'        => 'ùng-giông',
+'imagelist'      => 'Ùng-giông dăng-dăng',
+'imagelist_date' => 'Nĭk-gĭ',
+'imagelist_name' => 'Miàng',
+'imagelist_user' => 'Ê̤ṳng-hô',
+'imagelist_size' => 'Chióh-cháung',
+
+# Image description page
 'imagelinks'                => 'Lièng-giék',
 'linkstoimage'              => 'Â-dā̤ gì hiĕk-miêng lièng gáu ciā ùng-giông:',
 'nolinkstoimage'            => 'Mò̤ hiĕk-miêng lièng gáu ciā ùng-giông.',
 'noimage-linktext'          => 'siông-diòng ĭ',
 'uploadnewversion-linktext' => 'Siông-duòng ciā ùng-giông gì sĭng bēng-buōng',
-'imagelist_date'            => 'Nĭk-gĭ',
-'imagelist_name'            => 'Miàng',
-'imagelist_user'            => 'Ê̤ṳng-hô',
-'imagelist_size'            => 'Chióh-cháung',
 
 # MIME search
 'download' => 'hâ-diòng',
@@ -761,7 +760,7 @@ Có̤i âu gì siŭ-gāi sê [[User:$3|$3]] ([[User talk:$3|Tō̤-lâung]]) sū 
 'databasenotlocked' => 'Só-gé̤ṳ-kó mò̤ sō̤',
 
 # Move page
-'move-page-legend'                => 'Iè-dông hiĕk-miêng',
+'move-page-legend'        => 'Iè-dông hiĕk-miêng',
 'movepagetext'            => "Sāi-ê̤ṳng â-dā̤ gì dăng-dăng â̤ gâe̤ng hiĕk-miêng dṳ̀ng-sĭng kī-miàng, bêng-chiā ĭ ciòng-buô lĭk-sṳ̄ dŭ â̤ ké̤ṳk iè gáu sĭng miàng â-dā̤. Gô miàng â̤ biéng có̤ dṳ̀ng-dêng-hióng hiĕk-miêng. Lièng gáu gô hiĕk dà̤-mĕ̤k gì lièng-giék dŭ mò̤ gāi-biéng; chiāng káuk-nêng mò̤ huák-sĕng sĕ̤ng dṳ̀ng-dêng-hióng (''double redirect'') hĕ̤k-ciā sê ngài dṳ̀ng-dêng-hióng (''broken redirect''). Nṳ̄ ô dăng-dŏng hô-cáik lièng-giék ĭng-nguòng â̤ lièng gáu ciáng-káuk gì sū-câi.
 
 Cé̤ṳ-é, nâ ô găk sĭng dà̤-mĕ̤k gô-dā̤ mò̤ ùng-ciŏng (mò̤ bău-guăk páng hiĕk hĕ̤k-ciā sê mò̤ siŭ-gāi lĭk-sṳ̄ gì dṳ̀ng-dêng-hióng hiĕk) gì cìng-hióng â-dā̤, ciáh â̤ iè-dông. Cuòi cêu sê gōng, nṳ̄ â̤-sāi gâe̤ng hiĕk-miêng gì miàng gāi duōng go̤ iŏk-guō nṳ̄ tā-sĕng có̤ dâng go̤, dáng-sê nṳ̄ mâ̤-sāi hók-gái ī-gĭng còng-câi gì hiĕk-miêng.
@@ -811,11 +810,6 @@ Nâ cūng-kuāng, nṳ̄ â̤-sāi cê-gă iè-dông hĕ̤k-ciā sê hăk-biáng
 'anonymous'        => '{{SITENAME}} gì mò̤ miàng ê̤ṳng-hô.',
 'lastmodifiedatby' => 'Ciā hiĕk-miêng sê diŏh $2, $1, iù  $3 có̤i-hâiu siŭ-gāi gì.', # $1 date, $2 time, $3 user
 
-# Spam protection
-'subcategorycount'       => 'Ciā lôi-biék â-dā̤ gê̤ṳng-cūng ô {{PLURAL:$1|ék|$1}} bĭk cṳ̄-lôi-biék.',
-'categoryarticlecount'   => 'Ciā lôi-biék â-dā̤ gê̤ṳng-cūng ô {{PLURAL:$1|ék|$1}} piĕng ùng-ciŏng.',
-'listingcontinuesabbrev' => '(gié-sṳ̆k sèng-dāu)',
-
 # Image deletion
 'deletedrevision' => 'Ī-gĭng chēng lâi gì bēng-buōng $1.',
 
@@ -828,6 +822,8 @@ Nâ cūng-kuāng, nṳ̄ â̤-sāi cê-gă iè-dông hĕ̤k-ciā sê hăk-biáng
 
 # Special:Newimages
 'showhidebots' => '($1 gĭ-ké-nè̤ng)',
+'ilsubmit'     => 'Sìng-tō̤',
+'bydate'       => 'áng nĭk-gĭ',
 
 # Metadata
 'metadata' => 'Nguòng-só-gé̤ṳ',

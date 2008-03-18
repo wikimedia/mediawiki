@@ -127,7 +127,7 @@ $messages = array(
 'nov'           => 'ت٢',
 'dec'           => 'كا١',
 
-# Bits of text used by many pages
+# Categories related messages
 'categories'            => '{{PLURAL:$1|هاوپۆل|هاوپۆله‌كان}}',
 'pagecategories'        => '$1 هاوپۆله‌كان',
 'category_header'       => 'په‌ڕه‌ی هاوپۆلی "$1" de',
@@ -334,7 +334,7 @@ $messages = array(
 # Tooltip help for the actions
 'tooltip-pt-userpage' => 'په‌ڕه‌ی تایبه‌تی خۆم',
 
-# Separators for various lists
+# Separators for various lists, etc.
 'semicolon-separator' => '؛',
 'comma-separator'     => '،',
 

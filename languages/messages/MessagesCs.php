@@ -1279,18 +1279,18 @@ Zde je příslušný výpis z knihy smazaných stránek:",
 'upload_source_url'  => ' (platné, veřejně přístupné URL)',
 'upload_source_file' => ' (soubor na vašem počítači)',
 
-# Image list
-'imagelist'                 => 'Seznam načtených obrázků',
-'imagelisttext'             => "Níže je {{plural:$1|jeden obrázek|seznam '''$1'''&nbsp;obrázků seřazených $2|seznam '''$1'''&nbsp;obrázků seřazených $2}}.",
-'getimagelist'              => 'načítám seznam obrázků',
-'ilsubmit'                  => 'Hledat',
-'showlast'                  => 'Ukázat posledních $1 obrázků řazených $2.',
-'byname'                    => 'podle jména',
-'bydate'                    => 'podle data',
-'bysize'                    => 'podle velikosti',
-'imgdelete'                 => 'smazat',
-'imgdesc'                   => 'popis',
-'imgfile'                   => 'soubor',
+# Special:Imagelist
+'imagelist_search_for'  => 'Hledat obrázek podle názvu:',
+'imgdesc'               => 'popis',
+'imgfile'               => 'soubor',
+'imagelist'             => 'Seznam načtených obrázků',
+'imagelist_date'        => 'Datum',
+'imagelist_name'        => 'Název',
+'imagelist_user'        => 'Uživatel',
+'imagelist_size'        => 'Velikost (bajtů)',
+'imagelist_description' => 'Popis',
+
+# Image description page
 'filehist'                  => 'Historie souboru',
 'filehist-help'             => 'Kliknutím na datum a čas se zobrazí tehdejší verze souboru.',
 'filehist-deleteall'        => 'smazat vše',
@@ -1312,12 +1312,6 @@ Zde je příslušný výpis z knihy smazaných stránek:",
 'noimage'                   => 'Soubor s tímto jménem neexistuje, můžete ho $1',
 'noimage-linktext'          => 'načíst',
 'uploadnewversion-linktext' => 'Načíst novou verzi tohoto souboru',
-'imagelist_date'            => 'Datum',
-'imagelist_name'            => 'Název',
-'imagelist_user'            => 'Uživatel',
-'imagelist_size'            => 'Velikost (bajtů)',
-'imagelist_description'     => 'Popis',
-'imagelist_search_for'      => 'Hledat obrázek podle názvu:',
 
 # File reversion
 'filerevert'                => 'Vrátit zpět $1',
@@ -1741,8 +1735,6 @@ $1',
 'sp-contributions-username'    => 'IP adresa nebo uživatelské jméno:',
 'sp-contributions-submit'      => 'Zobrazit',
 
-'sp-newimages-showfrom' => 'Zobrazit nové soubory počínaje od $1',
-
 # What links here
 'whatlinkshere'       => 'Odkazuje sem',
 'whatlinkshere-title' => 'Stránky odkazující na $1',
@@ -2116,9 +2108,13 @@ $1',
 'show-big-image-thumb' => '<small>Velikost tohoto náhledu je: $1 × $2 pixelů</small>',
 
 # Special:Newimages
-'newimages'    => 'Galerie nových obrázků',
-'showhidebots' => '($1 roboty)',
-'noimages'     => 'Není co zobrazit.',
+'newimages'             => 'Galerie nových obrázků',
+'imagelisttext'         => "Níže je {{plural:$1|jeden obrázek|seznam '''$1'''&nbsp;obrázků seřazených $2|seznam '''$1'''&nbsp;obrázků seřazených $2}}.",
+'showhidebots'          => '($1 roboty)',
+'noimages'              => 'Není co zobrazit.',
+'ilsubmit'              => 'Hledat',
+'bydate'                => 'podle data',
+'sp-newimages-showfrom' => 'Zobrazit nové soubory počínaje od $1',
 
 # Bad image list
 'bad_image_list' => 'Tato stránka má následující formát:

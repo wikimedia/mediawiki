@@ -111,12 +111,14 @@ $messages = array(
 'nov'           => 'Sṳ̍p-yit-ngie̍t',
 'dec'           => 'Sṳ̍p-ngi-ngie̍t',
 
-# Bits of text used by many pages
-'categories'            => 'Hong-mien fûn-lui',
-'pagecategories'        => '$1-ke fûn-lui',
-'category_header'       => 'Lui-phe̍t "$1" chûng ke vùn-chông',
-'subcategories'         => 'Fu-su̍k fûn-lui',
-'category-media-header' => '"$1" fûn-lui chûng ke kî-thí tóng-on',
+# Categories related messages
+'categories'             => 'Hong-mien fûn-lui',
+'pagecategories'         => '$1-ke fûn-lui',
+'category_header'        => 'Lui-phe̍t "$1" chûng ke vùn-chông',
+'subcategories'          => 'Fu-su̍k fûn-lui',
+'category-media-header'  => '"$1" fûn-lui chûng ke kî-thí tóng-on',
+'subcategorycount'       => 'Liá-ke fûn-lui-hâ yû $1-ke chṳ́ fûn-lui.',
+'listingcontinuesabbrev' => 'Chhṳ̀-siu̍k',
 
 'mainpagetext'      => "<big>'''Yí-kîn sṳ̀n-kûng ôn-chông MediaWiki!'''</big>",
 'mainpagedocfooter' => 'chhiáng fóng-mun [http://meta.wikimedia.org/wiki/Help:Contents Yung-fu sú-chhak] yî-khi̍p sṳ́-yung chhṳ́ wiki ngiôn-khien ke sin-sit！ 
@@ -798,18 +800,18 @@ Kó-yèn ngì yû liá-ke thù-hìn ke vàn-cháng thai-séu.',
 'upload_source_url'  => '(Yit-ke yû-háu ke, hí-khó kûng-khôi fóng-mun ke URL)',
 'upload_source_file' => '(ngì thien-nó chûng ke tóng-on)',
 
-# Image list
-'imagelist'                 => 'Tóng-on lie̍t-péu',
-'imagelisttext'             => 'Yî-ha he on $2 phài-lie̍t ke $1-ke tóng-on lie̍t-péu.',
-'getimagelist'              => 'Chang-chhai chhái-chhí tóng-on lie̍t-péu',
-'ilsubmit'                  => 'Chhìm-cháu',
-'showlast'                  => 'Hién-sṳ on-cheu $2 phài-lie̍t ke chui-heu $1-ke tóng-on.',
-'byname'                    => 'on-cheu miàng-sṳ',
-'bydate'                    => 'on-cheu ngit-khì',
-'bysize'                    => 'on-cheu thai-séu',
-'imgdelete'                 => 'chhù-thet',
-'imgdesc'                   => 'mèu-sut',
-'imgfile'                   => 'tóng-on',
+# Special:Imagelist
+'imagelist_search_for'  => 'On-cheu thù-chhiong miàng-chhṳ̂n sêu-chhà:',
+'imgdesc'               => 'mèu-sut',
+'imgfile'               => 'tóng-on',
+'imagelist'             => 'Tóng-on lie̍t-péu',
+'imagelist_date'        => 'Ngit-khì',
+'imagelist_name'        => 'Miàng-chhṳ̂n',
+'imagelist_user'        => 'Yung-fu',
+'imagelist_size'        => 'Thai-séu',
+'imagelist_description' => 'Mèu-sut',
+
+# Image description page
 'imagelinks'                => 'Lièn-kiet',
 'linkstoimage'              => 'Yî-ha vùn-chông lièn-chiap to pún tóng-on:',
 'nolinkstoimage'            => 'Mò-yû vùn-chông lièn-chiap to pún tóng-on.',
@@ -819,12 +821,6 @@ Kó-yèn ngì yû liá-ke thù-hìn ke vàn-cháng thai-séu.',
 'noimage'                   => 'Put chhùn-chhai chhṳ́ miàng-chhṳ̂n ke tóng-on, ngì khó-yî $1.',
 'noimage-linktext'          => 'song-chhòn kì',
 'uploadnewversion-linktext' => 'Song-chhòn tóng-on ke sîn pán-pún',
-'imagelist_date'            => 'Ngit-khì',
-'imagelist_name'            => 'Miàng-chhṳ̂n',
-'imagelist_user'            => 'Yung-fu',
-'imagelist_size'            => 'Thai-séu',
-'imagelist_description'     => 'Mèu-sut',
-'imagelist_search_for'      => 'On-cheu thù-chhiong miàng-chhṳ̂n sêu-chhà:',
 
 # MIME search
 'mimesearch'         => 'MIME chhà-chhìm',
@@ -1146,8 +1142,6 @@ Chhiáng chhâm-kháu [[Special:Log/delete|chhù-hi ngit-ki]] lòi chhà-chhut c
 'sp-contributions-username'    => 'IP chhô-vi fe̍t-chá yung-fu miàng-chhṳ̂n:',
 'sp-contributions-submit'      => 'Chhìm-cháu',
 
-'sp-newimages-showfrom' => 'Chhiùng $1 khôi-sṳ́ hién-sṳ sîn thù-phién',
-
 # What links here
 'whatlinkshere'      => 'Lièn-ngi̍p to liá-chham',
 'linklistsub'        => '(lièn-kiet lie̍t-péu)',
@@ -1427,16 +1421,12 @@ Muk-phêu vùn-chông "[[$1]]" yí-kîn chhùn-chhai. Ngì khok-ngin sî-yeu chh
 'nocredits'        => 'Ke-chông mò-yû chṳ-chhia miàng-tân sêu-sit.',
 
 # Spam protection
-'spamprotectiontitle'    => 'Lá-sap ko-li hi-khí',
-'spamprotectiontext'     => 'Lá-sap ko-li hi-khí kim-chṳ́ pó-chhùn kong-chhòi thì-kâu ke vùn-chông, liá khó-nèn he chhut-yì ngì kâ-ngi̍p ke ngoi-phu mióng-chham lièn-chiap só sán-sên ke mun-thì.',
-'spamprotectionmatch'    => 'Chhiuk-fat liáu lá-sap ko-li-khí ke ngièn-vùn he: $1',
-'subcategorycount'       => 'Liá-ke fûn-lui-hâ yû $1-ke chṳ́ fûn-lui.',
-'categoryarticlecount'   => 'Liá-ke fûn-lui chûng khiung-yû $1-phiên vùn-chông.',
-'category-media-count'   => 'Chhai liá-ke fûn-lui chûng yû $1-ke tóng-on.',
-'listingcontinuesabbrev' => 'Chhṳ̀-siu̍k',
-'spambot_username'       => 'MediaWiki kóng-ko chhîn-chhù',
-'spam_reverting'         => 'Fî-fu̍k to put pâu-hàm lièn-kiet chṳ $1 ke chui-khiûn pán-pún',
-'spam_blanking'          => 'Só-yû pâu-hàm lièn-kiet chṳ $1 ke siû-thin, chhîn-v',
+'spamprotectiontitle' => 'Lá-sap ko-li hi-khí',
+'spamprotectiontext'  => 'Lá-sap ko-li hi-khí kim-chṳ́ pó-chhùn kong-chhòi thì-kâu ke vùn-chông, liá khó-nèn he chhut-yì ngì kâ-ngi̍p ke ngoi-phu mióng-chham lièn-chiap só sán-sên ke mun-thì.',
+'spamprotectionmatch' => 'Chhiuk-fat liáu lá-sap ko-li-khí ke ngièn-vùn he: $1',
+'spambot_username'    => 'MediaWiki kóng-ko chhîn-chhù',
+'spam_reverting'      => 'Fî-fu̍k to put pâu-hàm lièn-kiet chṳ $1 ke chui-khiûn pán-pún',
+'spam_blanking'       => 'Só-yû pâu-hàm lièn-kiet chṳ $1 ke siû-thin, chhîn-v',
 
 # Info page
 'infosubtitle'   => 'Thiàu-muk sêu-sit',
@@ -1488,9 +1478,13 @@ Muk-phêu vùn-chông "[[$1]]" yí-kîn chhùn-chhai. Ngì khok-ngin sî-yeu chh
 'show-big-image-thumb' => '<small>Liá-ke puk-suk-thù ke kié-chhiong-thu he: $1 × $2 chhiong-su</small>',
 
 # Special:Newimages
-'newimages'    => 'Sîn-kien thù-chhiong ke va̍k-lòng',
-'showhidebots' => '($1 kî-hi-ngìn)',
-'noimages'     => 'Mò-khó kiám-sṳ thù-chhiong.',
+'newimages'             => 'Sîn-kien thù-chhiong ke va̍k-lòng',
+'imagelisttext'         => 'Yî-ha he on $2 phài-lie̍t ke $1-ke tóng-on lie̍t-péu.',
+'showhidebots'          => '($1 kî-hi-ngìn)',
+'noimages'              => 'Mò-khó kiám-sṳ thù-chhiong.',
+'ilsubmit'              => 'Chhìm-cháu',
+'bydate'                => 'on-cheu ngit-khì',
+'sp-newimages-showfrom' => 'Chhiùng $1 khôi-sṳ́ hién-sṳ sîn thù-phién',
 
 # Metadata
 'metadata'          => 'Ngièn-sṳ́ sṳ-kí',

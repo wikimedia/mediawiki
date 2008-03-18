@@ -174,7 +174,7 @@ $messages = array(
 'nov'           => 'de nov',
 'dec'           => 'de dec',
 
-# Bits of text used by many pages
+# Categories related messages
 'categories'               => '{{PLURAL:$1|Categoria|Categorias}} de la pagina',
 'pagecategories'           => '{{PLURAL:$1|Categoria|Categorias}} de la pagina',
 'category_header'          => 'Articles dins la categoria "$1"',
@@ -183,6 +183,8 @@ $messages = array(
 'category-empty'           => "''Actualament, aquesta categoria conten pas cap d'articles o de mèdia.''",
 'hidden-categories'        => '{{PLURAL:$1|Categoria amagada|Categorias amagadas}}',
 'hidden-category-category' => 'Categorias amagadas', # Name of the category where hidden categories will be listed
+'subcategorycount'         => '{{PLURAL:$1|Una soscategoria es listada |$1 soscategorias son listadas}} çaijós. Se un ligam « (200 precedents) » o « (200 seguents) » es present çaisús, pòt menar a d’autras soscategorias.',
+'listingcontinuesabbrev'   => '(seguida)',
 
 'mainpagetext'      => 'Logicial {{SITENAME}} installat.',
 'mainpagedocfooter' => "Referissètz-vos a [http://meta.wikimedia.org/wiki/Help:Contents User's Guide] a prepaus de la personalizacion de l'interfàcia.
@@ -1024,18 +1026,18 @@ PICT # misc.
 'upload_source_url'  => ' (una URL valida e accessibla publicament)',
 'upload_source_file' => '(un fichièr sus vòstre ordenador)',
 
-# Image list
-'imagelist'                 => 'Lista dels imatges',
-'imagelisttext'             => 'Vaquí una lista de $1 imatges classats $2.',
-'getimagelist'              => 'Recuperacion de la lista dels imatges',
-'ilsubmit'                  => 'Cercar',
-'showlast'                  => 'Afichar los $1 darrièrs imatges classats $2.',
-'byname'                    => 'per nom',
-'bydate'                    => 'per data',
-'bysize'                    => 'per talha',
-'imgdelete'                 => 'supr',
-'imgdesc'                   => 'descr',
-'imgfile'                   => 'fichièr',
+# Special:Imagelist
+'imagelist_search_for'  => 'Recèrca pel mèdia nomenat :',
+'imgdesc'               => 'descr',
+'imgfile'               => 'fichièr',
+'imagelist'             => 'Lista dels imatges',
+'imagelist_date'        => 'Data',
+'imagelist_name'        => 'Nom',
+'imagelist_user'        => 'Utilizaire',
+'imagelist_size'        => 'Talha (en octets)',
+'imagelist_description' => 'Descripcion',
+
+# Image description page
 'filehist'                  => 'Istoric del fichièr',
 'filehist-help'             => 'Clicar sus una data e una ora per veire lo fichièr tal coma èra a aqueste moment',
 'filehist-deleteall'        => 'tot suprimir',
@@ -1057,12 +1059,6 @@ PICT # misc.
 'noimage'                   => 'Cap de fichièr possedissent aqueste nom existís pas, podètz $1.',
 'noimage-linktext'          => "n'importar un",
 'uploadnewversion-linktext' => "Copiar una version novèla d'aqueste fichièr",
-'imagelist_date'            => 'Data',
-'imagelist_name'            => 'Nom',
-'imagelist_user'            => 'Utilizaire',
-'imagelist_size'            => 'Talha (en octets)',
-'imagelist_description'     => 'Descripcion',
-'imagelist_search_for'      => 'Recèrca pel mèdia nomenat :',
 
 # File reversion
 'filerevert'                => 'Revocar $1',
@@ -1504,8 +1500,6 @@ $1",
 'sp-contributions-username'    => 'Adreça IP o nom d’utilizaire :',
 'sp-contributions-submit'      => 'Cercar',
 
-'sp-newimages-showfrom' => 'Afichar los imatges importats dempuèi lo $1',
-
 # What links here
 'whatlinkshere'       => 'Paginas ligadas a aquesta',
 'whatlinkshere-title' => "Paginas qu'an de ligams puntant vèrs $1",
@@ -1835,16 +1829,12 @@ Totas las accions d’importacion interwiki son conservadas dins lo [[Special:Lo
 'nocredits'        => 'I a pas d’informacions d’atribucion disponiblas per aquesta pagina.',
 
 # Spam protection
-'spamprotectiontitle'    => 'Pagina protegida automaticament per causa de spam',
-'spamprotectiontext'     => "La pagina qu'avètz ensajat de salvagardar es estada blocada pel filtre anti-spam. Aquò es probablament causat per un ligam vèrs un sit extèrn.",
-'spamprotectionmatch'    => 'Lo tèxt seguent a desenclavaat lo detector de spam : $1',
-'subcategorycount'       => '{{PLURAL:$1|Una soscategoria es listada |$1 soscategorias son listadas}} çaijós. Se un ligam « (200 precedents) » o « (200 seguents) » es present çaisús, pòt menar a d’autras soscategorias.',
-'categoryarticlecount'   => 'I a {{PLURAL:$1|un article|$1 articles}} dins aquesta categoria.',
-'category-media-count'   => 'I a {{plural:$1|un fichièr|$1 fichièrs}} multimèdia dins aquesta categoria.',
-'listingcontinuesabbrev' => '(seguida)',
-'spambot_username'       => 'Netejatge de spam MediaWiki',
-'spam_reverting'         => 'Restauracion de la darrièra version contenent pas de ligam vèrs $1',
-'spam_blanking'          => 'Totas las versions que contenon de ligams vèrs $1 son blanquidas',
+'spamprotectiontitle' => 'Pagina protegida automaticament per causa de spam',
+'spamprotectiontext'  => "La pagina qu'avètz ensajat de salvagardar es estada blocada pel filtre anti-spam. Aquò es probablament causat per un ligam vèrs un sit extèrn.",
+'spamprotectionmatch' => 'Lo tèxt seguent a desenclavaat lo detector de spam : $1',
+'spambot_username'    => 'Netejatge de spam MediaWiki',
+'spam_reverting'      => 'Restauracion de la darrièra version contenent pas de ligam vèrs $1',
+'spam_blanking'       => 'Totas las versions que contenon de ligams vèrs $1 son blanquidas',
 
 # Info page
 'infosubtitle'   => 'Informacions per la pagina',
@@ -1907,9 +1897,13 @@ $1",
 'show-big-image-thumb' => "<small>Talha d'aqueste apercebut : $1 × $2 pixels</small>",
 
 # Special:Newimages
-'newimages'    => 'Galariá de fichièrs novèls',
-'showhidebots' => '($1 bòts)',
-'noimages'     => "Cap imatge d'afichar.",
+'newimages'             => 'Galariá de fichièrs novèls',
+'imagelisttext'         => 'Vaquí una lista de $1 imatges classats $2.',
+'showhidebots'          => '($1 bòts)',
+'noimages'              => "Cap imatge d'afichar.",
+'ilsubmit'              => 'Cercar',
+'bydate'                => 'per data',
+'sp-newimages-showfrom' => 'Afichar los imatges importats dempuèi lo $1',
 
 # Bad image list
 'bad_image_list' => "Lo format es lo seguent :

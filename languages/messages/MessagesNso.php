@@ -97,13 +97,15 @@ $messages = array(
 'nov'           => 'Dibatsela',
 'dec'           => 'Manthole',
 
-# Bits of text used by many pages
-'categories'            => 'Dihlopha',
-'pagecategories'        => '{{PLURAL:$1|Sehlopha|Dihlopha}}',
-'category_header'       => 'Matlakala go sehlopha "$1"',
-'subcategories'         => 'Dihlophana',
-'category-media-header' => 'Matlakala goba difaele go sehlopha "$1"',
-'category-empty'        => "''Sehlopha se, ga se na matlakala goba difaele.''",
+# Categories related messages
+'categories'             => 'Dihlopha',
+'pagecategories'         => '{{PLURAL:$1|Sehlopha|Dihlopha}}',
+'category_header'        => 'Matlakala go sehlopha "$1"',
+'subcategories'          => 'Dihlophana',
+'category-media-header'  => 'Matlakala goba difaele go sehlopha "$1"',
+'category-empty'         => "''Sehlopha se, ga se na matlakala goba difaele.''",
+'subcategorycount'       => 'Go nale {{PLURAL:$1|sehlophana|dihlophana tše $1}} sehlopheng se.',
+'listingcontinuesabbrev' => 'tšweletša',
 
 'about'          => 'Mabapi',
 'article'        => 'Letlakala la mateng',
@@ -570,13 +572,15 @@ Leka [[Special:Search|go fetleka wikii]] go humana matlakala a mapsha.',
 'license-nopreview'  => '(Ponopele ga e gona)',
 'upload_source_file' => '(faele go khomphuthara ya gago)',
 
-# Image list
-'imagelist'                 => 'Lenano la difaele',
-'ilsubmit'                  => 'Fetleka',
-'byname'                    => 'ka leina',
-'bydate'                    => 'ka letšatšikgwedi',
-'bysize'                    => 'ka bogolo',
-'imgfile'                   => 'faele',
+# Special:Imagelist
+'imgfile'        => 'faele',
+'imagelist'      => 'Lenano la difaele',
+'imagelist_date' => 'Letšatšikgwedi',
+'imagelist_name' => 'Leina',
+'imagelist_user' => 'Mošumiši',
+'imagelist_size' => 'Bogolo',
+
+# Image description page
 'filehist'                  => 'Histori ya faele',
 'filehist-help'             => 'Pinyeletša go letšatšikgwedi/nako go bona faela ka tsela yeo ebego e le ka gona nakong yeo.',
 'filehist-deleteall'        => 'phumula ka moka',
@@ -594,10 +598,6 @@ Leka [[Special:Search|go fetleka wikii]] go humana matlakala a mapsha.',
 'noimage'                   => 'Ga gona faele ya leina le, o ka $1.',
 'noimage-linktext'          => 'E lokele',
 'uploadnewversion-linktext' => 'Lokela peoletšo ye mphsa ya faele',
-'imagelist_date'            => 'Letšatšikgwedi',
-'imagelist_name'            => 'Leina',
-'imagelist_user'            => 'Mošumiši',
-'imagelist_size'            => 'Bogolo',
 
 # File reversion
 'filerevert-comment'        => 'Ahlaahla:',
@@ -969,12 +969,6 @@ Ka kgopelo, kgetha leina le lengwe.',
 'others'           => 'tše dingwe',
 'siteusers'        => '{{SITENAME}} mošumiši/bašumiši $1',
 
-# Spam protection
-'subcategorycount'       => 'Go nale {{PLURAL:$1|sehlophana|dihlophana tše $1}} sehlopheng se.',
-'categoryarticlecount'   => 'Go nale {{PLURAL:$1|letlakala le tee |matlakala a $1}} sehlopheng se.',
-'category-media-count'   => 'Go nale {{PLURAL:$1|faele e tee|difaele tše $1}} sehlopheng se.',
-'listingcontinuesabbrev' => 'tšweletša',
-
 # Info page
 'numedits'    => 'Palo ya diphetogo (letlakala): $1',
 'numwatchers' => 'Palo ya batlhapedi: $1',
@@ -1000,6 +994,8 @@ $1',
 
 # Special:Newimages
 'newimages' => "''Gallery'' ya difaele tše mpsha",
+'ilsubmit'  => 'Fetleka',
+'bydate'    => 'ka letšatšikgwedi',
 
 # Bad image list
 'bad_image_list' => "''format'' e ka mokgwa wo o latelago:

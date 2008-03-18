@@ -26,7 +26,7 @@ $messages = array(
 'november'  => 'ngonda ya kumi na mosi',
 'december'  => 'ngonda ya kumi na zole',
 
-# Bits of text used by many pages
+# Categories related messages
 'categories'      => 'Bakalasi',
 'pagecategories'  => '{{PLURAL:$1|Kalasi|Bakalasi}}',
 'category_header' => 'Mikanda na kalasi "$1"',
@@ -90,9 +90,6 @@ $messages = array(
 
 # What links here
 'whatlinkshere' => 'Balukaya ke songa awa',
-
-# Spam protection
-'categoryarticlecount' => '{{PLURAL:$1|Mukanda mosi|Mikanda $1 }} ni na kalasi yayi.',
 
 # Table pager
 'table_pager_next'  => 'Lukaya ya kulanda',

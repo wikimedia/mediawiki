@@ -265,7 +265,7 @@ Bitte beachten Sie, dass, genau wie bei normalen Seiteninhalten, andere Benutzer
 'illegalfilename'             => 'Der Dateiname „$1“ enthält mindestens ein nicht erlaubtes Zeichen. Bitte benennen Sie die Datei um und versuchen Sie sie erneut hochzuladen.',
 'emptyfile'                   => 'Die hochgeladene Datei ist leer. Der Grund kann ein Tippfehler im Dateinamen sein. Bitte kontrollieren Sie, ob Sie die Datei wirklich hochladen wollen.',
 'fileexists'                  => 'Eine Datei mit diesem Namen existiert bereits. Wenn Sie auf „Datei speichern“ klicken, wird die Datei überschrieben. Bitte prüfen Sie <strong><tt>$1</tt></strong>, wenn Sie sich nicht sicher sind.',
-'filepageexists'              => "Eine Beschreibungsseite wurde bereits als <strong><tt>$1</tt></strong> erstellt, es ist aber keine Datei mit diesem Namen vorhanden. Die eingegebene Beschreibung wird nicht auf die Beschreibungsseite übernommen. Die Beschreibungsseite müssen Sie nach dem Hochladen der Datei noch manuell bearbeiten.",
+'filepageexists'              => 'Eine Beschreibungsseite wurde bereits als <strong><tt>$1</tt></strong> erstellt, es ist aber keine Datei mit diesem Namen vorhanden. Die eingegebene Beschreibung wird nicht auf die Beschreibungsseite übernommen. Die Beschreibungsseite müssen Sie nach dem Hochladen der Datei noch manuell bearbeiten.',
 'fileexists-extension'        => 'Eine Datei mit ähnlichem Namen existiert bereits:<br />
 Name der hochzuladenden Datei: <strong><tt>$1</tt></strong><br />
 Name der vorhandenen Datei: <strong><tt>$2</tt></strong><br />
@@ -293,7 +293,7 @@ Bitte geben Sie der Datei einen Namen, der den Inhalt besser beschreibt.',
 'upload-curl-error6-text'  => 'Die angegebene URL ist nicht erreichbar. Prüfen Sie sowohl die URL auf Fehler als auch den Online-Status der Seite.',
 'upload-curl-error28-text' => 'Die Seite braucht zu lange für eine Antwort. Prüfen Sie, ob die Seite online ist, warten Sie einen kurzen Moment und versuchen es dann erneut. Es kann sinnvoll sein, einen erneuten Versuch zu einem anderen Zeitpunkt zu probieren.',
 
-# Image list
+# Image description page
 'filehist-help' => 'Klicken Sie auf einen Zeitpunkt, um diese Version zu laden.',
 'noimage'       => 'Eine Datei mit diesem Namen existiert nicht, Sie können sie jedoch $1.',
 
@@ -365,7 +365,7 @@ Um die Einstellungen Ihrer Beobachtungsliste anzupassen, besuchen Sie: {{fullurl
 'sessionfailure'         => 'Es gab ein Problem mit Ihrer Benutzersitzung.
 Diese Aktion wurde aus Sicherheitsgründen abgebrochen, um eine falsche Zuordnung Ihrer Änderungen zu einem anderen Benutzer zu verhindern.
 Bitte gehen Sie zurück und versuchen Sie den Vorgang erneut auszuführen.',
-'protect-text'           => "Hier können Sie den Schutzstatus für die Seite '''<nowiki>\$1</nowiki>''' einsehen und ändern.",
+'protect-text'           => "Hier können Sie den Schutzstatus für die Seite '''<nowiki>$1</nowiki>''' einsehen und ändern.",
 'protect-locked-blocked' => 'Sie können den Seitenschutz nicht ändern, da Ihr Benutzerkonto gesperrt ist. Hier sind die aktuellen Seitenschutz-Einstellungen für die Seite <strong>„$1“:</strong>',
 'protect-locked-access'  => 'Ihr Benutzerkonto verfügt nicht über die notwendigen Rechte zur Änderung des Seitenschutzes. Hier sind die aktuellen Seitenschutzeinstellungen für die Seite <strong>„$1“:</strong>',
 'protect-cantedit'       => 'Sie können die Sperre dieser Seite nicht ändern, da Sie keine Berechtigung zum Bearbeiten der Seite haben.',

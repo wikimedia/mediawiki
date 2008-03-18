@@ -279,7 +279,10 @@ $messages = array(
 'uploadbtn'     => 'ფაილიშ გეთება',
 'uploadedimage' => 'გეთებაა "[[$1]]"',
 
-# Image list
+# Special:Imagelist
+'imagelist_name' => 'სახელ',
+
+# Image description page
 'filehist'            => 'ფაილიშ ისტორია',
 'filehist-user'       => 'ხვარებელ',
 'filehist-dimensions' => 'განზომილებეფ',
@@ -287,7 +290,6 @@ $messages = array(
 'filehist-comment'    => 'კომენტარ',
 'imagelinks'          => 'ბუნეფ',
 'noimage'             => 'ფაილ თე სახელით ვაარსეენც, თქვან შეგილებუნთ $1.',
-'imagelist_name'      => 'სახელ',
 
 # MIME search
 'mimesearch' => 'MIME გორუა',

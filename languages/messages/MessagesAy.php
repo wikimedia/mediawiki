@@ -81,11 +81,13 @@ $messages = array(
 
 'license' => 'Iyawsawi:',
 
-# Image list
-'filehist-user'         => 'Apnaqiri',
+# Special:Imagelist
 'imagelist_date'        => 'Uru jakhu',
 'imagelist_user'        => 'Apnaqiri',
 'imagelist_description' => 'Uñt’ayawi',
+
+# Image description page
+'filehist-user' => 'Apnaqiri',
 
 # Miscellaneous special pages
 'move' => 'Qillqaraña',

@@ -1301,18 +1301,18 @@ U kunt het misschien proberen als het minder druk is.',
 'upload_source_url'  => ' (een geldige, publiek toegankelijke URL)',
 'upload_source_file' => ' (een bestand op uw computer)',
 
-# Image list
-'imagelist'                 => 'Bestandslijst',
-'imagelisttext'             => "Hier volgt een lijst met '''$1''' {{PLURAL:$1|bestand|bestanden}} gesorteerd $2.",
-'getimagelist'              => 'bezig met ophalen bestandslijst',
-'ilsubmit'                  => 'Zoeken',
-'showlast'                  => 'De nieuwste $1 bestanden bekijken, gesorteerd $2.',
-'byname'                    => 'op naam',
-'bydate'                    => 'op datum',
-'bysize'                    => 'op grootte',
-'imgdelete'                 => 'verw',
-'imgdesc'                   => 'beschrijving',
-'imgfile'                   => 'bestand',
+# Special:Imagelist
+'imagelist_search_for'  => 'Zoeken naar bestand:',
+'imgdesc'               => 'beschrijving',
+'imgfile'               => 'bestand',
+'imagelist'             => 'Bestandslijst',
+'imagelist_date'        => 'Datum',
+'imagelist_name'        => 'Naam',
+'imagelist_user'        => 'Gebruiker',
+'imagelist_size'        => 'Grootte (bytes)',
+'imagelist_description' => 'Beschrijving',
+
+# Image description page
 'filehist'                  => 'Bestandsgeschiedenis',
 'filehist-help'             => 'Klik op een datum/tijd om het bestand te zien zoals het destijds was.',
 'filehist-deleteall'        => 'alles verwijderen',
@@ -1335,12 +1335,6 @@ U kunt het misschien proberen als het minder druk is.',
 U kunt het $1.',
 'noimage-linktext'          => 'uploaden',
 'uploadnewversion-linktext' => 'Een nieuwe versie van dit bestand uploaden',
-'imagelist_date'            => 'Datum',
-'imagelist_name'            => 'Naam',
-'imagelist_user'            => 'Gebruiker',
-'imagelist_size'            => 'Grootte (bytes)',
-'imagelist_description'     => 'Beschrijving',
-'imagelist_search_for'      => 'Zoeken naar bestand:',
 
 # File reversion
 'filerevert'                => '$1 terugdraaien',
@@ -1774,8 +1768,6 @@ $1',
 'sp-contributions-username'    => 'IP-adres of gebruikersnaam:',
 'sp-contributions-submit'      => 'Bekijken',
 
-'sp-newimages-showfrom' => 'Nieuwe bestanden bekijken vanaf $1',
-
 # What links here
 'whatlinkshere'       => 'Links naar deze pagina',
 'whatlinkshere-title' => "Pagina's die verwijzen naar $1",
@@ -2178,9 +2170,13 @@ $1',
 'show-big-image-thumb' => '<small>Grootte van deze afbeelding: $1 × $2 pixels</small>',
 
 # Special:Newimages
-'newimages'    => 'Nieuwe bestanden',
-'showhidebots' => '(Bots $1)',
-'noimages'     => 'Niets te zien.',
+'newimages'             => 'Nieuwe bestanden',
+'imagelisttext'         => "Hier volgt een lijst met '''$1''' {{PLURAL:$1|bestand|bestanden}} gesorteerd $2.",
+'showhidebots'          => '(Bots $1)',
+'noimages'              => 'Niets te zien.',
+'ilsubmit'              => 'Zoeken',
+'bydate'                => 'op datum',
+'sp-newimages-showfrom' => 'Nieuwe bestanden bekijken vanaf $1',
 
 # Video information, used by Language::formatTimePeriod() to format lengths in the above messages
 'hours-abbrev' => 'u',

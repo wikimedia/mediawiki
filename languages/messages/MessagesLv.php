@@ -119,11 +119,13 @@ $messages = array(
 'nov'       => 'novembrī,',
 'dec'       => 'decembrī,',
 
-# Bits of text used by many pages
-'categories'      => '{{PLURAL:$1|Kategorija|Kategorijas}}',
-'pagecategories'  => '{{PLURAL:$1|Kategorija|Kategorijas}}',
-'category_header' => 'Raksti, kas ietverti kategorijā "$1".',
-'subcategories'   => 'Apakškategorijas',
+# Categories related messages
+'categories'             => '{{PLURAL:$1|Kategorija|Kategorijas}}',
+'pagecategories'         => '{{PLURAL:$1|Kategorija|Kategorijas}}',
+'category_header'        => 'Raksti, kas ietverti kategorijā "$1".',
+'subcategories'          => 'Apakškategorijas',
+'subcategorycount'       => 'Šajā kategorijā ir $1 {{PLURAL:$1|apakškategorija|apakškategorijas}}.',
+'listingcontinuesabbrev' => ' (turpinājums)',
 
 'mainpagetext' => "<big>'''MediaWiki veiksmīgi ieinstalēts'''</big>",
 
@@ -635,16 +637,11 @@ Lūdzu, ņem vērā, ka tāpat kā citas wiki lapas arī tevis augšuplādētos 
 
 'license' => 'Licence',
 
-# Image list
-'imagelist'                 => 'Attēlu uzskaitījums',
-'imagelisttext'             => 'Šobrīd redzams $1 attēlu uzskaitījums, kas sakārtots $2.',
-'ilsubmit'                  => 'Meklēt',
-'showlast'                  => 'Parādīt pēdējos $1 attēlus, kas sakārtoti $2.',
-'byname'                    => '<b>pēc nosaukuma</b>',
-'bydate'                    => '<b>pēc datuma</b>',
-'bysize'                    => '<b>pēc izmēra</b>',
-'imgdelete'                 => 'dzēst',
-'imgdesc'                   => 'apraksts',
+# Special:Imagelist
+'imgdesc'   => 'apraksts',
+'imagelist' => 'Attēlu uzskaitījums',
+
+# Image description page
 'imagelinks'                => 'Attēlu saites',
 'linkstoimage'              => 'Attēls ir izmantots šajās lapās:',
 'nolinkstoimage'            => 'Nevienā lapā nav norāžu uz šo attēlu.',
@@ -849,8 +846,6 @@ Ja pēc dzēšanas ir izveidota jauna lapa ar tādu pašu nosaukumu, atjaunotās
 
 'sp-contributions-username' => 'IP adrese vai lietotāja vārds:',
 
-'sp-newimages-showfrom' => 'Rādīt jaunos attēlus sākot no $1',
-
 # What links here
 'whatlinkshere'       => 'Norādes uz šo rakstu',
 'linklistsub'         => '(Saišu uzskaitījums)',
@@ -1006,11 +1001,6 @@ Ja tomēr vēlēsies, tad tev šī diskusiju lapa būs jāpārvieto vai jāapvie
 'anonymous' => 'Anonīmie {{grammar:ģenitīvs|{{SITENAME}}}} lietotāji(s)',
 'siteuser'  => '{{grammar:ģenitīvs|{{SITENAME}}}} lietotājs $1',
 
-# Spam protection
-'subcategorycount'       => 'Šajā kategorijā ir $1 {{PLURAL:$1|apakškategorija|apakškategorijas}}.',
-'categoryarticlecount'   => 'Šajā kategorijā ir $1 {{PLURAL:$1|raksts|raksti}}.',
-'listingcontinuesabbrev' => ' (turpinājums)',
-
 # Math options
 'mw_math_png'    => 'Vienmēr attēlot PNG',
 'mw_math_simple' => 'HTML, ja ļoti vienkārši, vai arī PNG',
@@ -1028,9 +1018,13 @@ Ja tomēr vēlēsies, tad tev šī diskusiju lapa būs jāpārvieto vai jāapvie
 'thumbsize'    => 'Sīkbildes (<i>thumbnail</i>) izmērs:',
 
 # Special:Newimages
-'newimages'    => 'Jauno attēlu galerija',
-'showhidebots' => '($1 botus)',
-'noimages'     => 'Nav nekā ko redzēt.',
+'newimages'             => 'Jauno attēlu galerija',
+'imagelisttext'         => 'Šobrīd redzams $1 attēlu uzskaitījums, kas sakārtots $2.',
+'showhidebots'          => '($1 botus)',
+'noimages'              => 'Nav nekā ko redzēt.',
+'ilsubmit'              => 'Meklēt',
+'bydate'                => '<b>pēc datuma</b>',
+'sp-newimages-showfrom' => 'Rādīt jaunos attēlus sākot no $1',
 
 # Metadata
 'metadata-expand'   => 'Parādīt papildu detaļas',

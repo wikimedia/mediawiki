@@ -21,10 +21,11 @@ $messages = array(
 'november'  => 'tenpo mun pi nanpa luka luka wan',
 'december'  => 'tenpo mun pi nanpa luka luka tu',
 
-# Bits of text used by many pages
-'categories'      => 'kulupu lipu',
-'category_header' => 'lipu lon kulupu lipu "$1"',
-'subcategories'   => 'kulupu lipu lili',
+# Categories related messages
+'categories'             => 'kulupu lipu',
+'category_header'        => 'lipu lon kulupu lipu "$1"',
+'subcategories'          => 'kulupu lipu lili',
+'listingcontinuesabbrev' => ' li awen',
 
 'article'    => 'lipu sona',
 'newwindow'  => '(ona li open e lupa sin)',
@@ -148,8 +149,5 @@ kin la sina toki e ni: toki sina ni li tan sina taso anu lipu pi ken ali.
 
 # What links here
 'whatlinkshere' => 'lipu seme li tawa ni?',
-
-# Spam protection
-'listingcontinuesabbrev' => ' li awen',
 
 );

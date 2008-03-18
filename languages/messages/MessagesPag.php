@@ -14,7 +14,7 @@ $messages = array(
 'underline-always' => 'Naynay',
 'underline-never'  => 'Andin-balot',
 
-# Bits of text used by many pages
+# Categories related messages
 'category_header' => 'Saray artikulo ed category ya "$1"',
 
 'about'          => 'Nipakar ed',
@@ -182,12 +182,12 @@ $messages = array(
 'sourcefilename'  => 'Filename na pinanlapuan:',
 'watchthisupload' => 'Bantayan yan bolong',
 
-# Image list
-'getimagelist'     => 'aaleen so listaan na file',
-'ilsubmit'         => 'Anapen',
+# Special:Imagelist
+'imagelist_name' => 'Ngaran',
+
+# Image description page
 'imagelinks'       => 'Saray Gawing',
 'noimage-linktext' => 'I-segep ya',
-'imagelist_name'   => 'Ngaran',
 
 # MIME search
 'download' => 'mangileksab (download)',
@@ -307,7 +307,7 @@ Pinengneng so $2 para ed listaan na saray abural ran balo.',
 'contribslink'       => 'saray entolong to',
 
 # Move page
-'move-page-legend'                => 'Iyales so bolong',
+'move-page-legend'        => 'Iyales so bolong',
 'movearticle'             => 'Iyales so bolong',
 'movepagebtn'             => 'Iyales so bolong',
 'pagemovedsub'            => 'Asumpal lan inyales',
@@ -347,6 +347,9 @@ Pinengneng so $2 para ed listaan na saray abural ran balo.',
 
 # Attribution
 'lastmodifiedatby' => 'Sampot ya binalo yan bolong nen agew ya $2, $1 nen $3.', # $1 date, $2 time, $3 user
+
+# Special:Newimages
+'ilsubmit' => 'Anapen',
 
 # EXIF tags
 'exif-filesource' => 'File na pinanlapuan',

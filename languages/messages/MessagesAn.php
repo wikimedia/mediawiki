@@ -214,7 +214,7 @@ $messages = array(
 'nov'           => 'nob',
 'dec'           => 'abi',
 
-# Bits of text used by many pages
+# Categories related messages
 'categories'               => 'Categorías',
 'pagecategories'           => '{{PLURAL:$1|Categoría|Categorías}}',
 'category_header'          => 'Articlos en a categoría "$1"',
@@ -223,6 +223,7 @@ $messages = array(
 'category-empty'           => "''Ista categoría no tiene por agora garra articlo ni conteniu multimedia''",
 'hidden-categories'        => '{{PLURAL:$1|Categoría amagata|Categorías amagatas}}',
 'hidden-category-category' => 'Categorías amagatas', # Name of the category where hidden categories will be listed
+'subcategorycount'         => 'Bi ha {{PLURAL:$1|una subcategoría|$1 subcategorías}} en ista categoría.',
 
 'mainpagetext'      => "O programa MediaWiki s'ha instalato correutament.",
 'mainpagedocfooter' => "Consulta a [http://meta.wikimedia.org/wiki/Help:Contents Guía d'usuario] ta mirar informazión sobre cómo usar o software wiki.
@@ -1092,18 +1093,18 @@ PICT # misz.
 'upload_source_url'  => ' (una URL conforme y publicament aczesible)',
 'upload_source_file' => ' (un archibo en o suyo ordenador)',
 
-# Image list
-'imagelist'                 => 'Lista de imachens',
-'imagelisttext'             => "Contino bi ha una lista de '''$1''' {{PLURAL:$1|imachen ordenata|imachens ordenatas}} $2.",
-'getimagelist'              => "obtenindo a lista d'imachens",
-'ilsubmit'                  => 'Mirar',
-'showlast'                  => 'Amostrar as zagueras $1 imachens ordenatas $2.',
-'byname'                    => 'por o nombre',
-'bydate'                    => 'por a calendata',
-'bysize'                    => 'por a grandaria',
-'imgdelete'                 => 'borr',
-'imgdesc'                   => 'desc',
-'imgfile'                   => 'archibo',
+# Special:Imagelist
+'imagelist_search_for'  => "Mirar por nombre de l'archibo:",
+'imgdesc'               => 'desc',
+'imgfile'               => 'archibo',
+'imagelist'             => 'Lista de imachens',
+'imagelist_date'        => 'Calendata',
+'imagelist_name'        => 'Nombre',
+'imagelist_user'        => 'Usuario',
+'imagelist_size'        => 'Grandaria (bytes)',
+'imagelist_description' => 'Descripzión',
+
+# Image description page
 'filehist'                  => "Istorial de l'archibo",
 'filehist-help'             => "Punche en una calendata/ora ta beyer l'archibo como amanixeba por ixas engüeltas.",
 'filehist-deleteall'        => 'borrar-lo tot',
@@ -1125,12 +1126,6 @@ PICT # misz.
 'noimage'                   => 'No bi ha garra archibo con ixe nombre, pero puede $1.',
 'noimage-linktext'          => 'cargar-lo',
 'uploadnewversion-linktext' => "Cargar una nueba bersión d'iste archibo",
-'imagelist_date'            => 'Calendata',
-'imagelist_name'            => 'Nombre',
-'imagelist_user'            => 'Usuario',
-'imagelist_size'            => 'Grandaria (bytes)',
-'imagelist_description'     => 'Descripzión',
-'imagelist_search_for'      => "Mirar por nombre de l'archibo:",
 
 # File reversion
 'filerevert'                => 'Rebertir $1',
@@ -1565,8 +1560,6 @@ $1',
 'sp-contributions-username'    => "Adreza IP u nombre d'usuario:",
 'sp-contributions-submit'      => 'Mirar',
 
-'sp-newimages-showfrom' => 'Amostrar archibos nuebos dende $1',
-
 # What links here
 'whatlinkshere'       => 'Pachinas que enlazan con ista',
 'whatlinkshere-title' => 'Pachinas que tienen binclos ta $1',
@@ -1887,15 +1880,12 @@ Todas as importazions interwiki se rechistran en o [[Special:Log/import|rechistr
 'nocredits'        => 'No bi ha informazión de creditos ta ista pachina.',
 
 # Spam protection
-'spamprotectiontitle'  => 'Filtro de protezión contra o spam',
-'spamprotectiontext'   => "A pachina que mira d'alzar ha estato bloqueyata por o filtro de spam.  Regular que a causa sía en bel binclo esterno.",
-'spamprotectionmatch'  => 'O testo siguient ye o que autibó o nuestro filtro de spam: $1',
-'subcategorycount'     => 'Bi ha {{PLURAL:$1|una subcategoría|$1 subcategorías}} en ista categoría.',
-'categoryarticlecount' => 'Bi ha $1 {{PLURAL:$1|articlo|articlos}} en ista categoría.',
-'category-media-count' => 'Bi ha {{PLURAL:$1|&nbsp;un archibo|$1 archibos}} en ista categoría.',
-'spambot_username'     => 'Esporga de spam de MediaWiki',
-'spam_reverting'       => "Tornando t'a zaguera bersión sin de binclos ta $1",
-'spam_blanking'        => 'Todas as bersions contienen binclos ta $1, se blanquea a pachina',
+'spamprotectiontitle' => 'Filtro de protezión contra o spam',
+'spamprotectiontext'  => "A pachina que mira d'alzar ha estato bloqueyata por o filtro de spam.  Regular que a causa sía en bel binclo esterno.",
+'spamprotectionmatch' => 'O testo siguient ye o que autibó o nuestro filtro de spam: $1',
+'spambot_username'    => 'Esporga de spam de MediaWiki',
+'spam_reverting'      => "Tornando t'a zaguera bersión sin de binclos ta $1",
+'spam_blanking'       => 'Todas as bersions contienen binclos ta $1, se blanquea a pachina',
 
 # Info page
 'infosubtitle'   => "Informazión d'a pachina",
@@ -1957,9 +1947,13 @@ $1",
 'show-big-image-thumb' => "<small>Grandaria d'ista ambiesta prebia: $1 × $2 píxels</small>",
 
 # Special:Newimages
-'newimages'    => 'Galería de nuebas imachens',
-'showhidebots' => '($1 bots)',
-'noimages'     => 'No bi ha cosa á beyer.',
+'newimages'             => 'Galería de nuebas imachens',
+'imagelisttext'         => "Contino bi ha una lista de '''$1''' {{PLURAL:$1|imachen ordenata|imachens ordenatas}} $2.",
+'showhidebots'          => '($1 bots)',
+'noimages'              => 'No bi ha cosa á beyer.',
+'ilsubmit'              => 'Mirar',
+'bydate'                => 'por a calendata',
+'sp-newimages-showfrom' => 'Amostrar archibos nuebos dende $1',
 
 # Bad image list
 'bad_image_list' => "O formato ye asinas:

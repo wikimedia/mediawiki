@@ -163,7 +163,7 @@ $messages = array(
 'nov'           => 'Ліс',
 'dec'           => 'Сне',
 
-# Bits of text used by many pages
+# Categories related messages
 'categories'               => 'Катэгорыі',
 'pagecategories'           => '{{PLURAL:$1|Катэгорыя|Катэгорыі}}',
 'category_header'          => 'Складнікі ў катэгорыі “$1”',
@@ -172,6 +172,8 @@ $messages = array(
 'category-empty'           => "''Зараз у катэгорыі няма аніводнай старонкі або мультымедыйнага файла.''",
 'hidden-categories'        => '{{PLURAL:$1|Схаваная катэгорыя|Схаваныя катэгорыі}}',
 'hidden-category-category' => 'Схаваныя катэгорыі', # Name of the category where hidden categories will be listed
+'subcategorycount'         => 'У гэтай катэгорыі $1 {{PLURAL:$1|падкатэгорыя|падкатэгорыі|падкатэгорый}}.',
+'listingcontinuesabbrev'   => 'працяг',
 
 'mainpagetext'      => "<big>'''MediaWiki паспяхова ўсталяваная.'''</big>",
 'mainpagedocfooter' => 'Гл. [http://meta.wikimedia.org/wiki/Help:Contents Дапаможнік карыстальніка (англ.)] па далейшыя звесткі аб карыстанні вікі-праграмамі.
@@ -995,18 +997,18 @@ $2',
 'upload_source_url'  => ' (сапраўдны, публічна дасягальны URL)',
 'upload_source_file' => ' (файл на вашай машыне)',
 
-# Image list
-'imagelist'                 => 'Усе файлы',
-'imagelisttext'             => "Ніжэй даецца спіс з '''$1''' {{plural:$1|файла|файлаў}} у парадку $2.",
-'getimagelist'              => 'атрымліваем спіс файлаў',
-'ilsubmit'                  => 'Знайсці',
-'showlast'                  => 'Паказ. апошнія $1 файлаў у парадку $2.',
-'byname'                    => 'п. назваў',
-'bydate'                    => 'п. датаў',
-'bysize'                    => "п. аб'ёмаў",
-'imgdelete'                 => 'сцерці',
-'imgdesc'                   => 'апісанне',
-'imgfile'                   => 'файл',
+# Special:Imagelist
+'imagelist_search_for'  => 'Знайсці назву выявы:',
+'imgdesc'               => 'апісанне',
+'imgfile'               => 'файл',
+'imagelist'             => 'Усе файлы',
+'imagelist_date'        => 'Дата',
+'imagelist_name'        => 'Назва',
+'imagelist_user'        => 'Удзельнік',
+'imagelist_size'        => 'Памер у байтах',
+'imagelist_description' => 'Апісанне',
+
+# Image description page
 'filehist'                  => 'Гісторыя файла',
 'filehist-help'             => 'Націснуць на даце з часам, каб паказаць файл, якім ён тады быў.',
 'filehist-deleteall'        => 'выдаліць усё',
@@ -1027,12 +1029,6 @@ $2',
 'noimage'                   => 'Няма файла з такой назвай, вы можаце $1.',
 'noimage-linktext'          => 'укласці',
 'uploadnewversion-linktext' => 'Укласці новую версію гэтага файла',
-'imagelist_date'            => 'Дата',
-'imagelist_name'            => 'Назва',
-'imagelist_user'            => 'Удзельнік',
-'imagelist_size'            => 'Памер у байтах',
-'imagelist_description'     => 'Апісанне',
-'imagelist_search_for'      => 'Знайсці назву выявы:',
 
 # File reversion
 'filerevert'                => 'Адкаціць $1',
@@ -1455,8 +1451,6 @@ $1',
 'sp-contributions-username'    => 'Адрас IP або імя ўдзельніка:',
 'sp-contributions-submit'      => 'Пошук',
 
-'sp-newimages-showfrom' => 'Паказаць новыя файлы, пачынаючы з $1',
-
 # What links here
 'whatlinkshere'       => 'Сюды спасылаюцца',
 'whatlinkshere-title' => 'Старонкі, якія спасылаюцца на $1',
@@ -1541,7 +1535,7 @@ $1',
 'databasenotlocked'   => 'База дадзеных не замкнутая.',
 
 # Move page
-'move-page-legend'                => 'Перанесці старонку',
+'move-page-legend'        => 'Перанесці старонку',
 'movepagetext'            => "Форма, што ніжэй, перанясе старонку пад новую назву, і таксама перанясе пад новую назву ўсю гісторыю старонкі.
 Старая назва ператворыцца ў перасылку да новай.
 Спасылкі на старую назву не зменяцца, таму трэба праверыць наяўнасць падвойных ці зламаных перасылак.
@@ -1730,16 +1724,12 @@ $1',
 'nocredits'        => 'Няма звестак пра аўтараў гэтай старонкі.',
 
 # Spam protection
-'spamprotectiontitle'    => 'Фільтр спаму',
-'spamprotectiontext'     => 'Спроба запісаць старонку была запынена фільтрам спаму. Магчымая прычына — спасылка на пэўны вонкавы адрас Сеціва.',
-'spamprotectionmatch'    => 'Фільтр спаму зрэагаваў на гэты тэкст: $1',
-'subcategorycount'       => 'У гэтай катэгорыі $1 {{PLURAL:$1|падкатэгорыя|падкатэгорыі|падкатэгорый}}.',
-'categoryarticlecount'   => 'У гэтай катэгорыі $1 {{PLURAL:$1|артыкул|артыкулы|артыкулаў}}.',
-'category-media-count'   => 'У гэтай катэгорыі $1 {{PLURAL:$1|файл|файлы|файлаў}}.',
-'listingcontinuesabbrev' => 'працяг',
-'spambot_username'       => 'Чыстка спаму MediaWiki',
-'spam_reverting'         => 'Вяртаемся да апошняй версіі без спасылак на $1',
-'spam_blanking'          => 'Усе версіі ўтрымлівалі спасылкі на $1, чысцім',
+'spamprotectiontitle' => 'Фільтр спаму',
+'spamprotectiontext'  => 'Спроба запісаць старонку была запынена фільтрам спаму. Магчымая прычына — спасылка на пэўны вонкавы адрас Сеціва.',
+'spamprotectionmatch' => 'Фільтр спаму зрэагаваў на гэты тэкст: $1',
+'spambot_username'    => 'Чыстка спаму MediaWiki',
+'spam_reverting'      => 'Вяртаемся да апошняй версіі без спасылак на $1',
+'spam_blanking'       => 'Усе версіі ўтрымлівалі спасылкі на $1, чысцім',
 
 # Info page
 'infosubtitle'   => 'Інфармацыя пра старонку',
@@ -1785,9 +1775,13 @@ $1',
 'show-big-image-thumb' => '<small>Памеры гэтага перадпаказу: $1 × $2 кропак</small>',
 
 # Special:Newimages
-'newimages'    => 'Новыя файлы',
-'showhidebots' => '($1 робатаў)',
-'noimages'     => 'Тут нічога няма.',
+'newimages'             => 'Новыя файлы',
+'imagelisttext'         => "Ніжэй даецца спіс з '''$1''' {{plural:$1|файла|файлаў}} у парадку $2.",
+'showhidebots'          => '($1 робатаў)',
+'noimages'              => 'Тут нічога няма.',
+'ilsubmit'              => 'Знайсці',
+'bydate'                => 'п. датаў',
+'sp-newimages-showfrom' => 'Паказаць новыя файлы, пачынаючы з $1',
 
 # Bad image list
 'bad_image_list' => 'Афармленне гэтага такое:

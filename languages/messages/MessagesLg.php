@@ -66,13 +66,14 @@ $messages = array(
 'nov'           => 'Gw11',
 'dec'           => 'Gw12',
 
-# Bits of text used by many pages
+# Categories related messages
 'categories'            => 'Amatuluba',
 'pagecategories'        => '{{PLURAL:$1|Tuluba|Matuluba}}',
 'category_header'       => 'Empapula eziri mu ttuluba lya "$1"',
 'subcategories'         => 'Amatabi',
 'category-media-header' => 'Mediya eziri mu ttuluba lya "$1"',
 'category-empty'        => "''Ettuluba lino temuli mpapula oba mediya.''",
+'subcategorycount'      => 'Ettuluba lino lirina {{PLURAL:$1|ettabi limu|amatabi $1}}.',
 
 'about'          => 'Okutangaaza',
 'newwindow'      => '(bijjira mu kadirisa kapya)',
@@ -342,7 +343,10 @@ oba ku gano agali ku lupapula luno.<br />
 'upload'        => 'Teekayo fayiro',
 'uploadlogpage' => 'Likooda eya fayiro eziteekedwa ku wiki',
 
-# Image list
+# Special:Imagelist
+'imagelist_user' => 'Memba',
+
+# Image description page
 'filehist'            => 'Ebyafaayo ebya fayiro eno',
 'filehist-help'       => "Bw'onyiga ku nnaku n'essaawa, ojjakulaba fayiro nga bwe yali efaanana ku kiseera ekyo.",
 'filehist-datetime'   => "Ennaku n'obudde",
@@ -353,7 +357,6 @@ oba ku gano agali ku lupapula luno.<br />
 'linkstoimage'        => 'Empapula eziriko enyunzi ezigguka ku fayiro eno ze zino:',
 'nolinkstoimage'      => 'Tewali mpapula ziriko nyunzi ezigguka ku fayiro eno.',
 'sharedupload'        => "Fayiro eno y'emu esobola okuba nga empapula nyingi zigikozesa",
-'imagelist_user'      => 'Memba',
 
 # Random page
 'randompage' => 'Nondera olupapula muwawa',
@@ -515,10 +518,6 @@ Bw\'oba oyagala okulekerawo okulugoberera, nyiga ku kigambo "Suula" awo ku bbali
 # Attribution
 'siteuser'  => '{{SITENAME}} memba $1',
 'siteusers' => '{{SITENAME}} (ba)memba $1',
-
-# Spam protection
-'subcategorycount'     => 'Ettuluba lino lirina {{PLURAL:$1|ettabi limu|amatabi $1}}.',
-'categoryarticlecount' => 'Ettuluba lino lirimu {{PLURAL:$1|olupapula lumu|empapula $1}}.',
 
 # Browsing diffs
 'previousdiff' => '← Laba enjawulo ezaakulembera zino',

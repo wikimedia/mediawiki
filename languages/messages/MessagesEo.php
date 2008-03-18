@@ -1053,18 +1053,18 @@ jen la loglibro pri forigado por ĉi dosiero por via oportuneco:",
 'upload_source_url'  => ' (valida, publike atingebla URL-o)',
 'upload_source_file' => ' (dosiero en via komputilo)',
 
-# Image list
-'imagelist'                 => 'Listo de alŝutitaj dosieroj',
-'imagelisttext'             => "Jen listo de '''$1''' {{PLURAL:$1|dosiero|dosieroj}}, ordigitaj laŭ $2.",
-'getimagelist'              => 'akiras dosierliston',
-'ilsubmit'                  => 'Trovu!',
-'showlast'                  => 'Montru la $1 lastajn bildojn laŭ $2.',
-'byname'                    => 'nomo',
-'bydate'                    => 'dato',
-'bysize'                    => 'grandeco',
-'imgdelete'                 => 'forigu',
-'imgdesc'                   => 'pri',
-'imgfile'                   => 'dosiero',
+# Special:Imagelist
+'imagelist_search_for'  => 'Serĉu por dosiera nomo:',
+'imgdesc'               => 'pri',
+'imgfile'               => 'dosiero',
+'imagelist'             => 'Listo de alŝutitaj dosieroj',
+'imagelist_date'        => 'Dato',
+'imagelist_name'        => 'Nomo',
+'imagelist_user'        => 'Uzanto',
+'imagelist_size'        => 'Grandeco',
+'imagelist_description' => 'Priskribo',
+
+# Image description page
 'filehist'                  => 'Historio de dosiero',
 'filehist-help'             => 'Klaku daton/tempon por rigardi la dosieron kiel gxinaa sxajnita tiame.',
 'filehist-deleteall'        => 'forigu ĉiujn',
@@ -1086,12 +1086,6 @@ jen la loglibro pri forigado por ĉi dosiero por via oportuneco:",
 'noimage'                   => 'Ne ekzistas dosiero kun tia nomo vi povas $1.',
 'noimage-linktext'          => 'alŝuti ĝin',
 'uploadnewversion-linktext' => 'Alŝutu novan version de ĉi tiu dosiero',
-'imagelist_date'            => 'Dato',
-'imagelist_name'            => 'Nomo',
-'imagelist_user'            => 'Uzanto',
-'imagelist_size'            => 'Grandeco',
-'imagelist_description'     => 'Priskribo',
-'imagelist_search_for'      => 'Serĉu por dosiera nomo:',
 
 # File reversion
 'filerevert'                => 'Restarigu $1',
@@ -1529,8 +1523,6 @@ $1',
 'sp-contributions-username'    => 'IP-adreso aŭ uzantonomo:',
 'sp-contributions-submit'      => 'Serĉu',
 
-'sp-newimages-showfrom' => 'Montru novajn dosierojn komencante de $1',
-
 # What links here
 'whatlinkshere'       => 'Ligiloj ĉi tien',
 'whatlinkshere-title' => 'Pagxoj ligantaj al $1',
@@ -1926,9 +1918,13 @@ $1',
 'show-big-image-thumb' => '<small>Grandeco de ĉi antaŭvido: $1 × $2 rastrumeroj</small>',
 
 # Special:Newimages
-'newimages'    => 'Aro da novaj bildoj',
-'showhidebots' => '($1 robotojn)',
-'noimages'     => 'Nenio videbla.',
+'newimages'             => 'Aro da novaj bildoj',
+'imagelisttext'         => "Jen listo de '''$1''' {{PLURAL:$1|dosiero|dosieroj}}, ordigitaj laŭ $2.",
+'showhidebots'          => '($1 robotojn)',
+'noimages'              => 'Nenio videbla.',
+'ilsubmit'              => 'Trovu!',
+'bydate'                => 'dato',
+'sp-newimages-showfrom' => 'Montru novajn dosierojn komencante de $1',
 
 # Bad image list
 'bad_image_list' => 'La formato estas jen:

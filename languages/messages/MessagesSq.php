@@ -155,13 +155,15 @@ $messages = array(
 'nov'           => 'Nën',
 'dec'           => 'Dhj',
 
-# Bits of text used by many pages
-'categories'            => 'Kategori',
-'pagecategories'        => '{{PLURAL:$1|Kategoria|Kategoritë}}',
-'category_header'       => 'Artikuj në kategorinë "$1"',
-'subcategories'         => 'Nën-kategori',
-'category-media-header' => 'Skeda në kategori "$1"',
-'category-empty'        => "''Kjo kategori aktualisht nuk përmban asnjë faqe apo media.''",
+# Categories related messages
+'categories'             => 'Kategori',
+'pagecategories'         => '{{PLURAL:$1|Kategoria|Kategoritë}}',
+'category_header'        => 'Artikuj në kategorinë "$1"',
+'subcategories'          => 'Nën-kategori',
+'category-media-header'  => 'Skeda në kategori "$1"',
+'category-empty'         => "''Kjo kategori aktualisht nuk përmban asnjë faqe apo media.''",
+'subcategorycount'       => 'Ndodhen $1 nën-kategori në këtë kategori.',
+'listingcontinuesabbrev' => 'vazh.',
 
 'mainpagetext'      => 'Wiki software u instalua me sukses.',
 'mainpagedocfooter' => 'Për më shumë informata rreth përdorimit të softwerit wiki , ju lutem shikoni [http://meta.wikimedia.org/wiki/Help:Contents dokumentacionin përkatës].
@@ -848,18 +850,18 @@ Të gjithë orët janë me orën e shërbyesit (UTC).',
 'license'   => 'Licencimi:',
 'nolicense' => 'Asnjë nuk është zgjedhur',
 
-# Image list
-'imagelist'                 => 'Lista e figurave',
-'imagelisttext'             => 'Më poshtë është një listë e $1 figurave të renditura sipas $2.',
-'getimagelist'              => 'duke ngarkuar të gjithë listën e figurave',
-'ilsubmit'                  => 'Kërko',
-'showlast'                  => 'Trego $1 figurat e fundit të renditura sipas $2.',
-'byname'                    => 'emrit',
-'bydate'                    => 'datës',
-'bysize'                    => 'madhësisë',
-'imgdelete'                 => 'gris',
-'imgdesc'                   => 'për',
-'imgfile'                   => 'skeda',
+# Special:Imagelist
+'imagelist_search_for'  => 'Kërko për emrin e figurës:',
+'imgdesc'               => 'për',
+'imgfile'               => 'skeda',
+'imagelist'             => 'Lista e figurave',
+'imagelist_date'        => 'Data',
+'imagelist_name'        => 'Emri',
+'imagelist_user'        => 'Përdoruesi',
+'imagelist_size'        => 'Madhësia (bytes)',
+'imagelist_description' => 'Përshkrimi',
+
+# Image description page
 'filehist'                  => 'Historiku i dosjes',
 'filehist-datetime'         => 'Data/Ora',
 'filehist-user'             => 'Përdoruesi',
@@ -873,12 +875,6 @@ Të gjithë orët janë me orën e shërbyesit (UTC).',
 'noimage'                   => 'Një skedë me këtë emër nuk ekziston akoma, ju mundeni ta $1 atë.',
 'noimage-linktext'          => 'ngarkoni',
 'uploadnewversion-linktext' => 'Ngarkoni një version të ri për këtë skedë',
-'imagelist_date'            => 'Data',
-'imagelist_name'            => 'Emri',
-'imagelist_user'            => 'Përdoruesi',
-'imagelist_size'            => 'Madhësia (bytes)',
-'imagelist_description'     => 'Përshkrimi',
-'imagelist_search_for'      => 'Kërko për emrin e figurës:',
 
 # MIME search
 'mimesearch'         => 'Kërkime MIME',
@@ -1210,8 +1206,6 @@ Shikoni [[Special:Log/delete|regjistrin e grisjeve]] për grisjet dhe restaurime
 'sp-contributions-username'    => 'IP Addresa ose Përdoruesi:',
 'sp-contributions-submit'      => 'Kërko',
 
-'sp-newimages-showfrom' => 'duke filluar nga $1',
-
 # What links here
 'whatlinkshere'       => 'Lidhjet këtu',
 'whatlinkshere-title' => 'Faqe që lidhin me $1',
@@ -1461,16 +1455,12 @@ Për të eksportuar faqe, thjesht shtypni një emër për çdo rresht, ose krijo
 'nocredits'        => 'Për këtë faqe nuk ka informacione.',
 
 # Spam protection
-'spamprotectiontitle'    => 'Mbrojtje ndaj teksteve të padëshiruara',
-'spamprotectiontext'     => 'Faqja që dëshironit të ruani është bllokuar nga filtri i teksteve të padëshiruara. Ka mundësi që kjo të ketë ndodhur për shkak të ndonjë lidhjeje të jashtme.',
-'spamprotectionmatch'    => 'Teksti në vijim është cilësuar i padëshiruar nga softueri: $1',
-'subcategorycount'       => 'Ndodhen $1 nën-kategori në këtë kategori.',
-'categoryarticlecount'   => 'Ndodhen $1 artikuj në këtë kategori.',
-'category-media-count'   => 'Ndodhen {{PLURAL:$1|një skedë|$1 skeda}} në këtë kategori.',
-'listingcontinuesabbrev' => 'vazh.',
-'spambot_username'       => 'MediaWiki spam-pastrues',
-'spam_reverting'         => "U kthye tek versioni i fundit që s'ka lidhje tek $1",
-'spam_blanking'          => 'U boshatis sepse të gjitha versionet kanë lidhje tek $1',
+'spamprotectiontitle' => 'Mbrojtje ndaj teksteve të padëshiruara',
+'spamprotectiontext'  => 'Faqja që dëshironit të ruani është bllokuar nga filtri i teksteve të padëshiruara. Ka mundësi që kjo të ketë ndodhur për shkak të ndonjë lidhjeje të jashtme.',
+'spamprotectionmatch' => 'Teksti në vijim është cilësuar i padëshiruar nga softueri: $1',
+'spambot_username'    => 'MediaWiki spam-pastrues',
+'spam_reverting'      => "U kthye tek versioni i fundit që s'ka lidhje tek $1",
+'spam_blanking'       => 'U boshatis sepse të gjitha versionet kanë lidhje tek $1',
 
 # Info page
 'infosubtitle'   => 'Informacion për faqen',
@@ -1512,9 +1502,13 @@ Për të eksportuar faqe, thjesht shtypni një emër për çdo rresht, ose krijo
 'show-big-image' => 'Rezolucion i plotë',
 
 # Special:Newimages
-'newimages'    => 'Galeria e figurave të reja',
-'showhidebots' => '($1 robotët)',
-'noimages'     => "S'ka gjë për të parë.",
+'newimages'             => 'Galeria e figurave të reja',
+'imagelisttext'         => 'Më poshtë është një listë e $1 figurave të renditura sipas $2.',
+'showhidebots'          => '($1 robotët)',
+'noimages'              => "S'ka gjë për të parë.",
+'ilsubmit'              => 'Kërko',
+'bydate'                => 'datës',
+'sp-newimages-showfrom' => 'duke filluar nga $1',
 
 # Metadata
 'metadata-help'     => 'Kjo skedë përmban hollësira të tjera të cilat mund të jenë shtuar nga kamera ose skaneri dixhital që është përdorur për ta krijuar. Në qoftë se skeda është ndryshuar nga gjendja origjinale, disa hollësira mund të mos pasqyrojnë skedën e tanishme.',

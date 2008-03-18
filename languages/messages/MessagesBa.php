@@ -138,7 +138,6 @@ $messages = array(
 'showdiff'       => 'Индерелгән үҙгәрештәр',
 'previewnote'    => 'Ҡарап сығыу өлгөһө, әлегә үҙгәрештәр яҙҙырылмаған!',
 'editing'        => 'Мөхәрирләү  $1',
-'editinguser'    => 'Мөхәрирләү  $1',
 'editingsection' => 'Мөхәрирләү  $1 (секция)',
 'editingcomment' => 'Мөхәрирләү $1 (комментарий)',
 'yourtext'       => 'Һеҙҙең текст',
@@ -146,6 +145,9 @@ $messages = array(
 
 # Preferences page
 'preferences' => 'Көйләүҙәр',
+
+# User rights
+'editinguser' => 'Мөхәрирләү  $1',
 
 # Groups
 'group-all' => '(бөтә)',
@@ -157,7 +159,7 @@ $messages = array(
 # Recent changes linked
 'recentchangeslinked' => 'Бәйле үҙгәртеүҙәр',
 
-# Image list
+# Special:Imagelist
 'imagelist_user' => 'Ҡатнашыусы',
 
 # MIME search

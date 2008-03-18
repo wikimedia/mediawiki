@@ -70,12 +70,14 @@ $messages = array(
 'nov'           => 'Nov',
 'dec'           => 'Des',
 
-# Bits of text used by many pages
-'categories'            => 'Jamii',
-'category_header'       => 'Makala katika jamii "$1"',
-'subcategories'         => 'Vijamii',
-'category-media-header' => 'Picha, video, na sauti katika jamii  "$1"',
-'category-empty'        => "''Jamii hii haina ukurasa, picha, video, wala sauti yoyote.''",
+# Categories related messages
+'categories'             => 'Jamii',
+'category_header'        => 'Makala katika jamii "$1"',
+'subcategories'          => 'Vijamii',
+'category-media-header'  => 'Picha, video, na sauti katika jamii  "$1"',
+'category-empty'         => "''Jamii hii haina ukurasa, picha, video, wala sauti yoyote.''",
+'subcategorycount'       => 'Kuna {{PLURAL:$1|kijamii kimoja|vijamii $1}} chini ya jamii hii.',
+'listingcontinuesabbrev' => 'endelea',
 
 'about'          => 'Kuhusu',
 'article'        => 'Makala',
@@ -382,8 +384,10 @@ Ufunguo: (sasa) = tofauti na toleo la sasa, (kabla) = tofauti na toleo lililotan
 'ignorewarning' => 'Hifadhi bila kujali maonyo yoyote.',
 'uploadedimage' => ' "[[$1]]" imepakiwa',
 
-# Image list
-'imagelist'                 => 'Orodha ya mafaili',
+# Special:Imagelist
+'imagelist' => 'Orodha ya mafaili',
+
+# Image description page
 'filehist'                  => 'Historia ya faili',
 'filehist-help'             => 'Bonyeza tarehe/saa kuona faili kama ilivyoonekana wakati huo.',
 'filehist-current'          => 'sasa hivi',
@@ -695,12 +699,6 @@ Chagua jina lengine.',
 
 # Attribution
 'siteuser' => '{{SITENAME}} mtumiaji $1',
-
-# Spam protection
-'subcategorycount'       => 'Kuna {{PLURAL:$1|kijamii kimoja|vijamii $1}} chini ya jamii hii.',
-'categoryarticlecount'   => 'Kuna {{PLURAL:$1|ukurasa mmoja|kurasa $1}} katika jamii hii.',
-'category-media-count'   => 'Kuna {{PLURAL:$1|faili moja|faili $1}} katika jamii hii.',
-'listingcontinuesabbrev' => 'endelea',
 
 # Browsing diffs
 'previousdiff' => '←Tofauti kabla',

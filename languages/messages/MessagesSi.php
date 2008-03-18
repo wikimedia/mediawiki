@@ -225,8 +225,7 @@ $messages = array(
 # Upload
 'upload' => 'ගොනුවක් උඩුගත කිරීම',
 
-# Image list
-'ilsubmit'          => 'සොයන්න',
+# Image description page
 'filehist-datetime' => 'දිනය/කාලය',
 
 # Random page
@@ -273,6 +272,9 @@ $messages = array(
 # Tooltip help for the actions
 'tooltip-ca-delete'  => 'මේ පිටුව මකන්න',
 'tooltip-n-mainpage' => 'මුල් පිටුව‍ට යන්න',
+
+# Special:Newimages
+'ilsubmit' => 'සොයන්න',
 
 # EXIF tags
 'exif-imagewidth'   => 'පළල',

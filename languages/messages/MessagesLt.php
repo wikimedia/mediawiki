@@ -164,7 +164,7 @@ $messages = array(
 'nov'           => 'lap',
 'dec'           => 'grd',
 
-# Bits of text used by many pages
+# Categories related messages
 'categories'               => 'Kategorijos',
 'pagecategories'           => '{{PLURAL:$1|Kategorija|Kategorijos}}',
 'category_header'          => 'Puslapiai kategorijoje „$1“',
@@ -173,6 +173,8 @@ $messages = array(
 'category-empty'           => "''Šiuo metu ši kategorija neturi jokių puslapių ar failų.''",
 'hidden-categories'        => '{{PLURAL:$1|Paslėpta kategorija|Paslėptos kategorijos}}',
 'hidden-category-category' => 'Paslėptos kategorijos', # Name of the category where hidden categories will be listed
+'subcategorycount'         => 'Kategorijoje yra $1 {{PLURAL:$1|subkategorija|subkategorijos|subkategorijų}}',
+'listingcontinuesabbrev'   => 'tęs.',
 
 'mainpagetext'      => "<big>'''MediaWiki sėkmingai įdiegta.'''</big>",
 'mainpagedocfooter' => 'Informacijos apie wiki programinės įrangos naudojimą, ieškokite [http://meta.wikimedia.org/wiki/Help:Contents žinyne].
@@ -1049,18 +1051,18 @@ Jūs turėtumėte nuspręsti, ar verta toliau įkeldinėti šį failą.
 'upload_source_url'  => ' (tikras, viešai prieinamas URL)',
 'upload_source_file' => ' (failas jūsų kompiuteryje)',
 
-# Image list
-'imagelist'                 => 'Failų sąrašas',
-'imagelisttext'             => "Žemiau yra '''$1''' {{PLURAL:$1|failo|failų|failų}} sąrašas, surūšiuotas $2.",
-'getimagelist'              => 'gauti failų sąrašą',
-'ilsubmit'                  => 'Ieškoti',
-'showlast'                  => 'Rodyti paskutinius $1 paveikslėlių, rūšiuojant $2.',
-'byname'                    => 'pagal vardą',
-'bydate'                    => 'pagal datą',
-'bysize'                    => 'pagal dydį',
-'imgdelete'                 => 'trint',
-'imgdesc'                   => 'apr',
-'imgfile'                   => 'failas',
+# Special:Imagelist
+'imagelist_search_for'  => 'Ieškoti paveikslėlio pavadinimo:',
+'imgdesc'               => 'apr',
+'imgfile'               => 'failas',
+'imagelist'             => 'Failų sąrašas',
+'imagelist_date'        => 'Data',
+'imagelist_name'        => 'Pavadinimas',
+'imagelist_user'        => 'Naudotojas',
+'imagelist_size'        => 'Dydis',
+'imagelist_description' => 'Aprašymas',
+
+# Image description page
 'filehist'                  => 'Paveikslėlio istorija',
 'filehist-help'             => 'Paspauskite ant datos/laiko, kad pamatytumėte failą tokį, koks jis buvo tuo metu.',
 'filehist-deleteall'        => 'trinti visus',
@@ -1082,12 +1084,6 @@ Jūs turėtumėte nuspręsti, ar verta toliau įkeldinėti šį failą.
 'noimage'                   => 'Failas tokiu pavadinimu neegzistuoja. Jūs galite $1',
 'noimage-linktext'          => 'įkelti jį',
 'uploadnewversion-linktext' => 'Įkelti naują failo versiją',
-'imagelist_date'            => 'Data',
-'imagelist_name'            => 'Pavadinimas',
-'imagelist_user'            => 'Naudotojas',
-'imagelist_size'            => 'Dydis',
-'imagelist_description'     => 'Aprašymas',
-'imagelist_search_for'      => 'Ieškoti paveikslėlio pavadinimo:',
 
 # File reversion
 'filerevert'                => 'Sugrąžinti $1',
@@ -1534,8 +1530,6 @@ $1',
 'sp-contributions-username'    => 'IP adresas arba naudotojo vardas:',
 'sp-contributions-submit'      => 'Ieškoti',
 
-'sp-newimages-showfrom' => 'Rodyti naujus paveikslėlius pradedant nuo $1',
-
 # What links here
 'whatlinkshere'       => 'Susiję puslapiai',
 'whatlinkshere-title' => 'Puslapiai, kurie nurodo į $1',
@@ -1881,16 +1875,12 @@ Visi tarpprojektiniai importo veiksmai yra registruojami  [[Special:Log/import|i
 'nocredits'        => 'Kūrėjų informacija negalima šiam puslapiui.',
 
 # Spam protection
-'spamprotectiontitle'    => 'Priešreklaminis filtras',
-'spamprotectiontext'     => 'Puslapis, kurį norėjote išsaugoti buvo užblokuotas priešreklaminio filtro. Tai turbūt sukėlė nuoroda į kitą svetainę.',
-'spamprotectionmatch'    => 'Šis tekstas buvo atpažintas priešreklaminio filtro: $1',
-'subcategorycount'       => 'Kategorijoje yra $1 {{PLURAL:$1|subkategorija|subkategorijos|subkategorijų}}',
-'categoryarticlecount'   => 'Kategorijoje yra $1 {{PLURAL:$1|puslapis|puslapiai|puslapių}}',
-'category-media-count'   => 'Kategorijoje yra $1 {{PLURAL:$1|failas|failai|failų}}.',
-'listingcontinuesabbrev' => 'tęs.',
-'spambot_username'       => 'MediaWiki reklamų šalinimas',
-'spam_reverting'         => 'Atkuriama į ankstesnę versiją, neturinčios nuorodų į $1',
-'spam_blanking'          => 'Visos versijos turėjo nuorodų į $1, išvaloma',
+'spamprotectiontitle' => 'Priešreklaminis filtras',
+'spamprotectiontext'  => 'Puslapis, kurį norėjote išsaugoti buvo užblokuotas priešreklaminio filtro. Tai turbūt sukėlė nuoroda į kitą svetainę.',
+'spamprotectionmatch' => 'Šis tekstas buvo atpažintas priešreklaminio filtro: $1',
+'spambot_username'    => 'MediaWiki reklamų šalinimas',
+'spam_reverting'      => 'Atkuriama į ankstesnę versiją, neturinčios nuorodų į $1',
+'spam_blanking'       => 'Visos versijos turėjo nuorodų į $1, išvaloma',
 
 # Info page
 'infosubtitle'   => 'Puslapio informacija',
@@ -1953,9 +1943,13 @@ $1',
 'show-big-image-thumb' => '<small>Šios peržiūros dydis: $1 × $2 taškų</small>',
 
 # Special:Newimages
-'newimages'    => 'Naujausių failų galerija',
-'showhidebots' => '($1 robotus)',
-'noimages'     => 'Nėra ką parodyti.',
+'newimages'             => 'Naujausių failų galerija',
+'imagelisttext'         => "Žemiau yra '''$1''' {{PLURAL:$1|failo|failų|failų}} sąrašas, surūšiuotas $2.",
+'showhidebots'          => '($1 robotus)',
+'noimages'              => 'Nėra ką parodyti.',
+'ilsubmit'              => 'Ieškoti',
+'bydate'                => 'pagal datą',
+'sp-newimages-showfrom' => 'Rodyti naujus paveikslėlius pradedant nuo $1',
 
 # Bad image list
 'bad_image_list' => 'Formatas yra toks:

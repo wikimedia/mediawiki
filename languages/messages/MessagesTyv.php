@@ -112,13 +112,14 @@ $messages = array(
 'nov'           => '11.ай',
 'dec'           => '12.ай',
 
-# Bits of text used by many pages
+# Categories related messages
 'categories'            => 'Бөлүктер',
 'pagecategories'        => '{{PLURAL:$1|Бөлүк|Бөлүктер}}',
 'category_header'       => '"$1" деп бөлүкте чүүлдер',
 'subcategories'         => 'Бичии бөлүктер',
 'category-media-header' => '"$1" деп бөлүкте медиа',
 'category-empty'        => "''Амгы бо бөлүкте медиа база арыннар чок.''",
+'subcategorycount'      => 'Бо бөлүкте $1 бичии бөлүк бар.',
 
 'about'          => 'Дугайында',
 'article'        => 'Допчу арын',
@@ -419,24 +420,25 @@ $1',
 'upload-file-error' => 'Иштики алдаг',
 'upload-misc-error' => 'Билбес кииреринге алдаг',
 
-# Image list
-'imagelist'             => 'Файл даңзызы',
-'ilsubmit'              => 'Дилээр',
+# Special:Imagelist
 'imgfile'               => 'файл',
-'filehist'              => 'Файлдың төөгүзү',
-'filehist-deleteall'    => 'шуптуну ап каар',
-'filehist-deleteone'    => 'мону ап каар',
-'filehist-current'      => 'амгы үе',
-'filehist-datetime'     => 'Үе/Шак',
-'filehist-user'         => 'Ажыглакчы',
-'filehist-filesize'     => 'Файл хемчээли',
-'filehist-comment'      => 'Комментарий',
-'imagelinks'            => 'Холбаалар',
-'noimage-linktext'      => 'Ону киирер',
+'imagelist'             => 'Файл даңзызы',
 'imagelist_name'        => 'Ат',
 'imagelist_user'        => 'Ажыглакчы',
 'imagelist_size'        => 'Хемчээл',
 'imagelist_description' => 'Тодарадып бижээни',
+
+# Image description page
+'filehist'           => 'Файлдың төөгүзү',
+'filehist-deleteall' => 'шуптуну ап каар',
+'filehist-deleteone' => 'мону ап каар',
+'filehist-current'   => 'амгы үе',
+'filehist-datetime'  => 'Үе/Шак',
+'filehist-user'      => 'Ажыглакчы',
+'filehist-filesize'  => 'Файл хемчээли',
+'filehist-comment'   => 'Комментарий',
+'imagelinks'         => 'Холбаалар',
+'noimage-linktext'   => 'Ону киирер',
 
 # File reversion
 'filerevert-comment' => 'Комментарий:',
@@ -663,11 +665,6 @@ $1',
 # Attribution
 'anonymous' => '{{grammar:genitive|{{SITENAME}}}} ат эвес ажыглакчызы(лары)',
 
-# Spam protection
-'subcategorycount'     => 'Бо бөлүкте $1 бичии бөлүк бар.',
-'categoryarticlecount' => 'Бо бөлүкте $1 арын бар.',
-'category-media-count' => 'Бо бөлүкте $1 файл бар.',
-
 # Image deletion
 'filedelete-missing' => '"$1" деп файл чок, ынчангаш ол ап калдынмас.',
 
@@ -678,6 +675,7 @@ $1',
 # Special:Newimages
 'showhidebots' => '(боцду $1)',
 'noimages'     => 'Чуруклар чок.',
+'ilsubmit'     => 'Дилээр',
 
 # EXIF tags
 'exif-imagewidth'       => 'Калбаа',

@@ -112,13 +112,15 @@ $messages = array(
 'nov'           => 'Nov',
 'dec'           => 'Dic',
 
-# Bits of text used by many pages
-'categories'            => 'Categorias',
-'pagecategories'        => '{{PLURAL:$1|Categoria|Categorias}}',
-'category_header'       => 'Artículus ena categoria "$1"',
-'subcategories'         => 'Sucategorias',
-'category-media-header' => 'Meya ena categoria "$1"',
-'category-empty'        => "''Atualmenti nu desistin ni artículus ni archivus murtimeya nesta categoria.''",
+# Categories related messages
+'categories'             => 'Categorias',
+'pagecategories'         => '{{PLURAL:$1|Categoria|Categorias}}',
+'category_header'        => 'Artículus ena categoria "$1"',
+'subcategories'          => 'Sucategorias',
+'category-media-header'  => 'Meya ena categoria "$1"',
+'category-empty'         => "''Atualmenti nu desistin ni artículus ni archivus murtimeya nesta categoria.''",
+'subcategorycount'       => 'Ai {{PLURAL:$1|una sucategoria|$1 sucategorias}} nesta categoria.',
+'listingcontinuesabbrev' => 'acont.',
 
 'mainpagetext'      => "<big>'''MeyaGüiqui s'á istalau satihatoriamenti.'''</big>",
 'mainpagedocfooter' => "Consurta la [http://meta.wikimedia.org/wiki/Help:Contents User's Guide] pa sabel mas al tentu el huncionamientu el software güiqui.
@@ -972,17 +974,17 @@ Velaquí el antigu rustrihu d´esborrau pa esti archivu:",
 'upload_source_url'  => ' (una URL vália i acesibri)',
 'upload_source_file' => ' (un archivu nel tu ordinaol)',
 
-# Image list
-'imagelist'                 => 'Lista d´archivus',
-'imagelisttext'             => "Embahu ai una lista con '''$1''' {{PLURAL:$1|archivu|archivus}} ordenaus $2.",
-'getimagelist'              => 'precurandu la lista d´imahis',
-'ilsubmit'                  => 'Landeal',
-'showlast'                  => 'Muestral úrtimus $1 archivus crasificaus $2.',
-'byname'                    => 'pol nombri',
-'bydate'                    => 'pol fecha',
-'bysize'                    => 'pol grandol',
-'imgdelete'                 => 'esb',
-'imgfile'                   => 'archivu',
+# Special:Imagelist
+'imagelist_search_for'  => 'Landeal pol nombri la imahin:',
+'imgfile'               => 'archivu',
+'imagelist'             => 'Lista d´archivus',
+'imagelist_date'        => 'Fecha',
+'imagelist_name'        => 'Nombri',
+'imagelist_user'        => 'Usuáriu',
+'imagelist_size'        => 'Grandol',
+'imagelist_description' => 'Descrición',
+
+# Image description page
 'filehist'                  => 'Estorial el archivu',
 'filehist-help'             => 'Pursa nuna fecha/ora pa vel cumu era el archivu nesi momentu.',
 'filehist-deleteall'        => 'esborral tós',
@@ -1003,12 +1005,6 @@ Velaquí el antigu rustrihu d´esborrau pa esti archivu:",
 'noimage'                   => 'Nu desisti dengún archivu llamau asina, pueis $1.',
 'noimage-linktext'          => 'empuntalu',
 'uploadnewversion-linktext' => 'Empuntal una nueva velsión d´esti archivu',
-'imagelist_date'            => 'Fecha',
-'imagelist_name'            => 'Nombri',
-'imagelist_user'            => 'Usuáriu',
-'imagelist_size'            => 'Grandol',
-'imagelist_description'     => 'Descrición',
-'imagelist_search_for'      => 'Landeal pol nombri la imahin:',
 
 # File reversion
 'filerevert'                => 'Revertil $1',
@@ -1440,8 +1436,6 @@ $1',
 'sp-contributions-username'    => 'IP u nombri d´usuáriu:',
 'sp-contributions-submit'      => 'Landeal',
 
-'sp-newimages-showfrom' => 'Muestral nuevas imahin qu´esmiencin pol $1',
-
 # What links here
 'whatlinkshere'       => "Lo qu'atiha aquí",
 'whatlinkshere-title' => 'Páhinas qu´atihan a $1',
@@ -1752,16 +1746,12 @@ Tolas acionis d'emporteau transwiki se rustrin nel [[Special:Log/import|rustrihu
 'nocredits'        => 'Nu ai créitus disponibris pa esta páhina.',
 
 # Spam protection
-'spamprotectiontitle'    => 'Filtru e proteción anti-Spam',
-'spamprotectiontext'     => "La páhina qu'ententas emburacal á siu atarugá pol el filtru anti-spam. Estu puei sel ebiu a angún atihu a una páhina esterna.",
-'spamprotectionmatch'    => 'El testu siguiente á ativau el muestru filtru antispam: $1',
-'subcategorycount'       => 'Ai {{PLURAL:$1|una sucategoria|$1 sucategorias}} nesta categoria.',
-'categoryarticlecount'   => 'Ai {{PLURAL:$1|un artículu|$1 artículus}} nesta categoria.',
-'category-media-count'   => 'Ai {{PLURAL:$1|un archivu|$1 archivus}} nesta categoria.',
-'listingcontinuesabbrev' => 'acont.',
-'spambot_username'       => 'MediaWiki limpia-spam',
-'spam_reverting'         => 'Revirtiendu a la úrtima velsión que nu contenga atihus a $1',
-'spam_blanking'          => 'Tolas revisionis tienin atihus a $1, branqueandu',
+'spamprotectiontitle' => 'Filtru e proteción anti-Spam',
+'spamprotectiontext'  => "La páhina qu'ententas emburacal á siu atarugá pol el filtru anti-spam. Estu puei sel ebiu a angún atihu a una páhina esterna.",
+'spamprotectionmatch' => 'El testu siguiente á ativau el muestru filtru antispam: $1',
+'spambot_username'    => 'MediaWiki limpia-spam',
+'spam_reverting'      => 'Revirtiendu a la úrtima velsión que nu contenga atihus a $1',
+'spam_blanking'       => 'Tolas revisionis tienin atihus a $1, branqueandu',
 
 # Info page
 'infosubtitle'   => 'Enhormación pala páhina',
@@ -1821,8 +1811,12 @@ $1',
 'show-big-image-thumb' => '<small>Grandol al previsoreal: $1 × $2 pixelis</small>',
 
 # Special:Newimages
-'newimages' => 'Correol d´archivus nuevus',
-'noimages'  => 'Nu ai ná pa vel.',
+'newimages'             => 'Correol d´archivus nuevus',
+'imagelisttext'         => "Embahu ai una lista con '''$1''' {{PLURAL:$1|archivu|archivus}} ordenaus $2.",
+'noimages'              => 'Nu ai ná pa vel.',
+'ilsubmit'              => 'Landeal',
+'bydate'                => 'pol fecha',
+'sp-newimages-showfrom' => 'Muestral nuevas imahin qu´esmiencin pol $1',
 
 # Video information, used by Language::formatTimePeriod() to format lengths in the above messages
 'hours-abbrev' => 'o',

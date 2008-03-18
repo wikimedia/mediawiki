@@ -1007,18 +1007,18 @@ Reek ju Doatäi n Noome, die dän Inhoold beeter beschrift.',
 'upload_source_url'  => ' (gultige, eepentelk tougongelke URL)',
 'upload_source_file' => ' (ne Doatäi ap Jou Computer)',
 
-# Image list
-'imagelist'                 => 'Bieldelieste',
-'imagelisttext'             => 'Hier is ne Lieste fon $1 Bielden, sortierd $2.',
-'getimagelist'              => 'Leede Bieldelieste',
-'ilsubmit'                  => 'Säik',
-'showlast'                  => 'Wies do lääste $1 Bielden, sortierd ätter $2.',
-'byname'                    => 'ätter Noome',
-'bydate'                    => 'ätter Doatum',
-'bysize'                    => 'ätter Grööte',
-'imgdelete'                 => 'Läskje',
-'imgdesc'                   => 'Beschrieuwenge',
-'imgfile'                   => 'Doatäi',
+# Special:Imagelist
+'imagelist_search_for'  => 'Säik ätter Doatäi:',
+'imgdesc'               => 'Beschrieuwenge',
+'imgfile'               => 'Doatäi',
+'imagelist'             => 'Bieldelieste',
+'imagelist_date'        => 'Doatum',
+'imagelist_name'        => 'Noome',
+'imagelist_user'        => 'Benutser',
+'imagelist_size'        => 'Grööte',
+'imagelist_description' => 'Beschrieuwenge',
+
+# Image description page
 'filehist'                  => 'Doatäiversione',
 'filehist-help'             => 'Klik ap n Tiedpunkt, uum disse Version tou leeden.',
 'filehist-deleteall'        => 'Aal do Versione läskje',
@@ -1042,12 +1042,6 @@ dän Software häär, man schoadet fääre niks.)</small>',
 'noimage'                   => 'Ne Doatäi mäd dissen Noome existiert nit, du koast ju oawers $1.',
 'noimage-linktext'          => 'hoochleede',
 'uploadnewversion-linktext' => 'Ne näie Version fon disse Doatäi hoochleede',
-'imagelist_date'            => 'Doatum',
-'imagelist_name'            => 'Noome',
-'imagelist_user'            => 'Benutser',
-'imagelist_size'            => 'Grööte',
-'imagelist_description'     => 'Beschrieuwenge',
-'imagelist_search_for'      => 'Säik ätter Doatäi:',
 
 # File reversion
 'filerevert'                => 'Touräächsätte fon "$1"',
@@ -1483,8 +1477,6 @@ $1',
 'sp-contributions-username'    => 'IP-Adrässe af Benutsernoome:',
 'sp-contributions-submit'      => 'Säike',
 
-'sp-newimages-showfrom' => 'Wies näie Doatäie, ounfangend mäd $1',
-
 # What links here
 'whatlinkshere'       => 'Links ap disse Siede',
 'whatlinkshere-title' => 'Sieden, do der ap "$1" linkje',
@@ -1863,9 +1855,13 @@ $1',
 'show-big-image-thumb' => '<small>Grööte fon disse Foarschau: $1 × $2 Pixel</small>',
 
 # Special:Newimages
-'newimages'    => 'Näie Bielden',
-'showhidebots' => '(Bots $1)',
-'noimages'     => 'neen Bielden fuunen.',
+'newimages'             => 'Näie Bielden',
+'imagelisttext'         => 'Hier is ne Lieste fon $1 Bielden, sortierd $2.',
+'showhidebots'          => '(Bots $1)',
+'noimages'              => 'neen Bielden fuunen.',
+'ilsubmit'              => 'Säik',
+'bydate'                => 'ätter Doatum',
+'sp-newimages-showfrom' => 'Wies näie Doatäie, ounfangend mäd $1',
 
 # Video information, used by Language::formatTimePeriod() to format lengths in the above messages
 'hours-abbrev' => 'U',

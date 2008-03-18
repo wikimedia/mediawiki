@@ -73,13 +73,15 @@ $messages = array(
 'nov'           => 'Rah',
 'dec'           => 'Goe',
 
-# Bits of text used by many pages
-'categories'            => 'Karegorijeh',
-'pagecategories'        => '{{PLURAL:$1|Kategorije|Kategorijeh}}',
-'category_header'       => 'Bielie sïjse kategorije "$1"',
-'subcategories'         => 'Subkategorijeh',
-'category-media-header' => 'Guvvie sïjse karegorije "$1"',
-'category-empty'        => "''Dïhte kategorije sisvege ijje bielieh jallh baalkah.''",
+# Categories related messages
+'categories'             => 'Karegorijeh',
+'pagecategories'         => '{{PLURAL:$1|Kategorije|Kategorijeh}}',
+'category_header'        => 'Bielie sïjse kategorije "$1"',
+'subcategories'          => 'Subkategorijeh',
+'category-media-header'  => 'Guvvie sïjse karegorije "$1"',
+'category-empty'         => "''Dïhte kategorije sisvege ijje bielieh jallh baalkah.''",
+'subcategorycount'       => 'Dïhte {{PLURAL:$1|lea akte subkategorije|lea $1 subkategorijeh}} gåajkoe dïhte kategorije.',
+'listingcontinuesabbrev' => 'jåar.',
 
 'about'          => 'Bïjre',
 'article'        => 'Sisvege bielie',
@@ -418,11 +420,15 @@ Dov dorje värrhtoedimmie gååvnese bielieh, jallh [[Special:Userlogin|logge s�
 
 'license' => 'Liseense:',
 
-# Image list
-'imagelist'                 => 'Guvvie lästoe',
-'ilsubmit'                  => 'Ohtsedh',
-'byname'                    => 'minngesne nomme',
-'imgfile'                   => 'guvvie',
+# Special:Imagelist
+'imagelist_search_for' => 'Ohtsedh ihke guvvie nomme:',
+'imgfile'              => 'guvvie',
+'imagelist'            => 'Guvvie lästoe',
+'imagelist_name'       => 'Nomme',
+'imagelist_user'       => 'Nuhtjien',
+'imagelist_size'       => 'Stoerre',
+
+# Image description page
 'filehist'                  => 'Baalka histovrije',
 'filehist-help'             => 'Diedtedh nille biejjie ihke vuajna man baalkan lij bealese dïhte tïjje.',
 'filehist-current'          => 'daaletje',
@@ -438,10 +444,6 @@ Dov dorje värrhtoedimmie gååvnese bielieh, jallh [[Special:Userlogin|logge s�
 'noimage'                   => 'Ijje baalka meatan dïhte nomme gååvnese, dov dorje $1.',
 'noimage-linktext'          => 'sadde dïhte',
 'uploadnewversion-linktext' => 'Sadde orre låhkoe dejstie dïhte baalka',
-'imagelist_name'            => 'Nomme',
-'imagelist_user'            => 'Nuhtjien',
-'imagelist_size'            => 'Stoerre',
-'imagelist_search_for'      => 'Ohtsedh ihke guvvie nomme:',
 
 # MIME search
 'mimesearch' => 'MIME ohtsedh',
@@ -775,12 +777,6 @@ Gïemhpes veeljeme jeatjebh nomme.',
 'siteuser'  => '{{SITENAME}} nuhtjien $1',
 'siteusers' => '{{SITENAME}} nuhtjien(h) $1',
 
-# Spam protection
-'subcategorycount'       => 'Dïhte {{PLURAL:$1|lea akte subkategorije|lea $1 subkategorijeh}} gåajkoe dïhte kategorije.',
-'categoryarticlecount'   => 'Dïhte {{PLURAL:$1|lea akte bielie|lea $1 bielieh}} sïjse dïhte kategorije.',
-'category-media-count'   => 'Dïhte {{PLURAL:$1|lea akte guvvie|lea $1 guvvieh}} sïjse dïhte kategorije.',
-'listingcontinuesabbrev' => 'jåar.',
-
 # Info page
 'infosubtitle' => 'Bïevnesh ihke bielie',
 'numedits'     => 'Låhkoe värrhtoedimmieh (bielie): $1',
@@ -803,6 +799,7 @@ Gïemhpes veeljeme jeatjebh nomme.',
 
 # Special:Newimages
 'newimages' => 'Gallerije dejstie orre baalkah',
+'ilsubmit'  => 'Ohtsedh',
 
 # Metadata
 'metadata'          => 'Metadaata',

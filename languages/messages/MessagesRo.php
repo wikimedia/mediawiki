@@ -925,18 +925,18 @@ Te rugăm reţine că, la fel ca şi în cazul celorlalte secţiuni din {{SITENA
 'upload_source_url'  => ' (un URL valid, accesibil public)',
 'upload_source_file' => ' (un fişier de pe computerul tău)',
 
-# Image list
-'imagelist'                 => 'Lista imaginilor',
-'imagelisttext'             => 'Mai jos se află lista a $1 imagini ordonate $2.',
-'getimagelist'              => 'încarc lista de imagini',
-'ilsubmit'                  => 'Caută',
-'showlast'                  => 'Arată ultimele $1 imagini ordonate $2.',
-'byname'                    => 'după nume',
-'bydate'                    => 'după dată',
-'bysize'                    => 'după mărime',
-'imgdelete'                 => 'şterge',
-'imgdesc'                   => 'desc',
-'imgfile'                   => 'fişier',
+# Special:Imagelist
+'imagelist_search_for'  => 'Caută imagine după nume:',
+'imgdesc'               => 'desc',
+'imgfile'               => 'fişier',
+'imagelist'             => 'Lista imaginilor',
+'imagelist_date'        => 'Data',
+'imagelist_name'        => 'Nume',
+'imagelist_user'        => 'Utilizator',
+'imagelist_size'        => 'Mărime (octeţi)',
+'imagelist_description' => 'Descriere',
+
+# Image description page
 'filehist'                  => 'Istoricul fişierului',
 'filehist-help'             => 'Faceţi click pe o dată/timp pentru a vizualiza fişierul de la timpul respectiv.',
 'filehist-deleteall'        => 'şterge tot',
@@ -957,12 +957,6 @@ Te rugăm reţine că, la fel ca şi în cazul celorlalte secţiuni din {{SITENA
 'noimage'                   => 'Nu există nici un fişier cu acest nume, puteţi să îl $1.',
 'noimage-linktext'          => 'trimiteţi',
 'uploadnewversion-linktext' => 'Încarcă o versiune nouă a acestui fişier',
-'imagelist_date'            => 'Data',
-'imagelist_name'            => 'Nume',
-'imagelist_user'            => 'Utilizator',
-'imagelist_size'            => 'Mărime (octeţi)',
-'imagelist_description'     => 'Descriere',
-'imagelist_search_for'      => 'Caută imagine după nume:',
 
 # File reversion
 'filerevert'                => 'Revenire $1',
@@ -1344,8 +1338,6 @@ $1',
 'sp-contributions-username'    => 'Adresă IP sau nume de utilizator:',
 'sp-contributions-submit'      => 'Caută',
 
-'sp-newimages-showfrom' => 'Arată imaginile noi începând cu $1',
-
 # What links here
 'whatlinkshere'       => 'Ce se leagă aici',
 'whatlinkshere-title' => 'Pagini care se leagă de $1',
@@ -1705,9 +1697,13 @@ Articolul de destinaţie "[[$1]]" există deja. Doriţi să îl ştergeţi pentr
 'show-big-image-thumb' => '<small>Mărimea acestei previzualizări: $1 × $2 pixeli</small>',
 
 # Special:Newimages
-'newimages'    => 'Galeria de imagini noi',
-'showhidebots' => '($1 roboţi)',
-'noimages'     => 'Nimic de văzut.',
+'newimages'             => 'Galeria de imagini noi',
+'imagelisttext'         => 'Mai jos se află lista a $1 imagini ordonate $2.',
+'showhidebots'          => '($1 roboţi)',
+'noimages'              => 'Nimic de văzut.',
+'ilsubmit'              => 'Caută',
+'bydate'                => 'după dată',
+'sp-newimages-showfrom' => 'Arată imaginile noi începând cu $1',
 
 # Metadata
 'metadata'          => 'Informaţii',

@@ -764,16 +764,15 @@ Nepasirėnktos gropes nabus pakeistos. Galit atžīmiet grope laikīdamė ''Ctrl
 'upload_source_url'  => ' (tėkrs, vėišā priėinams URL)',
 'upload_source_file' => ' (fails Tamstas kompioterī)',
 
-# Image list
-'imagelist'                 => 'Failu sārašos',
-'imagelisttext'             => "Žemiau īr '''$1''' failu sārašos, sorūšiouts $2.",
-'ilsubmit'                  => 'Ėiškoutė',
-'showlast'                  => 'Ruodītė paskiausios $1 abruozdieliu, rūšiounant $2.',
-'byname'                    => 'palē varda',
-'bydate'                    => 'palē data',
-'bysize'                    => 'palē dėdoma',
-'imgdelete'                 => 'trintė',
-'imgfile'                   => 'fails',
+# Special:Imagelist
+'imgfile'               => 'fails',
+'imagelist'             => 'Failu sārašos',
+'imagelist_name'        => 'Pavadinėms',
+'imagelist_user'        => 'Nauduotuos',
+'imagelist_size'        => 'Dėdoms',
+'imagelist_description' => 'Aprašīms',
+
+# Image description page
 'filehist'                  => 'Abruozdielė istuorėjė',
 'filehist-help'             => 'Paspauskėt ont datas/čiesa, ka paveizietomėt faila tuoki, kokis ons bova tū čiesu.',
 'filehist-deleteall'        => 'trintė vėsus',
@@ -794,10 +793,6 @@ Nepasirėnktos gropes nabus pakeistos. Galit atžīmiet grope laikīdamė ''Ctrl
 'noimage'                   => 'Nier faila so šėtokio pavadėnėmo. Tamsta galėt $1',
 'noimage-linktext'          => 'ikeltė ana',
 'uploadnewversion-linktext' => 'Ikeltė nauja faila versėje',
-'imagelist_name'            => 'Pavadinėms',
-'imagelist_user'            => 'Nauduotuos',
-'imagelist_size'            => 'Dėdoms',
-'imagelist_description'     => 'Aprašīms',
 
 # File deletion
 'filedelete'         => 'Trintė $1',
@@ -1136,8 +1131,6 @@ Parveizėkiet [[Special:Log/delete|trīnimu sāraša]], nuoriedamė rastė pasko
 'sp-contributions-username'    => 'IP adresos a nauduotuojė vards:',
 'sp-contributions-submit'      => 'Ėiškuotė',
 
-'sp-newimages-showfrom' => 'Ruodītė naujus abruozdielius pradedant nū $1',
-
 # What links here
 'whatlinkshere'        => 'Sosėjėn straipsnē',
 'whatlinkshere-title'  => 'Poslapē, katrie ruod i $1',
@@ -1407,8 +1400,12 @@ Paskėrties straipsnis „[[$1]]“ jau īr. A nuorėt ana ėštrintė, kū gali
 'show-big-image-thumb' => '<small>Šėtuos parvaizos dėdums: $1 × $2 puškiu</small>',
 
 # Special:Newimages
-'newimages'    => 'Naujausiu abruozdieliu galerėjė',
-'showhidebots' => '($1 robotos)',
+'newimages'             => 'Naujausiu abruozdieliu galerėjė',
+'imagelisttext'         => "Žemiau īr '''$1''' failu sārašos, sorūšiouts $2.",
+'showhidebots'          => '($1 robotos)',
+'ilsubmit'              => 'Ėiškoutė',
+'bydate'                => 'palē data',
+'sp-newimages-showfrom' => 'Ruodītė naujus abruozdielius pradedant nū $1',
 
 # Bad image list
 'bad_image_list' => 'Fuormats tuoks īr:

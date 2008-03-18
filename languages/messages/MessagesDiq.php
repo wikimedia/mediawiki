@@ -112,7 +112,7 @@ href="" class="internal"}?{/a}) bımocne.',
 'nov'           => 'Tşp',
 'dec'           => 'Gağ',
 
-# Bits of text used by many pages
+# Categories related messages
 'categories'               => '{{PLURAL:$1|Kategoriye|Kategoriy}}',
 'pagecategories'           => '{{PLURAL:$1|Kategoriya|Kategoriyê}} perre',
 'category_header'          => 'Nuşteyê ke kategoriya "$1"(-i/-an) derê.',
@@ -313,15 +313,16 @@ href="" class="internal"}?{/a}) bımocne.',
 'filesource' => 'Çımey:',
 'savefile'   => 'Dosya qeyd ke',
 
-# Image list
-'imagelist'         => 'Lista Dosya',
-'ilsubmit'          => 'Cıgeyre',
-'imgfile'           => 'dosya',
+# Special:Imagelist
+'imgfile'        => 'dosya',
+'imagelist'      => 'Lista Dosya',
+'imagelist_date' => 'Tarix',
+'imagelist_user' => 'Karber',
+
+# Image description page
 'filehist-datetime' => 'Tarix/Zeman',
 'filehist-user'     => 'Karber',
 'noimage-linktext'  => 'Bar ke',
-'imagelist_date'    => 'Tarix',
-'imagelist_user'    => 'Karber',
 
 # File deletion
 'filedelete'        => '$1 bıestere',
@@ -388,8 +389,8 @@ href="" class="internal"}?{/a}) bımocne.',
 # Attribution
 'lastmodifiedatby' => 'Ena pele tewr peyên roca $2, $1 by $3. de biya rocaniye', # $1 date, $2 time, $3 user
 
-# Spam protection
-'categoryarticlecount' => 'Ena kategoriye de {{PLURAL:$1|yew nuşte|$1 nuştey}} estê.',
+# Special:Newimages
+'ilsubmit' => 'Cıgeyre',
 
 # AJAX search
 'articletitles' => "Perri be ''$1'' dest cı kenê",

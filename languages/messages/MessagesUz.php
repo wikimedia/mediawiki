@@ -93,12 +93,14 @@ $messages = array(
 'nov'           => 'noy',
 'dec'           => 'dek',
 
-# Bits of text used by many pages
-'categories'      => 'Kategoriyalar',
-'pagecategories'  => '{{PLURAL:$1|Kategoriya|Kategoriyalar}}',
-'category_header' => '"$1" kategoriyadagi maqolalar.',
-'subcategories'   => 'Podkategoriyalar',
-'category-empty'  => "''Ushbu kategoriyada hozircha sahifa yoki fayllar yoʻq.''",
+# Categories related messages
+'categories'             => 'Kategoriyalar',
+'pagecategories'         => '{{PLURAL:$1|Kategoriya|Kategoriyalar}}',
+'category_header'        => '"$1" kategoriyadagi maqolalar.',
+'subcategories'          => 'Podkategoriyalar',
+'category-empty'         => "''Ushbu kategoriyada hozircha sahifa yoki fayllar yoʻq.''",
+'subcategorycount'       => 'Bu kategoriya {{PLURAL:$1|bir|$1}} podkategoriyadan iborat.',
+'listingcontinuesabbrev' => 'davomi',
 
 'linkprefix'        => '/^(.*?)([a-zA-Z\\x80-\\xffʻʼ«„]+)$/sDu',
 'mainpagetext'      => "<big>'''MediaWiki muvaffaqiyatli o'rnatildi.'''</big>",
@@ -355,9 +357,10 @@ Bu yerda: (joriy) = hozirgi koʻrinish bilan farq,
 'uploadlogpage' => 'Yuklash qaydlari',
 'uploadedimage' => '"[[$1]]" yuklandi',
 
-# Image list
-'imagelist'                 => 'Fayllar roʻyxati',
-'ilsubmit'                  => 'Qidirish',
+# Special:Imagelist
+'imagelist' => 'Fayllar roʻyxati',
+
+# Image description page
 'filehist'                  => 'Fayl tarixi',
 'filehist-help'             => 'Faylning biror paytdagi holatini koʻrish uchun tegishli sana/vaqtga bosingiz.',
 'filehist-current'          => 'joriy',
@@ -552,12 +555,6 @@ Agar siz bu sahifani kuzatuv ro'yxatingizdan o'chirmoqchi bo'lsangiz \"Kuzatmasl
 'tooltip-watch'                   => "Bu sahifani kuzatuv ro'yxatingizga qo'shish",
 'tooltip-recreate'                => "Bu sahifani u o'chirilgan bo'lishiga qaramasdan qayta yaratish",
 
-# Spam protection
-'subcategorycount'       => 'Bu kategoriya {{PLURAL:$1|bir|$1}} podkategoriyadan iborat.',
-'categoryarticlecount'   => 'Bu kategoriyada {{PLURAL:$1|bitta|$1}} sahifa bor.',
-'category-media-count'   => 'Ushbu kategoriyada {{PLURAL:$1|is one file|are $1 files}} dona fayl bor.',
-'listingcontinuesabbrev' => 'davomi',
-
 # Browsing diffs
 'previousdiff' => '← Avvalgi farq',
 'nextdiff'     => 'Keyingi farq →',
@@ -570,6 +567,9 @@ Agar siz bu sahifani kuzatuv ro'yxatingizdan o'chirmoqchi bo'lsangiz \"Kuzatmasl
 'svg-long-desc'        => '(SVG fayl, asl oʻlchamlari $1 × $2 piksel, fayl hajmi: $3)',
 'show-big-image'       => 'Asl hajmdagi tasvir',
 'show-big-image-thumb' => '<small>Ushbu koʻrinish oʻlchamlari: $1 × $2 piksel</small>',
+
+# Special:Newimages
+'ilsubmit' => 'Qidirish',
 
 # Metadata
 'metadata-expand'   => 'Batafsil axborot koʻrsat',

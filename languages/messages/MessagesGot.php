@@ -7,7 +7,7 @@
  */
 
 $messages = array(
-# Bits of text used by many pages
+# Categories related messages
 'categories'     => '𐌺𐌿𐌽𐌾𐍉𐍃',
 'pagecategories' => '{{PLURAL:$1|𐌺𐌿𐌽𐌾𐌰|𐌺𐌿𐌽𐌾𐍉𐍃}}',
 

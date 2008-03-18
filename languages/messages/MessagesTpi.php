@@ -55,13 +55,14 @@ $messages = array(
 'fri'       => 'Frai',
 'sat'       => 'Sar',
 
-# Bits of text used by many pages
+# Categories related messages
 'categories'            => 'Ol grup',
 'pagecategories'        => '{{PLURAL:$1|Grup|Ol grup}}',
 'category_header'       => 'Ol pes insait long grup "$1"',
 'subcategories'         => 'Ol grup insait long grup',
 'category-media-header' => 'Ol media (olsem piksa) insait long grup "$1"',
 'category-empty'        => "''Dispela grup i no gat wanpela pes o media (olsem piksa) insait long en nau.''",
+'subcategorycount'      => 'Igat {{PLURAL:$1|wanpela grup|$1 grup}} insait long dispela grup.',
 
 'newwindow'      => '(bai kamap long nupela windo)',
 'cancel'         => 'Toromwe senis',
@@ -224,11 +225,6 @@ Yu mas painim narapela nem.',
 
 # Tooltip help for the actions
 'tooltip-ca-nstab-category' => 'Lukim grup',
-
-# Spam protection
-'subcategorycount'     => 'Igat {{PLURAL:$1|wanpela grup|$1 grup}} insait long dispela grup.',
-'categoryarticlecount' => 'Igat {{PLURAL:$1|wanpela pes bilong buk|$1 pes bilong buk}} insait long dispela grup.',
-'category-media-count' => 'Igat {{PLURAL:$1|wanpela|$1}} media (olsem piksa) insait long dispela grup.',
 
 # Watchlist editor
 'watchlistedit-numitems'       => 'Igat {{PLURAL:$1|1 samting|$1 samting}} insait long lukautbuk bilong yu (ol pes bilong toktok i no stap long dispela namba).',

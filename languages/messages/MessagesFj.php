@@ -137,9 +137,6 @@ $messages = array(
 'fileuploadsummary' => 'Kena i Soqoni:',
 'watchthisupload'   => 'Vakaraica toka na tabana oqo',
 
-# Image list
-'ilsubmit' => 'Vaqaqara',
-
 # Random page
 'randompage' => 'Vakawasoma',
 
@@ -180,11 +177,11 @@ $messages = array(
 'ipbreason' => 'Vuna',
 
 # Move page
-'move-page-legend'    => 'Toso kina yasana kadua',
-'movearticle' => 'Toso kina yasana kadua',
-'move-watch'  => 'Vakaraica toka na tabana oqo',
-'movepagebtn' => 'Toso kina yasana kadua',
-'movereason'  => 'Vuna',
+'move-page-legend' => 'Toso kina yasana kadua',
+'movearticle'      => 'Toso kina yasana kadua',
+'move-watch'       => 'Vakaraica toka na tabana oqo',
+'movepagebtn'      => 'Toso kina yasana kadua',
+'movereason'       => 'Vuna',
 
 # Tooltip help for the actions
 'tooltip-pt-preferences' => 'Ulutaga taleitaki',
@@ -192,6 +189,9 @@ $messages = array(
 'tooltip-ca-move'        => 'Toso na tabana oqo',
 'tooltip-search'         => 'Vaqaqara {{SITENAME}}',
 'tooltip-p-logo'         => 'Tabana levu',
+
+# Special:Newimages
+'ilsubmit' => 'Vaqaqara',
 
 # Multipage image navigation
 'imgmultigo' => 'Lako!',

@@ -124,7 +124,7 @@ $messages = array(
 'nov'           => 'ਨਵੰਬਰ',
 'dec'           => 'ਦਸੰਬਰ',
 
-# Bits of text used by many pages
+# Categories related messages
 'categories'            => 'ਕੈਟਾਗਰੀਆਂ',
 'pagecategories'        => '{{PLURAL:$1|ਕੈਟਾਗਰੀ|ਕੈਟਾਗਰੀਆਂ}}',
 'category_header'       => 'ਕੈਟਾਗਰੀ "$1" ਵਿੱਚ ਲੇਖ',
@@ -414,7 +414,6 @@ $1 ਘੰਟੇ ਵਿੱਚ। ਨੁਕਸਾਨ ਤੋਂ ਬਚਣ ਲਈ, $
 'note'                   => '<strong>ਨੋਟ:</strong>',
 'previewnote'            => '<strong>ਇਹ ਸਿਰਫ਼ ਇੱਕ ਝਲਕ ਹੈ; ਬਦਲਾਅ ਹਾਲੇ ਸੰਭਾਲੇ ਨਹੀਂ ਗਏ ਹਨ!</strong>',
 'editing'                => '$1 ਸੋਧਿਆ ਜਾ ਰਿਹਾ ਹੈ',
-'editinguser'            => '<b>$1</b> ਯੂਜ਼ਰ ਸੋਧਿਆ ਜਾ ਰਿਹਾ ਹੈ',
 'editingsection'         => '$1 (ਸ਼ੈਕਸ਼ਨ) ਸੋਧ',
 'editingcomment'         => '$1 (ਟਿੱਪਣੀ) ਸੋਧ',
 'editconflict'           => 'ਅਪਵਾਦ ਟਿੱਪਣੀ: $1',
@@ -537,6 +536,7 @@ $1 ਘੰਟੇ ਵਿੱਚ। ਨੁਕਸਾਨ ਤੋਂ ਬਚਣ ਲਈ, $
 'userrights-lookup-user'      => 'ਯੂਜ਼ਰ ਗਰੁੱਪ ਦੇਖਭਾਲ',
 'userrights-user-editname'    => 'ਇੱਕ ਯੂਜ਼ਰ ਨਾਂ ਦਿਓ:',
 'editusergroup'               => 'ਯੂਜ਼ਰ ਗਰੁੱਪ ਸੋਧ',
+'editinguser'                 => '<b>$1</b> ਯੂਜ਼ਰ ਸੋਧਿਆ ਜਾ ਰਿਹਾ ਹੈ',
 'userrights-editusergroup'    => 'ਯੂਜ਼ਰ ਗਰੁੱਪ ਸੋਧ',
 'saveusergroups'              => 'ਯੂਜ਼ਰ ਗਰੁੱਪ ਸੰਭਾਲੋ',
 'userrights-groupsmember'     => 'ਇਸ ਦਾ ਮੈਂਬਰ:',
@@ -608,15 +608,17 @@ to upload files.',
 'license-nopreview'  => '(ਝਲਕ ਉਪਲੱਬਧ ਨਹੀਂ)',
 'upload_source_file' => ' (ਤੁਹਾਡੇ ਕੰਪਿਊਟਰ ਉੱਤੇ ਇੱਕ ਫਾਇਲ)',
 
-# Image list
-'imagelist'                 => 'ਫਾਇਲ ਲਿਸਟ',
-'ilsubmit'                  => 'ਖੋਜ',
-'byname'                    => 'ਨਾਂ ਨਾਲ',
-'bydate'                    => 'ਮਿਤੀ ਨਾਲ',
-'bysize'                    => 'ਆਕਾਰ ਨਾਲ',
-'imgdelete'                 => 'ਹਟਾਓ',
-'imgdesc'                   => 'ਵੇਰਵਾ',
-'imgfile'                   => 'ਫਾਇਲ',
+# Special:Imagelist
+'imgdesc'               => 'ਵੇਰਵਾ',
+'imgfile'               => 'ਫਾਇਲ',
+'imagelist'             => 'ਫਾਇਲ ਲਿਸਟ',
+'imagelist_date'        => 'ਮਿਤੀ',
+'imagelist_name'        => 'ਨਾਂ',
+'imagelist_user'        => 'ਯੂਜ਼ਰ',
+'imagelist_size'        => 'ਆਕਾਰ',
+'imagelist_description' => 'ਵੇਰਵਾ',
+
+# Image description page
 'filehist'                  => 'ਫਾਇਲ ਅਤੀਤ',
 'filehist-deleteall'        => 'ਸਭ ਹਟਾਓ',
 'filehist-deleteone'        => 'ਇਹ ਹਟਾਓ',
@@ -630,11 +632,6 @@ to upload files.',
 'imagelinks'                => 'ਲਿੰਕ',
 'noimage-linktext'          => 'ਇਹ ਅੱਪਲੋਡ',
 'uploadnewversion-linktext' => 'ਇਸ ਫਾਇਲ ਦਾ ਇੱਕ ਨਵਾਂ ਵਰਜਨ ਅੱਪਲੋਡ ਕਰੋ',
-'imagelist_date'            => 'ਮਿਤੀ',
-'imagelist_name'            => 'ਨਾਂ',
-'imagelist_user'            => 'ਯੂਜ਼ਰ',
-'imagelist_size'            => 'ਆਕਾਰ',
-'imagelist_description'     => 'ਵੇਰਵਾ',
 
 # File reversion
 'filerevert'         => '$1 ਰੀਵਰਟ',
@@ -821,20 +818,20 @@ to upload files.',
 'lockdb' => 'ਡਾਟਾਬੇਸ ਲਾਕ',
 
 # Move page
-'move-page-legend'        => 'ਪੇਜ਼ ਮੂਵ ਕਰੋ',
-'movearticle'     => 'ਪੇਜ਼ ਮੂਵ ਕਰੋ:',
-'movenologin'     => 'ਲਾਗਇਨ ਨਹੀਂ ਹੋ',
-'movenologintext' => 'ਇੱਕ ਪੇਜ਼ ਮੂਵ ਕਰਨ ਲਈ ਤੁਸੀਂ ਰਜਿਸਟਰਡ ਯੂਜ਼ਰ ਹੋਣੇ ਚਾਹੀਦੇ ਹੋ ਅਤੇ [[Special:Userlogin|logged in]] ਕੀਤਾ ਹੋਣਾ ਚਾਹੀਦਾ ਹੈ।',
-'newtitle'        => 'ਨਵੇਂ ਟਾਇਟਲ ਲਈ:',
-'move-watch'      => 'ਇਹ ਪੇਜ਼ ਵਾਚ ਕਰੋ',
-'movepagebtn'     => 'ਪੇਜ਼ ਮੂਵ ਕਰੋ',
-'pagemovedsub'    => 'ਮੂਵ ਸਫ਼ਲ ਰਿਹਾ',
-'movepage-moved'  => '<big>\'\'\'"$1" ਨੂੰ "$2"\'\'\' ਉੱਤੇ ਮੂਵ ਕੀਤਾ</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
-'movedto'         => 'ਮੂਵ ਕੀਤਾ',
-'movelogpage'     => 'ਮੂਵ ਲਾਗ',
-'movereason'      => 'ਕਾਰਨ:',
-'revertmove'      => 'ਰੀਵਰਟ',
-'delete_and_move' => 'ਹਟਾਓ ਅਤੇ ਮੂਵ ਕਰੋ',
+'move-page-legend' => 'ਪੇਜ਼ ਮੂਵ ਕਰੋ',
+'movearticle'      => 'ਪੇਜ਼ ਮੂਵ ਕਰੋ:',
+'movenologin'      => 'ਲਾਗਇਨ ਨਹੀਂ ਹੋ',
+'movenologintext'  => 'ਇੱਕ ਪੇਜ਼ ਮੂਵ ਕਰਨ ਲਈ ਤੁਸੀਂ ਰਜਿਸਟਰਡ ਯੂਜ਼ਰ ਹੋਣੇ ਚਾਹੀਦੇ ਹੋ ਅਤੇ [[Special:Userlogin|logged in]] ਕੀਤਾ ਹੋਣਾ ਚਾਹੀਦਾ ਹੈ।',
+'newtitle'         => 'ਨਵੇਂ ਟਾਇਟਲ ਲਈ:',
+'move-watch'       => 'ਇਹ ਪੇਜ਼ ਵਾਚ ਕਰੋ',
+'movepagebtn'      => 'ਪੇਜ਼ ਮੂਵ ਕਰੋ',
+'pagemovedsub'     => 'ਮੂਵ ਸਫ਼ਲ ਰਿਹਾ',
+'movepage-moved'   => '<big>\'\'\'"$1" ਨੂੰ "$2"\'\'\' ਉੱਤੇ ਮੂਵ ਕੀਤਾ</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movedto'          => 'ਮੂਵ ਕੀਤਾ',
+'movelogpage'      => 'ਮੂਵ ਲਾਗ',
+'movereason'       => 'ਕਾਰਨ:',
+'revertmove'       => 'ਰੀਵਰਟ',
+'delete_and_move'  => 'ਹਟਾਓ ਅਤੇ ਮੂਵ ਕਰੋ',
 
 # Export
 'export'        => 'ਸਫ਼ੇ ਐਕਸਪੋਰਟ ਕਰੋ',
@@ -922,6 +919,8 @@ to upload files.',
 # Special:Newimages
 'newimages' => 'ਨਵੀਆਂ ਫਾਇਲਾਂ ਦੀ ਗੈਲਰੀ',
 'noimages'  => 'ਵੇਖਣ ਲਈ ਕੁਝ ਨਹੀਂ',
+'ilsubmit'  => 'ਖੋਜ',
+'bydate'    => 'ਮਿਤੀ ਨਾਲ',
 
 # EXIF tags
 'exif-imagewidth'       => 'ਚੌੜਾਈ',

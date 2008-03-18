@@ -197,10 +197,7 @@ Kasta met nga ikarim kadakami a bukodmo a sinurat wenno gapuanan daytoy, wenno k
 'filedesc'         => 'Pakabuklan',
 'successfulupload' => 'Balligi ti panag-upload',
 
-# Image list
-'ilsubmit'     => 'agbirok',
-'byname'       => 'babaen ti nagan',
-'bydate'       => 'babaen ti petsa',
+# Image description page
 'linkstoimage' => 'Dagiti sumaganad a panid ket nakasilpo itoy a file:',
 
 # Random page
@@ -278,5 +275,9 @@ Kasta met nga ikarim kadakami a bukodmo a sinurat wenno gapuanan daytoy, wenno k
 
 # Attribution
 'others' => 'dadduma pay',
+
+# Special:Newimages
+'ilsubmit' => 'agbirok',
+'bydate'   => 'babaen ti petsa',
 
 );

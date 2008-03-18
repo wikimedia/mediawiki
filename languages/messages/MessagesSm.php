@@ -152,9 +152,6 @@ $messages = array(
 'fileuploadsummary' => "'Oto'otoga:",
 'watchthisupload'   => 'Matau lenei itulau',
 
-# Image list
-'ilsubmit' => "Su'e",
-
 # Random page
 'randompage' => "Itulau le fa'ailogaina",
 
@@ -196,17 +193,20 @@ $messages = array(
 'proxyblocksuccess' => "Mae'a.",
 
 # Move page
-'move-page-legend'    => "Si'i le itulau",
-'movearticle' => "Si'i le itulau",
-'movenologin' => "Le'i fa'aolaina",
-'newtitle'    => "'I le ulutala fou",
-'move-watch'  => 'Matau lenei itulau',
-'movepagebtn' => "Si'i le itulau",
-'movetalk'    => 'Sui le itulau e tau i ai',
-'movereason'  => "Mafua'aga",
+'move-page-legend' => "Si'i le itulau",
+'movearticle'      => "Si'i le itulau",
+'movenologin'      => "Le'i fa'aolaina",
+'newtitle'         => "'I le ulutala fou",
+'move-watch'       => 'Matau lenei itulau',
+'movepagebtn'      => "Si'i le itulau",
+'movetalk'         => 'Sui le itulau e tau i ai',
+'movereason'       => "Mafua'aga",
 
 # Namespace 8 related
 'allmessagesname' => 'Igoa',
+
+# Special:Newimages
+'ilsubmit' => "Su'e",
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => "mea 'uma",

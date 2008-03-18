@@ -1011,18 +1011,18 @@ Lèver zeker te zeen detse gesjik bös om door te gaon met 't uploade van dit be
 'upload_source_url'  => " ('ne geldige, publiek toegankelike URL)",
 'upload_source_file' => " ('n bestand op diene computer)",
 
-# Image list
-'imagelist'                 => 'Lies van aafbeildinge',
-'imagelisttext'             => "Hie volg 'n lies mit $1 {{PLURAL:$1|aafbeilding|aafbeildinge}} geordend $2.",
-'getimagelist'              => 'Lies van aafbeildinge ophaole',
-'ilsubmit'                  => 'Zeuk',
-'showlast'                  => 'Toen de litste $1 aafbeildinge geordend $2.',
-'byname'                    => 'op naom',
-'bydate'                    => 'op datum',
-'bysize'                    => 'op gruutde',
-'imgdelete'                 => 'wis',
-'imgdesc'                   => 'besj',
-'imgfile'                   => 'bestandj',
+# Special:Imagelist
+'imagelist_search_for'  => 'Zeuk nao bestandj:',
+'imgdesc'               => 'besj',
+'imgfile'               => 'bestandj',
+'imagelist'             => 'Lies van aafbeildinge',
+'imagelist_date'        => 'Datum',
+'imagelist_name'        => 'Naom',
+'imagelist_user'        => 'Gebroeker',
+'imagelist_size'        => 'Gruutde (bytes)',
+'imagelist_description' => 'Besjrieving',
+
+# Image description page
 'filehist'                  => 'Bestandsgesjiedenis',
 'filehist-help'             => "Klik op 'n(e) datum/tied om 't bestandj te zeen wie 't dend'rtieje woor.",
 'filehist-deleteall'        => 'wis alles',
@@ -1044,12 +1044,6 @@ Lèver zeker te zeen detse gesjik bös om door te gaon met 't uploade van dit be
 'noimage'                   => "d'r bestuit gein bestand met deze naam. Doe kins 't $1.",
 'noimage-linktext'          => 'uploade',
 'uploadnewversion-linktext' => "Upload 'n nuuje versie van dit bestand",
-'imagelist_date'            => 'Datum',
-'imagelist_name'            => 'Naom',
-'imagelist_user'            => 'Gebroeker',
-'imagelist_size'            => 'Gruutde (bytes)',
-'imagelist_description'     => 'Besjrieving',
-'imagelist_search_for'      => 'Zeuk nao bestandj:',
 
 # File reversion
 'filerevert'                => '$1 trökdrèjje',
@@ -1479,8 +1473,6 @@ $1",
 'sp-contributions-username'    => 'IP-adres of gebroekersnaam:',
 'sp-contributions-submit'      => 'Zeuk/tuun',
 
-'sp-newimages-showfrom' => 'Tuun nuuj aafbeildinge vanaaf $1',
-
 # What links here
 'whatlinkshere'       => 'Links nao dees pazjena',
 'whatlinkshere-title' => "Pazjena's die verwieze nao $1",
@@ -1848,9 +1840,13 @@ $1",
 'show-big-image-thumb' => '<small>Gruutde van deze afbeilding: $1 × $2 pixels</small>',
 
 # Special:Newimages
-'newimages'    => 'Nuuj plaetjes',
-'showhidebots' => '($1 Bots)',
-'noimages'     => 'Niks te zeen.',
+'newimages'             => 'Nuuj plaetjes',
+'imagelisttext'         => "Hie volg 'n lies mit $1 {{PLURAL:$1|aafbeilding|aafbeildinge}} geordend $2.",
+'showhidebots'          => '($1 Bots)',
+'noimages'              => 'Niks te zeen.',
+'ilsubmit'              => 'Zeuk',
+'bydate'                => 'op datum',
+'sp-newimages-showfrom' => 'Tuun nuuj aafbeildinge vanaaf $1',
 
 # Bad image list
 'bad_image_list' => "De opmaak is es volg:

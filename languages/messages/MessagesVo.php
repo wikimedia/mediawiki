@@ -195,7 +195,7 @@ $messages = array(
 'nov'           => 'nov',
 'dec'           => 'dek',
 
-# Bits of text used by many pages
+# Categories related messages
 'categories'               => 'Klads',
 'pagecategories'           => '{{PLURAL:$1|Klad|Klads}}',
 'category_header'          => 'Pads in klad: „$1“',
@@ -204,6 +204,8 @@ $messages = array(
 'category-empty'           => "''Klad at anu ninädon padis e ragivis nonikis.''",
 'hidden-categories'        => '{{PLURAL:$1|Klad|Klads}} peklänedöl',
 'hidden-category-category' => 'Klads peklänedöl', # Name of the category where hidden categories will be listed
+'subcategorycount'         => 'Dabinon{{PLURAL:$1|&nbsp;donaklad bal|s donaklads $1}} in klad at.',
+'listingcontinuesabbrev'   => '(fov.)',
 
 'mainpagetext'      => "<big>'''El MediaWiki pestiton benosekiko.'''</big>",
 'mainpagedocfooter' => 'Konsultolös [http://meta.wikimedia.org/wiki/Help:Contents Gebanageidian] ad tuvön nünis dö geb programema vükik.
@@ -976,18 +978,18 @@ Vätälolös, va pötos ad löpükön ragivi at. Kodü koveniäl, jenotalised te
 'license-nopreview'  => '(Büologed no gebidon)',
 'upload_source_file' => ' (ragiv pö nünöm olik)',
 
-# Image list
-'imagelist'                 => 'Ragivalised',
-'imagelisttext'             => "Dono binon lised '''$1''' {{plural:$1|ragiva|ragivas}} $2 pedilädölas.",
-'getimagelist'              => 'ragivalised paramenon',
-'ilsubmit'                  => 'Sukolöd',
-'showlast'                  => 'Jonön ragivis lätik $1 peleodüköl $2.',
-'byname'                    => 'ma nem',
-'bydate'                    => 'ma dät',
-'bysize'                    => 'ma gretot',
-'imgdelete'                 => 'moük',
-'imgdesc'                   => 'bepenam',
-'imgfile'                   => 'ragiv',
+# Special:Imagelist
+'imagelist_search_for'  => 'Sukön ragivanemi:',
+'imgdesc'               => 'bepenam',
+'imgfile'               => 'ragiv',
+'imagelist'             => 'Ragivalised',
+'imagelist_date'        => 'Dät',
+'imagelist_name'        => 'Nem',
+'imagelist_user'        => 'Geban',
+'imagelist_size'        => 'Gretot',
+'imagelist_description' => 'Bepenam',
+
+# Image description page
 'filehist'                  => 'Jenotem ragiva',
 'filehist-help'             => 'Välolös däti/timi ad logön ragivi soäsä äbinon ün tim at.',
 'filehist-deleteall'        => 'moükön valikis',
@@ -1008,12 +1010,6 @@ Vätälolös, va pötos ad löpükön ragivi at. Kodü koveniäl, jenotalised te
 'noimage'                   => 'Ragiv labü nem at no dabinon, kanol $1.',
 'noimage-linktext'          => 'löpükön oni',
 'uploadnewversion-linktext' => 'Löpükön fomami nulik ragiva at',
-'imagelist_date'            => 'Dät',
-'imagelist_name'            => 'Nem',
-'imagelist_user'            => 'Geban',
-'imagelist_size'            => 'Gretot',
-'imagelist_description'     => 'Bepenam',
-'imagelist_search_for'      => 'Sukön ragivanemi:',
 
 # File reversion
 'filerevert-comment' => 'Küpet:',
@@ -1388,8 +1384,6 @@ $1',
 'sp-contributions-username'    => 'Ladet-IP u gebananem:',
 'sp-contributions-submit'      => 'Suk',
 
-'sp-newimages-showfrom' => 'Jonolöd magodis nulik, primölo tü düp $1',
-
 # What links here
 'whatlinkshere'       => 'Yüms isio',
 'whatlinkshere-title' => 'Pads ad $1 yumöls',
@@ -1466,7 +1460,7 @@ $1',
 'databasenotlocked' => 'Vük at no pefärmükon.',
 
 # Move page
-'move-page-legend'                => 'Topätükolöd padi',
+'move-page-legend'        => 'Topätükolöd padi',
 'movepagetext'            => "Me fomet at kanoy votükön padanemi, ottimo feapladölo jenotemi lölöfik ona disi nem nulik. Tiäd büik ovedon lüodüköm lü tiäd nulik. Yüms lü padatiäd büik no povotükons; kontrolös dabini lüodükömas telik u dädikas. Gididol ad garanön, das yüms blebons lüodükön lü pads, lü kels mutons lüodükön.
 
 Küpälolös, das pad '''no''' potopätükon if ya dabinon pad labü tiäd nulik, bisä vagon u binon lüodüköm e no labon jenotemi. Atos sinifon, das, if pölol, nog kanol gepladön padi usio, kö äbinon büo, e das no kanol pladön padi nulik sui pad ya dabinöl.
@@ -1626,12 +1620,6 @@ Ad seveigön padis, penolös tiädis in penamaspad dono, tiädi bal a kedet, e v
 'others'           => 'votiks',
 'siteusers'        => 'Geban(s) ela {{SITENAME}}: $1',
 
-# Spam protection
-'subcategorycount'       => 'Dabinon{{PLURAL:$1|&nbsp;donaklad bal|s donaklads $1}} in klad at.',
-'categoryarticlecount'   => 'Dabinon{{PLURAL:$1|&nbsp;yeged bal|s yegeds $1}} in klad at.',
-'category-media-count'   => 'Dabinon{{PLURAL:$1|&nbsp;ragiv bal|s ragivs $1}} in klad at.',
-'listingcontinuesabbrev' => '(fov.)',
-
 # Info page
 'infosubtitle'   => 'Nüns tefü pad',
 'numedits'       => 'Redakamanum (pad): $1',
@@ -1677,9 +1665,13 @@ $1',
 'show-big-image-thumb' => '<small>Gretot büologeda at: magodaziöbs $1 × $2</small>',
 
 # Special:Newimages
-'newimages'    => 'Pänotem ragivas nulik',
-'showhidebots' => '($1 mäikamenis)',
-'noimages'     => 'Nos ad logön.',
+'newimages'             => 'Pänotem ragivas nulik',
+'imagelisttext'         => "Dono binon lised '''$1''' {{plural:$1|ragiva|ragivas}} $2 pedilädölas.",
+'showhidebots'          => '($1 mäikamenis)',
+'noimages'              => 'Nos ad logön.',
+'ilsubmit'              => 'Sukolöd',
+'bydate'                => 'ma dät',
+'sp-newimages-showfrom' => 'Jonolöd magodis nulik, primölo tü düp $1',
 
 # Bad image list
 'bad_image_list' => 'Fomät pabevobon ön mod soik:

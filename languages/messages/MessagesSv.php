@@ -1132,18 +1132,18 @@ PICT # allmänt bildprefix
 'upload_source_url'  => ' (en giltig URL som är allmänt åtkomlig)',
 'upload_source_file' => ' (en fil på din dator)',
 
-# Image list
-'imagelist'                 => 'Bildlista',
-'imagelisttext'             => 'Nedan finns en lista med <strong>$1</strong> {{plural:$1|bild|bilder}} sorterad <strong>$2</strong>.',
-'getimagelist'              => 'hämta bildlista',
-'ilsubmit'                  => 'Sök',
-'showlast'                  => 'Visa de senaste $1 bilderna sorterade $2.',
-'byname'                    => 'efter namn',
-'bydate'                    => 'efter datum',
-'bysize'                    => 'efter storlek',
-'imgdelete'                 => 'ta bort',
-'imgdesc'                   => 'beskrivning',
-'imgfile'                   => 'fil',
+# Special:Imagelist
+'imagelist_search_for'  => 'Sök efter filnamn:',
+'imgdesc'               => 'beskrivning',
+'imgfile'               => 'fil',
+'imagelist'             => 'Bildlista',
+'imagelist_date'        => 'Datum',
+'imagelist_name'        => 'Filnamn',
+'imagelist_user'        => 'Användare',
+'imagelist_size'        => 'Storlek (bytes)',
+'imagelist_description' => 'Filbeskrivning',
+
+# Image description page
 'filehist'                  => 'Filhistorik',
 'filehist-help'             => 'Klicka på ett datum för att se hur filen såg ut vid den tidpunkten.',
 'filehist-deleteall'        => 'radera alla',
@@ -1165,12 +1165,6 @@ PICT # allmänt bildprefix
 'noimage'                   => 'Det finns ingen fil med detta namn. Du kan $1.',
 'noimage-linktext'          => 'ladda upp den',
 'uploadnewversion-linktext' => 'Ladda upp en ny version av denna fil',
-'imagelist_date'            => 'Datum',
-'imagelist_name'            => 'Filnamn',
-'imagelist_user'            => 'Användare',
-'imagelist_size'            => 'Storlek (bytes)',
-'imagelist_description'     => 'Filbeskrivning',
-'imagelist_search_for'      => 'Sök efter filnamn:',
 
 # File reversion
 'filerevert'                => 'Återställ $1',
@@ -1604,8 +1598,6 @@ $1',
 'sp-contributions-username'    => 'IP-adress eller användarnamn:',
 'sp-contributions-submit'      => 'Sök',
 
-'sp-newimages-showfrom' => 'Visa nya filer från och med $1',
-
 # What links here
 'whatlinkshere'       => 'Sidor som länkar hit',
 'whatlinkshere-title' => 'Sidor som länkar till $1',
@@ -1988,9 +1980,13 @@ $1',
 'show-big-image-thumb' => '<small>Storlek på förhandsvisningen: $1 × $2 pixel</small>',
 
 # Special:Newimages
-'newimages'    => 'Galleri över nya bilder',
-'showhidebots' => '($1 robotar)',
-'noimages'     => 'Ingenting att se.',
+'newimages'             => 'Galleri över nya bilder',
+'imagelisttext'         => 'Nedan finns en lista med <strong>$1</strong> {{plural:$1|bild|bilder}} sorterad <strong>$2</strong>.',
+'showhidebots'          => '($1 robotar)',
+'noimages'              => 'Ingenting att se.',
+'ilsubmit'              => 'Sök',
+'bydate'                => 'efter datum',
+'sp-newimages-showfrom' => 'Visa nya filer från och med $1',
 
 # Bad image list
 'bad_image_list' => 'Listan fungerar enligt följande:

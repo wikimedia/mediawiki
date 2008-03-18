@@ -213,13 +213,15 @@ $messages = array(
 'nov'           => 'nuv',
 'dec'           => 'Dic',
 
-# Bits of text used by many pages
-'categories'            => 'Catigurìi',
-'pagecategories'        => '{{PLURAL:$1|Catigurìa|Catigurìi}}',
-'category_header'       => 'Artìculi ntâ catigurìa "$1"',
-'subcategories'         => 'Suttacatigurìi',
-'category-media-header' => 'File multimidiali ntâ catigurìa "$1"',
-'category-empty'        => "''Chista catigurìa attuarmenti non havi artìculi o \"media\".''",
+# Categories related messages
+'categories'             => 'Catigurìi',
+'pagecategories'         => '{{PLURAL:$1|Catigurìa|Catigurìi}}',
+'category_header'        => 'Artìculi ntâ catigurìa "$1"',
+'subcategories'          => 'Suttacatigurìi',
+'category-media-header'  => 'File multimidiali ntâ catigurìa "$1"',
+'category-empty'         => "''Chista catigurìa attuarmenti non havi artìculi o \"media\".''",
+'subcategorycount'       => "C{{PLURAL:$1|'è na suttacatigurìa|i sunnu $1 suttacatigurìi}} di sta catigurìa.",
+'listingcontinuesabbrev' => ' cunt.',
 
 'mainpagetext'      => 'Nstallazzioni di MediaWiki cumplitata currettamenti.',
 'mainpagedocfooter' => "Pi favuri taliari [http://meta.wikimedia.org/wiki/Help:Contents Guida utenti] pi aiutu supra l'usu e la cunfigurazzioni. == Ncignari == * [http://www.mediawiki.org/wiki/Manual:Configuration_settings Alencu di mpostazzioni di configurazzioni] *  [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ] * [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Mailing list dî rilasci di MediaWiki]",
@@ -592,7 +594,6 @@ Si agghicasti ccà pi sbagghiu, clicca lu buttuni ''''n arreri (back)''' dû tò
 'session_fail_preview_html' => "<strong>Semu spiacenti, nun hà statu pussìbbili elabburari lu canciamentu pirchì hannu jutu pirduti li dati rilativi â sissioni.</strong> ''Poichì nta stu situ è abbilitatu l'usu di HTML senza limitazzioni, l'antiprima nun veni visualizzata; si tratta di na misura di sicurizza contra l'attacchi JavaScript.'' <strong>Siddu lu prubbrema pirsisti, si pò pruvari a sculligàrisi e effittuari un novu accessu.</strong>",
 'token_suffix_mismatch'     => "<strong>Lu canciu nun ha statu sarvatu pirchì lu client ha mustratu di gestiri 'n modu sbagghiatu li caratteri di punteggiatura nta lu token assuciatu a iddu. Pi evitari na possibili corruzioni dô testu dâ pàggina, ha statu rifiutatu tuttu lu canciu. Chista situazzioni pò verificarisi, certi voti, quannu s'addoperanu arcuni sirvìzzi di proxy anonimi via web chi prisentanu bug.</strong>",
 'editing'                   => 'Canciu di la vuci "$1"',
-'editinguser'               => "Canciamentu di l'utenti <b>$1</b>",
 'editingsection'            => 'Canciamentu di $1 (sezzioni)',
 'editingcomment'            => 'Canciu di $1 (cummentu)',
 'editconflict'              => "Cunflittu d'edizzioni supra $1",
@@ -793,6 +794,7 @@ Lu motivu è ''$2''",
 'userrights-lookup-user'      => "Gistisci li gruppi di l'utenti",
 'userrights-user-editname'    => "Trasi nu nomu d'utenti:",
 'editusergroup'               => 'Cancia gruppi utenti',
+'editinguser'                 => "Canciamentu di l'utenti <b>$1</b>",
 'userrights-editusergroup'    => "Cancia li gruppi di l'utenti",
 'saveusergroups'              => 'Sarva gruppi utenti',
 'userrights-groupsmember'     => 'Membru di:',
@@ -955,16 +957,16 @@ PICT # arcuni
 'upload_source_url'  => '(na URL curretta e accissìbbili)',
 'upload_source_file' => '(un file supra lu propiu computer)',
 
-# Image list
-'imagelist'                 => 'Alencu dî file',
-'imagelisttext'             => "Di sèquitu veni prisintata na lista di '''$1''' file urdinat{{PLURAL:$1|u|i}} pi $2.",
-'getimagelist'              => 'carricamentu alencu file',
-'ilsubmit'                  => "Va' cerca",
-'showlast'                  => "Ammustra l'ùrtimi $1 file urdinati pi $2.",
-'byname'                    => 'pi nomu',
-'bydate'                    => 'pi data',
-'bysize'                    => 'pi diminzioni',
-'imgdesc'                   => 'disc',
+# Special:Imagelist
+'imagelist_search_for'  => 'Ricerca dâ mmàggini di nomu:',
+'imgdesc'               => 'disc',
+'imagelist'             => 'Alencu dî file',
+'imagelist_name'        => 'Nomu',
+'imagelist_user'        => 'Utenti',
+'imagelist_size'        => 'Diminzioni (bytes)',
+'imagelist_description' => 'Discrizzioni',
+
+# Image description page
 'filehist'                  => 'Crunoluggìa dô file',
 'filehist-help'             => 'Fari clic supra nu gruppu data/ura pi vìdiri lu file comu si prisintava ntô mumentu nnicatu.',
 'filehist-deleteall'        => 'cancilla tuttu',
@@ -984,11 +986,6 @@ PICT # arcuni
 'noimage'                   => 'Un file cu stu nomu nun esisti, voi $1 tu?',
 'noimage-linktext'          => 'carricàrilu',
 'uploadnewversion-linktext' => 'Càrrica na virsioni nova di stu file',
-'imagelist_name'            => 'Nomu',
-'imagelist_user'            => 'Utenti',
-'imagelist_size'            => 'Diminzioni (bytes)',
-'imagelist_description'     => 'Discrizzioni',
-'imagelist_search_for'      => 'Ricerca dâ mmàggini di nomu:',
 
 # File reversion
 'filerevert'                => 'Riprìstina $1',
@@ -1107,7 +1104,6 @@ La coda dî processi a esequiri 'n background cunteni {{PLURAL:\$7|'''1''' eleme
 'newpages'                => 'pàggini cchiù ricenti',
 'newpages-username'       => 'Utenti:',
 'ancientpages'            => 'pàggini cchiù vecchi',
-'intl'                    => 'Culligamenti tra lingui diversi',
 'move'                    => 'sposta',
 'movethispage'            => 'Sposta sta pàggina',
 'unusedimagestext'        => "<p>Accura: è pussibbili rializzari liami ai file da àutri siti, usannu direttamenti la URL; chisti ponnu quinni èssiri utilizzati anche siddu cumparinu nte l'alencu.</p>",
@@ -1370,8 +1366,6 @@ $1',
 'sp-contributions-search'      => 'Ricerca cuntribbuti',
 'sp-contributions-username'    => 'Nnirizzu IP o nomu utenti:',
 
-'sp-newimages-showfrom' => 'Ammustra li mmàggini cchiù ricenti a pàrtiri di $1',
-
 # What links here
 'whatlinkshere'       => 'Chi punta ccà',
 'whatlinkshere-title' => 'Pàggini chi puntano a $1',
@@ -1475,7 +1469,7 @@ $1',
 'databasenotlocked'   => 'Lu database nun è bluccatu.',
 
 # Move page
-'move-page-legend'                => 'Sposta la pàggina',
+'move-page-legend'        => 'Sposta la pàggina',
 'movepagetext'            => "Usannu lu formulariu ccà sutta vuatri canciati lu nomu dâ pàggina, e spustati tutta la sò storia versu la pàggina nova. Lu tìtulu vecchiu addiventa na pàggina di ''redirect'' versu lu tìtulu novu. Li liami â pàggina vecchia nun càncianu. Assicuràtivi di tistari li redirect duppi e li redirect rumputi. Vuatri siti rispunzàbbili dî liami chi avìssiru a puntari â paggina giusta.
 
 La pàggina '''nun'' è spustata siddu cc'è già na pàggina cu lu tìtulu novu, tranni chi la pàggina 'n chistioni è vacanti o è na pàggina di ''redirect'' e nun havi n'archiviu di canciamenti. Chistu signìfica chi vuatri putiti rinuminari la pàggina cu lu nomu vecchiu si aviti sbagghiatu, e chi nun putiti suprascrìviri nta na pàggina chi esisti già.
@@ -1663,16 +1657,12 @@ Nta st'ùrtimu casu si pò macari utilizzari un culligamentu, p'asempiu [[{{ns:s
 'nocredits'        => 'Nudda nfurmazzioni supra li crèditi dispunìbbili pi sta pàggina.',
 
 # Spam protection
-'spamprotectiontitle'    => 'Filtru anti-spam',
-'spamprotectiontext'     => 'La pàggina ca vulevi sarvari hà statu bluccata dû filtru anti-spam. Chistu è prubbabbirmenti duvutu â prisenza di nu liami a nu situ sternu bluccatu.',
-'spamprotectionmatch'    => 'Lu nostru filtru anti-spam hà ndividuatu lu testu siquenti: $1',
-'subcategorycount'       => "C{{PLURAL:$1|'è na suttacatigurìa|i sunnu $1 suttacatigurìi}} di sta catigurìa.",
-'categoryarticlecount'   => "C{{PLURAL:$1|'è na pàggina|i sunnu $1 pàggini}} nta sta catigurìa.",
-'category-media-count'   => 'Sta catigurìa cunteni {{PLURAL:$1|nu file|$1 file}}.',
-'listingcontinuesabbrev' => ' cunt.',
-'spambot_username'       => 'MediaWiki - sistema di rimuzzioni spam',
-'spam_reverting'         => "Ripristinata l'ùrtima virsioni priva di culligamenti a $1",
-'spam_blanking'          => 'Pàggina svacantata, tutti li virsioni cuntinìanu culligamenti a $1',
+'spamprotectiontitle' => 'Filtru anti-spam',
+'spamprotectiontext'  => 'La pàggina ca vulevi sarvari hà statu bluccata dû filtru anti-spam. Chistu è prubbabbirmenti duvutu â prisenza di nu liami a nu situ sternu bluccatu.',
+'spamprotectionmatch' => 'Lu nostru filtru anti-spam hà ndividuatu lu testu siquenti: $1',
+'spambot_username'    => 'MediaWiki - sistema di rimuzzioni spam',
+'spam_reverting'      => "Ripristinata l'ùrtima virsioni priva di culligamenti a $1",
+'spam_blanking'       => 'Pàggina svacantata, tutti li virsioni cuntinìanu culligamenti a $1',
 
 # Info page
 'infosubtitle'   => 'Nfurmazzioni pi la pàggina',
@@ -1735,9 +1725,13 @@ $1',
 'show-big-image-thumb' => "<small>Diminzioni di st'antiprima: $1 × $2 pixel</small>",
 
 # Special:Newimages
-'newimages'    => 'Gallarìa dî file novi',
-'showhidebots' => '($1 li bot)',
-'noimages'     => 'Nenti a vìdiri.',
+'newimages'             => 'Gallarìa dî file novi',
+'imagelisttext'         => "Di sèquitu veni prisintata na lista di '''$1''' file urdinat{{PLURAL:$1|u|i}} pi $2.",
+'showhidebots'          => '($1 li bot)',
+'noimages'              => 'Nenti a vìdiri.',
+'ilsubmit'              => "Va' cerca",
+'bydate'                => 'pi data',
+'sp-newimages-showfrom' => 'Ammustra li mmàggini cchiù ricenti a pàrtiri di $1',
 
 # Bad image list
 'bad_image_list' => "Lu formatu è lu siquenti:

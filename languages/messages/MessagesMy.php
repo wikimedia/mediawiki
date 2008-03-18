@@ -134,9 +134,6 @@ $messages = array(
 'fileuploadsummary' => 'အ​ကျဉ်း​ချုပ်:',
 'watchthisupload'   => 'ဤ​စာ​မျက်​နှာ​အား​စောင့်​ကြည့်​ပါ​',
 
-# Image list
-'ilsubmit' => 'ရှာ​ဖွေ​ရန်​',
-
 # Random page
 'randompage' => 'ကျ​ပန်း​စာ​မျက်​နှာ​',
 
@@ -198,6 +195,9 @@ $messages = array(
 # Tooltip help for the actions
 'tooltip-pt-logout' => 'ထွက်​ပါ​',
 'tooltip-ca-move'   => 'ဤ​စာ​မျက်​နှာ​အား​ရွေ့​ပြောင်း​ပါ​',
+
+# Special:Newimages
+'ilsubmit' => 'ရှာ​ဖွေ​ရန်​',
 
 # Multipage image navigation
 'imgmultigo' => 'သွား​ပါ!',

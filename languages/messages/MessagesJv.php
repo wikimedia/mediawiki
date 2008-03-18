@@ -86,7 +86,7 @@ $messages = array(
 'oct'          => 'Okt',
 'dec'          => 'Des',
 
-# Bits of text used by many pages
+# Categories related messages
 'categories'      => 'Kategori Kaca',
 'category_header' => 'Artikel-artikel wonten ing kategori "$1"',
 
@@ -304,11 +304,7 @@ Yen ora sengaja tekan kene, bisa ngeklik pencetan '''back''' wae.",
 'uploadedimage'     => 'gambar "[[$1]]" kaminggahaken',
 'destfilename'      => 'Asma berkas ingkang dipun tuju:',
 
-# Image list
-'ilsubmit'             => 'Golek',
-'byname'               => 'miturut jeneng',
-'bydate'               => 'miturut tanggal',
-'bysize'               => 'miturut ukuran',
+# Special:Imagelist
 'imagelist_search_for' => 'Golèk jeneng berkas:',
 
 # MIME search
@@ -449,11 +445,12 @@ the list of currently operational bans and blocks.',
 'anonymous'        => 'Panganggé {{SITENAME}} ingkang mboten kinawruhan.',
 'lastmodifiedatby' => 'Kaca iki pungkasan diowahi  $2, $1 déning $3.', # $1 date, $2 time, $3 user
 
-# Spam protection
-'categoryarticlecount' => 'Wonten $1 artikel ing kategori punika.',
-
 # Image deletion
 'deletedrevision' => 'Revisi dangu ingkang dipunbusak $1',
+
+# Special:Newimages
+'ilsubmit' => 'Golek',
+'bydate'   => 'miturut tanggal',
 
 # E-mail address confirmation
 'confirmemail_success' => 'Alamat e-mail panjenengan wis dikonfirmasi. Saiki panjenengan bisa log mlebu lan wiwit nganggo wiki.',
