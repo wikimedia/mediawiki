@@ -394,15 +394,23 @@ $messages = array(
 'nov'           => "נוב'",
 'dec'           => "דצמ'",
 
-# Bits of text used by many pages
-'categories'               => 'קטגוריות',
-'pagecategories'           => '{{plural:$1|קטגוריה|קטגוריות}}',
-'category_header'          => 'דפים בקטגוריה "$1"',
-'subcategories'            => 'קטגוריות משנה',
-'category-media-header'    => 'קובצי מדיה בקטגוריה "$1"',
-'category-empty'           => "'''קטגוריה זו אינה כוללת דפים או קובצי מדיה.'''",
-'hidden-categories'        => '{{plural:$1|קטגוריה מוסתרת|קטגוריות מוסתרות}}',
-'hidden-category-category' => 'קטגוריות מוסתרות', # Name of the category where hidden categories will be listed
+# Categories related messages
+'categories'                     => 'קטגוריות',
+'pagecategories'                 => '{{plural:$1|קטגוריה|קטגוריות}}',
+'category_header'                => 'דפים בקטגוריה "$1"',
+'subcategories'                  => 'קטגוריות משנה',
+'category-media-header'          => 'קובצי מדיה בקטגוריה "$1"',
+'category-empty'                 => "'''קטגוריה זו אינה כוללת דפים או קובצי מדיה.'''",
+'hidden-categories'              => '{{plural:$1|קטגוריה מוסתרת|קטגוריות מוסתרות}}',
+'hidden-category-category'       => 'קטגוריות מוסתרות', # Name of the category where hidden categories will be listed
+'subcategorycount'               => '{{plural:$1|ישנה קטגוריית משנה אחת|ישנן $1 קטגוריות משנה}} בקטגוריה זו.',
+'category-subcat-count'          => '{{plural:$2|קטגוריה זו כוללת רק את קטגוריית המשנה הבאה|קטגוריה זו כוללת את {{plural:$1|קטגוריית המשנה הבאה|$1 קטגוריות המשנה הבאות}}, מתוך $2 בסך הכל}}.',
+'category-subcat-count-limited'  => 'קטגוריה זו כוללת את {{plural:$1|קטגוריית המשנה הבאה|$1 קטגוריות המשנה הבאות}}.',
+'category-article-count'         => '{{plural:$2|קטגוריה זו כוללת רק את הדף הבא|קטגוריה זו כוללת את {{plural:$1|הדף הבא|$1 הדפים הבאים}}, מתוך $2 בסך הכל}}.',
+'category-article-count-limited' => 'קטגוריה זו כוללת את {{plural:$1|הדף הבא|$1 הדפים הבאים}}.',
+'category-file-count'            => '{{plural:$2|קטגוריה זו כוללת רק את הקובץ הבא|קטגוריה זו כוללת את {{plural:$1|הקובץ הבא|$1 הקבצים הבאים}}, מתוך $2 בסך הכל}}.',
+'category-file-count-limited'    => 'קטגוריה זו כוללת את {{plural:$1|הקובץ הבא|$1 הקבצים הבאים}}.',
+'listingcontinuesabbrev'         => '(המשך)',
 
 'mainpagetext'      => "'''תוכנת מדיה־ויקי הותקנה בהצלחה.'''",
 'mainpagedocfooter' => 'היעזרו ב[http://meta.wikimedia.org/wiki/Help:Contents מדריך למשתמש] למידע על שימוש בתוכנת הוויקי.
@@ -1037,6 +1045,7 @@ $2',
 
 חיפושים כושלים מסוג זה נגרמים בדרך כלל בגלל ציון יותר ממילת חיפוש אחת, שכן במקרה זה מופיעים רק דפים הכוללים את כל המילים.',
 'powersearch'           => 'חיפוש מתקדם',
+'powersearch-legend'    => 'חיפוש מתקדם',
 'powersearchtext'       => 'חיפוש במרחבי שם:<br />$1<br />$2 הצגת דפי הפניה<br />חיפוש $3 $9',
 'searchdisabled'        => 'לצערנו, עקב עומס על המערכת, לא ניתן לחפש כעת בטקסט המלא של הדפים. באפשרותכם להשתמש בינתיים בגוגל, אך שימו לב שייתכן שהוא אינו מעודכן.',
 
@@ -2084,16 +2093,12 @@ $1',
 'nocredits'        => 'אין קרדיטים זמינים בדף זה.',
 
 # Spam protection
-'spamprotectiontitle'    => 'מנגנון מסנן הספאם',
-'spamprotectiontext'     => 'הדף אותו רצית לשמור נחסם על־ידי מסנן הספאם. הסיבה לכך היא לרוב קישור לאתר חיצוני.',
-'spamprotectionmatch'    => 'הטקסט הבא הוא שגרם להפעלת סינון הספאם: $1',
-'subcategorycount'       => '{{plural:$1|ישנה קטגוריית משנה אחת|ישנן $1 קטגוריות משנה}} בקטגוריה זו.',
-'categoryarticlecount'   => '{{plural:$1|ישנו דף אחד|ישנם $1 דפים}} בקטגוריה זו.',
-'category-media-count'   => '{{plural:$1|ישנו קובץ אחד|ישנם $1 קבצים}} בקטגוריה זו.',
-'listingcontinuesabbrev' => '(המשך)',
-'spambot_username'       => 'MediaWiki spam cleanup',
-'spam_reverting'         => 'שחזור לגרסה אחרונה שלא כוללת קישורים ל־$1',
-'spam_blanking'          => 'כל הגרסאות כוללות קישורים ל־$1, מרוקן את הדף',
+'spamprotectiontitle' => 'מנגנון מסנן הספאם',
+'spamprotectiontext'  => 'הדף אותו רצית לשמור נחסם על־ידי מסנן הספאם. הסיבה לכך היא לרוב קישור לאתר חיצוני.',
+'spamprotectionmatch' => 'הטקסט הבא הוא שגרם להפעלת סינון הספאם: $1',
+'spambot_username'    => 'MediaWiki spam cleanup',
+'spam_reverting'      => 'שחזור לגרסה אחרונה שלא כוללת קישורים ל־$1',
+'spam_blanking'       => 'כל הגרסאות כוללות קישורים ל־$1, מרוקן את הדף',
 
 # Info page
 'infosubtitle'   => 'מידע על הדף',
