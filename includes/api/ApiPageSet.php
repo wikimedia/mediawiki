@@ -42,8 +42,9 @@ if (!defined('MEDIAWIKI')) {
  */
 class ApiPageSet extends ApiQueryBase {
 
-	private $mAllPages; // [ns][dbkey] => page_id or 0 when missing
-	private $mTitles, $mGoodTitles, $mMissingTitles, $mMissingPageIDs, $mRedirectTitles;
+	private $mAllPages; // [ns][dbkey] => page_id or negative when missing
+	private $mTitles, $mGoodTitles, $mMissingTitles, $mInvalidTitles;
+	private $mMissingPageIDs, $mRedirectTitles;
 	private $mNormalizedTitles, $mInterwikiTitles;
 	private $mResolveRedirects, $mPendingRedirectIDs;
 	private $mGoodRevIDs, $mMissingRevIDs;
@@ -58,6 +59,7 @@ class ApiPageSet extends ApiQueryBase {
 		$this->mTitles = array();
 		$this->mGoodTitles = array ();
 		$this->mMissingTitles = array ();
+		$this->mInvalidTitles = array ();
 		$this->mMissingPageIDs = array ();
 		$this->mRedirectTitles = array ();
 		$this->mNormalizedTitles = array ();
@@ -107,8 +109,9 @@ class ApiPageSet extends ApiQueryBase {
 	}
 
 	/**
-	 * Returns an array [ns][dbkey] => page_id for all requested titles
-	 * page_id is a unique negative number in case title was not found
+	 * Returns an array [ns][dbkey] => page_id for all requested titles.
+	 * page_id is a unique negative number in case title was not found.
+	 * Invalid titles will also have negative page IDs and will be in namespace 0
 	 */
 	public function getAllTitlesByNamespace() {
 		return $this->mAllPages;
@@ -151,6 +154,15 @@ class ApiPageSet extends ApiQueryBase {
 	 */
 	public function getMissingTitles() {
 		return $this->mMissingTitles;
+	}
+	
+	/**
+	 * Titles that were deemed invalid by Title::newFromText()
+	 * The array's index will be unique and negative for each item
+	 * @return array of strings (not Title objects)
+	 */
+	public function getInvalidTitles() {
+		return $this->mInvalidTitles;
 	}
 
 	/**
@@ -580,8 +592,13 @@ class ApiPageSet extends ApiQueryBase {
 			
 			$titleObj = is_string($title) ? Title :: newFromText($title) : $title;
 			if (!$titleObj)
-				$this->dieUsage("bad title", 'invalidtitle');
-
+			{
+				# Handle invalid titles gracefully
+				$this->mAllpages[0][$title] = $this->mFakePageId;
+				$this->mInvalidTitles[$this->mFakePageId] = $title;
+				$this->mFakePageId--;
+				continue; // There's nothing else we can do
+			}
 			$iw = $titleObj->getInterwiki();
 			if (!empty($iw)) {
 				// This title is an interwiki link.
