@@ -424,13 +424,7 @@ CONTROL;
 		global $wgMemc;
 		$fname = 'DifferenceEngine::getDiffBody';
 		wfProfileIn( $fname );
-		// Should part of this diff be hidden?
-		$deleted = false;
-		if ( $this->mOldRev && $this->mOldRev->isDeleted(Revision::DELETED_TEXT) ) {
-			$deleted = true;
-		} else if ( $this->mNewRev && $this->mNewRev->isDeleted(Revision::DELETED_TEXT) ) {
-			$deleted = true;
-		}
+		
 		// Cacheable?
 		$key = false;
 		if ( $this->mOldid && $this->mNewid ) {
@@ -439,17 +433,11 @@ CONTROL;
 			if ( !$this->mRefreshCache ) {
 				$difftext = $wgMemc->get( $key );
 				if ( $difftext ) {
-					// If this diff should be hidden, kill the cache!
-					if( $deleted ) {
-						$wgMemc->delete( $key );
-						$difftext = false;
-					} else {
-						wfIncrStats( 'diff_cache_hit' );
-						$difftext = $this->localiseLineNumbers( $difftext );
-						$difftext .= "\n<!-- diff cache key $key -->\n";
-						wfProfileOut( $fname );
-						return $difftext;
-					}
+					wfIncrStats( 'diff_cache_hit' );
+					$difftext = $this->localiseLineNumbers( $difftext );
+					$difftext .= "\n<!-- diff cache key $key -->\n";
+					wfProfileOut( $fname );
+					return $difftext;
 				}
 			} // don't try to load but save the result
 		}
@@ -458,13 +446,19 @@ CONTROL;
 		if ( !$this->loadText() ) {
 			wfProfileOut( $fname );
 			return false;
+		} else if ( $this->mOldRev && !$this->mOldRev->userCan(Revision::DELETED_TEXT) ) {
+		  	return '';
+		} else if ( $this->mNewRev && !$this->mNewRev->userCan(Revision::DELETED_TEXT) ) {
+		  	return '';
 		}
 
 		$difftext = $this->generateDiffBody( $this->mOldtext, $this->mNewtext );
 		
 		// Save to cache for 7 days
 		// Only do this for public revs, otherwise an admin can view the diff and a non-admin can nab it!
-		if ( $deleted ) {
+		if ( $this->mOldRev && $this->mOldRev->isDeleted(Revision::DELETED_TEXT) ) {
+			wfIncrStats( 'diff_uncacheable' );
+		} else if ( $this->mNewRev && $this->mNewRev->isDeleted(Revision::DELETED_TEXT) ) {
 			wfIncrStats( 'diff_uncacheable' );
 		} else if ( $key !== false && $difftext !== false ) {
 			wfIncrStats( 'diff_cache_miss' );

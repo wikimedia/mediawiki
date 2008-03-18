@@ -421,7 +421,7 @@ class Revision {
 	 */
 	function getUserText() {
 		if( $this->isDeleted( self::DELETED_USER ) ) {
-			return false;
+			return "";
 		} else {
 			return $this->mUserText;
 		}
@@ -441,7 +441,7 @@ class Revision {
 	 */
 	function getComment() {
 		if( $this->isDeleted( self::DELETED_COMMENT ) ) {
-			return false;
+			return "";
 		} else {
 			return $this->mComment;
 		}
@@ -476,7 +476,7 @@ class Revision {
 	 */
 	function getText() {
 		if( $this->isDeleted( self::DELETED_TEXT ) ) {
-			return false;
+			return "";
 		} else {
 			return $this->getRawText();
 		}
@@ -500,7 +500,7 @@ class Revision {
 	 */
 	function revText() {
 		if( !$this->userCan( self::DELETED_TEXT ) ) {
-			return false;
+			return "";
 		} else {
 			return $this->getRawText();
 		}
