@@ -213,7 +213,7 @@ class SearchEngine {
 		if( $wgSearchType ) {
 			$class = $wgSearchType;
 		} elseif( $wgDBtype == 'mysql' ) {
-			$class = 'SearchMySQL4';
+			$class = 'SearchMySQL';
 		} else if ( $wgDBtype == 'postgres' ) {
 			$class = 'SearchPostgres';
 		} else if ( $wgDBtype == 'oracle' ) {

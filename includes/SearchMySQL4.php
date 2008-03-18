@@ -19,56 +19,11 @@
 
 /**
  * Search engine hook for MySQL 4+
+ * This class retained for backwards compatibility...
+ * The meat's been moved to SearchMySQL, since the 3.x variety is gone.
  * @addtogroup Search
+ * @deprecated
  */
 class SearchMySQL4 extends SearchMySQL {
-	var $strictMatching = true;
-
-	/** @todo document */
-	function SearchMySQL4( $db ) {
-		$this->db = $db;
-	}
-
-	/** @todo document */
-	function parseQuery( $filteredText, $fulltext ) {
-		global $wgContLang;
-		$lc = SearchEngine::legalSearchChars(); // Minus format chars
-		$searchon = '';
-		$this->searchTerms = array();
-
-		# FIXME: This doesn't handle parenthetical expressions.
-		$m = array();
-		if( preg_match_all( '/([-+<>~]?)(([' . $lc . ']+)(\*?)|"[^"]*")/',
-			  $filteredText, $m, PREG_SET_ORDER ) ) {
-			foreach( $m as $terms ) {
-				if( $searchon !== '' ) $searchon .= ' ';
-				if( $this->strictMatching && ($terms[1] == '') ) {
-					$terms[1] = '+';
-				}
-				$searchon .= $terms[1] . $wgContLang->stripForSearch( $terms[2] );
-				if( !empty( $terms[3] ) ) {
-					// Match individual terms in result highlighting...
-					$regexp = preg_quote( $terms[3], '/' );
-					if( $terms[4] ) $regexp .= "[0-9A-Za-z_]+";
-				} else {
-					// Match the quoted term in result highlighting...
-					$regexp = preg_quote( str_replace( '"', '', $terms[2] ), '/' );
-				}
-				$this->searchTerms[] = "\b$regexp\b";
-			}
-			wfDebug( "Would search with '$searchon'\n" );
-			wfDebug( 'Match with /\b' . implode( '\b|\b', $this->searchTerms ) . "\b/\n" );
-		} else {
-			wfDebug( "Can't understand search query '{$filteredText}'\n" );
-		}
-
-		$searchon = $this->db->strencode( $searchon );
-		$field = $this->getIndexField( $fulltext );
-		return " MATCH($field) AGAINST('$searchon' IN BOOLEAN MODE) ";
-	}
-
-	public static function legalSearchChars() {
-		return "\"*" . parent::legalSearchChars();
-	}
+	/* whee */
 }
-
