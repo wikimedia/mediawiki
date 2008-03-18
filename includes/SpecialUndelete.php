@@ -1060,12 +1060,11 @@ class UndeleteForm {
 				'timestamp'  => $row->ar_timestamp,
 				'minor_edit' => $row->ar_minor_edit,
 				'deleted'    => $row->ar_deleted,
-				'len'        => $row->ar_len) );
+				'len'        => $row->ar_len ) );
 		
 		$stxt = '';
-		
+		$ts = wfTimestamp( TS_MW, $row->ar_timestamp );
 		if( $this->mAllowed ) {
-			$ts = wfTimestamp( TS_MW, $row->ar_timestamp );
 			$checkBox = Xml::check( "ts$ts" );
 			$titleObj = SpecialPage::getTitleFor( "Undelete" );
 			$pageLink = $this->getPageLink( $rev, $titleObj, $ts, $sk );
@@ -1081,6 +1080,7 @@ class UndeleteForm {
 		} else {
 			$checkBox = '';
 			$pageLink = $wgLang->timeanddate( $ts, true );
+			$last = wfMsgHtml('diff');
 		}
 		$userLink = $sk->revUserTools( $rev );
 		
