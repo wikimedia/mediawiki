@@ -236,7 +236,7 @@ class ApiQuery extends ApiBase {
 
 	/**
 	 * Appends an element for each page in the current pageSet with the most general
-	 * information (id, title), plus any title normalizations and missing title/pageids/revids.
+	 * information (id, title), plus any title normalizations and missing or invalid title/pageids/revids.
 	 */
 	private function outputGeneralPageInfo() {
 
@@ -312,7 +312,9 @@ class ApiQuery extends ApiBase {
 			$vals['missing'] = '';
 			$pages[$fakeId] = $vals;
 		}
-
+		// Report any invalid titles
+		foreach ($pageSet->getInvalidTitles() as $fakeId => $title)
+			$pages[$fakeId] = array('title' => $title, 'invalid' => '');	
 		// Report any missing page ids
 		foreach ($pageSet->getMissingPageIDs() as $pageid) {
 			$pages[$pageid] = array (
