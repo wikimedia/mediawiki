@@ -44,7 +44,7 @@ $datatype = qr{($datatype)};
 
 my $typeval = qr{(\(\d+\))?};
 
-my $typeval2 = qr{ unsigned| binary| NOT NULL| NULL| auto_increment| default ['\-\d\w"]+| REFERENCES .+CASCADE};
+my $typeval2 = qr{ signed| unsigned| binary| NOT NULL| NULL| auto_increment| default ['\-\d\w"]+| REFERENCES .+CASCADE};
 
 my $indextype = join '|' => qw(INDEX KEY FULLTEXT), 'PRIMARY KEY', 'UNIQUE INDEX', 'UNIQUE KEY';
 $indextype = qr{$indextype};
