@@ -4465,7 +4465,7 @@ class Parser
 		wfRunHooks( 'ParserMakeImageParams', array( $title, $file, &$params ) );
 
 		# Linker does the rest
-		$ret = $sk->makeImageLink2( $title, $file, $params['frame'], $params['handler'] );
+		$ret = $sk->makeImageLink2( $title, $file, $params['frame'], $params['handler'], $time );
 
 		# Give the handler a chance to modify the parser object
 		if ( $handler ) {
