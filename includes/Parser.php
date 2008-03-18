@@ -3843,7 +3843,9 @@ class Parser
 		$tag = strtolower( $tag );
 		$oldVal = isset( $this->mTagHooks[$tag] ) ? $this->mTagHooks[$tag] : null;
 		$this->mTagHooks[$tag] = $callback;
-		$this->mStripList[] = $tag;
+		if( !in_array( $tag, $this->mStripList ) ) {
+			$this->mStripList[] = $tag;
+		}
 
 		return $oldVal;
 	}
