@@ -1508,19 +1508,19 @@ PICT # misc.
 'upload_source_url'  => ' (a valid, publicly accessible URL)',
 'upload_source_file' => ' (a file on your computer)',
 
-# Image list
-'imagelist'                 => 'File list',
-'imagelist-summary'         => '', # only translate this message to other languages if you have to change it
-'imagelisttext'             => "Below is a list of '''$1''' {{PLURAL:$1|file|files}} sorted $2.",
-'getimagelist'              => 'fetching file list',
-'ilsubmit'                  => 'Search',
-'showlast'                  => 'Show last $1 files sorted $2.',
-'byname'                    => 'by name',
-'bydate'                    => 'by date',
-'bysize'                    => 'by size',
-'imgdelete'                 => 'del',
-'imgdesc'                   => 'desc',
-'imgfile'                   => 'file',
+# Special:Imagelist
+'imagelist-summary'     => 'This special page shows all uploaded files. By default the last uploaded files are shown at top of the list. A click on a column header changes the sorting.', 
+'imagelist_search_for'  => 'Search for media name:',
+'imgdesc'               => 'desc',
+'imgfile'               => 'file',
+'imagelist'             => 'File list',
+'imagelist_date'        => 'Date',
+'imagelist_name'        => 'Name',
+'imagelist_user'        => 'User',
+'imagelist_size'        => 'Size',
+'imagelist_description' => 'Description',
+
+# Image description page
 'filehist'                  => 'File history',
 'filehist-help'             => 'Click on a date/time to view the file as it appeared at that time.',
 'filehist-deleteall'        => 'delete all',
@@ -1543,12 +1543,6 @@ PICT # misc.
 'noimage'                   => 'No file by this name exists, you can $1.',
 'noimage-linktext'          => 'upload it',
 'uploadnewversion-linktext' => 'Upload a new version of this file',
-'imagelist_date'            => 'Date',
-'imagelist_name'            => 'Name',
-'imagelist_user'            => 'User',
-'imagelist_size'            => 'Size',
-'imagelist_description'     => 'Description',
-'imagelist_search_for'      => 'Search for media name:',
 
 # File reversion
 'filerevert'                => 'Revert $1',
@@ -2029,8 +2023,6 @@ $1',
 'sp-contributions-footer'      => '-', # don't translate or duplicate this message to other languages
 'sp-contributions-footer-anon' => '-', # don't translate or duplicate this message to other languages
 
-'sp-newimages-showfrom' => 'Show new files starting from $1',
-
 # What links here
 'whatlinkshere'         => 'What links here',
 'whatlinkshere-title'   => 'Pages that link to $1',
@@ -2495,10 +2487,14 @@ $1',
 'show-big-image-thumb' => '<small>Size of this preview: $1 × $2 pixels</small>',
 
 # Special:Newimages
-'newimages'         => 'Gallery of new files',
-'newimages-summary' => '', # only translate this message to other languages if you have to change it
-'showhidebots'      => '($1 bots)',
-'noimages'          => 'Nothing to see.',
+'newimages'             => 'Gallery of new files',
+'imagelisttext'         => "Below is a list of '''$1''' {{PLURAL:$1|file|files}} sorted $2.",
+'newimages-summary'     => 'This special page shows the last uploaded files',
+'showhidebots'          => '($1 bots)',
+'noimages'              => 'Nothing to see.',
+'ilsubmit'              => 'Search',
+'bydate'                => 'by date',
+'sp-newimages-showfrom' => 'Show new files starting from $1',
 
 # Video information, used by Language::formatTimePeriod() to format lengths in the above messages
 'video-dims'     => '$1, $2×$3', # only translate this message to other languages if you have to change it
