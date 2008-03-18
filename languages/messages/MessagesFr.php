@@ -313,15 +313,23 @@ $messages = array(
 'nov'           => 'nov',
 'dec'           => 'déc',
 
-# Bits of text used by many pages
-'categories'               => 'Catégories',
-'pagecategories'           => '{{PLURAL:$1|Catégorie|Catégories}}',
-'category_header'          => 'Pages dans la catégorie « $1 »',
-'subcategories'            => 'Sous-catégories',
-'category-media-header'    => 'Fichiers multimédia dans la catégorie « $1 »',
-'category-empty'           => "''Cette catégorie ne contient aucun article, sous-catégorie ou fichier multimédia.''",
-'hidden-categories'        => '{{PLURAL:$1|Catégorie cachée|Catégories cachées}}',
-'hidden-category-category' => 'Catégories cachées', # Name of the category where hidden categories will be listed
+# Categories related messages
+'categories'                     => 'Catégories',
+'pagecategories'                 => '{{PLURAL:$1|Catégorie|Catégories}}',
+'category_header'                => 'Pages dans la catégorie « $1 »',
+'subcategories'                  => 'Sous-catégories',
+'category-media-header'          => 'Fichiers multimédia dans la catégorie « $1 »',
+'category-empty'                 => "''Cette catégorie ne contient aucun article, sous-catégorie ou fichier multimédia.''",
+'hidden-categories'              => '{{PLURAL:$1|Catégorie cachée|Catégories cachées}}',
+'hidden-category-category'       => 'Catégories cachées', # Name of the category where hidden categories will be listed
+'subcategorycount'               => '{{PLURAL:$1|Une sous-catégorie est listée |$1 sous-catégories sont listées}} ci-dessous. Si un lien « (200 précédents) » ou « (200 suivants) » est présent ci-dessus, il peut mener à d’autres sous-catégories.',
+'category-subcat-count'          => '{{PLURAL:$2|Cette catégorie ne dispose que de la sous-catégorie suivante.|Cette catégorie dispose de {{PLURAL:$1|sous-catégorie|$1 sous-catégories}}, sur un total de $2.}}',
+'category-subcat-count-limited'  => 'Cette catégorie dispose {{PLURAL:$1|d’une sous-catégorie|de $1 sous-catégories}}.',
+'category-article-count'         => '{{PLURAL:$2|Cette catégorie contient uniquement la page suivante.|{{PLURAL:$1|La page suivante figure|Les $1 pages suivantes figurent}} dans cette catégorie, sur un total de $2.}}',
+'category-article-count-limited' => '{{PLURAL:$1|La page suivante figure|Les $1 pages suivantes figurent}} dans la présente catégorie.',
+'category-file-count'            => '{{PLURAL:$2|Cette catégorie contient uniquement le fichier suivant.|{{PLURAL:$1|Le fichier suivant figure|les $1 fichiers suivants figurent}} dans cette catégorie, sur un total de $2.}}',
+'category-file-count-limited'    => '{{PLURAL:$1|Le fichier suivant figure|Les $1 fichiers suivants figurent}} dans la présente catégorie.',
+'listingcontinuesabbrev'         => '(suite)',
 
 'mainpagetext'      => "<big>'''MediaWiki a été installé avec succès.'''</big>",
 'mainpagedocfooter' => 'Consultez le [http://meta.wikimedia.org/wiki/Aide:Contenu Guide de l’utilisateur] pour plus d’informations sur l’utilisation de ce logiciel.
@@ -919,6 +927,7 @@ Assurez-vous que ce changement conserve la continuité de l’historique.
 'showingresultsnum'     => 'Affichage de <b>$3</b> {{plural:$3|résultat|résultats}} à partir du #<b>$2</b>.',
 'nonefound'             => '<strong>Note</strong> : l’absence de résultat est souvent due à l’emploi de termes de recherche trop courants, comme « à » ou « de », qui ne sont pas indexés, ou à l’emploi de plusieurs termes de recherche (seules les pages contenant tous les termes apparaissent dans les résultats).',
 'powersearch'           => 'Rechercher',
+'powersearch-legend'    => 'Recherche avancée',
 'powersearchtext'       => 'Rechercher dans les espaces de noms :<br />
 $1<br />
 $2 Inclure les pages de redirection<br /> Rechercher $3 $9',
@@ -1974,16 +1983,12 @@ Toutes les actions d’importation interwiki sont consignées dans l’[[Special
 'nocredits'        => 'Il n’y a pas d’informations d’attribution disponibles pour cette page.',
 
 # Spam protection
-'spamprotectiontitle'    => 'Page automatiquement protégée pour cause de pourriel',
-'spamprotectiontext'     => 'La page que vous avez tenté de sauvegarder a été bloquée par le filtre anti-pourriel. Ceci est probablement causé par un lien vers un site externe.',
-'spamprotectionmatch'    => "La chaîne de caractères « '''$1''' » a déclenché le détecteur de pourriel.",
-'subcategorycount'       => '{{PLURAL:$1|Une sous-catégorie est listée |$1 sous-catégories sont listées}} ci-dessous. Si un lien « (200 précédents) » ou « (200 suivants) » est présent ci-dessus, il peut mener à d’autres sous-catégories.',
-'categoryarticlecount'   => 'Il y a {{PLURAL:$1|un article|$1 articles}} dans cette catégorie.',
-'category-media-count'   => 'Il y a {{plural:$1|un fichier|$1 fichiers}} multimédia dans cette catégorie.',
-'listingcontinuesabbrev' => '(suite)',
-'spambot_username'       => 'Nettoyage de pourriels par MediaWiki',
-'spam_reverting'         => 'Restauration de la dernière version ne contenant pas de lien vers $1',
-'spam_blanking'          => 'Toutes les versions contenant des liens vers $1 sont blanchies',
+'spamprotectiontitle' => 'Page automatiquement protégée pour cause de pourriel',
+'spamprotectiontext'  => 'La page que vous avez tenté de sauvegarder a été bloquée par le filtre anti-pourriel. Ceci est probablement causé par un lien vers un site externe.',
+'spamprotectionmatch' => "La chaîne de caractères « '''$1''' » a déclenché le détecteur de pourriel.",
+'spambot_username'    => 'Nettoyage de pourriels par MediaWiki',
+'spam_reverting'      => 'Restauration de la dernière version ne contenant pas de lien vers $1',
+'spam_blanking'       => 'Toutes les versions contenant des liens vers $1 sont blanchies',
 
 # Info page
 'infosubtitle'   => 'Informations pour la page',
@@ -2492,3 +2497,4 @@ Essayez la prévisualisation normale.',
 Entrez le nom du fichier sans le préfixe « {{ns:image}}: »',
 
 );
+
