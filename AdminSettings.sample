@@ -7,8 +7,6 @@
  * privileges to do maintenance work.
  *
  * Developers: Do not check AdminSettings.php into Subversion
- *
- * @package MediaWiki
  */
 
 /*
@@ -27,5 +25,3 @@ $wgDBadminpassword  = 'adminpass';
  * Whether to enable the profileinfo.php script.
  */
 $wgEnableProfileInfo = false;
-
-?>

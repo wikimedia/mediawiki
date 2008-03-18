@@ -4,7 +4,6 @@
  * Variant of QueryPage which uses a gallery to output results, thus
  * suited for reports generating images
  *
- * @package MediaWiki
  * @addtogroup SpecialPage
  * @author Rob Church <robchur@gmail.com>
  */

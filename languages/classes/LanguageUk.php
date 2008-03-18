@@ -1,8 +1,7 @@
 <?php
 /** Ukrainian (українська мова)
   *
-  * @package MediaWiki
-  * @subpackage Language
+  * @addtogroup Language
   */
 
 /* Please, see Language.php for general function comments */

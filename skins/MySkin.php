@@ -1,6 +1,6 @@
 <?php
 /**
- * See skin.txt
+ * See docs/skin.txt
  *
  * @todo document
  * @addtogroup Skins

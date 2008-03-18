@@ -21,10 +21,6 @@
  */
 
 /**
- * @access private
- */
-
-/**
  * Parent special page class, also static functions for handling the special
  * page list.
  * @addtogroup SpecialPage
