@@ -561,16 +561,24 @@ XHTML id names.
 'nov'           => 'Nov',
 'dec'           => 'Dec',
 
-# Bits of text used by many pages
-'categories'               => 'Categories',
-'pagecategories'           => '{{PLURAL:$1|Category|Categories}}',
-'pagecategorieslink'       => 'Special:Categories', # don't translate or duplicate this message to other languages
-'category_header'          => 'Pages in category "$1"',
-'subcategories'            => 'Subcategories',
-'category-media-header'    => 'Media in category "$1"',
-'category-empty'           => "''This category currently contains no pages or media.''",
-'hidden-categories'        => '{{PLURAL:$1|Hidden category|Hidden categories}}',
-'hidden-category-category' => 'Hidden categories', # Name of the category where hidden categories will be listed
+# Categories related messages
+'categories'                     => 'Categories',
+'pagecategories'                 => '{{PLURAL:$1|Category|Categories}}',
+'pagecategorieslink'             => 'Special:Categories', # don't translate or duplicate this message to other languages
+'category_header'                => 'Pages in category "$1"',
+'subcategories'                  => 'Subcategories',
+'category-media-header'          => 'Media in category "$1"',
+'category-empty'                 => "''This category currently contains no pages or media.''",
+'hidden-categories'              => '{{PLURAL:$1|Hidden category|Hidden categories}}',
+'hidden-category-category'       => 'Hidden categories', # Name of the category where hidden categories will be listed
+'subcategorycount'               => 'There {{PLURAL:$1|is one subcategory|are $1 subcategories}} to this category.',
+'category-subcat-count'          => '{{PLURAL:$2|This category has only the following subcategory.|This category has the following {{PLURAL:$1|subcategory|$1 subcategories}}, out of $2 total.}}',
+'category-subcat-count-limited'  => 'This category has the following {{PLURAL:$1|subcategory|$1 subcategories}}.',
+'category-article-count'         => '{{PLURAL:$2|This category contains only the following page.|The following {{PLURAL:$1|page is|$1 pages are}} in this category, out of $2 total.}}',
+'category-article-count-limited' => 'The following {{PLURAL:$1|page is|$1 pages are}} in the current category.',
+'category-file-count'            => '{{PLURAL:$2|This category contains only the following file.|The following {{PLURAL:$1|file is|$1 files are}} in this category, out of $2 total.}}',
+'category-file-count-limited'    => 'The following {{PLURAL:$1|file is|$1 files are}} in the current category.',
+'listingcontinuesabbrev'         => 'cont.',
 
 'linkprefix'        => '/^(.*?)([a-zA-Z\x80-\xff]+)$/sD', # only translate this message to other languages if you have to change it
 'mainpagetext'      => "<big>'''MediaWiki has been successfully installed.'''</big>",
@@ -2419,14 +2427,6 @@ All transwiki import actions are logged at the [[Special:Log/import|import log]]
 'spamprotectiontitle'            => 'Spam protection filter',
 'spamprotectiontext'             => 'The page you wanted to save was blocked by the spam filter. This is probably caused by a link to an external site.',
 'spamprotectionmatch'            => 'The following text is what triggered our spam filter: $1',
-'subcategorycount'               => 'There {{PLURAL:$1|is one subcategory|are $1 subcategories}} to this category.',
-'category-subcat-count'          => '{{PLURAL:$2|This category has only the following subcategory.|This category has the following {{PLURAL:$1|subcategory|$1 subcategories}}, out of $2 total.}}',
-'category-subcat-count-limited'  => 'This category has the following {{PLURAL:$1|subcategory|$1 subcategories}}.',
-'category-article-count'         => '{{PLURAL:$2|This category contains only the following page.|The following {{PLURAL:$1|page is|$1 pages are}} in this category, out of $2 total.}}',
-'category-article-count-limited' => 'The following {{PLURAL:$1|page is|$1 pages are}} in the current category.',
-'category-file-count'            => '{{PLURAL:$2|This category contains only the following file.|The following {{PLURAL:$1|file is|$1 files are}} in this category, out of $2 total.}}',
-'category-file-count-limited'    => 'The following {{PLURAL:$1|file is|$1 files are}} in the current category.',
-'listingcontinuesabbrev'         => 'cont.',
 'spambot_username'               => 'MediaWiki spam cleanup',
 'spam_reverting'                 => 'Reverting to last version not containing links to $1',
 'spam_blanking'                  => 'All revisions contained links to $1, blanking',
