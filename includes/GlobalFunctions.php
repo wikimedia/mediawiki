@@ -2437,7 +2437,37 @@ function wfMaxlagError( $host, $lag, $maxLag ) {
 /**
  * Throws an E_USER_NOTICE saying that $function is deprecated
  * @param string $function
+ * @return null
  */
 function wfDeprecated( $function ) {
 	trigger_error( "Use of $function is deprecated", E_USER_NOTICE );
+}
+
+/**
+ * Sleep until the worst slave's replication lag is less than or equal to
+ * $maxLag, in seconds.  Use this when updating very large numbers of rows, as
+ * in maintenance scripts, to avoid causing too much lag.  Of course, this is
+ * a no-op if there are no slaves.
+ *
+ * Every time the function has to wait for a slave, it will print a message to
+ * that effect (and then sleep for a little while), so it's probably not best
+ * to use this outside maintenance scripts in its present form.
+ *
+ * @param int $maxLag
+ * @return null
+ */
+function wfWaitForSlaves( $maxLag ) {
+	global $wgLoadBalancer;
+	if( $maxLag ) {
+		list( $host, $lag ) = $wgLoadBalancer->getMaxLag();
+		while( $lag > $maxLag ) {
+			$name = @gethostbyaddr( $host );
+			if( $name !== false ) {
+				$host = $name;
+			}
+			print "Waiting for $host (lagged $lag seconds)...\n";
+			sleep($maxLag);
+			list( $host, $lag ) = $wgLoadBalancer->getMaxLag();
+		}
+	}
 }

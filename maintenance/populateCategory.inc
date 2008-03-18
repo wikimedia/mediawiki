@@ -4,8 +4,6 @@
  * @author Simetrical
  */
 
-require_once "commandLine.inc";
-
 define( 'REPORTING_INTERVAL', 1000 );
 
 function populateCategory( $begin, $maxlag, $throttle, $force ) {
