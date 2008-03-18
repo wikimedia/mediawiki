@@ -3,7 +3,6 @@
 /**
  * Special page lists pages without language links
  *
- * @package MediaWiki
  * @addtogroup SpecialPage
  * @author Rob Church <robchur@gmail.com>
  */

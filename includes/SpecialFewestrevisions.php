@@ -3,7 +3,6 @@
 /**
  * Special page for listing the articles with the fewest revisions.
  *
- * @package MediaWiki
  * @addtogroup SpecialPage
  * @author Martin Drashkov
  */
