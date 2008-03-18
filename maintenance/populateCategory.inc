@@ -4,6 +4,8 @@
  * @author Simetrical
  */
 
+require_once "commandLine.inc";
+
 define( 'REPORTING_INTERVAL', 1000 );
 
 function populateCategory( $begin, $maxlag, $throttle, $force ) {
@@ -80,21 +82,5 @@ function populateCategory( $begin, $maxlag, $throttle, $force ) {
 	} else {
 		echo "Could not insert category population row.\n";
 		return false;
-	}
-}
-
-function wfWaitForSlaves( $maxLag ) {
-	global $wgLoadBalancer;
-	if ( $maxLag ) {
-		list( $host, $lag ) = $wgLoadBalancer->getMaxLag();
-		while ( $lag > $maxLag ) {
-			$name = @gethostbyaddr( $host );
-			if ( $name !== false ) {
-				$host = $name;
-			}
-			print "Waiting for $host (lagged $lag seconds)...\n";
-			sleep($maxLag);
-			list( $host, $lag ) = $wgLoadBalancer->getMaxLag();
-		}
 	}
 }
