@@ -118,6 +118,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 13371) Build page set from image hashes
 * Mark non-existent messages in meta=allmessages as missing
 * (bug 13390) One invalid title no longer kills an entire API query
+* (bug 13419) Fix gblredirect so it actually works
+* (bug 13418) Disable eiredirect because it's useless
 
 === Languages updated in 1.13 ===
 
