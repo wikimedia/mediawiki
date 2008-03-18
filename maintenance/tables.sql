@@ -1193,4 +1193,10 @@ CREATE TABLE /*$wgDBprefix*/page_props (
   PRIMARY KEY (pp_page,pp_propname)
 ) /*$wgDBTableOptions*/;
 
+-- A table to log updates, one text key row per update.
+CREATE TABLE /*$wgDBprefix*/updatelog (
+  ul_key varchar(255) NOT NULL,
+  PRIMARY KEY (ul_key)
+) /*$wgDBTableOptions*/;
+
 -- vim: sw=2 sts=2 et

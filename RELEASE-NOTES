@@ -45,6 +45,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 12882) Added a span with class "patrollink" arround "Mark as patrolled"
   link on diffs
 * Magic word formatnum can now take raw suffix to undo formatting
+* Add updatelog table to reliably permit updates that don't change the schema
 
 === Bug fixes in 1.13 ===
 

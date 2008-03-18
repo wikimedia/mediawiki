@@ -132,6 +132,7 @@ $wgMysqlUpdates = array(
 	// 1.13
 	array( 'add_field', 'ipblocks',      'ipb_by_text',      'patch-ipb_by_text.sql' ),
 	array( 'add_table', 'page_props',                        'patch-page_props.sql' ),
+	array( 'add_table', 'updatelog',                         'patch-updatelog.sql' ),
 );
 
 
@@ -141,6 +142,20 @@ $wgExtNewTables = array(); // table, dir
 $wgExtNewFields = array(); // table, column, dir
 $wgExtPGNewFields = array(); // table, column attributes; for PostgreSQL
 $wgExtNewIndexes = array(); // table, index, dir
+
+# Helper function: check if the given key is present in the updatelog table.
+# Obviously, only use this for updates that occur after the updatelog table was
+# created!
+function update_row_exists( $key ) {
+	$dbr = wfGetDB( DB_SLAVE );
+	$row = $dbr->selectRow(
+		'updatelog',
+		'1',
+		array( 'ul_key' => $key ),
+		__FUNCTION__
+	);
+	return (bool)$row;
+}
 
 function rename_table( $from, $to, $patch ) {
 	global $wgDatabase;
@@ -1118,7 +1133,6 @@ function do_restrictions_update() {
 		}
 		print "ok\n";
 	}
-	
 }
 
 function
