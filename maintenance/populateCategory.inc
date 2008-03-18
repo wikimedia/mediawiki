@@ -82,3 +82,19 @@ function populateCategory( $begin, $maxlag, $throttle, $force ) {
 		return false;
 	}
 }
+
+function wfWaitForSlaves( $maxLag ) {
+	global $wgLoadBalancer;
+	if ( $maxLag ) {
+		list( $host, $lag ) = $wgLoadBalancer->getMaxLag();
+		while ( $lag > $maxLag ) {
+			$name = @gethostbyaddr( $host );
+			if ( $name !== false ) {
+				$host = $name;
+			}
+			print "Waiting for $host (lagged $lag seconds)...\n";
+			sleep($maxLag);
+			list( $host, $lag ) = $wgLoadBalancer->getMaxLag();
+		}
+	}
+}
