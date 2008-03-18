@@ -1353,6 +1353,7 @@ function do_postgres_updates() {
 		array("profiling",         "patch-profiling.sql"),
 		array("protected_titles",  "patch-protected_titles.sql"),
 		array("redirect",          "patch-redirect.sql"),
+		array("updatelog",         "patch-updatelog.sql"),
 	);
 
 	$newcols = array(

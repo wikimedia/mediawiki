@@ -529,6 +529,12 @@ CREATE TABLE protected_titles (
 );
 CREATE UNIQUE INDEX protected_titles_unique ON protected_titles(pt_namespace, pt_title);
 
+
+CREATE TABLE updatelog (
+  ul_key TEXT NOT NULL PRIMARY KEY
+);
+
+
 CREATE TABLE mediawiki_version (
   type         TEXT         NOT NULL,
   mw_version   TEXT         NOT NULL,
