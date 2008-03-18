@@ -404,12 +404,13 @@ class EnhancedChangesList extends ChangesList {
 
 		$showdifflinks = true;
 		# Make article link
+		// Page moves
 		if( $rc_type == RC_MOVE || $rc_type == RC_MOVE_OVER_REDIRECT ) {
 			$msg = ( $rc_type == RC_MOVE ) ? "1movedto2" : "1movedto2_redir";
 			$clink = wfMsg( $msg, $this->skin->makeKnownLinkObj( $rc->getTitle(), '', 'redirect=no' ),
 			  $this->skin->makeKnownLinkObj( $rc->getMovedToTitle(), '' ) );
-		} elseif( $rc_namespace == NS_SPECIAL ) {
 		// Log entries (old format) and special pages
+		} elseif( $rc_namespace == NS_SPECIAL ) {
 			list( $specialName, $logtype ) = SpecialPage::resolveAliasWithSubpage( $rc_title );
 			if ( $specialName == 'Log' ) {
 				# Log updates, etc
@@ -419,12 +420,8 @@ class EnhancedChangesList extends ChangesList {
 				wfDebug( "Unexpected special page in recentchanges\n" );
 				$clink = '';
 			}
-		} elseif( $rc_log_type !='' ) {
-		// Log entries
-			$logtitle = Title::newFromText( "Log/$rc_log_type", NS_SPECIAL );
-			$logname = LogPage::logName( $rc_log_type );
-			$clink = '(' . $this->skin->makeKnownLinkObj($logtitle, $logname ) . ')';
-		} if( $this->isDeleted($rc,Revision::DELETED_TEXT) ) {
+		// Page edits or log entries (group these page)
+		} else if( $this->isDeleted($rc,Revision::DELETED_TEXT) ) {
 		    $clink = '<span class="history-deleted">' . $this->skin->makeKnownLinkObj( $rc->getTitle(), '' ) . '</span>';
 		    if ( !ChangesList::userCan($rc,Revision::DELETED_TEXT) )
 		       $showdifflinks = false;
