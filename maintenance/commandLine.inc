@@ -236,27 +236,3 @@ require_once( "$IP/includes/Setup.php" );
 require_once( "$IP/install-utils.inc" );
 $wgTitle = null; # Much much faster startup than creating a title object
 set_time_limit(0);
-
-// --------------------------------------------------------------------
-// Functions
-// --------------------------------------------------------------------
-
-function wfWaitForSlaves( $maxLag ) {
-	global $wgLoadBalancer;
-	if ( $maxLag ) {
-		list( $host, $lag ) = $wgLoadBalancer->getMaxLag();
-		while ( $lag > $maxLag ) {
-			$name = @gethostbyaddr( $host );
-			if ( $name !== false ) {
-				$host = $name;
-			}
-			print "Waiting for $host (lagged $lag seconds)...\n";
-			sleep($maxLag);
-			list( $host, $lag ) = $wgLoadBalancer->getMaxLag();
-		}
-	}
-}
-
-
-
-?>
