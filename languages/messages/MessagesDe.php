@@ -1180,19 +1180,19 @@ Bitte gib der Datei einen Namen, der den Inhalt besser beschreibt.',
 'upload_source_url'  => ' (gültige, öffentlich zugängliche URL)',
 'upload_source_file' => ' (eine Datei auf deinem Computer)',
 
-# Image list
-'imagelist'                 => 'Dateiliste',
-'imagelist-summary'         => 'Diese Spezialseite listet alle hochgeladenen Dateien auf. Standardmäßig werden die zuletzt hochgeladenen Dateien zuerst angezeigt. Durch einen Klick auf die Spaltenüberschriften kann die Sortierung umgedreht werden oder es kann nach einer anderen Spalte sortiert werden.',
-'imagelisttext'             => "Hier ist eine Liste von '''$1''' {{PLURAL:$1|Datei|Dateien}}, sortiert $2.",
-'getimagelist'              => 'Lade Dateiliste',
-'ilsubmit'                  => 'Suchen',
-'showlast'                  => 'Zeige die letzten $1 Dateien, sortiert nach $2.',
-'byname'                    => 'nach Name',
-'bydate'                    => 'nach Datum',
-'bysize'                    => 'nach Größe',
-'imgdelete'                 => 'Löschen',
-'imgdesc'                   => 'Beschreibung',
-'imgfile'                   => 'Datei',
+# Special:Imagelist
+'imagelist-summary'     => 'Diese Spezialseite listet alle hochgeladenen Dateien auf. Standardmäßig werden die zuletzt hochgeladenen Dateien zuerst angezeigt. Durch einen Klick auf die Spaltenüberschriften kann die Sortierung umgedreht werden oder es kann nach einer anderen Spalte sortiert werden.',
+'imagelist_search_for'  => 'Suche nach Datei:',
+'imgdesc'               => 'Beschreibung',
+'imgfile'               => 'Datei',
+'imagelist'             => 'Dateiliste',
+'imagelist_date'        => 'Datum',
+'imagelist_name'        => 'Name',
+'imagelist_user'        => 'Benutzer',
+'imagelist_size'        => 'Größe',
+'imagelist_description' => 'Beschreibung',
+
+# Image description page
 'filehist'                  => 'Dateiversionen',
 'filehist-help'             => 'Klicke auf einen Zeitpunkt, um diese Version zu laden.',
 'filehist-deleteall'        => 'Alle Versionen löschen',
@@ -1214,12 +1214,6 @@ Bitte gib der Datei einen Namen, der den Inhalt besser beschreibt.',
 'noimage'                   => 'Eine Datei mit diesem Namen existiert nicht, du kannst sie jedoch $1.',
 'noimage-linktext'          => 'hochladen',
 'uploadnewversion-linktext' => 'Eine neue Version dieser Datei hochladen',
-'imagelist_date'            => 'Datum',
-'imagelist_name'            => 'Name',
-'imagelist_user'            => 'Benutzer',
-'imagelist_size'            => 'Größe',
-'imagelist_description'     => 'Beschreibung',
-'imagelist_search_for'      => 'Suche nach Datei:',
 
 # File reversion
 'filerevert'                => 'Zurücksetzen von „$1“',
@@ -1693,8 +1687,6 @@ $1',
 'sp-contributions-username'    => 'IP-Adresse oder Benutzername:',
 'sp-contributions-submit'      => 'Suchen',
 
-'sp-newimages-showfrom' => 'Zeige neue Dateien ab $1',
-
 # What links here
 'whatlinkshere'         => 'Links auf diese Seite',
 'whatlinkshere-title'   => 'Seiten, die auf „$1“ verlinken',
@@ -2090,10 +2082,14 @@ $1',
 'show-big-image-thumb' => '<small>Größe der Voransicht: $1 × $2 Pixel</small>',
 
 # Special:Newimages
-'newimages'         => 'Neue Dateien',
-'newimages-summary' => 'Diese Spezialseite zeigt die zuletzt hochgeladenen Bilder und Dateien an.',
-'showhidebots'      => '(Bots $1)',
-'noimages'          => 'Keine Dateien gefunden.',
+'newimages'             => 'Neue Dateien',
+'imagelisttext'         => "Hier ist eine Liste von '''$1''' {{PLURAL:$1|Datei|Dateien}}, sortiert $2.",
+'newimages-summary'     => 'Diese Spezialseite zeigt die zuletzt hochgeladenen Dateien an.',
+'showhidebots'          => '(Bots $1)',
+'noimages'              => 'Keine Dateien gefunden.',
+'ilsubmit'              => 'Suchen',
+'bydate'                => 'nach Datum',
+'sp-newimages-showfrom' => 'Zeige neue Dateien ab $1',
 
 # Bad image list
 'bad_image_list' => 'Format:
