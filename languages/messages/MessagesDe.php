@@ -276,15 +276,23 @@ $messages = array(
 'nov'           => 'Nov.',
 'dec'           => 'Dez.',
 
-# Bits of text used by many pages
-'categories'               => 'Kategorien',
-'pagecategories'           => '{{PLURAL:$1|Kategorie|Kategorien}}',
-'category_header'          => 'Seiten in der Kategorie „$1“',
-'subcategories'            => 'Unterkategorien',          
-'category-media-header'    => 'Medien in der Kategorie „$1“',
-'category-empty'           => "''Diese Kategorie enthält zur Zeit keine Seiten oder Medien.''",
-'hidden-categories'        => '{{PLURAL:$1|Versteckte Kategorie|Versteckte Kategorien}}',
-'hidden-category-category' => 'Versteckte Kategorien', # Name of the category where hidden categories will be listed
+# Categories related messages
+'categories'                     => 'Kategorien',
+'pagecategories'                 => '{{PLURAL:$1|Kategorie|Kategorien}}',
+'category_header'                => 'Seiten in der Kategorie „$1“',
+'subcategories'                  => 'Unterkategorien',
+'category-media-header'          => 'Medien in der Kategorie „$1“',
+'category-empty'                 => "''Diese Kategorie enthält zur Zeit keine Seiten oder Medien.''",
+'hidden-categories'              => '{{PLURAL:$1|Versteckte Kategorie|Versteckte Kategorien}}',
+'hidden-category-category'       => 'Versteckte Kategorien', # Name of the category where hidden categories will be listed
+'subcategorycount'               => '{{PLURAL:$1|Es wird $1 Unterkategorie|Es werden $1 Unterkategorien}} angezeigt.',
+'category-subcat-count'          => '{{PLURAL:$2|Diese Kategorie enthält die folgende Unterkategorie.|Diese Kategorie enthält die {{PLURAL:$1|folgende Unterkategorie|folgenden $1 Unterkategorien}} (von insgesamt $2 Kategorie).}}',
+'category-subcat-count-limited'  => 'Diese Kategorie enthält die {{PLURAL:$1|folgende Unterkategorie|folgenden $1 Unterkategorien}}.',
+'category-article-count'         => '{{PLURAL:$2|Diese Kategorie enthält die folgende Seite.|Die {{PLURAL:$1|folgende Seite ist|folgenden $1 Seiten sind}} in dieser Kategorie enthalten (von insgesamt $2 Seiten).}}',
+'category-article-count-limited' => 'Die {{PLURAL:$1|folgende Seite ist|folgenden $1 Seiten sind}} in dieser Kategorie enthalten.',
+'category-file-count'            => '{{PLURAL:$2|Diese Kategorie enthält die folgende Datei.|Die {{PLURAL:$1|folgende Datei ist|folgenden $1 Dateien sind}} in dieser Kategorie enthalten (von insgesamt $2 Dateien).}}',
+'category-file-count-limited'    => 'Die {{PLURAL:$1|folgende Datei ist|folgenden $1 Dateien sind}} in dieser Kategorie enthalten.',
+'listingcontinuesabbrev'         => '(Fortsetzung)',
 
 'mainpagetext'      => 'MediaWiki wurde erfolgreich installiert.',
 'mainpagedocfooter' => 'Hilfe zur Benutzung und Konfiguration der Wiki-Software findest du im [http://meta.wikimedia.org/wiki/Help:Contents Benutzerhandbuch].
@@ -732,7 +740,6 @@ Sollte das Problem bestehen bleiben, melde dich ab und danach wieder an.</strong
 'token_suffix_mismatch'     => '<strong>Deine Bearbeitung wurde zurückgewiesen, da dein Browser Zeichen im Bearbeiten-Token verstümmelt hat.
 Eine Speicherung kann den Seiteninhalt zerstören. Dies geschieht bisweilen durch die Benutzung eines anonymen Proxy-Dienstes, der fehlerhaft arbeitet.</strong>',
 'editing'                   => 'Bearbeiten von $1',
-'editinguser'               => "Ändere Benutzerrechte von '''[[{{ns:User}}:$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[{{#Special:Contributions}}/$1|{{int:contribslink}}]])",
 'editingsection'            => 'Bearbeiten von $1 (Absatz)',
 'editingcomment'            => 'Bearbeiten von $1 (Kommentar)',
 'editconflict'              => 'Bearbeitungskonflikt: $1',
@@ -919,8 +926,8 @@ Wenn du dich mit dem Thema auskennst, kannst du selbst die Seite „[[$1]]“ ve
 'prevn'                 => 'vorherige $1',
 'nextn'                 => 'nächste $1',
 'viewprevnext'          => 'Zeige ($1) ($2) ($3)',
-'search-result-size'    => "$1 ($2 Wörter)",
-'search-result-score'   => "Relevanz: $1 %",
+'search-result-size'    => '$1 ($2 Wörter)',
+'search-result-score'   => 'Relevanz: $1 %',
 'showingresults'        => "Hier {{PLURAL:$1|ist '''1''' Ergebnis|sind '''$1''' Ergebnisse}}, beginnend mit Nummer '''$2'''.",
 'showingresultsnum'     => "Hier {{PLURAL:$3|ist '''1''' Ergebnis|sind '''$1''' Ergebnisse}}, beginnend mit Nummer '''$2'''.",
 'nonefound'             => '<strong>Hinweis</strong>: Erfolglose Suchanfragen werden häufig dadurch verursacht, dass mehr als ein Suchbegriff angegeben wurde. Nur Seiten die alle Suchbegriffe enthalten werden hier angezeigt. Versuche in diesem Fall die Anzahl der Suchbegriffe zu verringern.',
@@ -995,6 +1002,7 @@ Wenn du dich mit dem Thema auskennst, kannst du selbst die Seite „[[$1]]“ ve
 'userrights-lookup-user'           => 'Verwalte Gruppenzugehörigkeit',
 'userrights-user-editname'         => 'Benutzername:',
 'editusergroup'                    => 'Benutzerrechte bearbeiten',
+'editinguser'                      => "Ändere Benutzerrechte von '''[[{{ns:User}}:$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[{{#Special:Contributions}}/$1|{{int:contribslink}}]])",
 'userrights-editusergroup'         => 'Benutzer-Gruppenzugehörigkeit bearbeiten',
 'saveusergroups'                   => 'Gruppenzugehörigkeit speichern',
 'userrights-groupsmember'          => 'Mitglied von:',
@@ -1120,7 +1128,7 @@ Bitte beachte, dass, genau wie bei normalen Seiteninhalten, andere Benutzer dein
 'largefileserver'             => 'Die Datei ist größer als die vom Server eingestellte Maximalgröße.',
 'emptyfile'                   => 'Die hochgeladene Datei ist leer. Der Grund kann ein Tippfehler im Dateinamen sein. Bitte kontrolliere, ob du die Datei wirklich hochladen willst.',
 'fileexists'                  => 'Eine Datei mit diesem Namen existiert bereits. Wenn du auf „Datei speichern“ klickst, wird die Datei überschrieben. Bitte prüfe <strong><tt>$1</tt></strong>, wenn du dir nicht sicher bist.',
-'filepageexists'              => "Eine Beschreibungsseite wurde bereits als <strong><tt>$1</tt></strong> erstellt, es ist aber keine Datei mit diesem Namen vorhanden. Die eingegebene Beschreibung wird nicht auf die Beschreibungsseite übernommen. Die Beschreibungsseite musst du nach dem Hochladen der Datei noch manuell bearbeiten.",
+'filepageexists'              => 'Eine Beschreibungsseite wurde bereits als <strong><tt>$1</tt></strong> erstellt, es ist aber keine Datei mit diesem Namen vorhanden. Die eingegebene Beschreibung wird nicht auf die Beschreibungsseite übernommen. Die Beschreibungsseite musst du nach dem Hochladen der Datei noch manuell bearbeiten.',
 'fileexists-extension'        => 'Eine Datei mit ähnlichem Namen existiert bereits:<br />
 Name der hochzuladenden Datei: <strong><tt>$1</tt></strong><br />
 Name der vorhandenen Datei: <strong><tt>$2</tt></strong><br />
@@ -1584,7 +1592,7 @@ Bitte gehe zurück und versuche den Vorgang erneut auszuführen.',
 'protect_expiry_invalid'      => 'Die eingegebene Dauer ist ungültig.',
 'protect_expiry_old'          => 'Die Sperrzeit liegt in der Vergangenheit.',
 'protect-unchain'             => 'Verschiebeschutz ändern',
-'protect-text'                => "Hier kannst du den Schutzstatus für die Seite '''<nowiki>\$1</nowiki>''' einsehen und ändern.",
+'protect-text'                => "Hier kannst du den Schutzstatus für die Seite '''<nowiki>$1</nowiki>''' einsehen und ändern.",
 'protect-locked-blocked'      => 'Du kannst den Seitenschutz nicht ändern, da dein Benutzerkonto gesperrt ist. Hier sind die aktuellen Seitenschutz-Einstellungen für die Seite <strong>„$1“:</strong>',
 'protect-locked-dblock'       => 'Die Datenbank ist gesperrt, der Seitenschutz kann daher nicht geändert werden. Hier sind die aktuellen Seitenschutz-Einstellungen für die Seite <strong>„$1“:</strong>',
 'protect-locked-access'       => 'Dein Benutzerkonto verfügt nicht über die notwendigen Rechte zur Änderung des Seitenschutzes. Hier sind die aktuellen Seitenschutzeinstellungen für die Seite <strong>„$1“:</strong>',
@@ -2014,16 +2022,12 @@ Alle Transwiki-Import-Aktionen werden im [[Special:Log/import|Import-Logbuch]] p
 'nocredits'        => 'Für diese Seite sind keine Informationen vorhanden.',
 
 # Spam protection
-'spamprotectiontitle'    => 'Spamschutzfilter',
-'spamprotectiontext'     => 'Die Seite, die du speichern willst, wurde vom Spamschutzfilter blockiert. Das liegt wahrscheinlich an einem Link auf eine externe Seite.',
-'spamprotectionmatch'    => "'''Der folgende Text wurde vom Spamfilter gefunden: ''$1'''''",
-'subcategorycount'       => '{{PLURAL:$1|Es wird $1 Unterkategorie|Es werden $1 Unterkategorien}} angezeigt.',
-'categoryarticlecount'   => '<small>Es {{PLURAL:$1|wird $1 Seite|werden $1 Seiten}} aus dieser Kategorie angezeigt.</small>',
-'category-media-count'   => '<small>Es {{PLURAL:$1|wird $1 Datei|werden $1 Dateien}} aus dieser Kategorie angezeigt.</small>',
-'listingcontinuesabbrev' => '(Fortsetzung)',
-'spambot_username'       => 'MediaWiki Spam-Säuberung',
-'spam_reverting'         => 'Letzte Version ohne Links zu $1 wiederhergestellt.',
-'spam_blanking'          => 'Alle Versionen enthielten Links zu $1, bereinigt.',
+'spamprotectiontitle' => 'Spamschutzfilter',
+'spamprotectiontext'  => 'Die Seite, die du speichern willst, wurde vom Spamschutzfilter blockiert. Das liegt wahrscheinlich an einem Link auf eine externe Seite.',
+'spamprotectionmatch' => "'''Der folgende Text wurde vom Spamfilter gefunden: ''$1'''''",
+'spambot_username'    => 'MediaWiki Spam-Säuberung',
+'spam_reverting'      => 'Letzte Version ohne Links zu $1 wiederhergestellt.',
+'spam_blanking'       => 'Alle Versionen enthielten Links zu $1, bereinigt.',
 
 # Info page
 'infosubtitle'   => 'Seiteninformation',
@@ -2462,7 +2466,7 @@ Bitte bestätige, dass du diese Seite wirklich neu erstellen möchten.",
 'autosumm-new'     => 'Die Seite wurde neu angelegt: $1',
 
 # Size units
-'size-bytes'     => '$1 Bytes', # only translate this message to other languages if you have to change it
+'size-bytes' => '$1 Bytes',
 
 # Live preview
 'livepreview-loading' => 'Laden …',
