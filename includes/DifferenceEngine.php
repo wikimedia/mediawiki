@@ -424,7 +424,12 @@ CONTROL;
 		global $wgMemc;
 		$fname = 'DifferenceEngine::getDiffBody';
 		wfProfileIn( $fname );
-		
+		// Check if the diff should be hidden from this user
+		if ( $this->mOldRev && !$this->mOldRev->userCan(Revision::DELETED_TEXT) ) {
+		  	return false;
+		} else if ( $this->mNewRev && !$this->mNewRev->userCan(Revision::DELETED_TEXT) ) {
+		  	return false;
+		}
 		// Cacheable?
 		$key = false;
 		if ( $this->mOldid && $this->mNewid ) {
@@ -446,21 +451,12 @@ CONTROL;
 		if ( !$this->loadText() ) {
 			wfProfileOut( $fname );
 			return false;
-		} else if ( $this->mOldRev && !$this->mOldRev->userCan(Revision::DELETED_TEXT) ) {
-		  	return '';
-		} else if ( $this->mNewRev && !$this->mNewRev->userCan(Revision::DELETED_TEXT) ) {
-		  	return '';
 		}
 
 		$difftext = $this->generateDiffBody( $this->mOldtext, $this->mNewtext );
 		
 		// Save to cache for 7 days
-		// Only do this for public revs, otherwise an admin can view the diff and a non-admin can nab it!
-		if ( $this->mOldRev && $this->mOldRev->isDeleted(Revision::DELETED_TEXT) ) {
-			wfIncrStats( 'diff_uncacheable' );
-		} else if ( $this->mNewRev && $this->mNewRev->isDeleted(Revision::DELETED_TEXT) ) {
-			wfIncrStats( 'diff_uncacheable' );
-		} else if ( $key !== false && $difftext !== false ) {
+		if ( $key !== false && $difftext !== false ) {
 			wfIncrStats( 'diff_cache_miss' );
 			$wgMemc->set( $key, $difftext, 7*86400 );
 		} else {
