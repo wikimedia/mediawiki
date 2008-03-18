@@ -53,7 +53,7 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 
 		if ( !isset($params['title']) || is_null($params['title']) ) 
 			$this->dieUsage("The cmtitle parameter is required", 'notitle');
-		$categoryTitle = Title::newFromText($params['title'], NS_CATEGORY);
+		$categoryTitle = Title::newFromText($params['title']);
 
 		if ( is_null( $categoryTitle ) || $categoryTitle->getNamespace() != NS_CATEGORY )
 			$this->dieUsage("The category name you entered is not valid", 'invalidcategory');
