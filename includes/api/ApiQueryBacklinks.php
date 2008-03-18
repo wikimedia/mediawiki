@@ -104,9 +104,10 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 		list($tblpage, $tbllinks) = $db->tableNamesN('page', $this->bl_table);
 		$this->addTables("$tbllinks JOIN $tblpage ON {$this->bl_from}=page_id");
 		if(is_null($resultPageSet))
-			$this->addFields(array('page_id', 'page_title', 'page_namespace', 'page_is_redirect'));
+			$this->addFields(array('page_id', 'page_title', 'page_namespace'));
 		else
 			$this->addFields($resultPageSet->getPageTableFields());
+		$this->addFields('page_is_redirect');
 		$this->addWhereFld($this->bl_title, $this->rootTitle->getDbKey());
 		if($this->hasNS)
 			$this->addWhereFld($this->bl_ns, $this->rootTitle->getNamespace());
@@ -185,7 +186,11 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 			if (is_null($resultPageSet))
 				$this->extractRowInfo($row);
 			else
+			{
+				if($row->page_is_redirect)
+					$this->redirTitles[] = Title::makeTitle($row->page_namespace, $row->page_title);
 				$resultPageSet->processDbRow($row);
+			}
 		}	
 		$db->freeResult($res);
 		
@@ -316,8 +321,7 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 	}
 
 	public function getAllowedParams() {
-
-		return array (
+		$retval =  array (
 			'title' => null,
 			'continue' => null,
 			'namespace' => array (
@@ -332,7 +336,6 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 					'nonredirects'
 				)
 			),
-			'redirect' => false,
 			'limit' => array (
 				ApiBase :: PARAM_DFLT => 10,
 				ApiBase :: PARAM_TYPE => 'limit',
@@ -341,17 +344,27 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 				ApiBase :: PARAM_MAX2 => ApiBase :: LIMIT_BIG2
 			)
 		);
+		if($this->getModuleName() == 'embeddedin')
+			return $retval;
+		$retval['redirect'] = false;
+		return $retval;
 	}
 
 	public function getParamDescription() {
-		return array (
+		$retval = array (
 			'title' => 'Title to search. If null, titles= parameter will be used instead, but will be obsolete soon.',
 			'continue' => 'When more results are available, use this to continue.',
 			'namespace' => 'The namespace to enumerate.',
-			'filterredir' => 'How to filter for redirects',
-			'redirect' => 'If linking page is a redirect, find all pages that link to that redirect as well. Maximum limit is halved.',
-			'limit' => "How many total pages to return. If {$this->bl_code}redirect is enabled, limit applies to each level separately."
+			'filterredir' => 'How to filter for redirects'
 		);
+		if($this->getModuleName() != 'embeddedin')
+			return array_merge($retval, array(
+				'redirect' => 'If linking page is a redirect, find all pages that link to that redirect as well. Maximum limit is halved.',
+				'limit' => "How many total pages to return. If {$this->bl_code}redirect is enabled, limit applies to each level separately."
+			));
+		return array_merge($retval, array(
+			'limit' => "How many total pages to return."
+		));
 	}
 
 	public function getDescription() {
