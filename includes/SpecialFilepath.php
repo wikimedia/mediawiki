@@ -33,37 +33,14 @@ class FilepathForm {
 		global $wgOut, $wgTitle, $wgScript;
 
 		$wgOut->addHTML(
-			wfElement( 'form',
-				array(
-					'id' => 'specialfilepath',
-					'method' => 'get',
-					'action' => $wgScript,
-				),
-				null
-			) .
-				wfHidden( 'title', $wgTitle->getPrefixedText() ) .
-				wfOpenElement( 'label' ) .
-					wfMsgHtml( 'filepath-page' ) .
-					' ' .
-					wfElement( 'input',
-						array(
-							'type' => 'text',
-							'size' => 25,
-							'name' => 'file',
-							'value' => is_object( $this->mTitle ) ? $this->mTitle->getText() : ''
-						),
-						''
-					) .
-					' ' .
-					wfElement( 'input',
-						array(
-							'type' => 'submit',
-							'value' => wfMsgHtml( 'filepath-submit' )
-						),
-						''
-					) .
-				wfCloseElement( 'label' ) .
-			wfCloseElement( 'form' )
+			Xml::openElement( 'form', array( 'method' => 'get', 'action' => $wgScript, 'id' => 'specialfilepath' ) ) .
+			Xml::openElement( 'fieldset' ) .
+			Xml::element( 'legend', null, wfMsg( 'filepath' ) ) .
+			Xml::hidden( 'title', $wgTitle->getPrefixedText() ) .
+			Xml::inputLabel( wfMsg( 'filepath-page' ), 'file', 'file', 25, is_object( $this->mTitle ) ? $this->mTitle->getText() : '' ) . ' ' .
+			Xml::submitButton( wfMsg( 'filepath-submit' ) ) . "\n" .
+			Xml::closeElement( 'fieldset' ) .
+			Xml::closeElement( 'form' )
 		);
 	}
 }
