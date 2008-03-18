@@ -70,6 +70,8 @@ class CategoryViewer {
 		$children, $children_start_char,
 		$showGallery, $gallery,
 		$skin;
+	/** Category object for this page */
+	private $cat;
 
 	function __construct( $title, $from = '', $until = '' ) {
 		global $wgCategoryPagingLimit;
@@ -77,6 +79,7 @@ class CategoryViewer {
 		$this->from = $from;
 		$this->until = $until;
 		$this->limit = $wgCategoryPagingLimit;
+		$this->cat = Category::newFromName( $title->getDBKey() );
 	}
 	
 	/**
@@ -261,12 +264,14 @@ class CategoryViewer {
 	function getSubcategorySection() {
 		# Don't show subcategories section if there are none.
 		$r = '';
-		$c = count( $this->children );
-		if( $c > 0 ) {
+		$rescnt = count( $this->children );
+		$dbcnt = $this->cat->getSubcatCount();
+		$countmsg = $this->getCountMessage( $rescnt, $dbcnt, 'subcat' );
+		if( $rescnt > 0 ) {
 			# Showing subcategories
 			$r .= "<div id=\"mw-subcategories\">\n";
 			$r .= '<h2>' . wfMsg( 'subcategories' ) . "</h2>\n";
-			$r .= wfMsgExt( 'subcategorycount', array( 'parse' ), $c );
+			$r .= $countmsg;
 			$r .= $this->formatList( $this->children, $this->children_start_char );
 			$r .= "\n</div>";
 		}
@@ -277,11 +282,20 @@ class CategoryViewer {
 		$ti = htmlspecialchars( $this->title->getText() );
 		# Don't show articles section if there are none.
 		$r = '';
-		$c = count( $this->articles );
-		if( $c > 0 ) {
+
+		# FIXME, here and in the other two sections: we don't need to bother
+		# with this rigamarole if the entire category contents fit on one page
+		# and have already been retrieved.  We can just use $rescnt in that
+		# case and save a query and some logic.
+		$dbcnt = $this->cat->getPageCount() - $this->cat->getSubcatCount()
+			- $this->cat->getFileCount();
+		$rescnt = count( $this->articles );
+		$countmsg = $this->getCountMessage( $rescnt, $dbcnt, 'article' );
+
+		if( $rescnt > 0 ) {
 			$r = "<div id=\"mw-pages\">\n";
 			$r .= '<h2>' . wfMsg( 'category_header', $ti ) . "</h2>\n";
-			$r .= wfMsgExt( 'categoryarticlecount', array( 'parse' ), $c );
+			$r .= $countmsg;
 			$r .= $this->formatList( $this->articles, $this->articles_start_char );
 			$r .= "\n</div>";
 		}
@@ -290,10 +304,13 @@ class CategoryViewer {
 
 	function getImageSection() {
 		if( $this->showGallery && ! $this->gallery->isEmpty() ) {
+			$dbcnt = $this->cat->getFileCount();
+			$rescnt = $this->gallery->count();
+			$countmsg = $this->getCountMessage( $rescnt, $dbcnt, 'file' );
+
 			return "<div id=\"mw-category-media\">\n" .
 			'<h2>' . wfMsg( 'category-media-header', htmlspecialchars($this->title->getText()) ) . "</h2>\n" .
-			wfMsgExt( 'category-media-count', array( 'parse' ), $this->gallery->count() ) .
-			$this->gallery->toHTML() . "\n</div>";
+			$countmsg . $this->gallery->toHTML() . "\n</div>";
 		} else {
 			return '';
 		}
@@ -439,6 +456,47 @@ class CategoryViewer {
 		}
 
 		return "($prevLink) ($nextLink)";
+	}
+
+	/**
+	 * What to do if the category table conflicts with the number of results
+	 * returned?  This function says what.  It works the same whether the
+	 * things being counted are articles, subcategories, or files.
+	 *
+	 * Note for grepping: uses the messages category-article-count,
+	 * category-article-count-limited, category-subcat-count,
+	 * category-subcat-count-limited, category-file-count,
+	 * category-file-count-limited.
+	 *
+	 * @param int $rescnt The number of items returned by our database query.
+	 * @param int $dbcnt The number of items according to the category table.
+	 * @param string $type 'subcat', 'article', or 'file'
+	 * @return string A message giving the number of items, to output to HTML.
+	 */
+	private function getCountMessage( $rescnt, $dbcnt, $type ) {
+		# There are three cases:
+		#   1) The category table figure seems sane.  It might be wrong, but
+		#      we can't do anything about it if we don't recalculate it on ev-
+		#      ery category view.
+		#   2) The category table figure isn't sane, like it's smaller than the
+		#      number of actual results, *but* the number of results is less
+		#      than $this->limit and there's no offset.  In this case we still
+		#      know the right figure.
+		#   3) We have no idea.
+		$totalrescnt = count( $this->articles ) + count( $this->children ) +
+			$this->gallery->count();
+		if($dbcnt == $rescnt || (($totalrescnt == $this->limit || $this->from
+		|| $this->until) && $dbcnt > $rescnt)){
+			# Case 1: seems sane.
+			$totalcnt = $dbcnt;
+		} elseif($totalrescnt < $this->limit && !$this->from && !$this->until){
+			# Case 2: not sane, but salvageable.
+			$totalcnt = $rescnt;
+		} else {
+			# Case 3: hopeless.  Don't give a total count at all.
+			return wfMsgExt("category-$type-count-limited", 'parse', $rescnt);
+		}
+		return wfMsgExt( "category-$type-count", 'parse', $rescnt, $totalcnt );
 	}
 }
 

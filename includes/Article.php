@@ -2259,12 +2259,20 @@ class Article {
 		# Delete restrictions for it
 		$dbw->delete( 'page_restrictions', array ( 'pr_page' => $id ), __METHOD__ );
 
+		# Fix category table counts
+		$cats = array();
+		$res = $dbw->select( 'categorylinks', 'cl_to',
+			array( 'cl_from' => $id ), __METHOD__ );
+		foreach( $res as $row ) {
+			$cats []= $row->cl_to;
+		}
+		$this->updateCategoryCounts( array(), $cats, $dbw );
+
 		# Now that it's safely backed up, delete it
 		$dbw->delete( 'page', array( 'page_id' => $id ), __METHOD__);
 
 		# If using cascading deletes, we can skip some explicit deletes
 		if ( !$dbw->cascadingDeletes() ) {
-
 			$dbw->delete( 'revision', array( 'rev_page' => $id ), __METHOD__ );
 
 			if ($wgUseTrackbacks)
@@ -3340,4 +3348,55 @@ class Article {
 		$wgOut->addParserOutput( $parserOutput );
 	}
 
+	/**
+	 * Update all the appropriate counts in the category table, given that
+	 * we've added the categories $added and deleted the categories $deleted.
+	 *
+	 * @param $added array   The names of categories that were added
+	 * @param $deleted array The names of categories that were deleted
+	 * @param $dbw Database  Optional database connection to use
+	 * @return null
+	 */
+	public function updateCategoryCounts( $added, $deleted, $dbw = null ) {
+		$ns = $this->mTitle->getNamespace();
+		if( !$dbw ) {
+			$dbw = wfGetDB( DB_MASTER );
+		}
+
+		# First make sure the rows exist.  If one of the "deleted" ones didn't
+		# exist, we might legitimately not create it, but it's simpler to just
+		# create it and then give it a negative value, since the value is bogus
+		# anyway.
+		#
+		# Sometimes I wish we had INSERT ... ON DUPLICATE KEY UPDATE.
+		$insertCats = array_merge( $added, $deleted );
+		$insertRows = array();
+		foreach( $insertCats as $cat ) {
+			$insertRows []= array( 'cat_title' => $cat );
+		}
+		$dbw->insert( 'category', $insertRows, __METHOD__, 'IGNORE' );
+
+		$addFields    = array( 'cat_pages = cat_pages + 1' );
+		$removeFields = array( 'cat_pages = cat_pages - 1' );
+		if( $ns == NS_CATEGORY ) {
+			$addFields    []= 'cat_subcats = cat_subcats + 1';
+			$removeFields []= 'cat_subcats = cat_subcats - 1';
+		} elseif( $ns == NS_IMAGE ) {
+			$addFields    []= 'cat_files = cat_files + 1';
+			$removeFields []= 'cat_files = cat_files - 1';
+		}
+
+		$dbw->update(
+			'category',
+			$addFields,
+			array( 'cat_title' => $added ),
+			__METHOD__
+		);
+		$dbw->update(
+			'category',
+			$removeFields,
+			array( 'cat_title' => $deleted ),
+			__METHOD__
+		);
+	}
 }
