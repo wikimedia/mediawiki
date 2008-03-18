@@ -136,17 +136,22 @@ class ImageListPager extends TablePager {
 
 	function getForm() {
 		global $wgRequest, $wgMiserMode;
-		$url = $this->getTitle()->escapeLocalURL();
 		$search = $wgRequest->getText( 'ilsearch' );
-		$s = "<form method=\"get\" action=\"$url\">\n" .
-			wfMsgHtml( 'table_pager_limit', $this->getLimitSelect() );
+
+		$s = Xml::openElement( 'form', array( 'method' => 'get', 'action' => $this->getTitle()->getLocalURL(), 'id' => 'mw-imagelist-form' ) ) .
+			 Xml::openElement( 'fieldset' ) .
+			 Xml::element( 'legend', null, wfMsg( 'imagelist' ) ) .
+			 wfMsgHtml( 'table_pager_limit', $this->getLimitSelect() );
+
 		if ( !$wgMiserMode ) {
 			$s .= "<br/>\n" .
-			Xml::inputLabel( wfMsg( 'imagelist_search_for' ), 'ilsearch', 'mw-ilsearch', 20, $search );
+				Xml::inputLabel( wfMsg( 'imagelist_search_for' ), 'ilsearch', 'mw-ilsearch', 20, $search );
 		}
-		$s .= " " . Xml::submitButton( wfMsg( 'table_pager_limit_submit' ) ) ." \n" .
+		$s .= ' ' .
+			Xml::submitButton( wfMsg( 'table_pager_limit_submit' ) ) ." \n" .
 			$this->getHiddenFields( array( 'limit', 'ilsearch' ) ) .
-			"</form>\n";
+			Xml::closeElement( 'fieldset' ) .
+			Xml::closeElement( 'form' ) . "\n";
 		return $s;
 	}
 
