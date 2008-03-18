@@ -124,8 +124,11 @@ class LinksUpdate {
 			$this->getCategoryInsertions( $existing ) );
 
 		# Invalidate all categories which were added, deleted or changed (set symmetric difference)
-		$categoryUpdates = array_diff_assoc( $existing, $this->mCategories ) + array_diff_assoc( $this->mCategories, $existing );
+		$categoryInserts = array_diff_assoc( $this->mCategories, $existing );
+		$categoryDeletes = array_diff_assoc( $existing, $this->mCategories );
+		$categoryUpdates = $categoryInserts + $categoryDeletes;
 		$this->invalidateCategories( $categoryUpdates );
+		$this->updateCategoryCounts( $categoryInserts, $categoryDeletes );
 
 		# Page properties
 		$existing = $this->getExistingProperties();
@@ -155,7 +158,9 @@ class LinksUpdate {
 
 		# Refresh category pages and image description pages
 		$existing = $this->getExistingCategories();
-		$categoryUpdates = array_diff_assoc( $existing, $this->mCategories ) + array_diff_assoc( $this->mCategories, $existing );
+		$categoryInserts = array_diff_assoc( $this->mCategories, $existing );
+		$categoryDeletes = array_diff_assoc( $existing, $this->mCategoties );
+		$categoryUpdates = $categoryInserts + $categoryDeletes;
 		$existing = $this->getExistingImages();
 		$imageUpdates = array_diff_key( $existing, $this->mImages ) + array_diff_key( $this->mImages, $existing );
 
@@ -167,8 +172,10 @@ class LinksUpdate {
 		$this->dumbTableUpdate( 'langlinks',     $this->getInterlangInsertions(),'ll_from' );
 		$this->dumbTableUpdate( 'page_props',    $this->getPropertyInsertions(), 'pp_page' );
 
-		# Update the cache of all the category pages and image description pages which were changed
+		# Update the cache of all the category pages and image description
+		# pages which were changed, and fix the category table count
 		$this->invalidateCategories( $categoryUpdates );
+		$this->updateCategoryCounts( $categoryInserts, $categoryDeletes );
 		$this->invalidateImageDescriptions( $imageUpdates );
 
 		# Refresh links of all pages including this page
@@ -261,6 +268,18 @@ class LinksUpdate {
 		$this->invalidatePages( NS_CATEGORY, array_keys( $cats ) );
 	}
 
+	/**
+	 * Update all the appropriate counts in the category table.
+	 * @param $added associative array of category name => sort key
+	 * @param $deleted associative array of category name => sort key
+	 */
+	function updateCategoryCounts( $added, $deleted ) {
+		$a = new Article($this->mTitle);
+		$a->updateCategoryCounts(
+			array_keys( $added ), array_keys( $deleted ), $this->mDb
+		);
+	}
+
 	function invalidateImageDescriptions( $images ) {
 		$this->invalidatePages( NS_IMAGE, array_keys( $images ) );
 	}
@@ -268,9 +287,9 @@ class LinksUpdate {
 	function dumbTableUpdate( $table, $insertions, $fromField ) {
 		$this->mDb->delete( $table, array( $fromField => $this->mId ), __METHOD__ );
 		if ( count( $insertions ) ) {
-			# The link array was constructed without FOR UPDATE, so there may be collisions
-			# This may cause minor link table inconsistencies, which is better than
-			# crippling the site with lock contention.
+			# The link array was constructed without FOR UPDATE, so there may
+			# be collisions.  This may cause minor link table inconsistencies,
+			# which is better than crippling the site with lock contention.
 			$this->mDb->insert( $table, $insertions, __METHOD__, array( 'IGNORE' ) );
 		}
 	}

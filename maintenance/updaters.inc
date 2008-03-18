@@ -133,6 +133,8 @@ $wgMysqlUpdates = array(
 	array( 'add_field', 'ipblocks',      'ipb_by_text',      'patch-ipb_by_text.sql' ),
 	array( 'add_table', 'page_props',                        'patch-page_props.sql' ),
 	array( 'add_table', 'updatelog',                         'patch-updatelog.sql' ),
+	array( 'add_table', 'category',                          'patch-category.sql' ),
+	array( 'do_category_population' ),
 );
 
 
@@ -1133,6 +1135,20 @@ function do_restrictions_update() {
 		}
 		print "ok\n";
 	}
+}
+
+function do_category_population() {
+	if( update_row_exists( 'populate category' ) ) {
+		echo "...category table already populated.\n";
+		return;
+	}
+	require_once( 'populateCategory.inc' );
+	echo "Populating category table, printing progress markers.  ".
+"For large databases, you\n".
+"may want to hit Ctrl-C and do this manually with maintenance/\n".
+"populateCategory.php.\n";
+	populateCategory( '', 10, 0, true );
+	echo "Done populating category table.\n";
 }
 
 function
