@@ -65,7 +65,7 @@ class PageHistory {
 		 * Allow client caching.
 		 */
 
-		if( $wgOut->checkLastModified( $this->mArticle->getTimestamp() ) )
+		if( $wgOut->checkLastModified( $this->mArticle->getTouched() ) )
 			/* Client cache fresh and headers sent, nothing more to do. */
 			return;
 
