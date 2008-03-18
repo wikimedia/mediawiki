@@ -948,17 +948,17 @@ Si tienes esta imagen a toda resolución súbela, si no, por favor cambia el nom
 'upload_source_url'  => ' (una URL válida y accesible públicamente)',
 'upload_source_file' => ' (un archivo en su ordenador)',
 
-# Image list
-'imagelist'                 => 'Lista de imágenes',
-'imagelisttext'             => 'Abajo hay una lista de $1 imágenes ordenadas $2.',
-'getimagelist'              => ' obteniendo la lista de imágenes',
-'ilsubmit'                  => 'Búsqueda',
-'showlast'                  => 'Mostrar las últimas $1 imágenes ordenadas  $2.',
-'byname'                    => 'por nombre',
-'bydate'                    => 'por fecha',
-'bysize'                    => 'por tamaño',
-'imgdelete'                 => 'borr',
-'imgfile'                   => 'archivo',
+# Special:Imagelist
+'imagelist_search_for'  => 'Buscar por nombre de imagen:',
+'imgfile'               => 'archivo',
+'imagelist'             => 'Lista de imágenes',
+'imagelist_date'        => 'Fecha',
+'imagelist_name'        => 'Nombre',
+'imagelist_user'        => 'Usuario',
+'imagelist_size'        => 'Tamaño (bytes)',
+'imagelist_description' => 'Descripción',
+
+# Image description page
 'filehist'                  => 'Historial del archivo',
 'filehist-help'             => 'Haga clic sobre una fecha/hora para ver el
 archivo a esa fecha.',
@@ -978,12 +978,6 @@ archivo a esa fecha.',
 'noimage'                   => 'No existe un archivo con ese nombre, puede $1.',
 'noimage-linktext'          => 'subirlo',
 'uploadnewversion-linktext' => 'Subir una nueva versión de este archivo',
-'imagelist_date'            => 'Fecha',
-'imagelist_name'            => 'Nombre',
-'imagelist_user'            => 'Usuario',
-'imagelist_size'            => 'Tamaño (bytes)',
-'imagelist_description'     => 'Descripción',
-'imagelist_search_for'      => 'Buscar por nombre de imagen:',
 
 # File reversion
 'filerevert' => 'Revertir $1',
@@ -1382,8 +1376,6 @@ $1',
 'sp-contributions-username'    => 'Dirección IP o nombre de usuario:',
 'sp-contributions-submit'      => 'Buscar',
 
-'sp-newimages-showfrom' => 'Mostrar nuevas imágenes empezando por $1',
-
 # What links here
 'whatlinkshere'       => 'Lo que enlaza aquí',
 'whatlinkshere-title' => 'Páginas que enlazan a $1',
@@ -1760,8 +1752,12 @@ Todas las importaciones transwiki se registran en el [[Special:Log/import|regist
 'show-big-image-thumb' => '<small>Tamaño de esta vista previa: $1 × $2 píxeles</small>',
 
 # Special:Newimages
-'newimages' => 'Galería de imágenes nuevas',
-'noimages'  => 'No hay nada que ver.',
+'newimages'             => 'Galería de imágenes nuevas',
+'imagelisttext'         => 'Abajo hay una lista de $1 imágenes ordenadas $2.',
+'noimages'              => 'No hay nada que ver.',
+'ilsubmit'              => 'Búsqueda',
+'bydate'                => 'por fecha',
+'sp-newimages-showfrom' => 'Mostrar nuevas imágenes empezando por $1',
 
 # Bad image list
 'bad_image_list' => 'El formato sigue:

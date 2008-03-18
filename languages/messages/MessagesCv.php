@@ -61,9 +61,10 @@ $messages = array(
 'nov'       => 'Чӳк',
 'dec'       => 'Раш',
 
-# Bits of text used by many pages
-'categories'     => 'Категорисем',
-'pagecategories' => 'Категорисем',
+# Categories related messages
+'categories'             => 'Категорисем',
+'pagecategories'         => 'Категорисем',
+'listingcontinuesabbrev' => '(малалли)',
 
 'qbspecialpages' => 'Ятарлӑ страницӑсем',
 'and'            => 'тата',
@@ -117,7 +118,6 @@ $messages = array(
 'watchthis'      => 'Ку страницăна кěртекен  улшăнусем  хыççăн сăнамалла',
 'previewnote'    => 'Ку страницăна халлěхе çырса хуман. Эсир ку страницă мěнле пулассине кăна куратăр!!',
 'editing'        => '$1 тӳрлетни',
-'editinguser'    => '$1 тӳрлетни',
 'editingsection' => '$1 тӳрлетни (статья разделě)',
 'editingcomment' => '$1 тӳрлетни (кӗске анлантарӑвӗ)',
 'templatesused'  => 'Ку страница çинче усă курнă шаблонсем:',
@@ -142,6 +142,9 @@ $messages = array(
 'servertime'  => 'Сервер вăхăчě',
 'files'       => 'Файлсем',
 
+# User rights
+'editinguser' => '$1 тӳрлетни',
+
 # User rights log
 'rightslogtext' => 'Ку пользовательсен прависене улăштарниссен журналě',
 
@@ -164,9 +167,8 @@ $messages = array(
 'ignorewarnings' => 'Асăрхаттарусене шута илмелле мар',
 'uploaddisabled' => 'Каçарăр та сайта халĕ нимĕн те кĕртме юрамаст.',
 
-# Image list
+# Special:Imagelist
 'imagelist' => 'Ӳкерчěксен списокě',
-'ilsubmit'  => 'Шырамалла',
 
 # Random page
 'randompage' => 'Ăнсăртран илнě страницă',
@@ -218,7 +220,7 @@ $messages = array(
 'unblocklogentry' => '«$1» блокировкăран кăларнă',
 
 # Move page
-'move-page-legend'         => 'Страницăна куçарнă',
+'move-page-legend' => 'Страницăна куçарнă',
 'pagemovedsub'     => 'Куçарас ěç тěрěс иртрě',
 'talkpagemoved'    => 'Сӳтсе явмалли страницăн ятне те улăштартăмăр.',
 'talkpagenotmoved' => 'Сӳтсе явмалли страницăн ятне улăштарма пултараймарăмăр.',
@@ -248,11 +250,11 @@ $messages = array(
 # Attribution
 'others' => 'ыттисем',
 
-# Spam protection
-'listingcontinuesabbrev' => '(малалли)',
-
 # Info page
 'numedits' => 'Улшăнусен шучĕ (статьясем): $1',
+
+# Special:Newimages
+'ilsubmit' => 'Шырамалла',
 
 # Trackbacks
 'trackbackremove' => ' ([$1 кăларса пăрах])',

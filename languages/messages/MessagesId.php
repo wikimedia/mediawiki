@@ -377,7 +377,7 @@ $messages = array(
 'nov'           => 'Nov',
 'dec'           => 'Des',
 
-# Bits of text used by many pages
+# Categories related messages
 'categories'               => 'Daftar kategori',
 'pagecategories'           => '{{PLURAL:$1|Kategori|Kategori}}',
 'category_header'          => 'Artikel dalam kategori "$1"',
@@ -386,6 +386,8 @@ $messages = array(
 'category-empty'           => "''Kategori ini saat ini tak memiliki artikel atau media.''",
 'hidden-categories'        => '{{PLURAL:$1|Kategori tersembunyi|Kategori tersembunyi}}',
 'hidden-category-category' => 'Kategori tersembunyi', # Name of the category where hidden categories will be listed
+'subcategorycount'         => 'Ada $1 {{PLURAL:$1|subkategori|subkategori}} dalam kategori ini.',
+'listingcontinuesabbrev'   => 'samb.',
 
 'mainpagetext'      => "<big>'''MediaWiki telah terinstal dengan sukses'''</big>.",
 'mainpagedocfooter' => 'Silakan baca [http://meta.wikimedia.org/wiki/Help:Contents Panduan Pengguna] untuk informasi penggunaan perangkat lunak wiki.
@@ -956,8 +958,8 @@ Pengurus lain akan dapat mengakses isi tersebunyi dan dapat membatalkan penghapu
 'prevn'                 => '$1 sebelumnya',
 'nextn'                 => '$1 berikutnya',
 'viewprevnext'          => 'Lihat ($1) ($2) ($3)',
-'search-result-size'    => "$1 ({{PLURAL:$2|1 kata|$2 kata}})",
-'search-result-score'   => "Relevansi: $1%",
+'search-result-size'    => '$1 ({{PLURAL:$2|1 kata|$2 kata}})',
+'search-result-score'   => 'Relevansi: $1%',
 'showingresults'        => "Di bawah ini ditampilkan hingga {{PLURAL:$1|'''1''' hasil|'''$1''' hasil}}, dimulai dari #'''$2'''.",
 'showingresultsnum'     => "Di bawah ini ditampilkan{{PLURAL:$3|'''1''' hasil|'''$3''' hasil}}, dimulai dari #'''$2'''.",
 'nonefound'             => "'''Catatan''': Kegagalan pencarian biasanya disebabkan oleh pencarian kata-kata umum dalam bahasa Inggris, seperti \"have\" dan \"from\", yang biasanya tidak diindeks, atau dengan menentukan lebih dari satu kriteria pencarian (hanya halaman yang mengandung semua kriteria pencarianlah yang akan ditampilkan dalam hasil pencarian)",
@@ -1197,18 +1199,18 @@ Log penghapusan berkas adalah sebagai berikut:",
 'upload_source_url'  => ' (suatu URL valid yang dapat diakses publik)',
 'upload_source_file' => ' (suatu berkas di komputer Anda)',
 
-# Image list
-'imagelist'                 => 'Daftar berkas',
-'imagelisttext'             => "Di bawah ini adalah daftar '''$1''' {{PLURAL:$1|berkas|berkas}} diurutkan $2.",
-'getimagelist'              => 'mengambil daftar berkas',
-'ilsubmit'                  => 'Cari',
-'showlast'                  => 'Tampilkan $1 berkas terakhir diurutkan $2.',
-'byname'                    => 'berdasarkan nama',
-'bydate'                    => 'berdasarkan tanggal',
-'bysize'                    => 'berdasarkan ukuran',
-'imgdelete'                 => 'hps',
-'imgdesc'                   => 'desk',
-'imgfile'                   => 'berkas',
+# Special:Imagelist
+'imagelist_search_for'  => 'Cari nama berkas:',
+'imgdesc'               => 'desk',
+'imgfile'               => 'berkas',
+'imagelist'             => 'Daftar berkas',
+'imagelist_date'        => 'Tanggal',
+'imagelist_name'        => 'Nama',
+'imagelist_user'        => 'Pengguna',
+'imagelist_size'        => 'Besar',
+'imagelist_description' => 'Deskripsi',
+
+# Image description page
 'filehist'                  => 'Riwayat berkas',
 'filehist-help'             => 'Klik pada tanggal/waktu untuk melihat berkas ini pada saat tersebut.',
 'filehist-deleteall'        => 'hapus semua',
@@ -1230,12 +1232,6 @@ Log penghapusan berkas adalah sebagai berikut:",
 'noimage'                   => 'Tidak ada berkas dengan nama tersebut, Anda dapat $1.',
 'noimage-linktext'          => 'memuat berkas',
 'uploadnewversion-linktext' => 'Muatkan versi yang lebih baru dari berkas ini',
-'imagelist_date'            => 'Tanggal',
-'imagelist_name'            => 'Nama',
-'imagelist_user'            => 'Pengguna',
-'imagelist_size'            => 'Besar',
-'imagelist_description'     => 'Deskripsi',
-'imagelist_search_for'      => 'Cari nama berkas:',
 
 # File reversion
 'filerevert'                => 'Kembalikan $1',
@@ -1650,8 +1646,6 @@ $1',
 'sp-contributions-username'    => 'Alamat IP atau nama pengguna:',
 'sp-contributions-submit'      => 'Cari',
 
-'sp-newimages-showfrom' => 'Tampilkan berkas baru dimulai dari $1',
-
 # What links here
 'whatlinkshere'       => 'Pranala balik',
 'whatlinkshere-title' => 'Halaman yang memiliki pranala ke $1',
@@ -1766,7 +1760,7 @@ $1',
 
 # Move page
 'move-page'               => 'Pindahkan $1',
-'move-page-legend'                => 'Pindahkan halaman',
+'move-page-legend'        => 'Pindahkan halaman',
 'movepagetext'            => "Formulir di bawah ini digunakan untuk mengubah nama suatu halaman dan memindahkan semua data sejarah ke nama baru. Judul yang lama akan menjadi halaman peralihan menuju judul yang baru. Pranala kepada judul lama tidak akan berubah. Pastikan untuk memeriksa terhadap peralihan halaman yang rusak atau berganda setelah pemindahan. Anda bertanggung jawab untuk memastikan bahwa pranala terus menyambung ke halaman yang seharusnya.
 
 Perhatikan bahwa halaman '''tidak''' akan dipindah apabila telah ada halaman yang menggunakan judul yang baru, kecuali bila halaman tersebut kosong atau merupakan halaman peralihan dan tidak mempunyai sejarah penyuntingan. Ini berarti Anda dapat mengubah nama halaman kembali seperti semula apabila Anda membuat kesalahan, dan Anda tidak dapat menimpa halaman yang telah ada.
@@ -1966,16 +1960,12 @@ Jika Anda hanya ingin mengimpor versi sekarang, Anda juga dapat melakukan hal in
 'nocredits'        => 'Tidak ada informasi penghargaan yang tersedia untuk halaman ini.',
 
 # Spam protection
-'spamprotectiontitle'    => 'Filter pencegah spam',
-'spamprotectiontext'     => 'Halaman yang ingin Anda simpan diblokir oleh filter spam. Ini mungkin disebabkan oleh pranala ke situs luar.',
-'spamprotectionmatch'    => 'Teks berikut ini memancing filter spam kami: $1',
-'subcategorycount'       => 'Ada $1 {{PLURAL:$1|subkategori|subkategori}} dalam kategori ini.',
-'categoryarticlecount'   => 'Ada $1 {{PLURAL:$1|halaman|halaman}} dalam kategori ini.',
-'category-media-count'   => 'Ada $1 {{PLURAL:$1|berkas|berkas}} dalam kategori ini.',
-'listingcontinuesabbrev' => 'samb.',
-'spambot_username'       => 'Pembersihan span MediaWiki',
-'spam_reverting'         => 'Mengembalikan ke versi terakhir yang tak memiliki pranala ke $1',
-'spam_blanking'          => 'Semua revisi yang memiliki pranala ke $1, pengosongan',
+'spamprotectiontitle' => 'Filter pencegah spam',
+'spamprotectiontext'  => 'Halaman yang ingin Anda simpan diblokir oleh filter spam. Ini mungkin disebabkan oleh pranala ke situs luar.',
+'spamprotectionmatch' => 'Teks berikut ini memancing filter spam kami: $1',
+'spambot_username'    => 'Pembersihan span MediaWiki',
+'spam_reverting'      => 'Mengembalikan ke versi terakhir yang tak memiliki pranala ke $1',
+'spam_blanking'       => 'Semua revisi yang memiliki pranala ke $1, pengosongan',
 
 # Info page
 'infosubtitle'   => 'Informasi halaman',
@@ -2035,9 +2025,13 @@ Jika Anda hanya ingin mengimpor versi sekarang, Anda juga dapat melakukan hal in
 'show-big-image-thumb' => '<small>Ukuran pratayang ini: $1 × $2 piksel</small>',
 
 # Special:Newimages
-'newimages'    => 'Berkas baru',
-'showhidebots' => '($1 bot)',
-'noimages'     => 'Tidak ada yang dilihat.',
+'newimages'             => 'Berkas baru',
+'imagelisttext'         => "Di bawah ini adalah daftar '''$1''' {{PLURAL:$1|berkas|berkas}} diurutkan $2.",
+'showhidebots'          => '($1 bot)',
+'noimages'              => 'Tidak ada yang dilihat.',
+'ilsubmit'              => 'Cari',
+'bydate'                => 'berdasarkan tanggal',
+'sp-newimages-showfrom' => 'Tampilkan berkas baru dimulai dari $1',
 
 # Bad image list
 'bad_image_list' => 'Formatnya sebagai berikut:

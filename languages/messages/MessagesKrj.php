@@ -92,7 +92,7 @@ $messages = array(
 'nov'           => 'Nob',
 'dec'           => 'Dis',
 
-# Bits of text used by many pages
+# Categories related messages
 'categories'            => 'Manga Kategorya',
 'category_header'       => 'Manga artikolo sa "$1"',
 'subcategories'         => "Manga ''subcategory''",

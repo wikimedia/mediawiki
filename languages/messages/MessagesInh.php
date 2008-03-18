@@ -108,7 +108,7 @@ $messages = array(
 'nov'           => 'Ноя',
 'dec'           => 'Дек',
 
-# Bits of text used by many pages
+# Categories related messages
 'categories'            => 'Категореш',
 'pagecategories'        => '{{PLURAL:$1|Категори|Категореш}}',
 'category_header'       => '"$1" категори оагIонаш',

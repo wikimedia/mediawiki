@@ -380,8 +380,11 @@ $messages = array(
 'uploadbtn'       => 'Tau iha arkivu laran',
 'watchthisupload' => "Hateke pájina ne'e",
 
-# Image list
-'ilsubmit'           => 'Buka',
+# Special:Imagelist
+'imagelist_name' => 'Naran',
+'imagelist_user' => "Uza-na'in",
+
+# Image description page
 'filehist-deleteall' => 'halakon hotu',
 'filehist-deleteone' => "halakon ne'e",
 'filehist-current'   => 'atuál',
@@ -389,8 +392,6 @@ $messages = array(
 'filehist-user'      => "Uza-na'in",
 'filehist-comment'   => 'Komentáriu',
 'imagelinks'         => 'Ligasaun',
-'imagelist_name'     => 'Naran',
-'imagelist_user'     => "Uza-na'in",
 
 # File reversion
 'filerevert-comment' => 'Komentáriu:',
@@ -595,6 +596,7 @@ $messages = array(
 
 # Special:Newimages
 'showhidebots' => '($1 bot sira)',
+'ilsubmit'     => 'Buka',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'hotu',

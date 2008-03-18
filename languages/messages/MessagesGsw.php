@@ -84,11 +84,13 @@ $messages = array(
 'december'  => 'Dezämber',
 'may'       => 'Mei',
 
-# Bits of text used by many pages
-'categories'      => 'Kategorie',
-'pagecategories'  => '{{PLURAL:$1|Kategori|Kategorie}}',
-'category_header' => 'Artikel in de Kategori "$1"',
-'subcategories'   => 'Unterkategorie',
+# Categories related messages
+'categories'             => 'Kategorie',
+'pagecategories'         => '{{PLURAL:$1|Kategori|Kategorie}}',
+'category_header'        => 'Artikel in de Kategori "$1"',
+'subcategories'          => 'Unterkategorie',
+'subcategorycount'       => 'In sellere Kategori {{PLURAL:$1|isch no ei Unterkategori|sin no $1 Unterkategorie}}.',
+'listingcontinuesabbrev' => '(Forts.)',
 
 'mainpagetext'      => 'MediaWiki isch erfolgrich inschtalliert worre.',
 'mainpagedocfooter' => 'Luege uf d [http://meta.wikimedia.org/wiki/MediaWiki_localisation Dokumentation fier d Onpassung vun de Bnutzeroberflächi] un s [http://meta.wikimedia.org/wiki/Help:Contents Bnutzerhondbuech] fier d Hilf yber d Bnutzung un s Ystelle.',
@@ -512,12 +514,10 @@ or
 * '''<nowiki>[[</nowiki>{{ns:media}}<nowiki>:file.ogg]]</nowiki>'''
 go direkt e Gleich uff d Datei z'mache.",
 
-# Image list
-'imagelist'        => 'Lischte vo Bilder',
-'imagelisttext'    => 'Hier ist eine Liste von $1 Bildern, sortiert $2.',
-'getimagelist'     => 'Lade Bilderliste',
-'ilsubmit'         => 'Suech',
-'showlast'         => 'Zeige die letzten $1 Bilder, sortiert nach $2.',
+# Special:Imagelist
+'imagelist' => 'Lischte vo Bilder',
+
+# Image description page
 'imagelinks'       => 'Bildverweise',
 'linkstoimage'     => 'Di folgende Sytene händ en Link zu dem Bildli:',
 'nolinkstoimage'   => 'Kein Artikel benutzt dieses Bild.',
@@ -808,10 +808,7 @@ I söttigne Fäll müessti d Diskussionssyten allefalls vo Hand kopiert wärde."
 'othercontribs'    => 'Basiert auf der Arbeit von $1.',
 
 # Spam protection
-'spamprotectiontitle'    => 'Spamschutz-Filter',
-'subcategorycount'       => 'In sellere Kategori {{PLURAL:$1|isch no ei Unterkategori|sin no $1 Unterkategorie}}.',
-'categoryarticlecount'   => 'In sellere Kategorie {{PLURAL:$1|isch ei Artikel|sin $1 Artikel}}.',
-'listingcontinuesabbrev' => '(Forts.)',
+'spamprotectiontitle' => 'Spamschutz-Filter',
 
 # Math options
 'mw_math_png'    => 'Immer als PNG aazeige',
@@ -844,7 +841,9 @@ sollte umgehend ein Administrator informiert werden!',
 'thumbsize'    => 'Bildvorschou-Gröössi:',
 
 # Special:Newimages
-'newimages' => 'Gallery vo noie Bilder',
+'newimages'     => 'Gallery vo noie Bilder',
+'imagelisttext' => 'Hier ist eine Liste von $1 Bildern, sortiert $2.',
+'ilsubmit'      => 'Suech',
 
 # EXIF tags
 'exif-orientation'       => 'Orientierung',

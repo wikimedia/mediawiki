@@ -1036,18 +1036,17 @@ Til að tengja í skrána frá síðu, notaðu eftirfarandi aðferðir
 'nolicense'          => 'Ekkert valið',
 'upload_source_file' => '(skrá á tölvunni þinni)',
 
-# Image list
-'imagelist'                 => 'Skráalisti',
-'imagelisttext'             => 'Hér fyrir neðan er {{PLURAL:$1|einni skrá|$1 skrám}} raðað $2.',
-'getimagelist'              => 'sæki skráarlista',
-'ilsubmit'                  => 'Leita',
-'showlast'                  => 'Sýna síðustu $1 skrár raðaðar $2.',
-'byname'                    => 'eftir nafni',
-'bydate'                    => 'eftir dagsetningu',
-'bysize'                    => 'eftir stærð',
-'imgdelete'                 => 'eyða',
-'imgdesc'                   => 'lýsing',
-'imgfile'                   => 'skrá',
+# Special:Imagelist
+'imgdesc'               => 'lýsing',
+'imgfile'               => 'skrá',
+'imagelist'             => 'Skráalisti',
+'imagelist_date'        => 'Dagsetning',
+'imagelist_name'        => 'Nafn',
+'imagelist_user'        => 'Notandi',
+'imagelist_size'        => 'Stærð (bæti)',
+'imagelist_description' => 'Lýsing',
+
+# Image description page
 'filehist'                  => 'Breytingaskrá skjals',
 'filehist-deleteall'        => 'eyða öllu',
 'filehist-deleteone'        => 'eyða þessu',
@@ -1065,11 +1064,6 @@ Til að tengja í skrána frá síðu, notaðu eftirfarandi aðferðir
 'noimage'                   => 'Engin skrá með þessu nafni er til. Þú getur $1.',
 'noimage-linktext'          => 'hlaðið henni inn',
 'uploadnewversion-linktext' => 'Hlaða inn nýrri útgáfu af þessari skrá',
-'imagelist_date'            => 'Dagsetning',
-'imagelist_name'            => 'Nafn',
-'imagelist_user'            => 'Notandi',
-'imagelist_size'            => 'Stærð (bæti)',
-'imagelist_description'     => 'Lýsing',
 
 # File reversion
 'filerevert-comment' => 'Athugasemdir:',
@@ -1746,9 +1740,12 @@ Allir innflutningar eru skráð í [[{{ns:special}}:Log/import|innflutningsskrá
 'show-big-image-thumb' => '<small>Myndin er í upplausninni $1 × $2 </small>',
 
 # Special:Newimages
-'newimages'    => 'Myndasafn nýlegra skráa',
-'showhidebots' => '($1 vélmenni)',
-'noimages'     => 'Ekkert að sjá.',
+'newimages'     => 'Myndasafn nýlegra skráa',
+'imagelisttext' => 'Hér fyrir neðan er {{PLURAL:$1|einni skrá|$1 skrám}} raðað $2.',
+'showhidebots'  => '($1 vélmenni)',
+'noimages'      => 'Ekkert að sjá.',
+'ilsubmit'      => 'Leita',
+'bydate'        => 'eftir dagsetningu',
 
 # Metadata
 'metadata'          => 'Lýsigögn',

@@ -165,7 +165,7 @@ $messages = array(
 'nov'           => '十一月',
 'dec'           => '十二月',
 
-# Bits of text used by many pages
+# Categories related messages
 'categories'               => '類',
 'pagecategories'           => '$1類',
 'category_header'          => '"$1"',
@@ -174,6 +174,8 @@ $messages = array(
 'category-empty'           => "''無文也。''",
 'hidden-categories'        => '$1隱類',
 'hidden-category-category' => '隱類', # Name of the category where hidden categories will be listed
+'subcategorycount'         => '門有戶$1。',
+'listingcontinuesabbrev'   => '續',
 
 'mainpagetext'      => "<big>'''媒維基安置矣'''</big>",
 'mainpagedocfooter' => "欲識維基，見[http://meta.wikimedia.org/wiki/Help:Contents User's Guide] 
@@ -676,8 +678,8 @@ $2',
 'prevn'                 => '前$1',
 'nextn'                 => '次$1',
 'viewprevnext'          => '見（$1）（$2）（$3）',
-'search-result-size'    => "$1 （$2字）",
-'search-result-score'   => "關：$1%",
+'search-result-size'    => '$1 （$2字）',
+'search-result-score'   => '關：$1%',
 'showingresults'        => '見<b>$1</b>尋，自<b>$2</b>始：',
 'showingresultsnum'     => '見<b>$3</b>尋，自<b>$2</b>始：',
 'powersearch'           => '尋',
@@ -734,7 +736,7 @@ $2',
 'userrights-lookup-user'           => '司社',
 'userrights-user-editname'         => '簿名：',
 'editusergroup'                    => '治社',
-'editinguser'               => "正纂簿'''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]]) 之權",
+'editinguser'                      => "正纂簿'''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]]) 之權",
 'userrights-editusergroup'         => '治社',
 'saveusergroups'                   => '定之',
 'userrights-groupsmember'          => '有員：',
@@ -855,14 +857,17 @@ $2',
 
 'license-nopreview' => '（謝草覽）',
 
-# Image list
-'ilsubmit'                  => '尋檔',
-'byname'                    => '名序',
-'bydate'                    => '時序',
-'bysize'                    => '幅序',
-'imgdelete'                 => '刪',
-'imgdesc'                   => '述',
-'imgfile'                   => '檔',
+# Special:Imagelist
+'imagelist_search_for'  => '以媒名尋：',
+'imgdesc'               => '述',
+'imgfile'               => '檔',
+'imagelist_date'        => '時',
+'imagelist_name'        => '名',
+'imagelist_user'        => '簿',
+'imagelist_size'        => '幅（位元組）',
+'imagelist_description' => '述',
+
+# Image description page
 'filehist'                  => '檔史',
 'filehist-help'             => '揀日尋檔。',
 'filehist-deleteall'        => '全刪',
@@ -878,12 +883,6 @@ $2',
 'shareduploadwiki'          => '詳閱$1。',
 'shareduploadwiki-desc'     => '$1上之示。',
 'shareduploadwiki-linktext' => '檔述',
-'imagelist_date'            => '時',
-'imagelist_name'            => '名',
-'imagelist_user'            => '簿',
-'imagelist_size'            => '幅（位元組）',
-'imagelist_description'     => '述',
-'imagelist_search_for'      => '以媒名尋：',
 
 # File reversion
 'filerevert'                => '還$1',
@@ -1219,7 +1218,7 @@ $NEWPAGE
 # Undelete
 'undelete'                     => '覽刪',
 'undeletepage'                 => '覽刪並還之',
-'undeletepagetitle'            => '\'\'\'如下含[[:$1]]刪之審\'\'\'。',
+'undeletepagetitle'            => "'''如下含[[:$1]]刪之審'''。",
 'viewdeletedpage'              => '覽刪',
 'undeletepagetext'             => '如下已刪，備謄以還；曆滿乃清之。',
 'undeleteextrahelp'            => "欲還題，撤核後令'''''還刪'''''。欲還某審，核之再令。欲清核、贊，令之'''''歸白'''''。",
@@ -1230,7 +1229,7 @@ $NEWPAGE
 'undelete-revision'            => '自$2，$3纂之$1審刪如下：',
 'undeleterevision-missing'     => '審謬失；棄、還或鏈亡。',
 'undeletebtn'                  => '還',
-'undeletelink'                  => '還',
+'undeletelink'                 => '還',
 'undeletereset'                => '歸白',
 'undeletecomment'              => '贊日',
 'undeletedarticle'             => '還焉"[[$1]]"',
@@ -1274,8 +1273,6 @@ $NEWPAGE
 'sp-contributions-search'      => '問勛',
 'sp-contributions-username'    => '簿名或IP址',
 'sp-contributions-submit'      => '問',
-
-'sp-newimages-showfrom' => '自$1賞新檔',
 
 # What links here
 'whatlinkshere'       => '取佐',
@@ -1564,16 +1561,12 @@ $NEWPAGE
 'nocredits'        => '本頁未有贊信也。',
 
 # Spam protection
-'spamprotectiontitle'    => '防賈濫',
-'spamprotectiontext'     => '外鏈疑賈，存頁止焉。',
-'spamprotectionmatch'    => '憑如下：$1',
-'subcategorycount'       => '門有戶$1。',
-'categoryarticlecount'   => '門有文$1。',
-'category-media-count'   => '門有檔$1。',
-'listingcontinuesabbrev' => '續',
-'spambot_username'       => 'MediaWiki清濫',
-'spam_reverting'         => '還新審之無鏈$1者。',
-'spam_blanking'          => '審皆鏈$1，遂令白頁。',
+'spamprotectiontitle' => '防賈濫',
+'spamprotectiontext'  => '外鏈疑賈，存頁止焉。',
+'spamprotectionmatch' => '憑如下：$1',
+'spambot_username'    => 'MediaWiki清濫',
+'spam_reverting'      => '還新審之無鏈$1者。',
+'spam_blanking'       => '審皆鏈$1，遂令白頁。',
 
 # Info page
 'infosubtitle'   => '頁註',
@@ -1632,9 +1625,12 @@ $NEWPAGE
 'show-big-image-thumb' => '<small>縮圖幅有像素$1矩$2</small>',
 
 # Special:Newimages
-'newimages'    => '新圖之廊',
-'showhidebots' => '（$1僕）',
-'noimages'     => '無可見。',
+'newimages'             => '新圖之廊',
+'showhidebots'          => '（$1僕）',
+'noimages'              => '無可見。',
+'ilsubmit'              => '尋檔',
+'bydate'                => '時序',
+'sp-newimages-showfrom' => '自$1賞新檔',
 
 # Video information, used by Language::formatTimePeriod() to format lengths in the above messages
 'video-dims' => '$1，$2矩$3',
@@ -1723,7 +1719,7 @@ $1',
 'hideresults'      => '藏',
 'useajaxsearch'    => '用AJAX尋之',
 
-# Separators for various lists
+# Separators for various lists, etc.
 'comma-separator' => '、',
 'colon-separator' => '：',
 

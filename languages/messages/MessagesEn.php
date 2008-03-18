@@ -580,7 +580,7 @@ XHTML id names.
 'category-file-count-limited'    => 'The following {{PLURAL:$1|file is|$1 files are}} in the current category.',
 'listingcontinuesabbrev'         => 'cont.',
 
-'linkprefix'        => '/^(.*?)([a-zA-Z\x80-\xff]+)$/sD', # only translate this message to other languages if you have to change it
+'linkprefix'        => '/^(.*?)([a-zA-Z\\x80-\\xff]+)$/sD', # only translate this message to other languages if you have to change it
 'mainpagetext'      => "<big>'''MediaWiki has been successfully installed.'''</big>",
 'mainpagedocfooter' => "Consult the [http://meta.wikimedia.org/wiki/Help:Contents User's Guide] for information on using the wiki software.
 
@@ -1509,7 +1509,7 @@ PICT # misc.
 'upload_source_file' => ' (a file on your computer)',
 
 # Special:Imagelist
-'imagelist-summary'     => 'This special page shows all uploaded files. By default the last uploaded files are shown at top of the list. A click on a column header changes the sorting.', 
+'imagelist-summary'     => 'This special page shows all uploaded files. By default the last uploaded files are shown at top of the list. A click on a column header changes the sorting.',
 'imagelist_search_for'  => 'Search for media name:',
 'imgdesc'               => 'desc',
 'imgfile'               => 'file',
@@ -2416,12 +2416,12 @@ All transwiki import actions are logged at the [[Special:Log/import|import log]]
 'nocredits'        => 'There is no credits info available for this page.',
 
 # Spam protection
-'spamprotectiontitle'            => 'Spam protection filter',
-'spamprotectiontext'             => 'The page you wanted to save was blocked by the spam filter. This is probably caused by a link to an external site.',
-'spamprotectionmatch'            => 'The following text is what triggered our spam filter: $1',
-'spambot_username'               => 'MediaWiki spam cleanup',
-'spam_reverting'                 => 'Reverting to last version not containing links to $1',
-'spam_blanking'                  => 'All revisions contained links to $1, blanking',
+'spamprotectiontitle' => 'Spam protection filter',
+'spamprotectiontext'  => 'The page you wanted to save was blocked by the spam filter. This is probably caused by a link to an external site.',
+'spamprotectionmatch' => 'The following text is what triggered our spam filter: $1',
+'spambot_username'    => 'MediaWiki spam cleanup',
+'spam_reverting'      => 'Reverting to last version not containing links to $1',
+'spam_blanking'       => 'All revisions contained links to $1, blanking',
 
 # Info page
 'infosubtitle'   => 'Information for page',

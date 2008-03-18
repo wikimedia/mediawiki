@@ -849,15 +849,16 @@ Zanibe, ku ev barkirina kê were qebûlkirin ya na.
 
 'license' => 'Lîsens:',
 
-# Image list
-'imagelist'                 => 'Listeya wêneyan',
-'imagelisttext'             => "Jêr lîsteyek ji $1 file'an heye, duxrekirin $2.",
-'ilsubmit'                  => 'Lêbigere',
-'showlast'                  => '$1 wêneyên dawî bi rêz kirî $2 nîşan bide.',
-'byname'                    => 'li gor navê',
-'bydate'                    => 'li gor dîrokê',
-'bysize'                    => 'li gor mezinayiyê',
-'imgdelete'                 => 'jêb',
+# Special:Imagelist
+'imagelist_search_for'  => 'Li navî wêneyê bigere:',
+'imagelist'             => 'Listeya wêneyan',
+'imagelist_date'        => 'Dem',
+'imagelist_name'        => 'Nav',
+'imagelist_user'        => 'Bikarhêner',
+'imagelist_size'        => 'Mezinbûn',
+'imagelist_description' => 'Wesif',
+
+# Image description page
 'filehist'                  => 'Dîroka datayê',
 'filehist-help'             => 'Li demekê xe ji bo dîtina verzyona wê demê',
 'filehist-deleteall'        => 'giştika jêbibe',
@@ -875,12 +876,6 @@ Zanibe, ku ev barkirina kê were qebûlkirin ya na.
 'noimage'                   => 'Medyayek bi vê navî tune, lê tu kanî $1',
 'noimage-linktext'          => 'wê barbike',
 'uploadnewversion-linktext' => 'Versyonekî nû yê vê datayê barbike',
-'imagelist_date'            => 'Dem',
-'imagelist_name'            => 'Nav',
-'imagelist_user'            => 'Bikarhêner',
-'imagelist_size'            => 'Mezinbûn',
-'imagelist_description'     => 'Wesif',
-'imagelist_search_for'      => 'Li navî wêneyê bigere:',
 
 # File reversion
 'filerevert'         => '"$1" şondabike',
@@ -1228,8 +1223,6 @@ Ji bo jêbirinan û çêkirinên nuh ra, xêra xwe di [[Special:Log/delete|reşa
 'sp-contributions-username'    => 'Adresê IP ya navî bikarhêner:',
 'sp-contributions-submit'      => 'Lêbigere',
 
-'sp-newimages-showfrom' => "Data'yên nuh ji dema $1 da bibîne",
-
 # What links here
 'whatlinkshere'       => 'Lînk yê tên ser vê rûpelê',
 'whatlinkshere-title' => 'Rûpelan, yê berve $1 tên',
@@ -1527,9 +1520,13 @@ if (wgUserLanguage == "ku-arab")
 'show-big-image-thumb' => '<small>Mezinbûna vê pêşnîşandanê: $1 × $2 pixel</small>',
 
 # Special:Newimages
-'newimages'    => 'Pêşangeha wêneyên nû',
-'showhidebots' => "($1 bot'an)",
-'noimages'     => 'Ne tiştek tê dîtin.',
+'newimages'             => 'Pêşangeha wêneyên nû',
+'imagelisttext'         => "Jêr lîsteyek ji $1 file'an heye, duxrekirin $2.",
+'showhidebots'          => "($1 bot'an)",
+'noimages'              => 'Ne tiştek tê dîtin.',
+'ilsubmit'              => 'Lêbigere',
+'bydate'                => 'li gor dîrokê',
+'sp-newimages-showfrom' => "Data'yên nuh ji dema $1 da bibîne",
 
 # Variants for Kurdish language
 'variantname-ku-arab' => 'tîpên erebî',

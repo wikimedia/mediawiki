@@ -479,13 +479,15 @@ $messages = array(
 'nov'           => 'qar',
 'dec'           => 'jel',
 
-# Bits of text used by many pages
-'categories'            => 'Sanattar',
-'pagecategories'        => '{{PLURAL:$1|Sanat|Sanattar}}',
-'category_header'       => '«$1» sanatındağı better',
-'subcategories'         => 'Sanatşalar',
-'category-media-header' => '«$1» sanatındağı taspalar',
-'category-empty'        => "''Bul sanatta ağımda eş bet ne taspa joq.''",
+# Categories related messages
+'categories'             => 'Sanattar',
+'pagecategories'         => '{{PLURAL:$1|Sanat|Sanattar}}',
+'category_header'        => '«$1» sanatındağı better',
+'subcategories'          => 'Sanatşalar',
+'category-media-header'  => '«$1» sanatındağı taspalar',
+'category-empty'         => "''Bul sanatta ağımda eş bet ne taspa joq.''",
+'subcategorycount'       => 'Bul sanatta {{PLURAL:$1|bir|$1}} sanatşa bar.',
+'listingcontinuesabbrev' => '(jalğ.)',
 
 'mainpagetext'      => "<big>'''MedïaWïkï bağdarlaması sätti ornatıldı.'''</big>",
 'mainpagedocfooter' => 'Wïkï bağdarlamasın paýdalanw aqparatı üşin [http://meta.wikimedia.org/wiki/Help:Contents Paýdalanwşı nusqawlarımen] tanısıñız.
@@ -939,7 +941,6 @@ Qaýta baýqap köriñiz. Eger bul äli istemese, şığwdı jäne qaýta kirwdi
 emle tañbaların keskilep tastadı. Bet mätini bülinbew üşin tüzetwiñiz taýdırıladı.
 Bul ğalamtorğa negizdelingen qate tolğan tirkelwi joq proksï-serverdi paýdalanğan bolwı mümkin.</strong>',
 'editing'                   => 'Öñdelwde: $1',
-'editinguser'               => 'Öñdelwde: <b>$1</b> degen qatıswşı',
 'editingsection'            => 'Öñdelwde: $1 (bölimi)',
 'editingcomment'            => 'Öñdelwde: $1 (mändemesi)',
 'editconflict'              => 'Öñdew qaqtığısı: $1',
@@ -1208,6 +1209,7 @@ barlıq şart sözder kedesse körsetiledi) bolwı mümkin.",
 'userrights-lookup-user'           => 'Qatıswşı toptarın rettew',
 'userrights-user-editname'         => 'Qatıswşı atın engiziñiz:',
 'editusergroup'                    => 'Qatıswşı toptarın öñdew',
+'editinguser'                      => 'Öñdelwde: <b>$1</b> degen qatıswşı',
 'userrights-editusergroup'         => 'Qatıswşı toptarın öñdew',
 'saveusergroups'                   => 'Qatıswşı toptarın saqtaw',
 'userrights-groupsmember'          => 'Müşeligi:',
@@ -1373,18 +1375,18 @@ Qolaýlı bolwı üşin bul faýldıñ joyw jwrnalı keltirilgen:",
 'upload_source_url'  => ' (jaramdı, barşağa qatınawlı URL jaý)',
 'upload_source_file' => ' (komp′ywteriñizdegi faýl)',
 
-# Image list
-'imagelist'                 => 'Faýl tizimi',
-'imagelisttext'             => "Tömende $2 surıptalğan {{PLURAL:$1|'''1'''|'''$1'''}} faýl tizimi.",
-'getimagelist'              => 'faýl tizimin keltirwde',
-'ilsubmit'                  => 'İzde',
-'showlast'                  => 'Soñğı $1 faýldı $2 surıptap körset.',
-'byname'                    => 'atawımen',
-'bydate'                    => 'kün-aýımen',
-'bysize'                    => 'mölşerimen',
-'imgdelete'                 => 'joyw',
-'imgdesc'                   => 'sïpp.',
-'imgfile'                   => 'faýl',
+# Special:Imagelist
+'imagelist_search_for'  => 'Swretti atawımen izdew:',
+'imgdesc'               => 'sïpp.',
+'imgfile'               => 'faýl',
+'imagelist'             => 'Faýl tizimi',
+'imagelist_date'        => 'Kün-aýı',
+'imagelist_name'        => 'Atawı',
+'imagelist_user'        => 'Qatıswşı',
+'imagelist_size'        => 'Mölşeri',
+'imagelist_description' => 'Sïpattaması',
+
+# Image description page
 'filehist'                  => 'Faýl tarïxı',
 'filehist-help'             => 'Faýldıñ qaý waqıtta qalaý körinetin üşin Kün-aý/Waqıt degendi nuqıñız.',
 'filehist-deleteall'        => 'barlığın joý',
@@ -1405,12 +1407,6 @@ Qolaýlı bolwı üşin bul faýldıñ joyw jwrnalı keltirilgen:",
 'noimage'                   => 'Mınadaý atawlı faýl joq, $1 mümkindigiñiz bar.',
 'noimage-linktext'          => 'bunı qotarw',
 'uploadnewversion-linktext' => 'Bul faýldıñ jaña nusqasın qotarw',
-'imagelist_date'            => 'Kün-aýı',
-'imagelist_name'            => 'Atawı',
-'imagelist_user'            => 'Qatıswşı',
-'imagelist_size'            => 'Mölşeri',
-'imagelist_description'     => 'Sïpattaması',
-'imagelist_search_for'      => 'Swretti atawımen izdew:',
 
 # File reversion
 'filerevert'                => '$1 degendi qaýtarw',
@@ -1549,7 +1545,6 @@ Ağımdıq [http://meta.wikimedia.org/wiki/Help:Job_queue tapsırım kezegi] uz�
 'newpages'                => 'Eñ jaña better',
 'newpages-username'       => 'Qatıswşı atı:',
 'ancientpages'            => 'Eñ eski better',
-'intl'                    => 'Tilaralıq siltemeler',
 'move'                    => 'Jıljıtw',
 'movethispage'            => 'Betti jıljıtw',
 'unusedimagestext'        => '<p>Añğartpa: Ğalamtordağı basqa toraptar faýldıñ
@@ -1867,8 +1862,6 @@ $1',
 'sp-contributions-username'    => 'IP jaý ne qatıswşı atı:',
 'sp-contributions-submit'      => 'İzde',
 
-'sp-newimages-showfrom' => '$1 kezinen beri — jaña swretterdi körset',
-
 # What links here
 'whatlinkshere'       => 'Siltelgen better',
 'whatlinkshere-title' => '$1 degenge silteýtin better',
@@ -1996,7 +1989,7 @@ Osı maqsatıñızdı quptañız.',
 'databasenotlocked'   => 'Derekqor qulıptalğan joq.',
 
 # Move page
-'move-page-legend'                => 'Betti jıljıtw',
+'move-page-legend'        => 'Betti jıljıtw',
 'movepagetext'            => "Tömendegi pişindi qoldanıp betterdi qaýta ataýdı,
 barlıq tarïxın jaña atawğa jıljıtadı.
 Burınğı bet atawı jaña atawğa aýdatatın bet boladı.
@@ -2208,16 +2201,12 @@ Barlıq wïkï-tasımaldap sırttan alw äreketter [[{{ns:special}}:Log/import|s
 'nocredits'        => 'Bul betti jazğandar twralı aqparat joq.',
 
 # Spam protection
-'spamprotectiontitle'    => '«Spam»-nan qorğaýtın süzgi',
-'spamprotectiontext'     => 'Bul bettiñ saqtawın «spam» süzgisi buğattadı. Bunıñ sebebi sırtqı torap siltemesinen bolwı mümkin.',
-'spamprotectionmatch'    => 'Kelesi «spam» mätini süzgilengen: $1',
-'subcategorycount'       => 'Bul sanatta {{PLURAL:$1|bir|$1}} sanatşa bar.',
-'categoryarticlecount'   => 'Bul sanatta {{PLURAL:$1|bir|$1}} bet bar.',
-'category-media-count'   => 'Bul sanatta {{PLURAL:$1|bir|$1}} faýl bar.',
-'listingcontinuesabbrev' => '(jalğ.)',
-'spambot_username'       => 'MediaWiki spam cleanup',
-'spam_reverting'         => '$1 degenge siltemesi joq soñğı nusqasına qaýtarıldı',
-'spam_blanking'          => '$1 degenge siltemesi bar barlıq nusqalar tazartıldı',
+'spamprotectiontitle' => '«Spam»-nan qorğaýtın süzgi',
+'spamprotectiontext'  => 'Bul bettiñ saqtawın «spam» süzgisi buğattadı. Bunıñ sebebi sırtqı torap siltemesinen bolwı mümkin.',
+'spamprotectionmatch' => 'Kelesi «spam» mätini süzgilengen: $1',
+'spambot_username'    => 'MediaWiki spam cleanup',
+'spam_reverting'      => '$1 degenge siltemesi joq soñğı nusqasına qaýtarıldı',
+'spam_blanking'       => '$1 degenge siltemesi bar barlıq nusqalar tazartıldı',
 
 # Info page
 'infosubtitle'   => 'Bet twralı mälimet',
@@ -2281,9 +2270,13 @@ $1',
 'show-big-image-thumb' => '<small>Qarap şığw mölşeri: $1 × $2 pïksel</small>',
 
 # Special:Newimages
-'newimages'    => 'Eñ jaña faýldar qoýması',
-'showhidebots' => '(bottardı $1)',
-'noimages'     => 'Köretin eşteñe joq.',
+'newimages'             => 'Eñ jaña faýldar qoýması',
+'imagelisttext'         => "Tömende $2 surıptalğan {{PLURAL:$1|'''1'''|'''$1'''}} faýl tizimi.",
+'showhidebots'          => '(bottardı $1)',
+'noimages'              => 'Köretin eşteñe joq.',
+'ilsubmit'              => 'İzde',
+'bydate'                => 'kün-aýımen',
+'sp-newimages-showfrom' => '$1 kezinen beri — jaña swretterdi körset',
 
 # Video information, used by Language::formatTimePeriod() to format lengths in the above messages
 'video-dims'     => '$1, $2 × $3',
@@ -2650,7 +2643,7 @@ $1',
 'hideresults'      => 'Nätïjelerdi jasır',
 'useajaxsearch'    => 'AJAX qoldanıp izdew',
 
-# Separators for various lists
+# Separators for various lists, etc.
 'semicolon-separator' => ';',
 'comma-separator'     => ',&#32;',
 

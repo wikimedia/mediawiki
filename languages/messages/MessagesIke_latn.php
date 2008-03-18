@@ -46,7 +46,7 @@ $messages = array(
 'aug'          => 'augu',
 'nov'          => 'nuvi',
 
-# Bits of text used by many pages
+# Categories related messages
 'categories' => 'nuapput',
 
 'about'          => 'miksaani',
@@ -208,12 +208,6 @@ pigivuq qatannguti uikipitia kiinaujaqutiqarvik isuillingaitjapaa. iqtuu suqusiq
 'fileuploadsummary' => 'suvit:',
 'watchthisupload'   => 'uvva',
 
-# Image list
-'ilsubmit' => 'ivaaqpuq',
-'byname'   => 'sanirvaqatigiipput atuinnasivuq qatsipaa',
-'bydate'   => 'pitaaruttuq inuulirvik',
-'bysize'   => 'sanirvaqatigiipput atuinnasivuq turqipaa',
-
 # List redirects
 'listredirects' => 'nipi qaningani kamagijaq aasit nakit',
 
@@ -340,6 +334,10 @@ pigivuq qatannguti uikipitia kiinaujaqutiqarvik isuillingaitjapaa. iqtuu suqusiq
 # Browsing diffs
 'previousdiff' => '← tunullipaaq asiaNngutuq',
 'nextdiff'     => 'tagga asiaNngutuq mappitaq →',
+
+# Special:Newimages
+'ilsubmit' => 'ivaaqpuq',
+'bydate'   => 'pitaaruttuq inuulirvik',
 
 # EXIF tags
 'exif-imagelength'         => 'qutsingniq',

@@ -143,13 +143,15 @@ $messages = array(
 'nov'           => 'ნოე',
 'dec'           => 'დეკ',
 
-# Bits of text used by many pages
-'categories'            => '{{PLURAL:$1|კატეგორია|კატეგორიები}}',
-'pagecategories'        => '{{PLURAL:$1|კატეგორია|კატეგორიები}}',
-'category_header'       => 'სტატიები კატეგორიაში "$1"',
-'subcategories'         => 'ქვეკატეგორიები',
-'category-media-header' => 'მედია კატეგორიაში "$1"',
-'category-empty'        => "''ეს კატეგორია ამჟამად გვერდებს ან მედიას არ შეიცავს.''",
+# Categories related messages
+'categories'             => '{{PLURAL:$1|კატეგორია|კატეგორიები}}',
+'pagecategories'         => '{{PLURAL:$1|კატეგორია|კატეგორიები}}',
+'category_header'        => 'სტატიები კატეგორიაში "$1"',
+'subcategories'          => 'ქვეკატეგორიები',
+'category-media-header'  => 'მედია კატეგორიაში "$1"',
+'category-empty'         => "''ეს კატეგორია ამჟამად გვერდებს ან მედიას არ შეიცავს.''",
+'subcategorycount'       => 'ამ კატეგორიაში $1 ქვეკატეგორიაა.',
+'listingcontinuesabbrev' => 'გაგრძ.',
 
 'linkprefix'        => '/^(.*?)(„|«)$/sD',
 'mainpagetext'      => "<big>'''მედიავიკი წარმატებით ჩაიტვირთა.'''</big>",
@@ -884,18 +886,18 @@ $1 საათში.',
 'nolicense'          => 'არაფერი არის მონიშნული',
 'upload_source_file' => ' (ფაილი შენს კომპიუტერზე)',
 
-# Image list
-'imagelist'                 => 'სურათების სია',
-'imagelisttext'             => "ქვემოთ მოცემულია '''$1''' ფაილის სია დახარისხებული მომხმარებლის $2 მიერ.",
-'getimagelist'              => 'ფაილთა სიის ჩამოტვირთვა',
-'ilsubmit'                  => 'ძიება',
-'showlast'                  => 'აჩვენეთ ბოლო $1 ფაილი $2-ით სორტირებული.',
-'byname'                    => 'სახელით',
-'bydate'                    => 'თარიღით',
-'bysize'                    => 'ზომით',
-'imgdelete'                 => 'წაშ.',
-'imgdesc'                   => 'აღწერა',
-'imgfile'                   => 'ფაილი',
+# Special:Imagelist
+'imagelist_search_for'  => 'ძიება სურათის სახელის მიხედვით:',
+'imgdesc'               => 'აღწერა',
+'imgfile'               => 'ფაილი',
+'imagelist'             => 'სურათების სია',
+'imagelist_date'        => 'თარიღი',
+'imagelist_name'        => 'სახელი',
+'imagelist_user'        => 'მომხმარებელი',
+'imagelist_size'        => 'ზომა (ბაიტები)',
+'imagelist_description' => 'აღწერილობა',
+
+# Image description page
 'filehist'                  => 'ფაილის ისტორია',
 'filehist-help'             => 'დააწკაპუნეთ თარიღზე/დროზე, რათა იხილოთ ფაილი, როგორც ის მაშინ გამოიყურებოდა.',
 'filehist-deleteall'        => 'წაშალე ყველა',
@@ -915,12 +917,6 @@ $1 საათში.',
 'noimage'                   => 'ამ სახელის მქონე ფაილი არ არსებობს, თქვენ შეგიძლიათ $1.',
 'noimage-linktext'          => 'ფაილის ატვირთვა',
 'uploadnewversion-linktext' => 'ატვირთეთ ამ ფაილის ახალი ვერსია',
-'imagelist_date'            => 'თარიღი',
-'imagelist_name'            => 'სახელი',
-'imagelist_user'            => 'მომხმარებელი',
-'imagelist_size'            => 'ზომა (ბაიტები)',
-'imagelist_description'     => 'აღწერილობა',
-'imagelist_search_for'      => 'ძიება სურათის სახელის მიხედვით:',
 
 # File reversion
 'filerevert'         => 'დააბრუნე $1',
@@ -1291,8 +1287,6 @@ $NEWPAGE
 'sp-contributions-username'    => 'IP მისამართი ან მომხმარებლის სახელი:',
 'sp-contributions-submit'      => 'ძიება',
 
-'sp-newimages-showfrom' => 'ახალი სურათების ჩვენება დაწყებული $1-იდან',
-
 # What links here
 'whatlinkshere'       => 'სადაა მითითებული ეს გვერდი',
 'whatlinkshere-page'  => 'გვერდი:',
@@ -1526,12 +1520,8 @@ $NEWPAGE
 'nocredits'        => 'აქ ამ გვერდისთვის ხელმისაწვდომი ინფორმაცია არ არსებობს.',
 
 # Spam protection
-'spamprotectionmatch'    => 'მომდევნო ტექსტი იყო სპამ-ფილტრის ჩართვის მიზეზი: $1',
-'subcategorycount'       => 'ამ კატეგორიაში $1 ქვეკატეგორიაა.',
-'categoryarticlecount'   => 'ამ კატეგორიაში $1 სტატიაა.',
-'category-media-count'   => 'ამ კატეგორიაში $1 ფაილია.',
-'listingcontinuesabbrev' => 'გაგრძ.',
-'spam_reverting'         => 'დაბრუნება ბოლო ვერსიასთან, რომელიც არ შეიცავს ბმულს $1-თან',
+'spamprotectionmatch' => 'მომდევნო ტექსტი იყო სპამ-ფილტრის ჩართვის მიზეზი: $1',
+'spam_reverting'      => 'დაბრუნება ბოლო ვერსიასთან, რომელიც არ შეიცავს ბმულს $1-თან',
 
 # Info page
 'infosubtitle' => 'გვერდის ინფორმაცია',
@@ -1571,9 +1561,13 @@ $NEWPAGE
 'file-info-size'  => '($1 × $2 პიქსელი, ფაილის ზომა: $3, MIME ტიპი: $4)',
 
 # Special:Newimages
-'newimages'    => 'ახალი სურათები',
-'showhidebots' => '(რობოტების $1)',
-'noimages'     => 'გადასახედი არაფერია.',
+'newimages'             => 'ახალი სურათები',
+'imagelisttext'         => "ქვემოთ მოცემულია '''$1''' ფაილის სია დახარისხებული მომხმარებლის $2 მიერ.",
+'showhidebots'          => '(რობოტების $1)',
+'noimages'              => 'გადასახედი არაფერია.',
+'ilsubmit'              => 'ძიება',
+'bydate'                => 'თარიღით',
+'sp-newimages-showfrom' => 'ახალი სურათების ჩვენება დაწყებული $1-იდან',
 
 # Metadata
 'metadata'          => 'მეტამონაცემები',

@@ -9,7 +9,7 @@
 $fallback = 'fa';
 
 $messages = array(
-# Bits of text used by many pages
+# Categories related messages
 'categories' => 'رجؤن',
 
 'qbedit' => 'دچین واچین',

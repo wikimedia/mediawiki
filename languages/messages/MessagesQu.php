@@ -134,7 +134,7 @@ $messages = array(
 'nov'           => 'nuw',
 'dec'           => 'dis',
 
-# Bits of text used by many pages
+# Categories related messages
 'categories'               => 'Katiguriyakuna',
 'pagecategories'           => '{{PLURAL:$1|Katiguriya|Katiguriyakuna}}',
 'category_header'          => '"$1" sutiyuq katiguriyapi qillqakuna',
@@ -143,6 +143,8 @@ $messages = array(
 'category-empty'           => "''Kay katiguriyaqa ch'usaqmi.''",
 'hidden-categories'        => '{{PLURAL:$1|Pakasqa katiguriya|Pakasqa katiguriyakuna}}',
 'hidden-category-category' => 'Pakasqa katiguriyakuna', # Name of the category where hidden categories will be listed
+'subcategorycount'         => 'Kay katiguriyapiqa {{PLURAL:$1|huk urin katiguriyam|$1 urin katiguriyakunam}} kachkan.',
+'listingcontinuesabbrev'   => 'qatiy',
 
 'mainpagetext'      => "''MediaWiki'' nisqa llamp'u kaqqa aypaylla takyachisqañam.",
 'mainpagedocfooter' => "Wiki llamp'u kaqmanta willasunaykipaqqa [http://meta.wikimedia.org/wiki/Help:Contents Ruraqpaq yanapana] ''(User's Guide)'' sutiyuq p'anqata qhaway.
@@ -992,18 +994,18 @@ Kay qatiqpiqa willañiqimanta qulluy hallch'atam rikunki:",
 'upload_source_url'  => ' (allin, sapsi chayanalla URL tiyay)',
 'upload_source_file' => ' (antañiqiqniykipi willañiqi)',
 
-# Image list
-'imagelist'                 => 'Rikchakuna',
-'imagelisttext'             => "Kay qatiqpiqa '''$1''' {{PLURAL:$1|rikchatam|rikchakunatam}} rikunki, $2-kama ñiqichasqa.",
-'getimagelist'              => ' rikchakunap sutinkunata apamuspa',
-'ilsubmit'                  => 'Maskay',
-'showlast'                  => 'Qhipaq $1 rikchakunata rikuchiy, $2-kama ñiqichasqa.',
-'byname'                    => 'sutikama',
-'bydate'                    => "p'unchawkama",
-'bysize'                    => 'hatun kaykama',
-'imgdelete'                 => 'qull',
-'imgdesc'                   => 'uray',
-'imgfile'                   => 'willañiqi',
+# Special:Imagelist
+'imagelist_search_for'  => 'Rikchap sutinta maskay:',
+'imgdesc'               => 'uray',
+'imgfile'               => 'willañiqi',
+'imagelist'             => 'Rikchakuna',
+'imagelist_date'        => "P'unchaw",
+'imagelist_name'        => 'Suti',
+'imagelist_user'        => 'Ruraq',
+'imagelist_size'        => 'Hatun kay',
+'imagelist_description' => "T'iktuna",
+
+# Image description page
 'filehist'                  => 'Willañiqip wiñay kawsaynin',
 'filehist-help'             => "P'unchaw/pacha nisqapi ñit'iy chaypacha willañiqi kachkasqata qhawanaykipaq.",
 'filehist-deleteall'        => 'tukuyta qulluy',
@@ -1025,12 +1027,6 @@ Kay qatiqpiqa willañiqimanta qulluy hallch'atam rikunki:",
 'noimage'                   => 'Manam kanchu kay sutiyuq willañiqi, $1ta atinki.',
 'noimage-linktext'          => 'churkuy',
 'uploadnewversion-linktext' => 'Kay willañiqi ñaqha musuqchasqata churkuy',
-'imagelist_date'            => "P'unchaw",
-'imagelist_name'            => 'Suti',
-'imagelist_user'            => 'Ruraq',
-'imagelist_size'            => 'Hatun kay',
-'imagelist_description'     => "T'iktuna",
-'imagelist_search_for'      => 'Rikchap sutinta maskay:',
 
 # File reversion
 'filerevert'                => '$1-ta kutichiy',
@@ -1460,8 +1456,6 @@ $1',
 'sp-contributions-username'    => 'IP huchha icha ruraqpa sutin:',
 'sp-contributions-submit'      => 'Maskay',
 
-'sp-newimages-showfrom' => 'Musuq rikchakunata rikuchiy, $1-wan qallarispa',
-
 # What links here
 'whatlinkshere'       => "Kayman t'inkimuq",
 'whatlinkshere-title' => "$1 sutiyuq p'anqaman t'inkimuqkuna",
@@ -1784,16 +1778,12 @@ Tukuy hawa wikimanta chaskisqakunaqa [[Special:Log/import|hawamanta chaskiy hall
 'nocredits'        => "Manam ima willasqapas kay p'anqap manuyninkunamantachu.",
 
 # Spam protection
-'spamprotectiontitle'    => "Spam nisqamanta amachanapaq ch'illchina",
-'spamprotectiontext'     => "Kay p'anqata waqaychayniykiqa ''spam'' ch'illchinap hark'asqanmi. Qillqapiqa millay p'anqaman t'inkichá.",
-'spamprotectionmatch'    => "Kay qatiq qillqam ''spam'' ch'illchinaykuta rurarichirqan: $1",
-'subcategorycount'       => 'Kay katiguriyapiqa {{PLURAL:$1|huk urin katiguriyam|$1 urin katiguriyakunam}} kachkan.',
-'categoryarticlecount'   => "Kay katiguriyapiqa {{PLURAL:$1|huk p'anqam|$1 p'anqakunam}} kachkan.",
-'category-media-count'   => 'Kay katiguriyapiqa {{PLURAL:$1|huk willañiqim|$1 willañiqikunam}} kachkan.',
-'listingcontinuesabbrev' => 'qatiy',
-'spambot_username'       => 'MediaWiki-ta spam nisqamanta pichay',
-'spam_reverting'         => "Qhipaq kaq mana $1-man t'inkimuqniyuq llamk'apusqaman kutichispa",
-'spam_blanking'          => "Tukuy llamk'apusqakunaqa $1-manmi t'inkimuq, ch'usaqchaspa",
+'spamprotectiontitle' => "Spam nisqamanta amachanapaq ch'illchina",
+'spamprotectiontext'  => "Kay p'anqata waqaychayniykiqa ''spam'' ch'illchinap hark'asqanmi. Qillqapiqa millay p'anqaman t'inkichá.",
+'spamprotectionmatch' => "Kay qatiq qillqam ''spam'' ch'illchinaykuta rurarichirqan: $1",
+'spambot_username'    => 'MediaWiki-ta spam nisqamanta pichay',
+'spam_reverting'      => "Qhipaq kaq mana $1-man t'inkimuqniyuq llamk'apusqaman kutichispa",
+'spam_blanking'       => "Tukuy llamk'apusqakunaqa $1-manmi t'inkimuq, ch'usaqchaspa",
 
 # Info page
 'infosubtitle'   => "P'anqamanta willay",
@@ -1855,9 +1845,13 @@ $1",
 'show-big-image-thumb' => '<small>Kay ñawpaq qhawariypa chhikan kaynin: $1 × $2 iñu</small>',
 
 # Special:Newimages
-'newimages'    => 'Musuq rikchakunap suyu-suyun',
-'showhidebots' => '($1 rurana antacha)',
-'noimages'     => 'Manam ima rikunallapas kanchu.',
+'newimages'             => 'Musuq rikchakunap suyu-suyun',
+'imagelisttext'         => "Kay qatiqpiqa '''$1''' {{PLURAL:$1|rikchatam|rikchakunatam}} rikunki, $2-kama ñiqichasqa.",
+'showhidebots'          => '($1 rurana antacha)',
+'noimages'              => 'Manam ima rikunallapas kanchu.',
+'ilsubmit'              => 'Maskay',
+'bydate'                => "p'unchawkama",
+'sp-newimages-showfrom' => 'Musuq rikchakunata rikuchiy, $1-wan qallarispa',
 
 # Bad image list
 'bad_image_list' => "Chantaqa kay hinam:

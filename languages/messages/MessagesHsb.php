@@ -209,7 +209,7 @@ $messages = array(
 'nov'           => 'now',
 'dec'           => 'dec',
 
-# Bits of text used by many pages
+# Categories related messages
 'categories'               => '{{PLURAL:$1|Kategorija|Kategoriji|Kategorije|Kategorije}}',
 'pagecategories'           => '{{PLURAL:$1|Kategorija|Kategoriji|Kategorije|Kategorije}}',
 'category_header'          => 'Nastawki w kategoriji „$1”',
@@ -218,6 +218,8 @@ $messages = array(
 'category-empty'           => "''Tuta kategorija tuchwilu žane nastawki abo medije njewobsahuje.''",
 'hidden-categories'        => '{{PLURAL:$1|Schowana kategorija|Schowane kategorije}}',
 'hidden-category-category' => 'Schowane kategorije', # Name of the category where hidden categories will be listed
+'subcategorycount'         => 'Tuta kategorija wobsahuje $1 {{PLURAL:$1|podkategoriju|podkategoriji|podkategorije|podkategorijow}}.',
+'listingcontinuesabbrev'   => ' (pokročowane)',
 
 'mainpagetext'      => '<big><b>MediaWiki bu wuspěšnje instalowany.</b></big>',
 'mainpagedocfooter' => 'Prošu hlej [http://meta.wikimedia.org/wiki/Help:Contents dokumentaciju] za informacije wo wužiwanju softwary.
@@ -1091,19 +1093,19 @@ PICT # misc.
 'upload_source_url'  => ' (płaćiwy, zjawnje docpějomny URL)',
 'upload_source_file' => ' (dataja na twojim ličaku)',
 
-# Image list
-'imagelist'                 => 'Lisćina datajow',
-'imagelist-summary'         => 'Tuta specialna strona naliči wšě nahrate dataje. Standardnje so naposlědk nahrate dateje cyle horjeka pokazuja. Kliknjo na nadpisma stołpikow móžeš sortěrowanje wobroćić abo po druhich kriterijach rjadować.',
-'imagelisttext'             => "Deleka je lisćina '''$1''' {{PLURAL:$1|dataje|datajow|datajow|datajow}}, kotraž je po $2 sortěrowana.",
-'getimagelist'              => 'Lisćina datajow so čita',
-'ilsubmit'                  => 'Pytać',
-'showlast'                  => 'Poslednje $1 datajow sortěrowanych po $2 pokazać.',
-'byname'                    => 'mjenje',
-'bydate'                    => 'datumje',
-'bysize'                    => 'wulkosći',
-'imgdelete'                 => 'Wušmórnyć',
-'imgdesc'                   => 'wopisanje',
-'imgfile'                   => 'dataja',
+# Special:Imagelist
+'imagelist-summary'     => 'Tuta specialna strona naliči wšě nahrate dataje. Standardnje so naposlědk nahrate dateje cyle horjeka pokazuja. Kliknjo na nadpisma stołpikow móžeš sortěrowanje wobroćić abo po druhich kriterijach rjadować.',
+'imagelist_search_for'  => 'Za mjenom wobraza pytać:',
+'imgdesc'               => 'wopisanje',
+'imgfile'               => 'dataja',
+'imagelist'             => 'Lisćina datajow',
+'imagelist_date'        => 'datum',
+'imagelist_name'        => 'mjeno dataje',
+'imagelist_user'        => 'wužiwar',
+'imagelist_size'        => 'wulkosć (byte)',
+'imagelist_description' => 'wopisanje',
+
+# Image description page
 'filehist'                  => 'Wersije dataje',
 'filehist-help'             => 'Klikń na wěsty čas, zo by wersiju dataje w tutym času zwobraznił.',
 'filehist-deleteall'        => 'wšě wersije wušmórnyć',
@@ -1125,12 +1127,6 @@ PICT # misc.
 'noimage'                   => 'Žana dataja z tutym mjenom njeeksistuje. Móžeš $1.',
 'noimage-linktext'          => 'ju nahrać',
 'uploadnewversion-linktext' => 'nowu wersiju tuteje dataje nahrać',
-'imagelist_date'            => 'datum',
-'imagelist_name'            => 'mjeno dataje',
-'imagelist_user'            => 'wužiwar',
-'imagelist_size'            => 'wulkosć (byte)',
-'imagelist_description'     => 'wopisanje',
-'imagelist_search_for'      => 'Za mjenom wobraza pytać:',
 
 # File reversion
 'filerevert'                => 'Wersiju $1 cofnyć',
@@ -1591,8 +1587,6 @@ $1',
 'sp-contributions-username'    => 'IP-adresa abo wužiwarske mjeno:',
 'sp-contributions-submit'      => 'OK',
 
-'sp-newimages-showfrom' => 'Nowe dataje pokazać, započinajo z $1',
-
 # What links here
 'whatlinkshere'         => 'Što wotkazuje sem',
 'whatlinkshere-title'   => 'Strony, kotrež na „$1“ wotkazuja',
@@ -1910,16 +1904,12 @@ W poslednim padźe móžeš tež wotkaz wužiwać, na př. „[[{{ns:special}}:E
 'nocredits'        => 'Za tutu stronu žane informacije wo zasłužbach njejsu.',
 
 # Spam protection
-'spamprotectiontitle'    => 'Spamowy filter',
-'spamprotectiontext'     => 'Strona, kotruž sy spytał składować, bu přez spamowy filter zablokowana. Přičina je najskerje wotkaz na eksterne sydło.',
-'spamprotectionmatch'    => 'Sćěhowacy tekst je naš spamowy filter wotpokazał: $1',
-'subcategorycount'       => 'Tuta kategorija wobsahuje $1 {{PLURAL:$1|podkategoriju|podkategoriji|podkategorije|podkategorijow}}.',
-'categoryarticlecount'   => 'Tuta kategorija wobsahuje $1 {{PLURAL:$1|nastawk|nastawkaj|nastawki|nastawkow}}.',
-'category-media-count'   => 'Tuta kategorija wobsahuje $1 {{PLURAL:$1|dataju|dataji|dataje|datajow}}.',
-'listingcontinuesabbrev' => ' (pokročowane)',
-'spambot_username'       => 'MediaWiki čisćenje wot spama',
-'spam_reverting'         => 'wróćo na poslednju wersiju, kotraž wotkazy na $1 njewobsahuje',
-'spam_blanking'          => 'Wšě wersije wobsahowachu wotkazy na $1, wučisćene.',
+'spamprotectiontitle' => 'Spamowy filter',
+'spamprotectiontext'  => 'Strona, kotruž sy spytał składować, bu přez spamowy filter zablokowana. Přičina je najskerje wotkaz na eksterne sydło.',
+'spamprotectionmatch' => 'Sćěhowacy tekst je naš spamowy filter wotpokazał: $1',
+'spambot_username'    => 'MediaWiki čisćenje wot spama',
+'spam_reverting'      => 'wróćo na poslednju wersiju, kotraž wotkazy na $1 njewobsahuje',
+'spam_blanking'       => 'Wšě wersije wobsahowachu wotkazy na $1, wučisćene.',
 
 # Info page
 'infosubtitle'   => 'Informacije za stronu',
@@ -1983,10 +1973,14 @@ $1',
 'show-big-image-thumb' => '<small>Wulkosć miniaturki: $1 × $2 pikselow</small>',
 
 # Special:Newimages
-'newimages'         => 'Nowe dataje',
-'newimages-summary' => 'Tuta specialna strona naliči aktualnje nahrate wobrazy a druhe dataje.',
-'showhidebots'      => '(bots $1)',
-'noimages'          => 'Žane dataje.',
+'newimages'             => 'Nowe dataje',
+'imagelisttext'         => "Deleka je lisćina '''$1''' {{PLURAL:$1|dataje|datajow|datajow|datajow}}, kotraž je po $2 sortěrowana.",
+'newimages-summary'     => 'Tuta specialna strona naliči aktualnje nahrate wobrazy a druhe dataje.',
+'showhidebots'          => '(bots $1)',
+'noimages'              => 'Žane dataje.',
+'ilsubmit'              => 'Pytać',
+'bydate'                => 'datumje',
+'sp-newimages-showfrom' => 'Nowe dataje pokazać, započinajo z $1',
 
 # Bad image list
 'bad_image_list' => 'Format:

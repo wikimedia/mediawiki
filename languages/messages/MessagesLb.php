@@ -1022,19 +1022,19 @@ Dir sollt onbedingt bedenken, datt, genee wéi bäi normale Säiten, aner Benotz
 'upload_source_url'  => ' (gülteg, ëffentlech zougänglech URL)',
 'upload_source_file' => ' (e Fichier op Ärem Computer)',
 
-# Image list
-'imagelist'                 => 'Lëscht vun de Fichieren',
-'imagelist-summary'         => "Op dëser Spezialsäit stinn all déi eropgeluede Fichieren. Déi als läscht eropgeluede Fichieren ginn als öischt ugewisen. Duerch e Klick op d?iwwerschrëfte vun de Kolonnen kënnt Dir d'Sortéierung ëmdréinen an Dir kënnt esou och no enger anerer Kolonn sortéieren.",
-'imagelisttext'             => "Hei ass eng Lëscht vun '''$1''' {{PLURAL:$1|Fichier|Fichieren}}, zortéiert $2.",
-'getimagelist'              => 'Billerlëscht gëtt opgestallt',
-'ilsubmit'                  => 'Sichen',
-'showlast'                  => 'Weis déi lescht $1 Fichieren, no $2 zortéiert.',
-'byname'                    => 'no Numm',
-'bydate'                    => 'no Datum',
-'bysize'                    => 'no Gréisst',
-'imgdelete'                 => 'läschen',
-'imgdesc'                   => 'Beschreiwung',
-'imgfile'                   => 'Fichier',
+# Special:Imagelist
+'imagelist-summary'     => "Op dëser Spezialsäit stinn all déi eropgeluede Fichieren. Déi als läscht eropgeluede Fichieren ginn als öischt ugewisen. Duerch e Klick op d?iwwerschrëfte vun de Kolonnen kënnt Dir d'Sortéierung ëmdréinen an Dir kënnt esou och no enger anerer Kolonn sortéieren.",
+'imagelist_search_for'  => 'Sicht nom Fichier:',
+'imgdesc'               => 'Beschreiwung',
+'imgfile'               => 'Fichier',
+'imagelist'             => 'Lëscht vun de Fichieren',
+'imagelist_date'        => 'Datum',
+'imagelist_name'        => 'Numm',
+'imagelist_user'        => 'Benotzer',
+'imagelist_size'        => 'Gréisst',
+'imagelist_description' => 'Beschreiwung',
+
+# Image description page
 'filehist'                  => 'Versiounen',
 'filehist-help'             => 'Klickt op e bestëmmten Zäitpunkt fir déi respektiv Versioun vum Fichier ze kucken.',
 'filehist-deleteall'        => 'All Versioune läschen',
@@ -1056,12 +1056,6 @@ Dir sollt onbedingt bedenken, datt, genee wéi bäi normale Säiten, aner Benotz
 'noimage'                   => 'Ee Fichier mat dësem Numm gëtt et net, Dir kënnt $1.',
 'noimage-linktext'          => 'eroplueden',
 'uploadnewversion-linktext' => 'Eng nei Versioun vun dësem Fichier eroplueden',
-'imagelist_date'            => 'Datum',
-'imagelist_name'            => 'Numm',
-'imagelist_user'            => 'Benotzer',
-'imagelist_size'            => 'Gréisst',
-'imagelist_description'     => 'Beschreiwung',
-'imagelist_search_for'      => 'Sicht nom Fichier:',
 
 # File reversion
 'filerevert'                => '"$1" zrécksetzen',
@@ -1476,8 +1470,6 @@ $1',
 'sp-contributions-username'    => 'IP-Adress oder Benotzernumm:',
 'sp-contributions-submit'      => 'Sichen',
 
-'sp-newimages-showfrom' => 'Nei Biller weisen, ugefaange mat $1',
-
 # What links here
 'whatlinkshere'         => 'Linken op dës Säit',
 'whatlinkshere-title'   => 'Säiten, déi mat „$1“ verlinkt sinn',
@@ -1809,10 +1801,14 @@ $1',
 'show-big-image-thumb' => '<small>Gréisst vun dem Thumbnail: $1 × $2 Pixel</small>',
 
 # Special:Newimages
-'newimages'         => 'Gallerie vun de neie Biller',
-'newimages-summary' => 'Dës Spezialsäit weist eng Lëscht mat de Biller a Fichieren déi als läscht eropgeluede goufen.',
-'showhidebots'      => '($1 Botten)',
-'noimages'          => 'Keng Biller fonnt.',
+'newimages'             => 'Gallerie vun de neie Biller',
+'imagelisttext'         => "Hei ass eng Lëscht vun '''$1''' {{PLURAL:$1|Fichier|Fichieren}}, zortéiert $2.",
+'newimages-summary'     => 'Dës Spezialsäit weist eng Lëscht mat de Biller a Fichieren déi als läscht eropgeluede goufen.',
+'showhidebots'          => '($1 Botten)',
+'noimages'              => 'Keng Biller fonnt.',
+'ilsubmit'              => 'Sichen',
+'bydate'                => 'no Datum',
+'sp-newimages-showfrom' => 'Nei Biller weisen, ugefaange mat $1',
 
 # Bad image list
 'bad_image_list' => 'Format:

@@ -45,10 +45,11 @@ $messages = array(
 'nov'       => 'nov',
 'dec'       => 'des',
 
-# Bits of text used by many pages
-'categories'      => 'Kategorianan',
-'category_header' => 'Artíkulonan den kategoria "$1"',
-'subcategories'   => 'Supkategorianan',
+# Categories related messages
+'categories'       => 'Kategorianan',
+'category_header'  => 'Artíkulonan den kategoria "$1"',
+'subcategories'    => 'Supkategorianan',
+'subcategorycount' => 'Tin {{PLURAL:$1|1 supkategoria|$1 supkategorianan}} bou di e kategoria aki.',
 
 'about'         => 'Info',
 'article'       => 'Artíkulo',
@@ -329,10 +330,6 @@ Por fabor skohe un otro título.',
 
 # Attribution
 'anonymous' => 'Uzadó(nan) anonimo di {{SITENAME}}',
-
-# Spam protection
-'subcategorycount'     => 'Tin {{PLURAL:$1|1 supkategoria|$1 supkategorianan}} bou di e kategoria aki.',
-'categoryarticlecount' => 'Tin {{PLURAL:$1|1 artíkulo|$1 artíkulonan}} den e kategoria aki.',
 
 # Info page
 'infosubtitle' => 'Informashon pa página',

@@ -51,11 +51,12 @@ $messages = array(
 'thursday'  => 'Цыппарæм',
 'saturday'  => 'Сабат',
 
-# Bits of text used by many pages
-'categories'      => 'Категоритæ',
-'pagecategories'  => 'Категоритæ',
-'category_header' => 'Категори "$1"',
-'subcategories'   => 'Дæлкатегоритæ',
+# Categories related messages
+'categories'       => 'Категоритæ',
+'pagecategories'   => 'Категоритæ',
+'category_header'  => 'Категори "$1"',
+'subcategories'    => 'Дæлкатегоритæ',
+'subcategorycount' => 'Ацы категорийы мидæг $1 дæлкатегорийы ис.',
 
 'qbfind'         => 'Агур',
 'qbspecialpages' => 'Сæрмагонд фæрстæ',
@@ -179,12 +180,10 @@ $3',
 'filename' => 'Файлы ном',
 'savefile' => 'Бавæр æй',
 
-# Image list
-'imagelist'    => 'Нывты номхыгъд',
-'ilsubmit'     => 'Агур',
-'byname'       => 'номмæ гæсгæ',
-'bydate'       => 'рæстæгмæ гæсгæ',
-'bysize'       => 'асмæ гæсгæ',
+# Special:Imagelist
+'imagelist' => 'Нывты номхыгъд',
+
+# Image description page
 'linkstoimage' => 'Ацы нывæй чи пайда кæны, ахæм статьятæ:',
 
 # Random page
@@ -206,7 +205,6 @@ $3',
 'spheading'    => 'Сæрмагонд фæрстæ',
 'newpages'     => 'Ног фæрстæ',
 'ancientpages' => 'Зæронддæр фæрстæ',
-'intl'         => 'Æндæр æвзæгтæм æрвитæнтæ',
 'move'         => 'Ном баив',
 
 'categoriespagetext' => 'Мæнæ ахæм категоритæ ирон Википедийы ис.',
@@ -267,11 +265,9 @@ $3',
 # Attribution
 'others' => 'æндæртæ',
 
-# Spam protection
-'subcategorycount'     => 'Ацы категорийы мидæг $1 дæлкатегорийы ис.',
-'categoryarticlecount' => 'Ацы категорийы мидæг $1 статьяйы ис.',
-
 # Special:Newimages
 'newimages' => 'Ног нывты галерей',
+'ilsubmit'  => 'Агур',
+'bydate'    => 'рæстæгмæ гæсгæ',
 
 );

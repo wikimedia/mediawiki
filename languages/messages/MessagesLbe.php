@@ -68,7 +68,7 @@ $messages = array(
 # Recent changes
 'recentchanges' => 'Махъсса дахханашивурту',
 
-# Image list
+# Image description page
 'filehist-user' => 'Гьурттучув',
 
 # Miscellaneous special pages

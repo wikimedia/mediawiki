@@ -1113,18 +1113,18 @@ PICT # misc.
 'upload_source_url'  => ' (una URL corretta e accessibile)',
 'upload_source_file' => ' (un file sul proprio computer)',
 
-# Image list
-'imagelist'                 => 'Elenco dei file',
-'imagelisttext'             => "La lista presentata di seguito, costituita da {{PLURAL:$1|un file|'''$1''' file}}, è ordinata per $2.",
-'getimagelist'              => 'caricamento elenco file',
-'ilsubmit'                  => 'Ricerca',
-'showlast'                  => 'Mostra gli ultimi $1 file ordinati per $2.',
-'byname'                    => 'nome',
-'bydate'                    => 'data',
-'bysize'                    => 'dimensione',
-'imgdelete'                 => 'canc',
-'imgdesc'                   => 'disc',
-'imgfile'                   => 'file',
+# Special:Imagelist
+'imagelist_search_for'  => 'Ricerca immagini per nome:',
+'imgdesc'               => 'disc',
+'imgfile'               => 'file',
+'imagelist'             => 'Elenco dei file',
+'imagelist_date'        => 'Data',
+'imagelist_name'        => 'Nome',
+'imagelist_user'        => 'Utente',
+'imagelist_size'        => 'Dimensione in byte',
+'imagelist_description' => 'Descrizione',
+
+# Image description page
 'filehist'                  => 'Cronologia del file',
 'filehist-help'             => 'Fare clic su un gruppo data/ora per vedere il file come si presentava nel momento indicato.',
 'filehist-deleteall'        => 'cancella tutto',
@@ -1146,12 +1146,6 @@ PICT # misc.
 'noimage'                   => 'Un file con questo nome non esiste, vuoi $1 tu?',
 'noimage-linktext'          => 'caricarlo ora',
 'uploadnewversion-linktext' => 'Carica una nuova versione di questo file',
-'imagelist_date'            => 'Data',
-'imagelist_name'            => 'Nome',
-'imagelist_user'            => 'Utente',
-'imagelist_size'            => 'Dimensione in byte',
-'imagelist_description'     => 'Descrizione',
-'imagelist_search_for'      => 'Ricerca immagini per nome:',
 
 # File reversion
 'filerevert'                => 'Ripristina $1',
@@ -1578,8 +1572,6 @@ $1',
 'sp-contributions-username'    => 'Indirizzo IP o nome utente:',
 'sp-contributions-submit'      => 'Ricerca',
 
-'sp-newimages-showfrom' => 'Mostra i file più recenti a partire da $1',
-
 # What links here
 'whatlinkshere'       => 'Puntano qui',
 'whatlinkshere-title' => 'Pagine che puntano a $1',
@@ -1965,9 +1957,13 @@ $1',
 'show-big-image-thumb' => '<small>Dimensioni di questa anteprima: $1 × $2 pixel</small>',
 
 # Special:Newimages
-'newimages'    => 'Galleria dei nuovi file',
-'showhidebots' => '($1 i bot)',
-'noimages'     => "Non c'è nulla da vedere.",
+'newimages'             => 'Galleria dei nuovi file',
+'imagelisttext'         => "La lista presentata di seguito, costituita da {{PLURAL:$1|un file|'''$1''' file}}, è ordinata per $2.",
+'showhidebots'          => '($1 i bot)',
+'noimages'              => "Non c'è nulla da vedere.",
+'ilsubmit'              => 'Ricerca',
+'bydate'                => 'data',
+'sp-newimages-showfrom' => 'Mostra i file più recenti a partire da $1',
 
 # Bad image list
 'bad_image_list' => "Il formato è il seguente:

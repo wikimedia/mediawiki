@@ -138,7 +138,7 @@ dj'artìcol ancó pa scrit",
 'nov'           => 'Nov',
 'dec'           => 'Dze',
 
-# Bits of text used by many pages
+# Categories related messages
 'categories'               => '{{PLURAL:$1|Categorìa|Categorìe}}',
 'pagecategories'           => '{{PLURAL:$1|Categorìa|Categorìe}}',
 'category_header'          => 'Artìcoj ant la categorìa "$1"',
@@ -147,6 +147,8 @@ dj'artìcol ancó pa scrit",
 'category-empty'           => "''Al dì d'ancheuj la categorìa a l'ha pa andrinta nì 'd pàgine, nì d'archivi multimojen.''",
 'hidden-categories'        => '{{PLURAL:$1|Categorìa stërmà|Categorìe stërmà}}',
 'hidden-category-category' => 'Categorìe stërmà', # Name of the category where hidden categories will be listed
+'subcategorycount'         => 'An sta categorìa-sì a-i {{PLURAL:$1|é mach na sotacategorìa|son $1 sotacategorìe}}.',
+'listingcontinuesabbrev'   => ' anans',
 
 'mainpagetext'      => "<big>'''MediaWiki a l'é staita anstalà a la perfession.'''</big>",
 'mainpagedocfooter' => "Che a varda la [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide User's Guide] ([[belavans]] për adess a-i é mach n'anglèis) për avej dj'anformassion suplementar ant sël coma dovré ël programa dla wiki.
@@ -1048,18 +1050,18 @@ PICT # vàire marche diferente
 'upload_source_url'  => "  (n'anliura bon-a e che as peula dovresse)",
 'upload_source_file' => " (n'archivi da sò calcolator)",
 
-# Image list
-'imagelist'                 => 'Lista dle figure',
-'imagelisttext'             => "Ambelessì sota a-i é {{PLURAL:$1|l'ùnica figura che a-i sia|na lista ëd '''$1''' figure, ordinà për $2}}.",
-'getimagelist'              => 'arserca ant la lista dle figure',
-'ilsubmit'                  => 'Sërca',
-'showlast'                  => "Lista ëd $1, antra j'ùltime figure, ordinà për $2.",
-'byname'                    => 'nòm',
-'bydate'                    => 'për data',
-'bysize'                    => 'pèis',
-'imgdelete'                 => 'scanc',
-'imgdesc'                   => 'descr',
-'imgfile'                   => 'archivi',
+# Special:Imagelist
+'imagelist_search_for'  => "Arsërca për nòm d'archivi multimojen:",
+'imgdesc'               => 'descr',
+'imgfile'               => 'archivi',
+'imagelist'             => 'Lista dle figure',
+'imagelist_date'        => 'Data',
+'imagelist_name'        => 'Nòm',
+'imagelist_user'        => 'Utent',
+'imagelist_size'        => 'Amzura an byte',
+'imagelist_description' => 'Descrission',
+
+# Image description page
 'filehist'                  => "Stòria dl'archivi",
 'filehist-help'             => "Ch'a-i daga un colp col rat ant sna cobia data/ora për ës-ciairé coma restèissa l'archivi ant col moment-là.",
 'filehist-deleteall'        => 'dëscancelé tut',
@@ -1081,12 +1083,6 @@ PICT # vàire marche diferente
 'noimage'                   => 'A-i é pa gnun archivi che as ciama parej, a peul $1.',
 'noimage-linktext'          => 'carijlo',
 'uploadnewversion-linktext' => "Carié na version neuva dë st'archivi-sì",
-'imagelist_date'            => 'Data',
-'imagelist_name'            => 'Nòm',
-'imagelist_user'            => 'Utent',
-'imagelist_size'            => 'Amzura an byte',
-'imagelist_description'     => 'Descrission',
-'imagelist_search_for'      => "Arsërca për nòm d'archivi multimojen:",
 
 # File reversion
 'filerevert'                => "Buta torna $1 tanme ch'a l'era",
@@ -1528,8 +1524,6 @@ $1",
 'sp-contributions-username'    => 'Adrëssa IP ò nòm utent:',
 'sp-contributions-submit'      => 'Arsërca',
 
-'sp-newimages-showfrom' => "Smon j'ùltim archivi multimojen a anandiesse da $1",
-
 # What links here
 'whatlinkshere'       => "Pàgine con dj'anliure che a men-o a costa-sì",
 'whatlinkshere-title' => "Pàgine ch'a men-o a $1",
@@ -1864,16 +1858,12 @@ Tute le amportassion antra wiki diferente a resto marcà ant ël [[Special:Log/i
 'nocredits'        => 'A-i é pa gnun crédit për sta pagina-sì.',
 
 # Spam protection
-'spamprotectiontitle'    => 'Filtror dla rumenta',
-'spamprotectiontext'     => "La pàgina che a vorìa salvé a l'é staita blocà dal filtror dla rumenta. Sòn a l'é motobin belfé che a sia rivà përchè a-i era n'anliura a un sit estern ëd coj blocà.",
-'spamprotectionmatch'    => "Cost-sì a l'é ël test che a l'é restà ciapà andrinta al filtror dla rumenta: $1",
-'subcategorycount'       => 'An sta categorìa-sì a-i {{PLURAL:$1|é mach na sotacategorìa|son $1 sotacategorìe}}.',
-'categoryarticlecount'   => 'A-i {{PLURAL:$1|é|son}} $1 {{PLURAL:$1|artìcol|artìcoj}} andrinta a la categorìa.',
-'category-media-count'   => "An costa categorìa-sì a-i {{PLURAL:$1|é mach n'archivi|son $1 archivi}}.",
-'listingcontinuesabbrev' => ' anans',
-'spambot_username'       => 'MediaWiki - trigomiro che a-j dà deuit a la rumenta',
-'spam_reverting'         => "Buta andaré a l'ùltima version che a l'avèissa pa andrinta dj'anliure a $1",
-'spam_blanking'          => "Pàgina dësveujdà, che tute le version a l'avìo andrinta dj'anliure a $1",
+'spamprotectiontitle' => 'Filtror dla rumenta',
+'spamprotectiontext'  => "La pàgina che a vorìa salvé a l'é staita blocà dal filtror dla rumenta. Sòn a l'é motobin belfé che a sia rivà përchè a-i era n'anliura a un sit estern ëd coj blocà.",
+'spamprotectionmatch' => "Cost-sì a l'é ël test che a l'é restà ciapà andrinta al filtror dla rumenta: $1",
+'spambot_username'    => 'MediaWiki - trigomiro che a-j dà deuit a la rumenta',
+'spam_reverting'      => "Buta andaré a l'ùltima version che a l'avèissa pa andrinta dj'anliure a $1",
+'spam_blanking'       => "Pàgina dësveujdà, che tute le version a l'avìo andrinta dj'anliure a $1",
 
 # Info page
 'infosubtitle'   => 'Anformassion për la pàgina',
@@ -1937,9 +1927,13 @@ $1",
 'show-big-image-thumb' => '<small>Amzure dë sta figurin-a: $1 × $2 pixel</small>',
 
 # Special:Newimages
-'newimages'    => 'Galerìa ëd figure e son neuv',
-'showhidebots' => '($1 trigomiro)',
-'noimages'     => 'Pa gnente da vëdde.',
+'newimages'             => 'Galerìa ëd figure e son neuv',
+'imagelisttext'         => "Ambelessì sota a-i é {{PLURAL:$1|l'ùnica figura che a-i sia|na lista ëd '''$1''' figure, ordinà për $2}}.",
+'showhidebots'          => '($1 trigomiro)',
+'noimages'              => 'Pa gnente da vëdde.',
+'ilsubmit'              => 'Sërca',
+'bydate'                => 'për data',
+'sp-newimages-showfrom' => "Smon j'ùltim archivi multimojen a anandiesse da $1",
 
 # Bad image list
 'bad_image_list' => "La forma a l'é costa-sì:

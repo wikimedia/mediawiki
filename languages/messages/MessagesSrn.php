@@ -109,13 +109,15 @@ $messages = array(
 'nov'           => 'erf',
 'dec'           => 'twa',
 
-# Bits of text used by many pages
-'categories'            => 'Den guru',
-'pagecategories'        => '{{PLURAL:$1|Guru|Guru}}',
-'category_header'       => 'Peprewoysi ini guru “$1”',
-'subcategories'         => 'Subguru',
-'category-media-header' => 'Media ini guru “$1”',
-'category-empty'        => "''Disi guru abi no papira efu media.''",
+# Categories related messages
+'categories'             => 'Den guru',
+'pagecategories'         => '{{PLURAL:$1|Guru|Guru}}',
+'category_header'        => 'Peprewoysi ini guru “$1”',
+'subcategories'          => 'Subguru',
+'category-media-header'  => 'Media ini guru “$1”',
+'category-empty'         => "''Disi guru abi no papira efu media.''",
+'subcategorycount'       => 'Da {{PLURAL:$1|ben wan subguru|ben $1 subguru}} ini disi guru.',
+'listingcontinuesabbrev' => 'pasa',
 
 'about'          => 'Abra',
 'article'        => 'Papira',
@@ -605,16 +607,18 @@ A kan ben trowe efu dribi.
 
 'license-nopreview' => '(No fusi)',
 
-# Image list
-'imagelist'                 => 'Rey fu den gefre',
-'ilsubmit'                  => 'Suku',
-'showlast'                  => 'A bakaseywan $1 gefre libi si $2.',
-'byname'                    => 'opo nen',
-'bydate'                    => 'opo datum',
-'bysize'                    => 'opo gran',
-'imgdelete'                 => 'trowe',
-'imgdesc'                   => 'infru',
-'imgfile'                   => 'gefre',
+# Special:Imagelist
+'imagelist_search_for'  => 'Suku na gefre:',
+'imgdesc'               => 'infru',
+'imgfile'               => 'gefre',
+'imagelist'             => 'Rey fu den gefre',
+'imagelist_date'        => 'Datum',
+'imagelist_name'        => 'Nen',
+'imagelist_user'        => 'Masyin',
+'imagelist_size'        => 'Gran (byte)',
+'imagelist_description' => 'Infrumasi',
+
+# Image description page
 'filehist'                  => 'Stori fu disi gefre',
 'filehist-help'             => 'Klik opo wan datum/ten tu si a gefre leki a ben e si dy ten.',
 'filehist-deleteall'        => 'trowe ala',
@@ -635,12 +639,6 @@ A kan ben trowe efu dribi.
 'noimage'                   => 'Da ben no gefre nanga disi nen. Yu kan a $1.',
 'noimage-linktext'          => 'uploti',
 'uploadnewversion-linktext' => 'Wan nyunr si fu disi gefre uploti',
-'imagelist_date'            => 'Datum',
-'imagelist_name'            => 'Nen',
-'imagelist_user'            => 'Masyin',
-'imagelist_size'            => 'Gran (byte)',
-'imagelist_description'     => 'Infrumasi',
-'imagelist_search_for'      => 'Suku na gefre:',
 
 # File reversion
 'filerevert'                => '$1 bakadray',
@@ -997,12 +995,6 @@ Gi wan trawan papiranen.',
 'siteuser'  => '{{SITENAME}}-masyin $1',
 'siteusers' => '{{SITENAME}}-masyin $1',
 
-# Spam protection
-'subcategorycount'       => 'Da {{PLURAL:$1|ben wan subguru|ben $1 subguru}} ini disi guru.',
-'categoryarticlecount'   => 'Da ben {{PLURAL:$1|wan papira|$1 prewoysi}} ini disi guru.',
-'category-media-count'   => 'Da ben {{PLURAL:$1|wan gefre|$1 gefre}} ini disi guru.',
-'listingcontinuesabbrev' => 'pasa',
-
 # Browsing diffs
 'previousdiff' => '← Foswan kenki',
 'nextdiff'     => 'Trawan kenki →',
@@ -1019,6 +1011,8 @@ Gi wan trawan papiranen.',
 'newimages'    => 'Nyun gefre',
 'showhidebots' => '(Bot $1)',
 'noimages'     => 'Noti a si.',
+'ilsubmit'     => 'Suku',
+'bydate'       => 'opo datum',
 
 # Bad image list
 'bad_image_list' => 'A opomeki ben leki ondro:

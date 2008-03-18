@@ -151,13 +151,15 @@ $messages = array(
 'nov'           => '11',
 'dec'           => '12',
 
-# Bits of text used by many pages
-'categories'            => '분류',
-'pagecategories'        => '분류',
-'category_header'       => '‘$1’ 분류에 속하는 문서',
-'subcategories'         => '하위 분류',
-'category-media-header' => '‘$1’ 분류에 속하는 자료',
-'category-empty'        => '이 분류에 속하는 문서나 자료가 없습니다.',
+# Categories related messages
+'categories'             => '분류',
+'pagecategories'         => '분류',
+'category_header'        => '‘$1’ 분류에 속하는 문서',
+'subcategories'          => '하위 분류',
+'category-media-header'  => '‘$1’ 분류에 속하는 자료',
+'category-empty'         => '이 분류에 속하는 문서나 자료가 없습니다.',
+'subcategorycount'       => '이 분류에 $1개의 하위 분류가 있습니다.',
+'listingcontinuesabbrev' => ' (계속)',
 
 'mainpagetext'      => "<big>'''미디어위키가 성공적으로 설치되었습니다.'''</big>",
 'mainpagedocfooter' => '[http://meta.wikimedia.org/wiki/Help:Contents 이곳]에서 위키 프로그램에 대한 정보를 얻을 수 있습니다.
@@ -864,18 +866,17 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'nolicense'         => '선택하지 않음',
 'license-nopreview' => '(미리보기 불가능)',
 
-# Image list
-'imagelist'                 => '그림 목록',
-'imagelisttext'             => '$1개의 파일이 $2 순으로 정렬되어 있습니다.',
-'getimagelist'              => '그림 목록 가져오기',
-'ilsubmit'                  => '찾기',
-'showlast'                  => '최근의 $1개 파일이 $2 순으로 정렬되어 있습니다.',
-'byname'                    => '이름',
-'bydate'                    => '날짜',
-'bysize'                    => '크기',
-'imgdelete'                 => '삭제',
-'imgdesc'                   => '설명',
-'imgfile'                   => '파일',
+# Special:Imagelist
+'imgdesc'               => '설명',
+'imgfile'               => '파일',
+'imagelist'             => '그림 목록',
+'imagelist_date'        => '날짜',
+'imagelist_name'        => '이름',
+'imagelist_user'        => '사용자',
+'imagelist_size'        => '크기',
+'imagelist_description' => '설명',
+
+# Image description page
 'filehist'                  => '파일 역사',
 'filehist-help'             => '날짜/시간을 누르면 해당 시간에 올라온 파일을 볼 수 있습니다.',
 'filehist-deleteall'        => '모두 삭제',
@@ -896,11 +897,6 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'noimage'                   => '파일이 없습니다. $1할 수 있습니다.',
 'noimage-linktext'          => '업로드',
 'uploadnewversion-linktext' => '이 파일의 새로운 버전을 올리기',
-'imagelist_date'            => '날짜',
-'imagelist_name'            => '이름',
-'imagelist_user'            => '사용자',
-'imagelist_size'            => '크기',
-'imagelist_description'     => '설명',
 
 # File reversion
 'filerevert'                => '$1 되돌리기',
@@ -1295,8 +1291,6 @@ $1',
 'sp-contributions-username'    => 'IP 주소 혹은 사용자 이름:',
 'sp-contributions-submit'      => '찾기',
 
-'sp-newimages-showfrom' => '$1부터 올라온 그림 목록 보기',
-
 # What links here
 'whatlinkshere'       => '여기를 가리키는 글',
 'whatlinkshere-title' => '$1 문서를 가리키는 문서 목록',
@@ -1558,16 +1552,12 @@ $1',
 'nocredits'        => '이 문서에서는 기여자 정보가 없습니다.',
 
 # Spam protection
-'spamprotectiontitle'    => '스팸 방지 필터',
-'spamprotectiontext'     => '스팸 필터가 문서 저장을 막았습니다. 다른 사이트로 연결하는 링크 중에 문제가 되는 사이트가 있을 것입니다.',
-'spamprotectionmatch'    => '문제가 되는 부분은 다음과 같습니다: $1',
-'subcategorycount'       => '이 분류에 $1개의 하위 분류가 있습니다.',
-'categoryarticlecount'   => '이 분류에 $1개의 문서가 있습니다.',
-'category-media-count'   => '이 분류에 $1개의 자료가 있습니다.',
-'listingcontinuesabbrev' => ' (계속)',
-'spambot_username'       => 'MediaWiki 스팸 제거',
-'spam_reverting'         => '$1을 포함하지 않는 최신 버전으로 되돌림',
-'spam_blanking'          => '모든 버전에 $1 링크를 포함하고 있어 문서를 비움',
+'spamprotectiontitle' => '스팸 방지 필터',
+'spamprotectiontext'  => '스팸 필터가 문서 저장을 막았습니다. 다른 사이트로 연결하는 링크 중에 문제가 되는 사이트가 있을 것입니다.',
+'spamprotectionmatch' => '문제가 되는 부분은 다음과 같습니다: $1',
+'spambot_username'    => 'MediaWiki 스팸 제거',
+'spam_reverting'      => '$1을 포함하지 않는 최신 버전으로 되돌림',
+'spam_blanking'       => '모든 버전에 $1 링크를 포함하고 있어 문서를 비움',
 
 # Info page
 'infosubtitle'   => '문서 정보',
@@ -1623,9 +1613,13 @@ $1',
 'show-big-image-thumb' => '<small>미리보기 크기: $1 × $2 픽셀</small>',
 
 # Special:Newimages
-'newimages'    => '새 그림 파일 목록',
-'showhidebots' => '(봇을 $1)',
-'noimages'     => '그림이 없습니다.',
+'newimages'             => '새 그림 파일 목록',
+'imagelisttext'         => '$1개의 파일이 $2 순으로 정렬되어 있습니다.',
+'showhidebots'          => '(봇을 $1)',
+'noimages'              => '그림이 없습니다.',
+'ilsubmit'              => '찾기',
+'bydate'                => '날짜',
+'sp-newimages-showfrom' => '$1부터 올라온 그림 목록 보기',
 
 # Metadata
 'metadata'          => '메타데이터',

@@ -885,18 +885,18 @@ Fitxategi honen ezabaketa erregistroa jarraian ikus dezakezu:",
 'upload_source_url'  => ' (baliozko URL publikoa)',
 'upload_source_file' => ' (zure ordenagailuko fitxategi bat)',
 
-# Image list
-'imagelist'                 => 'Fitxategien zerrenda',
-'imagelisttext'             => "Jarraian duzu $2(e)z ordenatutako {{plural:$1|fitxategi baten|'''$1''' fitxategiren}} zerrenda.",
-'getimagelist'              => 'fitxategi zerrenda jasotzen',
-'ilsubmit'                  => 'Bilatu',
-'showlast'                  => 'Erakutsi azken $1 fitxategiak $2 ordenatuta.',
-'byname'                    => 'izenaren arabera',
-'bydate'                    => 'dataren arabera',
-'bysize'                    => 'tamainaren arabera',
-'imgdelete'                 => 'ezb',
-'imgdesc'                   => 'desk',
-'imgfile'                   => 'fitxategia',
+# Special:Imagelist
+'imagelist_search_for'  => 'Irudiaren izenagatik bilatu:',
+'imgdesc'               => 'desk',
+'imgfile'               => 'fitxategia',
+'imagelist'             => 'Fitxategien zerrenda',
+'imagelist_date'        => 'Data',
+'imagelist_name'        => 'Izena',
+'imagelist_user'        => 'Erabiltzailea',
+'imagelist_size'        => 'Tamaina (byte)',
+'imagelist_description' => 'Deskribapena',
+
+# Image description page
 'filehist'                  => 'Fitxategiaren historia',
 'filehist-help'             => 'Data/orduan klik egin fitxategiak orduan zuen itxura ikusteko.',
 'filehist-deleteall'        => 'guztiak ezabatu',
@@ -917,12 +917,6 @@ Fitxategi honen ezabaketa erregistroa jarraian ikus dezakezu:",
 'noimage'                   => 'Ez dago fitxategirik izen honekin, $1 dezakezu nahi baduzu.',
 'noimage-linktext'          => 'igo egin',
 'uploadnewversion-linktext' => 'Fitxategi honen bertsio berri bat igo',
-'imagelist_date'            => 'Data',
-'imagelist_name'            => 'Izena',
-'imagelist_user'            => 'Erabiltzailea',
-'imagelist_size'            => 'Tamaina (byte)',
-'imagelist_description'     => 'Deskribapena',
-'imagelist_search_for'      => 'Irudiaren izenagatik bilatu:',
 
 # File reversion
 'filerevert-comment' => 'Iruzkina:',
@@ -1299,8 +1293,6 @@ $1',
 'sp-contributions-username'    => 'IP helbide edo lankide-izena:',
 'sp-contributions-submit'      => 'Bilatu',
 
-'sp-newimages-showfrom' => 'Irudi berriak erakutsi $1(e)tik hasita',
-
 # What links here
 'whatlinkshere'       => 'Honekin lotzen diren orriak',
 'whatlinkshere-page'  => 'Orrialdea:',
@@ -1647,9 +1639,13 @@ $1',
 'show-big-image-thumb' => '<small>Aurreikuspen honen neurria: $1 × $2 pixel</small>',
 
 # Special:Newimages
-'newimages'    => 'Fitxategi berrien galeria',
-'showhidebots' => '($1 bot-ak)',
-'noimages'     => 'Ez dago ezer ikusteko.',
+'newimages'             => 'Fitxategi berrien galeria',
+'imagelisttext'         => "Jarraian duzu $2(e)z ordenatutako {{plural:$1|fitxategi baten|'''$1''' fitxategiren}} zerrenda.",
+'showhidebots'          => '($1 bot-ak)',
+'noimages'              => 'Ez dago ezer ikusteko.',
+'ilsubmit'              => 'Bilatu',
+'bydate'                => 'dataren arabera',
+'sp-newimages-showfrom' => 'Irudi berriak erakutsi $1(e)tik hasita',
 
 # Video information, used by Language::formatTimePeriod() to format lengths in the above messages
 'hours-abbrev' => 'o',

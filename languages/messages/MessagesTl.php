@@ -107,13 +107,14 @@ $messages = array(
 'nov'           => 'Nob',
 'dec'           => 'Dis',
 
-# Bits of text used by many pages
+# Categories related messages
 'categories'            => 'Mga kategorya',
 'pagecategories'        => '{{PLURAL:$1|Kategorya|Mga kategorya}}',
 'category_header'       => 'Mga pahina sa kategoryang "$1"',
 'subcategories'         => 'Mga subkategorya',
 'category-media-header' => 'Mga midya sa kategoryang "$1"',
 'category-empty'        => "''Kasalukuyang walang artikulo o midya ang kategoryang ito.''",
+'subcategorycount'      => 'Mayroong {{PLURAL:$1|isang subkategorya|$1 subkategorya}} sa kategoryang ito.',
 
 'mainpagetext'      => "<big>'''Matagumpay na ininstala ang MediaWiki.'''</big>",
 'mainpagedocfooter' => "Silipin ang [http://meta.wikimedia.org/wiki/Help:Contents User's Guide] para sa kaalaman sa paggamit ng wiking ''software''.
@@ -398,7 +399,7 @@ upang makapagkarga ng talaksan.',
 'uploaderror'       => 'Kamalian sa pagkarga',
 'watchthisupload'   => 'Bantayan itong pahina',
 
-# Image list
+# Image description page
 'filehist-filesize' => 'Laki ng talaksan',
 'nolinkstoimage'    => 'Walang pahing tumuturo sa talaksang ito.',
 
@@ -567,10 +568,6 @@ Pumili muli ng ibang pangalan.',
 
 # Attribution
 'othercontribs' => 'Batay sa gawa ni/nina $1.',
-
-# Spam protection
-'subcategorycount'     => 'Mayroong {{PLURAL:$1|isang subkategorya|$1 subkategorya}} sa kategoryang ito.',
-'category-media-count' => 'Mayroong {{PLURAL:$1|isang talaksan|$1 talaksan}} sa kategoryang ito.',
 
 # Info page
 'numedits'     => 'Bilang ng mga pagbabago (pahina): $1',

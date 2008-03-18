@@ -54,7 +54,7 @@ $messages = array(
 'fri'       => 'П1e',
 'sat'       => 'Шот',
 
-# Bits of text used by many pages
+# Categories related messages
 'categories'            => 'Тобаш',
 'pagecategories'        => '{{PLURAL:$1|Тоба|Тобаш}}',
 'category-media-header' => 'Файлош тобашахь «$1»',
@@ -169,7 +169,6 @@ $messages = array(
 'newarticle'      => '(Kерла)',
 'newarticletext'  => "ХІар тептар хІинца а кхоьллина дац. Керл тептар кхолла лаахь, дІаязде текст лахара кор чохь (см. [[{{MediaWiki:helppage}}|гІо тептар]] еша кхин информацинаш хаар хьам). Хьо кхуза гІалат вал кхаьчнехь, '''тІехьа воьрзу''' кнопку таІ йе хьан браузера тІехь.",
 'editing'         => 'Хийца $1',
-'editinguser'     => 'Хийца юзер <b>$1</b>',
 'editingsection'  => 'Хийца $1 (секция)',
 'editingcomment'  => 'Хийца $1 (комментарий)',
 'editconflict'    => 'Хийца Конфликт: $1',
@@ -185,6 +184,9 @@ $messages = array(
 'newpassword'     => 'Керла тешаман дош:',
 'textboxsize'     => 'Xийца',
 
+# User rights
+'editinguser' => 'Хийца юзер <b>$1</b>',
+
 # Recent changes
 'recentchanges' => 'Керла хийцамаш',
 'diff'          => 'хийцам',
@@ -197,7 +199,7 @@ $messages = array(
 'upload'   => 'Чуоза Файл',
 'filename' => 'файл цIе',
 
-# Image list
+# Special:Imagelist
 'imagelist_name' => 'Файли цІе',
 'imagelist_user' => 'юзер',
 

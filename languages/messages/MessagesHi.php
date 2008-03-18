@@ -77,8 +77,9 @@ $messages = array(
 'nov'       => 'नवम्बर',
 'dec'       => 'दिसम्बर',
 
-# Bits of text used by many pages
-'categories' => '{{PLURAL:$1|श्रेणि|श्रेणियाँ}}',
+# Categories related messages
+'categories'       => '{{PLURAL:$1|श्रेणि|श्रेणियाँ}}',
+'subcategorycount' => 'इस श्रेणीमे {{PLURAL:$1|एक|$1}} उपविभाग है ।',
 
 'about'      => 'अबाउट',
 'article'    => 'लेख',
@@ -226,9 +227,5 @@ Don't forget to personalize your {{SITENAME}} preferences.",
 
 # What links here
 'whatlinkshere' => 'यहाँ क्या जुड़ता है',
-
-# Spam protection
-'subcategorycount'     => 'इस श्रेणीमे {{PLURAL:$1|एक|$1}} उपविभाग है ।',
-'categoryarticlecount' => 'इस श्रेणी में {{PLURAL:$1|एक|$1}} लेख है ।',
 
 );

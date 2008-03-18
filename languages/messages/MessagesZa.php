@@ -92,9 +92,6 @@ $messages = array(
 'fileuploadsummary' => 'Saegmangj:',
 'watchthisupload'   => 'Demq mae-nej',
 
-# Image list
-'ilsubmit' => 'Cwmh',
-
 # Random page
 'randompage' => 'Mae zaihzex',
 
@@ -142,6 +139,9 @@ $messages = array(
 # Tooltip help for the actions
 'tooltip-pt-preferences' => 'Doenghgaeq gou hae',
 'tooltip-p-logo'         => 'Mae meh',
+
+# Special:Newimages
+'ilsubmit' => 'Cwmh',
 
 # Multipage image navigation
 'imgmultigo' => 'Bei！',

@@ -246,7 +246,7 @@ $messages = array(
 'nov'           => 'nov',
 'dec'           => 'dec',
 
-# Bits of text used by many pages
+# Categories related messages
 'categories'               => 'Kategorier',
 'pagecategories'           => '{{PLURAL:$1|Kategori|Kategorier}}',
 'category_header'          => 'Artikler i kategorien "$1"',
@@ -255,6 +255,8 @@ $messages = array(
 'category-empty'           => "''Denne kategori indeholder for øjeblikket hverken sider eller medie-filer.''",
 'hidden-categories'        => '{{PLURAL:$1|Skjult kategori|Skjulte kategorier}}',
 'hidden-category-category' => 'Skjulte kategorier', # Name of the category where hidden categories will be listed
+'subcategorycount'         => 'Der er $1 {{PLURAL:$1|underkategori|underkategorier}} i denne kategori.',
+'listingcontinuesabbrev'   => ' forts.',
 
 'mainpagetext'      => 'MediaWiki er nu installeret.',
 'mainpagedocfooter' => 'Se vores engelsksprogede [http://meta.wikimedia.org/wiki/MediaWiki_localisation dokumentation om tilpasning af brugergrænsefladen] og [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide brugervejledningen] for oplysninger om opsætning og anvendelse.',
@@ -1109,19 +1111,19 @@ Sletningsloggen for denne fil er gengivet herunder.",
 'upload_source_url'  => ' (gyldig, offentligt tillgængelig URL)',
 'upload_source_file' => ' (en fil på din computer)',
 
-# Image list
-'imagelist'                 => 'Billedliste',
-'imagelist-summary'         => 'Denne specialside viser alle uploadede filer. Standardmæssigt vises de sidst uploadede filer først. Med et klik på spalteoverskriften kan sorteringen vendes om eller der kan sorteres efter en anden spalte.',
-'imagelisttext'             => 'Herunder er en liste med $1 {{PLURAL:$1|billede|billeder}} sorteret $2.',
-'getimagelist'              => 'henter billedliste',
-'ilsubmit'                  => 'Søg',
-'showlast'                  => 'Vis {{PLURAL:$1|det|de}} sidste $1 {{PLURAL:$1|billede|billeder}} sorteret $2.',
-'byname'                    => 'efter navn',
-'bydate'                    => 'efter dato',
-'bysize'                    => 'efter størrelse',
-'imgdelete'                 => 'slet',
-'imgdesc'                   => 'beskrivelse',
-'imgfile'                   => 'Fil',
+# Special:Imagelist
+'imagelist-summary'     => 'Denne specialside viser alle uploadede filer. Standardmæssigt vises de sidst uploadede filer først. Med et klik på spalteoverskriften kan sorteringen vendes om eller der kan sorteres efter en anden spalte.',
+'imagelist_search_for'  => 'Søge efter fil:',
+'imgdesc'               => 'beskrivelse',
+'imgfile'               => 'Fil',
+'imagelist'             => 'Billedliste',
+'imagelist_date'        => 'Dato',
+'imagelist_name'        => 'Navn',
+'imagelist_user'        => 'Bruger',
+'imagelist_size'        => 'Størrelse (Byte)',
+'imagelist_description' => 'Beskrivelse',
+
+# Image description page
 'filehist'                  => 'Filhistorik',
 'filehist-help'             => 'Klik på en dato/tid for at se den version af filen.',
 'filehist-deleteall'        => 'slet alle',
@@ -1142,12 +1144,6 @@ Sletningsloggen for denne fil er gengivet herunder.",
 'noimage'                   => 'Der eksisterer ingen fil med dette navn, du kan $1',
 'noimage-linktext'          => 'lægge den op',
 'uploadnewversion-linktext' => 'Læg en ny version af denne fil op',
-'imagelist_date'            => 'Dato',
-'imagelist_name'            => 'Navn',
-'imagelist_user'            => 'Bruger',
-'imagelist_size'            => 'Størrelse (Byte)',
-'imagelist_description'     => 'Beskrivelse',
-'imagelist_search_for'      => 'Søge efter fil:',
 
 # File reversion
 'filerevert'                => 'Gendan $1',
@@ -1612,8 +1608,6 @@ $1',
 'sp-contributions-username'    => 'IP-adresse eller brugernavn:',
 'sp-contributions-submit'      => 'Søg',
 
-'sp-newimages-showfrom' => 'Vis nye filer fra $1',
-
 # What links here
 'whatlinkshere'         => 'Hvad henviser hertil',
 'whatlinkshere-title'   => 'Sider der henviser til $1',
@@ -1927,16 +1921,12 @@ Alle Transwiki import-aktioner protokolleres i [[Special:Log/import|import-logge
 'nocredits'        => 'Der er ingen forfatteroplysninger om denne side.',
 
 # Spam protection
-'spamprotectiontitle'    => 'Spambeskyttelsesfilter',
-'spamprotectiontext'     => 'Siden du prøver at få adgang til er blokeret af spamfilteret. Dette skyldes sandsynligvis en henvisning til et eksternt websted. Se [[m:spam blacklist]] for en komplet liste af blokerede websteder. Hvis du mener at spamfilteret blokerede redigeringen ved en fejl, så kontakt en [[m:Special:Listadmins|m:administrator]]. Det følgende er et udtræk af siden der bevirkede blokeringen:',
-'spamprotectionmatch'    => 'Følgende tekst udløste vores spamfilter: $1',
-'subcategorycount'       => 'Der er $1 {{PLURAL:$1|underkategori|underkategorier}} i denne kategori.',
-'categoryarticlecount'   => 'Der er $1 {{PLURAL:$1|artikel|artikler}} i denne kategori.',
-'category-media-count'   => 'Der vises {{PLURAL:$1|$1 fil|$1 filer}} fra denne kategori.',
-'listingcontinuesabbrev' => ' forts.',
-'spambot_username'       => 'MediaWiki spam-rensning',
-'spam_reverting'         => 'Sidste version uden henvisning til $1 gendannet.',
-'spam_blanking'          => 'Alle versioner, som indeholdt henvisninger til $1, er renset.',
+'spamprotectiontitle' => 'Spambeskyttelsesfilter',
+'spamprotectiontext'  => 'Siden du prøver at få adgang til er blokeret af spamfilteret. Dette skyldes sandsynligvis en henvisning til et eksternt websted. Se [[m:spam blacklist]] for en komplet liste af blokerede websteder. Hvis du mener at spamfilteret blokerede redigeringen ved en fejl, så kontakt en [[m:Special:Listadmins|m:administrator]]. Det følgende er et udtræk af siden der bevirkede blokeringen:',
+'spamprotectionmatch' => 'Følgende tekst udløste vores spamfilter: $1',
+'spambot_username'    => 'MediaWiki spam-rensning',
+'spam_reverting'      => 'Sidste version uden henvisning til $1 gendannet.',
+'spam_blanking'       => 'Alle versioner, som indeholdt henvisninger til $1, er renset.',
 
 # Info page
 'infosubtitle'   => 'Information om siden',
@@ -1999,10 +1989,14 @@ $1',
 'show-big-image-thumb' => '<small>Størrelse af forhåndsvisning: $1 × $2 pixel</small>',
 
 # Special:Newimages
-'newimages'         => 'Galleri med de nyeste billeder',
-'newimages-summary' => 'Denne specialside viser de nyeste uploadede billeder og filer.',
-'showhidebots'      => '(Bots $1)',
-'noimages'          => 'Ingen filer fundet.',
+'newimages'             => 'Galleri med de nyeste billeder',
+'imagelisttext'         => 'Herunder er en liste med $1 {{PLURAL:$1|billede|billeder}} sorteret $2.',
+'newimages-summary'     => 'Denne specialside viser de nyeste uploadede billeder og filer.',
+'showhidebots'          => '(Bots $1)',
+'noimages'              => 'Ingen filer fundet.',
+'ilsubmit'              => 'Søg',
+'bydate'                => 'efter dato',
+'sp-newimages-showfrom' => 'Vis nye filer fra $1',
 
 # Video information, used by Language::formatTimePeriod() to format lengths in the above messages
 'hours-abbrev' => 't',

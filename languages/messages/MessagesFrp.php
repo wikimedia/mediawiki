@@ -167,7 +167,7 @@ $messages = array(
 'nov'           => 'nov',
 'dec'           => 'dèc',
 
-# Bits of text used by many pages
+# Categories related messages
 'categories'               => 'Catègories',
 'pagecategories'           => '{{PLURAL:$1|Catègorie |Catègories }}',
 'category_header'          => 'Pâges dens la catègorie « $1 »',
@@ -176,6 +176,8 @@ $messages = array(
 'category-empty'           => "''Ceta catègorie contint gins d’articllo, de sot-catègorie ou de fichiér multimèdia.''",
 'hidden-categories'        => '{{PLURAL:$1|Catègorie cachiê|Catègories cachiês}}',
 'hidden-category-category' => 'Catègories cachiês', # Name of the category where hidden categories will be listed
+'subcategorycount'         => '{{PLURAL:$1|Yona sot-catègorie est listâ|$1 sot-catègories sont listâs}} ce-desot. S’un lim « (200 prècèdents) » ou ben « (200 siuvents) » est present ce-dessus, pôt menar a d’ôtres sot-catègories.',
+'listingcontinuesabbrev'   => '(suita)',
 
 'mainpagetext'      => "<big>'''MediaWiki at étâ enstalâ avouéc reusséta.'''</big>",
 'mainpagedocfooter' => 'Consultâd lo [http://meta.wikimedia.org/wiki/Aide:Contenu guido d’utilisator] por més d’enformacions sur l’usâjo de la programeria vouiqui.
@@ -1054,18 +1056,18 @@ PICT # de totes sôrtes
 'upload_source_url'  => ' (una URL valida et accèssibla publicament)',
 'upload_source_file' => ' (un fichiér sur voutron ordenator)',
 
-# Image list
-'imagelist'                 => 'Lista de les émâges',
-'imagelisttext'             => "Vê-que una lista de '''$1''' {{PLURAL:$1|fichiér cllassiê|fichiérs cllassiês}} $2.",
-'getimagelist'              => 'Rècupèracion de la lista de les émâges',
-'ilsubmit'                  => 'Chèrchiér',
-'showlast'                  => 'Afichiér les $1 dèrriéres émâges cllassiês $2.',
-'byname'                    => 'per nom',
-'bydate'                    => 'per dâta',
-'bysize'                    => 'per talye',
-'imgdelete'                 => 'supr',
-'imgdesc'                   => 'pâge de l’émâge',
-'imgfile'                   => 'fichiér',
+# Special:Imagelist
+'imagelist_search_for'  => 'Rechèrche por l’émâge apelâ :',
+'imgdesc'               => 'pâge de l’émâge',
+'imgfile'               => 'fichiér',
+'imagelist'             => 'Lista de les émâges',
+'imagelist_date'        => 'Dâta',
+'imagelist_name'        => 'Nom',
+'imagelist_user'        => 'Utilisator',
+'imagelist_size'        => 'Octèts',
+'imagelist_description' => 'Dèscripcion',
+
+# Image description page
 'filehist'                  => 'Historico du fichiér',
 'filehist-help'             => 'Clicar sur una dâta et una hora por vêre lo fichiér tâl qu’il ére a cél moment.',
 'filehist-deleteall'        => 'tot suprimar',
@@ -1087,12 +1089,6 @@ PICT # de totes sôrtes
 'noimage'                   => 'Nion fichiér èyent cél nom ègziste, vos pouede $1.',
 'noimage-linktext'          => 'nen importar yon',
 'uploadnewversion-linktext' => 'Copiyér una novèla vèrsion de ceti fichiér',
-'imagelist_date'            => 'Dâta',
-'imagelist_name'            => 'Nom',
-'imagelist_user'            => 'Utilisator',
-'imagelist_size'            => 'Octèts',
-'imagelist_description'     => 'Dèscripcion',
-'imagelist_search_for'      => 'Rechèrche por l’émâge apelâ :',
 
 # File reversion
 'filerevert'                => 'Rèvocar $1',
@@ -1539,8 +1535,6 @@ $1',
 'sp-contributions-username'    => 'Adrèce IP ou nom d’utilisator :',
 'sp-contributions-submit'      => 'Chèrchiér',
 
-'sp-newimages-showfrom' => 'Afichiér les émâges importâs dês lo $1',
-
 # What links here
 'whatlinkshere'       => 'Pâges liyês',
 'whatlinkshere-title' => 'Pâges liyês a $1',
@@ -1881,16 +1875,12 @@ Totes les accions d’importacion entèrvouiqui sont consèrvâs dens lo [[Speci
 'nocredits'        => 'Y at pas d’enformacions d’atribucion disponibles por ceta pâge.',
 
 # Spam protection
-'spamprotectiontitle'    => 'Pâge ôtomaticament protègiê a côsa de spame',
-'spamprotectiontext'     => 'La pâge que vos éd tâchiê de sôvar at étâ blocâ per lo filtro antispame. Cen est probâblament côsâ per un lim vers un seto de defôr.',
-'spamprotectionmatch'    => "La chêna de caractèros '''« $1 »''' at dècllenchiê lo dècelior de spame.",
-'subcategorycount'       => '{{PLURAL:$1|Yona sot-catègorie est listâ|$1 sot-catègories sont listâs}} ce-desot. S’un lim « (200 prècèdents) » ou ben « (200 siuvents) » est present ce-dessus, pôt menar a d’ôtres sot-catègories.',
-'categoryarticlecount'   => 'Y at {{PLURAL:$1|yon articllo|$1 articllos}} dens ceta catègorie.',
-'category-media-count'   => 'Y at {{PLURAL:$1|yon fichiér|$1 fichiérs}} multimèdia dens ceta catègorie.',
-'listingcontinuesabbrev' => '(suita)',
-'spambot_username'       => 'Neteyâjo de spame per MediaWiki',
-'spam_reverting'         => 'Rèstoracion de la dèrriére vèrsion contegnent pas de lim vers $1.',
-'spam_blanking'          => 'Totes les vèrsions contegnent des lims vers $1 sont blanchies.',
+'spamprotectiontitle' => 'Pâge ôtomaticament protègiê a côsa de spame',
+'spamprotectiontext'  => 'La pâge que vos éd tâchiê de sôvar at étâ blocâ per lo filtro antispame. Cen est probâblament côsâ per un lim vers un seto de defôr.',
+'spamprotectionmatch' => "La chêna de caractèros '''« $1 »''' at dècllenchiê lo dècelior de spame.",
+'spambot_username'    => 'Neteyâjo de spame per MediaWiki',
+'spam_reverting'      => 'Rèstoracion de la dèrriére vèrsion contegnent pas de lim vers $1.',
+'spam_blanking'       => 'Totes les vèrsions contegnent des lims vers $1 sont blanchies.',
 
 # Info page
 'infosubtitle'   => 'Enformacions por la pâge',
@@ -1952,9 +1942,13 @@ Totes les accions d’importacion entèrvouiqui sont consèrvâs dens lo [[Speci
 'show-big-image-thumb' => '<small>Talye de ceta vua : $1 × $2 pixèles</small>',
 
 # Special:Newimages
-'newimages'    => 'Galerie des novéls fichiérs',
-'showhidebots' => '($1 bots)',
-'noimages'     => 'Niona émâge a afichiér.',
+'newimages'             => 'Galerie des novéls fichiérs',
+'imagelisttext'         => "Vê-que una lista de '''$1''' {{PLURAL:$1|fichiér cllassiê|fichiérs cllassiês}} $2.",
+'showhidebots'          => '($1 bots)',
+'noimages'              => 'Niona émâge a afichiér.',
+'ilsubmit'              => 'Chèrchiér',
+'bydate'                => 'per dâta',
+'sp-newimages-showfrom' => 'Afichiér les émâges importâs dês lo $1',
 
 # Bad image list
 'bad_image_list' => 'Lo format est lo siuvent :

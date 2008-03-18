@@ -136,13 +136,14 @@ $messages = array(
 'nov'           => 'Wamber',
 'dec'           => 'Jember',
 
-# Bits of text used by many pages
+# Categories related messages
 'categories'            => 'Taggayin',
 'pagecategories'        => '{{PLURAL:$1|Taggayt|Taggayin}}',
 'category_header'       => 'Imagraden deg taggayt "$1"',
 'subcategories'         => 'Taggayin tizellumin',
 'category-media-header' => 'Media deg taggayt "$1"',
 'category-empty'        => "''Taggayt-agi d tilemt.''",
+'subcategorycount'      => '{{PLURAL:$1|Tella yiwet taggayt tazellumt|Llant $1 taggayin tizellumin}} deg taggayt-agi.',
 
 'about'          => 'Awal ɣef...',
 'article'        => 'Ayen yella deg usebter',
@@ -867,18 +868,18 @@ Ma tesɛiḍ tugna-nni s resolution tameqqrant, azen-it, ma ulac beddel isem-is.
 'upload_source_url'  => ' (URL saḥiḥ)',
 'upload_source_file' => ' (afaylu deg uselkim inek)',
 
-# Image list
-'imagelist'                 => 'Umuɣ n tugniwin',
-'imagelisttext'             => "Deg ukessar yella wumuɣ n '''$1''' {{plural:$1|ufaylu|yifayluwen}} $2.",
-'getimagelist'              => 'Yeddem umuɣ n tugniwin',
-'ilsubmit'                  => 'Nadi',
-'showlast'                  => 'Ssken $1 n yifayluwen ineggura $2.',
-'byname'                    => 's yisem',
-'bydate'                    => 's uzemz',
-'bysize'                    => 's tiddi',
-'imgdelete'                 => 'mḥu',
-'imgdesc'                   => 'aglam',
-'imgfile'                   => 'afaylu',
+# Special:Imagelist
+'imagelist_search_for'  => 'Nadi ɣef yisem n tugna:',
+'imgdesc'               => 'aglam',
+'imgfile'               => 'afaylu',
+'imagelist'             => 'Umuɣ n tugniwin',
+'imagelist_date'        => 'Azemz',
+'imagelist_name'        => 'Isem',
+'imagelist_user'        => 'Amseqdac',
+'imagelist_size'        => 'Tiddi (bytes/octets)',
+'imagelist_description' => 'Aglam',
+
+# Image description page
 'filehist-user'             => 'Amseqdac',
 'imagelinks'                => 'Izdayen',
 'linkstoimage'              => 'isebtar-agi sɛan azday ar afaylu-agi',
@@ -889,12 +890,6 @@ Ma tesɛiḍ tugna-nni s resolution tameqqrant, azen-it, ma ulac beddel isem-is.
 'noimage'                   => 'Afaylu s yisem-agi ulac-it, tzemreḍ ad $1.',
 'noimage-linktext'          => 't-tazneḍ',
 'uploadnewversion-linktext' => 'tazneḍ tasiwelt tamaynut n ufaylu-yagi',
-'imagelist_date'            => 'Azemz',
-'imagelist_name'            => 'Isem',
-'imagelist_user'            => 'Amseqdac',
-'imagelist_size'            => 'Tiddi (bytes/octets)',
-'imagelist_description'     => 'Aglam',
-'imagelist_search_for'      => 'Nadi ɣef yisem n tugna:',
 
 # MIME search
 'mimesearch'         => 'Anadi n MIME',
@@ -1210,8 +1205,6 @@ G leɛnayek wekki ɣef taqeffalt "Back/Précédent" n browser/explorateur inek, 
 'sp-contributions-username'    => 'Tansa IP neɣ isem n wemseqdac:',
 'sp-contributions-submit'      => 'Nadi',
 
-'sp-newimages-showfrom' => 'Ssken tugniwin timaynutin seg $1',
-
 # What links here
 'whatlinkshere'       => 'Ayen i d-yettawi ɣer da',
 'linklistsub'         => '(Umuɣ n yizdayen)',
@@ -1409,14 +1402,11 @@ Anda tebɣiḍ tesmimeḍ "[[$1]]" yella yagi. tebɣiḍ ad temḥuḍ iwakken y
 'nocredits'        => 'Ulac talɣut ɣef wayen ixedmen asebter-agi.',
 
 # Spam protection
-'spamprotectiontitle'  => 'Aḥraz amgel "Spam"',
-'spamprotectiontext'   => "Asebter i tebɣiḍ ad tesmektiḍ iɛekkel-it ''aḥraz mgel \"Spam\"''. Ahat yella wezday aberrani.",
-'spamprotectionmatch'  => 'Aḍris-agi ur t-iɛeǧ \'\'"aḥraz mgel "Spam"\'\': $1',
-'subcategorycount'     => '{{PLURAL:$1|Tella yiwet taggayt tazellumt|Llant $1 taggayin tizellumin}} deg taggayt-agi.',
-'categoryarticlecount' => '{{PLURAL:$1|Yella yiwen umagrad|Llan $1 imagraden}} deg taggayt-agi.',
-'category-media-count' => '{{PLURAL:$1|Yella yiwen afaylu|Llan $1 ifayluwen}} deg taggayt-agi.',
-'spam_reverting'       => 'Asuɣal i tasiwel taneggarut i ur tesɛi ara izdayen ɣer $1',
-'spam_blanking'        => 'Akk tisiwal sɛan izdayen ɣer $1, ad yemḥu',
+'spamprotectiontitle' => 'Aḥraz amgel "Spam"',
+'spamprotectiontext'  => "Asebter i tebɣiḍ ad tesmektiḍ iɛekkel-it ''aḥraz mgel \"Spam\"''. Ahat yella wezday aberrani.",
+'spamprotectionmatch' => 'Aḍris-agi ur t-iɛeǧ \'\'"aḥraz mgel "Spam"\'\': $1',
+'spam_reverting'      => 'Asuɣal i tasiwel taneggarut i ur tesɛi ara izdayen ɣer $1',
+'spam_blanking'       => 'Akk tisiwal sɛan izdayen ɣer $1, ad yemḥu',
 
 # Info page
 'infosubtitle'   => 'Talɣut n usebter',
@@ -1468,8 +1458,12 @@ Anda tebɣiḍ tesmimeḍ "[[$1]]" yella yagi. tebɣiḍ ad temḥuḍ iwakken y
 'show-big-image-thumb' => '<small>Tiddi n pre-timeẓriwt-agi: $1 × $2 pixels</small>',
 
 # Special:Newimages
-'newimages' => 'Umuɣ n ifayluwen imaynuten',
-'noimages'  => 'Tugna ulac-itt.',
+'newimages'             => 'Umuɣ n ifayluwen imaynuten',
+'imagelisttext'         => "Deg ukessar yella wumuɣ n '''$1''' {{plural:$1|ufaylu|yifayluwen}} $2.",
+'noimages'              => 'Tugna ulac-itt.',
+'ilsubmit'              => 'Nadi',
+'bydate'                => 's uzemz',
+'sp-newimages-showfrom' => 'Ssken tugniwin timaynutin seg $1',
 
 # EXIF tags
 'exif-imagewidth' => 'Tehri',

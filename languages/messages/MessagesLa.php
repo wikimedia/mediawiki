@@ -810,15 +810,15 @@ Ad fasciculum includendum in pagina, utere nexu
 
 'license-nopreview' => '(Praevisum monstrari non potest)',
 
-# Image list
-'imagelist'                 => 'Fasciculi',
-'imagelisttext'             => "Subter est index {{plural:$1|'''unius''' fasciculi|'''$1''' fasciculorum}} digestus $2.",
-'getimagelist'              => 'onerans indicem fasciculorum',
-'ilsubmit'                  => 'Quaerere',
-'byname'                    => 'ex nomine',
-'bydate'                    => 'ex die',
-'bysize'                    => 'ex magnitudine',
-'imgfile'                   => 'fasciculus',
+# Special:Imagelist
+'imgfile'               => 'fasciculus',
+'imagelist'             => 'Fasciculi',
+'imagelist_name'        => 'Nomen',
+'imagelist_user'        => 'Usor',
+'imagelist_size'        => 'Magnitudo',
+'imagelist_description' => 'Descriptio',
+
+# Image description page
 'filehist'                  => 'Historia fasciculi',
 'filehist-help'             => 'Ad emendationem fasciculi inspiciendum, preme in diem/tempus.',
 'filehist-deleteall'        => 'delere omnes emendationes',
@@ -836,10 +836,6 @@ Ad fasciculum includendum in pagina, utere nexu
 'noimage'                   => 'Fasciculus huius nominis non est. $1 potes.',
 'noimage-linktext'          => 'Fasciculum huius nominis onerare',
 'uploadnewversion-linktext' => 'Emendationem novam huius fasciculi onerare',
-'imagelist_name'            => 'Nomen',
-'imagelist_user'            => 'Usor',
-'imagelist_size'            => 'Magnitudo',
-'imagelist_description'     => 'Descriptio',
 
 # File reversion
 'filerevert-legend'         => 'Reverti fasciculum',
@@ -1386,8 +1382,11 @@ Quaesitum "[[$1]]" etiam existit. Vin tu eam delere ut moveas?',
 'thumbsize'    => 'Magnitudo pollicisunguis:',
 
 # Special:Newimages
-'newimages' => 'Fasciculi novi',
-'noimages'  => 'Nullum videndum.',
+'newimages'     => 'Fasciculi novi',
+'imagelisttext' => "Subter est index {{plural:$1|'''unius''' fasciculi|'''$1''' fasciculorum}} digestus $2.",
+'noimages'      => 'Nullum videndum.',
+'ilsubmit'      => 'Quaerere',
+'bydate'        => 'ex die',
 
 'exif-meteringmode-1' => 'Media',
 

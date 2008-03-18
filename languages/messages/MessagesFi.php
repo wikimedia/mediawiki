@@ -1102,18 +1102,18 @@ Harkitse, haluatko jatkaa tämän tiedoston tallentamista. Tiedoston poistoloki 
 'upload_source_url'  => ' (julkinen verkko-osoite)',
 'upload_source_file' => ' (tiedosto tietokoneella)',
 
-# Image list
-'imagelist'                 => 'Tiedostoluettelo',
-'imagelisttext'             => 'Alla on {{PLURAL:$1|1 tiedosto|$1 tiedostoa}} lajiteltuna <strong>$2</strong>.',
-'getimagelist'              => 'noudetaan tiedostoluetteloa',
-'ilsubmit'                  => 'Hae',
-'showlast'                  => 'Näytä viimeiset $1 tiedostoa lajiteltuna $2.',
-'byname'                    => 'nimen mukaan',
-'bydate'                    => 'päiväyksen mukaan',
-'bysize'                    => 'koon mukaan',
-'imgdelete'                 => 'poista',
-'imgdesc'                   => 'kuvaus',
-'imgfile'                   => 'tiedosto',
+# Special:Imagelist
+'imagelist_search_for'  => 'Nimihaku',
+'imgdesc'               => 'kuvaus',
+'imgfile'               => 'tiedosto',
+'imagelist'             => 'Tiedostoluettelo',
+'imagelist_date'        => 'Päiväys',
+'imagelist_name'        => 'Nimi',
+'imagelist_user'        => 'Tallentaja',
+'imagelist_size'        => 'Koko',
+'imagelist_description' => 'Kuvaus',
+
+# Image description page
 'filehist'                  => 'Tiedoston historia',
 'filehist-help'             => 'Päiväystä napsauttamalla näet millainen tiedosto oli sillä ajan hetkellä.',
 'filehist-deleteall'        => 'poista kaikki',
@@ -1135,12 +1135,6 @@ Harkitse, haluatko jatkaa tämän tiedoston tallentamista. Tiedoston poistoloki 
 'noimage'                   => 'Tämän nimistä tiedostoa ei ole olemassa. Voit $1 {{GRAMMAR:illative|{{SITENAME}}}}.',
 'noimage-linktext'          => 'lisätä tiedoston',
 'uploadnewversion-linktext' => 'Tallenna uusi versio tästä tiedostosta',
-'imagelist_date'            => 'Päiväys',
-'imagelist_name'            => 'Nimi',
-'imagelist_user'            => 'Tallentaja',
-'imagelist_size'            => 'Koko',
-'imagelist_description'     => 'Kuvaus',
-'imagelist_search_for'      => 'Nimihaku',
 
 # File reversion
 'filerevert'                => 'Tiedoston $1 palautus',
@@ -1558,8 +1552,6 @@ $1',
 'sp-contributions-username'    => 'IP-osoite tai käyttäjätunnus',
 'sp-contributions-submit'      => 'Hae',
 
-'sp-newimages-showfrom' => 'Näytä uudet tiedostot alkaen $1',
-
 # What links here
 'whatlinkshere'       => 'Tänne viittaavat sivut',
 'whatlinkshere-title' => 'Sivut, jotka viittaavat sivulle $1',
@@ -1930,9 +1922,13 @@ $1',
 'show-big-image-thumb' => '<small>Esikatselun koko: $1×$2 px</small>',
 
 # Special:Newimages
-'newimages'    => 'Uudet kuvat',
-'showhidebots' => '($1 botit)',
-'noimages'     => 'Ei uusia kuvia.',
+'newimages'             => 'Uudet kuvat',
+'imagelisttext'         => 'Alla on {{PLURAL:$1|1 tiedosto|$1 tiedostoa}} lajiteltuna <strong>$2</strong>.',
+'showhidebots'          => '($1 botit)',
+'noimages'              => 'Ei uusia kuvia.',
+'ilsubmit'              => 'Hae',
+'bydate'                => 'päiväyksen mukaan',
+'sp-newimages-showfrom' => 'Näytä uudet tiedostot alkaen $1',
 
 # Bad image list
 'bad_image_list' => 'Listan muoto on seuraava:

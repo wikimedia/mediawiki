@@ -62,7 +62,7 @@ $messages = array(
 'nov'           => 'nō novema',
 'dec'           => 'nō tītema',
 
-# Bits of text used by many pages
+# Categories related messages
 'categories' => 'Te mau huru o te ’api',
 
 'about'          => 'Nō',
@@ -126,9 +126,11 @@ $messages = array(
 # Recent changes
 'recentchanges' => 'Te mau fa’ahuru-’ē-ra’a ’āpī',
 
-# Image list
-'filehist-user'  => 'Ta’ata',
+# Special:Imagelist
 'imagelist_user' => 'Ta’ata fa’a’ohipa',
+
+# Image description page
+'filehist-user' => 'Ta’ata',
 
 # Random page
 'randompage' => '’Api mā’iti-haere-noa',

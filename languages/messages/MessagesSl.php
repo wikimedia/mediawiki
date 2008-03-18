@@ -144,11 +144,13 @@ $messages = array(
 'nov'           => 'nov.',
 'dec'           => 'dec.',
 
-# Bits of text used by many pages
-'categories'      => 'Kategorije',
-'pagecategories'  => '{{plural:$1|Kategorija|Kategoriji|Kategorije|Kategorije|Kategorije}}',
-'category_header' => 'Strani v kategoriji »$1«',
-'subcategories'   => 'Podkategorije',
+# Categories related messages
+'categories'             => 'Kategorije',
+'pagecategories'         => '{{plural:$1|Kategorija|Kategoriji|Kategorije|Kategorije|Kategorije}}',
+'category_header'        => 'Strani v kategoriji »$1«',
+'subcategories'          => 'Podkategorije',
+'subcategorycount'       => 'Kategorija {{plural:$1|ima|ima|ima|ima|nima}} $1 {{plural:$1|podkategorijo|podkategoriji|podkategorije|podkategorij|podkategorij}}.',
+'listingcontinuesabbrev' => 'nadalj.',
 
 'mainpagetext'      => 'Wikiprogramje ste uspešno naložili!',
 'mainpagedocfooter' => 'Za uporabo in pomoč pri nastavitvi, prosimo, preglejte [http://meta.wikimedia.org/wiki/MediaWiki_localisation dokumentacijo za prilagajanje vmesnika]
@@ -491,7 +493,6 @@ Da bi stran ustvarili, vnesite v spodnji obrazec besedilo
 
 <strong>Če gre za dobronameren poskus urejanja, vas prosimo, da poskusite znova. Če bo spet prišlo do napake, se odjavite in ponovno prijavite. Za nevšečnosti se opravičujemo.</strong>",
 'editing'                   => 'Urejanje $1',
-'editinguser'               => 'Urejanje $1',
 'editingsection'            => 'Urejanje $1 (razdelek)',
 'editingcomment'            => 'Urejanje $1 (pripomba)',
 'editconflict'              => 'Navzkrižje urejanj: $1',
@@ -660,6 +661,7 @@ $2 Seznam se preusmerja   Iskanje za $3 $9',
 'userrights-lookup-user'     => 'Upravljanje z uporabniškimi skupinami',
 'userrights-user-editname'   => 'Vpišite uporabniško ime:',
 'editusergroup'              => 'Uredi uporabniške skupine',
+'editinguser'                => 'Urejanje $1',
 'userrights-editusergroup'   => 'Urejanje uporabniških skupin',
 'saveusergroups'             => 'Shrani spremembe',
 'userrights-groupsmember'    => 'Član skupine:',
@@ -765,17 +767,11 @@ ali za neposredno povezavo z datoteko
 'license'   => 'Dovoljenje:',
 'nolicense' => 'Nobeno (opomba: datoteka bo morda izbrisana)',
 
-# Image list
-'imagelist'                 => 'Seznam datotek',
-'imagelisttext'             => 'Prikazujem $1 $2 {{plural:$1|razvrščeno datoteko|razvrščeni datoteki|razvrščene datoteke|razvrščenih datotek|razvrščenih datotek}}.',
-'getimagelist'              => 'pridobivam seznam datotek',
-'ilsubmit'                  => 'Išči',
-'showlast'                  => 'Prikaži {{plural:$1|zadnjo|zadnji|zadnje|zadnjih|zadnjih}} $1 $2 {{plural:$1|razvrščeno|razvrščeni|razvrščene|razvrščenih|razvrščenih}} {{plural:$1|datoteko|datoteki|datoteke|datotek|datotek}}.',
-'byname'                    => 'po imenu',
-'bydate'                    => 'po datumu',
-'bysize'                    => 'po velikosti',
-'imgdelete'                 => 'briši',
-'imgdesc'                   => 'opis',
+# Special:Imagelist
+'imgdesc'   => 'opis',
+'imagelist' => 'Seznam datotek',
+
+# Image description page
 'imagelinks'                => 'Strani z datoteko',
 'linkstoimage'              => 'Datoteka je del naslednjih strani slovenske {{GRAMMAR:rodilnik|{{SITENAME}}}} (strani drugih projektov niso navedene):',
 'nolinkstoimage'            => 'Z datoteko se ne povezuje nobena stran.',
@@ -865,7 +861,6 @@ Vsaka vrstica vsebuje povezave k prvi in drugi preusmeritvi ter prvo vrstico bes
 'restrictedpheading'      => 'Omejene posebne strani',
 'newpages'                => 'Nove strani',
 'ancientpages'            => 'Najdlje nespremenjeni članki',
-'intl'                    => 'Medjezikovne povezave',
 'move'                    => 'Prestavi',
 'movethispage'            => 'Prestavi stran',
 'unusedimagestext'        => '<p>Prosimo, upoštevajte, da lahko druge spletne strani datoteko uporabljajo neposredno z navedbo spletnega naslova. Zato so datoteke lahko navedene, čeprav se uporabljajo.</p>',
@@ -987,8 +982,8 @@ Povratna sporočila in pomoč:
 'confirmdeletetext'           => "Iz zbirke podatkov boste izbrisali stran ali sliko skupaj z vso njeno zgodovino. 
 Prosimo, '''potrdite''', da to resnično želite, da razumete posledice dejanja in da se ravnate po [[{{MediaWiki:Policy-url}}|pravilih]].",
 'actioncomplete'              => 'Poseg je končan',
-'deletedtext'                 => "»'''<nowiki>\$1</nowiki>'''« je bila izbrisana. 
-Za zapise nedavnih brisanj glej \$2.",
+'deletedtext'                 => "»'''<nowiki>$1</nowiki>'''« je bila izbrisana. 
+Za zapise nedavnih brisanj glej $2.",
 'deletedarticle'              => 'je izbrisal(-a) »$1«',
 'dellogpage'                  => 'Dnevnik brisanja',
 'dellogpagetext'              => 'Prikazan je seznam nedavnih brisanj z navedenim strežniškim časom (UTC). Vedite, da polje »Uporabnik« razlikuje med malimi in velikimi črkami.',
@@ -1015,7 +1010,7 @@ Zadnja sprememba od uporabnika [[User:$3|$3]] ([[User talk:$3|Pogovor]]).',
 'protect-legend'              => 'Potrdite zaščito',
 'protectcomment'              => 'Razlog:',
 'protect-unchain'             => 'Deblokiraj dovoljenja za premikanje',
-'protect-text'                => "Tu si lahko ogledate in spremenite raven zaščitenosti strani '''<nowiki>\$1</nowiki>'''.",
+'protect-text'                => "Tu si lahko ogledate in spremenite raven zaščitenosti strani '''<nowiki>$1</nowiki>'''.",
 'protect-default'             => 'Omogoči urejanje vsem uporabnikom',
 'protect-level-autoconfirmed' => 'Blokiraj neregistrirane uporabnike',
 'protect-level-sysop'         => 'Blokiraj vse uporabnike (razen administratorjev)',
@@ -1063,8 +1058,6 @@ Nedavna brisanja in obnove so zapisani v [[Special:Log/delete|dnevniku brisanja]
 'uctop'         => ' (vrh)',
 
 'sp-contributions-newbies-sub' => 'Prispevki novincev',
-
-'sp-newimages-showfrom' => 'Prikaži datoteke, naložene od $1 naprej',
 
 # What links here
 'whatlinkshere' => 'Kaj se povezuje sem',
@@ -1135,7 +1128,7 @@ Ne pozabite blokiranemu uporabniku na njegovi [[User talk:$1|pogovorni strani]] 
 'unlockdbsuccesstext' => 'Zbirka podatkov {{GRAMMAR:rodilnik|{{SITENAME}}}} je spet odklenjena.',
 
 # Move page
-'move-page-legend'                => 'Prestavitev strani',
+'move-page-legend'        => 'Prestavitev strani',
 'movepagetext'            => "Z naslednjim obrazcem lahko stran preimenujete in hkrati prestavite tudi vso njeno zgodovino. Dosedanja stran se bo spremenila v preusmeritev na prihodnje mesto. 
 
 '''Povezave na dosedanji naslov strani se ne bodo spremenile, zato vas prosimo, da po prestavitvi strani z uporabo pripomočka »Kaj se povezuje sem« popravite vse dvojne preusmeritve, ki bodo morda nastale.''' Odgovorni ste, da bodo povezave še naprej kazale na prava mesta.
@@ -1287,19 +1280,16 @@ Ciljna stran »[[$1]]« že obstaja. Ali jo želite, da bi pripravili prostor za
 'nocredits'        => 'Ni dostopnih podatkov o zaslugah za stran.',
 
 # Spam protection
-'spamprotectiontitle'    => 'Zaščita pred neželenimi sporočili',
-'spamprotectiontext'     => "Stran, ki ste jo želeli shraniti, je zaščita pred spamom blokirala, saj je vsebovala povezavo na zunanjo stran, navedeno na [[m:spam blacklist|črni listi spama]]. Če povezave (glejte spodaj) niste dodali vi, je verjetno obstajala že v prejšnji redakciji ali pa jo je dodalo vohunsko programje (''spyware'') na vašem računalniku.
+'spamprotectiontitle' => 'Zaščita pred neželenimi sporočili',
+'spamprotectiontext'  => "Stran, ki ste jo želeli shraniti, je zaščita pred spamom blokirala, saj je vsebovala povezavo na zunanjo stran, navedeno na [[m:spam blacklist|črni listi spama]]. Če povezave (glejte spodaj) niste dodali vi, je verjetno obstajala že v prejšnji redakciji ali pa jo je dodalo vohunsko programje (''spyware'') na vašem računalniku.
 
 Da boste stran lahko shranili, boste morali odstraniti vse na črni listi navedene spletne naslove.
 
 Če mislite, da zaščita preprečuje urejanje neustrezno, vas prosimo, da na [[m:talk:spam blacklist|pogovorni strani črne liste]] predlagate njen popravek. Sledi odlomek strani, ki je sprožila zaščito.",
-'spamprotectionmatch'    => 'Naslednje besedilo je sprožilo naš filter neželenih sporočil: $1',
-'subcategorycount'       => 'Kategorija {{plural:$1|ima|ima|ima|ima|nima}} $1 {{plural:$1|podkategorijo|podkategoriji|podkategorije|podkategorij|podkategorij}}.',
-'categoryarticlecount'   => 'V tem delu kategorije {{plural:$1|je|sta|so|je|ni}} $1 {{plural:$1|stran|strani|strani|strani|strani}}.',
-'listingcontinuesabbrev' => 'nadalj.',
-'spambot_username'       => 'MediaWiki čiščenje navlake',
-'spam_reverting'         => 'Vračanje na zadnjo redakcijo brez povezav na $1',
-'spam_blanking'          => 'Vse redakcije so vsebovale povezave na $1, izpraznjujem',
+'spamprotectionmatch' => 'Naslednje besedilo je sprožilo naš filter neželenih sporočil: $1',
+'spambot_username'    => 'MediaWiki čiščenje navlake',
+'spam_reverting'      => 'Vračanje na zadnjo redakcijo brez povezav na $1',
+'spam_blanking'       => 'Vse redakcije so vsebovale povezave na $1, izpraznjujem',
 
 # Info page
 'infosubtitle'   => 'Podatki o strani',
@@ -1341,9 +1331,13 @@ Da boste stran lahko shranili, boste morali odstraniti vse na črni listi navede
 'thumbsize'    => 'Velikost sličice (thumbnail):',
 
 # Special:Newimages
-'newimages'    => 'Galerija novih datotek',
-'showhidebots' => '($1 bote)',
-'noimages'     => 'Nič ni videti/datoteke ni.',
+'newimages'             => 'Galerija novih datotek',
+'imagelisttext'         => 'Prikazujem $1 $2 {{plural:$1|razvrščeno datoteko|razvrščeni datoteki|razvrščene datoteke|razvrščenih datotek|razvrščenih datotek}}.',
+'showhidebots'          => '($1 bote)',
+'noimages'              => 'Nič ni videti/datoteke ni.',
+'ilsubmit'              => 'Išči',
+'bydate'                => 'po datumu',
+'sp-newimages-showfrom' => 'Prikaži datoteke, naložene od $1 naprej',
 
 # Metadata
 'metadata'          => 'Metapodatki',

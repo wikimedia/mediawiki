@@ -1031,18 +1031,18 @@ $1',
 'upload_source_url'  => '(як нишони интернетии мӯътабар ва оммавӣ)',
 'upload_source_file' => ' (парвандае дар компютери шумо)',
 
-# Image list
-'imagelist'                 => 'Рӯйхати файлҳо',
-'imagelisttext'             => "Дар зер феҳристи '''$1''' {{PLURAL:$1|парвандаи|парвандаҳои}} ба тартиб оварда шуда, омадааст $2.",
-'getimagelist'              => 'дар ҳоли фарохонии феҳристи аксҳо',
-'ilsubmit'                  => 'Ҷустуҷӯи',
-'showlast'                  => 'Намоиши охирин $1 парвандаҳои ба тартиб оварда шуда $2.',
-'byname'                    => 'аз рӯи ном',
-'bydate'                    => 'аз рӯи сана',
-'bysize'                    => 'аз рӯи ҳаҷм',
-'imgdelete'                 => 'ҳазф',
-'imgdesc'                   => 'тавсиф',
-'imgfile'                   => 'парванда',
+# Special:Imagelist
+'imagelist_search_for'  => 'Ҷустуҷӯи номи акс:',
+'imgdesc'               => 'тавсиф',
+'imgfile'               => 'парванда',
+'imagelist'             => 'Рӯйхати файлҳо',
+'imagelist_date'        => 'Сана',
+'imagelist_name'        => 'Ном',
+'imagelist_user'        => 'Корбар',
+'imagelist_size'        => 'Андоза(ҳаҷм)',
+'imagelist_description' => 'Тавсифот',
+
+# Image description page
 'filehist'                  => 'Таърихи файл',
 'filehist-help'             => 'Рӯи таърихҳо клик кунед то нусхаи марбути парвандаро бубинед.',
 'filehist-deleteall'        => 'ҳазфи ҳама',
@@ -1064,12 +1064,6 @@ $1',
 'noimage'                   => 'Ҳеҷ парвандае бо ин ном мавҷуд нест, шумо метавонед $1.',
 'noimage-linktext'          => 'онро бор кунед',
 'uploadnewversion-linktext' => 'Бор кардани нусхаи ҷадидӣ ин парванда',
-'imagelist_date'            => 'Сана',
-'imagelist_name'            => 'Ном',
-'imagelist_user'            => 'Корбар',
-'imagelist_size'            => 'Андоза(ҳаҷм)',
-'imagelist_description'     => 'Тавсифот',
-'imagelist_search_for'      => 'Ҷустуҷӯи номи акс:',
 
 # File reversion
 'filerevert'                => 'Вогардонии $1',
@@ -1502,8 +1496,6 @@ $1',
 'sp-contributions-username'    => 'IP нишона ё номи корбар:',
 'sp-contributions-submit'      => 'Ҷустуҷӯ',
 
-'sp-newimages-showfrom' => 'Нишон додани аксҳои нав шурӯъ аз $1',
-
 # What links here
 'whatlinkshere'       => 'Пайвандҳои дар ин сахифа',
 'whatlinkshere-title' => 'Саҳифаҳое ки ба $1 пайванд доранд',
@@ -1892,9 +1884,13 @@ $1',
 'show-big-image-thumb' => '<small>Андозаи ин пешнамоиш: $1 × $2 пиксел</small>',
 
 # Special:Newimages
-'newimages'    => 'Намоишгоҳи парвандаҳои ҷадид',
-'showhidebots' => '($1 ботҳо)',
-'noimages'     => 'Чизе барои дидан нест.',
+'newimages'             => 'Намоишгоҳи парвандаҳои ҷадид',
+'imagelisttext'         => "Дар зер феҳристи '''$1''' {{PLURAL:$1|парвандаи|парвандаҳои}} ба тартиб оварда шуда, омадааст $2.",
+'showhidebots'          => '($1 ботҳо)',
+'noimages'              => 'Чизе барои дидан нест.',
+'ilsubmit'              => 'Ҷустуҷӯи',
+'bydate'                => 'аз рӯи сана',
+'sp-newimages-showfrom' => 'Нишон додани аксҳои нав шурӯъ аз $1',
 
 # Bad image list
 'bad_image_list' => 'Иттилоотро бояд бо ин шакл ворид кунед:

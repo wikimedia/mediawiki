@@ -1224,18 +1224,18 @@ $2 Показувати перенаправлення   Пошук на $3 $9',
 'upload_source_url'  => ' (вірна, публічно доступна інтернет-адреса)',
 'upload_source_file' => " (файл на вашому комп'ютері)",
 
-# Image list
-'imagelist'                 => 'Список файлів',
-'imagelisttext'             => "Нижче подано список з '''$1''' {{plural:$1|файлу|файлів|файлів}}, відсортованих $2.",
-'getimagelist'              => 'отримання списку файлів',
-'ilsubmit'                  => 'Шукати',
-'showlast'                  => 'Показати останні $1 {{plural:$1|файл|файли|файлів}}, {{plural:$1|впорядкований|впорядковані|впорядкованих}} $2.',
-'byname'                    => 'за назвою',
-'bydate'                    => 'за датою',
-'bysize'                    => 'за розміром',
-'imgdelete'                 => 'вилуч.',
-'imgdesc'                   => 'опис',
-'imgfile'                   => 'файл',
+# Special:Imagelist
+'imagelist_search_for'  => 'Пошук по назві зображення:',
+'imgdesc'               => 'опис',
+'imgfile'               => 'файл',
+'imagelist'             => 'Список файлів',
+'imagelist_date'        => 'Дата',
+'imagelist_name'        => 'Назва',
+'imagelist_user'        => 'Користувач',
+'imagelist_size'        => 'Розмір (в байтах)',
+'imagelist_description' => 'Опис',
+
+# Image description page
 'filehist'                  => 'Історія файлу',
 'filehist-help'             => 'Клацніть на дату/час, щоб переглянути, як тоді виглядав файл.',
 'filehist-deleteall'        => 'вилучити всі',
@@ -1257,12 +1257,6 @@ $2 Показувати перенаправлення   Пошук на $3 $9',
 'noimage'                   => 'Немає файлу з такою назвою, ви можете $1.',
 'noimage-linktext'          => 'завантажити його',
 'uploadnewversion-linktext' => 'Завантажити нову версію цього файлу',
-'imagelist_date'            => 'Дата',
-'imagelist_name'            => 'Назва',
-'imagelist_user'            => 'Користувач',
-'imagelist_size'            => 'Розмір (в байтах)',
-'imagelist_description'     => 'Опис',
-'imagelist_search_for'      => 'Пошук по назві зображення:',
 
 # File reversion
 'filerevert'                => 'Повернення до старої версії $1',
@@ -1702,8 +1696,6 @@ $1',
 'sp-contributions-username'    => "IP-адреса або ім'я користувача:",
 'sp-contributions-submit'      => 'Знайти',
 
-'sp-newimages-showfrom' => 'Показати нові зображення починаючи з $1',
-
 # What links here
 'whatlinkshere'       => 'Посилання сюди',
 'whatlinkshere-title' => 'Сторінки, що посилаються на $1',
@@ -2120,9 +2112,13 @@ $1',
 'show-big-image-thumb' => '<small>Розмір при попередньому перегляді: $1 × $2 пікселів</small>',
 
 # Special:Newimages
-'newimages'    => 'Галерея нових файлів',
-'showhidebots' => '($1 ботів)',
-'noimages'     => 'Файли відсутні.',
+'newimages'             => 'Галерея нових файлів',
+'imagelisttext'         => "Нижче подано список з '''$1''' {{plural:$1|файлу|файлів|файлів}}, відсортованих $2.",
+'showhidebots'          => '($1 ботів)',
+'noimages'              => 'Файли відсутні.',
+'ilsubmit'              => 'Шукати',
+'bydate'                => 'за датою',
+'sp-newimages-showfrom' => 'Показати нові зображення починаючи з $1',
 
 # Bad image list
 'bad_image_list' => 'Формат має бути наступним:

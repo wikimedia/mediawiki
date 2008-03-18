@@ -1249,18 +1249,18 @@ PICT # ált.
 'upload_source_url'  => ' (egy érvényes, nyilvánosan elérhető URL)',
 'upload_source_file' => ' (egy fájl a számítógépeden)',
 
-# Image list
-'imagelist'                 => 'Képlista',
-'imagelisttext'             => 'Lentebb $1 kép látható, $2 rendezve.',
-'getimagelist'              => 'képlista lehívása',
-'ilsubmit'                  => 'Keresés',
-'showlast'                  => 'Az utolsó $1 kép $2.',
-'byname'                    => 'név szerint',
-'bydate'                    => 'dátum szerint',
-'bysize'                    => 'méret szerint',
-'imgdelete'                 => 'töröl',
-'imgdesc'                   => 'leírás',
-'imgfile'                   => 'fájl',
+# Special:Imagelist
+'imagelist_search_for'  => 'Keresés kép nevére:',
+'imgdesc'               => 'leírás',
+'imgfile'               => 'fájl',
+'imagelist'             => 'Képlista',
+'imagelist_date'        => 'Dátum',
+'imagelist_name'        => 'Név',
+'imagelist_user'        => 'felöltő',
+'imagelist_size'        => 'Méret',
+'imagelist_description' => 'Leírás',
+
+# Image description page
 'filehist'                  => 'Fájltörténet',
 'filehist-help'             => 'Kattints egy időpontra, hogy a fájl akkori állapotát láthasd.',
 'filehist-deleteall'        => 'összes törlése',
@@ -1282,12 +1282,6 @@ PICT # ált.
 'noimage'                   => 'Ezen a néven nem létezik médiafájl. Ha szeretnél, $1 egyet.',
 'noimage-linktext'          => 'feltölthetsz',
 'uploadnewversion-linktext' => 'A fájl újabb változatának felküldése',
-'imagelist_date'            => 'Dátum',
-'imagelist_name'            => 'Név',
-'imagelist_user'            => 'felöltő',
-'imagelist_size'            => 'Méret',
-'imagelist_description'     => 'Leírás',
-'imagelist_search_for'      => 'Keresés kép nevére:',
 
 # File reversion
 'filerevert'                => '$1 visszaállítása',
@@ -1741,8 +1735,6 @@ $1',
 'sp-contributions-username'    => 'IP-cím vagy felhasználónév:',
 'sp-contributions-submit'      => 'Szűrés',
 
-'sp-newimages-showfrom' => 'Új képek mutatása $1 után',
-
 # What links here
 'whatlinkshere'       => 'Mi hivatkozik erre',
 'whatlinkshere-title' => 'A(z) $1 lapra hivatkozó lapok',
@@ -2152,9 +2144,13 @@ $1',
 'show-big-image-thumb' => '<small>Az előnézet mérete: $1 × $2 képpont</small>',
 
 # Special:Newimages
-'newimages'    => 'Új képek galériája',
-'showhidebots' => '($1 robot)',
-'noimages'     => 'Nem tekinthető meg semmi.',
+'newimages'             => 'Új képek galériája',
+'imagelisttext'         => 'Lentebb $1 kép látható, $2 rendezve.',
+'showhidebots'          => '($1 robot)',
+'noimages'              => 'Nem tekinthető meg semmi.',
+'ilsubmit'              => 'Keresés',
+'bydate'                => 'dátum szerint',
+'sp-newimages-showfrom' => 'Új képek mutatása $1 után',
 
 # Bad image list
 'bad_image_list' => 'A formátum a következő:

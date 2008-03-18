@@ -226,8 +226,10 @@ O registo de eliminação desta página é exibido a seguir, para sua comodidade
 'upload'        => 'Carregar ficheiro',
 'uploadlogpage' => 'Registo de carregamento',
 
-# Image list
-'imagelist'         => 'Lista de ficheiros',
+# Special:Imagelist
+'imagelist' => 'Lista de ficheiros',
+
+# Image description page
 'filehist-current'  => 'actual',
 'filehist-datetime' => 'Data/Hora',
 'filehist-user'     => 'Utilizador',

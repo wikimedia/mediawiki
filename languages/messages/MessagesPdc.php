@@ -68,9 +68,6 @@ $messages = array(
 # Recent changes
 'recentchanges' => 'Was mer letscht geduh henn',
 
-# Image list
-'ilsubmit' => 'Guuck uff',
-
 # Random page
 'randompage' => 'Ennich Ardickel',
 
@@ -96,5 +93,8 @@ $messages = array(
 
 # Tooltip help for the actions
 'tooltip-p-logo' => 'Haaptblatt',
+
+# Special:Newimages
+'ilsubmit' => 'Guuck uff',
 
 );

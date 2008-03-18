@@ -358,25 +358,20 @@ Bidde behycge þæt þu bricst þone tramet intō smalrum dǣlum.',
 
 'nolicense' => 'Nǣnne gecorenne',
 
-# Image list
+# Special:Imagelist
+'imagelist_search_for'  => 'Sēcan biliþnaman:',
 'imagelist'             => 'Biliþgetalu',
-'imagelisttext'         => 'Under is getalu $1 biliða gedæfted $2.',
-'getimagelist'          => 'fecce nū onlīcnesgetale',
-'ilsubmit'              => 'Sēcan',
-'showlast'              => 'Īewan þā æftemestan $1 onlīcnessa gedæfted $2.',
-'byname'                => 'be naman',
-'bydate'                => 'be tælmearce',
-'bysize'                => 'be micelnesse',
-'filehist-user'         => 'Brūcend',
-'imagelinks'            => 'Biliþbendas',
-'linkstoimage'          => 'Þā folgendan trametas bindaþ tō þissum biliðe:',
-'nolinkstoimage'        => 'Þǣr sind nāne trametas þe bindaþ tō þissum biliðe.',
-'noimage'               => 'Nān þrǣd mid þissum naman stendeþ nū oþþe nā mā, ac þu canst þēah hine $1.',
 'imagelist_date'        => 'Tælmearc',
 'imagelist_name'        => 'Nama',
 'imagelist_user'        => 'Brūcend',
 'imagelist_description' => 'Tōwritennes',
-'imagelist_search_for'  => 'Sēcan biliþnaman:',
+
+# Image description page
+'filehist-user'  => 'Brūcend',
+'imagelinks'     => 'Biliþbendas',
+'linkstoimage'   => 'Þā folgendan trametas bindaþ tō þissum biliðe:',
+'nolinkstoimage' => 'Þǣr sind nāne trametas þe bindaþ tō þissum biliðe.',
+'noimage'        => 'Nān þrǣd mid þissum naman stendeþ nū oþþe nā mā, ac þu canst þēah hine $1.',
 
 # File deletion
 'filedelete-submit' => 'āfeorsian',
@@ -587,7 +582,10 @@ Bidde cēos ōðerne naman.',
 'thumbsize'    => 'Þumannæglmicelnes:',
 
 # Special:Newimages
-'noimages' => 'Nāht tō sēonne.',
+'imagelisttext' => 'Under is getalu $1 biliða gedæfted $2.',
+'noimages'      => 'Nāht tō sēonne.',
+'ilsubmit'      => 'Sēcan',
+'bydate'        => 'be tælmearce',
 
 # EXIF tags
 'exif-imagewidth'       => 'Wīdu',

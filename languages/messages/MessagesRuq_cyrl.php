@@ -59,9 +59,10 @@ $messages = array(
 'nov'           => 'нов',
 'dec'           => 'дец',
 
-# Bits of text used by many pages
-'category_header' => 'Пажус ен категориа "$1"',
-'subcategories'   => 'Субкатегории',
+# Categories related messages
+'category_header'        => 'Пажус ен категориа "$1"',
+'subcategories'          => 'Субкатегории',
+'listingcontinuesabbrev' => 'контину',
 
 'about'  => 'Дајпул',
 'cancel' => 'ренунтаје',
@@ -204,7 +205,7 @@ $messages = array(
 # Upload
 'upload' => 'тримиће фиширул',
 
-# Image list
+# Image description page
 'filehist'            => 'Хисториа фиширулу',
 'filehist-current'    => 'куренту',
 'filehist-datetime'   => 'Дата/Темп',
@@ -299,9 +300,6 @@ $messages = array(
 'tooltip-ca-nstab-category' => 'Ву лпажу де категориа',
 'tooltip-minoredit'         => 'Це-ест нмодификацион минару',
 'tooltip-save'              => 'Салваере тес модификационс',
-
-# Spam protection
-'listingcontinuesabbrev' => 'контину',
 
 # Media information
 'file-nohires'   => '<small>Це-н-ест нресолуцион маи мари.</small>',

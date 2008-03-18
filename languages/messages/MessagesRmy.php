@@ -72,7 +72,7 @@ $messages = array(
 'nov'       => 'dekh',
 'dec'       => 'ddui',
 
-# Bits of text used by many pages
+# Categories related messages
 'subcategories' => 'Telekategoriye',
 
 'about'          => 'Andar',
@@ -353,10 +353,10 @@ Kana avilyan kathe doshatar, ja palpale.',
 'badfilename' => 'O chitrosko anav sas paruvdo; o nevo anav si "$1".',
 'savefile'    => 'Uxtav file',
 
-# Image list
-'imagelist'  => 'Patrinipen le chitrengo',
-'ilsubmit'   => 'Rod',
-'imgdelete'  => 'khos',
+# Special:Imagelist
+'imagelist' => 'Patrinipen le chitrengo',
+
+# Image description page
 'imagelinks' => 'Chitroske phandimata',
 
 # Unused templates
@@ -545,6 +545,7 @@ Dikh ando $2 ek patrinipen le palutne butyange khosle.',
 
 # Special:Newimages
 'showhidebots' => '($1 boturya)',
+'ilsubmit'     => 'Rod',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'sa',

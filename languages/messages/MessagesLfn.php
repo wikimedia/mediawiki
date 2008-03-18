@@ -105,13 +105,15 @@ $messages = array(
 'nov'           => 'nov',
 'dec'           => 'des',
 
-# Bits of text used by many pages
-'categories'            => 'Categorias',
-'pagecategories'        => '{{PLURAL:$1|Categoria|Categorias}}',
-'category_header'       => 'Articles en categoria "$1"',
-'subcategories'         => 'Sucategorias',
-'category-media-header' => 'Medio en catagoria "$1"',
-'category-empty'        => "''Aora, esta categoria no conteni pajes o medio.''",
+# Categories related messages
+'categories'             => 'Categorias',
+'pagecategories'         => '{{PLURAL:$1|Categoria|Categorias}}',
+'category_header'        => 'Articles en categoria "$1"',
+'subcategories'          => 'Sucategorias',
+'category-media-header'  => 'Medio en catagoria "$1"',
+'category-empty'         => "''Aora, esta categoria no conteni pajes o medio.''",
+'subcategorycount'       => 'Es $1 {{PLURAL:$1|sucategoria|sucategorias}} en esta categoria.',
+'listingcontinuesabbrev' => 'cont.',
 
 'mainpagetext'      => "<big>'''MediaWiki es aora instalada.'''</big>",
 'mainpagedocfooter' => 'Atenda la [http://meta.wikimedia.org/wiki/Help:Contents Gida per Usores] per informa supra la usa de la programa de vici.
@@ -444,10 +446,10 @@ La arcivo de sutraes per esta paje es asi per conveni:",
 'savefile'      => 'Fisa fix',
 'uploadedimage' => '"[[$1]]" es enviada',
 
-# Image list
-'imagelist'                 => 'Lista de imajes',
-'ilsubmit'                  => 'Xerca',
-'imgdelete'                 => 'sutr',
+# Special:Imagelist
+'imagelist' => 'Lista de imajes',
+
+# Image description page
 'filehist'                  => 'Istoria de fix',
 'filehist-help'             => 'Clica a un data/tempo per vide la fix como el ia aperi alora.',
 'filehist-current'          => 'aora',
@@ -764,12 +766,6 @@ En esta casos, tu va nesesa move o fusa la paje per mano, si desirada.",
 # Attribution
 'others' => 'otras',
 
-# Spam protection
-'subcategorycount'       => 'Es $1 {{PLURAL:$1|sucategoria|sucategorias}} en esta categoria.',
-'categoryarticlecount'   => 'Es $1 {{PLURAL:$1|article|articles}} en esta categoria.',
-'category-media-count'   => 'Es {{PLURAL:$1|$1 fix|$1 fixes}} en esta categoria.',
-'listingcontinuesabbrev' => 'cont.',
-
 # Browsing diffs
 'previousdiff' => '← Difere presedente',
 'nextdiff'     => 'Difere seguente →',
@@ -783,6 +779,7 @@ En esta casos, tu va nesesa move o fusa la paje per mano, si desirada.",
 
 # Special:Newimages
 'newimages' => 'Imajes nova',
+'ilsubmit'  => 'Xerca',
 
 # Bad image list
 'bad_image_list' => 'La forma es...

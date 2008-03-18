@@ -206,13 +206,15 @@ $messages = array(
 'nov'           => 'noy',
 'dec'           => 'dek',
 
-# Bits of text used by many pages
-'categories'            => 'Saife kategoriyaları',
-'pagecategories'        => '{{PLURAL:$1|Saifeniñ kategoriyası|Saifeniñ kategoriyaları}}',
-'category_header'       => '"$1" kategoriyasındaki saifeler',
-'subcategories'         => 'Alt kategoriyalar',
-'category-media-header' => '"$1" kategoriyasındaki media faylları',
-'category-empty'        => "''İşbu kategoriyada iç bir saife ya da media fayl yoq.''",
+# Categories related messages
+'categories'             => 'Saife kategoriyaları',
+'pagecategories'         => '{{PLURAL:$1|Saifeniñ kategoriyası|Saifeniñ kategoriyaları}}',
+'category_header'        => '"$1" kategoriyasındaki saifeler',
+'subcategories'          => 'Alt kategoriyalar',
+'category-media-header'  => '"$1" kategoriyasındaki media faylları',
+'category-empty'         => "''İşbu kategoriyada iç bir saife ya da media fayl yoq.''",
+'subcategorycount'       => 'Bu kategoriyada {{PLURAL:$1|1|$1}} alt kategoriya bar.',
+'listingcontinuesabbrev' => ' (devam)',
 
 'linkprefix'        => '/^(.*?)([a-zâçğıñöşüA-ZÂÇĞİÑÖŞÜa-яёА-ЯЁ«„]+)$/sDu',
 'mainpagetext'      => "<big>'''MediaWiki muvafaqiyetnen quruldı.'''</big>",
@@ -955,18 +957,18 @@ Er alda bu faylnı yüklemege devam etmege isteysiñizmi? Bu fayl içün yoq et�
 'upload_source_url'  => ' (doğru, püblik tarzda kirmege musaadeli internet adres)',
 'upload_source_file' => ' (kompyuteriñizdeki fayl)',
 
-# Image list
-'imagelist'                 => 'Resim cedveli',
-'imagelisttext'             => "Aşağıdaki cedvelde $2 köre tizilgen {{PLURAL:$1|'''1''' fayldır|'''$1''' fayldır}}.",
-'getimagelist'              => 'fayllar cedveli alınmaqta',
-'ilsubmit'                  => 'Qıdır',
-'showlast'                  => 'Eñ soñki $1 faylnı $2 köster.',
-'byname'                    => 'elifbe sırasınen',
-'bydate'                    => 'hronologik sıranen',
-'bysize'                    => 'büyüklik sırasınen',
-'imgdelete'                 => 'yoq et',
-'imgdesc'                   => 'tanıtuv',
-'imgfile'                   => 'fayl',
+# Special:Imagelist
+'imagelist_search_for'  => 'Fayl adı qıdıruv:',
+'imgdesc'               => 'tanıtuv',
+'imgfile'               => 'fayl',
+'imagelist'             => 'Resim cedveli',
+'imagelist_date'        => 'Tarih',
+'imagelist_name'        => 'Fayl adı',
+'imagelist_user'        => 'Qullanıcı',
+'imagelist_size'        => 'Büyüklik',
+'imagelist_description' => 'Tasvir',
+
+# Image description page
 'filehist'                  => 'Faylnıñ keçmişi',
 'filehist-help'             => 'Faylnıñ kerekli anki alını körmek içün tarihqa/saatqa basıñız.',
 'filehist-deleteall'        => 'episini yoq et',
@@ -987,12 +989,6 @@ Er alda bu faylnı yüklemege devam etmege isteysiñizmi? Bu fayl içün yoq et�
 'noimage'                   => 'Bu isimde fayl yoq. Siz $1.',
 'noimage-linktext'          => 'yüklep olasıñız',
 'uploadnewversion-linktext' => 'Faylnıñ yañısını yükleñiz',
-'imagelist_date'            => 'Tarih',
-'imagelist_name'            => 'Fayl adı',
-'imagelist_user'            => 'Qullanıcı',
-'imagelist_size'            => 'Büyüklik',
-'imagelist_description'     => 'Tasvir',
-'imagelist_search_for'      => 'Fayl adı qıdıruv:',
 
 # File reversion
 'filerevert'                => 'Eski versiyağa keri qayt $1',
@@ -1323,8 +1319,6 @@ Qorçalav altına alınğan saifeler tam cedveli [[{{ns:special}}:Protectedpages
 'sp-contributions-username'    => 'IP adresi ya da qullanıcı adı:',
 'sp-contributions-submit'      => 'Qıdır',
 
-'sp-newimages-showfrom' => '$1 faylından başlap yañı fayllar köster',
-
 # What links here
 'whatlinkshere'       => 'Saifege bağlantılar',
 'whatlinkshere-title' => '$1 saifesine bağlantı olğan saifeler',
@@ -1379,7 +1373,7 @@ Qorçalav altına alınğan saifeler tam cedveli [[{{ns:special}}:Protectedpages
 'lockbtn' => 'Malümat bazası kilitli',
 
 # Move page
-'move-page-legend'                => 'Ad deñişikligi',
+'move-page-legend'        => 'Ad deñişikligi',
 'movepagetext'            => "Aşağıdaki formanı qullanıp saifeniñ adını deñiştirirsiñiz. Bunıñnen beraber deñişiklik jurnalını da yañı adğa avuştırırsıñız. Eski ad yañı adğa yollama olur. Eski adğa doğru olğan bağlantılar olğanı kibi qalır (lütfen, [[Special:DoubleRedirects|çift]] ve [[Special:BrokenRedirects|keçersiz]] yollamalar mevcüt olğanını teşkeriñiz). Bağlantılar endiden berli eskisi kibi çalışmasından emin olmalısıñız.
 
 Yañı adda bir isim zaten mevcüt olsa, ad deñişikligi '''yapılmaycaq''', ancaq mevcüt olğan saife yollama ya da boş olsa ad deñişikligi mümkün olacaqtır. Bu demek ki, saife adını yañlıştan deñiştirgen olsañız deminki adını keri qaytarıp olasıñız, amma mevcüt olğan saifeni tesadüfen yoq etalmaysıñız.
@@ -1528,16 +1522,12 @@ Lütfen, başqa bir ad saylap yazıñız.',
 'nocredits'        => 'Bu saife içün qullanıcılar cedveli yoq.',
 
 # Spam protection
-'spamprotectiontitle'    => 'Spam qarşı qorçalav filtri',
-'spamprotectiontext'     => 'Saqlamağa istegen saife spam filtri tarafından blok etildi. Büyük ihtimallı ki, bir tış bağlantıdan menbalanmaqta.',
-'spamprotectionmatch'    => 'Spam-filtrden işbu beyanat keldi: $1',
-'subcategorycount'       => 'Bu kategoriyada {{PLURAL:$1|1|$1}} alt kategoriya bar.',
-'categoryarticlecount'   => 'Bu kategoriyada {{PLURAL:$1|1|$1}} saife bar.',
-'category-media-count'   => 'Bu kategoriyada {{PLURAL:$1|1|$1}} fayl bar.',
-'listingcontinuesabbrev' => ' (devam)',
-'spambot_username'       => 'Spamdan temizlev',
-'spam_reverting'         => '$1 saytına bağlantısı olmağan soñki versiyağa keri ketirüv',
-'spam_blanking'          => 'Bar olğan versiyalarda $1 saytına bağlantılar bar, temizlev',
+'spamprotectiontitle' => 'Spam qarşı qorçalav filtri',
+'spamprotectiontext'  => 'Saqlamağa istegen saife spam filtri tarafından blok etildi. Büyük ihtimallı ki, bir tış bağlantıdan menbalanmaqta.',
+'spamprotectionmatch' => 'Spam-filtrden işbu beyanat keldi: $1',
+'spambot_username'    => 'Spamdan temizlev',
+'spam_reverting'      => '$1 saytına bağlantısı olmağan soñki versiyağa keri ketirüv',
+'spam_blanking'       => 'Bar olğan versiyalarda $1 saytına bağlantılar bar, temizlev',
 
 # Info page
 'infosubtitle'   => 'Saife aqqında malümat',
@@ -1580,9 +1570,13 @@ Lütfen, başqa bir ad saylap yazıñız.',
 'show-big-image-thumb' => '<small>Ög baquvda resim büyükligi: $1 × $2 piksel</small>',
 
 # Special:Newimages
-'newimages'    => 'Yañı resimler',
-'showhidebots' => '(botlarnı $1)',
-'noimages'     => 'Resim yoq.',
+'newimages'             => 'Yañı resimler',
+'imagelisttext'         => "Aşağıdaki cedvelde $2 köre tizilgen {{PLURAL:$1|'''1''' fayldır|'''$1''' fayldır}}.",
+'showhidebots'          => '(botlarnı $1)',
+'noimages'              => 'Resim yoq.',
+'ilsubmit'              => 'Qıdır',
+'bydate'                => 'hronologik sıranen',
+'sp-newimages-showfrom' => '$1 faylından başlap yañı fayllar köster',
 
 # Video information, used by Language::formatTimePeriod() to format lengths in the above messages
 'video-dims'     => '$1, $2 × $3',

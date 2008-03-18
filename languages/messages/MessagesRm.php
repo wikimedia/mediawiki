@@ -49,11 +49,12 @@ $messages = array(
 'nov'       => 'nov',
 'dec'       => 'dec',
 
-# Bits of text used by many pages
+# Categories related messages
 'categories'            => 'Categorias',
 'pagecategories'        => '{{PLURAL:$1|Categoria|Categorias}}',
 'category_header'       => 'Artitgels en la categoria "$1"',
 'category-media-header' => 'Datotecas en la categoria "$1"',
+'subcategorycount'      => 'Questa categoria ha {{PLURAL:$1|ina sutcategoria|$1 sutcategorias}}.',
 
 'about'      => 'Surda',
 'article'    => 'artitgel',
@@ -355,13 +356,8 @@ Per integrar il maletg/purtret en tes artitgel sas ti per exempel duvrar in dals
 'sourcefilename'    => 'file sin tes computer:',
 'destfilename'      => 'num dal file sin il server:',
 
-# Image list
+# Special:Imagelist
 'imagelist' => 'Glista dals maletgs',
-'ilsubmit'  => 'Tschertgar',
-'showlast'  => 'Mussar ils davos $1 files sortads $2.',
-'byname'    => 'tenor num',
-'bydate'    => 'tenor data',
-'bysize'    => 'tenor grondezza',
 
 # MIME search
 'mimesearch' => 'tschertgar tenor tip da MIME',
@@ -562,11 +558,6 @@ L\'artitgel da destinaziun "[[$1]]" exista gia. Vul ti stidar el per far plaz pe
 'others'        => 'auters',
 'creditspage'   => 'Statistica da la pagina',
 
-# Spam protection
-'subcategorycount'     => 'Questa categoria ha {{PLURAL:$1|ina sutcategoria|$1 sutcategorias}}.',
-'categoryarticlecount' => 'Questa categoria cuntegn {{PLURAL:$1|in artitgel|$1 artitgels}}.',
-'category-media-count' => 'Questa categoria cuntegn {{PLURAL:$1|ina datoteca|$1 datotecas}}.',
-
 # Info page
 'numedits'       => 'Dumber da las versiuns da quest artitgel: $1',
 'numtalkedits'   => 'Dumber da las versiuns da la pagina da discussiun: $1',
@@ -595,6 +586,8 @@ L\'artitgel da destinaziun "[[$1]]" exista gia. Vul ti stidar el per far plaz pe
 
 # Special:Newimages
 'newimages' => 'Novs maletgs',
+'ilsubmit'  => 'Tschertgar',
+'bydate'    => 'tenor data',
 
 # External editor support
 'edit-externally' => 'Editar questa datoteca cun in program extern',

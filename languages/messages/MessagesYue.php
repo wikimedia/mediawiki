@@ -237,7 +237,7 @@ $messages = array(
 'nov'           => '11月',
 'dec'           => '12月',
 
-# Bits of text used by many pages
+# Categories related messages
 'categories'               => '類',
 'pagecategories'           => '屬於$1類',
 'category_header'          => '"$1" 類中嘅版',
@@ -246,6 +246,8 @@ $messages = array(
 'category-empty'           => "''呢類無任何版或媒體檔。''",
 'hidden-categories'        => '屬於$1隱類',
 'hidden-category-category' => '隱藏類', # Name of the category where hidden categories will be listed
+'subcategorycount'         => '呢個類別入邊有$1個細類別。',
+'listingcontinuesabbrev'   => '續',
 
 'mainpagetext'      => "<big>'''MediaWiki已經裝好。'''</big>",
 'mainpagedocfooter' => '參閱[http://meta.wikimedia.org/wiki/Help:Contents 用戶指引]（英），裏面有資料講點用wiki軟件。
@@ -859,8 +861,8 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'prevn'                 => '前$1',
 'nextn'                 => '後$1',
 'viewprevnext'          => '去睇 ($1) ($2) ($3)',
-'search-result-size'    => "$1 ($2個字)",
-'search-result-score'   => "相關度: $1%",
+'search-result-size'    => '$1 ($2個字)',
+'search-result-score'   => '相關度: $1%',
 'showingresults'        => '自#<b>$2</b>起顯示最多<b>$1</b>個結果。',
 'showingresultsnum'     => '自#<b>$2</b>起顯示<b>$3</b>個結果。',
 'nonefound'             => "'''注意'''：搵嘢結果為空通常係因為你搵嘅係\"have\"、\"from\"等太常用而唔會被索引入數據庫嘅詞，又或者係你指定咗太多嘅關鍵字（只有包含所有你指定嘅關鍵字嘅頁面先至會被搵到出嚟）。",
@@ -1100,18 +1102,18 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'upload_source_url'  => ' （啱嘅，公開嘅網址）',
 'upload_source_file' => ' （你部電腦裏面嘅一個檔案）',
 
-# Image list
-'imagelist'                 => '檔案清單',
-'imagelisttext'             => "以下係'''$1'''個檔案'''$2'''排序嘅清單。",
-'getimagelist'              => '獲取檔案清單中',
-'ilsubmit'                  => '搵嘢',
-'showlast'                  => '顯示$2排序嘅最後$1個檔案。',
-'byname'                    => '以檔名',
-'bydate'                    => '以時間',
-'bysize'                    => '以大細',
-'imgdelete'                 => '刪除',
-'imgdesc'                   => '描述',
-'imgfile'                   => '檔案',
+# Special:Imagelist
+'imagelist_search_for'  => '搵媒體名：',
+'imgdesc'               => '描述',
+'imgfile'               => '檔案',
+'imagelist'             => '檔案清單',
+'imagelist_date'        => '日期',
+'imagelist_name'        => '名',
+'imagelist_user'        => '用戶',
+'imagelist_size'        => '大細',
+'imagelist_description' => '描述',
+
+# Image description page
 'filehist'                  => '檔案歷史',
 'filehist-help'             => '撳個日期／時間去睇響嗰個時間出現過嘅檔案。',
 'filehist-deleteall'        => '刪除全部',
@@ -1133,12 +1135,6 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'noimage'                   => '冇同名嘅檔案存在，你可以$1。',
 'noimage-linktext'          => '上載佢',
 'uploadnewversion-linktext' => '上載呢個檔案嘅一個新版本',
-'imagelist_date'            => '日期',
-'imagelist_name'            => '名',
-'imagelist_user'            => '用戶',
-'imagelist_size'            => '大細',
-'imagelist_description'     => '描述',
-'imagelist_search_for'      => '搵媒體名：',
 
 # File reversion
 'filerevert'                => '回復$1',
@@ -1509,7 +1505,7 @@ wiki: $PAGEEDITOR_WIKI
 # Undelete
 'undelete'                     => '去睇刪除咗嘅頁面',
 'undeletepage'                 => '去睇同恢復刪除咗嘅頁面',
-'undeletepagetitle'            => '\'\'\'下面包括咗[[:$1]]嘅已刪除修訂\'\'\'。',
+'undeletepagetitle'            => "'''下面包括咗[[:$1]]嘅已刪除修訂'''。",
 'viewdeletedpage'              => '去睇被刪除咗嘅頁面',
 'undeletepagetext'             => '以下頁面已經刪除，但係重喺檔庫度可以恢復。檔案庫可能會定時清理。',
 'undeleteextrahelp'            => "要恢復成個頁面，唔好剔任何嘅核選盒，再撳'''''恢復'''''。要恢復已經選擇咗嘅修訂，將要恢復代表有關修訂嘅核選盒剔上，再撳'''''恢復'''''。撳'''''重設'''''會清除註解文字同埋全部嘅核選盒。",
@@ -1568,8 +1564,6 @@ $1',
 'sp-contributions-search'      => '搵貢獻',
 'sp-contributions-username'    => 'IP地址或用戶名：',
 'sp-contributions-submit'      => '搵',
-
-'sp-newimages-showfrom' => '顯示由$1嘅新檔',
 
 # What links here
 'whatlinkshere'       => '有乜嘢連結來呢度',
@@ -1895,16 +1889,12 @@ $1',
 'nocredits'        => '呢一頁並無任何嘅信譽資料可以提供。',
 
 # Spam protection
-'spamprotectiontitle'    => '隔垃圾器',
-'spamprotectiontext'     => '隔垃圾器已經擋住咗你要儲存嘅頁面。噉可能係由指去外部網站嘅連結引起。',
-'spamprotectionmatch'    => '以下係觸發我哋嘅反垃圾過濾器嘅文字：$1',
-'subcategorycount'       => '呢個類別入邊有$1個細類別。',
-'categoryarticlecount'   => '呢個類別入邊有$1版。',
-'category-media-count'   => '呢個類別入邊有$1份檔案。',
-'listingcontinuesabbrev' => '續',
-'spambot_username'       => 'MediaWiki垃圾清除',
-'spam_reverting'         => '恢復返去最後一個唔包含指去$1嘅連結嘅嗰個版本。',
-'spam_blanking'          => '全部版本都含有指去$1嘅連結，留空',
+'spamprotectiontitle' => '隔垃圾器',
+'spamprotectiontext'  => '隔垃圾器已經擋住咗你要儲存嘅頁面。噉可能係由指去外部網站嘅連結引起。',
+'spamprotectionmatch' => '以下係觸發我哋嘅反垃圾過濾器嘅文字：$1',
+'spambot_username'    => 'MediaWiki垃圾清除',
+'spam_reverting'      => '恢復返去最後一個唔包含指去$1嘅連結嘅嗰個版本。',
+'spam_blanking'       => '全部版本都含有指去$1嘅連結，留空',
 
 # Info page
 'infosubtitle'   => '頁面嘅資訊',
@@ -1966,9 +1956,13 @@ $1',
 'show-big-image-thumb' => '<small>呢個預覽嘅大細： $1 × $2 像素</small>',
 
 # Special:Newimages
-'newimages'    => '新檔案畫廊',
-'showhidebots' => '($1 機械人)',
-'noimages'     => '冇嘢去睇。',
+'newimages'             => '新檔案畫廊',
+'imagelisttext'         => "以下係'''$1'''個檔案'''$2'''排序嘅清單。",
+'showhidebots'          => '($1 機械人)',
+'noimages'              => '冇嘢去睇。',
+'ilsubmit'              => '搵嘢',
+'bydate'                => '以時間',
+'sp-newimages-showfrom' => '顯示由$1嘅新檔',
 
 # Bad image list
 'bad_image_list' => '請根據下面嘅格式去寫:

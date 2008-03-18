@@ -75,11 +75,12 @@ $messages = array(
 'oct'       => 'Okt',
 'dec'       => 'Des',
 
-# Bits of text used by many pages
-'categories'      => 'Sokajy',
-'pagecategories'  => '{{PLURAL:$1|Sokajy|Sokajy}}',
-'category_header' => 'Ireo lahatsoratra ao amin\'ny sokajy "$1"',
-'subcategories'   => 'Zana-tsokajy',
+# Categories related messages
+'categories'             => 'Sokajy',
+'pagecategories'         => '{{PLURAL:$1|Sokajy|Sokajy}}',
+'category_header'        => 'Ireo lahatsoratra ao amin\'ny sokajy "$1"',
+'subcategories'          => 'Zana-tsokajy',
+'listingcontinuesabbrev' => ' manaraka.',
 
 'mainpagetext' => "<big>'''Tafajoro soa aman-tsara ny rindrankajy Wiki.'''</big>",
 
@@ -582,17 +583,11 @@ Hamarino tsara aloha dia avereno alefa indray.',
 
 'nolicense' => 'Tsy misy safidy',
 
-# Image list
-'imagelist'                 => 'Lisitry ny rakitra',
-'imagelisttext'             => 'Eto ambany ny lisitry ny rakitra $1 milahatra araka ny $2.',
-'getimagelist'              => 'fanangonana ny lisitry ny rakitra rehetra',
-'ilsubmit'                  => 'Karohy',
-'showlast'                  => 'Asehoy milahatra araka ny $2 ny rakitra $1 farany.',
-'byname'                    => 'araka ny anarana',
-'bydate'                    => 'araka ny daty',
-'bysize'                    => 'araka ny habe',
-'imgdelete'                 => 'fafao',
-'imgdesc'                   => 'famaritana',
+# Special:Imagelist
+'imgdesc'   => 'famaritana',
+'imagelist' => 'Lisitry ny rakitra',
+
+# Image description page
 'imagelinks'                => 'Rohy',
 'linkstoimage'              => "Ireto avy no pejy mirohy amin'io rakitra io:",
 'nolinkstoimage'            => "Tsy misy pejy mirohy amin'ity sary ity.",
@@ -650,7 +645,6 @@ Hamarino tsara aloha dia avereno alefa indray.',
 'spheading'               => "Pejy manokana ho an'ny mpikambana rehetra",
 'newpages'                => 'pejy Vaovao',
 'ancientpages'            => 'Ireo pejy tranainy indrindra',
-'intl'                    => 'Dikan-teny vahiny',
 'move'                    => 'Afindrao',
 'movethispage'            => 'Afindrao ity pejy ity',
 'unusedimagestext'        => "
@@ -913,7 +907,7 @@ Azafady mba antero fa izay tokoa no tena irinao.",
 'unlockdbsuccesstext' => "Voaala soa aman-tsara ny hidin'ny banky angona.",
 
 # Move page
-'move-page-legend'                => 'Afindrao toerana ny pejy',
+'move-page-legend'        => 'Afindrao toerana ny pejy',
 'movearticle'             => 'Afindrao toerana ny pejy',
 'movenologin'             => 'Tsy mbola tafiditra ianao',
 'movenologintext'         => 'Ny mpikambana nisoratra anarana sy [[Special:Userlogin|tafiditra]] ihany no afaka mamindra toerana takelaka.',
@@ -997,10 +991,9 @@ Etsy amin'ny toerana farany dia afaka mampiasa rohy ihany koa ianao, ohatra [[{{
 'siteusers' => '{{SITENAME}} mpikambana $1',
 
 # Spam protection
-'spamprotectiontitle'    => "Sivana mpiaro amin'ny spam",
-'spamprotectiontext'     => "Voasakan'ny sivana mpiaro amin'ny spam ny pejy saika hotahirizinao. Mety ho anton'izany ny fisian'ny rohy mankany amin'ny sehatra ivelan'ity wiki ity.",
-'spamprotectionmatch'    => "Izao teny izao: $1 ; no nanaitra ny sivana mpiaro amin'ny spam",
-'listingcontinuesabbrev' => ' manaraka.',
+'spamprotectiontitle' => "Sivana mpiaro amin'ny spam",
+'spamprotectiontext'  => "Voasakan'ny sivana mpiaro amin'ny spam ny pejy saika hotahirizinao. Mety ho anton'izany ny fisian'ny rohy mankany amin'ny sehatra ivelan'ity wiki ity.",
+'spamprotectionmatch' => "Izao teny izao: $1 ; no nanaitra ny sivana mpiaro amin'ny spam",
 
 # Info page
 'numedits'       => "Isan'ny fanovana (lahatsoratra): $1",
@@ -1030,9 +1023,12 @@ Amporisihina ho an'ny navigateur moderna",
 'thumbsize'    => "Haben'ny thumbnail",
 
 # Special:Newimages
-'newimages'    => 'Tahala misy ny rakitra vaovao',
-'showhidebots' => '(rôbô $1)',
-'noimages'     => 'Tsy misy sary ato.',
+'newimages'     => 'Tahala misy ny rakitra vaovao',
+'imagelisttext' => 'Eto ambany ny lisitry ny rakitra $1 milahatra araka ny $2.',
+'showhidebots'  => '(rôbô $1)',
+'noimages'      => 'Tsy misy sary ato.',
+'ilsubmit'      => 'Karohy',
+'bydate'        => 'araka ny daty',
 
 # Metadata
 'metadata-help'     => "Mirakitra fampahalalana fanampiny, izay inoana ho napetraky ny fakan-tsary na scanner nampiasaina nanaovana ny numérisation-ny ity rakitra ity. Raha kitihina na ovana izy ity dia mety tsy hifanitsy amin'ny sary voaova ireo antsipirihany sasany ireo.",

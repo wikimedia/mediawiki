@@ -207,13 +207,15 @@ $messages = array(
 'nov'           => 'ноя',
 'dec'           => 'дек',
 
-# Bits of text used by many pages
-'categories'            => 'Саифе категориялары',
-'pagecategories'        => '{{PLURAL:$1|Саифенинъ категориясы|Саифенинъ категориялары}}',
-'category_header'       => '"$1" категориясындаки саифелер',
-'subcategories'         => 'Алт категориялар',
-'category-media-header' => '"$1" категориясындаки медиа файллары',
-'category-empty'        => "''Ишбу категорияда ич бир саифе я да медиа файл ёкъ.''",
+# Categories related messages
+'categories'             => 'Саифе категориялары',
+'pagecategories'         => '{{PLURAL:$1|Саифенинъ категориясы|Саифенинъ категориялары}}',
+'category_header'        => '"$1" категориясындаки саифелер',
+'subcategories'          => 'Алт категориялар',
+'category-media-header'  => '"$1" категориясындаки медиа файллары',
+'category-empty'         => "''Ишбу категорияда ич бир саифе я да медиа файл ёкъ.''",
+'subcategorycount'       => 'Бу категорияда {{PLURAL:$1|1|$1}} алт категория бар.',
+'listingcontinuesabbrev' => ' (девам)',
 
 'linkprefix'        => '/^(.*?)([a-zâçğıñöşüA-ZÂÇĞİÑÖŞÜa-яёА-ЯЁ«„]+)$/sDu',
 'mainpagetext'      => "<big>'''MediaWiki мувафакъиетнен къурулды.'''</big>",
@@ -957,18 +959,18 @@ $1<br />$2 ёлланмаларны джедвелле<br />Къыдырылад
 'upload_source_url'  => ' (догъру, публик тарзда кирмеге мусаадели интернет адрес)',
 'upload_source_file' => ' (компьютеринъиздеки файл)',
 
-# Image list
-'imagelist'                 => 'Ресим джедвели',
-'imagelisttext'             => "Ашагъыдаки джедвельде $2 коре тизильген {{PLURAL:$1|'''1''' файлдыр|'''$1''' файлдыр}}.",
-'getimagelist'              => 'файллар джедвели алынмакъта',
-'ilsubmit'                  => 'Къыдыр',
-'showlast'                  => 'Энъ сонъки $1 файлны $2 косьтер.',
-'byname'                    => 'элифбе сырасынен',
-'bydate'                    => 'хронологик сыранен',
-'bysize'                    => 'буюклик сырасынен',
-'imgdelete'                 => 'ёкъ эт',
-'imgdesc'                   => 'танытув',
-'imgfile'                   => 'файл',
+# Special:Imagelist
+'imagelist_search_for'  => 'Файл ады къыдырув:',
+'imgdesc'               => 'танытув',
+'imgfile'               => 'файл',
+'imagelist'             => 'Ресим джедвели',
+'imagelist_date'        => 'Тарих',
+'imagelist_name'        => 'Файл ады',
+'imagelist_user'        => 'Къулланыджы',
+'imagelist_size'        => 'Буюклик',
+'imagelist_description' => 'Тасвир',
+
+# Image description page
 'filehist'                  => 'Файлнынъ кечмиши',
 'filehist-help'             => 'Файлнынъ керекли аньки алыны корьмек ичюн тарихкъа/сааткъа басынъыз.',
 'filehist-deleteall'        => 'эписини ёкъ эт',
@@ -989,12 +991,6 @@ $1<br />$2 ёлланмаларны джедвелле<br />Къыдырылад
 'noimage'                   => 'Бу исимде файл ёкъ. Сиз $1.',
 'noimage-linktext'          => 'юклеп оласынъыз',
 'uploadnewversion-linktext' => 'Файлнынъ янъысыны юкленъиз',
-'imagelist_date'            => 'Тарих',
-'imagelist_name'            => 'Файл ады',
-'imagelist_user'            => 'Къулланыджы',
-'imagelist_size'            => 'Буюклик',
-'imagelist_description'     => 'Тасвир',
-'imagelist_search_for'      => 'Файл ады къыдырув:',
 
 # File reversion
 'filerevert'                => 'Эски версиягъа кери къайт $1',
@@ -1325,8 +1321,6 @@ e-mail: $PAGEEDITOR_EMAIL
 'sp-contributions-username'    => 'IP адреси я да къулланыджы ады:',
 'sp-contributions-submit'      => 'Къыдыр',
 
-'sp-newimages-showfrom' => '$1 файлындан башлап янъы файллар косьтер',
-
 # What links here
 'whatlinkshere'       => 'Саифеге багълантылар',
 'whatlinkshere-title' => '$1 саифесине багъланты олгъан саифелер',
@@ -1381,7 +1375,7 @@ e-mail: $PAGEEDITOR_EMAIL
 'lockbtn' => 'Малюмат базасы килитли',
 
 # Move page
-'move-page-legend'                => 'Ад денъишиклиги',
+'move-page-legend'        => 'Ад денъишиклиги',
 'movepagetext'            => "Ашагъыдаки форманы къулланып саифенинъ адыны денъиштирирсинъиз. Бунынънен берабер денъишиклик журналыны да янъы адгъа авуштырырсынъыз.
 Эски ад янъы адгъа ёллама олур. Эски адгъа догъру олгъан багълантылар олгъаны киби къалыр (лютфен, [[Special:DoubleRedirects|чифт]] ве [[Special:BrokenRedirects|кечерсиз]] ёлламалар мевджут олгъаныны тешкеринъиз). Багълантылар эндиден берли эскиси киби чалышмасындан эмин олмалысынъыз.
 
@@ -1531,16 +1525,12 @@ e-mail: $PAGEEDITOR_EMAIL
 'nocredits'        => 'Бу саифе ичюн къулланыджылар джедвели ёкъ.',
 
 # Spam protection
-'spamprotectiontitle'    => 'Спам къаршы къорчалав фильтри',
-'spamprotectiontext'     => 'Сакъламагъа истеген саифе спам фильтри тарафындан блок этильди. Буюк ихтималлы ки, бир тыш багълантыдан менбаланмакъта.',
-'spamprotectionmatch'    => 'Спам-фильтрден ишбу беянат кельди: $1',
-'subcategorycount'       => 'Бу категорияда {{PLURAL:$1|1|$1}} алт категория бар.',
-'categoryarticlecount'   => 'Бу категорияда {{PLURAL:$1|1|$1}} саифе бар.',
-'category-media-count'   => 'Бу категорияда {{PLURAL:$1|1|$1}} файл бар.',
-'listingcontinuesabbrev' => ' (девам)',
-'spambot_username'       => 'Спамдан темизлев',
-'spam_reverting'         => '$1 сайтына багълантысы олмагъан сонъки версиягъа кери кетирюв',
-'spam_blanking'          => 'Бар олгъан версияларда $1 сайтына багълантылар бар, темизлев',
+'spamprotectiontitle' => 'Спам къаршы къорчалав фильтри',
+'spamprotectiontext'  => 'Сакъламагъа истеген саифе спам фильтри тарафындан блок этильди. Буюк ихтималлы ки, бир тыш багълантыдан менбаланмакъта.',
+'spamprotectionmatch' => 'Спам-фильтрден ишбу беянат кельди: $1',
+'spambot_username'    => 'Спамдан темизлев',
+'spam_reverting'      => '$1 сайтына багълантысы олмагъан сонъки версиягъа кери кетирюв',
+'spam_blanking'       => 'Бар олгъан версияларда $1 сайтына багълантылар бар, темизлев',
 
 # Info page
 'infosubtitle'   => 'Саифе акъкъында малюмат',
@@ -1583,9 +1573,13 @@ e-mail: $PAGEEDITOR_EMAIL
 'show-big-image-thumb' => '<small>Ог бакъувда ресим буюклиги: $1 × $2 пиксель</small>',
 
 # Special:Newimages
-'newimages'    => 'Янъы ресимлер',
-'showhidebots' => '(ботларны $1)',
-'noimages'     => 'Ресим ёкъ.',
+'newimages'             => 'Янъы ресимлер',
+'imagelisttext'         => "Ашагъыдаки джедвельде $2 коре тизильген {{PLURAL:$1|'''1''' файлдыр|'''$1''' файлдыр}}.",
+'showhidebots'          => '(ботларны $1)',
+'noimages'              => 'Ресим ёкъ.',
+'ilsubmit'              => 'Къыдыр',
+'bydate'                => 'хронологик сыранен',
+'sp-newimages-showfrom' => '$1 файлындан башлап янъы файллар косьтер',
 
 # Video information, used by Language::formatTimePeriod() to format lengths in the above messages
 'video-dims'     => '$1, $2 × $3',

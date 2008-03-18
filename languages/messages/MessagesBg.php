@@ -1210,18 +1210,18 @@ $2',
 'upload_source_url'  => ' (правилен, публично достъпен интернет-адрес)',
 'upload_source_file' => ' (файл на вашия компютър)',
 
-# Image list
-'imagelist'                 => 'Списък на файловете',
-'imagelisttext'             => "Списък от {{plural:$1|един файл|'''$1''' файла, сортирани $2}}.",
-'getimagelist'              => 'донасяне на списъка с файлове',
-'ilsubmit'                  => 'Търсене',
-'showlast'                  => 'Показване на последните $1 файла, сортирани $2.',
-'byname'                    => 'по име',
-'bydate'                    => 'по дата',
-'bysize'                    => 'по размер',
-'imgdelete'                 => 'изтр',
-'imgdesc'                   => 'опис',
-'imgfile'                   => 'файл',
+# Special:Imagelist
+'imagelist_search_for'  => 'Търсене по име на файла:',
+'imgdesc'               => 'опис',
+'imgfile'               => 'файл',
+'imagelist'             => 'Списък на файловете',
+'imagelist_date'        => 'Дата',
+'imagelist_name'        => 'Име на файла',
+'imagelist_user'        => 'Потребител',
+'imagelist_size'        => 'Размер',
+'imagelist_description' => 'Описание',
+
+# Image description page
 'filehist'                  => 'История на файла',
 'filehist-help'             => 'Избирането на дата/час ще покаже как е изглеждал файлът към онзи момент.',
 'filehist-deleteall'        => 'изтриване на всички',
@@ -1243,12 +1243,6 @@ $2',
 'noimage'                   => 'Не съществува файл с това име, можете $1.',
 'noimage-linktext'          => 'да го качите',
 'uploadnewversion-linktext' => 'Качване на нова версия на файла',
-'imagelist_date'            => 'Дата',
-'imagelist_name'            => 'Име на файла',
-'imagelist_user'            => 'Потребител',
-'imagelist_size'            => 'Размер',
-'imagelist_description'     => 'Описание',
-'imagelist_search_for'      => 'Търсене по име на файла:',
 
 # File reversion
 'filerevert'                => 'Възвръщане на $1',
@@ -1677,8 +1671,6 @@ $1',
 'sp-contributions-username'    => 'IP-адрес или потребителско име:',
 'sp-contributions-submit'      => 'Търсене',
 
-'sp-newimages-showfrom' => 'Показване на новите картинки, като се започва от $1',
-
 # What links here
 'whatlinkshere'       => 'Какво сочи насам',
 'whatlinkshere-title' => 'Страници, които сочат към $1',
@@ -2074,9 +2066,13 @@ $1',
 'show-big-image-thumb' => '<small>Размер на предварителния преглед: $1 × $2 пиксела</small>',
 
 # Special:Newimages
-'newimages'    => 'Галерия на новите файлове',
-'showhidebots' => '($1 на ботове)',
-'noimages'     => 'Няма нищо.',
+'newimages'             => 'Галерия на новите файлове',
+'imagelisttext'         => "Списък от {{plural:$1|един файл|'''$1''' файла, сортирани $2}}.",
+'showhidebots'          => '($1 на ботове)',
+'noimages'              => 'Няма нищо.',
+'ilsubmit'              => 'Търсене',
+'bydate'                => 'по дата',
+'sp-newimages-showfrom' => 'Показване на новите картинки, като се започва от $1',
 
 # Bad image list
 'bad_image_list' => 'Спазва се следният формат:

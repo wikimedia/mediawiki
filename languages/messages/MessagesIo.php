@@ -103,12 +103,13 @@ $messages = array(
 'nov'           => 'nov',
 'dec'           => 'dec',
 
-# Bits of text used by many pages
-'categories'      => 'Kategorii',
-'pagecategories'  => '{{PLURAL:$1|Kategorio|Kategorii}}',
-'category_header' => 'Artikli en kategorio "$1"',
-'subcategories'   => 'Subkategorii',
-'category-empty'  => "''Nuntempe existas nula pagini en ita kategorio.''",
+# Categories related messages
+'categories'       => 'Kategorii',
+'pagecategories'   => '{{PLURAL:$1|Kategorio|Kategorii}}',
+'category_header'  => 'Artikli en kategorio "$1"',
+'subcategories'    => 'Subkategorii',
+'category-empty'   => "''Nuntempe existas nula pagini en ita kategorio.''",
+'subcategorycount' => 'Esas {{PLURAL:$1|1 subkategorio|$1 subkategorii}} en ica kategorio.',
 
 'mainpagetext' => "<big>'''MediaWiki instalesis sucese.'''</big>",
 
@@ -513,17 +514,11 @@ Publikigante vua skribajo hike, vu asertas ke olu skribesis da vu ipsa o kopiesi
 'uploadedimage'     => 'adkargita "[[$1]]"',
 'uploaddisabled'    => 'Pardonez, la adkargo esas desaktiva.',
 
-# Image list
-'imagelist'                 => 'Listo di imaji',
-'imagelisttext'             => "Infre esas listo di '''$1''' {{PLURAL:$1|imajo|imaji}} rangizita $2.",
-'getimagelist'              => 'obtenante la listo di imaji',
-'ilsubmit'                  => 'Serchar',
-'showlast'                  => 'Montrar la lasta $1 imaji klasifikata $2.',
-'byname'                    => 'per nomo',
-'bydate'                    => 'per dato',
-'bysize'                    => 'per grandeso',
-'imgdelete'                 => 'efac',
-'imgdesc'                   => 'desk',
+# Special:Imagelist
+'imgdesc'   => 'desk',
+'imagelist' => 'Listo di imaji',
+
+# Image description page
 'filehist'                  => 'Historio dil arkivo',
 'filehist-help'             => 'Klikez sur la dato/horo por vidar arkivo quale ol aparis ye ta tempo.',
 'filehist-datetime'         => 'Dato/Horo',
@@ -819,9 +814,12 @@ Voluntez selektar altra nomo.',
 'siteusers'     => 'Uzanti che {{SITENAME}} $1',
 
 # Spam protection
-'spamprotectiontitle'  => 'Filtrilo kontre spamo',
-'subcategorycount'     => 'Esas {{PLURAL:$1|1 subkategorio|$1 subkategorii}} en ica kategorio.',
-'categoryarticlecount' => 'Esas {{PLURAL:$1|una pagino|$1 pagini}} en ica kategorio.',
+'spamprotectiontitle' => 'Filtrilo kontre spamo',
+
+# Special:Newimages
+'imagelisttext' => "Infre esas listo di '''$1''' {{PLURAL:$1|imajo|imaji}} rangizita $2.",
+'ilsubmit'      => 'Serchar',
+'bydate'        => 'per dato',
 
 # EXIF tags
 'exif-exposuretime-format' => '$1 sek ($2)',

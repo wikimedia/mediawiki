@@ -113,7 +113,7 @@ $messages = array(
 'nov'           => 'но҃е',
 'dec'           => 'де҃к',
 
-# Bits of text used by many pages
+# Categories related messages
 'categories'     => 'Катигорїѩ',
 'pagecategories' => '{{PLURAL:$1|Катигорї|Катигорїи|Катигориѩ|Катигориѩ}}',
 
@@ -209,9 +209,6 @@ $messages = array(
 'upload'    => 'Положи дѣло',
 'uploadbtn' => 'Положи дѣло',
 
-# Image list
-'ilsubmit' => 'Ищи',
-
 # File deletion
 'filedelete-submit' => 'ничьжи',
 
@@ -265,5 +262,8 @@ $messages = array(
 # Move page
 '1movedto2'       => '[[$1]] нареченъ [[$2]] ѥстъ',
 '1movedto2_redir' => '[[$1]] нареченъ [[$2]] врьхѹ прѣнаправлѥни ѥстъ.',
+
+# Special:Newimages
+'ilsubmit' => 'Ищи',
 
 );

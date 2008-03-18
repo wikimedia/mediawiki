@@ -77,7 +77,7 @@ $messages = array(
 'nov'           => 'Now',
 'dec'           => 'Kek',
 
-# Bits of text used by many pages
+# Categories related messages
 'categories'            => 'Nā mahele',
 'pagecategories'        => '{{PLURAL:$1|Mahele|Nā mahele}}',
 'category_header'       => 'Nā mo‘olelo maloko o ka mahele "$1"',
@@ -269,8 +269,7 @@ hō‘ike ‘ia i lalo:",
 'filedesc'          => "Hō'ulu'ulu mana'o",
 'fileuploadsummary' => "Hō'ulu'ulu mana'o:",
 
-# Image list
-'ilsubmit'            => 'Huli',
+# Image description page
 'filehist-datetime'   => 'Manawa',
 'filehist-user'       => 'Mea ho‘ohana',
 'filehist-dimensions' => 'Nā nui',
@@ -358,7 +357,7 @@ hō‘ike ‘ia i lalo:",
 'blockme'       => 'E ke‘a ia‘u',
 
 # Move page
-'move-page-legend'                => "E ho'ololi",
+'move-page-legend'        => "E ho'ololi",
 'movearticle'             => "E ho'ololi",
 'movepagebtn'             => "E ho'ololi",
 'movereason'              => 'Ke kumu',
@@ -387,8 +386,8 @@ hō‘ike ‘ia i lalo:",
 'tooltip-t-specialpages' => 'Helu o nā papa nui apau',
 'tooltip-save'           => 'Mālama i kāu ho‘opololei',
 
-# Spam protection
-'category-media-count' => 'Aia malaila {{PLURAL:$1|‘ekahi waihona|$1 waihona}} i kēia mahele.',
+# Special:Newimages
+'ilsubmit' => 'Huli',
 
 # 'all' in various places, this might be different for inflected languages
 'namespacesall' => 'apau',

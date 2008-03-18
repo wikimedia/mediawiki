@@ -1086,18 +1086,18 @@ Rejestr usunięć tego pliku jest dla wygody podany poniżej:",
 'upload_source_url'  => ' (poprawny, publicznie dostępny URL)',
 'upload_source_file' => ' (plik na twoim komputerze)',
 
-# Image list
-'imagelist'                 => 'Lista plików',
-'imagelisttext'             => "Poniżej na {{PLURAL:$1||posortowanej $2}} liście {{PLURAL:$1|znajduje|znajdują}} się '''$1''' {{PLURAL:$1|plik|pliki|plików}}.",
-'getimagelist'              => 'pobieranie listy plików',
-'ilsubmit'                  => 'Szukaj',
-'showlast'                  => 'Pokaż ostatnie $1 plików posortowanych $2.',
-'byname'                    => 'według nazwy',
-'bydate'                    => 'według daty',
-'bysize'                    => 'według rozmiaru',
-'imgdelete'                 => 'usuń',
-'imgdesc'                   => 'opis',
-'imgfile'                   => 'plik',
+# Special:Imagelist
+'imagelist_search_for'  => 'Szukaj grafiki o nazwie:',
+'imgdesc'               => 'opis',
+'imgfile'               => 'plik',
+'imagelist'             => 'Lista plików',
+'imagelist_date'        => 'Data',
+'imagelist_name'        => 'Nazwa',
+'imagelist_user'        => 'Użytkownik',
+'imagelist_size'        => 'Rozmiar (bajty)',
+'imagelist_description' => 'Opis',
+
+# Image description page
 'filehist'                  => 'Historia pliku',
 'filehist-help'             => 'Kliknij na datę/czas, aby zobaczyć, jak plik wyglądał w tym czasie.',
 'filehist-deleteall'        => 'usuń wszystkie',
@@ -1119,12 +1119,6 @@ Rejestr usunięć tego pliku jest dla wygody podany poniżej:",
 'noimage'                   => 'Nie istnieje plik o tej nazwie. Możesz go $1.',
 'noimage-linktext'          => 'przesłać',
 'uploadnewversion-linktext' => 'Załaduj nowszą wersję tego pliku',
-'imagelist_date'            => 'Data',
-'imagelist_name'            => 'Nazwa',
-'imagelist_user'            => 'Użytkownik',
-'imagelist_size'            => 'Rozmiar (bajty)',
-'imagelist_description'     => 'Opis',
-'imagelist_search_for'      => 'Szukaj grafiki o nazwie:',
 
 # File reversion
 'filerevert'                => 'Przywracanie $1',
@@ -1563,8 +1557,6 @@ $1',
 'sp-contributions-username'    => 'Adres IP lub nazwa użytkownika:',
 'sp-contributions-submit'      => 'Szukaj',
 
-'sp-newimages-showfrom' => 'Pokaż nowe grafiki od $1',
-
 # What links here
 'whatlinkshere'       => 'Linkujące',
 'whatlinkshere-title' => 'Strony linkujące do $1',
@@ -1950,9 +1942,13 @@ $1',
 'show-big-image-thumb' => '<small>Rozmiar podglądu: $1 × $2 pikseli</small>',
 
 # Special:Newimages
-'newimages'    => 'Najnowsze grafiki',
-'showhidebots' => '($1 boty)',
-'noimages'     => 'Nic.',
+'newimages'             => 'Najnowsze grafiki',
+'imagelisttext'         => "Poniżej na {{PLURAL:$1||posortowanej $2}} liście {{PLURAL:$1|znajduje|znajdują}} się '''$1''' {{PLURAL:$1|plik|pliki|plików}}.",
+'showhidebots'          => '($1 boty)',
+'noimages'              => 'Nic.',
+'ilsubmit'              => 'Szukaj',
+'bydate'                => 'według daty',
+'sp-newimages-showfrom' => 'Pokaż nowe grafiki od $1',
 
 # Bad image list
 'bad_image_list' => 'Dane należy prowadzić w formacie:

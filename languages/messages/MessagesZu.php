@@ -190,8 +190,7 @@ ikhawundi lakho liyadalwa. musa ukukhohlwa ukuguqula amakhethelo a-{{SITENAME}} 
 
 'nolicense' => 'Ubekhetha lutho',
 
-# Image list
-'ilsubmit'         => 'Sesha',
+# Image description page
 'nolinkstoimage'   => 'Akukho amakhasi akhomba kuleli fayela.',
 'noimage'          => 'Akukho ifayela elinaleli gama, unga $1.',
 'noimage-linktext' => 'Layisha',
@@ -267,7 +266,7 @@ ikhawundi lakho liyadalwa. musa ukukhohlwa ukuguqula amakhethelo a-{{SITENAME}} 
 'databasenotlocked' => 'Idatabheyisi alikhiyiwi.',
 
 # Move page
-'move-page-legend'                => 'Thuthisa ikhasi',
+'move-page-legend'        => 'Thuthisa ikhasi',
 'movearticle'             => 'Thuthisa ikhasi',
 'movenologin'             => 'Awungenile',
 'movepagebtn'             => 'Thuthisa ikhasi',
@@ -300,6 +299,7 @@ ikhawundi lakho liyadalwa. musa ukukhohlwa ukuguqula amakhethelo a-{{SITENAME}} 
 # Special:Newimages
 'newimages' => 'Uhlelo lwamafayela amasha',
 'noimages'  => 'Awuboni lutho.',
+'ilsubmit'  => 'Sesha',
 
 # Metadata
 'metadata-expand'   => 'Bukisa imininingwane yonke',

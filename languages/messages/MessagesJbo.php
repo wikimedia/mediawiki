@@ -46,7 +46,7 @@ $messages = array(
 'december-gen'  => 'la gaimast.',
 'may'           => 'la mumast.',
 
-# Bits of text used by many pages
+# Categories related messages
 'categories'     => 'klesi',
 'pagecategories' => '{{PLURAL:$1|klesi|klesi}}',
 

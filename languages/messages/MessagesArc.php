@@ -159,8 +159,7 @@ $messages = array(
 'upload'   => 'ܛܥܢܐ ܦ̮ܥܝܠ',
 'filename' => 'ܫܡܐ ܕܫܘܦܝܢܐ',
 
-# Image list
-'ilsubmit'       => 'ܛܥܘܝܐ',
+# Special:Imagelist
 'imagelist_name' => 'ܫܡܐ',
 
 # Random page
@@ -204,6 +203,9 @@ $messages = array(
 
 # Namespace 8 related
 'allmessagesname' => 'ܫܡܐ',
+
+# Special:Newimages
+'ilsubmit' => 'ܛܥܘܝܐ',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'ܟܠ',

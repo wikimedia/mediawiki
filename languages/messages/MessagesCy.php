@@ -931,18 +931,18 @@ Os yw'r ddelwedd ar ei lawn faint gallwch barhau i'w uwchlwytho. Os na, newidiwc
 'upload_source_url'  => " (URL dilys, ar gael i'r cyhoedd)",
 'upload_source_file' => ' (ffeil ar eich cyfrifiadur)',
 
-# Image list
-'imagelist'                 => "Rhestr o'r holl ffeiliau",
-'imagelisttext'             => "Isod mae rhestr {{PLURAL:$1|gwag o ffeiliau|o '''$1''' ffeil|o '''$1''' ffeil wedi'u trefnu $2|o '''$1''' ffeil wedi'u trefnu $2|o '''$1''' o ffeiliau wedi'u trefnu $2|o '''$1''' o ffeiliau wedi'u trefnu $2|}}.",
-'getimagelist'              => "wrthi'n cywain y rhestr ffeiliau",
-'ilsubmit'                  => 'Chwilio',
-'showlast'                  => 'Dangos y $1 delweddau olaf wedi trefnu $2.',
-'byname'                    => 'yn ôl enw',
-'bydate'                    => 'yn ôl dyddiad',
-'bysize'                    => 'yn ôl maint',
-'imgdelete'                 => 'dileu',
-'imgdesc'                   => 'disg.',
-'imgfile'                   => 'ffeil',
+# Special:Imagelist
+'imagelist_search_for'  => "Chwilio am enw'r ddelwedd:",
+'imgdesc'               => 'disg.',
+'imgfile'               => 'ffeil',
+'imagelist'             => "Rhestr o'r holl ffeiliau",
+'imagelist_date'        => 'Dyddiad',
+'imagelist_name'        => 'Enw',
+'imagelist_user'        => 'Defnyddiwr',
+'imagelist_size'        => 'Maint',
+'imagelist_description' => 'Disgrifiad',
+
+# Image description page
 'filehist'                  => 'Hanes y ffeil',
 'filehist-help'             => 'Cliciwch ar ddyddiad/amser i weld y ffeil fel ag yr oedd bryd hynny.',
 'filehist-deleteall'        => 'eu dileu i gyd',
@@ -963,12 +963,6 @@ Os yw'r ddelwedd ar ei lawn faint gallwch barhau i'w uwchlwytho. Os na, newidiwc
 'noimage'                   => "Does dim ffeil a'r enw hwn i gael; gallwch $1.",
 'noimage-linktext'          => 'ei uwchlwytho',
 'uploadnewversion-linktext' => "Uwchlwytho fersiwn newydd o'r ffeil hon",
-'imagelist_date'            => 'Dyddiad',
-'imagelist_name'            => 'Enw',
-'imagelist_user'            => 'Defnyddiwr',
-'imagelist_size'            => 'Maint',
-'imagelist_description'     => 'Disgrifiad',
-'imagelist_search_for'      => "Chwilio am enw'r ddelwedd:",
 
 # File reversion
 'filerevert'                => 'Gwrthdroi $1',
@@ -1355,8 +1349,6 @@ Ceir cofnod o'r tudalennau a ddilëwyd neu a adferwyd yn ddiweddar ar y [[Specia
 'sp-contributions-username'    => 'Cyfeiriad IP neu enw defnyddiwr:',
 'sp-contributions-submit'      => 'Chwilier',
 
-'sp-newimages-showfrom' => "Dangos ffeiliau sy'n newydd ers: $1",
-
 # What links here
 'whatlinkshere'       => "Beth sy'n cysylltu yma",
 'whatlinkshere-title' => "Tudalennau sy'n cysylltu â $1",
@@ -1680,9 +1672,13 @@ $1",
 'show-big-image-thumb' => '<small>Maint y rhagolwg: $1 × $2 picsel</small>',
 
 # Special:Newimages
-'newimages'    => 'Oriel y ffeiliau newydd',
-'showhidebots' => '($1 botiau)',
-'noimages'     => "Does dim byd i'w weld.",
+'newimages'             => 'Oriel y ffeiliau newydd',
+'imagelisttext'         => "Isod mae rhestr {{PLURAL:$1|gwag o ffeiliau|o '''$1''' ffeil|o '''$1''' ffeil wedi'u trefnu $2|o '''$1''' ffeil wedi'u trefnu $2|o '''$1''' o ffeiliau wedi'u trefnu $2|o '''$1''' o ffeiliau wedi'u trefnu $2|}}.",
+'showhidebots'          => '($1 botiau)',
+'noimages'              => "Does dim byd i'w weld.",
+'ilsubmit'              => 'Chwilio',
+'bydate'                => 'yn ôl dyddiad',
+'sp-newimages-showfrom' => "Dangos ffeiliau sy'n newydd ers: $1",
 
 # Metadata
 'metadata'          => 'Metadata',

@@ -111,7 +111,7 @@ $messages = array(
 'nov'           => 'nov',
 'dec'           => 'déc',
 
-# Bits of text used by many pages
+# Categories related messages
 'categories'            => 'Classes',
 'pagecategories'        => '{{PLURAL:$1|Classe|Classes}}',
 'category_header'       => 'Articles dans classe "$1"',

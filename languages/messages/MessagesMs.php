@@ -1129,18 +1129,18 @@ Untuk rujukan, berikut ialah log penghapusan bagi fail ini:",
 'upload_source_url'  => ' (URL yang boleh diakses oleh orang awam)',
 'upload_source_file' => ' (fail dalam komputer anda)',
 
-# Image list
-'imagelist'                 => 'Senarai fail',
-'imagelisttext'             => "Berikut ialah senarai bagi '''$1''' fail yang disusun secara $2.",
-'getimagelist'              => 'mengambil senarai imej',
-'ilsubmit'                  => 'Cari',
-'showlast'                  => 'Paparkan $1 imej terbaru yang telah diisih $2.',
-'byname'                    => 'mengikut nama',
-'bydate'                    => 'mengikut tarikh',
-'bysize'                    => 'mengikut saiz',
-'imgdelete'                 => 'hapus',
-'imgdesc'                   => 'hurai',
-'imgfile'                   => 'fail',
+# Special:Imagelist
+'imagelist_search_for'  => 'Cari nama imej:',
+'imgdesc'               => 'hurai',
+'imgfile'               => 'fail',
+'imagelist'             => 'Senarai fail',
+'imagelist_date'        => 'Tarikh',
+'imagelist_name'        => 'Nama',
+'imagelist_user'        => 'Pengguna',
+'imagelist_size'        => 'Saiz',
+'imagelist_description' => 'Huraian',
+
+# Image description page
 'filehist'                  => 'Sejarah fail',
 'filehist-help'             => 'Klik pada tarikh/waktu untuk melihat rupa fail tersebut pada waktu silam.',
 'filehist-deleteall'        => 'hapuskan semua',
@@ -1162,12 +1162,6 @@ Untuk rujukan, berikut ialah log penghapusan bagi fail ini:",
 'noimage'                   => 'Tiada fail dengan nama ini. Anda boleh $1.',
 'noimage-linktext'          => 'memuat naik fail baru',
 'uploadnewversion-linktext' => 'Muat naik versi baru bagi fail ini',
-'imagelist_date'            => 'Tarikh',
-'imagelist_name'            => 'Nama',
-'imagelist_user'            => 'Pengguna',
-'imagelist_size'            => 'Saiz',
-'imagelist_description'     => 'Huraian',
-'imagelist_search_for'      => 'Cari nama imej:',
 
 # File reversion
 'filerevert'                => 'Balikkan $1',
@@ -1624,8 +1618,6 @@ $1',
 'sp-contributions-username'    => 'Alamat IP atau nama pengguna:',
 'sp-contributions-submit'      => 'Cari',
 
-'sp-newimages-showfrom' => 'Tunjukkan imej-imej baru bermula daripada $1',
-
 # What links here
 'whatlinkshere'       => 'Pautan ke laman ini',
 'whatlinkshere-title' => 'Laman yang mengandungi pautan ke $1',
@@ -2033,9 +2025,13 @@ $1',
 'show-big-image-thumb' => '<small>Saiz pratonton ini: $1 × $2 piksel</small>',
 
 # Special:Newimages
-'newimages'    => 'Galeri fail baru',
-'showhidebots' => '($1 bot)',
-'noimages'     => 'Tiada imej.',
+'newimages'             => 'Galeri fail baru',
+'imagelisttext'         => "Berikut ialah senarai bagi '''$1''' fail yang disusun secara $2.",
+'showhidebots'          => '($1 bot)',
+'noimages'              => 'Tiada imej.',
+'ilsubmit'              => 'Cari',
+'bydate'                => 'mengikut tarikh',
+'sp-newimages-showfrom' => 'Tunjukkan imej-imej baru bermula daripada $1',
 
 # Video information, used by Language::formatTimePeriod() to format lengths in the above messages
 'hours-abbrev' => 'j',

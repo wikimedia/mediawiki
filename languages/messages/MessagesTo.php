@@ -83,12 +83,14 @@ $messages = array(
 'nov'           => 'Nōv',
 'dec'           => 'Tis',
 
-# Bits of text used by many pages
-'categories'      => 'Faʻahinga',
-'pagecategories'  => 'Faʻahinga',
-'category_header' => 'Ngaahi kupu ʻi he faʻahinga "$1"',
-'subcategories'   => 'Ngaahi faʻahinga siʻi',
-'category-empty'  => "''Ko e faʻahinga ʻeni ʻoku ʻikai ʻi ai haʻane kupu pe ʻata.''",
+# Categories related messages
+'categories'             => 'Faʻahinga',
+'pagecategories'         => 'Faʻahinga',
+'category_header'        => 'Ngaahi kupu ʻi he faʻahinga "$1"',
+'subcategories'          => 'Ngaahi faʻahinga siʻi',
+'category-empty'         => "''Ko e faʻahinga ʻeni ʻoku ʻikai ʻi ai haʻane kupu pe ʻata.''",
+'subcategorycount'       => 'ʻOku ʻi ai ha faʻahinga siʻi ʻe $1 ʻi he faʻahinga ni',
+'listingcontinuesabbrev' => ' hoko',
 
 'about'          => 'Kau ki',
 'article'        => 'Peesi kakano',
@@ -552,18 +554,18 @@ Kapau naʻe kole ia ʻe he tokotaha kehe, pea ʻosi hoʻo manatuʻi ʻo e leatap
 'license'   => 'Laiseni:',
 'nolicense' => 'ʻIkai fili ha taha',
 
-# Image list
-'imagelist'                 => 'Hokohoko faitā',
-'imagelisttext'             => "ʻOku ʻasi ʻi lalo ha hokohoko ʻo e '''$1''' vahevahe he $2.",
-'getimagelist'              => 'ʻoku maʻu ʻa e hokohoko ʻo e faile he taimí ni',
-'ilsubmit'                  => 'Kumi',
-'showlast'                  => 'ʻOku ʻasi ko e faile fakamuimui ʻe $1 vahevahe he $2.',
-'byname'                    => 'ʻi honau hingoa',
-'bydate'                    => 'ʻi honau ʻaho',
-'bysize'                    => 'ʻi honau lahi',
-'imgdelete'                 => 'tām',
-'imgdesc'                   => 'fkmat',
-'imgfile'                   => 'faile',
+# Special:Imagelist
+'imagelist_search_for'  => 'Kumi ki he hingoa ʻo e faitā:',
+'imgdesc'               => 'fkmat',
+'imgfile'               => 'faile',
+'imagelist'             => 'Hokohoko faitā',
+'imagelist_date'        => 'ʻAho',
+'imagelist_name'        => 'Hingoa',
+'imagelist_user'        => 'ʻEtita',
+'imagelist_size'        => 'Hono lahi (ʻū valu)',
+'imagelist_description' => 'Fakamahino',
+
+# Image description page
 'imagelinks'                => 'Ngaahi fehokotaki',
 'linkstoimage'              => 'ʻOku fehokotaki ʻa e ngaahi peesi ki he failé ni:',
 'nolinkstoimage'            => 'ʻOku ʻikai ha ngaahi peesi fehokotaki ki he faitaá ni.',
@@ -572,12 +574,6 @@ Kapau naʻe kole ia ʻe he tokotaha kehe, pea ʻosi hoʻo manatuʻi ʻo e leatap
 'noimage'                   => 'ʻOku ʻikai ʻi ai ha faitā mo e hingoa koʻeni, ʻe fakatupu koe $1.',
 'noimage-linktext'          => 'hiki hake',
 'uploadnewversion-linktext' => 'Hiki hake ʻa e paaki foʻou ʻo e failé ni.',
-'imagelist_date'            => 'ʻAho',
-'imagelist_name'            => 'Hingoa',
-'imagelist_user'            => 'ʻEtita',
-'imagelist_size'            => 'Hono lahi (ʻū valu)',
-'imagelist_description'     => 'Fakamahino',
-'imagelist_search_for'      => 'Kumi ki he hingoa ʻo e faitā:',
 
 # File reversion
 'filerevert'                => 'Toe foki $1 ki hono tuʻunga muʻa',
@@ -836,8 +832,6 @@ Vakai ki he [[Special:Log/delete|hokohoko tāmateʻi]] ki he lekooti ʻo e ngaah
 'uclinks'       => 'Vakai ki ha liliu fakamuimui ʻe $1; vakai ki ha ʻaho fakamuimui ʻe $2.',
 'uctop'         => ' (ʻi ʻolunga)',
 
-'sp-newimages-showfrom' => 'ʻAsi mai ha ngaahi faitā foʻou ʻoku kamata mei he $1',
-
 # What links here
 'whatlinkshere'       => 'Ngaahi fehokotaki ki heni',
 'linklistsub'         => '(Hokohoko ʻo e ngaahi fehokotaki)',
@@ -996,10 +990,7 @@ Vakai ki he [[Special:Log/delete|hokohoko tāmateʻi]] ki he lekooti ʻo e ngaah
 'creditspage' => 'Peesi fakangeiaʻi',
 
 # Spam protection
-'spamprotectionmatch'    => 'Naʻe kamosi ʻemau meʻasivi tohila ʻe he ngaahi mataʻitohi koʻeni: $1',
-'subcategorycount'       => 'ʻOku ʻi ai ha faʻahinga siʻi ʻe $1 ʻi he faʻahinga ni',
-'categoryarticlecount'   => 'ʻOku ʻi ai ha kupu ʻe $1 ʻi he faʻahinga koʻeni',
-'listingcontinuesabbrev' => ' hoko',
+'spamprotectionmatch' => 'Naʻe kamosi ʻemau meʻasivi tohila ʻe he ngaahi mataʻitohi koʻeni: $1',
 
 # Info page
 'infosubtitle' => 'Fakamatala ki he peesi',
@@ -1030,9 +1021,13 @@ Vakai ki he [[Special:Log/delete|hokohoko tāmateʻi]] ki he lekooti ʻo e ngaah
 'show-big-image-thumb' => '<small>Vakai pē ʻi hono lahi: $1 x $2 tefitoʻifaitā</small>',
 
 # Special:Newimages
-'newimages'    => 'Fakaʻaliʻali ʻo e ngaahi faitā foʻou',
-'showhidebots' => '($1 fatu fakamīsini)',
-'noimages'     => 'ʻOku ʻikai ha meʻa ke sio ki ai.',
+'newimages'             => 'Fakaʻaliʻali ʻo e ngaahi faitā foʻou',
+'imagelisttext'         => "ʻOku ʻasi ʻi lalo ha hokohoko ʻo e '''$1''' vahevahe he $2.",
+'showhidebots'          => '($1 fatu fakamīsini)',
+'noimages'              => 'ʻOku ʻikai ha meʻa ke sio ki ai.',
+'ilsubmit'              => 'Kumi',
+'bydate'                => 'ʻi honau ʻaho',
+'sp-newimages-showfrom' => 'ʻAsi mai ha ngaahi faitā foʻou ʻoku kamata mei he $1',
 
 # Metadata
 'metadata-expand'   => 'Fano kiʻi meʻa',

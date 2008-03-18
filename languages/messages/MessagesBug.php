@@ -95,9 +95,6 @@ $messages = array(
 'upload'    => 'Lureng berkas',
 'uploadbtn' => 'Lureng berkas',
 
-# Image list
-'ilsubmit' => 'ᨔᨄ',
-
 # Random page
 'randompage' => 'Halamang rawak',
 
@@ -151,6 +148,9 @@ Silakan pile aseng laing.',
 
 # Media information
 'imagemaxsize' => 'Gangkai rapang pada keterangan rapang ri halamang hingga:',
+
+# Special:Newimages
+'ilsubmit' => 'ᨔᨄ',
 
 # 'all' in various places, this might be different for inflected languages
 'imagelistall' => 'maneng',

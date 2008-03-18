@@ -17,7 +17,7 @@ $messages = array(
 'friday'   => 'Di-Haoine',
 'august'   => 'An Lùnastal',
 
-# Bits of text used by many pages
+# Categories related messages
 'categories'      => 'Gnethan',
 'category_header' => 'Altan sa ghnè "$1"',
 'subcategories'   => 'Fo-ghnethan',
@@ -224,13 +224,8 @@ $1",
 'fileexists'    => 'Tha faidhle leis an ainm seo ann cheana; nach faigh sibh cinnt air <strong><tt>$1</tt></strong> gu bheil sibh ag iarraidh atharrachadh.',
 'savefile'      => 'Sàbhail faidhle',
 
-# Image list
+# Special:Imagelist
 'imagelist' => 'Liosta nan ìomhaigh',
-'ilsubmit'  => 'Rannsaich',
-'showlast'  => 'Nochd na $1 ìomhaighean mu dheireadh seòrsaichte $2.',
-'byname'    => 'air ainm',
-'bydate'    => 'air ceann-latha',
-'bysize'    => 'air meud',
 
 # Random page
 'randompage' => 'Duilleag thuairmeach',
@@ -347,13 +342,13 @@ Ma bu toil leibh a dhubh a'dhuilleag as ur faire agaibh nas fadalache, cnap air 
 'lockdbsuccesssub' => 'Shoirbhich glasadh an stor-dàta',
 
 # Move page
-'move-page-legend'        => 'Gluais duilleag',
-'movearticle'     => 'Gluais duilleag',
-'movepagebtn'     => 'Gluais duilleag',
-'pagemovedsub'    => 'Gluasad soirbheachail',
-'movedto'         => 'air gluasad gu',
-'1movedto2'       => '[[$1]] gluaiste ri [[$2]]',
-'1movedto2_redir' => '[[$1]] gluaiste ri [[$2]] thairis air ath-stiùireadh',
+'move-page-legend' => 'Gluais duilleag',
+'movearticle'      => 'Gluais duilleag',
+'movepagebtn'      => 'Gluais duilleag',
+'pagemovedsub'     => 'Gluasad soirbheachail',
+'movedto'          => 'air gluasad gu',
+'1movedto2'        => '[[$1]] gluaiste ri [[$2]]',
+'1movedto2_redir'  => '[[$1]] gluaiste ri [[$2]] thairis air ath-stiùireadh',
 
 # Namespace 8 related
 'allmessages'     => 'Uile teachdaireachdan an t-siostam',
@@ -375,11 +370,12 @@ Ma bu toil leibh a dhubh a'dhuilleag as ur faire agaibh nas fadalache, cnap air 
 'othercontribs' => 'Stèidhichte air obair le $1.',
 'others'        => 'eile',
 
-# Spam protection
-'categoryarticlecount' => 'Tha {{PLURAL:$1|1 alt|$1 altan}} sa ghnè seo.',
-
 # Info page
 'infosubtitle' => 'Fiosrachadh air duilleig',
 'numwatchers'  => 'Aireamh luchd-faire: $1',
+
+# Special:Newimages
+'ilsubmit' => 'Rannsaich',
+'bydate'   => 'air ceann-latha',
 
 );

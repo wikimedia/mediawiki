@@ -997,18 +997,18 @@ $1 பயனரையோ அல்லது வேறு [[{{MediaWiki:Grouppage
 'upload_source_url'  => ' (செல்லுபடியான, இணைய முகவரி)',
 'upload_source_file' => ' (உங்கள் கணணியில் உள்ள கோப்பு)',
 
-# Image list
-'imagelist'                 => 'படிமங்களின் பட்டியல்',
-'imagelisttext'             => 'கீழ் வருவது $2 பாகுபடுத்தப்பட்ட $1 {{PLURAL:$1|படிமத்தின்|படிமங்களின்}} பட்டியலாகும்.',
-'getimagelist'              => 'படிமப் பட்டியல் பெற்றுக் கொள்ளப்படுகிறது',
-'ilsubmit'                  => 'தேடல்',
-'showlast'                  => '$2 பாகுபடுத்தப்பட்ட கடைசி $1 கோப்புகளைக் காட்டு.',
-'byname'                    => 'பெயர் வழி',
-'bydate'                    => 'நாள் வழி',
-'bysize'                    => 'அளவு வழி',
-'imgdelete'                 => 'நீக்கு',
-'imgdesc'                   => 'விபரம்',
-'imgfile'                   => 'கோப்பு',
+# Special:Imagelist
+'imagelist_search_for'  => 'பின்வரும் பெயருள்ள ஊடகக் கோப்பைத் தேடு:',
+'imgdesc'               => 'விபரம்',
+'imgfile'               => 'கோப்பு',
+'imagelist'             => 'படிமங்களின் பட்டியல்',
+'imagelist_date'        => 'நாள்',
+'imagelist_name'        => 'பெயர்',
+'imagelist_user'        => 'பயனர்',
+'imagelist_size'        => 'அளவு',
+'imagelist_description' => 'விளக்கம்',
+
+# Image description page
 'filehist'                  => 'கோப்பு வரலாறு',
 'filehist-help'             => 'குறித்த நேரத்தில் இருந்த படிமத்தைப் பார்க்க அந்நேரத்தின் மீது சொடுகவும்.',
 'filehist-deleteall'        => 'சகலதையும் நீக்கு',
@@ -1030,12 +1030,6 @@ $1 பயனரையோ அல்லது வேறு [[{{MediaWiki:Grouppage
 'noimage'                   => 'இப்பெயருடைய கோப்பு எதுவும் இல்லை. நீங்கள் அதை $1',
 'noimage-linktext'          => 'பதிவேற்றம் செய்யலாம்',
 'uploadnewversion-linktext' => 'இப்படிமத்தின் புதிய பதிப்பை பதிவேற்று',
-'imagelist_date'            => 'நாள்',
-'imagelist_name'            => 'பெயர்',
-'imagelist_user'            => 'பயனர்',
-'imagelist_size'            => 'அளவு',
-'imagelist_description'     => 'விளக்கம்',
-'imagelist_search_for'      => 'பின்வரும் பெயருள்ள ஊடகக் கோப்பைத் தேடு:',
 
 # File reversion
 'filerevert'                => '$1 ஐ முன்நிலையாக்கு',
@@ -1462,8 +1456,6 @@ $1',
 'sp-contributions-username'    => 'ஐ.பி. அல்லது பயனர் பெயர்:',
 'sp-contributions-submit'      => 'தேடு',
 
-'sp-newimages-showfrom' => '$1 உடன் தொடங்கும் கோப்புக்களைக் காட்டு',
-
 # What links here
 'whatlinkshere'       => 'இப் பக்கத்தை இணைத்தவை',
 'whatlinkshere-title' => '$1 பக்கத்துக்கு இணைக்கப்பட்டவை',
@@ -1824,9 +1816,13 @@ $1',
 'show-big-image-thumb' => '<small>இந்த முன்தோற்றத்தின் பரிமாணம்: $1 × $2 பிக்சல்கள்</small>',
 
 # Special:Newimages
-'newimages'    => 'புதிய படிமங்கள் பக்கம்',
-'showhidebots' => '(தானியங்கிகளை $1)',
-'noimages'     => 'பார்வைக்கு ஓன்றுமில்லை.',
+'newimages'             => 'புதிய படிமங்கள் பக்கம்',
+'imagelisttext'         => 'கீழ் வருவது $2 பாகுபடுத்தப்பட்ட $1 {{PLURAL:$1|படிமத்தின்|படிமங்களின்}} பட்டியலாகும்.',
+'showhidebots'          => '(தானியங்கிகளை $1)',
+'noimages'              => 'பார்வைக்கு ஓன்றுமில்லை.',
+'ilsubmit'              => 'தேடல்',
+'bydate'                => 'நாள் வழி',
+'sp-newimages-showfrom' => '$1 உடன் தொடங்கும் கோப்புக்களைக் காட்டு',
 
 # Bad image list
 'bad_image_list' => 'முறை பின்வருமாறு:

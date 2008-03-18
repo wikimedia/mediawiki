@@ -126,12 +126,13 @@ $messages = array(
 'nov'           => 'ನವೆಂಬರ್',
 'dec'           => 'ಡಿಸೆಂಬರ್',
 
-# Bits of text used by many pages
-'categories'      => '{{PLURAL:$1|ವರ್ಗ|ವರ್ಗಗಳು}}',
-'pagecategories'  => '{{PLURAL:$1|ವರ್ಗ|ವರ್ಗಗಳು}}',
-'category_header' => '"$1" ವರ್ಗದಲ್ಲಿರುವ ಲೇಖನಗಳು',
-'subcategories'   => 'ಉಪವರ್ಗಗಳು',
-'category-empty'  => "''ಈ ವರ್ಗದಲ್ಲಿ ಸದ್ಯದಲ್ಲಿ ಯಾವುದೇ ಪುಟಗಳಾಗಲಿ ಅಥವ ಚಿತ್ರಗಳಾಗಲಿ ಇಲ್ಲ.''",
+# Categories related messages
+'categories'       => '{{PLURAL:$1|ವರ್ಗ|ವರ್ಗಗಳು}}',
+'pagecategories'   => '{{PLURAL:$1|ವರ್ಗ|ವರ್ಗಗಳು}}',
+'category_header'  => '"$1" ವರ್ಗದಲ್ಲಿರುವ ಲೇಖನಗಳು',
+'subcategories'    => 'ಉಪವರ್ಗಗಳು',
+'category-empty'   => "''ಈ ವರ್ಗದಲ್ಲಿ ಸದ್ಯದಲ್ಲಿ ಯಾವುದೇ ಪುಟಗಳಾಗಲಿ ಅಥವ ಚಿತ್ರಗಳಾಗಲಿ ಇಲ್ಲ.''",
+'subcategorycount' => 'ಒಟ್ಟು $1 ಉಪವಿಭಾಗಗಳು ಈ ವರ್ಗದಡಿ ಇವೆ.',
 
 'mainpagetext'      => 'ವಿಕಿ ತಂತ್ರಾಂಶವನ್ನು ಯಶಸ್ವಿಯಾಗಿ ಅನುಸ್ಥಾಪಿಸಲಾಯಿತು.',
 'mainpagedocfooter' => 'ವಿಕಿ ತಂತ್ರಾಂಶವನ್ನು ಬಳಸುವ ಬಗ್ಗೆ ಮಾಹಿತಿಗೆ [http://meta.wikimedia.org/wiki/Help:Contents ಬಳಕೆದಾರರಿಗೆ ನಿರ್ದೇಶನ ಪುಟ] ನೋಡಿ.
@@ -505,13 +506,14 @@ $1',
 
 'upload-file-error' => 'ಆಂತರಿಕ ದೋಷ',
 
-# Image list
-'imagelist'          => 'ಚಿತ್ರಗಳ ಪಟ್ಟಿ',
-'getimagelist'       => 'ಚಿತ್ರಗಳ ಪಟ್ಟಿಯನ್ನು ಪಡೆಯಲಾಗುತ್ತಿದೆ',
-'ilsubmit'           => 'ಹುಡುಕು',
-'byname'             => 'ಹೆಸರಿಗನುಗುಣವಾಗಿ',
-'bydate'             => 'ದಿನಾಂಕಕ್ಕನುಗುಣವಾಗಿ',
-'bysize'             => 'ಗಾತ್ರಕ್ಕನುಗುಣವಾಗಿ',
+# Special:Imagelist
+'imagelist'      => 'ಚಿತ್ರಗಳ ಪಟ್ಟಿ',
+'imagelist_date' => 'ದಿನಾಂಕ',
+'imagelist_name' => 'ಹೆಸರು',
+'imagelist_user' => 'ಸದಸ್ಯ',
+'imagelist_size' => 'ಗಾತ್ರ',
+
+# Image description page
 'filehist'           => 'ಕಡತದ ಇತಿಹಾಸ',
 'filehist-deleteall' => 'ಎಲ್ಲವನ್ನೂ ಅಳಿಸು',
 'filehist-deleteone' => 'ಇದನ್ನು ಅಳಿಸು',
@@ -519,10 +521,6 @@ $1',
 'filehist-user'      => 'ಸದಸ್ಯ',
 'linkstoimage'       => 'ಈ ಕೆಳಗಿನ ಪುಟಗಳು ಈ ಚಿತ್ರಕ್ಕೆ ಸಂಪರ್ಕ ಹೊಂದಿವೆ:',
 'nolinkstoimage'     => 'ಈ ಫೈಲಿಗೆ ಯಾವ ಪುಟವೂ ಸಂಪರ್ಕ ಹೊಂದಿಲ್ಲ.',
-'imagelist_date'     => 'ದಿನಾಂಕ',
-'imagelist_name'     => 'ಹೆಸರು',
-'imagelist_user'     => 'ಸದಸ್ಯ',
-'imagelist_size'     => 'ಗಾತ್ರ',
 
 # File deletion
 'filedelete-intro'   => "'''[[Media:$1|$1]]''' ಅನ್ನು ಅಳಿಸುತ್ತಿರುವಿರಿ.",
@@ -741,20 +739,20 @@ $1',
 'blocklogentry'      => '"$1" ಅನ್ನು $2 ರ ಸಮಯದವರೆಗೆ ತಡೆಹಿಡಿಯಲಾಗಿದೆ',
 
 # Move page
-'move-page-legend'        => 'ಪುಟವನ್ನು ಸ್ಥಳಾಂತರಿಸಿ',
-'movearticle'     => 'ಪುಟವನ್ನು ಸ್ಥಳಾಂತರಿಸಿ',
-'movenologin'     => 'ಲಾಗಿನ್ ಆಗಿಲ್ಲ',
-'movenologintext' => 'ಪುಟವನ್ನು ಸ್ಥಳಾಂತರಿಸಲು ನೀವು ನೋಂದಾಯಿತ ಸದಸ್ಯರಾಗಿದ್ದು [[Special:Userlogin|ಲಾಗಿನ್]] ಆಗಿರಬೇಕು.',
-'newtitle'        => 'ಈ ಹೊಸ ಶೀರ್ಷಿಕೆಗೆ:',
-'move-watch'      => 'ಈ ಪುಟವನ್ನು ವೀಕ್ಷಿಸು',
-'movepagebtn'     => 'ಪುಟವನ್ನು ಸ್ಥಳಾಂತರಿಸಿ',
-'pagemovedsub'    => 'ಸ್ಥಳಾಂತರಿಸುವಿಕೆ ಯಶಸ್ವಿಯಾಯಿತು',
-'movepage-moved'  => '<big>\'\'\'"$1" ಪುಟವನ್ನು "$2" ಹೆಸರಿಗೆ ಸ್ಥಳಾಂತರಿಸಲಾಯಿತು\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
-'movetalk'        => 'ಜೊತೆಗಿನ ಚರ್ಚೆ ಪುಟವನ್ನೂ ಸ್ಥಳಾಂತರಿಸು',
-'talkpagemoved'   => 'ಜೊತೆಗಿನ ಚರ್ಚೆ ಪುಟವನ್ನೂ ಸ್ಥಳಾಂತರಿಸಲಾಯಿತು.',
-'1movedto2'       => '[[$1]] - [[$2]] ಪುಟಕ್ಕೆ ಸ್ಥಳಾಂತರಿಸಲಾಗಿದೆ',
-'1movedto2_redir' => '[[$1]] - [[$2]] ಪುಟ ರಿಡೈರೆಕ್ಟ್ ಮೂಲಕ ಸ್ಥಳಾಂತರಿಸಲಾಗಿದೆ',
-'movereason'      => 'ಕಾರಣ',
+'move-page-legend' => 'ಪುಟವನ್ನು ಸ್ಥಳಾಂತರಿಸಿ',
+'movearticle'      => 'ಪುಟವನ್ನು ಸ್ಥಳಾಂತರಿಸಿ',
+'movenologin'      => 'ಲಾಗಿನ್ ಆಗಿಲ್ಲ',
+'movenologintext'  => 'ಪುಟವನ್ನು ಸ್ಥಳಾಂತರಿಸಲು ನೀವು ನೋಂದಾಯಿತ ಸದಸ್ಯರಾಗಿದ್ದು [[Special:Userlogin|ಲಾಗಿನ್]] ಆಗಿರಬೇಕು.',
+'newtitle'         => 'ಈ ಹೊಸ ಶೀರ್ಷಿಕೆಗೆ:',
+'move-watch'       => 'ಈ ಪುಟವನ್ನು ವೀಕ್ಷಿಸು',
+'movepagebtn'      => 'ಪುಟವನ್ನು ಸ್ಥಳಾಂತರಿಸಿ',
+'pagemovedsub'     => 'ಸ್ಥಳಾಂತರಿಸುವಿಕೆ ಯಶಸ್ವಿಯಾಯಿತು',
+'movepage-moved'   => '<big>\'\'\'"$1" ಪುಟವನ್ನು "$2" ಹೆಸರಿಗೆ ಸ್ಥಳಾಂತರಿಸಲಾಯಿತು\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movetalk'         => 'ಜೊತೆಗಿನ ಚರ್ಚೆ ಪುಟವನ್ನೂ ಸ್ಥಳಾಂತರಿಸು',
+'talkpagemoved'    => 'ಜೊತೆಗಿನ ಚರ್ಚೆ ಪುಟವನ್ನೂ ಸ್ಥಳಾಂತರಿಸಲಾಯಿತು.',
+'1movedto2'        => '[[$1]] - [[$2]] ಪುಟಕ್ಕೆ ಸ್ಥಳಾಂತರಿಸಲಾಗಿದೆ',
+'1movedto2_redir'  => '[[$1]] - [[$2]] ಪುಟ ರಿಡೈರೆಕ್ಟ್ ಮೂಲಕ ಸ್ಥಳಾಂತರಿಸಲಾಗಿದೆ',
+'movereason'       => 'ಕಾರಣ',
 
 # Export
 'export' => 'ಪುಟಗಳನ್ನು ರಫ್ತು ಮಾಡಿ',
@@ -807,11 +805,6 @@ $1',
 'siteusers'     => '{{SITENAME}} ಸದಸ್ಯ(ರು) $1',
 'creditspage'   => 'ಪುಟದ ಗೌರವಗಳು',
 
-# Spam protection
-'subcategorycount'     => 'ಒಟ್ಟು $1 ಉಪವಿಭಾಗಗಳು ಈ ವರ್ಗದಡಿ ಇವೆ.',
-'categoryarticlecount' => 'ಈ ವರ್ಗದಲ್ಲಿ {{PLURAL:$1|ಒಂದು ಲೇಖನ| $1 ಲೇಖನಗಳು}} ಇವೆ.',
-'category-media-count' => 'ಈ ವರ್ಗದಲ್ಲಿ {{PLURAL:$1|ಒಂದು ಫೈಲು|$1 ಫೈಲುಗಳು}} ಇವೆ.',
-
 # Info page
 'infosubtitle' => 'ಪುಟದ ಬಗ್ಗೆ ಮಾಹಿತಿ',
 
@@ -821,6 +814,8 @@ $1',
 
 # Special:Newimages
 'noimages' => 'ನೋಡಲು ಏನೂ ಇಲ್ಲ.',
+'ilsubmit' => 'ಹುಡುಕು',
+'bydate'   => 'ದಿನಾಂಕಕ್ಕನುಗುಣವಾಗಿ',
 
 # EXIF tags
 'exif-imagedescription' => 'ಚಿತ್ರದ ಶೀರ್ಷಿಕೆ',

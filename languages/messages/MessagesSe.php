@@ -106,13 +106,15 @@ $messages = array(
 'nov'           => 'skábmamánnu',
 'dec'           => 'juovlamánnu',
 
-# Bits of text used by many pages
-'categories'            => 'Luohkát',
-'pagecategories'        => '{{PLURAL:$1|Luohkká|Luohkát}}',
-'category_header'       => 'Siiddut, mat gullet luohkkái $1',
-'subcategories'         => 'Vuolleluohkát',
-'category-media-header' => 'Fiillat luohkás ”$1”',
-'category-empty'        => "''Dán luohkás eai leat siiddut eaige fiillat.''",
+# Categories related messages
+'categories'             => 'Luohkát',
+'pagecategories'         => '{{PLURAL:$1|Luohkká|Luohkát}}',
+'category_header'        => 'Siiddut, mat gullet luohkkái $1',
+'subcategories'          => 'Vuolleluohkát',
+'category-media-header'  => 'Fiillat luohkás ”$1”',
+'category-empty'         => "''Dán luohkás eai leat siiddut eaige fiillat.''",
+'subcategorycount'       => 'Dán luohkás {{PLURAL:$1|lea okta vuolleluohkká|leat $1 vuolleluohká}}.',
+'listingcontinuesabbrev' => 'joatk.',
 
 'about'          => 'Dieđut',
 'article'        => 'Siidu',
@@ -659,18 +661,18 @@ $1 | $2',
 'upload_source_url'  => ' (almmolaš URL-čujuhus)',
 'upload_source_file' => ' (fiila dihtoris)',
 
-# Image list
-'imagelist'                 => 'Fiilalogahallan',
-'imagelisttext'             => 'Vuolábealde lea <strong>$1</strong> fiilla ordnejuvvon <strong>$2</strong>.',
-'getimagelist'              => 'fiilalogahallan viččojuvvo',
-'ilsubmit'                  => 'Oza',
-'showlast'                  => 'Čájet maŋimus $1 fiilla $2.',
-'byname'                    => 'nama mielde',
-'bydate'                    => 'beaivemeari mielde',
-'bysize'                    => 'sturrodaga mielde',
-'imgdelete'                 => 'sihko',
-'imgdesc'                   => 'govvádus',
-'imgfile'                   => 'fiila',
+# Special:Imagelist
+'imagelist_search_for'  => 'Nammaohcan',
+'imgdesc'               => 'govvádus',
+'imgfile'               => 'fiila',
+'imagelist'             => 'Fiilalogahallan',
+'imagelist_date'        => 'Beaivemearri',
+'imagelist_name'        => 'Namma',
+'imagelist_user'        => 'Vurkejeaddji',
+'imagelist_size'        => 'Sturrodat',
+'imagelist_description' => 'Govvádus',
+
+# Image description page
 'filehist'                  => 'Fiilla historjá',
 'filehist-help'             => 'Go deaddilat beaivemeari, oainnat makká fiila lei dalle.',
 'filehist-deleteall'        => 'sihko buot',
@@ -691,12 +693,6 @@ $1 | $2',
 'noimage'                   => 'Dán nammasaš fiila ii dihtto. Sáhtat $1 {{GRAMMAR:illative|{{SITENAME}}}}.',
 'noimage-linktext'          => 'lasihit fiilla',
 'uploadnewversion-linktext' => 'Vurke ođđa veršuvnna dán fiillas',
-'imagelist_date'            => 'Beaivemearri',
-'imagelist_name'            => 'Namma',
-'imagelist_user'            => 'Vurkejeaddji',
-'imagelist_size'            => 'Sturrodat',
-'imagelist_description'     => 'Govvádus',
-'imagelist_search_for'      => 'Nammaohcan',
 
 # File reversion
 'filerevert'                => 'Fiilla $1 máhcaheapmi',
@@ -1009,8 +1005,6 @@ $1 | $2',
 'sp-contributions-username'    => 'IP-čujuhus dahje geavaheaddjidovddaldat',
 'sp-contributions-submit'      => 'Oza',
 
-'sp-newimages-showfrom' => 'Čájet ođđa govaid $1 rájes',
-
 # What links here
 'whatlinkshere'       => 'Siiddut mat čujuhit deikke',
 'whatlinkshere-title' => 'Siiddut mat čujuhit $1',
@@ -1173,12 +1167,6 @@ $1 | $2',
 'siteusers'   => '{{GRAMMAR:genitive|{{SITENAME}}}} geavaheaddji(t) $1',
 'creditspage' => 'Siiddu dahkkit',
 
-# Spam protection
-'subcategorycount'       => 'Dán luohkás {{PLURAL:$1|lea okta vuolleluohkká|leat $1 vuolleluohká}}.',
-'categoryarticlecount'   => 'Dán luohkás {{PLURAL:$1|lea okta siidu|leat $1 siiddu}}.',
-'category-media-count'   => 'Dán luohkás {{PLURAL:$1|lea okta fiila|leat $1 fiilla}}.',
-'listingcontinuesabbrev' => 'joatk.',
-
 # Info page
 'infosubtitle' => 'Dieđut siiddus',
 'numedits'     => 'Siiddu rievdadusaid mearri: $1',
@@ -1205,7 +1193,11 @@ $1 | $2',
 'widthheightpage' => '$1×$2, $3 siiddut',
 
 # Special:Newimages
-'newimages' => 'Ođđa govat',
+'newimages'             => 'Ođđa govat',
+'imagelisttext'         => 'Vuolábealde lea <strong>$1</strong> fiilla ordnejuvvon <strong>$2</strong>.',
+'ilsubmit'              => 'Oza',
+'bydate'                => 'beaivemeari mielde',
+'sp-newimages-showfrom' => 'Čájet ođđa govaid $1 rájes',
 
 # Metadata
 'metadata-expand'   => 'Čájet buot sisdoallogovvádusaid',

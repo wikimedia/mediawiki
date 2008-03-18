@@ -38,7 +38,7 @@ $messages = array(
 'december-gen' => 'desembre',
 'may'          => 'maye',
 
-# Bits of text used by many pages
+# Categories related messages
 'categories'      => 'Kategories',
 'pagecategories'  => '{{PLURAL:$1|Kategorie|Kategories}}',
 'category_header' => 'Artikles in kategorie "$1"',
@@ -214,16 +214,15 @@ Proba [[Special:Search|sercho sur li wiki]] por relatet pagines.',
 'fileuploadsummary' => 'Resume:',
 'watchthisupload'   => 'Observa disi pagine',
 
-# Image list
-'ilsubmit'              => 'Sercha',
-'byname'                => 'segun nome',
-'bydate'                => 'segun date',
-'imagelinks'            => 'Linkes',
+# Special:Imagelist
+'imagelist_search_for'  => 'Sercha imaje nome:',
 'imagelist_name'        => 'Nome',
 'imagelist_user'        => 'Usere',
 'imagelist_size'        => 'Grandeso (bites)',
 'imagelist_description' => 'Deskriptione',
-'imagelist_search_for'  => 'Sercha imaje nome:',
+
+# Image description page
+'imagelinks' => 'Linkes',
 
 # Random page
 'randompage' => 'Arbitriari pagine',
@@ -349,6 +348,10 @@ Si vu voli plu tardim ekarta li pagine fro vun observa-liste, klikta \"Desobserv
 
 # Info page
 'infosubtitle' => 'Informatione pri pagine',
+
+# Special:Newimages
+'ilsubmit' => 'Sercha',
+'bydate'   => 'segun date',
 
 # EXIF tags
 'exif-imagewidth'       => 'Larjeso',

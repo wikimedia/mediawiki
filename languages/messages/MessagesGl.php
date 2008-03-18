@@ -1041,18 +1041,18 @@ PICT # misc.
 'upload_source_url'  => ' (un URL válido, accesíbel publicamente)',
 'upload_source_file' => ' (un ficheiro no seu ordenador)',
 
-# Image list
-'imagelist'                 => 'Listaxe de imaxes',
-'imagelisttext'             => "Abaixo amósase unha listaxe de '''$1''' {{PLURAL:$1|ficheiro|ficheiros}} ordenados $2.",
-'getimagelist'              => 'obtendo a listaxe de imaxes',
-'ilsubmit'                  => 'Procurar',
-'showlast'                  => 'Mostrar as últimas $1 imaxes ordenadas $2.',
-'byname'                    => 'por nome',
-'bydate'                    => 'por data',
-'bysize'                    => 'por tamaño',
-'imgdelete'                 => 'borrar',
-'imgdesc'                   => 'desc',
-'imgfile'                   => 'ficheiro',
+# Special:Imagelist
+'imagelist_search_for'  => 'Buscar polo nome do ficheiro multimedia:',
+'imgdesc'               => 'desc',
+'imgfile'               => 'ficheiro',
+'imagelist'             => 'Listaxe de imaxes',
+'imagelist_date'        => 'Data',
+'imagelist_name'        => 'Nome',
+'imagelist_user'        => 'Usuario',
+'imagelist_size'        => 'Tamaño (bytes)',
+'imagelist_description' => 'Descrición',
+
+# Image description page
 'filehist'                  => 'Historial do ficheiro',
 'filehist-help'             => 'Faga clic nunha data/hora para ver o ficheiro tal e como estaba nese momento.',
 'filehist-deleteall'        => 'borrar todo',
@@ -1074,12 +1074,6 @@ PICT # misc.
 'noimage'                   => 'Non existe ningún ficheiro con ese nome, vostede pode $1.',
 'noimage-linktext'          => 'cargalo',
 'uploadnewversion-linktext' => 'Cargar unha nova versión deste ficheiro',
-'imagelist_date'            => 'Data',
-'imagelist_name'            => 'Nome',
-'imagelist_user'            => 'Usuario',
-'imagelist_size'            => 'Tamaño (bytes)',
-'imagelist_description'     => 'Descrición',
-'imagelist_search_for'      => 'Buscar polo nome do ficheiro multimedia:',
 
 # File reversion
 'filerevert'                => 'Desfacer $1',
@@ -1512,8 +1506,6 @@ $1',
 'sp-contributions-username'    => 'Enderezo IP ou nome de usuario:',
 'sp-contributions-submit'      => 'Procura',
 
-'sp-newimages-showfrom' => 'Mostrar os novos ficheiros comezando por $1',
-
 # What links here
 'whatlinkshere'       => 'Páxinas que ligan con esta',
 'whatlinkshere-title' => 'Páxinas que ligan con $1',
@@ -1920,9 +1912,13 @@ $1',
 'show-big-image-thumb' => '<small>Tamaño desta presentación da imaxe: $1 × $2 píxeles</small>',
 
 # Special:Newimages
-'newimages'    => 'Galería de imaxes novas',
-'showhidebots' => '($1 bots)',
-'noimages'     => 'Non hai imaxes para ver.',
+'newimages'             => 'Galería de imaxes novas',
+'imagelisttext'         => "Abaixo amósase unha listaxe de '''$1''' {{PLURAL:$1|ficheiro|ficheiros}} ordenados $2.",
+'showhidebots'          => '($1 bots)',
+'noimages'              => 'Non hai imaxes para ver.',
+'ilsubmit'              => 'Procurar',
+'bydate'                => 'por data',
+'sp-newimages-showfrom' => 'Mostrar os novos ficheiros comezando por $1',
 
 # Video information, used by Language::formatTimePeriod() to format lengths in the above messages
 'minutes-abbrev' => 'min',

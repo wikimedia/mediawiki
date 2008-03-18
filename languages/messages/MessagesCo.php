@@ -62,7 +62,7 @@ $messages = array(
 'nov'           => 'nuv',
 'dec'           => 'dic',
 
-# Bits of text used by many pages
+# Categories related messages
 'categories'      => 'Categurie',
 'pagecategories'  => '{{PLURAL:$1|Categuria|Categurie}}',
 'category_header' => 'Articuli in a categuria "$1"',
@@ -179,7 +179,6 @@ $messages = array(
 'accmailtitle'           => 'Parulla secreta inviata.',
 'accmailtext'            => 'A parulla secreta per "$1" hè stata inviata à l\'indirizzu $2.',
 'editing'                => 'Mudifica di $1',
-'editinguser'            => 'Mudifica di $1',
 'editingsection'         => 'Mudifica di $1 (sezzione)',
 'editingcomment'         => 'Mudifica di $1 (cummentu)',
 'editconflict'           => 'Cunflittu di mudificazione: $1',
@@ -223,6 +222,7 @@ $messages = array(
 'files'             => 'Schedarii',
 
 # User rights
+'editinguser'             => 'Mudifica di $1',
 'userrights-groupsmember' => 'Membru di:',
 
 # Groups
@@ -265,16 +265,14 @@ $messages = array(
 
 'upload-file-error' => 'Errore internu',
 
-# Image list
-'ilsubmit'         => 'Ricerca',
-'byname'           => 'per nome',
-'bydate'           => 'per data',
-'bysize'           => 'per taglia',
-'imgfile'          => 'schedariu',
+# Special:Imagelist
+'imgfile'        => 'schedariu',
+'imagelist_date' => 'Data',
+'imagelist_name' => 'Nome',
+
+# Image description page
 'imagelinks'       => 'Ligami',
 'noimage-linktext' => 'incaricà lu',
-'imagelist_date'   => 'Data',
-'imagelist_name'   => 'Nome',
 
 # Unused templates
 'unusedtemplateswlh' => 'altri ligami',
@@ -390,7 +388,7 @@ $messages = array(
 'proxyblocksuccess'  => 'Hè fattu.',
 
 # Move page
-'move-page-legend'                => 'Move a pagina',
+'move-page-legend'        => 'Move a pagina',
 'movearticle'             => 'Move a pagina',
 'move-watch'              => 'Fighjulà issa pagina',
 'movepagebtn'             => 'Move a pagina',
@@ -443,15 +441,14 @@ $messages = array(
 'anonymous' => 'Utilizatore(/i) anonimu(/i) di {{SITENAME}}',
 'others'    => 'altri',
 
-# Spam protection
-'categoryarticlecount' => 'Ista categuria cuntene {{PLURAL:$1|un articulu|$1 articuli}}.',
-
 # Media information
 'show-big-image' => 'Imagine in alta resoluzione',
 
 # Special:Newimages
 'showhidebots' => '($1 boti)',
 'noimages'     => 'Nulla da vede.',
+'ilsubmit'     => 'Ricerca',
+'bydate'       => 'per data',
 
 # EXIF tags
 'exif-orientation'      => 'Orientazione',

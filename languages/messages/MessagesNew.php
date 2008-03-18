@@ -54,7 +54,7 @@ $messages = array(
 'january'  => 'ज्यानुवरी',
 'february' => 'फेब्रुवरी',
 
-# Bits of text used by many pages
+# Categories related messages
 'categories'     => 'पुचःत',
 'category-empty' => "''थ्व पुचले आःईले पौ वा मिदिया मदु।''",
 

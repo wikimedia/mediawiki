@@ -115,7 +115,7 @@ $messages = array(
 # Search results
 'powersearch' => 'Εύρον',
 
-# Image list
+# Image description page
 'filehist-user' => 'Χρήστες',
 
 # Statistics

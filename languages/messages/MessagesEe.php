@@ -133,7 +133,7 @@ $messages = array(
 'upload'    => 'Ɖo agbalẽ ɖa',
 'uploadbtn' => 'Ɖo agbalẽ ɖa',
 
-# Image list
+# Image description page
 'filehist-user' => 'Ezãla',
 
 # MIME search
@@ -169,11 +169,11 @@ $messages = array(
 'whatlinkshere' => 'Nusiwo kaa afii ŋu',
 
 # Move page
-'move-page-legend'    => 'Ɖɔli eƒe nɔƒe',
-'movearticle' => 'Ɖɔli eƒe nɔƒe:',
-'move-watch'  => 'Le ŋku ɖe axa sia ŋu',
-'movepagebtn' => 'Ɖɔli eƒe nɔƒe',
-'1movedto2'   => '[[$1]] wohee yi [[$2]]',
+'move-page-legend' => 'Ɖɔli eƒe nɔƒe',
+'movearticle'      => 'Ɖɔli eƒe nɔƒe:',
+'move-watch'       => 'Le ŋku ɖe axa sia ŋu',
+'movepagebtn'      => 'Ɖɔli eƒe nɔƒe',
+'1movedto2'        => '[[$1]] wohee yi [[$2]]',
 
 # Namespace 8 related
 'allmessages' => 'Nuŋɔŋlɔwo',

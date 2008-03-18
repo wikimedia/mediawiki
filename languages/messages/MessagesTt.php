@@ -116,11 +116,12 @@ $messages = array(
 'nov'       => 'Nöy',
 'dec'       => 'Dek',
 
-# Bits of text used by many pages
-'categories'      => 'Cíıntıqlar',
-'pagecategories'  => '{{PLURAL:$1|Cíıntıq|Cíıntıqlar}}',
-'category_header' => '«$1» cíıntığınıñ mäqäläläre',
-'subcategories'   => 'Eçke cíıntıqlar',
+# Categories related messages
+'categories'       => 'Cíıntıqlar',
+'pagecategories'   => '{{PLURAL:$1|Cíıntıq|Cíıntıqlar}}',
+'category_header'  => '«$1» cíıntığınıñ mäqäläläre',
+'subcategories'    => 'Eçke cíıntıqlar',
+'subcategorycount' => 'Bu cíıntıqnıñ $1 eçke cíıntıq bar.',
 
 'linkprefix'   => '/^(.*?)([a-zäçğıñöşüA-ZÄÇĞİÑÖŞÜ«„]+)$/sDu',
 'mainpagetext' => 'Wiki programı uñışlı quyıldı.',
@@ -439,16 +440,12 @@ säxifägä isem belän [[Special:Userlogin|keräse]].',
 'uploaddisabled'    => 'Ğafu it, yökläw sünderelgän kileş tora.',
 'uploadcorrupt'     => 'Bu birem yä üze watıq, yä quşımtası yaraqsız. Birem tikşerüdän soñ qabat yöklä zínhar.',
 
-# Image list
-'imagelist'  => 'Räsem tezmäse',
-'ilsubmit'   => 'Ezläw',
-'showlast'   => 'Soñğı $1 räsem kürsätäse, $2 tezep.',
-'byname'     => 'isem buyınça',
-'bydate'     => 'waqıt buyınça',
-'bysize'     => 'zurlıq buyınça',
-'imgdelete'  => 'beter',
-'imgdesc'    => 'añlatma',
-'imgfile'    => 'fayl',
+# Special:Imagelist
+'imgdesc'   => 'añlatma',
+'imgfile'   => 'fayl',
+'imagelist' => 'Räsem tezmäse',
+
+# Image description page
 'imagelinks' => 'Räsem läñkerläre',
 
 # Random page
@@ -686,14 +683,16 @@ yä isä saylanğan isem yaraqsız buldı. Başqa isem sayla zínhar.',
 'creditspage'   => 'Bit yasawında qatnaşqan',
 
 # Spam protection
-'spamprotectiontitle'  => 'Çüpläwdän saqlanu eläge',
-'subcategorycount'     => 'Bu cíıntıqnıñ $1 eçke cíıntıq bar.',
-'categoryarticlecount' => 'Bu cíıntıqqa $1 mäqälä kerä.',
+'spamprotectiontitle' => 'Çüpläwdän saqlanu eläge',
 
 # Info page
 'infosubtitle' => 'Bit turında',
 'numedits'     => 'Üzgärtü sanı (mäqälä):',
 'numtalkedits' => 'Üzgärtü sanı (bäxäs bite):',
 'numwatchers'  => 'Küzätep toruçı sanı:',
+
+# Special:Newimages
+'ilsubmit' => 'Ezläw',
+'bydate'   => 'waqıt buyınça',
 
 );

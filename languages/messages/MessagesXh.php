@@ -111,9 +111,6 @@ I Account yakhgo ivuliwe, ungalibali ukutshitsha izinto ozithandayo ngo {{SITENA
 'filedesc'        => 'Isishwankathelo',
 'watchthisupload' => 'Bukela le Page',
 
-# Image list
-'ilsubmit' => 'Khangela',
-
 # Miscellaneous special pages
 'specialpages' => 'Amaphepha Abalulekileyo',
 'move'         => 'Dlulisa',
@@ -138,10 +135,13 @@ I Account yakhgo ivuliwe, ungalibali ukutshitsha izinto ozithandayo ngo {{SITENA
 'ipblocklist-submit' => 'Khangela',
 
 # Move page
-'move-page-legend'    => 'Dlulisa eliphepha',
-'movepagebtn' => 'DLulisa eliphepha',
-'movedto'     => 'Lidluliselwe',
-'1movedto2'   => '[[$1]] lidluliselwe [[$2]]',
-'movereason'  => 'Isizathu',
+'move-page-legend' => 'Dlulisa eliphepha',
+'movepagebtn'      => 'DLulisa eliphepha',
+'movedto'          => 'Lidluliselwe',
+'1movedto2'        => '[[$1]] lidluliselwe [[$2]]',
+'movereason'       => 'Isizathu',
+
+# Special:Newimages
+'ilsubmit' => 'Khangela',
 
 );

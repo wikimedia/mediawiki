@@ -963,18 +963,17 @@ Todas as datas mostradas são do servidor (UTC).',
 'license-nopreview'  => '(Previsão indisponível)',
 'upload_source_file' => ' (um arquivo de seu computador)',
 
-# Image list
-'imagelist'                 => 'Lista de Imagens',
-'imagelisttext'             => "É exibida a seguir uma listagem {{PLURAL:$1|de '''um''' arquivo organizado|de '''$1''' arquivos organizados}} por $2.",
-'getimagelist'              => 'buscando lista de imagens',
-'ilsubmit'                  => 'Procura',
-'showlast'                  => 'Mostrar as  $1 imagens organizadas $2.',
-'byname'                    => 'por nome',
-'bydate'                    => 'por data',
-'bysize'                    => 'por tamanho',
-'imgdelete'                 => 'eli',
-'imgdesc'                   => 'desc',
-'imgfile'                   => 'arquivo',
+# Special:Imagelist
+'imgdesc'               => 'desc',
+'imgfile'               => 'arquivo',
+'imagelist'             => 'Lista de Imagens',
+'imagelist_date'        => 'Data',
+'imagelist_name'        => 'Nome',
+'imagelist_user'        => 'Usuário',
+'imagelist_size'        => 'Tamanho',
+'imagelist_description' => 'Descrição',
+
+# Image description page
 'filehist'                  => 'Histórico do arquivo',
 'filehist-help'             => 'Clique em uma data/horário para ver o arquivo tal como ele se encontrava em tal momento.',
 'filehist-deleteall'        => 'eliminar todas',
@@ -994,11 +993,6 @@ Todas as datas mostradas são do servidor (UTC).',
 'noimage'                   => 'Não existe nenhum arquivo com este nome. Se desejar, pode $1',
 'noimage-linktext'          => 'carregá-lo',
 'uploadnewversion-linktext' => 'Enviar uma nova versão deste arquivo',
-'imagelist_date'            => 'Data',
-'imagelist_name'            => 'Nome',
-'imagelist_user'            => 'Usuário',
-'imagelist_size'            => 'Tamanho',
-'imagelist_description'     => 'Descrição',
 
 # File reversion
 'filerevert-legend'     => 'Reverter arquivo',
@@ -1486,7 +1480,10 @@ Por favor, escolha outro título.',
 'show-big-image-thumb' => '<small>Tamanho desta previsão: $1 × $2 pixels</small>',
 
 # Special:Newimages
-'newimages' => 'Galeria de novos arquivos',
+'newimages'     => 'Galeria de novos arquivos',
+'imagelisttext' => "É exibida a seguir uma listagem {{PLURAL:$1|de '''um''' arquivo organizado|de '''$1''' arquivos organizados}} por $2.",
+'ilsubmit'      => 'Procura',
+'bydate'        => 'por data',
 
 # Metadata
 'metadata'          => 'Metadados',

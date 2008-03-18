@@ -900,18 +900,18 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 'upload_source_url'  => ' (ትክክለኛ፣ በግልጽ የሚገኝ URL)',
 'upload_source_file' => ' (በኮምፒውተርዎ ላይ ያለበት ፋይል)',
 
-# Image list
-'imagelist'                 => 'የፋይል / ሥዕሎች ዝርዝር',
-'imagelisttext'             => '$1 የተጨመሩ ሥእሎች ወይም ፋይሎች ከታች ይዘረዝራሉ ($2)።',
-'getimagelist'              => 'የፋይል ዝርዝር በማምጣት',
-'ilsubmit'                  => 'ፍለጋ',
-'showlast'                  => 'ያለፉት $1 ፋይሎች $2 ተደርድረው ይታዩ።',
-'byname'                    => 'በፊደል (ሀ-ፐ) ተራ',
-'bydate'                    => 'በተጨመሩበት ወቅት',
-'bysize'                    => 'በትልቅነት መጠን',
-'imgdelete'                 => 'ይጥፋ',
-'imgdesc'                   => 'መግለጫ',
-'imgfile'                   => 'ፋይሉ',
+# Special:Imagelist
+'imagelist_search_for'  => 'ለMedia ፋይል ስም ፍለጋ፦',
+'imgdesc'               => 'መግለጫ',
+'imgfile'               => 'ፋይሉ',
+'imagelist'             => 'የፋይል / ሥዕሎች ዝርዝር',
+'imagelist_date'        => 'ቀን እ.ኤ.አ',
+'imagelist_name'        => 'የፋይል ስም',
+'imagelist_user'        => 'አቅራቢው',
+'imagelist_size'        => 'መጠን (byte)',
+'imagelist_description' => 'ማጠቃለያ',
+
+# Image description page
 'filehist'                  => 'የፋይሉ ታሪክ',
 'filehist-help'             => 'የቀድሞው ዕትም ካለ ቀን/ሰዓቱን በመጫን መመልከት ይቻላል።',
 'filehist-deleteall'        => 'ሁሉን ለማጥፋት',
@@ -933,12 +933,6 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 'noimage'                   => 'በዚህ ስም የሚታወቅ ፋይል የለም፤ እርስዎ ግን $1 ይችላሉ።',
 'noimage-linktext'          => 'ሊልኩት',
 'uploadnewversion-linktext' => 'ለዚሁ ፋይል አዲስ ዕትም ለመላክ',
-'imagelist_date'            => 'ቀን እ.ኤ.አ',
-'imagelist_name'            => 'የፋይል ስም',
-'imagelist_user'            => 'አቅራቢው',
-'imagelist_size'            => 'መጠን (byte)',
-'imagelist_description'     => 'ማጠቃለያ',
-'imagelist_search_for'      => 'ለMedia ፋይል ስም ፍለጋ፦',
 
 # File reversion
 'filerevert'                => '$1 ማገልበጥ',
@@ -1348,8 +1342,6 @@ $1',
 'sp-contributions-username'    => 'ብዕር ስም ወይም የቁ. አድራሻ፦',
 'sp-contributions-submit'      => 'ፍለጋ',
 
-'sp-newimages-showfrom' => 'ከ$1 እኤአ ጀምሮ አዲስ ይታዩ',
-
 # What links here
 'whatlinkshere'       => 'ወዲህ የሚያያዝ',
 'whatlinkshere-title' => 'ወደ «$1» የሚያያዙት ገጾች',
@@ -1679,9 +1671,13 @@ $1',
 'show-big-image-thumb' => '<small>የዚህ ናሙና ቅጂ ክልል፦ $1 × $2 ፒክሰል</small>',
 
 # Special:Newimages
-'newimages'    => 'የአዳዲስ ሥዕሎች ማሳያ አዳራሽ',
-'showhidebots' => '(«bots» $1)',
-'noimages'     => 'ምንም የለም!',
+'newimages'             => 'የአዳዲስ ሥዕሎች ማሳያ አዳራሽ',
+'imagelisttext'         => '$1 የተጨመሩ ሥእሎች ወይም ፋይሎች ከታች ይዘረዝራሉ ($2)።',
+'showhidebots'          => '(«bots» $1)',
+'noimages'              => 'ምንም የለም!',
+'ilsubmit'              => 'ፍለጋ',
+'bydate'                => 'በተጨመሩበት ወቅት',
+'sp-newimages-showfrom' => 'ከ$1 እኤአ ጀምሮ አዲስ ይታዩ',
 
 # Bad image list
 'bad_image_list' => 'ሥርዓቱ እንዲህ ነው፦

@@ -65,6 +65,9 @@ $messages = array(
 'nov'           => 'konlu nofiempüre küyeṉ mew',
 'dec'           => 'konlu disiempüre küyeṉ mew',
 
+# Categories related messages
+'listingcontinuesabbrev' => 'ramt.',
+
 'qbfind'      => 'Kintun',
 'qbedit'      => 'Wirin',
 'qbmyoptions' => 'tañi nütramkawe',
@@ -176,12 +179,12 @@ $messages = array(
 
 'nolicense' => 'Chemnorume dullinnongey',
 
-# Image list
-'ilsubmit'           => 'Kintu',
-'imgdelete'          => 'ñam',
+# Special:Imagelist
+'imagelist_name' => 'Üy',
+
+# Image description page
 'filehist-deleteall' => 'kom ñamümün',
 'filehist-deleteone' => 'tüfa ñamümün',
-'imagelist_name'     => 'Üy',
 
 # File deletion
 'filedelete'         => '$1 ñamümün',
@@ -253,11 +256,11 @@ $messages = array(
 'tooltip-pt-mytalk' => 'Tañi nütramkawe',
 'tooltip-pt-logout' => 'Tripan',
 
-# Spam protection
-'listingcontinuesabbrev' => 'ramt.',
-
 # Patrol log
 'patrol-log-diff' => 'ng$1',
+
+# Special:Newimages
+'ilsubmit' => 'Kintu',
 
 # Video information, used by Language::formatTimePeriod() to format lengths in the above messages
 'hours-abbrev' => 'o',

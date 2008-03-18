@@ -183,13 +183,15 @@ $messages = array(
 'nov'           => 'Noy',
 'dec'           => 'Dek',
 
-# Bits of text used by many pages
-'categories'            => 'Kategoriyalar',
-'pagecategories'        => '{{PLURAL:$1|Kategoriya|Kategoriyalar}}',
-'category_header'       => '"$1" kategoriyasindag\'ı betler',
-'subcategories'         => 'Podkategoriyalar',
-'category-media-header' => '"$1" kategoriyasindag\'ı media',
-'category-empty'        => "''Bul kategoriyada ha'zir hesh bet yamasa media joq''",
+# Categories related messages
+'categories'             => 'Kategoriyalar',
+'pagecategories'         => '{{PLURAL:$1|Kategoriya|Kategoriyalar}}',
+'category_header'        => '"$1" kategoriyasindag\'ı betler',
+'subcategories'          => 'Podkategoriyalar',
+'category-media-header'  => '"$1" kategoriyasindag\'ı media',
+'category-empty'         => "''Bul kategoriyada ha'zir hesh bet yamasa media joq''",
+'subcategorycount'       => 'Bul kategoriyada {{PLURAL:$1|bir podkategoriya bar|$1 podkategoriya bar}}.',
+'listingcontinuesabbrev' => 'dawamı',
 
 'linkprefix'   => '/^(.*?)([a-zıA-Zİ\\x80-\\xff]+)$/sDu',
 'mainpagetext' => "<big>'''MediaWiki tabıslı ornatıldı.'''</big>",
@@ -807,15 +809,18 @@ Sha'rtli belgiler: (ha'z.) = ha'zirgi nusqasi menen parqı,
 'nolicense'          => "Hesh na'rse saylanbag'an",
 'upload_source_file' => " (sizin' kompyuterin'izdegi fayl)",
 
-# Image list
-'imagelist'                 => 'Fayllar dizimi',
-'ilsubmit'                  => 'İzle',
-'byname'                    => 'at boyınsha',
-'bydate'                    => "sa'ne boyınsha",
-'bysize'                    => "ha'jmi boyınsha",
-'imgdelete'                 => "o'shir.",
-'imgdesc'                   => 'aniqlama',
-'imgfile'                   => 'fayl',
+# Special:Imagelist
+'imagelist_search_for'  => "Su'wret atamasın izlew:",
+'imgdesc'               => 'aniqlama',
+'imgfile'               => 'fayl',
+'imagelist'             => 'Fayllar dizimi',
+'imagelist_date'        => "Sa'ne",
+'imagelist_name'        => 'Atama',
+'imagelist_user'        => 'Paydalnıwshı',
+'imagelist_size'        => "Ha'jim",
+'imagelist_description' => 'Kommentariy',
+
+# Image description page
 'filehist'                  => 'Fayl tariyxı',
 'filehist-help'             => "Aldın usı fayl qanday ko'riniste bolg'anın ko'riw ushin ku'n-ay/waqıt degendi basın'.",
 'filehist-deleteall'        => "ha'mmesin o'shir",
@@ -834,12 +839,6 @@ Sha'rtli belgiler: (ha'z.) = ha'zirgi nusqasi menen parqı,
 'noimage'                   => "Bunday atı fayl joq, $1 mu'mkinshiligin'iz bar.",
 'noimage-linktext'          => 'usını aploud qılıw',
 'uploadnewversion-linktext' => "Bul fayldın' jan'a nusqasın aploud qılıw",
-'imagelist_date'            => "Sa'ne",
-'imagelist_name'            => 'Atama',
-'imagelist_user'            => 'Paydalnıwshı',
-'imagelist_size'            => "Ha'jim",
-'imagelist_description'     => 'Kommentariy',
-'imagelist_search_for'      => "Su'wret atamasın izlew:",
 
 # File reversion
 'filerevert-comment' => 'Kommentariy:',
@@ -1138,8 +1137,6 @@ Aqırg'ı o'shirilgenlerdin' dizimin ko'riw ushin \$2 ni qaran'",
 'sp-contributions-username'    => 'IP Adres yamasa paydalanıwshı atı:',
 'sp-contributions-submit'      => 'İzle',
 
-'sp-newimages-showfrom' => "$1 baslap taza su'wretlerdi ko'rset",
-
 # What links here
 'whatlinkshere'       => 'Siltelgen betler',
 'whatlinkshere-title' => '$1 degenge siltelgen betler',
@@ -1368,12 +1365,6 @@ Basqa atama saylan'",
 'siteusers'        => '{{SITENAME}} paydalanıwshı(ları) $1',
 'creditspage'      => 'Bet avtorları',
 
-# Spam protection
-'subcategorycount'       => 'Bul kategoriyada {{PLURAL:$1|bir podkategoriya bar|$1 podkategoriya bar}}.',
-'categoryarticlecount'   => 'Bul kategoriyada {{PLURAL:$1|bir bet bar|$1 bet bar}}.',
-'category-media-count'   => 'Bul kategoriyada {{PLURAL:$1|bir|$1}} fayl bar.',
-'listingcontinuesabbrev' => 'dawamı',
-
 # Info page
 'infosubtitle' => "Bet haqqında mag'lıwmat",
 'numedits'     => "O'zgerisler sanı (bet): $1",
@@ -1403,9 +1394,12 @@ Basqa atama saylan'",
 'show-big-image-thumb' => "<small>Bul aldinnan ko'riwdin' ha'jmi: $1 × $2 piksel</small>",
 
 # Special:Newimages
-'newimages'    => 'Taza fayllar galereyasi',
-'showhidebots' => '(botlardı $1)',
-'noimages'     => "Ko'riwge su'wret joq.",
+'newimages'             => 'Taza fayllar galereyasi',
+'showhidebots'          => '(botlardı $1)',
+'noimages'              => "Ko'riwge su'wret joq.",
+'ilsubmit'              => 'İzle',
+'bydate'                => "sa'ne boyınsha",
+'sp-newimages-showfrom' => "$1 baslap taza su'wretlerdi ko'rset",
 
 # Video information, used by Language::formatTimePeriod() to format lengths in the above messages
 'video-dims'   => '$1, $2 × $3',

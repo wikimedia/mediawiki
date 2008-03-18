@@ -162,7 +162,7 @@ $messages = array(
 'nov'           => '11月',
 'dec'           => '12月',
 
-# Bits of text used by many pages
+# Categories related messages
 'categories'               => '頁面分類',
 'pagecategories'           => '$1個分類',
 'category_header'          => '類別「$1」中的頁面',
@@ -171,7 +171,8 @@ $messages = array(
 'category-empty'           => "''這個分類中尚未包含任何頁面或媒體。''",
 'hidden-categories'        => '$1個隱藏分類',
 'hidden-category-category' => '隱藏分類', # Name of the category where hidden categories will be listed
-
+'subcategorycount'         => '這個分類下有$1個子分類。',
+'listingcontinuesabbrev'   => '續',
 
 'mainpagetext'      => "<big>'''已成功安裝 MediaWiki!'''</big>",
 'mainpagedocfooter' => '請參閱 [http://meta.wikimedia.org/wiki/Help:Contents 用戶手冊] 以獲得使用此 wiki 軟體的訊息！
@@ -778,8 +779,8 @@ $2',
 'prevn'                 => '前$1個',
 'nextn'                 => '後$1個',
 'viewprevnext'          => '檢視 ($1) ($2) ($3)',
-'search-result-size'    => "$1 ($2個字)",
-'search-result-score'   => "相關度: $1%",
+'search-result-size'    => '$1 ($2個字)',
+'search-result-score'   => '相關度: $1%',
 'showingresults'        => '下面顯示從第<b>$2</b>條開始的<b>$1</b>條結果:',
 'showingresultsnum'     => '下面顯示從第<b>$2</b>條開始的<b>$3</b>條結果:',
 'nonefound'             => '<strong>注意：</strong>失敗的搜索往往是由於試圖搜索諸如「的」或「和」之類的常見字所引起。',
@@ -1023,18 +1024,18 @@ $2',
 'upload_source_url'  => ' (一個有效的，可公開訪問的 URL)',
 'upload_source_file' => ' (在您電腦上的一個檔案)',
 
-# Image list
-'imagelist'                 => '檔案列表',
-'imagelisttext'             => '以下是按$2排列的$1個檔案列表。',
-'getimagelist'              => '正在獲取檔案列表',
-'ilsubmit'                  => '搜尋',
-'showlast'                  => '顯示按$2排列的最後$1個檔案。',
-'byname'                    => '按名字',
-'bydate'                    => '按日期',
-'bysize'                    => '按大小',
-'imgdelete'                 => '刪除',
-'imgdesc'                   => '描述',
-'imgfile'                   => '檔案',
+# Special:Imagelist
+'imagelist_search_for'  => '按檔案名稱搜索:',
+'imgdesc'               => '描述',
+'imgfile'               => '檔案',
+'imagelist'             => '檔案列表',
+'imagelist_date'        => '日期',
+'imagelist_name'        => '名稱',
+'imagelist_user'        => '用戶',
+'imagelist_size'        => '大小',
+'imagelist_description' => '描述',
+
+# Image description page
 'filehist'                  => '檔案歷史',
 'filehist-help'             => '點擊日期／時間以檢視當時出現過的檔案。',
 'filehist-deleteall'        => '刪除全部',
@@ -1056,12 +1057,6 @@ $2',
 'noimage'                   => '不存在此名稱的檔案，您可以$1。',
 'noimage-linktext'          => '上傳它',
 'uploadnewversion-linktext' => '上傳該檔案的新版本',
-'imagelist_date'            => '日期',
-'imagelist_name'            => '名稱',
-'imagelist_user'            => '用戶',
-'imagelist_size'            => '大小',
-'imagelist_description'     => '描述',
-'imagelist_search_for'      => '按檔案名稱搜索:',
 
 # File reversion
 'filerevert'                => '恢復$1',
@@ -1447,7 +1442,7 @@ $NEWPAGE
 # Undelete
 'undelete'                     => '恢復被刪頁面',
 'undeletepage'                 => '瀏覽及恢復被刪頁面',
-'undeletepagetitle'            => '\'\'\'以下包含[[:$1]]的已刪除之修訂版本\'\'\'。',
+'undeletepagetitle'            => "'''以下包含[[:$1]]的已刪除之修訂版本'''。",
 'viewdeletedpage'              => '檢視被刪除的頁面',
 'undeletepagetext'             => '以下頁面已經被刪除，但依然在檔案中並可以被恢復。
 檔案庫可能被定時清理。',
@@ -1506,8 +1501,6 @@ $1',
 'sp-contributions-search'      => '搜尋貢獻記錄',
 'sp-contributions-username'    => 'IP位址或用戶名稱：',
 'sp-contributions-submit'      => '搜尋',
-
-'sp-newimages-showfrom' => '從$1開始顯示新檔案',
 
 # What links here
 'whatlinkshere'       => '鏈入頁面',
@@ -1843,16 +1836,12 @@ $1',
 'nocredits'        => '該頁沒有致謝名單訊息。',
 
 # Spam protection
-'spamprotectiontitle'    => '垃圾過濾器',
-'spamprotectiontext'     => '垃圾過濾器禁止保存您剛才提交的頁面，這可能是由於您所加入的外部網站鏈接所產生的問題。',
-'spamprotectionmatch'    => '觸發了我們的垃圾過濾器的文本如下：$1',
-'subcategorycount'       => '這個分類下有$1個子分類。',
-'categoryarticlecount'   => '這個分類中共有$1個頁面',
-'category-media-count'   => '在這個分類中有$1個檔案。',
-'listingcontinuesabbrev' => '續',
-'spambot_username'       => 'MediaWiki 廣告清除',
-'spam_reverting'         => '恢復到不包含連結至$1的最近版本',
-'spam_blanking'          => '所有包含連結至$1的修訂，清空',
+'spamprotectiontitle' => '垃圾過濾器',
+'spamprotectiontext'  => '垃圾過濾器禁止保存您剛才提交的頁面，這可能是由於您所加入的外部網站鏈接所產生的問題。',
+'spamprotectionmatch' => '觸發了我們的垃圾過濾器的文本如下：$1',
+'spambot_username'    => 'MediaWiki 廣告清除',
+'spam_reverting'      => '恢復到不包含連結至$1的最近版本',
+'spam_blanking'       => '所有包含連結至$1的修訂，清空',
 
 # Info page
 'infosubtitle'   => '頁面訊息',
@@ -1914,9 +1903,13 @@ $1',
 'show-big-image-thumb' => '<small>這幅縮圖的解像度: $1 × $2 像素</small>',
 
 # Special:Newimages
-'newimages'    => '新建圖像畫廊',
-'showhidebots' => '($1機器人)',
-'noimages'     => '無可檢視圖像。',
+'newimages'             => '新建圖像畫廊',
+'imagelisttext'         => '以下是按$2排列的$1個檔案列表。',
+'showhidebots'          => '($1機器人)',
+'noimages'              => '無可檢視圖像。',
+'ilsubmit'              => '搜尋',
+'bydate'                => '按日期',
+'sp-newimages-showfrom' => '從$1開始顯示新檔案',
 
 # Bad image list
 'bad_image_list' => '請根據以下的格式去編寫:

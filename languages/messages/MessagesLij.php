@@ -76,12 +76,13 @@ $messages = array(
 'nov'           => 'Nov',
 'dec'           => 'Dex',
 
-# Bits of text used by many pages
+# Categories related messages
 'categories'            => 'Categorîe',
 'category_header'       => 'Paggine inta categorîa "$1"',
 'subcategories'         => 'Sottocategorîe',
 'category-media-header' => 'Archivvio inta categorîa "$1"',
 'category-empty'        => "''Pe-o momento 'sta categorîa a no contegne nisciûnn-a paggina ò archivvio multimedia.''",
+'subcategorycount'      => "'Sta categorîa a g'ha {{PLURAL:$1|ûnn-a sottocategorîa|$1 sottocategorîe}}.",
 
 'about'          => 'Informaçioin',
 'article'        => 'Pagina de i contenùi',
@@ -453,15 +454,13 @@ Leggenda: (corr) = differense co-a verscion corrente, (prec) = differense co-a v
 
 'license' => 'Permisso:',
 
-# Image list
-'imagelist'                 => 'Lista de li archivvi',
-'ilsubmit'                  => 'Çerca',
-'showlast'                  => 'Fanni vedde urtimi $1 papê recattæ $2.',
-'byname'                    => 'pe nomme',
-'bydate'                    => 'pe dâta',
-'bysize'                    => 'pe grandessa',
-'imgdelete'                 => 'scassa',
-'imgfile'                   => 'papê',
+# Special:Imagelist
+'imagelist_search_for' => "Çerca pe nomme de l'imàgine:",
+'imgfile'              => 'papê',
+'imagelist'            => 'Lista de li archivvi',
+'imagelist_date'       => 'Dæta',
+
+# Image description page
 'filehist'                  => "Cronologîa de l'archivvio",
 'filehist-help'             => "Sciacca inscie 'n grûppo data/ôa pe vedde l'archivvio comme o se presentâva into momento indicòu.",
 'filehist-datetime'         => 'Data/Ôa',
@@ -476,8 +475,6 @@ Leggenda: (corr) = differense co-a verscion corrente, (prec) = differense co-a v
 'noimage'                   => "No gh'è nisciûn archivvio con quello nomme, o se pêu $1.",
 'noimage-linktext'          => 'Caregâlo òua',
 'uploadnewversion-linktext' => "Carega 'na nêuva verscion de 'st'archivvio chì",
-'imagelist_date'            => 'Dæta',
-'imagelist_search_for'      => "Çerca pe nomme de l'imàgine:",
 
 # MIME search
 'mimesearch' => 'Çerca MIME',
@@ -641,7 +638,7 @@ O urtimo cangiamento o l'è de [[User:$3|$3]] ([[User talk:$3|Ciæti]]).",
 'protect_expiry_invalid'      => 'Scadensa invalida.',
 'protect_expiry_old'          => 'Data de scadensa into passòu.',
 'protect-unchain'             => 'Scollegâ i permissi de stramûo',
-'protect-text'                => "Chì o l'è poscibbile vedde e modificâ o livello de protession pe-a paggina <strong><nowiki>\$1</nowiki></strong>.",
+'protect-text'                => "Chì o l'è poscibbile vedde e modificâ o livello de protession pe-a paggina <strong><nowiki>$1</nowiki></strong>.",
 'protect-locked-access'       => "No ti g'hæ permisso pe modificâ i livelli de protession da paggina.
 Queste son e impostassioîn correnti pe 'sta paggina (<strong>$1</strong>):",
 'protect-cascadeon'           => "Pe-o momento 'sta paggina chì a l'è bloccâa perché a l'è inclûsa {{PLURAL:$1|inta paggina indicâa apprêuvo, pe-a quæ|inte paggine indicæ apprêuvo, pe-e quæ}} a l'è attiva a protession recorsciva. O se pêu modificâ o livello de protession individuâle da paggina, ma l'impostassioîn derivanti da-a protession recorsciva no sajàn modificæ.",
@@ -727,7 +724,7 @@ Veddi a [[Special:Ipblocklist|Lista de i indirissi IP affermæ]] pe e informaçi
 'databasenotlocked' => "A base de i dæti a non l'è serrâ.",
 
 # Move page
-'move-page-legend'                => 'Mescia a paggina',
+'move-page-legend'        => 'Mescia a paggina',
 'movepagetext'            => "Chì o se pêu dâ 'n nêuvo nomme a 'na paggina, stramûando tûtta a sêu cronologîa a-o nêuvo nomme. A paggina attuâle a fa outomaticamente 'n rindirissamento a-o nêuvo tittolo. I collegamenti escistenti no sajàn aggiornæ; veriffica che 'sto stramûo o no l'agge creòu doggi rindirissamenti ò rindirissamenti sballiæ. A responsabilitæ pe tegnî i collegamenti sempre donde deivan andâ a l'è têu.
 
 A paggina a '''no''' sajà stramûâa se ghe foisse zà ûnn-a co-o nêuvo nomme, a meno c'a no segge vêua ò fæta solo da 'n rindirissamento a-a vegia e a no l'agge verscioîn preçedenti. In caso de stramûo sballiòu o se pêu tornâ sûbbito a-o vegio tittolo, e o no l'è poscibbile sorvescrive pe errô 'na paggina zà escistente.
@@ -834,11 +831,6 @@ Inte 'sti câxi, se o se vêu fâ coscì, o se deive stramûâ ò azzonze manual
 'anonymous'        => 'Utente anonimmo de {{SITENAME}}',
 'lastmodifiedatby' => "Sta pagina a l'è stæta cangiâ l'urtima votta a e $2 do $1 da $3.", # $1 date, $2 time, $3 user
 
-# Spam protection
-'subcategorycount'     => "'Sta categorîa a g'ha {{PLURAL:$1|ûnn-a sottocategorîa|$1 sottocategorîe}}.",
-'categoryarticlecount' => "'Sta categorîa a contegne {{PLURAL:$1|ûnn-a paggina|$1 paggine}}.",
-'category-media-count' => "'Sta categorîa a contegne {{PLURAL:$1|ûn archivvio|$1 archivvi}}.",
-
 # Browsing diffs
 'previousdiff' => '← Differensa preçedente',
 'nextdiff'     => 'Proscima diff →',
@@ -852,6 +844,8 @@ Inte 'sti câxi, se o se vêu fâ coscì, o se deive stramûâ ò azzonze manual
 
 # Special:Newimages
 'newimages' => 'Gallerîa de nêuvi archivvi',
+'ilsubmit'  => 'Çerca',
+'bydate'    => 'pe dâta',
 
 # Bad image list
 'bad_image_list' => "O formato o l'è coscì:

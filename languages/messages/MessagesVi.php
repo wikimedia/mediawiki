@@ -1102,18 +1102,18 @@ PICT # khác
 'upload_source_url'  => ' (địa chỉ URL đúng, có thể truy cập)',
 'upload_source_file' => ' (tập tin trên máy của bạn)',
 
-# Image list
-'imagelist'                 => 'Danh sách tập tin',
-'imagelisttext'             => "Dưới đây là danh sách '''$1''' tập tin xếp theo $2.",
-'getimagelist'              => 'đang truy xuất danh sách tập tin',
-'ilsubmit'                  => 'Tìm kiếm',
-'showlast'                  => 'Xem $1 hình mới nhất xếp theo $2.',
-'byname'                    => 'theo tên',
-'bydate'                    => 'theo ngày',
-'bysize'                    => 'theo dung lượng',
-'imgdelete'                 => 'xóa',
-'imgdesc'                   => 'miêu tả',
-'imgfile'                   => 'tập tin',
+# Special:Imagelist
+'imagelist_search_for'  => 'Tìm kiếm theo tên tập tin:',
+'imgdesc'               => 'miêu tả',
+'imgfile'               => 'tập tin',
+'imagelist'             => 'Danh sách tập tin',
+'imagelist_date'        => 'Ngày tải',
+'imagelist_name'        => 'Tên',
+'imagelist_user'        => 'Thành viên tải',
+'imagelist_size'        => 'Kích cỡ',
+'imagelist_description' => 'Miêu tả',
+
+# Image description page
 'filehist'                  => 'Lịch sử tập tin',
 'filehist-help'             => 'Nhấn vào một ngày/giờ để xem nội dung tập tin tại thời điểm đó.',
 'filehist-deleteall'        => 'xóa toàn bộ',
@@ -1135,12 +1135,6 @@ PICT # khác
 'noimage'                   => 'Không có tập tin có tên này, bạn có thể $1.',
 'noimage-linktext'          => 'tải tập tin lên',
 'uploadnewversion-linktext' => 'Tải lên phiên bản mới',
-'imagelist_date'            => 'Ngày tải',
-'imagelist_name'            => 'Tên',
-'imagelist_user'            => 'Thành viên tải',
-'imagelist_size'            => 'Kích cỡ',
-'imagelist_description'     => 'Miêu tả',
-'imagelist_search_for'      => 'Tìm kiếm theo tên tập tin:',
 
 # File reversion
 'filerevert'                => 'Lùi lại phiên bản của $1',
@@ -1575,8 +1569,6 @@ $1',
 'sp-contributions-username'    => 'Địa chỉ IP hay tên thành viên:',
 'sp-contributions-submit'      => 'Tìm kiếm',
 
-'sp-newimages-showfrom' => 'Trưng bày những tập tin mới, bắt đầu từ $1',
-
 # What links here
 'whatlinkshere'       => 'Các liên kết đến đây',
 'whatlinkshere-title' => 'Các trang liên kết đến $1',
@@ -1986,9 +1978,13 @@ $1',
 'show-big-image-thumb' => '<small>Kích thước xem thử: $1 × $2 điểm ảnh</small>',
 
 # Special:Newimages
-'newimages'    => 'Trang trưng bày hình ảnh mới',
-'showhidebots' => '($1 robot)',
-'noimages'     => 'Chưa có hình.',
+'newimages'             => 'Trang trưng bày hình ảnh mới',
+'imagelisttext'         => "Dưới đây là danh sách '''$1''' tập tin xếp theo $2.",
+'showhidebots'          => '($1 robot)',
+'noimages'              => 'Chưa có hình.',
+'ilsubmit'              => 'Tìm kiếm',
+'bydate'                => 'theo ngày',
+'sp-newimages-showfrom' => 'Trưng bày những tập tin mới, bắt đầu từ $1',
 
 # Bad image list
 'bad_image_list' => 'Định dạng như sau:

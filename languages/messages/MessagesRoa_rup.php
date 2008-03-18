@@ -135,9 +135,6 @@ Isape a vostrã ira adratã. Nu agãrshits s-le alãxits alidzerle-a vostre ti {
 'filedesc'        => 'Rezime',
 'watchthisupload' => 'Mutrits-u frãndzã aistã',
 
-# Image list
-'ilsubmit' => 'Caftã',
-
 # Random page
 'randompage' => 'Frãndzã di nipandicã',
 
@@ -188,13 +185,13 @@ Isape a vostrã ira adratã. Nu agãrshits s-le alãxits alidzerle-a vostre ti {
 'ipblocklist-submit' => 'Caftã',
 
 # Move page
-'move-page-legend'    => 'Tradzets-u frãndzã',
-'movearticle' => 'Tradzets-u frãndzã:',
-'move-watch'  => 'Mutrits-u frãndzã aistã',
-'movepagebtn' => 'Tradzets-u frãndzã',
-'movedto'     => 'tradzitã tu',
-'1movedto2'   => '[[$1]] s-trãdzi tu [[$2]]',
-'movereason'  => 'Itia:',
+'move-page-legend' => 'Tradzets-u frãndzã',
+'movearticle'      => 'Tradzets-u frãndzã:',
+'move-watch'       => 'Mutrits-u frãndzã aistã',
+'movepagebtn'      => 'Tradzets-u frãndzã',
+'movedto'          => 'tradzitã tu',
+'1movedto2'        => '[[$1]] s-trãdzi tu [[$2]]',
+'movereason'       => 'Itia:',
 
 # Namespace 8 related
 'allmessages' => 'Dimãndãri systemitse',
@@ -203,6 +200,9 @@ Isape a vostrã ira adratã. Nu agãrshits s-le alãxits alidzerle-a vostre ti {
 'tooltip-pt-preferences' => 'Alidzerle-a meale',
 'tooltip-pt-logout'      => 'Disligats-vã',
 'tooltip-p-logo'         => 'Prota frãndzã',
+
+# Special:Newimages
+'ilsubmit' => 'Caftã',
 
 # Multipage image navigation
 'imgmultigo' => 'Du-vã!',

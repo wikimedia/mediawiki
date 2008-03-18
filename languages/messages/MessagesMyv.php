@@ -633,14 +633,14 @@ $messages = array(
 
 'upload-file-error' => 'Потмонь ильведькс',
 
-# Image list
-'imagelist'                 => 'Файлат-мезть',
-'ilsubmit'                  => 'Вешнемс',
-'byname'                    => 'лемень коряс',
-'bydate'                    => 'чинь коряс',
-'bysize'                    => 'покшолмань коряс',
-'imgdelete'                 => 'нардамс',
-'imgfile'                   => 'файл',
+# Special:Imagelist
+'imgfile'        => 'файл',
+'imagelist'      => 'Файлат-мезть',
+'imagelist_date' => 'Чи',
+'imagelist_name' => 'Лем',
+'imagelist_size' => 'Покшолма',
+
+# Image description page
 'filehist'                  => 'Файланть эрямопингезэ',
 'filehist-help'             => 'Лепштинк чиннть/шканть ланкс, сестэ вансынк коли файлось ульнесь теезь.',
 'filehist-deleteall'        => 'нардамс весе',
@@ -660,9 +660,6 @@ $messages = array(
 'noimage'                   => 'Кодамояк файла истямо лем марто арась, тынь $1 тейдяд.',
 'noimage-linktext'          => 'тонгинк тень',
 'uploadnewversion-linktext' => 'Тонгодо од версия те файланть',
-'imagelist_date'            => 'Чи',
-'imagelist_name'            => 'Лем',
-'imagelist_size'            => 'Покшолма',
 
 # File reversion
 'filerevert'         => 'Велявтомс $1 мекев',
@@ -1070,6 +1067,8 @@ $messages = array(
 'newimages'    => 'Од файлатьнень галлереясь',
 'showhidebots' => '($1 ботт)',
 'noimages'     => 'Арась мезе ваномс.',
+'ilsubmit'     => 'Вешнемс',
+'bydate'       => 'чинь коряс',
 
 # Bad image list
 'bad_image_list' => 'Лувось-форматось вана истямо:

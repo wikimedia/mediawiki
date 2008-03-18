@@ -24,7 +24,7 @@ $messages = array(
 'august'    => 'uti',
 'aug'       => 'uti',
 
-# Bits of text used by many pages
+# Categories related messages
 'categories'      => 'Nyɛ ka cogoyaw',
 'category_header' => 'Nyɛw cogoya kɔnɔ: "$1"',
 
@@ -87,9 +87,6 @@ $messages = array(
 # Recent changes
 'hide' => 'dogo',
 
-# Image list
-'ilsubmit' => 'Nyini',
-
 # Random page
 'randompage' => 'Nyɛ min man ni ja',
 
@@ -114,11 +111,14 @@ $messages = array(
 'lockconfirm' => 'Awɔ, je confirme que je souhaite verrouiller la base de données.',
 
 # Move page
-'move-page-legend'    => 'Nyɛ telun',
-'movearticle' => 'Nyɛ telun',
-'movepagebtn' => 'Nyɛ telun',
+'move-page-legend' => 'Nyɛ telun',
+'movearticle'      => 'Nyɛ telun',
+'movepagebtn'      => 'Nyɛ telun',
 
 # Attribution
 'others' => 'wɛrɛ',
+
+# Special:Newimages
+'ilsubmit' => 'Nyini',
 
 );

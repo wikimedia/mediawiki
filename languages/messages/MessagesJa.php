@@ -158,7 +158,7 @@ $messages = array(
 'nov'           => '11月',
 'dec'           => '12月',
 
-# Bits of text used by many pages
+# Categories related messages
 'categories'               => 'カテゴリ',
 'pagecategories'           => 'カテゴリ',
 'category_header'          => 'カテゴリ “$1” にあるページ',
@@ -167,6 +167,8 @@ $messages = array(
 'category-empty'           => 'このカテゴリにはページまたはメディアがひとつもありません。',
 'hidden-categories'        => '{{PLURAL:$1|非公開カテゴリ|非公開カテゴリ}}',
 'hidden-category-category' => '非公開カテゴリ', # Name of the category where hidden categories will be listed
+'subcategorycount'         => 'このカテゴリには $1 のサブカテゴリがあります。',
+'listingcontinuesabbrev'   => 'の続き',
 
 'mainpagetext'      => 'MediaWikiが正常にインストールされました。',
 'mainpagedocfooter' => '使い方・設定に関しては[http://meta.wikimedia.org/wiki/%E3%83%98%E3%83%AB%E3%83%97:%E7%9B%AE%E6%AC%A1 ユーザーズガイド]を参照してください。
@@ -1010,18 +1012,18 @@ $2リダイレクトを含める &nbsp; &nbsp; &nbsp; $3 $9',
 'upload_source_url'  => '（インターネット上のURL）',
 'upload_source_file' => '（あなたのコンピューター上のファイル）',
 
-# Image list
-'imagelist'                 => 'ファイルリスト',
-'imagelisttext'             => "'''$1''' {{PLURAL:$1|個|個}}のファイルを $2 に表示しています",
-'getimagelist'              => 'ファイルリストを取得',
-'ilsubmit'                  => '検索',
-'showlast'                  => '$2に $1 個のファイルを表示',
-'byname'                    => '名前順',
-'bydate'                    => '日付順',
-'bysize'                    => 'サイズ順',
-'imgdelete'                 => '削除',
-'imgdesc'                   => '詳細',
-'imgfile'                   => 'ファイル',
+# Special:Imagelist
+'imagelist_search_for'  => 'メディア名で検索:',
+'imgdesc'               => '詳細',
+'imgfile'               => 'ファイル',
+'imagelist'             => 'ファイルリスト',
+'imagelist_date'        => '日時',
+'imagelist_name'        => '名前',
+'imagelist_user'        => '利用者',
+'imagelist_size'        => 'サイズ（バイト）',
+'imagelist_description' => '概要',
+
+# Image description page
 'filehist'                  => 'ファイルの履歴',
 'filehist-help'             => '過去の版のファイルを参照するには、日付/時刻の列にあるリンクをクリックしてください。',
 'filehist-deleteall'        => '全て削除',
@@ -1043,12 +1045,6 @@ $2リダイレクトを含める &nbsp; &nbsp; &nbsp; $3 $9',
 'noimage'                   => '同名のファイルは存在しません。「$1」リンクをクリックしてください。',
 'noimage-linktext'          => 'このファイル名でアップロードする',
 'uploadnewversion-linktext' => 'このファイルの新しいバージョンをアップロードする',
-'imagelist_date'            => '日時',
-'imagelist_name'            => '名前',
-'imagelist_user'            => '利用者',
-'imagelist_size'            => 'サイズ（バイト）',
-'imagelist_description'     => '概要',
-'imagelist_search_for'      => 'メディア名で検索:',
 
 # File reversion
 'filerevert'                => '$1 を差し戻す',
@@ -1484,8 +1480,6 @@ $NEWPAGE
 'sp-contributions-username'    => '利用者名または IPアドレス:',
 'sp-contributions-submit'      => '検索',
 
-'sp-newimages-showfrom' => '$1 以後現在までの新着ファイルを表示',
-
 # What links here
 'whatlinkshere'       => 'リンク元',
 'whatlinkshere-title' => '$1 へリンクしているページ',
@@ -1801,16 +1795,12 @@ $NEWPAGE
 'nocredits'        => 'このページには有効なクレジット情報がありません。',
 
 # Spam protection
-'spamprotectiontitle'    => 'スパム防御フィルター',
-'spamprotectiontext'     => 'あなたが保存しようとしたページはスパム・フィルターによって保存をブロックされました。これは主に外部サイトへのリンクが原因です。',
-'spamprotectionmatch'    => '以下はスパム・フィルターによって検出されたテキストです: $1',
-'subcategorycount'       => 'このカテゴリには $1 のサブカテゴリがあります。',
-'categoryarticlecount'   => 'このカテゴリには $1 のページがあります。',
-'category-media-count'   => 'このカテゴリには $1 のファイルがあります。',
-'listingcontinuesabbrev' => 'の続き',
-'spambot_username'       => 'MediaWiki スパム除去',
-'spam_reverting'         => '$1 へのリンクを含まない以前の版に差し戻し',
-'spam_blanking'          => 'すべての版から $1 へのリンクを削除',
+'spamprotectiontitle' => 'スパム防御フィルター',
+'spamprotectiontext'  => 'あなたが保存しようとしたページはスパム・フィルターによって保存をブロックされました。これは主に外部サイトへのリンクが原因です。',
+'spamprotectionmatch' => '以下はスパム・フィルターによって検出されたテキストです: $1',
+'spambot_username'    => 'MediaWiki スパム除去',
+'spam_reverting'      => '$1 へのリンクを含まない以前の版に差し戻し',
+'spam_blanking'       => 'すべての版から $1 へのリンクを削除',
 
 # Info page
 'infosubtitle'   => 'ページ情報',
@@ -1872,9 +1862,13 @@ $NEWPAGE
 'show-big-image-thumb' => '<small>このプレビューのサイズ: $1 × $2 pixels</small>',
 
 # Special:Newimages
-'newimages'    => '新規画像展示室',
-'showhidebots' => '（ボットを$1）',
-'noimages'     => '画像がありません。',
+'newimages'             => '新規画像展示室',
+'imagelisttext'         => "'''$1''' {{PLURAL:$1|個|個}}のファイルを $2 に表示しています",
+'showhidebots'          => '（ボットを$1）',
+'noimages'              => '画像がありません。',
+'ilsubmit'              => '検索',
+'bydate'                => '日付順',
+'sp-newimages-showfrom' => '$1 以後現在までの新着ファイルを表示',
 
 # Bad image list
 'bad_image_list' => '書式は以下の通りです：

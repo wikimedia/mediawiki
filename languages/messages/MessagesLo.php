@@ -413,12 +413,10 @@ $messages = array(
 'savefile'          => 'ບັນທຶກໄຟລ໌',
 'watchthisupload'   => 'ຕິດຕາມໜ້ານີ້',
 
-# Image list
-'imagelist'        => 'ລາຍຊື່ໄຟລ໌',
-'ilsubmit'         => 'ຄົ້ນຫາ',
-'byname'           => 'ຕາມຊື່',
-'bydate'           => 'ຕາມວັນເວລາ',
-'bysize'           => 'ຕາມ ຂະໜາດ',
+# Special:Imagelist
+'imagelist' => 'ລາຍຊື່ໄຟລ໌',
+
+# Image description page
 'nolinkstoimage'   => 'ບໍ່ມີໜ້າໃດ ລິ້ງຄ໌ ຫາ ໄຟລ໌ນີ້.',
 'noimage'          => 'ຍັງບໍ່ມີ ໄຟລ໌ຊື່ນີ້ ເທື່ອ, ທ່ານ ສາມາດ  $1.',
 'noimage-linktext' => 'ອັບໂຫຼດມັນ',
@@ -669,6 +667,8 @@ $messages = array(
 # Special:Newimages
 'newimages' => 'ໄຟລ໌ຮູບໃໝ່',
 'noimages'  => 'ບໍ່ມີຫຍັງເບິ່ງ.',
+'ilsubmit'  => 'ຄົ້ນຫາ',
+'bydate'    => 'ຕາມວັນເວລາ',
 
 # EXIF tags
 'exif-imagewidth'       => 'ຄວາມກ້ວາງ',

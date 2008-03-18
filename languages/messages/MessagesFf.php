@@ -44,9 +44,6 @@ $messages = array(
 # Upload
 'uploaderror' => 'Faljere',
 
-# Image list
-'ilsubmit' => 'Yiilaade',
-
 # Random page
 'randompage' => 'Ɗerewol kawral',
 
@@ -55,5 +52,8 @@ $messages = array(
 
 # Watchlist
 'watch' => 'Rewindaande',
+
+# Special:Newimages
+'ilsubmit' => 'Yiilaade',
 
 );

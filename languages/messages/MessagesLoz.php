@@ -103,13 +103,15 @@ $messages = array(
 'nov'           => 'Nji',
 'dec'           => 'Ngu',
 
-# Bits of text used by many pages
-'categories'            => 'Kattegori',
-'pagecategories'        => '{{PLURAL:$1|Kattegori|Kattegorina}}',
-'category_header'       => 'Kattegori petulo di "$1"',
-'subcategories'         => 'Subkattegori',
-'category-media-header' => 'Kattegori media di "$1"',
-'category-empty'        => "''Wo kattegori cwale fumile ishi petulo nji media.''",
+# Categories related messages
+'categories'             => 'Kattegori',
+'pagecategories'         => '{{PLURAL:$1|Kattegori|Kattegorina}}',
+'category_header'        => 'Kattegori petulo di "$1"',
+'subcategories'          => 'Subkattegori',
+'category-media-header'  => 'Kattegori media di "$1"',
+'category-empty'         => "''Wo kattegori cwale fumile ishi petulo nji media.''",
+'subcategorycount'       => 'Bye kattegori sa pozefisize {{PLURAL:$1|1 subkattegori|$1 subkattegori}}.',
+'listingcontinuesabbrev' => 'kepoli',
 
 'about'          => "Ngesi ye ng'i atulile",
 'article'        => 'Petulo',
@@ -583,11 +585,12 @@ di uplodezi media.',
 
 'license-nopreview' => '(PendiBe di nupdeti)',
 
-# Image list
-'imagelist'                 => 'Mukoloko di imegina',
-'ilsubmit'                  => 'Fatukile',
-'imgdelete'                 => 'afi',
-'imgfile'                   => 'imegi',
+# Special:Imagelist
+'imgfile'        => 'imegi',
+'imagelist'      => 'Mukoloko di imegina',
+'imagelist_user' => 'Sebelu',
+
+# Image description page
 'filehist'                  => 'Imegi bundau',
 'filehist-help'             => 'Tampa datum/taimi di kamukile imegi a sa kwa bye datum.',
 'filehist-current'          => 'bye',
@@ -603,7 +606,6 @@ di uplodezi media.',
 'noimage'                   => 'Ni media bye sebu sa, a sa $1.',
 'noimage-linktext'          => 'a uplodezi',
 'uploadnewversion-linktext' => 'Uplodezi nca selt di bye media',
-'imagelist_user'            => 'Sebelu',
 
 # File reversion
 'filerevert-comment' => 'Lyangutukezi:',
@@ -852,8 +854,6 @@ Petohoni di petulo <strong>$1</strong> sa:',
 'sp-contributions-username'    => 'IP/sebelu:',
 'sp-contributions-submit'      => 'Fatukile',
 
-'sp-newimages-showfrom' => 'Kamukile nca imegi di $1',
-
 # What links here
 'whatlinkshere'       => "Ling'ki di bye petulo",
 'whatlinkshere-title' => "Petulo bye ling'ki di $1",
@@ -1006,12 +1006,6 @@ Teri yaki, a nyanganyisize.",
 'siteuser'  => '{{SITENAME}} sebelu $1',
 'siteusers' => '{{SITENAME}} sebelu $1',
 
-# Spam protection
-'subcategorycount'       => 'Bye kattegori sa pozefisize {{PLURAL:$1|1 subkattegori|$1 subkattegori}}.',
-'categoryarticlecount'   => 'Bye kattegori sa pozefisize {{PLURAL:$1|1 petulo|$1 petulo}}.',
-'category-media-count'   => 'Bye kattegori pozefisize {{PLURAL:$1|1 media/imegi|$1 media/imegina}}.',
-'listingcontinuesabbrev' => 'kepoli',
-
 # Patrol log
 'patrol-log-auto' => '(auto)',
 
@@ -1034,7 +1028,9 @@ $1',
 'show-big-image-thumb' => '<small>PendiBe: $1 × $2 pixel</small>',
 
 # Special:Newimages
-'newimages' => 'Imegina nca',
+'newimages'             => 'Imegina nca',
+'ilsubmit'              => 'Fatukile',
+'sp-newimages-showfrom' => 'Kamukile nca imegi di $1',
 
 # Bad image list
 'bad_image_list' => "A fumato sa:

@@ -641,15 +641,17 @@ $messages = array(
 'nolicense'          => 'هېڅ نه دي ټاکل شوي',
 'upload_source_file' => '(ستاسو په کمپيوټر کې يوه دوتنه)',
 
-# Image list
-'imagelist'                 => 'د دوتنو لړليک',
-'ilsubmit'                  => 'لټون',
-'showlast'                  => 'وروستي $1 دوتنې چې د $2 له مخې اوډل شوي راښکاره کول.',
-'byname'                    => 'د نوم له مخې',
-'bydate'                    => 'د نېټې له مخې',
-'bysize'                    => 'د مېچ له مخې',
-'imgdelete'                 => 'ړنګول',
-'imgfile'                   => 'دوتنه',
+# Special:Imagelist
+'imagelist_search_for'  => 'د انځور د نوم لټون:',
+'imgfile'               => 'دوتنه',
+'imagelist'             => 'د دوتنو لړليک',
+'imagelist_date'        => 'نېټه',
+'imagelist_name'        => 'نوم',
+'imagelist_user'        => 'کارونکی',
+'imagelist_size'        => 'کچه (bytes)',
+'imagelist_description' => 'څرګندونه',
+
+# Image description page
 'filehist'                  => 'د دوتنې پېښليک',
 'filehist-deleteall'        => 'ټول ړنګول',
 'filehist-deleteone'        => 'همدا ړنګول',
@@ -666,12 +668,6 @@ $messages = array(
 'noimage'                   => 'په دې نوم هېڅ کومه دوتنه نه شته، تاسو کولای شی چې $1.',
 'noimage-linktext'          => 'همدا غونډال ته پورته کول',
 'uploadnewversion-linktext' => 'د همدغې دوتنې نوې بڼه پورته کول',
-'imagelist_date'            => 'نېټه',
-'imagelist_name'            => 'نوم',
-'imagelist_user'            => 'کارونکی',
-'imagelist_size'            => 'کچه (bytes)',
-'imagelist_description'     => 'څرګندونه',
-'imagelist_search_for'      => 'د انځور د نوم لټون:',
 
 # File reversion
 'filerevert-comment' => 'تبصره:',
@@ -906,8 +902,6 @@ $messages = array(
 'sp-contributions-username'    => 'IP پته يا کارن-نوم:',
 'sp-contributions-submit'      => 'لټون',
 
-'sp-newimages-showfrom' => 'هغه نوي انځورونه چې په $1 پيلېږي ښکاره کول',
-
 # What links here
 'whatlinkshere'       => 'د همدې پاڼې تړنونه',
 'whatlinkshere-title' => 'هغه سره تړنې لري مخونه چې $1',
@@ -1056,8 +1050,11 @@ $messages = array(
 'show-big-image-thumb' => '<small>د همدې مخکتنې کچه: $1 × $2 pixels</small>',
 
 # Special:Newimages
-'newimages' => 'د نوو دوتنو نندارتون',
-'noimages'  => 'د کتلو لپاره څه نشته.',
+'newimages'             => 'د نوو دوتنو نندارتون',
+'noimages'              => 'د کتلو لپاره څه نشته.',
+'ilsubmit'              => 'لټون',
+'bydate'                => 'د نېټې له مخې',
+'sp-newimages-showfrom' => 'هغه نوي انځورونه چې په $1 پيلېږي ښکاره کول',
 
 # Video information, used by Language::formatTimePeriod() to format lengths in the above messages
 'hours-abbrev' => 'ساعتونه',

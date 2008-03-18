@@ -131,7 +131,7 @@ $messages = array(
 'nov'           => 'lës',
 'dec'           => 'gòd',
 
-# Bits of text used by many pages
+# Categories related messages
 'categories'            => 'Kategòrëje',
 'pagecategories'        => '{{PLURAL:$1|Kategòrëjô|Kategòrëje}}',
 'category_header'       => 'Artikle w kategòrëji "$1"',
@@ -459,21 +459,16 @@ Jeżlë jes të tuwò bez zmiłkã, le klëkni w swòjim przezérnikù knąpã '
 'uploadedimage'     => 'wladënk: "$1"',
 'uploaddisabled'    => 'Przeprôszómë! Mòżlëwòta wladënkù lopków na nen serwer òsta wëłączonô.',
 
-# Image list
-'imagelist'      => 'Lësta òbrôzków',
-'getimagelist'   => 'zladënk lëstë lopków',
-'ilsubmit'       => 'Szëkôj',
-'showlast'       => 'Pòkôżë slédnë $1 lopczi (lopków) zortowóné $2.',
-'byname'         => 'wedle miona',
-'bydate'         => 'wedle datumù',
-'bysize'         => 'wedle wiôlgòscë',
-'imgdelete'      => 'rëmôj',
+# Special:Imagelist
 'imgdesc'        => 'òpisënk',
+'imagelist'      => 'Lësta òbrôzków',
+'imagelist_user' => 'Brëkòwnik',
+
+# Image description page
 'filehist-user'  => 'Brëkòwnik',
 'imagelinks'     => 'Lënczi do lopka',
 'linkstoimage'   => 'Hewò są starnë, jaczé òdwòłëją sã do negò lopka:',
 'nolinkstoimage' => 'Niżódnô starna nie òdwòłëje sã do negò lopka.',
-'imagelist_user' => 'Brëkòwnik',
 
 # Random page
 'randompage' => 'Kawlowô starna',
@@ -691,8 +686,7 @@ Czej chcesz remôc starnã z lëste ùzéronëch artiklów, klikni ''Òprzestôj
 'others'           => 'jiné',
 
 # Spam protection
-'spamprotectiontitle'  => 'Anti-spamòwi filter',
-'categoryarticlecount' => 'W ny kategòrëje je $1 artiklów.',
+'spamprotectiontitle' => 'Anti-spamòwi filter',
 
 # Math options
 'mw_math_png'    => 'Wiedno wëskrzëniwôj jakno PNG',
@@ -709,6 +703,10 @@ Czej chcesz remôc starnã z lëste ùzéronëch artiklów, klikni ''Òprzestôj
 # Media information
 'imagemaxsize' => 'Limitëjë òbrôzczi na starnie òpisënkù òbrôzków do:',
 'thumbsize'    => 'Miara miniaturków:',
+
+# Special:Newimages
+'ilsubmit' => 'Szëkôj',
+'bydate'   => 'wedle datumù',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'wszëtczé',

@@ -810,13 +810,6 @@ Legend: (cur) = difference with current version,
 'uploadedimage' => 'אַרױפֿלאָדירט "[[$1]]"',
 'destfilename'  => 'דעסטינאציע פייל נאמען',
 
-# Image list
-'imagelisttext' => 'Below is a list of $1 files sorted $2.',
-'ilsubmit'      => 'זוכן',
-'byname'        => 'לויטן נאמען',
-'bydate'        => 'לויטן דאטום',
-'bysize'        => 'לויטן סייז',
-
 # MIME search
 'download' => 'אראפלאדירן',
 
@@ -1190,8 +1183,11 @@ $NEWPAGE
 'nextdiff'     => 'קומענדיקע אונטערשייד ←',
 
 # Special:Newimages
-'newimages'    => 'גאַלעריע אויף נײַע בילדער',
-'showhidebots' => '($1 ראָבאָמן)',
+'newimages'     => 'גאַלעריע אויף נײַע בילדער',
+'imagelisttext' => 'Below is a list of $1 files sorted $2.',
+'showhidebots'  => '($1 ראָבאָמן)',
+'ilsubmit'      => 'זוכן',
+'bydate'        => 'לויטן דאטום',
 
 # EXIF tags
 'exif-bitspersample'            => 'ביטס פער באשטאנדטייל',

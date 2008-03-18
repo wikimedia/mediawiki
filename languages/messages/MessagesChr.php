@@ -51,9 +51,6 @@ $messages = array(
 # Upload
 'upload' => 'ᎦᎸᎳᏗᏢ ᎠᎧᎵᎢ ᎠᏝᎥᎢ',
 
-# Image list
-'ilsubmit' => 'ᎠᏯᏍᏗ',
-
 # Random page
 'randompage' => 'ᎤᏍᏆᏂᎪᏗ ᎤᏆᏓᏛ',
 
@@ -68,5 +65,8 @@ $messages = array(
 
 # Block/unblock
 'proxyblocksuccess' => 'ᎠᏍᏆᏛᎯ.',
+
+# Special:Newimages
+'ilsubmit' => 'ᎠᏯᏍᏗ',
 
 );

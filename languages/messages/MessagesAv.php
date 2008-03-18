@@ -106,8 +106,8 @@ $messages = array(
 'mycontris'     => 'Дур гlахьаллъи',
 
 # Move page
-'move-page-legend'    => 'Гьумералъул цlар хисизе',
-'movearticle' => 'Гьумералъул цIар хисизе',
-'movepagebtn' => 'Гьумералъул цlар хисизе',
+'move-page-legend' => 'Гьумералъул цlар хисизе',
+'movearticle'      => 'Гьумералъул цIар хисизе',
+'movepagebtn'      => 'Гьумералъул цlар хисизе',
 
 );

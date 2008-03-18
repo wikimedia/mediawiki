@@ -1045,18 +1045,18 @@ Amuésase equí'l rexistru de borraos pa esti archivu a los efeutos oportunos:",
 'upload_source_url'  => ' (una URL válida y accesible públicamente)',
 'upload_source_file' => ' (un archivu del to ordenador)',
 
-# Image list
-'imagelist'                 => "Llista d'imáxenes",
-'imagelisttext'             => "Embaxo ta la llista {{PLURAL:$1|d'un archivu ordenáu|de '''$1''' archivos ordenaos}} $2.",
-'getimagelist'              => "obteniendo la llista d'archivos",
-'ilsubmit'                  => 'Buscar',
-'showlast'                  => 'Amosar los últimos $1 archivos ordenaos $2.',
-'byname'                    => 'por nome',
-'bydate'                    => 'por fecha',
-'bysize'                    => 'por tamañu',
-'imgdelete'                 => 'borr',
-'imgdesc'                   => 'desc',
-'imgfile'                   => 'archivu',
+# Special:Imagelist
+'imagelist_search_for'  => "Buscar por nome d'archivu multimedia:",
+'imgdesc'               => 'desc',
+'imgfile'               => 'archivu',
+'imagelist'             => "Llista d'imáxenes",
+'imagelist_date'        => 'Fecha',
+'imagelist_name'        => 'Nome',
+'imagelist_user'        => 'Usuariu',
+'imagelist_size'        => 'Tamañu',
+'imagelist_description' => 'Descripción',
+
+# Image description page
 'filehist'                  => 'Historial del archivu',
 'filehist-help'             => "Calca nuna fecha/hora pa ver l'archivu como taba daquélla.",
 'filehist-deleteall'        => 'borrar too',
@@ -1078,12 +1078,6 @@ Amuésase equí'l rexistru de borraos pa esti archivu a los efeutos oportunos:",
 'noimage'                   => 'Nun esiste archivu dalu con esi nome, pues $1.',
 'noimage-linktext'          => 'xubilu',
 'uploadnewversion-linktext' => "Xubir una nueva versión d'esta imaxe",
-'imagelist_date'            => 'Fecha',
-'imagelist_name'            => 'Nome',
-'imagelist_user'            => 'Usuariu',
-'imagelist_size'            => 'Tamañu',
-'imagelist_description'     => 'Descripción',
-'imagelist_search_for'      => "Buscar por nome d'archivu multimedia:",
 
 # File reversion
 'filerevert'                => 'Revertir $1',
@@ -1533,8 +1527,6 @@ $1",
 'sp-contributions-username'    => "Direición IP o nome d'usuariu:",
 'sp-contributions-submit'      => 'Buscar',
 
-'sp-newimages-showfrom' => 'Amosar los archivos nuevos emprimando dende $1',
-
 # What links here
 'whatlinkshere'       => "Lo qu'enllaza equí",
 'whatlinkshere-title' => "Páxines qu'enllacien a $1",
@@ -1935,9 +1927,13 @@ $1",
 'show-big-image-thumb' => "<small>Tamañu d'esta previsualización: $1 × $2 píxeles</small>",
 
 # Special:Newimages
-'newimages'    => "Galería d'imáxenes nueves",
-'showhidebots' => '($1 bots)',
-'noimages'     => 'Nun hai nada que ver.',
+'newimages'             => "Galería d'imáxenes nueves",
+'imagelisttext'         => "Embaxo ta la llista {{PLURAL:$1|d'un archivu ordenáu|de '''$1''' archivos ordenaos}} $2.",
+'showhidebots'          => '($1 bots)',
+'noimages'              => 'Nun hai nada que ver.',
+'ilsubmit'              => 'Buscar',
+'bydate'                => 'por fecha',
+'sp-newimages-showfrom' => 'Amosar los archivos nuevos emprimando dende $1',
 
 # Bad image list
 'bad_image_list' => "El formatu ye'l que sigue:

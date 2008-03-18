@@ -138,13 +138,15 @@ $messages = array(
 'nov'           => 'নভেম্বর',
 'dec'           => 'ডিসেম্বর',
 
-# Bits of text used by many pages
-'categories'            => 'বিষয়শ্রেণীসমূহ',
-'pagecategories'        => '{{PLURAL:$1|বিষয়শ্রেণী|বিষয়শ্রেণীসমূহ}}',
-'category_header'       => '"$1" বিষয়শ্রেণীতে অন্তর্ভুক্ত পাতাগুলি',
-'subcategories'         => 'উপবিষয়শ্রেণীসমূহ',
-'category-media-header' => '"$1" বিষয়শ্রেণীতে অন্তর্ভুক্ত মিডিয়া ফাইলগুলি',
-'category-empty'        => "''এই বিষয়শ্রণীতে বর্তমানে কোন পাতা বা মিডিয়া ফাইল নেই।''",
+# Categories related messages
+'categories'             => 'বিষয়শ্রেণীসমূহ',
+'pagecategories'         => '{{PLURAL:$1|বিষয়শ্রেণী|বিষয়শ্রেণীসমূহ}}',
+'category_header'        => '"$1" বিষয়শ্রেণীতে অন্তর্ভুক্ত পাতাগুলি',
+'subcategories'          => 'উপবিষয়শ্রেণীসমূহ',
+'category-media-header'  => '"$1" বিষয়শ্রেণীতে অন্তর্ভুক্ত মিডিয়া ফাইলগুলি',
+'category-empty'         => "''এই বিষয়শ্রণীতে বর্তমানে কোন পাতা বা মিডিয়া ফাইল নেই।''",
+'subcategorycount'       => 'এই বিষয়শ্রেণীতে $1 টি উপবিষয়শ্রেণী রয়েছে।',
+'listingcontinuesabbrev' => 'আরও আছে',
 
 'mainpagetext'      => "<big>'''মিডিয়াউইকি সফলভাবে ইন্সটল করা হয়েছে।'''</big>",
 'mainpagedocfooter' => 'কী ভাবে উইকি সফটওয়্যারটি ব্যবহারকার করবেন, তা জানতে [http://meta.wikimedia.org/wiki/Help:Contents ব্যবহারকারী সহায়িকা] দেখুন।
@@ -984,18 +986,18 @@ $3-এর দেয়া কারণ হল ''$2''",
 'upload_source_url'  => ' (একটি বৈধ, উন্মুক্ত URL)',
 'upload_source_file' => ' (আপনার কম্পিউটারের একটি ফাইল)',
 
-# Image list
-'imagelist'                 => 'ছবির তালিকা',
-'imagelisttext'             => 'নিচে $1টি ফাইলের একটি তালিকা $2 সাজিয়ে দেখানো হল।',
-'getimagelist'              => 'ফাইল তালিকা নিয়ে আসা হচ্ছে',
-'ilsubmit'                  => 'অনুসন্ধান করো',
-'showlast'                  => 'শেষ $1টি ফাইল $2 সাজিয়ে দেখানো হোক।',
-'byname'                    => 'নাম অনুযায়ী',
-'bydate'                    => 'তারিখ অনুযায়ী',
-'bysize'                    => 'আকার অনুযায়ী',
-'imgdelete'                 => 'মুছে ফেলুন',
-'imgdesc'                   => 'বিবরণ',
-'imgfile'                   => 'ফাইল',
+# Special:Imagelist
+'imagelist_search_for'  => 'ছবির নাম অনুসন্ধান:',
+'imgdesc'               => 'বিবরণ',
+'imgfile'               => 'ফাইল',
+'imagelist'             => 'ছবির তালিকা',
+'imagelist_date'        => 'তারিখ',
+'imagelist_name'        => 'নাম',
+'imagelist_user'        => 'ব্যবহারকারী',
+'imagelist_size'        => 'আকার',
+'imagelist_description' => 'বিবরণ',
+
+# Image description page
 'filehist'                  => 'ফাইলের ইতিহাস',
 'filehist-help'             => 'তারিখ/সময়ে ক্লিক করে দেখুন ফাইলটি তখন কী অবস্থায় ছিল।',
 'filehist-deleteall'        => 'সব মুছে ফেলুন',
@@ -1016,12 +1018,6 @@ $3-এর দেয়া কারণ হল ''$2''",
 'noimage'                   => 'এই নামে কোনো ফাইল নেই, আপনি যা করতে পারেন, তা হলো $1।',
 'noimage-linktext'          => 'এই ফাইলটিকে আপলোড করুন।',
 'uploadnewversion-linktext' => 'এই ফাইলটির একটি নতুন সংস্করণ আপলোড করুন',
-'imagelist_date'            => 'তারিখ',
-'imagelist_name'            => 'নাম',
-'imagelist_user'            => 'ব্যবহারকারী',
-'imagelist_size'            => 'আকার',
-'imagelist_description'     => 'বিবরণ',
-'imagelist_search_for'      => 'ছবির নাম অনুসন্ধান:',
 
 # File reversion
 'filerevert'                => '$1 পূর্বাবস্থায় ফেরত নিন',
@@ -1437,8 +1433,6 @@ $1',
 'sp-contributions-username'    => 'আইপি (IP) ঠিকানা অথবা ব্যবহারকারীর নাম:',
 'sp-contributions-submit'      => 'অনুসন্ধান',
 
-'sp-newimages-showfrom' => '$1 হতে শুরু করে নতুন ছবিগুলো দেখাও',
-
 # What links here
 'whatlinkshere'       => 'সংযোগকারী পাতাসমূহ',
 'whatlinkshere-title' => 'যে পাতাগুলি থেকে $1-এ সংযোগ আছে',
@@ -1747,16 +1741,12 @@ $1',
 'nocredits'        => 'এই পাতাটির জন্য কোন কৃতিত্ব-সম্পর্কিত তথ্য নেই।',
 
 # Spam protection
-'spamprotectiontitle'    => 'স্প্যাম প্রতিরক্ষা ফিল্টার',
-'spamprotectiontext'     => 'আপনি যে পাতাটি সংরক্ষণ করতে চেয়েছিলেন, তাতে স্প্যাম ফিল্টার বাধা দিয়েছে। সম্ভবত বহিঃস্থ কোন সাইটের প্রতি কোন সংযোগের কারণে এমন ঘটেছে।',
-'spamprotectionmatch'    => 'নিচের টেক্সটটি আমাদের স্প্যাম ফিল্টারকে সক্রিয় করেছে: $1',
-'subcategorycount'       => 'এই বিষয়শ্রেণীতে $1 টি উপবিষয়শ্রেণী রয়েছে।',
-'categoryarticlecount'   => 'এই বিষয়শ্রেণীতে $1টি নিবন্ধ রয়েছে।',
-'category-media-count'   => 'এই বিষয়শ্রেণীতে {{PLURAL:$1|একটি ফাইল|$1টি ফাইল}} আছে।',
-'listingcontinuesabbrev' => 'আরও আছে',
-'spambot_username'       => 'মিডিয়াউইকি স্প্যাম পরিস্কার',
-'spam_reverting'         => '$1-এর প্রতি কোন সংযোগ নেই, এমন সর্বশেষ সংস্করণে ফেরত নেওয়া হচ্ছে।',
-'spam_blanking'          => '$1-এর প্রতি সংযোগ অন্তর্ভুক্ত আছে এমন সমস্ত সংশোধন খালি করা হচ্ছে',
+'spamprotectiontitle' => 'স্প্যাম প্রতিরক্ষা ফিল্টার',
+'spamprotectiontext'  => 'আপনি যে পাতাটি সংরক্ষণ করতে চেয়েছিলেন, তাতে স্প্যাম ফিল্টার বাধা দিয়েছে। সম্ভবত বহিঃস্থ কোন সাইটের প্রতি কোন সংযোগের কারণে এমন ঘটেছে।',
+'spamprotectionmatch' => 'নিচের টেক্সটটি আমাদের স্প্যাম ফিল্টারকে সক্রিয় করেছে: $1',
+'spambot_username'    => 'মিডিয়াউইকি স্প্যাম পরিস্কার',
+'spam_reverting'      => '$1-এর প্রতি কোন সংযোগ নেই, এমন সর্বশেষ সংস্করণে ফেরত নেওয়া হচ্ছে।',
+'spam_blanking'       => '$1-এর প্রতি সংযোগ অন্তর্ভুক্ত আছে এমন সমস্ত সংশোধন খালি করা হচ্ছে',
 
 # Info page
 'infosubtitle'   => 'পাতার তথ্য',
@@ -1818,9 +1808,13 @@ $1',
 'show-big-image-thumb' => '<small>আকারের প্রাকদর্শন: $1 × $2 pixels</small>',
 
 # Special:Newimages
-'newimages'    => 'নতুন ফাইলের গ্যালারি',
-'showhidebots' => '($1 বট)',
-'noimages'     => 'দেখার মত কিছই নাই।',
+'newimages'             => 'নতুন ফাইলের গ্যালারি',
+'imagelisttext'         => 'নিচে $1টি ফাইলের একটি তালিকা $2 সাজিয়ে দেখানো হল।',
+'showhidebots'          => '($1 বট)',
+'noimages'              => 'দেখার মত কিছই নাই।',
+'ilsubmit'              => 'অনুসন্ধান করো',
+'bydate'                => 'তারিখ অনুযায়ী',
+'sp-newimages-showfrom' => '$1 হতে শুরু করে নতুন ছবিগুলো দেখাও',
 
 # Bad image list
 'bad_image_list' => 'ফরম্যাটটি এরকম:

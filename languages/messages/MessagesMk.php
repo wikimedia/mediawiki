@@ -177,13 +177,15 @@ $messages = array(
 'nov'           => 'ное',
 'dec'           => 'дек',
 
-# Bits of text used by many pages
-'categories'            => 'Категории',
-'pagecategories'        => '{{PLURAL:$1|Категорија|Категории}}',
-'category_header'       => 'Статии во категоријата "$1"',
-'subcategories'         => 'Подкатегории',
-'category-media-header' => 'Медии во категорија „$1“',
-'category-empty'        => "''Оваа категорија моментално не содржи страници или медија.''",
+# Categories related messages
+'categories'             => 'Категории',
+'pagecategories'         => '{{PLURAL:$1|Категорија|Категории}}',
+'category_header'        => 'Статии во категоријата "$1"',
+'subcategories'          => 'Подкатегории',
+'category-media-header'  => 'Медии во категорија „$1“',
+'category-empty'         => "''Оваа категорија моментално не содржи страници или медија.''",
+'subcategorycount'       => '{{PLURAL:$1|Постои една подкатегорија|Постојат $1 подкатегории}} во оваа категорија.',
+'listingcontinuesabbrev' => 'продолжува',
 
 'mainpagetext'      => 'Вики софтверот е успешно инсталиран.',
 'mainpagedocfooter' => 'Ве молиме, видете ја [http://meta.wikimedia.org/wiki/MediaWiki_localisation документацијата] и [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide водичот] за подетална информација односно МедијаВики. Актуелната верзија на македонската јазична датотека можете да најдете на [http://meta.wikimedia.org/wiki/LanguageMk.php Мета].',
@@ -872,18 +874,18 @@ $1',
 'upload_source_url'  => ' (валидна, јавно достапна адреса (URL))',
 'upload_source_file' => ' (датотека на вашиот компјутер)',
 
-# Image list
-'imagelist'                 => 'Листа на слики',
-'imagelisttext'             => 'Подолу е листа на $1 подредени слики $2.',
-'getimagelist'              => 'вчитување на листата',
-'ilsubmit'                  => 'Барај',
-'showlast'                  => 'Прикажи ги последните $1 подредени слики по $2.',
-'byname'                    => 'по име',
-'bydate'                    => 'по време',
-'bysize'                    => 'по големина',
-'imgdelete'                 => 'избр',
-'imgdesc'                   => 'опис',
-'imgfile'                   => 'датотека',
+# Special:Imagelist
+'imagelist_search_for'  => 'Побарај име на медија:',
+'imgdesc'               => 'опис',
+'imgfile'               => 'датотека',
+'imagelist'             => 'Листа на слики',
+'imagelist_date'        => 'Датум',
+'imagelist_name'        => 'Име',
+'imagelist_user'        => 'Корисник',
+'imagelist_size'        => 'Големина (бајти)',
+'imagelist_description' => 'Опис',
+
+# Image description page
 'filehist'                  => 'Историја на датотеката',
 'filehist-help'             => 'Кликнете на датум/време за да ја видите таа верзија на датотеката.',
 'filehist-current'          => 'моментална',
@@ -901,12 +903,6 @@ $1',
 'noimage'                   => 'Не постои датотека со тоа име, можете $1',
 'noimage-linktext'          => 'да го подигнете',
 'uploadnewversion-linktext' => 'Подигни нова верзија на оваа датотека',
-'imagelist_date'            => 'Датум',
-'imagelist_name'            => 'Име',
-'imagelist_user'            => 'Корисник',
-'imagelist_size'            => 'Големина (бајти)',
-'imagelist_description'     => 'Опис',
-'imagelist_search_for'      => 'Побарај име на медија:',
 
 # File reversion
 'filerevert'                => 'Врати $1',
@@ -1271,8 +1267,6 @@ $NEWPAGE
 'sp-contributions-username'    => 'IP адреса или корисничко име:',
 'sp-contributions-submit'      => 'Пребарај',
 
-'sp-newimages-showfrom' => 'Прикажи ги новите податоци почнувајќи од $1',
-
 # What links here
 'whatlinkshere'       => 'Што е поврзано со ова',
 'whatlinkshere-title' => 'Страници што водат до $1',
@@ -1552,16 +1546,12 @@ $NEWPAGE
 'nocredits'        => 'Не постојат библиографија и извори за оваа страница.',
 
 # Spam protection
-'spamprotectiontitle'    => 'Филтер за заштита од спам',
-'spamprotectiontext'     => 'Страницата која сакавте да ја зачувате беше блокирана од филтерот за спам. Ова најверојатно е предизвикано од врска кон надворешен сајт.',
-'spamprotectionmatch'    => 'Следниот текст е она што го предизвика нашиот филтер за спам: $1',
-'subcategorycount'       => '{{PLURAL:$1|Постои една подкатегорија|Постојат $1 подкатегории}} во оваа категорија.',
-'categoryarticlecount'   => '{{PLURAL:$1|Постои една статија|Постојат $1 статии}} во оваа категорија.',
-'category-media-count'   => 'Има $1 датотеки во оваа категорија.',
-'listingcontinuesabbrev' => 'продолжува',
-'spambot_username'       => 'МедијаВики чистач на спам',
-'spam_reverting'         => 'Враќам на последната верзија што не содржи врска до $1',
-'spam_blanking'          => 'Сите верзии содржеа врски до $1, бришам',
+'spamprotectiontitle' => 'Филтер за заштита од спам',
+'spamprotectiontext'  => 'Страницата која сакавте да ја зачувате беше блокирана од филтерот за спам. Ова најверојатно е предизвикано од врска кон надворешен сајт.',
+'spamprotectionmatch' => 'Следниот текст е она што го предизвика нашиот филтер за спам: $1',
+'spambot_username'    => 'МедијаВики чистач на спам',
+'spam_reverting'      => 'Враќам на последната верзија што не содржи врска до $1',
+'spam_blanking'       => 'Сите верзии содржеа врски до $1, бришам',
 
 # Info page
 'infosubtitle'   => 'Информација за страницата',
@@ -1611,9 +1601,13 @@ $NEWPAGE
 'show-big-image-thumb' => '<small>Големина на овој приказ: $1 × $2 пиксели</small>',
 
 # Special:Newimages
-'newimages'    => 'Галерија на нови слики',
-'showhidebots' => '($1 ботови)',
-'noimages'     => 'Нема ништо.',
+'newimages'             => 'Галерија на нови слики',
+'imagelisttext'         => 'Подолу е листа на $1 подредени слики $2.',
+'showhidebots'          => '($1 ботови)',
+'noimages'              => 'Нема ништо.',
+'ilsubmit'              => 'Барај',
+'bydate'                => 'по време',
+'sp-newimages-showfrom' => 'Прикажи ги новите податоци почнувајќи од $1',
 
 # Metadata
 'metadata'          => 'Метаподатоци',

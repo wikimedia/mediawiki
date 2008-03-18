@@ -200,16 +200,17 @@ $messages = array(
 'upload'    => 'Pagkarga hin file',
 'uploadbtn' => 'Igkarga an file',
 
-# Image list
-'ilsubmit'          => 'Bilnga',
+# Special:Imagelist
+'imagelist_date' => 'Pitsa',
+'imagelist_name' => 'Ngaran',
+
+# Image description page
 'filehist-datetime' => 'Pitsa/Oras',
 'imagelinks'        => 'Mga sumpay',
 'linkstoimage'      => 'Nasumpay hini nga fayl an mga nasunod nga mga pakli:',
 'nolinkstoimage'    => 'Waray mga pakli nga nasumpay hini nga fayl.',
 'sharedupload'      => 'Ini nga fayl ginsaro nga pagkarga ngan puyde gamiton hin iba nga mga proyekto.',
 'shareduploadwiki'  => 'Alayon pagkita han $1 para hin dugang nga impormasyon.',
-'imagelist_date'    => 'Pitsa',
-'imagelist_name'    => 'Ngaran',
 
 # Unused templates
 'unusedtemplateswlh' => 'iba nga mga sumpay',
@@ -257,6 +258,9 @@ Kitaa an $2 para hin talaan han mga gibag-ohi nga mga ginpamara.',
 
 # Block/unblock
 'ipblocklist-submit' => 'Bilnga',
+
+# Special:Newimages
+'ilsubmit' => 'Bilnga',
 
 # Multipage image navigation
 'imgmultipageprev' => '← naha-una nga pakli',

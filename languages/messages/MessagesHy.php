@@ -374,13 +374,15 @@ $messages = array(
 'nov'           => 'նոյ',
 'dec'           => 'դեկ',
 
-# Bits of text used by many pages
-'categories'            => 'Կատեգորիաներ',
-'pagecategories'        => '{{PLURAL:$1|Կատեգորիա|Կատեգորիաներ}}',
-'category_header'       => '«$1» կատեգորիայի հոդվածները',
-'subcategories'         => 'Ենթակատեգորիաներ',
-'category-media-header' => '"$1" կատեգորիայի մեդիան։',
-'category-empty'        => "''Այս կատեգորիան ներկայումս դատարկ է։''",
+# Categories related messages
+'categories'             => 'Կատեգորիաներ',
+'pagecategories'         => '{{PLURAL:$1|Կատեգորիա|Կատեգորիաներ}}',
+'category_header'        => '«$1» կատեգորիայի հոդվածները',
+'subcategories'          => 'Ենթակատեգորիաներ',
+'category-media-header'  => '"$1" կատեգորիայի մեդիան։',
+'category-empty'         => "''Այս կատեգորիան ներկայումս դատարկ է։''",
+'subcategorycount'       => 'Այս կատեգորիան ունի $1 ենթակատեգորիա։',
+'listingcontinuesabbrev' => ' շարունակ.',
 
 'mainpagetext'      => "<big>'''«MediaWiki» ծրագիրը հաջողությամբ տեղադրվեց։'''</big>",
 'mainpagedocfooter' => "Այցելեք [http://meta.wikimedia.org/wiki/Help:Contents User's Guide]՝ վիքի ծրագրային ապահովման օգտագործման մասին տեղեկությունների համար։
@@ -1173,18 +1175,18 @@ $3 մասնակիցը տվել է հետևյալ պատճառը. ''$2''",
 'upload_source_url'  => ' (գործուն, հանրամատչելի URL-հասցե)',
 'upload_source_file' => ' (ֆայլ ձեր համակարգչի վրա)',
 
-# Image list
-'imagelist'                 => 'Ֆայլերի ցանկ',
-'imagelisttext'             => "Ստորև բերված է '''$1''' {{PLURAL:$1|ֆայլի|ֆայլերի}} ցանկ՝ դասավորված ըստ $2։",
-'getimagelist'              => 'ֆայլերի ցանկի կանչ',
-'ilsubmit'                  => 'Որոնել',
-'showlast'                  => 'Ցույց տալ վերջին $1 ֆայլը՝ դասավորված $2։',
-'byname'                    => 'ըստ անվանման',
-'bydate'                    => 'ըստ ամսաթվի',
-'bysize'                    => 'ըստ չափի',
-'imgdelete'                 => 'ջնջ.',
-'imgdesc'                   => 'նկարագրություն',
-'imgfile'                   => 'ֆայլ',
+# Special:Imagelist
+'imagelist_search_for'  => 'Որոնել պատկերի անվանմամբ.',
+'imgdesc'               => 'նկարագրություն',
+'imgfile'               => 'ֆայլ',
+'imagelist'             => 'Ֆայլերի ցանկ',
+'imagelist_date'        => 'Օր/Ժամ',
+'imagelist_name'        => 'Անվանում',
+'imagelist_user'        => 'Մասնակից',
+'imagelist_size'        => 'Չափ',
+'imagelist_description' => 'Նկարագրություն',
+
+# Image description page
 'filehist'                  => 'Ֆայլի պատմություն',
 'filehist-help'             => 'Մատնահարեք օրվան/ժամին՝ ֆայլի այդ պահին տեսքը դիտելու համար։',
 'filehist-deleteall'        => 'ջնջել բոլորը',
@@ -1205,12 +1207,6 @@ $3 մասնակիցը տվել է հետևյալ պատճառը. ''$2''",
 'noimage'                   => 'Այսպիսի անվանմամբ ֆայլ գոյություն չունի, դուք կարող եք $1։',
 'noimage-linktext'          => 'բեռնել այն',
 'uploadnewversion-linktext' => 'Բեռնել այս ֆայլի նոր տարբերակ',
-'imagelist_date'            => 'Օր/Ժամ',
-'imagelist_name'            => 'Անվանում',
-'imagelist_user'            => 'Մասնակից',
-'imagelist_size'            => 'Չափ',
-'imagelist_description'     => 'Նկարագրություն',
-'imagelist_search_for'      => 'Որոնել պատկերի անվանմամբ.',
 
 # File reversion
 'filerevert'                => 'Ետ շրջել $1',
@@ -1615,8 +1611,6 @@ $1',
 'sp-contributions-username'    => 'IP-հասե կամ մասնակցի անուն.',
 'sp-contributions-submit'      => 'Որոնել',
 
-'sp-newimages-showfrom' => 'Ցույց տալ նոր պատկերները՝ սկսած $1',
-
 # What links here
 'whatlinkshere'       => 'Այստեղ հղվող էջերը',
 'whatlinkshere-title' => 'Էջեր, որոնք հղում են դեպի $1',
@@ -1925,16 +1919,12 @@ The wiki server can't provide data in a format your client can read.",
 'nocredits'        => 'Այս էջի հեղինակների մասին տեղեկություններ չկան։',
 
 # Spam protection
-'spamprotectiontitle'    => 'Սպամ-պաշտպանման զտիչ',
-'spamprotectiontext'     => 'Էջը, որը դուք փորձում եք հիշել արգելափակվել է սպամի զտիչի կողմից։ Սա հավանաբար արտաքին կայքին հղման պատճառով է։',
-'spamprotectionmatch'    => 'Սպամ զտիչին գործադրած տեքստն է. $1.',
-'subcategorycount'       => 'Այս կատեգորիան ունի $1 ենթակատեգորիա։',
-'categoryarticlecount'   => 'Այս կատեգորիայում կա  $1 հոդված։',
-'category-media-count'   => 'Այս կատեգորիայում {{PLURAL:$1|կա մեկ ֆայլ|կա $1 ֆայլ}}։',
-'listingcontinuesabbrev' => ' շարունակ.',
-'spambot_username'       => 'Սպամի մաքրում',
-'spam_reverting'         => 'Ետ է շրջվում վերջին տարբերակի, որը չի պարունակում հղումներ դեպի $1',
-'spam_blanking'          => 'Բոլոր տարբերակները պարունակում են հղումներ դեպի $1, մաքրում',
+'spamprotectiontitle' => 'Սպամ-պաշտպանման զտիչ',
+'spamprotectiontext'  => 'Էջը, որը դուք փորձում եք հիշել արգելափակվել է սպամի զտիչի կողմից։ Սա հավանաբար արտաքին կայքին հղման պատճառով է։',
+'spamprotectionmatch' => 'Սպամ զտիչին գործադրած տեքստն է. $1.',
+'spambot_username'    => 'Սպամի մաքրում',
+'spam_reverting'      => 'Ետ է շրջվում վերջին տարբերակի, որը չի պարունակում հղումներ դեպի $1',
+'spam_blanking'       => 'Բոլոր տարբերակները պարունակում են հղումներ դեպի $1, մաքրում',
 
 # Info page
 'infosubtitle'   => 'Տեղեկությունների էջի մասին',
@@ -1996,9 +1986,13 @@ $1',
 'show-big-image-thumb' => '<small>Նախադիտման չափ. $1 × $2 փիքսել</small>',
 
 # Special:Newimages
-'newimages'    => 'Նոր ֆայլերի սրահ',
-'showhidebots' => '($1 բոտերին)',
-'noimages'     => 'Տեսնելու բան չկա։',
+'newimages'             => 'Նոր ֆայլերի սրահ',
+'imagelisttext'         => "Ստորև բերված է '''$1''' {{PLURAL:$1|ֆայլի|ֆայլերի}} ցանկ՝ դասավորված ըստ $2։",
+'showhidebots'          => '($1 բոտերին)',
+'noimages'              => 'Տեսնելու բան չկա։',
+'ilsubmit'              => 'Որոնել',
+'bydate'                => 'ըստ ամսաթվի',
+'sp-newimages-showfrom' => 'Ցույց տալ նոր պատկերները՝ սկսած $1',
 
 # Video information, used by Language::formatTimePeriod() to format lengths in the above messages
 'video-dims'     => '$1, $2 × $3',

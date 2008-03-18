@@ -254,7 +254,7 @@ $messages = array(
 'nov'           => 'नोव्हें.',
 'dec'           => 'डिसें.',
 
-# Bits of text used by many pages
+# Categories related messages
 'categories'               => 'वर्ग',
 'pagecategories'           => '{{PLURAL:$1|वर्ग|वर्ग}}',
 'category_header'          => '"$1" वर्गातील लेख',
@@ -263,6 +263,8 @@ $messages = array(
 'category-empty'           => "''या वर्गात अद्याप एकही लेख नाही.''",
 'hidden-categories'        => '{{PLURAL:$1|लपविलेला वर्ग|लपविलेले वर्ग}}',
 'hidden-category-category' => 'लपविलेले वर्ग', # Name of the category where hidden categories will be listed
+'subcategorycount'         => 'या वर्गात {{PLURAL:$1|एक उपवर्ग आहे.|$1 उपवर्ग आहेत.}}',
+'listingcontinuesabbrev'   => 'पुढे.',
 
 'mainpagetext'      => "<big>'''मीडियाविकीचे इन्स्टॉलेशन पूर्ण'''</big>",
 'mainpagedocfooter' => 'विकी सॉफ्टवेअर वापरण्याकरिता [http://meta.wikimedia.org/wiki/Help:Contents यूजर गाईड] पहा.
@@ -1120,18 +1122,18 @@ $3ने ''$2'' कारण दिले आहे.",
 'upload_source_url'  => '(एक सुयोग्य,सार्वजनिकरित्या उपलब्ध URL)',
 'upload_source_file' => '(तुमच्या संगणकावरील एक संचिका)',
 
-# Image list
-'imagelist'                 => 'चित्र यादी',
-'imagelisttext'             => "खाली '''$1''' संचिका {{PLURAL:$1|दिली आहे.|$2 क्रमाने दिल्या आहेत.}}",
-'getimagelist'              => 'चित्र यादी खेचत आहे',
-'ilsubmit'                  => 'शोधा',
-'showlast'                  => '$2 क्रमबद्ध शेवटची $1 चित्रे पहा.',
-'byname'                    => 'नावानुसार',
-'bydate'                    => 'तारखेनुसार',
-'bysize'                    => 'आकारानुसार',
-'imgdelete'                 => 'पुसा',
-'imgdesc'                   => 'वर्णन',
-'imgfile'                   => 'संचिका',
+# Special:Imagelist
+'imagelist_search_for'  => 'चित्र नावाने शोध:',
+'imgdesc'               => 'वर्णन',
+'imgfile'               => 'संचिका',
+'imagelist'             => 'चित्र यादी',
+'imagelist_date'        => 'दिनांक',
+'imagelist_name'        => 'नाव',
+'imagelist_user'        => 'सदस्य',
+'imagelist_size'        => 'आकार (बाईट्स)',
+'imagelist_description' => 'वर्णन',
+
+# Image description page
 'filehist'                  => 'संचिकेचा इतिहास',
 'filehist-help'             => 'संचिकेची पूर्वीची आवृत्ती बघण्यासाठी दिनांक/वेळ वर टिचकी द्या.',
 'filehist-deleteall'        => 'सर्व वगळा',
@@ -1153,12 +1155,6 @@ $3ने ''$2'' कारण दिले आहे.",
 'noimage'                   => 'या नावाचे चित्र अस्तित्त्वात नाही. $1 करून पहा.',
 'noimage-linktext'          => 'चढवा',
 'uploadnewversion-linktext' => 'या संचिकेची नवीन आवृत्ती चढवा.',
-'imagelist_date'            => 'दिनांक',
-'imagelist_name'            => 'नाव',
-'imagelist_user'            => 'सदस्य',
-'imagelist_size'            => 'आकार (बाईट्स)',
-'imagelist_description'     => 'वर्णन',
-'imagelist_search_for'      => 'चित्र नावाने शोध:',
 
 # File reversion
 'filerevert'                => '$1 पूर्वपद',
@@ -1590,8 +1586,6 @@ $1',
 'sp-contributions-username'    => 'आंतरजाल अंकपत्ता किंवा सदस्यनाम:',
 'sp-contributions-submit'      => 'शोध',
 
-'sp-newimages-showfrom' => '$1 पासुनची नवीन चित्रे दाखवा',
-
 # What links here
 'whatlinkshere'       => 'येथे काय जोडले आहे',
 'whatlinkshere-title' => '$1ला जोडलेली पाने',
@@ -1913,16 +1907,12 @@ $1',
 'nocredits'        => 'या पानाकरिता श्रेय नामावलीची माहिती नाही.',
 
 # Spam protection
-'spamprotectiontitle'    => 'केर(स्पॅम) सुरक्षा चाचणी',
-'spamprotectiontext'     => 'तुम्ही जतन करू इच्छित असलेले पान चिखलणी रोधक चाळणीने प्रतिबंधीत केले आहे.असे बाहेरच्या संकेतस्थळाचा दुवा देण्याची शक्यता असल्यामुळे घडू शकते.',
-'spamprotectionmatch'    => 'खालील मजकुरामुळे आमची चिखलणी रोधक चाळणी सुरू झाली: $1',
-'subcategorycount'       => 'या वर्गात {{PLURAL:$1|एक उपवर्ग आहे.|$1 उपवर्ग आहेत.}}',
-'categoryarticlecount'   => 'या वर्गात {{PLURAL:$1|एक लेख आहे.|$1 लेख आहेत.}}',
-'category-media-count'   => 'या वर्गात {{PLURAL:$1|एक संचिका आहे.|$1 संचिका आहेत.}}',
-'listingcontinuesabbrev' => 'पुढे.',
-'spambot_username'       => 'मिडियाविकि स्पॅम स्वछता',
-'spam_reverting'         => '$1शी दुवे नसलेल्या गेल्या आवर्तनाकडे परत उलटवत आहे',
-'spam_blanking'          => '$1शी दुवे असलेली सर्व आवर्तने,रिक्त केली जात आहेत',
+'spamprotectiontitle' => 'केर(स्पॅम) सुरक्षा चाचणी',
+'spamprotectiontext'  => 'तुम्ही जतन करू इच्छित असलेले पान चिखलणी रोधक चाळणीने प्रतिबंधीत केले आहे.असे बाहेरच्या संकेतस्थळाचा दुवा देण्याची शक्यता असल्यामुळे घडू शकते.',
+'spamprotectionmatch' => 'खालील मजकुरामुळे आमची चिखलणी रोधक चाळणी सुरू झाली: $1',
+'spambot_username'    => 'मिडियाविकि स्पॅम स्वछता',
+'spam_reverting'      => '$1शी दुवे नसलेल्या गेल्या आवर्तनाकडे परत उलटवत आहे',
+'spam_blanking'       => '$1शी दुवे असलेली सर्व आवर्तने,रिक्त केली जात आहेत',
 
 # Info page
 'infosubtitle'   => 'पानाची माहिती',
@@ -1984,9 +1974,13 @@ $1',
 'show-big-image-thumb' => '<small>या झलकेचा आकार: $1 × $2 pixels</small>',
 
 # Special:Newimages
-'newimages'    => 'नवीन संचिकांची यादी',
-'showhidebots' => '(सांगकामे $1)',
-'noimages'     => 'बघण्यासारखे येथे काही नाही.',
+'newimages'             => 'नवीन संचिकांची यादी',
+'imagelisttext'         => "खाली '''$1''' संचिका {{PLURAL:$1|दिली आहे.|$2 क्रमाने दिल्या आहेत.}}",
+'showhidebots'          => '(सांगकामे $1)',
+'noimages'              => 'बघण्यासारखे येथे काही नाही.',
+'ilsubmit'              => 'शोधा',
+'bydate'                => 'तारखेनुसार',
+'sp-newimages-showfrom' => '$1 पासुनची नवीन चित्रे दाखवा',
 
 # Bad image list
 'bad_image_list' => 'रूपरेषा खालील प्रमाणे आहे:

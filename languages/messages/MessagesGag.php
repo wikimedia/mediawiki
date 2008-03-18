@@ -108,13 +108,15 @@ $messages = array(
 'nov'           => 'Noy',
 'dec'           => 'Dek',
 
-# Bits of text used by many pages
-'categories'            => '{{PLURAL:$1|Kategoriya|Kategoriyalar}}',
-'pagecategories'        => 'Sayfa {{PLURAL:$1|kategoriyası|kategoriyaları}}',
-'category_header'       => '"$1" kategoriyasındaki sayfalar',
-'subcategories'         => 'Alt kategoriyalar',
-'category-media-header' => '"$1" kategoriyasındaki media',
-'category-empty'        => "''Bu kategoriyada henez bulunmêêr bir yazı yaki media.''",
+# Categories related messages
+'categories'             => '{{PLURAL:$1|Kategoriya|Kategoriyalar}}',
+'pagecategories'         => 'Sayfa {{PLURAL:$1|kategoriyası|kategoriyaları}}',
+'category_header'        => '"$1" kategoriyasındaki sayfalar',
+'subcategories'          => 'Alt kategoriyalar',
+'category-media-header'  => '"$1" kategoriyasındaki media',
+'category-empty'         => "''Bu kategoriyada henez bulunmêêr bir yazı yaki media.''",
+'subcategorycount'       => 'Bu kategoriyada var $1 alt kategoriya.',
+'listingcontinuesabbrev' => '(devam)',
 
 'mainpagetext'      => "<big>'''MediaWiki başarılan kuruldu.'''</big>",
 'mainpagedocfooter' => "Vikilän iş uurunda bilgi almaa için [http://meta.wikimedia.org/wiki/Help:Contents User's Guide] sayfasına bakınız
@@ -552,8 +554,10 @@ Nışannar: (bitki) = şindiki versiyalan aradaki fark,
 'uploadlogpage' => 'Fayl üklemäk jurnalları',
 'uploadedimage' => 'Üklenen: "[[$1]]"',
 
-# Image list
-'imagelist'                 => 'Pätret listası',
+# Special:Imagelist
+'imagelist' => 'Pätret listası',
+
+# Image description page
 'filehist'                  => 'Fayl istoriyası',
 'filehist-help'             => 'Fayl istoriyasın görmää deyni Gün/Zaman bölümündeki dataları tıklayınız.',
 'filehist-current'          => 'Şindiki',
@@ -845,12 +849,6 @@ Yalvarêrêz başka bir ad seçmää.',
 'tooltip-diff'                    => 'Diişmekläri gösterer ani tekstä yaptınız.',
 'tooltip-compareselectedversions' => 'Seçilmiş iki versiya arasındaki farkları göster.',
 'tooltip-watch'                   => 'Sayfayı bakmaa listana ekle',
-
-# Spam protection
-'subcategorycount'       => 'Bu kategoriyada var $1 alt kategoriya.',
-'categoryarticlecount'   => 'Bu kategoriyada $1 yazı var.',
-'category-media-count'   => 'Bu kategoriyada {{PLURAL:$1|bir|$1 fayl}} var.',
-'listingcontinuesabbrev' => '(devam)',
 
 # Browsing diffs
 'previousdiff' => '← İlerki versiyalan aradaki fark',

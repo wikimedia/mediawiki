@@ -1199,18 +1199,18 @@ $2 Εμφάνιση ανακατευθύνσεων &nbsp; Κριτήρια αν�
 'upload_source_url'  => ' (ένα έγκυρο, δημόσια προσβάσιμο URL)',
 'upload_source_file' => ' (ένα αρχείο στον υπολογιστή σας)',
 
-# Image list
-'imagelist'                 => 'Κατάλογος εικόνων',
-'imagelisttext'             => "Ακολουθεί κατάλογος '''$1''' {{PLURAL:$1|αρχείου|αρχείων}} ταξινομημένων κατά σειρά $2.",
-'getimagelist'              => 'Προσκόμιση καταλόγου εικόνων',
-'ilsubmit'                  => 'Αναζήτηση',
-'showlast'                  => 'Εμφάνιση των $1 πιο πρόσφατων εικόνων κατά σειρά $2.',
-'byname'                    => 'ονόματος',
-'bydate'                    => 'ημερομηνίας',
-'bysize'                    => 'μεγέθους',
-'imgdelete'                 => "'διαγραφή'",
-'imgdesc'                   => "'περιγραφή'",
-'imgfile'                   => 'αρχείο',
+# Special:Imagelist
+'imagelist_search_for'  => 'Αναζήτηση για όνομα πολυμέσου:',
+'imgdesc'               => "'περιγραφή'",
+'imgfile'               => 'αρχείο',
+'imagelist'             => 'Κατάλογος εικόνων',
+'imagelist_date'        => 'Ημερομηνία',
+'imagelist_name'        => 'Όνομα',
+'imagelist_user'        => 'Χρήστης',
+'imagelist_size'        => 'Μέγεθος',
+'imagelist_description' => 'Περιγραφή',
+
+# Image description page
 'filehist'                  => 'Ιστορικό αρχείου',
 'filehist-help'             => 'Πατήστε σε μια ημερομηνία/ώρα για να δείτε το αρχείο όπως εμφανιζόταν εκείνη την ώρα.',
 'filehist-deleteall'        => 'διαγραφή όλων',
@@ -1231,12 +1231,6 @@ $2 Εμφάνιση ανακατευθύνσεων &nbsp; Κριτήρια αν�
 'noimage'                   => 'Δεν υπάρχει αρχείο με αυτό το όνομα, μπορείτε να [$1 το φορτώσετε].',
 'noimage-linktext'          => 'επιφορτώστε το',
 'uploadnewversion-linktext' => 'Φορτώστε μια νέα έκδοση αυτού του αρχείου',
-'imagelist_date'            => 'Ημερομηνία',
-'imagelist_name'            => 'Όνομα',
-'imagelist_user'            => 'Χρήστης',
-'imagelist_size'            => 'Μέγεθος',
-'imagelist_description'     => 'Περιγραφή',
-'imagelist_search_for'      => 'Αναζήτηση για όνομα πολυμέσου:',
 
 # File reversion
 'filerevert'                => 'Επαναφορά $1',
@@ -1681,8 +1675,6 @@ $1',
 'sp-contributions-username'    => 'Διεύθυνση IP ή όνομα χρήστη:',
 'sp-contributions-submit'      => 'Αναζήτηση',
 
-'sp-newimages-showfrom' => 'Εμφάνισε νέα αρχεία ξεκινώντας από $1',
-
 # What links here
 'whatlinkshere'       => 'Αναφορές στη σελίδα',
 'whatlinkshere-title' => 'Σελίδες που οδηγούν στο $1',
@@ -2072,9 +2064,13 @@ $1',
 'show-big-image-thumb' => '<small>Μέγεθος αυτής της προεπισκόπησης: $1 × $2 εικονοστοιχεία</small>',
 
 # Special:Newimages
-'newimages'    => 'Πινακοθήκη νέων εικόνων',
-'showhidebots' => '($1 bots)',
-'noimages'     => 'Δεν υπάρχουν εικόνες.',
+'newimages'             => 'Πινακοθήκη νέων εικόνων',
+'imagelisttext'         => "Ακολουθεί κατάλογος '''$1''' {{PLURAL:$1|αρχείου|αρχείων}} ταξινομημένων κατά σειρά $2.",
+'showhidebots'          => '($1 bots)',
+'noimages'              => 'Δεν υπάρχουν εικόνες.',
+'ilsubmit'              => 'Αναζήτηση',
+'bydate'                => 'ημερομηνίας',
+'sp-newimages-showfrom' => 'Εμφάνισε νέα αρχεία ξεκινώντας από $1',
 
 # Bad image list
 'bad_image_list' => 'Η σύνταξη είναι ως εξής:

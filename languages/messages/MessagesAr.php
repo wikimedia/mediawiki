@@ -1355,18 +1355,18 @@ PICT # misc.
 'upload_source_url'  => '(عنوان ويب صحيح، يمكن الوصول إليه)',
 'upload_source_file' => ' (ملف على حاسوبك)',
 
-# Image list
-'imagelist'                 => 'قائمة الملفات',
-'imagelisttext'             => 'فيما يلي قائمة تحوي $1 {{PLURAL:$1|ملف|ملفات}} مرتبة $2.',
-'getimagelist'              => 'جاري إحضار قائمة الملفات',
-'ilsubmit'                  => 'بحث',
-'showlast'                  => 'عرض آخر $1 ملف بترتيب $2.',
-'byname'                    => 'حسب الاسم',
-'bydate'                    => 'حسب التاريخ',
-'bysize'                    => 'حسب الحجم',
-'imgdelete'                 => 'حذف',
-'imgdesc'                   => 'وصف',
-'imgfile'                   => 'ملف',
+# Special:Imagelist
+'imagelist_search_for'  => 'ابحث عن اسم الميديا:',
+'imgdesc'               => 'وصف',
+'imgfile'               => 'ملف',
+'imagelist'             => 'قائمة الملفات',
+'imagelist_date'        => 'تاريخ',
+'imagelist_name'        => 'اسم',
+'imagelist_user'        => 'مستخدم',
+'imagelist_size'        => 'حجم',
+'imagelist_description' => 'وصف',
+
+# Image description page
 'filehist'                  => 'تاريخ الملف',
 'filehist-help'             => 'اضغط على وقت/زمن لرؤية الملف كما بدا في هذا الزمن.',
 'filehist-deleteall'        => 'احذف الكل',
@@ -1388,12 +1388,6 @@ PICT # misc.
 'noimage'                   => 'لا يوجد ملف بهذا الاسم، بإمكانك أن تقوم بـ$1.',
 'noimage-linktext'          => 'رفعه',
 'uploadnewversion-linktext' => 'ارفع نسخة جديدة من هذا الملف',
-'imagelist_date'            => 'تاريخ',
-'imagelist_name'            => 'اسم',
-'imagelist_user'            => 'مستخدم',
-'imagelist_size'            => 'حجم',
-'imagelist_description'     => 'وصف',
-'imagelist_search_for'      => 'ابحث عن اسم الميديا:',
 
 # File reversion
 'filerevert'                => 'استرجع $1',
@@ -1837,8 +1831,6 @@ $1',
 'sp-contributions-username'    => 'عنوان أيبي أو اسم مستخدم:',
 'sp-contributions-submit'      => 'بحث',
 
-'sp-newimages-showfrom' => 'أظهر الملفات الجديدة بدءا من $1',
-
 # What links here
 'whatlinkshere'       => 'ماذا يصل هنا',
 'whatlinkshere-title' => 'الصفحات التي تصل إلى $1',
@@ -2235,9 +2227,13 @@ $1',
 'show-big-image-thumb' => '<small>حجم هذا العرض: $1 × $2 بكسل</small>',
 
 # Special:Newimages
-'newimages'    => 'معرض الصور الجديدة',
-'showhidebots' => '($1 بوتات)',
-'noimages'     => 'لا شيء للعرض.',
+'newimages'             => 'معرض الصور الجديدة',
+'imagelisttext'         => 'فيما يلي قائمة تحوي $1 {{PLURAL:$1|ملف|ملفات}} مرتبة $2.',
+'showhidebots'          => '($1 بوتات)',
+'noimages'              => 'لا شيء للعرض.',
+'ilsubmit'              => 'بحث',
+'bydate'                => 'حسب التاريخ',
+'sp-newimages-showfrom' => 'أظهر الملفات الجديدة بدءا من $1',
 
 # Video information, used by Language::formatTimePeriod() to format lengths in the above messages
 'video-dims'     => '$1، $2×$3',

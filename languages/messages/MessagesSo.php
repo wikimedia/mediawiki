@@ -9,8 +9,6 @@
  * @author Yariiska
  */
 
-
-
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Hoos ka calaamaday linkyada:',
@@ -101,7 +99,7 @@ $messages = array(
 'nov'           => 'Nof',
 'dec'           => 'Dis',
 
-# Bits of text used by many pages
+# Categories related messages
 'categories'      => 'Qeybaha',
 'pagecategories'  => '{{PLURAL:$1|Qaybta|Qaybaha}}',
 'category_header' => 'Maqaalada ku jirta qaybta "$1"',
@@ -403,11 +401,7 @@ Iskuday in aad [[Special:Search|karaadiso wikigan]] beyjaj laxiira oo cusub.',
 'savefile'        => 'Faylka kaydi',
 'watchthisupload' => 'Boggaan waardiyey',
 
-# Image list
-'imagelisttext'    => "Hoos waxaa yaala liiska '''$1''' {{plural:$1|file|faylalka}} oo u kala soocan $2.",
-'byname'           => 'hab magaceed',
-'bydate'           => 'hab taariikheed',
-'bysize'           => 'hab kala weynaan',
+# Image description page
 'nolinkstoimage'   => "Ma'ay jiraan beyjaj ku xiran faylkaan.",
 'shareduploadwiki' => 'Fadlan meeshaa $1 ka fiiri warbixin dheeraad ah.',
 
@@ -600,11 +594,12 @@ Hadii aad rabootid in aad boggan ka saartid wardiyeynta, dhagsii \"Ha' wardiyeyn
 # Attribution
 'anonymous' => "Isticmaalaha aanan la'aqoonsanin ee {{SITENAME}}",
 
-# Spam protection
-'categoryarticlecount' => 'Waxaa {{PLURAL:$1|ku jira hal maqaal|ku jira $1 maqaal}} qeybtan.',
-
 # Info page
 'numwatchers' => 'Tirada waardiyeyaasha: $1',
+
+# Special:Newimages
+'imagelisttext' => "Hoos waxaa yaala liiska '''$1''' {{plural:$1|file|faylalka}} oo u kala soocan $2.",
+'bydate'        => 'hab taariikheed',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'dhamaan',

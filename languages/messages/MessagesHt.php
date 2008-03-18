@@ -134,7 +134,7 @@ $messages = array(
 'nov'           => 'nov',
 'dec'           => 'des',
 
-# Bits of text used by many pages
+# Categories related messages
 'categories'               => 'Kategori yo',
 'pagecategories'           => '{{PLURAL:$1|Kategori|Kategori yo}}',
 'category_header'          => 'Paj yo ki nann  kategori « $1 »',
@@ -143,6 +143,8 @@ $messages = array(
 'category-empty'           => "''Kategori sa a pa genyen atik andedan li, ni sou-kategori, ni menm yon fichye miltimedya.''",
 'hidden-categories'        => '{{PLURAL:$1|Kategori sere|Kategori sere yo}}',
 'hidden-category-category' => 'Kategori ki kache yo', # Name of the category where hidden categories will be listed
+'subcategorycount'         => 'Genyen {{PLURAL:$1| yon sou-kategori ki liste |$1 sou-kategori ki liste}} anba kategori sa a.',
+'listingcontinuesabbrev'   => '(kontinye)',
 
 'mainpagetext'      => "<big>'''MedyaWiki byen enstale l.'''</big>",
 'mainpagedocfooter' => 'Konsilte [http://meta.wikimedia.org/wiki/Help:Konteni Gid Itilizatè] pou enfòmasyon sou kijan pou w itilize logisye wiki-a.
@@ -459,8 +461,10 @@ Mande ou byen si ou ap byen fè kreye li ankò toutbon (gade jounal paj sa a pou
 'uploadlogpage' => 'Istorik chajman pou fichye miltimedya',
 'uploadedimage' => 'chaje « [[$1]] »',
 
-# Image list
-'imagelist'                 => 'Lis fichye yo',
+# Special:Imagelist
+'imagelist' => 'Lis fichye yo',
+
+# Image description page
 'filehist'                  => 'Istorik fichye a',
 'filehist-help'             => 'Klike anlè yon dat epi yon lè pou fichye a jan li te ye nan moman sa a.',
 'filehist-current'          => 'Kounye a',
@@ -748,12 +752,6 @@ Souple, byen gade ke li pa egziste pyès redireksyon de fwa epi korije yo si li 
 'tooltip-diff'                    => 'Montre ki chanjman ou fè nan tèks an.',
 'tooltip-compareselectedversions' => 'Afiche diferans ant de vèsyon paj sa a ou seleksyone.',
 'tooltip-watch'                   => 'Ajoute paj sa a nan lis swivi ou an',
-
-# Spam protection
-'subcategorycount'       => 'Genyen {{PLURAL:$1| yon sou-kategori ki liste |$1 sou-kategori ki liste}} anba kategori sa a.',
-'categoryarticlecount'   => 'Genyen {{PLURAL:$1|yon atik|$1 atik}} nan kategori sa a.',
-'category-media-count'   => 'Genyen {{plural:$1|yon fichye|$1 fichye}} miltimedya nan kategori sa a.',
-'listingcontinuesabbrev' => '(kontinye)',
 
 # Browsing diffs
 'previousdiff' => '← Diferans anvan',

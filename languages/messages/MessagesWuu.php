@@ -91,7 +91,7 @@ $messages = array(
 'nov'           => '11月',
 'dec'           => '12月',
 
-# Bits of text used by many pages
+# Categories related messages
 'categories'            => '页面分类',
 'pagecategories'        => '$1个分类',
 'category_header'       => '“$1”分类中个页面',
@@ -465,13 +465,18 @@ $messages = array(
 'destfilename'      => '目标文件名:',
 'watchthisupload'   => '监控该只页面',
 
-# Image list
-'imagelist'                 => '文件列表',
-'getimagelist'              => '获取文件列表',
-'ilsubmit'                  => '搜寻',
-'imgdelete'                 => '删',
-'imgdesc'                   => '描述页',
-'imgfile'                   => '源文件',
+# Special:Imagelist
+'imagelist_search_for'  => '寻图片名字:',
+'imgdesc'               => '描述页',
+'imgfile'               => '源文件',
+'imagelist'             => '文件列表',
+'imagelist_date'        => '日脚',
+'imagelist_name'        => '名字',
+'imagelist_user'        => '用户',
+'imagelist_size'        => '尺寸 (bytes)',
+'imagelist_description' => '描述',
+
+# Image description page
 'filehist'                  => '文物历史',
 'filehist-deleteall'        => '全删',
 'filehist-deleteone'        => '删',
@@ -483,12 +488,6 @@ $messages = array(
 'noimage'                   => '呒拨叫该个名字个文件，倷可以$1。',
 'noimage-linktext'          => '上载俚',
 'uploadnewversion-linktext' => '上载该文件个新版',
-'imagelist_date'            => '日脚',
-'imagelist_name'            => '名字',
-'imagelist_user'            => '用户',
-'imagelist_size'            => '尺寸 (bytes)',
-'imagelist_description'     => '描述',
-'imagelist_search_for'      => '寻图片名字:',
 
 # File reversion
 'filerevert'        => '恢复$1',
@@ -771,6 +770,7 @@ $messages = array(
 # Special:Newimages
 'newimages'    => '新文件陈列室',
 'showhidebots' => '（$1机器人）',
+'ilsubmit'     => '搜寻',
 
 /*
 Short names for language variants used for language conversion links.

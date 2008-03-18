@@ -112,7 +112,7 @@ $messages = array(
 'nov'           => 'Нов',
 'dec'           => 'Дек',
 
-# Bits of text used by many pages
+# Categories related messages
 'categories'               => 'Категориет',
 'pagecategories'           => '{{PLURAL:$1|Категорие|Категориет}}',
 'category_header'          => '"$1" категориеса лопатне',
@@ -121,6 +121,8 @@ $messages = array(
 'category-empty'           => "''Медиа лопат тя категориеса ашет.''",
 'hidden-categories'        => '{{PLURAL:$1|Кяшф категорие|Кяшф категориет}}',
 'hidden-category-category' => 'Кяшф категориет', # Name of the category where hidden categories will be listed
+'subcategorycount'         => '{{PLURAL:$1|фкя йомла категорие|$1 йомла категориет}} тя категориеса.',
+'listingcontinuesabbrev'   => 'поладксоц',
 
 'mainpagetext'      => "<big>'''МедиаВикить арафтозь лац.'''</big>",
 'mainpagedocfooter' => 'Ванк [http://meta.wikimedia.org/wiki/Help:Contents Ветямовал Тиинди] тяса ули кода содамс Вики програпнень эрявикснень колга.
@@ -973,18 +975,18 @@ $3 макссь туфталсь - ''$2''",
 'upload_source_url'  => ' (кондясти, сембонди панжада URL)',
 'upload_source_file' => ' (файлсь тонь содама машинасот)',
 
-# Image list
-'imagelist'                 => 'Файлхт',
-'imagelisttext'             => "Ала'''$1''' {{PLURAL:$1|файлонь|файлхнень}} лувомась кочкаф $2.",
-'getimagelist'              => 'файллувома латцема',
-'ilsubmit'                  => 'Вешендемс',
-'showlast'                  => 'Няфтемс мекольце $1 файлхт кочкаф $2.',
-'byname'                    => 'лем коряс',
-'bydate'                    => 'ши коряс',
-'bysize'                    => 'кувалма коряс',
-'imgdelete'                 => 'нард.',
-'imgdesc'                   => 'колга',
-'imgfile'                   => 'файл',
+# Special:Imagelist
+'imagelist_search_for'  => 'Вешендемс медиа лем:',
+'imgdesc'               => 'колга',
+'imgfile'               => 'файл',
+'imagelist'             => 'Файлхт',
+'imagelist_date'        => 'Ши',
+'imagelist_name'        => 'Лем',
+'imagelist_user'        => 'Тии',
+'imagelist_size'        => 'Кувалма',
+'imagelist_description' => 'Информацие',
+
+# Image description page
 'filehist'                  => 'Файлонь историясь',
 'filehist-help'             => 'Люпштак шить/пингть лангс ся пингонь файлть верзинц няфтеманкса.',
 'filehist-deleteall'        => 'нардамс сембе',
@@ -1006,12 +1008,6 @@ $3 макссь туфталсь - ''$2''",
 'noimage'                   => 'Тя лемса файл аш, тондейть ули кода $1.',
 'noimage-linktext'          => 'тонгодемс тянь',
 'uploadnewversion-linktext' => 'Тонгодемс тя файлонь од верзиенц',
-'imagelist_date'            => 'Ши',
-'imagelist_name'            => 'Лем',
-'imagelist_user'            => 'Тии',
-'imagelist_size'            => 'Кувалма',
-'imagelist_description'     => 'Информацие',
-'imagelist_search_for'      => 'Вешендемс медиа лем:',
 
 # File reversion
 'filerevert'                => 'Мърдафтомс $1',
@@ -1444,8 +1440,6 @@ $1',
 'sp-contributions-username'    => 'IP адрес эли тиить лемоц:',
 'sp-contributions-submit'      => 'Вешендема',
 
-'sp-newimages-showfrom' => 'Няфтемс од файлхт $1-ста ушедомс',
-
 # What links here
 'whatlinkshere'       => 'Сюлмафкст тяза',
 'whatlinkshere-title' => 'Лопат конат сюлмафт $1 мархта',
@@ -1613,12 +1607,6 @@ $1',
 'tooltip-compareselectedversions' => 'Ванк мезьса явовихть ся лопать кафта верзиенза.',
 'tooltip-watch'                   => 'Сувафтомс тя лопать тонь ванома сёрмалувомазот',
 
-# Spam protection
-'subcategorycount'       => '{{PLURAL:$1|фкя йомла категорие|$1 йомла категориет}} тя категориеса.',
-'categoryarticlecount'   => '{{PLURAL:$1|фкя лопа|$1 лопат}} тя категориеса.',
-'category-media-count'   => '{{PLURAL:$1|фкя файл|$1 файлхт}}  тя категориеса.',
-'listingcontinuesabbrev' => 'поладксоц',
-
 # Browsing diffs
 'previousdiff' => '← Сядынголень верзие',
 'nextdiff'     => 'Сай верзие →',
@@ -1631,7 +1619,11 @@ $1',
 'show-big-image-thumb' => '<small>Сядынголе ваномать кувалмоц: $1 × $2 пикселхть</small>',
 
 # Special:Newimages
-'newimages' => 'Од файлхнень пърдафкс',
+'newimages'             => 'Од файлхнень пърдафкс',
+'imagelisttext'         => "Ала'''$1''' {{PLURAL:$1|файлонь|файлхнень}} лувомась кочкаф $2.",
+'ilsubmit'              => 'Вешендемс',
+'bydate'                => 'ши коряс',
+'sp-newimages-showfrom' => 'Няфтемс од файлхт $1-ста ушедомс',
 
 # Bad image list
 'bad_image_list' => 'Формат эряви вага стама:

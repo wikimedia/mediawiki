@@ -82,13 +82,14 @@ $messages = array(
 # Preferences page
 'searchresultshead' => 'Kucálata',
 
-# Image list
-'ilsubmit'          => 'Kucálata',
+# Special:Imagelist
+'imagelist_date' => 'Lusuku',
+'imagelist_name' => 'Ligama',
+'imagelist_user' => 'Umuntfu',
+
+# Image description page
 'filehist-datetime' => 'Lusuku/Síkhatsí',
 'filehist-user'     => 'Umuntfu',
-'imagelist_date'    => 'Lusuku',
-'imagelist_name'    => 'Ligama',
-'imagelist_user'    => 'Umuntfu',
 
 'brokenredirects-edit' => '(kúhlela)',
 
@@ -132,6 +133,9 @@ $messages = array(
 
 # Tooltip help for the actions
 'tooltip-search' => 'Kucálata {{SITENAME}}',
+
+# Special:Newimages
+'ilsubmit' => 'Kucálata',
 
 # Multipage image navigation
 'imgmultigo' => 'Kúhámba!',

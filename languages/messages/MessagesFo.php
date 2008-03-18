@@ -650,14 +650,13 @@ fyri at leggja fílur upp.',
 'license'   => 'Loyvi:',
 'nolicense' => 'Onki valt',
 
-# Image list
-'imagelist'        => 'Myndalisti',
-'ilsubmit'         => 'Leita',
-'byname'           => 'eftir navni',
-'bydate'           => 'eftir dato',
-'bysize'           => 'eftir stød',
-'imgdelete'        => 'strik',
-'imgdesc'          => 'lýs',
+# Special:Imagelist
+'imgdesc'        => 'lýs',
+'imagelist'      => 'Myndalisti',
+'imagelist_name' => 'Navn',
+'imagelist_user' => 'Brúkari',
+
+# Image description page
 'filehist'         => 'Mynd søga',
 'filehist-current' => 'streymur',
 'filehist-user'    => 'Brúkari',
@@ -666,8 +665,6 @@ fyri at leggja fílur upp.',
 'linkstoimage'     => 'Hesar síður slóða til hesa mynd:',
 'nolinkstoimage'   => 'Ongar síður slóða til hesa myndina.',
 'sharedupload'     => 'This file is a shared upload and may be used by other projects.',
-'imagelist_name'   => 'Navn',
-'imagelist_user'   => 'Brúkari',
 
 # File deletion
 'filedelete'        => 'Strika $1',
@@ -1082,6 +1079,8 @@ Grein við navninum "[[$1]]" finst longu. Ynskir tú at strika hana til tess at 
 # Special:Newimages
 'newimages' => 'Nýggjar myndir',
 'noimages'  => 'Einki at síggja.',
+'ilsubmit'  => 'Leita',
+'bydate'    => 'eftir dato',
 
 # Metadata
 'metadata' => 'Metadáta',

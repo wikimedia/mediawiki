@@ -42,7 +42,7 @@ $messages = array(
 'nov'       => 'Pudu',
 'dec'       => 'Tshitwe',
 
-# Bits of text used by many pages
+# Categories related messages
 'categories'      => 'Mekga',
 'category_header' => 'Dingolwa tse mokgeng wa "$1"',
 

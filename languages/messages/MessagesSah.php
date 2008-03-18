@@ -113,7 +113,7 @@ $messages = array(
 'nov'           => 'Сэт',
 'dec'           => 'Ахс',
 
-# Bits of text used by many pages
+# Categories related messages
 'categories'               => 'Категориялар',
 'pagecategories'           => '{{PLURAL:$1|Категория|Категориялар}}',
 'category_header'          => '"$1" категория ыстатыйалара',
@@ -122,6 +122,8 @@ $messages = array(
 'category-empty'           => "''Бу категорияҕа билигин туох да суох.''",
 'hidden-categories'        => '{{PLURAL:$1|Кистэммит категория|Кистэммит категориялар}}',
 'hidden-category-category' => 'Кистэммит категориялар', # Name of the category where hidden categories will be listed
+'subcategorycount'         => 'Бу категорияҕа $1 субкатегория баар.',
+'listingcontinuesabbrev'   => '(салгыыта)',
 
 'mainpagetext'      => "<big>'''«MediaWiki» сөпкө туруорулунна.'''</big>",
 'mainpagedocfooter' => 'Биики программатын туһунан [http://meta.wikimedia.org/wiki/Help:Contents справочникка] көрүөххүн сөп.
@@ -984,18 +986,18 @@ PICT # misc.
 'upload_source_url'  => ' (сөптөөх URL, ким баҕарбыт киирэр сирэ)',
 'upload_source_file' => ' (билэ компьютергар баар)',
 
-# Image list
-'imagelist'                 => 'Билэлэр',
-'imagelisttext'             => "Манна {{plural:$1|билэ|билэлэр}} испииһэктэрэ ('''$1''') көстөр, суортаммыт: $2.",
-'getimagelist'              => 'Билэлэр испииһэктэрин ылыы',
-'ilsubmit'                  => 'Көрдөт',
-'showlast'                  => "{{plural:$1|Билэ|Билэлэр}} кэнники '''$1''' көрдөр, суортаммыт: $2.",
-'byname'                    => 'аатынан',
-'bydate'                    => 'айыллыбыт кэминэн',
-'bysize'                    => 'улаханынан',
-'imgdelete'                 => 'сот',
-'imgdesc'                   => 'быһаарыы',
-'imgfile'                   => 'билэ',
+# Special:Imagelist
+'imagelist_search_for'  => 'Миэдьийэни (ойууну) аатынан көрдөтүү:',
+'imgdesc'               => 'быһаарыы',
+'imgfile'               => 'билэ',
+'imagelist'             => 'Билэлэр',
+'imagelist_date'        => 'Күнэ-ыйа',
+'imagelist_name'        => 'Аата',
+'imagelist_user'        => 'Кыттааччы',
+'imagelist_size'        => 'Кээмэйэ',
+'imagelist_description' => 'Быһаарыыта',
+
+# Image description page
 'filehist'                  => 'Билэ устуоруйата',
 'filehist-help'             => 'Ыйын-күнүн/кэмин баттаа, оччотооҕуга баар буолбут.',
 'filehist-deleteall'        => 'барытын сот',
@@ -1016,12 +1018,6 @@ PICT # misc.
 'noimage'                   => 'Маннык ааттаах билэ суох эбит, маны гыныаххын сөп $1.',
 'noimage-linktext'          => 'итини суруттар',
 'uploadnewversion-linktext' => 'Бу билэ саҥа барылын суруттар',
-'imagelist_date'            => 'Күнэ-ыйа',
-'imagelist_name'            => 'Аата',
-'imagelist_user'            => 'Кыттааччы',
-'imagelist_size'            => 'Кээмэйэ',
-'imagelist_description'     => 'Быһаарыыта',
-'imagelist_search_for'      => 'Миэдьийэни (ойууну) аатынан көрдөтүү:',
 
 # File reversion
 'filerevert'                => 'Төннөр $1',
@@ -1462,8 +1458,6 @@ $1',
 'sp-contributions-username'    => 'IP аадырыһа эбэтэр аата:',
 'sp-contributions-submit'      => 'Көрдөө',
 
-'sp-newimages-showfrom' => 'Саҥа ойуулары көрдөрүүнү мантан саҕалаа $1',
-
 # What links here
 'whatlinkshere'       => 'Манна сигэнэллэр',
 'whatlinkshere-title' => 'Сирэй манна сигэнэр $1',
@@ -1805,16 +1799,12 @@ $1',
 'nocredits'        => 'Бу сирэй кыттааччыларын испииһэгэ суох.',
 
 # Spam protection
-'spamprotectiontitle'    => 'Спам утары фильтр',
-'spamprotectiontext'     => 'Эн суруйа сатыыр сирэйгин спамы утарар фильтр суруттарбата. Тас сиргэ (атын сайтка) ыйынньыктааҕын иһин буолуон сөп.',
-'spamprotectionmatch'    => 'Бу сурук спамы утарар фильтртан кэллэ: $1',
-'subcategorycount'       => 'Бу категорияҕа $1 субкатегория баар.',
-'categoryarticlecount'   => 'Бу категорияҕа $1 ыстатыйа баар.',
-'category-media-count'   => 'Бу категорияҕа $1 билэ баар.',
-'listingcontinuesabbrev' => '(салгыыта)',
-'spambot_username'       => 'Спамы ыраастааһын',
-'spam_reverting'         => 'Манна: $1 ыйынньыга суох бүтэһик торуму сөргүтүү (төннөрүү)',
-'spam_blanking'          => 'Бары торумнар манна "$1" ыйынньыктаахтар, барытын суох оҥоруу',
+'spamprotectiontitle' => 'Спам утары фильтр',
+'spamprotectiontext'  => 'Эн суруйа сатыыр сирэйгин спамы утарар фильтр суруттарбата. Тас сиргэ (атын сайтка) ыйынньыктааҕын иһин буолуон сөп.',
+'spamprotectionmatch' => 'Бу сурук спамы утарар фильтртан кэллэ: $1',
+'spambot_username'    => 'Спамы ыраастааһын',
+'spam_reverting'      => 'Манна: $1 ыйынньыга суох бүтэһик торуму сөргүтүү (төннөрүү)',
+'spam_blanking'       => 'Бары торумнар манна "$1" ыйынньыктаахтар, барытын суох оҥоруу',
 
 # Info page
 'infosubtitle'   => 'Сирэй туһунан',
@@ -1876,9 +1866,13 @@ $1',
 'show-big-image-thumb' => '<small>Хачайдыах иннинэ көрүү кээмэйэ: $1 × $2 пииксэл</small>',
 
 # Special:Newimages
-'newimages'    => 'Саҥа билэлэр галереялара',
-'showhidebots' => '($1 робот)',
-'noimages'     => 'Ойуу суох.',
+'newimages'             => 'Саҥа билэлэр галереялара',
+'imagelisttext'         => "Манна {{plural:$1|билэ|билэлэр}} испииһэктэрэ ('''$1''') көстөр, суортаммыт: $2.",
+'showhidebots'          => '($1 робот)',
+'noimages'              => 'Ойуу суох.',
+'ilsubmit'              => 'Көрдөт',
+'bydate'                => 'айыллыбыт кэминэн',
+'sp-newimages-showfrom' => 'Саҥа ойуулары көрдөрүүнү мантан саҕалаа $1',
 
 # Video information, used by Language::formatTimePeriod() to format lengths in the above messages
 'seconds-abbrev' => 'с.',
