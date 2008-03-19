@@ -2586,7 +2586,7 @@ Variants for Chinese language",
 	'CoreParserFunctions'   => 'Core parser functions',
 	'version'               => 'Special:Version',
 	'filepath'              => 'Special:Filepath',
-	'fileduplicate'         => 'Special:FileDuplicateSearch',
+	'fileduplicatesearch'   => 'Special:FileDuplicateSearch',
 );
 
 /** Short comments for standalone messages */
