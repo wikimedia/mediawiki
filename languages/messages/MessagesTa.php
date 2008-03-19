@@ -145,16 +145,22 @@ $messages = array(
 'dec'           => 'டிச',
 
 # Categories related messages
-'categories'               => '{{PLURAL:$1|பகுப்பு|பகுப்புக்கள்}}',
-'pagecategories'           => '{{PLURAL:$1|பகுப்பு|பகுப்புக்கள்}}',
-'category_header'          => '"$1" பகுப்புலுள்ள கட்டுரைகள்',
-'subcategories'            => 'துணைப் பகுப்புகள்',
-'category-media-header'    => '"$1" பகுப்பில் உள்ள ஊடகங்கள்',
-'category-empty'           => 'இப்பகுப்பில் தற்போது ஊடகங்கள் யாதும் இல்லை.',
-'hidden-categories'        => '{{PLURAL:$1|மறைக்கப்பட்ட பகுப்பு|மறைக்கப்பட்ட பகுப்புகள்}}',
-'hidden-category-category' => 'மறைக்கப்பட்ட பகுப்புக்கள்', # Name of the category where hidden categories will be listed
-'subcategorycount'         => 'இந்தப் பகுப்பின் கீழ் {{PLURAL:$1|ஒரு துணைப்பகுப்பு உள்ளது|$1  துணைப்பகுப்புக்கள் உள்ளன}}.',
-'listingcontinuesabbrev'   => 'தொடரும்.',
+'categories'                     => '{{PLURAL:$1|பகுப்பு|பகுப்புக்கள்}}',
+'pagecategories'                 => '{{PLURAL:$1|பகுப்பு|பகுப்புக்கள்}}',
+'category_header'                => '"$1" பகுப்புலுள்ள கட்டுரைகள்',
+'subcategories'                  => 'துணைப் பகுப்புகள்',
+'category-media-header'          => '"$1" பகுப்பில் உள்ள ஊடகங்கள்',
+'category-empty'                 => 'இப்பகுப்பில் தற்போது ஊடகங்கள் யாதும் இல்லை.',
+'hidden-categories'              => '{{PLURAL:$1|மறைக்கப்பட்ட பகுப்பு|மறைக்கப்பட்ட பகுப்புகள்}}',
+'hidden-category-category'       => 'மறைக்கப்பட்ட பகுப்புக்கள்', # Name of the category where hidden categories will be listed
+'subcategorycount'               => 'இந்தப் பகுப்பின் கீழ் {{PLURAL:$1|ஒரு துணைப்பகுப்பு உள்ளது|$1  துணைப்பகுப்புக்கள் உள்ளன}}.',
+'category-subcat-count'          => '{{PLURAL:$2|இந்தப் பகுப்பின் கீழ் பினவரும் ஒரு துணைப் பகுப்பு மட்டுமே உள்ளது.|இந்தப்பகுப்பின் கீழ் உள்ள $2 துணைப் பகுப்புகளில் பின்வரும் {{PLURAL:$1|துணைப்பகுப்பும் உள்ளது.|$1 துணைப்பகுப்புகளும் உள்ளன.}}}}',
+'category-subcat-count-limited'  => 'இந்தப் பகுப்பின் கீழ் பினவரும் {{PLURAL:$1|ஒரு துணைப் பகுப்பு மட்டுமே உள்ளது.|$1 துணைப் பகுப்புகள் உள்ளன.}}',
+'category-article-count'         => '{{PLURAL:$2|இந்தப் பகுப்பின் கீழ் பினவரும் பக்கம் மட்டுமே உள்ளது.|இந்தப்பகுப்பின் கீழ் உள்ள $2 பக்கங்களில் பின்வரும் {{PLURAL:$1|பக்கமும் உள்ளது.|$1 பக்கங்களும் உள்ளன.}}}}',
+'category-article-count-limited' => 'இப்பகுப்பில் பின்வரும் {{PLURAL:$1|பக்கம்|$1 பக்கங்கள்}} உள்ள{{PLURAL:$1|து|ன}}.',
+'category-file-count'            => '{{PLURAL:$2|இந்தப் பகுப்பின் கீழ் பினவரும் ஒரு கோப்பு மட்டுமே உள்ளது.|இந்தப்பகுப்பின் கீழ் உள்ள $2 கோப்புகளில் பின்வரும் {{PLURAL:$1|கோப்பும் உள்ளது.|$1 கோப்புகளும் உள்ளன.}}}}',
+'category-file-count-limited'    => 'இப்பகுப்பில் பின்வரும் {{PLURAL:$1|கோப்பு|$1 கோப்புகள்}} உள்ள{{PLURAL:$1|து|ன}}.',
+'listingcontinuesabbrev'         => 'தொடரும்.',
 
 'mainpagetext'      => "<big>'''விக்கி மென்பொருள் வெற்றிகரமாக உள்ளிடப்பட்டது.'''</big>",
 'mainpagedocfooter' => 'விக்கி மென்பொருளைப் பயன்படுத்துவது தொடர்பாக [http://meta.wikimedia.org/wiki/Help:Contents பயனர் வழிகாட்டியைப்] பார்க்க.

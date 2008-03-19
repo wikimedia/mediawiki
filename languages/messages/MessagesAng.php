@@ -171,6 +171,7 @@ $messages = array(
 'showtoc'                 => 'geswutelian',
 'hidetoc'                 => 'hȳdan',
 'feedlinks'               => 'Flōd:',
+'red-link-title'          => '$1 (nā gīet gewriten)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'     => 'Gewrit',
@@ -179,6 +180,9 @@ $messages = array(
 'nstab-image'    => 'Mētung',
 'nstab-template' => 'Bisen',
 'nstab-category' => 'Flocc',
+
+# Main script and global functions
+'nosuchspecialpage' => 'Nān swilc syndrig tramet',
 
 # General errors
 'error'           => 'Gemearr',
@@ -224,6 +228,8 @@ Edscēawa þīne wrītunge, oþþe brūc þone form under tō settene nīwne br�
 'loginlanguagelabel'         => 'Sprǣc: $1',
 
 # Edit page toolbar
+'bold_sample'     => 'Beald traht',
+'bold_tip'        => 'Beald traht',
 'italic_sample'   => 'Flōwende traht',
 'italic_tip'      => 'Flōwende traht',
 'link_sample'     => 'Bendtítul',
@@ -251,7 +257,11 @@ Edscēawa þīne wrītunge, oþþe brūc þone form under tō settene nīwne br�
 'accmailtitle'           => 'Gelēafnesword gesended.',
 'accmailtext'            => "Þæt Gelēafnesword for '$1' wearþ gesend tō $2.",
 'newarticle'             => '(Nīwe)',
+'newarticletext'         => "Þu hæfst bende tō tramete gefolgod þe nū gīet ne stendeþ.
+Tō scieppene þone tramet, onginn þyddan in þǣre boxe under (sēo þone [[{{MediaWiki:Helppage}}|helptramet]] for mā gefrǣge).
+Gif þu hider misfōn cōme, cnoca þā þīnne webbscēaweres '''on bæc''' cnæpp.",
 'usercssjsyoucanpreview' => "<strong>Rǣd:</strong> Brūc þone 'Forescēawian' cnæpp tō āfandienne þīne nīwe css/js beforan sparunge.",
+'updated'                => '(Ednīwod)',
 'editingcomment'         => 'Ādihtung $1 (ymbsprǣc)',
 'yourtext'               => 'Þīn traht',
 'editingold'             => '<strong>WARNUNG: Þu ādihtest ealde fadunge þisses trametes.
@@ -267,6 +277,8 @@ gemǣnscipes āgnunge oþþe gelīcum frēom horde (sēo $1 for āscungum).
 webbscēaweras hæbben earfoðu mid þȳ þe hīe ādihtaþ trametas nēa oþþe lengran þonne 32kb.
 Bidde behycge þæt þu bricst þone tramet intō smalrum dǣlum.',
 'templatesused'          => 'Ongelīcnessa gebrȳcda on þissum tramete:',
+'template-protected'     => '(geborgen)',
+'template-semiprotected' => '(sāmborgen)',
 'nocreatetitle'          => 'Gewrit nā gefunden',
 'recreate-deleted-warn'  => "'''Warnung: Þu edsciepst tramet þe wæs ǣr āfeorsod.'''
 
@@ -442,7 +454,7 @@ Bidde behycge þæt þu bricst þone tramet intō smalrum dǣlum.',
 
 # E-mail user
 'emailfrom'     => 'Fram',
-'emailto'       => 'Tó',
+'emailto'       => 'Tō',
 'emailsubject'  => 'Forþsetennes',
 'emailmessage'  => 'Ǣrendgewrit',
 'emailsend'     => 'Ǣrendian',
@@ -512,13 +524,13 @@ Bidde behycge þæt þu bricst þone tramet intō smalrum dǣlum.',
 'ipbreason'          => 'Racu',
 'ipbreasonotherlist' => 'Ōðeru racu',
 'ipbreason-dropdown' => '*Gemǣna gǣlungraca
-** Inserting false information
-** Removing content from pages
-** Spamming links to external sites
-** Inserting nonsense/gibberish into pages
-** Intimidating behaviour/harassment
-** Abusing multiple accounts
-** Unacceptable username',
+** Insettung falses gefrǣges
+** Āfēorsung innunge of trametum
+** Spamming benda tō ūtanweardum webbstedum
+** Insettung gedofes/dwolunge intō trametum
+** Þrǣstiendlicu gebǣrnes/tirgung
+** Miswendung manigfealdra brūcendhorda
+** Uncwēme brūcendnama',
 'ipbsubmit'          => 'Gǣlan þisne brūcend',
 'ipbother'           => 'Ōðeru tīd',
 'ipboptions'         => '1 stund:1 hour, 2 stunda:2 hours,1 dæg:1 day,3 dagas:3 days,1 wucu:1 week,2 wucu:2 wuca,1 mōnaþ:1 month,3 mōnþas:3 months,6 mōnþas:6 months,1 gēar:1 year,unendiendlic:infinite', # display1:time1,display2:time2,...
@@ -548,6 +560,7 @@ Bidde cēos ōðerne naman.',
 
 # Thumbnails
 'thumbnail-more' => 'Gebrǣdan',
+'filemissing'    => 'Þrǣd unandweard',
 
 # Special:Import
 'import'        => 'Trametas inbringan',
@@ -561,14 +574,14 @@ Bidde cēos ōðerne naman.',
 'tooltip-pt-mycontris'   => 'Getalu mīnra forðunga',
 'tooltip-pt-logout'      => 'Ūtmeldian',
 'tooltip-ca-history'     => 'Forþgewitena fadunga þisses trametes.',
-'tooltip-search'         => 'Sēċan {{SITENAME}}',
+'tooltip-search'         => 'Sēcan {{SITENAME}}',
 'tooltip-p-logo'         => 'Hēafodsīde',
 'tooltip-minoredit'      => 'Mearcian þis swā lȳtle ādihtunge',
 'tooltip-save'           => 'Sparian þīna onwendunga',
 'tooltip-preview'        => 'Forescēawa þīne āwendednessa, bidde brūc þis ǣr þǣm þe þu sparast! [alt-p]',
 
 # Attribution
-'anonymous' => 'Namcúþléas(e) brúcend {{SITENAME}}n',
+'anonymous' => 'Namcūþlēas(e) brūcend {{SITENAME}}n',
 'siteuser'  => '{{SITENAME}}n brūcere $1',
 'others'    => 'ōðru',
 

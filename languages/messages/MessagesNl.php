@@ -1302,6 +1302,9 @@ U kunt het misschien proberen als het minder druk is.',
 'upload_source_file' => ' (een bestand op uw computer)',
 
 # Special:Imagelist
+'imagelist-summary'     => 'Op deze speciale pagina zijn alle toegevoegde bestanden te bekijken.
+Standaard worden de laatst toegevoegde bestanden bovenaan de lijst weergegeven.
+Klikken op een kolomkop verandert de sortering.',
 'imagelist_search_for'  => 'Zoeken naar bestand:',
 'imgdesc'               => 'beschrijving',
 'imgfile'               => 'bestand',
@@ -2172,6 +2175,7 @@ $1',
 # Special:Newimages
 'newimages'             => 'Nieuwe bestanden',
 'imagelisttext'         => "Hier volgt een lijst met '''$1''' {{PLURAL:$1|bestand|bestanden}} gesorteerd $2.",
+'newimages-summary'     => 'Op deze speciale pagina worden de meest recent toegevoegde bestanden weergegeven',
 'showhidebots'          => '(Bots $1)',
 'noimages'              => 'Niets te zien.',
 'ilsubmit'              => 'Zoeken',

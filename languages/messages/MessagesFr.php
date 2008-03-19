@@ -1181,6 +1181,9 @@ PICT # misc.
 'upload_source_file' => ' (un fichier sur votre ordinateur)',
 
 # Special:Imagelist
+'imagelist-summary'     => 'Cette page spéciale montre tous les fichiers importés.
+Par défaut, les derniers fichiers importés sont affichés en haut de la liste.
+Un clic en tête de colonne change l’ordre d’affichage.',
 'imagelist_search_for'  => 'Recherche pour l’image nommée :',
 'imgdesc'               => 'page de l’image',
 'imgfile'               => 'fichier',
@@ -2046,6 +2049,7 @@ $1',
 # Special:Newimages
 'newimages'             => 'Galerie des nouveaux fichiers',
 'imagelisttext'         => "Voici une liste de '''$1''' {{PLURAL:$1|fichier|fichiers}} classée $2.",
+'newimages-summary'     => 'Cette page spéciale affiche les derniers fichiers importés',
 'showhidebots'          => '($1 bots)',
 'noimages'              => 'Aucune image à afficher.',
 'ilsubmit'              => 'Chercher',
