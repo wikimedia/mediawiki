@@ -1301,21 +1301,23 @@ function do_postgres_updates() {
 		list( $x,$y ) = explode( '=', $c );
 		$conf[$x] = $y;
 	}
-	$newpath = array();
-	if( $wgDBmwschema === 'mediawiki' ) {
-		if (!array_key_exists( 'search_path', $conf ) or strpos( $conf['search_path'],$wgDBmwschema ) === false ) {
-			echo "Adding in schema \"$wgDBmwschema\" to search_path for user \"$wgDBuser\"\n";
-			$newpath[$wgDBmwschema] = 1;
-		}
+	if( !array_key_exists( 'search_path', $conf ) ) {
+		$search_path = '';
 	}
-	if( !array_key_exists( 'search_path', $conf ) or strpos( $conf['search_path'],$wgDBts2schema ) === false ) {
+	else {
+		$search_path = $conf['search_path'];
+	}
+	if( strpos( $search_path, $wgDBmwschema ) === false ) {
+		echo "Adding in schema \"$wgDBmwschema\" to search_path for user \"$wgDBuser\"\n";
+		$search_path = "$wgDBmwschema, $search_path";
+	}
+	if( strpos( $search_path, $wgDBts2schema ) === false ) {
 		echo "Adding in schema \"$wgDBts2schema\" to search_path for user \"$wgDBuser\"\n";
-		$newpath[$wgDBts2schema] = 1;
+		$search_path = "$search_path, $wgDBts2schema";
 	}
-	$searchpath = implode( ',', array_keys( $newpath ) );
-	if( strlen( $searchpath ) ) {
-		$wgDatabase->doQuery( "ALTER USER $wgDBuser SET search_path = $searchpath" );
-		$wgDatabase->doQuery( "SET search_path = $searchpath" );
+	if( array_key_exists( 'search_path', $conf ) === false || $search_path != $conf['search_path'] ) {
+		$wgDatabase->doQuery( "ALTER USER $wgDBuser SET search_path = $search_path" );
+		$wgDatabase->doQuery( "SET search_path = $search_path" );
 	}
 	else {
 		$path = $conf['search_path'];
