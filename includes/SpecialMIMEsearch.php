@@ -12,7 +12,6 @@
 /**
  * Searches the database for files of the requested MIME type, comparing this with the
  * 'img_major_mime' and 'img_minor_mime' fields in the image table.
- * @addtogroup SpecialPage
  */
 class MIMEsearchPage extends QueryPage {
 	var $major, $minor;
@@ -87,15 +86,12 @@ function wfSpecialMIMEsearch( $par = null ) {
 	$mime = isset( $par ) ? $par : $wgRequest->getText( 'mime' );
 
 	$wgOut->addHTML(
-		Xml::openElement( 'form',
-			array(
-				'id' => 'specialmimesearch',
-				'method' => 'get',
-				'action' => $wgTitle->escapeLocalUrl()
-			)
-		) .
-			Xml::inputLabel( wfMsg( 'mimetype' ), 'mime', 'mime', 20, $mime ) .
-			Xml::submitButton( wfMsg( 'ilsubmit' ) ) .
+		Xml::openElement( 'form', array( 'id' => 'specialmimesearch', 'method' => 'get', 'action' => $wgTitle->getLocalUrl() ) ) .
+		Xml::openElement( 'fieldset' ) .
+		Xml::element( 'legend', null, wfMsg( 'mimesearch' ) ) .
+		Xml::inputLabel( wfMsg( 'mimetype' ), 'mime', 'mime', 20, $mime ) . ' ' .
+		Xml::submitButton( wfMsg( 'ilsubmit' ) ) .
+		Xml::closeElement( 'fieldset' ) .
 		Xml::closeElement( 'form' )
 	);
 
@@ -113,7 +109,7 @@ function wfSpecialMIMEsearchParse( $str ) {
 	if( strpos( $str, '/' ) === false) {
 		return array ('', '');
 	}
-	
+
 	list( $major, $minor ) = explode( '/', $str, 2 );
 
 	return array(
@@ -138,4 +134,3 @@ function wfSpecialMIMEsearchValidType( $type ) {
 
 	return in_array( $type, $types );
 }
-
