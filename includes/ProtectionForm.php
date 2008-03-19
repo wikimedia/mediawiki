@@ -227,7 +227,7 @@ class ProtectionForm {
 
 		$out .= Xml::openElement( 'fieldset' ) .
 			Xml::element( 'legend', null, wfMsg( 'protect-legend' ) ) .
-			Xml::openElement( 'table', array( 'id' => 'mwProtectSet' ) );
+			Xml::openElement( 'table', array( 'id' => 'mwProtectSet' ) ) .
 			Xml::openElement( 'tbody' ) .
 			"<tr>\n";
 
