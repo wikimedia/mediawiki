@@ -3372,31 +3372,35 @@ class Article {
 		$insertCats = array_merge( $added, $deleted );
 		$insertRows = array();
 		foreach( $insertCats as $cat ) {
-			$insertRows []= array( 'cat_title' => $cat );
+			$insertRows[] = array( 'cat_title' => $cat );
 		}
 		$dbw->insert( 'category', $insertRows, __METHOD__, 'IGNORE' );
 
 		$addFields    = array( 'cat_pages = cat_pages + 1' );
 		$removeFields = array( 'cat_pages = cat_pages - 1' );
 		if( $ns == NS_CATEGORY ) {
-			$addFields    []= 'cat_subcats = cat_subcats + 1';
-			$removeFields []= 'cat_subcats = cat_subcats - 1';
+			$addFields[]    = 'cat_subcats = cat_subcats + 1';
+			$removeFields[] = 'cat_subcats = cat_subcats - 1';
 		} elseif( $ns == NS_IMAGE ) {
-			$addFields    []= 'cat_files = cat_files + 1';
-			$removeFields []= 'cat_files = cat_files - 1';
+			$addFields[]    = 'cat_files = cat_files + 1';
+			$removeFields[] = 'cat_files = cat_files - 1';
 		}
 
-		$dbw->update(
-			'category',
-			$addFields,
-			array( 'cat_title' => $added ),
-			__METHOD__
-		);
-		$dbw->update(
-			'category',
-			$removeFields,
-			array( 'cat_title' => $deleted ),
-			__METHOD__
-		);
+		if ( $added ) {
+			$dbw->update(
+				'category',
+				$addFields,
+				array( 'cat_title' => $added ),
+				__METHOD__
+			);
+		}
+		if ( $deleted ) {
+			$dbw->update(
+				'category',
+				$removeFields,
+				array( 'cat_title' => $deleted ),
+				__METHOD__
+			);
+		}
 	}
 }
