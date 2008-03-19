@@ -30,7 +30,7 @@
 function wfSpecialSearch( $par = '' ) {
 	global $wgRequest, $wgUser;
 
-	$search = $wgRequest->getText( 'search', $par );
+	$search = str_replace( "\n", " ", $wgRequest->getText( 'search', $par ) );
 	$searchPage = new SpecialSearch( $wgRequest, $wgUser );
 	if( $wgRequest->getVal( 'fulltext' ) ||
 		!is_null( $wgRequest->getVal( 'offset' ) ) ||

@@ -104,6 +104,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 11563) Deprecated SearchMySQL4 class; merged code to SearchMySQL
 * (bug 12801) Fix link in subtitle message in AJAX search
 * (bug 13428) Fix regression in protection form layout HTML validity
+* (bug 9403) Sanitize newlines from search term input
 
 
 === API changes in 1.13 ===
