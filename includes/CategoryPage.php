@@ -484,7 +484,7 @@ class CategoryViewer {
 		#      know the right figure.
 		#   3) We have no idea.
 		$totalrescnt = count( $this->articles ) + count( $this->children ) +
-			$this->gallery->count();
+			($this->showGallery ? $this->gallery->count() : 0);
 		if($dbcnt == $rescnt || (($totalrescnt == $this->limit || $this->from
 		|| $this->until) && $dbcnt > $rescnt)){
 			# Case 1: seems sane.
