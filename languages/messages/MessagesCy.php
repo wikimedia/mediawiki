@@ -247,7 +247,7 @@ $messages = array(
 'views'             => 'Golygon',
 'toolbox'           => 'Blwch offer',
 'userpage'          => 'Gwyliwch tudalen defnyddiwr',
-'projectpage'       => 'Gwyliwch tudalen meta',
+'projectpage'       => 'Gweld tudalen y wici',
 'imagepage'         => 'Gweld tudalen y ffeil clyweled',
 'viewhelppage'      => 'Dangos y dudalen gymorth',
 'categorypage'      => 'Dangos tudalen gategori',
@@ -388,6 +388,7 @@ Adroddwch y broblem i weinyddwr os gwelwch yn dda, gan roi\'r cyfeiriad gwe (URL
 'perfdisabled'         => "Ymddiheurwn! Mae'r nodwedd hon wedi'i analluogi dros dro gan ei bod yn ormod o dreth ar y databas.",
 'perfcached'           => "Mae'r wybodaeth ganlynol yn gopi cadw; mae'n bosib nad y fersiwn diweddaraf ydyw.",
 'perfcachedts'         => 'Rhoddwyd y data canlynol ar gadw mewn celc a ddiweddarwyd ddiwethaf am $1.',
+'querypage-no-updates' => "Ar hyn o bryd, nid yw'r meddalwedd wedi ei osod i ddiweddaru data'r dudalen hon.",
 'viewsource'           => 'Gwyliwch y ffynhonnell',
 'viewsourcefor'        => 'ar gyfer $1',
 'protectedpagetext'    => "Mae'r dudalen hon wedi'i diogelu rhag cael ei golygu.",
@@ -731,9 +732,8 @@ $2 Rhestri ailgyfeiriadau<br />Chwilio am $3 $9',
 'mypreferences'           => 'fy newisiadau',
 'prefs-edits'             => 'Nifer y golygiadau:',
 'prefsnologin'            => 'Heb fewngofnodi',
-'prefsnologintext'        => 'Rhaid i chi [[Special:Userlogin|mewngofnodi]]
-i setio ffafraethau defnyddwr.',
-'prefsreset'              => 'Mae ffafraethau wedi gael eu ail-setio oddiwrth y storfa.',
+'prefsnologintext'        => 'Rhaid i chi [[Special:Userlogin|fewngofnodi]] er mwyn gosod eich dewisiadau defnyddiwr.',
+'prefsreset'              => "Mae'r dewisiadau wedi cael eu hail-osod o'r storfa.",
 'qbsettings'              => 'Gosodiadau bar-gyflym',
 'qbsettings-none'         => 'Dim',
 'qbsettings-fixedleft'    => 'Sefydlog chwith',
@@ -999,10 +999,12 @@ Os yw'r ddelwedd ar ei lawn faint gallwch barhau i'w uwchlwytho. Os na, newidiwc
 'unusedtemplates' => 'Nodiadau heb eu defnyddio',
 
 # Random page
-'randompage' => 'Erthygl hapgyrch',
+'randompage'         => 'Erthygl hapgyrch',
+'randompage-nopages' => 'Does dim tudalennau yn y parth hwn.',
 
 # Random redirect
-'randomredirect' => 'Tudalen ailgyfeirio ar hap',
+'randomredirect'         => 'Tudalen ailgyfeirio ar hap',
+'randomredirect-nopages' => 'Does dim tudalennau ailgyfeirio yn y parth hwn.',
 
 # Statistics
 'statistics'    => 'Ystadegau',
@@ -1583,7 +1585,8 @@ Yn achos yr ail ddewis, mae modd defnyddio cyswllt, e.e. [[{{ns:special}}:Export
 'tooltip-t-specialpages'          => "Rhestr o'r holl dudalennau arbennig",
 'tooltip-t-print'                 => "Cynhyrchwch fersiwn o'r dudalen yn barod at ei hargraffu",
 'tooltip-ca-nstab-user'           => 'Gweld tudalen y defnyddiwr',
-'tooltip-ca-nstab-project'        => "Ymweld â'r Hafan",
+'tooltip-ca-nstab-special'        => "Mae hwn yn dudalen arbennig; ni allwch olygu'r dudalen ei hun",
+'tooltip-ca-nstab-project'        => 'Gweld tudalen y wici',
 'tooltip-ca-nstab-image'          => 'Gweld tudalen y ffeil',
 'tooltip-ca-nstab-template'       => 'Dangos y nodyn',
 'tooltip-ca-nstab-help'           => 'Gweld y dudalen gymorth',

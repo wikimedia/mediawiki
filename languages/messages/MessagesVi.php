@@ -1103,6 +1103,9 @@ PICT # khác
 'upload_source_file' => ' (tập tin trên máy của bạn)',
 
 # Special:Imagelist
+'imagelist-summary'     => 'Trang đặc biệt này liệt kê các tập tin được tải lên. 
+Theo mặc định, các tập tin mới nhất được xếp vào đầu danh sách. 
+Hãy nhấn chuột vào tiêu đề cột để thay đổi thứ tự sắp xếp.',
 'imagelist_search_for'  => 'Tìm kiếm theo tên tập tin:',
 'imgdesc'               => 'miêu tả',
 'imgfile'               => 'tập tin',
@@ -1980,6 +1983,7 @@ $1',
 # Special:Newimages
 'newimages'             => 'Trang trưng bày hình ảnh mới',
 'imagelisttext'         => "Dưới đây là danh sách '''$1''' tập tin xếp theo $2.",
+'newimages-summary'     => 'Trang đặc biệt này hiển thị các tập tin được tải lên gần đây nhất.',
 'showhidebots'          => '($1 robot)',
 'noimages'              => 'Chưa có hình.',
 'ilsubmit'              => 'Tìm kiếm',

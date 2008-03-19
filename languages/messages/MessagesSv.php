@@ -262,12 +262,12 @@ $messages = array(
 'hidden-categories'              => '{{PLURAL:$1|Dold kategori|Dolda kategorier}}',
 'hidden-category-category'       => 'Dolda kategorier', # Name of the category where hidden categories will be listed
 'subcategorycount'               => 'Det finns {{PLURAL:$1|en underkategori|$1 underkategorier}} till den här kategorin.',
-'category-subcat-count'          => '{{PLURAL:$2|Denna kategori har endast följande underkategori.|Denna kategori har följande {{PLURAL:$1|underkategori|$1 underkategorier}}, ut av $2 totalt.}}',
+'category-subcat-count'          => '{{PLURAL:$2|Denna kategori har endast följande underkategori.|Denna kategori har följande {{PLURAL:$1|underkategori|$1 underkategorier}} (av totalt $2).}}',
 'category-subcat-count-limited'  => 'Denna kategori har följande {{PLURAL:$1|underkategori|$1 underkategorier}}.',
-'category-article-count'         => '{{PLURAL:$2|Denna kategori innehåller endast följande sida.|Följande {{PLURAL:$1|sida är|$1 sidor är}} i denna kategori, ut av $2 totalt.}}',
-'category-article-count-limited' => 'Följande {{PLURAL:$1|sida är|$1 sidor är}} i den nuvarande kategorin.',
-'category-file-count'            => '{{PLURAL:$2|Denna kategori innehåller endast följande fil.|Följande {{PLURAL:$1|fil är|$1 filer är}} i denna kategori, ut av $2 totalt.}}',
-'category-file-count-limited'    => 'Följande {{PLURAL:$1|fil är|$1 filer är}} i den nuvarande kategorin.',
+'category-article-count'         => '{{PLURAL:$2|Denna kategori innehåller endast följande sida.|Följande {{PLURAL:$1|sida|$1 sidor}} (av totalt $2) finns i denna kategori.}}',
+'category-article-count-limited' => 'Följande {{PLURAL:$1|sida|$1 sidor}} finns i den här kategorin.',
+'category-file-count'            => '{{PLURAL:$2|Denna kategori innehåller endast följande fil.|Följande {{PLURAL:$1|fil|$1 filer}} (av totalt $2) finns i denna kategori.}}',
+'category-file-count-limited'    => 'Följande {{PLURAL:$1|fil |$1 filer}} finns i den här kategorin.',
 'listingcontinuesabbrev'         => 'forts.',
 
 'mainpagetext'      => "<big>'''MediaWiki har installerats utan problem.'''</big>",
@@ -1133,6 +1133,9 @@ PICT # allmänt bildprefix
 'upload_source_file' => ' (en fil på din dator)',
 
 # Special:Imagelist
+'imagelist-summary'     => 'Den här specialsidan visar alla filer som har laddats upp.
+Som standard visas de senast upladdade filerna högst upp i listan.
+Genom att klicka på rubrikerna för kolumnerna kan man ändra sorteringsordningen.',
 'imagelist_search_for'  => 'Sök efter filnamn:',
 'imgdesc'               => 'beskrivning',
 'imgfile'               => 'fil',
@@ -1982,6 +1985,7 @@ $1',
 # Special:Newimages
 'newimages'             => 'Galleri över nya bilder',
 'imagelisttext'         => 'Nedan finns en lista med <strong>$1</strong> {{plural:$1|bild|bilder}} sorterad <strong>$2</strong>.',
+'newimages-summary'     => 'Den här specialsidan visar de senast uppladdade filerna',
 'showhidebots'          => '($1 robotar)',
 'noimages'              => 'Ingenting att se.',
 'ilsubmit'              => 'Sök',
