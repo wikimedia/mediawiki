@@ -10,5 +10,6 @@ CREATE TABLE category (
   cat_hidden   SMALLINT NOT NULL  DEFAULT 0
 );
 
-CREATE INDEX category_title ON category(cat_title, cat_pages);
+CREATE UNIQUE INDEX category_title ON category(cat_title);
+CREATE INDEX category_pages ON category(cat_pages);
 
