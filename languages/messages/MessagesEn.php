@@ -2523,7 +2523,7 @@ $1',
 'noimages'              => 'Nothing to see.',
 'ilsubmit'              => 'Search',
 'bydate'                => 'by date',
-'sp-newimages-showfrom' => 'Show new files starting from $1',
+'sp-newimages-showfrom' => 'Show new files starting from $2, $1',
 
 # Video information, used by Language::formatTimePeriod() to format lengths in the above messages
 'video-dims'     => '$1, $2×$3', # only translate this message to other languages if you have to change it
