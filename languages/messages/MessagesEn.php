@@ -411,6 +411,7 @@ $specialPageAliases = array(
 	'Unlockdb'                  => array( 'UnlockDB' ),
 	'Userrights'                => array( 'UserRights' ),
 	'MIMEsearch'                => array( 'MIMESearch' ),
+	'FileDuplicateSearch'       => array( 'FileDuplicateSearch' ),
 	'Unwatchedpages'            => array( 'UnwatchedPages' ),
 	'Listredirects'             => array( 'ListRedirects' ),
 	'Revisiondelete'            => array( 'RevisionDelete' ),
@@ -1546,6 +1547,7 @@ A click on a column header changes the sorting.',
 'noimage'                   => 'No file by this name exists, you can $1.',
 'noimage-linktext'          => 'upload it',
 'uploadnewversion-linktext' => 'Upload a new version of this file',
+'imagepage-searchdupe'      => 'Search for duplicate files',
 
 # File reversion
 'filerevert'                => 'Revert $1',
@@ -3128,5 +3130,17 @@ You can also [[Special:Watchlist/edit|use the standard editor]].',
 Images are shown in full resolution, other file types are started with their associated program directly.
 
 Enter the file name without the "{{ns:image}}:" prefix.',
+
+# Special:FileDuplicateSearch
+'fileduplicatesearch'          => 'Search for duplicate files',
+'fileduplicatesearch-summary'  => 'Search for duplicate files on base of its hash value.
+
+Enter the filename without the "{{ns:image}}:" prefix.',
+'fileduplicatesearch-legend'   => 'Search for a duplicate',
+'fileduplicatesearch-filename' => 'Filename:',
+'fileduplicatesearch-submit'   => 'Search',
+'fileduplicatesearch-info'     => '$1 × $2 pixel<br />File size: $3<br />MIME type: $4',
+'fileduplicatesearch-result-1' => 'The file "$1" has no identical duplication.',
+'fileduplicatesearch-result-n' => 'The file "$1" has {{PLURAL:$2|1 identical duplication|$2 identical duplications}}.',
 
 );

@@ -397,7 +397,11 @@ EOT
 			$ulink = $sk->makeExternalLink( $this->getUploadUrl(), wfMsg( 'uploadnewversion-linktext' ) );
 			$wgOut->addHtml( "<li><div class='plainlinks'>{$ulink}</div></li>" );
 		}
-		
+
+		# Link to Special:FileDuplicateSearch
+		$dupeLink = $sk->makeKnownLinkObj( SpecialPage::getTitleFor( 'FileDuplicateSearch', $this->mTitle->getDBkey() ), wfMsgHtml( 'imagepage-searchdupe' ) );
+		$wgOut->addHtml( "<li>{$dupeLink}</li>" );
+
 		# External editing link
 		$elink = $sk->makeKnownLinkObj( $this->mTitle, wfMsgHtml( 'edit-externally' ), 'action=edit&externaledit=true&mode=file' );
 		$wgOut->addHtml( '<li>' . $elink . '<div>' . wfMsgWikiHtml( 'edit-externally-help' ) . '</div></li>' );

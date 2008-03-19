@@ -958,6 +958,7 @@ $wgMessageStructure = array(
 		'noimage',
 		'noimage-linktext',
 		'uploadnewversion-linktext',
+		'imagepage-searchdupe',
 	),
 	'filerevert' => array(
 		'filerevert',
@@ -2396,7 +2397,18 @@ $wgMessageStructure = array(
 		'filepath-submit',
 		'filepath-summary',
 	),
+	'fileduplicatesearch' => array(
+		'fileduplicatesearch',
+		'fileduplicatesearch-summary',
+		'fileduplicatesearch-legend',
+		'fileduplicatesearch-filename',
+		'fileduplicatesearch-submit',
+		'fileduplicatesearch-info',
+		'fileduplicatesearch-result-1',
+		'fileduplicatesearch-result-n',
+	),
 );
+
 /** Comments for each block */
 $wgBlockComments = array(
 	'sidebar'             => "The sidebar for MonoBook is generated from this message, lines that do not
@@ -2574,6 +2586,7 @@ Variants for Chinese language",
 	'CoreParserFunctions'   => 'Core parser functions',
 	'version'               => 'Special:Version',
 	'filepath'              => 'Special:Filepath',
+	'fileduplicate'         => 'Special:FileDuplicateSearch',
 );
 
 /** Short comments for standalone messages */
