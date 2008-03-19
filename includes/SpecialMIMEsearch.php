@@ -91,7 +91,7 @@ function wfSpecialMIMEsearch( $par = null ) {
 			array(
 				'id' => 'specialmimesearch',
 				'method' => 'get',
-				'action' => $wgTitle->escapeLocalUrl()
+				'action' => $wgTitle->getLocalUrl()
 			)
 		) .
 			Xml::inputLabel( wfMsg( 'mimetype' ), 'mime', 'mime', 20, $mime ) .
