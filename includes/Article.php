@@ -2266,7 +2266,7 @@ class Article {
 		foreach( $res as $row ) {
 			$cats []= $row->cl_to;
 		}
-		$this->updateCategoryCounts( array(), $cats, $dbw );
+		$this->updateCategoryCounts( array(), $cats );
 
 		# Now that it's safely backed up, delete it
 		$dbw->delete( 'page', array( 'page_id' => $id ), __METHOD__);
@@ -3354,14 +3354,11 @@ class Article {
 	 *
 	 * @param $added array   The names of categories that were added
 	 * @param $deleted array The names of categories that were deleted
-	 * @param $dbw Database  Optional database connection to use
 	 * @return null
 	 */
-	public function updateCategoryCounts( $added, $deleted, $dbw = null ) {
+	public function updateCategoryCounts( $added, $deleted ) {
 		$ns = $this->mTitle->getNamespace();
-		if( !$dbw ) {
-			$dbw = wfGetDB( DB_MASTER );
-		}
+		$dbw = wfGetDB( DB_MASTER );
 
 		# First make sure the rows exist.  If one of the "deleted" ones didn't
 		# exist, we might legitimately not create it, but it's simpler to just

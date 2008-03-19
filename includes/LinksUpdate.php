@@ -276,7 +276,7 @@ class LinksUpdate {
 	function updateCategoryCounts( $added, $deleted ) {
 		$a = new Article($this->mTitle);
 		$a->updateCategoryCounts(
-			array_keys( $added ), array_keys( $deleted ), $this->mDb
+			array_keys( $added ), array_keys( $deleted )
 		);
 	}
 
