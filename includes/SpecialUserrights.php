@@ -279,14 +279,16 @@ class UserrightsPage extends SpecialPage {
 	 */
 	function switchForm() {
 		global $wgOut, $wgScript;
-		$form  = Xml::openElement( 'form', array( 'method' => 'get', 'action' => $wgScript, 'name' => 'uluser' ) );
-		$form .= Xml::hidden( 'title',  'Special:Userrights' ); 
-		$form .= '<fieldset><legend>' . wfMsgHtml( 'userrights-lookup-user' ) . '</legend>';
-		$form .= '<p>' . Xml::inputLabel( wfMsg( 'userrights-user-editname' ), 'user', 'username', 30, $this->mTarget ) . '</p>';
-		$form .= '<p>' . Xml::submitButton( wfMsg( 'editusergroup' ) ) . '</p>';
-		$form .= '</fieldset>';
-		$form .= '</form>';
-		$wgOut->addHTML( $form );
+		$wgOut->addHTML(
+			Xml::openElement( 'form', array( 'method' => 'get', 'action' => $wgScript, 'name' => 'uluser', 'id' => 'mw-userrights-form1' ) ) .
+			Xml::hidden( 'title',  'Special:Userrights' ) .
+			Xml::openElement( 'fieldset' ) .
+			Xml::element( 'legend', array(), wfMsg( 'userrights-lookup-user' ) ) .
+			Xml::inputLabel( wfMsg( 'userrights-user-editname' ), 'user', 'username', 30, $this->mTarget ) . ' ' .
+			Xml::submitButton( wfMsg( 'editusergroup' ) ) .
+			Xml::closeElement( 'fieldset' ) .
+			Xml::closeElement( 'form' ) . "\n"
+		);
 	}
 	
 	/**
@@ -314,7 +316,6 @@ class UserrightsPage extends SpecialPage {
 	/**
 	 * Show the form to edit group memberships.
 	 *
-	 * @todo make all CSS-y and semantic
 	 * @param $user      User or UserRightsProxy you're editing
 	 * @param $groups    Array:  Array of groups the user is in
 	 */
@@ -332,51 +333,54 @@ class UserrightsPage extends SpecialPage {
 			$grouplist = '<p>' . wfMsgHtml( 'userrights-groupsmember' ) . ' ' . implode( ', ', $list ) . '</p>';
 		}
 		$wgOut->addHTML(
-			Xml::openElement( 'form', array( 'method' => 'post', 'action' => $this->getTitle()->escapeLocalURL(), 'name' => 'editGroup' ) ) .
+			Xml::openElement( 'form', array( 'method' => 'post', 'action' => $this->getTitle()->getLocalURL(), 'name' => 'editGroup', 'id' => 'mw-userrights-form2' ) ) .
 			Xml::hidden( 'user', $this->mTarget ) .
 			Xml::hidden( 'wpEditToken', $wgUser->editToken( $this->mTarget ) ) .
 			Xml::openElement( 'fieldset' ) .
 			Xml::element( 'legend', array(), wfMsg( 'userrights-editusergroup' ) ) .
-			wfMsgExt( 'editinguser', array( 'parse' ),
-				wfEscapeWikiText( $user->getName() ) ) .
+			wfMsgExt( 'editinguser', array( 'parse' ), wfEscapeWikiText( $user->getName() ) ) .
 			$grouplist .
 			$this->explainRights() .
-			"<table border='0'>
-			<tr>
-				<td></td>
-				<td>
-				<table width='400'>
-					<tr>
-						<td width='50%'>" . $this->removeSelect( $removable ) . "</td>
-						<td width='50%'>" . $this->addSelect( $addable ) . "</td>
-					</tr>
-				</table>
-			</tr>
-			<tr>
-				<td colspan='2'>" .
-					$wgOut->parse( wfMsg('userrights-groupshelp') ) .
-				"</td>
-			</tr>
-			<tr>
-				<td>" .
-					Xml::label( wfMsg( 'userrights-reason' ), 'wpReason' ) .
-				"</td>
-				<td>" .
-					Xml::input( 'user-reason', 60, false, array( 'id' => 'wpReason', 'maxlength' => 255 ) ) .
-				"</td>
-			</tr>
-			<tr>
-				<td></td>
-				<td>" .
-				Xml::submitButton( wfMsg( 'saveusergroups' ), array( 'name' => 'saveusergroups' ) ) .
-				"</td>
-			</tr>
-			</table>\n" .
+			Xml::openElement( 'table', array( 'border' => '0', 'id' => 'mw-userrights-table-outer' ) ) .
+				"<tr>
+					<td></td>
+					<td>" .
+						Xml::openElement( 'table', array( 'style' => 'width:400px;', 'id' => 'mw-userrights-table-inner' ) ) .	
+							"<tr>
+								<td style='width:50%;'>" . 
+									$this->removeSelect( $removable ) .
+								"</td>
+								<td style='width:50%;'>" . 
+									$this->addSelect( $addable ) .
+								"</td>
+							</tr>" .
+						Xml::closeElement( 'table' ) .
+				"</tr>
+				<tr>
+					<td colspan='2'>" .
+						$wgOut->parse( wfMsg( 'userrights-groupshelp' ) ) .
+					"</td>
+				</tr>
+				<tr>
+					<td>" .
+						Xml::label( wfMsg( 'userrights-reason' ), 'wpReason' ) .
+					"</td>
+					<td>" .
+						Xml::input( 'user-reason', 60, false, array( 'id' => 'wpReason', 'maxlength' => 255 ) ) .
+					"</td>
+				</tr>
+				<tr>
+					<td></td>
+					<td>" .
+						Xml::submitButton( wfMsg( 'saveusergroups' ), array( 'name' => 'saveusergroups' ) ) .
+					"</td>
+				</tr>" .
+			Xml::closeElement( 'table' ) . "\n" .
 			Xml::closeElement( 'fieldset' ) .
 			Xml::closeElement( 'form' ) . "\n"
 		);
 	}
-	
+
 	/**
 	 * Format a link to a group description page
 	 *
@@ -568,8 +572,7 @@ class UserrightsPage extends SpecialPage {
 				)
 			)
 		);
-		$output->addHtml( "<h2>" . htmlspecialchars( LogPage::logName( 'rights' ) ) . "</h2>\n" );
+		$output->addHtml( Xml::element( 'h2', null, LogPage::logName( 'rights' ) . "\n" ) );
 		$viewer->showList( $output );
 	}
-	
 }
