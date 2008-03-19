@@ -1325,6 +1325,7 @@ $2 تغییرمسیرها فهرست شوند &nbsp; جستجو برای $3 $9',
 'noimage'                   => 'هیچ پرونده‌ای با این نام موجود نیست می‌توانید $1',
 'noimage-linktext'          => 'آن را بار کنید.',
 'uploadnewversion-linktext' => 'بارکردن نسخهٔ جدیدی از پرونده',
+'imagepage-searchdupe'      => 'جستجو برای پرونده‌های تکراری',
 
 # File reversion
 'filerevert'                => 'واگردانی $1',
@@ -2690,5 +2691,17 @@ $1',
 'filepath-summary' => 'این صفحهٔ ویژه نشانی کامل برای یک پرونده را نشان می‌دهد. تصاویر با کیفیت وضوح کامل نشان داده می‌شوند، سایر انواع پرونده با برنامه مخصوص به خودشان باز می‌شوند.
 
 نشانی پرونده را بدون پیشوند «{{ns:image}}:» وارد کنید.',
+
+# Special:FileDuplicateSearch
+'fileduplicatesearch'          => 'جستجو برای پرونده‌های تکراری',
+'fileduplicatesearch-summary'  => 'جستجو برای پرونده‌های تکراری بر اساس مقدار درهم‌شدهٔ آن‌ها صورت می‌گیرد.
+
+نام پرونده را بدون پیشوند «{{ns:image}}:» وارد کنید.',
+'fileduplicatesearch-legend'   => 'جستجوی موارد تکراری',
+'fileduplicatesearch-filename' => 'نام پرونده:',
+'fileduplicatesearch-submit'   => 'جستجو',
+'fileduplicatesearch-info'     => '$1 Ã— $2 پیکسل<br />اندازه پرونده: $3<br />نوع MIME: $4',
+'fileduplicatesearch-result-1' => 'پروندهٔ «$1» مورد تکراری ندارد.',
+'fileduplicatesearch-result-n' => 'پروندهٔ «$1» دارای {{PLURAL:$2|یک مورد تکراری|$2 مورد تکراری}} است.',
 
 );
