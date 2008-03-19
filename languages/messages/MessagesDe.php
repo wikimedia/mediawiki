@@ -1214,6 +1214,7 @@ Bitte gib der Datei einen Namen, der den Inhalt besser beschreibt.',
 'noimage'                   => 'Eine Datei mit diesem Namen existiert nicht, du kannst sie jedoch $1.',
 'noimage-linktext'          => 'hochladen',
 'uploadnewversion-linktext' => 'Eine neue Version dieser Datei hochladen',
+'imagepage-searchdupe'      => 'Suche nach Datei-Duplikaten',
 
 # File reversion
 'filerevert'                => 'Zurücksetzen von „$1“',
@@ -2089,7 +2090,7 @@ $1',
 'noimages'              => 'Keine Dateien gefunden.',
 'ilsubmit'              => 'Suchen',
 'bydate'                => 'nach Datum',
-'sp-newimages-showfrom' => 'Zeige neue Dateien ab $1',
+'sp-newimages-showfrom' => 'Zeige neue Dateien ab $1, $2 Uhr',
 
 # Bad image list
 'bad_image_list' => 'Format:
@@ -2529,5 +2530,17 @@ Bitte bestätige, dass du diese Seite wirklich neu erstellen möchten.",
 'filepath-summary' => 'Mit dieser Spezialseite lässt sich der komplette Pfad der aktuellen Version einer Datei ohne Umweg abfragen. Die angefragte Datei wird direkt dargestellt bzw. mit der verknüpften Anwendung gestartet.
 
 Die Eingabe muss ohne den Zusatz „{{ns:image}}:“ erfolgen.',
+
+# Special:FileDuplicateSearch
+'fileduplicatesearch'          => 'Suche nach Datei-Duplikaten',
+'fileduplicatesearch-summary'  => 'Suche nach Datei-Duplikaten auf Basis ihrer Hash-Werte.
+
+Die Eingabe muss ohne den Zusatz „{{ns:image}}:“ erfolgen.',
+'fileduplicatesearch-legend'   => 'Suche nach Duplikaten',
+'fileduplicatesearch-filename' => 'Dateiname:',
+'fileduplicatesearch-submit'   => 'Suchen',
+'fileduplicatesearch-info'     => '$1 × $2 Pixel<br />Dateigröße: $3<br />MIME-Typ: $4',
+'fileduplicatesearch-result-1' => 'Die Datei "$1" hat keine identischen Duplikate.',
+'fileduplicatesearch-result-n' => 'Die Datei "$1" hat {{PLURAL:$2|1 identisches Duplikat|$2 identische Duplikate}}.',
 
 );
