@@ -102,6 +102,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 13407) MediaWiki:Powersearch is used in two places
 * (bug 13403) Fix cache invalidation of history pages when old revisions change
 * (bug 11563) Deprecated SearchMySQL4 class; merged code to SearchMySQL
+* (bug 12801) Fix link in subtitle message in AJAX search
 
 
 === API changes in 1.13 ===
