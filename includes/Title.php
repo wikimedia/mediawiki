@@ -1193,7 +1193,18 @@ class Title {
 				$right = 'protect';
 			}
 			if( '' != $right && !$user->isAllowed( $right ) ) {
-				$errors[] = array( 'protectedpagetext', $right );
+				//Users with 'editprotected' permission can edit protected pages
+				if( $action=='edit' && $user->isAllowed( 'editprotected' ) ) {
+					//Users with 'editprotected' permission cannot edit protected pages
+					//with cascading option turned on.
+					if($this->mCascadeRestriction) {
+						$errors[] = array( 'protectedpagetext', $right );
+					} else {
+						//Nothing, user can edit!
+					}
+				} else {
+					$errors[] = array( 'protectedpagetext', $right );
+				}
 			}
 		}
 

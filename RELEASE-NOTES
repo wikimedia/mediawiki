@@ -115,18 +115,22 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Implemented {bl,ei,iu}redirect (lists links through redirects as well)
 * (bug 13154) Introduced subpages flag to meta=siteinfo&siprop=namespaces
 * (bug 13157) Added ucuserprefix parameter to list=usercontibs
-* (bug 12394) Added rctitles parameter to list=recentchanges, making rcid retrieval easier
+* (bug 12394) Added rctitles parameter to list=recentchanges, making rcid
+  retrieval easier
 * (bug 13218) Fix inclusion of " character in hyperlinks
 * Added watch and unwatch parameters to action=delete and action=move
 * Added action=edit
 * (bug 11401) Added xmldoublequote to xml formatter
-* Added rvsection parameter to prop=revisions to allow fetching the content of a certain section only
+* Added rvsection parameter to prop=revisions to allow fetching the content of
+  a certain section only
 * Introduced list=allimages
 * (bug 13371) Build page set from image hashes
 * Mark non-existent messages in meta=allmessages as missing
 * (bug 13390) One invalid title no longer kills an entire API query
 * (bug 13419) Fix gblredirect so it actually works
 * (bug 13418) Disable eiredirect because it's useless
+* (bug 13137) Allow setting 'editprotected' right separately from 'protect', 	 
+  so groups may optionally edit protected pages without having 'protect' perms
 
 === Languages updated in 1.13 ===
 
