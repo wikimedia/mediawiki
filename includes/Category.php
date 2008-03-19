@@ -273,11 +273,13 @@ class Category extends CategoryListBase {
 			);
 		}
 
+		$cond1 = $dbw->conditional( 'page_namespace='.NS_CATEGORY, 1, 'NULL' );
+		$cond2 = $dbw->conditional( 'page_namespace='.NS_IMAGE, 1, 'NULL' );
 		$result = $dbw->selectRow(
 			array( 'categorylinks', 'page' ),
 			array( 'COUNT(*) AS pages',
-				'COUNT(IF(page_namespace='.NS_CATEGORY.',1,NULL)) AS subcats',
-				'COUNT(IF(page_namespace='.NS_IMAGE.',1,NULL)) AS files'
+				   "COUNT($cond1) AS subcats",
+				   "COUNT($cond2) AS files"
 			),
 			array( 'cl_to' => $this->mNames[0], 'page_id = cl_from' ),
 			__METHOD__,
