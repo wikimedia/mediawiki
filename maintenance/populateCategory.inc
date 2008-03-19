@@ -18,7 +18,7 @@ function populateCategory( $begin, $maxlag, $throttle, $force ) {
 		);
 		if( $row ) {
 			echo "Category table already populated.  Use php ".
-			"maintenace/populateCategory.php\n--force from the command line ".
+			"maintenance/populateCategory.php\n--force from the command line ".
 			"to override.\n";
 			return true;
 		}
