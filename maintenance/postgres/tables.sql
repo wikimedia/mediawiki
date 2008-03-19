@@ -544,7 +544,8 @@ CREATE TABLE category (
   cat_files    INTEGER  NOT NULL  DEFAULT 0,
   cat_hidden   SMALLINT NOT NULL  DEFAULT 0
 );
-CREATE INDEX category_title ON category(cat_title, cat_pages);
+CREATE UNIQUE INDEX category_title ON category(cat_title);
+CREATE INDEX category_pages ON category(cat_pages);
 
 CREATE TABLE mediawiki_version (
   type         TEXT         NOT NULL,
