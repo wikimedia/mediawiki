@@ -1032,7 +1032,7 @@ wgUploadAutoFill = {$autofill};
 				 "<input tabindex='1' type='file' name='wpUploadFile' id='wpUploadFile' " .
 				   "onfocus='" . 
 				     "toggle_element_activation(\"wpUploadFileURL\",\"wpUploadFile\");" .
-				     "toggle_element_check(\"wpSourceTypeFile\",\"wpSourceTypeURL\")'" .
+				     "toggle_element_check(\"wpSourceTypeFile\",\"wpSourceTypeURL\")' " .
 				     "onchange='fillDestFilename(\"wpUploadFile\")' size='60' />" .
 				wfMsgHTML( 'upload_source_file' ) . "<br/>" .
 				"<input type='radio' id='wpSourceTypeURL' name='wpSourceType' value='web' " .
@@ -1040,7 +1040,7 @@ wgUploadAutoFill = {$autofill};
 				"<input tabindex='1' type='text' name='wpUploadFileURL' id='wpUploadFileURL' " .
 				  "onfocus='" .
 				    "toggle_element_activation(\"wpUploadFile\",\"wpUploadFileURL\");" .
-				    "toggle_element_check(\"wpSourceTypeURL\",\"wpSourceTypeFile\")'" .
+				    "toggle_element_check(\"wpSourceTypeURL\",\"wpSourceTypeFile\")' " .
 				    "onchange='fillDestFilename(\"wpUploadFileURL\")' size='60' disabled='disabled' />" .
 				wfMsgHtml( 'upload_source_url' ) ;
 		} else {
