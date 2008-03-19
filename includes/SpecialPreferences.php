@@ -343,7 +343,6 @@ class PreferencesForm {
 
 		$msg = '';
 		if ( !wfRunHooks( 'SavePreferences', array( $this, $wgUser, &$msg ) ) ) {
-			print "(($msg))";
 			$this->mainPrefsForm( 'error', $msg );
 			return;
 		}
