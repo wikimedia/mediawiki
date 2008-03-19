@@ -50,6 +50,7 @@ function rebuildRecentChangesTablePass1()
 			'rc_this_oldid' => 'rev_id',
 			'rc_last_oldid' => 0, // is this ok?
 			'rc_type'       => $dbw->conditional( 'page_is_new != 0', RC_NEW, RC_EDIT ),
+			'rc_deleted'    => 'rev_deleted'
 		), array(
 			'rev_timestamp > ' . $dbw->addQuotes( $dbw->timestamp( $cutoff ) ),
 			'rev_page=page_id'
