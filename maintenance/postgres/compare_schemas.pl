@@ -156,6 +156,7 @@ searchindex
 trackbacks
 transcache
 user_newtalk
+updatelog
 ';
 
 ## Make sure all tables in main tables.sql are accounted for int the parsertest.
@@ -371,19 +372,6 @@ rc_namespace   int SMALLINT
 rd_namespace   int SMALLINT
 tl_namespace   int SMALLINT
 wl_namespace   int SMALLINT
-
-## "Bools"
-ar_minor_edit    tinyint CHAR
-iw_trans         tinyint CHAR
-page_is_new      tinyint CHAR
-page_is_redirect tinyint CHAR
-rc_bot           tinyint CHAR
-rc_deleted       tinyint CHAR
-rc_minor         tinyint CHAR
-rc_new           tinyint CHAR
-rc_patrolled     tinyint CHAR
-rev_deleted      tinyint CHAR
-rev_minor_edit   tinyint CHAR
 
 ## Easy enough to change if a wiki ever does grow this big:
 ss_good_articles bigint INTEGER
