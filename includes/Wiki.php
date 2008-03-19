@@ -2,7 +2,6 @@
 /**
  * MediaWiki is the to-be base class for this whole project
  */
-
 class MediaWiki {
 
 	var $GET; /* Stores the $_GET variables at time of creation, can be changed */
@@ -16,6 +15,9 @@ class MediaWiki {
 	/**
 	 * Stores key/value pairs to circumvent global variables
 	 * Note that keys are case-insensitive!
+	 *
+	 * @param String $key key to store
+	 * @param mixed $value value to put for the key
 	 */
 	function setVal( $key, &$value ) {
 		$key = strtolower( $key );
@@ -25,6 +27,9 @@ class MediaWiki {
 	/**
 	 * Retrieves key/value pairs to circumvent global variables
 	 * Note that keys are case-insensitive!
+	 *
+	 * @param String $key key to get
+	 * @param mixed $default default value if if the key doesn't exist
 	 */
 	function getVal( $key, $default = '' ) {
 		$key = strtolower( $key );
@@ -36,11 +41,17 @@ class MediaWiki {
 
 	/**
 	 * Initialization of ... everything
-	 @return Article either the object to become $wgArticle, or NULL
+	 * Performs the request too
+	 *
+	 * @param Title $title
+	 * @param OutputPage $output
+	 * @param User $user
+	 * @param WebRequest $request
+	 * @return Article either the object to become $wgArticle, or NULL
 	 */
-	function initialize ( &$title, &$output, &$user, $request) {
-		wfProfileIn( 'MediaWiki::initialize' );
-		$this->preliminaryChecks ( $title, $output, $request ) ;
+	function initialize( &$title, &$output, &$user, $request ) {
+		wfProfileIn( __METHOD__ );
+		$this->preliminaryChecks( $title, $output, $request ) ;
 		$article = NULL;
 		if ( !$this->initializeSpecialCases( $title, $output, $request ) ) {
 			$article = $this->initializeArticle( $title, $request );
@@ -52,13 +63,21 @@ class MediaWiki {
 				throw new MWException( "Shouldn't happen: MediaWiki::initializeArticle() returned neither an object nor a URL" );
 			}
 		}
-		wfProfileOut( 'MediaWiki::initialize' );
+		wfProfileOut( __METHOD__ );
 		return $article;
 	}
 
-	function checkMaxLag( $maxLag ) {
-		global $wgLoadBalancer;
-		list( $host, $lag ) = $wgLoadBalancer->getMaxLag();
+	/**
+	 * Check if the maximum lag of database slaves is higher that $maxLag, and
+	 * if it's the case, output an error message
+	 *
+	 * @param LoadBalancer $loadBalancer
+	 * @param int $maxLag maximum lag allowed for the request, as supplied by
+	 *                    the client
+	 * @return bool true if the requet can continue
+	 */
+	function checkMaxLag( $loadBalancer, $maxLag ) {
+		list( $host, $lag ) = $loadBalancer->getMaxLag();
 		if ( $lag > $maxLag ) {
 			wfMaxlagError( $host, $lag, $maxLag );
 			return false;
@@ -71,14 +90,20 @@ class MediaWiki {
 	/**
 	 * Checks some initial queries
 	 * Note that $title here is *not* a Title object, but a string!
+	 *
+	 * @param String $title
+	 * @param String $action
+	 * @param OutputPage $output
+	 * @param WebRequest $request
+	 * @param Language $lang
+	 * @return Title object to be $wgTitle
 	 */
-	function checkInitialQueries( $title,$action,&$output,$request, $lang) {
-		if ($request->getVal( 'printable' ) == 'yes') {
+	function checkInitialQueries( $title, $action, &$output, $request, $lang ) {
+		if( $request->getVal( 'printable' ) == 'yes' ){
 			$output->setPrintable();
 		}
 
-		$ret = NULL ;
-
+		$ret = NULL;
 
 		if ( '' == $title && 'delete' != $action ) {
 			$ret = Title::newMainPage();
@@ -87,10 +112,9 @@ class MediaWiki {
 			$ret = Title::newFromID( $curid );
 		} else {
 			$ret = Title::newFromURL( $title );
-			/* check variant links so that interwiki links don't have to worry about
-			   the possible different language variants
-			*/
-			if( count($lang->getVariants()) > 1 && !is_null($ret) && $ret->getArticleID() == 0 )
+			// check variant links so that interwiki links don't have to worry
+			// about the possible different language variants
+			if( count( $lang->getVariants() ) > 1 && !is_null( $ret ) && $ret->getArticleID() == 0 )
 				$lang->findVariantLink( $title, $ret );
 
 		}
@@ -102,13 +126,17 @@ class MediaWiki {
 				$ret = $rev->getTitle();
 			}
 		}
-		return $ret ;
+		return $ret;
 	}
 
 	/**
 	 * Checks for search query and anon-cannot-read case
+	 *
+	 * @param Title $title
+	 * @param OutputPage $output
+	 * @param WebRequest $request
 	 */
-	function preliminaryChecks ( &$title, &$output, $request ) {
+	function preliminaryChecks( &$title, &$output, $request ) {
 
 		if( $request->getCheck( 'search' ) ) {
 			// Compatibility with old search URLs which didn't use Special:Search
@@ -131,14 +159,22 @@ class MediaWiki {
 	}
 
 	/**
-	 * Initialize the object to be known as $wgArticle for special cases
+	 * Initialize some special cases:
+	 * - bad titles
+	 * - local interwiki redirects
+	 * - redirect loop
+	 * - special pages
+	 *
+	 * @param Title $title
+	 * @param OutputPage $output
+	 * @param WebRequest $request
+	 * @return bool true if the request is already executed
 	 */
-	function initializeSpecialCases ( &$title, &$output, $request ) {
-		global $wgRequest;
-		wfProfileIn( 'MediaWiki::initializeSpecialCases' );
+	function initializeSpecialCases( &$title, &$output, $request ) {
+		wfProfileIn( __METHOD__ );
 
-		$action = $this->getVal('Action');
-		if( !$title or $title->getDBkey() == '' ) {
+		$action = $this->getVal( 'Action' );
+		if( !$title || $title->getDBkey() == '' ) {
 			$title = SpecialPage::getTitleFor( 'Badtitle' );
 			# Die now before we mess up $wgArticle and the skin stops working
 			throw new ErrorPageError( 'badtitle', 'badtitletext' );
@@ -155,20 +191,19 @@ class MediaWiki {
 				$title = SpecialPage::getTitleFor( 'Badtitle' );
 				throw new ErrorPageError( 'badtitle', 'badtitletext' );
 			}
-		} else if ( ( $action == 'view' ) && !$wgRequest->wasPosted() && 
+		} else if ( ( $action == 'view' ) && !$request->wasPosted() && 
 			(!isset( $this->GET['title'] ) || $title->getPrefixedDBKey() != $this->GET['title'] ) &&
 			!count( array_diff( array_keys( $this->GET ), array( 'action', 'title' ) ) ) )
 		{
 			$targetUrl = $title->getFullURL();
 			// Redirect to canonical url, make it a 301 to allow caching
-			global $wgUsePathInfo;
-			if( $targetUrl == $wgRequest->getFullRequestURL() ) {
+			if( $targetUrl == $request->getFullRequestURL() ) {
 				$message = "Redirect loop detected!\n\n" .
 					"This means the wiki got confused about what page was " .
 					"requested; this sometimes happens when moving a wiki " .
 					"to a new server or changing the server configuration.\n\n";
 
-				if( $wgUsePathInfo ) {
+				if( $this->getVal( 'UsePathInfo' ) ) {
 					$message .= "The wiki is trying to interpret the page " .
 						"title from the URL path portion (PATH_INFO), which " .
 						"sometimes fails depending on the web server. Try " .
@@ -186,29 +221,30 @@ class MediaWiki {
 				return false;
 			} else {
 				$output->setSquidMaxage( 1200 );
-				$output->redirect( $targetUrl, '301');
+				$output->redirect( $targetUrl, '301' );
 			}
 		} else if ( NS_SPECIAL == $title->getNamespace() ) {
 			/* actions that need to be made when we have a special pages */
 			SpecialPage::executePath( $title );
 		} else {
 			/* No match to special cases */
-			wfProfileOut( 'MediaWiki::initializeSpecialCases' );
+			wfProfileOut( __METHOD__ );
 			return false;
 		}
 		/* Did match a special case */
-		wfProfileOut( 'MediaWiki::initializeSpecialCases' );
+		wfProfileOut( __METHOD__ );
 		return true;
 	}
 
 	/**
 	 * Create an Article object of the appropriate class for the given page.
+	 *
 	 * @param Title $title
-	 * @return Article
+	 * @return Article object
 	 */
 	static function articleFromTitle( $title ) {
 		$article = null;
-		wfRunHooks('ArticleFromTitle', array( &$title, &$article ) );
+		wfRunHooks( 'ArticleFromTitle', array( &$title, &$article ) );
 		if ( $article ) {
 			return $article;
 		}
@@ -235,80 +271,85 @@ class MediaWiki {
 	/**
 	 * Initialize the object to be known as $wgArticle for "standard" actions
 	 * Create an Article object for the page, following redirects if needed.
+	 *
 	 * @param Title $title
 	 * @param Request $request
 	 * @param string $action
 	 * @return mixed an Article, or a string to redirect to another URL
 	 */
-	function initializeArticle( $title, $request ) {
-		global $wgTitle;
-		wfProfileIn( 'MediaWiki::initializeArticle' );
+	function initializeArticle( &$title, $request ) {
+		wfProfileIn( __METHOD__ );
 
-		$action = $this->getVal('Action');
-		$article = $this->articleFromTitle( $title );
+		$action = $this->getVal( 'action' );
+		$article = self::articleFromTitle( $title );
 
 		// Namespace might change when using redirects
 		if( ( $action == 'view' || $action == 'render' ) && !$request->getVal( 'oldid' ) &&
 						$request->getVal( 'redirect' ) != 'no' &&
-						!( $wgTitle->getNamespace() == NS_IMAGE && wfFindFile( $wgTitle->getText() ) ) ) {
+						!( $title->getNamespace() == NS_IMAGE && wfFindFile( $title->getText() ) ) ) {
 
-			$dbr = wfGetDB(DB_SLAVE);
-			$article->loadPageData($article->pageDataFromTitle($dbr, $title));
+			$dbr = wfGetDB( DB_SLAVE );
+			$article->loadPageData( $article->pageDataFromTitle( $dbr, $title ) );
 
-			/* Follow redirects only for... redirects */
-			if ($article->mIsRedirect) {
+			// Follow redirects only for... redirects
+			if( $article->mIsRedirect ) {
 				$target = $article->followRedirect();
 				if( is_string( $target ) ) {
-					global $wgDisableHardRedirects;
-					if( !$wgDisableHardRedirects ) {
+					if( !$this->getVal( 'DisableHardRedirects' ) ) {
 						// we'll need to redirect
 						return $target;
 					}
 				}
 				if( is_object( $target ) ) {
-					/* Rewrite environment to redirected article */
-					$rarticle = $this->articleFromTitle($target);
-					$rarticle->loadPageData($rarticle->pageDataFromTitle($dbr,$target));
-					if ($rarticle->mTitle->mArticleID) {
+					// Rewrite environment to redirected article
+					$rarticle = self::articleFromTitle( $target );
+					$rarticle->loadPageData( $rarticle->pageDataFromTitle( $dbr, $target ) );
+					if ( $rarticle->mTitle->exists() ) {
+						$rarticle->setRedirectedFrom( $title );
 						$article = $rarticle;
-						$wgTitle = $target;
-						$article->setRedirectedFrom( $title );
-					} else {
-						$wgTitle = $title;
+						$title = $target;
 					}
 				}
 			} else {
-				$wgTitle = $article->mTitle;
+				$title = $article->mTitle;
 			}
 		}
-		wfProfileOut( 'MediaWiki::initializeArticle' );
+		wfProfileOut( __METHOD__ );
 		return $article;
 	}
 
 	/**
-	 * Cleaning up by doing deferred updates, calling loadbalancer and doing the output
+	 * Cleaning up by doing deferred updates, calling loadbalancer and doing the
+	 * output
+	 *
+	 * @param Array $deferredUpdates array of updates to do 
+	 * @param LoadBalancer $loadBalancer
+	 * @param OutputPage $output
 	 */
-	function finalCleanup ( &$deferredUpdates, &$loadBalancer, &$output ) {
-		wfProfileIn( 'MediaWiki::finalCleanup' );
+	function finalCleanup( &$deferredUpdates, &$loadBalancer, &$output ) {
+		wfProfileIn( __METHOD__ );
 		$this->doUpdates( $deferredUpdates );
 		$this->doJobs();
 		$loadBalancer->saveMasterPos();
 		# Now commit any transactions, so that unreported errors after output() don't roll back the whole thing
 		$loadBalancer->commitMasterChanges();
 		$output->output();
-		wfProfileOut( 'MediaWiki::finalCleanup' );
+		wfProfileOut( __METHOD__ );
 	}
 
 	/**
-	 * Deferred updates aren't really deferred anymore. It's important to report errors to the
-	 * user, and that means doing this before OutputPage::output(). Note that for page saves,
-	 * the client will wait until the script exits anyway before following the redirect.
+	 * Deferred updates aren't really deferred anymore. It's important to report
+	 * errors to the user, and that means doing this before OutputPage::output().
+	 * Note that for page saves, the client will wait until the script exits
+	 * anyway before following the redirect.
+	 *
+	 * @param Array $updates array of objects that hold an update to do
 	 */
-	function doUpdates ( &$updates ) {
-		wfProfileIn( 'MediaWiki::doUpdates' );
+	function doUpdates( &$updates ) {
+		wfProfileIn( __METHOD__ );
 		/* No need to get master connections in case of empty updates array */
 		if (!$updates) {
-			wfProfileOut('MediaWiki::doUpdates');
+			wfProfileOut( __METHOD__ );
 			return;
 		}
 		
@@ -321,29 +362,29 @@ class MediaWiki {
 				$dbw->commit();
 			}
 		}
-		wfProfileOut( 'MediaWiki::doUpdates' );
+		wfProfileOut( __METHOD__ );
 	}
 
 	/**
 	 * Do a job from the job queue
 	 */
 	function doJobs() {
-		global $wgJobRunRate;
+		$jobRunRate = $this->getVal( 'JobRunRate' );
 
-		if ( $wgJobRunRate <= 0 || wfReadOnly() ) {
+		if ( $jobRunRate <= 0 || wfReadOnly() ) {
 			return;
 		}
-		if ( $wgJobRunRate < 1 ) {
+		if ( $jobRunRate < 1 ) {
 			$max = mt_getrandmax();
-			if ( mt_rand( 0, $max ) > $max * $wgJobRunRate ) {
+			if ( mt_rand( 0, $max ) > $max * $jobRunRate ) {
 				return;
 			}
 			$n = 1;
 		} else {
-			$n = intval( $wgJobRunRate );
+			$n = intval( $jobRunRate );
 		}
 
-		while ( $n-- && false != ($job = Job::pop())) {
+		while ( $n-- && false != ( $job = Job::pop() ) ) {
 			$output = $job->toString() . "\n";
 			$t = -wfTime();
 			$success = $job->run();
@@ -361,25 +402,30 @@ class MediaWiki {
 	/**
 	 * Ends this task peacefully
 	 */
-	function restInPeace ( &$loadBalancer ) {
+	function restInPeace() {
 		wfLogProfilingData();
 		wfDebug( "Request ended normally\n" );
 	}
 
 	/**
 	 * Perform one of the "standard" actions
+	 *
+	 * @param OutputPage $output
+	 * @param Article $article
+	 * @param Title $title
+	 * @param User $user
+	 * @param WebRequest $request
 	 */
 	function performAction( &$output, &$article, &$title, &$user, &$request ) {
+		wfProfileIn( __METHOD__ );
 
-		wfProfileIn( 'MediaWiki::performAction' );
-
-		if ( !wfRunHooks('MediaWikiPerformAction', array($output, $article, $title, $user, $request)) ) {
-			wfProfileOut( 'MediaWiki::performAction' );
+		if ( !wfRunHooks( 'MediaWikiPerformAction', array( $output, $article, $title, $user, $request ) ) ) {
+			wfProfileOut( __METHOD__ );
 			return;
 		}
 
-		$action = $this->getVal('Action');
-		if( in_array( $action, $this->getVal('DisabledActions',array()) ) ) {
+		$action = $this->getVal( 'Action' );
+		if( in_array( $action, $this->getVal( 'DisabledActions', array() ) ) ) {
 			/* No such action; this will switch to the default case */
 			$action = 'nosuchaction';
 		}
@@ -451,8 +497,7 @@ class MediaWiki {
 				}
 				break;
 			case 'history':
-				global $wgRequest;
-				if( $wgRequest->getFullRequestURL() == $title->getInternalURL( 'action=history' ) ) {
+				if( $request->getFullRequestURL() == $title->getInternalURL( 'action=history' ) ) {
 					$output->setSquidMaxage( $this->getVal( 'SquidMaxage' ) );
 				}
 				$history = new PageHistory( $article );
@@ -467,10 +512,9 @@ class MediaWiki {
 					$output->showErrorPage( 'nosuchaction', 'nosuchactiontext' );
 				}
 		}
-		wfProfileOut( 'MediaWiki::performAction' );
+		wfProfileOut( __METHOD__ );
 
 	}
 
 }; /* End of class MediaWiki */
-
 

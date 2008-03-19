@@ -47,7 +47,7 @@ OutputPage::setEncodings(); # Not really used yet
 
 $maxLag = $wgRequest->getVal( 'maxlag' );
 if ( !is_null( $maxLag ) ) {
-	if ( !$mediaWiki->checkMaxLag( $maxLag ) ) {
+	if ( !$mediaWiki->checkMaxLag( $wgLoadBalancer, $maxLag ) ) {
 		exit;
 	}
 }
@@ -73,25 +73,27 @@ if ( $wgUseAjax && $action == 'ajax' ) {
 	exit;
 }
 
-
 wfProfileOut( 'main-misc-setup' );
 
 # Setting global variables in mediaWiki
-$mediaWiki->setVal( 'Server', $wgServer );
-$mediaWiki->setVal( 'DisableInternalSearch', $wgDisableInternalSearch );
 $mediaWiki->setVal( 'action', $action );
-$mediaWiki->setVal( 'SquidMaxage', $wgSquidMaxage );
-$mediaWiki->setVal( 'EnableDublinCoreRdf', $wgEnableDublinCoreRdf );
-$mediaWiki->setVal( 'EnableCreativeCommonsRdf', $wgEnableCreativeCommonsRdf );
 $mediaWiki->setVal( 'CommandLineMode', $wgCommandLineMode );
-$mediaWiki->setVal( 'UseExternalEditor', $wgUseExternalEditor );
 $mediaWiki->setVal( 'DisabledActions', $wgDisabledActions );
+$mediaWiki->setVal( 'DisableHardRedirects', $wgDisableHardRedirects );
+$mediaWiki->setVal( 'DisableInternalSearch', $wgDisableInternalSearch );
+$mediaWiki->setVal( 'EnableCreativeCommonsRdf', $wgEnableCreativeCommonsRdf );
+$mediaWiki->setVal( 'EnableDublinCoreRdf', $wgEnableDublinCoreRdf );
+$mediaWiki->setVal( 'JobRunRate', $wgJobRunRate );
+$mediaWiki->setVal( 'Server', $wgServer );
+$mediaWiki->setVal( 'SquidMaxage', $wgSquidMaxage );
+$mediaWiki->setVal( 'UseExternalEditor', $wgUseExternalEditor );
+$mediaWiki->setVal( 'UsePathInfo', $wgUsePathInfo );
 
-$wgArticle = $mediaWiki->initialize ( $wgTitle, $wgOut, $wgUser, $wgRequest );
-$mediaWiki->finalCleanup ( $wgDeferredUpdateList, $wgLoadBalancer, $wgOut );
+$wgArticle = $mediaWiki->initialize( $wgTitle, $wgOut, $wgUser, $wgRequest );
+$mediaWiki->finalCleanup( $wgDeferredUpdateList, $wgLoadBalancer, $wgOut );
 
 # Not sure when $wgPostCommitUpdateList gets set, so I keep this separate from finalCleanup
 $mediaWiki->doUpdates( $wgPostCommitUpdateList );
 
-$mediaWiki->restInPeace( $wgLoadBalancer );
+$mediaWiki->restInPeace();
 
