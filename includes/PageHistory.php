@@ -351,7 +351,7 @@ class PageHistory {
 			return $this->mSkin->makeKnownLinkObj(
 				$this->mTitle,
 				$last,
-				"diff=" . $rev->getId() . "&oldid=prev" );
+				"diff=" . $prevRev->getId() . "&oldid=prev" );
 		} elseif( !$prevRev->userCan(Revision::DELETED_TEXT) || !$nextRev->userCan(Revision::DELETED_TEXT) ) {
 			return $last;
 		} else {
