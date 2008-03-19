@@ -1569,8 +1569,7 @@ class Database {
 				$list .= "$value";
 			} elseif ( ($mode == LIST_AND || $mode == LIST_OR) && is_array($value) ) {
 				if( count( $value ) == 0 ) {
-					// Empty input... or should this throw an error?
-					$list .= '0';
+					throw new MWException( __METHOD__.': empty input' );
 				} elseif( count( $value ) == 1 ) {
 					// Special-case single values, as IN isn't terribly efficient
 					$list .= $field." = ".$this->addQuotes( $value[0] );
