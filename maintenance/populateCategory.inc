@@ -55,10 +55,10 @@ function populateCategory( $begin, $maxlag, $throttle, $force ) {
 		# Use the row to update the category count
 		$cat = Category::newFromName( $name );
 		if( !is_object( $cat ) ) {
-			var_dump( $cat );
-			throw new MWException( "The category named $name is not valid?!" );
+			echo "The category named $name is not valid?!\n";
+		} else {
+			$cat->refreshCounts();
 		}
-		$cat->refreshCounts();
 
 		++$i;
 		if( !($i % REPORTING_INTERVAL) ) {
