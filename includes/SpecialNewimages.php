@@ -175,8 +175,9 @@ function wfSpecialNewimages( $par, $specialPage ) {
 		$botpar='';
 	}
 	$now = wfTimestampNow();
-	$date = $wgLang->timeanddate( $now, true );
-	$dateLink = $sk->makeKnownLinkObj( $titleObj, wfMsgHtml( 'sp-newimages-showfrom', $date ), 'from='.$now.$botpar.$searchpar );
+	$d = $wgLang->date( $now, true );
+	$t = $wgLang->time( $now, true );
+	$dateLink = $sk->makeKnownLinkObj( $titleObj, wfMsgHtml( 'sp-newimages-showfrom', $d, $t ), 'from='.$now.$botpar.$searchpar );
 
 	$botLink = $sk->makeKnownLinkObj($titleObj, wfMsgHtml( 'showhidebots', ($hidebots ? wfMsgHtml('show') : wfMsgHtml('hide'))),'hidebots='.($hidebots ? '0' : '1').$searchpar);
 

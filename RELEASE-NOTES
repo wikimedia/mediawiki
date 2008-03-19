@@ -105,6 +105,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 12801) Fix link in subtitle message in AJAX search
 * (bug 13428) Fix regression in protection form layout HTML validity
 * (bug 9403) Sanitize newlines from search term input
+* (bug 13429) Separate date and time in message sp-newimages-showfrom
 
 
 === API changes in 1.13 ===
