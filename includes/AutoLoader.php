@@ -91,6 +91,7 @@ function __autoload($className) {
 		'FewestrevisionsPage' => 'includes/SpecialFewestrevisions.php',
 		'FileDeleteForm' => 'includes/FileDeleteForm.php',
 		'FileDependency' => 'includes/CacheDependency.php',
+		'FileDuplicateSearch' => 'includes/SpecialFileDuplicateSearch.php',
 		'FileRevertForm' => 'includes/FileRevertForm.php',
 		'FileStore' => 'includes/FileStore.php',
 		'FormatExif' => 'includes/Exif.php',
