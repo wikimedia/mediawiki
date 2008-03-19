@@ -1344,6 +1344,7 @@ function do_postgres_updates() {
 	);
 
 	$newtables = array(
+		array("category",          "patch-category.sql"),
 		array("mediawiki_version", "patch-mediawiki_version.sql"),
 		array("mwuser",            "patch-mwuser.sql"),
 		array("pagecontent",       "patch-pagecontent.sql"),
@@ -1410,10 +1411,10 @@ function do_postgres_updates() {
 		array("interwiki",    "iw_local",        "smallint", "iw_local::smallint DEFAULT 0"),
 		array("interwiki",    "iw_trans",        "smallint", "iw_trans::smallint DEFAULT 0"),
 		array("ipblocks",     "ipb_auto",        "smallint", "ipb_auto::smallint DEFAULT 0"),
-		array("ipblocks",     "ipb_anon_only",        "smallint", "ipb_anon_only::smallint DEFAULT 0"),
-		array("ipblocks",     "ipb_create_account",        "smallint", "ipb_create_account::smallint DEFAULT 1"),
-		array("ipblocks",     "ipb_enable_autoblock",        "smallint", "ipb_enable_autoblock::smallint DEFAULT 1"),
-		array("ipblocks",     "ipb_block_email",        "smallint", "ipb_block_email::smallint DEFAULT 0"),
+		array("ipblocks",     "ipb_anon_only",   "smallint", "ipb_anon_only::smallint DEFAULT 0"),
+		array("ipblocks",     "ipb_create_account", "smallint", "ipb_create_account::smallint DEFAULT 1"),
+		array("ipblocks",     "ipb_enable_autoblock", "smallint", "ipb_enable_autoblock::smallint DEFAULT 1"),
+		array("ipblocks",     "ipb_block_email", "smallint", "ipb_block_email::smallint DEFAULT 0"),
 		array("ipblocks",     "ipb_address",     "text",     "ipb_address::text"),
 		array("ipblocks",     "ipb_deleted",     "smallint", "ipb_deleted::smallint"),
 		array("math",         "math_inputhash",  "bytea",    "decode(math_inputhash,'escape')"),
