@@ -400,8 +400,6 @@ $messages = array(
 'categoriespagetext'             => 'הקטגוריות הבאות כוללות דפים או קובצי מדיה.',
 'special-categories-sort-count'  => 'סידור לפי מספר חברים',
 'special-categories-sort-abc'    => 'סידור לפי סדר האלף בית',
-'special-categories-sort-asc'    => 'בסדר עולה',
-'special-categories-sort-desc'   => 'בסדר יורד',
 'pagecategories'                 => '{{plural:$1|קטגוריה|קטגוריות}}',
 'category_header'                => 'דפים בקטגוריה "$1"',
 'subcategories'                  => 'קטגוריות משנה',
@@ -1463,6 +1461,8 @@ $2',
 'notargettext'            => 'לא ציינתם דף מטרה או משתמש לגביו תבוצע פעולה זו.',
 'pager-newer-n'           => '{{plural:$1|הבאה|$1 הבאות}}',
 'pager-older-n'           => '{{plural:$1|הקודמת|$1 הקודמות}}',
+'pager-sort-asc'          => 'בסדר עולה',
+'pager-sort-desc'         => 'בסדר יורד',
 
 # Book sources
 'booksources'               => 'משאבי ספרות חיצוניים',
