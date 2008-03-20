@@ -315,6 +315,11 @@ $messages = array(
 
 # Categories related messages
 'categories'                     => 'Catégories',
+'categoriespagetext'             => 'Les catégories suivantes existent dans le wiki.',
+'special-categories-sort-count'  => 'tri par compte',
+'special-categories-sort-abc'    => 'tri alphabétique',
+'special-categories-sort-asc'    => 'croissant',
+'special-categories-sort-desc'   => 'décroissant',
 'pagecategories'                 => '{{PLURAL:$1|Catégorie|Catégories}}',
 'category_header'                => 'Pages dans la catégorie « $1 »',
 'subcategories'                  => 'Sous-catégories',
@@ -322,7 +327,6 @@ $messages = array(
 'category-empty'                 => "''Cette catégorie ne contient aucun article, sous-catégorie ou fichier multimédia.''",
 'hidden-categories'              => '{{PLURAL:$1|Catégorie cachée|Catégories cachées}}',
 'hidden-category-category'       => 'Catégories cachées', # Name of the category where hidden categories will be listed
-'subcategorycount'               => '{{PLURAL:$1|Une sous-catégorie est listée |$1 sous-catégories sont listées}} ci-dessous. Si un lien « (200 précédents) » ou « (200 suivants) » est présent ci-dessus, il peut mener à d’autres sous-catégories.',
 'category-subcat-count'          => '{{PLURAL:$2|Cette catégorie ne dispose que de la sous-catégorie suivante.|Cette catégorie dispose de {{PLURAL:$1|sous-catégorie|$1 sous-catégories}}, sur un total de $2.}}',
 'category-subcat-count-limited'  => 'Cette catégorie dispose {{PLURAL:$1|d’une sous-catégorie|de $1 sous-catégories}}.',
 'category-article-count'         => '{{PLURAL:$2|Cette catégorie contient uniquement la page suivante.|{{PLURAL:$1|La page suivante figure|Les $1 pages suivantes figurent}} dans cette catégorie, sur un total de $2.}}',
@@ -807,7 +811,6 @@ La raison donnée par $3 était ''$2''.",
 'nohistory'           => 'Il n’existe pas d’historique pour cette page.',
 'revnotfound'         => 'Version introuvable',
 'revnotfoundtext'     => 'La version précédente de cette page n’a pas pu être retrouvée. Veuillez vérifier l’URL que vous avez utilisée pour accéder à cette page.',
-'loadhist'            => 'Chargement de l’historique de la page',
 'currentrev'          => 'Version actuelle',
 'revisionasof'        => 'Version du $1',
 'revision-info'       => 'Version du $1 par $2',
@@ -817,7 +820,6 @@ La raison donnée par $3 était ''$2''.",
 'cur'                 => 'actu',
 'next'                => 'suiv',
 'last'                => 'diff',
-'orig'                => 'orig',
 'page_first'          => 'premier',
 'page_last'           => 'dernier',
 'histlegend'          => 'Légende : ({{MediaWiki:Cur}}) = différence avec la version actuelle, ({{MediaWiki:Last}}) = différence avec la version précédente, <b>m</b> = modification mineure',
@@ -995,6 +997,7 @@ $2 Inclure les pages de redirection<br /> Rechercher $3 $9',
 'files'                    => 'Fichiers',
 
 # User rights
+'userrights'                       => 'Gestion des droits utilisateur',
 'userrights-lookup-user'           => 'Gestion des droits utilisateur',
 'userrights-user-editname'         => 'Entrez un nom d’utilisateur :',
 'editusergroup'                    => 'Modification des groupes utilisateurs',
@@ -1216,6 +1219,7 @@ Un clic en tête de colonne change l’ordre d’affichage.',
 'noimage'                   => 'Aucun fichier possèdant ce nom n’existe, vous pouvez $1.',
 'noimage-linktext'          => 'en importer un',
 'uploadnewversion-linktext' => 'Importer une nouvelle version de ce fichier',
+'imagepage-searchdupe'      => 'Recherche des fichiers en double',
 
 # File reversion
 'filerevert'                => 'Révoquer $1',
@@ -1332,7 +1336,6 @@ Il y a {{PLURAL:$7|'''$7''' article|'''$7''' articles}} dans [[meta:Help:Job_que
 'mostcategories'          => 'Articles utilisant le plus de catégories',
 'mostimages'              => 'Images les plus utilisées',
 'mostrevisions'           => 'Articles les plus modifiés',
-'allpages'                => 'Toutes les pages',
 'prefixindex'             => 'Toutes les pages débutant par…',
 'shortpages'              => 'Pages courtes',
 'longpages'               => 'Pages longues',
@@ -1366,13 +1369,6 @@ Il y a {{PLURAL:$7|'''$7''' article|'''$7''' articles}} dans [[meta:Help:Job_que
 'booksources-go'            => 'Valider',
 'booksources-text'          => 'Voici une liste de liens vers des sites vendant des livres neufs et d’occasion et sur lesquels vous trouverez peut-être des informations sur les ouvrages que vous cherchez. Ces liens ne sont fournis que dans le but de faciliter les recherches aux utilisateurs, {{SITENAME}} n’étant liée à aucune de ces sociétés.',
 
-'categoriespagetext' => 'Les catégories suivantes existent dans le wiki.',
-'data'               => 'Données',
-'userrights'         => 'Gestion des droits utilisateur',
-'groups'             => 'Groupes utilisateurs',
-'alphaindexline'     => '$1 à $2',
-'version'            => 'Version',
-
 # Special:Log
 'specialloguserlabel'  => 'Utilisateur :',
 'speciallogtitlelabel' => 'Titre :',
@@ -1385,6 +1381,8 @@ Il y a {{PLURAL:$7|'''$7''' article|'''$7''' articles}} dans [[meta:Help:Job_que
 'log-title-wildcard'   => 'Chercher les titres commençant par le texte suivant',
 
 # Special:Allpages
+'allpages'          => 'Toutes les pages',
+'alphaindexline'    => '$1 à $2',
 'nextpage'          => 'Page suivante ($1)',
 'prevpage'          => 'Page précédente ($1)',
 'allpagesfrom'      => 'Afficher les pages à partir de :',
@@ -2496,4 +2494,17 @@ Essayez la prévisualisation normale.',
 
 Entrez le nom du fichier sans le préfixe « {{ns:image}}: »',
 
+# Special:FileDuplicateSearch
+'fileduplicatesearch'          => 'Recherche des fichiers en double',
+'fileduplicatesearch-summary'  => 'Recherche pour des fichiers en double sur la base de valeurs fragmentaires.
+
+Entrez le nom du fichier sans le préfixe « {{ns:image}}: ».',
+'fileduplicatesearch-legend'   => 'Recherche d’un double',
+'fileduplicatesearch-filename' => 'Nom du fichier :',
+'fileduplicatesearch-submit'   => 'Rechercher',
+'fileduplicatesearch-info'     => '$1 × $2 pixels<br />Taille du fichier : $3<br />MIME type : $4',
+'fileduplicatesearch-result-1' => 'Le fichier « $1 » n’a pas de double identique.',
+'fileduplicatesearch-result-n' => 'Le fichier « $1 » a {{PLURAL:$2|1 double identique|$2 doubles identiques}}.',
+
 );
+
