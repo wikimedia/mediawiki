@@ -1133,8 +1133,6 @@ $wgMessageStructure = array(
 		'notargettext',
 		'pager-newer-n',
 		'pager-older-n',
-		'pager-sort-asc',
-		'pager-sort-desc',
 	),
 	'booksources' => array(
 		'booksources',

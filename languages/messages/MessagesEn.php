@@ -1729,8 +1729,6 @@ The [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] length is '''\$7''
 'notargettext'                    => 'You have not specified a target page or user to perform this function on.',
 'pager-newer-n'                   => '{{PLURAL:$1|newer 1|newer $1}}',
 'pager-older-n'                   => '{{PLURAL:$1|older 1|older $1}}',
-'pager-sort-asc'                  => 'ascending',
-'pager-sort-desc'                 => 'descending',
 
 # Book sources
 'booksources'               => 'Book sources',

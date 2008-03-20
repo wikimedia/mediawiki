@@ -49,11 +49,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Add category table to allow better tracking of category membership counts
 ** (bug 1212) Give correct membership counts on the pages of large categories
 ** Use category table for more efficient display of Special:Categories
-** Allow sorting by number of members on Special:Categories
 * (bug 1459) Search for duplicate files by hash: Special:FileDuplicateSearch
-* Allow the user to choose whether to use a descending or ascending sort in
-  AlphabeticPager-based special pages (Categories, Listusers, Protectedpages/
-  titles).
 
 === Bug fixes in 1.13 ===
 
