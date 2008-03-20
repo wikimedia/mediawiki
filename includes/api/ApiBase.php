@@ -503,6 +503,8 @@ abstract class ApiBase {
 	* @return (allowMultiple ? an_array_of_values : a_single_value) 
 	*/
 	protected function parseMultiValue($valueName, $value, $allowMultiple, $allowedValues) {
+		if( !trim( $value ) )
+			return array();
 		$valuesList = explode('|', $value);
 		if (!$allowMultiple && count($valuesList) != 1) {
 			$possibleValues = is_array($allowedValues) ? "of '" . implode("', '", $allowedValues) . "'" : '';
