@@ -451,11 +451,10 @@ class ApiMain extends ApiBase {
 	 */
 	protected function getCredits() {
 		return array(
-			'Active API developers:',
+			'API developers:',
 			'    Roan Kattouw <Firstname>.<Lastname>@home.nl (lead developer Sep 2007-present)',
-			'    Vasiliev Victor vasilvv at gee mail dot com',
-			'Retired developers:',
-			'    Yuri Astrakhan <Firstname><Lastname>@gmail.com (creator, former lead developer Sep 2006-Sep 2007)',
+			'    Victor Vasiliev - vasilvv at gee mail dot com',
+			'    Yuri Astrakhan <Firstname><Lastname>@gmail.com (creator, lead developer Sep 2006-Sep 2007)',
 			'',
 			'Please send your comments, suggestions and questions to mediawiki-api@lists.wikimedia.org',
 			'or file a bug report at http://bugzilla.wikimedia.org/'
