@@ -206,6 +206,7 @@ class Category extends CategoryListBase {
 	public function getSubcatCount() { return $this->getX( 'mSubcats' ); }
 	/** @return mixed Number of member files, or false on failure */
 	public function getFileCount() { return $this->getX( 'mFiles' ); }
+
 	/**
 	 * This is not implemented in the base class, because arrays of Titles are
 	 * evil.
@@ -216,8 +217,7 @@ class Category extends CategoryListBase {
 		if( !$this->initialize() ) {
 			return false;
 		}
-		# FIXME is there a better way to do this?
-		return Title::newFromText( "Category:{$this->mNames[0]}" );
+		return Title::makeTitleSafe( NS_CATEGORY, $this->mNames[0] );
 	}
 
 	/** Generic accessor */
