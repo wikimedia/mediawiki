@@ -117,8 +117,6 @@ $wgMessageStructure = array(
 		'categoriespagetext',
 		'special-categories-sort-count',
 		'special-categories-sort-abc',
-		'special-categories-sort-asc',
-		'special-categories-sort-desc',
 		'pagecategories',
 		'pagecategorieslink',
 		'category_header',
@@ -1135,6 +1133,8 @@ $wgMessageStructure = array(
 		'notargettext',
 		'pager-newer-n',
 		'pager-older-n',
+		'pager-sort-asc',
+		'pager-sort-desc',
 	),
 	'booksources' => array(
 		'booksources',
