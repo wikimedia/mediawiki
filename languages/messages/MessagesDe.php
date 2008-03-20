@@ -124,6 +124,7 @@ $specialPageAliases = array(
 	'Unlockdb'                  => array( 'Datenbank_entsperren' ),
 	'Userrights'                => array( 'Benutzerrechte' ),
 	'MIMEsearch'                => array( 'MIME-Typ-Suche' ),
+	'FileDuplicateSearch'       => array( 'Datei-Duplikat-Suche' ),
 	'Unwatchedpages'            => array( 'Ignorierte_Seiten', 'Unbeobachtete_Seiten' ),
 	'Listredirects'             => array( 'Weiterleitungen' ),
 	'Revisiondelete'            => array( 'Versionslöschung' ),
@@ -278,6 +279,11 @@ $messages = array(
 
 # Categories related messages
 'categories'                     => 'Kategorien',
+'categoriespagetext'             => 'Die folgenden Kategorien in {{SITENAME}} enthalten Seiten oder Medien:',
+'special-categories-sort-count'  => 'Sortierung nach Anzahl',
+'special-categories-sort-abc'    => 'Sortierung nach Alphabet',
+'special-categories-sort-asc'    => 'aufsteigend',
+'special-categories-sort-desc'   => 'absteigend',
 'pagecategories'                 => '{{PLURAL:$1|Kategorie|Kategorien}}',
 'category_header'                => 'Seiten in der Kategorie „$1“',
 'subcategories'                  => 'Unterkategorien',
@@ -285,7 +291,6 @@ $messages = array(
 'category-empty'                 => "''Diese Kategorie enthält zur Zeit keine Seiten oder Medien.''",
 'hidden-categories'              => '{{PLURAL:$1|Versteckte Kategorie|Versteckte Kategorien}}',
 'hidden-category-category'       => 'Versteckte Kategorien', # Name of the category where hidden categories will be listed
-'subcategorycount'               => '{{PLURAL:$1|Es wird $1 Unterkategorie|Es werden $1 Unterkategorien}} angezeigt.',
 'category-subcat-count'          => '{{PLURAL:$2|Diese Kategorie enthält die folgende Unterkategorie.|Diese Kategorie enthält die {{PLURAL:$1|folgende Unterkategorie|folgenden $1 Unterkategorien}} (von insgesamt $2 Kategorie).}}',
 'category-subcat-count-limited'  => 'Diese Kategorie enthält die {{PLURAL:$1|folgende Unterkategorie|folgenden $1 Unterkategorien}}.',
 'category-article-count'         => '{{PLURAL:$2|Diese Kategorie enthält die folgende Seite.|Die {{PLURAL:$1|folgende Seite ist|folgenden $1 Seiten sind}} in dieser Kategorie enthalten (von insgesamt $2 Seiten).}}',
@@ -803,7 +808,6 @@ Grund der Sperre: ''$2''",
 'nohistory'           => 'Es gibt keine Versionsgeschichte für diese Seite.',
 'revnotfound'         => 'Diese Version wurde nicht gefunden.',
 'revnotfoundtext'     => 'Die Version dieser Seite, nach der du suchst, konnte nicht gefunden werden. Bitte überprüfe die URL dieser Seite.',
-'loadhist'            => 'Lade Liste mit früheren Versionen',
 'currentrev'          => 'Aktuelle Version',
 'revisionasof'        => 'Version vom $1',
 'revision-info'       => 'Dies ist eine alte Version. Zeitpunkt der Bearbeitung: $1 durch $2.',
@@ -813,7 +817,6 @@ Grund der Sperre: ''$2''",
 'cur'                 => 'Aktuell',
 'next'                => 'Nächste',
 'last'                => 'Vorherige',
-'orig'                => 'Original',
 'page_first'          => 'Anfang',
 'page_last'           => 'Ende',
 'histlegend'          => 'Zur Anzeige der Änderungen einfach die zu vergleichenden Versionen auswählen und die Schaltfläche „{{int:compareselectedversions}}“ klicken.<br />
@@ -999,6 +1002,7 @@ Wenn du dich mit dem Thema auskennst, kannst du selbst die Seite „[[$1]]“ ve
 'files'                    => 'Dateien',
 
 # User rights
+'userrights'                       => 'Benutzerrechteverwaltung', # Not used as normal message but as header for the special page itself
 'userrights-lookup-user'           => 'Verwalte Gruppenzugehörigkeit',
 'userrights-user-editname'         => 'Benutzername:',
 'editusergroup'                    => 'Benutzerrechte bearbeiten',
@@ -1355,8 +1359,6 @@ auf die bereits die erste Weiterleitung zeigen sollte.',
 'mostimages-summary'              => 'Diese Spezialseite zeigt eine Liste der meistbenutzten Dateien.',
 'mostrevisions'                   => 'Seiten mit den meisten Versionen',
 'mostrevisions-summary'           => 'Diese Spezialseite zeigt eine Liste von Seiten mit den meisten Bearbeitungen.',
-'allpages'                        => 'Alle Seiten',
-'allpages-summary'                => "Diese Spezialseite listet den Seitenbestand von {{SITENAME}} von A bis Z auf. Sortiert wird alphabetisch, erst Zahlen, dann Großbuchstaben, Kleinbuchstaben und schließlich Sonderzeichen. ''A&nbsp;10'' findet sich vor ''AZ'', der ''Aal'' ist jedoch noch dahinter eingeordnet.",
 'prefixindex'                     => 'Alle Seiten (mit Präfix)',
 'prefixindex-summary'             => 'Diese Spezialseite zeigt alle Seiten, die mit der eingegebenen Zeichenfolge („Präfix“) beginnen. Die Ausgabe kann auf einen Namensraum eingeschränkt werden.',
 'shortpages'                      => 'Kurze Seiten',
@@ -1401,13 +1403,6 @@ auf die bereits die erste Weiterleitung zeigen sollte.',
 'booksources-go'            => 'Suchen',
 'booksources-text'          => 'Dies ist eine Liste mit Links zu Internetseiten, die neue und gebrauchte Bücher verkaufen. Dort kann es auch weitere Informationen über die Bücher geben. {{SITENAME}} ist mit keinem dieser Anbieter geschäftlich verbunden.',
 
-'categoriespagetext' => 'Die folgenden Kategorien in {{SITENAME}} enthalten Seiten oder Medien:',
-'data'               => 'Daten',
-'userrights'         => 'Benutzerrechteverwaltung',
-'groups'             => 'Benutzergruppen',
-'alphaindexline'     => '$1 bis $2',
-'version'            => 'Version',
-
 # Special:Log
 'specialloguserlabel'  => 'Benutzer:',
 'speciallogtitlelabel' => 'Titel:',
@@ -1420,6 +1415,9 @@ auf die bereits die erste Weiterleitung zeigen sollte.',
 'log-title-wildcard'   => 'Titel beginnt mit …',
 
 # Special:Allpages
+'allpages'          => 'Alle Seiten',
+'allpages-summary'  => "Diese Spezialseite listet den Seitenbestand von {{SITENAME}} von A bis Z auf. Sortiert wird alphabetisch, erst Zahlen, dann Großbuchstaben, Kleinbuchstaben und schließlich Sonderzeichen. ''A&nbsp;10'' findet sich vor ''AZ'', der ''Aal'' ist jedoch noch dahinter eingeordnet.",
+'alphaindexline'    => '$1 bis $2',
 'nextpage'          => 'Nächste Seite ($1)',
 'prevpage'          => 'Vorherige Seite ($1)',
 'allpagesfrom'      => 'Seiten anzeigen ab:',
@@ -2504,6 +2502,7 @@ Bitte bestätige, dass du diese Seite wirklich neu erstellen möchten.",
 'unknown_extension_tag' => 'Unbekannter Extension-Tag „$1“',
 
 # Special:Version
+'version'                          => 'Version', # Not used as normal message but as header for the special page itself
 'version-extensions'               => 'Installierte Erweiterungen',
 'version-specialpages'             => 'Spezialseiten',
 'version-parserhooks'              => 'Parser-Hooks',
@@ -2532,15 +2531,15 @@ Bitte bestätige, dass du diese Seite wirklich neu erstellen möchten.",
 Die Eingabe muss ohne den Zusatz „{{ns:image}}:“ erfolgen.',
 
 # Special:FileDuplicateSearch
-'fileduplicatesearch'          => 'Suche nach Datei-Duplikaten',
-'fileduplicatesearch-summary'  => 'Suche nach Datei-Duplikaten auf Basis ihrer Hash-Werte.
+'fileduplicatesearch'          => 'Datei-Duplikat-Suche',
+'fileduplicatesearch-summary'  => 'Suche nach Datei-Duplikaten auf Basis ihres Hash-Wertes.
 
 Die Eingabe muss ohne den Zusatz „{{ns:image}}:“ erfolgen.',
 'fileduplicatesearch-legend'   => 'Suche nach Duplikaten',
 'fileduplicatesearch-filename' => 'Dateiname:',
 'fileduplicatesearch-submit'   => 'Suchen',
 'fileduplicatesearch-info'     => '$1 × $2 Pixel<br />Dateigröße: $3<br />MIME-Typ: $4',
-'fileduplicatesearch-result-1' => 'Die Datei "$1" hat keine identischen Duplikate.',
-'fileduplicatesearch-result-n' => 'Die Datei "$1" hat {{PLURAL:$2|1 identisches Duplikat|$2 identische Duplikate}}.',
+'fileduplicatesearch-result-1' => 'Die Datei „$1“ hat keine identischen Duplikate.',
+'fileduplicatesearch-result-n' => 'Die Datei „$1“ hat {{PLURAL:$2|1 identisches Duplikat|$2 identische Duplikate}}.',
 
 );
