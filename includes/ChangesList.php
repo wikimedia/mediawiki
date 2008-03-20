@@ -505,7 +505,7 @@ class EnhancedChangesList extends ChangesList {
 	 */
 	function recentChangesBlockGroup( $block ) {
 		global $wgLang, $wgContLang, $wgRCShowChangedSize;
-		$r = '<table cellpadding="0" cellspacing="0" border="0"><tr>';
+		$r = '<table cellpadding="0" cellspacing="0" border="0" style="background: none"><tr>';
 
 		# Collate list of users
 		$isnew = false;
@@ -617,7 +617,7 @@ class EnhancedChangesList extends ChangesList {
 		$r .= "</td></tr></table>\n";
 
 		# Sub-entries
-		$r .= '<div id="'.$rci.'" style="display:none;"><table cellpadding="0" cellspacing="0"  border="0">';
+		$r .= '<div id="'.$rci.'" style="display:none;"><table cellpadding="0" cellspacing="0"  border="0" style="background: none">';
 		foreach( $block as $rcObj ) {
 			# Get rc_xxxx variables
 			// FIXME: Would be good to replace this extract() call with something that explicitly initializes local variables.
@@ -756,7 +756,7 @@ class EnhancedChangesList extends ChangesList {
 		extract( $rcObj->mAttribs );
 		$curIdEq = 'curid='.$rc_cur_id;
 
-		$r = '<table cellspacing="0" cellpadding="0" border="0"><tr>';
+		$r = '<table cellspacing="0" cellpadding="0" border="0" style="background: none"><tr>';
 
 		$r .= '<td valign="top" style="white-space: nowrap"><tt>' . $this->spacerArrow() . '&nbsp;';
 		
