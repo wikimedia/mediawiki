@@ -505,7 +505,7 @@ class EnhancedChangesList extends ChangesList {
 	 */
 	function recentChangesBlockGroup( $block ) {
 		global $wgLang, $wgContLang, $wgRCShowChangedSize;
-		$r = '<table cellpadding="0" cellspacing="0"><tr>';
+		$r = '<table cellpadding="0" cellspacing="0" border="0"><tr>';
 
 		# Collate list of users
 		$isnew = false;
@@ -617,7 +617,7 @@ class EnhancedChangesList extends ChangesList {
 		$r .= "</td></tr></table>\n";
 
 		# Sub-entries
-		$r .= '<div id="'.$rci.'" style="display:none;"><table cellpadding="0" cellspacing="0">';
+		$r .= '<div id="'.$rci.'" style="display:none;"><table cellpadding="0" cellspacing="0" border="0">';
 		foreach( $block as $rcObj ) {
 			# Get rc_xxxx variables
 			// FIXME: Would be good to replace this extract() call with something that explicitly initializes local variables.
@@ -625,7 +625,7 @@ class EnhancedChangesList extends ChangesList {
 
 			#$r .= '<tr><td valign="top">'.$this->spacerArrow();
 			$r .= '<tr><td valign="top">'.$this->spacerIndent();
-			$r .= '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
+			$r .= '<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>';
 			$r .= $this->recentChangesFlags( $rc_new, $rc_minor, $rcObj->unpatrolled, '&nbsp;', $rc_bot );
 			$r .= '&nbsp;&nbsp;</td><td valign="top">';
 
@@ -761,7 +761,7 @@ class EnhancedChangesList extends ChangesList {
 		extract( $rcObj->mAttribs );
 		$curIdEq = 'curid='.$rc_cur_id;
 
-		$r = '<table cellspacing="0" cellpadding="0"><tr>';
+		$r = '<table cellspacing="0" cellpadding="0" border="0"><tr>';
 
 		# spacerArrow() causes issues in FF
 		$r .= $this->spacerColumn();
