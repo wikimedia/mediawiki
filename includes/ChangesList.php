@@ -558,7 +558,7 @@ class EnhancedChangesList extends ChangesList {
 		$r .= '<td valign="top">'.$tl.'</td>';
 
 		# Main line
-		$r .= '<td valign="top"><tt>&nbsp;'.$this->recentChangesFlags( $isnew, false, $unpatrolled, '&nbsp;', $bot );
+		$r .= '<td valign="top"><tt>'.$this->recentChangesFlags( $isnew, false, $unpatrolled, '&nbsp;', $bot );
 
 		# Timestamp
 		$r .= '&nbsp;'.$block[0]->timestamp.'&nbsp;</tt></td><td>';
@@ -772,7 +772,7 @@ class EnhancedChangesList extends ChangesList {
 		$r .= '<td valign="top">';
 		
 		# Flag and Timestamp
-		$r .= '<tt>&nbsp;';
+		$r .= '<tt>';
 		if( $rc_type == RC_MOVE || $rc_type == RC_MOVE_OVER_REDIRECT ) {
 			$r .= '&nbsp;&nbsp;&nbsp;&nbsp;'; // 4 flags -> 4 spaces
 		} else {
