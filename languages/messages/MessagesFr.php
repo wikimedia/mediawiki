@@ -2467,6 +2467,7 @@ Essayez la prévisualisation normale.',
 'unknown_extension_tag' => 'Balise d’extension « $1 » inconnue',
 
 # Special:Version
+'version'                          => 'Version',
 'version-extensions'               => 'Extensions installées',
 'version-specialpages'             => 'Pages spéciales',
 'version-parserhooks'              => 'Extensions du parseur',
