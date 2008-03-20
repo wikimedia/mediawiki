@@ -3367,6 +3367,10 @@ class Article {
 		#
 		# Sometimes I wish we had INSERT ... ON DUPLICATE KEY UPDATE.
 		$insertCats = array_merge( $added, $deleted );
+		if( !$insertCats ) {
+			# Okay, nothing to do
+			return;
+		}
 		$insertRows = array();
 		foreach( $insertCats as $cat ) {
 			$insertRows[] = array( 'cat_title' => $cat );
