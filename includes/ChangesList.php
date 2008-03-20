@@ -75,7 +75,7 @@ class ChangesList {
 				: $nothing;
 		$f .= $bot ? '<span class="bot">' . $this->message['boteditletter'] . '</span>' : $nothing;
 		$f .= $patrolled ? '<span class="unpatrolled">!</span>' : $nothing;
-		return "<tt>$f</tt>";
+		return $f;
 	}
 
 	/**
@@ -331,7 +331,7 @@ class OldChangesList extends ChangesList {
 			$this->insertDiffHist($s, $rc, $unpatrolled);
 
 			# M, N, b and ! (minor, new, bot and unpatrolled)
-			$s .= ' ' . $this->recentChangesFlags( $rc_type == RC_NEW, $rc_minor, $unpatrolled, '', $rc_bot );
+			$s .= '<tt> '.$this->recentChangesFlags( $rc_type == RC_NEW, $rc_minor, $unpatrolled, '', $rc_bot ).'</tt>';
 			$this->insertArticleLink($s, $rc, $unpatrolled, $watched);
 
 			wfProfileOut($fname.'-page');
@@ -505,7 +505,7 @@ class EnhancedChangesList extends ChangesList {
 	 */
 	function recentChangesBlockGroup( $block ) {
 		global $wgLang, $wgContLang, $wgRCShowChangedSize;
-		$r = '<table cellpadding="0" cellspacing="0" border="0"><tr>';
+		$r = '<table cellpadding="0" cellspacing="0" border="1"><tr>';
 
 		# Collate list of users
 		$isnew = false;
@@ -555,13 +555,13 @@ class EnhancedChangesList extends ChangesList {
 		$toggleLink = "javascript:toggleVisibility('$rci','$rcm','$rcl')";
 		$tl  = '<span id="'.$rcm.'"><a href="'.$toggleLink.'">' . $this->sideArrow() . '</a></span>';
 		$tl .= '<span id="'.$rcl.'" style="display:none"><a href="'.$toggleLink.'">' . $this->downArrow() . '</a></span>';
-		$r .= '<td valign="top">'.$tl;
+		$r .= '<td valign="top">'.$tl.'</td>';
 
 		# Main line
-		$r .= ' '.$this->recentChangesFlags( $isnew, false, $unpatrolled, '&nbsp;', $bot );
+		$r .= '<td valign="top"><tt>&nbsp;'.$this->recentChangesFlags( $isnew, false, $unpatrolled, '&nbsp;', $bot );
 
 		# Timestamp
-		$r .= '&nbsp;<tt>'.$block[0]->timestamp.'&nbsp;</tt></td><td>';
+		$r .= '&nbsp;'.$block[0]->timestamp.'&nbsp;</tt></td><td>';
 
 		# Article link
 		if ( $namehidden )
@@ -617,17 +617,17 @@ class EnhancedChangesList extends ChangesList {
 		$r .= "</td></tr></table>\n";
 
 		# Sub-entries
-		$r .= '<div id="'.$rci.'" style="display:none;"><table cellpadding="0" cellspacing="0" border="0">';
+		$r .= '<div id="'.$rci.'" style="display:none;"><table cellpadding="0" cellspacing="0" border="1">';
 		foreach( $block as $rcObj ) {
 			# Get rc_xxxx variables
 			// FIXME: Would be good to replace this extract() call with something that explicitly initializes local variables.
 			extract( $rcObj->mAttribs );
 
 			#$r .= '<tr><td valign="top">'.$this->spacerArrow();
-			$r .= '<tr><td valign="top">'.$this->spacerIndent();
-			$r .= '<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>';
+			$r .= '<tr><td valign="top">';
+			$r .= '<tt>'.$this->spacerIndent() . $this->spacerIndent();
 			$r .= $this->recentChangesFlags( $rc_new, $rc_minor, $rcObj->unpatrolled, '&nbsp;', $rc_bot );
-			$r .= '&nbsp;&nbsp;</td><td valign="top">';
+			$r .= '&nbsp;</tt></td><td valign="top">';
 
 			$o = '';
 			if( $rc_this_oldid != 0 ) {
@@ -744,7 +744,11 @@ class EnhancedChangesList extends ChangesList {
 		return '<td width="12"></td>';
 	}
 	
-	// Adds a few spaces
+	/**
+	 * Add a set of spaces
+	 * @return string HTML <td> tag
+	 * @access private
+	 */	
 	function spacerIndent() {
 		return '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
 	}
@@ -761,19 +765,20 @@ class EnhancedChangesList extends ChangesList {
 		extract( $rcObj->mAttribs );
 		$curIdEq = 'curid='.$rc_cur_id;
 
-		$r = '<table cellspacing="0" cellpadding="0" border="0"><tr>';
+		$r = '<table cellspacing="0" cellpadding="0" border="1"><tr>';
 
 		# spacerArrow() causes issues in FF
 		$r .= $this->spacerColumn();
 		$r .= '<td valign="top">';
 		
 		# Flag and Timestamp
+		$r .= '<tt>&nbsp;';
 		if( $rc_type == RC_MOVE || $rc_type == RC_MOVE_OVER_REDIRECT ) {
-			$r .= '&nbsp;&nbsp;&nbsp;&nbsp;';
+			$r .= '&nbsp;&nbsp;&nbsp;&nbsp;'; // 4 flags -> 4 spaces
 		} else {
-			$r .= '&nbsp;'.$this->recentChangesFlags( $rc_type == RC_NEW, $rc_minor, $rcObj->unpatrolled, '&nbsp;', $rc_bot );
+			$r .= $this->recentChangesFlags( $rc_type == RC_NEW, $rc_minor, $rcObj->unpatrolled, '&nbsp;', $rc_bot );
 		}
-		$r .= '&nbsp;<tt>'.$rcObj->timestamp.'</tt>&nbsp;&nbsp;</td><td>';
+		$r .= '&nbsp;'.$rcObj->timestamp.'&nbsp;</tt></td><td>';
 		
 		# Article link
 		if ( $rc_log_type !='' ) {
