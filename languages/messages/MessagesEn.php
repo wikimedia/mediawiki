@@ -564,6 +564,11 @@ XHTML id names.
 
 # Categories related messages
 'categories'                     => 'Categories',
+'categoriespagetext'             => 'The following categories contain pages or media.',
+'special-categories-sort-count'  => 'sort by count',
+'special-categories-sort-abc'    => 'sort alphabetically',
+'special-categories-sort-asc'    => 'ascending',
+'special-categories-sort-desc'   => 'descending',
 'pagecategories'                 => '{{PLURAL:$1|Category|Categories}}',
 'pagecategorieslink'             => 'Special:Categories', # don't translate or duplicate this message to other languages
 'category_header'                => 'Pages in category "$1"',
@@ -1318,6 +1323,9 @@ Make sure that this change will maintain historical page continuity.
 'files'                    => 'Files',
 
 # User rights
+'userrights'                       => 'User rights management',
+'userrights-summary'               => '', # only translate this message to other languages if you have to change it
+'groups'                           => 'User groups',
 'userrights-lookup-user'           => 'Manage user groups',
 'userrights-user-editname'         => 'Enter a username:',
 'editusergroup'                    => 'Edit User Groups',
@@ -1691,8 +1699,6 @@ The [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] length is '''\$7''
 'mostimages-summary'              => '', # only translate this message to other languages if you have to change it
 'mostrevisions'                   => 'Pages with the most revisions',
 'mostrevisions-summary'           => '', # only translate this message to other languages if you have to change it
-'allpages'                        => 'All pages',
-'allpages-summary'                => '', # only translate this message to other languages if you have to change it
 'prefixindex'                     => 'Prefix index',
 'prefixindex-summary'             => '', # only translate this message to other languages if you have to change it
 'shortpages'                      => 'Short pages',
@@ -1738,20 +1744,13 @@ The [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] length is '''\$7''
 'booksources-go'            => 'Go',
 'booksources-text'          => 'Below is a list of links to other sites that sell new and used books, and may also have further information about books you are looking for:',
 
-'categoriespagetext'            => 'The following categories contain pages or media.',
-'special-categories-sort-count' => 'sort by count',
-'special-categories-sort-abc'   => 'sort alphabetically',
-'special-categories-sort-asc'   => 'ascending',
-'special-categories-sort-desc'  => 'descending',
-'data'                          => 'Data',
-'userrights'                    => 'User rights management',
-'userrights-summary'            => '', # only translate this message to other languages if you have to change it
-'groups'                        => 'User groups',
-'isbn'                          => 'ISBN', # only translate this message to other languages if you have to change it
-'rfcurl'                        => 'http://tools.ietf.org/html/rfc$1', # don't translate or duplicate this message to other languages
-'pubmedurl'                     => 'http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Retrieve&db=pubmed&dopt=Abstract&list_uids=$1', # don't translate or duplicate this message to other languages
-'alphaindexline'                => '$1 to $2',
-'version'                       => 'Version',
+# Magic words
+'isbn'      => 'ISBN', # only translate this message to other languages if you have to change it
+'rfcurl'    => 'http://tools.ietf.org/html/rfc$1', # don't translate or duplicate this message to other languages
+'pubmedurl' => 'http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Retrieve&db=pubmed&dopt=Abstract&list_uids=$1', # don't translate or duplicate this message to other languages
+
+'data'           => 'Data',
+'version'        => 'Version',
 
 # Special:Log
 'specialloguserlabel'  => 'User:',
@@ -1766,6 +1765,9 @@ You can narrow down the view by selecting a log type, the user name, or the affe
 'log-title-wildcard'   => 'Search titles starting with this text',
 
 # Special:Allpages
+'allpages'          => 'All pages',
+'allpages-summary'  => '', # only translate this message to other languages if you have to change it
+'alphaindexline'    => '$1 to $2',
 'nextpage'          => 'Next page ($1)',
 'prevpage'          => 'Previous page ($1)',
 'allpagesfrom'      => 'Display pages starting at:',
