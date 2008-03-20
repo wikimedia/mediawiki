@@ -96,7 +96,7 @@ var wgUploadWarningObj = {
 
 		// Set a value in the form indicating that the warning is acknowledged and 
 		// doesn't need to be redisplayed post-upload
-		if ( warning == '' || warning == '&nbsp' ) {
+		if ( warning == '' || warning == '&nbsp;' ) {
 			ackElt.value = '';
 		} else {
 			ackElt.value = '1';
