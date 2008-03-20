@@ -75,9 +75,8 @@ abstract class IndexPager implements Pager {
 	 * going backwards, we'll display the last page of results, but the last
 	 * result will be at the bottom, not the top.
 	 *
-	 * "Default" is really a misnomer here, since now it's possible for the
-	 * user to directly modify this with query parameters.  TODO: rename that
-	 * to $mDescending, maybe set this to that by reference for compatibility.
+	 * Like $mIndexField, $mDefaultDirection will be a single value even if the
+	 * class supports multiple default directions for different order types.
 	 */
 	public $mDefaultDirection;
 	public $mIsBackwards;
@@ -119,19 +118,10 @@ abstract class IndexPager implements Pager {
 		}
 
 		if( !isset( $this->mDefaultDirection ) ) {
-			$dir = $this->getDefaultDirection();
+			$dir = $this->getDefaultDirections();
 			$this->mDefaultDirection = is_array( $dir )
 				? $dir[$this->mOrderType]
 				: $dir;
-		}
-
-		# FIXME: Can we figure out a less confusing convention than using a
-		# "direction" parameter when we already have "dir" and "order"?
-		if( $this->mRequest->getVal( 'direction' ) == 'asc' ) {
-			$this->mDefaultDirection = false;
-		}
-		if( $this->mRequest->getVal( 'direction' ) == 'desc' ) {
-			$this->mDefaultDirection = true;
 		}
 	}
 
@@ -345,7 +335,6 @@ abstract class IndexPager implements Pager {
 			unset( $this->mDefaultQuery['dir'] );
 			unset( $this->mDefaultQuery['offset'] );
 			unset( $this->mDefaultQuery['limit'] );
-			unset( $this->mDefaultQuery['direction'] );
 			unset( $this->mDefaultQuery['order'] );
 		}
 		return $this->mDefaultQuery;
@@ -362,7 +351,7 @@ abstract class IndexPager implements Pager {
 	}
 
 	/**
-	 * Get a query array for the prev, next, first and last links.
+	 * Get a URL query array for the prev, next, first and last links.
 	 */
 	function getPagingQueries() {
 		if ( !$this->mQueryDone ) {
@@ -449,6 +438,9 @@ abstract class IndexPager implements Pager {
 	 * 'querykey' => 'indexfield' pairs, so that a request with &count=querykey
 	 * will use indexfield to sort.  In this case, the first returned key is
 	 * the default.
+	 *
+	 * Needless to say, it's really not a good idea to use a non-unique index
+	 * for this!  That won't page right.
 	 */
 	abstract function getIndexField();
 
@@ -464,12 +456,12 @@ abstract class IndexPager implements Pager {
 	 * called, for instance if it's statically initialized.  In that case the
 	 * value of that variable (which must be a boolean) will be used.
 	 *
-	 * Note that despite its name, this does not return the value of the now-
-	 * misnamed $this->mDefaultDirection member variable.  That is not a
-	 * default, it's the actual direction used.  This is just the default and
-	 * can be overridden by user input.
+	 * Note that despite its name, this does not return the value of the
+	 * $this->mDefaultDirection member variable.  That's the default for this
+	 * particular instantiation, which is a single value.  This is the set of
+	 * all defaults for the class.
 	 */
-	protected function getDefaultDirection() { return false; }
+	protected function getDefaultDirections() { return false; }
 }
 
 
@@ -483,7 +475,7 @@ abstract class AlphabeticPager extends IndexPager {
 	}
 	
 	/** 
-	 * Shamelessly stolen bits from ReverseChronologicalPager, d
+	 * Shamelessly stolen bits from ReverseChronologicalPager,
 	 * didn't want to do class magic as may be still revamped 
 	 */
 	function getNavigationBar() {
@@ -508,27 +500,6 @@ abstract class AlphabeticPager extends IndexPager {
 			"({$pagingLinks['first']} | {$pagingLinks['last']}) " .
 			wfMsgHtml( 'viewprevnext', $pagingLinks['prev'],
 			$pagingLinks['next'], $limits );
-
-		/*
-		$dirlinks = array();
-		# Note for grep: uses pager-sort-asc, pager-sort-desc (each in two
-		# places)
-		foreach( array( 'asc', 'desc' ) as $dir ) {
-			if( ($this->mDefaultDirection ? 'desc' : 'asc' ) == $dir ) {
-				# Don't print a link, just some text
-				$dirlinks[$dir] = wfMsgHTML( "pager-sort-$dir" );
-			} else {
-				$query = array( 'direction' => $dir );
-				if( $this->mOrderType !== null ) {
-					$query['order'] = $this->mOrderType;
-				}
-				$dirlinks[$dir] = $this->makeLink(
-					wfMsgHTML( "pager-sort-$dir" ),
-					$query
-				);
-			}
-		}
-		$this->mNavigationBar .= ' (' . implode( ' | ', $dirlinks ) . ')';
 
 		if( !is_array( $this->getIndexField() ) ) {
 			# Early return to avoid undue nesting
@@ -558,7 +529,6 @@ abstract class AlphabeticPager extends IndexPager {
 		if( $extra !== '' ) {
 			$this->mNavigationBar .= " ($extra)";
 		}
-		*/
 
 		return $this->mNavigationBar;
 	}
