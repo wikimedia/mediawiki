@@ -331,7 +331,7 @@ class OldChangesList extends ChangesList {
 			$this->insertDiffHist($s, $rc, $unpatrolled);
 
 			# M, N, b and ! (minor, new, bot and unpatrolled)
-			$s .= '<tt> '.$this->recentChangesFlags( $rc_type == RC_NEW, $rc_minor, $unpatrolled, '', $rc_bot ).'</tt>';
+			$s .= $this->recentChangesFlags( $rc_type == RC_NEW, $rc_minor, $unpatrolled, '', $rc_bot );
 			$this->insertArticleLink($s, $rc, $unpatrolled, $watched);
 
 			wfProfileOut($fname.'-page');
