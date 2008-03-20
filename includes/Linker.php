@@ -232,7 +232,7 @@ class Linker {
 			wfProfileOut( __METHOD__ );
 			return $t;
 		} elseif ( $nt->isAlwaysKnown() ) {
-			# Image links, special page links and self-links with fragements are always known.
+			# Image links, special page links and self-links with fragments are always known.
 			$retVal = $this->makeKnownLinkObj( $nt, $text, $query, $trail, $prefix );
 		} else {
 			wfProfileIn( __METHOD__.'-immediate' );
