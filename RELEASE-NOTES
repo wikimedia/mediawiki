@@ -140,6 +140,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 13395) list=allcategories should use category table
 * (bug 13442) Missing pages in prop=langlinks and prop=extlinks are now 
   handled properly.
+* (bug 13444) Add description to list=watchlist
 
 === Languages updated in 1.13 ===
 
