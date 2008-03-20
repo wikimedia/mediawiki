@@ -548,7 +548,7 @@ abstract class File {
 			}
 			
 			if ( $wgUseSquid ) {
-				wfPurgeSquidServers( array( $thumbUrl ) );
+				SquidUpdate::purge( array( $thumbUrl ) );
 			}
 		} while (false);
 
