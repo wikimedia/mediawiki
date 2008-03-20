@@ -1142,7 +1142,7 @@ class UndeleteForm {
 			$revdel = SpecialPage::getTitleFor( 'Revisiondelete' );
 			if( !$file->userCan(File::DELETED_RESTRICTED ) ) {
 			// If revision was hidden from sysops
-				$del = $this->messages['rev-delundel'];
+				$del = wfMsgHtml('rev-delundel');
 			} else {
 				$del = $sk->makeKnownLinkObj( $revdel,
 					wfMsgHtml('rev-delundel'),
