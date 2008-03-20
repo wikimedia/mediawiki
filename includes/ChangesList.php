@@ -555,7 +555,7 @@ class EnhancedChangesList extends ChangesList {
 		$toggleLink = "javascript:toggleVisibility('$rci','$rcm','$rcl')";
 		$tl  = '<span id="'.$rcm.'"><a href="'.$toggleLink.'">' . $this->sideArrow() . '</a></span>';
 		$tl .= '<span id="'.$rcl.'" style="display:none"><a href="'.$toggleLink.'">' . $this->downArrow() . '</a></span>';
-		$r .= '<td valign="top">'.$tl.'</td>';
+		$r .= '<td valign="middle">'.$tl.'</td>';
 
 		# Main line
 		$r .= '<td valign="top"><tt>'.$this->recentChangesFlags( $isnew, false, $unpatrolled, '&nbsp;', $bot );
