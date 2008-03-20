@@ -577,7 +577,6 @@ XHTML id names.
 'category-empty'                 => "''This category currently contains no pages or media.''",
 'hidden-categories'              => '{{PLURAL:$1|Hidden category|Hidden categories}}',
 'hidden-category-category'       => 'Hidden categories', # Name of the category where hidden categories will be listed
-'subcategorycount'               => 'There {{PLURAL:$1|is one subcategory|are $1 subcategories}} to this category.',
 'category-subcat-count'          => '{{PLURAL:$2|This category has only the following subcategory.|This category has the following {{PLURAL:$1|subcategory|$1 subcategories}}, out of $2 total.}}',
 'category-subcat-count-limited'  => 'This category has the following {{PLURAL:$1|subcategory|$1 subcategories}}.',
 'category-article-count'         => '{{PLURAL:$2|This category contains only the following page.|The following {{PLURAL:$1|page is|$1 pages are}} in this category, out of $2 total.}}',
@@ -1323,7 +1322,6 @@ Make sure that this change will maintain historical page continuity.
 # User rights
 'userrights'                       => 'User rights management',
 'userrights-summary'               => '', # only translate this message to other languages if you have to change it
-'groups'                           => 'User groups',
 'userrights-lookup-user'           => 'Manage user groups',
 'userrights-user-editname'         => 'Enter a username:',
 'editusergroup'                    => 'Edit User Groups',

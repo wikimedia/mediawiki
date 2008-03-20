@@ -127,7 +127,6 @@ $wgMessageStructure = array(
 		'category-empty',
 		'hidden-categories',
 		'hidden-category-category',
-		'subcategorycount',
 		'category-subcat-count',
 		'category-subcat-count-limited',
 		'category-article-count',
@@ -760,7 +759,6 @@ $wgMessageStructure = array(
 	'userrights' => array(
 		'userrights',
 		'userrights-summary',
-		'groups',
 		'userrights-lookup-user',
 		'userrights-user-editname',
 		'editusergroup',
