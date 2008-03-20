@@ -40,6 +40,8 @@ class ApiQueryExternalLinks extends ApiQueryBase {
 	}
 
 	public function execute() {
+		if ( $this->getPageSet()->getGoodTitleCount() == 0 )
+			return;
 
 		$this->addFields(array (
 			'el_from',
