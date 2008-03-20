@@ -24,14 +24,13 @@ class CategoryPager extends AlphabeticPager {
 	function getQueryInfo() {
 		global $wgRequest;
 		return array(
-			'tables' => array('categorylinks'),
-			'fields' => array('cl_to','count(*) AS count'),
-			'options' => array('GROUP BY' => 'cl_to')
-			);
+			'tables' => array('category'),
+			'fields' => array('cat_title','cat_pages')
+		);
 	}
 	
 	function getIndexField() {
-		return "cl_to";
+		return "cat_title";
 	}
 	
 	/* Override getBody to apply LinksBatch on resultset before actually outputting anything. */
@@ -44,7 +43,7 @@ class CategoryPager extends AlphabeticPager {
 		$this->mResult->rewind();
 		
 		while ( $row = $this->mResult->fetchObject() ) {
-			$batch->addObj( Title::makeTitleSafe( NS_CATEGORY, $row->cl_to ) );
+			$batch->addObj( Title::makeTitleSafe( NS_CATEGORY, $row->cat_title ) );
 		}
 		$batch->execute();
 		$this->mResult->rewind();
@@ -53,10 +52,10 @@ class CategoryPager extends AlphabeticPager {
 	
 	function formatRow($result) {
 		global $wgLang;
-		$title = Title::makeTitle( NS_CATEGORY, $result->cl_to );
+		$title = Title::makeTitle( NS_CATEGORY, $result->cat_title );
 		$titleText = $this->getSkin()->makeLinkObj( $title, htmlspecialchars( $title->getText() ) );
 		$count = wfMsgExt( 'nmembers', array( 'parsemag', 'escape' ),
-				$wgLang->formatNum( $result->count ) );
+				$wgLang->formatNum( $result->cat_pages ) );
 		return Xml::tags('li', null, "$titleText ($count)" ) . "\n";
 	}
 }
