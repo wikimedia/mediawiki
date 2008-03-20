@@ -3101,6 +3101,7 @@ You can also [[Special:Watchlist/edit|use the standard editor]].',
 'unknown_extension_tag' => 'Unknown extension tag "$1"',
 
 # Special:Version
+'version'                          => 'Version',
 'version-extensions'               => 'Installed extensions',
 'version-specialpages'             => 'Special pages',
 'version-parserhooks'              => 'Parser hooks',
