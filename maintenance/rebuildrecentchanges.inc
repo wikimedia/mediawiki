@@ -103,7 +103,7 @@ function rebuildRecentChangesTablePass2()
 			$size = $size ? $size : 'NULL';
 			
 			$sql3 = "UPDATE $recentchanges SET rc_last_oldid=$lastOldId,rc_new=$new,rc_type=$new," .
-				"rc_old_len='$lastSize',rc_new_len=$size " .
+				"rc_old_len=$lastSize,rc_new_len=$size " .
 				"WHERE rc_cur_id={$lastCurId} AND rc_this_oldid={$obj->rc_this_oldid}";
 			$dbw->query( $sql3 );
 			
