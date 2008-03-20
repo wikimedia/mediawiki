@@ -509,17 +509,25 @@ abstract class AlphabeticPager extends IndexPager {
 			wfMsgHtml( 'viewprevnext', $pagingLinks['prev'],
 			$pagingLinks['next'], $limits );
 
-		# Which direction should the link go?  Opposite of the current.
-		$dir = $this->mDefaultDirection ? 'asc' : 'desc';
-		$query = array( 'direction' => $dir );
-		if( $this->mOrderType !== null ) {
-			$query['order'] = $this->mOrderType;
+		$dirlinks = array();
+		# Note for grep: uses pager-sort-asc, pager-sort-desc (each in two
+		# places)
+		foreach( array( 'asc', 'desc' ) as $dir ) {
+			if( ($this->mDefaultDirection ? 'desc' : 'asc' ) == $dir ) {
+				# Don't print a link, just some text
+				$dirlinks[$dir] = wfMsgHTML( "pager-sort-$dir" );
+			} else {
+				$query = array( 'direction' => $dir );
+				if( $this->mOrderType !== null ) {
+					$query['order'] = $this->mOrderType;
+				}
+				$dirlinks[$dir] = $this->makeLink(
+					wfMsgHTML( "pager-sort-$dir" ),
+					$query
+				);
+			}
 		}
-		# Note for grep: uses pager-sort-asc, pager-sort-desc
-		$this->mNavigationBar .= ' (' . $this->makeLink(
-			wfMsgHTML( "pager-sort-$dir" ),
-			$query
-		) . ')';
+		$this->mNavigationBar .= ' (' . implode( ' | ', $dirlinks ) . ')';
 
 		if( !is_array( $this->getIndexField() ) ) {
 			# Early return to avoid undue nesting
@@ -530,17 +538,20 @@ abstract class AlphabeticPager extends IndexPager {
 		$first = true;
 		$msgs = $this->getOrderTypeMessages();
 		foreach( array_keys( $msgs ) as $order ) {
-			if( $order == $this->mOrderType ) {
-				continue;
-			}
-			if( !$first ) {
-				$extra .= ' | ';
+			if( $first ) {
 				$first = false;
+			} else {
+				$extra .= ' | ';
 			}
-			$extra .= $this->makeLink(
-				wfMsgHTML( $msgs[$order] ),
-				array( 'order' => $order )
-			);
+			
+			if( $order == $this->mOrderType ) {
+				$extra .= wfMsgHTML( $msgs[$order] );
+			} else {
+				$extra .= $this->makeLink(
+					wfMsgHTML( $msgs[$order] ),
+					array( 'order' => $order )
+				);
+			}
 		}
 
 		if( $extra !== '' ) {
