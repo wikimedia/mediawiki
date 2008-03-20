@@ -260,6 +260,7 @@ $specialPageAliases = array(
 	'Unlockdb'                  => array( 'Bukakuncidb' ),
 	'Userrights'                => array( 'Hakpengguna' ),
 	'MIMEsearch'                => array( 'Pencarian_MIME', 'CariMIME' ),
+	'FileDuplicateSearch'       => array( 'PencarianDuplikatBerkas' ),
 	'Unwatchedpages'            => array( 'Halamantakdipantau' ),
 	'Listredirects'             => array( 'Daftar_pengalihan', 'Daftarpengalihan' ),
 	'Revisiondelete'            => array( 'Hapusrevisi' ),
@@ -378,16 +379,22 @@ $messages = array(
 'dec'           => 'Des',
 
 # Categories related messages
-'categories'               => 'Daftar kategori',
-'pagecategories'           => '{{PLURAL:$1|Kategori|Kategori}}',
-'category_header'          => 'Artikel dalam kategori "$1"',
-'subcategories'            => 'Subkategori',
-'category-media-header'    => 'Media dalam kategori "$1"',
-'category-empty'           => "''Kategori ini saat ini tak memiliki artikel atau media.''",
-'hidden-categories'        => '{{PLURAL:$1|Kategori tersembunyi|Kategori tersembunyi}}',
-'hidden-category-category' => 'Kategori tersembunyi', # Name of the category where hidden categories will be listed
-'subcategorycount'         => 'Ada $1 {{PLURAL:$1|subkategori|subkategori}} dalam kategori ini.',
-'listingcontinuesabbrev'   => 'samb.',
+'categories'                     => 'Daftar kategori',
+'pagecategories'                 => '{{PLURAL:$1|Kategori|Kategori}}',
+'category_header'                => 'Artikel dalam kategori "$1"',
+'subcategories'                  => 'Subkategori',
+'category-media-header'          => 'Media dalam kategori "$1"',
+'category-empty'                 => "''Kategori ini saat ini tak memiliki artikel atau media.''",
+'hidden-categories'              => '{{PLURAL:$1|Kategori tersembunyi|Kategori tersembunyi}}',
+'hidden-category-category'       => 'Kategori tersembunyi', # Name of the category where hidden categories will be listed
+'subcategorycount'               => 'Ada $1 {{PLURAL:$1|subkategori|subkategori}} dalam kategori ini.',
+'category-subcat-count'          => '{{PLURAL:$2|Kategori ini hanya memiliki subkategori berikut.|Ditampilkan {{PLURAL:$1|subkategori|$1 subkategori}} yang termasuk dalam kategori ini dari total $2.}}',
+'category-subcat-count-limited'  => 'Kategori ini memiliki {{PLURAL:$1|subkategori|$1 subkategori}} berikut.',
+'category-article-count'         => '{{PLURAL:$2|Kategori ini hanya memiliki halaman berikut.|Ditampilkan {{PLURAL:$1|halaman|$1 halaman}} yang termasuk dalam kategori ini dari total $2.}}',
+'category-article-count-limited' => 'Kategori ini memiliki {{PLURAL:$1|halaman|$1 halaman}} berikut.',
+'category-file-count'            => '{{PLURAL:$2|Kategori ini hanya memiliki berkas berikut.|Ditampilkan {{PLURAL:$1|berkas|$1 berkas}} yang termasuk dalam kategori ini dari total $2.}}',
+'category-file-count-limited'    => 'Kategori ini memiliki {{PLURAL:$1|berkas|$1 berkas}} berikut.',
+'listingcontinuesabbrev'         => 'samb.',
 
 'mainpagetext'      => "<big>'''MediaWiki telah terinstal dengan sukses'''</big>.",
 'mainpagedocfooter' => 'Silakan baca [http://meta.wikimedia.org/wiki/Help:Contents Panduan Pengguna] untuk informasi penggunaan perangkat lunak wiki.
@@ -964,6 +971,7 @@ Pengurus lain akan dapat mengakses isi tersebunyi dan dapat membatalkan penghapu
 'showingresultsnum'     => "Di bawah ini ditampilkan{{PLURAL:$3|'''1''' hasil|'''$3''' hasil}}, dimulai dari #'''$2'''.",
 'nonefound'             => "'''Catatan''': Kegagalan pencarian biasanya disebabkan oleh pencarian kata-kata umum dalam bahasa Inggris, seperti \"have\" dan \"from\", yang biasanya tidak diindeks, atau dengan menentukan lebih dari satu kriteria pencarian (hanya halaman yang mengandung semua kriteria pencarianlah yang akan ditampilkan dalam hasil pencarian)",
 'powersearch'           => 'Pencarian lanjut',
+'powersearch-legend'    => 'Pencarian lanjut',
 'powersearchtext'       => 'Cari dalam ruang nama:<br />$1<br />$2 Juga tampilkan peralihan<br />Cari $3 $9',
 'searchdisabled'        => '<p style="margin: 1.5em 2em 1em">Mesin pencari {{SITENAME}} sementara dimatikan karena masalah kinerja. Anda dapat mencari melalui Google untuk sementara waktu. <span style="font-size: 89%; display: block; margin-left: .2em">Indeks Google untuk {{SITENAME}} mungkin belum diperbaharui. Jika istilah pencarian berisi garis bawah, gantikan dengan spasi.</span></p>',
 
@@ -1200,6 +1208,7 @@ Log penghapusan berkas adalah sebagai berikut:",
 'upload_source_file' => ' (suatu berkas di komputer Anda)',
 
 # Special:Imagelist
+'imagelist-summary'     => 'Halaman istimewa ini menampilkan semua berkas yang telah dimuat. Secara baku, berkas yang terakhir dimuat berada pada urutan teratas. Klik kepala kolom untuk mengubah urutan.',
 'imagelist_search_for'  => 'Cari nama berkas:',
 'imgdesc'               => 'desk',
 'imgfile'               => 'berkas',
@@ -1232,6 +1241,7 @@ Log penghapusan berkas adalah sebagai berikut:",
 'noimage'                   => 'Tidak ada berkas dengan nama tersebut, Anda dapat $1.',
 'noimage-linktext'          => 'memuat berkas',
 'uploadnewversion-linktext' => 'Muatkan versi yang lebih baru dari berkas ini',
+'imagepage-searchdupe'      => 'Cari berkas duplikat',
 
 # File reversion
 'filerevert'                => 'Kembalikan $1',
@@ -1377,6 +1387,10 @@ Telah dimuat sejumlah '''$8''' berkas dan sedang terjadi '''$7''' [http://meta.w
 'booksources-text'          => 'Di bawah ini adalah daftar pranala ke situs lain yang menjual buku baru dan bekas, dan mungkin juga mempunyai informasi lebih lanjut mengenai buku yang sedang Anda cari:',
 
 'categoriespagetext' => 'Kategori-kategori berikut mengandung halaman atau media.',
+'special-categories-sort-count' => 'urutkan menurut jumlah',
+'special-categories-sort-abc'   => 'urutkan menurut abjad',
+'special-categories-sort-asc'   => 'naik',
+'special-categories-sort-desc'  => 'turun',
 'data'               => 'Data',
 'userrights'         => 'Manajemen hak pengguna',
 'groups'             => 'Kelompok pengguna',
@@ -1587,6 +1601,7 @@ Umpan balik dan bantuan lanjutan:
 # Undelete
 'undelete'                     => 'Pembatalan penghapusan',
 'undeletepage'                 => 'Pembatalan penghapusan',
+'undeletepagetitle'            => "'''Berikut daftar revisi yang dihapus dari [[:$1]]'''.",
 'viewdeletedpage'              => 'Lihat halaman yang telah dihapus',
 'undeletepagetext'             => 'Halaman-halaman berikut ini telah dihapus tapi masih ada di dalam arsip dan dapat dikembalikan. Arsip tersebut mungkin akan dibersihkan secara berkala.',
 'undeleteextrahelp'            => "Untuk mengembalikan keseruhan halaman, biarkan seluruh kotak cek tidak terpilih dan klik '''Kembalikan'''. Untuk melakukan pengembalian selektif, cek kotak revisi yang diinginkan dan klik '''Kembalikan'''. Menekan tombol '''Reset''' akan mengosongkan isian komentar dan semua kotak cek",
@@ -2027,11 +2042,12 @@ Jika Anda hanya ingin mengimpor versi sekarang, Anda juga dapat melakukan hal in
 # Special:Newimages
 'newimages'             => 'Berkas baru',
 'imagelisttext'         => "Di bawah ini adalah daftar '''$1''' {{PLURAL:$1|berkas|berkas}} diurutkan $2.",
+'newimages-summary'     => 'Halaman istimewa berikut menampilkan daftar berkas yang terakhir dimuat',
 'showhidebots'          => '($1 bot)',
 'noimages'              => 'Tidak ada yang dilihat.',
 'ilsubmit'              => 'Cari',
 'bydate'                => 'berdasarkan tanggal',
-'sp-newimages-showfrom' => 'Tampilkan berkas baru dimulai dari $1',
+'sp-newimages-showfrom' => 'Tampilkan berkas baru dimulai dari $2, $1',
 
 # Bad image list
 'bad_image_list' => 'Formatnya sebagai berikut:
@@ -2461,5 +2477,17 @@ Coba dengan pratayang normal.',
 Gambar ditampilkan dalam resolusi penuh dan tipe lain berkas akan dibuka langsung dengan program terkaitnya.
 
 Masukkan nama berkas tanpa prefiks "{{ns:image}}:"-nya.',
+
+# Special:FileDuplicateSearch
+'fileduplicatesearch'          => 'Pencarian duplikat berkas',
+'fileduplicatesearch-summary'  => 'Pencarian duplikat berkas berdasarkan nilai hash-nya.
+
+Masukkan nama berkas tanpa prefiks "{{ns:image}}:".',
+'fileduplicatesearch-legend'   => 'Cari duplikat',
+'fileduplicatesearch-filename' => 'Nama berkas:',
+'fileduplicatesearch-submit'   => 'Cari',
+'fileduplicatesearch-info'     => '$1 × $2 piksel<br />Besar berkas: $3<br />Tipe MIME: $4',
+'fileduplicatesearch-result-1' => 'Berkas "$1" tidak memiliki duplikat identik.',
+'fileduplicatesearch-result-n' => 'Berkas "$1" memiliki {{PLURAL:$2|1 duplikat identik|$2 duplikat identik}}.',
 
 );
