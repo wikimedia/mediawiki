@@ -254,6 +254,7 @@ $specialPageAliases = array(
 	'Unlockdb'                  => array( 'שחרור_בסיס_הנתונים_מנעילה' ),
 	'Userrights'                => array( 'ניהול_הרשאות_משתמש' ),
 	'MIMEsearch'                => array( 'חיפוש_MIME' ),
+	'FileDuplicateSearch'       => array( 'חיפוש_קבצים_כפולים' ),
 	'Unwatchedpages'            => array( 'דפים_שאינם_במעקב' ),
 	'Listredirects'             => array( 'רשימת_הפניות', 'הפניות' ),
 	'Revisiondelete'            => array( 'מחיקת_ושחזור_גרסאות' ),
@@ -396,6 +397,11 @@ $messages = array(
 
 # Categories related messages
 'categories'                     => 'קטגוריות',
+'categoriespagetext'             => 'הקטגוריות הבאות כוללות דפים או קובצי מדיה.',
+'special-categories-sort-count'  => 'סידור לפי מספר חברים',
+'special-categories-sort-abc'    => 'סידור לפי סדר האלף בית',
+'special-categories-sort-asc'    => 'בסדר עולה',
+'special-categories-sort-desc'   => 'בסדר יורד',
 'pagecategories'                 => '{{plural:$1|קטגוריה|קטגוריות}}',
 'category_header'                => 'דפים בקטגוריה "$1"',
 'subcategories'                  => 'קטגוריות משנה',
@@ -403,7 +409,6 @@ $messages = array(
 'category-empty'                 => "'''קטגוריה זו אינה כוללת דפים או קובצי מדיה.'''",
 'hidden-categories'              => '{{plural:$1|קטגוריה מוסתרת|קטגוריות מוסתרות}}',
 'hidden-category-category'       => 'קטגוריות מוסתרות', # Name of the category where hidden categories will be listed
-'subcategorycount'               => '{{plural:$1|ישנה קטגוריית משנה אחת|ישנן $1 קטגוריות משנה}} בקטגוריה זו.',
 'category-subcat-count'          => '{{plural:$2|קטגוריה זו כוללת רק את קטגוריית המשנה הבאה|קטגוריה זו כוללת את {{plural:$1|קטגוריית המשנה הבאה|$1 קטגוריות המשנה הבאות}}, מתוך $2 בסך הכל}}.',
 'category-subcat-count-limited'  => 'קטגוריה זו כוללת את {{plural:$1|קטגוריית המשנה הבאה|$1 קטגוריות המשנה הבאות}}.',
 'category-article-count'         => '{{plural:$2|קטגוריה זו כוללת רק את הדף הבא|קטגוריה זו כוללת את {{plural:$1|הדף הבא|$1 הדפים הבאים}}, מתוך $2 בסך הכל}}.',
@@ -917,7 +922,6 @@ $2',
 'nohistory'           => 'אין היסטוריית שינויים עבור דף זה.',
 'revnotfound'         => 'גרסה זו לא נמצאה',
 'revnotfoundtext'     => 'הגרסה הישנה של דף זה לא נמצאה. אנא בדקו את כתובת הקישור שהוביל אתכם הנה.',
-'loadhist'            => 'טוען את היסטוריית השינויים של הדף',
 'currentrev'          => 'גרסה נוכחית',
 'revisionasof'        => 'גרסה מתאריך $1',
 'revision-info'       => 'גרסה מתאריך $1 מאת $2',
@@ -927,7 +931,6 @@ $2',
 'cur'                 => 'נוכ',
 'next'                => 'הבא',
 'last'                => 'אחרון',
-'orig'                => 'מקור',
 'page_first'          => 'ראשון',
 'page_last'           => 'אחרון',
 'histlegend'          => 'השוואת גרסאות: סמנו את תיבות האפשרויות של הגרסאות המיועדות להשוואה, והקישו על Enter או על הכפתור שלמעלה או למטה.<br />
@@ -1111,6 +1114,7 @@ $2',
 'files'                    => 'קבצים',
 
 # User rights
+'userrights'                       => 'ניהול הרשאות משתמש', # Not used as normal message but as header for the special page itself
 'userrights-lookup-user'           => 'ניהול קבוצות משתמש',
 'userrights-user-editname'         => 'שם משתמש:',
 'editusergroup'                    => 'עריכת קבוצות משתמשים',
@@ -1315,6 +1319,7 @@ $2',
 'noimage'                   => 'לא נמצא קובץ בשם זה, אך יש באפשרותכם $1 חלופי.',
 'noimage-linktext'          => 'להעלות קובץ',
 'uploadnewversion-linktext' => 'העלו גרסה חדשה של קובץ זה',
+'imagepage-searchdupe'      => 'חיפוש קבצים כפולים',
 
 # File reversion
 'filerevert'                => 'שחזור $1',
@@ -1432,7 +1437,6 @@ $2',
 'mostcategories'          => 'הדפים מרובי־הקטגוריות ביותר',
 'mostimages'              => 'התמונות המקושרות ביותר',
 'mostrevisions'           => 'הדפים בעלי מספר העריכות הגבוה ביותר',
-'allpages'                => 'כל הדפים',
 'prefixindex'             => 'רשימת הדפים המתחילים ב…',
 'shortpages'              => 'דפים קצרים',
 'longpages'               => 'דפים ארוכים',
@@ -1466,13 +1470,6 @@ $2',
 'booksources-go'            => 'הצגה',
 'booksources-text'          => 'להלן רשימת קישורים לאתרים אחרים המוכרים ספרים חדשים ויד־שנייה, ושבהם עשוי להיות מידע נוסף לגבי ספרים שאתם מחפשים:',
 
-'categoriespagetext' => 'הקטגוריות הבאות כוללות דפים או קובצי מדיה.',
-'data'               => 'נתונים',
-'userrights'         => 'ניהול הרשאות משתמש',
-'groups'             => 'קבוצות משתמשים',
-'alphaindexline'     => '$1 עד $2',
-'version'            => 'גרסת התוכנה',
-
 # Special:Log
 'specialloguserlabel'  => 'משתמש:',
 'speciallogtitlelabel' => 'כותרת:',
@@ -1486,6 +1483,8 @@ $2',
 'log-title-wildcard'   => 'חיפוש כותרות המתחילות באותיות אלה',
 
 # Special:Allpages
+'allpages'          => 'כל הדפים',
+'alphaindexline'    => '$1 עד $2',
 'nextpage'          => 'הדף הבא ($1)',
 'prevpage'          => 'הדף הקודם ($1)',
 'allpagesfrom'      => 'הצגת דפים החל מ:',
@@ -2616,6 +2615,7 @@ $1',
 'unknown_extension_tag' => 'תגית בלתי ידועה: "$1"',
 
 # Special:Version
+'version'                          => 'גרסת התוכנה', # Not used as normal message but as header for the special page itself
 'version-extensions'               => 'הרחבות מותקנות',
 'version-specialpages'             => 'דפים מיוחדים',
 'version-parserhooks'              => 'הרחבות מפענח',
@@ -2642,5 +2642,17 @@ $1',
 'filepath-summary' => 'דף זה מציג את הנתיב המלא לקבצים שהועלו. תמונות מוצגות ברזולוציה מלאה, ואילו סוגי קבצים אחרים מוצגים ישירות באמצעות התוכנה שהוגדרה להצגתם.
 
 יש להקליד את שם הקובץ ללא הקידומת "{{ns:image}}:".',
+
+# Special:FileDuplicateSearch
+'fileduplicatesearch'          => 'חיפוש קבצים כפולים',
+'fileduplicatesearch-summary'  => 'חיפוש קבצים כפולים על בסיס ערכי ה־Hash שלהם.
+
+הקלידו את שם הקובץ ללא הקידומת "{{ns:image}}:".',
+'fileduplicatesearch-legend'   => 'חיפוש קבצים כפולים',
+'fileduplicatesearch-filename' => 'קובץ:',
+'fileduplicatesearch-submit'   => 'חיפוש',
+'fileduplicatesearch-info'     => '$1 × $2 פיקסלים<br />גודל הקובץ: $3<br />סוג MIME: $4',
+'fileduplicatesearch-result-1' => 'אין קובץ כפול לקובץ "$1".',
+'fileduplicatesearch-result-n' => 'לקובץ "$1" יש {{plural:$2|עותק כפול אחד|$2 עותקים כפולים}}.',
 
 );
