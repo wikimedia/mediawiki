@@ -67,6 +67,10 @@ table {
 	   floated tables */
 	background-color: white;
 }
+fieldset table {
+	/* but keep table layouts in forms clean... */
+	background: none;
+}
 a {
 	text-decoration: none;
 	color: #002bb8;
