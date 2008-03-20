@@ -1749,9 +1749,6 @@ The [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] length is '''\$7''
 'rfcurl'    => 'http://tools.ietf.org/html/rfc$1', # don't translate or duplicate this message to other languages
 'pubmedurl' => 'http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Retrieve&db=pubmed&dopt=Abstract&list_uids=$1', # don't translate or duplicate this message to other languages
 
-'data'           => 'Data',
-'version'        => 'Version',
-
 # Special:Log
 'specialloguserlabel'  => 'User:',
 'speciallogtitlelabel' => 'Title:',
