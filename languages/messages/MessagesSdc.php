@@ -116,12 +116,12 @@ $messages = array(
 
 # Categories related messages
 'categories'             => 'Categuri',
+'categoriespagetext'     => "Erencu cumpretu di li categuri prisenti i' lu situ.",
 'pagecategories'         => '{{PLURAL:$1|Categuria|Categuri}}',
 'category_header'        => 'Pàgini i\' la categuria "$1"',
 'subcategories'          => 'Sottucateguri',
 'category-media-header'  => 'File i\' la categuria "$1"',
 'category-empty'         => "''Attuarmenti la categuria no cunteni nisciuna pàgina o file.''",
-'subcategorycount'       => 'Chistha categuria cunteni {{PLURAL:$1|una sottocateguria|$1 sottocateguri}}.',
 'listingcontinuesabbrev' => '(séguiddu)',
 
 'mainpagetext'      => "<big>'''Isthallazioni di MediaWiki accabadda currentementi.'''</big>",
@@ -613,7 +613,6 @@ La rasgioni frunidda da $3 è ''$2''",
 'nohistory'           => 'Cronologia di li versioni di chistha pàgina nò riperìbiri.',
 'revnotfound'         => 'Versioni nò acciappadda',
 'revnotfoundtext'     => "La versioni dumandadda di la pàgina nò è isthadda acciappadda. Verifiggà l'indirizzu usaddu pa intrà a chistha pàgina.",
-'loadhist'            => 'Carriggamentu cronologia di chistha pàgina',
 'currentrev'          => 'Versioni currenti',
 'revisionasof'        => 'Versioni di lu $1',
 'revision-info'       => 'Versioni di lu $1, autori: $2',
@@ -623,7 +622,6 @@ La rasgioni frunidda da $3 è ''$2''",
 'cur'                 => 'curr',
 'next'                => 'sig',
 'last'                => 'priz',
-'orig'                => 'orig',
 'page_first'          => 'primma',
 'page_last'           => 'ulthima',
 'histlegend'          => "Cunfrontu i li versioni: isciubarà li caselli curripundenti a li versioni disizaddi e incalchà Inviu o lu buttoni in giossu.
@@ -795,6 +793,7 @@ Cunsulthà lu [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} rigisthru di ca
 'files'                    => 'File',
 
 # User rights
+'userrights'                  => "Gisthioni di li primissi reratibi a l'utenti", # Not used as normal message but as header for the special page itself
 'userrights-lookup-user'      => 'Gisthioni di li gruppi utenti',
 'userrights-user-editname'    => "Insirì l'innòmu utenti:",
 'editusergroup'               => 'Mudìfigga gruppi utenti',
@@ -1100,7 +1099,6 @@ La [http://meta.wikimedia.org/wiki/Help:Job_queue coda di li pruzzessi] è longa
 'mostcategories'          => 'Pàgini cun più categuri',
 'mostimages'              => 'Immàgini più riciamaddi',
 'mostrevisions'           => 'Pàgini cun più ribisioni',
-'allpages'                => 'Tutti li pàgini',
 'prefixindex'             => 'Indizi di li bozi pa léttari a l’ischumenzu',
 'shortpages'              => 'Pàgini più corthi',
 'longpages'               => 'Pàgini più longhi',
@@ -1134,13 +1132,6 @@ La [http://meta.wikimedia.org/wiki/Help:Job_queue coda di li pruzzessi] è longa
 'booksources-go'            => 'Vai',
 'booksources-text'          => "Inogghi v'è una listha di cullegamenti bessu siti estherni chi vindani libri nobi e usaddi, attrabessu li quari è pussìbiri uttinì maggiori infuimmazioni i' lu testhu zirchaddu.",
 
-'categoriespagetext' => "Erencu cumpretu di li categuri prisenti i' lu situ.",
-'data'               => 'Dati',
-'userrights'         => "Gisthioni di li primissi reratibi a l'utenti",
-'groups'             => 'Gruppi di utenti',
-'alphaindexline'     => 'da $1 a $2',
-'version'            => 'Versioni',
-
 # Special:Log
 'specialloguserlabel'  => 'Utenti:',
 'speciallogtitlelabel' => 'Tìturu:',
@@ -1153,6 +1144,8 @@ La [http://meta.wikimedia.org/wiki/Help:Job_queue coda di li pruzzessi] è longa
 'log-title-wildcard'   => "Zercha li tìturi ch'ischuminzani cun",
 
 # Special:Allpages
+'allpages'          => 'Tutti li pàgini',
+'alphaindexline'    => 'da $1 a $2',
 'nextpage'          => 'Pàgini sighenti ($1)',
 'prevpage'          => 'Pàgina prizzidenti ($1)',
 'allpagesfrom'      => 'Musthra li pàgini a parthì da:',
@@ -1283,7 +1276,7 @@ Pa piazzeri, cunfèimma chi vói canzillà avveru, ch'ài cumpresu li cunsiguèn
 'dellogpagetext'              => 'Inogghi so erencaddi li pàgini canzilladdi da poggu tempu.',
 'deletionlog'                 => 'Rigisthru di li canzilladduri',
 'reverted'                    => 'Turra a la versioni prizzidenti',
-'deletecomment'               => 'Mutibu di la canzilladdura',
+'deletecomment'               => 'Mutibu di la canzilladdura:',
 'deleteotherreason'           => 'Althra mutibazioni o mutibazioni aggiuntiba:',
 'deletereasonotherlist'       => 'Althra mutibazioni',
 'deletereason-dropdown'       => "*Mutibazioni più cumuni pa la canzilladdura
@@ -1965,5 +1958,8 @@ $1',
 'watchlisttools-view' => 'Visuarizza li mudìfigghi attinenti',
 'watchlisttools-edit' => 'Visuarizza e mudìfigga la listha',
 'watchlisttools-raw'  => 'Mudìfigga la listha in fuimmaddu testhu',
+
+# Special:Version
+'version' => 'Versioni', # Not used as normal message but as header for the special page itself
 
 );

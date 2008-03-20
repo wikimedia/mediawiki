@@ -110,7 +110,6 @@ $messages = array(
 'subcategories'          => 'Subkattegori',
 'category-media-header'  => 'Kattegori media di "$1"',
 'category-empty'         => "''Wo kattegori cwale fumile ishi petulo nji media.''",
-'subcategorycount'       => 'Bye kattegori sa pozefisize {{PLURAL:$1|1 subkattegori|$1 subkattegori}}.',
 'listingcontinuesabbrev' => 'kepoli',
 
 'about'          => "Ngesi ye ng'i atulile",
@@ -676,7 +675,6 @@ di uplodezi media.',
 'mostcategories'          => 'Petulo con plus kattegorina',
 'mostimages'              => "Imegi con plus ling'ki di a",
 'mostrevisions'           => 'Petulo con plus hlolina',
-'allpages'                => 'Mukoloko di petulo',
 'prefixindex'             => 'Petulo bye abuce pelifikise',
 'shortpages'              => 'Mukoloko di kuswani petulo',
 'longpages'               => 'Mukoloko di petulo–amuha',
@@ -697,10 +695,6 @@ di uplodezi media.',
 'booksources'    => 'Desusorsi',
 'booksources-go' => 'Afi',
 
-'data'           => 'Datani',
-'alphaindexline' => '$1 di $2',
-'version'        => 'Pane',
-
 # Special:Log
 'specialloguserlabel'  => 'Sebelu:',
 'speciallogtitlelabel' => 'Sebu:',
@@ -709,6 +703,8 @@ di uplodezi media.',
 'log-search-submit'    => 'Afi',
 
 # Special:Allpages
+'allpages'       => 'Mukoloko di petulo',
+'alphaindexline' => '$1 di $2',
 'nextpage'       => 'Lila petulo ($1)',
 'prevpage'       => 'Kona petulo ($1)',
 'allpagesfrom'   => 'Kamukile petulo di:',
@@ -1118,5 +1114,8 @@ Xete ling'ki kwa lina sa konsidisize desepo. Petulo dimedi inlinenikusize.",
 'watchlisttools-view' => 'Kamukile petuho desi imepotani',
 'watchlisttools-edit' => "Kamukile e hloli ye ng'i mukoloko di kentezi",
 'watchlisttools-raw'  => "Hloli ye ng'i ro mukoloko di kentezi",
+
+# Special:Version
+'version' => 'Pane', # Not used as normal message but as header for the special page itself
 
 );

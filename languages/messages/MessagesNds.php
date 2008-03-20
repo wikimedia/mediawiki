@@ -278,6 +278,7 @@ Na ''Ünnerscheed wiesen'' nich de kumplette Siet wiesen",
 
 # Categories related messages
 'categories'               => '{{PLURAL:$1|Kategorie|Kategorien}}',
+'categoriespagetext'       => 'In disse Kategorien staht Sieden oder Mediendatein.',
 'pagecategories'           => '{{PLURAL:$1|Kategorie|Kategorien}}',
 'category_header'          => 'Sieden in de Kategorie „$1“',
 'subcategories'            => 'Ünnerkategorien',
@@ -285,7 +286,6 @@ Na ''Ünnerscheed wiesen'' nich de kumplette Siet wiesen",
 'category-empty'           => "''In disse Kategorie sünd aktuell kene Sieden.''",
 'hidden-categories'        => '{{PLURAL:$1|Verstekene Kategorie|Verstekene Kategorien}}',
 'hidden-category-category' => 'Verstekene Kategorien', # Name of the category where hidden categories will be listed
-'subcategorycount'         => 'Disse Kategorie hett {{PLURAL:$1|ene Ünnerkategorie|$1 Ünnerkategorien}}.',
 'listingcontinuesabbrev'   => 'wieder',
 
 'mainpagetext'      => 'De Wiki-Software is mit Spood installeert worrn.',
@@ -739,7 +739,6 @@ De Grund weer: ''$2''",
 'nohistory'           => 'Disse Siet hett keen Vörgeschicht.',
 'revnotfound'         => 'Kene fröheren Versionen funnen',
 'revnotfoundtext'     => 'De Version vun disse Siet, no de du söökst, kunn nich funnen warrn. Prööv de URL vun disse Siet.',
-'loadhist'            => 'Lade List mit freuhere Versionen',
 'currentrev'          => 'Aktuelle Version',
 'revisionasof'        => 'Version vun’n $1',
 'revision-info'       => '<div id="viewingold-warning" style="background: #ffbdbd; border: 1px solid #BB7979; font-weight: bold; padding: .5em 1em;">
@@ -751,7 +750,6 @@ Dit is en ole Version vun disse Siet, so as <span id="mw-revision-name">$2</span
 'cur'                 => 'Aktuell',
 'next'                => 'Tokamen',
 'last'                => 'Letzte',
-'orig'                => 'Original',
 'page_first'          => 'Anfang',
 'page_last'           => 'Enn',
 'histlegend'          => "Ünnerscheed-Utwahl: De Boxen vun de wünschten
@@ -919,6 +917,7 @@ de aver nich jümmer den aktuellsten Stand weerspegelt.<p>',
 'files'                    => 'Datein',
 
 # User rights
+'userrights'                       => 'Brukerrechten inrichten', # Not used as normal message but as header for the special page itself
 'userrights-lookup-user'           => 'Brukergruppen verwalten',
 'userrights-user-editname'         => 'Brukernaam ingeven:',
 'editusergroup'                    => 'Brukergruppen bearbeiden',
@@ -1227,7 +1226,6 @@ to den vun den tweeten Wiederleiden wiest warrt, un to den de eerste Wiederleide
 'mostcategories'          => 'Artikels mit vele Kategorien',
 'mostimages'              => 'Datein, de veel bruukt warrt',
 'mostrevisions'           => 'Sieden mit de mehrsten Versionen',
-'allpages'                => 'Alle Sieden',
 'prefixindex'             => 'All Sieden (mit Präfix)',
 'shortpages'              => 'Korte Sieden',
 'longpages'               => 'Lange Sieden',
@@ -1259,13 +1257,6 @@ to den vun den tweeten Wiederleiden wiest warrt, un to den de eerste Wiederleide
 'booksources-go'            => 'Los',
 'booksources-text'          => 'Hier staht Lenken na Websteden, woneem dat Böker to köpen gifft, de mitünner ok mehr Informatschonen to dat Book anbeden doot:',
 
-'categoriespagetext' => 'In disse Kategorien staht Sieden oder Mediendatein.',
-'data'               => 'Daten',
-'userrights'         => 'Brukerrechten inrichten',
-'groups'             => 'Brukergruppen',
-'alphaindexline'     => '$1 bet $2',
-'version'            => 'Version',
-
 # Special:Log
 'specialloguserlabel'  => 'Bruker:',
 'speciallogtitlelabel' => 'Titel:',
@@ -1279,6 +1270,8 @@ Du kannst de List körter maken, wenn du den Logbook-Typ, den Brukernaam oder de
 'log-title-wildcard'   => 'Titel fangt an mit …',
 
 # Special:Allpages
+'allpages'          => 'Alle Sieden',
+'alphaindexline'    => '$1 bet $2',
 'nextpage'          => 'tokamen Siet ($1)',
 'prevpage'          => 'Vörige Siet ($1)',
 'allpagesfrom'      => 'Sieden wiesen, de mit disse Bookstaven anfangt:',
@@ -2172,6 +2165,7 @@ Versöök de normale Vörschau.',
 'watchlisttools-raw'  => 'Oppasslist as Textlist ännern',
 
 # Special:Version
+'version'                   => 'Version', # Not used as normal message but as header for the special page itself
 'version-specialpages'      => 'Spezialsieden',
 'version-other'             => 'Annern Kraam',
 'version-hook-subscribedby' => 'Opropen vun',

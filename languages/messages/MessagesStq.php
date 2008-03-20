@@ -136,6 +136,7 @@ $messages = array(
 
 # Categories related messages
 'categories'               => 'Kategorien',
+'categoriespagetext'       => 'Do foulgjende Kategorien existierje in de Wiki.',
 'pagecategories'           => '{{PLURAL:$1|Kategorie|Kategorien}}',
 'category_header'          => 'Artikkel in ju Kategorie "$1"',
 'subcategories'            => 'Unnerkategorien',
@@ -143,7 +144,6 @@ $messages = array(
 'category-empty'           => "''Disse Kategorie is loos.''",
 'hidden-categories'        => '{{PLURAL:$1|Ferstatte Kategorie|Ferstatte Kategorien}}',
 'hidden-category-category' => 'Verstatte Kategorien', # Name of the category where hidden categories will be listed
-'subcategorycount'         => 'Disse Kategorie häd {{PLURAL:$1|1 Unnerkategorie|$1 Unnerkategorien}}.',
 'listingcontinuesabbrev'   => '(Foutsättenge)',
 
 'mainpagetext'      => 'Ju Wiki Software wuude mäd Ärfoulch installierd!',
@@ -634,7 +634,6 @@ Gruund fon ju Speere: ''$2''",
 'nohistory'           => 'Dät rakt neen fröiere Versione fon dissen Artikkel.',
 'revnotfound'         => 'Disse Version wuude nit fuunen.',
 'revnotfoundtext'     => 'Ju soachte Version fon dissen Artikkel kuude nit fuunen wäide. Uurpröiwe jädden ju URL fon disse Siede.',
-'loadhist'            => 'Leede Lieste mäd fröiere Versione',
 'currentrev'          => 'Aktuälle Version',
 'revisionasof'        => 'Version fon $1',
 'revision-info'       => 'Dit is ne oolde Version. Tiedpunkt fon ju Beoarbaidenge: $1 truch $2.',
@@ -644,7 +643,6 @@ Gruund fon ju Speere: ''$2''",
 'cur'                 => 'Aktuäl',
 'next'                => 'Naiste',
 'last'                => 'Foarige',
-'orig'                => 'Originoal',
 'page_first'          => 'Ounfang',
 'page_last'           => 'Eend',
 'histlegend'          => "Diff  Uutwoal: Do Boxen fon do wonskede Versione markierje un 'Enter' drukke of ap dän Knoop unner klikke.<br />
@@ -826,6 +824,7 @@ Wan du die mäd dät Thema uutkoanst, koast du sälwen ju Siede „[[$1]]“ fer
 'files'                    => 'Doatäie',
 
 # User rights
+'userrights'                       => 'Benutsergjuchteferwaltenge', # Not used as normal message but as header for the special page itself
 'userrights-lookup-user'           => 'Ferwaltede Gruppentouheeregaid',
 'userrights-user-editname'         => 'Benutsernoome anreeke:',
 'editusergroup'                    => 'Beoarbaidede Benutsergjuchte',
@@ -939,7 +938,7 @@ Jädden beoachtje Jie, dät, juust as bie do Artikkele, uur Benutsere hiere Doat
 'filedesc'                    => 'Beschrieuwenge, Wälle',
 'fileuploadsummary'           => 'Beschrieuwenge/Wälle:',
 'filestatus'                  => 'Copyright-Stoatus:',
-'filesource'                  => 'Wälle',
+'filesource'                  => 'Wälle:',
 'uploadedfiles'               => 'Hoochleedene Doatäie',
 'ignorewarning'               => 'Woarschauenge ignorierje un Doatäi daach spiekerje.',
 'ignorewarnings'              => 'Woarschauengen ignorierje',
@@ -977,8 +976,8 @@ Pröif, of du ju Bielde in fulle Aplöösenge foarlääsen hääst un leed ju un
 'uploadscripted'              => 'Disse Doatäi änthaalt HTML- of Scriptcode, ju bie Fersjoon fon aan Webbrowser apfierd wäide kuude.',
 'uploadcorrupt'               => 'Ju Doatäi is beschäädiged of häd n falsken Noome. Uurpröiwe jädden ju Doatäi un leede ju fonnäien hooch.',
 'uploadvirus'                 => 'Disse Doatäi änthaalt n Virus! Details: $1',
-'sourcefilename'              => 'Wälledoatäi',
-'destfilename'                => 'Sielnoome',
+'sourcefilename'              => 'Wälledoatäi:',
+'destfilename'                => 'Sielnoome:',
 'watchthisupload'             => 'Disse Siede beooboachtje',
 'filewasdeleted'              => 'Ne Doatäi mäd dissen Noome wuude al moal hoochleeden un intwisken wier läsked. Pröif toueerst dän Iendraach in $1, eer du ju Doatäi wuddelk spiekerst.',
 'upload-wasdeleted'           => "'''Woarschauenge: Du laatst ne Doatäi hooch, ju der al fröier läsked wuude.'''
@@ -1001,7 +1000,7 @@ Reek ju Doatäi n Noome, die dän Inhoold beeter beschrift.',
 'upload-curl-error28'      => 'Toufuul Tied nöödich foar dät Hoochleeden',
 'upload-curl-error28-text' => 'Ju Siede bruukt tou loange foar ne Oantwoud. Pröif, of ju Siede online is, täif n kuuten Moment un fersäik et dan fonnäien. Dät kon sinful weese, n näien Fersäik tou ne uur Tied tou probierjen..',
 
-'license'            => 'Lizenz',
+'license'            => 'Lizenz:',
 'nolicense'          => 'naan Foaruutwoal',
 'license-nopreview'  => '(der is neen Foarschau ferföigboar)',
 'upload_source_url'  => ' (gultige, eepentelk tougongelke URL)',
@@ -1161,7 +1160,6 @@ Lääste schällen dan wächhoald wäide.',
 'mostcategories'          => 'Maast kategorisierde Sieden',
 'mostimages'              => 'Maast benutsede Bielden',
 'mostrevisions'           => 'Sieden mäd do maaste Versione',
-'allpages'                => 'Aal Artikkele',
 'prefixindex'             => 'Aal Artikkele (mäd Präfix)',
 'shortpages'              => 'Kuute Sieden',
 'longpages'               => 'Loange Sieden',
@@ -1195,13 +1193,6 @@ Lääste schällen dan wächhoald wäide.',
 'booksources-go'            => 'Säike',
 'booksources-text'          => 'Dit is ne Lieste mäd Ferbiendengen tou Internetsieden, do der näie un bruukte Bouke ferkoopje. Deer kon et uk wiedere Informatione uur do Bouke reeke. {{SITENAME}} is mäd neen fon disse Anbjoodere geschäftelk ferbuunen.',
 
-'categoriespagetext' => 'Do foulgjende Kategorien existierje in de Wiki.',
-'data'               => 'Failer in dän Doatenboank',
-'userrights'         => 'Benutsergjuchteferwaltenge',
-'groups'             => 'Benutsergruppen',
-'alphaindexline'     => '$1 bit $2',
-'version'            => 'Version',
-
 # Special:Log
 'specialloguserlabel'  => 'Benutser:',
 'speciallogtitlelabel' => 'Tittel:',
@@ -1214,6 +1205,8 @@ Lääste schällen dan wächhoald wäide.',
 'log-title-wildcard'   => 'Tittel fangt oun mäd …',
 
 # Special:Allpages
+'allpages'          => 'Aal Artikkele',
+'alphaindexline'    => '$1 bit $2',
 'nextpage'          => 'Naiste Siede ($1)',
 'prevpage'          => 'Foarige Siede ($1)',
 'allpagesfrom'      => 'Sieden wiese fon:',
@@ -2281,6 +2274,7 @@ $1',
 'unknown_extension_tag' => 'Uunbekoanden Extension-Tag „$1“',
 
 # Special:Version
+'version'                          => 'Version', # Not used as normal message but as header for the special page itself
 'version-extensions'               => 'Installierde Ärwiederengen',
 'version-specialpages'             => 'Spezioalsieden',
 'version-parserhooks'              => 'Parser-Hooks',

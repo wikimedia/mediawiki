@@ -108,12 +108,12 @@ $messages = array(
 
 # Categories related messages
 'categories'             => 'Luohkát',
+'categoriespagetext'     => '{{GRAMMAR:inessive|{{SITENAME}}}} lea čuovvovaš luohkát:',
 'pagecategories'         => '{{PLURAL:$1|Luohkká|Luohkát}}',
 'category_header'        => 'Siiddut, mat gullet luohkkái $1',
 'subcategories'          => 'Vuolleluohkát',
 'category-media-header'  => 'Fiillat luohkás ”$1”',
 'category-empty'         => "''Dán luohkás eai leat siiddut eaige fiillat.''",
-'subcategorycount'       => 'Dán luohkás {{PLURAL:$1|lea okta vuolleluohkká|leat $1 vuolleluohká}}.',
 'listingcontinuesabbrev' => 'joatk.',
 
 'about'          => 'Dieđut',
@@ -429,7 +429,6 @@ Du geavaheaddjidovddaldat lea dál anus. Ále vajáldahte rievdadit [[Special:Pr
 'nohistory'           => 'Dán siiddus ii leat rievdadanhistorjá.',
 'revnotfound'         => 'Veršuvdna ii dihtto',
 'revnotfoundtext'     => 'Veršuvdna, man ohcet, ii dihtto. Dárkkis URL-čujuhusa, mainna ohcet dán siiddu.',
-'loadhist'            => 'Siidohistorjá ládejuvvo',
 'currentrev'          => 'Dálá veršuvdna',
 'revisionasof'        => 'Veršuvdna $1',
 'revision-info'       => 'Dálá veršuvdna $1 – ráhkadan $2',
@@ -439,7 +438,6 @@ Du geavaheaddjidovddaldat lea dál anus. Ále vajáldahte rievdadit [[Special:Pr
 'cur'                 => 'dálá',
 'next'                => 'čuovvovaš',
 'last'                => 'ovddit',
-'orig'                => 'originála',
 'page_first'          => 'vuosttas siidu',
 'page_last'           => 'maŋimus siidu',
 'deletedrev'          => '[sihkojuvvon]',
@@ -549,6 +547,7 @@ $1 | $2',
 'files'                    => 'Fiillat',
 
 # User rights
+'userrights'                  => 'Geavaheaddjirivttiid stivren', # Not used as normal message but as header for the special page itself
 'userrights-lookup-user'      => 'Geavaheaddjirivttiid stivren',
 'userrights-user-editname'    => 'Geavaheaddjidovddaldat',
 'editusergroup'               => 'Rievdat geavaheaddjijoavkkuid',
@@ -643,8 +642,8 @@ $1 | $2',
 'uploadscripted'     => 'Dát fiila sisdisdoalla HTML-koda dahje skriptaid, maid neahttabláđejeaddji sáhttá vahagis dahkat.',
 'uploadcorrupt'      => 'Fiila lea billahuvvan dahje das lea boasto fiilageažus. Dárkis fiilla ja sádde dan ođđasit.',
 'uploadvirus'        => 'Fiila sisdoalla virusa. Dárkilut dieđut: $1',
-'sourcefilename'     => 'Gáldonamma:',
-'destfilename'       => 'Mearrenamma:',
+'sourcefilename'     => 'Gáldonamma',
+'destfilename'       => 'Mearrenamma',
 'watchthisupload'    => 'Čuovo dán siiddu',
 'filewasdeleted'     => 'Dán nammasaš fiila lea lasihuvvon ja sihkojuvvon jo ovda. Dárkis $1 ovdalgo joatkat.',
 
@@ -655,7 +654,7 @@ $1 | $2',
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6' => 'Čujuhus ii doaimma',
 
-'license'            => 'Liseansa:',
+'license'            => 'Liseansa',
 'nolicense'          => 'Ii liseansa',
 'license-nopreview'  => '(ovdalgihtii geahččan ii leat vejolaš)',
 'upload_source_url'  => ' (almmolaš URL-čujuhus)',
@@ -784,7 +783,6 @@ $1 | $2',
 'mostcategories'          => 'Siiddut, mat gullet eanemus luohkáide',
 'mostimages'              => 'Govat, maidda lea čujuhuvvon dávjemus',
 'mostrevisions'           => 'Siiddut, mat leat rievdáduvvon eanemustá',
-'allpages'                => 'Buot siiddut',
 'shortpages'              => 'Oanehis siiddut',
 'longpages'               => 'Guhkes siiddut',
 'deadendpages'            => 'Siiddut, main eai leat liŋkkat',
@@ -811,12 +809,6 @@ $1 | $2',
 'booksources-go'            => 'Oza',
 'booksources-text'          => 'Vuolábealde leat liŋkkat olggobeal siidduide, main vuvdojuvvot ođđa ja boares girjjid. Siiddui sáhttá maid leat lassedieđut girjjiin.',
 
-'categoriespagetext' => '{{GRAMMAR:inessive|{{SITENAME}}}} lea čuovvovaš luohkát:',
-'userrights'         => 'Geavaheaddjirivttiid stivren',
-'groups'             => 'Joavkkut',
-'alphaindexline'     => '$1…$2',
-'version'            => 'Veršuvdna',
-
 # Special:Log
 'specialloguserlabel'  => 'Geavaheaddji',
 'speciallogtitlelabel' => 'Mearri',
@@ -828,6 +820,8 @@ $1 | $2',
 'log-title-wildcard'   => 'Mearri álgá mearkkaiguin',
 
 # Special:Allpages
+'allpages'          => 'Buot siiddut',
+'alphaindexline'    => '$1…$2',
 'nextpage'          => 'Čuovvovaš siidu ($1)',
 'prevpage'          => 'Ovddit siidu ($1)',
 'allarticles'       => 'Buot siiddut',
@@ -1326,5 +1320,8 @@ $1 | $2',
 # Watchlist editing tools
 'watchlisttools-view' => 'Čájet rievdadusaid',
 'watchlisttools-edit' => 'Ođasmahte listtu',
+
+# Special:Version
+'version' => 'Veršuvdna', # Not used as normal message but as header for the special page itself
 
 );

@@ -326,16 +326,18 @@ $messages = array(
 'dec'           => 'дек',
 
 # Categories related messages
-'categories'               => 'Категории',
-'pagecategories'           => '{{PLURAL:$1|Категория|Категории}}',
-'category_header'          => 'Статьи в категории «$1»',
-'subcategories'            => 'Подкатегории',
-'category-media-header'    => 'Файлы в категории «$1»',
-'category-empty'           => "''Эта категория в данный момент пуста.''",
-'hidden-categories'        => '{{PLURAL:$1|Скрытая категория|Скрытые категории}}',
-'hidden-category-category' => 'Скрытые категории', # Name of the category where hidden categories will be listed
-'subcategorycount'         => 'В этой категории $1 {{PLURAL:$1|подкатегория|подкатегории|подкатегорий}}.',
-'listingcontinuesabbrev'   => '(продолжение)',
+'categories'                    => 'Категории',
+'categoriespagetext'            => 'В вики имеются следующие категории.',
+'special-categories-sort-count' => 'упорядочить по количеству',
+'special-categories-sort-abc'   => 'упорядочить по алфавиту',
+'pagecategories'                => '{{PLURAL:$1|Категория|Категории}}',
+'category_header'               => 'Статьи в категории «$1»',
+'subcategories'                 => 'Подкатегории',
+'category-media-header'         => 'Файлы в категории «$1»',
+'category-empty'                => "''Эта категория в данный момент пуста.''",
+'hidden-categories'             => '{{PLURAL:$1|Скрытая категория|Скрытые категории}}',
+'hidden-category-category'      => 'Скрытые категории', # Name of the category where hidden categories will be listed
+'listingcontinuesabbrev'        => '(продолжение)',
 
 'mainpagetext'      => '<big>Вики-движок «MediaWiki» успешно установлен.</big>',
 'mainpagedocfooter' => 'Информацию по работе с этой вики можно найти в [http://meta.wikimedia.org/wiki/%D0%9F%D0%BE%D0%BC%D0%BE%D1%89%D1%8C:%D0%A1%D0%BE%D0%B4%D0%B5%D1%80%D0%B6%D0%B0%D0%BD%D0%B8%D0%B5 руководстве пользователя].
@@ -353,7 +355,7 @@ $messages = array(
 'qbbrowse'       => 'Просмотреть',
 'qbedit'         => 'Править',
 'qbpageoptions'  => 'Настройки страницы',
-'qbpageinfo'     => 'Сведения о статье',
+'qbpageinfo'     => 'Сведения о странице',
 'qbmyoptions'    => 'Ваши настройки',
 'qbspecialpages' => 'Специальные страницы',
 'moredotdotdot'  => 'Далее…',
@@ -383,7 +385,7 @@ $messages = array(
 'print'             => 'Печать',
 'edit'              => 'Править',
 'create'            => 'Создать',
-'editthispage'      => 'Править эту статью',
+'editthispage'      => 'Править эту страницу',
 'create-this-page'  => 'Создать эту страницу',
 'delete'            => 'Удалить',
 'deletethispage'    => 'Стереть её',
@@ -838,7 +840,6 @@ $3 указал следующую причину: ''$2''",
 'nohistory'           => 'Для этой страницы журнал изменений отсутствует.',
 'revnotfound'         => 'Версия не найдена',
 'revnotfoundtext'     => 'Старая версия страницы не найдена. Пожалуйста, проверьте правильность ссылки, которую вы использовали для доступа к этой странице.',
-'loadhist'            => 'Загрузка журнала изменений страницы',
 'currentrev'          => 'Текущая версия',
 'revisionasof'        => 'Версия $1',
 'revision-info'       => 'Версия от $1; $2',
@@ -848,7 +849,6 @@ $3 указал следующую причину: ''$2''",
 'cur'                 => 'текущ.',
 'next'                => 'след.',
 'last'                => 'пред.',
-'orig'                => 'перв.',
 'page_first'          => 'первая',
 'page_last'           => 'последняя',
 'histlegend'          => "Пояснения: (текущ.) — отличие от текущей версии; (пред.) — отличие от предшествующей версии; '''м''' — малозначимое изменение",
@@ -1035,6 +1035,7 @@ $3 указал следующую причину: ''$2''",
 'files'                    => 'Файлы',
 
 # User rights
+'userrights'                       => 'Управление правами участников', # Not used as normal message but as header for the special page itself
 'userrights-lookup-user'           => 'Управление группами участников',
 'userrights-user-editname'         => 'Введите имя участника:',
 'editusergroup'                    => 'Изменить группы участника',
@@ -1065,7 +1066,7 @@ $3 указал следующую причину: ''$2''",
 'group-bureaucrat'    => 'Бюрократы',
 'group-all'           => '(все)',
 
-'group-autoconfirmed-member' => 'Автоподтверждённый участник',
+'group-autoconfirmed-member' => 'автоподтверждённый участник',
 'group-bot-member'           => 'бот',
 'group-sysop-member'         => 'администратор',
 'group-bureaucrat-member'    => 'бюрократ',
@@ -1209,6 +1210,9 @@ $3 указал следующую причину: ''$2''",
 'upload_source_file' => ' (файл на вашем компьютере)',
 
 # Special:Imagelist
+'imagelist-summary'     => 'Эта служебная страница показывает все загруженные файлы.
+Недавно загруженные файлы по умолчанию показываются в верху списка.
+Щелчок на заголовке колонки изменяет порядок сортировки.',
 'imagelist_search_for'  => 'Поиск по имени изображения:',
 'imgdesc'               => 'описание',
 'imgfile'               => 'файл',
@@ -1241,6 +1245,7 @@ $3 указал следующую причину: ''$2''",
 'noimage'                   => 'Файла с таким именем не существует, вы можете $1.',
 'noimage-linktext'          => 'загрузить его',
 'uploadnewversion-linktext' => 'Загрузить новую версию этого файла',
+'imagepage-searchdupe'      => 'Поиск одинаковых файлов',
 
 # File reversion
 'filerevert'                => 'Возврат к старой версии $1',
@@ -1355,7 +1360,6 @@ $3 указал следующую причину: ''$2''",
 'mostcategories'          => 'Страницы, включённые в большое количество категорий',
 'mostimages'              => 'Самые используемые изображения',
 'mostrevisions'           => 'Наиболее часто редактировавшиеся страницы',
-'allpages'                => 'Все страницы',
 'prefixindex'             => 'Указатель по началу слов',
 'shortpages'              => 'Короткие статьи',
 'longpages'               => 'Длинные страницы',
@@ -1382,19 +1386,14 @@ $3 указал следующую причину: ''$2''",
 'notargettext'            => 'Вы не указали целевую страницу или участника для этого действия.',
 'pager-newer-n'           => '{{PLURAL:$1|более новая $1|более новые $1}}',
 'pager-older-n'           => '{{PLURAL:$1|более старая $1|более старые $1}}',
+'pager-sort-asc'          => 'по возрастанию',
+'pager-sort-desc'         => 'по убыванию',
 
 # Book sources
 'booksources'               => 'Источники книг',
 'booksources-search-legend' => 'Поиск информации о книге',
 'booksources-go'            => 'Найти',
 'booksources-text'          => 'На этой странице приведён список ссылок на сайты, где вы, возможно, найдёте дополнительную информацию о книге. Это интернет-магазины и системы поиска в библиотечных каталогах.',
-
-'categoriespagetext' => 'В вики имеются следующие категории.',
-'data'               => 'Данные',
-'userrights'         => 'Управление правами участников',
-'groups'             => 'Группы участников',
-'alphaindexline'     => 'от $1 до $2',
-'version'            => 'Версия MediaWiki',
 
 # Special:Log
 'specialloguserlabel'  => 'Участник:',
@@ -1409,6 +1408,8 @@ $3 указал следующую причину: ''$2''",
 'log-title-wildcard'   => 'Найти заголовки, начинающиеся на с данных символов',
 
 # Special:Allpages
+'allpages'          => 'Все страницы',
+'alphaindexline'    => 'от $1 до $2',
 'nextpage'          => 'Следующая страница ($1)',
 'prevpage'          => 'Предыдущая страница ($1)',
 'allpagesfrom'      => 'Вывести страницы, начинающиеся на:',
@@ -1614,6 +1615,7 @@ $NEWPAGE
 # Undelete
 'undelete'                     => 'Просмотреть удалённые страницы',
 'undeletepage'                 => 'Просмотр и восстановление удалённых страниц',
+'undeletepagetitle'            => "'''Ниже перечислены удалённые версии страницы [[:$1]]'''.",
 'viewdeletedpage'              => 'Просмотреть удалённые страницы',
 'undeletepagetext'             => 'Следующие страницы были удалены, однако они всё ещё находятся в архиве, и поэтому могут быть восстановлены. Архив периодически очищается.',
 'undeleteextrahelp'            => "Для полного восстановления страницы оставьте все отметки пустыми и нажмите '''«Восстановить»'''. Для частичного восстановления отметьте те версии страницы, которые нужно восстановить, и нажмите '''«Восстановить»'''. Нажмите '''«Очистить»''', чтобы снять все отметки и очистить поле примечания.",
@@ -1800,7 +1802,7 @@ IP-адреса.',
 
 # Move page
 'move-page'               => '$1 — переименование',
-'move-page-legend'        => 'Переименовать страницу',
+'move-page-legend'        => 'Переименование страницы',
 'movepagetext'            => "Воспользовавшись формой ниже, вы переименуете страницу, одновременно переместив на новое место её журнал изменений.
 Старое название станет перенаправлением на новое название.
 Ссылки на старое название не будут изменены (пожалуйста, проверьте наличие [[{{ns:special}}:DoubleRedirects|двойных]] и [[{{ns:special}}:BrokenRedirects|разорванных]] перенаправлений).
@@ -2093,11 +2095,12 @@ $1',
 # Special:Newimages
 'newimages'             => 'Галерея новых файлов',
 'imagelisttext'         => "Ниже представлен список из '''$1''' {{PLURAL:$1|файла|файлов|файлов}}, отсортированных $2.",
+'newimages-summary'     => 'Эта служебная страница показывает недавно загруженные файлы',
 'showhidebots'          => '($1 ботов)',
 'noimages'              => 'Изображения отсутствуют.',
 'ilsubmit'              => 'Найти',
 'bydate'                => 'по дате',
-'sp-newimages-showfrom' => 'Показать новые изображения, начиная с $1',
+'sp-newimages-showfrom' => 'Показать новые изображения, начиная с $2, $1',
 
 # Video information, used by Language::formatTimePeriod() to format lengths in the above messages
 'video-dims'     => '$1, $2 × $3',
@@ -2545,6 +2548,7 @@ $1',
 'unknown_extension_tag' => 'Неизвестный тег дополнения «$1»',
 
 # Special:Version
+'version'                          => 'Версия MediaWiki', # Not used as normal message but as header for the special page itself
 'version-extensions'               => 'Установленные расширения',
 'version-specialpages'             => 'Служебные страницы',
 'version-parserhooks'              => 'Перехватчики синтаксического анализатора',
@@ -2571,5 +2575,17 @@ $1',
 'filepath-summary' => 'Данная служебная страница возвращает полный путь к файлу в том виде, в котором он хранится на диске.
 
 Введите имя файла без префикса <code>{{ns:image}}:</code>.',
+
+# Special:FileDuplicateSearch
+'fileduplicatesearch'          => 'Поиск одинаковых файлов',
+'fileduplicatesearch-summary'  => 'Поиск одинаковых файлов по их хэш-коду.
+
+Введите имя файла без приставки «{{ns:image}}:».',
+'fileduplicatesearch-legend'   => 'Поиск дубликатов',
+'fileduplicatesearch-filename' => 'Имя файла:',
+'fileduplicatesearch-submit'   => 'Найти',
+'fileduplicatesearch-info'     => '$1 × $2 пикселов<br />Размер файла: $3<br />MIME-тип: $4',
+'fileduplicatesearch-result-1' => 'Файл «$1» не имеет идентичных дубликатов.',
+'fileduplicatesearch-result-n' => 'Файл «$1» имеет $2 {{PLURAL:$2|идентичный дубликат|идентичных дубликата|идентичных дубликатов}}.',
 
 );

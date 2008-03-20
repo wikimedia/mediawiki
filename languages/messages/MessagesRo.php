@@ -173,6 +173,7 @@ pe titlul secţiunii (JavaScript)',
 
 # Categories related messages
 'categories'               => '{{PLURAL:$1|Categorie|Categorii}}',
+'categoriespagetext'       => 'Următoarele categorii există în wiki.',
 'pagecategories'           => '{{PLURAL:$1|Categorie|Categorii}}',
 'category_header'          => 'Articole din categoria "$1"',
 'subcategories'            => 'Subcategorii',
@@ -180,7 +181,6 @@ pe titlul secţiunii (JavaScript)',
 'category-empty'           => "''Această categorie nu conţine articole sau fişiere media.''",
 'hidden-categories'        => '{{PLURAL:$1|categorie ascunsă|categorii ascunse}}',
 'hidden-category-category' => 'Categorii ascunse', # Name of the category where hidden categories will be listed
-'subcategorycount'         => 'Această categorie conţine {{PLURAL:$1|o subcategorie|$1 subcategorii}}.',
 'listingcontinuesabbrev'   => ' cont.',
 
 'mainpagetext' => "<big>'''Programul Wiki a fost instalat cu succes.'''</big>",
@@ -627,7 +627,6 @@ Motivul invocat de $3 este ''$2''",
 'nohistory'           => 'Nu există istoric pentru această pagină.',
 'revnotfound'         => 'Versiunea nu a fost găsită',
 'revnotfoundtext'     => 'Versiunea mai veche a paginii pe care aţi cerut-o nu a fost găsită. Vă rugăm să verificaţi legătura pe care aţi folosit-o pentru a accesa această pagină.',
-'loadhist'            => 'Încarc istoria versiunilor',
 'currentrev'          => 'Versiunea curentă',
 'revisionasof'        => 'Versiunea de la data $1',
 'revision-info'       => 'Revizia pentru $1; $2',
@@ -637,7 +636,6 @@ Motivul invocat de $3 este ''$2''",
 'cur'                 => 'actuală',
 'next'                => 'următoarea',
 'last'                => 'prec',
-'orig'                => 'orig',
 'page_first'          => 'prim',
 'page_last'           => 'ultim',
 'histlegend'          => 'Legendă: (actuală) = diferenţe faţă de versiunea curentă,
@@ -784,6 +782,7 @@ Căutări după $3 $9',
 'files'                   => 'Fişiere',
 
 # User rights
+'userrights'                       => 'Administrarea drepturilor de utilizator', # Not used as normal message but as header for the special page itself
 'userrights-lookup-user'           => 'Administrare grupuri de utilizatori',
 'userrights-user-editname'         => 'Introdu un nume de utilizator:',
 'editusergroup'                    => 'Modificare grup de utilizatori',
@@ -1061,7 +1060,6 @@ Mărimea [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] este <b>$7</b
 'mostcategories'          => 'Articole cu cele mai multe categorii',
 'mostimages'              => 'Cele mai căutate imagini',
 'mostrevisions'           => 'Articole cu cele mai multe revizuiri',
-'allpages'                => 'Toate paginile',
 'prefixindex'             => 'Afişare articole începând de la',
 'shortpages'              => 'Pagini scurte',
 'longpages'               => 'Pagini lungi',
@@ -1088,13 +1086,6 @@ Mărimea [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] este <b>$7</b
 'booksources'               => 'Surse de cărţi',
 'booksources-search-legend' => 'Caută surse pentru cărţi',
 
-'categoriespagetext' => 'Următoarele categorii există în wiki.',
-'data'               => 'Data',
-'userrights'         => 'Administrarea drepturilor de utilizator',
-'groups'             => 'Grupuri de utilizatori',
-'alphaindexline'     => '$1 către $2',
-'version'            => 'Versiune',
-
 # Special:Log
 'specialloguserlabel'  => 'Utilizator:',
 'speciallogtitlelabel' => 'Titlu:',
@@ -1105,6 +1096,8 @@ Mărimea [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] este <b>$7</b
 'log-title-wildcard'   => 'Caută titluri care încep cu acest text',
 
 # Special:Allpages
+'allpages'          => 'Toate paginile',
+'alphaindexline'    => '$1 către $2',
 'nextpage'          => 'Pagina următoare ($1)',
 'prevpage'          => 'Pagina anterioară ($1)',
 'allpagesfrom'      => 'Afişează paginile pornind de la:',
@@ -2061,5 +2054,8 @@ Vă rugăm să confirmaţi faptul că într-adevăr doriţi să recreaţi acest 
 
 # Watchlist editing tools
 'watchlisttools-view' => 'Vizualizează schimbările relevante',
+
+# Special:Version
+'version' => 'Versiune', # Not used as normal message but as header for the special page itself
 
 );

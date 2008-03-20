@@ -146,12 +146,12 @@ $messages = array(
 
 # Categories related messages
 'categories'             => 'Katõgooriaq',
+'categoriespagetext'     => 'Seon vikin ommaq sääntseq katõgooriaq:',
 'pagecategories'         => '{{PLURAL:$1|Katõgooria|Katõgooriaq}}',
 'category_header'        => 'Katõgooria "$1" artikliq',
 'subcategories'          => 'Allkatõgooriaq',
 'category-media-header'  => 'Kiräkotus katõgoorian "$1"',
 'category-empty'         => "''Seon katõgoorian olõ-i parhilla artikliid ega teedüstüid.''",
-'subcategorycount'       => 'Seol katõgoorial om {{PLURAL:$1|üts allkatõgooria|$1 allkatõgooriat}}.',
 'listingcontinuesabbrev' => 'lätt edesi',
 
 'mainpagetext'      => 'Wiki tarkvara paika säet.',
@@ -618,7 +618,6 @@ $3 kirjäpant põhjus: ''$2''",
 'revnotfound'         => 'Es lövväq kujjo',
 'revnotfoundtext'     => 'Es lövväq su otsitut vanna kujjo.
 Kaeq üle aadrõs, kost sa taad löüdäq proovõq.',
-'loadhist'            => 'Leheküle aoluu laatminõ',
 'currentrev'          => 'Viimäne kujo',
 'revisionasof'        => 'Kujo $1',
 'revision-info'       => 'Kujo aost $1 - tennüq $2',
@@ -628,7 +627,6 @@ Kaeq üle aadrõs, kost sa taad löüdäq proovõq.',
 'cur'                 => 'viim',
 'next'                => 'järgm',
 'last'                => 'minev',
-'orig'                => 'alg',
 'page_first'          => 'edimäne leht',
 'page_last'           => 'viimäne leht',
 'histlegend'          => "Märgiq ärq kujoq, midä tahat kõrvo säädiq ja vaodaq võrdõlõmisnuppi.
@@ -783,6 +781,7 @@ mitmõ otsmissõna pruukminõ (sis ilmusõq õnnõ leheküleq, kon ommaq kõik o
 'files'                    => 'Teedüstüq',
 
 # User rights
+'userrights'                 => 'Pruukja õiguisi muutminõ', # Not used as normal message but as header for the special page itself
 'userrights-lookup-user'     => 'Pruukjaõiguisi muutminõ',
 'userrights-user-editname'   => 'Kirodaq pruukjanimi:',
 'editusergroup'              => 'Muudaq pruukjidõ rühmi',
@@ -1058,7 +1057,6 @@ Taa numbri seen ommaq ka arotusküleq, abiartikliq, väega lühkeseq leheküleq,
 'mostcategories'          => 'Artikliq, mil om kõgõ rohkõmb katõgoorijit',
 'mostimages'              => 'Kõgõ inämb pruugiduq teedüstüq',
 'mostrevisions'           => 'Artikliq, mil om kõgõ rohkõmb toimõnduisi',
-'allpages'                => 'Kõik artikliq',
 'prefixindex'             => 'Leheq päälkirä algusõ perrä',
 'shortpages'              => 'Lühküq artikliq',
 'longpages'               => 'Pikäq artikliq',
@@ -1087,13 +1085,6 @@ Taa numbri seen ommaq ka arotusküleq, abiartikliq, väega lühkeseq leheküleq,
 'booksources-go'            => 'Otsiq',
 'booksources-text'          => 'Tan om linke lehekülile, kon müvväs raamatit vai andas raamatidõ kotsilõ teedüst.',
 
-'categoriespagetext' => 'Seon vikin ommaq sääntseq katõgooriaq:',
-'data'               => 'Teedüs',
-'userrights'         => 'Pruukja õiguisi muutminõ',
-'groups'             => 'Pruukjarühmäq',
-'alphaindexline'     => '$1 kooniq $2',
-'version'            => 'Kujo',
-
 # Special:Log
 'specialloguserlabel'  => 'Pruukja:',
 'speciallogtitlelabel' => 'Päälkiri:',
@@ -1106,6 +1097,8 @@ Taa numbri seen ommaq ka arotusküleq, abiartikliq, väega lühkeseq leheküleq,
 'log-title-wildcard'   => 'Otsiq päälkirjo, miä alostasõq taa tekstiga',
 
 # Special:Allpages
+'allpages'          => 'Kõik artikliq',
+'alphaindexline'    => '$1 kooniq $2',
 'nextpage'          => 'Järgmäne lehekülg ($1)',
 'prevpage'          => 'Mineväne lehekülg ($1)',
 'allpagesfrom'      => 'Nakkaq näütämä lehekülest:',
@@ -2083,6 +2076,9 @@ Prooviq harilikku kaehust.',
 'watchlisttools-view' => 'Näütäq muutmiisi',
 'watchlisttools-edit' => 'Kaeq ja toimõndaq perräkaemisnimekirjä',
 'watchlisttools-raw'  => 'Toimõndaq lätteteedüstüt',
+
+# Special:Version
+'version' => 'Kujo', # Not used as normal message but as header for the special page itself
 
 # Special:Filepath
 'filepath'        => 'Teedüstü aadrõs',

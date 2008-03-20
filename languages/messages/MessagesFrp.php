@@ -169,6 +169,7 @@ $messages = array(
 
 # Categories related messages
 'categories'               => 'Catègories',
+'categoriespagetext'       => 'Les catègories siuventes contegnont des pâges ou des fichiérs multimèdia.',
 'pagecategories'           => '{{PLURAL:$1|Catègorie |Catègories }}',
 'category_header'          => 'Pâges dens la catègorie « $1 »',
 'subcategories'            => 'Sot-catègories',
@@ -176,7 +177,6 @@ $messages = array(
 'category-empty'           => "''Ceta catègorie contint gins d’articllo, de sot-catègorie ou de fichiér multimèdia.''",
 'hidden-categories'        => '{{PLURAL:$1|Catègorie cachiê|Catègories cachiês}}',
 'hidden-category-category' => 'Catègories cachiês', # Name of the category where hidden categories will be listed
-'subcategorycount'         => '{{PLURAL:$1|Yona sot-catègorie est listâ|$1 sot-catègories sont listâs}} ce-desot. S’un lim « (200 prècèdents) » ou ben « (200 siuvents) » est present ce-dessus, pôt menar a d’ôtres sot-catègories.',
 'listingcontinuesabbrev'   => '(suita)',
 
 'mainpagetext'      => "<big>'''MediaWiki at étâ enstalâ avouéc reusséta.'''</big>",
@@ -669,7 +669,6 @@ La rêson balyê per $3 ére ''$2''.",
 'revnotfound'         => 'Vèrsion entrovâbla',
 'revnotfoundtext'     => 'La vèrsion prècèdenta de cela pâge at pas possu étre retrovâ. 
 Volyéd controlar l’URL que vos éd utilisâ por arrevar a ceta pâge.',
-'loadhist'            => 'Chargement de l’historico de la pâge',
 'currentrev'          => 'Vèrsion d’ora',
 'revisionasof'        => 'Vèrsion du $1',
 'revision-info'       => 'Vèrsion du $1 per $2',
@@ -679,7 +678,6 @@ Volyéd controlar l’URL que vos éd utilisâ por arrevar a ceta pâge.',
 'cur'                 => 'ora',
 'next'                => 'siuv',
 'last'                => 'dif',
-'orig'                => 'orig',
 'page_first'          => 'prem',
 'page_last'           => 'dèrr',
 'histlegend'          => 'Lègenda : (ora) = difèrence avouéc la vèrsion d’ora,
@@ -871,6 +869,7 @@ Atencion, lor endèxacion du contegnu de {{SITENAME}} pôt pas étre a jorn.',
 'files'                    => 'Fichiérs',
 
 # User rights
+'userrights'                       => 'Maneyance des drêts d’utilisator', # Not used as normal message but as header for the special page itself
 'userrights-lookup-user'           => 'Maneyance des drêts d’utilisator',
 'userrights-user-editname'         => 'Entrâd un nom d’utilisator :',
 'editusergroup'                    => 'Modificacion de les tropes d’utilisators',
@@ -1206,7 +1205,6 @@ Cen reprèsente una moyena de {{PLURAL:$5|'''1''' modificacion|'''$5''' modifica
 'mostcategories'          => 'Articllos utilisent lo més de catègories',
 'mostimages'              => 'Émâges les ples utilisâs',
 'mostrevisions'           => 'Articllos los ples modifiâs',
-'allpages'                => 'Totes les pâges',
 'prefixindex'             => 'Totes les pâges per premiéres lètres',
 'shortpages'              => 'Pâges côrtes',
 'longpages'               => 'Pâges longes',
@@ -1241,13 +1239,6 @@ Cen reprèsente una moyena de {{PLURAL:$5|'''1''' modificacion|'''$5''' modifica
 'booksources-go'            => 'Validar',
 'booksources-text'          => 'Vê-que una lista de lims vers d’ôtros setos que vendont des lévros nôfs et d’ocasion et sur losquints vos troveréd pôt-étre des enformacions sur les ôvres que vos chèrchiéd. {{SITENAME}} étent pas liyê a gins de celes sociètâts, el at pas du tot l’entencion de nen fâre la recllâma.',
 
-'categoriespagetext' => 'Les catègories siuventes contegnont des pâges ou des fichiérs multimèdia.',
-'data'               => 'Balyês',
-'userrights'         => 'Maneyance des drêts d’utilisator',
-'groups'             => 'Tropes d’utilisators',
-'alphaindexline'     => '$1 a $2',
-'version'            => 'Vèrsion',
-
 # Special:Log
 'specialloguserlabel'  => 'Utilisator :',
 'speciallogtitlelabel' => 'Titro :',
@@ -1260,6 +1251,8 @@ Cen reprèsente una moyena de {{PLURAL:$5|'''1''' modificacion|'''$5''' modifica
 'log-title-wildcard'   => 'Chèrchiér los titros comencient per lo tèxte siuvent',
 
 # Special:Allpages
+'allpages'          => 'Totes les pâges',
+'alphaindexline'    => '$1 a $2',
 'nextpage'          => 'Pâge siuventa ($1)',
 'prevpage'          => 'Pâge prècèdenta ($1)',
 'allpagesfrom'      => 'Afichiér les pâges dês :',
@@ -2412,6 +2405,7 @@ $1',
 'unknown_extension_tag' => 'Balisa d’èxtension « $1 » encognua',
 
 # Special:Version
+'version'                          => 'Vèrsion', # Not used as normal message but as header for the special page itself
 'version-extensions'               => 'Vèrsions enstalâs',
 'version-specialpages'             => 'Pâges spèciâles',
 'version-parserhooks'              => 'Apèls d’analises',

@@ -245,6 +245,7 @@ $messages = array(
 
 # Categories related messages
 'categories'               => 'Kategorije',
+'categoriespagetext'       => 'Slědujuce kategorije wopśimuju boki abo medije.',
 'pagecategories'           => '{{PLURAL:$1|Kategorija|Kategoriji|Kategorije}}',
 'category_header'          => 'Nastawki w kategoriji „$1“',
 'subcategories'            => 'Pódkategorije',
@@ -252,7 +253,6 @@ $messages = array(
 'category-empty'           => "''W toś tej kategoriji njejsu něnto žedne nastawki abo medije.''",
 'hidden-categories'        => '{{PLURAL:$1|Schowana kategorija|Schowanej kategoriji|Schowane kategorije|Schowanych kategorijow}}',
 'hidden-category-category' => 'Schowane kategorije', # Name of the category where hidden categories will be listed
-'subcategorycount'         => '{{PLURAL:$1|Pokažo se $1 pódkategorija|Pokazujotej se $1 pódkategoriji|Pokazuju se $1 pódkategorije}}.',
 'listingcontinuesabbrev'   => 'dalej',
 
 'mainpagetext'      => "<big>'''MediaWiki jo se wuspěšnje instalěrowało.'''</big>",
@@ -739,7 +739,6 @@ Pśicyna, kótaruž $3 jo zapódał, jo ''$2''.",
 'nohistory'           => 'Stawizny wobźěłanja za toś ten bok njeeksistěruju.',
 'revnotfound'         => 'Wersija njejo se namakała.',
 'revnotfoundtext'     => 'Njejo móžno było, wersiju togo boka namakaś, za kótaremž sy pytał. Pšosym kontrolěruj zapódanu URL.',
-'loadhist'            => 'Lodowanje stawiznow boka',
 'currentrev'          => 'Aktualna wersija',
 'revisionasof'        => 'Wersija wót $1',
 'revision-info'       => 'Wersija wót $1 do $2',
@@ -749,7 +748,6 @@ Pśicyna, kótaruž $3 jo zapódał, jo ''$2''.",
 'cur'                 => 'aktualny',
 'next'                => 'pśiduce',
 'last'                => 'zachadne',
-'orig'                => 'original',
 'page_first'          => 'zachopjeńk',
 'page_last'           => 'kóńc',
 'histlegend'          => 'Aby se změny pokazali, dejtej se pśirownanskej wersiji wuzwóliś. Pón dej se "enter" abo dołojcne tłocanko (button) tłocyś.<br />
@@ -930,6 +928,7 @@ Móžoš bok ale teke [[$1|sam załožyś]].",
 'files'                    => 'Dataje',
 
 # User rights
+'userrights'                       => 'Zastojanje wužywarskich pšawow', # Not used as normal message but as header for the special page itself
 'userrights-lookup-user'           => 'Wužywarske kupki zastojaś',
 'userrights-user-editname'         => 'Wužywarske mě:',
 'editusergroup'                    => 'Wužywarske kupki wobźěłaś.',
@@ -1287,8 +1286,6 @@ Wót togo {{PLURAL:$2|ma|matej|maju}} (=$4%) $5-pšawa.",
 'mostimages-summary'              => 'Toś ten specialny bok pokazujo lisćinu nejcesćej wužywanych datajow.',
 'mostrevisions'                   => 'Boki z nejwěcej wersijami',
 'mostrevisions-summary'           => 'Toś ten specialny bok pokazujo lisćinu bokow z nejwěcej wobźěłanjami.',
-'allpages'                        => 'Wšykne boki',
-'allpages-summary'                => 'Toś ten specialny bok nalicujo boki {{SITENAME}} wót A do Ź. Sortěrujo se alfabetiski, nejžpjerwjej licby, pón wjelike pismiki, małe pismiki a pón wósebne znamuška.',
 'prefixindex'                     => 'Wšykne nastawki (z prefiksom)',
 'prefixindex-summary'             => 'Toś ten specialny bok pokazujo wšykne boki ze zapódanym prefiksom. Output móžo se na jaden mjenjowy rum reducěrowaś.',
 'shortpages'                      => 'Krotke nastawki',
@@ -1332,13 +1329,6 @@ Wót togo {{PLURAL:$2|ma|matej|maju}} (=$4%) $5-pšawa.",
 'booksources-go'            => 'Pytaś',
 'booksources-text'          => 'To jo lisćina z wótkazami na internetowe boki, kótarež pśedawaju nowe a trjebane knigły. Tam mógu teke dalšne informacije wó knigłach byś. {{SITENAME}} njezwisujo góspodarsce z žednym z toś tych póbitowarjow.',
 
-'categoriespagetext' => 'Slědujuce kategorije wopśimuju boki abo medije.',
-'data'               => 'Daty',
-'userrights'         => 'Zastojanje wužywarskich pšawow',
-'groups'             => 'Wužywarske kupki',
-'alphaindexline'     => '$1 do $2',
-'version'            => 'Wersija',
-
 # Special:Log
 'specialloguserlabel'  => 'Wužywaŕ:',
 'speciallogtitlelabel' => 'Nadpismo:',
@@ -1351,6 +1341,9 @@ Wót togo {{PLURAL:$2|ma|matej|maju}} (=$4%) $5-pšawa.",
 'log-title-wildcard'   => 'Pytaś nadpismo, kótarež zachopijo z ...',
 
 # Special:Allpages
+'allpages'          => 'Wšykne boki',
+'allpages-summary'  => 'Toś ten specialny bok nalicujo boki {{SITENAME}} wót A do Ź. Sortěrujo se alfabetiski, nejžpjerwjej licby, pón wjelike pismiki, małe pismiki a pón wósebne znamuška.',
+'alphaindexline'    => '$1 do $2',
 'nextpage'          => 'Slědujucy bok ($1)',
 'prevpage'          => 'Pśedchadny bok ($1)',
 'allpagesfrom'      => 'Boki pokazaś wót:',
@@ -2412,6 +2405,7 @@ Móžoš teke [[Special:Watchlist/edit|standardny editor wužywaś]].',
 'unknown_extension_tag' => 'Njeznaty tag rozšyrjenja „$1“',
 
 # Special:Version
+'version'                          => 'Wersija', # Not used as normal message but as header for the special page itself
 'version-extensions'               => 'Instalowane rozšyrjenja',
 'version-specialpages'             => 'Specialne boki',
 'version-parserhooks'              => 'Parserowe kokule',

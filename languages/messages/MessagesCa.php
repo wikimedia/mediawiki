@@ -252,16 +252,22 @@ $messages = array(
 'dec'           => 'des',
 
 # Categories related messages
-'categories'               => 'Categories',
-'pagecategories'           => '{{PLURAL:$1|Categoria|Categories}}',
-'category_header'          => 'Pàgines a la categoria «$1»',
-'subcategories'            => 'Subcategories',
-'category-media-header'    => 'Contingut multimèdia en la categoria «$1»',
-'category-empty'           => "''Aquesta categoria no té cap pàgina ni fitxer.''",
-'hidden-categories'        => '{{PLURAL:$1|Categoria oculta|Categories ocultes}}',
-'hidden-category-category' => 'Categories ocultes', # Name of the category where hidden categories will be listed
-'subcategorycount'         => "Hi ha {{PLURAL:$1|una subcategoria|$1 subcategories}} dins d'aquesta categoria.",
-'listingcontinuesabbrev'   => ' cont.',
+'categories'                     => 'Categories',
+'categoriespagetext'             => 'Les categories següents contenen pàgines o fitxers multimèdia.',
+'pagecategories'                 => '{{PLURAL:$1|Categoria|Categories}}',
+'category_header'                => 'Pàgines a la categoria «$1»',
+'subcategories'                  => 'Subcategories',
+'category-media-header'          => 'Contingut multimèdia en la categoria «$1»',
+'category-empty'                 => "''Aquesta categoria no té cap pàgina ni fitxer.''",
+'hidden-categories'              => '{{PLURAL:$1|Categoria oculta|Categories ocultes}}',
+'hidden-category-category'       => 'Categories ocultes', # Name of the category where hidden categories will be listed
+'category-subcat-count'          => "{{PLURAL:$2|Aquesta categoria només té la següent subcategoria.|Aquesta categoria conté {{PLURAL:$1|la següent subcategoria|les següents $1 subcategories}}, d'un total de $2.}}",
+'category-subcat-count-limited'  => 'Aquesta categoria conté {{PLURAL:$1|la següent subcategoria|les següents $1 subcategories}}.',
+'category-article-count'         => "{{PLURAL:$2|Aquesta categoria només té la següent pàgina.|{{PLURAL:$1|La següent pàgina és|Les següents $1 pàgines són}} dins d'aquesta categoria, d'un total de $2.}}",
+'category-article-count-limited' => '{{PLURAL:$1|La següent pàgina és|Les següents $1 pàgines són}} dins la categoria actual.',
+'category-file-count'            => "{{PLURAL:$2|Aquesta categoria només té el següent fitxer.|{{PLURAL:$1|El següent fitxer és|Els següents $1 fitxers són}} dins d'aquesta categoria, d'un total de $2.}}",
+'category-file-count-limited'    => '{{PLURAL:$1|El següent fitxer és|Els següents $1 fitxers són}} dins la categoria actual.',
+'listingcontinuesabbrev'         => ' cont.',
 
 'mainpagetext'      => "<big>'''El programari del MediaWiki s'ha instal·lat correctament.'''</big>",
 'mainpagedocfooter' => "Consulteu la [http://meta.wikimedia.org/wiki/Help:Contents Guia d'Usuari] per a més informació sobre com utilitzar-lo.
@@ -763,7 +769,6 @@ El motiu donat per $3 és ''$2''",
 'revnotfound'         => 'Revisió no trobada',
 'revnotfoundtext'     => "No s'ha pogut trobar la revisió antiga de la pàgina que demanàveu.
 Reviseu l'URL que heu emprat per a accedir-hi.",
-'loadhist'            => 'Recuperant la història de la pàgina',
 'currentrev'          => 'Revisió actual',
 'revisionasof'        => 'Revisió de $1',
 'revision-info'       => 'Revisió de $1; $2',
@@ -773,7 +778,6 @@ Reviseu l'URL que heu emprat per a accedir-hi.",
 'cur'                 => 'act',
 'next'                => 'seg',
 'last'                => 'prev',
-'orig'                => 'orig',
 'page_first'          => 'primera',
 'page_last'           => 'última',
 'histlegend'          => 'Simbologia: (act) = diferència amb la versió actual,
@@ -892,6 +896,7 @@ per recerques de paraules comunes com "la" o "de",
 que no es troben a l\'índex, o per especificar més d\'una paraula a cercar (només les pàgines
 que contenen tots els termes d\'una recerca apareixeran en el resultat).',
 'powersearch'           => 'Cerca avançada',
+'powersearch-legend'    => 'Cerca avançada',
 'powersearchtext'       => '
 Cerca en espais de nom :<br />
 $1<br />
@@ -960,6 +965,7 @@ $2 Llista redireccions   Cerca $3 $9',
 'files'                    => 'Fitxers',
 
 # User rights
+'userrights'                       => "Gestió dels permisos d'usuari", # Not used as normal message but as header for the special page itself
 'userrights-lookup-user'           => "Gestiona els grups d'usuari",
 'userrights-user-editname'         => "Introduïu un nom d'usuari:",
 'editusergroup'                    => "Edita els grups d'usuaris",
@@ -1134,6 +1140,9 @@ A continuació teniu el registre d'eliminació per a que pugueu comprovar els mo
 'upload_source_file' => ' (un fitxer en el vostre ordinador)',
 
 # Special:Imagelist
+'imagelist-summary'     => "Aquesta pàgina especial mostra tots els fitxers carregats.
+Per defecte, els darrers en ser carregats apareixen al principi de la llista.
+Clicant al capdamunt de les columnes podeu canviar-ne l'ordenació.",
 'imagelist_search_for'  => "Cerca el nom d'un fitxer de medis:",
 'imgdesc'               => 'desc',
 'imgfile'               => 'fitxer',
@@ -1290,7 +1299,6 @@ segon redireccionament, la qual cosa dóna normalment l\'article "real", al que 
 'mostcategories'          => 'Pàgines que utilitzen més categories',
 'mostimages'              => 'Més enllaçat a fitxers',
 'mostrevisions'           => 'Pàgines més modificades',
-'allpages'                => 'Totes les pàgines',
 'prefixindex'             => 'Cercar per prefix',
 'shortpages'              => 'Pàgines curtes',
 'longpages'               => 'Pàgines llargues',
@@ -1324,13 +1332,6 @@ segon redireccionament, la qual cosa dóna normalment l\'article "real", al que 
 'booksources-go'            => 'Vés-hi',
 'booksources-text'          => "A sota hi ha una llista d'enllaços d'altres llocs que venen llibres nous i de segona mà, i també podrien tenir més informació dels llibres que esteu cercant:",
 
-'categoriespagetext' => 'Les categories següents contenen pàgines o fitxers multimèdia.',
-'data'               => 'Dades',
-'userrights'         => "Gestió dels permisos d'usuari",
-'groups'             => "Grups d'usuaris",
-'alphaindexline'     => '$1 a $2',
-'version'            => 'Versió',
-
 # Special:Log
 'specialloguserlabel'  => 'Usuari:',
 'speciallogtitlelabel' => 'Títol:',
@@ -1344,6 +1345,8 @@ Podeu reduir l'extensió seleccionant el tipus de identificació, el nom del usu
 'log-title-wildcard'   => 'Cerca els títols que comencin amb aquest text',
 
 # Special:Allpages
+'allpages'          => 'Totes les pàgines',
+'alphaindexline'    => '$1 a $2',
 'nextpage'          => 'Pàgina següent ($1)',
 'prevpage'          => 'Pàgina anterior ($1)',
 'allpagesfrom'      => 'Mostra les pàgines que comencin per:',
@@ -1520,7 +1523,7 @@ La darrera edició s'ha fet per l'usuari [[User:$3|$3]] ([[User talk:$3|Discussi
 'protectedarticle'            => 'protegit «[[$1]]»',
 'modifiedarticleprotection'   => "s'ha canviat el nivell de protecció «[[$1]]»",
 'unprotectedarticle'          => '«[[$1]]» desprotegida',
-'protect-title'               => 'Protegint «$1»',
+'protect-title'               => 'Canviant la protecció de «$1»',
 'protect-legend'              => 'Confirmeu la protecció',
 'protectcomment'              => 'Motiu de la protecció',
 'protectexpiry'               => "Data d'expiració",
@@ -1562,7 +1565,7 @@ Ací es troben els paràmetres actuals de la pàgina <strong>$1</strong>:',
 # Undelete
 'undelete'                     => 'Restaura una pàgina esborrada',
 'undeletepage'                 => 'Mostra i restaura pàgines esborrades',
-'undeletepagetitle'            => "'''El següent consisteix en revisions eliminades de [[:$1]]'''.",
+'undeletepagetitle'            => "'''A continuació teniu revisions eliminades de [[:$1]]'''.",
 'viewdeletedpage'              => 'Visualitza les pàgines eliminades',
 'undeletepagetext'             => "S'han eliminat les pàgines següents però encara són a l'arxiu i poden ser restaurades. Pot netejar-se l'arxiu periòdicament.",
 'undeleteextrahelp'            => "Per a restaurar la pàgina sencera, deixeu totes les caselles sense seleccionar i
@@ -2037,11 +2040,12 @@ $1",
 # Special:Newimages
 'newimages'             => 'Galeria de nous fitxers',
 'imagelisttext'         => "Llista {{plural:$1|d'un sol fitxer|de '''$1''' fitxers ordenats $2}}.",
+'newimages-summary'     => 'Aquesta pàgina especial mostra els darrers fitxers carregats',
 'showhidebots'          => '($1 bots)',
 'noimages'              => 'Res per veure.',
 'ilsubmit'              => 'Cerca',
 'bydate'                => 'per data',
-'sp-newimages-showfrom' => 'Mostra fitxers nous des de $1',
+'sp-newimages-showfrom' => 'Mostra fitxers nous des del $1 a les $2',
 
 # Bad image list
 'bad_image_list' => "El format ha de ser el següent:
@@ -2465,6 +2469,7 @@ També podeu [[Special:Watchlist/edit|utilitzar l'editor estàndard]].",
 'unknown_extension_tag' => "Etiqueta d'extensió desconeguda «$1»",
 
 # Special:Version
+'version'                          => 'Versió', # Not used as normal message but as header for the special page itself
 'version-extensions'               => 'Extensions instaŀlades',
 'version-specialpages'             => 'Pàgines especials',
 'version-parserhooks'              => "Lligams de l'analitzador",

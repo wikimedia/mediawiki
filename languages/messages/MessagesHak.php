@@ -113,11 +113,11 @@ $messages = array(
 
 # Categories related messages
 'categories'             => 'Hong-mien fûn-lui',
+'categoriespagetext'     => 'Yî-ha lie̍t-chhut só-yû ke hong-mien fûn-lui.',
 'pagecategories'         => '$1-ke fûn-lui',
 'category_header'        => 'Lui-phe̍t "$1" chûng ke vùn-chông',
 'subcategories'          => 'Fu-su̍k fûn-lui',
 'category-media-header'  => '"$1" fûn-lui chûng ke kî-thí tóng-on',
-'subcategorycount'       => 'Liá-ke fûn-lui-hâ yû $1-ke chṳ́ fûn-lui.',
 'listingcontinuesabbrev' => 'Chhṳ̀-siu̍k',
 
 'mainpagetext'      => "<big>'''Yí-kîn sṳ̀n-kûng ôn-chông MediaWiki!'''</big>",
@@ -515,7 +515,6 @@ Ngì thùng-sṳ̀ ya-yeu hiong Wikimedia pó-chṳn ngì só thì-kâu ke nui-y
 'nohistory'           => 'Mò-yû pún-chông ke siû-thin ki-liu̍k.',
 'revnotfound'         => 'Mò-yû chhìm-cháu to siû-thin ki-liu̍k',
 'revnotfoundtext'     => 'Chhiáng-khiù ke kien-chó pán-pún ke siû-thin ki-liu̍k mò-yû cháu-to. Chhiáng kiám-chhà chhiáng-khiù pún-chông yung ke URL he-féu chṳn-khok.',
-'loadhist'            => 'Chai-ngi̍p hong-mien siû-thin li̍t-sṳ́',
 'currentrev'          => 'Tông-chhièn siû-thin pán-pún',
 'revisionasof'        => 'Chhai $1 só-cho ke siû-thin pán-pún',
 'revision-info'       => 'Chhai $1 yù $2 só-cho ke siû-thin pán-pún',
@@ -525,7 +524,6 @@ Ngì thùng-sṳ̀ ya-yeu hiong Wikimedia pó-chṳn ngì só thì-kâu ke nui-y
 'cur'                 => 'tông-chhièn',
 'next'                => 'hâ yit-ke',
 'last'                => 'siên-chhièn',
-'orig'                => 'Ngièn-sṳ́',
 'page_first'          => 'Chui-chhièn',
 'page_last'           => 'Chui-heu',
 'histlegend'          => 'Chhâ-phe̍t sién-chet: phêu-ki yeu pí-káu pán-pún ke tân-sién on-néu pin tiám-kit tí-phu ke on-néu chin-hàng pí-káu.<br /> Sot-mìn: (Tông-chhièn) chṳ́-chit lâu tông-chhièn pán-pún pí-káu, (Siên-chhièn) chṳ́-chit lâu chhièn yit-ke siû-thin pán-pún pí-káu, séu = séu siû-kói.',
@@ -664,6 +662,7 @@ Ngì thùng-sṳ̀ ya-yeu hiong Wikimedia pó-chṳn ngì só thì-kâu ke nui-y
 'files'                    => 'Tóng-on',
 
 # User rights
+'userrights'                 => 'Yung-fu khièn-han kón-lî', # Not used as normal message but as header for the special page itself
 'userrights-lookup-user'     => 'Kón-lî yung-fu khiùn-chung',
 'userrights-user-editname'   => 'Sû-ngi̍p yung-fu-miàng:',
 'editusergroup'              => 'Phiên-cho yung-fu khiùn-chû',
@@ -894,7 +893,6 @@ Kó-yèn ngì yû liá-ke thù-hìn ke vàn-cháng thai-séu.',
 'mostcategories'          => 'Chui-tô fûn-lui vùn-chông',
 'mostimages'              => 'Chui-tô lièn-kiet thù-chhiong',
 'mostrevisions'           => 'Chui-tô siû-thin vùn-chông',
-'allpages'                => 'Só-yû ke hong-mian',
 'prefixindex'             => 'Chhièn-chhàng sok-yîn',
 'shortpages'              => 'Tón vùn-chông',
 'longpages'               => 'Chhòng vùn-chông',
@@ -923,13 +921,6 @@ Kó-yèn ngì yû liá-ke thù-hìn ke vàn-cháng thai-séu.',
 'booksources-go'            => 'Sung-chhut',
 'booksources-text'          => 'Yî-ha he yit-fun sîn-sû fe̍t-chá ngi-sú-sû ke lie̍t-péu, pin khó-nèn yû ngì chang-hó chhìm-cháu ke sû ke chin-yit-phu sêu-sit:',
 
-'categoriespagetext' => 'Yî-ha lie̍t-chhut só-yû ke hong-mien fûn-lui.',
-'data'               => 'Chṳ̂-liau',
-'userrights'         => 'Yung-fu khièn-han kón-lî',
-'groups'             => 'Yung-fu khiùn-chû',
-'alphaindexline'     => '$1 to $2',
-'version'            => 'Pán-pún',
-
 # Special:Log
 'specialloguserlabel'  => 'Yung-fu:',
 'speciallogtitlelabel' => 'Phêu-thì:',
@@ -941,6 +932,8 @@ Kó-yèn ngì yû liá-ke thù-hìn ke vàn-cháng thai-séu.',
 'log-title-wildcard'   => 'Chhà-chhìm liá-ke vùn-sṳ khôi-sṳ́ ke phêu-thì',
 
 # Special:Allpages
+'allpages'          => 'Só-yû ke hong-mian',
+'alphaindexline'    => '$1 to $2',
 'nextpage'          => 'Hâ yit-chông ($1)',
 'prevpage'          => 'Song yit-chông ($1)',
 'allpagesfrom'      => 'Hién-sṳ chhiùng chhṳ́-chhu khôi-sṳ́ ke hong-mien:',
@@ -1605,5 +1598,8 @@ Sòn-chhṳ phêu-chún yi-liau.',
 # Friendlier slave lag warnings
 'lag-warn-normal' => 'Tô-yî $1-méu ke kiên-kói khó-nèn put-voi chhai liá-ke chhîn-tân chûng hién-sṳ.',
 'lag-warn-high'   => 'Yù-yî chṳ̂-liau-khu ke ko-thu yèn-chhṳ̀, tô-yî $1-méu ke kiên-kói khó-nèn put-voi chhai liá-ke chhîn-tân chûng hién-sṳ.',
+
+# Special:Version
+'version' => 'Pán-pún', # Not used as normal message but as header for the special page itself
 
 );

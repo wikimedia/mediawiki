@@ -8,6 +8,7 @@
  * @author Siebrand
  * @author SPQRobin
  * @author M.M.S.
+ * @author SieBot
  */
 
 
@@ -114,12 +115,12 @@ $messages = array(
 
 # Categories related messages
 'categories'             => 'Categorias',
+'categoriespagetext'     => 'Las siguientis categorias contienin artículus u archivus murtimeya.',
 'pagecategories'         => '{{PLURAL:$1|Categoria|Categorias}}',
 'category_header'        => 'Artículus ena categoria "$1"',
 'subcategories'          => 'Sucategorias',
 'category-media-header'  => 'Meya ena categoria "$1"',
 'category-empty'         => "''Atualmenti nu desistin ni artículus ni archivus murtimeya nesta categoria.''",
-'subcategorycount'       => 'Ai {{PLURAL:$1|una sucategoria|$1 sucategorias}} nesta categoria.',
 'listingcontinuesabbrev' => 'acont.',
 
 'mainpagetext'      => "<big>'''MeyaGüiqui s'á istalau satihatoriamenti.'''</big>",
@@ -616,7 +617,6 @@ La razón dá pol $3 es ''$2''",
 'nohistory'           => 'Nu ai dengún estorial d´eicionis pa esta páhina.',
 'revnotfound'         => 'Revisión nu alcuentrá',
 'revnotfoundtext'     => 'La revisión antigua qu´estás landeandu nu se puei alcuentral. Pol favol, compreba la URL que gastasti pa dil a esta páhina.',
-'loadhist'            => 'Cargandu estorial la páhina',
 'currentrev'          => 'Revisión atual',
 'revisionasof'        => 'Revisión de $1',
 'revision-info'       => 'Revisión de $1 hecha pol $2',
@@ -626,7 +626,6 @@ La razón dá pol $3 es ''$2''",
 'cur'                 => 'atu',
 'next'                => 'siguienti',
 'last'                => 'úrtimu',
-'orig'                => 'orih',
 'page_first'          => 'primel',
 'page_last'           => 'úrtimu',
 'histlegend'          => 'Leyenda: (ati) = deferéncias cola velsión atual, (anter) = deferéncias cola velsión anteriol, C = eición chiquenina',
@@ -806,6 +805,7 @@ Asigurati e qu'esti chambu mantenga la continuiá el estorial la páhina.
 'files'                    => 'Archivus',
 
 # User rights
+'userrights'                       => "Alministral premisus d'usuárius", # Not used as normal message but as header for the special page itself
 'userrights-lookup-user'           => 'Alministral alabanis d´usuárius',
 'userrights-user-editname'         => 'Escrebi un nombri d´usuáriu:',
 'editusergroup'                    => 'Eital alabanis d´usuárius',
@@ -1120,7 +1120,6 @@ El longol de la [http://meta.wikimedia.org/wiki/Help:Job_queue cola e tareas] es
 'mostcategories'          => 'Páhinas con mas categorias',
 'mostimages'              => 'Imahin mas atihás',
 'mostrevisions'           => 'Artículus con mas revisionis',
-'allpages'                => 'Tolas páhinas',
 'prefixindex'             => 'Páhinas pol prefihu',
 'shortpages'              => 'Páhinas cortas',
 'longpages'               => 'Páhinas largas',
@@ -1155,14 +1154,6 @@ imahin con una URL direta, polo qu'están listás aquí, inque tengan un usu ati
 'booksources-go'            => 'Dil',
 'booksources-text'          => "Embahu se muestra una lista d'atihus a páhinas que vendin librus usaus i nuevus, i ondi pueis alcuentral enhormación al tentu los librus qu'estás landeandu:",
 
-'categoriespagetext' => 'Las siguientis categorias contienin artículus u archivus murtimeya.',
-'data'               => 'Datus',
-'userrights'         => "Alministral premisus d'usuárius",
-'groups'             => 'Alabanis d´usuárius',
-'isbn'               => 'ISBN:',
-'alphaindexline'     => '$1 a $2',
-'version'            => 'Velsión',
-
 # Special:Log
 'specialloguserlabel'  => 'Usuáriu:',
 'speciallogtitlelabel' => 'Entítulu:',
@@ -1174,6 +1165,8 @@ imahin con una URL direta, polo qu'están listás aquí, inque tengan un usu ati
 'log-title-wildcard'   => 'Landeal entítulus qu´esmiencin con esti testu',
 
 # Special:Allpages
+'allpages'          => 'Tolas páhinas',
+'alphaindexline'    => '$1 a $2',
 'nextpage'          => 'Siguienti páhina ($1)',
 'prevpage'          => 'Páhina anteriol ($1)',
 'allpagesfrom'      => 'Muestral páhinas qu´encetin pol:',
@@ -2198,6 +2191,7 @@ $1',
 'unknown_extension_tag' => 'estensión andarria: "$1"',
 
 # Special:Version
+'version'                     => 'Velsión', # Not used as normal message but as header for the special page itself
 'version-extensions'          => 'Estensionis istalás',
 'version-specialpages'        => 'Páhinas especialis',
 'version-variables'           => 'Variabris',

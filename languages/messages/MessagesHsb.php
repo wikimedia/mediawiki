@@ -211,6 +211,7 @@ $messages = array(
 
 # Categories related messages
 'categories'               => '{{PLURAL:$1|Kategorija|Kategoriji|Kategorije|Kategorije}}',
+'categoriespagetext'       => 'Slědowace kategorije w tutym wikiju eksistuja:',
 'pagecategories'           => '{{PLURAL:$1|Kategorija|Kategoriji|Kategorije|Kategorije}}',
 'category_header'          => 'Nastawki w kategoriji „$1”',
 'subcategories'            => 'Podkategorije',
@@ -218,7 +219,6 @@ $messages = array(
 'category-empty'           => "''Tuta kategorija tuchwilu žane nastawki abo medije njewobsahuje.''",
 'hidden-categories'        => '{{PLURAL:$1|Schowana kategorija|Schowane kategorije}}',
 'hidden-category-category' => 'Schowane kategorije', # Name of the category where hidden categories will be listed
-'subcategorycount'         => 'Tuta kategorija wobsahuje $1 {{PLURAL:$1|podkategoriju|podkategoriji|podkategorije|podkategorijow}}.',
 'listingcontinuesabbrev'   => ' (pokročowane)',
 
 'mainpagetext'      => '<big><b>MediaWiki bu wuspěšnje instalowany.</b></big>',
@@ -720,7 +720,6 @@ Přičina za blokowanje, podata wot $3, je: ''$2''",
 'nohistory'           => 'Njeje žanych staršich wersijow strony.',
 'revnotfound'         => 'Njebě móžno, požadanu wersiju namakać',
 'revnotfoundtext'     => 'Stara wersija strony, kotruž sy žadał, njeda so namakać. Prošu pruwuj URL, kiž sy wužiwał.',
-'loadhist'            => 'Stawizny strony so začita',
 'currentrev'          => 'Aktualna wersija',
 'revisionasof'        => 'Wersija z $1',
 'revision-info'       => 'Wersija z $1 wužiwarja $2',
@@ -730,7 +729,6 @@ Přičina za blokowanje, podata wot $3, je: ''$2''",
 'cur'                 => 'akt',
 'next'                => 'přich',
 'last'                => 'posl',
-'orig'                => 'prěnja',
 'page_first'          => 'spočatk',
 'page_last'           => 'kónc',
 'histlegend'          => 'Diff wubrać: Wubjer opciske pola za přirunanje a tłóč na enter abo tłóčku deleka.
@@ -906,6 +904,7 @@ Móžeš [[{{ns:special}}:Allpages|alfabetiski indeks přepytować]] abo [[:$1|s
 'files'                    => 'Dataje',
 
 # User rights
+'userrights'                       => 'Zrjadowanje wužiwarskich prawow', # Not used as normal message but as header for the special page itself
 'userrights-lookup-user'           => 'Wužiwarske skupiny zrjadować',
 'userrights-user-editname'         => 'Wužiwarske mjeno:',
 'editusergroup'                    => 'Wužiwarske skupiny wobdźěłać',
@@ -1262,8 +1261,6 @@ Dołhosć [http://meta.wikimedia.org/wiki/Help:Job_queue rynka nadawkow] je '''$
 'mostimages-summary'              => 'Tuta specialna strona naliči najwjace wužiwane dataje.',
 'mostrevisions'                   => 'Nastawki z najwjace wersijemi',
 'mostrevisions-summary'           => 'Tuta specialna strona naliči strony, kiž buchu najhusćišo wobdźěłane.',
-'allpages'                        => 'Wšě nastawki',
-'allpages-summary'                => 'Tuta specialna strona naliči wšě strony {{GRAMMAR:genitiw|{{SITENAME}}}} wot A do Ž.',
 'prefixindex'                     => 'Wšě nastawki (z prefiksom)',
 'prefixindex-summary'             => 'Tuta specialna strona naliči wšě strony, kotrež započinaja z podatym rjadom znamješkow (prefiks). Pohlad móže so na wěsty mjenowy rum wobmjezować.',
 'shortpages'                      => 'Krótke nastawki',
@@ -1307,13 +1304,6 @@ Dołhosć [http://meta.wikimedia.org/wiki/Help:Job_queue rynka nadawkow] je '''$
 'booksources-go'            => 'Pytać',
 'booksources-text'          => 'To je lisćina wotkazow k druhim sydłam, kotrež nowe a trjebane knihi předawaja. Tam móžeš tež dalše informacije wo knihach dóstać, kotrež pytaš:',
 
-'categoriespagetext' => 'Slědowace kategorije w tutym wikiju eksistuja:',
-'data'               => 'Daty',
-'userrights'         => 'Zrjadowanje wužiwarskich prawow',
-'groups'             => 'Skupiny wužiwarjow',
-'alphaindexline'     => '$1 do $2',
-'version'            => 'Wersija',
-
 # Special:Log
 'specialloguserlabel'  => 'Wužiwar:',
 'speciallogtitlelabel' => 'Strona:',
@@ -1326,6 +1316,9 @@ Dołhosć [http://meta.wikimedia.org/wiki/Help:Job_queue rynka nadawkow] je '''$
 'log-title-wildcard'   => 'Titul započina so z …',
 
 # Special:Allpages
+'allpages'          => 'Wšě nastawki',
+'allpages-summary'  => 'Tuta specialna strona naliči wšě strony {{GRAMMAR:genitiw|{{SITENAME}}}} wot A do Ž.',
+'alphaindexline'    => '$1 do $2',
 'nextpage'          => 'přichodna strona ($1)',
 'prevpage'          => 'předchadna strona ($1)',
 'allpagesfrom'      => 'Strony pokazać, započinajo z:',
@@ -2385,6 +2378,7 @@ Spytaj normalny přehlad.',
 'unknown_extension_tag' => 'Njeznata taflička rozšěrjenja "$1"',
 
 # Special:Version
+'version'                          => 'Wersija', # Not used as normal message but as header for the special page itself
 'version-extensions'               => 'Instalowane rozšěrjenja',
 'version-specialpages'             => 'Specialne strony',
 'version-parserhooks'              => 'Parserowe hoki',

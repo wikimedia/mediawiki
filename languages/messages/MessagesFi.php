@@ -274,16 +274,21 @@ $messages = array(
 'dec'           => 'joulukuu',
 
 # Categories related messages
-'categories'               => 'Luokat',
-'pagecategories'           => '{{PLURAL:$1|Luokka|Luokat}}',
-'category_header'          => 'Sivut, jotka ovat luokassa $1',
-'subcategories'            => 'Alaluokat',
-'category-media-header'    => 'Luokan ”$1” sisältämät tiedostot',
-'category-empty'           => "''Tässä luokassa ei ole sivuja eikä tiedostoja.''",
-'hidden-categories'        => '{{PLURAL:$1|Piilotettu luokka|Piilotetut luokat}}',
-'hidden-category-category' => 'Piilotetut luokat', # Name of the category where hidden categories will be listed
-'subcategorycount'         => 'Tällä luokalla on {{PLURAL:$1|yksi alaluokka|$1 alaluokkaa}}.',
-'listingcontinuesabbrev'   => 'jatkuu',
+'categories'                     => 'Luokat',
+'categoriespagetext'             => '{{GRAMMAR:inessive|{{SITENAME}}}} on seuraavat luokat:',
+'special-categories-sort-count'  => 'järjestä koon mukaan',
+'special-categories-sort-abc'    => 'aakkosjärjestyksen mukaan',
+'pagecategories'                 => '{{PLURAL:$1|Luokka|Luokat}}',
+'category_header'                => 'Sivut, jotka ovat luokassa $1',
+'subcategories'                  => 'Alaluokat',
+'category-media-header'          => 'Luokan ”$1” sisältämät tiedostot',
+'category-empty'                 => "''Tässä luokassa ei ole sivuja eikä tiedostoja.''",
+'hidden-categories'              => '{{PLURAL:$1|Piilotettu luokka|Piilotetut luokat}}',
+'hidden-category-category'       => 'Piilotetut luokat', # Name of the category where hidden categories will be listed
+'category-subcat-count-limited'  => 'Tässä luokassa on {{PLURAL:$1|yksi alaluokka|$1 alaluokkaa}}.',
+'category-article-count-limited' => '{{PLURAL:$1|Tämä sivu kuuluu|Nämä $1 sivua kuuluvat}} nykyiseen luokkaan.',
+'category-file-count-limited'    => 'Tässä luokassa on {{PLURAL:$1|yksi tiedosto|$1 tiedostoa}}.',
+'listingcontinuesabbrev'         => 'jatkuu',
 
 'mainpagetext'      => "'''MediaWiki on onnistuneesti asennettu.'''",
 'mainpagedocfooter' => "Lisätietoja käytöstä on sivulla [http://meta.wikimedia.org/wiki/Help:Contents User's Guide].
@@ -702,7 +707,7 @@ Yritä uudelleen. Jos ongelma ei katoa, yritä kirjautua ulos ja takaisin sisä�
 'yourtext'                  => 'Oma tekstisi',
 'storedversion'             => 'Tallennettu versio',
 'nonunicodebrowser'         => "'''Selaimesi ei ole Unicode-yhteensopiva. Ole hyvä ja vaihda selainta, ennen kuin muokkaat sivua.'''",
-'editingold'                => '<center><strong>Varoitus</strong>: Olet muokkaamassa vanhaa versiota tämän sivun tekstistä. Jos tallennat sen, kaikki tämän version jälkeen tehdyt muutokset katoavat.</center>',
+'editingold'                => '<strong>Varoitus: Olet muokkaamassa vanhaa versiota tämän sivun tekstistä. Jos tallennat sen, kaikki tämän version jälkeen tehdyt muutokset katoavat.</strong>',
 'yourdiff'                  => 'Eroavaisuudet',
 'copyrightwarning'          => '<strong>Muutoksesi astuvat voimaan välittömästi.</strong> Kaikki {{GRAMMAR:illative|{{SITENAME}}}} tehtävät tuotokset katsotaan julkaistuksi $2 -lisenssin mukaisesti ($1). Jos et halua, että kirjoitustasi muokataan armottomasti ja uudelleenkäytetään vapaasti, älä tallenna kirjoitustasi. Tallentamalla muutoksesi lupaat, että kirjoitit tekstisi itse, tai kopioit sen jostain vapaasta lähteestä. <strong>ÄLÄ KÄYTÄ TEKIJÄNOIKEUDEN ALAISTA MATERIAALIA ILMAN LUPAA!</strong>',
 'copyrightwarning2'         => 'Huomaa, että kuka tahansa voi muokata, muuttaa ja poistaa kaikkia sivustolle tekemiäsi lisäyksiä ja muutoksia. Muokkaamalla sivustoa luovutat sivuston käyttäjille tämän oikeuden ja takaat, että lisäämäsi aineisto on joko itse kirjoittamaasi tai peräisin jostain vapaasta lähteestä. Lisätietoja sivulla $1. <strong>TEKIJÄNOIKEUDEN ALAISEN MATERIAALIN KÄYTTÄMINEN ILMAN LUPAA ON EHDOTTOMASTI KIELLETTYÄ!</strong>',
@@ -745,7 +750,6 @@ Käyttäjän $3 antama syy on ''$2''",
 'nohistory'           => 'Tällä sivulla ei ole muutoshistoriaa.',
 'revnotfound'         => 'Versiota ei löydy',
 'revnotfoundtext'     => 'Pyytämääsi versiota ei löydy. Tarkista URL-osoite, jolla hait tätä sivua.',
-'loadhist'            => 'Ladataan sivuhistoriaa',
 'currentrev'          => 'Nykyinen versio',
 'revisionasof'        => 'Versio $1',
 'revision-info'       => 'Versio hetkellä $1 – tehnyt $2',
@@ -755,7 +759,6 @@ Käyttäjän $3 antama syy on ''$2''",
 'cur'                 => 'nyk.',
 'next'                => 'seur.',
 'last'                => 'edell.',
-'orig'                => 'alkup.',
 'page_first'          => 'ensimmäinen sivu',
 'page_last'           => 'viimeinen sivu',
 'histlegend'          => 'Merkinnät: (nyk.) = eroavaisuudet nykyiseen versioon, (edell.) = eroavaisuudet edelliseen versioon, <span class="minor">p</span> = pieni muutos',
@@ -934,6 +937,7 @@ $1 | $2',
 'files'                    => 'Tiedostot',
 
 # User rights
+'userrights'                       => 'Käyttöoikeuksien hallinta', # Not used as normal message but as header for the special page itself
 'userrights-lookup-user'           => 'Käyttöoikeuksien hallinta',
 'userrights-user-editname'         => 'Käyttäjätunnus',
 'editusergroup'                    => 'Muokkaa käyttäjän ryhmiä',
@@ -1103,6 +1107,7 @@ Harkitse, haluatko jatkaa tämän tiedoston tallentamista. Tiedoston poistoloki 
 'upload_source_file' => ' (tiedosto tietokoneella)',
 
 # Special:Imagelist
+'imagelist-summary'     => 'Tämä toimintosivu näyttää kaikki tallennetut tiedostot. Viimeisin tallennettu tiedosto on listalla ensimmäisenä. Ryhmittelyperustetta voi vaihtaa napsauttamalla sarakenimeä.',
 'imagelist_search_for'  => 'Nimihaku',
 'imgdesc'               => 'kuvaus',
 'imgfile'               => 'tiedosto',
@@ -1135,6 +1140,7 @@ Harkitse, haluatko jatkaa tämän tiedoston tallentamista. Tiedoston poistoloki 
 'noimage'                   => 'Tämän nimistä tiedostoa ei ole olemassa. Voit $1 {{GRAMMAR:illative|{{SITENAME}}}}.',
 'noimage-linktext'          => 'lisätä tiedoston',
 'uploadnewversion-linktext' => 'Tallenna uusi versio tästä tiedostosta',
+'imagepage-searchdupe'      => 'Etsi tiedoston kaksoiskappaleita',
 
 # File reversion
 'filerevert'                => 'Tiedoston $1 palautus',
@@ -1247,7 +1253,6 @@ Ohjelmiston suorittamia ylläpitotöitä on jonossa '''$7''' {{PLURAL:$7|kappale
 'mostcategories'          => 'Luokitelluimmat sivut',
 'mostimages'              => 'Viitatuimmat tiedostot',
 'mostrevisions'           => 'Muokatuimmat sivut',
-'allpages'                => 'Kaikki sivut',
 'prefixindex'             => 'Sivujen katkaisuhaku',
 'shortpages'              => 'Lyhyet sivut',
 'longpages'               => 'Pitkät sivut',
@@ -1274,6 +1279,8 @@ Ohjelmiston suorittamia ylläpitotöitä on jonossa '''$7''' {{PLURAL:$7|kappale
 'notargettext'            => 'Et ole määritellyt kohdesivua tai -käyttäjää johon toiminto kohdistuu.',
 'pager-newer-n'           => '← {{PLURAL:$1|1 uudempi|$1 uudempaa}}',
 'pager-older-n'           => '{{PLURAL:$1|1 vanhempi|$1 vanhempaa}} →',
+'pager-sort-asc'          => 'nouseva',
+'pager-sort-desc'         => 'laskeva',
 
 # Book sources
 'booksources'               => 'Kirjalähteet',
@@ -1281,13 +1288,6 @@ Ohjelmiston suorittamia ylläpitotöitä on jonossa '''$7''' {{PLURAL:$7|kappale
 'booksources-isbn'          => 'ISBN',
 'booksources-go'            => 'Etsi',
 'booksources-text'          => 'Alla linkkejä ulkopuolisiin sivustoihin, joilla myydään uusia ja käytettyjä kirjoja. Sivuilla voi myös olla lisätietoa kirjoista.',
-
-'categoriespagetext' => '{{GRAMMAR:inessive|{{SITENAME}}}} on seuraavat luokat:',
-'data'               => 'Data',
-'userrights'         => 'Käyttöoikeuksien hallinta',
-'groups'             => 'Ryhmät',
-'alphaindexline'     => '$1…$2',
-'version'            => 'Versio',
 
 # Special:Log
 'specialloguserlabel'  => 'Käyttäjä',
@@ -1301,6 +1301,8 @@ Ohjelmiston suorittamia ylläpitotöitä on jonossa '''$7''' {{PLURAL:$7|kappale
 'log-title-wildcard'   => 'Kohde alkaa merkkijonolla',
 
 # Special:Allpages
+'allpages'          => 'Kaikki sivut',
+'alphaindexline'    => '$1…$2',
 'nextpage'          => 'Seuraava sivu ($1)',
 'prevpage'          => 'Edellinen sivu ($1)',
 'allpagesfrom'      => 'Sivunimi',
@@ -1493,6 +1495,7 @@ Palaute ja lisäapu osoitteessa:
 # Undelete
 'undelete'                     => 'Palauta poistettuja sivuja',
 'undeletepage'                 => 'Poistettujen sivujen selaus',
+'undeletepagetitle'            => "'''Poistetut versiot sivusta [[:$1]]'''.",
 'viewdeletedpage'              => 'Poistettujen sivujen selaus',
 'undeletepagetext'             => 'Seuraavat sivut on poistettu, mutta ne löytyvät vielä arkistosta, joten ne ovat palautettavissa. Arkisto saatetaan tyhjentää aika ajoin.',
 'undeleteextrahelp'            => 'Palauta sivu valitsemalla <b><i>Palauta</i></b>. Voit palauttaa versiota valikoivasti valitsemalla vain niiden versioiden valintalaatikot, jotka haluat palauttaa.',
@@ -1924,11 +1927,12 @@ $1',
 # Special:Newimages
 'newimages'             => 'Uudet kuvat',
 'imagelisttext'         => 'Alla on {{PLURAL:$1|1 tiedosto|$1 tiedostoa}} lajiteltuna <strong>$2</strong>.',
+'newimages-summary'     => 'Tällä toimintosivulla on viimeisimmät tallennetut tiedostot.',
 'showhidebots'          => '($1 botit)',
 'noimages'              => 'Ei uusia kuvia.',
 'ilsubmit'              => 'Hae',
 'bydate'                => 'päiväyksen mukaan',
-'sp-newimages-showfrom' => 'Näytä uudet tiedostot alkaen $1',
+'sp-newimages-showfrom' => 'Näytä uudet tiedostot alkaen $1 kello $2',
 
 # Bad image list
 'bad_image_list' => 'Listan muoto on seuraava:
@@ -2337,6 +2341,7 @@ Yritä normaalia esikatselua.',
 'unknown_extension_tag' => 'Tuntematon laajennuskoodi ”$1”.',
 
 # Special:Version
+'version'                          => 'Versio', # Not used as normal message but as header for the special page itself
 'version-extensions'               => 'Asennetut laajennukset',
 'version-specialpages'             => 'Toimintosivut',
 'version-parserhooks'              => 'Jäsenninkytkökset',
@@ -2361,5 +2366,14 @@ Yritä normaalia esikatselua.',
 'filepath-page'    => 'Tiedosto',
 'filepath-submit'  => 'Selvitä osoite',
 'filepath-summary' => 'Tämä toimintosivu palauttaa tiedoston URL-osoitteen. Anna tiedoston nimi ilman {{ns:image}}-nimiavaruusliitettä.',
+
+# Special:FileDuplicateSearch
+'fileduplicatesearch'          => 'Kaksoiskappaleiden haku',
+'fileduplicatesearch-legend'   => 'Etsi kaksoiskappaleita',
+'fileduplicatesearch-filename' => 'Tiedostonimi',
+'fileduplicatesearch-submit'   => 'Etsi',
+'fileduplicatesearch-info'     => '$1×$2 kuvapistettä<br />Tiedostokoko: $3<br />MIME-tyyppi: $4',
+'fileduplicatesearch-result-1' => 'Tiedostolla ”$1” ei ole identtisiä kaksoiskappaleita.',
+'fileduplicatesearch-result-n' => 'Tiedostolla ”$1” on {{PLURAL:$2|yksi identtinen kaksoiskappale|$2 identtistä kaksoiskappaletta}}.',
 
 );

@@ -577,7 +577,6 @@ Rae' zo xuniim $3 mii coccebj ''$2''",
 'nohistory'           => 'Jan páhina necoccebj históriade ticpatlöx.',
 'revnotfound'         => 'Revicion neyahöx',
 'revnotfoundtext'     => 'Janrevicion zode páhina zo me yahöx necoccebj yahöxom. Controlar URL zo me usadadde accesom jan páhina.',
-'loadhist'            => 'Históriade páhina dexuniim...',
 'currentrev'          => 'Revicion cmaa',
 'revisionasof'        => 'Revicionde $1',
 'revision-info'       => "Revicionde $1 'de $2",
@@ -587,7 +586,6 @@ Rae' zo xuniim $3 mii coccebj ''$2''",
 'cur'                 => 'curt',
 'next'                => 'hunn',
 'last'                => 'hunl',
-'orig'                => 'origi',
 'page_first'          => 'jann',
 'page_last'           => 'janl',
 'histlegend'          => "Seleccionde quiíx: xuniim cui radio zode vercion zode comparar ö click 'enter' jöx click bazoniiniitöxamde vyu !-cmaa uisan.<br />
@@ -865,7 +863,6 @@ Informacion: (curt) = quiíxde vercion currentua,
 'nmembers'            => '$1 {{PLURAL:$1|diipolam|diipolám}}',
 'nrevisions'          => '$1 {{PLURAL:$1|revicion|revición}}',
 'nviews'              => '$1 {{PLURAL:$1|cohuatl|cohuátl}}',
-'allpages'            => 'Jöxde páhinám',
 'prefixindex'         => 'Indexde prefix',
 'shortpages'          => 'Páhinám diibajlipám',
 'longpages'           => 'Páhinám bajlipám',
@@ -887,10 +884,6 @@ Informacion: (curt) = quiíxde vercion currentua,
 # Book sources
 'booksources-go' => 'Caátemöx',
 
-'data'    => 'Datám',
-'groups'  => 'Polám caitóm',
-'version' => 'Vercion',
-
 # Special:Log
 'specialloguserlabel'  => 'Caitom:',
 'speciallogtitlelabel' => 'Titlenam:',
@@ -900,6 +893,7 @@ Informacion: (curt) = quiíxde vercion currentua,
 'log-search-submit'    => 'Caátemöx',
 
 # Special:Allpages
+'allpages'          => 'Jöxde páhinám',
 'nextpage'          => 'Hunpáhina ($1)',
 'prevpage'          => 'Janpáhina ($1)',
 'allpagesfrom'      => 'Xuniim páhinám startomde:',
@@ -1136,5 +1130,8 @@ iitom e-iitomde diijömde caitóm.',
 
 # Auto-summaries
 'autosumm-new' => 'Hunpáhina: $1',
+
+# Special:Version
+'version' => 'Vercion', # Not used as normal message but as header for the special page itself
 
 );

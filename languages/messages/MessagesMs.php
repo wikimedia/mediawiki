@@ -242,6 +242,7 @@ $messages = array(
 
 # Categories related messages
 'categories'               => 'Kategori',
+'categoriespagetext'       => 'Kategori-kategori berikut wujud dalam wiki ini.',
 'pagecategories'           => 'Kategori',
 'category_header'          => 'Laman-laman dalam kategori "$1"',
 'subcategories'            => 'Subkategori',
@@ -249,7 +250,6 @@ $messages = array(
 'category-empty'           => "''Kategori ini tidak mengandungi sebarang laman atau media.''",
 'hidden-categories'        => '{{PLURAL:$1|Kategori|Kategori}}',
 'hidden-category-category' => 'Kategori tersembunyi', # Name of the category where hidden categories will be listed
-'subcategorycount'         => 'Terdapat $1 subkategori bagi kategori ini.',
 'listingcontinuesabbrev'   => 'samb.',
 
 'mainpagetext'      => "<big>'''MediaWiki telah dipasang.'''</big>",
@@ -759,7 +759,6 @@ Sebab yang diberikan oleh $3 ialah ''$2''",
 'nohistory'           => 'Tiada sejarah suntingan bagi laman ini.',
 'revnotfound'         => 'Semakan tidak dijumpai.',
 'revnotfoundtext'     => 'Semakan lama untuk laman yang anda minta tidak dapat dijumpai. Sila semak URL yang anda gunakan untuk mencapai laman ini.',
-'loadhist'            => 'Memuat sejarah laman',
 'currentrev'          => 'Semakan semasa',
 'revisionasof'        => 'Semakan pada $1',
 'revision-info'       => 'Semakan pada $1 oleh $2',
@@ -769,7 +768,6 @@ Sebab yang diberikan oleh $3 ialah ''$2''",
 'cur'                 => 'kini',
 'next'                => 'berikutnya',
 'last'                => 'akhir',
-'orig'                => 'asal',
 'page_first'          => 'awal',
 'page_last'           => 'akhir',
 'histlegend'          => "Pemilihan perbezaan: tandakan butang radio bagi versi-versi yang ingin dibandingkan dan tekan butang ''enter'' atau butang di bawah.<br />
@@ -958,6 +956,7 @@ daripada satu kata kunci (hanya laman yang mengandungi kesemua kata kunci akan d
 'files'                    => 'Fail',
 
 # User rights
+'userrights'                       => 'Pengurusan hak pengguna', # Not used as normal message but as header for the special page itself
 'userrights-lookup-user'           => 'Urus kumpulan pengguna',
 'userrights-user-editname'         => 'Masukkan nama pengguna:',
 'editusergroup'                    => 'Sunting Kumpulan Pengguna',
@@ -1275,7 +1274,6 @@ Jumlah [http://meta.wikimedia.org/wiki/Help:Job_queue tugas yang tertunggak] ial
 'mostcategories'          => 'Rencana dengan kategori terbanyak',
 'mostimages'              => 'Imej dipaut terbanyak',
 'mostrevisions'           => 'Rencana dengan semakan terbanyak',
-'allpages'                => 'Semua laman',
 'prefixindex'             => 'Indeks awalan',
 'shortpages'              => 'Laman pendek',
 'longpages'               => 'Laman panjang',
@@ -1312,13 +1310,6 @@ menggunakan URL langsung walaupun ia disenaraikan di sini.</p>',
 'booksources-text'          => 'Berikut ialah senarai pautan ke tapak web lain yang menjual buku baru dan terpakai,
 serta mungkin mempunyai maklumat lanjut mengenai buku yang anda cari:',
 
-'categoriespagetext' => 'Kategori-kategori berikut wujud dalam wiki ini.',
-'data'               => 'Data',
-'userrights'         => 'Pengurusan hak pengguna',
-'groups'             => 'Kumpulan pengguna',
-'alphaindexline'     => '$1 hingga $2',
-'version'            => 'Versi',
-
 # Special:Log
 'specialloguserlabel'  => 'Pengguna:',
 'speciallogtitlelabel' => 'Tajuk:',
@@ -1332,6 +1323,8 @@ Anda boleh menapis senarai ini dengan memilih jenis log, nama pengguna atau nama
 'log-title-wildcard'   => 'Cari semua tajuk yang bermula dengan teks ini',
 
 # Special:Allpages
+'allpages'          => 'Semua laman',
+'alphaindexline'    => '$1 hingga $2',
 'nextpage'          => 'Halaman berikutnya ($1)',
 'prevpage'          => 'Halaman sebelumnya ($1)',
 'allpagesfrom'      => 'Tunjukkan laman bermula pada:',
@@ -2027,6 +2020,7 @@ $1',
 # Special:Newimages
 'newimages'             => 'Galeri fail baru',
 'imagelisttext'         => "Berikut ialah senarai bagi '''$1''' fail yang disusun secara $2.",
+'newimages-summary'     => 'Laman khas ini memaparkan senarai fail muat naik terakhir',
 'showhidebots'          => '($1 bot)',
 'noimages'              => 'Tiada imej.',
 'ilsubmit'              => 'Cari',
@@ -2455,6 +2449,7 @@ Anda juga boleh [[Special:Watchlist/edit|menggunakan penyunting standard]].',
 'unknown_extension_tag' => 'Tag penyambung "$1" tidak dikenali',
 
 # Special:Version
+'version'                          => 'Versi', # Not used as normal message but as header for the special page itself
 'version-extensions'               => 'Penyambung yang dipasang',
 'version-specialpages'             => 'Laman khas',
 'version-parserhooks'              => 'Penyangkuk penghurai',

@@ -5,6 +5,8 @@
  *
  * @author XJamRastafire
  * @author romanm
+ * @author Nike
+ * @author Siebrand
  */
 
 $namespaceNames = array(
@@ -55,7 +57,6 @@ $dateFormats = array(
 
 $fallback8bitEncoding = "iso-8859-2";
 $separatorTransformTable = array(',' => '.', '.' => ',' );
-
 
 $messages = array(
 # User preference toggles
@@ -146,10 +147,10 @@ $messages = array(
 
 # Categories related messages
 'categories'             => 'Kategorije',
+'categoriespagetext'     => 'V wikiju obstajajo naslednje kategorije.',
 'pagecategories'         => '{{plural:$1|Kategorija|Kategoriji|Kategorije|Kategorije|Kategorije}}',
 'category_header'        => 'Strani v kategoriji »$1«',
 'subcategories'          => 'Podkategorije',
-'subcategorycount'       => 'Kategorija {{plural:$1|ima|ima|ima|ima|nima}} $1 {{plural:$1|podkategorijo|podkategoriji|podkategorije|podkategorij|podkategorij}}.',
 'listingcontinuesabbrev' => 'nadalj.',
 
 'mainpagetext'      => 'Wikiprogramje ste uspešno naložili!',
@@ -500,7 +501,8 @@ Da bi stran ustvarili, vnesite v spodnji obrazec besedilo
 'yourtext'                  => 'Vaše besedilo',
 'storedversion'             => 'Shranjena različica',
 'nonunicodebrowser'         => '<strong>OPOMBA</strong>: Vaš brskalnik ne podpira Unicode, zato boste pri urejanju strani z nelatiničnimi znaki morda imeli težave. Za obhod te težave se bodo <strong>ne-ASCII-znaki v urejevalnem polju spodaj pojavili kot šestnajstiške kode</strong>.',
-'editingold'                => 'Urejate staro redakcijo strani. Če jo boste shranili, bodo vse poznejše spremembe [[Help:Vračanje|razveljavljene]].',
+'editingold'                => '<strong>Urejate staro redakcijo strani.
+Če jo boste shranili, bodo vse poznejše spremembe razveljavljene.</strong>',
 'yourdiff'                  => 'Primerjava',
 'copyrightwarning'          => 'Vsi prispevki k {{GRAMMAR:dajalnik|{{SITENAME}}}} se obravnavajo kot objave pod pogoji $2 (za podrobnosti glej $1). Če niste pripravljeni na neusmiljeno urejanje in prosto razširjanje vašega gradiva, ga ne prispevajte.
 
@@ -524,7 +526,6 @@ Poleg tega zagotavljate, da ste prispevke napisali oziroma ustvarili sami ali pa
 'nohistory'           => 'Stran nima zgodovine urejanja.',
 'revnotfound'         => 'Redakcije ne najdem',
 'revnotfoundtext'     => 'Redakcije strani, ki ste jo poskušali pridobiti, ni mogoče najti. Prosimo, preverite spletni naslov, ki ste ga uporabili za dostop do strani.',
-'loadhist'            => 'Nalagam zgodovino strani',
 'currentrev'          => 'Trenutna redakcija',
 'revisionasof'        => 'Redakcija: $1',
 'previousrevision'    => '← Starejša redakcija',
@@ -533,7 +534,6 @@ Poleg tega zagotavljate, da ste prispevke napisali oziroma ustvarili sami ali pa
 'cur'                 => 'tren',
 'next'                => 'nasl',
 'last'                => 'prej',
-'orig'                => 'izvi',
 'histlegend'          => 'Za ogled redakcije kliknite njen datum.
 
 Napotek: (tren) = primerjava s trenutno redakcijo,
@@ -658,6 +658,7 @@ $2 Seznam se preusmerja   Iskanje za $3 $9',
 'files'                    => 'Datoteke',
 
 # User rights
+'userrights'                 => 'Upravljanje s pravicami uporabnikov', # Not used as normal message but as header for the special page itself
 'userrights-lookup-user'     => 'Upravljanje z uporabniškimi skupinami',
 'userrights-user-editname'   => 'Vpišite uporabniško ime:',
 'editusergroup'              => 'Uredi uporabniške skupine',
@@ -706,8 +707,6 @@ Neoznačene skupine ne bodo spremenjene. Skupino lahko odznačite z levim klikom
 'hist'                              => 'zgod',
 'hide'                              => 'skrij',
 'show'                              => 'prikaži',
-'minoreditletter'                   => 'm',
-'newpageletter'                     => 'N',
 'number_of_watching_users_pageview' => '[temo {{plural:$1|spremlja|spremljata|spremljajo|spremlja|spremlja}} $1 {{plural:$1|uporabnik|uporabnika|uporabniki|uporabnikov|uporabnikov}}]',
 'rc_categories'                     => 'Omejitev na kategorije (ločite jih z »|«)',
 'rc_categories_any'                 => 'Katero koli',
@@ -850,7 +849,6 @@ Vsaka vrstica vsebuje povezave k prvi in drugi preusmeritvi ter prvo vrstico bes
 'mostcategories'          => 'Članki z največ kategorijami',
 'mostimages'              => 'Najbolj uporabljane datoteke',
 'mostrevisions'           => 'Največkrat urejane strani',
-'allpages'                => 'Vse strani',
 'prefixindex'             => 'Iskanje po začetnih črkah',
 'shortpages'              => 'Kratke strani',
 'longpages'               => 'Dolge strani',
@@ -871,13 +869,6 @@ Vsaka vrstica vsebuje povezave k prvi in drugi preusmeritvi ter prvo vrstico bes
 # Book sources
 'booksources' => 'Prepoznava ISBN-številk',
 
-'categoriespagetext' => 'V wikiju obstajajo naslednje kategorije.',
-'data'               => 'Podatki',
-'userrights'         => 'Upravljanje s pravicami uporabnikov',
-'groups'             => 'Uporabniške skupine',
-'alphaindexline'     => '$1 do $2',
-'version'            => 'Različica',
-
 # Special:Log
 'specialloguserlabel'  => 'Uporabnik:',
 'speciallogtitlelabel' => 'Naslov:',
@@ -886,6 +877,8 @@ Vsaka vrstica vsebuje povezave k prvi in drugi preusmeritvi ter prvo vrstico bes
 'logempty'             => 'O tej strani ni v dnevniku ničesar.',
 
 # Special:Allpages
+'allpages'          => 'Vse strani',
+'alphaindexline'    => '$1 do $2',
 'nextpage'          => 'Naslednja stran ($1)',
 'allpagesfrom'      => 'Prikaži strani, ki se začnejo na:',
 'allarticles'       => 'Vsi članki',
@@ -1662,5 +1655,8 @@ $1',
 
 # Auto-summaries
 'autoredircomment' => 'preusmeritev na [[$1]]',
+
+# Special:Version
+'version' => 'Različica', # Not used as normal message but as header for the special page itself
 
 );

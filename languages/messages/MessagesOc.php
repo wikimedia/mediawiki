@@ -176,6 +176,7 @@ $messages = array(
 
 # Categories related messages
 'categories'               => '{{PLURAL:$1|Categoria|Categorias}} de la pagina',
+'categoriespagetext'       => 'Las categorias seguentas contenen de paginas o de mèdias.',
 'pagecategories'           => '{{PLURAL:$1|Categoria|Categorias}} de la pagina',
 'category_header'          => 'Articles dins la categoria "$1"',
 'subcategories'            => 'Soscategorias',
@@ -183,7 +184,6 @@ $messages = array(
 'category-empty'           => "''Actualament, aquesta categoria conten pas cap d'articles o de mèdia.''",
 'hidden-categories'        => '{{PLURAL:$1|Categoria amagada|Categorias amagadas}}',
 'hidden-category-category' => 'Categorias amagadas', # Name of the category where hidden categories will be listed
-'subcategorycount'         => '{{PLURAL:$1|Una soscategoria es listada |$1 soscategorias son listadas}} çaijós. Se un ligam « (200 precedents) » o « (200 seguents) » es present çaisús, pòt menar a d’autras soscategorias.',
 'listingcontinuesabbrev'   => '(seguida)',
 
 'mainpagetext'      => 'Logicial {{SITENAME}} installat.',
@@ -654,7 +654,6 @@ La rason donada per $3 èra ''$2''.",
 'nohistory'           => "Existís pas d'istoric per aquesta pagina.",
 'revnotfound'         => 'Version introbabla',
 'revnotfoundtext'     => "La version precedenta d'aquesta pagina a pas pogut èsser retrobada. Verificatz l'URL qu'avètz utilizat per accedir a aquesta pagina.",
-'loadhist'            => "Cargament de l'istoric de la pagina",
 'currentrev'          => 'Version actuala',
 'revisionasof'        => 'Version del $1',
 'revision-info'       => 'Version del $1 per $2',
@@ -664,7 +663,6 @@ La rason donada per $3 èra ''$2''.",
 'cur'                 => 'actu',
 'next'                => 'seg',
 'last'                => 'darr',
-'orig'                => 'orig',
 'page_first'          => 'prim',
 'page_last'           => 'darr',
 'histlegend'          => 'Legenda : (actu) = diferéncia amb la version actuala ,
@@ -847,6 +845,7 @@ per modificar vòstras preferéncias d'utilizaire.",
 'files'                    => 'Fichièrs',
 
 # User rights
+'userrights'                       => "Gestion dels dreches d'utilizaire", # Not used as normal message but as header for the special page itself
 'userrights-lookup-user'           => "Gestion dels dreches d'utilizaire",
 'userrights-user-editname'         => 'Entrar un nom d’utilizaire :',
 'editusergroup'                    => "Modificacion dels gropes d'utilizaires",
@@ -1176,7 +1175,6 @@ I a {{PLURAL:\$7|'''\$7''' article|'''\$7''' articles}} dins [[meta:Help:Job_que
 'mostcategories'          => 'Articles utilizant mai de categorias',
 'mostimages'              => 'Fichièrs mai utilizats',
 'mostrevisions'           => 'Articles mai modificats',
-'allpages'                => 'Totas las paginas',
 'prefixindex'             => 'Totas las paginas per primièras letras',
 'shortpages'              => 'Articles brèus',
 'longpages'               => 'Articles longs',
@@ -1210,13 +1208,6 @@ I a {{PLURAL:\$7|'''\$7''' article|'''\$7''' articles}} dins [[meta:Help:Job_que
 'booksources-go'            => 'Validar',
 'booksources-text'          => "Vaquí una lista de ligams vèrs d’autres sits que vendon de libres nous e d’occasion e sulsquals trobarètz benlèu d'informacions suls obratges que cercatz. {{SITENAME}} es pas ligada a cap d'aquestas societats, a pas l’intencion de ne far la promocion.",
 
-'categoriespagetext' => 'Las categorias seguentas contenen de paginas o de mèdias.',
-'data'               => 'Donadas',
-'userrights'         => "Gestion dels dreches d'utilizaire",
-'groups'             => "Gropes d'utilizaires",
-'alphaindexline'     => '$1 a $2',
-'version'            => 'Version',
-
 # Special:Log
 'specialloguserlabel'  => 'Utilizaire:',
 'speciallogtitlelabel' => 'Títol:',
@@ -1229,6 +1220,8 @@ I a {{PLURAL:\$7|'''\$7''' article|'''\$7''' articles}} dins [[meta:Help:Job_que
 'log-title-wildcard'   => 'Recercar de títols que començan per aqueste tèxt',
 
 # Special:Allpages
+'allpages'          => 'Totas las paginas',
+'alphaindexline'    => '$1 a $2',
 'nextpage'          => 'Pagina seguenta ($1)',
 'prevpage'          => 'Pagina precedenta ($1)',
 'allpagesfrom'      => 'Afichar las paginas a partir de :',
@@ -2317,6 +2310,7 @@ Ensajatz la previsualizacion normala.',
 'unknown_extension_tag' => "Balisa d'extension « $1 » desconeguda",
 
 # Special:Version
+'version'                          => 'Version', # Not used as normal message but as header for the special page itself
 'version-extensions'               => 'Extensions installadas',
 'version-specialpages'             => 'Paginas especialas',
 'version-parserhooks'              => 'Extensions del parsaire',

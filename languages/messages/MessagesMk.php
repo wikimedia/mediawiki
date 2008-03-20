@@ -179,12 +179,12 @@ $messages = array(
 
 # Categories related messages
 'categories'             => 'Категории',
+'categoriespagetext'     => 'Во викито постојат следниве категории.',
 'pagecategories'         => '{{PLURAL:$1|Категорија|Категории}}',
 'category_header'        => 'Статии во категоријата "$1"',
 'subcategories'          => 'Подкатегории',
 'category-media-header'  => 'Медии во категорија „$1“',
 'category-empty'         => "''Оваа категорија моментално не содржи страници или медија.''",
-'subcategorycount'       => '{{PLURAL:$1|Постои една подкатегорија|Постојат $1 подкатегории}} во оваа категорија.',
 'listingcontinuesabbrev' => 'продолжува',
 
 'mainpagetext'      => 'Вики софтверот е успешно инсталиран.',
@@ -590,7 +590,6 @@ $1',
 'revnotfound'         => 'Верзијата не е пронајдена',
 'revnotfoundtext'     => 'Старата верзија на оваа страница не може да се пронајде. 
 Проверете ја URL адресата што ја користевте за пристап до оваа страница.',
-'loadhist'            => 'Се вчитува историјата за страницата',
 'currentrev'          => 'Тековна верзија',
 'revisionasof'        => 'Верзија од $1',
 'revision-info'       => 'Ревизии од $1; $2',
@@ -600,7 +599,6 @@ $1',
 'cur'                 => 'мом',
 'next'                => 'след',
 'last'                => 'посл',
-'orig'                => 'ориг',
 'page_first'          => 'прв',
 'page_last'           => 'последен',
 'histlegend'          => 'Легенда: (мом) = разлика со моменталната верзија,
@@ -744,6 +742,7 @@ $1',
 'files'                    => 'Датотеки',
 
 # User rights
+'userrights'                 => 'Управување со кориснички права', # Not used as normal message but as header for the special page itself
 'userrights-lookup-user'     => 'Управувај со корисничките групи',
 'userrights-user-editname'   => 'Внеси корисничко име:',
 'editusergroup'              => 'Уреди кориснички групи',
@@ -998,7 +997,6 @@ $1',
 'mostcategories'          => 'Статии со најмногу категории',
 'mostimages'              => 'Најмногу поврзувања до податоци',
 'mostrevisions'           => 'Статии со најмногу верзии',
-'allpages'                => 'Сите страници',
 'prefixindex'             => 'Список на префикси',
 'shortpages'              => 'Кратки страници',
 'longpages'               => 'Долги страници',
@@ -1028,13 +1026,6 @@ $1',
 'booksources-text' => 'Ова е листа на врски кон други сајтови кои продаваат нови и користени книги, и кои може
 да имаат повеќе информации за книгите кои ги баравте:',
 
-'categoriespagetext' => 'Во викито постојат следниве категории.',
-'data'               => 'Податоци',
-'userrights'         => 'Управување со кориснички права',
-'groups'             => 'Кориснички групи',
-'alphaindexline'     => '$1 во $2',
-'version'            => 'Верзија',
-
 # Special:Log
 'specialloguserlabel'  => 'Корисник:',
 'speciallogtitlelabel' => 'Наслов:',
@@ -1047,6 +1038,8 @@ $1',
 'log-title-wildcard'   => 'Пребарај наслови кои почнуваат со овој текст',
 
 # Special:Allpages
+'allpages'          => 'Сите страници',
+'alphaindexline'    => '$1 во $2',
 'nextpage'          => 'Следна страница ($1)',
 'prevpage'          => 'Претходна страница ($1)',
 'allpagesfrom'      => 'Прикажи страници кои започнуваат од:',
@@ -1981,6 +1974,9 @@ $1',
 'lag-warn-normal' => 'Промените во последните $1 секунди можеби нема да бидат прикажани во листата.',
 'lag-warn-high'   => 'Поради преоптовареност на податочниот сервер, промените понови од $1 секунди
 можеби нема да бидат прикажани во листата.',
+
+# Special:Version
+'version' => 'Верзија', # Not used as normal message but as header for the special page itself
 
 # Special:Filepath
 'filepath' => 'Патека до датотека',

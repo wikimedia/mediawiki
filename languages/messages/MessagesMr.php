@@ -255,16 +255,24 @@ $messages = array(
 'dec'           => 'डिसें.',
 
 # Categories related messages
-'categories'               => 'वर्ग',
-'pagecategories'           => '{{PLURAL:$1|वर्ग|वर्ग}}',
-'category_header'          => '"$1" वर्गातील लेख',
-'subcategories'            => 'उपवर्ग',
-'category-media-header'    => '"$1" वर्गातील माध्यमे',
-'category-empty'           => "''या वर्गात अद्याप एकही लेख नाही.''",
-'hidden-categories'        => '{{PLURAL:$1|लपविलेला वर्ग|लपविलेले वर्ग}}',
-'hidden-category-category' => 'लपविलेले वर्ग', # Name of the category where hidden categories will be listed
-'subcategorycount'         => 'या वर्गात {{PLURAL:$1|एक उपवर्ग आहे.|$1 उपवर्ग आहेत.}}',
-'listingcontinuesabbrev'   => 'पुढे.',
+'categories'                     => 'वर्ग',
+'categoriespagetext'             => 'विकिवर खालील वर्ग आहेत.',
+'special-categories-sort-count'  => 'क्रमानुसार लावा',
+'special-categories-sort-abc'    => 'अक्षरांप्रमाणे लावा',
+'pagecategories'                 => '{{PLURAL:$1|वर्ग|वर्ग}}',
+'category_header'                => '"$1" वर्गातील लेख',
+'subcategories'                  => 'उपवर्ग',
+'category-media-header'          => '"$1" वर्गातील माध्यमे',
+'category-empty'                 => "''या वर्गात अद्याप एकही लेख नाही.''",
+'hidden-categories'              => '{{PLURAL:$1|लपविलेला वर्ग|लपविलेले वर्ग}}',
+'hidden-category-category'       => 'लपविलेले वर्ग', # Name of the category where hidden categories will be listed
+'category-subcat-count'          => '{{PLURAL:$2|या वर्गात फक्त खालील उपवर्ग आहे.|एकूण $2 उपवर्गांपैकी या वर्गात खालील उपवर्ग आहेत.}}',
+'category-subcat-count-limited'  => 'या वर्गात खालील $1 उपवर्ग {{PLURAL:$1|आहे|आहेत}}.',
+'category-article-count'         => '{{PLURAL:$2|या वर्गात फक्त खालील लेख आहे.|एकूण $2 पैकी खालील {{PLURAL:$1|पान|$1 पाने}} या वर्गात {{PLURAL:$1|आहे|आहेत}}.}}',
+'category-article-count-limited' => 'खालील {{PLURAL:$1|पान|$1 पाने}} या वर्गात {{PLURAL:$1|आहे|आहेत}}.',
+'category-file-count'            => '{{PLURAL:$2|या वर्गात फक्त खालील संचिका आहे.|एकूण $2 पैकी खालील {{PLURAL:$1|संचिका|$1 संचिका}} या वर्गात {{PLURAL:$1|आहे|आहेत}}.}}',
+'category-file-count-limited'    => 'खालील {{PLURAL:$1|संचिका|$1 संचिका}} या वर्गात आहेत.',
+'listingcontinuesabbrev'         => 'पुढे.',
 
 'mainpagetext'      => "<big>'''मीडियाविकीचे इन्स्टॉलेशन पूर्ण'''</big>",
 'mainpagedocfooter' => 'विकी सॉफ्टवेअर वापरण्याकरिता [http://meta.wikimedia.org/wiki/Help:Contents यूजर गाईड] पहा.
@@ -755,7 +763,6 @@ $3ने ''$2'' कारण दिले आहे.",
 'revnotfound'         => 'आवृत्ती सापडली नाही',
 'revnotfoundtext'     => 'या पृष्ठाची तुम्ही मागविलेली जुनी आवृत्ती सापडली नाही.
 कृपया URL तपासून पहा.',
-'loadhist'            => 'पृष्ठाचा इतिहास दाखवित आहोत',
 'currentrev'          => 'चालू आवृत्ती',
 'revisionasof'        => '$1 नुसारची आवृत्ती',
 'revision-info'       => '$2ने $1चे आवर्तन',
@@ -765,7 +772,6 @@ $3ने ''$2'' कारण दिले आहे.",
 'cur'                 => 'चालू',
 'next'                => 'पुढील',
 'last'                => 'मागील',
-'orig'                => 'मूळ',
 'page_first'          => 'प्रथम',
 'page_last'           => 'अंतिम',
 'histlegend'          => 'Legend: (चालू) = चालू आवृत्तीशी फरक,
@@ -886,6 +892,7 @@ $3ने ''$2'' कारण दिले आहे.",
 'showingresultsnum'     => "#'''$2'''पासून सुरू होणारे  {{PLURAL:$3|'''1''' निकाल|'''$3''' निकाल}}.",
 'nonefound'             => "'''सूचना''':नेहमीच्या सर्वसामान्य \"have\" आणि \"from\" सारख्या सूचीबद्ध न केलेल्या शब्दांचा वापरकरून केलेले शोध किंवा एका पेक्षा अधिक व्याख्या वापरून केलेले शोध सहसा अयशस्वी होताना आढळतात.(दिलेल्या सर्व शोध व्याख्या असलेली पानेच केवळ उत्तरात येतील)",
 'powersearch'           => 'वाढीव शोध',
+'powersearch-legend'    => 'वाढीव शोध',
 'powersearchtext'       => 'नामविश्वातील शोध:<br />$1<br />$2 पुर्ननिर्देशन सूची<br /> $3 $9 करिता शोध',
 'searchdisabled'        => '{{SITENAME}} शोध अनुपलब्ध केला आहे.तो पर्यंत गूगलवरून शोध घ्या.{{SITENAME}}च्या मजकुराची त्यांची सूचिबद्धता शिळी असण्याची शक्यता असु शकते हे लक्षात घ्या.',
 
@@ -951,6 +958,7 @@ $3ने ''$2'' कारण दिले आहे.",
 'files'                    => 'संचिका',
 
 # User rights
+'userrights'                       => 'सदस्य अधिकार व्यवस्थापन', # Not used as normal message but as header for the special page itself
 'userrights-lookup-user'           => 'सदस्य गटांचे(ग्रूप्स) व्यवस्थापन करा.',
 'userrights-user-editname'         => 'सदस्य नाव टाका:',
 'editusergroup'                    => 'सदस्य गट (ग्रूप्स) संपादीत करा',
@@ -1123,6 +1131,9 @@ $3ने ''$2'' कारण दिले आहे.",
 'upload_source_file' => '(तुमच्या संगणकावरील एक संचिका)',
 
 # Special:Imagelist
+'imagelist-summary'     => 'हे विशेष पान सर्व चढविलेल्या संचिका दर्शिविते.
+सर्वसाधारणपणे सगळ्यात शेवटी बदल झालेल्या संचिका सर्वात वर दिसतात.
+रकान्याच्या नावापुढे टिचकी देऊन संचिकांचा अनुक्रम बदलता येतो.',
 'imagelist_search_for'  => 'चित्र नावाने शोध:',
 'imgdesc'               => 'वर्णन',
 'imgfile'               => 'संचिका',
@@ -1155,6 +1166,7 @@ $3ने ''$2'' कारण दिले आहे.",
 'noimage'                   => 'या नावाचे चित्र अस्तित्त्वात नाही. $1 करून पहा.',
 'noimage-linktext'          => 'चढवा',
 'uploadnewversion-linktext' => 'या संचिकेची नवीन आवृत्ती चढवा.',
+'imagepage-searchdupe'      => 'जुळ्या संचिका शोधा',
 
 # File reversion
 'filerevert'                => '$1 पूर्वपद',
@@ -1271,7 +1283,6 @@ Input:contenttype/subtype, e.g. <tt>image/jpeg</tt>.',
 'mostcategories'          => 'सर्वाधिक वर्गीकृत पाने',
 'mostimages'              => 'सर्वाधिक जोडलेली चित्रे',
 'mostrevisions'           => 'सर्वाधिक बदललेले लेख',
-'allpages'                => 'सर्व पृष्ठे',
 'prefixindex'             => 'उपसर्ग सूची',
 'shortpages'              => 'छोटी पाने',
 'longpages'               => 'मोठी पाने',
@@ -1298,19 +1309,14 @@ Input:contenttype/subtype, e.g. <tt>image/jpeg</tt>.',
 'notargettext'            => 'ही क्रिया करण्यासाठी तुम्ही सदस्य किंवा पृष्ठ लिहिले नाही.',
 'pager-newer-n'           => '{{PLURAL:$1|नवे 1|नवे $1}}',
 'pager-older-n'           => '{{PLURAL:$1|जुने 1|जुने $1}}',
+'pager-sort-asc'          => 'चढणारे',
+'pager-sort-desc'         => 'उतरणारे',
 
 # Book sources
 'booksources'               => 'पुस्तक स्रोत',
 'booksources-search-legend' => 'पुस्तक स्रोत शोधा',
 'booksources-go'            => 'चला',
 'booksources-text'          => 'खालील यादीत नवी आणिजुनी पुस्तके विकणार्‍या संकेतस्थळाचे दुवे आहेत,आणि त्यात कदाचित आपण शोधू पहात असलेल्या पुस्तकाची अधिक माहिती असेल:',
-
-'categoriespagetext' => 'विकिवर खालील वर्ग आहेत.',
-'data'               => 'विदा',
-'userrights'         => 'सदस्य अधिकार व्यवस्थापन',
-'groups'             => 'सदस्य समूह',
-'alphaindexline'     => '$1 पासून $2 पर्यंत',
-'version'            => 'आवृत्ती',
 
 # Special:Log
 'specialloguserlabel'  => 'सदस्य:',
@@ -1324,6 +1330,8 @@ Input:contenttype/subtype, e.g. <tt>image/jpeg</tt>.',
 'log-title-wildcard'   => 'या मजकुरापासून सुरू होणारी शिर्षके शोधा.',
 
 # Special:Allpages
+'allpages'          => 'सर्व पृष्ठे',
+'alphaindexline'    => '$1 पासून $2 पर्यंत',
 'nextpage'          => 'पुढील पान ($1)',
 'prevpage'          => 'मागील पान ($1)',
 'allpagesfrom'      => 'पुढील शब्दाने सुरू होणारे लेख दाखवा:',
@@ -1976,6 +1984,7 @@ $1',
 # Special:Newimages
 'newimages'             => 'नवीन संचिकांची यादी',
 'imagelisttext'         => "खाली '''$1''' संचिका {{PLURAL:$1|दिली आहे.|$2 क्रमाने दिल्या आहेत.}}",
+'newimages-summary'     => 'हे विशेष पान शेवटी चढविलेल्या संचिका दर्शविते',
 'showhidebots'          => '(सांगकामे $1)',
 'noimages'              => 'बघण्यासारखे येथे काही नाही.',
 'ilsubmit'              => 'शोधा',
@@ -2386,6 +2395,7 @@ $1',
 'unknown_extension_tag' => 'अज्ञात विस्तार खूण "$1"',
 
 # Special:Version
+'version'                          => 'आवृत्ती', # Not used as normal message but as header for the special page itself
 'version-extensions'               => 'स्थापित विस्तार',
 'version-specialpages'             => 'विशेष पाने',
 'version-parserhooks'              => 'पृथकक अंकुश',
@@ -2413,5 +2423,17 @@ $1',
 चित्रे संपूर्ण रिझोल्यूशन मध्ये दाखवली आहेत,इतर संचिका प्रकार त्यांच्या संबधीत प्रोग्रामने प्रत्यक्ष सुरू होतात.
 
 "{{ns:image}}:" पूर्वपदा शिवाय संचिकेचे नाव भरा.',
+
+# Special:FileDuplicateSearch
+'fileduplicatesearch'          => 'जुळ्या संचिका शोधा',
+'fileduplicatesearch-summary'  => 'हॅश किंमतीप्रमाणे जुळ्या संचिका शोधा.
+
+"{{ns:image}}:" न लिहिता फक्त संचिकेचे नाव लिहा.',
+'fileduplicatesearch-legend'   => 'जुळी संचिका शोधा',
+'fileduplicatesearch-filename' => 'संचिकानाव:',
+'fileduplicatesearch-submit'   => 'शोधा',
+'fileduplicatesearch-info'     => '$1 × $2 पीक्सेल<br />संचिकेचा आकार: $3<br />MIME प्रकार: $4',
+'fileduplicatesearch-result-1' => '"$1" या संचिकेशी जुळणारी जुळी संचिका सापडली नाही.',
+'fileduplicatesearch-result-n' => '"$1" ला {{PLURAL:$2|१ जुळी संचिका आहे|$2 जुळ्या संचिका आहेत}}.',
 
 );

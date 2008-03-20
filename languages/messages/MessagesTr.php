@@ -143,6 +143,7 @@ $messages = array(
 
 # Categories related messages
 'categories'               => '{{PLURAL:$1|Kategori|Kategoriler}}',
+'categoriespagetext'       => 'Vikide aşağıdaki kategoriler mevcuttur.',
 'pagecategories'           => 'Sayfa {{PLURAL:$1|kategorisi|kategorileri}}',
 'category_header'          => '"$1" kategorisindeki sayfalar',
 'subcategories'            => 'Alt Kategoriler',
@@ -150,7 +151,6 @@ $messages = array(
 'category-empty'           => "''Bu kategoride henüz herhangi bir madde ya da medya bulunmamaktadır.''",
 'hidden-categories'        => '{{PLURAL:$1|Gizli kategori|Gizli kategoriler}}',
 'hidden-category-category' => 'Gizli kategoriler', # Name of the category where hidden categories will be listed
-'subcategorycount'         => 'Bu kategoride $1 altkategori var.',
 'listingcontinuesabbrev'   => '(devam)',
 
 'mainpagetext'      => "<big>'''MediaWiki başarı ile kuruldu.'''</big>",
@@ -610,7 +610,6 @@ $3 tarafından verilen sebep ''$2''",
 'nohistory'           => 'Bu sayfanın geçmiş sürümü yok.',
 'revnotfound'         => 'Sürüm bulunmadı',
 'revnotfoundtext'     => "İstemiş olduğunuz sayfanın eski versiyonu bulunamadı. Lütfen bu sayfaya erişmekte kullandığınız URL'yi kontrol edin.",
-'loadhist'            => 'Sayfa geçmişi yükleniyor',
 'currentrev'          => 'Güncel sürüm',
 'revisionasof'        => 'Sayfanın $1 tarihindeki hali',
 'revision-info'       => '$2 tarafından oluşturulmuş $1 tarihli sürüm',
@@ -620,7 +619,6 @@ $3 tarafından verilen sebep ''$2''",
 'cur'                 => 'fark',
 'next'                => 'sonraki',
 'last'                => 'son',
-'orig'                => 'asıl',
 'page_first'          => 'ilk',
 'page_last'           => 'son',
 'histlegend'          => "Fark seçimi: karşılaştımayı istediğiniz 2 sürümün önündeki dairelere taıkayıp, enter'a basın ya da sayfanın en atında bulunan düğmeye basın.<br />
@@ -769,6 +767,7 @@ $2 yönlendirmeleri listele &nbsp; Aranacak: $3 $9',
 'files'                 => 'Dosyalar',
 
 # User rights
+'userrights'                       => 'Kullanıcı hakları yönetimi.', # Not used as normal message but as header for the special page itself
 'userrights-lookup-user'           => 'Kullanıcı gruplarını düzenle',
 'userrights-user-editname'         => 'Kullanıcı adı giriniz:',
 'editusergroup'                    => 'Kullanıcı grupları düzenle',
@@ -1026,8 +1025,6 @@ Toplam sayfa görüntülenme sayısı '''\$3''', değişiklik başına görünt�
 'mostcategories'          => 'En fazla kategoriye bağlanmış sayfalar',
 'mostimages'              => 'En çok kullanılan resimler',
 'mostrevisions'           => 'En çok değişikliğe uğramış sayfalar',
-'allpages'                => 'Tüm sayfalar',
-'allpages-summary'        => 'Bu sayfa sitedeki bütün sayfaları listeler.',
 'prefixindex'             => 'Önek girerek listeleme',
 'shortpages'              => 'Kısa sayfalar',
 'longpages'               => 'Uzun sayfalar',
@@ -1055,13 +1052,6 @@ Toplam sayfa görüntülenme sayısı '''\$3''', değişiklik başına görünt�
 'booksources-search-legend' => 'Kitap kaynaklarını ara',
 'booksources-go'            => 'Git',
 
-'categoriespagetext' => 'Vikide aşağıdaki kategoriler mevcuttur.',
-'data'               => 'Veri',
-'userrights'         => 'Kullanıcı hakları yönetimi.',
-'groups'             => 'Kullanıcı grupları',
-'alphaindexline'     => '$1 sayfası ile $2 sayfası arasındaki sayfaların listesi',
-'version'            => 'Sürüm',
-
 # Special:Log
 'specialloguserlabel'  => 'Kullanıcı:',
 'speciallogtitlelabel' => 'Başlık:',
@@ -1074,6 +1064,9 @@ Kayıt tipini, kullanıcı ismini, sayfa ismini girerek listeyi daraltabilirsini
 'logempty'             => 'Kayıtlarda eşleşen bilgi yok.',
 
 # Special:Allpages
+'allpages'          => 'Tüm sayfalar',
+'allpages-summary'  => 'Bu sayfa sitedeki bütün sayfaları listeler.',
+'alphaindexline'    => '$1 sayfası ile $2 sayfası arasındaki sayfaların listesi',
 'nextpage'          => 'Sonraki sayfa ($1)',
 'prevpage'          => 'Önceki sayfa ($1)',
 'allpagesfrom'      => 'Listelemeye başlanılacak harfler:',
@@ -1858,6 +1851,7 @@ Bir başlığı çıkarmak için, yanındaki kutucuğu işaretleyin, ve Başlık
 'watchlisttools-raw'  => 'Ham izleme listesini düzenle',
 
 # Special:Version
+'version'                          => 'Sürüm', # Not used as normal message but as header for the special page itself
 'version-extensions'               => 'Yüklü ekler',
 'version-specialpages'             => 'Özel sayfalar',
 'version-variables'                => 'Değişkenler',

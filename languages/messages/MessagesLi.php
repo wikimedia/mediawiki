@@ -165,16 +165,22 @@ $messages = array(
 'dec'           => 'dec',
 
 # Categories related messages
-'categories'               => '{{PLURAL:$1|Categorie|Categorieë}}',
-'pagecategories'           => '{{PLURAL:$1|Categorie|Categorieë}}',
-'category_header'          => 'Artikele in categorie "$1"',
-'subcategories'            => 'Subkattegorië',
-'category-media-header'    => 'Media in de categorie "$1"',
-'category-empty'           => "''Deze categorie is laeg, hae bevat op 't memènt gén artiekele of media.''",
-'hidden-categories'        => 'Verbórge {{PLURAL:$1|categorie|categorië}}',
-'hidden-category-category' => 'Verbórge categorië', # Name of the category where hidden categories will be listed
-'subcategorycount'         => 'Dees categorie haet {{PLURAL:$1|ein subcategorie|$1 subcategorieë}}.',
-'listingcontinuesabbrev'   => 'wiejer',
+'categories'                     => '{{PLURAL:$1|Categorie|Categorieë}}',
+'categoriespagetext'             => 'De wiki haet de volgende categorieë:',
+'pagecategories'                 => '{{PLURAL:$1|Categorie|Categorieë}}',
+'category_header'                => 'Artikele in categorie "$1"',
+'subcategories'                  => 'Subkattegorië',
+'category-media-header'          => 'Media in de categorie "$1"',
+'category-empty'                 => "''Deze categorie is laeg, hae bevat op 't memènt gén artiekele of media.''",
+'hidden-categories'              => 'Verbórge {{PLURAL:$1|categorie|categorië}}',
+'hidden-category-category'       => 'Verbórge categorië', # Name of the category where hidden categories will be listed
+'category-subcat-count'          => "{{PLURAL:$2|Dees categorie haet de volgende óngercategorie.|Dees categorie haet de volgende {{PLURAL:$1|óngercategorie|$1 óngercategorië}}, van 'n totaal van $2.}}",
+'category-subcat-count-limited'  => 'Dees categorie haet de volgende {{PLURAL:$1|óngercategorie|$1 óngercategorië}}.',
+'category-article-count'         => "{{PLURAL:$2|Dees categorie bevat de volgende pazjena.|Dees categorie bevat de volgende {{PLURAL:$1|pazjena|$1 pazjena's}}, van in totaal $2.}}",
+'category-article-count-limited' => "Dees categorie bevat de volgende {{PLURAL:$1|pazjena|$1 pazjena's}}.",
+'category-file-count'            => "{{PLURAL:$2|Dees categorie bevat 't volgende bestandj.|Dees categorie bevat {{PLURAL:$1|'t volgende bestandj|de volgende $1 bestenj}}, van in totaal $2.}}",
+'category-file-count-limited'    => "Dees categorie bevat {{PLURAL:$1|'t volgende bestandj|de volgende $1 bestenj}}.",
+'listingcontinuesabbrev'         => 'wiejer',
 
 'mainpagetext'      => 'Wiki software succesvol geïnsjtalleerd.',
 'mainpagedocfooter' => "Raodpleeg de [http://meta.wikimedia.org/wiki/NL_Help:Inhoudsopgave handjleiding] veur informatie euver 't gebroek van de wikisoftware.
@@ -641,7 +647,6 @@ De door $3 opgegaeve reje is ''$2''",
 'nohistory'           => 'Dees pazjena is nog neet bewirk.',
 'revnotfound'         => 'Wieziging neet gevonge',
 'revnotfoundtext'     => 'De opgevraogde aw versie van dees pazjena is verzjwónde. Kontroleer estebleef de URL dieste gebroek höbs óm nao dees pazjena te gaon.',
-'loadhist'            => "Bezig met 't laje van de pazjenahistorie",
 'currentrev'          => 'Hujige versie',
 'revisionasof'        => 'Versie op $1',
 'revision-info'       => 'Versie op $1 door $2',
@@ -651,7 +656,6 @@ De door $3 opgegaeve reje is ''$2''",
 'cur'                 => 'hujig',
 'next'                => 'volgende',
 'last'                => 'vörrige',
-'orig'                => 'orzj',
 'page_first'          => 'irste',
 'page_last'           => 'litste',
 'histlegend'          => 'Verklaoring aafkortinge: (wijz) = versjil mit actueile versie, (vörrige) = versjil mit vörrige versie, K = kleine verangering',
@@ -769,6 +773,7 @@ Wees zeker det deze wieziging de gesjiedenisdoorloupendheid van de pagina zal be
 'showingresultsnum'     => "Hieonger {{PLURAL:$3|steit '''1''' resultaat|staon '''$3''' resultate}} vanaaf #<b>$2</b>.",
 'nonefound'             => '<strong>Lèt op:</strong> \'n zeukopdrach kan mislökke door \'t gebroek van (in \'t Ingelsj) väöl veurkómmende wäörd wie "of" en "be", die neet geïndexeerd zint, of door versjillende zeukterme tegeliek op te gaeve (de kries dan allein pazjena\'s te zeen woerin alle opgegaeve terme veurkómme).',
 'powersearch'           => 'Zeuke',
+'powersearch-legend'    => 'Oetgebrèd zeuke',
 'powersearchtext'       => '   
  Zeuk in naomroemdes :<br />
 $1<br />
@@ -838,6 +843,7 @@ $2 Toen redirects   Zeuk: $3 $9',
 'files'                    => 'Bestenj',
 
 # User rights
+'userrights'                       => 'Gebroekersrechtebeheer', # Not used as normal message but as header for the special page itself
 'userrights-lookup-user'           => 'Beheer gebroekersgruup',
 'userrights-user-editname'         => "Veur 'ne gebroekersnaam in:",
 'editusergroup'                    => 'Bewerk gebroekersgruup',
@@ -1012,6 +1018,9 @@ Lèver zeker te zeen detse gesjik bös om door te gaon met 't uploade van dit be
 'upload_source_file' => " ('n bestand op diene computer)",
 
 # Special:Imagelist
+'imagelist-summary'     => "Op dees speciaal pazjena zeen alle toegevoogde bestenj te bekieke.
+Standerd waere de lets toegevoogde bestenj baovenaan de lies weergegaeve.
+Klikke op 'ne kolomkop verangert de sortering.",
 'imagelist_search_for'  => 'Zeuk nao bestandj:',
 'imgdesc'               => 'besj',
 'imgfile'               => 'bestandj',
@@ -1044,6 +1053,7 @@ Lèver zeker te zeen detse gesjik bös om door te gaon met 't uploade van dit be
 'noimage'                   => "d'r bestuit gein bestand met deze naam. Doe kins 't $1.",
 'noimage-linktext'          => 'uploade',
 'uploadnewversion-linktext' => "Upload 'n nuuje versie van dit bestand",
+'imagepage-searchdupe'      => 'Zeuk veur döbbelbestaondje bestenj',
 
 # File reversion
 'filerevert'                => '$1 trökdrèjje',
@@ -1158,7 +1168,6 @@ Op eder raegel vings te de ierste redirectpazjena, de twiede redirectpazjena en 
 'mostcategories'          => 'Artikele mit de meiste kategorieë',
 'mostimages'              => 'Meis gelinkde aafbeildinge',
 'mostrevisions'           => 'Artikele mit de meiste bewirkinge',
-'allpages'                => "Alle pazjena's",
 'prefixindex'             => 'Indèks dèr veurveugsele',
 'shortpages'              => 'Korte artikele',
 'longpages'               => 'Lang artikele',
@@ -1192,13 +1201,6 @@ Op eder raegel vings te de ierste redirectpazjena, de twiede redirectpazjena en 
 'booksources-go'            => 'Zeuk',
 'booksources-text'          => "Hiej onger stuit 'n lies met koppelinge nao anger websites die nuuje of gebroekde beuk verkoupe, en die wellich meer informatie euver 't book detse zeuks höbbe:",
 
-'categoriespagetext' => 'De wiki haet de volgende categorieë:',
-'data'               => 'Gegaeves',
-'userrights'         => 'Gebroekersrechtebeheer',
-'groups'             => 'Gebroekersgruup',
-'alphaindexline'     => '$1 nao $2',
-'version'            => 'Versie',
-
 # Special:Log
 'specialloguserlabel'  => 'Gebroeker:',
 'speciallogtitlelabel' => 'Titel:',
@@ -1211,6 +1213,8 @@ Op eder raegel vings te de ierste redirectpazjena, de twiede redirectpazjena en 
 'log-title-wildcard'   => "Zeuk pagina's die met deze naam beginne",
 
 # Special:Allpages
+'allpages'          => "Alle pazjena's",
+'alphaindexline'    => '$1 nao $2',
 'nextpage'          => 'Volgende pazjena ($1)',
 'prevpage'          => 'Vörge pazjena ($1)',
 'allpagesfrom'      => "Tuin pazjena's vanaaf:",
@@ -1842,11 +1846,12 @@ $1",
 # Special:Newimages
 'newimages'             => 'Nuuj plaetjes',
 'imagelisttext'         => "Hie volg 'n lies mit $1 {{PLURAL:$1|aafbeilding|aafbeildinge}} geordend $2.",
+'newimages-summary'     => 'Op dees speciaal pazjena waere de meis recènt toegevoogde bestenj weergegaeve',
 'showhidebots'          => '($1 Bots)',
 'noimages'              => 'Niks te zeen.',
 'ilsubmit'              => 'Zeuk',
 'bydate'                => 'op datum',
-'sp-newimages-showfrom' => 'Tuun nuuj aafbeildinge vanaaf $1',
+'sp-newimages-showfrom' => 'Tuun nuuj aafbeildinge vanaaf $2, $1',
 
 # Bad image list
 'bad_image_list' => "De opmaak is es volg:
@@ -2258,6 +2263,7 @@ Probeer normaal veurvertuin.',
 'unknown_extension_tag' => 'Ónbekindje tag "$1"',
 
 # Special:Version
+'version'                          => 'Versie', # Not used as normal message but as header for the special page itself
 'version-extensions'               => 'Geïnstalleerde oetbreijinge',
 'version-specialpages'             => "Speciaal pazjena's",
 'version-parserhooks'              => 'Parserheuk',
@@ -2284,5 +2290,17 @@ Probeer normaal veurvertuin.',
 'filepath-summary' => "Dees speciaal pazjena guf 't vollejig paad veur 'n bestandj. Aafbeildinge waere in häör vollejige resolutie getoeandj. Anger bestandjstypes waere drèk in 't mit 't MIME-type verbónje programma geäöpendj.
 
 Veur de bestandjsnaam in zónger 't veurvoegsel \"{{ns:image}}:\".",
+
+# Special:FileDuplicateSearch
+'fileduplicatesearch'          => 'Zeuk veur döbbelbestaondje bestenj',
+'fileduplicatesearch-summary'  => 'Zeuk veur döbbel bestaondje bestenj op basis van zien hashwaarde.
+
+Gaef de bestandjsnaam zónger \'t "{{ns:image}}:" veurvoogsel.',
+'fileduplicatesearch-legend'   => "Zeuk veur 'ne döbbele",
+'fileduplicatesearch-filename' => 'Bestandjsnaam:',
+'fileduplicatesearch-submit'   => 'Zeuk',
+'fileduplicatesearch-info'     => '$1 × $2 pixel<br />Bestandjsgrootte: $3<br />MIME type: $4',
+'fileduplicatesearch-result-1' => '\'t Bestandh "$1" haet gein identieke döbbelversie.',
+'fileduplicatesearch-result-n' => '\'t Bestandj "$1" haet {{PLURAL:$2|1 identieke döbbelversie|$2 identiek döbbelversies}}.',
 
 );

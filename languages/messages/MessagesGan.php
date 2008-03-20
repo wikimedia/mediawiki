@@ -115,13 +115,13 @@ $messages = array(
 
 # Categories related messages
 'categories'               => '頁面分類',
+'categoriespagetext'       => '下底箇分類包括頁面或是媒體文件。',
 'pagecategories'           => '$1隻分類',
 'category_header'          => '“$1”分類中嗰文章',
 'subcategories'            => '亞分類',
 'category-media-header'    => '“$1”分類中嗰媒體',
 'category-empty'           => '“箇隻分類有包到任何文章或媒體”',
 'hidden-category-category' => '隱藏哩箇分類', # Name of the category where hidden categories will be listed
-'subcategorycount'         => '箇隻分類有$1隻亞類。',
 'listingcontinuesabbrev'   => '續',
 
 'mainpagetext'      => "<big>'''安裝正MediaWiki嘍!'''</big>",
@@ -582,7 +582,6 @@ $2',
 'nohistory'           => '箇頁冇修改歷史。',
 'revnotfound'         => '冇尋到修改歷史',
 'revnotfoundtext'     => '倷請求嗰更早版本嗰修改歷史冇尋到。請檢查倷嗰URL係否正確。',
-'loadhist'            => '搦到頁面修改歷史',
 'currentrev'          => '眼前嗰修改版本',
 'revisionasof'        => '$1嗰修改版本',
 'revision-info'       => '$2到$1扤嗰修訂版本',
@@ -592,7 +591,6 @@ $2',
 'cur'                 => '眼前',
 'next'                => '之後',
 'last'                => '之前',
-'orig'                => '起先',
 'page_first'          => '最早',
 'page_last'           => '最晏',
 'histlegend'          => '差異選擇: 標到伓同版本嗰單選鍵，接到按吖督上嗰鍵比較下。<br /> 
@@ -756,6 +754,7 @@ $2',
 'files'                    => '檔案',
 
 # User rights
+'userrights'                    => '用戶許可權管理', # Not used as normal message but as header for the special page itself
 'userrights-lookup-user'        => '管理用戶群',
 'userrights-user-editname'      => '輸入用戶名:',
 'editusergroup'                 => '編輯用戶群',
@@ -1060,7 +1059,6 @@ $2',
 'mostcategories'          => '最多分類嗰文章',
 'mostimages'              => '連結最多嗰圖像',
 'mostrevisions'           => '最常改動嗰文章',
-'allpages'                => '所有嗰頁面',
 'prefixindex'             => '首碼索引',
 'shortpages'              => '短文章',
 'longpages'               => '長文章',
@@ -1092,13 +1090,6 @@ $2',
 'booksources-go'            => '跳到',
 'booksources-text'          => '底下係一部分網絡書店嗰連結列表，可以提供到倷要找嗰書籍嗰更多資料:',
 
-'categoriespagetext' => '下底箇分類包括頁面或是媒體文件。',
-'data'               => '數據',
-'userrights'         => '用戶許可權管理',
-'groups'             => '用戶群',
-'alphaindexline'     => '$1到$2',
-'version'            => '版本',
-
 # Special:Log
 'specialloguserlabel'  => '用戶:',
 'speciallogtitlelabel' => '標題:',
@@ -1111,6 +1102,8 @@ $2',
 'log-title-wildcard'   => '尋吖箇隻字開頭嗰標題',
 
 # Special:Allpages
+'allpages'          => '所有嗰頁面',
+'alphaindexline'    => '$1到$2',
 'nextpage'          => '下頁($1)',
 'prevpage'          => '上頁($1)',
 'allpagesfrom'      => '顯示以箇底開始嗰頁面:',
@@ -2133,6 +2126,7 @@ $1',
 'unknown_extension_tag' => '伓認得個嗰擴展標籤 "$1"',
 
 # Special:Version
+'version'                          => '版本', # Not used as normal message but as header for the special page itself
 'version-extensions'               => '已經安裝好箇插件',
 'version-specialpages'             => '忒別箇頁面',
 'version-parserhooks'              => '解析器鉤子',

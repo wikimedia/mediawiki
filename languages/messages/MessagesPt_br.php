@@ -259,7 +259,6 @@ $messages = array(
 'subcategories'               => 'Subcategorias',
 'category-media-header'       => 'Multimídia na categoria "$1"',
 'category-empty'              => "''Esta categoria no momento não possui nenhuma página de conteúdo ou arquivo multimídia.''",
-'subcategorycount'            => '{{PLURAL:$1|Existe uma subcategoria|Existem $1 subcategorias}} nesta categoria.',
 'category-file-count'         => '{{PLURAL:$2|Esta categoria possui apenas o arquivo a seguir.|Há, nesta categoria, {{PLURAL:$1|o arquivo a seguir|os $1 seguintes arquivos}} (dentre um total de $2.)}}',
 'category-file-count-limited' => 'Nesta categoria {{PLURAL:$1|há um arquivo|há $1 arquivos}}.',
 'listingcontinuesabbrev'      => 'cont.',
@@ -712,7 +711,6 @@ A justificativa apresentada por $3 foi ''$2''",
 'revnotfound'         => 'Revisão não encontrada',
 'revnotfoundtext'     => 'A antiga revisão da página que você está procurando não pode ser encontrada.
 Por favor verifique a URL que você usou para acessar esta página.',
-'loadhist'            => 'Carregando histórico',
 'currentrev'          => 'Revisão atual',
 'revisionasof'        => 'Edição de $1',
 'revision-info'       => 'Edição feita às $1 por $2',
@@ -722,7 +720,6 @@ Por favor verifique a URL que você usou para acessar esta página.',
 'cur'                 => 'atu',
 'next'                => 'prox',
 'last'                => 'ult',
-'orig'                => 'orig',
 'page_first'          => 'primeira',
 'page_last'           => 'última',
 'histlegend'          => 'Seleção para diferença: marque as caixas em uma das versões que deseja comparar e clique no botão.<br />
@@ -836,6 +833,7 @@ para definir suas preferências.',
 'files'                 => 'Arquivos',
 
 # User rights
+'userrights'                       => 'Gestão de privilégios de usuários', # Not used as normal message but as header for the special page itself
 'userrights-lookup-user'           => 'Administrar grupos de usuários',
 'userrights-user-editname'         => 'Forneça um nome de usuário:',
 'editusergroup'                    => 'Editar grupos de usuários',
@@ -993,6 +991,7 @@ Todas as datas mostradas são do servidor (UTC).',
 'noimage'                   => 'Não existe nenhum arquivo com este nome. Se desejar, pode $1',
 'noimage-linktext'          => 'carregá-lo',
 'uploadnewversion-linktext' => 'Enviar uma nova versão deste arquivo',
+'imagepage-searchdupe'      => 'Procurar por arquivos duplicados',
 
 # File reversion
 'filerevert-legend'     => 'Reverter arquivo',
@@ -1074,7 +1073,6 @@ Cada linha contem links para o primeiro e segundo redirecionamento, bem como a p
 'mostcategories'          => 'Páginas de conteúdo com mais categorias',
 'mostimages'              => 'Arquivos com mais afluentes',
 'mostrevisions'           => 'Páginas de conteúdo com mais edições',
-'allpages'                => 'Todas as páginas',
 'prefixindex'             => 'Índice de prefixo',
 'shortpages'              => 'Páginas curtas',
 'longpages'               => 'Paginas longas',
@@ -1095,11 +1093,6 @@ Cada linha contem links para o primeiro e segundo redirecionamento, bem como a p
 # Book sources
 'booksources' => 'Fontes de livros',
 
-'userrights'     => 'Gestão de privilégios de usuários',
-'groups'         => 'Grupos de usuários',
-'alphaindexline' => '$1 até $2',
-'version'        => 'Versão',
-
 # Special:Log
 'specialloguserlabel'  => 'Usuário:',
 'speciallogtitlelabel' => 'Título:',
@@ -1109,6 +1102,8 @@ Cada linha contem links para o primeiro e segundo redirecionamento, bem como a p
 'logempty'             => 'Nenhum item idêntico no registro.',
 
 # Special:Allpages
+'allpages'       => 'Todas as páginas',
+'alphaindexline' => '$1 até $2',
 'nextpage'       => 'Próxima página ($1)',
 'prevpage'       => 'Página anterior ($1)',
 'allpagesfrom'   => 'Mostrar páginas a partir de:',
@@ -1480,10 +1475,11 @@ Por favor, escolha outro título.',
 'show-big-image-thumb' => '<small>Tamanho desta previsão: $1 × $2 pixels</small>',
 
 # Special:Newimages
-'newimages'     => 'Galeria de novos arquivos',
-'imagelisttext' => "É exibida a seguir uma listagem {{PLURAL:$1|de '''um''' arquivo organizado|de '''$1''' arquivos organizados}} por $2.",
-'ilsubmit'      => 'Procura',
-'bydate'        => 'por data',
+'newimages'         => 'Galeria de novos arquivos',
+'imagelisttext'     => "É exibida a seguir uma listagem {{PLURAL:$1|de '''um''' arquivo organizado|de '''$1''' arquivos organizados}} por $2.",
+'newimages-summary' => 'Esta página especial mostra os arquivos recentemente enviados',
+'ilsubmit'          => 'Procura',
+'bydate'            => 'por data',
 
 # Metadata
 'metadata'          => 'Metadados',
@@ -1552,6 +1548,7 @@ Você também pode [[{{ns:special}}:Watchlist/edit|editar a lista da forma conve
 'watchlisttools-raw'  => 'Edição crua das vigiadas',
 
 # Special:Version
+'version'                       => 'Versão', # Not used as normal message but as header for the special page itself
 'version-extensions'            => 'Extensões instaladas',
 'version-specialpages'          => 'Páginas especiais',
 'version-variables'             => 'Variáveis',
@@ -1571,5 +1568,14 @@ Você também pode [[{{ns:special}}:Watchlist/edit|editar a lista da forma conve
 'filepath-summary' => 'Através dsta página especial é possível descobrir o endereço completo de um determinado arquivo. As imagens serão exibidas em sua resolução máxima, outros tipos de arquivos serão iniciados automaticamente em seus programas correspondentes.
 
 Entre com o nome do arquivo sem utilizar o prefixo "{{ns:image}}:".',
+
+# Special:FileDuplicateSearch
+'fileduplicatesearch'          => 'Procurar por arquivos duplicados',
+'fileduplicatesearch-summary'  => 'Procure por arquivos em duplicata, tendo por base seu valor "hash".
+
+Entre com o nome do arquivo sem fornecer o prefixo "{{ns:image}}:".',
+'fileduplicatesearch-filename' => 'Nome do arquivo:',
+'fileduplicatesearch-result-1' => 'O arquivo "$1" não possui cópias idênticas.',
+'fileduplicatesearch-result-n' => 'O arquivo "$1" possui {{PLURAL:$2|uma cópia idêntica|$2 cópias idênticas}}.',
 
 );

@@ -231,14 +231,16 @@ $messages = array(
 
 # Categories related messages
 'categories'                     => 'Thể loại',
-'pagecategories'                 => 'Thể loại ($1)',
+'categoriespagetext'             => 'Các thể loại có chứa trang hoặc tập tin phương tiện.',
+'special-categories-sort-count'  => 'xếp theo số trang',
+'special-categories-sort-abc'    => 'xếp theo vần',
+'pagecategories'                 => '{{PLURAL:$1|Thể loại|Các thể loại}}',
 'category_header'                => 'Các trang trong thể loại “$1”',
 'subcategories'                  => 'Tiểu thể loại',
 'category-media-header'          => 'Các tập tin trong thể loại “$1”',
 'category-empty'                 => "''Thể loại này hiện không có trang hay tập tin.''",
 'hidden-categories'              => '{{PLURAL:$1|Thể loại ẩn|Các thể loại ẩn}}',
 'hidden-category-category'       => 'Thể loại ẩn', # Name of the category where hidden categories will be listed
-'subcategorycount'               => 'Có $1 tiểu thể loại trong thể loại này.',
 'category-subcat-count'          => 'Thể loại này có {{PLURAL:$2|tiểu thể loại sau|{{PLURAL:$1||$1}} tiểu thể loại sau, trên tổng số $2 tiểu thể loại}}.',
 'category-subcat-count-limited'  => 'Thể loại này có {{PLURAL:$1||$1}} tiểu thể loại sau.',
 'category-article-count'         => '{{PLURAL:$2|Thể loại này gồm trang sau.|{{PLURAL:$1|Trang|$1 trang}} sau nằm trong thể loại này, trên tổng số $2 trang.}}',
@@ -724,7 +726,6 @@ Lý do được $3 đưa ra là ''$2''",
 'nohistory'           => 'Trang này chưa có lịch sử.',
 'revnotfound'         => 'Không thấy',
 'revnotfoundtext'     => 'Không thấy phiên bản trước của trang này. Xin kiểm tra lại.',
-'loadhist'            => 'Đang mở lịch sử…',
 'currentrev'          => 'Bản hiện tại',
 'revisionasof'        => 'Phiên bản vào lúc $1',
 'revision-info'       => 'Phiên bản vào lúc $1 do $2 sửa đổi',
@@ -734,7 +735,6 @@ Lý do được $3 đưa ra là ''$2''",
 'cur'                 => 'hiện',
 'next'                => 'tiếp',
 'last'                => 'trước',
-'orig'                => 'gốc',
 'page_first'          => 'đầu',
 'page_last'           => 'cuối',
 'histlegend'          => 'Chọn so sánh: đánh dấu để chọn các phiên bản để so sánh rồi nhấn enter hoặc nút ở dưới.<br />
@@ -920,6 +920,7 @@ Xin hãy bảo đảm tính liên tục của lịch sử trang.
 'files'                    => 'Tập tin',
 
 # User rights
+'userrights'                       => 'Quản lý quyền thành viên', # Not used as normal message but as header for the special page itself
 'userrights-lookup-user'           => 'Quản lý nhóm thành viên',
 'userrights-user-editname'         => 'Nhập tên thành viên:',
 'editusergroup'                    => 'Sửa các nhóm thành viên',
@@ -1138,6 +1139,7 @@ Hãy nhấn chuột vào tiêu đề cột để thay đổi thứ tự sắp x�
 'noimage'                   => 'Không có tập tin có tên này, bạn có thể $1.',
 'noimage-linktext'          => 'tải tập tin lên',
 'uploadnewversion-linktext' => 'Tải lên phiên bản mới',
+'imagepage-searchdupe'      => 'Tìm kiếm các tập tin trùng lắp',
 
 # File reversion
 'filerevert'                => 'Lùi lại phiên bản của $1',
@@ -1250,7 +1252,6 @@ Có '''$8''' tập tin đã được tải lên.
 'mostcategories'          => 'Các trang có nhiều thể loại nhất',
 'mostimages'              => 'Tập tin được liên kết đến nhiều nhất',
 'mostrevisions'           => 'Các trang được sửa đổi nhiều lần nhất',
-'allpages'                => 'Tất cả các trang',
 'prefixindex'             => 'Các trang trùng với tiền tố',
 'shortpages'              => 'Trang ngắn nhất',
 'longpages'               => 'Trang dài nhất',
@@ -1277,19 +1278,14 @@ Có '''$8''' tập tin đã được tải lên.
 'notargettext'            => 'Xin chỉ rõ trang hoặc thành viên cần thực hiện tác vụ.',
 'pager-newer-n'           => '$1 mới hơn',
 'pager-older-n'           => '$1 cũ hơn',
+'pager-sort-asc'          => 'tăng dần',
+'pager-sort-desc'         => 'giảm dần',
 
 # Book sources
 'booksources'               => 'Nguồn sách',
 'booksources-search-legend' => 'Tìm kiếm nguồn sách',
 'booksources-go'            => 'Tìm kiếm',
 'booksources-text'          => 'Dưới đây là danh sách những trang bán sách mới và cũ, đồng thời có thể có thêm thông tin về những cuốn sách bạn đang tìm:',
-
-'categoriespagetext' => 'Các thể loại có chứa trang hoặc tập tin phương tiện.',
-'data'               => 'Dữ liệu',
-'userrights'         => 'Quản lý quyền thành viên',
-'groups'             => 'Nhóm thành viên',
-'alphaindexline'     => '$1 đến $2',
-'version'            => 'Phiên bản',
 
 # Special:Log
 'specialloguserlabel'  => 'Thành viên:',
@@ -1304,6 +1300,8 @@ Bạn có thể thu hẹp kết quả bằng cách chọn loại nhật trình, 
 'log-title-wildcard'   => 'Tìm các tựa trang bắt đầu bằng các chữ này',
 
 # Special:Allpages
+'allpages'          => 'Tất cả các trang',
+'alphaindexline'    => '$1 đến $2',
 'nextpage'          => 'Trang sau ($1)',
 'prevpage'          => 'Trang trước ($1)',
 'allpagesfrom'      => 'Xem trang từ:',
@@ -1988,7 +1986,7 @@ $1',
 'noimages'              => 'Chưa có hình.',
 'ilsubmit'              => 'Tìm kiếm',
 'bydate'                => 'theo ngày',
-'sp-newimages-showfrom' => 'Trưng bày những tập tin mới, bắt đầu từ $1',
+'sp-newimages-showfrom' => 'Trưng bày những tập tin mới, bắt đầu từ lúc $2, ngày $1',
 
 # Bad image list
 'bad_image_list' => 'Định dạng như sau:
@@ -2406,6 +2404,7 @@ $1',
 'unknown_extension_tag' => 'Không hiểu thẻ mở rộng “$1”',
 
 # Special:Version
+'version'                          => 'Phiên bản', # Not used as normal message but as header for the special page itself
 'version-extensions'               => 'Các phần mở rộng được cài đặt',
 'version-specialpages'             => 'Trang đặc biệt',
 'version-parserhooks'              => 'Hook trong bộ xử lý',
@@ -2432,5 +2431,17 @@ $1',
 'filepath-summary' => 'Trang này chuyển bạn thẳng đến địa chỉ của một tập tin. Nếu là hình, địa chỉ là của hình kích thước tối đa; các loại tập tin khác sẽ được mở lên ngay trong chương trình đúng.
 
 Hãy ghi vào tên tập tin, không bao gồm tiền tố “{{ns:image}}:”.',
+
+# Special:FileDuplicateSearch
+'fileduplicatesearch'          => 'Tìm kiếm các tập tin trùng lắp',
+'fileduplicatesearch-summary'  => 'Tìm kiếm các bản sao y hệt với tập tin khác, theo giá trị băm của nó.
+
+Hãy cho vào tên của tập tin, trừ tiền tố “{{ns:image}}:”.',
+'fileduplicatesearch-legend'   => 'Tìm kiếm tập tin trùng lắp',
+'fileduplicatesearch-filename' => 'Tên tập tin:',
+'fileduplicatesearch-submit'   => 'Tìm kiếm',
+'fileduplicatesearch-info'     => '$1 × $2 điểm ảnh<br />Kích thước tập tin: $3<br />Định dạng MIME: $4',
+'fileduplicatesearch-result-1' => 'Không có bản sao y hệt với tập tin “$1”.',
+'fileduplicatesearch-result-n' => 'Có {{PLURAL:$2|1 bản sao|$2 bản sao}} y hệt với tập tin “$1”.',
 
 );

@@ -138,6 +138,7 @@ $messages = array(
 
 # Categories related messages
 'categories'                     => 'Categorías',
+'categoriespagetext'             => 'As categorías seguintes conteñen páxinas ou contidos multimedia.',
 'pagecategories'                 => '{{PLURAL:$1|Categoría|Categorías}}',
 'category_header'                => 'Artigos na categoría "$1"',
 'subcategories'                  => 'Subcategorías',
@@ -145,7 +146,6 @@ $messages = array(
 'category-empty'                 => "''Actualmente esta categoría non conta con ningún artigo ou arquivo multimedia.''",
 'hidden-categories'              => '{{PLURAL:$1|Categoría oculta|Categorías ocultas}}',
 'hidden-category-category'       => 'Categorías ocultas', # Name of the category where hidden categories will be listed
-'subcategorycount'               => 'Hai {{PLURAL:$1|unha subcategoría|$1 subcategorías}} desta categoría.',
 'category-subcat-count-limited'  => 'Esta categoría ten {{PLURAL:$1|a seguinte subcategoría|as seguintes $1 subcategorías}}.',
 'category-article-count-limited' => '{{PLURAL:$1|A seguinte páxina está|As seguintes $1 páxinas están}} na categoría actual.',
 'category-file-count-limited'    => '{{PLURAL:$1|O seguinte ficheiro está|Os seguintes $1 ficheiros están}} na categoría actual.',
@@ -657,7 +657,6 @@ A razón dada por $3 foi ''$2''",
 'revnotfound'         => 'A revisión non foi atopada',
 'revnotfoundtext'     => 'A revisión vella que pediu non se deu atopado.
 Por favor verifique o URL que utilizou para acceder a esta páxina.',
-'loadhist'            => 'Cargando o historial da páxina',
 'currentrev'          => 'Revisión actual',
 'revisionasof'        => 'Revisión como estaba con data $1',
 'revision-info'       => 'Revisión como estaba con data $1 por $2',
@@ -667,7 +666,6 @@ Por favor verifique o URL que utilizou para acceder a esta páxina.',
 'cur'                 => 'actual',
 'next'                => 'seguinte',
 'last'                => 'última',
-'orig'                => 'orix',
 'page_first'          => 'primeira',
 'page_last'           => 'derradeira',
 'histlegend'          => 'Selección de diferenzas: marque as versións para comparalas e prema o botón ao final.<br />
@@ -857,6 +855,7 @@ Procurar $3 $9',
 'files'                    => 'Ficheiros',
 
 # User rights
+'userrights'                       => 'Xestión dos dereitos de usuario', # Not used as normal message but as header for the special page itself
 'userrights-lookup-user'           => 'Administrar grupos de usuarios',
 'userrights-user-editname'         => 'Escriba un nome de usuario:',
 'editusergroup'                    => 'Editar os Grupos de Usuarios',
@@ -1191,7 +1190,6 @@ Cada ringleira contén ligazóns cara á primeira e segunda redirección, e tam�
 'mostcategories'          => 'Artigos con máis categorías',
 'mostimages'              => 'Ficheiros máis enlazados',
 'mostrevisions'           => 'Artigos con máis revisións',
-'allpages'                => 'Todas as páxinas',
 'prefixindex'             => 'Mostrar páxinas clasificadas polas letras iniciais',
 'shortpages'              => 'Páxinas curtas',
 'longpages'               => 'Páxinas longas',
@@ -1225,13 +1223,6 @@ Cada ringleira contén ligazóns cara á primeira e segunda redirección, e tam�
 'booksources-go'            => 'Ir',
 'booksources-text'          => 'A continuación aparece unha listaxe de ligazóns cara a outros sitios web que venden libros novos e usados, neles tamén pode obter máis información sobre as obras que está a buscar:',
 
-'categoriespagetext' => 'As categorías seguintes conteñen páxinas ou contidos multimedia.',
-'data'               => 'Datos',
-'userrights'         => 'Xestión dos dereitos de usuario',
-'groups'             => 'Grupos de usuarios',
-'alphaindexline'     => '$1 a $2',
-'version'            => 'Versión',
-
 # Special:Log
 'specialloguserlabel'  => 'Usuario:',
 'speciallogtitlelabel' => 'Título:',
@@ -1245,6 +1236,8 @@ Pode precisar máis a vista seleccionando o tipo de rexistro, o nome de usuario 
 'log-title-wildcard'   => 'Procurar títulos que comecen con este texto',
 
 # Special:Allpages
+'allpages'          => 'Todas as páxinas',
+'alphaindexline'    => '$1 a $2',
 'nextpage'          => 'Páxina seguinte ($1)',
 'prevpage'          => 'Páxina anterior ($1)',
 'allpagesfrom'      => 'Mostrar páxinas a partir de:',
@@ -2332,6 +2325,7 @@ Tamén pode [[Special:Watchlist/edit|empregar o editor normal]].',
 'unknown_extension_tag' => 'Etiqueta de extensión descoñecida "$1"',
 
 # Special:Version
+'version'                          => 'Versión', # Not used as normal message but as header for the special page itself
 'version-extensions'               => 'Extensións instaladas',
 'version-specialpages'             => 'Páxinas especiais',
 'version-parserhooks'              => 'Hooks do analizador (parser)',

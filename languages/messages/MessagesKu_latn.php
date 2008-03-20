@@ -134,6 +134,7 @@ $messages = array(
 
 # Categories related messages
 'categories'               => '{{PLURAL:$1|Kategorî|Kategorî}}',
+'categoriespagetext'       => 'Di vê wîkiyê de ev kategorî hene:',
 'pagecategories'           => '$1 Kategorîyan',
 'category_header'          => 'Gotarên di kategoriya "$1" de',
 'subcategories'            => 'Binekategorî',
@@ -141,7 +142,6 @@ $messages = array(
 'category-empty'           => "''Di vê kategorîyê da niha gotar ya medya tune ne.''",
 'hidden-categories'        => '{{PLURAL:$1|Kategorîya veşartî|Kategorîyên veşartî}}',
 'hidden-category-category' => 'Kategorîyên veşartî', # Name of the category where hidden categories will be listed
-'subcategorycount'         => 'Di vê kategoriyê de {{PLURAL:$1|binkategorîyek heye|$1 binkategorî hene}}.',
 'listingcontinuesabbrev'   => 'dewam',
 
 'mainpagetext'      => "<big>'''MediaWiki serketî hate çêkirin.'''</big>",
@@ -615,7 +615,6 @@ Sedemê qedexekirinê ji $3 ev e: ''$2''",
 'viewpagelogs'        => 'Reşahîyên vê rûpelê bibîne',
 'nohistory'           => 'Ew rûpel dîroka guherandinê tune.',
 'revnotfound'         => 'Revîzyon nehat dîtin',
-'loadhist'            => 'Dîroka rûpelê tê anîn',
 'currentrev'          => 'Revîzyona niha',
 'revisionasof'        => 'Revîzyon a $1',
 'previousrevision'    => '←Rêvîzyona kevintir',
@@ -624,7 +623,6 @@ Sedemê qedexekirinê ji $3 ev e: ''$2''",
 'cur'                 => 'ferq',
 'next'                => 'pêş',
 'last'                => 'berê',
-'orig'                => 'orîj',
 'page_first'          => 'yekemîn',
 'page_last'           => 'paşîn',
 'histlegend'          => 'Legend: (ferq) = cudayî nav vê û versiyon a niha,
@@ -961,7 +959,6 @@ Dirêjahîya [http://meta.wikimedia.org/wiki/Help:Job_queue ''job queue''] '''$7
 'wantedcategories'        => 'Kategorîyên tên xwestin',
 'wantedpages'             => 'Rûpelên ku tên xwestin',
 'mostcategories'          => 'Gotar bi pir kategorîyan',
-'allpages'                => 'Hemû rûpel',
 'shortpages'              => 'Rûpelên kurt',
 'longpages'               => 'Rûpelên dirêj',
 'deadendpages'            => 'Rûpelên bê dergeh',
@@ -986,12 +983,6 @@ Dirêjahîya [http://meta.wikimedia.org/wiki/Help:Job_queue ''job queue''] '''$7
 'booksources-go'            => 'Lêbigere',
 'booksources-text'          => 'Li vir listek ji lînkên rûpelên, yê pirtûkên nuh ya kevin difiroşin, heye. Hên jî li vir tu dikarî înformasyonan li ser wan pirtûkan tê derxê.',
 
-'categoriespagetext' => 'Di vê wîkiyê de ev kategorî hene:',
-'data'               => "Data'yan",
-'groups'             => 'Grûpen bikarhêneran',
-'alphaindexline'     => '$1 heta $2',
-'version'            => 'Verzîyon',
-
 # Special:Log
 'specialloguserlabel'  => 'Bikarhêner:',
 'speciallogtitlelabel' => 'Sernav:',
@@ -1006,6 +997,8 @@ Tu dikarê ji xwe ra reşahîyekê bibê, navî bikarhênerekê ya navî rûpele
 'log-title-wildcard'   => 'Li sernavan bigere, yê bi vê destpêdikin',
 
 # Special:Allpages
+'allpages'          => 'Hemû rûpel',
+'alphaindexline'    => '$1 heta $2',
 'nextpage'          => 'Rûpela pêşî ($1)',
 'prevpage'          => 'Rûpelê berî vê ($1)',
 'allpagesfrom'      => 'Pêşdîtina rûpelan bi dest pê kirin ji',
@@ -1624,6 +1617,7 @@ $1',
 'watchlisttools-edit' => 'Lîsteya şopandinê bibîne û biguherîne',
 
 # Special:Version
+'version'       => 'Verzîyon', # Not used as normal message but as header for the special page itself
 'version-other' => 'yên din',
 
 # Special:Filepath

@@ -160,6 +160,7 @@ $messages = array(
 
 # Categories related messages
 'categories'               => 'Roll ar rummadoù',
+'categoriespagetext'       => 'War ar wiki emañ ar rummadoù da-heul :',
 'pagecategories'           => '{{PLURAL:$1|Rummad |Rummad }}',
 'category_header'          => 'Niver a bennadoù er rummad "$1"',
 'subcategories'            => 'Isrummad',
@@ -167,7 +168,6 @@ $messages = array(
 'category-empty'           => "''N'eus na pajenn na media ebet er rummad-mañ evit ar mare.''",
 'hidden-categories'        => '{{PLURAL:$1|Rummad kuzhet|Rummad kuzhet}}',
 'hidden-category-category' => 'Rummadoù kuzhet', # Name of the category where hidden categories will be listed
-'subcategorycount'         => "$1 isrummad zo d'ar rummad-mañ.",
 'listingcontinuesabbrev'   => "(war-lerc'h)",
 
 'mainpagetext'      => 'Meziant {{SITENAME}} staliet.',
@@ -656,7 +656,6 @@ An abeg roet gant $3 zo ''$2''",
 'nohistory'           => "Ar bajenn-mañ n'he deus tamm istor ebet.",
 'revnotfound'         => "N'eo ket bet kavet ar stumm-mañ",
 'revnotfoundtext'     => "N'eo ket bet kavet stumm kent ar bajenn-mañ. Gwiriit an URL lakaet ganeoc'h evit mont d'ar bajenn-mañ.",
-'loadhist'            => 'O kargañ istor ar bajenn',
 'currentrev'          => 'Stumm a-vremañ pe stumm red',
 'revisionasof'        => 'Stumm eus an $1',
 'revision-info'       => 'Stumm eus an $1 gant $2',
@@ -666,7 +665,6 @@ An abeg roet gant $3 zo ''$2''",
 'cur'                 => 'red',
 'next'                => 'goude',
 'last'                => 'diwez',
-'orig'                => 'kent',
 'page_first'          => 'kentañ',
 'page_last'           => 'diwezhañ',
 'histlegend'          => "Sellet ouzh an diforc'hioù : lakait un ask adal d'ar stummoù a fell deoc'h keñveriañ ha pouezit war kadarnaat pe war ar bouton en traoñ.<br />
@@ -854,6 +852,7 @@ $2 Lakaat ivez ar pajennoù adkas &nbsp; Klask $3 $9',
 'files'                    => 'Restroù',
 
 # User rights
+'userrights'                       => 'Merañ statud an implijerien', # Not used as normal message but as header for the special page itself
 'userrights-lookup-user'           => 'Merañ strolladoù an implijer',
 'userrights-user-editname'         => 'Lakait un anv implijer :',
 'editusergroup'                    => 'Kemmañ ar strolladoù implijerien',
@@ -1191,7 +1190,6 @@ Hirder al [http://meta.wikimedia.org/wiki/Help:Job_queue lostennad labour] zo pa
 'mostcategories'          => 'Pennadoù rummatet ar muiañ',
 'mostimages'              => 'Skeudennoù implijet ar muiañ',
 'mostrevisions'           => 'Pennadoù bet kemmet ar muiañ',
-'allpages'                => 'An holl bajennoù',
 'prefixindex'             => 'An holl bajennoù dre o lizherenn gentañ',
 'shortpages'              => 'Pennadoù berr',
 'longpages'               => 'Pennadoù hir',
@@ -1226,13 +1224,6 @@ Hirder al [http://meta.wikimedia.org/wiki/Help:Job_queue lostennad labour] zo pa
 'booksources-go'            => 'Kadarnaat',
 'booksources-text'          => "Ur roll liammoù a gas da lec'hiennoù all ma werzher levrioù kozh ha nevez a gavot a-is; marteze e kavot eno titouroù pelloc'h war al levrioù a glaskit :",
 
-'categoriespagetext' => 'War ar wiki emañ ar rummadoù da-heul :',
-'data'               => 'Roadennoù',
-'userrights'         => 'Merañ statud an implijerien',
-'groups'             => 'Strolladoù implijer',
-'alphaindexline'     => '$1 da $2',
-'version'            => 'Stumm',
-
 # Special:Log
 'specialloguserlabel'  => 'Implijer :',
 'speciallogtitlelabel' => 'Titl :',
@@ -1245,6 +1236,8 @@ Hirder al [http://meta.wikimedia.org/wiki/Help:Job_queue lostennad labour] zo pa
 'log-title-wildcard'   => 'Klask an titloù a grog gant an destenn-mañ',
 
 # Special:Allpages
+'allpages'          => 'An holl bajennoù',
+'alphaindexline'    => '$1 da $2',
 'nextpage'          => "Pajenn war-lerc'h ($1)",
 'prevpage'          => 'Pajenn gent ($1)',
 'allpagesfrom'      => 'Diskouez ar pajennoù adal :',
@@ -2333,6 +2326,7 @@ Klaskit rakwelet er mod boutin.',
 'unknown_extension_tag' => 'Balizenn astenn "$1" dianav',
 
 # Special:Version
+'version'                          => 'Stumm', # Not used as normal message but as header for the special page itself
 'version-extensions'               => 'Astennoù staliet',
 'version-specialpages'             => 'Pajennoù dibar',
 'version-parserhooks'              => 'Galvoù dielfennañ',

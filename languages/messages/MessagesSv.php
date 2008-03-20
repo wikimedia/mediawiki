@@ -254,6 +254,9 @@ $messages = array(
 
 # Categories related messages
 'categories'                     => 'Kategorier',
+'categoriespagetext'             => 'Följande kategorier finns på {{SITENAME}}.',
+'special-categories-sort-count'  => 'sortera efter storlek',
+'special-categories-sort-abc'    => 'sortera alfabetiskt',
 'pagecategories'                 => '{{PLURAL:$1|Kategori|Kategorier}}',
 'category_header'                => 'Sidor i kategorin "$1"',
 'subcategories'                  => 'Underkategorier',
@@ -261,7 +264,6 @@ $messages = array(
 'category-empty'                 => "''Den här kategorin innehåller just nu inga sidor eller filer.''",
 'hidden-categories'              => '{{PLURAL:$1|Dold kategori|Dolda kategorier}}',
 'hidden-category-category'       => 'Dolda kategorier', # Name of the category where hidden categories will be listed
-'subcategorycount'               => 'Det finns {{PLURAL:$1|en underkategori|$1 underkategorier}} till den här kategorin.',
 'category-subcat-count'          => '{{PLURAL:$2|Denna kategori har endast följande underkategori.|Denna kategori har följande {{PLURAL:$1|underkategori|$1 underkategorier}} (av totalt $2).}}',
 'category-subcat-count-limited'  => 'Denna kategori har följande {{PLURAL:$1|underkategori|$1 underkategorier}}.',
 'category-article-count'         => '{{PLURAL:$2|Denna kategori innehåller endast följande sida.|Följande {{PLURAL:$1|sida|$1 sidor}} (av totalt $2) finns i denna kategori.}}',
@@ -755,7 +757,6 @@ Anledningen till blockeringen var "$2".',
 'nohistory'           => 'Den här sidan har ingen versionshistorik.',
 'revnotfound'         => 'Versionen hittades inte',
 'revnotfoundtext'     => 'Den gamla versionen av den sida du frågade efter kan inte hittas. Kontrollera den URL du använde för att nå den här sidan.',
-'loadhist'            => 'Läser sidans versioner',
 'currentrev'          => 'Nuvarande version',
 'revisionasof'        => 'Versionen från $1',
 'revision-info'       => 'Version från den $1; $2',
@@ -765,7 +766,6 @@ Anledningen till blockeringen var "$2".',
 'cur'                 => 'nuvarande',
 'next'                => 'nästa',
 'last'                => 'föregående',
-'orig'                => 'original',
 'page_first'          => 'första',
 'page_last'           => 'sista',
 'histlegend'          => "Förklaring: (nuvarande) = skillnad mot nuvarande version; (föregående) = skillnad mot föregående version; '''m''' = mindre ändring.",
@@ -946,6 +946,7 @@ $2 Lista omdirigeringar &nbsp; Sök efter $3 $9',
 'files'                    => 'Filer',
 
 # User rights
+'userrights'                       => 'Användarrättigheter', # Not used as normal message but as header for the special page itself
 'userrights-lookup-user'           => 'Hantera användargrupper',
 'userrights-user-editname'         => 'Skriv in ett användarnamn:',
 'editusergroup'                    => 'Ändra användargrupper',
@@ -1168,6 +1169,7 @@ Genom att klicka på rubrikerna för kolumnerna kan man ändra sorteringsordning
 'noimage'                   => 'Det finns ingen fil med detta namn. Du kan $1.',
 'noimage-linktext'          => 'ladda upp den',
 'uploadnewversion-linktext' => 'Ladda upp en ny version av denna fil',
+'imagepage-searchdupe'      => 'Sök efter dubbletter till denna fil',
 
 # File reversion
 'filerevert'                => 'Återställ $1',
@@ -1280,7 +1282,6 @@ Sedan denna wiki startades har sidor visats totalt <b>$3</b> {{PLURAL:$3|gång|g
 'mostcategories'          => 'Sidor med flest kategorier',
 'mostimages'              => 'Filer med flest länkar till sig',
 'mostrevisions'           => 'Sidor med flest ändringar',
-'allpages'                => 'Alla sidor',
 'prefixindex'             => 'Prefixindex',
 'shortpages'              => 'Korta sidor',
 'longpages'               => 'Långa sidor',
@@ -1307,19 +1308,14 @@ Sedan denna wiki startades har sidor visats totalt <b>$3</b> {{PLURAL:$3|gång|g
 'notargettext'            => 'Du har inte angivit någon sida eller användare att utföra denna funktion på.',
 'pager-newer-n'           => '$1 nyare',
 'pager-older-n'           => '$1 äldre',
+'pager-sort-asc'          => 'stigande',
+'pager-sort-desc'         => 'fallande',
 
 # Book sources
 'booksources'               => 'Bokkällor',
 'booksources-search-legend' => 'Sök efter bokkällor',
 'booksources-go'            => 'Sök',
 'booksources-text'          => 'Nedan följer en lista över länkar till webbplatser som säljer nya och begagnade böcker, och som kanske har ytterligare information om de böcker du söker.',
-
-'categoriespagetext' => 'Följande kategorier finns på {{SITENAME}}.',
-'data'               => 'Data',
-'userrights'         => 'Användarrättigheter',
-'groups'             => 'Användargrupper',
-'alphaindexline'     => '$1 till $2',
-'version'            => 'Version',
 
 # Special:Log
 'specialloguserlabel'  => 'Användare:',
@@ -1333,6 +1329,8 @@ Sedan denna wiki startades har sidor visats totalt <b>$3</b> {{PLURAL:$3|gång|g
 'log-title-wildcard'   => 'Sök efter sidtitlar som börjar med texten',
 
 # Special:Allpages
+'allpages'          => 'Alla sidor',
+'alphaindexline'    => '$1 till $2',
 'nextpage'          => 'Nästa sida ($1)',
 'prevpage'          => 'Föregående sida ($1)',
 'allpagesfrom'      => 'Visa sidor från och med:',
@@ -1709,7 +1707,7 @@ Bekräfta att du verkligen vill göra detta, och att du kommer att låsa upp dat
 'lockdbsuccesssub'    => 'Databasen har låsts',
 'unlockdbsuccesssub'  => 'Databasen har låsts upp',
 'lockdbsuccesstext'   => 'Databasen är nu låst.
-<br />Kom ihåg att ta bort låsningen när du är färdig med ditt underhåll.',
+<br />Kom ihåg att [[Special:Unlockdb|ta bort låsningen]] när du är färdig med ditt underhåll.',
 'unlockdbsuccesstext' => 'Databasen är upplåst.',
 'lockfilenotwritable' => 'Det går inte att skriva till databasens låsfil. För att låsa eller låsa upp databasen, så måste webbservern kunna skriva till den filen.',
 'databasenotlocked'   => 'Databasen är inte låst.',
@@ -1990,7 +1988,7 @@ $1',
 'noimages'              => 'Ingenting att se.',
 'ilsubmit'              => 'Sök',
 'bydate'                => 'efter datum',
-'sp-newimages-showfrom' => 'Visa nya filer från och med $1',
+'sp-newimages-showfrom' => 'Visa nya filer från och med kl. $2 den $1',
 
 # Bad image list
 'bad_image_list' => 'Listan fungerar enligt följande:
@@ -2400,6 +2398,7 @@ för att spara dina ändringar när du är färdig. Du kan också använda [[Spe
 'unknown_extension_tag' => 'Okänd tagg "$1"',
 
 # Special:Version
+'version'                          => 'Version', # Not used as normal message but as header for the special page itself
 'version-extensions'               => 'Installerade programtillägg',
 'version-specialpages'             => 'Specialsidor',
 'version-parserhooks'              => 'Parsertillägg',
@@ -2426,5 +2425,17 @@ för att spara dina ändringar när du är färdig. Du kan också använda [[Spe
 'filepath-summary' => 'Den här sidan ger den fullständiga sökvägen till en fil. Bilder visas i full upplösning i din webbläsare, andra filtyper öppnas direkt i de program som är associerade till dem.
 
 Ange filens namn utan prefixet "{{ns:image}}:".',
+
+# Special:FileDuplicateSearch
+'fileduplicatesearch'          => 'Sök efter dubblettfiler',
+'fileduplicatesearch-summary'  => 'Sök efter dubblettfiler baserat på filernas hash-värden. 
+
+Skriv filnamnet utan prefixet "{{ns:image}}:" .',
+'fileduplicatesearch-legend'   => 'Sök efter en dubblettfil',
+'fileduplicatesearch-filename' => 'Filnamn:',
+'fileduplicatesearch-submit'   => 'Sök',
+'fileduplicatesearch-info'     => '$1 × $2 pixel<br />Filstorlek: $3<br />MIME-typ: $4',
+'fileduplicatesearch-result-1' => 'Filen "$1" har inga identiska dubbletter.',
+'fileduplicatesearch-result-n' => 'Filen "$1" har {{PLURAL:$2|1 identisk dubblett|$2 identiska dubbletter}}.',
 
 );

@@ -88,10 +88,10 @@ $messages = array(
 'dec'       => 'Diç',
 
 # Categories related messages
-'categories'       => '{{PLURAL:$1|Categoria|Categorie}}',
-'pagecategories'   => '{{PLURAL:$1|Categoria|Categorie}}',
-'category_header'  => 'Voçi n\'te ła categoria "$1"',
-'subcategorycount' => 'Sta categoria contegne {{PLURAL:$1|na sotocategoria|$1 sotocategorie}}.',
+'categories'         => '{{PLURAL:$1|Categoria|Categorie}}',
+'categoriespagetext' => 'In {{SITENAME}} ghèmo ste categorie',
+'pagecategories'     => '{{PLURAL:$1|Categoria|Categorie}}',
+'category_header'    => 'Voçi n\'te ła categoria "$1"',
 
 'mainpagetext' => "'''MediaWiki xè stà instałà con sucesso.'''",
 
@@ -359,7 +359,6 @@ long, which is longer than the maximum of $2 kilobytes. It cannot be saved.</str
 'revnotfound'         => 'Verzsion non trovà',
 'revnotfoundtext'     => 'La verzsion richiesta de ła paxèna non xè stà trovà.
 Verifica ła URL usà par açedere a sta paxèna.',
-'loadhist'            => 'Caricamento cronologia de sta paxèna',
 'currentrev'          => 'Verzsion atuałe',
 'revisionasof'        => 'Revixion $1',
 'previousrevision'    => '← Verzsion manco reçente',
@@ -568,7 +567,6 @@ La [http://meta.wikimedia.org/wiki/Help:Job_queue coda] contegne '''{{FORMATNUM|
 'mostlinkedcategories'    => 'Categorie piazsé riciamae',
 'mostcategories'          => 'Arthicołi con piazsé categorie',
 'mostrevisions'           => 'Voçi con piazsé revixión',
-'allpages'                => 'Tute łe paxène',
 'shortpages'              => 'Paxène corte',
 'longpages'               => 'Paxène longhe',
 'deadendpages'            => 'Paxène senzsa uscita',
@@ -582,14 +580,12 @@ La [http://meta.wikimedia.org/wiki/Help:Job_queue coda] contegne '''{{FORMATNUM|
 'unusedcategoriestext'    => 'Le paxène de łe categorie indicae de seguito łe xè stà creae ma non contegne nessuna paxèna né sotocategoria.',
 'notargettext'            => "Non hai specificato una pagina o un Utente in relazione al quale eseguire l'operazione richiesta.",
 
-'categoriespagetext' => 'In {{SITENAME}} ghèmo ste categorie',
-'version'            => 'Verzsion',
-
 # Special:Log
 'speciallogtitlelabel' => 'Titolo',
 'alllogstext'          => 'Vixualixazsion unificà de i log de upload, scancełazsión, protezsión, blocking e de aministrazsión. Te podi restringere i criteri de rizserca selezsionando el tipo de log, username, o la paxèna interessà.',
 
 # Special:Allpages
+'allpages'          => 'Tute łe paxène',
 'nextpage'          => 'Paxèna dopo ($1)',
 'allpagesfrom'      => 'Mostra łe paxène cominzsiando da:',
 'allarticles'       => 'Tuti le voçi',
@@ -1197,5 +1193,8 @@ $1',
 
 # Auto-summaries
 'autoredircomment' => 'Redirect a ła paxèna [[$1]]',
+
+# Special:Version
+'version' => 'Verzsion', # Not used as normal message but as header for the special page itself
 
 );

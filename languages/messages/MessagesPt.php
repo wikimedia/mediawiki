@@ -265,6 +265,7 @@ $messages = array(
 
 # Categories related messages
 'categories'                     => 'Categorias',
+'categoriespagetext'             => 'As seguintes categorias existem na wiki.',
 'pagecategories'                 => '{{PLURAL:$1|Categoria|Categorias}}',
 'category_header'                => 'Páginas na categoria "$1"',
 'subcategories'                  => 'Subcategorias',
@@ -272,7 +273,6 @@ $messages = array(
 'category-empty'                 => "''Esta categoria de momento não possui nenhuma página de conteúdo ou ficheiro multimédia.''",
 'hidden-categories'              => '{{PLURAL:$1|Categoria oculta|Categorias ocultas}}',
 'hidden-category-category'       => 'Categorias ocultas', # Name of the category where hidden categories will be listed
-'subcategorycount'               => '{{PLURAL:$1|Existe uma subcategoria|Existem $1 subcategorias}} nesta categoria.',
 'category-subcat-count'          => '{{PLURAL:$2|Esta categoria possui apenas a sub-categoria a seguir.|Há, nesta categoria {{PLURAL:$1|uma sub-categoria|$1 sub-categorias}} (dentre um total de $2).}}',
 'category-subcat-count-limited'  => 'Esta categoria possui {{PLURAL:$1|a seguinte sub-categoria|as $1 sub-categorias a seguir}}.',
 'category-article-count'         => '{{PLURAL:$2|Esta categoria possui apenas a página a seguir.|Há, nesta categoria, {{PLURAL:$1|a página a seguir|as $1 páginas a seguir}} (dentre um total de $2).}}',
@@ -787,7 +787,6 @@ A justificativa apresentada por $3 foi ''$2''",
 'nohistory'           => 'Não há histórico de edições para esta página.',
 'revnotfound'         => 'Revisão não encontrada',
 'revnotfoundtext'     => 'A antiga revisão desta página que requesitou não pode ser encontrada. Por favor verifique o URL que utilizou para aceder esta página.',
-'loadhist'            => 'Carregando histórico',
 'currentrev'          => 'Revisão actual',
 'revisionasof'        => 'Revisão de $1',
 'revision-info'       => 'Revisão de $1; $2',
@@ -797,7 +796,6 @@ A justificativa apresentada por $3 foi ''$2''",
 'cur'                 => 'act',
 'next'                => 'prox',
 'last'                => 'ult',
-'orig'                => 'orig',
 'page_first'          => 'primeira',
 'page_last'           => 'última',
 'histlegend'          => 'Selecção de diferença: marque as caixas em uma das versões que deseja comparar e carregue no botão.<br />
@@ -986,6 +984,7 @@ Note que os índices do conteúdo da {{SITENAME}} destes sites podem estar desac
 'files'                    => 'Ficheiros',
 
 # User rights
+'userrights'                       => 'Gestão de privilégios de utilizadores', # Not used as normal message but as header for the special page itself
 'userrights-lookup-user'           => 'Gerir grupos de utilizadores',
 'userrights-user-editname'         => 'Intruduza um nome de utilizador:',
 'editusergroup'                    => 'Editar Grupos de Utilizadores',
@@ -1203,6 +1202,7 @@ PICT # misc.
 'noimage'                   => 'Não existe nenhum ficheiro com este nome. Se desejar, pode $1',
 'noimage-linktext'          => 'carregá-lo',
 'uploadnewversion-linktext' => 'Carregar uma nova versão deste ficheiro',
+'imagepage-searchdupe'      => 'Procurar por ficheiros duplicados',
 
 # File reversion
 'filerevert'                => 'Reverter $1',
@@ -1318,7 +1318,6 @@ O tamanho da [http://meta.wikimedia.org/wiki/Help:Job_queue fila de tarefas] é 
 'mostcategories'          => 'Páginas de conteúdo com mais categorias',
 'mostimages'              => 'Imagens com mais afluentes',
 'mostrevisions'           => 'Páginas de conteúdo com mais revisões',
-'allpages'                => 'Todas as páginas',
 'prefixindex'             => 'Índice de prefixo',
 'shortpages'              => 'Páginas curtas',
 'longpages'               => 'Páginas longas',
@@ -1352,13 +1351,6 @@ O tamanho da [http://meta.wikimedia.org/wiki/Help:Job_queue fila de tarefas] é 
 'booksources-go'            => 'Ir',
 'booksources-text'          => 'É exibida a seguir uma listagem de links para outros sítios que vendem livros novos e usados e que possam possuir informações adicionais sobre os livros que você está pesquisando:',
 
-'categoriespagetext' => 'As seguintes categorias existem na wiki.',
-'data'               => 'Dados',
-'userrights'         => 'Gestão de privilégios de utilizadores',
-'groups'             => 'Grupos de utilizadores',
-'alphaindexline'     => '$1 até $2',
-'version'            => 'Versão',
-
 # Special:Log
 'specialloguserlabel'  => 'Utilizador:',
 'speciallogtitlelabel' => 'Título:',
@@ -1372,6 +1364,8 @@ Você pode diminuir a lista escolhendo um tipo de registo, um nome de utilizador
 'log-title-wildcard'   => 'Procurar por títulos que sejam iniciados com o seguinte texto',
 
 # Special:Allpages
+'allpages'          => 'Todas as páginas',
+'alphaindexline'    => '$1 até $2',
 'nextpage'          => 'Próxima página ($1)',
 'prevpage'          => 'Página anterior ($1)',
 'allpagesfrom'      => 'Mostrar páginas começando em:',
@@ -2034,6 +2028,7 @@ $1',
 # Special:Newimages
 'newimages'             => 'Galeria de novos ficheiros',
 'imagelisttext'         => "É exibida a seguir uma listagem {{PLURAL:$1|de '''um''' ficheiro organizado|de '''$1''' ficheiros organizados}} por $2.",
+'newimages-summary'     => 'Esta página especial mostra os ficheiros mais recentemente enviados',
 'showhidebots'          => '($1 robôs)',
 'noimages'              => 'Nada para ver.',
 'ilsubmit'              => 'Procurar',
@@ -2451,6 +2446,7 @@ Você também pode [[{{ns:special}}:Watchlist/edit|editar a lista da forma conve
 'unknown_extension_tag' => '"$1" é uma tag de extensão desconhecida',
 
 # Special:Version
+'version'                          => 'Versão', # Not used as normal message but as header for the special page itself
 'version-extensions'               => 'Extensões instaladas',
 'version-specialpages'             => 'Páginas especiais',
 'version-parserhooks'              => 'Hooks do analisador (parser)',
@@ -2477,5 +2473,17 @@ Você também pode [[{{ns:special}}:Watchlist/edit|editar a lista da forma conve
 'filepath-summary' => 'Através dsta página especial é possível descobrir o endereço completo de um determinado ficheiro. As imagens serão exibidas em sua resolução máxima, outros tipos de ficheiros serão iniciados automaticamente em seus programas correspondentes.
 
 Entre com o nome do ficheiro sem utilizar o prefixo "{{ns:image}}:".',
+
+# Special:FileDuplicateSearch
+'fileduplicatesearch'          => 'Procurar por ficheiros duplicados',
+'fileduplicatesearch-summary'  => 'Procure por ficheiros duplicados tendo por base seu valor "hash".
+
+Entre com o nome de ficheiro sem fornecer o prefixo "{{ns:image}}:".',
+'fileduplicatesearch-legend'   => 'Procurar por duplicatas',
+'fileduplicatesearch-filename' => 'Nome do ficheiro:',
+'fileduplicatesearch-submit'   => 'Pesquisa',
+'fileduplicatesearch-info'     => '$1 × $2 pixels<br />Tamanho: $3<br />tipo MIME: $4',
+'fileduplicatesearch-result-1' => 'O ficheiro "$1" não possui cópias idênticas.',
+'fileduplicatesearch-result-n' => 'O ficheiro "$1" possui {{PLURAL:$2|uma cópia idêntica|$2 cópias idênticas}}.',
 
 );
