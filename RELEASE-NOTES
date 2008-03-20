@@ -110,6 +110,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 13428) Fix regression in protection form layout HTML validity
 * (bug 9403) Sanitize newlines from search term input
 * (bug 13429) Separate date and time in message sp-newimages-showfrom
+* (bug 13137) Allow setting 'editprotected' right separately from 'protect', 	 
+  so groups may optionally edit protected pages without having 'protect' perms
 
 
 === API changes in 1.13 ===
@@ -133,8 +135,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 13390) One invalid title no longer kills an entire API query
 * (bug 13419) Fix gblredirect so it actually works
 * (bug 13418) Disable eiredirect because it's useless
-* (bug 13137) Allow setting 'editprotected' right separately from 'protect', 	 
-  so groups may optionally edit protected pages without having 'protect' perms
+* (bug 13395) list=allcategories should use category table
 
 === Languages updated in 1.13 ===
 
