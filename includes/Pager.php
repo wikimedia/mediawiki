@@ -238,13 +238,12 @@ abstract class IndexPager implements Pager {
 	/**
 	 * Make a self-link
 	 */
-	function makeLink($text, $query = NULL) {
+	function makeLink($text, $query = null) {
 		if ( $query === null ) {
 			return $text;
-		} else {
-			return $this->getSkin()->makeKnownLinkObj( $this->getTitle(), $text,
-				wfArrayToCGI( $query, $this->getDefaultQuery() ) );
 		}
+		return $this->getSkin()->makeKnownLinkObj( $this->getTitle(), $text,
+				wfArrayToCGI( $query, $this->getDefaultQuery() ) );
 	}
 
 	/**

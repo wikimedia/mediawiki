@@ -1738,16 +1738,20 @@ The [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] length is '''\$7''
 'booksources-go'            => 'Go',
 'booksources-text'          => 'Below is a list of links to other sites that sell new and used books, and may also have further information about books you are looking for:',
 
-'categoriespagetext' => 'The following categories contain pages or media.',
-'data'               => 'Data',
-'userrights'         => 'User rights management',
-'userrights-summary' => '', # only translate this message to other languages if you have to change it
-'groups'             => 'User groups',
-'isbn'               => 'ISBN', # only translate this message to other languages if you have to change it
-'rfcurl'             => 'http://tools.ietf.org/html/rfc$1', # don't translate or duplicate this message to other languages
-'pubmedurl'          => 'http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Retrieve&db=pubmed&dopt=Abstract&list_uids=$1', # don't translate or duplicate this message to other languages
-'alphaindexline'     => '$1 to $2',
-'version'            => 'Version',
+'categoriespagetext'            => 'The following categories contain pages or media.',
+'special-categories-sort-count' => 'sort by count',
+'special-categories-sort-abc'   => 'sort alphabetically',
+'special-categories-sort-asc'   => 'ascending',
+'special-categories-sort-desc'  => 'descending',
+'data'                          => 'Data',
+'userrights'                    => 'User rights management',
+'userrights-summary'            => '', # only translate this message to other languages if you have to change it
+'groups'                        => 'User groups',
+'isbn'                          => 'ISBN', # only translate this message to other languages if you have to change it
+'rfcurl'                        => 'http://tools.ietf.org/html/rfc$1', # don't translate or duplicate this message to other languages
+'pubmedurl'                     => 'http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Retrieve&db=pubmed&dopt=Abstract&list_uids=$1', # don't translate or duplicate this message to other languages
+'alphaindexline'                => '$1 to $2',
+'version'                       => 'Version',
 
 # Special:Log
 'specialloguserlabel'  => 'User:',
