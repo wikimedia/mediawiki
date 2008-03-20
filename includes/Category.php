@@ -50,7 +50,7 @@ abstract class CategoryListBase {
 	 * @return mixed Normalized name, or false if the name was invalid.
 	 */
 	private static function setNamesCallback( $name ) {
-		$title = Title::makeTitleSafe( NS_CATEGORY, $name );
+		$title = Title::newFromText( "Category:$name" );
 		if( !is_object( $title ) ) {
 			return false;
 		}
