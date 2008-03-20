@@ -509,7 +509,7 @@ CREATE TABLE /*$wgDBprefix*/category (
   cat_subcats int signed NOT NULL default 0,
   cat_files int signed NOT NULL default 0,
 
-  -- Should the category be hidden from article views?
+  -- Reserved for future use
   cat_hidden tinyint unsigned NOT NULL default 0,
   
   PRIMARY KEY (cat_id),
