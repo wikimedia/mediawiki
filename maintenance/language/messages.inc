@@ -1153,10 +1153,6 @@ $wgMessageStructure = array(
 		'rfcurl',
 		'pubmedurl',
 	),
-	'specialpages2' => array(
-		'data',
-		'version',
-	),
 	'logpages' => array(
 		'specialloguserlabel',
 		'speciallogtitlelabel',
@@ -2485,7 +2481,6 @@ XHTML id names.",
 	'specialpages'        => 'Miscellaneous special pages',
 	'booksources'         => 'Book sources',
 	'magicwords'          => 'Magic words',
-	'specialpages2'       => '',
 	'logpages'            => 'Special:Log',
 	'allpages'            => 'Special:Allpages',
 	'listusers'           => 'Special:Listusers',
