@@ -572,7 +572,6 @@ $wgMessageStructure = array(
 		'nohistory',
 		'revnotfound',
 		'revnotfoundtext',
-		'loadhist',
 		'currentrev',
 		'revisionasof',
 		'revision-info',
@@ -584,7 +583,6 @@ $wgMessageStructure = array(
 		'cur',
 		'next',
 		'last',
-		'orig',
 		'page_first',
 		'page_last',
 		'histlegend',
@@ -1149,7 +1147,6 @@ $wgMessageStructure = array(
 		'booksources-text',
 	),
 	'magicwords' => array(
-		'isbn',
 		'rfcurl',
 		'pubmedurl',
 	),

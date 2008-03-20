@@ -1110,7 +1110,6 @@ The reason given by $3 is ''$2''",
 'nohistory'             => 'There is no edit history for this page.',
 'revnotfound'           => 'Revision not found',
 'revnotfoundtext'       => 'The old revision of the page you asked for could not be found. Please check the URL you used to access this page.',
-'loadhist'              => 'Loading page history',
 'currentrev'            => 'Current revision',
 'revisionasof'          => 'Revision as of $1',
 'revision-info'         => 'Revision as of $1 by $2',
@@ -1122,7 +1121,6 @@ The reason given by $3 is ''$2''",
 'cur'                   => 'cur',
 'next'                  => 'next',
 'last'                  => 'last',
-'orig'                  => 'orig',
 'page_first'            => 'first',
 'page_last'             => 'last',
 'histlegend'            => 'Diff selection: mark the radio boxes of the versions to compare and hit enter or the button at the bottom.<br />
@@ -1745,7 +1743,6 @@ The [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] length is '''\$7''
 'booksources-text'          => 'Below is a list of links to other sites that sell new and used books, and may also have further information about books you are looking for:',
 
 # Magic words
-'isbn'      => 'ISBN', # only translate this message to other languages if you have to change it
 'rfcurl'    => 'http://tools.ietf.org/html/rfc$1', # don't translate or duplicate this message to other languages
 'pubmedurl' => 'http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Retrieve&db=pubmed&dopt=Abstract&list_uids=$1', # don't translate or duplicate this message to other languages
 
