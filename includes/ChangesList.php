@@ -505,7 +505,7 @@ class EnhancedChangesList extends ChangesList {
 	 */
 	function recentChangesBlockGroup( $block ) {
 		global $wgLang, $wgContLang, $wgRCShowChangedSize;
-		$r = '<table cellpadding="0" cellspacing="0"  border="0"><tr>';
+		$r = '<table cellpadding="0" cellspacing="0" border="0"><tr>';
 
 		# Collate list of users
 		$isnew = false;
@@ -555,10 +555,10 @@ class EnhancedChangesList extends ChangesList {
 		$toggleLink = "javascript:toggleVisibility('$rci','$rcm','$rcl')";
 		$tl  = '<span id="'.$rcm.'"><a href="'.$toggleLink.'">' . $this->sideArrow() . '</a></span>';
 		$tl .= '<span id="'.$rcl.'" style="display:none"><a href="'.$toggleLink.'">' . $this->downArrow() . '</a></span>';
-		$r .= '<td valign="top">'.$tl.'</td>';
+		$r .= '<td valign="top" style="white-space: nowrap"><tt>'.$tl.'&nbsp;';
 
 		# Main line
-		$r .= '<td valign="top"><tt>'.$this->recentChangesFlags( $isnew, false, $unpatrolled, '&nbsp;', $bot );
+		$r .= $this->recentChangesFlags( $isnew, false, $unpatrolled, '&nbsp;', $bot );
 
 		# Timestamp
 		$r .= '&nbsp;'.$block[0]->timestamp.'&nbsp;</tt></td><td>';
@@ -701,7 +701,7 @@ class EnhancedChangesList extends ChangesList {
 		global $wgStylePath;
 		$encUrl = htmlspecialchars( $wgStylePath . '/common/images/Arr_' . $dir . '.png' );
 		$encAlt = htmlspecialchars( $alt );
-		return "<img src=\"$encUrl\" width=\"12\" height=\"12\" style=\"margin-top:.5em;\" alt=\"$encAlt\" />";
+		return "<img src=\"$encUrl\" width=\"12\" height=\"12\" alt=\"$encAlt\" />";
 	}
 
 	/**
@@ -736,15 +736,6 @@ class EnhancedChangesList extends ChangesList {
 	}
 	
 	/**
-	 * Generate HTML for the equivalent of a spacer image for tables
-	 * @return string HTML <td> tag
-	 * @access private
-	 */	
-	function spacerColumn() {
-		return '<td width="12"></td>';
-	}
-	
-	/**
 	 * Add a set of spaces
 	 * @return string HTML <td> tag
 	 * @access private
@@ -765,14 +756,11 @@ class EnhancedChangesList extends ChangesList {
 		extract( $rcObj->mAttribs );
 		$curIdEq = 'curid='.$rc_cur_id;
 
-		$r = '<table cellspacing="0" cellpadding="0"  border="0"><tr>';
+		$r = '<table cellspacing="0" cellpadding="0" border="0"><tr>';
 
-		# spacerArrow() causes issues in FF
-		$r .= $this->spacerColumn();
-		$r .= '<td valign="top">';
+		$r .= '<td valign="top" style="white-space: nowrap"><tt>' . $this->spacerArrow() . '&nbsp;';
 		
 		# Flag and Timestamp
-		$r .= '<tt>';
 		if( $rc_type == RC_MOVE || $rc_type == RC_MOVE_OVER_REDIRECT ) {
 			$r .= '&nbsp;&nbsp;&nbsp;&nbsp;'; // 4 flags -> 4 spaces
 		} else {
