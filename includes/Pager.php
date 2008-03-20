@@ -509,6 +509,7 @@ abstract class AlphabeticPager extends IndexPager {
 			wfMsgHtml( 'viewprevnext', $pagingLinks['prev'],
 			$pagingLinks['next'], $limits );
 
+		/*
 		$dirlinks = array();
 		# Note for grep: uses pager-sort-asc, pager-sort-desc (each in two
 		# places)
@@ -557,6 +558,7 @@ abstract class AlphabeticPager extends IndexPager {
 		if( $extra !== '' ) {
 			$this->mNavigationBar .= " ($extra)";
 		}
+		*/
 
 		return $this->mNavigationBar;
 	}
