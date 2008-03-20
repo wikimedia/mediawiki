@@ -386,7 +386,6 @@ $messages = array(
 'category-empty'                 => 'این رده شامل هیچ صفحه یا پرونده‌ای نمی‌شود.',
 'hidden-categories'              => '{{PLURAL:$1|ردهٔ پنهان|رده‌های پنهان}}',
 'hidden-category-category'       => 'رده‌های پنهان', # Name of the category where hidden categories will be listed
-'subcategorycount'               => '$1 زیررده در این رده وجود {{PLURAL:$1|دارد|دارند}}.',
 'category-subcat-count'          => '{{PLURAL:$2|این رده تنها حاوی زیرردهٔ زیر است.|{{PLURAL:$1|این زیررده|این $1 زیررده}} در این رده قرار {{PLURAL:$1|دارد|دارند}}؛ این رده در کل حاوی $2 زیررده است.}}',
 'category-subcat-count-limited'  => 'این رده شامل {{PLURAL:$1|یک زیررده|$1 زیررده}} زیر می‌باشد.',
 'category-article-count'         => '{{PLURAL:$2|این رده تنها حاوی صفحهٔ زیر است.|{{PLURAL:$1|این صفحه|این $1 صفحه}} در این رده قرار {{PLURAL:$1|دارد|دارند}}؛ این رده در کل حاوی $2 صفحه است.}}',
@@ -927,7 +926,6 @@ $3
 'revnotfound'         => 'نسخه یافت نشد',
 'revnotfoundtext'     => 'نسخهٔ قدیمی‌ای از صفحه که درخواسته بودید یافت نشد.
 لطفاً URLی را که برای دسترسی به این صفحه استفاده کرده‌اید، بررسی کنید.',
-'loadhist'            => 'در حال خواندن تاریخچهٔ صفحه',
 'currentrev'          => 'نسخهٔ فعلی',
 'revisionasof'        => 'نسخهٔ $1',
 'revision-info'       => '<div id="viewingold-warning" style="background: #FFBDBD; border: 1px solid #BB7979; color: #000000; margin: 2em 0 .5em; padding: .5em 1em; vertical-align: middle; clear: both; font-size:small;">شما یک نسخه از تاریخچهٔ این صفحه را می‌بینید، که حاصل ویرایش $2 در تاریخ $1 است. این نسخه ممکن است تفاوت‌های اساسی با <a href="/wiki/{{FULLPAGENAME}}" title="{{FULLPAGENAME}}">نسخهٔ فعلی</a> داشته باشد.</div>
@@ -938,7 +936,6 @@ $3
 'cur'                 => 'فعلی',
 'next'                => 'بعدی',
 'last'                => 'قبلی',
-'orig'                => 'اصلی',
 'page_first'          => 'نخست',
 'page_last'           => 'واپسین',
 'histlegend'          => 'شرح: (فعلی) = تفاوت با نسخهٔ فعلی،
@@ -1119,8 +1116,7 @@ $2 تغییرمسیرها فهرست شوند &nbsp; جستجو برای $3 $9',
 'files'                    => 'پرونده‌ها',
 
 # User rights
-'userrights'                       => 'مدیریت اختیارات کاربر',
-'groups'                           => 'گروههای کاربری',
+'userrights'                       => 'مدیریت اختیارات کاربر', # Not used as normal message but as header for the special page itself
 'userrights-lookup-user'           => 'مدیریت گروه‌های کاربری',
 'userrights-user-editname'         => 'یک نام کاربری وارد کنید:',
 'editusergroup'                    => 'ویرایش گروه‌های کاربری',
@@ -1487,9 +1483,6 @@ $2 تغییرمسیرها فهرست شوند &nbsp; جستجو برای $3 $9',
 'booksources-isbn'          => 'شابک:',
 'booksources-go'            => 'برو',
 'booksources-text'          => 'در زیر فهرستی از پیوندها به وبگاههای دیگر که کتاب‌های نو و دست‌دوم می‌فروشند آمده‌است. همچنین ممکن است اطلاعات بیشتری راجع به کتاب مورد نظر شما بدارند.',
-
-# Magic words
-'isbn' => 'شابک',
 
 # Special:Log
 'specialloguserlabel'  => 'کاربر:',
@@ -2668,6 +2661,7 @@ $1',
 'unknown_extension_tag' => 'برچسب ناشناختهٔ افزونه «$1»',
 
 # Special:Version
+'version'                          => 'نسخه', # Not used as normal message but as header for the special page itself
 'version-extensions'               => 'افزونه‌های نصب شده',
 'version-specialpages'             => 'صفحه‌های ویژه',
 'version-parserhooks'              => 'قلاب‌های تجزیه‌گر',
