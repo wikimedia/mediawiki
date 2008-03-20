@@ -505,7 +505,7 @@ class EnhancedChangesList extends ChangesList {
 	 */
 	function recentChangesBlockGroup( $block ) {
 		global $wgLang, $wgContLang, $wgRCShowChangedSize;
-		$r = '<table cellpadding="0" cellspacing="0" border="0"><tr>';
+		$r = '<table cellpadding="0" cellspacing="0"  border="0"><tr>';
 
 		# Collate list of users
 		$isnew = false;
@@ -555,7 +555,7 @@ class EnhancedChangesList extends ChangesList {
 		$toggleLink = "javascript:toggleVisibility('$rci','$rcm','$rcl')";
 		$tl  = '<span id="'.$rcm.'"><a href="'.$toggleLink.'">' . $this->sideArrow() . '</a></span>';
 		$tl .= '<span id="'.$rcl.'" style="display:none"><a href="'.$toggleLink.'">' . $this->downArrow() . '</a></span>';
-		$r .= '<td valign="middle">'.$tl.'</td>';
+		$r .= '<td valign="top">'.$tl.'</td>';
 
 		# Main line
 		$r .= '<td valign="top"><tt>'.$this->recentChangesFlags( $isnew, false, $unpatrolled, '&nbsp;', $bot );
@@ -617,7 +617,7 @@ class EnhancedChangesList extends ChangesList {
 		$r .= "</td></tr></table>\n";
 
 		# Sub-entries
-		$r .= '<div id="'.$rci.'" style="display:none;"><table cellpadding="0" cellspacing="0" border="0">';
+		$r .= '<div id="'.$rci.'" style="display:none;"><table cellpadding="0" cellspacing="0"  border="0">';
 		foreach( $block as $rcObj ) {
 			# Get rc_xxxx variables
 			// FIXME: Would be good to replace this extract() call with something that explicitly initializes local variables.
@@ -701,7 +701,7 @@ class EnhancedChangesList extends ChangesList {
 		global $wgStylePath;
 		$encUrl = htmlspecialchars( $wgStylePath . '/common/images/Arr_' . $dir . '.png' );
 		$encAlt = htmlspecialchars( $alt );
-		return "<img src=\"$encUrl\" width=\"12\" height=\"12\" alt=\"$encAlt\" />";
+		return "<img src=\"$encUrl\" width=\"12\" height=\"12\" style=\"margin-top:.5em;\" alt=\"$encAlt\" />";
 	}
 
 	/**
@@ -765,7 +765,7 @@ class EnhancedChangesList extends ChangesList {
 		extract( $rcObj->mAttribs );
 		$curIdEq = 'curid='.$rc_cur_id;
 
-		$r = '<table cellspacing="0" cellpadding="0" border="0"><tr>';
+		$r = '<table cellspacing="0" cellpadding="0"  border="0"><tr>';
 
 		# spacerArrow() causes issues in FF
 		$r .= $this->spacerColumn();
