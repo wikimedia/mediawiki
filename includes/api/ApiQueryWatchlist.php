@@ -315,7 +315,7 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 	}
 
 	public function getDescription() {
-		return '';
+		return "Get all recent changes to pages in the logged in user's watchlist";
 	}
 
 	protected function getExamples() {
