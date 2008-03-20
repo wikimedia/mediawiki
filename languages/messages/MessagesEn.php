@@ -567,8 +567,6 @@ XHTML id names.
 'categoriespagetext'             => 'The following categories contain pages or media.',
 'special-categories-sort-count'  => 'sort by count',
 'special-categories-sort-abc'    => 'sort alphabetically',
-'special-categories-sort-asc'    => 'ascending',
-'special-categories-sort-desc'   => 'descending',
 'pagecategories'                 => '{{PLURAL:$1|Category|Categories}}',
 'pagecategorieslink'             => 'Special:Categories', # don't translate or duplicate this message to other languages
 'category_header'                => 'Pages in category "$1"',
@@ -1731,6 +1729,8 @@ The [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] length is '''\$7''
 'notargettext'                    => 'You have not specified a target page or user to perform this function on.',
 'pager-newer-n'                   => '{{PLURAL:$1|newer 1|newer $1}}',
 'pager-older-n'                   => '{{PLURAL:$1|older 1|older $1}}',
+'pager-sort-asc'                  => 'ascending',
+'pager-sort-desc'                 => 'descending',
 
 # Book sources
 'booksources'               => 'Book sources',
