@@ -49,11 +49,12 @@ class LocalRepo extends FSRepo {
 				array( 'fa_storage_group' => 'deleted', 'fa_storage_key' => $key ),
 				__METHOD__, array( 'FOR UPDATE' ) );
 			if( !$inuse ) {
-				$sha1 = substr( $key, 0, strcspn( $key, '.' ) );
+				$sha1 = substr( $key, 0, strcspn($key,'.') );
+				$ext = substr( $key, strcspn($key,'.') );
 				$inuse = $dbw->selectField( 'oldimage', '1',
-				array( 'oi_sha1' => $sha1,
-					'oi_deleted & '.File::DELETED_FILE => File::DELETED_FILE ),
-				__METHOD__, array( 'FOR UPDATE' ) );
+					array( 'oi_sha1' => $sha1, "oi_archive_name LIKE '%{$ext}'",
+						'oi_deleted & '.File::DELETED_FILE => File::DELETED_FILE ),
+					__METHOD__, array( 'FOR UPDATE' ) );
 			}
 			if ( !$inuse ) {
 				wfDebug( __METHOD__ . ": deleting $key\n" );
