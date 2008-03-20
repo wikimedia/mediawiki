@@ -374,6 +374,11 @@ $messages = array(
 
 # Categories related messages
 'categories'                     => 'رده‌های صفحه',
+'categoriespagetext'             => 'رده‌های زیر حاوی صفحه یا پرونده هستند.',
+'special-categories-sort-count'  => 'مرتب کردن بر اساس تعداد',
+'special-categories-sort-abc'    => 'مرتب کردن الفبایی',
+'special-categories-sort-asc'    => 'افزایشی',
+'special-categories-sort-desc'   => 'کاهشی',
 'pagecategories'                 => '{{PLURAL:$1|رده‌های صفحه|رده‌های صفحه}}',
 'category_header'                => 'مقاله‌های ردهٔ «$1»',
 'subcategories'                  => 'زیررده‌ها',
@@ -1114,6 +1119,8 @@ $2 تغییرمسیرها فهرست شوند &nbsp; جستجو برای $3 $9',
 'files'                    => 'پرونده‌ها',
 
 # User rights
+'userrights'                       => 'مدیریت اختیارات کاربر',
+'groups'                           => 'گروههای کاربری',
 'userrights-lookup-user'           => 'مدیریت گروه‌های کاربری',
 'userrights-user-editname'         => 'یک نام کاربری وارد کنید:',
 'editusergroup'                    => 'ویرایش گروه‌های کاربری',
@@ -1446,7 +1453,6 @@ $2 تغییرمسیرها فهرست شوند &nbsp; جستجو برای $3 $9',
 'mostcategories'          => 'مقاله‌هایی که بیشترین تعداد رده را دارند',
 'mostimages'              => 'تصاویری که بیشتر از همه به آنها پیوند شده است',
 'mostrevisions'           => 'مقاله‌هایی که بیشتر از بقیه ویرایش شده‌اند',
-'allpages'                => 'همهٔ صفحه‌ها',
 'prefixindex'             => 'نمایهٔ پیشوندی',
 'shortpages'              => 'صفحه‌های کوتاه',
 'longpages'               => 'صفحه‌های بلند',
@@ -1482,13 +1488,8 @@ $2 تغییرمسیرها فهرست شوند &nbsp; جستجو برای $3 $9',
 'booksources-go'            => 'برو',
 'booksources-text'          => 'در زیر فهرستی از پیوندها به وبگاههای دیگر که کتاب‌های نو و دست‌دوم می‌فروشند آمده‌است. همچنین ممکن است اطلاعات بیشتری راجع به کتاب مورد نظر شما بدارند.',
 
-'categoriespagetext' => 'رده‌های زیر حاوی صفحه یا پرونده هستند.',
-'data'               => 'داده',
-'userrights'         => 'مدیریت اختیارات کاربر',
-'groups'             => 'گروههای کاربری',
-'isbn'               => 'شابک',
-'alphaindexline'     => '$1 تا $2',
-'version'            => 'نسخه',
+# Magic words
+'isbn' => 'شابک',
 
 # Special:Log
 'specialloguserlabel'  => 'کاربر:',
@@ -1502,6 +1503,8 @@ $2 تغییرمسیرها فهرست شوند &nbsp; جستجو برای $3 $9',
 'log-title-wildcard'   => 'صفحه‌هایی را جستجو کن که عنوانشان با این عبارت آغاز می‌شود',
 
 # Special:Allpages
+'allpages'          => 'همهٔ صفحه‌ها',
+'alphaindexline'    => '$1 تا $2',
 'nextpage'          => 'صفحهٔ بعد ($1)',
 'prevpage'          => 'صفحهٔ قبلی ($1)',
 'allpagesfrom'      => 'نمایش صفحه‌ها با شروع از:',
