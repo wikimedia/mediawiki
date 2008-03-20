@@ -474,6 +474,7 @@ class CategoryViewer {
 	 * @return string A message giving the number of items, to output to HTML.
 	 */
 	private function getCountMessage( $rescnt, $dbcnt, $type ) {
+		global $wgLang;
 		# There are three cases:
 		#   1) The category table figure seems sane.  It might be wrong, but
 		#      we can't do anything about it if we don't recalculate it on ev-
@@ -494,9 +495,11 @@ class CategoryViewer {
 			$totalcnt = $rescnt;
 		} else {
 			# Case 3: hopeless.  Don't give a total count at all.
-			return wfMsgExt("category-$type-count-limited", 'parse', $rescnt);
+			return wfMsgExt("category-$type-count-limited", 'parse',
+				$wgLang->formatNum( $rescnt ) );
 		}
-		return wfMsgExt( "category-$type-count", 'parse', $rescnt, $totalcnt );
+		return wfMsgExt( "category-$type-count", 'parse', $rescnt,
+			$wgLang->formatNum( $totalcnt ) );
 	}
 }
 
