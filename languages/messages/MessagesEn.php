@@ -1320,7 +1320,7 @@ Make sure that this change will maintain historical page continuity.
 'files'                    => 'Files',
 
 # User rights
-'userrights'                       => 'User rights management',
+'userrights'                       => 'User rights management', # Not used as normal message but as header for the special page itself
 'userrights-summary'               => '', # only translate this message to other languages if you have to change it
 'userrights-lookup-user'           => 'Manage user groups',
 'userrights-user-editname'         => 'Enter a username:',
@@ -3101,7 +3101,7 @@ You can also [[Special:Watchlist/edit|use the standard editor]].',
 'unknown_extension_tag' => 'Unknown extension tag "$1"',
 
 # Special:Version
-'version'                          => 'Version',
+'version'                          => 'Version', # Not used as normal message but as header for the special page itself
 'version-extensions'               => 'Installed extensions',
 'version-specialpages'             => 'Special pages',
 'version-parserhooks'              => 'Parser hooks',
