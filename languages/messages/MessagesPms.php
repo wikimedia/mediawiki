@@ -140,6 +140,7 @@ dj'artìcol ancó pa scrit",
 
 # Categories related messages
 'categories'               => '{{PLURAL:$1|Categorìa|Categorìe}}',
+'categoriespagetext'       => "Coste categorìe-sì a l'han andrinta dle pàgine ò dj'archivi.",
 'pagecategories'           => '{{PLURAL:$1|Categorìa|Categorìe}}',
 'category_header'          => 'Artìcoj ant la categorìa "$1"',
 'subcategories'            => 'Sotacategorìe',
@@ -147,7 +148,6 @@ dj'artìcol ancó pa scrit",
 'category-empty'           => "''Al dì d'ancheuj la categorìa a l'ha pa andrinta nì 'd pàgine, nì d'archivi multimojen.''",
 'hidden-categories'        => '{{PLURAL:$1|Categorìa stërmà|Categorìe stërmà}}',
 'hidden-category-category' => 'Categorìe stërmà', # Name of the category where hidden categories will be listed
-'subcategorycount'         => 'An sta categorìa-sì a-i {{PLURAL:$1|é mach na sotacategorìa|son $1 sotacategorìe}}.',
 'listingcontinuesabbrev'   => ' anans',
 
 'mainpagetext'      => "<big>'''MediaWiki a l'é staita anstalà a la perfession.'''</big>",
@@ -644,7 +644,6 @@ La rason butà da $3 për ël blocagi a l'é staita: ''$2''",
 'revnotfound'         => 'Version nen trovà',
 'revnotfoundtext'     => "La version prima dl'artìcol che a l'ha ciamà a l'é pa staita trovà.
 Che as controla për piasì l'adrëssa (URL) che a l'ha dovrà për rivé a sta pàgina-sì.",
-'loadhist'            => 'I soma antramentr che i carioma la stòria dë sta pàgina-sì',
 'currentrev'          => "Versione dël dì d'ancheuj",
 'revisionasof'        => 'Revision $1',
 'revision-info'       => 'Revision al $1; $2',
@@ -654,7 +653,6 @@ Che as controla për piasì l'adrëssa (URL) che a l'ha dovrà për rivé a sta 
 'cur'                 => 'cor',
 'next'                => 'anans',
 'last'                => 'andaré',
-'orig'                => 'orig',
 'page_first'          => 'prima',
 'page_last'           => 'ùltima',
 'histlegend'          => 'Confront antra version diferente: che as selession-a le casele dle version che a veul e peui che a sgnaca ël boton për anandié ël process.<br />
@@ -843,6 +841,7 @@ për podej specifiché ij sò gust.',
 'files'                    => 'Archivi',
 
 # User rights
+'userrights'                       => "Gestion dij drit dj'utent", # Not used as normal message but as header for the special page itself
 'userrights-lookup-user'           => "Gestion dle partìe d'utent",
 'userrights-user-editname'         => 'Che a buta në stranòm:',
 'editusergroup'                    => "Modifiché le partìe d'Utent",
@@ -1200,7 +1199,6 @@ Vira riga a l'ha andrinta j'anliure a la prima e a la sconda rediression, ant s�
 'mostcategories'          => 'Artìcoj che a son marcà an pì categorìe',
 'mostimages'              => 'Figure pì dovrà',
 'mostrevisions'           => 'Artìcoj pì modificà',
-'allpages'                => 'Tute le pàgine',
 'prefixindex'             => 'Ìndess për inissiaj',
 'shortpages'              => 'Pàgine curte',
 'longpages'               => 'Pàgine longhe',
@@ -1234,13 +1232,6 @@ Vira riga a l'ha andrinta j'anliure a la prima e a la sconda rediression, ant s�
 'booksources-go'            => 'Va',
 'booksources-text'          => "Ambelessì sota a-i é na lista d'àotri sit che a vendo lìber neuv e dë sconda man, e che a peulo ëdcò smon-e dj'anformassion rësgoard a ij test che a l'é antramentr che al sërca:",
 
-'categoriespagetext' => "Coste categorìe-sì a l'han andrinta dle pàgine ò dj'archivi.",
-'data'               => 'Dat',
-'userrights'         => "Gestion dij drit dj'utent",
-'groups'             => "Partìe d'utent",
-'alphaindexline'     => '$1 a $2',
-'version'            => 'Version',
-
 # Special:Log
 'specialloguserlabel'  => 'Utent:',
 'speciallogtitlelabel' => 'Tìtol:',
@@ -1254,6 +1245,8 @@ A peul sern-se n'arsultà pì strèit ën selessionand na sòrt ëd registr sola
 'log-title-wildcard'   => "Sërca ant ij tìtoj ch'as anandio për",
 
 # Special:Allpages
+'allpages'          => 'Tute le pàgine',
+'alphaindexline'    => '$1 a $2',
 'nextpage'          => 'Pàgina che a-i ven ($1)',
 'prevpage'          => 'Pàgina anans ($1)',
 'allpagesfrom'      => 'Most-me la pàgine ën partend da:',
@@ -2384,6 +2377,7 @@ a podrìo ëdcò nen ess-ie ant sta lista -sì.",
 'unknown_extension_tag' => 'Tacolèt d\'estension "$1" pa conossù',
 
 # Special:Version
+'version'                          => 'Version', # Not used as normal message but as header for the special page itself
 'version-extensions'               => 'Estension anstalà',
 'version-specialpages'             => 'Pàgine speciaj',
 'version-parserhooks'              => 'Gancio dlë scompositor',

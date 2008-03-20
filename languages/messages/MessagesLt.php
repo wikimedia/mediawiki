@@ -165,16 +165,23 @@ $messages = array(
 'dec'           => 'grd',
 
 # Categories related messages
-'categories'               => 'Kategorijos',
-'pagecategories'           => '{{PLURAL:$1|Kategorija|Kategorijos}}',
-'category_header'          => 'Puslapiai kategorijoje „$1“',
-'subcategories'            => 'Subkategorijos',
-'category-media-header'    => 'Media kategorijoje „$1“',
-'category-empty'           => "''Šiuo metu ši kategorija neturi jokių puslapių ar failų.''",
-'hidden-categories'        => '{{PLURAL:$1|Paslėpta kategorija|Paslėptos kategorijos}}',
-'hidden-category-category' => 'Paslėptos kategorijos', # Name of the category where hidden categories will be listed
-'subcategorycount'         => 'Kategorijoje yra $1 {{PLURAL:$1|subkategorija|subkategorijos|subkategorijų}}',
-'listingcontinuesabbrev'   => 'tęs.',
+'categories'                     => 'Kategorijos',
+'categoriespagetext'             => 'Projekte yra šios kategorijos.',
+'special-categories-sort-abc'    => 'rikiuoti pagal abėcėlę',
+'pagecategories'                 => '{{PLURAL:$1|Kategorija|Kategorijos}}',
+'category_header'                => 'Puslapiai kategorijoje „$1“',
+'subcategories'                  => 'Subkategorijos',
+'category-media-header'          => 'Media kategorijoje „$1“',
+'category-empty'                 => "''Šiuo metu ši kategorija neturi jokių puslapių ar failų.''",
+'hidden-categories'              => '{{PLURAL:$1|Paslėpta kategorija|Paslėptos kategorijos}}',
+'hidden-category-category'       => 'Paslėptos kategorijos', # Name of the category where hidden categories will be listed
+'category-subcat-count'          => '{{PLURAL:$2|Šioje kategorijoje yra viena subkategorija.|{{PLURAL:$1|Rodoma|Rodomos|Rodoma}} $1 {{PLURAL:$1|subkategorija|subkategorijos|subkategorijų}} (viso yra $2 {{PLURAL:$2|subkategorija|subkategorijos|subkategorijų}}).}}',
+'category-subcat-count-limited'  => '{{PLURAL:$1|Rodoma|Rodomos|Rodoma}} $1 {{PLURAL:$1|subkategorija|subkategorijos|subkategorijų}}.',
+'category-article-count'         => '{{PLURAL:$2|Šioje kategorijoje yra vienas puslapis.|{{PLURAL:$1|Rodomas|Rodomi|Rodoma}} $1 šios kategorijos {{PLURAL:$1|puslapis|puslapiai|puslapių}} (viso kategorijoje yra $2 {{PLURAL:$2|puslapis|puslapiai|puslapių}}).}}',
+'category-article-count-limited' => '{{PLURAL:$1|Rodomas|Rodomi|Rodoma}} $1 šios kategorijos {{PLURAL:$1|puslapis|puslapiai|puslapių}}.',
+'category-file-count'            => '{{PLURAL:$2|Šioje kategorijoje yra viena byla.|{{PLURAL:$1|Rodoma|Rodomos|Rodoma}} $1 šios kategorijos {{PLURAL:$1|byla|bylos|bylų}} (viso kategorijoje yra $2 {{PLURAL:$2|byla|bylos|bylų}}).}}',
+'category-file-count-limited'    => '{{PLURAL:$1|Rodoma|Rodomos|Rodoma}} $1 šios kategorijos {{PLURAL:$1|byla|bylos|bylų}}.',
+'listingcontinuesabbrev'         => 'tęs.',
 
 'mainpagetext'      => "<big>'''MediaWiki sėkmingai įdiegta.'''</big>",
 'mainpagedocfooter' => 'Informacijos apie wiki programinės įrangos naudojimą, ieškokite [http://meta.wikimedia.org/wiki/Help:Contents žinyne].
@@ -224,6 +231,7 @@ $messages = array(
 'edit'              => 'Redaguoti',
 'create'            => 'Sukurti',
 'editthispage'      => 'Redaguoti šį puslapį',
+'create-this-page'  => 'Sukurti šį puslapį',
 'delete'            => 'Trinti',
 'deletethispage'    => 'Ištrinti šį puslapį',
 'undelete_short'    => 'Atstatyti $1 {{PLURAL:$1:redagavimą|redagavimus|redagavimų}}',
@@ -686,7 +694,6 @@ $3 nurodyta priežastis yra ''$2''",
 'nohistory'           => 'Šis puslapis neturi keitimų istorijos.',
 'revnotfound'         => 'Versija nerasta',
 'revnotfoundtext'     => 'Norima puslapio versija nerasta. Patikrinkite URL, kuriuo patekote į šį puslapį.',
-'loadhist'            => 'Įkeliama puslapio istorija',
 'currentrev'          => 'Dabartinė versija',
 'revisionasof'        => '$1 versija',
 'revision-info'       => '$1 versija naudotojo $2',
@@ -696,7 +703,6 @@ $3 nurodyta priežastis yra ''$2''",
 'cur'                 => 'dab',
 'next'                => 'kitas',
 'last'                => 'pask',
-'orig'                => 'orig',
 'page_first'          => 'pirm',
 'page_last'           => 'pask',
 'histlegend'          => "Skirtumai tarp versijų: pažymėkite lyginamas versijas ir spustelkite ''Enter'' klavišą arba mygtuką apačioje.<br />
@@ -807,6 +813,8 @@ Kiti administratoriai šiame projekte vis dar galės pasiekti paslėptą turinį
 'prevn'                 => 'ankstesnius $1',
 'nextn'                 => 'tolimesnius $1',
 'viewprevnext'          => 'Žiūrėti ($1) ($2) ($3)',
+'search-result-size'    => '$1 ({{PLURAL:$2|1 žodis|$2 žodžiai|$2 žodžių}})',
+'search-result-score'   => 'Tinkamumas: $1%',
 'showingresults'        => "Žemiau rodoma iki '''$1''' {{PLURAL:$1|rezultato|rezultatų|rezultatų}} pradedant #'''$2'''.",
 'showingresultsnum'     => "Žemiau rodoma '''$3''' {{PLURAL:$3|rezultato|rezultatų|rezultatų}}rezultatų pradedant #'''$2'''.",
 'nonefound'             => "'''Pastaba''': Nesėkminga paieška dažnai būna dėl ieškomų
@@ -814,6 +822,7 @@ dažnai naudojamų žodžių, tokių kaip „yra“ ar „iš“, kurie yra
 neindeksuojami, arba nurodžius daugiau nei vieną paieškos žodį (rezultatuose
 bus tik tie puslapiai, kuriuose bus visi paieškos žodžiai).",
 'powersearch'           => 'Ieškoti',
+'powersearch-legend'    => 'Išplėstinė paieška',
 'powersearchtext'       => 'Ieškoti šiose vardų srityse:<br />$1<br /><label>$2 Rodyti peradresavimus</label><br />Ieškoti $3 $9',
 'searchdisabled'        => 'Projekto {{SITENAME}} paieška yra uždrausta. Galite pamėginti ieškoti Google paieškos sistemoje. Paieškos sistemoje projekto {{SITENAME}} duomenys gali būti pasenę.',
 
@@ -879,6 +888,7 @@ bus tik tie puslapiai, kuriuose bus visi paieškos žodžiai).",
 'files'                    => 'Failai',
 
 # User rights
+'userrights'                       => 'Naudotojų teisių valdymas', # Not used as normal message but as header for the special page itself
 'userrights-lookup-user'           => 'Tvarkyti naudotojo grupes',
 'userrights-user-editname'         => 'Įveskite naudotojo vardą:',
 'editusergroup'                    => 'Redaguoti naudotojo grupes',
@@ -1052,6 +1062,9 @@ Jūs turėtumėte nuspręsti, ar verta toliau įkeldinėti šį failą.
 'upload_source_file' => ' (failas jūsų kompiuteryje)',
 
 # Special:Imagelist
+'imagelist-summary'     => 'Šis specialus puslapis rodo visus įkeltus failus.
+Pagal numatymą paskutiniai įkelti failai rodomi sąrašo viršuje.
+Paspaudę ant stulpelio antraštės pakeiste išrikiavimą.',
 'imagelist_search_for'  => 'Ieškoti paveikslėlio pavadinimo:',
 'imgdesc'               => 'apr',
 'imgfile'               => 'failas',
@@ -1084,6 +1097,7 @@ Jūs turėtumėte nuspręsti, ar verta toliau įkeldinėti šį failą.
 'noimage'                   => 'Failas tokiu pavadinimu neegzistuoja. Jūs galite $1',
 'noimage-linktext'          => 'įkelti jį',
 'uploadnewversion-linktext' => 'Įkelti naują failo versiją',
+'imagepage-searchdupe'      => 'Ieškoti dublikuotų failų',
 
 # File reversion
 'filerevert'                => 'Sugrąžinti $1',
@@ -1200,7 +1214,6 @@ Iš to išeina, kad vidutiniškai kiekvienas puslapis keistas '''$5''' karto, be
 'mostcategories'          => 'Puslapiai su daugiausiai kategorijų',
 'mostimages'              => 'Daugiausiai nurodomi paveikslėliai',
 'mostrevisions'           => 'Puslapiai su daugiausiai keitimų',
-'allpages'                => 'Visi puslapiai',
 'prefixindex'             => 'Rodyklė pagal pavadinimo pradžią',
 'shortpages'              => 'Trumpiausi puslapiai',
 'longpages'               => 'Ilgiausi puslapiai',
@@ -1234,13 +1247,6 @@ Iš to išeina, kad vidutiniškai kiekvienas puslapis keistas '''$5''' karto, be
 'booksources-go'            => 'Rodyti',
 'booksources-text'          => 'Žemiau yra nuorodų sąrašas į kitas svetaines, kurios parduoda naujas ar naudotas knygas, bei galbūt turinčias daugiau informacijos apie knygas, kurių ieškote:',
 
-'categoriespagetext' => 'Projekte yra šios kategorijos.',
-'data'               => 'Duomenys',
-'userrights'         => 'Naudotojų teisių valdymas',
-'groups'             => 'Naudotojų grupės',
-'alphaindexline'     => 'Nuo $1 iki $2',
-'version'            => 'Versija',
-
 # Special:Log
 'specialloguserlabel'  => 'Naudotojas:',
 'speciallogtitlelabel' => 'Pavadinimas:',
@@ -1254,6 +1260,8 @@ Galima sumažinti rezultatų skaičių patikslinant veiksmo rūšį, naudotoją 
 'log-title-wildcard'   => 'Ieškoti pavadinimų, prasidedančių šiuo tekstu',
 
 # Special:Allpages
+'allpages'          => 'Visi puslapiai',
+'alphaindexline'    => 'Nuo $1 iki $2',
 'nextpage'          => 'Kitas puslapis ($1)',
 'prevpage'          => 'Ankstesnis puslapis ($1)',
 'allpagesfrom'      => 'Rodyti puslapius pradedant nuo:',
@@ -1653,6 +1661,7 @@ Prašome patvirtinti tai, ką ketinate padaryti.',
 'databasenotlocked'   => 'Duomenų bazė neužrakinta.',
 
 # Move page
+'move-page'               => 'Pervadinti $1',
 'move-page-legend'        => 'Puslapio pervadinimas',
 'movepagetext'            => "Naudodamiesi žemiau pateikta forma, pervadinsite puslapį
 neprarasdami jo istorijos.
@@ -1945,6 +1954,7 @@ $1',
 # Special:Newimages
 'newimages'             => 'Naujausių failų galerija',
 'imagelisttext'         => "Žemiau yra '''$1''' {{PLURAL:$1|failo|failų|failų}} sąrašas, surūšiuotas $2.",
+'newimages-summary'     => 'Šis specialus puslapis rodo vėliausiai įkeltus failus',
 'showhidebots'          => '($1 robotus)',
 'noimages'              => 'Nėra ką parodyti.',
 'ilsubmit'              => 'Ieškoti',
@@ -2369,6 +2379,7 @@ $1',
 'unknown_extension_tag' => 'Nežinoma priedo žymė „$1“',
 
 # Special:Version
+'version'                          => 'Versija', # Not used as normal message but as header for the special page itself
 'version-extensions'               => 'Instaliuoti priedai',
 'version-specialpages'             => 'Specialieji puslapiai',
 'version-variables'                => 'Kintamieji',
@@ -2390,5 +2401,14 @@ $1',
 'filepath-summary' => 'Šis specialusis puslapis parašo pilną kelią iki failo. Paveikslėliai yra rodomi pilna raiška, kiti failų tipai paleidžiami tiesiogiai su jų susietąja programa.
 
 Įveskite failo pavadinimą be „{{ns:image}}:“ priedėlio.',
+
+# Special:FileDuplicateSearch
+'fileduplicatesearch'          => 'Ieškoti dublikuotų failų',
+'fileduplicatesearch-legend'   => 'Ieškoti dublikatų',
+'fileduplicatesearch-filename' => 'Failo vardas:',
+'fileduplicatesearch-submit'   => 'Ieškoti',
+'fileduplicatesearch-info'     => '$1 × $2 pikselių<br />Failo dydis: $3<br />MIME tipas: $4',
+'fileduplicatesearch-result-1' => 'Failas "$1" neturi identiškų dublikatų.',
+'fileduplicatesearch-result-n' => 'Šis failas "$1" turi {{PLURAL:$2|1 identišką dublikatą|$2 identiškus dublikatus|$2 identiškų dublikatų}}.',
 
 );

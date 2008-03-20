@@ -140,12 +140,12 @@ $messages = array(
 
 # Categories related messages
 'categories'             => 'বিষয়শ্রেণীসমূহ',
+'categoriespagetext'     => 'এ উইকিতে বর্তমান বিষয়শ্রেণীসমূহ:',
 'pagecategories'         => '{{PLURAL:$1|বিষয়শ্রেণী|বিষয়শ্রেণীসমূহ}}',
 'category_header'        => '"$1" বিষয়শ্রেণীতে অন্তর্ভুক্ত পাতাগুলি',
 'subcategories'          => 'উপবিষয়শ্রেণীসমূহ',
 'category-media-header'  => '"$1" বিষয়শ্রেণীতে অন্তর্ভুক্ত মিডিয়া ফাইলগুলি',
 'category-empty'         => "''এই বিষয়শ্রণীতে বর্তমানে কোন পাতা বা মিডিয়া ফাইল নেই।''",
-'subcategorycount'       => 'এই বিষয়শ্রেণীতে $1 টি উপবিষয়শ্রেণী রয়েছে।',
 'listingcontinuesabbrev' => 'আরও আছে',
 
 'mainpagetext'      => "<big>'''মিডিয়াউইকি সফলভাবে ইন্সটল করা হয়েছে।'''</big>",
@@ -625,7 +625,6 @@ $3-এর দেয়া কারণ হল ''$2''",
 'nohistory'           => 'এই পাতার কোন সম্পাদনার ইতিহাস নাই।',
 'revnotfound'         => 'সংশোধন খুজে পাওয়া যাচ্ছে না',
 'revnotfoundtext'     => 'আপনির পাতাটির যে পুরনো সংস্করণটি অনুরোধ করেছেন, তা খুঁজে পাওয়া যায়নি। পাতাটিতে যাবার জন্য আপনি যে URL-টি ব্যবহার করেছিলেন, অনুগ্রহ করে সেটি পরীক্ষা করে দেখুন।',
-'loadhist'            => 'পাতার ইতিহাস লোড হচ্ছে',
 'currentrev'          => 'বর্তমান সংশোধন',
 'revisionasof'        => '$1 তারিখের সংশোধন',
 'revision-info'       => '$1-এ $2-এর করা সংশোধন',
@@ -635,7 +634,6 @@ $3-এর দেয়া কারণ হল ''$2''",
 'cur'                 => 'বর্তমান',
 'next'                => 'পরবর্তী',
 'last'                => 'পূর্ববর্তী',
-'orig'                => 'মূল',
 'page_first'          => 'প্রথম',
 'page_last'           => 'শেষ',
 'histlegend'          => 'পার্থক্য (Diff) নির্বাচন: যে সংস্করণগুলো তুলনা করতে চান, সেগুলো চিহ্নিত করে এন্টার বা নিচের বোতামটি টিপুন।<br />
@@ -815,6 +813,7 @@ $3-এর দেয়া কারণ হল ''$2''",
 'files'                    => 'ফাইল',
 
 # User rights
+'userrights'                       => 'ব্যবহারকারী অধিকার ব্যবস্থাপনা', # Not used as normal message but as header for the special page itself
 'userrights-lookup-user'           => 'ব্যবহারকারী দল ব্যবস্থাপনা করুন',
 'userrights-user-editname'         => 'ব্যবহারকারীর নাম লিখুন:',
 'editusergroup'                    => 'ব্যবহারকারীর দল সম্পাদনা করো',
@@ -1120,7 +1119,6 @@ $3-এর দেয়া কারণ হল ''$2''",
 'mostcategories'          => 'সবচেয়ে বেশী বিষয়শ্রেণী-সমৃদ্ধ নিবন্ধসমূহ',
 'mostimages'              => 'যেসব ফাইলের দিকে সবচেয়ে বেশি সংযোগ আছে',
 'mostrevisions'           => 'সবচেয়ে বেশী বার সম্পাদিত নিবন্ধসমূহ',
-'allpages'                => 'সব পাতা',
 'prefixindex'             => 'উপসর্গ নির্ঘণ্ট',
 'shortpages'              => 'সংক্ষিপ্ত পাতাসমূহ',
 'longpages'               => 'দীর্ঘ পাতাসমূহ',
@@ -1154,13 +1152,6 @@ $3-এর দেয়া কারণ হল ''$2''",
 'booksources-go'            => 'চলো',
 'booksources-text'          => 'নতুন ও পুরাতন ব্যবহৃত বই বিক্রি করে, এমন কতগুলি সাইটের সংযোগের তালিকা নিচে দেওয়া হল, যে সাইটগুলিতে আপনার অনুসন্ধানকৃত বইগুলির উপর আরও তথ্য থাকতে পারে:',
 
-'categoriespagetext' => 'এ উইকিতে বর্তমান বিষয়শ্রেণীসমূহ:',
-'data'               => 'উপাত্ত (Data)',
-'userrights'         => 'ব্যবহারকারী অধিকার ব্যবস্থাপনা',
-'groups'             => 'ব্যবহারকারী দলগুলি',
-'alphaindexline'     => '$1 হতে $2',
-'version'            => 'সংস্করণ',
-
 # Special:Log
 'specialloguserlabel'  => 'ব্যবহারকারী:',
 'speciallogtitlelabel' => 'শিরোনাম:',
@@ -1174,6 +1165,8 @@ $3-এর দেয়া কারণ হল ''$2''",
 'log-title-wildcard'   => 'এই টেক্সট দিয়ে শুরু হওয়া শিরোনামগুলি অনুসন্ধান করা হোক',
 
 # Special:Allpages
+'allpages'          => 'সব পাতা',
+'alphaindexline'    => '$1 হতে $2',
 'nextpage'          => 'পরবর্তী পাতা ($1)',
 'prevpage'          => 'পূর্ববর্তী পাতা ($1)',
 'allpagesfrom'      => 'এই অক্ষর দিয়ে শুরু হওয়া পাতাগুলো দেখাও:',
@@ -2223,6 +2216,9 @@ $1',
 
 # Core parser functions
 'unknown_extension_tag' => 'অজানা এক্সটেনশন ট্যাগ "$1"',
+
+# Special:Version
+'version' => 'সংস্করণ', # Not used as normal message but as header for the special page itself
 
 # Special:Filepath
 'filepath'        => 'ফাইলের পাথ',

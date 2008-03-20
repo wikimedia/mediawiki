@@ -160,6 +160,7 @@ $messages = array(
 
 # Categories related messages
 'categories'               => 'カテゴリ',
+'categoriespagetext'       => '{{SITENAME}}には以下のカテゴリが存在します。',
 'pagecategories'           => 'カテゴリ',
 'category_header'          => 'カテゴリ “$1” にあるページ',
 'subcategories'            => 'サブカテゴリ',
@@ -167,7 +168,6 @@ $messages = array(
 'category-empty'           => 'このカテゴリにはページまたはメディアがひとつもありません。',
 'hidden-categories'        => '{{PLURAL:$1|非公開カテゴリ|非公開カテゴリ}}',
 'hidden-category-category' => '非公開カテゴリ', # Name of the category where hidden categories will be listed
-'subcategorycount'         => 'このカテゴリには $1 のサブカテゴリがあります。',
 'listingcontinuesabbrev'   => 'の続き',
 
 'mainpagetext'      => 'MediaWikiが正常にインストールされました。',
@@ -655,7 +655,6 @@ $1 または他の[[{{int:grouppage-sysop}}|{{int:group-sysop}}]]にこの件に
 'nohistory'           => 'このページには変更履歴がありません。',
 'revnotfound'         => '要求された版が見つかりません。',
 'revnotfoundtext'     => '要求されたこのページの旧版は見つかりませんでした。このページにアクセスしたURLをもう一度確認してください。',
-'loadhist'            => '変更履歴の読み込み中',
 'currentrev'          => '最新版',
 'revisionasof'        => '$1の版',
 'revision-info'       => '$1; $2 による版',
@@ -665,7 +664,6 @@ $1 または他の[[{{int:grouppage-sysop}}|{{int:group-sysop}}]]にこの件に
 'cur'                 => '最新版',
 'next'                => '次の版',
 'last'                => '前の版',
-'orig'                => '最古版',
 'page_first'          => '先頭',
 'page_last'           => '末尾',
 'histlegend'          => '凡例:（最新版）= 最新版との比較、（前の版）= 直前の版との比較、<strong>{{int:minoreditletter}}</strong> = 細部の編集',
@@ -842,6 +840,7 @@ $2リダイレクトを含める &nbsp; &nbsp; &nbsp; $3 $9',
 'files'                    => '画像等',
 
 # User rights
+'userrights'                       => '利用者権限の管理', # Not used as normal message but as header for the special page itself
 'userrights-lookup-user'           => '利用者の所属グループの管理',
 'userrights-user-editname'         => '利用者名:',
 'editusergroup'                    => '編集',
@@ -1158,7 +1157,6 @@ $2リダイレクトを含める &nbsp; &nbsp; &nbsp; $3 $9',
 'mostcategories'          => 'カテゴリの多い項目',
 'mostimages'              => 'リンクの多い画像',
 'mostrevisions'           => '版の多い項目',
-'allpages'                => '全ページ',
 'prefixindex'             => '全ページ (ページ指定)',
 'shortpages'              => '短いページ',
 'longpages'               => '長いページ',
@@ -1192,13 +1190,6 @@ $2リダイレクトを含める &nbsp; &nbsp; &nbsp; $3 $9',
 'booksources-go'            => '検索',
 'booksources-text'          => '以下のリストは、新本、古本などを販売している外部サイトへのリンクです。あなたがお探しの本について、更に詳しい情報が提供されている場合もあります。',
 
-'categoriespagetext' => '{{SITENAME}}には以下のカテゴリが存在します。',
-'data'               => 'データ',
-'userrights'         => '利用者権限の管理',
-'groups'             => 'ユーザーグループ',
-'alphaindexline'     => '$1―$2',
-'version'            => 'バージョン情報',
-
 # Special:Log
 'specialloguserlabel'  => '利用者名:',
 'speciallogtitlelabel' => 'タイトル:',
@@ -1211,6 +1202,8 @@ $2リダイレクトを含める &nbsp; &nbsp; &nbsp; $3 $9',
 'log-title-wildcard'   => 'この文字列で始まるタイトルを検索する',
 
 # Special:Allpages
+'allpages'          => '全ページ',
+'alphaindexline'    => '$1―$2',
 'nextpage'          => '次のページ（$1）',
 'prevpage'          => '前のページ（$1）',
 'allpagesfrom'      => '表示開始ページ:',
@@ -2333,6 +2326,7 @@ $1',
 'unknown_extension_tag' => 'エクステンションタグ "$1" は登録されていません',
 
 # Special:Version
+'version'                          => 'バージョン情報', # Not used as normal message but as header for the special page itself
 'version-extensions'               => 'インストール済みエクステンション',
 'version-specialpages'             => '特別ページ',
 'version-parserhooks'              => 'パーサーフック',

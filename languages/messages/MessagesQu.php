@@ -136,6 +136,7 @@ $messages = array(
 
 # Categories related messages
 'categories'               => 'Katiguriyakuna',
+'categoriespagetext'       => "Kay qatiq katiguriyakunaqa p'anqayuqmi icha midyayuqmi.",
 'pagecategories'           => '{{PLURAL:$1|Katiguriya|Katiguriyakuna}}',
 'category_header'          => '"$1" sutiyuq katiguriyapi qillqakuna',
 'subcategories'            => 'Urin katiguriyakuna',
@@ -143,7 +144,6 @@ $messages = array(
 'category-empty'           => "''Kay katiguriyaqa ch'usaqmi.''",
 'hidden-categories'        => '{{PLURAL:$1|Pakasqa katiguriya|Pakasqa katiguriyakuna}}',
 'hidden-category-category' => 'Pakasqa katiguriyakuna', # Name of the category where hidden categories will be listed
-'subcategorycount'         => 'Kay katiguriyapiqa {{PLURAL:$1|huk urin katiguriyam|$1 urin katiguriyakunam}} kachkan.',
 'listingcontinuesabbrev'   => 'qatiy',
 
 'mainpagetext'      => "''MediaWiki'' nisqa llamp'u kaqqa aypaylla takyachisqañam.",
@@ -624,7 +624,6 @@ $3-qa nirqan kayraykum: ''$2''",
 'revnotfound'         => "Llamk'apusqaqa manam tarisqachu",
 'revnotfoundtext'     => "Mañakusqayki llamk'apusqaqa manam tarisqachu.
 Ama hina kaspa, kay p'anqap URL nisqa tiyayninta k'uskiriy.",
-'loadhist'            => "P'anqamanta wiñay kawsayta chaskichkaspa",
 'currentrev'          => 'Kunan hukchasqa',
 'revisionasof'        => "$1-pa llamk'apusqan",
 'revision-info'       => "Kayqa p'anqap mawk'a llamk'apusqa kasqanmi, $1 p'unchawpi $2-pa rurasqan",
@@ -634,7 +633,6 @@ Ama hina kaspa, kay p'anqap URL nisqa tiyayninta k'uskiriy.",
 'cur'                 => 'kunan',
 'next'                => 'qat',
 'last'                => 'ñawpaq',
-'orig'                => 'qall',
 'page_first'          => 'ñawpaqkuna',
 'page_last'           => 'qhipaqkuna',
 'histlegend'          => "Sut'ichana: (kunan) = p'anqap kunan kachkayninwan huk kaykuna,
@@ -820,6 +818,7 @@ $2 Pusapunakunata rikuchiy<br />Maskay: $3 $9",
 'files'                    => 'Willañiqikuna',
 
 # User rights
+'userrights'                       => 'Ruraqkunata saqillanap allinkachinan', # Not used as normal message but as header for the special page itself
 'userrights-lookup-user'           => 'Ruraqkunap huñunkunata allinkachiy',
 'userrights-user-editname'         => 'Ruraqpa sutinta qillqamuy:',
 'editusergroup'                    => 'Ruraqkunap huñunkunata hukchay',
@@ -1144,7 +1143,6 @@ Kay p'anqapiqa huk pusapuna p'anqaman pusapuq p'anqakunap sutinkunatam rikunki. 
 'mostcategories'          => "Lliwmanta aswan katiguriyayuq p'anqakuna",
 'mostimages'              => "Lliwmanta astawan llamk'achisqa rikchakuna",
 'mostrevisions'           => 'Lliwmanta aswan hukchasqayuq qillqakuna',
-'allpages'                => "Tukuy p'anqakuna",
 'prefixindex'             => "P'anqakuna, ñawpa k'askaqchakama",
 'shortpages'              => "Uchuylla p'anqakuna",
 'longpages'               => "Hatun p'anqakuna",
@@ -1178,13 +1176,6 @@ Kay p'anqapiqa huk pusapuna p'anqaman pusapuq p'anqakunap sutinkunatam rikunki. 
 'booksources-go'            => 'Riy',
 'booksources-text'          => "Kay qatiqpiqa huk llika tiyaykunaman t'inkikunatam rikunki, musuq icha mawk'a liwrukunata qhatuq, maskasqayki liwrukunamantachá astawan willaq:",
 
-'categoriespagetext' => "Kay qatiq katiguriyakunaqa p'anqayuqmi icha midyayuqmi.",
-'data'               => 'Willakuna',
-'userrights'         => 'Ruraqkunata saqillanap allinkachinan',
-'groups'             => 'Ruraq huñukuna',
-'alphaindexline'     => '$1-ta $2-man',
-'version'            => 'Musuqchasqa',
-
 # Special:Log
 'specialloguserlabel'  => 'Ruraq:',
 'speciallogtitlelabel' => 'Sutichay:',
@@ -1198,6 +1189,8 @@ Rikuyniykitaqa k'ullkuchaytam atinki hallch'a layata, ruraqpa sutinta icha chaya
 'log-title-wildcard'   => "Kaywan qallariq p'anqa sutikunata maskay",
 
 # Special:Allpages
+'allpages'          => "Tukuy p'anqakuna",
+'alphaindexline'    => '$1-ta $2-man',
 'nextpage'          => "Qatiq p'anqa ($1)",
 'prevpage'          => "Ñawpaq p'anqa ($1)",
 'allpagesfrom'      => "Rikuchiy kaywan qallariq p'anqakunata:",
@@ -2260,6 +2253,7 @@ Sapsilla ñawpaq qhawariyta tukuykachay.',
 'unknown_extension_tag' => 'Mana riqsisqa "$1" mast\'arina k\'askana',
 
 # Special:Version
+'version'                          => 'Musuqchasqa', # Not used as normal message but as header for the special page itself
 'version-extensions'               => "Tiyachisqa mast'arinakuna",
 'version-specialpages'             => "Sapaq p'anqakuna",
 'version-parserhooks'              => "T'ikrana ch'iwinakuna",

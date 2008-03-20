@@ -216,6 +216,7 @@ $messages = array(
 
 # Categories related messages
 'categories'               => 'Categorías',
+'categoriespagetext'       => 'As siguients categorías contienen bella pachina u archibo',
 'pagecategories'           => '{{PLURAL:$1|Categoría|Categorías}}',
 'category_header'          => 'Articlos en a categoría "$1"',
 'subcategories'            => 'Subcategorías',
@@ -223,7 +224,6 @@ $messages = array(
 'category-empty'           => "''Ista categoría no tiene por agora garra articlo ni conteniu multimedia''",
 'hidden-categories'        => '{{PLURAL:$1|Categoría amagata|Categorías amagatas}}',
 'hidden-category-category' => 'Categorías amagatas', # Name of the category where hidden categories will be listed
-'subcategorycount'         => 'Bi ha {{PLURAL:$1|una subcategoría|$1 subcategorías}} en ista categoría.',
 
 'mainpagetext'      => "O programa MediaWiki s'ha instalato correutament.",
 'mainpagedocfooter' => "Consulta a [http://meta.wikimedia.org/wiki/Help:Contents Guía d'usuario] ta mirar informazión sobre cómo usar o software wiki.
@@ -708,7 +708,6 @@ A razón endicata por $3 ye ''$2''",
 'revnotfound'         => 'Bersión no trobata',
 'revnotfoundtext'     => "No se pudo trobar a bersión antiga d'a pachina demandata.
 Por fabor, rebise l'adreza que fazió serbir t'aczeder á ista pachina.",
-'loadhist'            => "Cargando o istorial d'a pachina",
 'currentrev'          => 'Bersión autual',
 'revisionasof'        => "Bersión d'o $1",
 'revision-info'       => "Bersión d'o $1 feita por $2",
@@ -718,7 +717,6 @@ Por fabor, rebise l'adreza que fazió serbir t'aczeder á ista pachina.",
 'cur'                 => 'aut',
 'next'                => 'siguient',
 'last'                => 'zag',
-'orig'                => 'orich',
 'page_first'          => 'primeras',
 'page_last'           => 'zagueras',
 'histlegend'          => 'Leyenda: (aut) = esferenzias con a bersión autual,
@@ -904,6 +902,7 @@ Mirar $3 $9',
 'files'                    => 'Archibos',
 
 # User rights
+'userrights'                       => "Confegurazión de premisos d'os usuarios", # Not used as normal message but as header for the special page itself
 'userrights-lookup-user'           => "Confegurar collas d'usuarios",
 'userrights-user-editname'         => "Escriba un nombre d'usuario:",
 'editusergroup'                    => "Editar as collas d'usuarios",
@@ -1242,7 +1241,6 @@ d'os que '''$2''' (o '''$4%''') {{PLURAL:$1|en ye $5|en son $5}}.",
 'mostcategories'          => 'Pachinas con más categorías',
 'mostimages'              => 'Archibos más emplegatos',
 'mostrevisions'           => 'Pachinas con más edizions',
-'allpages'                => 'Todas as pachinas',
 'prefixindex'             => 'Pachinas por prefixo',
 'shortpages'              => 'Pachinas más curtas',
 'longpages'               => 'Pachinas más largas',
@@ -1276,13 +1274,6 @@ d'os que '''$2''' (o '''$4%''') {{PLURAL:$1|en ye $5|en son $5}}.",
 'booksources-go'            => 'Ir-ie',
 'booksources-text'          => 'Contino ye una lista de binclos ta atros puestos an que benden libros nuebos y usatos, talment bi aiga más informazión sobre os libros que ye mirando.',
 
-'categoriespagetext' => 'As siguients categorías contienen bella pachina u archibo',
-'data'               => 'Datos',
-'userrights'         => "Confegurazión de premisos d'os usuarios",
-'groups'             => "Grupos d'usuarios",
-'alphaindexline'     => '$1 á $2',
-'version'            => 'Bersión',
-
 # Special:Log
 'specialloguserlabel'  => 'Usuario:',
 'speciallogtitlelabel' => 'Títol:',
@@ -1296,6 +1287,8 @@ Ta reduzir o listau puede trigar un tipo de rechistro, o nombre de l'usuario u a
 'log-title-wildcard'   => 'Mirar títols que prenzipien con iste testo',
 
 # Special:Allpages
+'allpages'          => 'Todas as pachinas',
+'alphaindexline'    => '$1 á $2',
 'nextpage'          => 'Siguient pachina ($1)',
 'prevpage'          => 'Pachina anterior ($1)',
 'allpagesfrom'      => 'Amostrar pachinas que prenzipien por:',
@@ -2359,6 +2352,7 @@ Prebe con a prebisualizazión normal.",
 'unknown_extension_tag' => 'Etiqueta d\'estensión "$1" esconoixita',
 
 # Special:Version
+'version'                          => 'Bersión', # Not used as normal message but as header for the special page itself
 'version-extensions'               => 'Estensions instalatas',
 'version-specialpages'             => 'Pachinas espezials',
 'version-parserhooks'              => "Grifios d'o parser (parser hooks)",

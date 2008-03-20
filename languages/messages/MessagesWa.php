@@ -168,12 +168,12 @@ $messages = array(
 
 # Categories related messages
 'categories'            => 'Categoreyes',
+'categoriespagetext'    => 'I gn a les categoreyes shuvantes sol wiki.',
 'pagecategories'        => '{{PLURAL:$1|Categoreye|Categoreyes}}',
 'category_header'       => 'Årtikes el categoreye «$1»',
 'subcategories'         => 'Dizo-categoreyes',
 'category-media-header' => 'Media el categoreye «$1»',
 'category-empty'        => "''Cisse categoreye ci n' a pol moumint nol årtike ni media.''",
-'subcategorycount'      => 'I gn a {{PLURAL:$1|ene dizo-categoreye|$1 dizo-categoreyes}} e cisse categoreye ci.',
 
 'mainpagetext' => "<big>'''Li programe Wiki a stî astalé a l' idêye.'''</big>",
 
@@ -570,7 +570,6 @@ Do côp, vos n' såroz schaper vos candjmints asteure; motoit vos dvrîz copyî 
 'revnotfound'         => 'Modêye nén trovêye',
 'revnotfoundtext'     => "Li viye modêye del pådje ki vos avoz dmandé n' a nén stî trovêye.
 Verifyîz l' hårdêye ki vs avoz eployî po-z ariver sol pådje s' i vs plait.",
-'loadhist'            => "Tcherdjaedje del pådje di l' istwere",
 'currentrev'          => "Modêye d' asteure",
 'revisionasof'        => 'Modêye do $1',
 'previousrevision'    => '←Modêye di dvant',
@@ -579,7 +578,6 @@ Verifyîz l' hårdêye ki vs avoz eployî po-z ariver sol pådje s' i vs plait."
 'cur'                 => 'ast.',
 'next'                => 'shuv.',
 'last'                => 'dif.',
-'orig'                => 'oridj.',
 'page_first'          => 'prumî',
 'page_last'           => 'dierin',
 'histlegend'          => "Tchoezi les modêyes a comparer: clitchîz so les botons radio des deus modêyes
@@ -709,6 +707,7 @@ Les ôtes manaedjeus so ç' wiki ci pôront todi vey li contnou catchî eyet l' 
 'files'                    => 'Fitchîs',
 
 # User rights
+'userrights'                 => 'Manaedjî les liveas des uzeus', # Not used as normal message but as header for the special page itself
 'userrights-lookup-user'     => "Manaedjî les groupes d' èn uzeu",
 'userrights-user-editname'   => "Tapez on no d' uzeu:",
 'editusergroup'              => "Candjî les groupes di l' uzeu",
@@ -819,7 +818,7 @@ ou co po les sons
 
 'upload-file-error' => 'Divintrinne aroke',
 
-'license'            => "Licince di l' imådje:",
+'license'            => "Licince di l' imådje",
 'nolicense'          => 'Nole licince tchoezeye',
 'upload_source_file' => ' (on fitchî sol copiutrece da vosse)',
 
@@ -934,7 +933,6 @@ Li longueur del [http://meta.wikimedia.org/wiki/Help:Job_queue cawêye des bouye
 'mostcategories'          => "Årtikes avou l' pus di categoreyes",
 'mostimages'              => 'Imådjes les pus loyeyes',
 'mostrevisions'           => "Årtikes avou l' pus di candjmints",
-'allpages'                => 'Totes les pådjes',
 'prefixindex'             => 'Indecse pa betchete',
 'shortpages'              => 'Coûtès pådjes',
 'longpages'               => 'Longowès pådjes',
@@ -954,13 +952,6 @@ Li longueur del [http://meta.wikimedia.org/wiki/Help:Job_queue cawêye des bouye
 # Book sources
 'booksources' => 'Sourdants po les lives',
 
-'categoriespagetext' => 'I gn a les categoreyes shuvantes sol wiki.',
-'data'               => 'Dinêyes',
-'userrights'         => 'Manaedjî les liveas des uzeus',
-'groups'             => "Groupes d' uzeus",
-'alphaindexline'     => 'di $1 a $2',
-'version'            => 'Modêye des programes',
-
 # Special:Log
 'specialloguserlabel'  => 'Uzeu:',
 'speciallogtitlelabel' => 'Tite:',
@@ -970,6 +961,8 @@ Vos ploz limiter l' håynaedje tot tchoezixhant ene sôre di djournå, on no d' 
 'logempty'             => "Rén n' corespond dins l' djournå.",
 
 # Special:Allpages
+'allpages'          => 'Totes les pådjes',
+'alphaindexline'    => 'di $1 a $2',
 'nextpage'          => 'Pådje shuvante ($1)',
 'allpagesfrom'      => 'Håyner les pådjes a pårti di:',
 'allarticles'       => 'Tos les årtikes',
@@ -1644,5 +1637,8 @@ $1",
 
 # Watchlist editor
 'watchlistedit-raw-titles' => 'Tites:',
+
+# Special:Version
+'version' => 'Modêye des programes', # Not used as normal message but as header for the special page itself
 
 );

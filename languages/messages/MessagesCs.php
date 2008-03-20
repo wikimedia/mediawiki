@@ -381,6 +381,9 @@ $messages = array(
 
 # Categories related messages
 'categories'                     => 'Kategorie',
+'categoriespagetext'             => 'Ve wiki existují následující kategorie:',
+'special-categories-sort-count'  => 'seřadit podle počtu',
+'special-categories-sort-abc'    => 'seřadit abecedně',
 'pagecategories'                 => '{{PLURAL:$1|Kategorie|Kategorie|Kategorie}}',
 'category_header'                => 'Stránky v kategorii „$1“',
 'subcategories'                  => 'Podkategorie',
@@ -388,7 +391,6 @@ $messages = array(
 'category-empty'                 => "''Tato kategorie neobsahuje žádné stránky či soubory.''",
 'hidden-categories'              => '{{PLURAL:$1|Skrytá kategorie|Skryté kategorie|Skryté kategorie}}',
 'hidden-category-category'       => 'Skryté kategorie', # Name of the category where hidden categories will be listed
-'subcategorycount'               => 'Tato kategorie obsahuje $1 {{plural:$1|podkategorii|podkategorie|podkategorií}}.',
 'category-subcat-count'          => '{{PLURAL:$2|V této kategorii je pouze následující podkategorie.|{{PLURAL:$1|Zobrazuje se jedna podkategorie|Zobrazují se $1 podkategorie|Zobrazuje se $1 podkategorií}} z celkového počtu $2 podkategorií v této kategorii.|{{PLURAL:$1|Zobrazuje se jedna podkategorie|Zobrazují se $1 podkategorie|Zobrazuje se $1 podkategorií}} z celkového počtu $2 podkategorií v této kategorii.}}',
 'category-subcat-count-limited'  => 'Tato kategorie obsahuje {{PLURAL:$1|následující podkategorii|následující $1 podkategorie|následujících $1 podkategorií}}.',
 'category-article-count'         => '{{PLURAL:$2|V této kategorii je pouze následující stránka.|{{PLURAL:$1|Zobrazuje se jedna stránka|Zobrazují se $1 stránky|Zobrazuje se  $1 stránek}} z celkového počtu $2 stránek v této kategorii.|{{PLURAL:$1|Zobrazuje se jedna stránka|Zobrazují se $1 stránky|Zobrazuje se $1 stránek}} z celkového počtu $2 stránek v této kategorii.}}',
@@ -891,7 +893,6 @@ $3 uvádí toto zdůvodnění: ''$2''",
 'nohistory'           => 'O této stránce neexistuje historie editací.',
 'revnotfound'         => 'Verze nenalezena',
 'revnotfoundtext'     => 'Nelze najít starou verzi, kterou žádáte. Zkuste prosím zkontrolovat URL hledané stránky.\\b',
-'loadhist'            => 'Načítá se stránka historie editací',
 'currentrev'          => 'Aktuální verze',
 'revisionasof'        => 'Verze z $1',
 'revision-info'       => 'Verze z $1; $2',
@@ -901,7 +902,6 @@ $3 uvádí toto zdůvodnění: ''$2''",
 'cur'                 => 'teď',
 'next'                => 'násl',
 'last'                => 'předchozí',
-'orig'                => 'původní',
 'page_first'          => 'první',
 'page_last'           => 'poslední',
 'histlegend'          => '(teď) = rozdíly oproti nynější verzi, (předchozí) = rozdíly oproti předchozí verzi, <b>m</b> = malá editace',
@@ -1089,6 +1089,7 @@ $2 Vypsat přesměrování &nbsp; Hledat $3 $9',
 'files'                    => 'Soubory',
 
 # User rights
+'userrights'                       => 'Správa uživatelských skupin', # Not used as normal message but as header for the special page itself
 'userrights-lookup-user'           => 'Spravovat uživatelské skupiny',
 'userrights-user-editname'         => 'Zadejte uživatelské jméno:',
 'editusergroup'                    => 'Upravit uživatelskou skupinu',
@@ -1280,6 +1281,9 @@ Zde je příslušný výpis z knihy smazaných stránek:",
 'upload_source_file' => ' (soubor na vašem počítači)',
 
 # Special:Imagelist
+'imagelist-summary'     => 'Tato speciální stránka zobrazuje všechny načtené soubory.
+Ve výchozím stavu je poslední načtený soubor nahoře.
+Kliknutím na hlavičku sloupce můžete změnit řazení.',
 'imagelist_search_for'  => 'Hledat obrázek podle názvu:',
 'imgdesc'               => 'popis',
 'imgfile'               => 'soubor',
@@ -1312,6 +1316,7 @@ Zde je příslušný výpis z knihy smazaných stránek:",
 'noimage'                   => 'Soubor s tímto jménem neexistuje, můžete ho $1',
 'noimage-linktext'          => 'načíst',
 'uploadnewversion-linktext' => 'Načíst novou verzi tohoto souboru',
+'imagepage-searchdupe'      => 'Hledání duplicitních souborů',
 
 # File reversion
 'filerevert'                => 'Vrátit zpět $1',
@@ -1425,7 +1430,6 @@ Aktuální délka fronty údržby je '''$7'''.",
 'mostcategories'          => 'Stránky s nejvyšším počtem kategorií',
 'mostimages'              => 'Nejpoužívanější soubory',
 'mostrevisions'           => 'Stránky s nejvíce revizemi',
-'allpages'                => 'Všechny stránky',
 'prefixindex'             => 'Seznam stránek podle začátku názvu',
 'shortpages'              => 'Nejkratší stránky',
 'longpages'               => 'Nejdelší stránky',
@@ -1452,19 +1456,14 @@ Aktuální délka fronty údržby je '''$7'''.",
 'notargettext'            => 'Této funkci musíte určit cílovou stránku nebo uživatele.',
 'pager-newer-n'           => '{{PLURAL:$1|1 novější|$1 novější|$1 novějších}}',
 'pager-older-n'           => '{{PLURAL:$1|1 starší|$1 starší|$1 starších}}',
+'pager-sort-asc'          => 'vzestupně',
+'pager-sort-desc'         => 'sestupně',
 
 # Book sources
 'booksources'               => 'Zdroje knih',
 'booksources-search-legend' => 'Vyhledat knižní zdroje',
 'booksources-go'            => 'Vyhledat',
 'booksources-text'          => 'Níže je seznam odkazů na servery prodávající knihy, nebo které mohou mít další informace o knihách, které hledáte.',
-
-'categoriespagetext' => 'Ve wiki existují následující kategorie:',
-'data'               => 'Data',
-'userrights'         => 'Správa uživatelských skupin',
-'groups'             => 'Uživatelské skupiny',
-'alphaindexline'     => 'od $1 do $2',
-'version'            => 'Verze',
 
 # Special:Log
 'specialloguserlabel'  => 'Uživatel:',
@@ -1479,6 +1478,8 @@ Zobrazení můžete zúžit výběrem typu záznamu, uživatelského jména nebo
 'log-title-wildcard'   => 'Hledat názvy začínající na tento text',
 
 # Special:Allpages
+'allpages'          => 'Všechny stránky',
+'alphaindexline'    => 'od $1 do $2',
 'nextpage'          => 'Další stránka ($1)',
 'prevpage'          => 'Předchozí stránka ($1)',
 'allpagesfrom'      => 'Všechny stránky počínaje od:',
@@ -2110,11 +2111,12 @@ $1',
 # Special:Newimages
 'newimages'             => 'Galerie nových obrázků',
 'imagelisttext'         => "Níže je {{plural:$1|jeden obrázek|seznam '''$1'''&nbsp;obrázků seřazených $2|seznam '''$1'''&nbsp;obrázků seřazených $2}}.",
+'newimages-summary'     => 'Na této speciální stránce se zobrazují poslední načtené soubory',
 'showhidebots'          => '($1 roboty)',
 'noimages'              => 'Není co zobrazit.',
 'ilsubmit'              => 'Hledat',
 'bydate'                => 'podle data',
-'sp-newimages-showfrom' => 'Zobrazit nové soubory počínaje od $1',
+'sp-newimages-showfrom' => 'Zobrazit nové soubory počínaje od $2, $1',
 
 # Bad image list
 'bad_image_list' => 'Tato stránka má následující formát:
@@ -2573,6 +2575,7 @@ $1',
 'unknown_extension_tag' => 'Neznámá značka rozšíření: „$1“',
 
 # Special:Version
+'version'                          => 'Verze', # Not used as normal message but as header for the special page itself
 'version-extensions'               => 'Nainstalovaná rozšíření',
 'version-specialpages'             => 'Speciální stránky',
 'version-parserhooks'              => 'Přípojné body parseru',
@@ -2599,5 +2602,17 @@ $1',
 'filepath-summary' => 'Tato speciální stránka vrátí úplnou cestu k souboru. Obrázky se zobrazí v plném rozlišení, jiné typy souborů se otevřenou v  přiřazených programech.
 
 Jméno souboru vkládejte bez označení "{{ns:image}}:" .',
+
+# Special:FileDuplicateSearch
+'fileduplicatesearch'          => 'Hledání duplicitních souborů',
+'fileduplicatesearch-summary'  => 'Hledání duplicitních souborů vychází z hodnoty hashovací funkce.
+
+Zadejte jméno souboru bez označení "{{ns:image}}:".',
+'fileduplicatesearch-legend'   => 'Hledání duplikátů',
+'fileduplicatesearch-filename' => 'Jméno souboru:',
+'fileduplicatesearch-submit'   => 'Hledat',
+'fileduplicatesearch-info'     => '(rozměr: $1 × $2 pixelů, velikost souboru: $3, MIME typ: $4)',
+'fileduplicatesearch-result-1' => 'Soubor „$1“ nemá žádný identický duplikát.',
+'fileduplicatesearch-result-n' => 'Soubor „$1“ má {{PLURAL:$2|jeden identický duplikát|$2 identické duplikáty|$2 identických duplikátů}}.',
 
 );

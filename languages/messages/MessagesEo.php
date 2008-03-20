@@ -157,6 +157,9 @@ $messages = array(
 
 # Categories related messages
 'categories'                     => '{{PLURAL:$1|Kategorio|Kategorioj}}',
+'categoriespagetext'             => 'La sekvantaj kategorioj ekzistas jam en la vikio.',
+'special-categories-sort-count'  => 'oridigu laŭ nombrado',
+'special-categories-sort-abc'    => 'ordigu alfabete',
 'pagecategories'                 => '{{PLURAL:$1|Kategorio|Kategorioj}}',
 'category_header'                => 'Artikoloj en kategorio "$1"',
 'subcategories'                  => 'Subkategorioj',
@@ -164,7 +167,6 @@ $messages = array(
 'category-empty'                 => "''Ĉi tiu kategorio momente ne enhavas artikolojn aŭ mediojn.''",
 'hidden-categories'              => '{{PLURAL:$1|Kaŝita kategorio|Kaŝitaj kategorioj}}',
 'hidden-category-category'       => 'Kaŝitaj kategorioj', # Name of the category where hidden categories will be listed
-'subcategorycount'               => 'Estas {{PLURAL:$1|unu subkategorio|$1 subkategorioj}} en tiu kategorio.',
 'category-subcat-count'          => '{{PLURAL:$2|Ĉi tiu kategorio havas nur la suban subkategorion.|Ĉi tiu kategorio havas la {{PLURAL:$1|suban subkategorion|$1 subajn subkategoriojn}}, el $2 entute.}}',
 'category-subcat-count-limited'  => 'Ĉi tiu kategorio havas la {{PLURAL:$1|jenan subkategorion|jenajn $1 subkategoriojn}}.',
 'category-article-count'         => '{{PLURAL:$2|Ĉi tiu kategorio enhavas nur la jenan paĝon.|La {{PLURAL:$1|jena paĝo|jenaj $1 paĝoj}} estas en ĉi tiu kategorio, el $2 entute.}}',
@@ -679,7 +681,6 @@ La kialo donata de $3 estas ''$2''.",
 'revnotfound'         => 'Ne ekzistas malnova versio de la artikolo',
 'revnotfoundtext'     => 'Ne eblis trovi malnovan version de la artikolo kiun vi petis.
 Bonvolu kontroli la retadreson (URL) kiun vi uzis por atingi la paĝon.\\b',
-'loadhist'            => 'Ŝarĝas redaktohistorion',
 'currentrev'          => 'Aktuala versio',
 'revisionasof'        => 'Kiel registrite je $1',
 'revision-info'       => 'Redakto de $1 de $2',
@@ -689,7 +690,6 @@ Bonvolu kontroli la retadreson (URL) kiun vi uzis por atingi la paĝon.\\b',
 'cur'                 => 'nuna',
 'next'                => 'sekv',
 'last'                => 'antaŭa',
-'orig'                => 'orig',
 'page_first'          => 'unua',
 'page_last'           => 'lasta',
 'histlegend'          => 'Klarigo: (nuna) = vidu malsamojn kompare kun la nuna versio, (antaŭa) = malsamojn kompare kun la antaŭa versio, <strong>E</strong> = malgranda redakteto',
@@ -882,6 +882,7 @@ Ekzemple, por la Centra Eŭropa Horzono, indiku "1" vintre aŭ "2" dum somertemp
 'files'                    => 'Dosieroj',
 
 # User rights
+'userrights'                       => 'Administrado de uzantorajtoj', # Not used as normal message but as header for the special page itself
 'userrights-lookup-user'           => 'Administru uzantogrupojn',
 'userrights-user-editname'         => 'Entajpu uzantonomon:',
 'editusergroup'                    => 'Redaktu Uzantgrupojn',
@@ -1054,6 +1055,9 @@ jen la loglibro pri forigado por ĉi dosiero por via oportuneco:",
 'upload_source_file' => ' (dosiero en via komputilo)',
 
 # Special:Imagelist
+'imagelist-summary'     => 'Ĉi tiu speciala paĝo montras ĉiujn alŝutitajn dosierojn.
+Defaŭlte, la lasta alŝutitaj dosieroj estas montrataj supren.
+Klaku la kolumnan titolon por ŝanĝi la direkton de ordigo.',
 'imagelist_search_for'  => 'Serĉu por dosiera nomo:',
 'imgdesc'               => 'pri',
 'imgfile'               => 'dosiero',
@@ -1086,6 +1090,7 @@ jen la loglibro pri forigado por ĉi dosiero por via oportuneco:",
 'noimage'                   => 'Ne ekzistas dosiero kun tia nomo vi povas $1.',
 'noimage-linktext'          => 'alŝuti ĝin',
 'uploadnewversion-linktext' => 'Alŝutu novan version de ĉi tiu dosiero',
+'imagepage-searchdupe'      => 'Serĉu duplikatajn dosierojn',
 
 # File reversion
 'filerevert'                => 'Restarigu $1',
@@ -1201,7 +1206,6 @@ La nuna longeco de la [http://meta.wikimedia.org/wiki/Help:Job_queue laborenda v
 'mostcategories'          => 'Artikoloj kun la plej multaj kategorioj',
 'mostimages'              => 'Plej ligitaj bildoj',
 'mostrevisions'           => 'Artikoloj kun la plej multaj revizioj',
-'allpages'                => 'Ĉiuj paĝoj',
 'prefixindex'             => 'Indeksa prefikso',
 'shortpages'              => 'Paĝetoj',
 'longpages'               => 'Paĝegoj',
@@ -1230,6 +1234,8 @@ Tio ne estus enkalkutita en la jena listo.',
 'notargettext'            => 'Vi ne precizigis, kiun paĝon aŭ uzanton priumi.',
 'pager-newer-n'           => '{{PLURAL:$1|pli nova 1|pli novaj $1}}',
 'pager-older-n'           => '{{PLURAL:$1|pli malnova 1|pli malnovaj $1}}',
+'pager-sort-asc'          => 'kreskanta',
+'pager-sort-desc'         => 'malkreskanta',
 
 # Book sources
 'booksources'               => 'Libroservoj',
@@ -1239,13 +1245,6 @@ Tio ne estus enkalkutita en la jena listo.',
 kaj/aŭ informumos pri la libro ligita.
 La {{SITENAME}} ne estas komerce ligita al tiuj vendejoj, kaj la listo ne estu
 komprenata kiel rekomendo aŭ reklamo.',
-
-'categoriespagetext' => 'La sekvantaj kategorioj ekzistas jam en la vikio.',
-'data'               => 'Datumoj',
-'userrights'         => 'Administrado de uzantorajtoj',
-'groups'             => 'Uzantogrupoj',
-'alphaindexline'     => '$1 ĝis $2',
-'version'            => 'Versio',
 
 # Special:Log
 'specialloguserlabel'  => 'Uzanto:',
@@ -1259,6 +1258,8 @@ komprenata kiel rekomendo aŭ reklamo.',
 'log-title-wildcard'   => 'Serĉu titolojn komencantajn kun ĉi teksto',
 
 # Special:Allpages
+'allpages'          => 'Ĉiuj paĝoj',
+'alphaindexline'    => '$1 ĝis $2',
 'nextpage'          => 'Sekvanta paĝo ($1)',
 'prevpage'          => 'Antaŭa paĝo ($1)',
 'allpagesfrom'      => 'Montru paĝojn ekde :',
@@ -1920,11 +1921,12 @@ $1',
 # Special:Newimages
 'newimages'             => 'Aro da novaj bildoj',
 'imagelisttext'         => "Jen listo de '''$1''' {{PLURAL:$1|dosiero|dosieroj}}, ordigitaj laŭ $2.",
+'newimages-summary'     => 'Ĉi tiu paĝo montras la lastajn alŝutitajn dosierojn',
 'showhidebots'          => '($1 robotojn)',
 'noimages'              => 'Nenio videbla.',
 'ilsubmit'              => 'Trovu!',
 'bydate'                => 'dato',
-'sp-newimages-showfrom' => 'Montru novajn dosierojn komencante de $1',
+'sp-newimages-showfrom' => 'Montru novajn dosierojn komencante de $2, $1',
 
 # Bad image list
 'bad_image_list' => 'La formato estas jen:
@@ -2337,6 +2339,7 @@ Vi povas ankaŭ [[Special:Watchlist/edit|uzu la norman redaktilon]].',
 'unknown_extension_tag' => 'Nekonata etend-etikedo "$1"',
 
 # Special:Version
+'version'                          => 'Versio', # Not used as normal message but as header for the special page itself
 'version-extensions'               => 'Instalitaj etendiloj',
 'version-specialpages'             => 'Specialaj paĝoj',
 'version-parserhooks'              => 'Sintaksaj hokoj',
@@ -2361,5 +2364,17 @@ Vi povas ankaŭ [[Special:Watchlist/edit|uzu la norman redaktilon]].',
 'filepath-page'    => 'Dosiero:',
 'filepath-submit'  => 'Pado',
 'filepath-summary' => 'Ĉi tiu speciala paĝo redonas la kompletan padon por dosiero. Bildoj estas montrataj en alta distingivo, aliaj dosieraj tipoj estas rekte startataj per ties asociita programo.',
+
+# Special:FileDuplicateSearch
+'fileduplicatesearch'          => 'Serĉu duplikatajn dosierojn',
+'fileduplicatesearch-summary'  => 'Serĉu duplikatajn dosierojn bazite de haketvaluto.
+
+Enigu la dosiernomon sen la "{{ns:image}}:" prefikso.',
+'fileduplicatesearch-legend'   => 'Serĉu duplikaton',
+'fileduplicatesearch-filename' => 'Dosiernomo:',
+'fileduplicatesearch-submit'   => 'Serĉu',
+'fileduplicatesearch-info'     => '$1 × $2 rastrumero<br />Dosiera pezo: $3<br />MIME-tipo: $4',
+'fileduplicatesearch-result-1' => 'La dosiero "$1" ne havas identan duplikaton.',
+'fileduplicatesearch-result-n' => 'La dosiero "$1" havas {{PLURAL:$2|1 identan duplikaton|$2 identajn duplikatojn}}.',
 
 );

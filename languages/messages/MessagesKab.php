@@ -138,12 +138,12 @@ $messages = array(
 
 # Categories related messages
 'categories'            => 'Taggayin',
+'categoriespagetext'    => 'Llant taggayin-agi deg wiki-yagi.',
 'pagecategories'        => '{{PLURAL:$1|Taggayt|Taggayin}}',
 'category_header'       => 'Imagraden deg taggayt "$1"',
 'subcategories'         => 'Taggayin tizellumin',
 'category-media-header' => 'Media deg taggayt "$1"',
 'category-empty'        => "''Taggayt-agi d tilemt.''",
-'subcategorycount'      => '{{PLURAL:$1|Tella yiwet taggayt tazellumt|Llant $1 taggayin tizellumin}} deg taggayt-agi.',
 
 'about'          => 'Awal ɣef...',
 'article'        => 'Ayen yella deg usebter',
@@ -571,7 +571,6 @@ Tzemreḍ a d-uɣaleḍ u tbeddleḍ asebter i yellan, neɣ ad [[Special:Userlog
 'revnotfound'         => 'Ur yezmir ara ad yaf tasiwelt',
 'revnotfoundtext'     => 'Tasiwelt taqdimt n usebter-agi i testeqsiḍ ulac-it.
 Ssenqed URL i tesseqdac.',
-'loadhist'            => 'Assisi n umezruy n usebter',
 'currentrev'          => 'Tasiwelt n tura',
 'revisionasof'        => 'Tasiwelt n wass $1',
 'revision-info'       => 'Tasiwelt n wass $1 sɣur $2',
@@ -581,7 +580,6 @@ Ssenqed URL i tesseqdac.',
 'cur'                 => 'tura',
 'next'                => 'ameḍfir',
 'last'                => 'amgirred',
-'orig'                => 'ameẓwer',
 'page_first'          => 'amezwaru',
 'page_last'           => 'aneggaru',
 'histlegend'          => 'Axtiri n umgerrad: rcem tankulin akken ad teẓreḍ imgerraden ger tisiwal u wekki ɣef enter/entrée neɣ ɣef taqeffalt deg ukessar.<br />
@@ -735,6 +733,7 @@ i yesɛan akk awalen i banen-d).",
 'files'                    => 'Ifayluwen',
 
 # User rights
+'userrights'                  => 'Laɛej iserfan n wemseqdac', # Not used as normal message but as header for the special page itself
 'userrights-lookup-user'      => 'Laɛej iderman n yimseqdacen',
 'userrights-user-editname'    => 'Ssekcem isem n wemseqdac:',
 'editusergroup'               => 'Beddel iderman n yimseqdacen',
@@ -972,7 +971,6 @@ Ihi, {{PLURAL:\$5|yella|llan}} '''\$5''' n {{PLURAL:\$5|ubeddel|ibeddlen}} i mku
 'mostcategories'          => 'Isebtar i yesɛan aṭṭas taggayin',
 'mostimages'              => 'Tugniwin myezdin aṭas',
 'mostrevisions'           => 'Isebtar i yettubedlen aṭas',
-'allpages'                => 'Akk isebtar',
 'prefixindex'             => 'Akk isebtar s yisekkilen imezwura',
 'shortpages'              => 'isebtar imecṭuḥen',
 'longpages'               => 'Isebtar imeqqranen',
@@ -1001,13 +999,6 @@ Ihi, {{PLURAL:\$5|yella|llan}} '''\$5''' n {{PLURAL:\$5|ubeddel|ibeddlen}} i mku
 'booksources-go'            => 'Ruḥ',
 'booksources-text'          => 'Deg ukessar, yella wumuɣ n yizdayen iberraniyen izzenzen idlisen (imaynuten akk d weqdimen), yernu ahat sɛan kter talɣut ɣef idlisen i tettnadiḍ fell-asen:',
 
-'categoriespagetext' => 'Llant taggayin-agi deg wiki-yagi.',
-'data'               => 'Talɣut',
-'userrights'         => 'Laɛej iserfan n wemseqdac',
-'groups'             => 'Iderman n yimseqdacen',
-'alphaindexline'     => '$1 ar $2',
-'version'            => 'Tasiwelt',
-
 # Special:Log
 'specialloguserlabel'  => 'Amseqdac:',
 'speciallogtitlelabel' => 'Azwel:',
@@ -1021,6 +1012,8 @@ Tzemreḍ ad textareḍ cwiṭ seg-sen ma tebɣiḍ.',
 'log-title-wildcard'   => 'Nadi ɣef izwal i yebdan s uḍris-agi',
 
 # Special:Allpages
+'allpages'          => 'Akk isebtar',
+'alphaindexline'    => '$1 ar $2',
 'nextpage'          => 'Asebter ameḍfir ($1)',
 'prevpage'          => 'Asebter ssabeq ($1)',
 'allpagesfrom'      => 'Ssken isebtar seg:',
@@ -1614,5 +1607,8 @@ $1',
 'watchlisttools-view' => 'Umuɣ n uɛessi',
 'watchlisttools-edit' => 'Ẓer u beddel umuɣ n uɛessi',
 'watchlisttools-raw'  => 'Beddel umuɣ n uɛessi (raw)',
+
+# Special:Version
+'version' => 'Tasiwelt', # Not used as normal message but as header for the special page itself
 
 );

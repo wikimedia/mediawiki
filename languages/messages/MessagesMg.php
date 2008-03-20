@@ -77,6 +77,7 @@ $messages = array(
 
 # Categories related messages
 'categories'             => 'Sokajy',
+'categoriespagetext'     => "Ireto no sokajy misy eto amin'ity wiki ity.",
 'pagecategories'         => '{{PLURAL:$1|Sokajy|Sokajy}}',
 'category_header'        => 'Ireo lahatsoratra ao amin\'ny sokajy "$1"',
 'subcategories'          => 'Zana-tsokajy',
@@ -399,8 +400,7 @@ ilay bokotra \"Tehirizo\" ianao. <br />",
 'yourtext'               => 'Lahatsoratrao',
 'storedversion'          => 'Votoatiny voatahiry',
 'nonunicodebrowser'      => "<strong>FAMPITANDREMANA: Tsy mifanaraka tanteraka amin'ny unicode ny navigateur-nao. Misy ihany anefa fika napetraka hahafahanao manova ny lahatsoratra: Ny litera tsy ASCII dia hiseho amin'ny fango isa ta-enina ambin'ny folo.</strong>",
-'editingold'             => "
-<strong>FAMPITANDREMANA: Ity pejy ity dia efa lany daty io votoatiny ovainao io.
+'editingold'             => "<strong>FAMPITANDREMANA: Ity pejy ity dia efa lany daty io votoatiny ovainao io.
 Raha io no tahirizinao, dia ho very ny fanovana ity pejy ity rehetra taorian'io fanovana io.</strong>",
 'yourdiff'               => 'Fampitahana',
 'longpagewarning'        => "
@@ -421,7 +421,6 @@ ianao dia tehirizo anaty rakitra ny fanovanao mandra-paha.</strong>',
 'revnotfoundtext'  => "
 Tsy hita ny votoatin'ny pejy taloha nangatahinao.
 Hamarino azafady ny URL nampiasainao hahatongavana eto amin'ity pejy ity.",
-'loadhist'         => "Fanangonana ny tantaran'ny pejy",
 'previousrevision' => '←Votoatiny antitra kokoa',
 'nextrevision'     => 'Fanovana vao haingana→',
 'cur'              => 'ank',
@@ -500,6 +499,7 @@ Fenoy araka ny datin'ny solosainan'ny mpitsidika",
 'files'                 => 'Rakitra',
 
 # User rights
+'userrights'                 => 'Fandrindràna ny fahazoan-dàlana', # Not used as normal message but as header for the special page itself
 'userrights-lookup-user'     => 'Handrindra vondrom-pikambana',
 'userrights-user-editname'   => 'Manomeza solonanarana:',
 'userrights-editusergroup'   => 'Hanova vondrom-pikambana',
@@ -637,7 +637,6 @@ Hamarino tsara aloha dia avereno alefa indray.',
 'mostcategories'          => 'Lahatsoratra misy sokajy betsaka indrindra',
 'mostimages'              => "Misy firohizana betsaka amin'ny sary",
 'mostrevisions'           => 'Lahatsoratra niova im-betsaka indrindra',
-'allpages'                => 'Pejy rehetra',
 'shortpages'              => 'Pejy fohy',
 'longpages'               => 'Pejy lavabe',
 'listusers'               => 'Lisitry ny mpikambana',
@@ -654,11 +653,6 @@ wiki ity aza izy.</p>",
 'unusedcategoriestext'    => 'Ireto sokajy manaraka ireto dia noforonina kanefa tsy misy pejy na dia iray aza mampiasa azy akory.',
 'notargettext'            => 'Tsy nofaritanao ny pejy na solonanarana mpikambana hanaovana io asa io.',
 
-'categoriespagetext' => "Ireto no sokajy misy eto amin'ity wiki ity.",
-'userrights'         => 'Fandrindràna ny fahazoan-dàlana',
-'groups'             => 'Vondrom-pikambana',
-'alphaindexline'     => "$1 hatramin'ny $2",
-
 # Special:Log
 'specialloguserlabel'  => 'Mpikambana:',
 'speciallogtitlelabel' => 'Lohateny:',
@@ -669,6 +663,8 @@ mampihena ny tantaran'asa miseho eto.",
 'logempty'             => 'Tsy nahitana.',
 
 # Special:Allpages
+'allpages'          => 'Pejy rehetra',
+'alphaindexline'    => "$1 hatramin'ny $2",
 'nextpage'          => 'Pejy manaraka ($1)',
 'allpagesfrom'      => 'Asehoy ny pejy manomboka ny:',
 'allarticles'       => 'Lahatsoratra rehetra',

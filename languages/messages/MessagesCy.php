@@ -172,6 +172,7 @@ $messages = array(
 
 # Categories related messages
 'categories'               => 'Categorïau',
+'categoriespagetext'       => "Mae'r categorïau isod yn y wici.",
 'pagecategories'           => '{{PLURAL:$1|Categori|Categori|Categorïau|Categorïau|Categorïau|Categorïau}}',
 'category_header'          => 'Erthyglau yn y categori "$1"',
 'subcategories'            => 'Is-categorïau',
@@ -179,7 +180,6 @@ $messages = array(
 'category-empty'           => "''Ar hyn o bryd nid oes unrhyw erthyglau na ffeiliau yn y categori hwn.''",
 'hidden-categories'        => '{{PLURAL:$1|Categori cuddiedig|Categori cuddiedig|Categorïau cuddiedig|Categorïau cuddiedig|Categorïau cuddiedig|Categorïau cuddiedig}}',
 'hidden-category-category' => 'Categorïau cuddiedig', # Name of the category where hidden categories will be listed
-'subcategorycount'         => "{{PLURAL:$1|Nid oes $1|Mae $1|Mae $1|Mae $1|Mae $1|Mae $1}} is-gategori i'r categori hwn.",
 'listingcontinuesabbrev'   => ' parh.',
 
 'mainpagetext'      => "<big>'''Wedi llwyddo gosod meddalwedd Mediawiki yma'''</big>",
@@ -228,7 +228,9 @@ $messages = array(
 'permalink'         => 'Dolen barhaol',
 'print'             => 'Argraffu',
 'edit'              => 'Golygu',
+'create'            => 'Creu',
 'editthispage'      => 'Golygwch y dudalen hon',
+'create-this-page'  => "Creu'r dudalen",
 'delete'            => 'Dileu',
 'deletethispage'    => 'Dilëer y dudalen hon',
 'undelete_short'    => 'Adfer $1 {{PLURAL:$1|golygiad|golygiad|olygiad|golygiad|golygiad|golygiad}}',
@@ -249,6 +251,7 @@ $messages = array(
 'userpage'          => 'Gwyliwch tudalen defnyddiwr',
 'projectpage'       => 'Gweld tudalen y wici',
 'imagepage'         => 'Gweld tudalen y ffeil clyweled',
+'mediawikipage'     => 'Gweld tudalen y neges',
 'viewhelppage'      => 'Dangos y dudalen gymorth',
 'categorypage'      => 'Dangos tudalen gategori',
 'viewtalkpage'      => 'Gwyliwch sgwrs',
@@ -479,6 +482,12 @@ Cyn y gellir anfon unrhywbeth arall at y cyfeiriad hwnnw rhaid i chi ddilyn y cy
 'createaccount-text'         => 'Creodd rhywun gyfrif o\'r enw $2 ar {{SITENAME}} ($4) ar gyfer y cyfeiriad e-bost hwn. "$3" yw\'r cyfrinair ar gyfer "$2". Dylech fewngofnodi a newid eich cyfrinair yn syth.
 
 Rhydd ichi anwybyddu\'r neges hon os mai camgymeriad oedd creu\'r cyfrif.',
+'loginlanguagelabel'         => 'Iaith: $1',
+
+# Password reset dialog
+'resetpass'        => 'Ailosod cyfrinair y cyfrif',
+'resetpass_header' => 'Ailosod y cyfrinair',
+'resetpass_submit' => 'Gosod y cyfrinair a mewngofnodi',
 
 # Edit page toolbar
 'bold_sample'     => 'Testun cryf',
@@ -605,6 +614,7 @@ Byddai'n dda o beth llunio sawl tudalen llai o hyd o ddeunydd y dudalen hon.</st
 felly fyddwch chi ddim yn medru cadw eich olygiadau rwan. Efalle fyddwch chi'n eisio tori-a-pastio'r
 testun i mewn i ffeil testun, a cadw hi tan hwyrach.</strong>",
 'protectedpagewarning'      => "<strong>RHYBUDD: Mae'r dudalen hon wedi'i diogelu. Dim ond gweinyddwyr sydd yn gallu ei golygu.</strong>",
+'semiprotectedpagewarning'  => "'''Sylwer:''' Mae'r dudalen hon wedi ei chloi; dim ond defnyddwyr cofrestredig a allant ei golygu.",
 'cascadeprotectedwarning'   => "'''Dalier sylw:''' Mae'r dudalen hon wedi ei gwarchod fel nad ond defnyddwyr â galluoedd gweinyddwyr sy'n gallu ei newid, oherwydd ei bod yn rhan o'r {{PLURAL:$1|dudalen ganlynol|dudalen ganlynol|tudalennau canlynol|tudalennau canlynol|tudalennau canlynol|tudalennau canlynol}} sydd wedi {{PLURAL:$1|ei|ei|eu|eu|eu|eu}} sgydol-gwarchod.",
 'templatesused'             => 'Nodiadau a ddefnyddir yn y dudalen hon:',
 'templatesusedpreview'      => 'Nodiadau a ddefnyddir yn y rhagolwg hwn:',
@@ -634,7 +644,6 @@ Y rheswm a roddwyd dros y bloc gan $3 yw ''$2''.",
 'nohistory'           => "Does dim hanes golygu i'r dudalen hon.",
 'revnotfound'         => 'Cywiriad nid wedi darganfod',
 'revnotfoundtext'     => 'Ni ellir darganfod yr hen cywiriad y tudalen rydych wedi gofyn amdano. Gwiriwch yr URL rydych wedi defnyddio i darganfod y tudalen hon.',
-'loadhist'            => 'Yn llwytho hanes y dudalen',
 'currentrev'          => 'Diwygiad cyfoes',
 'revisionasof'        => 'Diwygiad $1',
 'revision-info'       => 'Y fersiwn a roddwyd ar gadw am $1 gan $2',
@@ -644,7 +653,6 @@ Y rheswm a roddwyd dros y bloc gan $3 yw ''$2''.",
 'cur'                 => 'cyf',
 'next'                => 'nesaf',
 'last'                => 'cynt',
-'orig'                => 'gwreiddiol',
 'page_first'          => 'cyntaf',
 'page_last'           => 'olaf',
 'histlegend'          => "Cymharu dau fersiwn: marciwch y cylchoedd ar y ddau fersiwn i'w cymharu, yna pwyswch ar 'return' neu'r botwm 'Cymharer y fersiynau dewisedig'.<br />
@@ -660,6 +668,7 @@ Eglurhad: (cyf.) = gwahaniaethau rhyngddo a'r fersiwn cyfredol,
 'history-feed-item-nocomment' => '$1 am $2', # user at time
 
 # Revision deletion
+'rev-delundel'        => 'dangos/cuddio',
 'revdelete-selected'  => "Y {{PLURAL:$2|golygiad|golygiad|golygiadau|golygiadau|golygiadau|golygiadau}} dewisedig o '''$1:'''",
 'logdelete-selected'  => "{{PLURAL:$2|Digwyddiad|Digwyddiad|Digwyddiadau|Digwyddiadau|Digwyddiadau|Digwyddiadau}} dewisedig y lòg ar gyfer '''$1:'''",
 'logdelete-logentry'  => 'newidiwyd y gallu i weld y digwyddiad [[$1]]',
@@ -787,6 +796,7 @@ $2 Rhestri ailgyfeiriadau<br />Chwilio am $3 $9',
 'files'                   => 'Ffeiliau',
 
 # User rights
+'userrights'                       => 'Rheoli hawliau defnyddwyr', # Not used as normal message but as header for the special page itself
 'userrights-lookup-user'           => 'Rheoli grwpiau defnyddiwr',
 'userrights-user-editname'         => 'Rhowch enw defnyddiwr:',
 'editusergroup'                    => 'Golygu Grwpiau Defnyddwyr',
@@ -811,14 +821,17 @@ $2 Rhestri ailgyfeiriadau<br />Chwilio am $3 $9',
 'group-all'           => '(oll)',
 
 'group-autoconfirmed-member' => "Defnyddiwr wedi ei gadarnhau'n awtomatig",
+'group-bot-member'           => 'Bot',
 'group-sysop-member'         => 'Gweinyddwr',
 'group-bureaucrat-member'    => 'Biwrocrat',
 
 'grouppage-autoconfirmed' => "{{ns:project}}:Defnyddwyr wedi eu cadarnhau'n awtomatig",
+'grouppage-bot'           => '{{ns:project}}:Botiau',
 'grouppage-sysop'         => '{{ns:project}}:Gweinyddwyr',
 
 # User rights log
 'rightslogtext' => 'Dyma log o newidiadau i hawliau defnyddwyr.',
+'rightsnone'    => '(dim)',
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|newid|newid|newid|newid|newid|o newidiadau}}',
@@ -1064,7 +1077,6 @@ Mae gan '''$2''' (neu '''$4%''') ohonynt alluoedd $5.",
 'mostcategories'          => 'Erthyglau yn nhrefn nifer eu categorïau',
 'mostimages'              => 'Ffeiliau yn nhrefn nifer y cysylltiadau iddynt',
 'mostrevisions'           => 'Tudalennau yn nhrefn nifer golygiadau',
-'allpages'                => 'Pob tudalen',
 'prefixindex'             => 'Mynegai rhagddodiaid',
 'shortpages'              => 'Erthyglau byr',
 'longpages'               => 'Tudalennau hirion',
@@ -1093,13 +1105,6 @@ Mae gan '''$2''' (neu '''$4%''') ohonynt alluoedd $5.",
 'booksources-go'            => 'Mynd',
 'booksources-text'          => "Mae'r rhestr isod yn cynnwys cysylltiadau i wefannau sy'n gwerthu llyfrau newydd a rhai ail-law. Mae rhai o'r gwefannau hefyd yn cynnig gwybodaeth pellach am y llyfrau hyn:",
 
-'categoriespagetext' => "Mae'r categorïau isod yn y wici.",
-'userrights'         => 'Rheoli hawliau defnyddwyr',
-'groups'             => 'Grwpiau defnyddwyr',
-'isbn'               => 'Rhif Llyfrau Rhyngwladol (ISBN)',
-'alphaindexline'     => '$1 i $2',
-'version'            => 'Fersiwn',
-
 # Special:Log
 'specialloguserlabel'  => 'Defnyddiwr:',
 'speciallogtitlelabel' => 'Teitl:',
@@ -1113,6 +1118,8 @@ Gallwch weld chwiliad mwy penodol trwy ddewis y math o lòg, enw'r defnyddiwr, n
 'log-title-wildcard'   => "Chwilio am deitlau'n dechrau gyda'r geiriau hyn",
 
 # Special:Allpages
+'allpages'          => 'Pob tudalen',
+'alphaindexline'    => '$1 i $2',
 'nextpage'          => 'Y bloc nesaf gan ddechrau gyda ($1)',
 'prevpage'          => 'Y bloc cynt gan ddechrau gyda ($1)',
 'allpagesfrom'      => 'Dangos pob tudalen gan ddechrau o:',
@@ -1681,7 +1688,7 @@ $1",
 'noimages'              => "Does dim byd i'w weld.",
 'ilsubmit'              => 'Chwilio',
 'bydate'                => 'yn ôl dyddiad',
-'sp-newimages-showfrom' => "Dangos ffeiliau sy'n newydd ers: $1",
+'sp-newimages-showfrom' => "Dangos ffeiliau sy'n newydd ers: $2, $1",
 
 # Metadata
 'metadata'          => 'Metadata',
@@ -1811,5 +1818,8 @@ Gallwch hefyd [[Special:Watchlist/edit|ddefnyddio'r rhestr arferol]].",
 'watchlisttools-view' => 'Gweld newidiadau perthnasol',
 'watchlisttools-edit' => "Gweld a golygu'r rhestr gwylio",
 'watchlisttools-raw'  => "Golygu'r rhestr gwylio syml",
+
+# Special:Version
+'version' => 'Fersiwn', # Not used as normal message but as header for the special page itself
 
 );

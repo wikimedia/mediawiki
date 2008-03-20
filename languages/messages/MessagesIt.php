@@ -232,16 +232,22 @@ $messages = array(
 'dec'           => 'dic',
 
 # Categories related messages
-'categories'               => 'Categorie',
-'pagecategories'           => '{{PLURAL:$1|Categoria|Categorie}}',
-'category_header'          => 'Pagine nella categoria "$1"',
-'subcategories'            => 'Sottocategorie',
-'category-media-header'    => 'File nella categoria "$1"',
-'category-empty'           => "''Al momento la categoria non contiene alcuna pagina né file multimediale.''",
-'hidden-categories'        => '{{PLURAL:$1|Categoria nascosta|Categorie nascoste}}',
-'hidden-category-category' => 'Categorie nascoste', # Name of the category where hidden categories will be listed
-'subcategorycount'         => 'Questa categoria contiene {{PLURAL:$1|una sottocategoria|$1 sottocategorie}}.',
-'listingcontinuesabbrev'   => 'cont.',
+'categories'                     => 'Categorie',
+'categoriespagetext'             => 'Elenco completo delle categorie presenti sul sito.',
+'pagecategories'                 => '{{PLURAL:$1|Categoria|Categorie}}',
+'category_header'                => 'Pagine nella categoria "$1"',
+'subcategories'                  => 'Sottocategorie',
+'category-media-header'          => 'File nella categoria "$1"',
+'category-empty'                 => "''Al momento la categoria non contiene alcuna pagina né file multimediale.''",
+'hidden-categories'              => '{{PLURAL:$1|Categoria nascosta|Categorie nascoste}}',
+'hidden-category-category'       => 'Categorie nascoste', # Name of the category where hidden categories will be listed
+'category-subcat-count'          => "{{PLURAL:$2|Questa categoria contiene un'unica sottocategoria, indicata di seguito.|Questa categoria contiene {{PLURAL:$1|la sottocategoria indicata|le $1 sottocategorie indicate}} di seguito, su un totale di $2.}}",
+'category-subcat-count-limited'  => 'Questa categoria contiene {{PLURAL:$1|una sottocategoria, indicata|$1 sottocategorie, indicate}} di seguito.',
+'category-article-count'         => "{{PLURAL:$2|Questa categoria contiene un'unica pagina, indicata di seguito.|Questa categoria contiene {{PLURAL:$1|la pagina indicata|le $1 pagine indicate}} di seguito, su un totale di $2.}}",
+'category-article-count-limited' => 'Questa categoria contiene {{PLURAL:$1|la pagina indicata|le $1 pagine indicate}} di seguito.',
+'category-file-count'            => '{{PLURAL:$2|Questa categoria contiene un solo file, indicato di seguito.|Questa categoria contiene {{PLURAL:$1|un file, indicato|$1 file, indicati}} di seguito, su un totale di $2.}}',
+'category-file-count-limited'    => 'Questa categoria contiene {{PLURAL:$1|il file indicato|i $1 file indicati}} di seguito.',
+'listingcontinuesabbrev'         => 'cont.',
 
 'mainpagetext'      => "<big>'''Installazione di MediaWiki completata correttamente.'''</big>",
 'mainpagedocfooter' => "Consultare la [http://meta.wikimedia.org/wiki/Aiuto:Sommario Guida utente] per maggiori informazioni sull'uso di questo software wiki.
@@ -736,7 +742,6 @@ La motivazione del blocco fornita da $3 è la seguente: ''$2''",
 'revnotfound'         => 'Versione non trovata',
 'revnotfoundtext'     => 'La versione richiesta della pagina non è stata trovata.
 Verificare la URL usata per accedere a questa pagina.',
-'loadhist'            => 'Caricamento cronologia di questa pagina',
 'currentrev'          => 'Versione corrente',
 'revisionasof'        => 'Versione del $1',
 'revision-info'       => 'Versione del $1, autore: $2',
@@ -746,7 +751,6 @@ Verificare la URL usata per accedere a questa pagina.',
 'cur'                 => 'corr',
 'next'                => 'succ',
 'last'                => 'prec',
-'orig'                => 'orig',
 'page_first'          => 'prima',
 'page_last'           => 'ultima',
 'histlegend'          => "Confronto tra versioni: selezionare le caselle corrispondenti alle versioni desiderate e premere Invio o il pulsante in basso.
@@ -863,6 +867,7 @@ Gli altri amministratori del sito potranno accedere comunque ai contenuti nascos
 'showingresultsnum'     => "Di seguito {{PLURAL:$3|viene presentato '''1''' risultato|vengono presentati '''$3''' risultati}} a partire dal numero '''$2'''.",
 'nonefound'             => '<strong>Nota</strong>: alcune parole comuni nella lingua inglese, come  "zero" o "more", non sono indicizzate e possono quindi dare luogo a risultati nulli, così come l\'indicazione di più termini da ricercare (solo le pagine che contengano tutti i termini richiesti vengono visualizzate fra i risultati).',
 'powersearch'           => 'Ricerca',
+'powersearch-legend'    => 'Ricerca avanzata',
 'powersearchtext'       => 'Ricerca nei seguenti namespace:<br />$1<br />$2 Mostra i redirect<br />Criteri di ricerca: $3 $9',
 'searchdisabled'        => 'La ricerca interna di {{SITENAME}} non è attiva; nel frattempo si può provare ad usare un motore di ricerca esterno come Google. (Si noti però che i contenuti di {{SITENAME}} presenti in tali motori potrebbero non essere aggiornati.)',
 
@@ -928,6 +933,7 @@ Gli altri amministratori del sito potranno accedere comunque ai contenuti nascos
 'files'                    => 'File',
 
 # User rights
+'userrights'                       => 'Gestione dei permessi relativi agli utenti', # Not used as normal message but as header for the special page itself
 'userrights-lookup-user'           => 'Gestione dei gruppi utente',
 'userrights-user-editname'         => 'Inserire il nome utente:',
 'editusergroup'                    => 'Modifica gruppi utente',
@@ -1114,6 +1120,9 @@ PICT # misc.
 'upload_source_file' => ' (un file sul proprio computer)',
 
 # Special:Imagelist
+'imagelist-summary'     => "Questa pagina speciale mostra tutti i file caricati.
+I file caricati più di recente vengono mostrati all'inizio della lista.
+Per modificare l'ordinamento, fare clic sull'intestazione della colonna prescelta.",
 'imagelist_search_for'  => 'Ricerca immagini per nome:',
 'imgdesc'               => 'disc',
 'imgfile'               => 'file',
@@ -1146,6 +1155,7 @@ PICT # misc.
 'noimage'                   => 'Un file con questo nome non esiste, vuoi $1 tu?',
 'noimage-linktext'          => 'caricarlo ora',
 'uploadnewversion-linktext' => 'Carica una nuova versione di questo file',
+'imagepage-searchdupe'      => 'Ricerca dei file duplicati',
 
 # File reversion
 'filerevert'                => 'Ripristina $1',
@@ -1261,7 +1271,6 @@ Ciascuna riga contiene i collegamenti al primo ed al secondo redirect, oltre all
 'mostcategories'          => 'Voci con più categorie',
 'mostimages'              => 'File più richiamati',
 'mostrevisions'           => 'Voci con più revisioni',
-'allpages'                => 'Tutte le pagine',
 'prefixindex'             => 'Indice delle voci per lettere iniziali',
 'shortpages'              => 'Pagine più corte',
 'longpages'               => 'Pagine più lunghe',
@@ -1296,13 +1305,6 @@ Ciascuna riga contiene i collegamenti al primo ed al secondo redirect, oltre all
 'booksources-go'            => 'Vai',
 'booksources-text'          => 'Di seguito viene presentato un elenco di collegamenti verso siti esterni che vendono libri nuovi e usati, attraverso i quali è possibile ottenere maggiori informazioni sul testo cercato.',
 
-'categoriespagetext' => 'Elenco completo delle categorie presenti sul sito.',
-'data'               => 'Dati',
-'userrights'         => 'Gestione dei permessi relativi agli utenti',
-'groups'             => 'Gruppi di utenti',
-'alphaindexline'     => 'da $1 a $2',
-'version'            => 'Versione',
-
 # Special:Log
 'specialloguserlabel'  => 'Utente:',
 'speciallogtitlelabel' => 'Titolo:',
@@ -1315,6 +1317,8 @@ Ciascuna riga contiene i collegamenti al primo ed al secondo redirect, oltre all
 'log-title-wildcard'   => 'Ricerca dei titoli che iniziano con',
 
 # Special:Allpages
+'allpages'          => 'Tutte le pagine',
+'alphaindexline'    => 'da $1 a $2',
 'nextpage'          => 'Pagina successiva ($1)',
 'prevpage'          => 'Pagina precedente ($1)',
 'allpagesfrom'      => 'Mostra le pagine a partire da:',
@@ -1959,11 +1963,12 @@ $1',
 # Special:Newimages
 'newimages'             => 'Galleria dei nuovi file',
 'imagelisttext'         => "La lista presentata di seguito, costituita da {{PLURAL:$1|un file|'''$1''' file}}, è ordinata per $2.",
+'newimages-summary'     => 'Questa pagina speciale mostra i file caricati più di recente',
 'showhidebots'          => '($1 i bot)',
 'noimages'              => "Non c'è nulla da vedere.",
 'ilsubmit'              => 'Ricerca',
 'bydate'                => 'data',
-'sp-newimages-showfrom' => 'Mostra i file più recenti a partire da $1',
+'sp-newimages-showfrom' => 'Mostra i file più recenti a partire dalle ore $2 del $1',
 
 # Bad image list
 'bad_image_list' => "Il formato è il seguente:
@@ -2387,6 +2392,7 @@ Usare l\'anteprima standard.',
 'unknown_extension_tag' => 'Tag estensione sconosciuto: "$1"',
 
 # Special:Version
+'version'                          => 'Versione', # Not used as normal message but as header for the special page itself
 'version-extensions'               => 'Estensioni installate',
 'version-specialpages'             => 'Pagine speciali',
 'version-parserhooks'              => 'Hook del parser',
@@ -2413,5 +2419,17 @@ Usare l\'anteprima standard.',
 'filepath-summary' => 'Questa pagina speciale restituisce il percorso completo di un file. Le immagini vengono mostrate alla massima risoluzione disponibile, per gli altri tipi di file viene avviato direttamente il programma associato.
 
 Inserire il nome del file senza il prefisso "{{ns:image}}:"',
+
+# Special:FileDuplicateSearch
+'fileduplicatesearch'          => 'Ricerca dei file duplicati',
+'fileduplicatesearch-summary'  => "Ricerca di eventuali duplicati del file in base al valore di ''hash''.
+
+Inserire il nome del file senza il prefisso \"{{ns:image}}:\"",
+'fileduplicatesearch-legend'   => 'Ricerca di un duplicato',
+'fileduplicatesearch-filename' => 'Nome del file:',
+'fileduplicatesearch-submit'   => 'Ricerca',
+'fileduplicatesearch-info'     => '$1 × $2 pixel<br />Dimensioni: $3<br />Tipo MIME: $4',
+'fileduplicatesearch-result-1' => 'Non esistono duplicati identici al file "$1".',
+'fileduplicatesearch-result-n' => '{{PLURAL:$2|Esiste un duplicato identico|Esistono $2 duplicati identici}} al file "$1".',
 
 );

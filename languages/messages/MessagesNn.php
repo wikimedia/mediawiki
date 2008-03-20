@@ -350,13 +350,13 @@ $messages = array(
 
 # Categories related messages
 'categories'             => '{{PLURAL:$1|Kategori|Kategoriar}}',
+'categoriespagetext'     => 'Wikien har følgjande kategoriar.',
 'pagecategories'         => '{{PLURAL:$1|Kategori|Kategoriar}}',
 'category_header'        => 'Artiklar i kategorien «$1»',
 'subcategories'          => 'Underkategoriar',
 'category-media-header'  => 'Media i kategorien «$1»',
 'category-empty'         => "''Denne kategorien inneheld for tida ingen sider eller anna media.''",
 'hidden-categories'      => '{{PLURAL:$1|Gøymd kategori|Gøymde kategoriar}}',
-'subcategorycount'       => 'Det er {{PLURAL:$1|éin underkategori|$1 underkategoriar}} av denne kategorien.',
 'listingcontinuesabbrev' => 'vidare',
 
 'mainpagetext'      => 'MediaWiki er no installert.',
@@ -831,7 +831,6 @@ Grunnen som vart gjeven av $3 er ''$2''",
 'nohistory'           => 'Det finst ikkje nokon historikk for denne sida.',
 'revnotfound'         => 'Fann ikkje versjonen',
 'revnotfoundtext'     => 'Den gamle versjonen av sida du spurde etter finst ikkje. Sjekk nettadressa du brukte for å komma deg åt denne sida.',
-'loadhist'            => 'Lastar historikk',
 'currentrev'          => 'Noverande versjon',
 'revisionasof'        => 'Versjonen frå $1',
 'revision-info'       => 'Versjonen frå $1 av $2',
@@ -841,7 +840,6 @@ Grunnen som vart gjeven av $3 er ''$2''",
 'cur'                 => 'no',
 'next'                => 'neste',
 'last'                => 'førre',
-'orig'                => 'original',
 'page_first'          => 'fyrste',
 'page_last'           => 'siste',
 'histlegend'          => 'Merk av for dei versjonane du vil samanlikne og trykk [Enter] eller klikk på knappen nedst på sida.<br />Forklaring: (no) = skilnad frå den noverande versjonen, (førre) = skilnad frå den førre versjonen, <b>s</b> = småplukk',
@@ -1015,6 +1013,7 @@ Andre administratorar på {{SITENAME}} kan framleis sjå det gøymde innhaldet o
 'files'                    => 'Filer',
 
 # User rights
+'userrights'                       => 'Administrering av brukartilgang', # Not used as normal message but as header for the special page itself
 'userrights-lookup-user'           => 'Administrer brukargrupper',
 'userrights-user-editname'         => 'Skriv inn brukarnamn:',
 'editusergroup'                    => 'Endre brukargrupper',
@@ -1330,7 +1329,6 @@ Alle sidene er vortne viste {{PLURAL:$3|'''éin''' gong|'''$3''' gonger}} og end
 'mostcategories'          => 'Sidene med flest kategoriar',
 'mostimages'              => 'Mest brukte filer',
 'mostrevisions'           => 'Sidene med flest endringar',
-'allpages'                => 'Alle sider',
 'prefixindex'             => 'Prefiksindeks',
 'shortpages'              => 'Korte sider',
 'longpages'               => 'Lange sider',
@@ -1364,13 +1362,6 @@ Alle sidene er vortne viste {{PLURAL:$3|'''éin''' gong|'''$3''' gonger}} og end
 'booksources-go'            => 'Gå',
 'booksources-text'          => 'Nedanfor finn du ei liste over lenkjer til andre nettstader som sel nye og brukte bøker, og desse kan ha meir informasjon om bøker du leitar etter:',
 
-'categoriespagetext' => 'Wikien har følgjande kategoriar.',
-'data'               => 'Data',
-'userrights'         => 'Administrering av brukartilgang',
-'groups'             => 'Brukargrupper',
-'alphaindexline'     => '$1 til $2',
-'version'            => 'Versjon',
-
 # Special:Log
 'specialloguserlabel'  => 'Brukar:',
 'speciallogtitlelabel' => 'Tittel:',
@@ -1383,6 +1374,8 @@ Alle sidene er vortne viste {{PLURAL:$3|'''éin''' gong|'''$3''' gonger}} og end
 'log-title-wildcard'   => 'Søk i titlar som byrjar med denne teksten',
 
 # Special:Allpages
+'allpages'          => 'Alle sider',
+'alphaindexline'    => '$1 til $2',
 'nextpage'          => 'Neste side ($1)',
 'prevpage'          => 'Førre side ($1)',
 'allpagesfrom'      => 'Vis sider frå:',
@@ -1733,7 +1726,7 @@ IP-adresser som blir automatisk blokkerte er ikkje lista her. Sjå [[Special:Ipb
 'locknoconfirm'       => 'Du har ikkje stadfest handlinga.',
 'lockdbsuccesssub'    => 'Databasen er no skriveverna',
 'unlockdbsuccesssub'  => 'Skrivevernet på databasen er no oppheva',
-'lockdbsuccesstext'   => 'Databasen er no skriveverna. <br />Hugs å oppheve skrivevernet når du er ferdig med vedlikehaldet.',
+'lockdbsuccesstext'   => 'Databasen er no skriveverna. <br />Hugs å [[Special:Unlockdb|oppheve skrivevernet]] når du er ferdig med vedlikehaldet.',
 'unlockdbsuccesstext' => 'Skrivevernet er oppheva.',
 'databasenotlocked'   => 'Databasen er ikkje låst.',
 
@@ -1962,7 +1955,7 @@ For å eksportere bruker du [[Special:Export|eksportsida]] på kjeldewikien; hug
 'noimages'              => 'Her er ingen filer som kan visast.',
 'ilsubmit'              => 'Søk',
 'bydate'                => 'etter dato',
-'sp-newimages-showfrom' => 'Vis nye filer frå og med $1',
+'sp-newimages-showfrom' => 'Vis nye filer frå og med $2 $1',
 
 # Bad image list
 'bad_image_list' => 'Formatet er slik:
@@ -2323,6 +2316,7 @@ $1',
 'unknown_extension_tag' => 'Ukjend tilleggsmerking «$1»',
 
 # Special:Version
+'version'                          => 'Versjon', # Not used as normal message but as header for the special page itself
 'version-extensions'               => 'Installerte utvidingar',
 'version-specialpages'             => 'Spesialsider',
 'version-parserhooks'              => 'Parsertillegg',

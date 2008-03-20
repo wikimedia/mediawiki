@@ -318,8 +318,6 @@ $messages = array(
 'categoriespagetext'             => 'Les catégories suivantes existent dans le wiki.',
 'special-categories-sort-count'  => 'tri par compte',
 'special-categories-sort-abc'    => 'tri alphabétique',
-'special-categories-sort-asc'    => 'croissant',
-'special-categories-sort-desc'   => 'décroissant',
 'pagecategories'                 => '{{PLURAL:$1|Catégorie|Catégories}}',
 'category_header'                => 'Pages dans la catégorie « $1 »',
 'subcategories'                  => 'Sous-catégories',
@@ -997,7 +995,7 @@ $2 Inclure les pages de redirection<br /> Rechercher $3 $9',
 'files'                    => 'Fichiers',
 
 # User rights
-'userrights'                       => 'Gestion des droits utilisateur',
+'userrights'                       => 'Gestion des droits utilisateur', # Not used as normal message but as header for the special page itself
 'userrights-lookup-user'           => 'Gestion des droits utilisateur',
 'userrights-user-editname'         => 'Entrez un nom d’utilisateur :',
 'editusergroup'                    => 'Modification des groupes utilisateurs',
@@ -1233,7 +1231,7 @@ Un clic en tête de colonne change l’ordre d’affichage.',
 
 # File deletion
 'filedelete'                  => 'Supprimer $1',
-'filedelete-legend'           => 'Suprimer le fichier',
+'filedelete-legend'           => 'Supprimer le fichier',
 'filedelete-intro'            => "Vous êtes en train de supprimer '''[[Media:$1|$1]]'''.",
 'filedelete-intro-old'        => '<span class="plainlinks">Vous êtes en train d’effacer la version de \'\'\'[[Media:$1|$1]]\'\'\' du [$4 $2 à $3].</span>',
 'filedelete-comment'          => 'Commentaire :',
@@ -1362,6 +1360,8 @@ Il y a {{PLURAL:$7|'''$7''' article|'''$7''' articles}} dans [[meta:Help:Job_que
 'notargettext'            => 'Indiquez une page cible ou un utilisateur cible.',
 'pager-newer-n'           => '{{PLURAL:$1|1 plus récente|$1 plus récentes}}',
 'pager-older-n'           => '{{PLURAL:$1|1 plus ancienne|$1 plus anciennes}}',
+'pager-sort-asc'          => 'croissant',
+'pager-sort-desc'         => 'décroissant',
 
 # Book sources
 'booksources'               => 'Ouvrages de référence',
@@ -2467,7 +2467,7 @@ Essayez la prévisualisation normale.',
 'unknown_extension_tag' => 'Balise d’extension « $1 » inconnue',
 
 # Special:Version
-'version'                          => 'Version',
+'version'                          => 'Version', # Not used as normal message but as header for the special page itself
 'version-extensions'               => 'Extensions installées',
 'version-specialpages'             => 'Pages spéciales',
 'version-parserhooks'              => 'Extensions du parseur',
@@ -2508,4 +2508,3 @@ Entrez le nom du fichier sans le préfixe « {{ns:image}}: ».',
 'fileduplicatesearch-result-n' => 'Le fichier « $1 » a {{PLURAL:$2|1 double identique|$2 doubles identiques}}.',
 
 );
-

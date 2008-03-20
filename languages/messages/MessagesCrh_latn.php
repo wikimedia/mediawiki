@@ -208,12 +208,12 @@ $messages = array(
 
 # Categories related messages
 'categories'             => 'Saife kategoriyaları',
+'categoriespagetext'     => 'Vikide aşağıdaki kategoriyalar mevcüttir.',
 'pagecategories'         => '{{PLURAL:$1|Saifeniñ kategoriyası|Saifeniñ kategoriyaları}}',
 'category_header'        => '"$1" kategoriyasındaki saifeler',
 'subcategories'          => 'Alt kategoriyalar',
 'category-media-header'  => '"$1" kategoriyasındaki media faylları',
 'category-empty'         => "''İşbu kategoriyada iç bir saife ya da media fayl yoq.''",
-'subcategorycount'       => 'Bu kategoriyada {{PLURAL:$1|1|$1}} alt kategoriya bar.',
 'listingcontinuesabbrev' => ' (devam)',
 
 'linkprefix'        => '/^(.*?)([a-zâçğıñöşüA-ZÂÇĞİÑÖŞÜa-яёА-ЯЁ«„]+)$/sDu',
@@ -693,7 +693,6 @@ $3 mına böyle bir sebep belgiledi: ''$2''",
 'nohistory'           => 'Bu saifeniñ keçmiş versiyası yoq.',
 'revnotfound'         => 'Versiya tapılmadı',
 'revnotfoundtext'     => 'Saifeniñ eski versiyası tapılmadı. Lütfen, bu saifege kirmek içün qullanğan bağlantıñıznıñ doğrulığını teşkeriñiz.',
-'loadhist'            => 'Saife keçmişi yüklene',
 'currentrev'          => 'Ağımdaki versiya',
 'revisionasof'        => 'Saifeniñ $1 tarihındaki alı',
 'revision-info'       => 'Saifeniñ $2 tarafından oluştırılğan $1 tarihındaki alı',
@@ -703,7 +702,6 @@ $3 mına böyle bir sebep belgiledi: ''$2''",
 'cur'                 => 'farq',
 'next'                => 'soñraki',
 'last'                => 'soñki',
-'orig'                => 'asıl',
 'page_first'          => 'ilk',
 'page_last'           => 'soñki',
 'histlegend'          => "(farq) = ağımdaki versiya ile aradaki farq,
@@ -816,6 +814,7 @@ Vikide bu saifege oşağan saifelerni [[{{ns:special}}:Search|tapıp baqıñız]
 'files'                 => 'Fayllar',
 
 # User rights
+'userrights'               => 'Qullanıcı aqları idare etüvi.', # Not used as normal message but as header for the special page itself
 'userrights-lookup-user'   => 'Qullanıcı gruppalarnını idare et',
 'userrights-user-editname' => 'Öz qullanıcı adıñıznen kiriñiz:',
 'editusergroup'            => 'Qullanıcı gruppaları nizamla',
@@ -1079,7 +1078,6 @@ Toplam saife kösterilme sayısı '''\$3''', deñişiklik başına kösterme say
 'mostcategories'          => 'Eñ ziyade kategoriyağa bağlanğan saifeler',
 'mostimages'              => 'Eñ çoq qullanılğan resimler',
 'mostrevisions'           => 'Eñ çoq deñişiklikke oğrağan saifeler',
-'allpages'                => 'Bütün saifeler',
 'prefixindex'             => 'Prefiks cedveli',
 'shortpages'              => 'Qısqa saifeler',
 'longpages'               => 'Uzun saifeler',
@@ -1105,13 +1103,6 @@ Toplam saife kösterilme sayısı '''\$3''', deñişiklik başına kösterme say
 'booksources-search-legend' => 'Kitaplar menbasını qıdıruv',
 'booksources-go'            => 'Qıdır',
 
-'categoriespagetext' => 'Vikide aşağıdaki kategoriyalar mevcüttir.',
-'data'               => 'Malümatlar',
-'userrights'         => 'Qullanıcı aqları idare etüvi.',
-'groups'             => 'Qullanıcı gruppaları',
-'alphaindexline'     => '$1-den $2-ge',
-'version'            => 'Versiya',
-
 # Special:Log
 'specialloguserlabel'  => 'Qullanıcı:',
 'speciallogtitlelabel' => 'Serleva:',
@@ -1123,6 +1114,8 @@ Toplam saife kösterilme sayısı '''\$3''', deñişiklik başına kösterme say
 'log-title-wildcard'   => 'Bu simvollardan başlanğan serlevalarnı qıdır',
 
 # Special:Allpages
+'allpages'          => 'Bütün saifeler',
+'alphaindexline'    => '$1-den $2-ge',
 'nextpage'          => 'Soñraki saife ($1)',
 'prevpage'          => 'Evelki saife ($1)',
 'allpagesfrom'      => 'Cedvelge çekmege başlanılacaq arifler:',
@@ -1790,5 +1783,8 @@ $1',
 'watchlisttools-view' => 'Deñişikliklerni köster',
 'watchlisttools-edit' => 'Közetüv cedvelini kör ve deñiştir',
 'watchlisttools-raw'  => 'Közetüv cedvelini adiy metin olaraq deñiştir',
+
+# Special:Version
+'version' => 'Versiya', # Not used as normal message but as header for the special page itself
 
 );

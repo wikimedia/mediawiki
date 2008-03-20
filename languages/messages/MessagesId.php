@@ -9,6 +9,7 @@
  * @author Borgx
  * @author Nike
  * @author SPQRobin
+ * @author Siebrand
  */
 
 /**
@@ -380,6 +381,9 @@ $messages = array(
 
 # Categories related messages
 'categories'                     => 'Daftar kategori',
+'categoriespagetext'             => 'Kategori-kategori berikut mengandung halaman atau media.',
+'special-categories-sort-count'  => 'urutkan menurut jumlah',
+'special-categories-sort-abc'    => 'urutkan menurut abjad',
 'pagecategories'                 => '{{PLURAL:$1|Kategori|Kategori}}',
 'category_header'                => 'Artikel dalam kategori "$1"',
 'subcategories'                  => 'Subkategori',
@@ -387,7 +391,6 @@ $messages = array(
 'category-empty'                 => "''Kategori ini saat ini tak memiliki artikel atau media.''",
 'hidden-categories'              => '{{PLURAL:$1|Kategori tersembunyi|Kategori tersembunyi}}',
 'hidden-category-category'       => 'Kategori tersembunyi', # Name of the category where hidden categories will be listed
-'subcategorycount'               => 'Ada $1 {{PLURAL:$1|subkategori|subkategori}} dalam kategori ini.',
 'category-subcat-count'          => '{{PLURAL:$2|Kategori ini hanya memiliki subkategori berikut.|Ditampilkan {{PLURAL:$1|subkategori|$1 subkategori}} yang termasuk dalam kategori ini dari total $2.}}',
 'category-subcat-count-limited'  => 'Kategori ini memiliki {{PLURAL:$1|subkategori|$1 subkategori}} berikut.',
 'category-article-count'         => '{{PLURAL:$2|Kategori ini hanya memiliki halaman berikut.|Ditampilkan {{PLURAL:$1|halaman|$1 halaman}} yang termasuk dalam kategori ini dari total $2.}}',
@@ -809,7 +812,9 @@ ID pemblokiran Anda adalah $5. Tolong sertakan ID ini dalam setiap pertanyaan An
 'yourtext'                  => 'Teks Anda',
 'storedversion'             => 'Versi tersimpan',
 'nonunicodebrowser'         => '<strong>PERINGATAN: Penjelajah web Anda tidak mendukung Unicode, silakan ganti penjelajah web Anda sebelum menyunting artikel.</strong>',
-'editingold'                => "'''Peringatan:''' Anda menyunting revisi lama suatu halaman. Jika Anda menyimpannya, perubahan-perubahan yang dibuat sejak revisi ini akan hilang.",
+'editingold'                => '<strong>Peringatan:
+Anda menyunting revisi lama suatu halaman.
+Jika Anda menyimpannya, perubahan-perubahan yang dibuat sejak revisi ini akan hilang.</strong>',
 'yourdiff'                  => 'Perbedaan',
 'copyrightwarning'          => 'Perhatikan bahwa semua kontribusi terhadap {{SITENAME}} dianggap dilisensikan sesuai dengan $2 (lihat $1 untuk informasi lebih lanjut). Jika Anda tidak ingin tulisan Anda disunting dan disebarkan ke halaman web yang lain, jangan kirimkan artikel Anda ke sini.<br />Anda juga berjanji bahwa ini adalah hasil karya Anda sendiri, atau disalin dari sumber milik umum atau sumber bebas yang lain. <strong>JANGAN KIRIMKAN KARYA YANG DILINDUNGI HAK CIPTA TANPA IZIN!</strong>',
 'copyrightwarning2'         => 'Perhatikan bahwa semua kontribusi terhadap {{SITENAME}} dapat disunting, diubah, atau dihapus oleh penyumbang lainnya. Jika Anda tidak ingin tulisan Anda disunting orang lain, jangan kirimkan artikel Anda ke sini.<br />Anda juga berjanji bahwa ini adalah hasil karya Anda sendiri, atau disalin dari sumber milik umum atau sumber bebas yang lain (lihat $1 untuk informasi lebih lanjut). <strong>JANGAN KIRIMKAN KARYA YANG DILINDUNGI HAK CIPTA TANPA IZIN!</strong>',
@@ -853,7 +858,6 @@ Alasan yang diberikan oleh $3 adalah ''$2''",
 'nohistory'           => 'Tidak ada sejarah penyuntingan untuk halaman ini',
 'revnotfound'         => 'Revisi tidak ditemukan',
 'revnotfoundtext'     => 'Revisi lama halaman yang Anda minta tidak dapat ditemukan. Silakan periksa URL yang digunakan untuk mengakses halaman ini.',
-'loadhist'            => 'Memuat halaman sejarah',
 'currentrev'          => 'Revisi sekarang',
 'revisionasof'        => 'Revisi per $1',
 'revision-info'       => 'Revisi per $1; $2',
@@ -863,7 +867,6 @@ Alasan yang diberikan oleh $3 adalah ''$2''",
 'cur'                 => 'skr',
 'next'                => 'selanjutnya',
 'last'                => 'akhir',
-'orig'                => 'asli',
 'page_first'          => 'pertama',
 'page_last'           => 'terakhir',
 'histlegend'          => "Pilih dua tombol radio lalu tekan tombol ''bandingkan'' untuk membandingkan versi. Klik suatu tanggal untuk melihat versi halaman pada tanggal tersebut.<br />(skr) = perbedaan dengan versi sekarang, (akhir) = perbedaan dengan versi sebelumnya, '''k''' = suntingan kecil, '''b''' = suntingan bot, → = suntingan bagian, ← = ringkasan otomatis",
@@ -1037,6 +1040,7 @@ Pengurus lain akan dapat mengakses isi tersebunyi dan dapat membatalkan penghapu
 'files'                    => 'Berkas',
 
 # User rights
+'userrights'                       => 'Manajemen hak pengguna', # Not used as normal message but as header for the special page itself
 'userrights-lookup-user'           => 'Mengatur kelompok pengguna',
 'userrights-user-editname'         => 'Masukkan nama pengguna:',
 'editusergroup'                    => 'Sunting kelompok pengguna',
@@ -1352,7 +1356,6 @@ Telah dimuat sejumlah '''$8''' berkas dan sedang terjadi '''$7''' [http://meta.w
 'mostcategories'          => 'Artikel dengan kategori terbanyak',
 'mostimages'              => 'Berkas yang tersering digunakan',
 'mostrevisions'           => 'Artikel dengan perubahan terbanyak',
-'allpages'                => 'Daftar halaman',
 'prefixindex'             => 'Daftar halaman dengan awalan',
 'shortpages'              => 'Halaman pendek',
 'longpages'               => 'Halaman panjang',
@@ -1386,17 +1389,6 @@ Telah dimuat sejumlah '''$8''' berkas dan sedang terjadi '''$7''' [http://meta.w
 'booksources-go'            => 'Cari',
 'booksources-text'          => 'Di bawah ini adalah daftar pranala ke situs lain yang menjual buku baru dan bekas, dan mungkin juga mempunyai informasi lebih lanjut mengenai buku yang sedang Anda cari:',
 
-'categoriespagetext' => 'Kategori-kategori berikut mengandung halaman atau media.',
-'special-categories-sort-count' => 'urutkan menurut jumlah',
-'special-categories-sort-abc'   => 'urutkan menurut abjad',
-'special-categories-sort-asc'   => 'naik',
-'special-categories-sort-desc'  => 'turun',
-'data'               => 'Data',
-'userrights'         => 'Manajemen hak pengguna',
-'groups'             => 'Kelompok pengguna',
-'alphaindexline'     => '$1 ke $2',
-'version'            => 'Versi',
-
 # Special:Log
 'specialloguserlabel'  => 'Pengguna:',
 'speciallogtitlelabel' => 'Judul:',
@@ -1409,6 +1401,8 @@ Telah dimuat sejumlah '''$8''' berkas dan sedang terjadi '''$7''' [http://meta.w
 'log-title-wildcard'   => 'Cari judul yang diawali dengan teks tersebut',
 
 # Special:Allpages
+'allpages'          => 'Daftar halaman',
+'alphaindexline'    => '$1 ke $2',
 'nextpage'          => 'Halaman selanjutnya ($1)',
 'prevpage'          => 'Halaman sebelumnya ($1)',
 'allpagesfrom'      => 'Tampilkan halaman dimulai dari:',
@@ -2056,7 +2050,6 @@ Hanya butir daftar (baris yang diawali dengan tanda *) yang diperhitungkan. Pran
 Pranala-pranala selanjutnya pada baris yang sama dianggap sebagai pengecualian, yaitu artikel yang dapat menampilkan berkas tersebut.',
 
 # Metadata
-'metadata'          => 'Metadata',
 'metadata-help'     => 'Berkas ini mengandung informasi tambahan yang mungkin ditambahkan oleh kamera digital atau pemindai yang digunakan untuk membuat atau mendigitalisasi berkas. Jika berkas ini telah mengalami modifikasi, detil yang ada mungkin tidak secara penuh merefleksikan informasi dari gambar yang sudah dimodifikasi ini.',
 'metadata-expand'   => 'Tampilkan detil tambahan',
 'metadata-collapse' => 'Sembunyikan detil tambahan',
@@ -2192,7 +2185,6 @@ Pranala-pranala selanjutnya pada baris yang sama dianggap sebagai pengecualian, 
 
 'exif-unknowndate' => 'Tanggal tak diketahui',
 
-'exif-orientation-1' => 'Normal', # 0th row: top; 0th column: left
 'exif-orientation-2' => 'Dibalik horizontal', # 0th row: top; 0th column: right
 'exif-orientation-3' => 'Diputar 180°', # 0th row: bottom; 0th column: right
 'exif-orientation-4' => 'Dibalik vertikal', # 0th row: bottom; 0th column: left
@@ -2207,7 +2199,6 @@ Pranala-pranala selanjutnya pada baris yang sama dianggap sebagai pengecualian, 
 'exif-componentsconfiguration-0' => 'tak tersedia',
 
 'exif-exposureprogram-0' => 'Tak terdefinisi',
-'exif-exposureprogram-1' => 'Manual',
 'exif-exposureprogram-2' => 'Program normal',
 'exif-exposureprogram-3' => 'Prioritas bukaan',
 'exif-exposureprogram-4' => 'Prioritas penutup',
@@ -2242,7 +2233,6 @@ Pranala-pranala selanjutnya pada baris yang sama dianggap sebagai pengecualian, 
 'exif-lightsource-17'  => 'Cahaya standar A',
 'exif-lightsource-18'  => 'Cahaya standar B',
 'exif-lightsource-19'  => 'Cahaya standar C',
-'exif-lightsource-24'  => 'ISO studio tungsten',
 'exif-lightsource-255' => 'Sumber cahaya lain',
 
 'exif-focalplaneresolutionunit-2' => 'inci',
@@ -2273,10 +2263,6 @@ Pranala-pranala selanjutnya pada baris yang sama dianggap sebagai pengecualian, 
 'exif-scenecapturetype-3' => 'Pemandangan malam',
 
 'exif-gaincontrol-0' => 'Tak ada',
-'exif-gaincontrol-1' => 'Low gain up',
-'exif-gaincontrol-2' => 'High gain up',
-'exif-gaincontrol-3' => 'Low gain down',
-'exif-gaincontrol-4' => 'High gain down',
 
 'exif-contrast-0' => 'Normal',
 'exif-contrast-1' => 'Lembut',
@@ -2450,6 +2436,7 @@ Coba dengan pratayang normal.',
 'unknown_extension_tag' => 'Tag ekstensi tidak dikenal "$1"',
 
 # Special:Version
+'version'                          => 'Versi', # Not used as normal message but as header for the special page itself
 'version-extensions'               => 'Ekstensi terinstal',
 'version-specialpages'             => 'Halaman istimewa',
 'version-parserhooks'              => 'Kait parser',

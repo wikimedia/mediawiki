@@ -247,16 +247,24 @@ $messages = array(
 'dec'           => 'dec',
 
 # Categories related messages
-'categories'               => 'Kategorier',
-'pagecategories'           => '{{PLURAL:$1|Kategori|Kategorier}}',
-'category_header'          => 'Artikler i kategorien "$1"',
-'subcategories'            => 'Underkategorier',
-'category-media-header'    => 'Medier i kategorien „$1“',
-'category-empty'           => "''Denne kategori indeholder for øjeblikket hverken sider eller medie-filer.''",
-'hidden-categories'        => '{{PLURAL:$1|Skjult kategori|Skjulte kategorier}}',
-'hidden-category-category' => 'Skjulte kategorier', # Name of the category where hidden categories will be listed
-'subcategorycount'         => 'Der er $1 {{PLURAL:$1|underkategori|underkategorier}} i denne kategori.',
-'listingcontinuesabbrev'   => ' forts.',
+'categories'                     => 'Kategorier',
+'categoriespagetext'             => '{{SITENAME}} har følgende kategorier.',
+'special-categories-sort-count'  => 'sorter efter antal',
+'special-categories-sort-abc'    => 'sorter alfabetisk',
+'pagecategories'                 => '{{PLURAL:$1|Kategori|Kategorier}}',
+'category_header'                => 'Artikler i kategorien "$1"',
+'subcategories'                  => 'Underkategorier',
+'category-media-header'          => 'Medier i kategorien „$1“',
+'category-empty'                 => "''Denne kategori indeholder for øjeblikket hverken sider eller medie-filer.''",
+'hidden-categories'              => '{{PLURAL:$1|Skjult kategori|Skjulte kategorier}}',
+'hidden-category-category'       => 'Skjulte kategorier', # Name of the category where hidden categories will be listed
+'category-subcat-count'          => '{{PLURAL:$1|Denne kategori har kun følgende underkategori.|Denne kategori har følgende {{PLURAL:$1|underkategori|$1 underkategorier}}, af i alt $2.}}',
+'category-subcat-count-limited'  => 'Denne kategori har følgende {{PLURAL:$1|underkategori|$1 underkategorier}}.',
+'category-article-count'         => '{{PLURAL:$2|Denne kategori indeholder kun følgende side.|Følgende {{PLURAL:$1|side|$1 sider}} er i denne kategorien, af i alt $2.}}',
+'category-article-count-limited' => 'Følgende {{PLURAL:$1|side|$1 sider}} er i denne kategori.',
+'category-file-count'            => '{{PLURAL:$2|Denne kategori indeholder kun følgende fil.|Følgende {{PLURAL:$1|fil|$1 filer}} er i denne kategori, af i alt $2.}}',
+'category-file-count-limited'    => 'Følgende {{PLURAL:$1|fil|$1 filer}} er i denne kategori.',
+'listingcontinuesabbrev'         => ' forts.',
 
 'mainpagetext'      => 'MediaWiki er nu installeret.',
 'mainpagedocfooter' => 'Se vores engelsksprogede [http://meta.wikimedia.org/wiki/MediaWiki_localisation dokumentation om tilpasning af brugergrænsefladen] og [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide brugervejledningen] for oplysninger om opsætning og anvendelse.',
@@ -742,7 +750,6 @@ denne side er vist nedenfor:",
 'revnotfound'         => 'Versionen er ikke fundet',
 'revnotfoundtext'     => 'Den gamle version af den side du spurgte efter kan
 ikke findes. Kontrollér den URL du brugte til at få adgang til denne side.',
-'loadhist'            => 'Indlæser sidens historik',
 'currentrev'          => 'Nuværende version',
 'revisionasof'        => 'Versionen fra $1',
 'revision-info'       => 'Version fra $1 til $2',
@@ -752,7 +759,6 @@ ikke findes. Kontrollér den URL du brugte til at få adgang til denne side.',
 'cur'                 => 'nuværende',
 'next'                => 'næste',
 'last'                => 'forrige',
-'orig'                => 'originale',
 'page_first'          => 'Startem',
 'page_last'           => 'Enden',
 'histlegend'          => 'Forklaring: (nuværende) = forskel til den nuværende
@@ -860,10 +866,12 @@ Vær opmæksom på at bevare kontinuiteten i sidehistorikken.
 'nextn'                 => 'næste $1',
 'viewprevnext'          => 'Vis ($1) ($2) ($3).',
 'search-result-size'    => '$1 ({{PLURAL:$2|1 ord|$2 ord}})',
+'search-result-score'   => 'Relevans: $1&nbsp;%',
 'showingresults'        => 'Nedenfor vises <b>$1</b> {{PLURAL:$1|resultat|resultater}} startende med nummer <b>$2</b>.',
 'showingresultsnum'     => 'Herunder vises <b>$3</b> {{PLURAL:$3|resultat|resultater}} startende med nummer <b>$2</b>.',
 'nonefound'             => '<strong>Bemærk</strong>: Søgning uden resultat skyldes at man søger efter almindelige ord som "har" og "fra", der ikke er indekseret, eller at man har angivet mere end ét søgeord (da kun sider indeholdende alle søgeordene vil blive fundet).',
 'powersearch'           => 'Søg',
+'powersearch-legend'    => 'Avanceret søg',
 'powersearchtext'       => 'Søg i navnerum:<br />$1<br />$2 List omdirigeringer &nbsp; Søg efter $3 $9',
 'searchdisabled'        => '<p>Beklager! Fuldtekstsøgningen er midlertidigt afbrudt på grund af for stor belastning på serverne. I mellemtidem kan du anvende Google- eller Yahoo!-søgefelterne herunder. Bemærk at deres kopier af {{SITENAME}}s indhold kan være forældet.</p>',
 
@@ -930,6 +938,7 @@ Vær opmæksom på at bevare kontinuiteten i sidehistorikken.
 'files'                    => 'Filer',
 
 # User rights
+'userrights'                       => 'Forvaltning af brugerrettigheder', # Not used as normal message but as header for the special page itself
 'userrights-lookup-user'           => 'Administrér brugergrupper',
 'userrights-user-editname'         => 'Skriv et brugernavn:',
 'editusergroup'                    => 'Redigér brugergrupper',
@@ -1282,8 +1291,6 @@ deraf har '''$2''' (=$4%) $5-rettigheder.",
 'mostimages-summary'              => 'Denne specialside viser en liste med de mest brugte filer.',
 'mostrevisions'                   => 'Sider med de fleste ændringer',
 'mostrevisions-summary'           => 'Denne specialside viser en liste med de sider der har flest ændringer.',
-'allpages'                        => 'Alle artikler',
-'allpages-summary'                => "Denne specialside viser alle sider på {{SITENAME}} fra A til Å, sorteret alfabetisk, først tal, så store bogstaver, små bogstaver og til sidst særtegn. ''A&nbsp;10'' findes før ''AZ''.",
 'prefixindex'                     => 'Alle sider (med præfiks)',
 'prefixindex-summary'             => 'Denne specialside viser alle sider, som begynder med den indtastede tegnkæde („præfiks“). Visningen kan begrænses til et navnerum.',
 'shortpages'                      => 'Korte artikler',
@@ -1319,6 +1326,8 @@ deraf har '''$2''' (=$4%) $5-rettigheder.",
 'notargettext'                    => 'Du har ikke angivet en side eller bruger at udføre denne funktion på.',
 'pager-newer-n'                   => '{{PLURAL:$1|1 nyere|$1 nyere}}',
 'pager-older-n'                   => '{{PLURAL:$1|1 ældre|$1 ældre}}',
+'pager-sort-asc'                  => 'stigende',
+'pager-sort-desc'                 => 'faldende',
 
 # Book sources
 'booksources'               => 'Bogkilder',
@@ -1326,13 +1335,6 @@ deraf har '''$2''' (=$4%) $5-rettigheder.",
 'booksources-search-legend' => 'Søgning efter bøger',
 'booksources-go'            => 'Søg',
 'booksources-text'          => 'Dette er en liste med henvisninger til Internetsider, som sælger nye og brugte bøger. Der kan der også findes yderligere informationer om bøgerne. {{SITENAME}} er ikke forbundet med nogen af dem.',
-
-'categoriespagetext' => '{{SITENAME}} har følgende kategorier.',
-'data'               => 'Data',
-'userrights'         => 'Forvaltning af brugerrettigheder',
-'groups'             => 'Brugergrupper',
-'alphaindexline'     => '$1 til $2',
-'version'            => 'Information om MediaWiki',
 
 # Special:Log
 'specialloguserlabel'  => 'Bruger:',
@@ -1346,6 +1348,9 @@ deraf har '''$2''' (=$4%) $5-rettigheder.",
 'log-title-wildcard'   => 'Titel begynder med …',
 
 # Special:Allpages
+'allpages'          => 'Alle artikler',
+'allpages-summary'  => "Denne specialside viser alle sider på {{SITENAME}} fra A til Å, sorteret alfabetisk, først tal, så store bogstaver, små bogstaver og til sidst særtegn. ''A&nbsp;10'' findes før ''AZ''.",
+'alphaindexline'    => '$1 til $2',
 'nextpage'          => 'Næste side ($1)',
 'prevpage'          => 'Forrige side ($1)',
 'allpagesfrom'      => 'Vis sider startende fra: $1',
@@ -2407,6 +2412,7 @@ Bekræft venligst, at du virkelig vil oprette denne side igen.",
 'unknown_extension_tag' => 'Ukendt extension-tag: $1',
 
 # Special:Version
+'version'                          => 'Information om MediaWiki', # Not used as normal message but as header for the special page itself
 'version-extensions'               => 'Installerede udvidelser',
 'version-specialpages'             => 'Specielle sider',
 'version-parserhooks'              => 'Parser hooks',
@@ -2432,5 +2438,11 @@ Bekræft venligst, at du virkelig vil oprette denne side igen.",
 Billeder bliver vist i fuld opløsning, andre filtyper bliver startet direkte af deres tilknyttede program.
 
 Indtast filnavnet uden "{{ns:image}}:" præfiks.',
+
+# Special:FileDuplicateSearch
+'fileduplicatesearch'          => 'Søg efter dubletfiler',
+'fileduplicatesearch-legend'   => 'Søg efter dublet',
+'fileduplicatesearch-filename' => 'Filnavn:',
+'fileduplicatesearch-submit'   => 'Søg',
 
 );

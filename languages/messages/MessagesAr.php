@@ -453,6 +453,9 @@ $messages = array(
 
 # Categories related messages
 'categories'                     => 'تصنيفات',
+'categoriespagetext'             => 'التصنيفات التالية تحتوي على صفحات أو ميديا.',
+'special-categories-sort-count'  => 'رتب بالعدد',
+'special-categories-sort-abc'    => 'رتب أبجديا',
 'pagecategories'                 => '{{PLURAL:$1|تصنيف|تصنيفات}}',
 'category_header'                => 'الصفحات في التصنيف "$1"',
 'subcategories'                  => 'التصنيفات الفرعية',
@@ -460,7 +463,6 @@ $messages = array(
 'category-empty'                 => "''هذا التصنيف لا يحتوي حاليا على مقالات أو ملفات ميديا.''",
 'hidden-categories'              => '{{PLURAL:$1|تصنيف مخفي|تصنيفات مخفية}}',
 'hidden-category-category'       => 'تصنيفات مخفية', # Name of the category where hidden categories will be listed
-'subcategorycount'               => 'يوجد {{PLURAL:$1|تصنيف فرعي واحد|تصنيفان فرعيان|$1 تصنيفات فرعية|$1 تصنيف فرعي|$1 تصنيفا فرعيا}} في هذا التصنيف.',
 'category-subcat-count'          => '{{PLURAL:$2|هذا التصنيف لديه فقط التصنيف الفرعي التالي.|هذا التصنيف لديه {{PLURAL:$1|تصنيف فرعي|$1 تصنيف فرعي}}، من إجمالي $2.}}',
 'category-subcat-count-limited'  => 'هذا التصنيف لديه {{PLURAL:$1|تصنيف فرعي|$1 تصنيف فرعي}} كما يلي.',
 'category-article-count'         => '{{PLURAL:$2|هذا التصنيف يحتوي فقط على الصفحة التالية.|بالأسفل {{PLURAL:$1|ملف|$1 ملف}} في هذا التصنيف، من إجمالي $2.}}',
@@ -973,7 +975,6 @@ $1 ساعة.',
 'nohistory'           => 'لا يوجد تاريخ للتعديلات لهذه الصفحة.',
 'revnotfound'         => 'النسخة غير موجودة',
 'revnotfoundtext'     => 'لم يتم العثور على النسخة القديمة من الصفحة التي طلبتها. من فضلك تأكد من المسار الذي دخلت به إلى هذه الصفحة.',
-'loadhist'            => 'تحميل تاريخ الصفحة',
 'currentrev'          => 'المراجعة الحالية',
 'revisionasof'        => 'مراجعة $1',
 'revision-info'       => 'مراجعة $1 بواسطة $2',
@@ -983,7 +984,6 @@ $1 ساعة.',
 'cur'                 => 'الحالي',
 'next'                => 'التالي',
 'last'                => 'السابق',
-'orig'                => 'الأصلي',
 'page_first'          => 'الأولى',
 'page_last'           => 'الأخيرة',
 'histlegend'          => 'اختيار الفرق: علم على صناديق النسخ للمقارنة و اضغط قارن بين النسخ المختارة أو الزر بالأسفل.<br />
@@ -1169,6 +1169,7 @@ $1 ساعة.',
 'files'                    => 'ملفات',
 
 # User rights
+'userrights'                       => 'إدارة صلاحيات المستخدم', # Not used as normal message but as header for the special page itself
 'userrights-lookup-user'           => 'إدارة مجموعات المستخدم',
 'userrights-user-editname'         => 'أدخل اسم مستخدم:',
 'editusergroup'                    => 'تعديل مجموعات المستخدم',
@@ -1356,6 +1357,9 @@ PICT # misc.
 'upload_source_file' => ' (ملف على حاسوبك)',
 
 # Special:Imagelist
+'imagelist-summary'     => 'هذه الصفحة الخاصة تعرض كل الملفات المرفوعة.
+افتراضيا آخر الملفات المرفوعة تعرض أعلى القائمة.
+الضغط على رأس العامود تغير الترتيب.',
 'imagelist_search_for'  => 'ابحث عن اسم الميديا:',
 'imgdesc'               => 'وصف',
 'imgfile'               => 'ملف',
@@ -1388,6 +1392,7 @@ PICT # misc.
 'noimage'                   => 'لا يوجد ملف بهذا الاسم، بإمكانك أن تقوم بـ$1.',
 'noimage-linktext'          => 'رفعه',
 'uploadnewversion-linktext' => 'ارفع نسخة جديدة من هذا الملف',
+'imagepage-searchdupe'      => 'بحث عن ملفات مكررة',
 
 # File reversion
 'filerevert'                => 'استرجع $1',
@@ -1508,7 +1513,6 @@ PICT # misc.
 'mostcategories'          => 'أكثر الصفحات تصنيفا',
 'mostimages'              => 'أكثر الملفات ارتباطا',
 'mostrevisions'           => 'أكثر المقالات تعديلا',
-'allpages'                => 'كل الصفحات',
 'prefixindex'             => 'فهرس بادئة',
 'shortpages'              => 'صفحات قصيرة',
 'longpages'               => 'صفحات طويلة',
@@ -1536,6 +1540,8 @@ PICT # misc.
 لعمل هذه الخاصية.',
 'pager-newer-n'           => '{{PLURAL:$1|أجدد 1|أجدد $1}}',
 'pager-older-n'           => '{{PLURAL:$1|أقدم 1|أقدم $1}}',
+'pager-sort-asc'          => 'تصاعديا',
+'pager-sort-desc'         => 'تنازليا',
 
 # Book sources
 'booksources'               => 'مصادر كتاب',
@@ -1543,14 +1549,6 @@ PICT # misc.
 'booksources-isbn'          => 'ردمك:',
 'booksources-go'            => 'اذهب',
 'booksources-text'          => 'توجد أدناه قائمة بوصلات لمواقع أخرى تبيع الكتب الجديدة والمستعملة، أيضا يمكنك أن تحصل على معلومات إضافية عن الكتب التي تبحث عنها من هناك:',
-
-'categoriespagetext' => 'التصنيفات التالية تحتوي على صفحات أو ميديا.',
-'data'               => 'بيانات',
-'userrights'         => 'إدارة صلاحيات المستخدم',
-'groups'             => 'مجموعات المستخدم',
-'isbn'               => 'ردمك',
-'alphaindexline'     => '$1 إلى $2',
-'version'            => 'إصدار',
 
 # Special:Log
 'specialloguserlabel'  => 'المستخدم:',
@@ -1564,6 +1562,8 @@ PICT # misc.
 'log-title-wildcard'   => 'البحث عن عناوين تبدأ بهذا النص',
 
 # Special:Allpages
+'allpages'          => 'كل الصفحات',
+'alphaindexline'    => '$1 إلى $2',
 'nextpage'          => 'الصفحة التالية ($1)',
 'prevpage'          => 'الصفحة السابقة ($1)',
 'allpagesfrom'      => 'عرض الصفحات بدءا من:',
@@ -2229,11 +2229,12 @@ $1',
 # Special:Newimages
 'newimages'             => 'معرض الصور الجديدة',
 'imagelisttext'         => 'فيما يلي قائمة تحوي $1 {{PLURAL:$1|ملف|ملفات}} مرتبة $2.',
+'newimages-summary'     => 'هذه الصفحة الخاصة تعرض آخر الملفات المرفوعة',
 'showhidebots'          => '($1 بوتات)',
 'noimages'              => 'لا شيء للعرض.',
 'ilsubmit'              => 'بحث',
 'bydate'                => 'حسب التاريخ',
-'sp-newimages-showfrom' => 'أظهر الملفات الجديدة بدءا من $1',
+'sp-newimages-showfrom' => 'أظهر الملفات الجديدة بدءا من $2، $1',
 
 # Video information, used by Language::formatTimePeriod() to format lengths in the above messages
 'video-dims'     => '$1، $2×$3',
@@ -2735,6 +2736,7 @@ $1',
 'unknown_extension_tag' => 'وسم امتداد غير معروف "$1"',
 
 # Special:Version
+'version'                          => 'إصدار', # Not used as normal message but as header for the special page itself
 'version-extensions'               => 'الامتدادات المنصبة',
 'version-specialpages'             => 'صفحات خاصة',
 'version-parserhooks'              => 'هوكات البارسر',
@@ -2759,5 +2761,17 @@ $1',
 'filepath-page'    => 'الملف:',
 'filepath-submit'  => 'المسار',
 'filepath-summary' => 'هذه الصفحة الخاصة تعرض المسار الكامل لملف. ستعرض الصور بأقصى دقة، ستعمل أنواع الملفات الأخرى بالبرنامج المخصص لهم مباشرة؛ أدخل اسم الملف بدون البادئة "{{ns:image}}:"',
+
+# Special:FileDuplicateSearch
+'fileduplicatesearch'          => 'بحث عن ملفات مكررة',
+'fileduplicatesearch-summary'  => 'ابحث عن الملفات المكررة بناء على قيمة الهاش الخاصة بها.
+
+أدخل اسم الملف بدون بادئة "{{ns:image}}:".',
+'fileduplicatesearch-legend'   => 'بحث عن مكرر',
+'fileduplicatesearch-filename' => 'اسم الملف:',
+'fileduplicatesearch-submit'   => 'بحث',
+'fileduplicatesearch-info'     => '$1 × $2 بكسل<br />حجم الملف: $3<br />نوع MIME: $4',
+'fileduplicatesearch-result-1' => 'الملف "$1" ليس له تكرار مطابق.',
+'fileduplicatesearch-result-n' => 'الملف "$1" له {{PLURAL:$2|1 تكرار مطابق|$2 تكرار مطابق}}.',
 
 );

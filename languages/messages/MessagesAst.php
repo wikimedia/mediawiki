@@ -149,16 +149,22 @@ $messages = array(
 'dec'           => 'avi',
 
 # Categories related messages
-'categories'               => 'Categoríes',
-'pagecategories'           => '{{PLURAL:$1|Categoría|Categoríes}}',
-'category_header'          => 'Páxines na categoría "$1"',
-'subcategories'            => 'Subcategoríes',
-'category-media-header'    => 'Archivos multimedia na categoría "$1"',
-'category-empty'           => "''Esta categoría nun tien anguaño nengún artículu o ficheru multimedia.''",
-'hidden-categories'        => '{{PLURAL:$1|Categoría oculta|Categoríes ocultes}}',
-'hidden-category-category' => 'Categoríes ocultes', # Name of the category where hidden categories will be listed
-'subcategorycount'         => 'Hai {{PLURAL:$1|una subcategoría|$1 subcategoríes}} nesta categoría.',
-'listingcontinuesabbrev'   => 'cont.',
+'categories'                     => 'Categoríes',
+'categoriespagetext'             => 'Les categoríes que vienen darréu contienen páxines o archivos multimedia.',
+'pagecategories'                 => '{{PLURAL:$1|Categoría|Categoríes}}',
+'category_header'                => 'Páxines na categoría "$1"',
+'subcategories'                  => 'Subcategoríes',
+'category-media-header'          => 'Archivos multimedia na categoría "$1"',
+'category-empty'                 => "''Esta categoría nun tien anguaño nengún artículu o ficheru multimedia.''",
+'hidden-categories'              => '{{PLURAL:$1|Categoría oculta|Categoríes ocultes}}',
+'hidden-category-category'       => 'Categoríes ocultes', # Name of the category where hidden categories will be listed
+'category-subcat-count'          => "{{PLURAL:$2|Esta categoría namái tien la subcategoría siguiente.|Esta categoría tien {{PLURAL:$1|la siguiente subcategoría|les siguientes $1 subcategoríes}}, d'un total de $2.}}",
+'category-subcat-count-limited'  => 'Esta categoría tien {{PLURAL:$1|la siguiente subcategoría|les siguientes $1 subcategoríes}}.',
+'category-article-count'         => "{{PLURAL:$2|Esta categoría contién namái la páxina siguiente.|{{PLURAL:$1|La siguiente páxina ta|Les $1 páxines siguientes tán}} nesta categoría, d'un total de $2.}}",
+'category-article-count-limited' => '{{PLURAL:$1|La siguiente páxina ta|Les siguientes $1 páxines tán}} na categoría actual.',
+'category-file-count'            => "{{PLURAL:$2|Esta categoría contién namái l'archivu siguiente.|{{PLURAL:$1|L'archivu siguiente ta|Los $1 archivos siguientes tán}} nesta categoría, d'un total de $2.}}",
+'category-file-count-limited'    => '{{PLURAL:$1|El siguiente archivu ta|Los siguientes $1 archivos tán}} na categoría actual.',
+'listingcontinuesabbrev'         => 'cont.',
 
 'mainpagetext'      => "<big>'''MediaWiki instalóse correchamente.'''</big>",
 'mainpagedocfooter' => "Visita la [http://meta.wikimedia.org/wiki/Help:Contents Guía d'usuariu] pa saber cómo usar esti software wiki.
@@ -672,7 +678,6 @@ El motivu dau por $3 ye ''$2''",
 'nohistory'           => "Nun hay historial d'ediciones pa esta páxina.",
 'revnotfound'         => 'Revisión non atopada',
 'revnotfoundtext'     => "La revisión antigua de la páxina que solicitasti nun se pudo atopar. Por favor comprueba l'URL qu'usasti p'acceder a esta páxina.",
-'loadhist'            => "Cargando l'historial de la páxina",
 'currentrev'          => 'Revisión actual',
 'revisionasof'        => 'Revisión de $1',
 'revision-info'       => 'Revisión a fecha de $1; $2',
@@ -682,7 +687,6 @@ El motivu dau por $3 ye ''$2''",
 'cur'                 => 'act',
 'next'                => 'próximu',
 'last'                => 'cab',
-'orig'                => 'orix',
 'page_first'          => 'primera',
 'page_last'           => 'cabera',
 'histlegend'          => "Seleición de diferencies: marca los botones de les versiones que quies comparar y da-y al <i>enter</i> o al botón d'abaxo.<br />
@@ -874,6 +878,7 @@ resultáu les páxines que contengan tolos términos de la busca).",
 'files'                    => 'Archivos',
 
 # User rights
+'userrights'                       => "Remanamientu de derechos d'usuariu", # Not used as normal message but as header for the special page itself
 'userrights-lookup-user'           => "Remanamientu de grupos d'usuariu",
 'userrights-user-editname'         => "Escribi un nome d'usuariu:",
 'editusergroup'                    => "Modificar grupos d'usuariu",
@@ -1046,6 +1051,9 @@ Amuésase equí'l rexistru de borraos pa esti archivu a los efeutos oportunos:",
 'upload_source_file' => ' (un archivu del to ordenador)',
 
 # Special:Imagelist
+'imagelist-summary'     => "Esta páxina especial amuesa tolos archivos xubíos.
+Por defeutu los caberos archivos xubíos amuésense a lo cimero de la llista.
+Calcando na cabecera d'una columna camúdase l'orde acordies con ella.",
 'imagelist_search_for'  => "Buscar por nome d'archivu multimedia:",
 'imgdesc'               => 'desc',
 'imgfile'               => 'archivu',
@@ -1078,6 +1086,7 @@ Amuésase equí'l rexistru de borraos pa esti archivu a los efeutos oportunos:",
 'noimage'                   => 'Nun esiste archivu dalu con esi nome, pues $1.',
 'noimage-linktext'          => 'xubilu',
 'uploadnewversion-linktext' => "Xubir una nueva versión d'esta imaxe",
+'imagepage-searchdupe'      => 'Buscar archivos duplicaos',
 
 # File reversion
 'filerevert'                => 'Revertir $1',
@@ -1194,7 +1203,6 @@ La [http://meta.wikimedia.org/wiki/Help:Job_queue cola de xeres] ye de '''\$7'''
 'mostcategories'          => 'Páxines con más categoríes',
 'mostimages'              => 'Archivos más enllaciaos',
 'mostrevisions'           => 'Páxines con más revisiones',
-'allpages'                => 'Toles páxines',
 'prefixindex'             => 'Páxines por prefixu',
 'shortpages'              => 'Páxines curties',
 'longpages'               => 'Páxines llargues',
@@ -1228,13 +1236,6 @@ La [http://meta.wikimedia.org/wiki/Help:Job_queue cola de xeres] ye de '''\$7'''
 'booksources-go'            => 'Dir',
 'booksources-text'          => "Esta ye una llista d'enllaces a otros sitios que vienden llibros nuevos y usaos, y que puen tener más información sobre llibros que pueas tar guetando:",
 
-'categoriespagetext' => 'Les categoríes que vienen darréu contienen páxines o archivos multimedia.',
-'data'               => 'Datos',
-'userrights'         => "Remanamientu de derechos d'usuariu",
-'groups'             => "Grupos d'usuariu",
-'alphaindexline'     => '$1 a $2',
-'version'            => 'Versión',
-
 # Special:Log
 'specialloguserlabel'  => 'Usuariu:',
 'speciallogtitlelabel' => 'Títulu:',
@@ -1247,6 +1248,8 @@ La [http://meta.wikimedia.org/wiki/Help:Job_queue cola de xeres] ye de '''\$7'''
 'log-title-wildcard'   => "Buscar títulos qu'emprimen con esti testu",
 
 # Special:Allpages
+'allpages'          => 'Toles páxines',
+'alphaindexline'    => '$1 a $2',
 'nextpage'          => 'Páxina siguiente ($1)',
 'prevpage'          => 'Páxina anterior ($1)',
 'allpagesfrom'      => "Amosar páxines qu'entamen por:",
@@ -1929,11 +1932,12 @@ $1",
 # Special:Newimages
 'newimages'             => "Galería d'imáxenes nueves",
 'imagelisttext'         => "Embaxo ta la llista {{PLURAL:$1|d'un archivu ordenáu|de '''$1''' archivos ordenaos}} $2.",
+'newimages-summary'     => 'Esta páxina especial amuesa los caberos archivos xubíos',
 'showhidebots'          => '($1 bots)',
 'noimages'              => 'Nun hai nada que ver.',
 'ilsubmit'              => 'Buscar',
 'bydate'                => 'por fecha',
-'sp-newimages-showfrom' => 'Amosar los archivos nuevos emprimando dende $1',
+'sp-newimages-showfrom' => "Amosar los archivos nuevos emprimando dende'l $1 a les $2",
 
 # Bad image list
 'bad_image_list' => "El formatu ye'l que sigue:
@@ -2350,6 +2354,7 @@ Tamién pues [[Special:Watchlist/edit|usar l'editor estándar]].",
 'unknown_extension_tag' => 'Etiqueta d\'estensión "$1" desconocida',
 
 # Special:Version
+'version'                          => 'Versión', # Not used as normal message but as header for the special page itself
 'version-extensions'               => 'Estensiones instalaes',
 'version-specialpages'             => 'Páxines especiales',
 'version-parserhooks'              => "Hooks d'análisis sintáuticu",
@@ -2376,5 +2381,17 @@ Tamién pues [[Special:Watchlist/edit|usar l'editor estándar]].",
 'filepath-summary' => "Esta páxina especial devuelve la ruta completa d'un archivu. Les imáxenes amuésense a resolución completa; les demás tribes d'archivu execútense direutamente col so programa asociáu.
 
 Escribi'l nome d'archivu ensin el prefixu \"{{ns:image}}:\".",
+
+# Special:FileDuplicateSearch
+'fileduplicatesearch'          => 'Buscar archivos duplicaos',
+'fileduplicatesearch-summary'  => 'Busca archivos duplicaos basándose nos sos valores fragmentarios.
+
+Escribi\'l nome del archivu ensin el prefixu "{{ns:image}}:".',
+'fileduplicatesearch-legend'   => 'Buscar duplicaos',
+'fileduplicatesearch-filename' => "Nome d'archivu:",
+'fileduplicatesearch-submit'   => 'Buscar',
+'fileduplicatesearch-info'     => '$1 × $2 píxeles<br />Tamañu del archivu: $3<br />Triba MIME: $4',
+'fileduplicatesearch-result-1' => 'L\'archivu "$1" nun tien duplicáu idénticu.',
+'fileduplicatesearch-result-n' => 'L\'archivu "$1" tien {{PLURAL:$2|un duplicáu idénticu|$2 duplicaos idénticos}}.',
 
 );

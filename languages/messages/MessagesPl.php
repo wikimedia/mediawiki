@@ -233,16 +233,20 @@ $messages = array(
 'dec'           => 'gru',
 
 # Categories related messages
-'categories'               => 'Kategorie',
-'pagecategories'           => '{{PLURAL:$1|Kategoria|Kategorie|Kategorii}}',
-'category_header'          => 'Strony w kategorii "$1"',
-'subcategories'            => 'Podkategorie',
-'category-media-header'    => 'Pliki w kategorii "$1"',
-'category-empty'           => "''W tej kategorii nie ma obecnie artykułów ani plików.''",
-'hidden-categories'        => '{{PLURAL:$1|Ukryta kategoria|Ukryte kategorie|Ukrytych kategorii}}',
-'hidden-category-category' => 'Ukryte kategorie', # Name of the category where hidden categories will be listed
-'subcategorycount'         => 'W tej kategorii {{PLURAL:$1|jest tylko jedna podkategoria|są $1 podkategorie|jest $1 podkategorii}}.',
-'listingcontinuesabbrev'   => 'c.d.',
+'categories'                    => 'Kategorie',
+'categoriespagetext'            => 'Poniższe kategorie istnieją na wiki.',
+'special-categories-sort-count' => 'sortowanie według liczby',
+'special-categories-sort-abc'   => 'sortowanie alfabetyczne',
+'pagecategories'                => '{{PLURAL:$1|Kategoria|Kategorie|Kategorii}}',
+'category_header'               => 'Strony w kategorii "$1"',
+'subcategories'                 => 'Podkategorie',
+'category-media-header'         => 'Pliki w kategorii "$1"',
+'category-empty'                => "''W tej kategorii nie ma obecnie artykułów ani plików.''",
+'hidden-categories'             => '{{PLURAL:$1|Ukryta kategoria|Ukryte kategorie|Ukrytych kategorii}}',
+'hidden-category-category'      => 'Ukryte kategorie', # Name of the category where hidden categories will be listed
+'category-subcat-count'         => '{{PLURAL:$2|Ta kategoria ma tylko jedną podkategorię.|Ta kategoria ma {{PLURAL:$1|następującą podkategorię|$1 podkategorie|$1 podkategorii}} spośród ogólnej liczby $2.}}',
+'category-subcat-count-limited' => 'Ta kategoria ma {{PLURAL:$1|następującą podkategorię|$1 podkategorie|$1 podkategorii}}.',
+'listingcontinuesabbrev'        => 'c.d.',
 
 'mainpagetext'      => "<big>'''Instalacja MediaWiki powiodła się.'''</big>",
 'mainpagedocfooter' => 'Zobacz [http://meta.wikimedia.org/wiki/Help:Contents przewodnik użytkownika] w celu uzyskania informacji o działaniu oprogramowania wiki.
@@ -730,7 +734,6 @@ Podany przez $3 powód to ''$2''",
 'nohistory'           => 'Ta strona nie ma swojej historii edycji.',
 'revnotfound'         => 'Wersja nie została odnaleziona',
 'revnotfoundtext'     => 'Starsza wersja strony nie może zostać odnaleziona. Sprawdź, proszę, URL użyty przez Ciebie by uzyskać dostęp do tej strony.',
-'loadhist'            => 'Pobieranie historii tej strony',
 'currentrev'          => 'Aktualna wersja',
 'revisionasof'        => 'Wersja z dnia $1',
 'revision-info'       => 'Wersja z dnia $1; $2',
@@ -740,7 +743,6 @@ Podany przez $3 powód to ''$2''",
 'cur'                 => 'bież',
 'next'                => 'następna',
 'last'                => 'poprz',
-'orig'                => 'oryginał',
 'page_first'          => 'początek',
 'page_last'           => 'koniec',
 'histlegend'          => 'Legenda: (bież) - różnice z wersją bieżącą, (poprz) - różnice z wersją poprzedzającą, d - drobne zmiany',
@@ -922,6 +924,7 @@ Upewnij się, że zmiany będą zapewniać ciągłość historyczną edycji stro
 'files'                    => 'Pliki',
 
 # User rights
+'userrights'                       => 'Zarządzanie prawami użytkowników', # Not used as normal message but as header for the special page itself
 'userrights-lookup-user'           => 'Zarządzaj grupami użytkownika',
 'userrights-user-editname'         => 'Wprowadź nazwę użytkownika:',
 'editusergroup'                    => 'Edytuj grupy użytkownika',
@@ -1241,7 +1244,6 @@ Długość [http://meta.wikimedia.org/wiki/Help:Job_queue kolejki zadań] to '''
 'mostimages'                      => 'Najczęściej linkowane pliki',
 'mostrevisions'                   => 'Najczęściej edytowane artykuły',
 'mostrevisions-summary'           => 'Poniżej znajduje się lista najczęściej edytowanych stron.',
-'allpages'                        => 'Wszystkie strony',
 'prefixindex'                     => 'Wszystkie strony według prefiksu',
 'shortpages'                      => 'Najkrótsze strony',
 'shortpages-summary'              => 'Poniżej znajduje się lista najkrótszych stron.',
@@ -1271,19 +1273,14 @@ Długość [http://meta.wikimedia.org/wiki/Help:Job_queue kolejki zadań] to '''
 'notargettext'                    => 'Nie podano strony albo użytkownika, dla których ta operacja ma być wykonana.',
 'pager-newer-n'                   => '{{PLURAL:$1|1 nowszy|$1 nowsze|$1 nowszych}}',
 'pager-older-n'                   => '{{PLURAL:$1|1 starszy|$1 starsze|$1 starszych}}',
+'pager-sort-asc'                  => 'rosnąco',
+'pager-sort-desc'                 => 'malejąco',
 
 # Book sources
 'booksources'               => 'Książki',
 'booksources-search-legend' => 'Szukaj źródeł książek',
 'booksources-go'            => 'Pokaż',
 'booksources-text'          => 'Poniżej znajduje się lista odnośników do innych stron, które pośredniczą w sprzedaży nowych i używanych książek, a także mogą posiadać dalsze informacje na temat poszukiwanej przez ciebie książki.',
-
-'categoriespagetext' => 'Poniższe kategorie istnieją na wiki.',
-'data'               => 'Dane',
-'userrights'         => 'Zarządzanie prawami użytkowników',
-'groups'             => 'Grupy użytkowników',
-'alphaindexline'     => 'od $1 do $2',
-'version'            => 'Wersja oprogramowania',
 
 # Special:Log
 'specialloguserlabel'  => 'Użytkownik:',
@@ -1297,6 +1294,8 @@ Długość [http://meta.wikimedia.org/wiki/Help:Job_queue kolejki zadań] to '''
 'log-title-wildcard'   => 'Szukaj tytułów zaczynających się od',
 
 # Special:Allpages
+'allpages'          => 'Wszystkie strony',
+'alphaindexline'    => 'od $1 do $2',
 'nextpage'          => 'Następna strona ($1)',
 'prevpage'          => 'Poprzednia strona ($1)',
 'allpagesfrom'      => 'Strony zaczynające się na:',
@@ -2358,6 +2357,7 @@ Titles on your watchlist are shown below, and can be edited by
 'unknown_extension_tag' => 'Nieznany znacznik rozszerzenia "$1"',
 
 # Special:Version
+'version'                          => 'Wersja oprogramowania', # Not used as normal message but as header for the special page itself
 'version-extensions'               => 'Zainstalowane rozszerzenia',
 'version-specialpages'             => 'Strony specjalne',
 'version-parserhooks'              => 'Haki analizatora składni (Parser hooks)',

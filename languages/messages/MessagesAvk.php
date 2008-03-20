@@ -112,12 +112,12 @@ $messages = array(
 
 # Categories related messages
 'categories'             => 'Bulomeem',
+'categoriespagetext'     => 'Radimiasa loma se moe wiki krulded :',
 'pagecategories'         => '{{PLURAL:$1|Loma|Loma}}',
 'category_header'        => 'Lomolkeem « $1 ».',
 'subcategories'          => 'volveylomeem',
 'category-media-header'  => 'Ewavaf iyeltakeem koe "$1" loma',
 'category-empty'         => "''Bata loma va bu ok ewava noelton me ruldar''.",
-'subcategorycount'       => 'Bata loma va {{PLURAL:$1|1 volveyloma|$1 volveyloma}} digir.',
 'listingcontinuesabbrev' => 'loon',
 
 'mainpagetext' => '{{SITENAME}} inkeyen talpeyot.',
@@ -550,7 +550,6 @@ Bazeyena lazava ke $3 tir ''$2''.",
 'nohistory'           => 'Nedoy izvot va batu bu.',
 'revnotfound'         => 'Merotrasin siatos',
 'revnotfoundtext'     => 'Abdif siatos ke batu bu me zo rodimtrasir. Ta vansara va batu bu va faveyene URL mane ageltal.',
-'loadhist'            => 'Vajawera ke buizvot',
 'currentrev'          => 'Noelaf siatos',
 'revisionasof'        => 'Siatos ba $1',
 'revision-info'       => 'Dimplekura va $1 gan $2',
@@ -560,7 +559,6 @@ Bazeyena lazava ke $3 tir ''$2''.",
 'cur'                 => 'noel-',
 'next'                => 'radi-',
 'last'                => 'iron-',
-'orig'                => 'xant-',
 'page_first'          => 'tane-',
 'page_last'           => 'iron-',
 'histlegend'          => 'Pebusiki : (noel-) = amiduca gu noelaf siatos ,
@@ -720,6 +718,7 @@ contenant tous les termes apparaissent dans les résultats).",
 'files'                    => 'Iyeltak se',
 
 # User rights
+'userrights'                       => 'Pofera va favesikrokeem', # Not used as normal message but as header for the special page itself
 'userrights-lookup-user'           => 'Pofera va favesikeem',
 'userrights-user-editname'         => 'Va favesikyolt bazel',
 'editusergroup'                    => 'Betara va favesikeem lospa',
@@ -1029,7 +1028,6 @@ Abrotcuca ke [http://meta.wikimedia.org/wiki/Help:Job_queue "job queue"] tir \'\
 'mostcategories'          => 'Tel lolomakiraf teliz yo',
 'mostimages'              => 'Tela logluyana ewava se',
 'mostrevisions'           => 'Tel lobetayan teliz yo',
-'allpages'                => 'Kotaf bueem',
 'prefixindex'             => 'Radimeosta',
 'shortpages'              => 'Telaf bueem',
 'longpages'               => 'Abrotcaf bueem',
@@ -1061,13 +1059,6 @@ Abrotcuca ke [http://meta.wikimedia.org/wiki/Help:Job_queue "job queue"] tir \'\
 'booksources-search-legend' => 'Aneyara va nevaklita',
 'booksources-go'            => 'Rupera',
 
-'categoriespagetext' => 'Radimiasa loma se moe wiki krulded :',
-'data'               => 'Origeem',
-'userrights'         => 'Pofera va favesikrokeem',
-'groups'             => 'Favesiklospeem',
-'alphaindexline'     => 'male $1 kale $2',
-'version'            => 'Siatos',
-
 # Special:Log
 'specialloguserlabel'  => 'Favesik:',
 'speciallogtitlelabel' => 'Vergumvelt:',
@@ -1079,6 +1070,8 @@ Abrotcuca ke [http://meta.wikimedia.org/wiki/Help:Job_queue "job queue"] tir \'\
 'log-title-wildcard'   => 'Aneyara va vergumvelt dem mana toza',
 
 # Special:Allpages
+'allpages'          => 'Kotaf bueem',
+'alphaindexline'    => 'male $1 kale $2',
 'nextpage'          => 'Radimebu ($1)',
 'prevpage'          => '($1) abdifu bu',
 'allpagesfrom'      => 'Nedira va bu se male',
@@ -1886,6 +1879,7 @@ $1',
 'watchlisttools-raw'  => 'Betara va suzdasiki',
 
 # Special:Version
+'version'                          => 'Siatos', # Not used as normal message but as header for the special page itself
 'version-extensions'               => 'Inkeyeni divatcesiki se',
 'version-specialpages'             => 'Aptaf bueem',
 'version-variables'                => 'Remvodeem',

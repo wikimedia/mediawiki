@@ -23,6 +23,8 @@
  * @author Technorum
  * @author SPQRobin
  * @author Bengoa
+ * @author Jurock
+ * @author Baiji
  */
 
 $skinNames = array(
@@ -162,16 +164,17 @@ $messages = array(
 'dec'           => 'dic',
 
 # Categories related messages
-'categories'               => 'Categorías',
-'pagecategories'           => '{{PLURAL:$1|Categoría|Categorías}}',
-'category_header'          => 'Artículos en la categoría "$1"',
-'subcategories'            => 'Subcategorías',
-'category-media-header'    => 'Archivos multimedia en la categoría "$1"',
-'category-empty'           => "''La categoría no contiene actualmente ningún artículo o archivo multimedia''",
-'hidden-categories'        => '{{PLURAL:$1|Categoría escondida|Categorías escondidas}}',
-'hidden-category-category' => 'Categorías escondidas', # Name of the category where hidden categories will be listed
-'subcategorycount'         => 'Hay {{PLURAL:$1|una subcategoría|$1 subcategorías}} en esta categoría.',
-'listingcontinuesabbrev'   => 'cont.',
+'categories'                    => 'Categorías',
+'categoriespagetext'            => 'Existen las siguientes categorías en este wiki.',
+'pagecategories'                => '{{PLURAL:$1|Categoría|Categorías}}',
+'category_header'               => 'Artículos en la categoría "$1"',
+'subcategories'                 => 'Subcategorías',
+'category-media-header'         => 'Archivos multimedia en la categoría "$1"',
+'category-empty'                => "''La categoría no contiene actualmente ningún artículo o archivo multimedia''",
+'hidden-categories'             => '{{PLURAL:$1|Categoría escondida|Categorías escondidas}}',
+'hidden-category-category'      => 'Categorías escondidas', # Name of the category where hidden categories will be listed
+'category-subcat-count-limited' => 'Esta categoría contiene las siguientes {{PLURAL:$1|subcategoría|$1 subcategorías}}.',
+'listingcontinuesabbrev'        => 'cont.',
 
 'mainpagetext'      => 'Software wiki instalado con éxito.',
 'mainpagedocfooter' => 'Consulta la [http://meta.wikimedia.org/wiki/Help:Contents Guía de usuario] para obtener información sobre el uso del software wiki.
@@ -558,6 +561,7 @@ Tu identificador de bloqueo es $5. Por favor, incluye este identificador en cual
 'newarticletext'            => 'Ha seguido un enlace a una página que aún no existe. Si lo que quiere es crear esta página, escriba a continuación. Para más información consulte la [[{{MediaWiki:Helppage}}|página de ayuda]]. Si llegó aquí por error, vuelva a la página anterior.',
 'anontalkpagetext'          => "---- ''Esta es la página de discusión de un usuario anónimo que aún no ha creado una cuenta, o no la usa. Por lo tanto, tenemos que usar su dirección IP para identificarlo. Una dirección IP puede ser compartida por varios usuarios. Si eres un usuario anónimo y crees que se han dirigido a ti con comentarios improcedentes, por favor [[Special:Userlogin|crea una cuenta o entra]] para evitar confusiones futuras con otros usuarios anónimos.''",
 'noarticletext'             => 'En este momento no hay texto en esta página, puedes [[Special:Search/{{PAGENAME}}|buscar por el título de esta página]] en otras páginas o [{{fullurl:{{FULLPAGENAME}}|action=edit}} editar esta página].',
+'userpage-userdoesnotexist' => 'La cuenta de usuario "$1" no está registrada. Por favor comprueba si quieres crear o editar esta página.',
 'clearyourcache'            => "'''Nota:''' Tras guardar el archivo, debe refrescar la caché de su navegador para ver los cambios:
 *'''Mozilla:'''  ''ctrl-shift-r'',
 *'''Internet Explorer:''' ''ctrl-f5'',
@@ -630,7 +634,6 @@ El motivo dado por $3 es ''$2''",
 'revnotfound'         => 'Revisión no encontrada',
 'revnotfoundtext'     => 'No se pudo encontrar la revisión antigua de la página que ha solicitado.
 Por favor, revise la dirección que usó para acceder a esta página.',
-'loadhist'            => 'Recuperando el historial de la página',
 'currentrev'          => 'Revisión actual',
 'revisionasof'        => 'Revisión de $1',
 'revision-info'       => 'Revisión a fecha de $1; $2',
@@ -717,6 +720,7 @@ Otros administradores de este wiki aún podrán acceder al contenido oculto y po
 'searchsubtitle'        => "Has consultado por '''[[:$1]]'''",
 'searchsubtitleinvalid' => 'Para consulta "$1"',
 'noexactmatch'          => "'''No existe una página llamada \"\$1\".''' Puedes [[:\$1|crearla]].",
+'noexactmatch-nocreate' => "'''No existe la página \"\$1\".'''",
 'titlematches'          => 'Coincidencias de título de artículo',
 'notitlematches'        => 'No hay coincidencias de título de artículo',
 'textmatches'           => 'Coincidencias de texto de artículo',
@@ -724,11 +728,13 @@ Otros administradores de este wiki aún podrán acceder al contenido oculto y po
 'prevn'                 => '$1 previas',
 'nextn'                 => '$1 siguientes',
 'viewprevnext'          => 'Ver ($1) ($2) ($3).',
+'search-result-score'   => 'Relevancia: $1%',
 'showingresults'        => "Abajo se {{PLURAL:$1|muestra '''1''' resultado|muestran hasta '''$1''' resultados}} empezando por el nº '''$2'''.",
 'showingresultsnum'     => "Abajo se {{PLURAL:$3|muestra '''1''' resultado|muestran los '''$3''' resultados}} empezando por el nº '''$2'''.",
 'nonefound'             => '<strong>Nota</strong>: las búsquedas fallidas suelen producirse al buscar palabras comunes como "la" o "de", que no están en el índice, o por especificar más de una palabra a buscar (sólo las páginas
 que contengan todos los términos de búsqueda aparecerán en el resultado).',
 'powersearch'           => 'Búsqueda',
+'powersearch-legend'    => 'Búsqueda avanzada',
 'powersearchtext'       => '
 Buscar en espacio de nombres:<br />
 $1<br />
@@ -796,6 +802,7 @@ $2 Listar redirecciones   Buscar $3 $9',
 'files'                    => 'Archivos',
 
 # User rights
+'userrights'                 => 'Configuración de permisos de usuarios', # Not used as normal message but as header for the special page itself
 'userrights-lookup-user'     => 'Configurar grupos de usuarios',
 'userrights-user-editname'   => 'Escriba un nombre de usuario:',
 'editusergroup'              => 'Modificar grupos de usuarios',
@@ -803,6 +810,7 @@ $2 Listar redirecciones   Buscar $3 $9',
 'userrights-editusergroup'   => 'Modificar grupos de usuarios',
 'saveusergroups'             => 'Guardar grupos de usuarios',
 'userrights-groupsmember'    => 'Miembro de:',
+'userrights-groupsremovable' => 'Grupos removibles:',
 'userrights-groupsavailable' => 'Grupos disponibles:',
 'userrights-groupshelp'      => 'Seleccione los grupos a los que quiere añadir al usuario (o de los que le quiere dar de baja).
 Los grupos no seleccionados no cambiarán. Puede deseleccionar pulsando la tecla CTRL',
@@ -980,7 +988,9 @@ archivo a esa fecha.',
 'uploadnewversion-linktext' => 'Subir una nueva versión de este archivo',
 
 # File reversion
-'filerevert' => 'Revertir $1',
+'filerevert'         => 'Revertir $1',
+'filerevert-comment' => 'Comentario:',
+'filerevert-submit'  => 'Revertir',
 
 # File deletion
 'filedelete'            => 'Borrar $1',
@@ -1077,7 +1087,6 @@ Cada fila contiene enlaces al segundo y tercer redirect, así como la primera l�
 'mostcategories'          => 'Páginas con más categorías',
 'mostimages'              => 'Imágenes más usadas',
 'mostrevisions'           => 'Artículos con más ediciones',
-'allpages'                => 'Todas las páginas',
 'prefixindex'             => 'Páginas por prefijo',
 'shortpages'              => 'Páginas cortas',
 'longpages'               => 'Páginas largas',
@@ -1086,6 +1095,7 @@ Cada fila contiene enlaces al segundo y tercer redirect, así como la primera l�
 'protectedpages'          => 'Páginas protegidas',
 'protectedpagestext'      => 'Las siguientes páginas están protegidas para su edición o traslado',
 'protectedpagesempty'     => 'Actualmente no hay ninguna página protegida con esos parámetros.',
+'protectedtitles'         => 'Títulos protegidos',
 'listusers'               => 'Lista de usuarios',
 'specialpages'            => 'Páginas especiales',
 'spheading'               => 'Páginas especiales',
@@ -1106,13 +1116,6 @@ Cada fila contiene enlaces al segundo y tercer redirect, así como la primera l�
 'booksources-go'            => 'Ir',
 'booksources-text'          => 'Abajo hay una lista de enlaces a otros sitios que venden libros nuevos y usados, puede que contengan más información sobre los libros que estás buscando.',
 
-'categoriespagetext' => 'Existen las siguientes categorías en este wiki.',
-'data'               => 'Datos',
-'userrights'         => 'Configuración de permisos de usuarios',
-'groups'             => 'Grupos de usuarios',
-'alphaindexline'     => '$1 a $2',
-'version'            => 'Versión',
-
 # Special:Log
 'specialloguserlabel'  => 'Usuario:',
 'speciallogtitlelabel' => 'Título:',
@@ -1126,6 +1129,8 @@ Puedes filtrar la vista seleccionando un tipo de registro, el nombre del usuario
 'log-title-wildcard'   => 'Buscar títulos que empiecen con este texto',
 
 # Special:Allpages
+'allpages'          => 'Todas las páginas',
+'alphaindexline'    => '$1 a $2',
 'nextpage'          => 'Siguiente página ($1)',
 'prevpage'          => 'Página anterior ($1)',
 'allpagesfrom'      => 'Mostrar páginas que empiecen por:',
@@ -1243,6 +1248,7 @@ Cambie las opciones de su lista de seguimiento en:
 'excontentauthor'             => "El contenido era: '$1' (y el único autor fue '$2')",
 'exbeforeblank'               => "El contenido antes de blanquear era: '$1'",
 'exblank'                     => 'página estaba vacía',
+'delete-legend'               => 'Borrar',
 'historywarning'              => 'Atención: La página que está a punto de borrar tiene un historial:',
 'confirmdeletetext'           => 'Estás a punto de borrar una página
 en forma permanente,
@@ -2152,11 +2158,17 @@ Intenta la previsualización normal.',
 'watchlisttools-raw'  => 'Editar lista de seguimiento en crudo',
 
 # Special:Version
-'version-parserhooks' => "Lligams de l'analitzador",
+'version'              => 'Versión', # Not used as normal message but as header for the special page itself
+'version-specialpages' => 'Páginas especiales',
+'version-parserhooks'  => "Lligams de l'analitzador",
 
 # Special:Filepath
 'filepath'        => 'Ruta de archivo',
 'filepath-page'   => 'Archivo:',
 'filepath-submit' => 'Ruta',
+
+# Special:FileDuplicateSearch
+'fileduplicatesearch-filename' => 'Nombre del fichero:',
+'fileduplicatesearch-submit'   => 'Buscar',
 
 );

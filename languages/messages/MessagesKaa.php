@@ -185,12 +185,12 @@ $messages = array(
 
 # Categories related messages
 'categories'             => 'Kategoriyalar',
+'categoriespagetext'     => "Usı wikide to'mendegi kategoriyalar bar.",
 'pagecategories'         => '{{PLURAL:$1|Kategoriya|Kategoriyalar}}',
 'category_header'        => '"$1" kategoriyasindag\'ı betler',
 'subcategories'          => 'Podkategoriyalar',
 'category-media-header'  => '"$1" kategoriyasindag\'ı media',
 'category-empty'         => "''Bul kategoriyada ha'zir hesh bet yamasa media joq''",
-'subcategorycount'       => 'Bul kategoriyada {{PLURAL:$1|bir podkategoriya bar|$1 podkategoriya bar}}.',
 'listingcontinuesabbrev' => 'dawamı',
 
 'linkprefix'   => '/^(.*?)([a-zıA-Zİ\\x80-\\xff]+)$/sDu',
@@ -588,7 +588,6 @@ $3 keltirilgen sebebi: ''$2''",
 'viewpagelogs'        => "Usı bettin' jurnalın ko'riw",
 'nohistory'           => "Bul bettin' o'zgertiw tariyxı joq.",
 'revnotfound'         => 'Nusqa tabılmadı',
-'loadhist'            => "Bet tariyxın ju'klew",
 'currentrev'          => "Ha'zirgi nusqa",
 'revisionasof'        => '$1 waqtındagı nusqası',
 'revision-info'       => "$1 waqtındag'ı $2 istegen nusqası",
@@ -598,7 +597,6 @@ $3 keltirilgen sebebi: ''$2''",
 'cur'                 => "ha'z.",
 'next'                => 'keyin.',
 'last'                => 'aqır.',
-'orig'                => 'bir.',
 'page_first'          => 'birinshi',
 'page_last'           => "aqırg'ı",
 'histlegend'          => "Tu'sindirme: salıstırajaq nusqaların'ızdı saylan' ha'mde <Enter> knopkasın yamasa to'mendegi knopkani basın'.<br />
@@ -706,6 +704,7 @@ Sha'rtli belgiler: (ha'z.) = ha'zirgi nusqasi menen parqı,
 'files'                    => 'Fayllar',
 
 # User rights
+'userrights'               => 'Paydalanıwshı huqıqların basqarıw', # Not used as normal message but as header for the special page itself
 'userrights-lookup-user'   => 'Paydalanıwshı toparların basqarıw',
 'userrights-user-editname' => "Paydalanıwshı atın kiritin':",
 'editusergroup'            => "Paydalanıwshı Toparların O'zgertiw",
@@ -919,7 +918,6 @@ Sha'rtli belgiler: (ha'z.) = ha'zirgi nusqasi menen parqı,
 'mostcategories'          => "En' ko'p kategoriyalang'an betler",
 'mostimages'              => "En' ko'p paydalanılg'an su'wretler",
 'mostrevisions'           => "En' ko'p du'zetilgen betler",
-'allpages'                => "Ha'mme betler",
 'prefixindex'             => 'Atama baslaw dizimi',
 'shortpages'              => "En' qısqa betler",
 'longpages'               => "En' uzın betler",
@@ -944,13 +942,6 @@ Sha'rtli belgiler: (ha'z.) = ha'zirgi nusqasi menen parqı,
 'booksources-search-legend' => 'Kitap haqqında informatsiya izlew',
 'booksources-go'            => "O'tin'",
 
-'categoriespagetext' => "Usı wikide to'mendegi kategoriyalar bar.",
-'data'               => "Mag'lıwmatlar",
-'userrights'         => 'Paydalanıwshı huqıqların basqarıw',
-'groups'             => 'Paydalanıwshı toparları',
-'alphaindexline'     => '$1 — $2',
-'version'            => "MediaWikidin' nusqası",
-
 # Special:Log
 'specialloguserlabel'  => 'Paydalanıwshı:',
 'speciallogtitlelabel' => 'Atama:',
@@ -961,6 +952,8 @@ Sha'rtli belgiler: (ha'z.) = ha'zirgi nusqasi menen parqı,
 'log-title-wildcard'   => "Usı tekstten baslang'an atamalardı izlew",
 
 # Special:Allpages
+'allpages'          => "Ha'mme betler",
+'alphaindexline'    => '$1 — $2',
 'nextpage'          => 'Keyingi bet ($1)',
 'prevpage'          => "Aldıng'ı bet ($1)",
 'allpagesfrom'      => "Mına betten baslap ko'rsetiw:",
@@ -1510,6 +1503,9 @@ Sol qatardag'ı keyingi ha'r bir siltewler tısqarı qabıl etiledi, mısalı qa
 'watchlisttools-view' => "Baylanıslı o'zgerislerdi qaraw",
 'watchlisttools-edit' => "Baqlaw dizimin ko'riw ha'm o'zgertiw",
 'watchlisttools-raw'  => '"Shiyki" baqlaw dizimin o\'zgertiw',
+
+# Special:Version
+'version' => "MediaWikidin' nusqası", # Not used as normal message but as header for the special page itself
 
 # Special:Filepath
 'filepath' => 'Fayl jolı',

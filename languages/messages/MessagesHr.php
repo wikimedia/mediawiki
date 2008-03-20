@@ -166,6 +166,7 @@ $messages = array(
 
 # Categories related messages
 'categories'               => '{{PLURAL:$1|Kategorija|Kategorije}}',
+'categoriespagetext'       => 'Na ovom wikiju postoje sljedeće kategorije.',
 'pagecategories'           => '{{PLURAL:$1|Kategorija|Kategorije}}',
 'category_header'          => 'Članci u kategoriji "$1"',
 'subcategories'            => 'Potkategorije',
@@ -173,7 +174,6 @@ $messages = array(
 'category-empty'           => "''U ovoj kategoriji trenutačno nema članaka ni medija.''",
 'hidden-categories'        => '{{PLURAL:$1|Skrivena kategorija|Skrivene kategorije|Skrivenih kategorija}}',
 'hidden-category-category' => 'Skrivene kategorije', # Name of the category where hidden categories will be listed
-'subcategorycount'         => 'Ova kategoriji sadrži {{PLURAL:$1|$1 potkategoriju|$1 potkategorije|$1 potkategorija}}.',
 'listingcontinuesabbrev'   => 'nast.',
 
 'mainpagetext'      => 'Softver Wiki je uspješno instaliran.',
@@ -680,7 +680,6 @@ Razlog koji je dao/la $3 je ''$2''",
 'revnotfound'         => 'Stara izmjena nije nađena.',
 'revnotfoundtext'     => 'Ne mogu pronaći staru izmjenu stranice koju ste zatražili.
 Molimo provjerite URL koji vas je doveo ovamo.',
-'loadhist'            => 'Učitavam stare izmjene',
 'currentrev'          => 'Trenutačna inačica',
 'revisionasof'        => 'Inačica od $1',
 'revision-info'       => 'Inačica od $1 koju je unio/unijela $2',
@@ -690,7 +689,6 @@ Molimo provjerite URL koji vas je doveo ovamo.',
 'cur'                 => 'sad',
 'next'                => 'sljed',
 'last'                => 'pret',
-'orig'                => 'izvo',
 'page_first'          => 'prva',
 'page_last'           => 'zadnja',
 'histlegend'          => 'Uputa: (sad) = razlika od trenutačne inačice,
@@ -815,6 +813,7 @@ Primijetite da uporaba navigacijskih poveznica resetira vaše izbore u koloni.',
 'showingresultsnum'     => "Dolje {{PLURAL:$3|je prikazan '''$3''' rezultat|su prikazana '''$3''' rezultata|je prikazano '''$3''' rezultata}}, počevši s brojem '''$2'''.",
 'nonefound'             => '<b>Napomena</b>: pretrage su neuspješne ako tražite česte riječi koje ne indeksiramo, ili u upitu navedete previše pojmova (u rezultatu se pojavlju samo stranice koje sadrže sve tražene pojmove).',
 'powersearch'           => 'Traženje',
+'powersearch-legend'    => 'Napredno pretraživanje',
 'powersearchtext'       => '
 Traženje u prostoru :<br />
 $1<br />
@@ -884,6 +883,7 @@ za podešavanje suradničkih postavki.',
 'files'                    => 'Datoteke',
 
 # User rights
+'userrights'                       => 'Upravljanje suradničkim pravima', # Not used as normal message but as header for the special page itself
 'userrights-lookup-user'           => 'Upravljaj skupinama suradnika',
 'userrights-user-editname'         => 'Unesite suradničko ime:',
 'editusergroup'                    => 'Uredi suradničke skupine',
@@ -1060,6 +1060,9 @@ Slijedi evidencija brisanja ove datoteke s obrazloženjem prethodnog brisanja:",
 'upload_source_file' => ' (datoteka na vašem računalu)',
 
 # Special:Imagelist
+'imagelist-summary'     => 'Ova posebna stranica pokazuje sve postavljene datoteke.
+Na vrhu popisa se nalaze najnovije postavljene datoteke.
+Poredak datoteka mijenja se pritiskom na naslov stupca.',
 'imagelist_search_for'  => 'Traži ime slike:',
 'imgdesc'               => 'opis',
 'imgfile'               => 'datoteka',
@@ -1213,7 +1216,6 @@ koja obično ukazuje na "pravu" odredišnu stranicu, na koju bi trebalo pokaziva
 'mostcategories'          => 'Popis članaka po broju kategorija',
 'mostimages'              => 'Slike na koje vodi najviše poveznica',
 'mostrevisions'           => 'Popis članaka po broju uređivanja',
-'allpages'                => 'Sve stranice',
 'prefixindex'             => 'Kazalo prema početku naslova',
 'shortpages'              => 'Kratke stranice',
 'longpages'               => 'Duge stranice',
@@ -1242,19 +1244,14 @@ wikija povezane na sliku neposrednim URLom, a nisu ovdje navedene unatoč aktivn
 'notargettext'            => 'Niste naveli ciljnu stranicu ili suradnika za izvršavanje ove funkcije.',
 'pager-newer-n'           => '{{PLURAL:$1|novija $1|novije $1|novijih $1}}',
 'pager-older-n'           => '{{PLURAL:$1|starija $1|starije $1|starijih $1}}',
+'pager-sort-asc'          => 'uzlazno',
+'pager-sort-desc'         => 'silazno',
 
 # Book sources
 'booksources'               => 'Pretraživanje po ISBN-u',
 'booksources-search-legend' => 'Traženje izvora za knjigu',
 'booksources-go'            => 'Idi',
 'booksources-text'          => 'Ovdje je popis vanjskih poveznica na internetskim stranicama koje prodaju nove i rabljene knjige, ali mogu sadržavati i ostale podatke o knjigama koje tražite:',
-
-'categoriespagetext' => 'Na ovom wikiju postoje sljedeće kategorije.',
-'data'               => 'Podaci',
-'userrights'         => 'Upravljanje suradničkim pravima',
-'groups'             => 'Suradničke skupine',
-'alphaindexline'     => '$1 do $2',
-'version'            => 'Verzija softvera',
 
 # Special:Log
 'specialloguserlabel'  => 'Suradnik:',
@@ -1269,6 +1266,8 @@ Možete suziti prikaz odabirući tip evidencije, suradničko ime ili stranicu u 
 'log-title-wildcard'   => 'Traži stranice koje počinju s navedenim izrazom',
 
 # Special:Allpages
+'allpages'          => 'Sve stranice',
+'alphaindexline'    => '$1 do $2',
 'nextpage'          => 'Sljedeća stranica ($1)',
 'prevpage'          => 'Prethodna stranica ($1)',
 'allpagesfrom'      => 'Pokaži stranice počevši od:',
@@ -1954,11 +1953,12 @@ $1',
 # Special:Newimages
 'newimages'             => 'Galerija novih datoteka',
 'imagelisttext'         => 'Ispod je popis {{PLURAL:$1|$1 slike|$1 slike|$1 slika}} složen $2.',
+'newimages-summary'     => 'Ova posebna stranica pokazuje zadnje nedavno postavljene datoteke',
 'showhidebots'          => '($1 botova)',
 'noimages'              => 'Nema slika.',
 'ilsubmit'              => 'Traži',
 'bydate'                => 'po datumu',
-'sp-newimages-showfrom' => 'Prikaži nove slike počevši od $1',
+'sp-newimages-showfrom' => 'Prikaži nove slike počevši od $2, $1',
 
 # Bad image list
 'bad_image_list' => "Rabi se sljedeći format:
@@ -2382,6 +2382,7 @@ Također možete koristiti [[Special:Watchlist/edit|uređivanje popisa putem ''k
 'unknown_extension_tag' => "Nepoznat ''tag'' ekstenzije \"\$1\"",
 
 # Special:Version
+'version'                          => 'Verzija softvera', # Not used as normal message but as header for the special page itself
 'version-extensions'               => 'Instalirana proširenja',
 'version-specialpages'             => 'Posebne stranice',
 'version-parserhooks'              => 'Kuke parsera',
@@ -2408,5 +2409,9 @@ Također možete koristiti [[Special:Watchlist/edit|uređivanje popisa putem ''k
 'filepath-summary' => "Ova posebna stranica daje Vam kompletnu putanju do neke datoteke. Slike se na taj način prikazuju u punoj rezoluciji, drugi tipovi datoteka se otvaraju na klik (kako je već namješteno u vašem operacijskom sustavu).
 	
 	Unesite ime datoteke bez predmetka (''prefiksa'') imenskog prostora \"{{ns:image}}:\".",
+
+# Special:FileDuplicateSearch
+'fileduplicatesearch-filename' => 'Ime datoteke:',
+'fileduplicatesearch-submit'   => 'Traži',
 
 );

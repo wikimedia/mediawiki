@@ -153,12 +153,12 @@ $messages = array(
 
 # Categories related messages
 'categories'             => '분류',
+'categoriespagetext'     => '위키에 존재하는 분류의 목록입니다.',
 'pagecategories'         => '분류',
 'category_header'        => '‘$1’ 분류에 속하는 문서',
 'subcategories'          => '하위 분류',
 'category-media-header'  => '‘$1’ 분류에 속하는 자료',
 'category-empty'         => '이 분류에 속하는 문서나 자료가 없습니다.',
-'subcategorycount'       => '이 분류에 $1개의 하위 분류가 있습니다.',
 'listingcontinuesabbrev' => ' (계속)',
 
 'mainpagetext'      => "<big>'''미디어위키가 성공적으로 설치되었습니다.'''</big>",
@@ -560,7 +560,9 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'yourtext'                  => '당신의 편집',
 'storedversion'             => '현재 문서',
 'nonunicodebrowser'         => "'''주의: 당신의 웹 브라우저가 유니코드를 완벽하게 지원하지 않습니다. 몇몇 문자가 16진수 코드로 나타날 수 있습니다.'''",
-'editingold'                => "'''경고''': 지금 옛날 버전의 문서를 고치고 있습니다. 이것을 저장하면 최근에 편집된 부분이 사라질 수 있습니다.",
+'editingold'                => '<strong>경고:
+지금 옛날 버전의 문서를 고치고 있습니다.
+이것을 저장하면 최근에 편집된 부분이 사라질 수 있습니다.</strong>',
 'yourdiff'                  => '차이',
 'copyrightwarning'          => "{{SITENAME}}에서의 모든 기여는 $2 라이센스에 따라 배포된다는 점을 유의해 주세요($1에서 자세한 사항을 읽어 주세요). 만약 이에 대해 찬성하지 않는다면, 문서를 저장하지 말아 주세요.<br />
 또한 당신의 기여는 직접 작성했거나, 또는 퍼블릭 도메인과 같은 자유 문서에서 가져왔다는 것을 보증해야 합니다.
@@ -607,7 +609,6 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'nohistory'           => '이 문서는 편집 역사가 없습니다.',
 'revnotfound'         => '버전 없음',
 'revnotfoundtext'     => '문서의 해당 버전을 찾지 못했습니다. 접속 URL을 확인해 주세요.',
-'loadhist'            => '문서 역사 불러오는 중',
 'currentrev'          => '현재 버전',
 'revisionasof'        => '$1 버전',
 'revision-info'       => '$2 사용자의 $1 버전',
@@ -617,7 +618,6 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'cur'                 => '현재',
 'next'                => '다음',
 'last'                => '이전',
-'orig'                => '처음',
 'page_first'          => '처음',
 'page_last'           => '마지막',
 'histlegend'          => '비교하려는 버전들을 선택한 다음 버튼을 누르세요.<br />설명: (현재) = 현재 버전과의 차이, (이전) = 바로 이전 버전과의 차이, 잔글 = 사소한 편집',
@@ -728,6 +728,7 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'files'                    => '파일',
 
 # User rights
+'userrights'                 => '사용자 권한 관리', # Not used as normal message but as header for the special page itself
 'userrights-lookup-user'     => '사용자 권한 관리',
 'userrights-user-editname'   => '사용자 이름:',
 'editusergroup'              => '사용자 그룹 편집',
@@ -1005,7 +1006,6 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'mostcategories'          => '가장 많이 분류된 문서 목록',
 'mostimages'              => '가장 많이 사용된 파일 목록',
 'mostrevisions'           => '가장 많이 편집된 문서 목록',
-'allpages'                => '모든 문서 목록',
 'prefixindex'             => '접두어 목록',
 'shortpages'              => '짧은 문서 목록',
 'longpages'               => '긴 문서 목록',
@@ -1039,13 +1039,6 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'booksources-go'            => '찾기',
 'booksources-text'          => '아래의 목록은 새 책이나 중고 책을 판매하는 외부 사이트로, 원하는 책의 정보를 얻을 수 있습니다:',
 
-'categoriespagetext' => '위키에 존재하는 분류의 목록입니다.',
-'data'               => '자료',
-'userrights'         => '사용자 권한 관리',
-'groups'             => '사용자 권한 목록',
-'alphaindexline'     => '$1에서 $2까지',
-'version'            => '버전',
-
 # Special:Log
 'specialloguserlabel'  => '이름:',
 'speciallogtitlelabel' => '제목:',
@@ -1057,6 +1050,8 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'logempty'             => '일치하는 항목이 없습니다.',
 
 # Special:Allpages
+'allpages'          => '모든 문서 목록',
+'alphaindexline'    => '$1에서 $2까지',
 'nextpage'          => '다음 문서 ($1)',
 'prevpage'          => '이전 문서 ($1)',
 'allpagesfrom'      => '다음으로 시작하는 문서들을 보여주기:',
@@ -1746,6 +1741,7 @@ $1',
 'watchlisttools-raw'  => '주시문서 목록 직접 편집하기',
 
 # Special:Version
+'version'                  => '버전', # Not used as normal message but as header for the special page itself
 'version-extensions'       => '설치된 확장 기능',
 'version-specialpages'     => '특수 문서',
 'version-parserhooks'      => '파서 훅',

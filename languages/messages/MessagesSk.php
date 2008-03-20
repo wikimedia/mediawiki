@@ -253,16 +253,24 @@ $messages = array(
 'dec'           => 'dec',
 
 # Categories related messages
-'categories'               => '{{PLURAL:$1|Kategória|Kategórie|Kategórie}}',
-'pagecategories'           => '{{PLURAL:$1|Kategória|Kategórie|Kategórie}}',
-'category_header'          => 'stránky v kategórii „$1“',
-'subcategories'            => 'Podkategórie',
-'category-media-header'    => 'Multimediálne súbory v kategórii „$1“',
-'category-empty'           => "''Táto kategória momentálne neobsahuje články ani multimediálne súbory.''",
-'hidden-categories'        => '{{PLURAL:$1|Skrytá kategória|Skryté kategórie}}',
-'hidden-category-category' => 'Skryté kategórie', # Name of the category where hidden categories will be listed
-'subcategorycount'         => 'V tejto kategórii {{PLURAL:$1|je jedna podkategória|sú $1 podkategórie|je $1 podkategórií}}.',
-'listingcontinuesabbrev'   => 'pokrač.',
+'categories'                     => '{{PLURAL:$1|Kategória|Kategórie|Kategórie}}',
+'categoriespagetext'             => 'Nasledovné kategórie obsahujú stránky alebo multimediálne súbory.',
+'special-categories-sort-count'  => 'zoradiť podľa počtu',
+'special-categories-sort-abc'    => 'zoradiť podľa abecedy',
+'pagecategories'                 => '{{PLURAL:$1|Kategória|Kategórie|Kategórie}}',
+'category_header'                => 'stránky v kategórii „$1“',
+'subcategories'                  => 'Podkategórie',
+'category-media-header'          => 'Multimediálne súbory v kategórii „$1“',
+'category-empty'                 => "''Táto kategória momentálne neobsahuje články ani multimediálne súbory.''",
+'hidden-categories'              => '{{PLURAL:$1|Skrytá kategória|Skryté kategórie}}',
+'hidden-category-category'       => 'Skryté kategórie', # Name of the category where hidden categories will be listed
+'category-subcat-count'          => '{{PLURAL:$2|Táto kategória má nasledovnú podkategóriu.|Táto kategória má {{PLURAL:$1|nasledovnú podkategóriu|nasledovné $1 podkategórie|nasledovných $1 podkategórií}} z $2 celkom.}}',
+'category-subcat-count-limited'  => 'Táto kategória má {{PLURAL:$1|nasledovnú podkategóriu|nasledovné $1 podkategórie|nasledovných $1 podkategórií}}.',
+'category-article-count'         => '{{PLURAL:$2|Táto kategória obsahuje iba nasledovnú stránku.|V tejto kategórii sa {{PLURAL:$1|nachádza jedna stránka|nachádzajú $1 stránky|nachádza $1 stránok}} z $2 celkom.}}',
+'category-article-count-limited' => 'V tejto kategórii sa {{PLURAL:$1|nachádza jedna stránka|nachádzajú $1 stránky|nachádza $1 stránok}}.',
+'category-file-count'            => '{{PLURAL:$2|Táto kategória obsahuje iba nasledovný súbor.|V tejto kategórii sa {{PLURAL:$1|nachádza jeden súbor|nachádzajú $1 súbory|nachádza $1 súborov}} z $2 celkom.}}',
+'category-file-count-limited'    => 'V tejto kategórii sa {{PLURAL:$1|nachádza jeden súbor|nachádzajú $1 súbory|nachádza $1 súborov}}',
+'listingcontinuesabbrev'         => 'pokrač.',
 
 'mainpagetext'      => "<big>'''Softvér MediaWiki bol úspešne nainštalovaný.'''</big>",
 'mainpagedocfooter' => 'Informácie ako používať wiki softvér nájdete v [http://meta.wikimedia.org/wiki/Help:Contents Používateľskej príručke].
@@ -783,7 +791,6 @@ Dôvod, ktorý $3 uviedol, je ''$2''",
 'revnotfound'         => 'Predošlá verzia nebola nájdená',
 'revnotfoundtext'     => 'Požadovaná staršia verzia stránky nebola nájdená.
 Prosím skontrolujte URL adresu, ktorú ste použili na prístup k tejto stránke.',
-'loadhist'            => 'Sťahovanie histórie stránky',
 'currentrev'          => 'Aktuálna verzia',
 'revisionasof'        => 'Verzia zo dňa a času $1',
 'revision-info'       => 'Revízia z $1; $2',
@@ -793,7 +800,6 @@ Prosím skontrolujte URL adresu, ktorú ste použili na prístup k tejto stránk
 'cur'                 => 'aktuálna',
 'next'                => 'ďalšia',
 'last'                => 'posledná',
-'orig'                => 'pôvodná',
 'page_first'          => 'prvá',
 'page_last'           => 'posledná',
 'histlegend'          => 'Porovnanie zmien: označte výberové políčka revízií, ktoré sa majú porovnať a kliknite na tlačidlo dolu.<br />
@@ -917,6 +923,7 @@ Uistite sa, že táto zmena zachová historickú kontinuitu zmien stránky.
 'showingresultsnum'     => "Nižšie {{PLURAL:$3|je zobrazený najviac '''1''' výsledok|sú zobrazené najviac '''$3''' výsledky|je zobrazených najviac '''$3''' výsledkov}}, počnúc od  #'''$2'''.",
 'nonefound'             => "<strong>Poznámka</strong>: bezvýsledné vyhľadávania sú často spôsobené buď snahou hľadať príliš bežné, obyčajné slová (napríklad slovo ''je''), pretože tieto sa nezaraďujú do indexu vyhľadávača, alebo uvedením viac ako jedného vyhľadávaného výrazu, pretože výsledky uvádzajú len stránky obsahujúce všetky vyhľadávané výrazy.",
 'powersearch'           => 'Vyhľadávanie',
+'powersearch-legend'    => 'Pokročilé hľadanie',
 'powersearchtext'       => 'Vyhľadávania v menných priestoroch :<br />
 $1<br />
 $2 Zoznam presmerovaní &nbsp; Hľadanie pre $3 $9',
@@ -984,6 +991,7 @@ $2 Zoznam presmerovaní &nbsp; Hľadanie pre $3 $9',
 'files'                    => 'Súbory',
 
 # User rights
+'userrights'                       => 'Spravovanie používateľských práv', # Not used as normal message but as header for the special page itself
 'userrights-lookup-user'           => 'Spravovať skupiny používateľov',
 'userrights-user-editname'         => 'Zadajte meno používateľa:',
 'editusergroup'                    => 'Upraviť skupinu používateľa',
@@ -1171,6 +1179,9 @@ PICT # misc.
 'upload_source_file' => ' (súbor na vašom počítači)',
 
 # Special:Imagelist
+'imagelist-summary'     => 'Táto špeciálna stránka zobrazuje všetky nahrané súbory.
+Posledné nahrané súbory sa štandardne zobrazujú na vrchu.
+Kliknutím na hlavičku stĺpca zmeníte poradie triedenia.',
 'imagelist_search_for'  => 'Hľadať názov súboru:',
 'imgdesc'               => 'popis',
 'imgfile'               => 'súbor',
@@ -1203,6 +1214,7 @@ PICT # misc.
 'noimage'                   => 'Súbor s takým menom neexistuje, môžete ho $1',
 'noimage-linktext'          => 'nahrať',
 'uploadnewversion-linktext' => 'Nahrať novú verziu tohto súboru',
+'imagepage-searchdupe'      => 'Hľadať duplicitné súbory',
 
 # File reversion
 'filerevert'                => 'Obnoviť $1',
@@ -1318,7 +1330,6 @@ z čoho '''$2''' (alebo '''$4 %''') {{PLURAL:$2|je správca|sú správcovia}} (p
 'mostcategories'          => 'Stránky s najväčším počtom kategórií',
 'mostimages'              => 'Najčastejšie odkazované súbory',
 'mostrevisions'           => 'Stránky s najväčším počtom úprav',
-'allpages'                => 'Všetky stránky',
 'prefixindex'             => 'Index prefixu',
 'shortpages'              => 'Krátke stránky',
 'longpages'               => 'Dlhé stránky',
@@ -1346,19 +1357,14 @@ z čoho '''$2''' (alebo '''$4 %''') {{PLURAL:$2|je správca|sú správcovia}} (p
 na ktorý/-ého chcete aplikovať túto funkciu.',
 'pager-newer-n'           => '{{PLURAL:$1|1 novší|$1 novšie|$1 novších}}',
 'pager-older-n'           => '{{PLURAL:$1|1 starší|$1 staršie|$1 starších}}',
+'pager-sort-asc'          => 'vzostupne',
+'pager-sort-desc'         => 'zostupne',
 
 # Book sources
 'booksources'               => 'Knižné zdroje',
 'booksources-search-legend' => 'Vyhľadávať knižné zdroje',
 'booksources-go'            => 'Vykonať',
 'booksources-text'          => 'Nižšie je zoznam odkazov na iné stránky, ktoré predávajú nové a použité knihy a tiež môžu obsahovať ďalšie informácie o knihách, ktoré hľadáte:',
-
-'categoriespagetext' => 'Nasledovné kategórie obsahujú stránky alebo multimediálne súbory.',
-'data'               => 'Dáta',
-'userrights'         => 'Spravovanie používateľských práv',
-'groups'             => 'Skupiny používateľov',
-'alphaindexline'     => '$1 do $2',
-'version'            => 'Verzia',
 
 # Special:Log
 'specialloguserlabel'  => 'Používateľ:',
@@ -1373,6 +1379,8 @@ Môžete zmenšiť rozsah, ak zvolíte typ záznamu, používateľské meno aleb
 'log-title-wildcard'   => 'Hľadať názvy začínajúce týmto textom',
 
 # Special:Allpages
+'allpages'          => 'Všetky stránky',
+'alphaindexline'    => '$1 do $2',
 'nextpage'          => 'Ďalšia stránka ($1)',
 'prevpage'          => 'Predchádzajúca stránka ($1)',
 'allpagesfrom'      => 'Zobraziť stránky od:',
@@ -1767,7 +1775,8 @@ Potvrďte, že to naozaj chcete urobiť.',
 'locknoconfirm'       => 'Neoznačili ste potvrdzovacie pole.',
 'lockdbsuccesssub'    => 'Zamknutie databázy úspešné',
 'unlockdbsuccesssub'  => 'Databáza bola úspešne odomknutá',
-'lockdbsuccesstext'   => 'Databáza bola dočasne zamknutá.',
+'lockdbsuccesstext'   => 'Databáza bola zamknutá.<br />
+Nezabudnite po dokončení údržby [[Special:Unlockdb|odstrániť zámok]].',
 'unlockdbsuccesstext' => 'Databáza {{GRAMMAR:genitív|{{SITENAME}}}} bola odomknutá.',
 'lockfilenotwritable' => 'Súbor, ktorý zamyká databázu nie je zapisovateľný. Aby bolo možné zamknúť či odomknúť databázu, je potrebné, aby doňho mohol web server zapisovať.',
 'databasenotlocked'   => 'Databáza nie je zamknutá.',
@@ -2064,11 +2073,12 @@ $1',
 # Special:Newimages
 'newimages'             => 'Galéria nových obrázkov',
 'imagelisttext'         => "Tu je zoznam {{PLURAL:$1|jedného súboru|'''$1''' súborov|'''$1''' súborov}} zoradený $2.",
+'newimages-summary'     => 'Táto špeciálna stránka zobrazuje posledné nahrané súbory',
 'showhidebots'          => '($1 botov)',
 'noimages'              => 'Niet čo zobraziť.',
 'ilsubmit'              => 'Hľadať',
 'bydate'                => 'podľa dátumu',
-'sp-newimages-showfrom' => 'Zobraziť nové súbory počínajúc $1',
+'sp-newimages-showfrom' => 'Zobraziť nové súbory počínajúc $2, $1',
 
 # Bad image list
 'bad_image_list' => 'Formát je nasledovný:
@@ -2489,6 +2499,7 @@ Skúste obyčajný náhľad.',
 'unknown_extension_tag' => 'Neznáma značka rozšírenia „$1“',
 
 # Special:Version
+'version'                          => 'Verzia', # Not used as normal message but as header for the special page itself
 'version-extensions'               => 'Nainštalované rozšírenia',
 'version-specialpages'             => 'Špeciálne stránky',
 'version-parserhooks'              => 'Prípojné body syntaktického analyzátora',
@@ -2515,5 +2526,17 @@ Skúste obyčajný náhľad.',
 'filepath-summary' => 'Táto špeciálna stránka vráti úplnú cestu k súboru. Obrázky sa zobrazia v plnom rozlíšení, ostatné typy súborov sa spustia v príslušnom priradenom programe.
 	
 	Zadajte názov súboru bez predpony „{{ns:image}}:“.',
+
+# Special:FileDuplicateSearch
+'fileduplicatesearch'          => 'Hľadať duplicitné súbory',
+'fileduplicatesearch-summary'  => 'Hľadanie duplicitných súborov na základe ich haš hodnôt.
+
+Zadajte názov súboru bez predpony „{{ns:image}}:“.',
+'fileduplicatesearch-legend'   => 'Hľadať duplicity',
+'fileduplicatesearch-filename' => 'Názov súboru:',
+'fileduplicatesearch-submit'   => 'Hľadať',
+'fileduplicatesearch-info'     => '$1 × $2 pixelov<br />Veľkosť súboru: $3<br />Typ MIME: $4',
+'fileduplicatesearch-result-1' => 'Súbor „$1“ nemá žiadny identický duplikát.',
+'fileduplicatesearch-result-n' => 'Súbor „$1“ má {{PLURAL:$2|1 identický duplikát|$2 identické duplikáty|$3 identických duplikátov}}.',
 
 );

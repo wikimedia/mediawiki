@@ -121,10 +121,10 @@ $messages = array(
 
 # Categories related messages
 'categories'             => '{{PLURAL:$1|Kategorija|Kategorijas}}',
+'categoriespagetext'     => 'Wiki ir atrodamas šādas kategorijas.',
 'pagecategories'         => '{{PLURAL:$1|Kategorija|Kategorijas}}',
 'category_header'        => 'Raksti, kas ietverti kategorijā "$1".',
 'subcategories'          => 'Apakškategorijas',
-'subcategorycount'       => 'Šajā kategorijā ir $1 {{PLURAL:$1|apakškategorija|apakškategorijas}}.',
 'listingcontinuesabbrev' => ' (turpinājums)',
 
 'mainpagetext' => "<big>'''MediaWiki veiksmīgi ieinstalēts'''</big>",
@@ -445,7 +445,6 @@ Tu apliecini, ka šo rakstu esi rakstījis vai papildinājis pats vai izmantojis
 'nohistory'           => 'Šai lapai nav pieejama versiju hronoloģija.',
 'revnotfound'         => 'Versija nav atrasta',
 'revnotfoundtext'     => 'Meklētā vecā lapas versija netika atrasta. Lūdzu pārbaudi lietoto URL.',
-'loadhist'            => 'Ielādē lapas hronoloģiju',
 'currentrev'          => 'Pašreizējā versija',
 'revisionasof'        => 'Versija, kas saglabāta $1',
 'previousrevision'    => '←Senāka versija',
@@ -704,7 +703,6 @@ The [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] length is '''\$7''
 'mostcategories'          => 'Raksti ar visvairāk kategorijām',
 'mostimages'              => 'Attēli, uz kuriem ir visvairāk saišu',
 'mostrevisions'           => 'Raksti, kuriem ir visvairāk iepriekšēju versiju',
-'allpages'                => 'Visas lapas',
 'prefixindex'             => 'Meklēt pēc virsraksta pirmajiem burtiem',
 'shortpages'              => 'Īsākās lapas',
 'longpages'               => 'Garākās lapas',
@@ -722,9 +720,6 @@ The [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] length is '''\$7''
 # Book sources
 'booksources' => 'Grāmatu avoti',
 
-'categoriespagetext' => 'Wiki ir atrodamas šādas kategorijas.',
-'version'            => 'Versija',
-
 # Special:Log
 'specialloguserlabel'  => 'Lietotājs:',
 'speciallogtitlelabel' => 'Virsraksts:',
@@ -733,6 +728,7 @@ The [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] length is '''\$7''
 Tu vari sašaurināt aplūkojamo reģistru, izvēloties reģistra veidu, lietotāja vārdu vai reģistrēto lapu.',
 
 # Special:Allpages
+'allpages'       => 'Visas lapas',
 'allarticles'    => 'Visi raksti',
 'allpagessubmit' => 'Aiziet!',
 'allpagesprefix' => 'Parādīt lapas ar šādu virsraksta sākumu:',
@@ -1091,6 +1087,9 @@ Ja tu *neesi* registrejis sadu lietotaja vardu, nespied uz saites. Si apstiprina
 # Auto-summaries
 'autoredircomment' => 'Pāradresē uz [[$1]]',
 'autosumm-new'     => 'Jauna lapa: $1',
+
+# Special:Version
+'version' => 'Versija', # Not used as normal message but as header for the special page itself
 
 # Special:Filepath
 'filepath'        => 'Failu adreses',

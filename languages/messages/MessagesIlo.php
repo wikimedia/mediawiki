@@ -43,10 +43,9 @@ $messages = array(
 'aug'         => 'Ago',
 
 # Categories related messages
-'categories'       => 'Dagiti Categoria',
-'category_header'  => 'Dagiti articulo iti categoria "$1"',
-'subcategories'    => 'Dagiti subcategoria',
-'subcategorycount' => 'Addaan {{PLURAL:$1|1 subcategoria|$1 subcategorias}} daytoy a categoria.',
+'categories'      => 'Dagiti Categoria',
+'category_header' => 'Dagiti articulo iti categoria "$1"',
+'subcategories'   => 'Dagiti subcategoria',
 
 'about'          => 'Maipapan iti',
 'newwindow'      => '(aglukat iti sabali a tawa)',
@@ -164,6 +163,9 @@ Kasta met nga ikarim kadakami a bukodmo a sinurat wenno gapuanan daytoy, wenno k
 'histfirst'           => 'Kaunaan',
 'histlast'            => 'Kaudian',
 
+# History merging
+'mergehistory-submit' => 'Pagtiponen dagiti panamalbaliw',
+
 # Diffs
 'compareselectedversions' => 'Paggidiaten dagiti pinili a version',
 
@@ -208,7 +210,6 @@ Kasta met nga ikarim kadakami a bukodmo a sinurat wenno gapuanan daytoy, wenno k
 'wantedcategories' => 'Dagiti masapul a categoria',
 'wantedpages'      => 'Kiddaw a pampanid',
 'mostrevisions'    => 'Dagiti articulo a kaaduan iti pannakabalbaliwna',
-'allpages'         => 'Amin a panid',
 'listusers'        => 'Listaan dagiti agar-aramat',
 'specialpages'     => 'Naiduma a pampanid',
 'newpages'         => 'Baro a pampanid',
@@ -216,6 +217,7 @@ Kasta met nga ikarim kadakami a bukodmo a sinurat wenno gapuanan daytoy, wenno k
 'movethispage'     => 'Iyakar daytoy a panid',
 
 # Special:Allpages
+'allpages'       => 'Amin a panid',
 'nextpage'       => 'sumaruno a panid ($1)',
 'allpagesfrom'   => 'Ipakita dagiti panid a mangrugi iti:',
 'allarticles'    => 'Amin nga articulo',

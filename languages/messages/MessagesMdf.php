@@ -114,6 +114,7 @@ $messages = array(
 
 # Categories related messages
 'categories'               => 'Категориет',
+'categoriespagetext'       => 'Ся категориетнень улихть лопат эли медиат.',
 'pagecategories'           => '{{PLURAL:$1|Категорие|Категориет}}',
 'category_header'          => '"$1" категориеса лопатне',
 'subcategories'            => 'Субкатегориет',
@@ -121,7 +122,6 @@ $messages = array(
 'category-empty'           => "''Медиа лопат тя категориеса ашет.''",
 'hidden-categories'        => '{{PLURAL:$1|Кяшф категорие|Кяшф категориет}}',
 'hidden-category-category' => 'Кяшф категориет', # Name of the category where hidden categories will be listed
-'subcategorycount'         => '{{PLURAL:$1|фкя йомла категорие|$1 йомла категориет}} тя категориеса.',
 'listingcontinuesabbrev'   => 'поладксоц',
 
 'mainpagetext'      => "<big>'''МедиаВикить арафтозь лац.'''</big>",
@@ -612,7 +612,6 @@ $3 макссь туфталсь - ''$2''",
 'nohistory'           => 'Тя лопать петнемань историяц аш.',
 'revnotfound'         => 'Верзиесь аф муви',
 'revnotfoundtext'     => 'Тя лопать сире верзиец аф муви. Ватт URL конань вельде тон сувать тя лопас.',
-'loadhist'            => 'Лопать историяц тяни морафневи',
 'currentrev'          => 'Тяниень верзие',
 'revisionasof'        => '$1-нь верзиесь',
 'revision-info'       => '$1-нь верзие конань тизе $2',
@@ -622,7 +621,6 @@ $3 макссь туфталсь - ''$2''",
 'cur'                 => 'тян.',
 'next'                => 'сай',
 'last'                => 'сяд.',
-'orig'                => 'ушет.',
 'page_first'          => 'васенце',
 'page_last'           => 'мекольце',
 'histlegend'          => 'Верзиень кочкама: путт тяшкскат верзиетнень конякскяснон эди люпштак алудонь пунять эли Enter пунять.<br />
@@ -807,6 +805,7 @@ $3 макссь туфталсь - ''$2''",
 'files'                    => 'Файлхт',
 
 # User rights
+'userrights'                       => 'Тиинь видекснень вятема', # Not used as normal message but as header for the special page itself
 'userrights-lookup-user'           => 'Тиихнень полгаснон вятемасна',
 'userrights-user-editname'         => 'Путт тиить лемонц:',
 'editusergroup'                    => 'Полафтомс тиить полганзон',
@@ -1124,7 +1123,6 @@ $3 макссь туфталсь - ''$2''",
 'mostcategories'          => 'Сембода лама категорие мархта лопат',
 'mostimages'              => 'Сембода ламоксть сюлмаф файлхнень мархта',
 'mostrevisions'           => 'Сембода лама верзиетнень мархта лопат',
-'allpages'                => 'Сембе лопат',
 'prefixindex'             => 'Инголькс индекс',
 'shortpages'              => 'Нюрьхкяня лопат',
 'longpages'               => 'Кувака лопат',
@@ -1158,13 +1156,6 @@ $3 макссь туфталсь - ''$2''",
 'booksources-go'            => 'Аре',
 'booksources-text'          => 'Сюлмафкст ала сотфт иля интернет лопатнень мархта, конат мишендихть од эди сире кинигат, ди тоса, улема, тон мусак поладомань информацие ся кинигатнень колга, конатнень тон вешендить:',
 
-'categoriespagetext' => 'Ся категориетнень улихть лопат эли медиат.',
-'data'               => 'Информацие',
-'userrights'         => 'Тиинь видекснень вятема',
-'groups'             => 'Тиинь полгат',
-'alphaindexline'     => '$1-ста $2-с',
-'version'            => 'MediaWiki-ть верзиец',
-
 # Special:Log
 'specialloguserlabel'  => 'Тиись:',
 'speciallogtitlelabel' => 'Конякс:',
@@ -1178,6 +1169,8 @@ $3 макссь туфталсь - ''$2''",
 'log-title-wildcard'   => 'Мумс конякст конат ушедыхть стама тяшкста',
 
 # Special:Allpages
+'allpages'          => 'Сембе лопат',
+'alphaindexline'    => '$1-ста $2-с',
 'nextpage'          => 'Сай лопа ($1)',
 'prevpage'          => 'Сядынголень лопа ($1)',
 'allpagesfrom'      => 'Няфтемс лопат ушедомс:',
@@ -1657,5 +1650,8 @@ $1',
 'watchlisttools-view' => 'Няфтемс полафнематне лувомастонь лопапотмова',
 'watchlisttools-edit' => 'Няфтемс эди петнемс ванома сёрмалувомать',
 'watchlisttools-raw'  => 'Петнемс ишь ванома сёрмалувомать',
+
+# Special:Version
+'version' => 'MediaWiki-ть верзиец', # Not used as normal message but as header for the special page itself
 
 );

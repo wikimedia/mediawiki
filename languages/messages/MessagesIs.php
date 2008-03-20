@@ -314,16 +314,22 @@ $messages = array(
 'dec'           => 'des',
 
 # Categories related messages
-'categories'               => 'Flokkar',
-'pagecategories'           => '{{PLURAL:$1|Flokkur|Flokkar}}',
-'category_header'          => 'Greinar í flokknum „$1“',
-'subcategories'            => 'Undirflokkar',
-'category-media-header'    => 'Margmiðlunarefni í flokknum „$1“',
-'category-empty'           => "''Þessi flokkur inniheldur engar greinar eða margmiðlunarefni.''",
-'hidden-categories'        => '{{PLURAL:$1|Falinn flokkur|Faldir flokkar}}',
-'hidden-category-category' => 'Faldir flokkar', # Name of the category where hidden categories will be listed
-'subcategorycount'         => 'Það {{PLURAL:$1|er einn undirflokkur|eru $1 undirflokkar}} í þessum flokki.',
-'listingcontinuesabbrev'   => 'frh.',
+'categories'                     => 'Flokkar',
+'categoriespagetext'             => 'Eftirfarandi flokkar innihalda síður eða margmiðlunarefni.',
+'pagecategories'                 => '{{PLURAL:$1|Flokkur|Flokkar}}',
+'category_header'                => 'Greinar í flokknum „$1“',
+'subcategories'                  => 'Undirflokkar',
+'category-media-header'          => 'Margmiðlunarefni í flokknum „$1“',
+'category-empty'                 => "''Þessi flokkur inniheldur engar greinar eða margmiðlunarefni.''",
+'hidden-categories'              => '{{PLURAL:$1|Falinn flokkur|Faldir flokkar}}',
+'hidden-category-category'       => 'Faldir flokkar', # Name of the category where hidden categories will be listed
+'category-subcat-count'          => '{{PLURAL:$2|Þessi flokkur hefur einungis eftirfarandi undirflokk.|Þessi flokkur hefur eftirfarandi {{PLURAL:$1|undirflokk|$1 undirflokka}}, af alls $2.}}',
+'category-subcat-count-limited'  => 'Þessi flokkur hefur eftirfarandi {{PLURAL:$1|undirflokk|$1 undirflokka}}.',
+'category-article-count'         => '{{PLURAL:$2|Þessi flokkur inniheldur aðeins eftirfarandi síðu.|Eftirfarandi {{PLURAL:$1|síða er|síður eru}} í þessum flokki, af alls $1.}}',
+'category-article-count-limited' => 'Eftirfarndi {{PLURAL:$1|síða er|$1 síður eru}} í þessum flokki.',
+'category-file-count'            => '{{PLURAL:$2|Þessi flokkur inniheldur einungis eftirfarandi skrá.|Eftirfarandi {{PLURAL:$1|skrá er|$1 skrár eru}} í þessum flokki, af alls $2.}}',
+'category-file-count-limited'    => 'Eftirfarandi {{PLURAL:$1|skrá er|$1 skrár eru}} í þessum flokki.',
+'listingcontinuesabbrev'         => 'frh.',
 
 'linkprefix'        => '/^(.*?)([áÁðÐéÉíÍóÓúÚýÝþÞæÆöÖA-Za-z-–]+)$/sDu',
 'mainpagetext'      => "<big>'''Uppsetning á MediaWiki heppnaðist.'''</big>",
@@ -785,7 +791,6 @@ Eyðingarskrá fyrir þessa síðu er útveguð hér til þæginda:",
 'viewpagelogs'        => 'Sýna aðgerðir varðandi þessa síðu',
 'nohistory'           => 'Þessi síða hefur enga breytingaskrá.',
 'revnotfound'         => 'Breyting ekki fundin',
-'loadhist'            => 'Hleð breytingaskránni',
 'currentrev'          => 'Núverandi útgáfa',
 'revisionasof'        => 'Útgáfa síðunnar $1',
 'revision-info'       => 'Útgáfa frá $1 eftir $2',
@@ -795,7 +800,6 @@ Eyðingarskrá fyrir þessa síðu er útveguð hér til þæginda:",
 'cur'                 => 'fyrri',
 'next'                => 'næst',
 'last'                => 'þessa',
-'orig'                => 'uppru',
 'page_first'          => 'fyrsta',
 'page_last'           => 'síðasta',
 'histlegend'          => 'Skýringar: (nú) = bera saman við núverandi útgáfu, 
@@ -910,6 +914,7 @@ Prófaðu [[Special:Search|að leita á þessari wiki síðu]] að svipuðum sí
 'files'                   => 'Skrár',
 
 # User rights
+'userrights'                  => 'Breyta notendaréttindum', # Not used as normal message but as header for the special page itself
 'userrights-lookup-user'      => 'Yfirlit notandaflokka',
 'userrights-user-editname'    => 'Skráðu notandanafn:',
 'editusergroup'               => 'Breyta notendahópum',
@@ -1165,7 +1170,6 @@ Lengdin á [http://meta.wikimedia.org/wiki/Help:Job_queue vinnsluröðinni] er '
 'mostcategories'          => 'Mest flokkaðar greinar',
 'mostimages'              => 'Mest ítengdu skrárnar',
 'mostrevisions'           => 'Greinar eftir fjölda breytinga',
-'allpages'                => 'Allar síður',
 'prefixindex'             => 'Forskeytisleit',
 'shortpages'              => 'Stuttar síður',
 'longpages'               => 'Langar síður',
@@ -1192,13 +1196,6 @@ Lengdin á [http://meta.wikimedia.org/wiki/Help:Job_queue vinnsluröðinni] er '
 'booksources-go'            => 'Áfram',
 'booksources-text'          => 'Fyrir neðan er listi af tenglum í aðrar síður sem selja nýjar og notaðar bækur og gætu einnig haft nánari upplýsingar í sambandi við bókina sem þú varst að leita að:',
 
-'categoriespagetext' => 'Eftirfarandi flokkar innihalda síður eða margmiðlunarefni.',
-'data'               => 'Gögn',
-'userrights'         => 'Breyta notendaréttindum',
-'groups'             => 'Notendahópar',
-'alphaindexline'     => '$1 til $2',
-'version'            => 'Útgáfa',
-
 # Special:Log
 'specialloguserlabel'  => 'Notandi:',
 'speciallogtitlelabel' => 'Titill:',
@@ -1212,6 +1209,8 @@ Lengdin á [http://meta.wikimedia.org/wiki/Help:Job_queue vinnsluröðinni] er '
 'log-title-wildcard'   => 'Leita að titlum sem byrja á þessum texta',
 
 # Special:Allpages
+'allpages'          => 'Allar síður',
+'alphaindexline'    => '$1 til $2',
 'nextpage'          => 'Næsta síða ($1)',
 'prevpage'          => 'Fyrri síða ($1)',
 'allpagesfrom'      => 'Sýna síður frá og með:',
@@ -1360,8 +1359,9 @@ Síðasta breyting er frá [[User:$3|$3]] ([[User_talk:$3|Spjall]]).',
 'pagesize'                    => '(bæt)',
 
 # Restrictions (nouns)
-'restriction-edit' => 'Breyta',
-'restriction-move' => 'Færa',
+'restriction-edit'   => 'Breyta',
+'restriction-move'   => 'Færa',
+'restriction-create' => 'Skapa',
 
 # Restriction levels
 'restriction-level-sysop'         => 'alvernduð',
@@ -1374,6 +1374,8 @@ Síðasta breyting er frá [[User:$3|$3]] ([[User_talk:$3|Spjall]]).',
 'viewdeletedpage'          => 'Skoða eyddar síður',
 'undeletepagetext'         => 'Eftirfarandi síðum hefur verið eitt en eru þó enn í gagnagrunninum og geta verið endurvaknar. Athugið að síður þessar eru reglulega fjarlægðar endanlega úr gagnagrunninum.',
 'undeleterevisions'        => '$1 {{PLURAL:$1|breyting|breytingar}}',
+'undeletehistorynoadmin'   => 'Þessari síðu hefur verið eytt. Ástæðan sést í ágripinu fyrir neðan, ásamt upplýsingum um hvaða notendur breyttu síðunni fyrir eyðingu.
+Innihald greinarinnar er einungis aðgengilegt möppudýrum.',
 'undeletebtn'              => 'Endurvekja!',
 'undeletereset'            => 'Endurstilla',
 'undeletecomment'          => 'Athugasemd:',
@@ -1476,6 +1478,7 @@ Gefðu ástæðu fyrir banninu (meðal annars að nefna síðu sem var skemmd).'
 'blocklistline'               => '$1, $2 bannaði $3 (rennur út $4)',
 'infiniteblock'               => 'aldrei',
 'expiringblock'               => 'rennur út  $1',
+'anononlyblock'               => 'bara ónafngreindir',
 'createaccountblock'          => 'bann við stofnun nýrra notenda',
 'emailblock'                  => 'tölvupóstur bannaður',
 'ipblocklist-empty'           => 'Bannlistinn er tómur.',
@@ -1606,6 +1609,7 @@ Allir innflutningar eru skráð í [[{{ns:special}}:Log/import|innflutningsskrá
 'importbadinterwiki'         => 'Villa í tungumálatengli',
 'importnotext'               => 'Tómt eða enginn texti',
 'importsuccess'              => 'Innflutningi lokið!',
+'import-noarticle'           => 'Engin síða til innflutnings!',
 
 # Import log
 'importlogpage'                    => 'Innflutningsskrá',
@@ -1646,7 +1650,7 @@ Allir innflutningar eru skráð í [[{{ns:special}}:Log/import|innflutningsskrá
 'tooltip-n-help'                  => 'Efnisyfirlit yfir hjálparsíður.',
 'tooltip-n-sitesupport'           => 'Fjárframlagssíða',
 'tooltip-t-whatlinkshere'         => 'Listi yfir síður sem tengjast í þessa',
-'tooltip-t-recentchangeslinked'   => 'Nýlegar breitingar á ítengdum síðum',
+'tooltip-t-recentchangeslinked'   => 'Nýlegar breytingar á ítengdum síðum',
 'tooltip-feed-rss'                => 'RSS fyrir þessa síðu',
 'tooltip-feed-atom'               => 'Atom fyrir þessa síðu',
 'tooltip-t-contributions'         => 'Sýna framlagslista þessa notanda',
@@ -1740,12 +1744,13 @@ Allir innflutningar eru skráð í [[{{ns:special}}:Log/import|innflutningsskrá
 'show-big-image-thumb' => '<small>Myndin er í upplausninni $1 × $2 </small>',
 
 # Special:Newimages
-'newimages'     => 'Myndasafn nýlegra skráa',
-'imagelisttext' => 'Hér fyrir neðan er {{PLURAL:$1|einni skrá|$1 skrám}} raðað $2.',
-'showhidebots'  => '($1 vélmenni)',
-'noimages'      => 'Ekkert að sjá.',
-'ilsubmit'      => 'Leita',
-'bydate'        => 'eftir dagsetningu',
+'newimages'         => 'Myndasafn nýlegra skráa',
+'imagelisttext'     => 'Hér fyrir neðan er {{PLURAL:$1|einni skrá|$1 skrám}} raðað $2.',
+'newimages-summary' => 'Þessi kerfissíða sýnir nýlega innhlaðnar skrár',
+'showhidebots'      => '($1 vélmenni)',
+'noimages'          => 'Ekkert að sjá.',
+'ilsubmit'          => 'Leita',
+'bydate'            => 'eftir dagsetningu',
 
 # Metadata
 'metadata'          => 'Lýsigögn',
@@ -1919,13 +1924,20 @@ $1',
 'watchlisttools-raw'  => 'Breyta opnum vaktlistanum',
 
 # Special:Version
-'version-specialpages' => 'Kerfissíður',
-'version-variables'    => 'Breytur',
-'version-version'      => 'Útgáfa',
+'version'                  => 'Útgáfa', # Not used as normal message but as header for the special page itself
+'version-specialpages'     => 'Kerfissíður',
+'version-variables'        => 'Breytur',
+'version-version'          => 'Útgáfa',
+'version-license'          => 'Leyfi',
+'version-software-version' => 'Útgáfa',
 
 # Special:Filepath
 'filepath'        => 'Slóð skráar',
 'filepath-page'   => 'Skrá:',
 'filepath-submit' => 'Slóð',
+
+# Special:FileDuplicateSearch
+'fileduplicatesearch-filename' => 'Skráarnafn:',
+'fileduplicatesearch-submit'   => 'Leita',
 
 );

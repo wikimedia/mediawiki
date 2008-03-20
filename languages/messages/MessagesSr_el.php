@@ -302,10 +302,10 @@ $messages = array(
 
 # Categories related messages
 'categories'             => 'Kategorije stranica',
+'categoriespagetext'     => 'Sledeće kategorije već postoje na vikiju',
 'pagecategories'         => '{{PLURAL:$1|Kategorija|Kategorije|Kategorije}} stranica',
 'category_header'        => 'Članaka u kategoriji "$1"',
 'subcategories'          => 'Potkategorije',
-'subcategorycount'       => 'U ovoj kategoriji se nalazi {{plural:$1|jedna potkategorija|$1 potkategorije|$1 potkategorija}}.',
 'listingcontinuesabbrev' => 'nast.',
 
 'mainpagetext'      => "<big>'''MedijaViki je uspešno instaliran.'''</big>",
@@ -719,7 +719,6 @@ da pratite [[{{ns:project}}:Pravila o zaštiti stranica|pravila o zaštiti stran
 'revnotfound'         => 'Revizija nije pronađena',
 'revnotfoundtext'     => 'Starija revizija ove stranice koju ste zatražili nije nađena.
 Molimo vas da proverite URL koji ste upotrebili da biste pristupili ovoj stranici.',
-'loadhist'            => 'Učitavam istoriju stranice',
 'currentrev'          => 'Trenutna revizija',
 'revisionasof'        => 'Revizija od $1',
 'revision-info'       => 'Revizija od $1; $2',
@@ -862,6 +861,7 @@ da biste podešavali korisnička podešavanja.',
 'files'                    => 'Fajlovi',
 
 # User rights
+'userrights'                 => 'Upravljanje korisničkim pravima', # Not used as normal message but as header for the special page itself
 'userrights-lookup-user'     => 'Upravljaj korisničkim grupama',
 'userrights-user-editname'   => 'Unesite korisničko ime:',
 'editusergroup'              => 'Menjaj grupe korisnika',
@@ -1073,7 +1073,6 @@ Dužina reda za poslove iznosi '''$7'''",
 'mostcategories'          => 'Članci sa najviše kategorija',
 'mostimages'              => 'Najviše povezane slike',
 'mostrevisions'           => 'Članci sa najviše revizija',
-'allpages'                => 'Sve stranice',
 'prefixindex'             => 'Spisak prefiksa',
 'shortpages'              => 'Kratke stranice',
 'longpages'               => 'Dugačke stranice',
@@ -1099,13 +1098,6 @@ na kome bi se izvela ova funkcija.',
 # Book sources
 'booksources' => 'Štampani izvori',
 
-'categoriespagetext' => 'Sledeće kategorije već postoje na vikiju',
-'data'               => 'Podaci',
-'userrights'         => 'Upravljanje korisničkim pravima',
-'groups'             => 'Korisničke grupe',
-'alphaindexline'     => '$1 u $2',
-'version'            => 'Verzija',
-
 # Special:Log
 'specialloguserlabel'  => 'Korisnik:',
 'speciallogtitlelabel' => 'Naslov:',
@@ -1115,6 +1107,8 @@ Možete suziti pregled odabirom tipa istorije, korisničkog imena ili tražene s
 'logempty'             => 'Protokol je prazan.',
 
 # Special:Allpages
+'allpages'          => 'Sve stranice',
+'alphaindexline'    => '$1 u $2',
 'nextpage'          => 'Sledeća stranica ($1)',
 'allpagesfrom'      => 'Prikaži stranice početno sa:',
 'allarticles'       => 'Svi članci',
@@ -2003,6 +1997,9 @@ $1',
 
 # Auto-summaries
 'autoredircomment' => 'Preusmerenje na [[$1]]',
+
+# Special:Version
+'version' => 'Verzija', # Not used as normal message but as header for the special page itself
 
 # Special:Filepath
 'filepath'        => 'Putanja fajla',

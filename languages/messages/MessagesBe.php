@@ -165,6 +165,7 @@ $messages = array(
 
 # Categories related messages
 'categories'               => 'Катэгорыі',
+'categoriespagetext'       => 'Спіс катэгорый гэтай вікі-пляцоўкі:',
 'pagecategories'           => '{{PLURAL:$1|Катэгорыя|Катэгорыі}}',
 'category_header'          => 'Складнікі ў катэгорыі “$1”',
 'subcategories'            => 'Падкатэгорыі',
@@ -172,7 +173,6 @@ $messages = array(
 'category-empty'           => "''Зараз у катэгорыі няма аніводнай старонкі або мультымедыйнага файла.''",
 'hidden-categories'        => '{{PLURAL:$1|Схаваная катэгорыя|Схаваныя катэгорыі}}',
 'hidden-category-category' => 'Схаваныя катэгорыі', # Name of the category where hidden categories will be listed
-'subcategorycount'         => 'У гэтай катэгорыі $1 {{PLURAL:$1|падкатэгорыя|падкатэгорыі|падкатэгорый}}.',
 'listingcontinuesabbrev'   => 'працяг',
 
 'mainpagetext'      => "<big>'''MediaWiki паспяхова ўсталяваная.'''</big>",
@@ -662,7 +662,6 @@ $2',
 'revnotfound'         => 'Версія не знойдзена',
 'revnotfoundtext'     => 'Не ўдалося знайсці ранейшую версію гэтага артыкула, па якую вы звярталіся.
 Праверце URL, праз які вы спрабавалі адкрыць старонку.',
-'loadhist'            => 'Счытваецца гісторыя старонкі',
 'currentrev'          => 'Актуальная версія',
 'revisionasof'        => 'Версія ад $1',
 'revision-info'       => 'Версія ад $1, аўтар $2',
@@ -672,7 +671,6 @@ $2',
 'cur'                 => 'з актуальн.',
 'next'                => 'наступ.',
 'last'                => 'з папярэд.',
-'orig'                => 'арыг.',
 'page_first'          => 'перш.',
 'page_last'           => 'апошн.',
 'histlegend'          => 'Выбар розніцы: адзначце радыё-боксы версій, якія трэба параўнаць і націсніце enter або кнопку, што ўнізе.<br /> Тлумачэнне: (з актуальн.) = розніца з актуальнай версіяй, (з папярэд.) = розніца з папярэдняй версіяй, д = дробная праўка.',
@@ -829,6 +827,7 @@ $2',
 'files'                 => 'Файлы',
 
 # User rights
+'userrights'                       => 'Распараджэнне правамі ўдзельніка', # Not used as normal message but as header for the special page itself
 'userrights-lookup-user'           => 'Распараджацца групамі ўдзельнікаў',
 'userrights-user-editname'         => 'Увядзіце імя ўдзельніка:',
 'editusergroup'                    => 'Правіць групы ўдзельнікаў',
@@ -968,7 +967,7 @@ $2',
 'uploadscripted'              => 'У файле ўтрымліваецца код HTML або Яваскрыпту, які можа быць памылкова апрацаваны браўзерам.',
 'uploadcorrupt'               => 'Файл пашкоджаны або названы з неадпаведным суфіксам. Праверце файл і ўкладзіце яго нанова.',
 'uploadvirus'                 => 'Файл утрымлівае вірус! Падрабязнасці: $1',
-'sourcefilename'              => 'Назва вытокавага файла:',
+'sourcefilename'              => 'Назва вытокавага файла',
 'destfilename'                => 'Назва мэтавага файла:',
 'watchthisupload'             => 'Назіраць за гэтай старонкай',
 'filewasdeleted'              => 'Файл з такою назвай быў раней укладзены сюды, а потым сцёрты. Варта паглядзець у $1 перад тым, як укладаць яго нанова.',
@@ -1141,7 +1140,6 @@ $2',
 'mostcategories'          => 'Артыкулы ў найбольшай кольк. катэгорый',
 'mostimages'              => 'Выявы ў частым выкарыстанні',
 'mostrevisions'           => 'Артыкулы з найбольшай колькасцю версій',
-'allpages'                => 'Усе старонкі',
 'prefixindex'             => 'Пошук старонак па пачатку назвы',
 'shortpages'              => "Старонкі малога аб'ёму",
 'longpages'               => "Старонкі вялікага аб'ёму",
@@ -1175,13 +1173,6 @@ $2',
 'booksources-go'            => 'Пошук',
 'booksources-text'          => 'Ніжэй паказаны пералік спасылак на іншыя сеціўныя пляцоўкі, якія прадаюць новыя і б/у кнігі, і, магчыма, маюць больш звестак пра кнігі, якіх вы шукаеце:',
 
-'categoriespagetext' => 'Спіс катэгорый гэтай вікі-пляцоўкі:',
-'data'               => 'Дадзеныя',
-'userrights'         => 'Распараджэнне правамі ўдзельніка',
-'groups'             => 'Групы ўдзельніка',
-'alphaindexline'     => '$1 да $2',
-'version'            => 'Версія',
-
 # Special:Log
 'specialloguserlabel'  => 'Удзельнік:',
 'speciallogtitlelabel' => 'Загаловак:',
@@ -1193,6 +1184,8 @@ $2',
 'log-title-wildcard'   => 'Знайсці назвы, якія пачынаюцца з гэтага тэксту',
 
 # Special:Allpages
+'allpages'          => 'Усе старонкі',
+'alphaindexline'    => '$1 да $2',
 'nextpage'          => 'Наступная старонка ($1)',
 'prevpage'          => 'Папярэдняя старонка ($1)',
 'allpagesfrom'      => 'Паказваць старонкі ад:',
@@ -2086,6 +2079,7 @@ $1',
 'unknown_extension_tag' => 'Невядомая метка пашырэння "$1"',
 
 # Special:Version
+'version'                          => 'Версія', # Not used as normal message but as header for the special page itself
 'version-extensions'               => 'Устаноўленыя прыстаўкі',
 'version-specialpages'             => 'Адмысловыя старонкі',
 'version-parserhooks'              => 'Хукі парсера',

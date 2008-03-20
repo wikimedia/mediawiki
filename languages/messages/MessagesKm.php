@@ -229,6 +229,7 @@ $messages = array(
 
 # Categories related messages
 'categories'               => 'ចំណាត់ថ្នាក់ក្រុម',
+'categoriespagetext'       => 'ចំណាត់ថ្នាក់ក្រុមខាងក្រោមនេះមានទំព័រឬមេឌា ។',
 'pagecategories'           => 'ចំណាត់ថ្នាក់ក្រុម',
 'category_header'          => 'ទំព័រដែលមាន​ក្នុងចំណាត់ថ្នាក់ក្រុម"$1"',
 'subcategories'            => 'ចំណាត់ថ្នាក់ក្រុមរង',
@@ -236,7 +237,6 @@ $messages = array(
 'category-empty'           => "''ចំណាត់ថ្នាក់ក្រុមនេះ​មិនមានផ្ទុកទំព័រ​ឬ​ឯកសារមេឌា​ណាមួយទេ។''",
 'hidden-categories'        => '{{PLURAL:$1|ចំណាត់ថ្នាក់ក្រុមមិនបានបង្ហាញ|ចំណាត់ថ្នាក់ក្រុមមិនបានបង្ហាញ}}',
 'hidden-category-category' => 'ចំណាត់ថ្នាក់ក្រុមដែលត្រូវបានលាក់', # Name of the category where hidden categories will be listed
-'subcategorycount'         => 'មាន {{PLURAL:$1|មួយចំណាត់ក្រុមរង|$1 ចំណាត់ក្រុមរង}} ចំពោះ ចំណាត់ក្រុម ។',
 'listingcontinuesabbrev'   => 'បន្ត',
 
 'mainpagetext'      => "<big>'''មេឌាវិគីត្រូវបានតំលើងដោយជោគជ័យហើយ'''</big>",
@@ -717,7 +717,6 @@ $2',
 'nohistory'           => 'មិនមានប្រវត្តិកំនែប្រែ​ចំពោះទំព័រនេះ។',
 'revnotfound'         => 'រកមិនឃើញ​កំនែ',
 'revnotfoundtext'     => 'កំនែប្រែចាស់របស់ទំព័រដែលអ្នកស្វែងរកមិនមានទេ។ ចូរពិនិត្យURLដែលអ្នកធ្លាប់ដំណើរការទំព័រនេះ។',
-'loadhist'            => 'ផ្ទុកប្រវត្តិ​នៃ​ទំព័រ',
 'currentrev'          => 'កំនែបច្ចុប្បន្ន',
 'revisionasof'        => 'កំនែ​របស់ $1',
 'revision-info'       => 'កំនែ​របស់ $1 ដោយ $2',
@@ -727,7 +726,6 @@ $2',
 'cur'                 => 'បច្ចុប្បន្ន',
 'next'                => 'បន្ទាប់',
 'last'                => 'ចុងក្រោយ',
-'orig'                => 'ច្បាប់ដើម',
 'page_first'          => 'ដំបូង',
 'page_last'           => 'ចុងក្រោយ',
 'histlegend'          => "ជំរើសផ្សេងគ្នា៖ mark the radio boxes of the versions to compare and hit enter or the button at the bottom. <br />
@@ -880,6 +878,7 @@ $2',
 'files'                    => 'ឯកសារ',
 
 # User rights
+'userrights'                       => 'ការគ្រប់គ្រងសិទ្ធិអ្នកប្រើប្រាស់', # Not used as normal message but as header for the special page itself
 'userrights-lookup-user'           => 'គ្រប់គ្រង ក្រុមអ្នកប្រើប្រាស់',
 'userrights-user-editname'         => 'បញ្ចូលឈ្មោះអ្នកប្រើប្រាស់៖',
 'editusergroup'                    => 'កែប្រែ ក្រុមអ្នកប្រើប្រាស់',
@@ -1169,7 +1168,6 @@ $2',
 'mostcategories'          => 'អត្ថបទដែលមានចំណាត់ថ្នាក់ក្រុមច្រើនបំផុត',
 'mostimages'              => 'រូបភាព ត្រូវបានតភ្ជាប់ ច្រើនបំផុត',
 'mostrevisions'           => 'អត្ថបទ ត្រូវបានកែប្រែ ច្រើនបំផុត',
-'allpages'                => 'គ្រប់ទំព័រ',
 'prefixindex'             => 'លិបិក្រមបុព្វបទ',
 'shortpages'              => 'ទំព័រខ្លីៗ',
 'longpages'               => 'ទំព័រវែងៗ',
@@ -1199,13 +1197,6 @@ $2',
 'booksources-search-legend' => 'ស្វែងរកប្រភពសៀវភៅ',
 'booksources-go'            => 'ទៅ',
 
-'categoriespagetext' => 'ចំណាត់ថ្នាក់ក្រុមខាងក្រោមនេះមានទំព័រឬមេឌា ។',
-'data'               => 'ទិន្នន័យ',
-'userrights'         => 'ការគ្រប់គ្រងសិទ្ធិអ្នកប្រើប្រាស់',
-'groups'             => 'ក្រុមអ្នកប្រើប្រាស់',
-'alphaindexline'     => '$1 ទៅ $2',
-'version'            => 'កំណែ(version)',
-
 # Special:Log
 'specialloguserlabel'  => 'អ្នកប្រើប្រាស់៖',
 'speciallogtitlelabel' => 'ចំណងជើង៖',
@@ -1217,6 +1208,8 @@ $2',
 'log-title-wildcard'   => 'ស្វែងរក ចំណងជើងនានា ដែលចាប់ផ្តើម ដោយអត្ថបទនេះ',
 
 # Special:Allpages
+'allpages'          => 'គ្រប់ទំព័រ',
+'alphaindexline'    => '$1 ទៅ $2',
 'nextpage'          => 'ទំព័របន្ទាប់ ($1)',
 'prevpage'          => 'ទំព័រមុន ($1)',
 'allpagesfrom'      => 'បង្ហាញទំព័រផ្តើមដោយ៖',
@@ -1978,6 +1971,7 @@ $1',
 'watchlisttools-raw'  => 'កែប្រែបញ្ជីតាមដានឆៅ',
 
 # Special:Version
+'version'                   => 'កំណែ(version)', # Not used as normal message but as header for the special page itself
 'version-specialpages'      => 'ទំព័រពិសេសៗ',
 'version-other'             => 'ផ្សេង',
 'version-hook-subscribedby' => 'បានជាវ ជាប្រចាំ ដោយ',

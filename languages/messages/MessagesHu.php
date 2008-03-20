@@ -356,16 +356,22 @@ $messages = array(
 'dec'           => 'dec',
 
 # Categories related messages
-'categories'               => 'Kategóriák',
-'pagecategories'           => '{{PLURAL:$1|Kategória|Kategóriák}}',
-'category_header'          => '„$1” kategória szócikkei',
-'subcategories'            => 'Alkategóriák',
-'category-media-header'    => 'A(z) „$1” kategóriába tartozó médiafájlok',
-'category-empty'           => "''Ebben a kategóriában pillanatnyilag egyetlen lap, médiafájl vagy alkategória sem szerepel.''",
-'hidden-categories'        => '{{PLURAL:$1|Rejtett kategória|Rejtett kategóriák}}',
-'hidden-category-category' => 'Rejtett kategóriák', # Name of the category where hidden categories will be listed
-'subcategorycount'         => 'Ebben a kategóriában $1 alkategória található.',
-'listingcontinuesabbrev'   => 'folyt.',
+'categories'                     => 'Kategóriák',
+'categoriespagetext'             => 'A következő kategóriák tartalmaznak lapokat vagy fájlokat.',
+'pagecategories'                 => '{{PLURAL:$1|Kategória|Kategóriák}}',
+'category_header'                => '„$1” kategória szócikkei',
+'subcategories'                  => 'Alkategóriák',
+'category-media-header'          => 'A(z) „$1” kategóriába tartozó médiafájlok',
+'category-empty'                 => "''Ebben a kategóriában pillanatnyilag egyetlen lap, médiafájl vagy alkategória sem szerepel.''",
+'hidden-categories'              => '{{PLURAL:$1|Rejtett kategória|Rejtett kategóriák}}',
+'hidden-category-category'       => 'Rejtett kategóriák', # Name of the category where hidden categories will be listed
+'category-subcat-count'          => '{{PLURAL:$2|Csak a következő alkategória található ebben a kategóriában.|Az összesen $2 alkategóriából a következő $1 található ebben a kategóriában.}}',
+'category-subcat-count-limited'  => 'Ebben a kategóriában $1 alkategória található.',
+'category-article-count'         => '{{PLURAL:$2|Csak a következő lap található ebben a kategóriában.|Az összesen $2 lapból a következő $1 található ebben a kategóriában.}}',
+'category-article-count-limited' => 'A kategória lenti listájában {{PLURAL:$1|egy|$1}} lap található.',
+'category-file-count'            => '{{PLURAL:$2|Csak a következő fájl található ebben a kategóriában.|Az összesen $2 fájlból a következő $1 található ebben a kategóriában.}}',
+'category-file-count-limited'    => '{{PLURAL:$1|Egy|$1}} fájl található ebben a kategóriában.',
+'listingcontinuesabbrev'         => 'folyt.',
 
 'mainpagetext'      => "<big>'''A MediaWiki telepítése sikerült.'''</big>",
 'mainpagedocfooter' => "Ha segítségre van szükséged a wikiszoftver használatához, akkor keresd fel a [http://meta.wikimedia.org/wiki/Help:Contents User's Guide] címet.
@@ -504,6 +510,7 @@ $messages = array(
 'restorelink'             => '{{PLURAL:$1|egy|$1}} törölt szerkesztés',
 'feedlinks'               => 'Hírcsatorna:',
 'feed-invalid'            => 'Érvénytelen a figyelt hírcsatorna típusa.',
+'feed-unavailable'        => 'Nincs elérhető hírcsatorna a(z) {{SITENAME}} wikin',
 'site-rss-feed'           => '$1 RSS csatorna',
 'site-atom-feed'          => '$1 Atom hírcsatorna',
 'page-rss-feed'           => '„$1” RSS hírcsatorna',
@@ -870,7 +877,6 @@ Egy IP-címet gyakran több különböző ember is használ; lehetséges, hogy e
 'nohistory'           => 'Ennek a lapnak nincs szerkesztési története.',
 'revnotfound'         => 'A változat nem található',
 'revnotfoundtext'     => 'A lap általad kért régi változatát nem találom. Kérlek, ellenőrizd az URL-t, amivel erre a lapra jutottál.',
-'loadhist'            => 'Laptörténet beolvasása',
 'currentrev'          => 'Aktuális változat',
 'revisionasof'        => '$1 változat',
 'revision-info'       => 'A lap korábbi változatát látod, amilyen $2 $1-kor történt szerkesztése után volt.',
@@ -880,7 +886,6 @@ Egy IP-címet gyakran több különböző ember is használ; lehetséges, hogy e
 'cur'                 => 'akt',
 'next'                => 'következő',
 'last'                => 'előző',
-'orig'                => 'eredeti',
 'page_first'          => 'első',
 'page_last'           => 'utolsó',
 'histlegend'          => 'Eltérések kijelölése: jelöld ki az összehasonlítandó változatokat, majd nyomd meg az Enter billentyűt, vagy az alul lévő gombot.<br />
@@ -1001,6 +1006,7 @@ gyakori oka olyan szavak keresése (pl. \"have\" és \"from\"), amiket a
 rendszer nem indexel, vagy több független keresési kifejezés megadása
 (csak minden megadott szót tartalmazó találatok jelennek meg az eredményben).",
 'powersearch'           => 'Részletes keresés',
+'powersearch-legend'    => 'Részletes keresés',
 'powersearchtext'       => 'Keresés a névterekben:<br />$1<br />$2 Átirányítások listája &nbsp; Keresés:$3 $9',
 'searchdisabled'        => 'Elnézésed kérjük, de a teljes szöveges keresés terhelési okok miatt átmenetileg nem használható. Ezidő alatt használhatod a lenti Google keresést, mely viszont lehetséges, hogy nem teljesen friss adatokkal dolgozik.',
 
@@ -1066,6 +1072,7 @@ rendszer nem indexel, vagy több független keresési kifejezés megadása
 'files'                    => 'Képek',
 
 # User rights
+'userrights'                       => 'Felhasználói jogok kezelése', # Not used as normal message but as header for the special page itself
 'userrights-lookup-user'           => 'Felhasználócsoportok kezelése',
 'userrights-user-editname'         => 'Írd be a felhasználónevet:',
 'editusergroup'                    => 'Felhasználócsoportok módosítása',
@@ -1250,6 +1257,9 @@ PICT # ált.
 'upload_source_file' => ' (egy fájl a számítógépeden)',
 
 # Special:Imagelist
+'imagelist-summary'     => 'Ezen a speciális lapon látható az összes feltöltött fájl.
+A legutóbb feltöltött fájlok vannak a lista elején.
+Az oszlopok címeire kattintva változtathatod meg a rendezést.',
 'imagelist_search_for'  => 'Keresés kép nevére:',
 'imgdesc'               => 'leírás',
 'imgfile'               => 'fájl',
@@ -1397,7 +1407,6 @@ A [http://meta.wikimedia.org/wiki/Help:Job_queue szerver számára sorban álló
 'mostcategories'          => 'Legtöbb kategóriába tartozó lapok',
 'mostimages'              => 'Legtöbbet hivatkozott fájlok',
 'mostrevisions'           => 'Legtöbb változattal rendelkező szócikkek',
-'allpages'                => 'Az összes lap listája',
 'prefixindex'             => 'Keresés előtag szerint',
 'shortpages'              => 'Rövid lapok',
 'longpages'               => 'Hosszú lapok',
@@ -1434,13 +1443,6 @@ ellenére, hogy aktívan használják.</p>',
 'booksources-text'          => 'Alább látható a másik webhelyekre mutató hivatkozások listája, ahol új és használt könyveket árulnak, és
 további információkat lelhetsz ott az általad keresett könyvekről:',
 
-'categoriespagetext' => 'A következő kategóriák tartalmaznak lapokat vagy fájlokat.',
-'data'               => 'Adatok',
-'userrights'         => 'Felhasználói jogok kezelése',
-'groups'             => 'Felhasználói csoportok',
-'alphaindexline'     => '$1 – $2',
-'version'            => 'Névjegy',
-
 # Special:Log
 'specialloguserlabel'  => 'Felhasználó:',
 'speciallogtitlelabel' => 'Cím:',
@@ -1454,6 +1456,8 @@ Szűkítheted a listát a naplótípus, a műveletet végző felhasználó vagy 
 'log-title-wildcard'   => 'Így kezdődő címek keresése',
 
 # Special:Allpages
+'allpages'          => 'Az összes lap listája',
+'alphaindexline'    => '$1 – $2',
 'nextpage'          => 'Következő lap ($1)',
 'prevpage'          => 'Előző oldal ($1)',
 'allpagesfrom'      => 'Lapok listázása a következő címtől kezdve:',
@@ -2146,6 +2150,7 @@ $1',
 # Special:Newimages
 'newimages'             => 'Új képek galériája',
 'imagelisttext'         => 'Lentebb $1 kép látható, $2 rendezve.',
+'newimages-summary'     => 'Ezen a speciális lapon láthatóak a legutóbb feltöltött fájlok',
 'showhidebots'          => '($1 robot)',
 'noimages'              => 'Nem tekinthető meg semmi.',
 'ilsubmit'              => 'Keresés',
@@ -2560,6 +2565,7 @@ minden egyes sor egy figyelt lap címe. Ha kész vagy, kattints a lista alatt ta
 'unknown_extension_tag' => 'Ismeretlen tag kiterjesztés: $1',
 
 # Special:Version
+'version'                          => 'Névjegy', # Not used as normal message but as header for the special page itself
 'version-extensions'               => 'Telepített kiterjesztések',
 'version-specialpages'             => 'Speciális lapok',
 'version-parserhooks'              => 'Értelmező hookok',

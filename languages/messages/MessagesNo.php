@@ -246,6 +246,7 @@ $messages = array(
 
 # Categories related messages
 'categories'                     => 'Kategorier',
+'categoriespagetext'             => 'Følgende kategorier inneholder sider eller media.',
 'pagecategories'                 => '{{PLURAL:$1|Kategori|Kategorier}}',
 'category_header'                => 'Artikler i kategorien «$1»',
 'subcategories'                  => 'Underkategorier',
@@ -253,7 +254,6 @@ $messages = array(
 'category-empty'                 => "''Denne kategorien inneholder for tiden ingen artikler eller filer.''",
 'hidden-categories'              => '{{PLURAL:$1|Skjult kategori|Skjulte kategorier}}',
 'hidden-category-category'       => 'Skjulte kategorier', # Name of the category where hidden categories will be listed
-'subcategorycount'               => 'Det er {{PLURAL:$1|én underkategori|$1 underkategorier}} i denne kategorien.',
 'category-subcat-count'          => '{{PLURAL:$2|Denne kategorien har kun den følgende underkategorien.|Denne kategoriene har følgende {{PLURAL:$1|underkategori|$1 underkategorier}}, av totalt $2.}}',
 'category-subcat-count-limited'  => 'Kategorien har følgende {{PLURAL:$1|underkategori|$1 underkategorier}}.',
 'category-article-count'         => '{{PLURAL:$2|Denne kategorien inneholder kun den følgende siden.|Følgende {{PLURAL:$1side|$1 sider}} er i denne kategorien, av totalt $2.}}',
@@ -687,7 +687,9 @@ trykker «Lagre siden».<br />',
 'yourtext'                  => 'Din tekst',
 'storedversion'             => 'Den lagrede versjonen',
 'nonunicodebrowser'         => '<strong>ADVARSEL: Nettleseren din har ikke støtte for Unicode. Skru det på før du begynner å redigere artikler.</strong>',
-'editingold'                => "'''ADVARSEL: Du redigerer en gammel versjon av denne siden. Hvis du lagrer den, vil alle endringer foretatt siden denne versjonen bli overskrevet.'''",
+'editingold'                => '<strong>ADVARSEL:
+Du redigerer en gammel versjon av denne siden.
+Hvis du lagrer den, vil alle endringer foretatt siden denne versjonen bli overskrevet.</strong>',
 'yourdiff'                  => 'Forskjeller',
 'copyrightwarning'          => 'Vennligst merk at alle bidrag til {{SITENAME}} anses som utgitt under $2 (se $1 for detaljer). Om du ikke vil at dine bidrag skal kunne redigeres og distribuert fritt, ikke legg det til her.<br />
 Du lover også at du har skrevet dette selv, eller kopiert det fra en ressurs som er i public domain eller lignende. <strong>IKKE LEGG TIL OPPHAVSBESKYTTET MATERIALE UTEN TILLATELSE!</strong>',
@@ -734,7 +736,6 @@ Grunnen som ble oppgitt av $3 er ''$2''",
 'nohistory'           => 'Denne siden har ingen historikk.',
 'revnotfound'         => 'Versjonen er ikke funnet',
 'revnotfoundtext'     => 'Den gamle versjon av siden du etterspurte finnes ikke. Kontroller adressen du brukte for å få adgang til denne siden.',
-'loadhist'            => 'Laster historikk',
 'currentrev'          => 'Nåværende versjon',
 'revisionasof'        => 'Versjonen fra $1',
 'revision-info'       => 'Revisjon per $1 av $2',
@@ -744,7 +745,6 @@ Grunnen som ble oppgitt av $3 er ''$2''",
 'cur'                 => 'nå',
 'next'                => 'neste',
 'last'                => 'forrige',
-'orig'                => 'original',
 'page_first'          => 'første',
 'page_last'           => 'siste',
 'histlegend'          => 'Forklaring: (nå) = forskjell fra nåværende versjon, (forrige) = forskjell fra forrige versjon, M = mindre endring.',
@@ -922,6 +922,7 @@ Andre administratorer på {{SITENAME}} vil fortsatt kunne se det skjulte innhold
 'files'                    => 'Filer',
 
 # User rights
+'userrights'                       => 'Brukerrettighetskontroll', # Not used as normal message but as header for the special page itself
 'userrights-lookup-user'           => 'Ordne brukergrupper',
 'userrights-user-editname'         => 'Skriv inn et brukernavn:',
 'editusergroup'                    => 'Endre brukergrupper',
@@ -1105,6 +1106,7 @@ PICT # div.
 'upload_source_file' => ' (en fil på din datamaskin)',
 
 # Special:Imagelist
+'imagelist-summary'     => 'Denne spesialsiden viser alle opplastede filer. De sist opplastede filene vises på toppen som standard. Klikk på en kolonneoverskrift for å endre sorteringsmetode.',
 'imagelist_search_for'  => 'Søk etter filnavn:',
 'imgdesc'               => 'beskrivelse',
 'imgfile'               => 'fil',
@@ -1137,6 +1139,7 @@ PICT # div.
 'noimage'                   => 'Ingen fil ved dette navnet finnes, du kan $1.',
 'noimage-linktext'          => 'laste det opp',
 'uploadnewversion-linktext' => 'Last opp en ny versjon av denne fila',
+'imagepage-searchdupe'      => 'Søk etter duplikatfiler',
 
 # File reversion
 'filerevert'                => 'Tilbakestill $1',
@@ -1249,7 +1252,6 @@ Det har vært totalt {{PLURAL:$3|'''én''' sidevisning|'''$3''' sidevisninger}},
 'mostcategories'          => 'Sider med flest kategorier',
 'mostimages'              => 'Mest brukte filer',
 'mostrevisions'           => 'Artikler med flest revisjoner',
-'allpages'                => 'Alle sider',
 'prefixindex'             => 'Prefiksindeks',
 'shortpages'              => 'Korte sider',
 'longpages'               => 'Lange sider',
@@ -1283,13 +1285,6 @@ Det har vært totalt {{PLURAL:$3|'''én''' sidevisning|'''$3''' sidevisninger}},
 'booksources-go'            => 'Gå',
 'booksources-text'          => 'Under er en liste over lenker til andre sider som selger nye og brukte bøker, og kan også ha videre informasjon om bøker du leter etter:',
 
-'categoriespagetext' => 'Følgende kategorier inneholder sider eller media.',
-'data'               => 'data',
-'userrights'         => 'Brukerrettighetskontroll',
-'groups'             => 'Brukergrupper',
-'alphaindexline'     => '$1 til $2',
-'version'            => 'Versjon',
-
 # Special:Log
 'specialloguserlabel'  => 'Bruker:',
 'speciallogtitlelabel' => 'Tittel:',
@@ -1302,6 +1297,8 @@ Det har vært totalt {{PLURAL:$3|'''én''' sidevisning|'''$3''' sidevisninger}},
 'log-title-wildcard'   => 'Søk i titler som starter med denne teksten',
 
 # Special:Allpages
+'allpages'          => 'Alle sider',
+'alphaindexline'    => '$1 til $2',
 'nextpage'          => 'Neste side ($1)',
 'prevpage'          => 'Forrige side ($1)',
 'allpagesfrom'      => 'Vis sider fra og med:',
@@ -1668,7 +1665,7 @@ Bekreft at du har til hensikt å gjøre dette.',
 'locknoconfirm'       => 'Du har ikke bekreftet handlingen.',
 'lockdbsuccesssub'    => 'Databasen er nå låst',
 'unlockdbsuccesssub'  => 'Databasen er nå lås opp',
-'lockdbsuccesstext'   => 'Databasen er låst.<br />Husk å fjerne låsen når du er ferdig med vedlikeholdet.',
+'lockdbsuccesstext'   => 'Databasen er låst.<br />Husk å [[Special:Unlockdb|låse den opp]] når du er ferdig med vedlikeholdet.',
 'unlockdbsuccesstext' => 'Databasen er låst opp.',
 'lockfilenotwritable' => 'Kan ikke skrive til databasen. For å låse eller åpne databasen, må denne kunne skrives til av tjeneren.',
 'databasenotlocked'   => 'Databasen er ikke låst.',
@@ -1951,11 +1948,12 @@ $1',
 # Special:Newimages
 'newimages'             => 'Galleri over nye filer',
 'imagelisttext'         => "Dete er en liste med '''$1''' {{PLURAL:$1|fil|filer}} sortert $2.",
+'newimages-summary'     => 'Denne spesialsiden viser de sist opplastede filene.',
 'showhidebots'          => '($1 roboter)',
 'noimages'              => 'Ingenting å se.',
 'ilsubmit'              => 'Søk',
 'bydate'                => 'etter dato',
-'sp-newimages-showfrom' => 'Vis nye filer fra og med $1',
+'sp-newimages-showfrom' => 'Vis nye filer fra og med $2 $1',
 
 # Bad image list
 'bad_image_list' => 'Formatet er slik:
@@ -2385,6 +2383,7 @@ Prøv vanlig forhåndsvisning.',
 'unknown_extension_tag' => 'Ukjent tilleggsmerking «$1»',
 
 # Special:Version
+'version'                          => 'Versjon', # Not used as normal message but as header for the special page itself
 'version-extensions'               => 'Installerte utvidelser',
 'version-specialpages'             => 'Spesialsider',
 'version-parserhooks'              => 'Parsertillegg',
@@ -2411,5 +2410,17 @@ Prøv vanlig forhåndsvisning.',
 'filepath-summary' => 'Denne spesialsiden gir den fullstendige stien for en fil. Bilder vises i full oppløsning; andre filtyper startes direkte i sine assosierte programmer.
 
 	Skriv inn filnavnet uten «{{ns:image}}:»-prefikset.',
+
+# Special:FileDuplicateSearch
+'fileduplicatesearch'          => 'Søk etter duplikatfiler',
+'fileduplicatesearch-summary'  => 'Søk etter duplikatfiler basert på dets hash-verdi.
+
+Skriv inn filnavn uten «{{ns:image}}:»-prefikset.',
+'fileduplicatesearch-legend'   => 'Søk etter en duplikatfil',
+'fileduplicatesearch-filename' => 'Filnavn:',
+'fileduplicatesearch-submit'   => 'Søk',
+'fileduplicatesearch-info'     => '$1 × $2 piksler<br />Filstørrelse: $3<br />MIME-type: $4',
+'fileduplicatesearch-result-1' => 'Det er ingen duplikater av «$1».',
+'fileduplicatesearch-result-n' => 'Det er {{PLURAL:$2|ett duplikat|$2 duplikater}} av «$1».',
 
 );

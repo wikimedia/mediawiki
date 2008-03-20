@@ -115,6 +115,7 @@ $messages = array(
 
 # Categories related messages
 'categories'               => 'Категориялар',
+'categoriespagetext'       => 'Биикигэ маннык категориялар бааллар.',
 'pagecategories'           => '{{PLURAL:$1|Категория|Категориялар}}',
 'category_header'          => '"$1" категория ыстатыйалара',
 'subcategories'            => 'Субкатегориялар',
@@ -122,7 +123,6 @@ $messages = array(
 'category-empty'           => "''Бу категорияҕа билигин туох да суох.''",
 'hidden-categories'        => '{{PLURAL:$1|Кистэммит категория|Кистэммит категориялар}}',
 'hidden-category-category' => 'Кистэммит категориялар', # Name of the category where hidden categories will be listed
-'subcategorycount'         => 'Бу категорияҕа $1 субкатегория баар.',
 'listingcontinuesabbrev'   => '(салгыыта)',
 
 'mainpagetext'      => "<big>'''«MediaWiki» сөпкө туруорулунна.'''</big>",
@@ -612,7 +612,6 @@ long, which is longer than the maximum of $2 kilobytes. It cannot be saved.</str
 'nohistory'           => 'Бу сирэй историята суох эбит.',
 'revnotfound'         => 'Уларытыы булуллубата',
 'revnotfoundtext'     => 'Бу сирэй урукку барыла булуллубата. Ыйынньыгы сыыһата суох суруйбуккун көр.',
-'loadhist'            => 'Сирэй историятын көрдөр',
 'currentrev'          => 'Билиҥҥи барыл',
 'revisionasof'        => '$1 барыл',
 'revision-info'       => 'Версия от $1; $2',
@@ -622,7 +621,6 @@ long, which is longer than the maximum of $2 kilobytes. It cannot be saved.</str
 'cur'                 => 'бил.',
 'next'                => 'аныгыскы',
 'last'                => 'бүтэһик',
-'orig'                => 'баст.',
 'page_first'          => 'бастакы',
 'page_last'           => 'бүтэһик',
 'histlegend'          => 'Тал: торумнары тэҥнииргэ бэлиэтээ. <br />
@@ -805,6 +803,7 @@ long, which is longer than the maximum of $2 kilobytes. It cannot be saved.</str
 'files'                    => 'Билэлэр',
 
 # User rights
+'userrights'                       => 'Кыттааччылар бырааптарын салайыы', # Not used as normal message but as header for the special page itself
 'userrights-lookup-user'           => 'Кыттаачылар бөлөхтөрүн салайыы',
 'userrights-user-editname'         => 'Кыттааччы аата:',
 'editusergroup'                    => 'Кыттааччылар бөлөхтөрүн уларытарга',
@@ -1129,7 +1128,6 @@ PICT # misc.
 'mostcategories'          => 'Элбэх категорияҕа киирэр ыстатыйалар',
 'mostimages'              => 'Саамай элбэхтик сигэниллэр билэлэр',
 'mostrevisions'           => 'Саамай элбэхтик уларытыллыбыт ыстатыйалар',
-'allpages'                => 'Сирэйдэр барыта',
 'prefixindex'             => 'Префикс бэлиэтэ',
 'shortpages'              => 'Кылгас ыстатыйалар',
 'longpages'               => 'Уһун ыстатыйалар',
@@ -1163,13 +1161,6 @@ PICT # misc.
 'booksources-go'            => 'Бул',
 'booksources-text'          => 'Манна кинигэ туһунан атын саайтарга ыйынньыктар хомулуннулар, онно баҕар эбии информация көстүөҕэ.',
 
-'categoriespagetext' => 'Биикигэ маннык категориялар бааллар.',
-'data'               => 'Информация',
-'userrights'         => 'Кыттааччылар бырааптарын салайыы',
-'groups'             => 'Кыттааччылар бөлөхтөрө',
-'alphaindexline'     => 'мантан $1 манна $2',
-'version'            => 'MediaWiki биэрсийэтэ (барыла)',
-
 # Special:Log
 'specialloguserlabel'  => 'Кыттааччы:',
 'speciallogtitlelabel' => 'Баһа:',
@@ -1182,6 +1173,8 @@ PICT # misc.
 'log-title-wildcard'   => 'Бу сурук бэлиэлэриттэн (буукубалартан) саҕаланар ааттары бул',
 
 # Special:Allpages
+'allpages'          => 'Сирэйдэр барыта',
+'alphaindexline'    => 'мантан $1 манна $2',
 'nextpage'          => 'Аныгыскы сирэй ($1)',
 'prevpage'          => 'Бу иннинээҕи сирэй ($1)',
 'allpagesfrom'      => 'Мантан саҕаланар сирэйдэри көрдөр:',
@@ -2293,6 +2286,7 @@ $1',
 'unknown_extension_tag' => 'Биллибэт тиэг "$1"',
 
 # Special:Version
+'version'                          => 'MediaWiki биэрсийэтэ (барыла)', # Not used as normal message but as header for the special page itself
 'version-extensions'               => 'Туруоруллубут расширениялар',
 'version-specialpages'             => 'Аналлаах сирэйдэр',
 'version-parserhooks'              => 'синтаксическай анализатор перехватчиктара',

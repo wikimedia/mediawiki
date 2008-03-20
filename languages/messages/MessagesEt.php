@@ -183,12 +183,12 @@ $messages = array(
 
 # Categories related messages
 'categories'             => 'Kategooriad',
+'categoriespagetext'     => 'Vikis on järgmised kategooriad.',
 'pagecategories'         => '{{PLURAL:$1|Kategooria|Kategooriad}}',
 'category_header'        => 'Artiklid kategooriast "$1"',
 'subcategories'          => 'Allkategooriad',
 'category-media-header'  => 'Meediafailid kategooriast "$1"',
 'category-empty'         => "''Selles kategoorias pole ühtegi artiklit ega meediafaili.''",
-'subcategorycount'       => 'Sellel kategoorial on {{PLURAL:$1|üks allkategooria|$1 allkategooriat}}.',
 'listingcontinuesabbrev' => 'jätk',
 
 'mainpagetext'      => "<big>'''Wiki tarkvara installeeritud.'''</big>",
@@ -546,7 +546,6 @@ Lehe eelnevad kustutamised:",
 'revnotfound'         => 'Redaktsiooni ei leitud',
 'revnotfoundtext'     => 'Teie poolt päritud vana redaktsiooni ei leitud.
 Palun kontrollige aadressi, millel Te seda lehekülge leida püüdsite.',
-'loadhist'            => 'Lehekülje ajaloo laadimine',
 'currentrev'          => 'Viimane redaktsioon',
 'revisionasof'        => 'Redaktsioon: $1',
 'previousrevision'    => '←Vanem redaktsioon',
@@ -650,6 +649,7 @@ sisse logida.',
 'files'                   => 'Failid',
 
 # User rights
+'userrights'                 => 'Kasutaja õiguste muutmine', # Not used as normal message but as header for the special page itself
 'userrights-lookup-user'     => 'Muuda kasutajagruppi',
 'userrights-user-editname'   => 'Sisesta kasutajatunnus:',
 'editusergroup'              => 'Muuda kasutajagruppi',
@@ -845,7 +845,6 @@ Administraatori staatuses kasutajaid: <b>$2</b> (vt $3).',
 'mostcategories'          => 'Enim kategoriseeritud artiklid',
 'mostimages'              => 'Kõige kasutatumad pildid',
 'mostrevisions'           => 'Kõige pikema redigeerimislooga artiklid',
-'allpages'                => 'Kõik artiklid',
 'shortpages'              => 'Lühikesed artiklid',
 'longpages'               => 'Pikad artiklid',
 'deadendpages'            => 'Edasipääsuta artiklid',
@@ -868,12 +867,6 @@ siin toodud pildid olla ikkagi aktiivses kasutuses.',
 # Book sources
 'booksources' => 'Otsi raamatut',
 
-'categoriespagetext' => 'Vikis on järgmised kategooriad.',
-'userrights'         => 'Kasutaja õiguste muutmine',
-'groups'             => 'Kasutaja grupid',
-'alphaindexline'     => '$1 kuni $2',
-'version'            => 'Versioon',
-
 # Special:Log
 'specialloguserlabel'  => 'Kasutaja:',
 'speciallogtitlelabel' => 'Pealkiri:',
@@ -882,6 +875,8 @@ siin toodud pildid olla ikkagi aktiivses kasutuses.',
 'logempty'             => 'Logides vastavad kirjed puuduvad.',
 
 # Special:Allpages
+'allpages'          => 'Kõik artiklid',
+'alphaindexline'    => '$1 kuni $2',
 'nextpage'          => 'Järgmine lehekülg ($1)',
 'allpagesfrom'      => 'Näita alates:',
 'allarticles'       => 'Kõik artiklid',
@@ -1293,5 +1288,8 @@ Kui see *ei* ole sinu loodud konto, siis ära kliki lingil. Kinnituskood aegub $
 'watchlisttools-view' => 'Näita vastavaid muudatusi',
 'watchlisttools-edit' => 'Vaata ja redigeeri jälgimisloendit',
 'watchlisttools-raw'  => 'Redigeeri lähtefaili',
+
+# Special:Version
+'version' => 'Versioon', # Not used as normal message but as header for the special page itself
 
 );

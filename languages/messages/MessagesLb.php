@@ -225,6 +225,7 @@ $messages = array(
 
 # Categories related messages
 'categories'                     => 'Kategorien',
+'categoriespagetext'             => 'An dëse Kategorie gëtt et Säiten oder Medien.',
 'pagecategories'                 => '{{PLURAL:$1|Kategorie|Kategorien}}',
 'category_header'                => 'Säiten an der Kategorie "$1"',
 'subcategories'                  => 'Souskategorien',
@@ -232,7 +233,6 @@ $messages = array(
 'category-empty'                 => "''Dës Kategorie ass fir den Ament nach eidel''",
 'hidden-categories'              => '{{PLURAL:$1|Verstoppte Kategorie|Verstoppte Kategorien}}',
 'hidden-category-category'       => 'Verstoppte Kategorien', # Name of the category where hidden categories will be listed
-'subcategorycount'               => 'Fir dës Kategorie {{PLURAL:$1|gëtt et $1 Ënnerkategorie| ginn et $1 Ënnerkategorien}}.',
 'category-subcat-count'          => 'Dës Kategorie huet {{PLURAL:$2|nëmmen dës Ënnerkategorie.|dës {{PLURAL:$1|Ënnerkategorie|$1 Ënnerkategorien}}, vun $2 am Ganzen.}}',
 'category-subcat-count-limited'  => 'Dës Kategorie huet dës {{PLURAL:$1|Ënnerkategorie|$1 Ënnerkategorien}}.',
 'category-article-count'         => 'An dëser Kategorie {{PLURAL:$2|ass just dës Säit.|{{PLURAL:$1|ass just dës Säit|si(nn) $1 Säiten}}, vun $2 am Ganzen.}}',
@@ -711,7 +711,6 @@ Fir iech z'informéieren fannt Dir hei d'Läschlescht mat dem Grond:",
 'nohistory'           => 'Et gëtt keng al Versioune vun dëser Säit.',
 'revnotfound'         => 'Dës Versioun gouf net fonnt.',
 'revnotfoundtext'     => "Déi Versioun vun der Säit déi Dir gefrot hutt konnt net fonnt ginn. Kuckt d'URL no, déi Dir benotzt hutt fir op dës Säit ze kommen.",
-'loadhist'            => 'Historique vun der Säit gëtt gelueden',
 'currentrev'          => 'Aktuell Versioun',
 'revisionasof'        => 'Versioun vum $1',
 'revision-info'       => 'Versioun vum $1 vum $2.',
@@ -721,7 +720,6 @@ Fir iech z'informéieren fannt Dir hei d'Läschlescht mat dem Grond:",
 'cur'                 => 'aktuell',
 'next'                => 'nächst',
 'last'                => 'lescht',
-'orig'                => 'Original',
 'page_first'          => 'éischt',
 'page_last'           => 'Enn',
 'histlegend'          => "Fir d'Ännerungen unzeweisen: Klickt déi zwou Versiounen un, déi solle verglach ginn.<br /> 
@@ -872,6 +870,7 @@ Sich no: $3 $9',
 'files'                   => 'Fichieren',
 
 # User rights
+'userrights'                 => 'Benotzerrechterverwaltung', # Not used as normal message but as header for the special page itself
 'userrights-lookup-user'     => 'Benotzergrupp verwalten',
 'userrights-user-editname'   => 'Benotzernumm uginn:',
 'editusergroup'              => 'Benotzergruppen änneren',
@@ -946,13 +945,13 @@ Sich no: $3 $9',
 'recentchangeslinked-summary'  => "Op dëser Spezialsäite stinn déi rezent Ännerungen vun de verlinkte Säiten. Säiten déi op menger Iwwerwaachungslëscht stinn si '''fett''' geschriwwen.",
 
 # Upload
-'upload'              => 'Eroplueden',
-'uploadbtn'           => 'Fichier eroplueden',
-'reupload'            => 'Nacheemol eroplueden',
-'reuploaddesc'        => 'Zréck op de Formulaire fir Eropzelueden.',
-'uploadnologin'       => 'Net ugemellt',
-'uploaderror'         => 'Feeler bäim Eroplueden',
-'uploadtext'          => "Gitt op d'[[Special:Imagelist|Lëscht vun den eropgeluedene Fichieren]], fir no Fichieren ze sichen.
+'upload'               => 'Eroplueden',
+'uploadbtn'            => 'Fichier eroplueden',
+'reupload'             => 'Nacheemol eroplueden',
+'reuploaddesc'         => 'Zréck op de Formulaire fir Eropzelueden.',
+'uploadnologin'        => 'Net ugemellt',
+'uploaderror'          => 'Feeler bäim Eroplueden',
+'uploadtext'           => "Gitt op d'[[Special:Imagelist|Lëscht vun den eropgeluedene Fichieren]], fir no Fichieren ze sichen.
 
 Benotzt dëse Formulair, fir nei Fichieren eropzelueden. Klickt op '''Duerchsichen ...''', fir eng Fënster opzemaachen wou Dir de Ficher eraussiche kënnt.
 
@@ -969,44 +968,45 @@ Fir '''Fichieren mat anere Medien ''' anzebannen, benotzt zum Beispiel:
 * '''<tt><nowiki>[[</nowiki>{{ns:media}}:Fichier.ogg|Link-Text<nowiki>]]</nowiki></tt>'''
 
 Dir sollt onbedingt bedenken, datt, genee wéi bäi normale Säiten, aner Benotzer är Fichiere läschen oder verännere kënnen.",
-'upload-permitted'    => 'Erlaabte Formater vun de Fichieren: $1.',
-'upload-preferred'    => 'Fichierszorten déi am beschte funktionéieren: $1.',
-'upload-prohibited'   => 'Verbuede Fichiers Formater: $1.',
-'uploadlog'           => 'Lëscht vun den eropgeluedene Fichieren',
-'uploadlogpage'       => 'Logbuch vum Eroplueden',
-'uploadlogpagetext'   => 'Dëst ass dLëscht vun de Fichieren déi eropgeluede goufen, kuckt och [[{{ns:special}}:Newimages|Spezial:Nei Biller]].',
-'filename'            => 'Numm vum Fichier',
-'filedesc'            => 'Resumé',
-'fileuploadsummary'   => 'Resumé/Quell:',
-'filestatus'          => 'Copyright Status:',
-'filesource'          => 'Quell:',
-'uploadedfiles'       => 'Eropgeluede Fichierën',
-'ignorewarning'       => 'Warnung ignoréieren an de Fichier nawell späicheren.',
-'ignorewarnings'      => 'Ignoréier all Iwwerschreiwungswarnungen',
-'minlength1'          => "D'Nimm vu Fichiere musse mindestens e Buschtaf am Numm hunn.",
-'illegalfilename'     => 'Am Fichiernumm "$1" sti Schrëftzeechen, déi net am Numm vun enger Säit erlaabt sinn. W.e.g. nennt de Fichier anescht, a probéiert dann nach eng Kéier.',
-'badfilename'         => 'Den Numm vum Fichier gouf an "$1" ëmgeännert.',
-'filetype-badmime'    => 'Fichieren vum MIME-Typ "$1" kënnen net eropgeluede ginn.',
-'filetype-missing'    => 'De Fichier huet keng Erweiderung (wéi z. B. ".jpg").',
-'large-file'          => "D'Fichieren sollte no Méiglechkeet net méi grouss wéi $1 sinn. Dëse Fhihier huet $2.",
-'largefileserver'     => 'Dëse Fichier ass méi grouss wéi déi um Server agestallte Maximalgréisst.',
-'emptyfile'           => 'De Fichier deen Dir eropgelueden hutt, schéngt eidel ze sinn. Dëst kann duerch en Tippfeeler am Numm vum Fichier kommen. Préift w.e.g. no, op Dir dëse Fichier wierklech eropluede wëllt.',
-'fileexists'          => 'Et gëtt schonn e Fichier mat dësem Numm, kuckt w.e.g. $1 wann Dir net sécher sidd, op Dir den Numm ännere wëllt.',
-'fileexists-thumb'    => "<center>'''Dëse Fichier gëtt et'''</center>",
-'successfulupload'    => 'Eroplueden erfollegräich',
-'uploadwarning'       => 'Opgepasst',
-'savefile'            => 'Fichier späicheren',
-'uploadedimage'       => 'huet "[[$1]]" eropgelueden',
-'overwroteimage'      => 'huet eng nei Versioun vun "[[$1]]" eropgelueden',
-'uploaddisabled'      => "Pardon, d'Eroplueden vu Fichieren ass ausgeschalt.",
-'uploaddisabledtext'  => "D'eroplueden vu Fichieren op {{SITENAME}} ass ausgeschalt.",
-'uploadscripted'      => 'An dësem Fichier ass HTML- oder Scriptcode, de vun engem Webbrowser falsch interpretéiert kéint ginn.',
-'uploadcorrupt'       => 'De Fichier ass futti oder en huet eng falsch Fichiers-Erweiderung. Kuckt de Fichier weg no a lued de Fichier nach eng Kéier erop.',
-'uploadvirus'         => 'An dësem Fichier ass ee Virus! Detailer: $1',
-'sourcefilename'      => 'Numm vum Originalfichier:',
-'destfilename'        => 'Numm vum Fichier',
-'watchthisupload'     => 'Dës Säit iwwerwaachen',
-'filename-bad-prefix' => 'Den Numm vum Fichier fänkt mat <strong>„$1“</strong> un. Dësen Numm ass automatesch vun der Kamera gi ginn a seet näischt iwwert dat aus, wat drop ass. Gitt dem Fichier w.e.gl. en Numm, deen den Inhalt besser beschreift, an deen net verwiesselt ka ginn.',
+'upload-permitted'     => 'Erlaabte Formater vun de Fichieren: $1.',
+'upload-preferred'     => 'Fichierszorten déi am beschte funktionéieren: $1.',
+'upload-prohibited'    => 'Verbuede Fichiers Formater: $1.',
+'uploadlog'            => 'Lëscht vun den eropgeluedene Fichieren',
+'uploadlogpage'        => 'Logbuch vum Eroplueden',
+'uploadlogpagetext'    => 'Dëst ass dLëscht vun de Fichieren déi eropgeluede goufen, kuckt och [[{{ns:special}}:Newimages|Spezial:Nei Biller]].',
+'filename'             => 'Numm vum Fichier',
+'filedesc'             => 'Resumé',
+'fileuploadsummary'    => 'Resumé/Quell:',
+'filestatus'           => 'Copyright Status:',
+'filesource'           => 'Quell:',
+'uploadedfiles'        => 'Eropgeluede Fichierën',
+'ignorewarning'        => 'Warnung ignoréieren an de Fichier nawell späicheren.',
+'ignorewarnings'       => 'Ignoréier all Iwwerschreiwungswarnungen',
+'minlength1'           => "D'Nimm vu Fichiere musse mindestens e Buschtaf am Numm hunn.",
+'illegalfilename'      => 'Am Fichiernumm "$1" sti Schrëftzeechen, déi net am Numm vun enger Säit erlaabt sinn. W.e.g. nennt de Fichier anescht, a probéiert dann nach eng Kéier.',
+'badfilename'          => 'Den Numm vum Fichier gouf an "$1" ëmgeännert.',
+'filetype-badmime'     => 'Fichieren vum MIME-Typ "$1" kënnen net eropgeluede ginn.',
+'filetype-banned-type' => "'''.$1''' ass ee Fichersformat deen net erlaabt ass. Erlaabt sinn: $2.",
+'filetype-missing'     => 'De Fichier huet keng Erweiderung (wéi z. B. ".jpg").',
+'large-file'           => "D'Fichieren sollte no Méiglechkeet net méi grouss wéi $1 sinn. Dëse Fhihier huet $2.",
+'largefileserver'      => 'Dëse Fichier ass méi grouss wéi déi um Server agestallte Maximalgréisst.',
+'emptyfile'            => 'De Fichier deen Dir eropgelueden hutt, schéngt eidel ze sinn. Dëst kann duerch en Tippfeeler am Numm vum Fichier kommen. Préift w.e.g. no, op Dir dëse Fichier wierklech eropluede wëllt.',
+'fileexists'           => 'Et gëtt schonn e Fichier mat dësem Numm, kuckt w.e.g. $1 wann Dir net sécher sidd, op Dir den Numm ännere wëllt.',
+'fileexists-thumb'     => "<center>'''Dëse Fichier gëtt et'''</center>",
+'successfulupload'     => 'Eroplueden erfollegräich',
+'uploadwarning'        => 'Opgepasst',
+'savefile'             => 'Fichier späicheren',
+'uploadedimage'        => 'huet "[[$1]]" eropgelueden',
+'overwroteimage'       => 'huet eng nei Versioun vun "[[$1]]" eropgelueden',
+'uploaddisabled'       => "Pardon, d'Eroplueden vu Fichieren ass ausgeschalt.",
+'uploaddisabledtext'   => "D'eroplueden vu Fichieren op {{SITENAME}} ass ausgeschalt.",
+'uploadscripted'       => 'An dësem Fichier ass HTML- oder Scriptcode, de vun engem Webbrowser falsch interpretéiert kéint ginn.',
+'uploadcorrupt'        => 'De Fichier ass futti oder en huet eng falsch Fichiers-Erweiderung. Kuckt de Fichier weg no a lued de Fichier nach eng Kéier erop.',
+'uploadvirus'          => 'An dësem Fichier ass ee Virus! Detailer: $1',
+'sourcefilename'       => 'Numm vum Originalfichier:',
+'destfilename'         => 'Numm vum Fichier',
+'watchthisupload'      => 'Dës Säit iwwerwaachen',
+'filename-bad-prefix'  => 'Den Numm vum Fichier fänkt mat <strong>„$1“</strong> un. Dësen Numm ass automatesch vun der Kamera gi ginn a seet näischt iwwert dat aus, wat drop ass. Gitt dem Fichier w.e.gl. en Numm, deen den Inhalt besser beschreift, an deen net verwiesselt ka ginn.',
 
 'upload-proto-error' => 'Falsche Protokoll',
 'upload-file-error'  => 'Interne Feeler',
@@ -1023,7 +1023,7 @@ Dir sollt onbedingt bedenken, datt, genee wéi bäi normale Säiten, aner Benotz
 'upload_source_file' => ' (e Fichier op Ärem Computer)',
 
 # Special:Imagelist
-'imagelist-summary'     => "Op dëser Spezialsäit stinn all déi eropgeluede Fichieren. Déi als läscht eropgeluede Fichieren ginn als öischt ugewisen. Duerch e Klick op d?iwwerschrëfte vun de Kolonnen kënnt Dir d'Sortéierung ëmdréinen an Dir kënnt esou och no enger anerer Kolonn sortéieren.",
+'imagelist-summary'     => "Op dëser Spezialsäit stinn all déi eropgeluede Fichieren. Déi als läscht eropgeluede Fichieren ginn als öischt ugewisen. Duerch e Klick op d'Iwwerschrëfte vun de Kolonnen kënnt Dir d'Sortéierung ëmdréinen an Dir kënnt esou och no enger anerer Kolonn sortéieren.",
 'imagelist_search_for'  => 'Sicht nom Fichier:',
 'imgdesc'               => 'Beschreiwung',
 'imgfile'               => 'Fichier',
@@ -1056,6 +1056,7 @@ Dir sollt onbedingt bedenken, datt, genee wéi bäi normale Säiten, aner Benotz
 'noimage'                   => 'Ee Fichier mat dësem Numm gëtt et net, Dir kënnt $1.',
 'noimage-linktext'          => 'eroplueden',
 'uploadnewversion-linktext' => 'Eng nei Versioun vun dësem Fichier eroplueden',
+'imagepage-searchdupe'      => 'No duebele Fichiere sichen',
 
 # File reversion
 'filerevert'                => '"$1" zrécksetzen',
@@ -1190,8 +1191,6 @@ An all Rei sti Linken zur éischter an zweeter Viruleedung, souwéi déi éischt
 'mostimages-summary'              => 'Dës Spezialsäit weist déi besonnesch dacks benotzte Biller.',
 'mostrevisions'                   => 'Säite mat de meeschten Versiounen',
 'mostrevisions-summary'           => 'Dës Spezialsäit weist eng Lëscht mat de Säite mat de meeschten Ännerungen.',
-'allpages'                        => 'All Säiten',
-'allpages-summary'                => "Op dëser Spezialsäit stinn all d'Säite vu(n) {{SITENAME}} vun A bis Z. Getässelt si se alphabetesch, fir d'éischt Zuelen, da Groussbustawen, Klengbustawen ann dann d'Sonnerzeechen. ''A&nbsp;10'' steet virun ''AZ'', ''Aascht'' kënnt eréischt dann.",
 'prefixindex'                     => 'All Säiten (no hiren Ufanksbuchstawen)',
 'prefixindex-summary'             => 'Op dëser Spezialsäit stinn all déi Säiten, déi mat denen Zeechen ("Prefix") ufénken, déi dir uginn hutt. D\'Resultat kann op ee Nummraum limitéiert ginn.',
 'shortpages'                      => 'Kuerz Säiten',
@@ -1235,13 +1234,6 @@ An all Rei sti Linken zur éischter an zweeter Viruleedung, souwéi déi éischt
 'booksources-go'            => 'Sichen',
 'booksources-text'          => 'Hei ass eng Lescht mat Linken op Internetsäiten, déi nei a gebraucht Bicher verkafen. Do kann et sinn datt Dir méi Informatiounen iwwer déi Bicher fannt déi Dir sicht.',
 
-'categoriespagetext' => 'An dëse Kategorie gëtt et Säiten oder Medien.',
-'data'               => 'Donnéeën',
-'userrights'         => 'Benotzerrechterverwaltung',
-'groups'             => 'Benotzergruppen',
-'alphaindexline'     => '$1 bis $2',
-'version'            => 'Versioun',
-
 # Special:Log
 'specialloguserlabel'  => 'Benotzer:',
 'speciallogtitlelabel' => 'Titel:',
@@ -1254,6 +1246,9 @@ An all Rei sti Linken zur éischter an zweeter Viruleedung, souwéi déi éischt
 'log-title-wildcard'   => 'Titel fänkt u matt …',
 
 # Special:Allpages
+'allpages'          => 'All Säiten',
+'allpages-summary'  => "Op dëser Spezialsäit stinn all d'Säite vu(n) {{SITENAME}} vun A bis Z. Getässelt si se alphabetesch, fir d'éischt Zuelen, da Groussbustawen, Klengbustawen ann dann d'Sonnerzeechen. ''A&nbsp;10'' steet virun ''AZ'', ''Aascht'' kënnt eréischt dann.",
+'alphaindexline'    => '$1 bis $2',
 'nextpage'          => 'Nächst Säit ($1)',
 'prevpage'          => 'Säit viru(n) ($1)',
 'allpagesfrom'      => 'Säite weisen, ugefaange mat:',
@@ -1961,11 +1956,14 @@ Duerno sti Linken déi Ausnamen definéieren, a deenen hirem Kontext dat Bild aw
 
 'exif-gaincontrol-0' => 'Keng',
 
+'exif-contrast-0' => 'Normal',
 'exif-contrast-1' => 'Schwaach',
 'exif-contrast-2' => 'Stark',
 
+'exif-saturation-0' => 'Normal',
 'exif-saturation-2' => 'Héich',
 
+'exif-sharpness-0' => 'Normal',
 'exif-sharpness-2' => 'Stark',
 
 'exif-subjectdistancerange-0' => 'Onbekannt',
@@ -2092,11 +2090,14 @@ $1',
 'watchlisttools-raw'  => 'Net-formatéiert Iwwerwaachungslëscht änneren',
 
 # Special:Version
+'version'                  => 'Versioun', # Not used as normal message but as header for the special page itself
 'version-extensions'       => 'Installéiert Erweiderungen',
 'version-specialpages'     => 'Spezialsäiten',
 'version-parserhooks'      => 'Parser-Erweiderungen',
+'version-variables'        => 'Variablen',
 'version-other'            => 'Aner',
 'version-hooks'            => 'Klameren',
+'version-hook-name'        => 'Numm vun der Klamer',
 'version-version'          => 'Versioun',
 'version-license'          => 'Lizenz',
 'version-software'         => 'Installéiert Software',
@@ -2104,7 +2105,16 @@ $1',
 'version-software-version' => 'Versioun',
 
 # Special:Filepath
+'filepath'        => 'Pad bäi de Fichier',
 'filepath-page'   => 'Fichier:',
 'filepath-submit' => 'Pad',
+
+# Special:FileDuplicateSearch
+'fileduplicatesearch'          => 'Sich no duebele Fichieren',
+'fileduplicatesearch-legend'   => 'Sich no engem Doublon',
+'fileduplicatesearch-filename' => 'Numm vum Fichier:',
+'fileduplicatesearch-submit'   => 'Sichen',
+'fileduplicatesearch-info'     => '$1 × $2 Pixel<br />Gréisst vum Fichier: $3<br />MIME Typ: $4',
+'fileduplicatesearch-result-1' => 'De Fichier "$1" huet keen identeschen Doublon.',
 
 );

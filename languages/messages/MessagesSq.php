@@ -157,12 +157,12 @@ $messages = array(
 
 # Categories related messages
 'categories'             => 'Kategori',
+'categoriespagetext'     => 'Ndodhen këto kategori:',
 'pagecategories'         => '{{PLURAL:$1|Kategoria|Kategoritë}}',
 'category_header'        => 'Artikuj në kategorinë "$1"',
 'subcategories'          => 'Nën-kategori',
 'category-media-header'  => 'Skeda në kategori "$1"',
 'category-empty'         => "''Kjo kategori aktualisht nuk përmban asnjë faqe apo media.''",
-'subcategorycount'       => 'Ndodhen $1 nën-kategori në këtë kategori.',
 'listingcontinuesabbrev' => 'vazh.',
 
 'mainpagetext'      => 'Wiki software u instalua me sukses.',
@@ -579,7 +579,6 @@ kështuqë nuk do keni mundësi të ruani redaktimet e tuaja tani. Mund të kopj
 'nohistory'           => 'Nuk ka histori redaktimesh për këtë faqe.',
 'revnotfound'         => 'Versioni nuk u gjet',
 'revnotfoundtext'     => 'Versioni i vjetër i faqes së kërkuar nuk mund të gjehej.Ju lutem kontrolloni URL-in që përdorët për të ardhur tek kjo faqe.',
-'loadhist'            => 'Duke ngarkuar historinë e faqes',
 'currentrev'          => 'Versioni i tanishëm',
 'revisionasof'        => 'Versioni i $1',
 'revision-info'       => 'Versioni më $1 nga $2',
@@ -589,7 +588,6 @@ kështuqë nuk do keni mundësi të ruani redaktimet e tuaja tani. Mund të kopj
 'cur'                 => 'tani',
 'next'                => 'mbas',
 'last'                => 'fund',
-'orig'                => 'Origjinal',
 'page_first'          => 'Së pari',
 'page_last'           => 'Së fundmi',
 'histlegend'          => 'Legjenda: (tani) = ndryshimet me versionin e tanishëm,
@@ -725,6 +723,7 @@ $2 Lidhje përcjellëse &nbsp; Kërko për $3 $9',
 'files'                    => 'Figura',
 
 # User rights
+'userrights'                 => 'Ndrysho privilegjet e përdoruesve', # Not used as normal message but as header for the special page itself
 'userrights-lookup-user'     => 'Ndrysho grupet e përdoruesit',
 'userrights-user-editname'   => 'Fusni emrin e përdoruesit:',
 'editusergroup'              => 'Redaktoni Grupet e Përdoruesve',
@@ -956,7 +955,6 @@ Gjatësia e [http://meta.wikimedia.org/wiki/Help:Job_queue radhës së punëve] 
 'mostcategories'          => 'Artikuj më të kategorizuar',
 'mostimages'              => 'Figura më të lidhura',
 'mostrevisions'           => 'Artikuj më të redaktuar',
-'allpages'                => 'Të gjitha faqet',
 'prefixindex'             => 'Treguesi i parashtesave',
 'shortpages'              => 'Artikuj të shkurtër',
 'longpages'               => 'Artikuj të gjatë',
@@ -985,13 +983,6 @@ një figurë me një URL në mënyrë direkte, kështuqë ka mundësi që këto 
 'booksources-go'            => 'Shko',
 'booksources-text'          => 'Më posht është një listë me lidhje të cilët shesin ose përdorin libra dhe munden të kenë informacione për librat që kërkoni ju:',
 
-'categoriespagetext' => 'Ndodhen këto kategori:',
-'data'               => 'Të dhëna',
-'userrights'         => 'Ndrysho privilegjet e përdoruesve',
-'groups'             => 'Grupet e përdoruesve',
-'alphaindexline'     => '$1 deri në $2',
-'version'            => 'Versioni',
-
 # Special:Log
 'specialloguserlabel'  => 'Përdoruesi:',
 'speciallogtitlelabel' => 'Titulli:',
@@ -1000,6 +991,8 @@ një figurë me një URL në mënyrë direkte, kështuqë ka mundësi që këto 
 'logempty'             => 'Nuk ka asnjë përputhje në regjistër.',
 
 # Special:Allpages
+'allpages'          => 'Të gjitha faqet',
+'alphaindexline'    => '$1 deri në $2',
 'nextpage'          => 'Faqja më pas ($1)',
 'prevpage'          => 'Faqja më parë ($1)',
 'allpagesfrom'      => 'Trego faqet duke filluar nga:',
@@ -1749,6 +1742,7 @@ $1',
 'watchlisttools-edit' => 'Shih dhe redakto listën mbikqyrëse.',
 
 # Special:Version
+'version'                  => 'Versioni', # Not used as normal message but as header for the special page itself
 'version-specialpages'     => 'Faqe speciale',
 'version-other'            => 'Të tjera',
 'version-version'          => 'Verzioni',
