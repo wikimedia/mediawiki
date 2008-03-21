@@ -42,11 +42,7 @@ if( is_array( $wgExtraNamespaces ) ) {
  *
  */
 
-/*
-WARNING: The statement below may fail on some versions of PHP: see bug 12294
-*/
-
-class Namespace {
+class MWNamespace {
 
 	/**
 	 * Can pages in the given namespace be moved?

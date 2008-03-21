@@ -200,7 +200,7 @@ class GenerateSitemap {
 	 * @return string
 	 */
 	function guessPriority( $namespace ) {
-		return Namespace::isMain( $namespace ) ? $this->priorities[GS_MAIN] : $this->priorities[GS_TALK];
+		return MWNamespace::isMain( $namespace ) ? $this->priorities[GS_MAIN] : $this->priorities[GS_TALK];
 	}
 
 	/**

@@ -169,10 +169,10 @@ abstract class FileRepo {
 		if ( is_null( $this->descBaseUrl ) ) {
 			if ( !is_null( $this->articleUrl ) ) {
 				$this->descBaseUrl = str_replace( '$1', 
-					wfUrlencode( Namespace::getCanonicalName( NS_IMAGE ) ) . ':', $this->articleUrl );
+					wfUrlencode( MWNamespace::getCanonicalName( NS_IMAGE ) ) . ':', $this->articleUrl );
 			} elseif ( !is_null( $this->scriptDirUrl ) ) {
 				$this->descBaseUrl = $this->scriptDirUrl . '/index.php?title=' . 
-					wfUrlencode( Namespace::getCanonicalName( NS_IMAGE ) ) . ':';
+					wfUrlencode( MWNamespace::getCanonicalName( NS_IMAGE ) ) . ':';
 			} else {
 				$this->descBaseUrl = false;
 			}
@@ -207,7 +207,7 @@ abstract class FileRepo {
 	function getDescriptionRenderUrl( $name ) {
 		if ( isset( $this->scriptDirUrl ) ) {
 			return $this->scriptDirUrl . '/index.php?title=' . 
-				wfUrlencode( Namespace::getCanonicalName( NS_IMAGE ) . ':' . $name ) .
+				wfUrlencode( MWNamespace::getCanonicalName( NS_IMAGE ) . ':' . $name ) .
 				'&action=render';
 		} else {
 			$descBase = $this->getDescBaseUrl();

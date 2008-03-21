@@ -668,7 +668,7 @@ class DumpFilter {
  */
 class DumpNotalkFilter extends DumpFilter {
 	function pass( $page ) {
-		return !Namespace::isTalk( $page->page_namespace );
+		return !MWNamespace::isTalk( $page->page_namespace );
 	}
 }
 

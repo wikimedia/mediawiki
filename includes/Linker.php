@@ -1065,7 +1065,7 @@ class Linker {
 	protected function formatLinksInCommentCallback( $match ) {
 		global $wgContLang;
 
-		$medians = '(?:' . preg_quote( Namespace::getCanonicalName( NS_MEDIA ), '/' ) . '|';
+		$medians = '(?:' . preg_quote( MWNamespace::getCanonicalName( NS_MEDIA ), '/' ) . '|';
 		$medians .= preg_quote( $wgContLang->getNsText( NS_MEDIA ), '/' ) . '):';
 		
 		$comment = $match[0];

@@ -27,7 +27,7 @@
  * careful about its contents. So, there's a lot more error-checking
  * in here than would normally be necessary.
  */
-function wfRunHooks($event, $args = null) {
+function wfRunHooks($event, $args = array()) {
 
 	global $wgHooks;
 

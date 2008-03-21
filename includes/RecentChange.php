@@ -547,7 +547,7 @@ class RecentChange
 
 		$titleObj =& $this->getTitle();
 		if ( $rc_type == RC_LOG ) {
-			$title = Namespace::getCanonicalName( $titleObj->getNamespace() ) . $titleObj->getText();
+			$title = MWNamespace::getCanonicalName( $titleObj->getNamespace() ) . $titleObj->getText();
 		} else {
 			$title = $titleObj->getPrefixedText();
 		}
