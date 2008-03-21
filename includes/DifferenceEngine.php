@@ -1773,10 +1773,10 @@ class _HWLDF_WordAccumulator {
 	function _flushGroup ($new_tag) {
 		if ($this->_group !== '') {
 			if ($this->_tag == 'ins')
-				$this->_line .= '<ins class="diffchange">' .
+				$this->_line .= '<ins class="diffchange diffchange-inline">' .
 					htmlspecialchars ( $this->_group ) . '</ins>';
 			elseif ($this->_tag == 'del')
-				$this->_line .= '<del class="diffchange">' .
+				$this->_line .= '<del class="diffchange diffchange-inline">' .
 					htmlspecialchars ( $this->_group ) . '</del>';
 			else
 				$this->_line .= htmlspecialchars ( $this->_group );
@@ -1918,6 +1918,13 @@ class TableDiffFormatter extends DiffFormatter
 		$this->trailing_context_lines = 2;
 	}
 
+	public static function escapeWhiteSpace( $msg ) {
+		$msg = preg_replace( '/^ /m', '&nbsp; ', $msg );
+		$msg = preg_replace( '/ $/m', ' &nbsp;', $msg );
+		$msg = preg_replace( '/  /', '&nbsp; ', $msg );
+		return $msg;
+	}
+
 	function _block_header( $xbeg, $xlen, $ybeg, $ylen ) {
 		$r = '<tr><td colspan="2" class="diff-lineno"><!--LINE '.$xbeg."--></td>\n" .
 		  '<td colspan="2" class="diff-lineno"><!--LINE '.$ybeg."--></td></tr>\n";
@@ -1952,7 +1959,7 @@ class TableDiffFormatter extends DiffFormatter
 	private function wrapLine( $marker, $class, $line ) {
 		if( $line !== '' ) {
 			// The <div> wrapper is needed for 'overflow: auto' style to scroll properly
-			$line = "<div>$line</div>";
+			$line = Xml::tags( 'div', null, $this->escapeWhiteSpace( $line ) );
 		}
 		return "<td class='diff-marker'>$marker</td><td class='$class'>$line</td>";
 	}

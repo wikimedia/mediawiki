@@ -34,6 +34,9 @@ td.diff-context {
 	font-weight: bold;
 	text-decoration: none;
 }
+.diffchange-inline {
+	border: 1px dotted red;
+}
 
 table.diff {
 	border: none;

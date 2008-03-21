@@ -112,7 +112,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   so groups may optionally edit protected pages without having 'protect' perms
 * Disallow deletion of big pages by means of moving a page to its title and using the
   "delete and move" option.
-
+* (bug 13466) White space differences not shown in diffs
 
 === API changes in 1.13 ===
 
