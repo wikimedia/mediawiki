@@ -138,6 +138,8 @@ class MovePageForm {
 			$errMsg = "";
 			if( $err == 'hookaborted' ) {
 				$errMsg = "<p><strong class=\"error\">$hookErr</strong></p>\n";
+			} else if (is_array($err)) {
+				$errMsg = '<p><strong class="error">' . call_user_func_array( 'wfMsgWikiHtml', $err ) . "</strong></p>\n";
 			} else {
 				$errMsg = '<p><strong class="error">' . wfMsgWikiHtml( $err ) . "</strong></p>\n";
 			}
@@ -233,6 +235,15 @@ class MovePageForm {
 		# Delete to make way if requested
 		if ( $wgUser->isAllowed( 'delete' ) && $this->deleteAndMove ) {
 			$article = new Article( $nt );
+			
+			# Disallow deletions of big articles
+			$bigHistory = $article->isBigDeletion();
+			if( $bigHistory && !$nt->userCan( 'bigdelete' ) ) {
+				global $wgLang, $wgDeleteRevisionsLimit;
+				$this->showForm( array('delete-toobig', $wgLang->formatNum( $wgDeleteRevisionsLimit ) ) );
+				return;
+			}
+			
 			// This may output an error message and exit
 			$article->doDelete( wfMsgForContent( 'delete_and_move_reason' ) );
 		}
