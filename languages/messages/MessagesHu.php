@@ -3,7 +3,7 @@
  *
  * @addtogroup Language
  *
- * @author Bdanee
+ * @author Dani
  * @author Bdamokos
  * @author Tgr
  * @author Siebrand
