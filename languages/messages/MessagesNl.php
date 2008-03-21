@@ -285,7 +285,7 @@ $messages = array(
 'tog-editwidth'               => 'Bewerkingsveld over volle breedte',
 'tog-watchcreations'          => 'Pagina’s die ik aanmaak automatisch volgen',
 'tog-watchdefault'            => 'Pagina’s die ik bewerk automatisch volgen',
-'tog-watchmoves'              => 'Pagina’s die ik verplaats automatisch volgen',
+'tog-watchmoves'              => 'Pagina’s die ik hernoem automatisch volgen',
 'tog-watchdeletion'           => 'Pagina’s die ik verwijder automatisch volgen',
 'tog-minordefault'            => 'Al mijn bewerkingen als ‘klein’ markeren',
 'tog-previewontop'            => 'Voorvertoning boven bewerkingsveld weergeven',
@@ -1483,8 +1483,6 @@ De lengte van de [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] is ''
 'notargettext'            => 'U hebt niet opgegeven voor welke pagina of gebruiker u deze handeling wilt uitvoeren.',
 'pager-newer-n'           => '{{PLURAL:$1|1 nieuwere|$1 nieuwere}}',
 'pager-older-n'           => '{{PLURAL:$1|1 oudere|$1 oudere}}',
-'pager-sort-asc'          => 'oplopend',
-'pager-sort-desc'         => 'aflopend',
 
 # Book sources
 'booksources'               => 'Boekinformatie',

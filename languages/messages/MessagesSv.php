@@ -16,6 +16,7 @@
  * @author SPQRobin
  * @author Max sonnelid
  * @author M.M.S.
+ * @author Grillo
  */
 
 $skinNames = array(
@@ -742,9 +743,9 @@ Du bör överväga om det är lämpligt att fortsätta redigera sidan.
 Raderingsloggen för sidan innehåller följande:",
 
 # "Undo" feature
-'undo-success' => 'Ändringen kunde ogöras. Resultatet visas i redigeringsrutan, spara det genom att trycka på "spara".',
-'undo-failure' => 'På grund av senare redigeringar kunde inte ändringen ogöras.',
-'undo-summary' => 'Ogör ändring $1 av [[Special:Contributions/$2|$2]] ([[Användardiskussion:$2|diskussion]])',
+'undo-success' => 'Sidan kan återställas till tidigare version. Var god och kontrollera jämförelsen nedan för att bekräfta att detta är vad du avser att göra och slutför återställningen genom att spara.',
+'undo-failure' => 'Ändringen kunde inte avlägsnas på grund av motstridande ändringar som gjorts sedan dess.',
+'undo-summary' => 'Ta bort version $1 av [[Special:Contributions/$2|$2]] ([[Användardiskussion:$2|diskussion]])',
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Kan inte skapa konto',
@@ -854,7 +855,7 @@ Andra administratörer på {{SITENAME}} kommer fortfarande att kunna läsa det d
 'difference'              => '(Skillnad mellan versioner)',
 'lineno'                  => 'Rad $1:',
 'compareselectedversions' => 'Jämför angivna versioner',
-'editundo'                => 'ogör',
+'editundo'                => 'avlägsna',
 'diff-multi'              => '({{plural:$1|En mellanliggande version|$1 mellanliggande versioner}} visas inte.)',
 
 # Search results
@@ -1308,8 +1309,6 @@ Sedan denna wiki startades har sidor visats totalt <b>$3</b> {{PLURAL:$3|gång|g
 'notargettext'            => 'Du har inte angivit någon sida eller användare att utföra denna funktion på.',
 'pager-newer-n'           => '$1 nyare',
 'pager-older-n'           => '$1 äldre',
-'pager-sort-asc'          => 'stigande',
-'pager-sort-desc'         => 'fallande',
 
 # Book sources
 'booksources'               => 'Bokkällor',
@@ -1775,7 +1774,9 @@ I det senare fallet kan du även använda en länk, exempel [[{{ns:special}}:Exp
 'allmessagesname'           => 'Namn',
 'allmessagesdefault'        => 'Standardtext',
 'allmessagescurrent'        => 'Nuvarande text',
-'allmessagestext'           => 'Detta är en lista över alla meddelanden i namnrymden MediaWiki',
+'allmessagestext'           => 'Detta är en lista över alla meddelanden i namnrymden MediaWiki.
+
+De går att översätta lokalt, genom att klicka på länkarna nedan, men översättes med fördel på [http://translatewiki.net/wiki/Main_Page Translatewiki], då slår översättningen igenom på samtliga svenskspråkiga projekt.',
 'allmessagesnotsupportedDB' => "Det finns inte stöd för ''{{ns:special}}:Allmessages'', eftersom '''\$wgUseDatabaseMessages''' är avstängd.",
 'allmessagesfilter'         => 'Filter för meddelandenamn:',
 'allmessagesmodified'       => 'Visa bara ändrade',

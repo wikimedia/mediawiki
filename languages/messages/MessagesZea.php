@@ -10,6 +10,7 @@
  * @author Adnergje
  * @author Siebrand
  * @author NJ
+ * @author Nike
  */
 
 $fallback = 'nl';
@@ -142,6 +143,8 @@ $messages = array(
 # Categories related messages
 'categories'                     => 'Categorieën',
 'categoriespagetext'             => 'De wiki eit de volgende categorieën.',
+'special-categories-sort-count'  => 'op antal sorteern',
+'special-categories-sort-abc'    => 'alfabetisch sorteern',
 'pagecategories'                 => '{{PLURAL:$1|Categorie|Categorieën}}',
 'category_header'                => 'Artikels in categorie "$1"',
 'subcategories'                  => 'Ondercategorieën',
@@ -255,10 +258,10 @@ $messages = array(
 'disclaimers'       => 'Voebehoud',
 'disclaimerpage'    => 'Project:Alhemeên voebehoud',
 'edithelp'          => "Ulpe bie't bewerken",
-'edithelppage'      => 'Ulpe:Bewerken',
+'edithelppage'      => 'Help:Bewerken',
 'faq'               => 'FAQ (veehestelde vraehen)',
 'faqpage'           => 'Project:Veehestelde vraehen',
-'helppage'          => 'Ulpe:Inoud',
+'helppage'          => 'Help:Inoud',
 'mainpage'          => 'Vòblad',
 'policy-url'        => 'Project:Beleid',
 'portal'            => "'t Durpsuus",
@@ -322,49 +325,133 @@ $messages = array(
 Een lieste mie speciaole pagina’s sti op [[Special:Specialpages|speciaole pagina’s]].",
 
 # General errors
-'error'           => 'Fout',
-'databaseerror'   => 'Databasefout',
-'dberrortext'     => "Der is een syntaxisfout in 't databaseverzoek opetreeën.
+'error'                => 'Fout',
+'databaseerror'        => 'Databasefout',
+'dberrortext'          => "Der is een syntaxisfout in 't databaseverzoek opetreeën.
 Meuhlijk zit der een fout in de software.
 't Lèste verzoek an de database was:
 <blockquote><tt>$1</tt></blockquote>
 vanuut de functie “<tt>$2</tt>”.
 MySQL haf de foutmeldieng “<tt>$3: $4</tt>”.",
-'dberrortextcl'   => "Der is een syntaxisfout in 't databaseverzoek opetreeën.
+'dberrortextcl'        => "Der is een syntaxisfout in 't databaseverzoek opetreeën.
 't Lèste verzoek an de database was:
 “$1”
 vanuut de functie “$2”.
 MySQL haf de volhende foutmeldieng: “$3: $4”",
-'noconnect'       => 'Sorry! De wiki ondervin technische moeilijkheden en kan de database nie bereiken. <br />
+'noconnect'            => 'Sorry! De wiki ondervin technische moeilijkheden en kan de database nie bereiken. <br />
 $1',
-'nodb'            => 'Kon database $1 nie selecteren',
-'cachederror'     => 'Deêze pahina is een kopie uut de cache en kan verouwerd zien.',
-'laggedslavemode' => "Waerschuwieng: de pahina zou verouwerd kunn'n zien.",
-'readonly'        => 'Database heblokkeerd',
-'enterlockreason' => 'Heef een reeën op voe de blokkaode en heef op wunnir a die warschijnlijk wor opeheven',
-'readonlytext'    => 'De database is heblokkeerd voe bewerkiengen, warschijnlijk voe rehulier databaseonderoud. Nae afrondieng wor de functionaliteit hersteld.
+'nodb'                 => 'Kon database $1 nie selecteren',
+'cachederror'          => 'Deêze pahina is een kopie uut de cache en kan verouwerd zien.',
+'laggedslavemode'      => "Waerschuwieng: de pahina zou verouwerd kunn'n zien.",
+'readonly'             => 'Database heblokkeerd',
+'enterlockreason'      => 'Heef een reeën op voe de blokkaode en heef op wunnir a die warschijnlijk wor opeheven',
+'readonlytext'         => 'De database is heblokkeerd voe bewerkiengen, warschijnlijk voe rehulier databaseonderoud. Nae afrondieng wor de functionaliteit hersteld.
 
 De beheêrder ei de volhende reeën opeheven: $1',
-'missingarticle'  => "In de database is hin tekst anetroffen voe een pagina mie de naem “$1”.
+'missingarticle'       => "In de database is hin tekst anetroffen voe een pagina mie de naem “$1”.
 
 Dit wor mistal veroôrzaekt deur 't volhen van een lienk in een verheliekiengs- of geschiedenispagina nae een pagina die a verwiederd is.
 
 A dit nie 't heval is, dan è je een fout in de software evon'n.
 Rapporteer dit asjeblieft an een beheêrder mie vermeldieng van de URL.",
-'readonly_lag'    => 'De database is automaotisch verhrendeld terwijl an de onderheschikte databaseservers synhroniseren mie den oôdserver.',
-'badarticleerror' => 'Dit kan mee deêze bladzie nie gedaen ore.',
-'cannotdelete'    => "Kan de bladzie of 't bestand nie wisse. Misschien is 't a deu iemand aors gewist.",
-'badtitle'        => 'Verkeerde titel',
-'badtitletext'    => "De bladzie die-a je angevrogen ei was ongeldig, leeg, of fout gelinkt vanuut 'n aore wiki. Mischien stae d'r eên of meer teêkens in die-an nie in titels gebruukt kunne ore.",
-'viewsource'      => 'brontekst bekieken',
-'viewsourcefor'   => 'vò $1',
+'readonly_lag'         => 'De database is automaotisch verhrendeld terwijl an de onderheschikte databaseservers synhroniseren mie den oôdserver.',
+'internalerror'        => 'Interne fout',
+'internalerror_info'   => 'Interne fout: $1',
+'filecopyerror'        => 'Bestand “$1” kon nie ni “$2” ekopieerd worn.',
+'filerenameerror'      => '“$1” kon nie tot “$2” hernoemd worn.',
+'filedeleteerror'      => 'Bestand “$1” kon nie verwiederd worn.',
+'directorycreateerror' => 'Map “$1” kon nie anemikt worn.',
+'filenotfound'         => "Bestand “$1” wier nie evon'n.",
+'fileexistserror'      => 'Schrieven ni bestand “$1” onmeuhlijk: bestand besti a',
+'unexpected'           => 'Onverwachte waerde: "$1"="$2".',
+'formerror'            => "Fout: formulier kon nie worn verzon'n",
+'badarticleerror'      => 'Dit kan mee deêze bladzie nie gedaen ore.',
+'cannotdelete'         => "Kan de bladzie of 't bestand nie wisse. Misschien is 't a deu iemand aors gewist.",
+'badtitle'             => 'Verkeerde titel',
+'badtitletext'         => "De bladzie die-a je angevrogen ei was ongeldig, leeg, of fout gelinkt vanuut 'n aore wiki. Mischien stae d'r eên of meer teêkens in die-an nie in titels gebruukt kunne ore.",
+'perfdisabled'         => 'Sorry! Deêze functionaliteit is tiedelijk uiteschaokeld, omda dezen de database zò langzaem mik da niemand de wiki kan gebruken.',
+'perfcached'           => "De hehevens komm'n uut een cache en zien meuhlijk nie actueel.",
+'perfcachedts'         => "De hehevens komm'n uut een cache en zien voe 't lèst biehewerkt op $1.",
+'querypage-no-updates' => 'Deêze pagina kan nie biehewerkt worn. Deêze hehevens worn nie ververst.',
+'wrong_wfQuery_params' => 'Foute parameters voe wfQuery()<br />
+Functie: $1<br />
+Zoekopdracht: $2',
+'viewsource'           => 'brontekst bekieken',
+'viewsourcefor'        => 'vò $1',
+'actionthrottled'      => 'Handelienge tehenehouwen',
+'actionthrottledtext'  => "As maetrehel tehen spam is 't antal keern per tiedseêneid da je deêze handelienge kan verrichen beperkt.
+De limiet is overschreeën.
+Probeer 't over een antal menuten wee.",
+'protectedpagetext'    => 'Deêze pagina is beveiligd. Bewerken is nie meuhlijk.',
+'viewsourcetext'       => 'Je kan de brontekst van deêze pagina bekieken en kopiëren:',
+'protectedinterface'   => "Deêze pagina bevat tekst voe berichen van de software en is beveiligd om misbruuk te voorkomm'n.",
+'editinginterface'     => "'''Waerschuwienge:''' Je bewerk een pagina die a gebruukt wor deur de software. Bewerkiengen op deêze pagina beïnvloeden de gebrukersinterface van iedereên. Overweeg voe vertaeliengen om [http://translatewiki.net/wiki/Main_Page?setlang=zea Betawiki] te gebruken, 't vertaeliengsproject voe MediaWiki.",
+'sqlhidden'            => '(SQL-zoekopdracht verborhen)',
+'cascadeprotected'     => "Deêze pagina kan nie bewerkt worn, omda 't een is openomen in de volhende {{PLURAL:$1|pagina|pagina's}} die beveiligd {{PLURAL:$1|is|zien}} mie de cascaode-optie:
+$2",
+'namespaceprotected'   => "Je ei hin rechen om pagina's in de naemruumte '''$1''' te bewerken.",
+'customcssjsprotected' => 'Je kan deêze pagina nie bewerken, omda die persoônlijke instelliengen van een aore gebruker bevat.',
+'ns-specialprotected'  => 'Pagina\'s in de naemruumte "{{ns:special}}" kunn\'n nie bewerkt worn.',
+'titleprotected'       => "'t Anmaeken van deêze pagina is beveiligd deur [[User:$1|$1]]. De heheven reeën is <i>$2</i>.",
 
 # Login and logout pages
+'logouttitle'                => 'Gebruker afmelden',
+'logouttext'                 => "<strong>Je bin noe ofemeld.</strong><br />
+Je kan {{SITENAME}} noe anoniem gebruken of wee anmelden as dezelven of een aore gebruker.
+Meuhlijk worn nog een antal pagina's weereheven asof a je anemeld bin totda je de cache van je browser leeg.",
+'welcomecreation'            => '== Welkom, $1! ==
+
+Jen account is anemikt. Vergeet nie je vòkeuren voe {{SITENAME}} an te passen.',
+'loginpagetitle'             => 'Gebrukersnaem',
+'yourname'                   => 'Gebrukersnaem',
+'yourpassword'               => 'Wachtwoôrd',
+'yourpasswordagain'          => 'Heef je wachtwoôrd opnieuw in:',
+'remembermypassword'         => 'Anmeldhehevens ontouwen',
+'yourdomainname'             => 'Je domein:',
+'externaldberror'            => "Der is een fout opetreeën bie 't anmelden bie de database of je ei hin toestemmieng jen externe gebruker bie te werken.",
+'loginproblem'               => "<b>Der was een probleem bie 't anmelden.</b><br />
+Probeer 't asjeblieft nog een keêr.",
+'login'                      => 'Anmelden',
+'loginprompt'                => "Je mò cookies ineschaokeld ène om je te kunn'n anmelden bie {{SITENAME}}.",
 'userlogin'                  => 'Anmelden / Inschrieven',
+'logout'                     => 'Ofmelden',
+'userlogout'                 => 'Ofmelden',
+'notloggedin'                => 'Nie anemeld',
+'nologin'                    => 'Nog hin gebrukersnaem? $1.',
+'nologinlink'                => 'Mik een gebruker an',
+'createaccount'              => 'Gebruker anmaeken',
+'gotaccount'                 => 'È je a een gebrukersnaem? $1.',
+'gotaccountlink'             => 'Anmelden',
+'createaccountmail'          => 'per e-mail',
 'badretype'                  => 'De wachtwoôrden die-a je ingegeven typ bin nie eênder.',
+'userexists'                 => 'De hekozen gebrukersnaem is a in gebruuk.
+Kies asjeblieft een aore naem.',
+'youremail'                  => 'Jen e-mailadres:',
 'username'                   => 'Gebrukersnaem:',
+'uid'                        => 'Gebrukersnummer:',
+'yourrealname'               => 'Jen echen naam:',
+'yourlanguage'               => 'Taele:',
+'yournick'                   => 'Tekst voe onderteêkenienge:',
 'badsig'                     => 'Ongeldege andteêkenienge; kiek de [[HTML]]-expressies nae.',
 'badsiglength'               => 'Te lange naem; ie mag uut maximaol $1 letters bestae.',
+'email'                      => 'E-mail',
+'prefs-help-realname'        => 'Echen naem is opsjoneel, a je dezen opgeef kan deêze naem gebruukt worn om je erkennieng te heven voe je werk.',
+'loginerror'                 => 'Anmeldfout',
+'prefs-help-email'           => "E-mailadres is opsjoneel, mè stel aore in staet contact mie je op te neem'n via je gebrukers- of overlegpagina zonder da je jen identiteit priesheef.",
+'prefs-help-email-required'  => 'Iervoe is een e-mailadres noôdig.',
+'nocookiesnew'               => "De gebruker is anemikt mè nie anemeld.
+{{SITENAME}} gebruuk cookies voe 't anmelden van gebrukers.
+Schaokel die asjeblieft in en meld dinae an mie je nieuwe gebrukersnaem en wachtwoôrd.",
+'nocookieslogin'             => "{{SITENAME}} gebruuk cookies voe 't anmelden van gebrukers. Cookies zien uutgeschaokeld in je browser. Schaokel dezen optie asjeblieft an en probeer 't opnieuw.",
+'noname'                     => 'Je ei hin heldihe gebrukersnaem opeheven.',
+'loginsuccesstitle'          => 'Anmelden geslaegd',
+'loginsuccess'               => "'''Je bin noe anemeld bie {{SITENAME}} as \"\$1\".'''",
+'nosuchuser'                 => 'De gebruker "$1" besti nie. Controleer de schriefwieze of mik een nieuwe gebruker an.',
+'passwordremindertext'       => 'Iemand, warschienlijk jie, ei vanof \'t IP-adres $1 een verzoek edaene toet \'t toezen\'n van \'t wachtwoôrd voe {{SITENAME}} ($4).
+\'t Wachtwoôrd voe gebruker "$2" is "$3".
+Mel je noe an en wiezig dan je wachtwoôrd.
+
+A iemand aors dan jie dit verzoek ei edaene of a je ondertussen \'t wachtwoôrd wee weet en \'t nie langer wil wiezigen, neheer dan dit bericht en bluuf je bestaende wachtwoôrd gebruken.',
 'blocked-mailpassword'       => 'Jen IP-adres is geblokkeerd, en vò zoôlank as dat
 diert kan je, om misbruuk te vorkommen, geên nieuw wachtwoord laete opstiere.',
 'acct_creation_throttle_hit' => "J'ei al $1 gebrukers angemaekt. Meêr mag je d'r nie ebbe.",
@@ -384,6 +471,29 @@ diert kan je, om misbruuk te vorkommen, geên nieuw wachtwoord laete opstiere.',
 'showdiff'              => 'Bekiek veranderiengen',
 'anoneditwarning'       => "'''Waerschuwienge:''' Je bin nie angemolde. Je IP-adres komt in de bewerkiengsgeschiedenisse van deêze bladzie te staen.",
 'blockedtitle'          => 'Gebruker is geblokkeerd',
+'blockedtext'           => "<big>'''Je gebruker of IP-adres is eblokkeerd.'''</big>
+
+De blokkaode is uutevoerd deur $1.
+De opeheven reeën is ''$2''.
+
+* Behun blokkaode: $8
+* Ènde blokkaode: $6
+* Bedoeld te blokkeren: $7
+
+Je kan contact opnemen mie $1 of een aore [[{{MediaWiki:Grouppage-sysop}}|opzichter]] om de blokkaode te bespreken.
+Je kan hin gebruuk maeken van de functie 'e-mail deêze gebruker', tenzie a je een heldig e-mailadres ei opeheven in je [[Special:Preferences|vòkeuren]] en 't gebruuk van deêze functie nie eblokkeerd is.
+Je udihe IP-adres is $3 en 't blokkaodenummer is #$5. Vermeld beie hehevens a je erhens op deêze blokkaode wil reaheern.",
+'autoblockedtext'       => "Jen IP-adres is automaotisch eblokkeerd, omda 't is gebruukt deur een aore gebruker, die a is eblokkeerd deur $1.
+De opeheven reeën is:
+
+:''$2''
+
+* Behun blokkaode: $8
+* Ènde blokkaode: $6
+
+Je kan deêze blokkaode bespreken mie $1 of een aore [[{{MediaWiki:Grouppage-sysop}}|opzichter]].
+Je kan hin gebruuk maeken van de functie 'e-mail deêze gebruker', tenzie a je een heldig e-mailadres ei opeheven in je [[Special:Preferences|vòkeuren]] en 't gebruuk van deêze functie nie is eblokkeerd.
+Je udihe IP-adres is $3 en 't blokkaodenummer is #$5. Vermeld beie hehevens a je erhens over deêze blokkaode wil reaheern.",
 'blockedoriginalsource' => "De brontekst van '''$1''' staet ieronder:",
 'blockededitsource'     => "D'n tekst van '''joen biedragen''' an '''$1''' staet ieronder:",
 'accmailtitle'          => 'Wachtwoord verstierd.',

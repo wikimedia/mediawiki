@@ -175,16 +175,24 @@ $messages = array(
 'dec'           => 'de dec',
 
 # Categories related messages
-'categories'               => '{{PLURAL:$1|Categoria|Categorias}} de la pagina',
-'categoriespagetext'       => 'Las categorias seguentas contenen de paginas o de mèdias.',
-'pagecategories'           => '{{PLURAL:$1|Categoria|Categorias}} de la pagina',
-'category_header'          => 'Articles dins la categoria "$1"',
-'subcategories'            => 'Soscategorias',
-'category-media-header'    => 'Fichièrs multimèdia dins la categoria "$1"',
-'category-empty'           => "''Actualament, aquesta categoria conten pas cap d'articles o de mèdia.''",
-'hidden-categories'        => '{{PLURAL:$1|Categoria amagada|Categorias amagadas}}',
-'hidden-category-category' => 'Categorias amagadas', # Name of the category where hidden categories will be listed
-'listingcontinuesabbrev'   => '(seguida)',
+'categories'                     => '{{PLURAL:$1|Categoria|Categorias}} de la pagina',
+'categoriespagetext'             => 'Las categorias seguentas contenen de paginas o de mèdias.',
+'special-categories-sort-count'  => 'triada per compte',
+'special-categories-sort-abc'    => 'triada alfabetica',
+'pagecategories'                 => '{{PLURAL:$1|Categoria|Categorias}} de la pagina',
+'category_header'                => 'Articles dins la categoria "$1"',
+'subcategories'                  => 'Soscategorias',
+'category-media-header'          => 'Fichièrs multimèdia dins la categoria "$1"',
+'category-empty'                 => "''Actualament, aquesta categoria conten pas cap d'articles o de mèdia.''",
+'hidden-categories'              => '{{PLURAL:$1|Categoria amagada|Categorias amagadas}}',
+'hidden-category-category'       => 'Categorias amagadas', # Name of the category where hidden categories will be listed
+'category-subcat-count'          => '{{PLURAL:$2|Aquesta categoria dispausa pas que de la soscategoria seguenta.|Aquesta categoria dispausa de {{PLURAL:$1|soscategoria|$1 soscategorias}}, sus una soma de $2.}}',
+'category-subcat-count-limited'  => 'Aquesta categoria dispausa {{PLURAL:$1|d’una soscategoria|de $1 soscategorias}}.',
+'category-article-count'         => '{{PLURAL:$2|Aquesta categoria conten unicament la pagina seguenta.|{{PLURAL:$1|La pagina seguenta figura|Las $1 paginas seguentas figuran}} dins aquesta categoria, sus una soma de $2.}}',
+'category-article-count-limited' => '{{PLURAL:$1|La pagina seguenta figura|Las $1 paginas seguentas figuran}} dins la presenta categoria.',
+'category-file-count'            => '{{PLURAL:$2|Aquesta categoria conten unicament lo fichièr seguent.|{{PLURAL:$1|Lo fichièr seguent figura|los $1 fichièrs seguents figuran}} dins aquesta categoria, sus una soma de $2.}}',
+'category-file-count-limited'    => '{{PLURAL:$1|Lo fichièr seguent figura|Los $1 fichièrs seguents figuran}} dins la presenta categoria.',
+'listingcontinuesabbrev'         => '(seguida)',
 
 'mainpagetext'      => 'Logicial {{SITENAME}} installat.',
 'mainpagedocfooter' => "Referissètz-vos a [http://meta.wikimedia.org/wiki/Help:Contents User's Guide] a prepaus de la personalizacion de l'interfàcia.
@@ -776,6 +784,7 @@ D’autres administrators sus {{SITENAME}} poiràn totjorn accedir al contengut 
 que son pas indexats, o a l\'emplec de mantun tèrme de recèrca (solas las paginas
 contenent totes los tèrmes apareisson dins los resultats).',
 'powersearch'           => 'Recèrca avançada',
+'powersearch-legend'    => 'Recèrca avançada',
 'powersearchtext'       => 'Recercar dins los espacis :<br />
 $1<br />
 $2 Enclure las paginas de redireccions   Recercar $3 $9',
@@ -1026,6 +1035,9 @@ PICT # misc.
 'upload_source_file' => '(un fichièr sus vòstre ordenador)',
 
 # Special:Imagelist
+'imagelist-summary'     => 'Aquesta pagina especiala mòstra totes los fichièrs importats.
+Per defaut, las darrièrs fichièrs importats son afichats en naut de la lista.
+Un clic en tèsta de colomna cambia l’òrdre d’afichatge.',
 'imagelist_search_for'  => 'Recèrca pel mèdia nomenat :',
 'imgdesc'               => 'descr',
 'imgfile'               => 'fichièr',
@@ -1058,6 +1070,7 @@ PICT # misc.
 'noimage'                   => 'Cap de fichièr possedissent aqueste nom existís pas, podètz $1.',
 'noimage-linktext'          => "n'importar un",
 'uploadnewversion-linktext' => "Copiar una version novèla d'aqueste fichièr",
+'imagepage-searchdupe'      => 'Recèrca dels fichièrs en doble',
 
 # File reversion
 'filerevert'                => 'Revocar $1',
@@ -1606,9 +1619,9 @@ Confirmatz qu'es plan çò que volètz far.",
 'locknoconfirm'       => 'Avètz pas marcat la casa de confirmacion.',
 'lockdbsuccesssub'    => 'Varrolhatge de la banca capitat.',
 'unlockdbsuccesssub'  => 'Banca desvarrolhada.',
-'lockdbsuccesstext'   => 'La banca de donadas es clavada.
+'lockdbsuccesstext'   => 'La banca de donadas de {{SITENAME}} es varrolhada.
 
-<br />Doblidetz pas de la desclavar quand auretz acabat vòstra operacion de mantenença.',
+Doblidetz pas de la desvarrolhar quand auretz acabat vòstra operacion de mantenença.',
 'unlockdbsuccesstext' => 'La banca de donadas de {{SITENAME}} es desvarrolhada.',
 'lockfilenotwritable' => 'Lo fichièr de blocatge de la banca de donadas es pas inscriptible. Per blocar o desblocar la banca de donadas, devètz poder escriure sul serveire web.',
 'databasenotlocked'   => 'La banca de donadas es pas clavada.',
@@ -1892,11 +1905,12 @@ $1",
 # Special:Newimages
 'newimages'             => 'Galariá de fichièrs novèls',
 'imagelisttext'         => 'Vaquí una lista de $1 imatges classats $2.',
+'newimages-summary'     => 'Aquesta pagina especiala aficha los darrièrs fichièrs importats',
 'showhidebots'          => '($1 bòts)',
 'noimages'              => "Cap imatge d'afichar.",
 'ilsubmit'              => 'Cercar',
 'bydate'                => 'per data',
-'sp-newimages-showfrom' => 'Afichar los imatges importats dempuèi lo $1',
+'sp-newimages-showfrom' => 'Afichar los imatges importats dempuèi lo $2, $1',
 
 # Bad image list
 'bad_image_list' => "Lo format es lo seguent :
@@ -2335,5 +2349,17 @@ Ensajatz la previsualizacion normala.',
 'filepath-page'    => 'Fichièr:',
 'filepath-submit'  => "Camin d'accès",
 'filepath-summary' => "Aquesta pagina especiala balha lo camin d'accès complet d’un fichièr ; los imatges son mostrats en nauta resolucion, los fichièrs audiò e vidèo s’executisson amb lor programa associat. Picatz lo nom del fichièr sens lo prefix « {{ns:image}}: »",
+
+# Special:FileDuplicateSearch
+'fileduplicatesearch'          => 'Recèrca dels fichièrs en doble',
+'fileduplicatesearch-summary'  => 'Recèrca per de fichièrs en doble sus la banca de valors fragmentàrias.
+
+Picatz lo nom del fichièr sens lo prefix « {{ns:image}}: ».',
+'fileduplicatesearch-legend'   => 'Recèrca d’un doble',
+'fileduplicatesearch-filename' => 'Nom del fichièr :',
+'fileduplicatesearch-submit'   => 'Recercar',
+'fileduplicatesearch-info'     => '$1 × $2 pixels<br />Talha del fichièr : $3<br />MIME type : $4',
+'fileduplicatesearch-result-1' => 'Lo fichièr « $1 » a pas de doble identic.',
+'fileduplicatesearch-result-n' => 'Lo fichièr « $1 » a {{PLURAL:$2|1 doble identic|$2 dobles identics}}.',
 
 );

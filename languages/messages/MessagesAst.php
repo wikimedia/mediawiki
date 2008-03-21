@@ -151,6 +151,8 @@ $messages = array(
 # Categories related messages
 'categories'                     => 'Categoríes',
 'categoriespagetext'             => 'Les categoríes que vienen darréu contienen páxines o archivos multimedia.',
+'special-categories-sort-count'  => 'ordenar por tamañu',
+'special-categories-sort-abc'    => 'ordenar alfabéticamente',
 'pagecategories'                 => '{{PLURAL:$1|Categoría|Categoríes}}',
 'category_header'                => 'Páxines na categoría "$1"',
 'subcategories'                  => 'Subcategoríes',

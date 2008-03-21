@@ -5,9 +5,8 @@
  *
  * @author לערי ריינהארט
  * @author Chinneeb
- * @author לערי ריינהארט
  * @author SPQRobin
- * @author Chinneeb
+ * @author Nike
  */
 
 $linkTrail = '/^([a-zабвгдеёжзийклмнопрстуфхцчшщъыьэюя“»]+)(.*)$/sDu';
@@ -163,14 +162,14 @@ $messages = array(
 'bugreportspage'    => 'Project:Алдааны талаарх мэдээлэл',
 'copyright'         => 'Үүний агуулгыг нь $1-н хувьд хэрэглэх боломжтой.',
 'copyrightpagename' => '{{SITENAME}} зохиогчийн эрх',
-'copyrightpage'     => 'Төсөл:Зохиогчийн эрх',
+'copyrightpage'     => '{{ns:project}}:Зохиогчийн эрх',
 'currentevents'     => 'Сүүлийн үеийн үйл явдлууд',
 'currentevents-url' => 'Сүүлийн үеийн үйл явдлууд',
 'disclaimers'       => 'Татгалзлууд',
 'disclaimerpage'    => 'Project:Ерөнхий татгалзал',
 'edithelp'          => 'засвар хийхэд тусламж',
 'edithelppage'      => 'Help:Засвар хийж байна',
-'faqpage'           => 'Төсөл:FAQ',
+'faqpage'           => 'Project:FAQ',
 'helppage'          => 'Help:Агуулга',
 'mainpage'          => 'Нүүр хуудас',
 'portal'            => 'Бүлгэмийн портал',

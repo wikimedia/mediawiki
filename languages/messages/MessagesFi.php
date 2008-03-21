@@ -277,7 +277,7 @@ $messages = array(
 'categories'                     => 'Luokat',
 'categoriespagetext'             => '{{GRAMMAR:inessive|{{SITENAME}}}} on seuraavat luokat:',
 'special-categories-sort-count'  => 'järjestä koon mukaan',
-'special-categories-sort-abc'    => 'aakkosjärjestyksen mukaan',
+'special-categories-sort-abc'    => 'järjestä nimen mukaan',
 'pagecategories'                 => '{{PLURAL:$1|Luokka|Luokat}}',
 'category_header'                => 'Sivut, jotka ovat luokassa $1',
 'subcategories'                  => 'Alaluokat',
@@ -285,8 +285,11 @@ $messages = array(
 'category-empty'                 => "''Tässä luokassa ei ole sivuja eikä tiedostoja.''",
 'hidden-categories'              => '{{PLURAL:$1|Piilotettu luokka|Piilotetut luokat}}',
 'hidden-category-category'       => 'Piilotetut luokat', # Name of the category where hidden categories will be listed
+'category-subcat-count'          => '{{PLURAL:$2|Tässä luokassa on vain seuraava alaluokka.|{{PLURAL:$1|Seuraava alaluokka kuuluu|Seuraavat $1 alaluokkaa kuuluvat}} tähän luokkaan. Alaluokkien kokonaismäärä luokassa $2.}}',
 'category-subcat-count-limited'  => 'Tässä luokassa on {{PLURAL:$1|yksi alaluokka|$1 alaluokkaa}}.',
+'category-article-count'         => '{{PLURAL:$2|Tässä luokassa on vain seuraava sivu.|{{PLURAL:$1|Seuraava sivu kuuluu|Seuraavat $1 sivua kuuluvat}} tähän luokkaan. Sivujen kokonaismäärä luokassa $2.}}',
 'category-article-count-limited' => '{{PLURAL:$1|Tämä sivu kuuluu|Nämä $1 sivua kuuluvat}} nykyiseen luokkaan.',
+'category-file-count'            => '{{PLURAL:$2|Tässä luokassa on vain seuraava tiedosto.|{{PLURAL:$1|Seuraava tiedosto kuuluu|Seuraavat $1 tiedostoa kuuluvat}} tähän luokkaan. Tiedostojen kokonaismäärä luokassa $2.}}',
 'category-file-count-limited'    => 'Tässä luokassa on {{PLURAL:$1|yksi tiedosto|$1 tiedostoa}}.',
 'listingcontinuesabbrev'         => 'jatkuu',
 
@@ -1279,8 +1282,6 @@ Ohjelmiston suorittamia ylläpitotöitä on jonossa '''$7''' {{PLURAL:$7|kappale
 'notargettext'            => 'Et ole määritellyt kohdesivua tai -käyttäjää johon toiminto kohdistuu.',
 'pager-newer-n'           => '← {{PLURAL:$1|1 uudempi|$1 uudempaa}}',
 'pager-older-n'           => '{{PLURAL:$1|1 vanhempi|$1 vanhempaa}} →',
-'pager-sort-asc'          => 'nouseva',
-'pager-sort-desc'         => 'laskeva',
 
 # Book sources
 'booksources'               => 'Kirjalähteet',
@@ -1925,7 +1926,7 @@ $1',
 'show-big-image-thumb' => '<small>Esikatselun koko: $1×$2 px</small>',
 
 # Special:Newimages
-'newimages'             => 'Uudet kuvat',
+'newimages'             => 'Uudet tiedostot',
 'imagelisttext'         => 'Alla on {{PLURAL:$1|1 tiedosto|$1 tiedostoa}} lajiteltuna <strong>$2</strong>.',
 'newimages-summary'     => 'Tällä toimintosivulla on viimeisimmät tallennetut tiedostot.',
 'showhidebots'          => '($1 botit)',
@@ -2369,6 +2370,9 @@ Yritä normaalia esikatselua.',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => 'Kaksoiskappaleiden haku',
+'fileduplicatesearch-summary'  => 'Etsii tiedoston kaksoiskappaleita hajautusarvon perusteella.
+
+Kirjoita tiedostonimi ilman ”{{ns:image}}:”-etuliitettä.',
 'fileduplicatesearch-legend'   => 'Etsi kaksoiskappaleita',
 'fileduplicatesearch-filename' => 'Tiedostonimi',
 'fileduplicatesearch-submit'   => 'Etsi',

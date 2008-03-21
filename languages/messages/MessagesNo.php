@@ -247,6 +247,8 @@ $messages = array(
 # Categories related messages
 'categories'                     => 'Kategorier',
 'categoriespagetext'             => 'Følgende kategorier inneholder sider eller media.',
+'special-categories-sort-count'  => 'soter etter antall',
+'special-categories-sort-abc'    => 'sorter alfabetisk',
 'pagecategories'                 => '{{PLURAL:$1|Kategori|Kategorier}}',
 'category_header'                => 'Artikler i kategorien «$1»',
 'subcategories'                  => 'Underkategorier',

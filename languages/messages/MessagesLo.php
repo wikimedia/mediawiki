@@ -94,12 +94,14 @@ $messages = array(
 'may'       => 'ພຶດສະພາ',
 
 # Categories related messages
-'categories'            => 'ໝວດ',
-'pagecategories'        => '{{PLURAL:$1|ໝວດ|ໝວດ}}',
-'category_header'       => 'ບົດຄວາມໃນໝວດ "$1"',
-'subcategories'         => 'ໝວດຍ່ອຍ',
-'category-media-header' => 'ໜ້າຕ່າງ າ ໃນ "$1"',
-'category-empty'        => "''ບໍ່ມີໜ້າໃດຢູ່ໃນໝວດນີ້''",
+'categories'             => 'ໝວດ',
+'categoriespagetext'     => 'ມີ ບັນດາ ໝວດ ຕໍ່ໄປນີ້ ຢູ່ ວິກີ.',
+'pagecategories'         => '{{PLURAL:$1|ໝວດ|ໝວດ}}',
+'category_header'        => 'ບົດຄວາມໃນໝວດ "$1"',
+'subcategories'          => 'ໝວດຍ່ອຍ',
+'category-media-header'  => 'ໜ້າຕ່າງ າ ໃນ "$1"',
+'category-empty'         => "''ບໍ່ມີໜ້າໃດຢູ່ໃນໝວດນີ້''",
+'category-article-count' => '{{PLURAL:$2|ໝວດນີ້ມີໜ້າຢູ່ພຽງໜ້າດຽວ|ມີ {{PLURAL:$1|ໜ້າດຽວ|$1 ໜ້າ}} ໃນໝວດນີ້ ເຕັມ $2}}',
 
 'mainpagetext' => "<big>'''ຕິດຕັ້ງມີເດຍວິກິນີ້ສຳເລັດແລ້ວ'''</big>",
 
@@ -266,6 +268,7 @@ $messages = array(
 'headline_sample' => 'ສຳຄັນ',
 
 # Edit pages
+'summary'                  => 'ຄຳອະທິບາຍໂດຍຍໍ່',
 'minoredit'                => 'ນີ້ແມ່ນການດັດແກ້ເລັກນ້ອຍ',
 'watchthis'                => 'ຕິດຕາມໜ້ານີ້',
 'savearticle'              => 'ບັນທຶກ',
@@ -467,7 +470,6 @@ $messages = array(
 'mostcategories'          => 'ບົດຄວາມ ທີ່ມີຫຼາຍ ໝວດ ທີ່ສຸດ',
 'mostimages'              => 'ຮູບທີ່ມີການເຊື່ອມຕໍ່ຫາຫຼາຍທີ່ສຸດ',
 'mostrevisions'           => 'ບົດຄວາມ ທີ່ມີການດັດແກ້ຫຼາຍເທື່ອທີ່ສຸດ',
-'allpages'                => 'ທຸກໆໜ້າ',
 'prefixindex'             => 'ດັດຊະນີຄຳນຳໜ້າ',
 'shortpages'              => 'ໜ້າເນື້ອໃນສັ້ນ',
 'longpages'               => 'ໜ້າເນື້ອໃນຍາວ',
@@ -487,10 +489,6 @@ $messages = array(
 'booksources'    => 'ປຶ້ມອ້າງອີງ',
 'booksources-go' => 'ໄປ',
 
-'categoriespagetext' => 'ມີ ບັນດາ ໝວດ ຕໍ່ໄປນີ້ ຢູ່ ວິກີ.',
-'alphaindexline'     => '$1 ຫາ $2',
-'version'            => 'ສະບັບ',
-
 # Special:Log
 'log'               => 'ບັນທຶກ',
 'all-logs-page'     => 'ທຸກໆຂໍ້ມູນບັນທຶກການນຳໃຊ້',
@@ -499,6 +497,8 @@ $messages = array(
 'logempty'          => 'ຍັງບໍ່ພົບເນື້ອໃນບັນທຶກ.',
 
 # Special:Allpages
+'allpages'       => 'ທຸກໆໜ້າ',
+'alphaindexline' => '$1 ຫາ $2',
 'nextpage'       => 'ໜ້າຕໍ່ໄປ ($1)',
 'allpagesfrom'   => 'ສະແດງທຸກໆໜ້າ ເລີ່ມແຕ່:',
 'allarticles'    => 'ທຸກໆບົດຄວາມ',
@@ -665,10 +665,11 @@ $messages = array(
 'thumbsize'    => 'ຂະໜາດສະແດງ:',
 
 # Special:Newimages
-'newimages' => 'ໄຟລ໌ຮູບໃໝ່',
-'noimages'  => 'ບໍ່ມີຫຍັງເບິ່ງ.',
-'ilsubmit'  => 'ຄົ້ນຫາ',
-'bydate'    => 'ຕາມວັນເວລາ',
+'newimages'         => 'ໄຟລ໌ຮູບໃໝ່',
+'newimages-summary' => 'ໜ້າພິເສດນີ້ສະແດງໄຟລ໌ທີ່ຖຶກອັປໂຫຼດຫຼ້າສຸດ',
+'noimages'          => 'ບໍ່ມີຫຍັງເບິ່ງ.',
+'ilsubmit'          => 'ຄົ້ນຫາ',
+'bydate'            => 'ຕາມວັນເວລາ',
 
 # EXIF tags
 'exif-imagewidth'       => 'ຄວາມກ້ວາງ',
@@ -727,6 +728,9 @@ $messages = array(
 'autosumm-replace' => "ປ່ຽນ ໜ້ານີ້ ໂດຍ  '$1'",
 'autoredircomment' => 'ພວມໂອນໄປ ຫາ [[$1]]',
 'autosumm-new'     => 'ໜ້າໃໝ່: $1',
+
+# Special:Version
+'version' => 'ສະບັບ', # Not used as normal message but as header for the special page itself
 
 # Special:Filepath
 'filepath' => 'ທາງໄປຫາໄຟລ໌',

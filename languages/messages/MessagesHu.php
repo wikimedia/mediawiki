@@ -2593,4 +2593,9 @@ minden egyes sor egy figyelt lap címe. Ha kész vagy, kattints a lista alatt ta
 
 Add meg a fájlnevet a „{{ns:image}}:” prefixum nélkül.',
 
+# Special:FileDuplicateSearch
+'fileduplicatesearch-filename' => 'Fájlnév:',
+'fileduplicatesearch-submit'   => 'Keresés',
+'fileduplicatesearch-info'     => '$1 × $2 pixel<br />Fájlméret: $3<br />MIME-típus: $4',
+
 );
