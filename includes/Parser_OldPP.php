@@ -4156,7 +4156,7 @@ class Parser_OldPP
 					$colours[$pdbk] = ( $threshold == 0 || (
 								$s->page_len >= $threshold || # always true if $threshold <= 0
 							        $s->page_is_redirect ||
-							        !Namespace::isContent( $s->page_namespace ) )
+							        !MWNamespace::isContent( $s->page_namespace ) )
 							    ? 1 : 2 );
 				}
 			}

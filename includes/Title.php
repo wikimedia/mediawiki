@@ -577,7 +577,7 @@ class Title {
 	 */
 	public function getSubjectNsText() {
 		global $wgContLang;
-		return $wgContLang->getNsText( Namespace::getSubject( $this->mNamespace ) );
+		return $wgContLang->getNsText( MWNamespace::getSubject( $this->mNamespace ) );
 	}
 
 	/**
@@ -586,7 +586,7 @@ class Title {
 	 */
 	public function getTalkNsText() {
 		global $wgContLang;
-		return( $wgContLang->getNsText( Namespace::getTalk( $this->mNamespace ) ) );
+		return( $wgContLang->getNsText( MWNamespace::getTalk( $this->mNamespace ) ) );
 	}
 
 	/**
@@ -594,7 +594,7 @@ class Title {
 	 * @return bool
 	 */
 	public function canTalk() {
-		return( Namespace::canTalk( $this->mNamespace ) );
+		return( MWNamespace::canTalk( $this->mNamespace ) );
 	}
 
 	/**
@@ -1377,7 +1377,7 @@ class Title {
 	 * @return boolean
 	 */
 	public function isMovable() {
-		return Namespace::isMovable( $this->getNamespace() )
+		return MWNamespace::isMovable( $this->getNamespace() )
 			&& $this->getInterwiki() == '';
 	}
 
@@ -1461,7 +1461,7 @@ class Title {
 	 * @return bool
 	 */
 	public function isTalkPage() {
-		return Namespace::isTalk( $this->getNamespace() );
+		return MWNamespace::isTalk( $this->getNamespace() );
 	}
 
 	/**
@@ -2140,7 +2140,7 @@ class Title {
 	 * @return Title the object for the talk page
 	 */
 	public function getTalkPage() {
-		return Title::makeTitle( Namespace::getTalk( $this->getNamespace() ), $this->getDBkey() );
+		return Title::makeTitle( MWNamespace::getTalk( $this->getNamespace() ), $this->getDBkey() );
 	}
 
 	/**
@@ -2150,7 +2150,7 @@ class Title {
 	 * @return Title the object for the subject page
 	 */
 	public function getSubjectPage() {
-		return Title::makeTitle( Namespace::getSubject( $this->getNamespace() ), $this->getDBkey() );
+		return Title::makeTitle( MWNamespace::getSubject( $this->getNamespace() ), $this->getDBkey() );
 	}
 
 	/**
@@ -2691,7 +2691,7 @@ class Title {
 	 */
 	public function isWatchable() {
 		return !$this->isExternal()
-			&& Namespace::isWatchable( $this->getNamespace() );
+			&& MWNamespace::isWatchable( $this->getNamespace() );
 	}
 
 	/**
@@ -2986,7 +2986,7 @@ class Title {
 	 * @return bool
 	 */
 	public function isContentPage() {
-		return Namespace::isContent( $this->getNamespace() );
+		return MWNamespace::isContent( $this->getNamespace() );
 	}
 	
 }

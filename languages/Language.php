@@ -264,7 +264,7 @@ class Language {
 	function getNsIndex( $text ) {
 		$this->load();
 		$lctext = $this->lc($text);
-		if( ( $ns = Namespace::getCanonicalIndex( $lctext ) ) !== null ) return $ns;
+		if( ( $ns = MWNamespace::getCanonicalIndex( $lctext ) ) !== null ) return $ns;
 		return isset( $this->mNamespaceIds[$lctext] ) ? $this->mNamespaceIds[$lctext] : false;
 	}
 

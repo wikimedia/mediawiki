@@ -596,7 +596,7 @@ class SkinTemplate extends Skin {
 		$text = wfMsg( $message );
 		if ( wfEmptyMsg( $message, $text ) ) {
 			global $wgContLang;
-			$text = $wgContLang->getFormattedNsText( Namespace::getSubject( $title->getNamespace() ) );
+			$text = $wgContLang->getFormattedNsText( MWNamespace::getSubject( $title->getNamespace() ) );
 		}
 		
 		$result = array();

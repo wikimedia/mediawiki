@@ -156,8 +156,9 @@ function __autoload($className) {
 		'MostrevisionsPage' => 'includes/SpecialMostrevisions.php',
 		'MovePageForm' => 'includes/SpecialMovepage.php',
 		'MWException' => 'includes/Exception.php',
+		'MWNamespace' => 'includes/Namespace.php',
 		'MySQLSearchResultSet' => 'includes/SearchMySQL.php',
-		'Namespace' => 'includes/Namespace.php',
+		'Namespace' => 'includes/NamespaceCompat.php', // Compat
 		'NewbieContributionsPage' => 'includes/SpecialNewbieContributions.php',
 		'NewPagesPage' => 'includes/SpecialNewpages.php',
 		'OldChangesList' => 'includes/ChangesList.php',
