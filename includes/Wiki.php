@@ -44,27 +44,26 @@ class MediaWiki {
 	 * Performs the request too
 	 *
 	 * @param Title $title
+	 * @param Article $article
 	 * @param OutputPage $output
 	 * @param User $user
 	 * @param WebRequest $request
-	 * @return Article either the object to become $wgArticle, or NULL
 	 */
-	function initialize( &$title, &$output, &$user, $request ) {
+	function initialize( &$title, &$article, &$output, &$user, $request ) {
 		wfProfileIn( __METHOD__ );
 		$this->preliminaryChecks( $title, $output, $request ) ;
-		$article = NULL;
 		if ( !$this->initializeSpecialCases( $title, $output, $request ) ) {
-			$article = $this->initializeArticle( $title, $request );
-			if( is_object( $article ) ) {
+			$new_article = $this->initializeArticle( $title, $request );
+			if( is_object( $new_article ) ) {
+				$article = $new_article;
 				$this->performAction( $output, $article, $title, $user, $request );
-			} elseif( is_string( $article ) ) {
-				$output->redirect( $article );
+			} elseif( is_string( $new_article ) ) {
+				$output->redirect( $new_article );
 			} else {
 				throw new MWException( "Shouldn't happen: MediaWiki::initializeArticle() returned neither an object nor a URL" );
 			}
 		}
 		wfProfileOut( __METHOD__ );
-		return $article;
 	}
 
 	/**
