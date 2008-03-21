@@ -1278,8 +1278,6 @@ Có '''$8''' tập tin đã được tải lên.
 'notargettext'            => 'Xin chỉ rõ trang hoặc thành viên cần thực hiện tác vụ.',
 'pager-newer-n'           => '$1 mới hơn',
 'pager-older-n'           => '$1 cũ hơn',
-'pager-sort-asc'          => 'tăng dần',
-'pager-sort-desc'         => 'giảm dần',
 
 # Book sources
 'booksources'               => 'Nguồn sách',
@@ -1313,7 +1311,7 @@ Bạn có thể thu hẹp kết quả bằng cách chọn loại nhật trình, 
 'allpagessubmit'    => 'Hiển thị',
 'allpagesprefix'    => 'Hiển thị trang có tiền tố:',
 'allpagesbadtitle'  => 'Tựa trang không hợp lệ hay chứa tiền tố liên kết ngôn ngữ hoặc liên kết wiki. Nó có thể chứa một hoặc nhiều ký tự không dùng được ở tựa trang.',
-'allpages-bad-ns'   => '{{SITENAME}} không có không gian “$1”',
+'allpages-bad-ns'   => '{{SITENAME}} không có không gian tên “$1”',
 
 # Special:Listusers
 'listusersfrom'      => 'Hiển thị thành viên bắt đầu từ:',

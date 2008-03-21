@@ -159,16 +159,18 @@ $messages = array(
 'dec'           => 'Kzu',
 
 # Categories related messages
-'categories'               => 'Roll ar rummadoù',
-'categoriespagetext'       => 'War ar wiki emañ ar rummadoù da-heul :',
-'pagecategories'           => '{{PLURAL:$1|Rummad |Rummad }}',
-'category_header'          => 'Niver a bennadoù er rummad "$1"',
-'subcategories'            => 'Isrummad',
-'category-media-header'    => 'Restroù liesvedia er rummad "$1"',
-'category-empty'           => "''N'eus na pajenn na media ebet er rummad-mañ evit ar mare.''",
-'hidden-categories'        => '{{PLURAL:$1|Rummad kuzhet|Rummad kuzhet}}',
-'hidden-category-category' => 'Rummadoù kuzhet', # Name of the category where hidden categories will be listed
-'listingcontinuesabbrev'   => "(war-lerc'h)",
+'categories'                    => 'Roll ar rummadoù',
+'categoriespagetext'            => 'War ar wiki emañ ar rummadoù da-heul :',
+'special-categories-sort-count' => 'Urzhiañ dre gont',
+'special-categories-sort-abc'   => 'urzh al lizherenneg',
+'pagecategories'                => '{{PLURAL:$1|Rummad |Rummad }}',
+'category_header'               => 'Niver a bennadoù er rummad "$1"',
+'subcategories'                 => 'Isrummad',
+'category-media-header'         => 'Restroù liesvedia er rummad "$1"',
+'category-empty'                => "''N'eus na pajenn na media ebet er rummad-mañ evit ar mare.''",
+'hidden-categories'             => '{{PLURAL:$1|Rummad kuzhet|Rummad kuzhet}}',
+'hidden-category-category'      => 'Rummadoù kuzhet', # Name of the category where hidden categories will be listed
+'listingcontinuesabbrev'        => "(war-lerc'h)",
 
 'mainpagetext'      => 'Meziant {{SITENAME}} staliet.',
 'mainpagedocfooter' => "Sellit ouzh [http://meta.wikimedia.org/wiki/Help:Contents Sturlevr an implijerien] evit gouzout hiroc'h war an doare da implijout ar meziant wiki.
@@ -216,7 +218,9 @@ $messages = array(
 'permalink'         => "Chomlec'h ar stumm-mañ",
 'print'             => 'Moullañ',
 'edit'              => 'Kemmañ',
+'create'            => 'Krouiñ',
 'editthispage'      => 'Kemmañ ar bajenn-mañ',
+'create-this-page'  => 'Krouiñ ar bajenn-mañ',
 'delete'            => 'Diverkañ',
 'deletethispage'    => 'Diverkañ ar bajenn-mañ',
 'undelete_short'    => "Diziverkañ {{PLURAL:$1|ur c'hemm|$1 kemm}}",
@@ -1900,7 +1904,7 @@ $1',
 'noimages'              => 'Netra da welet.',
 'ilsubmit'              => 'Klask',
 'bydate'                => 'dre an deiziad anezho',
-'sp-newimages-showfrom' => 'Diskouez ar restroù nevez adal $1',
+'sp-newimages-showfrom' => 'Diskouez ar restroù nevez adal $1, $2',
 
 # Bad image list
 'bad_image_list' => "Setu doare ar furmad :
@@ -2353,5 +2357,9 @@ Klaskit rakwelet er mod boutin.',
 'filepath-summary' => 'Diskouez a ra ar bajenn-mañ hent moned klok ur restr. Diskouezet eo ar skeudennoù gant ur pizhder uhel, erounit a ra ar restroù all war-eeun gant o frogramm stag.
 
 Merkit anv ar restr hep ar rakger "{{ns:image}} :"',
+
+# Special:FileDuplicateSearch
+'fileduplicatesearch-filename' => 'Anv ar restr :',
+'fileduplicatesearch-submit'   => 'Klask',
 
 );

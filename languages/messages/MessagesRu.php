@@ -326,18 +326,24 @@ $messages = array(
 'dec'           => 'дек',
 
 # Categories related messages
-'categories'                    => 'Категории',
-'categoriespagetext'            => 'В вики имеются следующие категории.',
-'special-categories-sort-count' => 'упорядочить по количеству',
-'special-categories-sort-abc'   => 'упорядочить по алфавиту',
-'pagecategories'                => '{{PLURAL:$1|Категория|Категории}}',
-'category_header'               => 'Статьи в категории «$1»',
-'subcategories'                 => 'Подкатегории',
-'category-media-header'         => 'Файлы в категории «$1»',
-'category-empty'                => "''Эта категория в данный момент пуста.''",
-'hidden-categories'             => '{{PLURAL:$1|Скрытая категория|Скрытые категории}}',
-'hidden-category-category'      => 'Скрытые категории', # Name of the category where hidden categories will be listed
-'listingcontinuesabbrev'        => '(продолжение)',
+'categories'                     => 'Категории',
+'categoriespagetext'             => 'В вики имеются следующие категории.',
+'special-categories-sort-count'  => 'упорядочить по количеству',
+'special-categories-sort-abc'    => 'упорядочить по алфавиту',
+'pagecategories'                 => '{{PLURAL:$1|Категория|Категории}}',
+'category_header'                => 'Статьи в категории «$1»',
+'subcategories'                  => 'Подкатегории',
+'category-media-header'          => 'Файлы в категории «$1»',
+'category-empty'                 => "''Эта категория в данный момент пуста.''",
+'hidden-categories'              => '{{PLURAL:$1|Скрытая категория|Скрытые категории}}',
+'hidden-category-category'       => 'Скрытые категории', # Name of the category where hidden categories will be listed
+'category-subcat-count'          => '{{PLURAL:$2|Данная категория содержит только следующую подкатегорию.|{{PLURAL:$1|Показана $1 подкатегория|Показано $1 подкатегории|Показано $1 подкатегорий}} из $2.}}',
+'category-subcat-count-limited'  => 'В этой категории {{PLURAL:$1|$1 подкатегория|$1 подкатегории|$1 подкатегорий}}.',
+'category-article-count'         => '{{PLURAL:$2|Данная категория содержит только следующую страницу.|{{PLURAL:$1|Показана $1 страница|Показано $1 страницы|Показано $1 страниц}} этой категории из $2.}}',
+'category-article-count-limited' => 'В этой категории {{PLURAL:$1|$1 файл|$1 файла|$1 файлов}}.',
+'category-file-count'            => '{{PLURAL:$2|Данная категория содержит только следующий файл.|{{PLURAL:$1|Показан $1 файл|Показано $1 файла|Показано $1 файлов}} этой категории  из $2.}}',
+'category-file-count-limited'    => 'В этой категории {{PLURAL:$1|$1 страница|$1 страницы|$1 страниц}}.',
+'listingcontinuesabbrev'         => '(продолжение)',
 
 'mainpagetext'      => '<big>Вики-движок «MediaWiki» успешно установлен.</big>',
 'mainpagedocfooter' => 'Информацию по работе с этой вики можно найти в [http://meta.wikimedia.org/wiki/%D0%9F%D0%BE%D0%BC%D0%BE%D1%89%D1%8C:%D0%A1%D0%BE%D0%B4%D0%B5%D1%80%D0%B6%D0%B0%D0%BD%D0%B8%D0%B5 руководстве пользователя].
@@ -1189,6 +1195,20 @@ $3 указал следующую причину: ''$2''",
 Проверьте, действительно ли вам нужно загружать этот файл.
 Ниже приведён журнал удалений:",
 'filename-bad-prefix'         => 'Имя загружаемого файла начинается с <strong>«$1»</strong> и вероятно является шаблонным именем, которое цифровая фотокамера даёт снимкам. Пожалуйста, выберите имя лучше описывающее содержание файла.',
+'filename-prefix-blacklist'   => ' #<!-- оставьте эту строчку как есть --> <pre>
+# Синтаксис следующий:
+#   * Всё, что начинается с символа «#» считается комментарием (до конца строки)
+#   * Каждая непустая строка — префикс стандартного названия файла, которое обычно даёт цифровая камера
+CIMG # Casio
+DSC_ # Nikon
+DSCF # Fuji
+DSCN # Nikon
+DUW # некоторые мобильные телефоны
+IMG # общее
+JD # Jenoptik
+MGP # Pentax
+PICT # различные
+ #</pre> <!-- оставьте эту строчку как есть -->',
 
 'upload-proto-error'      => 'Неправильный протокол',
 'upload-proto-error-text' => 'Для удалённой загрузки требуется адрес, начинающийся с <code>http://</code> или <code>ftp://</code>.',
@@ -1386,8 +1406,6 @@ $3 указал следующую причину: ''$2''",
 'notargettext'            => 'Вы не указали целевую страницу или участника для этого действия.',
 'pager-newer-n'           => '{{PLURAL:$1|более новая $1|более новые $1}}',
 'pager-older-n'           => '{{PLURAL:$1|более старая $1|более старые $1}}',
-'pager-sort-asc'          => 'по возрастанию',
-'pager-sort-desc'         => 'по убыванию',
 
 # Book sources
 'booksources'               => 'Источники книг',
@@ -2543,6 +2561,35 @@ $1',
 'iranian-calendar-m10' => 'Дей',
 'iranian-calendar-m11' => 'Бахман',
 'iranian-calendar-m12' => 'Эсфанд',
+
+# Hebrew month names
+'hebrew-calendar-m1'      => 'Тишрей',
+'hebrew-calendar-m2'      => 'Хешван',
+'hebrew-calendar-m4'      => 'Тевет',
+'hebrew-calendar-m5'      => 'Шват',
+'hebrew-calendar-m6'      => 'Адар',
+'hebrew-calendar-m6a'     => 'Адар I',
+'hebrew-calendar-m6b'     => 'Адар II',
+'hebrew-calendar-m7'      => 'Нисан',
+'hebrew-calendar-m8'      => 'Ияр',
+'hebrew-calendar-m9'      => 'Сиван',
+'hebrew-calendar-m10'     => 'Таммуз',
+'hebrew-calendar-m11'     => 'Ав',
+'hebrew-calendar-m12'     => 'Элул',
+'hebrew-calendar-m1-gen'  => 'Тишрея',
+'hebrew-calendar-m2-gen'  => 'Хешвана',
+'hebrew-calendar-m3-gen'  => 'Кислева',
+'hebrew-calendar-m4-gen'  => 'Тевета',
+'hebrew-calendar-m5-gen'  => 'Швата',
+'hebrew-calendar-m6-gen'  => 'Адара',
+'hebrew-calendar-m6a-gen' => 'Адара I',
+'hebrew-calendar-m6b-gen' => 'Адара II',
+'hebrew-calendar-m7-gen'  => 'Нисана',
+'hebrew-calendar-m8-gen'  => 'Ияра',
+'hebrew-calendar-m9-gen'  => 'Сивана',
+'hebrew-calendar-m10-gen' => 'Таммуза',
+'hebrew-calendar-m11-gen' => 'Ава',
+'hebrew-calendar-m12-gen' => 'Элула',
 
 # Core parser functions
 'unknown_extension_tag' => 'Неизвестный тег дополнения «$1»',

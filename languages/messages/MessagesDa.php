@@ -1153,6 +1153,7 @@ Sletningsloggen for denne fil er gengivet herunder.",
 'noimage'                   => 'Der eksisterer ingen fil med dette navn, du kan $1',
 'noimage-linktext'          => 'lægge den op',
 'uploadnewversion-linktext' => 'Læg en ny version af denne fil op',
+'imagepage-searchdupe'      => 'Søg efter dubletfiler',
 
 # File reversion
 'filerevert'                => 'Gendan $1',
@@ -1326,8 +1327,6 @@ deraf har '''$2''' (=$4%) $5-rettigheder.",
 'notargettext'                    => 'Du har ikke angivet en side eller bruger at udføre denne funktion på.',
 'pager-newer-n'                   => '{{PLURAL:$1|1 nyere|$1 nyere}}',
 'pager-older-n'                   => '{{PLURAL:$1|1 ældre|$1 ældre}}',
-'pager-sort-asc'                  => 'stigende',
-'pager-sort-desc'                 => 'faldende',
 
 # Book sources
 'booksources'               => 'Bogkilder',
@@ -2444,5 +2443,7 @@ Indtast filnavnet uden "{{ns:image}}:" præfiks.',
 'fileduplicatesearch-legend'   => 'Søg efter dublet',
 'fileduplicatesearch-filename' => 'Filnavn:',
 'fileduplicatesearch-submit'   => 'Søg',
+'fileduplicatesearch-result-1' => 'Filen "$1" har ingen identisk dubletter.',
+'fileduplicatesearch-result-n' => 'Filen "$1" har {{PLURAL:$2|1 identisk dublet|$2 identiske dubletter}}.',
 
 );

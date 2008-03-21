@@ -400,11 +400,11 @@ $messages = array(
 'listingcontinuesabbrev'         => 'pokrač.',
 
 'mainpagetext'      => "<big>'''MediaWiki bylo úspěšně nainstalováno.'''</big>",
-'mainpagedocfooter' => '[http://meta.wikimedia.org/wiki/Help:Contents Průvodce uživatele] Vám napoví jak používat MediaWiki.
+'mainpagedocfooter' => '[http://meta.wikimedia.org/wiki/Help:Contents Uživatelská příručka] vám napoví, jak MediaWiki používat.
 
 == Začínáme ==
 
-* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Nastavená konfigurace]
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Nastavení konfigurace]
 * [http://www.mediawiki.org/wiki/Manual:FAQ Často kladené otázky o MediaWiki]
 * [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce E-mailová konference oznámení MediaWiki]',
 
@@ -1456,8 +1456,6 @@ Aktuální délka fronty údržby je '''$7'''.",
 'notargettext'            => 'Této funkci musíte určit cílovou stránku nebo uživatele.',
 'pager-newer-n'           => '{{PLURAL:$1|1 novější|$1 novější|$1 novějších}}',
 'pager-older-n'           => '{{PLURAL:$1|1 starší|$1 starší|$1 starších}}',
-'pager-sort-asc'          => 'vzestupně',
-'pager-sort-desc'         => 'sestupně',
 
 # Book sources
 'booksources'               => 'Zdroje knih',

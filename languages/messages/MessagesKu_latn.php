@@ -133,16 +133,24 @@ $messages = array(
 'dec'           => 'ber',
 
 # Categories related messages
-'categories'               => '{{PLURAL:$1|Kategorî|Kategorî}}',
-'categoriespagetext'       => 'Di vê wîkiyê de ev kategorî hene:',
-'pagecategories'           => '$1 Kategorîyan',
-'category_header'          => 'Gotarên di kategoriya "$1" de',
-'subcategories'            => 'Binekategorî',
-'category-media-header'    => 'Medya di kategorîya "$1" da',
-'category-empty'           => "''Di vê kategorîyê da niha gotar ya medya tune ne.''",
-'hidden-categories'        => '{{PLURAL:$1|Kategorîya veşartî|Kategorîyên veşartî}}',
-'hidden-category-category' => 'Kategorîyên veşartî', # Name of the category where hidden categories will be listed
-'listingcontinuesabbrev'   => 'dewam',
+'categories'                     => '{{PLURAL:$1|Kategorî|Kategorî}}',
+'categoriespagetext'             => 'Di vê wîkiyê de ev kategorî hene:',
+'special-categories-sort-count'  => 'hatîye rêzkirin li gorî hejmaran',
+'special-categories-sort-abc'    => 'hatîye rêzkirin li gorî alfabeyê',
+'pagecategories'                 => '$1 Kategorîyan',
+'category_header'                => 'Gotarên di kategoriya "$1" de',
+'subcategories'                  => 'Binekategorî',
+'category-media-header'          => 'Medya di kategorîya "$1" da',
+'category-empty'                 => "''Di vê kategorîyê da niha gotar ya medya tune ne.''",
+'hidden-categories'              => '{{PLURAL:$1|Kategorîya veşartî|Kategorîyên veşartî}}',
+'hidden-category-category'       => 'Kategorîyên veşartî', # Name of the category where hidden categories will be listed
+'category-subcat-count'          => '{{PLURAL:$2|Di vê kategorîyê da bes ev binkategorîya heye.|Di vê kategorîyê da ev {{PLURAL:$1|binkategorîya|$1 binkategorî}} heye (ji $2 kategorîyan).}}',
+'category-subcat-count-limited'  => 'Di vê kategorîyê da ev {{PLURAL:$1|binkategorîya heye|$1 binkategorî hene}}.',
+'category-article-count'         => '{{PLURAL:$2|Di vê kategorîyê da bes ev rûpela heye.|Ev {{PLURAL:$1|rûpela|$1 rûpelên}} jêr di vê kategorîyê da ne (ji $2 kategorîyan).}}',
+'category-article-count-limited' => 'Ev {{PLURAL:$1|rûpelê|$1 rûpelên}} jêr di vê kategorîyê da {{PLURAL:$1|ye|ne}}.',
+'category-file-count'            => "{{PLURAL:$2|Di vê kategorîyê da bes ev data'yê jêr heye.|Ev {{PLURAL:$1|data'ya|$1 data'yên}} jêr di vê kategorîyê da {{PLURAL:$1|ye|ne}} (ji $2 kategorîyan).}}",
+'category-file-count-limited'    => "Ev {{PLURAL:$1|data'yê|$1 datayên}} jêr di vê kategorîyê da ne.",
+'listingcontinuesabbrev'         => 'dewam',
 
 'mainpagetext'      => "<big>'''MediaWiki serketî hate çêkirin.'''</big>",
 'mainpagedocfooter' => 'Alîkarî ji bo bikaranîn û guherandin yê datayê Wîkî tu di bin [http://meta.wikimedia.org/wiki/Help:Contents pirtûka alîkarîyê ji bikarhêneran] da dikarê bibînê.
@@ -281,6 +289,7 @@ $messages = array(
 'restorelink'             => '{{PLURAL:$1|guherandinekî|$1 guherandinên}} jêbirî',
 'feedlinks'               => 'Feed:',
 'feed-invalid'            => "Feed'ekî neserrast.",
+'feed-unavailable'        => 'Feed ji {{SITENAME}} ra tune ne.',
 'site-rss-feed'           => '$1 RSS Feed',
 'site-atom-feed'          => '$1 Atom Feed',
 'page-rss-feed'           => '"$1" RSS Feed',
@@ -742,9 +751,11 @@ $2 Ragihandinan nîşan bide &amp;nbsp; Lêbigere: $3 $9',
 'userrights-available-remove-self' => 'Tu dikarê xwe ji nav {{PLURAL:$2|vê komê|van koman}} bibê: $1.',
 
 # Groups
-'group'       => 'Kom:',
-'group-sysop' => 'Koordînatoran',
-'group-all'   => '(hemû)',
+'group'            => 'Kom:',
+'group-bot'        => 'Bot',
+'group-sysop'      => 'Koordînatoran',
+'group-bureaucrat' => 'Bûrokrat',
+'group-all'        => '(hemû)',
 
 'group-bot-member'        => 'Bot',
 'group-sysop-member'      => 'Koordînator',
@@ -839,11 +850,13 @@ Xêra xwe navekî din bibîne.',
 'sourcefilename'         => 'Navî wêneyê (ya tiştekî din ya mêdya):',
 'destfilename'           => 'Navî wêneyê (ya tiştekî din ya mêdya) yê xastî:',
 'watchthisupload'        => 'Vê rûpelê bişopîne',
+'filewasdeleted'         => "Data'yek bi vê navê hatibû barkirin û jêbirin. Xêra xwe li $1 seke ku barkirina te hêja ye ya na.",
 'upload-wasdeleted'      => "'''Hîşyar: Tu data'yekê bardikê yê berê hatibû jêbirin.'''
 
 Zanibe, ku ev barkirina kê were qebûlkirin ya na.
 
 Înformasyonan li ser jêbirinê kevin ra:",
+'filename-bad-prefix'    => 'Nava wê data\'yê, yê tu niha bardikê, bi <strong>"$1"</strong> destpêdike. Kamêrayên dîjîtal wan navan didin wêneyên xwe. Ji kerema xwe navekî baştir binivisîne ji bo mirov zûtir zanibin ku şayeşê vê wêneyê çî ye.',
 
 'license' => 'Lîsens:',
 
@@ -1519,7 +1532,7 @@ if (wgUserLanguage == "ku-arab")
 'noimages'              => 'Ne tiştek tê dîtin.',
 'ilsubmit'              => 'Lêbigere',
 'bydate'                => 'li gor dîrokê',
-'sp-newimages-showfrom' => "Data'yên nuh ji dema $1 da bibîne",
+'sp-newimages-showfrom' => "Data'yên nuh ji dema $1, saet $2 da bibîne",
 
 # Variants for Kurdish language
 'variantname-ku-arab' => 'tîpên erebî',
