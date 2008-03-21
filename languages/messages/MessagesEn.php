@@ -1980,9 +1980,8 @@ To perform a selective restoration, check the boxes corresponding to the revisio
 'undeletehistory'              => 'If you restore the page, all revisions will be restored to the history.
 If a new page with the same name has been created since the deletion, the restored revisions will appear in the prior history.
 Also note that restrictions on file revisions are lost upon restoration',
-'undeleterevdel'               => "Undeletion will not be performed if it will result in the top page revision being partially deleted.
-In such cases, you must uncheck or unhide the newest deleted revisions.
-Revisions of files that you don't have permission to view will not be restored.",
+'undeleterevdel'               => "Undeletion will not be performed if it will result in the top page or file revision being partially deleted.
+In such cases, you must uncheck or unhide the newest deleted revision.",
 'undeletehistorynoadmin'       => 'This page has been deleted. The reason for deletion is shown in the summary below, along with details of the users who had edited this page before deletion.
 The actual text of these deleted revisions is only available to administrators.',
 'undelete-revision'            => 'Deleted revision of $1 (as of $2) by $3:',
