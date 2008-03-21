@@ -972,6 +972,18 @@ class UndeleteForm {
 			# Format the user-visible controls (comment field, submission button)
 			# in a nice little table
 			$align = $wgContLang->isRtl() ? 'left' : 'right';
+			if( $wgUser->isAllowed( 'oversight' ) ) {
+				$unsuppressBox = 
+					"<tr>
+						<td>&nbsp;</td>
+						<td>" .
+							Xml::check( 'wpUnsuppress', $this->mUnsuppress, array('id' => 'mw-undelete-unsupress') ) . ' ' .
+							Xml::label( wfMsgHtml('revdelete-unsuppress'), 'mw-undelete-unsupress' ) .
+						"</td>
+					</tr>";
+			} else {
+				$unsuppressBox = "";
+			}
 			$table =
 				Xml::openElement( 'fieldset' ) .
 				Xml::element( 'legend', null, wfMsg( 'undelete') ).
@@ -995,14 +1007,8 @@ class UndeleteForm {
 							Xml::submitButton( wfMsg( 'undeletebtn' ), array( 'name' => 'restore', 'id' => 'mw-undelete-submit' ) ) .
 							Xml::element( 'input', array( 'type' => 'reset', 'value' => wfMsg( 'undeletereset' ), 'id' => 'mw-undelete-reset' ) ) .
 						"</td>
-					</tr>
-					<tr>
-						<td>&nbsp;</td>
-						<td>" .
-							Xml::check( 'wpUnsuppress', $this->mUnsuppress, array('id' => 'mw-undelete-unsupress') ) . ' ' .
-							Xml::label( wfMsgHtml('revdelete-unsuppress'), 'mw-undelete-unsupress' ) .
-						"</td>
 					</tr>" .
+					$unsuppressBox .
 				Xml::closeElement( 'table' ) .
 				Xml::closeElement( 'fieldset' );
 
