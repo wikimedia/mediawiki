@@ -58,7 +58,8 @@ $dbw->insert('trackbacks', array(
 	'tb_ex'		=> $tbex,
 	'tb_name'	=> $tbname
 ));
+$dbw->commit();
 
 XMLsuccess();
-exit;
+
 ?>
