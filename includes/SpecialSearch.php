@@ -191,6 +191,9 @@ class SpecialSearch {
 					array( 'search' => $term ) ),
 					($num < $this->limit) );
 			$wgOut->addHTML( "<p>{$prevnext}</p>\n" );
+			wfRunHooks( 'SpecialSearchResults', array( $term, $titleMatches, $textMatches ) );
+		} else {
+			wfRunHooks( 'SpecialSearchNoResults', array( $term ) );
 		}
 
 		if( $titleMatches ) {

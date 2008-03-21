@@ -52,6 +52,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 ** (bug 1212) Give correct membership counts on the pages of large categories
 ** Use category table for more efficient display of Special:Categories
 * (bug 1459) Search for duplicate files by hash: Special:FileDuplicateSearch
+* (bug 9447) Added hooks for search result headings
+
 
 === Bug fixes in 1.13 ===
 

@@ -1031,6 +1031,14 @@ $list: list (array) of core special pages
 'SpecialSearchNogomatch': called when user clicked the "Go" button but the target doesn't exist
 $title: title object generated from the text entred by the user
 
+'SpecialSearchResults': called before search result display when there are matches
+$term: string of search term
+$titleMatches: empty or SearchResultSet object
+$textMatches: empty or SearchResultSet object
+
+'SpecialSearchResults': called before search result display when there are no matches
+$term: string of search term
+
 'SpecialVersionExtensionTypes': called when generating the extensions credits, use this to change the tables headers
 $extTypes: associative array of extensions types
 
