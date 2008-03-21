@@ -58,9 +58,8 @@ class SpecialSearch {
 	function SpecialSearch( &$request, &$user ) {
 		list( $this->limit, $this->offset ) = $request->getLimitOffset( 20, 'searchlimit' );
 
-		if( $request->getCheck( 'searchx' ) ) {
-			$this->namespaces = $this->powerSearch( $request );
-		} else {
+		$this->namespaces = $this->powerSearch( $request );
+		if( empty( $this->namespaces ) ) {
 			$this->namespaces = $this->userNamespaces( $user );
 		}
 
@@ -287,7 +286,6 @@ class SpecialSearch {
 			$opt['ns' . $n] = 1;
 		}
 		$opt['redirs'] = $this->searchRedirects ? 1 : 0;
-		$opt['searchx'] = 1;
 		return $opt;
 	}
 	
@@ -479,7 +477,7 @@ class SpecialSearch {
 
 		$redirect = Xml::check( 'redirs', $this->searchRedirects, array( 'value' => '1' ) );
 		$searchField = Xml::input( 'search', 50, $term, array( 'type' => 'text', 'id' => 'powerSearchText' ) );
-		$searchButton = Xml::submitButton( wfMsg( 'powersearch' ), array( 'name' => 'searchx' ) ) . "\n";
+		$searchButton = Xml::submitButton( wfMsg( 'powersearch' ), array( 'name' => 'fulltext' ) ) . "\n";
 
 		$out = Xml::openElement( 'form', array(	'id' => 'powersearch', 'method' => 'get', 'action' => $wgScript ) ) .
 			Xml::openElement( 'fieldset' ) .
@@ -511,6 +509,11 @@ class SpecialSearch {
 		));
 		$out .= Xml::hidden( 'title', 'Special:Search' );
 		$out .= Xml::input( 'search', 50, $term ) . ' ';
+		foreach( SearchEngine::searchableNamespaces() as $ns => $name ) {
+			if( in_array( $ns, $this->namespaces ) ) {
+				$out .= Xml::hidden( "ns{$ns}", '1' );
+			}
+		}
 		$out .= Xml::submitButton( wfMsg( 'searchbutton' ), array( 'name' => 'fulltext' ) );
 		$out .= Xml::closeElement( 'form' );
 		
