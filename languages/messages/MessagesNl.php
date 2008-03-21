@@ -247,6 +247,7 @@ $specialPageAliases = array(
 	'Unlockdb'                  => array( 'DBvrijgeven', 'DbVrijgeven', 'GeefDbVrij' ),
 	'Userrights'                => array( 'Gebruikersrechten', 'Gebruikerrechten' ),
 	'MIMEsearch'                => array( 'MIMEzoeken', 'MIME-zoeken' ),
+	'FileDuplicateSearch'       => array( 'BestandsduplicatenZoeken' ),
 	'Unwatchedpages'            => array( 'NietGevolgdePaginas', 'Niet-GevolgdePagina’s', 'Niet-GevolgdePagina\'s' ),
 	'Listredirects'             => array( 'Doorverwijzinglijst', 'Redirectlijst' ),
 	'Revisiondelete'            => array( 'VersieVerwijderen', 'HerzieningVerwijderen', 'RevisieVerwijderen' ),
