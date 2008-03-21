@@ -257,7 +257,7 @@ class EmailNotification {
 	 * @private
 	 */
 	var $to, $subject, $body, $replyto, $from;
-	var $user, $title, $timestamp, $summary, $minorEdit, $oldid;
+	var $user, $title, $timestamp, $summary, $minorEdit, $oldid, $composed_common, $editor;
 	var $mailTargets = array();
 
 	/**@}}*/
@@ -331,7 +331,8 @@ class EmailNotification {
 		$this->summary = $summary;
 		$this->minorEdit = $minorEdit;
 		$this->oldid = $oldid;
-		$this->composeCommonMailtext($editor);
+		$this->editor = $editor;
+		$this->composed_common = false;
 
 		$userTalkId = false;
 
@@ -410,10 +411,12 @@ class EmailNotification {
 	/**
 	 * @private
 	 */
-	function composeCommonMailtext($editor) {
+	function composeCommonMailtext() {
 		global $wgEmergencyContact, $wgNoReplyAddress;
 		global $wgEnotifFromEditor, $wgEnotifRevealEditorAddress;
 		global $wgEnotifImpersonal;
+
+		$this->composed_common = true;
 
 		$summary = ($this->summary == '') ? ' - ' : $this->summary;
 		$medit   = ($this->minorEdit) ? wfMsg( 'minoredit' ) : '';
@@ -464,6 +467,7 @@ class EmailNotification {
 		# Reveal the page editor's address as REPLY-TO address only if
 		# the user has not opted-out and the option is enabled at the
 		# global configuration level.
+		$editor = $this->editor;
 		$name    = $editor->getName();
 		$adminAddress = new MailAddress( $wgEmergencyContact, 'WikiAdmin' );
 		$editorAddress = new MailAddress( $editor );
@@ -513,6 +517,10 @@ class EmailNotification {
 	 */
 	function compose( $user ) {
 		global $wgEnotifImpersonal;
+
+		if ( !$this->composed_common )
+			$this->composeCommonMailtext();
+
 		if ( $wgEnotifImpersonal ) {
 			$this->mailTargets[] = new MailAddress( $user );
 		} else {
