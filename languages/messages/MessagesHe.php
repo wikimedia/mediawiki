@@ -1461,8 +1461,6 @@ $2',
 'notargettext'            => 'לא ציינתם דף מטרה או משתמש לגביו תבוצע פעולה זו.',
 'pager-newer-n'           => '{{plural:$1|הבאה|$1 הבאות}}',
 'pager-older-n'           => '{{plural:$1|הקודמת|$1 הקודמות}}',
-'pager-sort-asc'          => 'בסדר עולה',
-'pager-sort-desc'         => 'בסדר יורד',
 
 # Book sources
 'booksources'               => 'משאבי ספרות חיצוניים',
