@@ -39,9 +39,10 @@ $messages = array(
 'may'          => 'maye',
 
 # Categories related messages
-'categories'      => 'Kategories',
-'pagecategories'  => '{{PLURAL:$1|Kategorie|Kategories}}',
-'category_header' => 'Artikles in kategorie "$1"',
+'categories'         => 'Kategories',
+'categoriespagetext' => 'Li sekuenti kategories exista in li wiki.',
+'pagecategories'     => '{{PLURAL:$1|Kategorie|Kategories}}',
+'category_header'    => 'Artikles in kategorie "$1"',
 
 'about'          => 'Pri',
 'article'        => 'Pagine de kontenaje',
@@ -242,7 +243,6 @@ Proba [[Special:Search|sercho sur li wiki]] por relatet pagines.',
 'popularpages'            => 'Popular pagines',
 'mostcategories'          => 'Artikles kun maxim multi kategories',
 'mostrevisions'           => 'Artikles kun maxim multi revisiones',
-'allpages'                => 'Omni pagines',
 'shortpages'              => 'Kurti pagines',
 'longpages'               => 'Longi pagines',
 'deadendpages'            => 'Pagines sin kuplures',
@@ -258,15 +258,12 @@ Proba [[Special:Search|sercho sur li wiki]] por relatet pagines.',
 'booksources-search-legend' => 'Sercha libral fontes',
 'booksources-go'            => 'Vada',
 
-'categoriespagetext' => 'Li sekuenti kategories exista in li wiki.',
-'groups'             => 'Usere grupes',
-'alphaindexline'     => '$1 a $2',
-'version'            => 'Versione',
-
 # Special:Log
 'specialloguserlabel' => 'Usere:',
 
 # Special:Allpages
+'allpages'          => 'Omni pagines',
+'alphaindexline'    => '$1 a $2',
 'allarticles'       => 'Omni artikles',
 'allinnamespace'    => 'Omni pagines ($1 nome-spatie)',
 'allnotinnamespace' => 'Omni pagines (non in $1 nome-spatie)',
@@ -371,5 +368,8 @@ Si vu voli plu tardim ekarta li pagine fro vun observa-liste, klikta \"Desobserv
 'autosumm-replace' => "Remplasant pagine kun '$1'",
 'autoredircomment' => 'Ri-adresant a [[$1]]',
 'autosumm-new'     => 'Novi pagine: $1',
+
+# Special:Version
+'version' => 'Versione', # Not used as normal message but as header for the special page itself
 
 );

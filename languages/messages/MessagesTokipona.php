@@ -132,10 +132,12 @@ kin la sina toki e ni: toki sina ni li tan sina taso anu lipu pi ken ali.
 
 # Miscellaneous special pages
 'lonelypages'  => 'lipu ni li jo ala e lipu sama',
-'allpages'     => 'lipu ale',
 'specialpages' => 'lipu suli',
 'move'         => 'o tawa',
 'movethispage' => 'o pana e nimi sin',
+
+# Special:Allpages
+'allpages' => 'lipu ale',
 
 # Watchlist
 'watchlist'       => 'mi sona e ante pi lipu seme',

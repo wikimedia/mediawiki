@@ -241,7 +241,6 @@ $messages = array(
 'nmembers'          => '$1 {{PLURAL:$1|સદસ્ય|સદસ્યો}}',
 'specialpage-empty' => 'આ પાનું ખાલી છે.',
 'lonelypages'       => 'અનાથ પાના',
-'allpages'          => 'બદ્ધા પાના',
 'shortpages'        => 'નાનાં પાનાં',
 'specialpages'      => 'ખાસ પાનાં',
 'newpages'          => 'નવા પાના',
@@ -252,12 +251,12 @@ $messages = array(
 'booksources-isbn' => 'આઇએસબીએન:',
 'booksources-go'   => 'જાઓ',
 
-'alphaindexline' => '$1 થી $2',
-
 # Special:Log
 'log-search-submit' => 'શોધો',
 
 # Special:Allpages
+'allpages'       => 'બદ્ધા પાના',
+'alphaindexline' => '$1 થી $2',
 'nextpage'       => 'આગળનું પાનું ($1)',
 'prevpage'       => 'પાછળનું પાનું ($1)',
 'allarticles'    => 'બધા લેખ',

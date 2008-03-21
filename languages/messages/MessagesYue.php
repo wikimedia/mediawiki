@@ -239,6 +239,7 @@ $messages = array(
 
 # Categories related messages
 'categories'               => '類',
+'categoriespagetext'       => '喺呢個分類度有頁或媒體。',
 'pagecategories'           => '屬於$1類',
 'category_header'          => '"$1" 類中嘅版',
 'subcategories'            => '分類',
@@ -246,7 +247,6 @@ $messages = array(
 'category-empty'           => "''呢類無任何版或媒體檔。''",
 'hidden-categories'        => '屬於$1隱類',
 'hidden-category-category' => '隱藏類', # Name of the category where hidden categories will be listed
-'subcategorycount'         => '呢個類別入邊有$1個細類別。',
 'listingcontinuesabbrev'   => '續',
 
 'mainpagetext'      => "<big>'''MediaWiki已經裝好。'''</big>",
@@ -740,7 +740,6 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'revnotfound'         => '搵唔到歷史',
 'revnotfoundtext'     => '呢版無你要搵嗰個版本喎。
 唔該睇下條網址啱唔啱。',
-'loadhist'            => '攞緊版嘅歷史',
 'currentrev'          => '家下嘅版本',
 'revisionasof'        => '喺$1嘅修訂',
 'revision-info'       => '喺$1嘅修訂；修訂自$2',
@@ -750,7 +749,6 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'cur'                 => '現時',
 'next'                => '之後',
 'last'                => '之前',
-'orig'                => '原本',
 'page_first'          => '最頭',
 'page_last'           => '最尾',
 'histlegend'          => '選擇唔同版本：響兩個唔同版本嘅圓框分別撳一下，再撳最底的「比較被選版本」掣以作比較。<br />
@@ -932,6 +930,7 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'files'                    => '檔案',
 
 # User rights
+'userrights'                       => '用戶權限管理', # Not used as normal message but as header for the special page itself
 'userrights-lookup-user'           => '管理用戶組',
 'userrights-user-editname'         => '輸入一個用戶名：',
 'editusergroup'                    => '編輯用戶組',
@@ -1251,7 +1250,6 @@ Template:搞清楚',
 'mostcategories'          => '有最多分類嘅頁面',
 'mostimages'              => '有最多連結嘅檔案',
 'mostrevisions'           => '有最多修改嘅頁面',
-'allpages'                => '所有頁面',
 'prefixindex'             => '前綴索引',
 'shortpages'              => '短頁',
 'longpages'               => '長頁',
@@ -1285,13 +1283,6 @@ Template:搞清楚',
 'booksources-go'            => '去',
 'booksources-text'          => '以下嘅連結清單列出其它一啲賣新書同二手書嘅網站，可能可以提供到有關你想搵嘅書嘅更多資料：',
 
-'categoriespagetext' => '喺呢個分類度有頁或媒體。',
-'data'               => '資料',
-'userrights'         => '用戶權限管理',
-'groups'             => '用戶組',
-'alphaindexline'     => '$1到$2',
-'version'            => '版本',
-
 # Special:Log
 'specialloguserlabel'  => '用戶:',
 'speciallogtitlelabel' => '標題:',
@@ -1304,6 +1295,8 @@ Template:搞清楚',
 'log-title-wildcard'   => '搵以呢個文字開始嘅標題',
 
 # Special:Allpages
+'allpages'          => '所有頁面',
+'alphaindexline'    => '$1到$2',
 'nextpage'          => '下一頁 ($1)',
 'prevpage'          => '上一頁 ($1)',
 'allpagesfrom'      => '顯示以下位置開始嘅頁面：',
@@ -2398,6 +2391,7 @@ $1',
 'unknown_extension_tag' => '未知嘅擴展標籤 "$1"',
 
 # Special:Version
+'version'                          => '版本', # Not used as normal message but as header for the special page itself
 'version-extensions'               => '裝咗嘅擴展',
 'version-specialpages'             => '特別頁',
 'version-parserhooks'              => '語法鈎',

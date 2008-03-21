@@ -203,7 +203,6 @@ Vu posse continuar usar {{SITENAME}} anonimimen, o vu posse aperter un session d
 'uncategorizedcategories' => 'Categories sin categories',
 'unusedimages'            => 'Orfani images',
 'wantedpages'             => 'Li max demandat págines',
-'allpages'                => 'Omni págines',
 'shortpages'              => 'Curt págines',
 'longpages'               => 'Long págines',
 'deadendpages'            => 'Págines sin exeada',
@@ -216,6 +215,9 @@ Vu posse continuar usar {{SITENAME}} anonimimen, o vu posse aperter un session d
 
 # Book sources
 'booksources' => 'Librari fontes',
+
+# Special:Allpages
+'allpages' => 'Omni págines',
 
 # Watchlist
 'watchlist'      => 'Liste de sequet págines',

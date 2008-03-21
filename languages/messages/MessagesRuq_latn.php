@@ -221,13 +221,12 @@ $messages = array(
 # Miscellaneous special pages
 'nbytes'       => '$1 {{PLURAL:$1|bătul|bătuls}}',
 'nmembers'     => '$1 {{PLURAL:$1|membru|membri}}',
-'allpages'     => 'Toats paži',
 'specialpages' => 'Paži specalus',
 'newpages'     => 'Paži novi',
 
-'alphaindexline' => '$1 vo $2',
-
 # Special:Allpages
+'allpages'       => 'Toats paži',
+'alphaindexline' => '$1 vo $2',
 'allarticles'    => 'Toats paži',
 'allpagessubmit' => 'Treme',
 

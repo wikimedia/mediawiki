@@ -211,7 +211,6 @@ $messages = array(
 # Miscellaneous special pages
 'nbytes'            => '$1 {{PLURAL:$1|байт|байтош|байтош}}',
 'ncategories'       => '$1 {{PLURAL:$1|тоба|тобаш|тоба}}',
-'allpages'          => 'Массо таптараш',
 'specialpages'      => 'Спецтаптарш',
 'newpages'          => 'Керла таптараш',
 'newpages-username' => 'Юзер:',
@@ -221,6 +220,7 @@ $messages = array(
 'specialloguserlabel' => 'Юзер:',
 
 # Special:Allpages
+'allpages'       => 'Массо таптараш',
 'allarticles'    => 'Массо таптараш',
 'allpagessubmit' => 'кхочушде',
 

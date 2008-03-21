@@ -164,6 +164,7 @@ $messages = array(
 
 # Categories related messages
 'categories'               => '{{PLURAL:$1|קאַטעגאָריע|קאַטעגאָריעס}}',
+'categoriespagetext'       => 'די פאלגענדע קאַטעגאָריעס עקזיסטירט אין {{SITENAME}}.',
 'pagecategories'           => '{{PLURAL:$1|קאַטעגאָריע|קאַטעגאָריעס}}',
 'category_header'          => 'אַרטיקלען אין קאַטעגאָריע "$1"',
 'subcategories'            => 'אונטערקאַטעגאָריעס',
@@ -171,7 +172,6 @@ $messages = array(
 'category-empty'           => "'''די קאטעגאריע האט נישט קיין בלעטער אדער מעדיע.'''",
 'hidden-categories'        => '{{plural:$1|באהאלטענע קאטעגאריע|באהאלטענע קאטעגאריעס}}',
 'hidden-category-category' => 'באהאלטענע קאטעגאריעס', # Name of the category where hidden categories will be listed
-'subcategorycount'         => "ס'איז דאָ {{plural:$1|איין אונטערקאטעגאריע|$1 אונטערקאַטעגאָריעס}} צו דער דאזיגער קאַטעגאָריע.",
 
 'mainpagetext'      => "'''מעדיעוויקי אינסטאלירט מיט דערפאלג.'''",
 'mainpagedocfooter' => 'געבט זיך אן עצה מיט [http://meta.wikimedia.org/wiki/Help:Contents אנווייזער פאר באנוצער] פאר אינפארמאציע וויאזוי זיך באנוצען מיט וויקי סאפטוועיר.
@@ -648,7 +648,6 @@ $1 שעות.',
 'revnotfound'         => 'די גירסה נישט געפינען',
 'revnotfoundtext'     => 'די אלטע רעוויזיע איר האט געבעטן קען נישט געפינען ווערן.
 ביטע טשעקט די URL וואס ברויכט אריינצוגיין אין דעם בלאט.',
-'loadhist'            => 'לאדירט זיך בלאט היסטאריע',
 'currentrev'          => 'איצטיגע ווערסיע',
 'revisionasof'        => 'רעוויזיע ביי $1',
 'revision-info'       => 'רעוויזיע ביי $1 פון $2',
@@ -846,7 +845,6 @@ Legend: (cur) = difference with current version,
 'wantedpages'       => 'װינטשט זײטן',
 'mostcategories'    => 'אַרטיקלען מיט די מערקסטע קאַטעגאָריעס',
 'mostrevisions'     => 'אַרטיקלען מיט די מערקסטע באַאַרבעטונגען',
-'allpages'          => 'אלע בלעטער',
 'deadendpages'      => 'דעד-ענד בלעטער',
 'deadendpagestext'  => 'די פאלגענדע בלעטער לינקן נישט צו אנדערע בלעטער אין דעם וויקי.',
 'specialpages'      => 'ספּעציעלע זײטן',
@@ -860,10 +858,6 @@ Legend: (cur) = difference with current version,
 'booksources-go'            => 'גיי',
 'booksources-text'          => 'אונטען איז א ליסטע פון סייטס וואס פארקויפן נייע און גענוצטע ביכער און האבן אויך נאך אינפארמאציע איבער די ספרים וואס איר זוכט:',
 
-'categoriespagetext' => 'די פאלגענדע קאַטעגאָריעס עקזיסטירט אין {{SITENAME}}.',
-'data'               => 'דאטע',
-'alphaindexline'     => '$1 ביז $2',
-
 # Special:Log
 'specialloguserlabel'  => 'באנוצער:',
 'speciallogtitlelabel' => 'טיטול:',
@@ -871,6 +865,8 @@ Legend: (cur) = difference with current version,
 מען קען פארשמעלרן די אויסוואל דורך אויסוועלן די סארט לאג, באנוצער נאמען אדער אפעקטירטע בלעטער.',
 
 # Special:Allpages
+'allpages'          => 'אלע בלעטער',
+'alphaindexline'    => '$1 ביז $2',
 'allpagesfrom'      => 'ווייזן בלעטער אנגעהויבן פון:',
 'allarticles'       => 'אלע ארטיקלן',
 'allinnamespace'    => 'אלע בלעטער (נעימספעיס $1)',

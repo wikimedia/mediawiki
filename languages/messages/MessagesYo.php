@@ -154,7 +154,6 @@ A ti fi orúkọ yín s'ílẹ̀. Ẹ mọ́ gbàgbé l'áti s'àtúnṣe àwọ
 'filedelete-submit' => 'Paarẹ́',
 
 # Miscellaneous special pages
-'allpages'          => 'Gbogbo ojúewé',
 'specialpages'      => 'Àwọn ojúewé pàtàkì',
 'spheading'         => 'Àwọn ojúewé Pàtàkì fún gbogbo àwọn ẹnitínṣe',
 'newpages'          => 'Àwọn ojúewé tuntun',
@@ -165,6 +164,7 @@ A ti fi orúkọ yín s'ílẹ̀. Ẹ mọ́ gbàgbé l'áti s'àtúnṣe àwọ
 'speciallogtitlelabel' => 'Àkọlé:',
 
 # Special:Allpages
+'allpages'          => 'Gbogbo ojúewé',
 'allarticles'       => 'Gbogbo ojúewé',
 'allinnamespace'    => 'Gbogbo ojúewé ($1 namespace)',
 'allnotinnamespace' => 'Gbogbo ojúewé (tí kòsí ní $1 namespace)',

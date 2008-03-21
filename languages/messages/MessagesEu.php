@@ -140,12 +140,12 @@ $messages = array(
 
 # Categories related messages
 'categories'             => '{{PLURAL:$1|Kategoria|Kategoriak}}',
+'categoriespagetext'     => 'Hurrengo kategoriak daude wiki honetan:',
 'pagecategories'         => '{{PLURAL:$1|Kategoria|Kategoriak}}',
 'category_header'        => '"$1" kategoriako artikuluak',
 'subcategories'          => 'Azpikategoriak',
 'category-media-header'  => 'Media "$1" kategorian',
 'category-empty'         => "''Kategoria honek ez dauka artikulurik uneotan.''",
-'subcategorycount'       => '{{PLURAL:$1|Azpikategoria bat dago|$1 azpikategoria daude}} kategoria honetan.',
 'listingcontinuesabbrev' => 'jarr.',
 
 'mainpagetext'      => "<big>'''MediaWiki arrakastaz instalatu da.'''</big>",
@@ -581,7 +581,6 @@ $3(e)k emandako arrazoia: ''$2''",
 'nohistory'           => 'Orrialde honek ez dauka aldaketa historiarik.',
 'revnotfound'         => 'Ezin izan da berrikuspena aurkitu',
 'revnotfoundtext'     => 'Ezin izan da eskatzen ari zaren orrialdearen berrikuspen zaharra aurkitu. Mesedez, egiaztatu orrialde honetara iristeko erabili duzun URLa.',
-'loadhist'            => 'Orrialdearen historia kargatzen',
 'currentrev'          => 'Oraingo berrikuspena',
 'revisionasof'        => '$1(e)ko berrikuspena',
 'revision-info'       => '$2(r)en berrikusketa, ordua: $1',
@@ -591,7 +590,6 @@ $3(e)k emandako arrazoia: ''$2''",
 'cur'                 => 'orain',
 'next'                => 'hurrengoa',
 'last'                => 'azkena',
-'orig'                => 'orij',
 'page_first'          => 'lehena',
 'page_last'           => 'azkena',
 'histlegend'          => 'Diff hautapena: hautatu alderatu nahi dituzun bi bertsioak eta beheko botoian klik egin.<br />
@@ -743,6 +741,7 @@ Wiki honetako beste administratzaileek ezkutuko eduki hau ikusteko aukera izango
 'files'                   => 'Fitxategiak',
 
 # User rights
+'userrights'                 => 'Erabiltzaile baimenen kudeaketa', # Not used as normal message but as header for the special page itself
 'userrights-lookup-user'     => 'Erabiltzaile taldeak kudeatu',
 'userrights-user-editname'   => 'Erabiltzaile izena idatzi:',
 'editusergroup'              => 'Erabiltzaile taldeak editatu',
@@ -1014,7 +1013,6 @@ The [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] length is '''$7'''
 'mostcategories'          => 'Sailkapenean kategoria gehien dituzten orrialdeak',
 'mostimages'              => 'Gehien lotutako irudiak',
 'mostrevisions'           => 'Berrikuspen gehien dituzten orrialdeak',
-'allpages'                => 'Orrialde guztiak',
 'prefixindex'             => 'Aurrizkien aurkibidea',
 'shortpages'              => 'Orrialde laburrak',
 'longpages'               => 'Orrialde luzeak',
@@ -1042,13 +1040,6 @@ The [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] length is '''$7'''
 'booksources-go'            => 'Joan',
 'booksources-text'          => 'Jarraian liburu berri eta erabiliak saltzen dituzten guneetarako loturen zerrenda bat ikus dezakezu, bilatzen ari zaren liburu horientzako informazio gehigarria aurkitzeko lagungarria izan daitekeena:',
 
-'categoriespagetext' => 'Hurrengo kategoriak daude wiki honetan:',
-'data'               => 'Datuak',
-'userrights'         => 'Erabiltzaile baimenen kudeaketa',
-'groups'             => 'Erabiltzaile taldeak',
-'alphaindexline'     => '$1(e)tik $2(e)raino',
-'version'            => 'Bertsioa',
-
 # Special:Log
 'specialloguserlabel'  => 'Lankidea:',
 'speciallogtitlelabel' => 'Izenburua:',
@@ -1060,6 +1051,8 @@ The [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] length is '''$7'''
 'log-title-wildcard'   => 'Testu honekin hasten diren izenburuak bilatu',
 
 # Special:Allpages
+'allpages'          => 'Orrialde guztiak',
+'alphaindexline'    => '$1(e)tik $2(e)raino',
 'nextpage'          => 'Hurrengo orrialdea ($1)',
 'prevpage'          => 'Aurreko orrialdea ($1)',
 'allpagesfrom'      => 'Honela hasten diren orrialdeak erakutsi:',
@@ -1868,6 +1861,9 @@ $1',
 'watchlisttools-view' => 'Aldaketa garrantzitsuak ikusi',
 'watchlisttools-edit' => 'Zerrenda ikusi eta aldatu',
 'watchlisttools-raw'  => 'Zerrenda idatziz aldatu',
+
+# Special:Version
+'version' => 'Bertsioa', # Not used as normal message but as header for the special page itself
 
 # Special:Filepath
 'filepath' => 'Fitxategi bidea',

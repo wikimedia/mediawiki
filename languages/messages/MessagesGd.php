@@ -18,9 +18,10 @@ $messages = array(
 'august'   => 'An Lùnastal',
 
 # Categories related messages
-'categories'      => 'Gnethan',
-'category_header' => 'Altan sa ghnè "$1"',
-'subcategories'   => 'Fo-ghnethan',
+'categories'         => 'Gnethan',
+'categoriespagetext' => "Tha na gnethan a leanas anns a'wiki.",
+'category_header'    => 'Altan sa ghnè "$1"',
+'subcategories'      => 'Fo-ghnethan',
 
 'about'          => 'Mu',
 'newwindow'      => "(a'fosgladh ann an uinneag ùr)",
@@ -158,7 +159,6 @@ $1",
 
 # History pages
 'nohistory'  => 'Chan eil eachdraidh deasachaidh aig an duilleig seo.',
-'loadhist'   => "A'luchdachadh eachdraidh na duileig",
 'currentrev' => 'Lethbhreac làithreach',
 'cur'        => 'làith',
 'next'       => 'ath',
@@ -248,7 +248,6 @@ The [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] length is '''\$7''
 'uncategorizedpages'      => 'Duilleagan neo-ghnethichte',
 'uncategorizedcategories' => 'Gnethan neo-ghnethichte',
 'unusedimages'            => 'Ìomhaighean neo-chleachdte',
-'allpages'                => 'Duilleagan uile',
 'shortpages'              => 'Duilleagan goirid',
 'longpages'               => 'Duilleagan fhada',
 'listusers'               => 'Liosta nan cleachdair',
@@ -259,10 +258,8 @@ The [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] length is '''\$7''
 'move'                    => 'Gluais',
 'movethispage'            => 'Caraich an duilleag seo',
 
-'categoriespagetext' => "Tha na gnethan a leanas anns a'wiki.",
-'version'            => 'Lethbhreac',
-
 # Special:Allpages
+'allpages' => 'Duilleagan uile',
 'nextpage' => 'An ath dhuilleag ($1)',
 
 # E-mail user
@@ -377,5 +374,8 @@ Ma bu toil leibh a dhubh a'dhuilleag as ur faire agaibh nas fadalache, cnap air 
 # Special:Newimages
 'ilsubmit' => 'Rannsaich',
 'bydate'   => 'air ceann-latha',
+
+# Special:Version
+'version' => 'Lethbhreac', # Not used as normal message but as header for the special page itself
 
 );

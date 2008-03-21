@@ -166,7 +166,6 @@ $messages = array(
 'randompage' => 'ܡܓܠܬܐ ܚܘܝܚܐ',
 
 # Miscellaneous special pages
-'allpages'     => 'ܟܠ ܦܐܬܐ',
 'specialpages' => 'ܦܐܬܘܬ̈ܐ ܪܫܝܐ',
 'move'         => 'ܡܓ̰ܘܓ̰',
 
@@ -175,6 +174,7 @@ $messages = array(
 'booksources-go' => 'ܙܠ',
 
 # Special:Allpages
+'allpages'       => 'ܟܠ ܦܐܬܐ',
 'allarticles'    => 'ܟܠ ܡ̈ܓܠܐ',
 'allpagessubmit' => 'ܙܠ',
 

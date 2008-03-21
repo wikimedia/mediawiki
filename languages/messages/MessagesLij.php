@@ -82,7 +82,6 @@ $messages = array(
 'subcategories'         => 'Sottocategorîe',
 'category-media-header' => 'Archivvio inta categorîa "$1"',
 'category-empty'        => "''Pe-o momento 'sta categorîa a no contegne nisciûnn-a paggina ò archivvio multimedia.''",
-'subcategorycount'      => "'Sta categorîa a g'ha {{PLURAL:$1|ûnn-a sottocategorîa|$1 sottocategorîe}}.",
 
 'about'          => 'Informaçioin',
 'article'        => 'Pagina de i contenùi',
@@ -353,7 +352,6 @@ A razon dæta a l'è ''$2''",
 
 # History pages
 'viewpagelogs'        => "Veddi i log relativi a 'sta paggina.",
-'loadhist'            => 'Camallando a stöia da pagina',
 'currentrev'          => 'Verscion attuâle',
 'revisionasof'        => 'Verscion do $1',
 'revision-info'       => 'Verscion do $1, outô: $2',
@@ -520,7 +518,6 @@ Leggenda: (corr) = differense co-a verscion corrente, (prec) = differense co-a v
 'mostcategories'          => 'Voxi con ciû categorîe',
 'mostimages'              => 'Immaggini con ciû collegamenti',
 'mostrevisions'           => 'Voxi con ciû revixoîn',
-'allpages'                => 'Tûtte e paggine',
 'prefixindex'             => 'Indiçe de-e voxi pe léttie inissiâli',
 'shortpages'              => 'Paggine ciû cûrte',
 'longpages'               => 'Paggine ciû longhe',
@@ -542,10 +539,6 @@ Leggenda: (corr) = differense co-a verscion corrente, (prec) = differense co-a v
 'booksources-go'            => 'Vanni',
 'booksources-text'          => 'De sotta unn-a lista de ingançi a ätri sciti che vendan neuvi e vegi libbri, e che peuvre avei informaçioin in sci libbri che ti te çerchi',
 
-'data'           => 'Dæti',
-'alphaindexline' => 'Da $1 a $2',
-'version'        => 'Verscion',
-
 # Special:Log
 'specialloguserlabel'  => 'Ûtente:',
 'speciallogtitlelabel' => 'Tittolo:',
@@ -555,6 +548,8 @@ Leggenda: (corr) = differense co-a verscion corrente, (prec) = differense co-a v
 Ti te peu strinza a vista se ti te çerni un tipo de registro, un nomme de un utente o de pagina.',
 
 # Special:Allpages
+'allpages'          => 'Tûtte e paggine',
+'alphaindexline'    => 'Da $1 a $2',
 'nextpage'          => 'Proscima paggina ($1)',
 'prevpage'          => 'Paggina preçedente ($1)',
 'allpagesfrom'      => 'Fanni vedde e paggine comensando da:',
@@ -913,5 +908,8 @@ Vegnan conscideræ solo i elenchi puntæ (righe che comensan co-o carattere *). 
 'watchlisttools-view' => 'Veddi e modiffiche pertinenti',
 'watchlisttools-edit' => 'Veddi e modiffica a lista',
 'watchlisttools-raw'  => 'Modiffica a lista in formato testo',
+
+# Special:Version
+'version' => 'Verscion', # Not used as normal message but as header for the special page itself
 
 );

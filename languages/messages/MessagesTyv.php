@@ -119,7 +119,6 @@ $messages = array(
 'subcategories'         => 'Бичии бөлүктер',
 'category-media-header' => '"$1" деп бөлүкте медиа',
 'category-empty'        => "''Амгы бо бөлүкте медиа база арыннар чок.''",
-'subcategorycount'      => 'Бо бөлүкте $1 бичии бөлүк бар.',
 
 'about'          => 'Дугайында',
 'article'        => 'Допчу арын',
@@ -492,7 +491,6 @@ $1',
 'mostlinkedtemplates'     => 'Эң холбаалар хээлер',
 'mostcategories'          => 'Эңне бөлүктер арыннар',
 'mostimages'              => 'Эң холбаалар файлдар',
-'allpages'                => 'Шупту арыннар',
 'shortpages'              => 'Чолдак арыннар',
 'longpages'               => 'Узун арыннар',
 'protectedpages'          => 'Камгалаган арыннар',
@@ -508,15 +506,13 @@ $1',
 # Book sources
 'booksources-go' => 'Чоруур',
 
-'data'    => 'Медээ',
-'version' => 'Үндүрери',
-
 # Special:Log
 'specialloguserlabel'  => 'Ажыглакчы:',
 'speciallogtitlelabel' => 'Ат:',
 'log-search-submit'    => 'Чоруур',
 
 # Special:Allpages
+'allpages'       => 'Шупту арыннар',
 'nextpage'       => 'Соонда арын ($1)',
 'prevpage'       => 'Бүрүнгү арын ($1)',
 'allarticles'    => 'Шупту чүүлдер',
@@ -724,5 +720,8 @@ $1',
 # Watchlist editing tools
 'watchlisttools-edit' => 'Хайгаарылга даңзын көөр болгаш өскертир',
 'watchlisttools-raw'  => 'Чиг хайгаарылга даңзын өскертир',
+
+# Special:Version
+'version' => 'Үндүрери', # Not used as normal message but as header for the special page itself
 
 );

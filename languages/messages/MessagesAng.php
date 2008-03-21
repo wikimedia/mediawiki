@@ -84,6 +84,7 @@ $messages = array(
 
 # Categories related messages
 'categories'               => 'Floccas',
+'categoriespagetext'       => 'Þā folgendan floccas standaþ in þǣm wici.',
 'pagecategories'           => '{{PLURAL:$1|Flocc|Floccas}}',
 'category_header'          => 'Ġewritu in flocce "$1"',
 'subcategories'            => 'Underfloccas',
@@ -91,7 +92,6 @@ $messages = array(
 'category-empty'           => "''Þes flocc hæfþ nū nān ġewritu oþþe ġemynda in.''",
 'hidden-categories'        => '{{PLURAL:$1|Gehȳded flocc|Gehȳdede floccas}}',
 'hidden-category-category' => 'Gehȳdede floccas', # Name of the category where hidden categories will be listed
-'subcategorycount'         => 'Þǣr {{PLURAL:$1|is ān underflocc|sind $1 undergecynd(a)}} tō þissum flocce.',
 
 'mainpagedocfooter' => 'Þeahtian [http://meta.wikimedia.org/wiki/Help:Contents Brūcendlǣdend] for helpe on bryce þǣre wiki software.
 
@@ -414,7 +414,6 @@ Bidde behycge þæt þu bricst þone tramet intō smalrum dǣlum.',
 'popularpages'      => 'Dēore trametas',
 'wantedcategories'  => 'Gewilnode floccas',
 'wantedpages'       => 'Gewilnode trametas',
-'allpages'          => 'Trametas',
 'shortpages'        => 'Scorte trametas',
 'longpages'         => 'Lange trametas',
 'specialpages'      => 'Syndrige trametas',
@@ -431,10 +430,6 @@ Bidde behycge þæt þu bricst þone tramet intō smalrum dǣlum.',
 'booksources-text'          => 'Under is getalu benda tō ōðrum webstedum þe bebycgaþ nīwa and gebrocena bēc, and hæbben 
 ēac mā āscunga ymbe bēc þe þu sēcst:',
 
-'categoriespagetext' => 'Þā folgendan floccas standaþ in þǣm wici.',
-'alphaindexline'     => '$1 tō $2',
-'version'            => 'Fadung',
-
 # Special:Log
 'specialloguserlabel'  => 'Brūcend:',
 'speciallogtitlelabel' => 'Titul:',
@@ -442,6 +437,8 @@ Bidde behycge þæt þu bricst þone tramet intō smalrum dǣlum.',
 'log-search-submit'    => 'Gān',
 
 # Special:Allpages
+'allpages'       => 'Trametas',
+'alphaindexline' => '$1 tō $2',
 'nextpage'       => 'Nīehsta tramet ($1)',
 'allarticles'    => 'Eall gewritu',
 'allinnamespace' => 'Ealle trametas ($1 namanstede)',
@@ -687,5 +684,8 @@ Gif þis is *nā* þū, ne folga þisne bend. Þēos āsēðungrūn forealdaþ �
 
 # Auto-summaries
 'autosumm-new' => 'Nīwe tramet: $1',
+
+# Special:Version
+'version' => 'Fadung', # Not used as normal message but as header for the special page itself
 
 );

@@ -142,12 +142,12 @@ $messages = array(
 
 # Categories related messages
 'categories'             => 'Kategorieë',
+'categoriespagetext'     => 'Die volgende kategorieë bestaan op die wiki.',
 'pagecategories'         => '{{PLURAL:$1|Kategorie|Kategorieë}}',
 'category_header'        => 'Artikels in "$1"-kategorie',
 'subcategories'          => 'Subkategorieë',
 'category-media-header'  => 'Media in kategorie "$1"',
 'category-empty'         => "''Hierdie kategorie bevat geen artikels of media nie.''",
-'subcategorycount'       => 'Daar is {{PLURAL:$1|een subkategorie|$1 subkategorieë}} onder hierdie kategorie.',
 'listingcontinuesabbrev' => 'vervolg',
 
 'mainpagetext' => "<big>'''MediaWiki is suksesvol geïnstalleer.'''</big>",
@@ -489,7 +489,6 @@ Probeer asseblief die bladsy verkort en die detail na subartikels skuif sodat di
 'nohistory'           => 'Daar is geen wysigingsgeskiedenis vir hierdie bladsy nie.',
 'revnotfound'         => 'Weergawe nie gevind nie',
 'revnotfoundtext'     => 'Die ou weergawe wat jy aangevra het kon nie gevind word nie. Gaan asseblief die URL na wat jy gebruik het.',
-'loadhist'            => 'Besig om bladsy wysigingsgeskiedenis te laai.',
 'currentrev'          => 'Huidige wysiging',
 'revisionasof'        => 'Wysiging soos op $1',
 'previousrevision'    => '← Ouer weergawe',
@@ -498,7 +497,6 @@ Probeer asseblief die bladsy verkort en die detail na subartikels skuif sodat di
 'cur'                 => 'huidige',
 'next'                => 'volgende',
 'last'                => 'vorige',
-'orig'                => 'oorspronklike',
 'page_first'          => 'eerste',
 'page_last'           => 'laaste',
 'histlegend'          => 'Byskrif: (huidige) = verskil van huidige weergawe,
@@ -829,7 +827,6 @@ Elke ry bevat skakels na die eerste en die tweede aanstuur, asook die eerste re�
 'mostcategories'          => 'Artikels met die meeste kategorieë',
 'mostimages'              => 'Beelde met meeste skakels daarheen',
 'mostrevisions'           => 'Artikels met meeste wysigings',
-'allpages'                => 'Alle bladsye',
 'prefixindex'             => 'Alle bladsye (voorvoegselindeks)',
 'shortpages'              => 'Kort bladsye',
 'longpages'               => 'Lang bladsye',
@@ -853,11 +850,6 @@ Elke ry bevat skakels na die eerste en die tweede aanstuur, asook die eerste re�
 'booksources-search-legend' => 'Soek vir boekbronne',
 'booksources-go'            => 'Gaan',
 
-'categoriespagetext' => 'Die volgende kategorieë bestaan op die wiki.',
-'groups'             => 'Gebruikersgroepe',
-'alphaindexline'     => '$1 tot $2',
-'version'            => 'Weergawe',
-
 # Special:Log
 'specialloguserlabel'  => 'Gebruiker:',
 'speciallogtitlelabel' => 'Titel:',
@@ -869,6 +861,8 @@ Elke ry bevat skakels na die eerste en die tweede aanstuur, asook die eerste re�
 Jy kan die vertoning vernou deur 'n logtipe, gebruikersnaam of spesifieke blad te kies.",
 
 # Special:Allpages
+'allpages'          => 'Alle bladsye',
+'alphaindexline'    => '$1 tot $2',
 'nextpage'          => 'Volgende blad ($1)',
 'prevpage'          => 'Vorige bladsye ($1)',
 'allpagesfrom'      => 'Wys bladsye vanaf:',
@@ -1363,6 +1357,9 @@ $1',
 'watchlisttools-view' => 'Besigtig ter saaklike veranderinge',
 'watchlisttools-edit' => 'Bekyk en wysig dophoulys',
 'watchlisttools-raw'  => 'Redigeer brondophoulys',
+
+# Special:Version
+'version' => 'Weergawe', # Not used as normal message but as header for the special page itself
 
 # Special:Filepath
 'filepath'        => 'Lêerpad',

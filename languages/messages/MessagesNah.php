@@ -85,8 +85,10 @@ $messages = array(
 'randompage' => 'Zāzotlein zāzanilli',
 
 # Miscellaneous special pages
-'allpages'     => 'Mochīntīn zāzanilli',
 'ancientpages' => 'Huēhuehzāzanilli',
+
+# Special:Allpages
+'allpages' => 'Mochīntīn zāzanilli',
 
 # Attribution
 'lastmodifiedatby' => 'Inīn zāzanilli ōtlapatlac catca īpan $2, $1 īpal $3.', # $1 date, $2 time, $3 user

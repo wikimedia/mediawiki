@@ -78,8 +78,7 @@ $messages = array(
 'dec'       => 'दिसम्बर',
 
 # Categories related messages
-'categories'       => '{{PLURAL:$1|श्रेणि|श्रेणियाँ}}',
-'subcategorycount' => 'इस श्रेणीमे {{PLURAL:$1|एक|$1}} उपविभाग है ।',
+'categories' => '{{PLURAL:$1|श्रेणि|श्रेणियाँ}}',
 
 'about'      => 'अबाउट',
 'article'    => 'लेख',
@@ -197,11 +196,11 @@ Don't forget to personalize your {{SITENAME}} preferences.",
 'nmembers'     => '{{PLURAL:$1|एक सदस्य|$1 सदस्य}}',
 'nrevisions'   => '$1 {{PLURAL:$1|रूपान्तर|रूपान्तरें}}',
 'nviews'       => '{{PLURAL:$1|एक|$1}} बार देखा गया है',
-'allpages'     => 'सभी पन्ने',
 'specialpages' => 'खास पन्नें',
 'move'         => 'नाम बदलें',
 
-'version' => 'रूपान्तर',
+# Special:Allpages
+'allpages' => 'सभी पन्ने',
 
 # E-mail user
 'emailuser' => 'इस सदस्य को ई-मेल भेजें',
@@ -227,5 +226,8 @@ Don't forget to personalize your {{SITENAME}} preferences.",
 
 # What links here
 'whatlinkshere' => 'यहाँ क्या जुड़ता है',
+
+# Special:Version
+'version' => 'रूपान्तर', # Not used as normal message but as header for the special page itself
 
 );

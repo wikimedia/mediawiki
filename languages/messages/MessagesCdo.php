@@ -87,7 +87,6 @@ $messages = array(
 'category_header'        => '"$1" lôi-biék â-dā̤ gì ùng-ciŏng',
 'subcategories'          => 'Cṳ̄-lôi-biék',
 'category-empty'         => "''Ciā lôi-biék â-dā̤ hiêng-câi mò̤ ùng-ciŏng iâ mò̤ muòi-tā̤ ùng-giông.''",
-'subcategorycount'       => 'Ciā lôi-biék â-dā̤ gê̤ṳng-cūng ô {{PLURAL:$1|ék|$1}} bĭk cṳ̄-lôi-biék.',
 'listingcontinuesabbrev' => '(gié-sṳ̆k sèng-dāu)',
 
 'about'          => 'Guăng-ṳ̀',
@@ -527,7 +526,6 @@ Téng buōng câng kiū siék gáu gĭng-dáng, ĭ ī-gĭng ké̤ṳk nè̤ng si
 'mostcategories'       => 'Ô dék sâ̤ lôi-biék gì ùng-ciŏng',
 'mostimages'           => 'Ké̤ṳk lièng-giék dék sâ̤ làu gì dù',
 'mostrevisions'        => 'Ké̤ṳk siŭ-gāi guó dék sâ̤ làu gì ùng-ciŏng',
-'allpages'             => 'Sū-iū hiĕk-miêng',
 'shortpages'           => 'Dōi hiĕk',
 'longpages'            => 'Dòng hiĕk',
 'protectedpages'       => 'Bō̤-hô hiĕk',
@@ -546,10 +544,6 @@ Téng buōng câng kiū siék gáu gĭng-dáng, ĭ ī-gĭng ké̤ṳk nè̤ng si
 'booksources-go'            => 'Kó̤',
 'booksources-text'          => 'Â-dā̤ sê mâ̤ cṳ̆ uōng-câng gì dăng-dăng, kō̤-nèng ô nṳ̄ buóh tō̤ gì cṳ̆ gì gáing sâ̤ séng-sék:',
 
-'data'           => 'Só-gé̤ṳ',
-'groups'         => 'Ê̤ṳng-hô cū',
-'alphaindexline' => '$1 gáu $2',
-
 # Special:Log
 'specialloguserlabel'  => 'Ê̤ṳng-hô:',
 'speciallogtitlelabel' => 'Dà̤-mĕ̤k:',
@@ -558,6 +552,8 @@ Téng buōng câng kiū siék gáu gĭng-dáng, ĭ ī-gĭng ké̤ṳk nè̤ng si
 'logempty'             => 'Nĭk-cé diē-sié tō̤ mâ̤ diŏh hâung-mŭk.',
 
 # Special:Allpages
+'allpages'          => 'Sū-iū hiĕk-miêng',
+'alphaindexline'    => '$1 gáu $2',
 'nextpage'          => 'Â 1 hiĕk ($1)',
 'prevpage'          => 'Sèng 1 hiĕk ($1)',
 'allpagesfrom'      => 'Iù ciā cê-mō̤ kăi-sṳ̄ gì miàng:',

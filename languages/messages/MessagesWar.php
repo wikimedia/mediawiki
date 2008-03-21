@@ -223,7 +223,6 @@ $messages = array(
 'sitestats'  => '{{SITENAME}} nga mga estadistika',
 
 # Miscellaneous special pages
-'allpages'     => 'Ngatanan nga mga pakli',
 'longpages'    => 'Haglaba nga mga pakli',
 'specialpages' => 'Mga Ispisyal nga Pakli',
 'move'         => 'Balhina',
@@ -235,6 +234,7 @@ $messages = array(
 'log-search-submit' => 'Kadto-a',
 
 # Special:Allpages
+'allpages'       => 'Ngatanan nga mga pakli',
 'allarticles'    => 'Ngatanan nga mga artikulo',
 'allpagesprev'   => 'Naha-una',
 'allpagesnext'   => 'Sunod',

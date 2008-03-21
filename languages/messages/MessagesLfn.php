@@ -107,12 +107,12 @@ $messages = array(
 
 # Categories related messages
 'categories'             => 'Categorias',
+'categoriespagetext'     => 'Es la categorias seguente en la vici.',
 'pagecategories'         => '{{PLURAL:$1|Categoria|Categorias}}',
 'category_header'        => 'Articles en categoria "$1"',
 'subcategories'          => 'Sucategorias',
 'category-media-header'  => 'Medio en catagoria "$1"',
 'category-empty'         => "''Aora, esta categoria no conteni pajes o medio.''",
-'subcategorycount'       => 'Es $1 {{PLURAL:$1|sucategoria|sucategorias}} en esta categoria.',
 'listingcontinuesabbrev' => 'cont.',
 
 'mainpagetext'      => "<big>'''MediaWiki es aora instalada.'''</big>",
@@ -366,7 +366,6 @@ La arcivo de sutraes per esta paje es asi per conveni:",
 'cur'                 => 'aora',
 'next'                => 'seguente',
 'last'                => 'dife',
-'orig'                => 'orij',
 'page_first'          => 'prima',
 'page_last'           => 'final',
 'histlegend'          => 'Diferente eleje: Marca la caxas de radio de esta varias per compare e clica entra o la boton a la funda.<br />
@@ -403,6 +402,7 @@ La arcivo de sutraes per esta paje es asi per conveni:",
 'savedprefs'        => 'Tu preferis es fisada',
 
 # User rights
+'userrights'     => 'Dirije de la diretos de usores', # Not used as normal message but as header for the special page itself
 'saveusergroups' => 'Fisa la grupo de usores',
 
 'grouppage-sysop' => '{{ns:project}}:Dirijores',
@@ -514,7 +514,6 @@ La arcivo de sutraes per esta paje es asi per conveni:",
 'mostcategories'          => 'Pajes con la plu categorias',
 'mostimages'              => 'Imajes a ce es la plu lias',
 'mostrevisions'           => 'Pajes con la plu revisas',
-'allpages'                => 'Tota pajes',
 'prefixindex'             => 'Catalogo de prefises',
 'shortpages'              => 'Pajes corta',
 'longpages'               => 'Pajes longa',
@@ -534,11 +533,6 @@ La arcivo de sutraes per esta paje es asi per conveni:",
 # Book sources
 'booksources' => 'Orijines de libros',
 
-'categoriespagetext' => 'Es la categorias seguente en la vici.',
-'userrights'         => 'Dirije de la diretos de usores',
-'alphaindexline'     => '$1 a $2',
-'version'            => 'Varia',
-
 # Special:Log
 'specialloguserlabel'  => 'Usor:',
 'speciallogtitlelabel' => 'Titulo:',
@@ -546,6 +540,8 @@ La arcivo de sutraes per esta paje es asi per conveni:",
 'all-logs-page'        => 'Tota catalogos',
 
 # Special:Allpages
+'allpages'       => 'Tota pajes',
+'alphaindexline' => '$1 a $2',
 'nextpage'       => 'Paje seguente ($1)',
 'prevpage'       => 'Paje presedente ($1)',
 'allpagesfrom'   => 'Mostra pajes comensante a:',
@@ -813,5 +809,8 @@ Cada lias seguente a la mesma linia es considerada es esetas, ce es, la pajes do
 'watchlisttools-view' => 'Vide cambias pertinente',
 'watchlisttools-edit' => 'Vide e edita la lista de pajes oservada',
 'watchlisttools-raw'  => 'Edita la lista rua de pajes oservada',
+
+# Special:Version
+'version' => 'Varia', # Not used as normal message but as header for the special page itself
 
 );

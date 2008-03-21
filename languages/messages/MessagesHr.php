@@ -1244,8 +1244,6 @@ wikija povezane na sliku neposrednim URLom, a nisu ovdje navedene unatoč aktivn
 'notargettext'            => 'Niste naveli ciljnu stranicu ili suradnika za izvršavanje ove funkcije.',
 'pager-newer-n'           => '{{PLURAL:$1|novija $1|novije $1|novijih $1}}',
 'pager-older-n'           => '{{PLURAL:$1|starija $1|starije $1|starijih $1}}',
-'pager-sort-asc'          => 'uzlazno',
-'pager-sort-desc'         => 'silazno',
 
 # Book sources
 'booksources'               => 'Pretraživanje po ISBN-u',

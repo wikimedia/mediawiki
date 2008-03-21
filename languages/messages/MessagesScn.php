@@ -215,12 +215,12 @@ $messages = array(
 
 # Categories related messages
 'categories'             => 'Catigurìi',
+'categoriespagetext'     => 'Li catigurìi ccassutta asìstinu ntâ wiki.',
 'pagecategories'         => '{{PLURAL:$1|Catigurìa|Catigurìi}}',
 'category_header'        => 'Artìculi ntâ catigurìa "$1"',
 'subcategories'          => 'Suttacatigurìi',
 'category-media-header'  => 'File multimidiali ntâ catigurìa "$1"',
 'category-empty'         => "''Chista catigurìa attuarmenti non havi artìculi o \"media\".''",
-'subcategorycount'       => "C{{PLURAL:$1|'è na suttacatigurìa|i sunnu $1 suttacatigurìi}} di sta catigurìa.",
 'listingcontinuesabbrev' => ' cunt.',
 
 'mainpagetext'      => 'Nstallazzioni di MediaWiki cumplitata currettamenti.',
@@ -645,7 +645,6 @@ Lu motivu è ''$2''",
 'nohistory'           => 'Cronoluggìa dî virsioni di sta pàggina nun ripirìbbili.',
 'revnotfound'         => 'Virsioni nun attruvata',
 'revnotfoundtext'     => "La virsioni pricidenti di st'artìculu c'hai addumannatu nun hà statu attruvata. Cuntrolla pi favuri la URL c'hai usatu p'accèdiri a sta pàggina.",
-'loadhist'            => 'Carricamentu cronoluggìa di sta pàggina',
 'currentrev'          => 'Virsioni currenti',
 'revisionasof'        => 'Virsioni dû $1',
 'revision-info'       => 'Virsioni dû $1 di $2',
@@ -654,7 +653,6 @@ Lu motivu è ''$2''",
 'currentrevisionlink' => 'Virsioni currenti',
 'next'                => 'pròssimu',
 'last'                => 'pric',
-'orig'                => 'urigg',
 'page_last'           => 'ùrtima',
 'histlegend'          => "Cunfrontu tra virsioni: silizziunari li caselli currispunnenti ê virsioni addisiati e prèmiri Mannu o lu pulsanti a basciu.<br /> Liggenna: (curr) = diffirenzi cu la virsioni attuali, (pric) = diffirenzi cu la virsioni pricidenti, '''m''' = canciamentu nicu",
 'deletedrev'          => '[cancillata]',
@@ -791,6 +789,7 @@ Lu motivu è ''$2''",
 'files'                    => 'Mmàggini',
 
 # User rights
+'userrights'                  => 'Gistioni dî dritti utenti', # Not used as normal message but as header for the special page itself
 'userrights-lookup-user'      => "Gistisci li gruppi di l'utenti",
 'userrights-user-editname'    => "Trasi nu nomu d'utenti:",
 'editusergroup'               => 'Cancia gruppi utenti',
@@ -1086,7 +1085,6 @@ La coda dî processi a esequiri 'n background cunteni {{PLURAL:\$7|'''1''' eleme
 'mostcategories'          => 'Artìculi urdinati secunnu chiddi chi hannu cchiù catigurìi',
 'mostimages'              => 'Mmàggini cchiù richiamati',
 'mostrevisions'           => 'Artìculi urdinati secunnu chiddi chi hannu cchiù canciamenti',
-'allpages'                => 'Tutti li paggini',
 'prefixindex'             => 'Ìnnici secunnu un prifissu',
 'shortpages'              => 'Artìculi urdinati secunnu la lunchizza (li cchiù curti prima)',
 'longpages'               => 'Artìculi urdinati secunnu la lunchizza (li cchiù lonchi prima)',
@@ -1116,12 +1114,6 @@ La coda dî processi a esequiri 'n background cunteni {{PLURAL:\$7|'''1''' eleme
 'booksources-isbn'          => 'Còdici ISBN:',
 'booksources-text'          => "Di sèquitu veni prisintatu n'alencu di culligamenti versu siti sterni ca vìnninu libbra novi e usati, attraversu li quali è pussìbbili ottèniri maiuri nfurmazzioni supra lu testu circatu:",
 
-'categoriespagetext' => 'Li catigurìi ccassutta asìstinu ntâ wiki.',
-'userrights'         => 'Gistioni dî dritti utenti',
-'groups'             => "Gruppi d'utenti",
-'alphaindexline'     => 'di $1 a $2',
-'version'            => 'virsioni',
-
 # Special:Log
 'specialloguserlabel'  => 'Utenti:',
 'speciallogtitlelabel' => 'Tìtulu:',
@@ -1131,6 +1123,8 @@ La coda dî processi a esequiri 'n background cunteni {{PLURAL:\$7|'''1''' eleme
 'log-title-wildcard'   => 'Attrova tituli chi ncignanu cu',
 
 # Special:Allpages
+'allpages'          => 'Tutti li paggini',
+'alphaindexline'    => 'di $1 a $2',
 'nextpage'          => 'Pàggina doppu ($1)',
 'prevpage'          => 'Pàggina pricidenti ($1)',
 'allpagesfrom'      => 'Ammustra li pàggini a pàrtiri di:',
@@ -2100,5 +2094,8 @@ Li liami succissivi, supra la stissa riga, sugnu cunsiderati comu eccizzioni (p�
 'watchlisttools-view' => 'Vidi li canciamenti rilivanti',
 'watchlisttools-edit' => 'Vidi e cancia la lista',
 'watchlisttools-raw'  => "Cancia la lista 'n forma testuali",
+
+# Special:Version
+'version' => 'virsioni', # Not used as normal message but as header for the special page itself
 
 );

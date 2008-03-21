@@ -109,10 +109,10 @@ $messages = array(
 
 # Categories related messages
 'categories'             => 'Lūi-pia̍t',
+'categoriespagetext'     => 'Chit ê wiki ū ē-kha chia ê lūi-pia̍t.',
 'pagecategories'         => '{{PLURAL:$1|Lūi-pia̍t|Lūi-pia̍t}}',
 'category_header'        => 'Tī "$1" chit ê lūi-pia̍t ê bûn-chiuⁿ',
 'subcategories'          => 'Ē-lūi-pia̍t',
-'subcategorycount'       => 'Chit ê lūi-pia̍t ū $1 ê ē-lūi-pia̍t.',
 'listingcontinuesabbrev' => '(chiap-sòa thâu-chêng)',
 
 'about'      => 'Koan-hē',
@@ -554,7 +554,6 @@ Template:Khu-pia̍t-ia̍h',
 'mostcategories'          => 'Siōng chē lūi-pia̍t ê ia̍h',
 'mostimages'              => 'Siōng chia̍p liân-kiat ê iáⁿ-siōng',
 'mostrevisions'           => 'Siōng chia̍p siu-kái ê ia̍h',
-'allpages'                => 'Só·-ū ê ia̍h',
 'prefixindex'             => 'Sû-thâu sek-ín',
 'shortpages'              => 'Té-ia̍h',
 'deadendpages'            => 'Khu̍t-thâu-ia̍h',
@@ -576,16 +575,14 @@ Template:Khu-pia̍t-ia̍h',
 # Book sources
 'booksources' => 'Tô͘-su chu-liāu',
 
-'categoriespagetext' => 'Chit ê wiki ū ē-kha chia ê lūi-pia̍t.',
-'alphaindexline'     => '$1 kàu $2',
-'version'            => 'Pán-pún',
-
 # Special:Log
 'specialloguserlabel'  => 'Iōng-chiá:',
 'speciallogtitlelabel' => 'Sû-tiâu:',
 'logempty'             => 'Log lāi-bīn bô sio-tùi ê hāng-bo̍k.',
 
 # Special:Allpages
+'allpages'          => 'Só·-ū ê ia̍h',
+'alphaindexline'    => '$1 kàu $2',
 'nextpage'          => 'Āu 1 ia̍h ($1)',
 'allpagesfrom'      => 'Tùi chit ia̍h khai-sí hián-sī:',
 'allarticles'       => 'Só·-ū ê bûn-chiuⁿ',
@@ -855,6 +852,9 @@ Nā-chún *m̄-sī* lí, chhiáⁿ mài tòe liân-kiat khì.  Chit tiuⁿ phoe 
 'watchlistedit-numitems'      => 'Lí ê kàm-sī-toaⁿ ū $1 ia̍h, thó-lūn-ia̍h bô sǹg chāi-lāi.',
 'watchlistedit-normal-submit' => 'Mài kàm-sī',
 'watchlistedit-normal-done'   => 'Í-keng ū $1 ia̍h ùi lí ê kám-sī-toaⁿ soá cháu:',
+
+# Special:Version
+'version' => 'Pán-pún', # Not used as normal message but as header for the special page itself
 
 # Special:Filepath
 'filepath' => 'Tóng-àn ê soàⁿ-lō·',

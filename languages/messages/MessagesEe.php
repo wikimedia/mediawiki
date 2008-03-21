@@ -141,7 +141,6 @@ $messages = array(
 
 # Miscellaneous special pages
 'wantedpages'    => 'Axawo siwo le hahĩam',
-'allpages'       => 'Axawo katã',
 'shortpages'     => 'Axa kpuiwo',
 'protectedpages' => 'Axawo siwo ŋu wole dzɔdzɔm',
 'listusers'      => 'Ezãlawo ƒe xexlẽme',
@@ -150,12 +149,11 @@ $messages = array(
 'move'           => 'Ɖɔli eƒe nɔƒe',
 'movethispage'   => 'Ɖɔli axa sia ƒe nɔƒe',
 
-'version' => 'Tata',
-
 # Special:Log
 'specialloguserlabel' => 'Ezãla:',
 
 # Special:Allpages
+'allpages'       => 'Axawo katã',
 'allpagessubmit' => 'Yi',
 
 # Watchlist
@@ -197,5 +195,8 @@ $messages = array(
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'katã',
 'namespacesall' => 'katã',
+
+# Special:Version
+'version' => 'Tata', # Not used as normal message but as header for the special page itself
 
 );

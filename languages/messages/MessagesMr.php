@@ -1309,8 +1309,6 @@ Input:contenttype/subtype, e.g. <tt>image/jpeg</tt>.',
 'notargettext'            => 'ही क्रिया करण्यासाठी तुम्ही सदस्य किंवा पृष्ठ लिहिले नाही.',
 'pager-newer-n'           => '{{PLURAL:$1|नवे 1|नवे $1}}',
 'pager-older-n'           => '{{PLURAL:$1|जुने 1|जुने $1}}',
-'pager-sort-asc'          => 'चढणारे',
-'pager-sort-desc'         => 'उतरणारे',
 
 # Book sources
 'booksources'               => 'पुस्तक स्रोत',

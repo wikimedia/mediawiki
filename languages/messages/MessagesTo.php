@@ -85,11 +85,11 @@ $messages = array(
 
 # Categories related messages
 'categories'             => 'Faʻahinga',
+'categoriespagetext'     => 'ʻOku ʻi ai ha ngaahi faʻahinga pehē.',
 'pagecategories'         => 'Faʻahinga',
 'category_header'        => 'Ngaahi kupu ʻi he faʻahinga "$1"',
 'subcategories'          => 'Ngaahi faʻahinga siʻi',
 'category-empty'         => "''Ko e faʻahinga ʻeni ʻoku ʻikai ʻi ai haʻane kupu pe ʻata.''",
-'subcategorycount'       => 'ʻOku ʻi ai ha faʻahinga siʻi ʻe $1 ʻi he faʻahinga ni',
 'listingcontinuesabbrev' => ' hoko',
 
 'about'          => 'Kau ki',
@@ -650,7 +650,6 @@ Kapau naʻe kole ia ʻe he tokotaha kehe, pea ʻosi hoʻo manatuʻi ʻo e leatap
 'mostcategories'          => 'Kupu mo e ngaahi faʻahinga lahi taha',
 'mostimages'              => 'Faitā mo e ngaahi fehokotaki ki ai lahi taha',
 'mostrevisions'           => 'Kupu mo e ngaahi paaki lahi taha',
-'allpages'                => 'Peesi kotoa',
 'prefixindex'             => 'Hokohoko fakapipikimuʻa',
 'shortpages'              => 'Peesi nonou',
 'longpages'               => 'Peesi lōloa',
@@ -673,11 +672,6 @@ Kapau naʻe kole ia ʻe he tokotaha kehe, pea ʻosi hoʻo manatuʻi ʻo e leatap
 'booksources'    => 'Ngaahi tupunga tohi',
 'booksources-go' => 'Fai ā',
 
-'categoriespagetext' => 'ʻOku ʻi ai ha ngaahi faʻahinga pehē.',
-'data'               => 'Meʻaʻilo',
-'alphaindexline'     => '$1 ki he $2',
-'version'            => 'Paaki',
-
 # Special:Log
 'specialloguserlabel'  => 'ʻEtita:',
 'speciallogtitlelabel' => 'Hingoa:',
@@ -689,6 +683,8 @@ Kapau naʻe kole ia ʻe he tokotaha kehe, pea ʻosi hoʻo manatuʻi ʻo e leatap
 'logempty'             => 'ʻOku maha ʻa e tohinoa.',
 
 # Special:Allpages
+'allpages'          => 'Peesi kotoa',
+'alphaindexline'    => '$1 ki he $2',
 'nextpage'          => 'Peesi hoko ($1)',
 'prevpage'          => 'Peesi ki muʻa ($1)',
 'allpagesfrom'      => 'ʻAsi mai ngaahi peesi ʻoku kamata he:',
@@ -1222,6 +1218,9 @@ $1',
 'watchlisttools-view' => 'Sio ki he ngaahi liliu maʻongoʻonga',
 'watchlisttools-edit' => 'Sio pea fatu ʻete hokohoko leʻo',
 'watchlisttools-raw'  => 'Fatu ʻa e hokohoko leʻo taʻengaohi',
+
+# Special:Version
+'version' => 'Paaki', # Not used as normal message but as header for the special page itself
 
 # Special:Filepath
 'filepath'        => 'Hala ki he faile',

@@ -258,7 +258,6 @@ $messages = array(
 'brokenredirects-delete' => '(ᓂᐸᖅᑎᐹ)',
 
 # Miscellaneous special pages
-'allpages'          => 'ᓱᓇᒥᑦᑐᖅ ᒪᑉᐱᑕᖅ',
 'listusers'         => 'ᖃᑕᙳᑎ ᓂᐱ',
 'specialpages'      => 'ᐱᔨ ᒪᑉᐱᑕᖅ',
 'newpages-username' => 'ᐅᐃᑭᐱᑎᐊ ᐊᑎᖅ:',
@@ -268,12 +267,11 @@ $messages = array(
 # Book sources
 'booksources-go' => 'ᐊᐃᕗᖅ',
 
-'data' => 'ᓇᓗᓇᐃᔭᐅᑎᑦ',
-
 # Special:Log
 'log-search-submit' => 'ᐊᐃᕗᖅ',
 
 # Special:Allpages
+'allpages'       => 'ᓱᓇᒥᑦᑐᖅ ᒪᑉᐱᑕᖅ',
 'nextpage'       => 'ᑕᒡᒐ ᒪᑉᐱᑕᖅ ($1)',
 'allpagesprev'   => 'ᑐᓄᓪᓕᐹᖅ',
 'allpagesnext'   => 'ᑕᒡᒐ',

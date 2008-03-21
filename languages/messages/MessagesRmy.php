@@ -249,7 +249,6 @@ Kana avilyan kathe doshatar, ja palpale.',
 
 # History pages
 'revnotfoundtext'  => 'I puraneder versiya la patrinyaki so tu manglyan na arakhel pes. Mangas tuke te palemdikhes o phandipen so labyardyan kana avilyan kathe.',
-'loadhist'         => 'Ladavav o puranipen le versiyango',
 'previousrevision' => '← Purano paruvipen',
 'nextrevision'     => 'Nevi paruvipen →',
 'cur'              => 'akanutni',
@@ -374,7 +373,6 @@ Mashkar lende <b>$2</b> si administratorurya (dikh $3).',
 
 # Miscellaneous special pages
 'wantedpages'  => 'Kamle pajine',
-'allpages'     => 'Savore patrya',
 'shortpages'   => 'Xarne patrya',
 'deadendpages' => 'Biphandimatenge patrya',
 'listusers'    => 'Jenengo patrinipen',
@@ -384,10 +382,8 @@ Mashkar lende <b>$2</b> si administratorurya (dikh $3).',
 'ancientpages' => 'E puraneder lekha',
 'move'         => 'Ingerdipen',
 
-'groups'  => 'Jenenge tipurya',
-'version' => 'Versiya',
-
 # Special:Allpages
+'allpages'       => 'Savore patrya',
 'nextpage'       => 'Anglutni patrin ($1)',
 'allarticles'    => 'Sa le artikolurya',
 'allpagessubmit' => 'Ja',
@@ -561,5 +557,8 @@ Dikh ando $2 ek patrinipen le palutne butyange khosle.',
 
 # action=purge
 'confirm_purge_button' => 'Va',
+
+# Special:Version
+'version' => 'Versiya', # Not used as normal message but as header for the special page itself
 
 );

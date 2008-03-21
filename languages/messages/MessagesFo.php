@@ -199,12 +199,12 @@ $messages = array(
 
 # Categories related messages
 'categories'             => 'Bólkar',
+'categoriespagetext'     => 'Eftirfylgjandi bólkar eru í hesu wiki.',
 'pagecategories'         => '{{PLURAL:$1|Bólkur|Bólkar}}',
 'category_header'        => 'Greinir í bólki "$1"',
 'subcategories'          => 'Undirbólkur',
 'category-media-header'  => 'Media í bólkur "$1"',
 'category-empty'         => "''Hesin bólkur inniheldur ongar greinir ella miðlar í løtuni.''",
-'subcategorycount'       => 'Tað {{PLURAL:$1|er ein undirbólkur|eru $1 undirbólkar}} í hesum bólki.',
 'listingcontinuesabbrev' => 'frh.',
 
 'mainpagetext' => "<big>'''Innlegging av Wiki-ritbúnaði væleydnað.'''</big>",
@@ -486,7 +486,6 @@ Vinarliga umhugsa at býta síðuna sundur í styttri pettir.</strong>',
 # History pages
 'viewpagelogs'        => 'Sí logg fyri hesa grein',
 'nohistory'           => 'Eingin broytisøga er til hesa síðuna.',
-'loadhist'            => 'Lesur síðusøgu',
 'currentrev'          => 'Núverandi endurskoðan',
 'revisionasof'        => 'Endurskoðan frá $1',
 'previousrevision'    => '←Eldri endurskoðan',
@@ -738,7 +737,6 @@ Hvørt rað inniheldur slóðir til fyrstu og aðru ávísing, umframt tekstin �
 'wantedpages'             => 'Ynsktar síður',
 'mostcategories'          => 'Greinir við flest bólkum',
 'mostrevisions'           => 'Greinir við flest útgávum',
-'allpages'                => 'Allar síður',
 'shortpages'              => 'Stuttar síður',
 'longpages'               => 'Langar síður',
 'deadendpages'            => 'Gøtubotns síður',
@@ -760,11 +758,6 @@ beinleiðis URL, so hon kann síggjast her hóast at hon er
 'booksources'    => 'Bóka keldur',
 'booksources-go' => 'Far',
 
-'categoriespagetext' => 'Eftirfylgjandi bólkar eru í hesu wiki.',
-'data'               => 'Dáta',
-'alphaindexline'     => '$1 til $2',
-'version'            => 'Útgáva',
-
 # Special:Log
 'specialloguserlabel'  => 'Brúkari:',
 'speciallogtitlelabel' => 'Heitið:',
@@ -774,6 +767,8 @@ beinleiðis URL, so hon kann síggjast her hóast at hon er
 Tú kanst avmarka sýningina við at velja gerðabókaslag, brúkaranavn ella ávirkaðu síðuna.',
 
 # Special:Allpages
+'allpages'       => 'Allar síður',
+'alphaindexline' => '$1 til $2',
 'nextpage'       => 'Næsta síða ($1)',
 'prevpage'       => 'Fyrrverandi síða ($1)',
 'allarticles'    => 'Allar greinir',
@@ -1145,6 +1140,7 @@ fer úr gildi tann $4.',
 'watchlisttools-raw'  => 'Rætta rátt eftirlit',
 
 # Special:Version
+'version'                  => 'Útgáva', # Not used as normal message but as header for the special page itself
 'version-hooks'            => 'Krókur',
 'version-hook-name'        => 'Krókurnavn',
 'version-version'          => 'Útgáva',

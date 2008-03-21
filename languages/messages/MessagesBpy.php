@@ -144,6 +144,7 @@ $messages = array(
 
 # Categories related messages
 'categories'            => 'বিষয়রথাকহানি',
+'categoriespagetext'    => 'ইমারঠারর উইকিপিডিয়াত এবাকার বিষয়রথাক:',
 'pagecategories'        => '{{PLURAL:$1|থাক|থাকহানি}}',
 'category_header'       => '"$1" বিষয়রথাকে আসে নিবন্ধহানি',
 'subcategories'         => 'উপথাক',
@@ -388,7 +389,6 @@ $messages = array(
 # Miscellaneous special pages
 'nbytes'       => '$1 বাইট',
 'ncategories'  => '$1 {{PLURAL:$1|থাক|থাকহানি}}',
-'allpages'     => 'হাবি পাতাহানি',
 'specialpages' => 'বিশেষ পাতাহানি',
 'ancientpages' => 'পুরানা পাতাহানি',
 'move'         => 'থেইকরানি',
@@ -396,13 +396,12 @@ $messages = array(
 # Book sources
 'booksources' => 'লেরিকর উৎসহান',
 
-'categoriespagetext' => 'ইমারঠারর উইকিপিডিয়াত এবাকার বিষয়রথাক:',
-'alphaindexline'     => '$1 ত $2',
-
 # Special:Log
 'specialloguserlabel' => 'আতাকুরাগ:',
 
 # Special:Allpages
+'allpages'       => 'হাবি পাতাহানি',
+'alphaindexline' => '$1 ত $2',
 'allpagesfrom'   => 'যেহাত্ত অকরিসি অহাত্ত পাতাহানি দেহাদেঃ',
 'allarticles'    => 'নিবন্ধহাবি',
 'allinnamespace' => 'পাতাহানি হাবি ($1 নাঙরজাগা)',

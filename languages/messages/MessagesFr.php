@@ -1360,8 +1360,6 @@ Il y a {{PLURAL:$7|'''$7''' article|'''$7''' articles}} dans [[meta:Help:Job_que
 'notargettext'            => 'Indiquez une page cible ou un utilisateur cible.',
 'pager-newer-n'           => '{{PLURAL:$1|1 plus récente|$1 plus récentes}}',
 'pager-older-n'           => '{{PLURAL:$1|1 plus ancienne|$1 plus anciennes}}',
-'pager-sort-asc'          => 'croissant',
-'pager-sort-desc'         => 'décroissant',
 
 # Book sources
 'booksources'               => 'Ouvrages de référence',

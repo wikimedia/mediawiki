@@ -199,11 +199,11 @@ $messages = array(
 
 # Categories related messages
 'categories'             => 'Saachjruppe',
+'categoriespagetext'     => 'Dat sin de Saachjruppe vun däm Wiki hee.',
 'pagecategories'         => '{{PLURAL:$1|Saachjrupp|Saachjruppe}}',
 'category_header'        => 'Atikkele in de Saachjrupp „$1“',
 'subcategories'          => 'Ungerjruppe',
 'category-media-header'  => 'Medie en de Saachjrupp "$1"',
-'subcategorycount'       => 'Hee {{PLURAL:$1|weed ein Ungerjrupp|wääde $1 Ungerjruppe}} jezeich <small>  (Et künnt mieh op de vörije un nächste Sigge jevve)</small>',
 'listingcontinuesabbrev' => 'wigger',
 
 'mainpagetext'      => "<big>'''MediaWiki es jetz enstalleet.'''</big>",
@@ -715,7 +715,6 @@ class="plainlinks">[{{FULLURL:Special:Log/protect|page={{FULLPAGENAMEE}}}} Logbo
 'revnotfoundtext'     => '<b>Dä.</b> Die ählere Version vun dä Sigg, wo De noh frochs, es nit do. Schad. Luur ens 
 op die URL, die Dich herjebraht hät, die weed verkihrt sin, oder se es villeich üvverhollt, weil einer die Sigg 
 fottjeschmesse hät?',
-'loadhist'            => 'Dun de Liss met ahl Versione lade',
 'currentrev'          => 'Neuste Version',
 'revisionasof'        => 'Version vum $1',
 'revision-info'       => 'Revision as of $1 by $2',
@@ -725,7 +724,6 @@ fottjeschmesse hät?',
 'cur'                 => 'neu',
 'next'                => 'wigger',
 'last'                => 'letz',
-'orig'                => 'Orjenal',
 'histlegend'          => 'Hee kanns De Versione för et Verjliche ussöke: Dun met dä Knöpp die zweij markiere, 
 zwesche dänne De de Ungerscheed jezeich krije wells, dann dröck „<b style="padding:2px; background-color:#ddd; 
 color:black">Dun de markeete Versione verjliche</b>“ bei Dinge Taste, oder klick op ein vun dä Knöpp üvver oder 
@@ -873,6 +871,7 @@ Wiki-Köbes, enem Sörver-Minsch, oder luur ens en de
 'files'                    => 'Dateie',
 
 # User rights
+'userrights'                 => 'Metmaacher ehr Räächde verwalte', # Not used as normal message but as header for the special page itself
 'userrights-lookup-user'     => 'Metmaacher Jruppe verwalte',
 'userrights-user-editname'   => 'Metmaacher Name: <!-- -->',
 'editusergroup'              => 'Däm Metmaacher sing Jruppe Räächde bearbeide',
@@ -1140,7 +1139,6 @@ die sollt mer behalde.</small>",
 'mostcategories'          => 'Atikkele met de miehste Saachjruppe',
 'mostimages'              => 'Belder, Tön, uew. met de miehste Links drop',
 'mostrevisions'           => 'Atikkele met de miehste Änderunge',
-'allpages'                => 'All Sigge',
 'prefixindex'             => 'All Sigge, die dänne ehr Name met enem bestemmte Wood oder Tex aanfange deit',
 'shortpages'              => 'Sigge zoteet vun koot noh lang',
 'longpages'               => 'Sigge zoteet vun lang noh koot',
@@ -1167,13 +1165,6 @@ kein Saachjrupp dren ze finge.',
 # Book sources
 'booksources' => 'Böcher',
 
-'categoriespagetext' => 'Dat sin de Saachjruppe vun däm Wiki hee.',
-'data'               => 'Daate',
-'userrights'         => 'Metmaacher ehr Räächde verwalte',
-'groups'             => 'User groups',
-'alphaindexline'     => '$1 â€¦ $2',
-'version'            => 'Version vun de Wiki Soffwär zeije',
-
 # Special:Log
 'specialloguserlabel'  => 'Metmaacher:',
 'speciallogtitlelabel' => ' Siggename:',
@@ -1188,6 +1179,8 @@ aanluure.",
 'logempty'             => '<i>Mer han kein passende Endräch en däm Logboch.</i>',
 
 # Special:Allpages
+'allpages'          => 'All Sigge',
+'alphaindexline'    => '$1 â€¦ $2',
 'nextpage'          => 'De nächste Sigg: „$1“',
 'allpagesfrom'      => 'Sigge aanzeije av däm Name:',
 'allarticles'       => 'All Atikkele',
@@ -1806,6 +1799,9 @@ $1',
 'autosumm-replace' => "Replacing page with '$1'",
 'autoredircomment' => 'Leit öm op „[[$1]]“',
 'autosumm-new'     => 'Neu Sigg: $1',
+
+# Special:Version
+'version' => 'Version vun de Wiki Soffwär zeije', # Not used as normal message but as header for the special page itself
 
 # Special:Filepath
 'filepath'        => 'Bellder, Tööhn, uew. zëije, med ier URL',

@@ -95,11 +95,11 @@ $messages = array(
 
 # Categories related messages
 'categories'             => 'Kategoriyalar',
+'categoriespagetext'     => 'Ushbu kategoriyalar vikida bor.',
 'pagecategories'         => '{{PLURAL:$1|Kategoriya|Kategoriyalar}}',
 'category_header'        => '"$1" kategoriyadagi maqolalar.',
 'subcategories'          => 'Podkategoriyalar',
 'category-empty'         => "''Ushbu kategoriyada hozircha sahifa yoki fayllar yoʻq.''",
-'subcategorycount'       => 'Bu kategoriya {{PLURAL:$1|bir|$1}} podkategoriyadan iborat.',
 'listingcontinuesabbrev' => 'davomi',
 
 'linkprefix'        => '/^(.*?)([a-zA-Z\\x80-\\xffʻʼ«„]+)$/sDu',
@@ -397,7 +397,6 @@ Bu yerda: (joriy) = hozirgi koʻrinish bilan farq,
 'unusedimages'            => 'Ishlatilinmagan fayllar',
 'wantedcategories'        => 'Talab qilinayotgan kategoriyalar',
 'mostcategories'          => "Eng ko'p kategoriyalarli sahifalar",
-'allpages'                => 'Barcha sahifalar',
 'protectedpages'          => 'Himoyalangan sahifalar',
 'listusers'               => 'Foydalanuvchilar roʻyxati',
 'specialpages'            => 'Maxsus sahifalar',
@@ -405,15 +404,14 @@ Bu yerda: (joriy) = hozirgi koʻrinish bilan farq,
 'move'                    => "Ko'chirish",
 'movethispage'            => 'Bu sahifani koʻchir',
 
-'categoriespagetext' => 'Ushbu kategoriyalar vikida bor.',
-'alphaindexline'     => '$1 dan $2 ga',
-
 # Special:Log
 'log'               => 'Qaydlar',
 'all-logs-page'     => 'Barcha qaydlar',
 'log-search-submit' => "O'tish",
 
 # Special:Allpages
+'allpages'       => 'Barcha sahifalar',
+'alphaindexline' => '$1 dan $2 ga',
 'nextpage'       => 'Keyingi sahifa ($1)',
 'prevpage'       => 'Avvalgi sahifa ($1)',
 'allpagesfrom'   => 'Sahifalarni koʻrsat:',

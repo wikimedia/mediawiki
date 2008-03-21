@@ -149,11 +149,11 @@ $messages = array(
 'dec'       => 'dec',
 
 # Categories related messages
-'categories'       => 'Kategorije',
-'pagecategories'   => 'Kategorije',
-'category_header'  => 'Članaka u kategoriji "$1"',
-'subcategories'    => 'Potkategorije',
-'subcategorycount' => '$1 potkategorija su u ovoj kategoriji.',
+'categories'         => 'Kategorije',
+'categoriespagetext' => 'Sledeće kategorije već postoje u {{SITENAME}}',
+'pagecategories'     => 'Kategorije',
+'category_header'    => 'Članaka u kategoriji "$1"',
+'subcategories'      => 'Potkategorije',
 
 'mainpagetext' => 'Viki softver is uspješno instaliran.',
 
@@ -475,13 +475,11 @@ administratorkim privilegijama mogu da je mijenjaju. Uvjerite se da pratite [[Sp
 'revnotfound'     => 'Revizija nije pronađena',
 'revnotfoundtext' => 'Starija revizija ove stranice koju ste zatražili nije nađena.
 Molimo Vas da provjerite URL pomoću kojeg ste pristupili ovoj stranici.',
-'loadhist'        => 'Učitaje se istorija stranice',
 'currentrev'      => 'Trenutna revizija',
 'revisionasof'    => 'Revizija od $1',
 'cur'             => 'tren',
 'next'            => 'sled',
 'last'            => 'posl',
-'orig'            => 'orig',
 'histlegend'      => 'Objašnjenje: (tren) = razlika sa trenutnom verziom,
 (posl) = razlika sa prethodnom verziom, M = mala izmjena',
 
@@ -673,7 +671,6 @@ su '''$2''' (ili '''$4%''') administratori.",
 'popularpages'            => 'Popularne stranice',
 'wantedcategories'        => 'Tražene kategorije',
 'wantedpages'             => 'Tražene stranice',
-'allpages'                => 'Sve stranice',
 'shortpages'              => 'Kratke stranice',
 'longpages'               => 'Dugačke stranice',
 'deadendpages'            => 'Stranice bez internih veza',
@@ -696,13 +693,13 @@ na kome bi se izvela ova funkcija.',
 # Book sources
 'booksources' => 'Štampani izvori',
 
-'categoriespagetext' => 'Sledeće kategorije već postoje u {{SITENAME}}',
-'alphaindexline'     => '$1 u $2',
-'version'            => 'Verzija',
-
 # Special:Log
 'specialloguserlabel'  => 'Korisnik:',
 'speciallogtitlelabel' => 'Naslov:',
+
+# Special:Allpages
+'allpages'       => 'Sve stranice',
+'alphaindexline' => '$1 u $2',
 
 # E-mail user
 'mailnologin'     => 'Nema adrese za slanje',
@@ -1105,5 +1102,8 @@ Ako ovo niste vi, ne pratite poveznicu. Ovaj kod za potvrdu će isteći u $4.',
 : ''$2''
 
 Molimo Vas da potvrdite da stvarno želite da ponovo napravite ovaj članak.",
+
+# Special:Version
+'version' => 'Verzija', # Not used as normal message but as header for the special page itself
 
 );

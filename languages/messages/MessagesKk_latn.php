@@ -481,12 +481,12 @@ $messages = array(
 
 # Categories related messages
 'categories'             => 'Sanattar',
+'categoriespagetext'     => 'Osında wïkïdegi barlıq sanattarınıñ tizimi berilip tur.',
 'pagecategories'         => '{{PLURAL:$1|Sanat|Sanattar}}',
 'category_header'        => '«$1» sanatındağı better',
 'subcategories'          => 'Sanatşalar',
 'category-media-header'  => '«$1» sanatındağı taspalar',
 'category-empty'         => "''Bul sanatta ağımda eş bet ne taspa joq.''",
-'subcategorycount'       => 'Bul sanatta {{PLURAL:$1|bir|$1}} sanatşa bar.',
 'listingcontinuesabbrev' => '(jalğ.)',
 
 'mainpagetext'      => "<big>'''MedïaWïkï bağdarlaması sätti ornatıldı.'''</big>",
@@ -1008,7 +1008,6 @@ $3 keltirilgen sebebi: ''$2''",
 'nohistory'           => 'Osı bettiniñ nusqalar tarïxı joq.',
 'revnotfound'         => 'Nusqa tabılmadı',
 'revnotfoundtext'     => 'Osı suranısqan bettiñ eski nusqası tabılğan joq. Osı betti aşwğa paýdalanğan URL jaýın qaýta tekserip şığıñız.',
-'loadhist'            => 'Bet tarïxı jüktelwde',
 'currentrev'          => 'Ağımdıq nusqası',
 'revisionasof'        => '$1 kezindegi nusqası',
 'revision-info'       => '$1 kezindegi $2 jasağan nusqası',
@@ -1018,7 +1017,6 @@ $3 keltirilgen sebebi: ''$2''",
 'cur'                 => 'ağım.',
 'next'                => 'kel.',
 'last'                => 'soñ.',
-'orig'                => 'tüpn.',
 'page_first'          => 'alğaşqısına',
 'page_last'           => 'soñğısına',
 'histlegend'          => 'Aýırmasın bölektew: salıstıramın degen nusqalardı aýırıp-qosqışpen belgilep jäne de <Enter> pernesin basıñız, nemese astındağı batırmanı nuqıñız.<br />
@@ -1206,6 +1204,7 @@ barlıq şart sözder kedesse körsetiledi) bolwı mümkin.",
 'files'                    => 'Faýldar',
 
 # User rights
+'userrights'                       => 'Qatıswşılar quqıqtarın rettew', # Not used as normal message but as header for the special page itself
 'userrights-lookup-user'           => 'Qatıswşı toptarın rettew',
 'userrights-user-editname'         => 'Qatıswşı atın engiziñiz:',
 'editusergroup'                    => 'Qatıswşı toptarın öñdew',
@@ -1526,7 +1525,6 @@ Ağımdıq [http://meta.wikimedia.org/wiki/Help:Job_queue tapsırım kezegi] uz�
 'mostcategories'          => 'Eñ köp sanatı bar better',
 'mostimages'              => 'Eñ köp paýdalanılğan swretter',
 'mostrevisions'           => 'Eñ köp tüzetilgen better',
-'allpages'                => 'Barlıq better',
 'prefixindex'             => 'Ataw bastawı tizimi',
 'shortpages'              => 'Eñ qısqa better',
 'longpages'               => 'Eñ uzın better',
@@ -1563,13 +1561,6 @@ osı tizimde qalwı mümkin.</p>',
 'booksources-text'          => 'Tömende jaña jäne qoldanğan kitaptar satatıntoraptarınıñ siltemeleri tizimdelgen.
 Bul toraptarda izdelgen kitaptar twralı bılaýğı aqparat bolwğa mümkin.',
 
-'categoriespagetext' => 'Osında wïkïdegi barlıq sanattarınıñ tizimi berilip tur.',
-'data'               => 'Derekter',
-'userrights'         => 'Qatıswşılar quqıqtarın rettew',
-'groups'             => 'Qatıswşı toptarı',
-'alphaindexline'     => '$1 — $2',
-'version'            => 'Jüýe nusqası',
-
 # Special:Log
 'specialloguserlabel'  => 'Qatıswşı:',
 'speciallogtitlelabel' => 'Ataw:',
@@ -1583,6 +1574,8 @@ Jwrnal türin, qatıswşı atın, ne tïisti betin bölektep, tarıltıp qarawı
 'log-title-wildcard'   => 'Mınadaý mätinneñ bastalıtın atawlardan izdew',
 
 # Special:Allpages
+'allpages'          => 'Barlıq better',
+'alphaindexline'    => '$1 — $2',
 'nextpage'          => 'Kelesi betke ($1)',
 'prevpage'          => 'Aldıñğı betke ($1)',
 'allpagesfrom'      => 'Mına betten bastap körsetw:',
@@ -2754,6 +2747,9 @@ Tağı da [[Special:Watchlist/edit|qalıptı öñdewişti paýdalana]] alasız.'
 
 # Core parser functions
 'unknown_extension_tag' => 'Tanılmağan keñeýtpe belgisi «$1»',
+
+# Special:Version
+'version' => 'Jüýe nusqası', # Not used as normal message but as header for the special page itself
 
 # Special:Filepath
 'filepath'         => 'Faýl ornalaswı',

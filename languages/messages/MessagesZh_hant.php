@@ -164,6 +164,7 @@ $messages = array(
 
 # Categories related messages
 'categories'               => '頁面分類',
+'categoriespagetext'       => '以下的分類包含頁面或媒體。',
 'pagecategories'           => '$1個分類',
 'category_header'          => '類別「$1」中的頁面',
 'subcategories'            => '附分類',
@@ -171,7 +172,6 @@ $messages = array(
 'category-empty'           => "''這個分類中尚未包含任何頁面或媒體。''",
 'hidden-categories'        => '$1個隱藏分類',
 'hidden-category-category' => '隱藏分類', # Name of the category where hidden categories will be listed
-'subcategorycount'         => '這個分類下有$1個子分類。',
 'listingcontinuesabbrev'   => '續',
 
 'mainpagetext'      => "<big>'''已成功安裝 MediaWiki!'''</big>",
@@ -660,7 +660,6 @@ $2',
 'revnotfound'         => '沒有找到修訂記錄',
 'revnotfoundtext'     => '您請求的更早版本的修訂記錄沒有找到。
 請檢查您請求本頁面用的URL是否正確。',
-'loadhist'            => '載入頁面修訂歷史',
 'currentrev'          => '當前修訂版本',
 'revisionasof'        => '在$1所做的修訂版本',
 'revision-info'       => '在$1由$2所做的修訂版本',
@@ -670,7 +669,6 @@ $2',
 'cur'                 => '當前',
 'next'                => '後繼',
 'last'                => '先前',
-'orig'                => '初始',
 'page_first'          => '最前',
 'page_last'           => '最後',
 'histlegend'          => '差異選擇: 標記要比較版本的單選按鈕並點擊底部的按鈕進行比較。<br />
@@ -851,6 +849,7 @@ $2',
 'files'                    => '檔案',
 
 # User rights
+'userrights'                       => '用戶權限管理', # Not used as normal message but as header for the special page itself
 'userrights-lookup-user'           => '管理用戶群組',
 'userrights-user-editname'         => '輸入用戶名:',
 'editusergroup'                    => '編輯用戶群組',
@@ -1180,7 +1179,6 @@ Template:消除歧義',
 'mostcategories'          => '最多分類頁面',
 'mostimages'              => '最多連結檔案',
 'mostrevisions'           => '最多修訂頁面',
-'allpages'                => '所有頁面',
 'prefixindex'             => '前綴索引',
 'shortpages'              => '短頁面',
 'longpages'               => '長頁面',
@@ -1214,13 +1212,6 @@ Template:消除歧義',
 'booksources-go'            => '送出',
 'booksources-text'          => '以下是一份銷售新書或二手書的列表，並可能有你正尋找的書的進一步訊息：',
 
-'categoriespagetext' => '以下的分類包含頁面或媒體。',
-'data'               => '資料',
-'userrights'         => '用戶權限管理',
-'groups'             => '用戶群組',
-'alphaindexline'     => '$1 到 $2',
-'version'            => '版本',
-
 # Special:Log
 'specialloguserlabel'  => '用戶:',
 'speciallogtitlelabel' => '標題:',
@@ -1233,6 +1224,8 @@ Template:消除歧義',
 'log-title-wildcard'   => '搜尋以這個文字開始的標題',
 
 # Special:Allpages
+'allpages'          => '所有頁面',
+'alphaindexline'    => '$1 到 $2',
 'nextpage'          => '下一頁($1)',
 'prevpage'          => '上一頁($1)',
 'allpagesfrom'      => '顯示從此處開始的頁面:',
@@ -2333,6 +2326,7 @@ $3
 'unknown_extension_tag' => '不明的擴展標籤 "$1"',
 
 # Special:Version
+'version'                          => '版本', # Not used as normal message but as header for the special page itself
 'version-extensions'               => '已經安裝的擴展',
 'version-specialpages'             => '特殊頁面',
 'version-parserhooks'              => '語法鈎',

@@ -109,6 +109,7 @@ $messages = array(
 
 # Categories related messages
 'categories'               => 'Wàll',
+'categoriespagetext'       => 'Wàll yii ñoo am ci biir wiki gi.',
 'pagecategories'           => '{{PLURAL:$1|Wàll |Wàll }}',
 'category_header'          => 'Xët yi ci wàll gi « $1 »',
 'subcategories'            => 'Ron-wàll',
@@ -551,7 +552,6 @@ Ngirtey téye gi $3 joxe, mooy ne: ''$2''.",
 'nohistory'           => 'Xët wii amulub jaar-jaar.',
 'revnotfound'         => 'Sumb mi gisuñ ko',
 'revnotfoundtext'     => 'Sumbum xët wi ngay laaj gisuñ ko. Saytul URL bi nga jëfandikoo ngir jot xët wii.',
-'loadhist'            => 'Yebub jaar-jaaru xët wi',
 'currentrev'          => 'Sumb mi teew',
 'revisionasof'        => 'Sumb mu $1',
 'revision-info'       => 'Sumb mu $1, jëfandikukat: $2',
@@ -561,7 +561,6 @@ Ngirtey téye gi $3 joxe, mooy ne: ''$2''.",
 'cur'                 => 'xamle',
 'next'                => 'tegu',
 'last'                => 'mujj',
-'orig'                => 'cosaa',
 'page_first'          => 'jiitu',
 'page_last'           => 'mujj',
 'histlegend'          => 'Méngaley sumb: falal sumb yi nga bëgg a méngale te bës ci Ayca walla ci cuquwaay bi ci suuf.
@@ -800,7 +799,6 @@ $2 boole ci xëti yoonalaat yi<br /> Seet $3 $9',
 'mostcategories'          => 'Jukki yi ëpp yiy jëfëndikooy wàll',
 'mostimages'              => 'Nataal yi ñu gën a jëfëndikoo',
 'mostrevisions'           => 'Jukki yi ñu gën a soppi',
-'allpages'                => 'Xët yëpp',
 'listusers'               => 'Limu way bokk yi',
 'specialpages'            => 'Xët yu solowu',
 'newpages'                => 'Xët yu bees',
@@ -813,9 +811,6 @@ $2 boole ci xëti yoonalaat yi<br /> Seet $3 $9',
 # Book sources
 'booksources-go' => 'Ayca',
 
-'categoriespagetext' => 'Wàll yii ñoo am ci biir wiki gi.',
-'alphaindexline'     => '$1 ba $2',
-
 # Special:Log
 'specialloguserlabel'  => 'Jëfëndikookat :',
 'speciallogtitlelabel' => 'Koj :',
@@ -826,6 +821,8 @@ $2 boole ci xëti yoonalaat yi<br /> Seet $3 $9',
 'logempty'             => 'Dara nekkul ci jaar-jaaru xët mii.',
 
 # Special:Allpages
+'allpages'         => 'Xët yëpp',
+'alphaindexline'   => '$1 ba $2',
 'nextpage'         => 'Xët wi tegu ($1)',
 'allpagesfrom'     => 'Wonel xët yi tambalee ci :',
 'allarticles'      => 'Jukki yëpp',

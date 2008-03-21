@@ -184,6 +184,7 @@ $messages = array(
 
 # Categories related messages
 'categories'               => '页面分类',
+'categoriespagetext'       => '以下的分类包含页面或媒体。',
 'pagecategories'           => '$1个分类',
 'category_header'          => '"$1"分类中的页面',
 'subcategories'            => '亚类',
@@ -191,7 +192,6 @@ $messages = array(
 'category-empty'           => "''这个分类中尚未包含任何页面或媒体。''",
 'hidden-categories'        => '$1个隐藏分类',
 'hidden-category-category' => '隐藏分类', # Name of the category where hidden categories will be listed
-'subcategorycount'         => '在这个分类中有$1个亚类。',
 'listingcontinuesabbrev'   => '续',
 
 'mainpagetext'      => "<big>'''已成功安装 MediaWiki!'''</big>",
@@ -686,7 +686,6 @@ $2',
 'revnotfound'         => '没有找到修订记录',
 'revnotfoundtext'     => '您请求的更早版本的修订记录没有找到。
 请检查您请求本页面用的 URL 是否正确。',
-'loadhist'            => '载入页面修订历史',
 'currentrev'          => '当前修订版本',
 'revisionasof'        => '在$1所做的修订版本',
 'revision-info'       => '在$1由$2所做的修订版本',
@@ -696,7 +695,6 @@ $2',
 'cur'                 => '当前',
 'next'                => '后继',
 'last'                => '先前',
-'orig'                => '初始',
 'page_first'          => '最前',
 'page_last'           => '最后',
 'histlegend'          => '差异选择: 标记要比较版本的单选按钮并点击底部的按钮进行比较。<br />
@@ -877,6 +875,7 @@ $2',
 'files'                    => '文件',
 
 # User rights
+'userrights'                       => '用户权限管理', # Not used as normal message but as header for the special page itself
 'userrights-lookup-user'           => '管理用户群组',
 'userrights-user-editname'         => '输入用户名:',
 'editusergroup'                    => '编辑用户群组',
@@ -1205,7 +1204,6 @@ Template:消除歧義',
 'mostcategories'          => '最多分类页面',
 'mostimages'              => '最多链接文件',
 'mostrevisions'           => '最多修订页面',
-'allpages'                => '所有页面',
 'prefixindex'             => '前缀索引',
 'shortpages'              => '短页面',
 'longpages'               => '长页面',
@@ -1239,13 +1237,6 @@ Template:消除歧義',
 'booksources-go'            => '转到',
 'booksources-text'          => '以下是一些网络书店的链接列表，其中可能有您要找的书籍的更多信息:',
 
-'categoriespagetext' => '以下的分类包含页面或媒体。',
-'data'               => '数据',
-'userrights'         => '用户权限管理',
-'groups'             => '用户群组',
-'alphaindexline'     => '$1到$2',
-'version'            => '版本',
-
 # Special:Log
 'specialloguserlabel'  => '用户:',
 'speciallogtitlelabel' => '标题:',
@@ -1259,6 +1250,8 @@ Template:消除歧義',
 'log-title-wildcard'   => '搜寻以这个文字开始的标题',
 
 # Special:Allpages
+'allpages'          => '所有页面',
+'alphaindexline'    => '$1到$2',
 'nextpage'          => '下一页($1)',
 'prevpage'          => '上一页($1)',
 'allpagesfrom'      => '显示从此处开始的页面:',
@@ -2360,6 +2353,7 @@ $3
 'unknown_extension_tag' => '不明的扩展标签 "$1"',
 
 # Special:Version
+'version'                          => '版本', # Not used as normal message but as header for the special page itself
 'version-extensions'               => '已经安装的扩展',
 'version-specialpages'             => '特殊页面',
 'version-parserhooks'              => '语法钩',

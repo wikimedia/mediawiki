@@ -87,8 +87,9 @@ $messages = array(
 'dec'          => 'Des',
 
 # Categories related messages
-'categories'      => 'Kategori Kaca',
-'category_header' => 'Artikel-artikel wonten ing kategori "$1"',
+'categories'         => 'Kategori Kaca',
+'categoriespagetext' => 'Kategori-kategori punika wonten ing wiki.',
+'category_header'    => 'Artikel-artikel wonten ing kategori "$1"',
 
 'about'          => 'Prakawis',
 'cancel'         => 'Batal',
@@ -335,7 +336,6 @@ The [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] length is '''\$7''
 
 # Miscellaneous special pages
 'lonelypages'         => 'Kaca tanpa dijagani',
-'allpages'            => 'Kabèh kaca',
 'prefixindex'         => 'Indeks awalan',
 'deadendpages'        => 'Kaca-kaca buntu (tanpa pranala)',
 'deadendpagestext'    => 'kaca-kaca punika mboten gadhah pranala dumugi pundi mawon wonten ing wiki puniki..',
@@ -346,11 +346,9 @@ The [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] length is '''\$7''
 'ancientpages'        => 'Kaca-kaca langkung sepuh',
 'move'                => 'pindhahen',
 
-'categoriespagetext' => 'Kategori-kategori punika wonten ing wiki.',
-'alphaindexline'     => '$1 tumuju $2',
-'version'            => 'Versi',
-
 # Special:Allpages
+'allpages'          => 'Kabèh kaca',
+'alphaindexline'    => '$1 tumuju $2',
 'allpagesfrom'      => 'Kaca-kaca kawiwitan kanthi:',
 'allarticles'       => 'Kabèh artikel',
 'allinnamespace'    => 'Kabeh kaca ($1 namespace)',
@@ -479,5 +477,8 @@ $1",
 # Auto-summaries
 'autoredircomment' => 'Kaalihaken tumuju [[$1]]',
 'autosumm-new'     => 'Kaca énggal: $1',
+
+# Special:Version
+'version' => 'Versi', # Not used as normal message but as header for the special page itself
 
 );

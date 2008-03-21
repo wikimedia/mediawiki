@@ -167,6 +167,7 @@ $messages = array(
 
 # Categories related messages
 'categories'               => '類',
+'categoriespagetext'       => '下類有頁或媒也。',
 'pagecategories'           => '$1類',
 'category_header'          => '"$1"',
 'subcategories'            => '次類',
@@ -174,7 +175,6 @@ $messages = array(
 'category-empty'           => "''無文也。''",
 'hidden-categories'        => '$1隱類',
 'hidden-category-category' => '隱類', # Name of the category where hidden categories will be listed
-'subcategorycount'         => '門有戶$1。',
 'listingcontinuesabbrev'   => '續',
 
 'mainpagetext'      => "<big>'''媒維基安置矣'''</big>",
@@ -577,7 +577,6 @@ $2',
 'nohistory'           => '此題無誌',
 'revnotfound'         => '查無審',
 'revnotfoundtext'     => '查無舊審，惠核網址。',
-'loadhist'            => '取誌…',
 'currentrev'          => '今審',
 'revisionasof'        => '$1審',
 'previousrevision'    => '←舊',
@@ -586,7 +585,6 @@ $2',
 'cur'                 => '辨今',
 'next'                => '後',
 'last'                => '前',
-'orig'                => '原',
 'page_first'          => '首',
 'page_last'           => '末',
 'histlegend'          => '辨異：擇二孔後，按Enter、或點下鈕以辨之。<br />
@@ -733,6 +731,7 @@ $2',
 'files'                 => '檔',
 
 # User rights
+'userrights'                       => '齋權管', # Not used as normal message but as header for the special page itself
 'userrights-lookup-user'           => '司社',
 'userrights-user-editname'         => '簿名：',
 'editusergroup'                    => '治社',
@@ -989,7 +988,6 @@ $2',
 'mostcategories'          => '跨船',
 'mostimages'              => '名檔',
 'mostrevisions'           => '屢審',
-'allpages'                => '全典',
 'shortpages'              => '短篇',
 'longpages'               => '長言',
 'listusers'               => '點簿',
@@ -1014,13 +1012,6 @@ $2',
 'booksources-go'            => '往',
 'booksources-text'          => '有賈售新舊書，或有助焉。茲列如下：',
 
-'categoriespagetext' => '下類有頁或媒也。',
-'data'               => '訊',
-'userrights'         => '齋權管',
-'groups'             => '齋組',
-'alphaindexline'     => '自$1至$2',
-'version'            => '版',
-
 # Special:Log
 'specialloguserlabel'  => '簿：',
 'speciallogtitlelabel' => '標：',
@@ -1033,6 +1024,8 @@ $2',
 'log-title-wildcard'   => '題以此始者，取之',
 
 # Special:Allpages
+'allpages'          => '全典',
+'alphaindexline'    => '自$1至$2',
 'nextpage'          => '次頁（$1）',
 'prevpage'          => '先頁（$1）',
 'allpagesfrom'      => '始頁：',
@@ -1786,6 +1779,7 @@ $1',
 'unknown_extension_tag' => '未明之擴標「$1」',
 
 # Special:Version
+'version'                          => '版', # Not used as normal message but as header for the special page itself
 'version-extensions'               => '裝展',
 'version-specialpages'             => '奇頁',
 'version-parserhooks'              => '語鈎',

@@ -333,7 +333,6 @@ $messages = array(
 'nextrevision' => '新点个版本→',
 'cur'          => '当前',
 'last'         => '上个',
-'orig'         => '原版',
 'histlegend'   => '选择比较版本：标记要比较个两只版本，回车或者揿页面底里个揿钮。<br /> 图例：(当前) = 搭当前版本有啥两样， (上个) = 搭上个版本有啥两样，小 = 小改动。',
 'deletedrev'   => '[已删]',
 'histfirst'    => '顶早',
@@ -528,7 +527,6 @@ $messages = array(
 'mostcategories'       => '分类顶多个页面',
 'mostimages'           => '链进去顶多个图片',
 'mostrevisions'        => '修订过顶顶多趟数个页面',
-'allpages'             => '全部页面',
 'shortpages'           => '短页面',
 'longpages'            => '长页面',
 'protectedpages'       => '已保护页面',
@@ -544,16 +542,14 @@ $messages = array(
 # Book sources
 'booksources-go' => '转到',
 
-'groups'         => '用户组',
-'alphaindexline' => '$1到$2',
-'version'        => '版本',
-
 # Special:Log
 'specialloguserlabel'  => '用户:',
 'speciallogtitlelabel' => '标题:',
 'log'                  => '记录',
 
 # Special:Allpages
+'allpages'          => '全部页面',
+'alphaindexline'    => '$1到$2',
 'nextpage'          => '下页 ($1)',
 'prevpage'          => '上一页（$1）',
 'allpagesfrom'      => '显示个页面开始于:',
@@ -845,6 +841,9 @@ Variants for Chinese language
 
 # Watchlist editor
 'watchlistedit-normal-title' => '编辑监控列表',
+
+# Special:Version
+'version' => '版本', # Not used as normal message but as header for the special page itself
 
 # Special:Filepath
 'filepath'        => '文件路径',

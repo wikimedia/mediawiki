@@ -115,7 +115,6 @@ $messages = array(
 'subcategories'          => 'Alt kategoriyalar',
 'category-media-header'  => '"$1" kategoriyasındaki media',
 'category-empty'         => "''Bu kategoriyada henez bulunmêêr bir yazı yaki media.''",
-'subcategorycount'       => 'Bu kategoriyada var $1 alt kategoriya.',
 'listingcontinuesabbrev' => '(devam)',
 
 'mainpagetext'      => "<big>'''MediaWiki başarılan kuruldu.'''</big>",
@@ -456,7 +455,6 @@ Sayfanın silmää jurnalı raatlık için yazılêr burada:",
 
 # History pages
 'viewpagelogs'        => 'Bu yaprak için jurnalları göster',
-'loadhist'            => 'Sayfa istoriyası üklener',
 'currentrev'          => 'Şindiki versiya',
 'revisionasof'        => 'Sayfanın $1 datasındaki hali',
 'revision-info'       => '$1; $2 datalı versiya',
@@ -466,7 +464,6 @@ Sayfanın silmää jurnalı raatlık için yazılêr burada:",
 'cur'                 => 'fark',
 'next'                => 'geeriki',
 'last'                => 'bitki',
-'orig'                => 'aslı',
 'page_first'          => 'ilk',
 'page_last'           => 'bitki',
 'histlegend'          => "Fark seçimi: 2 versiyanın angısını isteersiniz karşılaştırmaa, önündeki kutucaa tuşlayıp, enter'a basın yaki tuşlayın butona angısı sayfanın en altında bulunêr.<br />
@@ -621,7 +618,6 @@ Nışannar: (bitki) = şindiki versiyalan aradaki fark,
 'mostcategories'          => 'En çok kategoriyalı sayfalar',
 'mostimages'              => 'En çok kullanılan pätretler',
 'mostrevisions'           => 'Yapraklar ani en çok diiştirildi',
-'allpages'                => 'Hepsi sayfalar',
 'prefixindex'             => 'Prefiks indeks',
 'shortpages'              => 'Kısa sayfalar',
 'longpages'               => 'Uzun sayfalar',
@@ -637,9 +633,6 @@ Nışannar: (bitki) = şindiki versiyalan aradaki fark,
 # Book sources
 'booksources' => 'Kaynak kiyatlar',
 
-'alphaindexline' => '$1den $2e',
-'version'        => 'Versiya',
-
 # Special:Log
 'specialloguserlabel'  => 'Kullanıcı:',
 'speciallogtitlelabel' => 'Yazı adı:',
@@ -647,6 +640,8 @@ Nışannar: (bitki) = şindiki versiyalan aradaki fark,
 'all-logs-page'        => 'Hepsi jurnallar',
 
 # Special:Allpages
+'allpages'       => 'Hepsi sayfalar',
+'alphaindexline' => '$1den $2e',
 'nextpage'       => 'Geeriki sayfa ($1)',
 'prevpage'       => 'İlerki sayfa ($1)',
 'allpagesfrom'   => 'Listaya düzmää başlanılacêk bukvalar:',
@@ -896,5 +891,8 @@ Sadä listadaki êlementlarä (* nışannan çekedän liniyalar) bakılacêk. Li
 'watchlisttools-view' => 'İlgili diişmäkleri göster',
 'watchlisttools-edit' => 'Siir listasını gör hem düzelt',
 'watchlisttools-raw'  => 'Ham siir listasını düz',
+
+# Special:Version
+'version' => 'Versiya', # Not used as normal message but as header for the special page itself
 
 );

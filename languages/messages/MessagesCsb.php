@@ -352,10 +352,8 @@ Jeżlë jes të tuwò bez zmiłkã, le klëkni w swòjim przezérnikù knąpã '
 'templatesused'         => 'Szablónë ùżëti w tim artiklu:',
 
 # History pages
-'loadhist'   => 'Zladënk historëji ny starnë',
 'cur'        => 'aktualnô',
 'last'       => 'pòslédnô',
-'orig'       => 'òriginał',
 'histlegend' => 'Legenda: (aktualnô) = różnice w przërównanim do aktualny wersëje,
 (wczasniészô) = różnice w przërównanim do wczasniészi wersëje, D = drobné edicëje',
 
@@ -498,7 +496,6 @@ Długòta [http://meta.wikimedia.org/wiki/Help:Job_queue rédżi robòtë] je ''
 'unusedimages'      => 'Nie wëzwëskóné òbrôzczi',
 'popularpages'      => 'Nôwidzalszé starnë',
 'wantedpages'       => 'Nônótniészé starnë',
-'allpages'          => 'Wszëtczé starnë',
 'shortpages'        => 'Nôkrótszé starnë',
 'longpages'         => 'Nôdłëgszé starnë',
 'listusers'         => 'Lësta brëkòwników',
@@ -514,16 +511,14 @@ Długòta [http://meta.wikimedia.org/wiki/Help:Job_queue rédżi robòtë] je ''
 # Book sources
 'booksources' => 'Ksążczi',
 
-'data'           => 'Datum',
-'alphaindexline' => '$1 --> $2',
-'version'        => 'Wersëjô',
-
 # Special:Log
 'specialloguserlabel' => 'Brëkòwnik:',
 'log'                 => 'Lodżi',
 'alllogstext'         => 'Sparłãczone registrë wësłónëch lopków, rëmónëch starn, zazychrowaniô, blokòwaniô ë nadôwaniô ùdowierzeniów. Mòżesz zawãżëc wëszłosc òb wëbranié ôrtu registru, miona brëkòwnika abò miona zajimnej dlô ce starnë.',
 
 # Special:Allpages
+'allpages'          => 'Wszëtczé starnë',
+'alphaindexline'    => '$1 --> $2',
 'allpagesfrom'      => 'Starnë naczënające sã na:',
 'allarticles'       => 'Wszëtczé artikle',
 'allinnamespace'    => 'Wszëtczé starnë (w rumie $1)',
@@ -731,5 +726,8 @@ Czej chcesz remôc starnã z lëste ùzéronëch artiklów, klikni ''Òprzestôj
 'watchlisttools-view' => 'Òbaczë wôżnészé zmianë',
 'watchlisttools-edit' => 'Òbaczë a editëjë lëstã ùzérónëch artiklów',
 'watchlisttools-raw'  => 'Editëjë sërą lëstã',
+
+# Special:Version
+'version' => 'Wersëjô', # Not used as normal message but as header for the special page itself
 
 );

@@ -87,11 +87,11 @@ $messages = array(
 'randompage' => 'Tipihaere',
 
 # Miscellaneous special pages
-'allpages'     => 'Ngā whārangi katoa',
 'specialpages' => 'Whārangi motuhake',
 'move'         => 'Nekehia',
 
 # Special:Allpages
+'allpages'       => 'Ngā whārangi katoa',
 'allpagessubmit' => 'Haere',
 
 # Watchlist

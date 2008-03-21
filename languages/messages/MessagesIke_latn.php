@@ -228,7 +228,6 @@ pigivuq qatannguti uikipitia kiinaujaqutiqarvik isuillingaitjapaa. iqtuu suqusiq
 'brokenredirects-delete' => '(nipaqtipaa)',
 
 # Miscellaneous special pages
-'allpages'          => 'sunamittuq mappitaq',
 'listusers'         => 'qatannguti nipi',
 'specialpages'      => 'piji mappitaq',
 'newpages-username' => 'uikipitia atiq:',
@@ -238,12 +237,11 @@ pigivuq qatannguti uikipitia kiinaujaqutiqarvik isuillingaitjapaa. iqtuu suqusiq
 # Book sources
 'booksources-go' => 'aivuq',
 
-'data' => 'nalunaijautit',
-
 # Special:Log
 'log-search-submit' => 'aivuk',
 
 # Special:Allpages
+'allpages'       => 'sunamittuq mappitaq',
 'nextpage'       => 'tagga mappitaq ($1)',
 'allpagesprev'   => 'tunullipaaq',
 'allpagesnext'   => 'tagga',

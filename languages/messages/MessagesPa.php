@@ -434,7 +434,6 @@ $1 ਘੰਟੇ ਵਿੱਚ। ਨੁਕਸਾਨ ਤੋਂ ਬਚਣ ਲਈ, $
 # History pages
 'viewpagelogs'        => 'ਇਹ ਪੇਜ਼ ਲਈ ਲਾਗ ਵੇਖੋ',
 'revnotfound'         => 'ਰੀਵਿਜ਼ਨ ਨਹੀਂ ਲੱਭਿਆ',
-'loadhist'            => 'ਪੇਜ਼ ਅਤੀਤ ਲੋਡ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ',
 'currentrev'          => 'ਮੌਜੂਦਾ ਰੀਵਿਜ਼ਨ',
 'revisionasof'        => '$1 ਦੇ ਰੀਵਿਜ਼ਨ ਵਾਂਗ',
 'previousrevision'    => '←ਪੁਰਾਣਾ ਰੀਵਿਜ਼ਨ',
@@ -443,7 +442,6 @@ $1 ਘੰਟੇ ਵਿੱਚ। ਨੁਕਸਾਨ ਤੋਂ ਬਚਣ ਲਈ, $
 'cur'                 => 'ਮੌਜੂਦਾ',
 'next'                => 'ਅੱਗੇ',
 'last'                => 'ਆਖਰੀ',
-'orig'                => 'ਅਸਲੀ',
 'page_first'          => 'ਪਹਿਲਾਂ',
 'page_last'           => 'ਆਖਰੀ',
 'deletedrev'          => '[ਹਟਾਇਆ]',
@@ -664,7 +662,6 @@ to upload files.',
 'unusedcategories'  => 'ਅਣਵਰਤੀਆਂ ਕੈਟਾਗਰੀਆਂ',
 'unusedimages'      => 'ਅਣਵਰਤੀਆਂ ਫਾਇਲਾਂ',
 'popularpages'      => 'ਪਾਪੂਲਰ ਪੇਜ਼',
-'allpages'          => 'ਸਭ ਪੇਜ਼',
 'listusers'         => 'ਯੂਜ਼ਰ ਲਿਸਟ',
 'specialpages'      => 'ਖਾਸ ਪੇਜ਼',
 'newpages'          => 'ਨਵੇਂ ਪੇਜ਼',
@@ -678,9 +675,6 @@ to upload files.',
 'booksources'    => 'ਕਿਤਾਬ ਸਰੋਤ',
 'booksources-go' => 'ਜਾਓ',
 
-'data'    => 'ਡਾਟਾ',
-'version' => 'ਵਰਜਨ',
-
 # Special:Log
 'specialloguserlabel'  => 'ਯੂਜ਼ਰ:',
 'speciallogtitlelabel' => 'ਟਾਇਟਲ:',
@@ -689,6 +683,7 @@ to upload files.',
 'log-search-submit'    => 'ਜਾਓ',
 
 # Special:Allpages
+'allpages'          => 'ਸਭ ਪੇਜ਼',
 'nextpage'          => 'ਅੱਗੇ ਪੇਜ਼ ($1)',
 'prevpage'          => 'ਪਿੱਛੇ ਪੇਜ਼ ($1)',
 'allarticles'       => 'ਸਭ ਲੇਖ',
@@ -1019,5 +1014,8 @@ to upload files.',
 'watchlistedit-raw-titles'  => 'ਟਾਇਟਲ:',
 'watchlistedit-raw-added'   => '{{PLURAL:$1|1 title was|$1 titles were}} ਸ਼ਾਮਲ:',
 'watchlistedit-raw-removed' => '{{PLURAL:$1|1 title was|$1 titles were}} ਹਟਾਓ:',
+
+# Special:Version
+'version' => 'ਵਰਜਨ', # Not used as normal message but as header for the special page itself
 
 );

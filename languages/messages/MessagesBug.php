@@ -99,15 +99,14 @@ $messages = array(
 'randompage' => 'Halamang rawak',
 
 # Miscellaneous special pages
-'allpages'     => 'Maneng halamang',
 'specialpages' => 'Halamang Istimewa',
 'ancientpages' => 'Artikel talloa',
 'move'         => 'ᨙᨕᨔᨘ',
 'movethispage' => 'ᨙᨕᨔᨘᨀᨗ ᨕᨗᨙᨐᨙᨉ ᨒᨛᨄ',
 
-'alphaindexline' => '$1 ri $2',
-
 # Special:Allpages
+'allpages'       => 'Maneng halamang',
+'alphaindexline' => '$1 ri $2',
 'allpagesfrom'   => 'Mappaitang halamang-halamang rimulai:',
 'allarticles'    => 'Maneng artikel',
 'allinnamespace' => 'Maneng halamang ($1 namespace)',

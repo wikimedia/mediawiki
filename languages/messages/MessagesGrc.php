@@ -356,7 +356,6 @@ $messages = array(
 
 # Miscellaneous special pages
 'ncategories'  => '$1 {{PLURAL:$1|Γένος|Γένη}}',
-'allpages'     => 'Πᾶσαι αἱ δέλτοι',
 'shortpages'   => 'Δέλτοι μικραί',
 'newpages'     => 'Δέλτοι νέαι',
 'move'         => 'κινεῖν',
@@ -365,12 +364,12 @@ $messages = array(
 # Book sources
 'booksources-go' => 'Ἰέναι',
 
-'alphaindexline' => '$1 ἕως $2',
-
 # Special:Log
 'log-search-submit' => 'Ἰέναι',
 
 # Special:Allpages
+'allpages'       => 'Πᾶσαι αἱ δέλτοι',
+'alphaindexline' => '$1 ἕως $2',
 'allpagessubmit' => 'Ἰέναι',
 
 # E-mail user

@@ -235,6 +235,7 @@ $messages = array(
 
 # Categories related messages
 'categories'                     => 'Categoriae',
+'categoriespagetext'             => 'Categoriae sequentes paginas vel fasciculos continent.',
 'pagecategories'                 => '{{PLURAL:$1|Categoria|Categoriae}}',
 'category_header'                => 'Paginae in categoria "$1"',
 'subcategories'                  => 'Subcategoriae',
@@ -242,7 +243,6 @@ $messages = array(
 'category-empty'                 => "''Huic categoriae non sunt paginae vel fasciculi.''",
 'hidden-categories'              => '{{PLURAL:$1|Categoria celata|Categoriae celatae}}',
 'hidden-category-category'       => 'Categoriae celatae', # Name of the category where hidden categories will be listed
-'subcategorycount'               => 'Huic categoriae {{PLURAL:$1|est una subcategoria|sunt $1 subcategoriae}}.',
 'category-subcat-count'          => '{{PLURAL:$2|Huic categoriae est solum una subcategoria.|Huic categoriae {{PLURAL:$1|est haec subcategoria|sunt hae $1 subcategoriae}} ex omnino $2 subcategoriis.}}',
 'category-subcat-count-limited'  => 'Huic categoriae {{PLURAL:$1|est haec subcategoria|sunt hae $1 subcategoriae}}.',
 'category-article-count'         => '{{PLURAL:$2|Huic categoriae est solum una pagina.|Huic categoriae {{PLURAL:$1|est haec pagina|sunt hae $1 paginae}} ex omnino $2 paginis.}}',
@@ -611,7 +611,6 @@ Ille hanc causam dedit: ''$2''",
 'revnotfound'         => 'Emendatio non inventa',
 'revnotfoundtext'     => 'Emendatio quem rogavisti non inventa est. 
 Confirma URL paginae.',
-'loadhist'            => 'Onerans historiam paginae',
 'currentrev'          => 'Emendatio recentissima',
 'revisionasof'        => 'Emendatio ex $1',
 'revision-info'       => 'Emendatio ex $1 ab $2',
@@ -719,6 +718,7 @@ Titulus: (nov) = dissimilis ab forma novissima, (prox) = dissimilis ab forma pro
 'files'                    => 'Fasciculi',
 
 # User rights
+'userrights'                       => 'Usorum potestas', # Not used as normal message but as header for the special page itself
 'editusergroup'                    => 'Greges usorum recensere',
 'editinguser'                      => "Modificare iura usoris '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
 'userrights-available-add'         => 'Potes usores addere ad {{PLURAL:$2|hanc gregem|has greges}}: $1.',
@@ -934,7 +934,6 @@ Hoc aequat fere '''$5''' mutationes per paginam, et '''$6''' visae per mutatione
 'mostcategories'          => 'Paginae plurimis categoriis',
 'mostimages'              => 'Fasciculi maxime annexi',
 'mostrevisions'           => 'Paginae plurimum mutatae',
-'allpages'                => 'Paginae omnes',
 'prefixindex'             => 'Quaerere per praefixa',
 'shortpages'              => 'Paginae breves',
 'longpages'               => 'Paginae longae',
@@ -962,11 +961,6 @@ Hoc aequat fere '''$5''' mutationes per paginam, et '''$6''' visae per mutatione
 'booksources'    => 'Librorum fontes',
 'booksources-go' => 'Ire',
 
-'categoriespagetext' => 'Categoriae sequentes paginas vel fasciculos continent.',
-'userrights'         => 'Usorum potestas',
-'alphaindexline'     => '$1 ad $2',
-'version'            => 'Versio',
-
 # Special:Log
 'specialloguserlabel'  => 'Usor:',
 'speciallogtitlelabel' => 'Titulus:',
@@ -979,6 +973,8 @@ Adspectum graciliorem potes facere modum indicum, nomen usoris, vel paginam peti
 'log-title-wildcard'   => 'Quaerere titulos qui incipiunt litteris',
 
 # Special:Allpages
+'allpages'          => 'Paginae omnes',
+'alphaindexline'    => '$1 ad $2',
 'nextpage'          => 'Pagina proxima ($1)',
 'prevpage'          => 'Pagina superior ($1)',
 'allpagesfrom'      => 'Monstrare paginas ab:',
@@ -1479,6 +1475,7 @@ Quaesumus, adfirma ut iterum hanc paginam crees.",
 'watchlisttools-raw'  => 'Indicem paginarum custoditarum quasi textum inspicere vel recensere',
 
 # Special:Version
+'version'              => 'Versio', # Not used as normal message but as header for the special page itself
 'version-specialpages' => 'Paginae speciales',
 'version-other'        => 'Alia',
 'version-version'      => 'Versio',

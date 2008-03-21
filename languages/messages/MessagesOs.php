@@ -52,11 +52,11 @@ $messages = array(
 'saturday'  => 'Сабат',
 
 # Categories related messages
-'categories'       => 'Категоритæ',
-'pagecategories'   => 'Категоритæ',
-'category_header'  => 'Категори "$1"',
-'subcategories'    => 'Дæлкатегоритæ',
-'subcategorycount' => 'Ацы категорийы мидæг $1 дæлкатегорийы ис.',
+'categories'         => 'Категоритæ',
+'categoriespagetext' => 'Мæнæ ахæм категоритæ ирон Википедийы ис.',
+'pagecategories'     => 'Категоритæ',
+'category_header'    => 'Категори "$1"',
+'subcategories'      => 'Дæлкатегоритæ',
 
 'qbfind'         => 'Агур',
 'qbspecialpages' => 'Сæрмагонд фæрстæ',
@@ -197,7 +197,6 @@ $3',
 'nlinks'       => '$1 æрвитæн(ы)',
 'lonelypages'  => 'Сидзæр фæрстæ',
 'wantedpages'  => 'Хъæугæ фæрстæ',
-'allpages'     => 'Æппæт фæрстæ',
 'shortpages'   => 'Цыбыр фæрстæ',
 'longpages'    => 'Даргъ фæрстæ',
 'listusers'    => 'Архайджыты номхыгъд',
@@ -207,13 +206,12 @@ $3',
 'ancientpages' => 'Зæронддæр фæрстæ',
 'move'         => 'Ном баив',
 
-'categoriespagetext' => 'Мæнæ ахæм категоритæ ирон Википедийы ис.',
-'alphaindexline'     => '$1 (уыдоны ’хсæн цы статьятæ ис, фен) $2',
-
 # Special:Allpages
-'allarticles'  => 'Æппæт статьятæ',
-'allpagesprev' => 'фæстæмæ',
-'allpagesnext' => 'дарддæр',
+'allpages'       => 'Æппæт фæрстæ',
+'alphaindexline' => '$1 (уыдоны ’хсæн цы статьятæ ис, фен) $2',
+'allarticles'    => 'Æппæт статьятæ',
+'allpagesprev'   => 'фæстæмæ',
+'allpagesnext'   => 'дарддæр',
 
 # E-mail user
 'mailnologintext' => 'Фыстæгтæ æрвитынмæ хъуамæ [[Special:Userlogin|системæйæн дæхи бавдисай]] æмæ дæ бæлвырд электронон посты адрис [[Special:Preferences|ныффыссай]].',

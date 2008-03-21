@@ -325,7 +325,6 @@ Hadii aad keydisid, waxaa dhumidoona caddadyadii kan ka dambeeyey.</strong>',
 'currentrevisionlink' => 'Caddadka hada muuqda',
 'next'                => 'Ku xiga',
 'last'                => 'Ugu dambeeyo',
-'orig'                => 'Asal',
 'page_first'          => 'Ugu horeeyo',
 'page_last'           => 'ugu dambeeyo',
 'deletedrev'          => "[la'tirtiray]",
@@ -422,7 +421,6 @@ Iskuday in aad [[Special:Search|karaadiso wikigan]] beyjaj laxiira oo cusub.',
 # Miscellaneous special pages
 'lonelypages'       => 'Boggaga agoonta ah',
 'popularpages'      => 'Boggaga caanka ah',
-'allpages'          => 'Dhamaan boggaga',
 'shortpages'        => 'Boggaga gaagaaban',
 'longpages'         => 'Boggaga dhaadheer',
 'deadendpages'      => 'Boggaga aanan la daba joogin',
@@ -435,12 +433,12 @@ Iskuday in aad [[Special:Search|karaadiso wikigan]] beyjaj laxiira oo cusub.',
 # Book sources
 'booksources-go' => 'Soco',
 
-'alphaindexline' => '$1 ilaa $2',
-
 # Special:Log
 'log-search-submit' => 'Soco',
 
 # Special:Allpages
+'allpages'          => 'Dhamaan boggaga',
+'alphaindexline'    => '$1 ilaa $2',
 'nextpage'          => 'Bogga ku xiga ($1)',
 'prevpage'          => 'Bogga ka horeeyo ($1)',
 'allpagesfrom'      => 'Soosaar boggaga ka bilaawda:',

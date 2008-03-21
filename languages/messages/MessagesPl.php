@@ -1273,8 +1273,6 @@ Długość [http://meta.wikimedia.org/wiki/Help:Job_queue kolejki zadań] to '''
 'notargettext'                    => 'Nie podano strony albo użytkownika, dla których ta operacja ma być wykonana.',
 'pager-newer-n'                   => '{{PLURAL:$1|1 nowszy|$1 nowsze|$1 nowszych}}',
 'pager-older-n'                   => '{{PLURAL:$1|1 starszy|$1 starsze|$1 starszych}}',
-'pager-sort-asc'                  => 'rosnąco',
-'pager-sort-desc'                 => 'malejąco',
 
 # Book sources
 'booksources'               => 'Książki',

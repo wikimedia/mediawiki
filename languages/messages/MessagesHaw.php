@@ -287,7 +287,6 @@ hō‘ike ‘ia i lalo:",
 # Miscellaneous special pages
 'nbytes'            => '$1 {{PLURAL:$1|‘ai|‘ai}}',
 'nmembers'          => '$1 {{PLURAL:$1|lālā|lālā}}',
-'allpages'          => 'Nā ‘ao‘ao loa apau',
 'specialpages'      => 'Nā papa nui',
 'newpages'          => 'Nā ‘ao‘ao hou',
 'newpages-username' => "Inoa mea ho'ohana:",
@@ -295,12 +294,12 @@ hō‘ike ‘ia i lalo:",
 'move'              => 'E ho‘ololi i ka inoa',
 'movethispage'      => "E ho'ololi kēia",
 
-'alphaindexline' => '$1 i $2',
-
 # Special:Log
 'log' => 'Nā mo‘olelo',
 
 # Special:Allpages
+'allpages'       => 'Nā ‘ao‘ao loa apau',
+'alphaindexline' => '$1 i $2',
 'allarticles'    => 'Nā mo‘olelo apau loa',
 'allpagesprev'   => 'Mua',
 'allpagesnext'   => 'Hope',

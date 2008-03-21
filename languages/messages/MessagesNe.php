@@ -247,7 +247,6 @@ $messages = array(
 'previousrevision' => '← पुरानो संशोधन',
 'nextrevision'     => 'नयाँ संशोधन →',
 'next'             => 'अर्को',
-'orig'             => 'असलि',
 'histfirst'        => 'पहिलो',
 'histlast'         => 'अन्तिम',
 
@@ -342,7 +341,6 @@ $messages = array(
 'mostcategories'    => 'सबैभन्दा धेरै श्रेणीहरू भएका लेखहरू',
 'mostimages'        => 'सबैभन्दा बढि लिंक भएको चित्र',
 'mostrevisions'     => 'सबैभन्दा बढी संशोधित लेखहरू',
-'allpages'          => 'सबै पृष्ठहरु',
 'shortpages'        => 'छोटा पृष्ठहरु',
 'protectedpages'    => 'संरक्षित पृष्ठहरु',
 'listusers'         => 'प्रयोगकर्ता सूची',
@@ -359,13 +357,13 @@ $messages = array(
 'booksources-search-legend' => 'किताबका श्रोतहरु खोज्ने',
 'booksources-go'            => 'जाउ',
 
-'alphaindexline' => '$1 लाई $2 मा',
-
 # Special:Log
 'specialloguserlabel'  => 'प्रयोगकर्ता:',
 'speciallogtitlelabel' => 'शिर्षक:',
 
 # Special:Allpages
+'allpages'       => 'सबै पृष्ठहरु',
+'alphaindexline' => '$1 लाई $2 मा',
 'nextpage'       => 'अर्को पृष्ठ ($1)',
 'allpagesfrom'   => 'यहाँदेखि शुरु हुने पृष्ठहरु देखाउनुहोस्:',
 'allarticles'    => 'सबै लेखहरु',
