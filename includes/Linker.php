@@ -92,7 +92,7 @@ class Linker {
 		if ( !empty( $s->page_is_redirect ) ) {
 			# Page is a redirect
 			$colour = 'mw-redirect';
-		} elseif ( $threshold > 0 && $s->page_len < $threshold && Namespace::isContent( $s->page_namespace ) ) {
+		} elseif ( $threshold > 0 && $s->page_len < $threshold && MWNamespace::isContent( $s->page_namespace ) ) {
 			# Page is a stub
 			$colour = 'stub';
 		}
