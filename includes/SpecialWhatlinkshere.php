@@ -74,7 +74,7 @@ class WhatLinksHerePage {
 	 * @private
 	 */
 	function showIndirectLinks( $level, $target, $limit, $from = 0, $back = 0 ) {
-		global $wgOut;
+		global $wgOut, $wgMaxRedirectLinksRetrieved;
 		$fname = 'WhatLinksHerePage::showIndirectLinks';
 		$dbr = wfGetDB( DB_SLAVE );
 		$options = array();
@@ -235,7 +235,7 @@ class WhatLinksHerePage {
 			
 			if ( $row->page_is_redirect ) {
 				if ( $level < 2 ) {
-					$this->showIndirectLinks( $level + 1, $nt, 500 );
+					$this->showIndirectLinks( $level + 1, $nt, $wgMaxRedirectLinksRetrieved );
 				}
 			}
 			$wgOut->addHTML( "</li>\n" );

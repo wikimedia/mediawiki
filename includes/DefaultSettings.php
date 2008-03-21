@@ -2955,3 +2955,9 @@ $wgExceptionHooks = array();
 $wgPagePropLinkInvalidations = array(
 	'hiddencat' => 'categorylinks',
 );
+
+/**
+ * Maximum number of links to a redirect page listed on
+ * Special:Whatlinkshere/RedirectDestination
+ */
+$wgMaxRedirectLinksRetrieved = 500;
