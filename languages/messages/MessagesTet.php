@@ -328,6 +328,7 @@ $messages = array(
 'searchresultshead' => 'Buka',
 
 # User rights
+'userrights'                => "Filak kuana uza-na'in", # Not used as normal message but as header for the special page itself
 'userrights-lookup-user'    => "Filak lubu uza-na'in",
 'userrights-user-editname'  => "Hakerek naran uza-na'in ida-nian:",
 'editusergroup'             => "Filak lubu uza-na'in",
@@ -416,7 +417,6 @@ $messages = array(
 'nlinks'            => '$1 ligasaun',
 'nmembers'          => '$1 membru',
 'nrevisions'        => '$1 versaun',
-'allpages'          => 'Pájina hotu',
 'shortpages'        => 'Pájina badak',
 'longpages'         => 'Pájina naruk',
 'listusers'         => "Lista uza-na'in",
@@ -427,15 +427,12 @@ $messages = array(
 'move'              => 'Book',
 'movethispage'      => "Book pájina ne'e",
 
-'userrights'     => "Filak kuana uza-na'in",
-'groups'         => "Lubu uza-na'in",
-'alphaindexline' => "$1 to'o $2",
-'version'        => 'Versaun',
-
 # Special:Log
 'specialloguserlabel' => "Uza-na'in:",
 
 # Special:Allpages
+'allpages'       => 'Pájina hotu',
+'alphaindexline' => "$1 to'o $2",
 'nextpage'       => 'Pájina oinmai ($1)',
 'allarticles'    => 'Pájina hotu',
 'allpagesnext'   => 'Oinmai',
@@ -624,6 +621,7 @@ $messages = array(
 'watchlisttools-edit' => 'Haree no edita lista hateke',
 
 # Special:Version
+'version'              => 'Versaun', # Not used as normal message but as header for the special page itself
 'version-specialpages' => 'Pájina espesiál',
 'version-other'        => 'Seluk',
 'version-version'      => 'Versaun',

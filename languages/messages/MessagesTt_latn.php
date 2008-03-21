@@ -117,11 +117,11 @@ $messages = array(
 'dec'       => 'Dek',
 
 # Categories related messages
-'categories'       => 'Cíıntıqlar',
-'pagecategories'   => '{{PLURAL:$1|Cíıntıq|Cíıntıqlar}}',
-'category_header'  => '«$1» cíıntığınıñ mäqäläläre',
-'subcategories'    => 'Eçke cíıntıqlar',
-'subcategorycount' => 'Bu cíıntıqnıñ $1 eçke cíıntıq bar.',
+'categories'         => 'Cíıntıqlar',
+'categoriespagetext' => "Bu wiki'dä kiläse cíıntıqlar bar.",
+'pagecategories'     => '{{PLURAL:$1|Cíıntıq|Cíıntıqlar}}',
+'category_header'    => '«$1» cíıntığınıñ mäqäläläre',
+'subcategories'      => 'Eçke cíıntıqlar',
 
 'linkprefix'   => '/^(.*?)([a-zäçğıñöşüA-ZÄÇĞİÑÖŞÜ«„]+)$/sDu',
 'mainpagetext' => 'Wiki programı uñışlı quyıldı.',
@@ -339,12 +339,10 @@ Zínhar, bu bitneñ wağraq kisäklärgä bülü turında uylap qara.",
 'protectedpagewarning' => 'KİSÄTMÄ: Bu bit yaqlanğan ide wä anı idäräçe xoquqı iä bulğan genä keşe üzgärtä ala. Kübrägen [[Project:Bit_yaqlaw_qullanması|bit yaqlaw qullanmasında]] uqıp bula.',
 
 # History pages
-'loadhist'   => 'Bit taríxın yökläw',
 'currentrev' => 'Ağımdağı yurama',
 'cur'        => 'xäzer',
 'next'       => 'kiläse',
 'last'       => 'soñğı',
-'orig'       => 'çığn',
 
 # Diffs
 'difference'              => '(Yuramalar ayırması)',
@@ -473,7 +471,6 @@ säxifägä isem belän [[Special:Userlogin|keräse]].',
 'unusedimages'       => 'Qullanılmağan räsemnär',
 'popularpages'       => 'Ğämäli bitlär',
 'wantedpages'        => 'Kiräkle bitlär',
-'allpages'           => 'Bar bitlär',
 'shortpages'         => 'Qısqa bitlär',
 'longpages'          => 'Ozın bitlär',
 'listusers'          => 'Äğzä isemlege',
@@ -488,10 +485,8 @@ säxifägä isem belän [[Special:Userlogin|keräse]].',
 # Book sources
 'booksources' => 'Kitap çığanağı',
 
-'categoriespagetext' => "Bu wiki'dä kiläse cíıntıqlar bar.",
-'version'            => 'Yurama',
-
 # Special:Allpages
+'allpages' => 'Bar bitlär',
 'nextpage' => 'Kiläse bit ($1)',
 
 # E-mail user
@@ -694,5 +689,8 @@ yä isä saylanğan isem yaraqsız buldı. Başqa isem sayla zínhar.',
 # Special:Newimages
 'ilsubmit' => 'Ezläw',
 'bydate'   => 'waqıt buyınça',
+
+# Special:Version
+'version' => 'Yurama', # Not used as normal message but as header for the special page itself
 
 );

@@ -1540,8 +1540,6 @@ PICT # misc.
 لعمل هذه الخاصية.',
 'pager-newer-n'           => '{{PLURAL:$1|أجدد 1|أجدد $1}}',
 'pager-older-n'           => '{{PLURAL:$1|أقدم 1|أقدم $1}}',
-'pager-sort-asc'          => 'تصاعديا',
-'pager-sort-desc'         => 'تنازليا',
 
 # Book sources
 'booksources'               => 'مصادر كتاب',

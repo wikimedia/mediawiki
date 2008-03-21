@@ -145,12 +145,12 @@ $messages = array(
 
 # Categories related messages
 'categories'             => '{{PLURAL:$1|კატეგორია|კატეგორიები}}',
+'categoriespagetext'     => 'ვიკიპედიაში შემდეგი კატეგორიებია.',
 'pagecategories'         => '{{PLURAL:$1|კატეგორია|კატეგორიები}}',
 'category_header'        => 'სტატიები კატეგორიაში "$1"',
 'subcategories'          => 'ქვეკატეგორიები',
 'category-media-header'  => 'მედია კატეგორიაში "$1"',
 'category-empty'         => "''ეს კატეგორია ამჟამად გვერდებს ან მედიას არ შეიცავს.''",
-'subcategorycount'       => 'ამ კატეგორიაში $1 ქვეკატეგორიაა.',
 'listingcontinuesabbrev' => 'გაგრძ.',
 
 'linkprefix'        => '/^(.*?)(„|«)$/sD',
@@ -612,7 +612,6 @@ $1 საათში.',
 'viewpagelogs'        => 'ამ გვერდისთვის სარეგისტრაციო ჟურნალების ჩვენება',
 'nohistory'           => 'ამ გვერდს განხილვის გვერდი ცარიელი აქვს.',
 'revnotfound'         => 'ცვლილება ვერ ვიპოვეთ',
-'loadhist'            => 'იტვირთება გვერდის ისტორია',
 'currentrev'          => 'მიმდინარე შესწორება',
 'revisionasof'        => '$1-ის ვერსია',
 'previousrevision'    => '←წინა ვერსია',
@@ -621,7 +620,6 @@ $1 საათში.',
 'cur'                 => 'მიმდ.',
 'next'                => 'შემდეგი',
 'last'                => 'ბოლო',
-'orig'                => 'ორიგ',
 'page_first'          => 'პირველი',
 'page_last'           => 'ბოლო',
 'histlegend'          => '<div style="font-size:95%">
@@ -740,6 +738,7 @@ $1 საათში.',
 'files'                    => 'ფაილები',
 
 # User rights
+'userrights'                  => 'მომხმარებელთა უფლებების მართვა', # Not used as normal message but as header for the special page itself
 'userrights-lookup-user'      => 'მომხმარებელთა ჯგუფების მართვა',
 'userrights-user-editname'    => 'მომხმარებლის სახელის შეტანა:',
 'editusergroup'               => 'მომხმარებელთა ჯგუფების რედაქტირება',
@@ -1024,7 +1023,6 @@ The list is used by [[Special:Disambiguations]] to show any pages linking to dis
 'mostcategories'          => 'ყველაზე მეტი კატეგორიის მქონე სტატიები',
 'mostimages'              => 'ყველაზე მეტი ბმულების მქონე სურათები',
 'mostrevisions'           => 'ყველაზე მეტად რედაქტირებული სტატიები',
-'allpages'                => 'ყველა გვერდი',
 'prefixindex'             => 'საძიებელი სიტყვის დასაწყისის მიხედვით',
 'shortpages'              => 'მოკლე გვერდები',
 'longpages'               => 'გრძელი გვერდები',
@@ -1053,13 +1051,6 @@ The list is used by [[Special:Disambiguations]] to show any pages linking to dis
 'booksources-go'            => 'გადასვლა',
 'booksources-text'          => 'ქვემოთ არის ვებ გვერდების ბმულების სია სადაც იყიდება ახალი და ნახმარი წიგნები, და შესაძლოა შეიცავდნენ დამატებით ინფორმაციას წიგნების შესახებ, რომლებსაც ეძებთ:',
 
-'categoriespagetext' => 'ვიკიპედიაში შემდეგი კატეგორიებია.',
-'data'               => 'მონაცემები',
-'userrights'         => 'მომხმარებელთა უფლებების მართვა',
-'groups'             => 'მომხმარებელთა ჯგუფები',
-'alphaindexline'     => '$1-დან $2-მდე',
-'version'            => 'ვერსია',
-
 # Special:Log
 'specialloguserlabel'  => 'მომხმარებელი:',
 'speciallogtitlelabel' => 'სათაური:',
@@ -1070,6 +1061,8 @@ The list is used by [[Special:Disambiguations]] to show any pages linking to dis
 'logempty'             => 'რეზულტატები არ არის სიაში.',
 
 # Special:Allpages
+'allpages'          => 'ყველა გვერდი',
+'alphaindexline'    => '$1-დან $2-მდე',
 'nextpage'          => 'შემდეგი გვერდი ($1)',
 'prevpage'          => 'წინა გვერდი ($1)',
 'allpagesfrom'      => 'გვერდების ჩვენება დაწყებული:',
@@ -1814,6 +1807,7 @@ $1',
 'watchlisttools-edit' => 'კონტროლის სიის ხილვა და რედაქტირება',
 
 # Special:Version
+'version'                  => 'ვერსია', # Not used as normal message but as header for the special page itself
 'version-specialpages'     => 'სპეციალური გვერდები',
 'version-other'            => 'სხვა',
 'version-version'          => 'ვერსია',

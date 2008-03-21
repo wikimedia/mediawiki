@@ -143,7 +143,6 @@ $messages = array(
 'category-empty'           => "''Kategori sa a pa genyen atik andedan li, ni sou-kategori, ni menm yon fichye miltimedya.''",
 'hidden-categories'        => '{{PLURAL:$1|Kategori sere|Kategori sere yo}}',
 'hidden-category-category' => 'Kategori ki kache yo', # Name of the category where hidden categories will be listed
-'subcategorycount'         => 'Genyen {{PLURAL:$1| yon sou-kategori ki liste |$1 sou-kategori ki liste}} anba kategori sa a.',
 'listingcontinuesabbrev'   => '(kontinye)',
 
 'mainpagetext'      => "<big>'''MedyaWiki byen enstale l.'''</big>",
@@ -528,7 +527,6 @@ Mande ou byen si ou ap byen fè kreye li ankò toutbon (gade jounal paj sa a pou
 'mostcategories'          => 'Paj yo ki genyen plis kategori',
 'mostimages'              => 'Plis mare avèk dosye',
 'mostrevisions'           => 'Paj yo ki plis modifye',
-'allpages'                => 'Tout paj yo',
 'prefixindex'             => 'Tout paj yo ak yon prefiks (premye lèt)',
 'shortpages'              => 'Paj kout yo',
 'longpages'               => 'Paj ki long',
@@ -544,9 +542,6 @@ Mande ou byen si ou ap byen fè kreye li ankò toutbon (gade jounal paj sa a pou
 # Book sources
 'booksources' => 'Ouvraj referans yo',
 
-'alphaindexline' => '$1 jiska $2',
-'version'        => 'Vèsyon',
-
 # Special:Log
 'specialloguserlabel'  => 'itilizatè :',
 'speciallogtitlelabel' => 'Tit :',
@@ -554,6 +549,8 @@ Mande ou byen si ou ap byen fè kreye li ankò toutbon (gade jounal paj sa a pou
 'all-logs-page'        => 'Tout jounal yo (istorik yo)',
 
 # Special:Allpages
+'allpages'       => 'Tout paj yo',
+'alphaindexline' => '$1 jiska $2',
 'nextpage'       => 'Paj swivan ($1)',
 'prevpage'       => 'Paj anvan ($1)',
 'allpagesfrom'   => 'Afiche paj yo depi :',
@@ -799,5 +796,8 @@ Nenpòt lòt lyen nan menm lign nan konsidere kòm yon eksèpsyon, i.e. paj kote
 'watchlisttools-view' => 'Lis swivi',
 'watchlisttools-edit' => 'Wè epi modifye tou lis swivi',
 'watchlisttools-raw'  => 'Modifye lis swivi (mòd bazik)',
+
+# Special:Version
+'version' => 'Vèsyon', # Not used as normal message but as header for the special page itself
 
 );

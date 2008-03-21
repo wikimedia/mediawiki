@@ -291,7 +291,6 @@ $messages = array(
 'ncategories'       => '$1 {{PLURAL:$1|categuria|categurie}}',
 'specialpage-empty' => 'Issa pagina hè biota.',
 'popularpages'      => 'Pagine populare',
-'allpages'          => 'Tutte e pagine',
 'shortpages'        => 'Pagine corte',
 'longpages'         => 'Pagine longhe',
 'protectedpages'    => 'Pagine prutette',
@@ -301,15 +300,13 @@ $messages = array(
 'newpages'          => 'Pagine nove',
 'ancientpages'      => 'Pagine vechje',
 
-'groups'         => 'Gruppi di utilizatori',
-'alphaindexline' => 'da $1 à $2',
-'version'        => 'Versione',
-
 # Special:Log
 'speciallogtitlelabel' => 'Titulu:',
 'all-logs-page'        => "Tutte l'azzioni",
 
 # Special:Allpages
+'allpages'          => 'Tutte e pagine',
+'alphaindexline'    => 'da $1 à $2',
 'allpagesfrom'      => 'Mustrà e pagine à parte da:',
 'allarticles'       => "Tutti l'articuli",
 'allinnamespace'    => 'Tutte e pagine di u spaziu $1',
@@ -491,6 +488,9 @@ $messages = array(
 
 # Watchlist editor
 'watchlistedit-raw-titles' => 'Pagine:',
+
+# Special:Version
+'version' => 'Versione', # Not used as normal message but as header for the special page itself
 
 # Special:Filepath
 'filepath-page' => 'Schedariu:',

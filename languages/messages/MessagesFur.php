@@ -135,10 +135,10 @@ $messages = array(
 
 # Categories related messages
 'categories'             => 'Categoriis',
+'categoriespagetext'     => 'Te wiki a esistin lis categoriis ca sot.',
 'pagecategories'         => '{{PLURAL:$1|Categorie|Categoriis}}',
 'category_header'        => 'Vôs inte categorie "$1"',
 'subcategories'          => 'Sot categoriis',
-'subcategorycount'       => 'Cheste categorie e conten {{PLURAL:$1|une sot categorie|$1 sot categoriis}}.',
 'listingcontinuesabbrev' => 'cont.',
 
 'mainpagetext' => "'''MediaWiki e je stade instalade cun sucès.'''",
@@ -606,7 +606,6 @@ The [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] length is '''\$7''
 'mostcategories'          => 'Vôs cul maiôr numar di categoriis',
 'mostimages'              => 'Figuris a cui pontin il maiôr numar di leams',
 'mostrevisions'           => 'Vôs cul maiôr numar di revisions',
-'allpages'                => 'Dutis lis pagjinis',
 'shortpages'              => 'Pagjinis curtis',
 'longpages'               => 'Pagjinis lungjis',
 'deadendpages'            => 'Pagjinis cence usite',
@@ -620,11 +619,6 @@ The [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] length is '''\$7''
 'move'                    => 'Môf',
 'movethispage'            => 'Môf cheste pagjine',
 
-'categoriespagetext' => 'Te wiki a esistin lis categoriis ca sot.',
-'data'               => 'Dâts',
-'alphaindexline'     => 'di $1 a $2',
-'version'            => 'Version',
-
 # Special:Log
 'specialloguserlabel'  => 'Utent:',
 'speciallogtitlelabel' => 'Titul:',
@@ -635,6 +629,8 @@ Tu puedis strenzi la viodude sielzint un gjenar di regjistri, un non utent o la 
 'logempty'             => 'Nissun element corispondint tal regjistri.',
 
 # Special:Allpages
+'allpages'          => 'Dutis lis pagjinis',
+'alphaindexline'    => 'di $1 a $2',
 'nextpage'          => 'Prossime pagjine ($1)',
 'prevpage'          => 'Pagjinis precedentis ($1)',
 'allpagesfrom'      => 'Mostre pagjinis scomençant di:',
@@ -944,5 +940,8 @@ Sielç par plasê un altri non.',
 
 # AJAX search
 'hideresults' => 'Plate risultâts',
+
+# Special:Version
+'version' => 'Version', # Not used as normal message but as header for the special page itself
 
 );

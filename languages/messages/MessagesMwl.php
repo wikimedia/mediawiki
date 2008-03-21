@@ -241,7 +241,6 @@ O registo de eliminação desta página é exibido a seguir, para sua comodidade
 'nbytes'       => '$1 {{PLURAL:$1|byte|bytes}}',
 'nlinks'       => '$1 {{PLURAL:$1|link|links}}',
 'nmembers'     => '$1 {{PLURAL:$1|membro|membros}}',
-'allpages'     => 'Todas las páginas',
 'specialpages' => 'Páginas speciales',
 'newpages'     => 'Nuovas páginas',
 'move'         => 'Mover',
@@ -249,12 +248,12 @@ O registo de eliminação desta página é exibido a seguir, para sua comodidade
 # Book sources
 'booksources' => 'Fontes de lhibros',
 
-'alphaindexline' => '$1 a $2',
-
 # Special:Log
 'log' => 'Registos',
 
 # Special:Allpages
+'allpages'       => 'Todas las páginas',
+'alphaindexline' => '$1 a $2',
 'allarticles'    => 'Todas las páginas',
 'allpagessubmit' => 'Ir',
 

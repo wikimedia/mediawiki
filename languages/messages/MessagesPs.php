@@ -181,6 +181,7 @@ $messages = array(
 
 # Categories related messages
 'categories'               => 'وېشنيزې',
+'categoriespagetext'       => 'په دغه ويکي (wiki) کې همدا لاندينۍ وېشنيزې دي.',
 'pagecategories'           => '{{PLURAL:$1|وېشنيزه|وېشنيزې}}',
 'category_header'          => 'د "$1" په وېشنيزه کې شته مخونه',
 'subcategories'            => 'وړې-وېشنيزې',
@@ -188,7 +189,6 @@ $messages = array(
 'category-empty'           => "''تر اوسه پورې همدا وېشنيزه هېڅ کوم مخ يا کومه رسنيزه دوتنه نلري.''",
 'hidden-categories'        => '{{PLURAL:$1|پټه وېشنيزه|پټې وېشنيزې}}',
 'hidden-category-category' => 'پټې وېشنيزې', # Name of the category where hidden categories will be listed
-'subcategorycount'         => 'په همدې وېشنيزه کې {{PLURAL:$1|يوازې يوه بله وړه-وېشنيزه ده|$1 نورې وړې-وېشنيزې دي}}.',
 'listingcontinuesabbrev'   => 'پرله پسې',
 
 'mainpagetext' => "<big>'''MediaWiki په برياليتوب سره نصب شو.'''</big>",
@@ -729,7 +729,6 @@ $messages = array(
 'mostcategories'          => 'د ګڼ شمېر وېشنيزو لرونکي مخونه',
 'mostimages'              => 'د ډېرو تړنو انځورونه',
 'mostrevisions'           => 'ډېر کتل شوي مخونه',
-'allpages'                => 'ټول مخونه',
 'prefixindex'             => 'د مختاړيو ليکلړ',
 'shortpages'              => 'لنډ مخونه',
 'longpages'               => 'اوږده مخونه',
@@ -752,11 +751,6 @@ $messages = array(
 'booksources-go'            => 'ورځه',
 'booksources-text'          => 'دا لاندې د هغه وېبځايونو د تړنو لړليک دی چېرته چې نوي او زاړه کتابونه پلورل کېږي، او يا هم کېدای شي چې د هغه کتاب په هکله مالومات ولري کوم چې تاسو ورپسې لټېږۍ:',
 
-'categoriespagetext' => 'په دغه ويکي (wiki) کې همدا لاندينۍ وېشنيزې دي.',
-'groups'             => 'د کارونکو ډلې',
-'alphaindexline'     => '$1 نه تر $2 پورې',
-'version'            => 'بڼه',
-
 # Special:Log
 'specialloguserlabel'  => 'کارونکی:',
 'speciallogtitlelabel' => 'سرليک:',
@@ -766,6 +760,8 @@ $messages = array(
 'log-search-submit'    => 'ورځه',
 
 # Special:Allpages
+'allpages'          => 'ټول مخونه',
+'alphaindexline'    => '$1 نه تر $2 پورې',
 'nextpage'          => 'بل مخ ($1)',
 'prevpage'          => 'تېر مخ ($1)',
 'allpagesfrom'      => 'ښکاره دې شي هغه مخونه چې پېلېږي په:',
@@ -1171,6 +1167,9 @@ $1',
 'iranian-calendar-m10' => 'مرغومی',
 'iranian-calendar-m11' => 'سلواغه',
 'iranian-calendar-m12' => 'کب',
+
+# Special:Version
+'version' => 'بڼه', # Not used as normal message but as header for the special page itself
 
 # Special:Filepath
 'filepath-page' => 'دوتنه:',

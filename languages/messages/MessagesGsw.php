@@ -86,10 +86,10 @@ $messages = array(
 
 # Categories related messages
 'categories'             => 'Kategorie',
+'categoriespagetext'     => 'Selli Kategorie gits in dem Wiki:',
 'pagecategories'         => '{{PLURAL:$1|Kategori|Kategorie}}',
 'category_header'        => 'Artikel in de Kategori "$1"',
 'subcategories'          => 'Unterkategorie',
-'subcategorycount'       => 'In sellere Kategori {{PLURAL:$1|isch no ei Unterkategori|sin no $1 Unterkategorie}}.',
 'listingcontinuesabbrev' => '(Forts.)',
 
 'mainpagetext'      => 'MediaWiki isch erfolgrich inschtalliert worre.',
@@ -470,6 +470,7 @@ $2 Zeige auch REDIRECTs   Suche nach $3 $9',
 'files'              => 'Bilder',
 
 # User rights
+'userrights'               => 'Benutzerrechtsverwaltung', # Not used as normal message but as header for the special page itself
 'userrights-lookup-user'   => 'Verwalte Gruppenzugehörigkeit',
 'editusergroup'            => 'Ändere vo Benutzerrächt',
 'editinguser'              => 'Bearbeite vo «$1»',
@@ -570,7 +571,6 @@ Zuer Ziit stöhn '''$7''' Arbete zuem mache aa.",
 'popularpages'            => 'Beliebti Artikel',
 'wantedpages'             => 'Artikel wo fähle',
 'mostlinked'              => 'Meistverlinke Seiten',
-'allpages'                => 'alli Sytene',
 'prefixindex'             => 'Alli Artikle (mit Präfix)',
 'shortpages'              => 'Churzi Artikel',
 'longpages'               => 'Langi Artikel',
@@ -586,16 +586,14 @@ Zuer Ziit stöhn '''$7''' Arbete zuem mache aa.",
 # Book sources
 'booksources' => 'ISBN-Suech',
 
-'categoriespagetext' => 'Selli Kategorie gits in dem Wiki:',
-'userrights'         => 'Benutzerrechtsverwaltung',
-'alphaindexline'     => 'vo $1 bis $2',
-
 # Special:Log
 'alllogstext' => 'Kombinierti Aasicht vo de Protokoll vom Ufelade, Lösche, Schütze, Spärre un de Adminischtratore.
 Si chönnet d Aazeig iischränke wenn Si e Protokoll, e Benutzername odr e Sytename iigän.',
 'logempty'    => 'Kei passendi Yträg gfunde.',
 
 # Special:Allpages
+'allpages'          => 'alli Sytene',
+'alphaindexline'    => 'vo $1 bis $2',
 'nextpage'          => 'Nächscht Syte ($1)',
 'allpagesfrom'      => 'Syte aazeige vo:',
 'allarticles'       => 'alli Artikel',

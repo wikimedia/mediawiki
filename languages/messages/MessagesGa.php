@@ -194,12 +194,12 @@ $messages = array(
 
 # Categories related messages
 'categories'             => 'Catagóirí',
+'categoriespagetext'     => 'Tá na catagóir seo a leanas ann sa vicí.',
 'pagecategories'         => '{{PLURAL:$1|Catagóir|Catagóirí}}',
 'category_header'        => 'Ailt sa chatagóir "$1"',
 'subcategories'          => 'Fo-chatagóirí',
 'category-media-header'  => 'Meáin sa chatagóir "$1"',
 'category-empty'         => "''Níl aon leathanaigh ná méid sa chatagóir ar an am seo.''",
-'subcategorycount'       => 'Tá $1 fo-chatagóirí sa chatagóir seo.',
 'listingcontinuesabbrev' => 'ar lean.',
 
 'mainpagetext'      => 'Suiteáladh an ríomhchlár vicí go rathúil.',
@@ -630,7 +630,6 @@ ghreamú i gcomhad téacs agus é a úsáid níos déanaí.",
 'revnotfound'         => 'Ní bhfuarthas an athrú',
 'revnotfoundtext'     => "Ní bhfuarthas seaneagrán an leathanaigh a d'iarr tú ar.
 Cinntigh an URL a d'úsáid tú chun an leathanach seo a rochtain.",
-'loadhist'            => 'Ag lódáil stáir an leathanaigh',
 'currentrev'          => 'Leagan láithreach',
 'revisionasof'        => 'Leagan ó $1',
 'revision-info'       => 'Leagan mar $1 le $2',
@@ -640,7 +639,6 @@ Cinntigh an URL a d'úsáid tú chun an leathanach seo a rochtain.",
 'cur'                 => 'rth',
 'next'                => 'lns',
 'last'                => 'rmh',
-'orig'                => 'bun',
 'page_first'          => 'Céad',
 'page_last'           => 'deireanach',
 'histlegend'          => 'Chun difríochtaí a roghnú, marcáil na cnaipíní de na heagráin atá tú ag iarraidh comparáid a dhéanamh astu, agus brúigh Iontráil nó an cnaipe ag bun an leathanaigh.<br />
@@ -749,6 +747,7 @@ den am an freastalaí (UTC).',
 'files'                    => 'Comhaid',
 
 # User rights
+'userrights'                 => 'Bainistíocht cearta úsáideora', # Not used as normal message but as header for the special page itself
 'userrights-user-editname'   => 'Iontráil ainm úsáideora:',
 'editusergroup'              => 'Cuir Grúpái Úsáideoirí In Eagar',
 'editinguser'                => 'Ag athrú $1',
@@ -937,7 +936,6 @@ ghnáth tugann sé sin an sprioc-alt "fíor".',
 'popularpages'            => 'Leathanaigh coitianta',
 'wantedcategories'        => 'Catagóirí agus iarraidh ag gabháil leis',
 'wantedpages'             => 'Leathanaigh de dhíth',
-'allpages'                => 'Na leathanaigh go léir',
 'prefixindex'             => 'Innéacs réimír',
 'shortpages'              => 'Leathanaigh gearra',
 'longpages'               => 'Leathanaigh fada',
@@ -965,12 +963,6 @@ chun an gníomh seo a dhéanamh ar.',
 'booksources'               => 'Leabharfhoinsí',
 'booksources-search-legend' => 'Cuardaigh le foinsí leabhar',
 
-'categoriespagetext' => 'Tá na catagóir seo a leanas ann sa vicí.',
-'data'               => 'Sonraí',
-'userrights'         => 'Bainistíocht cearta úsáideora',
-'alphaindexline'     => '$1 go $2',
-'version'            => 'Leagan',
-
 # Special:Log
 'specialloguserlabel'  => 'Úsáideoir:',
 'speciallogtitlelabel' => 'Teideal:',
@@ -981,6 +973,8 @@ agus oibreoirí córais. Is féidir leat an taispeántas a ghéarú - roghnaigh 
 leathanach atá i gceist agat.',
 
 # Special:Allpages
+'allpages'          => 'Na leathanaigh go léir',
+'alphaindexline'    => '$1 go $2',
 'nextpage'          => 'An leathanach a leanas ($1)',
 'prevpage'          => 'Leathanach roimhe sin ($1)',
 'allpagesfrom'      => 'Taispeáin leathanaigh, le tosú ag:',
@@ -1821,5 +1815,8 @@ $1',
 
 # Live preview
 'livepreview-loading' => 'Ag lódáil…',
+
+# Special:Version
+'version' => 'Leagan', # Not used as normal message but as header for the special page itself
 
 );

@@ -1234,8 +1234,6 @@ Tio ne estus enkalkutita en la jena listo.',
 'notargettext'            => 'Vi ne precizigis, kiun paĝon aŭ uzanton priumi.',
 'pager-newer-n'           => '{{PLURAL:$1|pli nova 1|pli novaj $1}}',
 'pager-older-n'           => '{{PLURAL:$1|pli malnova 1|pli malnovaj $1}}',
-'pager-sort-asc'          => 'kreskanta',
-'pager-sort-desc'         => 'malkreskanta',
 
 # Book sources
 'booksources'               => 'Libroservoj',

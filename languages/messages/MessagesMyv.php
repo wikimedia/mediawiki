@@ -128,7 +128,6 @@ $messages = array(
 'category-empty'                => "''Те категориясонть арасть лопат-медият.''",
 'hidden-categories'             => '{{PLURAL:$1|Кекшень категория|Кекшень категорият}}',
 'hidden-category-category'      => 'Кекшень категорият', # Name of the category where hidden categories will be listed
-'subcategorycount'              => 'Те категриясонть $1 {{PLURAL:$1|категорияньалкс|категорияньалкст|категорияньалкстнеде}}.',
 'category-subcat-count-limited' => 'Те категориясонть {{PLURAL:$1|алкс категория|$1 алкс категорият}}.',
 'listingcontinuesabbrev'        => 'поладксозо моли',
 
@@ -461,7 +460,6 @@ $messages = array(
 'cur'                 => 'неень',
 'next'                => 'сыця',
 'last'                => 'меельсе',
-'orig'                => 'одксонь',
 'page_first'          => 'васенце',
 'page_last'           => 'меельсе',
 'histlegend'          => "Версиняь кочкамось: тешксты невтезь верисятнень,  али лепштик Enter плаштиненть.<br />
@@ -738,7 +736,6 @@ $messages = array(
 'mostcategories'          => 'Весемеде ламо категория марто лопат',
 'mostimages'              => 'Весемеде ламо сюлмавкс марто файлат',
 'mostrevisions'           => 'Лопатьне сехте ламо вановксов марто',
-'allpages'                => 'Весе лопат',
 'prefixindex'             => 'Невтевкс валтнень ушоткснень коряс',
 'shortpages'              => 'Нурькине лопат',
 'longpages'               => 'Кувака лопат',
@@ -757,10 +754,6 @@ $messages = array(
 'booksources-search-legend' => 'Вешнемс кинигань лисьмапрят',
 'booksources-go'            => 'Адя',
 
-'groups'         => 'Совиень курот',
-'alphaindexline' => '$1-сь  $2-те',
-'version'        => 'Версия',
-
 # Special:Log
 'specialloguserlabel'  => 'Совиця:',
 'speciallogtitlelabel' => 'Конякс:',
@@ -769,6 +762,8 @@ $messages = array(
 'log-search-submit'    => 'Адя',
 
 # Special:Allpages
+'allpages'       => 'Весе лопат',
+'alphaindexline' => '$1-сь  $2-те',
 'nextpage'       => 'Сы лопа ($1)',
 'prevpage'       => 'Седе икелень лопа ($1)',
 'allpagesfrom'   => 'Невтема лопатьне, ушодовицятне:',
@@ -1169,6 +1164,7 @@ $messages = array(
 'watchlisttools-raw'  => 'Витнедэ начко ваномалопанть',
 
 # Special:Version
+'version'              => 'Версия', # Not used as normal message but as header for the special page itself
 'version-specialpages' => 'Башка тевень лопат',
 'version-version'      => 'Версия',
 

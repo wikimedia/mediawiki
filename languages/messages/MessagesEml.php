@@ -110,12 +110,14 @@ Putiv cuntinuèr ad usèr {{SITENAME}} anonimamèint, o putiv cunnètterv dòp c
 'randompage' => 'Una pàgina a chès',
 
 # Miscellaneous special pages
-'allpages'     => 'Tôt al pàgin',
 'specialpages' => 'Pàgin specièli',
 'move'         => 'Môv',
 
 # Special:Log
 'specialloguserlabel' => 'Utèint:',
+
+# Special:Allpages
+'allpages' => 'Tôt al pàgin',
 
 # Watchlist
 'watchlist'     => 'Al còsi ca guèrd',

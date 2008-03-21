@@ -54,7 +54,6 @@ $messages = array(
 'pagecategories'        => '{{PLURAL:$1|Categoria|Categorias}}',
 'category_header'       => 'Artitgels en la categoria "$1"',
 'category-media-header' => 'Datotecas en la categoria "$1"',
-'subcategorycount'      => 'Questa categoria ha {{PLURAL:$1|ina sutcategoria|$1 sutcategorias}}.',
 
 'about'      => 'Surda',
 'article'    => 'artitgel',
@@ -404,7 +403,6 @@ La lunghezza da la [http://meta.wikimedia.org/wiki/Help:Job_queue job queue]: ''
 'wantedpages'        => 'Artitgels giavischads',
 'mostcategories'     => "Artitgels ch'èn en las pli biaras chategorias",
 'mostrevisions'      => 'Artitgels cun las pli biaras revisiuns',
-'allpages'           => 'tut ils *** artitgels',
 'longpages'          => 'Artitgels lungs',
 'deadendpages'       => 'artitgels senza links interns che mainan anavant',
 'specialpages'       => 'Paginas spezialas',
@@ -416,16 +414,14 @@ La lunghezza da la [http://meta.wikimedia.org/wiki/Help:Job_queue job queue]: ''
 # Book sources
 'booksources' => 'Tschertga da ISBN',
 
-'data'           => 'data',
-'alphaindexline' => '$1 enfin $2',
-'version'        => 'Versiun',
-
 # Special:Log
 'specialloguserlabel'  => 'Utilisader:',
 'speciallogtitlelabel' => 'Titel:',
 'log'                  => 'logs / cudesch da navigaziun',
 
 # Special:Allpages
+'allpages'          => 'tut ils *** artitgels',
+'alphaindexline'    => '$1 enfin $2',
 'nextpage'          => 'proxima pagina ($1)',
 'allpagesfrom'      => 'Mussar paginas naven da:',
 'allarticles'       => 'Tut ils artitgels',
@@ -632,5 +628,8 @@ $1',
 # AJAX search
 'articletitles' => "Artitgels che entschaivan cun ''$1''",
 'hideresults'   => 'zuppar ils resultats',
+
+# Special:Version
+'version' => 'Versiun', # Not used as normal message but as header for the special page itself
 
 );

@@ -1357,8 +1357,6 @@ z čoho '''$2''' (alebo '''$4 %''') {{PLURAL:$2|je správca|sú správcovia}} (p
 na ktorý/-ého chcete aplikovať túto funkciu.',
 'pager-newer-n'           => '{{PLURAL:$1|1 novší|$1 novšie|$1 novších}}',
 'pager-older-n'           => '{{PLURAL:$1|1 starší|$1 staršie|$1 starších}}',
-'pager-sort-asc'          => 'vzostupne',
-'pager-sort-desc'         => 'zostupne',
 
 # Book sources
 'booksources'               => 'Knižné zdroje',

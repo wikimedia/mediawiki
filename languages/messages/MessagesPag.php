@@ -136,7 +136,6 @@ $messages = array(
 'cantcreateaccounttitle' => 'Aga makagawa na account',
 
 # History pages
-'loadhist'  => 'Ilulugan so awaran na bolong',
 'last'      => 'sampot',
 'histfirst' => 'Sankaunaan',
 'histlast'  => 'Sankautetan',
@@ -203,7 +202,6 @@ $messages = array(
 'withoutinterwiki-header' => 'Anggapoy gawin paulad version na arum ran salita so ontombok ran bolobolong:',
 
 # Miscellaneous special pages
-'allpages'       => 'Amin ya bolobolong',
 'shortpages'     => 'Antikey ran bolong',
 'longpages'      => 'Andokoy ran bolong',
 'protectedpages' => 'Iyayagel ran bolobolong',
@@ -218,13 +216,13 @@ $messages = array(
 'booksources-search-legend' => 'Mananap na saray libron pinanlapuan',
 'booksources-go'            => 'Ula',
 
-'alphaindexline' => '$1 anggad $2',
-
 # Special:Log
 'all-logs-page'     => 'Amin ran log',
 'log-search-submit' => 'Ula',
 
 # Special:Allpages
+'allpages'          => 'Amin ya bolobolong',
+'alphaindexline'    => '$1 anggad $2',
 'nextpage'          => 'Ontombok ya page ($1)',
 'allpagesfrom'      => 'Ipanengneng ray bolobolong ya manlapod:',
 'allarticles'       => 'Amin ran bolobolong',

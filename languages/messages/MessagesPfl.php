@@ -112,8 +112,6 @@ $messages = array(
 'specialpages' => 'Schbezialseide',
 'move'         => 'Verschiewe',
 
-'groups' => 'Benutzergrubbe',
-
 # Special:Allpages
 'allpagessubmit' => 'Zeiche',
 

@@ -80,7 +80,6 @@ $messages = array(
 'subcategories'          => 'Subkategorijeh',
 'category-media-header'  => 'Guvvie sïjse karegorije "$1"',
 'category-empty'         => "''Dïhte kategorije sisvege ijje bielieh jallh baalkah.''",
-'subcategorycount'       => 'Dïhte {{PLURAL:$1|lea akte subkategorije|lea $1 subkategorijeh}} gåajkoe dïhte kategorije.',
 'listingcontinuesabbrev' => 'jåar.',
 
 'about'          => 'Bïjre',
@@ -306,7 +305,6 @@ Dov dorje värrhtoedimmie gååvnese bielieh, jallh [[Special:Userlogin|logge s�
 
 # History pages
 'viewpagelogs'        => 'Vuesehte loggeh ihke dïhte bielie',
-'loadhist'            => 'Leedtedh bielie histovrije',
 'currentrev'          => 'Daaletje gïehtjedamme',
 'revisionasof'        => 'Gïehtjedamme ihke $1',
 'revision-info'       => 'Gïehtjedamme raejeste dïhte $1; $2',
@@ -502,7 +500,6 @@ Dov dorje värrhtoedimmie gååvnese bielieh, jallh [[Special:Userlogin|logge s�
 'mostcategories'          => 'Bielieh meatan jïjnje kategorijeh',
 'mostimages'              => 'Jeenjebe lïenghke gåajkoe guvvieh',
 'mostrevisions'           => 'Bielieh meatan jïjnje gïehtjedammeh',
-'allpages'                => 'Gaajhke bielieh',
 'prefixindex'             => 'Prefiikse indeekse',
 'shortpages'              => 'Åenehks bielieh',
 'longpages'               => 'Guhkie bielieh',
@@ -521,11 +518,6 @@ Dov dorje värrhtoedimmie gååvnese bielieh, jallh [[Special:Userlogin|logge s�
 'booksources-search-legend' => 'Ohtsedh ihke gärja gaaltjieh',
 'booksources-go'            => 'Vaadtsa',
 
-'data'           => 'Daata',
-'groups'         => 'Nuhtjien tjïerteh',
-'alphaindexline' => '$1 gåajkoe $2',
-'version'        => 'Låhkoe',
-
 # Special:Log
 'specialloguserlabel'  => 'Nuhtjien:',
 'speciallogtitlelabel' => 'Tiitele:',
@@ -534,6 +526,8 @@ Dov dorje värrhtoedimmie gååvnese bielieh, jallh [[Special:Userlogin|logge s�
 'log-search-submit'    => 'Vaadtsa',
 
 # Special:Allpages
+'allpages'       => 'Gaajhke bielieh',
+'alphaindexline' => '$1 gåajkoe $2',
 'nextpage'       => 'Minngebe bielie ($1)',
 'prevpage'       => 'Övtebe bielie ($1)',
 'allpagesfrom'   => 'Vuesehte bielieh goh aelkedh meatan:',
@@ -898,5 +892,8 @@ $1',
 
 # Core parser functions
 'unknown_extension_tag' => 'Ammes ekshtensjovne lissie "$1"',
+
+# Special:Version
+'version' => 'Låhkoe', # Not used as normal message but as header for the special page itself
 
 );

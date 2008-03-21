@@ -68,13 +68,12 @@ $messages = array(
 'show'            => 'Amostrar',
 
 # Miscellaneous special pages
-'allpages'     => 'Todas las pajinas',
 'ancientpages' => 'Artikolos mas viejos',
 'move'         => 'Trasladar',
 
-'alphaindexline' => '$1 a $2',
-
 # Special:Allpages
+'allpages'       => 'Todas las pajinas',
+'alphaindexline' => '$1 a $2',
 'allarticles'    => 'Todos los artikolos',
 'allinnamespace' => 'Todas las pajinas (espasio $1)',
 'allpagesnext'   => 'Siguiente',

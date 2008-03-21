@@ -197,6 +197,7 @@ $messages = array(
 
 # Categories related messages
 'categories'               => 'Klads',
+'categoriespagetext'       => 'Klads sököl dabinons in vüki at.',
 'pagecategories'           => '{{PLURAL:$1|Klad|Klads}}',
 'category_header'          => 'Pads in klad: „$1“',
 'subcategories'            => 'Donaklads',
@@ -204,7 +205,6 @@ $messages = array(
 'category-empty'           => "''Klad at anu ninädon padis e ragivis nonikis.''",
 'hidden-categories'        => '{{PLURAL:$1|Klad|Klads}} peklänedöl',
 'hidden-category-category' => 'Klads peklänedöl', # Name of the category where hidden categories will be listed
-'subcategorycount'         => 'Dabinon{{PLURAL:$1|&nbsp;donaklad bal|s donaklads $1}} in klad at.',
 'listingcontinuesabbrev'   => '(fov.)',
 
 'mainpagetext'      => "<big>'''El MediaWiki pestiton benosekiko.'''</big>",
@@ -660,7 +660,6 @@ Kod blokama fa el $3 pegivöl binon ''$2''",
 'nohistory'           => 'Pad at no labon redakamajenotemi.',
 'revnotfound'         => 'Fomam no petuvon',
 'revnotfoundtext'     => 'Padafomam büik fa ol peflagöl no petuvon. Kontrololös, begö! ladeti-URL, keli egebol ad logön padi at.',
-'loadhist'            => 'Padajenotem palodon',
 'currentrev'          => 'Fomam anuik',
 'revisionasof'        => 'Fomam dätü $1',
 'revision-info'       => 'Fomam timü $1 fa el $2',
@@ -670,7 +669,6 @@ Kod blokama fa el $3 pegivöl binon ''$2''",
 'cur'                 => 'nuik',
 'next'                => 'sököl',
 'last'                => 'lätik',
-'orig'                => 'rigik',
 'page_first'          => 'balid',
 'page_last'           => 'lätik',
 'histlegend'          => 'Difiväl: välolös fomamis ad paleigodön e gebolös klavi: "Enter" u knopi dono.<br />
@@ -823,6 +821,7 @@ Ninäd peklänedöl at binon ye nog lügolovik guvanes votik vüka at: kanons no
 'files'                 => 'Ragivs',
 
 # User rights
+'userrights'                       => 'Guvam gebanagitätas', # Not used as normal message but as header for the special page itself
 'userrights-lookup-user'           => 'Guvön gebanagrupis',
 'userrights-user-editname'         => 'Penolös gebananemi:',
 'editusergroup'                    => 'Redakön Gebanagrupis',
@@ -1113,7 +1112,6 @@ Lunot [http://meta.wikimedia.org/wiki/Help:Job_queue vobodapoodkeda] binon '''\$
 'mostcategories'          => 'Yegeds labü klads mödikün',
 'mostimages'              => 'Magods suvüno peyümöls',
 'mostrevisions'           => 'Yegeds suvüno perevidöls',
-'allpages'                => 'Pads valik',
 'prefixindex'             => 'Lised ma foyümots',
 'shortpages'              => 'Pads brefik',
 'longpages'               => 'Pads lunik',
@@ -1146,12 +1144,6 @@ Lunot [http://meta.wikimedia.org/wiki/Help:Job_queue vobodapoodkeda] binon '''\$
 'booksources-go'            => 'Getolöd',
 'booksources-text'          => 'Is palisedons bevüresodatopäds votik, kels selons bukis nulik e pegebölis, e kels ba labons nünis pluik dö buks fa ol pasuköls:',
 
-'categoriespagetext' => 'Klads sököl dabinons in vüki at.',
-'userrights'         => 'Guvam gebanagitätas',
-'groups'             => 'Gebanagrups',
-'alphaindexline'     => '$1 jü $2',
-'version'            => 'Fomam',
-
 # Special:Log
 'specialloguserlabel'  => 'Geban:',
 'speciallogtitlelabel' => 'Tiäd:',
@@ -1164,6 +1156,8 @@ Ad brefükam lisedi, kanoy välön lisedasoti, gebananemi, u padi tefik.',
 'log-title-wildcard'   => 'Sukön tiäds primöl me:',
 
 # Special:Allpages
+'allpages'          => 'Pads valik',
+'alphaindexline'    => '$1 jü $2',
 'nextpage'          => 'Pad sököl ($1)',
 'prevpage'          => 'Pad büik ($1)',
 'allpagesfrom'      => 'Jonolöd padis, primöl me:',
@@ -1861,6 +1855,7 @@ Kanol i [[Special:Watchlist/edit|gebön redakametodi kösömik]].',
 'watchlisttools-raw'  => 'Redakön galädalisedi nen fomät',
 
 # Special:Version
+'version'                  => 'Fomam', # Not used as normal message but as header for the special page itself
 'version-specialpages'     => 'Pads patik',
 'version-other'            => 'Votik',
 'version-version'          => 'Fomam',

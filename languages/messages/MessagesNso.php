@@ -104,7 +104,6 @@ $messages = array(
 'subcategories'          => 'Dihlophana',
 'category-media-header'  => 'Matlakala goba difaele go sehlopha "$1"',
 'category-empty'         => "''Sehlopha se, ga se na matlakala goba difaele.''",
-'subcategorycount'       => 'Go nale {{PLURAL:$1|sehlophana|dihlophana tše $1}} sehlopheng se.',
 'listingcontinuesabbrev' => 'tšweletša',
 
 'about'          => 'Mabapi',
@@ -669,7 +668,6 @@ Leka [[Special:Search|go fetleka wikii]] go humana matlakala a mapsha.',
 'mostcategories'          => 'Matlakala a goba le dihlopha tše dintšhi',
 'mostimages'              => 'Dinepe tša go hlomaganya go feta tše dingwe',
 'mostrevisions'           => 'Matlakala a goba le diphetogo tše dintšhi',
-'allpages'                => 'Matlakala ka moka',
 'prefixindex'             => "Tšhupane hlogo(''index'')",
 'shortpages'              => 'Matlakala a makopana',
 'longpages'               => 'Matlakala a matelele',
@@ -686,9 +684,6 @@ Leka [[Special:Search|go fetleka wikii]] go humana matlakala a mapsha.',
 'booksources'    => 'Dipuku tša mothopo',
 'booksources-go' => 'Sepela',
 
-'alphaindexline' => '$1 goya go $2',
-'version'        => "''Version''",
-
 # Special:Log
 'specialloguserlabel'  => 'Mošomiši:',
 'speciallogtitlelabel' => 'Thaetlele:',
@@ -697,6 +692,8 @@ Leka [[Special:Search|go fetleka wikii]] go humana matlakala a mapsha.',
 'log-search-submit'    => 'Sepela',
 
 # Special:Allpages
+'allpages'       => 'Matlakala ka moka',
+'alphaindexline' => '$1 goya go $2',
 'nextpage'       => 'Letlakala lago latela ($1)',
 'prevpage'       => 'Letlakala la go feta ($1)',
 'allpagesfrom'   => 'Bontšha matlakala go thoma go :',
@@ -1068,5 +1065,8 @@ letlakala la seswantšho ge tafola ya metadata e bulwa. Tše dingwe tša di ''fi
 'watchlisttools-view' => 'Nyakoretša diphetogo tša gona',
 'watchlisttools-edit' => 'Lebelela lego fetola lenano la ditlhapetšo',
 'watchlisttools-raw'  => "Fetola lenano le letala (''raw'') la ditlhapetšo",
+
+# Special:Version
+'version' => "''Version''", # Not used as normal message but as header for the special page itself
 
 );

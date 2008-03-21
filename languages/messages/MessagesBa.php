@@ -175,7 +175,6 @@ $messages = array(
 'userstatstext' => "Бөтәһе '''$1''' ҡатнашыусы теркәлгән, шуларҙан '''$2''' ($4 %) хәким бурыстарын үтәй.",
 
 # Miscellaneous special pages
-'allpages'          => 'Бөтә биттәр',
 'listusers'         => 'Ҡатнашыусылар исемлеге',
 'specialpages'      => 'Махсус биттәр',
 'spheading'         => 'Ярҙамсы биттәр',
@@ -183,12 +182,12 @@ $messages = array(
 'ancientpages'      => 'Иң иҫке мәҡәләләр',
 'move'              => 'Яңы исем биреү',
 
-'alphaindexline' => '$1 алып $2 тиклем',
-
 # Special:Log
 'specialloguserlabel' => 'Ҡатнашыусы:',
 
 # Special:Allpages
+'allpages'          => 'Бөтә биттәр',
+'alphaindexline'    => '$1 алып $2 тиклем',
 'allpagesfrom'      => 'Ошондай хәрефтәрҙән башланған биттәрҙе күрһәтергә:',
 'allarticles'       => 'Бөтә мәҡәләләр',
 'allinnamespace'    => 'Бөтә биттәр (Исемдәре «$1» арауығында)',

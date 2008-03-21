@@ -116,7 +116,6 @@ $messages = array(
 'subcategories'          => 'Subguru',
 'category-media-header'  => 'Media ini guru “$1”',
 'category-empty'         => "''Disi guru abi no papira efu media.''",
-'subcategorycount'       => 'Da {{PLURAL:$1|ben wan subguru|ben $1 subguru}} ini disi guru.',
 'listingcontinuesabbrev' => 'pasa',
 
 'about'          => 'Abra',
@@ -423,7 +422,6 @@ Denka abra a ben gu taki yu kontinu kenki disi papira, Fu yu isi ben dyaso ondro
 'cur'                 => 'disi',
 'next'                => 'trawan',
 'last'                => 'bakaseywan',
-'orig'                => 'owrus',
 'page_first'          => 'foswan',
 'page_last'           => 'bakaseywan',
 'histlegend'          => 'Sileksi fu diff: sileksi den tu aluku si nanga gi ENTER efru a box ondro a.<br />
@@ -735,7 +733,6 @@ A gran fu a [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] ben '''$7'
 'mostcategories'          => 'Peprewoysi nanga a pasa guru',
 'mostimages'              => 'Pasateki gefre',
 'mostrevisions'           => 'Peprewoysi nanga a pasa kenki',
-'allpages'                => 'Ala peprewoysi',
 'prefixindex'             => 'Prifiks fu ala peprewoysi',
 'shortpages'              => 'Syartu peprewoysi',
 'longpages'               => 'Langa peprewoysi',
@@ -757,11 +754,6 @@ A gran fu a [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] ben '''$7'
 'booksources'    => 'Bukuinfrumasi',
 'booksources-go' => 'Suku',
 
-'data'           => 'Data',
-'groups'         => 'Masyinguru',
-'alphaindexline' => '$1 te $2',
-'version'        => 'Si fu a softwer',
-
 # Special:Log
 'specialloguserlabel'  => 'Masyin:',
 'speciallogtitlelabel' => 'Papiranen:',
@@ -771,6 +763,8 @@ A gran fu a [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] ben '''$7'
 'log-title-wildcard'   => 'Peprewoysi suku dy nanga disi nen bigin',
 
 # Special:Allpages
+'allpages'          => 'Ala peprewoysi',
+'alphaindexline'    => '$1 te $2',
 'nextpage'          => 'Trawan papira ($1)',
 'prevpage'          => 'Foswan papira ($1)',
 'allpagesfrom'      => 'Libi peprewoysi si fru:',
@@ -1063,5 +1057,8 @@ Ala trawan skaki dy opo se lina ben, ben awroko leki spesyal, leki fru eksempre 
 'watchlisttools-view' => 'Rilivant kenki libi si',
 'watchlisttools-edit' => 'Mi sirey libi si nanga kenki',
 'watchlisttools-raw'  => 'Raw sirey kenki',
+
+# Special:Version
+'version' => 'Si fu a softwer', # Not used as normal message but as header for the special page itself
 
 );

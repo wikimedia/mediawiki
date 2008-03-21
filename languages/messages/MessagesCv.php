@@ -177,7 +177,6 @@ $messages = array(
 'nviews'                  => '$1 хут пăхнă',
 'uncategorizedpages'      => 'Каталогсăр страницăсем',
 'uncategorizedcategories' => 'Каталога кĕртмен категорисем',
-'allpages'                => 'Пěтěм страницăсем',
 'deadendpages'            => 'Ниăçта та урăх ертмен страницăсем',
 'listusers'               => 'Хутшăнакансен списокĕ',
 'specialpages'            => 'Ятарлă страницăсем',
@@ -186,9 +185,8 @@ $messages = array(
 'ancientpages'            => 'Чи кивĕ статьясем',
 'notargettitle'           => 'Тĕллевне кăтартман',
 
-'data' => 'Кун',
-
 # Special:Allpages
+'allpages'     => 'Пěтěм страницăсем',
 'nextpage'     => 'Тепěр страницă ($1)',
 'allpagesnext' => 'Тепěр',
 

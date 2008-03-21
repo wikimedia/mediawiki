@@ -353,9 +353,11 @@ $messages = array(
 'randompage' => 'Willekeurig artikel',
 
 # Miscellaneous special pages
-'allpages'     => "Alle pagina's",
 'specialpages' => "Speciaole pagina's",
 'move'         => 'herneumen',
+
+# Special:Allpages
+'allpages' => "Alle pagina's",
 
 # Watchlist
 'watchlist' => 'Volglieste',

@@ -114,7 +114,6 @@ $messages = array(
 'subcategories'         => 'Mga subkategorya',
 'category-media-header' => 'Mga midya sa kategoryang "$1"',
 'category-empty'        => "''Kasalukuyang walang artikulo o midya ang kategoryang ito.''",
-'subcategorycount'      => 'Mayroong {{PLURAL:$1|isang subkategorya|$1 subkategorya}} sa kategoryang ito.',
 
 'mainpagetext'      => "<big>'''Matagumpay na ininstala ang MediaWiki.'''</big>",
 'mainpagedocfooter' => "Silipin ang [http://meta.wikimedia.org/wiki/Help:Contents User's Guide] para sa kaalaman sa paggamit ng wiking ''software''.
@@ -433,7 +432,6 @@ upang makapagkarga ng talaksan.',
 
 # Miscellaneous special pages
 'lonelypages'        => 'Mga inulilang pahina',
-'allpages'           => 'Lahat ng pahina',
 'shortpages'         => 'Mga maiikling pahina',
 'longpages'          => 'Mga mahahabang pahina',
 'specialpages'       => 'Mga natatanging pahina',
@@ -444,6 +442,9 @@ upang makapagkarga ng talaksan.',
 'ancientpages'       => 'Mga pinakalumang pahina',
 'move'               => 'Ilipat',
 'movethispage'       => 'Ilipat itong pahina',
+
+# Special:Allpages
+'allpages' => 'Lahat ng pahina',
 
 # Watchlist
 'watchlist'     => 'Bantayan Ko',

@@ -173,7 +173,6 @@ $messages = array(
 'subcategories'          => 'Underkategoryen',
 'category-media-header'  => 'Media yn kategory "$1"',
 'category-empty'         => "''Dizze kategory befettet gjin siden of media.''",
-'subcategorycount'       => 'Der {{PLURAL:$1|is ien ûnderkategory|binne $1 ûnderkategoryen}} yn dizze kategory.',
 'listingcontinuesabbrev' => 'mear',
 
 'mainpagetext'      => 'Wiki-programma goed installearre.',
@@ -565,7 +564,6 @@ Betink oft it gaadlik is dat jo dizze side fierder bewurkje. Foar jo geriif stie
 'revnotfound'         => 'Ferzje net fûn',
 'revnotfoundtext'     => "De âlde ferzje fan dizze side dêr't jo om frege hawwe, is der net.
 Gean nei of de keppeling dy jo brûkt hawwe wol goed is.",
-'loadhist'            => 'Sideskiednis ...',
 'currentrev'          => 'Dizze ferzje',
 'revisionasof'        => 'Ferzje op $1',
 'revision-info'       => 'Ferzje op $1 fan $2',
@@ -575,7 +573,6 @@ Gean nei of de keppeling dy jo brûkt hawwe wol goed is.",
 'cur'                 => 'no',
 'next'                => 'dan',
 'last'                => 'doe',
-'orig'                => 'ea',
 'page_first'          => 'earste',
 'page_last'           => 'lêste',
 'histlegend'          => "Utlis: (no) = ferskil mei de side sa't dy no is,
@@ -841,7 +838,6 @@ de twadde trochferwizing, wat it "echte" doel wêze moat.',
 'mostcategories'          => 'Siden mei de measte kategoryen',
 'mostimages'              => 'Meast brûkte ôfbyldings',
 'mostrevisions'           => 'Siden mei de measte bewurkings',
-'allpages'                => 'Alle titels',
 'prefixindex'             => 'Alle siden neffens foarheaksel',
 'shortpages'              => 'Koarte siden',
 'longpages'               => 'Lange siden',
@@ -863,9 +859,6 @@ an ôfbyld makke hawwe kinne. Dan wurde se noch brûke, mar stean al in dizze li
 # Book sources
 'booksources' => 'Boekynformaasje',
 
-'alphaindexline' => "$1 oan't $2",
-'version'        => 'Programmatuerferzje',
-
 # Special:Log
 'specialloguserlabel'  => 'Brûker:',
 'speciallogtitlelabel' => 'Sidenamme:',
@@ -873,6 +866,8 @@ an ôfbyld makke hawwe kinne. Dan wurde se noch brûke, mar stean al in dizze li
 'all-logs-page'        => 'Alle lochboeken',
 
 # Special:Allpages
+'allpages'       => 'Alle titels',
+'alphaindexline' => "$1 oan't $2",
 'nextpage'       => 'Folgjende side ($1)',
 'prevpage'       => 'Foargeande side ($1)',
 'allpagesfrom'   => 'Siden sjen litte, te begjinnen mei:',
@@ -1237,5 +1232,8 @@ Alle folgjende links dy't op deselde rigel steane, wurde behannele as útsûnder
 'watchlisttools-view' => 'Folchlist besjen',
 'watchlisttools-edit' => 'Folchlist besjen en bewurkje',
 'watchlisttools-raw'  => 'Rûge folchlist bewurkje',
+
+# Special:Version
+'version' => 'Programmatuerferzje', # Not used as normal message but as header for the special page itself
 
 );

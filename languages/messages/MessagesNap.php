@@ -68,10 +68,10 @@ $messages = array(
 'dec'       => 'dic',
 
 # Categories related messages
-'categories'       => '{{PLURAL:$1|Categurìa|Categurìe}}',
-'category_header'  => 'Paggene rìnt\'a categurìa "$1"',
-'subcategories'    => 'Categurìe secunnarie',
-'subcategorycount' => "Ce {{PLURAL:$1|sta n'ata categurìa|stanno ate $1 categurìe}} rìnt'a chésta categurìa.",
+'categories'         => '{{PLURAL:$1|Categurìa|Categurìe}}',
+'categoriespagetext' => "Lista cumpleta d\"e categurie presente ncopp' 'o sito.",
+'category_header'    => 'Paggene rìnt\'a categurìa "$1"',
+'subcategories'      => 'Categurìe secunnarie',
 
 'about'          => 'Nfromma',
 'article'        => 'Articulo',
@@ -281,7 +281,6 @@ Putite cuntinuà a ausà {{SITENAME}} comme n'utente senza nomme, o si nò putit
 'nlinks'       => '$1 {{PLURAL:$1|cullegamiento|cullegamiente}}',
 'popularpages' => "Paggene cchiù 'speziunate",
 'wantedpages'  => 'Paggene cchiù addemannate',
-'allpages'     => "Tutte 'e ppaggene",
 'shortpages'   => 'Paggene curte',
 'longpages'    => 'Paggene cchiú longhe',
 'specialpages' => 'Paggene speciale',
@@ -289,9 +288,8 @@ Putite cuntinuà a ausà {{SITENAME}} comme n'utente senza nomme, o si nò putit
 'move'         => 'Spusta',
 'movethispage' => 'Spusta chesta paggena',
 
-'categoriespagetext' => "Lista cumpleta d\"e categurie presente ncopp' 'o sito.",
-
 # Special:Allpages
+'allpages'       => "Tutte 'e ppaggene",
 'allarticles'    => "Tutt' 'e vvoce",
 'allinnamespace' => "Tutt' 'e ppaggene d&#39;&#39;o namespace $1",
 

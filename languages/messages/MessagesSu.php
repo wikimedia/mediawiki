@@ -138,6 +138,7 @@ $messages = array(
 
 # Categories related messages
 'categories'                     => 'Kategori',
+'categoriespagetext'             => 'Kategori-kategori di handap ieu aya na wiki.',
 'pagecategories'                 => '{{PLURAL:$1|Kategori|Kategori}}',
 'category_header'                => 'Artikel-artikel na kategori "$1"',
 'subcategories'                  => 'Subkategori',
@@ -145,7 +146,6 @@ $messages = array(
 'category-empty'                 => "''Kategori ieu, ayeuna teu ngabogaan artikel atawa gambar.''",
 'hidden-categories'              => '{{PLURAL:$1|Kategori nyumput|Kategori nyumput}}',
 'hidden-category-category'       => 'Kategori nu nyarumput', # Name of the category where hidden categories will be listed
-'subcategorycount'               => 'Aya $1 subkategori na kategori ieu.',
 'category-subcat-count'          => '{{PLURAL:$2|Ieu kategori ngan boga subkategori di handap.|Kategori ieu ngawengku {{PLURAL:$1|subkategori|$1 subkategori}} ti $2.}}',
 'category-subcat-count-limited'  => 'Ieu kategori ngawengku {{PLURAL:$1|subkategori|$1 subkategori}}.',
 'category-article-count'         => '{{PLURAL:$2|Ieu kategori ngan ngawengku nu di handap.|{{PLURAL:$1|kaca|$1 kaca}} ti $2 di handap asup kana ieu kategori.}}',
@@ -620,7 +620,6 @@ Alesanana $3 cenah ''$2''.",
 'revnotfound'         => 'Révisi teu kapanggih',
 'revnotfoundtext'     => 'Révisi heubeul kaca nu dipénta ku anjeun teu bisa kapanggih.
 Please check the URL you used to access this page.',
-'loadhist'            => 'Keur ngamuat jujutan kaca',
 'currentrev'          => 'Révisi kiwari',
 'revisionasof'        => 'Révisi nurutkeun $1',
 'revision-info'       => 'Révisi per $1; $2',
@@ -630,7 +629,6 @@ Please check the URL you used to access this page.',
 'cur'                 => 'kiw',
 'next'                => 'salajengna',
 'last'                => 'ahir',
-'orig'                => 'asli',
 'page_first'          => 'mimiti',
 'page_last'           => 'tung-tung',
 'histlegend'          => 'Pilihan béda: tandaan wadah buleud vérsina pikeun ngabandingkeun sarta pencét énter atawa tombol di handap.<br />
@@ -802,6 +800,7 @@ $2 Daptarkeun alihan &nbsp; Sungsi $3 $9',
 'files'                    => 'Koropak',
 
 # User rights
+'userrights'                       => 'Manajemén hak pamaké', # Not used as normal message but as header for the special page itself
 'userrights-lookup-user'           => 'Atur gorombolan pamaké',
 'userrights-user-editname'         => 'Asupkeun landihan:',
 'editusergroup'                    => 'Édit Golongan Pamaké',
@@ -1098,7 +1097,6 @@ Jumlah-jamléh geus aya '''\$3''' kaca ulasan sarta '''\$4''' éditan ti saprak 
 'mostcategories'          => 'Artikel nu paling loba ngandung kategori',
 'mostimages'              => 'Nu panglobana numbu ka gambar',
 'mostrevisions'           => 'Artikel nu pangmindengna dirévisi',
-'allpages'                => 'Sadaya kaca',
 'prefixindex'             => 'Daftar kaca maké awalan',
 'shortpages'              => 'Kaca-kaca parondok',
 'longpages'               => 'Kaca-kaca paranjang',
@@ -1132,13 +1130,6 @@ Jumlah-jamléh geus aya '''\$3''' kaca ulasan sarta '''\$4''' éditan ti saprak 
 'booksources-go'            => 'Jung',
 'booksources-text'          => 'Di handap ieu ngabéréndélkeun tumbu ka loka-loka nu ngical buku, boh nu anyar atawa loakan, nu sugan uninga kana buku anu nuju dipilari:',
 
-'categoriespagetext' => 'Kategori-kategori di handap ieu aya na wiki.',
-'data'               => 'Data',
-'userrights'         => 'Manajemén hak pamaké',
-'groups'             => 'Gorombolan pamaké',
-'alphaindexline'     => '$1 ka $2',
-'version'            => 'Vérsi',
-
 # Special:Log
 'specialloguserlabel'  => 'Pamaké:',
 'speciallogtitlelabel' => 'Judul:',
@@ -1151,6 +1142,8 @@ Jumlah-jamléh geus aya '''\$3''' kaca ulasan sarta '''\$4''' éditan ti saprak 
 'log-title-wildcard'   => 'Téangan judul nu dimimitian ku tulisan ieu',
 
 # Special:Allpages
+'allpages'          => 'Sadaya kaca',
+'alphaindexline'    => '$1 ka $2',
 'nextpage'          => 'Kaca salajengna ($1)',
 'prevpage'          => 'Kaca saméméhna ($1)',
 'allpagesfrom'      => 'Pintonkeun kaca ti mimiti:',
@@ -2049,6 +2042,7 @@ Coba ku sawangan normal.',
 'unknown_extension_tag' => 'Tag éksténsi "$1" teu dipikawanoh',
 
 # Special:Version
+'version'                          => 'Vérsi', # Not used as normal message but as header for the special page itself
 'version-extensions'               => 'Éksténsi nu diinstal',
 'version-specialpages'             => 'Kaca husus',
 'version-variables'                => 'Variabel',

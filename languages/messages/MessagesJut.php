@@ -120,7 +120,6 @@ $messages = array(
 'category-empty'           => "''Denne klynge endeholter før øjeblikket æ verke sider æller medie-gøret.''",
 'hidden-categories'        => '{{PLURAL:$1|Skjult klynge|Skjulte klynger}}',
 'hidden-category-category' => 'Skjulte klynger', # Name of the category where hidden categories will be listed
-'subcategorycount'         => 'Der er $1 {{PLURAL:$1|underklynge|underklynger}} i denne klynge.',
 'listingcontinuesabbrev'   => 'førtgøte',
 
 'mainpagetext'      => 'MediaWiki er nu installeret.',
@@ -576,7 +575,6 @@ hersenenge, (førge) = førskel til den førge hersenenge, l = lile til mendre �
 'mostcategories'          => 'Mest brugte sider',
 'mostimages'              => 'Mest brugte gøret',
 'mostrevisions'           => 'Sider ve de fleste ændrenger',
-'allpages'                => 'Åle ertikler',
 'prefixindex'             => 'Åle sider (ve førgøret)',
 'shortpages'              => 'Kårte ertikler',
 'longpages'               => 'Långe ertikler',
@@ -592,9 +590,6 @@ hersenenge, (førge) = førskel til den førge hersenenge, l = lile til mendre �
 # Book sources
 'booksources' => 'Boĝkelder',
 
-'alphaindexline' => '$1 til $2',
-'version'        => "Informasje MediaWiki'm",
-
 # Special:Log
 'specialloguserlabel'  => 'Bruger:',
 'speciallogtitlelabel' => 'Skrevselenge:',
@@ -602,6 +597,8 @@ hersenenge, (førge) = førskel til den førge hersenenge, l = lile til mendre �
 'all-logs-page'        => 'Åle loglister',
 
 # Special:Allpages
+'allpages'       => 'Åle ertikler',
+'alphaindexline' => '$1 til $2',
 'nextpage'       => 'Næste side ($1)',
 'prevpage'       => 'Førge side ($1)',
 'allpagesfrom'   => 'Ves sider startende frå: $1',
@@ -835,5 +832,8 @@ Kun endholtet åf æ liste (lenjer startende ve *) bliver brugt. Den første hen
 'watchlisttools-view' => "Se ændrede sider i'n åvervågnengsliste",
 'watchlisttools-edit' => 'Redigær åvervågnengsliste',
 'watchlisttools-raw'  => 'Redigær rå åvervågnengsliste',
+
+# Special:Version
+'version' => "Informasje MediaWiki'm", # Not used as normal message but as header for the special page itself
 
 );

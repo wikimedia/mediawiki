@@ -119,6 +119,7 @@ $messages = array(
 'nbytes'       => '{{PLURAL:$1|ун октет|$1 октець}}',
 'specialpages' => 'Сервичий',
 
+# Special:Allpages
 'alphaindexline' => '$1 пынэ ла $2',
 
 # Watchlist

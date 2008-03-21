@@ -46,11 +46,11 @@ $messages = array(
 'dec'       => 'ޑިސެމްބަރ',
 
 # Categories related messages
-'categories'       => 'ގިސްމުތައް',
-'category_header'  => 'ގިސްމު "$1" ގައިވާ މަޒުމޫނުތައް',
-'subcategories'    => 'ކުދިގިސްމުތައް',
-'category-empty'   => "''މި ގިސްމުގައި އެއްވެއސް ސަފްހާ އެއް އަދި އެއްވެސް ފައިލެއް ނުހިމެނެއެވެ.''",
-'subcategorycount' => 'މި ގިސްމު ގައި $1 ކުދިގިސްމު ވެއެވެ.',
+'categories'         => 'ގިސްމުތައް',
+'categoriespagetext' => 'ތިރީގައި މިވާ ގިސްމުތައް ވިކީ ގައި މައުޖޫދުވެގެން ވެއެވެ.',
+'category_header'    => 'ގިސްމު "$1" ގައިވާ މަޒުމޫނުތައް',
+'subcategories'      => 'ކުދިގިސްމުތައް',
+'category-empty'     => "''މި ގިސްމުގައި އެއްވެއސް ސަފްހާ އެއް އަދި އެއްވެސް ފައިލެއް ނުހިމެނެއެވެ.''",
 
 'about'         => 'ތާރަފު',
 'article'       => 'ފިހުރިސްތު ޞަފްޙާ',
@@ -225,6 +225,7 @@ $messages = array(
 'files'          => 'ފައިލުތައް',
 
 # User rights
+'userrights'               => 'މެންބަރުގެ ހައްގުތަކުގެ އިންތިޒާމް', # Not used as normal message but as header for the special page itself
 'userrights-user-editname' => 'މެންބަރުނަން ލިޔުއްވާ:',
 
 # Recent changes
@@ -268,7 +269,6 @@ $messages = array(
 'unusedimages'     => 'ބޭނުންނުކުރެވޭ ފައިލުތައް',
 'wantedcategories' => 'ބޭނުންފުޅުވާ ގިސްމުތައް',
 'wantedpages'      => 'ބޭނުންފުޅުވާ ޞަފްޙާތައް',
-'allpages'         => 'ހުރިހާ ޞަފްޙާތައް',
 'shortpages'       => 'ކުރު ޞަފްޙާތައް',
 'specialpages'     => 'ހާއްސަ ޞަފްޙާތައް',
 'spheading'        => 'ހުރިހާ މެންބަރުންނަށް ހާއްސަ ޞަފްޙާތައް',
@@ -279,11 +279,8 @@ $messages = array(
 # Book sources
 'booksources' => 'ފޮތްތަކުގެ މަސްދަރުތައް',
 
-'categoriespagetext' => 'ތިރީގައި މިވާ ގިސްމުތައް ވިކީ ގައި މައުޖޫދުވެގެން ވެއެވެ.',
-'userrights'         => 'މެންބަރުގެ ހައްގުތަކުގެ އިންތިޒާމް',
-'version'            => 'ނުސްހާ ނަމްބަރު',
-
 # Special:Allpages
+'allpages'       => 'ހުރިހާ ޞަފްޙާތައް',
 'allarticles'    => 'ހުރިހާ މަޒުމޫނުތައް',
 'allinnamespace' => 'ހުރިހާ ޞަފްޙާތައް (ނުތުގު $1 ގައިވާ)',
 'allpagesprev'   => 'ކުރީގެ',
@@ -392,5 +389,8 @@ $messages = array(
 
 # action=purge
 'confirm_purge_button' => 'ރަނގަޅު',
+
+# Special:Version
+'version' => 'ނުސްހާ ނަމްބަރު', # Not used as normal message but as header for the special page itself
 
 );

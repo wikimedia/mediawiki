@@ -479,12 +479,12 @@ $messages = array(
 
 # Categories related messages
 'categories'             => 'Санаттар',
+'categoriespagetext'     => 'Осында уикидегі барлық санаттарының тізімі беріліп тұр.',
 'pagecategories'         => '{{PLURAL:$1|Санат|Санаттар}}',
 'category_header'        => '«$1» санатындағы беттер',
 'subcategories'          => 'Санатшалар',
 'category-media-header'  => '«$1» санатындағы таспалар',
 'category-empty'         => "''Бұл санатта ағымда еш бет не таспа жоқ.''",
-'subcategorycount'       => 'Бұл санатта {{PLURAL:$1|бір|$1}} санатша бар.',
 'listingcontinuesabbrev' => '(жалғ.)',
 
 'mainpagetext'      => "<big>'''МедиаУики бағдарламасы сәтті орнатылды.'''</big>",
@@ -1006,7 +1006,6 @@ $3 келтірілген себебі: ''$2''",
 'nohistory'           => 'Осы беттінің нұсқалар тарихы жоқ.',
 'revnotfound'         => 'Нұсқа табылмады',
 'revnotfoundtext'     => 'Осы сұранысқан беттің ескі нұсқасы табылған жоқ. Осы бетті ашуға пайдаланған URL жайын қайта тексеріп шығыңыз.',
-'loadhist'            => 'Бет тарихы жүктелуде',
 'currentrev'          => 'Ағымдық нұсқасы',
 'revisionasof'        => '$1 кезіндегі нұсқасы',
 'revision-info'       => '$1 кезіндегі $2 жасаған нұсқасы',
@@ -1016,7 +1015,6 @@ $3 келтірілген себебі: ''$2''",
 'cur'                 => 'ағым.',
 'next'                => 'кел.',
 'last'                => 'соң.',
-'orig'                => 'түпн.',
 'page_first'          => 'алғашқысына',
 'page_last'           => 'соңғысына',
 'histlegend'          => 'Айырмасын бөлектеу: салыстырамын деген нұсқаларды айырып-қосқышпен белгілеп және де <Enter> пернесін басыңыз, немесе астындағы батырманы нұқыңыз.<br />
@@ -1204,6 +1202,7 @@ $3 келтірілген себебі: ''$2''",
 'files'                    => 'Файлдар',
 
 # User rights
+'userrights'                       => 'Қатысушылар құқықтарын реттеу', # Not used as normal message but as header for the special page itself
 'userrights-lookup-user'           => 'Қатысушы топтарын реттеу',
 'userrights-user-editname'         => 'Қатысушы атын енгізіңіз:',
 'editusergroup'                    => 'Қатысушы топтарын өңдеу',
@@ -1524,7 +1523,6 @@ $3 келтірілген себебі: ''$2''",
 'mostcategories'          => 'Ең көп санаты бар беттер',
 'mostimages'              => 'Ең көп пайдаланылған суреттер',
 'mostrevisions'           => 'Ең көп түзетілген беттер',
-'allpages'                => 'Барлық беттер',
 'prefixindex'             => 'Атау бастауы тізімі',
 'shortpages'              => 'Ең қысқа беттер',
 'longpages'               => 'Ең ұзын беттер',
@@ -1561,13 +1559,6 @@ URL жайына тікелей сілтеуі мүмкін. Сондықтан,
 'booksources-text'          => 'Төменде жаңа және қолданған кітаптар сататынтораптарының сілтемелері тізімделген.
 Бұл тораптарда ізделген кітаптар туралы былайғы ақпарат болуға мүмкін.',
 
-'categoriespagetext' => 'Осында уикидегі барлық санаттарының тізімі беріліп тұр.',
-'data'               => 'Деректер',
-'userrights'         => 'Қатысушылар құқықтарын реттеу',
-'groups'             => 'Қатысушы топтары',
-'alphaindexline'     => '$1 — $2',
-'version'            => 'Жүйе нұсқасы',
-
 # Special:Log
 'specialloguserlabel'  => 'Қатысушы:',
 'speciallogtitlelabel' => 'Атау:',
@@ -1581,6 +1572,8 @@ URL жайына тікелей сілтеуі мүмкін. Сондықтан,
 'log-title-wildcard'   => 'Мынадай мәтіннең басталытын атаулардан іздеу',
 
 # Special:Allpages
+'allpages'          => 'Барлық беттер',
+'alphaindexline'    => '$1 — $2',
 'nextpage'          => 'Келесі бетке ($1)',
 'prevpage'          => 'Алдыңғы бетке ($1)',
 'allpagesfrom'      => 'Мына беттен бастап көрсету:',
@@ -2752,6 +2745,9 @@ $1',
 
 # Core parser functions
 'unknown_extension_tag' => 'Танылмаған кеңейтпе белгісі «$1»',
+
+# Special:Version
+'version' => 'Жүйе нұсқасы', # Not used as normal message but as header for the special page itself
 
 # Special:Filepath
 'filepath'         => 'Файл орналасуы',

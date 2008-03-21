@@ -67,11 +67,11 @@ $messages = array(
 'randompage' => 'Paġna kwalunkwe',
 
 # Miscellaneous special pages
-'allpages'     => 'Il-paġni kollha',
 'specialpages' => 'Paġni speċjali',
 'move'         => 'Mexxi',
 
-'version' => 'Verżjoni',
+# Special:Allpages
+'allpages' => 'Il-paġni kollha',
 
 # E-mail user
 'emailuser' => 'Ibgħat e-mail lil dan l-utent',
@@ -97,5 +97,8 @@ $messages = array(
 
 # Namespace 8 related
 'allmessages' => 'Il-messaġġi kollha tas-sistema',
+
+# Special:Version
+'version' => 'Verżjoni', # Not used as normal message but as header for the special page itself
 
 );

@@ -73,7 +73,6 @@ $messages = array(
 'subcategories'         => 'Amatabi',
 'category-media-header' => 'Mediya eziri mu ttuluba lya "$1"',
 'category-empty'        => "''Ettuluba lino temuli mpapula oba mediya.''",
-'subcategorycount'      => 'Ettuluba lino lirina {{PLURAL:$1|ettabi limu|amatabi $1}}.',
 
 'about'          => 'Okutangaaza',
 'newwindow'      => '(bijjira mu kadirisa kapya)',
@@ -364,7 +363,6 @@ oba ku gano agali ku lupapula luno.<br />
 # Miscellaneous special pages
 'nbytes'            => '{{PLURAL:$1|bayiti|bayiti}} $1',
 'nmembers'          => '{{PLURAL:$1|memba|bamemba}} $1',
-'allpages'          => 'Empapula zonna',
 'specialpages'      => "Empapula ez'enjawulo",
 'newpages'          => 'Empapula empya',
 'newpages-username' => "Ery'obwa memba:",
@@ -373,13 +371,13 @@ oba ku gano agali ku lupapula luno.<br />
 # Book sources
 'booksources-go' => 'Nona',
 
-'alphaindexline' => 'okuva ku $1 kutuuka ku $2',
-
 # Special:Log
 'specialloguserlabel' => 'Memba:',
 'log'                 => "Empapula ez'ebyafaayo eby'emirimu egitaligimu",
 
 # Special:Allpages
+'allpages'          => 'Empapula zonna',
+'alphaindexline'    => 'okuva ku $1 kutuuka ku $2',
 'allpagesfrom'      => 'Laga empapula okuva ku:',
 'allarticles'       => 'Empapula zonna',
 'allinnamespace'    => 'Empapula zonna (mu kkunngaanizo erya $1)',

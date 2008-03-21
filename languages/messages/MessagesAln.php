@@ -492,9 +492,8 @@ Muneni me [[$1|fillu një artikull]] me kët titull.
 'specialpages' => 'Faqet speciale',
 'move'         => 'Zhvendose',
 
-'alphaindexline' => '$1 deri në $2',
-
 # Special:Allpages
+'alphaindexline' => '$1 deri në $2',
 'allpagessubmit' => 'Shko',
 
 # Watchlist

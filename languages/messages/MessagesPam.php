@@ -163,7 +163,6 @@ Subukan me ing [[Special:Search|searching on the wiki]] para kareng bayung bulun
 'withoutinterwiki' => 'Bulung a yalang suglung kareng aliwang amanu',
 
 # Miscellaneous special pages
-'allpages'         => 'Deng eganaganang bulung',
 'shortpages'       => 'Mangakuyad a bulung',
 'longpages'        => 'Mangakabang bulung',
 'deadendpagestext' => 'E la makatuglung kareng aliwang bulung king wiking iti deng bulung a makatuki.',
@@ -177,13 +176,13 @@ Subukan me ing [[Special:Search|searching on the wiki]] para kareng bayung bulun
 'booksources-go'            => 'Sige',
 'booksources-text'          => 'Makabili la king lalam deng suglung kareng aliwang karinan o site a mamisaling librung bayu at megamit na, at mapalyaring atin la muring aliwang informaciun kareng librung paintunan mu.',
 
-'alphaindexline' => '$1 papuntang $2',
-
 # Special:Log
 'alllogstext' => 'Piyabeng talatag da ring pamanyampa, pamaglako, proteksyun, pamanyabat, at sysop pamangamittala.
 Malyari meng kitiran ing panimanman o akakit, kapamilatan ning pamamili ning nung sanu ing pamangamittala.',
 
 # Special:Allpages
+'allpages'          => 'Deng eganaganang bulung',
+'alphaindexline'    => '$1 papuntang $2',
 'allpagesfrom'      => 'Ipakit la reng bulung manibat:',
 'allarticles'       => 'Deng eganaganang artikulu',
 'allinnamespace'    => 'Deng eganaganang bulung ($1 lagyungpilatan)',

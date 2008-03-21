@@ -92,13 +92,15 @@ $messages = array(
 
 # Miscellaneous special pages
 'popularpages' => 'Nyɛw les plus consultées',
-'allpages'     => 'Nyɛw bɛɛ',
 'specialpages' => 'Nyɛw kɛrɛnkɛrɛnnen',
 'spheading'    => 'Nyɛw kɛrɛnkɛrɛnnen',
 'newpages'     => 'Nyɛw kura',
 'ancientpages' => 'Nyɛw les plus anciens',
 'move'         => 'telun',
 'movethispage' => 'Nyɛ telun',
+
+# Special:Allpages
+'allpages' => 'Nyɛw bɛɛ',
 
 # Watchlist
 'watch'         => 'Tulomajɔ',

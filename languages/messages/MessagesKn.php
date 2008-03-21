@@ -127,12 +127,12 @@ $messages = array(
 'dec'           => 'ಡಿಸೆಂಬರ್',
 
 # Categories related messages
-'categories'       => '{{PLURAL:$1|ವರ್ಗ|ವರ್ಗಗಳು}}',
-'pagecategories'   => '{{PLURAL:$1|ವರ್ಗ|ವರ್ಗಗಳು}}',
-'category_header'  => '"$1" ವರ್ಗದಲ್ಲಿರುವ ಲೇಖನಗಳು',
-'subcategories'    => 'ಉಪವರ್ಗಗಳು',
-'category-empty'   => "''ಈ ವರ್ಗದಲ್ಲಿ ಸದ್ಯದಲ್ಲಿ ಯಾವುದೇ ಪುಟಗಳಾಗಲಿ ಅಥವ ಚಿತ್ರಗಳಾಗಲಿ ಇಲ್ಲ.''",
-'subcategorycount' => 'ಒಟ್ಟು $1 ಉಪವಿಭಾಗಗಳು ಈ ವರ್ಗದಡಿ ಇವೆ.',
+'categories'         => '{{PLURAL:$1|ವರ್ಗ|ವರ್ಗಗಳು}}',
+'categoriespagetext' => 'ವಿಕಿಯಲ್ಲಿ ಈ ಕೆಳಗಿನ ವರ್ಗಗಳಿವೆ',
+'pagecategories'     => '{{PLURAL:$1|ವರ್ಗ|ವರ್ಗಗಳು}}',
+'category_header'    => '"$1" ವರ್ಗದಲ್ಲಿರುವ ಲೇಖನಗಳು',
+'subcategories'      => 'ಉಪವರ್ಗಗಳು',
+'category-empty'     => "''ಈ ವರ್ಗದಲ್ಲಿ ಸದ್ಯದಲ್ಲಿ ಯಾವುದೇ ಪುಟಗಳಾಗಲಿ ಅಥವ ಚಿತ್ರಗಳಾಗಲಿ ಇಲ್ಲ.''",
 
 'mainpagetext'      => 'ವಿಕಿ ತಂತ್ರಾಂಶವನ್ನು ಯಶಸ್ವಿಯಾಗಿ ಅನುಸ್ಥಾಪಿಸಲಾಯಿತು.',
 'mainpagedocfooter' => 'ವಿಕಿ ತಂತ್ರಾಂಶವನ್ನು ಬಳಸುವ ಬಗ್ಗೆ ಮಾಹಿತಿಗೆ [http://meta.wikimedia.org/wiki/Help:Contents ಬಳಕೆದಾರರಿಗೆ ನಿರ್ದೇಶನ ಪುಟ] ನೋಡಿ.
@@ -586,7 +586,6 @@ $1',
 'mostcategories'          => 'ಅತ್ಯಂತ ಹೆಚ್ಚು ವರ್ಗಗಳನ್ನು ಹೊಂದಿರುವ ಪುಟಗಳು',
 'mostimages'              => 'ಅತ್ಯಂತ ಹೆಚ್ಚು ಸಂಪರ್ಕಗಳನ್ನು ಹೊಂದಿರುವ ಚಿತ್ರಗಳು',
 'mostrevisions'           => 'ಅತ್ಯಂತ ಹೆಚ್ಚು ಬದಲಾವಣೆಗಳಾಗಿವು ಪುಟಗಳು',
-'allpages'                => 'ಎಲ್ಲ ಪುಟಗಳು',
 'shortpages'              => 'ಪುಟ್ಟ ಪುಟಗಳು',
 'longpages'               => 'ಉದ್ದನೆಯ ಪುಟಗಳು',
 'deadendpages'            => 'ಕೊನೆಯಂಚಿನ ಪುಟಗಳು',
@@ -604,16 +603,13 @@ $1',
 # Book sources
 'booksources' => 'ಪುಸ್ತಕಗಳ ಮೂಲ',
 
-'categoriespagetext' => 'ವಿಕಿಯಲ್ಲಿ ಈ ಕೆಳಗಿನ ವರ್ಗಗಳಿವೆ',
-'isbn'               => 'ಐಎಸ್ಬಿಎನ್',
-'alphaindexline'     => '$1 ಇಂದ $2',
-'version'            => 'ಆವೃತ್ತಿ',
-
 # Special:Log
 'specialloguserlabel'  => 'ಸದಸ್ಯ:',
 'speciallogtitlelabel' => 'ಶೀರ್ಷಿಕೆ:',
 
 # Special:Allpages
+'allpages'       => 'ಎಲ್ಲ ಪುಟಗಳು',
+'alphaindexline' => '$1 ಇಂದ $2',
 'nextpage'       => 'ಮುಂದಿನ ಪುಟ ($1)',
 'prevpage'       => 'ಹಿಂದಿನ ಪುಟ ($1)',
 'allarticles'    => 'ಎಲ್ಲ ಲೇಖನಗಳು',
@@ -852,5 +848,8 @@ $1',
 
 # Watchlist editor
 'watchlistedit-noitems' => 'ನಿಮ್ಮ ವೀಕ್ಷಣಾಪಟ್ಟಿಯಲ್ಲಿ ಯಾವುದೂ ಪುಟಗಳಿಲ್ಲ.',
+
+# Special:Version
+'version' => 'ಆವೃತ್ತಿ', # Not used as normal message but as header for the special page itself
 
 );

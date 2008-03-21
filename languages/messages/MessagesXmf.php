@@ -81,7 +81,6 @@ $messages = array(
 'subcategories'          => 'ქვეკატეგორიალეფ',
 'category-media-header'  => 'მედია კატეგორიას "$1"',
 'category-empty'         => "''თენა კატეგორიას ვა რენა გვერდეფ დო მედია''",
-'subcategorycount'       => 'თე კატეგორიას $1 ქვეკატეგორია რე.',
 'listingcontinuesabbrev' => 'გინძარ.',
 
 'about'          => '-შენი',
@@ -223,7 +222,6 @@ $messages = array(
 'previousrevision' => '←ჯვეშ ვერსია',
 'nextrevision'     => 'უკულ ვერსია→',
 'last'             => 'ბოლო',
-'orig'             => 'ორიგ',
 'page_first'       => 'პირველი',
 'page_last'        => 'ბოლო',
 'histfirst'        => 'პირველი',
@@ -312,7 +310,6 @@ $messages = array(
 'mostlinked'              => 'გვერდეფ, ნამუდგა არძას ბრალ ბმულეფ უღუნთ',
 'mostlinkedcategories'    => 'კატეგორიეფ, ნამუდგა არძას ბრალ ბმულეფ უღუნთ',
 'mostcategories'          => 'სტატიეფ, ნამუდგა არძას ბრალ კატეგორიეფ უღუნთ',
-'allpages'                => 'არძა გვერდ',
 'shortpages'              => 'ჭიჭე გვერდეფ',
 'longpages'               => 'გინძე გვერდეფ',
 'specialpages'            => 'სპეციალურ გვერდეფ',
@@ -321,9 +318,6 @@ $messages = array(
 'move'                    => 'გინოღალა',
 'movethispage'            => 'თე გვერდიშ გინოღალა',
 
-'alphaindexline' => '$1-იშე $2-შა',
-'version'        => 'ვერსია',
-
 # Special:Log
 'specialloguserlabel'  => 'ხვარებელ:',
 'speciallogtitlelabel' => 'სათაურ:',
@@ -331,6 +325,8 @@ $messages = array(
 'all-logs-page'        => 'ირ ჟურნალ',
 
 # Special:Allpages
+'allpages'       => 'არძა გვერდ',
+'alphaindexline' => '$1-იშე $2-შა',
 'nextpage'       => 'უკულ გვერდ ($1)',
 'prevpage'       => 'წოხლენ გვერდ ($1)',
 'allpagesfrom'   => 'გვერდეფიშ ძირაფა დოჭყაფულ:',
@@ -471,5 +467,8 @@ $messages = array(
 
 # Watchlist editing tools
 'watchlisttools-edit' => 'კონტროლიშ გვერდეფიშ ძირაფა დო რედაქტირება',
+
+# Special:Version
+'version' => 'ვერსია', # Not used as normal message but as header for the special page itself
 
 );

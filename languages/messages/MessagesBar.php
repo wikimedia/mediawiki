@@ -64,7 +64,6 @@ $messages = array(
 'watchthisupload' => 'De Seitn beobachtn',
 
 # Miscellaneous special pages
-'allpages'     => 'Alle Seitn',
 'newpages'     => 'Neie Seitn',
 'ancientpages' => 'Scho länger nimma bearbate Artikel',
 'move'         => 'vaschiam',
@@ -73,6 +72,7 @@ $messages = array(
 'all-logs-page' => 'Alle Logbiacha',
 
 # Special:Allpages
+'allpages'          => 'Alle Seitn',
 'allarticles'       => 'Alle Seitn',
 'allinnamespace'    => 'Alle Seitn (Namensraum: $1)',
 'allnotinnamespace' => 'Alle Seitn (net im $1 Namensraum)',

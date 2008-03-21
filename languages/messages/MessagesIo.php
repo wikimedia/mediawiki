@@ -104,12 +104,11 @@ $messages = array(
 'dec'           => 'dec',
 
 # Categories related messages
-'categories'       => 'Kategorii',
-'pagecategories'   => '{{PLURAL:$1|Kategorio|Kategorii}}',
-'category_header'  => 'Artikli en kategorio "$1"',
-'subcategories'    => 'Subkategorii',
-'category-empty'   => "''Nuntempe existas nula pagini en ita kategorio.''",
-'subcategorycount' => 'Esas {{PLURAL:$1|1 subkategorio|$1 subkategorii}} en ica kategorio.',
+'categories'      => 'Kategorii',
+'pagecategories'  => '{{PLURAL:$1|Kategorio|Kategorii}}',
+'category_header' => 'Artikli en kategorio "$1"',
+'subcategories'   => 'Subkategorii',
+'category-empty'  => "''Nuntempe existas nula pagini en ita kategorio.''",
 
 'mainpagetext' => "<big>'''MediaWiki instalesis sucese.'''</big>",
 
@@ -384,7 +383,6 @@ Publikigante vua skribajo hike, vu asertas ke olu skribesis da vu ipsa o kopiesi
 'nohistory'       => 'Ne esas redakto-historio por ica pagino.',
 'revnotfound'     => 'Versiono ne trovita',
 'revnotfoundtext' => "L' anciena versiono di la pagino, quan vu demandis, ne povis trovesar. <br>Voluntez kontrolar la URL quan vu uzis por acesar a ca pagino.",
-'loadhist'        => 'Kargante la versionaro dil pagino',
 'currentrev'      => 'Nuna versiono',
 'revisionasof'    => 'Versiono ye $1',
 'cur'             => 'nuna',
@@ -551,7 +549,6 @@ Publikigante vua skribajo hike, vu asertas ke olu skribesis da vu ipsa o kopiesi
 'unusedimages'     => 'Neuzata imaji',
 'popularpages'     => 'Populara pagini',
 'wantedpages'      => 'Dezirata pagini',
-'allpages'         => 'Omna pagini',
 'shortpages'       => 'Kurta pagini',
 'longpages'        => 'Longa pagini',
 'deadendpages'     => 'Pagini sen ekiraji',
@@ -569,14 +566,13 @@ Publikigante vua skribajo hike, vu asertas ke olu skribesis da vu ipsa o kopiesi
 # Book sources
 'booksources' => 'Fonti di libri',
 
-'alphaindexline' => '$1 til $2',
-'version'        => 'Versiono',
-
 # Special:Log
 'specialloguserlabel'  => 'Uzero:',
 'speciallogtitlelabel' => 'Titulo:',
 
 # Special:Allpages
+'allpages'          => 'Omna pagini',
+'alphaindexline'    => '$1 til $2',
 'nextpage'          => 'Sequanta pagino ($1)',
 'allarticles'       => 'Omna pagini',
 'allinnamespace'    => 'Omna pagini (nomaro $1)',
@@ -857,5 +853,8 @@ Voluntez selektar altra nomo.',
 
 # Watchlist editor
 'watchlistedit-raw-titles' => 'Tituli:',
+
+# Special:Version
+'version' => 'Versiono', # Not used as normal message but as header for the special page itself
 
 );

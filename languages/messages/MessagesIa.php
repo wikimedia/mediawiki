@@ -274,13 +274,11 @@ Considera fragmentar le pagina in sectiones minor.',
 'revnotfound'     => 'Revision non trovate',
 'revnotfoundtext' => 'Impossibile trovar le version anterior del pagina que tu ha demandate.
 Verifica le URL que tu ha usate pro accessar iste pagina.',
-'loadhist'        => 'Carga del chronologia del pagina',
 'currentrev'      => 'Revision currente',
 'revisionasof'    => 'Revision de $1',
 'cur'             => 'actu',
 'next'            => 'sequ',
 'last'            => 'prec',
-'orig'            => 'orig',
 'histlegend'      => 'Legenda: (actu) = differentia del version actual,
 (prec) = differentia con le version precedente, M = modification minor',
 
@@ -477,7 +475,6 @@ al qual le prime redirection deberea referer se.',
 'unusedimages'     => 'Imagines non usate',
 'popularpages'     => 'Paginas popular',
 'wantedpages'      => 'Paginas plus demandate',
-'allpages'         => 'Tote le paginas',
 'shortpages'       => 'Paginas curte',
 'longpages'        => 'Paginas longe',
 'listusers'        => 'Lista de usatores',
@@ -495,6 +492,9 @@ executar iste function.',
 
 # Book sources
 'booksources' => 'Fornitores de libros',
+
+# Special:Allpages
+'allpages' => 'Tote le paginas',
 
 # E-mail user
 'mailnologin'     => 'Necun adresse de invio',

@@ -81,10 +81,10 @@ $messages = array(
 
 # Categories related messages
 'categories'             => '{{PLURAL:$1|زمرہ|زمرہ جات}}',
+'categoriespagetext'     => 'مندرجہ ذیل زمرہ جات اس وکی میں موجود ہیں۔',
 'pagecategories'         => '{{PLURAL:$1|زمرہ|زمرہ جات}}',
 'category_header'        => 'زمرہ "$1" میں مضامین',
 'subcategories'          => 'ذیلی ذمرہ جات',
-'subcategorycount'       => 'اس زمرے  {{PLURAL:$1|کا ایک ذیلی زمرہ ہے|کے $1 ذیلی زمرہ جات ہیں}}۔',
 'listingcontinuesabbrev' => '۔جاری',
 
 'mainpagetext' => "<big>'''میڈیاوکی کو کامیابی سے چالو کردیا گیا ہے۔.'''</big>",
@@ -332,6 +332,7 @@ $messages = array(
 'files'             => 'فائلیں',
 
 # User rights
+'userrights'               => 'صارف کے حقوق کا انتظام', # Not used as normal message but as header for the special page itself
 'userrights-user-editname' => 'اسمِ رکنیت داخل کریں:',
 
 'group-bot-member' => 'خودکار صارف',
@@ -476,7 +477,6 @@ $messages = array(
 'mostcategories'          => 'سب سے زیادہ زمرہ جات والے مضامین',
 'mostimages'              => 'سب سے زیادہ استعمال کردہ تصاویر',
 'mostrevisions'           => 'زیادہ تجدید نظر کیے جانے والے صفحات',
-'allpages'                => 'تمام صفحات',
 'shortpages'              => 'چھوٹے صفحات',
 'longpages'               => 'طویل ترین صفحات',
 'deadendpages'            => 'مردہ صفحات',
@@ -491,16 +491,13 @@ $messages = array(
 # Book sources
 'booksources' => 'کتابی وسائل',
 
-'categoriespagetext' => 'مندرجہ ذیل زمرہ جات اس وکی میں موجود ہیں۔',
-'userrights'         => 'صارف کے حقوق کا انتظام',
-'version'            => 'ورژن',
-
 # Special:Log
 'specialloguserlabel'  => 'صارف:',
 'speciallogtitlelabel' => 'عنوان:',
 'log'                  => 'نوشتہ جات',
 
 # Special:Allpages
+'allpages'       => 'تمام صفحات',
 'nextpage'       => 'اگلا صفحہ ($1)',
 'prevpage'       => 'پچھلا صفحہ ($1)',
 'allpagesfrom'   => 'مطلوبہ حرف شروع ہونے والے صفحات کی نمائش:',
@@ -687,5 +684,8 @@ $messages = array(
 'autosumm-blank'   => 'تمام مندرجات حذف',
 'autoredircomment' => '[[$1]] سے رجوع مکرر',
 'autosumm-new'     => 'نیا صفحہ: $1',
+
+# Special:Version
+'version' => 'ورژن', # Not used as normal message but as header for the special page itself
 
 );

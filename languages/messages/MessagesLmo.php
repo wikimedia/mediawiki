@@ -339,7 +339,6 @@ Spiegazziún di símbui: (cur) = difərenza cun la versiún curénta, (ültima) 
 'mostcategories'          => 'Articui cun püssè categurii',
 'mostimages'              => 'Püssè ligaa a imagin',
 'mostrevisions'           => 'Articui cun püssè revisiún',
-'allpages'                => 'Tücc i pagin',
 'prefixindex'             => 'Pagin cul nóm che cumencja par...',
 'shortpages'              => 'Pagin püssee curt',
 'longpages'               => 'Pagin püssè luunch',
@@ -354,14 +353,13 @@ Spiegazziún di símbui: (cur) = difərenza cun la versiún curénta, (ültima) 
 # Book sources
 'booksources' => 'Surgeent librari',
 
-'version' => 'Versiun',
-
 # Special:Log
 'specialloguserlabel'  => 'Üteent:',
 'speciallogtitlelabel' => 'Titul:',
 'logempty'             => "El log l'è vöj.",
 
 # Special:Allpages
+'allpages'       => 'Tücc i pagin',
 'allpagesfrom'   => 'Famm vedè i pagin a partì de:',
 'allarticles'    => 'Tütt i vus',
 'allpagesprev'   => 'Precedent',
@@ -518,6 +516,9 @@ Te riçevaree un mesacc cun deent un ligamm specjal; ti duvaree clicaa sül liga
 
 # Auto-summaries
 'autosumm-blank' => 'Pagina svujada',
+
+# Special:Version
+'version' => 'Versiun', # Not used as normal message but as header for the special page itself
 
 # Special:Filepath
 'filepath' => 'Percuurz daj archivi',

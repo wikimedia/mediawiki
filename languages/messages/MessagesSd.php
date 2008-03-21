@@ -68,13 +68,11 @@ $messages = array(
 'allowemail'     => 'ٻين يُوزرس کان ايندڙ برق ٽپال بحال ڪريو',
 
 # Miscellaneous special pages
-'allpages'     => 'سڀ صفحا',
 'ancientpages' => 'قديم ترين صفحا',
 'move'         => 'چوريو',
 
-'data' => 'اعداد',
-
 # Special:Allpages
+'allpages'       => 'سڀ صفحا',
 'allpagesfrom'   => 'ھتان شروع ٿيندڙ صفحا نمايو',
 'allarticles'    => 'سمورا مضمون',
 'allpagesprev'   => 'اڳوڻو',

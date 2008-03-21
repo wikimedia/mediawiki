@@ -76,7 +76,6 @@ $messages = array(
 'subcategories'          => 'Vijamii',
 'category-media-header'  => 'Picha, video, na sauti katika jamii  "$1"',
 'category-empty'         => "''Jamii hii haina ukurasa, picha, video, wala sauti yoyote.''",
-'subcategorycount'       => 'Kuna {{PLURAL:$1|kijamii kimoja|vijamii $1}} chini ya jamii hii.',
 'listingcontinuesabbrev' => 'endelea',
 
 'about'          => 'Kuhusu',
@@ -453,7 +452,6 @@ Ufunguo: (sasa) = tofauti na toleo la sasa, (kabla) = tofauti na toleo lililotan
 'mostcategories'          => 'Jamii ambazo hazitumiwi',
 'mostimages'              => 'Picha zinazoungwa kuliko zote',
 'mostrevisions'           => 'Kurasa zenye masahihisho mengi kuliko zote',
-'allpages'                => 'Kurasa zote',
 'prefixindex'             => 'Kielezo cha viambishi awali',
 'shortpages'              => 'Kurasa fupi',
 'longpages'               => 'Kurasa ndefu',
@@ -470,9 +468,6 @@ Ufunguo: (sasa) = tofauti na toleo la sasa, (kabla) = tofauti na toleo lililotan
 # Book sources
 'booksources' => 'Vyanzo vya vitabu',
 
-'alphaindexline' => '$1 hadi $2',
-'version'        => 'Toleo',
-
 # Special:Log
 'specialloguserlabel'  => 'Mtumiaji:',
 'speciallogtitlelabel' => 'Kichwa:',
@@ -480,6 +475,8 @@ Ufunguo: (sasa) = tofauti na toleo la sasa, (kabla) = tofauti na toleo lililotan
 'all-logs-page'        => 'Kumbukumbu zote',
 
 # Special:Allpages
+'allpages'       => 'Kurasa zote',
+'alphaindexline' => '$1 hadi $2',
 'nextpage'       => 'Ukurasa ujao ($1)',
 'prevpage'       => 'Ukurasa uliotangulia ($1)',
 'allpagesfrom'   => 'Onyesha kurasa zinazoanza kutoka:',
@@ -748,5 +745,8 @@ likifupishwa. Nyuga zingine zitafichwa kama chaguo-msingi.
 'watchlisttools-view' => 'Tazama mabadiliko yanayohusiana',
 'watchlisttools-edit' => 'Tazama na hariri maangalizi',
 'watchlisttools-raw'  => 'Hariri maangalizi ghafi',
+
+# Special:Version
+'version' => 'Toleo', # Not used as normal message but as header for the special page itself
 
 );

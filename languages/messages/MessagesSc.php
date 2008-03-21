@@ -240,7 +240,6 @@ Se la salvi così, tutti i cambiamenti apportati dopo questa revisione verranno 
 'revnotfound'     => 'Versione non trovata',
 'revnotfoundtext' => 'La versione precedente di questo articolo che hai richiesto, non è stata trovata.
 Controlla per favore la URL che hai usato per accedere a questa pagina.',
-'loadhist'        => 'Caricamento cronologia di questa pagina',
 'currentrev'      => 'Versione attuale',
 'revisionasof'    => 'Revisione $1',
 'cur'             => 'corr',
@@ -404,7 +403,6 @@ Ogni riga contiene i link al primo ed al secondo redirect, oltre alla prima riga
 'unusedimages'     => 'Immagini non utilizzate',
 'popularpages'     => 'Pagine più viste',
 'wantedpages'      => 'Articoli più richiesti',
-'allpages'         => 'Tutte le pagine',
 'shortpages'       => 'Pagine corte',
 'longpages'        => 'Pagine lunghe',
 'listusers'        => 'Elenco degli Utenti',
@@ -415,6 +413,9 @@ Ogni riga contiene i link al primo ed al secondo redirect, oltre alla prima riga
 'unusedimagestext' => '<p>Nota che altri siti web, come la {{SITENAME}} internazionale, potrebbero aver messo un link ad una immagine per mezzo di una URL diretta, perciò le immagini potrebbero essere listate qui anche essendo magari in uso.',
 'notargettitle'    => 'Dati mancanti',
 'notargettext'     => "Non hai specificato una pagina o un Utente in relazione al quale eseguire l'operazione richiesta.",
+
+# Special:Allpages
+'allpages' => 'Tutte le pagine',
 
 # E-mail user
 'mailnologintext' => 'Devi fare il [[Special:Userlogin|login]]

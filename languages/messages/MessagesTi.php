@@ -118,13 +118,12 @@ $messages = array(
 # Book sources
 'booksources-go' => 'ኪድ',
 
-'alphaindexline' => '$1 ናብ $2',
-
 # Special:Log
 'specialloguserlabel' => 'ኣባል:',
 'log-search-submit'   => 'ኪድ',
 
 # Special:Allpages
+'alphaindexline' => '$1 ናብ $2',
 'nextpage'       => 'ዝቕጽል ፅሑፍ ($1)',
 'prevpage'       => 'ናይ ቀደም ፅሑፍ ($1)',
 'allarticles'    => 'ኵሎም ፅሑፋት',

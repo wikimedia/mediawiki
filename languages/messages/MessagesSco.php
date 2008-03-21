@@ -115,12 +115,12 @@ $messages = array(
 
 # Categories related messages
 'categories'            => 'Categories',
+'categoriespagetext'    => 'The follaein categories exist in the wiki.',
 'pagecategories'        => '{{PLURAL:$1|Category|Categories}}',
 'category_header'       => 'Pages in category "$1"',
 'subcategories'         => 'Subcategories',
 'category-media-header' => 'Eetems in category "$1"',
 'category-empty'        => "''This category haes no pages or eetems at the meenit.''",
-'subcategorycount'      => 'There {{PLURAL:$1|one subcategory|$1 subcategories}} in this category.',
 
 'mainpagetext'      => "<big>'''MediaWiki haes been installit wi speed.'''</big>",
 'mainpagedocfooter' => "Aks the [http://meta.wikimedia.org/wiki/Help:Contents Uiser's Manual] for speirins aboot using the wiki saftware.
@@ -600,7 +600,6 @@ The grund for this, given by $3 is ''$2''",
 'nohistory'           => "The'r nae edit history for this page.",
 'revnotfound'         => 'Reveision nae funnd',
 'revnotfoundtext'     => 'The auld reveision o the page ye socht cuidna be funnd. Please check the URL ye uised til access this page.',
-'loadhist'            => 'Laidin page history',
 'currentrev'          => 'Current reveision',
 'revisionasof'        => 'Reveision as o $1',
 'revision-info'       => 'Revision as o $1 by $2',
@@ -610,7 +609,6 @@ The grund for this, given by $3 is ''$2''",
 'cur'                 => 'nou',
 'next'                => 'neist',
 'last'                => 'hind',
-'orig'                => 'oreeg',
 'page_first'          => 'first',
 'page_last'           => 'hindermaist',
 'histlegend'          => 'Diff selection: mairk the radio boxes o the versions tae compare an press enter or the button at the bottom.<br /> Legend: (cur) = difference frae current version, (last) = difference frae foregaun version, s = smaa edit.',
@@ -812,7 +810,6 @@ The [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] length is '''\$7''
 'mostcategories'          => 'Airticles wi the maist categories',
 'mostimages'              => 'Maist uised eimages',
 'mostrevisions'           => 'Maist revised airticles',
-'allpages'                => 'Aa pages',
 'longpages'               => 'Lang pages',
 'deadendpages'            => 'Deid-end pages',
 'listusers'               => 'Uiser leet',
@@ -830,10 +827,6 @@ The [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] length is '''\$7''
 # Book sources
 'booksources' => 'Beuk sources',
 
-'categoriespagetext' => 'The follaein categories exist in the wiki.',
-'groups'             => 'Uiser groups',
-'alphaindexline'     => '$1 tae $2',
-
 # Special:Log
 'specialloguserlabel'  => 'Uiser:',
 'speciallogtitlelabel' => 'Teitle:',
@@ -842,6 +835,8 @@ The [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] length is '''\$7''
 'logempty'             => 'Nae matchin items in log.',
 
 # Special:Allpages
+'allpages'          => 'Aa pages',
+'alphaindexline'    => '$1 tae $2',
 'nextpage'          => 'Neist page ($1)',
 'allpagesfrom'      => 'Shaw pages stairtin at:',
 'allarticles'       => 'Aa airticles',

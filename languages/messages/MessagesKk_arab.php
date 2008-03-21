@@ -502,12 +502,12 @@ $messages = array(
 
 # Categories related messages
 'categories'             => 'ساناتتار',
+'categoriespagetext'     => 'وسىندا ۋىيكىيدەگى بارلىق ساناتتارىنىڭ ٴتىزىمى بەرىلىپ تۇر.',
 'pagecategories'         => '{{PLURAL:$1|سانات|ساناتتار}}',
 'category_header'        => '«$1» ساناتىنداعى بەتتەر',
 'subcategories'          => 'ساناتشالار',
 'category-media-header'  => '«$1» ساناتىنداعى تاسپالار',
 'category-empty'         => "''بۇل ساناتتا اعىمدا ەش بەت نە تاسپا جوق.''",
-'subcategorycount'       => 'بۇل ساناتتا {{PLURAL:$1|ٴبىر|$1}} ساناتشا بار.',
 'listingcontinuesabbrev' => '(جالع.)',
 
 'mainpagetext'      => "<big>'''مەدىياۋىيكىي باعدارلاماسى ٴساتتى ورناتىلدى.'''</big>",
@@ -1029,7 +1029,6 @@ $3 كەلتىرىلگەن سەبەبى: ''$2''",
 'nohistory'           => 'وسى بەتتىنىڭ نۇسقالار تارىيحى جوق.',
 'revnotfound'         => 'نۇسقا تابىلمادى',
 'revnotfoundtext'     => 'وسى سۇرانىسقان بەتتىڭ ەسكى نۇسقاسى تابىلعان جوق. وسى بەتتى اشۋعا پايدالانعان URL جايىن قايتا تەكسەرىپ شىعىڭىز.',
-'loadhist'            => 'بەت تارىيحى جۇكتەلۋدە',
 'currentrev'          => 'اعىمدىق نۇسقاسى',
 'revisionasof'        => '$1 كەزىندەگى نۇسقاسى',
 'revision-info'       => '$1 كەزىندەگى $2 جاساعان نۇسقاسى',
@@ -1039,7 +1038,6 @@ $3 كەلتىرىلگەن سەبەبى: ''$2''",
 'cur'                 => 'اعىم.',
 'next'                => 'كەل.',
 'last'                => 'سوڭ.',
-'orig'                => 'ٴتۇپن.',
 'page_first'          => 'العاشقىسىنا',
 'page_last'           => 'سوڭعىسىنا',
 'histlegend'          => 'ايىرماسىن بولەكتەۋ: سالىستىرامىن دەگەن نۇسقالاردى ايىرىپ-قوسقىشپەن بەلگىلەپ جانە دە <Enter> پەرنەسىن باسىڭىز, نەمەسە استىنداعى باتىرمانى نۇقىڭىز.<br />
@@ -1227,6 +1225,7 @@ $3 كەلتىرىلگەن سەبەبى: ''$2''",
 'files'                    => 'فايلدار',
 
 # User rights
+'userrights'                       => 'قاتىسۋشىلار قۇقىقتارىن رەتتەۋ', # Not used as normal message but as header for the special page itself
 'userrights-lookup-user'           => 'قاتىسۋشى توپتارىن رەتتەۋ',
 'userrights-user-editname'         => 'قاتىسۋشى اتىن ەنگىزىڭىز:',
 'editusergroup'                    => 'قاتىسۋشى توپتارىن وڭدەۋ',
@@ -1547,7 +1546,6 @@ $3 كەلتىرىلگەن سەبەبى: ''$2''",
 'mostcategories'          => 'ەڭ كوپ ساناتى بار بەتتەر',
 'mostimages'              => 'ەڭ كوپ پايدالانىلعان سۋرەتتەر',
 'mostrevisions'           => 'ەڭ كوپ تۇزەتىلگەن بەتتەر',
-'allpages'                => 'بارلىق بەتتەر',
 'prefixindex'             => 'اتاۋ باستاۋى ٴتىزىمى',
 'shortpages'              => 'ەڭ قىسقا بەتتەر',
 'longpages'               => 'ەڭ ۇزىن بەتتەر',
@@ -1584,13 +1582,6 @@ URL جايىنا تىكەلەي سىلتەۋى مۇمكىن. سوندىقتان,
 'booksources-text'          => 'تومەندە جاڭا جانە قولدانعان كىتاپتار ساتاتىنتوراپتارىنىڭ سىلتەمەلەرى تىزىمدەلگەن.
 بۇل توراپتاردا ىزدەلگەن كىتاپتار تۋرالى بىلايعى اقپارات بولۋعا مۇمكىن.',
 
-'categoriespagetext' => 'وسىندا ۋىيكىيدەگى بارلىق ساناتتارىنىڭ ٴتىزىمى بەرىلىپ تۇر.',
-'data'               => 'دەرەكتەر',
-'userrights'         => 'قاتىسۋشىلار قۇقىقتارىن رەتتەۋ',
-'groups'             => 'قاتىسۋشى توپتارى',
-'alphaindexline'     => '$1 — $2',
-'version'            => 'جۇيە نۇسقاسى',
-
 # Special:Log
 'specialloguserlabel'  => 'قاتىسۋشى:',
 'speciallogtitlelabel' => 'اتاۋ:',
@@ -1604,6 +1595,8 @@ URL جايىنا تىكەلەي سىلتەۋى مۇمكىن. سوندىقتان,
 'log-title-wildcard'   => 'مىناداي ماتىننەڭ باستالىتىن اتاۋلاردان ىزدەۋ',
 
 # Special:Allpages
+'allpages'          => 'بارلىق بەتتەر',
+'alphaindexline'    => '$1 — $2',
 'nextpage'          => 'كەلەسى بەتكە ($1)',
 'prevpage'          => 'الدىڭعى بەتكە ($1)',
 'allpagesfrom'      => 'مىنا بەتتەن باستاپ كورسەتۋ:',
@@ -2775,6 +2768,9 @@ $1',
 
 # Core parser functions
 'unknown_extension_tag' => 'تانىلماعان كەڭەيتپە بەلگىسى «$1»',
+
+# Special:Version
+'version' => 'جۇيە نۇسقاسى', # Not used as normal message but as header for the special page itself
 
 # Special:Filepath
 'filepath'         => 'فايل ورنالاسۋى',

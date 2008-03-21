@@ -46,10 +46,10 @@ $messages = array(
 'dec'       => 'des',
 
 # Categories related messages
-'categories'       => 'Kategorianan',
-'category_header'  => 'Artíkulonan den kategoria "$1"',
-'subcategories'    => 'Supkategorianan',
-'subcategorycount' => 'Tin {{PLURAL:$1|1 supkategoria|$1 supkategorianan}} bou di e kategoria aki.',
+'categories'         => 'Kategorianan',
+'categoriespagetext' => 'Esaki ta e kategorianan ku ta eksistí den {{SITENAME}}.',
+'category_header'    => 'Artíkulonan den kategoria "$1"',
+'subcategories'      => 'Supkategorianan',
 
 'about'         => 'Info',
 'article'       => 'Artíkulo',
@@ -224,20 +224,18 @@ Bo kuenta ta trahá. No lubidá di kambia bo [[Special:Preferences|{{SITENAME}} 
 'unusedcategories'        => 'Kategorianan no uzá',
 'wantedcategories'        => 'Kategorianan deseá',
 'wantedpages'             => 'Páginanan deseá',
-'allpages'                => 'Tur página',
 'specialpages'            => 'Páginanan Spesial',
 'spheading'               => 'Páginanan spesial pa tur uzadó',
 'ancientpages'            => 'Páginanan mas bieu',
 'unusedcategoriestext'    => 'E siguiente kategorianan ta eksistí pero ningun artíkulo òf kategoria ta hasi uzo di nan.',
-
-'categoriespagetext' => 'Esaki ta e kategorianan ku ta eksistí den {{SITENAME}}.',
-'alphaindexline'     => '$1 pa $2',
 
 # Special:Log
 'alllogstext' => 'Esaki ta un bista kombiná di registronan.
 Bo por skohe un tipo di registro tambe, òf filtrá e bista ku un nòmber di uzadó òf un título di un artíkulo.',
 
 # Special:Allpages
+'allpages'          => 'Tur página',
+'alphaindexline'    => '$1 pa $2',
 'allpagesfrom'      => 'Mustra páginanan kuminsando na:',
 'allarticles'       => 'Tur artíkulo',
 'allinnamespace'    => 'Tur página (dominio $1)',

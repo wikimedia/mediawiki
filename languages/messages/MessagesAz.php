@@ -76,10 +76,10 @@ $messages = array(
 
 # Categories related messages
 'categories'             => 'Kateqoriyalar',
+'categoriespagetext'     => 'Wikide aşağıdaki kateqoriyalar var.',
 'pagecategories'         => 'Kateqoriyalar',
 'category_header'        => '"$1" kategoriyasındaki məqalələr',
 'subcategories'          => 'Alt kategoriyalar',
-'subcategorycount'       => 'Bu kategoriyada $1 alt kategoriya var.',
 'listingcontinuesabbrev' => '(davam)',
 
 'about'          => 'İzah',
@@ -266,7 +266,6 @@ $messages = array(
 'cur'                 => 'hh',
 'next'                => 'sonrakı',
 'last'                => 'son',
-'orig'                => 'orig',
 'histlegend'          => 'Fərqləri seçmə və göstərmə: müqaisə etmək istədiyiniz versiyaların yanındakı radio qutularına işarə qoyun və daxil etmə düyməsinə(enter-a) və ya "müqaisə et" düyməsinə vurun.<br />
 Açıqlama: (hh) = hal-hazırkı versiya ilə olan fərqlər,
 (son) = əvvəlki versiya ilə olan fərqlər, K = kiçik redaktə.',
@@ -395,7 +394,6 @@ Hal-hazırda [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] sayı: ''
 'wantedpages'             => 'Təlabat olunan səhifələr',
 'mostcategories'          => 'Kateqoriyası ən çox olan məqalələr',
 'mostrevisions'           => 'Ən çox nəzərdən keçirilmiş (versiyalı) məqalələr',
-'allpages'                => 'Bütün səhifələr',
 'shortpages'              => 'Qısa səhifələr',
 'longpages'               => 'Uzun səhifələr',
 'listusers'               => 'İstifadəçi siyahı',
@@ -410,14 +408,12 @@ Hal-hazırda [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] sayı: ''
 # Book sources
 'booksources' => 'Kitab mənbələri',
 
-'categoriespagetext' => 'Wikide aşağıdaki kateqoriyalar var.',
-'version'            => 'Versiya',
-
 # Special:Log
 'log'         => 'Loglar',
 'alllogstext' => "Qarşıya yükləmə, silmə, qoruma, bloklama ve sistem operatoru loqlarının birləşdirilmiş göstərməsi. Log növü, istifadəçi adı veya tə'sir edilən səhifəni seçib görüntünü kiçildə bilərsiniz.",
 
 # Special:Allpages
+'allpages'       => 'Bütün səhifələr',
 'nextpage'       => 'Sonrakı səhifə ($1)',
 'allpagesfrom'   => 'Bu mövqedən başlayan səhifeleri göstər:',
 'allarticles'    => 'Bütün məqalələr',
@@ -586,5 +582,8 @@ Səhifəni izləmə sıyahınızdan çıxarmaq üçün yan lovhədəki "izləmə
 'confirmemail_success'  => 'E-məktub ünvanınız indi təsdiq edildi.',
 'confirmemail_loggedin' => 'E-məktubunuz indi təsdiq edildi.',
 'confirmemail_subject'  => '{{SITENAME}} e-məktub təsdiq etme',
+
+# Special:Version
+'version' => 'Versiya', # Not used as normal message but as header for the special page itself
 
 );
