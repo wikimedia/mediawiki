@@ -3375,8 +3375,7 @@ class Article {
 		foreach( $insertCats as $cat ) {
 			$insertRows[] = array( 'cat_title' => $cat );
 		}
-		if ( count( $insertRows ) )
-			$dbw->insert( 'category', $insertRows, __METHOD__, 'IGNORE' );
+		$dbw->insert( 'category', $insertRows, __METHOD__, 'IGNORE' );
 
 		$addFields    = array( 'cat_pages = cat_pages + 1' );
 		$removeFields = array( 'cat_pages = cat_pages - 1' );
