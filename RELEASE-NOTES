@@ -21,6 +21,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 === Configuration changes in 1.13 ===
 
 * New option $wgFeed can be set false to turn off syndication feeds
+* (bug 5745) Special:Whatlinkshere now shows up to $wgMaxRedirectLinksRetrieved
+  links through each redirect instead of hardcoded 500
 
 === New features in 1.13 ===
 
@@ -141,8 +143,6 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 13442) Missing pages in prop=langlinks and prop=extlinks are now 
   handled properly.
 * (bug 13444) Add description to list=watchlist
-* (bug 5745) Special:Whatlinkshere shows no more than 500 links through each
-  redirect
 
 === Languages updated in 1.13 ===
 
