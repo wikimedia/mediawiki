@@ -506,7 +506,7 @@ Brukerkontoen din har blitt opprettet. Ikke glem å endre [[Special:Preferences|
 'userlogin'                  => 'Logg inn eller registrer deg',
 'logout'                     => 'Logg ut',
 'userlogout'                 => 'Logg ut',
-'notloggedin'                => 'Ikke innlogget',
+'notloggedin'                => 'Ikke logget inn',
 'nologin'                    => 'Er du ikke registrert? $1.',
 'nologinlink'                => 'Registrer deg',
 'createaccount'              => 'Opprett ny konto',

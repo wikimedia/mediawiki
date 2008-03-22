@@ -1249,6 +1249,7 @@ $2',
 'noimage'                   => 'Не съществува файл с това име, можете $1.',
 'noimage-linktext'          => 'да го качите',
 'uploadnewversion-linktext' => 'Качване на нова версия на файла',
+'imagepage-searchdupe'      => 'Търсене на повтарящи се файлове',
 
 # File reversion
 'filerevert'                => 'Възвръщане на $1',
@@ -2481,8 +2482,12 @@ $1',
 Името на файла се изписва без представката „{{ns:image}}:“',
 
 # Special:FileDuplicateSearch
+'fileduplicatesearch'          => 'Търсене на повтарящи се файлове',
+'fileduplicatesearch-summary'  => 'Въведете име на файл (без представката „{{ns:image}}:“), за да потърсите повтарящи го файлове въз основа на неговата хеш стойност.',
 'fileduplicatesearch-filename' => 'Име на файл:',
 'fileduplicatesearch-submit'   => 'Търсене',
 'fileduplicatesearch-info'     => '$1 × $2 пиксела<br />Размер на файла: $3<br />MIME тип: $4',
+'fileduplicatesearch-result-1' => 'Файлът "$1" няма идентично копие.',
+'fileduplicatesearch-result-n' => 'Файлът "$1" има {{PLURAL:$2|едно идентично копие|$2 идентични копия}}.',
 
 );

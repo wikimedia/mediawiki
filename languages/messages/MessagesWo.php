@@ -48,6 +48,7 @@ $messages = array(
 'tog-watchlisthideminor'      => 'Nëbb coppite yu néewal yi ci biir limu toppte bi',
 'tog-ccmeonemails'            => 'Yónnee ma ab duppi bu bataaxal yi may yónnee yeneen jëfandikukat yi',
 'tog-diffonly'                => 'Bul wone ndefu xët yi ci biir diffs yi',
+'tog-showhiddencats'          => 'Wone wàll yi nëbbu',
 
 'underline-always'  => 'Saa su ne',
 'underline-never'   => 'Mukku',
@@ -108,12 +109,20 @@ $messages = array(
 'dec'           => 'Tab',
 
 # Categories related messages
-'categories'               => 'Wàll',
-'categoriespagetext'       => 'Wàll yii ñoo am ci biir wiki gi.',
-'pagecategories'           => '{{PLURAL:$1|Wàll |Wàll }}',
-'category_header'          => 'Xët yi ci wàll gi « $1 »',
-'subcategories'            => 'Ron-wàll',
-'hidden-category-category' => 'Wàll yi nëbbu', # Name of the category where hidden categories will be listed
+'categories'                     => 'Wàll',
+'categoriespagetext'             => 'Wàll yii ñoo am ci biir wiki gi.',
+'pagecategories'                 => '{{PLURAL:$1|Wàll |Wàll }}',
+'category_header'                => 'Xët yi ci wàll gi « $1 »',
+'subcategories'                  => 'Ron-wàll',
+'hidden-categories'              => '{{PLURAL:$1|wàll bi nëbbu|wàll yi nëbbu}}',
+'hidden-category-category'       => 'Wàll yi nëbbu', # Name of the category where hidden categories will be listed
+'category-subcat-count'          => '{{PLURAL:$2|bii wàll benn ron-wàll rekk la am, di biy toftal.|Bii wàll am na {PLURAL:$1|ron-wàll|$1 ciy ron-wàll}}, ci lim bu tollook $2.}}',
+'category-subcat-count-limited'  => 'Bii wàll am na {{PLURAL:$1|ron-wàll|$1 ciy ron-wàll}}.',
+'category-article-count'         => '{{PLURAL:$2|Bii wàll wenn xët rekk la am, di wiy toftal.| Bii wàll {{PLURAL:$1|xët wiy toftal|$1 xët yiy toftal}} la ëmb, ci lim bu tollook $2.}}',
+'category-article-count-limited' => 'Bii wàll ëmb na {{PLURAL:$1|xët wiy toftal |$1 xët yiy toftal}}.',
+'category-file-count'            => '{{PLURAL:$2|Bii wàll wenn xët rekk la ëmb, di wiy toftal ci suuf.|Bii wàll ëmb na {{PLURAL:$1| xët|$1 ciy xët}}, ci lim bu tollook  $2.}}',
+'category-file-count-limited'    => 'Bii wàll moo ëmb {{PLURAL:$1|xët wiy toftal|$1 xët yiy toftal}}.',
+'listingcontinuesabbrev'         => '(desit)',
 
 'mainpagetext'      => "<big>'''Sampug MediaWiki gi sotti na . '''</big>",
 'mainpagedocfooter' => 'Saytul [http://meta.wikimedia.org/wiki/Ndimbal:Ndefu Gindikaayu jëfandikukat bi] ngir yeneeni xibaar ci jëfandiku gu tëriin gi.
@@ -161,7 +170,9 @@ $messages = array(
 'permalink'         => 'Lëkkalekaay yu fi nekkandi',
 'print'             => 'Móol',
 'edit'              => 'Soppi',
+'create'            => 'Sos',
 'editthispage'      => 'Soppi xët wii',
+'create-this-page'  => 'Sos wii xët',
 'delete'            => 'Far',
 'deletethispage'    => 'Far wii xët',
 'undelete_short'    => 'Loppanti {{PLURAL:$1|1 coppite| $1 ciy coppite}}',
@@ -210,6 +221,7 @@ $messages = array(
 'disclaimerpage'    => 'Project:Aartu yu daj',
 'edithelp'          => 'Ndimbal',
 'edithelppage'      => 'Help:Nooy soppee aw xët',
+'faqpage'           => 'Sémb:FAQ',
 'helppage'          => 'Help:Ndimbal',
 'mainpage'          => 'Xët wu njëkk',
 'portal'            => 'Askan',
@@ -247,6 +259,7 @@ $messages = array(
 'site-atom-feed'          => 'Walu Atom gu $1',
 'page-rss-feed'           => 'Walu RSS gu "$1"',
 'page-atom-feed'          => 'Walu Atom gu "$1"',
+'red-link-title'          => '$1 (xët wi amagul)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Jukki',
@@ -656,6 +669,7 @@ Yeneen yorkati {{SITENAME}} itam di nañ man a gis ëmbit yu laqu yi te loppanti
 'showingresultsnum'     => 'Woneg <b>$3</b> {{plural:$3|ngérte|ciy ngérte}} doore ko ci #<b>$2</b>.',
 'nonefound'             => '<strong>Karmat</strong> : liy waral ñakkug ay ngérte yenn saa yi, mooy jëfandikoo ab baatu ceet bu gàtt, niki « am » walla « jëm », walla jëfandikoo baati ceet yu bari (xët yi ëmb baat yi nga bind yépp, rekk ñooy feeñ).',
 'powersearch'           => 'Seet',
+'powersearch-legend'    => 'Seet gu xóot',
 'powersearchtext'       => 'Seet ci barabi tur yi :<br />
 $1<br />
 $2 boole ci xëti yoonalaat yi<br /> Seet $3 $9',

@@ -139,6 +139,7 @@ $messages = array(
 # Categories related messages
 'categories'                     => 'Categorías',
 'categoriespagetext'             => 'As categorías seguintes conteñen páxinas ou contidos multimedia.',
+'special-categories-sort-abc'    => 'ordenar alfabeticamente',
 'pagecategories'                 => '{{PLURAL:$1|Categoría|Categorías}}',
 'category_header'                => 'Artigos na categoría "$1"',
 'subcategories'                  => 'Subcategorías',
@@ -146,8 +147,11 @@ $messages = array(
 'category-empty'                 => "''Actualmente esta categoría non conta con ningún artigo ou arquivo multimedia.''",
 'hidden-categories'              => '{{PLURAL:$1|Categoría oculta|Categorías ocultas}}',
 'hidden-category-category'       => 'Categorías ocultas', # Name of the category where hidden categories will be listed
+'category-subcat-count'          => '{{PLURAL:$2|Esta categoría ten só a subcategoría seguinte.|Esta categoría ten {{PLURAL:$1|a subcategoría seguinte|as $1 subcategorías seguintes}}, dun total de $2.}}',
 'category-subcat-count-limited'  => 'Esta categoría ten {{PLURAL:$1|a seguinte subcategoría|as seguintes $1 subcategorías}}.',
+'category-article-count'         => '{{PLURAL:$2|Esta categoría contén só a páxina seguinte.|{{PLURAL:$1|A seguinte páxina está|As seguintes $1 páxinas están}} nesta categoría, dun total de $2.}}',
 'category-article-count-limited' => '{{PLURAL:$1|A seguinte páxina está|As seguintes $1 páxinas están}} na categoría actual.',
+'category-file-count'            => '{{PLURAL:$2|Esta categoría contén só o ficheiro seguinte.|{{PLURAL:$1|O ficheiro seguinte está|Os $1 ficheiros seguintes están}} nesta categoría, dun total de $2.}}',
 'category-file-count-limited'    => '{{PLURAL:$1|O seguinte ficheiro está|Os seguintes $1 ficheiros están}} na categoría actual.',
 'listingcontinuesabbrev'         => 'cont.',
 
@@ -1041,6 +1045,9 @@ PICT # misc.
 'upload_source_file' => ' (un ficheiro no seu ordenador)',
 
 # Special:Imagelist
+'imagelist-summary'     => 'Esta páxina especial amosa todos os ficheiros enviados.
+Por omisión, os ficheiros enviados máis recentemente aparecen no alto da listaxe.
+Premendo nun cabezallo da columna cambia a ordenación.',
 'imagelist_search_for'  => 'Buscar polo nome do ficheiro multimedia:',
 'imgdesc'               => 'desc',
 'imgfile'               => 'ficheiro',
@@ -1073,6 +1080,7 @@ PICT # misc.
 'noimage'                   => 'Non existe ningún ficheiro con ese nome, vostede pode $1.',
 'noimage-linktext'          => 'cargalo',
 'uploadnewversion-linktext' => 'Cargar unha nova versión deste ficheiro',
+'imagepage-searchdupe'      => 'Procurar ficheiros duplicados',
 
 # File reversion
 'filerevert'                => 'Desfacer $1',
@@ -1907,11 +1915,12 @@ $1',
 # Special:Newimages
 'newimages'             => 'Galería de imaxes novas',
 'imagelisttext'         => "Abaixo amósase unha listaxe de '''$1''' {{PLURAL:$1|ficheiro|ficheiros}} ordenados $2.",
+'newimages-summary'     => 'Esta páxina especial amosa os ficheiros enviados máis recentemente',
 'showhidebots'          => '($1 bots)',
 'noimages'              => 'Non hai imaxes para ver.',
 'ilsubmit'              => 'Procurar',
 'bydate'                => 'por data',
-'sp-newimages-showfrom' => 'Mostrar os novos ficheiros comezando por $1',
+'sp-newimages-showfrom' => 'Mostrar os novos ficheiros comezando por $1 ás $2',
 
 # Video information, used by Language::formatTimePeriod() to format lengths in the above messages
 'minutes-abbrev' => 'min',
@@ -2352,5 +2361,17 @@ Tamén pode [[Special:Watchlist/edit|empregar o editor normal]].',
 'filepath-summary' => 'Esta páxina especial devolve a ruta completa a un ficheiro. As imaxes móstranse na súa resolución completa; outros tipos de ficheiros inícianse directamente co seu programa asociado.
 	
 	Introduza o nome do ficheiro sen o prefixo "{{ns:image}}:"',
+
+# Special:FileDuplicateSearch
+'fileduplicatesearch'          => 'Procurar ficheiros duplicados',
+'fileduplicatesearch-summary'  => 'Procurar ficheiros duplicados a partir do valor de hash (un mecanismo de comprobación).
+
+Introduza o nome do ficheiro sen o prefixo "{{ns:image}}:".',
+'fileduplicatesearch-legend'   => 'Procurar un duplicado',
+'fileduplicatesearch-filename' => 'Nome do ficheiro:',
+'fileduplicatesearch-submit'   => 'Procurar',
+'fileduplicatesearch-info'     => '$1 × $2 pixel<br />Tamaño do ficheiro: $3<br />Tipo MIME: $4',
+'fileduplicatesearch-result-1' => 'O ficheiro "$1" non ten un duplicado idéntico.',
+'fileduplicatesearch-result-n' => 'O ficheiro "$1" ten {{PLURAL:$2|1 duplicado idéntico|$2 duplicados idénticos}}.',
 
 );

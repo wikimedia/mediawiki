@@ -190,7 +190,7 @@ $messages = array(
 'cancel'         => 'Nuligu',
 'qbfind'         => 'Trovu',
 'qbbrowse'       => 'Foliumado',
-'qbedit'         => 'redaktu',
+'qbedit'         => 'Redaktu',
 'qbpageoptions'  => 'Paĝagado',
 'qbpageinfo'     => 'Paĝinformoj',
 'qbmyoptions'    => 'Personaĵoj',
@@ -383,7 +383,7 @@ Bonvolu raporti ĉi tion al iu sistemestro, kaj rimarkigi la retadreson (URL).',
 'formerror'            => 'Eraro: neeblis liveri formulon',
 'badarticleerror'      => 'Tiun ĉi agon oni ne povas apliki al tiu ĉi artikolo.',
 'cannotdelete'         => 'Neeblis forigi la elektitan paĝon aŭ dosieron.',
-'badtitle'             => 'Nevalida titolo',
+'badtitle'             => 'Fuŝa titolo',
 'badtitletext'         => 'La petita paĝotitolo estas nevalida, malplena, aŭ
 malĝuste ligita interlingva aŭ intervikia titolo.',
 'perfdisabled'         => 'Ni petas pardonon! La petita funkcio estas malebligita
@@ -2266,7 +2266,7 @@ Bonvolu konfirmi ke vi ja volas rekrei la paĝon.",
 'confirm_purge'        => 'Ĉu forviŝiĝu la enhavo de tiu ĉi paĝo?
 
 $1',
-'confirm_purge_button' => 'Bone',
+'confirm_purge_button' => 'Ek!',
 
 # AJAX search
 'searchcontaining' => "Serĉu paĝojn enhavantajn ''$1''.",

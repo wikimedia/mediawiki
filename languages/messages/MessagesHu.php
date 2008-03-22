@@ -9,6 +9,7 @@
  * @author Siebrand
  * @author SPQRobin
  * @author Dorgan
+ * @author Bennó
  */
 
 $namespaceNames = array(
@@ -358,6 +359,8 @@ $messages = array(
 # Categories related messages
 'categories'                     => 'Kategóriák',
 'categoriespagetext'             => 'A következő kategóriák tartalmaznak lapokat vagy fájlokat.',
+'special-categories-sort-count'  => 'rendezés elemszám szerint',
+'special-categories-sort-abc'    => 'rendezés ABC szerint',
 'pagecategories'                 => '{{PLURAL:$1|Kategória|Kategóriák}}',
 'category_header'                => '„$1” kategória szócikkei',
 'subcategories'                  => 'Alkategóriák',
@@ -1292,6 +1295,7 @@ Az oszlopok címeire kattintva változtathatod meg a rendezést.',
 'noimage'                   => 'Ezen a néven nem létezik médiafájl. Ha szeretnél, $1 egyet.',
 'noimage-linktext'          => 'feltölthetsz',
 'uploadnewversion-linktext' => 'A fájl újabb változatának felküldése',
+'imagepage-searchdupe'      => 'Duplikátumok keresése',
 
 # File reversion
 'filerevert'                => '$1 visszaállítása',
@@ -2594,8 +2598,15 @@ minden egyes sor egy figyelt lap címe. Ha kész vagy, kattints a lista alatt ta
 Add meg a fájlnevet a „{{ns:image}}:” prefixum nélkül.',
 
 # Special:FileDuplicateSearch
+'fileduplicatesearch'          => 'Duplikátumok keresése',
+'fileduplicatesearch-summary'  => 'Fájlok duplikátumainak keresése hash értékük alapján.
+
+Add meg a fájl nevét „{{ns:image}}:” előtag nélkül.',
+'fileduplicatesearch-legend'   => 'Duplikátum keresése',
 'fileduplicatesearch-filename' => 'Fájlnév:',
 'fileduplicatesearch-submit'   => 'Keresés',
 'fileduplicatesearch-info'     => '$1 × $2 pixel<br />Fájlméret: $3<br />MIME-típus: $4',
+'fileduplicatesearch-result-1' => 'A(z) „$1“ nevű fájlnak nincs duplikátuma.',
+'fileduplicatesearch-result-n' => 'A(z) „$1“ nevű fájlnak nincs duplikátuma.',
 
 );

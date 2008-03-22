@@ -226,6 +226,8 @@ $messages = array(
 # Categories related messages
 'categories'                     => 'Kategorien',
 'categoriespagetext'             => 'An dëse Kategorie gëtt et Säiten oder Medien.',
+'special-categories-sort-count'  => 'No der Zuel sortéieren',
+'special-categories-sort-abc'    => 'alphabetesch sortéieren',
 'pagecategories'                 => '{{PLURAL:$1|Kategorie|Kategorien}}',
 'category_header'                => 'Säiten an der Kategorie "$1"',
 'subcategories'                  => 'Souskategorien',
@@ -376,6 +378,7 @@ $messages = array(
 'viewdeleted'             => 'Weis $1?',
 'restorelink'             => '$1 geläschte {{PLURAL:$1|Versioun|Versiounen}}',
 'feedlinks'               => 'Feed:',
+'feed-unavailable'        => "Fir {{SITENAME}} gëtt et keng ''Syndication Feeds''.",
 'site-rss-feed'           => 'RSS-Feed fir $1',
 'site-atom-feed'          => 'Atom-Feed fir $1',
 'page-rss-feed'           => 'RSS-Feed fir "$1"',
