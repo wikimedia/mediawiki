@@ -121,6 +121,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 12294) Namespace class renamed to MWNamespace for PHP 5.3 compatibility
 * PHP 5.3 compatibility fix for wfRunHooks() called with no parameters
 * (bug 6447) Trackbacks now work with transactional tables, if enabled
+* (bug 6892, 7147) Trackback error handling, optional fields more robust
 
 
 === API changes in 1.13 ===
