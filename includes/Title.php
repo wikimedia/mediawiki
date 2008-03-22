@@ -1113,7 +1113,6 @@ class Title {
 
 		// Use getUserPermissionsErrors instead
 		if ( !wfRunHooks( 'userCan', array( &$this, &$user, $action, &$result ) ) ) {
-			var_dump( $result );
 			return $result ? array() : array( array( 'badaccess-group0' ) );
 		}
 
