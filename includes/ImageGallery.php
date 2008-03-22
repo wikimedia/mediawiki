@@ -277,7 +277,7 @@ class ImageGallery
 			}
 
 			//TODO
-			//$ul = $sk->makeLink( $wgContLang->getNsText( Namespace::getUser() ) . ":{$ut}", $ut );
+			//$ul = $sk->makeLink( $wgContLang->getNsText( MWNamespace::getUser() ) . ":{$ut}", $ut );
 
 			if( $this->mShowBytes ) {
 				if( $img ) {

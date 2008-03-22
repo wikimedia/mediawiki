@@ -1036,7 +1036,7 @@ $term: string of search term
 $titleMatches: empty or SearchResultSet object
 $textMatches: empty or SearchResultSet object
 
-'SpecialSearchResults': called before search result display when there are no matches
+'SpecialSearchNoResults': called before search result display when there are no matches
 $term: string of search term
 
 'SpecialVersionExtensionTypes': called when generating the extensions credits, use this to change the tables headers
