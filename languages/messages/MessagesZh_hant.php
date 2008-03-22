@@ -163,16 +163,24 @@ $messages = array(
 'dec'           => '12月',
 
 # Categories related messages
-'categories'               => '頁面分類',
-'categoriespagetext'       => '以下的分類包含頁面或媒體。',
-'pagecategories'           => '$1個分類',
-'category_header'          => '類別「$1」中的頁面',
-'subcategories'            => '附分類',
-'category-media-header'    => '"$1"分類中的媒體',
-'category-empty'           => "''這個分類中尚未包含任何頁面或媒體。''",
-'hidden-categories'        => '$1個隱藏分類',
-'hidden-category-category' => '隱藏分類', # Name of the category where hidden categories will be listed
-'listingcontinuesabbrev'   => '續',
+'categories'                     => '頁面分類',
+'categoriespagetext'             => '以下的分類中包含了頁面或媒體。',
+'pagecategories'                 => '$1個分類',
+'special-categories-sort-count'  => '按數量排列',
+'special-categories-sort-abc'    => '按字母排列',
+'category_header'                => '類別「$1」中的頁面',
+'subcategories'                  => '附分類',
+'category-media-header'          => '"$1"分類中的媒體',
+'category-empty'                 => "''這個分類中尚未包含任何頁面或媒體。''",
+'hidden-categories'              => '$1個隱藏分類',
+'hidden-category-category'       => '隱藏分類', # Name of the category where hidden categories will be listed
+'category-subcat-count'          => '{{PLURAL:$2|這個分類中只有以下的附分類。|這個分類中有以下的$1個附分類，共有$2個附分類。}}',
+'category-subcat-count-limited'  => '這個分類下有$1個子分類。',
+'category-article-count'         => '{{PLURAL:$2|這個分類中只有以下的頁面。|這個分類中有以下的$1個頁面，共有$2個頁面。}}',
+'category-article-count-limited' => '這個分類下有$1個頁面。',
+'category-file-count'            => '{{PLURAL:$2|這個分類中只有以下的檔案。|這個分類中有以下的$1個檔案，共有$2個檔案。}}',
+'category-file-count-limited'    => '這個分類下有$1個檔案。',
+'listingcontinuesabbrev'         => '續',
 
 'mainpagetext'      => "<big>'''已成功安裝 MediaWiki!'''</big>",
 'mainpagedocfooter' => '請參閱 [http://meta.wikimedia.org/wiki/Help:Contents 用戶手冊] 以獲得使用此 wiki 軟體的訊息！
@@ -783,6 +791,7 @@ $2',
 'showingresultsnum'     => '下面顯示從第<b>$2</b>條開始的<b>$3</b>條結果:',
 'nonefound'             => '<strong>注意：</strong>失敗的搜索往往是由於試圖搜索諸如「的」或「和」之類的常見字所引起。',
 'powersearch'           => '進階搜索',
+'powersearch-legend'    => '進階搜索',
 'powersearchtext'       => '
 搜索名字空間：<br />$1<br />$2列出重定向頁面；搜索$3 $9',
 'searchdisabled'        => '{{SITENAME}}由於性能方面的原因，全文搜索已被暫時停用。您可以暫時透過Google搜索。請留意他們的索引可能會過時。',
@@ -1024,6 +1033,9 @@ $2',
 'upload_source_file' => ' (在您電腦上的一個檔案)',
 
 # Special:Imagelist
+'imagelist-summary'     => '這個特殊頁面顯示所有上傳過的檔案。
+預設中最後上傳的檔案會顯示在這個列表中的最頂處。
+點擊一欄的標題去改變這個排列。',
 'imagelist_search_for'  => '按檔案名稱搜索:',
 'imgdesc'               => '描述',
 'imgfile'               => '檔案',
@@ -1056,6 +1068,7 @@ $2',
 'noimage'                   => '不存在此名稱的檔案，您可以$1。',
 'noimage-linktext'          => '上傳它',
 'uploadnewversion-linktext' => '上傳該檔案的新版本',
+'imagepage-searchdupe'      => '搜尋重覆的檔案',
 
 # File reversion
 'filerevert'                => '恢復$1',
@@ -1443,7 +1456,7 @@ $NEWPAGE
 'undeleterevisions'            => '$1版本存檔',
 'undeletehistory'              => '如果您恢復了該頁面，所有版本都會被恢復到修訂歷史中。
 如果本頁刪除後有一個同名的新頁面建立，被恢復的版本將會稱為較新的歷史。同時請留意在檔案修訂中的限制會在恢復時遺失。',
-'undeleterevdel'               => '如果把最新修訂部份刪除，反刪除便無法進行。如果遇到這種情況，您必須反選或反隱藏最新已刪除的修訂。對於您沒有權限去檢視的修訂是無法恢復的。',
+'undeleterevdel'               => '如果把最新修訂部份刪除，反刪除便無法進行。如果遇到這種情況，您必須反選或反隱藏最新已刪除的修訂。',
 'undeletehistorynoadmin'       => '這個頁面已經被刪除，刪除原因顯示在下方編輯摘要中。被刪除前的所有修訂版本，連同刪除前貢獻用戶等等細節只有管理員可以看見。',
 'undelete-revision'            => '刪除$1時由$3（在$2）所編寫的修訂版本:',
 'undeleterevision-missing'     => '此版本的內容不正確或已經遺失。可能連結錯誤、被移除或已經被恢復。',
@@ -1897,12 +1910,13 @@ $1',
 
 # Special:Newimages
 'newimages'             => '新建圖像畫廊',
-'imagelisttext'         => '以下是按$2排列的$1個檔案列表。',
+'imagelisttext'         => "以下是按$2排列的'''$1'''個檔案列表。",
+'newimages-summary'     => '這個特殊頁面中顯示最後已上傳的檔案',
 'showhidebots'          => '($1機器人)',
 'noimages'              => '無可檢視圖像。',
 'ilsubmit'              => '搜尋',
 'bydate'                => '按日期',
-'sp-newimages-showfrom' => '從$1開始顯示新檔案',
+'sp-newimages-showfrom' => '從$1 $2開始顯示新檔案',
 
 # Bad image list
 'bad_image_list' => '請根據以下的格式去編寫:
@@ -2353,5 +2367,17 @@ $3
 'filepath-summary' => '這個特殊頁面擷取一個檔案的完整路徑。圖像會以完整的解像度顯示，其它的檔案類型會以同它們已關聯程式啟動。
 
 請輸入檔名，不要包含"{{ns:image}}:"開頭。',
+
+# Special:FileDuplicateSearch
+'fileduplicatesearch'          => '選擇重覆檔案',
+'fileduplicatesearch-summary'  => '用重覆檔案的切細值去找出檔案是否重覆。
+
+輸入檔名時不需要輸入 "{{ns:image}}:" 開頭。',
+'fileduplicatesearch-legend'   => '找重覆',
+'fileduplicatesearch-filename' => '檔案名稱:',
+'fileduplicatesearch-submit'   => '找',
+'fileduplicatesearch-info'     => '$1 × $2 像素<br />檔案大小: $3<br />MIME類型: $4',
+'fileduplicatesearch-result-1' => '檔案 "$1" 無完全相同的重覆。',
+'fileduplicatesearch-result-n' => '檔案 "$1" 有$2項完全相同的重覆。',
 
 );

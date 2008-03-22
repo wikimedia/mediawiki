@@ -183,16 +183,24 @@ $messages = array(
 'dec'           => '12月',
 
 # Categories related messages
-'categories'               => '页面分类',
-'categoriespagetext'       => '以下的分类包含页面或媒体。',
-'pagecategories'           => '$1个分类',
-'category_header'          => '"$1"分类中的页面',
-'subcategories'            => '亚类',
-'category-media-header'    => '"$1"分类中的媒体',
-'category-empty'           => "''这个分类中尚未包含任何页面或媒体。''",
-'hidden-categories'        => '$1个隐藏分类',
-'hidden-category-category' => '隐藏分类', # Name of the category where hidden categories will be listed
-'listingcontinuesabbrev'   => '续',
+'categories'                     => '页面分类',
+'categoriespagetext'             => '以下的分类中包含了页面或媒体。',
+'pagecategories'                 => '$1个分类',
+'special-categories-sort-count'  => '按数量排列',
+'special-categories-sort-abc'    => '按字母排列',
+'category_header'                => '"$1"分类中的页面',
+'subcategories'                  => '亚类',
+'category-media-header'          => '"$1"分类中的媒体',
+'category-empty'                 => "''这个分类中尚未包含任何页面或媒体。''",
+'hidden-categories'              => '$1个隐藏分类',
+'hidden-category-category'       => '隐藏分类', # Name of the category where hidden categories will be listed
+'category-subcat-count'          => '{{PLURAL:$2|这个分类中只有以下的亚类。|这个分类中有以下的$1个亚类，共有$2个附分类。}}',
+'category-subcat-count-limited'  => '这个分类中有$1个亚类。',
+'category-article-count'         => '{{PLURAL:$2|这个分类中只有以下的页面。|这个分类中有以下的$1个页面，共有$2个页面。}}',
+'category-article-count-limited' => '这个分类中有$1个页面。',
+'category-file-count'            => '{{PLURAL:$2|这个分类中只有以下的文件。|这个分类中有以下的$1个文件，共有$2个文件。}}',
+'category-file-count-limited'    => '这个分类中有$1个文件。',
+'listingcontinuesabbrev'         => '续',
 
 'mainpagetext'      => "<big>'''已成功安装 MediaWiki!'''</big>",
 'mainpagedocfooter' => '请访问 [http://meta.wikimedia.org/wiki/Help:Contents 用户手册] 以获得使用此 wiki 软件的信息！
@@ -809,6 +817,7 @@ $2',
 'showingresultsnum'     => '下面显示从第<b>$2</b>条开始的<b>$3</b>条结果:',
 'nonefound'             => '<strong>注意：</strong>失败的搜索往往是由于试图搜索诸如“的”或“和”之类的常见字所引起。',
 'powersearch'           => '高级搜索',
+'powersearch-legend'    => '高级搜索',
 'powersearchtext'       => '
 搜索名字空间：<br />$1<br />$2列出重定向页面；搜索$3 $9',
 'searchdisabled'        => '{{SITENAME}}由于性能方面的原因，全文搜索已被暂时禁用。您可以暂时通过Google搜索。请留意他们的索引可能会过时。',
@@ -1049,6 +1058,9 @@ $2',
 'upload_source_file' => ' (在您计算机上的一个文件)',
 
 # Special:Imagelist
+'imagelist-summary'     => '这个特殊页面显示所有上传过的文件。
+预设中最后上传的文件会显示在这个列表中的最顶处。
+点击一栏的标题去改变这个排列。',
 'imagelist_search_for'  => '按媒体名称搜索:',
 'imgdesc'               => '描述',
 'imgfile'               => '文件',
@@ -1081,6 +1093,7 @@ $2',
 'noimage'                   => '不存在此名称的文件，您可以$1。',
 'noimage-linktext'          => '上传它',
 'uploadnewversion-linktext' => '上传该文件的新版本',
+'imagepage-searchdupe'      => '搜索重覆的文件',
 
 # File reversion
 'filerevert'                => '恢复$1',
@@ -1468,7 +1481,7 @@ $NEWPAGE
 'undeleterevisions'            => '$1版本存档',
 'undeletehistory'              => '如果您恢复了该页面，所有版本都会被恢复到修订历史中。
 如果本页删除后有一个同名的新页面建立，被恢复的版本将会称为较新的历史。同时请留意在文件修订中的限制会在恢复时遗失。',
-'undeleterevdel'               => '如果把最新修订部份删除，反删除便无法进行。如果遇到这种情况，您必须反选或反隐藏最新已删除的修订。对于您没有权限去查看的修订是无法恢复的。',
+'undeleterevdel'               => '如果把最新修订部份删除，反删除便无法进行。如果遇到这种情况，您必须反选或反隐藏最新已删除的修订。',
 'undeletehistorynoadmin'       => '这个页面已被删除。删除原因显示在下方编辑摘要中，被删除前的所有修订文本连同删除前贡献用户的细节信息只对管理员可见。',
 'undelete-revision'            => '删除$1时由$3（在$2）所编写的修订版本:',
 'undeleterevision-missing'     => '无效或丢失的修订版本。您可能使用了错误的链接，或者此修订版本已经被从存档中恢复或移除。',
@@ -1924,12 +1937,13 @@ $1',
 
 # Special:Newimages
 'newimages'             => '新建图像画廊',
-'imagelisttext'         => '以下是按$2排列的$1个文件列表。',
+'imagelisttext'         => "以下是按$2排列的'''$1'''个文件列表。",
+'newimages-summary'     => '这个特殊页面中显示最后已上传的文件',
 'showhidebots'          => '($1机器人)',
 'noimages'              => '无可查看图像。',
 'ilsubmit'              => '搜索',
 'bydate'                => '按日期',
-'sp-newimages-showfrom' => '从$1开始显示新文件',
+'sp-newimages-showfrom' => '从$1 $2开始显示新文件',
 
 # Bad image list
 'bad_image_list' => '请根据以下的格式去编写:
@@ -2380,5 +2394,17 @@ $3
 'filepath-summary' => '这个特殊页面撷取一个文件的完整路径。图像会以完整的解像度显示，其它的文件类型会以同它们已关联程序启动。
 
 请输入档名，不要包含"{{ns:image}}:"开头。',
+
+# Special:FileDuplicateSearch
+'fileduplicatesearch'          => '选择重覆文件',
+'fileduplicatesearch-summary'  => '用重覆文件的切细值去找出文件是否重覆。
+
+输入档名时不需要输入 "{{ns:image}}:" 开头。',
+'fileduplicatesearch-legend'   => '找重覆',
+'fileduplicatesearch-filename' => '文件名称:',
+'fileduplicatesearch-submit'   => '找',
+'fileduplicatesearch-info'     => '$1 × $2 像素<br />文件大小: $3<br />MIME类型: $4',
+'fileduplicatesearch-result-1' => '文件 "$1" 无完全相同的重覆。',
+'fileduplicatesearch-result-n' => '文件 "$1" 有$2项完全相同的重覆。',
 
 );

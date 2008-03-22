@@ -166,16 +166,23 @@ $messages = array(
 'dec'           => '十二月',
 
 # Categories related messages
-'categories'               => '類',
-'categoriespagetext'       => '下類有頁或媒也。',
-'pagecategories'           => '$1類',
-'category_header'          => '"$1"',
-'subcategories'            => '次類',
-'category-media-header'    => '"$1"',
-'category-empty'           => "''無文也。''",
-'hidden-categories'        => '$1隱類',
-'hidden-category-category' => '隱類', # Name of the category where hidden categories will be listed
-'listingcontinuesabbrev'   => '續',
+'categories'                     => '類',
+'pagecategories'                 => '$1類',
+'special-categories-sort-count'  => '排數',
+'special-categories-sort-abc'    => '排字',
+'category_header'                => '「$1」中之頁',
+'subcategories'                  => '次類',
+'category-media-header'          => '「$1」中之媒',
+'category-empty'                 => "''無頁或媒也。''",
+'hidden-categories'              => '$1隱類',
+'hidden-category-category'       => '隱類', # Name of the category where hidden categories will be listed
+'category-subcat-count'          => '{{PLURAL:$2|門有戶壹。|門有戶$1，有$2戶也。}}',
+'category-subcat-count-limited'  => '門有戶$1。',
+'category-article-count'         => '{{PLURAL:$2|門有頁壹。|門有頁$1，有$2頁也。}}',
+'category-article-count-limited' => '門有頁$1。',
+'category-file-count'            => '{{PLURAL:$2|門有檔壹。|門有檔$1，有$2檔也。}}',
+'category-file-count-limited'    => '門有檔$1。',
+'listingcontinuesabbrev'         => '續',
 
 'mainpagetext'      => "<big>'''媒維基安置矣'''</big>",
 'mainpagedocfooter' => "欲識維基，見[http://meta.wikimedia.org/wiki/Help:Contents User's Guide] 
@@ -681,6 +688,7 @@ $2',
 'showingresults'        => '見<b>$1</b>尋，自<b>$2</b>始：',
 'showingresultsnum'     => '見<b>$3</b>尋，自<b>$2</b>始：',
 'powersearch'           => '尋',
+'powersearch-legend'    => '尋',
 
 # Preferences page
 'preferences'           => '簿註',
@@ -857,6 +865,9 @@ $2',
 'license-nopreview' => '（謝草覽）',
 
 # Special:Imagelist
+'imagelist-summary'     => '此奇頁示檔之全呈也。
+設最後之檔呈示於表頂。
+點題改其列之。',
 'imagelist_search_for'  => '以媒名尋：',
 'imgdesc'               => '述',
 'imgfile'               => '檔',
@@ -882,6 +893,7 @@ $2',
 'shareduploadwiki'          => '詳閱$1。',
 'shareduploadwiki-desc'     => '$1上之示。',
 'shareduploadwiki-linktext' => '檔述',
+'imagepage-searchdupe'      => '尋重檔',
 
 # File reversion
 'filerevert'                => '還$1',
@@ -1217,7 +1229,7 @@ $NEWPAGE
 'undeleteextrahelp'            => "欲還題，撤核後令'''''還刪'''''。欲還某審，核之再令。欲清核、贊，令之'''''歸白'''''。",
 'undeleterevisions'            => '審備$1',
 'undeletehistory'              => '如還題，審亦隨焉；若存同題，還如誌，不以代焉。夫還而啟，註記之。',
-'undeleterevdel'               => '新審不牽，難還也；銷、見之以篤還。無權閱審，亦不可也。',
+'undeleterevdel'               => '新審不牽，難還也；銷、見之以篤還。',
 'undeletehistorynoadmin'       => '文刪矣，何由如下；並示末纂者。詳文藏，惟有迭可閱。',
 'undelete-revision'            => '自$2，$3纂之$1審刪如下：',
 'undeleterevision-missing'     => '審謬失；棄、還或鏈亡。',
@@ -1619,11 +1631,13 @@ $NEWPAGE
 
 # Special:Newimages
 'newimages'             => '新圖之廊',
+'imagelisttext'         => "下表乃按$2排之的'''$1'''檔。",
+'newimages-summary'     => '此奇頁示最後呈上之檔也',
 'showhidebots'          => '（$1僕）',
 'noimages'              => '無可見。',
 'ilsubmit'              => '尋檔',
 'bydate'                => '時序',
-'sp-newimages-showfrom' => '自$1賞新檔',
+'sp-newimages-showfrom' => '自$1 $2賞新檔',
 
 # Video information, used by Language::formatTimePeriod() to format lengths in the above messages
 'video-dims' => '$1，$2矩$3',
@@ -1806,5 +1820,17 @@ $1',
 'filepath-summary' => '此奇頁取一檔之整路。圖以全解像示之，他檔會以有關之程式啟動也。
 
 輸檔名之，不包「{{ns:image}}:」開頭也。',
+
+# Special:FileDuplicateSearch
+'fileduplicatesearch'          => '擇重檔',
+'fileduplicatesearch-summary'  => '以重檔之切去查重也。
+
+入名時無 "{{ns:image}}:" 首也。',
+'fileduplicatesearch-legend'   => '尋重',
+'fileduplicatesearch-filename' => '名：',
+'fileduplicatesearch-submit'   => '尋',
+'fileduplicatesearch-info'     => '$1 × $2 像素<br />大小: $3<br />MIME類型: $4',
+'fileduplicatesearch-result-1' => '案 "$1" 無重也。',
+'fileduplicatesearch-result-n' => '案 "$1" 重有$2。',
 
 );
