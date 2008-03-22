@@ -1113,6 +1113,7 @@ class Title {
 
 		// Use getUserPermissionsErrors instead
 		if ( !wfRunHooks( 'userCan', array( &$this, &$user, $action, &$result ) ) ) {
+			var_dump( $result );
 			return $result ? array() : array( array( 'badaccess-group0' ) );
 		}
 
@@ -1388,10 +1389,6 @@ class Title {
 	 */
 	public function userCanRead() {
 		global $wgUser, $wgGroupPermissions;
-
-		# Shortcut for public wikis, allows skipping quite a bit of code path
-		if ($wgGroupPermissions['*']['read'])
-			return true;
 
 		$result = null;
 		wfRunHooks( 'userCan', array( &$this, &$wgUser, 'read', &$result ) );
