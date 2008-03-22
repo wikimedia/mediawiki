@@ -2895,7 +2895,12 @@ class Title {
 		$title = htmlspecialchars($this->getText());
 		$tburl = $this->trackbackURL();
 
-		return "
+		// Autodiscovery RDF is placed in comments so HTML validator
+		// won't barf. This is a rather icky workaround, but seems
+		// frequently used by this kind of RDF thingy.
+		//
+		// Spec: http://www.sixapart.com/pronet/docs/trackback_spec
+		return "<!--
 <rdf:RDF xmlns:rdf=\"http://www.w3.org/1999/02/22-rdf-syntax-ns#\"
          xmlns:dc=\"http://purl.org/dc/elements/1.1/\"
          xmlns:trackback=\"http://madskills.com/public/xml/rss/module/trackback/\">
@@ -2904,7 +2909,8 @@ class Title {
    dc:identifier=\"$url\"
    dc:title=\"$title\"
    trackback:ping=\"$tburl\" />
-</rdf:RDF>";
+</rdf:RDF>
+-->";
 	}
 
 	/**
