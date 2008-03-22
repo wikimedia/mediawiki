@@ -122,6 +122,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * PHP 5.3 compatibility fix for wfRunHooks() called with no parameters
 * (bug 6447) Trackbacks now work with transactional tables, if enabled
 * (bug 6892, 7147) Trackback error handling, optional fields more robust
+* (bug 6813) Don't break HTML validator when using trackbacks
 
 
 === API changes in 1.13 ===
