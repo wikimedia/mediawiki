@@ -35,17 +35,16 @@ if (!$wgUseTrackbacks)
 	XMLerror("Trackbacks are disabled.");
 
 if (   !isset($_POST['url'])
-    || !isset($_POST['blog_name'])
     || !isset($_REQUEST['article']))
 	XMLerror("Required field not specified");
 
 $dbw = wfGetDB(DB_MASTER);
 
-$tbtitle = $_POST['title'];
-$tbex = $_POST['excerpt'];
-$tburl = $_POST['url'];
-$tbname = $_POST['blog_name'];
-$tbarticle = $_REQUEST['article'];
+$tbtitle = strval( @$_POST['title'] );
+$tbex = strval( @$_POST['excerpt'] );
+$tburl = strval( $_POST['url'] );
+$tbname = strval( @$_POST['blog_name'] );
+$tbarticle = strval( $_REQUEST['article'] );
 
 $title = Title::newFromText($tbarticle);
 if (!isset($title) || !$title->exists())
