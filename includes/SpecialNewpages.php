@@ -244,7 +244,7 @@ class NewPagesPage extends QueryPage {
 	function patrollable( $result ) {
 		global $wgUser, $wgUseRCPatrol, $wgUseNPPatrol;
 		return ( $wgUseRCPatrol || $wgUseNPPatrol )
-			&& $wgUser->isAllowed( 'patrol' )
+			&& ( $wgUser->isAllowed( 'patrol' ) || $wgUser->isAllowed( 'patrolmarks' ) )
 			&& !$result->patrolled;
 	}
 
