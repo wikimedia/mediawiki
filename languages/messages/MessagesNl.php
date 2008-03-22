@@ -407,7 +407,7 @@ $messages = array(
 'qbedit'         => 'Bewerken',
 'qbpageoptions'  => 'Paginaopties',
 'qbpageinfo'     => 'Pagina-informatie',
-'qbmyoptions'    => 'Mijn opties',
+'qbmyoptions'    => "Mijn pagina's",
 'qbspecialpages' => 'Speciale pagina’s',
 'moredotdotdot'  => 'Meer …',
 'mypage'         => 'Mijn gebruikerspagina',
@@ -1713,9 +1713,8 @@ Dit zijn de huidige instellingen voor de pagina <strong>[[$1]]</strong>:",
 'undeleteextrahelp'            => "Om de hele pagina inclusief alle eerdere versies terug te plaatsen: laat alle hokjes onafgevinkt en klik op '''''Terugplaatsen'''''. Om slechts bepaalde versies terug te zetten: vink de terug te plaatsen versies aan en klik op '''''Terugplaatsen'''''. Als u op '''''Herinstellen''''' klikt wordt het toelichtingsveld leeggemaakt en worden alle versies gedeselecteerd.",
 'undeleterevisions'            => '$1 {{PLURAL:$1|versie|versies}} gearchiveerd',
 'undeletehistory'              => 'Als u een pagina terugplaatst, worden alle versies hersteld. Als er al een nieuwe pagina met dezelfde naam is aangemaakt sinds de pagina is verwijderd, worden de eerder verwijderde versies teruggeplaatst en blijft de huidige versie intact. Beperkingen op bestandsversies worden opgeheven bij terugplaatsen.',
-'undeleterevdel'               => 'Herstellen is niet mogelijk als daardoor de meest recente versie van de pagina gedeeltelijk wordt verwijderd.
-Verwijder in die gevallen de meest recent verwijderde versies uit de selectie.
-Versies van bestanden waar u geen toegang toe hebt worden niet hersteld.',
+'undeleterevdel'               => 'Herstellen is niet mogelijk als daardoor de meest recente versie van de pagina of het bestand gedeeltelijk wordt verwijderd.
+Verwijder in die gevallen de meest recent verwijderde versie uit de selectie.',
 'undeletehistorynoadmin'       => 'Deze pagina is verwijderd. De reden hiervoor staat hieronder, samen met de details van de gebruikers die deze pagina hebben bewerkt vóór de verwijdering. De verwijderde inhoud van de pagina is alleen zichtbaar voor beheerders.',
 'undelete-revision'            => 'Verwijderde versie van $1 (per $2) door $3:',
 'undeleterevision-missing'     => 'Ongeldige of missende versie.

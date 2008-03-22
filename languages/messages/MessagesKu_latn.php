@@ -1486,7 +1486,9 @@ if (wgUserLanguage == "ku-arab")
 'spamprotectionmatch' => 'Ev nivîsa parastinê spam vêxist: $1',
 
 # Info page
-'numwatchers' => 'Hejmara kesên dişopînin: $1',
+'numedits'     => 'Hejmara guherandinan (rûpel): $1',
+'numtalkedits' => 'Hejmara guherandinan (guftûgo): $1',
+'numwatchers'  => 'Hejmara kesên dişopînin: $1',
 
 # Math options
 'mw_math_png'    => 'Her caran wek PNG nîşanbide',
@@ -1504,6 +1506,7 @@ if (wgUserLanguage == "ku-arab")
 
 # Patrol log
 'patrol-log-page' => 'Reşahîya kontrolkirinê',
+'patrol-log-line' => '$1 ji $2 hate kontrolkirin $3',
 'patrol-log-auto' => '(otomatîk)',
 
 # Image deletion
@@ -1516,6 +1519,7 @@ if (wgUserLanguage == "ku-arab")
 'nextdiff'     => 'Ciyawaziya paştir →',
 
 # Media information
+'thumbsize'            => "Mezinbûna thunbnail'ê:",
 'widthheight'          => '$1 x $2',
 'widthheightpage'      => '$1×$2, $3 rûpel',
 'file-info'            => '(mezinbûnê data: $1, MIME-typ: $2)',
@@ -1540,11 +1544,12 @@ if (wgUserLanguage == "ku-arab")
 'variantname-ku'      => 'disable',
 
 # EXIF tags
-'exif-imagewidth'          => 'Panbûn',
-'exif-imagelength'         => 'Dirêjbûn',
-'exif-imagedescription'    => 'Navî wêneyê',
-'exif-artist'              => 'Nûser',
-'exif-exposuretime-format' => '$1 sanî ($2)',
+'exif-imagewidth'                  => 'Panbûn',
+'exif-imagelength'                 => 'Dirêjbûn',
+'exif-jpeginterchangeformatlength' => "Byte'ên data'ya JPEG",
+'exif-imagedescription'            => 'Navî wêneyê',
+'exif-artist'                      => 'Nûser',
+'exif-exposuretime-format'         => '$1 sanî ($2)',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'hemû',

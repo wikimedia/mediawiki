@@ -1864,7 +1864,7 @@ $1',
 'noimages'              => 'കാണാന്‍ ഒന്നുമില്ല.',
 'ilsubmit'              => 'തിരയുക',
 'bydate'                => 'ദിനക്രമത്തില്‍',
-'sp-newimages-showfrom' => '$1 ല്‍ തുടങ്ങുന്ന പ്രമാണങ്ങള്‍ കാണിക്കുക',
+'sp-newimages-showfrom' => '$2, $1 നു ശേഷം അപ്‌ലോഡ് ചെയ്ത പ്രമാണങ്ങള്‍ പ്രദര്‍ശിപ്പിക്കുക',
 
 # Bad image list
 'bad_image_list' => 'The format is as follows:

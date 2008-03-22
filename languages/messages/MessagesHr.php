@@ -1053,7 +1053,7 @@ Slijedi evidencija brisanja ove datoteke s obrazloženjem prethodnog brisanja:",
 'upload-curl-error28'      => "Istek vremena snimanja (''timeout'')",
 'upload-curl-error28-text' => 'Poslužitelj ne odgovara na upit. Provjerite da li su web stranice dostupne, pričekajte i pokušajte ponovo. Možete pokušati kasnije, kad bude manja gužva.',
 
-'license'            => 'Dopuštenje:',
+'license'            => 'Licencija:',
 'nolicense'          => 'Molim odaberite:',
 'license-nopreview'  => '(Prikaz nije moguć)',
 'upload_source_url'  => ' (valjani, javno dostupni URL)',

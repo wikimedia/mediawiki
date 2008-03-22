@@ -1129,6 +1129,8 @@ Untuk rujukan, berikut ialah log penghapusan bagi fail ini:",
 'upload_source_file' => ' (fail dalam komputer anda)',
 
 # Special:Imagelist
+'imagelist-summary'     => 'Laman khas ini memaparkan senarai fail yang telah dimuat naik.
+Klik di atas mana-mana lajur yang berkenaan untuk menukar tertib susunan.',
 'imagelist_search_for'  => 'Cari nama imej:',
 'imgdesc'               => 'hurai',
 'imgfile'               => 'fail',

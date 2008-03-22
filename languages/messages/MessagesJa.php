@@ -159,16 +159,22 @@ $messages = array(
 'dec'           => '12月',
 
 # Categories related messages
-'categories'               => 'カテゴリ',
-'categoriespagetext'       => '{{SITENAME}}には以下のカテゴリが存在します。',
-'pagecategories'           => 'カテゴリ',
-'category_header'          => 'カテゴリ “$1” にあるページ',
-'subcategories'            => 'サブカテゴリ',
-'category-media-header'    => 'カテゴリ “$1” にあるメディア',
-'category-empty'           => 'このカテゴリにはページまたはメディアがひとつもありません。',
-'hidden-categories'        => '{{PLURAL:$1|非公開カテゴリ|非公開カテゴリ}}',
-'hidden-category-category' => '非公開カテゴリ', # Name of the category where hidden categories will be listed
-'listingcontinuesabbrev'   => 'の続き',
+'categories'                     => 'カテゴリ',
+'categoriespagetext'             => '{{SITENAME}}には以下のカテゴリが存在します。',
+'pagecategories'                 => 'カテゴリ',
+'category_header'                => 'カテゴリ “$1” にあるページ',
+'subcategories'                  => 'サブカテゴリ',
+'category-media-header'          => 'カテゴリ “$1” にあるメディア',
+'category-empty'                 => 'このカテゴリにはページまたはメディアがひとつもありません。',
+'hidden-categories'              => '{{PLURAL:$1|非公開カテゴリ|非公開カテゴリ}}',
+'hidden-category-category'       => '非公開カテゴリ', # Name of the category where hidden categories will be listed
+'category-subcat-count'          => '{{PLURAL:$2|以下にこのカテゴリへ所属するサブカテゴリ 1 件を表示しています。|以下にこのカテゴリへ所属するサブカテゴリ $2 件中 $1 件を表示しています。}}',
+'category-subcat-count-limited'  => '以下にこのカテゴリへ所属するサブカテゴリ $1 件を表示しています。',
+'category-article-count'         => '以下にこのカテゴリへ所属している記事 $2 件中 $1 件を表示しています。',
+'category-article-count-limited' => '以下にこのカテゴリへ所属している記事 $1 件を表示しています。',
+'category-file-count'            => '以下にこのカテゴリへ所属しているファイル $2 個中 $1 個を表示しています。',
+'category-file-count-limited'    => '以下にこのカテゴリへ所属するファイル $1 個を表示しています。',
+'listingcontinuesabbrev'         => 'の続き',
 
 'mainpagetext'      => 'MediaWikiが正常にインストールされました。',
 'mainpagedocfooter' => '使い方・設定に関しては[http://meta.wikimedia.org/wiki/%E3%83%98%E3%83%AB%E3%83%97:%E7%9B%AE%E6%AC%A1 ユーザーズガイド]を参照してください。
@@ -1413,6 +1419,7 @@ $NEWPAGE
 # Undelete
 'undelete'                     => '削除されたページを参照する',
 'undeletepage'                 => '削除された編集の参照と復帰',
+'undeletepagetitle'            => "'''以下に表示されているのは [[:$1]] の削除された版です'''。",
 'viewdeletedpage'              => '削除されたページの削除記録と履歴',
 'undeletepagetext'             => '以下のページは削除されていますが、アーカイブに残っているため、復帰できます。アーカイブは定期的に消去されます。',
 'undeleteextrahelp'            => '全ての版を復帰する場合は、全ての版のチェックボックスを選択していない状態で「{{int:undeletebtn}}」ボタンをクリックしてください。
@@ -2323,21 +2330,21 @@ $1',
 'iranian-calendar-m12' => 'イラン歴第12月',
 
 # Core parser functions
-'unknown_extension_tag' => 'エクステンションタグ "$1" は登録されていません',
+'unknown_extension_tag' => '拡張機能タグ "$1" は登録されていません',
 
 # Special:Version
 'version'                          => 'バージョン情報', # Not used as normal message but as header for the special page itself
-'version-extensions'               => 'インストール済みエクステンション',
+'version-extensions'               => 'インストール済み拡張機能',
 'version-specialpages'             => '特別ページ',
 'version-parserhooks'              => 'パーサーフック',
 'version-variables'                => '変数',
 'version-other'                    => 'その他',
 'version-mediahandlers'            => 'メディアハンドラ',
 'version-hooks'                    => 'フック',
-'version-extension-functions'      => 'エクステンション関数',
-'version-parser-extensiontags'     => 'パーサーエクステンションタグ',
+'version-extension-functions'      => '拡張機能関数',
+'version-parser-extensiontags'     => 'パーサー拡張機能タグ',
 'version-parser-function-hooks'    => 'パーサー関数フック',
-'version-skin-extension-functions' => 'スキンエクステンション関数',
+'version-skin-extension-functions' => 'スキン拡張機能関数',
 'version-hook-name'                => 'フック名',
 'version-hook-subscribedby'        => 'フックが記述されている場所',
 'version-version'                  => 'バージョン',
