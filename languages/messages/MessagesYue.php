@@ -238,19 +238,27 @@ $messages = array(
 'dec'           => '12月',
 
 # Categories related messages
-'categories'               => '類',
-'categoriespagetext'       => '喺呢個分類度有頁或媒體。',
-'pagecategories'           => '屬於$1類',
-'category_header'          => '"$1" 類中嘅版',
-'subcategories'            => '分類',
-'category-media-header'    => ' "$1" 類嘅媒體',
-'category-empty'           => "''呢類無任何版或媒體檔。''",
-'hidden-categories'        => '屬於$1隱類',
-'hidden-category-category' => '隱藏類', # Name of the category where hidden categories will be listed
-'listingcontinuesabbrev'   => '續',
+'categories'                     => '類',
+'categoriespagetext'             => '下面嘅類有版或媒體。',
+'pagecategories'                 => '屬於$1類',
+'special-categories-sort-count'  => '跟數量排',
+'special-categories-sort-abc'    => '跟字母排',
+'category_header'                => '"$1" 類中嘅版',
+'subcategories'                  => '分類',
+'category-media-header'          => ' "$1" 類嘅媒體',
+'category-empty'                 => "''呢類無任何版或媒體檔。''",
+'hidden-categories'              => '屬於$1隱類',
+'hidden-category-category'       => '隱藏類', # Name of the category where hidden categories will be listed
+'category-subcat-count'          => '{{PLURAL:$2|呢類淨係有下面嘅細類。|呢類有下面嘅$1個細類，總共有$2類。}}',
+'category-subcat-count-limited'  => '呢個類別入邊有$1個細類別。',
+'category-article-count'         => '{{PLURAL:$2|呢類淨係有下面嘅版。|呢類有下面嘅$1版，總共有$2版。}}',
+'category-article-count-limited' => '呢個類別入邊有$1版。',
+'category-file-count'            => '{{PLURAL:$2|呢類淨係有下面嘅檔案。|呢類有下面嘅$1個檔案，總共有$2個檔案。}}',
+'category-file-count-limited'    => '呢個類別入邊有$1個檔案。',
+'listingcontinuesabbrev'         => '續',
 
-'mainpagetext'      => "<big>'''MediaWiki已經裝好。'''</big>",
-'mainpagedocfooter' => '參閱[http://meta.wikimedia.org/wiki/Help:Contents 用戶指引]（英），裏面有資料講點用wiki軟件。
+'mainpagetext'                   => "<big>'''MediaWiki已經裝好。'''</big>",
+'mainpagedocfooter'              => '參閱[http://meta.wikimedia.org/wiki/Help:Contents 用戶指引]（英），裏面有資料講點用wiki軟件。
 
 ==開始使用==
 * [http://www.mediawiki.org/wiki/Manual:Configuration_settings 配置設定清單]（英）
@@ -865,6 +873,7 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'showingresultsnum'     => '自#<b>$2</b>起顯示<b>$3</b>個結果。',
 'nonefound'             => "'''注意'''：搵嘢結果為空通常係因為你搵嘅係\"have\"、\"from\"等太常用而唔會被索引入數據庫嘅詞，又或者係你指定咗太多嘅關鍵字（只有包含所有你指定嘅關鍵字嘅頁面先至會被搵到出嚟）。",
 'powersearch'           => '進階搵嘢',
+'powersearch-legend'    => '進階搵嘢',
 'powersearchtext'       => '喺以下嘅空間名度搵 :<br />$1<br />$2 彈去清單 &nbsp; $3 嘅搜尋 $9',
 'searchdisabled'        => '{{SITENAME}}嘅搜尋功能已經關閉。你可以利用Google嚟搵。不過佢哋對{{SITENAME}}嘅索引可能唔係最新嘅。',
 
@@ -1102,7 +1111,10 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'upload_source_file' => ' （你部電腦裏面嘅一個檔案）',
 
 # Special:Imagelist
-'imagelist_search_for'  => '搵媒體名：',
+'imagelist-summary'     => '呢個特別版顯示全部上載過嘅檔案。
+響預設最後上載嘅檔案會顯示響呢個表嘅最頂。
+撳一欄嘅標題去改個排列。',
+'imagelist_search_for'  => '搵媒體名:',
 'imgdesc'               => '描述',
 'imgfile'               => '檔案',
 'imagelist'             => '檔案清單',
@@ -1134,6 +1146,7 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'noimage'                   => '冇同名嘅檔案存在，你可以$1。',
 'noimage-linktext'          => '上載佢',
 'uploadnewversion-linktext' => '上載呢個檔案嘅一個新版本',
+'imagepage-searchdupe'      => '搵重覆檔案',
 
 # File reversion
 'filerevert'                => '回復$1',
@@ -1504,7 +1517,7 @@ wiki: $PAGEEDITOR_WIKI
 'undeleteextrahelp'            => "要恢復成個頁面，唔好剔任何嘅核選盒，再撳'''''恢復'''''。要恢復已經選擇咗嘅修訂，將要恢復代表有關修訂嘅核選盒剔上，再撳'''''恢復'''''。撳'''''重設'''''會清除註解文字同埋全部嘅核選盒。",
 'undeleterevisions'            => '$1個修訂都已經存檔',
 'undeletehistory'              => '如果你恢復呢個頁面，佢嘅所有修改歷史都會恢復返到嗰篇頁面嘅歷史度。如果喺佢刪除之後又新開咗同名嘅頁面，你恢復嘅修改歷史會顯示喺先前歷史度。同時請留意響個檔案修訂嘅限制會響恢復嗰陣遺失。',
-'undeleterevdel'               => '如果響最新修訂度部份刪除，噉反刪除就唔能夠進行。如果遇到呢種情況，你一定要反選或者反隱藏最新刪除咗嘅修訂。對於你冇權限去睇嘅修訂係唔能夠恢復嘅。',
+'undeleterevdel'               => '如果響最新修訂度部份刪除，噉反刪除就唔能夠進行。如果遇到呢種情況，你一定要反選或者反隱藏最新刪除咗嘅修訂。',
 'undeletehistorynoadmin'       => '呢一版已經刪咗。刪除嘅原因喺下面嘅摘要度，連同重有刪除之前編輯過呢個頁面嘅用戶嘅詳細資料。所刪除嘅版本嘅實際內容得管理員可以睇到。',
 'undelete-revision'            => '已經刪除咗$1嗰陣（響$2）由$3所寫嘅修訂:',
 'undeleterevision-missing'     => '唔正確或者遺失咗修訂。你可能有一個壞連結，或者嗰個修訂已經響存檔度恢復咗或者刪除咗。',
@@ -1950,12 +1963,13 @@ $1',
 
 # Special:Newimages
 'newimages'             => '新檔案畫廊',
-'imagelisttext'         => "以下係'''$1'''個檔案'''$2'''排序嘅清單。",
+'imagelisttext'         => "以下係'''$1'''個檔案$2排序嘅清單。",
+'newimages-summary'     => '呢個特別頁顯示最後上載咗嘅檔案',
 'showhidebots'          => '($1 機械人)',
 'noimages'              => '冇嘢去睇。',
 'ilsubmit'              => '搵嘢',
 'bydate'                => '以時間',
-'sp-newimages-showfrom' => '顯示由$1嘅新檔',
+'sp-newimages-showfrom' => '顯示由$1 $2嘅新檔',
 
 # Bad image list
 'bad_image_list' => '請根據下面嘅格式去寫:
@@ -2418,5 +2432,17 @@ $1',
 'filepath-summary' => '呢個特別頁拎一個檔案嘅完整路徑。圖像會以完整嘅解像度顯示，其它嘅檔案類型會以同佢哋關聯咗嘅程式啟動。
 
 請輸入檔名，唔好連埋個"{{ns:image}}:"開頭。',
+
+# Special:FileDuplicateSearch
+'fileduplicatesearch'          => '㨂重覆檔案',
+'fileduplicatesearch-summary'  => '用重覆檔案嘅切細值去搵個檔案係唔係重覆。
+
+輸入檔名嗰陣唔使輸入 "{{ns:image}}:" 開頭。',
+'fileduplicatesearch-legend'   => '搵重覆',
+'fileduplicatesearch-filename' => '檔名:',
+'fileduplicatesearch-submit'   => '搵',
+'fileduplicatesearch-info'     => '$1 × $2 像素<br />檔案大細: $3<br />MIME類型: $4',
+'fileduplicatesearch-result-1' => '個檔案 "$1" 無完全相同嘅重覆。',
+'fileduplicatesearch-result-n' => '個檔案 "$1" 有$2項完全相同嘅重覆。',
 
 );
