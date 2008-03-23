@@ -865,6 +865,8 @@ D’autres administrateurs de {{SITENAME}} pourront toujours accéder au contenu
 'logdelete-logaction'         => '$1 {{plural:$1|événement de [[$3]] changé|événements de [[$3]] changés}} en mode $2',
 'revdelete-success'           => 'Visibilité des versions changées avec succès.',
 'logdelete-success'           => 'Visibilité des événements changée avec succès.',
+'pagehist'                    => 'Historique de la page',
+'deletedhist'                 => 'Historique des suppressions',
 
 # Oversight log
 'oversightlog'    => 'Historique de supervision',
