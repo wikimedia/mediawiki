@@ -685,6 +685,7 @@ $wgMessageStructure = array(
 		'search-redirect',
 		'search-section',
 		'search-suggest',
+		'searchall',
 		'showingresults',
 		'showingresultsnum',
 		'showingresultstotal',

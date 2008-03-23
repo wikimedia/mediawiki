@@ -176,6 +176,37 @@ class SearchEngine {
 	function setNamespaces( $namespaces ) {
 		$this->namespaces = $namespaces;
 	}
+	
+	/**
+	 * Parse some common prefixes: all (search everything)
+	 * or namespace names
+	 *
+	 * @param string $query
+	 */
+	function replacePrefixes( $query ){
+		global $wgContLang;
+				
+		if( strpos($query,':') === false )
+			return $query; // nothing to do
+			
+		$parsed = $query;
+		$allkeyword = wfMsg('searchall').":";
+		if( strncmp($query, $allkeyword, strlen($allkeyword)) == 0 ){
+			$this->namespaces = null;
+			$parsed = substr($query,strlen($allkeyword));
+		} else if( strpos($query,':') !== false ) {
+			$prefix = substr($query,0,strpos($query,':'));
+			$index = $wgContLang->getNsIndex($prefix);
+			if($index !== false){
+				$this->namespaces = array($index);
+				$parsed = substr($query,strlen($prefix)+1);
+			}
+		}
+		if(trim($parsed) == '')
+			return $query; // prefix was the whole query
+			
+		return $parsed;
+	}
 
 	/**
 	 * Make a list of searchable namespaces and their canonical names.

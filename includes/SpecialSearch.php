@@ -159,8 +159,10 @@ class SpecialSearch {
 		$search = SearchEngine::create();
 		$search->setLimitOffset( $this->limit, $this->offset );
 		$search->setNamespaces( $this->namespaces );
-		$search->showRedirects = $this->searchRedirects;
-		$titleMatches = $search->searchTitle( $term );
+		$search->showRedirects = $this->searchRedirects;		
+		$rewritten = $search->replacePrefixes($term);
+		
+		$titleMatches = $search->searchTitle( $rewritten );
 
 		// Sometimes the search engine knows there are too many hits
 		if ($titleMatches instanceof SearchResultTooMany) {
@@ -170,7 +172,7 @@ class SpecialSearch {
 			wfProfileOut( $fname );
 			return;
 		}
-		$textMatches = $search->searchText( $term );
+		$textMatches = $search->searchText( $rewritten );
 		
 		// did you mean...
 		if($textMatches && $textMatches->hasSuggestion()){

@@ -115,6 +115,8 @@ class SearchMySQL extends SearchEngine {
 	 * @private
 	 */
 	function queryNamespaces() {
+		if( is_null($this->namespaces) )
+			return '';  # search all
 		$namespaces = implode( ',', $this->namespaces );
 		if ($namespaces == '') {
 			$namespaces = '0';
