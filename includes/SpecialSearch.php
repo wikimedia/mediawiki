@@ -171,11 +171,29 @@ class SpecialSearch {
 			return;
 		}
 		$textMatches = $search->searchText( $term );
+		
+		// did you mean...
+		if($textMatches && $textMatches->hasSuggestion()){
+			global $wgScript;
+			$fulltext = htmlspecialchars(wfMsg('search'));
+			$suggestLink = '<a href="'.$wgScript.'?title=Special:Search&amp;search='.
+				urlencode($textMatches->getSuggestionQuery()).'&amp;fulltext='.$fulltext.'">'
+				.$textMatches->getSuggestionSnippet().'</a>';
+			$wgOut->addHTML('<div class="searchdidyoumean">'.wfMsg('search-suggest',$suggestLink).'</div>');
+		} 
+		
 
 		$num = ( $titleMatches ? $titleMatches->numRows() : 0 )
 			+ ( $textMatches ? $textMatches->numRows() : 0);
+		$totalNum = 0;
+		if($titleMatches && !is_null($titleMatches->getTotalHits()))
+			$totalNum += $titleMatches->getTotalHits();
+		if($textMatches && !is_null($textMatches->getTotalHits()))
+			$totalNum += $textMatches->getTotalHits();
 		if ( $num > 0 ) {
-			if ( $num >= $this->limit ) {
+			if ( $totalNum > 0 ){
+				$top = wfMsgExt('showingresultstotal',array( 'parseinline' ), $this->offset+1, $this->offset+$num, $totalNum);
+			} elseif ( $num >= $this->limit ) {
 				$top = wfShowingResults( $this->offset, $this->limit );
 			} else {
 				$top = wfShowingResultsNum( $this->offset, $this->limit, $num );
@@ -208,7 +226,10 @@ class SpecialSearch {
 
 		if( $textMatches ) {
 			if( $textMatches->numRows() ) {
-				$wgOut->wrapWikiMsg( "==$1==\n", 'textmatches' );
+				if($titleMatches) 
+					$wgOut->wrapWikiMsg( "==$1==\n", 'textmatches' );
+				else // if no title matches the heading is redundant
+					$wgOut->addHTML("<hr/>");
 				$wgOut->addHTML( $this->showMatches( $textMatches ) );
 			} elseif( $num == 0 ) {
 				# Don't show the 'no text matches' if we received title matches
@@ -341,8 +362,8 @@ class SpecialSearch {
 		//$contextlines = $wgUser->getOption( 'contextlines',  5 );
 		$contextlines = 2; // Hardcode this. Old defaults sucked. :)
 		$contextchars = $wgUser->getOption( 'contextchars', 50 );
-
-		$link = $sk->makeKnownLinkObj( $t );
+		
+		$link = $sk->makeKnownLinkObj( $t, $result->getTitleSnippet());
 
 		//If page content is not readable, just return the title.
 		//This is not quite safe, but better than showing excerpts from non-readable pages
@@ -360,12 +381,6 @@ class SpecialSearch {
 				htmlspecialchars( $t->getPrefixedText() ) . "-->\n";
 		}
 		
-		$text = $revision->getText();
-		$size = wfMsgExt( 'search-result-size', array( 'parsemag', 'escape' ),
-			$sk->formatSize( strlen( $text ) ),
-			str_word_count( $text ) );
-		$date = $wgLang->timeanddate( $revision->getTimestamp() );
-		
 		if( is_null( $result->getScore() ) ) {
 			// Search engine doesn't report scoring info
 			$score = '';
@@ -374,8 +389,51 @@ class SpecialSearch {
 			$score = wfMsg( 'search-result-score', $wgLang->formatNum( $percent ) )
 				. ' - ';
 		}
+		
+		// try to fetch everything from the search engine backend
+		// then fill-in what couldn't be fetched
+		$extract = $result->getTextSnippet();
+		$byteSize = $result->getByteSize();
+		$wordCount = $result->getWordCount();
+		$timestamp = $result->getTimestamp();
+		$redirectTitle = $result->getRedirectTitle();
+		$redirectText = $result->getRedirectSnippet();
+		$sectionTitle = $result->getSectionTitle();
+		$sectionText = $result->getSectionSnippet();
 
-		$extract = $this->extractText( $text, $terms, $contextlines, $contextchars );
+		// fallback
+		if( is_null($extract) || is_null($wordCount) || is_null($byteSize) ){
+			$text = $revision->getText();
+			if( is_null($extract) )
+				$extract = $this->extractText( $text, $terms, $contextlines, $contextchars );
+			if( is_null($byteSize) )
+				$byteSize = strlen( $text );
+			if( is_null($wordCount) )
+				$wordCount = str_word_count( $text );
+		}
+		if( is_null($timestamp) ){
+			$timestamp = $revision->getTimestamp();
+		}
+		
+		// format description		
+		$size = wfMsgExt( 'search-result-size', array( 'parsemag', 'escape' ),
+			$sk->formatSize( $byteSize ),
+			$wordCount );
+		$date = $wgLang->timeanddate( $timestamp );
+		
+		// format redirects / sections
+		$redirect = '';
+		if( !is_null($redirectTitle) )
+			$redirect = "<span class='searchalttitle'>"
+				.wfMsg('search-redirect',$sk->makeKnownLinkObj( $redirectTitle, $redirectText))
+				."</span>";
+		$section = '';
+		if( !is_null($sectionTitle) )
+			$section = "<span class='searchalttitle'>" 
+				.wfMsg('search-section', $sk->makeKnownLinkObj( $sectionTitle, $sectionText))
+				."</span>";
+		// wrap extract
+		$extract = "<div class='searchresult'>".$extract."</div>";
 		
 		// Include a thumbnail for media files...
 		if( $t->getNamespace() == NS_IMAGE ) {
@@ -408,7 +466,7 @@ class SpecialSearch {
 		}
 
 		wfProfileOut( $fname );
-		return "<li>{$link} {$extract}\n" .
+		return "<li>{$link} {$redirect} {$section} {$extract}\n" .
 			"<div class='mw-search-result-data'>{$score}{$size} - {$date}</div>" .
 			"</li>\n";
 
@@ -437,12 +495,12 @@ class SpecialSearch {
 				continue;
 			}
 			--$contextlines;
-			$pre = $wgContLang->truncate( $m[1], -$contextchars, '...' );
+			$pre = $wgContLang->truncate( $m[1], -$contextchars, ' ... ' );
 
 			if ( count( $m ) < 3 ) {
 				$post = '';
 			} else {
-				$post = $wgContLang->truncate( $m[3], $contextchars, '...' );
+				$post = $wgContLang->truncate( $m[3], $contextchars, ' ... ' );
 			}
 
 			$found = $m[2];
@@ -452,7 +510,7 @@ class SpecialSearch {
 			$line = preg_replace( $pat2,
 			  "<span class='searchmatch'>\\1</span>", $line );
 
-			$extract .= "<br /><small>{$line}</small>\n";
+			$extract .= "${line}\n";
 		}
 		wfProfileOut( "$fname-extract" );
 		
