@@ -150,6 +150,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 13442) Missing pages in prop=langlinks and prop=extlinks are now 
   handled properly.
 * (bug 13444) Add description to list=watchlist
+* (bug 13482) Disabled search types handled properly
 
 === Languages updated in 1.13 ===
 
