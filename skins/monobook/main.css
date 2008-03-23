@@ -1184,8 +1184,23 @@ span.unpatrolled {
 }
 
 span.searchmatch {
-	color: red;
+	font-size: 95%;	
 }
+div.searchresult {
+	font-size: 95%;
+	width:38em;
+}
+
+span.searchalttitle {
+	font-size: 95%;
+}
+
+div.searchdidyoumean {
+	font-size: 127%;
+	padding-bottom:1ex;
+	padding-top:1ex; 
+}
+
 .sharedUploadNotice {
 	font-style: italic;
 }
