@@ -1174,6 +1174,8 @@ Other admins on {{SITENAME}} will still be able to access the hidden content and
 'logdelete-logaction'         => '$1 {{PLURAL:$1|event|events}} to [[$3]] set to mode $2',
 'revdelete-success'           => 'Revision visibility successfully set.',
 'logdelete-success'           => 'Event visibility successfully set.',
+'pagehist'                    => 'Page history',
+'deletedhist'                 => 'Deleted history',
 
 # Oversight log
 'oversightlog'    => 'Oversight log',

@@ -626,6 +626,8 @@ $wgMessageStructure = array(
 		'logdelete-logaction',
 		'revdelete-success',
 		'logdelete-success',
+		'pagehist',
+		'deletedhist',
 	),
 	'oversightlog' => array(
 		'oversightlog',
