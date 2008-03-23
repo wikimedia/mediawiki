@@ -299,8 +299,8 @@
 	'tpi' => 'Tok Pisin',	# Tok Pisin
 	'tr' => 'Türkçe',	# Turkish
 	'ts' => 'Xitsonga',		# Tsonga
-	'tt' => 'Tatarça/татарча',	# Tatar (multiple scripts - defaults to Latin)
-	'tt-cyrl' => 'татарча',	# Tatar (Cyrillic script)
+	'tt' => 'Tatarça/Татарча',	# Tatar (multiple scripts - defaults to Latin)
+	'tt-cyrl' => 'Татарча',	# Tatar (Cyrillic script)
 	'tt-latn' => 'Tatarça',	# Tatar (Latin script)
 	'tum' => 'chiTumbuka',  # Tumbuka
 	'tw' => 'Twi',			# Twi, (FIXME!)
