@@ -19,11 +19,6 @@
  * @author Grillo
  * @author Lokal Profil
  */
-
-$fallback = array(
-	'da',
-	'no',
-	'nn',
 );
 
 $skinNames = array(

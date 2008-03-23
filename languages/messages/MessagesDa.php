@@ -12,12 +12,6 @@
  * @author Siebrand
  */
 
-$fallback = array(
-	'no',
-	'nn',
-	'sv',
-);
-
 $namespaceNames = array(
 	NS_MEDIA          => 'Media',
 	NS_SPECIAL        => 'Speciel',
