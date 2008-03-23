@@ -713,7 +713,7 @@ Con l'invio del testo dichiari inoltre, sotto la tua responsabilità, che il tes
 'templatesusedsection'      => 'Template utilizzati in questa sezione:',
 'template-protected'        => '(protetto)',
 'template-semiprotected'    => '(semiprotetto)',
-'hiddencategories'          => '{{PLURAL:$1|Categoria nascosta della quale|Categorie nascoste delle quali}} questa pagina fa parte:',
+'hiddencategories'          => 'Questa pagina appartiene a {{PLURAL:$1|una categoria nascosta|$1 categorie nascoste}}:',
 'edittools'                 => '<!-- Testo che appare al di sotto del modulo di modifica e di upload. -->',
 'nocreatetitle'             => 'Creazione delle pagine limitata',
 'nocreatetext'              => 'La possibilità di creare nuove pagine su {{SITENAME}} è stata limitata ai soli utenti registrati. È possibile tornare indietro e modificare una pagina esistente, oppure [[Special:Userlogin|entrare o creare un nuovo accesso]].',

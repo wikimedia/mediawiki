@@ -1555,8 +1555,7 @@ er oprettet siden denne blev slettet, så vil de gendannede revisioner
 dukke op i den tidligere historie, og den nyeste revision vil forblive
 på siden.',
 'undeleterevdel'               => 'Gendannelsen gennemføres ikke, når den mest aktuelle version er skjult eller indeholder skjulte dele.
-I dette tilfælde må den nyeste version ikke markeres eller dens status skal ændres til en normal version.
-Versioner af filer, som du ikke har adgang til, gendannes ikke.',
+I dette tilfælde må den nyeste version ikke markeres eller dens status skal ændres til en normal version.',
 'undeletehistorynoadmin'       => 'Denne side blev ikke slettet. Årsagen til sletningen er angivet i resumeet,
 sammen med oplysninger om den sidste bruger, der ændrede denne side før sletningen.
 Den aktuelle tekst for den slettede side er kun tilgængelig for administratorer.',

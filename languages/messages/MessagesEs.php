@@ -164,17 +164,22 @@ $messages = array(
 'dec'           => 'dic',
 
 # Categories related messages
-'categories'                    => 'Categorías',
-'categoriespagetext'            => 'Existen las siguientes categorías en este wiki.',
-'pagecategories'                => '{{PLURAL:$1|Categoría|Categorías}}',
-'category_header'               => 'Artículos en la categoría "$1"',
-'subcategories'                 => 'Subcategorías',
-'category-media-header'         => 'Archivos multimedia en la categoría "$1"',
-'category-empty'                => "''La categoría no contiene actualmente ningún artículo o archivo multimedia''",
-'hidden-categories'             => '{{PLURAL:$1|Categoría escondida|Categorías escondidas}}',
-'hidden-category-category'      => 'Categorías escondidas', # Name of the category where hidden categories will be listed
-'category-subcat-count-limited' => 'Esta categoría contiene las siguientes {{PLURAL:$1|subcategoría|$1 subcategorías}}.',
-'listingcontinuesabbrev'        => 'cont.',
+'categories'                     => 'Categorías',
+'categoriespagetext'             => 'Existen las siguientes categorías en este wiki.',
+'pagecategories'                 => '{{PLURAL:$1|Categoría|Categorías}}',
+'category_header'                => 'Artículos en la categoría "$1"',
+'subcategories'                  => 'Subcategorías',
+'category-media-header'          => 'Archivos multimedia en la categoría "$1"',
+'category-empty'                 => "''La categoría no contiene actualmente ningún artículo o archivo multimedia''",
+'hidden-categories'              => '{{PLURAL:$1|Categoría escondida|Categorías escondidas}}',
+'hidden-category-category'       => 'Categorías escondidas', # Name of the category where hidden categories will be listed
+'category-subcat-count'          => '{{PLURAL:$2|Esta categoría comprende solamente la siguiente categoría.|Esta categoría incluye {{PLURAL:$1|la siguiente categorías|las siguientes $1 subcategorías}}, de un total de $2.}}',
+'category-subcat-count-limited'  => 'Esta categoría contiene las siguientes {{PLURAL:$1|subcategoría|$1 subcategorías}}.',
+'category-article-count'         => '{{PLURAL:$2|Esta categoría incluye solamente la siguiente página.|{{PLURAL:$1|La siguiente página página pertenece|Las siguientes $1 páginas pertenecen}} a esta categoría, de un total de $2.}}',
+'category-article-count-limited' => '{{PLURAL:$1|La siguiente página pertenece|Las siguientes $1 páginas pertenencen}} a esta categoría.',
+'category-file-count'            => '{{PLURAL:$2|Esta categoría contiene solamente el siguiente fichero.|{{PLURAL:$1|El siguiente fichero pertencer|Los siguientes $1 ficheros pertenecen}} a esta categoría, de un total de $2.}}',
+'category-file-count-limited'    => '{{PLURAL:$1|El siguiente fichero pertenece|Los siguientes $1 ficheros pertenecen}} a esta categoría.',
+'listingcontinuesabbrev'         => 'cont.',
 
 'mainpagetext'      => 'Software wiki instalado con éxito.',
 'mainpagedocfooter' => 'Consulta la [http://meta.wikimedia.org/wiki/Help:Contents Guía de usuario] para obtener información sobre el uso del software wiki.
@@ -312,6 +317,7 @@ $messages = array(
 'site-rss-feed'           => '$1 RSS feed',
 'site-atom-feed'          => '$1 Atom feed',
 'page-rss-feed'           => '"$1" RSS feed',
+'red-link-title'          => '$1 (aún no redactado)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Artículo',
@@ -364,6 +370,7 @@ incluyendo el URL.',
 'filedeleteerror'      => 'No se pudo borrar el archivo "$1".',
 'directorycreateerror' => 'No se pudo crear el directorio "$1".',
 'filenotfound'         => 'No se pudo encontrar el archivo "$1".',
+'fileexistserror'      => 'Imposible escribir en el archivo "$1": el archivo existe.',
 'unexpected'           => 'Valor inesperado: "$1"="$2".',
 'formerror'            => 'Error: no se pudo enviar el formulario',
 'badarticleerror'      => 'Esta acción no se puede llevar a cabo en esta página.',
@@ -379,6 +386,7 @@ Función: $1<br />
 Consulta: $2',
 'viewsource'           => 'Ver código fuente',
 'viewsourcefor'        => 'para $1',
+'actionthrottled'      => 'Acción bloqueada',
 'actionthrottledtext'  => "Como una medida contra el ''spam'', hay un límite para las veces que puedes en un corto periodo de tiempo y lo has sobrepasado. Por favor, inténtalo de nuevo en unos minutos.",
 'protectedpagetext'    => 'Esta página ha sido bloqueada para evitar su edición.',
 'viewsourcetext'       => 'Puedes ver y copiar el código fuente de esta página:',
@@ -389,6 +397,7 @@ Consulta: $2',
 'namespaceprotected'   => "No tienes permiso para editar las páginas del espacio de nombres '''$1'''.",
 'customcssjsprotected' => 'No tienes permiso para editar esta página porque contiene elementos de la configuración personal de otro usuario.',
 'ns-specialprotected'  => 'Las páginas en el espacio de nombres {{ns:special}} no se pueden editar.',
+'titleprotected'       => 'Esta página ha sido protegida contra creación por [[User:$1|$1]]. La motivo dado fue: <i>$2</i>',
 
 # Login and logout pages
 'logouttitle'                => 'Fin de sesión',
@@ -468,6 +477,7 @@ Hasta que lo hagas, las siguientes funciones no estarán disponibles.',
 'invalidemailaddress'        => 'La dirección electrónica no puede ser aceptada, pues parece que tiene un formato no válido. Por favor, escribe una dirección bien formada, o vacía el campo.',
 'accountcreated'             => 'Cuenta creada',
 'accountcreatedtext'         => 'La cuenta de usuario para $1 ha sido creada.',
+'createaccount-title'        => 'Creación de cuenta para {{SITENAME}}',
 'loginlanguagelabel'         => 'Idioma: $1',
 
 # Password reset dialog

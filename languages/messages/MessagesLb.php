@@ -653,9 +653,14 @@ Dir kënnt de(n) $1 oder soss een [[{{MediaWiki:Grouppage-sysop}}|Administrateur
 'previewnote'               => "<strong>Dëst ass nëmmen e Preview; D'Ännerunge sinn nach net gespäichert!</strong>",
 'previewconflict'           => 'Dir gesitt an dem ieweschten Textfeld wéi den Text ausgesi wäert, wann Dir späichert.',
 'session_fail_preview'      => "<strong>Et deet eis leed, mee är Ännerung konnt net gespäichert gi well d'Date vun ärer Sessioun verluergaange sinn. Versicht et w.e.g. nach eng Kéier. Wann de Problem dann ëmmer nach bestoe sollt, da versicht iech kuerz aus- an dann erëm anzeloggen.</strong>",
+'session_fail_preview_html' => "<strong>Et deet eis leed, mee är Ännerung konnt net gespäichert gi well d'Date vun ärer Sessioun verluergaange sinn.</strong>
+
+''Well op {{SITENAME}} d'Späichere vu ''raw HTML'' aktivéiert ass, gouf de Preview ausgeblendt, fir JavaScript-Attacken ze vermeiden.''
+
+<strong>Versicht et w.e.g. nach eng Kéier. Wann de Problem dann ëmmer nach bestoe sollt, da versicht iech kuerz aus- an dann erëm anzeloggen.</strong>",
 'editing'                   => 'Ännere vun $1',
 'editingsection'            => 'Ännere vun $1 (Abschnitt)',
-'editingcomment'            => 'Ännere vun $1 (Kommentar)',
+'editingcomment'            => 'Ännere vun $1 (Bemierkung)',
 'editconflict'              => 'Ännerungskonflikt: $1',
 'explainconflict'           => 'Een anere Benotzer huet un dëser Säit geschafft, während Dir amgaange waart, se ze änneren.
 
@@ -703,6 +708,8 @@ Frot iech ob et wierklech sënnvoll ass dës Säit nees nei ze schafen.
 Fir iech z'informéieren fannt Dir hei d'Läschlescht mat dem Grond:",
 
 # "Undo" feature
+'undo-success' => "D'Ännerung gëtt réckgängeg gemaach. Iwwerpréift w.e.g. de Verglach ënnedrënner fir nozekuckeen ob et esou richteg ass, duerno späichert w.e.g d'Ännerungen of fir dës Aktioun ofzeschléissen.",
+'undo-failure' => '<span class="error">D\'Ännerung konnt net réckgängeg gemaach ginn, wëll de betraffenen Abschnitt an der Tëschenzäit geännert gouf.</span>',
 'undo-summary' => 'Ännerung $1 vu(n) [[{{ns:special}}:Contributions/$2|$2]] ([[User_talk:$2|Diskussioun]]) gouf annulléiert.',
 
 # Account creation failure
@@ -1261,7 +1268,7 @@ An all Rei sti Linken zur éischter an zweeter Viruleedung, souwéi déi éischt
 'allpagesprev'      => 'Vireg',
 'allpagesnext'      => 'Nächst',
 'allpagessubmit'    => 'Lass',
-'allpagesprefix'    => 'Säite mat Präfix weisen:',
+'allpagesprefix'    => 'Säite mat Prefix weisen:',
 'allpagesbadtitle'  => 'Den Titel vun dëser Säit ass net valabel oder hat en Interwiki-Prefix. Et ka sinn datt een oder méi Zeechen drasinn, déi net an Titele benotzt kënne ginn.',
 'allpages-bad-ns'   => 'De Nummraum „$1“ gëtt et net op {{SITENAME}}.',
 
