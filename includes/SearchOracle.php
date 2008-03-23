@@ -70,6 +70,8 @@ class SearchOracle extends SearchEngine {
 	 * @private
 	 */
 	function queryNamespaces() {
+		if( is_null($this->namespaces) )
+			return '';
 		$namespaces = implode(',', $this->namespaces);
 		if ($namespaces == '') {
 			$namespaces = '0';
