@@ -43,7 +43,7 @@ class InstallerRepository {
 		trigger_error( 'override InstallerRepository::getResource()', E_USER_ERROR );
 	}        
 	
-	/*static*/ function makeRepository( $path, $type = NULL ) {
+	static function makeRepository( $path, $type = NULL ) {
 		if ( !$type ) {
 			$m = array();
 			preg_match( '!(([-+\w]+)://)?.*?(\.[-\w\d.]+)?$!', $path, $m );
@@ -319,15 +319,15 @@ class ExtensionInstaller {
 		#TODO: allow a config file different from "LocalSettings.php"
 	}
 
-	function note( $msg ) {
+	static function note( $msg ) {
 		print "$msg\n";
 	}
 
-	function warn( $msg ) {
+	static function warn( $msg ) {
 		print "WARNING: $msg\n";
 	}
 
-	function error( $msg ) {
+	static function error( $msg ) {
 		print "ERROR: $msg\n";
 	}
 
@@ -470,18 +470,18 @@ class ExtensionInstaller {
 		#TODO: allow custom installer scripts + sql patches
 		
 		if ( !file_exists( $f ) ) {
-			$this->warn( "No install.settings file provided!" );
+			self::warn( "No install.settings file provided!" );
 			$this->tasks[] = "Please read the instructions and edit LocalSettings.php manually to activate the extension.";
 			return '?';
 		}
 		else {
-			$this->note( "applying settings patch..." );
+			self::note( "applying settings patch..." );
 		}
 		
 		$settings = file_get_contents( $f );
 		                
 		if ( !$settings ) {
-			$this->error( "failed to read settings from $f!" );
+			self::error( "failed to read settings from $f!" );
 			return false;
 		}
 		                
@@ -489,7 +489,7 @@ class ExtensionInstaller {
 		
 		if ( $mode == EXTINST_NOPATCH ) {
 			$this->tasks[] = "Please put the following into your LocalSettings.php:" . "\n$settings\n";
-			$this->note( "Skipping patch phase, automatic patching is off." );
+			self::note( "Skipping patch phase, automatic patching is off." );
 			return true;
 		}
 		
@@ -500,18 +500,18 @@ class ExtensionInstaller {
 			$ok = copy( $t, $bak );
 			                
 			if ( !$ok ) {
-				$this->warn( "failed to create backup of LocalSettings.php!" );
+				self::warn( "failed to create backup of LocalSettings.php!" );
 				return false;
 			}
 			else {
-				$this->note( "created backup of LocalSettings.php at $bak" );
+				self::note( "created backup of LocalSettings.php at $bak" );
 			}
 		}
 		                
 		$localsettings = file_get_contents( $t );
 		                
 		if ( !$settings ) {
-			$this->error( "failed to read $t for patching!" );
+			self::error( "failed to read $t for patching!" );
 			return false;
 		}
 		                
@@ -534,14 +534,14 @@ class ExtensionInstaller {
 		$ok = file_put_contents( $t, $localsettings );
 		
 		if ( !$ok ) {
-			$this->error( "failed to patch $t!" );
+			self::error( "failed to patch $t!" );
 			return false;
 		}
 		else if ( $mode == EXTINST_HOTPATCH ) {
-			$this->note( "successfully patched $t" );
+			self::note( "successfully patched $t" );
 		}
 		else  {
-			$this->note( "created patched settings file $t" );
+			self::note( "created patched settings file $t" );
 			$this->tasks[] = "Replace your current LocalSettings.php with ".basename($t);
 		}
 		
