@@ -174,11 +174,13 @@ class SearchPostgres extends SearchEngine {
 			$query .= ' AND page_is_redirect = 0';
 
 		## Namespaces - defaults to 0
-		if ( count($this->namespaces) < 1)
-			$query .= ' AND page_namespace = 0';
-		else {
-			$namespaces = implode( ',', $this->namespaces );
-			$query .= " AND page_namespace IN ($namespaces)";
+		if( !is_null($this->namespaces) ){ // null -> search all
+			if ( count($this->namespaces) < 1)
+				$query .= ' AND page_namespace = 0';
+			else {
+				$namespaces = implode( ',', $this->namespaces );
+				$query .= " AND page_namespace IN ($namespaces)";
+			}
 		}
 
 		$query .= " ORDER BY score DESC, page_id DESC";

@@ -1236,6 +1236,7 @@ Make sure that this change will maintain historical page continuity.
 'search-redirect'       => '(redirect $1)',
 'search-section'        => '(section $1)',
 'search-suggest'        => 'Did you mean: $1',
+'searchall'             => 'all',
 'showingresults'        => "Showing below up to {{PLURAL:$1|'''1''' result|'''$1''' results}} starting with #'''$2'''.",
 'showingresultsnum'     => "Showing below {{PLURAL:$3|'''1''' result|'''$3''' results}} starting with #'''$2'''.",
 'showingresultstotal'   => "Showing below results '''$1 - $2''' of '''$3'''",
