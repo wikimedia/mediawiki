@@ -65,6 +65,9 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 			$matches = $search->searchText( $query );
 		else
 			$matches = $search->searchTitle( $query );
+		if (is_null($matches))
+			$this->dieUsage("{$params['what']} search is disabled", 
+					"search-{$params['what']}-disabled");
 
 		$data = array ();
 		$count = 0;
