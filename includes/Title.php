@@ -1389,15 +1389,15 @@ class Title {
 	public function userCanRead() {
 		global $wgUser, $wgGroupPermissions;
 
-		# Shortcut for public wikis, allows skipping quite a bit of code path
-		if ($wgGroupPermissions['*']['read'])
-			return true;
-
 		$result = null;
 		wfRunHooks( 'userCan', array( &$this, &$wgUser, 'read', &$result ) );
 		if ( $result !== null ) {
 			return $result;
 		}
+
+		# Shortcut for public wikis, allows skipping quite a bit of code
+		if ($wgGroupPermissions['*']['read'])
+			return true;
 
 		if( $wgUser->isAllowed( 'read' ) ) {
 			return true;
