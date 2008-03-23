@@ -3,7 +3,7 @@ body {
 	padding: 0 0 0 0;
 	/*font-size: 10pt;*/
 	font-size: x-small;
-	
+
 
 	font-family: sans-serif;
 	color: black;
@@ -116,7 +116,7 @@ body {
 
 #mw_portlets {
 	width: 14em;
-	
+
 	border-right: solid 1px #bbbbbb;
 	background-color: #f0f0f0;
 }
@@ -538,7 +538,7 @@ img.thumbborder {
 	background-color: #dddddd;
 	margin: 0 0 0 0;
 }
-	
+
 #toc h2,
 .toc h2 {
 	display: inline;
@@ -970,7 +970,7 @@ tr.sv-space td { display: none; }
 */
 .TablePager_nav a { text-decoration: none; }
 .TablePager { border-collapse: collapse; }
-.TablePager, .TablePager td, .TablePager th { 
+.TablePager, .TablePager td, .TablePager th {
 	border: 1px solid #aaaaaa;
 	padding: 0 0.15em 0 0.15em;
 }
@@ -1055,6 +1055,10 @@ dl {
 	color: #cc2200;
 }
 
+span.subpages {
+	font-size: 80%;
+}
+
 pre {
 	border: solid 1px #3c78b5;
 	padding: 0.4em;
@@ -1109,5 +1113,3 @@ pre {
     margin:0pt;
     padding:0pt;
 }
-
-
