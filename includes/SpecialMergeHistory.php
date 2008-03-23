@@ -248,7 +248,7 @@ class MergehistoryForm {
 			$last = $this->message['last'];
 		else if( isset($this->prevId[$row->rev_id]) )
 			$last = $this->sk->makeKnownLinkObj( $rev->getTitle(), $this->message['last'], 
-				"&diff=" . $row->rev_id . "&oldid=" . $this->prevId[$row->rev_id] );
+				"diff=" . $row->rev_id . "&oldid=" . $this->prevId[$row->rev_id] );
 		
 		$userLink = $this->sk->revUserTools( $rev );
 		
