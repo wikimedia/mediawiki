@@ -13,6 +13,7 @@
  * @author Masti
  * @author Matma Rex
  * @author Szczepan1990
+ * @author Leinad
  */
 
 $namespaceNames = array(
@@ -2380,5 +2381,17 @@ Titles on your watchlist are shown below, and can be edited by
 'filepath-page'    => 'Plik:',
 'filepath-submit'  => 'Ścieżka',
 'filepath-summary' => 'Ta strona specjalna zwraca pełną ścieżkę do pliku. Grafiki są pokazywane w pełnej rozdzielczości, inne typy plików są otwierane w skojarzonym z nimi programie. Wpisz nazwę pliku bez prefiksu "{{ns:image}}:".',
+
+# Special:FileDuplicateSearch
+'fileduplicatesearch'          => 'Szukaj duplikatu pliku',
+'fileduplicatesearch-summary'  => 'Szukaj duplikatu pliku na podstawie jego wartości funkcji skrótu.
+
+Wpisz nazwę pliku z pominięciem prefiksu "{{ns:image}}:".',
+'fileduplicatesearch-legend'   => 'Szukaj duplikatu pliku',
+'fileduplicatesearch-filename' => 'Nazwa pliku:',
+'fileduplicatesearch-submit'   => 'Szukaj',
+'fileduplicatesearch-info'     => '$1 × $2 pikseli<br />Rozmiar pliku: $3<br />Typ MIME: $4',
+'fileduplicatesearch-result-1' => 'Plik "$1" nie posiada duplikatu.',
+'fileduplicatesearch-result-n' => 'Plik "$1" posiada {{PLURAL:$2|1 duplikat|$2 {{#switch: $2 |2|3|4 =duplikaty|duplikatów}}}}.',
 
 );

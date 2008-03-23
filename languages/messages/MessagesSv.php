@@ -1543,8 +1543,7 @@ Nuvarande skrivskyddsinställning för sidan <strong>$1</strong> är:',
 'undeleterevisions'            => '$1 {{PLURAL:$1|version|versioner}} arkiverade',
 'undeletehistory'              => 'Om du återställer sidan kommer alla tidigare versioner att återfinnas i versionshistoriken. Om en ny sida med samma namn har skapats sedan sidan raderades, kommer den återskapade historiken automatiskt att återfinnas i den äldre historiken. Notera att restriktioner på sidversioner förloras i samband med återställningen.',
 'undeleterevdel'               => 'Återställningen kan inte utföras om den resulterar i att den senaste versionen är delvis borttagen.
-I sådana fall måste du se till att den senaste raderade versionen inte är ikryssad, eller att den inte är dold.
-Sidversioner som du inte har behörighet att se kommer inte att återställas.',
+I sådana fall måste du se till att den senaste raderade versionen inte är ikryssad, eller att den inte är dold.',
 'undeletehistorynoadmin'       => 'Den här sidan har blivit raderad. Anledningen till detta anges i sammanfattningen nedan, tillsammans med uppgifter om de användare som redigerat sidan innan den raderades. Enbart administratörerna har tillgång till den raderade texten.',
 'undelete-revision'            => 'Raderad version av $1 från den $2 av $3.',
 'undeleterevision-missing'     => 'Versionen finns inte eller är felaktig. Versionen kan ha återställts eller tagits bort från arkivet, du kan också ha följt en felaktig länk.',

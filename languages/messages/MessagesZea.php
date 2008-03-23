@@ -447,31 +447,89 @@ Schaokel die asjeblieft in en meld dinae an mie je nieuwe gebrukersnaem en wacht
 'loginsuccesstitle'          => 'Anmelden geslaegd',
 'loginsuccess'               => "'''Je bin noe anemeld bie {{SITENAME}} as \"\$1\".'''",
 'nosuchuser'                 => 'De gebruker "$1" besti nie. Controleer de schriefwieze of mik een nieuwe gebruker an.',
+'nosuchusershort'            => 'De gebruker "<nowiki>$1</nowiki>" besti nie. Controleer de schriefwieze.',
+'nouserspecified'            => 'Je dien een gebrukersnaem op te heven.',
+'wrongpassword'              => "Wachtwoôrd onjuust. Probeer 't opnieuw.",
+'wrongpasswordempty'         => "'t Opeheven wachtwoôrd was leeg. Probeer 't opnieuw.",
+'passwordtooshort'           => "Je wachtwoôrd is te kort. 't Mò minstens uut $1 teêkens bestaene.",
+'mailmypassword'             => 'E-mail wachtwoôrd',
+'passwordremindertitle'      => 'Nieuw tiedelijk wachtwoôrd voe {{SITENAME}}',
 'passwordremindertext'       => 'Iemand, warschienlijk jie, ei vanof \'t IP-adres $1 een verzoek edaene toet \'t toezen\'n van \'t wachtwoôrd voe {{SITENAME}} ($4).
 \'t Wachtwoôrd voe gebruker "$2" is "$3".
 Mel je noe an en wiezig dan je wachtwoôrd.
 
 A iemand aors dan jie dit verzoek ei edaene of a je ondertussen \'t wachtwoôrd wee weet en \'t nie langer wil wiezigen, neheer dan dit bericht en bluuf je bestaende wachtwoôrd gebruken.',
+'noemail'                    => 'Der is hin e-mailadres bekend van gebruker "$1".',
+'passwordsent'               => "'t Wachtwoôrd is verzon'n nae 't e-mailadres voe \"\$1\".
+Mel je asjeblieft an naeda je 't ei ontvangen.",
 'blocked-mailpassword'       => 'Jen IP-adres is geblokkeerd, en vò zoôlank as dat
 diert kan je, om misbruuk te vorkommen, geên nieuw wachtwoord laete opstiere.',
+'eauthentsent'               => "Der is een bevestigiengs-e-mail ni 't opeheven e-mailadres ezon'n. Volg de anwieziengen in de e-mail om an te heven dat 't joen e-mailadres is. Tot die tied kunn'n der hin e-mails ni 't e-mailadres ezon'n worn.",
+'throttled-mailpassword'     => "Der is in de lèste $1 uur een wachtwoôrdherinnerienge verzon'n. Om misbruuk te vorkomm'n wor der slechs eên herinnerienge per $1 uur verzon'n.",
+'mailerror'                  => "Fout bie 't verzen'n van e-mail: $1",
 'acct_creation_throttle_hit' => "J'ei al $1 gebrukers angemaekt. Meêr mag je d'r nie ebbe.",
+'emailauthenticated'         => 'Jen e-mailadres is bevestigd op $1.',
+'emailnotauthenticated'      => 'Jen e-mailadres is <strong>nie bevestigd</strong>. Je ontvang hin e-mail voe de onderstaende functies.',
+'noemailprefs'               => 'Heef een e-mailadres op om deêze functies te gebruken.',
+'emailconfirmlink'           => 'Bevestig jen e-mailadres',
+'invalidemailaddress'        => "'t E-mailadres is nie anvaerd omda 't een onheldihe opmaek ei.
+Heef asjeblieft een heldig e-mailadres op of lit 't veld leeg.",
 'accountcreated'             => 'Gebruker angemaekt.',
 'accountcreatedtext'         => 'De gebrukersnaem vò $1 is angemaekt.',
+'createaccount-title'        => 'Gebrukers anmaeken voe {{SITENAME}}',
+'createaccount-text'         => 'Iemand ei een gebruker op {{SITENAME}} ($4) anemikt mie de naem "$2" en joen e-mailadres. \'t Wachtwoôrd voe "$2" is "$3". Mel jen eihen an en wiezig je wachtwoôrd.
+
+Neheer dit bericht as deêze gebruker zonder joe medeweten is anemikt.',
 'loginlanguagelabel'         => 'Taele: $1',
 
+# Password reset dialog
+'resetpass'               => "Wachtwoôrd herinstell'n",
+'resetpass_announce'      => "Je bin anemeld mie een tiedelijke code die a je per e-mail is toe-ezon'n. Voer een nieuw wachtwoôrd in om 't anmelden te voltooien:",
+'resetpass_header'        => "Wachtwoôrd herinstell'n",
+'resetpass_submit'        => "Wachtwoôrd instell'n en anmelden",
+'resetpass_success'       => 'Je wachtwoord is ewiezigd. Bezig mie anmelden ...',
+'resetpass_bad_temporary' => 'Onheldig tiedelijk wachtwoôrd. Je ei je wachtwoôrd a ewiezigd of een nieuw tiedelijk wachtwoôrd anevrogen.',
+'resetpass_forbidden'     => "Wachtwoôrden kunn'n op {{SITENAME}} nie ewiezigd worn",
+'resetpass_missing'       => 'Je ei hin wachtwoôrd ineheven.',
+
 # Edit page toolbar
-'bold_sample' => 'Vette tekst',
+'bold_sample'     => 'Vette tekst',
+'bold_tip'        => 'Vet',
+'italic_sample'   => 'Schuunhedrukte tekst',
+'italic_tip'      => 'Schuun',
+'link_sample'     => 'Onderwerp',
+'link_tip'        => 'Interne lienk',
+'extlink_sample'  => 'http://www.voebeeld.com lienktekst',
+'extlink_tip'     => 'Externe lienk (verheet http:// nie)',
+'headline_sample' => 'Deêlonderwerp',
+'headline_tip'    => 'Tussenkopje (oôgste niveau)',
+'math_sample'     => 'Voer de formule in',
+'math_tip'        => 'Wiskundihe formule (LaTeX)',
+'nowiki_sample'   => 'Voer ier de nie op te maeken tekst in',
+'nowiki_tip'      => 'Wiki-opmaek neheren',
+'image_tip'       => 'Mediabestand',
+'media_tip'       => 'Lienk ni bestand',
+'sig_tip'         => "Jen 'andteêkenienge mie datum en tied",
+'hr_tip'          => 'Horizontaele lien (gebruuk spaerzaem)',
 
 # Edit pages
-'summary'               => 'Saemenvatting',
-'minoredit'             => 'Dit is een kleine wieziging',
-'watchthis'             => 'Volg deêze bladzie',
-'savearticle'           => 'Bewaer bladzie',
-'showpreview'           => 'Naekieke',
-'showdiff'              => 'Bekiek veranderiengen',
-'anoneditwarning'       => "'''Waerschuwienge:''' Je bin nie angemolde. Je IP-adres komt in de bewerkiengsgeschiedenisse van deêze bladzie te staen.",
-'blockedtitle'          => 'Gebruker is geblokkeerd',
-'blockedtext'           => "<big>'''Je gebruker of IP-adres is eblokkeerd.'''</big>
+'summary'                   => 'Saemenvatting',
+'subject'                   => 'Onderwerp/kop',
+'minoredit'                 => 'Dit is een kleine wieziging',
+'watchthis'                 => 'Volg deêze bladzie',
+'savearticle'               => 'Bewaer bladzie',
+'preview'                   => 'Naekieken',
+'showpreview'               => 'Naekieke',
+'showlivepreview'           => 'Bewerkieng ter controle bekieken',
+'showdiff'                  => 'Bekiek veranderiengen',
+'anoneditwarning'           => "'''Waerschuwienge:''' Je bin nie angemolde. Je IP-adres komt in de bewerkiengsgeschiedenisse van deêze bladzie te staen.",
+'missingsummary'            => "'''Herinnerieng:''' je ei hin saemenvattieng opeheven voe je bewerkieng. A je nog een keêr op ''Pagina opslaen'' klik wor de bewerkieng zonder saemenvattieng opeslogen.",
+'missingcommenttext'        => 'Plek jen opmerkieng asjeblieft ieronder.',
+'missingcommentheader'      => "'''Let op:''' Je ei hin onderwerp/kop voe deêze opmerkieng opeheven. A je opnieuw op \"opslaen\" klik, wor je wieziging zonder een onderwerp/kop opeslogen.",
+'summary-preview'           => 'Saemenvattieng naekieken',
+'subject-preview'           => 'Naekieken onderwerp/kop',
+'blockedtitle'              => 'Gebruker is geblokkeerd',
+'blockedtext'               => "<big>'''Je gebruker of IP-adres is eblokkeerd.'''</big>
 
 De blokkaode is uutevoerd deur $1.
 De opeheven reeën is ''$2''.
@@ -483,7 +541,7 @@ De opeheven reeën is ''$2''.
 Je kan contact opnemen mie $1 of een aore [[{{MediaWiki:Grouppage-sysop}}|opzichter]] om de blokkaode te bespreken.
 Je kan hin gebruuk maeken van de functie 'e-mail deêze gebruker', tenzie a je een heldig e-mailadres ei opeheven in je [[Special:Preferences|vòkeuren]] en 't gebruuk van deêze functie nie eblokkeerd is.
 Je udihe IP-adres is $3 en 't blokkaodenummer is #$5. Vermeld beie hehevens a je erhens op deêze blokkaode wil reaheern.",
-'autoblockedtext'       => "Jen IP-adres is automaotisch eblokkeerd, omda 't is gebruukt deur een aore gebruker, die a is eblokkeerd deur $1.
+'autoblockedtext'           => "Jen IP-adres is automaotisch eblokkeerd, omda 't is gebruukt deur een aore gebruker, die a is eblokkeerd deur $1.
 De opeheven reeën is:
 
 :''$2''
@@ -494,11 +552,22 @@ De opeheven reeën is:
 Je kan deêze blokkaode bespreken mie $1 of een aore [[{{MediaWiki:Grouppage-sysop}}|opzichter]].
 Je kan hin gebruuk maeken van de functie 'e-mail deêze gebruker', tenzie a je een heldig e-mailadres ei opeheven in je [[Special:Preferences|vòkeuren]] en 't gebruuk van deêze functie nie is eblokkeerd.
 Je udihe IP-adres is $3 en 't blokkaodenummer is #$5. Vermeld beie hehevens a je erhens over deêze blokkaode wil reaheern.",
-'blockedoriginalsource' => "De brontekst van '''$1''' staet ieronder:",
-'blockededitsource'     => "D'n tekst van '''joen biedragen''' an '''$1''' staet ieronder:",
-'accmailtitle'          => 'Wachtwoord verstierd.',
-'accmailtext'           => "'t Wachtwoord vò $1 is nae $2 opgestierd.",
-'anontalkpagetext'      => "----''Dit is de overlegbladzie vò 'n anonieme gebruker die-a gin inlognaem eit of 'm nie gebruukt. Zien/eur IP-adres kan deu meêr as eên gebruker gebruukt ore. A je 'n bericht gekrege è dat-a dudelik nie an joe gericht is, ka je 't beste [[Speciaol:Userlogin|jen eige anmelde]] om zukke verwarrienge in 't vervolg te vòkommen.''",
+'blockednoreason'           => 'hin reeën opeheven',
+'blockedoriginalsource'     => "De brontekst van '''$1''' staet ieronder:",
+'blockededitsource'         => "D'n tekst van '''joen biedragen''' an '''$1''' staet ieronder:",
+'whitelistedittitle'        => 'Voe bewerken is anmelden verplicht',
+'whitelistedittext'         => "Je mò $1 om pagina's te bewerken.",
+'whitelistreadtitle'        => 'Voe leestoehang is anmelden verplicht',
+'whitelistreadtext'         => "[[Special:Preferences|Mel jen eihen an]] voe leestoehang toet pagina's.",
+'whitelistacctitle'         => "'t Anmaeken van nieuwe gebrukers is nie toehestaen",
+'accmailtitle'              => 'Wachtwoord verstierd.',
+'accmailtext'               => "'t Wachtwoord vò $1 is nae $2 opgestierd.",
+'anontalkpagetext'          => "----''Dit is de overlegbladzie vò 'n anonieme gebruker die-a gin inlognaem eit of 'm nie gebruukt. Zien/eur IP-adres kan deu meêr as eên gebruker gebruukt ore. A je 'n bericht gekrege è dat-a dudelik nie an joe gericht is, ka je 't beste [[Speciaol:Userlogin|jen eige anmelde]] om zukke verwarrienge in 't vervolg te vòkommen.''",
+'session_fail_preview_html' => "<strong>Sorry! Je bewerkieng is nie verwerkt, omdan sessiehehevens verloren zien ehaene.</strong>
+
+''Omda in {{SITENAME}} ruwe HTML is ineschaokeld, is een voevertoônieng nie meuhlijk as beschermieng tehen anvall'n mie JavaScript.''
+
+<strong>A dit een lehitieme bewerkieng is, probeer 't dan opnieuw. A 't dan nog nie luk, mel jen eihen dan of en wee an.</strong>",
 
 # History pages
 'viewpagelogs' => 'Bekiek de logboeken vò deêze bladzie',
