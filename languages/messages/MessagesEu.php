@@ -640,7 +640,7 @@ Wiki honetako beste administratzaileek ezkutuko eduki hau ikusteko aukera izango
 'mergehistory-into'                => 'Helburu orrialdea:',
 'mergehistory-go'                  => 'Aldaketa bateragarriak erakutsi',
 'mergehistory-submit'              => 'Berrikuspenak bateratu',
-'mergehistory-empty'               => 'Ezin da berrikuspenik bateratu',
+'mergehistory-empty'               => 'Ezin da berrikuspenik bateratu.',
 'mergehistory-success'             => '[[:$1]](e)ko $3 berrikuspen bateratu egin dira [[:$2]](e)n.',
 'mergehistory-fail'                => 'Ezin izan da historia bateratu; egiaztatu orrialde eta denbora parametroak.',
 'mergehistory-no-source'           => 'Ez da $1 jatorrizko orrialdea existitzen.',

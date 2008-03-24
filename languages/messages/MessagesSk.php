@@ -861,6 +861,8 @@ nie sú stanovené ďalšie obmedzenia.',
 'logdelete-logaction'         => '$1 {{plural:$1|udalosť|udalosti|udalostí}} [[$3]] nastavených do režimu $2',
 'revdelete-success'           => 'Viditeľnosť revízie bola úspešne nastavená.',
 'logdelete-success'           => 'Viditeľnosť udalosti bola úspešne nastavená.',
+'pagehist'                    => 'História stránky',
+'deletedhist'                 => 'Zmazaná história',
 
 # Oversight log
 'oversightlog'    => 'Záznam Dozoru',
@@ -869,10 +871,8 @@ Pozri Záznam momentálne platných [[Special:Ipblocklist|IP blokovaní]].',
 
 # History merging
 'mergehistory'                     => 'Zlúčiť histórie stránok',
-'mergehistory-header'              => "Táto stránka vám umožňuje zlúčiť histórie revízií zo zdrojovej stránky do novšej stránky.
-Uistite sa, že táto zmena zachová historickú kontinuitu zmien stránky.
-
-'''Aspoň aktuálna revízia zdrojovej stránky musí zostať.'''",
+'mergehistory-header'              => 'Táto stránka vám umožňuje zlúčiť histórie revízií zo zdrojovej stránky do novšej stránky.
+Uistite sa, že táto zmena zachová historickú kontinuitu zmien stránky.',
 'mergehistory-box'                 => 'Zlúčiť revízie dvoch stránok:',
 'mergehistory-from'                => 'Zdrojová stránka:',
 'mergehistory-into'                => 'Cieľová stránka:',
@@ -880,7 +880,7 @@ Uistite sa, že táto zmena zachová historickú kontinuitu zmien stránky.
 'mergehistory-merge'               => 'Nasledovné revízie [[:$1]] je možné zlúčiť do [[:$2]]. Použite stĺpec s výberovými políčkami ak chcete zlúčiť iba revízie vytvorené pred určitým časom (vrátane). Majte na pamäti, že použitím navigačných odkazov zrušíte zmeny vykonané v tomto stĺpci.',
 'mergehistory-go'                  => 'Zobraziť zlúčiteľné úpravy',
 'mergehistory-submit'              => 'Zlúčiť revízie',
-'mergehistory-empty'               => 'Žiadne revízie nie je možné zlúčiť',
+'mergehistory-empty'               => 'Žiadne revízie nie je možné zlúčiť.',
 'mergehistory-success'             => '$3 revízií z [[:$1]] bolo úspešne zlúčených do [[:$2]].',
 'mergehistory-fail'                => 'Nepodarilo sa vykonať zlúčenie histórií. Prosím, skontrolujte parametre stránka a časy.',
 'mergehistory-no-source'           => 'Zdrojová stránka $1 neexistuje.',
@@ -919,8 +919,13 @@ Uistite sa, že táto zmena zachová historickú kontinuitu zmien stránky.
 'viewprevnext'          => 'Zobraziť ($1) ($2) ($3).',
 'search-result-size'    => '$1 ({{PLURAL:$2|1 slovo|$2 slová|$2 slov}})',
 'search-result-score'   => 'Relevancia: $1%',
+'search-redirect'       => '(presmerovanie $1)',
+'search-section'        => '(sekcia $1)',
+'search-suggest'        => 'Mali ste na mysli „$1“?',
+'searchall'             => 'všetko',
 'showingresults'        => "Nižšie {{PLURAL:$1|je zobrazený jeden výsledok|sú zobrazené '''1''' výsledky|je zobrazených '''$1''' výsledkov}}, počnúc od  #<b>$2</b>.",
 'showingresultsnum'     => "Nižšie {{PLURAL:$3|je zobrazený najviac '''1''' výsledok|sú zobrazené najviac '''$3''' výsledky|je zobrazených najviac '''$3''' výsledkov}}, počnúc od  #'''$2'''.",
+'showingresultstotal'   => "Zobrazujú sa výsledky '''$1 - $2''' z '''$3'''",
 'nonefound'             => "<strong>Poznámka</strong>: bezvýsledné vyhľadávania sú často spôsobené buď snahou hľadať príliš bežné, obyčajné slová (napríklad slovo ''je''), pretože tieto sa nezaraďujú do indexu vyhľadávača, alebo uvedením viac ako jedného vyhľadávaného výrazu, pretože výsledky uvádzajú len stránky obsahujúce všetky vyhľadávané výrazy.",
 'powersearch'           => 'Vyhľadávanie',
 'powersearch-legend'    => 'Pokročilé hľadanie',
@@ -1599,9 +1604,7 @@ Ak bola od zmazania vytvorená nová stránka s rovnakým názvom, zobrazia sa
 obnovené verzie ako posledné úpravy novej stránky a aktuálna verzia novej stránky
 nebude automaticky nahradená.
 Tiež pamätajte, že obmedzenia vzťahujúce sa na revízie súborov sa pri obnovení stratia.',
-'undeleterevdel'               => 'Obnovenie sa nevykoná, ak by malo mať za dôsledok čiastočné zmazanie poslednej revízie. V takých prípadoch musíte odznačiť alebo odkryť najnovšie zmazané revízie.
-Revízie súborov
-ktoré nemáte povolenie prehliadať sa neobnovia.',
+'undeleterevdel'               => 'Obnovenie sa nevykoná, ak by malo mať za dôsledok čiastočné zmazanie poslednej revízie. V takých prípadoch musíte odznačiť alebo odkryť najnovšie zmazané revízie.',
 'undeletehistorynoadmin'       => 'Táto stránka bola zmazaná. Dôvod zmazania je zobrazený dolu v zhrnutí spolu s podrobnosťami o používateľoch, ktorí túto stránku upravovali pred zmazaním. Samotný text týchto zmazaných revízií je prístupný iba správcom.',
 'undelete-revision'            => '$3 zmazal revíziu $1 (z $2):',
 'undeleterevision-missing'     => 'Neplatná alebo chýbajúca revízia. Zrejme ste použili zlý odkaz alebo revízia bola obnovená alebo odstránená z histórie.',

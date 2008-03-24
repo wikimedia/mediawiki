@@ -745,10 +745,8 @@ Consultâd la [[Special:Ipblocklist|lista des comptos blocâs]] por la lista des
 
 # History merging
 'mergehistory'                     => 'Fusion des historicos d’una pâge',
-'mergehistory-header'              => "Ceta pâge vos pèrmèt de fusionar les vèrsions de l’historico d’una pâge d’origina vers una novèla.
-Assurâd-vos que cél changement pouesse consèrvar la continuitât de l’historico.
-
-'''Enfin, la vèrsion corenta dêt étre consèrvâ.'''",
+'mergehistory-header'              => 'Ceta pâge vos pèrmèt de fusionar les vèrsions de l’historico d’una pâge d’origina vers una novèla.
+Assurâd-vos que cél changement pouesse consèrvar la continuitât de l’historico.',
 'mergehistory-box'                 => 'Fusionar les vèrsions de doves pâges :',
 'mergehistory-from'                => 'Pâge d’origina :',
 'mergehistory-into'                => 'Pâge de dèstinacion :',
@@ -756,7 +754,7 @@ Assurâd-vos que cél changement pouesse consèrvar la continuitât de l’histo
 'mergehistory-merge'               => 'Les vèrsions siuventes de [[:$1]] pôvont étre fusionâs avouéc [[:$2]]. Utilisâd lo boton de chouèx de la colona por fusionar ren que les vèrsions crèâs du comencement tant qu’a la dâta endicâ. Notâd bien que l’usâjo des lims de navigacion tornerat inicialisar la colona.',
 'mergehistory-go'                  => 'Vêre les èdicions fusionâbles',
 'mergehistory-submit'              => 'Fusionar les vèrsions',
-'mergehistory-empty'               => 'Niona vèrsion pôt étre fusionâ',
+'mergehistory-empty'               => 'Niona vèrsion pôt étre fusionâ.',
 'mergehistory-success'             => '$3 {{PLURAL:$3|vèrsion|vèrsions}} de [[:$1]] {{PLURAL:$3|fusionâ|fusionâs}} avouéc reusséta avouéc [[:$2]].',
 'mergehistory-fail'                => 'Empossiblo de fâre la fusion des historicos. Tornâd sèlèccionar la pâge et pués los paramètres de dâta.',
 'mergehistory-no-source'           => 'La pâge d’origina $1 ègziste pas.',
@@ -795,6 +793,7 @@ Assurâd-vos que cél changement pouesse consèrvar la continuitât de l’histo
 'viewprevnext'          => 'Vêre ($1) ($2) ($3).',
 'search-result-size'    => '$1 ({{PLURAL:$2|1 mot|$2 mots}})',
 'search-result-score'   => 'Rapôrt : $1%',
+'searchall'             => 'Tôs',
 'showingresults'        => 'Afichâjo de <b>$1</b> {{PLURAL:$1|rèsultat|rèsultats}} dês lo #<b>$2</b>.',
 'showingresultsnum'     => 'Afichâjo de <b>$3</b> {{PLURAL:$3|rèsultat|rèsultats}} dês lo #<b>$2</b>.',
 'nonefound'             => '<strong>Nota :</strong> l’absence de rèsultat est sovent diua a l’usâjo de tèrmos de rechèrche trop corents,

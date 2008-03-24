@@ -234,6 +234,8 @@ $messages = array(
 # Categories related messages
 'categories'                     => 'Categorie',
 'categoriespagetext'             => 'Elenco completo delle categorie presenti sul sito.',
+'special-categories-sort-count'  => 'ordina per numero',
+'special-categories-sort-abc'    => 'ordina alfabeticamente',
 'pagecategories'                 => '{{PLURAL:$1|Categoria|Categorie}}',
 'category_header'                => 'Pagine nella categoria "$1"',
 'subcategories'                  => 'Sottocategorie',
@@ -807,6 +809,8 @@ Gli altri amministratori del sito potranno accedere comunque ai contenuti nascos
 'logdelete-logaction'         => 'ha impostato la modalità $2 per {{plural:$1|un evento relativo|$1 eventi relativi}} a [[$3]]',
 'revdelete-success'           => 'Visibilità della revisione impostata correttamente.',
 'logdelete-success'           => "Visibilità dell'evento impostata correttamente.",
+'pagehist'                    => 'Cronologia della pagina',
+'deletedhist'                 => 'Cronologia cancellata',
 
 # Oversight log
 'oversightlog'    => 'Registro azioni di oversight',
@@ -814,9 +818,8 @@ Gli altri amministratori del sito potranno accedere comunque ai contenuti nascos
 
 # History merging
 'mergehistory'                     => 'Unione cronologie',
-'mergehistory-header'              => "Questa pagina consente di unire le revisioni appartenenti alla cronologia di una pagina (detta pagina di origine) alla cronologia di una pagina più recente. È necessario accertarsi che la continuità storica della pagina non venga alterata.
-
-'''È obbligatorio mantenere almeno la versione corrente della pagina di origine.'''",
+'mergehistory-header'              => 'Questa pagina consente di unire le revisioni appartenenti alla cronologia di una pagina (detta pagina di origine) alla cronologia di una pagina più recente.
+È necessario accertarsi che la continuità storica della pagina non venga alterata.',
 'mergehistory-box'                 => 'Unisci la cronologia di due pagine:',
 'mergehistory-from'                => 'Pagina di origine:',
 'mergehistory-into'                => 'Pagina di destinazione:',
@@ -824,13 +827,15 @@ Gli altri amministratori del sito potranno accedere comunque ai contenuti nascos
 'mergehistory-merge'               => 'È possibile unire le revisioni di [[:$1]] indicate di seguito alla cronologia di [[:$2]]. Usare la colonna con i pulsanti di opzione per unire tutte le revisioni fino alla data e ora indicate. Si noti che se vengono usati i pulsanti di navigazione, la colonna con i pulsanti di opzione viene azzerata.',
 'mergehistory-go'                  => 'Mostra le modifiche che possono essere unite',
 'mergehistory-submit'              => 'Unisci le revisioni',
-'mergehistory-empty'               => 'Nessuna revisione da unire',
-'mergehistory-success'             => '$3 revisioni di [[:$1]] sono state unite alla cronologia di [[:$2]].',
+'mergehistory-empty'               => 'Nessuna revisione da unire.',
+'mergehistory-success'             => '{{PLURAL:$3|Una revisione di [[:$1]] è stata unita|$3 revisioni di [[:$1]] sono state unite}} alla cronologia di [[:$2]].',
 'mergehistory-fail'                => 'Impossibile unire le cronologie. Verificare la pagina e i parametri temporali.',
 'mergehistory-no-source'           => 'La pagina di origine $1 non esiste.',
 'mergehistory-no-destination'      => 'La pagina di destinazione $1 non esiste.',
 'mergehistory-invalid-source'      => 'La pagina di origine deve avere un titolo corretto.',
 'mergehistory-invalid-destination' => 'La pagina di destinazione deve avere un titolo corretto.',
+'mergehistory-autocomment'         => 'Unione di [[:$1]] in [[:$2]]',
+'mergehistory-comment'             => 'Unione di [[:$1]] in [[:$2]]: $3',
 
 # Merge log
 'mergelog'           => 'Log delle unioni',
@@ -863,8 +868,13 @@ Gli altri amministratori del sito potranno accedere comunque ai contenuti nascos
 'viewprevnext'          => 'Vedi ($1) ($2) ($3).',
 'search-result-size'    => '$1 ({{PLURAL:$2|una parola|$2 parole}})',
 'search-result-score'   => 'Rilevanza: $1%',
+'search-redirect'       => '(redirect $1)',
+'search-section'        => '(sezione $1)',
+'search-suggest'        => 'Forse cercavi: $1',
+'searchall'             => 'tutti',
 'showingresults'        => "Di seguito {{PLURAL:$1|viene presentato al massimo '''1''' risultato|vengono presentati al massimo '''$1''' risultati}} a partire dal numero '''$2'''.",
 'showingresultsnum'     => "Di seguito {{PLURAL:$3|viene presentato '''1''' risultato|vengono presentati '''$3''' risultati}} a partire dal numero '''$2'''.",
+'showingresultstotal'   => "Di seguito vengono mostrati i risultati da '''$1''' a '''$2''' su un totale di '''$3'''",
 'nonefound'             => '<strong>Nota</strong>: alcune parole comuni nella lingua inglese, come  "zero" o "more", non sono indicizzate e possono quindi dare luogo a risultati nulli, così come l\'indicazione di più termini da ricercare (solo le pagine che contengano tutti i termini richiesti vengono visualizzate fra i risultati).',
 'powersearch'           => 'Ricerca',
 'powersearch-legend'    => 'Ricerca avanzata',
@@ -1522,7 +1532,7 @@ Le impostazioni correnti per la pagina sono <strong>$1</strong>:',
 'undeleteextrahelp'            => "Per recuperare l'intera pagina, lasciare tutte le caselle deselezionate e fare clic su '''''Ripristina'''''. Per effettuare un ripristino selettivo, selezionare le caselle corrispondenti alle revisioni da ripristinare e fare clic su '''''Ripristina'''''. Facendo clic su '''''Reset''''' verranno deselezionate tutte le caselle e svuotato lo spazio per il commento.",
 'undeleterevisions'            => '{{PLURAL:$1|Una revisione|$1 revisioni}} in archivio',
 'undeletehistory'              => 'Recuperando questa pagina, tutte le sue revisioni verranno inserite di nuovo nella relativa cronologia. Se dopo la cancellazione è stata creata una nuova pagina con lo stesso titolo, le revisioni recuperate saranno inserite nella cronologia e la versione attualmente online della pagina non verrà modificata.',
-'undeleterevdel'               => "Il ripristino non verrà effettuato se dovesse avere come conseguenza la cancellazione parziale della versione corrente della pagina. In tal caso, è necessario rimuovere il segno di spunta o l'oscuramento dalle revisioni cancellate più recenti. Le revisioni dei file per i quali non si possiede il permesso di accesso non verranno ripristinate.",
+'undeleterevdel'               => "Il ripristino non verrà effettuato se determina la cancellazione parziale della versione corrente della pagina o del file interessato. In tal caso, è necessario rimuovere il segno di spunta o l'oscuramento dalle revisioni cancellate più recenti.",
 'undeletehistorynoadmin'       => 'La pagina è stata cancellata. Il motivo della cancellazione è indicato di seguito, assieme ai dati degli utenti che avevano modificato la pagina prima della cancellazione. Il testo contenuto nelle revisioni cancellate è disponibile solo agli amministratori.',
 'undelete-revision'            => 'Revisione cancellata della pagina $1, inserita il $2 da $3:',
 'undeleterevision-missing'     => "Revisione errata o mancante. Il collegamento è errato oppure la revisione è stata già ripristinata o eliminata dall'archivio.",

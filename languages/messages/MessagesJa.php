@@ -727,10 +727,8 @@ $1 または他の[[{{int:grouppage-sysop}}|{{int:group-sysop}}]]にこの件に
 
 # History merging
 'mergehistory'                     => 'ページの統合履歴',
-'mergehistory-header'              => "ページの履歴を他のページの履歴と統合しようとしています。
-この変更によりページの履歴は連続したひとつの履歴とものになることを確認してください。
-
-'''統合を行った場合でも統合元ページの履歴は完全に消えません。少なくとも最新版の履歴は残ります。'''",
+'mergehistory-header'              => 'ページの履歴を他のページの履歴と統合しようとしています。
+この変更によりページの履歴は連続したひとつの履歴とものになることを確認してください。',
 'mergehistory-box'                 => '統合する2ページの過去の版:',
 'mergehistory-from'                => '統合元となるページ:',
 'mergehistory-into'                => '統合先のページ:',
@@ -738,7 +736,7 @@ $1 または他の[[{{int:grouppage-sysop}}|{{int:group-sysop}}]]にこの件に
 'mergehistory-merge'               => '[[:$2]] へ統合可能な [[:$1]] の履歴を以下に表示しています。ラジオボタンで版を選択してから統合操作を行うと指定した時間までの版が自動的に統合されます。また、ナビゲーションリンクを使うことでフォームをリセットできます。',
 'mergehistory-go'                  => '統合可能な版の表示',
 'mergehistory-submit'              => '統合する版',
-'mergehistory-empty'               => '統合できる過去の版がありません',
+'mergehistory-empty'               => '統合できる過去の版がありません.',
 'mergehistory-success'             => '[[:$1]] の過去版 $3 を [[:$2]] へ統合しました。',
 'mergehistory-fail'                => '履歴の統合を行うことが出来ません。統合を行うページと過去の版を再確認してください。',
 'mergehistory-no-source'           => '統合元となるページ $1 が存在しません。',
@@ -775,6 +773,7 @@ $1 または他の[[{{int:grouppage-sysop}}|{{int:group-sysop}}]]にこの件に
 'prevn'                 => '前 $1',
 'nextn'                 => '次 $1',
 'viewprevnext'          => '（$1）（$2）（$3）を見る',
+'searchall'             => 'all',
 'showingresults'        => '<b>$2</b> 件目から <b>$1</b> 件を表示しています。',
 'showingresultsnum'     => '<b>$2</b> 件目から <b>$3</b> 件を表示しています。',
 'nonefound'             => "'''※'''検索がうまくいかないのは、「ある」や「から」のような一般的な語で索引付けがされていないか、複数の検索語を指定している（全ての検索語を含むページだけが結果に示されます）などのためかもしれません。",

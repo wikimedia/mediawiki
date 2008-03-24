@@ -842,9 +842,7 @@ Els altres administradors del projecte {{SITENAME}} encara podrien accedir al co
 # History merging
 'mergehistory'                     => 'Fusiona els historials de les pàgines',
 'mergehistory-header'              => "Aquesta pàgina us permet fusionar les revisions de l'historial d'una pàgina origen en una més nova.
-Assegureu-vos que aquest canvi mantindrà la continuïtat històrica de la pàgina.
-
-'''Com a mínim ha de perdurar la revisió actual de la pàgina d'origen.'''",
+Assegureu-vos que aquest canvi mantindrà la continuïtat històrica de la pàgina.",
 'mergehistory-box'                 => 'Fusiona les revisions de dues pàgines:',
 'mergehistory-from'                => "Pàgina d'origen:",
 'mergehistory-into'                => 'Pàgina de destinació:',
@@ -852,7 +850,7 @@ Assegureu-vos que aquest canvi mantindrà la continuïtat històrica de la pàgi
 'mergehistory-merge'               => "Les revisions següents de [[:$1]] poden fusionar-se en [[:$2]]. Feu servir la columna de botó d'opció per a fusionar només les revisions creades en el moment especificat o anteriors. Teniu en comptes que els enllaços de navegació reiniciaran aquesta columna.",
 'mergehistory-go'                  => 'Mostra les edicions que es poden fusionar',
 'mergehistory-submit'              => 'Fusiona les revisions',
-'mergehistory-empty'               => 'No pot fusionar-se cap revisió',
+'mergehistory-empty'               => 'No pot fusionar-se cap revisió.',
 'mergehistory-success'             => "$3 revisions de [[:$1]] s'han fusionat amb èxit a [[:$2]].",
 'mergehistory-fail'                => "No s'ha pogut realitzar la fusió de l'historial, comproveu la pàgina i els paràmetres horaris.",
 'mergehistory-no-source'           => "La pàgina d'origen $1 no existeix.",

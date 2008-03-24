@@ -736,9 +736,7 @@ Gouest e vo merourien all {{SITENAME}} da dapout krog en testennoù kuzhet ha da
 # History merging
 'mergehistory'                     => 'Kendeuziñ istor ur bajenn',
 'mergehistory-header'              => "Gant ar bajenn-mañ e c'hallit kendeuziñ an adweladennoù c'hoarvezet da istor ur bajenn war-du unan nevez.
-Gwiriit ne vo ket torret red istor ar bajenn gant ar c'hemm-mañ.
-
-'''Da nebeutañ e ranker mirout stumm red ar bajenn.'''",
+Gwiriit ne vo ket torret red istor ar bajenn gant ar c'hemm-mañ.",
 'mergehistory-box'                 => 'Kendeuziñ istor div bajenn :',
 'mergehistory-from'                => 'Pajenn orin :',
 'mergehistory-into'                => 'Pajenn dal :',
@@ -746,7 +744,7 @@ Gwiriit ne vo ket torret red istor ar bajenn gant ar c'hemm-mañ.
 'mergehistory-merge'               => 'Gallout a reer kendeuziñ ar stummoù da-heul eus [[:$1]] e [[:$2]]. Na implijit bouton radio ar bann nemet evit kendeuziñ ar stummoù bet krouet en deroù betek an deiziad merket. Notit mat e vo nevesaet ar bann mard implijit al liammoù merdeiñ.',
 'mergehistory-go'                  => "Diskouez ar stummoù a c'haller kendeuziñ",
 'mergehistory-submit'              => 'Kendeuziñ ar stummoù',
-'mergehistory-empty'               => "N'haller ket kendeuziñ stumm ebet",
+'mergehistory-empty'               => "N'haller ket kendeuziñ stumm ebet.",
 'mergehistory-success'             => 'Kendeuzet ez eus bet $3 stumm eus [[:$1]] e [[:$2]].',
 'mergehistory-fail'                => 'Dibosupl kendeuziñ an istorioù. Gwiriit ar bajenn hag arventennoù an deiziadoù.',
 'mergehistory-no-source'           => "N'eus ket eus ar bajenn orin $1.",
@@ -783,6 +781,7 @@ Gwiriit ne vo ket torret red istor ar bajenn gant ar c'hemm-mañ.
 'prevn'                 => '$1 kent',
 'nextn'                 => "$1 war-lerc'h",
 'viewprevnext'          => 'Gwelet ($1) ($2) ($3).',
+'searchall'             => 'An holl',
 'showingresults'        => "Diskouez <b>$1</b> disoc'h adal an #<b>$2</b>.",
 'showingresultsnum'     => "Diskouez <b>$3</b> disoc'h adal an #<b>$2</b>.",
 'nonefound'             => '<strong>Notenn</strong>: alies eo liammet an diouer a zisoc\'hoù ouzh an implij a vez graet eus termenoù klask re stank, evel "da" pe "ha",

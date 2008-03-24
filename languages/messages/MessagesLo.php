@@ -6,6 +6,7 @@
  * @author Passawuth
  * @author Tuinui
  * @author Jon Harald Søby
+ * @author Nike
  */
 
 $namespaceNames = array(
@@ -170,7 +171,7 @@ $messages = array(
 'copyrightpage'  => '{{ns:project}}:ລິຂະສິດ',
 'currentevents'  => 'ກິດຈະກຳພວມດຳເນີນ',
 'disclaimers'    => 'ຂໍ້ປະຕິເສດຄວາມຮັບຜິດຊອບ',
-'disclaimerpage' => 'ໂຄງການ:ຂໍ້ປະຕິເສດຄວາມຮັບຜິດຊອບ',
+'disclaimerpage' => 'Project:ຂໍ້ປະຕິເສດຄວາມຮັບຜິດຊອບ',
 'edithelp'       => 'ວິທີດັດແກ້ໜ້າ',
 'edithelppage'   => 'Help:ການດັດແກ້',
 'helppage'       => 'Help:ເນື້ອໃນ',

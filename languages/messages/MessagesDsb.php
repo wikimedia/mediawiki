@@ -808,10 +808,8 @@ Dalšne administratory we {{GRAMMAR:lokatiw|{{SITENAME}}}} mógu ale pśecej hy�
 
 # History merging
 'mergehistory'                     => 'Zwězaś stawizny bokow',
-'mergehistory-header'              => "Z toś tym bokom móžoš historiju wersijow žrědłowego boka z tej celowego boka zjadnośiś.
-Zaruc, až historija wersijow nastawka jo njepśetergnjona.
-
-'''Nanejmjenej aktualna wersij žrědłowego boka dej se wuchowaś.'''",
+'mergehistory-header'              => 'Z toś tym bokom móžoš historiju wersijow žrědłowego boka z tej celowego boka zjadnośiś.
+Zaruc, až historija wersijow nastawka jo njepśetergnjona.',
 'mergehistory-box'                 => 'Zwězaś wersjiowu toś teju bokowo:',
 'mergehistory-from'                => 'Žrědłowy bok:',
 'mergehistory-into'                => 'Celowy bok:',
@@ -858,6 +856,7 @@ Móžoš bok ale teke [[$1|sam załožyś]].",
 'prevn'                 => 'zachadne $1',
 'nextn'                 => 'pśiduce $1',
 'viewprevnext'          => 'Pokazaś ($1) ($2) ($3).',
+'searchall'             => 'wše',
 'showingresults'        => "How {{PLURAL:|jo '''1''' wuslědk|stej '''$1''' wuslědka|su '''$1''' wuslědki}} wót cysła '''$2'''.",
 'showingresultsnum'     => "How {{PLURAL:$3|jo '''1''' wuslědk|stej '''$3''' wuslědka|su '''$3''' wuslědki}} wót cysła '''$2'''.",
 'nonefound'             => '<strong>Pokazka</strong>: Njewuspěšne wótpšašowanja zawinujo cesto pytanje za powšyknymi a togodla njeindicěrowanymi słowami ako "měś" abo "wót", ale teke pytanje za wěcej słowami. Pokazuju se jano boki, kótarež wopśimjeju wšykne pytane wuraze. W takem paźe wopytaj hyšći raz z mjenje pytanymi wurazami.',

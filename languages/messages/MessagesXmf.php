@@ -78,7 +78,7 @@ $messages = array(
 'categories'             => '{{PLURAL:$1|კატეგორია|კატეგორიალეფ}}',
 'pagecategories'         => '{{PLURAL:$1|კატეგორია|კატეგორიალეფ}}',
 'category_header'        => 'სტატიეფ კატეგორიას "$1"',
-'subcategories'          => 'ქვეკატეგორიალეფ',
+'subcategories'          => 'ქვეკატეგორიეფ',
 'category-media-header'  => 'მედია კატეგორიას "$1"',
 'category-empty'         => "''თენა კატეგორიას ვა რენა გვერდეფ დო მედია''",
 'listingcontinuesabbrev' => 'გინძარ.',
@@ -132,7 +132,7 @@ $messages = array(
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'      => '{{SITENAME}}-შენი',
 'aboutpage'      => 'Project:შენი',
-'copyrightpage'  => '{{ns:project}}:ავტორიშ უფლებალეფ',
+'copyrightpage'  => '{{ns:project}}:ავტორიშ უფლებეფ',
 'disclaimers'    => 'პასუხისმგებლობაშ მონწყუმა',
 'disclaimerpage' => 'Project::პასუხისმგებლობაშ ვარება',
 'edithelp'       => 'დახვარება',
@@ -145,7 +145,7 @@ $messages = array(
 'privacypage'    => 'Project:ანონიმურობაშ პოლიტიკა',
 
 'ok'                 => 'ჯგირო',
-'retrievedfrom'      => 'მიგორილ რე "$1"-იშე',
+'retrievedfrom'      => 'გორილ რე "$1"-იშე',
 'youhavenewmessages' => 'თქვან გიღუნთ $1 ($2).',
 'newmessageslink'    => 'ახალ შეტყვინაფეფ',
 'editsection'        => 'რედაქტირება',
@@ -194,15 +194,15 @@ $messages = array(
 # Edit page toolbar
 'italic_sample'   => 'კურსივ',
 'italic_tip'      => 'კურსივ',
-'link_sample'     => 'ბუნიშ სახელ',
-'link_tip'        => 'დინახალენ ბუნ',
-'extlink_sample'  => 'http://www.example.com ბუნიშ სათაურ',
+'link_sample'     => 'ბუნილიშ სახელ',
+'link_tip'        => 'დინახალენ ბუნილ',
+'extlink_sample'  => 'http://www.example.com ბუნილიშ სათაურ',
 'headline_sample' => 'სათაურიშ ტექსტ',
 'headline_tip'    => 'ქვესათაურ',
 'math_tip'        => 'მათემატიკურ ფორმულა (LaTeX)',
 'nowiki_tip'      => 'ვიკიშ ფორმატირებიშ იგნორირება',
-'media_tip'       => 'ბუნ ფაილს',
-'sig_tip'         => 'თქვან ხემოჭარა დო ჟამ',
+'media_tip'       => 'ბუნილ ფაილს',
+'sig_tip'         => 'თქვან ხემოჭარა დო დრო',
 'hr_tip'          => 'ჰორიზონტალურ ღაზ (ნუ გამოიყენებთ ხშირას)',
 
 # Edit pages
@@ -214,7 +214,7 @@ $messages = array(
 'showpreview'    => 'ოწმახ ძირა',
 'showdiff'       => 'თირუალეფიშ ძირაფა',
 'newarticle'     => '(ახალ)',
-'noarticletext'  => 'ასე თე გვერდც ტექსტ ვა არსეენც, [[{{ns:special}}:Search/{{PAGENAME}}|მიგორეთ თე გვერდიშ სახელ]] შხვა გვერდეფც ან [{{fullurl:{{FULLPAGENAME}}|action=edit}} დოჭარით თენა გვერდ].',
+'noarticletext'  => 'ასე თე გვერდც ტექსტ ვა არსეენც, [[{{ns:special}}:Search/{{PAGENAME}}|მიგორეთ თე გვერდიშ სახელ]] შხვა გვერდეფც ვარა [{{fullurl:{{FULLPAGENAME}}|action=edit}} დოჭარით თენა გვერდ].',
 'editing'        => 'რედაქტირება - $1',
 'editingsection' => 'რედაქტირება - $1 (სექცია)',
 'yourtext'       => 'თქვან ტექსტ',
@@ -238,7 +238,7 @@ $messages = array(
 'history-feed-item-nocomment' => '$1  $2-ს', # user at time
 
 # Diffs
-'history-title'           => '"$1" თირუალეფიშ ისტორია',
+'history-title'           => '"$1" თირუეფიშ ისტორია',
 'difference'              => '(ვერსიეფიშ დარება)',
 'lineno'                  => 'ღაზი $1:',
 'compareselectedversions' => 'გიშაგორილ ვერსიეფიშ დარება',
@@ -261,7 +261,7 @@ $messages = array(
 
 # Recent changes
 'nchanges'        => '$1 თირუა',
-'recentchanges'   => 'ბოლო თირუალეფ',
+'recentchanges'   => 'ბოლო თირუეფ',
 'rcnote'          => 'თუდო ქოძირ ბოლო <strong>$1</strong> თირუა უკანასკნელი <strong>$2</strong> დღაშ $3 დგომარებათ.',
 'rclistfrom'      => 'ახალ თირუალეფიშ ძირაფა დოჭყაფულ $1-იშე',
 'rcshowhideminor' => 'ჭიჭე რედაქტირებაშ $1',
@@ -307,14 +307,14 @@ $messages = array(
 
 # Miscellaneous special pages
 'nbytes'                  => '$1 ბაიტ',
-'nlinks'                  => '$1 ბმულ',
+'nlinks'                  => '$1 ბუნილ',
 'nmembers'                => '$1 მაკათურ',
 'uncategorizedpages'      => 'უკატეგორიე გვერდეფ',
 'uncategorizedcategories' => 'კატეგორიეფ კატეგორიეფიშ გარეშე',
 'uncategorizedimages'     => 'სურათეფ კატეგორიაშ უმიშო',
-'mostlinked'              => 'გვერდეფ, ნამუდგა არძას ბრალ ბმულეფ უღუნთ',
+'mostlinked'              => 'გვერდეფ, ნამუდგა არძას ბრალ ბმულეფ უღუნა',
 'mostlinkedcategories'    => 'კატეგორიეფ, ნამუდგა არძას ბრალ ბმულეფ უღუნთ',
-'mostcategories'          => 'სტატიეფ, ნამუდგა არძას ბრალ კატეგორიეფ უღუნთ',
+'mostcategories'          => 'სტატიეფ, ნამუდგა არძას ბრალ კატეგორიეფ უღუნა',
 'shortpages'              => 'ჭიჭე გვერდეფ',
 'longpages'               => 'გინძე გვერდეფ',
 'specialpages'            => 'სპეციალურ გვერდეფ',
@@ -384,13 +384,13 @@ $messages = array(
 # What links here
 'whatlinkshere'       => 'სო რე თენა გვერდ წურაფილი',
 'whatlinkshere-page'  => 'გვერდ:',
-'linklistsub'         => '(ბუნეფ)',
-'nolinkshere'         => 'თე გვერდც ვარე ბმულ',
+'linklistsub'         => '(ბუნილეფ)',
+'nolinkshere'         => 'თე გვერდც ვარე ბუნილ',
 'whatlinkshere-next'  => '{{PLURAL:$1|უკულიან|უკულიან $1}}',
-'whatlinkshere-links' => '← ბმულეფ',
+'whatlinkshere-links' => '← ბუნილეფ',
 
 # Block/unblock
-'blockip'            => 'ხვარებელიშ ან IP მისამართიშ ბლოკირება',
+'blockip'            => 'ხვარებელიშ ვარა IP მისამართიშ ბლოკირება',
 'ipboptions'         => '2 საათი:2 hours,1 დღა:1 დღა,3 დღა:3 დღალეფ,1 მარა:1 week,2 მარა:2 weeks,1 თუთა:1 month,3 თუთა:3 months,6 თუთა:6 months,1 წანა:1 year,განუსაზღვრელი ვადით:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'     => 'შხვა',
 'ipblocklist-submit' => 'გორუა',
@@ -435,7 +435,7 @@ $messages = array(
 'tooltip-n-mainpage'              => 'თავარ გვერდიშ ძირაფა',
 'tooltip-n-portal'                => 'პროექტიშენი, მუშ ქიმინუა შეგილებუნთ, სოდეთ ძირჷნთ',
 'tooltip-n-currentevents'         => 'ქიჩინით რსული ინფორმაცია ასეიან მოვლენეფიშენი',
-'tooltip-n-recentchanges'         => 'ვიკის ბოლო თირუალეფ',
+'tooltip-n-recentchanges'         => 'ვიკის ბოლო თირუეფ',
 'tooltip-n-help'                  => 'გვერდ, სოდეთ ძირჷნთ.',
 'tooltip-n-sitesupport'           => 'ხუჯ დომკინით',
 'tooltip-t-contributions'         => 'ქოძირეთ თე ხვარებელიშ ხანდა',

@@ -746,6 +746,8 @@ Aliaj administrantoj cxe {{SITENAME}} plu povos aliri la kasxitan entenon kaj re
 'logdelete-logaction'         => '$1 {{PLURAL:$1|evento|eventoj}} al [[$3]] farita por reĝimo $2',
 'revdelete-success'           => 'Revizia videbleco estas sukcese farita.',
 'logdelete-success'           => 'Videbleco de evento sukcese farita.',
+'pagehist'                    => 'Paĝa historio',
+'deletedhist'                 => 'Forigita historio',
 
 # Oversight log
 'oversightlog'    => 'Loglibro de superrigardo',
@@ -753,10 +755,8 @@ Aliaj administrantoj cxe {{SITENAME}} plu povos aliri la kasxitan entenon kaj re
 
 # History merging
 'mergehistory'                     => 'Kunigu historiojn de paĝoj',
-'mergehistory-header'              => "Ĉi paĝo permesas al vi kunigi reviziojn de la historio de unu fonta paĝo en pli novan paĝon.
-Certigu ke ĉi ŝanĝo tenos kontinueco de la historia paĝo.
-
-'''Almenaŭ la nuna revizio de la fonta paĝo restos.'''",
+'mergehistory-header'              => 'Ĉi paĝo permesas al vi kunigi reviziojn de la historio de unu fonta paĝo en pli novan paĝon.
+Certigu ke ĉi ŝanĝo tenos kontinueco de la historia paĝo.',
 'mergehistory-box'                 => 'Kunigu reviziojn de du paĝoj:',
 'mergehistory-from'                => 'Fontpaĝo:',
 'mergehistory-into'                => 'Celpaĝo:',
@@ -764,7 +764,7 @@ Certigu ke ĉi ŝanĝo tenos kontinueco de la historia paĝo.
 'mergehistory-merge'               => 'La jenaj revizioj de [[:$1]] povas esti kunigitaj en [[:$2]]. Uzu la radio-butonan kolumnon por enkunigi nur la reviziojn kreitajn cxe kaj antaux la specifigita tempo. Notu ke uzado de navigado-ligiloj restarigos ĉi kolumnon.',
 'mergehistory-go'                  => 'Montru kunigeblajn redaktojn',
 'mergehistory-submit'              => 'Kunigu reviziojn',
-'mergehistory-empty'               => 'Neniuj reviziojn eblas kunigi',
+'mergehistory-empty'               => 'Neniuj reviziojn eblas kunigi.',
 'mergehistory-success'             => '$3 revizioj [[:$1]] sukcese kunigita en [[:$2]].',
 'mergehistory-fail'                => 'Ne eblas fari la historian kunigon; bonvolu konstati la paĝon kaj tempajn parametrojn.',
 'mergehistory-no-source'           => 'Fontpaĝo $1 ne ekzistas.',

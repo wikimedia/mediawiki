@@ -812,6 +812,8 @@ Muut ylläpitäjät voivat lukea piilotetun sisällön ja palauttaa sen.',
 'logdelete-logaction'         => '$1 sivun [[$3]] {{PLURAL:$1|tapahtuma|tapahtumaa}} asetettiin tilaan $2',
 'revdelete-success'           => 'Version näkyvyys asetettu.',
 'logdelete-success'           => 'Tapahtuman näkyvyys asetettu.',
+'pagehist'                    => 'Muutoshistoria',
+'deletedhist'                 => 'Poistettu muutoshistoria',
 
 # Oversight log
 'oversightlog'    => 'Tietosuojaloki',
@@ -819,10 +821,8 @@ Muut ylläpitäjät voivat lukea piilotetun sisällön ja palauttaa sen.',
 
 # History merging
 'mergehistory'                     => 'Yhdistä sivuhistoriat',
-'mergehistory-header'              => "Tämä sivu mahdollistaa sivun muutoshistorian yhdistämisen uudemman sivun muutoshistoriaan.
-Uuden ja vanhan sivun muutoksien pitää muodostaa jatkumo – ne eivät saa mennä ristikkäin.
-
-'''Ainakin lähdesivun uusin versio säilytetään lähdesivun historiassa.'''",
+'mergehistory-header'              => 'Tämä sivu mahdollistaa sivun muutoshistorian yhdistämisen uudemman sivun muutoshistoriaan.
+Uuden ja vanhan sivun muutoksien pitää muodostaa jatkumo – ne eivät saa mennä ristikkäin.',
 'mergehistory-box'                 => 'Yhdistä kahden sivun muutoshistoria',
 'mergehistory-from'                => 'Lähdesivu',
 'mergehistory-into'                => 'Kohdesivu',

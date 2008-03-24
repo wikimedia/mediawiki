@@ -887,6 +887,8 @@ Andre administratorar på {{SITENAME}} kan framleis sjå det gøymde innhaldet o
 'logdelete-logaction'         => '{{PLURAL:$1|Éi loggoppføring på [[$3]] er sett|$1 loggoppføringar på [[$3]] er sette}} til $2',
 'revdelete-success'           => 'Versjonsvisinga er endra.',
 'logdelete-success'           => 'Visinga av loggoppføringar er endra.',
+'pagehist'                    => 'Sidehistorikk',
+'deletedhist'                 => 'Sletta historikk',
 
 # Oversight log
 'oversightlog'    => 'Oversynslogg',
@@ -894,9 +896,8 @@ Andre administratorar på {{SITENAME}} kan framleis sjå det gøymde innhaldet o
 
 # History merging
 'mergehistory'                     => 'Flett sidehistorikkar',
-'mergehistory-header'              => "Denne sida lar deg flette historikken til to sider. Pass på at den nye sida også har innhald frå den innfletta sida.
-
-'''Ta i det minste vare på den noverande versjonen av den innfletta sida.'''",
+'mergehistory-header'              => 'Denne sida lar deg flette historikken til to sider.
+Pass på at den nye sida også har innhald frå den innfletta sida.',
 'mergehistory-box'                 => 'Flett historikkane til to sider:',
 'mergehistory-from'                => 'Kjeldeside',
 'mergehistory-into'                => 'Målside:',
@@ -904,7 +905,7 @@ Andre administratorar på {{SITENAME}} kan framleis sjå det gøymde innhaldet o
 'mergehistory-merge'               => 'Versjonane nedanfor frå [[:$1]] kan flettast med [[:$2]]. Du kan velje å berre flette dei versjonane som kom før tidspunktet som er oppgjeve i tabellen. Merk at bruk av lenkjene nullstiller denne kolonnen.',
 'mergehistory-go'                  => 'Vis flettbare endringar',
 'mergehistory-submit'              => 'Flett versjonane',
-'mergehistory-empty'               => 'Ingen endringar kan flettast',
+'mergehistory-empty'               => 'Ingen endringar kan flettast.',
 'mergehistory-success'             => '{{PLURAL:$3|Éin versjon|$3 versjonar}} av [[:$1]] er fletta til [[:$2]].',
 'mergehistory-fail'                => 'Kunne ikkje utføre fletting av historikkane, ver venleg og dobbelsjekk sidene og versjonane du har valt.',
 'mergehistory-no-source'           => 'Kjeldesida $1 finst ikkje.',

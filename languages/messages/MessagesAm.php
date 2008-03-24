@@ -6,14 +6,11 @@
  * @author Codex Sinaiticus
  * @author Siebrand
  * @author Nike
- * @author G - ג
  * @author SPQRobin
  * @author Teferra
  * @author לערי ריינהארט
  * @author M.M.S.
  */
-
-
 
 $messages = array(
 # User preference toggles

@@ -758,9 +758,7 @@ ocultáu por alministradores. Vete a la [[Special:Ipblocklist|llista de bloqueos
 # History merging
 'mergehistory'                     => 'Fusionar historiales de páxina',
 'mergehistory-header'              => "Esta páxina permítete fusionar revisiones del historial d'una páxina orixe nuna páxina nueva.
-Asegúrate de qu'esti cambéu caltenga la continuidá del históricu de la páxina.
-
-'''A lo menos ha caltenese la revisión actual de la páxina d'orixe.'''",
+Asegúrate de qu'esti cambéu caltenga la continuidá del históricu de la páxina.",
 'mergehistory-box'                 => 'Fusionar les revisiones de dos páxines:',
 'mergehistory-from'                => "Páxina d'orixe:",
 'mergehistory-into'                => 'Páxina de destín:',
@@ -768,7 +766,7 @@ Asegúrate de qu'esti cambéu caltenga la continuidá del históricu de la páxi
 'mergehistory-merge'               => "Les siguientes revisiones de [[:$1]] puen fusionase en [[:$2]]. Usa la columna de botones d'opción pa fusionar namaí les revisiones creaes na y enantes de la hora especificada. has fixate en que si uses los enllaces de navegación borraránse les seleiciones feches nesta columna.",
 'mergehistory-go'                  => 'Amosar ediciones fusionables',
 'mergehistory-submit'              => 'Fusionar revisiones',
-'mergehistory-empty'               => 'Nun se pue fusionar nenguna revisión',
+'mergehistory-empty'               => 'Nun se pue fusionar nenguna revisión.',
 'mergehistory-success'             => '$3 revisiones de [[:$1]] fusionaes correutamente en [[:$2]].',
 'mergehistory-fail'                => "Nun se pudo facer la fusión d'historiales, por favor verifica la páxina y los parámetros temporales.",
 'mergehistory-no-source'           => "La páxina d'orixe $1 nun esiste.",
@@ -807,6 +805,7 @@ Asegúrate de qu'esti cambéu caltenga la continuidá del históricu de la páxi
 'viewprevnext'          => 'Ver ($1) ($2) ($3)',
 'search-result-size'    => '$1 ({{PLURAL:$2|1 pallabra|$2 pallabres}})',
 'search-result-score'   => 'Relevancia: $1%',
+'searchall'             => 'toos',
 'showingresults'        => "Abaxo {{PLURAL:$1|amuésase '''un''' resultáu|amuésense '''$1''' resultaos}}, entamando col #'''$2'''.",
 'showingresultsnum'     => "Abaxo {{PLURAL:$3|amuésase '''un''' resultáu|amuésense '''$3''' resultaos}}, entamando col #'''$2'''.",
 'nonefound'             => "'''Nota''': Les busques fallíes son ocasionaes davezu por buscar

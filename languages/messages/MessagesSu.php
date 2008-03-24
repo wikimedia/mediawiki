@@ -682,16 +682,15 @@ Révisi kaca ieu geus dihapus tina arsip publik. Tapi, salaku administrator dina
 
 # History merging
 'mergehistory'                     => 'Gabungkeun jujutan kaca',
-'mergehistory-header'              => "Di dieu anjeun bisa ngagabungkeun révisi tina jujutan hiji kaca ka kaca séjén nu leuwih anyar. Pastikeun yén ieu parobahan bisa miara jujutan kaca sagemblengna.
-
-'''Sahanteuna révisi kiwari kaca sumberna tetep aya.'''",
+'mergehistory-header'              => 'Di dieu anjeun bisa ngagabungkeun révisi tina jujutan hiji kaca ka kaca séjén nu leuwih anyar.
+Pastikeun yén ieu parobahan bisa miara jujutan kaca sagemblengna.',
 'mergehistory-box'                 => 'Gabungkeun révisi ti dua kaca:',
 'mergehistory-from'                => 'Kaca asal :',
 'mergehistory-into'                => 'Kaca tujuan:',
 'mergehistory-list'                => 'Jujutan édit nu bisa digabungkeun',
 'mergehistory-go'                  => 'Témbongkeun éditan nu bisa digabungkeun',
 'mergehistory-submit'              => 'Gabungkeun révisi',
-'mergehistory-empty'               => 'Euweuh révisi nu bisa digabungkeun',
+'mergehistory-empty'               => 'Euweuh révisi nu bisa digabungkeun.',
 'mergehistory-success'             => '$3 révisi tina [[:$1]] parantos digabung ka [[:$2]].',
 'mergehistory-fail'                => 'Jujutan teu bisa digabungkeun! Mangga pariiksa deui paraméter kaca jeung titimangsana.',
 'mergehistory-no-source'           => 'Sumber kaca $1 teu aya.',

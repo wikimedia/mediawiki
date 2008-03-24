@@ -875,10 +875,8 @@ Consulter la [[Special:Ipblocklist|liste des comptes bloqués]] pour la liste de
 
 # History merging
 'mergehistory'                     => 'Fusionner les historiques',
-'mergehistory-header'              => "Cette page vous permet de fusionner les révisions de l’historique d’une page d’origine vers une nouvelle page.
-Assurez-vous que ce changement conserve la continuité de l’historique.
-
-'''Il faut au moins conserver la version actuelle de la page d’origine.'''",
+'mergehistory-header'              => 'Cette page vous permet de fusionner les révisions de l’historique d’une page d’origine vers une nouvelle page.
+Assurez-vous que ce changement conserve la continuité de l’historique.',
 'mergehistory-box'                 => 'Fusionner les versions de deux pages :',
 'mergehistory-from'                => 'Page d’origine :',
 'mergehistory-into'                => 'Page de destination :',
@@ -886,7 +884,7 @@ Assurez-vous que ce changement conserve la continuité de l’historique.
 'mergehistory-merge'               => 'Les versions suivantes de [[:$1]] peuvent être fusionnées avec [[:$2]]. Utilisez le bouton radio de la colonne pour fusionner uniquement les versions créées du début jusqu’à la date indiquée. Notez bien que l’utilisation des liens de navigation réinitialisera la colonne.',
 'mergehistory-go'                  => 'Voir les éditions fusionnables',
 'mergehistory-submit'              => 'Fusionner les révisions',
-'mergehistory-empty'               => 'Aucune révision ne peut être fusionnée',
+'mergehistory-empty'               => 'Aucune révision ne peut être fusionnée.',
 'mergehistory-success'             => '$3 {{PLURAL:$3|revision|révisions}} de [[:$1]] {{PLURAL:$3|fusionnée|fusionnées}} avec succès avec [[:$2]].',
 'mergehistory-fail'                => 'Impossible de procéder à la fusion des historiques. Resélectionner la page ainsi que les paramètres de date.',
 'mergehistory-no-source'           => 'La page d’origine $1 n’existe pas.',

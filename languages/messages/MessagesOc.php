@@ -729,9 +729,8 @@ D’autres administrators sus {{SITENAME}} poiràn totjorn accedir al contengut 
 
 # History merging
 'mergehistory'                     => "Fusion dels istorics d'una pagina",
-'mergehistory-header'              => "Aquesta pagina vos permet de fusionar las revisions de l'istoric d'una pagina d'origina vèrs una novèla. Asseguratz-vos qu'aqueste cambiament pòsca conservar la continuitat de l'istoric. 
-
-'''Enfin, la version en cors deu èsser conservada.'''",
+'mergehistory-header'              => "Aquesta pagina vos permet de fusionar las revisions de l'istoric d'una pagina d'origina vèrs una novèla.
+Asseguratz-vos qu'aqueste cambiament pòsca conservar la continuitat de l'istoric.",
 'mergehistory-box'                 => 'Fusionar las versions de doas paginas :',
 'mergehistory-from'                => "Pagina d'origina :",
 'mergehistory-into'                => 'Pagina de destinacion :',
@@ -739,7 +738,7 @@ D’autres administrators sus {{SITENAME}} poiràn totjorn accedir al contengut 
 'mergehistory-merge'               => "Las versions seguentas de [[:$1]] pòdon èsser fusionadas amb [[:$2]]. Utilizatz lo boton ràdio de la colomna per fusionar unicament las versions creadas del començament fins a la data indicada. Notatz plan que l'utilizacion dels ligams de navigacion reïnicializarà la colomna.",
 'mergehistory-go'                  => 'Veire las edicions fusionablas',
 'mergehistory-submit'              => 'Fusionar las revisions',
-'mergehistory-empty'               => 'Cap de revision pòt pas èsser fusionada',
+'mergehistory-empty'               => 'Cap de revision pòt pas èsser fusionada.',
 'mergehistory-success'             => '$3 {{PLURAL:$3|revision|revisions}} de [[:$1]] {{PLURAL:$3|fusionada|fusionadas}} amb succès amb [[:$2]].',
 'mergehistory-fail'                => 'Impossible de procedir a la fusion dels istorics. Seleccionatz  tornamai la pagina e mai los paramètres de data.',
 'mergehistory-no-source'           => "La pagina d'origina $1 existís pas.",
@@ -778,6 +777,7 @@ D’autres administrators sus {{SITENAME}} poiràn totjorn accedir al contengut 
 'viewprevnext'          => 'Veire ($1) ($2) ($3).',
 'search-result-size'    => '$1 ({{PLURAL:$2|1 mot|$2 mots}})',
 'search-result-score'   => 'Pertinéncia : $1%',
+'searchall'             => 'Totes',
 'showingresults'        => 'Afichatge de <b>$1</b> resultats a partir del #<b>$2</b>.',
 'showingresultsnum'     => 'Afichatge de <b>$3</b> resultats a partir del #<b>$2</b>.',
 'nonefound'             => '<strong>Nòta</strong>: l\'abséncia de resultat es sovent deguda a l\'emplec de tèrmes de recèrca tròp corrents, coma "a" o "de",

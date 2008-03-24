@@ -774,16 +774,22 @@ Fir iech z'informéieren fannt Dir hei d'Läschlescht mat dem Grond:",
 
 # History merging
 'mergehistory'                     => 'Historiquë fusionéieren',
+'mergehistory-header'              => "Mat dëser Spezialsäit kënnt Dir d'Versiounsgeschicht vun enger Ursprungssäit mat der Versiounsgeschicht vun enger Zilsäit zesummeleeën.
+Passt op, datt d'Versiounsgeschicht der Säit historesch korrekt ass.
+
+'''Als Minimum muss déi aktuell Versioun vun der Ursprungssäit bestoe bleiwen.'''",
 'mergehistory-box'                 => 'Historiquë vun zwou Säite fusionéieren',
 'mergehistory-from'                => 'Originalsäit:',
 'mergehistory-into'                => 'Zilsäit:',
 'mergehistory-submit'              => 'Versioune verschmelzen',
-'mergehistory-empty'               => 'Et kënne keng Versioune fusionéiert ginn',
-'mergehistory-success'             => '{{PLURAL:$3|1 Versioun gouf|$3 Versiounen goufe}} vun [[:$1]] op [[:$2]] zesummegeluecht.',
+'mergehistory-empty'               => 'Et kënne keng Versioune zesummegeluecht ginn.',
+'mergehistory-success'             => '{{PLURAL:$3|1 Versioun gouf|$3 Versioune goufe}} vun [[:$1]] op [[:$2]] zesummegeluecht.',
 'mergehistory-no-source'           => 'Originalsäit "$1" gëtt et net.',
 'mergehistory-no-destination'      => 'Zilsäit "$1" gëtt et net.',
 'mergehistory-invalid-source'      => "D'Originalsäit muss ee gültege Säitennumm hunn.",
 'mergehistory-invalid-destination' => 'Zilsäit muss e gültege Säitennumm sinn.',
+'mergehistory-autocomment'         => '[[:$1]] zesummegeluecht an [[:$2]]',
+'mergehistory-comment'             => '[[:$1]] zesummegeluecht an [[:$2]]: $3',
 
 # Merge log
 'mergelog' => 'Fusiouns-Logbuch',
