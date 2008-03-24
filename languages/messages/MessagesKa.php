@@ -654,7 +654,7 @@ $1 საათში.',
 # History merging
 'mergehistory'                => 'გვერდების ისტორიის შერწყმა',
 'mergehistory-submit'         => 'ცვლილებების შერწყმა',
-'mergehistory-empty'          => 'რაიმე ცვლილების შერწყმა შეუძლებელია',
+'mergehistory-empty'          => 'რაიმე ცვლილების შერწყმა შეუძლებელია.',
 'mergehistory-no-destination' => 'დანიშნულების გვერდი $1 არ არსებობს.',
 
 # Diffs

@@ -1,7 +1,11 @@
 <?php
-/**
+/** Bosnian (Bosanski)
  *
  * @addtogroup Language
+ *
+ * @author לערי ריינהארט
+ * @author Kal-El
+ * @author Helix84
  */
 
 $namespaceNames = array(
@@ -95,6 +99,7 @@ $messages = array(
 'tog-usenewrc'             => 'Poboljšan spisak nedavnih izmjena (JavaScript)',
 'tog-numberheadings'       => 'Automatski numeriši podnaslove',
 'tog-showtoolbar'          => 'Prikaži dugmiće za izmjene (JavaScript)',
+'tog-editondblclick'       => 'Izmijeni stranice dvostrukim klikom (JavaScript)',
 'tog-showtoc'              => 'Prikaži sadržaj<br />(u svim stranicama sa više od tri podnaslova)',
 'tog-rememberpassword'     => 'Zapamti lozinku kroz više seansi',
 'tog-watchcreations'       => 'Dodaj stranice koje ja napravim u moj spisak praćenih članaka',
@@ -109,6 +114,8 @@ $messages = array(
 'tog-enotifrevealaddr'     => 'Otkrij adresu moje e-pošte u porukama obaviještenja',
 'tog-shownumberswatching'  => 'Prikaži broj korisnika koji prate',
 'tog-showjumplinks'        => 'Omogući "skoči na" poveznice',
+'tog-ccmeonemails'         => 'Pošalji mi kopije emailova koje pošaljem drugim korisnicima',
+'tog-showhiddencats'       => 'Prikaži skrivene kategorije',
 
 'underline-always'  => 'Uvijek',
 'underline-never'   => 'Nikad',
@@ -117,43 +124,67 @@ $messages = array(
 'skinpreview' => '(Pregled)',
 
 # Dates
-'sunday'    => 'nedelja',
-'monday'    => 'ponedeljak',
-'tuesday'   => 'utorak',
-'wednesday' => 'srijeda',
-'thursday'  => 'četvrtak',
-'friday'    => 'petak',
-'saturday'  => 'subota',
-'january'   => 'januar',
-'february'  => 'februar',
-'march'     => 'mart',
-'april'     => 'april',
-'june'      => 'jun',
-'july'      => 'jul',
-'august'    => 'avgust',
-'september' => 'septembar',
-'october'   => 'oktobar',
-'november'  => 'novembar',
-'december'  => 'decembar',
-'jan'       => 'jan',
-'feb'       => 'feb',
-'mar'       => 'mar',
-'apr'       => 'apr',
-'may'       => 'maj',
-'jun'       => 'jun',
-'jul'       => 'jul',
-'aug'       => 'avg',
-'sep'       => 'sep',
-'oct'       => 'okt',
-'nov'       => 'nov',
-'dec'       => 'dec',
+'sunday'        => 'nedelja',
+'monday'        => 'ponedeljak',
+'tuesday'       => 'utorak',
+'wednesday'     => 'srijeda',
+'thursday'      => 'četvrtak',
+'friday'        => 'petak',
+'saturday'      => 'subota',
+'sun'           => 'Ned',
+'mon'           => 'Pon',
+'tue'           => 'Uto',
+'wed'           => 'Sri',
+'thu'           => 'Čet',
+'fri'           => 'Pet',
+'sat'           => 'Sub',
+'january'       => 'januar',
+'february'      => 'februar',
+'march'         => 'mart',
+'april'         => 'april',
+'may_long'      => 'maj',
+'june'          => 'jun',
+'july'          => 'jul',
+'august'        => 'avgust',
+'september'     => 'septembar',
+'october'       => 'oktobar',
+'november'      => 'novembar',
+'december'      => 'decembar',
+'january-gen'   => 'januara',
+'february-gen'  => 'februara',
+'march-gen'     => 'marta',
+'april-gen'     => 'aprila',
+'may-gen'       => 'maja',
+'june-gen'      => 'juna',
+'july-gen'      => 'jula',
+'august-gen'    => 'augusta',
+'september-gen' => 'septembra',
+'october-gen'   => 'oktobra',
+'november-gen'  => 'novembra',
+'december-gen'  => 'decembra',
+'jan'           => 'jan',
+'feb'           => 'feb',
+'mar'           => 'mar',
+'apr'           => 'apr',
+'may'           => 'maj',
+'jun'           => 'jun',
+'jul'           => 'jul',
+'aug'           => 'avg',
+'sep'           => 'sep',
+'oct'           => 'okt',
+'nov'           => 'nov',
+'dec'           => 'dec',
 
 # Categories related messages
-'categories'         => 'Kategorije',
-'categoriespagetext' => 'Sledeće kategorije već postoje u {{SITENAME}}',
-'pagecategories'     => 'Kategorije',
-'category_header'    => 'Članaka u kategoriji "$1"',
-'subcategories'      => 'Potkategorije',
+'categories'                  => 'Kategorije',
+'categoriespagetext'          => 'Sledeće kategorije već postoje u {{SITENAME}}',
+'special-categories-sort-abc' => 'sortiraj po abecedi',
+'pagecategories'              => 'Kategorije',
+'category_header'             => 'Članaka u kategoriji "$1"',
+'subcategories'               => 'Potkategorije',
+'category-media-header'       => 'Medija u kategoriji "$1"',
+'category-empty'              => "''Ova kategorija trenutno ne sadrži ni članke ni mediju.''",
+'hidden-category-category'    => 'Skrivene kategorije', # Name of the category where hidden categories will be listed
 
 'mainpagetext' => 'Viki softver is uspješno instaliran.',
 
@@ -176,6 +207,7 @@ $messages = array(
 
 'errorpagetitle'    => 'Greška',
 'returnto'          => 'Povratak na $1.',
+'tagline'           => 'Sa {{SITENAME}}',
 'help'              => 'Pomoć',
 'search'            => 'Pretraži',
 'searchbutton'      => 'Pretraži',
@@ -183,6 +215,7 @@ $messages = array(
 'searcharticle'     => 'Idi',
 'history'           => 'Istorija stranice',
 'history_short'     => 'Istorija',
+'info_short'        => 'Informacija',
 'printableversion'  => 'Verzija sa štampanje',
 'permalink'         => 'Trajna veza',
 'print'             => 'Štampa',
@@ -193,7 +226,7 @@ $messages = array(
 'undelete_short'    => 'Vrati $1 obrisanih izmjena',
 'protect'           => 'Zaštitite',
 'protectthispage'   => 'Zaštitite ovu stranicu',
-'unprotect'         => 'Odštiti',
+'unprotect'         => 'odštiti',
 'unprotectthispage' => 'Odštiti ovu stranicu',
 'newpage'           => 'Nova stranica',
 'talkpage'          => 'Razgovor o stranici',
@@ -239,7 +272,6 @@ $messages = array(
 'versionrequiredtext' => 'Verzija $1 MedijaVikija je potrebna da bi se koristila ova strana. Pogledajte [[Special:Version|verziju]]',
 
 'ok'                 => 'da',
-'pagetitle'          => '$1 - {{SITENAME}}',
 'retrievedfrom'      => 'Dobavljeno iz "$1"',
 'youhavenewmessages' => 'Imate $1 ($2).',
 'newmessageslink'    => 'novih poruka',
@@ -491,7 +523,7 @@ Molimo Vas da provjerite URL pomoću kojeg ste pristupili ovoj stranici.',
 # Search results
 'searchresults'         => 'Rezultati pretrage',
 'searchresulttext'      => 'Za više informacija o pretraživanju {{SITENAME}}, pogledajte [[{{MediaWiki:Helppage}}|{{int:help}}]].',
-'searchsubtitle'        => 'Tražili ste [[:$1]] [[Special:Allpages/$1|&#x5B;Sadržaj&#x5D;]]',
+'searchsubtitle'        => 'Tražili ste [[$1]] [[Special:Allpages/$1|&#x5B;Sadržaj&#x5D;]]',
 'searchsubtitleinvalid' => 'Tražili ste $1',
 'noexactmatch'          => "Nema stranice sa takvim imenom.
 
@@ -641,12 +673,16 @@ da bi ste slali fajlove.',
 'userstats'     => 'Statistike korisnika',
 'sitestatstext' => "{{SITENAME}} trenutno ima '''$2''' članaka.
 
-Ovaj broj isključuje preusmjerenja, stranice za razgovor, stranice sa opisom slike, korisničke stranice, šablone, stranice za pomoć, članke bez poveznica, i stranice o projektu {{SITENAME}}.
+Ovaj broj isključuje preusmjerenja, stranice za razgovor, stranice sa opisom slike, korisničke stranice, šablone, stranice za pomoć, članke bez poveznica, i stranice o projektu {{SITENAME}}.</p>
 
 Totalni broj stranica u bazi:  '''$1'''.
 
+'''$8''' files have been uploaded.
+
 Bilo je '''$3''' pogleda stranica, i '''$4''' izmjena otkad je viki bio instaliran.
-To izađe u prosjeku oko '''$5''' izmjena po stranici, i '''$6''' pogleda po izmjeni.",
+To izađe u prosjeku oko '''$5''' izmjena po stranici, i '''$6''' pogleda po izmjeni.
+
+The [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] length is '''$7'''.",
 'userstatstext' => "Postoji '''$1''' registrovanih korisnika, od kojih
 su '''$2''' (ili '''$4%''') administratori.",
 
@@ -965,7 +1001,7 @@ ili grupe stranice u XML formatu.  Ovo onda može biti uvezeno u drugi viki koji
 'exportcuronly' => 'Uključite samo trenutnu reviziju, ne cijelu istoriju',
 
 # Namespace 8 related
-'allmessages'               => 'Sistemske poruke',
+'allmessages'               => 'Sve sistemske poruke',
 'allmessagestext'           => 'Ovo je spisak svih sistemskih poruka u {{ns:mediawiki}} imenskom prostoru.',
 'allmessagesnotsupportedDB' => '[[{{ns:special}}:Allmessages|sistemske poruke]] nisu podržane zato što je <i>wgUseDatabaseMessages</i> isključen.',
 
@@ -1088,7 +1124,7 @@ ili grupe stranice u XML formatu.  Ovo onda može biti uvezeno u drugi viki koji
 'confirmemail_success'    => 'Adresa vaše e-pošte je potvrđena. Možete sad da se prijavite i uživate u viki.',
 'confirmemail_loggedin'   => 'Adresa Vaše e-pošte je potvrđena.',
 'confirmemail_error'      => 'Nešto je pošlo po zlu prilikom sačuvavanja vaše potvrde.',
-'confirmemail_subject'    => '{{SITENAME}} adresa e-pošte za potvrđivanje',
+'confirmemail_subject'    => 'Vikiriječnik adresa e-pošte za potvrđivanje',
 'confirmemail_body'       => 'Neko, vjerovatno Vi, je sa IP adrese $1 registrovao nalog "$2" sa ovom adresom e-pošte na {{SITENAME}}.
 
 Da potvrdite da ovaj nalog stvarno pripada vama i da aktivirate mogućnost e-pošte na {{SITENAME}}, otvorite ovu poveznicu u vašem brauzeru:

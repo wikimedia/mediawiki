@@ -691,9 +691,7 @@ El restu e çahorilis desti güiqui sí tendrán premisu pa visoreal el continiu
 # History merging
 'mergehistory'                     => 'Uñifical el estorial las páhinas',
 'mergehistory-header'              => "Esta páhina te premiti mestural las revisionis el estorial duna páhina huenti nuna nueva páhina.
-Asigurati e qu'esti chambu mantenga la continuiá el estorial la páhina.
-
-'''Al menus la revisión atual de la páhina huenti ebi queal igual.'''",
+Asigurati e qu'esti chambu mantenga la continuiá el estorial la páhina.",
 'mergehistory-box'                 => 'Uñifical las revisionis las dos páhinas:',
 'mergehistory-from'                => 'Páhina e cóigu huenti:',
 'mergehistory-into'                => 'Páhina e destinu:',
@@ -701,7 +699,7 @@ Asigurati e qu'esti chambu mantenga la continuiá el estorial la páhina.
 'mergehistory-merge'               => "Las siguientis revisionis de [[:$1]] puein mesturalsi en [[:$2]]. GAsta la coluna e botonis d'ocionis pa mestural las revisionis creás en i hata la ora especificá. Dati cuenta e que gastandu los atihus de navegación s'esborran las fechas aseñalás nesta coluna.",
 'mergehistory-go'                  => 'Muestral eicionis uñificabris',
 'mergehistory-submit'              => 'Uñifical revisionis',
-'mergehistory-empty'               => 'Nu es posibri uñifical denguna revisión',
+'mergehistory-empty'               => 'Nu es posibri uñifical denguna revisión.',
 'mergehistory-success'             => "S'án uñificau $3 revisionis de [[:$1]] en [[:$2]].",
 'mergehistory-fail'                => 'Nu es posibri uñifical los estorialis. Pol favol, compreba la páhina i los parámetrus de tiempu.',
 'mergehistory-no-source'           => 'La páhina huenti $1 nu desisti.',

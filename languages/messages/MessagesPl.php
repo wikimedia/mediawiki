@@ -805,10 +805,8 @@ Inni administratorzy {{GRAMMAR:D.lp|{{SITENAME}}}} nadal będą mieć dostęp do
 
 # History merging
 'mergehistory'                     => 'Scal historię zmian stron',
-'mergehistory-header'              => "Ta strona pozwala na scalenie historii zmian jednej strony z inną nowszą stroną.
-Upewnij się, że zmiany będą zapewniać ciągłość historyczną edycji strony.
-
-'''Na końcu musi pozostać bieżąca wersja strony źródłowej.'''",
+'mergehistory-header'              => 'Ta strona pozwala na scalenie historii zmian jednej strony z inną nowszą stroną.
+Upewnij się, że zmiany będą zapewniać ciągłość historyczną edycji strony.',
 'mergehistory-box'                 => 'Scal historię zmian dwóch stron:',
 'mergehistory-from'                => 'Strona źródłowa:',
 'mergehistory-into'                => 'Strona docelowa:',
@@ -816,7 +814,7 @@ Upewnij się, że zmiany będą zapewniać ciągłość historyczną edycji stro
 'mergehistory-merge'               => 'Następujące zmiany strony [[:$1]] mogą zostać scalone z [[:$2]]. Oznacz w kolumnie kropeczką która zmiana, łącznie z wcześniejszymi, ma zostać scalona. Użycie linków nawigacyjnych kasuje wybór w kolumnie.',
 'mergehistory-go'                  => 'Pokaż możliwe do scalenia zmiany',
 'mergehistory-submit'              => 'Scal historię zmian',
-'mergehistory-empty'               => 'Brak historii zmian do scalenia',
+'mergehistory-empty'               => 'Brak historii zmian do scalenia.',
 'mergehistory-success'             => '$3 zmian [[:$1]] z powodzeniem zostało scalonych z [[:$2]].',
 'mergehistory-fail'                => 'Scalenie historii zmian jest niewykonalne. Proszę zmienić ustawienia parametrów.',
 'mergehistory-no-source'           => 'Strona źródłowa $1 nie istnieje.',
@@ -855,6 +853,7 @@ Upewnij się, że zmiany będą zapewniać ciągłość historyczną edycji stro
 'viewprevnext'          => 'Zobacz ($1) ($2) ($3).',
 'search-result-size'    => '$1 ({{PLURAL:$2|1 słowo|$2 słowa|$2 słów}})',
 'search-result-score'   => 'Trafność: $1%',
+'searchall'             => 'wszystkie',
 'showingresults'        => "Oto lista składająca się z {{PLURAL:$1|'''1''' wyniku|'''$1''' wyników}}, poczynając od numeru '''$2'''.",
 'showingresultsnum'     => "Oto lista składająca się z {{PLURAL:$3|'''1''' wyniku|'''$3''' wyników}}, poczynając od numeru '''$2'''.",
 'nonefound'             => "'''Uwaga''': brak rezultatów wyszukiwania spowodowany jest bardzo często szukaniem najpopularniejszych słów, takich jak \"jest\" czy \"nie\", które nie są indeksowane, albo z powodu podania w zapytaniu więcej niż jednego słowa (na liście odnalezionych stron znajdą się tylko te, które zawierają wszystkie podane słowa).",

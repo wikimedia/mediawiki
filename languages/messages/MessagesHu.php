@@ -945,6 +945,8 @@ vissza tudja ugyanezen a kezelőfelületen keresztül állítani, ha nincs megad
 'logdelete-logaction'         => '[[$3]] $1 eseménye átállítva $2 módra',
 'revdelete-success'           => 'A változat láthatóságának beállítása sikeresen elvégezve.',
 'logdelete-success'           => 'Az esemény láthatóságának beállítása sikeresen elvégezve.',
+'pagehist'                    => 'Laptörténet',
+'deletedhist'                 => 'Törölt változatok',
 
 # Oversight log
 'oversightlog'    => 'Adatvédelmi biztos-napló',
@@ -952,10 +954,8 @@ vissza tudja ugyanezen a kezelőfelületen keresztül állítani, ha nincs megad
 
 # History merging
 'mergehistory'                     => 'Laptörténetek egyesítése',
-'mergehistory-header'              => "Ez az oldal lehetővé teszi egy oldal laptörténetének egyesítését egy másikéval.
-Győződj meg róla, hogy a laptörténet folytonossága megmarad.
-
-'''A forráslap jelenlegi változatának mindenképp meg kell maradnia.'''",
+'mergehistory-header'              => 'Ez az oldal lehetővé teszi egy oldal laptörténetének egyesítését egy másikéval.
+Győződj meg róla, hogy a laptörténet folytonossága megmarad.',
 'mergehistory-box'                 => 'Két oldal változatainak egyesítése:',
 'mergehistory-from'                => 'Forrásoldal:',
 'mergehistory-into'                => 'Céloldal:',
@@ -963,7 +963,7 @@ Győződj meg róla, hogy a laptörténet folytonossága megmarad.
 'mergehistory-merge'               => '[[:$1]] és [[:$2]] következő változatai vonhatóak össze. A gombok segítségével választhatod ki, ha csak egy adott idő előttieket szeretnél feldolgozni.',
 'mergehistory-go'                  => 'Egyesíthető szerkesztések mutatása',
 'mergehistory-submit'              => 'Változatok egyesítése',
-'mergehistory-empty'               => 'Nincs egyesíthető változás',
+'mergehistory-empty'               => 'Nincs egyesíthető változás.',
 'mergehistory-success'             => '[[:$1]] $3 változata sikeresen egyesítve lett a(z) [[:$2]] lappal.',
 'mergehistory-fail'                => 'Nem sikerült a laptörténetek egyesítése, kérlek ellenőrízd újra az oldalt és a megadott időparamétereket.',
 'mergehistory-no-source'           => 'Nem létezik forráslap $1 néven.',

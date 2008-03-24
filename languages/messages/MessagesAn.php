@@ -781,9 +781,7 @@ Atros almenistradors de {{SITENAME}} encara podrán azeder t'o contineiu amagato
 # History merging
 'mergehistory'                     => 'Aunir istorials',
 'mergehistory-header'              => "Ista pachina li premite aunir bersions d'o istorial d'una pachina d'orichen con una nueba pachina.
-Asegure-se que iste cambio no crebará a continidat de l'istorial d'a pachina.
-
-'''Como menimo abría de remanir a bersión autual d'a pachina d'orichen.'''",
+Asegure-se que iste cambio no crebará a continidat de l'istorial d'a pachina.",
 'mergehistory-box'                 => 'Aunir as bersions de dos pachinas:',
 'mergehistory-from'                => "Pachina d'orichen:",
 'mergehistory-into'                => 'Pachina de destino:',
@@ -791,7 +789,7 @@ Asegure-se que iste cambio no crebará a continidat de l'istorial d'a pachina.
 'mergehistory-merge'               => "As siguients bersions de [[:$1]] pueden aunir-se con [[:$2]]. Faiga serbir a columna de botons de radio ta aunir nomás as bersions creyadas antis d'un tiempo espezificato. Pare cuenta que si emplega os binclos de nabegazión meterá os botons en o suyo estau orichinal.",
 'mergehistory-go'                  => 'Amostrar edizions aunibles',
 'mergehistory-submit'              => 'Aunir bersions',
-'mergehistory-empty'               => 'No puede aunir-se garra rebisión',
+'mergehistory-empty'               => 'No puede aunir-se garra rebisión.',
 'mergehistory-success'             => '$3 {{PLURAL:$3|rebisión|rebisions}} de [[:$1]] {{PLURAL:$3|aunita|aunitas}} correutament con [[:$2]].',
 'mergehistory-fail'                => "No s'ha puesto aunir os dos istorials, por fabor comprebe a pachina y os parametros de tiempo.",
 'mergehistory-no-source'           => "A pachina d'orichen $1 no esiste.",
@@ -830,6 +828,7 @@ Asegure-se que iste cambio no crebará a continidat de l'istorial d'a pachina.
 'viewprevnext'          => 'Beyer ($1) ($2) ($3)',
 'search-result-size'    => '$1 ({{PLURAL:$2|1 palabra|$2 palabras}})',
 'search-result-score'   => 'Relebanzia: $1%',
+'searchall'             => 'toz',
 'showingresults'        => "Contino se bi {{PLURAL:$1|amuestra '''1''' resultau|amuestran '''$1''' resultaus}} prenzipiando por o numero '''$2'''.",
 'showingresultsnum'     => "Contino se bi {{PLURAL:$3|amuestra '''1''' resultau|amuestran os '''$3''' resultaus}} prenzipiando por o numero '''$2'''.",
 'nonefound'             => "'''Pare cuenta''': Os fallos en mirar pachinas son causatos á ormino por prebar de mirar palabras masiau comuns como \"o\", \"a\" u \"de\", que no i son en o endize, u por escribir más d'una palabra ta mirar (sólo amaneixen en o resultau as pachinas que contiengan todas as palabras).",

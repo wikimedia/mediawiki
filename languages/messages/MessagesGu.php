@@ -91,7 +91,7 @@ $messages = array(
 'moredotdotdot' => 'વધારે...',
 'mypage'        => 'મારું પાનું',
 'mytalk'        => 'મારી ચર્ચા',
-'navigation'    => 'પ્રદક્ષિણા',
+'navigation'    => 'ભ્રમણ',
 'and'           => 'અને',
 
 'tagline'          => '{{SITENAME}} થી',
@@ -109,15 +109,15 @@ $messages = array(
 'deletethispage'   => 'આ પાનું હટાવો',
 'protect'          => 'સુરક્ષિત કરો',
 'newpage'          => 'નવું પાનું',
-'talkpage'         => 'આ પાના વિષે ચર્ચા કરવી',
+'talkpage'         => 'આ પાના વિષે ચર્ચા કરો',
 'talkpagelinktext' => 'ચર્ચા કરવી',
 'specialpage'      => 'ખાસ પાનુ',
 'talk'             => 'ચર્ચા',
 'toolbox'          => 'ઓજારની પેટી',
-'viewtalkpage'     => 'ચર્ચા જોવી',
+'viewtalkpage'     => 'ચર્ચા જુઓ',
 'otherlanguages'   => 'બીજી ભાષાઓમાં',
-'lastmodifiedat'   => 'આ પાનાં છેલ્લો ફેરફાર $2 વાગ્યા $1એ થયો.', # $1 date, $2 time
-'jumptonavigation' => 'પ્રદક્ષિણા',
+'lastmodifiedat'   => 'આ પાનાંનો છેલ્લો ફેરફાર $1એ $2 વાગ્યે થયો.', # $1 date, $2 time
+'jumptonavigation' => 'ભ્રમણ',
 'jumptosearch'     => 'શોધો',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
@@ -132,11 +132,11 @@ $messages = array(
 
 'ok'                  => 'મંજૂર',
 'retrievedfrom'       => '"$1" થી લીધેલું',
-'newmessageslink'     => 'નવા સંદેશો',
+'newmessageslink'     => 'નુતન સંદેશ',
 'newmessagesdifflink' => 'છેલ્લો ફેરફાર',
 'editsection'         => 'ફેરફાર કરો',
 'editold'             => 'ફેરફાર કરો',
-'showtoc'             => 'દેખાડો',
+'showtoc'             => 'બતાવો',
 'hidetoc'             => 'છુપાવો',
 'viewdeleted'         => '$1 તપાસવી છે?',
 
@@ -155,28 +155,28 @@ $messages = array(
 
 # Login and logout pages
 'userlogin'       => 'Log in / નવું ખાતું ખોલો',
-'nologin'         => 'શું તમારી પાસે ખાતું નથી? $1.',
+'nologin'         => 'શું તમારૂં ખાતું નથી? $1.',
 'nologinlink'     => 'ખાતું ખોલો',
-'createaccount'   => 'ખાતું સર્જન કરવું',
+'createaccount'   => 'નવું ખાતું ખોલો',
 'yourrealname'    => 'સાચું નામ:',
 'yourlanguage'    => 'ભાષા',
-'nosuchusershort' => '"<nowiki>$1</nowiki>" નામનું કોઈ નથી. તમારી જોડણી તપાસ કરો.',
-'accountcreated'  => 'સર્જન કરેલું ખાતું',
+'nosuchusershort' => '"<nowiki>$1</nowiki>" નામનો કોઇ સભ્ય નથી, તમારી જોડણી તપાસો.',
+'accountcreated'  => 'ખાતું ખોલવામાં આવ્યું છે',
 
 # Edit pages
 'summary'           => 'સારાંશ',
 'minoredit'         => 'આ એક નાનો સુધારો છે.',
-'watchthis'         => 'આ પાના ને ધ્યાન માં રાખો',
+'watchthis'         => 'આ પાનાને ધ્યાનમાં રાખો',
 'savearticle'       => 'લેખ સુરક્ષિત કરવું',
 'showpreview'       => 'ઝલક બતાવો',
 'showdiff'          => 'ફેરફારો બતાવો',
 'blockededitsource' => "'''$1''' માટે '''તમારા ફેરફારો''' નીચે દેખાય છે:",
-'newarticle'        => '(નવો)',
+'newarticle'        => '(નવિન)',
 'editing'           => '$1નો ફેરફાર કરી રહ્યા છે',
-'yourdiff'          => 'સરખામણી',
+'yourdiff'          => 'ભેદ',
 
 # History pages
-'nohistory'    => 'આ પાનાના ફેરફારનો ઇતિહાસ નથી.',
+'nohistory'    => 'આ પાનાનાં ફેરફારનો ઇતિહાસ નથી.',
 'cur'          => 'વર્તમાન',
 'next'         => 'આગળ',
 'last'         => 'છેલ્લું',
@@ -188,14 +188,14 @@ $messages = array(
 
 # Diffs
 'lineno'   => 'લીટી $1:',
-'editundo' => 'રદ કરવું',
+'editundo' => 'રદ કરો',
 
 # Search results
 'searchresults' => 'પરિણામોમાં શોધો',
 'prevn'         => 'પાછળનાં $1',
 'nextn'         => 'આગળનાં $1',
 'viewprevnext'  => 'જુઓ: ($1) ($2) ($3)',
-'powersearch'   => 'શોધો',
+'powersearch'   => 'શોધો (વધુ પર્યાય સાથે)',
 
 # Preferences page
 'mypreferences'     => 'મારી પસંદ',
@@ -212,12 +212,12 @@ $messages = array(
 
 # Recent changes
 'recentchanges'   => 'હાલ માં થયેલા ફેરફાર',
-'rclistfrom'      => '$1થી નવા ફેરફારો બતાવવા',
+'rclistfrom'      => '$1 બાદ થયેલા નવા ફેરફારો બતાવો',
 'rcshowhideminor' => 'નાના ફેરફારો $1',
 'rcshowhidebots'  => 'બૉટો $1',
 'rcshowhidemine'  => 'મારા ફેરફારો $1',
-'rclinks'         => '$1 છેલ્લાં ફેરફારો $2 દિવસથી બતાવવાં<br />$3',
-'diff'            => 'સરખામણી',
+'rclinks'         => 'છેલ્લાં $2 દિવસમાં થયેલા છેલ્લાં $1 ફેરફારો દર્શાવો<br />$3',
+'diff'            => 'ભેદ',
 'hist'            => 'ઇતિહાસ',
 'hide'            => 'છુપાવો',
 'show'            => 'બતાવો',
@@ -226,7 +226,7 @@ $messages = array(
 'boteditletter'   => 'બૉટ',
 
 # Recent changes linked
-'recentchangeslinked' => 'આ પાનાથી જોડાયેલા ફેરફાર',
+'recentchangeslinked' => 'આ પાના સાથે જોડાયેલા ફેરફાર',
 
 # Upload
 'upload' => 'ફાઇલ ચડાવો',
@@ -235,7 +235,7 @@ $messages = array(
 'randompage' => 'કોઈ પણ એક લેખ',
 
 'brokenredirects-edit'   => '(ફેરફાર કરો)',
-'brokenredirects-delete' => '(હટાવવું)',
+'brokenredirects-delete' => '(હટાવો)',
 
 # Miscellaneous special pages
 'nmembers'          => '$1 {{PLURAL:$1|સદસ્ય|સદસ્યો}}',
@@ -255,13 +255,13 @@ $messages = array(
 'log-search-submit' => 'શોધો',
 
 # Special:Allpages
-'allpages'       => 'બદ્ધા પાના',
+'allpages'       => 'બધા પાના',
 'alphaindexline' => '$1 થી $2',
 'nextpage'       => 'આગળનું પાનું ($1)',
 'prevpage'       => 'પાછળનું પાનું ($1)',
 'allarticles'    => 'બધા લેખ',
-'allpagesprev'   => 'પાછળ',
-'allpagesnext'   => 'આગળ',
+'allpagesprev'   => 'પહેલાનું',
+'allpagesnext'   => 'પછીનું',
 'allpagessubmit' => 'જાઓ',
 
 # Special:Listusers
@@ -272,7 +272,7 @@ $messages = array(
 'emailto'      => 'લેનાર',
 'emailsubject' => 'વિષય',
 'emailmessage' => 'સંદેશ',
-'emailsend'    => 'મોકલવું',
+'emailsend'    => 'મોકલો',
 
 # Watchlist
 'watchlist'            => 'મારી ધ્યાનસૂચી',
@@ -324,7 +324,7 @@ $messages = array(
 # Move page
 '1movedto2'               => '[[$1]] નું નામ બદલી ને [[$2]] કરવામાં આવ્યું છે.',
 'movereason'              => 'કારણ',
-'delete_and_move'         => 'હટાવવું અને નામ બદલવું',
+'delete_and_move'         => 'હટાવો અને નામ બદલો',
 'delete_and_move_confirm' => 'હા, આ પાનું હટાવો',
 
 # Export
@@ -363,7 +363,7 @@ $messages = array(
 'exif-imagelength' => 'ઊંચાઈ',
 'exif-artist'      => 'કલાકાર',
 
-'exif-unknowndate' => 'તારીખની જાણ નથી',
+'exif-unknowndate' => 'અજ્ઞાત તારીખ',
 
 'exif-orientation-1' => 'સામાન્ય', # 0th row: top; 0th column: left
 

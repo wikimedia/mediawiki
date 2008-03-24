@@ -165,6 +165,7 @@ $messages = array(
 'permalink'         => 'Ligasaun mahelak',
 'print'             => 'Imprime',
 'edit'              => 'Edita',
+'create'            => 'Kria',
 'editthispage'      => "Edita pájina ne'e",
 'delete'            => 'Halakon',
 'deletethispage'    => "Halakon pájina ne'e",
@@ -255,7 +256,7 @@ $messages = array(
 'nologinlink'               => 'Registrar',
 'createaccount'             => "Registrar uza-na'in",
 'userexists'                => "Uza-na'in ne'e ona iha wiki. Favór ida lori naran seluk.",
-'youremail'                 => 'Diresaun korreiu eletróniku:',
+'youremail'                 => 'Korreiu eletróniku:',
 'username'                  => "Naran uza-na'in:",
 'uid'                       => "Uza-na'in ID:",
 'yourlanguage'              => 'Lian:',
@@ -474,6 +475,7 @@ $messages = array(
 'excontent'                   => "testu iha pájina: '$1'",
 'excontentauthor'             => "testu iha pájina: '$1' (no ema ida de'it ne'ebé kontribui '[[Special:Contributions/$2|$2]]')",
 'exblank'                     => 'pájina mamuk',
+'delete-legend'               => 'Halakon',
 'deletedarticle'              => 'halakon "[[$1]]"',
 'dellogpage'                  => 'Lista halakon',
 'deletionlog'                 => 'lista halakon',
@@ -489,12 +491,14 @@ $messages = array(
 'restriction-type'            => 'Kuana:',
 
 # Restrictions (nouns)
-'restriction-edit' => 'Edita',
-'restriction-move' => 'Book',
+'restriction-edit'   => 'Edita',
+'restriction-move'   => 'Book',
+'restriction-create' => 'Kria',
 
 # Undelete
 'undelete'           => 'Haree pájina halakon tiha',
 'undeletebtn'        => 'Restaurar',
+'undeletelink'       => 'restaurar',
 'undeletecomment'    => 'Komentáriu:',
 'undeletedarticle'   => 'restaurar "[[$1]]"',
 'undeletedrevisions' => 'restaurar $1 versaun',
@@ -569,7 +573,7 @@ $messages = array(
 'tooltip-ca-addsection'    => "Tau tan komentáriu ida ba diskusaun ne'e.",
 'tooltip-ca-protect'       => "Proteje pájina ne'e",
 'tooltip-ca-delete'        => "Halakon pájina ne'e",
-'tooltip-ca-move'          => "Buka pájina ne'e",
+'tooltip-ca-move'          => "Book pájina ne'e",
 'tooltip-ca-watch'         => "Tau tan pájina ne'e ba ó-nia lista hateke",
 'tooltip-search'           => 'Buka iha {{SITENAME}}',
 'tooltip-n-mainpage'       => 'Vizita Pájina Mahuluk',
@@ -605,6 +609,9 @@ $messages = array(
 'namespacesall'    => 'hotu',
 'monthsall'        => 'hotu',
 
+# action=purge
+'confirm_purge_button' => 'OK',
+
 # Multipage image navigation
 'imgmultipageprev' => '← pájina molok',
 'imgmultipagenext' => 'pájina oinmai →',
@@ -624,9 +631,10 @@ $messages = array(
 'watchlisttools-edit' => 'Haree no edita lista hateke',
 
 # Special:Version
-'version'              => 'Versaun', # Not used as normal message but as header for the special page itself
-'version-specialpages' => 'Pájina espesiál',
-'version-other'        => 'Seluk',
-'version-version'      => 'Versaun',
+'version'                  => 'Versaun', # Not used as normal message but as header for the special page itself
+'version-specialpages'     => 'Pájina espesiál',
+'version-other'            => 'Seluk',
+'version-version'          => 'Versaun',
+'version-software-version' => 'Versaun',
 
 );

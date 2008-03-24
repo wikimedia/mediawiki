@@ -921,9 +921,7 @@ Pengurus lain akan dapat mengakses isi tersebunyi dan dapat membatalkan penghapu
 
 # History merging
 'mergehistory'                     => 'Gabung sejarah halaman',
-'mergehistory-header'              => "Halaman ini memperbolehkan Anda untuk menggabungkan revisi-revisi dari satu halaman sumber ke halaman yang lebih baru.
-
-'''Revisi sekarang dari halaman sumber harus tetap ada.'''",
+'mergehistory-header'              => 'Halaman ini memperbolehkan Anda untuk menggabungkan revisi-revisi dari satu halaman sumber ke halaman yang lebih baru.',
 'mergehistory-box'                 => 'Gabung revisi-revisi dari dua halaman:',
 'mergehistory-from'                => 'Halaman sumber:',
 'mergehistory-into'                => 'Halaman tujuan:',
@@ -931,7 +929,7 @@ Pengurus lain akan dapat mengakses isi tersebunyi dan dapat membatalkan penghapu
 'mergehistory-merge'               => 'Revisi-revisi berikut dari [[:$1]] dapat digabungkan ke [[:$2]]. Gunakan tombol radio untuk menggabungkan revisi-revisi yang dibuat sebelum waktu tertentu. Perhatikan, menggunakan pranala navigasi akan mengeset ulang kolom.',
 'mergehistory-go'                  => 'Tampilkan suntingan-suntingan yang dapat digabung',
 'mergehistory-submit'              => 'Gabung revisi',
-'mergehistory-empty'               => 'Tidak ada revisi yang dapat digabung',
+'mergehistory-empty'               => 'Tidak ada revisi yang dapat digabung.',
 'mergehistory-success'             => '$3 {{PLURAL:$1|revisi|revisi}} dari [[:$1]] sukses digabung ke [[:$2]].',
 'mergehistory-fail'                => 'Tidak dapat melakukan penggabungan, harap periksa kembali halaman dan parameter waktu.',
 'mergehistory-no-source'           => 'Halaman sumber $1 tidak ada.',

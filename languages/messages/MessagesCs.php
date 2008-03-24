@@ -959,6 +959,8 @@ pokud to provozovatel serveru nezakázal.',
 'logdelete-logaction'         => 'U $1 {{PLURAL:$1|události|událostí|událostí}} pro [[$3]] nastaven mód $2',
 'revdelete-success'           => 'Viditelnost revize úspěšně nastavena.',
 'logdelete-success'           => 'Viditelnost události úspěšně nastavena.',
+'pagehist'                    => 'Historie stránky',
+'deletedhist'                 => 'Smazaná historie',
 
 # Oversight log
 'oversightlog'    => 'Kniha dohledu',
@@ -966,10 +968,8 @@ pokud to provozovatel serveru nezakázal.',
 
 # History merging
 'mergehistory'                     => 'Slučování historií stránek',
-'mergehistory-header'              => "Tato stránka Vám umožní sloučit historii verzí jedné zdrojové stránky s novější stránkou.
-Ujistěte se, že tato změna udrží souvislost a posloupnost verzí v historii.
-
-'''Minimálně aktuální verze zdrojové stránky musí zůstat na svém místě.'''",
+'mergehistory-header'              => 'Tato stránka Vám umožní sloučit historii verzí jedné zdrojové stránky s novější stránkou.
+Ujistěte se, že tato změna udrží souvislost a posloupnost verzí v historii.',
 'mergehistory-box'                 => 'Sloučení verzí dvou stránek:',
 'mergehistory-from'                => 'Původní stránka:',
 'mergehistory-into'                => 'Cílová stránka:',
@@ -977,7 +977,7 @@ Ujistěte se, že tato změna udrží souvislost a posloupnost verzí v historii
 'mergehistory-merge'               => 'Následující verze stránky [[:$1|$1]] lze sloučit do stránky [[:$2|$2]]. Přepínačem vyberete verzi, která určí, že pouze tato a starší editace budou sloučeny. Použitím navigačních odkazů se tento výběr zruší.',
 'mergehistory-go'                  => 'Zobrazit slučitelné editace',
 'mergehistory-submit'              => 'Sloučit verze',
-'mergehistory-empty'               => 'Nelze sloučit žádnou verzi',
+'mergehistory-empty'               => 'Nelze sloučit žádnou verzi.',
 'mergehistory-success'             => '$3 {{PLURAL:$3|verze|verze|verzí}} stránky [[:$1]] {{PLURAL:$3|byla úspěšně sloučena|byly úspěšně sloučeny|bylo úspěšně sloučeno}} do stránky [[:$2]].',
 'mergehistory-fail'                => 'Sloučení historií nelze provést. Překontrolujte zadané stránky a jejich historii.',
 'mergehistory-no-source'           => 'Zdrojová stránka $1 neexistuje.',

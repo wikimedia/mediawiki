@@ -266,6 +266,8 @@ $messages = array(
 # Categories related messages
 'categories'                     => 'Categorias',
 'categoriespagetext'             => 'As seguintes categorias existem na wiki.',
+'special-categories-sort-count'  => 'ordenar por contagem',
+'special-categories-sort-abc'    => 'ordenar alfabeticamente',
 'pagecategories'                 => '{{PLURAL:$1|Categoria|Categorias}}',
 'category_header'                => 'Páginas na categoria "$1"',
 'subcategories'                  => 'Subcategorias',
@@ -327,7 +329,7 @@ $messages = array(
 'permalink'         => 'Ligação permanente',
 'print'             => 'Imprimir',
 'edit'              => 'Editar',
-'create'            => 'Iniciar',
+'create'            => 'Criar',
 'editthispage'      => 'Editar esta página',
 'create-this-page'  => 'Criar/iniciar esta página',
 'delete'            => 'Eliminar',
@@ -855,6 +857,8 @@ Outros administradores nesta wiki continuarão a poder aceder ao conteúdo escon
 'logdelete-logaction'         => '$1 {{PLURAL:$1|evento|eventos}} de [[$3]] {{PLURAL:$1|definido|definidos}} como $2',
 'revdelete-success'           => 'Visibilidade de edição definida com sucesso.',
 'logdelete-success'           => 'Visibilidade de evento definida com sucesso.',
+'pagehist'                    => 'Histórico da página',
+'deletedhist'                 => 'Histórico de eliminações',
 
 # Oversight log
 'oversightlog'    => 'Registo de edições ocultadas',
@@ -862,10 +866,8 @@ Outros administradores nesta wiki continuarão a poder aceder ao conteúdo escon
 
 # History merging
 'mergehistory'                     => 'Fundir histórico de páginas',
-'mergehistory-header'              => "A partir desta página é possível fundir históricos de edições de uma página em outra.
-Certifique-se de que tal alteração manterá a continuidade das ações.
-
-'''É necessário que no mínimo a atual edição da página de origem seja mantida.'''",
+'mergehistory-header'              => 'A partir desta página é possível fundir históricos de edições de uma página em outra.
+Certifique-se de que tal alteração manterá a continuidade das ações.',
 'mergehistory-box'                 => 'Fundir revisões de duas páginas:',
 'mergehistory-from'                => 'Página de origem:',
 'mergehistory-into'                => 'Página de destino:',
@@ -873,7 +875,7 @@ Certifique-se de que tal alteração manterá a continuidade das ações.
 'mergehistory-merge'               => 'As edições de [[:$1]] a seguir poderão ser fundidas em [[:$2]]. Utilize a coluna de botões de opção para fundir apenas as edições feitas entre o intervalo de tempo especificado. Note que ao utilizar os links de navegação esta coluna será retornada a seus valores padrão.',
 'mergehistory-go'                  => 'Exibir edições habilitadas a serem fundidas',
 'mergehistory-submit'              => 'Fundir edições',
-'mergehistory-empty'               => 'Não existem edições habilitadas a serem fundidas',
+'mergehistory-empty'               => 'Não existem edições habilitadas a serem fundidas.',
 'mergehistory-success'             => '$3 revisões de [[:$1|$1]] fundidas em [[:$2|$2]] com sucesso.',
 'mergehistory-fail'                => 'Não foi possível fundir os históricos; por gentileza, verifique a página e os parâmetros de tempo.',
 'mergehistory-no-source'           => 'A página de origem ($1) não existe.',
@@ -912,8 +914,13 @@ Certifique-se de que tal alteração manterá a continuidade das ações.
 'viewprevnext'          => 'Ver ($1) ($2) ($3).',
 'search-result-size'    => '$1 ({{PLURAL:$2|1 palavra|$2 palavras}})',
 'search-result-score'   => 'Relevancia: $1%',
+'search-redirect'       => '(redireccionamento para $1)',
+'search-section'        => '(secção $1)',
+'search-suggest'        => 'Será que quis dizer: $1',
+'searchall'             => 'todos',
 'showingresults'        => "A seguir {{PLURAL:$1|é mostrado '''um''' resultado|são mostrados até '''$1''' resultados}}, iniciando no '''$2'''º.",
 'showingresultsnum'     => "A seguir {{PLURAL:$3|é mostrado '''um''' resultado|são mostrados '''$3''' resultados}}, iniciando com o '''$2'''º.",
+'showingresultstotal'   => "Mostrados abaixo resultados '''$1 - $2''' de '''$3'''",
 'nonefound'             => '<strong>Nota</strong>: pesquisas mal sucedidas são geralmente causadas devido ao uso de palavras muito comuns como "tem" e "de",
 que não são indexadas, ou pela especificação de mais de um termo (somente as páginas contendo todos os termos aparecerão nos resultados).',
 'powersearch'           => 'Pesquisa avançada',
@@ -1170,6 +1177,9 @@ PICT # misc.
 'upload_source_file' => ' (um ficheiro no seu computador)',
 
 # Special:Imagelist
+'imagelist-summary'     => 'Esta página especial mostra todos os ficheiros carregados.
+Por defeito, os últimos ficheiros carregados são mostrados no topo da lista.
+Um clique sobre um cabeçalho de coluna altera a ordenação.',
 'imagelist_search_for'  => 'Pesquisar por nome de imagem:',
 'imgdesc'               => 'desc',
 'imgfile'               => 'ficheiro',
@@ -1586,7 +1596,8 @@ campo de comentário e todas as caixas de selecção.",
 'undeleterevisions'            => '$1 {{PLURAL:$1|edição disponível|edições disponíveis}}',
 'undeletehistory'              => 'Se restaurar uma página, todas as edições serão restauradas para o histórico.
 Se uma nova página foi criada com o mesmo nome desde a eliminação, as edições restauradas aparecerão primeiro no histórico e a página actual não será automaticamente trocada. Note que as restrições de acesso às edições serão perdidas ao ser feita a restauração.',
-'undeleterevdel'               => 'O restauro não será executado se resultar na remoção parcial da versão mais recente da página. Em tais casos, deverá desseleccionar ou reverter a ocultação das versões apagadas mais recentes. Versões de ficheiros para os quais não tenha permissão de visualização não serão restauradas.',
+'undeleterevdel'               => 'O restauro não será executado se resultar na remoção parcial da versão mais recente da página ou ficheiro.
+Em tais casos, deverá desseleccionar ou reverter a ocultação da versão apagada mais recente.',
 'undeletehistorynoadmin'       => 'Esta página foi eliminada. O motivo de eliminação é apresentado no súmario abaixo, junto dos detalhes do utilizador que editou esta página antes de eliminar. O texto actual destas edições eliminadas encontra-se agora apenas disponível para administradores.',
 'undelete-revision'            => 'A edição $1 de $2 foi eliminada por $3:',
 'undeleterevision-missing'     => 'Edição inválida ou não encontrada. Talvez você esteja com um link incorrecto ou talvez a edição foi restaurada ou removida dos arquivos.',

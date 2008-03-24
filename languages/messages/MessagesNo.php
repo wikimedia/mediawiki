@@ -798,6 +798,8 @@ Andre administratorer på {{SITENAME}} vil fortsatt kunne se det skjulte innhold
 'logdelete-logaction'         => '$1 {{plural:$1|hendelse|hendelser}} angående [[$3]] satt til modus $2',
 'revdelete-success'           => 'Revisjonssynlighet satt.',
 'logdelete-success'           => 'Hendelsessynlighet satt.',
+'pagehist'                    => 'Sidehistorikk',
+'deletedhist'                 => 'Slettet historikk',
 
 # Oversight log
 'oversightlog'    => 'Overoppsynslogg',
@@ -805,9 +807,8 @@ Andre administratorer på {{SITENAME}} vil fortsatt kunne se det skjulte innhold
 
 # History merging
 'mergehistory'                     => 'Flett sidehistorikker',
-'mergehistory-header'              => "Denne siden lar deg flette historikken til to sider. Forsikre deg om at denne endringen vil opprettholde historisk sidekontinuitet.
-
-'''I hvert fall den siste revisjonen til kildesiden må forbli.'''",
+'mergehistory-header'              => 'Denne siden lar deg flette historikken til to sider.
+Forsikre deg om at denne endringen vil opprettholde historisk sidekontinuitet.',
 'mergehistory-box'                 => 'Flett historikken til to sider:',
 'mergehistory-from'                => 'Kildeside:',
 'mergehistory-into'                => 'Målside:',
@@ -815,13 +816,15 @@ Andre administratorer på {{SITENAME}} vil fortsatt kunne se det skjulte innhold
 'mergehistory-merge'               => 'Følgende revisjoner av [[:$1]] kan flettes til [[:$2]]. Du kan velge å flette kun de revisjonene som kom før tidspunktet gitt i tabellen. Merk at bruk av navigasjonslenkene vil resette denne kolonnen.',
 'mergehistory-go'                  => 'Vis flettbare redigeringer',
 'mergehistory-submit'              => 'Flett revisjoner',
-'mergehistory-empty'               => 'Ingen revisjoner kan flettes',
-'mergehistory-success'             => '$3 revisjoner av [[:$1]] ble flettet til [[:$2]].',
+'mergehistory-empty'               => 'Ingen revisjoner kan flettes.',
+'mergehistory-success'             => '{{PLURAL:$3|Én revisjon|$3 revisjoner}} av [[:$1]] ble flettet til [[:$2]].',
 'mergehistory-fail'                => 'Klarte ikke å utføre historikkfletting; sjekk siden og tidsparameterne igjen.',
 'mergehistory-no-source'           => 'Kildesiden $1 finnes ikke.',
 'mergehistory-no-destination'      => 'Målsiden $1 finnes ikke.',
 'mergehistory-invalid-source'      => 'Kildesiden må ha en gyldig tittel.',
 'mergehistory-invalid-destination' => 'Målsiden må ha en gyldig tittel.',
+'mergehistory-autocomment'         => 'Flettet [[:$1]] inn i [[:$2]]',
+'mergehistory-comment'             => 'Flettet [[:$1]] inn i [[:$2]]: $3',
 
 # Merge log
 'mergelog'           => 'Flettingslogg',

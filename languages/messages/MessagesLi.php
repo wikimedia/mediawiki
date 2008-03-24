@@ -720,9 +720,7 @@ Anger beheerders van {{SITENAME}} kinne de verborge inhoud benäöjere en de ver
 # History merging
 'mergehistory'                     => "Gesjiedenis van pagina's samevoege",
 'mergehistory-header'              => "Deze pagina laot uch toe om versies van de gesjiedenis van 'n brónpagina nao 'n nuujere pagina same te voege.
-Wees zeker det deze wieziging de gesjiedenisdoorloupendheid van de pagina zal behaje,
-
-'''Teminste de huidige versie van de brónpagina mot euverblieve.'''",
+Wees zeker det deze wieziging de gesjiedenisdoorloupendheid van de pagina zal behaje.",
 'mergehistory-box'                 => "Versies van twee pagina's samevoege:",
 'mergehistory-from'                => 'Brónpazjena:',
 'mergehistory-into'                => 'Bestömmingspazjena:',
@@ -730,7 +728,7 @@ Wees zeker det deze wieziging de gesjiedenisdoorloupendheid van de pagina zal be
 'mergehistory-merge'               => "De volgende versies van [[:$1]] kinne samegevoeg waere nao [[:$2]]. Gebroek de kolom mit keuzeröndjes om allein de versies gemaak op en vwur de aangegaeve tied same te voege. Let op det 't gebroeke van de navigatielinks deze kolom zal herinstelle.",
 'mergehistory-go'                  => 'Samevoegbare bewerkinge toeane',
 'mergehistory-submit'              => 'Versies samevoege',
-'mergehistory-empty'               => 'Gein inkele versies kinne samegevoeg waere',
+'mergehistory-empty'               => 'Gein inkele versies kinne samegevoeg waere.',
 'mergehistory-success'             => '$3 versies van [[:$1|$1]] succesvol samegevoeg nao [[:$2|$2]].',
 'mergehistory-fail'                => 'Kan gein gesjiedenis samevoege, lèvver opnuuj de pagina- en tiedparamaeters te controlere.',
 'mergehistory-no-source'           => 'Bronpagina $1 besteit neet.',
@@ -769,6 +767,7 @@ Wees zeker det deze wieziging de gesjiedenisdoorloupendheid van de pagina zal be
 'viewprevnext'          => '($1) ($2) ($3) bekieke.',
 'search-result-size'    => '$1 ({{PLURAL:$2|1 waord|$2 wäörd}})',
 'search-result-score'   => 'Relevantie: $1%',
+'searchall'             => 'alle',
 'showingresults'        => 'Hieonger staon de <b>$1</b> {{PLURAL:$1|resultaat|resultaat}}, vanaaf #<b>$2</b>.',
 'showingresultsnum'     => "Hieonger {{PLURAL:$3|steit '''1''' resultaat|staon '''$3''' resultate}} vanaaf #<b>$2</b>.",
 'nonefound'             => '<strong>Lèt op:</strong> \'n zeukopdrach kan mislökke door \'t gebroek van (in \'t Ingelsj) väöl veurkómmende wäörd wie "of" en "be", die neet geïndexeerd zint, of door versjillende zeukterme tegeliek op te gaeve (de kries dan allein pazjena\'s te zeen woerin alle opgegaeve terme veurkómme).',

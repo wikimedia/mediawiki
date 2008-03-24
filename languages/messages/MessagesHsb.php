@@ -785,10 +785,8 @@ Druzy administratorojo we {{SITENAME}} móža schowany tekst dale čitać a jón
 
 # History merging
 'mergehistory'                     => 'Stawizny stronow zjednoćić',
-'mergehistory-header'              => "Tuta strona ći dowola wersije stawiznow žórłoweje strony na nowej stronje zjednoćić.
-Zawěsć, zo tuta změna stawiznisku kontinuitu strony wobchowuje.
-
-'''Znajmjeńša aktualna wersija žórłoweje strony dyrbi so zachować.'''",
+'mergehistory-header'              => 'Tuta strona ći dowola wersije stawiznow žórłoweje strony na nowej stronje zjednoćić.
+Zawěsć, zo tuta změna stawiznisku kontinuitu strony wobchowuje.',
 'mergehistory-box'                 => 'Wersije dweju stronow zjednoćić:',
 'mergehistory-from'                => 'Žórłowa strona:',
 'mergehistory-into'                => 'Cilowa strona:',
@@ -796,7 +794,7 @@ Zawěsć, zo tuta změna stawiznisku kontinuitu strony wobchowuje.
 'mergehistory-merge'               => 'Slědowace wersije wot [[:$1|$1]] hodźa so z [[:$2|$2]] zjednoćić. Wužij špaltu z opciskimi tłóčatkami, zo by jenož te wersije zjednoćił, kotrež su so w podatym času a bo před nim wutworili. Wobkedźbuj, zo wužiwanje nawigaciskich wotkazow budźe tutu špaltu wróćo stajeć.',
 'mergehistory-go'                  => 'Zjednoćujomne změny pokazać',
 'mergehistory-submit'              => 'Wersije zjednoćić',
-'mergehistory-empty'               => 'Njehodźa so žane wersije zjednoćeć',
+'mergehistory-empty'               => 'Njehodźa so žane wersije zjednoćeć.',
 'mergehistory-success'             => '$3 {{PLURAL:$3|wersija|wersiji|wersije|wersijow}} wot [[:$1]] wuspěšnje z [[:$2]] zjednoćene.',
 'mergehistory-fail'                => 'Njeje móžno zjednócenje stawiznow přewjesć, prošu přepruwuj stronu a časowe parametry.',
 'mergehistory-no-source'           => 'Žórłowa strona $1 njeeksistuje.',
@@ -835,6 +833,7 @@ Móžeš [[{{ns:special}}:Allpages|alfabetiski indeks přepytować]] abo [[:$1|s
 'prevn'                 => 'předchadne $1',
 'nextn'                 => 'přichodne $1',
 'viewprevnext'          => '($1) ($2) ($3) pokazać',
+'searchall'             => 'wšě',
 'showingresults'        => "Deleka so hač {{PLURAL:$1|'''1''' wuslědk pokazuje|'''$1''' wuslědkaj pokazujetej|'''$1''' wuslědki pokazuja|'''$1''' wuslědkow pokazuje}}, započinajo z #'''$2'''.",
 'showingresultsnum'     => "Deleka so {{PLURAL:$3|'''1''' wuslědk pokazuje|'''$3''' wuslědkaj pokazujetej|'''$3''' wuslědki pokazuja|'''$3''' wuslědkow pokazuje}}, započinajo z #'''$2'''.",
 'nonefound'             => '<b>Kedźbu:</b> Pytanja bjez wuspěcha so často z pytanjom za powšitkownymi słowami zawinuja, kotrež so njeindicěruja abo přez podaće wjace hač jednoho pytanskeho wuraza. Jenož strony, kotrež wšě pytanske wurazy wobsahuja, so w lisćinje wuslědkow zjewja. W tym padźe spytaj ličbu pytanskich wurazow pomjeńšić.',

@@ -734,9 +734,7 @@ na restrission adissional da j'operator dël sit.",
 # History merging
 'mergehistory'                     => 'Buté ansema jë stòrie',
 'mergehistory-header'              => "Sta pàgina-sì a lassa fene buté le revision ëd na pàgina ansema a cole 'd n'àutra.
-Ch'a varda mach che a-i ven-a nen fòra rabel ant la continuità stòrica.
-
-'''Coma mìnim a l'ha da reste-ie la version corenta dla pàgina original.'''",
+Ch'a varda mach che a-i ven-a nen fòra rabel ant la continuità stòrica.",
 'mergehistory-box'                 => 'Fene un-a dle stòrie ëd doe pàgine:',
 'mergehistory-from'                => 'Pàgina sorgiss:',
 'mergehistory-into'                => "Pàgina 'd destinassion:",
@@ -744,7 +742,7 @@ Ch'a varda mach che a-i ven-a nen fòra rabel ant la continuità stòrica.
 'mergehistory-merge'               => "Ambelessì sota a-i sone le revision ëd [[:$1]] ch'as peulo butesse ansema a [[:$2]]. Ch'a dòvra la casela për marché l'ùltima version da gionté. Ch'a ten-a present che se a nàviga via da sta pàgina-sì sta colòna as veujda.",
 'mergehistory-go'                  => "Smon le modìfiche ch'as peulo butesse ansema",
 'mergehistory-submit'              => 'Buta ansema le revision',
-'mergehistory-empty'               => "Pa gnun-a revision ch'as peula butesse ansema",
+'mergehistory-empty'               => "Pa gnun-a revision ch'as peula butesse ansema.",
 'mergehistory-success'             => '$3 revision ëd [[:$1]] a son ëstàite butà ansema a [[:$2]] sensa problema.',
 'mergehistory-fail'                => "A l'é nen riessusse a buté ansema le revision, për piasì, ch'as contròla la pàgina e ij temp.",
 'mergehistory-no-source'           => 'La pàgina sorgiss $1 a-i é pa.',

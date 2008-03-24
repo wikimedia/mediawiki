@@ -698,9 +698,7 @@ astawan rikunki [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} qulluy hallch
 # History merging
 'mergehistory'                     => "P'anqa wiñay kawsaykunata huñuy",
 'mergehistory-header'              => "Kay p'anqawanqa huk pukyu p'anqamanta llamk'apusqakunata huk taripana p'anqamanmi huñuyta atinki.
-Takyachikuy kay hukchayqa allin wiñay kawsay ñiqita ama waqllichunchu chaylla.
-
-'''Pukyu p'anqamanta kunan llamk'apusqaqa kakuchunpuni.'''",
+Takyachikuy kay hukchayqa allin wiñay kawsay ñiqita ama waqllichunchu chaylla.",
 'mergehistory-box'                 => "Iskay p'anqamanta llamk'apusqakunata huñuy:",
 'mergehistory-from'                => "Pukyu p'anqa:",
 'mergehistory-into'                => "Taripana p'anqa:",
@@ -708,7 +706,7 @@ Takyachikuy kay hukchayqa allin wiñay kawsay ñiqita ama waqllichunchu chaylla.
 'mergehistory-merge'               => "[[:$1]] nisqamantaqa kay qatiq llamk'apusqakuna huñunallam [[:$2]]-man. Radyu ñit'ina tunuta llamk'achiy akllasqayki pachallapi chay pachakamallapas llamk'apusqakunata huñumunapaq. Musyariy: Wamp'una t'inkikunata ñit'ispaykiqa kay tunuta kutichinkim.",
 'mergehistory-go'                  => "Huñunalla llamk'apusqakunata rikuchiy",
 'mergehistory-submit'              => "Llamk'apusqakunata huñuy",
-'mergehistory-empty'               => "Manam atinichu llamk'apusqakunata huñuyta",
+'mergehistory-empty'               => "Manam atinichu llamk'apusqakunata huñuyta.",
 'mergehistory-success'             => "[[:$1]]-paq $3 llamk'apusqakunaqa aypalla [[:$2]]-man huñusqañam.",
 'mergehistory-fail'                => "Manam atinichu wiñay kawsaykunata huñuyta. Ama hina kaspa, p'anqata pacha kuskanachina tupukunatapas musuqmanta llanchiy.",
 'mergehistory-no-source'           => "Pukyu p'anqaqa $1 manam kanchu.",
@@ -747,6 +745,7 @@ Takyachikuy kay hukchayqa allin wiñay kawsay ñiqita ama waqllichunchu chaylla.
 'viewprevnext'          => 'Qhaway ($1) ($2) ($3).',
 'search-result-size'    => '$1 ({{PLURAL:$2|1 rima|$2 rimakuna}})',
 'search-result-score'   => 'Chaniyuq kaynin: $1%',
+'searchall'             => 'tukuy',
 'showingresults'        => "Qhipanpiqa rikuchkanki {{PLURAL:$1|'''1''' tarisqatam|'''$1'''-kama tarisqakunatam}}, '''$2''' huchhawan qallarispa.",
 'showingresultsnum'     => "Qhipanpiqa rikuchkanki {{PLURAL:$3|'''1''' tarisqatam|'''$3''' tarisqakunatam}}, '''$2''' yupaywan qallarispa.",
 'nonefound'             => '<strong>Musyay</strong>: Mana aypalla maskasqaqa paqarin ancha pasaq, mana hallch\'api kaq rimakunata ("kay", "chay", "huk") maskaptiykim, ichataq hukmanta aswan maskana rimakunata quptiykim (tukuy maskana rimayuq p\'anqakunallam paqarinqa).',

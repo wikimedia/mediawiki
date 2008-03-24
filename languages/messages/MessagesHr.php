@@ -757,10 +757,8 @@ Vidi [[Special:Ipblocklist|IP popis blokiranja]] za popis trenutačno blokiranih
 
 # History merging
 'mergehistory'                     => 'Spoji povijesti starih izmjena stranice',
-'mergehistory-header'              => "Na ovoj stranici spajate povijest jedne stranice u drugu (noviju) stranicu.
-Budite sigurni da ta promjena čuva kontinuitet stranice.
-
-'''Najmanje posljednja promjena početne stranice mora biti zadržana.'''",
+'mergehistory-header'              => 'Na ovoj stranici spajate povijest jedne stranice u drugu (noviju) stranicu.
+Budite sigurni da ta promjena čuva kontinuitet stranice.',
 'mergehistory-box'                 => 'Spoji povijesti starih izmjena dvije stranice:',
 'mergehistory-from'                => 'Izvorna stranica:',
 'mergehistory-into'                => 'Ciljna stranica:',
@@ -770,7 +768,7 @@ Rabite kolonu s radio gumbima za spajanje samo određenih promjena.
 Primijetite da uporaba navigacijskih poveznica resetira vaše izbore u koloni.',
 'mergehistory-go'                  => 'Pokaži spojivu povijest uređivanja',
 'mergehistory-submit'              => 'Spoji povijesti uređivanja stranica',
-'mergehistory-empty'               => 'Nema spojivih promjena (spajanje nije moguće)',
+'mergehistory-empty'               => 'Nema spojivih promjena (spajanje nije moguće).',
 'mergehistory-success'             => '$3 promjene stranice [[:$1|$1]] uspješno spojene u povijest stranice [[:$2|$2]].',
 'mergehistory-fail'                => 'Nemoguće spojiti povijest stranica, molimo provjerite stranice i vremenske parametre.',
 'mergehistory-no-source'           => 'Izvorna stranica $1 ne postoji.',
@@ -809,6 +807,10 @@ Primijetite da uporaba navigacijskih poveznica resetira vaše izbore u koloni.',
 'viewprevnext'          => 'Vidi ($1) ($2) ($3).',
 'search-result-size'    => '$1 ({{PLURAL:$2|1 riječ|$2 riječi}})',
 'search-result-score'   => 'Povezanost: $1%',
+'search-redirect'       => '(preusmjeravanje $1)',
+'search-section'        => '(odlomak $1)',
+'search-suggest'        => 'Mislili ste: $1',
+'searchall'             => 'sve',
 'showingresults'        => "Dolje {{PLURAL:$1|je prikazan '''$1''' rezultat|su prikazana '''$1''' rezultata|je prikazano '''$1''' rezultata}}, počevši od '''$2'''.",
 'showingresultsnum'     => "Dolje {{PLURAL:$3|je prikazan '''$3''' rezultat|su prikazana '''$3''' rezultata|je prikazano '''$3''' rezultata}}, počevši s brojem '''$2'''.",
 'nonefound'             => '<b>Napomena</b>: pretrage su neuspješne ako tražite česte riječi koje ne indeksiramo, ili u upitu navedete previše pojmova (u rezultatu se pojavlju samo stranice koje sadrže sve tražene pojmove).',

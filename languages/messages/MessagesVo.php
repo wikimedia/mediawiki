@@ -250,6 +250,7 @@ $messages = array(
 'permalink'         => 'Yüm laidüpik',
 'print'             => 'Bükön',
 'edit'              => 'Redakön',
+'create'            => 'Jafön',
 'editthispage'      => 'Redakolöd padi at',
 'delete'            => 'Moükön',
 'deletethispage'    => 'Moükolös padi at',
@@ -718,9 +719,8 @@ Ninäd peklänedöl at binon ye nog lügolovik guvanes votik vüka at: kanons no
 
 # History merging
 'mergehistory'                     => 'Balön padajenotemis',
-'mergehistory-header'              => "Pad at mogükon balami fomamis se jenotem fonätapada ad fomön padi nulik. Kontrololös, va votükam at okipon fovöfi padajenotema.
-
-'''Nemuiko fomam anuik fonätapada muton blibön.'''",
+'mergehistory-header'              => 'Pad at mogükon balami fomamis se jenotem fonätapada ad fomön padi nulik.
+Kontrololös, va votükam at okipon fovöfi padajenotema.',
 'mergehistory-box'                 => 'Balön fomamis padas tel:',
 'mergehistory-from'                => 'Fonätapad:',
 'mergehistory-into'                => 'Zeilapad:',
@@ -728,7 +728,7 @@ Ninäd peklänedöl at binon ye nog lügolovik guvanes votik vüka at: kanons no
 'mergehistory-merge'               => 'Fomams sököl pada: [[:$1]] kanons pabalön ini pad: [[:$2]]. Välolös ad balön te fomamis pejaföl ün u bü tim pegivöl. Demolös, das geb nafamayümas osädunon väli olik.',
 'mergehistory-go'                  => 'Jonön redakamis balovik',
 'mergehistory-submit'              => 'Balön fomamis',
-'mergehistory-empty'               => 'Fomams nonik kanons pabalön',
+'mergehistory-empty'               => 'Fomams nonik kanons pabalön.',
 'mergehistory-success'             => 'Fomams $3 pada: [[:$1]] pebalons benosekiko ini pad: [[:$2]].',
 'mergehistory-fail'                => 'No eplöpos ad ledunön balami jenotemas, kontrololös pada- e timaparametis.',
 'mergehistory-no-source'           => 'Fonätapad: $1 no dabinon.',
@@ -765,6 +765,7 @@ Ninäd peklänedöl at binon ye nog lügolovik guvanes votik vüka at: kanons no
 'prevn'                 => 'büik $1',
 'nextn'                 => 'sököl $1',
 'viewprevnext'          => 'Logön padis ($1) ($2) ($3).',
+'searchall'             => 'valik',
 'showingresults'        => "Pajonons dono jü {{PLURAL:$1|sukasek '''1'''|sukaseks '''$1'''}}, primölo me nüm #'''$2'''.",
 'showingresultsnum'     => "Dono pajonons {{PLURAL:$3:|sek '''1'''|seks '''$3'''}}, primölo me nüm: '''$2'''.",
 'powersearch'           => 'Suk',

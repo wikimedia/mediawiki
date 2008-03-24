@@ -138,7 +138,8 @@ $messages = array(
 
 # Categories related messages
 'categories'                     => 'Categorías',
-'categoriespagetext'             => 'As categorías seguintes conteñen páxinas ou contidos multimedia.',
+'categoriespagetext'             => 'As seguintes categorías conteñen páxinas ou contidos multimedia.',
+'special-categories-sort-count'  => 'ordenar por número',
 'special-categories-sort-abc'    => 'ordenar alfabeticamente',
 'pagecategories'                 => '{{PLURAL:$1|Categoría|Categorías}}',
 'category_header'                => 'Artigos na categoría "$1"',
@@ -231,7 +232,7 @@ $messages = array(
 'categorypage'      => 'Ver páxina de categoría',
 'viewtalkpage'      => 'Ver conversa',
 'otherlanguages'    => 'Outras linguas',
-'redirectedfrom'    => '(Redirixido dende $1)',
+'redirectedfrom'    => '(Redirixido desde $1)',
 'redirectpagesub'   => 'Páxina de redirección',
 'lastmodifiedat'    => 'A última modificación desta páxina foi o $1 ás $2.', # $1 date, $2 time
 'viewcount'         => 'Esta páxina foi visitada {{PLURAL:$1|unha vez|$1 veces}}.',
@@ -285,7 +286,7 @@ $messages = array(
 'editold'                 => 'editar',
 'editsectionhint'         => 'Editar sección: $1',
 'toc'                     => 'Índice',
-'showtoc'                 => 'mostrar',
+'showtoc'                 => 'amosar',
 'hidetoc'                 => 'agochar',
 'thisisdeleted'           => 'Ver ou restaurar $1?',
 'viewdeleted'             => 'Ver $1?',
@@ -510,7 +511,7 @@ Pode facer caso omiso desta mensaxe se se creou esta conta por erro.',
 'minoredit'                 => 'Esta é unha edición pequena',
 'watchthis'                 => 'Vixiar esta páxina',
 'savearticle'               => 'Gardar a páxina',
-'preview'                   => 'Visión previa',
+'preview'                   => 'Vista previa',
 'showpreview'               => 'Mostrar vista previa',
 'showlivepreview'           => 'Vista previa',
 'showdiff'                  => 'Mostrar cambios',
@@ -728,6 +729,8 @@ Outros administradores de {{SITENAME}} poderán acceder aínda ao contido oculto
 'logdelete-logaction'         => '$1 {{PLURAL:$1|evento|eventos}} para [[$3]] configurados no modo $2',
 'revdelete-success'           => 'Configurouse sen problemas a visibilidade da revisión.',
 'logdelete-success'           => 'Configurouse a visibilidade do evento sen problemas.',
+'pagehist'                    => 'Historial da páxina',
+'deletedhist'                 => 'Historial de borrado',
 
 # Oversight log
 'oversightlog'    => 'Rexistro de edicións ocultadas',
@@ -735,10 +738,8 @@ Outros administradores de {{SITENAME}} poderán acceder aínda ao contido oculto
 
 # History merging
 'mergehistory'                     => 'Fusionar historiais das páxinas',
-'mergehistory-header'              => "Esta páxina permítelle fusionar revisións dos historiais da páxina de orixe nunha nova páxina.
-Asegúrese de que esta modificación da páxina mantén a continuidade histórica.
-
-'''Polo menos a actual revisión da orixe da páxina debe permanecer.'''",
+'mergehistory-header'              => 'Esta páxina permítelle fusionar revisións dos historiais da páxina de orixe nunha nova páxina.
+Asegúrese de que esta modificación da páxina mantén a continuidade histórica.',
 'mergehistory-box'                 => 'Fusionar as revisións de dúas páxinas:',
 'mergehistory-from'                => 'Páxina de orixe:',
 'mergehistory-into'                => 'Páxina de destino:',
@@ -746,7 +747,7 @@ Asegúrese de que esta modificación da páxina mantén a continuidade históric
 'mergehistory-merge'               => 'As revisións seguintes de [[:$1]] pódense fusionar con [[:$2]]. Use a columna de botóns de selección para fusionar só as revisións creadasen e antes da hora indicada. Teña en conta que se usa as ligazóns de navegación a columna limparase.',
 'mergehistory-go'                  => 'Amosar edicións fusionábeis',
 'mergehistory-submit'              => 'Fusionar revisións',
-'mergehistory-empty'               => 'Non hai revisións que se podan fusionar',
+'mergehistory-empty'               => 'Non hai revisións que se podan fusionar.',
 'mergehistory-success'             => 'Fusionáronse sen problemas $3 revisións de [[:$1]] con [[:$2]].',
 'mergehistory-fail'                => 'Non se puido fusionar o historial; comprobe outra vez os parámetros de páxina e hora.',
 'mergehistory-no-source'           => 'Non existe a páxina de orixe $1.',
@@ -766,7 +767,7 @@ Asegúrese de que esta modificación da páxina mantén a continuidade históric
 'lineno'                  => 'Liña $1:',
 'compareselectedversions' => 'Comparar as versións seleccionadas',
 'editundo'                => 'desfacer',
-'diff-multi'              => '(Non se {{PLURAL:$1|mostra unha revisión do historial|mostran $1 revisións do historial}}).',
+'diff-multi'              => '(Non se {{PLURAL:$1|mostra unha revisión do historial|mostran $1 revisións do historial}}.)',
 
 # Search results
 'searchresults'         => 'Resultados da procura',
@@ -793,7 +794,7 @@ Asegúrese de que esta modificación da páxina mantén a continuidade históric
 'showingresultsnum'     => "Amosando {{PLURAL:$3|'''1''' resultado|'''$3''' resultados}} comezando co número '''$2'''.",
 'showingresultstotal'   => "Amosando embaixo os resultados '''$1 - $2''' de '''$3'''",
 'nonefound'             => "'''Nota''': as procuras sen éxito son causadas usualmente por procurar usando palabras usuais como \"ter\" e \"desde\", que non están incluídas no índice da base de datos, ou por especificar máis dunha palabra de procura (só van aparecer no resultado as páxinas que teñan todas as palabras).",
-'powersearch'           => 'Busca avanzada',
+'powersearch'           => 'Procurar',
 'powersearch-legend'    => 'Busca avanzada',
 'powersearchtext'       => 'Procurar nos espazos de nomes:<br />
 $1<br />
@@ -867,10 +868,10 @@ Procurar $3 $9',
 'userrights'                       => 'Xestión dos dereitos de usuario', # Not used as normal message but as header for the special page itself
 'userrights-lookup-user'           => 'Administrar grupos de usuarios',
 'userrights-user-editname'         => 'Escriba un nome de usuario:',
-'editusergroup'                    => 'Editar os Grupos de Usuarios',
+'editusergroup'                    => 'Editar os grupos de usuarios',
 'editinguser'                      => "Mudando os dereitos do usuario '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
 'userrights-editusergroup'         => 'Editar grupos de usuarios',
-'saveusergroups'                   => 'Gardar Grupos de Usuarios',
+'saveusergroups'                   => 'Gardar grupos de usuarios',
 'userrights-groupsmember'          => 'Membro de:',
 'userrights-groupsremovable'       => 'Grupos eliminábeis:',
 'userrights-groupsavailable'       => 'Grupos dispoñíbeis:',
@@ -928,7 +929,7 @@ Procurar $3 $9',
 'diff'                              => 'dif',
 'hist'                              => 'hist',
 'hide'                              => 'Agochar',
-'show'                              => 'Mostrar',
+'show'                              => 'Amosar',
 'minoreditletter'                   => 'm',
 'newpageletter'                     => 'N',
 'boteditletter'                     => 'b',
@@ -1111,7 +1112,8 @@ Premendo nun cabezallo da columna cambia a ordenación.',
 'filedelete-iscurrent'        => 'Tentou eliminar a versión máis recente deste ficheiro. Volva antes a unha versión máis antiga.',
 'filedelete-otherreason'      => 'Outra/razón adicional:',
 'filedelete-reason-otherlist' => 'Outra razón',
-'filedelete-reason-dropdown'  => '*Razóns comúns para eliminar:
+'filedelete-reason-dropdown'  => '
+*Razóns comúns para eliminar:
 ** Violación do Copyright
 ** Arquivo duplicado',
 'filedelete-edit-reasonlist'  => 'Editar os motivos do borrado',
@@ -1266,7 +1268,7 @@ Pode precisar máis a vista seleccionando o tipo de rexistro, o nome de usuario 
 
 # Special:Listusers
 'listusersfrom'      => 'Mostrar os usuarios comezando por:',
-'listusers-submit'   => 'Mostrar',
+'listusers-submit'   => 'Amosar',
 'listusers-noresult' => 'Non se atoparon usuarios. Comprobe tamén variantes con maiúsculas e minúsculas.',
 
 # E-mail user
@@ -1457,8 +1459,8 @@ Velaquí a configuración actual da páxina <strong>$1</strong>:',
 'undeleterevisions'            => '$1 {{PLURAL:$1|revisión|revisións}} arquivadas',
 'undeletehistory'              => 'Se restaura a páxina, todas as revisións van ser restauradas no historial.
 Se se creou unha páxina nova co mesmo nome desde o seu borrado, as revisións restauradas van aparecer no historial anterior. Teña tamén en conta que as restricións sobre as revisións dos ficheiros pérdense cando se restauran',
-'undeleterevdel'               => 'Non se levará a cabo a reversión do borrado se ocasiona que a última revisión da páxina se elimine parcialmente. Nestes casos, debe retirar a selección ou quitar a ocultación das revisións borradas máis recentes.
-Non se restaurarán as revisións dos ficheiros sobre os que non ten permiso para ver.',
+'undeleterevdel'               => 'Non se levará a cabo a reversión do borrado se ocasiona que a última revisión da páxina ou ficheiro se elimine parcialmente.
+Nestes casos, debe retirar a selección ou quitar a ocultación das revisións borradas máis recentes.',
 'undeletehistorynoadmin'       => 'Esta páxina foi borrada. O motivo do borrado consta no resumo de embaixo, xunto cos detalles dos usuarios que editaron esta páxina antes da súa eliminación.
 O texto das revisións eliminadas só está á disposición dos administradores.',
 'undelete-revision'            => 'Revisión de $1 eliminada (en $2) por $3:',
@@ -1538,7 +1540,8 @@ Explique a razón específica do bloqueo (por exemplo, citando as páxinas concr
 'ipbexpiry'                   => 'Duración:',
 'ipbreason'                   => 'Razón:',
 'ipbreasonotherlist'          => 'Outro motivo',
-'ipbreason-dropdown'          => '*Mensaxes de bloqueo comúns
+'ipbreason-dropdown'          => '
+*Mensaxes de bloqueo comúns
 ** Inserir información falsa
 ** Eliminar o contido de páxinas
 ** Ligazóns lixo a sitios externos
@@ -2209,7 +2212,7 @@ As ligazóns posteriores da mesma liña considéranse excepcións, isto é, páx
 'recentchangesall' => 'todos',
 'imagelistall'     => 'todas',
 'watchlistall2'    => 'todo',
-'namespacesall'    => 'Todos',
+'namespacesall'    => 'todos',
 'monthsall'        => 'todos',
 
 # E-mail address confirmation

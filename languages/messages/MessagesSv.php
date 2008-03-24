@@ -821,6 +821,8 @@ Andra administratörer på {{SITENAME}} kommer fortfarande att kunna läsa det d
 'logdelete-logaction'         => '$1 {{plural:$1|åtgärd|åtgärder}} för [[$3]] satta till $2',
 'revdelete-success'           => 'Ändringen av versionssynlighet är utförd.',
 'logdelete-success'           => 'Ändringen av åtgärdssynlighet är utförd.',
+'pagehist'                    => 'Sidhistorik',
+'deletedhist'                 => 'Raderad historik',
 
 # Oversight log
 'oversightlog'    => 'Översynslogg',
@@ -828,9 +830,8 @@ Andra administratörer på {{SITENAME}} kommer fortfarande att kunna läsa det d
 
 # History merging
 'mergehistory'                     => 'Sammanfoga sidhistoriker',
-'mergehistory-header'              => "Med den här specialsidan kan du infoga versioner av en sida i en nyare sidas historik. Se till att sidhistorikens kontinuitet behålls när du sammanfogar historik.
-
-'''Åtminstone den nuvarande versionen av källsidan måste finnas kvar.'''",
+'mergehistory-header'              => 'Med den här specialsidan kan du infoga versioner av en sida i en nyare sidas historik.
+Se till att sidhistorikens kontinuitet behålls när du sammanfogar historik.',
 'mergehistory-box'                 => 'Sammanfoga versioner av följande två sidor:',
 'mergehistory-from'                => 'Källsida:',
 'mergehistory-into'                => 'Målsida:',
@@ -838,7 +839,7 @@ Andra administratörer på {{SITENAME}} kommer fortfarande att kunna läsa det d
 'mergehistory-merge'               => 'Följande versioner av [[:$1]] kan infogas i [[:$2]]. Med hjälp av alternativknapparna för varje version kan du välja att endast infoga versioner fram till en viss tidpunkt. Notera att om du använder navigationslänkarna så avmarkeras alla alternativknappar.',
 'mergehistory-go'                  => 'Visa versioner som kan infogas',
 'mergehistory-submit'              => 'Sammanfoga',
-'mergehistory-empty'               => 'Inga versioner av sidorna kan sammanfogas',
+'mergehistory-empty'               => 'Inga versioner av sidorna kan sammanfogas.',
 'mergehistory-success'             => '{{PLURAL:$3|En version|$3 versioner}} av [[:$1]] har infogats i [[:$2]].',
 'mergehistory-fail'                => 'Historikerna kunde inte sammanfogas, kontrollera de sidor och den sidversion som du valt.',
 'mergehistory-no-source'           => 'Källsidan $1 finns inte.',

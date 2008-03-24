@@ -702,10 +702,8 @@ Uur Administratore ap {{SITENAME}} konnen dän wächhoalde Inhoold of uur wächh
 
 # History merging
 'mergehistory'                     => 'Versionsgeschichten fereenigje',
-'mergehistory-header'              => "Mäd disse Spezialsiede koast du ju Versionsgeschichte fon ne Uursproangssiede mäd ju Versionsgeschichte fon ne Sielsiede fereenigje.
-Staal deertruch sicher, dät ju Versionsgeschichte fon n Artikkel historisk akroat is.
-
-'''As Minumum mout ju aktuelle Version fon ju Uursproangssiede bewoard blieuwe.'''",
+'mergehistory-header'              => 'Mäd disse Spezialsiede koast du ju Versionsgeschichte fon ne Uursproangssiede mäd ju Versionsgeschichte fon ne Sielsiede fereenigje.
+Staal deertruch sicher, dät ju Versionsgeschichte fon n Artikkel historisk akroat is.',
 'mergehistory-box'                 => 'Versionsgeschichten fon two Sieden fereenigje',
 'mergehistory-from'                => 'Uursproangssiede:',
 'mergehistory-into'                => 'Sielsiede:',
@@ -713,7 +711,7 @@ Staal deertruch sicher, dät ju Versionsgeschichte fon n Artikkel historisk akro
 'mergehistory-merge'               => 'Do foulgjende Versione fon „[[:$1]]“ konnen ätter „[[:$2]]“ uurdrain wäide. Markier ju Version, bit tou ju (iensluutend) do Versione wäide schällen. Beoachte jädden, dät ju Nutsenge fon do Navigationslinke ju Uutwoal touräächsät.',
 'mergehistory-go'                  => 'Wies Versione, do der fereeniged wäide konnen',
 'mergehistory-submit'              => 'Fereenige Versione',
-'mergehistory-empty'               => 'Der konnen neen Versione fereeniged wäide',
+'mergehistory-empty'               => 'Der konnen neen Versione fereeniged wäide.',
 'mergehistory-success'             => '{{PLURAL:$3|1 Version|$3 Versione}} fon „[[:$1]]“ mäd Ärfoulch ätter „[[:$2]]“ fereeniged.',
 'mergehistory-fail'                => 'Versionsfereenigenge nit muugelk, pröif ju Siede un do Tiedangoawen.',
 'mergehistory-no-source'           => 'Uursproangssiede „$1“ is nit deer.',
@@ -755,6 +753,7 @@ Wan du die mäd dät Thema uutkoanst, koast du sälwen ju Siede „[[$1]]“ fer
 'prevn'                 => 'foarige $1',
 'nextn'                 => 'naiste $1',
 'viewprevnext'          => 'Wies ($1) ($2) ($3)',
+'searchall'             => 'aal',
 'showingresults'        => "Hier {{PLURAL:$1|is '''1''' Resultoat|sunt '''$1''' Resultoate}}, ounfangend mäd Nuumer '''$2'''.",
 'showingresultsnum'     => "Hier {{PLURAL:$3|is '''1''' Resultoat|sunt '''$1''' Resultoate}}, ounfangend mäd Nuumer '''$2'''.",
 'nonefound'             => "<strong>Waiwiesenge:</strong> Säikanfroagen sunnerÄrfoulch wäide oafte feruurseeked truch dän Fersäik, ätter 'gewöönelke' Woude tou säiken; do sunt nit indizierd.",
