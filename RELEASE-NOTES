@@ -126,6 +126,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 6813) Don't break HTML validator when using trackbacks
 * Fix for size checks on SVG images with global 'stroke-width' attribute
 * (bug 11874) Inline CSS with !important no longer borken
+* (bug 1600) Strip extra == section markup == in new-comment field
 
 
 === API changes in 1.13 ===
