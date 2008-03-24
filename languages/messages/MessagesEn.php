@@ -1183,8 +1183,8 @@ Other admins on {{SITENAME}} will still be able to access the hidden content and
 
 # History merging
 'mergehistory'                     => 'Merge page histories',
-'mergehistory-header'              => "This page lets you merge revisions of the history of one source page into a newer page.
-Make sure that this change will maintain historical page continuity.",
+'mergehistory-header'              => 'This page lets you merge revisions of the history of one source page into a newer page.
+Make sure that this change will maintain historical page continuity.',
 'mergehistory-box'                 => 'Merge revisions of two pages:',
 'mergehistory-from'                => 'Source page:',
 'mergehistory-into'                => 'Destination page:',
