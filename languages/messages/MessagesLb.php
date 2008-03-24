@@ -41,6 +41,7 @@ $skinNames = array(
 	'myskin'      => 'MySkin',
 	'chick'       => 'Chick',
 	'simple'      => 'Einfach',
+	'modern'      => 'Modern',
 );
 
 $specialPageAliases = array(
@@ -106,6 +107,7 @@ $specialPageAliases = array(
 	'Unlockdb'                  => array( 'Spär_vun_der_Datebank_annulléieren' ),
 	'Userrights'                => array( 'Benotzerrechter' ),
 	'MIMEsearch'                => array( 'Sich_no_MIME-Zorten' ),
+	'FileDuplicateSearch'       => array( 'Sich_no_duebele_Fichieren' ),
 	'Unwatchedpages'            => array( 'Säiten_déi_net_iwwerwaacht_ginn' ),
 	'Listredirects'             => array( 'Viruleedungen' ),
 	'Revisiondelete'            => array( 'Versioun_läschen' ),
