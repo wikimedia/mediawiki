@@ -1770,16 +1770,9 @@ class User {
 	 * @return boolean True: action is allowed, False: action should not be allowed
 	 */
 	function isAllowed($action='') {
-		global $wgGroupPermissions;
-		if( $action === '' ) {
+		if ( $action === '' )
 			// In the spirit of DWIM
 			return true;
-		}
-		if( !empty( $wgGroupPermissions['*'][$action] ) ) {
-			# Permissions are additive, so there's no need to unstub the User
-			# object in this case.
-			return true;
-		}
 
 		return in_array( $action, $this->getRights() );
 	}
