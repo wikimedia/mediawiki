@@ -53,6 +53,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 ** Use category table for more efficient display of Special:Categories
 * (bug 1459) Search for duplicate files by hash: Special:FileDuplicateSearch
 * (bug 9447) Added hooks for search result headings
+* Image redirects are now enabled
 
 
 === Bug fixes in 1.13 ===
