@@ -144,7 +144,7 @@ class ApiQueryAllCategories extends ApiQueryGeneratorBase {
 			'prefix' => 'Search for all category titles that begin with this value.',
 			'dir' => 'Direction to sort in.',
 			'limit' => 'How many categories to return.',
-			'prop' => 'Indicates if API should output category size',
+			'prop' => 'Which properties to get',
 		);
 	}
 
