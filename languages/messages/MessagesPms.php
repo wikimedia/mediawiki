@@ -724,6 +724,8 @@ na restrission adissional da j'operator dël sit.",
 'logdelete-logaction'         => '$1 {{PLURAL:$1|event|event}} për [[$3]] butà a la meuda $2',
 'revdelete-success'           => "Visibilità dla revision butà coma ch'as dev.",
 'logdelete-success'           => "Visibilità dla revision butà coma ch'as dev.",
+'pagehist'                    => 'Stòria dla pàgina',
+'deletedhist'                 => 'Stòria scancelà',
 
 # Oversight log
 'oversightlog'    => "Registr dle ròbe scondùe a j'aministrator",
@@ -1068,6 +1070,9 @@ PICT # vàire marche diferente
 'upload_source_file' => " (n'archivi da sò calcolator)",
 
 # Special:Imagelist
+'imagelist-summary'     => "Sta pàgina special-sì a la smon tuti j'archivi ch'a ëstàit carià.
+Për sòlit j'ùltim carià a resto an sima.
+Ch'a-i bata 'n colp col rat ansima a j'antestassion dle colòne për cangé órdin.",
 'imagelist_search_for'  => "Arsërca për nòm d'archivi multimojen:",
 'imgdesc'               => 'descr',
 'imgfile'               => 'archivi',
@@ -1100,6 +1105,7 @@ PICT # vàire marche diferente
 'noimage'                   => 'A-i é pa gnun archivi che as ciama parej, a peul $1.',
 'noimage-linktext'          => 'carijlo',
 'uploadnewversion-linktext' => "Carié na version neuva dë st'archivi-sì",
+'imagepage-searchdupe'      => "Arsërca dj'archivi dobi",
 
 # File reversion
 'filerevert'                => "Buta torna $1 tanme ch'a l'era",
@@ -1128,6 +1134,7 @@ PICT # vàire marche diferente
 'filedelete-reason-dropdown'  => "*Për sòlit la ròba ës ëscancela për
 ** violassion dij drit d'autor
 ** duplicassion (visadì ch'a-i era già)",
+'filedelete-edit-reasonlist'  => 'Modifiché la rason ëd lë scancelament',
 
 # MIME search
 'mimesearch'         => 'Arsërca për sòrt MIME',
@@ -1326,6 +1333,7 @@ Se a vorèissa mai gavé st'articol-sì da 'nt la lista dij ''Sot Euj'', che a s
 'unwatch'              => 'Chita-lì da ten-e sossì sot euj',
 'unwatchthispage'      => 'Chita-lì da ten-e sossì sot euj',
 'notanarticle'         => "Sòn a l'é pa n'artìcol",
+'notvisiblerev'        => "La revision a l'é stàita scancelà",
 'watchnochange'        => 'Pa gnun-a dle ròbe che as ten sot euj che a sia staita modificà ant ël temp indicà.',
 'watchlist-details'    => "A l'é dëmentrè ch'as ten sot euj {{PLURAL:$1|na pàgina|$1 pàgine}}, nen contand cole ëd discussion.",
 'wlheader-enotif'      => '* Le notìfiche për pòsta eletrònica a son abilità.',
@@ -1409,6 +1417,7 @@ Ij temp a son conforma a l'ora dël server (UTC).",
 ** a lo ciama l'àutor
 ** violassion dij drit d'autor
 ** vanadalism",
+'delete-edit-reasonlist'      => 'Modifiché la rason dlë scancelament',
 'delete-toobig'               => "Sta pàgina-sì a l'ha na stòria motobin longa, bele pì che $1 revision. Lë scancelassion ëd pàgine parej a l'é stàita limità për evité ch'as fasa darmagi për eror a {{SITENAME}}.",
 'delete-warning-toobig'       => "Sta pàgina-sì a l'ha na stòria motobin longa, bele pì che $1 revision. A scancelela as peul fesse darmagi a j'operassion dla base dat ëd {{SITENAME}}; ch'a fasa euj a lòn ch'a fa.",
 'rollback'                    => 'Dòvra na revision pì veja',
@@ -1471,6 +1480,7 @@ Ambelessì a-i son le regolassion corente për la pàgina <strong>$1</strong>:",
 # Undelete
 'undelete'                     => 'Pija andré na pàgina scancelà',
 'undeletepage'                 => 'S-ciàira e pija andaré le pàgine scancelà',
+'undeletepagetitle'            => "'''Lòn ch'a-i é ambelessì a son tute revision scancelà ëd [[:$1]]'''.",
 'viewdeletedpage'              => 'Smon le pàgine scancelà',
 'undeletepagetext'             => 'Le pàgine ambelessì sota a son staite scancelà, ma a resto ancó memorisà e donca as peulo pijesse andaré. La memòria a ven polidà passaje un pòch ëd temp.',
 'undeleteextrahelp'            => "Për ripristiné la pàgina antrega, che a lassa tute le casele nen selessionà e che a jë sgnaca ansima a '''''Buta coma a l'era '''''.
@@ -1478,7 +1488,7 @@ Për ripristiné mach chèich-còs, che a selession-a lòn che a veul ripristin�
 'undeleterevisions'            => '{{PLURAL:$1|Na|$1}} revision memorisà',
 'undeletehistory'              => "Se a pija andré st'articol-sì, ëdcò tute soe revision a saran pijaite andaré ansema a chiel ant soa cronologìa.<br />
 Se a fussa mai staita creà na pàgina neuva con l'istess nòm dòp che la veja a l'era staita scancelà, le revision a saran buta ant la cronologìa e la version pùblica dla pàgina a sarà nen modificà.",
-'undeleterevdel'               => "Ël dëscancelament as farà pa s'a-i intrèissa në scancelament parsial dla version corenta dla pàgina ansima. Quand a-i riva lolì, un a dev gave-ie la crosëtta da 'nt la pì neuva dle version scancelà, ò pura gavela da stërmà. Le revision dj'archivi che un a l'ha nen ël përmess dë vëdde a ven-o nen dëscancelà.",
+'undeleterevdel'               => "Ël dëscancelament as farà pa s'a-i intrèissa në scancelament parsial dla version corenta dla pàgina. Quand a-i riva lolì, un a dev gave-ie la crosëtta da 'nt la pì neuva dle version scancelà, ò pura gavela da stërmà.",
 'undeletehistorynoadmin'       => "Sta pàgina-sì a l'é staita scancelà. Ël motiv che a l'é scancelasse 
 as peul savejsse ën vardand ël somari ambelessì sota, andoa che a së s-ciàira ëdcò chi che a 
 l'avìa travaje ansima anans che a la scancelèisso.
@@ -1551,6 +1561,7 @@ $1",
 
 # Block/unblock
 'blockip'                     => "Blochè n'adrëssa IP",
+'blockip-legend'              => "Bloché l'utent",
 'blockiptext'                 => "Che a dòvra ël mòdulo ëd domanda 'd blocagi ambelessì sota për bloché l'acess con drit dë scritura da na chèich adrëssa IP.<br />
 Ës blocagi-sì as dev dovresse MACH për evité dij comportament vandàlich, ën strèita osservansa ëd tùit ij prinsipi dla [[{{MediaWiki:Policy-url}}|polìtica ëd {{SITENAME}}]].<br />
 Ël blocagi a peul nen ën gnun-a manera esse dovrà për dle question d'ideologìa.
@@ -1656,6 +1667,7 @@ Për piasì, che an conferma che sòn a l'é da bon lòn che chiel (chila) a veu
 'databasenotlocked'   => "La base dat a l'é nen blocà.",
 
 # Move page
+'move-page'               => 'Tramud ëd $1',
 'move-page-legend'        => 'Tramudé na pàgina',
 'movepagetext'            => "Con ël mòdulo ëd domanda ambelessì sota a peul cangeje nòm a na pàgina, tramudand-je dapress ëdcò tuta soa cronologìa anvers al nòm neuv.
 Ël vej tìtol a resterà trasformà ant na ridiression che a men-a al tìtol neuv.
@@ -1940,11 +1952,12 @@ $1",
 # Special:Newimages
 'newimages'             => 'Galerìa ëd figure e son neuv',
 'imagelisttext'         => "Ambelessì sota a-i é {{PLURAL:$1|l'ùnica figura che a-i sia|na lista ëd '''$1''' figure, ordinà për $2}}.",
+'newimages-summary'     => "Sta pàgina special-sì a la smon j'ùltim archivi carià",
 'showhidebots'          => '($1 trigomiro)',
 'noimages'              => 'Pa gnente da vëdde.',
 'ilsubmit'              => 'Sërca',
 'bydate'                => 'për data',
-'sp-newimages-showfrom' => "Smon j'ùltim archivi multimojen a anandiesse da $1",
+'sp-newimages-showfrom' => "Smon j'ùltim archivi multimojen a anandiesse da $2 dël $1",
 
 # Bad image list
 'bad_image_list' => "La forma a l'é costa-sì:
@@ -2422,5 +2435,17 @@ a podrìo ëdcò nen ess-ie ant sta lista -sì.",
 'filepath-summary' => "Sta pàgina special-sì a la smon ël përcors complet për rive-ie a n'archivi. Le figure as ësmon-o a amzura pijn-a, j'àotre sòrt d'archivi a ven-o faite parte da sò programa a pòsta.
 	
 	Ch'a buta mach ël nòm dl'archivi sensa pa ël prefiss \"{{ns:image}}:\".",
+
+# Special:FileDuplicateSearch
+'fileduplicatesearch'          => "Arsërca dj'archivi dobi",
+'fileduplicatesearch-summary'  => "Arsërca dj'archivi dobi a parte dal valor d'ordinament.
+
+Ch'a bata 'l nòm dl'archivi sensa pa bute-ie 'l prefiss \"{{ns:image}}:\".",
+'fileduplicatesearch-legend'   => 'Arsërca ëd na dobia',
+'fileduplicatesearch-filename' => "Nòm dl'archivi:",
+'fileduplicatesearch-submit'   => 'Arsërca',
+'fileduplicatesearch-info'     => '$1 × $2 pixel<br />Amzure: $3<br />Sòrt MIME: $4',
+'fileduplicatesearch-result-1' => 'Pa gnun-a dobia për l\'archivi "$1".',
+'fileduplicatesearch-result-n' => 'A-i {{PLURAL:$2|é \'n dobion midem|son $2 dobion midem}} ëd l\'archivi "$1".',
 
 );
