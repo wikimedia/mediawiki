@@ -254,6 +254,8 @@ $messages = array(
 # Categories related messages
 'categories'                     => 'Categories',
 'categoriespagetext'             => 'Les categories següents contenen pàgines o fitxers multimèdia.',
+'special-categories-sort-count'  => 'ordena per recompte',
+'special-categories-sort-abc'    => 'ordena alfabèticament',
 'pagecategories'                 => '{{PLURAL:$1|Categoria|Categories}}',
 'category_header'                => 'Pàgines a la categoria «$1»',
 'subcategories'                  => 'Subcategories',
@@ -889,8 +891,13 @@ Assegureu-vos que aquest canvi mantindrà la continuïtat històrica de la pàgi
 'viewprevnext'          => 'Vés a ($1) ($2) ($3).',
 'search-result-size'    => '$1 ({{PLURAL:$2|1 paraula|$2 paraules}})',
 'search-result-score'   => 'Rellevància: $1%',
+'search-redirect'       => '(redirecciona $1)',
+'search-section'        => '(secció $1)',
+'search-suggest'        => 'Volíeu dir: $1',
+'searchall'             => 'tots',
 'showingresults'        => 'Tot seguit es {{PLURAL:$1|mostra el resultat|mostren els <b>$1</b> resultats començant pel número <b>$2</b>}}.',
 'showingresultsnum'     => 'Tot seguit es {{PLURAL:$3|llista el resultat|llisten els <b>$3</b> resultats començant pel número <b>$2</b>}}.',
+'showingresultstotal'   => "S'estan mostrant els resultats a continuació '''$1 - $2''' de '''$3'''",
 'nonefound'             => '<strong>Nota</strong>: les recerques sense èxit són causades tot sovint
 per recerques de paraules comunes com "la" o "de",
 que no es troben a l\'índex, o per especificar més d\'una paraula a cercar (només les pàgines
@@ -1175,6 +1182,7 @@ Clicant al capdamunt de les columnes podeu canviar-ne l'ordenació.",
 'noimage'                   => 'No existeix cap fitxer amb aquest nom, però podeu $1.',
 'noimage-linktext'          => 'Carrega',
 'uploadnewversion-linktext' => "Carrega una nova versió d'aquest fitxer",
+'imagepage-searchdupe'      => 'Cerca fitxers duplicats',
 
 # File reversion
 'filerevert'                => 'Reverteix $1',
@@ -1577,8 +1585,9 @@ camp de comentari i es desmarcaran totes les caselles.",
 Si una nova pàgina amb el mateix nom ha estat creada des de l\'esborrat, les versions restaurades apareixeran com a història anterior, i la
 
 revisió actual del la pàgina "viva" no serà substituïda automàticament.',
-'undeleterevdel'               => "No es revertirà l'eliminació si això resulta que la pàgina superior se suprimeixi parcialment. En aqueixos casos, heu de desmarcar o mostrar les revisions eliminades més noves.
-No es restaurarà les revisions dels fitxers dels quals no teniu permisos de visualització.",
+'undeleterevdel'               => "No es revertirà l'eliminació si això resulta que la pàgina superior se suprimeixi parcialment.
+
+En aqueixos casos, heu de desmarcar o mostrar les revisions eliminades més noves.",
 'undeletehistorynoadmin'       => "S'ha eliminat la pàgina. El motiu es mostra
 al resum a continuació, juntament amb detalls dels usuaris que l'havien editat abans de la seua eliminació. El text de les revisions eliminades només és accessible als administradors.",
 'undelete-revision'            => "S'ha eliminat la revisió de $1 de $2 (per $3):",
@@ -1752,8 +1761,8 @@ Confirmeu que això és el que voleu fer.",
 'locknoconfirm'       => 'No heu respost al diàleg de confirmació.',
 'lockdbsuccesssub'    => "S'ha bloquejat la base de dades",
 'unlockdbsuccesssub'  => "S'ha eliminat el bloqueig de la base de dades",
-'lockdbsuccesstext'   => "S'ha bloquejat la base de dades del projecte {{SITENAME}}.
-<br />Recordeu-vos de treure el bloqueig quan hàgiu acabat el manteniment.",
+'lockdbsuccesstext'   => "S'ha bloquejat la base de dades.<br />
+Recordeu-vos de [[Special:Unlockdb|treure el bloqueig]] quan hàgiu acabat el manteniment.",
 'unlockdbsuccesstext' => "S'ha desbloquejat la base de dades del projecte {{SITENAME}}.",
 'lockfilenotwritable' => 'No es pot modificar el fitxer de la base de dades de bloquejos. Per a blocar o desblocar la base de dades, heu de donar-ne permís de modificació al servidor web.',
 'databasenotlocked'   => 'La base de dades no està bloquejada.',
@@ -2497,5 +2506,17 @@ També podeu [[Special:Watchlist/edit|utilitzar l'editor estàndard]].",
 Les imatges es mostren en plena resolució; altres tipus de fitxer s'incien amb el seu programa associat directament.
 
 Introduïu el nom del fitxer sense el prefix «{{ns:imatge}}»:",
+
+# Special:FileDuplicateSearch
+'fileduplicatesearch'          => 'Cerca fitxers duplicats',
+'fileduplicatesearch-summary'  => "Cerca fitxers duplicats d'acord amb el seu valor de resum.
+
+Introduïu el nom del fitxer sense el prefix «{{ns:image}}:».",
+'fileduplicatesearch-legend'   => 'Cerca duplicats',
+'fileduplicatesearch-filename' => 'Nom del fitxer:',
+'fileduplicatesearch-submit'   => 'Cerca',
+'fileduplicatesearch-info'     => '$1 × $2 píxels<br />Mida del fitxer: $3<br />Tipus MIME: $4',
+'fileduplicatesearch-result-1' => 'El fitxer «$1» no té cap duplicació idèntica.',
+'fileduplicatesearch-result-n' => 'El fitxer «$1» té {{PLURAL:$2|1 duplicació idèntica|$2 duplicacions idèntiques}}.',
 
 );

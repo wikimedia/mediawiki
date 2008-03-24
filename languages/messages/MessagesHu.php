@@ -1002,8 +1002,13 @@ Győződj meg róla, hogy a laptörténet folytonossága megmarad.
 'viewprevnext'          => '($1) ($2) ($3)',
 'search-result-size'    => '$1 ({{PLURAL:$2|egy szó|$2 szó}})',
 'search-result-score'   => 'Relevancia: $1%',
+'search-redirect'       => '(átirányítás ide: $1)',
+'search-section'        => '($1. fejezet)',
+'search-suggest'        => 'Keresési javaslat: $1',
+'searchall'             => 'mind',
 'showingresults'        => 'Lent látható <b>$1</b> találat, az eleje <b>$2</b>.',
 'showingresultsnum'     => 'Lent látható <b>$3</b> találat, az eleje #<b>$2</b>.',
+'showingresultstotal'   => "Találatok: '''$1 - $2''' (összesen '''$3''')",
 'nonefound'             => "'''Megjegyzés''': A sikertelen keresések
 gyakori oka olyan szavak keresése (pl. \"have\" és \"from\"), amiket a
 rendszer nem indexel, vagy több független keresési kifejezés megadása
@@ -1100,18 +1105,18 @@ A kijelöletlen csportok változatlanok maradnak. CTRL + bal kattintással tudod
 
 # Groups
 'group'               => 'Csoport:',
-'group-autoconfirmed' => 'Automatikus megerősítésű felhasználók',
+'group-autoconfirmed' => 'automatikusan megerősített felhasználók',
 'group-bot'           => 'botok',
 'group-sysop'         => 'adminisztrátorok',
 'group-bureaucrat'    => 'bürokraták',
 'group-all'           => '(mind)',
 
-'group-autoconfirmed-member' => 'Automatikus megerősítésű felhasználó',
-'group-bot-member'           => 'Bot',
+'group-autoconfirmed-member' => 'automatikusan megerősített felhasználó',
+'group-bot-member'           => 'bot',
 'group-sysop-member'         => 'adminisztrátor',
 'group-bureaucrat-member'    => 'bürokrata',
 
-'grouppage-autoconfirmed' => '{{ns:project}}:Automatikus megerősítésű felhasználók',
+'grouppage-autoconfirmed' => '{{ns:project}}:Automatikusan megerősített felhasználók',
 'grouppage-bot'           => '{{ns:project}}:Botok',
 'grouppage-sysop'         => '{{ns:project}}:Adminisztrátorok',
 'grouppage-bureaucrat'    => '{{ns:project}}:Bürokraták',
@@ -1131,7 +1136,7 @@ A kijelöletlen csportok változatlanok maradnak. CTRL + bal kattintással tudod
 'rcnotefrom'                        => 'Alább láthatóak a <b>$2</b> óta történt változások (<b>$1</b>-ig).',
 'rclistfrom'                        => 'Az új változtatások kijelzése $1 után',
 'rcshowhideminor'                   => 'apró módosítások $1',
-'rcshowhidebots'                    => 'robotok szerkesztéseinek $1',
+'rcshowhidebots'                    => 'botok szerkesztéseinek $1',
 'rcshowhideliu'                     => 'bejelentkezett felhasználók szerkesztéseinek $1',
 'rcshowhideanons'                   => 'névtelen szerkesztések $1',
 'rcshowhidepatr'                    => 'ellenőrzött szerkesztések $1',
@@ -1144,7 +1149,7 @@ A kijelöletlen csportok változatlanok maradnak. CTRL + bal kattintással tudod
 'minoreditletter'                   => 'A',
 'newpageletter'                     => 'Ú',
 'boteditletter'                     => 'b',
-'number_of_watching_users_pageview' => '[$1 figyelő felhasználó]',
+'number_of_watching_users_pageview' => '[Jelenleg $1 felhasználó nézi]',
 'rc_categories'                     => 'Korlátozás kategóriákra ("|" jellel elválasztva)',
 'rc_categories_any'                 => 'Bármi',
 'newsectionsummary'                 => '/* $1 */ (új szakasz)',
@@ -1211,7 +1216,7 @@ Ha megvan neked a teljes felbontású kép, akkor töltsd fel azt, egyéb esetbe
 'uploadwarning'               => 'Feltöltési figyelmeztetés',
 'savefile'                    => 'Fájl mentése',
 'uploadedimage'               => '„[[$1]]” felküldve',
-'overwroteimage'              => 'feltöltötték a(z) "[[$1]]" kép új változatát',
+'overwroteimage'              => 'feltöltötte a(z) „[[$1]]” kép új változatát',
 'uploaddisabled'              => 'Feltöltések kikapcsolva',
 'uploaddisabledtext'          => 'A fájlfeltöltés ebben a wikiben letiltott.',
 'uploadscripted'              => 'Ez a fájl olyan HTML- vagy parancsfájlkódot tartalmaz, melyet tévedésből egy webböngésző esetleg értelmezni próbálhatna.',

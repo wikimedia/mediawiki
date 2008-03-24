@@ -4,6 +4,8 @@
  * @addtogroup Language
  *
  * @author Passawuth
+ * @author Tuinui
+ * @author Jon Harald Søby
  */
 
 $namespaceNames = array(
@@ -155,6 +157,7 @@ $messages = array(
 'lastmodifiedat'   => 'ໜ້ານີ້ຖຶກດັດແກ້ຫຼ້າສຸດ $2, $1.', # $1 date, $2 time
 'viewcount'        => 'ໜ້ານີ້ຖືກເຂົ້າເບິ່ງ {{plural:$1|ເທື່ອໜຶ່ງ|$1 ເທື່ອ}}.',
 'protectedpage'    => 'ໜ້າຖືກປົກປ້ອງ',
+'jumpto'           => 'ໄປຫາ:',
 'jumptonavigation' => 'ນຳທິດ',
 'jumptosearch'     => 'ຄົ້ນຫາ',
 
@@ -165,12 +168,16 @@ $messages = array(
 'bugreportspage' => 'ໂຄງການ:ລາຍງານບັນຫາທາງໂປແກມ',
 'copyright'      => 'ເນື້ອໃນ ສະໜອງໃຫ້ ພາຍໃຕ້ $1.',
 'copyrightpage'  => '{{ns:project}}:ລິຂະສິດ',
+'currentevents'  => 'ກິດຈະກຳພວມດຳເນີນ',
 'disclaimers'    => 'ຂໍ້ປະຕິເສດຄວາມຮັບຜິດຊອບ',
+'disclaimerpage' => 'ໂຄງການ:ຂໍ້ປະຕິເສດຄວາມຮັບຜິດຊອບ',
 'edithelp'       => 'ວິທີດັດແກ້ໜ້າ',
 'edithelppage'   => 'Help:ການດັດແກ້',
 'helppage'       => 'Help:ເນື້ອໃນ',
 'mainpage'       => 'ໜ້າຫຼັກ',
+'portal'         => 'ປະຕູຊຸມຊົນ',
 'privacy'        => 'ນະໂຍບາຍຄວາມເປັນສ່ວນຕັວ',
+'privacypage'    => 'Project:ນະໂຍບາຍຄວາມເປັນສ່ວນຕົວ',
 'sitesupport'    => 'ບໍລິຈາກ',
 
 'badaccess'        => 'ການອະນຸມັດບໍ່ຖືກຕ້ອງ',
@@ -178,6 +185,7 @@ $messages = array(
 
 'versionrequired' => 'ຕ້ອງການເວີຣ໌ຊັ່ນ $1 ຂອງມີເດຍວິກິ',
 
+'retrievedfrom'           => 'ຖອນມາຈາກ "$1"',
 'youhavenewmessages'      => 'ທ່ານ ມີ $1 ($2).',
 'newmessageslink'         => 'ຂໍ້ຄວາມໃໝ່',
 'newmessagesdifflink'     => 'ການປ່ຽນແປງຫຼ້າສຸດ',
@@ -648,10 +656,13 @@ $messages = array(
 
 # Tooltip help for the actions
 'tooltip-pt-mytalk'         => 'ໜ້າສົນທະນາຂ້ອຍ',
+'tooltip-ca-talk'           => 'ສົນທະນາ ກ່ຽວກັບ ເນື້ອໃນຂອງໜ້າ',
 'tooltip-ca-addsection'     => 'ເພີ່ມ ຄຳເຫັນ ໃສ່ ການສົນທະນານີ້.',
 'tooltip-ca-move'           => 'ຍ້າຍໜ້ານີ້',
 'tooltip-search'            => 'ຄົ້ນຫາ {{SITENAME}}',
 'tooltip-p-logo'            => 'ໜ້າຫຼັກ',
+'tooltip-n-mainpage'        => 'ໄປເບິ່ງໜ້າຫຼັກ',
+'tooltip-t-specialpages'    => 'ລາຍການໜ້າພິເສດທັງໝົດ',
 'tooltip-ca-nstab-category' => 'ເບິ່ງ ໜ້າໝວດ',
 
 # Attribution

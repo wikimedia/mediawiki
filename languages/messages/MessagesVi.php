@@ -850,8 +850,13 @@ Xin hãy bảo đảm tính liên tục của lịch sử trang.
 'viewprevnext'          => 'Xem ($1) ($2) ($3).',
 'search-result-size'    => '$1 ($2 từ)',
 'search-result-score'   => 'Độ phù hợp: $1%',
+'search-redirect'       => '(đổi hướng $1)',
+'search-section'        => '(đề mục $1)',
+'search-suggest'        => 'Có phải bạn muốn tìm: $1',
+'searchall'             => 'Tất cả',
 'showingresults'        => "Xem '''$1''' kết quả bắt đầu từ #'''$2'''.",
 'showingresultsnum'     => "Xem '''$3''' kết quả bắt đầu từ #'''$2'''.",
+'showingresultstotal'   => "Dưới đây là kết quả từ '''$1 - $2''' trong tổng số '''$3'''",
 'nonefound'             => "'''Chú ý''': Tìm kiếm thường thất bại khi tìm những từ phổ biến như “thì” và “là”, những từ này không được đánh chỉ mục, hoặc bạn đã ghi nhiều từ khóa tìm kiếm (chỉ có những trang chứa tất cả các từ khóa mới xuất hiện trong kết quả).",
 'powersearch'           => 'Tìm kiếm nâng cao',
 'powersearch-legend'    => 'Tìm kiếm nâng cao',
@@ -866,7 +871,7 @@ Xin hãy bảo đảm tính liên tục của lịch sử trang.
 'prefsnologintext'         => 'Bạn phải [[Special:Userlogin|đăng nhập]] để thiết lập tùy chọn cá nhân.',
 'prefsreset'               => 'Các tùy chọn cá nhân đã được mặc định lại.',
 'qbsettings'               => 'Thanh công cụ',
-'qbsettings-none'          => 'Không',
+'qbsettings-none'          => 'Không có',
 'qbsettings-fixedleft'     => 'Cố định trái',
 'qbsettings-fixedright'    => 'Cố định phải',
 'qbsettings-floatingleft'  => 'Nổi bên trái',
@@ -964,7 +969,7 @@ Xin hãy bảo đảm tính liên tục của lịch sử trang.
 'rightslog'      => 'Nhật trình cấp quyền thành viên',
 'rightslogtext'  => 'Đây là nhật trình lưu những thay đổi đối với các quyền hạn thành viên.',
 'rightslogentry' => 'đã đổi cấp của thành viên $1 từ $2 thành $3',
-'rightsnone'     => '(bình thường)',
+'rightsnone'     => '(không có)',
 
 # Recent changes
 'nchanges'                          => '$1 thay đổi',
@@ -1512,7 +1517,8 @@ bấm nút '''''Phục hồi'''''. Để thực hiện phục hồi có chọn l
 'undeletehistory'              => 'Nếu bạn khôi phục trang này, tất cả các phiên bản của nó sẽ được phục hồi vào lịch sử của trang. 
 Nếu một trang mới có cùng tên đã được tạo ra kể từ khi xóa trang này, các phiên bản 
 được khôi phục sẽ xuất hiện trong lịch sử trước. Cũng chú ý rằng các giới hạn áp dụng lên các phiên bản tập tin sẽ bị mất khi phục hồi',
-'undeleterevdel'               => 'Việc phục hồi sẽ không được thực hiện nếu nó dẫn đến việc phiên bản trên cùng bị xóa mất một phần. Trong những trường hợp như vậy, bạn phải bỏ đánh dấu hộp kiểm hoặc bỏ ẩn những phiên bản bị xóa mới nhất. Các phiên bản của tập tin mà bạn không có quyền xem sẽ không được phục hồi.',
+'undeleterevdel'               => 'Việc phục hồi sẽ không được thực hiện nếu nó dẫn đến việc phiên bản trang hoặc tập tin trên cùng bị xóa mất một phần. 
+Trong trường hợp đó, bạn phải bỏ đánh dấu hộp kiểm hoặc bỏ ẩn những phiên bản bị xóa mới nhất.',
 'undeletehistorynoadmin'       => 'Trang này đã bị xóa. Lý do xóa trang được 
 hiển thị dưới đây, cùng với thông tin về các người đã sửa đổi trang này 
 trước khi bị xóa. Chỉ cóngười quản lý mới xem được văn bản đầy đủ của những phiên bản trang bị xóa.',

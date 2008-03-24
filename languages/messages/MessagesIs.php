@@ -1088,12 +1088,17 @@ Til að tengja í skrána frá síðu, notaðu eftirfarandi aðferðir
 'filedelete-comment'          => 'Ástæða:',
 'filedelete-submit'           => 'Eyða',
 'filedelete-success'          => "'''$1''' hefur verið eytt.",
+'filedelete-nofile'           => "'''$1''' er ekki til á {{SITENAME}}.",
 'filedelete-otherreason'      => 'Aðrar/fleiri ástæður:',
 'filedelete-reason-otherlist' => 'Önnur ástæða',
+'filedelete-reason-dropdown'  => '* Algengar eyðingarástæður
+** Höfundarréttarbrot
+** Endurtekin skrá',
+'filedelete-edit-reasonlist'  => 'Eyðingarástæður',
 
 # MIME search
-'mimesearch' => 'MIME leit',
-'mimetype'   => 'MIME tegund:',
+'mimesearch' => 'MIME-leit',
+'mimetype'   => 'MIME-tegund:',
 'download'   => 'Hlaða niður',
 
 # Unwatched pages
@@ -1678,6 +1683,7 @@ Allir innflutningar eru skráð í [[{{ns:special}}:Log/import|innflutningsskrá
 'tooltip-minoredit'               => 'Merkja þessa breytingu sem minniháttar',
 'tooltip-save'                    => 'Vista breytingarnar',
 'tooltip-preview'                 => 'Forskoða breytingarnar, vinsamlegast gerðu þetta áður en þú vistar!',
+'tooltip-diff'                    => 'Sýna hvaða breytingar þú gerðir á textanum.',
 'tooltip-compareselectedversions' => 'Sjá breytingarnar á þessari grein á milli útgáfanna sem þú valdir.',
 'tooltip-watch'                   => 'Bæta þessari síðu á vaktlistann þinn',
 'tooltip-recreate'                => 'Endurvekja síðuna þó henni hafi verið eytt',
@@ -1743,8 +1749,8 @@ Allir innflutningar eru skráð í [[{{ns:special}}:Log/import|innflutningsskrá
 'imagemaxsize'         => 'Takmarka stærðir mynda á myndasíðum við:',
 'thumbsize'            => 'Stærð smámynda:',
 'widthheightpage'      => '$1×$2, $3 síður',
-'file-info'            => '(stærð skráar: $1, MIME tegund: $2)',
-'file-info-size'       => '($1 × $2 depplar, stærð skráar: $3, MIME gerð: $4)',
+'file-info'            => '(stærð skráar: $1, MIME-tegund: $2)',
+'file-info-size'       => '($1 × $2 dílar, stærð skráar: $3, MIME-gerð: $4)',
 'file-nohires'         => '<small>Það er engin hærri upplausn til.</small>',
 'svg-long-desc'        => '(SVG-skrá, lágmark $1 × $2 dílar, skráarstærð: $3)',
 'show-big-image'       => 'Mesta upplausn',

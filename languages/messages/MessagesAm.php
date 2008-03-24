@@ -676,9 +676,12 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 'nextn'                 => 'ቀጥሎ $1',
 'viewprevnext'          => 'በቁጥር ለማየት፡ ($1) ($2) ($3).',
 'search-result-size'    => '$1 ({{PLURAL:$2|1 ቃል|$2 ቃላት}})',
+'search-result-score'   => 'ተገቢነት፦ $1%',
 'showingresults'        => 'ከ ቁ.#<b>$2</b> ጀምሮ እስከ <b>$1</b> ውጤቶች ድረስ ከዚህ በታች ይታያሉ።',
 'showingresultsnum'     => "ከ#'''$2''' ጀምሮ {{PLURAL:$3|'''1''' ውጤት|'''$3''' ውጤቶች}} ከዚህ ታች ማየት ይቻላል።",
 'powersearch'           => 'ፍለጋ',
+'powersearch-legend'    => 'ተጨማሪ ፍለጋ',
+'powersearchtext'       => 'ፍለጋው በታች ባመለከቱት ክፍለ-ዊኪዎች ውስጥ ይደረጋል።<br />$1<br />$2 መምሪያ መንገዶችም ይታዩ<br />ልክ በዚሁ አጻጻፍ፦ $3 $9',
 'searchdisabled'        => '{{SITENAME}} ፍለጋ አሁን እንዳይሠራ ተደርጓል። ለጊዜው ግን በGoogle ላይ መፈልግ ይችላሉ። የ{{SITENAME}} ይዞታ ማውጫ በዚያ እንዳልታደሰ ማቻሉ ያስታውሱ።',
 
 # Preferences page
@@ -991,7 +994,7 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 'sitestatstext'          => "በጠቅላላው '''$1''' ገጾች በዚህ ሥራ ዕቅድ አሉ። ይኸኛው ድምር ቁጥር የሚጠቅልለው ውይይት ገጾች፣ ልዩ ገጾች፣ አጫጭር ፅሑፎች፣ መምሪያ ገጾች፣ እንዲሁም ሌሎች ይዞታ የሌለባቸው ገጾች ሁሉ ይሆናል። ከነዚህ ውጭ '''$2''' ይዞታ ያላቸው ተገቢ ፅሑፎች ይኖራሉ። 
 
 ይህ ዊኪፔድያ ከተመሰረተ ጀምሮ '''$4''' ለውጦች ተደርገዋል። ስለዚህ ባማካኝ '''$5''' ለውጦች በየገጹ ይሆናል።",
-'userstatstext'          => "እስከ ዛሬ ድረስ '''$1''' አባላት ገብተዋል። ከዚህ ቁጥር መካከል፣ '''$2''' (ማለት '''$4%''') መጋቢዎች ናቸው። There are '''$1''' registered users, of whom '''$2''' (or '''$4%''') are administrators (see $3).",
+'userstatstext'          => "እስከ ዛሬ ድረስ '''$1''' አባላት ገብተዋል። ከዚህ ቁጥር መካከል፣ '''$2''' (ማለት '''$4%''') መጋቢዎች ናቸው። There are '''$1''' registered users, of whom '''$2''' (or '''$4%''') {{PLURAL:$2|has|have}} $5 rights.",
 'statistics-mostpopular' => 'ከሁሉ የታዩት ገጾች',
 
 'disambiguations'      => 'ወደ መንታ መንገድ የሚያያይዝ',

@@ -115,7 +115,7 @@ $messages = array(
 
 # Categories related messages
 'categories'               => 'Категориялар',
-'categoriespagetext'       => 'Биикигэ маннык категориялар бааллар.',
+'categoriespagetext'       => 'Бу категориялар истэригэр сирэйдэр эбэтэр медия-билэлэр бааллар.',
 'pagecategories'           => '{{PLURAL:$1|Категория|Категориялар}}',
 'category_header'          => '"$1" категория ыстатыйалара',
 'subcategories'            => 'Субкатегориялар',
@@ -734,11 +734,12 @@ long, which is longer than the maximum of $2 kilobytes. It cannot be saved.</str
 'prevn'                 => 'инники $1',
 'nextn'                 => 'аныгыскы $1',
 'viewprevnext'          => 'Көр ($1) ($2) ($3).',
+'searchall'             => 'бары',
 'showingresults'        => 'Манна {{plural:$1|түмүк|түмүктэр}} {{plural:$1|көрдөрүлүннэ|көрдөрүлүннүлэр}} <strong>$1</strong> , мантан саҕалаан №&nbsp;<strong>$2</strong>.',
 'showingresultsnum'     => 'Манна {{plural:$3|түмүк|түмүктэр}} {{plural:$3|көрдөрөлүннэ|көрдөрүлүннүлэр}} <strong>$3</strong>, мантан саҕалаан №&nbsp;<strong>$2</strong>.',
 'nonefound'             => 'Уопсай тыллары туһаннахха көрдүүр сирэйгитин булуо суоххутун сөп - холобур "эмиэ" иҥин диэн тыллар индексацияламматтар. Аны көрдөөбүт тылларгыт барыта эрэ баар буоллахтарына сирэй көстөр.',
 'powersearch'           => 'Бу бөлөхтөргө көрдөө',
-'powersearchtext'       => 'Маннык ааттар эйгэлэригэр көрдөө (Искать в пространствах имён):<br />$1<br />$2 Перенаправлениялары көрдөр<br /> Көрдөө',
+'powersearchtext'       => 'Маннык ааттар эйгэлэригэр көрдөө (Искать в пространствах имён):<br />$1<br />$2 Утаарыылар тиһиктэрэ<br /> Көрдөө $3 $9',
 'searchdisabled'        => '{{SITENAME}} көрдүүр тэрилэ араарыллыбыт. Атын көрдүүр системаларынан наадыйар сирэйдэргитин көрдөтүөххүтүн сөп. Ол гынан баран поисковик кээһигэр баар торум эргэрбит буолуон сөп.',
 
 # Preferences page
@@ -907,7 +908,7 @@ long, which is longer than the maximum of $2 kilobytes. It cannot be saved.</str
 'filename'                    => 'Билэ аата',
 'filedesc'                    => 'Быһаарыы',
 'fileuploadsummary'           => 'Быһаарыы:',
-'filestatus'                  => 'Туһаныы:',
+'filestatus'                  => 'Туһаныы (Copyright):',
 'filesource'                  => 'Хантан ылыллыбыта:',
 'uploadedfiles'               => 'Киллэриллибит билэлэр',
 'ignorewarning'               => 'Сэрэтиилэри истибэккэ билэни киллэр.',
@@ -1865,7 +1866,7 @@ $1',
 'noimages'              => 'Ойуу суох.',
 'ilsubmit'              => 'Көрдөт',
 'bydate'                => 'айыллыбыт кэминэн',
-'sp-newimages-showfrom' => 'Саҥа ойуулары көрдөрүүнү мантан саҕалаа $1',
+'sp-newimages-showfrom' => 'Баччаттан киирбит саҥа ойуулары көрдөр: $2, $1',
 
 # Video information, used by Language::formatTimePeriod() to format lengths in the above messages
 'seconds-abbrev' => 'с.',

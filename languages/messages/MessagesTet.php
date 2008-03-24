@@ -595,6 +595,9 @@ $messages = array(
 'showhidebots' => '($1 bot sira)',
 'ilsubmit'     => 'Buka',
 
+# EXIF tags
+'exif-artist' => 'Autór',
+
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'hotu',
 'imagelistall'     => 'hotu',
