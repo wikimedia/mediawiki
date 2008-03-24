@@ -258,6 +258,8 @@ span.subpages {
 }
 .firstHeading {
 	margin-bottom: .1em;
+	line-height: 1.2em;
+	padding-bottom: 0;
 }
 
 /* user notification thing */
