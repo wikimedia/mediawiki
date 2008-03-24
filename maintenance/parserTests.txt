@@ -3605,6 +3605,29 @@ Link inside a section heading
 
 !! end
 
+!! test
+TOC regression (bug 12077)
+!! input
+__TOC__
+== title 1 ==
+=== title 1.1 ===
+== title 2 ==
+!! result
+<table id="toc" class="toc" summary="Contents"><tr><td><div id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1"><a href="#title_1"><span class="tocnumber">1</span> <span class="toctext">title 1</span></a>
+<ul>
+<li class="toclevel-2"><a href="#title_1.1"><span class="tocnumber">1.1</span> <span class="toctext">title 1.1</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1"><a href="#title_2"><span class="tocnumber">2</span> <span class="toctext">title 2</span></a></li>
+</ul>
+</td></tr></table><script type="text/javascript"> if (window.showTocToggle) { var tocShowText = "show"; var tocHideText = "hide"; showTocToggle(); } </script>
+<a name="title_1"></a><h2><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: title 1">edit</a>]</span> <span class="mw-headline"> title 1 </span></h2>
+<a name="title_1.1"></a><h3><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=2" title="Edit section: title 1.1">edit</a>]</span> <span class="mw-headline"> title 1.1 </span></h3>
+<a name="title_2"></a><h2><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=3" title="Edit section: title 2">edit</a>]</span> <span class="mw-headline"> title 2 </span></h2>
+
+!! end
 
 !! test
 BUG 1219 URL next to image (good)
