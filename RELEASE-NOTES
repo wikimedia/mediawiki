@@ -124,6 +124,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 6447) Trackbacks now work with transactional tables, if enabled
 * (bug 6892, 7147) Trackback error handling, optional fields more robust
 * (bug 6813) Don't break HTML validator when using trackbacks
+* Fix for size checks on SVG images with global 'stroke-width' attribute
 
 
 === API changes in 1.13 ===

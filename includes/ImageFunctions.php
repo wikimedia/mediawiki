@@ -53,10 +53,10 @@ function wfGetSVGsize( $filename ) {
 		return false;
 	}
 	$tag = $matches[1];
-	if( preg_match( '/\bwidth\s*=\s*("[^"]+"|\'[^\']+\')/s', $tag, $matches ) ) {
+	if( preg_match( '/(?:^|\s)width\s*=\s*("[^"]+"|\'[^\']+\')/s', $tag, $matches ) ) {
 		$width = wfScaleSVGUnit( trim( substr( $matches[1], 1, -1 ) ) );
 	}
-	if( preg_match( '/\bheight\s*=\s*("[^"]+"|\'[^\']+\')/s', $tag, $matches ) ) {
+	if( preg_match( '/(?:^|\s)height\s*=\s*("[^"]+"|\'[^\']+\')/s', $tag, $matches ) ) {
 		$height = wfScaleSVGUnit( trim( substr( $matches[1], 1, -1 ) ) );
 	}
 
