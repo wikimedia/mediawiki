@@ -4547,6 +4547,15 @@ Punctuation: CSS !important (bug 11874)
 
 !!end
 
+!! test
+Punctuation: CSS ! important (bug 11874; with space after)
+!! input
+<div style="width:50% ! important">important</div>
+!! result
+<div style="width:50% ! important">important</div>
+
+!!end
+
 
 !! test
 HTML bullet list, closed tags (bug 5497)
