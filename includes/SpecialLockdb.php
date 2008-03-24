@@ -104,7 +104,7 @@ END
 			# This used to show a file not found error, but the likeliest reason for fopen()
 			# to fail at this point is insufficient permission to write to the file...good old
 			# is_writable() is plain wrong in some cases, it seems...
-			$this->notWritable();
+			self::notWritable();
 			return;
 		}
 		fwrite( $fp, $this->reason );
@@ -126,7 +126,7 @@ END
 	
 	public static function notWritable() {
 		global $wgOut;
-		$wgOut->errorPage( 'lockdb', 'lockfilenotwritable' );
+		$wgOut->showErrorPage( 'lockdb', 'lockfilenotwritable' );
 	}
 	
 }

@@ -25,12 +25,12 @@ function wfSpecialRecentchangeslinked( $par = NULL ) {
 	$sk = $wgUser->getSkin();
 
 	if (is_null($target)) {
-		$wgOut->errorpage( 'notargettitle', 'notargettext' );
+		$wgOut->showErrorPage( 'notargettitle', 'notargettext' );
 		return;
 	}
 	$nt = Title::newFromURL( $target );
 	if( !$nt ) {
-		$wgOut->errorpage( 'notargettitle', 'notargettext' );
+		$wgOut->showErrorPage( 'notargettitle', 'notargettext' );
 		return;
 	}
 	$id = $nt->getArticleId();
