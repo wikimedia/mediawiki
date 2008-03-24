@@ -4530,6 +4530,25 @@ Self closed html pairs (bug 5487)
 #
 
 !! test
+Punctuation: nbsp before exclamation
+!! input
+C'est grave !
+!! result
+<p>C'est grave&nbsp;!
+</p>
+!! end
+
+!! test
+Punctuation: CSS !important (bug 11874)
+!! input
+<div style="width:50% !important">important</div>
+!! result
+<div style="width:50% !important">important</div>
+
+!!end
+
+
+!! test
 HTML bullet list, closed tags (bug 5497)
 !! input
 <ul>
