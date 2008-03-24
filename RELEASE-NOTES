@@ -127,6 +127,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Fix for size checks on SVG images with global 'stroke-width' attribute
 * (bug 11874) Inline CSS with !important no longer borken
 * (bug 1600) Strip extra == section markup == in new-comment field
+* (bug 11325) Wrapped page titles in MonoBook skin spaced more nicely
 
 
 === API changes in 1.13 ===
