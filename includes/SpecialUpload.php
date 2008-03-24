@@ -166,7 +166,7 @@ class UploadForm {
 		$url =  trim( $url );
 		if( stripos($url, 'http://') !== 0 && stripos($url, 'ftp://') !== 0 ) {
 			# Only HTTP or FTP URLs
-			$wgOut->errorPage( 'upload-proto-error', 'upload-proto-error-text' );
+			$wgOut->showErrorPage( 'upload-proto-error', 'upload-proto-error-text' );
 			return true;
 		}
 
@@ -174,7 +174,7 @@ class UploadForm {
 		$this->mCurlDestHandle = @fopen( $this->mTempPath, "wb" );
 		if( $this->mCurlDestHandle === false ) {
 			# Could not open temporary file to write in
-			$wgOut->errorPage( 'upload-file-error', 'upload-file-error-text');
+			$wgOut->showErrorPage( 'upload-file-error', 'upload-file-error-text');
 			return true;
 		}
 
@@ -195,9 +195,9 @@ class UploadForm {
 		if( $error ) {
 			unlink( $dest );
 			if( wfEmptyMsg( "upload-curl-error$errornum", wfMsg("upload-curl-error$errornum") ) )
-				$wgOut->errorPage( 'upload-misc-error', 'upload-misc-error-text' );
+				$wgOut->showErrorPage( 'upload-misc-error', 'upload-misc-error-text' );
 			else
-				$wgOut->errorPage( "upload-curl-error$errornum", "upload-curl-error$errornum-text" );
+				$wgOut->showErrorPage( "upload-curl-error$errornum", "upload-curl-error$errornum-text" );
 		}
 
 		return $error;
@@ -376,9 +376,9 @@ class UploadForm {
 			return self::BEFORE_PROCESSING;
 		}
 
-		/* Check for PHP error if any, requires php 4.2 or newer */
-		if( $this->mCurlError == 1/*UPLOAD_ERR_INI_SIZE*/ ) {
-			return self::LARGE_FILE_SERVER;
+		/* Check for curl error */
+		if( $this->mCurlError ) {
+			return self::BEFORE_PROCESSING;
 		}
 
 		/**

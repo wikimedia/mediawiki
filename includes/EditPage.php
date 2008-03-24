@@ -687,7 +687,7 @@ class EditPage {
 			if( $title instanceof Title && $title->exists() && $title->userCanRead() ) {
 				global $wgOut;
 				$revision = Revision::newFromTitle( $title );
-				$wgOut->addSecondaryWikiText( $revision->getText() );
+				$wgOut->addWikiTextTitleTidy( $revision->getText(), $this->mTitle );
 				return true;
 			} else {
 				return false;

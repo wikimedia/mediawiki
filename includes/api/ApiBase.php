@@ -640,7 +640,7 @@ abstract class ApiBase {
 	 * Internal code errors should be reported with this method
 	 */
 	protected static function dieDebug($method, $message) {
-		wfDebugDieBacktrace("Internal error in $method: $message");
+		throw new MWException("Internal error in $method: $message");
 	}
 
 	/**

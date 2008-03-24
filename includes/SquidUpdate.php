@@ -219,7 +219,7 @@ class SquidUpdate {
 
 			foreach ( $urlArr as $url ) {
 				if( !is_string( $url ) ) {
-					wfDebugDieBacktrace( 'Bad purge URL' );
+					throw new MWException( 'Bad purge URL' );
 				}
 				$url = SquidUpdate::expand( $url );
 				

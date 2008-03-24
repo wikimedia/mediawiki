@@ -1518,7 +1518,7 @@ class Article {
 		# Check patrol config options
 
 		if ( !($wgUseNPPatrol || $wgUseRCPatrol)) {
-			$wgOut->errorPage( 'rcpatroldisabled', 'rcpatroldisabledtext' );
+			$wgOut->showErrorPage( 'rcpatroldisabled', 'rcpatroldisabledtext' );
 			return;		
 		}
 
@@ -1527,7 +1527,7 @@ class Article {
 		$rc = $rcid ? RecentChange::newFromId($rcid) : null;
 		if ( is_null ( $rc ) )
 		{
-			$wgOut->errorPage( 'markedaspatrollederror', 'markedaspatrollederrortext' );
+			$wgOut->showErrorPage( 'markedaspatrollederror', 'markedaspatrollederrortext' );
 			return;
 		}
 
@@ -1535,7 +1535,7 @@ class Article {
 			// Only new pages can be patrolled if the general patrolling is off....???
 			// @fixme -- is this necessary? Shouldn't we only bother controlling the
 			// front end here?
-			$wgOut->errorPage( 'rcpatroldisabled', 'rcpatroldisabledtext' );
+			$wgOut->showErrorPage( 'rcpatroldisabled', 'rcpatroldisabledtext' );
 			return;
 		}
 		

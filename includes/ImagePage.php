@@ -38,7 +38,7 @@ class ImagePage extends Article {
 	function render() {
 		global $wgOut;
 		$wgOut->setArticleBodyOnly( true );
-		$wgOut->addSecondaryWikitext( $this->getContent() );
+		$wgOut->addWikiTextTitleTidy( $this->getContent(), $this->mTitle );
 	}
 
 	function view() {

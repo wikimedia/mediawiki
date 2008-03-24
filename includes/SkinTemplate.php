@@ -397,7 +397,7 @@ class SkinTemplate extends Skin {
 		$tpl->set( 'about', $this->aboutLink() );
 
 		$tpl->setRef( 'debug', $out->mDebugtext );
-		$tpl->set( 'reporttime', $out->reportTime() );
+		$tpl->set( 'reporttime', wfReportTime() );
 		$tpl->set( 'sitenotice', wfGetSiteNotice() );
 		$tpl->set( 'bottomscripts', $this->bottomScripts() );
 
@@ -838,13 +838,11 @@ class SkinTemplate extends Skin {
 	 * @private
 	 */
 	function buildNavUrls () {
-		global $wgUseTrackbacks, $wgTitle, $wgArticle;
+		global $wgUseTrackbacks, $wgTitle, $wgUser, $wgRequest;
+		global $wgEnableUploads, $wgUploadNavigationUrl;
 
 		$fname = 'SkinTemplate::buildNavUrls';
 		wfProfileIn( $fname );
-
-		global $wgUser, $wgRequest;
-		global $wgEnableUploads, $wgUploadNavigationUrl;
 
 		$action = $wgRequest->getText( 'action' );
 
