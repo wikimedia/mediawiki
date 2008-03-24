@@ -1184,9 +1184,7 @@ Other admins on {{SITENAME}} will still be able to access the hidden content and
 # History merging
 'mergehistory'                     => 'Merge page histories',
 'mergehistory-header'              => "This page lets you merge revisions of the history of one source page into a newer page.
-Make sure that this change will maintain historical page continuity.
-
-'''At least the current revision of the source page must remain.'''",
+Make sure that this change will maintain historical page continuity.",
 'mergehistory-box'                 => 'Merge revisions of two pages:',
 'mergehistory-from'                => 'Source page:',
 'mergehistory-into'                => 'Destination page:',
@@ -1195,12 +1193,14 @@ Make sure that this change will maintain historical page continuity.
 'mergehistory-go'                  => 'Show mergeable edits',
 'mergehistory-submit'              => 'Merge revisions',
 'mergehistory-empty'               => 'No revisions can be merged',
-'mergehistory-success'             => '$3 revisions of [[:$1]] successfully merged into [[:$2]].',
+'mergehistory-success'             => '$3 {{PLURAL:$3|revision|revisions}} of [[:$1]] successfully merged into [[:$2]].',
 'mergehistory-fail'                => 'Unable to perform history merge, please recheck the page and time parameters.',
 'mergehistory-no-source'           => 'Source page $1 does not exist.',
 'mergehistory-no-destination'      => 'Destination page $1 does not exist.',
 'mergehistory-invalid-source'      => 'Source page must be a valid title.',
 'mergehistory-invalid-destination' => 'Destination page must be a valid title.',
+'mergehistory-autocomment'         => 'Merged [[:$1]] into [[:$2]]',
+'mergehistory-comment'             => 'Merged [[:$1]] into [[:$2]]: $3',
 
 # Merge log
 'mergelog'           => 'Merge log',

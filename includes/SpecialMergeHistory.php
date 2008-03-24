@@ -290,14 +290,14 @@ class MergehistoryForm {
 		$destTitle = Title::newFromID( $this->mDestID );
 		if( is_null($targetTitle) || is_null($destTitle) )
 			return false; // validate these
-		if( $targetTitle->getArticleID() == $destTitle->getArticleId() )
+		if( $targetTitle->getArticleId() == $destTitle->getArticleId() )
 			return false;
 		# Verify that this timestamp is valid
 		# Must be older than the destination page
 		$dbw = wfGetDB( DB_MASTER );
 		# Get timestamp into DB format
 		$this->mTimestamp = $this->mTimestamp ? $dbw->timestamp($this->mTimestamp) : '';
-		
+		# Max timestamp should be min of destination page
 		$maxtimestamp = $dbw->selectField( 'revision', 'MIN(rev_timestamp)',
 			array('rev_page' => $this->mDestID ),
 			__METHOD__ );
@@ -306,14 +306,12 @@ class MergehistoryForm {
 			$wgOut->addWikiMsg('mergehistory-fail');
 			return false;
 		}
-		# Leave the latest version no matter what
-		$lasttime = $dbw->selectField( array('page','revision'), 
+		# Get the latest timestamp of the source
+		$lasttimestamp = $dbw->selectField( array('page','revision'), 
 			'rev_timestamp',
 			array('page_id' => $this->mTargetID, 'page_latest = rev_id' ),
 			__METHOD__ );
-		# Take the most restrictive of the twain
-		$maxtimestamp = ($lasttime < $maxtimestamp) ? $lasttime : $maxtimestamp;
-		// $this->mTimestamp must be less than $maxtimestamp
+		# $this->mTimestamp must be older than $maxtimestamp
 		if( $this->mTimestamp >= $maxtimestamp ) {
 			$wgOut->addWikiMsg('mergehistory-fail');
 			return false;
@@ -323,17 +321,56 @@ class MergehistoryForm {
 			$timewhere = "rev_timestamp <= {$this->mTimestamp}";
 			$TimestampLimit = wfTimestamp(TS_MW,$this->mTimestamp);
 		} else {
-			$timewhere = "rev_timestamp < {$maxtimestamp}";
-			$TimestampLimit = wfTimestamp(TS_MW,$maxtimestamp);
+			$timewhere = "rev_timestamp <= {$maxtimestamp}";
+			$TimestampLimit = wfTimestamp(TS_MW,$lasttimestamp);
 		}
-		
+		# Do the moving...
 		$dbw->update( 'revision',
 			array( 'rev_page' => $this->mDestID ),
 			array( 'rev_page' => $this->mTargetID,
 				$timewhere ),
 			__METHOD__ );
+		
+		$count = $dbw->affectedRows();
+		# Make the source page a redirect if no revisions are left
+		$haveRevisions = $dbw->selectField( 'revision', 
+			'rev_timestamp',
+			array( 'rev_page' => $this->mTargetID  ),
+			__METHOD__,
+			array( 'FOR UPDATE' ) );
+		if( !$haveRevisions ) {
+			if( $this->mComment ) {
+				$comment = wfMsgForContent( 'mergehistory-comment', $targetTitle->getPrefixedText(), 
+					$destTitle->getPrefixedText(), $this->mComment );
+			} else {
+				$comment = wfMsgForContent( 'mergehistory-autocomment', $targetTitle->getPrefixedText(), 
+					$destTitle->getPrefixedText() );
+			}
+			$mwRedir = MagicWord::get( 'redirect' );
+			$redirectText = $mwRedir->getSynonym( 0 ) . ' [[' . $destTitle->getPrefixedText() . "]]\n";
+			$redirectArticle = new Article( $targetTitle );
+			$redirectRevision = new Revision( array(
+				'page'    => $this->mTargetID,
+				'comment' => $comment,
+				'text'    => $redirectText ) );
+			$redirectRevision->insertOn( $dbw );
+			$redirectArticle->updateRevisionOn( $dbw, $redirectRevision );
+
+			# Now, we record the link from the redirect to the new title.
+			# It should have no other outgoing links...
+			$dbw->delete( 'pagelinks', array( 'pl_from' => $this->mDestID ), __METHOD__ );
+			$dbw->insert( 'pagelinks',
+				array(
+					'pl_from'      => $this->mDestID,
+					'pl_namespace' => $destTitle->getNamespace(),
+					'pl_title'     => $destTitle->getDBkey() ),
+				__METHOD__ );
+		} else {
+			$targetTitle->invalidateCache(); // update histories
+		}
+		$destTitle->invalidateCache(); // update histories
 		# Check if this did anything
-		if( !$count = $dbw->affectedRows() ) {
+		if( !$count ) {
 			$wgOut->addWikiMsg('mergehistory-fail');
 			return false;
 		}
@@ -354,15 +391,15 @@ class MergehistoryForm {
 class MergeHistoryPager extends ReverseChronologicalPager {
 	public $mForm, $mConds;
 
-	function __construct( $form, $conds = array(), $title, $title2 ) {
+	function __construct( $form, $conds = array(), $source, $dest ) {
 		$this->mForm = $form;
 		$this->mConds = $conds;
-		$this->title = $title;
-		$this->articleID = $title->getArticleID();
+		$this->title = $source;
+		$this->articleID = $source->getArticleID();
 		
 		$dbr = wfGetDB( DB_SLAVE );
 		$maxtimestamp = $dbr->selectField( 'revision', 'MIN(rev_timestamp)',
-			array('rev_page' => $title2->getArticleID() ),
+			array('rev_page' => $dest->getArticleID() ),
 			__METHOD__ );
 		$this->maxTimestamp = $maxtimestamp; 
 		
@@ -405,9 +442,6 @@ class MergeHistoryPager extends ReverseChronologicalPager {
 		$conds = $this->mConds;
 		$conds['rev_page'] = $this->articleID;
 		$conds[] = "rev_timestamp < {$this->maxTimestamp}";
-		# Skip the latest one, as that could cause problems
-		if( $page = $this->title->getLatestRevID() )
-			$conds[] = "rev_id != {$page}";
 		
 		return array(
 			'tables' => array('revision'),
