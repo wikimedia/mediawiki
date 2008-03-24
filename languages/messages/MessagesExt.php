@@ -233,15 +233,15 @@ $messages = array(
 
 'badaccess'        => 'Marru colos tus premisus',
 'badaccess-group0' => 'Nu se te premiti hazel esa ación.',
-'badaccess-group1' => 'Solu los usuárius el alabán $1 puein hazel esa ación.',
-'badaccess-group2' => 'Solu los usuárius los alabanis $1 puein hazel esa ación.',
-'badaccess-groups' => 'Solu los usuárius los alabanis $1 puein hazel esa ación.',
+'badaccess-group1' => 'Solu los usuárius del grupu $1 puein hazel esa ación.',
+'badaccess-group2' => 'Solu los usuárius los grupus $1 puein hazel esa ación.',
+'badaccess-groups' => 'Solu los usuárius los grupus $1 puein hazel esa ación.',
 
 'versionrequired'     => 'Es mestel tenel la velsión $1 de MeyaGüiqui',
 'versionrequiredtext' => 'Es mestel tenel la velsión $1 de MeyaGüiqui pa usal esta páhina. Vai a la  [[Special:Version|páhina e velsión]].',
 
 'ok'                      => 'Dalcuerdu',
-'retrievedfrom'           => 'Recuperau e "$1"',
+'retrievedfrom'           => 'Arrecuperau endi "$1"',
 'youhavenewmessages'      => 'Tiinis $1 ($2).',
 'newmessageslink'         => 'nuevus mensahis',
 'newmessagesdifflink'     => 'úrtimu chambu',
@@ -406,9 +406,10 @@ Ya está creá la tu cuenta. Recuerda chambal la tus preferéncias al tentu la {
 'passwordtooshort'           => "La tu consínia nu es valia, u es mu chiquenina. Ebi tenel al menus $1 carateris i sel deferenti el tu nombri d'usuáriu.",
 'mailmypassword'             => 'Envialmi pol correu la consínia',
 'passwordremindertitle'      => 'Alcuerda-consínias de {{SITENAME}}',
-'passwordremindertext'       => 'Alguien (siguramenti tú), dendi la direción IP $1)
-mos á solicitau que t\'enviemus una nueva consínia pa {{SITENAME}} ($4).
+'passwordremindertext'       => 'Alguien (siguramenti tú, dendi la direción IP $1)
+mos á solicitau que l\'enviemus una nueva consínia pa {{SITENAME}} ($4).
 La nueva consínia el usuáriu "$2" es "$3".
+Eberias entral ena tu cuenta i chambal la consínia lo antis posibri.
 
 Si nu ás solicitau tú el chambu, u ya t\'as alcuerdau la tu consínia i nu quieis chambala, pueis acontinal gastandu la tú consínia antigua.',
 'noemail'                    => 'Nu ai emburacau dengún e-mail el usuáriu "$1".',
@@ -736,6 +737,7 @@ Asigurati e qu'esti chambu mantenga la continuiá el estorial la páhina.
 'prevn'                 => '$1 anterioris',
 'nextn'                 => '$1 siguientis',
 'viewprevnext'          => 'Vel ($1) ($2) ($3).',
+'searchall'             => 'tó',
 'showingresults'        => "Embahu se {{PLURAL:$1|muestra '''1''' resurtau qu´enceta|muestran hata '''$1''' resurtaus qu´encetan}} pol #'''$2'''.",
 'showingresultsnum'     => "Embahu se {{PLURAL:$3|muestra '''1''' resurtau qu'enceta|muestran'''$3''' resurtaus qu'encetan}} pol #'''$2'''.",
 'nonefound'             => "'''Nota''': Los landeus sin resurtaus suelis proucilsi al landeal parabras cumu \"la\" u \"de\", que nu están nel éndici, u pol escrebil mas duna parabra pa landeal (solu apaicirán nel resurtau las páhinas que contengan tolas parabras landeás).",
@@ -806,29 +808,29 @@ Asigurati e qu'esti chambu mantenga la continuiá el estorial la páhina.
 
 # User rights
 'userrights'                       => "Alministral premisus d'usuárius", # Not used as normal message but as header for the special page itself
-'userrights-lookup-user'           => 'Alministral alabanis d´usuárius',
+'userrights-lookup-user'           => "Alministral grupus d'usuárius",
 'userrights-user-editname'         => 'Escrebi un nombri d´usuáriu:',
-'editusergroup'                    => 'Eital alabanis d´usuárius',
+'editusergroup'                    => "Eital grupus d'usuárius",
 'editinguser'                      => "Chambandu los derechus del usuáriu '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
-'userrights-editusergroup'         => 'Eital alabanis d´usuárius',
-'saveusergroups'                   => 'Emburacal alabanis d´usuárius',
+'userrights-editusergroup'         => "Eital grupus d'usuárius",
+'saveusergroups'                   => "Emburacal grupus d'usuárius",
 'userrights-groupsmember'          => 'Miembru e:',
-'userrights-groupsremovable'       => 'Alabanis esborrabris:',
-'userrights-groupsavailable'       => 'Alabanis disponibris:',
-'userrights-groupshelp'            => "Aseñala los alabanis a los que quieis añiil al usuáriu (u de los que quieis esborralu). Los alabanis nu aseñalaus nu chambarán. Pueis ehal d'aseñalal un alabán pursandu la tecra CTRL.",
+'userrights-groupsremovable'       => 'Grupus esborrabris:',
+'userrights-groupsavailable'       => 'Grupus disponibris:',
+'userrights-groupshelp'            => "Aseñala los grupus a los que quieis añiil al usuáriu (u de los que quieis esborralu). Los grupus nu aseñalaus nu chambarán. Pueis ehal d'aseñalal un grupu pursandu la tecra CTRL.",
 'userrights-reason'                => 'Razón el chambu:',
-'userrights-available-none'        => 'Nu pueis chambal los miembrus el alabán.',
-'userrights-available-add'         => 'Pueis añiil usuárius a {{PLURAL:$2|esti alabán|estus alabanis}}: $1.',
-'userrights-available-remove'      => 'Pueis esborral usuárius {{PLURAL:$2|del siguienti alabán|de los siguientis alabanis}}: $1.',
-'userrights-available-add-self'    => 'Pueis uñilti tu mesmu {{PLURAL:$2|al siguienti alabán|a los siguientis alabanis}}: $1.',
-'userrights-available-remove-self' => 'Pueis esborralti {{PLURAL:$2|del siguienti alabán|de los siguientis alabanis}}: $1.',
+'userrights-available-none'        => 'Nu pueis chambal los miembrus del grupu.',
+'userrights-available-add'         => 'Pueis añiil usuárius a {{PLURAL:$2|esti grupu|estus grupus}}: $1.',
+'userrights-available-remove'      => 'Pueis esborral usuárius {{PLURAL:$2|del siguienti grupu|de los siguientis grupus}}: $1.',
+'userrights-available-add-self'    => 'Pueis uñilti tu mesmu {{PLURAL:$2|al siguienti grupu|a los siguientis grupus}}: $1.',
+'userrights-available-remove-self' => 'Pueis esborralti {{PLURAL:$2|del siguienti grupu|de los siguientis grupus}}: $1.',
 'userrights-no-interwiki'          => 'Nu tienis premisu pa eital los derechus los usuárius en otras güiquis.',
 'userrights-nodatabase'            => 'La basi e datus $1 nu desisti, u nu es local.',
 'userrights-nologin'               => "Ebis [[Special:Userlogin|rustrilti]] con una cuenta d'alministraol pa puel asinal derechus a los usuárius.",
 'userrights-notallowed'            => "Nu tienis los permisus nesezárius p'asinal derechus a los usuárius.",
 
 # Groups
-'group'               => 'Alabán:',
+'group'               => 'Grupu:',
 'group-autoconfirmed' => 'Usuárius autuconfirmaus',
 'group-sysop'         => 'Çahorilis',
 'group-bureaucrat'    => 'Alministraoris',
@@ -846,7 +848,7 @@ Asigurati e qu'esti chambu mantenga la continuiá el estorial la páhina.
 # User rights log
 'rightslog'      => 'Rustrihu e derechus de los usuárius',
 'rightslogtext'  => 'Esti es un rustrihu e chambus enus derechus los usuárius.',
-'rightslogentry' => 'chambó el alabán al que preteneci $1: de $2 a $3',
+'rightslogentry' => 'chambó el grupu al que preteneci $1: de $2 a $3',
 'rightsnone'     => '(dengunu)',
 
 # Recent changes
@@ -1809,7 +1811,7 @@ $1',
 'noimages'              => 'Nu ai ná pa vel.',
 'ilsubmit'              => 'Landeal',
 'bydate'                => 'pol fecha',
-'sp-newimages-showfrom' => 'Muestral nuevas imahin qu´esmiencin pol $1',
+'sp-newimages-showfrom' => 'Muestral nuevas imahin empuntás a partil de $2, $1',
 
 # Video information, used by Language::formatTimePeriod() to format lengths in the above messages
 'hours-abbrev' => 'o',
@@ -2212,5 +2214,14 @@ $1',
 'filepath-summary' => "Esta páhina especial degüervi la ruta compreta dun archivu. Las imahin se muestran a resolución compreta; las demas crasis d'archivu s'ehecutan diretamenti con el su pograma asociau.
 
 Escribi el nombri d'archivu sin el prefihu \"{{ns:image}}:\".",
+
+# Special:FileDuplicateSearch
+'fileduplicatesearch'          => 'Landeal archivus dupricaus',
+'fileduplicatesearch-legend'   => 'Landeal dupricaus',
+'fileduplicatesearch-filename' => 'Nombri el archivu:',
+'fileduplicatesearch-submit'   => 'Landeal',
+'fileduplicatesearch-info'     => '$1 × $2 pixel<br />Grandol del archivu: $3<br />Crasi MIME: $4',
+'fileduplicatesearch-result-1' => 'El archivu "$1" nu tiini dupricaus.',
+'fileduplicatesearch-result-n' => 'El archivu "$1" tiini {{PLURAL:$2|1 dupricau igual|$2 dupricaus igualis}}.',
 
 );

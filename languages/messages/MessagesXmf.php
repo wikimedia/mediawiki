@@ -85,6 +85,7 @@ $messages = array(
 
 'about'          => '-შენი',
 'article'        => 'სტატია',
+'newwindow'      => '(ახალ აკოშკას)',
 'cancel'         => 'გაუქვება',
 'qbfind'         => 'მიგორე',
 'qbedit'         => 'რედაქტირება',
@@ -197,6 +198,7 @@ $messages = array(
 'link_tip'        => 'დინახალენ ბუნ',
 'extlink_sample'  => 'http://www.example.com ბუნიშ სათაურ',
 'headline_sample' => 'სათაურიშ ტექსტ',
+'headline_tip'    => 'ქვესათაურ',
 'math_tip'        => 'მათემატიკურ ფორმულა (LaTeX)',
 'nowiki_tip'      => 'ვიკიშ ფორმატირებიშ იგნორირება',
 'media_tip'       => 'ბუნ ფაილს',
@@ -209,6 +211,7 @@ $messages = array(
 'minoredit'      => 'ჭიჭე რედაქტირება',
 'watchthis'      => 'თე გვერდიშ კონტროლ',
 'savearticle'    => 'ჩუალა',
+'showpreview'    => 'ოწმახ ძირა',
 'showdiff'       => 'თირუალეფიშ ძირაფა',
 'newarticle'     => '(ახალ)',
 'noarticletext'  => 'ასე თე გვერდც ტექსტ ვა არსეენც, [[{{ns:special}}:Search/{{PAGENAME}}|მიგორეთ თე გვერდიშ სახელ]] შხვა გვერდეფც ან [{{fullurl:{{FULLPAGENAME}}|action=edit}} დოჭარით თენა გვერდ].',
@@ -259,12 +262,14 @@ $messages = array(
 # Recent changes
 'nchanges'        => '$1 თირუა',
 'recentchanges'   => 'ბოლო თირუალეფ',
+'rcnote'          => 'თუდო ქოძირ ბოლო <strong>$1</strong> თირუა უკანასკნელი <strong>$2</strong> დღაშ $3 დგომარებათ.',
 'rclistfrom'      => 'ახალ თირუალეფიშ ძირაფა დოჭყაფულ $1-იშე',
 'rcshowhideminor' => 'ჭიჭე რედაქტირებაშ $1',
 'rcshowhidebots'  => 'რობოტეფიშ  $1',
 'rcshowhideliu'   => 'რეგისტრირებულ ხვარებელეფიშ $1',
 'rcshowhideanons' => 'ანონიმურ ხვარებელეფიშ $1',
 'rcshowhidemine'  => 'ჩქიმ რედაქტირებაშ $1',
+'rclinks'         => 'ბოლო $1 თირუეფიშ ძირაფა უკანასკნელი $2 დღა გარგვალებურს<br />$3',
 'hist'            => 'ისტ.',
 'hide'            => 'ფულუა',
 'show'            => 'ძირაფა',
@@ -441,6 +446,8 @@ $messages = array(
 'tooltip-ca-nstab-help'           => 'ქოძირეთ დახვარებაშ გვერდ',
 'tooltip-ca-nstab-category'       => 'გვერდიშ კატეგორიაშ ძირა',
 'tooltip-save'                    => 'თირუაშ ჩუალა',
+'tooltip-preview'                 => 'ოწმახ გეგნაჯინ თირუეფის, რთხიინთ, იხვარით თენა ჩუალაშახ! [alt-p]',
+'tooltip-diff'                    => 'ტექსტს არსებულ თურუეიშ ძირა. [alt-v]',
 'tooltip-compareselectedversions' => 'ქოძირეთ თე გვერდიშ ჟირ გიშაგორილ ვერსიაშ განშხვავებეფ.',
 
 # Browsing diffs

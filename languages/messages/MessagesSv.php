@@ -19,13 +19,13 @@
  * @author Grillo
  * @author Lokal Profil
  */
-);
 
 $skinNames = array(
 	'standard' => "Standard",
 	'nostalgia' => "Nostalgi",
 	'cologneblue' => "Cologne Blå",
 );
+
 $namespaceNames = array(
 	NS_MEDIA            => 'Media',
 	NS_SPECIAL          => 'Special',
@@ -505,7 +505,7 @@ $2',
 
 Ditt konto har skapats. Glöm inte att justera dina inställningar.',
 'loginpagetitle'             => 'Användarinloggning',
-'yourname'                   => 'Ditt användarnamn',
+'yourname'                   => 'Användarnamn:',
 'yourpassword'               => 'Lösenord:',
 'yourpasswordagain'          => 'Upprepa lösenord',
 'remembermypassword'         => 'Automatisk inloggning i framtiden.',
@@ -529,7 +529,7 @@ Ditt konto har skapats. Glöm inte att justera dina inställningar.',
 'youremail'                  => 'E-post:',
 'username'                   => 'Användarnamn:',
 'uid'                        => 'Användar-ID:',
-'yourrealname'               => 'Ditt riktiga namn',
+'yourrealname'               => 'Riktigt namn:',
 'yourlanguage'               => 'Språk:',
 'yournick'                   => 'Smeknamn:',
 'badsig'                     => 'Det är något fel med råsignaturen, kontrollera HTML-koden.',
@@ -880,6 +880,7 @@ Andra administratörer på {{SITENAME}} kommer fortfarande att kunna läsa det d
 'search-redirect'       => '(omdirigering $1)',
 'search-section'        => '(avsnitt $1)',
 'search-suggest'        => 'Menade du: $1',
+'searchall'             => 'alla',
 'showingresults'        => "Nedan visas upp till '''$1''' resultat från och med nummer #'''$2'''.",
 'showingresultsnum'     => "Nedan visas '''$3''' resultat från och med #'''$2'''.",
 'showingresultstotal'   => "Nedan visas resultat '''$1 - $2''' av '''$3'''",
@@ -1098,7 +1099,7 @@ Om du har tillgång till bilden i full storlek, ladda då hellre upp den, annars
 'uploadvirus'                 => 'Filen innehåller virus! Detaljer: $1',
 'sourcefilename'              => 'Ursprungsfilens namn:',
 'destfilename'                => 'Nytt filnamn:',
-'watchthisupload'             => 'Bevaka sidan',
+'watchthisupload'             => 'Bevaka denna sida',
 'filewasdeleted'              => 'En fil med detta namn har tidigare laddats upp och därefter tagits bort. Du bör kontrollera $1 innan du fortsätter att ladda upp den.',
 'upload-wasdeleted'           => "'''Varning: Du håller på att ladda upp en fil som tidigare raderats.'''
 
@@ -1611,7 +1612,7 @@ $1',
 'linkshere'           => 'Följande sidor länkar till [[:$1]]:',
 'nolinkshere'         => 'Inga sidor länkar till [[:$1]].',
 'nolinkshere-ns'      => "Inga sidor i den angivna namnrymden länkar till '''[[:$1]]'''.",
-'isredirect'          => 'transportsida',
+'isredirect'          => 'omdirigeringssida',
 'istemplate'          => 'inkluderad som mall',
 'whatlinkshere-prev'  => '{{PLURAL:$1|förra|förra $1}}',
 'whatlinkshere-next'  => '{{PLURAL:$1|nästa|nästa $1}}',
@@ -1624,7 +1625,7 @@ $1',
 'ipaddress'                   => 'IP-adress',
 'ipadressorusername'          => 'IP-adress eller användarnamn',
 'ipbexpiry'                   => 'Varaktighet',
-'ipbreason'                   => 'Anledning',
+'ipbreason'                   => 'Anledning:',
 'ipbreasonotherlist'          => 'Annan anledning',
 'ipbreason-dropdown'          => '
 *Vanliga motiv till blockering
@@ -1943,7 +1944,7 @@ All överföring mellan wikier (transwiki) listas i  [[Special:Log/import|import
 'mw_math_mathml' => 'MathML om möjligt (experimentellt)',
 
 # Patrolling
-'markaspatrolleddiff'                 => 'Märk upp som patrullerad',
+'markaspatrolleddiff'                 => 'Märk som patrullerad',
 'markaspatrolledtext'                 => 'Märk den här sidan som patrullerad',
 'markedaspatrolled'                   => 'Markerad som patrullerad',
 'markedaspatrolledtext'               => 'Den valda versionen har märkts som patrullerad.',
@@ -2280,7 +2281,7 @@ Listan tar enbart hänsyn till rader som börjar med asterisk (*). Den första l
 
 # E-mail address confirmation
 'confirmemail'            => 'Bekräfta e-postadress',
-'confirmemail_noemail'    => 'Du har inte givit någon fungerande e-postadress i dina [[Special:Preferences|inställningar]].',
+'confirmemail_noemail'    => 'Du har inte angivit någon giltig e-postadress i dina [[Special:Preferences|inställningar]].',
 'confirmemail_text'       => 'Innan du kan använda {{SITENAME}}s funktioner för e-post måste du bekräfta din e-postadress. Aktivera knappen nedan för att skicka en bekräftelsekod till din e-postadress. Mailet kommer att innehålla en länk, som innehåller en kod. Genom att klicka på den länken eller kopiera den till din webbläsares fönster för webbadresser, bekräftar du att din e-postadress fungerar.',
 'confirmemail_pending'    => 'En bekräftelsekod har redan skickats till din epostadress. Om du skapade ditt konto nyligen, så kanske du vill vänta några minuter innan du begär en ny kod.',
 'confirmemail_send'       => 'Skicka bekräftelsekod',

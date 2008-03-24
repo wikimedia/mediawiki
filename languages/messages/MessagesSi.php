@@ -5,6 +5,7 @@
  *
  * @author Asiri wiki
  * @author Nike
+ * @author Chandana
  */
 
 $namespaceNames = array(
@@ -28,6 +29,12 @@ $namespaceNames = array(
 );
 
 $messages = array(
+# User preference toggles
+'tog-underline'       => 'පුරුක යටින් ඉරි අඳිනවා',
+'tog-highlightbroken' => ' කැඩුණු සන්ධිය ආකෘතිය <a href="" වර්ගය="අලුත">මේ සමාන ලෙස </a> (විකල්ප: මේ සමාන ලෙස<a href="" වර්ගය="අභ්‍යනතර">?</a>).',
+'tog-justify'         => 'ඡේදය පේළි ගසන්න',
+'tog-hideminor'       => 'අලුත් වෙනසහි සුළු සංස්කරණය හැංගිම',
+
 'skinpreview' => '(පෙරදසුන)',
 
 # Dates

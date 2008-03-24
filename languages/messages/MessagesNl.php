@@ -974,6 +974,8 @@ Andere beheerders van {{SITENAME}} kunnen de verborgen inhoud benaderen en de ve
 'logdelete-logaction'         => '$1 {{PLURAL:$1|actie|acties}} om [[$3]] naar modus $2 in te stellen',
 'revdelete-success'           => 'Zichtbaarheid van de wijziging succesvol ingesteld.',
 'logdelete-success'           => 'Zichtbaarheid van de gebeurtenis succesvol ingesteld.',
+'pagehist'                    => 'Paginageschiedenis',
+'deletedhist'                 => 'Verwijderde geschiedenis',
 
 # Oversight log
 'oversightlog'    => 'Oversightlogboek',
@@ -1031,8 +1033,13 @@ Wees zeker dat deze wijziging de geschiedenisdoorlopendheid van de pagina zal be
 'viewprevnext'          => '($1) ($2) ($3) bekijken.',
 'search-result-size'    => '$1 ({{PLURAL:$2|1 woord|$2 woorden}})',
 'search-result-score'   => 'Relevantie: $1%',
+'search-redirect'       => '(doorverwijzing $1)',
+'search-section'        => '(subkop $1)',
+'search-suggest'        => 'Bedoelde u: $1',
+'searchall'             => 'alle',
 'showingresults'        => "Hieronder {{PLURAL:$1|staat '''1''' resultaat|staan '''$1''' resultaten}} vanaf #'''$2'''.",
 'showingresultsnum'     => "Hieronder {{PLURAL:$3|staat '''1''' resultaat|staan '''$3''' resultaten}} vanaf #'''$2'''.",
+'showingresultstotal'   => "Hieronder worden de resultaten '''$1 tot $2''' van '''$3''' weergegeven",
 'nonefound'             => "'''Opmerking''': mislukte zoekopdrachten worden vaak veroorzaakt door zoeken naar veelvoorkomende woorden als \"van\" en \"het\", die niet in de indexen worden opgenomen, of door meer dan één zoekterm op te geven. Alleen pagina's die alle zoektermen bevatten worden opgenomen in de resultaten.",
 'powersearch'           => 'Uitgebreid zoeken',
 'powersearch-legend'    => 'Uitgebreid zoeken',

@@ -241,16 +241,21 @@ $messages = array(
 'dec'           => 'Dis',
 
 # Categories related messages
-'categories'               => 'Kategori',
-'categoriespagetext'       => 'Kategori-kategori berikut wujud dalam wiki ini.',
-'pagecategories'           => 'Kategori',
-'category_header'          => 'Laman-laman dalam kategori "$1"',
-'subcategories'            => 'Subkategori',
-'category-media-header'    => 'Media-media dalam kategori "$1"',
-'category-empty'           => "''Kategori ini tidak mengandungi sebarang laman atau media.''",
-'hidden-categories'        => '{{PLURAL:$1|Kategori|Kategori}}',
-'hidden-category-category' => 'Kategori tersembunyi', # Name of the category where hidden categories will be listed
-'listingcontinuesabbrev'   => 'samb.',
+'categories'                     => 'Kategori',
+'categoriespagetext'             => 'Kategori-kategori berikut wujud dalam wiki ini.',
+'special-categories-sort-count'  => 'susun mengikut tertib bilangan',
+'special-categories-sort-abc'    => 'susun mengikut tertib abjad',
+'pagecategories'                 => 'Kategori',
+'category_header'                => 'Laman-laman dalam kategori "$1"',
+'subcategories'                  => 'Subkategori',
+'category-media-header'          => 'Media-media dalam kategori "$1"',
+'category-empty'                 => "''Kategori ini tidak mengandungi sebarang laman atau media.''",
+'hidden-categories'              => '{{PLURAL:$1|Kategori|Kategori}}',
+'hidden-category-category'       => 'Kategori tersembunyi', # Name of the category where hidden categories will be listed
+'category-subcat-count-limited'  => 'Kategori ini mengandungi $1 subkategori berikut.',
+'category-article-count-limited' => '$1 laman berikut terdapat dalam kategori ini.',
+'category-file-count-limited'    => '$1 fail berikut terdapat dalam kategori ini.',
+'listingcontinuesabbrev'         => 'samb.',
 
 'mainpagetext'      => "<big>'''MediaWiki telah dipasang.'''</big>",
 'mainpagedocfooter' => 'Sila rujuk [http://meta.wikimedia.org/wiki/Help:Contents Panduan Penggunaan] untuk maklumat mengenai penggunaan perisian wiki ini.
@@ -300,6 +305,7 @@ $messages = array(
 'edit'              => 'Sunting',
 'create'            => 'Cipta',
 'editthispage'      => 'Sunting laman ini',
+'create-this-page'  => 'Cipta laman ini',
 'delete'            => 'Hapus',
 'deletethispage'    => 'Hapuskan laman ini',
 'undelete_short'    => 'Nyahhapus {{PLURAL:$1|satu suntingan|$1 suntingan}}',
@@ -732,6 +738,7 @@ Anda boleh menyalin teks anda ke dalam komputer anda terlebih dahulu dan simpan 
 'templatesusedsection'      => 'Templat yang digunakan dalam bahagian ini:',
 'template-protected'        => '(dilindungi)',
 'template-semiprotected'    => '(dilindungi separa)',
+'hiddencategories'          => 'Laman ini terdapat dalam $1 kategori tersembunyi:',
 'nocreatetitle'             => 'Penciptaan laman dihadkan',
 'nocreatetext'              => 'Penciptaan laman baru dihadkan pada {{SITENAME}}.
 Anda boleh berundur dan menyunting laman yang sedia ada, atau [[Special:Userlogin|log masuk]].',
@@ -884,13 +891,20 @@ Sila pastikan bahawa perubahan ini akan mengekalkan kesinambungan sejarah laman.
 'prevn'                 => '$1 sebelumnya',
 'nextn'                 => '$1 berikutnya',
 'viewprevnext'          => 'Lihat ($1) ($2) ($3)',
+'search-result-size'    => '$1 ($2 patah perkataan)',
+'search-result-score'   => 'Kaitan: $1%',
+'search-redirect'       => '(pelencongan $1)',
+'search-section'        => '(bahagian $1)',
+'search-suggest'        => 'Maksud anda, $1?',
 'showingresults'        => 'Terpapar di bawah adalah hasil pencarian dari <b>$1</b> hingga <b>$2</b>.',
 'showingresultsnum'     => 'Terpapar di bawah <b>$3</b> adalah hasil pencarian yang bermula dengan #<b>$2</b>.',
+'showingresultstotal'   => "Berikut ialah hasil '''$1-$2''' daripada '''$3'''",
 'nonefound'             => "'''Catatan''': Kegagalan pencarian biasanya
 disebabkan oleh pencarian perkataan-perkataan yang terlalu umum, seperti \"ada\"
 dan \"dari\" yang tidak diindekskan, atau disebabkan oleh pencarian lebih
 daripada satu kata kunci (hanya laman yang mengandungi kesemua kata kunci akan ditunjukkan).",
 'powersearch'           => 'Cari',
+'powersearch-legend'    => 'Gelintar maju',
 'powersearchtext'       => 'Cari dalam ruang nama:<br />$1<br />$2 Senaraikan pelencongan<br />Cari $3 $9',
 'searchdisabled'        => 'Ciri pencarian dalam {{SITENAME}} dimatikan. Anda boleh mencari melalui Google. Sila ambil perhatian bahawa indeks dalam Google mungkin bukan yang terkini.',
 
@@ -1163,6 +1177,7 @@ Klik di atas mana-mana lajur yang berkenaan untuk menukar tertib susunan.',
 'noimage'                   => 'Tiada fail dengan nama ini. Anda boleh $1.',
 'noimage-linktext'          => 'memuat naik fail baru',
 'uploadnewversion-linktext' => 'Muat naik versi baru bagi fail ini',
+'imagepage-searchdupe'      => 'Cari fail serupa',
 
 # File reversion
 'filerevert'                => 'Balikkan $1',
@@ -1192,6 +1207,7 @@ Klik di atas mana-mana lajur yang berkenaan untuk menukar tertib susunan.',
 *Sebab-sebab lazim
 ** Melanggar hak cipta
 ** Fail berulang',
+'filedelete-edit-reasonlist'  => 'Ubah sebab-sebab hapus',
 
 # MIME search
 'mimesearch'         => 'Carian MIME',
@@ -1394,6 +1410,7 @@ Jika anda mahu membuang laman tersebut daripada senarai pantau, klik \"Nyahpanta
 'unwatch'              => 'Nyahpantau',
 'unwatchthispage'      => 'Berhenti memantau',
 'notanarticle'         => 'Bukan laman kandungan',
+'notvisiblerev'        => 'Semakan ini telah dihapuskan',
 'watchnochange'        => 'Tiada perubahan pada laman-laman yang dipantau dalam tempoh yang ditunjukkan.',
 'watchlist-details'    => '$1 laman dipantau (tidak termasuk laman perbincangan).',
 'wlheader-enotif'      => '* Pemberitahuan melalui e-mel diaktifkan.',
@@ -1478,6 +1495,7 @@ Sila lihat $2 untuk rekod penghapusan terkini.',
 ** Permintaan pengarang
 ** Melanggar hak cipta
 ** Vandalisme',
+'delete-edit-reasonlist'      => 'Ubah sebab-sebab hapus',
 'delete-toobig'               => 'Laman ini mempunyai sejarah yang besar, iaitu melebihi $1 jumlah semakan. Oleh itu, laman ini dilindungi daripada dihapuskan untuk mengelak kerosakan di {{SITENAME}} yang tidak disengajakan.',
 'delete-warning-toobig'       => 'Laman ini mempunyai sejarah yang besar, iaitu melebihi $1 jumlah semakan. Menghapuskannya boleh mengganggu perjalanan pangkalan data {{SITENAME}}. Sila berhati-hati.',
 'rollback'                    => 'Undurkan suntingan.',
@@ -1629,6 +1647,7 @@ $1',
 
 # Block/unblock
 'blockip'                     => 'Sekat pengguna',
+'blockip-legend'              => 'Sekat pengguna',
 'blockiptext'                 => 'Gunakan borang di bawah untuk menyekat
 penyuntingan daripada alamat IP atau pengguna tertentu.
 Tindakan ini perlu dilakukan untuk menentang vandalisme sahaja dan selaras
@@ -1740,6 +1759,7 @@ sahkan bahawa anda betul-betul mahu melakukan tindakan ini.',
 'databasenotlocked'   => 'Pangkalan data tidak dikunci.',
 
 # Move page
+'move-page'               => 'Pindah $1',
 'move-page-legend'        => 'Pindah laman',
 'movepagetext'            => "Gunakan borang di bawah untuk mengubah nama laman dan 
 memindahkan semua maklumat sejarahnya kepada nama baru.
@@ -2479,5 +2499,17 @@ Anda juga boleh [[Special:Watchlist/edit|menggunakan penyunting standard]].',
 Imej ditunjuk dalam leraian penuh, jenis fail yang lain dibuka dengan atur cara yang berkenaan secara terus.
 
 Sila masukkan nama fail tanpa awalan "{{ns:image}}:".',
+
+# Special:FileDuplicateSearch
+'fileduplicatesearch'          => 'Cari fail serupa',
+'fileduplicatesearch-summary'  => 'Anda boleh mencari fail serupa berdasarkan nilai cincangannya.
+
+Sila masukkan nama fail tanpa awalan "{{ns:image}}:".',
+'fileduplicatesearch-legend'   => 'Cari fail serupa',
+'fileduplicatesearch-filename' => 'Nama fail:',
+'fileduplicatesearch-submit'   => 'Gelintar',
+'fileduplicatesearch-info'     => '$1 × $2 piksel<br />Saiz fail: $3<br />Jenis MIME: $4',
+'fileduplicatesearch-result-1' => 'Tiada fail yang serupa dengan "$1".',
+'fileduplicatesearch-result-n' => 'Terdapat $2 fail yang serupa dengan "$1".',
 
 );
