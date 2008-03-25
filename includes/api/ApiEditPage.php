@@ -56,6 +56,9 @@ class ApiEditPage extends ApiBase {
 		$titleObj = Title::newFromText($params['title']);
 		if(!$titleObj)
 			$this->dieUsageMsg(array('invalidtitle', $params['title']));
+
+		if($params['dontcreate'] && $titleObj->exists())
+			$this->dieUsageMsg(array('dontcreate-exists'));
 		
 		// Now let's check whether we're even allowed to do this
 		$errors = $titleObj->getUserPermissionsErrors('edit', $wgUser);
@@ -241,6 +244,7 @@ class ApiEditPage extends ApiBase {
 						'Used to detect edit conflicts; leave unset to ignore conflicts.'
 			),
 			'recreate' => 'Override any errors about the article having been deleted in the meantime',
+			'dontcreate' => 'Don\'t create the page if it exists already',
 			'watch' => 'Add the page to your watchlist',
 			'unwatch' => 'Remove the page from your watchlist',
 			'captchaid' => 'CAPTCHA ID from previous request',
