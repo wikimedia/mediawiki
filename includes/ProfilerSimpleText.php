@@ -14,16 +14,13 @@ class ProfilerSimpleText extends ProfilerSimple {
 	function getFunctionReport() {
 		if ($this->visible) print "<pre>";
 			else print "<!--\n";
-		/* Sort destroys keys, we have to tag objects with their names before sorting or outputing */
-		array_walk($this->mCollated,array('self','tag'));
-		usort($this->mCollated,array('self','sort'));
+		uasort($this->mCollated,array('self','sort'));
 		array_walk($this->mCollated,array('self','format'));
 		if ($this->visible) print "</pre>\n";
 			else print "-->\n";
 	}
 	/* dense is good */
 	function sort($a,$b) { return $a['real']<$b['real']; /* sort descending by time elapsed */ }
-	function tag(&$item,$key) { $item['function']=$key; }
-	function format($item,$key) { printf("%3.6f %6d - %s\n",$item['real'],$item['count'], $item['function']); }	
+	function format($item,$key) { printf("%3.6f %6d - %s\n",$item['real'],$item['count'], $key); }	
 }
 ?>
