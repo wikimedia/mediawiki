@@ -892,6 +892,8 @@ Stelle sicher, dass die Versionsgeschichte eines Artikel historisch korrekt ist.
 'mergehistory-no-destination'      => 'Zielseite „$1“ ist nicht vorhanden.',
 'mergehistory-invalid-source'      => 'Ursprungsseite muss ein gültiger Seitenname sein.',
 'mergehistory-invalid-destination' => 'Zielseite muss ein gültiger Seitenname sein.',
+'mergehistory-autocomment'         => '„[[:$1]]“ vereinigt nach „[[:$2]]“',
+'mergehistory-comment'             => '„[[:$1]]“ vereinigt nach „[[:$2]]“: $3',
 
 # Merge log
 'mergelog'           => 'Vereinigungs-Logbuch',
@@ -935,7 +937,7 @@ Wenn du dich mit dem Thema auskennst, kannst du selbst die Seite „[[$1]]“ ve
 'searchall'             => 'alle',
 'showingresults'        => "Hier {{PLURAL:$1|ist '''1''' Ergebnis|sind '''$1''' Ergebnisse}}, beginnend mit Nummer '''$2'''.",
 'showingresultsnum'     => "Hier {{PLURAL:$3|ist '''1''' Ergebnis|sind '''$1''' Ergebnisse}}, beginnend mit Nummer '''$2'''.",
-'showingresultstotal'   => "Es folgen die Surchergebnisse '''$1 - $2''' von '''$3'''",
+'showingresultstotal'   => "Es folgen die Surchergebnisse '''$1–$2''' von '''$3'''",
 'nonefound'             => '<strong>Hinweis</strong>: Erfolglose Suchanfragen werden häufig dadurch verursacht, dass mehr als ein Suchbegriff angegeben wurde. Nur Seiten die alle Suchbegriffe enthalten werden hier angezeigt. Versuche in diesem Fall die Anzahl der Suchbegriffe zu verringern.',
 'powersearch'           => 'Erweiterte Suche',
 'powersearch-legend'    => 'Erweiterte Suche',
@@ -1632,8 +1634,7 @@ Versionen wiederhergestellt. Wenn seit der Löschung eine neue Seite gleichen
 Namens erstellt wurde, werden die wiederhergestellten Versionen chronologisch in die Versionsgeschichte eingeordnet.
 Sichtbarkeits-Einschränkungen an Dateiversionen gehen bei einer Wiederherstellung verloren.',
 'undeleterevdel'               => 'Die Wiederherstellung wird nicht durchgeführt, wenn die aktuellste Version versteckt ist oder versteckte Teile enthält.
-In diesem Fall darf die aktuellste Version nicht markiert werden oder ihr Status muss auf den einer normalen Version geändert werden.
-Versionen von Dateien, auf die du keinen Zugriff hast, werden nicht wiederhergestellt.',
+In diesem Fall darf die aktuellste Version nicht markiert werden oder ihr Status muss auf den einer normalen Version geändert werden.',
 'undeletehistorynoadmin'       => 'Diese Seite wurde gelöscht. Der Grund für die Löschung ist in der Zusammenfassung angegeben,
 genauso wie Details zum letzten Benutzer, der diese Seite vor der Löschung bearbeitet hat.
 Der aktuelle Text der gelöschten Seite ist nur Administratoren zugänglich.',
