@@ -4,6 +4,7 @@
  * @addtogroup Language
  *
  * @author Ерней
+ * @author Himiq Dzyu
  */
 
 $fallback = 'ru';
@@ -168,11 +169,14 @@ $messages = array(
 'jumptosearch'      => 'эзләү',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
-'mainpage'    => 'Төп бит',
-'privacy'     => 'Яшеренлек сәясәте',
-'privacypage' => 'Project:Яшеренлек сәясәте',
+'edithelp'     => 'Үзгәртү ярдәме',
+'edithelppage' => 'Ярдәм:Үзгәртү',
+'mainpage'     => 'Төп бит',
+'privacy'      => 'Яшеренлек сәясәте',
+'privacypage'  => 'Project:Яшеренлек сәясәте',
 
 'ok'                      => 'Ярар',
+'youhavenewmessages'      => 'Сездә $1 ($2) бар.',
 'newmessageslink'         => 'яңа хәбәрләр',
 'newmessagesdifflink'     => 'соңы үзгәртү',
 'youhavenewmessagesmulti' => 'Сезнең $1 да яңа хәбәрләр бар',
@@ -181,6 +185,7 @@ $messages = array(
 'toc'                     => 'Эчтәлек',
 'showtoc'                 => 'күрсәтергә',
 'hidetoc'                 => 'яшерергә',
+'red-link-title'          => '$1 (әле язылмаган)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Бит',
@@ -195,12 +200,15 @@ $messages = array(
 'nstab-category'  => 'Категория',
 
 # Main script and global functions
-'nosuchaction' => 'Шулай гамәл юк',
+'nosuchaction'      => 'Шулай гамәл юк',
+'nosuchspecialpage' => 'Шундый махсус бит юк',
 
 # General errors
-'error'         => 'Хата',
-'databaseerror' => 'Мәгълүматлар базасы хатасы',
-'viewsource'    => 'Чыганак карарга',
+'error'              => 'Хата',
+'databaseerror'      => 'Мәгълүматлар базасы хатасы',
+'internalerror'      => 'Эчке хата',
+'internalerror_info' => 'Эчке хата: $1',
+'viewsource'         => 'Чыганак карарга',
 
 # Login and logout pages
 'logouttitle'                => 'Чыгарга',
@@ -245,7 +253,15 @@ $messages = array(
 'bold_tip'        => 'Калын язылышы',
 'italic_sample'   => 'Курсив язылышы',
 'italic_tip'      => 'Курсив язылышы',
+'link_sample'     => 'Сылтаманың башисеме',
+'link_tip'        => 'Эчке сылтама',
+'extlink_sample'  => 'http://www.misal.tat сылтаманың башисеме',
+'extlink_tip'     => 'Тышкы сылтама (http:// алкушымчасы турында онытмагыз)',
 'headline_sample' => 'Башисем тексты',
+'math_sample'     => 'Формуланы монда өстәгез',
+'math_tip'        => 'Математика формуласы (LaTeX)',
+'nowiki_sample'   => 'Форматланмаган текстны монда өстәгез',
+'nowiki_tip'      => 'Вики-форматлауны исәпкә алмаска',
 
 # Edit pages
 'summary'                => 'Үзгәртүләр тасвиры',
@@ -317,6 +333,9 @@ $messages = array(
 'imagelist_size'        => 'Үлчәм',
 'imagelist_description' => 'Тасвир',
 
+# Random page
+'randompage' => 'Очраклы бит',
+
 # Special:Allpages
 'allpagesprev' => 'Элекке',
 'allpagesnext' => 'Киләсе',
@@ -336,5 +355,8 @@ $messages = array(
 # Contributions
 'contributions' => 'Кулланучының кертеме',
 'mycontris'     => 'Кертемем',
+
+# Tooltip help for the actions
+'tooltip-ca-edit' => 'Сез бу бит үзгәртә аласыз. Зинһар, саклаганчы карап алуны кулланыгыз.',
 
 );

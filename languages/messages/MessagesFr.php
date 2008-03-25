@@ -891,6 +891,8 @@ Assurez-vous que ce changement conserve la continuité de l’historique.',
 'mergehistory-no-destination'      => 'La page de destination $1 n’existe pas.',
 'mergehistory-invalid-source'      => 'La page d’origine doit avoir un titre valide.',
 'mergehistory-invalid-destination' => 'La page de destination doit avoir un titre valide.',
+'mergehistory-autocomment'         => '[[:$1]] fusionné avec [[:$2]]',
+'mergehistory-comment'             => '[[:$1]] fusionné avec [[:$2]] : $3',
 
 # Merge log
 'mergelog'           => 'Historique des fusions',

@@ -135,16 +135,24 @@ $messages = array(
 'dec'           => 'dis',
 
 # Categories related messages
-'categories'               => 'Katiguriyakuna',
-'categoriespagetext'       => "Kay qatiq katiguriyakunaqa p'anqayuqmi icha midyayuqmi.",
-'pagecategories'           => '{{PLURAL:$1|Katiguriya|Katiguriyakuna}}',
-'category_header'          => '"$1" sutiyuq katiguriyapi qillqakuna',
-'subcategories'            => 'Urin katiguriyakuna',
-'category-media-header'    => '"$1" sutiyuq katiguriyapi multimidya willañiqikuna',
-'category-empty'           => "''Kay katiguriyaqa ch'usaqmi.''",
-'hidden-categories'        => '{{PLURAL:$1|Pakasqa katiguriya|Pakasqa katiguriyakuna}}',
-'hidden-category-category' => 'Pakasqa katiguriyakuna', # Name of the category where hidden categories will be listed
-'listingcontinuesabbrev'   => 'qatiy',
+'categories'                     => 'Katiguriyakuna',
+'categoriespagetext'             => "Kay qatiq katiguriyakunaqa p'anqayuqmi icha midyayuqmi.",
+'special-categories-sort-count'  => 'yupaykama allichay',
+'special-categories-sort-abc'    => 'qallarina sanampakama allichay',
+'pagecategories'                 => '{{PLURAL:$1|Katiguriya|Katiguriyakuna}}',
+'category_header'                => '"$1" sutiyuq katiguriyapi qillqakuna',
+'subcategories'                  => 'Urin katiguriyakuna',
+'category-media-header'          => '"$1" sutiyuq katiguriyapi multimidya willañiqikuna',
+'category-empty'                 => "''Kay katiguriyaqa ch'usaqmi.''",
+'hidden-categories'              => '{{PLURAL:$1|Pakasqa katiguriya|Pakasqa katiguriyakuna}}',
+'hidden-category-category'       => 'Pakasqa katiguriyakuna', # Name of the category where hidden categories will be listed
+'category-subcat-count'          => '{{PLURAL:$2|Kay katiguriyapiqa kay qatiq huklla urin katiguriyam.|Kay katiguriyapiqa kay qatiq {{PLURAL:$1|urin katiguriyam|$1 urin katiguriyakunam}}, $2-pura.}}',
+'category-subcat-count-limited'  => 'Kay katiguriyapiqa kay qatiq {{PLURAL:$1|urin katiguriyam|$1 urin katiguriyakunam}}.',
+'category-article-count'         => "{{PLURAL:$2|Kay katiguriyapiqa kay qatiq huklla p'anqam.|Kay katiguriyapiqa kay qatiq {{PLURAL:$1|p'anqam|$1 p'anqakunam}}, $2-pura.}}",
+'category-article-count-limited' => "Kay katiguriyapiqa kay qatiq {{PLURAL:$1|p'anqam|$1 p'anqakunam}}.",
+'category-file-count'            => '{{PLURAL:$2|Kay katiguriyapiqa kay qatiq huklla willañiqim.|Kay katiguriyapiqa kay qatiq {{PLURAL:$1|willañiqim|$1 willañiqikunam}}, $2-pura.}}',
+'category-file-count-limited'    => 'Kay katiguriyapiqa kay qatiq {{PLURAL:$1|willañiqim|$1 willañiqikunam}}.',
+'listingcontinuesabbrev'         => 'qatiy',
 
 'mainpagetext'      => "''MediaWiki'' nisqa llamp'u kaqqa aypaylla takyachisqañam.",
 'mainpagedocfooter' => "Wiki llamp'u kaqmanta willasunaykipaqqa [http://meta.wikimedia.org/wiki/Help:Contents Ruraqpaq yanapana] ''(User's Guide)'' sutiyuq p'anqata qhaway.
@@ -189,7 +197,9 @@ $messages = array(
 'permalink'         => "Kakuq t'inki",
 'print'             => "Ch'ipachiy",
 'edit'              => 'qillqay',
+'create'            => 'Kamariy',
 'editthispage'      => "Kay p'anqata llamk'apuy",
+'create-this-page'  => "Kay p'anqata kamariy",
 'delete'            => 'Qulluy',
 'deletethispage'    => "Kay p'anqata qulluy",
 'undelete_short'    => "Paqarichiy {{PLURAL:$1|huk llamk'apusqa|$1 llamk'apusqa}}",
@@ -690,6 +700,8 @@ astawan rikunki [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} qulluy hallch
 'logdelete-logaction'         => '$1 {{PLURAL:$1|tukusqa|tukusqakuna}} [[$3]]-man $2 hamuypi',
 'revdelete-success'           => "Llamk'apusqap rikunalla kayninqa aypalla hukchasqañam.",
 'logdelete-success'           => 'Tukusqap rikunalla kayninqa aypalla hukchasqañam.',
+'pagehist'                    => "P'anqap wiñay kawsaynin",
+'deletedhist'                 => 'Qullusqa wiñay kawsay',
 
 # Oversight log
 'oversightlog'    => "Yanqalla panta hallch'a",
@@ -707,12 +719,14 @@ Takyachikuy kay hukchayqa allin wiñay kawsay ñiqita ama waqllichunchu chaylla.
 'mergehistory-go'                  => "Huñunalla llamk'apusqakunata rikuchiy",
 'mergehistory-submit'              => "Llamk'apusqakunata huñuy",
 'mergehistory-empty'               => "Manam atinichu llamk'apusqakunata huñuyta.",
-'mergehistory-success'             => "[[:$1]]-paq $3 llamk'apusqakunaqa aypalla [[:$2]]-man huñusqañam.",
+'mergehistory-success'             => "[[:$1]]-paq $3 {{PLURAL:$3|llamk'apusqaqa|llamk'apusqakunaqa}} aypalla [[:$2]]-man huñusqañam.",
 'mergehistory-fail'                => "Manam atinichu wiñay kawsaykunata huñuyta. Ama hina kaspa, p'anqata pacha kuskanachina tupukunatapas musuqmanta llanchiy.",
 'mergehistory-no-source'           => "Pukyu p'anqaqa $1 manam kanchu.",
 'mergehistory-no-destination'      => "Taripana p'anqaqa $1 manam kanchu.",
 'mergehistory-invalid-source'      => "Qusqayki pukyu p'anqap sutinqa manam allinchu.",
 'mergehistory-invalid-destination' => "Qusqayki taripana p'anqap sutinqa manam allinchu.",
+'mergehistory-autocomment'         => '[[:$1]]-ta [[:$2]]-man huñusqa',
+'mergehistory-comment'             => '[[:$1]]-ta [[:$2]]-man huñusqa: $3',
 
 # Merge log
 'mergelog'           => "Huñuy hallch'a",
@@ -745,11 +759,16 @@ Takyachikuy kay hukchayqa allin wiñay kawsay ñiqita ama waqllichunchu chaylla.
 'viewprevnext'          => 'Qhaway ($1) ($2) ($3).',
 'search-result-size'    => '$1 ({{PLURAL:$2|1 rima|$2 rimakuna}})',
 'search-result-score'   => 'Chaniyuq kaynin: $1%',
+'search-redirect'       => '(pusapuna $1)',
+'search-section'        => '(raki $1)',
+'search-suggest'        => 'Kaytachu niyta munanki? - $1',
 'searchall'             => 'tukuy',
 'showingresults'        => "Qhipanpiqa rikuchkanki {{PLURAL:$1|'''1''' tarisqatam|'''$1'''-kama tarisqakunatam}}, '''$2''' huchhawan qallarispa.",
 'showingresultsnum'     => "Qhipanpiqa rikuchkanki {{PLURAL:$3|'''1''' tarisqatam|'''$3''' tarisqakunatam}}, '''$2''' yupaywan qallarispa.",
+'showingresultstotal'   => "Kay qatiqpi taripasqakuna '''$1 - $2''', '''$3'''-pura",
 'nonefound'             => '<strong>Musyay</strong>: Mana aypalla maskasqaqa paqarin ancha pasaq, mana hallch\'api kaq rimakunata ("kay", "chay", "huk") maskaptiykim, ichataq hukmanta aswan maskana rimakunata quptiykim (tukuy maskana rimayuq p\'anqakunallam paqarinqa).',
 'powersearch'           => 'Maskay',
+'powersearch-legend'    => 'Ñawparikusqa maskay',
 'powersearchtext'       => "Kay suti k'itikunapi maskay:<br />
 $1<br />
 $2 Pusapunakunata rikuchiy<br />Maskay: $3 $9",
@@ -993,6 +1012,9 @@ Kay qatiqpiqa willañiqimanta qulluy hallch'atam rikunki:",
 'upload_source_file' => ' (antañiqiqniykipi willañiqi)',
 
 # Special:Imagelist
+'imagelist-summary'     => "Kay sapaq p'anqapiqa tukuy churkusqa willañiqikunatam rikunki.
+Kikinmantaqa ñaqha churkusqa willañiqikunatam sutisuyup patanpi rikunki.
+Tunup umanpi ñit'ispaqa allichaytam hukchanki.",
 'imagelist_search_for'  => 'Rikchap sutinta maskay:',
 'imgdesc'               => 'uray',
 'imgfile'               => 'willañiqi',
@@ -1025,6 +1047,7 @@ Kay qatiqpiqa willañiqimanta qulluy hallch'atam rikunki:",
 'noimage'                   => 'Manam kanchu kay sutiyuq willañiqi, $1ta atinki.',
 'noimage-linktext'          => 'churkuy',
 'uploadnewversion-linktext' => 'Kay willañiqi ñaqha musuqchasqata churkuy',
+'imagepage-searchdupe'      => 'Iskaychasqa willañiqikunata maskay',
 
 # File reversion
 'filerevert'                => '$1-ta kutichiy',
@@ -1389,6 +1412,7 @@ Kay qatiqpiqa <strong>$1</strong> sutiyuq p'anqap kunan allinkachinankunatam rik
 # Undelete
 'undelete'                     => "Qullusqa p'anqata paqarichiy",
 'undeletepage'                 => "Qullusqa p'anqakunata qhawaspa paqarichiy",
+'undeletepagetitle'            => "'''Kay qatiqpiqa [[:$1]]-pa qullusqa musuqchayninkunam'''.",
 'viewdeletedpage'              => "Qullusqa p'anqakunata qhaway",
 'undeletepagetext'             => "Kay p'anqakunaqa qullusqam, ichataq hallch'apiraqmi kachkan, chayrayku paqarichiytam atinki. Mit'a-mit'allaqa hallch'ata ch'usaqchankuchá.",
 'undeleteextrahelp'            => "Tukuy llamk'apusqakunata paqarichinaykipaqqa, mana imatapas akllaspa '''Paqarichiy!''' ñit'iy. Huklla llamk'apusqakunata paqarichinaykipaqqa, munasqayki llamk'apusqakunata akllaspa '''Paqarichiy!''' ñit'iy. '''Mana imapas''' nisqapi ñit'iptiykiqa, tukuy akllasqaqa willana k'itichapas ch'usaqchasqam kanqa.",
@@ -1829,8 +1853,8 @@ $1",
 'imagemaxsize'         => "Willana p'anqakunapi rikchakunata kaykama saywachay:",
 'thumbsize'            => "Ch'iñicha rikchachap chhikan kaynin:",
 'widthheightpage'      => "$1×$2, $3 p'anqa",
-'file-info'            => '(willañiqip chhikan kaynin: $1; laya MIME: $2)',
-'file-info-size'       => '($1 × $2 iñu; willañiqip chhikan kaynin: $3; laya MIME: $4)',
+'file-info'            => '(willañiqip chhikan kaynin: $1; MIME laya: $2)',
+'file-info-size'       => '($1 × $2 iñu; willañiqip chhikan kaynin: $3; MIME laya: $4)',
 'file-nohires'         => '<small>Manam kanchu aswan huyakuyuq rikcha.</small>',
 'svg-long-desc'        => '(SVG willañiqi, rimasqakama $1 × $2 iñuyuq, willañiqip chhikan kaynin: $3)',
 'show-big-image'       => 'Qallariy huyaku',
@@ -1839,11 +1863,12 @@ $1",
 # Special:Newimages
 'newimages'             => 'Musuq rikchakunap suyu-suyun',
 'imagelisttext'         => "Kay qatiqpiqa '''$1''' {{PLURAL:$1|rikchatam|rikchakunatam}} rikunki, $2-kama ñiqichasqa.",
+'newimages-summary'     => "Kay sapaq p'anqapiqa ñaqha churkusqa willañiqikunatam rikunki",
 'showhidebots'          => '($1 rurana antacha)',
 'noimages'              => 'Manam ima rikunallapas kanchu.',
 'ilsubmit'              => 'Maskay',
 'bydate'                => "p'unchawkama",
-'sp-newimages-showfrom' => 'Musuq rikchakunata rikuchiy, $1-wan qallarispa',
+'sp-newimages-showfrom' => 'Musuq rikchakunata rikuchiy, $2, $1-wan qallarispa',
 
 # Bad image list
 'bad_image_list' => "Chantaqa kay hinam:
@@ -2280,5 +2305,17 @@ Sapsilla ñawpaq qhawariyta tukuykachay.',
 Rikchakunatataq hunt'a ch'irkukupim rikunki. Huk willañiqi llayakunaqa tantapusqa wakichiwanmi chiqalla kicharikun.
 
 Willañiqi sutita yaykuchispaqa ama \"{{ns:image}}:\" ñawpaq k'askaqta qillqamuychu.",
+
+# Special:FileDuplicateSearch
+'fileduplicatesearch'          => 'Iskaychasqa willañiqikunata maskay',
+'fileduplicatesearch-summary'  => "Iskaychasqa willañiqikunata maskay ''hash'' chaninpi tiksispa.
+
+Mana “{{ns:image}}:” k'askaqniyuq willañiqip sutinta yaykuchiy.",
+'fileduplicatesearch-legend'   => 'Iskaychasqata maskay',
+'fileduplicatesearch-filename' => 'Willañiqip sutin:',
+'fileduplicatesearch-submit'   => 'Maskay',
+'fileduplicatesearch-info'     => '$1 × $2 iñu<br />Willañiqip chhikan kaynin: $3<br />MIME laya: $4',
+'fileduplicatesearch-result-1' => '"$1" sutiyuq willañiqiqa manam kaqllalla iskaychasqayuqchu.',
+'fileduplicatesearch-result-n' => '"$1" sutiyuq willañiqiqa {{PLURAL:$2|1 kaqllalla iskaychasqayuqmi|$2 kaqllalla iskaychasqakunayuqmi}}.',
 
 );

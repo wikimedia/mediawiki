@@ -9,7 +9,46 @@
  */
 
 $messages = array(
+# User preference toggles
+'tog-underline'            => 'Gulisan lang panglalam deng suglung:',
+'tog-justify'              => 'Ibie ing sangkan kareng parapu',
+'tog-hideminor'            => 'Isalikut la reng kasalugsungang mangalating meyalili',
+'tog-extendwatchlist'      => 'Dagdagan la reng babanten para ipakit la reng kailangan mayalili',
+'tog-usenewrc'             => 'Mesanting la reng bayung mengayalili (JavaScript)',
+'tog-showtoolbar'          => 'Ipakit ya panaliling toolbar (JavaScript)',
+'tog-editondblclick'       => 'Alilan la reng bulung kapamilatan ning makataduang pamagpindut (JavaScript)',
+'tog-editsection'          => 'Enable section editing via [edit] links
+Pabusten ing pamanaliling dake kapamilatan [alilan] ning suglung',
+'tog-rememberpassword'     => 'Tandanan ya ing kanakung login keng computer a ini',
+'tog-editwidth'            => 'Cajun a alilan atin yang katmung lualas',
+'tog-watchcreations'       => 'Idagdag la deng bulung a lelengan ku kareng babanten',
+'tog-watchdefault'         => 'Idagdag la reng bulung a inalilan ku kareng babanten',
+'tog-watchmoves'           => 'Idagdag la reng bulung a inalis ku kareng babanten',
+'tog-watchdeletion'        => 'Idagdag la reng bulung a bira ku kareng babanten',
+'tog-enotifwatchlistpages' => 'E-mail mu ku ustung ing bulung a babanten ku meyalili ya',
+'tog-enotifusertalkpages'  => 'E-mail mu ku ustung ing kanakung gamit talamitam meyalili ya',
+'tog-enotifminoredits'     => 'E-mail mu ku kareng mangalating alili da reng bulung',
+'tog-enotifrevealaddr'     => 'Ipakit me ing kanakung e-mail address kareng pamanabisang sulat',
+'tog-shownumberswatching'  => 'Ipakit la reng bilang da reng magbanteng talagamit',
+'tog-watchlisthideown'     => 'Isaliut mo reng alili kareng babante',
+'tog-showhiddencats'       => 'Ipakit la reng makasalikut a categories',
+
+'underline-always' => 'Pane',
+
 # Dates
+'sunday'    => 'Dominggu',
+'monday'    => 'Lunis',
+'tuesday'   => 'Martis',
+'wednesday' => 'Mierkulis',
+'thursday'  => 'Juebis',
+'friday'    => 'Biernis',
+'saturday'  => 'Sabadu',
+'sun'       => 'Dom',
+'mon'       => 'Lun',
+'tue'       => 'Mar',
+'wed'       => 'Mie',
+'thu'       => 'Jue',
+'fri'       => 'Bie',
 'april'     => 'Abril',
 'june'      => 'Juniu',
 'july'      => 'Juliu',

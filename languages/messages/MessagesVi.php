@@ -793,6 +793,8 @@ phục hồi lại bằng cách dùng giao diện này, trừ trường hợp th
 'logdelete-logaction'         => '$1 sự kiện đối với [[$3]] được thiết lập chế độ $2',
 'revdelete-success'           => 'Khả năng nhìn thấy của phiên bản đã được thiết lập thành công.',
 'logdelete-success'           => 'Khả năng nhìn thấy của sự kiện đã được thiết lập thành công.',
+'pagehist'                    => 'Lịch sử trang',
+'deletedhist'                 => 'Lịch sử đã xóa',
 
 # Oversight log
 'oversightlog'    => 'Nhật trình giám thị',
@@ -800,10 +802,8 @@ phục hồi lại bằng cách dùng giao diện này, trừ trường hợp th
 
 # History merging
 'mergehistory'                     => 'Trộn lịch sử trang',
-'mergehistory-header'              => "Trang này cho phép trộn các sửa đổi của lịch sử một trang nguồn vào một trang mới.
-Xin hãy bảo đảm tính liên tục của lịch sử trang.
-
-'''Ít nhất phiên bản hiện tại của trang nguồn phải được duy trì.'''",
+'mergehistory-header'              => 'Trang này cho phép trộn các sửa đổi trong lịch sử của một trang nguồn vào một trang mới hơn.
+Xin hãy bảo đảm giữ vững tính liên tục của lịch sử trang.',
 'mergehistory-box'                 => 'Trộn các sửa đổi của hai trang:',
 'mergehistory-from'                => 'Trang nguồn:',
 'mergehistory-into'                => 'Trang đích:',
@@ -811,13 +811,15 @@ Xin hãy bảo đảm tính liên tục của lịch sử trang.
 'mergehistory-merge'               => 'Các sửa đổi sau của [[:$1]] có thể trộn được với [[:$2]]. Dùng một nút chọn trong cột để trộn các sửa đổi từ đầu cho đến thời điểm đã chọn. Lưu ý là việc dùng các liên kết chuyển hướng sẽ khởi tạo lại cột này.',
 'mergehistory-go'                  => 'Hiển thị các sửa đổi có thể trộn được',
 'mergehistory-submit'              => 'Trộn các sửa đổi',
-'mergehistory-empty'               => 'Không có sửa đổi nào được trộn',
-'mergehistory-success'             => '$3 sửa đổi của [[:$1]] đã được trộn vào [[:$2]].',
+'mergehistory-empty'               => 'Không thể trộn được sửa đổi nào.',
+'mergehistory-success'             => '$3 {{PLURAL:$3|sửa đổi|sửa đổi}} của [[:$1]] đã được trộn vào [[:$2]].',
 'mergehistory-fail'                => 'Không thể thực hiện được việc trộn lịch sử sửa đổi, vui lòng chọn lại trang cũng như thông số ngày giờ.',
 'mergehistory-no-source'           => 'Trang nguồn $1 không tồn tại.',
 'mergehistory-no-destination'      => 'Trang đích $1 không tồn tại.',
 'mergehistory-invalid-source'      => 'Trang nguồn phải có tiêu đề hợp lệ.',
 'mergehistory-invalid-destination' => 'Trang đích phải có tiêu đề hợp lệ.',
+'mergehistory-autocomment'         => 'Đã trộn [[:$1]] vào [[:$2]]',
+'mergehistory-comment'             => 'Đã trộn [[:$1]] vào [[:$2]]: $3',
 
 # Merge log
 'mergelog'           => 'Nhật trình trộn',

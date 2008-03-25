@@ -984,6 +984,8 @@ Ujistěte se, že tato změna udrží souvislost a posloupnost verzí v historii
 'mergehistory-no-destination'      => 'Cílová stránka $1 neexistuje.',
 'mergehistory-invalid-source'      => 'Zdrojová stránka musí mít platný název.',
 'mergehistory-invalid-destination' => 'Cílová stránka musí mít platný název.',
+'mergehistory-autocomment'         => 'Sloučena stránka [[:$1]] do stránky [[:$2]]',
+'mergehistory-comment'             => 'Sloučena stránka [[:$1]] do stránky [[:$2]]: $3',
 
 # Merge log
 'mergelog'           => 'Kniha slučování',
