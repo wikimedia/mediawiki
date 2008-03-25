@@ -132,6 +132,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 344) Purge cache for talk/article pages when deleting the other tab
 * (bug 13436) Treat image captions correctly when they include option keywords
   (like ending with "px" or starting with "upright")
+* Trackback display formatting fixed
 
 
 === API changes in 1.13 ===
