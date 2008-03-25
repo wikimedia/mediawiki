@@ -20,7 +20,7 @@ class ProfilerSimpleText extends ProfilerSimple {
 			else print "-->\n";
 	}
 	/* dense is good */
-	function sort($a,$b) { return $a['real']<$b['real']; /* sort descending by time elapsed */ }
-	function format($item,$key) { printf("%3.6f %6d - %s\n",$item['real'],$item['count'], $key); }	
+	static function sort($a,$b) { return $a['real']<$b['real']; /* sort descending by time elapsed */ }
+	static function format($item,$key) { printf("%3.6f %6d - %s\n",$item['real'],$item['count'], $key); }	
 }
 ?>
