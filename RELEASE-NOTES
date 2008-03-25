@@ -134,6 +134,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 13436) Treat image captions correctly when they include option keywords
   (like ending with "px" or starting with "upright")
 * Trackback display formatting fixed
+* Don't die when single-element arrays are passed to SQL query constructors
+  that have an array index other than 0
 
 
 === API changes in 1.13 ===
