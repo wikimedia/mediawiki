@@ -279,7 +279,7 @@ $messages = array(
 
 # Categories related messages
 'categories'                     => 'Kategorien',
-'categoriespagetext'             => 'Die folgenden Kategorien in {{SITENAME}} enthalten Seiten oder Medien:',
+'categoriespagetext'             => 'Folgende Kategorien in {{SITENAME}} enthalten Seiten oder Dateien:',
 'special-categories-sort-count'  => 'Sortierung nach Anzahl',
 'special-categories-sort-abc'    => 'Sortierung nach Alphabet',
 'pagecategories'                 => '{{PLURAL:$1|Kategorie|Kategorien}}',
@@ -289,12 +289,12 @@ $messages = array(
 'category-empty'                 => "''Diese Kategorie enthält zur Zeit keine Seiten oder Medien.''",
 'hidden-categories'              => '{{PLURAL:$1|Versteckte Kategorie|Versteckte Kategorien}}',
 'hidden-category-category'       => 'Versteckte Kategorien', # Name of the category where hidden categories will be listed
-'category-subcat-count'          => '{{PLURAL:$2|Diese Kategorie enthält die folgende Unterkategorie.|Diese Kategorie enthält die {{PLURAL:$1|folgende Unterkategorie|folgenden $1 Unterkategorien}} (von insgesamt $2 Kategorie).}}',
-'category-subcat-count-limited'  => 'Diese Kategorie enthält die {{PLURAL:$1|folgende Unterkategorie|folgenden $1 Unterkategorien}}.',
-'category-article-count'         => '{{PLURAL:$2|Diese Kategorie enthält die folgende Seite.|Die {{PLURAL:$1|folgende Seite ist|folgenden $1 Seiten sind}} in dieser Kategorie enthalten (von insgesamt $2 Seiten).}}',
-'category-article-count-limited' => 'Die {{PLURAL:$1|folgende Seite ist|folgenden $1 Seiten sind}} in dieser Kategorie enthalten.',
-'category-file-count'            => '{{PLURAL:$2|Diese Kategorie enthält die folgende Datei.|Die {{PLURAL:$1|folgende Datei ist|folgenden $1 Dateien sind}} in dieser Kategorie enthalten (von insgesamt $2 Dateien).}}',
-'category-file-count-limited'    => 'Die {{PLURAL:$1|folgende Datei ist|folgenden $1 Dateien sind}} in dieser Kategorie enthalten.',
+'category-subcat-count'          => '{{PLURAL:$2|Diese Kategorie enthält folgende Unterkategorie:|{{PLURAL:$1|Folgende Unterkategorie ist eine von insgesamt $2 Unterkategorien in dieser Kategorie:|Diese Kategorie enthält insgesamt $2 Unterkategorien. Hier werden $1 Unterkategorien dieser Kategorie angezeigt:}}}}',
+'category-subcat-count-limited'  => 'Diese Kategorie enthält folgende {{PLURAL:$1|Unterkategorie|$1 Unterkategorien}}:',
+'category-article-count'         => '{{PLURAL:$2|Diese Kategorie enthält folgende Seite:|{{PLURAL:$1|Folgende Seite ist eine von insgesamt $2 Seiten in dieser Kategorie:|Diese Kategorie enthält insgesamt $2 Seiten. Hier werden $1 Seiten dieser Kategorie angezeigt:}}}}',
+'category-article-count-limited' => 'Folgende{{PLURAL:$1|Seite ist|$1 Seiten sind}} in dieser Kategorie enthalten:',
+'category-file-count'            => '{{PLURAL:$2|Diese Kategorie enthält folgende Datei:|{{PLURAL:$1|Folgende Datei ist eine von insgesamt $2 Dateien in dieser Kategorie:|Diese Kategorie enthält insgesamt $2 Dateien. Hier werden $1 Dateien dieser Kategorie angezeigt:}}}}',
+'category-file-count-limited'    => 'Folgende {{PLURAL:$1|Datei ist|$1 Dateien sind}} in dieser Kategorie enthalten:',
 'listingcontinuesabbrev'         => '(Fortsetzung)',
 
 'mainpagetext'      => 'MediaWiki wurde erfolgreich installiert.',
@@ -706,7 +706,7 @@ Du kannst $1 oder einen der anderen [[{{MediaWiki:Grouppage-sysop}}|Administrato
 'whitelistreadtitle'        => 'Zum Lesen ist es erforderlich, angemeldet zu sein',
 'whitelistreadtext'         => 'Du musst dich [[Special:Userlogin|hier anmelden]], um Seiten lesen zu können.',
 'whitelistacctitle'         => 'Du bist nicht berechtigt, ein Benutzerkonto anzulegen.',
-'whitelistacctext'          => 'Um in {{SITENAME}} Benutzer anlegen zu dürfen, musst du dich [[Special:Userlogin|hier anmelden]] und die nötigen Berechtigungen haben.',
+'whitelistacctext'          => 'Um in {{SITENAME}} Benutzerkonten anlegen zu dürfen, musst du dich [[Special:Userlogin|hier anmelden]] und die nötigen Berechtigungen haben.',
 'confirmedittitle'          => 'Zum Bearbeiten ist die E-Mail-Bestätigung erforderlich.',
 'confirmedittext'           => 'Du musst deine E-Mail-Adresse erst bestätigen, bevor du Bearbeitungen durchführen kannst. Bitte ergänze und bestätige Deine E-Mail in den [[Special:Preferences|Einstellungen]].',
 'nosuchsectiontitle'        => 'Abschnitt nicht vorhanden',
@@ -731,7 +731,7 @@ Du kannst $1 oder einen der anderen [[{{MediaWiki:Grouppage-sysop}}|Administrato
 'updated'                   => '(Geändert)',
 'note'                      => '<strong>Hinweis:</strong>',
 'previewnote'               => 'Dies ist nur eine Vorschau, die Seite wurde noch nicht gespeichert!',
-'previewconflict'           => 'Diese Vorschau gibt den Inhalt des oberen Textfeldes wieder; so wird die Seite aussehen, wenn du jetzt speicherst.',
+'previewconflict'           => 'Diese Vorschau gibt den Inhalt des oberen Textfeldes wieder. So wird der Artikel aussehen, wenn du jetzt speicherst.',
 'session_fail_preview'      => '<strong>Deine Bearbeitung konnte nicht gespeichert werden, da deine Sitzungsdaten verloren gegangen sind.
 Bitte versuche es erneut, indem du unter der folgenden Textvorschau nochmals auf „Seite speichern“ klickst. 
 Sollte das Problem bestehen bleiben, melde dich ab und danach wieder an.</strong>',
@@ -867,6 +867,8 @@ Nähere Angaben zum Löschvorgang sowie eine Begründung finden sich im [{{fullu
 'logdelete-logaction'         => '$1 {{plural:$1|Eintrag|Einträge}} für [[$3]] auf Modus $2 gesetzt',
 'revdelete-success'           => 'Versionsansicht erfolgreich geändert.',
 'logdelete-success'           => 'Logbuch-Aktion erfolgreich gesetzt.',
+'pagehist'                    => 'Versionsgeschichte',
+'deletedhist'                 => 'Gelöschte Versionen',
 
 # Oversight log
 'oversightlog'    => 'Oversight-Logbuch',
@@ -919,7 +921,7 @@ Alternativ kannst du auch den [[Special:Allpages|alphabetischen Index]] nach äh
 
 Wenn du dich mit dem Thema auskennst, kannst du selbst die Seite „[[$1]]“ verfassen.",
 'noexactmatch-nocreate' => "'''Es existiert keine Seite mit dem Titel „$1“.'''",
-'toomanymatches'        => 'Es Anzahl der Suchergnisse ist zu groß, bitte versuche eine andere Abfrage.',
+'toomanymatches'        => 'Die Anzahl der Suchergebnisse ist zu groß, bitte versuche eine andere Abfrage.',
 'titlematches'          => 'Übereinstimmungen mit Seitentiteln',
 'notitlematches'        => 'Keine Übereinstimmungen mit Seitentiteln',
 'textmatches'           => 'Übereinstimmungen mit Inhalten',
@@ -929,8 +931,13 @@ Wenn du dich mit dem Thema auskennst, kannst du selbst die Seite „[[$1]]“ ve
 'viewprevnext'          => 'Zeige ($1) ($2) ($3)',
 'search-result-size'    => '$1 ($2 Wörter)',
 'search-result-score'   => 'Relevanz: $1 %',
+'search-redirect'       => '(Weiterleitung $1)',
+'search-section'        => '(Abschnitt $1)',
+'search-suggest'        => 'Meintest du „$1“?',
+'searchall'             => 'alle',
 'showingresults'        => "Hier {{PLURAL:$1|ist '''1''' Ergebnis|sind '''$1''' Ergebnisse}}, beginnend mit Nummer '''$2'''.",
 'showingresultsnum'     => "Hier {{PLURAL:$3|ist '''1''' Ergebnis|sind '''$1''' Ergebnisse}}, beginnend mit Nummer '''$2'''.",
+'showingresultstotal'   => "Es folgen die Surchergebnisse '''$1 - $2''' von '''$3'''",
 'nonefound'             => '<strong>Hinweis</strong>: Erfolglose Suchanfragen werden häufig dadurch verursacht, dass mehr als ein Suchbegriff angegeben wurde. Nur Seiten die alle Suchbegriffe enthalten werden hier angezeigt. Versuche in diesem Fall die Anzahl der Suchbegriffe zu verringern.',
 'powersearch'           => 'Erweiterte Suche',
 'powersearch-legend'    => 'Erweiterte Suche',
@@ -1615,7 +1622,7 @@ Bitte gehe zurück und versuche den Vorgang erneut auszuführen.',
 # Undelete
 'undelete'                     => 'Gelöschte Seite wiederherstellen',
 'undeletepage'                 => 'Gelöschte Seite wiederherstellen',
-'undeletepagetitle'            => "'''Die folgende Ausgabe besteht als gelöschten Versionen von [[:$1]]'''.",
+'undeletepagetitle'            => "'''Die folgende Ausgabe zeigt die gelöschten Versionen von [[:$1]]'''.",
 'viewdeletedpage'              => 'Gelöschte Seiten anzeigen',
 'undeletepagetext'             => 'Die folgenden Seiten wurden gelöscht und können von Administratoren wiederhergestellt werden:',
 'undeleteextrahelp'            => '* Um die Seite komplett mit allen Versionen wiederherzustellen, gib bitte eine Begründung an und klicke auf „Wiederherstellen“.
@@ -2367,7 +2374,7 @@ Darauf folgende Seitenlinks in derselben Zeile definieren Ausnahmen, in deren Ko
 # E-mail address confirmation
 'confirmemail'            => 'E-Mail-Adresse bestätigen (Authentifizierung)',
 'confirmemail_noemail'    => 'Du hast keine gültige E-Mail-Adresse in deinen [[Special:Preferences|persönlichen Einstellungen]] eingetragen.',
-'confirmemail_text'       => '{{SITENAME}} erfordert, dass du deine E-Mail-Adresse bestätigst (authentifizieren), bevor du die erweiterten E-Mail-Funktionen benutzen kannst. Durch einen Klick auf die Schaltfläche unten wird eine E-Mail an dich verschickt. Diese E-Mail enthält einen Link mit einem Bestätigungs-Code. Durch Klicken auf diesen Link wird bestätigt, dass deine E-Mail-Adresse gültig ist.',
+'confirmemail_text'       => '{{SITENAME}} erfordert, dass du deine E-Mail-Adresse bestätigst (authentifizieren), bevor du die erweiterten E-Mail-Funktionen benutzen kannst. Klicke bitte auf die unten stehende, mit „Bestätigungscode zuschicken“ beschriftete Schaltfläche, damit eine automatisch erstellte E-Mail an die angegebene Adresse geschickt wird. Diese E-Mail enthält eine Web-Adresse mit einem Bestätigungscode. Indem du diese Webseite in deinem Webbrowser öffnest, bestätigst du, dass die angegebene E-Mail-Adresse korrekt und gültig ist.',
 'confirmemail_pending'    => '<div class="error">Es wurde dir bereits ein Bestätigungs-Code per E-Mail zugeschickt. Wenn du dein Benutzerkonto erst vor kurzem erstellt hast, warte bitte noch ein paar Minuten auf die E-Mail, bevor du einen neuen Code anforderst.</div>',
 'confirmemail_send'       => 'Bestätigungscode zuschicken',
 'confirmemail_sent'       => 'Bestätigungs-E-Mail wurde verschickt.',
@@ -2375,7 +2382,7 @@ Darauf folgende Seitenlinks in derselben Zeile definieren Ausnahmen, in deren Ko
 'confirmemail_sendfailed' => 'Die Bestätigungs-E-Mail konnte nicht versendet werden. Bitte prüfe die E-Mail-Adresse auf ungültige Zeichen.
 
 Rückmeldung des Mailservers: $1',
-'confirmemail_invalid'    => 'Ungültiger Bestätigungscode. Eventuell ist der Code bereits wieder ungültig geworden.',
+'confirmemail_invalid'    => 'Ungültiger Bestätigungscode. Möglicherweise ist der Bestätigungszeitraum verstrichen. Versuche bitte, die Bestätigung zu wiederholen.',
 'confirmemail_needlogin'  => 'Du musst dich $1, um deine E-Mail-Adresse zu bestätigen.',
 'confirmemail_success'    => 'Deine E-Mail-Adresse wurde erfolgreich bestätigt. Du kannst dich jetzt einloggen.',
 'confirmemail_loggedin'   => 'Deine E-Mail-Adresse wurde erfolgreich bestätigt.',
