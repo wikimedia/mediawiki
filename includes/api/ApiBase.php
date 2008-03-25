@@ -242,7 +242,7 @@ abstract class ApiBase {
 				if (is_array($desc))
 					$desc = implode($paramPrefix, $desc);
 
-				$type = $paramSettings[self :: PARAM_TYPE];
+				$type = isset($paramSettings[self :: PARAM_TYPE])? $paramSettings[self :: PARAM_TYPE] : null;
 				if (isset ($type)) {
 					if (isset ($paramSettings[self :: PARAM_ISMULTI]))
 						$prompt = 'Values (separate with \'|\'): ';
