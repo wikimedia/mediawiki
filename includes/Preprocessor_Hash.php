@@ -804,6 +804,10 @@ class PPFrame_Hash implements PPFrame {
 		{
 			return '<span class="error">Node-count limit exceeded</span>';
 		}
+		if ( $depth > $this->parser->mOptions->mMaxPPExpandDepth ) {
+			return '<span class="error">Expansion depth limit exceeded</span>';
+		}
+		++$depth;
 
 		$outStack = array( '', '' );
 		$iteratorStack = array( false, $root );
@@ -956,6 +960,7 @@ class PPFrame_Hash implements PPFrame {
 				}
 			}
 		}
+		--$depth;
 		return $outStack[0];
 	}
 
