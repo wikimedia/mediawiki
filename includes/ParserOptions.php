@@ -23,6 +23,7 @@ class ParserOptions
 	var $mTargetLanguage;            # Overrides above setting with arbitrary language
 	var $mMaxIncludeSize;            # Maximum size of template expansions, in bytes
 	var $mMaxPPNodeCount;            # Maximum number of nodes touched by PPFrame::expand()
+	var $mMaxPPExpandDepth;          # Maximum recursion depth in PPFrame::expand()
 	var $mMaxTemplateDepth;          # Maximum recursion depth for templates within templates
 	var $mRemoveComments;            # Remove HTML comments. ONLY APPLIES TO PREPROCESS OPERATIONS
 	var $mTemplateCallback;          # Callback for template fetching
@@ -107,7 +108,7 @@ class ParserOptions
 	function initialiseFromUser( $userInput ) {
 		global $wgUseTeX, $wgUseDynamicDates, $wgInterwikiMagic, $wgAllowExternalImages;
 		global $wgAllowExternalImagesFrom, $wgAllowSpecialInclusion, $wgMaxArticleSize;
-		global $wgMaxPPNodeCount, $wgMaxTemplateDepth;
+		global $wgMaxPPNodeCount, $wgMaxTemplateDepth, $wgMaxPPExpandDepth;
 		$fname = 'ParserOptions::initialiseFromUser';
 		wfProfileIn( $fname );
 		if ( !$userInput ) {
@@ -138,6 +139,7 @@ class ParserOptions
 		$this->mTargetLanguage = null; // default depends on InterfaceMessage setting
 		$this->mMaxIncludeSize = $wgMaxArticleSize * 1024;
 		$this->mMaxPPNodeCount = $wgMaxPPNodeCount;
+		$this->mMaxPPExpandDepth = $wgMaxPPExpandDepth;
 		$this->mMaxTemplateDepth = $wgMaxTemplateDepth;
 		$this->mRemoveComments = true;
 		$this->mTemplateCallback = array( 'Parser', 'statelessFetchTemplate' );

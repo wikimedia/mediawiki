@@ -920,6 +920,7 @@ $wgMaxPPNodeCount = 1000000;  # A complexity limit on template expansion
  * stop the parser before it hits the xdebug limit.
  */
 $wgMaxTemplateDepth = 40;
+$wgMaxPPExpandDepth = 40;
 
 $wgExtraSubtitle	= '';
 $wgSiteSupportPage	= ''; # A page where you users can receive donations
