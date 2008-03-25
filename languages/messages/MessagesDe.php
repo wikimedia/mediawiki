@@ -2389,20 +2389,23 @@ Rückmeldung des Mailservers: $1',
 'confirmemail_subject'    => '[{{SITENAME}}] - Bestätigung der E-Mail-Adresse',
 'confirmemail_body'       => 'Hallo,
 
-jemand mit der IP-Adresse $1, wahrscheinlich du selbst, hat eine Bestätigung dieser E-Mail-Adresse für das Benutzerkonto "$2" in {{SITENAME}} angefordert. 
+jemand mit der IP-Adresse $1, wahrscheinlich du selbst, hat das Benutzerkonto "$2" in {{SITENAME}} registriert.
 
-Um die E-Mail-Funktion für {{SITENAME}} (wieder) zu aktivieren und um zu bestätigen, dass dieses Benutzerkonto wirklich zu deiner E-Mail-Adresse und damit zu dir gehört, öffne bitte die folgende Web-Adresse:
+Um die E-Mail-Funktion für {{SITENAME}} (wieder) zu aktivieren und um zu bestätigen, 
+dass dieses Benutzerkonto wirklich zu deiner E-Mail-Adresse und damit zu dir gehört, öffne bitte die folgende Web-Adresse:
 
 $3
 
-Sollte die vorstehende Adresse in deinem E-Mail-Programm über mehrere Zeilen gehen, musst du sie eventuell per Hand in die Adresszeile Deines Web-Browsers einfügen. 
+Sollte die vorstehende Adresse in deinem E-Mail-Programm über mehrere Zeilen gehen, musst du sie eventuell per Hand in die Adresszeile deines Web-Browsers einfügen. 
 
-Dieser Bestätigungscode ist gültig bis $4.
+Wenn du das genannte Benutzerkonto *nicht* registriert hast, folge diesem Link, um den Bestätigungsprozess abzubrechen:
 
-Wenn diese E-Mail-Adresse nicht zu dem genannten Benutzerkonto gehört, folge dem Link bitte nicht.
+$5
 
--- 
-{{SITENAME}}: {{fullurl:{{Mediawiki:mainpage}}}}',
+Dieser Bestätigungscode ist gültig bis $4.',
+'confirmemail_invalidated' => 'E-Mail-Adressbestätigung abbrechen',
+'invalidateemail'          => 'E-Mail-Adressbestätigung abbrechen',
+
 
 # Scary transclusion
 'scarytranscludedisabled' => '[Interwiki-Einbindung ist deaktiviert]',
