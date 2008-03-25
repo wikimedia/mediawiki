@@ -160,6 +160,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   handled properly.
 * (bug 13444) Add description to list=watchlist
 * (bug 13482) Disabled search types handled properly
+* Added inprop=talkid,subjectid to prop=info
 
 === Languages updated in 1.13 ===
 

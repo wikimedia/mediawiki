@@ -58,6 +58,8 @@ class ApiQueryInfo extends ApiQueryBase {
 		if(!is_null($params['prop'])) {
 			$prop = array_flip($params['prop']);
 			$fld_protection = isset($prop['protection']);
+			$fld_talkid = isset($prop['talkid']);
+			$fld_subjectid = isset($prop['subjectid']);
 		}
 		if(!is_null($params['token'])) {
 			$token = $params['token'];
@@ -121,6 +123,42 @@ class ApiQueryInfo extends ApiQueryBase {
 				);
 			}
 			$db->freeResult($res);
+		}
+		
+		// Run the talkid/subjectid query
+		if($fld_talkid || $fld_subjectid)
+		{
+			$talktitles = $subjecttitles = 
+				$talkids = $subjectids = array();
+			$everything = array_merge($titles, $missing);
+			foreach($everything as $t)
+			{
+				if(MWNamespace::isTalk($t->getNamespace()))
+				{
+					if($fld_subjectid)
+						$subjecttitles[] = $t->getSubjectPage();
+				}
+				else if($fld_talkid)
+					$talktitles[] = $t->getTalkPage();
+			}
+			if(!empty($talktitles) || !empty($subjecttitles))
+			{
+				// Construct a custom WHERE clause that matches
+				// all titles in $talktitles and $subjecttitles
+				$lb = new LinkBatch(array_merge($talktitles, $subjecttitles));
+				$this->resetQueryParams();
+				$this->addTables('page');
+				$this->addFields(array('page_title', 'page_namespace', 'page_id'));
+				$this->addWhere($lb->constructSet('page', $db));
+				$res = $this->select(__METHOD__);
+				while($row = $db->fetchObject($res))
+				{
+					if(MWNamespace::isTalk($row->page_namespace))
+						$talkids[MWNamespace::getSubject($row->page_namespace)][$row->page_title] = $row->page_id;
+					else
+						$subjectids[MWNamespace::getTalk($row->page_namespace)][$row->page_title] = $row->page_id;
+				}
+			}
 		}
 
 		foreach ( $titles as $pageid => $title ) {
@@ -186,6 +224,10 @@ class ApiQueryInfo extends ApiQueryBase {
 					}
 				}
 			}
+			if($fld_talkid && isset($talkids[$title->getNamespace()][$title->getDbKey()]))
+				$pageInfo['talkid'] = $talkids[$title->getNamespace()][$title->getDbKey()];
+			if($fld_subjectid && isset($subjectids[$title->getNamespace()][$title->getDbKey()]))
+				$pageInfo['subjectid'] = $subjectids[$title->getNamespace()][$title->getDbKey()];
 
 			$result->addValue(array (
 				'query',
@@ -213,6 +255,10 @@ class ApiQueryInfo extends ApiQueryBase {
 						$res['query']['pages'][$pageid]['protection'] = array();
 					$result->setIndexedTagName($res['query']['pages'][$pageid]['protection'], 'pr');
 				}
+				if($fld_talkid && isset($talkids[$title->getNamespace()][$title->getDbKey()]))
+					$res['query']['pages'][$pageid]['talkid'] = $talkids[$title->getNamespace()][$title->getDbKey()];
+				if($fld_subjectid && isset($subjectids[$title->getNamespace()][$title->getDbKey()]))
+					$res['query']['pages'][$pageid]['subjectid'] = $subjectids[$title->getNamespace()][$title->getDbKey()];
 			}
 		}
 	}
@@ -223,7 +269,9 @@ class ApiQueryInfo extends ApiQueryBase {
 				ApiBase :: PARAM_DFLT => NULL,
 				ApiBase :: PARAM_ISMULTI => true,
 				ApiBase :: PARAM_TYPE => array (
-					'protection'
+					'protection',
+					'talkid',
+					'subjectid'
 				)),
 			'token' => array (
 				ApiBase :: PARAM_DFLT => NULL,
@@ -241,7 +289,9 @@ class ApiQueryInfo extends ApiQueryBase {
 		return array (
 			'prop' => array (
 				'Which additional properties to get:',
-				' "protection"   - List the protection level of each page'
+				' "protection"   - List the protection level of each page',
+				' "talkid"       - The page ID of the talk page for each non-talk page',
+				' "subjectid"     - The page ID of the parent page for each talk page'
 			),
 			'token' => 'Request a token to perform a data-modifying action on a page',
 		);
