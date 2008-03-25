@@ -223,6 +223,7 @@ class ApiEditPage extends ApiBase {
 			'bot' => false,
 			'basetimestamp' => null,
 			'recreate' => false,
+			'dontcreate' => false,
 			'captchaword' => null,
 			'captchaid' => null,
 			'watch' => false,
