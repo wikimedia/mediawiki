@@ -877,9 +877,7 @@ Nähere Angaben zum Löschvorgang sowie eine Begründung finden sich im [{{fullu
 # History merging
 'mergehistory'                     => 'Versionsgeschichten vereinen',
 'mergehistory-header'              => "Mit dieser Spezialseite kannst du die Versionsgeschichte einer Ursprungsseite mit der Versionsgeschichte einer Zielseite vereinen.
-Stelle sicher, dass die Versionsgeschichte eines Artikel historisch korrekt ist.
-
-'''Als Minimum muss die aktuelle Version der Ursprungsseite erhalten bleiben.'''",
+Stelle sicher, dass die Versionsgeschichte eines Artikel historisch korrekt ist.",
 'mergehistory-box'                 => 'Versionsgeschichten zweier Seiten vereinen',
 'mergehistory-from'                => 'Ursprungsseite:',
 'mergehistory-into'                => 'Zielseite:',
@@ -887,7 +885,7 @@ Stelle sicher, dass die Versionsgeschichte eines Artikel historisch korrekt ist.
 'mergehistory-merge'               => 'Die folgenden Versionen von „[[:$1]]“ können nach „[[:$2]]“ übertragen werden. Markiere die Version, bis zu der (einschließlich) die Versionen übertragen werden sollen. Bitte beachte, dass die Nutzung der Navigationslinks die Auswahl zurücksetzt.',
 'mergehistory-go'                  => 'Zeige Versionen, die vereinigt werden können',
 'mergehistory-submit'              => 'Vereinige Versionen',
-'mergehistory-empty'               => 'Es können keine Versionen vereinigt werden',
+'mergehistory-empty'               => 'Es können keine Versionen vereinigt werden.',
 'mergehistory-success'             => '{{PLURAL:$3|1 Version|$3 Versionen}} von „[[:$1]]“ erfolgreich nach „[[:$2]]“ vereinigt.',
 'mergehistory-fail'                => 'Versionsvereinigung nicht möglich, bitte prüfe die Seite und die Zeitangaben.',
 'mergehistory-no-source'           => 'Ursprungsseite „$1“ ist nicht vorhanden.',
