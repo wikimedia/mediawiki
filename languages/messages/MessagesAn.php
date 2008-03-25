@@ -215,15 +215,19 @@ $messages = array(
 'dec'           => 'abi',
 
 # Categories related messages
-'categories'               => 'Categorías',
-'categoriespagetext'       => 'As siguients categorías contienen bella pachina u archibo',
-'pagecategories'           => '{{PLURAL:$1|Categoría|Categorías}}',
-'category_header'          => 'Articlos en a categoría "$1"',
-'subcategories'            => 'Subcategorías',
-'category-media-header'    => 'Contenius multimedia en a categoría "$1"',
-'category-empty'           => "''Ista categoría no tiene por agora garra articlo ni conteniu multimedia''",
-'hidden-categories'        => '{{PLURAL:$1|Categoría amagata|Categorías amagatas}}',
-'hidden-category-category' => 'Categorías amagatas', # Name of the category where hidden categories will be listed
+'categories'                    => 'Categorías',
+'categoriespagetext'            => 'As siguients categorías contienen bella pachina u archibo',
+'special-categories-sort-count' => 'ordenar por recuento',
+'special-categories-sort-abc'   => 'ordenar alfabeticament',
+'pagecategories'                => '{{PLURAL:$1|Categoría|Categorías}}',
+'category_header'               => 'Articlos en a categoría "$1"',
+'subcategories'                 => 'Subcategorías',
+'category-media-header'         => 'Contenius multimedia en a categoría "$1"',
+'category-empty'                => "''Ista categoría no tiene por agora garra articlo ni conteniu multimedia''",
+'hidden-categories'             => '{{PLURAL:$1|Categoría amagata|Categorías amagatas}}',
+'hidden-category-category'      => 'Categorías amagatas', # Name of the category where hidden categories will be listed
+'category-subcat-count'         => "{{PLURAL:$2|Ista categoría contiene nomás a siguient subcategoría.|Ista categoría encluye {{PLURAL:$1|a siguient subcategoría|as siguients $1 subcategorías}}, d'un total de $2.}}",
+'category-subcat-count-limited' => 'Ista categoría contiene {{PLURAL:$1|a siguient subcategoría|as siguients $1 subcategorías}}.',
 
 'mainpagetext'      => "O programa MediaWiki s'ha instalato correutament.",
 'mainpagedocfooter' => "Consulta a [http://meta.wikimedia.org/wiki/Help:Contents Guía d'usuario] ta mirar informazión sobre cómo usar o software wiki.
@@ -1498,7 +1502,7 @@ Contino se i amuestran as opzions autuals d'a pachina <strong>$1</strong>:",
 'undeleteextrahelp'            => "Ta restaurar a pachina antera con todas as bersions, deixe todas as caixetas sin siñalar y prete '''''Restaurar!'''''. Ta restaurar sólo belunas d'as bersions, siñale as caixetas correspondients á las bersions que quiere restaurar y punche dimpués '''''Restaurar!'''''. Punchando '''''Prenzipiar''''' se borrará o comentario y se tirarán os siñals d'as caixetas.",
 'undeleterevisions'            => '$1 {{PLURAL:$1|bersión|bersions}} archibatas',
 'undeletehistory'              => "Si restaura una pachina, todas as suyas bersions serán restauratas ta o suyo istorial. Si dende que se borró a orichinal s'ha creyato una nueba pachina con o mesmo nombre, as bersions restauradas amanixerán como anteriors á las d'a pachina autual. Pare cuenta tamién que as posibles restrizions se pierden en fer a restaurazión",
-'undeleterevdel'               => "No s'esfará o borrau si iste resulta en o borrau parzial d'a zaguer rebisión d'a pachina. En ixe caso, deselezione u amuestre as bersions borratas más rezients. As bersions d'archibos que no tiene premiso ta beyer no se restaurarán.",
+'undeleterevdel'               => "No s'esfará o borrau si isto resulta en o borrau parzial d'a pachina d'alto u a rebisión de l'archibo. En ixe caso, deselezione u amuestre as bersions borratas más rezients.",
 'undeletehistorynoadmin'       => "L'articlo ha estato borrato. A razón d'o suyo borrau s'endica más t'abaixo en o resumen, asinas como os detalles d'as edizions feitas antis d'o borrau. O testo completo de l'articlo será disponible sólo que ta os usuarios con premisos d'almenistrador.",
 'undelete-revision'            => "S'ha borrato a bersión de $1 de $2 (por $3):",
 'undeleterevision-missing'     => "Bersión no conforme u no trobata. Regular que o binclo sia incorreuto u que a bersión aiga estato restaurata u borrata de l'archibo.",
@@ -1662,8 +1666,8 @@ as pachinas que s'han bandalizatas).",
 'locknoconfirm'       => 'No ha siñalato a caixeta de confirmazión.',
 'lockdbsuccesssub'    => "A base de datos s'ha trancato correutament",
 'unlockdbsuccesssub'  => "A base de datos s'ha estrancato correutament",
-'lockdbsuccesstext'   => "A base de datos de {{SITENAME}} ye trancata.
-<br />Alcuerde-se-ne d'estrancar a base de datos dimpués de rematar as fainas de mantenimiento.",
+'lockdbsuccesstext'   => "Ha trancato a base de datos de {{SITENAME}}.
+Alcuerde-se-ne d'[[Special:Unlockdb|estrancar a base de datos]] dimpués de rematar as fayenas de mantenimiento.",
 'unlockdbsuccesstext' => "S'ha estrancato a base de datos de {{SITENAME}}.",
 'lockfilenotwritable' => "O rechistro de trancamientos d'a base de datos no tiene premiso d'escritura. Ta trancar u estrancar a base de datos, iste archibo ha de tener premisos d'escritura en o serbidor web.",
 'databasenotlocked'   => 'A base de datos no ye trancata.',
@@ -1941,11 +1945,12 @@ $1",
 # Special:Newimages
 'newimages'             => 'Galería de nuebas imachens',
 'imagelisttext'         => "Contino bi ha una lista de '''$1''' {{PLURAL:$1|imachen ordenata|imachens ordenatas}} $2.",
+'newimages-summary'     => 'Ista pachina espezial amuestra os zaguers archibos cargatos',
 'showhidebots'          => '($1 bots)',
 'noimages'              => 'No bi ha cosa á beyer.',
 'ilsubmit'              => 'Mirar',
 'bydate'                => 'por a calendata',
-'sp-newimages-showfrom' => 'Amostrar archibos nuebos dende $1',
+'sp-newimages-showfrom' => "Amostrar archibos nuebos dende as $2 d'o $1",
 
 # Bad image list
 'bad_image_list' => "O formato ye asinas:
@@ -2379,5 +2384,17 @@ Prebe con a prebisualizazión normal.",
 As imachens s'amuestran en resoluzión completa, a resta d'archibos fan enzetar dreitament os suyos programas asoziatos.
 
 Escriba o nombre de l'archibo sin o prefixo \"{{ns:image}}:\".",
+
+# Special:FileDuplicateSearch
+'fileduplicatesearch'          => 'Mirar archibos duplicatos',
+'fileduplicatesearch-summary'  => 'Mirar achibos duplicatos basatos en a suya balura hash.
+
+Escriba o nombre de l\'archibo sin o prefixo "{{ns:image}}:".',
+'fileduplicatesearch-legend'   => 'Mirar duplicatos',
+'fileduplicatesearch-filename' => "Nombre de l'archibo:",
+'fileduplicatesearch-submit'   => 'Mirar',
+'fileduplicatesearch-info'     => "$1 × $2 pixels<br />Grandaria de l'archibo: $3<br />tipo MIME: $4",
+'fileduplicatesearch-result-1' => 'L\'archibo "$1" no en tiene de duplicaus identicos.',
+'fileduplicatesearch-result-n' => 'L\'archibo "$1" tiene {{PLURAL:$2|1 duplicau identico|$2 duplicaus identicos}}.',
 
 );

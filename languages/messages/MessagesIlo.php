@@ -173,6 +173,7 @@ Kasta met nga ikarim kadakami a bukodmo a sinurat wenno gapuanan daytoy, wenno k
 'prevn'        => 'napalabas $1',
 'nextn'        => 'sumaruno $1',
 'viewprevnext' => 'Kitaen ($1) ($2) ($3)',
+'searchall'    => 'amin',
 'powersearch'  => 'agbirok',
 
 # Preferences page
