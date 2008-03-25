@@ -4416,23 +4416,36 @@ class Parser
 			'horizAlign' => array(), 'vertAlign' => array() );
 		foreach( $parts as $part ) {
 			list( $magicName, $value ) = $mwArray->matchVariableStartToEnd( $part );
-			# (bug 13436) If $value is non-numeric, assume it's a caption
-			if( isset( $paramMap[$magicName] ) &&
-			( $value === false || is_numeric($value) ) ) {
+			$validated = false;
+			if( isset( $paramMap[$magicName] ) ) {
 				list( $type, $paramName ) = $paramMap[$magicName];
-				$params[$type][$paramName] = $value;
-				
+
 				// Special case; width and height come in one variable together
 				if( $type == 'handler' && $paramName == 'width' ) {
 					$m = array();
 					if ( preg_match( '/^([0-9]*)x([0-9]*)$/', $value, $m ) ) {
 						$params[$type]['width'] = intval( $m[1] );
 						$params[$type]['height'] = intval( $m[2] );
-					} else {
+						$validated = true;
+					} elseif ( is_numeric( $value ) ) {
 						$params[$type]['width'] = intval( $value );
+						$validated = true;
+					} // else no validation -- bug 13436
+				} else {
+					if ( $type == 'handler' ) {
+						# Validate handler parameter
+						$validated = $handler->validateParam( $paramName, $value );
+					} else {
+						# Validate internal parameters
+						$validated = ( $value === false || is_numeric( $value ) );
+					}
+
+					if ( $validated ) {
+						$params[$type][$paramName] = $value;
 					}
 				}
-			} else {
+			}
+			if ( !$validated ) {
 				$caption = $part;
 			}
 		}
@@ -4443,15 +4456,6 @@ class Parser
 		}
 		if ( $params['vertAlign'] ) {
 			$params['frame']['valign'] = key( $params['vertAlign'] );
-		}
-
-		# Validate the handler parameters
-		if ( $handler ) {
-			foreach ( $params['handler'] as $name => $value ) {
-				if ( !$handler->validateParam( $name, $value ) ) {
-					unset( $params['handler'][$name] );
-				}
-			}
 		}
 
 		# Strip bad stuff out of the alt text
