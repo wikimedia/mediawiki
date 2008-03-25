@@ -4416,7 +4416,9 @@ class Parser
 			'horizAlign' => array(), 'vertAlign' => array() );
 		foreach( $parts as $part ) {
 			list( $magicName, $value ) = $mwArray->matchVariableStartToEnd( $part );
-			if ( isset( $paramMap[$magicName] ) ) {
+			# (bug 13436) If $value is non-numeric, assume it's a caption
+			if( isset( $paramMap[$magicName] ) &&
+			( !$value || is_numeric($value) ) ) {
 				list( $type, $paramName ) = $paramMap[$magicName];
 				$params[$type][$paramName] = $value;
 				

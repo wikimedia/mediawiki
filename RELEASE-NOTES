@@ -130,6 +130,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 11325) Wrapped page titles in MonoBook skin spaced more nicely
 * (bug 12077) Fix HTML nesting for TOC
 * (bug 344) Purge cache for talk/article pages when deleting the other tab
+* (bug 13436) Treat image captions correctly when they include option keywords
+  (like ending with "px" or starting with "upright")
 
 
 === API changes in 1.13 ===
