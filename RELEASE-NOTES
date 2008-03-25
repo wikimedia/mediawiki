@@ -162,7 +162,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 13482) Disabled search types handled properly
 * Added inprop=talkid,subjectid to prop=info
 * Added help text message that specifies whether a module is POST-only
-* Added dontcreate parameter to action=edit
+* Added createonly parameter to action=edit
 
 === Languages updated in 1.13 ===
 
