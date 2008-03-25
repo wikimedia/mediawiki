@@ -4427,7 +4427,7 @@ class Parser
 						$params[$type]['width'] = intval( $m[1] );
 						$params[$type]['height'] = intval( $m[2] );
 						$validated = true;
-					} elseif ( is_numeric( $value ) ) {
+					} elseif ( is_numeric( trim( $value ) ) ) {
 						$params[$type]['width'] = intval( $value );
 						$validated = true;
 					} // else no validation -- bug 13436
@@ -4437,7 +4437,7 @@ class Parser
 						$validated = $handler->validateParam( $paramName, $value );
 					} else {
 						# Validate internal parameters
-						$validated = ( $value === false || is_numeric( $value ) );
+						$validated = ( $value === false || is_numeric( trim( $value ) ) );
 					}
 
 					if ( $validated ) {
