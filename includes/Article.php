@@ -897,6 +897,7 @@ class Article {
 						. $o->tb_id . "&token=" . urlencode( $wgUser->editToken() ) );
 				$rmvtxt = wfMsg( 'trackbackremove', htmlspecialchars( $delurl ) );
 			}
+			$tbtext .= "\n";
 			$tbtext .= wfMsg(strlen($o->tb_ex) ? 'trackbackexcerpt' : 'trackback',
 					$o->tb_title,
 					$o->tb_url,
