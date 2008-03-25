@@ -73,6 +73,7 @@ function __autoload($className) {
 		'eAccelBagOStuff' => 'includes/BagOStuff.php',
 		'EditPage' => 'includes/EditPage.php',
 		'EmailConfirmation' => 'includes/SpecialConfirmemail.php',
+		'EmailInvalidation' => 'includes/SpecialConfirmemail.php',
 		'EmaillingJob' => 'includes/EmaillingJob.php',
 		'EmaillingJob' => 'includes/JobQueue.php',
 		'EmailNotification' => 'includes/UserMailer.php',
