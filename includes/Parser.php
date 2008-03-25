@@ -4369,8 +4369,6 @@ class Parser
 	 * Parse image options text and use it to make an image
 	 */
 	function makeImage( $title, $options ) {
-		# @TODO: let the MediaHandler specify its transform parameters
-		#
 		# Check if the options text is of the form "options|alt text"
 		# Options are:
 		#  * thumbnail       	make a thumbnail with enlarge-icon and caption, alignment depends on lang
@@ -4424,12 +4422,22 @@ class Parser
 				if( $type == 'handler' && $paramName == 'width' ) {
 					$m = array();
 					if ( preg_match( '/^([0-9]*)x([0-9]*)$/', $value, $m ) ) {
-						$params[$type]['width'] = intval( $m[1] );
-						$params[$type]['height'] = intval( $m[2] );
-						$validated = true;
+						$width = intval( $m[1] );
+						$height = intval( $m[2] );
+						if ( $handler->validateParam( 'width', $width ) ) {
+							$params[$type]['width'] = $width;
+							$validated = true;
+						}
+						if ( $handler->validateParam( 'height', $height ) ) {
+							$params[$type]['height'] = $height;
+							$validated = true;
+						}
 					} elseif ( is_numeric( trim( $value ) ) ) {
-						$params[$type]['width'] = intval( $value );
-						$validated = true;
+						$width = intval( $value );
+						if ( $handler->validateParam( 'width', $width ) ) {
+							$params[$type]['width'] = $width;
+							$validated = true;
+						}
 					} // else no validation -- bug 13436
 				} else {
 					if ( $type == 'handler' ) {
