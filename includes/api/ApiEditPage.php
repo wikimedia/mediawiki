@@ -255,7 +255,7 @@ class ApiEditPage extends ApiBase {
 	protected function getExamples() {
 		return array (
 			"Edit a page (anonymous user):",
-			"    api.php?action=edit&title=Test&summary=test%20summary&text=article%20content&basetimestamp=20070824123454&token=%2B\"
+			"    api.php?action=edit&title=Test&summary=test%20summary&text=article%20content&basetimestamp=20070824123454&token=%2B"
 		);
 	}
 
