@@ -1572,6 +1572,9 @@ class Database {
 					throw new MWException( __METHOD__.': empty input' );
 				} elseif( count( $value ) == 1 ) {
 					// Special-case single values, as IN isn't terribly efficient
+					// Don't necessarily assume the single key is 0; we don't
+					// enforce linear numeric ordering on other arrays here.
+					$value = array_values( $value );
 					$list .= $field." = ".$this->addQuotes( $value[0] );
 				} else {
 					$list .= $field." IN (".$this->makeList($value).") ";
