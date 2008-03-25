@@ -283,6 +283,10 @@ span.subpages {
 	margin: 0;
 	padding: 0;
 }
+.success {
+	color: green;
+	font-size: larger;
+}
 .error {
 	color: red;
 	font-size: larger;

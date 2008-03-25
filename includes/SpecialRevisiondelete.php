@@ -674,14 +674,14 @@ class RevisionDeleteForm {
 			return $this->showImages( $request );
 		}
 	}
-	
+
 	private function success( $request ) {
 		global $wgOut;
-		
+
 		$wgOut->setPagetitle( wfMsgHtml( 'actioncomplete' ) );
 		# Give a link to the log for this page
 		$logtitle = SpecialPage::getTitleFor( 'Log' );
-        $loglink = $this->skin->makeKnownLinkObj( $logtitle, wfMsgHtml( 'viewpagelogs' ),
+		$loglink = $this->skin->makeKnownLinkObj( $logtitle, wfMsgHtml( 'viewpagelogs' ),
 			wfArrayToCGI( array('page' => $this->target ) ) );
 		# Give a link to the page history	
 		$histlink = $this->skin->makeKnownLinkObj( $this->title, wfMsgHtml( 'pagehist' ),
@@ -693,21 +693,20 @@ class RevisionDeleteForm {
 		# Logs themselves don't have histories or archived revisions
 		if( !is_null($this->title) && $this->title->getNamespace() > -1)
 			$wgOut->setSubtitle( '<p>'.$histlink.' / '.$loglink.' / '.$dellink.'</p>' );
-		
 		if( $this->deleteKey=='logid' ) {
-			$wgOut->addWikiText( wfMsgHtml('logdelete-success'), false );
+			$wgOut->addWikiText( Xml::element( 'span', array( 'class' => 'success' ), wfMsg( 'logdelete-success' ) ), false );
 			$this->showLogItems( $request );
 		} else if( $this->deleteKey=='oldid' || $this->deleteKey=='artimestamp' ) {
-		  	$wgOut->addWikiText( wfMsgHtml('revdelete-success'), false );
+		  	$wgOut->addWikiText( Xml::element( 'span', array( 'class' => 'success' ), wfMsg( 'revdelete-success' ) ), false );
 		  	$this->showRevs( $request );
 		} else if( $this->deleteKey=='fileid' ) {
-			$wgOut->addWikiText( wfMsgHtml('revdelete-success'), false );
+			$wgOut->addWikiText( Xml::element( 'span', array( 'class' => 'success' ), wfMsg( 'revdelete-success' ) ), false );
 		  	$this->showImages( $request );
 		} else if( $this->deleteKey=='oldimage' ) {
 			$this->showImages( $request );
 		}
 	}
-	
+
 	/**
 	 * Put together a rev_deleted bitfield from the submitted checkboxes
 	 * @param WebRequest $request
