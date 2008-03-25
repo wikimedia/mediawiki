@@ -54,6 +54,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 1459) Search for duplicate files by hash: Special:FileDuplicateSearch
 * (bug 9447) Added hooks for search result headings
 * Image redirects are now enabled
+* (bug 13450) Email confirmation can now be canceled before the expiration
 
 
 === Bug fixes in 1.13 ===

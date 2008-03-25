@@ -101,4 +101,44 @@ class EmailConfirmation extends UnlistedSpecialPage {
 	
 }
 
-
+/**
+ * Special page allows users to cancel an email confirmation using the e-mail 
+ * confirmation code
+ *
+ * @addtogroup SpecialPage
+ */
+class EmailInvalidation extends UnlistedSpecialPage {
+	
+	public function __construct() {
+		parent::__construct( 'Invalidateemail' );
+	}
+	
+	function execute( $code ) {
+		$this->setHeaders();
+		$this->attemptInvalidate( $code );
+	}
+	
+	/**
+	 * Attempt to invalidate the user's email address and show success or failure
+	 * as needed; if successful, link to main page
+	 *
+	 * @param $code Confirmation code
+	 */
+	function attemptInvalidate( $code ) {
+		global $wgUser, $wgOut;
+		$user = User::newFromConfirmationCode( $code );
+		if( is_object( $user ) ) {
+			$user->invalidateEmail();
+			if( $user->invalidateEmail() ) {
+				$wgOut->addWikiMsg( 'confirmemail_invalidated' );
+				if( !$wgUser->isLoggedIn() ) {
+					$wgOut->returnToMain();
+				}
+			} else {
+				$wgOut->addWikiMsg( 'confirmemail_error' );
+			}
+		} else {
+			$wgOut->addWikiMsg( 'confirmemail_invalid' );
+		}
+	}	
+}

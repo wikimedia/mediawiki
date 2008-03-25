@@ -428,6 +428,7 @@ $specialPageAliases = array(
 	'Withoutinterwiki'          => array( 'WithoutInterwiki' ),
 	'MergeHistory'              => array( 'MergeHistory' ),
 	'Filepath'                  => array( 'FilePath' ),
+	'Invalidateemail'           => array( 'InvalidateEmail' ),
 );
 
 /**
@@ -2908,14 +2909,22 @@ You may now log in and enjoy the wiki.',
 'confirmemail_loggedin'   => 'Your e-mail address has now been confirmed.',
 'confirmemail_error'      => 'Something went wrong saving your confirmation.',
 'confirmemail_subject'    => '{{SITENAME}} e-mail address confirmation',
-'confirmemail_body'       => 'Someone, probably you, from IP address $1, has registered an account "$2" with this e-mail address on {{SITENAME}}.
+'confirmemail_body'       => 'Someone, probably you, from IP address $1,
+has registered an account "$2" with this e-mail address on {{SITENAME}}.
 
-To confirm that this account really does belong to you and activate e-mail features on {{SITENAME}}, open this link in your browser:
+To confirm that this account really does belong to you and activate
+e-mail features on {{SITENAME}}, open this link in your browser:
 
 $3
 
-If this is *not* you, don\'t follow the link.
+If you did *not* register the account, follow this link
+to cancel the email address confirmation:
+
+$5
+
 This confirmation code will expire at $4.',
+'confirmemail_invalidated' => 'E-mail address confirmation canceled',
+'invalidateemail'          => 'Cancel E-mail confirmation',
 
 # Scary transclusion
 'scarytranscludedisabled' => '[Interwiki transcluding is disabled]',

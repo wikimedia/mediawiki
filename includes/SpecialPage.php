@@ -182,6 +182,7 @@ class SpecialPage
 
 		if( $wgEmailAuthentication ) {
 			self::$mList['Confirmemail'] = 'EmailConfirmation';
+			self::$mList['Invalidateemail'] = 'EmailInvalidation';
 		}
 
 		# Add extension special pages
