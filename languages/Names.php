@@ -68,7 +68,6 @@
 	'diq' => 'Zazaki',		# Zazaki
 	'dk' => 'Dansk (deprecated:da)', 		# Unused code currently redirecting to Danish, 'da' is correct for the language
 	'dsb' => 'Dolnoserbski', # Lower Sorbian
-	'dum' => 'Middelnederlands', # Middle Dutch
 	'dv' => 'ދިވެހިބަސް',		# Dhivehi
 	'dz' => 'ཇོང་ཁ',		# Bhutani
 	'ee' => 'Eʋegbe',	# Éwé
