@@ -129,6 +129,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 1600) Strip extra == section markup == in new-comment field
 * (bug 11325) Wrapped page titles in MonoBook skin spaced more nicely
 * (bug 12077) Fix HTML nesting for TOC
+* (bug 344) Purge cache for talk/article pages when deleting the other tab
 
 
 === API changes in 1.13 ===

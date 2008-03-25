@@ -2985,6 +2985,15 @@ class Article {
 	static function onArticleDelete( $title ) {
 		global $wgUseFileCache, $wgMessageCache;
 
+		// Update existence markers on article/talk tabs...
+		if( $title->isTalkPage() ) {
+			$other = $title->getSubjectPage();
+		} else {
+			$other = $title->getTalkPage();
+		}
+		$other->invalidateCache();
+		$other->purgeSquid();
+		
 		$title->touchLinks();
 		$title->purgeSquid();
 
