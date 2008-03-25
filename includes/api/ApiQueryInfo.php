@@ -237,7 +237,7 @@ class ApiQueryInfo extends ApiQueryBase {
 
 		// Get edit/protect tokens and protection data for missing titles if requested
 		// Delete and move tokens are N/A for missing titles anyway
-		if($tok_edit || $tok_protect || $fld_protection)
+		if($tok_edit || $tok_protect || $fld_protection || $fld_talkid || $fld_subjectid)
 		{
 			$res = &$result->getData();
 			foreach($missing as $pageid => $title) {
