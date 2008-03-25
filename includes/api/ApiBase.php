@@ -186,6 +186,9 @@ abstract class ApiBase {
 				);
 			$msg = $lnPrfx . implode($lnPrfx, $msg) . "\n";
 
+			if ($this->mustBePosted())
+				$msg .= "\nThis module only accepts POST requests.\n";
+
 			// Parameters
 			$paramsMsg = $this->makeHelpMsgParameters();
 			if ($paramsMsg !== false) {
@@ -640,7 +643,7 @@ abstract class ApiBase {
 	 * Internal code errors should be reported with this method
 	 */
 	protected static function dieDebug($method, $message) {
-		throw new MWException("Internal error in $method: $message");
+		wfDebugDieBacktrace("Internal error in $method: $message");
 	}
 
 	/**
