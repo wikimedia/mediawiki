@@ -1148,6 +1148,7 @@ $wgGroupPermissions['sysop']['blockemail']       = true;
 $wgGroupPermissions['sysop']['markbotedits']     = true;
 $wgGroupPermissions['sysop']['suppressredirect'] = true;
 $wgGroupPermissions['sysop']['apihighlimits']    = true;
+$wgGroupPermissions['sysop']['browsearchive']    = true;
 #$wgGroupPermissions['sysop']['mergehistory']     = true;
 
 // Permission to change users' group assignments
