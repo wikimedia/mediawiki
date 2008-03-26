@@ -2885,31 +2885,31 @@ Others will be hidden by default.
 'monthsall'        => 'all',
 
 # E-mail address confirmation
-'confirmemail'            => 'Confirm E-mail address',
-'confirmemail_noemail'    => 'You do not have a valid email address set in your [[Special:Preferences|user preferences]].',
-'confirmemail_text'       => '{{SITENAME}} requires that you validate your e-mail address before using e-mail features.
+'confirmemail'             => 'Confirm E-mail address',
+'confirmemail_noemail'     => 'You do not have a valid email address set in your [[Special:Preferences|user preferences]].',
+'confirmemail_text'        => '{{SITENAME}} requires that you validate your e-mail address before using e-mail features.
 Activate the button below to send a confirmation mail to your address.
 The mail will include a link containing a code;
 load the link in your browser to confirm that your e-mail address is valid.',
-'confirmemail_pending'    => '<div class="error">A confirmation code has already been e-mailed to you;
+'confirmemail_pending'     => '<div class="error">A confirmation code has already been e-mailed to you;
 if you recently created your account, you may wish to wait a few minutes for it to arrive before trying to request a new code.</div>',
-'confirmemail_send'       => 'Mail a confirmation code',
-'confirmemail_sent'       => 'Confirmation e-mail sent.',
-'confirmemail_oncreate'   => 'A confirmation code was sent to your e-mail address.
+'confirmemail_send'        => 'Mail a confirmation code',
+'confirmemail_sent'        => 'Confirmation e-mail sent.',
+'confirmemail_oncreate'    => 'A confirmation code was sent to your e-mail address.
 This code is not required to log in, but you will need to provide it before enabling any e-mail-based features in the wiki.',
-'confirmemail_sendfailed' => 'Could not send confirmation mail.
+'confirmemail_sendfailed'  => 'Could not send confirmation mail.
 Check address for invalid characters.
 
 Mailer returned: $1',
-'confirmemail_invalid'    => 'Invalid confirmation code.
+'confirmemail_invalid'     => 'Invalid confirmation code.
 The code may have expired.',
-'confirmemail_needlogin'  => 'You need to $1 to confirm your email address.',
-'confirmemail_success'    => 'Your e-mail address has been confirmed.
+'confirmemail_needlogin'   => 'You need to $1 to confirm your email address.',
+'confirmemail_success'     => 'Your e-mail address has been confirmed.
 You may now log in and enjoy the wiki.',
-'confirmemail_loggedin'   => 'Your e-mail address has now been confirmed.',
-'confirmemail_error'      => 'Something went wrong saving your confirmation.',
-'confirmemail_subject'    => '{{SITENAME}} e-mail address confirmation',
-'confirmemail_body'       => 'Someone, probably you, from IP address $1,
+'confirmemail_loggedin'    => 'Your e-mail address has now been confirmed.',
+'confirmemail_error'       => 'Something went wrong saving your confirmation.',
+'confirmemail_subject'     => '{{SITENAME}} e-mail address confirmation',
+'confirmemail_body'        => 'Someone, probably you, from IP address $1,
 has registered an account "$2" with this e-mail address on {{SITENAME}}.
 
 To confirm that this account really does belong to you and activate
