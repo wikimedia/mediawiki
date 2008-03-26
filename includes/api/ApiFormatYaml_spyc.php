@@ -424,10 +424,16 @@
 
       if (is_int($key)) {
         // It's a sequence
-        $string = $spaces.'- '.$value."\n";
+		if ($value)  
+			$string = $spaces.'- '.$value."\n";
+		else
+			$string = $spaces . "-\n";
       } else {
-        // It's mapped
-        $string = $spaces.$key.': '.$value."\n";
+		// It's mapped
+		if ($value)
+	        $string = $spaces.$key.': '.$value."\n";
+		else
+			$string = $spaces . $key . ":\n";
       }
       return $string;
     }
