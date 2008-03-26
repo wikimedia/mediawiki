@@ -35,7 +35,7 @@ if (!defined('MEDIAWIKI')) {
  */
 abstract class ApiFormatBase extends ApiBase {
 
-	private $mIsHtml, $mFormat, $mUnescapeAmps, $mHelp;
+	private $mIsHtml, $mFormat, $mUnescapeAmps, $mHelp, $mCleared;
 
 	/**
 	* Create a new instance of the formatter.
@@ -50,6 +50,7 @@ abstract class ApiFormatBase extends ApiBase {
 		else
 			$this->mFormat = $format;
 		$this->mFormat = strtoupper($this->mFormat);
+		$this->mCleared = false;
 	}
 
 	/**
@@ -166,7 +167,17 @@ See <a href='http://www.mediawiki.org/wiki/API'>complete documentation</a>, or
 		if ($this->getIsHtml())
 			echo $this->formatHTML($text);
 		else
+		{
+			// For non-HTML output, clear all errors that might have been
+			// displayed if display_errors=On
+			// Do this only once, of course
+			if(!$this->mCleared)
+			{
+				ob_clean();
+				$this->mCleared = true;
+			}
 			echo $text;
+		}
 	}
 
 	/**
