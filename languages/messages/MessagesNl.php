@@ -264,6 +264,7 @@ $specialPageAliases = array(
 	'Withoutinterwiki'          => array( 'ZonderInterwiki' ),
 	'MergeHistory'              => array( 'GeschiedenisSamenvoegen' ),
 	'Filepath'                  => array( 'Bestandspad' ),
+	'Invalidateemail'           => array( 'EmailAnnuleren' ),
 );
 
 $linkTrail = '/^([a-zäöüïëéèà]+)(.*)$/sDu';
