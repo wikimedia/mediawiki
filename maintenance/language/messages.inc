@@ -2216,6 +2216,8 @@ $wgMessageStructure = array(
 		'confirmemail_error',
 		'confirmemail_subject',
 		'confirmemail_body',
+		'confirmemail_invalidated',
+		'invalidateemail',
 	),
 	'scarytransclusion' => array(
 		'scarytranscludedisabled',
