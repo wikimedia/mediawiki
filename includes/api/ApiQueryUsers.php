@@ -63,11 +63,13 @@ if (!defined('MEDIAWIKI')) {
 		// Canonicalize user names
 		foreach($users as $u) {
 			$n = User::getCanonicalName($u);
-			if($n === false) 
+			if($n === false || $n === '') 
 				$retval[] = array('name' => $u, 'invalid' => '');
 			 else
 				$goodNames[] = $n;
 		}
+		if(empty($goodNames))
+			return $retval;
 
 		$db = $this->getDb();
 		$userTable = $db->tableName('user');
