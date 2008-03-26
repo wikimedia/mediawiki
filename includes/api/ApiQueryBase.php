@@ -111,8 +111,11 @@ abstract class ApiQueryBase extends ApiBase {
 		if (!is_null($end))
 			$this->addWhere($field . $before . $db->addQuotes($end));
 		
+		$order = $field . ($isDirNewer ? '' : ' DESC');
 		if (!isset($this->options['ORDER BY']))
-			$this->addOption('ORDER BY', $field . ($isDirNewer ? '' : ' DESC'));
+			$this->addOption('ORDER BY', $order);
+		else
+			$this->addOption('ORDER BY', $this->options['ORDER BY'] . ', ' . $order);
 	}
 
 	protected function addOption($name, $value = null) {
@@ -132,6 +135,18 @@ abstract class ApiQueryBase extends ApiBase {
 		$this->profileDBOut();
 
 		return $res;
+	}
+
+	protected function checkRowCount() {
+		$db = $this->getDB();
+		$this->profileDBIn();
+		$rowcount = $db->estimateRowCount($this->tables, $this->fields, $this->where, __METHOD__, $this->options);
+		$this->profileDBOut();
+		
+		global $wgAPIMaxDBRows;
+		if($rowcount > $wgAPIMaxDBRows)
+			return false;
+		return true;
 	}
 
 	public static function addTitleInfo(&$arr, $title, $prefix='') {
