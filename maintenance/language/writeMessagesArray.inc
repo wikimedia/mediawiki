@@ -7,7 +7,7 @@
 
 class MessageWriter {
 	static $optionalComment = 'only translate this message to other languages if you have to change it';
-	static $ignoredComment = "don't translate or duplicate this message to other languages";
+	static $ignoredComment = "do not translate or duplicate this message to other languages";
 
 	static $loaded = false;
 	static $messageStructure;
