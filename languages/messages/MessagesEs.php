@@ -833,9 +833,10 @@ Los grupos no seleccionados no cambiarán. Puede deseleccionar pulsando la tecla
 'group-bureaucrat' => 'Burócratas',
 'group-all'        => '(todos)',
 
-'group-bot-member'        => 'Bot',
-'group-sysop-member'      => 'Administrador',
-'group-bureaucrat-member' => 'Burócrata',
+'group-autoconfirmed-member' => 'Usuario autoconfirmado',
+'group-bot-member'           => 'Bot',
+'group-sysop-member'         => 'Administrador',
+'group-bureaucrat-member'    => 'Burócrata',
 
 'grouppage-bot'        => '{{ns:project}}:Bot',
 'grouppage-sysop'      => '{{ns:project}}:Administradores',

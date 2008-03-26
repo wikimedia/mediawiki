@@ -815,6 +815,7 @@ Kiti administratoriai šiame projekte vis dar galės pasiekti paslėptą turinį
 'viewprevnext'          => 'Žiūrėti ($1) ($2) ($3)',
 'search-result-size'    => '$1 ({{PLURAL:$2|1 žodis|$2 žodžiai|$2 žodžių}})',
 'search-result-score'   => 'Tinkamumas: $1%',
+'searchall'             => 'visi',
 'showingresults'        => "Žemiau rodoma iki '''$1''' {{PLURAL:$1|rezultato|rezultatų|rezultatų}} pradedant #'''$2'''.",
 'showingresultsnum'     => "Žemiau rodoma '''$3''' {{PLURAL:$3|rezultato|rezultatų|rezultatų}}rezultatų pradedant #'''$2'''.",
 'nonefound'             => "'''Pastaba''': Nesėkminga paieška dažnai būna dėl ieškomų

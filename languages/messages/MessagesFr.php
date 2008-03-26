@@ -2346,29 +2346,35 @@ Les autres liens sur la même ligne sont considérés comme des exceptions, par 
 'monthsall'        => 'tous',
 
 # E-mail address confirmation
-'confirmemail'            => 'Confirmer adresse de courriel',
-'confirmemail_noemail'    => 'L’adresse de courriel configurée dans vos [[Special:Preferences|préférences]] n’est pas valide.',
-'confirmemail_text'       => 'Ce wiki nécessite la vérification de votre adresse de courriel avant de pouvoir utiliser toute fonction de messagerie. Utilisez le bouton ci-dessous pour envoyer un courriel de confirmation à votre adresse. Le courriel contiendra un lien contenant un code, chargez ce lien dans votre navigateur pour valider votre adresse.',
-'confirmemail_pending'    => '<div class="error"> Un code de confirmation vous a déjà été envoyé par courriel ; si vous venez de créer votre compte, veuillez attendre quelques minutes que le courriel arrive avant de demander un nouveau code. </div>',
-'confirmemail_send'       => 'Envoyer un code de confirmation',
-'confirmemail_sent'       => 'Courriel de confirmation envoyé',
-'confirmemail_oncreate'   => 'Un code de confirmation a été envoyé à votre adresse de courriel. Ce code n’est pas requis pour se connecter, mais vous en aurez besoin pour activer les fonctionnalités liées aux courriels sur ce wiki.',
-'confirmemail_sendfailed' => 'Impossible d’envoyer le courriel de confirmation. Vérifiez votre adresse.
+'confirmemail'             => 'Confirmer adresse de courriel',
+'confirmemail_noemail'     => 'L’adresse de courriel configurée dans vos [[Special:Preferences|préférences]] n’est pas valide.',
+'confirmemail_text'        => 'Ce wiki nécessite la vérification de votre adresse de courriel avant de pouvoir utiliser toute fonction de messagerie. Utilisez le bouton ci-dessous pour envoyer un courriel de confirmation à votre adresse. Le courriel contiendra un lien contenant un code, chargez ce lien dans votre navigateur pour valider votre adresse.',
+'confirmemail_pending'     => '<div class="error"> Un code de confirmation vous a déjà été envoyé par courriel ; si vous venez de créer votre compte, veuillez attendre quelques minutes que le courriel arrive avant de demander un nouveau code. </div>',
+'confirmemail_send'        => 'Envoyer un code de confirmation',
+'confirmemail_sent'        => 'Courriel de confirmation envoyé',
+'confirmemail_oncreate'    => 'Un code de confirmation a été envoyé à votre adresse de courriel. Ce code n’est pas requis pour se connecter, mais vous en aurez besoin pour activer les fonctionnalités liées aux courriels sur ce wiki.',
+'confirmemail_sendfailed'  => 'Impossible d’envoyer le courriel de confirmation. Vérifiez votre adresse.
 
 Retour du programme de courriel : $1',
-'confirmemail_invalid'    => 'Code de confirmation incorrect. Celui-ci a peut-être expiré',
-'confirmemail_needlogin'  => 'Vous devez vous $1 pour confirmer votre adresse de courriel.',
-'confirmemail_success'    => 'Votre adresse de courriel est confirmée. Vous pouvez maintenant vous connecter et profiter du wiki.',
-'confirmemail_loggedin'   => 'Votre adresse est maintenant confirmée',
-'confirmemail_error'      => 'Un problème est survenu en voulant enregistrer votre confirmation',
-'confirmemail_subject'    => 'Confirmation d’adresse de courriel pour {{SITENAME}}',
-'confirmemail_body'       => 'Quelqu’un, probablement vous avec l’adresse IP $1, a enregistré un compte « $2 » avec cette adresse de courriel sur le site {{SITENAME}}.
+'confirmemail_invalid'     => 'Code de confirmation incorrect. Celui-ci a peut-être expiré',
+'confirmemail_needlogin'   => 'Vous devez vous $1 pour confirmer votre adresse de courriel.',
+'confirmemail_success'     => 'Votre adresse de courriel est confirmée. Vous pouvez maintenant vous connecter et profiter du wiki.',
+'confirmemail_loggedin'    => 'Votre adresse est maintenant confirmée',
+'confirmemail_error'       => 'Un problème est survenu en voulant enregistrer votre confirmation',
+'confirmemail_subject'     => 'Confirmation d’adresse de courriel pour {{SITENAME}}',
+'confirmemail_body'        => 'Quelqu’un, probablement vous, à partir de l’adresse IP $1, a enregistré un compte « $2 » avec cette adresse de courriel sur le site {{SITENAME}}.
 
-Pour confirmer que ce compte vous appartient vraiment et activer les fonctions de messagerie sur {{SITENAME}}, veuillez suivre le lien ci-dessous dans votre navigateur :
+Pour confirmer que ce compte vous appartienne vraiment et afin d’activer les fonctions de messagerie sur {{SITENAME}}, veuillez suivre le lien ci-dessous dans votre navigateur :
 
 $3
 
-S’il ne s’agit pas de vous, n’ouvrez pas le lien. Ce code de confirmation expirera le $4.',
+S’il ne s’agit pas de vous, n’ouvrez pas le lien, veuillez suivre l’autre lien ci-dessous dans votre navigateur :
+
+$5
+
+Ce code de confirmation expirera le $4.',
+'confirmemail_invalidated' => 'Confirmation de l’adresse courriel annulée',
+'invalidateemail'          => 'Annuler la confirmation du courriel',
 
 # Scary transclusion
 'scarytranscludedisabled' => '[La transclusion interwiki est désactivée]',

@@ -558,7 +558,7 @@ Du bør logge på og ændre din adgangskode straks efter du har modtaget e-mail\
 Før en E-mail kan modtages af andre brugere af {{SITENAME}}-mailfunktionen, skal adressen og dens tilhørsforhold til denne bruger bekræftes. Følg venligst anvisningerne i denne mail.',
 'throttled-mailpassword'     => 'Indenfor de sidste $1 timer er der allerede sendt et nyt password. For at forhindre misbrug af funktionen, kan der kun bestilles et nyt password en gang for hver $1 timer.',
 'mailerror'                  => 'Fejl ved afsendelse af e-mail: $1',
-'acct_creation_throttle_hit' => 'Du har allerede oprettet $1 kontoer. Du kan ikke oprette flere.',
+'acct_creation_throttle_hit' => 'Du har allerede oprettet $1 brugerkonti. Du kan ikke oprette flere.',
 'emailauthenticated'         => 'Din e-mail-adresse blev bekræftet på $1.',
 'emailnotauthenticated'      => 'Din e-mail-adresse er endnu ikke bekræftet og de avancerede e-mail-funktioner er slået fra indtil bekræftelse har fundet sted (d.u.a.). Log ind med den midlertidige adgangskode, der er blevet sendt til dig, for at bekræfte, eller bestil et nyt på loginsiden.',
 'noemailprefs'               => 'Angiv en E-mail-adresse, så følgende funktioner er til rådighed.',
@@ -810,6 +810,7 @@ Administratorer kan dog fortsat se og gendanne det fjernede indhold, medmindre d
 'logdelete-logaction'         => '$1 {{plural:$1|Indførsel|Indførsler}} for [[$3]] sat til modus $2',
 'revdelete-success'           => 'Versionsvisning er ændret.',
 'logdelete-success'           => 'Logbogs-aktion er indstillet.',
+'deletedhist'                 => 'Slettet historik',
 
 # Oversight log
 'oversightlog'    => 'Oversight-logbog',
@@ -835,6 +836,8 @@ Vær opmæksom på at bevare kontinuiteten i sidehistorikken.
 'mergehistory-no-destination'      => 'Destinationssiden $1 findes ikke.',
 'mergehistory-invalid-source'      => 'Angiv et gyldigt sidenavn som kildeside.',
 'mergehistory-invalid-destination' => 'Angiv et gyldigt sidenavn som destinationsside.',
+'mergehistory-autocomment'         => 'Flettet [[:$1]] ind i [[:$2]]',
+'mergehistory-comment'             => 'Flettet [[:$1]] ind i [[:$2]]: $3',
 
 # Merge log
 'mergelog'           => 'Sammenfletningslog',
@@ -867,8 +870,13 @@ Vær opmæksom på at bevare kontinuiteten i sidehistorikken.
 'viewprevnext'          => 'Vis ($1) ($2) ($3).',
 'search-result-size'    => '$1 ({{PLURAL:$2|1 ord|$2 ord}})',
 'search-result-score'   => 'Relevans: $1&nbsp;%',
+'search-redirect'       => '(omdirigering $1)',
+'search-section'        => '(sektion $1)',
+'search-suggest'        => 'Mente du: $1',
+'searchall'             => 'alle',
 'showingresults'        => 'Nedenfor vises <b>$1</b> {{PLURAL:$1|resultat|resultater}} startende med nummer <b>$2</b>.',
 'showingresultsnum'     => 'Herunder vises <b>$3</b> {{PLURAL:$3|resultat|resultater}} startende med nummer <b>$2</b>.',
+'showingresultstotal'   => "Viser resultat '''$1–$2''' af '''$3''' nedenfor",
 'nonefound'             => '<strong>Bemærk</strong>: Søgning uden resultat skyldes at man søger efter almindelige ord som "har" og "fra", der ikke er indekseret, eller at man har angivet mere end ét søgeord (da kun sider indeholdende alle søgeordene vil blive fundet).',
 'powersearch'           => 'Søg',
 'powersearch-legend'    => 'Avanceret søg',

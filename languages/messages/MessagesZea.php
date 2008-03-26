@@ -560,22 +560,90 @@ Je udihe IP-adres is $3 en 't blokkaodenummer is #$5. Vermeld beie hehevens a je
 'whitelistreadtitle'        => 'Voe leestoehang is anmelden verplicht',
 'whitelistreadtext'         => "[[Special:Preferences|Mel jen eihen an]] voe leestoehang toet pagina's.",
 'whitelistacctitle'         => "'t Anmaeken van nieuwe gebrukers is nie toehestaen",
+'whitelistacctext'          => 'Je dien [[Special:Userlogin|anemeld]] te zien en de juuste rechen te ène om gebrukers an te maeken in {{SITENAME}}.',
+'confirmedittitle'          => 'E-mailbevestigieng is verplicht voeda je kan bewerken',
+'nosuchsectiontitle'        => 'Deêze subkop besti nie',
+'loginreqtitle'             => 'Anmelden verplicht',
+'loginreqlink'              => 'anmelden',
+'loginreqpagetext'          => "$1 is verplicht om aore pagina's te kunn'n ziene.",
 'accmailtitle'              => 'Wachtwoord verstierd.',
 'accmailtext'               => "'t Wachtwoord vò $1 is nae $2 opgestierd.",
+'newarticle'                => '(Nieuw)',
 'anontalkpagetext'          => "----''Dit is de overlegbladzie vò 'n anonieme gebruker die-a gin inlognaem eit of 'm nie gebruukt. Zien/eur IP-adres kan deu meêr as eên gebruker gebruukt ore. A je 'n bericht gekrege è dat-a dudelik nie an joe gericht is, ka je 't beste [[Speciaol:Userlogin|jen eige anmelde]] om zukke verwarrienge in 't vervolg te vòkommen.''",
+'updated'                   => '(Biehewerkt)',
+'note'                      => '<strong>Opmerkieng:</strong>',
+'previewnote'               => '<strong>Let op: dit is een controlepagina; je tekst is nie opeslogen!</strong>',
+'previewconflict'           => "Deêze voevertoônieng heef an oe a de tekst in 't bovenste veld deruut zie a je die opsli.",
 'session_fail_preview_html' => "<strong>Sorry! Je bewerkieng is nie verwerkt, omdan sessiehehevens verloren zien ehaene.</strong>
 
 ''Omda in {{SITENAME}} ruwe HTML is ineschaokeld, is een voevertoônieng nie meuhlijk as beschermieng tehen anvall'n mie JavaScript.''
 
 <strong>A dit een lehitieme bewerkieng is, probeer 't dan opnieuw. A 't dan nog nie luk, mel jen eihen dan of en wee an.</strong>",
+'editing'                   => 'Bezig mie bewerken van $1',
+'editingsection'            => 'Bezig mie bewerken van $1 (deêlpagina)',
+'editingcomment'            => 'Bezig mie bewerken van $1 (opmerkieng)',
+'editconflict'              => 'Bewerkiengsconflict: $1',
+'yourtext'                  => 'Joe tekst',
+'storedversion'             => 'Opeslogen versie',
+'yourdiff'                  => 'Wiezigiengen',
+'semiprotectedpagewarning'  => "'''Let op:''' deêze pagina is beveiligd en kan allaen deur herehistreerde gebrukers bewerkt worn.",
+'titleprotectedwarning'     => "<strong>WAERSCHUWIENG: Deêze pagina is beveiligd zodan allaen ienkele gebrukers 't kunn'n anmaeken.</strong>",
+'templatesused'             => "Op deêze pagina gebruukte sjabloon'n:",
+'templatesusedpreview'      => "Sjabloon'n gebruukt in deêze voevertoônieng:",
+'templatesusedsection'      => "Sjabloon'n die an gebruukt worn in deêze subkop:",
+'template-protected'        => '(beveiligd)',
+'template-semiprotected'    => '(semi-beveiligd)',
+'hiddencategories'          => 'Deêze pagina val in de volhende verborhen {{PLURAL:$1|categorie|categorieën}}:',
+'nocreatetitle'             => "'t Anmaeken van pagina's is beperkt",
+'nocreate-loggedin'         => "Je kan hin nieuwe pagina's anmaeken op {{SITENAME}}.",
+'permissionserrors'         => "Fout'n in rechen",
+'permissionserrorstext'     => "Je ei hin rechen om dit te doene wehens de volhende {{PLURAL:$1|reeën|reden'n}}:",
+'recreate-deleted-warn'     => "'''Waerschuwieng: je bin bezig mie 't anmaeken van een pagina die a in 't verleeën verwiederd is.'''
+
+Overweeg of a 't terecht is dat je vadder werk an deêze pagina. Voe je hemak sti ieronder 't verwiederiengslogboek van deêze pagina:",
+
+# "Undo" feature
+'undo-failure' => 'De wiezigieng kan nie onhedaen emikt worn vanwehe aore striedihe wiezigiengen.',
+
+# Account creation failure
+'cantcreateaccounttitle' => 'Anmaeken gebruker mislukt.',
 
 # History pages
-'viewpagelogs' => 'Bekiek de logboeken vò deêze bladzie',
-'page_first'   => 'eêrste',
-'page_last'    => 'lèste',
+'viewpagelogs'        => 'Bekiek de logboeken vò deêze bladzie',
+'nohistory'           => 'Deêze pagina is nie bewerkt.',
+'revnotfound'         => "Bewerkieng nie evon'n",
+'currentrev'          => 'Udihe versie',
+'revisionasof'        => 'Versie op $1',
+'revision-info'       => 'Versie op $1 van $2',
+'previousrevision'    => '←Ouwere versie',
+'nextrevision'        => 'Nieuwere versie→',
+'currentrevisionlink' => 'Udihe versie',
+'cur'                 => 'udig',
+'next'                => 'volhende',
+'last'                => 'vorihe',
+'page_first'          => 'eêrste',
+'page_last'           => 'lèste',
 
 # Revision feed
 'history-feed-title' => 'Bewerkiengsgeschiedenisse',
+
+# Revision deletion
+'revdelete-legend'          => "Versiebeperkiengen instell'n:",
+'revdelete-hide-text'       => 'De bewerkte tekst verberhen',
+'revdelete-hide-name'       => 'Actie en doel verberhen',
+'revdelete-hide-comment'    => 'De bewerkiengssaemenvattieng verberhen',
+'revdelete-hide-user'       => 'Gebrukersnaem/IP van de gebruker verberhen',
+'revdelete-hide-restricted' => 'Deêze beperkiengen toepassen op zòwè opzichters as aore',
+'revdelete-suppress'        => "Hehevens voe zòwè opzichters as aore onderdrukk'n",
+'revdelete-hide-image'      => 'Bestandsinoud verberhen',
+'revdelete-unsuppress'      => 'Beperkiengen op terugezette wiezigiengen verwiederen',
+'revdelete-log'             => 'Opmerkieng in logboek:',
+'revdelete-submit'          => 'Toepassen op de hesillecteerde bewerkieng',
+'revdelete-logentry'        => 'zichbaereid van bewerkiengen is ewiezigd voe [[$1]]',
+'logdelete-logentry'        => 'wiezigen zichbaereid van hebeurtenis [[$1]]',
+'revdelete-logaction'       => '$1 {{PLURAL:$1|wiezigieng|wiezigiengen}} inesteld ni modus $2',
+'logdelete-logaction'       => "$1 {{PLURAL:$1|actie|acties}} om [[$3]] ni modus $2 in te stell'n",
+'revdelete-success'         => 'Zichbaereid van de wiezigieng succesvol inesteld.',
 
 # Search results
 'prevn'        => 'vorrege $1',

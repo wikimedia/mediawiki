@@ -1402,27 +1402,35 @@ Quaesitum "[[$1]]" etiam existit. Vin tu eam delere ut moveas?',
 'monthsall'        => 'omnes',
 
 # E-mail address confirmation
-'confirmemail'            => 'Inscriptionem electronicam adfirmare',
-'confirmemail_noemail'    => 'Non est tibi inscriptio electronica valida in [[Special:Preferences|tuis praeferentiis]] posita.',
-'confirmemail_text'       => '{{SITENAME}} te postulat inscriptionem tuam electronicam adfirmare priusquam proprietatibus litterarum electronicarum fruaris. Imprime botonem subter ut nuntium adfirmationis tibi mittatur. Nuntio nexus inerit quod est scribendus in tuo navigatro interretiali ut validum adfirmes tuam inscriptionem electronicam.',
-'confirmemail_send'       => 'Mittere codicem adfirmationis',
-'confirmemail_sent'       => 'Missae sunt litterae electronicae adfirmationis.',
-'confirmemail_sendfailed' => 'Litteras electronicas adfirmationis non potuimus mittere. Inspice inscriptionem tuam electronicam ut errores invenias.
+'confirmemail'             => 'Inscriptionem electronicam adfirmare',
+'confirmemail_noemail'     => 'Non est tibi inscriptio electronica valida in [[Special:Preferences|tuis praeferentiis]] posita.',
+'confirmemail_text'        => '{{SITENAME}} te postulat inscriptionem tuam electronicam adfirmare priusquam proprietatibus litterarum electronicarum fruaris. Imprime botonem subter ut nuntium adfirmationis tibi mittatur. Nuntio nexus inerit quod est scribendus in tuo navigatro interretiali ut validum adfirmes tuam inscriptionem electronicam.',
+'confirmemail_send'        => 'Mittere codicem adfirmationis',
+'confirmemail_sent'        => 'Missae sunt litterae electronicae adfirmationis.',
+'confirmemail_sendfailed'  => 'Litteras electronicas adfirmationis non potuimus mittere. Inspice inscriptionem tuam electronicam ut errores invenias.
 
 Nuntius reddidit: $1',
-'confirmemail_invalid'    => 'Codex adfirmationis invalidus. Fortasse id exitum est.',
-'confirmemail_needlogin'  => 'Necesse est tibi $1 ut inscriptionem tuam electronicam adfirmes.',
-'confirmemail_success'    => 'Tua inscriptio electronica adfirmata est. Libenter utaris {{grammar:ablative|{{SITENAME}}}}.',
-'confirmemail_loggedin'   => 'Inscriptio tua electronica iam adfirmata est.',
-'confirmemail_error'      => 'Aliquid erravit quando adfirmationem tuam servabamus.',
-'confirmemail_subject'    => '{{SITENAME}} - Adfirmatio inscriptionis electronicae',
-'confirmemail_body'       => 'Aliquis (tu probabiliter, cum loco de IP $1) rationem "$2" creavit apud {{grammar:accusative|{{SITENAME}}}} sub hac inscriptione electronica.
+'confirmemail_invalid'     => 'Codex adfirmationis invalidus. Fortasse id exitum est.',
+'confirmemail_needlogin'   => 'Necesse est tibi $1 ut inscriptionem tuam electronicam adfirmes.',
+'confirmemail_success'     => 'Tua inscriptio electronica adfirmata est. Libenter utaris {{grammar:ablative|{{SITENAME}}}}.',
+'confirmemail_loggedin'    => 'Inscriptio tua electronica iam adfirmata est.',
+'confirmemail_error'       => 'Aliquid erravit quando adfirmationem tuam servabamus.',
+'confirmemail_subject'     => '{{SITENAME}} - Adfirmatio inscriptionis electronicae',
+'confirmemail_body'        => 'Aliquis (probabiliter tu, ex loco IP $1)
+rationem "$2" creavit sub hac inscriptione electronica apud {{grammar:accusative|{{SITENAME}}}}.
 
 Ut adfirmas te esse ipsum et proprietates inscriptionum electronicarum licere fieri apud {{grammar:accusative|{{SITENAME}}}}, hunc nexum aperi in tuo navigatro interretiali:
 
 $3
 
-Si *non* tu hoc fecisti, noli nexum sequi. Hic codex adfirmationis exibit $4.',
+Si *non* tu hoc fecisti, hunc nexum sequere
+ad adfirmationem inscriptionis electronicae abrogandum:
+
+$5
+
+Hic codex adfirmationis exibit $4.',
+'confirmemail_invalidated' => 'Adfirmatio inscriptionis electronicae abrogata est',
+'invalidateemail'          => 'Adfimationem inscriptionis electronicae abrogare',
 
 # Trackbacks
 'trackbackremove' => ' ([$1 Delere])',

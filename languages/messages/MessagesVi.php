@@ -2278,38 +2278,47 @@ sẽ được đưa vào vào trang miêu tả hình khi bảng đặc tính
 'monthsall'        => 'tất cả',
 
 # E-mail address confirmation
-'confirmemail'            => 'Xác nhận thư điện tử',
-'confirmemail_noemail'    => 'Bạn chưa đưa vào địa chỉ thư điện tử hợp lệ ở [[Special:Preferences|tùy chọn cá nhân]].',
-'confirmemail_text'       => '{{SITENAME}} đòi hỏi bạn xác minh thư điện tử của mình
+'confirmemail'             => 'Xác nhận thư điện tử',
+'confirmemail_noemail'     => 'Bạn chưa đưa vào địa chỉ thư điện tử hợp lệ ở [[Special:Preferences|tùy chọn cá nhân]].',
+'confirmemail_text'        => '{{SITENAME}} đòi hỏi bạn xác minh thư điện tử của mình
 trước khi sử dụng tính năng thư điện tử. Nhấn vào nút bên dưới để gửi thư
 xác nhận đến địa chỉ của bạn. Thư xác nhận sẽ có kèm một liên kết có chứa một mã số;
 tải liên kết đó trong trình duyệt để xác nhận địa chỉ thư điện tử của bạn là đúng.',
-'confirmemail_pending'    => '<div class="error">
+'confirmemail_pending'     => '<div class="error">
 Mã xác đã được gửi đến địa chỉ thư điện tử của bạn; nếu bạn
 mới vừa tạo tài khoản, xin chờ vài phút để thư tới nơi rồi
 hãy cố gắng yêu cầu mã mới.
 </div>',
-'confirmemail_send'       => 'Gửi thư xác nhận',
-'confirmemail_sent'       => 'Thư xác nhận đã được gửi',
-'confirmemail_oncreate'   => 'Đã gửi mã xác nhận đến địa chỉ thư điện tử của bạn. 
+'confirmemail_send'        => 'Gửi thư xác nhận',
+'confirmemail_sent'        => 'Thư xác nhận đã được gửi',
+'confirmemail_oncreate'    => 'Đã gửi mã xác nhận đến địa chỉ thư điện tử của bạn. 
 Bạn không cần mã này để đăng nhập, nhưng sẽ cần sử dụng nó để bật 
 các tính năng có dùng thư điện tử của wiki.',
-'confirmemail_sendfailed' => 'Không thể gửi thư xác nhận. Xin kiểm tra lại địa chỉ thư.
+'confirmemail_sendfailed'  => 'Không thể gửi thư xác nhận. Xin kiểm tra lại địa chỉ thư.
 
 Chương trình gửi trả về: $1',
-'confirmemail_invalid'    => 'Mã xác nhận sai. Mã này có thể đã hết hạn',
-'confirmemail_needlogin'  => 'Bạn cần phải $1 để xác nhận địa chỉ thư điện tử.',
-'confirmemail_success'    => 'Thư điện tử của bạn đã được xác nhận. Bạn đã có thể đăng nhập và bắt đầu sử dụng wiki.',
-'confirmemail_loggedin'   => 'Địa chỉ thư điện tử của bạn đã được xác nhận',
-'confirmemail_error'      => 'Có trục trặc khi lưu xác nhận của bạn.',
-'confirmemail_subject'    => 'Xác nhận thư điện tử tại {{SITENAME}}',
-'confirmemail_body'       => 'Ai đó, có thể là bạn, từ địa chỉ IP $1, đã đăng ký tài khoản có tên "$2" với địa chỉ thư điện tử này tại {{SITENAME}}.
+'confirmemail_invalid'     => 'Mã xác nhận sai. Mã này có thể đã hết hạn',
+'confirmemail_needlogin'   => 'Bạn cần phải $1 để xác nhận địa chỉ thư điện tử.',
+'confirmemail_success'     => 'Thư điện tử của bạn đã được xác nhận. Bạn đã có thể đăng nhập và bắt đầu sử dụng wiki.',
+'confirmemail_loggedin'    => 'Địa chỉ thư điện tử của bạn đã được xác nhận',
+'confirmemail_error'       => 'Có trục trặc khi lưu xác nhận của bạn.',
+'confirmemail_subject'     => 'Xác nhận thư điện tử tại {{SITENAME}}',
+'confirmemail_body'        => 'Ai đó, có thể là bạn, từ địa chỉ IP $1, 
+đã đăng ký tài khoản có tên "$2" với địa chỉ thư điện tử này tại {{SITENAME}}.
 
 Để xác nhận rằng tài khoản này thực sự là của bạn và để kích hoạt tính năng thư điện tử tại {{SITENAME}}, xin mở liên kết này trong trình duyệt:
 
 $3
 
-Nếu *không* phải bạn, đừng mở địa chỉ này. Mã xác nhận này sẽ hết hạn lúc $4.',
+Nếu bạn *không* đăng ký tài khoản, hãy nhấn vào liên kết này
+để hủy thủ tục xác nhận địa chỉ thư điện tử:
+
+$5
+
+
+Mã xác nhận này sẽ hết hạn vào $4.',
+'confirmemail_invalidated' => 'Đã hủy xác nhận địa chỉ thư điện tử',
+'invalidateemail'          => 'Hủy xác nhận thư điện tử',
 
 # Scary transclusion
 'scarytranscludedisabled' => '[Nhúng giữa các wiki bị tắt]',

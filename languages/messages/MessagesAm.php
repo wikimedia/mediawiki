@@ -636,7 +636,7 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 'mergehistory-go'                  => 'መዋሐድ የሚችሉ እትሞች ይታዩ',
 'mergehistory-submit'              => 'እትሞቹን ለማዋሐድ',
 'mergehistory-empty'               => 'ምንም ዕትም ማዋሐድ አይቻልም።',
-'mergehistory-success'             => 'ከ[[:$1]] $3 እትሞች ወደ [[:$2]] መዋሐዱ ተከናወነ።',
+'mergehistory-success'             => 'ከ[[:$1]] $3 {{PLURAL:$3|እትም|እትሞች}} ወደ [[:$2]] መዋሐዱ ተከናወነ።',
 'mergehistory-fail'                => 'የታሪክ መዋሐድ አይቻልም፤ እባክዎ የገጽና የጊዜ ግቤቶች እንደገና ይመለከቱ።',
 'mergehistory-no-source'           => 'መነሻው ገጽ $1 አይኖርም።',
 'mergehistory-no-destination'      => 'መድረሻው ገጽ $1 አይኖርም።',

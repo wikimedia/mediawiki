@@ -846,8 +846,8 @@ Se till att sidhistorikens kontinuitet behålls när du sammanfogar historik.',
 'mergehistory-no-destination'      => 'Målsidan $1 finns inte.',
 'mergehistory-invalid-source'      => 'Källsidan måste vara en giltig sidtitel.',
 'mergehistory-invalid-destination' => 'Målsidan måste vara en giltig sidtitel.',
-'mergehistory-autocomment'         => 'Ihopslagen [[:$1]] in i [[:$2]]',
-'mergehistory-comment'             => 'Ihopslagen [[:$1]] in i [[:$2]]: $3',
+'mergehistory-autocomment'         => 'Infogade [[:$1]] i [[:$2]]',
+'mergehistory-comment'             => 'Infogade [[:$1]] i [[:$2]]: $3',
 
 # Merge log
 'mergelog'           => 'Sammanfogningslogg',
@@ -1856,7 +1856,7 @@ All överföring mellan wikier (transwiki) listas i  [[Special:Log/import|import
 'tooltip-ca-protect'              => 'Skydda den här sidan',
 'tooltip-ca-delete'               => 'Radera denna sida',
 'tooltip-ca-undelete'             => 'Återställ alla redigeringar som gjorts innan sidan raderades',
-'tooltip-ca-move'                 => 'Flytta denna sidan',
+'tooltip-ca-move'                 => 'Flytta den här sidan',
 'tooltip-ca-watch'                => 'Lägg till sidan på din övervakningslista',
 'tooltip-ca-unwatch'              => 'Ta bort sidan från din övervakningslista',
 'tooltip-search'                  => 'Sök på {{SITENAME}}',
@@ -2283,27 +2283,29 @@ Listan tar enbart hänsyn till rader som börjar med asterisk (*). Den första l
 'monthsall'        => 'alla',
 
 # E-mail address confirmation
-'confirmemail'            => 'Bekräfta e-postadress',
-'confirmemail_noemail'    => 'Du har inte angivit någon giltig e-postadress i dina [[Special:Preferences|inställningar]].',
-'confirmemail_text'       => 'Innan du kan använda {{SITENAME}}s funktioner för e-post måste du bekräfta din e-postadress. Aktivera knappen nedan för att skicka en bekräftelsekod till din e-postadress. Mailet kommer att innehålla en länk, som innehåller en kod. Genom att klicka på den länken eller kopiera den till din webbläsares fönster för webbadresser, bekräftar du att din e-postadress fungerar.',
-'confirmemail_pending'    => 'En bekräftelsekod har redan skickats till din epostadress. Om du skapade ditt konto nyligen, så kanske du vill vänta några minuter innan du begär en ny kod.',
-'confirmemail_send'       => 'Skicka bekräftelsekod',
-'confirmemail_sent'       => 'E-post med bekräftelse skickat.',
-'confirmemail_oncreate'   => 'En bekräftelsekod skickades till din epostadress. Koden behövs inte för att logga in, men om du behöver koden om du vill få tillgång de epostbaserade funktionerna på wikin.',
-'confirmemail_sendfailed' => 'E-post med bekräftelse kunde inte skickas. Kontrollera om adressen innehåller ogiltiga tecken.
+'confirmemail'             => 'Bekräfta e-postadress',
+'confirmemail_noemail'     => 'Du har inte angivit någon giltig e-postadress i dina [[Special:Preferences|inställningar]].',
+'confirmemail_text'        => 'Innan du kan använda {{SITENAME}}s funktioner för e-post måste du bekräfta din e-postadress. Aktivera knappen nedan för att skicka en bekräftelsekod till din e-postadress. Mailet kommer att innehålla en länk, som innehåller en kod. Genom att klicka på den länken eller kopiera den till din webbläsares fönster för webbadresser, bekräftar du att din e-postadress fungerar.',
+'confirmemail_pending'     => 'En bekräftelsekod har redan skickats till din epostadress. Om du skapade ditt konto nyligen, så kanske du vill vänta några minuter innan du begär en ny kod.',
+'confirmemail_send'        => 'Skicka bekräftelsekod',
+'confirmemail_sent'        => 'E-post med bekräftelse skickat.',
+'confirmemail_oncreate'    => 'En bekräftelsekod skickades till din epostadress. Koden behövs inte för att logga in, men om du behöver koden om du vill få tillgång de epostbaserade funktionerna på wikin.',
+'confirmemail_sendfailed'  => 'E-post med bekräftelse kunde inte skickas. Kontrollera om adressen innehåller ogiltiga tecken.
 
 Mailaren returnade: $1',
-'confirmemail_invalid'    => 'Ogiltig bekräftelsekod. Dess giltighetstid kan ha löpt ut.',
-'confirmemail_needlogin'  => 'Du behöver $1 för att bekräfta din e-postadress',
-'confirmemail_success'    => 'Din e-postadress har bekräftats och du kan logga in på wikin.',
-'confirmemail_loggedin'   => 'Din e-postadress är nu bekräftad.',
-'confirmemail_error'      => 'Någonting gick fel när din bekräftelse skulle sparas.',
-'confirmemail_subject'    => 'Bekräftelse av e-postadress på {{SITENAME}}',
-'confirmemail_body'       => 'Någon, troligen du, har från IP-adressen $1 registrerat användarkontot "$2" på {{SITENAME}} och uppgivit denna e-postadress. För att bekräfta att detta konto verkligen är ditt, och för att aktivera möjligheten att skicka e-post via kontot på {{SITENAME}}, klicka på denna länk:
+'confirmemail_invalid'     => 'Ogiltig bekräftelsekod. Dess giltighetstid kan ha löpt ut.',
+'confirmemail_needlogin'   => 'Du behöver $1 för att bekräfta din e-postadress',
+'confirmemail_success'     => 'Din e-postadress har bekräftats och du kan logga in på wikin.',
+'confirmemail_loggedin'    => 'Din e-postadress är nu bekräftad.',
+'confirmemail_error'       => 'Någonting gick fel när din bekräftelse skulle sparas.',
+'confirmemail_subject'     => 'Bekräftelse av e-postadress på {{SITENAME}}',
+'confirmemail_body'        => 'Någon, troligen du, har från IP-adressen $1 registrerat användarkontot "$2" på {{SITENAME}} och uppgivit denna e-postadress. För att bekräfta att detta konto verkligen är ditt, och för att aktivera möjligheten att skicka e-post via kontot på {{SITENAME}}, klicka på denna länk:
 
 $3
 
 Om det *inte* är du som registrerat kontot, följ inte länken. Efter $4 kommer denna bekräftelsekod inte att fungera.',
+'confirmemail_invalidated' => 'Bekräftning av e-postadress avbruten',
+'invalidateemail'          => 'Avbryt bekräftning av e-postadress',
 
 # Scary transclusion
 'scarytranscludedisabled' => '[Interwiki-inklusion är inte aktiverad]',

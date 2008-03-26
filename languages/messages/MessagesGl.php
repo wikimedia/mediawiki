@@ -747,13 +747,15 @@ Asegúrese de que esta modificación da páxina mantén a continuidade históric
 'mergehistory-merge'               => 'As revisións seguintes de [[:$1]] pódense fusionar con [[:$2]]. Use a columna de botóns de selección para fusionar só as revisións creadasen e antes da hora indicada. Teña en conta que se usa as ligazóns de navegación a columna limparase.',
 'mergehistory-go'                  => 'Amosar edicións fusionábeis',
 'mergehistory-submit'              => 'Fusionar revisións',
-'mergehistory-empty'               => 'Non hai revisións que se podan fusionar.',
-'mergehistory-success'             => 'Fusionáronse sen problemas $3 revisións de [[:$1]] con [[:$2]].',
+'mergehistory-empty'               => 'Non hai revisións que se poidan fusionar.',
+'mergehistory-success'             => '{{PLURAL:$3|Unha revisión|$3 revisións}} de [[:$1]] {{PLURAL:$3|fusionouse|fusionáronse}} sen problemas en [[:$2]].',
 'mergehistory-fail'                => 'Non se puido fusionar o historial; comprobe outra vez os parámetros de páxina e hora.',
 'mergehistory-no-source'           => 'Non existe a páxina de orixe $1.',
 'mergehistory-no-destination'      => 'Non existe a páxina de destino $1.',
 'mergehistory-invalid-source'      => 'A páxina de orixe ten que ter un título válido.',
 'mergehistory-invalid-destination' => 'A páxina de destino ten que ter un título válido.',
+'mergehistory-autocomment'         => '[[:$1]] fusionouse en [[:$2]]',
+'mergehistory-comment'             => '[[:$1]] fusionouse en [[:$2]]: $3',
 
 # Merge log
 'mergelog'           => 'Rexistro de fusións',
@@ -1641,30 +1643,22 @@ Por favor confirme que isto é o que quere facer.',
 # Move page
 'move-page'               => 'Mover $1',
 'move-page-legend'        => 'Mover páxina',
-'movepagetext'            => "Ao usar o formulario de embaixo vai cambiar o nome da páxina, 
-movendo todo o seu historial ao novo nome.
+'movepagetext'            => "Ao usar o formulario de embaixo vai cambiar o nome da páxina, movendo todo o seu historial ao novo nome.
 O título vello vaise converter nunha páxina de redirección ao novo título.
-As ligazóns cara á páxina vella non van ser cambiadas; asegúrese de
-verificar se hai redireccións dobres ou crebadas.
-Vostede é responsábel de asegurarse de que as ligazóns continúan a apuntar 
-cara a onde se supón que deberían.
+As ligazóns cara á páxina vella non van ser cambiadas; asegúrese de verificar se hai redireccións dobres ou crebadas.
+Vostede é responsábel de asegurarse de que as ligazóns continúan a apuntar cara a onde se supón que deberían.
 
-Fíxese que a páxina '''non''' vai ser movida se xa existe unha páxina co 
-novo título, a menos que estea baleira ou sexa unha redirección e que non 
-teña historial de edicións. Isto significa que pode volver renomear unha páxina ao
-seu nome antigo se comete un erro, e que non pode sobreescribir nunha páxina 
-que xa existe.
+Fíxese que a páxina '''non''' vai ser movida se xa existe unha páxina co novo título, a menos que estea baleira ou sexa unha redirección e que non teña historial de edicións. Isto significa que pode volver renomear unha páxina ao seu nome antigo se comete un erro, e que non pode sobreescribir nunha páxina que xa existe.
 
 <b>ATENCIÓN!</b>
-Este cambio nunha páxina popular pode ser drástico e inesperado;
-por favor, asegúrese de que entende as consecuencias disto antes de seguir.",
+Este cambio nunha páxina popular pode ser drástico e inesperado; por favor, asegúrese de que entende as consecuencias disto antes de proseguir.",
 'movepagetalktext'        => "A páxina de conversa asociada, se existe, será automaticamente movida con esta '''agás que''':
 *Estea a mover a páxina empregando espazos de nomes,
 *Xa exista unha páxina de conversa con ese nome, ou
 *Desactive a opción de abaixo.
 
 Nestes casos, terá que mover ou mesturar a páxina manualmente se o desexa.",
-'movearticle'             => 'Mover esta páxina',
+'movearticle'             => 'Mover páxina:',
 'movenologin'             => 'Non está dentro do sistema',
 'movenologintext'         => 'Vostede ha ser un usuario rexistrado e estar [[Special:Userlogin|dentro do sistema]] para mover unha páxina.',
 'movenotallowed'          => 'Non ten permiso para mover páxinas en {{SITENAME}}.',
