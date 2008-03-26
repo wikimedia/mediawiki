@@ -133,7 +133,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Add caching to the AJAX search
 * Add APCOND_INGROUPS
 * Add DBA caching to installer
-* (bug 18585) Added a bunch of parameters to the revertpage message
+* (bug 12585) Added a bunch of parameters to the revertpage message
 * Support redirects in image namespace
 * (bug 10049) Prefix index search and namespaces in Special:Withoutinterwiki
 * (bug 12668) Support for custom iPhone bookmark icon via $wgAppleTouchIcon
