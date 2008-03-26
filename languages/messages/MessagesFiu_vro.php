@@ -2078,11 +2078,17 @@ Prooviq harilikku kaehust.',
 'watchlisttools-raw'  => 'Toimõndaq lätteteedüstüt',
 
 # Special:Version
-'version' => 'Kujo', # Not used as normal message but as header for the special page itself
+'version'                  => 'Kujo', # Not used as normal message but as header for the special page itself
+'version-version'          => 'Kujo',
+'version-software-version' => 'Kujo',
 
 # Special:Filepath
 'filepath'        => 'Teedüstü aadrõs',
 'filepath-page'   => 'Teedüstü:',
 'filepath-submit' => 'Aadrõs',
+
+# Special:FileDuplicateSearch
+'fileduplicatesearch-filename' => 'Teedüstünimi:',
+'fileduplicatesearch-submit'   => 'Otsiq',
 
 );

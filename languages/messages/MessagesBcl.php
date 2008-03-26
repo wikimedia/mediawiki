@@ -720,6 +720,7 @@ Hilingon tabî an [[Special:Ipblocklist|lista nin binagat na IP]] para sa lista 
 'prevn'                 => 'dati $1',
 'nextn'                 => 'sunod $1',
 'viewprevnext'          => 'Hilingón ($1) ($2) ($3)',
+'searchall'             => 'gabos',
 'showingresults'        => "Pigpapahiling sa babâ sagkod sa {{PLURAL:$1|'''1''' resulta|'''$1''' mga resulta}} poon sa #'''$2'''.",
 'showingresultsnum'     => "Pigpapahiling sa babâ {{KADKLAN:$3|'''1''' resulta|'''$3''' mga resulta}} poon sa #'''$2'''.",
 'nonefound'             => "'''Pagiromdom''': An mga prakasong paghanap pirmeng kawsa kan paghanap kan mga tataramon na komún arog kan \"may\" asin \"sa\", huli ta an mga ini dai nakaíndise, o sa pagpili kan sobra sa sarong tataramon (an mga páhina sana na igwá kan gabos na pighahanap na tataramon an maipapahiling sa resulta).",

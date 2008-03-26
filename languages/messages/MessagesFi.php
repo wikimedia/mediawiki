@@ -2221,29 +2221,30 @@ Vain *-merkillä alkavat rivit otetaan huomioon. Ensimmäisen linkin on osoitett
 'monthsall'        => 'kaikki',
 
 # E-mail address confirmation
-'confirmemail'            => 'Varmenna sähköpostiosoite',
-'confirmemail_noemail'    => 'Sinulla ei ole kelvollista sähköpostiosoitetta [[Special:Preferences|asetuksissasi]].',
-'confirmemail_text'       => 'Tämä wiki vaatii sähköpostiosoitteen varmentamisen, ennen kuin voit käyttää sähköpostitoimintoja. Lähetä alla olevasta painikkeesta varmennusviesti osoitteeseesi. Viesti sisältää linkin, jonka avaamalla varmennat sähköpostiosoitteesi.',
-'confirmemail_pending'    => '<div class="error">Varmennusviesti on jo lähetetty. Jos loit tunnuksen äskettäin, odota muutama minuutti viestin saapumista, ennen kuin yrität uudelleen.</div>',
-'confirmemail_send'       => 'Lähetä varmennusviesti',
-'confirmemail_sent'       => 'Varmennusviesti lähetetty.',
-'confirmemail_oncreate'   => 'Varmennusviesti lähetettiin sähköpostiosoitteeseesi. Varmennuskoodia ei tarvita sisäänkirjautumiseen, mutta se täytyy antaa, ennen kuin voit käyttää sähköpostitoimintoja tässä wikissä.',
-'confirmemail_sendfailed' => 'Varmennusviestin lähettäminen epäonnistui. Tarkista, onko osoitteessa kiellettyjä merkkejä.
+'confirmemail'             => 'Varmenna sähköpostiosoite',
+'confirmemail_noemail'     => 'Sinulla ei ole kelvollista sähköpostiosoitetta [[Special:Preferences|asetuksissasi]].',
+'confirmemail_text'        => 'Tämä wiki vaatii sähköpostiosoitteen varmentamisen, ennen kuin voit käyttää sähköpostitoimintoja. Lähetä alla olevasta painikkeesta varmennusviesti osoitteeseesi. Viesti sisältää linkin, jonka avaamalla varmennat sähköpostiosoitteesi.',
+'confirmemail_pending'     => '<div class="error">Varmennusviesti on jo lähetetty. Jos loit tunnuksen äskettäin, odota muutama minuutti viestin saapumista, ennen kuin yrität uudelleen.</div>',
+'confirmemail_send'        => 'Lähetä varmennusviesti',
+'confirmemail_sent'        => 'Varmennusviesti lähetetty.',
+'confirmemail_oncreate'    => 'Varmennusviesti lähetettiin sähköpostiosoitteeseesi. Varmennuskoodia ei tarvita sisäänkirjautumiseen, mutta se täytyy antaa, ennen kuin voit käyttää sähköpostitoimintoja tässä wikissä.',
+'confirmemail_sendfailed'  => 'Varmennusviestin lähettäminen epäonnistui. Tarkista, onko osoitteessa kiellettyjä merkkejä.
 
 Postitusohjelma palautti: $1',
-'confirmemail_invalid'    => 'Varmennuskoodi ei kelpaa. Koodi on voinut vanhentua.',
-'confirmemail_needlogin'  => 'Sinun täytyy $1, jotta voisit varmistaa sähköpostiosoitteesi.',
-'confirmemail_success'    => 'Sähköpostiosoitteesi on nyt varmennettu. Voit kirjautua sisään.',
-'confirmemail_loggedin'   => 'Sähköpostiosoitteesi on nyt varmennettu.',
-'confirmemail_error'      => 'Jokin epäonnistui varmennuksen tallentamisessa.',
-'confirmemail_subject'    => '{{GRAMMAR:genitive|{{SITENAME}}}} sähköpostiosoitteen varmennus',
-'confirmemail_body'       => 'Joku IP-osoitteesta $1 on rekisteröinyt {{GRAMMAR:inessive|{{SITENAME}}}} tunnuksen $2 tällä sähköpostiosoitteella.
+'confirmemail_invalid'     => 'Varmennuskoodi ei kelpaa. Koodi on voinut vanhentua.',
+'confirmemail_needlogin'   => 'Sinun täytyy $1, jotta voisit varmistaa sähköpostiosoitteesi.',
+'confirmemail_success'     => 'Sähköpostiosoitteesi on nyt varmennettu. Voit kirjautua sisään.',
+'confirmemail_loggedin'    => 'Sähköpostiosoitteesi on nyt varmennettu.',
+'confirmemail_error'       => 'Jokin epäonnistui varmennuksen tallentamisessa.',
+'confirmemail_subject'     => '{{GRAMMAR:genitive|{{SITENAME}}}} sähköpostiosoitteen varmennus',
+'confirmemail_body'        => 'Joku IP-osoitteesta $1 on rekisteröinyt {{GRAMMAR:inessive|{{SITENAME}}}} tunnuksen $2 tällä sähköpostiosoitteella.
 
 Varmenna, että tämä tunnus kuuluu sinulle avaamalla seuraava linkki selaimellasi:
 
 $3
 
 Jos tämä tunnus ei ole sinun, ÄLÄ seuraa linkkiä. Varmennuskoodi vanhenee $4.',
+'confirmemail_invalidated' => 'Sähköpostiosoitteen varmennus peruutettiin',
 
 # Scary transclusion
 'scarytranscludedisabled' => '[Wikienvälinen sisällytys ei ole käytössä]',

@@ -699,6 +699,7 @@ Iwwerleet w.e.g., ob eng Opdeelung vun der Säit a méi kleng Abschnitter méigl
 'template-protected'        => '(protegéiert)',
 'template-semiprotected'    => '(gespaart fir net-ugemellten an nei Benotzer)',
 'hiddencategories'          => 'Dës Säit gehéiert zu {{PLURAL:$1|1 verstoppter Kategorie|$1 verstoppte Kategorien}}:',
+'edittools'                 => '<!-- Dësen Text gëtt ënnert dem "Ännere"-Formulair esouwéi dem "Eropluede"-Formulair ugewisen. -->',
 'nocreatetitle'             => "D'Uleeë vun neie Säiten ass limitéiert.",
 'nocreatetext'              => "Op {{SITENAME}} gouf d'Schafe vun neie Säite limitéiert. Dir kënnt Säiten déi scho bestinn änneren oder Iech [[Special:Userlogin|umellen]].",
 'nocreate-loggedin'         => 'Dir hutt keng Berechtigung fir nei Säiten op {{SITENAME}} unzeleeën.',
@@ -768,6 +769,8 @@ Fir iech z'informéieren fannt Dir hei d'Läschlescht mat dem Grond:",
 'revdelete-log'           => "Bemierkung (fir d'Logbicher/Lëschten):",
 'revdelete-submit'        => 'Op déi gewielte Versioun uwenden',
 'revdelete-logaction'     => '$1 {{PLURAL:$1|Versioun|Versiounen}} an de Modus $2 gesat',
+'pagehist'                => 'Versioune vun dëser Säit',
+'deletedhist'             => 'Geläschte Versiounen',
 
 # Oversight log
 'overlogpagetext' => "Dëst ass d'Lëscht vun de Läschungen a Spären, déi virun den Administrateure verstoppt sinn.",
@@ -2015,20 +2018,31 @@ Duerno sti Linken déi Ausnamen definéieren, a deenen hirem Kontext dat Bild aw
 'monthsall'        => 'all',
 
 # E-mail address confirmation
-'confirmemail'            => 'E-Mailadress confirméieren',
-'confirmemail_text'       => "Ier der d'E-Mailfunktioune vun der {{SITENAME}} notze kënnt musst der als éischt är E-Mailadress confirméieren. Dréckt w.e.g. de Knäppchen hei ënnendrënner fir eng Confirmatiouns-E-Mail op déi Adress ze schécken déi der uginn hutt. An däer E-Mail steet e Link mat engem Code, deen der dann an ärem Browser opmaache musst fir esou ze bestätegen, datt är Adress och wierklech existéiert a valabel ass.",
-'confirmemail_send'       => 'Confirmatiouns-E-Mail schécken',
-'confirmemail_sent'       => 'Confirmatiouns-E-Mail gouf geschéckt.',
-'confirmemail_sendfailed' => "D'Confirmatiouns-E-Mail konnt net verschéckt ginn. Iwwerpréift w.e.g. op keng ongëlteg Zeechen an ärer Adress sinn.
+'confirmemail'             => 'E-Mailadress confirméieren',
+'confirmemail_text'        => "Ier der d'E-Mailfunktioune vun der {{SITENAME}} notze kënnt musst der als éischt är E-Mailadress confirméieren. Dréckt w.e.g. de Knäppchen hei ënnendrënner fir eng Confirmatiouns-E-Mail op déi Adress ze schécken déi der uginn hutt. An däer E-Mail steet e Link mat engem Code, deen der dann an ärem Browser opmaache musst fir esou ze bestätegen, datt är Adress och wierklech existéiert a valabel ass.",
+'confirmemail_send'        => 'Confirmatiouns-E-Mail schécken',
+'confirmemail_sent'        => 'Confirmatiouns-E-Mail gouf geschéckt.',
+'confirmemail_sendfailed'  => "D'Confirmatiouns-E-Mail konnt net verschéckt ginn. Iwwerpréift w.e.g. op keng ongëlteg Zeechen an ärer Adress sinn.
 
 Feelermeldung vum Mailserver: $1",
-'confirmemail_invalid'    => "Ongëltege Confirmatiounscode. Eventuell ass d'Gëltegkeetsdauer vum Code ofgelaf.",
-'confirmemail_needlogin'  => 'Dir musst iech $1, fir är E-Mailadress ze confirméieren.',
-'confirmemail_success'    => 'Är E-Mail Address gouf konfirméiert. Där kënnt iech elo aloggen an a vollem Ëmfang vun der Wiki profitéiren.',
-'confirmemail_loggedin'   => 'Är E-Mailadress gouf elo confirméiert.',
-'confirmemail_error'      => 'Et ass eppes falsch gelaf bäim Späichere vun ärer Confirmatioun.',
-'confirmemail_subject'    => '{{SITENAME}} E-Mail-Adress-Confirmatioun',
-'confirmemail_body'       => 'E Benotzer, waarscheinlech dir selwer, hutt mat der IP Adress $1 de Benotzerkont "$2" um Site {{SITENAME}} opgemaach. Fir ze bestätegen, datt dee Kont iech wierklech gehéiert a fir d\'E-Mail-Funktiounen um Site {{SITENAME}} z\'aktivéieren, maacht w.e.g. de folgende Link an ärem Browser op: $3 Sollt et sech net ëm äre Benotzerkont handelen, da maacht de Link *net* op. De Confirmatiounscode gëtt den $4 ongëlteg.',
+'confirmemail_invalid'     => "Ongëltege Confirmatiounscode. Eventuell ass d'Gëltegkeetsdauer vum Code ofgelaf.",
+'confirmemail_needlogin'   => 'Dir musst iech $1, fir är E-Mailadress ze confirméieren.',
+'confirmemail_success'     => 'Är E-Mail Address gouf konfirméiert. Där kënnt iech elo aloggen an a vollem Ëmfang vun der Wiki profitéiren.',
+'confirmemail_loggedin'    => 'Är E-Mailadress gouf elo confirméiert.',
+'confirmemail_error'       => 'Et ass eppes falsch gelaf bäim Späichere vun ärer Confirmatioun.',
+'confirmemail_subject'     => '{{SITENAME}} E-Mail-Adress-Confirmatioun',
+'confirmemail_body'        => 'E Benotzer, waarscheinlech dir selwer, hutt mat der IP Adress $1 de Benotzerkont "$2" um Site {{SITENAME}} opgemaach. 
+
+Fir ze bestätegen, datt dee Kont iech wierklech gehéiert a fir d\'E-Mail-Funktiounen um Site {{SITENAME}} z\'aktivéieren, maacht w.e.g. dëse Link an ärem Browser op: 
+$3
+
+Wann dir dëse Benotzerkont *net* opgemaach huet, maacht w.e.g. dëse Link an ärem Browser op fir d\'E-Mailconfirmation z\'annulléieren:
+
+$5
+
+Sollt et sech net ëm äre Benotzerkont handelen, da maacht de Link *net* op. De Confirmatiounscode ass gëlteg bis de(n) $4.',
+'confirmemail_invalidated' => 'Confirmatioun vun der E-Mailadress annulléiert',
+'invalidateemail'          => "Annulléier d'E-Mailconfirmation",
 
 # Scary transclusion
 'scarytranscludedisabled' => '[Interwiki-Abannung ass ausgeschalt]',

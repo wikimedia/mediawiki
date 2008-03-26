@@ -231,9 +231,10 @@ hō‘ike ‘ia i lalo:",
 'editundo' => 'wehe',
 
 # Search results
-'prevn'       => 'mua $1',
-'nextn'       => 'hope $1',
-'powersearch' => 'Huli',
+'noexactmatch' => "'''‘A‘ohe mo‘olelo me ka inoa \"\$1\".''' Hiki iā‘oe ke [[:\$1|hana i keia ‘ao‘ao]].",
+'prevn'        => 'mua $1',
+'nextn'        => 'hope $1',
+'powersearch'  => 'Huli',
 
 # Preferences page
 'preferences'       => "Ka'u makemake",

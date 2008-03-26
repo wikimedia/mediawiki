@@ -2406,31 +2406,31 @@ Obsahuje pouze seznam s odrážkami (řádka začíná s *). První odkaz na ř�
 'monthsall'        => 'všechny',
 
 # E-mail address confirmation
-'confirmemail'            => 'Potvrzení e-mailové adresy',
-'confirmemail_noemail'    => 'Ve svém [[Special:Preferences|uživatelském nastavení]] jste nezadali platnou e-mailovou adresu.',
-'confirmemail_text'       => 'Tato wiki vyžaduje, abyste potvrdili svou e-mailovou adresu
+'confirmemail'             => 'Potvrzení e-mailové adresy',
+'confirmemail_noemail'     => 'Ve svém [[Special:Preferences|uživatelském nastavení]] jste nezadali platnou e-mailovou adresu.',
+'confirmemail_text'        => 'Tato wiki vyžaduje, abyste potvrdili svou e-mailovou adresu
 před využíváním některých funkcí. Kliknutím na níže umístěné tlačítko dojde k odeslání
 potvrzovacího e-mailu na vámi uvedeno adresu. Tento mail obsahuje odkaz a potvrzovací kód;
 přejděte na odkazovanou stránku svým internetovým prohlížečem, tím potvrdíte, že
 zadaná adresa je platná.',
-'confirmemail_pending'    => '<div class="error">
+'confirmemail_pending'     => '<div class="error">
 Potvrzovací kód vám byl již zaslán na váš e-mail.
 Pokud jste si založili účet před chvílí, vyčkejte, prosíme, několik minut na doručení kódu dříve, než požádáte o nový.
 </div>',
-'confirmemail_send'       => 'Odeslat potvrzovací kód',
-'confirmemail_sent'       => 'Potvrzovací e-mail byl odeslán',
-'confirmemail_oncreate'   => 'Na vaši e-mailovou adresu byl zaslán potvrzovací kód.
+'confirmemail_send'        => 'Odeslat potvrzovací kód',
+'confirmemail_sent'        => 'Potvrzovací e-mail byl odeslán',
+'confirmemail_oncreate'    => 'Na vaši e-mailovou adresu byl zaslán potvrzovací kód.
 Tento kód není zapotřebí k přihlášení, ale budete ho potřebovat k aktivaci některých funkcí založených na využití e-mailu.',
-'confirmemail_sendfailed' => 'Nepodařilo se odeslat potvrzovací e-mail. Zkontrolujte, zda adresa neobsahuje chybné znaky.
+'confirmemail_sendfailed'  => 'Nepodařilo se odeslat potvrzovací e-mail. Zkontrolujte, zda adresa neobsahuje chybné znaky.
 
 Poštovní program hlásí: $1',
-'confirmemail_invalid'    => 'Neplatný potvrzovací kód. Možná již vypršela platnost kódu.',
-'confirmemail_needlogin'  => 'Pro potvrzení své e-mailové adresy se musíte $1.',
-'confirmemail_success'    => 'Vaše e-mailová adresa byla potvrzena. Nyní se můžete přihlásit a používat wiki.',
-'confirmemail_loggedin'   => 'Vaše e-mailová adresa byla potvrzena.',
-'confirmemail_error'      => 'Nepodařilo se uložit vaše potvrzení.',
-'confirmemail_subject'    => 'Potvrzení e-mailové adresy pro {{grammar:4sg|{{SITENAME}}}}',
-'confirmemail_body'       => 'Někdo (patrně vy, z IP adresy $1) si registroval účet se jménem "$2" a touto e-mailovou adresou na {{grammar:6sg|{{SITENAME}}}}.
+'confirmemail_invalid'     => 'Neplatný potvrzovací kód. Možná již vypršela platnost kódu.',
+'confirmemail_needlogin'   => 'Pro potvrzení své e-mailové adresy se musíte $1.',
+'confirmemail_success'     => 'Vaše e-mailová adresa byla potvrzena. Nyní se můžete přihlásit a používat wiki.',
+'confirmemail_loggedin'    => 'Vaše e-mailová adresa byla potvrzena.',
+'confirmemail_error'       => 'Nepodařilo se uložit vaše potvrzení.',
+'confirmemail_subject'     => 'Potvrzení e-mailové adresy pro {{grammar:4sg|{{SITENAME}}}}',
+'confirmemail_body'        => 'Někdo (patrně vy, z IP adresy $1) si registroval účet se jménem "$2" a touto e-mailovou adresou na {{grammar:6sg|{{SITENAME}}}}.
 
 Pokud si přejete aktivovat e-mailové funkce na {{grammar:6sg|{{SITENAME}}}}, tak pro potvrzení,
 že tato adresa opravdu patří vám, přejděte svým internetovým prohlížečem na následující adresu:
@@ -2439,6 +2439,8 @@ $3
 
 Pokud jste o toto potvrzení *nežádali*, neklikejte na předchozí odkaz. Platnost tohoto potvrzovacího
 kódu vyprší $4.',
+'confirmemail_invalidated' => 'Potvrzení e-mailové adresy bylo zrušeno',
+'invalidateemail'          => 'Zrušit potvrzení e-mailové adresy',
 
 # Scary transclusion
 'scarytranscludedisabled' => '[Vkládání šablon mezi wiki je vypnuto]',

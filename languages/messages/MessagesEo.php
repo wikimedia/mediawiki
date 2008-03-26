@@ -765,12 +765,14 @@ Certigu ke ĉi ŝanĝo tenos kontinueco de la historia paĝo.',
 'mergehistory-go'                  => 'Montru kunigeblajn redaktojn',
 'mergehistory-submit'              => 'Kunigu reviziojn',
 'mergehistory-empty'               => 'Neniuj reviziojn eblas kunigi.',
-'mergehistory-success'             => '$3 revizioj [[:$1]] sukcese kunigita en [[:$2]].',
+'mergehistory-success'             => '$3 {{PLURAL:$3|revizio|revizioj}} de [[:$1]] sukcese kunigita en [[:$2]].',
 'mergehistory-fail'                => 'Ne eblas fari la historian kunigon; bonvolu konstati la paĝon kaj tempajn parametrojn.',
 'mergehistory-no-source'           => 'Fontpaĝo $1 ne ekzistas.',
 'mergehistory-no-destination'      => 'Celpaĝo $1 ne ekzistas.',
 'mergehistory-invalid-source'      => 'Fontpaĝo devas esti valida titolo.',
 'mergehistory-invalid-destination' => 'Celpaĝo devas esti valida titolo.',
+'mergehistory-autocomment'         => 'Kunigita [[:$1]] en [[:$2]]',
+'mergehistory-comment'             => 'Kunigita [[:$1]] en [[:$2]]: $3',
 
 # Merge log
 'mergelog'           => 'Loglibro de kunigoj',
@@ -2213,24 +2215,24 @@ Sekvaj ligilo en la sama linio estas konsiderata kiel esceptoj (paĝoj kiel la b
 'monthsall'        => 'ĉiuj',
 
 # E-mail address confirmation
-'confirmemail'            => 'Konfirmu retpoŝtadreson',
-'confirmemail_noemail'    => 'Vi ne havas validan retpoŝtan adreson notitan en viaj [[Special:Preferences|Preferoj]].',
-'confirmemail_text'       => 'Ĉi tiu vikio postulas ke vi validigu vian retadreson antaŭ ol uzadi la retmesaĝpreferojn. Bonvolu alklaki la suban butonon por sendi konfirmesaĝon al via adreso. La mesaĝo entenos ligilon kun kodo; bonvolu alŝuti la ligilon en vian foliumilon por konfirmi ke via retadreso validas.',
-'confirmemail_pending'    => '<div class="error">Konfirma kodo estis jam repoŝtis al vi; se vi lastatempe kreis vian konton, vi eble volus atenti kelkajn minutojn por ĝi aliĝi antaŭ vi petus novan kodon.</div>',
-'confirmemail_send'       => 'Retmesaĝi konfirmkodon',
-'confirmemail_sent'       => 'Konfirma retmesaĝo estas sendita.',
-'confirmemail_oncreate'   => 'Konfirma kodo estis sendita al via retpoŝta adreso.
+'confirmemail'             => 'Konfirmu retpoŝtadreson',
+'confirmemail_noemail'     => 'Vi ne havas validan retpoŝtan adreson notitan en viaj [[Special:Preferences|Preferoj]].',
+'confirmemail_text'        => 'Ĉi tiu vikio postulas ke vi validigu vian retadreson antaŭ ol uzadi la retmesaĝpreferojn. Bonvolu alklaki la suban butonon por sendi konfirmesaĝon al via adreso. La mesaĝo entenos ligilon kun kodo; bonvolu alŝuti la ligilon en vian foliumilon por konfirmi ke via retadreso validas.',
+'confirmemail_pending'     => '<div class="error">Konfirma kodo estis jam repoŝtis al vi; se vi lastatempe kreis vian konton, vi eble volus atenti kelkajn minutojn por ĝi aliĝi antaŭ vi petus novan kodon.</div>',
+'confirmemail_send'        => 'Retmesaĝi konfirmkodon',
+'confirmemail_sent'        => 'Konfirma retmesaĝo estas sendita.',
+'confirmemail_oncreate'    => 'Konfirma kodo estis sendita al via retpoŝta adreso.
 Ĉi kodo ne estas bezonata ensaluti, sed vi bezonos doni ĝin antaŭ uzante iujn ajn retpoŝt-bazitajn ecojn de la vikio.',
-'confirmemail_sendfailed' => 'Ne eblis sendi konfirmretmesaĝon. Bonvolu kontroli ĉu en la adreso ne estus nevalidaj karaktroj.
+'confirmemail_sendfailed'  => 'Ne eblis sendi konfirmretmesaĝon. Bonvolu kontroli ĉu en la adreso ne estus nevalidaj karaktroj.
 
 Retpoŝta programo sciigis: $1',
-'confirmemail_invalid'    => 'Nevalida konfirmkodo. La kodo eble ne plu validas.',
-'confirmemail_needlogin'  => 'Vi devas $1 por konfirmi vian retpoŝtan adreson.',
-'confirmemail_success'    => 'Via retadreso estas konfirmita. Vi povas nun ensaluti kaj ĝui la vikion.',
-'confirmemail_loggedin'   => 'Via retadreso estas nun konfirmita.',
-'confirmemail_error'      => 'Io misokazis dum konservo de via konfirmo.',
-'confirmemail_subject'    => '{{SITENAME}} konfirmado de retadreso',
-'confirmemail_body'       => 'Iu, verŝajne vi ĉe la IP-adreso $1, enregistrigis per tiu 
+'confirmemail_invalid'     => 'Nevalida konfirmkodo. La kodo eble ne plu validas.',
+'confirmemail_needlogin'   => 'Vi devas $1 por konfirmi vian retpoŝtan adreson.',
+'confirmemail_success'     => 'Via retadreso estas konfirmita. Vi povas nun ensaluti kaj ĝui la vikion.',
+'confirmemail_loggedin'    => 'Via retadreso estas nun konfirmita.',
+'confirmemail_error'       => 'Io misokazis dum konservo de via konfirmo.',
+'confirmemail_subject'     => '{{SITENAME}} konfirmado de retadreso',
+'confirmemail_body'        => 'Iu, verŝajne vi ĉe la IP-adreso $1, enregistrigis per tiu 
 ĉi retpoŝtadreso la konton "$2" ĉe {{SITENAME}}.
 
 Malfermu tiun ĉi ligon en via retumilo, por konfirmi ke la
@@ -2241,6 +2243,8 @@ $3
 
 Se vi ne mendis ĉi tiun mesaĝon, ne alklaku la ligon. Tiu
 ĉi konfirmokodo eksvalidiĝos je $4.',
+'confirmemail_invalidated' => 'Konfirmado de retadreso estas nuligita',
+'invalidateemail'          => 'Nuligi konfirmadon de retadreso',
 
 # Scary transclusion
 'scarytranscludedisabled' => '[Intervikia transinkluzivado estas malebligita.]',

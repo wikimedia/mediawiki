@@ -241,7 +241,7 @@ $messages = array(
 'nstab-project'   => 'Pájina projetu nian',
 'nstab-mediawiki' => 'Mensajen',
 'nstab-help'      => 'Pájina ajuda',
-'nstab-category'  => 'Kategoría',
+'nstab-category'  => 'Kategoria',
 
 # Main script and global functions
 'nosuchspecialpage' => "Pájina espesiál ne'e lá'os",
@@ -428,8 +428,12 @@ $messages = array(
 'move'              => 'Book',
 'movethispage'      => "Book pájina ne'e",
 
+# Book sources
+'booksources-go' => 'Bá',
+
 # Special:Log
 'specialloguserlabel' => "Uza-na'in:",
+'log-search-submit'   => 'Bá',
 
 # Special:Allpages
 'allpages'       => 'Pájina hotu',
@@ -527,6 +531,7 @@ $messages = array(
 
 # Block/unblock
 'blockip'                 => "Blokeiu uza-na'in",
+'blockip-legend'          => "Blokeiu uza-na'in",
 'ipboptions'              => '2 hours:2 hours,1 loron:1 day,3 Loron:3 days,1 semana:1 week,2 semana:2 weeks,1 fulan:1 month,3 fulan:3 months,6 fulan:6 months,1 tinan:1 year,infinite:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'          => 'seluk',
 'ipblocklist'             => 'Lista ema anónimu no rejista nablokeiu nian',
@@ -602,6 +607,8 @@ $messages = array(
 # EXIF tags
 'exif-artist' => 'Autór',
 
+'exif-meteringmode-255' => 'Seluk',
+
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'hotu',
 'imagelistall'     => 'hotu',
@@ -615,11 +622,13 @@ $messages = array(
 # Multipage image navigation
 'imgmultipageprev' => '← pájina molok',
 'imgmultipagenext' => 'pájina oinmai →',
+'imgmultigo'       => 'Bá!',
 
 # Table pager
-'table_pager_next'  => 'Pájina oinmai',
-'table_pager_prev'  => 'Pájina molok',
-'table_pager_first' => 'Pájina uluk',
+'table_pager_next'         => 'Pájina oinmai',
+'table_pager_prev'         => 'Pájina molok',
+'table_pager_first'        => 'Pájina uluk',
+'table_pager_limit_submit' => 'Bá',
 
 # Auto-summaries
 'autosumm-new' => 'Pájina foun: $1',

@@ -15,6 +15,7 @@
  * @author SPQRobin
  * @author לערי ריינהארט
  * @author Siebrand
+ * @author Smeira
  */
 
 $skinNames = array(
@@ -512,7 +513,7 @@ S'ha creat el vostre compte. No oblideu de canviar les vostres preferències.",
 'yourname'                   => "Nom d'usuari",
 'yourpassword'               => 'Contrasenya',
 'yourpasswordagain'          => 'Escriviu una altra vegada la contrasenya',
-'remembermypassword'         => 'Recorda la contrasenya entre sessions.',
+'remembermypassword'         => 'Recorda la contrasenya entre sessions',
 'yourdomainname'             => 'El vostre domini',
 'externaldberror'            => "Hi ha hagut una fallida en el servidor d'autenticació externa de la base de dades i no teniu permís per a actualitzar el vostre compte d'accès extern.",
 'loginproblem'               => "<strong>S'ha produït un problema en iniciar la sessió.</strong><br />Proveu-ho de nou!",
@@ -831,9 +832,11 @@ Els altres administradors del projecte {{SITENAME}} encara podrien accedir al co
 'revdelete-logentry'          => "s'ha canviat la visibilitat de la revisió de [[$1]]",
 'logdelete-logentry'          => "s'ha canviat la visibilitat de [[$1]]",
 'revdelete-logaction'         => '$1 {{PLURAL:$1|revisió canviada|revisions canviades}} al mode $2',
-'logdelete-logaction'         => '$1 {{PLURAL:$1|element|elements}} a [[$3]] canviats al mode mode $2',
+'logdelete-logaction'         => '$1 {{PLURAL:$1|element|elements}} a [[$3]] canviats al mode $2',
 'revdelete-success'           => "S'ha establert correctament la visibilitat d'aquesta revissió.",
 'logdelete-success'           => "S'ha establert correctament la visibilitat d'aquest element.",
+'pagehist'                    => 'Historial',
+'deletedhist'                 => "Historial d'esborrat",
 
 # Oversight log
 'oversightlog'    => "Registre d'oversight",
@@ -851,12 +854,14 @@ Assegureu-vos que aquest canvi mantindrà la continuïtat històrica de la pàgi
 'mergehistory-go'                  => 'Mostra les edicions que es poden fusionar',
 'mergehistory-submit'              => 'Fusiona les revisions',
 'mergehistory-empty'               => 'No pot fusionar-se cap revisió.',
-'mergehistory-success'             => "$3 revisions de [[:$1]] s'han fusionat amb èxit a [[:$2]].",
+'mergehistory-success'             => "$3 {{PLURAL:$3|revisió|revisions}} de [[:$1]] s'han fusionat amb èxit a [[:$2]].",
 'mergehistory-fail'                => "No s'ha pogut realitzar la fusió de l'historial, comproveu la pàgina i els paràmetres horaris.",
 'mergehistory-no-source'           => "La pàgina d'origen $1 no existeix.",
 'mergehistory-no-destination'      => 'La pàgina de destinació $1 no existeix.',
 'mergehistory-invalid-source'      => "La pàgina d'origen ha de tenir un títol vàlid.",
 'mergehistory-invalid-destination' => 'La pàgina de destinació ha de tenir un títol vàlid.',
+'mergehistory-autocomment'         => '[[:$1]] fusionat en [[:$2]]',
+'mergehistory-comment'             => '[[:$1]] fusionat en [[:$2]]: $3',
 
 # Merge log
 'mergelog'           => 'Registre de fusions',
@@ -1655,7 +1660,7 @@ $1",
 'whatlinkshere-links' => '← enllaços',
 
 # Block/unblock
-'blockip'                     => "Bloca l'usuari",
+'blockip'                     => "Blocatge d'usuaris",
 'blockip-legend'              => "Bloca l'usuari",
 'blockiptext'                 => "Empreu el següent formulari per blocar l'accés
 d'escriptura des d'una adreça IP específica o des d'un usuari determinat.
@@ -2339,33 +2344,33 @@ La resta d'enllaços de la línia són les excepcions, és a dir, les pàgines o
 'monthsall'        => 'tots',
 
 # E-mail address confirmation
-'confirmemail'            => "Confirma l'adreça de correu electrònic",
-'confirmemail_noemail'    => "No heu introduït una direcció vàlida de correu electrònic en les vostres [[Special:Preferences|preferències d'usuari]].",
-'confirmemail_text'       => "El projecte {{SITENAME}} necessita que valideu la vostra adreça de correu
+'confirmemail'             => "Confirma l'adreça de correu electrònic",
+'confirmemail_noemail'     => "No heu introduït una direcció vàlida de correu electrònic en les vostres [[Special:Preferences|preferències d'usuari]].",
+'confirmemail_text'        => "El projecte {{SITENAME}} necessita que valideu la vostra adreça de correu
 electrònic per a poder gaudir d'algunes facilitats. Cliqueu el botó inferior
 per a enviar un codi de confirmació a la vostra adreça. Seguiu l'enllaç que
 hi haurà al missatge enviat per a confirmar que el vostre correu és correcte.",
-'confirmemail_pending'    => "<div class=\"error\">
+'confirmemail_pending'     => "<div class=\"error\">
 Ja s'ha enviat el vostre codi de confirmació per correu electrònic; si
 fa poc hi heu creat el vostre compte, abans de mirar de demanar un nou
 codi, primer hauríeu d'esperar alguns minuts per a rebre'l.
 </div>",
-'confirmemail_send'       => 'Envia per correu electrònic un codi de confirmació',
-'confirmemail_sent'       => "S'ha enviat un missatge de confirmació.",
-'confirmemail_oncreate'   => "S'ha enviat un codi de confirmació a la vostra adreça de correu electrònic.
+'confirmemail_send'        => 'Envia per correu electrònic un codi de confirmació',
+'confirmemail_sent'        => "S'ha enviat un missatge de confirmació.",
+'confirmemail_oncreate'    => "S'ha enviat un codi de confirmació a la vostra adreça de correu electrònic.
 No es requereix aquest codi per a autenticar-s'hi, però vos caldrà proporcionar-lo
 abans d'activar qualsevol funcionalitat del wiki basada en missatges
 de correu electrònic.",
-'confirmemail_sendfailed' => "No s'ha pogut enviar un missatge de confirmació. Comproveu que l'adreça no tingui caràcters no vàlids.
+'confirmemail_sendfailed'  => "No s'ha pogut enviar un missatge de confirmació. Comproveu que l'adreça no tingui caràcters no vàlids.
 
 El programari de correu retornà el següent missatge: $1",
-'confirmemail_invalid'    => 'El codi de confirmació no és vàlid. Aquest podria haver vençut.',
-'confirmemail_needlogin'  => 'Necessiteu $1 per a confirmar la vostra adreça electrònica.',
-'confirmemail_success'    => "S'ha confirmat la vostra adreça electrònica. Ara podeu iniciar una sessió i gaudir del wiki.",
-'confirmemail_loggedin'   => "Ja s'ha confirmat la vostra adreça electrònica.",
-'confirmemail_error'      => 'Quelcom ha fallat en desar la vostra confirmació.',
-'confirmemail_subject'    => "Confirmació de l'adreça electrònica del projecte {{SITENAME}}",
-'confirmemail_body'       => "Algú, segurament vós, ha registrat el compte «$2» al projecte {{SITENAME}}
+'confirmemail_invalid'     => 'El codi de confirmació no és vàlid. Aquest podria haver vençut.',
+'confirmemail_needlogin'   => 'Necessiteu $1 per a confirmar la vostra adreça electrònica.',
+'confirmemail_success'     => "S'ha confirmat la vostra adreça electrònica. Ara podeu iniciar una sessió i gaudir del wiki.",
+'confirmemail_loggedin'    => "Ja s'ha confirmat la vostra adreça electrònica.",
+'confirmemail_error'       => 'Quelcom ha fallat en desar la vostra confirmació.',
+'confirmemail_subject'     => "Confirmació de l'adreça electrònica del projecte {{SITENAME}}",
+'confirmemail_body'        => "Algú, segurament vós, ha registrat el compte «$2» al projecte {{SITENAME}}
 amb aquesta adreça electrònica des de l'adreça IP $1.
 
 Per a confirmar que aquesta adreça electrònica us pertany realment
@@ -2373,8 +2378,13 @@ i així activar les opcions de correu del programari, seguiu aquest enllaç:
 
 $3
 
-Si '''no''' heu estat vós, no el cliqueu. Aquest codi de confirmació
-caducarà a $4.",
+Si *no* heu estat vós, seguiu aquest altre enllaç per a cancel·lar la confirmació demanada:
+
+$5
+
+Aquest codi de confirmació caducarà a $4.",
+'confirmemail_invalidated' => "Confirmació d'adreça electrònica cancel·lada",
+'invalidateemail'          => "Cancel·la la confirmació d'adreça electrònica",
 
 # Scary transclusion
 'scarytranscludedisabled' => "[S'ha inhabilitat la transclusió interwiki]",
@@ -2416,7 +2426,7 @@ $1",
 # Multipage image navigation
 'imgmultipageprev' => '&larr; pàgina anterior',
 'imgmultipagenext' => 'pàgina següent &rarr;',
-'imgmultigo'       => 'Vés-hi',
+'imgmultigo'       => 'Vés-hi!',
 'imgmultigotopre'  => 'Vés a la pàgina',
 
 # Table pager
