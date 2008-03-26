@@ -1,5 +1,5 @@
 -- For convenience, here are the *in-project* interwiki prefixes
--- for Wikipedia.
+-- for Wiktionary.
 
 REPLACE INTO /*$wgDBprefix*/interwiki (iw_prefix,iw_url,iw_local) VALUES
 ('w','http://www.wikipedia.org/wiki/$1',1),
