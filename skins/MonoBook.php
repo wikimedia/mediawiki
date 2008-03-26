@@ -174,11 +174,6 @@ class MonoBookTemplate extends QuickTemplate {
 			</div></form>
 		</div>
 	</div>
-    <?php
-      if(isset($GLOBALS['wgSpecialPages']['Collection'])) {
-         Collection::printPortlet();
-      }
-    ?>
 	<div class="portlet" id="p-tb">
 		<h5><?php $this->msg('toolbox') ?></h5>
 		<div class="pBody">
