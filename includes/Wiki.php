@@ -112,7 +112,7 @@ class MediaWiki {
 			// check variant links so that interwiki links don't have to worry
 			// about the possible different language variants
 			if( count( $wgContLang->getVariants() ) > 1 && !is_null( $ret ) && $ret->getArticleID() == 0 )
-				$lang->findVariantLink( $title, $ret );
+				$wgContLang->findVariantLink( $title, $ret );
 
 		}
 		if ( ( $oldid = $wgRequest->getInt( 'oldid' ) )
