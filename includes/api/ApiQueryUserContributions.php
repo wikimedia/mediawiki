@@ -62,10 +62,6 @@ class ApiQueryContributions extends ApiQueryBase {
 
 		if(isset($this->params['userprefix']))
 		{
-			global $wgAPIUCUserPrefixMinLength;
-			if(strlen($this->params['userprefix']) < $wgAPIUCUserPrefixMinLength)
-				$this->dieUsage("User prefixes must be at least $wgAPIUCUserPrefixMinLength characters", 'userprefix-tooshort');
-
 			$this->prefixMode = true;
 			$this->userprefix = $this->params['userprefix'];
 		}
@@ -145,6 +141,9 @@ class ApiQueryContributions extends ApiQueryBase {
 		else 
 			$this->addWhereFld( 'rev_user_text', $this->usernames );
 		// ... and in the specified timeframe.
+		// Ensure the same sort order for rev_user_text and rev_timestamp
+		// so our query is indexed
+		$this->addWhereRange('rev_user_text', $this->params['dir'], null, null);
 		$this->addWhereRange('rev_timestamp', 
 			$this->params['dir'], $this->params['start'], $this->params['end'] );
 		$this->addWhereFld('page_namespace', $this->params['namespace']);

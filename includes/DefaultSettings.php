@@ -2877,10 +2877,10 @@ $wgEnableWriteAPI = false;
 $wgAPIModules = array();
 
 /**
- * Minimum length of list=usercontribs's ucuserprefix parameter
- * Setting this to a low value can open DOS windows on large wikis
+ * Maximum amount of rows to scan in a DB query in the API
+ * The default value is generally fine
  */
-$wgAPIUCUserPrefixMinLength = 3;
+$wgAPIMaxDBRows = 5000;
 
 /**
  * Parser test suite files to be run by parserTests.php when no specific

@@ -111,8 +111,6 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 
 		$this->addOption('LIMIT', $params['limit'] + 1);
 		$this->addWhereRange('ar_timestamp', $params['dir'], $params['start'], $params['end']);
-		if(isset($params['namespace']))
-			$this->addWhereFld('ar_namespace', $params['namespace']);
 		$res = $this->select(__METHOD__);
 		$pages = array();
 		$count = 0;
@@ -183,10 +181,6 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 				),
 				ApiBase :: PARAM_DFLT => 'older'
 			),
-			'namespace' => array(
-				ApiBase :: PARAM_ISMULTI => true,
-				ApiBase :: PARAM_TYPE => 'namespace'
-			),
 			'limit' => array(
 				ApiBase :: PARAM_DFLT => 10,
 				ApiBase :: PARAM_TYPE => 'limit',
@@ -215,7 +209,6 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 			'start' => 'The timestamp to start enumerating from',
 			'end' => 'The timestamp to stop enumerating at',
 			'dir' => 'The direction in which to enumerate',
-			'namespace' => 'The namespaces to search in',
 			'limit' => 'The maximum amount of revisions to list',
 			'prop' => 'Which properties to get'
 		);
@@ -227,8 +220,8 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 
 	protected function getExamples() {
 		return array (
-			'List the first 50 deleted revisions in the Category and Category talk namespaces',
-			'  api.php?action=query&list=deletedrevs&drdir=newer&drlimit=50&drnamespace=14|15',
+			'List the first 50 deleted revisions',
+			'  api.php?action=query&list=deletedrevs&drdir=newer&drlimit=50',
 			'List the last deleted revisions of Main Page and Talk:Main Page, with content:',
 			'  api.php?action=query&list=deletedrevs&titles=Main%20Page|Talk:Main%20Page&drprop=user|comment|content'
 		);
