@@ -108,7 +108,7 @@ $messages = array(
 'tog-enotifwatchlistpages'    => '在页面更改时发邮件通知我',
 'tog-enotifusertalkpages'     => '在我的讨论页更改时发邮件通知我',
 'tog-enotifminoredits'        => '在页面有微小编辑时也发邮件通知我',
-'tog-enotifrevealaddr'        => '在通邮件知列表中显示我的邮件地址',
+'tog-enotifrevealaddr'        => '在通知电子邮件列表中显示我的电子邮件地址',
 'tog-shownumberswatching'     => '显示监视此页的用户数',
 'tog-fancysig'                => '原始签名 (没有自动链接)',
 'tog-externaleditor'          => '默认使用外部编辑器',
@@ -756,6 +756,8 @@ $2',
 'logdelete-logaction'         => '对于[[$3]]的$1个事件己经设置至方式$2',
 'revdelete-success'           => '修订的可见性已经成功设置。',
 'logdelete-success'           => '事件的可见性已经成功设置。',
+'pagehist'                    => '页面历史',
+'deletedhist'                 => '已删除之历史',
 
 # Oversight log
 'oversightlog'    => '监督记录',
@@ -763,10 +765,8 @@ $2',
 
 # History merging
 'mergehistory'                     => '合并页面历史',
-'mergehistory-header'              => "这一页可以讲您合并一个来源页面的历史到另一个新页面中。
-请确认这次更改会继续保留该页面先前的历史版本。
-
-'''最少该来源页面的现时修订必定会保持。'''",
+'mergehistory-header'              => '这一页可以讲您合并一个来源页面的历史到另一个新页面中。
+请确认这次更改会继续保留该页面先前的历史版本。',
 'mergehistory-box'                 => '合并两个页面的修订:',
 'mergehistory-from'                => '来源页面:',
 'mergehistory-into'                => '目的页面:',
@@ -781,6 +781,8 @@ $2',
 'mergehistory-no-destination'      => '目的页面$1不存在。',
 'mergehistory-invalid-source'      => '来源页面必须是一个有效的标题。',
 'mergehistory-invalid-destination' => '目的页面必须是一个有效的标题。',
+'mergehistory-autocomment'         => '已经合并[[:$1]]去到[[:$2]]',
+'mergehistory-comment'             => '已经合并[[:$1]]去到[[:$2]]: $3',
 
 # Merge log
 'mergelog'           => '合并日志',
@@ -813,8 +815,13 @@ $2',
 'viewprevnext'          => '查看 ($1) ($2) ($3)',
 'search-result-size'    => '$1 ($2个字)',
 'search-result-score'   => '相关度: $1%',
+'search-redirect'       => '(重定向 $1)',
+'search-section'        => '(段落 $1)',
+'search-suggest'        => '你是否解: $1',
+'searchall'             => '所有',
 'showingresults'        => '下面显示从第<b>$2</b>条开始的<b>$1</b>条结果:',
 'showingresultsnum'     => '下面显示从第<b>$2</b>条开始的<b>$3</b>条结果:',
+'showingresultstotal'   => "下面显示从'''$1 - $2'''，总共'''$3'''项之结果",
 'nonefound'             => '<strong>注意：</strong>失败的搜索往往是由于试图搜索诸如“的”或“和”之类的常见字所引起。',
 'powersearch'           => '高级搜索',
 'powersearch-legend'    => '高级搜索',
@@ -1821,7 +1828,7 @@ $1',
 'tooltip-feed-rss'                => '此页的 RSS 订阅',
 'tooltip-feed-atom'               => '此页的 Atom 订阅',
 'tooltip-t-contributions'         => '查看该用户的贡献列表',
-'tooltip-t-emailuser'             => '向该用户发送一封邮件',
+'tooltip-t-emailuser'             => '向该用户发送一封电子邮件',
 'tooltip-t-upload'                => '上传文件',
 'tooltip-t-specialpages'          => '所有特殊页面列表',
 'tooltip-t-print'                 => '这个页面的可打印版本',
@@ -2244,35 +2251,42 @@ Variants for Chinese language
 'monthsall'        => '全部',
 
 # E-mail address confirmation
-'confirmemail'            => '确认邮箱地址',
-'confirmemail_noemail'    => '您没有在您的[[Special:Preferences|用户设置]]里面输入一个有效的 email 地址。',
-'confirmemail_text'       => '{{SITENAME}}要求您在使用邮件功能之前验证您的邮箱地址。
+'confirmemail'             => '确认邮箱地址',
+'confirmemail_noemail'     => '您没有在您的[[Special:Preferences|用户设置]]里面输入一个有效的 email 地址。',
+'confirmemail_text'        => '{{SITENAME}}要求您在使用邮件功能之前验证您的邮箱地址。
 点击以下按钮可向您的邮箱发送一封确认邮件。该邮件包含有一行代码链接；
 请在您的浏览器中加载此链接以确认您的邮箱地址是有效的。',
-'confirmemail_pending'    => '<div class="error">
+'confirmemail_pending'     => '<div class="error">
 一个确认代码已经被发送到您的邮箱，您可能需要等几分钟才能收到。如果无法收到，请在申请一个新的确认码！
 </div>',
-'confirmemail_send'       => '邮发确认代码',
-'confirmemail_sent'       => '确认邮件已发送。',
-'confirmemail_oncreate'   => '一个确认代码已经被发送到您的邮箱。该代码并不要求您进行登录，
+'confirmemail_send'        => '邮发确认代码',
+'confirmemail_sent'        => '确认邮件已发送。',
+'confirmemail_oncreate'    => '一个确认代码已经被发送到您的邮箱。该代码并不要求您进行登录，
 但若您要启用在此 wiki 上的任何基于电子邮件的功能，您必须先提交此代码。',
-'confirmemail_sendfailed' => '不能发送确认邮件，请检查邮箱地址是否包含非法字符。
+'confirmemail_sendfailed'  => '不能发送确认邮件，请检查邮箱地址是否包含非法字符。
 
 邮件传送员回应: $1',
-'confirmemail_invalid'    => '无效的确认码，该代码可能已经过期。',
-'confirmemail_needlogin'  => '您需要$1以确认您的邮箱地址。',
-'confirmemail_success'    => '您的邮箱已经被确认。您现在可以登录并使用此网站了。',
-'confirmemail_loggedin'   => '您的邮箱地址现在已被确认。',
-'confirmemail_error'      => '你的确认过程发生错误。',
-'confirmemail_subject'    => '{{SITENAME}}邮箱地址确认',
-'confirmemail_body'       => '拥有IP地址$1的用户(可能是您)在{{SITENAME}}创建了账户"$2"，并提交了您的电子邮箱地址。
+'confirmemail_invalid'     => '无效的确认码，该代码可能已经过期。',
+'confirmemail_needlogin'   => '您需要$1以确认您的邮箱地址。',
+'confirmemail_success'     => '您的邮箱已经被确认。您现在可以登录并使用此网站了。',
+'confirmemail_loggedin'    => '您的邮箱地址现在已被确认。',
+'confirmemail_error'       => '你的确认过程发生错误。',
+'confirmemail_subject'     => '{{SITENAME}}邮箱地址确认',
+'confirmemail_body'        => '拥有IP地址$1的用户(可能是您)在{{SITENAME}}创建了账户"$2"，并提交了您的电子邮箱地址。
 		
 请确认这个账户是属于您的，并同时激活在{{SITENAME}}上的
 电子邮件功能。请在浏览器中打开下面的链接:
 
 $3
 
-如果您*没有*提出这个请求，请不要点击此链接。确认码会在$4过期。',
+如果您*未*注册账户，
+请打开下面的连结去取消电子邮件确认:
+
+$5
+
+确认码会在$4过期。',
+'confirmemail_invalidated' => '电邮地址确认已取消',
+'invalidateemail'          => '取消电邮确认',
 
 # Scary transclusion
 'scarytranscludedisabled' => '[跨网站的编码转换不可用]',

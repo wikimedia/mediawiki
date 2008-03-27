@@ -629,6 +629,8 @@ $2',
 'revdelete-hide-user'         => '簿、IP以藏',
 'revdelete-log'               => '誌贊：',
 'revdelete-submit'            => '擇審使之',
+'pagehist'                    => '頁史',
+'deletedhist'                 => '刪史',
 
 # Oversight log
 'oversightlog'    => '誌督',
@@ -654,6 +656,8 @@ $2',
 'mergehistory-no-destination'      => '到頁$1無存也。',
 'mergehistory-invalid-source'      => '源頁之題須效之。',
 'mergehistory-invalid-destination' => '到頁之題須效之。',
+'mergehistory-autocomment'         => '併[[:$1]]至[[:$2]]',
+'mergehistory-comment'             => '併[[:$1]]至[[:$2]]：$3',
 
 # Merge log
 'mergelog'           => '誌併',
@@ -685,8 +689,13 @@ $2',
 'viewprevnext'          => '見（$1）（$2）（$3）',
 'search-result-size'    => '$1 （$2字）',
 'search-result-score'   => '關：$1%',
-'showingresults'        => '見<b>$1</b>尋，自<b>$2</b>始：',
-'showingresultsnum'     => '見<b>$3</b>尋，自<b>$2</b>始：',
+'search-redirect'       => '(轉 $1)',
+'search-section'        => '(節 $1)',
+'search-suggest'        => '爾否解之：$1',
+'searchall'             => '全',
+'showingresults'        => "見'''$1'''尋，自'''$2'''始：",
+'showingresultsnum'     => "見'''$3'''尋，自'''$2'''始：",
+'showingresultstotal'   => "見'''$1至$2'''共'''$3'''尋",
 'powersearch'           => '尋',
 'powersearch-legend'    => '尋',
 
@@ -1691,6 +1700,8 @@ $NEWPAGE
 'confirmemail_sendfailed' => '信未遣焉，請核郵驛。
 
 郵者覆之：$1',
+'confirmemail_invalidated' => '核郵驛消也',
+'invalidateemail'          => '消核郵驛',
 
 # Scary transclusion
 'scarytranscludedisabled' => '[蓋跨共筆之轉碼者，莫之能用也]',

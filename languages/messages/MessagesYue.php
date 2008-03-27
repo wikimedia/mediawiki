@@ -163,7 +163,7 @@ $messages = array(
 'tog-enotifwatchlistpages'    => '當我監視嘅頁面有修改時電郵通知我',
 'tog-enotifusertalkpages'     => '個人留言版有修改時電郵通知我',
 'tog-enotifminoredits'        => '小修改都要電郵通知我',
-'tog-enotifrevealaddr'        => '喺通知信上面話畀人聽我嘅電郵地址',
+'tog-enotifrevealaddr'        => '喺電郵通知信上面話畀人聽我嘅電郵地址',
 'tog-shownumberswatching'     => '顯示有幾多人監視',
 'tog-fancysig'                => '程式碼簽名（冇自動連結）',
 'tog-externaleditor'          => '預設用外掛編輯器',
@@ -812,6 +812,8 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'logdelete-logaction'         => '對於[[$3]]嘅$1件事設定咗去模式$2',
 'revdelete-success'           => '修訂可見性已經成功噉設定。',
 'logdelete-success'           => '事件可見性已經成功噉設定。',
+'pagehist'                    => '頁面歷史',
+'deletedhist'                 => '刪除咗嘅歷史',
 
 # Oversight log
 'oversightlog'    => '監督記錄',
@@ -819,10 +821,8 @@ MySQL 嘅錯誤回應 "$3: $4"',
 
 # History merging
 'mergehistory'                     => '合併頁歷史',
-'mergehistory-header'              => "呢一版可以畀你去合併一個來源頁嘅修訂記錄到另一個新頁。
-請確認呢次更改會繼續保留嗰版之前嘅歷史版。
-
-'''最少個來源頁嘅現時修訂一定會保持。'''",
+'mergehistory-header'              => '呢一版可以畀你去合併一個來源頁嘅修訂記錄到另一個新頁。
+請確認呢次更改會繼續保留嗰版之前嘅歷史版。',
 'mergehistory-box'                 => '合併兩版嘅修訂:',
 'mergehistory-from'                => '來源頁:',
 'mergehistory-into'                => '目的頁:',
@@ -837,6 +837,8 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'mergehistory-no-destination'      => '目的頁$1唔存在。',
 'mergehistory-invalid-source'      => '來源頁一定要係一個有效嘅標題。',
 'mergehistory-invalid-destination' => '目的頁一定要係一個有效嘅標題。',
+'mergehistory-autocomment'         => '已經合併咗[[:$1]]去到[[:$2]]',
+'mergehistory-comment'             => '已經合併咗[[:$1]]去到[[:$2]]: $3',
 
 # Merge log
 'mergelog'           => '合併日誌',
@@ -869,8 +871,13 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'viewprevnext'          => '去睇 ($1) ($2) ($3)',
 'search-result-size'    => '$1 ($2個字)',
 'search-result-score'   => '相關度: $1%',
+'search-redirect'       => '(跳轉 $1)',
+'search-section'        => '(小節 $1)',
+'search-suggest'        => '你係唔係搵: $1',
+'searchall'             => '全部',
 'showingresults'        => '自#<b>$2</b>起顯示最多<b>$1</b>個結果。',
 'showingresultsnum'     => '自#<b>$2</b>起顯示<b>$3</b>個結果。',
+'showingresultstotal'   => "下面顯示緊由'''$1 - $2'''，總共'''$3'''項嘅結果",
 'nonefound'             => "'''注意'''：搵嘢結果為空通常係因為你搵嘅係\"have\"、\"from\"等太常用而唔會被索引入數據庫嘅詞，又或者係你指定咗太多嘅關鍵字（只有包含所有你指定嘅關鍵字嘅頁面先至會被搵到出嚟）。",
 'powersearch'           => '進階搵嘢',
 'powersearch-legend'    => '進階搵嘢',
@@ -2285,31 +2292,37 @@ Variants for Chinese language
 'monthsall'        => '全部',
 
 # E-mail address confirmation
-'confirmemail'            => '確認電郵地址',
-'confirmemail_noemail'    => '你唔需要響你嘅[[Special:Preferences|用戶喜好設定]]度設定一個有效嘅電郵地址。',
-'confirmemail_text'       => '{{SITENAME}}需要你喺使用電郵功能之前驗證吓你嘅電郵地址。啟用下邊個掣嚟發封確認信去你個地址度。封信入面會附帶一條包含代碼嘅連結；喺你個瀏覽器度打開條連結嚟確認你嘅電郵地址係有效嘅。',
-'confirmemail_pending'    => '<div class="error">一個確認碼已經電郵咗畀你；如果你係啱啱開咗個新戶口嘅，你可以響請求一個新嘅確認碼之前等多幾分鐘等佢寄畀你。</div>',
-'confirmemail_send'       => '寄出確認碼。',
-'confirmemail_sent'       => '確認電郵已經寄出。',
-'confirmemail_oncreate'   => '一個確認碼已經寄送咗到嘅嘅電郵地址。
+'confirmemail'             => '確認電郵地址',
+'confirmemail_noemail'     => '你唔需要響你嘅[[Special:Preferences|用戶喜好設定]]度設定一個有效嘅電郵地址。',
+'confirmemail_text'        => '{{SITENAME}}需要你喺使用電郵功能之前驗證吓你嘅電郵地址。啟用下邊個掣嚟發封確認信去你個地址度。封信入面會附帶一條包含代碼嘅連結；喺你個瀏覽器度打開條連結嚟確認你嘅電郵地址係有效嘅。',
+'confirmemail_pending'     => '<div class="error">一個確認碼已經電郵咗畀你；如果你係啱啱開咗個新戶口嘅，你可以響請求一個新嘅確認碼之前等多幾分鐘等佢寄畀你。</div>',
+'confirmemail_send'        => '寄出確認碼。',
+'confirmemail_sent'        => '確認電郵已經寄出。',
+'confirmemail_oncreate'    => '一個確認碼已經寄送咗到嘅嘅電郵地址。
 呢個代碼唔係登入嗰陣去用，但係你需要佢去開響呢個wiki度，任何同電郵有關嘅功能。',
-'confirmemail_sendfailed' => '發唔到確認信。請檢查吓個地址有冇無效嘅字。
+'confirmemail_sendfailed'  => '發唔到確認信。請檢查吓個地址有冇無效嘅字。
 
 郵件遞送員回應咗：$1',
-'confirmemail_invalid'    => '無效嘅確認碼。個代碼可能已經過咗期。',
-'confirmemail_needlogin'  => '你需要先$1去確認你嘅電郵地址。',
-'confirmemail_success'    => '你嘅電郵地址已經得到確認。你而家可以登入同盡情享受wiki啦。',
-'confirmemail_loggedin'   => '你嘅電郵地址現已得到確認。',
-'confirmemail_error'      => '儲存你嘅確認資料嘅時候有小小嘢發生咗意外。',
-'confirmemail_subject'    => '{{SITENAME}}電郵地址確認',
-'confirmemail_body'       => '有人（好有可能係嚟自你嘅IP地址 $1）已經用呢個電郵地址喺{{SITENAME}}度註冊咗帳戶"$2"
+'confirmemail_invalid'     => '無效嘅確認碼。個代碼可能已經過咗期。',
+'confirmemail_needlogin'   => '你需要先$1去確認你嘅電郵地址。',
+'confirmemail_success'     => '你嘅電郵地址已經得到確認。你而家可以登入同盡情享受wiki啦。',
+'confirmemail_loggedin'    => '你嘅電郵地址現已得到確認。',
+'confirmemail_error'       => '儲存你嘅確認資料嘅時候有小小嘢發生咗意外。',
+'confirmemail_subject'     => '{{SITENAME}}電郵地址確認',
+'confirmemail_body'        => '有人（好有可能係嚟自你嘅IP地址 $1）已經用呢個電郵地址喺{{SITENAME}}度註冊咗帳戶"$2"
 
 要確認呢個帳戶的而且確屬於你同埋啟用{{SITENAME}}嘅電郵功能，請喺你嘅瀏覽器度打開呢條連結：
 
 $3
 
-如果呢個*唔係*你，請唔好打開條連結。
+如果你係*未*註冊個戶口嘅，
+請跟住呢個連結去取消電郵地址確認：
+
+$5
+
 呢個確認代碼會喺$4到期。',
+'confirmemail_invalidated' => '電郵地址確認取消咗',
+'invalidateemail'          => '取消電郵確認',
 
 # Scary transclusion
 'scarytranscludedisabled' => '[跨 wiki 滲漏正停用]',

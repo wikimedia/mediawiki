@@ -88,7 +88,7 @@ $messages = array(
 'tog-enotifwatchlistpages'    => '當我監視的頁面改變時發電子郵件給我',
 'tog-enotifusertalkpages'     => '當我的對話頁發生改變時發電子郵件給我',
 'tog-enotifminoredits'        => '即使是頁面的小修改也向我發電子郵件',
-'tog-enotifrevealaddr'        => '在通知郵件中顯示我的電子郵件位址',
+'tog-enotifrevealaddr'        => '在通知電子郵件中顯示我的電子郵件位址',
 'tog-shownumberswatching'     => '顯示監視用戶的數目',
 'tog-fancysig'                => '使用原始簽名 (不產生自動連結)',
 'tog-externaleditor'          => '預設使用外部編輯器',
@@ -730,6 +730,8 @@ $2',
 'logdelete-logaction'         => '對於[[$3]]的$1個事件己經設定至模式$2',
 'revdelete-success'           => '修訂的可見性已經成功設定。',
 'logdelete-success'           => '事件的可見性已經成功設定。',
+'pagehist'                    => '頁面歷史',
+'deletedhist'                 => '已刪除之歷史',
 
 # Oversight log
 'oversightlog'    => '監督記錄',
@@ -737,10 +739,8 @@ $2',
 
 # History merging
 'mergehistory'                     => '合併頁面歷史',
-'mergehistory-header'              => "這一頁可以講您合併一個來源頁面的歷史到另一個新頁面中。
-請確認這次更改會繼續保留該頁面先前的歷史版本。
-
-'''最少該來源頁面的現時修訂必定會保持。'''",
+'mergehistory-header'              => '這一頁可以講您合併一個來源頁面的歷史到另一個新頁面中。
+請確認這次更改會繼續保留該頁面先前的歷史版本。',
 'mergehistory-box'                 => '合併兩個頁面的修訂:',
 'mergehistory-from'                => '來源頁面:',
 'mergehistory-into'                => '目的頁面:',
@@ -755,6 +755,8 @@ $2',
 'mergehistory-no-destination'      => '目的頁面$1不存在。',
 'mergehistory-invalid-source'      => '來源頁面必須是一個有效的標題。',
 'mergehistory-invalid-destination' => '目的頁面必須是一個有效的標題。',
+'mergehistory-autocomment'         => '已經合併[[:$1]]去到[[:$2]]',
+'mergehistory-comment'             => '已經合併[[:$1]]去到[[:$2]]: $3',
 
 # Merge log
 'mergelog'           => '合併日誌',
@@ -787,8 +789,13 @@ $2',
 'viewprevnext'          => '檢視 ($1) ($2) ($3)',
 'search-result-size'    => '$1 ($2個字)',
 'search-result-score'   => '相關度: $1%',
+'search-redirect'       => '(重定向 $1)',
+'search-section'        => '(段落 $1)',
+'search-suggest'        => '你是否解: $1',
+'searchall'             => '所有',
 'showingresults'        => '下面顯示從第<b>$2</b>條開始的<b>$1</b>條結果:',
 'showingresultsnum'     => '下面顯示從第<b>$2</b>條開始的<b>$3</b>條結果:',
+'showingresultstotal'   => "下面顯示從'''$1 - $2'''，總共'''$3'''項之結果",
 'nonefound'             => '<strong>注意：</strong>失敗的搜索往往是由於試圖搜索諸如「的」或「和」之類的常見字所引起。',
 'powersearch'           => '進階搜索',
 'powersearch-legend'    => '進階搜索',
@@ -2217,35 +2224,42 @@ Variants for Chinese language
 'monthsall'        => '全部',
 
 # E-mail address confirmation
-'confirmemail'            => '確認郵箱位址',
-'confirmemail_noemail'    => '您沒有在您的[[Special:Preferences|用戶設定]]裡面輸入一個有效的 email 位址。',
-'confirmemail_text'       => '{{SITENAME}}要求您在使用郵件功能之前驗證您的郵箱位址。
+'confirmemail'             => '確認郵箱位址',
+'confirmemail_noemail'     => '您沒有在您的[[Special:Preferences|用戶設定]]裡面輸入一個有效的 email 位址。',
+'confirmemail_text'        => '{{SITENAME}}要求您在使用郵件功能之前驗證您的郵箱位址。
 點擊以下按鈕可向您的郵箱發送一封確認郵件。該郵件包含有一行代碼連結；
 請在您的瀏覽器中加載此連結以確認您的郵箱位址是有效的。',
-'confirmemail_pending'    => '<div class="error">
+'confirmemail_pending'     => '<div class="error">
 一個確認代碼已經被發送到您的郵箱，您可能需要等幾分鐘才能收到。如果無法收到，請在申請一個新的確認碼！
 </div>',
-'confirmemail_send'       => '郵發確認代碼',
-'confirmemail_sent'       => '確認郵件已發送。',
-'confirmemail_oncreate'   => '一個確認代碼已經被發送到您的郵箱。該代碼並不要求您進行登錄，
+'confirmemail_send'        => '郵發確認代碼',
+'confirmemail_sent'        => '確認郵件已發送。',
+'confirmemail_oncreate'    => '一個確認代碼已經被發送到您的郵箱。該代碼並不要求您進行登錄，
 但若您要啟用在此 wiki 上的任何基於電子郵件的功能，您必須先提交此代碼。',
-'confirmemail_sendfailed' => '不能發送確認郵件，請檢查郵箱位址是否包含非法字元。
+'confirmemail_sendfailed'  => '不能發送確認郵件，請檢查郵箱位址是否包含非法字元。
 
 郵件傳送員回應: $1',
-'confirmemail_invalid'    => '無效的確認碼，該代碼可能已經過期。',
-'confirmemail_needlogin'  => '您需要$1以確認您的郵箱位址。',
-'confirmemail_success'    => '您的郵箱已經被確認。您現下可以登錄並使用此網站了。',
-'confirmemail_loggedin'   => '您的郵箱位址現下已被確認。',
-'confirmemail_error'      => '你的確認過程發生錯誤。',
-'confirmemail_subject'    => '{{SITENAME}}郵箱位址確認',
-'confirmemail_body'       => '擁有IP位址$1的用戶(可能是您)在{{SITENAME}}創建了帳戶"$2"，並提交了您的電子郵箱位址。
+'confirmemail_invalid'     => '無效的確認碼，該代碼可能已經過期。',
+'confirmemail_needlogin'   => '您需要$1以確認您的郵箱位址。',
+'confirmemail_success'     => '您的郵箱已經被確認。您現下可以登錄並使用此網站了。',
+'confirmemail_loggedin'    => '您的郵箱位址現下已被確認。',
+'confirmemail_error'       => '你的確認過程發生錯誤。',
+'confirmemail_subject'     => '{{SITENAME}}郵箱位址確認',
+'confirmemail_body'        => '擁有IP位址$1的用戶(可能是您)在{{SITENAME}}創建了帳戶"$2"，並提交了您的電子郵箱位址。
 		
 請確認這個帳戶是屬於您的，並同時啟用在{{SITENAME}}上的
 電子郵件功能。請在瀏覽器中打開下面的連結:
 
 $3
 
-如果您*沒有*提出這個請求，請不要點擊此連結。確認碼會在$4過期。',
+如果您*未*註冊賬戶，
+請打開下面的連結去取消電子郵件確認:
+
+$5
+
+確認碼會在$4過期。',
+'confirmemail_invalidated' => '電郵地址確認已取消',
+'invalidateemail'          => '取消電郵確認',
 
 # Scary transclusion
 'scarytranscludedisabled' => '[跨wiki轉換代碼不可用]',
