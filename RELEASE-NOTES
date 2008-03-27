@@ -23,6 +23,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * New option $wgFeed can be set false to turn off syndication feeds
 * (bug 5745) Special:Whatlinkshere now shows up to $wgMaxRedirectLinksRetrieved
   links through each redirect instead of hardcoded 500
+* Set $wgUploadSizeWarning to false by default
 
 === New features in 1.13 ===
 
