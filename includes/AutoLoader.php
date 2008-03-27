@@ -373,8 +373,6 @@ function __autoload($className) {
 
 		# apiedit branch
 		'ApiBlock' => 'includes/api/ApiBlock.php',
-		# Disabled for now
-		#'ApiChangeRights' => 'includes/api/ApiChangeRights.php',
 		'ApiDelete' => 'includes/api/ApiDelete.php',
 		'ApiEditPage' => 'includes/api/ApiEditPage.php',
 		'ApiMove' => 'includes/api/ApiMove.php',
