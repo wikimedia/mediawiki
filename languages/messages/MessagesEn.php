@@ -1496,6 +1496,7 @@ If you have this image in full resolution upload this one, otherwise change the 
 'uploadvirus'                 => 'The file contains a virus! Details: $1',
 'sourcefilename'              => 'Source filename:',
 'destfilename'                => 'Destination filename:',
+'upload-maxfilesize'          => 'Maximum file size: $1',
 'watchthisupload'             => 'Watch this page',
 'filewasdeleted'              => 'A file of this name has been previously uploaded and subsequently deleted. You should check the $1 before proceeding to upload it again.',
 'upload-wasdeleted'           => "'''Warning: You are uploading a file that was previously deleted.'''

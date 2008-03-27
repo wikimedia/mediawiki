@@ -890,7 +890,7 @@ class UploadForm {
 	 * @access private
 	 */
 	function mainUploadForm( $msg='' ) {
-		global $wgOut, $wgUser;
+		global $wgOut, $wgUser, $wgLang, $wgMaxUploadSize;
 		global $wgUseCopyrightUpload, $wgUseAjax, $wgAjaxUploadDestCheck, $wgAjaxLicensePreview;
 		global $wgRequest, $wgAllowCopyUploads;
 		global $wgStylePath, $wgStyleVersion;
@@ -980,6 +980,26 @@ wgUploadAutoFill = {$autofill};
 			}
 		}
 
+		# Get the maximum file size from php.ini as $wgMaxUploadSize works for uploads from URL via CURL only
+		# See http://de.php.net/manual/en/ini.core.php#ini.upload-max-filesize for possible values of upload_max_filesize
+		$val = trim( ini_get( 'upload_max_filesize' ) );
+		$last = ( substr( $val, -1 ) );
+		switch( $last ) {
+			case 'G':
+				$val2 = substr( $val, 0, -1 ) * 1024 * 1024 * 1024;
+				break;
+			case 'M':
+				$val2 = substr( $val, 0, -1 ) * 1024 * 1024;
+				break;
+			case 'K':
+				$val2 = substr( $val, 0, -1 ) * 1024;
+				break;
+			default:
+				$val2 = $val;
+		}
+		$val2 = $wgAllowCopyUploads ? min( $wgMaxUploadSize, $val2 ) : $val2;
+		$maxUploadSize = wfMsgExt( 'upload-maxfilesize', 'parseinline', $wgLang->formatSize( $val2 ) );
+
 		$sourcefilename = wfMsgExt( 'sourcefilename', 'escapenoentities' );
 		$destfilename = wfMsgExt( 'destfilename', 'escapenoentities' );
 		$summary = wfMsgExt( 'fileuploadsummary', 'parseinline' );
@@ -1057,6 +1077,7 @@ wgUploadAutoFill = {$autofill};
 			<tr>
 				<td></td>
 				<td>
+					{$maxUploadSize}
 					{$extensionsList}
 				</td>
 			</tr>
