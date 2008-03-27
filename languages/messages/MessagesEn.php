@@ -502,7 +502,7 @@ XHTML id names.
 'tog-watchlisthideminor'      => 'Hide minor edits from the watchlist',
 'tog-nolangconversion'        => 'Disable variants conversion', # only translate this message to other languages if you have to change it
 'tog-ccmeonemails'            => 'Send me copies of e-mails I send to other users',
-'tog-diffonly'                => "Do not show page content below diffs",
+'tog-diffonly'                => 'Do not show page content below diffs',
 'tog-showhiddencats'          => 'Show hidden categories',
 
 'underline-always'  => 'Always',
@@ -834,9 +834,9 @@ $2',
 'logouttext'                 => '<strong>You are now logged out.</strong>
 
 You can continue to use {{SITENAME}} anonymously, or you can log in again as the same or as a different user. Note that some pages may continue to be displayed as if you were still logged in, until you clear your browser cache.',
-'welcomecreation'            => "== Welcome, $1! ==
+'welcomecreation'            => '== Welcome, $1! ==
 
-Your account has been created. Do not forget to change your {{SITENAME}} preferences.",
+Your account has been created. Do not forget to change your {{SITENAME}} preferences.',
 'loginpagetitle'             => 'User login',
 'yourname'                   => 'Username:',
 'yourpassword'               => 'Password:',
@@ -912,8 +912,8 @@ Before any other e-mail is sent to the account, you will have to follow the inst
 'loginend'                   => '', # do not translate or duplicate this message to other languages
 'signupend'                  => '{{int:loginend}}', # do not translate or duplicate this message to other languages
 'mailerror'                  => 'Error sending mail: $1',
-'acct_creation_throttle_hit' => "Sorry, you have already created $1 accounts.
-You cannot make any more.",
+'acct_creation_throttle_hit' => 'Sorry, you have already created $1 accounts.
+You cannot make any more.',
 'emailauthenticated'         => 'Your e-mail address was authenticated on $1.',
 'emailnotauthenticated'      => 'Your e-mail address is not yet authenticated.
 No e-mail will be sent for any of the following features.',
@@ -1054,8 +1054,8 @@ If you are here by mistake, just click your browser's '''back''' button.",
 'note'                      => '<strong>Note:</strong>',
 'previewnote'               => '<strong>This is only a preview; changes have not yet been saved!</strong>',
 'previewconflict'           => 'This preview reflects the text in the upper text editing area as it will appear if you choose to save.',
-'session_fail_preview'      => "<strong>Sorry! We could not process your edit due to a loss of session data.
-Please try again. If it still does not work, try logging out and logging back in.</strong>",
+'session_fail_preview'      => '<strong>Sorry! We could not process your edit due to a loss of session data.
+Please try again. If it still does not work, try logging out and logging back in.</strong>',
 'session_fail_preview_html' => "<strong>Sorry! We could not process your edit due to a loss of session data.</strong>
 
 ''Because {{SITENAME}} has raw HTML enabled, the preview is hidden as a precaution against JavaScript attacks.''
@@ -1078,12 +1078,12 @@ You will have to merge your changes into the existing text.
 'editingold'                => '<strong>WARNING: You are editing an out-of-date revision of this page.
 If you save it, any changes made since this revision will be lost.</strong>',
 'yourdiff'                  => 'Differences',
-'copyrightwarning'          => "Please note that all contributions to {{SITENAME}} are considered to be released under the $2 (see $1 for details). If you do not want your writing to be edited mercilessly and redistributed at will, then do not submit it here.<br />
+'copyrightwarning'          => 'Please note that all contributions to {{SITENAME}} are considered to be released under the $2 (see $1 for details). If you do not want your writing to be edited mercilessly and redistributed at will, then do not submit it here.<br />
 You are also promising us that you wrote this yourself, or copied it from a public domain or similar free resource.
-<strong>DO NOT SUBMIT COPYRIGHTED WORK WITHOUT PERMISSION!</strong>",
-'copyrightwarning2'         => "Please note that all contributions to {{SITENAME}} may be edited, altered, or removed by other contributors. If you do not want your writing to be edited mercilessly, then do not submit it here.<br />
+<strong>DO NOT SUBMIT COPYRIGHTED WORK WITHOUT PERMISSION!</strong>',
+'copyrightwarning2'         => 'Please note that all contributions to {{SITENAME}} may be edited, altered, or removed by other contributors. If you do not want your writing to be edited mercilessly, then do not submit it here.<br />
 You are also promising us that you wrote this yourself, or copied it from a public domain or similar free resource (see $1 for details).
-<strong>DO NOT SUBMIT COPYRIGHTED WORK WITHOUT PERMISSION!</strong>",
+<strong>DO NOT SUBMIT COPYRIGHTED WORK WITHOUT PERMISSION!</strong>',
 'longpagewarning'           => '<strong>WARNING: This page is $1 kilobytes long; some browsers may have problems editing pages approaching or longer than 32kb.
 Please consider breaking the page into smaller sections.</strong>',
 'longpageerror'             => '<strong>ERROR: The text you have submitted is $1 kilobytes long, which is longer than the maximum of $2 kilobytes. It cannot be saved.</strong>',
@@ -1116,7 +1116,7 @@ The deletion log for this page is provided here for convenience:",
 'undo-summary' => 'Undo revision $1 by [[Special:Contributions/$2|$2]] ([[User talk:$2|Talk]])',
 
 # Account creation failure
-'cantcreateaccounttitle' => "Cannot create account",
+'cantcreateaccounttitle' => 'Cannot create account',
 'cantcreateaccount-text' => "Account creation from this IP address (<b>$1</b>) has been blocked by [[User:$3|$3]].
 
 The reason given by $3 is ''$2''",
@@ -1153,9 +1153,9 @@ Legend: (cur) = difference with current version,
 'history-feed-title'          => 'Revision history',
 'history-feed-description'    => 'Revision history for this page on the wiki',
 'history-feed-item-nocomment' => '$1 at $2', # user at time
-'history-feed-empty'          => "The requested page does not exist.
+'history-feed-empty'          => 'The requested page does not exist.
 It may have been deleted from the wiki, or renamed.
-Try [[Special:Search|searching on the wiki]] for relevant new pages.",
+Try [[Special:Search|searching on the wiki]] for relevant new pages.',
 
 # Revision deletion
 'rev-deleted-comment'         => '(comment removed)',
@@ -1307,8 +1307,8 @@ Make sure that this change will maintain historical page continuity.',
 'math_lexing_error'        => 'lexing error',
 'math_syntax_error'        => 'syntax error',
 'math_image_error'         => 'PNG conversion failed; check for correct installation of latex, dvips, gs, and convert',
-'math_bad_tmpdir'          => "Cannot write to or create math temp directory",
-'math_bad_output'          => "Cannot write to or create math output directory",
+'math_bad_tmpdir'          => 'Cannot write to or create math temp directory',
+'math_bad_output'          => 'Cannot write to or create math output directory',
 'math_notexvc'             => 'Missing texvc executable; please see math/README to configure.',
 'prefs-personal'           => 'User profile',
 'prefs-rc'                 => 'Recent changes',
@@ -1526,7 +1526,7 @@ PICT # misc.
 'upload-misc-error-text'  => 'An unknown error occurred during the upload.  Please verify that the URL is valid and accessible and try again.  If the problem persists, contact a system administrator.',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
-'upload-curl-error6'       => "Could not reach URL",
+'upload-curl-error6'       => 'Could not reach URL',
 'upload-curl-error6-text'  => 'The URL provided could not be reached.  Please double-check that the URL is correct and the site is up.',
 'upload-curl-error28'      => 'Upload timeout',
 'upload-curl-error28-text' => 'The site took too long to respond. Please check the site is up, wait a short while and try again. You may want to try at a less busy time.',
@@ -2034,8 +2034,8 @@ Consult the [[Special:Log/delete|deletion log]] for a record of recent deletions
 'undelete-filename-mismatch'   => 'Cannot undelete file revision with timestamp $1: filename mismatch',
 'undelete-bad-store-key'       => 'Cannot undelete file revision with timestamp $1: file was missing before deletion.',
 'undelete-cleanup-error'       => 'Error deleting unused archive file "$1".',
-'undelete-missing-filearchive' => "Unable to restore file archive ID $1 because it is not in the database.
-It may have already been undeleted.",
+'undelete-missing-filearchive' => 'Unable to restore file archive ID $1 because it is not in the database.
+It may have already been undeleted.',
 'undelete-error-short'         => 'Error undeleting file: $1',
 'undelete-error-long'          => 'Errors were encountered while undeleting the file:
 
@@ -2243,8 +2243,8 @@ The destination page "[[$1]]" already exists.
 Do you want to delete it to make way for the move?',
 'delete_and_move_confirm' => 'Yes, delete the page',
 'delete_and_move_reason'  => 'Deleted to make way for move',
-'selfmove'                => "Source and destination titles are the same;
-cannot move a page over itself.",
+'selfmove'                => 'Source and destination titles are the same;
+cannot move a page over itself.',
 'immobile_namespace'      => 'Source or destination title is of a special type;
 cannot move pages from and into that namespace.',
 
@@ -2299,7 +2299,7 @@ All transwiki import actions are logged at the [[Special:Log/import|import log]]
 'importnopages'              => 'No pages to import.',
 'importfailed'               => 'Import failed: <nowiki>$1</nowiki>',
 'importunknownsource'        => 'Unknown import source type',
-'importcantopen'             => "Could not open import file",
+'importcantopen'             => 'Could not open import file',
 'importbadinterwiki'         => 'Bad interwiki link',
 'importnotext'               => 'Empty or no text',
 'importsuccess'              => 'Import finished!',
@@ -2429,7 +2429,7 @@ All transwiki import actions are logged at the [[Special:Log/import|import log]]
 'tooltip-ca-nstab-main'           => 'View the content page',
 'tooltip-ca-nstab-user'           => 'View the user page',
 'tooltip-ca-nstab-media'          => 'View the media page',
-'tooltip-ca-nstab-special'        => "This is a special page, you cannot edit the page itself",
+'tooltip-ca-nstab-special'        => 'This is a special page, you cannot edit the page itself',
 'tooltip-ca-nstab-project'        => 'View the project page',
 'tooltip-ca-nstab-image'          => 'View the file page',
 'tooltip-ca-nstab-mediawiki'      => 'View the system message',
@@ -2456,7 +2456,7 @@ All transwiki import actions are logged at the [[Special:Log/import|import log]]
 # Metadata
 'nodublincore'      => 'Dublin Core RDF metadata disabled for this server.',
 'nocreativecommons' => 'Creative Commons RDF metadata disabled for this server.',
-'notacceptable'     => "The wiki server cannot provide data in a format your client can read.",
+'notacceptable'     => 'The wiki server cannot provide data in a format your client can read.',
 
 # Attribution
 'anonymous'        => 'Anonymous user(s) of {{SITENAME}}',
