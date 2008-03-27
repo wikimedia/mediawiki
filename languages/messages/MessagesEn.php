@@ -1052,7 +1052,8 @@ If you are here by mistake, just click your browser's '''back''' button.",
 'userinvalidcssjstitle'     => "'''Warning:''' There is no skin \"\$1\". Remember that custom .css and .js pages use a lowercase title, e.g. {{ns:user}}:Foo/monobook.css as opposed to {{ns:user}}:Foo/Monobook.css.",
 'updated'                   => '(Updated)',
 'note'                      => '<strong>Note:</strong>',
-'previewnote'               => '<strong>This is only a preview; changes have not yet been saved!</strong>',
+'previewnote'               => '<strong>This is only a preview;
+changes have not yet been saved!</strong>',
 'previewconflict'           => 'This preview reflects the text in the upper text editing area as it will appear if you choose to save.',
 'session_fail_preview'      => '<strong>Sorry! We could not process your edit due to a loss of session data.
 Please try again. If it still does not work, try logging out and logging back in.</strong>',
@@ -1084,7 +1085,8 @@ You are also promising us that you wrote this yourself, or copied it from a publ
 'copyrightwarning2'         => 'Please note that all contributions to {{SITENAME}} may be edited, altered, or removed by other contributors. If you do not want your writing to be edited mercilessly, then do not submit it here.<br />
 You are also promising us that you wrote this yourself, or copied it from a public domain or similar free resource (see $1 for details).
 <strong>DO NOT SUBMIT COPYRIGHTED WORK WITHOUT PERMISSION!</strong>',
-'longpagewarning'           => '<strong>WARNING: This page is $1 kilobytes long; some browsers may have problems editing pages approaching or longer than 32kb.
+'longpagewarning'           => '<strong>WARNING: This page is $1 kilobytes long;
+some browsers may have problems editing pages approaching or longer than 32kb.
 Please consider breaking the page into smaller sections.</strong>',
 'longpageerror'             => '<strong>ERROR: The text you have submitted is $1 kilobytes long, which is longer than the maximum of $2 kilobytes. It cannot be saved.</strong>',
 'readonlywarning'           => '<strong>WARNING: The database has been locked for maintenance, so you will not be able to save your edits right now. You may wish to cut-n-paste the text into a text file and save it for later.</strong>',
@@ -1166,7 +1168,8 @@ This page revision has been removed from the public archives.
 There may be details in the [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} deletion log].</div>',
 'rev-deleted-text-view'       => '<div class="mw-warning plainlinks">
 This page revision has been removed from the public archives.
-As an administrator on {{SITENAME}} you can view it; there may be details in the [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} deletion log].</div>',
+As an administrator on {{SITENAME}} you can view it;
+there may be details in the [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} deletion log].</div>',
 'rev-delundel'                => 'show/hide',
 'revisiondelete'              => 'Delete/undelete revisions',
 'revdelete-nooldid-title'     => 'No target revision',
@@ -1306,10 +1309,12 @@ Make sure that this change will maintain historical page continuity.',
 'math_unknown_function'    => 'unknown function',
 'math_lexing_error'        => 'lexing error',
 'math_syntax_error'        => 'syntax error',
-'math_image_error'         => 'PNG conversion failed; check for correct installation of latex, dvips, gs, and convert',
+'math_image_error'         => 'PNG conversion failed;
+check for correct installation of latex, dvips, gs, and convert',
 'math_bad_tmpdir'          => 'Cannot write to or create math temp directory',
 'math_bad_output'          => 'Cannot write to or create math output directory',
-'math_notexvc'             => 'Missing texvc executable; please see math/README to configure.',
+'math_notexvc'             => 'Missing texvc executable;
+please see math/README to configure.',
 'prefs-personal'           => 'User profile',
 'prefs-rc'                 => 'Recent changes',
 'prefs-watchlist'          => 'Watchlist',
@@ -1468,7 +1473,8 @@ To include a file in a page, use a link in the form
 'filetype-unwanted-type'      => "'''\".\$1\"''' is an unwanted file type.  Preferred file types are \$2.",
 'filetype-banned-type'        => "'''\".\$1\"''' is not a permitted file type.  Permitted file types are \$2.",
 'filetype-missing'            => 'The file has no extension (like ".jpg").',
-'large-file'                  => 'It is recommended that files are no larger than $1; this file is $2.',
+'large-file'                  => 'It is recommended that files are no larger than $1;
+this file is $2.',
 'largefileserver'             => 'This file is bigger than the server is configured to allow.',
 'emptyfile'                   => 'The file you uploaded seems to be empty. This might be due to a typo in the file name. Please check whether you really want to upload this file.',
 'fileexists'                  => 'A file with this name exists already, please check <strong><tt>$1</tt></strong> if you are not sure if you want to change it.',
@@ -1482,8 +1488,10 @@ Please choose a different name.',
 If the checked file is the same image of original size it is not necessary to upload an extra thumbnail.',
 'file-thumbnail-no'           => 'The filename begins with <strong><tt>$1</tt></strong>. It seems to be an image of reduced size <i>(thumbnail)</i>.
 If you have this image in full resolution upload this one, otherwise change the file name please.',
-'fileexists-forbidden'        => 'A file with this name exists already; please go back and upload this file under a new name. [[Image:$1|thumb|center|$1]]',
-'fileexists-shared-forbidden' => 'A file with this name exists already in the shared file repository; please go back and upload this file under a new name. [[Image:$1|thumb|center|$1]]',
+'fileexists-forbidden'        => 'A file with this name exists already;
+please go back and upload this file under a new name. [[Image:$1|thumb|center|$1]]',
+'fileexists-shared-forbidden' => 'A file with this name exists already in the shared file repository;
+please go back and upload this file under a new name. [[Image:$1|thumb|center|$1]]',
 'successfulupload'            => 'Successful upload',
 'uploadwarning'               => 'Upload warning',
 'savefile'                    => 'Save file',
@@ -1933,19 +1941,25 @@ See $2 for a record of recent deletions.',
 'delete-toobig'               => 'This page has a large edit history, over $1 revisions.
 Deletion of such pages has been restricted to prevent accidental disruption of {{SITENAME}}.',
 'delete-warning-toobig'       => 'This page has a large edit history, over $1 revisions.
-Deleting it may disrupt database operations of {{SITENAME}}; proceed with caution.',
+Deleting it may disrupt database operations of {{SITENAME}};
+proceed with caution.',
 'rollback'                    => 'Roll back edits',
 'rollback_short'              => 'Rollback',
 'rollbacklink'                => 'rollback',
 'rollbackfailed'              => 'Rollback failed',
-'cantrollback'                => 'Cannot revert edit; last contributor is only author of this page.',
-'alreadyrolled'               => 'Cannot rollback last edit of [[:$1]] by [[User:$2|$2]] ([[User talk:$2|Talk]]); someone else has edited or rolled back the page already.
+'cantrollback'                => 'Cannot revert edit;
+last contributor is only author of this page.',
+'alreadyrolled'               => 'Cannot rollback last edit of [[:$1]] by [[User:$2|$2]] ([[User talk:$2|Talk]]);
+someone else has edited or rolled back the page already.
 
 Last edit was by [[User:$3|$3]] ([[User talk:$3|Talk]]).',
 'editcomment'                 => 'The edit comment was: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'                  => 'Reverted edits by [[Special:Contributions/$2|$2]] ([[User talk:$2|Talk]]); changed back to last version by [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
-'rollback-success'            => 'Reverted edits by $1; changed back to last version by $2.',
-'sessionfailure'              => 'There seems to be a problem with your login session; this action has been canceled as a precaution against session hijacking.
+'revertpage'                  => 'Reverted edits by [[Special:Contributions/$2|$2]] ([[User talk:$2|Talk]]);
+changed back to last version by [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'rollback-success'            => 'Reverted edits by $1;
+changed back to last version by $2.',
+'sessionfailure'              => 'There seems to be a problem with your login session;
+this action has been canceled as a precaution against session hijacking.
 Please hit "back" and reload the page you came from, then try again.',
 'protectlogpage'              => 'Protection log',
 'protectlogtext'              => 'Below is a list of page locks and unlocks.
@@ -2023,7 +2037,8 @@ You may have a bad link, or the revision may have been restored or removed from 
 'undeletedrevisions'           => '{{PLURAL:$1|1 revision|$1 revisions}} restored',
 'undeletedrevisions-files'     => '{{PLURAL:$1|1 revision|$1 revisions}} and {{PLURAL:$2|1 file|$2 files}} restored',
 'undeletedfiles'               => '{{PLURAL:$1|1 file|$1 files}} restored',
-'cannotundelete'               => 'Undelete failed; someone else may have undeleted the page first.',
+'cannotundelete'               => 'Undelete failed;
+someone else may have undeleted the page first.',
 'undeletedpage'                => "<big>'''$1 has been restored'''</big>
 
 Consult the [[Special:Log/delete|deletion log]] for a record of recent deletions and restorations.",
@@ -2053,7 +2068,8 @@ $1',
 'contribsub2'   => 'For $1 ($2)',
 'nocontribs'    => 'No changes were found matching these criteria.',
 'ucnote'        => "Below are this user's last <b>$1</b> changes in the last <b>$2</b> days.",
-'uclinks'       => 'View the last $1 changes; view the last $2 days.',
+'uclinks'       => 'View the last $1 changes;
+view the last $2 days.',
 'uctop'         => '(top)',
 'month'         => 'From month (and earlier):',
 'year'          => 'From year (and earlier):',
@@ -2095,8 +2111,7 @@ Fill in a specific reason below (for example, citing particular pages that were 
 'ipbexpiry'                   => 'Expiry:',
 'ipbreason'                   => 'Reason:',
 'ipbreasonotherlist'          => 'Other reason',
-'ipbreason-dropdown'          => '
-*Common block reasons
+'ipbreason-dropdown'          => '*Common block reasons
 ** Inserting false information
 ** Removing content from pages
 ** Spamming links to external sites
@@ -2201,13 +2216,15 @@ Remember to [[Special:Unlockdb|remove the lock]] after your maintenance is compl
 'move-page-legend'        => 'Move page',
 'movepagetext'            => "Using the form below will rename a page, moving all of its history to the new name.
 The old title will become a redirect page to the new title.
-Links to the old page title will not be changed; be sure to check for double or broken redirects.
+Links to the old page title will not be changed;
+be sure to check for double or broken redirects.
 You are responsible for making sure that links continue to point where they are supposed to go.
 
 Note that the page will '''not''' be moved if there is already a page at the new title, unless it is empty or a redirect and has no past edit history. This means that you can rename a page back to where it was just renamed from if you make a mistake, and you cannot overwrite an existing page.
 
 <b>WARNING!</b>
-This can be a drastic and unexpected change for a popular page; please be sure you understand the consequences of this before proceeding.",
+This can be a drastic and unexpected change for a popular page;
+please be sure you understand the consequences of this before proceeding.",
 'movepagetalktext'        => "The associated talk page will be automatically moved along with it '''unless:'''
 *A non-empty talk page already exists under the new name, or
 *You uncheck the box below.
