@@ -928,7 +928,7 @@ class PPFrame_Hash implements PPFrame {
 						$titleText = $this->title->getPrefixedDBkey();
 						$this->parser->mHeadings[] = array( $titleText, $bits['i'] );
 						$serial = count( $this->parser->mHeadings ) - 1;
-						$marker = "{$this->parser->mUniqPrefix}-h-$serial-{$this->parser->mMarkerSuffix}";
+						$marker = "{$this->parser->mUniqPrefix}-h-$serial-" . Parser::MARKER_SUFFIX;
 						$s = substr( $s, 0, $bits['level'] ) . $marker . substr( $s, $bits['level'] );
 						$this->parser->mStripState->general->setPair( $marker, '' );
 						$out .= $s;
