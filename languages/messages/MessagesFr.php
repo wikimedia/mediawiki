@@ -706,7 +706,7 @@ La raison donnée est :
 * Début du blocage : $8
 * Expiration du blocage : $6
 
-Vous pouvez contacter $1 ou l’un des autres [[{{MediaWiki:Grouppage-sysop}}|administrateurs]] pour discuter de ce blocage. 
+Vous pouvez contacter $1 ou l’un des autres [[{{MediaWiki:Grouppage-sysop}}|administrateurs]] pour discuter de ce blocage.
 
 Si vous avez donné une adresse de courriel valide dans vos [[Special:Preferences|préférences]] et que son utilisation ne vous est pas interdite, vous pouvez utiliser la fonction « Envoyer un message à cet utilisateur » pour contacter un administrateur.
 
@@ -1006,7 +1006,7 @@ $2 Inclure les pages de redirection<br /> Rechercher $3 $9',
 'userrights-lookup-user'           => 'Gestion des droits utilisateur',
 'userrights-user-editname'         => 'Entrez un nom d’utilisateur :',
 'editusergroup'                    => 'Modification des groupes utilisateurs',
-'editinguser'                      => "Modification des droits de l’utilisateur '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | 
+'editinguser'                      => "Modification des droits de l’utilisateur '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] |
 [[Special:Contributions/$1|{{int:contribslink}}]])",
 'userrights-editusergroup'         => 'Modifier les groupes de l’utilisateur',
 'saveusergroups'                   => 'Sauvegarder les groupes utilisateur',
@@ -1155,7 +1155,7 @@ Veuillez vérifer le fichier.',
 Le journal des suppressions de ce fichier vous aidera à déterminer s’il est opportun de continuer son import :",
 'filename-bad-prefix'         => 'Le nom du fichier que vous importez commence par <strong>"$1"</strong> qui est un nom généralement donné par les appareils photo numériques. Veuillez choisir un nom de fichier descriptif.',
 'filename-prefix-blacklist'   => ' #<!-- laisser cette ligne telle quelle --> <pre>
-# La syntaxe est la suivante : 
+# La syntaxe est la suivante :
 #   * Tout ce qui suit le caractère "#" jusqu\'à la fin de la ligne est un commentaire
 #   * Toute ligne non vide est un préfixe typique de nom de fichier assigné automatiquement par les appareils numériques
 CIMG # Casio
@@ -1554,7 +1554,7 @@ L’heure indiquée est celle du serveur (UTC).',
 'protect-unchain'             => 'Débloquer les permissions de renommage',
 'protect-text'                => 'Vous pouvez consulter et modifier le niveau de protection de la page <strong><nowiki>$1</nowiki></strong>.
 Veuillez vous assurez que vous suivez les [[{{MediaWiki:Policy-url}}|règles internes]].',
-'protect-locked-blocked'      => 'Vous ne pouvez pas modifier le niveau de protection tant que vous êtes bloqué. 
+'protect-locked-blocked'      => 'Vous ne pouvez pas modifier le niveau de protection tant que vous êtes bloqué.
 Voici les réglages actuels de la page <strong>$1</strong> :',
 'protect-locked-dblock'       => 'Le niveau de protection ne peut pas être modifié car la base de données est bloquée.
 Voici les réglages actuels de la page <strong>$1</strong> :',
@@ -1797,7 +1797,7 @@ Dans ce cas, vous devrez renommer ou fusionner la page manuellement si vous le d
 'move-watch'              => 'Suivre cette page',
 'movepagebtn'             => 'Renommer l’article',
 'pagemovedsub'            => 'Renommage réussi',
-'movepage-moved'          => 'La page « $1 » <small>([[Special:Whatlinkshere/$3|liens]])</small> a été renommée en « $2 » <small>([[Special:Whatlinkshere/$4|liens]])</small>. 
+'movepage-moved'          => 'La page « $1 » <small>([[Special:Whatlinkshere/$3|liens]])</small> a été renommée en « $2 » <small>([[Special:Whatlinkshere/$4|liens]])</small>.
 
 Veuillez vérifier qu’il n’existe aucune double redirection, et corrigez celles-ci si nécessaire.', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => 'Il existe déjà un article portant ce titre, ou le titre que vous avez choisi n’est pas valide. Veuillez en choisir un autre.',
@@ -1830,7 +1830,7 @@ Pour exporter des pages, entrez leurs titres dans la boîte de texte ci-dessous,
 
 Dans ce dernier cas, vous pouvez aussi utiliser un lien, comme [[{{ns:special}}:Export/{{Mediawiki:mainpage}}]] pour la page {{Mediawiki:mainpage}}.',
 'exportcuronly'     => 'Exporter uniquement la version courante sans l’historique complet',
-'exportnohistory'   => "---- 
+'exportnohistory'   => "----
 '''Note :''' l’exportation complète de l’historique des pages à l’aide de ce formulaire a été désactivée pour des raisons de performance.",
 'export-submit'     => 'Exporter',
 'export-addcattext' => 'Ajouter les pages de la catégorie :',
@@ -2389,8 +2389,8 @@ Ce code de confirmation expirera le $4.',
 
 # Delete conflict
 'deletedwhileediting' => 'Attention : cette page a été supprimée après que vous ayez commencé à la modifier.',
-'confirmrecreate'     => "L’utilisateur [[User:$1|$1]] ([[User talk:$1|Discussion]]) a supprimé cette page, alors que vous aviez commencé à l’éditer, pour le motif suivant : 
-: ''$2'' 
+'confirmrecreate'     => "L’utilisateur [[User:$1|$1]] ([[User talk:$1|Discussion]]) a supprimé cette page, alors que vous aviez commencé à l’éditer, pour le motif suivant :
+: ''$2''
 Veuillez confirmer que vous désirez recréer cet article.",
 'recreate'            => 'Recréer',
 

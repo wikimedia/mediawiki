@@ -987,7 +987,7 @@ P'amiestar un archivu nuna páxina, usa un enllaz col formatu
 'filestatus'                  => 'Estáu de Copyright:',
 'filesource'                  => 'Fonte:',
 'uploadedfiles'               => 'Archivos xubíos',
-'ignorewarning'               => "Inorar l'avisu y grabar l'archivu de toes formes.",
+'ignorewarning'               => "Inorar l'avisu y grabar l'archivu de toes formes",
 'ignorewarnings'              => 'Inorar tolos avisos',
 'minlength1'                  => "Los nomes d'archivu han tener a lo menos una lletra.",
 'illegalfilename'             => 'El nome d\'archivu "$1" contién carauteres non permitíos en títulos de páxina. Por favor renoma l\'archivu y xúbilu otra vuelta.',
@@ -1607,7 +1607,7 @@ Esto debería facese sólo pa prevenir vandalismu como indiquen les [[{{MediaWik
 'blocklogpage'                => 'Rexistru de bloqueos',
 'blocklogentry'               => 'bloquió [[$1]] con una caducidá de $2 $3',
 'blocklogtext'                => "Esti ye un rexistru de los bloqueos y desbloqueos d'usuarios. Les direcciones IP
-bloquiaes automáticamente nun salen equí. Pa ver los bloqueos qu'hai agora mesmo, 
+bloquiaes automáticamente nun salen equí. Pa ver los bloqueos qu'hai agora mesmo,
 mira na [[Special:Ipblocklist|llista d'IP bloquiaes]].",
 'unblocklogentry'             => 'desbloquió $1',
 'block-log-flags-anononly'    => 'namái usuarios anónimos',

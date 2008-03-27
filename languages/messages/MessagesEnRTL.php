@@ -1,5 +1,5 @@
 <?php
-/** 
+/**
   *
   * @addtogroup Language
   */

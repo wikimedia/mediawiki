@@ -1191,7 +1191,7 @@ Képet a következő módon illeszhetsz be egy oldalra: '''<nowiki>[[</nowiki>{{
 'filestatus'                  => 'Szerzői jogi állapot:',
 'filesource'                  => 'Forrás:',
 'uploadedfiles'               => 'Feltöltött fájlok',
-'ignorewarning'               => 'Biztosan így akarom feltölteni.',
+'ignorewarning'               => 'Biztosan így akarom feltölteni',
 'ignorewarnings'              => 'Hagyd figyelmen kívül a figyelmeztetéseket',
 'minlength1'                  => 'A fájlnévnek legalább egy betűből kell állnia.',
 'illegalfilename'             => 'A „$1” lap neve olyan karaktereket tartalmaz, melyek nincsenek megengedve lapcímben. Kérlek, változtasd meg a nevet, és próbálkozz a mentéssel újra.',
@@ -1875,26 +1875,26 @@ változtatni. Kérjük, erősítsd meg, hogy ezt kívánod tenni.',
 # Move page
 'move-page'               => '$1 átnevezése',
 'move-page-legend'        => 'Lap átnevezése',
-'movepagetext'            => "Az alábbi űrlap használatával nevezhetsz át egy lapot, és 
-helyezheted át előzményeit az új névre. 
-A régi cím az új címre átirányító lap lesz. A régi lapcímre 
-mutató hivatkozások változatlanok maradnak; a rossz 
-átirányításokat ellenőrizd. Te vagy a felelős annak biztosításáért, 
-hogy a hivatkozások továbbítsanak ahhoz a ponthoz, 
+'movepagetext'            => "Az alábbi űrlap használatával nevezhetsz át egy lapot, és
+helyezheted át előzményeit az új névre.
+A régi cím az új címre átirányító lap lesz. A régi lapcímre
+mutató hivatkozások változatlanok maradnak; a rossz
+átirányításokat ellenőrizd. Te vagy a felelős annak biztosításáért,
+hogy a hivatkozások továbbítsanak ahhoz a ponthoz,
 ahová feltehetőleg vinniük kell.
 
-A lap '''nem''' kerül áthelyezésre, ha már van olyan című új lap, 
-hacsak nem üres vagy átirányítás, és nincs szerkesztési előzménye. 
-Ez azt jelenti, hogy visszanevezheted az oldalt az eredeti nevére, 
-ha hibázol, létező oldalt pedig 
+A lap '''nem''' kerül áthelyezésre, ha már van olyan című új lap,
+hacsak nem üres vagy átirányítás, és nincs szerkesztési előzménye.
+Ez azt jelenti, hogy visszanevezheted az oldalt az eredeti nevére,
+ha hibázol, létező oldalt pedig
 nem tudsz felülírni.
 
 <b>FIGYELEM!</b>
 Népszerű oldalak esetén ez drasztikus és nem várt változtatás lehet;
-győződj meg róla a folytatás előtt, hogy tisztában vagy-e 
+győződj meg róla a folytatás előtt, hogy tisztában vagy-e
 a következményekkel.",
 'movepagetalktext'        => "A laphoz tartozó vitalap automatikusan átneveződik, '''kivéve, ha:'''
-*már létezik egy nem üres vitalap az új helyen, 
+*már létezik egy nem üres vitalap az új helyen,
 *nem jelölöd be a lenti pipát.
 
 Ezen esetekben a vitalapot külön, kézzel kell átnevezned a kívánságaid szerint.",

@@ -4,13 +4,10 @@
  * @addtogroup Language
  *
  * @author Sky Harbor
- * @author Gangleri
  * @author Siebrand
  * @author לערי ריינהארט
  * @author Felipe Aira
  */
-
-
 
 $messages = array(
 # User preference toggles
@@ -23,33 +20,34 @@ $messages = array(
 'tog-numberheadings'          => 'Automatikong bilangin ang mga pamagat',
 'tog-showtoolbar'             => "Ipakita ang ''toolbar'' ng pagbabago (JavaScript)",
 'tog-editondblclick'          => 'Magbago ng mga pahina sa dalawahang pagpindot (JavaScript)',
-'tog-editsection'             => 'Payagan mga pagbabagong panseksyon sa mga [baguhin] na kawing',
-'tog-editsectiononrightclick' => 'Payagan mga pagbabagong panseksyon sa pakanang pagpipindot ng mga pamagat ng mga seksyon (JavaScript)',
+'tog-editsection'             => 'Payagan ang mga pagbabagong panseksyon sa mga [baguhin] na kawing',
+'tog-editsectiononrightclick' => 'Payagan ang mga pagbabagong panseksyon sa pakanang pagpindot ng mga panseksyong pamagat (JavaScript)',
 'tog-showtoc'                 => 'Ipakita ang talaan ng mga nilalaman (sa mga pahinang may higit sa 3 punong pamagat)',
 'tog-rememberpassword'        => 'Tandaan ang paglagda ko sa kompyuter na ito',
 'tog-editwidth'               => 'May buong kalaparan ang kahon ng pagbabago',
-'tog-watchcreations'          => 'Iragdag mga pahinang ginawa ko sa bantayan ko',
-'tog-watchdefault'            => 'Iragdag mga pahinang binago ko sa bantayan ko',
-'tog-watchmoves'              => 'Iragdag mga pahinang inilipat ko sa bantayan ko',
-'tog-watchdeletion'           => 'Iragdag mga pahinang binura ko sa bantayan ko',
+'tog-watchcreations'          => 'Idagdag ang mga pahinang ginawa ko sa aking bantayan',
+'tog-watchdefault'            => 'Idagdag ang mga pahinang binago ko sa aking bantayan',
+'tog-watchmoves'              => 'Idagdag ang mga pahinang inilipat ko sa aking bantayan',
+'tog-watchdeletion'           => 'Idagdag mga pahinang binura ko sa aking bantayan',
 'tog-minordefault'            => 'Markahan ang lahat ng pagbabago bilang maliit nang nakatakda',
 'tog-previewontop'            => 'Ipakita ang pribyu bago ang kahon ng pagbabago',
 'tog-previewonfirst'          => 'Ipakita ang pribyu sa unang pagbabago',
 'tog-nocache'                 => 'Salantain ang pagbaon ng pahina',
-'tog-enotifwatchlistpages'    => 'Mag-e-liham sa akin kapag mayroong binagong pahinang binabantayan ko',
-'tog-enotifusertalkpages'     => 'Mag-e-liham sa akin kapag binago pahinang pang-usapan ko',
-'tog-enotifminoredits'        => 'Mag-e-liham din sa akin para sa mga pagbabagong maliliit ng mga pahina',
+'tog-enotifwatchlistpages'    => 'Mag-e-liham sa akin kapag binago ang isa sa mga pahinang binabantayan ko',
+'tog-enotifusertalkpages'     => 'Mag-e-liham sa akin kapag binago ang aking pahinang usapan',
+'tog-enotifminoredits'        => 'Mag-e-liham din sa akin para sa mga maliliit na pagbabago ng mga pahina',
 'tog-enotifrevealaddr'        => 'Ipakita ang direksyong e-liham ko sa mga liham ng pagpapahayag',
-'tog-shownumberswatching'     => 'Ipakita bilang ng mga nagbabantay na manggagamit',
+'tog-shownumberswatching'     => 'Ipakita ang bilang ng mga nagbabantay na manggagamit',
 'tog-fancysig'                => 'Hilaw na lagda (walang automatikong pagkawing)',
 'tog-externaleditor'          => 'Gumamit ng mambabagong panlabas nang nakatakda',
-'tog-showjumplinks'           => 'Payagan "tumalon sa" na pampagmit na kawing',
+'tog-showjumplinks'           => 'Payagan ang mga "tumalon sa" na kawing pampagamit',
 'tog-uselivepreview'          => 'Gamitin ang buhay na pribyu (JavaScript) (Eksperimental)',
 'tog-forceeditsummary'        => 'Pagsabihan ako kapag nagpapasok ng walang-lamang buod ng pagbabago',
-'tog-watchlisthideown'        => 'Itago mga binago ko sa bantayan',
-'tog-watchlisthidebots'       => 'Itago mga binago ng bot sa bantayan',
-'tog-watchlisthideminor'      => 'Itago mga pagbabagong maliliit sa bantayan',
+'tog-watchlisthideown'        => 'Itago ang aking mga pagbabago mula sa bantayan',
+'tog-watchlisthidebots'       => 'Itago ang mga pagbabago ng mga bot mula sa bantayan',
+'tog-watchlisthideminor'      => 'Itago ang mga maliliit na pagbabago mula sa bantayan',
 'tog-ccmeonemails'            => 'Padalahan ako ng mga kopya ng mga ipinadala kong e-liham sa ibang mga manggagamit',
+'tog-showhiddencats'          => 'Ipakita ang mga nakatago na kategorya',
 
 'underline-always'  => 'Palagi',
 'underline-never'   => 'Hindi magpakailanman',
@@ -114,6 +112,7 @@ $messages = array(
 'subcategories'         => 'Mga subkategorya',
 'category-media-header' => 'Mga midya sa kategoryang "$1"',
 'category-empty'        => "''Kasalukuyang walang artikulo o midya ang kategoryang ito.''",
+'hidden-categories'     => '{{PLURAL:$1|Nakatagong kategorya|Mga nakatagong kategorya}}',
 
 'mainpagetext'      => "<big>'''Matagumpay na ininstala ang MediaWiki.'''</big>",
 'mainpagedocfooter' => "Silipin ang [http://meta.wikimedia.org/wiki/Help:Contents User's Guide] para sa kaalaman sa paggamit ng wiking ''software''.
@@ -365,7 +364,7 @@ Nilikha na ang iyong kuwenta. Huwag kalimutang baguhin ang iyong mga kagustuhan 
 'savearticle'            => 'Itala ang pahina',
 'preview'                => 'Pribyu',
 'blockedtitle'           => 'Nakaharang ang tagagamit',
-'blockedoriginalsource'  => "Ang pinagmulan ng '''$1''' ay 
+'blockedoriginalsource'  => "Ang pinagmulan ng '''$1''' ay
 pinapakita sa ibaba:",
 'editing'                => 'Binabago ang $1',
 'editingsection'         => 'Binabago ang $1 (bahagi)',

@@ -1085,7 +1085,7 @@ Totes les hores són les del servidor (UTC).",
 'filestatus'                  => "Situació dels drets d'autor:",
 'filesource'                  => 'Font:',
 'uploadedfiles'               => 'Fitxers carregats',
-'ignorewarning'               => 'Ignora qualsevol avís i desa el fitxer igualment.',
+'ignorewarning'               => 'Ignora qualsevol avís i desa el fitxer igualment',
 'ignorewarnings'              => 'Ignora qualsevol avís',
 'minlength1'                  => "Els noms de fitxer han de ser de com a mínim d'una lletra.",
 'illegalfilename'             => 'El nom del fitxer «$1» conté caràcters que no estan permesos en els títols de pàgines. Si us plau, canvieu el nom al fitxer i torneu a carregar-lo.',
@@ -1258,7 +1258,7 @@ Això resulta en una mitjana {{PLURAL:$5|d'una edició|de '''$5''' edicions}} pe
 i {{PLURAL:$6|'''$6''' visita|'''$6''' visites}} per edició.
 
 La mida de la [http://meta.wikimedia.org/wiki/Help:Job_queue cua de treballs] és '''$7'''.",
-'userstatstext'          => "Hi ha '''$1''' usuaris registrats, dels quals 
+'userstatstext'          => "Hi ha '''$1''' usuaris registrats, dels quals
 {{PLURAL:$2|un (el '''$4%''') n'és $5|'''$2''' (el '''$4%''') en són $5}}.",
 'statistics-mostpopular' => 'Pàgines més visualitzades',
 
@@ -1350,7 +1350,7 @@ segon redireccionament, la qual cosa dóna normalment l\'article "real", al que 
 'all-logs-page'        => 'Tots els registres',
 'log-search-legend'    => 'Cerca als registres',
 'log-search-submit'    => 'Vés-hi',
-'alllogstext'          => "Presentació combinada de càrregues, eliminacions, proteccions, bloquejos, i registres d'administrador. 
+'alllogstext'          => "Presentació combinada de càrregues, eliminacions, proteccions, bloquejos, i registres d'administrador.
 Podeu reduir l'extensió seleccionant el tipus de identificació, el nom del usuari, o la pàgina afectada.",
 'logempty'             => 'No hi ha cap coincidència en el registre.',
 'log-title-wildcard'   => 'Cerca els títols que comencin amb aquest text',

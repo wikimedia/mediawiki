@@ -11,8 +11,6 @@
  * @author SieBot
  */
 
-
-
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Surrayal atihus:',
@@ -511,7 +509,7 @@ Pueis ponelti en contatu con $1 u otru
 
 La ID el tu tarugu es $5. Pol favol, escrebi esta ID enas tus solicituis.",
 'blockednoreason'           => "nu s'an dau razonis",
-'blockedoriginalsource'     => "El cóigu huenti e '''$1''' se 
+'blockedoriginalsource'     => "El cóigu huenti e '''$1''' se
 muestra embahu:",
 'blockededitsource'         => "Embahu se muestra el testu '''las tus eicionis''' en '''$1''':",
 'whitelistedittitle'        => 'Es mestel rustrilsi pa eital',
@@ -910,7 +908,7 @@ P'añiil la imahin nuna páhina, gasta el atihu el hormuláriu
 'filestatus'                  => 'Estau el Copyright:',
 'filesource'                  => 'Coigu huenti:',
 'uploadedfiles'               => 'Archivus empuntaus',
-'ignorewarning'               => 'Inoral el avisihu i emburacal el achivu.',
+'ignorewarning'               => 'Inoral el avisihu i emburacal el achivu',
 'ignorewarnings'              => 'Inoral tolos avisihus',
 'minlength1'                  => 'Los nombris d´archivus ebin tenel al menus una letra.',
 'illegalfilename'             => 'El nombri "$1" tiini carateris que nu están premitius enus entítulus de páhinas. Pol favol, ponli otru nombri al archivu i preba a empuntalu e nuevu.',
@@ -1260,7 +1258,7 @@ Si quieis ehal de vehilal la páhina, pursa sobri \"Ehal de vehilal\".",
 'enotif_lastdiff'              => 'Vai pa $1 pa visoreal esti chambu.',
 'enotif_anon_editor'           => 'usuáriu anónimu $1',
 'enotif_body'                  => 'Estimau $WATCHINGUSERNAME,
-	
+
 
 S\'á $CHANGEDORCREATED el artículu $PAGETITLE (de {{SITENAME}}) el $PAGEEDITDATE, siendu el su autol  $PAGEEDITOR. Consurta la $PAGETITLE_URL pa leyel la nueva velsión.
 
@@ -1573,7 +1571,7 @@ En dambus los dos chascus, si lo deseas, tendrás que movel u mestural la páhin
 'movepagebtn'             => 'Movel páhina',
 'pagemovedsub'            => 'S´á moviu la páhina',
 'movepage-moved'          => '<big>\'\'\'"$1" agora s´alcuentra en "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
-'articleexists'           => 'Ya desisti una páhina con esi nombri u 
+'articleexists'           => 'Ya desisti una páhina con esi nombri u
 nu se premiti el nombri qu´as lihiu.
 Pol favol, escrebi otru entítulu.',
 'cantmove-titleprotected' => "Nu t'es posibri movel la páhina ebiu a qu'el nuevu entítulu s'alcuentra atarugau",
@@ -2071,7 +2069,7 @@ El correu degorvió: $1',
 'confirmemail_subject'    => 'Confirmaeru e direción de correu e {{SITENAME}}',
 'confirmemail_body'       => 'Yeu!
 
-Alguien, siguramenti tú, á rustriu la cuenta "$2" dendi la direción 
+Alguien, siguramenti tú, á rustriu la cuenta "$2" dendi la direción
 IP $1 con esta direción d\'email en {{SITENAME}}.
 
 Pa confirmal qu\'esta cuenta es tuya i atival

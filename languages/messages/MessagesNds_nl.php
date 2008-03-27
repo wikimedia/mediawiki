@@ -9,6 +9,9 @@
  * @author Servien
  * @author לערי ריינהארט
  * @author SPQRobin
+ * @author Nike
+ * @author Slomox
+ * @author Siebrand
  */
 
 $fallback = 'nl';
@@ -451,7 +454,7 @@ $messages = array(
 'redirectedfrom'    => '(deur-estuurd vanof "$1")',
 'redirectpagesub'   => 'Deurstuurpagina',
 'lastmodifiedat'    => "Disse pagina is 't les ewiezig op $1 um $2.", # $1 date, $2 time
-'viewcount'         => 'Disse pagina is $1 keer bekeken.',
+'viewcount'         => 'Disse pagina is $1 {{PLURAL:$1|keer|keer}} bekeken.',
 'protectedpage'     => 'Beveiligen pagina',
 'jumpto'            => 'Gao naor:',
 'jumptonavigation'  => 'navigasie',
@@ -486,7 +489,7 @@ $messages = array(
 'badaccess'        => 'Gien toestemming',
 'badaccess-group0' => 'Je hemmen gien toestemming um disse actie uut te voeren.',
 'badaccess-group1' => 'Disse actie kan allinnig uut-evoerd wonnen deur gebrukers dee tot de groep $1 beheuren.',
-'badaccess-group2' => 'Disse actie kan allinnig uut-evoerd wonnen deur gebrukers dee tot een van groepen $ beheuren.',
+'badaccess-group2' => 'Disse actie kan allinnig uut-evoerd wonnen deur gebrukers dee tot een van groepen $1 beheuren.',
 'badaccess-groups' => 'Disse actie kan allinnig uut-evoerd wonnen deur gebrukers dee tot een van de groepen $1 beheuren.',
 
 'versionrequired'     => 'Versie $1 van MediaWiki is neudig',
@@ -532,14 +535,16 @@ $messages = array(
 'nosuchaction'      => 'De op-egeven haandeling besteet neet',
 'nosuchactiontext'  => 'De op-egeven haandeling wonnen neet herkend deur de MediaWiki-pregrammetuur.',
 'nosuchspecialpage' => 'Der besteet gien speciale pagina mit disse naam',
-'nospecialpagetext' => 'Disse speciale pagina wonnen neet herkend deur de Wikipedie-pregrammetuur.',
+'nospecialpagetext' => 'Disse speciale pagina wonnen neet herkend deur de Wikipedie-pregrammetuur.
+
+Een lieste mit bestaonde speciale pagina ku-j vienen op [[Special:Specialpages]].',
 
 # General errors
 'error'                => 'Foutmelding',
 'databaseerror'        => 'Fout in de databanke',
 'dberrortext'          => 'Bie \'t zeuken is een syntaxfout in de databanke op-etrejen.
-De oorzake hiervan kan een illegale zeukactie ween (zie $5), 
-of \'t kan dujen op een fout in de pregrammetuur. 
+De oorzake hiervan kan een illegale zeukactie ween (zie $5),
+of \'t kan dujen op een fout in de pregrammetuur.
 
 De leste zeukpoging in de databanke was:
 <blockquote><tt>$1</tt></blockquote>
@@ -549,7 +554,8 @@ MySQL gaf de foutmelding "<tt>$3: $4</tt>".',
 "$1"
 Vanuut de functie "$2"
 MySQL gaf de volgende foutmelding: "$3: $4".',
-'noconnect'            => 'De databanke is noen neet bereikbaor.',
+'noconnect'            => 'De databanke is noen neet bereikbaor. <br />
+$1',
 'nodb'                 => 'Selectie van databanke $1 is neet meugelijk.',
 'cachederror'          => 'Hieronder wonnen een versie uut de kas weer-egeven. Dit is meschien neet de leste versie.',
 'laggedslavemode'      => "<strong>Waorschuwing:</strong> 't is meugelijk dat leste wiezigingen in de tekse van dit artikel nog neet verwark bin.",
@@ -585,10 +591,11 @@ Query: $2',
 'actionthrottledtext'  => "As maotregel tegen 't ongewunst plaosen van verwiezingen naor aandere websteeën is 't antal keren da-j disse haandeling in een korte tied uutvoeren kunnen beteund. Je hemmen de limiet overschrejen. Prebeer 't over een antal menuten weer.",
 'protectedpagetext'    => 'Disse pagina is beveilig um bewarkingen te veurkoemen.',
 'viewsourcetext'       => 'Je kunnen de brontekse van disse pagina bewarken en bekieken:',
-'protectedinterface'   => 'Disse pagina bevat een tekse dee gebruuk wonnen veur systeemteksen van de wiki. Allinnig [[{{ns:project}}:Beheerder|beheerders]] kunnen disse pagina bewarken.',
+'protectedinterface'   => 'Disse pagina bevat een tekse dee gebruuk wonnen veur systeemteksen van de wiki. Allinnig beheerders kunnen disse pagina bewarken.',
 'editinginterface'     => "'''Waorschuwing:''' je bewarken een pagina dee gebruuk wonnen deur de pregrammetuur. Wiezigingen dee an-ebröch wonnen op disse pagina zullen 't uterlijk veur iederene beïnvleujen. Overweeg veur vertalingen um [http://translatewiki.net/wiki/Main_Page?setlang=nds-nl Betawiki] te gebruken, 't vertalingsprejek veur MediaWiki.",
 'sqlhidden'            => '(SQL-zeukopdrach verbörgen)',
-'cascadeprotected'     => 'Disse pagina is beveilig umdat \'t veurkump in de volgende {{PLURAL:$1|pagina|pagina\'s}}, dee beveilig {{PLURAL:$1|is|bin}} mit de "cascade"-optie:',
+'cascadeprotected'     => 'Disse pagina is beveilig umdat \'t veurkump in de volgende {{PLURAL:$1|pagina|pagina\'s}}, dee beveilig {{PLURAL:$1|is|bin}} mit de "cascade"-optie:
+$2',
 'namespaceprotected'   => "Je bin neet bevoeg um pagina is de '''$1'''-naamruumte te bewarken.",
 'customcssjsprotected' => 'Je kunnen disse pagina neet bewarken umdat der persoonlijke instellingen van een aandere gebruker in staon.',
 'ns-specialprotected'  => 'Pagina\'s in de naamruumte "Speciaal" kunnen neet bewark wonnen.',
@@ -647,7 +654,7 @@ Query: $2',
 'passwordtooshort'           => "Wachwoord is te kort. 't Mut uut minstens $1 tekens bestaon.",
 'mailmypassword'             => 'Niej wachwoord opsturen',
 'passwordremindertitle'      => 'Wikipedie-wachwoord',
-'passwordremindertext'       => 'Iemand vanof \'t IP-adres $1 (werschienlijk jiezelf) hef evreugen um een niej wachwoord veur {{SITENAME}} toe te sturen. \'t Nieje wachwoord veur gebruker "$2" is "$3". Advies: noen anmelden en \'t wachwoord wiezigigen.',
+'passwordremindertext'       => 'Iemand vanof \'t IP-adres $1 (werschienlijk jiezelf) hef evreugen um een niej wachwoord veur {{SITENAME}} ($4) toe te sturen. \'t Nieje wachwoord veur gebruker "$2" is "$3". Advies: noen anmelden en \'t wachwoord wiezigigen.',
 'noemail'                    => 'Gien e-mailadres eregistreerd veur "$1".',
 'passwordsent'               => 'Der is een niej wachwoord verstuurd naor \'t e-mailadres van gebruker "$1". Meld an, a-j \'t wachwoord ontvangen.',
 'blocked-mailpassword'       => 'Dit IP-adres is eblokkeerd. Dit betekent da-j neet bewarken kunnen en dat {{SITENAME}} joew wachwoord neet weerummehaolen kan, dit wonnen edaon um misbruuk tegen te gaon.',
@@ -719,15 +726,25 @@ Negeer dit berich as disse gebruker zonder joew toestemming an-emaak is.',
 'summary-preview'           => 'Samenvatting naokieken',
 'subject-preview'           => 'Onderwarp/kop naokieken',
 'blockedtitle'              => 'Gebruker is eblokkeerd',
-'blockedtext'               => 'Joew gebrukersnaam of IP-adres is eblokkeerd deur $1. As rejen is op-egeven: $2
+'blockedtext'               => "<big>'''Joew gebrukersnaam of IP-adres is eblokkeerd.'''</big>
 
-A-j over de blokkering praoten willen, neem dan kontak op mit een [[{{MediaWiki:Grouppage-sysop}}|beheerder]].',
+Je bin eblokkeerd deur: $1.
+De op-egeven rejen is: ''$2''.
+
+* Eblokkeerd vanof: $8
+* Eblokkeerd tot: $6
+* Bedoeld um te blokkeren: $7
+
+Je kunnen kontak opnemen mit $1 of een aandere [[{{MediaWiki:Grouppage-sysop}}|beheerder]] um de blokkering te bepraoten.
+Je kunnen gien gebruukmaken van de functie 'een berich sturen', behalven a-j een geldig e-mailadres op-egeven hemmen in joew [[Special:Preferences|veurkeuren]] en 't gebruuk van disse functie neet eblokkeerd is.
+'t IP-adres da-j noen gebruken is $3 en 't blokkeringsnummer is #$5. Vermeld ze allebeie a-j argens op disse blokkering reageren.",
 'autoblockedtext'           => 'Joew IP-adres is autematisch eblokkeerd umdat \'t gebruuk wönnen deur een aandere gebruker, dee eblokkeerd wönnen deur $1.
 De rejen hierveur was:
 
 :\'\'$2\'\'
 
-Verloop nao: $6
+* Aanvang: $8
+* Verloop nao: $6
 
 Je kunnen kontak opnemen mit $1 of een van de aandere
 [[{{MediaWiki:grouppage-sysop}}|beheerders]] um de blokkering te bespreken.
@@ -739,7 +756,7 @@ Joew blokkeer-ID is $5. Geef dit nummer deur a-j kontak mit ene opnemen over de 
 'blockedoriginalsource'     => "De brontekse van '''$1''' wonnen hieronder weer-egeven:",
 'blockededitsource'         => "De tekse van '''joew eigen bewarkingen''' an '''$1''' wonnen hieronder weer-egeven:",
 'whitelistedittitle'        => 'Anmelden is verplich',
-'whitelistedittext'         => "Um pagina's te kunnen wiezigen, mu-j [[Special:Userlogin|an-emeld]] ween",
+'whitelistedittext'         => "Um pagina's te kunnen wiezigen, mu-j $1 ween",
 'whitelistreadtitle'        => 'Anmelden is verplich',
 'whitelistreadtext'         => 'Um dit artikel te kunnen lezen, mu-j [[Special:Userlogin|an-emeld]] ween.',
 'whitelistacctitle'         => 'Nieje gebrukersnaam anmaken neet toe-estaon',
@@ -757,14 +774,15 @@ Joew blokkeer-ID is $5. Geef dit nummer deur a-j kontak mit ene opnemen over de 
 'newarticletext'            => '<div class=plainlinks style="border: 1px solid #ccc; padding: .2em 1em; margin-bottom: .8em; color: #000;"><div align=right style="font-size:110%; float:right; border:none; width:40%;">[[Special:Prefixindex/{{PAGENAME}}|Prefixindex]] | [[Special:Search/{{PAGENAME}}|Zeuken]]</div><div style="font-size:110%;">Je bin de pagina "{{FULLPAGENAME}}" an \'t schrieven...</div></div>',
 'anontalkpagetext'          => "<hr style=\"margin-top:2em;\">
 <em>Disse overlegpagina heurt bie een annenieme gebruker dee: óf gien gebrukersnaam hef, óf 't neet gebruuk. We gebruken daorumme 't IP-adres ter herkenning, mar 't kan oek ween dat meerdere personen 'tzelfde IP-adres gebruken, en da-j hiermee berichen ontvangen dee neet veur joe bedoeld bin. A-j dit veurkoemen willen, dan ku-j 't bes [[Special:Userlogin|een gebrukersnaam anmaken of anmelden]].</em>",
-'noarticletext'             => '<div class="plainlinks"><div align=right style="font-size:110%; float:right; border:none; width:30%;">[{{fullurl:{{FULLPAGENAME}}|action=edit}} Start dit artikel] | [[Special:Prefixindex/{{PAGENAME}}|Prefixindex]] | [[Special:Search/{{PAGENAME}}|Zeuken]]</div><div style="font-size:110%;">De pagina "{{FULLPAGENAME}}" besteet nog neet...</div></div>',
+'noarticletext'             => 'Disse pagina besteet nog neet.
+Je kunnen \'t woord [[Special:Search/{{PAGENAME}}|opzeuken]] in aandere pagina\'s of <span class="plainlinks">[{{fullurl:{{FULLPAGENAME}}|action=edit}} disse pagina bewarken]</span>.',
 'userpage-userdoesnotexist' => 'Je bewarken een gebrukerspagina van een gebruker dee neet besteet (gebruker "$1"). Kiek effen nao o-j disse pagina wel anmaken/bewarken willen.',
 'clearyourcache'            => "'''NB:''' naodat de wiezigingen op-esleugen bin, mut de kas van de webblaojeraar nog leeg-emaak wonnen um 't daodwarkelijk te zien.
 
 {| border=\"1\" cellpadding=\"3\" class=toccolours style=\"border: 1px #AAAAAA solid; border-collapse: collapse;\"
 | Mozilla (oek Firefox) || ctrl-shift-r
 |-
-| IE || ctrl-f5  
+| IE || ctrl-f5
 |-
 | Opera || f5
 |-
@@ -791,9 +809,9 @@ Joew blokkeer-ID is $5. Geef dit nummer deur a-j kontak mit ene opnemen over de 
 'editingsection'            => 'Bewark: $1 (deelpagina)',
 'editingcomment'            => 'Bewark: $1 (niej berich)',
 'editconflict'              => 'Bewarkingskonflik: $1',
-'explainconflict'           => "'''NB:''' een aander hef disse pagina ewiezig naoda-j an disse bewarking begunnen bin. 
+'explainconflict'           => "'''NB:''' een aander hef disse pagina ewiezig naoda-j an disse bewarking begunnen bin.
 
-'t Bovenste bewarkingsveld laot de pagina zien zoas 't noen is. Daoronder (bie \"Wiezigingen\") staon de verschillen tussen joew versie en de op-esleugen pagina. Helemaole onderan (bie \"Joew tekse\") steet nog een bewarkingsveld mit joew versie. 
+'t Bovenste bewarkingsveld laot de pagina zien zoas 't noen is. Daoronder (bie \"Wiezigingen\") staon de verschillen tussen joew versie en de op-esleugen pagina. Helemaole onderan (bie \"Joew tekse\") steet nog een bewarkingsveld mit joew versie.
 
 Je zullen je eigen wiezigingen in de nieje tekse in mutten passen. Allinnig de tekse in 't bovenste veld wonnen beweerd a-j noen kiezen veur \"Pagina opslaon\".",
 'yourtext'                  => 'Joew tekse',
@@ -801,16 +819,19 @@ Je zullen je eigen wiezigingen in de nieje tekse in mutten passen. Allinnig de t
 'nonunicodebrowser'         => '<strong>Waorschuwing: joew webblaojeraar kan neet goed overweg mit unicode, schakel over op een aandere webblaojeraar um de wiezigingen an te brengen!</strong>',
 'editingold'                => "<strong>Waorschuwing: je bin een ouwere versie van disse pagina an 't bewarken. A-j de veraandering opslaon, wonnen alle niejere versies over-eschreven.</strong>",
 'yourdiff'                  => 'Wiezigingen',
-'copyrightwarning'          => '<div style="font-size:97%; font-weight:bold">Deur de tekse op te slaon stem je in mit de [[#conditions|veurweerden]].</div>',
+'copyrightwarning'          => "NB: Alle biedragen an {{SITENAME}} mutten vrie-egeven wonnen onder de $2 (zie $1 veur infermasie).
+A-j neet willen dat joew tekse deur aandere gebrukers an-epas en verspreid kan wonnen, kies dan neet veur 'Pagina opslaon'.<br />
+Deur op 'Pagina opslaon' te klikken beleuf je da-j disse tekse zelf eschreven hemmen, of over-eneumen hemmen uut een vrieje, openbaore bron.<br />
+<strong>GEBRUUK GIEN MATERIAAL DAT BESCHARMP WONNEN DEUR AUTEURSRECHEN, BEHALVEN A-J DAOR TOESTEMMING VEUR HEMMEN!</strong>",
 'copyrightwarning2'         => "Let wel dat alle biedragen an {{SITENAME}} deur aandere gebrukers ewiezig of vort-edaon kunnen wonnen. A-j neet willen dat joew tekse veraanderd wonnen, plaos 't hier dan neet.<br />
 De tekse mut auteursrechvrie ween (zie $1 veur details).
 <strong>GIEN WARK VAN AANDERE LUUI TOEVOEGEN ZONDER TOESTEMMING VAN DE AUTEUR!</strong>",
 'longpagewarning'           => "Disse pagina is $1 KB groot. 't Bewarken van grote pagina's kan veur preblemen zörgen bie iezelig ouwe webblaojeraars.",
 'longpageerror'             => "<strong>Foutmelding: de tekse dee-j opslaon willen is $1 kilobytes. Dit is groter as 't toe-estaone maximum van $2 kilobytes. Joew tekse kan neet op-esleugen wonnen.</strong>",
 'readonlywarning'           => "<strong>Waorschuwing! De databanke is op dit mement in onderhoud; 't is daorumme neet meugelijk um pagina's te wiezigen. Je kunnen de tekse 't beste op de computer opslaon en laoter opniej preberen de pagina te bewarken.</strong>",
-'protectedpagewarning'      => "<strong><center><font color=red>Waorschuwing! Disse pagina is beveilig zodat allinnig beheerders 't kunnen wiezigen.</font></center></strong>",
+'protectedpagewarning'      => "<strong>Waorschuwing! Disse pagina is beveilig zodat allinnig beheerders 't kunnen wiezigen.</strong>",
 'semiprotectedpagewarning'  => "'''Let op:''' disse pagina is allinnig te bewarken deur gebrukers dee tenminsen 4 dagen in-eschreven bin.",
-'cascadeprotectedwarning'   => "'''Waorschuwing:''' disse pagina is beveilig zodat allinnig beheerders disse pagina kunnen bewarken, dit wonnen edaon umdat disse pagina veurkump in de volgende cascade-beveiligen pagina's:",
+'cascadeprotectedwarning'   => "'''Waorschuwing:''' disse pagina is beveilig zodat allinnig beheerders disse pagina kunnen bewarken, dit wonnen edaon umdat disse pagina veurkump in de volgende {{PLURAL:$1|cascade-beveilige pagina|cascade-beveiligen pagina's}}:",
 'titleprotectedwarning'     => "<strong>Waorschuwing: disse pagina is beveilig zodat allinnig bepaolde gebrukers 't an kunnen maken.</strong>",
 'templatesused'             => 'Gebruken sjablonen op disse pagina:',
 'templatesusedpreview'      => 'Gebruken sjablonen in disse sectie:',
@@ -853,43 +874,69 @@ De deur $3 op-egeven rejen is ''$2''",
 'cur'                 => 'noen',
 'next'                => 'Volgende',
 'last'                => 'leste',
+'page_first'          => 'eerste',
 'page_last'           => 'leste',
 'histlegend'          => 'Verklaoring ofkortingen: (noen) = verschil mit de op-esleugen versie, (veurige) = verschil mit de veurige versie, K = kleine wieziging',
 'deletedrev'          => '[vort-edaon]',
 'histfirst'           => 'Eerste',
 'histlast'            => 'Leste',
+'historysize'         => '({{PLURAL:$1|1 byte|$1 bytes}})',
+'historyempty'        => '(leeg)',
 
 # Revision feed
-'history-feed-title'       => 'Wiezigingsoverzichte',
-'history-feed-description' => 'Wiezigingsoverzichte veur disse pagina op de wiki',
-'history-feed-empty'       => "De op-evreugen pagina besteet neet. 't Is meugelijk dat disse pagina vort-edaon is of dat 't herneumd is. Prebeer te [[Special:Search|zeuken]] veur relevante nieje pagina's.",
+'history-feed-title'          => 'Wiezigingsoverzichte',
+'history-feed-description'    => 'Wiezigingsoverzichte veur disse pagina op de wiki',
+'history-feed-item-nocomment' => '$1 op $2', # user at time
+'history-feed-empty'          => "De op-evreugen pagina besteet neet. 't Is meugelijk dat disse pagina vort-edaon is of dat 't herneumd is. Prebeer te [[Special:Search|zeuken]] veur relevante nieje pagina's.",
 
 # Revision deletion
-'rev-deleted-comment'       => '(commentaar vort-ehaold)',
-'rev-deleted-user'          => '(gebrukersnaam vort-edaon)',
-'rev-deleted-event'         => '(antekening vort-edaon)',
-'rev-delundel'              => 'teun/verbarg',
-'revisiondelete'            => 'Wiezigingen vortdoon/herstellen',
-'revdelete-nooldid-title'   => 'Gien doelversie',
-'revdelete-nooldid-text'    => 'Je hemmen gien versie an-egeven waor disse actie op uut-evoerd mut wonnen.',
-'revdelete-legend'          => 'Stel versiebeparkingen in:',
-'revdelete-hide-text'       => 'Verbarg de bewarken tekse',
-'revdelete-hide-name'       => 'Verbarg logboekactie',
-'revdelete-hide-comment'    => 'Verbarg bewarkingssamenvatting',
-'revdelete-hide-user'       => 'Verbarg gebrukersnamen en IP-adressen van aandere luui.',
-'revdelete-hide-restricted' => 'Pas disse beparkingen toe op beheerders en aandere gebrukers',
-'revdelete-suppress'        => 'Gegevens veur beheerders en aandere gebrukers onderdrokken',
-'revdelete-hide-image'      => 'Verbarg bestansinhoud',
-'revdelete-unsuppress'      => 'Beparkingen op weerummezetten wiezigingen vortdoon',
-'revdelete-log'             => 'Logopmarkingen:',
-'revdelete-submit'          => 'De esillecteren versie toepassen',
-'revdelete-logentry'        => 'zichbaorheid van bewarkingen is ewiezig veur [[$1]]',
-'revdelete-success'         => 'Zichbaorheid van de wieziging succesvol in-esteld.',
-'logdelete-success'         => 'Zichbaorheid van de gebeurtenisse is succesvol in-esteld.',
+'rev-deleted-comment'         => '(commentaar vort-ehaold)',
+'rev-deleted-user'            => '(gebrukersnaam vort-edaon)',
+'rev-deleted-event'           => '(antekening vort-edaon)',
+'rev-deleted-text-permission' => '<div class="mw-warning plainlinks">
+De geschiedenisse van disse pagina is uut de peblieke archieven ewis.
+Der kan veerdere infermasie staon in \'t [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} logboek vort-edaone pagina\'s].
+</div>',
+'rev-deleted-text-view'       => "<div class=\"mw-warning plainlinks\">
+De geschiedenisse van disse pagina is uut de peblieke archieven ewis.
+As beheerder van disse wiki ku-j 't wel zien;
+der kan veerdere infermasie staon in 't [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} logboek vort-edaone pagina's].
+</div>",
+'rev-delundel'                => 'teun/verbarg',
+'revisiondelete'              => 'Wiezigingen vortdoon/herstellen',
+'revdelete-nooldid-title'     => 'Gien doelversie',
+'revdelete-nooldid-text'      => 'Je hemmen gien versie an-egeven waor disse actie op uut-evoerd mut wonnen.',
+'revdelete-selected'          => "Esillekteren {{PLURAL:$2|bewarking|bewarkingen}} van '''[[:$1]]''':",
+'logdelete-selected'          => "{{PLURAL:$2|Esillekteren logboekboekactie|Esillekteren logboekacties}} veur '''$1:'''",
+'revdelete-text'              => "Bewarkingen dee vort-ehaold bin, ku-j wel zien in de geschiedenisse, mar de inhoud is neet langer pebliekelijk toegankelijk.
+
+Aandere beheerders van {{SITENAME}} kunnen de verbörgen inhoud bekieken en 't weerummeplaosen mit behulpe van dit scharm, behalven as der aandere beparkingen gelden dee in-esteld bin deur de systeembeheerder.",
+'revdelete-legend'            => 'Stel versiebeparkingen in:',
+'revdelete-hide-text'         => 'Verbarg de bewarken tekse',
+'revdelete-hide-name'         => 'Verbarg logboekactie',
+'revdelete-hide-comment'      => 'Verbarg bewarkingssamenvatting',
+'revdelete-hide-user'         => 'Verbarg gebrukersnamen en IP-adressen van aandere luui.',
+'revdelete-hide-restricted'   => 'Pas disse beparkingen toe op beheerders en aandere gebrukers',
+'revdelete-suppress'          => 'Gegevens veur beheerders en aandere gebrukers onderdrokken',
+'revdelete-hide-image'        => 'Verbarg bestansinhoud',
+'revdelete-unsuppress'        => 'Beparkingen op weerummezetten wiezigingen vortdoon',
+'revdelete-log'               => 'Logopmarkingen:',
+'revdelete-submit'            => 'De esillecteren versie toepassen',
+'revdelete-logentry'          => 'zichbaorheid van bewarkingen is ewiezig veur [[$1]]',
+'logdelete-logentry'          => 'wiezigen zichbaorheid van gebeurtenisse [[$1]]',
+'revdelete-logaction'         => '$1 {{PLURAL:$1|wieziging|wiezigingen}} in-esteld naor modus $2',
+'logdelete-logaction'         => '$1 {{PLURAL:$1|actie|acties}} um [[$3]] naor modus $2 in te stellen',
+'revdelete-success'           => 'Zichbaorheid van de wieziging succesvol in-esteld.',
+'logdelete-success'           => 'Zichbaorheid van de gebeurtenisse is succesvol in-esteld.',
+'pagehist'                    => 'Paginageschiedenisse',
+'deletedhist'                 => 'Geschiedenisse dee vort-ehaold is',
 
 # Oversight log
 'oversightlog'    => 'Overzichslogboek',
 'overlogpagetext' => "Hieronder steet een lieste mit pagina's dee krek vort-edaon bin en de leste blokkeringen dee uut-evoerd bin waorvan de inhoud verbörgen is veur beheeerders. Zie de [[Special:Ipblocklist|IP-blokkeerlieste]] veur een lieste mit blokkeringen en verbanningen dee noen van krach bin.",
+
+# History merging
+'mergehistory' => "Geschiedenisse van pagina's bie mekaar doon",
 
 # Merge log
 'pagemerge-logentry' => 'voegen [[$1]] naor [[$2]] samen (versies tot en mit $3)',
@@ -1140,13 +1187,7 @@ A-j disse ofbeelding in volle grootte hemmen voeg 't dan toe, wiezig aanders de 
 'imagelinks'                => 'Gebruuk van dit bestand',
 'linkstoimage'              => "Disse ofbeelding wonnen gebruuk op de volgende pagina's:",
 'nolinkstoimage'            => 'Ofbeelding is neet in gebruuk.',
-'sharedupload'              => "<br style=\"clear:both\" />
-{| align=center class=plainlinks width=510px border=0 cellpadding=2 cellspacing=2 style=\"border: solid #AAAAAA 1px; background: #F9F9F9; font-size: 90%; margin: .2em auto .2em auto;\"
-|- 
-| [[Image:Commons-logo.svg|20px|Wikimedia Commons Logo]]
-|align=center |Dit is een bestand van [[Commons:Heufdpagina|Wikimedia Commons]].<br>Onderstaonde beschrieving kump van de '''[[Commons:Image:Alle systeemteksen|beschrieving dee daor steet]]'''. <br>[http://tools.wikimedia.de/~daniel/WikiSense/CheckUsage.php?i=Alle_systeemteksen&w=_160 Controleer 't gebruuk] van dit bestand in aandere Wikimedia-prejekken.
-|}
-<br>",
+'sharedupload'              => 'Dit bestand is een gedeelde upload en kan ook deur andere prejekken ebruukt worden.',
 'shareduploadwiki'          => 'Zie $1 veur veerdere infermasie.',
 'shareduploadwiki-linktext' => 'bestandbeschrievingspagina',
 'noimage'                   => "Der besteet gien bestand mit disse naam, je kunnen 't $1.",
@@ -1382,7 +1423,7 @@ A-j disse ofbeelding in volle grootte hemmen voeg 't dan toe, wiezig aanders de 
 'alreadyrolled'               => "'t Is neet meugelijk um de wieziging van de pagina [[$1]]
 deur [[User:$2|$2]] ([[User talk:$2|Overleeg]]) te herstellen.
 
-Een aander hef disse wieziging al hersteld tot een veurige versie van disse pagina of hef een aandere bewarking edaon. 
+Een aander hef disse wieziging al hersteld tot een veurige versie van disse pagina of hef een aandere bewarking edaon.
 
 De leste bewarking is edaon deur [[User:$3|$3]] ([[User talk:$3|Overleeg]]).",
 'editcomment'                 => 'De samenvatting was: <i>$1</i>', # only shown if there is an edit comment
@@ -1433,7 +1474,7 @@ Hier staon de instellingen zoas ze noen bin veur de pagina <strong>$1</strong>:"
 'viewdeletedpage'          => "Bekiek vort-edaone pagina's",
 'undeletepagetext'         => 'Disse pagina is vort-edaon, mar steet in de kas en kan nog weerummeplaos wonnen.',
 'undeleteextrahelp'        => "*Um de pagina mit alle eerdere versies weerumme te plaosen lao-j alle hokjes leeg en klik op '''''Weerummeplaosen!'''''.
-*Um een bepaolde versies weerumme te plaosen mu-j de versies dee-j weerummeplaosen willen anvinken en klik op '''''Weerummeplaosen!'''''. 
+*Um een bepaolde versies weerumme te plaosen mu-j de versies dee-j weerummeplaosen willen anvinken en klik op '''''Weerummeplaosen!'''''.
 *Um een bulte achter mekaarstaonde versies te kiezen mu-j de eerste in de reeks anvinken en vervolgens mit de schuufknoppe in-edrok de leste anvinken. Hierdeur wonnen oek alle tussenliggende versies mee-eneumen.
 *A-j op '''''Herstel''''' klikken wonnen 't infermasieveld en alle hokjes leeg-emaak.",
 'undeletehistory'          => 'A-j een pagina weerummeplaosen, wonnen alle versies as ouwe versies weerummeplaos. As der al een nieje pagina mit dezelfde naam an-emaak is, zullen disse versies as ouwe versies weerummeplaos wonnen, mar de op-esleugen versie zal neet ewiezig wonnen.',
@@ -1477,15 +1518,14 @@ Bekiek 't [[Special:Log/delete|logboek vort-edaone pagina's]] veur een overzicht
 'sp-contributions-submit'      => 'Zeuk',
 
 # What links here
-'whatlinkshere'        => 'Verwiezingen naor disse pagina',
-'whatlinkshere-title'  => "Pagina's dee verwiezen naor $1",
-'whatlinkshere-page'   => 'Pagina:',
-'whatlinkshere-barrow' => '&lt;',
-'linklistsub'          => '(lieste van verwiezingen)',
-'nolinkshere-ns'       => "Gien enkele pagina verwiest naor '''[[:$1]]''' in de ekeuzen naamruumte.",
-'isredirect'           => 'deurverwiezing',
-'istemplate'           => 'in-evoeg as sjabloon',
-'whatlinkshere-links'  => '← verwiezingen',
+'whatlinkshere'       => 'Verwiezingen naor disse pagina',
+'whatlinkshere-title' => "Pagina's dee verwiezen naor $1",
+'whatlinkshere-page'  => 'Pagina:',
+'linklistsub'         => '(lieste van verwiezingen)',
+'nolinkshere-ns'      => "Gien enkele pagina verwiest naor '''[[:$1]]''' in de ekeuzen naamruumte.",
+'isredirect'          => 'deurverwiezing',
+'istemplate'          => 'in-evoeg as sjabloon',
+'whatlinkshere-links' => '← verwiezingen',
 
 # Block/unblock
 'blockip'                     => 'Gebruker blokkeren',
@@ -1560,7 +1600,7 @@ $3',
 'proxyblockreason'            => 'Dit is een autematische preventieve blokkering umda-j gebruuk maken van een open proxyserver.',
 'proxyblocksuccess'           => 'Succesvol.',
 'sorbs'                       => 'SORBS DNS-zwarte lieste',
-'sorbsreason'                 => 'Joew IP-adres is op-eneumen in de [http://www.sorbs.net SORBS DNS-zwarte lieste].',
+'sorbsreason'                 => 'Joew IP-adres is op-eneumen as open proxyserver in de DNS-blacklist de {{SITENAME}} ebruukt.',
 'sorbs_create_account_reason' => 'Joew IP-adres is op-eneumen in de [http://www.sorbs.net zwarte lieste van SORBS DNS]. Je kunnen gien gebrukerspagina anmaken.',
 
 # Developer tools
@@ -1717,12 +1757,12 @@ Alle transwiki-invoerhaandelingen wonnen op-esleugen in 't [[Special:Log/import|
 'tooltip-ca-nstab-template'       => 'Loat de sjabloonbladziede zeen',
 'tooltip-ca-nstab-help'           => 'Loat de hölpbladziede zeen',
 'tooltip-ca-nstab-category'       => 'Loat de rubriekbladziede zeen',
-'tooltip-minoredit'               => 'Markeer as een kleine wieziging [alt-i]',
-'tooltip-save'                    => 'Wiezigingen opslaon [alt-s]',
-'tooltip-preview'                 => "Bekiek joew versie veurda-j 't opslaon (anbeveulen)! [alt-p]",
-'tooltip-diff'                    => 'Teun de deur joe an-ebröchen wiezigingen. [alt-d]',
-'tooltip-compareselectedversions' => 'Teun de verschillen tussen de ekeuzen versies. [alt-v]',
-'tooltip-watch'                   => 'Voeg disse pagina toe an joew volglieste [alt-w]',
+'tooltip-minoredit'               => 'Markeer as een kleine wieziging',
+'tooltip-save'                    => 'Wiezigingen opslaon',
+'tooltip-preview'                 => "Bekiek joew versie veurda-j 't opslaon (anbeveulen)!",
+'tooltip-diff'                    => 'Teun de deur joe an-ebröchen wiezigingen.',
+'tooltip-compareselectedversions' => 'Teun de verschillen tussen de ekeuzen versies.',
+'tooltip-watch'                   => 'Voeg disse pagina toe an joew volglieste',
 'tooltip-recreate'                => "Disse pagina opniej anmaken, ondanks 't feit dat 't vort-edaon is.",
 
 # Metadata
@@ -1798,7 +1838,7 @@ Alle transwiki-invoerhaandelingen wonnen op-esleugen in 't [[Special:Log/import|
 'noimages'              => 'Niks te zien.',
 'ilsubmit'              => 'Zeuk',
 'bydate'                => 'op daotum',
-'sp-newimages-showfrom' => 'Teun nieje ofbeeldingen vanof $1',
+'sp-newimages-showfrom' => 'Teun nieje ofbeeldingen vanof $1, $2',
 
 # Bad image list
 'bad_image_list' => "De opmaak is as volg:

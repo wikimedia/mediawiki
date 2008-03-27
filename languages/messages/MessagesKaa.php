@@ -342,7 +342,7 @@ $messages = array(
 
 # Main script and global functions
 'nosuchaction'      => "Bunday ha'reket joq",
-'nosuchactiontext'  => "Bul URLda ko'rsetilgen ha'reketti 
+'nosuchactiontext'  => "Bul URLda ko'rsetilgen ha'reketti
 wiki tanıy almadı",
 'nosuchspecialpage' => 'Bunday arnawlı bet joq',
 'nospecialpagetext' => "<big>'''Siz sorag'an bunday arnawlı bet joq.'''</big>
@@ -569,13 +569,13 @@ Qosqan u'lesin'iz o'zin'izdin' jazg'anın'ız yamasa ashıq tu'rdegi derekten al
 'template-protected'        => "(qorg'alg'an)",
 'template-semiprotected'    => "(yarım-qorg'alg'an)",
 'nocreatetitle'             => 'Bet jaratıw sheklengen',
-'nocreatetext'              => "{{SITENAME}} saytında taza betlerdi jaratıw sheklengen. 
+'nocreatetext'              => "{{SITENAME}} saytında taza betlerdi jaratıw sheklengen.
 Arqag'a qaytıp bar betti o'zgertiwin'izge yamasa [[{{ns:special}}:Userlogin|kiriwin'izge / akkaunt jaratıwın'ızg'a]] boladı.",
 'nocreate-loggedin'         => "{{SITENAME}} proyektinde taza betler jaratıwın'ızg'a ruxsatın'ız joq.",
 'permissionserrors'         => 'Ruxsatnamalar Qatelikleri',
 'recreate-deleted-warn'     => "'''Esletpe: Aldın o'shirilgen betti qayta jaratajaqsız.'''
 
-Usi betti qaytadan jaratıw tuwrılıg'ın oylap ko'rin'. 
+Usi betti qaytadan jaratıw tuwrılıg'ın oylap ko'rin'.
 Qolaylıq ushın to'mende o'shiriw jurnalı keltirilgen:",
 
 # Account creation failure
@@ -779,7 +779,7 @@ Sha'rtli belgiler: (ha'z.) = ha'zirgi nusqasi menen parqı,
 'filestatus'         => 'Avtorlıq huqıqı statusı:',
 'filesource'         => 'Fayl deregi:',
 'uploadedfiles'      => "Aploud qılıng'an faillar",
-'ignorewarning'      => 'Eskertiwlerdi esapqa almay fayldı saqla.',
+'ignorewarning'      => 'Eskertiwlerdi esapqa almay fayldı saqla',
 'ignorewarnings'     => 'Hesh qanday eskertiwdi esapqa alma',
 'minlength1'         => "Fail atı keminde bir ha'ripten turıwı sha'rt.",
 'badfilename'        => 'Fayl atı bug\'an o\'zgertildi: "$1".',
@@ -1209,17 +1209,17 @@ Basqa bloklawlar ushın [[{{ns:special}}:Ipblocklist|IP bloklaw dizimin]] ko'rip
 
 # Move page
 'move-page-legend'        => "Betti ko'shiriw",
-'movepagetext'            => "To'mendegi forma bettin' atamasın o'zgertedi, 
+'movepagetext'            => "To'mendegi forma bettin' atamasın o'zgertedi,
 onın' barlıq tariyxın taza atamag'a ko'shiredi.
 Burıng'ı bet ataması taza atamag'a qayta bag'ıtlang'an bet bolıp qaladı.
 Eski atamag'a silteytug'ın siltewler o'zgertilmeydi, ko'shiriwden son'
 shınjırlı yamasa natuwrı qayta bag'ıtlang'an betlerdin' bar-joqlıg'ınj tekserip ko'rin'.
 Siltewlerdin' tuwrı islewine siz juwapker bolasız.
 
-Itibar berin': eger taza atamalı bet aldınnan bar bolsa ha'm son'g'ı o'zgertiw tariyxısız 
+Itibar berin': eger taza atamalı bet aldınnan bar bolsa ha'm son'g'ı o'zgertiw tariyxısız
 bos bet yamasa qayta bag'ıtlandırıwshı bolg'anına deyin bet '''ko'shirilmeydi'''.
-Bul degeni, eger betti aljasıp qayta atasan'iz 
-aldıng'ı atamag'a qaytıwın'ızg'a boladı, biraq bar bettin' u'stine 
+Bul degeni, eger betti aljasıp qayta atasan'iz
+aldıng'ı atamag'a qaytıwın'ızg'a boladı, biraq bar bettin' u'stine
 jazıwın'ızg'a bolmaydi.
 
 <b>ESTE TUTIN'!</b>
@@ -1237,7 +1237,7 @@ Bul jag'daylarda eger qa'lesen'iz betti qoldan ko'shiriwin'iz yamasa qosıwın'i
 'movepagebtn'             => "Betti ko'shir",
 'pagemovedsub'            => "Tabıslı ko'shirildi",
 'movepage-moved'          => "<big>'''\"\$1\" beti \"\$2\" degenge ko'shirildi'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
-'articleexists'           => "Bunday atamalı bet bar yamasa 
+'articleexists'           => "Bunday atamalı bet bar yamasa
 natuwrı atama sayladın'ız.
 Basqa atama saylan'",
 'talkexists'              => "'''Bettin' o'zi a'wmetli ko'shirildi, biraq sa'wbet beti ko'shirilmedi sebebi jan'a atamanın' sa'wbet beti bar eken. Olardı o'zin'iz qoldan qosın'.'''",

@@ -696,7 +696,7 @@ Sua ID de bloqueio é $5. Por favor, inclua esse dado em qualquer tentativa de e
 'accmailtitle'              => 'Palavra-chave enviada.',
 'accmailtext'               => "A palavra-chave para '$1' foi enviada para $2.",
 'newarticle'                => '(Nova)',
-'newarticletext'            => "Você seguiu um link para uma página que ainda não existe. 
+'newarticletext'            => "Você seguiu um link para uma página que ainda não existe.
 Para criá-la, escreva o seu conteúdo na caixa abaixo
 (veja a [[{{MediaWiki:Helppage}}|página de ajuda]] para mais detalhes).
 Se você chegou até aqui por engano, clique no botão '''voltar''' (ou ''back'') do seu navegador.",
@@ -721,7 +721,7 @@ Por favor tente novamente. Caso continue a não funcionar, tente sair e voltar a
 ''Devido a este wiki possuir HTML raw activo, a previsão não será exibida como forma de precaução contra ataques por JavaScript.''
 
 <strong>Por favor, tente novamente caso esta seja uma tentativa de edição legítima. Caso continue a não funcionar, tente desautenticar-se e voltar a entrar na sua conta.</strong>",
-'token_suffix_mismatch'     => '<strong>A sua edição foi rejeitada uma vez que seu software de navegação mutilou os sinais de pontuação do sinal de edição. A edição foi rejeitada para evitar perdas no texto da página. 
+'token_suffix_mismatch'     => '<strong>A sua edição foi rejeitada uma vez que seu software de navegação mutilou os sinais de pontuação do sinal de edição. A edição foi rejeitada para evitar perdas no texto da página.
 Isso acontece ocasionalmente quando se usa um serviço de proxy anonimizador mal configurado.</strong>',
 'editing'                   => 'Editando $1',
 'editingsection'            => 'Editando $1 (secção)',
@@ -736,7 +736,7 @@ Você terá que mesclar suas modificações no texto existente.
 'yourtext'                  => 'Seu texto',
 'storedversion'             => 'Versão guardada',
 'nonunicodebrowser'         => '<strong>AVISO: O seu navegador não é compatível com as especificações unicode. Um contorno terá de ser utilizado para permitir que você possa editar com segurança os artigos: os caracteres não-ASCII aparecerão na caixa de edição no formato de códigos hexadecimais.</strong>',
-'editingold'                => '<strong>CUIDADO: Encontra-se a editar uma revisão 
+'editingold'                => '<strong>CUIDADO: Encontra-se a editar uma revisão
 desactualizada desta página.
 Se salvá-la, todas as mudanças feitas a partir desta revisão serão perdidas.</strong>',
 'yourdiff'                  => 'Diferenças',
@@ -746,7 +746,7 @@ Você está, ao mesmo tempo, a garantir-nos que isto é algo escrito por si, ou 
 'copyrightwarning2'         => 'Por favor, note que todas as suas contribuições em {{SITENAME}} podem ser editadas, alteradas ou removidas por outros contribuidores. Se você não deseja que o seu texto seja inexoravelmente editado, não o envie.<br />
 Você está, ao mesmo tempo, a garantir-nos que isto é algo escrito por si, ou algo copiado de alguma fonte de textos em domínio público ou similarmente de teor livre (veja $1 para detalhes).
 <strong>NÃO ENVIE TRABALHO PROTEGIDO POR DIREITOS DE AUTOR SEM A DEVIDA PERMISSÃO!</strong>',
-'longpagewarning'           => '<strong>AVISO: Esta página possui $1 kilobytes; alguns 
+'longpagewarning'           => '<strong>AVISO: Esta página possui $1 kilobytes; alguns
 navegadores possuem problemas em editar páginas maiores que 32kb.
 Por favor, considere seccionar a página em secções de menor dimensão.</strong>',
 'longpageerror'             => '<strong>ERRO: O texto de página que você submeteu tem mais de $1 kilobytes em tamanho, que é maior que o máximo de $2 kilobytes. A página não pode ser salva.</strong>',
@@ -1474,7 +1474,7 @@ Se desejar remover a página da sua lista de vigiados clique em \"Desinteressar-
 'enotif_lastdiff'              => 'Acesse $1 para ver esta alteração.',
 'enotif_anon_editor'           => 'utilizador anonimo $1',
 'enotif_body'                  => 'Caro $WATCHINGUSERNAME,
-	
+
 
 A página $PAGETITLE na {{SITENAME}} foi $CHANGEDORCREATED a $PAGEEDITDATE por $PAGEEDITOR; consulte $PAGETITLE_URL para a versão actual.
 
@@ -2330,26 +2330,26 @@ Any subsequent links on the same line are considered to be exceptions, i.e. arti
 'monthsall'        => 'todos',
 
 # E-mail address confirmation
-'confirmemail'            => 'Confirmar endereço de E-mail',
-'confirmemail_noemail'    => 'Não possui um endereço de e-mail válido indicado nas suas [[{{ns:special}}:Preferences|preferências de utilizador]].',
-'confirmemail_text'       => 'Esta wiki requer que valide o seu endereço de e-mail antes de utilizar as funcionalidades que requerem um endereço de e-mail. Active o botão abaixo para enviar uma confirmação para o seu endereço de e-mail. A mensagem incluíra um endereço que contém um código; carregue o endereço no seu navegador para confirmar que o seu endereço de e-mail encontra-se válido.',
-'confirmemail_pending'    => '<div class="error">
+'confirmemail'             => 'Confirmar endereço de E-mail',
+'confirmemail_noemail'     => 'Não possui um endereço de e-mail válido indicado nas suas [[{{ns:special}}:Preferences|preferências de utilizador]].',
+'confirmemail_text'        => 'Esta wiki requer que valide o seu endereço de e-mail antes de utilizar as funcionalidades que requerem um endereço de e-mail. Active o botão abaixo para enviar uma confirmação para o seu endereço de e-mail. A mensagem incluíra um endereço que contém um código; carregue o endereço no seu navegador para confirmar que o seu endereço de e-mail encontra-se válido.',
+'confirmemail_pending'     => '<div class="error">
 Um código de confirmação já foi enviado para você; caso tenha criado sua conta recentemente, é recomendável aguardar alguns minutos para o receber antes de tentar pedir um novo código.
 </div>',
-'confirmemail_send'       => 'Enviar código de confirmação',
-'confirmemail_sent'       => 'E-mail de confirmação enviado.',
-'confirmemail_oncreate'   => 'Foi enviado um código de confirmação para o seu endereço de e-mail.
+'confirmemail_send'        => 'Enviar código de confirmação',
+'confirmemail_sent'        => 'E-mail de confirmação enviado.',
+'confirmemail_oncreate'    => 'Foi enviado um código de confirmação para o seu endereço de e-mail.
 Tal código não é exigido para que possa se autenticar no sistema, mas será necessário que você o forneça antes de habilitar qualquer ferramenta baseada no uso de e-mail deste wiki.',
-'confirmemail_sendfailed' => 'Não foi possível enviar o email de confirmação. Por favor verifique o seu endereço de e-mail.
+'confirmemail_sendfailed'  => 'Não foi possível enviar o email de confirmação. Por favor verifique o seu endereço de e-mail.
 
 Mailer retornou: $1',
-'confirmemail_invalid'    => 'Código de confirmação inválido. O código poderá ter expirado.',
-'confirmemail_needlogin'  => 'Precisa de $1 para confirmar o seu endereço de correio electrónico.',
-'confirmemail_success'    => 'O seu endereço de e-mail foi confirmado. Pode agora se ligar.',
-'confirmemail_loggedin'   => 'O seu endereço de e-mail foi agora confirmado.',
-'confirmemail_error'      => 'Alguma coisa correu mal ao guardar a sua confirmação.',
-'confirmemail_subject'    => '{{SITENAME}} confirmação de endereço de e-mail',
-'confirmemail_body'       => 'Alguém, provavelmente você com o endereço de IP $1, registou uma conta "$2" com este endereço de e-mail na {{SITENAME}}.
+'confirmemail_invalid'     => 'Código de confirmação inválido. O código poderá ter expirado.',
+'confirmemail_needlogin'   => 'Precisa de $1 para confirmar o seu endereço de correio electrónico.',
+'confirmemail_success'     => 'O seu endereço de e-mail foi confirmado. Pode agora se ligar.',
+'confirmemail_loggedin'    => 'O seu endereço de e-mail foi agora confirmado.',
+'confirmemail_error'       => 'Alguma coisa correu mal ao guardar a sua confirmação.',
+'confirmemail_subject'     => '{{SITENAME}} confirmação de endereço de e-mail',
+'confirmemail_body'        => 'Alguém, provavelmente você com o endereço de IP $1, registou uma conta "$2" com este endereço de e-mail na {{SITENAME}}.
 
 Para confirmar que esta conta realmente é sua, e para activar
 as funcionalidades de e-mail na {{SITENAME}}, abra o seguinte endereço no seu navegador:
@@ -2358,6 +2358,8 @@ $3
 
 Caso este *não* seja você, não siga o endereço. Este código de confirmação
 irá expirar a $4.',
+'confirmemail_invalidated' => 'Confirmação de endereço de e-mail cancelada',
+'invalidateemail'          => 'Cancelar confirmação de e-mail',
 
 # Scary transclusion
 'scarytranscludedisabled' => '[A transclusão de páginas de outros wikis encontra-se desabilitada]',

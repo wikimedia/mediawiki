@@ -602,7 +602,7 @@ Přičina zablokowanja bě:
 
 :\'\'$2\'\' (<span class="plainlinks">[{{fullurl:Special:Ipblocklist|&action=search&limit=&ip=%23}}$5 zapisk w protokolu]</span>)
 
-<p style="border-style: solid; border-color: red; border-width: 1px; padding:5px;"><b>Móžeš strony dale čitać,</b> 
+<p style="border-style: solid; border-color: red; border-width: 1px; padding:5px;"><b>Móžeš strony dale čitać,</b>
 wobdźěłowanje a wutworjenje stronow w {{SITENAME}} pak je znjemóžnjene.
 Jeli widźiš tut zdźělenku, hačrunjež sy jenož čitać chcył, sy (čerwjeny) wotkaz na hišće njeeksistowacy nastawk slědował.</p>
 
@@ -700,7 +700,7 @@ Lubiš nam tež, zo sy jón sam napisał abo ze zjawneje domejny abo z podobneho
 'permissionserrors'         => 'Woprawnjenske zmylki',
 'permissionserrorstext'     => 'Nimaš prawo, zo by tutu akciju wuwjedł. {{PLURAL:$1|Přičina|Přičiny}}:',
 'recreate-deleted-warn'     => "'''Kedźbu: Wutworiš stronu, kiž bu prjedy wušmórnjena.'''
- 
+
 Prošu přepruwuj, hač je znowawutworjenje woprawnjena a wotpowěduje prawidłam projekta.
 Tu slěduje wujimk z protokola wušmórnjenjow z přičinu za předawše wušmórnjenje:",
 
@@ -1052,14 +1052,14 @@ Prošu přepruwuj, hač maš dataju w połnym rozeznaću a nahraj ju, hewak wuzw
 'watchthisupload'             => 'Stronu wobkedźbować',
 'filewasdeleted'              => 'Dataja z tutym mjenom bu prjedy nahrata a pozdźišo wušmórnjena. Prošu přepruwuj $1 prjedy hač ju znowa składuješ.',
 'upload-wasdeleted'           => "'''Kedźbu: Nahrawaš dataju, kotraž bu prjedy wušmórnjena.'''
- 
+
 Prošu přepruwuj dokładnje, hač wospjetowane nahraće směrnicam wotpowěduje.
 Za twoju informaciju slěduje protokol wušmórnjenjow z wopodstatnjenjom za předchadne wušmórnjenje:",
 'filename-bad-prefix'         => 'Datajowe mjeno započina so z <strong>„$1“</strong>. To je powšitkownje datajowe mjeno, kotrež digitalna kamera zwjetša dawa a kotrež tohodla jara wuprajiwe njeje. Prošu wubjer bóle wuprajiwe mjeno za twoju dataju.',
 'filename-prefix-blacklist'   => ' #<!-- Njezměń tutu linku! --> <pre>
-# Syntaksa: 
+# Syntaksa:
 #   * Wšo wot znamješka "#" hač ke kóncej linki je komentar
-#   * Kóžda njeprózdna linka je prefiks za typiske datajowe mjena, 
+#   * Kóžda njeprózdna linka je prefiks za typiske datajowe mjena,
 # kotrež so awtomatisce přez digitalne kamery připokazuja
 CIMG # Casio
 DSC_ # Nikon
@@ -1444,8 +1444,8 @@ Wospjetne prašenja a dalša pomoc:
 'delete-confirm'              => '„$1“ wušmórnyć',
 'delete-legend'               => 'Wušmórnyć',
 'historywarning'              => 'KEDŹBU: Strona, kotruž chceš wušmórnyć, ma stawizny:',
-'confirmdeletetext'           => 'Sy so rozsudźił stronu ze jeje stawiznami wušmórnić. 
-Prošu potwjerdź, zo maš wotpohlad to činić, zo rozumiš sćěwki a zo to wotpowědujo 
+'confirmdeletetext'           => 'Sy so rozsudźił stronu ze jeje stawiznami wušmórnić.
+Prošu potwjerdź, zo maš wotpohlad to činić, zo rozumiš sćěwki a zo to wotpowědujo
 [[{{MediaWiki:Policy-url}}|zasadam tutoho wikija]] činiš.',
 'actioncomplete'              => 'Dokónčene',
 'deletedtext'                 => 'Strona „<nowiki>$1</nowiki>” bu wušmórnjena. Hlej $2 za lisćinu aktualnych wušmórnjenjow.',
@@ -2273,7 +2273,7 @@ Zo by so wobkrućiło, zo tute konto woprawdźe tebi słuša a zo bychu so e-mej
 
 Jeli to *njejsy*, njeslěduj wotkaz. Tutón wobkrućenski kod spadnje dnja $4.
 
--- 
+--
 {{SITENAME}}: {{fullurl:{{Mediawiki:mainpage}}}}',
 
 # Scary transclusion

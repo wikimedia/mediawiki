@@ -527,7 +527,7 @@ un hvenær læsingunni verðu aflétt',
 Kerfisstjórinn sem læsti honum gaf þessa skýringu: $1',
 'missingarticle'       => 'Gagnagrunnurinn finnur ekki texta af síðunni sem þú leitaðir að, „$1“.
 
-Þetta er venjulega vegna þess að þú hefur skoðað breytingu eða breytingaskrá að síðu sem hefur verið eytt. 
+Þetta er venjulega vegna þess að þú hefur skoðað breytingu eða breytingaskrá að síðu sem hefur verið eytt.
 
 Ef þetta á ekki við, þá gæti verið að þú hafir fundið villu í hugbúnaðinum. Vinsamlegast tilkynntu stjórnanda þessa villu og taktu fram slóðina.',
 'readonly_lag'         => 'Gagnagrunninum hefur verið læst sjálfkrafa á meðan undirvefþjónarnir reyna að hafa í við aðalvefþjóninn',
@@ -629,7 +629,7 @@ Ef einhver annar hefur sent inn þessa beðni eða þér tókst að muna lykilor
 þú hefur ekki áhuga á að fá nýtt þá getur þú hundsað þessi skilaboð og haldið áfram
 að nota gamla lykilorðið.',
 'noemail'                    => 'Það er ekkert póstfang skráð fyrir notanda "$1".',
-'passwordsent'               => 'Nýtt lykilorð var sent á netfangið sem er skráð á „$1“. 
+'passwordsent'               => 'Nýtt lykilorð var sent á netfangið sem er skráð á „$1“.
 Vinsamlegast skráðu þig inn á ný þegar þú hefur móttekið það.',
 'blocked-mailpassword'       => 'Þér er ekki heimilt að gera breytingar frá þessu netfangi og  því getur þú ekki fengið nýtt lykilorð í pósti.  Þetta er gert til þess að koma í veg fyrir skemmdarverk.',
 'eauthentsent'               => 'Staðfestingarpóstur hefur verið sendur á uppgefið netfang. Þú verður að fylgja leiðbeiningunum í póstinum til þess að virkja netfangið og staðfesta að það sé örugglega þitt.',
@@ -735,7 +735,7 @@ Vistfangið þitt er $5. Vinsamlegast taktu það fram í fyrirspurnum þínum."
 'accmailtext'              => 'Lykilorðið fyrir „$1“ hefur verið sent á $2.',
 'newarticle'               => '(Ný)',
 'newarticletext'           => "Þú hefur fylgt tengli á síðu sem er ekki til enn þá.
-Þú getur búið til síðu með þessu nafni með því að skrifa í formið að neðan 
+Þú getur búið til síðu með þessu nafni með því að skrifa í formið að neðan
 (meiri upplýsingar á [[{{MediaWiki:Helppage}}|hjálp]]).
 Ef þú hefur óvart vilst hingtað, veldu einfaldlega '''til baka''' á vafranum þínum.",
 'anontalkpagetext'         => "----Þetta er spjallsíða fyrir óskráðan notanda sem hefur ekki búið til aðgang enn þá eða notar hann ekki, slíkir notendur þekkjast á vistfangi sínu. Það getur gerst að margir notendur deili sama vistfangi þannig að athugasemdum sem beint er til eins notanda geta birst á spjallsíðu annars. [[Special:Userlogin|Skráðu þig sem notanda]] til að koma í veg fyrir svona misskilning.''",
@@ -746,7 +746,7 @@ Ef þú hefur óvart vilst hingtað, veldu einfaldlega '''til baka''' á vafranu
 'updated'                  => '(Uppfært)',
 'note'                     => '<strong>Athugið:</strong>',
 'previewnote'              => '<strong>Það sem sést hér er aðeins forskoðun og hefur ekki enn verið vistað!</strong>',
-'session_fail_preview'     => '<strong>Því miður! Gat ekki unnið úr breytingum þínum vegna týndra lotugagna. 
+'session_fail_preview'     => '<strong>Því miður! Gat ekki unnið úr breytingum þínum vegna týndra lotugagna.
 Vinsamlegast reyndu aftur síðar. Ef það virkar ekki heldur skaltu reyna að skrá þig út og inn á ný.</strong>',
 'editing'                  => 'Breyti $1',
 'editingsection'           => 'Breyti $1 (hluta)',
@@ -809,7 +809,7 @@ Eyðingarskrá fyrir þessa síðu er útveguð hér til þæginda:",
 'last'                => 'þessa',
 'page_first'          => 'fyrsta',
 'page_last'           => 'síðasta',
-'histlegend'          => 'Skýringar: (nú) = bera saman við núverandi útgáfu, 
+'histlegend'          => 'Skýringar: (nú) = bera saman við núverandi útgáfu,
 (breyting) = bera saman við útgáfuna á undan, M = minniháttar breyting.',
 'deletedrev'          => '[eytt]',
 'histfirst'           => 'elstu',
@@ -1015,7 +1015,7 @@ Til að tengja í skrána frá síðu, notaðu eftirfarandi aðferðir
 'filedesc'          => 'Lýsing',
 'fileuploadsummary' => 'Ágrip:',
 'uploadedfiles'     => 'Hlóð inn skráunum',
-'ignorewarning'     => 'Hunsa viðvaranir og vista þessa skrá.',
+'ignorewarning'     => 'Hunsa viðvaranir og vista þessa skrá',
 'ignorewarnings'    => 'Hunsa allar viðvaranir',
 'minlength1'        => 'Skráarnöfn þurfa að vera að minnsta kosti einn stafur að lengd',
 'badfilename'       => 'Skáarnafninu hefur verið breytt í „$1“.',
@@ -1124,7 +1124,7 @@ Til að tengja í skrána frá síðu, notaðu eftirfarandi aðferðir
 'sitestats'              => 'Tölfræði fyrir {{SITENAME}}',
 'userstats'              => 'Notendatölfræði',
 'sitestatstext'          => "Það {{PLURAL:$1|er '''1''' síða|eru '''$1''' síður}} í gagnagrunninum.
-Meðtaldar eru „spjallsíður“, síður varðandi {{SITENAME}}, smávægilegir „stubbar“, 
+Meðtaldar eru „spjallsíður“, síður varðandi {{SITENAME}}, smávægilegir „stubbar“,
 tilvísanir og aðrar síður sem mundu líklega ekki teljast sem efnislegar síður.
 Fyrir utan þær þá {{PLURAL:$2|er '''1''' síða sem líklega getur|eru '''$2''' síður sem líklega geta}} talist
 {{PLURAL:$2|efnisleg grein|efnislegar greinar}}.
@@ -1136,7 +1136,7 @@ síðan {{SITENAME}} hóf göngu sína.
 Sem gerir að meðaltali '''$5''' breytingar á hverja síðu og '''$6''' skoðanir á hverja breytingu.
 
 Lengdin á [http://meta.wikimedia.org/wiki/Help:Job_queue vinnsluröðinni] er '''$7'''.",
-'userstatstext'          => "Hér {{PLURAL:$1|er '''1''' skráður [[{{ns:special}}:Listusers|notandi]]|eru '''$1''' skráðir [[{{ns:special}}:Listusers|notendur]]}}, þar af 
+'userstatstext'          => "Hér {{PLURAL:$1|er '''1''' skráður [[{{ns:special}}:Listusers|notandi]]|eru '''$1''' skráðir [[{{ns:special}}:Listusers|notendur]]}}, þar af
 '''$2''' (eða '''$4%''') {{PLURAL:$2|hefur|hafa}} $5 stjórnendaréttindi (sjá $3).",
 'statistics-mostpopular' => 'Mest skoðuðu síður',
 
@@ -1342,7 +1342,7 @@ sé í samræmi við [[{{MediaWiki:Policy-url}}]].',
 'rollbacklink'                => 'taka aftur',
 'rollbackfailed'              => 'Mistókst að taka aftur',
 'cantrollback'                => 'Ekki hægt að taka aftur breytingu, síðasti höfundur er eini höfundur þessarar síðu.',
-'alreadyrolled'               => 'Ekki var hægt að taka síðustu breytingu [[:$1]] 
+'alreadyrolled'               => 'Ekki var hægt að taka síðustu breytingu [[:$1]]
 eftir [[User:$2|$2]] ([[User_talk:$2|spjall]]) til baka; eitthver annar hefur breytt síðunni eða nú þegar tekið breytinguna til baka.
 
 Síðasta breyting er frá [[User:$3|$3]] ([[User_talk:$3|Spjall]]).',

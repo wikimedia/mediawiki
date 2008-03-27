@@ -86,7 +86,7 @@ $messages = array(
 'tog-fancysig'                => 'Simpla subskribo (sen aŭtomata ligo)',
 'tog-externaleditor'          => 'Uzu defaŭlte eksteran tekstprilaborilon',
 'tog-externaldiff'            => 'Uzu defaŭlte eksteran ŝanĝmontrilon',
-'tog-showjumplinks'           => 'Ebligi alirligojn "salti al" 
+'tog-showjumplinks'           => 'Ebligi alirligojn "salti al"
 <!-- Bonvolu kontroli ĉu ĝustas la traduko de : Enable "jump to" accessibility links -->',
 'tog-uselivepreview'          => 'Uzu tujan antaŭrigardon (ĜavaSkripto) (Eksperimenta)',
 'tog-forceeditsummary'        => 'Informu min kiam aldonanta nulan redakto-resumon',
@@ -563,14 +563,14 @@ La donita kialo estas:
 *Komenco de forbaro: $8
 *Limdato de la blokado: $6
 
-Vi povas kontakti $1 aux iun ajn el la aliaj 
+Vi povas kontakti $1 aux iun ajn el la aliaj
 [[{{MediaWiki:grouppage-sysop}}|administrantojn]] por diskuti la blokon.
 
 Notu, ke vi ne povas uzi la servon "Retposxtu cxi tiu uzanton" krom se vi havas validan retpost-adreson registritan en viaj [[Special:Preferences|vikipediistajn preferojn]], kaj vi estas ne blokita kontraux gxia uzado.
 
 Via forbaro-identigo estas $5.  Bonvolu inkluzivi tiun identigon en iuj ajn demandoj de vi farotaj.',
 'blockednoreason'           => 'nenia kialo donata',
-'blockedoriginalsource'     => "La fonto de '''$1''' estas 
+'blockedoriginalsource'     => "La fonto de '''$1''' estas
 montrata malsupre:",
 'blockededitsource'         => "La teksto de '''viaj redaktoj''' al '''$1''' estas montrata malsupre:",
 'whitelistedittitle'        => 'Ensalutado devigata por redakti',
@@ -633,7 +633,7 @@ Vi ankaŭ ĵuras, ke vi mem verkis la tekston, aŭ ke vi kopiis ĝin el fonto se
 <strong>NE UZU KOPIRAJTAJN VERKOJN SENPERMESE!</strong>',
 'copyrightwarning2'         => 'Bonvolu noti ke ĉiuj kontribuoj al {{SITENAME}} povas esti reredaktita, ŝanĝita aŭ forigita de aliaj kontribuantoj. Se vi ne deziras ke viaj verkoj estu senkompate reredaktitaj, ne publikigu ilin ĉi tie.
 
-Vi ankaŭ promesu al ni ke vi verkis tion mem aŭ kopiis el publika domajno aŭ simila libera fonto (vidu $1 por detaloj). 
+Vi ankaŭ promesu al ni ke vi verkis tion mem aŭ kopiis el publika domajno aŭ simila libera fonto (vidu $1 por detaloj).
 
 <strong>NE PROPONU KOPIRAJTITAJN VERKOJN SEN PERMESO!</strong>',
 'longpagewarning'           => '<strong>AVERTO: Tiu ĉi paĝo longas $1 kilobitokojn; kelkaj retumiloj
@@ -661,7 +661,7 @@ la tekston al tekstdosiero por poste reenmeti ĝin al la vikio.</strong>',
 'permissionserrorstext'     => 'Vi ne rajtas fari tion pro la {{PLURAL:$1|sekva kialo|sekvaj kialoj}}:',
 'recreate-deleted-warn'     => "'''Averto: Vi rekreas paĝon tiu estis antaŭe forigita.'''
 
-Vi konsideru ĉu konvenas daŭre redakti ĉi paĝon. 
+Vi konsideru ĉu konvenas daŭre redakti ĉi paĝon.
 Jen la loglibro de forigoj por via oportuno:",
 
 # "Undo" feature
@@ -726,7 +726,7 @@ povas esti detaloj en la [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} logo
 'revdelete-nooldid-text'      => 'Vi ne specifis celan revizion aux reviziojn fari cxi funkcion.',
 'revdelete-selected'          => "{{PLURAL:$2|Elektata revizio|Elektataj revizioj}} de '''$1:'''",
 'logdelete-selected'          => "{{PLURAL:$2|Selektata loglibra evento|Selektataj loglibraj eventoj}} por '''$1:'''",
-'revdelete-text'              => 'Forigitaj versioj kaj eventoj plu aperos en la historipagxoj, sed iliaj tekstoj ne estos alireblaj de  la publiko. 
+'revdelete-text'              => 'Forigitaj versioj kaj eventoj plu aperos en la historipagxoj, sed iliaj tekstoj ne estos alireblaj de  la publiko.
 
 Aliaj administrantoj cxe {{SITENAME}} plu povos aliri la kasxitan entenon kaj restarigi gxin per la sama interfaco, krom se plia limigo estas metita de la pagxaradministrantoj.',
 'revdelete-legend'            => 'Limigu ecojn de versio:',
@@ -1434,7 +1434,7 @@ Vidu [[Special:Protectedpages|liston de protektitaj paĝoj]] por pli da informoj
 'protect-locked-blocked'      => 'Vi ne povas ŝanĝi prokekto-nivelojn dum forbarita. Jen la nunaj ecoj de la paĝo <strong>$1</strong>:',
 'protect-locked-dblock'       => 'Ne eblas ŝanĝi nivelojn de protekto pro aktiva datumbaza ŝloso.
 Jen la nunaj ecoj de la paĝo <strong>$1</strong>:',
-'protect-locked-access'       => 'Via konto ne havas permeson ŝanĝi protekto-nivelojn. 
+'protect-locked-access'       => 'Via konto ne havas permeson ŝanĝi protekto-nivelojn.
 Jen la aktualaj valoroj por la paĝo <strong>$1</strong>:',
 'protect-cascadeon'           => 'Ĉi paĝo estas nun protektita kontraŭ redaktado ĉar gxi estas inkluzivita en {{PLURAL:$1|jena paĝo, kiu mem estas protektita|jenaj paĝoj, kiuj mem estas protektitaj}} kun kaskada protekto. Vi povas ŝanĝi ties protektnivelon, sed tio ne ŝanĝos la kaskadan protekton.',
 'protect-default'             => '(defaŭlte)',
@@ -1935,7 +1935,7 @@ $1',
 # Bad image list
 'bad_image_list' => 'La formato estas jen:
 
-Nur listeroj (kun linio komence de steleto *) estas konsiderata. La komenca ligilo de linio devas esti ligilo al malbona bildo. 
+Nur listeroj (kun linio komence de steleto *) estas konsiderata. La komenca ligilo de linio devas esti ligilo al malbona bildo.
 Sekvaj ligilo en la sama linio estas konsiderata kiel esceptoj (paĝoj kiel la bildo estas permesita esti montrata.)',
 
 # Metadata
@@ -2232,7 +2232,7 @@ Retpoŝta programo sciigis: $1',
 'confirmemail_loggedin'    => 'Via retadreso estas nun konfirmita.',
 'confirmemail_error'       => 'Io misokazis dum konservo de via konfirmo.',
 'confirmemail_subject'     => '{{SITENAME}} konfirmado de retadreso',
-'confirmemail_body'        => 'Iu, verŝajne vi ĉe la IP-adreso $1, enregistrigis per tiu 
+'confirmemail_body'        => 'Iu, verŝajne vi ĉe la IP-adreso $1, enregistrigis per tiu
 ĉi retpoŝtadreso la konton "$2" ĉe {{SITENAME}}.
 
 Malfermu tiun ĉi ligon en via retumilo, por konfirmi ke la

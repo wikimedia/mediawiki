@@ -7,8 +7,6 @@
  * @author OldakQuill
  */
 
-
-
 $messages = array(
 # User preference toggles
 'tog-justify' => 'jufmei co mulno selkuspe',

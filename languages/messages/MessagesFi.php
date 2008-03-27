@@ -776,8 +776,8 @@ Käyttäjän $3 antama syy on ''$2''",
 'history-feed-title'          => 'Muutoshistoria',
 'history-feed-description'    => 'Tämän sivun muutoshistoria',
 'history-feed-item-nocomment' => '$1 ($2)', # user at time
-'history-feed-empty'          => 'Pyydettyä sivua ei ole olemassa. 
-Se on saatettu poistaa wikistä tai nimetä uudelleen. 
+'history-feed-empty'          => 'Pyydettyä sivua ei ole olemassa.
+Se on saatettu poistaa wikistä tai nimetä uudelleen.
 Kokeile [[Special:Search|hakua]] löytääksesi asiaan liittyviä sivuja.',
 
 # Revision deletion

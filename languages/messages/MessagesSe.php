@@ -4,14 +4,11 @@
  * @addtogroup Language
  *
  * @author Skuolfi
- * @author G - ג
  * @author Siebrand
  * @author Teak
  * @author לערי ריינהארט
  * @author SPQRobin
  */
-
-
 
 $messages = array(
 # User preference toggles
@@ -626,7 +623,7 @@ $1 | $2',
 'fileuploadsummary'  => 'Čoahkkáigeassu',
 'filesource'         => 'Gáldu:',
 'uploadedfiles'      => 'Lasihuvvon fiillat',
-'ignorewarning'      => 'Vurke fuolatkeahttá varuhusas.',
+'ignorewarning'      => 'Vurke fuolatkeahttá varuhusas',
 'minlength1'         => 'Fiilla namas ferte leat unnimustá okta mearka.',
 'badfilename'        => 'Fiilla nama rievdaduvvui: $1.',
 'filetype-missing'   => 'Fiillas vailui fiilageažus – ovdamearkkan <tt>.jpg</tt>.',

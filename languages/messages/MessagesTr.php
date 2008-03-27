@@ -571,7 +571,7 @@ Yukarıdaki yazı sayfanın şu anki halini göstermektedir.
 Sizin değişiklikleriniz alta gösterilmiştir. Son değişiklerinizi yazının içine eklemeniz gerekecektir. "Sayfayı kaydet"e bastığınızda <b>sadece</b> yukarıdaki yazı kaydedilecektir. <br />',
 'yourtext'                  => 'Sizin metniniz',
 'storedversion'             => 'Kaydedilmiş metin',
-'editingold'                => '<strong>DİKKAT: Sayfanın eski bir sürümünde değişiklik yapmaktasınız. 
+'editingold'                => '<strong>DİKKAT: Sayfanın eski bir sürümünde değişiklik yapmaktasınız.
 Kaydettiğinizde bu tarihli sürümden günümüze kadar olan değişiklikler yok olacaktır.</strong>',
 'yourdiff'                  => 'Karşılaştırma',
 'copyrightwarning'          => "<strong>Lütfen dikkat:</strong> {{SITENAME}} sitesine yapılan bütün katkılar <i>$2</i>
@@ -585,7 +585,7 @@ Ayrıca bu ekleyeceğiniz yazıyı sizin yazdığınızı ya da serbest kopyalam
 'readonlywarning'           => '<strong>DİKKAT: Bakım nedeni ile veritabanı şu anda kilitlidir. Bu sebeple değişiklikleriniz şu anda kaydedilememektedir. Yazdıklarınızı başka bir editöre alıp saklayabilir ve daha sonra tekrar buraya getirip kaydedebilirsiniz</strong>',
 'protectedpagewarning'      => 'UYARI: Bu sayfa koruma altına alınmıştır ve yalnızca yönetici olanlar tarafından değiştirilebilir. Bu sayfayı değiştirirken lütfen [[Project:Koruma altına alınmış sayfa|korumalı sayfa kurallarını]] uygulayınız.',
 'semiprotectedpagewarning'  => "'''Uyarı''': Bu sayfa sadece kayıtlı kullanıcı olanlar tarafından değiştirilebilir.",
-'cascadeprotectedwarning'   => "'''UYARI:''' Bu sayfa sadece yöneticilik yetkileri olan kullanıcıların değişiklik yapabileceği şekilde koruma altına alınmıştır. Çünkü \"kademeli koruma\" seçeneği aktif hale getirilerek korumaya alınan şu sayfalarda kullanılmaktadır:",
+'cascadeprotectedwarning'   => "'''UYARI:''' Bu sayfa sadece yöneticilik yetkileri olan kullanıcıların değişiklik yapabileceği şekilde koruma altına alınmıştır. Çünkü  \"kademeli\" seçeneği aktif hale getirilerek koruma altına alınan {{PLURAL:\$1|sayfada|sayfada}} kullanılmaktadır:",
 'templatesused'             => 'Bu sayfada kullanılan şablonlar:',
 'templatesusedpreview'      => 'Bu önizlemede kullanılan şablonlar:',
 'templatesusedsection'      => 'Bu bölümde kullanılan şablonlar:',
@@ -686,7 +686,7 @@ Bu sayfa değişikiliği kamu arşivlerinden silinmiştir.
 'mergehistory-go'                  => 'Birleştirilebilir değişikilikleri göster',
 'mergehistory-submit'              => 'Revizyonları birleştir',
 'mergehistory-empty'               => 'Hiç bir revizyon birleştirilemez.',
-'mergehistory-success'             => '[[:$1]] sayfasının $3 revizyonu başarıyla [[:$2]] içine birleştirildi.',
+'mergehistory-success'             => '[[:$1]] sayfasının $3 {{PLURAL:$3|revizyonu|revizyonu}} başarıyla [[:$2]] içine birleştirildi.',
 'mergehistory-no-source'           => 'Kaynak sayfa $1 bulunmamaktadır.',
 'mergehistory-no-destination'      => 'Hedef sayfa $1 bulunmamaktadır.',
 'mergehistory-invalid-source'      => 'Kaynak sayfanın geçerli bir başlığı olmalı.',
@@ -720,6 +720,7 @@ Bu sayfa değişikiliği kamu arşivlerinden silinmiştir.
 'viewprevnext'          => '($1) ($2) ($3).',
 'search-result-size'    => '$1 ({{PLURAL:$2|1 kelime|$2 kelime}})',
 'search-result-score'   => 'Uygunluk: $1%',
+'search-suggest'        => 'Bunu mu demek istediniz: $1',
 'searchall'             => 'hepsi',
 'showingresults'        => '<b>$2.</b> sonuçtan başlayarak <b>$1</b> sonuç aşağıdadır:',
 'showingresultsnum'     => '<b>$2.</b> sonuçtan başlayarak <b>$3</b> sonuç aşağıdadır:',
@@ -932,11 +933,12 @@ Bu dosyanın silme kayıtları kolaylık olsun diye burada sunulmuştur:",
 'upload-curl-error28' => 'Yüklemede zaman aşımı',
 
 'nolicense'          => 'Hiçbirini seçme',
+'license-nopreview'  => '(Önizleme etkin değil)',
 'upload_source_url'  => ' (geçerli, herkesin ulaşabileceği bir URL)',
 'upload_source_file' => ' (bilgisayarınızdaki bir dosya)',
 
 # Special:Imagelist
-'imagelist_search_for'  => 'Resim adı ara:',
+'imagelist_search_for'  => 'Medya adı ara:',
 'imgdesc'               => 'tanım',
 'imgfile'               => 'dosya',
 'imagelist'             => 'Resim listesi',
@@ -1094,7 +1096,7 @@ Toplam sayfa görüntülenme sayısı '''\$3''', değişiklik başına görünt�
 'log'                  => 'Kayıtlar',
 'all-logs-page'        => 'Tüm kayıtlar',
 'log-search-legend'    => 'Kayıtları ara',
-'alllogstext'          => '[[Special:Log/upload|Yükleme]], [[Special:Log/delete|silme]], [[Special:Log/move|taşıma]], [[Special:Log/protect|koruma altına alma]], [[Special:Log/newusers|yeni kullanıcı]], [[Special:Log/renameuser|kullanıcıların yeniden adlandırmaları]], [[Special:Log/block|erişim engelleme]], [[Special:Log/rights|yönetici hareketlerinin]] ve [[Special:Log/makebot|botların durumunun]] tümünün kayıtları. 
+'alllogstext'          => '[[Special:Log/upload|Yükleme]], [[Special:Log/delete|silme]], [[Special:Log/move|taşıma]], [[Special:Log/protect|koruma altına alma]], [[Special:Log/newusers|yeni kullanıcı]], [[Special:Log/renameuser|kullanıcıların yeniden adlandırmaları]], [[Special:Log/block|erişim engelleme]], [[Special:Log/rights|yönetici hareketlerinin]] ve [[Special:Log/makebot|botların durumunun]] tümünün kayıtları.
 
 Kayıt tipini, kullanıcı ismini, sayfa ismini girerek listeyi daraltabilirsiniz.',
 'logempty'             => 'Kayıtlarda eşleşen bilgi yok.',
@@ -1124,9 +1126,9 @@ Kayıt tipini, kullanıcı ismini, sayfa ismini girerek listeyi daraltabilirsini
 'mailnologintext' => 'Diğer kullanıcılara e-posta gönderebilmeniz için [[Special:Userlogin|oturum aç]]malısınız ve [[Special:Preferences|tercihler]] sayfasında geçerli bir e-posta adresiniz olmalı.',
 'emailuser'       => 'Kullanıcıya e-posta gönder',
 'emailpage'       => 'Kullanıcıya e-posta gönder',
-'emailpagetext'   => 'Aşağıdaki form kullanıcı hesabıyla ilişkilendirilmiş geçerli bir e-posta 
+'emailpagetext'   => 'Aşağıdaki form kullanıcı hesabıyla ilişkilendirilmiş geçerli bir e-posta
 adresi olduğu takdirde ilgili kişiye bir e-posta gönderecek.
- 
+
 Yanıt alabilmeniz için "From" (Kimden) kısmına tercih formunda belirttiğiniz e-posta adresi eklenecek.',
 'usermailererror' => 'Eposta hizmeti hata verdi:',
 'defemailsubject' => '{{SITENAME}} e-posta',
@@ -1782,7 +1784,7 @@ Ondan sonraki link(ler) kural dışı olarak kabul edilir, örneğin: resim sayf
 'confirmemail_noemail'    => '[[Special:Preferences|Kullanıcı tercihlerinizde]] tanımlanmış uygun bir e-posta adresiniz yok.',
 'confirmemail_text'       => "Viki'nin e-posta işlevlerini kullanmabilmek için, önce e-posta adresinizin
 doğrulanması gerekiyor. Adresinize onay e-postası göndermek için aşağıdaki
-butonu tıklayın. Gönderilecek iletide adresinizi onaylamak için tarayıcınızla 
+butonu tıklayın. Gönderilecek iletide adresinizi onaylamak için tarayıcınızla
 erişebileceğiniz, onay kodu içeren bir bağlantı olacak; linki tarayıcınıda açın ve e-posta adresinizin geçerliliğini doğrulayın.",
 'confirmemail_send'       => 'Onay kodu gönder',
 'confirmemail_sent'       => 'Onay e-postası gönderildi.',
@@ -1795,12 +1797,12 @@ Mail yazılımı iade etti:$1',
 'confirmemail_loggedin'   => 'E-posta adresiniz onaylandı.',
 'confirmemail_error'      => 'Onayınız bilinmeyen bir hata nedeniyle kaydedilemedi.',
 'confirmemail_subject'    => '{{SITENAME}} e-posta adres onayı.',
-'confirmemail_body'       => '$1 internet adresinden yapılan erişimle {{SITENAME}} sitesinde 
-bu e-posta adresi ile ilişkilendirilen $2 kullanıcı hesabı 
-açıldı.  
+'confirmemail_body'       => '$1 internet adresinden yapılan erişimle {{SITENAME}} sitesinde
+bu e-posta adresi ile ilişkilendirilen $2 kullanıcı hesabı
+açıldı.
 
 Bu e-posta adresinin bahsi geçen kullanıcı hesabına ait olduğunu
-onaylamak ve {{SITENAME}} sitesindeki e-posta işlevlerini aktif hale 
+onaylamak ve {{SITENAME}} sitesindeki e-posta işlevlerini aktif hale
 getirmek için aşağıdakı bağlantıyı tıklayın.
 
 $3

@@ -43,15 +43,15 @@ $dateFormats = array(
 	'mdy time' => 'H:i',
 	'mdy date' => 'xg j, Y',
 	'mdy both' => 'H:i, xg j, Y',
-	
+
 	'dmy time' => 'H:i',
 	'dmy date' => 'j xg Y',
 	'dmy both' => 'H:i, j xg Y',
-	
+
 	'ymd time' => 'H:i',
 	'ymd date' => 'Y xg j',
 	'ymd both' => 'H:i, Y xg j',
-	
+
 	'ISO 8601 time' => 'xnH:xni:xns',
 	'ISO 8601 date' => 'xnY-xnm-xnd',
 	'ISO 8601 both' => 'xnY-xnm-xnd"T"xnH:xni:xns',
@@ -609,7 +609,7 @@ Ille hanc causam dedit: ''$2''",
 'viewpagelogs'        => 'Vide acta huius paginae',
 'nohistory'           => 'Huic paginae non est historia.',
 'revnotfound'         => 'Emendatio non inventa',
-'revnotfoundtext'     => 'Emendatio quem rogavisti non inventa est. 
+'revnotfoundtext'     => 'Emendatio quem rogavisti non inventa est.
 Confirma URL paginae.',
 'currentrev'          => 'Emendatio recentissima',
 'revisionasof'        => 'Emendatio ex $1',
@@ -1258,7 +1258,7 @@ Ergo manu necesse disputationes motare vel contribuere erit, si vis.",
 'move-watch'              => 'Hanc paginam custodire',
 'movepagebtn'             => 'Paginam movere',
 'pagemovedsub'            => 'Pagina mota est',
-'articleexists'           => "'''Non licet hanc paginam movere:''' pagina cum hoc nomine iam est, aut invalidum est nomen electum. 
+'articleexists'           => "'''Non licet hanc paginam movere:''' pagina cum hoc nomine iam est, aut invalidum est nomen electum.
 
 Quaesumus, nomen alterum elege aut opem pete [[{{MediaWiki:Grouppage-sysop}}|magistratum]].",
 'cantmove-titleprotected' => 'Tibi non licet paginam ad hunc titulum movere, quia hic titulus protectus est ne creetur',

@@ -959,7 +959,7 @@ Fitxategi honen ezabaketa erregistroa jarraian ikus dezakezu:",
 'statistics'             => 'Estatistikak',
 'sitestats'              => '{{SITENAME}}(e)ko estatistikak',
 'userstats'              => 'Erabiltzaile estatistikak',
-'sitestatstext'          => "Datu-basean guztira <b>$1</b> orri daude; eztabaidatzeko, wikipedari buruzko orriak, birzuzenketak eta artikulu laburrak barne hartzen. 
+'sitestatstext'          => "Datu-basean guztira <b>$1</b> orri daude; eztabaidatzeko, wikipedari buruzko orriak, birzuzenketak eta artikulu laburrak barne hartzen.
 
 Horiek baztertzen, <b>$2</b> artikulu dira datu-basean.
 
@@ -1390,7 +1390,7 @@ $1',
 
 # Move page
 'move-page-legend'        => 'Orrialdea mugitu',
-'movepagetext'            => 'Hurrengo pausoak jarraituz, artikulu edo orrialde baten izena aldatu daiteke. Izenburu zaharra, automatikoki izenburu berriari birzuzenduko zaio. 
+'movepagetext'            => 'Hurrengo pausoak jarraituz, artikulu edo orrialde baten izena aldatu daiteke. Izenburu zaharra, automatikoki izenburu berriari birzuzenduko zaio.
 Gogora ezazu, orrialdearen izena ez dela aldatuko, nahi duzun izena dagoeneko sortuta badago Wikipedian; birzuzenketa bat edo historiarik gabeko orrialde bat ez bada.
 
 <b>KONTUZ!</b>

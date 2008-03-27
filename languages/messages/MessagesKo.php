@@ -815,7 +815,7 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'filestatus'                  => '저작권 상태:',
 'filesource'                  => '출처:',
 'uploadedfiles'               => '파일 올리기',
-'ignorewarning'               => '경고를 무시하고 저장합니다.',
+'ignorewarning'               => '경고를 무시하고 저장합니다',
 'ignorewarnings'              => '모든 경고 무시하기',
 'minlength1'                  => '파일 이름은 적어도 1글자 이상이어야 합니다.',
 'illegalfilename'             => '파일명 "$1"에는 문서 제목으로 허용되지 않는 글자가 포함되어 있습니다. 이름을 바꾸어 다시 시도해 주세요.',

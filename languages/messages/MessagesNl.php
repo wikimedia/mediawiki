@@ -498,7 +498,7 @@ $messages = array(
 'portal-url'        => 'Project:Gebruikersportaal',
 'privacy'           => 'Privacybeleid',
 'privacypage'       => 'Project:Privacybeleid',
-'sitesupport'       => 'Financieel bijdragen',
+'sitesupport'       => 'Donaties',
 'sitesupport-url'   => 'Project:Financieel bijdragen',
 
 'badaccess'        => 'Geen toestemming',
@@ -633,8 +633,8 @@ Mogelijk worden nog een aantal pagina's weergegeven alsof u aangemeld bent totda
 
 Uw gebruiker is aangemaakt. Vergeet niet uw voorkeuren voor {{SITENAME}} aan te passen.',
 'loginpagetitle'             => 'Gebruikersnaam',
-'yourname'                   => 'Gebruikersnaam',
-'yourpassword'               => 'Wachtwoord',
+'yourname'                   => 'Gebruikersnaam:',
+'yourpassword'               => 'Wachtwoord:',
 'yourpasswordagain'          => 'Geef uw wachtwoord opnieuw in:',
 'remembermypassword'         => 'Aanmeldgegevens onthouden',
 'yourdomainname'             => 'Uw domein:',
@@ -695,7 +695,7 @@ Als iemand anders dan u dit verzoek heeft gedaan of als u zich inmiddels het wac
 Meld u alstublieft aan nadat u het hebt ontvangen.',
 'blocked-mailpassword'       => 'Uw IP-adres is geblokkeerd voor het maken van wijzigingen. Om misbruik te voorkomen is het niet mogelijk om een nieuw wachtwoord aan te vragen.',
 'eauthentsent'               => 'Er is een bevestigingse-mail naar het opgegeven e-mailadres gezonden. Volg de aanwijzingen in de e-mail om aan te geven dat het uw e-mailadres is. Tot die tijd kunnen er geen e-mails naar het e-mailadres gezonden worden.',
-'throttled-mailpassword'     => 'Er is in de laatste $1 uren een wachtwoordherinnering verzonden. Om misbruik te voorkomen, wordt er slechts één herinnering per $1 uren verzonden.',
+'throttled-mailpassword'     => 'In de laatste $1 uur is er al een wachtwoordherinnering gestuurd. Om misbruik te voorkomen wordt er slechts één wachtwoordherinnering per $1 uur verzonden.',
 'mailerror'                  => 'Fout bij het verzenden van e-mail: $1',
 'acct_creation_throttle_hit' => 'Sorry, er zijn al $1 gebruikers aangemaakt vanaf dit IP-adres.
 U kunt geen nieuwe gebruikers meer aanmaken.',
@@ -826,7 +826,7 @@ U kunt [[Special:Search/{{PAGENAME}}|naar deze term zoeken]] in andere pagina\'s
 | Konqueror || F5
 |}',
 'usercssjsyoucanpreview'    => "<strong>Tip:</strong> Gebruik de knop 'Bewerking ter controle bekijken' om uw nieuwe CSS/JS te testen alvorens op te slaan.",
-'usercsspreview'            => "'''Dit is alleen een voorvertoning van uw persoonlijke css, deze is niet opgeslagen!'''",
+'usercsspreview'            => "'''Dit is alleen een voorvertoning van uw persoonlijke CSS, deze is nog niet opgeslagen!'''",
 'userjspreview'             => "'''Let op: u test nu uw persoonlijke JavaScript. De pagina is niet opgeslagen!'''",
 'userinvalidcssjstitle'     => "'''Waarschuwing:''' er is geen skin \"\$1\". Let op: uw eigen .css- en .js-pagina's beginnen met een kleine letter, bijvoorbeeld {{ns:user}}:Naam/monobook.css in plaats van {{ns:user}}:Naam/Monobook.css.",
 'updated'                   => '(Bijgewerkt)',
@@ -1015,7 +1015,7 @@ Zorg dat u deze wijziging de geschiedenisdoorlopendheid van de pagina behoudt.',
 'lineno'                  => 'Regel $1:',
 'compareselectedversions' => 'Aangevinkte versies vergelijken',
 'editundo'                => 'ongedaan maken',
-'diff-multi'              => '({{plural:$1|Eén tussenliggende versie wordt|$1 tussenliggende versies worden}} niet weergegeven)',
+'diff-multi'              => '({{PLURAL:$1|Eén tussenliggende versie wordt|$1 tussenliggende versies worden}} niet weergegeven)',
 
 # Search results
 'searchresults'         => 'Zoekresultaten',
@@ -1196,7 +1196,7 @@ Pagina's die op [[Special:Watchlist|uw volglijst]] staan worden '''vet''' weerge
 'upload'                      => 'Bestand uploaden',
 'uploadbtn'                   => 'Bestand uploaden',
 'reupload'                    => 'Opnieuw uploaden',
-'reuploaddesc'                => 'Terug naar het uploadformulier.',
+'reuploaddesc'                => 'Upload annuleren en terugkeren naar het uploadformulier',
 'uploadnologin'               => 'Niet aangemeld',
 'uploadnologintext'           => 'U moet [[Special:Userlogin|aangemeld]] zijn
 om bestanden te uploaden.',
@@ -1224,7 +1224,7 @@ De laatste link is bedoeld voor mediabestanden die geen afbeelding zijn.",
 'filestatus'                  => 'Auteursrechtensituatie:',
 'filesource'                  => 'Bron:',
 'uploadedfiles'               => 'Geüploade bestanden',
-'ignorewarning'               => 'Deze waarschuwing negeren en het bestand toch opslaan.',
+'ignorewarning'               => 'Deze waarschuwing negeren en het bestand toch opslaan',
 'ignorewarnings'              => 'Alle waarschuwingen negeren',
 'minlength1'                  => 'Bestandsnamen moeten minstens één letter bevatten.',
 'illegalfilename'             => 'De bestandsnaam "$1" bevat ongeldige karakters. Geef het bestand een andere naam, en probeer het dan opnieuw te uploaden.',
@@ -1278,7 +1278,7 @@ Controleer of het inderdaad uw bedoeling is dit bestand te uploaden.
 Het verwijderingslogboek van dit bestand kunt u hier zien:",
 'filename-bad-prefix'         => 'De naam van het bestand dat u aan het uploaden bent begint met <strong>"$1"</strong>, wat een niet-beschrijvende naam is die meestal automatisch door een digitale camera wordt gegeven. Kies alstublieft een duidelijke naam voor uw bestand.',
 'filename-prefix-blacklist'   => ' #<!-- leave this line exactly as it is --> <pre>
-# De syntaxis is as volgt: 
+# De syntaxis is as volgt:
 #   * Alle tekst vanaf het karakter "#" tot het einde van de regel wordt gezien als opmerking
 #   * Iedere niet-lege regel is een voorvoegsel voor bestandsnamen die vaak automatisch worden toegekend door digitale camera\'s
 CIMG # Casio

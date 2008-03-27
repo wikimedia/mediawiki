@@ -32,7 +32,7 @@ $namespaceNames = array(
 	NS_CATEGORY_TALK    => 'Kateguorėjės_aptarėms'
 );
 
-/** 
+/**
   * Aliases from the fallback language 'lt' to avoid breakage of links
   */
 
@@ -1089,7 +1089,7 @@ versėjė lėks napakeista. Atkoriant īr prarondamė apribuojimā failu versėj
 'undeleterevdel'           => 'Atkorėms nebus ivīkdīts, jē šėtā nulems paskotėnės poslapė versėjės dalini ėštrīnima.
 Tuokēs atvejās, Tamstā rēk atžīmietė a atkavuotė naujausēs ėštrintas versėjės.
 Failu versėjės, katrū netorėt teisiu veizėtė, nebus atkortas.',
-'undeletehistorynoadmin'   => 'Šėts straipsnis bova ėštrints. Trīnima prižastis 
+'undeletehistorynoadmin'   => 'Šėts straipsnis bova ėštrints. Trīnima prižastis
 ruodoma žemiau, teipuogi kas redagava poslapi
 lėgė trīnima. Ėštrintū poslapiu tekstos īr galėmas tėk admėnėstratuoriam.',
 'undeleterevision-missing' => 'Neteisėnga a dėngosė versėjė. Tamsta mažo torėt bluoga nūruoda, a versėjė bova atkorta a pašalėnta ėš arkīva.',

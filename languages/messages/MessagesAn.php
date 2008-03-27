@@ -394,9 +394,9 @@ Puede trobar una lista de pachinas espezials en [[Special:Specialpages]].",
 'dberrortext'          => 'Ha escaizito una error de sintacsis en una consulta á la base de datos.
 Isto podría endicar una error en o programa.
 A zaguera consulta que se miró de fer estió: <blockquote><tt>$1</tt></blockquote> aintro d\'a funzión "<tt>$2</tt>". A error tornata por a base de datos estió "<tt>$3: $4</tt>".',
-'dberrortextcl'        => 'Ha escaizito una error de sintacsis en una consulta á la base de datos. A zaguera consulta que se miró de fer estió: 
-"$1" 
-aintro d\'a funzión "$2". 
+'dberrortextcl'        => 'Ha escaizito una error de sintacsis en una consulta á la base de datos. A zaguera consulta que se miró de fer estió:
+"$1"
+aintro d\'a funzión "$2".
 A base de datos retornó a error "<tt>$3: $4</tt>".',
 'noconnect'            => "A wiki tiene agora bellas dificultaz tecnicas, y no se podió contautar con o serbidor d'a base de datos. <br />
 $1",
@@ -507,13 +507,13 @@ Comprebe si ha escrito bien o nombre u creye una nueba cuenta d\'usuario.',
 'passwordtooshort'           => "A palabra de paso no ye conforme u ye masiau curta. Ha de tener como menimo $1 caráuters y no ha d'estar a mesma que o nombre d'usuario.",
 'mailmypassword'             => 'Nimbía-me una nueba palabra de paso por correu electronico',
 'passwordremindertitle'      => 'Nueba palabra de paso temporal de {{SITENAME}}',
-'passwordremindertext'       => 'Belún (probablement busté, dende l\'adreza IP $1) demandó que li nimbiásenos una nueba palabra de paso ta la suya cuenta en  {{SITENAME}} ($4). 
+'passwordremindertext'       => 'Belún (probablement busté, dende l\'adreza IP $1) demandó que li nimbiásenos una nueba palabra de paso ta la suya cuenta en  {{SITENAME}} ($4).
 A palabra de paso ta l\'usuario "$2" ye agora "$3".
 Li consellamos que enzete agora una sesión y cambee a suya palabra de paso.
 
 Si iste mensache fue demandato por otri, u si ya se\'n ha alcordato d\'a palabra de paso y ya no deseya cambiar-la, puede innorar iste mensache y continar fendo serbir l\'antiga palabra de paso.',
 'noemail'                    => 'No bi ha garra adreza de correu electronico rechistrada ta "$1".',
-'passwordsent'               => 'Una nueba palabra de paso plega de nimbiar-se ta o correu electronico de "$1". 
+'passwordsent'               => 'Una nueba palabra de paso plega de nimbiar-se ta o correu electronico de "$1".
 Por fabor, identifique-se unatra bez malas que la reculla.',
 'blocked-mailpassword'       => "A suya adreza IP ye bloqueyata y, ta pribar abusos, no se li premite emplegar d'a funzión de recuperazión de palabras de paso.",
 'eauthentsent'               => "S'ha nimbiato un correu electronico de confirmazión ta l'adreza espezificata. Antes que no se nimbíe dengún atro correu ta ixa cuenta, ha de confirmar que ixa adreza te pertenexe. Ta ixo, cal que siga as instruzions que trobará en o mensache.",
@@ -743,12 +743,12 @@ Prebe de [[Special:Search|mirar en o wiki]] atras pachinas relebants.",
 'rev-deleted-user'            => "(s'ha sacato iste nombre d'usuario)",
 'rev-deleted-event'           => "(s'ha sacata ista dentrada)",
 'rev-deleted-text-permission' => '<div class="mw-warning plainlinks">
-Ista bersión d\'a pachina ye estata sacata d\'os archibos publicos. 
+Ista bersión d\'a pachina ye estata sacata d\'os archibos publicos.
 Puede trobar más detalles en o [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} rechistro de borrau].
 </div>',
 'rev-deleted-text-view'       => "<div class=\"mw-warning plainlinks\">
-Ista bersión d'a pachina ye sacata d'os archibos publicos. 
-Puede beyer-la porque ye almenistrador/a d'iste wiki; 
+Ista bersión d'a pachina ye sacata d'os archibos publicos.
+Puede beyer-la porque ye almenistrador/a d'iste wiki;
 puede trobar más detalles en o [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} rechistro de borrau].
 </div>",
 'rev-delundel'                => 'amostrar/amagar',
@@ -1011,7 +1011,7 @@ To include a file in a page, use a link in the form
 'filestatus'                  => "Estau d'os dreitos d'autor (copyright):",
 'filesource'                  => 'Fuent:',
 'uploadedfiles'               => 'Archibos cargatos',
-'ignorewarning'               => "Inorar l'abiso y alzar l'archibo en cualsiquier caso.",
+'ignorewarning'               => "Inorar l'abiso y alzar l'archibo en cualsiquier caso",
 'ignorewarnings'              => 'Inorar cualsiquier abiso',
 'minlength1'                  => "Os nombres d'archibo han de tener á lo menos una letra.",
 'illegalfilename'             => "O nombre d'archivo «$1» contiene caráuters no premititos en títols de pachinas. Por fabor, cambee o nombre de l'archibo y mire de tornar á cargarlo.",
@@ -1062,7 +1062,7 @@ Si tienes esta imagen a toda resolución súbela, si no, por favor cambia el nom
 Abría de repensar si ye apropiato continar con a carga d'iste archibo. Aquí tiene o rechistro de borrau d'iste archibo ta que pueda comprebar a razón que se dio ta borrar-lo:",
 'filename-bad-prefix'         => 'O nombre de l\'archibo que ye cargando prenzipia por <strong>"$1"</strong>, que ye un nombre no descriptibo que gosa clabar automaticament as camaras dichitals. Por fabor, trigue un nombre más descriptibo ta iste archibo.',
 'filename-prefix-blacklist'   => ' #<!-- dixe ista linia esautament igual como ye --> <pre>
-# A sintacsis ye asinas: 
+# A sintacsis ye asinas:
 #   * Tot o que prenzipia por un caráuter "#" dica la fin d\'a linia ye un comentario
 #   * As atras linias tienen os prefixos que claban automaticament as camaras dichitals
 CIMG # Casio
@@ -1382,7 +1382,7 @@ L'adreza de correu-e que endicó en as suyas preferenzias d'usuario amanixerá e
 'enotif_anon_editor'           => 'usuario anonimo $1',
 'enotif_body'                  => 'Quiesto/a $WATCHINGUSERNAME,
 
-A pachina «$PAGETITLE» de {{SITENAME}} 
+A pachina «$PAGETITLE» de {{SITENAME}}
 ha estato $CHANGEDORCREATED por l\'usuario $PAGEEDITOR o $PAGEEDITDATE.
 Puede trobar a bersión autual en {{fullurl:$PAGETITLE_RAWURL}}
 
@@ -1420,7 +1420,7 @@ Ta obtenir más informazión y aduya:
 'confirmdeletetext'           => "Ye amanato á borrar d'a base de datos
 una pachina con tot o suyo istorial.
 Por fabor, confirme que reyalment ye mirando de fer ixo, que entiende
-as consecuenzias, y que lo fa d'alcuerdo con as 
+as consecuenzias, y que lo fa d'alcuerdo con as
 [[{{MediaWiki:Policy-url}}|politicas]] d'o wiki.",
 'actioncomplete'              => 'Aizión rematada',
 'deletedtext'                 => '"<nowiki>$1</nowiki>" ha estato borrato.
@@ -1688,7 +1688,7 @@ Isto senifica que podrá tresladar una pachina á lo suyo títol orichinal si ha
 Iste puede estar un cambio drastico e inasperato ta una pachina popular;
 por fabor, asegure-se d'acatar as consecuenzias que acarriará ista aizión
 antis de seguir entadebant.",
-'movepagetalktext'        => "A pachina de descusión asoziata, si esistise, será tresladata automaticament '''de no estar que:''' 
+'movepagetalktext'        => "A pachina de descusión asoziata, si esistise, será tresladata automaticament '''de no estar que:'''
 *A pachina se treslade entre espazios de nombres diferents,
 *Ya esista una pachina de descusión no bueda con o nombre nuebo, u
 *Aiga desautibato a opzión \"Tresladar tamién a pachina de descusión\".
@@ -2276,7 +2276,7 @@ $1
 
 # Delete conflict
 'deletedwhileediting' => 'Pare cuenta: Ista pachina ye estata borrata dimpués de que enzetase a edizión!',
-'confirmrecreate'     => "O ususario [[User:$1|$1]] ([[User talk:$1|descusión]]) ha borrato iste articlo dimpués que bustet prenzipió á editarlo, y a razón que ha dato ye: ''$2'' 
+'confirmrecreate'     => "O ususario [[User:$1|$1]] ([[User talk:$1|descusión]]) ha borrato iste articlo dimpués que bustet prenzipió á editarlo, y a razón que ha dato ye: ''$2''
 Por fabor, confirme que reyalment deseya creyar l'articlo nuebament.",
 'recreate'            => 'Creyar nuebament',
 

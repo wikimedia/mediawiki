@@ -12,8 +12,6 @@
  * @author SPQRobin
  */
 
-
-
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Sotturìnia li cullegamenti:',
@@ -899,7 +897,7 @@ pà culligà direttamenti l'althri tipi di file.",
 'filestatus'                  => "Infuimmazioni i' lu copyright:",
 'filesource'                  => 'Orìgini:',
 'uploadedfiles'               => 'Erencu di li file carriggaddi',
-'ignorewarning'               => "Ignora l'avvirthimentu e saivva cumenti si sia lu file.",
+'ignorewarning'               => "Ignora l'avvirthimentu e saivva cumenti si sia lu file",
 'ignorewarnings'              => 'Ignora li imbasciaddi di avvirthimentu di lu sisthema',
 'minlength1'                  => "Lu nommu di lu file débi assé cumposthu arumandu d'un caràtteri.",
 'illegalfilename'             => 'L\'innòmmu "$1" cunteni caràtteri nò primmissi i\' li tìturi di li pàgini. Dà a lu file un\'innòmmu dibessu e prubà a carriggarlu di nobu.',
@@ -1256,7 +1254,7 @@ Nò sarani inviaddi althri nutìfichi in casu d\'althri ciambamenti, arumancu ch
 Pa mudìfiggà l\'impusthazioni di la listha di l\'abbaidaddi ippiziari, visita
 {{fullurl:{{ns:special}}:Watchlist/edit}}
 
-Pa dì cosa ni pensi e dumandà assisthènzia: 
+Pa dì cosa ni pensi e dumandà assisthènzia:
 {{fullurl:{{MediaWiki:Helppage}}}}',
 
 # Delete/protect/revert

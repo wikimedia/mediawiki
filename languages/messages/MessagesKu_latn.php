@@ -144,11 +144,11 @@ $messages = array(
 'category-empty'                 => "''Di vê kategorîyê da niha gotar ya medya tune ne.''",
 'hidden-categories'              => '{{PLURAL:$1|Kategorîya veşartî|Kategorîyên veşartî}}',
 'hidden-category-category'       => 'Kategorîyên veşartî', # Name of the category where hidden categories will be listed
-'category-subcat-count'          => '{{PLURAL:$2|Di vê kategorîyê da bes ev binkategorîya heye.|Di vê kategorîyê da ev {{PLURAL:$1|binkategorîya|$1 binkategorî}} heye (ji $2 kategorîyan).}}',
+'category-subcat-count'          => '{{PLURAL:$2|Di vê kategorîyê da bes ev binkategorîya heye:|Di vê kategorîyê da {{PLURAL:$2|binkategorîyek heye|$2 binkategorî hene}}. Jêr {{PLURAL:$1|binkategorîyek tê|$1 binkategorî tên}} nîşandan.}}',
 'category-subcat-count-limited'  => 'Di vê kategorîyê da ev {{PLURAL:$1|binkategorîya heye|$1 binkategorî hene}}.',
-'category-article-count'         => '{{PLURAL:$2|Di vê kategorîyê da bes ev rûpela heye.|Ev {{PLURAL:$1|rûpela|$1 rûpelên}} jêr di vê kategorîyê da ne (ji $2 kategorîyan).}}',
+'category-article-count'         => '{{PLURAL:$2|Di vê kategorîyê da bes ev rûpela heye:|Di vê kategorîyê da {{PLURAL:$2|rûpelek heye|$2 rûpel hene}}. Jêr {{PLURAL:$1|rûpelek tê|$1 rûpel tên}} nîşandan.}}',
 'category-article-count-limited' => 'Ev {{PLURAL:$1|rûpelê|$1 rûpelên}} jêr di vê kategorîyê da {{PLURAL:$1|ye|ne}}.',
-'category-file-count'            => "{{PLURAL:$2|Di vê kategorîyê da bes ev data'yê jêr heye.|Ev {{PLURAL:$1|data'ya|$1 data'yên}} jêr di vê kategorîyê da {{PLURAL:$1|ye|ne}} (ji $2 kategorîyan).}}",
+'category-file-count'            => "{{PLURAL:$2|Di vê kategorîyê da bes ev data'ya heye:|Di vê kategorîyê da {{PLURAL:$2|data'yek heye|$2 data hene}}. Jêr {{PLURAL:$1|data'yek tê|$1 data tên}} nîşandan.}}",
 'category-file-count-limited'    => "Ev {{PLURAL:$1|data'yê|$1 datayên}} jêr di vê kategorîyê da ne.",
 'listingcontinuesabbrev'         => 'dewam',
 
@@ -662,7 +662,7 @@ Ev verzyona vê rûpelê hatîye jêbirin. Belkî înformasyon di [{{fullurl:Spe
 'revdelete-suppress'          => 'Sedemê jêbirinê ji koordînatoran ra jî veşêre',
 
 # Oversight log
-'overlogpagetext' => 'Below is a list of the most recent deletions and blocks involving content 
+'overlogpagetext' => 'Below is a list of the most recent deletions and blocks involving content
 hidden from Sysops. See the [[Special:Ipblocklist|IP block list]] for the list of currently operational bans and blocks.',
 
 # History merging
@@ -809,11 +809,11 @@ $2 Ragihandinan nîşan bide &amp;nbsp; Lêbigere: $3 $9',
 'upload'                 => 'Wêneyekî barbike',
 'uploadbtn'              => 'Wêneyê (ya tiştekî din ya mêdya) barbike',
 'reupload'               => 'Dîsa barbike',
-'reuploaddesc'           => 'Şonda berve rûpelê barkirinê here.',
+'reuploaddesc'           => 'Barkirinê biskîne û dîsa here rûpela barkirinê.',
 'uploadnologin'          => 'Xwe qeyd nekir',
 'uploadnologintext'      => 'Ji bo barkirina wêneyan divê ku tu [[Special:Userlogin|têkevî]].',
 'uploaderror'            => 'Şaşbûn bo barkirinê',
-'uploadtext'             => "Berê tu wêneyên nû bar bikî, ji bo dîtin an vedîtina wêneyên ku ji xwe hene binêre: [[Special:Imagelist|lîsteya wêneyên barkirî]]. Herwisa wêneyên ku hatine barkirin an jî jê birin li vir dikarî bibînî: [[Special:Log/upload|reşahîya barkirîyan]]. 
+'uploadtext'             => "Berê tu wêneyên nû bar bikî, ji bo dîtin an vedîtina wêneyên ku ji xwe hene binêre: [[Special:Imagelist|lîsteya wêneyên barkirî]]. Herwisa wêneyên ku hatine barkirin an jî jê birin li vir dikarî bibînî: [[Special:Log/upload|reşahîya barkirîyan]].
 
 Yek ji lînkên jêr ji bo bikarhînana wêne an file'ê di gotarê de bikar bihîne:
 
@@ -944,7 +944,7 @@ Zanibe, ku ev barkirina kê were qebûlkirin ya na.
 'userstats'     => 'Statistîkên bikarhêneran',
 'sitestatstext' => "Di ''database'' de {{PLURAL:$1|rûpelek|'''$1''' rûpel}} hene.
 Tê de rûpelên guftûgoyê, rûpelên der barê {{SITENAME}}, rûpelên pir kurt (stub), rûpelên ragihandinê (redirect) û rûpelên din ku qey ne gotar in hene.
-Derve wan, {{PLURAL:$2|rûpelek|'''$2''' rûpel}} hene, ku qey {{PLURAL:$2|gotarêkî rewa ye|gotarên rewa ne}}. 
+Derve wan, {{PLURAL:$2|rûpelek|'''$2''' rûpel}} hene, ku qey {{PLURAL:$2|gotarêkî rewa ye|gotarên rewa ne}}.
 
 {{PLURAL:$8|Dosyayek hatîye|'''$8''' dosya hatine}} barkirin.
 
@@ -1068,7 +1068,7 @@ Tu dikarê ji xwe ra reşahîyekê bibê, navî bikarhênerekê ya navî rûpele
 'addedwatch'           => 'Hat îlawekirinî listeya şopandinê',
 'addedwatchtext'       => "Rûpela \"<nowiki>\$1</nowiki>\" çû ser [[Special:Watchlist|lîsteya te ya şopandinê]].
 Li dahatû de her guhartoyek li wê rûpelê û rûpela guftûgo ya wê were kirin li vir dêt nîşan dan,
- 
+
 Li rûpela [[Special:Recentchanges|Guherandinên dawî]] jî ji bo hasan dîtina wê, ew rûpel bi '''Nivîsa estûr''' dê nîşan dayîn.
 
 
@@ -1106,7 +1106,7 @@ Li rûpela [[Special:Recentchanges|Guherandinên dawî]] jî ji bo hasan dîtina
 'enotif_subject'               => '[{{SITENAME}}] Rûpelê "$PAGETITLE" ji $PAGEEDITOR hate $CANGEDORCREATED',
 'enotif_anon_editor'           => 'Bikarhênerê neqeydkirî $1',
 'enotif_body'                  => '$WATCHINGUSERNAME,
-	
+
 
 Rûpelê {{SITENAME}} $PAGETITLE hate $CHANGEDORCREATED di rojê $PAGEEDITDATE da ji $PAGEEDITOR, xêra xwe li $PAGETITLE_URL ji versyonê niha ra seke.
 
@@ -1118,12 +1118,12 @@ Ji wî bikarhênerî mêsajekî binivisîne:
 E-name: $PAGEEDITOR_EMAIL
 {{SITENAME}}: $PAGEEDITOR_WIKI
 
-Heta tu vê guherandinê senekê, mêsajên din ji ber ku guherandinê wê rûpelê yê netên. 
+Heta tu vê guherandinê senekê, mêsajên din ji ber ku guherandinê wê rûpelê yê netên.
 
              Sîstêmê mêsajan yê {{SITENAME}}
 
 --
-Eger tu dixazê lîstêya xwe yê şopandinê biguherînê, li 
+Eger tu dixazê lîstêya xwe yê şopandinê biguherînê, li
 {{fullurl:{{ns:special}}:Watchlist/edit}} seke.
 
 "Feedback" û alîkarîyê din:
@@ -1259,7 +1259,7 @@ Ji bo jêbirinan û çêkirinên nuh ra, xêra xwe di [[Special:Log/delete|reşa
 'blockip'                     => 'Bikarhêner asteng bike',
 'blockip-legend'              => 'Bikarhêner asteng bike',
 'blockiptext'                 => 'Ji bo astengkirina nivîsandinê ji navnîşaneke IP an bi navekî bikarhêner, vê formê bikarbîne.
-Ev bes gireke were bikaranîn ji bo vandalîzmê biskinîne (bi vê [[{{MediaWiki:Policy-url}}|qebûlkirinê]]). 
+Ev bes gireke were bikaranîn ji bo vandalîzmê biskinîne (bi vê [[{{MediaWiki:Policy-url}}|qebûlkirinê]]).
 
 Sedemekê binivîse!',
 'ipaddress'                   => "adresê IP'yekê",
@@ -1431,11 +1431,11 @@ Rûpela "[[$1]]" berê heye. Tu rast dixazê wê jêbibê ji bo navguherandinê 
 'tooltip-upload'                  => 'Barkirinê destpêke',
 
 # Stylesheets
-'monobook.css' => '*.rtl 
+'monobook.css' => '*.rtl
  {
   dir:rtl;
   text-align:right;
-  font-family: "Tahoma", "Unikurd Web", "Arial Unicode MS", "DejaVu Sans", "Lateef", "Scheherazade", "ae_Rasheeq", sans-serif, sans; 
+  font-family: "Tahoma", "Unikurd Web", "Arial Unicode MS", "DejaVu Sans", "Lateef", "Scheherazade", "ae_Rasheeq", sans-serif, sans;
  }
 
  /*Make the site more suitable for Soranî users */
@@ -1475,7 +1475,7 @@ function wgULS(latn,arab){
 }
 
 // workaround for RTL ([[bugzilla:6756]])  and for [[bugzilla:02020]] & [[bugzilla:04295]]
-if (wgUserLanguage == "ku-arab") 
+if (wgUserLanguage == "ku-arab")
 {
   document.direction="rtl";
   document.write(\'<link rel="stylesheet" type="text/css" href="\'+stylepath+\'/common/common_rtl.css">\');
