@@ -56,7 +56,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 9447) Added hooks for search result headings
 * Image redirects are now enabled
 * (bug 13450) Email confirmation can now be canceled before the expiration
-
+* (bug 13490) Show upload/file size limit on upload form
 
 === Bug fixes in 1.13 ===
 

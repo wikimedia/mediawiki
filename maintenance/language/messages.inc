@@ -906,6 +906,7 @@ $wgMessageStructure = array(
 		'uploadvirus',
 		'sourcefilename',
 		'destfilename',
+		'upload-maxfilesize',
 		'watchthisupload',
 		'filewasdeleted',
 		'upload-wasdeleted',
