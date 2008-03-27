@@ -230,7 +230,7 @@ class AuthPlugin {
 	 * @param $autocreate bool True if user is being autocreated on login
 	 * @public
 	 */
-	function initUser( $user, $autocreate=false ) {
+	function initUser( &$user, $autocreate=false ) {
 		# Override this to do something.
 	}
 
