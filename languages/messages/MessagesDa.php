@@ -63,7 +63,7 @@ $specialPageAliases = array(
 	'Upload'                    => array( 'Upload' ),
 	'Imagelist'                 => array( 'Filer', 'Filliste' ),
 	'Newimages'                 => array( 'Nye_filer' ),
-	'Listusers'                 => array( 'Bruger' ),
+	'Listusers'                 => array( 'Brugerliste', 'Bruger' ),
 	'Statistics'                => array( 'Statistik' ),
 	'Randompage'                => array( 'Tilfældig_side' ),
 	'Lonelypages'               => array( 'Forældreløse_sider' ),
@@ -113,6 +113,7 @@ $specialPageAliases = array(
 	'Unlockdb'                  => array( 'Databaseåbning' ),
 	'Userrights'                => array( 'Brugerrettigheder' ),
 	'MIMEsearch'                => array( 'MIME-type-søgning' ),
+	'FileDuplicateSearch'       => array( 'Filduplikatsøgning' ),
 	'Unwatchedpages'            => array( 'Uovervågede_sider' ),
 	'Listredirects'             => array( 'Henvisninger' ),
 	'Revisiondelete'            => array( 'Versionssletning' ),
@@ -129,6 +130,7 @@ $specialPageAliases = array(
 	'Withoutinterwiki'          => array( 'Manglende_interwikilinks' ),
 	'MergeHistory'              => array( 'Sammenfletning_af_historikker' ),
 	'Filepath'                  => array( 'Filsti' ),
+	'Invalidateemail'           => array( 'Ugyldiggør_e-mail' ),
 );
 
 $dateFormats = array(
@@ -425,11 +427,11 @@ $messages = array(
 # General errors
 'error'                => 'Fejl',
 'databaseerror'        => 'Databasefejl',
-'dberrortext'          => 'Der er opstået en syntaksfejl i en databaseforespørgsel. Dette kan være på grund af en ugyldig forespørgsel (se $5), eller det kan betyde en fejl i softwaren. 
-Den seneste forsøgte databaseforespørgsel var: <blockquote><tt>$1</tt></blockquote> fra funktionen "<tt>$2</tt>". 
+'dberrortext'          => 'Der er opstået en syntaksfejl i en databaseforespørgsel. Dette kan være på grund af en ugyldig forespørgsel (se $5), eller det kan betyde en fejl i softwaren.
+Den seneste forsøgte databaseforespørgsel var: <blockquote><tt>$1</tt></blockquote> fra funktionen "<tt>$2</tt>".
 MySQL returnerede fejlen "<tt>$3: $4</tt>".',
-'dberrortextcl'        => 'Der er opstået en syntaksfejl i en databaseforespørgsel. 
-Den seneste forsøgte databaseforespørgsel var: "$1" fra funktionen "$2". 
+'dberrortextcl'        => 'Der er opstået en syntaksfejl i en databaseforespørgsel.
+Den seneste forsøgte databaseforespørgsel var: "$1" fra funktionen "$2".
 MySQL returnerede fejlen "$3: $4".',
 'noconnect'            => 'Der er problemer med {{SITENAME}}s database, vi kan desværre ikke komme i kontakt med den for øjeblikket. Prøv igen senere. <br />$1',
 'nodb'                 => 'Kunne ikke vælge databasen $1',
@@ -524,8 +526,8 @@ Din konto er blevet oprettet. Glem ikke at personliggøre dine {{SITENAME}}-inds
 'email'                      => 'E-mail',
 'prefs-help-realname'        => '* <strong>Dit rigtige navn</strong> (valgfrit): Hvis du vælger at oplyse dit navn vil dette blive brugt til at tilskrive dig dit arbejde.',
 'loginerror'                 => 'Fejl med at logge på',
-'prefs-help-email'           => '** <strong>E-mail-adresse</strong> (valgfrit): Giver andre mulighed for at kontakte dig, 
-uden du behøver at afsløre din e-mail-adresse. 
+'prefs-help-email'           => '** <strong>E-mail-adresse</strong> (valgfrit): Giver andre mulighed for at kontakte dig,
+uden du behøver at afsløre din e-mail-adresse.
 Det kan også bruges til at fremsende en ny adgangskode til dig, hvis du glemmer den du har.',
 'prefs-help-email-required'  => 'E-mail-adresse er krævet.',
 'nocookiesnew'               => 'Din brugerkonto er nu oprettet, men du er ikke logget på. {{SITENAME}} bruger cookies til at logge brugere på. Du har slået cookies fra. Vær venlig at slå cookies til, og derefter kan du logge på med dit nye brugernavn og kodeord.',
@@ -546,7 +548,7 @@ har bedt om at vi sender dig en ny adgangskode til at logge på {{SITENAME}} ($4
 Adgangskoden for bruger "$2" er nu "$3".
 Du bør logge på nu og ændre din adgangskode.,
 
-Hvis en anden har bestilt den nye adgangskode eller hvis du er kommet i tanke om dit gamle password og ikke mere vil ændre det, 
+Hvis en anden har bestilt den nye adgangskode eller hvis du er kommet i tanke om dit gamle password og ikke mere vil ændre det,
 kan du bare ignorere denne mail og fortsætte med at bruge dit gamle password.',
 'noemail'                    => 'Der er ikke oplyst en e-mail-adresse for bruger "$1".',
 'passwordsent'               => 'En ny adgangskode er sendt til e-mail-adressen,
@@ -709,7 +711,7 @@ Læg ingen tekster ind, hvis du ikke kan acceptere at disse kan ændres.
 
 Du bekræfter hermed også, at du selv har skrevet denne tekst eller kopieret den fra en offentlig kilde
 (se $1 for detaljer). <strong>OVERFØR IKKE OPHAVSRETSLIGT BESKYTTET INDHOLD!</strong>',
-'longpagewarning'           => '<strong>ADVARSEL: Denne side er $1 kilobyte stor; nogle browsere kan have problemer med at redigere sider der nærmer sig eller er større end 32 Kb. 
+'longpagewarning'           => '<strong>ADVARSEL: Denne side er $1 kilobyte stor; nogle browsere kan have problemer med at redigere sider der nærmer sig eller er større end 32 Kb.
 Overvej om siden kan opdeles i mindre dele.</strong>',
 'longpageerror'             => '<strong>FEJL: Teksten, som du ville gemme, er $1 kB stor. Det er større end det tilladet maksimum på $2 kB. Det er ikke muligt at gemme.</strong>',
 'readonlywarning'           => '<strong>ADVARSEL: Databasen er låst på grund af vedligeholdelse,
@@ -731,8 +733,8 @@ så du kan ikke gemme dine ændringer lige nu. Det kan godt være en god ide at 
 'permissionserrors'         => 'Rettighedskonflikt',
 'permissionserrorstext'     => 'Du har ikke rettigheder til at gennemføre denne handling, {{PLURAL:$1|årsagen|årsagerne}} er:',
 'recreate-deleted-warn'     => "'''Advarsel: Du er ved at genskabe en tidligere slettet side.'''
- 
-Overvej om det er passende at genoprette siden. De slettede versioner for 
+
+Overvej om det er passende at genoprette siden. De slettede versioner for
 denne side er vist nedenfor:",
 
 # "Undo" feature
@@ -790,7 +792,7 @@ Nærmere oplysninger om sletningen samt en begrundelse for den findes i [{{fullu
 'revdelete-nooldid-text'      => 'Du har ikke angivet en version, som denne handling kan udføres på.',
 'revdelete-selected'          => "{{PLURAL:$2|Valgte version|Valgte versioner}} af '''$1:'''",
 'logdelete-selected'          => "{{PLURAL:$2|Valgte logbogsindførsel|Valgte logbogsindførsler}} for '''$1:'''",
-'revdelete-text'              => 'Indholdet eller andre bestanddele er ikke mere offentligt tilgængelige, vises dog fortsat i versionshistorikken. 
+'revdelete-text'              => 'Indholdet eller andre bestanddele er ikke mere offentligt tilgængelige, vises dog fortsat i versionshistorikken.
 
 Administratorer kan dog fortsat se og gendanne det fjernede indhold, medmindre det er bestemt, at adgangsbegrænsningen også skal gælde for administratorer.',
 'revdelete-legend'            => 'Fastlægge begrænsninger for versionerne:',
@@ -818,7 +820,7 @@ Administratorer kan dog fortsat se og gendanne det fjernede indhold, medmindre d
 
 # History merging
 'mergehistory'                     => 'Sammenflet sidehistorikker',
-'mergehistory-header'              => "Denne sider giver mulighed for at flette historikken fra en kildeside ind i en nyere side. 
+'mergehistory-header'              => "Denne sider giver mulighed for at flette historikken fra en kildeside ind i en nyere side.
 Vær opmæksom på at bevare kontinuiteten i sidehistorikken.
 
 '''Bevar som minimum den nuværende udgave af kildesiden.'''",
@@ -1230,7 +1232,7 @@ Sletningsloggen for denne fil er gengivet herunder.",
 Dette tal indeholder \"diskussion\"-sider, sider om {{SITENAME}}, minimale \"stub\"
 sider, omdirigeringssider og andre sider der sikkert ikke kan kaldes artikler.
 Hvis man udelader disse, så er der {{PLURAL:\$2|'''1''' side|'''\$2''' sider}} som sandsynligvis er virkelige
-indholds{{PLURAL:\$2|side|sider}}. 
+indholds{{PLURAL:\$2|side|sider}}.
 
 '''\$8''' {{PLURAL:\$8|fil|filer}} er blevet uploadet.
 
@@ -2319,7 +2321,7 @@ Bekræftelseskoden er gyldig indtil følgende tidspunkt: $4
 
 Hvis denne E-mail-adresse *ikke* hører til den anførte brugerkonto, skal du *ikke* trykke på dette link.
 
--- 
+--
 {{SITENAME}}: {{fullurl:{{Mediawiki:mainpage}}}}',
 
 # Scary transclusion
@@ -2337,8 +2339,8 @@ $1
 'trackbackdeleteok' => 'Trackback blev slettet.',
 
 # Delete conflict
-'deletedwhileediting' => '<span class="error">Bemærk: Det blev forsøgt at slette denne side, efter at du var begyndt, at ændre den! 
-Kig i [{{fullurl:Special:Log|type=delete&page=}}{{FULLPAGENAMEE}} slette-loggen], 
+'deletedwhileediting' => '<span class="error">Bemærk: Det blev forsøgt at slette denne side, efter at du var begyndt, at ændre den!
+Kig i [{{fullurl:Special:Log|type=delete&page=}}{{FULLPAGENAMEE}} slette-loggen],
 hvorfor siden blev slettet. Hvis du gemmer siden bliver den oprettet igen.</span>',
 'confirmrecreate'     => "Bruger [[User:$1|$1]] ([[User_talk:$1|Diskussion]]) har slettet denne side, efter at du begyndte at ændre den. Begrundelsen lyder:
 ''$2''
@@ -2440,7 +2442,7 @@ Bekræft venligst, at du virkelig vil oprette denne side igen.",
 'filepath'         => 'Filsti',
 'filepath-page'    => 'Fil:',
 'filepath-submit'  => 'Sti',
-'filepath-summary' => 'Denne specielle side returnerer en komplet sti for en fil. 
+'filepath-summary' => 'Denne specielle side returnerer en komplet sti for en fil.
 Billeder bliver vist i fuld opløsning, andre filtyper bliver startet direkte af deres tilknyttede program.
 
 Indtast filnavnet uden "{{ns:image}}:" præfiks.',
