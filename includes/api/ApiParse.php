@@ -51,7 +51,7 @@ class ApiParse extends ApiBase {
 		if(!is_null($page)) {
 			$titleObj = Title::newFromText($page);
 			if(!$titleObj)
-				$this->dieUsage("The page you specified doesn't exist", 'missingtitle')
+				$this->dieUsage("The page you specified doesn't exist", 'missingtitle');
 
 			// Try the parser cache first
 			$articleObj = new Article($titleObj);
