@@ -141,6 +141,7 @@ $specialPageAliases = array(
 	'Withoutinterwiki'          => array( 'Fehlende_Interwikis' ),
 	'MergeHistory'              => array( 'Versionsgeschichten_vereinen' ),
 	'Filepath'                  => array( 'Dateipfad' ),
+	'Invalidateemail'           => array( 'E-Mail_nicht_bestaetigen' ),
 );
 
 $datePreferences = array(
@@ -937,7 +938,7 @@ Wenn du dich mit dem Thema auskennst, kannst du selbst die Seite „[[$1]]“ ve
 'searchall'             => 'alle',
 'showingresults'        => "Hier {{PLURAL:$1|ist '''1''' Ergebnis|sind '''$1''' Ergebnisse}}, beginnend mit Nummer '''$2'''.",
 'showingresultsnum'     => "Hier {{PLURAL:$3|ist '''1''' Ergebnis|sind '''$1''' Ergebnisse}}, beginnend mit Nummer '''$2'''.",
-'showingresultstotal'   => "Es folgen die Surchergebnisse '''$1–$2''' von '''$3'''",
+'showingresultstotal'   => "Es folgen die Suchergebnisse '''$1–$2''' von '''$3''':",
 'nonefound'             => '<strong>Hinweis</strong>: Erfolglose Suchanfragen werden häufig dadurch verursacht, dass mehr als ein Suchbegriff angegeben wurde. Nur Seiten die alle Suchbegriffe enthalten werden hier angezeigt. Versuche in diesem Fall die Anzahl der Suchbegriffe zu verringern.',
 'powersearch'           => 'Erweiterte Suche',
 'powersearch-legend'    => 'Erweiterte Suche',

@@ -439,7 +439,7 @@ Alle Transwiki-Import-Aktionen werden im [[Special:Log/import|Import-Logbuch]] p
 
 # E-mail address confirmation
 'confirmemail_noemail'    => 'Sie haben keine gültige E-Mail-Adresse in Ihren [[Special:Preferences|persönlichen Einstellungen]] eingetragen.',
-'confirmemail_text'       => '{{SITENAME}} erfordert, dass Sie Ihre E-Mail-Adresse bestätigen (authentifizieren), bevor Sie erweiterten E-Mail-Funktionen benutzen können. Klicken Sie bitte auf die unten stehende, mit „Bestätigungscode zuschicken“ beschriftete Schaltfläche, damit eine automatisch erstellte E-Mail an die angegebene Adresse geschickt wird. Diese E-Mail enthält eine Web-Adresse mit einem Bestätigungscode. Indem Sie diese Webseite in Ihrem Webbrowser öffnen, bestätigen Sie, dass die angegebene E-Mail-Adresse korrekt und gültig ist.',
+'confirmemail_text'       => '{{SITENAME}} erfordert, dass Sie Ihre E-Mail-Adresse bestätigen (authentifizieren), bevor Sie die erweiterten E-Mail-Funktionen benutzen können. Klicken Sie bitte auf die unten stehende, mit „Bestätigungscode zuschicken“ beschriftete Schaltfläche, damit eine automatisch erstellte E-Mail an die angegebene Adresse geschickt wird. Diese E-Mail enthält eine Web-Adresse mit einem Bestätigungscode. Indem Sie diese Webseite in Ihrem Webbrowser öffnen, bestätigen Sie, dass die angegebene E-Mail-Adresse korrekt und gültig ist.',
 'confirmemail_pending'    => '<div class="error">Es wurde Ihnen bereits ein Bestätigungs-Code per E-Mail zugeschickt. Wenn Sie Ihr Benutzerkonto erst vor kurzem erstellt haben, warte Sie bitte noch ein paar Minuten auf die E-Mail, bevor Sie einen neuen Code anfordern.</div>',
 'confirmemail_oncreate'   => 'Ein Bestätigungs-Code wurde an Ihre E-Mail-Adresse gesandt. Dieser Code wird für die Anmeldung nicht benötigt, jedoch wird er zur Aktivierung der E-Mail-Funktionen innerhalb des Wikis gebraucht.',
 'confirmemail_sendfailed' => 'Die Bestätigungs-E-Mail konnte nicht versendet werden. Bitte prüfen Sie die E-Mail-Adresse auf ungültige Zeichen.
@@ -452,20 +452,20 @@ Rückmeldung des Mailservers: $1',
 'confirmemail_error'      => 'Es gab einen Fehler bei der Bestätigung Ihrer E-Mail-Adresse.',
 'confirmemail_body'       => 'Hallo,
 
-jemand mit der IP-Adresse $1, wahrscheinlich Sie selbst, hat eine Bestätigung dieser E-Mail-Adresse für das Benutzerkonto "$2" in {{SITENAME}} angefordert.
+jemand mit der IP-Adresse $1, wahrscheinlich Sie selbst, hat das Benutzerkonto "$2" in {{SITENAME}} registriert.
 
-Um die E-Mail-Funktion für {{SITENAME}} (wieder) zu aktivieren und um zu bestätigen, dass dieses Benutzerkonto wirklich zu Ihrer E-Mail-Adresse und damit zu Ihnen gehört, öffnen Sie bitte die folgende Web-Adresse:
+Um die E-Mail-Funktion für {{SITENAME}} (wieder) zu aktivieren und um zu bestätigen, 
+dass dieses Benutzerkonto wirklich zu Ihrer E-Mail-Adresse und damit zu Ihnen gehört, öffnen Sie bitte die folgende Web-Adresse:
 
 $3
 
-Sollte die vorstehende Adresse in Ihrem E-Mail-Programm über mehrere Zeilen gehen, müssen Sie sie eventuell per Hand in die Adresszeile Ihres Web-Browsers einfügen.
+Sollte die vorstehende Adresse in Ihrem E-Mail-Programm über mehrere Zeilen gehen, müssen Sie diese eventuell per Hand in die Adresszeile Ihres Web-Browsers einfügen. 
 
-Dieser Bestätigungscode ist gültig bis $4.
+Wenn Sie das genannte Benutzerkonto *nicht* registriert haben, folgen Sie diesem Link, um den Bestätigungsprozess abzubrechen:
 
-Wenn diese E-Mail-Adresse nicht zu dem genannten Benutzerkonto gehört, folgen Sie dem Link bitte nicht.
+$5
 
---
-{{SITENAME}}: {{fullurl:{{Mediawiki:mainpage}}}}',
+Dieser Bestätigungscode ist gültig bis $4.',
 
 # Delete conflict
 'deletedwhileediting' => '<span class="error">Achtung: Diese Seite wurde gelöscht, nachdem Sie angefangen haben, sie zu bearbeiten!
