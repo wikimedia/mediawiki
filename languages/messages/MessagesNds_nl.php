@@ -1317,7 +1317,6 @@ A-j disse ofbeelding in volle grootte hemmen voeg 't dan toe, wiezig aanders de 
 
 # Special:Allpages
 'allpages'          => "Alle pagina's",
-'allpages-summary'  => 'Een overzichte van maximaal 960 pagina\'s. Deurverwiezingen wonnen <span style="color:green; font-style:italic;">greun en schriks</span> weer-egeven.',
 'alphaindexline'    => '$1 tot $2',
 'prevpage'          => 'Veurige pagina ($1)',
 'allpagesfrom'      => "Teun pagina's vanof:",
@@ -1599,7 +1598,6 @@ $3',
 'proxyblocker'                => 'Proxyblokker',
 'proxyblockreason'            => 'Dit is een autematische preventieve blokkering umda-j gebruuk maken van een open proxyserver.',
 'proxyblocksuccess'           => 'Succesvol.',
-'sorbs'                       => 'SORBS DNS-zwarte lieste',
 'sorbsreason'                 => 'Joew IP-adres is op-eneumen as open proxyserver in de DNS-blacklist de {{SITENAME}} ebruukt.',
 'sorbs_create_account_reason' => 'Joew IP-adres is op-eneumen in de [http://www.sorbs.net zwarte lieste van SORBS DNS]. Je kunnen gien gebrukerspagina anmaken.',
 
