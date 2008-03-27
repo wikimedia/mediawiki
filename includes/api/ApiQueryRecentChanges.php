@@ -132,7 +132,7 @@ class ApiQueryRecentChanges extends ApiQueryBase {
 			
 			global $wgUser;
 			if($this->fld_patrolled && !$wgUser->isAllowed('patrol'))
-				$this->dieUsage("You need the patrol right to request the patrolled flag");
+				$this->dieUsage("You need the patrol right to request the patrolled flag", 'permissiondenied');
 
 			/* Add fields to our query if they are specified as a needed parameter. */
 			$this->addFieldsIf('rc_id', $this->fld_ids);			
