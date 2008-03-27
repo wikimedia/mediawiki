@@ -55,10 +55,10 @@ $linkTrail = '/^([äöüßa-z]+)(.*)$/sDu';
 
 /**
  * Alternate names of special pages. All names are case-insensitive. The first
- * listed alias will be used as the default. Aliases from the fallback 
- * localisation (usually English) will be included by default. 
- * 
- * This array may be altered at runtime using the LanguageGetSpecialPageAliases 
+ * listed alias will be used as the default. Aliases from the fallback
+ * localisation (usually English) will be included by default.
+ *
+ * This array may be altered at runtime using the LanguageGetSpecialPageAliases
  * hook.
  */
 $specialPageAliases = array(
@@ -590,7 +590,7 @@ Bitte ignoriere diese E-Mail, falls du sie nicht selbst angefordert hast. Das al
 'passwordsent'               => 'Ein neues, temporäres Passwort wurde an die E-Mail-Adresse von Benutzer „$1“ gesandt.
 Bitte melde dich damit an, sobald du es erhalten hast. Das alte Passwort bleibt weiterhin gültig.',
 'blocked-mailpassword'       => 'Die von dir verwendete IP-Adresse ist für das Ändern von Seiten gesperrt. Um einen Missbrauch zu verhindern, wurde die Möglichkeit zur Anforderung eines neuen Passwortes ebenfalls gesperrt.',
-'eauthentsent'               => 'Eine Bestätigungs-E-Mail wurde an die angegebene Adresse verschickt. 
+'eauthentsent'               => 'Eine Bestätigungs-E-Mail wurde an die angegebene Adresse verschickt.
 
 Bevor eine E-Mail von anderen Benutzern über die E-Mail-Funktion empfangen werden kann, muss die Adresse und ihre tatsächliche Zugehörigkeit zu diesem Benutzerkonto erst bestätigt werden. Bitte befolge die Hinweise in der Bestätigungs-E-Mail.',
 'throttled-mailpassword'     => 'Es wurde innerhalb der letzten $1 Stunden bereits ein neues Passwort angefordert. Um einen Missbrauch der Funktion zu verhindern, kann nur alle $1 Stunden ein neues Passwort angefordert werden.',
@@ -662,7 +662,7 @@ Falls das Benutzerkonto irrtümlich angelegt wurde, kannst du diese Nachricht ig
 
 :\'\'$2\'\' (<span class="plainlinks">[{{fullurl:Special:Ipblocklist|&action=search&limit=&ip=%23}}$5 Logbucheintrag]</span>)
 
-<p style="border-style: solid; border-color: red; border-width: 1px; padding:5px;"><b>Ein Lesezugriff ist weiterhin möglich,</b> 
+<p style="border-style: solid; border-color: red; border-width: 1px; padding:5px;"><b>Ein Lesezugriff ist weiterhin möglich,</b>
 nur die Bearbeitung und Erstellung von Seiten in {{SITENAME}} wurde gesperrt.
 Sollte diese Nachricht angezeigt werden, obwohl nur lesend zugriffen wurde, bist du einem (roten) Link auf eine noch nicht existente Seite gefolgt.</p>
 
@@ -683,7 +683,7 @@ Als Grund wurde angegeben:
 
 :\'\'$2\'\' (<span class="plainlinks">[{{fullurl:Special:Ipblocklist|&action=search&limit=&ip=%23}}$5 Logbucheintrag]</span>)
 
-<p style="border-style: solid; border-color: red; border-width: 1px; padding:5px;"><b>Ein Lesezugriff ist weiterhin möglich,</b> 
+<p style="border-style: solid; border-color: red; border-width: 1px; padding:5px;"><b>Ein Lesezugriff ist weiterhin möglich,</b>
 nur die Bearbeitung und Erstellung von Seiten in {{SITENAME}} wurde gesperrt.
 Sollte diese Nachricht angezeigt werden, obwohl nur lesend zugriffen wurde, bist du einem (roten) Link auf eine noch nicht existente Seite gefolgt.</p>
 
@@ -733,7 +733,7 @@ Du kannst $1 oder einen der anderen [[{{MediaWiki:Grouppage-sysop}}|Administrato
 'previewnote'               => 'Dies ist nur eine Vorschau, die Seite wurde noch nicht gespeichert!',
 'previewconflict'           => 'Diese Vorschau gibt den Inhalt des oberen Textfeldes wieder. So wird der Artikel aussehen, wenn du jetzt speicherst.',
 'session_fail_preview'      => '<strong>Deine Bearbeitung konnte nicht gespeichert werden, da deine Sitzungsdaten verloren gegangen sind.
-Bitte versuche es erneut, indem du unter der folgenden Textvorschau nochmals auf „Seite speichern“ klickst. 
+Bitte versuche es erneut, indem du unter der folgenden Textvorschau nochmals auf „Seite speichern“ klickst.
 Sollte das Problem bestehen bleiben, melde dich ab und danach wieder an.</strong>',
 'session_fail_preview_html' => "<strong>Deine Bearbeitung konnte nicht gespeichert werden, da deine Sitzungsdaten verloren gegangen sind.</strong>
 
@@ -786,7 +786,7 @@ speichern kannst. Sichere den Text und versuche die Änderungen später einzuspi
 'permissionserrors'         => 'Berechtigungsfehler',
 'permissionserrorstext'     => 'Du bist nicht berechtigt, die Aktion auszuführen. {{PLURAL:$1|Grund|Gründe}}:',
 'recreate-deleted-warn'     => "'''Achtung: Du erstellst eine Seite, die bereits früher gelöscht wurde.'''
- 
+
 Bitte prüfe sorgfältig, ob die erneute Seitenerstellung den Richtlinien entspricht.
 Zu deiner Information folgt das Lösch-Logbuch mit der Begründung für die vorhergehende Löschung:",
 
@@ -847,7 +847,7 @@ Nähere Angaben zum Löschvorgang sowie eine Begründung finden sich im [{{fullu
 'revdelete-nooldid-text'      => 'Du hast keine Version angegeben, auf die diese Aktion ausgeführt werden soll.',
 'revdelete-selected'          => "{{PLURAL:$2|Ausgewählte Version|Ausgewählte Versionen}} von '''$1:'''",
 'logdelete-selected'          => "{{PLURAL:$2|Ausgewählter Logbucheintrag|Ausgewählte Logbucheinträge}} für '''$1:'''",
-'revdelete-text'              => 'Der Inhalt oder andere Bestandteile gelöschter Versionen sind nicht mehr öffentlich einsehbar, erscheinen jedoch weiterhin als Einträge in der Versionsgeschichte. 
+'revdelete-text'              => 'Der Inhalt oder andere Bestandteile gelöschter Versionen sind nicht mehr öffentlich einsehbar, erscheinen jedoch weiterhin als Einträge in der Versionsgeschichte.
 
 {{SITENAME}}-Administratoren können den entfernten Inhalt oder andere entfernte Bestandteile weiterhin einsehen und wiederherstellen, es sei denn, es wurde festgelegt, dass die Zugangsbeschränkungen auch für Administratoren gelten.',
 'revdelete-legend'            => 'Einschränkungen für die Versionen festlegen:',
@@ -1164,7 +1164,7 @@ Bitte prüfe, ob du das Bild in voller Auflösung vorliegen hast und lade dieses
 'watchthisupload'             => 'Diese Seite beobachten',
 'filewasdeleted'              => 'Eine Datei mit diesem Namen wurde schon einmal hochgeladen und zwischenzeitlich wieder gelöscht. Bitte prüfe zuerst den Eintrag im $1, bevor du die Datei wirklich speicherst.',
 'upload-wasdeleted'           => "'''Achtung: Du lädst eine Datei hoch, die bereits früher gelöscht wurde.'''
- 
+
 Bitte prüfe sorgfältig, ob das erneute Hochladen den Richtlinien entspricht.
 Zu deiner Information folgt das Lösch-Logbuch mit der Begründung für die vorhergehende Löschung:",
 'filename-bad-prefix'         => 'Der Dateiname beginnt mit <strong>„$1“</strong>. Dies ist im allgemeinen der von einer Digitalkamera vorgegebene Dateiname und daher nicht sehr aussagekräftig.
@@ -1473,7 +1473,7 @@ auf die bereits die erste Weiterleitung zeigen sollte.',
 'addedwatchtext'       => 'Die Seite „<nowiki>$1</nowiki>“ wurde zu deiner [[Special:Watchlist|Beobachtungsliste]] hinzugefügt.
 
 Spätere Änderungen an dieser Seite und der dazugehörigen Diskussionsseite werden dort gelistet und
-in der Übersicht der [[Special:Recentchanges|letzten Änderungen]] in Fettschrift dargestellt. 
+in der Übersicht der [[Special:Recentchanges|letzten Änderungen]] in Fettschrift dargestellt.
 
 Wenn du die Seite wieder von deiner Beobachtungsliste entfernen möchtest, klicke auf der jeweiligen Seite auf „nicht mehr beobachten“.',
 'removedwatch'         => 'Von der Beobachtungsliste entfernt',
@@ -1533,7 +1533,7 @@ Es werden solange keine weiteren Benachrichtigungsmails gesendet, bis du die Sei
 
              Dein freundliches {{SITENAME}} Benachrichtigungssystem
 
--- 
+--
 Um die Einstellungen deiner Beobachtungsliste anzupassen, besuche: {{fullurl:Special:Watchlist/edit}}',
 
 # Delete/protect/revert
@@ -1570,7 +1570,7 @@ Um die Einstellungen deiner Beobachtungsliste anzupassen, besuche: {{fullurl:Spe
 'rollbacklink'                => 'Zurücksetzen',
 'rollbackfailed'              => 'Zurücksetzen gescheitert',
 'cantrollback'                => 'Die Änderung kann nicht zurückgesetzt werden, da es keine früheren Autoren gibt.',
-'alreadyrolled'               => "Das Zurücksetzen der Änderungen von [[{{ns:user}}:$2|$2]] <span style='font-size: smaller'>([[{{ns:user talk}}:$2|Diskussion]], [[{{#special:Contributions}}/$2|Beiträge]])</span> an Seite [[:$1]] war nicht erfolgreich, da in der Zwischenzeit bereits ein anderer Benutzer 
+'alreadyrolled'               => "Das Zurücksetzen der Änderungen von [[{{ns:user}}:$2|$2]] <span style='font-size: smaller'>([[{{ns:user talk}}:$2|Diskussion]], [[{{#special:Contributions}}/$2|Beiträge]])</span> an Seite [[:$1]] war nicht erfolgreich, da in der Zwischenzeit bereits ein anderer Benutzer
 Änderungen an dieser Seite vorgenommen hat.<br />Die letzte Änderung stammt von [[{{ns:user}}:$3|$3]] <span style='font-size: smaller'>([[{{ns:user talk}}:$3|Diskussion]])</span>.",
 'editcomment'                 => 'Der Änderungskommentar lautet: „<i>$1</i>“.', # only shown if there is an edit comment
 'revertpage'                  => 'Änderungen von [[User:$2|$2]] ([[{{ns:special}}:Contributions/$2|Beiträge]]) rückgängig gemacht und letzte Version von $1 wiederhergestellt', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
@@ -2391,12 +2391,12 @@ Rückmeldung des Mailservers: $1',
 
 jemand mit der IP-Adresse $1, wahrscheinlich du selbst, hat das Benutzerkonto "$2" in {{SITENAME}} registriert.
 
-Um die E-Mail-Funktion für {{SITENAME}} (wieder) zu aktivieren und um zu bestätigen, 
+Um die E-Mail-Funktion für {{SITENAME}} (wieder) zu aktivieren und um zu bestätigen,
 dass dieses Benutzerkonto wirklich zu deiner E-Mail-Adresse und damit zu dir gehört, öffne bitte die folgende Web-Adresse:
 
 $3
 
-Sollte die vorstehende Adresse in deinem E-Mail-Programm über mehrere Zeilen gehen, musst du sie eventuell per Hand in die Adresszeile deines Web-Browsers einfügen. 
+Sollte die vorstehende Adresse in deinem E-Mail-Programm über mehrere Zeilen gehen, musst du sie eventuell per Hand in die Adresszeile deines Web-Browsers einfügen.
 
 Wenn du das genannte Benutzerkonto *nicht* registriert hast, folge diesem Link, um den Bestätigungsprozess abzubrechen:
 
@@ -2422,8 +2422,8 @@ $1
 'trackbackdeleteok' => 'Trackback wurde erfolgreich gelöscht.',
 
 # Delete conflict
-'deletedwhileediting' => '<span class="error">Achtung: Diese Seite wurde gelöscht, nachdem du angefangen hast, sie zu bearbeiten! 
-Siehe im [{{fullurl:Special:Log|type=delete&page=}}{{FULLPAGENAMEE}} Lösch-Logbuch] nach, 
+'deletedwhileediting' => '<span class="error">Achtung: Diese Seite wurde gelöscht, nachdem du angefangen hast, sie zu bearbeiten!
+Siehe im [{{fullurl:Special:Log|type=delete&page=}}{{FULLPAGENAMEE}} Lösch-Logbuch] nach,
 warum die Seite gelöscht wurde. Wenn du die Seite speicherst, wird sie neu angelegt.</span>',
 'confirmrecreate'     => "Benutzer [[User:$1|$1]] ([[User_talk:$1|Diskussion]]) hat diese Seite gelöscht, nachdem du angefangen hast, sie zu bearbeiten. Die Begründung lautete:
 ''$2''

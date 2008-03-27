@@ -667,7 +667,7 @@ La rêson balyê per $3 ére ''$2''.",
 'viewpagelogs'        => 'Vêde lo jornal de ceta pâge',
 'nohistory'           => 'Ègziste pas d’historico por ceta pâge.',
 'revnotfound'         => 'Vèrsion entrovâbla',
-'revnotfoundtext'     => 'La vèrsion prècèdenta de cela pâge at pas possu étre retrovâ. 
+'revnotfoundtext'     => 'La vèrsion prècèdenta de cela pâge at pas possu étre retrovâ.
 Volyéd controlar l’URL que vos éd utilisâ por arrevar a ceta pâge.',
 'currentrev'          => 'Vèrsion d’ora',
 'revisionasof'        => 'Vèrsion du $1',
@@ -976,7 +976,7 @@ ou ben por liyér tot drêt vers lo fichiér :
 'filestatus'                  => 'Statut du drêt d’ôtor&nbsp;:',
 'filesource'                  => 'Sôrsa&nbsp;:',
 'uploadedfiles'               => 'Fichiérs copiyês',
-'ignorewarning'               => 'Ignorar l’avèrtissement et sôvar lo fichiér.',
+'ignorewarning'               => 'Ignorar l’avèrtissement et sôvar lo fichiér',
 'ignorewarnings'              => 'Ignorar los avèrtissements pendent l’impôrt',
 'minlength1'                  => 'Los noms de fichiér dêvont comprendre u muens yona lètra.',
 'illegalfilename'             => 'Lo nom de fichiér « $1 » contint des caractèros dèfendus dens los titros de pâges. Marci de lo renomar et de lo relevar.',
@@ -1716,7 +1716,7 @@ Por èxportar des pâges, entrâd lors titros dens la bouèta de tèxte ce-desot
 
 Dens cél dèrriér câs, vos pouede asse-ben utilisar un lim, coment [[Special:Export/{{MediaWiki:Mainpage}}]] por la pâge {{MediaWiki:Mainpage}}.',
 'exportcuronly'     => 'Èxportar ren que la vèrsion corenta sen l’historico complèt',
-'exportnohistory'   => "---- 
+'exportnohistory'   => "----
 '''Nota :''' l’èxportacion complèta de l’historico de les pâges avouéc ceti formulèro at étâ dèsactivâ por des rêsons de pèrformences.",
 'export-submit'     => 'Èxportar',
 'export-addcattext' => 'Apondre les pâges de la catègorie :',

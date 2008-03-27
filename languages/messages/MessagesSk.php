@@ -655,7 +655,7 @@ Zablokoval vás správca $1. Udáva tento dôvod:<br />''$2''
 * Blokovanie vyprší: $6
 * Kto mal byť zablokovaný: $7
 
-Môžete kontaktovať $1 alebo s jedného z ďalších 
+Môžete kontaktovať $1 alebo s jedného z ďalších
 [[{{MediaWiki:Grouppage-sysop}}|správcov]] a prediskutovať blokovanie.
 
 Uvedomte si, že nemôžete použiť funkciu „{{MediaWiki:emailuser}}“, pokiaľ nemáte registrovanú platnú e-mailovú adresu vo vašich [[Special:Preferences|nastaveniach]].
@@ -1108,7 +1108,7 @@ alebo pre priamy odkaz na súbor
 'filestatus'                  => 'Stav autorských práv:',
 'filesource'                  => 'Zdroj:',
 'uploadedfiles'               => 'Nahrané súbory',
-'ignorewarning'               => 'Ignorovať varovanie a súbor napriek tomu uložiť.',
+'ignorewarning'               => 'Ignorovať varovanie a súbor napriek tomu uložiť',
 'ignorewarnings'              => 'Ignorovať všetky varovania',
 'minlength1'                  => 'Názvy súborov musia mať aspoň jedno písmeno.',
 'illegalfilename'             => 'Názov súboru „$1“ obsahuje znaky, ktoré nie sú povolené v názvoch stránok. Prosím premenujte súbor a skúste ho nahrať znovu.',
@@ -1152,7 +1152,7 @@ Mali by ste zvážiť, či je vhodné pokračovať v nahrávaní tohto súboru.
 Tu je na záznam zmazaní tohto súboru:",
 'filename-bad-prefix'         => 'Názov súboru, ktorý nahrávate, začína <strong>„$1“</strong>, čo nie je popisné meno. Takýto názov typicky priraďujú digitálne fotoaparáty automaticky. Prosím, dajte vášmu súboru popisnejší názov.',
 'filename-prefix-blacklist'   => ' #<!-- leave this line exactly as it is --> <pre>
-# Syntax je nasledovná: 
+# Syntax je nasledovná:
 #   * Všetko od znaku „#“ po koniec riadka je komentár
 #   * Každý neprázdny riadok je prefix typických názvov súborov, ktoré automaticky priraďuje digitálny fotoapraát
 CIMG # Casio
@@ -1438,7 +1438,7 @@ alebo sa rozhodol, že nebude prijímať e-maily od druhých používateľov.',
 'watchnologin'         => 'Nie ste prihlásený/á',
 'watchnologintext'     => 'Musíte byť [[Special:Userlogin|prihlásený/á]], aby ste mohli modifikovať vaše sledované stránky.',
 'addedwatch'           => 'Pridaná do zoznamu sledovaných stránok',
-'addedwatchtext'       => "Stránka [[$1]] bola pridaná do [[Special:Watchlist|sledovaných stránok]]. Budú tam uvedené ďalšie úpravy tejto stránky a jej diskusie a stránka bude zobrazená '''tučne''' v [[Special:Recentchanges|zozname posledných úprav]], aby ste ju ľahšie našli. 
+'addedwatchtext'       => "Stránka [[$1]] bola pridaná do [[Special:Watchlist|sledovaných stránok]]. Budú tam uvedené ďalšie úpravy tejto stránky a jej diskusie a stránka bude zobrazená '''tučne''' v [[Special:Recentchanges|zozname posledných úprav]], aby ste ju ľahšie našli.
 
 Ak budete chcieť neskôr stránku odstrániť zo sledovaných stránok, kliknite na „{{MediaWiki:unwatch}}“ v záložkách na vrchu.",
 'removedwatch'         => 'Odstránená zo zoznamu sledovaných stránok',
@@ -2533,7 +2533,7 @@ Skúste obyčajný náhľad.',
 'filepath-page'    => 'Súbor:',
 'filepath-submit'  => 'Cesta',
 'filepath-summary' => 'Táto špeciálna stránka vráti úplnú cestu k súboru. Obrázky sa zobrazia v plnom rozlíšení, ostatné typy súborov sa spustia v príslušnom priradenom programe.
-	
+
 	Zadajte názov súboru bez predpony „{{ns:image}}:“.',
 
 # Special:FileDuplicateSearch

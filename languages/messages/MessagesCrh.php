@@ -8,4 +8,4 @@
 
 $fallback = 'crh-latn';
 
-$linkTrail = '/^([a-zâçğıñöşüа-яёʺʹ“»]+)(.*)$/sDu';	
+$linkTrail = '/^([a-zâçğıñöşüа-яёʺʹ“»]+)(.*)$/sDu';

@@ -309,7 +309,7 @@ $messages = array(
 # General errors
 'error'                => 'Aroke',
 'databaseerror'        => "Åk n' a nén stî avou l' båze di dnêyes",
-'dberrortext'          => "Åk n' a nén stî avou l' sintacse do cweraedje del båze di dnêyes. 
+'dberrortext'          => "Åk n' a nén stî avou l' sintacse do cweraedje del båze di dnêyes.
 Çoula pout esse cåze d' on bug dins l' programe.
 Li dierin cweraedje del båze di dnêyes di sayî esteut:
 <blockquote><tt>$1</tt></blockquote>
@@ -516,9 +516,9 @@ Rissayîz s' i vs plait. Si çoula n' va todi nén, sayîz di vs dislodjî eyet 
 'editingcomment'            => 'Candjant $1 (comintaire)',
 'editconflict'              => 'Conflit inte deus candjmints: $1',
 'explainconflict'           => "Ene sakî a candjî l' pådje do tins ki vos estîz a scrire.
-Li boesse di tecse do dzeur mostere li tecse del pådje come il est 
+Li boesse di tecse do dzeur mostere li tecse del pådje come il est
 pol moumint sol sierveu. Li tecse da vosse est sol boesse di tecse do dzo.
-Les diferinces sont håynêyes å mitan. Vos dvoz mete vos candjmints dins 
+Les diferinces sont håynêyes å mitan. Vos dvoz mete vos candjmints dins
 l' tecse d' asteure (å dzeur) si vos lez vloz co evoyî.
 <b>Seulmint</b> li tecse do dzeur serè candjî cwand vos clitchroz sol
 boton «Schaper l' pådje».<br />",
@@ -534,8 +534,8 @@ dvèt esse dizo l' licince $2 (loukîz $1 po pus di racsegnes).
 Si vos n' voloz nén ki vosse tecse poye esse candjî eyet
 spårdou pa tot l' minme kî, adon nel evoyîz nén chal.
 <br />
-Vos nos acertinez eto ki vos avoz scrît l' tecse 
-vos-minme, oudonbén l' avoz copyî d' on sourdant libe 
+Vos nos acertinez eto ki vos avoz scrît l' tecse
+vos-minme, oudonbén l' avoz copyî d' on sourdant libe
 (dominne publik ou on sourdant pareymint libe).
 <br />
 <strong>N' EVOYÎZ NÉN DES TECSES DIZO ABONDROETS SINS PERMISSION!</strong>",
@@ -544,8 +544,8 @@ polèt esse esse candjîs ou disfacés pa des ôtes contribouweus.
 Si vos n' voloz nén scrire des årtikes ki polèt esse
 candjîs pa des ôtes, adon nels evoyîz nén chal.
 <br />
-Vos nos acertinez eto ki vos avoz scrît l' tecse 
-vos-minme, oudonbén l' avoz copyî d' on sourdant libe 
+Vos nos acertinez eto ki vos avoz scrît l' tecse
+vos-minme, oudonbén l' avoz copyî d' on sourdant libe
 (voeyoz $1 po pus di racsegnes).
 <br />
 <strong>N' EVOYÎZ NÉN DES TECSES DIZO ABONDROETS SINS PERMISSION!</strong>",
@@ -1008,7 +1008,7 @@ Do côp, c' est nén possibe di lyi evoyî èn emile.",
 'watchnologintext'     => 'I vs fåt esse [[Special:Userlogin|elodjî]] po pleur candjî vosse djivêye des pådjes a shuve.',
 'addedwatch'           => 'Radjouté ås shuvous',
 'addedwatchtext'       => "Li pådje «<nowiki>$1</nowiki>» a stî radjoutêye a vosse [[Special:Watchlist|djivêye des pådjes a shuve]].
-Tos les candjmints k' i gn årè di cisse pådje chal, 
+Tos les candjmints k' i gn årè di cisse pådje chal,
 eyet di si pådje di copene, seront håynés chal, eyet li pådje serè metowe e '''cråssès letes'''
 el [[Special:Recentchanges|djivêye des dierins candjmints]] po k' ça soeye pus åjhey por vos del rimårker.
 
@@ -1086,8 +1086,8 @@ djivêye des dierins disfaçaedjes.',
 'deletecomment'               => 'Råjhon do disfaçaedje',
 'cantrollback'                => "Dji n' sai disfé les candjmints; li dierin contribouweu est li seu oteur po cist årtike ci.",
 'alreadyrolled'               => "Dji n' sai disfé li dierin candjmint di [[$1]]
-fwait pa [[User:$2|$2]] ([[User talk:$2|Copene]]); 
-ene sakî d' ôte a ddja candjî l' årtike ou ddja rmetou l' modêye di dvant. 
+fwait pa [[User:$2|$2]] ([[User talk:$2|Copene]]);
+ene sakî d' ôte a ddja candjî l' årtike ou ddja rmetou l' modêye di dvant.
 
 Li dierin candjmint a stî fwait pa [[User:$3|$3]] ([[User talk:$3|Copene]]).",
 'editcomment'                 => 'Li comintaire do candjmint esteut: «<i>$1</i>».', # only shown if there is an edit comment
@@ -1123,7 +1123,7 @@ Si ene novele pådje avou l' minme no a stî askepieye dispoy li disfaçaedje
 di cisse chal, les rapexheyès modêyes seront metowes e l' istwere mins
 c' est l' modêye do moumint, et nén l' cisse rapexheye, ki
 srè håynêye.",
-'undeletehistorynoadmin'   => "Cist årtike a stî disfacé. Li råjhon do 
+'undeletehistorynoadmin'   => "Cist årtike a stî disfacé. Li råjhon do
 disfaçaedje est dnêye chal pa dzo, avou les detays des uzeus k' ont
 candjî l' pådje divant do disfaçaedje. Li tecse di ces modêyes disfacêyes
 ni pout esse veyou ki des manaedjeus.",

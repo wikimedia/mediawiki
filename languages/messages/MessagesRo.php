@@ -529,7 +529,7 @@ Intended blockee: $7
 
 Dacă nu înţelegeţi motivul blocării vă invităm să consultaţi [[{{MediaWiki:Policy-url}}|regulamentul de blocare]]. În cazul în care vă consideraţi nedreptăţit îl puteţi contacta pe $1 sau pe unul dintre ceilalţi [[{{MediaWiki:Grouppage-sysop}}|administratori]] pentru a explica situaţia.
 
-'''Blocarea nu se referă la citirea paginilor {{SITENAME}}, ci doar la modificarea lor.''' 
+'''Blocarea nu se referă la citirea paginilor {{SITENAME}}, ci doar la modificarea lor.'''
 
 Pentru a afla cînd vă expiră blocarea căutaţi-vă numele de utilizator sau adresa IP în [[Special:Ipblocklist|lista de utilizatori blocaţi]].",
 'autoblockedtext'           => 'Această adresă IP a fost blocată automat deoarece a fost folosită de către un alt utilizator, care a fost blocat de $1.
@@ -578,7 +578,7 @@ Identificatorul dumneavoastră de blocare este $5. Vă rugăm să îl includeţi
 'previewnote'               => 'Aceasta este doar o previzualizare! Pentru a salva pagina în forma actuală, descrieţi succint modificările efectuate şi apăsaţi butonul <strong>Salvează pagina</strong>.',
 'previewconflict'           => 'Această pre-vizualizare reflectă textul din caseta de sus, respectiv felul în care va arăta articolul dacă alegeţi să-l salvaţi acum.',
 'session_fail_preview'      => '<strong>Ne pare rău! Nu am putut procesa modificarea dumneavoastră din cauza pierderii datelor sesiunii. Vă rugăm să încercaţi din nou. Dacă tot nu funcţionează, încercaţi să închideţi sesiunea şi să vă autentificaţi din nou.</strong>',
-'session_fail_preview_html' => "<strong>Ne pare rău! Modificările tale nu au putut fi procesate din cauza pierderii datelor sesiunii.</strong> 
+'session_fail_preview_html' => "<strong>Ne pare rău! Modificările tale nu au putut fi procesate din cauza pierderii datelor sesiunii.</strong>
 
 ''Deoarece acest wiki are activat raw HTML, previzualizarea este ascunsă ca măsură de precauţie împotriva atacurilor JavaScript.''
 
@@ -887,8 +887,8 @@ Te rugăm reţine că, la fel ca şi în cazul celorlalte secţiuni din {{SITENA
 'filestatus'                  => 'Statutul drepturilor de autor:',
 'filesource'                  => 'Sursă:',
 'uploadedfiles'               => 'Fişiere trimise',
-'ignorewarning'               => 'Ignoră avertismentul şi salvează fişierul.',
-'ignorewarnings'              => 'Ignoră orice avertismente.',
+'ignorewarning'               => 'Ignoră avertismentul şi salvează fişierul',
+'ignorewarnings'              => 'Ignoră orice avertismente',
 'minlength1'                  => 'Numele fişierelor trebuie să fie cel puţin o literă.',
 'illegalfilename'             => 'Numele fişierului "$1" conţine caractere care nu sunt permise în titlurile paginilor. Vă rugăm redenumiţi fişierul şi încercaţi să îl încărcaţi din nou.',
 'badfilename'                 => 'Numele imaginii a fost schimbat; noul nume este "[[:$1]]".',

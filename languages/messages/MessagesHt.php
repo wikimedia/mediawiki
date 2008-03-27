@@ -680,7 +680,7 @@ Nan pozisyon sa a, ou ke dwèt renonmen oubyen fizyone ou menm menm paj an si ou
 'move-watch'       => 'Swiv paj sa a',
 'movepagebtn'      => 'Deplase paj an',
 'pagemovedsub'     => 'Deplasman an fèt',
-'movepage-moved'   => 'Paj « $1 » <small>([[Special:Whatlinkshere/$3|lyen yo]])</small> deplase nan direksyon « $2 » <small>([[Special:Whatlinkshere/$4|lyen yo]])</small>. 
+'movepage-moved'   => 'Paj « $1 » <small>([[Special:Whatlinkshere/$3|lyen yo]])</small> deplase nan direksyon « $2 » <small>([[Special:Whatlinkshere/$4|lyen yo]])</small>.
 
 Souple, byen gade ke li pa egziste pyès redireksyon de fwa epi korije yo si li nesesè.', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'    => 'Nou ja genyen yon atik ak non sa a oubyen non ke ou chwazi an pa valab ankò. Chwazi yon lòt.',

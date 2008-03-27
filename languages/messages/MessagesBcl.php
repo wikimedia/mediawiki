@@ -324,7 +324,7 @@ $1",
 'laggedslavemode'      => 'Patanid: An pahina pwedeng dai nin pagbabâgo sa ngonyan.',
 'readonly'             => 'Kandado an base nin datos',
 'enterlockreason'      => 'Magkaag tabî nin rasón sa pagkandado, asin ikalkulo kun nuarin bubukasón an kandado',
-'readonlytext'         => 'Sarado mûna an base nin datos sa mga bâgong entrada asin iba pang mga pagribay, pwede gayod sa rutinang pagmantenir kan base nin datos, después, mabalik na ini sa normal. 
+'readonlytext'         => 'Sarado mûna an base nin datos sa mga bâgong entrada asin iba pang mga pagribay, pwede gayod sa rutinang pagmantenir kan base nin datos, después, mabalik na ini sa normal.
 
 Ini an eksplikasyón kan administrador na nagkandado kaini: $1',
 'missingarticle'       => "Dai nahanap kan base nin datos an teksto kan páhina na dapat kaining nahanap, an pangaran \"\$1\".
@@ -567,7 +567,7 @@ Probaran tabi giraray. Kun dai man giraray magibo, probaran na magluwas dangan m
 ''Huli ta ining wiki may HTML na nakaandar, pigtago an patânaw bilang paglikay kontra sa mga atake sa JavaScript.''
 
 <strong>Kun talagang boot mong hirahón ini, probaran giraray. Kun dai pa giraray magibo, magluwas dangan maglaog giraray. </strong>",
-'token_suffix_mismatch'     => "<strong>Dai pigtogotan an hirá mo ta sinabrit kan ''client'' mo an mga ''punctuation characters''. Dai pigtogotan ining hirá para maibitaran na maraot an teksto kan páhina. 
+'token_suffix_mismatch'     => "<strong>Dai pigtogotan an hirá mo ta sinabrit kan ''client'' mo an mga ''punctuation characters''. Dai pigtogotan ining hirá para maibitaran na maraot an teksto kan páhina.
 Nanyayari nanggad ini kun naggagamit ka nin bakong marhay asin dai bistong ''web-based proxy service''.</strong>",
 'editing'                   => 'Pighihira $1',
 'editingsection'            => 'Pighihira an $1 (seksyon)',
@@ -584,7 +584,7 @@ An teksto na nasa parteng itaas <b>sana</b> an maitatagama sa pagpindot mo kan "
 'editingold'                => '<strong>PATANID: Pighihira mo an pasó nang pagpakarhay kaining páhina.
 Kun itatagama mo ini, mawawarâ an mga pagbabâgong nagibo poon kan pagpakarhay kaini.</strong>',
 'yourdiff'                  => 'Mga pagkakaiba',
-'copyrightwarning'          => 'Giromdomon tabî na an gabos na kontribusyon sa {{SITENAME}} pigkokonsiderar na $2 (hilingon an $1 para sa mga detalye). Kun habô mong mahirá an saimomg sinurat na mayong pakimâno, pues, dai tabî isumitir iyan digdi.<br /> 
+'copyrightwarning'          => 'Giromdomon tabî na an gabos na kontribusyon sa {{SITENAME}} pigkokonsiderar na $2 (hilingon an $1 para sa mga detalye). Kun habô mong mahirá an saimomg sinurat na mayong pakimâno, pues, dai tabî isumitir iyan digdi.<br />
 Pigpapangakô mo man samuyâ na ika an nagsurat kaini, o kinopya mo ini sa dominiong panpubliko o sarong parehong libreng rekurso (hilingon an $1 para sa mga detalye). <strong>DAI TABI MAGSUMITIR NIN MGA GIBONG IPINAPANGALAD NA KOPYAHON NA MAYONG PERMISO!</strong>',
 'copyrightwarning2'         => 'Giromdomon tabî na an gabos na kontribusyon sa Betawiki pwedeng hirahón, bâgohon o halîon kan ibang mga parágamit. Kun habô mong mahirá an saimomg sinurat na mayong pakimâno, pues, dai tabî isumitir iyan digdi.<br />
 Pigpapangakô mo man samuyâ na ika an nagsurat kaini, o kinopya mo ini sa dominiong panpubliko o sarong parehong libreng rekurso (hilingon an $1 para sa mga detalye). <strong>DAI TABI MAGSUMITIR NIN MGA GIBONG IPINAPANGALAD NA KOPYAHON KUN MAYONG PERMISO!</strong>',
@@ -883,7 +883,7 @@ Kun boot mong ikaag an ladawan sa páhina, gamiton tabî an takod arog kan
 'filestatus'                  => 'Estatutong derechos nin paragamit:',
 'filesource'                  => 'Ginikanan',
 'uploadedfiles'               => "Mga ''file'' na ikinargá",
-'ignorewarning'               => "Dai pagintiendehon an mga patanid asin itagama pa man an ''file''.",
+'ignorewarning'               => 'Dai pagintiendehon an mga patanid asin itagama pa man an file',
 'ignorewarnings'              => 'Paliman-limanon an mga tanid',
 'minlength1'                  => "An pangaran kan mga ''file'' dapat na dai mababâ sa sarong letra.",
 'illegalfilename'             => "An ''filename'' na \"\$1\" igwang mga ''character'' na dai pwede sa mga titulo nin páhina. Tâwan tabî nin bâgong pangaran an ''file'' asin probaran na ikarga giraray.",
@@ -1040,7 +1040,7 @@ despues sa pagbukas kan {{SITENAME}}.
 Maabot sa '''\$5''' na hira kada páhina sa medio, asin '''\$6''' na paghiling kada hirá.
 
 '''\$7''' an labâ kan [http://meta.wikimedia.org/wiki/Help:Job_queue job queue].",
-'userstatstext'          => "{{PLURAL:$1|is '''1''' registered [[Special:mga paragamit|paragamit]]| '''$1''' an nakarehistrong [[Special:Listusers|users]]}}, 
+'userstatstext'          => "{{PLURAL:$1|is '''1''' registered [[Special:mga paragamit|paragamit]]| '''$1''' an nakarehistrong [[Special:Listusers|users]]}},
 '''$2''' (or '''$4%''') kaini {{PLURAL:$2|has|may}} $5 na derechos.",
 'statistics-mostpopular' => 'mga pinaka pighiling na pahina',
 
@@ -1223,7 +1223,7 @@ Kun boot mong halîon an páhina sa pigbabantayan mo sa maabot na panahon, pindo
 'enotif_lastdiff'              => 'Hilingón an $1 tangarig mahiling an pagbâgong ini.',
 'enotif_anon_editor'           => 'dai bistong parágamit $1',
 'enotif_body'                  => 'Namómòtan na $WATCHINGUSERNAME,
-	
+
 
 An páhinang {{SITENAME}} na $PAGETITLE binâgo $CHANGEDORCREATED sa $PAGEEDITDATE ni $PAGEEDITOR, hilingón an $PAGETITLE_URL para sa presenteng bersyón.
 
@@ -1237,7 +1237,7 @@ wiki: $PAGEEDITOR_WIKI
 
 Mayô nang iba pang paisi na ipapadara dapit sa iba pang mga pagbabâgo kun dai mo bibisitahon giraray ining páhina. Pwede mo man na ipwesto giraray an mga patanid para sa saimong mga páhinang pigbabantayan duman sa saimong lista nin pigbabantayan.
 
-             An maboot na sistema nin paisi kan {{SITENAME}} 
+             An maboot na sistema nin paisi kan {{SITENAME}}
 
 --
 Para bâgohon an pagpwesto kan saimong mga pigbabantayan, bisitahon an

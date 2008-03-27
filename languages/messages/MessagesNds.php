@@ -277,16 +277,18 @@ Na ''Ünnerscheed wiesen'' nich de kumplette Siet wiesen",
 'dec'           => 'Dez',
 
 # Categories related messages
-'categories'               => '{{PLURAL:$1|Kategorie|Kategorien}}',
-'categoriespagetext'       => 'In disse Kategorien staht Sieden oder Mediendatein.',
-'pagecategories'           => '{{PLURAL:$1|Kategorie|Kategorien}}',
-'category_header'          => 'Sieden in de Kategorie „$1“',
-'subcategories'            => 'Ünnerkategorien',
-'category-media-header'    => 'Mediendatein in de Kategorie „$1“',
-'category-empty'           => "''In disse Kategorie sünd aktuell kene Sieden.''",
-'hidden-categories'        => '{{PLURAL:$1|Verstekene Kategorie|Verstekene Kategorien}}',
-'hidden-category-category' => 'Verstekene Kategorien', # Name of the category where hidden categories will be listed
-'listingcontinuesabbrev'   => 'wieder',
+'categories'                    => '{{PLURAL:$1|Kategorie|Kategorien}}',
+'categoriespagetext'            => 'In disse Kategorien staht Sieden oder Mediendatein.',
+'special-categories-sort-count' => 'na Tall sorteren',
+'special-categories-sort-abc'   => 'alphabeetsch sorteren',
+'pagecategories'                => '{{PLURAL:$1|Kategorie|Kategorien}}',
+'category_header'               => 'Sieden in de Kategorie „$1“',
+'subcategories'                 => 'Ünnerkategorien',
+'category-media-header'         => 'Mediendatein in de Kategorie „$1“',
+'category-empty'                => "''In disse Kategorie sünd aktuell kene Sieden.''",
+'hidden-categories'             => '{{PLURAL:$1|Verstekene Kategorie|Verstekene Kategorien}}',
+'hidden-category-category'      => 'Verstekene Kategorien', # Name of the category where hidden categories will be listed
+'listingcontinuesabbrev'        => 'wieder',
 
 'mainpagetext'      => 'De Wiki-Software is mit Spood installeert worrn.',
 'mainpagedocfooter' => 'Kiek de [http://meta.wikimedia.org/wiki/MediaWiki_localisation Dokumentatschoon för dat Anpassen vun de Brukerböversiet]
@@ -562,7 +564,7 @@ Dat Passwoort för Bruker „$2“ is nu „$3“. Bitte mell di nu an un änner
 Wenn du nich sülvst för en nee Passwoort beden hest, denn bruukst di wegen disse Naricht nich to kümmern un kannst dien oolt Passwoort wiederbruken.',
 'noemail'                    => 'Bruker „$1“ hett kene E-Mail-Adress angeven.',
 'passwordsent'               => 'En nee Passwoort is an de E-Mail-Adress vun Bruker „$1“ schickt worrn. Mell di an, wenn du dat Passwoort kregen hest.',
-'eauthentsent'               => 'Ene Bestätigungs-E-Mail is an de angevene Adress schickt worrn. 
+'eauthentsent'               => 'Ene Bestätigungs-E-Mail is an de angevene Adress schickt worrn.
 
 Ehrdat E-Mails vun annere Brukers över de E-Mail-Funkschoon kamen köönt, mutt de Adress eerst noch bestätigt warrn. In de E-Mail steiht, wie dat geiht.',
 'throttled-mailpassword'     => 'Binnen de letzten $1 Stünnen is al mal en neet Passwoort toschickt worrn. Dat disse Funkschoon nich missbruukt warrt, kann blot alle $1 Stünnen en neet Passwoort toschickt warrn.',
@@ -721,7 +723,7 @@ Bruker mit Sysop-Rechten doran arbeiden könnt.</strong>',
 'permissionserrors'         => 'Fehlers mit de Rechten',
 'permissionserrorstext'     => 'Du hest keen Verlööf, dat to doon. De {{PLURAL:$1|Grund is|Grünn sünd}}:',
 'recreate-deleted-warn'     => "'''Wohrschau: Du stellst jüst en Siet wedder nee op, de vördem al mal wegsmeten worrn is.'''
- 
+
 Överlegg genau, wat du würklich de Siet nee opstellen wist.
 Dat du bescheed weetst, worüm de Siet vörher wegsmeten worrn is, hier nu de Uttog ut dat Lösch-Logbook:",
 
@@ -790,6 +792,8 @@ Versöök [[Special:Search|dat Söken]] na annere relevante Sieden.',
 'revdelete-log'           => 'Kommentar:',
 'revdelete-logentry'      => 'Sichtborkeit vun Version för [[$1]] ännert',
 'logdelete-logentry'      => 'Sichtborkeit vun Begeevnis för [[$1]] ännert',
+'pagehist'                => 'Versionshistorie',
+'deletedhist'             => 'wegsmetene Versionen',
 
 # Oversight log
 'oversightlog' => 'Opsicht-Logbook',
@@ -809,6 +813,8 @@ Versöök [[Special:Search|dat Söken]] na annere relevante Sieden.',
 'mergehistory-no-destination'      => 'Teelsiet „$1“ gifft dat nich.',
 'mergehistory-invalid-source'      => 'Utgangssiet mutt en gülligen Siedennaam wesen.',
 'mergehistory-invalid-destination' => 'Zielsiet mutt en gülligen Siedennaam wesen.',
+'mergehistory-autocomment'         => '„[[:$1]]“ tohoopföhrt mit „[[:$2]]“',
+'mergehistory-comment'             => '„[[:$1]]“ tohoopföhrt mit „[[:$2]]“: $3',
 
 # Merge log
 'mergelog'           => 'Tohoopföhr-Logbook',
@@ -841,12 +847,16 @@ Versöök [[Special:Search|dat Söken]] na annere relevante Sieden.',
 'viewprevnext'          => 'Wies ($1) ($2) ($3).',
 'search-result-size'    => '$1 ({{PLURAL:$2|een Woort|$2 Wöör}})',
 'search-result-score'   => 'Relevanz: $1 %',
+'search-redirect'       => '(Redirect $1)',
+'search-section'        => '(Afsnitt $1)',
 'searchall'             => 'all',
 'showingresults'        => "Hier {{PLURAL:$1|is een Resultat|sünd '''$1''' Resultaten}}, anfungen mit #'''$2'''.",
 'showingresultsnum'     => "Hier {{PLURAL:$3|is een Resultat|sünd '''$3''' Resultaten}}, anfungen mit #'''$2'''.",
+'showingresultstotal'   => "Dit sünd de Fundstellen '''$1–$2''' vun '''$3'''",
 'nonefound'             => '<strong>Henwies</strong>:
 Söökanfragen ahn Spood hebbt faken de Oorsaak, dat no kotte oder gemeene Wöör söökt warrt, de nich indizeert sünd.',
-'powersearch'           => 'Söken',
+'powersearch'           => 'Betere Söök',
+'powersearch-legend'    => 'Betere Söök',
 'powersearchtext'       => '
 Söök in Naamrüüm:<br />
 
@@ -1040,7 +1050,7 @@ Alle Tieden sünd UTC.",
 'filestatus'                 => 'Copyright-Status:',
 'filesource'                 => 'Born:',
 'uploadedfiles'              => 'Hoochladene Datein',
-'ignorewarning'              => 'Schiet op dat Wohrschauel un Datei spiekern.',
+'ignorewarning'              => 'Schiet op dat Wohrschauel un Datei spiekern',
 'ignorewarnings'             => 'Schiet op all Wohrschauen',
 'minlength1'                 => 'Dateinaams mööt opminnst een Teken lang wesen.',
 'illegalfilename'            => 'In den Dateinaam „$1“ snd Teken in, de nich de Naams vun Sieden nich verlööft sünd. Söök di en annern Naam ut un denn versöök de Datei noch wedder hoochtoladen.',
@@ -1118,6 +1128,7 @@ Dat geev en internen Fehler bi dat Anleggen vun en temporäre Datei op’n Serve
 'noimage'                   => 'Ene Datei mit dissen Naam gifft dat nich, du kannst ehr $1.',
 'noimage-linktext'          => 'Hoochladen',
 'uploadnewversion-linktext' => 'Ne’e Version vun disse Datei hoochladen',
+'imagepage-searchdupe'      => 'Söök na dubbelte Datein',
 
 # File reversion
 'filerevert'                => '„$1“ Trüchsetten',
@@ -1377,7 +1388,7 @@ Du kriggst solang keen Bescheedgeev-E-Mails mehr, bet dat du de Siet wedder bes�
 
              Dien fründlich {{SITENAME}}-Bescheedgeevsystem
 
--- 
+--
 De Instellungen vun dien Oppasslist to ännern, gah na: {{fullurl:Special:Watchlist/edit}}',
 
 # Delete/protect/revert
@@ -1533,6 +1544,12 @@ Ok den Grund för dat Blocken indregen.',
 'ipbexpiry'                   => 'Aflooptiet',
 'ipbreason'                   => 'Grund',
 'ipbreasonotherlist'          => 'Annern Grund',
+'ipbreason-dropdown'          => '* Allgemene Sperrgrünn
+** Tofögen vun verkehrte Infos
+** Leddigmaken vun Sieden
+** Schrifft Tüdelkraam in Sieden
+** Bedroht annere
+** Brukernaam nich akzeptabel',
 'ipbanononly'                 => 'Blot anonyme Brukers blocken',
 'ipbcreateaccount'            => 'Anleggen vun Brukerkonto verhinnern',
 'ipbemailban'                 => 'E-Mail schrieven sperren',
@@ -1541,6 +1558,7 @@ Ok den Grund för dat Blocken indregen.',
 'ipboptions'                  => '1 Stünn:1 hour,2 Stünnen:2 hours,6 Stünnen:6 hours,1 Dag:1 day,3 Daag:3 days,1 Week:1 week,2 Weken:2 weeks,1 Maand:1 month,3 Maand:3 months,1 Johr:1 year,ahn Enn:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'              => 'Annere Duer',
 'ipbotherreason'              => 'Annern Grund:',
+'ipbhidename'                 => 'Brukernaam/IP-Adress in dat Sperr-Logbook, de List vun de aktiven Sperren un de Brukerlist versteken.',
 'badipaddress'                => 'De IP-Adress hett en falsch Format.',
 'blockipsuccesssub'           => 'Blocken hett Spood',
 'blockipsuccesstext'          => 'De IP-Adress „$1“ is nu blockt.
@@ -1761,6 +1779,7 @@ Diskuschoonssiet nich, vun wegen dat dat dor al ene Siet mit dissen Titel gifft.
 'tooltip-compareselectedversions' => 'De Ünnerscheed twüschen de twee wählten Versionen vun disse Siet ankieken.',
 'tooltip-watch'                   => 'Op disse Siet oppassen.',
 'tooltip-recreate'                => 'Siet wedder nee anleggen, ok wenn se wegsmeten worrn is',
+'tooltip-upload'                  => 'Hoochladen',
 
 # Stylesheets
 'common.css'   => '/** CSS-Kood hier binnen warrt för all Stilvörlagen (Skins) inbunnen */',
@@ -1820,7 +1839,11 @@ Diskuschoonssiet nich, vun wegen dat dat dor al ene Siet mit dissen Titel gifft.
 'patrol-log-auto' => '(automaatsch)',
 
 # Image deletion
-'deletedrevision' => 'Löschte ole Version $1',
+'deletedrevision'       => 'Löschte ole Version $1',
+'filedeleteerror-short' => 'Fehler bi dat Wegsmieten vun de Datei: $1',
+'filedeleteerror-long'  => 'Dat geev Fehlers bi dat Wegsmieten vun de Datei:
+
+$1',
 
 # Browsing diffs
 'previousdiff' => '← Gah to den vörigen Ünnerscheed',
@@ -1844,7 +1867,7 @@ Diskuschoonssiet nich, vun wegen dat dat dor al ene Siet mit dissen Titel gifft.
 'noimages'              => 'Kene Biller.',
 'ilsubmit'              => 'Söken',
 'bydate'                => 'na Datum',
-'sp-newimages-showfrom' => 'Wies ne’e Datein vun $1 af an',
+'sp-newimages-showfrom' => 'Wies ne’e Datein vun $1, $2, af an',
 
 # Bad image list
 'bad_image_list' => 'Format:
@@ -1869,7 +1892,13 @@ Wat denn noch an Lenken kummt in de Reeg, dat sünd Utnahmen, bi de dat Bild lie
 'exif-imagewidth'                  => 'Breed',
 'exif-imagelength'                 => 'Hööchd',
 'exif-bitspersample'               => 'Bits je Farvkomponent',
+'exif-compression'                 => 'Oort vun de Kompression',
+'exif-photometricinterpretation'   => 'Pixeltohoopsetzung',
 'exif-orientation'                 => 'Utrichtung',
+'exif-samplesperpixel'             => 'Komponententall',
+'exif-planarconfiguration'         => 'Datenutrichtung',
+'exif-ycbcrsubsampling'            => 'Subsampling-Rate vun Y bet C',
+'exif-ycbcrpositioning'            => 'Y un C Positionerung',
 'exif-xresolution'                 => 'Oplösen in de Breed',
 'exif-yresolution'                 => 'Oplösen in de Hööchd',
 'exif-resolutionunit'              => 'Eenheit vun de Oplösen',
@@ -1879,6 +1908,7 @@ Wat denn noch an Lenken kummt in de Reeg, dat sünd Utnahmen, bi de dat Bild lie
 'exif-jpeginterchangeformat'       => 'Offset to JPEG SOI',
 'exif-jpeginterchangeformatlength' => 'Grött vun de JPEG-Daten in Bytes',
 'exif-transferfunction'            => 'Transferfunkschoon',
+'exif-whitepoint'                  => 'Wittpunkt-Chromatizität',
 'exif-primarychromaticities'       => 'Chromatizität vun de Grundfarven',
 'exif-ycbcrcoefficients'           => 'YCbCr-Koeffizienten',
 'exif-referenceblackwhite'         => 'Swart/Witt-Referenzpunkten',
@@ -1888,6 +1918,7 @@ Wat denn noch an Lenken kummt in de Reeg, dat sünd Utnahmen, bi de dat Bild lie
 'exif-model'                       => 'Kameramodell',
 'exif-software'                    => 'bruukte Software',
 'exif-artist'                      => 'Autor',
+'exif-copyright'                   => 'Oorheverrechten',
 'exif-exifversion'                 => 'Exif-Version',
 'exif-flashpixversion'             => 'ünnerstütt Flashpix-Version',
 'exif-colorspace'                  => 'Farvruum',
@@ -1917,7 +1948,9 @@ Wat denn noch an Lenken kummt in de Reeg, dat sünd Utnahmen, bi de dat Bild lie
 'exif-scenetype'                   => 'Szenentyp',
 'exif-whitebalance'                => 'Wittutgliek',
 'exif-digitalzoomratio'            => 'Digitalzoom',
+'exif-gaincontrol'                 => 'Verstärkung',
 'exif-contrast'                    => 'Kontrast',
+'exif-saturation'                  => 'Sättigung',
 'exif-sharpness'                   => 'Schärp',
 'exif-imageuniqueid'               => 'Bild-ID',
 'exif-gpslatituderef'              => 'Bredengraad Noord oder Süüd',
@@ -1932,6 +1965,7 @@ Wat denn noch an Lenken kummt in de Reeg, dat sünd Utnahmen, bi de dat Bild lie
 'exif-gpsspeed'                    => 'Tempo vun’n GPS-Empfänger',
 'exif-gpsdestlatitude'             => 'Bredengraad',
 'exif-gpsdestlongitude'            => 'Längengraad',
+'exif-gpsdestbearing'              => 'Motivrichtung',
 'exif-gpsdestdistance'             => 'wo wied af vun dat Motiv',
 'exif-gpsdatestamp'                => 'GPS-Datum',
 
@@ -1957,11 +1991,15 @@ Wat denn noch an Lenken kummt in de Reeg, dat sünd Utnahmen, bi de dat Bild lie
 'exif-exposureprogram-0' => 'Unbekannt',
 'exif-exposureprogram-1' => 'vun Hand',
 'exif-exposureprogram-2' => 'Standardprogramm',
+'exif-exposureprogram-4' => 'Blennenautomatik',
 
 'exif-subjectdistance-value' => '$1 Meter',
 
 'exif-meteringmode-0'   => 'Unbekannt',
 'exif-meteringmode-1'   => 'Dörsnittlich',
+'exif-meteringmode-2'   => 'Middzentreert',
+'exif-meteringmode-3'   => 'Spot',
+'exif-meteringmode-4'   => 'MultiSpot',
 'exif-meteringmode-5'   => 'Munster',
 'exif-meteringmode-6'   => 'Bilddeel',
 'exif-meteringmode-255' => 'Unbekannt',
@@ -2052,27 +2090,33 @@ Wat denn noch an Lenken kummt in de Reeg, dat sünd Utnahmen, bi de dat Bild lie
 'monthsall'        => 'alle',
 
 # E-mail address confirmation
-'confirmemail'            => 'Nettbreefadress bestätigen',
-'confirmemail_noemail'    => 'Du hest kene bestätigte Nettbreefadress in diene [[Special:Preferences|Instellen]] angeven.',
-'confirmemail_text'       => '{{SITENAME}} verlangt, dat du diene Nettbreefadress bestätigst, ehrder du de Nettbreeffunkschonen bruken kannst. Klick op den Knopp wieder ünnen, dat die en Bestätigungskood schickt warrt.',
-'confirmemail_send'       => 'Bestätigungskood schicken.',
-'confirmemail_sent'       => 'Bestätigungsnettbreef afschickt.',
-'confirmemail_sendfailed' => 'Bestätigungsnettbreef kunn nich sennt warrn. Schasst man nakieken, wat de Adress ok nich verkehrt schreven is.
+'confirmemail'             => 'Nettbreefadress bestätigen',
+'confirmemail_noemail'     => 'Du hest kene bestätigte Nettbreefadress in diene [[Special:Preferences|Instellen]] angeven.',
+'confirmemail_text'        => '{{SITENAME}} verlangt, dat du diene Nettbreefadress bestätigst, ehrder du de Nettbreeffunkschonen bruken kannst. Klick op den Knopp wieder ünnen, dat die en Bestätigungskood schickt warrt.',
+'confirmemail_send'        => 'Bestätigungskood schicken.',
+'confirmemail_sent'        => 'Bestätigungsnettbreef afschickt.',
+'confirmemail_sendfailed'  => 'Bestätigungsnettbreef kunn nich sennt warrn. Schasst man nakieken, wat de Adress ok nich verkehrt schreven is.
 
 Fehler bi’t Versennen: $1',
-'confirmemail_invalid'    => 'Bestätigungskood weer nich korrekt. De Kood is villicht to oolt.',
-'confirmemail_needlogin'  => 'Du musst $1, dat diene Nettbreefadress bestätigt warrt.',
-'confirmemail_success'    => 'Diene Nettbreefadress is nu bestätigt.',
-'confirmemail_loggedin'   => 'Diene Nettbreefadress is nu bestätigt.',
-'confirmemail_error'      => 'Dat Spiekern vun diene Bestätigung hett nich klappt.',
-'confirmemail_subject'    => '{{SITENAME}} Nettbreefadress-Bestätigung',
-'confirmemail_body'       => 'Een, villicht du vun de IP-Adress $1 ut, hett dat Brukerkonto „$2“ mit disse Nettbreefadress op {{SITENAME}} anmellt.
+'confirmemail_invalid'     => 'Bestätigungskood weer nich korrekt. De Kood is villicht to oolt.',
+'confirmemail_needlogin'   => 'Du musst $1, dat diene Nettbreefadress bestätigt warrt.',
+'confirmemail_success'     => 'Diene Nettbreefadress is nu bestätigt.',
+'confirmemail_loggedin'    => 'Diene Nettbreefadress is nu bestätigt.',
+'confirmemail_error'       => 'Dat Spiekern vun diene Bestätigung hett nich klappt.',
+'confirmemail_subject'     => '{{SITENAME}} Nettbreefadress-Bestätigung',
+'confirmemail_body'        => 'Een, villicht du vun de IP-Adress $1 ut, hett dat Brukerkonto „$2“ mit disse Nettbreefadress op {{SITENAME}} anmellt.
 
 Dat wi weet, dat dit Brukerkonto würklich di tohöört un dat wi de Nettbreeffunkschonen freeschalten köönt, roop dissen Lenk op:
 
 $3
 
+Wenn du dit Brukerkonto *nich* nee opstellt hest, denn klick op dissen Lenk, dat du dat Bestätigen afbrickst:
+
+$5
+
 Wenn du dat nich sülvst wesen büst, denn folg den Lenk nich. De Bestätigungskood warrt $4 ungüllig.',
+'confirmemail_invalidated' => 'E-Mail-Adressbestätigung afbraken',
+'invalidateemail'          => 'E-Mail-Adressbestätigung afbreken',
 
 # Scary transclusion
 'scarytranscludedisabled' => '[Dat Inbinnen vun Interwikis is nich aktiv]',

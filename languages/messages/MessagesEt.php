@@ -344,9 +344,9 @@ MySQL andis vea "$3: $4".',
 'readonlytext'         => 'Andmebaas on praegu kirjutuskaitse all, tõenäoliselt andmebaasi rutiinseks hoolduseks, mille lõppedes normaalne olukord taastub.
 Administraator, kes selle kaitse alla võttis, andis järgmise selgituse:
 <p>$1',
-'missingarticle'       => 'Andmebaas ei leidnud lehekülje "$1" teksti, kuigi see oleks pidanud olema leitav. 
+'missingarticle'       => 'Andmebaas ei leidnud lehekülje "$1" teksti, kuigi see oleks pidanud olema leitav.
 
-<p>Tavaliselt on selle põhjuseks vananenud erinevuste- või ajaloolink leheküljele, mis on kustutatud. 
+<p>Tavaliselt on selle põhjuseks vananenud erinevuste- või ajaloolink leheküljele, mis on kustutatud.
 
 <p>Kui ei ole tegemist sellise juhtumiga, siis võib olla tegemist tarkvaraveaga. Palun teatage sellest administraatorile, märkides ära aadressi.',
 'internalerror'        => 'Sisemine viga',
@@ -744,7 +744,7 @@ võidakse sinu ligipääs sulgeda.',
 'filedesc'             => 'Lühikirjeldus',
 'fileuploadsummary'    => 'Info faili kohta:',
 'uploadedfiles'        => 'Üleslaaditud failid',
-'ignorewarning'        => 'Ignoreeri hoiatust ja salvesta fail hoiatusest hoolimata.',
+'ignorewarning'        => 'Ignoreeri hoiatust ja salvesta fail hoiatusest hoolimata',
 'ignorewarnings'       => 'Ignoreeri hoiatusi',
 'illegalfilename'      => 'Faili "$1" nimi sisaldab sümboleid, mis pole pealkirjades lubatud. Palun nimetage fail ümber ja proovige uuesti.',
 'badfilename'          => 'Pildi nimi on muudetud. Uus nimi on "$1".',

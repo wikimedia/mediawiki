@@ -31,7 +31,7 @@ $namespaceNames = array(
 $namespaceAliases = array(
 	"媒體" => NS_MEDIA,
 	"特殊" => NS_SPECIAL,
-	"對話" => NS_TALK, 
+	"對話" => NS_TALK,
 	"用戶" => NS_USER,
 	"用戶對話" => NS_USER_TALK,
 	# This has never worked so it's unlikely to annoy anyone if I disable it -- TS
@@ -351,7 +351,7 @@ $messages = array(
 'databaseerror'        => '資料庫錯誤',
 'dberrortext'          => '發生資料庫查詢語法錯誤。
 可能是由於軟體自身的錯誤所引起。
-最後一次資料庫查詢指令是: 
+最後一次資料庫查詢指令是:
 <blockquote><tt>$1</tt></blockquote>
 來自於函數 "<tt>$2</tt>"。
 MySQL返回錯誤 "<tt>$3: $4</tt>"。',
@@ -954,7 +954,7 @@ $2',
 才能上載檔案。',
 'upload_directory_read_only'  => '上傳目錄($1)不存在或無寫權限。',
 'uploaderror'                 => '上載錯誤',
-'uploadtext'                  => "使用下面的表單來上傳檔案。 
+'uploadtext'                  => "使用下面的表單來上傳檔案。
 要檢視或搜索以前上傳的檔案
 可以進入[[Special:Imagelist|檔案上傳清單]]，
 上傳和刪除將在[[Special:Log/upload|上傳日誌]]中記錄。
@@ -1681,7 +1681,7 @@ $1',
 'revertmove'              => '恢復該移動',
 'delete_and_move'         => '刪除並移動',
 'delete_and_move_text'    => '==需要刪除==
-	
+
 目標頁面"[[$1]]"已經存在。你確認需要刪除原頁面並以進行移動嗎？',
 'delete_and_move_confirm' => '是的，刪除此頁面',
 'delete_and_move_reason'  => '刪除以便移動',
@@ -1952,7 +1952,7 @@ Variants for Chinese language
 如果此檔案的源檔案已經被修改，一些訊息在修改後的檔案中將不能完全反映出來。',
 'metadata-expand'   => '顯示詳細資料',
 'metadata-collapse' => '隱藏詳細資料',
-'metadata-fields'   => '在本訊息中所列出的 EXIF 元數據域將包含在圖片顯示頁面, 
+'metadata-fields'   => '在本訊息中所列出的 EXIF 元數據域將包含在圖片顯示頁面,
 當元數據表損壞時只顯示以下訊息，其他的元數據預設為隱藏。
 * make
 * model
@@ -2246,7 +2246,7 @@ Variants for Chinese language
 'confirmemail_error'       => '你的確認過程發生錯誤。',
 'confirmemail_subject'     => '{{SITENAME}}郵箱位址確認',
 'confirmemail_body'        => '擁有IP位址$1的用戶(可能是您)在{{SITENAME}}創建了帳戶"$2"，並提交了您的電子郵箱位址。
-		
+
 請確認這個帳戶是屬於您的，並同時啟用在{{SITENAME}}上的
 電子郵件功能。請在瀏覽器中打開下面的連結:
 

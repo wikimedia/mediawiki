@@ -5,6 +5,7 @@
  *
  * @author Ерней
  * @author Himiq Dzyu
+ * @author Nike
  */
 
 $fallback = 'ru';
@@ -99,6 +100,7 @@ $messages = array(
 
 # Categories related messages
 'special-categories-sort-count' => 'исәп буенча тәртипләү',
+'subcategories'                 => 'Төркемчәләр',
 
 'about'          => 'Тасвир',
 'article'        => 'Эчтәлек бите',
@@ -174,17 +176,19 @@ $messages = array(
 'jumptosearch'      => 'эзләү',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
-'aboutsite'      => 'Тасвир {{grammar:genitive|{{SITENAME}}}}',
-'aboutpage'      => 'Project:Тасвир',
-'disclaimers'    => 'Җаваплылыктан баш тарту',
-'disclaimerpage' => 'Project:Җаваплылыктан баш тарту',
-'edithelp'       => 'Үзгәртү хакында',
-'edithelppage'   => 'Ярдәм:Үзгәртү',
-'mainpage'       => 'Төп бит',
-'portal'         => 'Җәмгыять үзәге',
-'portal-url'     => 'Проект:Җәмгыять үзәге',
-'privacy'        => 'Яшеренлек сәясәте',
-'privacypage'    => 'Project:Яшеренлек сәясәте',
+'aboutsite'         => 'Тасвир {{grammar:genitive|{{SITENAME}}}}',
+'aboutpage'         => 'Project:Тасвир',
+'currentevents'     => 'Агымдагы вакыйгалар',
+'currentevents-url' => 'Project:Агымдагы вакыйгалар',
+'disclaimers'       => 'Җаваплылыктан баш тарту',
+'disclaimerpage'    => 'Project:Җаваплылыктан баш тарту',
+'edithelp'          => 'Үзгәртү хакында',
+'edithelppage'      => 'Ярдәм:Үзгәртү',
+'mainpage'          => 'Төп бит',
+'portal'            => 'Җәмгыять үзәге',
+'portal-url'        => 'Project:Җәмгыять үзәге',
+'privacy'           => 'Яшеренлек сәясәте',
+'privacypage'       => 'Project:Яшеренлек сәясәте',
 
 'badaccess' => 'Рөхсәт хатасы',
 
@@ -281,7 +285,9 @@ $messages = array(
 'loginlanguagelabel'         => 'Тел: $1',
 
 # Password reset dialog
-'resetpass_header' => 'Серсүзне ташлатырга',
+'resetpass_header'        => 'Серсүзне ташлатырга',
+'resetpass_bad_temporary' => 'Вакытлы серсүз дөрес түгел. Бәлки, сез инде серсүзне алмаштырган идегез, яки тагын бер тапкыр вакытлы серсүз сорарга сынагыз.',
+'resetpass_forbidden'     => 'Бу вики-системада серсүзләрне алмаштырып булмый.',
 
 # Edit page toolbar
 'bold_sample'     => 'Калын язылышы',
@@ -297,6 +303,10 @@ $messages = array(
 'math_tip'        => 'Математика формуласы (LaTeX)',
 'nowiki_sample'   => 'Форматланмаган текстны монда өстәгез',
 'nowiki_tip'      => 'Вики-форматлауны исәпкә алмаска',
+'image_tip'       => 'Куелган рәсем',
+'media_tip'       => 'Медиа-файлга сылтама',
+'sig_tip'         => 'Имзагыз да вакыт',
+'hr_tip'          => 'Горизонталь сызык (еш кулланмагыз)',
 
 # Edit pages
 'summary'                => 'Үзгәртүләр тасвиры',
@@ -308,14 +318,34 @@ $messages = array(
 'showpreview'            => 'Алдан карау',
 'showlivepreview'        => 'Тиз алдан карау',
 'showdiff'               => 'Үзгәртүләрне күрсәтү',
+'anoneditwarning'        => "'''Игътибар''': Сез системага кермәгәнсез. IP-адресыгыз бу битнең тарихына язылыр.",
+'missingsummary'         => "'''Искәртү.''' Сез үзгәртмә кыска язу бирмәгәнсез. Сез «Битне саклау» кнопкасына тагын бер тапкыр бассагыз, үзгәртмәгез комментсыз сакланыр.",
+'missingcommenttext'     => 'Зинһар, аска комментыгыз языгыз.',
+'missingcommentheader'   => "'''Искәртү:''' Сез комментыгызның башын күрсәтмәгәнсез.
+Сез «Битне саклау» кнопкасына бассагыз, үзгәртмәгез башсыз язылыр.",
+'summary-preview'        => 'Булыр тасвир',
+'subject-preview'        => 'Булыр баш',
 'blockednoreason'        => 'сәбәп күрсәтмәгән',
 'blockedoriginalsource'  => 'Бит «$1» тексты аска күрсәткән.',
 'blockededitsource'      => "Бит «$1» '''үзгәртүегез''' тексты аска күрсәткән.",
+'whitelistedittitle'     => 'Үзгәртү өчен керү кирәк',
 'whitelistedittext'      => 'Сез битләрне үзгәртү өчен $1 тиеш.',
+'whitelistreadtitle'     => 'Уку өчен керү кирәк',
+'whitelistacctitle'      => 'Сездә хисап ясау хокукы юк',
 'nosuchsectiontitle'     => 'Андый секция юк',
 'loginreqtitle'          => 'Керү кирәк',
 'loginreqlink'           => 'керү',
+'loginreqpagetext'       => 'Сез башка битләр карау өчен $1 тиеш',
 'accmailtitle'           => 'Серсүз җибәрелгән.',
+'accmailtext'            => '$1 өченге серсүз $2 кулланучыга күндерелгән.',
+'newarticle'             => '(Яңа)',
+'newarticletext'         => "Сез әле язылмаган биткәге сылтама куллангансыз.
+Яңа бит ясау өчен аскагы тәрәзәдә мәкалә тексты языгыз
+([[{{MediaWiki:Helppage}}|ярдәм бите]] к. күбрәк информация алу өчен).
+Әгәр сез бу бит ялгышлык белән ачса идегез, гади браузерыгызның '''артка''' кнопкасына басыгыз.",
+'anontalkpagetext'       => "----''Бу хисапланмаган да хисапланган исем белән кергән кулланучы фикер алышу бите. Аны билгеләү өчен IP-адрес файдалый. Әгәр сез аноним кулланучы һәм сез, сезгә күндерелмәгән хәбәрләр алдыгыз, дип саныйсыз (бер IP-адрес күп кулланучы өчен була ала), зинһар, [[{{ns:special}}:Userlogin|системага керегез]], киләчәктә аңлашмау теләмәсәгез.''",
+'noarticletext'          => "Хәзер бу биттә текст юк. Сез [[{{ns:special}}:Search/{{PAGENAME}}|аның башы башка мәкаләләрдә таба]] яки '''[{{fullurl:{{FULLPAGENAME}}|action=edit}} андый баш белән бит ясый]''' аласыз.",
+'clearyourcache'         => "'''Искәрмә:''' Битне саклаудан соң алмаштырма күрү өчен браузерыгызның кешын буш итегез: '''Mozilla / Firefox''': ''Ctrl+Shift+R'', '''IE:''' ''Ctrl+F5'', '''Safari''': ''Cmd+Shift+R'', '''Konqueror''': ''F5'', '''Opera''': ''Tools→Preferences'' меню белән.",
 'yourtext'               => 'Сезнең текст',
 'storedversion'          => 'Сакланган юрама',
 'yourdiff'               => 'Аермалыклар',
@@ -331,12 +361,17 @@ $messages = array(
 
 # History pages
 'currentrev' => 'Агымдагы юрама',
+'histfirst'  => 'Баштагы',
+'histlast'   => 'Баягы',
 
 # Revision deletion
 'rev-deleted-comment' => '(искәрмә бетергән)',
 'rev-deleted-user'    => '(авторның исеме бетерергән)',
 'rev-deleted-event'   => '(язма бетерергән)',
 'rev-delundel'        => 'күрсәтергә/яшерергә',
+
+# Diffs
+'difference' => '(Төзәтмәләр арасында аермалар)',
 
 # Search results
 'powersearch'        => 'Өстәмә эзләү',
@@ -366,6 +401,13 @@ $messages = array(
 'group-bot-member'           => 'Бот',
 'group-sysop-member'         => 'Идарәче',
 'group-bureaucrat-member'    => 'Бюрократ',
+
+# Recent changes
+'rcshowhidebots'  => '$1 бот',
+'rcshowhideliu'   => '$1 кергән кулланучы',
+'rcshowhideanons' => '$1 кермәгән кулланучы',
+'rcshowhidemine'  => '$1 минем үзгәртү',
+'show'            => 'Күрсәтергә',
 
 # Upload
 'upload' => 'Файлны йөкләргә',
@@ -413,6 +455,7 @@ $messages = array(
 'specialpages'            => 'Махсус битләр',
 
 # Special:Allpages
+'allpages'     => 'Барлык битләр',
 'allpagesprev' => 'Элекке',
 'allpagesnext' => 'Киләсе',
 
@@ -426,9 +469,11 @@ $messages = array(
 # Delete/protect/revert
 'deletepage'            => 'Битне бетерергә',
 'actioncomplete'        => 'Гамәл башкарган',
+'dellogpage'            => 'Бетерү исемлеге',
 'deletecomment'         => 'Бетерү сәбәбе:',
 'deleteotherreason'     => 'Башка/өстәмә сәбәп:',
 'deletereasonotherlist' => 'Башка сәбәп',
+'rollbacklink'          => 'кире кайтару',
 
 # Namespace form on various pages
 'namespace'      => 'Исемнәр мәйданы:',
@@ -438,6 +483,9 @@ $messages = array(
 # Contributions
 'contributions' => 'Кулланучының кертеме',
 'mycontris'     => 'Кертемем',
+
+# What links here
+'nolinkshere' => "'''[[:$1]]''' битенә башка битләр сылтамыйлар.",
 
 # Block/unblock
 'unblocklink'  => 'кысмаска',
@@ -459,7 +507,13 @@ $messages = array(
 'tooltip-n-sitesupport'   => 'Безгә ярдәм итегез',
 'tooltip-t-upload'        => 'Файлларны йөкләргә',
 'tooltip-t-specialpages'  => 'Барлык махсус битләр исемлеге',
+'tooltip-ca-nstab-user'   => 'Кулланучының битене карарга',
 'tooltip-ca-nstab-help'   => 'Белешмәнең битене карарга',
+'tooltip-minoredit'       => 'Бу үзгәртүне әһәмиятсез булып билгеләргә',
+'tooltip-watch'           => 'Бу битне күзәтү исемлегемә өстәргә',
+
+# 'all' in various places, this might be different for inflected languages
+'monthsall' => 'барлык',
 
 # Special:Version
 'version' => 'Юрама', # Not used as normal message but as header for the special page itself

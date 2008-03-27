@@ -276,7 +276,7 @@ Gudagalahaaga waa la sameeyey. Ha' hilmaamin in aad wax ka bedesho {{SITENAME}} 
 'mailerror'                  => 'Waxaa dhacay qalad markii loo diraayey E-boosto: $1',
 'acct_creation_throttle_hit' => 'Waan ka xunahay, waxaad horey u sameysay $1 akoon. Ma sameynkartid midkale.',
 'emailauthenticated'         => 'Cinwaankaaga e-boostada waxaa loo xaqiijiyey $1.',
-'emailnotauthenticated'      => 'Cinwaankaaga e-boostada weli lama xaqiijinin. Wax e-boosto ah 
+'emailnotauthenticated'      => 'Cinwaankaaga e-boostada weli lama xaqiijinin. Wax e-boosto ah
 oo ku saabsan arrimaha soo socdo looma soo diridoono',
 'accountcreated'             => "Akoonka waa la'sameeyay",
 'accountcreatedtext'         => "Akoonka isticmaalaha $1 waa la'sameeyay.",
@@ -393,7 +393,7 @@ Iskuday in aad [[Special:Search|karaadiso wikigan]] beyjaj laxiira oo cusub.',
 
 # Upload
 'uploadnologin'   => 'Gudaha kuma jirtid',
-'ignorewarning'   => 'Iska dhagooley digniinta ee faylka keedi.',
+'ignorewarning'   => 'Iska dhagooley digniinta ee faylka keedi',
 'ignorewarnings'  => 'Iska dhagooley digkiinwalba',
 'minlength1'      => 'Faylka magaciisa waa in uu ugu yaraan noqdaa hal xaraf.',
 'badfilename'     => 'Faylka magaciisa waxaa lagu badalay "$1".',
@@ -483,7 +483,7 @@ si aad ugu dirto E-boosto isticmaalayaasha kale.',
 'addedwatch'        => 'Kudar liiska-waardiyaha',
 'addedwatchtext'    => "Bogga \"[[:\$1]]\" waxaa lagudaray [[Special:Watchlist|liiska-waardiyahaaga]].
 Isbedelka mustaqbalka ku dhaca boggan iyo bogga wadahadalka la'xiriira waxaa lagu soo qoridoonaa inta,
-boggana wuxuu noqonaayaa mid la' '''nuuriyey''' dhinaca [[Special:Recentchanges|Liiska isbedelada show]] si 
+boggana wuxuu noqonaayaa mid la' '''nuuriyey''' dhinaca [[Special:Recentchanges|Liiska isbedelada show]] si
 ay u fududdayso sidii loo dalbanlahaa.
 
 Hadii aad rabootid in aad boggan ka saartid wardiyeynta, dhagsii \"Ha' wardiyeynin\" oo ku yaala dhinaca.",

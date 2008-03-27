@@ -564,9 +564,9 @@ Podètz contactar $1 o un autre [[{{MediaWiki:Grouppage-sysop}}|administrator]] 
 :\'\'$2\'\'
 
 * Començament del blocatge : $8
-* Expiracion del blocatge : $6 
+* Expiracion del blocatge : $6
 
-Podètz contactar $1 o un dels autres [[{{MediaWiki:Grouppage-sysop}}|administrators]] per discutir d\'aqueste blocatge. 
+Podètz contactar $1 o un dels autres [[{{MediaWiki:Grouppage-sysop}}|administrators]] per discutir d\'aqueste blocatge.
 
 Notatz que podètz pas utilizar la foncion "Mandar un messatge a aqueste utilizaire" a mens qu’aguessetz balhat una adreça e-mail valida dins vòstras [[Special:Preferences|preferéncias]].
 
@@ -606,7 +606,7 @@ Vòstre identificant de blocatge es $5. Precizatz-lo dins tota requèsta.',
 'session_fail_preview'      => '<strong>O planhèm ! Podèm pas enregistrar vòstra modificacion a causa d’una pèrda d’informacions concernent vòstra session. Ensajatz tornarmai. Se aquò capita pas encara, desconnectatz-vos, puèi reconnectatz-vos.</strong>',
 'session_fail_preview_html' => "<strong>O planhèm ! Podèm pas enregistrar vòstra modificacion a causa d’una pèrda d’informacions concernent vòstra session.</strong>
 
-''L’HTML brut essent activat sus {{SITENAME}}, la previsualizacion es estada amagada per prevenir un atac per JavaScript.'' 
+''L’HTML brut essent activat sus {{SITENAME}}, la previsualizacion es estada amagada per prevenir un atac per JavaScript.''
 
 <strong>Se la tentativa de modificacion èra legitima, ensajatz tornarmai. Se aquò capita pas encara , desconnectatz-vos, puèi reconnectatz-vos.</strong>",
 'token_suffix_mismatch'     => '<strong>Vòstra edicion es pas estada acceptada perque vòstre navegaire a mesclat los caractèrs de ponctuacion dins l’identificant d’edicion. L’edicion es estada rejetada per empachar la corrupcion del tèxt de l’article. Aqueste problèma se produtz quand utilizatz un proxy anonim amb problèma.</strong>',
@@ -643,7 +643,7 @@ Podètz tonar en rèire e modificar una pagina existenta, [[Special:Userlogin|vo
 'nocreate-loggedin'         => 'Avètz pas la permission de crear de paginas novèlas sus aqueste wiki.',
 'permissionserrors'         => 'Error de permissions',
 'permissionserrorstext'     => 'Avètz pas la permission d’efectuar l’operacion demandada per {{PLURAL:$1|la rason seguenta|las rasons seguentas}} :',
-'recreate-deleted-warn'     => "'''Atencion : sètz a tornar crear una pagina qu'es estada suprimida precedentament.''' 
+'recreate-deleted-warn'     => "'''Atencion : sètz a tornar crear una pagina qu'es estada suprimida precedentament.'''
 
 Demandatz-vos se es vertadièrament apropriat de la tornar crear en vos referissent al jornal de las supressions afichat çaijós :",
 
@@ -702,7 +702,7 @@ Pòt i aver de detalhs dins lo [{{fullurl:Special:Log/delete|page={{FULLPAGENAME
 'revdelete-nooldid-text'      => 'Avètz pas precisat la o las revision(s) cibla(s) per utilizar aquesta foncion.',
 'revdelete-selected'          => "{{PLURAL:$2|Version seleccionada|Versions seleccionadas}} de '''$1''' :",
 'logdelete-selected'          => "{{PLURAL:$2|Eveniment de jornal seleccionat|Eveniments de jornal seleccionats}} per '''$1''' :",
-'revdelete-text'              => "Las versions suprimidas apareisseràn encara dins l’istoric de l’article, mas lor contengut textual serà inaccessible al public. 
+'revdelete-text'              => "Las versions suprimidas apareisseràn encara dins l’istoric de l’article, mas lor contengut textual serà inaccessible al public.
 
 D’autres administrators sus {{SITENAME}} poiràn totjorn accedir al contengut amagat e lo restablir tornarmai a travèrs d'aquesta meteissa interfàcia, a mens qu’una restriccion suplementària siá mesa en plaça pels operators del sit.",
 'revdelete-legend'            => 'Metre en plaça de restriccions de version :',
@@ -788,7 +788,7 @@ contenent totes los tèrmes apareisson dins los resultats).',
 'powersearchtext'       => 'Recercar dins los espacis :<br />
 $1<br />
 $2 Enclure las paginas de redireccions   Recercar $3 $9',
-'searchdisabled'        => 'La recèrca sus {{SITENAME}} es desactivada. En esperant la reactivacion, podètz efectuar una recèrca via Google. 
+'searchdisabled'        => 'La recèrca sus {{SITENAME}} es desactivada. En esperant la reactivacion, podètz efectuar una recèrca via Google.
 Atencion, lor indexacion de contengut {{SITENAME}} benlèu es pas a jorn.',
 
 # Preferences page
@@ -964,7 +964,7 @@ L'ora indicada es la del serveire (UTC).",
 'filestatus'                  => "Estatut dels dreches d'autor :",
 'filesource'                  => 'Font :',
 'uploadedfiles'               => 'Fichièrs copiats',
-'ignorewarning'               => 'Ignorar l’avertiment e salvagardar lo fichièr.',
+'ignorewarning'               => 'Ignorar l’avertiment e salvagardar lo fichièr',
 'ignorewarnings'              => "Ignorar los avertiments a l'ocasion de l’impòrt",
 'minlength1'                  => 'Los noms de fichièrs dèvon comprendre al mens una letra.',
 'illegalfilename'             => 'Lo nom de fichièr « $1 » conten de caractèrs interdiches dins los títols de paginas. Mercé de lo tornar nomenar e de lo copiar tornarmai.',
@@ -1001,7 +1001,7 @@ L'ora indicada es la del serveire (UTC).",
 'upload-wasdeleted'           => "'''Atencion : Sètz a importar un fichièr que ja es estat suprimit deperabans.''' Deuriatz considerar se es oportun de contunhar l'impòrt d'aqueste fichièr. Lo jornal de las supressions vos donarà los elements d'informacion.",
 'filename-bad-prefix'         => 'Lo nom del fichièr qu\'importatz comença per <strong>"$1"</strong> qu\'es un nom generalament donat pels aparelhs de fòto numerica e que decritz pas lo fichièr. Causissetz un nom de fichièr descrivent vòstre fichièr.',
 'filename-prefix-blacklist'   => ' #<!-- daissatz aquesta linha coma es --> <pre>
-# La sintaxi es la seguenta : 
+# La sintaxi es la seguenta :
 #   * Tot çò que seguís lo caractèr "#" fins a la fin de la linha es un comentari
 #   * Tota linha non vioda es un prefix tipic de nom de fichièr assignat automaticament pels aparelhs numerics
 CIMG # Casio
@@ -1466,7 +1466,7 @@ las revisions restablidas apareisseràn dins l'istoric anterior e la version cor
 'undeletedrevisions-files'     => '$1 versions e $2 fichièr(s) restablits',
 'undeletedfiles'               => '$1 {{PLURAL:$1|fichièr restablit|fichièrs restablits}}',
 'cannotundelete'               => 'Lo restabliment a pas capitat. Un autre utilizaire a probablament restablit la pagina abans.',
-'undeletedpage'                => "<big>'''La pagina $1 es estada restablida'''.</big> 
+'undeletedpage'                => "<big>'''La pagina $1 es estada restablida'''.</big>
 
 Consultatz l’[[Special:Log/delete|istoric de las supressions]] per veire las paginas recentament suprimidas e restablidas.",
 'undelete-header'              => 'Consultatz l’[[Special:Log/delete|istoric de las supressions]] per veire las paginas recentament suprimidas.',
@@ -1479,7 +1479,7 @@ Consultatz l’[[Special:Log/delete|istoric de las supressions]] per veire las p
 'undelete-cleanup-error'       => 'Error al moment de la supression de l’archiu inutilizada « $1 ».',
 'undelete-missing-filearchive' => 'Impossible de restablir lo fichièr amb l’ID $1 perque es pas dins la banca de donadas. Benlèu ja i es estat restablit.',
 'undelete-error-short'         => 'Error al moment del restabliment del fichièr : $1',
-'undelete-error-long'          => "D'errors son estadas rencontradas al moment del restabliment del fichièr : 
+'undelete-error-long'          => "D'errors son estadas rencontradas al moment del restabliment del fichièr :
 
 $1",
 
@@ -1531,14 +1531,14 @@ Donatz çaijós una rason precisa (per exemple en indicant las paginas que son e
 'ipbexpiry'                   => 'Durada del blocatge',
 'ipbreason'                   => 'Motiu',
 'ipbreasonotherlist'          => 'Autra rason',
-'ipbreason-dropdown'          => '* Motius de blocatge mai frequents 
-** Vandalisme 
-** Insercion d’informacions faussas 
-** Supression de contengut sens justificacion 
-** Insercion repetida de ligams extèrnes publicitaris (spam) 
-** Insercion de contengut sens cap de sens 
-** Temptativa d’intimidacion o agarriment 
-** Abús d’utilizacion de comptes multiples 
+'ipbreason-dropdown'          => '* Motius de blocatge mai frequents
+** Vandalisme
+** Insercion d’informacions faussas
+** Supression de contengut sens justificacion
+** Insercion repetida de ligams extèrnes publicitaris (spam)
+** Insercion de contengut sens cap de sens
+** Temptativa d’intimidacion o agarriment
+** Abús d’utilizacion de comptes multiples
 ** Nom d’utilizaire inacceptable, injuriós o difamant',
 'ipbanononly'                 => 'Blocar unicament los utilizaires anonims',
 'ipbcreateaccount'            => 'Empachar la creacion de compte',
@@ -1668,7 +1668,7 @@ jol nom novèl. Se vos plai, fusionatz-las manualament.",
 'movereason'              => 'Rason del renomenatge',
 'revertmove'              => 'anullar',
 'delete_and_move'         => 'Suprimir e tornar nomenar',
-'delete_and_move_text'    => '==Supression requesida== 
+'delete_and_move_text'    => '==Supression requesida==
 
 L’article de destinacion « [[$1]] » existís ja. Volètz lo suprimir per permetre lo renomenatge ?',
 'delete_and_move_confirm' => 'Òc, accèpti de suprimir la pagina de destinacion per permetre lo renomenatge.',
@@ -1684,7 +1684,7 @@ Per exportar de paginas, entratz lors títols dins la boita de tèxt çai jos, u
 
 Dins aqueste darrièr cas, podètz tanben utilizar un ligam, coma [[{{ns:special}}:Export/{{Mediawiki:mainpage}}]] per la pagina {{Mediawiki:mainpage}}.",
 'exportcuronly'     => 'Exportar unicament la version correnta sens l’istoric complet',
-'exportnohistory'   => "---- 
+'exportnohistory'   => "----
 '''Nòta :''' l’exportacion complèta de l’istoric de las paginas amb l’ajuda d'aqueste formulari es estada desactivada per de rasons de performàncias.",
 'export-submit'     => 'Exportar',
 'export-addcattext' => 'Ajustar las paginas de la categoria :',
@@ -1915,7 +1915,7 @@ $1",
 # Bad image list
 'bad_image_list' => "Lo format es lo seguent :
 
-Solas las listas d'enumeracion (las linhas començant per *) son presas en compte. Lo primièr ligam d'una linha deu èsser cap a un imatge marrit. 
+Solas las listas d'enumeracion (las linhas començant per *) son presas en compte. Lo primièr ligam d'una linha deu èsser cap a un imatge marrit.
 Los autres ligams sus la meteissa linha son considerats coma d'excepcions, per exemple d'articles sulsquals l'imatge deu aparéisser.",
 
 # Metadata
@@ -2214,9 +2214,9 @@ Verificatz vòstra adreça. Retorn del programa de corrièr electronic : $1',
 'confirmemail_subject'    => 'Confirmacion d’adreça de corrièr electronic per {{SITENAME}}',
 'confirmemail_body'       => "Qualqu’un, probablament vos amb l’adreça IP $1, a enregistrat un compte « $2 » amb aquesta adreça de corrièr electronic sul sit {{SITENAME}}.
 
-Per confirmar qu'aqueste compte vos aparten vertadièrament e activar las foncions de messatjariá sus {{SITENAME}}, seguissètz lo ligam çaijós dins vòstre navegaire : 
+Per confirmar qu'aqueste compte vos aparten vertadièrament e activar las foncions de messatjariá sus {{SITENAME}}, seguissètz lo ligam çaijós dins vòstre navegaire :
 
-$3 
+$3
 
 Se s’agís pas de vos, dobrissetz pas lo ligam. Aqueste còde de confirmacion expirarà lo $4.",
 

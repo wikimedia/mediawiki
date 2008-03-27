@@ -633,8 +633,8 @@ u u gornjem polju biti sačuvan kad pritisnete "Snimi stranicu".',
 'editingold'                => '<strong>UPOZORENJE: Uređujete stariju inačicu
 ove stranice. Ako je sačuvate, sve će promjene učinjene nakon ove inačice biti izgubljene.</strong>',
 'yourdiff'                  => 'Razlike',
-'copyrightwarning'          => '<div style="display:block;vertical-align: top;width:100%; background:#FFFFFF; color:#000000; text-align:center; font-weight:bold; font-size:100%;margin-bottom:5px;margin-top:0;margin-left:-5px;margin-right:-4px;">NE POSTAVLJAJTE RADOVE ZAŠTIĆENE AUTORSKIM PRAVIMA BEZ DOPUŠTENJA!</div> 
-*<strong>Nemojte</strong> izravno kopirati sadržaje s drugih internetskih stranica ako nemate izričito dopuštenje. Ako imate dopuštenje, napišite to na pripadnoj stranici za razgovor članka. Molimo uočite da se svi doprinosi {{SITENAME}} smatraju objavljenima pod uvjetima $2 (vidi $1 za detalje). 
+'copyrightwarning'          => '<div style="display:block;vertical-align: top;width:100%; background:#FFFFFF; color:#000000; text-align:center; font-weight:bold; font-size:100%;margin-bottom:5px;margin-top:0;margin-left:-5px;margin-right:-4px;">NE POSTAVLJAJTE RADOVE ZAŠTIĆENE AUTORSKIM PRAVIMA BEZ DOPUŠTENJA!</div>
+*<strong>Nemojte</strong> izravno kopirati sadržaje s drugih internetskih stranica ako nemate izričito dopuštenje. Ako imate dopuštenje, napišite to na pripadnoj stranici za razgovor članka. Molimo uočite da se svi doprinosi {{SITENAME}} smatraju objavljenima pod uvjetima $2 (vidi $1 za detalje).
 *Ako ne želite da se vaše pisanje nemilosrdno uređuje i slobodno raspačava, nemojte ga ovamo slati. Također nam obećavate da ste ovo sami napisali, ili da ste to prepisali iz nečeg što je u javnom vlasništvu ili pod sličnom slobodnom licencijom.',
 'copyrightwarning2'         => 'Svi doprinosi {{SITENAME}} mogu biti mijenjani od strane svih suradnika. Ako ne želite da se vaše pisanje nemilosrdno uređuje, nemojte ga slati ovdje.<br /> Također nam obećavate da ste ovo sami napisali, ili da ste to prepisali iz nečeg što je u javnom vlasništvu ili pod sličnom slobodnom licencijom (vidi $1 za detalje). <strong>NE STAVLJAJTE ZAŠTIĆENE RADOVE BEZ DOPUŠTENJA!</strong>',
 'longpagewarning'           => 'PAŽNJA: Ova stranica je dugačka $1 kilobajta; neki bi preglednici mogli imati problema pri uređivanju stranica koje se približavaju ili su duže od 32 kb.
@@ -658,8 +658,8 @@ Možete se vratiti i uređivati već postojeće stranice ili se [[Special:Userlo
 'nocreate-loggedin'         => 'Nemate ovlasti za stvaranje novih stranica na {{SITENAME}}.',
 'permissionserrors'         => 'Pogreška u pravima',
 'permissionserrorstext'     => 'Nemate ovlasti za tu radnju iz sljedećih {{PLURAL:$1|razlog|razloga}}:',
-'recreate-deleted-warn'     => "'''Upozorenje: Postavljate stranicu koja je prethodno brisana.''' 
- 
+'recreate-deleted-warn'     => "'''Upozorenje: Postavljate stranicu koja je prethodno brisana.'''
+
 Razmotrite je li nastavljanje uređivanja ove stranice u skladu s pravilima.
 Za vašu informaciju slijedi evidencija brisanja s obrazloženjem za prethodno brisanje:",
 
@@ -1178,7 +1178,7 @@ Duljina [http://meta.wikimedia.org/wiki/Help:Job_queue zadataka za izvršavanje]
 'disambiguations-text' => "Sljedeće stranice povezuju na '''razdvojbenu stranicu'''. Umjesto toga bi trebale povezivati na prikladnu temu. <br />Stranica se tretira kao razdvojbena stranica ako koristi predložak na kojega vodi [[MediaWiki:disambiguationspage]]",
 
 'doubleredirects'     => 'Dvostruka preusmjeravanja',
-'doubleredirectstext' => 'Ovo je popis preusmjeravanja na stranice za preusmjeravanje. 
+'doubleredirectstext' => 'Ovo je popis preusmjeravanja na stranice za preusmjeravanje.
 Svaki redak sadrži poveznice na prvo i drugo preusmjeravanje, te na prvi redak teksta drugog preusmjeravanja
 koja obično ukazuje na "pravu" odredišnu stranicu, na koju bi trebalo pokazivati prvo preusmjeravanje.',
 
@@ -2258,7 +2258,7 @@ Već vam je e-mailom poslan potvrdni kôd; ako ste upravo otvorili suradnički r
 </div>',
 'confirmemail_send'       => 'Pošalji kôd za potvrdu e-mail adrese',
 'confirmemail_sent'       => 'Poruka s potvrdom je poslana.',
-'confirmemail_oncreate'   => 'Potvrdni kôd poslan je na vašu elektroničku adresu. 
+'confirmemail_oncreate'   => 'Potvrdni kôd poslan je na vašu elektroničku adresu.
 Ovaj kôd nije potreban za prijavljivanje, no bit će vam potreban kako biste osposobili neke od postavki na Wikipediji koje uključuju elektroničku poštu.',
 'confirmemail_sendfailed' => 'Poruka s potvrdom se nije mogla poslati. Provjerite pravilnost adrese.
 
@@ -2407,7 +2407,7 @@ Također možete koristiti [[Special:Watchlist/edit|uređivanje popisa putem ''k
 'filepath-page'    => 'Datoteka:',
 'filepath-submit'  => 'Putanja',
 'filepath-summary' => "Ova posebna stranica daje Vam kompletnu putanju do neke datoteke. Slike se na taj način prikazuju u punoj rezoluciji, drugi tipovi datoteka se otvaraju na klik (kako je već namješteno u vašem operacijskom sustavu).
-	
+
 	Unesite ime datoteke bez predmetka (''prefiksa'') imenskog prostora \"{{ns:image}}:\".",
 
 # Special:FileDuplicateSearch

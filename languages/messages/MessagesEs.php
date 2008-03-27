@@ -3,28 +3,28 @@
  *
  * @addtogroup Language
  *
- * @author Icvav
- * @author Platonides
- * @author Sanbec
- * @author Lin linao
- * @author Alhen
- * @author Spacebirdy
- * @author Orgullomoore
- * @author Mahadeva
+﻿ * @author Alhen
  * @author Alpertron
- * @author Better
- * @author Nike
- * @author לערי ריינהארט
- * @author Siebrand
- * @author Piolinfax
- * @author Dmcdevit
- * @author Toniher
  * @author Ascánder
- * @author Technorum
- * @author SPQRobin
- * @author Bengoa
- * @author Jurock
  * @author Baiji
+ * @author Bengoa
+ * @author Better
+ * @author Dmcdevit
+ * @author Icvav
+ * @author Jurock
+ * @author Lin linao
+ * @author Mahadeva
+ * @author Nike
+ * @author Orgullomoore
+ * @author Piolinfax
+ * @author Platonides
+ * @author SPQRobin
+ * @author Sanbec
+ * @author Siebrand
+ * @author Spacebirdy
+ * @author Technorum
+ * @author Toniher
+ * @author לערי ריינהארט
  */
 
 $skinNames = array(
@@ -456,7 +456,7 @@ Compruebe que lo ha escrito correctamente, o use el formulario de abajo para cre
 'passwordtooshort'           => 'Su contraseña es muy corta. Debe tener al menos $1 caracteres.',
 'mailmypassword'             => 'Envíame una nueva contraseña por correo electrónico',
 'passwordremindertitle'      => 'Recordatorio de contraseña de {{SITENAME}}',
-'passwordremindertext'       => 'Alguien (probablemente tú, desde la dirección IP $1) solicitó que te enviáramos una nueva contraseña para su cuenta en {{SITENAME}} ($4). 
+'passwordremindertext'       => 'Alguien (probablemente tú, desde la dirección IP $1) solicitó que te enviáramos una nueva contraseña para su cuenta en {{SITENAME}} ($4).
 La contraseña para el usuario "$2" es ahora "$3".
 Ahora deberías iniciar sesión y cambiar tu contraseña.
 
@@ -892,7 +892,7 @@ Los grupos no seleccionados no cambiarán. Puede deseleccionar pulsando la tecla
 'uploaderror'                 => 'Error al intentar subir archivo',
 'uploadtext'                  => "Utilize el siguiente formulario para subir archivos. Para ver o buscar archivos subidos con anterioridad, ir a [[Special:Imagelist|lista de archivos subidos]]. Lo que haya subido o borrado quedará registrado además en el [[Special:Log/upload|registro de archivos subidos]].
 
-Para incluir un archivo en una página, utilice en el formulario los enlaces 
+Para incluir un archivo en una página, utilice en el formulario los enlaces
 '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:File.jpg]]</nowiki>''',
 '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:File.png|alt text]]</nowiki>''', o
 '''<nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki>''', para vincular directamente el archivo.",
@@ -905,7 +905,7 @@ Para incluir un archivo en una página, utilice en el formulario los enlaces
 'filestatus'                  => 'Estado de copyright:',
 'filesource'                  => 'Fuente:',
 'uploadedfiles'               => 'Archivos subidos',
-'ignorewarning'               => 'Ignorar aviso y guardar de todos modos.',
+'ignorewarning'               => 'Ignorar aviso y guardar de todos modos',
 'ignorewarnings'              => 'Ignorar cualquier aviso',
 'minlength1'                  => 'Los nombres de archivo deben tener al menos una letra.',
 'illegalfilename'             => 'El nombre de archivo «$1» contiene caracteres que no están permitidos en títulos de páginas. Por favor, renombra el archivo e intenta volver a subirlo.',
@@ -1259,6 +1259,7 @@ Cambie las opciones de su lista de seguimiento en:
 'excontentauthor'             => "El contenido era: '$1' (y el único autor fue '$2')",
 'exbeforeblank'               => "El contenido antes de blanquear era: '$1'",
 'exblank'                     => 'página estaba vacía',
+'delete-confirm'              => 'Borrar "$1"',
 'delete-legend'               => 'Borrar',
 'historywarning'              => 'Atención: La página que está a punto de borrar tiene un historial:',
 'confirmdeletetext'           => 'Estás a punto de borrar una página
@@ -1409,6 +1410,7 @@ $1',
 
 # Block/unblock
 'blockip'                     => 'Bloquear usuario',
+'blockip-legend'              => 'Bloquear usuario',
 'blockiptext'                 => 'Usa el formulario siguiente para bloquear el
 acceso de escritura desde una dirección IP específica o un nombre de usuario.
 Esto debería hacerse sólo para prevenir vandalismos, y de
@@ -1540,6 +1542,7 @@ En estos casos, deberá trasladar manualmente el contenido de la página de disc
 'pagemovedsub'            => 'Renombrado realizado con éxito',
 'movepage-moved'          => "<big>'''«$1» ha sido trasladado a «$2»'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => 'Ya existe una página con ese nombre o el nombre que ha elegido no es válido. Por favor, elija otro nombre.',
+'cantmove-titleprotected' => 'No se pueden mover páginas a esta ubicacion, porque se ha protegido la creación de este nuevo título.',
 'talkexists'              => 'La página fue renombrada con éxito, pero la discusión no se pudo mover porque ya existe una en el título nuevo. Por favor incorpore su contenido manualmente.',
 'movedto'                 => 'renombrado a',
 'movetalk'                => 'Renombrar la página de discusión también, si es aplicable.',
@@ -1761,6 +1764,7 @@ Todas las importaciones transwiki se registran en el [[Special:Log/import|regist
 'mediawarning'         => "'''Atención''': Este fichero puede contener código malicioso, ejecutarlo podría comprometer la seguridad de tu equipo.<hr />",
 'imagemaxsize'         => 'Limitar imágenes en las páginas de descripción a:',
 'thumbsize'            => 'Tamaño de las vistas en miniatura:',
+'widthheightpage'      => '$1×$2, $3 páginas',
 'file-info'            => '(tamaño de archivo: $1; tipo MIME: $2)',
 'file-info-size'       => '($1 × $2 píxeles; tamaño de archivo: $3; tipo MIME: $4)',
 'file-nohires'         => '<small>No disponible a mayor resolución.</small>',
@@ -1787,7 +1791,7 @@ Los siguientes enlaces en la misma línea se consideran las exepciones (los art�
 'metadata-help'     => 'Este archivo contiene información adicional (metadatos), probablemente añadida por la cámara digital, el escáner o el programa usado para crearlo o digitalizarlo. Si el archivo ha sido modificado desde su estado original, pueden haberse perdido algunos detalles.',
 'metadata-expand'   => 'Mostrar datos detallados',
 'metadata-collapse' => 'Ocultar datos detallados',
-'metadata-fields'   => 'Los campos de metadatos EXIF que se listan en este mensaje se mostrarán en la página de descripción de la imagen aún cuando la tabla de metadatos esté plegada. Existen otros campos que se mantendrán ocultos por defecto. 
+'metadata-fields'   => 'Los campos de metadatos EXIF que se listan en este mensaje se mostrarán en la página de descripción de la imagen aún cuando la tabla de metadatos esté plegada. Existen otros campos que se mantendrán ocultos por defecto.
 * make
 * model
 * datetimeoriginal
@@ -2169,9 +2173,11 @@ Intenta la previsualización normal.',
 'watchlisttools-raw'  => 'Editar lista de seguimiento en crudo',
 
 # Special:Version
-'version'              => 'Versión', # Not used as normal message but as header for the special page itself
-'version-specialpages' => 'Páginas especiales',
-'version-parserhooks'  => "Lligams de l'analitzador",
+'version'                  => 'Versión', # Not used as normal message but as header for the special page itself
+'version-specialpages'     => 'Páginas especiales',
+'version-parserhooks'      => "Lligams de l'analitzador",
+'version-license'          => 'Licencia',
+'version-software-version' => 'Versión',
 
 # Special:Filepath
 'filepath'        => 'Ruta de archivo',

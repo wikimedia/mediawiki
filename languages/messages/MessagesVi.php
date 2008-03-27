@@ -399,7 +399,7 @@ $messages = array(
 'nstab-media'     => 'Phương tiện',
 'nstab-special'   => 'Đặc biệt',
 'nstab-project'   => 'Dự án',
-'nstab-image'     => 'Hình',
+'nstab-image'     => 'Tập tin',
 'nstab-mediawiki' => 'Thông báo',
 'nstab-template'  => 'Tiêu bản',
 'nstab-help'      => 'Trợ giúp',
@@ -611,7 +611,7 @@ Người thực hiện cấm là $1. Lý do được cung cấp là ''$2''.
 * Người bị cấm: $7
 
 Bạn có thể liên lạc với $1 hoặc một [[{{MediaWiki:Grouppage-sysop}}|người quản lý]] khác để thảo luận về việc cấm.
-Bạn không thể sử dụng tính năng “gửi thư cho người này” trừ khi bạn đã đăng ký một địa chỉ thư điện tử hợp lý trong 
+Bạn không thể sử dụng tính năng “gửi thư cho người này” trừ khi bạn đã đăng ký một địa chỉ thư điện tử hợp lý trong
 [[Special:Preferences|tùy chọn tài khoản]] và bạn không bị khóa chức năng đó. Địa chỉ IP hiện tại của bạn là $3, và mã số cấm là #$5. Xin hãy ghi kèm theo một trong hai hoặc cả hai vào các yêu cầu của bạn.",
 'autoblockedtext'           => "Địa chỉ IP của bạn đã bị tự động cấm vì một người nào đó đã sử dụng nó, và người đó đã bị $1 cấm.
 Lý do được cung cấp là:
@@ -659,14 +659,14 @@ Mã số cấm của bạn là $5. Xin hãy ghi kèm mã số này trong những
 'note'                      => '<strong>Ghi chú:</strong>',
 'previewnote'               => '<strong>Đây chỉ mới là xem thử; các thay đổi vẫn chưa được lưu!</strong>',
 'previewconflict'           => 'Phần xem thử này là kết quả của văn bản trong vùng soạn thảo phía trên và nó sẽ xuất hiện như vậy nếu bạn chọn lưu trang.',
-'session_fail_preview'      => '<strong>Xin lỗi! Những sửa đổi của bạn chưa được lưu giữ do mất dữ liệu về phiên làm việc. 
+'session_fail_preview'      => '<strong>Xin lỗi! Những sửa đổi của bạn chưa được lưu giữ do mất dữ liệu về phiên làm việc.
 Xin hãy thử lần nữa. Nếu vẫn không thành công, bạn hãy thử đăng xuất và đăng nhập lại.</strong>',
 'session_fail_preview_html' => "<strong>Xin lỗi! Những sửa đổi của bạn chưa được lưu giữ do mất dữ liệu về phiên làm việc.</strong>
 
 ''Do {{SITENAME}} cho phép dùng mã HTML, trang xem thử được giấu đi để đề phòng bị tấn công bằng JavaScript.''
 
 <strong>Nếu sửa đổi này là đúng đắn, xin hãy thử lần nữa. Nếu vẫn không thành công, bạn hãy thử đăng xuất và đăng nhập lại.</strong>",
-'token_suffix_mismatch'     => '<strong>Sửa đổi của bạn bị hủy bỏ vì trình duyệt của bạn lẫn lộn các ký tự dấu trong số hiệu 
+'token_suffix_mismatch'     => '<strong>Sửa đổi của bạn bị hủy bỏ vì trình duyệt của bạn lẫn lộn các ký tự dấu trong số hiệu
 sửa đổi. Việc hủy bỏ này nhằm tránh nội dung trang bị hỏng.
 Điều này thường xảy ra khi bạn sử dụng một dịch vụ proxy vô danh trên web có vấn đề.</strong>',
 'editing'                   => 'Sửa đổi $1',
@@ -771,10 +771,10 @@ có thể có thêm chi tiết tại [{{fullurl:Special:Log/delete|page={{FULLPA
 'revdelete-nooldid-text'      => 'Chưa chọn phiên bản để thực hiện thao tác.',
 'revdelete-selected'          => "{{PLURAL:$2|Phiên bản|Các phiên bản}} được chọn của '''$1:'''",
 'logdelete-selected'          => "{{PLURAL:$2|Nhật trình đã chọn|Các nhật trình đã chọn}} của '''$1:'''",
-'revdelete-text'              => 'Các phiên bản và sự kiện bị xóa vẫn còn trong lịch sử trang và nhật trình, 
+'revdelete-text'              => 'Các phiên bản và sự kiện bị xóa vẫn còn trong lịch sử trang và nhật trình,
 nhưng mọi người sẽ không xem được một số phần của các nội dung đó.
 
-Các quản lý khác ở {{SITENAME}} vẫn có thể truy nhập vào nội dung đã giấu và 
+Các quản lý khác ở {{SITENAME}} vẫn có thể truy nhập vào nội dung đã giấu và
 phục hồi lại bằng cách dùng giao diện này, trừ trường hợp thiết lập thêm một số hạn chế.',
 'revdelete-legend'            => 'Thiết lập hạn chế:',
 'revdelete-hide-text'         => 'Giấu văn bản của phiên bản',
@@ -855,7 +855,7 @@ Xin hãy bảo đảm giữ vững tính liên tục của lịch sử trang.',
 'search-redirect'       => '(đổi hướng $1)',
 'search-section'        => '(đề mục $1)',
 'search-suggest'        => 'Có phải bạn muốn tìm: $1',
-'searchall'             => 'Tất cả',
+'searchall'             => 'tất cả',
 'showingresults'        => "Xem '''$1''' kết quả bắt đầu từ #'''$2'''.",
 'showingresultsnum'     => "Xem '''$3''' kết quả bắt đầu từ #'''$2'''.",
 'showingresultstotal'   => "Dưới đây là kết quả từ '''$1 - $2''' trong tổng số '''$3'''",
@@ -1010,12 +1010,12 @@ Xin hãy bảo đảm giữ vững tính liên tục của lịch sử trang.',
 'upload'                      => 'Tải tập tin lên',
 'uploadbtn'                   => 'Tải lên',
 'reupload'                    => 'Tải lại',
-'reuploaddesc'                => 'Quay lại trang tải tập tin.',
+'reuploaddesc'                => 'Hủy tác vụ tải và quay lại mẫu tải tập tin lên',
 'uploadnologin'               => 'Chưa đăng nhập',
 'uploadnologintext'           => 'Bạn phải [[Special:Userlogin|đăng nhập]] để tải tập tin lên.',
 'upload_directory_read_only'  => 'Máy chủ không thể sửa đổi thư mục tải lên ($1) được.',
 'uploaderror'                 => 'Lỗi khi tải lên',
-'uploadtext'                  => "Hãy sử dụng mẫu sau để tải tập tin. 
+'uploadtext'                  => "Hãy sử dụng mẫu sau để tải tập tin.
 Để xem hoặc tìm kiếm những hình ảnh đã được tải lên trước đây, xin mời xem [[Special:Imagelist|danh sách các tập tin đã tải lên]]; việc tải lên và xóa đi cũng được ghi lại trong [[Special:Log/upload|nhật trình tải lên]].
 
 Để đưa hình vào trang, hãy dùng một liên kết theo dạng '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:Tập tin.jpg]]</nowiki>''',
@@ -1079,7 +1079,7 @@ Bạn nên cân nhắc trong việc tiếp tục tải lên tập tin này. Nh�
 'filename-prefix-blacklist'   => ' #<!-- xin để nguyên hàng này --> <pre>
 # Cú pháp như sau:
 #   * Các ký tự từ dấu "#" trở đến cuối hàng là chú thích
-#   * Các dòng sau là các tiền tố do các máy ảnh số gán tự động cho tên tập tin 
+#   * Các dòng sau là các tiền tố do các máy ảnh số gán tự động cho tên tập tin
 CIMG # Casio
 DSC_ # Nikon
 DSCF # Fuji
@@ -1111,8 +1111,8 @@ PICT # khác
 'upload_source_file' => ' (tập tin trên máy của bạn)',
 
 # Special:Imagelist
-'imagelist-summary'     => 'Trang đặc biệt này liệt kê các tập tin được tải lên. 
-Theo mặc định, các tập tin mới nhất được xếp vào đầu danh sách. 
+'imagelist-summary'     => 'Trang đặc biệt này liệt kê các tập tin được tải lên.
+Theo mặc định, các tập tin mới nhất được xếp vào đầu danh sách.
 Hãy nhấn chuột vào tiêu đề cột để thay đổi thứ tự sắp xếp.',
 'imagelist_search_for'  => 'Tìm kiếm theo tên tập tin:',
 'imgdesc'               => 'miêu tả',
@@ -1432,7 +1432,7 @@ Phản hồi và cần sự hỗ trợ:
 Xóa “$1”',
 'delete-legend'               => 'Xóa',
 'historywarning'              => 'Cảnh báo: Trang bạn sắp xóa đã có lịch sử:',
-'confirmdeletetext'           => 'Bạn sắp xóa hẳn một trang cùng với tất cả lịch sử của nó. 
+'confirmdeletetext'           => 'Bạn sắp xóa hẳn một trang cùng với tất cả lịch sử của nó.
 Xin xác nhận việc bạn định làm, và hiểu rõ những hệ lụy của nó, và bạn thực hiện nó theo đúng đúng [[{{MediaWiki:Policy-url}}|quy định]].',
 'actioncomplete'              => 'Đã thực hiện xong',
 'deletedtext'                 => 'Đã xóa “<nowiki>$1</nowiki>”. Xem danh sách các xóa bỏ gần nhất tại $2.',
@@ -1513,16 +1513,16 @@ hiện tại của trang <strong>$1</strong>:',
 'undeletepagetitle'            => "'''Sau đây là những phiên bản đã bị xóa của [[:$1]].'''",
 'viewdeletedpage'              => 'Xem các trang bị xóa',
 'undeletepagetext'             => 'Các trang sau đã bị xóa nhưng vẫn nằm trong kho lưu trữ và có thể phục hồi được. Kho lưu trữ sẽ được khóa định kỳ.',
-'undeleteextrahelp'            => "Để phục hồi toàn bộ trang, hãy để trống các hộp kiểm và 
+'undeleteextrahelp'            => "Để phục hồi toàn bộ trang, hãy để trống các hộp kiểm và
 bấm nút '''''Phục hồi'''''. Để thực hiện phục hồi có chọn lọc, hãy đánh dấu vào hộp kiểm của các phiên bản muốn phục hồi và bấm nút '''''Phục hồi'''''. Bấm nút '''''Tẩy trống''''' sẽ tẩy trống ô lý do và tất cả các hộp kiểm.",
 'undeleterevisions'            => '$1 bản đã được lưu',
-'undeletehistory'              => 'Nếu bạn khôi phục trang này, tất cả các phiên bản của nó sẽ được phục hồi vào lịch sử của trang. 
-Nếu một trang mới có cùng tên đã được tạo ra kể từ khi xóa trang này, các phiên bản 
+'undeletehistory'              => 'Nếu bạn khôi phục trang này, tất cả các phiên bản của nó sẽ được phục hồi vào lịch sử của trang.
+Nếu một trang mới có cùng tên đã được tạo ra kể từ khi xóa trang này, các phiên bản
 được khôi phục sẽ xuất hiện trong lịch sử trước. Cũng chú ý rằng các giới hạn áp dụng lên các phiên bản tập tin sẽ bị mất khi phục hồi',
-'undeleterevdel'               => 'Việc phục hồi sẽ không được thực hiện nếu nó dẫn đến việc phiên bản trang hoặc tập tin trên cùng bị xóa mất một phần. 
+'undeleterevdel'               => 'Việc phục hồi sẽ không được thực hiện nếu nó dẫn đến việc phiên bản trang hoặc tập tin trên cùng bị xóa mất một phần.
 Trong trường hợp đó, bạn phải bỏ đánh dấu hộp kiểm hoặc bỏ ẩn những phiên bản bị xóa mới nhất.',
-'undeletehistorynoadmin'       => 'Trang này đã bị xóa. Lý do xóa trang được 
-hiển thị dưới đây, cùng với thông tin về các người đã sửa đổi trang này 
+'undeletehistorynoadmin'       => 'Trang này đã bị xóa. Lý do xóa trang được
+hiển thị dưới đây, cùng với thông tin về các người đã sửa đổi trang này
 trước khi bị xóa. Chỉ cóngười quản lý mới xem được văn bản đầy đủ của những phiên bản trang bị xóa.',
 'undelete-revision'            => 'Phiên bản của $1 do $3 xóa (vào lúc $2):',
 'undeleterevision-missing'     => 'Phiên bản này không hợp lệ hay không tồn tại. Đây có thể là một địa chỉ sai, hoặc là phiên bản đã được phục hồi hoặc đã xóa khỏi kho lưu trữ.',
@@ -1593,7 +1593,7 @@ $1',
 # Block/unblock
 'blockip'                     => 'Cấm thành viên',
 'blockip-legend'              => 'Cấm thành viên',
-'blockiptext'                 => 'Dùng mẫu dưới để cấm một địa chỉ IP hoặc thành viên không được viết trang. Điều này chỉ nên làm để tránh phá hoại, 
+'blockiptext'                 => 'Dùng mẫu dưới để cấm một địa chỉ IP hoặc thành viên không được viết trang. Điều này chỉ nên làm để tránh phá hoại,
 và phải theo [[{{MediaWiki:Policy-url}}|quy định]]. Điền vào lý do cụ thể ở dưới (ví dụ, chỉ ra trang nào bị phá hoại).',
 'ipaddress'                   => 'Địa chỉ IP:',
 'ipadressorusername'          => 'Địa chỉ IP hay tên thành viên:',
@@ -1680,12 +1680,12 @@ và phải theo [[{{MediaWiki:Policy-url}}|quy định]]. Điền vào lý do c�
 'lockdb'              => 'Khóa cơ sở dữ liệu',
 'unlockdb'            => 'Mở khóa cơ sở dữ liệu',
 'lockdbtext'          => 'Khóa cơ sở dữ liệu sẽ ngưng tất cả khả năng
-sửa đổi các trang, thay đổi tùy chọn cá nhân, sửa danh sách theo dõi, 
+sửa đổi các trang, thay đổi tùy chọn cá nhân, sửa danh sách theo dõi,
 và những thao tác khác của thành viên đòi hỏi phải thay đổi trong cơ sở dữ liệu.
-Xin hãy xác nhận những việc bạn định làm, và rằng bạn sẽ 
+Xin hãy xác nhận những việc bạn định làm, và rằng bạn sẽ
 mở khóa cơ sở dữ liệu khi xong công việc bảo trì của bạn.',
 'unlockdbtext'        => 'Mở khóa cơ sở dữ liệu sẽ khôi phục lại tất cả khả năng
-sửa đổi trang, thay đổi tùy chọn cá nhân, sửa đổi danh sách theo dõi, 
+sửa đổi trang, thay đổi tùy chọn cá nhân, sửa đổi danh sách theo dõi,
 và nhiều thao tác khác của thành viên đòi hỏi phải có thay đổi trong cơ sở dữ liệu.
 Xin hãy xác nhận đây là điều bạn định làm.',
 'lockconfirm'         => 'Vâng, tôi thực sự muốn khóa cơ sở dữ liệu.',
@@ -1714,7 +1714,7 @@ tiếp tục trỏ đến nơi chúng cần đến.
 
 Chú ý rằng trang sẽ '''không''' bị di chuyển nếu đã có
 một trang tại tên mới, trừ khi nó rỗng hoặc là trang đổi hướng
-và không có lịch sử sửa đổi. Điều này có nghĩa là bạn có thể đổi tên 
+và không có lịch sử sửa đổi. Điều này có nghĩa là bạn có thể đổi tên
 trang lại như cũ nếu bạn có nhầm lẫn, và bạn không thể ghi đè
 lên một trang đã có sẵn.
 
@@ -1736,7 +1736,7 @@ Trong những trường hợp đó, bạn phải di chuyển hoặc hợp nhất
 'movepagebtn'             => 'Di chuyển trang',
 'pagemovedsub'            => 'Di chuyển thành công',
 'movepage-moved'          => "<big>'''“$1” đã được di chuyển đến “$2”'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
-'articleexists'           => 'Đã có một trang với tên đó, hoặc 
+'articleexists'           => 'Đã có một trang với tên đó, hoặc
 tên bạn chọn không hợp lệ.
 Xin hãy chọn tên khác.',
 'cantmove-titleprotected' => 'Bạn không thể đổi tên trang, vì tên trang mới đã bị khóa không cho tạo mới',
@@ -2005,7 +2005,7 @@ Các liên kết sau đó trên cùng một dòng được xem là các ngoại 
 'metadata-help'     => 'Tập tin này có chứa thông tin về nó, do máy ảnh hay máy quét thêm vào. Nếu tập tin bị sửa đổi sau khi được tạo ra lần đầu, có thể thông tin này không được cập nhật.',
 'metadata-expand'   => 'Xem chi tiết cấp cao',
 'metadata-collapse' => 'Giấu chi tiết cấp cao',
-'metadata-fields'   => 'Những thông tin đặc tính EXIF được danh sách dưới đây 
+'metadata-fields'   => 'Những thông tin đặc tính EXIF được danh sách dưới đây
 sẽ được đưa vào vào trang miêu tả hình khi bảng đặc tính
 được thu nhỏ. Những thông tin khác mặc định sẽ bị giấu.
 * make
@@ -2291,8 +2291,8 @@ hãy cố gắng yêu cầu mã mới.
 </div>',
 'confirmemail_send'        => 'Gửi thư xác nhận',
 'confirmemail_sent'        => 'Thư xác nhận đã được gửi',
-'confirmemail_oncreate'    => 'Đã gửi mã xác nhận đến địa chỉ thư điện tử của bạn. 
-Bạn không cần mã này để đăng nhập, nhưng sẽ cần sử dụng nó để bật 
+'confirmemail_oncreate'    => 'Đã gửi mã xác nhận đến địa chỉ thư điện tử của bạn.
+Bạn không cần mã này để đăng nhập, nhưng sẽ cần sử dụng nó để bật
 các tính năng có dùng thư điện tử của wiki.',
 'confirmemail_sendfailed'  => 'Không thể gửi thư xác nhận. Xin kiểm tra lại địa chỉ thư.
 
@@ -2303,7 +2303,7 @@ Chương trình gửi trả về: $1',
 'confirmemail_loggedin'    => 'Địa chỉ thư điện tử của bạn đã được xác nhận',
 'confirmemail_error'       => 'Có trục trặc khi lưu xác nhận của bạn.',
 'confirmemail_subject'     => 'Xác nhận thư điện tử tại {{SITENAME}}',
-'confirmemail_body'        => 'Ai đó, có thể là bạn, từ địa chỉ IP $1, 
+'confirmemail_body'        => 'Ai đó, có thể là bạn, từ địa chỉ IP $1,
 đã đăng ký tài khoản có tên "$2" với địa chỉ thư điện tử này tại {{SITENAME}}.
 
 Để xác nhận rằng tài khoản này thực sự là của bạn và để kích hoạt tính năng thư điện tử tại {{SITENAME}}, xin mở liên kết này trong trình duyệt:
@@ -2360,7 +2360,7 @@ $1',
 # Multipage image navigation
 'imgmultipageprev' => '← trang trước',
 'imgmultipagenext' => 'trang sau →',
-'imgmultigo'       => 'Hiển thị',
+'imgmultigo'       => 'Xem',
 'imgmultigotopre'  => 'Xem trang',
 
 # Table pager
@@ -2371,7 +2371,7 @@ $1',
 'table_pager_first'        => 'Trang đầu',
 'table_pager_last'         => 'Trang cuối',
 'table_pager_limit'        => 'Xem $1 kết quả mỗi trang',
-'table_pager_limit_submit' => 'Hiển thị',
+'table_pager_limit_submit' => 'Xem',
 'table_pager_empty'        => 'Không có kết quả nào.',
 
 # Auto-summaries

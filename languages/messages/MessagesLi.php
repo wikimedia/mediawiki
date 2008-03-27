@@ -49,7 +49,7 @@ $namespaceAliases = array(
 	'Euverlèk_afbeelding' => NS_IMAGE_TALK,
 );
 
-$dateFormats = array(	
+$dateFormats = array(
 	'mdy time' => 'H:i',
 	'mdy date' => 'M j, Y',
 	'mdy both' => 'M j, Y H:i',
@@ -349,7 +349,7 @@ $messages = array(
 'databaseerror'        => 'Databasefout',
 'dberrortext'          => 'Bie \'t zeuke is \'n syntaxfout in de database opgetreje.
 Dit kint zien veroorzaak door \'n óngeljige zeukactie (zuug $5),
-of \'t duujt op \'n fout in de software. 
+of \'t duujt op \'n fout in de software.
 De lètste zeukpoeging in de database waor:
 <blockquote><tt>$1</tt></blockquote>
 vanoet de functie "<tt>$2</tt>".
@@ -571,7 +571,7 @@ Doe kins deze blokkaasj bespraeke mèt $1 of 'ne angere [[{{MediaWiki:Grouppage-
 'accmailtitle'              => 'Wachwaord versjtuurd.',
 'accmailtext'               => "'t Wachwaord veur '$1' is nao $2 versjtuurd.",
 'newarticle'                => '(Nuuj)',
-'newarticletext'            => "De höbs 'ne link gevolg nao 'n pazjena die nog neet besjteit. 
+'newarticletext'            => "De höbs 'ne link gevolg nao 'n pazjena die nog neet besjteit.
 Type in de box hiejónger óm de pazjena te beginne (zuug de [[Help:Contents|helppazjena]] veur mier informatie). Es te hie per óngelök terech bis gekómme, klik dan op de '''trök'''-knóp van diene browser.",
 'anontalkpagetext'          => "----''Dit is de euverlikpazjena veur 'ne anonieme gebroeker dae nog gein account haet aangemak of dae 't neet gebroek. Daorom gebroeke v'r 't IP adres om de gebroeker te identificere. Dat adres kint weure gedeild doer miedere gebroekers. As e 'ne anonieme gebroeker bis en de höbs 't geveul dat 'r onrillevante commentare aan dich gericht zint, kins e 't biste [[Special:Userlogin|'n account crëere of inlogge]] om toekomstige verwarring mit angere anonieme gebroekers te veurkomme.''",
 'noarticletext'             => "(Dees pazjena bevat op 't moment gein teks)",
@@ -773,7 +773,7 @@ Wees zeker det deze wieziging de gesjiedenisdoorloupendheid van de pagina zal be
 'nonefound'             => '<strong>Lèt op:</strong> \'n zeukopdrach kan mislökke door \'t gebroek van (in \'t Ingelsj) väöl veurkómmende wäörd wie "of" en "be", die neet geïndexeerd zint, of door versjillende zeukterme tegeliek op te gaeve (de kries dan allein pazjena\'s te zeen woerin alle opgegaeve terme veurkómme).',
 'powersearch'           => 'Zeuke',
 'powersearch-legend'    => 'Oetgebrèd zeuke',
-'powersearchtext'       => '   
+'powersearchtext'       => '
  Zeuk in naomroemdes :<br />
 $1<br />
 $2 Toen redirects   Zeuk: $3 $9',
@@ -931,7 +931,7 @@ Neet geselecteerde gruup waere neet gewiezig. Deselecteer \'ne groep mit "Ctrl +
 'uploadnologintext'           => 'De mos [[Special:Userlogin|zien aangemèld]] om besjtande te uploade.',
 'upload_directory_read_only'  => 'De webserver kin neet sjrieve in de uploadmap ($1).',
 'uploaderror'                 => "fout in 't uploade",
-'uploadtext'                  => "Gebroek 't óngersjtaonde formuleer óm besjtande op te laje. Óm ierder opgelaje besjtande te bekieke of te zeuke, gank nao de [[Special:Imagelist|lies van opgelaje besjtande]]. Uploads en verwiederinge waere ouch biegehauwte in 't [[Special:Log/upload|uploadlogbook]]. 
+'uploadtext'                  => "Gebroek 't óngersjtaonde formuleer óm besjtande op te laje. Óm ierder opgelaje besjtande te bekieke of te zeuke, gank nao de [[Special:Imagelist|lies van opgelaje besjtande]]. Uploads en verwiederinge waere ouch biegehauwte in 't [[Special:Log/upload|uploadlogbook]].
 
 Gebroek óm 'n plaetje of 'n besjtand in 'n pazjena op te numme 'ne link in de vörm:
 * '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:Besjtand.jpg]]</nowiki>'''
@@ -952,7 +952,7 @@ De letste link is bedoeld veur mediabestenj die gein aafbeilding zeen.",
 'filestatus'                  => 'Auteursrechtesituatie:',
 'filesource'                  => 'Brón:',
 'uploadedfiles'               => 'Ge-uploade bestanden',
-'ignorewarning'               => "Negeer deze waarsjuwing en slao 't bestandj toch op.",
+'ignorewarning'               => "Negeer deze waarsjuwing en slao 't bestandj toch op",
 'ignorewarnings'              => 'Negeer alle waarsjuwinge',
 'minlength1'                  => 'Bestandsname mòtte minstes éine letter bevatte.',
 'illegalfilename'             => 'De bestandjsnaam "$1" bevat ongeldige karakters. Gaef \'t bestandj \'ne angere naam, en probeer \'t dan opnuuj te uploade.',
@@ -1262,7 +1262,7 @@ Op eder raegel vings te de ierste redirectpazjena, de twiede redirectpazjena en 
 'watchnologintext'     => "De mós [[Special:Userlogin|aangemèld]] zeen veur 't verangere van dien volglies.",
 'addedwatch'           => 'Aan volglies toegeveug',
 'addedwatchtext'       => 'De pazjena "<nowiki>$1</nowiki>" is aan dien [[Special:Watchlist|volglies]] toegeveug.
-Toekomstige verangeringe aan deze pazjena en de biebehurende euverlikpazjena weure hie vermèld. 
+Toekomstige verangeringe aan deze pazjena en de biebehurende euverlikpazjena weure hie vermèld.
 Ouch versjiene gevolgde pazjena\'s in \'t <b>vet</b> in de [[Special:Recentchanges|liest van recènte verangeringe]]. <!-- zodat u ze eenvoudiger kan opmerken.-->
 
 <!-- huh? Wen se ein pazjena van dien volgliest wils haole mos e op "sjtop volge"  -- pagina wenst te verwijderen van uw volgliest klik dan op "Van volgliest verwijderen" in de menubalk. -->',
@@ -1362,7 +1362,7 @@ Commentaar en wiejer assistentie:
 'rollbackfailed'              => 'Ongedaon make van wieziginge mislùk.',
 'cantrollback'                => 'Trökdrejje van verangeringe neet meugelik: Dit artikel haet mer einen auteur.',
 'alreadyrolled'               => "'t Is neet meugelik óm de lèste verangering van [[$1]]
-door [[User:$2|$2]] ([[User talk:$2|euverlik]]) óngedaon te make. Emes angers haet de pazjena al hersjtèld of haet 'n anger bewèrking gedaon. 
+door [[User:$2|$2]] ([[User talk:$2|euverlik]]) óngedaon te make. Emes angers haet de pazjena al hersjtèld of haet 'n anger bewèrking gedaon.
 
 De lèste bewèrking is gedaon door [[User:$3|$3]] ([[User talk:$3|euverlik]]).",
 'editcomment'                 => '\'t Bewirkingscommentair waor: "<i>$1</i>".', # only shown if there is an edit comment
@@ -1635,7 +1635,7 @@ Gaef in 't óngerstaonde veldj de name van de te exportere pazjena's op, éine p
 
 In 't letste geval kanse ouch 'ne link gebroeken, beveurbeild [[Special:Export/{{Mediawiki:Mainpage}}]] veure pazjena \"{{Mediawiki:Mainpage}}\".",
 'exportcuronly'     => 'Allein de letste versie, neet de volledige gesjiedenis',
-'exportnohistory'   => "---- 
+'exportnohistory'   => "----
 '''Let op:''' 't exportere van de ganse gesjiedenis is oetgezat waeges prestatieree.",
 'export-submit'     => 'Exportere',
 'export-addcattext' => "Voeg pagina's toe van categorie:",

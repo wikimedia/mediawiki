@@ -428,7 +428,7 @@ Senarai laman khas yang sah boleh dilihat di [[Special:Specialpages]].",
 'dberrortext'          => 'Terdapat kesalahan pada sintaks pertanyaan pangkalan data.
 Ini mungkin menandakan pepijat dalam perisian wiki ini.
 Pertanyaan pangkalan data yang terakhir ialah:
-<blockquote><tt>$1</tt></blockquote> 
+<blockquote><tt>$1</tt></blockquote>
 dari dalam fungsi "<tt>$2</tt>".
 MySQL memulangkan ralat "<tt>$3: $4</tt>".',
 'dberrortextcl'        => 'Terdapat kesalahan sintaks pada pertanyaan pangkalan data. Pertanyaan terakhir ialah: "$1" dari dalam fungsi "$2". MySQL memulangkan ralat "$3: $4".',
@@ -835,6 +835,8 @@ semula melalui laman ini melainkan mempunyai batasan.',
 'logdelete-logaction'         => '$1 peristiwa bagi [[$3]] ditetapkan kepada mod $2',
 'revdelete-success'           => 'Kebolehnampakan semakan ditetapkan.',
 'logdelete-success'           => 'Kebolehnampakan peristiwa ditetapkan.',
+'pagehist'                    => 'Sejarah laman',
+'deletedhist'                 => 'Sejarah yang dihapuskan',
 
 # Oversight log
 'oversightlog'    => 'Log pengawas',
@@ -861,6 +863,8 @@ Sila pastikan bahawa perubahan ini akan mengekalkan kesinambungan sejarah laman.
 'mergehistory-no-destination'      => 'Laman destinasi $1 tidak wujud.',
 'mergehistory-invalid-source'      => 'Laman sumber mestilah merupakan tajuk yang sah.',
 'mergehistory-invalid-destination' => 'Laman destinasi mestilah merupakan tajuk yang sah.',
+'mergehistory-autocomment'         => 'Menggabungkan [[:$1]] dengan [[:$2]]',
+'mergehistory-comment'             => 'Menggabungkan [[:$1]] dengan [[:$2]]: $3',
 
 # Merge log
 'mergelog'           => 'Log penggabungan',
@@ -896,6 +900,7 @@ Sila pastikan bahawa perubahan ini akan mengekalkan kesinambungan sejarah laman.
 'search-redirect'       => '(pelencongan $1)',
 'search-section'        => '(bahagian $1)',
 'search-suggest'        => 'Maksud anda, $1?',
+'searchall'             => 'semua',
 'showingresults'        => 'Terpapar di bawah adalah hasil pencarian dari <b>$1</b> hingga <b>$2</b>.',
 'showingresultsnum'     => 'Terpapar di bawah <b>$3</b> adalah hasil pencarian yang bermula dengan #<b>$2</b>.',
 'showingresultstotal'   => "Berikut ialah hasil '''$1-$2''' daripada '''$3'''",
@@ -1504,7 +1509,7 @@ Sila lihat $2 untuk rekod penghapusan terkini.',
 'rollbackfailed'              => 'Pengunduran gagal',
 'cantrollback'                => 'Suntingan tersebut tidak dapat dibalikkan: penyumbang terakhir adalah satu-satunya pengarang bagi rencana ini.',
 'alreadyrolled'               => 'Tidak dapat membalikkan suntingan terakhir bagi [[:$1]]
-oleh [[User:$2|$2]] ([[User talk:$2|Perbincangan]]); terdapat pengguna yang telah berbuat demikian. 
+oleh [[User:$2|$2]] ([[User talk:$2|Perbincangan]]); terdapat pengguna yang telah berbuat demikian.
 
 Suntingan terakhir telah dibuat oleh [[User:$3|$3]] ([[User talk:$3|Perbincangan]]).',
 'editcomment'                 => 'Komen suntingan: "<i>$1</i>".', # only shown if there is an edit comment
@@ -1761,7 +1766,7 @@ sahkan bahawa anda betul-betul mahu melakukan tindakan ini.',
 # Move page
 'move-page'               => 'Pindah $1',
 'move-page-legend'        => 'Pindah laman',
-'movepagetext'            => "Gunakan borang di bawah untuk mengubah nama laman dan 
+'movepagetext'            => "Gunakan borang di bawah untuk mengubah nama laman dan
 memindahkan semua maklumat sejarahnya kepada nama baru.
 Tajuk yang lama akan dijadikan pelencongan ke tajuk yang baru.
 Pautan ke tajuk yang lama tidak akan diubah; pastikan anda menyemak
@@ -2336,32 +2341,32 @@ Ruangan lain akan disembunyikan.
 'monthsall'        => 'semua',
 
 # E-mail address confirmation
-'confirmemail'            => 'Sahkan alamat e-mel',
-'confirmemail_noemail'    => 'Anda belum menetapkan alamat e-mel yang sah dalam [[Special:Preferences|laman keutamaan]] anda.',
-'confirmemail_text'       => '{{SITENAME}} menghendaki supaya anda mengesahkan alamat e-mel anda sebelum menggunakan ciri-ciri e-mel.
+'confirmemail'             => 'Sahkan alamat e-mel',
+'confirmemail_noemail'     => 'Anda belum menetapkan alamat e-mel yang sah dalam [[Special:Preferences|laman keutamaan]] anda.',
+'confirmemail_text'        => '{{SITENAME}} menghendaki supaya anda mengesahkan alamat e-mel anda sebelum menggunakan ciri-ciri e-mel.
 Aktifkan butang di bawah untuk mengirim e-mel pengesahan kepada alamat e-mel
 anda. E-mel tersebut akan mengandungi sebuah pautan yang mengandungi sebuah
 kod; buka pautan tersebut di pelayar anda untuk mengesahkan bahawa alamat e-mel anda.',
-'confirmemail_pending'    => '<div class="error">
+'confirmemail_pending'     => '<div class="error">
 Sebuah kod pengesahan telah pun di-e-melkan kepada anda. Jika anda baru sahaja
 membuka akaun, sila tunggu kehadiran e-mel tersebut selama beberapa minit
 sebelum meminta kod baru.
 </div>',
-'confirmemail_send'       => 'E-melkan kod pengesahan',
-'confirmemail_sent'       => 'E-mel pengesahan dikirim.',
-'confirmemail_oncreate'   => 'Sebuah kod pengesahan telah dikirm kepada alamat e-mel anda.
+'confirmemail_send'        => 'E-melkan kod pengesahan',
+'confirmemail_sent'        => 'E-mel pengesahan dikirim.',
+'confirmemail_oncreate'    => 'Sebuah kod pengesahan telah dikirm kepada alamat e-mel anda.
 Kod ini tidak diperlukan untuk log masuk, akan tetapi anda perlu menyediakannya untuk
 mengaktifkan ciri-ciri e-mel yang terdapat dalam wiki ini.',
-'confirmemail_sendfailed' => 'E-mel pengesahan tidak dapat dikirim. Sila semak alamat e-mel tersebut.
+'confirmemail_sendfailed'  => 'E-mel pengesahan tidak dapat dikirim. Sila semak alamat e-mel tersebut.
 
 Pelayan mel memulangkan: $1',
-'confirmemail_invalid'    => 'Kod pengesahan tidak sah. Kod tersebut mungkin sudah luput.',
-'confirmemail_needlogin'  => 'Anda perlu $1 terlebih dahulu untuk mengesahkan alamat e-mel anda.',
-'confirmemail_success'    => 'Alamat e-mel anda telah disahkan. Sekarang anda boleh melog masuk dan berseronok di wiki ini.',
-'confirmemail_loggedin'   => 'Alamat e-mel anda telah disahkan.',
-'confirmemail_error'      => 'Sesuatau yang tidak kena berlaku ketika kami menyimpan pengesahan anda.',
-'confirmemail_subject'    => 'Pengesahan alamat e-mel di {{SITENAME}}',
-'confirmemail_body'       => 'Seseorang, barangkali anda, daripada alamat IP $1, telah mendaftarkan sebuah
+'confirmemail_invalid'     => 'Kod pengesahan tidak sah. Kod tersebut mungkin sudah luput.',
+'confirmemail_needlogin'   => 'Anda perlu $1 terlebih dahulu untuk mengesahkan alamat e-mel anda.',
+'confirmemail_success'     => 'Alamat e-mel anda telah disahkan. Sekarang anda boleh melog masuk dan berseronok di wiki ini.',
+'confirmemail_loggedin'    => 'Alamat e-mel anda telah disahkan.',
+'confirmemail_error'       => 'Sesuatau yang tidak kena berlaku ketika kami menyimpan pengesahan anda.',
+'confirmemail_subject'     => 'Pengesahan alamat e-mel di {{SITENAME}}',
+'confirmemail_body'        => 'Seseorang, barangkali anda, daripada alamat IP $1, telah mendaftarkan sebuah
 akaun "$2" dengan alamat e-mel ini di {{SITENAME}}.
 
 Untuk mengesahkan bahawa akaun ini milik anda dan mengaktifkan
@@ -2371,6 +2376,8 @@ $3
 
 Jika ini *bukan* anda, jangan buka pautan tersebut. Kod pengesahan ini
 akan luput pada $4.',
+'confirmemail_invalidated' => 'Pengesahan alamat e-mel telah dibatalkan',
+'invalidateemail'          => 'Batalkan pengesahan e-mel',
 
 # Scary transclusion
 'scarytranscludedisabled' => '[Kemasukan pautan interwiki dimatikan]',

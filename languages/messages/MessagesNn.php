@@ -1122,7 +1122,7 @@ For å lenkje direkte til fila, skriv:
 'filestatus'                  => 'Opphavsrettsstatus:',
 'filesource'                  => 'Kjelde:',
 'uploadedfiles'               => 'Filer som er opplasta',
-'ignorewarning'               => 'Oversjå åtvaringa og lagre fila.',
+'ignorewarning'               => 'Oversjå åtvaringa og lagre fila',
 'ignorewarnings'              => 'Oversjå åtvaringar',
 'minlength1'                  => 'Filnamn må ha minst éitt teikn.',
 'illegalfilename'             => 'Filnamnet «$1» inneheld teikn som ikkje er tillatne i sidetitlar. Skift namn på fila og prøv på nytt.',
@@ -1971,8 +1971,8 @@ Alle andre lenkjer på same line vert sett på som unnatak, med andre ord sider 
 'metadata-help'     => 'Denne fila inneheld tilleggsopplysningar, mest sannsynleg frå digitalkameraet eller skannaren som vart brukt til å lage eller digitalisere henne. Dersom fila har vore endra sidan ho vart oppretta, kan nokre av opplysningane vere feil.',
 'metadata-expand'   => 'Vis utvida opplysningar',
 'metadata-collapse' => 'Gøym utvida opplysningar',
-'metadata-fields'   => 'EXIF-metadatafelta denne meldinga inneheld vert med på 
-filskildringssida når dei utvida opplysningane er 
+'metadata-fields'   => 'EXIF-metadatafelta denne meldinga inneheld vert med på
+filskildringssida når dei utvida opplysningane er
 slått av. Dei andre felta er gøymde som standard.
 * make
 * model

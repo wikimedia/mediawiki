@@ -147,6 +147,7 @@ $messages = array(
 'tog-nolangconversion'        => 'Yazuv sisteması variantları deñiştirüvni işletme',
 'tog-ccmeonemails'            => 'Diger qullanıcılarğa yollağan mektüplerimniñ kopiyalarını maña da yolla',
 'tog-diffonly'                => 'Teñeştirme saifelerinde saifeniñ esas mündericesini kösterme',
+'tog-showhiddencats'          => 'Gizli kategoriyalarnı köster',
 
 'underline-always'  => 'Daima',
 'underline-never'   => 'Asla',
@@ -207,14 +208,24 @@ $messages = array(
 'dec'           => 'dek',
 
 # Categories related messages
-'categories'             => 'Saife kategoriyaları',
-'categoriespagetext'     => 'Vikide aşağıdaki kategoriyalar mevcüttir.',
-'pagecategories'         => '{{PLURAL:$1|Saifeniñ kategoriyası|Saifeniñ kategoriyaları}}',
-'category_header'        => '"$1" kategoriyasındaki saifeler',
-'subcategories'          => 'Alt kategoriyalar',
-'category-media-header'  => '"$1" kategoriyasındaki media faylları',
-'category-empty'         => "''İşbu kategoriyada iç bir saife ya da media fayl yoq.''",
-'listingcontinuesabbrev' => ' (devam)',
+'categories'                     => 'Saife kategoriyaları',
+'categoriespagetext'             => 'Vikide aşağıdaki kategoriyalar mevcüttir.',
+'special-categories-sort-count'  => 'sayılarına köre sırala',
+'special-categories-sort-abc'    => 'elifbe sırasınen sırala',
+'pagecategories'                 => '{{PLURAL:$1|Saifeniñ kategoriyası|Saifeniñ kategoriyaları}}',
+'category_header'                => '"$1" kategoriyasındaki saifeler',
+'subcategories'                  => 'Alt kategoriyalar',
+'category-media-header'          => '"$1" kategoriyasındaki media faylları',
+'category-empty'                 => "''İşbu kategoriyada iç bir saife ya da media fayl yoq.''",
+'hidden-categories'              => 'Gizli {{PLURAL:$1|kategoriya|kategoriyalar}}',
+'hidden-category-category'       => 'Gizli kategoriyalar', # Name of the category where hidden categories will be listed
+'category-subcat-count'          => '{{PLURAL:$2|Bu kategoriyada tek bir aşağıdaki alt kategoriya bar.|Bu kategoriyada toplam $2 kategoriyadan aşağıdaki $1 alt kategoriya bar.}}',
+'category-subcat-count-limited'  => 'Bu kategoriyada aşağıdaki $1 alt kategoriya bar.',
+'category-article-count'         => '{{PLURAL:$2|Bu kategoriyada tek bir aşağıdaki saife bar.|Bu kategoriyadaki toplam $2 saifeden aşağıdaki $1 saife kösterilgen.}}',
+'category-article-count-limited' => 'Bu kategoriyada aşağıdaki $1 saife bar.',
+'category-file-count'            => '{{PLURAL:$2|Bu kategoriyada tek bir aşağıdaki fayl bar.|Bu kategoriyadaki toplam $2 fayldan aşağıdaki $1 fayl kösterilgen.}}',
+'category-file-count-limited'    => 'Bu kategoriyada aşağıdaki $1 fayl bar.',
+'listingcontinuesabbrev'         => ' (devam)',
 
 'linkprefix'        => '/^(.*?)([a-zâçğıñöşüA-ZÂÇĞİÑÖŞÜa-яёА-ЯЁ«„]+)$/sDu',
 'mainpagetext'      => "<big>'''MediaWiki muvafaqiyetnen quruldı.'''</big>",
@@ -262,7 +273,9 @@ $messages = array(
 'permalink'         => 'Soñki alına bağlantı',
 'print'             => 'Bastır',
 'edit'              => 'Deñiştir',
+'create'            => 'Yarat',
 'editthispage'      => 'Saifeni deñiştir',
+'create-this-page'  => 'Bu saifeni yarat',
 'delete'            => 'Yoq et',
 'deletethispage'    => 'Saifeni yoq et',
 'undelete_short'    => '{{PLURAL:$1|1|$1}} deñişiklikni keri ketir',
@@ -351,6 +364,7 @@ $messages = array(
 'restorelink'             => 'yoq etilgen {{PLURAL:$1|1|$1}} deñişikligi',
 'feedlinks'               => 'Bu şekilde:',
 'feed-invalid'            => 'Abune kanalınıñ çeşiti yañlıştır.',
+'feed-unavailable'        => 'Sindikatsiya lentaları {{SITENAME}} üzerinde keçerli degil.',
 'site-rss-feed'           => '$1 RSS lentası',
 'site-atom-feed'          => '$1 Atom lentası',
 'page-rss-feed'           => '"$1" - RSS lentası',
@@ -385,9 +399,9 @@ Bu bir içki hatası ola bile.
 "<tt>$2</tt>" funktsiyasından deñengen soñki sorğulama:
 <blockquote><tt>$1</tt></blockquote>.
 MySQL-niñ esabat etkeni hata "<tt>$3: $4</tt>".',
-'dberrortextcl'        => 'Malümat bazasına muracaat etüvde sintaksis hatası çıqtı. 
-Malümat bazasına soñki muracaat: 
-"$1" 
+'dberrortextcl'        => 'Malümat bazasına muracaat etüvde sintaksis hatası çıqtı.
+Malümat bazasına soñki muracaat:
+"$1"
 "$2" funktsiyasından asıl oldı.
 MySQL "$3: $4" hatasını bildirdi.',
 'noconnect'            => 'Bağışlañız! Tehnikiy problemalar sebebinden şimdi malümat bazasınıñ serverinen bağlınmaq çare yoq. <br /> $1',
@@ -518,7 +532,7 @@ Eger de yañı parol talap etmegen olsañız ya da eski paroliñizni bilseñiz b
 'accountcreated'             => 'Esap açıldı',
 'accountcreatedtext'         => '$1 içün bir qullanıcı esabı açıldı.',
 'createaccount-title'        => '{{SITENAME}} saytında yañı bir esap yaratıluvı',
-'createaccount-text'         => 'Birev siziñ e-mail adresini belgilep {{SITENAME}} saytında ($4) "$2" adlı bir esap yarattı. Şu esap içün parol böyledir: "$3". Siz oturım açıp paroliñizni şimdi deñiştirmek kereksiñiz. 
+'createaccount-text'         => 'Birev siziñ e-mail adresini belgilep {{SITENAME}} saytında ($4) "$2" adlı bir esap yarattı. Şu esap içün parol böyledir: "$3". Siz oturım açıp paroliñizni şimdi deñiştirmek kereksiñiz.
 
 İşbu esap hata olaraq yaratılğan olsa bu beyanatnı ignor etip olasıñız.',
 'loginlanguagelabel'         => 'Til: $1',
@@ -662,11 +676,13 @@ Ayrıca, mında isse qoşıp, bu isseniñ özüñiz tarafından yazılğanına, 
 'protectedpagewarning'      => '<strong>TENBİ: Bu saife qorçalav altına alınğandır ve yalıñız administratorlar tarafından deñiştirilip olur.</strong>',
 'semiprotectedpagewarning'  => "'''Tenbi''': Bu saife tek qaydlı qullanıcılar tarafından deñiştirilip olur.",
 'cascadeprotectedwarning'   => "'''Tenbi:''' Bu saifeni tek \"Administratorlar\" gruppasına kirgen qullanıcılar deñiştirip olalar, çünki o kaskad qorçalav altında bulunğan {{PLURAL:\$1|saifege|saifelerge}} mensüptir:",
+'titleprotectedwarning'     => '<strong>TENBİ: Bu saife qorçalav altındadır, tek yetkili qullanıcılar onı yaratıp olalar.</strong>',
 'templatesused'             => 'Bu saifede qullanılğan şablonlar:',
 'templatesusedpreview'      => 'Bu ög baquvda qullanılğan şablonlar:',
 'templatesusedsection'      => 'Bu bölümde qullanılğan şablonlar:',
 'template-protected'        => '(qorçalav altında)',
 'template-semiprotected'    => '(qısmen qorçalav altında)',
+'hiddencategories'          => 'Bu saife $1 gizli kategoriyağa mensüptir:',
 'nocreatetitle'             => 'Saife yaratuv sıñırlıdır',
 'nocreatetext'              => '{{SITENAME}} saytında yañı saife yaratuv sıñırlıdır.
 Keri qaytıp mevcüt olğan saifeni deñiştire, [[{{ns:special}}:Userlogin|oturım aça ya da yañı bir esap yaratıp olasıñız]].',
@@ -685,7 +701,7 @@ Bu saifeni kerçekten de yañıdan yaratmağa isteysiñizmi? Aşağıda yoq etil
 # Account creation failure
 'cantcreateaccounttitle' => 'Esap yaratmaqnıñ iç çaresi yoq.',
 'cantcreateaccount-text' => "Bu IP adresinden (<b>$1</b>) esap yaratuv [[User:$3|$3 qullanıcı]] tarafından blok etildi.
-	 
+
 $3 mına böyle bir sebep belgiledi: ''$2''",
 
 # History pages
@@ -883,6 +899,9 @@ Vikide bu saifege oşağan saifelerni [[{{ns:special}}:Search|tapıp baqıñız]
 'uploadtext'                  => "Fayllar yüklemek içün aşağıdaki formanı qullanıñız. Evelce yüklengen resim tapmaq ya da baqmaq içün [[Special:Imagelist|yüklengen fayllar cedveline]] keçiñiz, bundan ğayrı fayl yüklenüv ve yoq etilüv qaydlarını [[Special:Log/upload|yüklenüv jurnalında]] tapıp olasıñız.
 
 Saifede resim qullanmaq içün böyle şekilli bağlantılar qullanıñız '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:File.jpg]]</nowiki>''', '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:File.png|resim tarifi]]</nowiki>''' ya da '''<nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki>''' faylğa vastasız bağlantı içün.",
+'upload-permitted'            => 'İzinli fayl çeşitleri: $1.',
+'upload-preferred'            => 'İstenilgen fayl çeşitleri: $1.',
+'upload-prohibited'           => 'Yasaqlı fayl çeşitleri: $1.',
 'uploadlog'                   => 'yükleme jurnalı',
 'uploadlogpage'               => 'Fayl yükleme jurnalı',
 'uploadlogpagetext'           => 'Aşağıda eñ soñki eklengen fayllarnıñ cedveli buluna.<ul></ul>',
@@ -898,6 +917,8 @@ Saifede resim qullanmaq içün böyle şekilli bağlantılar qullanıñız '''<n
 'illegalfilename'             => '"$1" faylınıñ adında serleva içün yasaqlı işaretler mevcüt. Lütfen, fayl adını deñiştirip yañıdan yüklep baqıñız.',
 'badfilename'                 => 'Fayl adı $1 olaraq deñiştirildi.',
 'filetype-badmime'            => '"$1" MIME çeşitindeki fayllar yükleme yasaqlıdır.',
+'filetype-unwanted-type'      => "'''\".\$1\"''' — istenilmegen fayl çeşiti. İstenilgen fayl çeşitleri: \$2.",
+'filetype-banned-type'        => "'''\".\$1\"''' — yasaqlı fayl çeşiti. İstenilgen fayl çeşitleri: \$2.",
 'filetype-missing'            => 'Faylnıñ iç bir uzantısı yoq (meselâ ".jpg", ".gif" ve ilh.).',
 'large-file'                  => 'Büyükligi $1 bayttan ziyade ibaret olmağan resimler qullanuv tevsiye etile (bu faylnıñ büyükligi $2 bayt).',
 'largefileserver'             => 'Bu faylnıñ uzunlığı serverde izin berilgenden büyükçedir.',
@@ -932,7 +953,7 @@ Lütfen, keri qaytıñız, fayl ismini deñiştirip yañıdan yükleñiz. [[Imag
 'destfilename'                => 'Faylnıñ istenilgen adı:',
 'watchthisupload'             => 'Bu faylnı közetüv cedveline kirset',
 'filewasdeleted'              => 'Bu isimde bir fayl mevcüt edi, amma yoq etilgen edi. Lütfen, tekrar yüklemeden evel $1 teşkeriñiz.',
-'upload-wasdeleted'           => "'''Diqqat: Evelde yoq etilgen faylnı yüklemektesiñiz.''' 
+'upload-wasdeleted'           => "'''Diqqat: Evelde yoq etilgen faylnı yüklemektesiñiz.'''
 
 Er alda bu faylnı yüklemege devam etmege isteysiñizmi? Bu fayl içün yoq etüvniñ jurnalını mında baqıp olasıñız:",
 'filename-bad-prefix'         => 'Siz yüklegen fayl <strong>"$1"</strong>-nen başlay. Bu, adetince, raqamlı fotoapparatlardan fayl adına yazılğan manasız simvollardır. Lütfen, bu fayl içün añlıca bir ad saylap yazıñız.',
@@ -1126,6 +1147,8 @@ Toplam saife kösterilme sayısı '''\$3''', deñişiklik başına kösterme say
 'allpagesnext'      => 'Soñraki',
 'allpagessubmit'    => 'Köster',
 'allpagesprefix'    => 'Yazğan ariflernen başlağan saifelerni köster:',
+'allpagesbadtitle'  => 'Saifeniñ adı keçerli degil. Serlevada tiller arası prefiksi ya da vikiler arası bağlantı ya da başqa qullanıluvı yasaq olğan simvollar bardır.',
+'allpages-bad-ns'   => '{{SITENAME}} saytında "$1" isim fezası yoqtır.',
 
 # Special:Listusers
 'listusers-submit'   => 'Köster',
@@ -1260,11 +1283,21 @@ Qorçalav altına alınğan saifeler tam cedveli [[{{ns:special}}:Protectedpages
 'unprotectedarticle'          => 'qorçalav çıqarlıdı: "[[$1]]"',
 'protect-legend'              => 'Qorçalavnı tasdıqla',
 'protectcomment'              => 'Qorçalav altına aluv sebebi',
+'protectexpiry'               => 'Bitiş tarihı:',
+'protect_expiry_invalid'      => 'Bitiş tarihı keçersiz.',
+'protect_expiry_old'          => 'Bitiş zamanı keçmiştedir.',
+'protect-unchain'             => 'Saife adı deñiştirüv kilitini çıqar',
 'protect-text'                => '<strong>[[<nowiki>$1</nowiki>]]</strong> saifesiniñ qorçalav seviyesini mından körip olur ve deñiştirip olasıñız.',
+'protect-locked-access'       => 'Qullanıcı esabıñız saifeniñ qorçalav seviyelerini deñiştirme yetkisine saip degil. <strong>$1</strong> saifesiniñ keçerli ayarları şularıdır:',
+'protect-cascadeon'           => 'Bu saife şimdi qorçalav altındadır, çünki aşağıda cedvellengen ve kaskadlı qorçalav altındaki $1 saifede qullanılmaqtadır. Bu saifeniñ qorçalav seviyesini deñiştirip olasıñız, amma kaskadlı qorçalav tesir etilmeycek.',
 'protect-default'             => '(standart)',
+'protect-fallback'            => '"$1" izni kerektir',
 'protect-level-autoconfirmed' => 'qayd olunmağan deñiştirmesin',
 'protect-level-sysop'         => 'tek administratorlar',
+'protect-summary-cascade'     => 'kaskadlı',
 'protect-expiring'            => 'bite: $1 (UTC)',
+'protect-cascade'             => 'Bu saifede qullanılğan bütün saifelerni qorçalavğa al (kaskadlı qorçalav)',
+'protect-cantedit'            => 'Bu saifeniñ qorçalav seviyesini deñiştirip olamazsıñız, çünki bunı yapmağa yetkiñiz yoq.',
 'restriction-type'            => 'Ruhseti:',
 'restriction-level'           => 'Ruhset seviyesi:',
 'minimum-size'                => 'Minimal büyüklik',
@@ -1569,7 +1602,7 @@ Lütfen, başqa bir ad saylap yazıñız.',
 'noimages'              => 'Resim yoq.',
 'ilsubmit'              => 'Qıdır',
 'bydate'                => 'hronologik sıranen',
-'sp-newimages-showfrom' => '$1 faylından başlap yañı fayllar köster',
+'sp-newimages-showfrom' => '$1, $2 tarihından başlap yañı fayllar köster',
 
 # Video information, used by Language::formatTimePeriod() to format lengths in the above messages
 'video-dims'     => '$1, $2 × $3',
@@ -1662,36 +1695,41 @@ Er satır * simvolınen başlamalı. Satırnıñ birinci bağlantısı eklemege 
 'monthsall'        => 'Episi',
 
 # E-mail address confirmation
-'confirmemail'            => 'E-mail adresini tasdıqla',
-'confirmemail_noemail'    => '[[{{ns:special}}:Preferences|Qullanıcı ayarlarıñızda]] keçerli bir e-mail adresiñiz yoq.',
-'confirmemail_text'       => '{{SITENAME}} saytınıñ e-mail funktsiyalarını qullanmazdan evel e-mail adresiñizniñ tasdıqlanması kerek. Adresiñizge tasdıq e-mail mektübini yollamaq içün aşağıdaki dögmeni basıñız. Yollanacaq beyanatta adresiñizni tasdıqlamaq içün brauzeriñiznen irişip olacaq, tasdıq kodu olğan bir bağlantı olacaq.',
-'confirmemail_pending'    => '<div class="error">
+'confirmemail'             => 'E-mail adresini tasdıqla',
+'confirmemail_noemail'     => '[[{{ns:special}}:Preferences|Qullanıcı ayarlarıñızda]] keçerli bir e-mail adresiñiz yoq.',
+'confirmemail_text'        => '{{SITENAME}} saytınıñ e-mail funktsiyalarını qullanmazdan evel e-mail adresiñizniñ tasdıqlanması kerek. Adresiñizge tasdıq e-mail mektübini yollamaq içün aşağıdaki dögmeni basıñız. Yollanacaq beyanatta adresiñizni tasdıqlamaq içün brauzeriñiznen irişip olacaq, tasdıq kodu olğan bir bağlantı olacaq.',
+'confirmemail_pending'     => '<div class="error">
 Tasdıq kodu endi sizge yollandı.
 Eger esabıñıznı keçenleri açsa ediñiz, belki de yañnı kodnı bir daa sorağanıñızda, biraz beklemek kerek olur.
 </div>',
-'confirmemail_send'       => 'Tasdıq kodunı yolla',
-'confirmemail_sent'       => 'Tasdıq e-mail mektübini yollandı.',
-'confirmemail_oncreate'   => 'Belgilegen e-mail adresiñizge tasdıq kodunen mektüp yollandı.
+'confirmemail_send'        => 'Tasdıq kodunı yolla',
+'confirmemail_sent'        => 'Tasdıq e-mail mektübini yollandı.',
+'confirmemail_oncreate'    => 'Belgilegen e-mail adresiñizge tasdıq kodunen mektüp yollandı.
 İşbu kod oturım açmaq içün lâzim degil, amma bu proyektte elektron poçtasınıñ çarelerini qullanmaq içün ruhset berilmezden evel onı belgilemelisiñiz.',
-'confirmemail_sendfailed' => 'Tasdıq kodu yollanmadı. Adreste keçersiz arif ya da işaret olmağanından eminsiñizmi? Mektüp qaytıldı: $1',
-'confirmemail_invalid'    => 'Keçersiz tasdıq kodu. Tasdıq kodunıñ soñki qullanma tarihı keçken ola bilir.',
-'confirmemail_needlogin'  => '$1 yapmaq içün başta e-mail adresiñizni tasdıqlamalısıñız.',
-'confirmemail_success'    => 'E-mail adresiñiz tasdıqlandı.',
-'confirmemail_loggedin'   => 'E-mail adresiñiz tasdıqlandı.',
-'confirmemail_error'      => 'Tasdıqıñız bilinmegen bir hata sebebinden qayd etilmedi.',
-'confirmemail_subject'    => '{{SITENAME}} e-mail adres tasdıqı.',
-'confirmemail_body'       => '$1 internet adresinden yapılğan irişim ile {{SITENAME}} saytında
-bu e-mail adresi ile bağlanğan $2 qullanıcı esabı
+'confirmemail_sendfailed'  => 'Tasdıq kodu yollanmadı. Adreste keçersiz arif ya da işaret olmağanından eminsiñizmi? Mektüp qaytıldı: $1',
+'confirmemail_invalid'     => 'Keçersiz tasdıq kodu. Tasdıq kodunıñ soñki qullanma tarihı keçken ola bilir.',
+'confirmemail_needlogin'   => '$1 yapmaq içün başta e-mail adresiñizni tasdıqlamalısıñız.',
+'confirmemail_success'     => 'E-mail adresiñiz tasdıqlandı.',
+'confirmemail_loggedin'    => 'E-mail adresiñiz tasdıqlandı.',
+'confirmemail_error'       => 'Tasdıqıñız bilinmegen bir hata sebebinden qayd etilmedi.',
+'confirmemail_subject'     => '{{SITENAME}} e-mail adres tasdıqı.',
+'confirmemail_body'        => '$1 IP adresinden yapılğan irişim ile {{SITENAME}} saytında
+bu e-mail adresinen bağlanğan $2 qullanıcı esabı
 açıldı.
 
 Bu e-mail adresiniñ bahsı keçken qullanıcı esabına ait olğanını
 tasdıqlamaq ve {{SITENAME}} saytındaki e-mail funktsiyalarını aktiv alğa
-ketirmek içün aşağıdaki bağlantını basıñız.
+ketirmek içün aşağıdaki bağlantını basıñız:
 
 $3
 
-Bahsı keçken qullanıcı esabı sizge ait olmağan olsa siz yapmaq kerek olğan
-bir şeyiñiz yoq. Bu tasdıq kodu $4 tarihına qadar keçerli olacaq.',
+Bahsı keçken qullanıcı esabı sizge *ait olmağan* olsa bu bağlantını basıñız:
+
+$5
+
+Bu tasdıq kodu $4 tarihına qadar keçerli olacaq.',
+'confirmemail_invalidated' => 'E-mail adresiniñ tasdıqı lâğu etildi',
+'invalidateemail'          => 'E-mail adresiniñ tasdıqı lâğu et',
 
 # Scary transclusion
 'scarytranscludedisabled' => '["Interwiki transcluding" işlemey]',
@@ -1718,7 +1756,7 @@ Saifeni yañıdan yaratmağa isteseñiz, lütfen, bunı tasdıqlañız.",
 'redirectingto' => 'Yollama [[$1]]...',
 
 # action=purge
-'confirm_purge'        => 'Saife keşini temizlesinmi? 
+'confirm_purge'        => 'Saife keşini temizlesinmi?
 
 $1',
 'confirm_purge_button' => 'Ok',
@@ -1728,6 +1766,7 @@ $1',
 'searchnamed'      => "''$1'' adlı saifelerni qıdıruv.",
 'articletitles'    => "''$1'' ile başlağan saifelerni qıdıruv.",
 'hideresults'      => 'Neticelerni gizle',
+'useajaxsearch'    => 'AJAX qıdıruvı qullan',
 
 # Multipage image navigation
 'imgmultipageprev' => '← evelki saife',

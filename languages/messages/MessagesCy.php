@@ -466,7 +466,7 @@ Mae cyfrinair y defnyddiwr '$2' wedi'i newid i '$3'. Dylid mewngofnodi a'i newid
 Os mai rhywun arall a holodd am y cyfrinair, ynteu eich bod wedi cofio'r hen gyfrinair, ac nac ydych am newid y cyfrinair, rhydd i chi anwybyddu'r neges hon a pharhau i ddefnyddio'r hen un.",
 'noemail'                    => "Does dim cyfeiriad e-bost yng nghofnodion y defnyddiwr '$1'.",
 'passwordsent'               => 'Mae cyfrinair newydd wedi\'i ddanfon at gyfeiriad e-bost cofrestredig "$1". Mewngofnodwch eto ar ôl i chi dderbyn y cyfrinair, os gwelwch yn dda.',
-'eauthentsent'               => 'Anfonwyd e-bost o gadarnhâd at y cyfeiriad a benwyd. 
+'eauthentsent'               => 'Anfonwyd e-bost o gadarnhâd at y cyfeiriad a benwyd.
 Cyn y gellir anfon unrhywbeth arall at y cyfeiriad hwnnw rhaid i chi ddilyn y cyfarwyddiadau yn yr e-bost hwnnw er mwyn cadarnhau bod y cyfeiriad yn un dilys.',
 'mailerror'                  => 'Gwall wrth ddanfon e-bost: $1',
 'acct_creation_throttle_hit' => 'Rydych chi wedi creu $1 cyfrif yn barod. Ni chewch greu rhagor.',
@@ -528,7 +528,7 @@ Os y pwyswch eto ar 'Cadw'r dudalen' caiff y golygiad ei gadw heb nodyn.",
 'summary-preview'           => "Rhagolwg o'r crynodeb",
 'subject-preview'           => 'Rhagolwg pwnc/pennawd',
 'blockedtitle'              => "Mae'r defnyddiwr hwn wedi cael ei flocio",
-'blockedtext'               => "<big>'''Mae eich enw defnyddiwr neu gyfeiriad IP wedi cael ei flocio gan $1.'''</big> 
+'blockedtext'               => "<big>'''Mae eich enw defnyddiwr neu gyfeiriad IP wedi cael ei flocio gan $1.'''</big>
 
 Y rheswm a roddwyd dros y blocio yw: ''$2''.
 
@@ -568,7 +568,7 @@ Cyfeirnod y bloc yw $5. Nodwch hwn wrth drafod y bloc.",
 'accmailtext'               => 'Anfonwyd cyfrinair "$1" at $2.',
 'newarticle'                => '(Newydd)',
 'newarticletext'            => "Rydych chi wedi dilyn cysylltiad i dudalen sydd heb gael ei chreu eto.
-I greu'r dudalen, dechreuwch deipio yn y blwch isod 
+I greu'r dudalen, dechreuwch deipio yn y blwch isod
 (gweler y [[{{MediaWiki:Helppage}}|dudalen gymorth]] am fwy o wybodaeth).
 Os daethoch yma ar ddamwain, cliciwch botwm '''n&ocirc;l''' y porwr.",
 'anontalkpagetext'          => "---- ''Dyma dudalen sgwrs defnyddiwr sydd heb greu cyfrif, neu nad yw'n defnyddio'i gyfrif. Mae'n rhaid i ni ddefnyddio'r cyfeiriad IP i'w (h)adnabod. Mae'n bosib fod sawl defnyddiwr yn rhannu'r un cyfeiriad IP. Os ydych chi'n ddefnyddiwr anhysbys ac yn teimlo'ch bod wedi derbyn sylwadau amherthnasol, [[Special:Userlogin|crëwch gyfrif neu mewngofnodwch]] i osgoi dryswch gyda defnyddwyr anhysbys yn y dyfodol.''",
@@ -871,8 +871,8 @@ $2 Rhestri ailgyfeiriadau<br />Chwilio am $3 $9',
 i lwytho ffeiliau i fynu.',
 'upload_directory_read_only'  => "Ni all y gweinydd ysgrifennu i'r cyfeiriadur uwchlwytho ($1).",
 'uploaderror'                 => 'Gwall yn llwytho ffeil i fynu',
-'uploadtext'                  => "Defnyddiwch y ffurflen isod i uwchlwytho ffeiliau. 
-I weld a chwilio am ffeiliau sydd eisoes wedi eu huwchlwytho ewch at y [[Special:Imagelist|rhestr o'r ffeiliau sydd wedi eu huwchlwytho]]. I weld cofnodion uwchlwytho a dileu ffeiliau ewch at y [[Special:Log/upload|lòg uwchlwytho]]. 
+'uploadtext'                  => "Defnyddiwch y ffurflen isod i uwchlwytho ffeiliau.
+I weld a chwilio am ffeiliau sydd eisoes wedi eu huwchlwytho ewch at y [[Special:Imagelist|rhestr o'r ffeiliau sydd wedi eu huwchlwytho]]. I weld cofnodion uwchlwytho a dileu ffeiliau ewch at y [[Special:Log/upload|lòg uwchlwytho]].
 
 I osod ffeil mewn tudalen defnyddiwch gyswllt wici a fydd yn arwain yn syth at y ffeil, fel a ganlyn:
 '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:Ffeil.jpg]]</nowiki>''',
@@ -888,7 +888,7 @@ Pob amser sy'n dangos yw amser y gwasanaethwr (UTC).",
 'filestatus'                  => 'Statws hawlfraint:',
 'filesource'                  => 'Ffynhonnell:',
 'uploadedfiles'               => 'Ffeiliau wedi llwytho i fynu',
-'ignorewarning'               => "Anwybydder y rhybudd, a rhoi'r dudalen ar gadw beth bynnag.",
+'ignorewarning'               => "Anwybydder y rhybudd, a rhoi'r dudalen ar gadw beth bynnag",
 'ignorewarnings'              => 'Anwybydder pob rhybudd',
 'minlength1'                  => 'Rhaid i enwau ffeiliau gynnwys un llythyren neu ragor.',
 'illegalfilename'             => 'Mae\'r enw ffeil "$1" yn cynnwys nodau sydd wedi\'u gwahardd mewn teitlau tudalennau. Ail-enwch y ffeil ac uwchlwythwch hi eto os gwelwch yn dda.',
@@ -1114,7 +1114,7 @@ Mae gan '''$2''' (neu '''$4%''') ohonynt alluoedd $5.",
 'all-logs-page'        => 'Pob lòg',
 'log-search-legend'    => 'Chwilio am logiau',
 'log-search-submit'    => 'Eler',
-'alllogstext'          => "Mae pob cofnod yn holl logiau {{SITENAME}} wedi cael eu rhestru yma. 
+'alllogstext'          => "Mae pob cofnod yn holl logiau {{SITENAME}} wedi cael eu rhestru yma.
 Gallwch weld chwiliad mwy penodol trwy ddewis y math o lòg, enw'r defnyddiwr, neu'r dudalen benodedig. Sylwer bod prif lythrennau o bwys i'r chwiliad.",
 'logempty'             => 'Does dim eitemau yn cyfateb yn y lòg.',
 'log-title-wildcard'   => "Chwilio am deitlau'n dechrau gyda'r geiriau hyn",
@@ -1247,7 +1247,7 @@ Am fwy o gymorth:
 'confirmdeletetext'           => "Rydych chi ar fin dileu tudalen neu ddelwedd, ynghŷd â'i hanes, o'r data-bas, a hynny'n barhaol.
 Os gwelwch yn dda, cadarnhewch eich bod chi wir yn bwriadu gwneud hyn, eich bod yn deall y canlyniadau, ac yn ei wneud yn ôl [[{{MediaWiki:Policy-url}}|polisïau {{SITENAME}}]].",
 'actioncomplete'              => "Wedi cwblhau'r weithred",
-'deletedtext'                 => 'Mae "<nowiki>$1</nowiki>" wedi\'i ddileu. 
+'deletedtext'                 => 'Mae "<nowiki>$1</nowiki>" wedi\'i ddileu.
 Gwelwch y $2 am gofnod o\'r dileuon diweddar.',
 'deletedarticle'              => 'wedi dileu "[[$1]]"',
 'dellogpage'                  => 'Log dileuon',
@@ -1266,7 +1266,7 @@ Gwelwch y $2 am gofnod o\'r dileuon diweddar.',
 'rollbacklink'                => 'rolio nôl',
 'rollbackfailed'              => 'Methwyd rolio nôl',
 'cantrollback'                => "Wedi methu gwrthdroi'r golygiad; y cyfrannwr diwethaf oedd unig awdur y dudalen hon.",
-'alreadyrolled'               => "Nid yw'n bosib dadwneud y golygiad diwethaf i'r dudalen [[:$1|$1]] gan [[User:$2|$2]] ([[User_talk:$2|Sgwrs]]); mae rhywun arall eisoes wedi dadwneud y golygiad neu wedi golygu'r dudalen. 
+'alreadyrolled'               => "Nid yw'n bosib dadwneud y golygiad diwethaf i'r dudalen [[:$1|$1]] gan [[User:$2|$2]] ([[User_talk:$2|Sgwrs]]); mae rhywun arall eisoes wedi dadwneud y golygiad neu wedi golygu'r dudalen.
 
 [[User:$3|$3]] ([[User_talk:$3|Sgwrs]]) a wnaeth y golygiad diwethaf.",
 'editcomment'                 => 'Crynodeb y golygiad oedd: "<i>$1</i>".', # only shown if there is an edit comment
@@ -1289,7 +1289,7 @@ Gwelwch y $2 am gofnod o\'r dileuon diweddar.',
 Dyma'r gosodiadau diogelu cyfredol ar gyfer y dudalen <strong>$1</strong>:",
 'protect-locked-dblock'       => "Ni ellir newid y lefel diogelu gan fod y databas dan glo.
 Dyma'r gosodiadau diogelu cyfredol ar gyfer y dudalen <strong>$1</strong>:",
-'protect-locked-access'       => "Nid yw'r gallu i newid lefel diogelu ar dudalen ynghlwm wrth eich cyfrif defnyddiwr. 
+'protect-locked-access'       => "Nid yw'r gallu i newid lefel diogelu ar dudalen ynghlwm wrth eich cyfrif defnyddiwr.
 Dyma'r gosodiadau diogelu cyfredol ar gyfer y dudalen <strong>$1</strong>:",
 'protect-cascadeon'           => "Mae'r dudalen hon wedi ei diogelu ar hyn o bryd oherwydd ei bod wedi ei chynnwys yn y {{PLURAL:$1|dudalen|dudalen|tudalennau|tudalennau|tudalennau|tudalennau}} canlynol sydd wedi {{PLURAL:$1|ei|ei|eu|eu|eu|eu}} diogelu'n rhaeadrol.  Gallwch newid lefel diogelu'r dudalen hon, ond ni fydd hynny'n effeithio ar y diogelu rhaeadrol.",
 'protect-default'             => '(rhagosodedig)',
@@ -1464,14 +1464,14 @@ Ceir cofnod o'r tudalennau a ddilëwyd neu a adferwyd yn ddiweddar ar y [[Specia
 'locknoconfirm'       => "Nid ydych wedi ticio'r blwch cadarnhad.",
 'lockdbsuccesssub'    => "Wedi llwyddo cloi'r databas",
 'unlockdbsuccesssub'  => "Databas wedi'i ddatgloi",
-'lockdbsuccesstext'   => "Mae'r databas wedi'i gloi. 
+'lockdbsuccesstext'   => "Mae'r databas wedi'i gloi.
 <br />Cofiwch [[Special:Unlockdb|ddatgloi'r]] databas pan fydd y gwaith cynnal ar ben.",
 'unlockdbsuccesstext' => "Mae'r databas wedi'i ddatgloi.",
 
 # Move page
 'move-page-legend'        => 'Symud tudalen',
 'movepagetext'            => "Wrth ddefnyddio'r ffurflen isod byddwch yn ail-enwi tudalen, gan symud ei hanes gyfan i'r enw newydd.
-Bydd yr hen deitl yn troi'n dudalen ail-gyfeirio i'r teitl newydd. 
+Bydd yr hen deitl yn troi'n dudalen ail-gyfeirio i'r teitl newydd.
 Ni fydd cysylltiadau i'r hen deitl yn newid; rhaid cywiro ail-gyfeiriadau dwbl ac ail-gyfeiriadau tor eich hunan.
 Eich cyfrifoldeb chi yw sicrhau bod cysylltiadau wici'n dal i arwain at y man iawn!
 
@@ -1726,7 +1726,7 @@ Mae côd cadarnhau eisoes wedi ei anfon atoch; os ydych newydd greu\'ch cyfrif, 
 </div>',
 'confirmemail_send'       => 'Postiwch gôd cadarnhau',
 'confirmemail_sent'       => "Wedi anfon e-bost er mwyn cadarnhau'r cyfeiriad.",
-'confirmemail_oncreate'   => "Anfonwyd côd cadarnhau at eich cyfeiriad e-bost. 
+'confirmemail_oncreate'   => "Anfonwyd côd cadarnhau at eich cyfeiriad e-bost.
 Nid oes rhaid wrth y côd wrth fewngofnodi, ond rhaid ei ddefnyddio er mwyn galluogi offer ar y wici sy'n defnyddio e-bost.",
 'confirmemail_sendfailed' => "Ni fu'n bosibl danfon yr e-bost cadarnháu. Gwiriwch y cyfeiriad am nodau annilys.
 

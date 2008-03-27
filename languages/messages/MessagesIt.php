@@ -540,7 +540,7 @@ L'account è stato creato correttamente. Non dimenticare di personalizzare le pr
 'mailmypassword'             => 'Invia password via e-mail',
 'passwordremindertitle'      => 'Servizio Password Reminder di {{SITENAME}}',
 'passwordremindertext'       => 'Qualcuno (probabilmente tu, con indirizzo IP $1) ha richiesto l\'invio di una nuova password di accesso a {{SITENAME}} ($4).
-La password per l\'utente "$2" è stata impostata a "$3". 
+La password per l\'utente "$2" è stata impostata a "$3".
 È opportuno eseguire un accesso quanto prima e cambiare la password immediatamente.
 
 Se non sei stato tu a fare la richiesta, oppure hai ritrovato la password e non desideri più cambiarla, puoi ignorare questo messaggio e continuare a usare la vecchia password.',
@@ -1096,7 +1096,7 @@ Verifica per favore l'opportunità di continuare con il caricamento di questo fi
 Per tua comodità qui c'è la registrazione della cancellazione:",
 'filename-bad-prefix'         => 'Il nome del file che stai caricando inizia con <strong>"$1"</strong>, che è un nome non-descrittivo tipicamente assegnato automaticamente dalle fotocamere digitali. Per favore scegli un nome più descrittivo per il tuo file.',
 'filename-prefix-blacklist'   => ' #<!-- lascia questa riga esattamente com\'è --> <pre>
-# La sintassi è la seguente: 
+# La sintassi è la seguente:
 #   * Tutto ciò che segue il carattere "#" sino alla fine della riga è un commento
 #   * Ogni riga non vuota è un prefisso per nomi di file tipici assegnati automaticamente da fotocamere digitali
 CIMG # Casio
@@ -1376,7 +1376,7 @@ Ciascuna riga contiene i collegamenti al primo ed al secondo redirect, oltre all
 'watchnologin'         => 'Accesso non effettuato',
 'watchnologintext'     => "Per modificare la lista degli osservati speciali è necessario prima eseguire l'[[Special:Userlogin|accesso al sito]].",
 'addedwatch'           => 'Pagina aggiunta alla lista degli osservati speciali',
-'addedwatchtext'       => "La pagina  \"[[:\$1]]\" è stata aggiunta alla propria [[Special:Watchlist|lista degli osservati speciali]]. 
+'addedwatchtext'       => "La pagina  \"[[:\$1]]\" è stata aggiunta alla propria [[Special:Watchlist|lista degli osservati speciali]].
 D'ora in poi, le modifiche apportate alla pagina e alla sua discussione verranno elencate in quella sede; il titolo della pagina apparirà in '''grassetto''' nella pagina delle [[Special:Recentchanges|ultime modifiche]] per renderlo più visibile.",
 'removedwatch'         => 'Pagina eliminata dalla lista degli osservati speciali',
 'removedwatchtext'     => 'La pagina  "[[:$1]]" è stata eliminata dalla lista degli osservati speciali.',
@@ -1473,7 +1473,7 @@ Per dare il tuo feedback e ricevere ulteriore assistenza:
 'rollbacklink'                => 'rollback',
 'rollbackfailed'              => 'Rollback non riuscito',
 'cantrollback'                => "Impossibile annullare le modifiche; l'utente che le ha effettuate è l'unico ad aver contribuito alla pagina.",
-'alreadyrolled'               => 'Non è possibile annullare le modifiche apportate alla pagina [[:$1]] da parte di [[User:$2|$2]] ([[User talk:$2|discussione]]); un altro utente ha già modificato la pagina oppure ha effettuato il rollback. 
+'alreadyrolled'               => 'Non è possibile annullare le modifiche apportate alla pagina [[:$1]] da parte di [[User:$2|$2]] ([[User talk:$2|discussione]]); un altro utente ha già modificato la pagina oppure ha effettuato il rollback.
 
 La modifica più recente alla pagina è stata apportata da [[User:$3|$3]] ([[User talk:$3|discussione]]).',
 'editcomment'                 => 'Il commento alla modifica era: "<i>$1</i>".', # only shown if there is an edit comment
@@ -2275,8 +2275,8 @@ I collegamenti successivi, sulla stessa riga, sono considerati come eccezioni (o
 'confirmemail_noemail'    => 'Non è stato indicato un indirizzo e-mail valido nelle proprie [[Special:Preferences|preferenze]].',
 'confirmemail_text'       => "Questo sito richiede la verifica dell'indirizzo e-mail prima di poter usare le funzioni connesse all'email. Premere il pulsante qui sotto per inviare una richiesta di conferma al proprio indirizzo; nel messaggio è presente un collegamento che contiene un codice. Visitare il collegamento con il proprio browser per confermare che l'indirizzo e-mail è valido.",
 'confirmemail_pending'    => '<div class="error">
-Il codice di conferma è già stato spedito via posta elettronica; se l\'account è stato 
-creato di recente, si prega di attendere l\'arrivo del codice per qualche minuto prima 
+Il codice di conferma è già stato spedito via posta elettronica; se l\'account è stato
+creato di recente, si prega di attendere l\'arrivo del codice per qualche minuto prima
 di tentare di richiederne uno nuovo.
 </div>',
 'confirmemail_send'       => 'Invia un codice di conferma via e-mail.',

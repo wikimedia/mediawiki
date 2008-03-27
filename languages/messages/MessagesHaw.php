@@ -207,7 +207,7 @@ Ua hana ‘ia kāu mea ho‘ohana. Mai poina e loli kāu {{SITENAME}} makemake.'
 'anoneditwarning'       => "'''Aʻo ʻana:''' ʻO ʻoe ʻaʻole ʻeʻe. E hoʻopaʻa ʻia ana kou IP ma \"he aha i hoʻololi ʻia ai\" o kēia ʻaoʻao.",
 'blockedtitle'          => 'Ua ke‘a ‘ia ka mea ho‘ohana',
 'blockednoreason'       => '‘a‘ohe kumu',
-'blockedoriginalsource' => "Aia ke kumu o '''$1''' 
+'blockedoriginalsource' => "Aia ke kumu o '''$1'''
 hō‘ike ‘ia i lalo:",
 'blockededitsource'     => "Aia ka mo‘olelo o '''kou mau ho‘opololei''' i '''$1''' hō‘ike ‘ia i lalo:",
 'loginreqlink'          => 'E komo',

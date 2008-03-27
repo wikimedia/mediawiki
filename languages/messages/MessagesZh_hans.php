@@ -439,7 +439,7 @@ $2',
 'logouttext'                 => '<strong>您现在已经退出。</strong><br />
 您可以继续以匿名方式使用{{SITENAME}}，或再次以相同或不同用户身份登录。
 请注意一些页面可能仍然显示您为登录状态，直到您清空您的浏览器缓存为止。',
-'welcomecreation'            => '== 欢迎, $1! == 
+'welcomecreation'            => '== 欢迎, $1! ==
 
  您的账户已经建立，不要忘记设置{{SITENAME}}的个人参数。',
 'loginpagetitle'             => '用户登录',
@@ -979,7 +979,7 @@ $2',
 'uploadnologintext'           => '您必须先[[Special:Userlogin|登录]]才能上传文件。',
 'upload_directory_read_only'  => '上传目录($1)不存在或无写权限。',
 'uploaderror'                 => '上载错误',
-'uploadtext'                  => "使用下面的表单来上传用在页面内新的文件。 
+'uploadtext'                  => "使用下面的表单来上传用在页面内新的文件。
 要查看或搜索以前上传的文件
 可以进入[[Special:Imagelist|文件上传列表]]，
 上传和删除将在[[Special:Log/upload|上传日志]]中记录。
@@ -1677,7 +1677,7 @@ $1',
 <b>警告！</b>
 对一个经常被访问的页面而言这可能是一个重大与唐突的更改；
 请在行动前先了结其所可能带来的后果。",
-'movepagetalktext'        => "有关的讨论页将被自动与该页面一起移动，'''除非''': 
+'movepagetalktext'        => "有关的讨论页将被自动与该页面一起移动，'''除非''':
 *新页面已经有一个包含内容的讨论页，或者
 *您不勾选下面的复选框。
 
@@ -1708,7 +1708,7 @@ $1',
 'revertmove'              => '恢复该移动',
 'delete_and_move'         => '删除并移动',
 'delete_and_move_text'    => '==需要删除==
-	
+
 目标页面"[[$1]]"已经存在。你确认需要删除原页面并以进行移动吗？',
 'delete_and_move_confirm' => '是的，删除此页面',
 'delete_and_move_reason'  => '删除以便移动',
@@ -1979,7 +1979,7 @@ Variants for Chinese language
 如果此文件的源文件已经被修改，一些信息在修改后的文件中将不能完全反映出来。',
 'metadata-expand'   => '显示详细资料',
 'metadata-collapse' => '隐藏详细资料',
-'metadata-fields'   => '在本信息中所列出的 EXIF 元数据域将包含在图片显示页面, 
+'metadata-fields'   => '在本信息中所列出的 EXIF 元数据域将包含在图片显示页面,
 当元数据表损坏时只显示以下信息，其他的元数据默认为隐藏。
 * make
 * model
@@ -2273,7 +2273,7 @@ Variants for Chinese language
 'confirmemail_error'       => '你的确认过程发生错误。',
 'confirmemail_subject'     => '{{SITENAME}}邮箱地址确认',
 'confirmemail_body'        => '拥有IP地址$1的用户(可能是您)在{{SITENAME}}创建了账户"$2"，并提交了您的电子邮箱地址。
-		
+
 请确认这个账户是属于您的，并同时激活在{{SITENAME}}上的
 电子邮件功能。请在浏览器中打开下面的链接:
 

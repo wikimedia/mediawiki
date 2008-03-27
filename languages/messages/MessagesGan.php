@@ -10,8 +10,6 @@
  * @author Vipuser
  */
 
-
-
 $messages = array(
 # User preference toggles
 'tog-underline'               => '下劃連結',
@@ -282,7 +280,7 @@ $messages = array(
 'nosuchaction'      => '冇有箇隻命令',
 'nosuchactiontext'  => 'Wiki識別伓到箇隻URL命令',
 'nosuchspecialpage' => '冇有箇隻特殊頁',
-'nospecialpagetext' => "<big>'''倷要求嗰特殊頁冇有用。'''</big> 
+'nospecialpagetext' => "<big>'''倷要求嗰特殊頁冇有用。'''</big>
 
 [[Special:Specialpages]]上尋得到用得上嗰特殊頁。",
 
@@ -300,7 +298,7 @@ MySQL回到錯誤 "<tt>$3: $4</tt>"。',
 “$1”
 來自函數“$2”。
 MySQL回到錯誤“$3: $4”。',
-'noconnect'            => '對伓住！wiki碰到嘞技術問題，連伓到資料庫服務器。<br /> 
+'noconnect'            => '對伓住！wiki碰到嘞技術問題，連伓到資料庫服務器。<br />
 $1',
 'nodb'                 => '選伓正服務器 $1',
 'cachederror'          => '底下係請求頁嗰緩存副本，可能伓係最新嗰。',
@@ -328,8 +326,8 @@ $1',
 'perfcached'           => '底下係緩存資料，可能伓係最新嗰。',
 'perfcachedts'         => '底下係緩存資料，佢最晏更新嗰時間係 $1。',
 'querypage-no-updates' => '箇頁目前改伓正，佢嗰資料伓能仰上更新。',
-'wrong_wfQuery_params' => '參數錯誤斢到嘞 wfQuery()<br /> 
-函數： $1<br /> 
+'wrong_wfQuery_params' => '參數錯誤斢到嘞 wfQuery()<br />
+函數： $1<br />
 查詢： $2',
 'viewsource'           => '原始碼',
 'viewsourcefor'        => '$1 嗰原始碼',
@@ -346,9 +344,9 @@ $2',
 
 # Login and logout pages
 'logouttitle'                => '用戶退出',
-'logouttext'                 => '<strong>倷退出正嘞。</strong><br /> 
+'logouttext'                 => '<strong>倷退出正嘞。</strong><br />
 倷可以接到匿名使用{{SITENAME}}，或重登入過，隻把子頁面可能會接到話倷係登入狀態，除非係倷刪吥瀏覽器緩存。',
-'welcomecreation'            => '== 歡迎, $1! == 
+'welcomecreation'            => '== 歡迎, $1! ==
 
 建正嘞倷嗰帳戶，莫忘吥設置{{SITENAME}}嗰個人參數。',
 'loginpagetitle'             => '用戶登入',
@@ -465,13 +463,13 @@ $2',
 'summary-preview'           => '摘要預覽',
 'subject-preview'           => '主題/頭條預覽',
 'blockedtitle'              => '用戶封到嘞',
-'blockedtext'               => "<big>倷嗰用戶名或IP地址拕$1封到嘞。</big> 
+'blockedtext'               => "<big>倷嗰用戶名或IP地址拕$1封到嘞。</big>
 
-箇道封鎖係$1封嗰。個中原因係''$2''。 
+箇道封鎖係$1封嗰。個中原因係''$2''。
 
-* 箇回封鎖嗰開始時間係：$8 
-* 箇回封鎖嗰到期時間係：$6 
-* 對於拕查封嗰人：$7 
+* 箇回封鎖嗰開始時間係：$8
+* 箇回封鎖嗰到期時間係：$6
+* 對於拕查封嗰人：$7
 
 倷聯繫得正$1或別嗰[[{{MediaWiki:Grouppage-sysop}}|管理員]]，討論箇回封鎖。除非倷到倷嗰[[Special:Preferences|帳號參數設置]]裡度設正嘞有效嗰email，伓然嗰話倷係用伓正「email到箇隻用戶」嗰功能。設正嘞有效嗰email後，箇隻功能係伓會拕封到嗰。倷嗰IP地址係$3，許拕封到嗰ID係 #$5。請倷到全部嗰查詢裡度注明箇隻地址同／或查封ID。",
 'autoblockedtext'           => '因為別嗰人用過倷嗰IP地址，佢拕自動鎖到嘞。封佢嗰人係$1.
@@ -520,9 +518,9 @@ $2',
 'previewconflict'           => '箇隻預覽係上首文字編輯區嗰內容。倷選擇保存嗰話佢才會保存到。',
 'session_fail_preview'      => '<strong>對伓住！箇隻段落嗰資料跌吥嘞，偶個俚處理伓正倷嗰編輯。
 請試過吖。還係扤伓正嗰話，試吖退出後登入過。</strong>',
-'session_fail_preview_html' => "<strong>對伓住！相關嗰程式資料跌吥嘞，偶個俚處理伓正倷嗰編輯。</strong> 
+'session_fail_preview_html' => "<strong>對伓住！相關嗰程式資料跌吥嘞，偶個俚處理伓正倷嗰編輯。</strong>
 
-''箇隻wiki開放正嘞原HTML碼，預覽弆到嘞以防止JavaScript嗰攻擊。'' 
+''箇隻wiki開放正嘞原HTML碼，預覽弆到嘞以防止JavaScript嗰攻擊。''
 
 <strong>要係佢係合法編輯嗰，請試過吖。還係扤伓正嗰話，試吖退出後登入過。</strong>",
 'token_suffix_mismatch'     => '<strong>倷嗰用戶端嗰編輯信毀吥嘞嚸標點符號字符，噉嗰話倷嗰編輯就拕拒絕嘞。
@@ -531,7 +529,7 @@ $2',
 'editingsection'            => '眼下在編輯$1 (段落)',
 'editingcomment'            => '眼下在編輯$1 (評論)',
 'editconflict'              => '編輯仗: $1',
-'explainconflict'           => '倷開始編輯之後有人改動嘞箇頁。上首嗰方框顯示嗰係眼下本頁嗰內容。倷嗰修改到下底嗰方框顯示。倷需要拿倷嗰修改並到眼下嗰內容。 
+'explainconflict'           => '倷開始編輯之後有人改動嘞箇頁。上首嗰方框顯示嗰係眼下本頁嗰內容。倷嗰修改到下底嗰方框顯示。倷需要拿倷嗰修改並到眼下嗰內容。
 <b>單只係</b>上首方框嗰內容會等倷按"存到箇頁"之後拕保存。<br />',
 'yourtext'                  => '倷編嗰內容',
 'storedversion'             => '存到嗰版本',
@@ -564,7 +562,7 @@ $2',
 'nocreate-loggedin'         => '倷在 {{SITENAME}}冇權新開頁面。',
 'permissionserrors'         => '許可權錯誤',
 'permissionserrorstext'     => '根據底下嗰{{PLURAL:$1|原因|原因}}，倷冇許可權去扤:',
-'recreate-deleted-warn'     => "'''警告: 倷正重建一隻之前拕刪吥嗰頁面。''' 
+'recreate-deleted-warn'     => "'''警告: 倷正重建一隻之前拕刪吥嗰頁面。'''
 
 倷應該要考慮吖繼續編輯箇頁面係否有必要。為到方便，箇頁嗰刪除記錄已經到下底提供:",
 
@@ -593,7 +591,7 @@ $2',
 'last'                => '之前',
 'page_first'          => '最早',
 'page_last'           => '最晏',
-'histlegend'          => '差異選擇: 標到伓同版本嗰單選鍵，接到按吖督上嗰鍵比較下。<br /> 
+'histlegend'          => '差異選擇: 標到伓同版本嗰單選鍵，接到按吖督上嗰鍵比較下。<br />
 說明: (眼下) 指同目前版本嗰比較，(之前) 指同之前修改版本嗰比較，細 = 細修改。',
 'deletedrev'          => '[拕刪除]',
 'histfirst'           => '最早版本',
@@ -619,7 +617,7 @@ $2',
 'revdelete-nooldid-text'      => '倷冇话箇隻操作嗰目标修改。',
 'revdelete-selected'          => "揀'''$1'''嗰$2回修訂:",
 'logdelete-selected'          => "揀'''$1'''嗰$2隻日誌事件:",
-'revdelete-text'              => '刪吥嗰改動還會到頁面歷史裡度顯示, 但公眾瀏覽伓正佢嗰內容。 
+'revdelete-text'              => '刪吥嗰改動還會到頁面歷史裡度顯示, 但公眾瀏覽伓正佢嗰內容。
 
 箇站別嗰管理員還係能眵吖弆到嗰內容，同到通過同佢一樣嗰界面恢復刪除，除非設正嘞附加嗰限制。',
 'revdelete-legend'            => '設置修改限制:',
@@ -840,9 +838,9 @@ $2',
 'upload_directory_read_only'  => '上傳目錄($1)伓存在或冇寫入許可權。',
 'uploaderror'                 => '上傳出錯',
 'uploadtext'                  => "用下底嗰表格上傳檔案。
-要眵或要尋先前上傳嗰圖像請去[[Special:Imagelist|圖像列表]]，上傳同刪除會記到[[Special:Log/upload|上傳日誌]]裡度。 
+要眵或要尋先前上傳嗰圖像請去[[Special:Imagelist|圖像列表]]，上傳同刪除會記到[[Special:Log/upload|上傳日誌]]裡度。
 
-要係想扻文件到頁面，用得正下底方式嗰連結: 
+要係想扻文件到頁面，用得正下底方式嗰連結:
 '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:File.jpg]]</nowiki>''',
 '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:File.png|alt text]]</nowiki>''' 或
 '''<nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki>''' 直接連接到箇只文件。",
@@ -858,7 +856,7 @@ $2',
 'filestatus'                  => '版權狀態:',
 'filesource'                  => '來源:',
 'uploadedfiles'               => '上傳檔案中',
-'ignorewarning'               => '伓搭警告同存到檔案。',
+'ignorewarning'               => '伓搭警告同存到檔案',
 'ignorewarnings'              => '伓搭所有警告',
 'minlength1'                  => '檔案名字至少要有一隻字。',
 'illegalfilename'             => '檔案名"$1"有頁面標題伓容許嗰字元。請改吖名再上傳過。',
@@ -1011,7 +1009,7 @@ $2',
 '''$8'''隻檔案上傳嘞。
 
 箇隻{{SITENAME}}建立以來，攏共有'''$3'''道瀏覽，同到'''$4'''回編輯。
-平均每頁有'''$5'''道瀏覽，同到'''$6'''回編輯。 
+平均每頁有'''$5'''道瀏覽，同到'''$6'''回編輯。
 
 [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] 嗰長度係'''$7'''。",
 'userstatstext'          => "網站有'''$1'''隻註冊[[Special:Listusers|用戶]]，其中 '''$2''' (或 '''$4%''') 有$5許可權。",
@@ -1196,12 +1194,12 @@ $2',
 $CHANGEDORCREATED{{SITENAME}}嗰 $PAGETITLE 頁面已經由$PAGEEDITOR到 $PAGEEDITDATE，請到 $PAGETITLE_URL眵吖目前嗰版本。
 
 $NEWPAGE
-編輯摘要: $PAGESUMMARY $PAGEMINOREDIT 
-聯絡箇隻編輯人: mail: $PAGEEDITOR_EMAIL 
+編輯摘要: $PAGESUMMARY $PAGEMINOREDIT
+聯絡箇隻編輯人: mail: $PAGEEDITOR_EMAIL
 
-本站: $PAGEEDITOR_WIKI 今後伓會通知倷將來嗰改動，除非接到來到箇頁。倷也能設過倷全部監視頁嗰通知標記。 
+本站: $PAGEEDITOR_WIKI 今後伓會通知倷將來嗰改動，除非接到來到箇頁。倷也能設過倷全部監視頁嗰通知標記。
 
-{{SITENAME}}通知系統 – 會改卟倷嗰監視列表設置，請去 {{fullurl:{{ns:special}}:Watchlist/edit}} 
+{{SITENAME}}通知系統 – 會改卟倷嗰監視列表設置，請去 {{fullurl:{{ns:special}}:Watchlist/edit}}
 
 回饋同到別嗰説明: {{fullurl:{{MediaWiki:Helppage}}}}',
 
@@ -1235,7 +1233,7 @@ $NEWPAGE
 'rollbacklink'                => '還原',
 'rollbackfailed'              => '還原失敗',
 'cantrollback'                => '還原伓正；最末嗰貢獻人係文章嗰唯一作者。',
-'alreadyrolled'               => '還原伓正由[[User:$2|$2]] ([[User talk:$2|討論]])做嗰[[$1]]嗰最晏編寫；別嗰人編輯過或係恢復嘞箇頁。 
+'alreadyrolled'               => '還原伓正由[[User:$2|$2]] ([[User talk:$2|討論]])做嗰[[$1]]嗰最晏編寫；別嗰人編輯過或係恢復嘞箇頁。
 
 最晏編輯人: [[User:$3|$3]] ([[User talk:$3|討論]])。',
 'editcomment'                 => '編輯介紹: "<i>$1</i>"。', # only shown if there is an edit comment
@@ -1309,7 +1307,7 @@ $NEWPAGE
 'undeletedrevisions-files'     => '$1隻修改版本同$2隻檔案恢復正嘞',
 'undeletedfiles'               => '$1隻檔案恢復正嘞',
 'cannotundelete'               => '反刪除伓正；話伓定別嗰人先倷恢復嘞箇隻頁面。',
-'undeletedpage'                => "<big>'''$1恢復正嘞'''</big> 
+'undeletedpage'                => "<big>'''$1恢復正嘞'''</big>
 
 望吖[[Special:Log/delete|刪除日誌]]嗰刪除同恢復記錄。",
 'undelete-header'              => '要查最晏嗰記錄嗰話請望[[Special:Log/delete|刪除日誌]]。',
@@ -1369,13 +1367,13 @@ $NEWPAGE
 'ipbexpiry'                   => '期限:',
 'ipbreason'                   => '原因:',
 'ipbreasonotherlist'          => '別嗰原因',
-'ipbreason-dropdown'          => '*一般嗰封鎖原因 
-** 緊編寫假嗰內容 
-** 刪卟文章內容 
-** 亂加外部連結 
+'ipbreason-dropdown'          => '*一般嗰封鎖原因
+** 緊編寫假嗰內容
+** 刪卟文章內容
+** 亂加外部連結
 ** 寫冇油鹽嗰話
-** 嚇人／騷擾別嗰 
-** 濫用帳號 
+** 嚇人／騷擾別嗰
+** 濫用帳號
 ** 亂起用戶名',
 'ipbanononly'                 => '光防到匿名用戶',
 'ipbcreateaccount'            => '防止開新帳號',
@@ -1457,13 +1455,13 @@ $NEWPAGE
 
 # Move page
 'move-page-legend'        => '換動頁面',
-'movepagetext'            => "用下底嗰表格拿一隻頁面改名，跟到拿佢嗰歷史一齊般到新頁面。舊嗰頁面就係新頁嗰重定向頁。連到舊頁面嗰連結伓會自動更改；勞煩檢查吖雙重或壞嗰重定向連結。倷有責任確保全部連結會連到指正嗰頁面。 
+'movepagetext'            => "用下底嗰表格拿一隻頁面改名，跟到拿佢嗰歷史一齊般到新頁面。舊嗰頁面就係新頁嗰重定向頁。連到舊頁面嗰連結伓會自動更改；勞煩檢查吖雙重或壞嗰重定向連結。倷有責任確保全部連結會連到指正嗰頁面。
 
-注意如果新頁面早就有嗰話，頁面'''伓會'''搬過去，要不新頁面就係冇內容或係重定向頁，也冇修訂歷史。噉就係話必要時倷能等換到新頁面之後再又回到舊嗰頁面，跟到倷也覆蓋不正目前頁面。 
+注意如果新頁面早就有嗰話，頁面'''伓會'''搬過去，要不新頁面就係冇內容或係重定向頁，也冇修訂歷史。噉就係話必要時倷能等換到新頁面之後再又回到舊嗰頁面，跟到倷也覆蓋不正目前頁面。
 
 <b>警告！</b> 對一隻訪問得多嗰頁面噉會係一隻重要同關鍵嗰改動；請扤之前了解正佢噉可能嗰後果。",
-'movepagetalktext'        => "相關嗰討論頁會自動同箇頁一齊搬走，'''除非''': 
-*新頁面有嘞隻有內容嗰討論頁，或 
+'movepagetalktext'        => "相關嗰討論頁會自動同箇頁一齊搬走，'''除非''':
+*新頁面有嘞隻有內容嗰討論頁，或
 *倷伓選下底嗰選擇方塊。
 噉倷就非要手工移動或合併頁面。",
 'movearticle'             => '換動頁面:',
@@ -1489,7 +1487,7 @@ $NEWPAGE
 'movereason'              => '原因',
 'revertmove'              => '恢復',
 'delete_and_move'         => '刪除跟到移動',
-'delete_and_move_text'    => '==需要刪除== 
+'delete_and_move_text'    => '==需要刪除==
 
 目標文章"[[$1]]"存在嘞。為到移動佢，倷要刪卟舊頁面？',
 'delete_and_move_confirm' => '係嗰，刪卟箇頁',
@@ -1499,11 +1497,11 @@ $NEWPAGE
 
 # Export
 'export'            => '導出頁面',
-'exporttext'        => '通過XML格式倷能拿特定嗰頁面或一組頁面嗰文本同到佢編輯嗰歷史一齊導出；噉通過"[[Special:Import|導入頁面]]"就導入得到別嗰MediaWiki網站。 要導出頁面嗰話，請到下底嗰文字框寫正標題，一行一隻標題，再話正倷係否要導出含歷史嗰舊版本，或單就選導出最晏一回編輯嗰相關內容。 
+'exporttext'        => '通過XML格式倷能拿特定嗰頁面或一組頁面嗰文本同到佢編輯嗰歷史一齊導出；噉通過"[[Special:Import|導入頁面]]"就導入得到別嗰MediaWiki網站。 要導出頁面嗰話，請到下底嗰文字框寫正標題，一行一隻標題，再話正倷係否要導出含歷史嗰舊版本，或單就選導出最晏一回編輯嗰相關內容。
 
 再就係通過連結倷還導出得正檔案，比如倷用得正[[{{ns:special}}:Export/{{int:mainpage}}]]導出"[[{{int:mainpage}}]]"頁面',
 'exportcuronly'     => '獨今吖嗰改動，伓係全部嗰歷史。',
-'exportnohistory'   => "---- 
+'exportnohistory'   => "----
 '''注意:''' 由於性能嗰原因，箇隻表格導出嗰頁面嗰全部歷史都拕禁用。",
 'export-submit'     => '導出',
 'export-addcattext' => '從分類裡頭加進頁面:',
@@ -1694,7 +1692,7 @@ $NEWPAGE
 # Image deletion
 'deletedrevision'                 => '刪卟嘞舊版本$1。',
 'filedeleteerror-short'           => '刪卟檔案出錯: $1',
-'filedeleteerror-long'            => '刪卟檔案出嘞錯: 
+'filedeleteerror-long'            => '刪卟檔案出嘞錯:
 
 $1',
 'filedelete-missing'              => '檔案 "$1" 伓存在，所以刪佢伓正。',
@@ -1728,7 +1726,7 @@ $1',
 'sp-newimages-showfrom' => '顯示從 $1 起嗰新文件',
 
 # Bad image list
-'bad_image_list' => '請根據下底嗰格式去寫: 
+'bad_image_list' => '請根據下底嗰格式去寫:
 
 會考慮單列到嗰項目（以*開頭嗰項目）。頭隻連結非要連到隻壞圖。之後同一行嗰連結會考慮係特殊，也就係話係幅圖都能到哪篇文章同時顯示得正。',
 
@@ -1737,7 +1735,7 @@ $1',
 'metadata-help'     => '箇隻檔案含到額外嗰信息。咁可能係數碼相機或掃描儀扤得。 要係改吥箇隻檔嗰源檔案，佢嗰資料伓見得會同改過後一樣。',
 'metadata-expand'   => '顯到詳細資料',
 'metadata-collapse' => '弆到詳細資料',
-'metadata-fields'   => '箇隻信息列到嗰 EXIF 元數據表會含到圖片顯示頁面裡頭, 要係元數據表扤壞嘞就只會顯下底嗰資料，別嗰元數據會自動弆到。 
+'metadata-fields'   => '箇隻信息列到嗰 EXIF 元數據表會含到圖片顯示頁面裡頭, 要係元數據表扤壞嘞就只會顯下底嗰資料，別嗰元數據會自動弆到。
 * make
 * model
 * datetimeoriginal
@@ -2011,12 +2009,12 @@ $1',
 'confirmemail'            => '確認email地址',
 'confirmemail_noemail'    => '倷冇到倷嗰[[Special:Preferences|用戶設置]]設正一隻有效嗰電子郵件地址。',
 'confirmemail_text'       => '箇隻網站要求倷用email功能之前確認下倷嗰email地址。按吖下底嗰鍵來發封確認郵件到倷嗰郵箱。佢會附帶一隻代碼連結；請到倷嗰瀏覽器打開箇隻連結來確認倷嗰email地址係有效嗰。',
-'confirmemail_pending'    => '<div class="error"> 
+'confirmemail_pending'    => '<div class="error">
 一隻確認代碼發到倷嗰郵箱，噉可能要等幾分鐘。要係冇收到，請申請過新嗰確認碼！ </div>',
 'confirmemail_send'       => '寄出確認碼',
 'confirmemail_sent'       => '確認郵件發出嘞。',
 'confirmemail_oncreate'   => '一隻確認碼發到倷嗰郵箱。箇隻代碼伓係話倷要仰上登入，但要係倷想用 wiki 嗰任何email嗰相關功能，就非要先提交箇隻代碼。',
-'confirmemail_sendfailed' => '發送伓正確認郵件，請檢查email地址係否含到伓合字符。 
+'confirmemail_sendfailed' => '發送伓正確認郵件，請檢查email地址係否含到伓合字符。
 
 郵件發送人回應: $1',
 'confirmemail_invalid'    => '無效嗰確認碼，箇隻代碼過嘞期。',
@@ -2025,11 +2023,11 @@ $1',
 'confirmemail_loggedin'   => '倷嗰email地址已得到確認。',
 'confirmemail_error'      => '確認過程出錯。',
 'confirmemail_subject'    => '{{SITENAME}}電子郵件地址確認',
-'confirmemail_body'       => 'IP地址$1嗰用戶(可能係倷)到{{SITENAME}}註冊嘞帳戶"$2"，並一同用嘞倷嗰email地址。 
+'confirmemail_body'       => 'IP地址$1嗰用戶(可能係倷)到{{SITENAME}}註冊嘞帳戶"$2"，並一同用嘞倷嗰email地址。
 
-請確認箇隻帳戶係歸倷嗰，接到啟動{{SITENAME}}裡頭嗰email功能。請到瀏覽器開到下底嗰連結: 
+請確認箇隻帳戶係歸倷嗰，接到啟動{{SITENAME}}裡頭嗰email功能。請到瀏覽器開到下底嗰連結:
 
-$3 
+$3
 
 如果箇*伓係*倷，就冇必要打開箇隻連結。確認碼會到$4時間過期。',
 
@@ -2039,7 +2037,7 @@ $3
 'scarytranscludetoolong'  => '[對伓住，URL 太長]',
 
 # Trackbacks
-'trackbackbox'      => '<div id="mw_trackbacks"> 
+'trackbackbox'      => '<div id="mw_trackbacks">
 箇篇文章嗰引用:<br /> $1 </div>',
 'trackbackremove'   => '([$1刪除])',
 'trackbacklink'     => '引用',
@@ -2047,7 +2045,7 @@ $3
 
 # Delete conflict
 'deletedwhileediting' => '警告: 倷編輯嗰時間有人刪卟嘞箇頁！',
-'confirmrecreate'     => '倷編輯嗰時間，用戶[[User:$1|$1]]([[User talk:$1|對話]])因為下底原因刪卟嘞箇頁: 
+'confirmrecreate'     => '倷編輯嗰時間，用戶[[User:$1|$1]]([[User talk:$1|對話]])因為下底原因刪卟嘞箇頁:
 $2。請想正後再重建頁面。',
 'recreate'            => '重建',
 

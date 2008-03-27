@@ -333,9 +333,9 @@ MySQL and\' via "$3: $4".',
 'readonlytext'         => "Teedüskogo om kirotuskaitsõ all, arvadaq niikavvas ku tedä parandõdas.
 Kõrraldaja, kiä taa kirotuskaitsõ alaq võtt', and' sääntse selgütüse:
 <p>$1",
-'missingarticle'       => 'Lövvä es teedüskogost leheküle "$1" teksti, kuiki olõsiq pidänüq löüdmä. 
+'missingarticle'       => 'Lövvä es teedüskogost leheküle "$1" teksti, kuiki olõsiq pidänüq löüdmä.
 
-<p>Hariligult om taa põhjusõs vanaslännüq sisuvaihidõ- vai aoluulink lehekülele, miä om ärq kistutõt. 
+<p>Hariligult om taa põhjusõs vanaslännüq sisuvaihidõ- vai aoluulink lehekülele, miä om ärq kistutõt.
 
 <p>Ku olõ-i tegemist sääntse johtumisõga, sis või ollaq tegemist tarkvaraviaga. Annaq taast teedäq kõrraldajalõ.',
 'readonly_lag'         => 'Teedüskogo panti automaatsõhe kinniq, et kõik teedüskogoserveriq saasiq kätte kõik värskiq muutmisõq',
@@ -432,7 +432,7 @@ Võit ilma nimeldä edesi toimõndaq vai minnäq sisse tõõsõ nimega.',
 'passwordremindertitle'      => '{{SITENAME}} salasõna miildetulõtus',
 'passwordremindertext'       => "Kiäki (arvadaq saq esiq, puutri võrgonummõr $1),
 pallõl', et {{SITENAME}} ($4) saatnuq sullõ vahtsõ sisseminegi salasõna.
-Pruukja $2 salasõna om noq $3. Ku olõt nimega sisse lännüq, võit taa aotlidsõ salasõna ärq muutaq. 
+Pruukja $2 salasõna om noq $3. Ku olõt nimega sisse lännüq, võit taa aotlidsõ salasõna ärq muutaq.
 Tervüisi, {{SITENAME}}.",
 'noemail'                    => 'Kah\'os olõ-i meil pruukja "$1" e-postiaadrõssit.',
 'passwordsent'               => 'Vahtsõnõ salasõna om saadõt pruukja "$1" kirotõdu e-postiaadrõsi pääle. Ku olõt salasõna kätte saanuq, mineq nimega sisse.',
@@ -518,7 +518,7 @@ Kinniqpidämise põhjus:
 
 Kinniqpidämise aig: $6
 
-Taa kinniqpidämise kotsilõ perräküsümises ja taa arotamisõs võit kirotaq kõrraldajalõ $1 vai mõnõlõ  
+Taa kinniqpidämise kotsilõ perräküsümises ja taa arotamisõs võit kirotaq kõrraldajalõ $1 vai mõnõlõ
 [[{{MediaWiki:Grouppage-sysop}}|tõõsõlõ kõrraldajalõ]].
 
 Rehkendäq tuud, et sa saa-i tõisilõ pruukjilõ e-kirjo saataq, ku sa olõ-i ummi [[Special:Preferences|säädmiisihe]] kirjä pandnuq suq hindä masvat e-postiaadrõssit.
@@ -544,7 +544,7 @@ Suq kinniqpidämise tunnusnummõr om $5. Olõq hää, kirodaq taa nummõr egä p
 'accmailtext'               => "Pruukja '$1' salasyna saadõti aadrõsi pääle $2.",
 'newarticle'                => '(Vahtsõnõ)',
 'newarticletext'            => "Taad lehekülge olõ-i viil.
-Leheküle luumisõs nakkaq kirotama alanolõvahe kasti. 
+Leheküle luumisõs nakkaq kirotama alanolõvahe kasti.
 Ku sa johtuq siiäq kogõmaldaq, sis klõpsaq võrgokaeja '''Tagasi'''-nuppi.",
 'anontalkpagetext'          => "---- ''Taa om arotusleht nimeldä pruukja kotsilõ, kiä olõ-i loonuq kontot vai pruugi-i tuud. Tuuperäst tulõ meil pruukja kimmästegemises pruukiq timä puutri võrgoaadrõssit. Taa aadrõs või ollaq mitmõ pruukja pääle ütine. Ku olõt nimeldä pruukja ja lövvät, et taa leheküle pääle kirotõt jutt käü suq kotsilõ, sis olõq hää, [[Special:Userlogin|luuq konto vai mineq nimega sisse]], et edespiten segähüisi ärq hoitaq.''",
 'noarticletext'             => "<big>Seo leht om parlaq tühi.'''</big> * Võit kirotaq vahtsõ lehe '''<span class=\"plainlinks\">[{{fullurl:{{NAMESPACE}}:{{PAGENAME}}|action=edit}} {{PAGENAME}}]</span>.''' * Ku olõt jo loonuq sääntse nimega lehe, või tuu ollaq ärq kistutõt — kaeq [[Special:Log/delete|kistutusnimekirjä]].",
@@ -1198,11 +1198,11 @@ Kirodaq muutjalõ:
 e-post: $PAGEEDITOR_EMAIL
 viki: $PAGEEDITOR_WIKI
 
-Inämb seo lehe kotsilõ teedäqandmiisi saadõta-i. Võit ka kõik su perräkaetavidõ lehti muutmisõ kuulutusõq ärq keeldäq. 
+Inämb seo lehe kotsilõ teedäqandmiisi saadõta-i. Võit ka kõik su perräkaetavidõ lehti muutmisõ kuulutusõq ärq keeldäq.
 
-{{SITENAME}} teedäqandmiskõrraldus 
+{{SITENAME}} teedäqandmiskõrraldus
 
-Perräkaemisnimekirä säädmiisi saat muutaq lehe pääl: {{fullurl:Special:Watchlist/edit}} 
+Perräkaemisnimekirä säädmiisi saat muutaq lehe pääl: {{fullurl:Special:Watchlist/edit}}
 
 As\'a kotsilõ mano kaiaq ja küssü saat lehe päält: {{fullurl:{{MediaWiki:Helppage}}}}',
 
@@ -1484,7 +1484,7 @@ Kui om nii, sis panõq vana arotuskülg eräle vai panõq taa kokko vahtsõ arot
 
 Kirodaq taaha kasti lehti päälkiräq, kost tahat sissu üle viiäq, egä ria pääle üts, ja valiq, kas tahat viiäq lehe kõiki kujjõ vai õnnõ kõgõ vahtsõmbat.
 
-Viimädse johtumisõ kõrral võit ka pruukiq linki, nt leht {{MediaWiki:Mainpage}} saa viidüs lingiga 
+Viimädse johtumisõ kõrral võit ka pruukiq linki, nt leht {{MediaWiki:Mainpage}} saa viidüs lingiga
 [[{{ns:special}}:Export/{{MediaWiki:Mainpage}}]].',
 'exportcuronly'     => 'Võtku-i kõiki kujjõ, a õnnõ kõgõ vahtsõmb',
 'exportnohistory'   => "----

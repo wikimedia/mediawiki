@@ -516,7 +516,7 @@ reviziju ove stranice.
 Ako je snimite, sve promjene učinjene od ove revizije će biti izgubljene.</strong>',
 'yourdiff'                 => 'Razlike',
 'copyrightwarning'         => 'Za sve priloge poslate na projekat {{SITENAME}} smatramo da su objavljeni pod $2 (konsultujte $1 za detalje).
-Ukoliko ne želite da vaši članci budu podložni izmjenama i slobodnom rasturanju i objavljivanju, 
+Ukoliko ne želite da vaši članci budu podložni izmjenama i slobodnom rasturanju i objavljivanju,
 nemojte ih slati ovdje. Takođe, slanje članka podrazumijeva i vašu izjavu da ste ga napisali sami, ili da ste ga kopirali iz izvora u javnom domenu ili sličnog slobodnog izvora.
 
 <strong>NEMOJTE SLATI RAD ZAŠTIĆEN AUTORSKIM PRAVIMA BEZ DOZVOLE AUTORA!</strong>',

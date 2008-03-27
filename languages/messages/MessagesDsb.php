@@ -532,15 +532,15 @@ Twójo wužywarske konto jo se zarědowało. Njezabydni, swóje {{SITENAME}} nas
 'passwordtooshort'           => 'Twójo šćitne gronidło njejo korektne abo pśeliž krotke. Wóno dej nanejmjenjej $1 pismikow wopśimjeś a njesmějo se z wužywarskim mjenim makaś.',
 'mailmypassword'             => 'Šćitne gronidło pśipósłaś',
 'passwordremindertitle'      => 'Nowe nachylne pótajmne słowo za {{SITENAME}}',
-'passwordremindertext'       => 'Něchten (nejskerjej ty z adresy $1) jo se wupšosył, aby jomu se pśipósłało nowe šćitne gronidło za bok{{SITENAME}} ($4). Šćitne gronidło za wužywarja "$2" jo něnto "$3". 
-Ty móžoš se něnto pśizjawiś a swójo šćitne gronidło pśeměniś. 
+'passwordremindertext'       => 'Něchten (nejskerjej ty z adresy $1) jo se wupšosył, aby jomu se pśipósłało nowe šćitne gronidło za bok{{SITENAME}} ($4). Šćitne gronidło za wužywarja "$2" jo něnto "$3".
+Ty móžoš se něnto pśizjawiś a swójo šćitne gronidło pśeměniś.
 
 Jolic jo něchten drugi wó nowe šćitne gronidło pšosył, abo sy se zasej domarkował a njocoš jo změniś, móžoš toś tu powěsć ignorěrowaś a swójo stare gronidło dalej wužywaś.',
 'noemail'                    => 'Wužywaŕ „$1“ njejo e-mailowu adresu zapódał.',
 'passwordsent'               => 'Nowe šćitne gronidło jo se wótpósłało na e-mailowu adresu wužywarja „$1“.
 Pšosym pśizjaw se zasej, gaž jo dostanjoš.',
 'blocked-mailpassword'       => 'Twója IP-adresa jo se za wobźěłowanje bokow blokěrowała a teke pśipósłanje nowego šćitnego gronidła jo se znjemóžniło, aby se znjewužywanjeju zadorało.',
-'eauthentsent'               => 'Wobkšuśenje jo se na e-mailowu adresu wótposłało. 
+'eauthentsent'               => 'Wobkšuśenje jo se na e-mailowu adresu wótposłało.
 
 Nježli až wótpósćelo se dalšna e-mail na to wužywarske konto, dejš slědowaś instrukcije w powěsći a tak wobkšuśiś, až konto jo wót wěrnosći twójo.',
 'throttled-mailpassword'     => 'W běgu {{Plural:$1|slědneje $1 góźiny|slědnjeju $1 góźinowu|slědnych $1 góźinow}} jo se južo raz wó nowe šćitne gronidło pšosyło.  Wěstoty dla wótpósćelo se jano jadno šćitne gronidło w běgu {{Plural:$1|$1 góźiny|$1 góźinowu|$1 góźinow}}.',
@@ -619,7 +619,7 @@ Zablokěrował(a) $1. Pśicyna: ''$2''.
 
 Móžoš wužywarja $1 abo [[{{MediaWiki:Grouppage-sysop}}|administratora]] kontaktěrowaś, aby wó blokěrowanju diskutěrował.
 Njamóžoš e-mail wótpósłaś nježlic až njezapódajoš płaśecu adresu na boku
-[[Special:Preferences|account preferences]] a nježlic blokěrowanje se njezwignjo. 
+[[Special:Preferences|account preferences]] a nježlic blokěrowanje se njezwignjo.
 Twója IP-adresa jo $3, a ID blokěrowanja jo #$5. Pšosym pódaj ju w diskusiji.",
 'autoblockedtext'           => "Twója IP-adresa jo awtomatiski se blokěrowała, dokulaž jo wót drugego wužywarja se wužywała, kótaryž jo był pśez $1 blokěrowany.
 Pśicyna:
@@ -719,7 +719,7 @@ Pšosym pśemysli, lic njamóžo se bok na mjeńše wótrězki rozdźěliś.</st
 'permissionserrors'         => 'Problem z pšawami',
 'permissionserrorstext'     => 'Njamaš pšawo to cyniś. {{PLURAL:$1|Pśicyna|Pśicynje|Pśicyny}}:',
 'recreate-deleted-warn'     => "'''Glědaj: Ty wótžywijoš bok, kótaryž jo pjerwjej se wulašował.'''
- 
+
 Pšosym pśespytuj kradosćiwje, lic wótpowědujo dalšne wótnowjenje bokow směrnicam.
 Aby se mógał informěrowaś, slědujo how wulašowanski log-zapis, w kótaremž namakajoš teke pśicyny wulašowanja.",
 
@@ -1035,7 +1035,7 @@ Aby dataju do boka zapśimjeł, wužyj wótkaz we formje
 'filestatus'                  => 'Status copyrighta:',
 'filesource'                  => 'Žrědło:',
 'uploadedfiles'               => 'Uploadowane dataje',
-'ignorewarning'               => 'Warnowanje ignorěrowaś a dataju składowaś.',
+'ignorewarning'               => 'Warnowanje ignorěrowaś a dataju składowaś',
 'ignorewarnings'              => 'Wše warnowanja ignorěrowaś',
 'minlength1'                  => 'Mjenja datajow muse wopśimjeś nanejmjenjej jaden pismik.',
 'illegalfilename'             => 'Datajowe mě „$1“ wopśimjejo njedowólone znamuška. Pšosym pśemjeni dataju a wopytaj ju wótnowotki uploadowaś.',
@@ -1075,12 +1075,12 @@ Pšosym kontrolěruj, lic maš wobraz w połnem rozpušćenju a uploaduj jen, w 
 'watchthisupload'             => 'Toś ten bok wobglědowaś',
 'filewasdeleted'              => 'Dataja z toś tym mjenim jo była južo raz uploadowana a mjaztym zasej wulašowana. Pšosym kontrolěruj pjerwjej $1, nježli až dataju napšawdu składujoš.',
 'upload-wasdeleted'           => "'''Glědaj: Uploadujoš dataju, kótaraž jo južo raz se wulašowała.'''
- 
+
 Pšosym kontrolěruj, lic wótpowědujo nowy upload směrnicam.
 Aby se mógał informěrowaś jo how log-lisćina z pśicynu wulašowanja:",
 'filename-bad-prefix'         => 'Mě dataje, kótaruž uploadujoš, zachopijo na <strong>„$1“</strong>. Take mě jo wót digitalneje kamery pśedpódane a toś wjele njewugroni. Pšosym pómjeni dataju tak, aby mě wěcej wó jeje wopśimjeśu wugroniło.',
 'filename-prefix-blacklist'   => ' #<!-- Njezměń nic na toś tej rědce! --> <pre>
-# Syntaksa jo slědujuca: 
+# Syntaksa jo slědujuca:
 #   * Wšykno wót "#" znamuška až ku kóńcoju rědki jo komentar.
 #   * Kužda njeprozna smužka jo prefiks za typiske datajowe mjenja, kótarež se awtomatiski wót digitalnych kamerow dodawaju.
 CIMG # Casio
@@ -1392,7 +1392,7 @@ Wót togo {{PLURAL:$2|ma|matej|maju}} (=$4%) $5-pšawa.",
 'addedwatch'           => 'Jo k wobglědowańkam se dodało',
 'addedwatchtext'       => 'Bok „<nowiki>$1</nowiki>“ jo k twójim [[Special:Watchlist|wobglědowańkam]] se dodał.
 
-Pózdźejšne změny na toś tom boku a w pśisłušecej diskusiji se tam nalicuju a w pśeglěźe [[Special:Recentchanges|slědnych změnow]] tucnje wóznamjeniju. 
+Pózdźejšne změny na toś tom boku a w pśisłušecej diskusiji se tam nalicuju a w pśeglěźe [[Special:Recentchanges|slědnych změnow]] tucnje wóznamjeniju.
 
 Coš-lic bok zasej z twójich wobglědowańkow wulašowaś, kliknij na wótpowědujucem boce na "dalej njewobglědowaś".',
 'removedwatch'         => 'Jo z wobglědowańkow se wulašowało',
@@ -1451,7 +1451,7 @@ Wiki: $PAGEEDITOR_WIKI
 Dalšne e-mailowe powěsći se tak dłujko njepósćelu, až njejsy bok zasej woglědał. W swójich wobglědowańkach móžoš wšykne powěsćowe markery zasej slědk stajiś.
 
              Twój pśijaśelny {{SITENAME}} powěsćowy system
--- 
+--
 Aby nastajenja twójich wobglědowańkow změnił, woglědaj: {{fullurl:Special:Watchlist/edit}}',
 
 # Delete/protect/revert
@@ -1486,7 +1486,7 @@ Aby nastajenja twójich wobglědowańkow změnił, woglědaj: {{fullurl:Special:
 'rollbacklink'                => 'anulěrowaś',
 'rollbackfailed'              => 'Slědkwześe njejo se raźiło.',
 'cantrollback'                => 'Njejo móžno změnu slědk wześ, slědny pśinosowaŕ jo jadnučki awtor boka.',
-'alreadyrolled'               => "Njejo móžno slědnu změnu w nastawku [[:$1]] wót [[User:$2|$2]] <span style='font-size: smaller'>([[User_talk:$2|diskusija]], 
+'alreadyrolled'               => "Njejo móžno slědnu změnu w nastawku [[:$1]] wót [[User:$2|$2]] <span style='font-size: smaller'>([[User_talk:$2|diskusija]],
 [[{{ns:special}}:Contributions/$2|pśinoski]])</span> slědk wześ, dokulaž jo mjaztym drugi wužywaŕ nastawk pśeměnił.<br />Slědnu změnu jo wugbał [[User:$3|$3]] <span style='font-size: smaller'>([[User_talk:$3|diskusija]])</span>.",
 'editcomment'                 => 'Komentar ku slědnej změnje jo był: „<i>$1</i>“.', # only shown if there is an edit comment
 'revertpage'                  => 'Změny wót [[User:$2|$2]] ([[{{ns:special}}:Contributions/$2|pśinoski]]) su se slědk wzeli a slědna wersija wót $1 jo se nawrośiła.', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
@@ -1627,7 +1627,7 @@ $1',
 'ipbreason-dropdown'          => '*powšykne pśicyny blokěrowanja
 ** pódawanje njepšawych informacijow
 ** wulašowanje wopśimjeśa bokow
-** pódawanje spamowych eksternych wótkazow  
+** pódawanje spamowych eksternych wótkazow
 ** pisanje głuposćow na bokach
 ** pśestupjenje zasady "žedne wósobinske atakěrowanja"
 ** złowólne wužywanje wjele wužywarskich kontow
@@ -2311,7 +2311,7 @@ $1
 
 # Delete conflict
 'deletedwhileediting' => 'Warnowanje: Toś ten bok se wulašujo, gaž zachopijoš jen wobźěłaś.',
-'confirmrecreate'     => 'Wužywaŕ [[User:$1|$1]] ([[User_talk:$1|diskusija]]) jo bok wulašował, nježli až sy zachopił jen wobźěłaś, pśicyna: : <i>$2</i> 
+'confirmrecreate'     => 'Wužywaŕ [[User:$1|$1]] ([[User_talk:$1|diskusija]]) jo bok wulašował, nježli až sy zachopił jen wobźěłaś, pśicyna: : <i>$2</i>
 Pšosym wobkšuśiś, až napšawdu coš ten bok zasej wutwóriś.',
 'recreate'            => 'Wótnowótki wutwóriś',
 

@@ -24,6 +24,3 @@ $namespaceNames = array(
 	NS_CATEGORY         => "Segh",
 	NS_CATEGORY_TALK    => "Segh_ja'chuq"
 );
-
-
-

@@ -553,8 +553,8 @@ Kontrollera stavningen, eller använd formuläret nedan för att skapa ett nytt 
 'passwordtooshort'           => 'Ditt lösenord är för kort. Det måste innehålla minst $1 tecken.',
 'mailmypassword'             => 'Sänd mig ett nytt lösenord',
 'passwordremindertitle'      => 'Nytt lösenord från {{SITENAME}}',
-'passwordremindertext'       => 'Någon - förmodligen du - har från IP-adressen $1 bett oss sända dig ett nytt lösenord för ditt användarkonto på {{SITENAME}} ($4). 
-Lösenordet för användaren "$2" är nu "$3". 
+'passwordremindertext'       => 'Någon - förmodligen du - har från IP-adressen $1 bett oss sända dig ett nytt lösenord för ditt användarkonto på {{SITENAME}} ($4).
+Lösenordet för användaren "$2" är nu "$3".
 Du bör nu logga in, och byta lösenord.
 
 Om det inte var du som gjorde denna begäran, eller om du har kommit på ditt gamla lösenord och inte längre önskar ändra det så kan du ignorera detta meddelande och fortsätta använda ditt gamla lösenord.',
@@ -719,7 +719,7 @@ Du lovar oss också att du skrev texten själv, eller kopierade från kulturellt
 <strong>LÄGG INTE UT UPPHOVSRÄTTSSKYDDAT MATERIAL HÄR UTAN TILLÅTELSE!</strong>',
 'longpagewarning'           => 'Om du använder en väldigt gammal webbläsare kan du ha problem med att redigera den här artikeln, eftersom vissa äldre webbläsare inte klarar artiklar större än 32 kB, och den här är $1 kB.',
 'longpageerror'             => '<strong>FEL: Texten som du försöker spara är $1 kilobyte, vilket är mer än det maximalt tillåtna $2 kilobyte. Den kan inte sparas.</strong>',
-'readonlywarning'           => '<strong>VARNING: Databasen är tillfälligt låst för underhåll. Du kommer inte att kunna spara 
+'readonlywarning'           => '<strong>VARNING: Databasen är tillfälligt låst för underhåll. Du kommer inte att kunna spara
 dina ändringar just nu. Det kan vara klokt att kopiera över texten till din egen dator, tills databasen är upplåst igen.</strong>',
 'protectedpagewarning'      => '<strong>VARNING: Den här sidan är låst så att bara administratörer kan redigera den.
 Försäkra dig om att du följer riktlinjerna för redigering av skyddade sidor.</strong>',
@@ -1111,7 +1111,7 @@ Tänk över om det är lämpligt att fortsätta ladda upp denna fil.
 Här finns raderingsloggen för denna fil:",
 'filename-bad-prefix'         => 'Namnet på filen du vill ladda upp börjar med <strong>"$1"</strong>. Filnamnet kommer förmodligen direkt från en digitalkamera och beskriver inte filens innehåll. Välj ett annat filnamn som bättre beskriver filen.',
 'filename-prefix-blacklist'   => ' #<!-- ändra inte den här raden --> <pre>
-# Syntaxen är följande: 
+# Syntaxen är följande:
 #   * All text från ett #-tecken till radens slut är en kommentar
 #   * Icke-tomma rader anger typiska prefix för filnamn som används av olika digitalkameror
 CIMG # Casio
@@ -1390,7 +1390,7 @@ i "Från"-fältet i detta meddelande, så mottagaren har möjlighet att svara.',
 'watchnologin'         => 'Inte inloggad',
 'watchnologintext'     => 'Du måste vara [[Special:Userlogin|inloggad]] för att kunna göra ändringar i din övervakningslista.',
 'addedwatch'           => 'Tillagd på övervakningslistan',
-'addedwatchtext'       => 'Sidan "[[:$1|$1]]" har satts upp på din [[Special:Watchlist|övervakningslista]]. 
+'addedwatchtext'       => 'Sidan "[[:$1|$1]]" har satts upp på din [[Special:Watchlist|övervakningslista]].
 Framtida ändringar av den här sidan och dess diskussionssida kommer att listas där, och sidan kommer att markeras med \'\'\'fet stil\'\'\' i [[Special:Recentchanges|listan över de senaste ändringarna]] för att synas bättre.<br /><br />
 Om du inte längre vill att sidan skall finnas på din övervakningslista, klicka på  "avbevaka" uppe till höger.',
 'removedwatch'         => 'Borttagen från övervakningslista',
@@ -1438,7 +1438,7 @@ Om du inte längre vill att sidan skall finnas på din övervakningslista, klick
 
 $NEWPAGE
 
-Angiven sammanfattning av redigeringen: $PAGESUMMARY $PAGEMINOREDIT 
+Angiven sammanfattning av redigeringen: $PAGESUMMARY $PAGEMINOREDIT
 
 Kontakta användaren:
 e-post: $PAGEEDITOR_EMAIL
@@ -1468,7 +1468,7 @@ Feedback och hjälp:
 'confirmdeletetext'           => 'Du håller på att ta bort en sida med hela dess historik.
 Bekräfta att du förstår vad du håller på med och vilka konsekvenser detta leder till, och att du följer [[{{MediaWiki:Policy-url}}|riktlinjerna]].',
 'actioncomplete'              => 'Genomfört',
-'deletedtext'                 => '"<nowiki>$1</nowiki>" har tagits bort. 
+'deletedtext'                 => '"<nowiki>$1</nowiki>" har tagits bort.
 Se $2 för noteringar om de senaste raderingarna.',
 'deletedarticle'              => 'raderade "$1"',
 'dellogpage'                  => 'Raderingslogg',
@@ -1510,11 +1510,11 @@ Sidan ändrades senast av [[User:$3|$3]] ([[User talk:$3|diskussion]]).',
 'protect_expiry_old'          => 'Den angivna varaktighetentiden har redan passerats.',
 'protect-unchain'             => 'Lås upp flyttillstånd',
 'protect-text'                => 'Här kan du se och ändra skyddsnivån av sidan <strong><nowiki>$1</nowiki></strong>.',
-'protect-locked-blocked'      => 'Du kan inte ändra sidors skydd medan du är blockerad. 
+'protect-locked-blocked'      => 'Du kan inte ändra sidors skydd medan du är blockerad.
 Här kan du se gällande skyddsinställninger för sidan <strong>$1</strong>:',
 'protect-locked-dblock'       => 'Skrivskydd kan inte ändras då databasen är låst.
 Nuvarande skrivskyddsinställning för sidan <strong>$1</strong> är:',
-'protect-locked-access'       => 'Ditt konto har inte behörighet att ändra skrivskydd på sidor. 
+'protect-locked-access'       => 'Ditt konto har inte behörighet att ändra skrivskydd på sidor.
 Nuvarande skrivskyddsinställning för sidan <strong>$1</strong> är:',
 'protect-cascadeon'           => 'Den här sidan är skrivskyddad eftersom den inkluderas på sidor som skyddats "kaskaderande". Du kan ändra skyddet av den här sidan, men det påverkar inte det "kaskaderande skyddet". Följande "kaskadskyddade" {{PLURAL:$1|sida|sidor}} inkluderar den här sidan:',
 'protect-default'             => '(standard)',
@@ -1547,8 +1547,8 @@ Nuvarande skrivskyddsinställning för sidan <strong>$1</strong> är:',
 'undeletepagetitle'            => "'''Härunder visas en lista över raderade versioner av [[:$1]]'''.",
 'viewdeletedpage'              => 'Visa raderade sidor',
 'undeletepagetext'             => 'Följande sidor har blivit borttagna, men finns fortfarande i ett arkiv och kan återställas. Arkivet kan ibland rensas på gamla versioner.',
-'undeleteextrahelp'            => "* För att återställa alla versioner, välj '''Återställ''' utan att kryssa i några rutor. 
-* För att återställa bara vissa versioner, kryssa i de kryssrutor som hör till de versioner som ska återställas och välj '''Återställ'''. 
+'undeleteextrahelp'            => "* För att återställa alla versioner, välj '''Återställ''' utan att kryssa i några rutor.
+* För att återställa bara vissa versioner, kryssa i de kryssrutor som hör till de versioner som ska återställas och välj '''Återställ'''.
 * '''Rensa''' tömmer kommentarfältet och kryssrutorna.",
 'undeleterevisions'            => '$1 {{PLURAL:$1|version|versioner}} arkiverade',
 'undeletehistory'              => 'Om du återställer sidan kommer alla tidigare versioner att återfinnas i versionshistoriken. Om en ny sida med samma namn har skapats sedan sidan raderades, kommer den återskapade historiken automatiskt att återfinnas i den äldre historiken. Notera att restriktioner på sidversioner förloras i samband med återställningen.',
@@ -1740,7 +1740,7 @@ Notera att sidan '''inte''' kan flyttas om det redan finns en sida under den nya
 'movepagebtn'             => 'Flytta sidan',
 'pagemovedsub'            => 'Flyttningen lyckades',
 'movepage-moved'          => '<big>"$1" har flyttats till "$2"</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
-'articleexists'           => 'Antingen existerar redan en sida med det namnet, eller så har du valt ett namn som inte är tillåtet. 
+'articleexists'           => 'Antingen existerar redan en sida med det namnet, eller så har du valt ett namn som inte är tillåtet.
 Välj något annat namn istället.',
 'cantmove-titleprotected' => 'Du kan inte flytta sidan till den titeln, eftersom den nya titeln har skyddats från att skapas.',
 'talkexists'              => 'Sidan flyttades, men eftersom en annan diskussionssida redan fanns på destinationen kunde diskussionssidan inte flyttas med. Försök att manuellt sammanfoga de bägge diskusionssidornas innehåll till en sida.',
@@ -2440,7 +2440,7 @@ Ange filens namn utan prefixet "{{ns:image}}:".',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => 'Sök efter dubblettfiler',
-'fileduplicatesearch-summary'  => 'Sök efter dubblettfiler baserat på filernas hash-värden. 
+'fileduplicatesearch-summary'  => 'Sök efter dubblettfiler baserat på filernas hash-värden.
 
 Skriv filnamnet utan prefixet "{{ns:image}}:" .',
 'fileduplicatesearch-legend'   => 'Sök efter en dubblettfil',

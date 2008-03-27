@@ -508,7 +508,7 @@ La zone d'édition supérieure contient le texte tel qu'il est enregistré actue
 Dere, kan rinaf suteks ik suteks male sangiskafa nuyafa klita, anton webel !
 <strong>VA COPYRIGHT SUTEKS ARIEKON MERICTANON VOL WEBEL ! (do not submit copyrighted work without permission!)</strong>',
 'copyrightwarning2'         => 'Vay stragal da kot webeks va {{SITENAME}} gan ar webesik zo robetar ike zo roataler ike zo rosular. Ede me djumel da rinaf suteks yo zo robetad, vaon batliz me staksel !<br />
-Rin dere abdiplekul da va webeks miv suteyel ike mal sangiskafa ok gundafa nuyafa klita ksudal (va $1 loon wil). 
+Rin dere abdiplekul da va webeks miv suteyel ike mal sangiskafa ok gundafa nuyafa klita ksudal (va $1 loon wil).
 <strong>VA COPYRIGHT SUTEKS ARIEKON MERICTANON VOL WEBEL !</strong>',
 'longpagewarning'           => "'''WALZERA : batu bu tir kaikasu va $1 ko; konaki exulesiki va bu pokefu ok kaikefu gu 32 ko bak sutelara pofejed. Ton lopinaf gabot yo va bu rotir gosolparsal.'''",
 'longpageerror'             => '<strong>ROKLA : Atoen krent tir $1 kilobytes. Batcoba tir lodabrotcafa dam $2 kilobytes cuge. In tir merogiwan.</strong>',

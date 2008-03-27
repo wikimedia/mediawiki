@@ -1,10 +1,13 @@
 <?php
-/** Dzongkha (རྫོང་ཁ)
-  *
-  * @addtogroup Language
-  *
-  * @author Ævar Arnfjörð Bjarmason <avarab@gmail.com>
-  */
+/** Dzongkha (ཇོང་ཁ)
+ *
+ * @addtogroup Language
+ *
+ * @author Ævar Arnfjörð Bjarmason <avarab@gmail.com>
+ * @author Tenzin
+ * @author Jon Harald Søby
+ */
+
 $digitTransformTable = array(
 	'0' => '༠', # &#x0f20;
 	'1' => '༡', # &#x0f21;
@@ -18,4 +21,15 @@ $digitTransformTable = array(
 	'9' => '༩', # &#x0f29;
 );
 
+$messages = array(
+# Dates
+'january'  => 'སྤྱི་ཟླ་དང་པ།',
+'february' => 'སྤྱི་ཟླ་གཉིས་པ།',
+'march'    => 'སྤྱི་ཟླ་གསུམ་པ།',
 
+'search' => 'འཚོལ་ཞིབ།',
+'edit'   => 'ཞུན་དག།',
+
+'editsection' => 'ཞུན་དག།',
+
+);

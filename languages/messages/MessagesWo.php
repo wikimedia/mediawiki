@@ -307,7 +307,7 @@ $1',
 Yorkat bi def caabi ji, joxe na yii lay :$1',
 'missingarticle'       => 'Dattub njoxe bi manuta fexe ba gis mbindi xët wi tuddu « $1 », donte xët wi am na.
 
-Li koy man a waral mooy, méngale ñaari sumbi jaar-jaar walla lëkkalekaay buy jëme ciw xët wu faru. 
+Li koy man a waral mooy, méngale ñaari sumbi jaar-jaar walla lëkkalekaay buy jëme ciw xët wu faru.
 Su dul loolu, kon ab njuumte lay doon ci tëriinub MediaWiki bi.
 
 Di sakku ci yaw nga jébbal li xew ab yorkat, te nga jox ko màkkaanuw xët wi mu ñeel.',
@@ -402,7 +402,7 @@ Sag mbindu sotti na. Bul fatte soppi say tànneef ni nga ko bëggee ci {{SITENAM
 'passwordremindertitle'      => 'Sa baatujàll bu bees ci {{SITENAME}}',
 'passwordremindertext'       => 'Kenn(xayna yaw la) ku am bii màkkaanu IP $1 moo laaj ngir ñu yónne ko ab baatujàll bu bees ngir duggam ci {{SITENAME}} ($4).
 Baatujàll bu jëfandikukat bii di « $2 » léegi mooy « $3 ».
-Di la digal rekk nga duggu te soppi baatujàll bi ci ni mu gën a gaawee.   
+Di la digal rekk nga duggu te soppi baatujàll bi ci ni mu gën a gaawee.
 
 Soo doonul ki biral bii laaj, walla fattaliku nga sa baatujàll bu njëkk ba, te nammatoo kaa soppi, man ngaa tankamlu bii bataaxal te wéy di jëfandikoo baatujàll bu yàgg ba.',
 'noemail'                    => 'Bii jëfandikukat « $1 » amufi benn màkkaanub m-bataaxal.',
@@ -420,8 +420,8 @@ Soo doonul ki biral bii laaj, walla fattaliku nga sa baatujàll bu njëkk ba, te
 'accountcreated'             => 'léegi bindu nga.',
 'accountcreatedtext'         => 'Mbindug jëfandikukat bii di $1 jàll na',
 'createaccount-title'        => 'Sosum sàq ci {{SITENAME}}',
-'createaccount-text'         => 'Kenn ($1) ku sos am sàq ci {{SITENAME}} te tuddu $2 
-($4). Baatujàll bu « $2 » mooy « $3 ». Li gën mooy nga duggu ci teel te soppi baatujàll bi. 
+'createaccount-text'         => 'Kenn ($1) ku sos am sàq ci {{SITENAME}} te tuddu $2
+($4). Baatujàll bu « $2 » mooy « $3 ». Li gën mooy nga duggu ci teel te soppi baatujàll bi.
 
 Jéelaleel bataaxal bii su fekkee ci njuumte nga sosee mii sàq.',
 'loginlanguagelabel'         => 'Làkk : $1',
@@ -474,7 +474,7 @@ Jéelaleel bataaxal bii su fekkee ci njuumte nga sosee mii sàq.',
 
 Ki def téye gi mooy $ te lii mooy ngirte li : \'\'$2\'\'.
 
-Man ngaa jokkoo ak $1 walla kenn ci [[{{MediaWiki:Grouppage-sysop}}|yorekat yi]] ngir ngeen ma cee waxtaan. 
+Man ngaa jokkoo ak $1 walla kenn ci [[{{MediaWiki:Grouppage-sysop}}|yorekat yi]] ngir ngeen ma cee waxtaan.
 
 Te nga jàpp ne jumtukaay bii di "yónne bataaxal bii jëfandikukat" du dox su fekke duggaluloo ab m-bataaxal ci say   [[Special:Preferences|tànneef]]. Sa màkkaanu IP mooy $3, xammeekaayu téye gi moy #$5. Di la sakku nga duggal leen fépp fuñ la leen laajee
 * Ndorteelu déye gi : $8
@@ -488,7 +488,7 @@ Te lii mooy ngirte yi mu joxe :
 * Ndoorteelu téye gi: $8
 * Njeexintalu téye gi : $6
 
-Man ngaa jookkook $1 walla ak kenn ci [[{{MediaWiki:Grouppage-sysop}}|yorekat yi]] ngir waxtaan ci téye gi. 
+Man ngaa jookkook $1 walla ak kenn ci [[{{MediaWiki:Grouppage-sysop}}|yorekat yi]] ngir waxtaan ci téye gi.
 
 Su fekkee joxe nga ab màkkaanu m-bataaxal ci say [[Special:Preferences|tànneef]] te terewuñula nga jëfandikoo ko, man ngaa jëfandikoo jumtukaay bii di "yónne ab m-bataaxal bii jëfandikukat" ngir jookkook ab yorekat.
 
@@ -542,10 +542,10 @@ Sa màkkaanu IP mooy $3 xammeekaayu téye gi mooy #$5. Di la sakku nga joxe leen
 'nonunicodebrowser'         => '<strong>Attention : Votre navigateur ne supporte pas l’unicode. Une solution temporaire a été trouvée pour vous permettre de modifier en tout sûreté un article : les caractères non-ASCII apparaîtront dans votre boîte de modification en tant que codes hexadécimaux. Vous devriez utiliser un navigateur plus récent.</strong>',
 'editingold'                => '<strong>Moytul: yaa ngi soppi am sumb mu yàgg mu xët wii. Soo leen dence, bépp coppite buñ defoon laataa mii sumb, di nañ leen ñakk.</strong>',
 'yourdiff'                  => 'Wuute',
-'copyrightwarning'          => 'Bépp cëru ci {{SITENAME}} dañ leen di jàppe niki ay siiwal yoo def te teg leen ci $2 (xoolal $1 ngir yeneeni xamle). Soo bëggul keneen jël say mbind soppi leen, tas leen teg ci, bu leen fi duggal.<br /> 
+'copyrightwarning'          => 'Bépp cëru ci {{SITENAME}} dañ leen di jàppe niki ay siiwal yoo def te teg leen ci $2 (xoolal $1 ngir yeneeni xamle). Soo bëggul keneen jël say mbind soppi leen, tas leen teg ci, bu leen fi duggal.<br />
 Te it na wóor ne li nga fiy duggal yaa leen moom, yaa leen bind, walla fa nga leen jële gongikuwaay bu ubbeeku la, lu kenn moomul. <strong>BUL FI DUGGAL LIGGÉEYI KENEEN YU AQI KI-SOS AAR TE AMOO CI BENN NDIGËL!</strong>',
-'copyrightwarning2'         => 'Karmat: Bépp cëru ci {{SITENAME}} yeneen jëfandikukat yi man nañ leen a soppi walla far leen. Soo bëggul keneen jël say mbind soppi leen, tas leen teg ci, bu leen fi duggal.<br />  
-Te it na wóor ne li nga fiy duggal yaa leen moom, yaa leen bind, walla fa nga leen jële gongikuwaay bu ubbeeku la, lu kenn moomul (xoolal $1 ngir yeneeni xamle) 
+'copyrightwarning2'         => 'Karmat: Bépp cëru ci {{SITENAME}} yeneen jëfandikukat yi man nañ leen a soppi walla far leen. Soo bëggul keneen jël say mbind soppi leen, tas leen teg ci, bu leen fi duggal.<br />
+Te it na wóor ne li nga fiy duggal yaa leen moom, yaa leen bind, walla fa nga leen jële gongikuwaay bu ubbeeku la, lu kenn moomul (xoolal $1 ngir yeneeni xamle)
 <strong>BUL FI DUGGAL LIGGÉEYI KENEEN YU AQI KI-SOS AAR TE AMOO CI BENN NDIGËL!</strong>',
 'longpagewarning'           => "'''Muytul: guddaayu xët wi da fa romb $1 kio ;
 yenn joowukaay yi, man nañoo wone ay tolof-tolof ci bu ñuy soppi xët yi romb dayoob 32 kio. Li doon gën mooy nga séddatle ko ci ay xaaj yu bari.'''",
@@ -1055,8 +1055,8 @@ $2 boole ci xëti yoonalaat yi<br /> Seet $3 $9',
 'trackbackremove' => '([$1 Dindi])',
 
 # Delete conflict
-'confirmrecreate' => "Jëfëndikookat bii [[User:$1|$1]] ([[User talk:$1|Waxtaan]]) moo dindi xët wii, nga xam ne tambaliwoon nga koo defar, ngir ngirte lii : 
-: ''$2'' 
+'confirmrecreate' => "Jëfëndikookat bii [[User:$1|$1]] ([[User talk:$1|Waxtaan]]) moo dindi xët wii, nga xam ne tambaliwoon nga koo defar, ngir ngirte lii :
+: ''$2''
 Dëgëlël ni bëgg ngaa sakkaat xët wii.",
 
 # AJAX search

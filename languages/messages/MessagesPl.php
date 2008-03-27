@@ -644,7 +644,7 @@ Blokada od $8 wygasa $6
 
 Możesz skontaktować się z $1 lub jednym z pozostałych [[{{MediaWiki:Grouppage-sysop}}|administratorów]] w celu uzyskania informacji o blokadzie.
 
-Uwaga: Jeśli w [[Special:Preferences|preferencjach]] nie ustawiłeś prawidłowego adresu e-mail lub zablokowano Ci tą funkcjonalność, nie możesz skorzystać z opcji "Wyślij e-mail do tego użytkownika". 
+Uwaga: Jeśli w [[Special:Preferences|preferencjach]] nie ustawiłeś prawidłowego adresu e-mail lub zablokowano Ci tą funkcjonalność, nie możesz skorzystać z opcji "Wyślij e-mail do tego użytkownika".
 
 Identyfikator Twojej blokady to $5. Zanotuj go i podaj administratorowi.',
 'blockednoreason'           => 'nie podano powodu',
@@ -1353,8 +1353,8 @@ Długość [http://meta.wikimedia.org/wiki/Help:Job_queue kolejki zadań] to '''
 'watchnologintext'     => 'Musisz się [[{{ns:special}}:Userlogin|zalogować]] przed modyfikacją listy obserwowanych artykułów.',
 'addedwatch'           => 'Dodana do listy obserwowanych',
 'addedwatchtext'       => 'Strona "[[:$1|$1]]" została dodana do Twojej [[{{ns:special}}:Watchlist|listy obserwowanych]].
-Na tej liście znajdzie się rejestr przyszłych zmian tej strony i związanej z nią strony dyskusji, 
-a nazwa samej strony zostanie \'\'\'wytłuszczona\'\'\' na [[{{ns:special}}:Recentchanges|liście ostatnich zmian]], 
+Na tej liście znajdzie się rejestr przyszłych zmian tej strony i związanej z nią strony dyskusji,
+a nazwa samej strony zostanie \'\'\'wytłuszczona\'\'\' na [[{{ns:special}}:Recentchanges|liście ostatnich zmian]],
 aby łatwiej było Ci sam fakt zmiany zauważyć.
 
 Jeśli chcesz usunąć stronę ze swojej listy obserwowanych, kliknij na zakładkę "nie obserwuj".',
@@ -2239,33 +2239,39 @@ Jedynie elementy listy (linie zaczynające się od znaku *) brane są pod uwagę
 'monthsall'        => 'wszystkie',
 
 # E-mail address confirmation
-'confirmemail'            => 'Potwierdź adres e-mail',
-'confirmemail_noemail'    => 'Nie podałeś prawidłowego adresu e-mail w [[Special:Preferences|preferencjach]].',
-'confirmemail_text'       => '{{SITENAME}} wymaga potwierdzenia adresu e-mail przed użyciem funkcji korzystających z poczty. Wciśnij przycisk poniżej aby wysłać na swój adres list z linkiem do strony WWW. Następnie otwórz ten link w przeglądarce, czym potwierdzisz wiarygodność adresu e-mail.',
-'confirmemail_pending'    => '<div class="error">Kod potwierdzenia został właśnie do Ciebie wysłany. Jeśli zarejestrowałeś się niedawno, poczekaj kilka minut na dostarczenie wiadomości przed kolejną prośbą o wysłanie kodu.</div>',
-'confirmemail_send'       => 'Wyślij kod uwierzytelniający',
-'confirmemail_sent'       => 'E-mail uwierzytelniający został wysłany.',
-'confirmemail_oncreate'   => 'Kod potwierdzenia został wysłany na Twój adres E-mail. Kod ten nie jest wymagany do zalogowania się, jednak będziesz musiał go podać przed włączeniem niektórych opcji e-mail na wiki.',
-'confirmemail_sendfailed' => 'Nie udało się wysłać e-maila potwierdzającego. Proszę sprawdzić czy w adresie nie ma literówki.
+'confirmemail'             => 'Potwierdź adres e-mail',
+'confirmemail_noemail'     => 'Nie podałeś prawidłowego adresu e-mail w [[Special:Preferences|preferencjach]].',
+'confirmemail_text'        => '{{SITENAME}} wymaga potwierdzenia adresu e-mail przed użyciem funkcji korzystających z poczty. Wciśnij przycisk poniżej aby wysłać na swój adres list z linkiem do strony WWW. Następnie otwórz ten link w przeglądarce, czym potwierdzisz wiarygodność adresu e-mail.',
+'confirmemail_pending'     => '<div class="error">Kod potwierdzenia został właśnie do Ciebie wysłany. Jeśli zarejestrowałeś się niedawno, poczekaj kilka minut na dostarczenie wiadomości przed kolejną prośbą o wysłanie kodu.</div>',
+'confirmemail_send'        => 'Wyślij kod uwierzytelniający',
+'confirmemail_sent'        => 'E-mail uwierzytelniający został wysłany.',
+'confirmemail_oncreate'    => 'Kod potwierdzenia został wysłany na Twój adres E-mail. Kod ten nie jest wymagany do zalogowania się, jednak będziesz musiał go podać przed włączeniem niektórych opcji e-mail na wiki.',
+'confirmemail_sendfailed'  => 'Nie udało się wysłać e-maila potwierdzającego. Proszę sprawdzić czy w adresie nie ma literówki.
 
 Program zwrócił komunikat: $1',
-'confirmemail_invalid'    => 'Błędny kod potwierdzenia. Kod może być przedawniony.',
-'confirmemail_needlogin'  => 'Musisz $1 aby potwierdzić adres email.',
-'confirmemail_success'    => 'Adres e-mail został potwierdzony. Możesz się zalogować i korzystać z szerszego wachlarza funkcjonalności wiki.',
-'confirmemail_loggedin'   => 'Twój adres email został zweryfikowany.',
-'confirmemail_error'      => 'Pojawiły się błędy przy zapisywaniu potwierdzenia.',
-'confirmemail_subject'    => '{{SITENAME}} - potwierdzenie adresu e-mail',
-'confirmemail_body'       => 'Ktoś łącząc się z komputera o adresie IP $1 zarejestrował w {{GRAMMAR:MS.lp|{{SITENAME}}}}
+'confirmemail_invalid'     => 'Błędny kod potwierdzenia. Kod może być przedawniony.',
+'confirmemail_needlogin'   => 'Musisz $1 aby potwierdzić adres email.',
+'confirmemail_success'     => 'Adres e-mail został potwierdzony. Możesz się zalogować i korzystać z szerszego wachlarza funkcjonalności wiki.',
+'confirmemail_loggedin'    => 'Twój adres email został zweryfikowany.',
+'confirmemail_error'       => 'Pojawiły się błędy przy zapisywaniu potwierdzenia.',
+'confirmemail_subject'     => '{{SITENAME}} - potwierdzenie adresu e-mail',
+'confirmemail_body'        => 'Ktoś łącząc się z komputera o adresie IP $1 zarejestrował w {{GRAMMAR:MS.lp|{{SITENAME}}}}
 konto "$2" podając niniejszy adres e-mail.
 
-Aby potwierdzić, że to Ty zarejestrowałeś/aś to konto oraz aby włączyć 
+Aby potwierdzić, że to Ty zarejestrowałeś/aś to konto oraz aby włączyć
 wszystkie funkcje korzystające z poczty elektronicznej, otwórz w swojej
 przeglądarce ten link:
 
 $3
 
-Jeśli to NIE TY zarejestrowałeś/aś to konto, NIE KLIKAJ W POWYŻSZY LINK.
+Jeśli to *nie* Ty zarejestrowałeś/aś to konto, otwórz w swojej
+przeglądarce poniższy link, aby anulować potwierdzenie adresu e-mail:
+
+$5
+
 Kod zawarty w linku straci ważność $4.',
+'confirmemail_invalidated' => 'Potwierdzenie adresu e-mail zostało anulowane',
+'invalidateemail'          => 'Anulowanie potwierdzenia adresu e-mail',
 
 # Scary transclusion
 'scarytranscludedisabled' => '[Dołączanie przez interwiki jest wyłączone]',
@@ -2284,7 +2290,7 @@ $1
 # Delete conflict
 'deletedwhileediting' => 'Uwaga: Ta strona została usunięta po tym, jak rozpocząłeś jej edycję!',
 'confirmrecreate'     => "Użytkownik [[{{ns:user}}:$1|$1]] ([[{{ns:user_talk}}:$1|Dyskusja]]) usunął ten artykuł po tym jak rozpocząłeś jego edycję, podając jako powód usunięcia:
-: ''$2'' 
+: ''$2''
 Potwierdź chęć odtworzenia tego artykułu.",
 'recreate'            => 'Odtwórz',
 
