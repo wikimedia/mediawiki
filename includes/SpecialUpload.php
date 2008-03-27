@@ -983,7 +983,7 @@ wgUploadAutoFill = {$autofill};
 		# Get the maximum file size from php.ini as $wgMaxUploadSize works for uploads from URL via CURL only
 		# See http://www.php.net/manual/en/ini.core.php#ini.upload-max-filesize for possible values of upload_max_filesize
 		$val = trim( ini_get( 'upload_max_filesize' ) );
-		$last = ( substr( $val, -1 ) );
+		$last = strtoupper( ( substr( $val, -1 ) ) );
 		switch( $last ) {
 			case 'G':
 				$val2 = substr( $val, 0, -1 ) * 1024 * 1024 * 1024;
@@ -998,7 +998,7 @@ wgUploadAutoFill = {$autofill};
 				$val2 = $val;
 		}
 		$val2 = $wgAllowCopyUploads ? min( $wgMaxUploadSize, $val2 ) : $val2;
-		$maxUploadSize = wfMsgExt( 'upload-maxfilesize', 'parseinline', $wgLang->formatSize( $val2 ) );
+		$maxUploadSize = wfMsgExt( 'upload-maxfilesize', array( 'parseinline', 'escape' ), $wgLang->formatSize( $val2 ) );
 
 		$sourcefilename = wfMsgExt( 'sourcefilename', 'escapenoentities' );
 		$destfilename = wfMsgExt( 'destfilename', 'escapenoentities' );
