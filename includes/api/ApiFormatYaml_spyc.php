@@ -844,7 +844,7 @@
      * An ever-so-slightly modified version of the array_kmerge() function posted
      * to php.net by mail at nospam dot iaindooley dot com on 2004-04-08.
      *
-     * http://us3.php.net/manual/en/function.array-merge.php#41394
+     * http://www.php.net/manual/en/function.array-merge.php#41394
      *
      * @access private
      * @param array $arr1

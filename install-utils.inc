@@ -112,7 +112,7 @@ function dbsource( $fname, $db = false ) {
 /**
  * Get the value of session.save_path
  *
- * Per http://uk.php.net/manual/en/ref.session.php#ini.session.save-path,
+ * Per http://www.php.net/manual/en/ref.session.php#ini.session.save-path,
  * this might have some additional preceding parts which need to be
  * ditched
  *
@@ -127,7 +127,7 @@ function mw_get_session_save_path() {
 /**
  * Is dl() available to us?
  *
- * According to http://uk.php.net/manual/en/function.dl.php, dl()
+ * According to http://www.php.net/manual/en/function.dl.php, dl()
  * is *not* available when `enable_dl` is off, or under `safe_mode`
  *
  * @return bool

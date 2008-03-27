@@ -56,7 +56,7 @@ function js_unescape($source, $iconv_to = 'UTF-8') {
 
 /**
  * Function coverts number of utf char into that character.
- * Function taken from: http://sk2.php.net/manual/en/function.utf8-encode.php#49336
+ * Function taken from: http://www.php.net/manual/en/function.utf8-encode.php#49336
  *
  * @param $num Integer
  * @return utf8char
