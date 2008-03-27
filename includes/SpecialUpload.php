@@ -832,8 +832,8 @@ class UploadForm {
 	 */
 	function uploadError( $error ) {
 		global $wgOut;
-		$wgOut->addHTML( "<h2>" . wfMsgHtml( 'uploadwarning' ) . "</h2>\n" );
-		$wgOut->addHTML( "<span class='error'>{$error}</span>\n" );
+		$wgOut->addHTML( Xml::element( 'h2', null, wfMsg( 'uploadwarning' ) . "\n" ) );
+		$wgOut->addHTML( Xml::tags( 'span', array( 'class' => 'error' ), $error ) );
 	}
 
 	/**
@@ -845,7 +845,7 @@ class UploadForm {
 	 * @access private
 	 */
 	function uploadWarning( $warning ) {
-		global $wgOut, $wgContLang;
+		global $wgOut;
 		global $wgUseCopyrightUpload;
 
 		$this->mSessionKey = $this->stashSession();
@@ -854,53 +854,32 @@ class UploadForm {
 			return;
 		}
 
-		$wgOut->addHTML( "<h2>" . wfMsgHtml( 'uploadwarning' ) . "</h2>\n" );
-		$wgOut->addHTML( "<ul class='warning'>{$warning}</ul><br />\n" );
+		$wgOut->addHTML( Xml::element( 'h2', null, wfMsg( 'uploadwarning' ) ) . "\n" );
+		$wgOut->addHTML( Xml::tags( 'ul', array( 'class' => 'warning' ), $warning ) . "\n" );
 
-		$save = wfMsgHtml( 'savefile' );
-		$reupload = wfMsgHtml( 'reupload' );
-		$iw = wfMsgWikiHtml( 'ignorewarning' );
-		$reup = wfMsgWikiHtml( 'reuploaddesc' );
 		$titleObj = SpecialPage::getTitleFor( 'Upload' );
-		$action = $titleObj->escapeLocalURL( 'action=submit' );
-		$align1 = $wgContLang->isRTL() ? 'left' : 'right';
-		$align2 = $wgContLang->isRTL() ? 'right' : 'left';
 
-		if ( $wgUseCopyrightUpload )
-		{
-			$copyright =  "
-	<input type='hidden' name='wpUploadCopyStatus' value=\"" . htmlspecialchars( $this->mCopyrightStatus ) . "\" />
-	<input type='hidden' name='wpUploadSource' value=\"" . htmlspecialchars( $this->mCopyrightSource ) . "\" />
-	";
+		if ( $wgUseCopyrightUpload ) {
+			$copyright = Xml::hidden( 'wpUploadCopyStatus', $this->mCopyrightStatus ) . "\n" .
+					Xml::hidden( 'wpUploadSource', $this->mCopyrightSource ) . "\n";
 		} else {
-			$copyright = "";
+			$copyright = '';
 		}
 
-		$wgOut->addHTML( "
-	<form id='uploadwarning' method='post' enctype='multipart/form-data' action='$action'>
-		<input type='hidden' name='wpIgnoreWarning' value='1' />
-		<input type='hidden' name='wpSessionKey' value=\"" . htmlspecialchars( $this->mSessionKey ) . "\" />
-		<input type='hidden' name='wpUploadDescription' value=\"" . htmlspecialchars( $this->mComment ) . "\" />
-		<input type='hidden' name='wpLicense' value=\"" . htmlspecialchars( $this->mLicense ) . "\" />
-		<input type='hidden' name='wpDestFile' value=\"" . htmlspecialchars( $this->mDesiredDestName ) . "\" />
-		<input type='hidden' name='wpWatchthis' value=\"" . htmlspecialchars( intval( $this->mWatchthis ) ) . "\" />
-	{$copyright}
-	<table border='0'>
-		<tr>
-			<tr>
-				<td align='$align1'>
-					<input tabindex='2' type='submit' name='wpUpload' value=\"$save\" />
-				</td>
-				<td align='$align2'>$iw</td>
-			</tr>
-			<tr>
-				<td align='$align1'>
-					<input tabindex='2' type='submit' name='wpReUpload' value=\"{$reupload}\" />
-				</td>
-				<td align='$align2'>$reup</td>
-			</tr>
-		</tr>
-	</table></form>\n" );
+		$wgOut->addHTML(
+			Xml::openElement( 'form', array( 'method' => 'post', 'action' => $titleObj->getLocalURL( 'action=submit' ), 
+				 'enctype' => 'multipart/form-data', 'id' => 'uploadwarning' ) ) . "\n" .
+			Xml::hidden( 'wpIgnoreWarning', '1' ) . "\n" .
+			Xml::hidden( 'wpSessionKey', $this->mSessionKey ) . "\n" .
+			Xml::hidden( 'wpUploadDescription', $this->mComment ) . "\n" .
+			Xml::hidden( 'wpLicense', $this->mLicense ) . "\n" .
+			Xml::hidden( 'wpDestFile', $this->mDesiredDestName ) . "\n" .
+			Xml::hidden( 'wpWatchthis', $this->mWatchthis ) . "\n" .
+			"{$copyright}<br />" .
+			Xml::submitButton( wfMsg( 'ignorewarning' ), array ( 'name' => 'wpUpload', 'id' => 'wpUpload', 'checked' => 'checked' ) ) . ' ' .
+			Xml::submitButton( wfMsg( 'reuploaddesc' ), array ( 'name' => 'wpReUpload', 'id' => 'wpReUpload' ) ) .
+			Xml::closeElement( 'form' ) . "\n"
+		);
 	}
 
 	/**
