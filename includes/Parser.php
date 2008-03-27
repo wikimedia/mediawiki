@@ -4423,7 +4423,9 @@ class Parser
 				// Special case; width and height come in one variable together
 				if( $type == 'handler' && $paramName == 'width' ) {
 					$m = array();
-					if ( preg_match( '/^([0-9]*)x([0-9]*)$/', $value, $m ) ) {
+					# (bug 13500) In both cases (width/height and width only),
+					# permit trailing "px" for backward compatibility.
+					if ( preg_match( '/^([0-9]*)x([0-9]*)\s*(?:px)?\s*$/', $value, $m ) ) {
 						$width = intval( $m[1] );
 						$height = intval( $m[2] );
 						if ( $handler->validateParam( 'width', $width ) ) {
@@ -4434,7 +4436,7 @@ class Parser
 							$params[$type]['height'] = $height;
 							$validated = true;
 						}
-					} elseif ( is_numeric( trim( $value ) ) ) {
+					} elseif ( preg_match( '/^[0-9]*\s*(?:px)?\s*$/', $value ) ) {
 						$width = intval( $value );
 						if ( $handler->validateParam( 'width', $width ) ) {
 							$params[$type]['width'] = $width;
