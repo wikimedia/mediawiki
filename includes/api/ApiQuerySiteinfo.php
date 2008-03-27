@@ -150,16 +150,17 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		$data = array();
 		while($row = $db->fetchObject($res))
 		{
+			$val = array();
 			$val['prefix'] = $row->iw_prefix;
 			if ($row->iw_local == '1')
 				$val['local'] = '';
 //			$val['trans'] = intval($row->iw_trans);	// should this be exposed?
 			$val['url'] = $row->iw_url;
-				
+
 			$data[] = $val;
 		}
 		$db->freeResult($res);
-		
+
 		$this->getResult()->setIndexedTagName($data, 'iw');
 		$this->getResult()->addValue('query', $property, $data);
 	}
