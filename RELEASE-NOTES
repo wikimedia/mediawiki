@@ -136,6 +136,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Trackback display formatting fixed
 * Don't die when single-element arrays are passed to SQL query constructors
   that have an array index other than 0
+* (bug 13522) Fix fatal error in Parser::extractTagsAndParams
 
 
 === API changes in 1.13 ===

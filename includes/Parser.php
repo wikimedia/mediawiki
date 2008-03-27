@@ -82,14 +82,17 @@ class Parser
 	const OT_WIKI = 2;
 	const OT_PREPROCESS = 3;
 	const OT_MSG = 3;
-	
+
+	// Marker Suffix needs to be accessible staticly.
+	const MARKER_SUFFIX = "-QINU\x7f";
+
 	/**#@+
 	 * @private
 	 */
 	# Persistent:
 	var $mTagHooks, $mTransparentTagHooks, $mFunctionHooks, $mFunctionSynonyms, $mVariables,
-		$mImageParams, $mImageParamsMagicArray, $mStripList, $mMarkerSuffix, $mMarkerIndex,
-		$mExtLinkBracketedRegex, $mPreprocessor, $mDefaultStripList, $mVarCache, $mConf;
+		$mImageParams, $mImageParamsMagicArray, $mStripList, $mMarkerIndex, $mPreprocessor,
+		$mExtLinkBracketedRegex, $mDefaultStripList, $mVarCache, $mConf;
 
 
 	# Cleared with clearState():
@@ -124,7 +127,6 @@ class Parser
 		$this->mFunctionHooks = array();
 		$this->mFunctionSynonyms = array( 0 => array(), 1 => array() );
 		$this->mDefaultStripList = $this->mStripList = array( 'nowiki', 'gallery' );
-		$this->mMarkerSuffix = "-QINU\x7f";
 		$this->mExtLinkBracketedRegex = '/\[(\b(' . wfUrlProtocols() . ')'.
 			'[^][<>"\\x00-\\x20\\x7F]+) *([^\]\\x0a\\x0d]*?)\]/S';
 		$this->mVarCache = array();
@@ -526,7 +528,7 @@ class Parser
 				$inside     = $p[4];
 			}
 
-			$marker = "$uniq_prefix-$element-" . sprintf('%08X', $n++) . $this->mMarkerSuffix;
+			$marker = "$uniq_prefix-$element-" . sprintf('%08X', $n++) . self::MARKER_SUFFIX;
 			$stripped .= $marker;
 
 			if ( $close === '/>' ) {
@@ -618,7 +620,7 @@ class Parser
 	 * @private
 	 */
 	function insertStripItem( $text ) {
-		$rnd = "{$this->mUniqPrefix}-item-{$this->mMarkerIndex}-{$this->mMarkerSuffix}";
+		$rnd = "{$this->mUniqPrefix}-item-{$this->mMarkerIndex}-" . self::MARKER_SUFFIX;
 		$this->mMarkerIndex++;
 		$this->mStripState->general->setPair( $rnd, $text );
 		return $rnd;
@@ -3185,7 +3187,7 @@ class Parser
 		$attrText = !isset( $params['attr'] ) ? null : $frame->expand( $params['attr'] );
 		$content = !isset( $params['inner'] ) ? null : $frame->expand( $params['inner'] );
 
-		$marker = "{$this->mUniqPrefix}-$name-" . sprintf('%08X', $this->mMarkerIndex++) . $this->mMarkerSuffix;
+		$marker = "{$this->mUniqPrefix}-$name-" . sprintf('%08X', $this->mMarkerIndex++) . self::MARKER_SUFFIX;
 		
 		if ( $this->ot['html'] ) {
 			$name = strtolower( $name );
@@ -3378,7 +3380,7 @@ class Parser
 		$prevlevel = 0;
 		$toclevel = 0;
 		$prevtoclevel = 0;
-		$markerRegex = "{$this->mUniqPrefix}-h-(\d+)-{$this->mMarkerSuffix}";
+		$markerRegex = "{$this->mUniqPrefix}-h-(\d+)-" . self::MARKER_SUFFIX;
 		$baseTitleText = $this->mTitle->getPrefixedDBkey();
 		$tocraw = array();
 
@@ -4822,12 +4824,12 @@ class Parser
 				break;
 			} else {
 				$out .= call_user_func( $callback, substr( $s, $i, $markerStart - $i ) );
-				$markerEnd = strpos( $s, $this->mMarkerSuffix, $markerStart );
+				$markerEnd = strpos( $s, self::MARKER_SUFFIX, $markerStart );
 				if ( $markerEnd === false ) {
 					$out .= substr( $s, $markerStart );
 					break;
 				} else {
-					$markerEnd += strlen( $this->mMarkerSuffix );
+					$markerEnd += strlen( self::MARKER_SUFFIX );
 					$out .= substr( $s, $markerStart, $markerEnd - $markerStart );
 					$i = $markerEnd;
 				}
