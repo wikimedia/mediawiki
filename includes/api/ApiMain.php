@@ -72,8 +72,6 @@ class ApiMain extends ApiBase {
 		'unblock' => 'ApiUnblock',
 		'move' => 'ApiMove',
 		'edit' => 'ApiEditPage',
-		#'changerights' => 'ApiChangeRights'
-		# Disabled for now
 	);
 
 	/**
