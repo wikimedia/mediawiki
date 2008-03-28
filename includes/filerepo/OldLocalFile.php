@@ -89,7 +89,7 @@ class OldLocalFile extends LocalFile {
 			} else {
 				krsort( $oldImages );
 				foreach ( $oldImages as $timestamp => $info ) {
-					if ( $timestamp <= $this->requestedTime ) {
+					if ( $timestamp == $this->requestedTime ) {
 						$found = true;
 						break;
 					}
@@ -168,7 +168,7 @@ class OldLocalFile extends LocalFile {
 		if ( is_null( $this->requestedTime ) ) {
 			$conds['oi_archive_name'] = $this->archive_name;
 		} else {
-			$conds[] = 'oi_timestamp <= ' . $dbr->addQuotes( $dbr->timestamp( $this->requestedTime ) );
+			$conds[] = 'oi_timestamp = ' . $dbr->addQuotes( $dbr->timestamp( $this->requestedTime ) );
 		}
 		$row = $dbr->selectRow( 'oldimage', $this->getCacheFields( 'oi_' ),
 			$conds, __METHOD__, array( 'ORDER BY' => 'oi_timestamp DESC' ) );
