@@ -2022,7 +2022,7 @@ class User {
 				'user_touched' => $dbw->timestamp($this->mTouched),
 				'user_token' => $this->mToken,
 				'user_email_token' => $this->mEmailToken,
-				'user_email_token_expires' => $this->mEmailTokenExpires
+				'user_email_token_expires' => $dbw->timestampOrNull( $this->mEmailTokenExpires ),
 			), array( /* WHERE */
 				'user_id' => $this->mId
 			), __METHOD__
