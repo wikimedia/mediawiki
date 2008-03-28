@@ -68,7 +68,7 @@ class RevisionDeleteForm {
 	 * @param string $file
 	 */
 	function __construct( $page, $oldids, $logids, $artimestamps, $fileids, $img, $file ) {
-		global $wgUser;
+		global $wgUser, $wgOut;
 
 		$this->page = $page;
 		# For reviewing deleted files...
@@ -84,6 +84,21 @@ class RevisionDeleteForm {
 			return;
 		}
 		$this->skin = $wgUser->getSkin();
+		# Give a link to the log for this page
+		if( !is_null($this->page) && $this->page->getNamespace() > -1 ) {
+			$logtitle = SpecialPage::getTitleFor( 'Log' );
+			$loglink = $this->skin->makeKnownLinkObj( $logtitle, wfMsgHtml( 'viewpagelogs' ),
+				wfArrayToCGI( array( 'page' => $this->page->getPrefixedUrl() ) ) );
+			# Give a link to the page history	
+			$histlink = $this->skin->makeKnownLinkObj( $this->page, wfMsgHtml( 'pagehist' ),
+				wfArrayToCGI( array( 'action' => 'history' ) ) );
+			# Link to deleted edits
+			$undelete = SpecialPage::getTitleFor( 'Undelete' );
+			$dellink = $this->skin->makeKnownLinkObj( $undelete, wfMsgHtml( 'deletedhist' ),
+				wfArrayToCGI( array( 'target' => $this->page->getPrefixedUrl() ) ) );
+			# Logs themselves don't have histories or archived revisions
+			$wgOut->setSubtitle( '<p>'.$histlink.' / '.$loglink.' / '.$dellink.'</p>' );
+		}
 		// At this point, we should only have one of these
 		if( $oldids ) {
 			$this->revisions = $oldids;
@@ -594,11 +609,15 @@ class RevisionDeleteForm {
 
 		$date = $wgContLang->timeanddate( $row->log_timestamp );
 		$paramArray = LogPage::extractParams( $row->log_params );
+		$title = Title::makeTitle( $row->log_namespace, $row->log_title );
+		
+		$logtitle = SpecialPage::getTitleFor( 'Log' );
+		$loglink = $this->skin->makeKnownLinkObj( $logtitle, wfMsgHtml( 'log' ),
+			wfArrayToCGI( array( 'page' => $title->getPrefixedUrl() ) ) );
 		// Action text
 		if( !LogPage::userCan($row,LogPage::DELETED_ACTION) ) {
 			$action = '<span class="history-deleted">' . wfMsgHtml('rev-deleted-event') . '</span>';	
 		} else {
-			$title = Title::makeTitle( $row->log_namespace, $row->log_title );
 			$action = LogPage::actionText( $row->log_type, $row->log_action, $title, 
 				$this->skin, $paramArray, true, true );
 			if( $row->log_deleted & LogPage::DELETED_ACTION )
@@ -614,7 +633,7 @@ class RevisionDeleteForm {
 		if( LogPage::isDeleted($row,LogPage::DELETED_COMMENT) ) {
 			$comment = '<span class="history-deleted">' . $comment . '</span>';
 		}
-		return "<li>$date $userLink $action $comment</li>";
+		return "<li>($loglink) $date $userLink $action $comment</li>";
 	}
 	
 	/**
@@ -679,20 +698,7 @@ class RevisionDeleteForm {
 		global $wgOut;
 
 		$wgOut->setPagetitle( wfMsgHtml( 'actioncomplete' ) );
-		# Give a link to the log for this page
-		$logtitle = SpecialPage::getTitleFor( 'Log' );
-		$loglink = $this->skin->makeKnownLinkObj( $logtitle, wfMsgHtml( 'viewpagelogs' ),
-			wfArrayToCGI( array('page' => $this->target ) ) );
-		# Give a link to the page history	
-		$histlink = $this->skin->makeKnownLinkObj( $this->title, wfMsgHtml( 'pagehist' ),
-			wfArrayToCGI( array('action' => 'history' ) ) );
-		# Link to deleted edits
-		$undelete = SpecialPage::getTitleFor( 'Undelete' );
-		$dellink = $this->skin->makeKnownLinkObj( $undelete, wfMsgHtml( 'deletedhist' ),
-			wfArrayToCGI( array('target' => $this->target) ) );
-		# Logs themselves don't have histories or archived revisions
-		if( !is_null($this->title) && $this->title->getNamespace() > -1)
-			$wgOut->setSubtitle( '<p>'.$histlink.' / '.$loglink.' / '.$dellink.'</p>' );
+		
 		if( $this->deleteKey=='logid' ) {
 			$wgOut->addWikiText( Xml::element( 'span', array( 'class' => 'success' ), wfMsg( 'logdelete-success' ) ), false );
 			$this->showLogItems( $request );
