@@ -494,5 +494,3 @@ code under copyright law.
 =cut
 
 */
-
-?>

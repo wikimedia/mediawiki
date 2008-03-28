@@ -1,7 +1,7 @@
 #!/usr/bin/env php
 <?php
 
-require 'Test.php';
+require 't/Test.php';
 
 plan( 1120 );
 
@@ -58,4 +58,3 @@ foreach ( $private as $p ) {
 }
 
 /* vim: set filetype=php: */
-?>

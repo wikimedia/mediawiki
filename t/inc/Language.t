@@ -1,18 +1,18 @@
 #!/usr/bin/env php
 <?php
 
-require 'Test.php';
+require 't/Test.php';
 
 # Test offset usage for a given language::userAdjust
-function test_userAdjust( $langObj, $date, $offset, $expected ) {
+function test_userAdjust( &$langObj, $date, $offset, $expected ) {
 	global $wgLocalTZoffset;
 	$wgLocalTZoffset = $offset;
 
 	cmp_ok(
-		$langObj->userAdjust( $date, '' ),
+		strval( $langObj->userAdjust( $date, '' ) ),
 		'==',
-		$expected,
-		"User adjust $date by $offset minutes should give $expected"
+		strval( $expected ),
+		"User adjust {$date} by {$offset} minutes should give {$expected}"
 	);
 }
 
@@ -31,25 +31,22 @@ $userAdjust_tests = array(
 	array( 20061231235959, -60, 20061231225959 ),
 );
 
-plan( 7 + count($userAdjust_tests) );
-
-require_ok( 'includes/Defines.php' );
-
-# require_ok() doesn't work for these, find out why
+plan( count($userAdjust_tests) );
 define( 'MEDIAWIKI', 1 );
+
+# Don't use require_ok as these files need global variables
+
+require 'includes/Defines.php';
+require 'includes/ProfilerStub.php';
+
 require 'LocalSettings.php';
 require 'includes/DefaultSettings.php';
 
+require 'includes/Setup.php';
+
 # Create a language object
-require_ok( 'languages/Language.php' );
-require_ok( 'includes/Title.php' );
 $wgContLang = $en = Language::factory( 'en' );
 
-# We need an user to test the lang
-require_ok( 'includes/GlobalFunctions.php' );
-require_ok( 'includes/ProfilerStub.php' );
-require_ok( 'includes/Exception.php' );
-require_ok( 'includes/User.php' );
 global $wgUser;
 $wgUser = new User();
 
@@ -59,4 +56,3 @@ foreach( $userAdjust_tests as $data ) {
 }
 
 /* vim: set filetype=php: */
-?>
