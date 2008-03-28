@@ -6,17 +6,15 @@ F<t> - MediaWiki test tree
 
 This is the MediaWiki test tree (well, one of them), tests in this
 directory are self-contained programs that produce TAP output via the
-F<Test.php> module (/trunk/Test/Test.php) (see
+F<Test.php> module (/trunk/phase3/t/Test.php) (see
 http://search.cpan.org/~petdance/TAP-1.00/TAP.pm#THE_TAP_FORMAT for
 information on the TAP format).
 
 =head1 Running the tests
 
-You'll need F<Test.php> to run the tests, it lives in the
-F<trunk/Test> directory and can be copied or linked to the F<phase3>
-directory.
+To run all tests, you can run
 
-    ln -s ../Test/Test.php .
+    make test
 
 Since the tests are self-contained PHP programs you can run them
 (Xml.t here) as:

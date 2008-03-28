@@ -1,6 +1,6 @@
 #!/usr/bin/env php
 <?php
-require 'Test.php';
+require 't/Test.php';
 
 plan(3);
 
@@ -24,4 +24,3 @@ $str = "
 #echo $lc->html;
 
 /* vim: set filetype=php: */
-?>
