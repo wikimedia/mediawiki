@@ -792,15 +792,15 @@ class User {
 			$this->mRealName = $s->user_real_name;
 			$this->mPassword = $s->user_password;
 			$this->mNewpassword = $s->user_newpassword;
-			$this->mNewpassTime = $dbr->timestampOrNull( $s->user_newpass_time );
+			$this->mNewpassTime = wfTimestampOrNull( TS_MW, $s->user_newpass_time );
 			$this->mEmail = $s->user_email;
 			$this->decodeOptions( $s->user_options );
-			$this->mTouched = $dbr->timestamp( $s->user_touched );
+			$this->mTouched = wfTimestamp(TS_MW,$s->user_touched);
 			$this->mToken = $s->user_token;
-			$this->mEmailAuthenticated = $dbr->timestampOrNull( $s->user_email_authenticated );
+			$this->mEmailAuthenticated = wfTimestampOrNull( TS_MW, $s->user_email_authenticated );
 			$this->mEmailToken = $s->user_email_token;
-			$this->mEmailTokenExpires = $dbr->timestampOrNull( $s->user_email_token_expires );
-			$this->mRegistration = $dbr->timestampOrNull( $s->user_registration );
+			$this->mEmailTokenExpires = wfTimestampOrNull( TS_MW, $s->user_email_token_expires );
+			$this->mRegistration = wfTimestampOrNull( TS_MW, $s->user_registration );
 			$this->mEditCount = $s->user_editcount; 
 			$this->getEditCount(); // revalidation for nulls
 
