@@ -86,18 +86,22 @@ class RevisionDeleteForm {
 		$this->skin = $wgUser->getSkin();
 		# Give a link to the log for this page
 		if( !is_null($this->page) && $this->page->getNamespace() > -1 ) {
+			$links = array();
+			
 			$logtitle = SpecialPage::getTitleFor( 'Log' );
-			$loglink = $this->skin->makeKnownLinkObj( $logtitle, wfMsgHtml( 'viewpagelogs' ),
+			$links[] = $this->skin->makeKnownLinkObj( $logtitle, wfMsgHtml( 'viewpagelogs' ),
 				wfArrayToCGI( array( 'page' => $this->page->getPrefixedUrl() ) ) );
 			# Give a link to the page history	
-			$histlink = $this->skin->makeKnownLinkObj( $this->page, wfMsgHtml( 'pagehist' ),
+			$links[] = $this->skin->makeKnownLinkObj( $this->page, wfMsgHtml( 'pagehist' ),
 				wfArrayToCGI( array( 'action' => 'history' ) ) );
 			# Link to deleted edits
-			$undelete = SpecialPage::getTitleFor( 'Undelete' );
-			$dellink = $this->skin->makeKnownLinkObj( $undelete, wfMsgHtml( 'deletedhist' ),
-				wfArrayToCGI( array( 'target' => $this->page->getPrefixedUrl() ) ) );
+			if( $wgUser->isAllowed('undelete') ) {
+				$undelete = SpecialPage::getTitleFor( 'Undelete' );
+				$links[] = $this->skin->makeKnownLinkObj( $undelete, wfMsgHtml( 'deletedhist' ),
+					wfArrayToCGI( array( 'target' => $this->page->getPrefixedUrl() ) ) );
+			}
 			# Logs themselves don't have histories or archived revisions
-			$wgOut->setSubtitle( '<p>'.$histlink.' / '.$loglink.' / '.$dellink.'</p>' );
+			$wgOut->setSubtitle( '<p>'.implode($links,' / ').'</p>' );
 		}
 		// At this point, we should only have one of these
 		if( $oldids ) {
