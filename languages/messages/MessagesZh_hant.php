@@ -1,5 +1,5 @@
 <?php
-/** Traditional Chinese (‪中文(繁體)‬)
+/** Chinese (Traditional) (‪中文 (傳統字)‬)
  *
  * @addtogroup Language
  *
@@ -86,7 +86,7 @@ $messages = array(
 'tog-previewontop'            => '在編輯框上方顯示預覽',
 'tog-previewonfirst'          => '第一次編輯時顯示原文內容的預覽',
 'tog-nocache'                 => '停用頁面快取',
-'tog-enotifwatchlistpages'    => '當我監視的頁面改變時發電子郵件給我',
+'tog-enotifwatchlistpages'    => '當在我的監視列表中的頁面改變時發電子郵件給我',
 'tog-enotifusertalkpages'     => '當我的對話頁發生改變時發電子郵件給我',
 'tog-enotifminoredits'        => '即使是頁面的小修改也向我發電子郵件',
 'tog-enotifrevealaddr'        => '在通知電子郵件中顯示我的電子郵件位址',
@@ -948,7 +948,7 @@ $2',
 'upload'                      => '上傳檔案',
 'uploadbtn'                   => '上傳檔案',
 'reupload'                    => '重新上載',
-'reuploaddesc'                => '返回上載表單。',
+'reuploaddesc'                => '取消上載並返回上載表單',
 'uploadnologin'               => '未登入',
 'uploadnologintext'           => '您必須先[[Special:Userlogin|登入]]
 才能上載檔案。',
@@ -975,7 +975,7 @@ $2',
 'filestatus'                  => '版權狀態:',
 'filesource'                  => '來源:',
 'uploadedfiles'               => '已上載檔案',
-'ignorewarning'               => '忽略警告並儲存檔案。',
+'ignorewarning'               => '忽略警告並儲存檔案',
 'ignorewarnings'              => '忽略所有警告',
 'minlength1'                  => '檔案名字必須至少有一個字母。',
 'illegalfilename'             => '檔案名“$1”包含有頁面標題所禁止的字符。請改名後重新上傳。',
@@ -1012,7 +1012,7 @@ $2',
 'uploadvirus'                 => '該檔案包含有病毒！詳情: $1',
 'sourcefilename'              => '來源檔案名:',
 'destfilename'                => '目標檔案名:',
-'upload-maxfilesize'          => '檔案最大限制大小：$1',
+'upload-maxfilesize'          => '檔案最大限制大小: $1',
 'watchthisupload'             => '監視此頁',
 'filewasdeleted'              => '之前已經有一個同名檔案被上傳後又被刪除了。在上傳此檔案之前您需要檢查$1。',
 'upload-wasdeleted'           => "'''警告: 您現在重新上傳一個先前曾經刪除過的檔案。'''
