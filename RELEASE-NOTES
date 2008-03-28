@@ -173,6 +173,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 11719) Remove trailing blanks in YAML output.
 * (bug 13541) Added siprop=specialpagealiases to meta=siteinfo
 * Added fallback8bitEncoding field to meta=siteinfo&siprop=general output
+* (bug 13544) Added prop=revid to action=parse
 
 === Languages updated in 1.13 ===
 
