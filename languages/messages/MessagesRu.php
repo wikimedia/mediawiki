@@ -1188,13 +1188,14 @@ $3 указал следующую причину: ''$2''",
 'savefile'                    => 'Записать файл',
 'uploadedimage'               => 'загружено «[[$1]]»',
 'overwroteimage'              => 'загружена новая версия «[[$1]]»',
-'uploaddisabled'              => 'Загрузка запрещена.',
+'uploaddisabled'              => 'Загрузка запрещена',
 'uploaddisabledtext'          => 'На этом вики-сайте загрузка файлов запрещена.',
 'uploadscripted'              => 'Файл содержит HTML-код или скрипт, который может быть ошибочно обработан браузером.',
 'uploadcorrupt'               => 'Файл либо повреждён, либо имеет неверное расширение. Пожалуйста, проверьте файл и попробуйте загрузить его ещё раз.',
 'uploadvirus'                 => 'Файл содержит вирус! См. $1',
 'sourcefilename'              => 'Исходное имя файла:',
 'destfilename'                => 'Целевое имя файла:',
+'upload-maxfilesize'          => 'Максимальный размер файла: $1',
 'watchthisupload'             => 'Включить этот файл в список наблюдения',
 'filewasdeleted'              => 'Файл с таким именем уже существовал ранее, но был удалён. Пожалуйста, проверьте $1 перед повторной загрузкой.',
 'upload-wasdeleted'           => "'''Внимание: вы пытаетесь загрузить файл, который ранее удалялся.'''
@@ -1513,7 +1514,7 @@ PICT # различные
 'watchlist-show-minor' => 'Показать малые правки',
 'watchlist-hide-minor' => 'Скрыть малые правки',
 
-# Displayed when you click the "watch" button and it's in the process of watching
+# Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Добавление в список наблюдения…',
 'unwatching' => 'Удаление из списка наблюдения…',
 

@@ -1251,8 +1251,7 @@ $2',
 'usermailererror' => "Паштовы аб'ект паведамляе пра памылку:",
 'defemailsubject' => 'эл.пошта {{SITENAME}}',
 'noemailtitle'    => 'Няма адраса электроннай пошты',
-'noemailtext'     => 'Удзельнік не паведаміў карэктнага адрасу эл.пошты,
-або не жадае атрымліваць эл.пошту ад іншых удзельнікаў.',
+'noemailtext'     => 'Удзельнік не паведаміў карэктнага адрасу эл.пошты, або не жадае атрымліваць эл.пошту ад іншых удзельнікаў.',
 'emailfrom'       => 'Ад каго',
 'emailto'         => 'Каму',
 'emailsubject'    => 'Тэма',
@@ -1301,7 +1300,7 @@ $2',
 'watchlist-show-minor' => 'паказваць дробныя праўкі',
 'watchlist-hide-minor' => 'не паказваць дробных правак',
 
-# Displayed when you click the "watch" button and it's in the process of watching
+# Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Дапісваецца да назіранага...',
 'unwatching' => 'Спыняем назіранне...',
 

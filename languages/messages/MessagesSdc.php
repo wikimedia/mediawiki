@@ -1219,7 +1219,7 @@ Si daboi s'à gana d'eliminà la pàgina da la listha di l'abbaidaddi ippiziarii
 'watchlist-show-minor' => 'Musthra li mudìfigghi minori',
 'watchlist-hide-minor' => 'Cua li mudìfigghi minori',
 
-# Displayed when you click the "watch" button and it's in the process of watching
+# Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => "Aggiunta a l'abbaidaddi ippiziari...",
 'unwatching' => "Eliminazioni da l'abbaidaddi ippiziari...",
 

@@ -6,6 +6,7 @@
  * @author Ерней
  * @author Himiq Dzyu
  * @author Nike
+ * @author Siebrand
  */
 
 $fallback = 'ru';
@@ -176,7 +177,7 @@ $messages = array(
 'jumptosearch'      => 'эзләү',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
-'aboutsite'         => 'Тасвир {{grammar:genitive|{{SITENAME}}}}',
+'aboutsite'         => '{{GRAMMAR:genitive|{{SITENAME}}}} турында',
 'aboutpage'         => 'Project:Тасвир',
 'currentevents'     => 'Агымдагы вакыйгалар',
 'currentevents-url' => 'Project:Агымдагы вакыйгалар',
@@ -323,8 +324,9 @@ $messages = array(
 'missingcommenttext'     => 'Зинһар, аска комментыгыз языгыз.',
 'missingcommentheader'   => "'''Искәртү:''' Сез комментыгызның башын күрсәтмәгәнсез.
 Сез «Битне саклау» кнопкасына бассагыз, үзгәртмәгез башсыз язылыр.",
-'summary-preview'        => 'Булыр тасвир',
-'subject-preview'        => 'Булыр баш',
+'summary-preview'        => 'Җыелма нәтиҗәне алдан карау',
+'subject-preview'        => 'Башисемне алдан карау',
+'blockedtitle'           => 'Кулланучы кыстырган',
 'blockednoreason'        => 'сәбәп күрсәтмәгән',
 'blockedoriginalsource'  => 'Бит «$1» тексты аска күрсәткән.',
 'blockededitsource'      => "Бит «$1» '''үзгәртүегез''' тексты аска күрсәткән.",
@@ -361,6 +363,8 @@ $messages = array(
 
 # History pages
 'currentrev' => 'Агымдагы юрама',
+'cur'        => 'агым.',
+'last'       => 'бая.',
 'histfirst'  => 'Баштагы',
 'histlast'   => 'Баягы',
 
@@ -372,6 +376,8 @@ $messages = array(
 
 # Diffs
 'difference' => '(Төзәтмәләр арасында аермалар)',
+'lineno'     => '$1 юл:',
+'editundo'   => 'үткәрмәү',
 
 # Search results
 'powersearch'        => 'Өстәмә эзләү',
@@ -408,6 +414,10 @@ $messages = array(
 'rcshowhideanons' => '$1 кермәгән кулланучы',
 'rcshowhidemine'  => '$1 минем үзгәртү',
 'show'            => 'Күрсәтергә',
+'minoreditletter' => 'ә',
+
+# Recent changes linked
+'recentchangeslinked' => 'Бәйләнешле үзгәртүләр',
 
 # Upload
 'upload' => 'Файлны йөкләргә',
@@ -474,6 +484,12 @@ $messages = array(
 'deleteotherreason'     => 'Башка/өстәмә сәбәп:',
 'deletereasonotherlist' => 'Башка сәбәп',
 'rollbacklink'          => 'кире кайтару',
+'protect-default'       => '(килешү буенча)',
+'protect-fallback'      => '«$1»нең рөхсәте кирәк',
+'protect-level-sysop'   => 'Идарәчеләр генә',
+'protect-expiring'      => '$1 үтә (UTC)',
+'restriction-type'      => 'Рөхсәт:',
+'restriction-level'     => 'Мөмкинлек дәрәҗәсе:',
 
 # Namespace form on various pages
 'namespace'      => 'Исемнәр мәйданы:',
@@ -485,9 +501,12 @@ $messages = array(
 'mycontris'     => 'Кертемем',
 
 # What links here
-'nolinkshere' => "'''[[:$1]]''' битенә башка битләр сылтамыйлар.",
+'whatlinkshere'       => 'Бирегә нәрсә сылтый',
+'nolinkshere'         => "'''[[:$1]]''' битенә башка битләр сылтамыйлар.",
+'whatlinkshere-links' => '← сылтамалар',
 
 # Block/unblock
+'blocklink'    => 'кысарга',
 'unblocklink'  => 'кысмаска',
 'contribslink' => 'кертем',
 
@@ -500,11 +519,14 @@ $messages = array(
 'movepage-moved' => "<big>'''«$1» бит «$2» биткә күчкән'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 
 # Tooltip help for the actions
+'tooltip-ca-talk'         => 'Битнең эчтәлеге турында фикер алышу',
 'tooltip-ca-edit'         => 'Сез бу бит үзгәртә аласыз. Зинһар, саклаганчы карап алуны кулланыгыз.',
 'tooltip-search'          => 'Эзләү {{SITENAME}}',
 'tooltip-n-mainpage'      => 'Төп битне кереп чыгарга',
 'tooltip-n-recentchanges' => 'Баягы үзгәртүләр исемлеге.',
+'tooltip-n-randompage'    => 'Очраклы битне карарга',
 'tooltip-n-sitesupport'   => 'Безгә ярдәм итегез',
+'tooltip-t-whatlinkshere' => 'Бирегә сылтаган барлык битләрнең исемлеге',
 'tooltip-t-upload'        => 'Файлларны йөкләргә',
 'tooltip-t-specialpages'  => 'Барлык махсус битләр исемлеге',
 'tooltip-ca-nstab-user'   => 'Кулланучының битене карарга',

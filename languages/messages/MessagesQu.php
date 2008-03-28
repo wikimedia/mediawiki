@@ -1287,7 +1287,7 @@ Qampa qillqakamachisqayki imamaytaqa paqarinqa kachasqayki e-chaskipi chaskiqpa 
 'watchlist-show-minor' => 'Aslla hukchasqakunata rikuchiy',
 'watchlist-hide-minor' => 'Aslla hukchasqakunata pakay',
 
-# Displayed when you click the "watch" button and it's in the process of watching
+# Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Watiqasqakunaman yapaspa...',
 'unwatching' => 'Watiqasqakunamanta qulluspa...',
 

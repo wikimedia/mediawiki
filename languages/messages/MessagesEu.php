@@ -1128,7 +1128,7 @@ Jarraipen zerrendatik artikulua kentzeko, artikuluan ''ez jarraitu''ri eman.",
 'watchlist-show-minor' => 'Aldaketa txikiak erakutsi',
 'watchlist-hide-minor' => 'Aldaketa txikiak ezkutatu',
 
-# Displayed when you click the "watch" button and it's in the process of watching
+# Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Zerrendan gehitzen...',
 'unwatching' => 'Zerrendatik kentzen...',
 

@@ -1377,7 +1377,8 @@ Ciascuna riga contiene i collegamenti al primo ed al secondo redirect, oltre all
 'watchnologintext'     => "Per modificare la lista degli osservati speciali è necessario prima eseguire l'[[Special:Userlogin|accesso al sito]].",
 'addedwatch'           => 'Pagina aggiunta alla lista degli osservati speciali',
 'addedwatchtext'       => "La pagina  \"[[:\$1]]\" è stata aggiunta alla propria [[Special:Watchlist|lista degli osservati speciali]].
-D'ora in poi, le modifiche apportate alla pagina e alla sua discussione verranno elencate in quella sede; il titolo della pagina apparirà in '''grassetto''' nella pagina delle [[Special:Recentchanges|ultime modifiche]] per renderlo più visibile.",
+D'ora in poi, le modifiche apportate alla pagina e alla sua discussione verranno elencate in quella sede;
+il titolo della pagina apparirà in '''grassetto''' nella pagina delle [[Special:Recentchanges|ultime modifiche]] per renderlo più visibile.",
 'removedwatch'         => 'Pagina eliminata dalla lista degli osservati speciali',
 'removedwatchtext'     => 'La pagina  "[[:$1]]" è stata eliminata dalla lista degli osservati speciali.',
 'watch'                => 'Segui',
@@ -1403,7 +1404,7 @@ D'ora in poi, le modifiche apportate alla pagina e alla sua discussione verranno
 'watchlist-show-minor' => 'Mostra le modifiche minori',
 'watchlist-hide-minor' => 'Nascondi le modifiche minori',
 
-# Displayed when you click the "watch" button and it's in the process of watching
+# Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Aggiunta agli osservati speciali...',
 'unwatching' => 'Eliminazione dagli osservati speciali...',
 

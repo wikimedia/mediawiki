@@ -462,6 +462,7 @@ hersenenge, (førge) = førskel til den førge hersenenge, l = lile til mendre �
 'prevn'        => 'førge $1',
 'nextn'        => 'nægste $1',
 'viewprevnext' => 'Ves ($1) ($2) ($3)',
+'searchall'    => 'ål',
 'powersearch'  => 'Søĝ',
 
 # Preferences page
@@ -626,7 +627,7 @@ hersenenge, (førge) = førskel til den førge hersenenge, l = lile til mendre �
 'watchlist-hide-own'   => 'skjule egne ændrenger',
 'watchlist-hide-minor' => 'skjule små ændrenger',
 
-# Displayed when you click the "watch" button and it's in the process of watching
+# Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Åvervåge …',
 'unwatching' => 'Ekke åvervåge …',
 

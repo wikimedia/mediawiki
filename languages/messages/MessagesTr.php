@@ -673,6 +673,8 @@ Bu sayfa değişikiliği kamu arşivlerinden silinmiştir.
 'revdelete-hide-image'        => 'Dosya içeriğini gizle',
 'revdelete-log'               => 'Log açıklama:',
 'revdelete-submit'            => 'Seçilen sürüme uygula',
+'pagehist'                    => 'Sayfa geçmişi',
+'deletedhist'                 => 'Silinmiş geçmiş',
 
 # Oversight log
 'oversightlog' => 'Gözetmen kayıtları',
@@ -691,6 +693,7 @@ Bu sayfa değişikiliği kamu arşivlerinden silinmiştir.
 'mergehistory-no-destination'      => 'Hedef sayfa $1 bulunmamaktadır.',
 'mergehistory-invalid-source'      => 'Kaynak sayfanın geçerli bir başlığı olmalı.',
 'mergehistory-invalid-destination' => 'Hedef sayfanın geçerli bir ismi olmalı.',
+'mergehistory-autocomment'         => '[[:$1]], [[:$2]] sayfasına birleştirildi',
 
 # Merge log
 'mergelog'    => 'Birleştirme kaydı',
@@ -932,6 +935,7 @@ Bu dosyanın silme kayıtları kolaylık olsun diye burada sunulmuştur:",
 'upload-curl-error6'  => "URL'ye ulaşılamadı",
 'upload-curl-error28' => 'Yüklemede zaman aşımı',
 
+'license'            => 'Lisans:',
 'nolicense'          => 'Hiçbirini seçme',
 'license-nopreview'  => '(Önizleme etkin değil)',
 'upload_source_url'  => ' (geçerli, herkesin ulaşabileceği bir URL)',
@@ -964,6 +968,7 @@ Bu dosyanın silme kayıtları kolaylık olsun diye burada sunulmuştur:",
 'linkstoimage'              => 'Bu görüntü dosyasına bağlantısı olan sayfalar:',
 'nolinkstoimage'            => 'Bu görüntü dosyasına bağlanan sayfa yok.',
 'sharedupload'              => 'Bu dosya ortak alana yüklenmiştir ve diğer projelerde de kullanılıyor olabilir.',
+'shareduploadwiki'          => 'Daha fazla bilgi için $1 sayfasına bakın.',
 'shareduploadwiki-linktext' => 'dosya açıklama sayfası',
 'noimage'                   => 'Bu isimde dosya yok. Siz $1.',
 'noimage-linktext'          => 'yükleyebilirsiniz',
@@ -978,9 +983,11 @@ Bu dosyanın silme kayıtları kolaylık olsun diye burada sunulmuştur:",
 # File deletion
 'filedelete'                  => 'Sil $1',
 'filedelete-legend'           => 'Dosya sil',
+'filedelete-intro'            => "'''[[Media:$1|$1]]''' dosyasını silemktesiniz.",
 'filedelete-comment'          => 'Silinme sebebi:',
 'filedelete-submit'           => 'Sil',
 'filedelete-success'          => "'''$1''' silindi.",
+'filedelete-nofile'           => "{{SITENAME}} üzerinde '''$1''' mevcut değildir.",
 'filedelete-reason-otherlist' => 'Başka sebeb',
 
 # MIME search
@@ -1096,7 +1103,7 @@ Toplam sayfa görüntülenme sayısı '''\$3''', değişiklik başına görünt�
 'log'                  => 'Kayıtlar',
 'all-logs-page'        => 'Tüm kayıtlar',
 'log-search-legend'    => 'Kayıtları ara',
-'alllogstext'          => '[[Special:Log/upload|Yükleme]], [[Special:Log/delete|silme]], [[Special:Log/move|taşıma]], [[Special:Log/protect|koruma altına alma]], [[Special:Log/newusers|yeni kullanıcı]], [[Special:Log/renameuser|kullanıcıların yeniden adlandırmaları]], [[Special:Log/block|erişim engelleme]], [[Special:Log/rights|yönetici hareketlerinin]] ve [[Special:Log/makebot|botların durumunun]] tümünün kayıtları.
+'alllogstext'          => '[[Special:Log/upload|Yükleme]], [[Special:Log/delete|silme]], [[Special:Log/move|taşıma]], [[Special:Log/protect|koruma altına alma]], [[Special:Log/newusers|yeni kullanıcı]], [[Special:Log/renameuser|kullanıcıların yeniden adlandırmaları]], [[Special:Log/block|erişim engelleme]], [[Special:Log/rights|yönetici hareketlerinin]] ve [[Special:Log/makebot|botların durumunun]] tümünün kayıtları. 
 
 Kayıt tipini, kullanıcı ismini, sayfa ismini girerek listeyi daraltabilirsiniz.',
 'logempty'             => 'Kayıtlarda eşleşen bilgi yok.',
@@ -1126,9 +1133,7 @@ Kayıt tipini, kullanıcı ismini, sayfa ismini girerek listeyi daraltabilirsini
 'mailnologintext' => 'Diğer kullanıcılara e-posta gönderebilmeniz için [[Special:Userlogin|oturum aç]]malısınız ve [[Special:Preferences|tercihler]] sayfasında geçerli bir e-posta adresiniz olmalı.',
 'emailuser'       => 'Kullanıcıya e-posta gönder',
 'emailpage'       => 'Kullanıcıya e-posta gönder',
-'emailpagetext'   => 'Aşağıdaki form kullanıcı hesabıyla ilişkilendirilmiş geçerli bir e-posta
-adresi olduğu takdirde ilgili kişiye bir e-posta gönderecek.
-
+'emailpagetext'   => 'Aşağıdaki form kullanıcı hesabıyla ilişkilendirilmiş geçerli bir e-posta adresi olduğu takdirde ilgili kişiye bir e-posta gönderecek. 
 Yanıt alabilmeniz için "From" (Kimden) kısmına tercih formunda belirttiğiniz e-posta adresi eklenecek.',
 'usermailererror' => 'Eposta hizmeti hata verdi:',
 'defemailsubject' => '{{SITENAME}} e-posta',
@@ -1183,7 +1188,7 @@ Sayfayı izleme listenizden çıkarmak istediğinizde "sayfayı izlemeyi durdur"
 'watchlist-show-minor' => 'Küçük değişiklikleri göster',
 'watchlist-hide-minor' => 'Küçük değişiklikleri gizle',
 
-# Displayed when you click the "watch" button and it's in the process of watching
+# Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'İzleniyor...',
 'unwatching' => 'Durduruluyor...',
 
@@ -1782,10 +1787,10 @@ Ondan sonraki link(ler) kural dışı olarak kabul edilir, örneğin: resim sayf
 # E-mail address confirmation
 'confirmemail'            => 'E-posta adresini onayla',
 'confirmemail_noemail'    => '[[Special:Preferences|Kullanıcı tercihlerinizde]] tanımlanmış uygun bir e-posta adresiniz yok.',
-'confirmemail_text'       => "Viki'nin e-posta işlevlerini kullanmabilmek için, önce e-posta adresinizin
-doğrulanması gerekiyor. Adresinize onay e-postası göndermek için aşağıdaki
-butonu tıklayın. Gönderilecek iletide adresinizi onaylamak için tarayıcınızla
-erişebileceğiniz, onay kodu içeren bir bağlantı olacak; linki tarayıcınıda açın ve e-posta adresinizin geçerliliğini doğrulayın.",
+'confirmemail_text'       => "Viki'nin e-posta işlevlerini kullanmabilmek için, önce e-posta adresinizin doğrulanması gerekiyor.
+Adresinize onay e-postası göndermek için aşağıdaki butonu tıklayın.
+Gönderilecek iletide adresinizi onaylamak için tarayıcınızla erişebileceğiniz, onay kodu içeren bir bağlantı olacak;
+linki tarayıcınıda açın ve e-posta adresinizin geçerliliğini doğrulayın.",
 'confirmemail_send'       => 'Onay kodu gönder',
 'confirmemail_sent'       => 'Onay e-postası gönderildi.',
 'confirmemail_sendfailed' => 'Onay maili gönderilemedi. Geçersiz karakterler olabilir adresi kontrol edin
@@ -1797,12 +1802,12 @@ Mail yazılımı iade etti:$1',
 'confirmemail_loggedin'   => 'E-posta adresiniz onaylandı.',
 'confirmemail_error'      => 'Onayınız bilinmeyen bir hata nedeniyle kaydedilemedi.',
 'confirmemail_subject'    => '{{SITENAME}} e-posta adres onayı.',
-'confirmemail_body'       => '$1 internet adresinden yapılan erişimle {{SITENAME}} sitesinde
-bu e-posta adresi ile ilişkilendirilen $2 kullanıcı hesabı
-açıldı.
+'confirmemail_body'       => '$1 internet adresinden yapılan erişimle {{SITENAME}} sitesinde 
+bu e-posta adresi ile ilişkilendirilen $2 kullanıcı hesabı 
+açıldı.  
 
 Bu e-posta adresinin bahsi geçen kullanıcı hesabına ait olduğunu
-onaylamak ve {{SITENAME}} sitesindeki e-posta işlevlerini aktif hale
+onaylamak ve {{SITENAME}} sitesindeki e-posta işlevlerini aktif hale 
 getirmek için aşağıdakı bağlantıyı tıklayın.
 
 $3

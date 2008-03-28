@@ -767,7 +767,7 @@ Pokud byl účet vytvořen omylem, považujte tuto zprávu za bezpředmětnou.',
 'summary-preview'           => 'Náhled shrnutí',
 'subject-preview'           => 'Náhled předmětu/nadpisu',
 'blockedtitle'              => 'Uživatel zablokován',
-'blockedtext'               => "<big> Vaší IP adrese či uživatelskému jménu byla zablokována možnost editace. </big>
+'blockedtext'               => "<big> Vaší IP adrese či uživatelskému jménu byla zablokována možnost editace.</big>
 
 Vaše uživatelské jméno nebo IP adresa byly zablokovány správcem s&nbsp;uživatelským jménem „$1“. Jako důvod blokování bylo uvedeno:
 
@@ -836,7 +836,8 @@ Pokud jste zde omylem, stiskněte ve svém prohlížeči tlačítko ''Zpět''.",
 ''Jelikož {{SITENAME}} má povoleno libovolné HTML, není zobrazen náhled jako prevence proti útokům JavaScriptem.''
 
 <strong>Pokud jde o zamýšlenou editaci, zkuste to prosím znovu. Pokud se tento problém bude opakovat, zkuste se odhlásit a znovu přihlásit.</strong>",
-'token_suffix_mismatch'     => '<strong>Vaše editace byla odmítnuta, protože Váš prohlížeč komolí některé znaky v editovaném textu. Editace byla odmítnuta, aby se zabránilo poškození textu stránky.
+'token_suffix_mismatch'     => '<strong>Vaše editace byla odmítnuta, protože Váš prohlížeč komolí některé znaky v editovaném textu.
+Editace byla odmítnuta, aby se zabránilo poškození textu stránky.
 Toto se může někdy stát pokud používáte chybující webový anonymizér.</strong>',
 'editing'                   => 'Editace stránky $1',
 'editingsection'            => 'Editace stránky $1 (část)',
@@ -1244,7 +1245,8 @@ Vyberte jiné jméno.',
 'fileexists-thumb'            => "<center>'''Existující soubor:'''</center>",
 'fileexists-thumbnail-yes'    => 'Toto soubor je možná obrázek ve zmenšené velikosti <i>(náhled)</i>. Zkontrolujte soubor <strong><tt>$1</tt></strong>.<br />
 Pokud je zmiňovaný soubor větší, ale jinak stejný, není potřeba zvlášť načítat jeho zmenšenou verzi.',
-'file-thumbnail-no'           => 'Jméno souboru začíná na <strong><tt>$1</tt></strong>. Možná to je obrázek ve zmenšené velikosti <i>(náhled)</i>.
+'file-thumbnail-no'           => 'Jméno souboru začíná na <strong><tt>$1</tt></strong>.
+Možná to je obrázek ve zmenšené velikosti <i>(náhled)</i>.
 Načtěte soubor v plném rozlišením, pokud je k dispozici, nebo změňte jméno souboru.',
 'fileexists-forbidden'        => 'Soubor s tímto názvem již existuje; vraťte se a zvolte jiný název. [[{{ns:image}}:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'Soubor s tímto názvem již existuje ve sdíleném úložišti; vraťte se a zvolte jiný název. [[{{ns:image}}:$1|thumb|center|$1]]',
@@ -1260,6 +1262,7 @@ Načtěte soubor v plném rozlišením, pokud je k dispozici, nebo změňte jmé
 'uploadvirus'                 => 'Tento soubor obsahuje virus! Podrobnosti: $1',
 'sourcefilename'              => 'Jméno zdrojového souboru:',
 'destfilename'                => 'Cílové jméno:',
+'upload-maxfilesize'          => 'Maximální dovolená velikost souboru: $1',
 'watchthisupload'             => 'Sledovat tuto stránku',
 'filewasdeleted'              => 'Soubor stejného jména byl již dříve načten a posléze smazán. Podrobnosti obsahuje $1.',
 'upload-wasdeleted'           => "'''Upozornění: Načítáte soubor, který byl již dříve smazán.'''
@@ -1558,7 +1561,7 @@ Zobrazení můžete zúžit výběrem typu záznamu, uživatelského jména nebo
 'watchlist-show-minor' => 'ukázat malé editace',
 'watchlist-hide-minor' => 'skrýt malé editace',
 
-# Displayed when you click the "watch" button and it's in the process of watching
+# Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Přidávám na seznam sledovaných stránek…',
 'unwatching' => 'Odebírám ze seznamu sledovaných stránek…',
 

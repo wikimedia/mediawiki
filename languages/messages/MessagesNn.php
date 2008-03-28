@@ -1452,7 +1452,7 @@ Om du seinere vil fjerne sida frå overvakingslista, klikk på «Fjern overvakin
 'watchlist-show-minor' => 'Vis småplukk',
 'watchlist-hide-minor' => 'Gøym småplukk',
 
-# Displayed when you click the "watch" button and it's in the process of watching
+# Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Overvakar...',
 'unwatching' => 'Fjernar frå overvakinglista...',
 
@@ -1971,9 +1971,8 @@ Alle andre lenkjer på same line vert sett på som unnatak, med andre ord sider 
 'metadata-help'     => 'Denne fila inneheld tilleggsopplysningar, mest sannsynleg frå digitalkameraet eller skannaren som vart brukt til å lage eller digitalisere henne. Dersom fila har vore endra sidan ho vart oppretta, kan nokre av opplysningane vere feil.',
 'metadata-expand'   => 'Vis utvida opplysningar',
 'metadata-collapse' => 'Gøym utvida opplysningar',
-'metadata-fields'   => 'EXIF-metadatafelta denne meldinga inneheld vert med på
-filskildringssida når dei utvida opplysningane er
-slått av. Dei andre felta er gøymde som standard.
+'metadata-fields'   => 'EXIF-metadatafelta denne meldinga inneheld vert med på filskildringssida når dei utvida opplysningane er slått av.
+Dei andre felta er gøymde som standard.
 * make
 * model
 * datetimeoriginal

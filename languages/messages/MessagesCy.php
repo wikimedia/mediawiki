@@ -568,8 +568,7 @@ Cyfeirnod y bloc yw $5. Nodwch hwn wrth drafod y bloc.",
 'accmailtext'               => 'Anfonwyd cyfrinair "$1" at $2.',
 'newarticle'                => '(Newydd)',
 'newarticletext'            => "Rydych chi wedi dilyn cysylltiad i dudalen sydd heb gael ei chreu eto.
-I greu'r dudalen, dechreuwch deipio yn y blwch isod
-(gweler y [[{{MediaWiki:Helppage}}|dudalen gymorth]] am fwy o wybodaeth).
+I greu'r dudalen, dechreuwch deipio yn y blwch isod (gweler y [[{{MediaWiki:Helppage}}|dudalen gymorth]] am fwy o wybodaeth).
 Os daethoch yma ar ddamwain, cliciwch botwm '''n&ocirc;l''' y porwr.",
 'anontalkpagetext'          => "---- ''Dyma dudalen sgwrs defnyddiwr sydd heb greu cyfrif, neu nad yw'n defnyddio'i gyfrif. Mae'n rhaid i ni ddefnyddio'r cyfeiriad IP i'w (h)adnabod. Mae'n bosib fod sawl defnyddiwr yn rhannu'r un cyfeiriad IP. Os ydych chi'n ddefnyddiwr anhysbys ac yn teimlo'ch bod wedi derbyn sylwadau amherthnasol, [[Special:Userlogin|crëwch gyfrif neu mewngofnodwch]] i osgoi dryswch gyda defnyddwyr anhysbys yn y dyfodol.''",
 'noarticletext'             => "Mae'r dudalen hon yn wag. Gallwch [[Special:Search/{{PAGENAME}}|chwilio am y teitl hwn]] ar dudalennau eraill neu [{{fullurl:{{FULLPAGENAME}}|action=edit}} golygu'r dudalen].",
@@ -1115,7 +1114,8 @@ Mae gan '''$2''' (neu '''$4%''') ohonynt alluoedd $5.",
 'log-search-legend'    => 'Chwilio am logiau',
 'log-search-submit'    => 'Eler',
 'alllogstext'          => "Mae pob cofnod yn holl logiau {{SITENAME}} wedi cael eu rhestru yma.
-Gallwch weld chwiliad mwy penodol trwy ddewis y math o lòg, enw'r defnyddiwr, neu'r dudalen benodedig. Sylwer bod prif lythrennau o bwys i'r chwiliad.",
+Gallwch weld chwiliad mwy penodol trwy ddewis y math o lòg, enw'r defnyddiwr, neu'r dudalen benodedig.
+Sylwer bod prif lythrennau o bwys i'r chwiliad.",
 'logempty'             => 'Does dim eitemau yn cyfateb yn y lòg.',
 'log-title-wildcard'   => "Chwilio am deitlau'n dechrau gyda'r geiriau hyn",
 
@@ -1199,7 +1199,7 @@ Os ydych am ddiddymu'r dudalen o'r rhestr gwylio, cliciwch ar \"Stopio gwylio\" 
 'watchlist-show-minor' => 'Dangos golygiadau bychain',
 'watchlist-hide-minor' => 'Cuddio golygiadau bychain',
 
-# Displayed when you click the "watch" button and it's in the process of watching
+# Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => "Wrthi'n ychwanegu...",
 'unwatching' => "Wrthi'n tynnu...",
 
@@ -1266,7 +1266,8 @@ Gwelwch y $2 am gofnod o\'r dileuon diweddar.',
 'rollbacklink'                => 'rolio nôl',
 'rollbackfailed'              => 'Methwyd rolio nôl',
 'cantrollback'                => "Wedi methu gwrthdroi'r golygiad; y cyfrannwr diwethaf oedd unig awdur y dudalen hon.",
-'alreadyrolled'               => "Nid yw'n bosib dadwneud y golygiad diwethaf i'r dudalen [[:$1|$1]] gan [[User:$2|$2]] ([[User_talk:$2|Sgwrs]]); mae rhywun arall eisoes wedi dadwneud y golygiad neu wedi golygu'r dudalen.
+'alreadyrolled'               => "Nid yw'n bosib dadwneud y golygiad diwethaf i'r dudalen [[:$1|$1]] gan [[User:$2|$2]] ([[User_talk:$2|Sgwrs]]);
+mae rhywun arall eisoes wedi dadwneud y golygiad neu wedi golygu'r dudalen.
 
 [[User:$3|$3]] ([[User_talk:$3|Sgwrs]]) a wnaeth y golygiad diwethaf.",
 'editcomment'                 => 'Crynodeb y golygiad oedd: "<i>$1</i>".', # only shown if there is an edit comment
@@ -1464,8 +1465,8 @@ Ceir cofnod o'r tudalennau a ddilëwyd neu a adferwyd yn ddiweddar ar y [[Specia
 'locknoconfirm'       => "Nid ydych wedi ticio'r blwch cadarnhad.",
 'lockdbsuccesssub'    => "Wedi llwyddo cloi'r databas",
 'unlockdbsuccesssub'  => "Databas wedi'i ddatgloi",
-'lockdbsuccesstext'   => "Mae'r databas wedi'i gloi.
-<br />Cofiwch [[Special:Unlockdb|ddatgloi'r]] databas pan fydd y gwaith cynnal ar ben.",
+'lockdbsuccesstext'   => "Mae'r databas wedi'i gloi.<br />
+Cofiwch [[Special:Unlockdb|ddatgloi'r]] databas pan fydd y gwaith cynnal ar ben.",
 'unlockdbsuccesstext' => "Mae'r databas wedi'i ddatgloi.",
 
 # Move page
@@ -1475,10 +1476,13 @@ Bydd yr hen deitl yn troi'n dudalen ail-gyfeirio i'r teitl newydd.
 Ni fydd cysylltiadau i'r hen deitl yn newid; rhaid cywiro ail-gyfeiriadau dwbl ac ail-gyfeiriadau tor eich hunan.
 Eich cyfrifoldeb chi yw sicrhau bod cysylltiadau wici'n dal i arwain at y man iawn!
 
-Sylwch '''na fydd''' y dudalen yn symud os oes yna dudalen o'r enw newydd yn bodoli'n barod ar y databas (heblaw ei bod hi'n wag neu'n ail-gyfeiriad heb unrhyw hanes golygu). Felly, os y gwnewch gamgymeriad wrth ail-enwi tudalen dylai fod yn bosibl ei hail-enwi eto ar unwaith wrth yr enw gwreiddiol. Hefyd, mae'n amhosibl ysgrifennu dros ben tudalen sydd yn bodoli'n barod.
+Sylwch '''na fydd''' y dudalen yn symud os oes yna dudalen o'r enw newydd yn bodoli'n barod ar y databas (heblaw ei bod hi'n wag neu'n ail-gyfeiriad heb unrhyw hanes golygu).
+Felly, os y gwnewch gamgymeriad wrth ail-enwi tudalen dylai fod yn bosibl ei hail-enwi eto ar unwaith wrth yr enw gwreiddiol.
+Hefyd, mae'n amhosibl ysgrifennu dros ben tudalen sydd yn bodoli'n barod.
 
 <b>DALIER SYLW!</b>
-Gall hwn fod yn newid sydyn a llym i dudalen boblogaidd; byddwch yn siwr eich bod chi'n deall y canlyniadau cyn mynd ati.",
+Gall hwn fod yn newid sydyn a llym i dudalen boblogaidd;
+byddwch yn siwr eich bod chi'n deall y canlyniadau cyn mynd ati.",
 'movepagetalktext'        => "Bydd y dudalen sgwrs yn symud gyda'r dudalen hon '''onibai:'''
 *bod tudalen sgwrs wrth yr enw newydd yn bodoli'n barod
 *bod y blwch isod heb ei farcio.

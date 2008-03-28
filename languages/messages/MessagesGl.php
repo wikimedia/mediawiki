@@ -391,8 +391,8 @@ $2',
 
 Pode continuar usando {{SITENAME}} de xeito anónimo, ou pode acceder de novo co mesmo nome de usuario ou con outro. Note que mentres se limpa a memoria ''caché'' do navegador algunhas páxinas poden continuar a ser amosadas como se estivesen aínda dentro do sistema.",
 'welcomecreation'            => '== Reciba a nosa benvida, $1! ==
-
-Creouse a súa conta. Non esqueza [[Special:Preferences|personalizar]] as súas preferencias en {{SITENAME}}.',
+Creouse a súa conta.
+Non esqueza [[Special:Preferences|personalizar]] as súas preferencias en {{SITENAME}}.',
 'loginpagetitle'             => 'Acceso de Usuario',
 'yourname'                   => 'O seu nome de usuario:',
 'yourpassword'               => 'O seu contrasinal:',
@@ -532,10 +532,9 @@ O bloqueo foi realizado por $1. A razón que deu foi \'\'$2\'\'.
 * Caducidade do bloqueo: $6
 * Pretendeuse bloquear a: $7
 
-Pode contactar con $1 ou con calquera outro
-[[{{MediaWiki:Grouppage-sysop}}|administrador]] para discutir este bloqueo.
-
-Non pode empregar "enviar un correo a este usuario" a non ser que dispoña dun enderezo electrónico válido rexistrado nas súas [[Special:Preferences|preferencias de usuario]] e que o seu uso non fose bloqueado.
+Pode contactar con $1 ou con calquera outro [[{{MediaWiki:Grouppage-sysop}}|administrador]] para discutir este bloqueo.
+Non pode empregar "enviar un correo a este usuario" a non ser que dispoña dun enderezo electrónico válido rexistrado nas súas
+[[Special:Preferences|preferencias de usuario]] e que o seu uso non fose bloqueado.
 O seu enderezo IP actual é $3 e o ID do bloqueo é nº $5. Por favor inclúa eses datos nas consultas que faga.',
 'autoblockedtext'           => 'O seu enderezo IP foi bloqueado automaticamente porque o empregou outro usuario, que foi bloqueado por $1.
 
@@ -544,10 +543,9 @@ A razón que deu foi a seguinte:
 :\'\'$2 \'\'
 
 * Inicio do bloqueo: $8
-* Caducidade do bloqueo: $6
+* Caducidade do bloqueo: $6 
 
-Pode contactar con $1 ou con calquera outro
-[[{{MediaWiki:Grouppage-sysop}}|administrador]] para discutir este bloqueo.
+Pode contactar con $1 ou con calquera outro [[{{MediaWiki:Grouppage-sysop}}|administrador]] para discutir este bloqueo.
 
 Teña en conta que non pode empregar "enviar un correo a este usuario" a non ser que dispoña dun enderezo electrónico válido rexistrado nas súas [[Special:Preferences|preferencias de usuario]].
 
@@ -619,8 +617,9 @@ Do mesmo xeito, comprométese a que o que vostede escriba sexa da súa autoría 
 <strong>NON ENVÍE SEN PERMISO TRABALLOS CON DEREITOS DE COPIA!</strong>',
 'longpagewarning'           => "ATENCIÓN: Esta páxina ten $1 ''kilobytes''; algúns navegadores poden ter problemas editando páxinas de 32kb ou máis.
 Por favor, considere partir a páxina en seccións máis pequenas.",
-'longpageerror'             => '<strong>ERRO: O texto que pretende gardar supera en $1 kilobytes
-o permitido. Hai un límite máximo de $2 kilobytes; polo tanto, non se pode gardar.</strong>',
+'longpageerror'             => '<strong>ERRO: O texto que pretende gardar supera en $1 kilobytes o permitido.
+Hai un límite máximo de $2 kilobytes;
+polo tanto, non se pode gardar.</strong>',
 'readonlywarning'           => '<strong>ATENCIÓN: A base de datos foi fechada para facer mantemento,
 polo que non vai poder gardar as súas edicións polo de agora. Se cadra pode cortar e pegar o texto nun ficheiro de texto e gardalo para despois.</strong>',
 'protectedpagewarning'      => '<strong>ATENCIÓN: Esta páxina foi fechada de xeito que só os usuarios con privilexios de administrador do sistema poden editala.</strong>',
@@ -962,7 +961,7 @@ Para incluír un ficheiro na páxina, use unha ligazón do seguinte xeito:
 '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:Ficheiro.jpg]]</nowiki>''',
 '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:Ficheiro.png|texto alternativo]]</nowiki>''' ou
 '''<nowiki>[[</nowiki>{{ns:media}}<nowiki>:Ficheiro.ogg]]</nowiki>''' para ligar directamente co ficheiro.",
-'upload-permitted'            => 'Tipos de arquivo permitidos: $1.',
+'upload-permitted'            => 'Tipos de ficheiro permitidos: $1.',
 'upload-preferred'            => 'Tipos de arquivos preferidos: $1.',
 'upload-prohibited'           => 'Tipos de arquivos prohibidos: $1.',
 'uploadlog'                   => 'rexistro de carga',
@@ -981,7 +980,7 @@ Para incluír un ficheiro na páxina, use unha ligazón do seguinte xeito:
 'badfilename'                 => 'O nome desta imaxe cambiouse a "$1".',
 'filetype-badmime'            => 'Non se permite enviar ficheiros de tipo MIME "$1".',
 'filetype-unwanted-type'      => "'''\".\$1\"''' é un tipo de arquivo non desexado.  Os tipos de arquivo preferidos son \$2.",
-'filetype-banned-type'        => "'''\".\$1\"''' non é un tipo de arquivo permitido.  Os tipos de arquivos permitidos son \$2.",
+'filetype-banned-type'        => "'''\".\$1\"''' non é un tipo de ficheiro permitido.  Os tipos de ficheiros permitidos son \$2.",
 'filetype-missing'            => 'O ficheiro non conta cunha extensión (como ".jpg").',
 'large-file'                  => 'Recoméndase que o tamaño dos ficheiros non supere $1; este ficheiro ocupa $2.',
 'largefileserver'             => 'Este ficheiro é de maior tamaño có permitido pola configuración do servidor.',
@@ -1012,6 +1011,7 @@ Se dispón dunha versión desta imaxe de maior resolución, envíe esta última.
 'uploadvirus'                 => 'O ficheiro contén un virus! Detalles: $1',
 'sourcefilename'              => 'Nome do ficheiro a cargar:',
 'destfilename'                => 'Nome do ficheiro de destino:',
+'upload-maxfilesize'          => 'Tamaño máximo para o ficheiro: $1',
 'watchthisupload'             => 'Vixiar esta páxina',
 'filewasdeleted'              => 'Un ficheiro con ese nome foi cargado con anterioridade e a continuación borrado. Debe comprobar $1 antes de proceder a cargalo outra vez.',
 'upload-wasdeleted'           => "'''Aviso: Está enviando un ficheiro que foi previamente borrado.'''
@@ -1329,7 +1329,7 @@ Os cambios futuros nesta páxina e na súa páxina de conversa asociada serán l
 'watchlist-show-minor' => 'Mostrar edicións pequenas',
 'watchlist-hide-minor' => 'Agochar edicións pequenas',
 
-# Displayed when you click the "watch" button and it's in the process of watching
+# Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Vixiando...',
 'unwatching' => 'Deixando de vixiar...',
 
@@ -1571,8 +1571,7 @@ Olle a [[Special:Ipblocklist|listaxe de IP bloqueados]] para revisalo.',
 'ipb-blocklist-addr'          => 'Ver bloqueos vixentes para $1',
 'ipb-blocklist'               => 'Ver bloqueos vixentes',
 'unblockip'                   => 'Desbloquear usuario',
-'unblockiptext'               => 'Use o seguinte formulario para dar de novo acceso de escritura
-a un enderezo IP ou usuario que estea bloqueado.',
+'unblockiptext'               => 'Use o seguinte formulario para dar de novo acceso de escritura a un enderezo IP ou usuario que estea bloqueado.',
 'ipusubmit'                   => 'Desbloquear este enderezo',
 'unblocked'                   => '[[User:$1|$1]] foi desbloqueado',
 'unblocked-id'                => 'Eliminouse o bloqueo de $1',
@@ -1618,14 +1617,9 @@ a un enderezo IP ou usuario que estea bloqueado.',
 # Developer tools
 'lockdb'              => 'Fechar base de datos',
 'unlockdb'            => 'Desbloquear base de datos',
-'lockdbtext'          => 'Fechar a base de datos vai quitarlles aos usuarios a posibilidade de editar páxinas,
-cambiar as súas preferencias, editar as súas listaxes de vixilancia e outras
-cousas que requiren cambios na base de datos.
-Por favor confirme que é o que realmente quere facer, e que vai quitar o
-fechamento da base de datos cando o mantemento estea rematado.',
-'unlockdbtext'        => 'O desbloqueo da base de datos vai permitir que os usuarios poidan editar páxinas,
-cambiar as súas preferencias, editar as súas listaxes de vixilancia e
-outras accións que requiran cambios na base de datos.
+'lockdbtext'          => 'Fechar a base de datos vai quitarlles aos usuarios a posibilidade de editar páxinas,cambiar as súas preferencias, editar as súas listaxes de vixilancia e outras cousas que requiren cambios na base de datos.
+Por favor confirme que é o que realmente quere facer, e que vai quitar o fechamento da base de datos cando o mantemento estea rematado.',
+'unlockdbtext'        => 'O desbloqueo da base de datos vai permitir que os usuarios poidan editar páxinas, cambiar as súas preferencias, editar as súas listaxes de vixilancia e outras accións que requiran cambios na base de datos.
 Por favor confirme que isto é o que quere facer.',
 'lockconfirm'         => 'Si, realmente quero fechar a base de datos.',
 'unlockconfirm'       => 'Si, realmente quero desbloquear a base de datos',
@@ -2212,8 +2206,9 @@ As ligazóns posteriores da mesma liña considéranse excepcións, isto é, páx
 # E-mail address confirmation
 'confirmemail'             => 'Confirmar o enderezo do correo electrónico',
 'confirmemail_noemail'     => 'Non ten configurado un enderezo de correo electrónico válido nas súas [[Special:Preferences|preferencias]] de usuario.',
-'confirmemail_text'        => '{{SITENAME}} require que vostede valide o seu enderezo de correo electrónico antes de utilizar as funcións relacionadas con el. Prema no botón de embaixo para enviar un correo de confirmación ao seu enderezo. O correo incluirá unha ligazón cun código: clique nesta ligazón para abrila no navegador web e
-confirmar que o seu enderezo é válido.',
+'confirmemail_text'        => '{{SITENAME}} require que vostede valide o seu enderezo de correo electrónico antes de utilizar as funcións relacionadas con el.
+Prema no botón de embaixo para enviar un correo de confirmación ao seu enderezo.
+O correo incluirá unha ligazón cun código: clique nesta ligazón para abrila no navegador web e confirmar que o seu enderezo é válido.',
 'confirmemail_pending'     => '<div class="error"> Envióuselle un código de confirmación ao enderezo de correo electrónico; se creou a conta hai pouco debe esperar uns minutos antes de solicitar un novo código.</div>',
 'confirmemail_send'        => 'Enviar por correo elecrónico un código de confirmación',
 'confirmemail_sent'        => 'Correo electrónico de confirmación enviado.',
@@ -2259,7 +2254,7 @@ $1
 # Delete conflict
 'deletedwhileediting' => 'Aviso: Esta páxina foi borrada despois de que vostede comezase a editala!',
 'confirmrecreate'     => "O usuario [[User:$1|$1]] ([[User talk:$1|disc.]]) borrou este artigo despois de que vostede comezara a editalo, polo seguinte motivo:
-: ''$2''
+: ''$2'' 
 Por favor confirme que realmente quere crear o artigo de novo.",
 'recreate'            => 'Recrear',
 
@@ -2367,9 +2362,10 @@ Tamén pode [[Special:Watchlist/edit|empregar o editor normal]].',
 'filepath'         => 'Ruta do arquivo',
 'filepath-page'    => 'Arquivo:',
 'filepath-submit'  => 'Ruta',
-'filepath-summary' => 'Esta páxina especial devolve a ruta completa a un ficheiro. As imaxes móstranse na súa resolución completa; outros tipos de ficheiros inícianse directamente co seu programa asociado.
+'filepath-summary' => 'Esta páxina especial devolve a ruta completa a un ficheiro.
+As imaxes móstranse na súa resolución completa; outros tipos de ficheiros inícianse directamente co seu programa asociado.
 
-	Introduza o nome do ficheiro sen o prefixo "{{ns:image}}:"',
+Introduza o nome do ficheiro sen o prefixo "{{ns:image}}:"',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => 'Procurar ficheiros duplicados',

@@ -1122,7 +1122,7 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'watchlist-show-minor' => '사소한 편집을 보이기',
 'watchlist-hide-minor' => '사소한 편집을 숨기기',
 
-# Displayed when you click the "watch" button and it's in the process of watching
+# Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => '주시하는 중...',
 'unwatching' => '주시 해제하는 중...',
 

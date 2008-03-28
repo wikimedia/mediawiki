@@ -428,8 +428,7 @@ Tava IP adrese ir $3. Lūdzu iekļauj to visos turpmākajos pieprasījumos.',
 'copyrightwarning'         => 'Lūdzu, ņem vērā, ka viss ieguldījums, kas veikts {{grammar:lokatīvs|{{SITENAME}}}}, ir uzskatāms par publiskotu saskaņā ar $2 (vairāk info skat. $1).
 Ja nevēlies, lai Tevis rakstīto kāds rediģē un izplata tālāk, tad, lūdzu, nepievieno to šeit!<br />
 
-Izvēloties "Saglabāt lapu", Tu apliecini, ka šo rakstu esi rakstījis vai papildinājis pats vai izmantojis informāciju no darba, ko neaizsargā autortiesības, vai tamlīdzīga brīvi pieejama resursa.<br />
-
+Izvēloties "Saglabāt lapu", Tu apliecini, ka šo rakstu esi rakstījis vai papildinājis pats vai izmantojis informāciju no darba, ko neaizsargā autortiesības, vai tamlīdzīga brīvi pieejama resursa.
 <strong>BEZ ATĻAUJAS NEPIEVIENO DARBU, KO AIZSARGĀ AUTORTIESĪBAS!</strong>',
 'copyrightwarning2'        => "Lūdz ņem vērā, ka visu ieguldījumu {{grammar:lokatīvs|{{SITENAME}}}} var rediģēt, mainīt vai izdzēst citi lietotāji. Ja negribi lai ar tavu rakstīto tā izrīkojas, nepievieno to šeit.
 
@@ -594,8 +593,8 @@ Spied pogu '''Augšuplādēt''', lai pabeigtu augšupielādi.
 Tas var ieilgt, ja tavs interneta pieslēgums ir lēns.
 
 Ieteicamie formāti ir:
-* JPEG - ja tā ir fotogrāfija,
-* PNG - ja tas ir zīmējums vai kāda ikona, un
+* JPEG - ja tā ir fotogrāfija, 
+* PNG - ja tas ir zīmējums vai kāda ikona, un 
 * OGG - ja tas ir skaņas fails.
 
 Lūdzu, pārliecinies, ka faila nosaukums ir pietiekami aprakstošs, lai izvairītos no neskaidrībām. Lai attēlu pēc tam ievietotu kādā lapā, izmanto šādi noformētu linkus:
@@ -777,7 +776,7 @@ Ja vēlāk pārdomāsi un nevēlēsies vairs uzraudzīt šo lapu, klikšķini uz
 'watchlist-show-minor' => 'Parādīt maznozīmīgās izmaiņas',
 'watchlist-hide-minor' => 'Paslēpt maznozīmīgās izmaiņas',
 
-# Displayed when you click the "watch" button and it's in the process of watching
+# Displayed when you click the "watch" button and it is in the process of watching
 'watching' => 'Uzrauga...',
 
 # Delete/protect/revert

@@ -1329,7 +1329,7 @@ Si más tarde quies quitala de la llista de vixilancia calca en "Dexar de vixila
 'watchlist-show-minor' => 'Amosar ediciones menores',
 'watchlist-hide-minor' => 'Esconder ediciones menores',
 
-# Displayed when you click the "watch" button and it's in the process of watching
+# Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Vixilando...',
 'unwatching' => 'Dexando de vixilar...',
 
@@ -1606,9 +1606,9 @@ Esto debería facese sólo pa prevenir vandalismu como indiquen les [[{{MediaWik
 'autoblocker'                 => 'Bloquiáu automáticamente porque la to direición IP foi usada recién por "[[User:$1|$1]]". El motivu del bloquéu de $1 ye: "$2"',
 'blocklogpage'                => 'Rexistru de bloqueos',
 'blocklogentry'               => 'bloquió [[$1]] con una caducidá de $2 $3',
-'blocklogtext'                => "Esti ye un rexistru de los bloqueos y desbloqueos d'usuarios. Les direcciones IP
-bloquiaes automáticamente nun salen equí. Pa ver los bloqueos qu'hai agora mesmo,
-mira na [[Special:Ipblocklist|llista d'IP bloquiaes]].",
+'blocklogtext'                => "Esti ye un rexistru de los bloqueos y desbloqueos d'usuarios.
+Les direcciones IP bloquiaes automáticamente nun salen equí.
+Pa ver los bloqueos qu'hai agora mesmo, mira na [[Special:Ipblocklist|llista d'IP bloquiaes]].",
 'unblocklogentry'             => 'desbloquió $1',
 'block-log-flags-anononly'    => 'namái usuarios anónimos',
 'block-log-flags-nocreate'    => 'creación de cuentes deshabilitada',

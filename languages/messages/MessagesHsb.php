@@ -1395,7 +1395,7 @@ Jeli chceš stronu pozdźišo ze swojich wobkedźbowankow wotstronić, klikń na
 'watchlist-show-minor' => 'snadne změny pokazać',
 'watchlist-hide-minor' => 'snadne změny schować',
 
-# Displayed when you click the "watch" button and it's in the process of watching
+# Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Wobkedźbuju…',
 'unwatching' => 'Njewobkedźbuju…',
 
@@ -1445,8 +1445,7 @@ Wospjetne prašenja a dalša pomoc:
 'delete-legend'               => 'Wušmórnyć',
 'historywarning'              => 'KEDŹBU: Strona, kotruž chceš wušmórnyć, ma stawizny:',
 'confirmdeletetext'           => 'Sy so rozsudźił stronu ze jeje stawiznami wušmórnić.
-Prošu potwjerdź, zo maš wotpohlad to činić, zo rozumiš sćěwki a zo to wotpowědujo
-[[{{MediaWiki:Policy-url}}|zasadam tutoho wikija]] činiš.',
+Prošu potwjerdź, zo maš wotpohlad to činić, zo rozumiš sćěwki a zo to wotpowědujo [[{{MediaWiki:Policy-url}}|zasadam tutoho wikija]] činiš.',
 'actioncomplete'              => 'Dokónčene',
 'deletedtext'                 => 'Strona „<nowiki>$1</nowiki>” bu wušmórnjena. Hlej $2 za lisćinu aktualnych wušmórnjenjow.',
 'deletedarticle'              => 'je stronu [[$1]] wušmórnył.',

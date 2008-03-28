@@ -1334,7 +1334,7 @@ Por suprimar cela pâge de voutra lista de siuvu, clicâd dessus « pas més siu
 'watchlist-show-minor' => 'afichiér les modificacions minores.',
 'watchlist-hide-minor' => 'mâscar les modificacions minores.',
 
-# Displayed when you click the "watch" button and it's in the process of watching
+# Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Siuvu...',
 'unwatching' => 'Fin du siuvu...',
 

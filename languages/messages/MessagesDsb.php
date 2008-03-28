@@ -532,7 +532,8 @@ Twójo wužywarske konto jo se zarědowało. Njezabydni, swóje {{SITENAME}} nas
 'passwordtooshort'           => 'Twójo šćitne gronidło njejo korektne abo pśeliž krotke. Wóno dej nanejmjenjej $1 pismikow wopśimjeś a njesmějo se z wužywarskim mjenim makaś.',
 'mailmypassword'             => 'Šćitne gronidło pśipósłaś',
 'passwordremindertitle'      => 'Nowe nachylne pótajmne słowo za {{SITENAME}}',
-'passwordremindertext'       => 'Něchten (nejskerjej ty z adresy $1) jo se wupšosył, aby jomu se pśipósłało nowe šćitne gronidło za bok{{SITENAME}} ($4). Šćitne gronidło za wužywarja "$2" jo něnto "$3".
+'passwordremindertext'       => 'Něchten (nejskerjej ty z adresy $1) jo se wupšosył, aby jomu se pśipósłało nowe šćitne gronidło za bok{{SITENAME}} ($4).
+Šćitne gronidło za wužywarja "$2" jo něnto "$3".
 Ty móžoš se něnto pśizjawiś a swójo šćitne gronidło pśeměniś.
 
 Jolic jo něchten drugi wó nowe šćitne gronidło pšosył, abo sy se zasej domarkował a njocoš jo změniś, móžoš toś tu powěsć ignorěrowaś a swójo stare gronidło dalej wužywaś.',
@@ -1420,7 +1421,7 @@ Coš-lic bok zasej z twójich wobglědowańkow wulašowaś, kliknij na wótpowě
 'watchlist-show-minor' => 'Pokazaś małe wobźěłanja',
 'watchlist-hide-minor' => 'Schowaś małe wobźěłanja',
 
-# Displayed when you click the "watch" button and it's in the process of watching
+# Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Wobglědowaś …',
 'unwatching' => 'Njewobglědowaś …',
 
@@ -1486,8 +1487,10 @@ Aby nastajenja twójich wobglědowańkow změnił, woglědaj: {{fullurl:Special:
 'rollbacklink'                => 'anulěrowaś',
 'rollbackfailed'              => 'Slědkwześe njejo se raźiło.',
 'cantrollback'                => 'Njejo móžno změnu slědk wześ, slědny pśinosowaŕ jo jadnučki awtor boka.',
-'alreadyrolled'               => "Njejo móžno slědnu změnu w nastawku [[:$1]] wót [[User:$2|$2]] <span style='font-size: smaller'>([[User_talk:$2|diskusija]],
-[[{{ns:special}}:Contributions/$2|pśinoski]])</span> slědk wześ, dokulaž jo mjaztym drugi wužywaŕ nastawk pśeměnił.<br />Slědnu změnu jo wugbał [[User:$3|$3]] <span style='font-size: smaller'>([[User_talk:$3|diskusija]])</span>.",
+'alreadyrolled'               => 'Njejo móžno slědnu změnu w nastawku [[:$1]] wót [[User:$2|$2]] ([[User_talk:$2|diskusija]], 
+[[{{ns:special}}:Contributions/$2|pśinoski]]) slědk wześ, dokulaž jo mjaztym drugi wužywaŕ nastawk pśeměnił.
+
+Slědnu změnu jo wugbał [[User:$3|$3]] ([[User_talk:$3|diskusija]]).',
 'editcomment'                 => 'Komentar ku slědnej změnje jo był: „<i>$1</i>“.', # only shown if there is an edit comment
 'revertpage'                  => 'Změny wót [[User:$2|$2]] ([[{{ns:special}}:Contributions/$2|pśinoski]]) su se slědk wzeli a slědna wersija wót $1 jo se nawrośiła.', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success'            => 'Změny wót $1 su se slědk wzeli a slědna wersija wót $2 jo zasej se nawrośiła.',
@@ -1627,7 +1630,7 @@ $1',
 'ipbreason-dropdown'          => '*powšykne pśicyny blokěrowanja
 ** pódawanje njepšawych informacijow
 ** wulašowanje wopśimjeśa bokow
-** pódawanje spamowych eksternych wótkazow
+** pódawanje spamowych eksternych wótkazow  
 ** pisanje głuposćow na bokach
 ** pśestupjenje zasady "žedne wósobinske atakěrowanja"
 ** złowólne wužywanje wjele wužywarskich kontow
@@ -2311,8 +2314,9 @@ $1
 
 # Delete conflict
 'deletedwhileediting' => 'Warnowanje: Toś ten bok se wulašujo, gaž zachopijoš jen wobźěłaś.',
-'confirmrecreate'     => 'Wužywaŕ [[User:$1|$1]] ([[User_talk:$1|diskusija]]) jo bok wulašował, nježli až sy zachopił jen wobźěłaś, pśicyna: : <i>$2</i>
-Pšosym wobkšuśiś, až napšawdu coš ten bok zasej wutwóriś.',
+'confirmrecreate'     => "Wužywaŕ [[User:$1|$1]] ([[User_talk:$1|diskusija]]) jo bok wulašował, nježli až sy zachopił jen wobźěłaś, pśicyna:
+: ''$2''
+Pšosym wobkšuśiś, až napšawdu coš ten bok zasej wutwóriś.",
 'recreate'            => 'Wótnowótki wutwóriś',
 
 # HTML dump

@@ -335,9 +335,9 @@ Kõrraldaja, kiä taa kirotuskaitsõ alaq võtt', and' sääntse selgütüse:
 <p>$1",
 'missingarticle'       => 'Lövvä es teedüskogost leheküle "$1" teksti, kuiki olõsiq pidänüq löüdmä.
 
-<p>Hariligult om taa põhjusõs vanaslännüq sisuvaihidõ- vai aoluulink lehekülele, miä om ärq kistutõt.
+Hariligult om taa põhjusõs vanaslännüq sisuvaihidõ- vai aoluulink lehekülele, miä om ärq kistutõt.
 
-<p>Ku olõ-i tegemist sääntse johtumisõga, sis või ollaq tegemist tarkvaraviaga. Annaq taast teedäq kõrraldajalõ.',
+Ku olõ-i tegemist sääntse johtumisõga, sis või ollaq tegemist tarkvaraviaga. Annaq taast teedäq kõrraldajalõ.',
 'readonly_lag'         => 'Teedüskogo panti automaatsõhe kinniq, et kõik teedüskogoserveriq saasiq kätte kõik värskiq muutmisõq',
 'internalerror'        => 'Sisemäne viga',
 'internalerror_info'   => 'Viga: $1',
@@ -1172,7 +1172,7 @@ ja sul piät umin [[Special:Preferences|säädmiisin]] olõma e-postiaadrõs, et
 'watchlist-show-minor' => "Näütäq tsill'okõisi muutmiisi",
 'watchlist-hide-minor' => "Näüdäku-i tsill'okõisi muutmiisi",
 
-# Displayed when you click the "watch" button and it's in the process of watching
+# Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Pandas perräkaemisnimekirjä...',
 'unwatching' => 'Võetas perräkaemisõ alt maaha...',
 

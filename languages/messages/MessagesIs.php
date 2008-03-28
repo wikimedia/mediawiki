@@ -529,7 +529,8 @@ Kerfisstjórinn sem læsti honum gaf þessa skýringu: $1',
 
 Þetta er venjulega vegna þess að þú hefur skoðað breytingu eða breytingaskrá að síðu sem hefur verið eytt.
 
-Ef þetta á ekki við, þá gæti verið að þú hafir fundið villu í hugbúnaðinum. Vinsamlegast tilkynntu stjórnanda þessa villu og taktu fram slóðina.',
+Ef þetta á ekki við, þá gæti verið að þú hafir fundið villu í hugbúnaðinum.
+Vinsamlegast tilkynntu stjórnanda þessa villu og taktu fram slóðina.',
 'readonly_lag'         => 'Gagnagrunninum hefur verið læst sjálfkrafa á meðan undirvefþjónarnir reyna að hafa í við aðalvefþjóninn',
 'internalerror'        => 'Kerfisvilla',
 'internalerror_info'   => 'Innri villa: $1',
@@ -1124,8 +1125,7 @@ Til að tengja í skrána frá síðu, notaðu eftirfarandi aðferðir
 'sitestats'              => 'Tölfræði fyrir {{SITENAME}}',
 'userstats'              => 'Notendatölfræði',
 'sitestatstext'          => "Það {{PLURAL:$1|er '''1''' síða|eru '''$1''' síður}} í gagnagrunninum.
-Meðtaldar eru „spjallsíður“, síður varðandi {{SITENAME}}, smávægilegir „stubbar“,
-tilvísanir og aðrar síður sem mundu líklega ekki teljast sem efnislegar síður.
+Meðtaldar eru „spjallsíður“, síður varðandi {{SITENAME}}, smávægilegir „stubbar“, tilvísanir og aðrar síður sem mundu líklega ekki teljast sem efnislegar síður.
 Fyrir utan þær þá {{PLURAL:$2|er '''1''' síða sem líklega getur|eru '''$2''' síður sem líklega geta}} talist
 {{PLURAL:$2|efnisleg grein|efnislegar greinar}}.
 
@@ -1136,8 +1136,7 @@ síðan {{SITENAME}} hóf göngu sína.
 Sem gerir að meðaltali '''$5''' breytingar á hverja síðu og '''$6''' skoðanir á hverja breytingu.
 
 Lengdin á [http://meta.wikimedia.org/wiki/Help:Job_queue vinnsluröðinni] er '''$7'''.",
-'userstatstext'          => "Hér {{PLURAL:$1|er '''1''' skráður [[{{ns:special}}:Listusers|notandi]]|eru '''$1''' skráðir [[{{ns:special}}:Listusers|notendur]]}}, þar af
-'''$2''' (eða '''$4%''') {{PLURAL:$2|hefur|hafa}} $5 stjórnendaréttindi (sjá $3).",
+'userstatstext'          => "Hér {{PLURAL:$1|er '''1''' skráður [[{{ns:special}}:Listusers|notandi]]|eru '''$1''' skráðir [[{{ns:special}}:Listusers|notendur]]}}, þar af '''$2''' (eða '''$4%''') {{PLURAL:$2|hefur|hafa}} $5 stjórnendaréttindi (sjá $3).",
 'statistics-mostpopular' => 'Mest skoðuðu síður',
 
 'disambiguations'      => 'Tenglar í aðgreiningarsíður',
@@ -1297,7 +1296,7 @@ Til að fjarlægja síðu þessa af vaktlistanum þarft þú að ýta á tengili
 'watchlist-show-minor' => 'Sýna minniháttar breytingar',
 'watchlist-hide-minor' => 'Fela minniháttar breytingar',
 
-# Displayed when you click the "watch" button and it's in the process of watching
+# Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Vaktar...',
 'unwatching' => 'Afvakta...',
 
@@ -1342,8 +1341,8 @@ sé í samræmi við [[{{MediaWiki:Policy-url}}]].',
 'rollbacklink'                => 'taka aftur',
 'rollbackfailed'              => 'Mistókst að taka aftur',
 'cantrollback'                => 'Ekki hægt að taka aftur breytingu, síðasti höfundur er eini höfundur þessarar síðu.',
-'alreadyrolled'               => 'Ekki var hægt að taka síðustu breytingu [[:$1]]
-eftir [[User:$2|$2]] ([[User_talk:$2|spjall]]) til baka; eitthver annar hefur breytt síðunni eða nú þegar tekið breytinguna til baka.
+'alreadyrolled'               => 'Ekki var hægt að taka síðustu breytingu [[:$1]] eftir [[User:$2|$2]] ([[User_talk:$2|spjall]]) til baka;
+eitthver annar hefur breytt síðunni eða nú þegar tekið breytinguna til baka.
 
 Síðasta breyting er frá [[User:$3|$3]] ([[User_talk:$3|Spjall]]).',
 'revertpage'                  => 'Tók aftur breytingar [[{{ns:special}}:Contributions/$2|$2]] ([[{{ns:user talk}}:$2|spjall]]), breytt til síðustu útgáfu [[{{ns:user}}:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from

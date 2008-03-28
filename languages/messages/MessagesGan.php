@@ -344,7 +344,8 @@ $2',
 
 # Login and logout pages
 'logouttitle'                => '用戶退出',
-'logouttext'                 => '<strong>倷退出正嘞。</strong><br />
+'logouttext'                 => '<strong>倷退出正嘞。</strong>
+
 倷可以接到匿名使用{{SITENAME}}，或重登入過，隻把子頁面可能會接到話倷係登入狀態，除非係倷刪吥瀏覽器緩存。',
 'welcomecreation'            => '== 歡迎, $1! ==
 
@@ -518,9 +519,9 @@ $2',
 'previewconflict'           => '箇隻預覽係上首文字編輯區嗰內容。倷選擇保存嗰話佢才會保存到。',
 'session_fail_preview'      => '<strong>對伓住！箇隻段落嗰資料跌吥嘞，偶個俚處理伓正倷嗰編輯。
 請試過吖。還係扤伓正嗰話，試吖退出後登入過。</strong>',
-'session_fail_preview_html' => "<strong>對伓住！相關嗰程式資料跌吥嘞，偶個俚處理伓正倷嗰編輯。</strong>
+'session_fail_preview_html' => "<strong>對伓住！相關嗰程式資料跌吥嘞，偶個俚處理伓正倷嗰編輯。</strong> 
 
-''箇隻wiki開放正嘞原HTML碼，預覽弆到嘞以防止JavaScript嗰攻擊。''
+''箇隻wiki開放正嘞原HTML碼，預覽弆到嘞以防止JavaScript嗰攻擊。'' 
 
 <strong>要係佢係合法編輯嗰，請試過吖。還係扤伓正嗰話，試吖退出後登入過。</strong>",
 'token_suffix_mismatch'     => '<strong>倷嗰用戶端嗰編輯信毀吥嘞嚸標點符號字符，噉嗰話倷嗰編輯就拕拒絕嘞。
@@ -529,7 +530,10 @@ $2',
 'editingsection'            => '眼下在編輯$1 (段落)',
 'editingcomment'            => '眼下在編輯$1 (評論)',
 'editconflict'              => '編輯仗: $1',
-'explainconflict'           => '倷開始編輯之後有人改動嘞箇頁。上首嗰方框顯示嗰係眼下本頁嗰內容。倷嗰修改到下底嗰方框顯示。倷需要拿倷嗰修改並到眼下嗰內容。
+'explainconflict'           => '倷開始編輯之後有人改動嘞箇頁。
+上首嗰方框顯示嗰係眼下本頁嗰內容。
+倷嗰修改到下底嗰方框顯示。
+倷需要拿倷嗰修改並到眼下嗰內容。
 <b>單只係</b>上首方框嗰內容會等倷按"存到箇頁"之後拕保存。<br />',
 'yourtext'                  => '倷編嗰內容',
 'storedversion'             => '存到嗰版本',
@@ -564,7 +568,8 @@ $2',
 'permissionserrorstext'     => '根據底下嗰{{PLURAL:$1|原因|原因}}，倷冇許可權去扤:',
 'recreate-deleted-warn'     => "'''警告: 倷正重建一隻之前拕刪吥嗰頁面。'''
 
-倷應該要考慮吖繼續編輯箇頁面係否有必要。為到方便，箇頁嗰刪除記錄已經到下底提供:",
+倷應該要考慮吖繼續編輯箇頁面係否有必要。
+為到方便，箇頁嗰刪除記錄已經到下底提供:",
 
 # "Undo" feature
 'undo-success' => '箇隻編輯可以拕取銷。請檢查吖以確定箇係倷想扤嗰，接到保存修改去完成撤銷編輯。',
@@ -617,7 +622,7 @@ $2',
 'revdelete-nooldid-text'      => '倷冇话箇隻操作嗰目标修改。',
 'revdelete-selected'          => "揀'''$1'''嗰$2回修訂:",
 'logdelete-selected'          => "揀'''$1'''嗰$2隻日誌事件:",
-'revdelete-text'              => '刪吥嗰改動還會到頁面歷史裡度顯示, 但公眾瀏覽伓正佢嗰內容。
+'revdelete-text'              => '刪吥嗰改動還會到頁面歷史裡度顯示, 但公眾瀏覽伓正佢嗰內容。 
 
 箇站別嗰管理員還係能眵吖弆到嗰內容，同到通過同佢一樣嗰界面恢復刪除，除非設正嘞附加嗰限制。',
 'revdelete-legend'            => '設置修改限制:',
@@ -1175,7 +1180,7 @@ $2',
 'watchlist-show-minor' => '顯到細編輯',
 'watchlist-hide-minor' => '弆到細編輯',
 
-# Displayed when you click the "watch" button and it's in the process of watching
+# Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => '眏到...',
 'unwatching' => '莫眏到...',
 
@@ -1233,7 +1238,8 @@ $NEWPAGE
 'rollbacklink'                => '還原',
 'rollbackfailed'              => '還原失敗',
 'cantrollback'                => '還原伓正；最末嗰貢獻人係文章嗰唯一作者。',
-'alreadyrolled'               => '還原伓正由[[User:$2|$2]] ([[User talk:$2|討論]])做嗰[[$1]]嗰最晏編寫；別嗰人編輯過或係恢復嘞箇頁。
+'alreadyrolled'               => '還原伓正由[[User:$2|$2]] ([[User talk:$2|討論]])做嗰[[$1]]嗰最晏編寫；
+別嗰人編輯過或係恢復嘞箇頁。
 
 最晏編輯人: [[User:$3|$3]] ([[User talk:$3|討論]])。',
 'editcomment'                 => '編輯介紹: "<i>$1</i>"。', # only shown if there is an edit comment
@@ -1455,11 +1461,18 @@ $NEWPAGE
 
 # Move page
 'move-page-legend'        => '換動頁面',
-'movepagetext'            => "用下底嗰表格拿一隻頁面改名，跟到拿佢嗰歷史一齊般到新頁面。舊嗰頁面就係新頁嗰重定向頁。連到舊頁面嗰連結伓會自動更改；勞煩檢查吖雙重或壞嗰重定向連結。倷有責任確保全部連結會連到指正嗰頁面。
+'movepagetext'            => "用下底嗰表格拿一隻頁面改名，跟到拿佢嗰歷史一齊般到新頁面。
+舊嗰頁面就係新頁嗰重定向頁。
+連到舊頁面嗰連結伓會自動更改；
+勞煩檢查吖雙重或壞嗰重定向連結。
+倷有責任確保全部連結會連到指正嗰頁面。
 
-注意如果新頁面早就有嗰話，頁面'''伓會'''搬過去，要不新頁面就係冇內容或係重定向頁，也冇修訂歷史。噉就係話必要時倷能等換到新頁面之後再又回到舊嗰頁面，跟到倷也覆蓋不正目前頁面。
+注意如果新頁面早就有嗰話，頁面'''伓會'''搬過去，要不新頁面就係冇內容或係重定向頁，也冇修訂歷史。
+噉就係話必要時倷能等換到新頁面之後再又回到舊嗰頁面，跟到倷也覆蓋不正目前頁面。
 
-<b>警告！</b> 對一隻訪問得多嗰頁面噉會係一隻重要同關鍵嗰改動；請扤之前了解正佢噉可能嗰後果。",
+<b>警告！</b>
+對一隻訪問得多嗰頁面噉會係一隻重要同關鍵嗰改動；
+請扤之前了解正佢噉可能嗰後果。",
 'movepagetalktext'        => "相關嗰討論頁會自動同箇頁一齊搬走，'''除非''':
 *新頁面有嘞隻有內容嗰討論頁，或
 *倷伓選下底嗰選擇方塊。
@@ -1728,7 +1741,9 @@ $1',
 # Bad image list
 'bad_image_list' => '請根據下底嗰格式去寫:
 
-會考慮單列到嗰項目（以*開頭嗰項目）。頭隻連結非要連到隻壞圖。之後同一行嗰連結會考慮係特殊，也就係話係幅圖都能到哪篇文章同時顯示得正。',
+會考慮單列到嗰項目（以*開頭嗰項目）。
+頭隻連結非要連到隻壞圖。
+之後同一行嗰連結會考慮係特殊，也就係話係幅圖都能到哪篇文章同時顯示得正。',
 
 # Metadata
 'metadata'          => '元數據',
@@ -2010,7 +2025,8 @@ $1',
 'confirmemail_noemail'    => '倷冇到倷嗰[[Special:Preferences|用戶設置]]設正一隻有效嗰電子郵件地址。',
 'confirmemail_text'       => '箇隻網站要求倷用email功能之前確認下倷嗰email地址。按吖下底嗰鍵來發封確認郵件到倷嗰郵箱。佢會附帶一隻代碼連結；請到倷嗰瀏覽器打開箇隻連結來確認倷嗰email地址係有效嗰。',
 'confirmemail_pending'    => '<div class="error">
-一隻確認代碼發到倷嗰郵箱，噉可能要等幾分鐘。要係冇收到，請申請過新嗰確認碼！ </div>',
+一隻確認代碼發到倷嗰郵箱，噉可能要等幾分鐘。
+要係冇收到，請申請過新嗰確認碼！</div>',
 'confirmemail_send'       => '寄出確認碼',
 'confirmemail_sent'       => '確認郵件發出嘞。',
 'confirmemail_oncreate'   => '一隻確認碼發到倷嗰郵箱。箇隻代碼伓係話倷要仰上登入，但要係倷想用 wiki 嗰任何email嗰相關功能，就非要先提交箇隻代碼。',
@@ -2023,11 +2039,11 @@ $1',
 'confirmemail_loggedin'   => '倷嗰email地址已得到確認。',
 'confirmemail_error'      => '確認過程出錯。',
 'confirmemail_subject'    => '{{SITENAME}}電子郵件地址確認',
-'confirmemail_body'       => 'IP地址$1嗰用戶(可能係倷)到{{SITENAME}}註冊嘞帳戶"$2"，並一同用嘞倷嗰email地址。
+'confirmemail_body'       => 'IP地址$1嗰用戶(可能係倷)到{{SITENAME}}註冊嘞帳戶"$2"，並一同用嘞倷嗰email地址。 
 
-請確認箇隻帳戶係歸倷嗰，接到啟動{{SITENAME}}裡頭嗰email功能。請到瀏覽器開到下底嗰連結:
+請確認箇隻帳戶係歸倷嗰，接到啟動{{SITENAME}}裡頭嗰email功能。請到瀏覽器開到下底嗰連結: 
 
-$3
+$3 
 
 如果箇*伓係*倷，就冇必要打開箇隻連結。確認碼會到$4時間過期。',
 
@@ -2037,16 +2053,16 @@ $3
 'scarytranscludetoolong'  => '[對伓住，URL 太長]',
 
 # Trackbacks
-'trackbackbox'      => '<div id="mw_trackbacks">
-箇篇文章嗰引用:<br /> $1 </div>',
+'trackbackbox'      => '<div id="mw_trackbacks">箇篇文章嗰引用:<br />$1</div>',
 'trackbackremove'   => '([$1刪除])',
 'trackbacklink'     => '引用',
 'trackbackdeleteok' => '成功刪卟箇隻引用。',
 
 # Delete conflict
 'deletedwhileediting' => '警告: 倷編輯嗰時間有人刪卟嘞箇頁！',
-'confirmrecreate'     => '倷編輯嗰時間，用戶[[User:$1|$1]]([[User talk:$1|對話]])因為下底原因刪卟嘞箇頁:
-$2。請想正後再重建頁面。',
+'confirmrecreate'     => "倷編輯嗰時間，用戶[[User:$1|$1]]([[User talk:$1|對話]])因為下底原因刪卟嘞箇頁:
+: ''$2''
+請想正後再重建頁面。",
 'recreate'            => '重建',
 
 # HTML dump

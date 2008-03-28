@@ -929,7 +929,7 @@ en de side stiet dan ek <b>fet</b> yn de <a href="{{localurle:{{ns:special}}:Rec
 'watchlist-hide-own'   => 'Myn bewurkings ferskûlje',
 'watchlist-hide-minor' => 'Lytse bewurkings ferskûlje',
 
-# Displayed when you click the "watch" button and it's in the process of watching
+# Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => "Dwaande mei op'e folchlist te setten ...",
 'unwatching' => "Dwaande mei fan'e folchlist ôf te heljen ...",
 

@@ -1094,7 +1094,7 @@ Ma tebɣiḍ ad tekkseḍ asebter seg wumuɣ n uɛessi inek, wekki ɣef \"Fakk a
 'watchlist-show-minor' => 'Ssken ibeddlen ifessasen',
 'watchlist-hide-minor' => 'Ffer ibeddlen ifessasen',
 
-# Displayed when you click the "watch" button and it's in the process of watching
+# Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Ad iɛass...',
 'unwatching' => 'Ad ifukk aɛessi...',
 

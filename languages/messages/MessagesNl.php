@@ -1270,6 +1270,7 @@ Wijzig anders alstublieft de bestandsnaam.',
 'uploadvirus'                 => 'Het bestand bevat een virus! Details: $1',
 'sourcefilename'              => 'Oorspronkelijke bestandsnaam:',
 'destfilename'                => 'Opslaan als:',
+'upload-maxfilesize'          => 'Maximale bestandsgrootte: $1',
 'watchthisupload'             => 'Deze pagina volgen',
 'filewasdeleted'              => 'Er is eerder een bestand met deze naam verwijderd. Raadpleeg het $1 voordat u het opnieuw toevoegt.',
 'upload-wasdeleted'           => "'''Waarschuwing: u bent een bestand dat eerder verwijderd was aan het uploaden.'''
@@ -1590,7 +1591,7 @@ Indien u een pagina niet langer wilt volgen, ga dan naar de pagina en klik op \"
 'watchlist-show-minor' => 'Kleine bewerkingen weergeven',
 'watchlist-hide-minor' => 'Kleine bewerkingen verbergen',
 
-# Displayed when you click the "watch" button and it's in the process of watching
+# Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Bezig met plaatsen op volglijst ...',
 'unwatching' => 'Bezig met verwijderen van volglijst ...',
 

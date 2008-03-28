@@ -1122,6 +1122,7 @@ Si teniu la imatge en resolució completa, pugeu-la, sinó mireu de canviar-li e
 'uploadvirus'                 => 'El fitxer conté un virus! Detalls: $1',
 'sourcefilename'              => 'Nom del fitxer font:',
 'destfilename'                => 'Nom del fitxer de destinació:',
+'upload-maxfilesize'          => 'Mida màxima de fitxer: $1',
 'watchthisupload'             => 'Vigila aquesta pàgina',
 'filewasdeleted'              => "Prèviament es va carregar un fitxer d'aquest nom i després va ser esborrat. Hauríeu de verificar $1 abans de procedir a carregar-lo una altra vegada.",
 'upload-wasdeleted'           => "'''Atenció: Esteu carregant un fitxer que s'havia eliminat abans.'''
@@ -1258,8 +1259,7 @@ Això resulta en una mitjana {{PLURAL:$5|d'una edició|de '''$5''' edicions}} pe
 i {{PLURAL:$6|'''$6''' visita|'''$6''' visites}} per edició.
 
 La mida de la [http://meta.wikimedia.org/wiki/Help:Job_queue cua de treballs] és '''$7'''.",
-'userstatstext'          => "Hi ha '''$1''' usuaris registrats, dels quals
-{{PLURAL:$2|un (el '''$4%''') n'és $5|'''$2''' (el '''$4%''') en són $5}}.",
+'userstatstext'          => "Hi ha '''$1''' usuaris registrats, dels quals {{PLURAL:$2|un (el '''$4%''') n'és $5|'''$2''' (el '''$4%''') en són $5}}.",
 'statistics-mostpopular' => 'Pàgines més visualitzades',
 
 'disambiguations'      => 'Pàgines de desambiguació',
@@ -1445,7 +1445,7 @@ Si voleu deixar de vigilar la pàgina, cliqueu sobre l'enllaç de «Desatén» d
 'watchlist-show-minor' => 'Mostra les edicions menors',
 'watchlist-hide-minor' => 'Amaga les edicions menors',
 
-# Displayed when you click the "watch" button and it's in the process of watching
+# Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => "S'està vigilant...",
 'unwatching' => "S'està desatenent...",
 

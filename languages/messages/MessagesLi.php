@@ -931,7 +931,9 @@ Neet geselecteerde gruup waere neet gewiezig. Deselecteer \'ne groep mit "Ctrl +
 'uploadnologintext'           => 'De mos [[Special:Userlogin|zien aangemèld]] om besjtande te uploade.',
 'upload_directory_read_only'  => 'De webserver kin neet sjrieve in de uploadmap ($1).',
 'uploaderror'                 => "fout in 't uploade",
-'uploadtext'                  => "Gebroek 't óngersjtaonde formuleer óm besjtande op te laje. Óm ierder opgelaje besjtande te bekieke of te zeuke, gank nao de [[Special:Imagelist|lies van opgelaje besjtande]]. Uploads en verwiederinge waere ouch biegehauwte in 't [[Special:Log/upload|uploadlogbook]].
+'uploadtext'                  => "Gebroek 't óngersjtaonde formuleer óm besjtande op te laje.
+Óm ierder opgelaje besjtande te bekieke of te zeuke, gank nao de [[Special:Imagelist|lies van opgelaje besjtande]].
+Uploads en verwiederinge waere ouch biegehauwte in 't [[Special:Log/upload|uploadlogbook]].
 
 Gebroek óm 'n plaetje of 'n besjtand in 'n pazjena op te numme 'ne link in de vörm:
 * '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:Besjtand.jpg]]</nowiki>'''
@@ -1291,7 +1293,7 @@ Ouch versjiene gevolgde pazjena\'s in \'t <b>vet</b> in de [[Special:Recentchang
 'watchlist-show-minor' => 'Tuun kleine bewerkinge',
 'watchlist-hide-minor' => 'Verberg kleine bewerkinge',
 
-# Displayed when you click the "watch" button and it's in the process of watching
+# Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Aant volge...',
 'unwatching' => 'Oet de volglies aant zètte...',
 
@@ -1361,8 +1363,8 @@ Commentaar en wiejer assistentie:
 'rollbacklink'                => 'Trukdrieje',
 'rollbackfailed'              => 'Ongedaon make van wieziginge mislùk.',
 'cantrollback'                => 'Trökdrejje van verangeringe neet meugelik: Dit artikel haet mer einen auteur.',
-'alreadyrolled'               => "'t Is neet meugelik óm de lèste verangering van [[$1]]
-door [[User:$2|$2]] ([[User talk:$2|euverlik]]) óngedaon te make. Emes angers haet de pazjena al hersjtèld of haet 'n anger bewèrking gedaon.
+'alreadyrolled'               => "'t Is neet meugelik óm de lèste verangering van [[$1]] door [[User:$2|$2]] ([[User talk:$2|euverlik]]) óngedaon te make.
+Emes angers haet de pazjena al hersjtèld of haet 'n anger bewèrking gedaon.
 
 De lèste bewèrking is gedaon door [[User:$3|$3]] ([[User talk:$3|euverlik]]).",
 'editcomment'                 => '\'t Bewirkingscommentair waor: "<i>$1</i>".', # only shown if there is an edit comment

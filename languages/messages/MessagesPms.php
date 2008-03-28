@@ -1349,7 +1349,7 @@ Se a vorèissa mai gavé st'articol-sì da 'nt la lista dij ''Sot Euj'', che a s
 'watchlist-show-minor' => 'Smon le modìfiche cite',
 'watchlist-hide-minor' => 'Stërma le modìfiche cite',
 
-# Displayed when you click the "watch" button and it's in the process of watching
+# Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Sot euj...',
 'unwatching' => "Ën gavand da lòn ch'as ten sot euj...",
 
@@ -1487,8 +1487,8 @@ Për ripristiné mach chèich-còs, che a selession-a lòn che a veul ripristin�
 'undeletehistory'              => "Se a pija andré st'articol-sì, ëdcò tute soe revision a saran pijaite andaré ansema a chiel ant soa cronologìa.<br />
 Se a fussa mai staita creà na pàgina neuva con l'istess nòm dòp che la veja a l'era staita scancelà, le revision a saran buta ant la cronologìa e la version pùblica dla pàgina a sarà nen modificà.",
 'undeleterevdel'               => "Ël dëscancelament as farà pa s'a-i intrèissa në scancelament parsial dla version corenta dla pàgina. Quand a-i riva lolì, un a dev gave-ie la crosëtta da 'nt la pì neuva dle version scancelà, ò pura gavela da stërmà.",
-'undeletehistorynoadmin'       => "Sta pàgina-sì a l'é staita scancelà. Ël motiv che a l'é scancelasse
-as peul savejsse ën vardand ël somari ambelessì sota, andoa che a së s-ciàira ëdcò chi che a
+'undeletehistorynoadmin'       => "Sta pàgina-sì a l'é staita scancelà.
+Ël motiv che a l'é scancelasse as peul savejsse ën vardand ël somari ambelessì sota, andoa che a së s-ciàira ëdcò chi che a 
 l'avìa travaje ansima anans che a la scancelèisso.
 Ël test che a-i era ant le vàire version a peulo s-ciairelo mach j'aministrator.",
 'undelete-revision'            => 'Revision scancelà ëd $1 (dël $2) da $3:',
@@ -2430,9 +2430,10 @@ a podrìo ëdcò nen ess-ie ant sta lista -sì.",
 'filepath'         => "Përcors d'archivi",
 'filepath-page'    => 'Archivi:',
 'filepath-submit'  => 'Përcors',
-'filepath-summary' => "Sta pàgina special-sì a la smon ël përcors complet për rive-ie a n'archivi. Le figure as ësmon-o a amzura pijn-a, j'àotre sòrt d'archivi a ven-o faite parte da sò programa a pòsta.
+'filepath-summary' => "Sta pàgina special-sì a la smon ël përcors complet për rive-ie a n'archivi.
+Le figure as ësmon-o a amzura pijn-a, j'àotre sòrt d'archivi a ven-o faite parte da sò programa a pòsta.
 
-	Ch'a buta mach ël nòm dl'archivi sensa pa ël prefiss \"{{ns:image}}:\".",
+Ch'a buta mach ël nòm dl'archivi sensa pa ël prefiss \"{{ns:image}}:\".",
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => "Arsërca dj'archivi dobi",

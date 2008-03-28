@@ -1163,7 +1163,7 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 'watchlist-show-minor' => "'ጥ' (ጥቃቅን) ለውጦች ይታዩ",
 'watchlist-hide-minor' => "'ጥ' (ጥቃቅን) ለውጦች ይደበቁ",
 
-# Displayed when you click the "watch" button and it's in the process of watching
+# Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'እየተጨመረ ነው...',
 'unwatching' => 'እየተወገደ ነው...',
 

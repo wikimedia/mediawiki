@@ -532,7 +532,9 @@ Eger de yañı parol talap etmegen olsañız ya da eski paroliñizni bilseñiz b
 'accountcreated'             => 'Esap açıldı',
 'accountcreatedtext'         => '$1 içün bir qullanıcı esabı açıldı.',
 'createaccount-title'        => '{{SITENAME}} saytında yañı bir esap yaratıluvı',
-'createaccount-text'         => 'Birev siziñ e-mail adresini belgilep {{SITENAME}} saytında ($4) "$2" adlı bir esap yarattı. Şu esap içün parol böyledir: "$3". Siz oturım açıp paroliñizni şimdi deñiştirmek kereksiñiz.
+'createaccount-text'         => 'Birev siziñ e-mail adresini belgilep {{SITENAME}} saytında ($4) "$2" adlı bir esap yarattı.
+Şu esap içün parol böyledir: "$3".
+Siz oturım açıp paroliñizni şimdi deñiştirmek kereksiñiz.
 
 İşbu esap hata olaraq yaratılğan olsa bu beyanatnı ignor etip olasıñız.',
 'loginlanguagelabel'         => 'Til: $1',
@@ -955,7 +957,8 @@ Lütfen, keri qaytıñız, fayl ismini deñiştirip yañıdan yükleñiz. [[Imag
 'filewasdeleted'              => 'Bu isimde bir fayl mevcüt edi, amma yoq etilgen edi. Lütfen, tekrar yüklemeden evel $1 teşkeriñiz.',
 'upload-wasdeleted'           => "'''Diqqat: Evelde yoq etilgen faylnı yüklemektesiñiz.'''
 
-Er alda bu faylnı yüklemege devam etmege isteysiñizmi? Bu fayl içün yoq etüvniñ jurnalını mında baqıp olasıñız:",
+Er alda bu faylnı yüklemege devam etmege isteysiñizmi?
+Bu fayl içün yoq etüvniñ jurnalını mında baqıp olasıñız:",
 'filename-bad-prefix'         => 'Siz yüklegen fayl <strong>"$1"</strong>-nen başlay. Bu, adetince, raqamlı fotoapparatlardan fayl adına yazılğan manasız simvollardır. Lütfen, bu fayl içün añlıca bir ad saylap yazıñız.',
 
 'upload-proto-error'      => 'Yañlış protokol',
@@ -1211,7 +1214,7 @@ Birazdan soñ közetüv cedveliñizden bir de bir saifeni yoq etmege isteseñiz 
 'watchlist-show-minor' => 'Kiçik deñişikliklerni köster',
 'watchlist-hide-minor' => 'Kiçik deñişikliklerni gizle',
 
-# Displayed when you click the "watch" button and it's in the process of watching
+# Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Közetüv cedveline eklenmekte...',
 'unwatching' => 'Közetüv cedvelinden yoq etilmekte...',
 

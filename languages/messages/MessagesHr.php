@@ -633,8 +633,8 @@ u u gornjem polju biti sačuvan kad pritisnete "Snimi stranicu".',
 'editingold'                => '<strong>UPOZORENJE: Uređujete stariju inačicu
 ove stranice. Ako je sačuvate, sve će promjene učinjene nakon ove inačice biti izgubljene.</strong>',
 'yourdiff'                  => 'Razlike',
-'copyrightwarning'          => '<div style="display:block;vertical-align: top;width:100%; background:#FFFFFF; color:#000000; text-align:center; font-weight:bold; font-size:100%;margin-bottom:5px;margin-top:0;margin-left:-5px;margin-right:-4px;">NE POSTAVLJAJTE RADOVE ZAŠTIĆENE AUTORSKIM PRAVIMA BEZ DOPUŠTENJA!</div>
-*<strong>Nemojte</strong> izravno kopirati sadržaje s drugih internetskih stranica ako nemate izričito dopuštenje. Ako imate dopuštenje, napišite to na pripadnoj stranici za razgovor članka. Molimo uočite da se svi doprinosi {{SITENAME}} smatraju objavljenima pod uvjetima $2 (vidi $1 za detalje).
+'copyrightwarning'          => 'NE POSTAVLJAJTE RADOVE ZAŠTIĆENE AUTORSKIM PRAVIMA BEZ DOPUŠTENJA!
+*<strong>Nemojte</strong> izravno kopirati sadržaje s drugih internetskih stranica ako nemate izričito dopuštenje. Ako imate dopuštenje, napišite to na pripadnoj stranici za razgovor članka. Molimo uočite da se svi doprinosi {{SITENAME}} smatraju objavljenima pod uvjetima $2 (vidi $1 za detalje). 
 *Ako ne želite da se vaše pisanje nemilosrdno uređuje i slobodno raspačava, nemojte ga ovamo slati. Također nam obećavate da ste ovo sami napisali, ili da ste to prepisali iz nečeg što je u javnom vlasništvu ili pod sličnom slobodnom licencijom.',
 'copyrightwarning2'         => 'Svi doprinosi {{SITENAME}} mogu biti mijenjani od strane svih suradnika. Ako ne želite da se vaše pisanje nemilosrdno uređuje, nemojte ga slati ovdje.<br /> Također nam obećavate da ste ovo sami napisali, ili da ste to prepisali iz nečeg što je u javnom vlasništvu ili pod sličnom slobodnom licencijom (vidi $1 za detalje). <strong>NE STAVLJAJTE ZAŠTIĆENE RADOVE BEZ DOPUŠTENJA!</strong>',
 'longpagewarning'           => 'PAŽNJA: Ova stranica je dugačka $1 kilobajta; neki bi preglednici mogli imati problema pri uređivanju stranica koje se približavaju ili su duže od 32 kb.
@@ -1349,7 +1349,7 @@ Promjene na ovoj stranici i njenoj stranici za razgovor bit će tamo prikazani, 
 'watchlist-show-minor' => 'prikaži manje promjene',
 'watchlist-hide-minor' => 'sakrij manje promjene',
 
-# Displayed when you click the "watch" button and it's in the process of watching
+# Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Pratim...',
 'unwatching' => 'Prestajem pratiti...',
 
@@ -2408,7 +2408,7 @@ Također možete koristiti [[Special:Watchlist/edit|uređivanje popisa putem ''k
 'filepath-submit'  => 'Putanja',
 'filepath-summary' => "Ova posebna stranica daje Vam kompletnu putanju do neke datoteke. Slike se na taj način prikazuju u punoj rezoluciji, drugi tipovi datoteka se otvaraju na klik (kako je već namješteno u vašem operacijskom sustavu).
 
-	Unesite ime datoteke bez predmetka (''prefiksa'') imenskog prostora \"{{ns:image}}:\".",
+Unesite ime datoteke bez predmetka (''prefiksa'') imenskog prostora \"{{ns:image}}:\".",
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch-filename' => 'Ime datoteke:',

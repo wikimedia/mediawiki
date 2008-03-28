@@ -788,7 +788,8 @@ contenent totes los tèrmes apareisson dins los resultats).',
 'powersearchtext'       => 'Recercar dins los espacis :<br />
 $1<br />
 $2 Enclure las paginas de redireccions   Recercar $3 $9',
-'searchdisabled'        => 'La recèrca sus {{SITENAME}} es desactivada. En esperant la reactivacion, podètz efectuar una recèrca via Google.
+'searchdisabled'        => 'La recèrca sus {{SITENAME}} es desactivada.
+En esperant la reactivacion, podètz efectuar una recèrca via Google.
 Atencion, lor indexacion de contengut {{SITENAME}} benlèu es pas a jorn.',
 
 # Preferences page
@@ -1312,7 +1313,7 @@ per modificar vòstra lista.',
 'watchlist-show-minor' => 'Afichar las modificacions menoras',
 'watchlist-hide-minor' => 'Amagar las modificacions menoras',
 
-# Displayed when you click the "watch" button and it's in the process of watching
+# Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Seguit...',
 'unwatching' => 'Fin del seguit...',
 
@@ -1669,8 +1670,8 @@ jol nom novèl. Se vos plai, fusionatz-las manualament.",
 'revertmove'              => 'anullar',
 'delete_and_move'         => 'Suprimir e tornar nomenar',
 'delete_and_move_text'    => '==Supression requesida==
-
-L’article de destinacion « [[$1]] » existís ja. Volètz lo suprimir per permetre lo renomenatge ?',
+L’article de destinacion « [[$1]] » existís ja.
+Volètz lo suprimir per permetre lo renomenatge ?',
 'delete_and_move_confirm' => 'Òc, accèpti de suprimir la pagina de destinacion per permetre lo renomenatge.',
 'delete_and_move_reason'  => 'Pagina suprimida per permetre un renomenatge',
 'selfmove'                => 'Los títols d’origina e de destinacion son los meteisses : impossible de tornar nomenar una pagina sus ela-meteissa.',
@@ -2218,7 +2219,8 @@ Per confirmar qu'aqueste compte vos aparten vertadièrament e activar las foncio
 
 $3
 
-Se s’agís pas de vos, dobrissetz pas lo ligam. Aqueste còde de confirmacion expirarà lo $4.",
+Se s’agís pas de vos, dobrissetz pas lo ligam.
+Aqueste còde de confirmacion expirarà lo $4.",
 
 # Scary transclusion
 'scarytranscludedisabled' => '[La transclusion interwiki es desactivada]',
