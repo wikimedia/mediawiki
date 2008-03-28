@@ -1,6 +1,6 @@
 <?php
 /**
- * Chinese (Simplified) (中文 (简化字))
+ * Chinese (Simplified) ((‪中文 (简化字)‬)
  *
  * @addtogroup Language
  *
@@ -105,7 +105,7 @@ $messages = array(
 'tog-previewontop'            => '在编辑框上方显示预览',
 'tog-previewonfirst'          => '在首次编辑时显示预览',
 'tog-nocache'                 => '禁用页面缓存',
-'tog-enotifwatchlistpages'    => '在页面更改时发邮件通知我',
+'tog-enotifwatchlistpages'    => '在我的监视列表中的页面改变时发电子邮件通知我',
 'tog-enotifusertalkpages'     => '在我的讨论页更改时发邮件通知我',
 'tog-enotifminoredits'        => '在页面有微小编辑时也发邮件通知我',
 'tog-enotifrevealaddr'        => '在通知电子邮件列表中显示我的电子邮件地址',
@@ -974,7 +974,7 @@ $2',
 'upload'                      => '上传文件',
 'uploadbtn'                   => '上传文件',
 'reupload'                    => '重新上传',
-'reuploaddesc'                => '返回上传表单。',
+'reuploaddesc'                => '取消上传并返回上传表单',
 'uploadnologin'               => '未登录',
 'uploadnologintext'           => '您必须先[[Special:Userlogin|登录]]才能上传文件。',
 'upload_directory_read_only'  => '上传目录($1)不存在或无写权限。',
@@ -1000,7 +1000,7 @@ $2',
 'filestatus'                  => '版权状态:',
 'filesource'                  => '来源:',
 'uploadedfiles'               => '已上传文件',
-'ignorewarning'               => '忽略警告并保存文件。',
+'ignorewarning'               => '忽略警告并保存文件',
 'ignorewarnings'              => '忽略所有警告',
 'minlength1'                  => '文件名字必须至少有一个字母。',
 'illegalfilename'             => '文件名「$1」包含有页面标题所禁止的字符。请改名后重新上传。',
@@ -1037,6 +1037,7 @@ $2',
 'uploadvirus'                 => '该文件包含有病毒！详情: $1',
 'sourcefilename'              => '源文件名:',
 'destfilename'                => '目标文件名:',
+'upload-maxfilesize'          => '文件最大限制大小: $1',
 'watchthisupload'             => '监视此页',
 'filewasdeleted'              => '之前已经有一个同名文件被上传后又被删除了。在上传此文件之前您需要检查$1。',
 'upload-wasdeleted'           => "'''警告: 您现在重新上传一个先前曾经删除过的文件。'''
