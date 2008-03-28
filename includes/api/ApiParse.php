@@ -46,6 +46,7 @@ class ApiParse extends ApiBase {
 		if(!is_null($page) && (!is_null($text) || $title != "API"))
 			$this->dieUsage("The page parameter cannot be used together with the text and title parameters", 'params');
 		$prop = array_flip($params['prop']);
+		$revid = false;
 		
 		global $wgParser, $wgUser;
 		if(!is_null($page)) {
@@ -55,6 +56,8 @@ class ApiParse extends ApiBase {
 
 			// Try the parser cache first
 			$articleObj = new Article($titleObj);
+			if(isset($prop['revid']))
+				$revid = $articleObj->getRevIdFetched();
 			$pcache =& ParserCache::singleton();
 			$p_result = $pcache->get($articleObj, $wgUser);
 			if(!$p_result) {
@@ -91,6 +94,8 @@ class ApiParse extends ApiBase {
 			$result_array['externallinks'] = array_keys($p_result->getExternalLinks());
 		if(isset($prop['sections']))
 			$result_array['sections'] = $p_result->getSections();
+		if($revid !== false)
+			$result_array['revid'] = $revid;
 
 		$result_mapping = array(
 			'langlinks' => 'll',
@@ -158,7 +163,7 @@ class ApiParse extends ApiBase {
 			'text' => null,
 			'page' => null,
 			'prop' => array(
-				ApiBase :: PARAM_DFLT => 'text|langlinks|categories|links|templates|images|externallinks|sections',
+				ApiBase :: PARAM_DFLT => 'text|langlinks|categories|links|templates|images|externallinks|sections|revid',
 				ApiBase :: PARAM_ISMULTI => true,
 				ApiBase :: PARAM_TYPE => array(
 					'text',
@@ -168,7 +173,8 @@ class ApiParse extends ApiBase {
 					'templates',
 					'images',
 					'externallinks',
-					'sections'
+					'sections',
+					'revid'
 				)
 			)
 		);
