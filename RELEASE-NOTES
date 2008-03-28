@@ -140,6 +140,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 13522) Fix fatal error in Parser::extractTagsAndParams
 * (bug 13532) Use proper timestamp call when reverting images
 * (bug 13543) Updated FAQ link in the installer sidebar
+* (bug 13540) Date format in confirmation e-mail now matches message language
 
 
 === API changes in 1.13 ===

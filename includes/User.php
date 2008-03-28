@@ -2384,7 +2384,7 @@ class User {
 	 * @return mixed True on success, a WikiError object on failure.
 	 */
 	function sendConfirmationMail() {
-		global $wgContLang;
+		global $wgLang;
 		$expiration = null; // gets passed-by-ref and defined in next line.
 		$token = $this->confirmationToken( $expiration );
 		$url = $this->confirmationTokenUrl( $token );
@@ -2394,7 +2394,7 @@ class User {
 				wfGetIP(),
 				$this->getName(),
 				$url,
-				$wgContLang->timeanddate( $expiration, false ),
+				$wgLang->timeanddate( $expiration, false ),
 				$invalidateURL ) );
 	}
 
