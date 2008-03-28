@@ -139,6 +139,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   that have an array index other than 0
 * (bug 13522) Fix fatal error in Parser::extractTagsAndParams
 * (bug 13532) Use proper timestamp call when reverting images
+* (bug 13543) Updated FAQ link in the installer sidebar
+
 
 === API changes in 1.13 ===
 
