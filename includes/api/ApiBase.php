@@ -621,7 +621,7 @@ abstract class ApiBase {
 		'canthide' => array('code' => 'canthide', 'info' => "You don't have permission to hide user names from the block log"),
 		'cantblock-email' => array('code' => 'cantblock-email', 'info' => "You don't have permission to block users from sending e-mail through the wiki"),
 		'unblock-notarget' => array('code' => 'notarget', 'info' => "Either the id or the user parameter must be set"),
-		'unblock-idanduser' => array('code' => 'idanduser', 'info' => "The id and user parameters can\'t be used together"),
+		'unblock-idanduser' => array('code' => 'idanduser', 'info' => "The id and user parameters can't be used together"),
 		'cantunblock' => array('code' => 'permissiondenied', 'info' => "You don't have permission to unblock users"),
 		'cannotundelete' => array('code' => 'cantundelete', 'info' => "Couldn't undelete: the requested revisions may not exist, or may have been undeleted already"),
 		'permdenied-undelete' => array('code' => 'permissiondenied', 'info' => "You don't have permission to restore deleted revisions"),
