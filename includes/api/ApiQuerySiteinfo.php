@@ -74,7 +74,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 	}
 
 	protected function appendGeneralInfo($property) {
-		global $wgSitename, $wgVersion, $wgCapitalLinks, $wgRightsCode, $wgRightsText, $wgLanguageCode, $IP, $wgEnableWriteAPI;
+		global $wgSitename, $wgVersion, $wgCapitalLinks, $wgRightsCode, $wgRightsText, $wgLanguageCode, $IP, $wgEnableWriteAPI, $wgLang;
 		
 		$data = array ();
 		$mainPage = Title :: newFromText(wfMsgForContent('mainpage'));
@@ -87,10 +87,12 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		if ( $svn ) $data['rev'] = $svn;
 
 		$data['case'] = $wgCapitalLinks ? 'first-letter' : 'case-sensitive'; // 'case-insensitive' option is reserved for future
+		
 		if (isset($wgRightsCode))
 			$data['rightscode'] = $wgRightsCode;
 		$data['rights'] = $wgRightsText;
 		$data['lang'] = $wgLanguageCode;
+		$data['fallback8bitEncoding'] = $wgLang->fallback8bitEncoding();
 
 		if ( $wgEnableWriteAPI )
 			$data['writeapi'] = '';
