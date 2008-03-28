@@ -171,6 +171,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Added createonly parameter to action=edit
 * Replaced $wgAPIUCUserPrefixMinLength by the more generic $wgAPIMaxDBRows
 * (bug 11719) Remove trailing blanks in YAML output.
+* (bug 13541) Added siprop=specialpagealiases to meta=siteinfo
 
 === Languages updated in 1.13 ===
 

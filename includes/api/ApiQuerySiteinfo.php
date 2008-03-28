@@ -56,6 +56,9 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 				case 'namespacealiases' :
 					$this->appendNamespaceAliases($p);
 					break;
+				case 'specialpagealiases' :
+					$this->appendSpecialPageAliases($p);
+					break;
 				case 'interwikimap' :
 					$filteriw = isset($params['filteriw']) ? $params['filteriw'] : false; 
 					$this->appendInterwikiMap($p, $filteriw);
@@ -128,6 +131,20 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		$this->getResult()->addValue('query', $property, $data);
 	}
 	
+	protected function appendSpecialPageAliases($property)
+	{
+		global $wgLang;
+		$data = array();
+		foreach($wgLang->getSpecialPageAliases() as $specialpage => $aliases)
+		{
+			$arr = array('realname' => $specialpage, 'aliases' => $aliases);
+			$this->getResult()->setIndexedTagName($arr['aliases'], 'alias');
+			$data[] = $arr;
+		}
+		$this->getResult()->setIndexedTagName($data, 'specialpage');
+		$this->getResult()->addValue('query', $property, $data);
+	}
+
 	protected function appendInterwikiMap($property, $filter) {
 
 		$this->resetQueryParams();
@@ -216,6 +233,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 					'general',
 					'namespaces',
 					'namespacealiases',
+					'specialpagealiases',
 					'interwikimap',
 					'dbrepllag',
 					'statistics',
@@ -238,6 +256,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 				' "general"      - Overall system information',
 				' "namespaces"   - List of registered namespaces (localized)',
 				' "namespacealiases" - List of registered namespace aliases',
+				' "specialpagealiases" - List of special page aliases',
 				' "statistics"   - Returns site statistics',
 				' "interwikimap" - Returns interwiki map (optionally filtered)',
 				' "dbrepllag"    - Returns database server with the highest replication lag',
