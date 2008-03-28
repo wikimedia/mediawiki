@@ -974,6 +974,8 @@ Győződj meg róla, hogy a laptörténet folytonossága megmarad.',
 'mergehistory-no-destination'      => 'Nem létezik céllap $1 néven.',
 'mergehistory-invalid-source'      => 'A forráslapnak érvényes címet kell megadni.',
 'mergehistory-invalid-destination' => 'A céllapnak érvényes címet kell megadni.',
+'mergehistory-autocomment'         => 'Egyesítette a(z) [[:$1]] lapot a(z) [[:$2]] lappal',
+'mergehistory-comment'             => 'Egyesítette a(z) [[:$1]] lapot a(z) [[:$2]] lappal: $3',
 
 # Merge log
 'mergelog'           => 'Egyesítési napló',
@@ -1228,6 +1230,7 @@ Ha megvan neked a teljes felbontású kép, akkor töltsd fel azt, egyéb esetbe
 'uploadvirus'                 => 'Ez a fájl vírust tartalmaz! A részletek: $1',
 'sourcefilename'              => 'Forrásfájl neve:',
 'destfilename'                => 'Célmédiafájl neve:',
+'upload-maxfilesize'          => 'Maximális fájlméret: $1',
 'watchthisupload'             => 'Figyeld ezt a lapot',
 'filewasdeleted'              => 'Korábban valaki már feltöltött ilyen néven egy fájlt, amelyet később töröltünk. Ellenőrizd a $1 bejegyzését, nehogy újra feltöltsd ugyanezt a fájlt.',
 'upload-wasdeleted'           => "'''Vigyázat: egy olyan fájlt akarsz feltölteni, ami korábban már törölve lett.'''
@@ -1552,7 +1555,7 @@ Ezután minden, a lapon vagy annak vitalapján történő változást ott fogsz 
 'watchlist-show-minor' => 'Apró módosítások megjelenítése',
 'watchlist-hide-minor' => 'Apró módosítások elrejtése',
 
-# Displayed when you click the "watch" button and it's in the process of watching
+# Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Figyelés...',
 'unwatching' => 'Figyelés befejezése...',
 
@@ -1875,24 +1878,17 @@ változtatni. Kérjük, erősítsd meg, hogy ezt kívánod tenni.',
 # Move page
 'move-page'               => '$1 átnevezése',
 'move-page-legend'        => 'Lap átnevezése',
-'movepagetext'            => "Az alábbi űrlap használatával nevezhetsz át egy lapot, és
-helyezheted át előzményeit az új névre.
-A régi cím az új címre átirányító lap lesz. A régi lapcímre
-mutató hivatkozások változatlanok maradnak; a rossz
-átirányításokat ellenőrizd. Te vagy a felelős annak biztosításáért,
-hogy a hivatkozások továbbítsanak ahhoz a ponthoz,
-ahová feltehetőleg vinniük kell.
+'movepagetext'            => "Az alábbi űrlap használatával nevezhetsz át egy lapot, és helyezheted át előzményeit az új névre.
+A régi cím az új címre átirányító lap lesz. A régi lapcímre mutató hivatkozások változatlanok maradnak;
+a rossz átirányításokat ellenőrizd.
+Te vagy a felelős annak biztosításáért, hogy a hivatkozások továbbítsanak ahhoz a ponthoz, ahová feltehetőleg vinniük kell.
 
-A lap '''nem''' kerül áthelyezésre, ha már van olyan című új lap,
-hacsak nem üres vagy átirányítás, és nincs szerkesztési előzménye.
-Ez azt jelenti, hogy visszanevezheted az oldalt az eredeti nevére,
-ha hibázol, létező oldalt pedig
-nem tudsz felülírni.
+A lap '''nem''' kerül áthelyezésre, ha már van olyan című új lap, hacsak nem üres vagy átirányítás, és nincs szerkesztési előzménye.
+Ez azt jelenti, hogy visszanevezheted az oldalt az eredeti nevére, ha hibázol, létező oldalt pedig nem tudsz felülírni.
 
 <b>FIGYELEM!</b>
 Népszerű oldalak esetén ez drasztikus és nem várt változtatás lehet;
-győződj meg róla a folytatás előtt, hogy tisztában vagy-e
-a következményekkel.",
+győződj meg róla a folytatás előtt, hogy tisztában vagy-e a következményekkel.",
 'movepagetalktext'        => "A laphoz tartozó vitalap automatikusan átneveződik, '''kivéve, ha:'''
 *már létezik egy nem üres vitalap az új helyen,
 *nem jelölöd be a lenti pipát.
@@ -2454,29 +2450,38 @@ tartalmazni fogja. A többi alapértelmezésként rejtett marad.
 'monthsall'        => 'mind',
 
 # E-mail address confirmation
-'confirmemail'            => 'E-mail cím megerősítése',
-'confirmemail_noemail'    => 'Nincs érvényes e-mail cím megadva a [[Special:Preferences|beállításaidnál]].',
-'confirmemail_text'       => 'Meg kell erősítened az e-mail címed, mielőtt használhatnád a(z) {{SITENAME}} levelezési rendszerét. Nyomd meg az alsó gombot, hogy kaphass egy e-mailt, melyben megtalálod a megerősítéshez szükséges kódot. Töltsd be a kódot a böngésződbe, hogy aktiválhasd az e-mail címedet.',
-'confirmemail_pending'    => '<div class="error">A megerősítő kódot már elküldtük neked e-mailben, kérjük, várj türelemmel, amíg a szükséges adatok megérkeznek az e-mailcímedre, és csak akkor kérj új kódot, ha valami technikai malőr folytán értelmes időn belül nem kapod meg a levelet.</div>',
-'confirmemail_send'       => 'Küldd el a kódot',
-'confirmemail_sent'       => 'Kaptál egy e-mailt, melyben megtalálod a megerősítéshez szükséges kódot.',
-'confirmemail_oncreate'   => 'A megerősítő kódot elküldtük az e-mail címedre.
+'confirmemail'             => 'E-mail cím megerősítése',
+'confirmemail_noemail'     => 'Nincs érvényes e-mail cím megadva a [[Special:Preferences|beállításaidnál]].',
+'confirmemail_text'        => 'Meg kell erősítened az e-mail címed, mielőtt használhatnád a(z) {{SITENAME}} levelezési rendszerét. Nyomd meg az alsó gombot, hogy kaphass egy e-mailt, melyben megtalálod a megerősítéshez szükséges kódot. Töltsd be a kódot a böngésződbe, hogy aktiválhasd az e-mail címedet.',
+'confirmemail_pending'     => '<div class="error">A megerősítő kódot már elküldtük neked e-mailben, kérjük, várj türelemmel, amíg a szükséges adatok megérkeznek az e-mailcímedre, és csak akkor kérj új kódot, ha valami technikai malőr folytán értelmes időn belül nem kapod meg a levelet.</div>',
+'confirmemail_send'        => 'Küldd el a kódot',
+'confirmemail_sent'        => 'Kaptál egy e-mailt, melyben megtalálod a megerősítéshez szükséges kódot.',
+'confirmemail_oncreate'    => 'A megerősítő kódot elküldtük az e-mail címedre.
 Ez a kód nem szükséges a belépéshez, de meg kell adnod,
 mielőtt a wiki e-mail alapú szolgáltatásait igénybe veheted.',
-'confirmemail_sendfailed' => 'Nem tudjuk elküldeni a megerősítéshez szükséges e-mailt. Kérjük, ellenőrizd a címet. $1',
-'confirmemail_invalid'    => 'Nem megfelelő kód. A kódnak lehet, hogy lejárt a felhasználhatósági ideje.',
-'confirmemail_needlogin'  => 'Meg kell $1 erősíteni az e-mail címedet.',
-'confirmemail_success'    => 'Az e-mail címed megerősítve. Most már beléphetsz a wikibe.',
-'confirmemail_loggedin'   => 'E-mail címed megerősítve.',
-'confirmemail_error'      => 'Hiba az e-mail címed megerősítése során.',
-'confirmemail_subject'    => '{{SITENAME}} e-mail cím megerősítés',
-'confirmemail_body'       => 'Valaki, valószínűleg te, ezzel az e-mail címmel regisztrált "$2" néven a {{SITENAME}} wikibe, a(z) $1 IP-címről.
+'confirmemail_sendfailed'  => 'Nem tudjuk elküldeni a megerősítéshez szükséges e-mailt. Kérjük, ellenőrizd a címet. $1',
+'confirmemail_invalid'     => 'Nem megfelelő kód. A kódnak lehet, hogy lejárt a felhasználhatósági ideje.',
+'confirmemail_needlogin'   => 'Meg kell $1 erősíteni az e-mail címedet.',
+'confirmemail_success'     => 'Az e-mail címed megerősítve. Most már beléphetsz a wikibe.',
+'confirmemail_loggedin'    => 'E-mail címed megerősítve.',
+'confirmemail_error'       => 'Hiba az e-mail címed megerősítése során.',
+'confirmemail_subject'     => '{{SITENAME}} e-mail cím megerősítés',
+'confirmemail_body'        => 'Valaki, valószínűleg te, ezzel az e-mail címmel regisztrált
+"$2" néven a {{SITENAME}} wikibe, a(z) $1 IP-címről.
 
-Annak érdekében, hogy megerősítsd, ez az azonosító valóban hozzád tartozik, és hogy aktiváld az e-mail címedet, nyisd meg az alábbi linket a böngésződben:
+Annak érdekében, hogy megerősítsd, ez az azonosító valóban hozzád tartozik,
+és hogy aktiváld az e-mail címedet, nyisd meg az alábbi linket a böngésződben:
 
 $3
 
-Ha ez *nem* te vagy, ne kattints a hivatkozásra. A megerősítésre szánt kód felhasználhatósági ideje lejár: $4.',
+Ha ez *nem* te vagy, kattints erre a linkre az
+e-mail cím megerősíthetőségének visszavonásához:
+
+$5
+
+A megerősítésre szánt kód felhasználhatósági idejének lejárata: $4.',
+'confirmemail_invalidated' => 'E-mail-cím megerősíthetősége visszavonva',
+'invalidateemail'          => 'E-mail-cím megerősíthetőségének visszavonása',
 
 # Scary transclusion
 'scarytranscludedisabled' => '[Interwiki beillesztése le van tiltva]',

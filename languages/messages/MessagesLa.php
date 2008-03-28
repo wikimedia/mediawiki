@@ -778,7 +778,7 @@ Titulus: (nov) = dissimilis ab forma novissima, (prox) = dissimilis ab forma pro
 'upload'            => 'Fasciculum onerare',
 'uploadbtn'         => 'Fasciculum onerare',
 'reupload'          => 'Reonerare',
-'reuploaddesc'      => 'Redire ad formulam onerationis.',
+'reuploaddesc'      => 'Non onerare sed redire ad formulam onerationis',
 'uploadnologin'     => 'Conventum non apertum est',
 'uploadnologintext' => '[[Special:Userlogin|Aperire conventum]] debes ut fasciculos oneres.',
 'uploaderror'       => 'Error onerati',
@@ -798,7 +798,7 @@ Ad fasciculum includendum in pagina, utere nexu
 'filestatus'        => 'Locus verborum privatorum:',
 'filesource'        => 'Fons:',
 'uploadedfiles'     => 'Fasciculi onerati',
-'ignorewarning'     => 'Ignorare monita et servare fasciculum.',
+'ignorewarning'     => 'Ignorare monita et servare fasciculum',
 'ignorewarnings'    => 'Ignorare monita omnes',
 'minlength1'        => 'Nomina fasciculorum saltem unam litteram habere debent.',
 'badfilename'       => 'Nomen fasciculi ad "$1" mutatum est.',
@@ -1047,7 +1047,7 @@ Si paginam ex indice paginarum custoditarum removere vis, imprime \"decustodire\
 'watchlist-show-minor' => 'Monstrare recensiones minores',
 'watchlist-hide-minor' => 'Celare recensiones minores',
 
-# Displayed when you click the "watch" button and it's in the process of watching
+# Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Custodiens...',
 'unwatching' => 'Decustodiens...',
 

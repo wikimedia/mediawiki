@@ -529,25 +529,13 @@ boton «Schaper l' pådje».<br />",
 Si vos l' schapez, tos les candjmints k' ont stî fwaits
 dispoy adon si vont piede.</strong>",
 'yourdiff'                  => 'Diferinces',
-'copyrightwarning'          => "Notez ki tos les contribouwaedjes fwaits po {{SITENAME}}
-dvèt esse dizo l' licince $2 (loukîz $1 po pus di racsegnes).
-Si vos n' voloz nén ki vosse tecse poye esse candjî eyet
-spårdou pa tot l' minme kî, adon nel evoyîz nén chal.
-<br />
-Vos nos acertinez eto ki vos avoz scrît l' tecse
-vos-minme, oudonbén l' avoz copyî d' on sourdant libe
-(dominne publik ou on sourdant pareymint libe).
-<br />
+'copyrightwarning'          => "Notez ki tos les contribouwaedjes fwaits po {{SITENAME}} dvèt esse dizo l' licince $2 (loukîz $1 po pus di racsegnes).
+Si vos n' voloz nén ki vosse tecse poye esse candjî eyet spårdou pa tot l' minme kî, adon nel evoyîz nén chal.<br />
+Vos nos acertinez eto ki vos avoz scrît l' tecse vos-minme, oudonbén l' avoz copyî d' on sourdant libe (dominne publik ou on sourdant pareymint libe).
 <strong>N' EVOYÎZ NÉN DES TECSES DIZO ABONDROETS SINS PERMISSION!</strong>",
-'copyrightwarning2'         => "Notez ki tos les contribouwaedjes fwaits po {{SITENAME}}
-polèt esse esse candjîs ou disfacés pa des ôtes contribouweus.
-Si vos n' voloz nén scrire des årtikes ki polèt esse
-candjîs pa des ôtes, adon nels evoyîz nén chal.
-<br />
-Vos nos acertinez eto ki vos avoz scrît l' tecse
-vos-minme, oudonbén l' avoz copyî d' on sourdant libe
-(voeyoz $1 po pus di racsegnes).
-<br />
+'copyrightwarning2'         => "Notez ki tos les contribouwaedjes fwaits po {{SITENAME}} polèt esse esse candjîs ou disfacés pa des ôtes contribouweus.
+Si vos n' voloz nén scrire des årtikes ki polèt esse candjîs pa des ôtes, adon nels evoyîz nén chal.<br />
+Vos nos acertinez eto ki vos avoz scrît l' tecse vos-minme, oudonbén l' avoz copyî d' on sourdant libe (voeyoz $1 po pus di racsegnes).
 <strong>N' EVOYÎZ NÉN DES TECSES DIZO ABONDROETS SINS PERMISSION!</strong>",
 'longpagewarning'           => "<strong>ASTEME: Cisse pådje fwait $1 kilo-octets; des
 betchteus waibes k' i gn a polèt aveut des rujhes po-z aspougnî
@@ -1085,8 +1073,7 @@ djivêye des dierins disfaçaedjes.',
 'reverted'                    => 'Rimetou ene modêye di dvant',
 'deletecomment'               => 'Råjhon do disfaçaedje',
 'cantrollback'                => "Dji n' sai disfé les candjmints; li dierin contribouweu est li seu oteur po cist årtike ci.",
-'alreadyrolled'               => "Dji n' sai disfé li dierin candjmint di [[$1]]
-fwait pa [[User:$2|$2]] ([[User talk:$2|Copene]]);
+'alreadyrolled'               => "Dji n' sai disfé li dierin candjmint di [[$1]] fwait pa [[User:$2|$2]] ([[User talk:$2|Copene]]); 
 ene sakî d' ôte a ddja candjî l' årtike ou ddja rmetou l' modêye di dvant.
 
 Li dierin candjmint a stî fwait pa [[User:$3|$3]] ([[User talk:$3|Copene]]).",

@@ -553,7 +553,7 @@ Kontrollera stavningen, eller använd formuläret nedan för att skapa ett nytt 
 'passwordtooshort'           => 'Ditt lösenord är för kort. Det måste innehålla minst $1 tecken.',
 'mailmypassword'             => 'Sänd mig ett nytt lösenord',
 'passwordremindertitle'      => 'Nytt lösenord från {{SITENAME}}',
-'passwordremindertext'       => 'Någon - förmodligen du - har från IP-adressen $1 bett oss sända dig ett nytt lösenord för ditt användarkonto på {{SITENAME}} ($4).
+'passwordremindertext'       => 'Någon - förmodligen du - har från IP-adressen $1 bett oss sända dig ett nytt lösenord för ditt användarkonto på {{SITENAME}} ($4). 
 Lösenordet för användaren "$2" är nu "$3".
 Du bör nu logga in, och byta lösenord.
 
@@ -1041,7 +1041,7 @@ $3',
 'upload'                      => 'Ladda upp fil',
 'uploadbtn'                   => 'Ladda upp filen',
 'reupload'                    => 'Ladda upp på nytt',
-'reuploaddesc'                => 'Tillbaka till uppladdningsformulär.',
+'reuploaddesc'                => 'Avbryt uppladdningen och gå tillbaka till uppladdningsformuläret.',
 'uploadnologin'               => 'Inte inloggad',
 'uploadnologintext'           => 'Du måste vara [[Special:Userlogin|inloggad]] för att kunna ladda upp filer.',
 'upload_directory_read_only'  => 'Webbservern kan inte skriva till uppladdningskatalogen ($1).',
@@ -1065,7 +1065,7 @@ Använd en länk på något av följande format för att infoga en bild på en s
 'filestatus'                  => 'Upphovsrättslig status:',
 'filesource'                  => 'Källa:',
 'uploadedfiles'               => 'Uppladdade filer',
-'ignorewarning'               => 'Ignorera varning och spara ändå.',
+'ignorewarning'               => 'Ignorera varningen och spara filen ändå.',
 'ignorewarnings'              => 'Ignorera eventuella varningar',
 'minlength1'                  => 'Filens namn måste innehålla minst ett tecken.',
 'illegalfilename'             => 'Filnamnet "$1" innehåller tecken som inte är tillåtna i sidtitlar. Byt namn på filen och försök ladda upp igen.',
@@ -1102,6 +1102,7 @@ Om du har tillgång till bilden i full storlek, ladda då hellre upp den, annars
 'uploadvirus'                 => 'Filen innehåller virus! Detaljer: $1',
 'sourcefilename'              => 'Ursprungsfilens namn:',
 'destfilename'                => 'Nytt filnamn:',
+'upload-maxfilesize'          => 'Maximal filstorlek: $1',
 'watchthisupload'             => 'Bevaka denna sida',
 'filewasdeleted'              => 'En fil med detta namn har tidigare laddats upp och därefter tagits bort. Du bör kontrollera $1 innan du fortsätter att ladda upp den.',
 'upload-wasdeleted'           => "'''Varning: Du håller på att ladda upp en fil som tidigare raderats.'''
@@ -1418,7 +1419,7 @@ Om du inte längre vill att sidan skall finnas på din övervakningslista, klick
 'watchlist-show-minor' => 'Visa mindre ändringar',
 'watchlist-hide-minor' => 'Göm mindre ändringar',
 
-# Displayed when you click the "watch" button and it's in the process of watching
+# Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Bevakar...',
 'unwatching' => 'Avbevakar...',
 
@@ -2299,13 +2300,19 @@ Mailaren returnade: $1',
 'confirmemail_loggedin'    => 'Din e-postadress är nu bekräftad.',
 'confirmemail_error'       => 'Någonting gick fel när din bekräftelse skulle sparas.',
 'confirmemail_subject'     => 'Bekräftelse av e-postadress på {{SITENAME}}',
-'confirmemail_body'        => 'Någon, troligen du, har från IP-adressen $1 registrerat användarkontot "$2" på {{SITENAME}} och uppgivit denna e-postadress. För att bekräfta att detta konto verkligen är ditt, och för att aktivera möjligheten att skicka e-post via kontot på {{SITENAME}}, klicka på denna länk:
+'confirmemail_body'        => 'Någon, troligen du, har från IP-adressen $1 registrerat användarkontot "$2" med denna e-postadress på {{SITENAME}}.
+
+För att bekräfta att detta konto verkligen är ditt, och för att aktivera funktionerna för e-post på {{SITENAME}}, klicka på denna länk:
 
 $3
 
-Om det *inte* är du som registrerat kontot, följ inte länken. Efter $4 kommer denna bekräftelsekod inte att fungera.',
-'confirmemail_invalidated' => 'Bekräftning av e-postadress avbruten',
-'invalidateemail'          => 'Avbryt bekräftning av e-postadress',
+Om det *inte* är du som registrerat kontot, klicka då på följande länk för att avbryta bekräftelsen av e-postadressen:
+
+$5
+
+Denna bekräftelsekod kommer inte att fungera efter $4.',
+'confirmemail_invalidated' => 'Bekräftelsen av e-postadressen har ogiltigförklarats',
+'invalidateemail'          => 'Avbryt bekräftelse av e-postadress',
 
 # Scary transclusion
 'scarytranscludedisabled' => '[Interwiki-inklusion är inte aktiverad]',

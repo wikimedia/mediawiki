@@ -135,15 +135,24 @@ $messages = array(
 'dec'           => 'des',
 
 # Categories related messages
-'categories'               => 'Kategori yo',
-'pagecategories'           => '{{PLURAL:$1|Kategori|Kategori yo}}',
-'category_header'          => 'Paj yo ki nann  kategori « $1 »',
-'subcategories'            => 'Pitit kategori yo',
-'category-media-header'    => 'Fichye miltimedya nan kategori « $1 »',
-'category-empty'           => "''Kategori sa a pa genyen atik andedan li, ni sou-kategori, ni menm yon fichye miltimedya.''",
-'hidden-categories'        => '{{PLURAL:$1|Kategori sere|Kategori sere yo}}',
-'hidden-category-category' => 'Kategori ki kache yo', # Name of the category where hidden categories will be listed
-'listingcontinuesabbrev'   => '(kontinye)',
+'categories'                     => 'Kategori yo',
+'categoriespagetext'             => 'Kategori ki swiv yo gen lòt paj oubien medya nan yo.',
+'special-categories-sort-count'  => 'klase pa valè',
+'special-categories-sort-abc'    => 'klase alfabetikalman',
+'pagecategories'                 => '{{PLURAL:$1|Kategori|Kategori yo}}',
+'category_header'                => 'Paj yo ki nann  kategori « $1 »',
+'subcategories'                  => 'Pitit kategori yo',
+'category-media-header'          => 'Fichye miltimedya nan kategori « $1 »',
+'category-empty'                 => "''Kategori sa a pa genyen atik andedan li, ni sou-kategori, ni menm yon fichye miltimedya.''",
+'hidden-categories'              => '{{PLURAL:$1|Kategori sere|Kategori sere yo}}',
+'hidden-category-category'       => 'Kategori ki kache yo', # Name of the category where hidden categories will be listed
+'category-subcat-count'          => '{{PLURAL:$2|Kategori sa gen sèlman subkategori swivan.|Kategori sa gen swivan {{PLURAL:$1|subkategori|$1 subkategori sa yo}}, sou $2 total.}}',
+'category-subcat-count-limited'  => 'Kategori sa gen swivan {{PLURAL:$1|subkategori|$1 subkategori sa yo}}.',
+'category-article-count'         => '{{PLURAL:$2|Kategori sa gen sèlman paj swivan.|Swivan {{PLURAL:$1|paj sa|$1 paj sa yo}} nan kategori sa, sou $2 total.}}',
+'category-article-count-limited' => 'Swivan {{PLURAL:$1|paj sa|$1 paj sa yo}} nan kategori kouran.',
+'category-file-count'            => '{{PLURAL:$2|Kategori sa gen sèlman dokiman swivan.|Swivan {{PLURAL:$1|dokiman sa|$1 dokimans sa yo}} nan kategori sa, sou $2 total.}}',
+'category-file-count-limited'    => 'Swivan {{PLURAL:$1|dokiman sa|$1 dokiman sa yo}} nan kategori kouran.',
+'listingcontinuesabbrev'         => '(kontinye)',
 
 'mainpagetext'      => "<big>'''MedyaWiki byen enstale l.'''</big>",
 'mainpagedocfooter' => 'Konsilte [http://meta.wikimedia.org/wiki/Help:Konteni Gid Itilizatè] pou enfòmasyon sou kijan pou w itilize logisye wiki-a.
@@ -172,6 +181,9 @@ $messages = array(
 'navigation'     => 'Navigasyon',
 'and'            => 'e',
 
+# Metadata in edit box
+'metadata_help' => 'Metadata:',
+
 'errorpagetitle'    => 'Erè',
 'returnto'          => 'Ritounen nan paj $1.',
 'tagline'           => 'Yon atik de {{SITENAME}}.',
@@ -188,7 +200,9 @@ $messages = array(
 'permalink'         => 'Lyen pou tout tan',
 'print'             => 'Prente',
 'edit'              => 'Modifye',
+'create'            => 'Kreye',
 'editthispage'      => 'Modifye paj sa a',
+'create-this-page'  => 'Kreye paj sa',
 'delete'            => 'Efase',
 'deletethispage'    => 'Delete paj sa',
 'undelete_short'    => 'Restore {{PLURAL:$1|1 yon modifikasyon| $1 modifikasyon yo}}',
@@ -239,6 +253,7 @@ $messages = array(
 'disclaimerpage'    => 'Project:Avètisman jeneral yo',
 'edithelp'          => 'Edite paj èd la',
 'edithelppage'      => 'Help:kòman ou ka modifye yon paj',
+'faq'               => 'FAQ',
 'faqpage'           => 'Project:FAQ',
 'helppage'          => 'Help:Èd',
 'mainpage'          => 'Akèy',
@@ -253,20 +268,30 @@ $messages = array(
 'badaccess'        => 'Pèmisyon erè',
 'badaccess-group0' => 'Ou pa genyen pèmisyon pou ou ekzekite demand sa.',
 'badaccess-group1' => 'Aksyon ou esete reyalize-a limite sèlman pou itilizatè ki nan group $1.',
+'badaccess-group2' => 'Aksion ke w vle reyalize a limite sèlman pou itilizatè ki nan group sa yo $1.',
+'badaccess-groups' => 'Aksion ke w vle reyalize a limite sèlman pou itilizatè ki nan group sa yo $1.',
 
-'retrievedfrom'       => 'Rekipere depi « $1 »',
-'youhavenewmessages'  => 'Ou genyen $1 ($2).',
-'newmessageslink'     => 'Ou genyen nouvo mesaj',
-'newmessagesdifflink' => 'dènye chanjman',
-'editsection'         => 'modifye',
-'editold'             => 'modifye',
-'editsectionhint'     => 'Modifye seksyon : $1',
-'toc'                 => 'Kontni yo',
-'showtoc'             => 'montre',
-'hidetoc'             => 'kache',
-'site-rss-feed'       => 'Flow RSS depi $1',
-'site-atom-feed'      => 'Flow Atom depi $1',
-'page-rss-feed'       => 'Flow RSS pou "$1"',
+'versionrequired'     => 'Vèzion $1 de MediaWiki nesesè',
+'versionrequiredtext' => 'Vèzion $1 de MediaWiki nesesè pou itilize paj sa. Wè [[Special:Version|version page]].',
+
+'ok'                      => 'OK',
+'retrievedfrom'           => 'Rekipere depi « $1 »',
+'youhavenewmessages'      => 'Ou genyen $1 ($2).',
+'newmessageslink'         => 'Ou genyen nouvo mesaj',
+'newmessagesdifflink'     => 'dènye chanjman',
+'youhavenewmessagesmulti' => 'Ou genyen nouvo mesaj sou $1.',
+'editsection'             => 'modifye',
+'editold'                 => 'modifye',
+'editsectionhint'         => 'Modifye seksyon : $1',
+'toc'                     => 'Kontni yo',
+'showtoc'                 => 'montre',
+'hidetoc'                 => 'kache',
+'thisisdeleted'           => 'Ou vle wè ubien restore $1 ?',
+'viewdeleted'             => 'Wè $1 ?',
+'restorelink'             => '{{PLURAL:$1|yon revizion efase|$1 revizion efase yo}}',
+'site-rss-feed'           => 'Flow RSS depi $1',
+'site-atom-feed'          => 'Flow Atom depi $1',
+'page-rss-feed'           => 'Flow RSS pou "$1"',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-user'     => 'Paj itilizatè',
@@ -579,7 +604,7 @@ Pwochen modifikasyon nan paj sa a ke make na lis swivi ou an, paj an ke parèt <
 'watchlist-hide-own'   => 'kache modifikasyon mwen yo',
 'watchlist-hide-minor' => 'Kache modifikasyon ki pa enpòtan yo',
 
-# Displayed when you click the "watch" button and it's in the process of watching
+# Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Swiv...',
 'unwatching' => 'Fini swiv paj sa a...',
 

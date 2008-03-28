@@ -740,7 +740,7 @@ Ga eba o nyaka go hloša letlaka le go lenano la ditlhapetšo tša gago, šomiš
 'watchlist-show-minor' => 'Bontšha diphetogo tše nnyenyane',
 'watchlist-hide-minor' => 'Fihla diphetogo tše nnyenyane',
 
-# Displayed when you click the "watch" button and it's in the process of watching
+# Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Tlhapeditše...',
 'unwatching' => 'Tlhapetšo eya tlošwa ...',
 

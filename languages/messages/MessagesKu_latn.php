@@ -1094,7 +1094,7 @@ Li rûpela [[Special:Recentchanges|Guherandinên dawî]] jî ji bo hasan dîtina
 'watchlist-show-minor' => 'Guherandinên biçûk pêşke',
 'watchlist-hide-minor' => 'Guherandinên biçûk veşêre',
 
-# Displayed when you click the "watch" button and it's in the process of watching
+# Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Bişopîne...',
 'unwatching' => 'Neşopîne...',
 

@@ -512,6 +512,7 @@ $messages = array(
 'prevn'                 => 'седе икелень $1',
 'nextn'                 => 'сы $1',
 'viewprevnext'          => 'Ванномс ($1) ($2) ($3)',
+'searchall'             => 'весе',
 'powersearch'           => 'Седеяк вешнемс',
 
 # Preferences page
@@ -808,7 +809,7 @@ $messages = array(
 'watchlist-hide-own'   => 'Кекшэмс мезе мон витнинь-петнинь',
 'watchlist-hide-minor' => 'Кекшэмс апокшкэ витнемат-петнемат',
 
-# Displayed when you click the "watch" button and it's in the process of watching
+# Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Ванома...',
 'unwatching' => 'Аванома...',
 

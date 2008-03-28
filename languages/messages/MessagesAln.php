@@ -506,7 +506,7 @@ Muneni me [[$1|fillu një artikull]] me kët titull.
 'watchlist-hide-own'   => 'Mshehi redaktimet e mija',
 'watchlist-hide-minor' => 'Mshehi redaktimet e vogla',
 
-# Displayed when you click the "watch" button and it's in the process of watching
+# Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Tuj mbikqyrë...',
 'unwatching' => 'Tuj çmbikqyrë...',
 

@@ -107,6 +107,7 @@ $messages = array(
 
 # Categories related messages
 'categories'            => 'Mga kategorya',
+'categoriespagetext'    => 'Ang mga sumusunod na kategorya ay naglalaman ng mga pahina o midya.',
 'pagecategories'        => '{{PLURAL:$1|Kategorya|Mga kategorya}}',
 'category_header'       => 'Mga pahina sa kategoryang "$1"',
 'subcategories'         => 'Mga subkategorya',
@@ -137,7 +138,7 @@ $messages = array(
 'moredotdotdot'  => 'Damihan pa...',
 'mypage'         => 'Pahina ko',
 'mytalk'         => 'Usapan ko',
-'anontalk'       => 'Usapan para sa IPng ito',
+'anontalk'       => 'Usapan para sa IP na ito',
 'navigation'     => 'Nabigasyon',
 
 # Metadata in edit box
@@ -153,16 +154,17 @@ $messages = array(
 'searcharticle'     => 'Puntahan',
 'history'           => 'Kasaysayan ng pahina',
 'history_short'     => 'Kasaysayan',
-'updatedmarker'     => 'dinagdagan mula noong huli kong pagpunta',
+'updatedmarker'     => 'dinagdagan mula noong huli kong pagdalaw',
 'info_short'        => 'Kaalaman',
 'printableversion'  => 'Bersyong maaaring ilimbag',
 'permalink'         => 'Palagiang kawing',
 'print'             => 'Ilimbag',
 'edit'              => 'Baguhin',
 'editthispage'      => 'Baguhin itong pahina',
+'create-this-page'  => 'Likhain itong pahina',
 'delete'            => 'Burahin',
 'deletethispage'    => 'Burahin itong pahina',
-'undelete_short'    => 'Alisin pagkabura ng {{PLURAL:$1|isang pagbabago|$1 mga pagbabago}}',
+'undelete_short'    => 'Baligtarin ang pagbura ng {{PLURAL:$1|isang pagbabago|$1 mga pagbabago}}',
 'protect'           => 'Ipagsanggalang',
 'protect_change'    => 'palitan ang pagsanggalang',
 'protectthispage'   => 'Ipagsanggalang itong pahina',
@@ -364,8 +366,7 @@ Nilikha na ang iyong kuwenta. Huwag kalimutang baguhin ang iyong mga kagustuhan 
 'savearticle'            => 'Itala ang pahina',
 'preview'                => 'Pribyu',
 'blockedtitle'           => 'Nakaharang ang tagagamit',
-'blockedoriginalsource'  => "Ang pinagmulan ng '''$1''' ay
-pinapakita sa ibaba:",
+'blockedoriginalsource'  => "Ang pinagmulan ng '''$1''' ay pinapakita sa ibaba:",
 'editing'                => 'Binabago ang $1',
 'editingsection'         => 'Binabago ang $1 (bahagi)',
 'editingcomment'         => 'Binabago ang $1 (komento)',
@@ -451,16 +452,24 @@ upang makapagkarga ng talaksan.',
 'watchthispage' => 'Bantayan itong pahina',
 
 # Delete/protect/revert
-'protect-default'         => '(tinakda)',
-'protect-summary-cascade' => 'kaskada',
-'protect-expiring'        => 'magwawalang-bisa sa $1 (UTC)',
-'protect-cascade'         => 'Ipagsanggalang ang mga pahinang kasama sa pahinang ito (kaskadang pagsanggalang)',
-'restriction-type'        => 'Pahintulot:',
+'protect-default'             => '(tinakda)',
+'protect-level-autoconfirmed' => "Harangin ang mga 'di-rehistradong manggagamit",
+'protect-summary-cascade'     => 'kaskada',
+'protect-expiring'            => 'magwawalang-bisa sa $1 (UTC)',
+'protect-cascade'             => 'Ipagsanggalang ang mga pahinang kasama sa pahinang ito (kaskadang pagsanggalang)',
+'restriction-type'            => 'Pahintulot:',
+'restriction-level'           => 'Antas ng kabawalan:',
 
 # Restriction levels
 'restriction-level-sysop'         => 'buong nakasanggalang',
 'restriction-level-autoconfirmed' => 'bahagyang nakasanggalang',
 'restriction-level-all'           => 'anumang antas',
+
+# Undelete
+'undelete-error-short' => 'Kamalian sa pagbaligtad ng pagbura ng talaksan: $1',
+'undelete-error-long'  => 'Nagkaroon ng mga kamalian habang binabaligtad ang pagbura ng talaksan:
+
+$1',
 
 # Namespace form on various pages
 'namespace'      => 'Ngalan-espasyo:',
@@ -620,9 +629,11 @@ $1',
 'lag-warn-normal' => 'Maaaring hindi mapakita sa talang ito ang mga pagbabagong mas bago sa $1 segundo.',
 
 # Special:Version
+'version'                   => 'Bersyon', # Not used as normal message but as header for the special page itself
 'version-hook-subscribedby' => 'Sinuskribi ng/ni/nina',
 'version-version'           => 'Bersyon',
 'version-license'           => 'Lisensiya',
+'version-software'          => 'Inistalang software',
 'version-software-product'  => 'Produkto',
 'version-software-version'  => 'Bersyon',
 

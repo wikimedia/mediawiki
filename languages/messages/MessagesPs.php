@@ -636,6 +636,7 @@ $messages = array(
 'uploaddisabled'       => 'پورته کول ناچارن شوي',
 'uploadvirus'          => 'دا دوتنه ويروس لري! تفصيل: $1',
 'sourcefilename'       => 'د سرچينيزې دوتنې نوم:',
+'upload-maxfilesize'   => 'د دوتنې تر ټولو لويه کچه: $1',
 'watchthisupload'      => 'همدا مخ کتل',
 
 'upload-file-error' => 'کورنۍ ستونزه',
@@ -821,7 +822,7 @@ $messages = array(
 'watchlist-hide-own'   => 'زما سمادونه پټول',
 'watchlist-hide-minor' => 'وړې سمادېدنې پټول',
 
-# Displayed when you click the "watch" button and it's in the process of watching
+# Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'د کتلو په حال کې...',
 'unwatching' => 'د نه کتلو په حال کې...',
 

@@ -3,7 +3,7 @@
  *
  * @addtogroup Language
  *
-﻿ * @author Alhen
+ * @author Alhen
  * @author Alpertron
  * @author Ascánder
  * @author Baiji
@@ -890,7 +890,9 @@ Los grupos no seleccionados no cambiarán. Puede deseleccionar pulsando la tecla
 'uploadnologintext'           => 'Tienes que [[Special:Userlogin|iniciar sesión]] para poder subir archivos.',
 'upload_directory_read_only'  => 'El servidor web no puede escribir en el directorio de subida de archivos ($1).',
 'uploaderror'                 => 'Error al intentar subir archivo',
-'uploadtext'                  => "Utilize el siguiente formulario para subir archivos. Para ver o buscar archivos subidos con anterioridad, ir a [[Special:Imagelist|lista de archivos subidos]]. Lo que haya subido o borrado quedará registrado además en el [[Special:Log/upload|registro de archivos subidos]].
+'uploadtext'                  => "Utilize el siguiente formulario para subir archivos.
+Para ver o buscar archivos subidos con anterioridad, ir a [[Special:Imagelist|lista de archivos subidos]].
+Lo que haya subido o borrado quedará registrado además en el [[Special:Log/upload|registro de archivos subidos]].
 
 Para incluir un archivo en una página, utilice en el formulario los enlaces
 '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:File.jpg]]</nowiki>''',
@@ -1214,7 +1216,7 @@ La dirección electrónica que indicó en sus preferencias de usuario aparecerá
 'watchlist-show-minor' => 'Mostrar ediciones menores',
 'watchlist-hide-minor' => 'Esconder ediciones menores',
 
-# Displayed when you click the "watch" button and it's in the process of watching
+# Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Vigilando...',
 'unwatching' => 'Eliminando de la lista de seguimiento...',
 
@@ -1791,7 +1793,8 @@ Los siguientes enlaces en la misma línea se consideran las exepciones (los art�
 'metadata-help'     => 'Este archivo contiene información adicional (metadatos), probablemente añadida por la cámara digital, el escáner o el programa usado para crearlo o digitalizarlo. Si el archivo ha sido modificado desde su estado original, pueden haberse perdido algunos detalles.',
 'metadata-expand'   => 'Mostrar datos detallados',
 'metadata-collapse' => 'Ocultar datos detallados',
-'metadata-fields'   => 'Los campos de metadatos EXIF que se listan en este mensaje se mostrarán en la página de descripción de la imagen aún cuando la tabla de metadatos esté plegada. Existen otros campos que se mantendrán ocultos por defecto.
+'metadata-fields'   => 'Los campos de metadatos EXIF que se listan en este mensaje se mostrarán en la página de descripción de la imagen aún cuando la tabla de metadatos esté plegada.
+Existen otros campos que se mantendrán ocultos por defecto.
 * make
 * model
 * datetimeoriginal

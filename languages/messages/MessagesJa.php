@@ -540,23 +540,25 @@ $2',
 'summary-preview'           => '要約のプレビュー',
 'subject-preview'           => '題名・見出しのプレビュー',
 'blockedtitle'              => '投稿ブロック',
-'blockedtext'               => 'ご使用の利用者名またはIPアドレスは $1 によって投稿をブロックされています。その理由は次の通りです。
-:$2
+'blockedtext'               => 'ご使用の利用者名またはIPアドレスは $1 によって投稿をブロックされています。ブロックの理由は $2 です。
 
-ブロック解除予定: $6
+*ブロック開始時期: $8
+*ブロック解除予定: $6
+*ブロック対象: $7
 
 $1 または他の[[{{int:grouppage-sysop}}|{{int:group-sysop}}]]にこの件についてメールで問い合わせることができます。ただし、[[Special:Preferences|オプション]]に正しいメールアドレスが登録されていない場合、「{{int:emailuser}}」機能が使えないことに注意してください。
 
 あなたのIPアドレスは「$3」、ブロックIDは &#x23;$5 です。問い合わせを行う際には、この情報を必ず書いてください。',
-'autoblockedtext'           => 'ご利用のIPアドレスは $1 によって投稿をブロックされています。その理由は次の通りです。
+'autoblockedtext'           => 'ご利用のIPアドレスは $1 によって投稿をブロックされています。理由は次の通りです。
+
 :$2
 
 ブロック解除予定: $6<br />
-ブロック対象: $7
+ブロック対象: $8
 
-$1 または他の[[{{int:grouppage-sysop}}|{{int:group-sysop}}]]にこの件について問い合わせることができます。
+$1 または他の[[{{MediaWiki:grouppage-sysop}}|管理者]]にこの件について問い合わせることができます。
 
-ただし、[[Special:Preferences|オプション]]に正しいメールアドレスが登録されていない場合、「{{int:emailuser}}」機能が使えないことに注意してください。
+ただし、[[Special:Preferences|オプション]]に正しいメールアドレスが登録されていない場合、メール送信機能が使えないことに注意してください。
 
 あなたのブロックIDは &#x23;$5 です。問い合わせを行う際には、この情報を必ず書いてください。',
 'blockednoreason'           => '理由が設定されていません',
@@ -698,8 +700,8 @@ $1 または他の[[{{int:grouppage-sysop}}|{{int:group-sysop}}]]にこの件に
 'revisiondelete'              => '版の削除と復帰',
 'revdelete-nooldid-title'     => '対象版がありません',
 'revdelete-nooldid-text'      => '操作の完了に必要な版が指定されていません。',
-'revdelete-selected'          => '[[:$1]]の、以下の選択された版に対する操作:',
-'logdelete-selected'          => '[[:$1]]の、以下の選択されたログに対する操作:',
+'revdelete-selected'          => "'''$1'''の、以下の選択された版に対する操作:",
+'logdelete-selected'          => "'''$1'''の選択されたログに対する操作:",
 'revdelete-text'              => '版の削除ではページの履歴にその版は表示されます。しかしその版に含まれるテキストにはアクセスできなくなります。
 
 サーバー管理者にこれ以上の制限をかけられない限り、他の{{int:group-sysop}}は隠れた版を読んだり、元に戻したりできます。',
@@ -737,7 +739,7 @@ $1 または他の[[{{int:grouppage-sysop}}|{{int:group-sysop}}]]にこの件に
 'mergehistory-go'                  => '統合可能な版の表示',
 'mergehistory-submit'              => '統合する版',
 'mergehistory-empty'               => '統合できる過去の版がありません.',
-'mergehistory-success'             => '[[:$1]] の過去版 $3 を [[:$2]] へ統合しました。',
+'mergehistory-success'             => '[[:$1]] の過去版 $3 を [[:$2]] へ統合する作業に成功しました。',
 'mergehistory-fail'                => '履歴の統合を行うことが出来ません。統合を行うページと過去の版を再確認してください。',
 'mergehistory-no-source'           => '統合元となるページ $1 が存在しません。',
 'mergehistory-no-destination'      => '統合先のページ $1 が存在しません。',
@@ -1287,7 +1289,7 @@ $2リダイレクトを含める &nbsp; &nbsp; &nbsp; $3 $9',
 'watchlist-show-minor' => '細部の編集を表示',
 'watchlist-hide-minor' => '細部の編集を隠す',
 
-# Displayed when you click the "watch" button and it's in the process of watching
+# Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'ウォッチリストに追加しています...',
 'unwatching' => 'ウォッチリストから削除しています...',
 
@@ -1426,10 +1428,9 @@ $NEWPAGE
 「{{int:undeletereset}}」ボタンををクリックするとコメント欄と全てのチェックボックスがクリアされます。',
 'undeleterevisions'            => '$1版保管',
 'undeletehistory'              => 'ページの復帰を行うと、全ての特定版が履歴に復帰します。ページが削除された後に、同じ名前で新しいページが作成されていた場合、復帰した特定版は、その前の履歴として出現します。ファイル履歴の制限は、この操作によって失われることにも注意してください。特定版の復帰を行う場合は、{{int:undeletebtn}}ボタンを押す前に復帰対象版のチェックボックスを選択してください。',
-'undeleterevdel'               => 'トップページの版が一時的に削除されているものに対しては、復帰処理を実行できません。このような場合、まずは最新の削除履歴に対するチェックまたは隠蔽を解除する必要があります。
-ファイル履歴を表示する権限がない場合も、復帰させることはできません。',
+'undeleterevdel'               => 'トップページの版が一時的に削除されているものに対しては、復帰処理を実行できません。このような場合、まずは最新の削除履歴に対するチェックまたは隠蔽を解除する必要があります。ファイル履歴を表示する権限がない場合も、復帰させることはできません。',
 'undeletehistorynoadmin'       => '過去にこのページの全てもしくは一部が削除されています。以下に示すのは削除記録と削除された版の履歴です。削除された各版の内容は{{int:group-sysop}}のみが閲覧できます。',
-'undelete-revision'            => '$1 の削除された版 $2 :',
+'undelete-revision'            => '$1 の削除された $2 の版 投稿者 $3 :',
 'undeleterevision-missing'     => '無効、あるいは誤った版です。当該版は既に復帰されたか、アーカイブから削除された可能性があります。',
 'undelete-nodiff'              => 'これより前の版はありません。',
 'undeletebtn'                  => '復帰',
@@ -1586,7 +1587,8 @@ $NEWPAGE
 'locknoconfirm'       => 'チェックボックスにチェックされていません。',
 'lockdbsuccesssub'    => 'データベースはロックされました。',
 'unlockdbsuccesssub'  => 'データベースのロックは解除されました',
-'lockdbsuccesstext'   => 'データベースをロックしました。メンテナンスが終了したら忘れずにロックを解除してください。',
+'lockdbsuccesstext'   => 'データベースをロックしました。<br />
+メンテナンスが終了したら忘れずに[[Special:Unblockdb|ロックを解除]]してください。',
 'unlockdbsuccesstext' => 'データベースのロックは解除されました。',
 'lockfilenotwritable' => 'データベースのロックファイルに書き込めません。データベースのロック・解除をするには、サーバー上のロックファイルに書き込める必要があります。',
 'databasenotlocked'   => 'データベースはロックされていません。',
@@ -1867,7 +1869,7 @@ $NEWPAGE
 'noimages'              => '画像がありません。',
 'ilsubmit'              => '検索',
 'bydate'                => '日付順',
-'sp-newimages-showfrom' => '$1 以後現在までの新着ファイルを表示',
+'sp-newimages-showfrom' => '$1 $2 以後現在までの新着ファイルを表示',
 
 # Bad image list
 'bad_image_list' => '書式は以下の通りです：
@@ -2188,16 +2190,7 @@ Variants for Chinese language
 'confirmemail_loggedin'   => 'あなたのメールアドレスは確認されました。',
 'confirmemail_error'      => 'あなたの確認を保存する際に内部エラーが発生しました。',
 'confirmemail_subject'    => '{{SITENAME}} メールアドレスの確認',
-'confirmemail_body'       => 'This is a E-mail confirmation of *{{SITENAME}}*.
-If you can not read this message below,
-you can not read wikimail either.
-Then, please change a mailer
-or address which can read UTF-8 mail, and retry.
-Thank you.
-
---
-
-どなたか（IPアドレス $1 の使用者）がこのメールアドレスを
+'confirmemail_body'       => 'どなたか（IPアドレス $1 の使用者）がこのメールアドレスを
 {{SITENAME}} のアカウント "$2" に登録しました。
 
 このアカウントがあなたのものであるか確認してください。
@@ -2206,9 +2199,12 @@ Thank you.
 
 $3
 
-もし {{SITENAME}} について身に覚えがない場合は、リンクを開かないでください。
-確認用コードは $4 に期限切れになります。
+もし {{SITENAME}} について身に覚えがない場合は、リンクを開かず
+次のURLにアクセスしてメール登録を解除ください:
 
+$5
+
+確認用コードは $4 に期限切れになります。
 --
 {{SITENAME}}
 {{SERVER}}/',

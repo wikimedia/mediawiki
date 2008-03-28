@@ -8,6 +8,7 @@
  * @author Dubyk
  * @author Kalan
  * @author AS
+ * @author Siebrand
  */
 
 /*
@@ -1206,6 +1207,7 @@ $2 Показувати перенаправлення   Пошук на $3 $9',
 'uploadvirus'                 => 'Файл містить вірус! Див. $1',
 'sourcefilename'              => 'Назва початкового файлу:',
 'destfilename'                => 'Назва завантаженого файлу:',
+'upload-maxfilesize'          => 'Максимальний розмір файлу: $1',
 'watchthisupload'             => 'Додати цей файл до списку спостереження',
 'filewasdeleted'              => 'Файл з такою назвою вже існував, але був вилучений. Будь-ласка, перевірте $1 перед повторним завантаженням.',
 'upload-wasdeleted'           => "'''Попередження: ви хочете завантажити файл, який раніше вилучався.'''
@@ -1513,7 +1515,7 @@ $2 Показувати перенаправлення   Пошук на $3 $9',
 'watchlist-show-minor' => 'показати незначні редагування',
 'watchlist-hide-minor' => 'сховати незначні редагування',
 
-# Displayed when you click the "watch" button and it's in the process of watching
+# Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Додавання до списку спостереження…',
 'unwatching' => 'Вилучення зі списку спостереження…',
 

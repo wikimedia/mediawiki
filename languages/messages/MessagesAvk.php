@@ -1149,7 +1149,7 @@ Ta sulara va batu bu div rinafi suzdasiki, koe grablexo va « Mea suzdá » vule
 'watchlist-show-minor' => 'Nedira va betamakseem',
 'watchlist-hide-minor' => 'Palsera va betamakseem',
 
-# Displayed when you click the "watch" button and it's in the process of watching
+# Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Nedis...',
 'unwatching' => 'Menedis...',
 

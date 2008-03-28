@@ -1459,7 +1459,7 @@ Se desejar remover a página da sua lista de vigiados clique em \"Desinteressar-
 'watchlist-show-minor' => 'Exibir edições menores',
 'watchlist-hide-minor' => 'Ocultar edições menores',
 
-# Displayed when you click the "watch" button and it's in the process of watching
+# Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Vigiando...',
 'unwatching' => 'Deixando de vigiar...',
 

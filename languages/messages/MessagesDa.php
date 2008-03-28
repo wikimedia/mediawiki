@@ -1433,7 +1433,7 @@ deraf har '''$2''' (=$4%) $5-rettigheder.",
 'watchlist-show-minor' => 'vis små ændringer',
 'watchlist-hide-minor' => 'skjul små ændringer',
 
-# Displayed when you click the "watch" button and it's in the process of watching
+# Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Tilføjer overvågning …',
 'unwatching' => 'Fjerner overvågning …',
 

@@ -1113,7 +1113,7 @@ $3 մասնակիցը տվել է հետևյալ պատճառը. ''$2''",
 'filedesc'                    => 'Ամփոփում',
 'fileuploadsummary'           => 'Նկարագրություն՝',
 'filestatus'                  => 'Հեղինակային իրավունքի կարգավիճակ:',
-'filesource'                  => 'Աղբյուր:',
+'filesource'                  => 'Աղբյուր',
 'uploadedfiles'               => 'Բեռնված ֆայլեր',
 'ignorewarning'               => 'Անտեսել զգուշացումը և պահպանել ֆայլը ամեն դեպքում։',
 'ignorewarnings'              => 'Անտեսել բոլոր նախազգուշացումները',
@@ -1434,7 +1434,7 @@ $3 մասնակիցը տվել է հետևյալ պատճառը. ''$2''",
 'watchlist-show-minor' => 'Ցույց տալ չնչին խմբագրումները',
 'watchlist-hide-minor' => 'Թաքցնել չնչին խմբագրումները',
 
-# Displayed when you click the "watch" button and it's in the process of watching
+# Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Հսկվում է...',
 'unwatching' => 'Հանվում է հսկումից...',
 

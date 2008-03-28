@@ -1244,7 +1244,7 @@ $3-এর দেয়া কারণ হল ''$2''",
 'watchlist-show-minor' => 'অনুল্লেখ্য সম্পাদনাগুলো দেখাও',
 'watchlist-hide-minor' => 'অনুল্লেখ্য সম্পাদনাগুলো দেখিও না',
 
-# Displayed when you click the "watch" button and it's in the process of watching
+# Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'নজর রাখা হচ্ছে...',
 'unwatching' => 'নজর তুলে নেওয়া হচ্ছে...',
 

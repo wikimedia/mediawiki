@@ -1,9 +1,11 @@
 <?php
-/**
-  * Chinese (Traditional) (中文 (傳統字))
-  *
-  * @addtogroup Language
-  */
+/** Traditional Chinese (‪中文(繁體)‬)
+ *
+ * @addtogroup Language
+ *
+ * @author Shinjiman
+ * @author Alexsh
+ */
 
 $fallback = 'zh-hans';
 
@@ -59,7 +61,6 @@ $bookstoreList = array(
 	'天下書店' => 'http://www.cwbook.com.tw/search/result1.jsp?field=2&keyWord=$1',
 	'新絲路書店' => 'http://www.silkbook.com/function/Search_list_book_data.asp?item=5&text=$1'
 );
-
 
 $messages = array(
 # User preference toggles
@@ -165,9 +166,9 @@ $messages = array(
 # Categories related messages
 'categories'                     => '頁面分類',
 'categoriespagetext'             => '以下的分類中包含了頁面或媒體。',
-'pagecategories'                 => '$1個分類',
 'special-categories-sort-count'  => '按數量排列',
 'special-categories-sort-abc'    => '按字母排列',
+'pagecategories'                 => '$1個分類',
 'category_header'                => '類別「$1」中的頁面',
 'subcategories'                  => '附分類',
 'category-media-header'          => '"$1"分類中的媒體',
@@ -302,7 +303,6 @@ $messages = array(
 'versionrequired'     => '需要MediaWiki $1 版',
 'versionrequiredtext' => '需要版本$1的 MediaWiki 才能使用此頁。參見[[Special:Version|版本頁]]。',
 
-'ok'                      => 'OK',
 'retrievedfrom'           => '取自"$1"',
 'youhavenewmessages'      => '您有$1（$2）。',
 'newmessageslink'         => '新訊息',
@@ -1012,6 +1012,7 @@ $2',
 'uploadvirus'                 => '該檔案包含有病毒！詳情: $1',
 'sourcefilename'              => '來源檔案名:',
 'destfilename'                => '目標檔案名:',
+'upload-maxfilesize'          => '檔案最大限制大小：$1',
 'watchthisupload'             => '監視此頁',
 'filewasdeleted'              => '之前已經有一個同名檔案被上傳後又被刪除了。在上傳此檔案之前您需要檢查$1。',
 'upload-wasdeleted'           => "'''警告: 您現在重新上傳一個先前曾經刪除過的檔案。'''
@@ -1326,7 +1327,7 @@ Template:消除歧義',
 'watchlist-show-minor' => '顯示小修改',
 'watchlist-hide-minor' => '隱藏小修改',
 
-# Displayed when you click the "watch" button and it's in the process of watching
+# Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => '正在監視...',
 'unwatching' => '正在停止監視...',
 

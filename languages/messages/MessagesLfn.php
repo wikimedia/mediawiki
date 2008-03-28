@@ -576,7 +576,7 @@ Si tu vole sutrae la paje de tu lista de pajes oservada en la futur, clica a \"n
 'watchlist-hide-own'   => 'Asconde me editas',
 'watchlist-hide-minor' => 'Asconde editas minor',
 
-# Displayed when you click the "watch" button and it's in the process of watching
+# Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Oserva...',
 'unwatching' => 'No oserva...',
 

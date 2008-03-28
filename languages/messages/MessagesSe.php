@@ -888,7 +888,7 @@ $1 | $2',
 'watchlist-show-minor' => 'Čájet unna rievdádusaid',
 'watchlist-hide-minor' => 'Čiega unna rievdádusaid',
 
-# Displayed when you click the "watch" button and it's in the process of watching
+# Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Lasihuvvo čuovvunlistui...',
 'unwatching' => 'Sihkojuvvo čuovvunlisttus...',
 

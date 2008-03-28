@@ -811,7 +811,7 @@ Iksi yu wan papira no langar wana si, go na a papira nanga du opo \"No si\" ini 
 'watchlist-hide-own'   => 'Kibri mi kenki',
 'watchlist-hide-minor' => 'Kibri pikin kenki',
 
-# Displayed when you click the "watch" button and it's in the process of watching
+# Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Presi a yu sirey ...',
 'unwatching' => 'Trowe fu yu sirey ...',
 

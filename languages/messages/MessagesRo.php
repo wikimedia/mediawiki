@@ -1176,7 +1176,7 @@ Dacă doreşti să elimini această pagină din lista ta de pagini urmărite în
 'watchlist-show-minor' => 'Arată editările minore',
 'watchlist-hide-minor' => 'Ascunde editările minore',
 
-# Displayed when you click the "watch" button and it's in the process of watching
+# Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Aşteptaţi...',
 'unwatching' => 'Aşteptaţi...',
 

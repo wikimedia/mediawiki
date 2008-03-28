@@ -1073,6 +1073,7 @@ Jeśli posiadasz tę grafikę w pełnym rozmiarze - prześlij ją, inaczej będz
 'uploadvirus'                 => 'W tym pliku jest wirus! Szczegóły: $1',
 'sourcefilename'              => 'Nazwa oryginalna:',
 'destfilename'                => 'Nazwa docelowa:',
+'upload-maxfilesize'          => 'Maksymalny rozmiar pliku: $1',
 'watchthisupload'             => 'Obserwuj tę stronę',
 'filewasdeleted'              => 'Plik o tej nazwie istniał, ale został skasowany. Zanim załadujesz go ponownie, sprawdź $1.',
 'upload-wasdeleted'           => "'''Ostrzeżenie: Ładujesz plik, który był poprzednio usunięty.'''
@@ -1383,7 +1384,7 @@ Jeśli chcesz usunąć stronę ze swojej listy obserwowanych, kliknij na zakład
 'watchlist-show-minor' => 'pokaż drobne zmiany',
 'watchlist-hide-minor' => 'ukryj drobne zmiany',
 
-# Displayed when you click the "watch" button and it's in the process of watching
+# Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Obserwuję...',
 'unwatching' => 'Przestaję obserwować...',
 
@@ -2255,17 +2256,13 @@ Program zwrócił komunikat: $1',
 'confirmemail_loggedin'    => 'Twój adres email został zweryfikowany.',
 'confirmemail_error'       => 'Pojawiły się błędy przy zapisywaniu potwierdzenia.',
 'confirmemail_subject'     => '{{SITENAME}} - potwierdzenie adresu e-mail',
-'confirmemail_body'        => 'Ktoś łącząc się z komputera o adresie IP $1 zarejestrował w {{GRAMMAR:MS.lp|{{SITENAME}}}}
-konto "$2" podając niniejszy adres e-mail.
+'confirmemail_body'        => 'Ktoś łącząc się z komputera o adresie IP $1 zarejestrował w {{GRAMMAR:MS.lp|{{SITENAME}}}} konto "$2" podając niniejszy adres e-mail.
 
-Aby potwierdzić, że to Ty zarejestrowałeś/aś to konto oraz aby włączyć
-wszystkie funkcje korzystające z poczty elektronicznej, otwórz w swojej
-przeglądarce ten link:
+Aby potwierdzić, że to Ty zarejestrowałeś/aś to konto oraz aby włączyć wszystkie funkcje korzystające z poczty elektronicznej, otwórz w swojej przeglądarce ten link:
 
 $3
 
-Jeśli to *nie* Ty zarejestrowałeś/aś to konto, otwórz w swojej
-przeglądarce poniższy link, aby anulować potwierdzenie adresu e-mail:
+Jeśli to *nie* Ty zarejestrowałeś/aś to konto, otwórz w swojej przeglądarce poniższy link, aby anulować potwierdzenie adresu e-mail:
 
 $5
 

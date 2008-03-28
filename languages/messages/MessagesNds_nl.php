@@ -1380,7 +1380,7 @@ A-j disse ofbeelding in volle grootte hemmen voeg 't dan toe, wiezig aanders de 
 'watchlist-show-minor' => 'Teun kleine wiezigingen',
 'watchlist-hide-minor' => 'Verbarg kleine wiezigingen',
 
-# Displayed when you click the "watch" button and it's in the process of watching
+# Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Volg...',
 'unwatching' => 'Neet volgen...',
 

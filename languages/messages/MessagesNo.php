@@ -1394,7 +1394,7 @@ Hvis du senere vil fjerne siden fra overvåkningslisten, klikk «Avslutt overvå
 'watchlist-show-minor' => 'Vis mindre redigeringer',
 'watchlist-hide-minor' => 'Skjul mindre redigeringer',
 
-# Displayed when you click the "watch" button and it's in the process of watching
+# Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Overvåker…',
 'unwatching' => 'Fjerner fra overvåkningsliste…',
 
@@ -1693,20 +1693,17 @@ Bekreft at du har til hensikt å gjøre dette.',
 # Move page
 'move-page'               => 'Flytt $1',
 'move-page-legend'        => 'Flytt side',
-'movepagetext'            => "Når du bruker skjemaet under, vil du få omdøpt en
-side og flyttet hele historikken til det nye navnet.
+'movepagetext'            => "Når du bruker skjemaet under, vil du få omdøpt en side og flyttet hele historikken til det nye navnet.
 Den gamle tittelen blir en omdirigeringsside til den nye tittelen.
-Lenker til den gamle tittelen blir ikke endret. Eventuelle omdirigeringer blir brutt.
+Lenker til den gamle tittelen blir ikke endret.
+Eventuelle omdirigeringer blir brutt.
 
-Legg merke til at siden '''ikke''' kan flyttes hvis det allerede finnes en side
-med den nye tittelen, med mindre den siden er tom eller er en omdirigering
-uten noen historikk. Det betyr at du kan flytte en side tilbake dit
-den kom fra hvis du gjør en feil.
+Legg merke til at siden '''ikke''' kan flyttes hvis det allerede finnes en side med den nye tittelen, med mindre den siden er tom eller er en omdirigering uten noen historikk.
+Det betyr at du kan flytte en side tilbake dit den kom fra hvis du gjør en feil.
 
 <b>ADVARSEL!</b>
 Dette kan være en drastisk og uventet endring for en populær side;
-vær sikker på at du forstår konsekvensene av dette før du
-fortsetter.",
+vær sikker på at du forstår konsekvensene av dette før du fortsetter.",
 'movepagetalktext'        => "Den tilhørende diskusjonssiden, hvis den finnes, vil automatisk bli flyttet med siden '''med mindre:'''
 *Det allerede finnes en diskusjonsside som ikke er tom med det nye navnet, eller
 *Du fjerner markeringen i boksen nedenunder.
