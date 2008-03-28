@@ -486,7 +486,7 @@ XHTML id names.
 'tog-previewontop'            => 'Show preview before edit box',
 'tog-previewonfirst'          => 'Show preview on first edit',
 'tog-nocache'                 => 'Disable page caching',
-'tog-enotifwatchlistpages'    => "E-mail me when a page I'm watching is changed",
+'tog-enotifwatchlistpages'    => 'E-mail me when a page on my watchlist is changed',
 'tog-enotifusertalkpages'     => 'E-mail me when my user talk page is changed',
 'tog-enotifminoredits'        => 'E-mail me also for minor edits of pages',
 'tog-enotifrevealaddr'        => 'Reveal my e-mail address in notification e-mails',
@@ -801,7 +801,8 @@ Please report this to an administrator, making note of the URL.',
 'unexpected'           => 'Unexpected value: "$1"="$2".',
 'formerror'            => 'Error: could not submit form',
 'badarticleerror'      => 'This action cannot be performed on this page.',
-'cannotdelete'         => 'Could not delete the page or file specified. It may have already been deleted by someone else.',
+'cannotdelete'         => 'Could not delete the page or file specified.
+It may have already been deleted by someone else.',
 'badtitle'             => 'Bad title',
 'badtitletext'         => 'The requested page title was invalid, empty, or an incorrectly linked inter-language or inter-wiki title.
 It may contain one or more characters which cannot be used in titles.',
@@ -1020,7 +1021,8 @@ You may contact $1 or one of the other [[{{MediaWiki:Grouppage-sysop}}|administr
 
 Note that you may not use the "e-mail this user" feature unless you have a valid e-mail address registered in your [[Special:Preferences|user preferences]] and you have not been blocked from using it.
 
-Your block ID is $5. Please include this ID in any queries you make.',
+Your block ID is $5.
+Please include this ID in any queries you make.',
 'blockednoreason'           => 'no reason given',
 'blockedoriginalsource'     => "The source of '''$1''' is shown below:",
 'blockededitsource'         => "The text of '''your edits''' to '''$1''' is shown below:",
@@ -1034,8 +1036,8 @@ Your block ID is $5. Please include this ID in any queries you make.',
 'confirmedittext'           => 'You must confirm your e-mail address before editing pages.
 Please set and validate your e-mail address through your [[Special:Preferences|user preferences]].',
 'nosuchsectiontitle'        => 'No such section',
-'nosuchsectiontext'         => "You tried to edit a section that does not exist.
-Since there is no section $1, there's no place to save your edit.",
+'nosuchsectiontext'         => 'You tried to edit a section that does not exist.
+Since there is no section $1, there is no place to save your edit.',
 'loginreqtitle'             => 'Login Required',
 'loginreqlink'              => 'log in',
 'loginreqpagetext'          => 'You must $1 to view other pages.',
@@ -1284,7 +1286,8 @@ You can [[:\$1|create this page]].",
 'powersearch'           => 'Advanced search',
 'powersearch-legend'    => 'Advanced search',
 'powersearchtext'       => 'Search in namespaces:<br />$1<br />$2 List redirects<br />Search for $3 $9',
-'searchdisabled'        => '{{SITENAME}} search is disabled. You can search via Google in the meantime.
+'searchdisabled'        => '{{SITENAME}} search is disabled.
+You can search via Google in the meantime.
 Note that their indexes of {{SITENAME}} content may be out of date.',
 'googlesearch'          => '<form method="get" action="http://www.google.com/search" id="googlesearch">
     <input type="hidden" name="domains" value="{{SERVER}}" />
@@ -1649,8 +1652,7 @@ A click on a column header changes the sorting.',
 Please revert to an older version first.',
 'filedelete-otherreason'      => 'Other/additional reason:',
 'filedelete-reason-otherlist' => 'Other reason',
-'filedelete-reason-dropdown'  => '
-*Common delete reasons
+'filedelete-reason-dropdown'  => '*Common delete reasons
 ** Copyright violation
 ** Duplicated file',
 'filedelete-edit-reasonlist'  => 'Edit delete reasons',
@@ -1909,7 +1911,7 @@ Future changes to this page and its associated talk page will be listed there, a
 'watchlist-show-minor' => 'Show minor edits',
 'watchlist-hide-minor' => 'Hide minor edits',
 
-# Displayed when you click the "watch" button and it's in the process of watching
+# Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Watching...',
 'unwatching' => 'Unwatching...',
 
@@ -1972,8 +1974,7 @@ See $2 for a record of recent deletions.',
 'deletecomment'               => 'Reason for deletion:',
 'deleteotherreason'           => 'Other/additional reason:',
 'deletereasonotherlist'       => 'Other reason',
-'deletereason-dropdown'       => '
-*Common delete reasons
+'deletereason-dropdown'       => '*Common delete reasons
 ** Author request
 ** Copyright violation
 ** Vandalism',
@@ -2063,7 +2064,8 @@ If a new page with the same name has been created since the deletion, the restor
 Also note that restrictions on file revisions are lost upon restoration',
 'undeleterevdel'               => 'Undeletion will not be performed if it will result in the top page or file revision being partially deleted.
 In such cases, you must uncheck or unhide the newest deleted revision.',
-'undeletehistorynoadmin'       => 'This page has been deleted. The reason for deletion is shown in the summary below, along with details of the users who had edited this page before deletion.
+'undeletehistorynoadmin'       => 'This page has been deleted.
+The reason for deletion is shown in the summary below, along with details of the users who had edited this page before deletion.
 The actual text of these deleted revisions is only available to administrators.',
 'undelete-revision'            => 'Deleted revision of $1 (as of $2) by $3:',
 'undeleterevision-missing'     => 'Invalid or missing revision.
