@@ -830,8 +830,8 @@ $2',
 'namespaceprotected'   => "You do not have permission to edit pages in the '''$1''' namespace.",
 'customcssjsprotected' => "You do not have permission to edit this page, because it contains another user's personal settings.",
 'ns-specialprotected'  => 'Pages in the {{ns:special}} namespace cannot be edited.',
-'titleprotected'       => 'This title has been protected from creation by [[User:$1|$1]].
-The reason given is <i>$2</i>.',
+'titleprotected'       => "This title has been protected from creation by [[User:$1|$1]].
+The reason given is ''$2''.",
 
 # Login and logout pages
 'logouttitle'                => 'User logout',
@@ -1080,11 +1080,11 @@ This sometimes happens when you are using a buggy web-based anonymous proxy serv
 'editingsection'            => 'Editing $1 (section)',
 'editingcomment'            => 'Editing $1 (comment)',
 'editconflict'              => 'Edit conflict: $1',
-'explainconflict'           => 'Someone else has changed this page since you started editing it.
+'explainconflict'           => "Someone else has changed this page since you started editing it.
 The upper text area contains the page text as it currently exists.
 Your changes are shown in the lower text area.
 You will have to merge your changes into the existing text.
-<b>Only</b> the text in the upper text area will be saved when you press "Save page".<br />',
+'''Only''' the text in the upper text area will be saved when you press \"Save page\".",
 'yourtext'                  => 'Your text',
 'storedversion'             => 'Stored version',
 'nonunicodebrowser'         => '<strong>WARNING: Your browser is not unicode compliant.
@@ -1136,7 +1136,7 @@ The deletion log for this page is provided here for convenience:",
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Cannot create account',
-'cantcreateaccount-text' => "Account creation from this IP address (<b>$1</b>) has been blocked by [[User:$3|$3]].
+'cantcreateaccount-text' => "Account creation from this IP address ('''$1''') has been blocked by [[User:$3|$3]].
 
 The reason given by $3 is ''$2''",
 
@@ -1427,7 +1427,7 @@ You can deselect a group with CTRL + Left Click',
 'recentchangestext'                 => 'Track the most recent changes to the wiki on this page.',
 'recentchanges-feed-description'    => 'Track the most recent changes to the wiki in this feed.',
 'rcnote'                            => "Below {{PLURAL:$1|is '''1''' change|are the last '''$1''' changes}} in the last {{PLURAL:$2|day|'''$2''' days}}, as of $3.",
-'rcnotefrom'                        => 'Below are the changes since <b>$2</b> (up to <b>$1</b> shown).',
+'rcnotefrom'                        => "Below are the changes since '''$2''' (up to '''$1''' shown).",
 'rclistfrom'                        => 'Show new changes starting from $1',
 'rcshowhideminor'                   => '$1 minor edits',
 'rcshowhidebots'                    => '$1 bots',
@@ -1800,7 +1800,7 @@ A page is treated as disambiguation page if it uses a template which is linked f
 'ancientpages-summary'            => '', # only translate this message to other languages if you have to change it
 'move'                            => 'Move',
 'movethispage'                    => 'Move this page',
-'unusedimagestext'                => '<p>Please note that other web sites may link to a file with a direct URL, and so may still be listed here despite being in active use.</p>',
+'unusedimagestext'                => 'Please note that other web sites may link to a file with a direct URL, and so may still be listed here despite being in active use.',
 'unusedcategoriestext'            => 'The following category pages exist although no other page or category make use of them.',
 'notargettitle'                   => 'No target',
 'notargettext'                    => 'You have not specified a target page or user to perform this function on.',
@@ -2109,9 +2109,6 @@ $1',
 'mycontris'     => 'My contributions',
 'contribsub2'   => 'For $1 ($2)',
 'nocontribs'    => 'No changes were found matching these criteria.',
-'ucnote'        => "Below are this user's last <b>$1</b> changes in the last <b>$2</b> days.",
-'uclinks'       => 'View the last $1 changes;
-view the last $2 days.',
 'uctop'         => '(top)',
 'month'         => 'From month (and earlier):',
 'year'          => 'From year (and earlier):',
@@ -2265,7 +2262,7 @@ You are responsible for making sure that links continue to point where they are 
 
 Note that the page will '''not''' be moved if there is already a page at the new title, unless it is empty or a redirect and has no past edit history. This means that you can rename a page back to where it was just renamed from if you make a mistake, and you cannot overwrite an existing page.
 
-<b>WARNING!</b>
+'''WARNING!'''
 This can be a drastic and unexpected change for a popular page;
 please be sure you understand the consequences of this before proceeding.",
 'movepagetalktext'        => "The associated talk page will be automatically moved along with it '''unless:'''

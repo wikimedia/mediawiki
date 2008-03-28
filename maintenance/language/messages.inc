@@ -1386,8 +1386,6 @@ $wgMessageStructure = array(
 		'mycontris',
 		'contribsub2',
 		'nocontribs',
-		'ucnote',
-		'uclinks',
 		'uctop',
 		'month',
 		'year',
