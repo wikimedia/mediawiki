@@ -142,7 +142,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 13543) Updated FAQ link in the installer sidebar
 * (bug 13540) Date format in confirmation e-mail now matches message language
 * (bug 13554) PHP Notice in old pre-processor when list item is empty.
-
+* (bug 13556) Don't show a blank form if no image is attached in Special:Upload
 
 === API changes in 1.13 ===
 
