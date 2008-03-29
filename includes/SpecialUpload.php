@@ -280,7 +280,7 @@ class UploadForm {
 	 	$details = null;
 	 	$value = null;
 	 	$value = $this->internalProcessUpload( $details );
-		
+
 	 	switch($value) {
 			case self::SUCCESS:
 				$wgOut->redirect( $this->mLocalFile->getTitle()->getFullURL() );
@@ -376,16 +376,16 @@ class UploadForm {
 			return self::BEFORE_PROCESSING;
 		}
 
-		/* Check for curl error */
-		if( $this->mCurlError ) {
-			return self::BEFORE_PROCESSING;
-		}
-
 		/**
 		 * If there was no filename or a zero size given, give up quick.
 		 */
 		if( trim( $this->mSrcName ) == '' || empty( $this->mFileSize ) ) {
 			return self::EMPTY_FILE;
+		}
+
+		/* Check for curl error */
+		if( $this->mCurlError ) {
+			return self::BEFORE_PROCESSING;
 		}
 
 		# Chop off any directories in the given filename
@@ -998,7 +998,7 @@ wgUploadAutoFill = {$autofill};
 				$val2 = $val;
 		}
 		$val2 = $wgAllowCopyUploads ? min( $wgMaxUploadSize, $val2 ) : $val2;
-		$maxUploadSize = wfMsgExt( 'upload-maxfilesize', array( 'parseinline', 'escape' ), $wgLang->formatSize( $val2 ) );
+		$maxUploadSize = wfMsgExt( 'upload-maxfilesize', array( 'parseinline', 'escapenoentities' ), $wgLang->formatSize( $val2 ) );
 
 		$sourcefilename = wfMsgExt( 'sourcefilename', 'escapenoentities' );
 		$destfilename = wfMsgExt( 'destfilename', 'escapenoentities' );
