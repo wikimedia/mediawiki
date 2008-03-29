@@ -92,11 +92,6 @@ class LocalRepo extends FSRepo {
 	}
 
 	function checkRedirect( $title ) {
-		global $wgFileRedirects;
-		if( !$wgFileRedirects ) {
-			return false;
-		}
-
 		if( $title instanceof Title && $title->getNamespace() == NS_MEDIA ) {
 			$title = Title::makeTitle( NS_IMAGE, $title->getText() );
 		}
