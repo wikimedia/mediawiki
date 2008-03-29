@@ -18,6 +18,7 @@
  * @author M.M.S.
  * @author Grillo
  * @author Lokal Profil
+ * @author Micke
  */
 
 $skinNames = array(
@@ -178,7 +179,7 @@ $messages = array(
 'tog-previewontop'            => 'Visa förhandsgranskningen ovanför redigeringsrutan',
 'tog-previewonfirst'          => 'Visa förhandsgranskning när redigering påbörjas',
 'tog-nocache'                 => 'Stäng av cachning av sidor',
-'tog-enotifwatchlistpages'    => 'Skicka e-post till mig när någon övervakad sida ändras',
+'tog-enotifwatchlistpages'    => 'Skicka e-post till mig när en sida på övervakningslistan ändras',
 'tog-enotifusertalkpages'     => 'Skicka e-post till mig när något händer på min diskussionssida',
 'tog-enotifminoredits'        => 'Skicka mig e-post även för små redigeringar',
 'tog-enotifrevealaddr'        => 'Visa min e-postadress i e-post från systemet',
@@ -496,7 +497,8 @@ $2',
 'namespaceprotected'   => "Du har inte behörighet att redigera sidor i namrymden '''$1'''.",
 'customcssjsprotected' => 'Du har inte behörighet att redigera den här sidan eftersom den innehåller en annan användares personliga inställningar.',
 'ns-specialprotected'  => 'Sidor i namnrymden {{ns:special}} kan inte redigeras.',
-'titleprotected'       => 'Den här sidtiteln har skyddats från att skapas. [[User:$1|$1]] skyddade sidan med motiveringen <i>$2</i>.',
+'titleprotected'       => "Den här sidtiteln har skyddats från att skapas.
+[[User:$1|$1]] skyddade sidan med motiveringen ''$2''.",
 
 # Login and logout pages
 'logouttitle'                => 'Användarutloggning',
@@ -1314,7 +1316,7 @@ Sedan denna wiki startades har sidor visats totalt <b>$3</b> {{PLURAL:$3|gång|g
 'ancientpages'            => 'Äldsta sidorna',
 'move'                    => 'Flytta',
 'movethispage'            => 'Flytta denna sida',
-'unusedimagestext'        => '<p>Lägg märke till att andra webbplatser kan länka till filer med en direkt URL. Filer kan därför  användas trots att de finns i den här listan.</p>',
+'unusedimagestext'        => 'Lägg märke till att andra webbplatser kan länka till filer med en direkt URL. Filer kan därför  användas trots att de finns i den här listan.',
 'unusedcategoriestext'    => 'Följande kategorier finns men innehåller inga sidor eller underkategorier.',
 'notargettitle'           => 'Inget mål',
 'notargettext'            => 'Du har inte angivit någon sida eller användare att utföra denna funktion på.',
@@ -1595,8 +1597,6 @@ $1',
 'mycontris'     => 'Mina bidrag',
 'contribsub2'   => 'För $1 ($2)',
 'nocontribs'    => 'Inga ändringar hittades, som motsvarar dessa kriterier',
-'ucnote'        => 'Nedan visas denna användarens senaste <b>$1</b> ändringar, under de senaste <b>$2</b> dagarna.',
-'uclinks'       => 'Visa de senaste $1 ändringarna. Visa de senaste $2 dagarna.',
 'uctop'         => ' (senaste)',
 'month'         => 'Månad:',
 'year'          => 'År:',
@@ -1724,11 +1724,17 @@ Bekräfta att du verkligen vill göra detta, och att du kommer att låsa upp dat
 # Move page
 'move-page'               => 'Flytta $1',
 'move-page-legend'        => 'Flytta sida',
-'movepagetext'            => "Med hjälp av formuläret härunder kan du byta namn på en sida, och flytta hela dess historik till ett nytt namn. Den gamla sidtiteln kommer att göras om till en omdirigering till den nya titeln; kontrollera därför om du skapar några dubbla eller trasiga omdirigeringar. Du bör också se till att länkar fortsätter att peka dit de ska.
+'movepagetext'            => "Med hjälp av formuläret härunder kan du byta namn på en sida, och flytta hela dess historik till ett nytt namn.
+Den gamla sidtiteln kommer att göras om till en omdirigering till den nya titeln;
+kontrollera därför om du skapar några dubbla eller trasiga omdirigeringar.
+Du bör också se till att länkar fortsätter att peka dit de ska.
 
-Notera att sidan '''inte''' kan flyttas om det redan finns en sida under den nya sidtiteln, såvida inte den sidan är tom eller en omdirigiring till den gamla titeln och saknar annan versionshistorik. Det innebär att du kan flytta tillbaks en sida du just flyttat om du råkar göra fel.
+Notera att sidan '''inte''' kan flyttas om det redan finns en sida under den nya sidtiteln, såvida inte den sidan är tom eller en omdirigiring till den gamla titeln och saknar annan versionshistorik.
+Det innebär att du kan flytta tillbaks en sida du just flyttat om du råkar göra fel.
 
-'''VARNING!''' Att flytta en populär sida kan vara en drastisk och oväntad ändring; därför bör du vara säker på att du förstår konsekvenserna innan du fortsätter med flytten.",
+'''VARNING!'''
+Att flytta en populär sida kan vara en drastisk och oväntad ändring;
+därför bör du vara säker på att du förstår konsekvenserna innan du fortsätter med flytten.",
 'movepagetalktext'        => "Diskussionssidan kommer att även den automatiskt flyttas '''om inte''':
 *Det redan finns en diskussionssida som inte är tom med det nya namnet, eller
 *Du avmarkerar rutan nedan.",

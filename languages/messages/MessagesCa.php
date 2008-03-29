@@ -175,7 +175,7 @@ $messages = array(
 'tog-previewontop'            => "Mostra una previsualització abans del quadre d'edició",
 'tog-previewonfirst'          => 'Mostra una previsualització en la primera edició',
 'tog-nocache'                 => 'Inhabilita la memòria cau de les pàgines',
-'tog-enotifwatchlistpages'    => "Notifica'm per correu electrònic dels canvis a les pàgines que vigili",
+'tog-enotifwatchlistpages'    => "A les preferències de l'usuari",
 'tog-enotifusertalkpages'     => "Notifica per correu quan hi hagi modificacions a la pàgina de discussió del meu compte d'usuari",
 'tog-enotifminoredits'        => "Notifica per correu també en casos d'edicions menors",
 'tog-enotifrevealaddr'        => "Mostra la meua adreça electrònica en els missatges d'avís per correu",
@@ -500,7 +500,8 @@ $2",
 'namespaceprotected'   => "No teniu permís per a editar pàgines en l'espai de noms '''$1'''.",
 'customcssjsprotected' => "No teniu permís per a editar aquesta pàgina, perquè conté paràmetres personals d'un altre usuari.",
 'ns-specialprotected'  => "No poden editar-se les pàgines en l'espai de noms {{ns:special}}.",
-'titleprotected'       => "La creació d'aquesta pàgina està protegida per [[User:$1|$1]]. Els seus motius han estat: «$2».",
+'titleprotected'       => "La creació d'aquesta pàgina està protegida per [[User:$1|$1]].
+Els seus motius han estat: «''$2''».",
 
 # Login and logout pages
 'logouttitle'                => 'Fi de la sessió',
@@ -713,9 +714,10 @@ Si us plau, intenteu-lo una altra vegada. Si continua havent-hi problemes, eixiu
 'editingcomment'            => "S'està editant $1 (comentari)",
 'editconflict'              => "Conflicte d'edició: $1",
 'explainconflict'           => "Algú més ha canviat aquesta pàgina des que l'heu editada.
-L'àrea de text superior conté el text de la pàgina com existeix actualment. Els vostres canvis es mostren en l'àrea de text inferior.
+L'àrea de text superior conté el text de la pàgina com existeix actualment.
+Els vostres canvis es mostren en l'àrea de text inferior.
 Haureu de fusionar els vostres canvis en el text existent.
-<strong>Només</strong> el text de l'àrea superior es desarà quan premeu el botó «Desa la pàgina».<br />",
+'''Només''' el text de l'àrea superior es desarà quan premeu el botó «Desa la pàgina».",
 'yourtext'                  => 'El vostre text',
 'storedversion'             => 'Versió emmagatzemada',
 'nonunicodebrowser'         => "<strong>ALERTA: El vostre navegador no és compatible amb unicode, si us plau canvieu-lo abans d'editar cap pàgina: els caràcters que no són ASCII apareixeran en el quadre d'edició com a codis hexadecimals.</strong>",
@@ -762,7 +764,7 @@ A continuació s'ofereix el registre d'esborraments de la pàgina:",
 
 # Account creation failure
 'cantcreateaccounttitle' => 'No es pot crear el compte',
-'cantcreateaccount-text' => "[[User:$3|$3]] ha bloquejat la creació de comptes des d'aquesta adreça IP (<b>$1</b>).
+'cantcreateaccount-text' => "[[User:$3|$3]] ha bloquejat la creació de comptes des d'aquesta adreça IP ('''$1''').
 
 El motiu donat per $3 és ''$2''",
 
@@ -1330,7 +1332,7 @@ segon redireccionament, la qual cosa dóna normalment l\'article "real", al que 
 'ancientpages'            => 'Pàgines més antigues',
 'move'                    => 'Reanomena',
 'movethispage'            => 'Trasllada la pàgina',
-'unusedimagestext'        => '<p>Tingueu en compte que altres llocs web poden enllaçar un fitxer amb un URL directe i estar llistat ací tot i estar en ús actiu.</p>',
+'unusedimagestext'        => 'Tingueu en compte que altres llocs web poden enllaçar un fitxer amb un URL directe i estar llistat ací tot i estar en ús actiu.',
 'unusedcategoriestext'    => 'Les pàgines de categoria següents existeixen encara que cap altra pàgina o categoria les utilitza.',
 'notargettitle'           => 'No hi ha pàgina en blanc',
 'notargettext'            => 'No heu especificat a quina pàgina dur a terme aquesta funció.',
@@ -1632,8 +1634,6 @@ $1",
 'mycontris'     => 'Contribucions',
 'contribsub2'   => 'Per $1 ($2)',
 'nocontribs'    => "No s'ha trobat canvis que encaixessin amb aquests criteris.",
-'ucnote'        => "A sota hi ha els darrers <b>$1</b> canvis d'aquest usuari en els darrers <b>$2</b> dies.",
-'uclinks'       => 'Mostra els darrers $1 canvis; mostra els darrers $2 dies.',
 'uctop'         => '(actual)',
 'month'         => 'Mes (i anteriors):',
 'year'          => 'Any (i anteriors):',
@@ -1773,18 +1773,18 @@ Recordeu-vos de [[Special:Unlockdb|treure el bloqueig]] quan hàgiu acabat el ma
 # Move page
 'move-page'               => 'Mou $1',
 'move-page-legend'        => 'Reanomena la pàgina',
-'movepagetext'            => "Emprant el següent formulari reanomenareu una pàgina,
-movent tot el seu historial al nou nom.
+'movepagetext'            => "Emprant el següent formulari reanomenareu una pàgina, movent tot el seu historial al nou nom.
 El títol anterior es convertirà en un redireccionament al nou títol.
-Els enllaços a l'antic títol de la pàgina no es canviaran. Assegureu-vos de verificar que no deixeu redireccions dobles o trencades.
-
+Els enllaços a l'antic títol de la pàgina no es canviaran.
+Assegureu-vos de verificar que no deixeu redireccions dobles o trencades.
 Sou el responsable de fer que els enllaços segueixin apuntant on se suposa que ho facin.
 
 Tingueu en compte que la pàgina '''no''' serà traslladada si ja existeix una pàgina amb el títol nou, a no ser que sigui una pàgina buida o un ''redireccionament'' sense historial.
 Això significa que podeu reanomenar de nou una pàgina al seu títol original si cometeu un error, i que no podeu sobreescriure una pàgina existent.
 
-<b>ADVERTÈNCIA!</b>
-Això pot ser un canvi dràstic i inesperat per a una pàgina popular; assegureu-vos d'entendre les conseqüències que comporta abans de seguir endavant.",
+'''ADVERTÈNCIA!'''
+Això pot ser un canvi dràstic i inesperat per a una pàgina popular;
+assegureu-vos d'entendre les conseqüències que comporta abans de seguir endavant.",
 'movepagetalktext'        => "La pàgina de discussió associada, si existeix, serà traslladada automàticament '''a menys que:'''
 *Ja existeixi una pàgina de discussió no buida amb el nom nou, o
 *Hàgiu desseleccionat la opció de sota.

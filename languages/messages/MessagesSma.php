@@ -379,7 +379,7 @@ Dov dorje värrhtoedimmie gååvnese bielieh, jallh [[Special:Userlogin|logge s�
 'recentchanges'                  => 'Männgan värrhtoedimmieh',
 'recentchanges-feed-description' => 'Dåeriedidh männgan värrhtoedimmie sïjse wiki meatan dïhte feed.',
 'rcnote'                         => "Vuelen vuesehte {{PLURAL:$1|dïhte männgan värrhtoedimmie|dah männgan '''$1''' värrhtoedimmieh}} nuelesne dah {{PLURAL:$2|männgan biejjie|männgan '''$2''' biejjieh}}, ihke $3.",
-'rcnotefrom'                     => 'Vuelelen vuesehte dah männgan <b>$1</b> värrhtoedimmieh männgan <b>$2</b>.',
+'rcnotefrom'                     => "Vuelelen vuesehte dah männgan '''$1''' värrhtoedimmieh männgan '''$2'''.",
 'rclistfrom'                     => 'Vuesehte orre värrhtoedimmieh aelkedh raejeste $1',
 'rcshowhideminor'                => '$1 ohtje värrhtoedimmie',
 'rcshowhidebots'                 => '$1 jïjtjesvïhtjijeh',
@@ -407,16 +407,16 @@ Dov dorje värrhtoedimmie gååvnese bielieh, jallh [[Special:Userlogin|logge s�
 'uploadbtn'        => 'Sadde baalka',
 'uploadlogpage'    => 'Sadde logge',
 'filename'         => 'Guvvienomme',
-'filesource'       => 'Gaaltjie:',
+'filesource'       => 'Gaaltjie',
 'fileexists-thumb' => "<center>'''Lea-guvvie'''</center>",
 'savefile'         => 'Spååredh guvvie',
 'uploadedimage'    => 'sadde "[[$1]]"',
 'uploadvirus'      => 'Guvvie tjeekehdidh viirus! Bïevnesh: $1',
-'sourcefilename'   => 'Gaaltjie guvvienomme:',
+'sourcefilename'   => 'Gaaltjie guvvienomme',
 
 'upload-file-error' => 'Sjisjnjie båajhtode',
 
-'license' => 'Liseense:',
+'license' => 'Liseense',
 
 # Special:Imagelist
 'imagelist_search_for' => 'Ohtsedh ihke guvvie nomme:',
@@ -568,7 +568,7 @@ Dov dorje värrhtoedimmie gååvnese bielieh, jallh [[Special:Userlogin|logge s�
 'watchlist-hide-own'   => 'Gaptjedh mov värrhtoedimmieh',
 'watchlist-hide-minor' => 'Gaptjedh smaave värrhtoedimmieh',
 
-# Displayed when you click the "watch" button and it's in the process of watching
+# Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Sïektjeminie...',
 'unwatching' => 'Ov-sïektjedh...',
 

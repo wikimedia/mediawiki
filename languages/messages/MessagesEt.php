@@ -858,9 +858,7 @@ Administraatori staatuses kasutajaid: <b>$2</b> (vt $3).',
 'ancientpages'            => 'Kõige vanemad artiklid',
 'move'                    => 'Teisalda',
 'movethispage'            => 'Muuda pealkirja',
-'unusedimagestext'        => '<p>Pange palun tähele, et teised
-veebisaidid võivad linkida pildile otselingiga ja seega võivad
-siin toodud pildid olla ikkagi aktiivses kasutuses.',
+'unusedimagestext'        => 'Pange palun tähele, et teised veebisaidid võivad linkida pildile otselingiga ja seega võivad siin toodud pildid olla ikkagi aktiivses kasutuses.',
 'unusedcategoriestext'    => 'Need kategooriad pole ühesgi artiklis või teises kategoorias kasutuses.',
 'notargettitle'           => 'Puudub sihtlehekülg',
 'notargettext'            => 'Sa ei ole esitanud sihtlehekülge ega kasutajat, kelle kallal seda operatsiooni toime panna.',
@@ -1019,8 +1017,6 @@ versioonid varasema ajaloona. Kehtivat versiooni automaatselt välja ei vahetata
 'mycontris'     => 'Minu kaastöö',
 'contribsub2'   => 'Kasutaja "$1 ($2)" jaoks',
 'nocontribs'    => 'Antud kriteeriumile vastavaid muudatusi ei leidnud.',
-'ucnote'        => 'Esitatakse selle kasutaja tehtud viimased <b>$1</b> muudatust viimase <b>$2</b> päeva jooksul.',
-'uclinks'       => 'Näita viimast $1 muudatust; viimase $2 päeva jooksul.',
 'uctop'         => ' (üles)',
 
 # What links here
@@ -1083,11 +1079,18 @@ Kindlasti tuleb täita ka väli \"põhjus\", paigutades sinna näiteks viited ko
 
 # Move page
 'move-page-legend' => 'Teisalda artikkel',
-'movepagetext'     => "Allolevat vormi kasutades saate lehekülje ümber nimetada. Lehekülje ajalugu tõstetakse uue pealkirja alla automaatselt. Praeguse pealkirjaga leheküljest saab ümbersuunamisleht uuele leheküljele. Teistes artiklites olevaid linke praeguse nimega leheküljele automaatselt ei muudeta. Teie kohuseks on hoolitseda, et ei tekiks topeltümbersuunamisi ning et kõik jääks toimima nagu enne ümbernimetamist.
+'movepagetext'     => "Allolevat vormi kasutades saate lehekülje ümber nimetada.
+Lehekülje ajalugu tõstetakse uue pealkirja alla automaatselt.
+Praeguse pealkirjaga leheküljest saab ümbersuunamisleht uuele leheküljele.
+Teistes artiklites olevaid linke praeguse nimega leheküljele automaatselt ei muudeta.
+Teie kohuseks on hoolitseda, et ei tekiks topeltümbersuunamisi ning et kõik jääks toimima nagu enne ümbernimetamist.
 
-Lehekülge '''ei nimetata ümber''' juhul, kui uue nimega lehekülg on juba olemas. Erandiks on juhud, kui olemasolev lehekülg on tühi või ümbersuunamislehekülg ja sellel pole redigeerimisajalugu. See tähendab, et te ei saa kogemata üle kirjutada juba olemasolevat lehekülge, kuid saate ebaõnnestunud ümbernimetamise tagasi pöörata.
+Lehekülge '''ei nimetata ümber''' juhul, kui uue nimega lehekülg on juba olemas. Erandiks on juhud, kui olemasolev lehekülg on tühi või ümbersuunamislehekülg ja sellel pole redigeerimisajalugu.
+See tähendab, et te ei saa kogemata üle kirjutada juba olemasolevat lehekülge, kuid saate ebaõnnestunud ümbernimetamise tagasi pöörata.
 
-<strong>ETTEVAATUST!</strong> Võimalik, et kavatsete  teha ootamatut ning drastilist muudatust väga loetavasse artiklisse; enne muudatuse tegemist mõelge palun järele, mis võib olla selle tagajärjeks.",
+'''ETTEVAATUST!'''
+Võimalik, et kavatsete teha ootamatut ning drastilist muudatust väga loetavasse artiklisse;
+enne muudatuse tegemist mõelge palun järele, mis võib olla selle tagajärjeks.",
 'movepagetalktext' => "Koos artiklileheküljega teisaldatakse automaatselt ka arutelulehekülg, '''välja arvatud juhtudel, kui:'''
 *liigutate lehekülge ühest nimeruumist teise,
 *uue nime all on juba olemas mittetühi arutelulehekülg või

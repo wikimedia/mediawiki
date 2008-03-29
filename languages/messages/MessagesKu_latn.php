@@ -380,7 +380,7 @@ $2
 'namespaceprotected'   => "Qebûlkirinê te tune, ku tu vê rûpelê di namespace'a $1 da biguherînê.",
 'customcssjsprotected' => 'Qebûlkirinên te tune ne, tu nikanê vê rûpelê biguherînê, ji ber ku di vir da tercihên bikarhênerekî din hene.',
 'ns-specialprotected'  => "Rûpel di namespace'a {{ns:special}} nikanin werin guherandin.",
-'titleprotected'       => '<div style="background-color: #eee; border: 3px solid red; margin: 0.5em; padding: 0.5em;" class="plainlinks"><p>Rûpelek bi vî navî nikane were çêkirin. Ev astengkirina ji [[{{ns:user}}:$1|$1]] bi sedemê <i>$2</i> hate çêkirin.</p></div>',
+'titleprotected'       => "Rûpelek bi vî navî nikane were çêkirin. Ev astengkirina ji [[User:$1|$1]] bi sedemê ''$2'' hate çêkirin.",
 
 # Login and logout pages
 'logouttitle'                => 'Derketina bikarhêner',
@@ -582,10 +582,11 @@ Eger tu bi şaştî hatî, bizivire rûpela berê.",
 'editingsection'            => 'Tê guherandin: $1 (beş)',
 'editingcomment'            => '$1 (şîrove) tê guherandin.',
 'editconflict'              => 'Têkçûna guherandinan: $1',
-'explainconflict'           => 'Ji dema te dest bi guherandinê kir heta niha kesekê/î din ev rûpel guherand.
-
-Jor guhartoya heyî tê dîtîn. Guherandinên te jêr tên nîşan dan. Divê tû wan bikî yek. Heke niha tomar bikî, <b>bi tene</b> nivîsara qutiya jor wê bê tomarkirin.
-<br />',
+'explainconflict'           => "Ji dema te dest bi guherandinê kir heta niha kesekê/î din ev rûpel guherand.
+Jor guhartoya heyî tê dîtîn.
+Guherandinên te jêr tên nîşan dan.
+Divê tû wan bikî yek.
+Heke niha tomar bikî, '''bi tene''' nivîsara qutiya jor wê bê tomarkirin.",
 'yourtext'                  => 'Nivîsara te',
 'storedversion'             => 'Versiyona qeydkirî',
 'editingold'                => '<strong>HÎŞYAR: Tu ser revîsyoneke kevn a vê rûpelê dixebitî.
@@ -616,7 +617,7 @@ Zanibe ku nuhçêkirinê vê rûpelê hêja ye ya na.
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Account nikanî hatiba çêkirin',
-'cantcreateaccount-text' => "Çêkirinê account'an ji vê IP'yê (<b>$1</b>) hatîye qedexekirin ji [[User:$3|$3]].
+'cantcreateaccount-text' => "Çêkirinê account'an ji vê IP'yê ('''$1''') hatîye qedexekirin ji [[User:$3|$3]].
 
 Sedemê qedexekirinê ji $3 ev e: ''$2''",
 
@@ -1229,7 +1230,6 @@ Ji bo jêbirinan û çêkirinên nuh ra, xêra xwe di [[Special:Log/delete|reşa
 'contributions' => 'Beşdariyên vê bikarhêner',
 'mycontris'     => 'Beşdariyên min',
 'contribsub2'   => 'Ji bo $1 ($2)',
-'uclinks'       => '$1 guherandinên dawî; $2 rojên dawî',
 'uctop'         => ' (ser)',
 'month'         => 'Ji mihê (û zûtir):',
 'year'          => 'Ji salê (û zûtir):',

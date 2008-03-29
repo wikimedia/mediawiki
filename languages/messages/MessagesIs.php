@@ -565,7 +565,8 @@ Spurn: $2',
 'namespaceprotected'   => "Þú hefur ekki leyfi til að breyta síðum í '''$1''' nafnrýminu.",
 'customcssjsprotected' => 'Þú hefur ekki leyfi til að breyta þessari síð því hún inniheldur notendastillingar fyrir annann notanda.',
 'ns-specialprotected'  => 'Ekki er hægt að breyta síðum í {{ns:special}} nafnrýminu.',
-'titleprotected'       => 'Ekki er hægt að búa til síðu með þessum titli því hann var verndaður af [[User:$1|$1]]. Ástæðan er <i>$2</i>.',
+'titleprotected'       => "Ekki er hægt að búa til síðu með þessum titli því hann var verndaður af [[User:$1|$1]].
+Ástæðan er ''$2''.",
 
 # Login and logout pages
 'logouttitle'                => 'Útskráning notanda',
@@ -791,7 +792,7 @@ Eyðingarskrá fyrir þessa síðu er útveguð hér til þæginda:",
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Ekki hægt að búa til aðgang',
-'cantcreateaccount-text' => "Aðgangsgerð fyrir þetta vistfang (<b>$1</b>) hefur verið bannað af [[User:$3|$3]].
+'cantcreateaccount-text' => "Aðgangsgerð fyrir þetta vistfang ('''$1''') hefur verið bannað af [[User:$3|$3]].
 
 Ástæðan sem $3 gaf fyrir því er ''$2''",
 
@@ -968,7 +969,7 @@ Prófaðu [[Special:Search|að leita á þessari wiki síðu]] að svipuðum sí
 'recentchangestext'                 => 'Hér geturðu fylgst með nýjustu breytingunum.',
 'recentchanges-feed-description'    => 'Hér er hægt að fylgjast með nýlegum breytingum á {{SITENAME}}.',
 'rcnote'                            => "Að neðan {{PLURAL:$1|er síðasta '''1''' breyting|eru síðustu '''$1''' breytingar}} {{PLURAL:$2|síðastliðinn dag|síðastliðna '''$2''' daga}}, frá $3.",
-'rcnotefrom'                        => 'Að neðan eru breytingar síðan <b>$2</b> (allt að <b>$1</b> sýndar).',
+'rcnotefrom'                        => "Að neðan eru breytingar síðan '''$2''' (allt að '''$1''' sýndar).",
 'rclistfrom'                        => 'Sýna breytingar frá og með $1',
 'rcshowhideminor'                   => '$1 minniháttar breytingar',
 'rcshowhidebots'                    => '$1 vélmenni',
@@ -1197,7 +1198,7 @@ Lengdin á [http://meta.wikimedia.org/wiki/Help:Job_queue vinnsluröðinni] er '
 'ancientpages'            => 'Elstu síður',
 'move'                    => 'Færa',
 'movethispage'            => 'Færa þessa síðu',
-'unusedimagestext'        => '<p>Vinsamlegast athugið að aðrar vefsíður gætu tengt beint í skrár héðan, svo að þær gætu komið fram á þessum lista þrátt fyrir að vera í notkun.</p>',
+'unusedimagestext'        => 'Vinsamlegast athugið að aðrar vefsíður gætu tengt beint í skrár héðan, svo að þær gætu komið fram á þessum lista þrátt fyrir að vera í notkun.',
 'unusedcategoriestext'    => 'Þessir flokkar eru til en engar síður eða flokkar eru í þeim.',
 'pager-newer-n'           => '{{PLURAL:$1|nýrri 1|nýrri $1}}',
 

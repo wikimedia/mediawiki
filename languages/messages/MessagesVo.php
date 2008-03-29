@@ -436,7 +436,8 @@ Beg: $2',
 'namespaceprotected'   => "No dalol redakön padis in nemaspad: '''$1'''.",
 'customcssjsprotected' => 'No dalol redakön padi at, bi keninükon parametis pösodik gebana votik.',
 'ns-specialprotected'  => 'Pads in nemaspad: {{ns:special}} no kanons paredakön.',
-'titleprotected'       => 'Jaf tiäda at penemögükon fa geban: [[User:$1|$1]]. Kod binon: <i>$2</i>.',
+'titleprotected'       => "Jaf tiäda at penemögükon fa geban: [[User:$1|$1]].
+Kod binon: ''$2''.",
 
 # Login and logout pages
 'logouttitle'                => 'Senunädön oki',
@@ -671,7 +672,7 @@ Jenotalised moükama pada at pajonon is as yuf.",
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Kal no kanon pajafön',
-'cantcreateaccount-text' => "Kalijaf se ladet-IP at (<b>$1</b>) peblokon fa geban: [[User:$3|$3]].
+'cantcreateaccount-text' => "Kalijaf se ladet-IP at ('''$1''') peblokon fa geban: [[User:$3|$3]].
 
 Kod blokama fa el $3 pegivöl binon ''$2''",
 
@@ -905,7 +906,7 @@ Kontrololös, va votükam at okipon fovöfi padajenotema.',
 'recentchangestext'                 => 'Su pad at binons votükams nulikün in vüki at.',
 'recentchanges-feed-description'    => 'Getön votükamis nulikün in vük at me nünakanad at.',
 'rcnote'                            => "Dono {{PLURAL:$1|binon votükam '''1'''|binons votükams '''$1'''}} lätikün {{PLURAL:$2|dela|delas '''$2'''}} lätikün, pänumädöls tü düp: $3.",
-'rcnotefrom'                        => 'Is palisedons votükams sis <b>$2</b> (jü <b>$1</b>).',
+'rcnotefrom'                        => "Is palisedons votükams sis '''$2''' (jü '''$1''').",
 'rclistfrom'                        => 'Jonolöd votükamis nulik, primölo tü düp $1',
 'rcshowhideminor'                   => '$1 votükams pülik',
 'rcshowhidebots'                    => '$1 elis bot',
@@ -1408,8 +1409,6 @@ $1',
 'mycontris'     => 'Keblünots obik',
 'contribsub2'   => 'Tefü $1 ($2)',
 'nocontribs'    => 'Votükams nonik petuvons me paramets at.',
-'ucnote'        => 'Ekö! votükams lätik <b>$1</b> gebana at ün dels lätik <b>$2</b>.',
-'uclinks'       => 'Jonön votükamis lätik $1; jonön delis lätik $2.',
 'uctop'         => '(lätik)',
 'month'         => 'De mul (e büiks):',
 'year'          => 'De yel (e büiks):',

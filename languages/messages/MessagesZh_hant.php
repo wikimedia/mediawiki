@@ -1,5 +1,5 @@
 <?php
-/** Chinese (Traditional) (‪中文 (傳統字)‬)
+/** Traditional Chinese (‪中文(繁體)‬)
  *
  * @addtogroup Language
  *
@@ -303,6 +303,7 @@ $messages = array(
 'versionrequired'     => '需要MediaWiki $1 版',
 'versionrequiredtext' => '需要版本$1的 MediaWiki 才能使用此頁。參見[[Special:Version|版本頁]]。',
 
+'ok'                      => '確定',
 'retrievedfrom'           => '取自"$1"',
 'youhavenewmessages'      => '您有$1（$2）。',
 'newmessageslink'         => '新訊息',
@@ -1503,8 +1504,6 @@ $1',
 'mycontris'     => '我的貢獻',
 'contribsub2'   => '$1的貢獻 ($2)',
 'nocontribs'    => '沒有找到符合特徵的更改。',
-'ucnote'        => '以下是該用戶最近<b>$2</b>天內的最後<b>$1</b>次修改。',
-'uclinks'       => '參看最後$1次修改；參看最後$2天。',
 'uctop'         => '(最新修改)',
 'month'         => '從該月份 (或更早):',
 'year'          => '從該年份 (或更早):',

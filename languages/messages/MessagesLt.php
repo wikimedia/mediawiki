@@ -10,6 +10,7 @@
  * @author Garas
  * @author SPQRobin
  * @author Hugo.arg
+ * @author Siebrand
  */
 
 $namespaceNames = array(
@@ -415,7 +416,8 @@ $2',
 'namespaceprotected'   => "Jūs neturite teisės redaguoti puslapių '''$1''' srityje.",
 'customcssjsprotected' => 'Jūs neturite teisės redaguoti šio puslapio, nes jame yra kito nautotojo asmeninių nustatymų.',
 'ns-specialprotected'  => '„{{ns:special}}“ vardų srityje puslapiai negali būti redaguojami.',
-'titleprotected'       => '[[User:$1|$1]] apsaugojo šį pavadinimą nuo sukūrimo. Duota priežastis yra <i>$2</i>.',
+'titleprotected'       => "[[User:$1|$1]] apsaugojo šį pavadinimą nuo sukūrimo.
+Duota priežastis yra ''$2''.",
 
 # Login and logout pages
 'logouttitle'                => 'Naudotojo atsijungimas',
@@ -1345,7 +1347,7 @@ Jei vėliau užsinorėtumėte nustoti stebėti puslapį, spustelkite „Nebesteb
 'watchlist-show-minor' => 'Rodyti smulkius keitimus',
 'watchlist-hide-minor' => 'Slėpti smulkius keitimus',
 
-# Displayed when you click the "watch" button and it's in the process of watching
+# Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Įtraukiama į stebimųjų sąrašą...',
 'unwatching' => 'Šalinama iš stebimųjų sąrašo...',
 
@@ -1526,8 +1528,6 @@ $1',
 'mycontris'     => 'Mano įnašas',
 'contribsub2'   => 'Naudotojo $1 ($2)',
 'nocontribs'    => 'Jokie keitimai neatitiko šių kriterijų.',
-'ucnote'        => 'Žemiau yra šio naudotojo paskutiniai <b>$1</b> keitimai per pastarąsias <b>$2</b> dienas.',
-'uclinks'       => 'Rodyti paskutinius $1 pakeitimus; rodyti paskutines $2 dienas.',
 'uctop'         => ' (paskutinis)',
 'month'         => 'Nuo mėnesio (ir anksčiau):',
 'year'          => 'Nuo metų (ir anksčiau):',

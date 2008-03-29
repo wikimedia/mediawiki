@@ -5,6 +5,7 @@
  *
  * @author Demmy
  * @author SPQRobin
+ * @author Siebrand
  */
 
 
@@ -102,7 +103,7 @@ $messages = array(
 'viewsource'        => 'Àfihàn ọ̀rọ̀àmì',
 'protectedpagetext' => 'A ti se àtìpa ojúewé yi. Ẹ kò le se àtúnṣe.',
 'viewsourcetext'    => 'Ẹ lè wo ati ẹ lè se àwòkọ ọ̀rọ̀àmì ojúewé yi:',
-'titleprotected'    => 'This title has been protected from creation by [[User:$1|$1]]. The reason given is <i>$2</i>.',
+'titleprotected'    => "This title has been protected from creation by [[User:$1|$1]]. The reason given is ''$2''.",
 
 # Login and logout pages
 'logouttitle'        => 'Ẹnitínṣe tibọsóde',

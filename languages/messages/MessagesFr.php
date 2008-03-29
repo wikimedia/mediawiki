@@ -555,7 +555,8 @@ $2',
 'namespaceprotected'   => "Vous n’avez pas la permission de modifier les pages de l’espace de noms « '''$1''' ».",
 'customcssjsprotected' => 'Vous n’avez pas la permission de modifier cette page, car elle contient les préférences d’un autre utilisateur.',
 'ns-specialprotected'  => 'Les pages dans l’espace de noms « {{ns:special}} » ne peuvent pas être modifiées.',
-'titleprotected'       => 'Ce titre a été protégé à la création par [[User:$1|$1]]. Le motif avancé est <i>« $2 »</i>.',
+'titleprotected'       => "Ce titre a été protégé à la création par [[User:$1|$1]].
+Le motif avancé est « ''$2'' ».",
 
 # Login and logout pages
 'logouttitle'                => 'Déconnexion',
@@ -1055,7 +1056,7 @@ $2 Inclure les pages de redirection<br /> Rechercher $3 $9',
 'recentchangestext'                 => 'Piste les changements les plus récents du wiki sur cette page.',
 'recentchanges-feed-description'    => 'Suivre les dernières modifications de ce wiki dans un flux.',
 'rcnote'                            => 'Voici {{PLURAL:$1|la dernière modification|les $1 dernières modifications}} depuis {{PLURAL:$2|le dernier jour|les <b>$2</b> derniers jours}}, déterminée{{PLURAL:$1||s}} ce $3.',
-'rcnotefrom'                        => 'Voici les modifications effectuées depuis le <strong>$2</strong> (<b>$1</b> au maximum).',
+'rcnotefrom'                        => "Voici les modifications effectuées depuis le '''$2''' ('''$1''' au maximum).",
 'rclistfrom'                        => 'Afficher les nouvelles modifications depuis le $1.',
 'rcshowhideminor'                   => '$1 modifications mineures',
 'rcshowhidebots'                    => '$1 robots',
@@ -1641,8 +1642,6 @@ $1',
 'mycontris'     => 'Contributions',
 'contribsub2'   => 'Liste des contributions de $1 ($2). Les pages qui ont été effacées ne sont pas affichées.',
 'nocontribs'    => 'Aucune modification correspondant à ces critères n’a été trouvée.',
-'ucnote'        => 'Voici les <b>$1</b> dernières modifications effectuées par cet utilisateur au cours des <b>$2</b> derniers jours.',
-'uclinks'       => 'Afficher les $1 dernières modifications ; afficher les $2 derniers jours.',
 'uctop'         => '(dernière)',
 'month'         => 'À partir du mois (et précédents) :',
 'year'          => 'À partir de l’année (et précédentes) :',
@@ -1778,12 +1777,18 @@ N’oubliez pas de la déverrouiller lorsque vous aurez terminé votre opératio
 # Move page
 'move-page'               => 'Renommer $1',
 'move-page-legend'        => 'Renommer une page',
-'movepagetext'            => 'Utilisez le formulaire ci-dessous pour renommer une page, en déplaçant tout son historique vers le nouveau nom. L’ancien titre deviendra une page de redirection vers le nouveau titre. Les liens vers le titre de l’ancienne page ne seront pas changés ; veuillez vérifier que ce déplacement n’a pas créé de double redirection. Vous devez vous assurer que les liens continuent de pointer vers leur destination supposée.
+'movepagetext'            => "Utilisez le formulaire ci-dessous pour renommer une page, en déplaçant tout son historique vers le nouveau nom.
+L’ancien titre deviendra une page de redirection vers le nouveau titre.
+Les liens vers le titre de l’ancienne page ne seront pas changés ;
+veuillez vérifier que ce déplacement n’a pas créé de double redirection.
+Vous devez vous assurer que les liens continuent de pointer vers leur destination supposée.
 
-Une page ne sera pas déplacée si la page du nouveau titre existe déjà, à moins que cette dernière soit vide ou en redirection, et qu’elle n’ait pas d’historique. Ce qui veut dire que vous pouvez renommer une page vers sa position d’origine si vous avez commis une erreur, mais que vous ne pouvez effacer une page déjà existante par ce procédé.
+Une page ne sera pas déplacée si la page du nouveau titre existe déjà, à moins que cette dernière soit vide ou en redirection, et qu’elle n’ait pas d’historique.
+Ce qui veut dire que vous pouvez renommer une page vers sa position d’origine si vous avez commis une erreur, mais que vous ne pouvez effacer une page déjà existante par ce procédé.
 
-<b>ATTENTION ! </b>
-Ceci peut provoquer un changement radical et imprévu pour une page souvent consultée. Assurez-vous d’en avoir compris les conséquences avant de continuer.',
+'''ATTENTION !'''
+Ceci peut provoquer un changement radical et imprévu pour une page souvent consultée.
+Assurez-vous d’en avoir compris les conséquences avant de continuer.",
 'movepagetalktext'        => 'La page de discussion associée, si présente, sera automatiquement renommée <b>sauf si :</b>
 *Vous renommez une page vers un autre espace,
 *Une page de discussion existe déjà avec le nouveau nom, ou

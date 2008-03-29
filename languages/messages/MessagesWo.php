@@ -343,7 +343,8 @@ $2',
 'namespaceprotected'   => "Amoo sañ-sañu soppi xët yi ne ci bii barabu tur « '''$1''' ».",
 'customcssjsprotected' => 'Amoo sañ-sañu soppi wii xët ndaxte daa ëmb ay tànneefi yeneeni jëfandikukat.',
 'ns-specialprotected'  => 'Xët yi ne ci bii barabu tur « {{ns:special}} » kenn maneesu leen a soppi.',
-'titleprotected'       => 'Koj bii [[User:$1|$1]] moo ko aar ngir bañ sosteefam. Ngirte li mu joxe mooy ne <i>« $2 »</i>.',
+'titleprotected'       => "Koj bii [[User:$1|$1]] moo ko aar ngir bañ sosteefam.
+Ngirte li mu joxe mooy ne « ''$2'' ».",
 
 # Login and logout pages
 'logouttitle'                => 'Génnu',
@@ -538,7 +539,11 @@ Sa màkkaanu IP mooy $3 xammeekaayu téye gi mooy #$5. Di la sakku nga joxe leen
 'editingsection'            => 'Coppiteg $1 (xaaj)',
 'editingcomment'            => 'Coppiteg $1 (sanni-kàddu)',
 'editconflict'              => 'jàppanteb coppite ci: $1',
-'explainconflict'           => "<b>Am na beneen jëfandikukat bu soppi xët wi, mu gën a bees, ci bi ngay soog a door say coppite. Mbind yi ne ci boyotu coppite bi ci kaw, ñooy yi teew nii ci dattub njoxe bi, ni ko beneen jëfandikukat bi soppee. Yaw nag say coppite ñoo nekk ci boyotu coppite bi ci suuf. Soo nammee denc say coppite, faaw nga duggal leen ci boyot bi ci kaw. Soo cuqe ci 'Denc xët wi', mbind yi ne ci boyot bi ci kaw rekk ñooy dencu .</b><br />",
+'explainconflict'           => "Am na beneen jëfandikukat bu soppi xët wi, mu gën a bees, ci bi ngay soog a door say coppite.
+Mbind yi ne ci boyotu coppite bi ci kaw, ñooy yi teew nii ci dattub njoxe bi, ni ko beneen jëfandikukat bi soppee.
+Yaw nag say coppite ñoo nekk ci boyotu coppite bi ci suuf.
+Soo nammee denc say coppite, faaw nga duggal leen ci boyot bi ci kaw.
+Soo cuqe ci 'Denc xët wi', mbind yi ne ci boyot bi ci kaw rekk ñooy dencu .",
 'yourtext'                  => 'Sa mbind',
 'storedversion'             => 'Sumb bi dencu',
 'nonunicodebrowser'         => '<strong>Attention : Votre navigateur ne supporte pas l’unicode. Une solution temporaire a été trouvée pour vous permettre de modifier en tout sûreté un article : les caractères non-ASCII apparaîtront dans votre boîte de modification en tant que codes hexadécimaux. Vous devriez utiliser un navigateur plus récent.</strong>',
@@ -584,7 +589,7 @@ Wóorluwul bu baax ndax sosaat xët wi di na doon li gën. Xoolal yéenekaayu fa
 
 # Account creation failure
 'cantcreateaccounttitle' => 'sag mbindu Manu la nekk .',
-'cantcreateaccount-text' => "Sosum sàq mu bàyyikoo ci bii màkkaanu IP (<b>$1</b>) dañ kaa téye [[User:$3|$3]].
+'cantcreateaccount-text' => "Sosum sàq mu bàyyikoo ci bii màkkaanu IP ('''$1''') dañ kaa téye [[User:$3|$3]].
 
 Ngirtey téye gi $3 joxe, mooy ne: ''$2''.",
 

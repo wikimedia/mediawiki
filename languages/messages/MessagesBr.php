@@ -401,7 +401,8 @@ $2',
 'namespaceprotected'   => "N'oc'h ket aotreet da zegas kemmoù e pajennoù an esaouenn anv '''$1'''.",
 'customcssjsprotected' => "N'oc'h ket aotreet da zegas kemmoù war ar bajenn-mañ rak kavout a reer enni arventennoù personel un implijer all.",
 'ns-specialprotected'  => "N'haller ket kemmañ ar pajennoù en esaouenn anv {{ns:special}}.",
-'titleprotected'       => "Gwarezet eo bet an titl-mañ p'eo bet krouet gant [[User:$1|$1]]. Setu amañ perak <i>$2</i>.",
+'titleprotected'       => "Gwarezet eo bet an titl-mañ p'eo bet krouet gant [[User:$1|$1]].
+Setu amañ perak ''$2''.",
 
 # Login and logout pages
 'logouttitle'                => 'Dilugañ',
@@ -657,7 +658,7 @@ Deoc'h da c'houzout, aze emañ marilh an diverkadenn :",
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Dibosupl krouiñ ar gont',
-'cantcreateaccount-text' => "Stanket eo bet ar c'hrouiñ kontoù adal ar chomlec'h IP (<b>$1</b>) gant [[User:$3|$3]].
+'cantcreateaccount-text' => "Stanket eo bet ar c'hrouiñ kontoù adal ar chomlec'h IP ('''$1''') gant [[User:$3|$3]].
 
 An abeg roet gant $3 zo ''$2''",
 
@@ -801,7 +802,7 @@ Gwiriit ne vo ket torret red istor ar bajenn gant ar c'hemm-mañ.",
 'showingresultsnum'     => "Diskouez <b>$3</b> disoc'h adal an #<b>$2</b>.",
 'showingresultstotal'   => "O tiskouez a-is disoc'hoù '''$1 - $2''' diwar '''$3'''",
 'nonefound'             => '<strong>Notenn</strong>: alies eo liammet an diouer a zisoc\'hoù ouzh an implij a vez graet eus termenoù klask re stank, evel "da" pe "ha",
-termenoù n\'int ket menegeret, pe ouzh an implij a meur a dermen klask (en disoc\'hoù ne gaver nemet ar pajennoù enno an holl c\'herioù spisaet).',
+termenoù n\'int ket menegeret, pe ouzh implij meur a dermen klask disheñvel (en disoc\'hoù ne gaver nemet ar pajennoù enno an holl c\'herioù spisaet).',
 'powersearch'           => 'Klask',
 'powersearch-legend'    => 'Klask araokaet',
 'powersearchtext'       => '
@@ -1519,8 +1520,6 @@ $1',
 'mycontris'     => 'Ma degasadennnoù',
 'contribsub2'   => 'Evit $1 ($2)',
 'nocontribs'    => "N'eus bet kavet kemm ebet o klotañ gant an dezverkoù-se.",
-'ucnote'        => "Setu an/ar <b>$1</b> (b/c'h)kemm diwezhañ bet graet gant an implijer-mañ e-pad an/ar <b>$2</b> devezh diwezhañ.",
-'uclinks'       => "diskouez an/ar $1 (g/c'h)kemm diwezhañ; diskouez an/ar $2 devezh diwezhañ.",
 'uctop'         => ' (diwezhañ)',
 'month'         => 'Abaoe miz (hag a-raok) :',
 'year'          => 'Abaoe bloaz (hag a-raok) :',

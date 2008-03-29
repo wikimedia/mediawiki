@@ -575,7 +575,8 @@ $2',
 'namespaceprotected'   => "Du har ikkje tilgang til å endre sidene i '''$1'''-namnerommet.",
 'customcssjsprotected' => 'Du har ikkje tilgang til å endre denne sida, fordi ho inneheld ein annan brukar sine personlege innstillingar.',
 'ns-specialprotected'  => 'Sider i {{ns:special}}-namnerommet kan ikkje endrast.',
-'titleprotected'       => 'Denne sidetittelen er verna mot oppretting av [[User:$1|$1]]. Grunnen som er gjeven er: <i>$2</i>.',
+'titleprotected'       => "Denne sidetittelen er verna mot oppretting av [[User:$1|$1]].
+Grunnen som er gjeven er: ''$2''.",
 
 # Login and logout pages
 'logouttitle'                => 'Logg ut',
@@ -822,7 +823,7 @@ Sletteloggen for sida finn du her:",
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Kan ikkje opprette brukarkonto',
-'cantcreateaccount-text' => "Kontooppretting frå denne IP-adressa (<b>$1</b>) er blokkert av [[User:$3|$3]].
+'cantcreateaccount-text' => "Kontooppretting frå denne IP-adressa ('''$1''') er blokkert av [[User:$3|$3]].
 
 Grunnen som vart gjeven av $3 er ''$2''",
 
@@ -1159,6 +1160,7 @@ Dersom du har dette biletet i full oppløysing, så last opp det, eller endre fi
 'uploadvirus'                 => 'Fila innheld virus! Detaljar: $1',
 'sourcefilename'              => 'Filsti:',
 'destfilename'                => 'Målfilnamn:',
+'upload-maxfilesize'          => 'Maksimal filstorleik: $1',
 'watchthisupload'             => 'Overvak denne sida',
 'filewasdeleted'              => 'Ei fil med dette namnet har tidlegare vore lasta opp og sletta. Du bør sjekke $1 før du prøvar å laste henne opp att.',
 'upload-wasdeleted'           => "'''Åtvaring: Du nyopplastar ei fil som tidlegare har vorte sletta.'''
@@ -1612,8 +1614,6 @@ $1',
 'mycontris'     => 'Eigne bidrag',
 'contribsub2'   => 'For $1 ($2)',
 'nocontribs'    => 'Det vart ikkje funne nokon endringar gjorde av denne brukaren.',
-'ucnote'        => 'Her er dei siste <b>$1</b> endringane frå denne brukaren dei siste <b>$2</b> dagane.',
-'uclinks'       => 'Vis dei siste $1 endringane; vis dei siste $2 dagane.',
 'uctop'         => ' (øvst)',
 'month'         => 'Månad:',
 'year'          => 'År:',

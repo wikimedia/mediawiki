@@ -521,11 +521,11 @@ G leɛnayek ɛreḍ tikelt nniḍen. Lukan mazal yella ugur, ffeɣ umbeɛd kcem.
 'editingsection'            => 'Abeddel n $1 (amur)',
 'editingcomment'            => 'Abeddel n $1 (awennit)',
 'editconflict'              => 'Amennuɣ deg ubeddel: $1',
-'explainconflict'           => 'Amdan nniḍen ibeddel asebter-agi asmi telliḍ tettbeddileḍ.
+'explainconflict'           => "Amdan nniḍen ibeddel asebter-agi asmi telliḍ tettbeddileḍ.
 Aḍris deg usawen yesɛa asebter am yella tura.
 Ibeddlen inek ahaten deg ukessar.
 Yesfek ad txelṭeḍ ibeddlen inek akk d usebter i yellan.
-<b>Ala</b> aḍris deg usawen i yettusmekta asmi twekkiḍ "Smekti asebter".<br />',
+'''Ala''' aḍris deg usawen i yettusmekta asmi twekkiḍ \"Smekti asebter\".",
 'yourtext'                  => 'Aḍris inek',
 'storedversion'             => 'Tasiwelt yettusmketen',
 'nonunicodebrowser'         => '<strong>AƔTAL: Browser/Explorateur inek ur yebil ara unicode. Nexdem akken ad tzemreḍ ad tbeddleḍ mebla amihi: isekkilin i mačči ASCII ttbanen deg tankult ubeddel s ungilen hexadecimal.</strong>',
@@ -769,7 +769,7 @@ Iderman ayen ur ten-textareḍ ara ur ttbeddlen ara. Tzemreḍ ad tekkseḍ adru
 'recentchangestext'                 => 'Ḍfer ibeddilen imaynuten n {{SITENAME}}.',
 'recentchanges-feed-description'    => 'Ḍfer ibeddilen imaynuten n wiki-yagi deg usuddem-agi.',
 'rcnote'                            => "Deg ukessar {{PLURAL:$1|yella '''yiwen''' ubeddel aneggaru|llan '''$1''' n yibeddlen ineggura}} deg {{PLURAL:$2|wass aneggaru|'''$2''' wussan ineggura}}, deg uzemz $3.",
-'rcnotefrom'                        => 'Deg ukessar llan ibeddlen seg wasmi <b>$2</b> (ar <b>$1</b>).',
+'rcnotefrom'                        => "Deg ukessar llan ibeddlen seg wasmi '''$2''' (ar '''$1''').",
 'rclistfrom'                        => 'Ssken ibeddlen imaynuten seg $1',
 'rcshowhideminor'                   => '$1 ibeddlen ifessasen',
 'rcshowhideliu'                     => '$1 n yimseqdacen i ikecmen',
@@ -988,7 +988,7 @@ Ihi, {{PLURAL:\$5|yella|llan}} '''\$5''' n {{PLURAL:\$5|ubeddel|ibeddlen}} i mku
 'ancientpages'            => 'isebtar iqdimen',
 'move'                    => 'Smimeḍ',
 'movethispage'            => 'Smimeḍ asebter-agi',
-'unusedimagestext'        => '<p>Ssen belli ideggen n internet sɛan izdayen ɣer tugna-agi s URL n qbala, ɣas akken tugna-nni hatt da.</p>',
+'unusedimagestext'        => 'Ssen belli ideggen n internet sɛan izdayen ɣer tugna-agi s URL n qbala, ɣas akken tugna-nni hatt da.',
 'unusedcategoriestext'    => 'Taggayin-agi weǧden meɛna ulac isebtar neɣ taggayin i sseqdacen-iten.',
 'notargettitle'           => 'Ulac nnican',
 'notargettext'            => 'Ur textareḍ ara asebter d nnican neɣ asebter n wemseqdac d nnican.',
@@ -1187,8 +1187,6 @@ G leɛnayek wekki ɣef taqeffalt "Back/Précédent" n browser/explorateur inek, 
 'mycontris'     => 'Tikkin inu',
 'contribsub2'   => 'n $1 ($2)',
 'nocontribs'    => 'Ur yufi ara abddel i tebɣiḍ.',
-'ucnote'        => 'Deg ukessar llan <b>$1</b> n yibeddlen ineggura deg <b>$2</b> n wussan ineggura.',
-'uclinks'       => 'Ẓer $1 n yibeddlen ineggura; ẓer $2 n wussan ineggura.',
 'uctop'         => '(taneggarut)',
 
 'sp-contributions-newbies'     => 'Ssken tikkin n yimseqdacen imaynuten kan',
@@ -1232,15 +1230,13 @@ G leɛnayek wekki ɣef taqeffalt "Back/Précédent" n browser/explorateur inek, 
 
 # Move page
 'move-page-legend'        => 'Smimeḍ asebter',
-'movepagetext'            => "Mi tedsseqdceḍ talɣa deg ukessar ad ibddel isem n usebter, yesmimeḍ akk
-umezruy-is ɣer isem amaynut.
+'movepagetext'            => "Mi tedsseqdceḍ talɣa deg ukessar ad ibddel isem n usebter, yesmimeḍ akk umezruy-is ɣer isem amaynut.
 Azwel aqdim ad yuɣal azady n wesmimeḍ ɣer azwel amaynut.
-Izdayen ɣer azwel aqdim ur ttubeddlen ara; ssenqd-iten
-u ssenqed izdayen n snat d tlata tikkwal.
+Izdayen ɣer azwel aqdim ur ttubeddlen ara;
+ssenqd-iten u ssenqed izdayen n snat d tlata tikkwal.
 D kečč i yessefk a ten-yessenqed.
 
-Meɛna, ma yella amagrad deg azwel amaynut neɣ azday n wamsmimeḍ
-mebla amezruy, asebter-inek '''ur''' yettusmimeḍ '''ara'''.
+Meɛna, ma yella amagrad deg azwel amaynut neɣ azday n wamsmimeḍ mebla amezruy, asebter-inek '''ur''' yettusmimeḍ '''ara'''.
 Yernu, tzemreḍ ad tesmimeḍ asebter ɣer isem-is aqdim ma tɣelṭeḍ.",
 'movepagetalktext'        => "Asebter \"Amyannan\" yettusmimeḍ ula d netta '''ma ulac:'''
 *Yella asebter \"Amyannan\" deg isem amaynut, neɣ

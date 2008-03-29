@@ -622,7 +622,8 @@ $2",
 'namespaceprotected'   => "U hebt geen rechten om pagina's in de naamruimte '''$1''' te bewerken.",
 'customcssjsprotected' => 'U kunt deze pagina niet bewerken, omdat die persoonlijke instellingen van een andere gebruiker bevat.',
 'ns-specialprotected'  => 'Pagina\'s in de naamruimte "{{ns:special}}" kunnen niet bewerkt worden.',
-'titleprotected'       => 'Het aanmaken van deze pagina is beveiligd door [[User:$1|$1]]. De gegeven reden is <i>$2</i>.',
+'titleprotected'       => "Het aanmaken van deze pagina is beveiligd door [[User:$1|$1]].
+De gegeven reden is ''$2''.",
 
 # Login and logout pages
 'logouttitle'                => 'Gebruiker afmelden',
@@ -847,11 +848,11 @@ Dit gebeurt soms als er een webgebaseerde proxydienst wordt gebruikt die fouten 
 'editingsection'            => 'Bezig met bewerken van $1 (deelpagina)',
 'editingcomment'            => 'Bezig met bewerken van $1 (opmerking)',
 'editconflict'              => 'Bewerkingsconflict: $1',
-'explainconflict'           => 'Een andere gebruiker heeft deze pagina bewerkt sinds u met uw bewerking bent begonnen.
+'explainconflict'           => "Een andere gebruiker heeft deze pagina bewerkt sinds u met uw bewerking bent begonnen.
 In het bovenste deel van het venster staat de tekst van de huidige pagina.
 Uw bewerking staat in het onderste gedeelte.
 U dient uw bewerkingen in te voegen in de bestaande tekst.
-<b>Alleen</b> de tekst in het bovenste gedeelte wordt opgeslagen als u op "Pagina opslaan" klikt.<br />',
+'''Alleen''' de tekst in het bovenste gedeelte wordt opgeslagen als u op \"Pagina opslaan\" klikt.",
 'yourtext'                  => 'Uw tekst',
 'storedversion'             => 'Opgeslagen versie',
 'nonunicodebrowser'         => "<strong>WAARSCHUWING: Uw browser kan niet goed overweg met unicode.
@@ -897,11 +898,11 @@ Overweeg of het terecht is dat u verder werkt aan deze pagina. Voor uw gemak sta
 # "Undo" feature
 'undo-success' => 'Hieronder staat de tekst waarin de wijziging ongedaan is gemaakt. Controleer voor het opslaan of het resultaat gewenst is.',
 'undo-failure' => 'De wijziging kan niet ongedaan gemaakt worden vanwege andere strijdige wijzigingen.',
-'undo-summary' => 'Versie $1 van [[Special:Contributions/$2|$2]] ([[User talk:$2|overleg]]) ongedaan gemaakt',
+'undo-summary' => 'Versie $1 van [[Special:Contributions/$2|$2]] ([[User talk:$2|overleg]]) ongedaan gemaakt.',
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Aanmaken gebruiker mislukt.',
-'cantcreateaccount-text' => "Het aanmaken van gebruikers van dit IP-adres (<b>$1</b>) is geblokkeerd door [[User:$3|$3]].
+'cantcreateaccount-text' => "Het aanmaken van gebruikers van dit IP-adres ('''$1''') is geblokkeerd door [[User:$3|$3]].
 
 De door $3 opgegeven reden is ''$2''",
 
@@ -1164,7 +1165,7 @@ Niet geselecteerde groepen worden niet gewijzigd. Deselecteer een groep met "Ctr
 'recentchangestext'                 => 'Op deze pagina kunt u de recentste wijzigingen in deze wiki bekijken.',
 'recentchanges-feed-description'    => 'Met deze feed kunt u de recentste wijzigingen in deze wiki bekijken.',
 'rcnote'                            => "Hieronder {{PLURAL:$1|staat de laatste bewerking|staan de laatste '''$1''' bewerkingen}} in de laatste {{PLURAL:$2|dag|'''$2''' dagen}}, op $3.",
-'rcnotefrom'                        => 'Wijzigingen sinds <b>$2</b> (met een maximum van <b>$1</b> wijzigingen).',
+'rcnotefrom'                        => "Wijzigingen sinds '''$2''' (met een maximum van '''$1''' wijzigingen).",
 'rclistfrom'                        => 'Wijzigingen bekijken vanaf $1',
 'rcshowhideminor'                   => 'kleine wijzigingen $1',
 'rcshowhidebots'                    => 'bots $1',
@@ -1487,7 +1488,7 @@ De lengte van de [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] is ''
 'ancientpages'            => "Oudste pagina's",
 'move'                    => 'Hernoemen',
 'movethispage'            => 'Deze pagina hernoemen',
-'unusedimagestext'        => '<p>Let op! Het is mogelijk dat er via een directe link verwezen wordt naar een bestand. Een bestand kan hier dus ten onrechte opgenomen zijn.',
+'unusedimagestext'        => 'Let op! Het is mogelijk dat er via een directe link verwezen wordt naar een bestand. Een bestand kan hier dus ten onrechte opgenomen zijn.',
 'unusedcategoriestext'    => 'Hieronder staan categorieën die zijn aangemaakt, maar door geen enkele pagina of andere categorie gebruikt worden.',
 'notargettitle'           => 'Geen doelpagina',
 'notargettext'            => 'U hebt niet opgegeven voor welke pagina of gebruiker u deze handeling wilt uitvoeren.',
@@ -1765,8 +1766,6 @@ $1',
 'mycontris'     => 'Mijn bijdragen',
 'contribsub2'   => 'Voor $1 ($2)',
 'nocontribs'    => 'Geen wijzigingen gevonden die aan de gestelde criteria voldoen.',
-'ucnote'        => 'Hieronder staan de laatste <b>$1</b> wijzigingen van deze gebruiker in de laatste <b>$2</b> dagen.',
-'uclinks'       => 'De laatste $1 wijzigingen bekijken; de laatste $2 dagen bekijken.',
 'uctop'         => '(laatste wijziging)',
 'month'         => 'Van maand (en eerder):',
 'year'          => 'Van jaar (en eerder):',
@@ -1911,7 +1910,7 @@ Een pagina kan '''alleen''' hernoemd worden als de nieuwe paginanaam:
 * niet bestaat, of
 * een doorverwijspagina zonder verdere geschiedenis is.
 
-<b>WAARSCHUWING!</b>
+'''WAARSCHUWING!'''
 Voor populaire pagina's kan het hernoemen drastische en onvoorziene gevolgen hebben.
 Zorg ervoor dat u die gevolgen overziet voordat u deze handeling uitvoert.",
 'movepagetalktext'        => "De bijbehorende overlegpagina krijgt automatisch een andere naam, '''tenzij''':

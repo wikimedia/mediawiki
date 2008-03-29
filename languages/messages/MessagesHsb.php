@@ -449,7 +449,8 @@ $2',
 'namespaceprotected'   => "Nimaš dowolnosć, zo by stronu w mjenowym rumje '''$1''' wobdźěłał.",
 'customcssjsprotected' => 'Nimaš prawo, zo by tutu stronu wobdźěłał, dokelž wosobinske nastajenja druheho wužiwarja wobsahuje.',
 'ns-specialprotected'  => 'Strony w mjenowym rumje {{ns:special}} njehodźa so wobdźěłać.',
-'titleprotected'       => 'Tutón titul bu přećiwo wutworjenju přez [[User:$1|$1]] škitany. Podata přičina je <i>$2</i>.',
+'titleprotected'       => "Tutón titul bu přećiwo wutworjenju přez [[User:$1|$1]] škitany.
+Podata přičina je ''$2''.",
 
 # Login and logout pages
 'logouttitle'                => 'Wotzjewjenje',
@@ -711,7 +712,7 @@ Tu slěduje wujimk z protokola wušmórnjenjow z přičinu za předawše wušmó
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Wužiwarske konto njeda so wutworić.',
-'cantcreateaccount-text' => "Wutworjenje wužiwarskeho konta z IP-adresy <b>$1</b> bu wot [[User:$3|$3]] zablokowane.
+'cantcreateaccount-text' => "Wutworjenje wužiwarskeho konta z IP-adresy '''$1''' bu wot [[User:$3|$3]] zablokowane.
 
 Přičina za blokowanje, podata wot $3, je: ''$2''",
 
@@ -955,7 +956,7 @@ Móžeš [[{{ns:special}}:Allpages|alfabetiski indeks přepytować]] abo [[:$1|s
 'recentchangestext'                 => 'Na tutej stronje móžeš najaktualniše změny w {{GRAMMAR:lokatiw|{{SITENAME}}}} wobkedźbować.',
 'recentchanges-feed-description'    => 'Slěduj najaktualniše změny {{GRAMMAR:genitiw|{{SITENAME}}}} w tutym kanalu.',
 'rcnote'                            => "Deleka {{PLURAL:$1|je '''1'''je změna|stej poslednjej '''$1''' změnje|su poslednje '''$1''' změny|je poslednich '''$1''' změnow}} w {{PLURAL:$2|poslednim dnju|poslednimaj '''$2''' dnjomaj|poslednich '''$2''' dnjach|poslednich '''$2''' dnjach}}, staw wot $3.",
-'rcnotefrom'                        => 'Deleka so změny wot <b>$2</b> pokazuja (hač k <b>$1</b>).',
+'rcnotefrom'                        => "Deleka so změny wot '''$2''' pokazuja (hač k '''$1''').",
 'rclistfrom'                        => 'Nowe změny pokazać, započinajo z $1',
 'rcshowhideminor'                   => 'snadne změny $1',
 'rcshowhidebots'                    => 'změny awtomatiskich programow (bots) $1',
@@ -1289,7 +1290,7 @@ Dołhosć [http://meta.wikimedia.org/wiki/Help:Job_queue rynka nadawkow] je '''$
 'ancientpages-summary'            => 'Tuta specialna strona naliči strony, kiž najdlěši čas změnjene njebuchu.',
 'move'                            => 'Přesunyć',
 'movethispage'                    => 'Stronu přesunyć',
-'unusedimagestext'                => '<p>Prošu wobkedźbuj, zo druhe websydła móža k dataji z direktnym URL wotkazować a su hišće tu naspomnjene, hačrunjež so hižo aktiwnje wužiwaja.</p>',
+'unusedimagestext'                => 'Prošu wobkedźbuj, zo druhe websydła móža k dataji z direktnym URL wotkazować a su hišće tu naspomnjene, hačrunjež so hižo aktiwnje wužiwaja.',
 'unusedcategoriestext'            => 'Slědowace kategorije eksistuja, hačrunjež žana druha strona abo kategorija je njewužiwa.',
 'notargettitle'                   => 'Žadyn cil',
 'notargettext'                    => 'Njejsy cilowu stronu abo wužiwarja podał, zo by funkciju wuwjesć móhł.',
@@ -1565,8 +1566,6 @@ $1',
 'mycontris'     => 'Moje přinoški',
 'contribsub2'   => 'za wužiwarja $1 ($2)',
 'nocontribs'    => 'Žane změny, kotrež podatym kriterijam wotpowěduja.',
-'ucnote'        => 'Deleka su poslednje <b>$1</b> změnow wužiwarja z poslednich <b>$2</b> dnjow.',
-'uclinks'       => 'Poslednje $1 přinoškow pokazać; poslednje $2 dnjow pokazać.',
 'uctop'         => '(aktualnje)',
 'month'         => 'wot měsaca (a do toho):',
 'year'          => 'wot lěta (a do toho):',

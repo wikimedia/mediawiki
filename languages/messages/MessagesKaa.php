@@ -395,7 +395,8 @@ Soraw: $2',
 'namespaceprotected'   => "'''$1''' isimler ko'pligindegi betlerdi o'zgertiwge ruxsatın'ız joq.",
 'customcssjsprotected' => "Bul betti o'zgertiwin'izge ruqsatın'ız joq, sebebi bul jerde basqa paydalanıwshılardın' jeke sazlawları bar.",
 'ns-specialprotected'  => '"{{ns:special}}:" isimler ko\'pligindegi betler o\'zgertilmeydi',
-'titleprotected'       => "Bul atamanı jaratıw [[User:$1|$1]] ta'repinen qorg'alg'an. Keltirilgen sebep: <i>$2</i>.",
+'titleprotected'       => "Bul atamanı jaratıw [[User:$1|$1]] ta'repinen qorg'alg'an.
+Keltirilgen sebep: ''$2''.",
 
 # Login and logout pages
 'logouttitle'                => "Shıg'ıw",
@@ -579,7 +580,7 @@ Qolaylıq ushın to'mende o'shiriw jurnalı keltirilgen:",
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Akkaunt jaratılmadı',
-'cantcreateaccount-text' => "[[User:$3|$3]] usı IP adresten (<b>$1</b>) akkaunt jaratıwın blokladı.
+'cantcreateaccount-text' => "[[User:$3|$3]] usı IP adresten ('''$1''') akkaunt jaratıwın blokladı.
 
 $3 keltirilgen sebebi: ''$2''",
 
@@ -741,7 +742,7 @@ Sha'rtli belgiler: (ha'z.) = ha'zirgi nusqasi menen parqı,
 'recentchanges'                     => "Aqırg'ı o'zgerisler",
 'recentchanges-feed-description'    => "Wikidin' usı ag'ımındag'ı en' aqırg'ı o'zgerislerin baqlaw.",
 'rcnote'                            => "To'mende $3 waqtındag'ı aqırg'ı {{PLURAL:$2|ku'ndegi|'''$2''' ku'ndegi}} {{PLURAL:$1|'''1''' o'zgeris bar|aqırg'ı '''$1''' o'zgeris bar}}.",
-'rcnotefrom'                        => "To'mende <b>$2</b> baslap <b>$1</b> shekemgi o'zgerisler ko'rsetilgen.",
+'rcnotefrom'                        => "To'mende '''$2''' baslap '''$1''' shekemgi o'zgerisler ko'rsetilgen.",
 'rclistfrom'                        => "$1 waqtınan baslap jan'a o'zgerisler ko'rset",
 'rcshowhideminor'                   => "Kishi o'zgerislerdi $1",
 'rcshowhidebots'                    => 'Botlardı $1',
@@ -1116,8 +1117,6 @@ Aqırg'ı o'shirilgenlerdin' dizimin ko'riw ushin \$2 ni qaran'",
 'contributions' => "Paydalanıwshı u'lesi",
 'mycontris'     => "Menin' u'lesim",
 'contribsub2'   => '$1 ushın ($2)',
-'ucnote'        => "To'mende usı paydalanıwshının' aqırg'ı <b>$2</b> ku'ndegi, aqırg'ı <b>$1</b> o'zgerisleri bar.",
-'uclinks'       => "Aqırg'ı $1 o'zgeristi ko'riw; aqırg'ı $2 ku'ndi ko'riw.",
 'uctop'         => "(joqarg'ı)",
 'month'         => "Aydag'ı (ha'm onnanda erterek):",
 'year'          => "Jıldag'ı (ha'm onnanda erterek):",
@@ -1216,7 +1215,7 @@ Siltewlerdin' tuwrı islewine siz juwapker bolasız.
 Itibar berin': eger taza atamalı bet aldınnan bar bolsa ha'm son'g'ı o'zgertiw tariyxısız bos bet yamasa qayta bag'ıtlandırıwshı bolg'anına deyin bet '''ko'shirilmeydi'''.
 Bul degeni, eger betti aljasıp qayta atasan'iz aldıng'ı atamag'a qaytıwın'ızg'a boladı, biraq bar bettin' u'stine jazıwın'ızg'a bolmaydi.
 
-<b>ESTE TUTIN'!</b>
+'''ESTE TUTIN'!'''
 Bul ko'p qaralatug'ın betke qatan' ha'm ku'tilmegen o'zgerisler alıp keliwi mu'mkin;
 dawam ettiriwden aldın qanday aqıbetlerge alıp keliwin oylap ko'rin'.",
 'movepagetalktext'        => "To'mendegi sebepler bar '''bolg'anısha''', sa'wbet beti avtomatik halda ko'shiriledi:

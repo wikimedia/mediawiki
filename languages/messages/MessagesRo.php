@@ -386,7 +386,8 @@ Interogarea: $2',
 'namespaceprotected'   => "Nu ai permisiunea de a edita pagini în spaţiul de nume '''$1'''.",
 'customcssjsprotected' => 'Nu aveţi permisiunea să editaţi această pagină, deoarece conţine datele private ale unui alt utilizator.',
 'ns-specialprotected'  => 'Paginile din spaţiul de nume {{ns:special}} nu pot fi editate.',
-'titleprotected'       => 'Acest titlu a fos protejat la creare de [[User:$1|$1]]. Motivul invocat este <i>$2</i>.',
+'titleprotected'       => "Acest titlu a fos protejat la creare de [[User:$1|$1]].
+Motivul invocat este ''$2''.",
 
 # Login and logout pages
 'logouttitle'                => 'Sesiune închisă',
@@ -578,7 +579,7 @@ Identificatorul dumneavoastră de blocare este $5. Vă rugăm să îl includeţi
 'previewnote'               => 'Aceasta este doar o previzualizare! Pentru a salva pagina în forma actuală, descrieţi succint modificările efectuate şi apăsaţi butonul <strong>Salvează pagina</strong>.',
 'previewconflict'           => 'Această pre-vizualizare reflectă textul din caseta de sus, respectiv felul în care va arăta articolul dacă alegeţi să-l salvaţi acum.',
 'session_fail_preview'      => '<strong>Ne pare rău! Nu am putut procesa modificarea dumneavoastră din cauza pierderii datelor sesiunii. Vă rugăm să încercaţi din nou. Dacă tot nu funcţionează, încercaţi să închideţi sesiunea şi să vă autentificaţi din nou.</strong>',
-'session_fail_preview_html' => "<strong>Ne pare rău! Modificările tale nu au putut fi procesate din cauza pierderii datelor sesiunii.</strong>
+'session_fail_preview_html' => "<strong>Ne pare rău! Modificările tale nu au putut fi procesate din cauza pierderii datelor sesiunii.</strong> 
 
 ''Deoarece acest wiki are activat raw HTML, previzualizarea este ascunsă ca măsură de precauţie împotriva atacurilor JavaScript.''
 
@@ -587,7 +588,11 @@ Identificatorul dumneavoastră de blocare este $5. Vă rugăm să îl includeţi
 'editingsection'            => 'modificare $1 (secţiune)',
 'editingcomment'            => 'modificare $1 (comentariu)',
 'editconflict'              => 'Conflict de modificare: $1',
-'explainconflict'           => 'Altcineva a modificat această pagină de când ai început să o editezi. Caseta de text de sus conţine pagina aşa cum este ea acum (după editarea celeilalte persoane). Pagina cu modificările tale (aşa cum ai încercat să o salvezi) se află în caseta de jos. Va trebui să editezi manual caseta de sus pentru a reflecta modificările pe care tocmai le-ai făcut în cea de jos. <b>Numai</b> textul din caseta de sus va fi salvat atunci când vei apăsa pe "Salvează pagina".<br />',
+'explainconflict'           => "Altcineva a modificat această pagină de când ai început să o editezi.
+Caseta de text de sus conţine pagina aşa cum este ea acum (după editarea celeilalte persoane).
+Pagina cu modificările tale (aşa cum ai încercat să o salvezi) se află în caseta de jos.
+Va trebui să editezi manual caseta de sus pentru a reflecta modificările pe care tocmai le-ai făcut în cea de jos.
+'''Numai''' textul din caseta de sus va fi salvat atunci când vei apăsa pe \"Salvează pagina\".",
 'yourtext'                  => 'Textul tău',
 'storedversion'             => 'Versiunea curentă',
 'nonunicodebrowser'         => '<strong>ATENŢIE: Browser-ul dumneavoastră nu este compilant unicode, vă rugăm să îl schimbaţi înainte de a începe modificarea unui articol.</strong>',
@@ -622,7 +627,7 @@ ceea ce înseamnă mai mult decât maximum de $2 kilobytes. Salvarea nu este pos
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Crearea contului nu poate fi realizată',
-'cantcreateaccount-text' => "Crearea de conturi de la această adresă IP (<b>$1</b>) a fost blocată de [[User:$3|$3]].
+'cantcreateaccount-text' => "Crearea de conturi de la această adresă IP ('''$1''') a fost blocată de [[User:$3|$3]].
 
 Motivul invocat de $3 este ''$2''",
 
@@ -1081,7 +1086,7 @@ Mărimea [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] este <b>$7</b
 'ancientpages'            => 'Cele mai vechi articole',
 'move'                    => 'Mută',
 'movethispage'            => 'Mută această pagină',
-'unusedimagestext'        => '<p>Te rugăm ţine cont de faptul că alte situri, inclusiv alte versiuni de limbă {{SITENAME}} pot să aibă legături aici fără ca aceste pagini să fie listate aici - această listă se referă strict la {{SITENAME}} în română.</p>',
+'unusedimagestext'        => 'Te rugăm ţine cont de faptul că alte situri, inclusiv alte versiuni de limbă {{SITENAME}} pot să aibă legături aici fără ca aceste pagini să fie listate aici - această listă se referă strict la {{SITENAME}} în română.',
 'unusedcategoriestext'    => 'Următoarele categorii de pagini există şi totuşi nici un articol sau categorie nu le foloseşte.',
 'notargettitle'           => 'Lipsă ţintă',
 'notargettext'            => 'Nu ai specificat nici o pagină sau un utilizator ţintă pentru care să se efectueze această operaţiune.',
@@ -1323,8 +1328,6 @@ $1',
 'mycontris'     => 'Contribuţii',
 'contribsub2'   => 'Pentru $1 ($2)',
 'nocontribs'    => 'Nu a fost găsită nici o modificare care să satisfacă acest criteriu.',
-'ucnote'        => 'Mai jos se află ultimele <b>$1</b> modificări ale utilizatorului din ultimele <b>$2</b> zile.',
-'uclinks'       => 'Vezi ultimele $1 modificări; vezi ultimele $2 zile.',
 'uctop'         => '(sus)',
 'month'         => 'Din luna (şi dinainte):',
 
@@ -1456,14 +1459,11 @@ nu uitaţi să verificaţi dacă nu există redirecţionări duble sau invalide.
 
 Te rugăm să reţineţi că sunteţi responsabil(ă) pentru a face legăturile vechi să rămână valide.
 
-Reţineţi că pagina '''nu va fi mutată''' dacă există deja o
-pagină cu noul titlu, în afară de cazul că este complet goală sau este
+Reţineţi că pagina '''nu va fi mutată''' dacă există deja o pagină cu noul titlu, în afară de cazul că este complet goală sau este
 o redirecţionare şi în plus nu are nici o istorie de modificare.
-Cu alte cuvinte, veţi putea muta înapoi o pagină pe care aţi mutat-o
-greşit, dar nu veţi putea suprascrie o pagină validă existentă prin
-mutarea alteia.
+Cu alte cuvinte, veţi putea muta înapoi o pagină pe care aţi mutat-o greşit, dar nu veţi putea suprascrie o pagină validă existentă prin mutarea alteia.
 
-<b>ATENŢIE!</b>
+'''ATENŢIE!'''
 Aceasta poate fi o schimbare drastică şi neaşteptată pentru o pagină populară;
 vă rugăm, să vă asiguraţi că înţelegeţi toate consecinţele înainte de a continua.",
 'movepagetalktext'        => "Pagina asociată de discuţii, dacă există, va fi mutată

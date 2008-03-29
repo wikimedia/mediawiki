@@ -407,7 +407,8 @@ Iarratas: $2',
 'viewsourcefor'        => 'le haghaidh $1',
 'editinginterface'     => "'''Rabhadh:''' Tá tú ag déanamh eagarthóireachta ar leathanach a chuireann téacs an chomhéadain do na bogearraí. Cuirfear athruithe ar an leathanach seo i bhfeidhm ar an gcomhéadan úsáideora.",
 'sqlhidden'            => '(Iarratas SQL folaithe)',
-'titleprotected'       => 'Tá an teideal seo cosanta ar chruthú le [[User:$1|$1]]. An fáth ná <i>$2</i>.',
+'titleprotected'       => "Tá an teideal seo cosanta ar chruthú le [[User:$1|$1]].
+An fáth ná ''$2''.",
 
 # Login and logout pages
 'logouttitle'                => 'Logáil amach',
@@ -1045,7 +1046,7 @@ taobh istigh den tréimhse atá roghnaithe agat.',
 'watchlist-hide-own'   => 'Folaigh mo chuid athruithe',
 'watchlist-hide-minor' => 'Folaigh mionathruithe',
 
-# Displayed when you click the "watch" button and it's in the process of watching
+# Displayed when you click the "watch" button and it is in the process of watching
 'watching' => 'Ag déanamh faire...',
 
 'enotif_mailer'      => 'Fógrasheoltóir as {{SITENAME}}',
@@ -1162,12 +1163,6 @@ leathanaigh go huathoibríoch.',
 'mycontris'     => 'Mo chuid dréachtaí',
 'contribsub2'   => 'Do $1 ($2)',
 'nocontribs'    => 'Níor bhfuarthas aon athrú a raibh cosúil le na crítéir seo.',
-'ucnote'        => 'Is iad seo thíos na <b>$1</b> athruithe is déanaí a rinne an
-
-úsáideoir sna <b>$2</b> lae
-
-seo caite.',
-'uclinks'       => 'Féach ar na $1 athruithe is déanaí; féach ar na $2 lae seo caite.',
 'uctop'         => ' (barr)',
 'month'         => 'As mí (agus is luaithe):',
 'year'          => 'As bliain (agus is luaithe):',
@@ -1269,13 +1264,16 @@ Cinntigh go bhfuil an scéal seo d'intinn agat.",
 
 # Move page
 'move-page-legend'        => 'Athainmnigh an leathanach',
-'movepagetext'            => "Úsáid an foirm seo thíos chun leathanach a hathainmniú. Aistreofar a chuid stair go léir chuig an teideal nua.
-Déanfar leathanach athsheolaidh den sean-theideal chuig an teideal nua. Ní athreofar naisc chuig sean-teidil an leathanaigh. Bí cinnte go ndéanfá
-[[Special:Maintenance|cuardach]] ar athsheolaidh dubáilte nó briste. Tá tú freagrach i cinnteach go leanann naisc chuig an pointe a bhfuil siad ag aimsiú ar.
+'movepagetext'            => "Úsáid an foirm seo thíos chun leathanach a hathainmniú.
+Aistreofar a chuid stair go léir chuig an teideal nua.
+Déanfar leathanach athsheolaidh den sean-theideal chuig an teideal nua.
+Ní athreofar naisc chuig sean-teidil an leathanaigh. Bí cinnte go ndéanfá [[Special:Maintenance|cuardach]] ar athsheolaidh dubáilte nó briste.
+Tá tú freagrach i cinnteach go leanann naisc chuig an pointe a bhfuil siad ag aimsiú ar.
 
-Tabhair faoi deara '''nach''' n-athainmneofar an leathanach má tá leathanach ann cheana féin faoin teideal nua, mura bhfuil sé folamh nó athsheoladh nó mura bhfuil aon stair athraithe aige cheana. Ciallaíonn sé sin go féidir leat leathanach a athainmniú ar ais chuig an áit ina raibh sé roimhe má dhéanfá botún, agus ní féidir leat leathanach atá ann a fhorscriobh ar.
+Tabhair faoi deara '''nach''' n-athainmneofar an leathanach má tá leathanach ann cheana féin faoin teideal nua, mura bhfuil sé folamh nó athsheoladh nó mura bhfuil aon stair athraithe aige cheana.
+Ciallaíonn sé sin go féidir leat leathanach a athainmniú ar ais chuig an áit ina raibh sé roimhe má dhéanfá botún, agus ní féidir leat leathanach atá ann a fhorscriobh ar.
 
-<b>AIRE!</b>
+'''AIRE!'''
 Is athrú tábhachtach é athainmniú má tá leathanach coitianta i gceist; cinntigh go dtuigeann tú na iarmhairtí go léir roimh a leanfá.",
 'movepagetalktext'        => "Aistreofar an leathanach phlé leis, má tá sin ann:
 *'''muna''' bhfuil tú ag aistriú an leathanach trasna ainmspásanna,

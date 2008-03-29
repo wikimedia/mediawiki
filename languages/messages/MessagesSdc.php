@@ -346,7 +346,8 @@ $2',
 'namespaceprotected'   => "No si diponi di li pimmissi nezzessàri pa mudifiggà li pàgini di lu namespace '''$1'''.",
 'customcssjsprotected' => "Nò si diponi di li pimmissi nezzessàri pa mudifiggà la pàgina, parchí cunteni l'impusthazioni passunari di un althru utenti.",
 'ns-specialprotected'  => 'No è pussìbiri mudifiggà li pàgini di lu namespace {{ns:special}}.',
-'titleprotected'       => 'Chisthu tìturu è isthaddu prutiggiddu da la criazioni da [[User:$1|$1]]. La rasgioni frunidda è <i>$2</i>.',
+'titleprotected'       => "Chisthu tìturu è isthaddu prutiggiddu da la criazioni da [[User:$1|$1]].
+La rasgioni frunidda è ''$2''.",
 
 # Login and logout pages
 'logouttitle'                => 'Iscidda utenti',
@@ -559,7 +560,11 @@ S'ài sighiddu lu cullegamentu pa un'errori, è suffizenti incalchà lu buttoni 
 'editingsection'            => 'Mudifigga di $1 (sezzioni)',
 'editingcomment'            => 'Mudifigga di $1 (cummentu)',
 'editconflict'              => "Cuntrasthu d'edizioni i $1",
-'explainconflict'           => "Un'althru utenti à sàivvaddu una noba versioni di la pàgina primma di lu saivvatàggiu tóiu. La casella di mudìfigga superiori cunteni lu testhu di la pàgina attuarmenti in lìnia, cumenti è isthadda mudìfiggadda da l'althru utenti. La versioni cu' li mudìfigghi tói è i' la casella di mudìfigga in giossu. Si vói cunfèimmalli, dévi arriggà li mudìfigghi tói i' lu testhu esisthenti (casella superiori). <b>Soru</b> lu testhu i' la casella superiori sarà sàivvaddu candu tu incalcharé \"Sàivva la pàgina\".<br />",
+'explainconflict'           => "Un'althru utenti à sàivvaddu una noba versioni di la pàgina primma di lu saivvatàggiu tóiu.
+La casella di mudìfigga superiori cunteni lu testhu di la pàgina attuarmenti in lìnia, cumenti è isthadda mudìfiggadda da l'althru utenti.
+La versioni cu' li mudìfigghi tói è i' la casella di mudìfigga in giossu.
+Si vói cunfèimmalli, dévi arriggà li mudìfigghi tói i' lu testhu esisthenti (casella superiori).
+'''Soru''' lu testhu i' la casella superiori sarà sàivvaddu candu tu incalcharé \"Sàivva la pàgina\".",
 'yourtext'                  => 'Lu testhu tóiu',
 'storedversion'             => 'La versioni mimurizadda',
 'nonunicodebrowser'         => "<strong>ATTINZIONI: Lu nabiggadori tóiu nò è cumpatìbiri cu' li caràtteri Unicode. Pa cunsintì la mudìfigga di li pàgini chena crià incunvinienti, i caràtteri nò ASCII so visuarizzaddi i' la casella di mudìfigga cumenti còdizi esadezimari.</strong>",
@@ -602,7 +607,7 @@ S'azzirthà chi sia avveru opporthunu continuà a mudìfiggà chistha pàgina. L
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Impussìbiri registhrà un utenti',
-'cantcreateaccount-text' => "Criazioni di registhrazioni da chistu indirizzu IP (<b>$1</b>) è isthadda broccadda da [[User:$3|$3]].
+'cantcreateaccount-text' => "Criazioni di registhrazioni da chistu indirizzu IP ('''$1''') è isthadda broccadda da [[User:$3|$3]].
 
 La rasgioni frunidda da $3 è ''$2''",
 
@@ -841,7 +846,7 @@ Cunsulthà lu [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} rigisthru di ca
 'recentchangestext'                 => 'Chistha pàgina prisinta li mudìfigghi più rizzenti a li cuntinuddi di lu situ.',
 'recentchanges-feed-description'    => 'Chisthu feed cunteni li mudìfigghi più rizzenti a li cuntinuddi di lu situ.',
 'rcnote'                            => "Inogghi {{PLURAL:$1|è erencadda la mudìfigga più rizzenti arriggadda|so erencaddi li '''$1''' mudìfigghi più rizzenti arriggaddi}} a lu situ {{PLURAL:$2|i' li ulthimi 24 ori|i' li '''$2''' dì passaddi}}; i dati so aggiornaddi a $3.",
-'rcnotefrom'                        => "Inogghi so erencaddi li mudìfigghi arriggaddi a parthì da <b>$2</b> (finz'a <b>$1</b>).",
+'rcnotefrom'                        => "Inogghi so erencaddi li mudìfigghi arriggaddi a parthì da '''$2''' (finz'a '''$1''').",
 'rclistfrom'                        => 'Musthra li mudìfigghi arriggaddi à partì da $1',
 'rcshowhideminor'                   => '$1 li mudìfigghi minori',
 'rcshowhidebots'                    => '$1 li bot',
@@ -1117,7 +1122,7 @@ La [http://meta.wikimedia.org/wiki/Help:Job_queue coda di li pruzzessi] è longa
 'ancientpages'            => 'Pàgini mancu rizzenti',
 'move'                    => 'ippustha',
 'movethispage'            => 'Ippustha chistha pàgina',
-'unusedimagestext'        => "<p>È pussìbiri cullegamenti a file d'althri siti, utirizendi l'indirizzu; chisthi pudiani dunca assé utilizzaddi puru si so i' l'erencu.</p>",
+'unusedimagestext'        => "È pussìbiri cullegamenti a file d'althri siti, utirizendi l'indirizzu; chisthi pudiani dunca assé utilizzaddi puru si so i' l'erencu.",
 'unusedcategoriestext'    => 'Li pàgini di li categuri indicaddi inogghi sò isthaddi criaddi ma nò cuntenani nisciuna pàgina né sottucateguria.',
 'notargettitle'           => 'Dati mancanti',
 'notargettext'            => "Nò ài ippizzificaddu una pàgina o un'utenti i' lu quari eseguì chistha funzioni.",
@@ -1372,8 +1377,6 @@ $1",
 'mycontris'     => "li me' cuntributi",
 'contribsub2'   => 'Pa $1 ($2)',
 'nocontribs'    => 'Nò so isthaddi acciappaddi mudìfigghi cunfòimmi a li critéri sciubaraddi.',
-'ucnote'        => "Inogghi sò erencaddi li <b>$1</b> mudìfigghi più rizzenti arriggaddi da l'utenti i' l'ulthimi <b>$2</b> dì.",
-'uclinks'       => 'Musthra li ulthimi $1 mudìfigghi; musthra li ulthimi $2 dì.',
 'uctop'         => '(ulthima pa la pàgina)',
 'month'         => 'A parthì da lu mesi (e prizzidenti):',
 'year'          => "A parthì da l'anni (e prizzidenti):",
@@ -1484,11 +1487,18 @@ $1",
 
 # Move page
 'move-page-legend'        => 'Ippusthamentu di pàgina',
-'movepagetext'            => "Chishu mòdulu di rinominà una pàgina, ippusthendi tutta la cronologia soia a l'innòmmu nobu. La pàgina attuari sarà automatiggamenti un rinviu a lu nobu tìturu. I culleggamenti nò sarani aggiornaddi; verifigga chi l'ippusthamentu nò aggia criaddu doppi rinvi o rinvi erraddi. '''Ài la ripunsabiriddai chi li cullegamenti a la pàgina risthini curretti.'''
+'movepagetext'            => "Chishu mòdulu di rinominà una pàgina, ippusthendi tutta la cronologia soia a l'innòmmu nobu.
+La pàgina attuari sarà automatiggamenti un rinviu a lu nobu tìturu.
+I culleggamenti nò sarani aggiornaddi;
+verifigga chi l'ippusthamentu nò aggia criaddu doppi rinvi o rinvi erraddi.
+'''Ài la ripunsabiriddai chi li cullegamenti a la pàgina risthini curretti.'''
 
-Nota chi la pàgina '''nò''' sarà ippusthadda si n'isisthi già una cu' lu nobu tìturu, a mancu chi nò sia biodda o un rinviu a lu vécciu tìturu, chena versioni prizzidenti. In casu d'errori i' l'ippusthamentu pói turrà immediatamenti a lu tìturu vécciu, e nò pussìbiri sobbraischribì pa errori una pàgina già esisthenti.
+Nota chi la pàgina '''nò''' sarà ippusthadda si n'isisthi già una cu' lu nobu tìturu, a mancu chi nò sia biodda o un rinviu a lu vécciu tìturu, chena versioni prizzidenti.
+In casu d'errori i' l'ippusthamentu pói turrà immediatamenti a lu tìturu vécciu, e nò pussìbiri sobbraischribì pa errori una pàgina già esisthenti.
 
-<b>ATTINZIONI!</b> Un ciambamentu cussì forthi pó causà umbè di prubremi a tuttiganti. Azzirthati d'abé cumpresu li cunsiguènzi di l'ippusthamentu!",
+'''ATTINZIONI!'''
+Un ciambamentu cussì forthi pó causà umbè di prubremi a tuttiganti.
+Azzirthati d'abé cumpresu li cunsiguènzi di l'ippusthamentu!",
 'movepagetalktext'        => "La reratiba pàgina di dischussioni sarà ippusthadda automatiggamenti umpari a la pàgina prinzipari, '''fora chi i' li casi sighenti:'''
 * l'ippusthamentu di la pàgina è intra tipi di pàgina dibessi
 * isisthi già una pàgina di dischussioni a lu nobu tìturu (nò biodda)

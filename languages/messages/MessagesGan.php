@@ -530,11 +530,11 @@ $2',
 'editingsection'            => '眼下在編輯$1 (段落)',
 'editingcomment'            => '眼下在編輯$1 (評論)',
 'editconflict'              => '編輯仗: $1',
-'explainconflict'           => '倷開始編輯之後有人改動嘞箇頁。
+'explainconflict'           => "倷開始編輯之後有人改動嘞箇頁。
 上首嗰方框顯示嗰係眼下本頁嗰內容。
 倷嗰修改到下底嗰方框顯示。
 倷需要拿倷嗰修改並到眼下嗰內容。
-<b>單只係</b>上首方框嗰內容會等倷按"存到箇頁"之後拕保存。<br />',
+'''單只係'''上首方框嗰內容會等倷按\"存到箇頁\"之後拕保存。",
 'yourtext'                  => '倷編嗰內容',
 'storedversion'             => '存到嗰版本',
 'nonunicodebrowser'         => '<strong>警告：倷嗰瀏覽器伓兼容Unicode。箇度有隻辦法方便倷安全嗰編寫得正文章：伓係ASCII嗰字符會到編輯框裡度用十六進位編碼顯到。</strong>',
@@ -578,7 +578,7 @@ $2',
 
 # Account creation failure
 'cantcreateaccounttitle' => '新開伓正帳戶',
-'cantcreateaccount-text' => 'IP 位址伓能 (<b>$1</b>) 新開帳戶。箇可能係因為經常有來自倷嗰學堂或網絡供應商 (ISP)故意嗰破壞扤得。',
+'cantcreateaccount-text' => "IP 位址伓能 ('''$1''') 新開帳戶。箇可能係因為經常有來自倷嗰學堂或網絡供應商 (ISP)故意嗰破壞扤得。",
 
 # History pages
 'viewpagelogs'        => '眵吖箇頁嗰日誌',
@@ -806,7 +806,7 @@ $2',
 'recentchangestext'                 => '跟到箇隻wiki上嗰最新改動。',
 'recentchanges-feed-description'    => '跟到箇隻 wiki 上集合嗰最後改動。',
 'rcnote'                            => "下底係到$3，最近'''$2'''日之內嗰最後'''$1'''回改動:",
-'rcnotefrom'                        => '底下係自<b>$2</b>嗰更改(頂多顯示<b>$1</b>):',
+'rcnotefrom'                        => "底下係自'''$2'''嗰更改(頂多顯示'''$1'''):",
 'rclistfrom'                        => '顯示自$1後嗰新改動',
 'rcshowhideminor'                   => '$1細編輯',
 'rcshowhidebots'                    => '$1機器人嗰編輯',
@@ -1080,7 +1080,7 @@ $2',
 'ancientpages'            => '老早嗰頁面',
 'move'                    => '移動',
 'movethispage'            => '移動箇頁',
-'unusedimagestext'        => '<p>請注意別嗰網站直接用得正URL連結到箇隻圖像，所以箇首列到嗰圖像可能還會拕使用。</p>',
+'unusedimagestext'        => '請注意別嗰網站直接用得正URL連結到箇隻圖像，所以箇首列到嗰圖像可能還會拕使用。',
 'unusedcategoriestext'    => '話係話冇拕別嗰文章或分類採用，但列表嗰分類頁還係存在。',
 'notargettitle'           => '冇目標',
 'notargettext'            => '倷冇指正隻功能要用到嗰對象係頁面或用戶。',
@@ -1338,8 +1338,6 @@ $NEWPAGE
 'mycontris'     => '偶嗰貢獻',
 'contribsub2'   => '$1嗰貢獻 ($2)',
 'nocontribs'    => '冇尋到合到條件嗰改動。',
-'ucnote'        => '下底係箇隻用戶最晏<b>$2</b>日之內嗰最末<b>$1</b>道改動。',
-'uclinks'       => '望吖最末$1回修改；望吖最末$2日。',
 'uctop'         => '(頭上)',
 'month'         => '從箇月 (或更早):',
 'year'          => '從箇年 (或更早):',
@@ -1470,7 +1468,7 @@ $NEWPAGE
 注意如果新頁面早就有嗰話，頁面'''伓會'''搬過去，要不新頁面就係冇內容或係重定向頁，也冇修訂歷史。
 噉就係話必要時倷能等換到新頁面之後再又回到舊嗰頁面，跟到倷也覆蓋不正目前頁面。
 
-<b>警告！</b>
+'''警告！'''
 對一隻訪問得多嗰頁面噉會係一隻重要同關鍵嗰改動；
 請扤之前了解正佢噉可能嗰後果。",
 'movepagetalktext'        => "相關嗰討論頁會自動同箇頁一齊搬走，'''除非''':

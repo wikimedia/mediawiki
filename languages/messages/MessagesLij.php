@@ -415,7 +415,7 @@ Leggenda: (corr) = differense co-a verscion corrente, (prec) = differense co-a v
 'recentchanges'                  => 'Ûrtimi cangiamenti',
 'recentchanges-feed-description' => "Questo feed o g'ha e modiffiche ciû reçenti a-i contegnûi do scîto.",
 'rcnote'                         => "Chì sotta {{PLURAL:$1|gh'è a modiffica ciû reçente fæta|ghe son e '''$1''' modiffiche ciû reçenti fæte}} inte 'sto scîto {{PLURAL:$2|inte ûrtime 24 ôe|inti ûrtimi '''$2''' giorni}}; i dæti son aggiornæ a $3.",
-'rcnotefrom'                     => "Chì sotta gh'è i cangiamenti fæti comensando da <b>$2</b> (scinn-a <b>$1</b>).",
+'rcnotefrom'                     => "Chì sotta gh'è i cangiamenti fæti comensando da '''$2''' (scinn-a '''$1''').",
 'rclistfrom'                     => 'Fâ vedde e modiffiche apportæ partendo da $1',
 'rcshowhideminor'                => '$1 cangiamenti minoi',
 'rcshowhideliu'                  => '$1 ûtenti registræ',
@@ -603,7 +603,7 @@ Ti te peu strinza a vista se ti te çerni un tipo de registro, un nomme de un ut
 'watchlist-show-minor' => 'Fanni vedde i cangiamenti minô',
 'watchlist-hide-minor' => 'Ascondi i cangiamenti minoî',
 
-# Displayed when you click the "watch" button and it's in the process of watching
+# Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Inti osservæ speçiâli...',
 'unwatching' => 'Scassâa da li osservæ speçiâli',
 
@@ -720,12 +720,17 @@ Veddi a [[Special:Ipblocklist|Lista de i indirissi IP affermæ]] pe e informaçi
 
 # Move page
 'move-page-legend'        => 'Mescia a paggina',
-'movepagetext'            => "Chì o se pêu dâ 'n nêuvo nomme a 'na paggina, stramûando tûtta a sêu cronologîa a-o nêuvo nomme. A paggina attuâle a fa outomaticamente 'n rindirissamento a-o nêuvo tittolo. I collegamenti escistenti no sajàn aggiornæ; veriffica che 'sto stramûo o no l'agge creòu doggi rindirissamenti ò rindirissamenti sballiæ. A responsabilitæ pe tegnî i collegamenti sempre donde deivan andâ a l'è têu.
+'movepagetext'            => "Chì o se pêu dâ 'n nêuvo nomme a 'na paggina, stramûando tûtta a sêu cronologîa a-o nêuvo nomme.
+A paggina attuâle a fa outomaticamente 'n rindirissamento a-o nêuvo tittolo.
+I collegamenti escistenti no sajàn aggiornæ; veriffica che 'sto stramûo o no l'agge creòu doggi rindirissamenti ò rindirissamenti sballiæ.
+A responsabilitæ pe tegnî i collegamenti sempre donde deivan andâ a l'è têu.
 
-A paggina a '''no''' sajà stramûâa se ghe foisse zà ûnn-a co-o nêuvo nomme, a meno c'a no segge vêua ò fæta solo da 'n rindirissamento a-a vegia e a no l'agge verscioîn preçedenti. In caso de stramûo sballiòu o se pêu tornâ sûbbito a-o vegio tittolo, e o no l'è poscibbile sorvescrive pe errô 'na paggina zà escistente.
+A paggina a '''no''' sajà stramûâa se ghe foisse zà ûnn-a co-o nêuvo nomme, a meno c'a no segge vêua ò fæta solo da 'n rindirissamento a-a vegia e a no l'agge verscioîn preçedenti.
+In caso de stramûo sballiòu o se pêu tornâ sûbbito a-o vegio tittolo, e o no l'è poscibbile sorvescrive pe errô 'na paggina zà escistente.
 
-<b>ATTENSION:</b>
-'N cangiamento coscì grande o porieiva creâ di controtempi e problemmi, sorvetûtto pe-e paggine ciû viscitæ. Pensa ben e conseguense de 'sto stramûo primma d'andâ avanti!",
+'''ATTENSION:'''
+'N cangiamento coscì grande o porieiva creâ di controtempi e problemmi, sorvetûtto pe-e paggine ciû viscitæ.
+Pensa ben e conseguense de 'sto stramûo primma d'andâ avanti!",
 'movepagetalktext'        => "A corispondente paggina de discûxon a sajà stramûâa outomaticamente insemme a-a paggina prinçipâ, '''eççetto inti seguenti câxi''':
 
 * Che o stramûo da paggina o segge tra namespace diversci

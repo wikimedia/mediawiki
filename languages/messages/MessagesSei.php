@@ -568,7 +568,7 @@ Me pos-coccebj revertöx ö ticpatlöx janpáhinám jöx [[Special:Userlogin|ca�
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Nexuatláminop',
-'cantcreateaccount-text' => "Creacionde caitomde jan adressade IP (<b>$1</b>) coccebj blockom [[User:$3|$3]] mii.
+'cantcreateaccount-text' => "Creacionde caitomde jan adressade IP ('''$1''') coccebj blockom [[User:$3|$3]] mii.
 
 Rae' zo xuniim $3 mii coccebj ''$2''",
 
@@ -725,7 +725,7 @@ Informacion: (curt) = quiíxde vercion currentua,
 'recentchangestext'                 => 'Caitom camjöx cmaa quiíx zode Wiki zo jan páhina iti.',
 'recentchanges-feed-description'    => 'Caitom camjöx cmaa quiíx zode Wiki zo jan fiiyt iti.',
 'rcnote'                            => "!-cmaa coccebj {{PLURAL:$1|'''1''' quiixde|'''$1''' hunquiíxde}} {{PLURAL:$2|'''1''' hunzaah|'''$2''' hunixaáp}} zo iti, $3 'de.",
-'rcnotefrom'                        => '!-cmaa coccebj quiíx zode <b>$2</b> (plusöxiti <b>$1</b> visi).',
+'rcnotefrom'                        => "!-cmaa coccebj quiíx zode '''$2''' (plusöxiti '''$1''' visi).",
 'rclistfrom'                        => "Cohuatlöx hunquiix startom $1 'de",
 'rcshowhideminor'                   => '$1 editám bajlöxám',
 'rcshowhidebots'                    => '$1 cibotám',

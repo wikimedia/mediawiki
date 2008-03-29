@@ -408,7 +408,8 @@ $2',
 'namespaceprotected'   => "Vi ne rajtas redakti paĝojn en la '''$1''' nomspaco.",
 'customcssjsprotected' => 'Vi ne rajtas redakti ĉi tiun paĝon, ĉar ĝi enhavas personajn alĝustigojn de alia uzanto.',
 'ns-specialprotected'  => 'Paĝoj en la {{ns:special}} nomspaco ne povas esti redaktataj.',
-'titleprotected'       => 'Ĉi titolo estas protektita de kreado de [[User:$1|$1]]. La kialo donata estis <i>$2</i>.',
+'titleprotected'       => "Ĉi titolo estas protektita de kreado de [[User:$1|$1]].
+La kialo donata estis ''$2''.",
 
 # Login and logout pages
 'logouttitle'                => 'Elsalutu!',
@@ -667,7 +668,7 @@ Jen la loglibro de forigoj por via oportuno:",
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Ne povas krei konton',
-'cantcreateaccount-text' => "Konto-kreado de cxi tiu IP-adreso (<b>$1</b>) estis forbarita de [[User:$3|$3]].
+'cantcreateaccount-text' => "Konto-kreado de cxi tiu IP-adreso ('''$1''') estis forbarita de [[User:$3|$3]].
 
 La kialo donata de $3 estas ''$2''.",
 
@@ -937,7 +938,7 @@ Ekzemple, por la Centra Eŭropa Horzono, indiku "1" vintre aŭ "2" dum somertemp
 'recentchangestext'                 => 'Sekvu la plej lastajn ŝanĝojn en la {{SITENAME}} per ĉi tiu paĝo.',
 'recentchanges-feed-description'    => 'Sekvu la plej lastatempajn sxangxojn al la vikio en cxi tiu fonto.',
 'rcnote'                            => "Jen la {{PLURAL:$1|lasta '''1''' ŝanĝo|lastaj '''$1''' ŝanĝoj}} dum la {{PLURAL:$2|lasta tago|lastaj '''$2''' tagoj}}, ekde $3.",
-'rcnotefrom'                        => 'Jen la ŝanĝoj ekde <strong>$2</strong> (lastaj ĝis <strong>$1</strong>).',
+'rcnotefrom'                        => "Jen la ŝanĝoj ekde '''$2''' (lastaj ĝis '''$1''').",
 'rclistfrom'                        => 'Montru novajn ŝanĝojn ekde "$1"',
 'rcshowhideminor'                   => '$1 redaktetojn',
 'rcshowhidebots'                    => '$1 robotojn',
@@ -1512,8 +1513,6 @@ $1',
 'mycontris'     => 'Miaj kontribuoj',
 'contribsub2'   => 'De $1 ($2)',
 'nocontribs'    => 'Trovis neniajn redaktojn laŭ tiu kriterio.',
-'ucnote'        => 'Jen la <b>$1</b> lastaj redaktoj de tiu uzanto dum la <b>$2</b> lastaj tagoj.',
-'uclinks'       => 'Montru la $1 lastajn redaktojn; montru la $2 lastajn tagojn.',
 'uctop'         => ' (lasta)',
 'month'         => 'Ekde monato (kaj pli frue):',
 'year'          => 'Ekde jaro (kaj pli frue):',

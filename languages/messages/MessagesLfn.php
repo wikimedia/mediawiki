@@ -416,7 +416,7 @@ La arcivo de sutraes per esta paje es asi per conveni:",
 'recentchangestext'              => 'Asi la lista de cambias resente en la vici.',
 'recentchanges-feed-description' => 'Seque la cambias plu resente a la vici en esta flue.',
 'rcnote'                         => 'Su es {{PLURAL:$1|cambia|cambias}} en la presedente {{PLURAL:$2|dia|dias}}, de $3.',
-'rcnotefrom'                     => 'A su es la cambias de <b>$2</b> (asta <b>$1</b> es mostrada).',
+'rcnotefrom'                     => "A su es la cambias de '''$2''' (asta '''$1''' es mostrada).",
 'rclistfrom'                     => 'Mostra cambias nova, comensante de $1',
 'rcshowhideminor'                => '$1 editas minor',
 'rcshowhidebots'                 => '$1 botes',
@@ -670,12 +670,18 @@ Asi es la ajustas presente per la paje <strong>$1</strong>:',
 
 # Move page
 'move-page-legend' => 'Move paje',
-'movepagetext'     => "Usa la forma a su va cambia la nom de un paje, e va move tota se istoria a la nom nova.  La titulo vea va deveni un paje de redirije a la titulo nova.  Lias a la titulo de la paje vea no va es cambiada; Tu debe vide serta ce es redirijes duple o rompeda.  Tu es respondable per es serta ce la lias va continua vade a la locas intendeda.
+'movepagetext'     => "Usa la forma a su va cambia la nom de un paje, e va move tota se istoria a la nom nova.
+La titulo vea va deveni un paje de redirije a la titulo nova.
+Lias a la titulo de la paje vea no va es cambiada;
+Tu debe vide serta ce es redirijes duple o rompeda.
+Tu es respondable per es serta ce la lias va continua vade a la locas intendeda.
 
-Nota ce la paje '''no''' va es moveda si es ja un paje a la titulo nova, sin el es vacua o un redirije e no ave un istoria de editas presedente.  Esta sinifia ce tu pote cambia la nom de un paje a la loca presedente si tu era, e tu no pote scrive supra un paje ce esiste ja.
+Nota ce la paje '''no''' va es moveda si es ja un paje a la titulo nova, sin el es vacua o un redirije e no ave un istoria de editas presedente.
+Esta sinifia ce tu pote cambia la nom de un paje a la loca presedente si tu era, e tu no pote scrive supra un paje ce esiste ja.
 
-<b>AVISA!</b>
-Esta pote es un cambia dramos e nonespetada per un paje poplal; per favore, es serta ce tu comprende la resulta de esta ata ante tu continua.",
+'''AVISA!'''
+Esta pote es un cambia dramos e nonespetada per un paje poplal;
+per favore, es serta ce tu comprende la resulta de esta ata ante tu continua.",
 'movepagetalktext' => "La paje de discuta de esta paje va es moveda automatica con el '''eseta si:'''
 *Un paje de discuta ce no es vacua esiste ja su la nom nova, o
 *Tu cambia la indica en la caxa su.

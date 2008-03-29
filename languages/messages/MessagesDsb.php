@@ -474,7 +474,7 @@ Wótpšašanje: $2',
 'namespaceprotected'   => "Njejsy wopšawnjony, boki w rumje: '''$1''' wobźěłaś.",
 'customcssjsprotected' => 'Toś te boki njesmějoš wobźěłaś, dokulaž wopśimjeju wósobinske dataje drugego wužywarja.',
 'ns-specialprotected'  => 'Njejo móžno, boki w rumje {{ns:special}} wobźěłaś.',
-'titleprotected'       => 'Bok z toś tym mjenim bu wót [[User:$1|$1]] pśeśiwo napóranjeju šćitany. Pśicyna jo <i>$2</i>.',
+'titleprotected'       => "Bok z toś tym mjenim bu wót [[User:$1|$1]] pśeśiwo napóranjeju šćitany. Pśicyna jo ''$2''.",
 
 # Login and logout pages
 'logouttitle'                => 'Wužywarja wótzjawiś',
@@ -684,11 +684,11 @@ Aby bok wutwórił, ga napiš do kašćika spózy. (Dokradnjejše informacije p�
 'editingsection'            => 'Wobźěłanje boka $1 (wótrězk)',
 'editingcomment'            => 'Wobźěłanje boka $1 (komentar)',
 'editconflict'              => 'Wobźěłański konflikt: $1',
-'explainconflict'           => 'Něchten drugi jo bok změnił, pó tym, až sy zachopił jen wobźěłaś.
+'explainconflict'           => "Něchten drugi jo bok změnił, pó tym, až sy zachopił jen wobźěłaś.
 Górjejcne tekstowe pólo wopśimjejo tekst boka, ako tuchylu eksistěrujo.
 Twóje změny pokazuju se w dołojcnem tekstowem pólu.
 Pšosym zapódaj twóje změny do górjejcnego tekstowego póla.
-<b>Jano</b> wopśimjeśe górjejcnego tekstowego póla se składujo, gaž tłocyš na "składowaś"<br />',
+'''Jano''' wopśimjeśe górjejcnego tekstowego póla se składujo, gaž tłocyš na \"składowaś\".",
 'yourtext'                  => 'Twój tekst',
 'storedversion'             => 'Składowana wersija',
 'nonunicodebrowser'         => '<strong>Glědaj:</strong> Twój browser njamóžo unicodowe znamuška pšawje pśeźěłaś. Pšosym wužywaj hynakšy browser.',
@@ -731,7 +731,7 @@ Aby se mógał informěrowaś, slědujo how wulašowanski log-zapis, w kótarem�
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Njejo móžno wužywarske konto wutwóriś',
-'cantcreateaccount-text' => "Wutwórjenje wužywarskego konta z toś teje IP adresy (<b>$1</b>) jo blokěrowane pśez [[User:$3|$3]].
+'cantcreateaccount-text' => "Wutwórjenje wužywarskego konta z toś teje IP adresy ('''$1''') jo blokěrowane pśez [[User:$3|$3]].
 
 Pśicyna, kótaruž $3 jo zapódał, jo ''$2''.",
 
@@ -980,7 +980,7 @@ Móžoš bok ale teke [[$1|sam załožyś]].",
 'recentchangestext'                 => "How móžoš slědne změny we '''{{GRAMMAR:lokatiw|{{SITENAME}}}}''' slědowaś.",
 'recentchanges-feed-description'    => 'Slěduj z toś tym zapódaśim nejaktualnjejše změny we {{GRAMMAR:lokatiw|{{SITENAME}}}}.',
 'rcnote'                            => "Dołojce {{PLURAL:$1|jo '''1''' změna|stej slědnej '''$1''' změnje|su slědne '''$1''' změny}} w {{PLURAL:$2|slědnem dnju|slědnyma '''$2''' dnjoma|slědnych '''$2''' dnjach}}, staw wót $3.",
-'rcnotefrom'                        => 'Dołojce pokazuju se změny wót <b>$2</b> (maks. <b>$1</b> zapisow).',
+'rcnotefrom'                        => "Dołojce pokazuju se změny wót '''$2''' (maks. '''$1''' zapisow).",
 'rclistfrom'                        => 'Nowe změny wót $1 pokazaś.',
 'rcshowhideminor'                   => 'Snadne změny $1',
 'rcshowhidebots'                    => 'awtomatiske programy (boty) $1',
@@ -1591,8 +1591,6 @@ $1',
 'mycontris'     => 'Móje pśinoski',
 'contribsub2'   => 'Za $1 ($2)',
 'nocontribs'    => 'Za toś te kriterije njejsu žedne změny se namakali.',
-'ucnote'        => 'How su slědne <b>$1</b> změny wužywarja w slědnych <b>$2</b> dnjach.',
-'uclinks'       => 'Glědaj slědne $1 změny; glědaj slědne $2 dny.',
 'uctop'         => '(aktualny)',
 'month'         => 'wót mjaseca (a jěsnjej):',
 'year'          => 'wót lěta (a jěsnjej):',

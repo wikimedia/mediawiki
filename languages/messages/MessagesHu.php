@@ -283,7 +283,7 @@ $messages = array(
 'tog-previewontop'            => 'Előnézet megjelenítése a szerkesztőablak előtt',
 'tog-previewonfirst'          => 'Előnézet első szerkesztésnél',
 'tog-nocache'                 => 'A lapok gyorstárazásának letiltása',
-'tog-enotifwatchlistpages'    => 'Értesítés e-mailben, ha egy általam figyelt lap megváltozik',
+'tog-enotifwatchlistpages'    => 'Értesítés küldése e-mailben, ha egy általam figyelt lap megváltozik',
 'tog-enotifusertalkpages'     => 'Értesítés e-mailben, ha megváltozik a vitalapom',
 'tog-enotifminoredits'        => 'Értesítés e-mailben a lapok apró változtatásairól',
 'tog-enotifrevealaddr'        => 'Jelenítse meg az e-mail címemet a figyelmeztető e-mailekben',
@@ -610,7 +610,7 @@ $2',
 'namespaceprotected'   => "Nincs jogosultságod a(z) '''$1''' névtérbeli lapok szerkesztésére.",
 'customcssjsprotected' => 'Nincs jogosultságod a lap szerkesztéséhez, mert egy másik felhasználó személyes beállításait tartalmazza.',
 'ns-specialprotected'  => 'A {{ns:special}} névtérben található lapok nem szerkeszthetőek.',
-'titleprotected'       => 'A cikk elkészítését [[User:$1|$1]] blokkolta, oka: <i>$2</i>.',
+'titleprotected'       => "A cikk elkészítését [[User:$1|$1]] blokkolta, oka: ''$2''.",
 
 # Login and logout pages
 'logouttitle'                => 'Kijelentkezés',
@@ -822,11 +822,11 @@ Ez olyankor fordul elő, ha az általad használt webalapú névtelen proxy szol
 'editingsection'            => '$1 szerkesztése (szakasz)',
 'editingcomment'            => '$1 szerkesztése (üzenet)',
 'editconflict'              => 'Szerkesztési ütközés: $1',
-'explainconflict'           => 'Valaki megváltoztatta a lapot azóta, hogy szerkeszteni kezdted.
+'explainconflict'           => "Valaki megváltoztatta a lapot azóta, hogy szerkeszteni kezdted.
 A felső szövegablak tartalmazza az oldal jelenlegi állapotát.
 A te módosításaid az alsó ablakban láthatóak.
 Át kell vezetned a módosításaidat a felső szövegbe.
-<b>Csak</b> a felső ablakban levő szöveg lesz elmentve, amikor a „Lap mentése” gombra kattintasz.',
+'''Csak''' a felső ablakban levő szöveg lesz elmentve, amikor a „Lap mentése” gombra kattintasz.",
 'yourtext'                  => 'A te változatod',
 'storedversion'             => 'A tárolt változat',
 'nonunicodebrowser'         => '<strong>Figyelem: A böngésződ nem Unicode kompatibilis. Egy programozási trükk segítségével biztonságban szerkesztheted a cikkeket: a nem ASCII karakterek a szerkesztőablakban hexadeciális kódokként jelennek meg.</strong>',
@@ -874,10 +874,9 @@ hogy a törlés indoka nem érvényes-e még. A törlési naplóban a lapról az
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Felhasználói fiók létrehozása sikertelen',
-'cantcreateaccount-text' => "Erről az IP-címről (<b>$1</b>) átmenetileg nem lehet regisztrálni, mert [[User:$3|$3]] blokkolta az alábbi indokkal:
-:''$2''
+'cantcreateaccount-text' => "Erről az IP-címről ('''$1''') nem lehet regisztrálni, mert [[User:$3|$3]] blokkolta az alábbi indokkal:
 
-Egy IP-címet gyakran több különböző ember is használ; lehetséges, hogy egy másnak szánt blokkba futottál bele. Ebben az esetben (vagy ha kifogásod van a blokk ellen) vedd fel velünk a kapcsolatot! '''A blokkal kapcsolatos üzenetekben írd meg az IP-címedet ($1), a blokkoló admin nevét, és a blokk indokát!''' Ha szeretnéd, hogy létrehozzunk neked egy új felhasználót, adj meg egy e-mail címet, és mondd meg, milyen felhasználónevet szeretnél. Érdemes magadról is írnod pár szót, így elkerülheted, hogy összetévesszünk azzal, akinek a blokkot szántuk.",
+:''$2''",
 
 # History pages
 'viewpagelogs'        => 'A lap a rendszernaplókban',
@@ -1742,8 +1741,6 @@ $1',
 'mycontris'     => 'Közreműködéseim',
 'contribsub2'   => '$1 ($2)',
 'nocontribs'    => 'Nem található a feltételeknek megfelelő változtatás.',
-'ucnote'        => 'Alább <b>$1</b> módosításai láthatóak az elmúlt <b>$2</b> napban.',
-'uclinks'       => 'Az utolsó $1 változtatás megtekintése; az utolsó $2 nap megtekintése.',
 'uctop'         => ' (utolsó)',
 'month'         => 'E hónap végéig:',
 'year'          => 'Eddig az évig:',
@@ -1753,7 +1750,7 @@ $1',
 'sp-contributions-blocklog'    => 'Blokkolási napló',
 'sp-contributions-search'      => 'Közreműködések szűrése',
 'sp-contributions-username'    => 'IP-cím vagy felhasználónév:',
-'sp-contributions-submit'      => 'Szűrés',
+'sp-contributions-submit'      => 'Keresés',
 
 # What links here
 'whatlinkshere'       => 'Mi hivatkozik erre',
@@ -1879,14 +1876,15 @@ változtatni. Kérjük, erősítsd meg, hogy ezt kívánod tenni.',
 'move-page'               => '$1 átnevezése',
 'move-page-legend'        => 'Lap átnevezése',
 'movepagetext'            => "Az alábbi űrlap használatával nevezhetsz át egy lapot, és helyezheted át előzményeit az új névre.
-A régi cím az új címre átirányító lap lesz. A régi lapcímre mutató hivatkozások változatlanok maradnak;
+A régi cím az új címre átirányító lap lesz.
+A régi lapcímre mutató hivatkozások változatlanok maradnak;
 a rossz átirányításokat ellenőrizd.
 Te vagy a felelős annak biztosításáért, hogy a hivatkozások továbbítsanak ahhoz a ponthoz, ahová feltehetőleg vinniük kell.
 
 A lap '''nem''' kerül áthelyezésre, ha már van olyan című új lap, hacsak nem üres vagy átirányítás, és nincs szerkesztési előzménye.
 Ez azt jelenti, hogy visszanevezheted az oldalt az eredeti nevére, ha hibázol, létező oldalt pedig nem tudsz felülírni.
 
-<b>FIGYELEM!</b>
+'''FIGYELEM!'''
 Népszerű oldalak esetén ez drasztikus és nem várt változtatás lehet;
 győződj meg róla a folytatás előtt, hogy tisztában vagy-e a következményekkel.",
 'movepagetalktext'        => "A laphoz tartozó vitalap automatikusan átneveződik, '''kivéve, ha:'''

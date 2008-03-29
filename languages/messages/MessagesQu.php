@@ -373,7 +373,7 @@ $2",
 'namespaceprotected'   => "'''$1''' nisqa suti k'ititaqa llamk'apuyta manam saqillasunkichu.",
 'customcssjsprotected' => "Manam saqillasunkichu kay p'anqata llamk'apuyta, huk ruraqpa kikin tiyachisqankunayuq kaptinmi.",
 'ns-specialprotected'  => "{{ns:special}} suti k'itipi p'anqakunaqa manam llamk'apunallachu.",
-'titleprotected'       => "Kay p'anqa sutitaqa [[User:$1|$1]] sutiyuq ruraq kamariymanta hark'arqanmi, kayraykum nispa: <i>$2</i>.",
+'titleprotected'       => "Kay p'anqa sutitaqa [[User:$1|$1]] sutiyuq ruraq kamariymanta hark'arqanmi, kayraykum nispa: ''$2''.",
 
 # Login and logout pages
 'logouttitle'                => "Llamk'apuy tiyaypa puchukaynin",
@@ -578,9 +578,10 @@ Kayqa maykunapi tukukun, mana allin wakichisqa proxy sirwiytam llamk'achiptiyki.
 'editingcomment'            => "$1-ta llamk'apuspa (rimapay)",
 'editconflict'              => 'Ruray taripanakuy: $1',
 'explainconflict'           => "Ruray taripanakuy: Huk runam kay p'anqata llamk'apurqun, qamtaq manaraq waqaychaptiyki.
-Umapi kaq qillqana k'itipi kunan kachkaq qillqam. Qampa hukchasqaykikunataq sikipi kaq qillqana k'itipim.
+Umapi kaq qillqana k'itipi kunan kachkaq qillqam.
+Qampa hukchasqaykikunataq sikipi kaq qillqana k'itipim.
 Kunanqa rurasqaykikunata musuq qillqaman ch'aqtanaykim tiyan.
-<b>Umapi kaq qillqallam</b> waqaychasqa kanqa.<br />",
+'''Umapi kaq qillqallam''' waqaychasqa kanqa.",
 'yourtext'                  => 'Qillqasqayki',
 'storedversion'             => "Hallch'asqa musuqchasqa",
 'nonunicodebrowser'         => "<strong>Paqtataq: Wamp'unaykiqa manam Unicode nisqawan llamk'anchu. Huk llamk'apuna llikam llamk'achkan p'anqakunata takyasqalla llamk'apunaykipaq: mana ASCII kaq sananchakunaqa chunka suqtayuqnintin huchha llikapim kanqa.</strong>",
@@ -624,7 +625,7 @@ Kaymi kay p'anqamanta qulluy hallch'a:",
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Manam atinichu rakiqunata kichayta',
-'cantcreateaccount-text' => "Kay IP tiyaymanta (<b>$1</b>) rakiquna kichariyqa [[User:$3|$3]]-pa hark'asqanmi.
+'cantcreateaccount-text' => "Kay IP tiyaymanta ('''$1''') rakiquna kichariyqa [[User:$3|$3]]-pa hark'asqanmi.
 
 $3-qa nirqan kayraykum: ''$2''",
 
@@ -888,7 +889,7 @@ $2 Pusapunakunata rikuchiy<br />Maskay: $3 $9",
 'recentchangestext'                 => "Kay p'anqapiqa aswan qhipaq ñaqha hukchasqakunam.",
 'recentchanges-feed-description'    => 'Kay mikhuchinapi wikipi qhipaq ñaqha hukchasqakunata qatiy.',
 'rcnote'                            => "Kay qatiqpiqa qhipaq {{PLURAL:$1|'''1''' hukchasqam|'''$1''' hukchasqakunam}} qhipaq {{PLURAL:$2|p'unchawpi|'''$2''' p'unchawkunapi}}, musuqchasqa $3",
-'rcnotefrom'                        => 'Kay qatiqpiqa <b>$2</b>-mantapacha (<b>$1</b>-kama) hukchasqakunatam rikunki.',
+'rcnotefrom'                        => "Kay qatiqpiqa '''$2'''-mantapacha ('''$1'''-kama) hukchasqakunatam rikunki.",
 'rclistfrom'                        => '$1-manta musuq hukchasqakunata rikuchiy',
 'rcshowhideminor'                   => "$1 uchuylla llamk'apusqakunata",
 'rcshowhidebots'                    => '$1 rurana antachakunata',
@@ -1185,7 +1186,7 @@ Kay p'anqapiqa huk pusapuna p'anqaman pusapuq p'anqakunap sutinkunatam rikunki. 
 'ancientpages'            => "Ñawpaqta qallarisqa p'anqakuna",
 'move'                    => 'Astay',
 'movethispage'            => "Kay p'anqata astay",
-'unusedimagestext'        => "<p>Ama hina kaspa musyariy, huk llika tiyaykunachá chiqalla t'inkimun huk rikchap URL tiyayninman, hinaptintaq kaypi rikch'akunchá, k'uchilla llamk'achisqa kachkaspanpas.</p>",
+'unusedimagestext'        => "Ama hina kaspa musyariy, huk llika tiyaykunachá chiqalla t'inkimun huk rikchap URL tiyayninman, hinaptintaq kaypi rikch'akunchá, k'uchilla llamk'achisqa kachkaspanpas.",
 'unusedcategoriestext'    => "Kay qatiq katiguriyakunaqa kamarisqañam, mana ima qillqapas icha katiguriyapas t'inkimuptinpas.",
 'notargettitle'           => 'Manam ima taripanachu',
 'notargettext'            => "Manaraqmi willawarqankichu ruranaykipaq taripana p'anqata icha ruraqta.",
@@ -1459,8 +1460,6 @@ $1',
 'mycontris'     => "Llamk'apusqaykuna",
 'contribsub2'   => '$1 ($2)',
 'nocontribs'    => 'Manam kay hina hukchasqakuna kanchu.',
-'ucnote'        => "Kay qatiqpiqa qhipaq <b>$2</b> p'unchawpi kay ruraqpa qhipaq <b>$1</b> hukchasqankunatam rikunki.",
-'uclinks'       => "Qhipaq $1 hukchasqata qhaway; qhipaq $2 p'unchawta qhaway.",
 'uctop'         => ' (qhipaq hukchasqa)',
 'month'         => 'Kay killamanta (ñawpaqmantapas):',
 'year'          => 'Kay watamanta (ñawpaqmantapas):',

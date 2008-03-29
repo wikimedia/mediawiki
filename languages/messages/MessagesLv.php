@@ -420,7 +420,11 @@ Tava IP adrese ir $3. Lūdzu iekļauj to visos turpmākajos pieprasījumos.',
 'editingsection'           => 'Izmainīt $1 (sadaļa)',
 'editingcomment'           => 'Izmainīt $1 (komentārs)',
 'editconflict'             => 'Izmaiņu konflikts: $1',
-'explainconflict'          => 'Kāds cits ir izmainījis šo lapu pēc tam, kad tu sāki to mainīt. Augšējā teksta logā ir lapas teksts tā pašreizējā versijā. Tevis veiktās izmaiņas ir redzamas apakšējā teksta logā. Lai saglabātu savas izmaiņas, tev ir jāapvieno savs teksts ar saglabāto pašreizējo variantu. Kad spiedīsi pogu "Saglabāt lapu", tiks saglabāts <b>tikai</b> teksts, kas ir augšējā teksta logā.',
+'explainconflict'          => "Kāds cits ir izmainījis šo lapu pēc tam, kad tu sāki to mainīt.
+Augšējā teksta logā ir lapas teksts tā pašreizējā versijā.
+Tevis veiktās izmaiņas ir redzamas apakšējā teksta logā.
+Lai saglabātu savas izmaiņas, tev ir jāapvieno savs teksts ar saglabāto pašreizējo variantu.
+Kad spiedīsi pogu \"Saglabāt lapu\", tiks saglabāts '''tikai''' teksts, kas ir augšējā teksta logā.",
 'yourtext'                 => 'Tavs teksts',
 'storedversion'            => 'Saglabātā versija',
 'editingold'               => '<strong>BRĪDINĀJUMS: Saglabājot šo lapu, tu izmainīsi šīs lapas novecojušu versiju, un ar to tiks dzēstas visas izmaiņas, kas izdarītas pēc šīs versijas.</strong>',
@@ -553,7 +557,7 @@ $2 Parādīt pāradresācijas lapas   Meklēt $3 $9',
 'recentchanges'                     => 'Pēdējās izmaiņas',
 'recentchangestext'                 => '{{Pēdējās izmaiņas}}',
 'rcnote'                            => 'Šobrīd ir redzamas pēdējās <strong>$1</strong> izmaiņas, kas izdarītas {{PLURAL:$2|pēdējā|pēdējās}} <strong>$2</strong> {{PLURAL:$2|dienā|dienās}} (līdz $3).',
-'rcnotefrom'                        => 'Šobrīd redzamas izmaiņas kopš <b>$2</b> (parādītas ne vairāk par <b>$1</b>).',
+'rcnotefrom'                        => "Šobrīd redzamas izmaiņas kopš '''$2''' (parādītas ne vairāk par '''$1''').",
 'rclistfrom'                        => 'Parādīt jaunas izmaiņas kopš $1',
 'rcshowhideminor'                   => '$1 maznozīmīgus',
 'rcshowhidebots'                    => '$1 botus',
@@ -891,10 +895,12 @@ Iepriekšējā lapa kļūs par lapu, kas pāradresēs uz jauno lapu.
 Saites uz iepriekšējo lapu netiks mainītas, bet noteikti pārbaudi un izlabo, izskaužot dubultu pāradresāciju vai pāradresāciju uz neesošu lapu.
 Tev ir jāpārliecinās, vai saites vēl aizvien ved tur, kur tās ir paredzētas.
 
-Ņem vērā, ka lapa '''netiks''' pārvietota, ja jau eksistē kāda cita lapa ar vēlamo nosaukumu (izņemot gadījumus, kad tā ir tukša vai kad tā ir pāradresācijas lapa, kā arī tad, ja tai nav izmaiņu hronoloģijas). Tas nozīmē, ka tu vari pārvietot lapu atpakaļ, no kurienes tu jau reiz to esi pārvietojis, ja būsi kļūdījies, bet tu nevari pārrakstīt jau esošu lapu.
+Ņem vērā, ka lapa '''netiks''' pārvietota, ja jau eksistē kāda cita lapa ar vēlamo nosaukumu (izņemot gadījumus, kad tā ir tukša vai kad tā ir pāradresācijas lapa, kā arī tad, ja tai nav izmaiņu hronoloģijas).
+Tas nozīmē, ka tu vari pārvietot lapu atpakaļ, no kurienes tu jau reiz to esi pārvietojis, ja būsi kļūdījies, bet tu nevari pārrakstīt jau esošu lapu.
 
-<b>BRĪDINĀJUMS!</b>
-Populārām lapām tā var būt krasa un negaidīta pārmaiņa; pirms turpināšanas vēlreiz pārdomā, vai tu izproti visas iespējamās sekas.",
+'''BRĪDINĀJUMS!'''
+Populārām lapām tā var būt krasa un negaidīta pārmaiņa;
+pirms turpināšanas vēlreiz pārdomā, vai tu izproti visas iespējamās sekas.",
 'movepagetalktext' => "Saistītā diskusiju lapa, ja tāda eksistē, tiks automātiski pārvietota, '''izņemot gadījumus, kad''':
 *tu pārvieto lapu uz citu palīglapu,
 *ar jauno nosaukumu jau eksistē diskusiju lapa, vai arī

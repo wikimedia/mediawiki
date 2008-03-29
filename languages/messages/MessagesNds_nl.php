@@ -599,7 +599,8 @@ $2',
 'namespaceprotected'   => "Je bin neet bevoeg um pagina is de '''$1'''-naamruumte te bewarken.",
 'customcssjsprotected' => 'Je kunnen disse pagina neet bewarken umdat der persoonlijke instellingen van een aandere gebruker in staon.',
 'ns-specialprotected'  => 'Pagina\'s in de naamruumte "Speciaal" kunnen neet bewark wonnen.',
-'titleprotected'       => "'t Anmaken van disse pagina is beveilig deur [[User:$1|$1]]. De op-egeven rejen is <i>$2</i>.",
+'titleprotected'       => "'t Anmaken van disse pagina is beveilig deur [[User:$1|$1]].
+De op-egeven rejen is ''$2''.",
 
 # Login and logout pages
 'logouttitle'                => 'Ofmelden gebruker',
@@ -1504,8 +1505,6 @@ Bekiek 't [[Special:Log/delete|logboek vort-edaone pagina's]] veur een overzicht
 'mycontris'     => 'mien biedragen',
 'contribsub2'   => 'Veur $1 ($2)',
 'nocontribs'    => 'Gien wiezigingen evunnen dee an de estelde criteria voldoon.',
-'ucnote'        => 'Hieronder de leste <b>$1</b> wiezigingen van disse gebruker in de leste <b>$2</b> dagen.',
-'uclinks'       => 'Bekiek de leste <b>$1</b> veraanderingen; bekiek de leste <b>$2</b> dagen.',
 'uctop'         => ' (leste wieziging)',
 'month'         => 'Maond:',
 'year'          => 'Jaor:',

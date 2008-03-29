@@ -514,7 +514,7 @@ $2',
 'namespaceprotected'   => "Et voi muokata sivuja nimiavaruudessa '''$1'''.",
 'customcssjsprotected' => 'Sinulla ei ole oikeuksia muuttaa toisten käyttäjien henkilökohtaisia asetuksia.',
 'ns-specialprotected'  => 'Toimintosivuja ei voi muokata.',
-'titleprotected'       => 'Käyttäjä [[User:$1|$1]] on asettanut tämän sivun luontikieltoon: <i>$2</i>.',
+'titleprotected'       => "Käyttäjä [[User:$1|$1]] on asettanut tämän sivun luontikieltoon: ''$2''.",
 
 # Login and logout pages
 'logouttitle'                => 'Uloskirjautuminen',
@@ -1549,8 +1549,6 @@ $1',
 'mycontris'     => 'Omat muokkaukset',
 'contribsub2'   => 'Käyttäjän $1 ($2) muokkaukset',
 'nocontribs'    => 'Näihin ehtoihin sopivia muokkauksia ei löytynyt.',
-'ucnote'        => "Alla on '''$1''' viimeisintä tämän käyttäjän tekemää muokkausta viimeisten '''$2''' päivän aikana.",
-'uclinks'       => 'Katso $1 viimeisintä muokkausta; katso $2 viimeisintä päivää.',
 'uctop'         => ' (uusin)',
 'month'         => 'Kuukausi',
 'year'          => 'Vuosi',
@@ -1676,7 +1674,13 @@ $1',
 # Move page
 'move-page'               => 'Siirrä $1',
 'move-page-legend'        => 'Siirrä sivu',
-'movepagetext'            => "Alla olevalla lomakkeella voit nimetä uudelleen sivuja, jolloin niiden koko historia siirtyy uuden nimen alle. Vanhasta sivusta tulee ohjaussivu, joka osoittaa uuteen sivuun. Vanhaan sivuun suunnattuja linkkejä ei muuteta, joten muista tehdä tarkistukset kaksinkertaisten tai rikkinäisten ohjausten varalta. '''Olet vastuussa siitä, että linkit osoittavat sinne, mihin niiden on tarkoituskin osoittaa.'''<br />Huomaa, että sivua '''ei''' siirretä mikäli uusi otsikko on olemassa olevan sivun käytössä, paitsi milloin kyseessä on tyhjä sivu tai ohjaus, jolla ei ole muokkaushistoriaa. Tämä tarkoittaa sitä, että voit siirtää sivun takaisin vanhalle nimelleen mikäli teit virheen, mutta et voi kirjoittaa olemassa olevan sivun päälle. Jos sivu tarvitsee siirtää olemassa olevan sivun päälle, ota yhteyttä [[Special:Listusers/sysop|ylläpitäjään]].",
+'movepagetext'            => "Alla olevalla lomakkeella voit nimetä uudelleen sivuja, jolloin niiden koko historia siirtyy uuden nimen alle.
+Vanhasta sivusta tulee ohjaussivu, joka osoittaa uuteen sivuun.
+Vanhaan sivuun suunnattuja linkkejä ei muuteta, joten muista tehdä tarkistukset kaksinkertaisten tai rikkinäisten ohjausten varalta. '''Olet vastuussa siitä, että linkit osoittavat sinne, mihin niiden on tarkoituskin osoittaa.'''
+
+Huomaa, että sivua '''ei''' siirretä mikäli uusi otsikko on olemassa olevan sivun käytössä, paitsi milloin kyseessä on tyhjä sivu tai ohjaus, jolla ei ole muokkaushistoriaa.
+Tämä tarkoittaa sitä, että voit siirtää sivun takaisin vanhalle nimelleen mikäli teit virheen, mutta et voi kirjoittaa olemassa olevan sivun päälle.
+Jos sivu tarvitsee siirtää olemassa olevan sivun päälle, ota yhteyttä [[Special:Listusers/sysop|ylläpitäjään]].",
 'movepagetalktext'        => "Sivuun mahdollisesti kytketty keskustelusivu siirretään automaattisesti, '''paitsi jos''':
 *Siirrät sivua nimiavaruudesta toiseen
 *Kohdesivulla on olemassa keskustelusivu, joka ei ole tyhjä, tai

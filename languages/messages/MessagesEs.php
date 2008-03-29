@@ -397,7 +397,8 @@ Consulta: $2',
 'namespaceprotected'   => "No tienes permiso para editar las páginas del espacio de nombres '''$1'''.",
 'customcssjsprotected' => 'No tienes permiso para editar esta página porque contiene elementos de la configuración personal de otro usuario.',
 'ns-specialprotected'  => 'Las páginas en el espacio de nombres {{ns:special}} no se pueden editar.',
-'titleprotected'       => 'Esta página ha sido protegida contra creación por [[User:$1|$1]]. La motivo dado fue: <i>$2</i>',
+'titleprotected'       => "Esta página ha sido protegida contra creación por [[User:$1|$1]].
+La motivo dado fue: ''$2''",
 
 # Login and logout pages
 'logouttitle'                => 'Fin de sesión',
@@ -595,7 +596,11 @@ Tu identificador de bloqueo es $5. Por favor, incluye este identificador en cual
 'editingsection'            => 'Editando $1 (sección)',
 'editingcomment'            => 'Editando $1 (comentario)',
 'editconflict'              => 'Conflicto de edición: $1',
-'explainconflict'           => 'Alguien más ha cambiado esta página desde que empezaste a editarla. El área de texto superior contiene el texto de la página como existe actualmente. Tus cambios se muestran en el área de texto inferior. Si quieres grabar tus cambios, has de trasladarlos al área superior. <b>Sólo</b> el texto en el área de texto superior será grabado cuando pulses «Grabar página».<br />',
+'explainconflict'           => "Alguien más ha cambiado esta página desde que empezaste a editarla.
+El área de texto superior contiene el texto de la página como existe actualmente.
+Tus cambios se muestran en el área de texto inferior.
+Si quieres grabar tus cambios, has de trasladarlos al área superior.
+'''Sólo''' el texto en el área de texto superior será grabado cuando pulses «Grabar página».",
 'yourtext'                  => 'Su texto',
 'storedversion'             => 'Versión almacenada',
 'nonunicodebrowser'         => '<strong>Atención: Su navegador no cumple la norma Unicode. Se ha activado un sistema de edición alternativo que le permitirá editar artículos con seguridad: los caracteres no ASCII aparecerán en la caja de edición como códigos hexadecimales.</strong>',
@@ -634,7 +639,7 @@ Consulte a continuación el registro de borrados:",
 
 # Account creation failure
 'cantcreateaccounttitle' => 'No se puede crear la cuenta',
-'cantcreateaccount-text' => "La creación de cuentas desde esta dirección IP (<b>$1</b>) ha sido bloqueada por [[User:$3|$3]].
+'cantcreateaccount-text' => "La creación de cuentas desde esta dirección IP ('''$1''') ha sido bloqueada por [[User:$3|$3]].
 
 El motivo dado por $3 es ''$2''",
 
@@ -1118,7 +1123,7 @@ Cada fila contiene enlaces al segundo y tercer redirect, así como la primera l�
 'ancientpages'            => 'Artículos más antiguos',
 'move'                    => 'Trasladar',
 'movethispage'            => 'Trasladar esta página',
-'unusedimagestext'        => '<p>Por favor, ten en cuenta que otros sitios web pueden enlazar a una imagen directamente con su URL, y de esa manera no aparecer listados aquí pese a estar en uso.</p>',
+'unusedimagestext'        => 'Por favor, ten en cuenta que otros sitios web pueden enlazar a una imagen directamente con su URL, y de esa manera no aparecer listados aquí pese a estar en uso.',
 'unusedcategoriestext'    => 'Las siguientes categorías han sido creadas, pero ningún artículo o categoría las utiliza.',
 'notargettitle'           => 'No hay página objetivo',
 'notargettext'            => 'Especifique sobre qué página desea llevar a cabo esta acción.',
@@ -1383,8 +1388,6 @@ $1',
 'mycontris'     => 'Mis contribuciones',
 'contribsub2'   => '$1 ($2)',
 'nocontribs'    => 'No se encontraron cambios que cumplieran estos criterios.',
-'ucnote'        => 'A continuación se muestran los últimos <b>$1</b> cambios de este usuario en los últimos <b>$2</b> días.',
-'uclinks'       => 'Ver los últimos $1 cambios; ver los últimos $2 días.',
 'uctop'         => ' (última modificación)',
 'month'         => 'Desde el mes (y anterior):',
 'year'          => 'Desde el año (y anterior):',
@@ -1521,13 +1524,11 @@ Tú eres responsable de hacer que los enlaces sigan apuntando adonde se supone q
 
 
 Recuerda que la página '''no''' será renombrada si ya existe una página con el nuevo título, a no ser que sea una página vacía o un ''redirect'' sin historial.
-
 Esto significa que podrás renombrar una página a su título original si has cometido un error, pero que no podrás sobreescribir una página existente.
 
-<b>¡ADVERTENCIA!</b>
+'''¡ADVERTENCIA!'''
 Este puede ser un cambio drástico e inesperado para una página popular;
-por favor, asegúrate de entender las consecuencias que acarreará
-antes de seguir adelante.",
+por favor, asegúrate de entender las consecuencias que acarreará antes de seguir adelante.",
 'movepagetalktext'        => "La página de discusión asociada, si existe, será renombrada automáticamente '''a menos que:'''
 *Esté moviendo la página entre espacios de nombres diferentes,
 *Una página de discusión no vacía ya exista con el nombre nuevo, o

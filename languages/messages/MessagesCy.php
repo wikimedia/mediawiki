@@ -590,9 +590,11 @@ Os daethoch yma ar ddamwain, cliciwch botwm '''n&ocirc;l''' y porwr.",
 'editingsection'            => 'Yn golygu $1 (adran)',
 'editingcomment'            => 'Yn golygu $1 (esboniad)',
 'editconflict'              => 'Gwrthdaro golygyddol: $1',
-'explainconflict'           => "Mae rhywun arall wedi newid y dudalen hon ers i chi ddechrau ei golygu hi. Mae'r ardal testun uchaf yn cynnwys testun y dudalen fel y mae hi rwan. Mae eich newidiadau chi yn ymddangos yn yr ardal testun isaf.<br />
+'explainconflict'           => "Mae rhywun arall wedi newid y dudalen hon ers i chi ddechrau ei golygu hi.
+Mae'r ardal testun uchaf yn cynnwys testun y dudalen fel y mae hi rwan.
+Mae eich newidiadau chi yn ymddangos yn yr ardal testun isaf.
 Bydd yn rhaid i chi gyfuno eich newidiadau chi a'r testun sydd yn bodoli eisioes.
-<b>Dim ond</b> y testun yn yr ardal testun <b>uchaf</b> fydd yn cael ei roi ar gadw pan wasgwch y botwm \"Cadw'r dudalen\".<br />",
+'''Dim ond''' y testun yn yr ardal testun <b>uchaf</b> fydd yn cael ei roi ar gadw pan wasgwch y botwm \"Cadw'r dudalen\".",
 'yourtext'                  => 'Eich testun',
 'storedversion'             => 'Fersiwn wedi cadw',
 'nonunicodebrowser'         => '<strong>RHYBUDD: Nid yw eich porwr yn cydymffurfio ag Unicode. Serch hyn, mae modd i chi olygu tudalennau: bydd nodau sydd ddim yn ran o ASCII yn ymddangos yn y blwch golygu fel codau hecsadegol.</strong>',
@@ -631,7 +633,7 @@ Dyma lòg dileu'r dudalen, er gwybodaeth:",
 'undo-failure' => 'Methwyd a dadwneud y golygiad oherwydd gwrthdaro â golygiadau cyfamserol.',
 
 # Account creation failure
-'cantcreateaccount-text' => "Rhwystrwyd y gallu i greu cyfrif ar gyfer y cyfeiriad IP hwn, (<b>$1</b>), gan [[User:$3|$3]].
+'cantcreateaccount-text' => "Rhwystrwyd y gallu i greu cyfrif ar gyfer y cyfeiriad IP hwn, ('''$1'''), gan [[User:$3|$3]].
 
 Y rheswm a roddwyd dros y bloc gan $3 yw ''$2''.",
 
@@ -835,7 +837,7 @@ $2 Rhestri ailgyfeiriadau<br />Chwilio am $3 $9',
 'recentchangestext'                 => "Traciwch y newidiadau mor diweddar i'r {{SITENAME}} ac i'r tudalen hon.",
 'recentchanges-feed-description'    => "Dilynwch y newidiadau diweddaraf i'r wici gyda'r porthiant hwn.",
 'rcnote'                            => "Isod mae'r '''$1''' newidiad diweddaraf yn ystod y '''$2''' {{PLURAL:$2|diwrnod|diwrnod|ddiwrnod|diwrnod|diwrnod|diwrnod}} diwethaf, hyd at $3.",
-'rcnotefrom'                        => 'Isod mae pob newidiad ers <b>$2</b> (hyd at <b>$1</b>).',
+'rcnotefrom'                        => "Isod mae pob newidiad ers '''$2''' (hyd at '''$1''').",
 'rclistfrom'                        => 'Dangos newidiadau newydd gan ddechrau o $1',
 'rcshowhideminor'                   => '$1 golygiadau bychain',
 'rcshowhidebots'                    => '$1 botiau',
@@ -1093,7 +1095,7 @@ Mae gan '''$2''' (neu '''$4%''') ohonynt alluoedd $5.",
 'ancientpages'            => 'Erthyglau hynaf',
 'move'                    => 'Symud',
 'movethispage'            => 'Symud y dudalen hon',
-'unusedimagestext'        => "<p>Sylwch y gall gwefannau eraill gysylltu a ffeil drwy URL uniongyrchol. Gan hynny mae'n bosibl fod ffeil wedi ei rhestru yma serch ei bod yn cael defnydd.</p>",
+'unusedimagestext'        => "Sylwch y gall gwefannau eraill gysylltu a ffeil drwy URL uniongyrchol. Gan hynny mae'n bosibl fod ffeil wedi ei rhestru yma serch ei bod yn cael defnydd.",
 'unusedcategoriestext'    => "Mae'r tudalennau categori isod yn bodoli er nad oes unrhyw dudalen arall yn eu defnyddio.",
 'notargettitle'           => 'Dim targed',
 'notargettext'            => 'Dydych chi ddim wedi dewis defnyddiwr neu dudalen i weithredu arno.',
@@ -1352,8 +1354,6 @@ Ceir cofnod o'r tudalennau a ddilëwyd neu a adferwyd yn ddiweddar ar y [[Specia
 'mycontris'     => 'Fy nghyfraniadau',
 'contribsub2'   => 'Dros $1 ($2)',
 'nocontribs'    => "Heb ddod o hyd i newidiadau gyda'r maen prawf hwn.",
-'ucnote'        => 'Isod mae y <b>$1</b> newidiadau yn y <b>$2</b> dyddiau olaf am defnyddwr hwn.',
-'uclinks'       => 'Gwelwch y $1 newidiadau olaf; gwelwch y $2 dyddiau olaf.',
 'uctop'         => '(cyfredol)',
 'month'         => 'Cyfraniadau hyd at fis:',
 'year'          => 'Cyfraniadau hyd at y flwyddyn:',
@@ -1480,7 +1480,7 @@ Sylwch '''na fydd''' y dudalen yn symud os oes yna dudalen o'r enw newydd yn bod
 Felly, os y gwnewch gamgymeriad wrth ail-enwi tudalen dylai fod yn bosibl ei hail-enwi eto ar unwaith wrth yr enw gwreiddiol.
 Hefyd, mae'n amhosibl ysgrifennu dros ben tudalen sydd yn bodoli'n barod.
 
-<b>DALIER SYLW!</b>
+'''DALIER SYLW!'''
 Gall hwn fod yn newid sydyn a llym i dudalen boblogaidd;
 byddwch yn siwr eich bod chi'n deall y canlyniadau cyn mynd ati.",
 'movepagetalktext'        => "Bydd y dudalen sgwrs yn symud gyda'r dudalen hon '''onibai:'''

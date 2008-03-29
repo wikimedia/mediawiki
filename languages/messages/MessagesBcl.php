@@ -574,11 +574,11 @@ Nanyayari nanggad ini kun naggagamit ka nin bakong marhay asin dai bistong ''web
 'editingsection'            => 'Pighihira an $1 (seksyon)',
 'editingcomment'            => 'Pighihira an $1 (komento)',
 'editconflict'              => 'Komplikto sa paghihira: $1',
-'explainconflict'           => 'May ibang parágamit na nagbâgo kaining páhina kan pagpoon mong paghirá kaini.
+'explainconflict'           => "May ibang parágamit na nagbâgo kaining páhina kan pagpoon mong paghirá kaini.
 Nahihiling ang páhina kan teksto sa parteng itaas kan teksto.
 An mga pagbabâgo mo nahihiling sa parteng ibabâ kan teksto.
 Kaipuhan mong isalak an mga pagbabâgo mo sa presenteng teksto.
-An teksto na nasa parteng itaas <b>sana</b> an maitatagama sa pagpindot mo kan "Itagaman an páhina".<br />',
+An teksto na nasa parteng itaas '''sana''' an maitatagama sa pagpindot mo kan \"Itagaman an páhina\".",
 'yourtext'                  => 'Saimong teksto',
 'storedversion'             => 'Itinagamang bersyón',
 'nonunicodebrowser'         => "<strong>PATANID: An ''browser'' mo bakong ''unicode complaint''. Igwang temporariong sistema na nakaandar para makahirá ka kan mga pahina: mahihiling an mga ''character'' na non-ASCII sa kahon nin paghirá bilang mga kodang hexadecimal.</strong>",
@@ -619,7 +619,7 @@ Pwede kang bumalik dangan maghirá nin presenteng páhina, o [[Special:Userlogin
 
 # Account creation failure
 'cantcreateaccounttitle' => "Dai makagibo nin ''account''",
-'cantcreateaccount-text' => "An pagbukas nin ''account'' halî sa IP na (<b>$1</b>) binagat ni [[User:$3|$3]].
+'cantcreateaccount-text' => "An pagbukas nin ''account'' halî sa IP na ('''$1''') binagat ni [[User:$3|$3]].
 
 ''$2'' an rasón na pigtao ni $3",
 
@@ -836,7 +836,7 @@ Dai babâgohon an mga grupong dai pigpili. Pwede mong bawîon an pagpili sa pagp
 'recentchangestext'                 => 'Hanapon an mga pinahuring pagbabâgo sa wiki digdi sa páhinang ini.',
 'recentchanges-feed-description'    => 'Hanapon an mga pinakahuring pagbabâgo sa wiki sa ining hungit.',
 'rcnote'                            => "Mahihiling sa baba an {{PLURAL:$1| '''1''' pagbabago|mga '''$1''' na pagbabago}} sa huring {{PLURAL:$2|na aldaw|'''$2''' mga aldaw}}, sa $3.",
-'rcnotefrom'                        => 'Sa babâ mahihiling an mga pagbabâgo desde <b>$2</b> (hasta <b>$1</b> ipinahihiling).',
+'rcnotefrom'                        => "Sa babâ mahihiling an mga pagbabâgo desde '''$2''' (hasta '''$1''' ipinahihiling).",
 'rclistfrom'                        => 'Ipahiling an mga pagbabâgo poon sa $1',
 'rcshowhideminor'                   => '$1 mga menor na hirá',
 'rcshowhidebots'                    => '$1 mga bot',
@@ -1104,7 +1104,7 @@ Maabot sa '''\$5''' na hira kada páhina sa medio, asin '''\$6''' na paghiling k
 'ancientpages'            => 'Mga pinakalumang páhina',
 'move'                    => 'Ibalyó',
 'movethispage'            => 'Ibalyó ining páhina',
-'unusedimagestext'        => "<p>Giromdomon tabî na an mga ibang ''site'' pwedeng nakatakod sa ladawan na may direktong URL, pues pwede ser na nakalista pa digdi a pesar na ini piggagamit pa.</p>",
+'unusedimagestext'        => "Giromdomon tabî na an mga ibang ''site'' pwedeng nakatakod sa ladawan na may direktong URL, pues pwede ser na nakalista pa digdi a pesar na ini piggagamit pa.",
 'unusedcategoriestext'    => 'Igwa ining mga pahinang kategoria maski mayo man na iba pang pahina o kategoria an naggagamit kaiyan.',
 'notargettitle'           => 'Mayong target',
 'notargettext'            => 'Dai ka pa nagpili nin pahina o paragamit na muya mong gibohon an accion na ini.',
@@ -1375,8 +1375,6 @@ $1",
 'mycontris'     => 'Mga kontribusyon ko',
 'contribsub2'   => 'Para sa $1 ($2)',
 'nocontribs'    => 'Mayong mga pagbabago na nahanap na kapadis sa ining mga criteria.',
-'ucnote'        => 'Mahihiling sa baba an mga huring <b>$1</b> binagao kaining paragamit sa  <b>$2</b> na aldaw.',
-'uclinks'       => 'Hilingon an mga huring $1 na pagbabago; hilingon an mga huring $2 na aldaw.',
 'uctop'         => '(alituktok)',
 'month'         => 'Poon bulan (asin mas amay):',
 'year'          => 'Poon taon (asin mas amay):',
@@ -1500,12 +1498,14 @@ IP dai nakalista digdi. Hilingon an [[Special:Ipblocklist|IP lista nin mga binag
 'move-page-legend'        => 'Ibalyó an páhina',
 'movepagetext'            => "Matatâwan nin bâgong pangaran an sarong páhina na pigbabalyo an gabos na historya kaini gamit an pormularyo sa babâ.
 An dating titulo magigin redirektang páhina sa bâgong titulo.
-Dai babâgohon an mga takod sa dating titulo kan páhina; seguradohon tabî na mayong doble o raot na mga redirekta.
+Dai babâgohon an mga takod sa dating titulo kan páhina;
+seguradohon tabî na mayong doble o raot na mga redirekta.
 Ika an responsable sa pagpaseguro na an mga takod nakatokdô kun sain dapat.
 
-Giromdomon tabî na an páhina '''dai''' ibabalyó kun igwa nang páhina sa bagong titulo, apwera kun mayô ining laog o sarong redirekta asin historya nin mga dating paghirá. An boot sabihon kaini, pwede mong ibalik an dating pangaran kan páhina kun sain ini pigribayan nin pangaran kun napasalâ ka, asin dai mo man sosoknongan an presenteng páhina.
+Giromdomon tabî na an páhina '''dai''' ibabalyó kun igwa nang páhina sa bagong titulo, apwera kun mayô ining laog o sarong redirekta asin historya nin mga dating paghirá.
+An boot sabihon kaini, pwede mong ibalik an dating pangaran kan páhina kun sain ini pigribayan nin pangaran kun napasalâ ka, asin dai mo man sosoknongan an presenteng páhina.
 
-<b>PATANID!</b>
+'''PATANID!'''
 Pwede ser na dakulâ asin dai seguradong pagbâgo ini kan sarong popular na páhina;
 seguradohon tabî na aram mo an konsekwensya kaini bago magdagos.",
 'movepagetalktext'        => "An kapadis na olay na páhina enseguidang ibabalyo kasabay kaini '''kun:'''
