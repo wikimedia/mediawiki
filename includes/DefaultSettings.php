@@ -1044,7 +1044,8 @@ $wgBlockAllowsUTEdit    = false; # Blocks allow users to edit their own user tal
 $wgSysopEmailBans       = true; # Allow sysops to ban users from accessing Emailuser
 
 # Pages anonymous user may see as an array, e.g.:
-# array ( "Main Page", "Special:Userlogin", "Wikipedia:Help");
+# array ( "Main Page", "Wikipedia:Help");
+# Special:Userlogin and Special:Resetpass are always whitelisted.
 # NOTE: This will only work if $wgGroupPermissions['*']['read']
 # is false -- see below. Otherwise, ALL pages are accessible,
 # regardless of this setting.
