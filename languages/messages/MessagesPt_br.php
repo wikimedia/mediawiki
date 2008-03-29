@@ -482,7 +482,8 @@ $2',
 'namespaceprotected'   => "Você não possui permissão para editar páginas no espaço nominal '''$1'''.",
 'customcssjsprotected' => 'Você não possui permissão para editar esta página, já que ela contém configurações pessoais de outro usuário.',
 'ns-specialprotected'  => 'Não é possível editar páginas no espaço nominal {{ns:special}}.',
-'titleprotected'       => 'Este título foi protegido, para que não seja criado. Quem o protegeu foi [[User:$1|$1]], com a justificativa: <i>$2</i>.',
+'titleprotected'       => "Este título foi protegido, para que não seja criado.
+Quem o protegeu foi [[User:$1|$1]], com a justificativa: ''$2''.",
 
 # Login and logout pages
 'logouttitle'           => 'Desautenticar do sistema',
@@ -701,7 +702,7 @@ O registro de eliminação desta página é exibido a seguir, para sua comodidad
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Não é possível criar uma conta',
-'cantcreateaccount-text' => "Este IP (<b>$1</b>) foi bloqueado de criar novas contas por [[User:$3|$3]].
+'cantcreateaccount-text' => "Este IP ('''$1''') foi bloqueado de criar novas contas por [[User:$3|$3]].
 
 A justificativa apresentada por $3 foi ''$2''",
 
@@ -884,7 +885,7 @@ Grupos não selecionados não serão alterados. Você pode selecionar ou des-sel
 'recentchangestext'                 => 'Veja as mais novas mudanças na {{SITENAME}} nesta página.',
 'recentchanges-feed-description'    => 'Acompanhe as Mudanças recentes deste wiki por este feed.',
 'rcnote'                            => "A seguir {{PLURAL:$1|está listada '''uma''' alteração ocorrida|estão listadas '''$1''' alterações ocorridas}} {{PLURAL:$2|no último dia|nos últimos '''$2''' dias}}, a partir de $3.",
-'rcnotefrom'                        => 'Abaixo estão as mudanças desde <b>$2</b> (mostradas até <b>$1</b>).',
+'rcnotefrom'                        => "Abaixo estão as mudanças desde '''$2''' (mostradas até '''$1''').",
 'rclistfrom'                        => 'Mostrar as novas alterações a partir de $1',
 'rcshowhideminor'                   => '$1 edições menores',
 'rcshowhidebots'                    => '$1 bots',
@@ -1086,7 +1087,7 @@ Cada linha contem links para o primeiro e segundo redirecionamento, bem como a p
 'ancientpages'            => 'Páginas mais antigas',
 'move'                    => 'Mover',
 'movethispage'            => 'Mover esta página',
-'unusedimagestext'        => '<p>Note que outros websites podem apontar para um arquivo diretamente através de um URL e, por isso, podem estar não aparecendo aqui, mesmo estando em uso.</p>',
+'unusedimagestext'        => 'Note que outros websites podem apontar para um arquivo diretamente através de um URL e, por isso, podem estar não aparecendo aqui, mesmo estando em uso.',
 'notargettitle'           => 'Sem alvo',
 'notargettext'            => 'Você não especificou um alvo ou usuário para performar esta função.',
 
@@ -1280,8 +1281,6 @@ Se uma nova página foi criada com o mesmo nome desde a deleção, as revisões 
 'mycontris'     => 'Minhas contribuições',
 'contribsub2'   => 'Para $1 ($2)',
 'nocontribs'    => 'Não foram encontradas mudanças com este critério.',
-'ucnote'        => 'Segue as últimas  <b>$1</b> mudanças nos últimos <b>$2</b> dias do usuário.',
-'uclinks'       => 'Ver as últimas $1 mudanças; ver os últimos $2 dias.',
 'uctop'         => '(edição atual)',
 'month'         => 'Mês (inclusive anteriores):',
 'year'          => 'Ano (inclusive anteriores):',
@@ -1365,13 +1364,16 @@ Por favor confirme que você realmente pretende fazer isto, e que você vai desb
 
 # Move page
 'move-page-legend' => 'Mover página',
-'movepagetext'     => "Utilizando o seguinte formulário você poderá renomear uma página, movendo todo o histórico para o novo título. O título anterior será transformado num redirecionamento para o novo.
+'movepagetext'     => "Utilizando o seguinte formulário você poderá renomear uma página, movendo todo o histórico para o novo título.
+O título anterior será transformado num redirecionamento para o novo.
+Links para as páginas antigas não serão mudados;
+certifique-se de verificar por redirecionamentos quebrados ou duplos.
+Você é o responsável por certificar-se de que os links continuam apontando para onde eles deveriam apontar.
 
-Links para as páginas antigas não serão mudados; certifique-se de verificar por redirecionamentos quebrados ou duplos. Você é o responsável por certificar-se de que os links continuam apontando para onde eles deveriam apontar.
+Note que a página '''não''' será movida se já existir uma página com o novo título, a não ser que ele esteja vazio ou seja um redirecionamento e que não tenha um histórico de edições.
+Isto significa que você pode renomear uma página de volta para o nome que possuía anteriormente se cometer algum engano e que não é possível sobrescrever uma página.
 
-Note que a página '''não''' será movida se já existir uma página com o novo título, a não ser que ele esteja vazio ou seja um redirecionamento e que não tenha um histórico de edições. Isto significa que você pode renomear uma página de volta para o nome que possuía anteriormente se cometer algum engano e que não é possível sobrescrever uma página.
-
-<b>CUIDADO!</b>
+'''CUIDADO!'''
 Isto pode ser uma mudança drástica e inesperada para uma página popular; por favor, tenha certeza de que compreende as conseqüências da mudança antes de prosseguir.",
 'movepagetalktext' => "A página associada, se existir, será automaticamente movida, '''a não ser que:'''
 *Uma página de discussão não-vazia já exista sob o novo nome, ou

@@ -143,7 +143,7 @@ $messages = array(
 'toolbox'          => 'ઓજારની પેટી',
 'viewtalkpage'     => 'ચર્ચા જુઓ',
 'otherlanguages'   => 'બીજી ભાષાઓમાં',
-'lastmodifiedat'   => 'આ પાનાંનો છેલ્લો ફેરફાર $1એ $2 વાગ્યે થયો.', # $1 date, $2 time
+'lastmodifiedat'   => 'આ પાનાંમાં છેલ્લો ફેરફાર $1ના રોજ $2 વાગ્યે થયો.', # $1 date, $2 time
 'jumptonavigation' => 'ભ્રમણ',
 'jumptosearch'     => 'શોધો',
 
@@ -159,13 +159,13 @@ $messages = array(
 
 'ok'                  => 'મંજૂર',
 'retrievedfrom'       => '"$1" થી લીધેલું',
-'newmessageslink'     => 'નુતન સંદેશ',
+'newmessageslink'     => 'નૂતન સંદેશ',
 'newmessagesdifflink' => 'છેલ્લો ફેરફાર',
 'editsection'         => 'ફેરફાર કરો',
 'editold'             => 'ફેરફાર કરો',
 'showtoc'             => 'બતાવો',
 'hidetoc'             => 'છુપાવો',
-'viewdeleted'         => '$1 તપાસવી છે?',
+'viewdeleted'         => '$1 જોવું છે?',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'લેખ',
@@ -253,7 +253,7 @@ $messages = array(
 'boteditletter'   => 'બૉટ',
 
 # Recent changes linked
-'recentchangeslinked' => 'આ પાના સાથે જોડાયેલા ફેરફાર',
+'recentchangeslinked' => 'આની સાથે જોડાયેલા ફેરફાર',
 
 # Upload
 'upload' => 'ફાઇલ ચડાવો',
@@ -303,7 +303,7 @@ $messages = array(
 
 # Watchlist
 'watchlist'            => 'મારી ધ્યાનસૂચી',
-'mywatchlist'          => 'મારી ધ્યાનસૂચી',
+'mywatchlist'          => 'મારી ધ્યાનસૂચિ',
 'watchlistfor'         => "('''$1'''ને માટે)",
 'watch'                => 'ધ્યાન માં રાખો',
 'watchlist-details'    => 'ચર્ચા વાળા પાના ન ગણતા {{PLURAL:$1|$1 પાનું|$1 પાનાં}} ધ્યાનસૂચી મા છે.',
@@ -331,7 +331,7 @@ $messages = array(
 'blanknamespace' => '(મુખ્ય)',
 
 # Contributions
-'mycontris' => 'મારું યોગદાન',
+'mycontris' => 'મારૂં યોગદાન',
 
 'sp-contributions-submit' => 'શોધો',
 

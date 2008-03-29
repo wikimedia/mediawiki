@@ -380,7 +380,8 @@ Query: $2',
 'namespaceprotected'   => "A l'ha nen ël përmess dë feje dle modìfiche a le pàgine dlë spassi nominal '''$1'''.",
 'customcssjsprotected' => "Ch'a varda ch'a l'ha pa ël përmess ëd modifiché sta pàgina-sì, për via ch'a l'ha andrinta ij gust ëd n'àotr utent.",
 'ns-specialprotected'  => 'As peulo nen modifichesse le pàgine dlë spassi nominal {{ns:special}}.',
-'titleprotected'       => "La creassion ëd pàgine con ës tìtol-sì a l'é stàita proibìa da [[User:$1|$1]]. Coma rason a l'ha butà: <i>$2</i>.",
+'titleprotected'       => "La creassion ëd pàgine con ës tìtol-sì a l'é stàita proibìa da [[User:$1|$1]].
+Coma rason a l'ha butà: ''$2''.",
 
 # Login and logout pages
 'logouttitle'                => "Seurte da 'nt ël sistema",
@@ -644,7 +645,7 @@ Për soa comodità i-j mostroma la lista djë scancelament ch'a toco sta pàgina
 
 # Account creation failure
 'cantcreateaccounttitle' => "As peul pa registresse d'utent",
-'cantcreateaccount-text' => "La cression ëd cont neuv a parte da st'adrëssa IP-sì (<b>$1</b>) a l'é staita blocà da [[User:$3|$3]].
+'cantcreateaccount-text' => "La cression ëd cont neuv a parte da st'adrëssa IP-sì ('''$1''') a l'é staita blocà da [[User:$3|$3]].
 
 La rason butà da $3 për ël blocagi a l'é staita: ''$2''",
 
@@ -1530,8 +1531,6 @@ $1",
 'mycontris'     => 'Mie contribussion',
 'contribsub2'   => 'Për $1 ($2)',
 'nocontribs'    => "A l'é pa trovasse gnun-a modìfica che a fussa conforma a costi criteri-sì",
-'ucnote'        => "Ambelessì sota a-i son j'ùltime <b>$1</b> modìfiche faite da st'Utent-sì ant j'ùltim <b>$2</b> dì.",
-'uclinks'       => "Vardé j'ùltimi $1 modifiche; vardé j'ùltim $2 dì.",
 'uctop'         => ' (ùltima dla pàgina)',
 'month'         => 'Mèis:',
 'year'          => 'Ann:',

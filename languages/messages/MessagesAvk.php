@@ -331,7 +331,8 @@ Erura : $2',
 'namespaceprotected'   => "Va bu koe '''$1''' yoltxo me robetal !",
 'customcssjsprotected' => 'Va batu bu me robetal kire in va ar favesikaf titickaks ruldar.',
 'ns-specialprotected'  => 'Bu koe {{ns:special}} yoltxo tir merobetanu.',
-'titleprotected'       => 'Bat vergumvelt gan [[User:$1|$1]] zo reduranendar. Batdume : <i>$2</i>.',
+'titleprotected'       => "Bat vergumvelt gan [[User:$1|$1]] zo reduranendar.
+Batdume : ''$2''.",
 
 # Login and logout pages
 'logouttitle'                => 'Solgluyara',
@@ -541,7 +542,7 @@ Sulara \"log\" va batu bu krafiason batlize zo nedir :",
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Pataredura me tir',
-'cantcreateaccount-text' => "Pataredura male bate IP (<b>$1</b>) mane gan [[User:$3|$3]] zo elekayar.
+'cantcreateaccount-text' => "Pataredura male bate IP ('''$1''') mane gan [[User:$3|$3]] zo elekayar.
 
 Bazeyena lazava ke $3 tir ''$2''.",
 
@@ -1283,8 +1284,6 @@ $1',
 'mycontris'     => 'Jinaf webekseem',
 'contribsub2'   => 'Tori $1 ($2)',
 'nocontribs'    => 'Meka betara vadjesa va bata luda se al zo trasir.',
-'ucnote'        => 'Tid <b>$1</b> ironokafa betara ke bat favesik bak <b>$2</b> ironokaf viel.',
-'uclinks'       => 'Nedira va $1 ironokaf betaks; nedira va $2 ironokaf viel.',
 'uctop'         => ' (ironokaf)',
 'month'         => 'Mali aksat (is logaveon) :',
 'year'          => 'Mali ilana (is logaveon) :',

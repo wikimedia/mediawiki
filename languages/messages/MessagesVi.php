@@ -471,7 +471,8 @@ $2',
 'namespaceprotected'   => "Bạn không được cấp quyền sửa các trang trong không gian '''$1'''.",
 'customcssjsprotected' => 'Bạn không có quyền sửa đổi trang này vì nó chứa các tùy chọn cá nhân của một thành viên khác.',
 'ns-specialprotected'  => 'Không thể sửa chữa các trang trong không gian tên {{ns:special}}.',
-'titleprotected'       => 'Tựa đề này đã bị [[User:$1|$1]] khóa không cho tạo ra. Lý do được cung cấp là <i>$2</i>.',
+'titleprotected'       => "Tựa đề này đã bị [[User:$1|$1]] khóa không cho tạo ra.
+Lý do được cung cấp là ''$2''.",
 
 # Login and logout pages
 'logouttitle'                => 'Đăng xuất',
@@ -674,7 +675,11 @@ sửa đổi. Việc hủy bỏ này nhằm tránh nội dung trang bị hỏng.
 'editingsection'            => 'Sửa đổi $1',
 'editingcomment'            => 'Sửa đổi $1',
 'editconflict'              => 'Sửa đổi mâu thuẫn : $1',
-'explainconflict'           => 'Trang này có đã được lưu bởi người khác sau khi bạn bắt đầu sửa. Phía trên là bản hiện tại. Phía dưới là sửa đổi của bạn. Bạn sẽ phải trộn thay đổi của bạn với bản hiện tại. <b>Chỉ có</b> phần văn bản ở phía trên là sẽ được lưu khi bạn nhất nút “Lưu trang”.<br />',
+'explainconflict'           => "Trang này có đã được lưu bởi người khác sau khi bạn bắt đầu sửa.
+Phía trên là bản hiện tại.
+Phía dưới là sửa đổi của bạn.
+Bạn sẽ phải trộn thay đổi của bạn với bản hiện tại.
+'''Chỉ có''' phần văn bản ở phía trên là sẽ được lưu khi bạn nhất nút “Lưu trang”.",
 'yourtext'                  => 'Nội dung bạn nhập',
 'storedversion'             => 'Phiên bản lưu',
 'nonunicodebrowser'         => "<strong>CHU' Y': Tri`nh duye^.t cu?a ba.n kho^ng ho^~ tro+. unicode. Mo^.t ca'ch dde^? ba.n co' the^? su+?a ddo^?i an toa`n trang na`y: ca'c ky' tu+. kho^ng pha?i ASCII se~ xua^'t hie^.n trong ho^.p soa.n tha?o du+o+'i da.ng ma~ tha^.p lu.c pha^n.</strong>",
@@ -718,7 +723,7 @@ Nhật trình xóa của trang được đưa ra dưới đây để tiện theo
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Không có thể mở tài khoản',
-'cantcreateaccount-text' => "Chức năng tài tạo khoản từ địa chỉ IP này (<b>$1</b>) đã bị [[User:$3|$3]] cấm.
+'cantcreateaccount-text' => "Chức năng tài tạo khoản từ địa chỉ IP này ('''$1''') đã bị [[User:$3|$3]] cấm.
 
 Lý do được $3 đưa ra là ''$2''",
 
@@ -978,7 +983,7 @@ Xin hãy bảo đảm giữ vững tính liên tục của lịch sử trang.',
 'recentchangestext'                 => 'Xem các thay đổi gần đây nhất tại wiki trên trang này.',
 'recentchanges-feed-description'    => 'Theo dõi các thay đổi gần đây nhất của wiki dùng feed này.',
 'rcnote'                            => "Dưới đây là '''$1''' thay đổi gần nhất trong '''$2''' ngày qua, tính tới $3.",
-'rcnotefrom'                        => 'Thay đổi từ <b>$2</b> (hiển thị tối đa <b>$1</b> thay đổi).',
+'rcnotefrom'                        => "Thay đổi từ '''$2''' (hiển thị tối đa '''$1''' thay đổi).",
 'rclistfrom'                        => 'Xem thay đổi từ $1.',
 'rcshowhideminor'                   => '$1 sửa đổi nhỏ',
 'rcshowhidebots'                    => '$1 sửa đổi bot',
@@ -1281,7 +1286,7 @@ Có '''$8''' tập tin đã được tải lên.
 'ancientpages'            => 'Các trang cũ nhất',
 'move'                    => 'Di chuyển',
 'movethispage'            => 'Di chuyển trang này',
-'unusedimagestext'        => '<p>Xin lưu ý là các trang Web bên ngoài có thể liên kết đến một tập tin ở đây qua một địa chỉ URL trực tiếp, do đó nhiều tập tin vẫn được liệt kê ở đây dù có thể nó đang được sử dụng.</p>',
+'unusedimagestext'        => 'Xin lưu ý là các trang Web bên ngoài có thể liên kết đến một tập tin ở đây qua một địa chỉ URL trực tiếp, do đó nhiều tập tin vẫn được liệt kê ở đây dù có thể nó đang được sử dụng.',
 'unusedcategoriestext'    => 'Các trang thể loại này tồn tại mặc dù không có trang hay tiểu thể loại nào thuộc về nó.',
 'notargettitle'           => 'Chưa có mục tiêu',
 'notargettext'            => 'Xin chỉ rõ trang hoặc thành viên cần thực hiện tác vụ.',
@@ -1566,8 +1571,6 @@ $1',
 'mycontris'     => 'Đóng góp của tôi',
 'contribsub2'   => 'Của $1 ($2)',
 'nocontribs'    => 'Không tìm thấy thay đổi nào khớp với yêu cầu.',
-'ucnote'        => 'Dưới đây là <b>$1</b> sửa đổi mới nhất của thành viên này trong <b>$2</b> ngày qua.',
-'uclinks'       => 'Xem $1 sửa đổi cuối cùng; trong $2 ngày qua.',
 'uctop'         => '(mới nhất)',
 'month'         => 'Từ tháng (trở về trước):',
 'year'          => 'Từ năm (trở về trước):',
@@ -1713,7 +1716,7 @@ Bạn phải chịu trách nhiệm đảm bảo các liên kết đó tiếp t�
 Chú ý rằng trang sẽ '''không''' bị di chuyển nếu đã có một trang tại tên mới, trừ khi nó rỗng hoặc là trang đổi hướng và không có lịch sử sửa đổi.
 Điều này có nghĩa là bạn có thể đổi tên trang lại như cũ nếu bạn có nhầm lẫn, và bạn không thể ghi đè lên một trang đã có sẵn.
 
-<b>CẢNH BÁO!</b>
+'''CẢNH BÁO!'''
 Việc làm này có thể dẫn đến sự thay đổi mạnh mẽ và không lường trước đối với các trang phổ biến;
 xin hãy chắc chắn rằng bạn đã nhận thức được những hệ lụy của nó trước khi thực hiện.",
 'movepagetalktext'        => "Trang thảo luận đi kèm sẽ được tự động di chuyển theo '''trừ khi''':

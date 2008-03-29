@@ -7,6 +7,7 @@
  * @author Niklas Laxström
  * @author Siebrand
  * @author לערי ריינהארט
+ * @author Nike
  */
 
 $fallback = 'it';
@@ -636,7 +637,7 @@ L'alencu dî relativi cancillaziuni veni riportatu ccà pi comodità:",
 
 # Account creation failure
 'cantcreateaccounttitle' => "Mpussìbbili riggistrari n'utenti",
-'cantcreateaccount-text' => "La criazzioni di account da chistu nnirizzu IP (<b>$1</b>) ha statu bloccatu da [[User:$3|$3]].
+'cantcreateaccount-text' => "La criazzioni di account da chistu nnirizzu IP ('''$1''') ha statu bloccatu da [[User:$3|$3]].
 
 Lu motivu è ''$2''",
 
@@ -1104,7 +1105,7 @@ La coda dî processi a esequiri 'n background cunteni {{PLURAL:\$7|'''1''' eleme
 'ancientpages'            => 'pàggini cchiù vecchi',
 'move'                    => 'sposta',
 'movethispage'            => 'Sposta sta pàggina',
-'unusedimagestext'        => "<p>Accura: è pussibbili rializzari liami ai file da àutri siti, usannu direttamenti la URL; chisti ponnu quinni èssiri utilizzati anche siddu cumparinu nte l'alencu.</p>",
+'unusedimagestext'        => "Accura: è pussibbili rializzari liami ai file da àutri siti, usannu direttamenti la URL; chisti ponnu quinni èssiri utilizzati anche siddu cumparinu nte l'alencu.",
 'unusedcategoriestext'    => 'Li siquenti pàggini dî catigurìi esìstinu, sibbeni li catigurìi currispunnenti sunnu vacanti.',
 'notargettext'            => "Nun hà statu innicata na pàggina o un utenti 'n rilazzioni a lu quali esèquiri l'opirazzioni addumannata.",
 
@@ -1195,7 +1196,7 @@ La coda dî processi a esequiri 'n background cunteni {{PLURAL:\$7|'''1''' eleme
 'watchlist-show-minor' => 'Ammustra li canciamenti nichi',
 'watchlist-hide-minor' => 'Ammuccia li canciamenti nichi',
 
-# Displayed when you click the "watch" button and it's in the process of watching
+# Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => "Junta a l'ossirvati spiciali...",
 'unwatching' => "Eliminazzioni di l'ossirvati spiciali...",
 
@@ -1348,8 +1349,6 @@ $1',
 'mycontris'     => 'Li mei cuntribbuti',
 'contribsub2'   => 'Pi $1 ($2)',
 'nocontribs'    => 'Secunnu sti criteri nun ci sunnu canci o cuntribbuti.',
-'ucnote'        => "Di sèquitu sunnu alincati li <b>$1</b> canciamenti cchiù ricenti effittuati di l'utenti nta l'ùrtimi <b>$2</b> jorna.",
-'uclinks'       => "Ammustra l'ùrtimi $1 canciamenti; ammustra l'ùrtimi $2 jorna.",
 'uctop'         => '(ùrtima pi la pàggina)',
 'month'         => 'A pàrtiri dô mese (e pricidenti):',
 'year'          => "A pàrtiri di l'annu (e pricidenti):",
@@ -1464,12 +1463,18 @@ $1',
 
 # Move page
 'move-page-legend'        => 'Sposta la pàggina',
-'movepagetext'            => "Usannu lu formulariu ccà sutta vuatri canciati lu nomu dâ pàggina, e spustati tutta la sò storia versu la pàggina nova. Lu tìtulu vecchiu addiventa na pàggina di ''redirect'' versu lu tìtulu novu. Li liami â pàggina vecchia nun càncianu. Assicuràtivi di tistari li redirect duppi e li redirect rumputi. Vuatri siti rispunzàbbili dî liami chi avìssiru a puntari â paggina giusta.
+'movepagetext'            => "Usannu lu formulariu ccà sutta vuatri canciati lu nomu dâ pàggina, e spustati tutta la sò storia versu la pàggina nova.
+Lu tìtulu vecchiu addiventa na pàggina di ''redirect'' versu lu tìtulu novu.
+Li liami â pàggina vecchia nun càncianu.
+Assicuràtivi di tistari li redirect duppi e li redirect rumputi.
+Vuatri siti rispunzàbbili dî liami chi avìssiru a puntari â paggina giusta.
 
-La pàggina '''nun'' è spustata siddu cc'è già na pàggina cu lu tìtulu novu, tranni chi la pàggina 'n chistioni è vacanti o è na pàggina di ''redirect'' e nun havi n'archiviu di canciamenti. Chistu signìfica chi vuatri putiti rinuminari la pàggina cu lu nomu vecchiu si aviti sbagghiatu, e chi nun putiti suprascrìviri nta na pàggina chi esisti già.
+La pàggina '''nun'' è spustata siddu cc'è già na pàggina cu lu tìtulu novu, tranni chi la pàggina 'n chistioni è vacanti o è na pàggina di ''redirect'' e nun havi n'archiviu di canciamenti.
+Chistu signìfica chi vuatri putiti rinuminari la pàggina cu lu nomu vecchiu si aviti sbagghiatu, e chi nun putiti suprascrìviri nta na pàggina chi esisti già.
 
-<b>Accura!</b>
-Chistu pò èssiri nu canciamentu dràsticu pi na pàggina pupulari; aviti a èssiri sicuri di capiri li cunziquenzi prima di cuntinuari.",
+'''Accura!'''
+Chistu pò èssiri nu canciamentu dràsticu pi na pàggina pupulari;
+aviti a èssiri sicuri di capiri li cunziquenzi prima di cuntinuari.",
 'movepagetalktext'        => "La pàggina di discussioni assuciata, siddu esisti, veni spustata automaticamenti nzèmmula, '''a menu chi:'''
 *Na pàggina nun-vacanti di discussioni già esisti cu lu nomu novu,
 *Hai disilizziunatu lu quatratu ccà sutta.

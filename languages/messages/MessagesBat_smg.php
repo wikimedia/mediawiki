@@ -7,6 +7,7 @@
  * @author Zordsdavini
  * @author לערי ריינהארט
  * @author Siebrand
+ * @author Nike
  */
 
 $fallback = 'lt';
@@ -891,7 +892,7 @@ Nepasirėnktos gropes nabus pakeistos. Galit atžīmiet grope laikīdamė ''Ctrl
 'ancientpages'            => 'Seniausė poslapē',
 'move'                    => 'Parvadintė',
 'movethispage'            => 'Parvadintė šėta poslapi',
-'unusedimagestext'        => '<p>Primenam, kū kėtas svetainės gal būtė nuruodiosės i abruozdieli tėisiogėniu URL, no vėstėik gal būtė šėtom sārašė, nuors ėr īr aktīvē naudounams.</p>',
+'unusedimagestext'        => 'Primenam, kū kėtas svetainės gal būtė nuruodiosės i abruozdieli tėisiogėniu URL, no vėstėik gal būtė šėtom sārašė, nuors ėr īr aktīvē naudounams.',
 'unusedcategoriestext'    => 'Šėtū kateguorėju poslapē sokortė, nuors juoks kėts straipsnis a kateguorėjė ana nenauduo.',
 'notargettitle'           => 'Nenuruodīts objekts',
 'notargettext'            => 'Tamsta nenuruodiet nuorima poslapė a nauduotuojė,
@@ -990,7 +991,7 @@ Jė bikumet ožsėnuorietomiet liautėis stebietė straipsnė, spostelkat \"Nebs
 'watchlist-show-minor' => 'Ruodītė mažos keitėmos',
 'watchlist-hide-minor' => 'Kavuotė mažos keitėmos',
 
-# Displayed when you click the "watch" button and it's in the process of watching
+# Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Itraukiama i keravuojamu sāraša...',
 'unwatching' => 'Šalėnama ėš keravuojamu sāraša...',
 
@@ -1117,8 +1118,6 @@ Parveizėkiet [[Special:Log/delete|trīnimu sāraša]], nuoriedamė rastė pasko
 'contributions' => 'Nauduotuojė duovis',
 'mycontris'     => 'Mona duovis',
 'contribsub2'   => 'Nauduotuojė $1 ($2)',
-'ucnote'        => 'Žemiau īr šėta nauduotuojė paskiausė <b>$1</b> keitėmā par paskiausias <b>$2</b> dėinas.',
-'uclinks'       => 'Ruodītė paskiausius $1 pakeitėmos; ruodītė paskiausės $2 dėinas.',
 'uctop'         => ' (paskotinis)',
 'month'         => 'Nu mienėsė (ėr onkstiau):',
 'year'          => 'Nu metu (ėr onkstiau):',
@@ -1215,21 +1214,16 @@ Prašuom patvėrtėntė šėtā, kū ketinat padarītė.',
 'unlockdbsuccesstext' => 'Doumenū bazė bova atrakėnta.',
 
 # Move page
-'movepagetext'            => "Nauduodamė žemiau pateikta fuorma, parvadinsėt poslapi
-neprarasdamė anuo istuorėjės.
+'movepagetext'            => "Nauduodamė žemiau pateikta fuorma, parvadinsėt poslapi neprarasdamė anuo istuorėjės.
 Senasis pavadinėms pataps nukrēpiamouju - ruodīs i naujīji.
-'''Nūruodas i senaji poslapi nebus autuomatėškā pakeistos, tudie būtinā'''
-'''patėkrinkėt a nesokūriet dvėgobu a'''
-'''neveikontiu nukreipėmu'''.
+'''Nūruodas i senaji poslapi nebus autuomatėškā pakeistos, tudie būtinā patėkrinkėt a nesokūriet dvėgobu a neveikontiu nukreipėmu'''.
 Tamsta esat atsakėngs ož šėta, kū nūruodas ruodītu i ten, kor ė nuorieta.
-Primenam, kū poslapis '''nebus''' parvadints, jēgo jau īr poslapis
-naujo pavadinėmo, nebent tas poslapis īr tuščės a nukreipēmasis ė
-netor redagavėma istuorėjės. Tumet, Tamsta galėt parvadintė poslapi
-seniau nauduota vardu, jēgo priš šėta ons bova par klaida parvadints,
-a egzėstounantiu poslapiu sogadintė negalėt.
-<b>DIEMESĖ!</b>
-Jēgo parvadinat puopoliaru poslapi, tas gal sokeltė nepagēdaunamu
-šalotiniu efektu, tudie šėta veiksma vīkdīkit tėk isitėkine,
+
+Primenam, kū poslapis '''nebus''' parvadints, jēgo jau īr poslapis naujo pavadinėmo, nebent tas poslapis īr tuščės a nukreipēmasis ė netor redagavėma istuorėjės.
+Tumet, Tamsta galėt parvadintė poslapi seniau nauduota vardu, jēgo priš šėta ons bova par klaida parvadints, a egzėstounantiu poslapiu sogadintė negalėt.
+
+'''DIEMESĖ!'''
+Jēgo parvadinat puopoliaru poslapi, tas gal sokeltė nepagēdaunamu šalotiniu efektu, tudie šėta veiksma vīkdīkit tėk isitėkine,
 kū soprantat vėsas pasiekmes.",
 'movepagetalktext'        => "Sosėits aptarėma poslapis bus autuomatėškā parkelts draugom so ano, '''ėšskīrus:''':
 *Poslapis nauju pavadinėmo tor netoštė aptarėma poslapi, a

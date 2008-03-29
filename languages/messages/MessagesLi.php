@@ -405,7 +405,8 @@ $2",
 'namespaceprotected'   => "Doe höbs gén rechte om pazjena's in de naamruumde '''$1''' te bewèrke.",
 'customcssjsprotected' => "Doe kins deze pazjena neet bewèrke omdet dae perseunlikke instellinge van 'ne angere gebroeker bevat.",
 'ns-specialprotected'  => 'Pazjena\'s in de naamruumde "{{ns:special}}" kinne neet bewèrk waere.',
-'titleprotected'       => "'t aanmake van deze pagina is beveilig door [[User:$1|$1]]. De gegaeve ree is <i>$2</i>.",
+'titleprotected'       => "'t aanmake van deze pagina is beveilig door [[User:$1|$1]].
+De gegaeve ree is ''$2''.",
 
 # Login and logout pages
 'logouttitle'                => 'Aafmèlde gebroeker',
@@ -597,7 +598,10 @@ Probeer 't opnieuw. Als 't dan nog neet lukt, meldt dich dan aaf en weer aan.</s
 'editingsection'            => 'Bewirke van sectie van $1',
 'editingcomment'            => 'Bewirk $1 (commentair)',
 'editconflict'              => 'Bewirkingsconflik: $1',
-'explainconflict'           => "Jemes angers haet dees pazjena verangerd naodats doe aan dees bewèrking bis begos. 't Ierste teksveld tuint de hujige versie van de pazjena. De mós dien eige verangeringe dao-in inpasse. Allein d'n tèks in 't ierste teksveld weurt opgesjlaoge wens te noe op \"Pazjena opsjlaon\" duujs.<br />",
+'explainconflict'           => "Jemes angers haet dees pazjena verangerd naodats doe aan dees bewèrking bis begos.
+'t Ierste teksveld tuint de hujige versie van de pazjena.
+De mós dien eige verangeringe dao-in inpasse.
+'''Allein''' d'n tèks in 't ierste teksveld weurt opgesjlaoge wens te noe op \"Pazjena opsjlaon\" duujs.",
 'yourtext'                  => 'Euren teks',
 'storedversion'             => 'Opgesjlage versie',
 'nonunicodebrowser'         => '<strong>WAARSJUWING: Diene browser is voldit neet aan de unicode sjtandaarde, gebroek estebleef inne angere browser veurdas e artikele gis bewirke.</strong>',
@@ -638,7 +642,7 @@ Euverwaeg of 't terech is detse wiejer wèrks aan dees pazjena. Veur dien gemaak
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Aanmake gebroeker misluk.',
-'cantcreateaccount-text' => "'t Aanmake van gebroekers van dit IP-adres (<b>$1</b>) is geblokkeerd door [[User:$3|$3]].
+'cantcreateaccount-text' => "'t Aanmake van gebroekers van dit IP-adres ('''$1''') is geblokkeerd door [[User:$3|$3]].
 
 De door $3 opgegaeve reje is ''$2''",
 
@@ -1465,8 +1469,6 @@ $1",
 'mycontris'     => 'Mien biedraag',
 'contribsub2'   => 'Veur $1 ($2)',
 'nocontribs'    => 'Gein wijzigingen gevonden die aan de gestelde criteria voldoen.',
-'ucnote'        => 'Hieonger sjtont de litste <b>$1</b> verangeringe van deze gebroeker in de litste <b>$2</b> daag.',
-'uclinks'       => 'Bekiek de litste <b>$1</b> verangeringe; bekiek de litste <b>$2</b> daag.',
 'uctop'         => ' (litste verangering)',
 'month'         => 'Van maondj (en irder):',
 'year'          => 'Van jaor (en irder):',

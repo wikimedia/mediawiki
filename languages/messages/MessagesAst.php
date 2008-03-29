@@ -400,7 +400,7 @@ $2',
 'namespaceprotected'   => "Nun tienes permisu pa editar páxines nel espaciu de nomes '''$1'''.",
 'customcssjsprotected' => "Nun tienes permisu pa editar esta páxina porque contién preferencies personales d'otru usuariu.",
 'ns-specialprotected'  => 'Les páxines del espaciu de nomes {{ns:special}} nun puen ser editaes.',
-'titleprotected'       => 'Esti títulu foi protexíu de la so creación por [[User:$1|$1]]. El motivu conseñáu ye <i>$2</i>.',
+'titleprotected'       => "Esti títulu foi protexíu de la so creación por [[User:$1|$1]]. El motivu conseñáu ye ''$2''.",
 
 # Login and logout pages
 'logouttitle'                => 'Desconexón',
@@ -623,8 +623,7 @@ que pasa cuando tas usando un proxy anónimu basáu en web que seya problemátic
 Na área de testu d'enriba ta'l testu de la páxina como ta nestos momentos.
 Los tos cambeos amuésense na área de testu d'embaxo.
 Vas tener que fusionar los tos cambeos dientro del testu esistente.
-<b>Namái</b> va guardase'l testu de l'área d'enriba cuando calques en
-\"Guardar páxina\".<br />",
+'''Namái''' va guardase'l testu de l'área d'enriba cuando calques en \"Guardar páxina\".",
 'yourtext'                  => 'El to testu',
 'storedversion'             => 'Versión almacenada',
 'nonunicodebrowser'         => "<strong>AVISU: El to navegador nun cumple la norma unicode. Hai un sistema alternativu que te permite editar páxines de forma segura: los carauteres non-ASCII apaecerán na caxa d'edición como códigos hexadecimales.</strong>",
@@ -671,7 +670,7 @@ Equí tienes el rexistru de borraos d'esta páxina:",
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Nun se pue crear la cuenta',
-'cantcreateaccount-text' => "La creación de cuentes dende esta direición IP (<b>$1</b>) foi bloquiada por [[User:$3|$3]].
+'cantcreateaccount-text' => "La creación de cuentes dende esta direición IP ('''$1''') foi bloquiada por [[User:$3|$3]].
 
 El motivu dau por $3 ye ''$2''",
 
@@ -1224,7 +1223,7 @@ La [http://meta.wikimedia.org/wiki/Help:Job_queue cola de xeres] ye de '''\$7'''
 'ancientpages'            => 'Páxines más vieyes',
 'move'                    => 'Treslladar',
 'movethispage'            => 'Treslladar esta páxina',
-'unusedimagestext'        => "<p>Por favor, fíxate qu'otros sitios web puen enllazar a una imaxe con una URL direuta, polo que seique tean tovía llistaos equí, magar que tean n'usu activu.</p>",
+'unusedimagestext'        => "Por favor, fíxate qu'otros sitios web puen enllazar a una imaxe con una URL direuta, polo que seique tean tovía llistaos equí, magar que tean n'usu activu.",
 'unusedcategoriestext'    => "Les siguientes categoríes esisten magar que nengún artículu o categoría faiga usu d'elles.",
 'notargettitle'           => 'Nun hai oxetivu',
 'notargettext'            => 'Nun especificasti una páxina oxetivu o un usuariu sobre los que realizar esta función.',
@@ -1518,8 +1517,6 @@ $1",
 'mycontris'     => 'Les mios contribuciones',
 'contribsub2'   => 'De $1 ($2)',
 'nocontribs'    => "Nun s'atoparon cambeos que coincidan con esi criteriu.",
-'ucnote'        => "Abaxo amuésense los caberos <b>$1</b> cambeos d'esti usuariu nos caberos <b>$2</b> díes.",
-'uclinks'       => 'Ver los caberos $1 cambeos; ver los caberos $2 díes.',
 'uctop'         => '(últimu cambéu)',
 'month'         => "Dende'l mes (y anteriores):",
 'year'          => "Dende l'añu (y anteriores):",
@@ -1656,23 +1653,18 @@ na base de datos. Por favor confirma que ye lo quies facer.',
 # Move page
 'move-page'               => 'Treslladar $1',
 'move-page-legend'        => 'Treslladar páxina',
-'movepagetext'            => "Usando'l siguiente formulariu vas renomar una páxina, treslladando'l
-so historial al nuevu nome. El nome vieyu va convertise nuna
-redireición al nuevu. Los enllaces qu'hubiera al nome vieyu nun van
-camudase; asegúrate de que nun dexes redireiciones dobles o rotes.
-Tu yes el responsable de facer que los enllaces queden apuntando aonde
-se supón qu'han apuntar.
+'movepagetext'            => "Usando'l siguiente formulariu vas renomar una páxina, treslladando'l so historial al nuevu nome. El nome vieyu va convertise nuna
+redireición al nuevu.
+Los enllaces qu'hubiera al nome vieyu nun van camudase;
+asegúrate de que nun dexes redireiciones dobles o rotes.
+Tu yes el responsable de facer que los enllaces queden apuntando aonde se supón qu'han apuntar.
 
-Recuerda que la páxina '''nun''' va movese si yá hai una páxina col
-nuevu títulu, a nun ser que tea vacia o seya una redireición que nun tenga
-historial. Esto significa que pues volver a renomar una páxina col nome
-orixinal si t'enquivoques, y que nun pues sobreescribir una páxina
-yá esistente.
+Recuerda que la páxina '''nun''' va movese si yá hai una páxina col nuevu títulu, a nun ser que tea vacia o seya una redireición que nun tenga historial.
+Esto significa que pues volver a renomar una páxina col nome orixinal si t'enquivoques, y que nun pues sobreescribir una páxina yá esistente.
 
-<b>¡AVISU!</b>
+¡AVISU!'''
 Esti pue ser un cambéu importante y inesperáu pa una páxina popular;
-por favor, asegúrate d'entender les consecuencies de lo que vas facer
-enantes de siguir.",
+por favor, asegúrate d'entender les consecuencies de lo que vas facer enantes de siguir.",
 'movepagetalktext'        => "La páxina d'alderique asociada va ser treslladada automáticamente '''a nun ser que:'''
 *Yá esista una páxina d'alderique non vacia col nuevu nome, o
 *Desactives la caxella d'equí baxo.

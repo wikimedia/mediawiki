@@ -476,7 +476,11 @@ Liá-chhṳ chhà-fûng he yù $1 só fûng ke. Tông-chûng ke ngièn-yîn he '
 'editingsection'            => 'Chang-chhai phiên-siá $1 (thon-lo̍k)',
 'editingcomment'            => 'Chang-chhai phiên-siá $1 (phìn-lun)',
 'editconflict'              => 'phiên-cho chhûng-thu̍t： $1',
-'explainconflict'           => 'Yû-ngìn chhai ngì khôi-sṳ́ phiên-siá heu kiên-kói liáu vùn-chông. Song-mien ke vùn-sṳ khiông-nui he hién-sṳ muk-chhièn pún-chông ke nui-yùng. Ngì só-cho ke siù-chho hién-sṳ chhai ha-mien ke vùn-sṳ khiông-chûng. Ngì yin-tông chiông ngì só-cho ke siù-chho kâ-ngi̍p hien-yû ke nui-yùng chûng.<b>Chṳ́-yû</b> chhai song-mien vùn-sṳ khiông-chûng ke nui-yùng chiông-voi chhai ngì tiám-kit "Pó-chhùn pún-chông" heu pûn pó-chhùn.<br />',
+'explainconflict'           => "Yû-ngìn chhai ngì khôi-sṳ́ phiên-siá heu kiên-kói liáu vùn-chông.
+Song-mien ke vùn-sṳ khiông-nui he hién-sṳ muk-chhièn pún-chông ke nui-yùng.
+Ngì só-cho ke siù-chho hién-sṳ chhai ha-mien ke vùn-sṳ khiông-chûng.
+Ngì yin-tông chiông ngì só-cho ke siù-chho kâ-ngi̍p hien-yû ke nui-yùng chûng.
+'''Chṳ́-yû''' chhai song-mien vùn-sṳ khiông-chûng ke nui-yùng chiông-voi chhai ngì tiám-kit \"Pó-chhùn pún-chông\" heu pûn pó-chhùn.",
 'yourtext'                  => 'Ngì-ke vùn-sṳ',
 'storedversion'             => 'Yí-kîn pó-chhùn ke pán-pún',
 'nonunicodebrowser'         => '<strong>Kín-ko: Ngì-ke hi-khí put-nèn kiâm-yùng Unicode phiên-ho. Liá-piên yû yit-ke kûng-chok-khî chiông-voi hó-sṳ́ ngì nèn ôn-chhiòn-thi phiên-siá vùn-chông: fi ASCII sṳ-kûng chiông-yung sṳ̍p-liuk chin-chṳ phiên-ho mù-hìn chhut-hien chhai phiên-siá khiông-chûng.</strong>',
@@ -700,7 +704,7 @@ Ngì thùng-sṳ̀ ya-yeu hiong Wikimedia pó-chṳn ngì só thì-kâu ke nui-y
 'recentchangestext'                 => 'Kiên-chiûng liá-ke wiki song ke chui-sîn kiên-kói.',
 'recentchanges-feed-description'    => 'Kiên-chiûng chhṳ-thin chhai wiki song chui-khiûn ke kiên-kói.',
 'rcnote'                            => "Yî-ha he chhai $3, chui-khiûn '''$2''' thiên-nui ke '''$1'''-chhṳ chui-khiûn ke kiên-kói ki-liu̍k:",
-'rcnotefrom'                        => 'Ha-mien he chhṳ <b>$2</b> (Chui-tô hién-sṳ <b>$1</b>):',
+'rcnotefrom'                        => "Ha-mien he chhṳ '''$2''' (Chui-tô hién-sṳ '''$1'''):",
 'rclistfrom'                        => 'Hién-sṳ chhṳ $1 yî-lòi ke sîn kiên-kói',
 'rcshowhideminor'                   => '$1 séu phiên-cho',
 'rcshowhidebots'                    => '$1 kî-hi-ngìn ke phiên-cho',
@@ -910,7 +914,7 @@ Kó-yèn ngì yû liá-ke thù-hìn ke vàn-cháng thai-séu.',
 'ancientpages'            => 'Chui-khiu ke hong-mien',
 'move'                    => 'Yì-thung',
 'movethispage'            => 'Yì-thung pún-chông',
-'unusedimagestext'        => '<p>Chhiáng chu-yi khì-thâ mióng-chham khó-nèn chhṳ̍t-chiap theu-ko URL lièn-chiap thù-chhiong, só-yî liá-piên lie̍t-chhut ke thù-chhiong khó-nèn pûn-ngìn sṳ́-yung.</p>',
+'unusedimagestext'        => 'Chhiáng chu-yi khì-thâ mióng-chham khó-nèn chhṳ̍t-chiap theu-ko URL lièn-chiap thù-chhiong, só-yî liá-piên lie̍t-chhut ke thù-chhiong khó-nèn pûn-ngìn sṳ́-yung.',
 'unusedcategoriestext'    => 'Sûi-yèn mò-yû pûn khì-thâ vùn-chông fe̍t-chá fûn-lui só chhái-yung, than lie̍t-péu chûng ke fûn-lui chông chhùn-chhai.',
 'notargettitle'           => 'Mò muk-phêu',
 'notargettext'            => 'Ngì hàn-mò chṳ́-thin yit-ke muk-phêu vùn-chông fe̍t-chá yung-fu chin-hàng chhṳ́-hong chhâu-chok.',
@@ -1124,8 +1128,6 @@ Chhiáng chhâm-kháu [[Special:Log/delete|chhù-hi ngit-ki]] lòi chhà-chhut c
 'mycontris'     => 'Ngô-ke kung-hien',
 'contribsub2'   => '$1 ($2) ke kung-hien',
 'nocontribs'    => 'Mò-yû chhìm-cháu to fù-ha̍p thi̍t-chṳ̂n ke kiên-kói.',
-'ucnote'        => 'Yî-ha he ke-yung-fu chui-khiûn <b>$2</b>-thiên nui ke chui-heu <b>$1</b>-chhṳ siû-kói.',
-'uclinks'       => 'Chhâm-siòng chui-heu $1-chhṳ siû-kói: chhâm-sûn chui-heu $2-thiên.',
 'uctop'         => '(Chui-sîn siû-thin)',
 
 'sp-contributions-newbies'     => 'Chak hién-sṳ sîn kien-li̍p chṳ̂ yung-fu ke kung-hien',
@@ -1245,7 +1247,8 @@ Yin-tông fu-chit khok-thin só-yû lièn-kiet chiông-voi lièn-to chṳ́-thin
 Chu-yi kó-yèn sîn vùn-chông yí-kîn yû nui-yùng, vùn-chông chiông '''put-voi''' pûn yì-thung, chhù-fî sîn vùn-chông mò nui-yùng fe̍t-he chhûng-thin-hiong, yì-yèn mò-yû siû-thin li̍t-sṳ́.
 Ngì chai pit-yeu sṳ̀ khó-yî chhai yì-thung to sîn vùn-chông heu chai yì-fì ló-ke vùn-chông, thùng-sṳ̀ ya-he vù-fap koi-hien yû hong-mien. 
 
-<b>Kín-ko!</b> Tui yit-ke kîn-sòng pûn fóng-mun ke vùn-chông lòi ngièn, liá khó-nèn he yit-ke chṳ̂n-thai khi̍p thòng-thu̍t ke kiên-kói; 
+'''Kín-ko!'''
+Tui yit-ke kîn-sòng pûn fóng-mun ke vùn-chông lòi ngièn, liá khó-nèn he yit-ke chṳ̂n-thai khi̍p thòng-thu̍t ke kiên-kói; 
 chhiáng chhai hàng-thung chṳ̂-chhièn siên liáu-kié khì-thâ khó-nèn tai-lòi ke heu-kó.",
 'movepagetalktext'        => "Yû-kôan ke tui-fa-hiong chiông-voi pûn chhṳ-thung lâu ke-vùn-chông yit-hí yì-thung, '''chhù-fî'''：
 *Ngì chiông vùn-chông yì-thung to siông-thùng ke miàng-sṳ, fe̍t-chá

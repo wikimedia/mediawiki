@@ -418,7 +418,8 @@ $2',
 'namespaceprotected'   => "Avètz pas la permission de modificar las paginas de l’espaci de noms « '''$1''' ».",
 'customcssjsprotected' => "Avètz pas la permission d'editar aquesta pagina perque conten de preferéncias d’autres utilizaires.",
 'ns-specialprotected'  => 'Las paginas dins l’espaci de noms « {{ns:special}} » pòdon pas èsser modificadas',
-'titleprotected'       => 'Aqueste títol es estat protegit a la creacion per [[User:$1|$1]]. Lo motiu avançat es <i>« $2 »</i>.',
+'titleprotected'       => "Aqueste títol es estat protegit a la creacion per [[User:$1|$1]].
+Lo motiu avançat es « ''$2'' ».",
 
 # Login and logout pages
 'logouttitle'                => 'Desconnexion',
@@ -614,8 +615,11 @@ Vòstre identificant de blocatge es $5. Precizatz-lo dins tota requèsta.',
 'editingsection'            => 'Modificacion de $1 (seccion)',
 'editingcomment'            => 'Modificacion de $1 (comentari)',
 'editconflict'              => 'Conflicte de modificacion : $1',
-'explainconflict'           => "<b>Aqueste pagina es estada salvagardada aprèp qu'avètz començat de la modificar.
-La zòna d'edicion superiora conten lo tèxt tal coma es enregistrat actualament dins la banca de donadas. Vòstras modificacions apareisson dins la zòna d'edicion inferiora. Anatz dever aportar vòstras modificacions al tèxt existent. Sol lo tèxt de la zòna superiora serà salvagardat.</b><br />",
+'explainconflict'           => "Aqueste pagina es estada salvagardada aprèp qu'avètz començat de la modificar.
+La zòna d'edicion superiora conten lo tèxt tal coma es enregistrat actualament dins la banca de donadas.
+Vòstras modificacions apareisson dins la zòna d'edicion inferiora.
+Anatz dever aportar vòstras modificacions al tèxt existent.
+'''Sol''' lo tèxt de la zòna superiora serà salvagardat.",
 'yourtext'                  => 'Vòstre tèxt',
 'storedversion'             => 'Version enregistrada',
 'nonunicodebrowser'         => '<strong>Atencion : Vòstre navegaire supòrta pas l’unicode. Una solucion temporària es estada trobada per vos permetre de modificar en tota seguretat un article : los caractèrs non-ASCII apareisseràn dins vòstra boita de modificacion en tant que còdes exadecimals. Deuriatz utilizar un navegaire mai recent.</strong>',
@@ -654,7 +658,7 @@ Demandatz-vos se es vertadièrament apropriat de la tornar crear en vos referiss
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Podètz pas crear de compte.',
-'cantcreateaccount-text' => "La creacion de compte dempuèi aquesta adreça IP (<b>$1</b>) es estada blocada per [[User:$3|$3]].
+'cantcreateaccount-text' => "La creacion de compte dempuèi aquesta adreça IP ('''$1''') es estada blocada per [[User:$3|$3]].
 La rason donada per $3 èra ''$2''.",
 
 # History pages
@@ -908,7 +912,7 @@ Los gropes pas seleccionats seràn pas modificats. Podètz deseleccionar un grop
 'recentchangestext'                 => 'Vaquí sus aquesta pagina, los darrièrs cambiaments de {{SITENAME}}.',
 'recentchanges-feed-description'    => "Seguissètz los darrièrs cambiaments d'aqueste wiki dins un flus.",
 'rcnote'                            => "Vaquí {{PLURAL:$1|lo darrièr cambiament|los '''$1''' darrièrs cambiaments}} dempuèi {{PLURAL:$2|lo darrièr jorn|los '''$2''' darrièrs jorns}}, determinat{{PLURAL:$1||s}} aqueste $3.",
-'rcnotefrom'                        => 'Vaquí los cambiamtns efectuats dempuèi lo <strong>$2</strong> (<b>$1</b> al maximom).',
+'rcnotefrom'                        => "Vaquí los cambiamtns efectuats dempuèi lo '''$2''' ('''$1''' al maximom).",
 'rclistfrom'                        => 'Afichar las modificacions novèlas dempuèi lo $1.',
 'rcshowhideminor'                   => '$1 modificacions menoras',
 'rcshowhidebots'                    => '$1 bòts',
@@ -1209,7 +1213,7 @@ I a {{PLURAL:\$7|'''\$7''' article|'''\$7''' articles}} dins [[meta:Help:Job_que
 'ancientpages'            => 'Articles mai ancians',
 'move'                    => 'Tornar nomenar',
 'movethispage'            => 'Desplaçar la pagina',
-'unusedimagestext'        => "<p>Doblidetz pas que d'autres sits pòdon conténer un ligam dirèct vèrs aqueste imatge, e qu'aqueste pòt èsser plaçat dins aquesta lista alara qu'es en realitat utilizada.</p>",
+'unusedimagestext'        => "Doblidetz pas que d'autres sits pòdon conténer un ligam dirèct vèrs aqueste imatge, e qu'aqueste pòt èsser plaçat dins aquesta lista alara qu'es en realitat utilizada.",
 'unusedcategoriestext'    => "Las categorias seguentas existisson mas cap d'article o de categoria los utilizan pas.",
 'notargettitle'           => 'Pas de cibla',
 'notargettext'            => 'Indicatz una pagina cibla o un utilizaire cibla.',
@@ -1494,8 +1498,6 @@ $1",
 'mycontris'     => 'Mas contribucions',
 'contribsub2'   => 'Per $1 ($2)',
 'nocontribs'    => 'Cap de modificacion correspondenta a aquestes critèris es pas estada trobada.',
-'ucnote'        => 'Vaquí los <b>$1</b> darrièrs cambiaments efectuats per aqueste utilizaire al cors dels <b>$2</b> darrièrs jorns.',
-'uclinks'       => 'Afichar los $1 darrièrs cambiaments; afichar los $2 darrièrs jorns.',
 'uctop'         => '(darrièra)',
 'month'         => 'A partir del mes (e precedents) :',
 'year'          => 'A partir de l’annada (e precedentas) :',
@@ -1632,8 +1634,9 @@ Doblidetz pas de la desvarrolhar quand auretz acabat vòstra operacion de manten
 'move-page-legend'        => 'Desplaçar un article',
 'movepagetext'            => "Utilizatz lo formulari çaijós per tornar nomenar un article, en desplaçant totas sas versions anterioras vèrs lo nom novèl.
 Lo títol precedent devendrà una pagina de redireccion vèrs lo títol novèl.
-Los ligams vèrs lo títol ancian seràn pas modificats e la pagina de discussion, s'existís, serà pas desplaçada.<br />
-<b>ATENCION !</b>
+Los ligams vèrs lo títol ancian seràn pas modificats e la pagina de discussion, s'existís, serà pas desplaçada.
+
+'''ATENCION !'''
 Se pòt agir d'un cambiament radical e inesperat per un article sovent consultat;
 asseguratz-vos que ne comprenètz plan las consequéncias abans de procedir.",
 'movepagetalktext'        => "La pagina de discussion associada, se presenta, serà automaticament desplaçada amb '''en defòra de se:'''

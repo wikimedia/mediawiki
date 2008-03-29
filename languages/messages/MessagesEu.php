@@ -573,7 +573,7 @@ Hemen duzu orrialde honen ezabaketa erregistroa badaezpada ere:",
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Ezin izan da kontua sortu',
-'cantcreateaccount-text' => "IP helbide honetatik (<b>$1</b>) kontu berria sortzeko aukera blokeatu du [[User:$3|$3]](e)k.
+'cantcreateaccount-text' => "IP helbide honetatik ('''$1''') kontu berria sortzeko aukera blokeatu du [[User:$3|$3]](e)k.
 
 $3(e)k emandako arrazoia: ''$2''",
 
@@ -1274,8 +1274,6 @@ $1',
 'mycontris'     => 'Nire ekarpenak',
 'contribsub2'   => '$1 ($2)',
 'nocontribs'    => 'Ez da ezaugarri horiekin bat datorren aldaketarik aurkitu.',
-'ucnote'        => 'Behean agertzen dira erabiltzaile honen azken <b>$1</b> aldaketak azken <b>$2</b> egunetan.',
-'uclinks'       => 'Azken $1 aldaketak ikusi; azken $2 egunak ikusi.',
 'uctop'         => ' (Azken aldaketa)',
 'month'         => 'Hilabetea (eta lehenagokoak):',
 'year'          => 'Urtea (eta lehenagokoak):',

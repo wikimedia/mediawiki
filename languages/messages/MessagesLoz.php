@@ -537,7 +537,7 @@ Informasi: (bye) = petuho a nca selt,
 'recentchanges'                  => 'Petuho nca',
 'recentchanges-feed-description' => 'Kamukile petuho nca di wiki kwa bye feed.',
 'rcnote'                         => "Bye {{PLURAL:$1|sa '''1''' petuho|sa pu-lila '''$1''' petuhoni}} kwa pu-lila {{PLURAL:$2|dia|'''$2''' dia}}, di $3.",
-'rcnotefrom'                     => 'Bye sa petuho di <b>$2</b> (di <b>$1</b> sa kamukile).',
+'rcnotefrom'                     => "Bye sa petuho di '''$2''' (di '''$1''' sa kamukile).",
 'rclistfrom'                     => 'Kamukile nca petuho di $1',
 'rcshowhideminor'                => '$1 pili kenki',
 'rcshowhidebots'                 => '$1 roboti',
@@ -889,8 +889,9 @@ A sa gutukilimisize di ling'ki.
 
 Petulo sa '''no''' nyanganyisize di nca nom e nca nom sa xete, xete a sa petulo abezi e ni bundau/no selt petulo. A sa nyanganyisize petulo a orži.
 
-<b>!</b>
-Petulo populari sa drastiki bufosi e nyanganyisize; a sa gukilize di nyanganyisize.",
+'''!'''
+Petulo populari sa drastiki bufosi e nyanganyisize;
+a sa gukilize di nyanganyisize.",
 'movepagetalktext' => "Bulelezi sa nyanganyisize '''teri:'''
 *Bulelezi e selt sa kwa nca nom, 
 *Okižekilize sisebelisoni.

@@ -480,7 +480,7 @@ hersenenge, (førge) = førskel til den førge hersenenge, l = lile til mendre �
 'recentchanges'                  => 'Seneste ændrenger',
 'recentchanges-feed-description' => 'Ve dette fiid ken du følge de seneste ændrenger på {{SITENAME}}.',
 'rcnote'                         => "Herunder ses {{PLURAL:$1|'''1''' ændrenge|de sedste '''$1''' ændrenger}} frå {{PLURAL:$2|i dåg|de sedste '''$2''' dåg}}, søm i $3.",
-'rcnotefrom'                     => 'Nedenfør ses ændrengerne frå <b>$2</b> til <b>$1</b> vest.',
+'rcnotefrom'                     => "Nedenfør ses ændrengerne frå '''$2''' til '''$1''' vest.",
 'rclistfrom'                     => 'Ves nye ændrenger startende frå $1',
 'rcshowhideminor'                => '$1 lile ændrenger',
 'rcshowhidebots'                 => '$1 råbotter',
@@ -707,7 +707,17 @@ hersenenge, (førge) = førskel til den førge hersenenge, l = lile til mendre �
 'blocklogentry' => 'blokerede "[[$1]]" ve\'n udløbstid på $2 $3',
 
 # Move page
-'movepagetext'     => "Når du brugerst æ formulær herunder hvilst du få omdøbt en side og flyttet æ hæle side han skigte til det nye navn. Den gamle titel hvil bleve en omdirigærengsside til den nye titel. Henvesnenger til den gamle titel hvil ekke bleve ændret. Sørg før at tjekke før dåbelte æller dårlege omdirigærenger. Du erst ansvarleg før, at ål henvesnenger stadeg pæger derhen, hvår det er æ mænenge de skal pæge. Bemærk at æ side '''ekke''' ken flyttes hves der ålrede er en side ve den nye titel, medmendre den side er tøm æller er en omdirigærenge uden nogen skigte. Det betyder at du kenst flytte en side tilbåge hvår den kåm frå, hves du kåmer til at lave en fejl. <b>ADVARSEL!</b> Dette ken være en drastisk og uventet ændrenge før en populær side; vær sekker på, at du førstår konsekvenserne åf dette før du førtsætter.",
+'movepagetext'     => "Når du brugerst æ formulær herunder hvilst du få omdøbt en side og flyttet æ hæle side han skigte til det nye navn.
+Den gamle titel hvil bleve en omdirigærengsside til den nye titel.
+Henvesnenger til den gamle titel hvil ekke bleve ændret.
+Sørg før at tjekke før dåbelte æller dårlege omdirigærenger.
+Du erst ansvarleg før, at ål henvesnenger stadeg pæger derhen, hvår det er æ mænenge de skal pæge.
+
+Bemærk at æ side '''ekke''' ken flyttes hves der ålrede er en side ve den nye titel, medmendre den side er tøm æller er en omdirigærenge uden nogen skigte.
+Det betyder at du kenst flytte en side tilbåge hvår den kåm frå, hves du kåmer til at lave en fejl.
+
+'''ADVARSEL!'''
+Dette ken være en drastisk og uventet ændrenge før en populær side; vær sekker på, at du førstår konsekvenserne åf dette før du førtsætter.",
 'movepagetalktext' => "Den tilhørende diskusjeside, hves der er en, hvil åtåmatisk bleve flyttet ve'n side '''medmendre:''' 
 *Du flytter æ side til et andet navnerum,
 *En ekke-tøm diskusjeside ålrede eksisterer under det nye navn, æller

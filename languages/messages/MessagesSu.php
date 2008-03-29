@@ -369,7 +369,7 @@ Mun lain kitu masalahna, jigana anjeun geus manggihan kutu na ''software''na. Ma
 'namespaceprotected'   => "Anjeun teu ngabogaan hak pikeun ngédit kaca di ngaranspasi '''$1'''.",
 'customcssjsprotected' => 'Anjeun teu ngabogaan hak ngédit kaca ieu, alatan ngandung pangaturan pribadi pamaké séjén.',
 'ns-specialprotected'  => 'Kaca dina ngaranspasi {{ns:special}} teu bisa di édit.',
-'titleprotected'       => 'Ieu judul dikonci ku [[User:$1|$1]] kalawan alesan <i>$2</i>.',
+'titleprotected'       => "Ieu judul dikonci ku [[User:$1|$1]] kalawan alesan ''$2''.",
 
 # Login and logout pages
 'logouttitle'                => 'Kaluar log pamaké',
@@ -567,8 +567,10 @@ Mun anjeun ka dieu teu ngahaja, klik baé tombol '''back''' na panyungsi anjeun.
 'editingsection'            => 'Ngédit $1 (bagian)',
 'editingcomment'            => 'Ngédit $1 (pamanggih)',
 'editconflict'              => 'Konflik éditan: $1',
-'explainconflict'           => 'Aya nu geus ngarobah kaca ieu saprak anjeun mimiti ngédit. Téks béh luhur ngandung téks kaca nu aya kiwari, parobahan anjeun ditémbongkeun di béh handap. Anjeun kudu ngagabungkeun parobahan anjeun kana téks nu kiwari.
-<b>Ngan</b> téks nu béh luhur nu bakal disimpen nalika anjeun mencét "Simpen".',
+'explainconflict'           => "Aya nu geus ngarobah kaca ieu saprak anjeun mimiti ngédit.
+Téks béh luhur ngandung téks kaca nu aya kiwari, parobahan anjeun ditémbongkeun di béh handap.
+Anjeun kudu ngagabungkeun parobahan anjeun kana téks nu kiwari.
+'''Ngan''' téks nu béh luhur nu bakal disimpen nalika anjeun mencét \"Simpen\".",
 'yourtext'                  => 'Tulisan anjeun',
 'storedversion'             => 'Vérsi nu disimpen',
 'nonunicodebrowser'         => '<strong>AWAS: Panyungsi anjeung teu maké unicode, mangga robah heula méméh ngédit artikel.</strong>',
@@ -610,7 +612,7 @@ Pikeun leuwih écés, di handap dibéréndélkeun log hapusanana:",
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Rekening teu bisa dijieun',
-'cantcreateaccount-text' => "Nyieun rekening ti ieu alamat IP (<strong>$1</strong>) dipeungpeuk ku [[User:$3|$3]].
+'cantcreateaccount-text' => "Nyieun rekening ti ieu alamat IP ('''$1''') dipeungpeuk ku [[User:$3|$3]].
 
 Alesanana $3 cenah ''$2''.",
 
@@ -1218,7 +1220,7 @@ Jaga, parobahan na kaca ieu katut kaca obrolanana bakal dibéréndélkeun di din
 'watchlist-show-minor' => 'Témbongkeun éditan leutik',
 'watchlist-hide-minor' => 'Sumputkeun éditan leutik',
 
-# Displayed when you click the "watch" button and it's in the process of watching
+# Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Ngawaskeun...',
 'unwatching' => 'Eureun ngawaskeun...',
 
@@ -1376,8 +1378,6 @@ $1',
 'mycontris'     => 'Tulisan kuring',
 'contribsub2'   => 'Pikeun $1 ($2)',
 'nocontribs'    => 'Taya robahan nu kapanggih cocog jeung patokan ieu.',
-'ucnote'        => 'Di handap ieu mangrupa parobahan ahir <b>$1</b> pamaké salila <b>$2</b> poé ahir.',
-'uclinks'       => 'Témbongkeun $1 parobahan ahir; témbongkeun $2 poé ahir.',
 'uctop'         => ' (tempo)',
 'month'         => 'Ti bulan (jeung saméméhna):',
 'year'          => 'Ti taun (jeung saméméhna):',

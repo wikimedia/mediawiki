@@ -542,7 +542,11 @@ Numri idendifikues i bllokimit tuaj është $5. Ju lutemi përfshijeni këtë Nu
 'editingsection'           => 'Duke redaktuar $1 (seksion)',
 'editingcomment'           => 'Duke redaktuar $1 (koment)',
 'editconflict'             => 'Konflikt redaktimi: $1',
-'explainconflict'          => 'Dikush tjetër ka ndryshuar këtë faqe kur ju po e redaktonit. Kutiza e redaktimit mësipërme tregon tekstin e faqes siç ekziston tani. Ndryshimet juaja janë treguar poshtë kutisë së redaktimit. Ju duhet të përputhni ndryshimet tuaja me tekstin ekzistues. <b>Vetëm</b> teksti në kutinë e sipërme të redaktimit do të ruhet kur të shtypni "Ruaje faqen".',
+'explainconflict'          => "Dikush tjetër ka ndryshuar këtë faqe kur ju po e redaktonit.
+Kutiza e redaktimit mësipërme tregon tekstin e faqes siç ekziston tani.
+Ndryshimet juaja janë treguar poshtë kutisë së redaktimit.
+Ju duhet të përputhni ndryshimet tuaja me tekstin ekzistues.
+'''Vetëm''' teksti në kutinë e sipërme të redaktimit do të ruhet kur të shtypni \"Ruaje faqen\".",
 'yourtext'                 => 'Teksti juaj',
 'storedversion'            => 'Versioni i ruajtur',
 'nonunicodebrowser'        => '<strong>KUJDES: Shfletuesi juaj nuk përdor dot unikode, ju lutem ndryshoni shfletues para se të redaktoni artikuj.</strong>',
@@ -971,8 +975,8 @@ Gjatësia e [http://meta.wikimedia.org/wiki/Help:Job_queue radhës së punëve] 
 'ancientpages'            => 'Artikuj më të vjetër',
 'move'                    => 'Zhvendose',
 'movethispage'            => 'Zhvendose faqen',
-'unusedimagestext'        => '<p>Ju lutem, vini re se hapësira të tjera si p.sh ato që kanë të bëjnë me gjuhë të ndryshme mund të lidhin
-një figurë me një URL në mënyrë direkte, kështuqë ka mundësi që këto figura të rreshtohen këtu megjithëse janë në përdorim.</p>',
+'unusedimagestext'        => 'Ju lutem, vini re se hapësira të tjera si p.sh ato që kanë të bëjnë me gjuhë të ndryshme mund të lidhin
+një figurë me një URL në mënyrë direkte, kështuqë ka mundësi që këto figura të rreshtohen këtu megjithëse janë në përdorim.',
 'unusedcategoriestext'    => 'Kategoritë në vazhdim ekzistojnë edhe pse asnjë artikull ose kategori nuk i përdor ato.',
 'notargettitle'           => 'Asnjë artikull',
 'notargettext'            => 'Nuk keni dhënë asnjë artikull ose përdorues mbi të cilin të përdor këtë funksion.',
@@ -1188,8 +1192,6 @@ Shikoni [[Special:Log/delete|regjistrin e grisjeve]] për grisjet dhe restaurime
 'mycontris'     => 'Redaktimet e mia',
 'contribsub2'   => 'Për $1 ($2)',
 'nocontribs'    => 'Nuk ka asnjë ndryshim që përputhet me këto kritere.',
-'ucnote'        => 'Më poshtë janë redaktimet më të fundit të <b>$1</b> gjatë <b>$2</b> ditëve.',
-'uclinks'       => 'Shikoni $1 redaktimet e fundit; shikoni $2 ditët e fundit.',
 'uctop'         => ' (sipër)',
 
 'sp-contributions-newbies'     => 'Trego vetëm redaktimet e llogarive të reja',

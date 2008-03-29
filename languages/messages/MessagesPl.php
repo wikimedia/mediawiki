@@ -168,7 +168,7 @@ $messages = array(
 'tog-previewontop'            => 'Pokazuj podgląd przed obszarem edycji',
 'tog-previewonfirst'          => 'Pokaż podgląd strony podczas pierwszej edycji',
 'tog-nocache'                 => 'Wyłącz pamięć podręczną',
-'tog-enotifwatchlistpages'    => 'Wyślij e-mail kiedy obserwowana przeze mnie strona zostanie zmodyfikowana',
+'tog-enotifwatchlistpages'    => 'Wyślij e-mail kiedy strona z listy moich obserwowanych zostanie zmodyfikowana',
 'tog-enotifusertalkpages'     => 'Wyślij e-mail kiedy moja strona dyskusji zostanie zmodyfikowana',
 'tog-enotifminoredits'        => 'Wyślij e-mail także w przypadku drobnych zmian na stronach',
 'tog-enotifrevealaddr'        => 'Nie ukrywaj mojego adresu e-mail w powiadomieniach',
@@ -488,7 +488,8 @@ $2',
 'namespaceprotected'   => "Brak uprawnień do edytowania stron w przestrzeni nazw '''$1'''.",
 'customcssjsprotected' => 'Nie masz uprawnień do dokonywania edycji na tej stronie, gdyż zawiera ona ustawienia osobiste innego użytkownika.',
 'ns-specialprotected'  => 'Nie można edytować stron w przestrzeni nazw {{ns:special}}.',
-'titleprotected'       => 'Utworzenie strony o tej nazwie zostało zablokowane przez [[User:$1|$1]]. Powód blokady: <i>$2</i>.',
+'titleprotected'       => "Utworzenie strony o tej nazwie zostało zablokowane przez [[User:$1|$1]].
+Powód blokady: ''$2''.",
 
 # Login and logout pages
 'logouttitle'                => 'Wylogowanie użytkownika',
@@ -737,7 +738,7 @@ Dla wygody użytkowników, poniżej przedstawiony jest rejestr usunięć niniejs
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Nie można utworzyć konta',
-'cantcreateaccount-text' => "Tworzenie konta z tego adresu IP (<b>$1</b>) zostało zablokowane przez użytkownika [[User:$3|$3]].
+'cantcreateaccount-text' => "Tworzenie konta z tego adresu IP ('''$1''') zostało zablokowane przez użytkownika [[User:$3|$3]].
 
 Podany przez $3 powód to ''$2''",
 
@@ -1553,8 +1554,6 @@ $1',
 'mycontris'     => 'Moje edycje',
 'contribsub2'   => 'Dla użytkownika $1 ($2)',
 'nocontribs'    => 'Brak zmian odpowiadających tym kryteriom.',
-'ucnote'        => 'Oto lista ostatnich <b>$1</b> zmian dokonanych przez użytkownika w ciągu ostatnich <b>$2</b> dni.',
-'uclinks'       => 'Zobacz ostatnie $1 zmian; zobacz ostatnie $2 dni.',
 'uctop'         => ' (jako ostatnia)',
 'month'         => 'Od miesiąca (i wcześniejsze):',
 'year'          => 'Od roku (i wcześniejsze):',

@@ -9,6 +9,7 @@
  * @author Malafaya
  * @author Lakaoso
  * @author לערי ריינהארט
+ * @author Siebrand
  */
 
 $namespaceNames = array(
@@ -559,7 +560,7 @@ Publikigante vua skribajo hike, vu asertas ke olu skribesis da vu ipsa o kopiesi
 'ancientpages'     => 'Maxim anciena artikli',
 'move'             => 'Movez',
 'movethispage'     => 'Rinomizar ica pagino',
-'unusedimagestext' => '<p>Voluntez egardez ke altra ret-situi quale altra enciklopedii povus ligar a imajo per direta URL, e do ol povus esar enlistizita hike malgre olu havas aktiva uzo.</p>',
+'unusedimagestext' => 'Voluntez egardez ke altra ret-situi quale altra enciklopedii povus ligar a imajo per direta URL, e do ol povus esar enlistizita hike malgre olu havas aktiva uzo.',
 'notargettitle'    => 'Ne esas vakua pagino',
 'notargettext'     => 'Vu ne definis en qua pagino agar ica funciono.',
 
@@ -671,8 +672,6 @@ Lasta edito esis da [[User:$3|$3]] ([[User talk:$3|Talk]]).',
 'mycontris'     => 'Mea adportado',
 'contribsub2'   => 'Pro $1 ($2)',
 'nocontribs'    => 'Ne trovesis chanji qui fitez ita kriterii.',
-'ucnote'        => 'Sube esas la lasta <b>$1</b> chanji da ca uzanto dum la lasta <b>$2</b> dii.',
-'uclinks'       => 'Vidar la lasta $1 chanji; vidar la lasta $2 dii.',
 'uctop'         => ' (lasta modifiko)',
 
 # What links here
@@ -725,12 +724,17 @@ Memorez [[Special:Unlockdb|efacar la blokuso]] kande vua mantenado finos.',
 # Move page
 'move-page-legend' => 'Rinomizar pagino',
 'movepagetext'     => "Uzante ica formularo onu povas rinomizar pagino, movante olua omna versionaro ad la nova titulo.
-La antea titulo konvertesos a ridirektilo a la nova titulo. La ligili a la antea titulo dil pagino ne chanjesos. Voluntez certigar ke ne esas duopla o ruptota ridirektili. Vu responsas ke la ligili duros direktante a la pagino korespondanta.
+La antea titulo konvertesos a ridirektilo a la nova titulo.
+La ligili a la antea titulo dil pagino ne chanjesos.
+Voluntez certigar ke ne esas duopla o ruptota ridirektili.
+Vu responsas ke la ligili duros direktante a la pagino korespondanta.
 
-Memorez ke la pagino '''ne''' rinomizesos se ja existus pagino kun la nova titulo, eceptuante ke la pagino esas vakua o ridirektilo sen versionaro. Ico signifikas ke vu povos rinomizar pagino a olua originala titulo se eroras skribante la nova titulo, ma ne povos riskribar existanta pagino.
+Memorez ke la pagino '''ne''' rinomizesos se ja existus pagino kun la nova titulo, eceptuante ke la pagino esas vakua o ridirektilo sen versionaro.
+Ico signifikas ke vu povos rinomizar pagino a olua originala titulo se eroras skribante la nova titulo, ma ne povos riskribar existanta pagino.
 
-<b>EGARDEZ!</b>
-Ica povas esar drastika chanjo e ne-esperinda por populara pagino. Voluntez certigar ke vu komprenas la konsequi qui eventos ante durar adavane.",
+'''EGARDEZ!'''
+Ica povas esar drastika chanjo e ne-esperinda por populara pagino.
+Voluntez certigar ke vu komprenas la konsequi qui eventos ante durar adavane.",
 'movearticle'      => 'Movar pagino',
 'movenologin'      => 'Sesiono ne iniciata',
 'movenologintext'  => 'Vu mustas esar registragita uzanto ed [[Special:Userlogin|enirir]] por rinomizar pagino.',

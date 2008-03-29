@@ -165,16 +165,24 @@ $messages = array(
 'dec'           => 'pro',
 
 # Categories related messages
-'categories'               => '{{PLURAL:$1|Kategorija|Kategorije}}',
-'categoriespagetext'       => 'Na ovom wikiju postoje sljedeće kategorije.',
-'pagecategories'           => '{{PLURAL:$1|Kategorija|Kategorije}}',
-'category_header'          => 'Članci u kategoriji "$1"',
-'subcategories'            => 'Potkategorije',
-'category-media-header'    => 'Mediji u kategoriji "$1":',
-'category-empty'           => "''U ovoj kategoriji trenutačno nema članaka ni medija.''",
-'hidden-categories'        => '{{PLURAL:$1|Skrivena kategorija|Skrivene kategorije|Skrivenih kategorija}}',
-'hidden-category-category' => 'Skrivene kategorije', # Name of the category where hidden categories will be listed
-'listingcontinuesabbrev'   => 'nast.',
+'categories'                     => '{{PLURAL:$1|Kategorija|Kategorije}}',
+'categoriespagetext'             => 'Na ovom wikiju postoje sljedeće kategorije.',
+'special-categories-sort-count'  => 'razvrstavanje po broju',
+'special-categories-sort-abc'    => 'abecedno razvrstavanje',
+'pagecategories'                 => '{{PLURAL:$1|Kategorija|Kategorije}}',
+'category_header'                => 'Članci u kategoriji "$1"',
+'subcategories'                  => 'Potkategorije',
+'category-media-header'          => 'Mediji u kategoriji "$1":',
+'category-empty'                 => "''U ovoj kategoriji trenutačno nema članaka ni medija.''",
+'hidden-categories'              => '{{PLURAL:$1|Skrivena kategorija|Skrivene kategorije|Skrivenih kategorija}}',
+'hidden-category-category'       => 'Skrivene kategorije', # Name of the category where hidden categories will be listed
+'category-subcat-count'          => '{{PLURAL:$2|Ova kategorija ima samo sljedeću podkategoriju.|Ova kategorija ima {{PLURAL:$1|podkategoriju|$1 podkategorije|$1 podkategorija}}, od njih $2 ukupno.}}',
+'category-subcat-count-limited'  => 'Ova kategorija ima {{PLURAL:$1|podkategoriju|$1 podkategorije|$1 podkategorija}}.',
+'category-article-count'         => '{{PLURAL:$2|Ova kategorija sadrži samo sljedeću stranicu.|{{PLURAL:$1|stranica je|$1 stranice su|$1 stranica su}} u ovoj kategoriji, od njih $2 ukupno.}}',
+'category-article-count-limited' => '{{PLURAL:$1|stranica je|$1 stranice su|$1 stranica su}} u ovoj kategoriji.',
+'category-file-count'            => '{{PLURAL:$2|Ova kategorija sadrži samo sljedeću datoteku.|{{PLURAL:$1|datoteka je|$1 datoteke su|$1 datoteka su}} u ovoj kategoriji, od njih $2 ukupno.}}',
+'category-file-count-limited'    => '{{PLURAL:$1|datoteka je|$1 datoteke su|$1 datoteka su}} u ovoj kategoriji.',
+'listingcontinuesabbrev'         => 'nast.',
 
 'mainpagetext'      => 'Softver Wiki je uspješno instaliran.',
 'mainpagedocfooter' => 'Pogledajte [http://meta.wikimedia.org/wiki/MediaWiki_localisation dokumentaciju o prilagodbi sučelja]
@@ -401,7 +409,7 @@ $2',
 'namespaceprotected'   => "Ne možete uređivati stranice u imenskom prostoru '''$1'''.",
 'customcssjsprotected' => 'Ne možete uređivati ovu stranicu zato što ona sadrži osobne postavke drugog suradnika.',
 'ns-specialprotected'  => "Stranice u imenskom prostoru ''{{ns:special}}'' ne mogu se uređivati.",
-'titleprotected'       => 'Ovaj naslov je od kreiranja zaštitio suradnik [[User:$1|$1]], uz razlog: <i>$2</i>.',
+'titleprotected'       => "Ovaj naslov je od kreiranja zaštitio suradnik [[User:$1|$1]], uz razlog: ''$2''.",
 
 # Login and logout pages
 'logouttitle'                => 'Odjava suradnika',
@@ -670,7 +678,7 @@ Za vašu informaciju slijedi evidencija brisanja s obrazloženjem za prethodno b
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Nije moguće stvoriti suradnički račun',
-'cantcreateaccount-text' => "Otvaranje suradničkog računa ove IP adrese (<b>$1</b>) blokirao/la je [[User:$3|$3]].
+'cantcreateaccount-text' => "Otvaranje suradničkog računa ove IP adrese ('''$1''') blokirao/la je [[User:$3|$3]].
 
 Razlog koji je dao/la $3 je ''$2''",
 
@@ -749,6 +757,7 @@ postavili dodatna ograničenja.',
 'logdelete-logaction'         => '$1 {{PLURAL:$1|događaj|događaja|događaja}} od [[$3]] postavljena u mod $2',
 'revdelete-success'           => 'Vidljivost promjene uspješno postavljena.',
 'logdelete-success'           => 'Vidljivost uređivanja uspješno postavljena.',
+'pagehist'                    => 'Povijest stranice',
 
 # Oversight log
 'oversightlog'    => 'Oversight log',
@@ -1034,6 +1043,7 @@ Ukoliko imate ovu sliku u punoj razlučljivosti (rezoluciji) postavite tu sliku,
 'uploadvirus'                 => 'Datoteka sadrži virus! Podrobnije: $1',
 'sourcefilename'              => 'Ime datoteke na vašem računalu:',
 'destfilename'                => 'Ime datoteke na wikiju:',
+'upload-maxfilesize'          => 'Maksimalna veličina datoteke: $1',
 'watchthisupload'             => 'Prati ovu stranicu',
 'filewasdeleted'              => 'Datoteka istog imena već je bila postavljena, a kasnije i obrisana. Trebali bi provjeriti $1 prije nego što ponovno postavite datoteku.',
 'upload-wasdeleted'           => "'''Upozorenje: Pokušavate postaviti datoteku koja je prethodno obrisana.'''
@@ -1097,6 +1107,7 @@ Poredak datoteka mijenja se pritiskom na naslov stupca.',
 'noimage'                   => 'Ne postoji datoteka s ovim imenom. Možete ju $1.',
 'noimage-linktext'          => 'postaviti',
 'uploadnewversion-linktext' => 'Postavi novu inačicu datoteke',
+'imagepage-searchdupe'      => 'Traži kopiju datoteke',
 
 # File reversion
 'filerevert'                => 'Ukloni ← $1',
@@ -1535,8 +1546,6 @@ $1',
 'mycontris'     => 'Moji doprinosi',
 'contribsub2'   => 'Za $1 ($2)',
 'nocontribs'    => 'Nema promjena koje udovoljavaju ovim kriterijima.',
-'ucnote'        => 'Ovdje je zadnjih <b>$1</b> promjena ovog suradnika u zadnjih <b>$2</b> dana.',
-'uclinks'       => 'Pogledaj zadnjih $1 promjena; pogledaj zadnjih $2 dana.',
 'uctop'         => ' (vrh)',
 'month'         => 'Od mjeseca (i ranije):',
 'year'          => 'Od godine (i ranije):',
@@ -2281,6 +2290,7 @@ $3
 Ako ovo *niste* vi, nemojte otvarati poveznicu.
 
 Valjanost ovog potvrdnog koda istječe $4.',
+'invalidateemail'         => 'Poništi potvrđivanje elektroničke pošte',
 
 # Scary transclusion
 'scarytranscludedisabled' => '[Interwiki transkluzija isključena]',

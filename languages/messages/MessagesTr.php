@@ -15,6 +15,7 @@
  * @author Karduelis
  * @author Srhat
  * @author Erkan Yilmaz
+ * @author Suelnur
  */
 
 $namespaceNames = array(
@@ -162,9 +163,9 @@ $messages = array(
 'listingcontinuesabbrev'         => '(devam)',
 
 'mainpagetext'      => "<big>'''MediaWiki başarı ile kuruldu.'''</big>",
-'mainpagedocfooter' => "Viki yazılımının kullanımı hakkında bilgi almak için[http://meta.wikimedia.org/wiki/Help:Contents User's Guide] sayfasına bakınız
-== Yeni Başlayanlar ==
+'mainpagedocfooter' => "Viki yazılımının kullanımı hakkında bilgi almak için [http://meta.wikimedia.org/wiki/Help:Contents User's Guide] sayfasına bakınız.
 
+== Yeni Başlayanlar ==
 * [http://www.mediawiki.org/wiki/Manual:Configuration_settings Configuration settings list]
 * [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ]
 * [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]",
@@ -336,8 +337,8 @@ Son yapılan veritabanı erişim komutu:
 "$1"
 Kullanılan fonksiyon "$2".
 MySQL\'in verdiği hata mesajı "$3: $4"',
-'noconnect'            => "Özür Dileriz! Viki bazı teknik sorunlar yaşıyor ve veritabanı server'ı ile iletişim kuramıyor. <br />
-$1",
+'noconnect'            => 'Özür dileriz! Viki bazı teknik sorunlar yaşıyor ve veritabanı sunucusu ile iletişim kuramıyor.<br />
+$1',
 'nodb'                 => '$1 veri tabanı seçilemedi',
 'cachederror'          => 'Aşağıdaki, istediğiniz sayfanın önbellekteki kopyasıdır ve güncel olmayabilir.',
 'laggedslavemode'      => 'Uyarı: Sayfa son güncellemeleri içermeyebilir.',
@@ -372,7 +373,7 @@ Sorgu: $2',
 'actionthrottled'      => 'Eylem kısılmışdır',
 'protectedpagetext'    => 'Bu sayfa değişiklik yapılmaması için koruma altına alınmıştır.',
 'viewsourcetext'       => 'Bu sayfanın kaynağını görebilir ve kopyalayabilirsiniz:',
-'protectedinterface'   => 'Bu sayfa yazılımın arayüz metnini sağlamaktadır ve kötüye kullanımı önlemek için kilitlenmiştir.',
+'protectedinterface'   => 'Bu sayfa yazılım için arayüz metni sağlamaktadır ve kötüye kullanımı önlemek için kilitlenmiştir.',
 'editinginterface'     => "'''UYARI:''' Yazılım için arayüz sağlamakta kullanılan bir sayfayı değiştirmektesiniz. Bu sayfadaki değişiklikler kullanıcı arayüzünü diğer kullanıcılar için de değiştirecektir. Çeviriler için, lütfen [http://translatewiki.net/wiki/Main_Page?setlang=tr Betawiki]'yi kullanarak MediaWiki yerelleştirme projesini dikkate alınız.",
 'sqlhidden'            => '(SQL gizli sorgu)',
 'cascadeprotected'     => 'Bu sayfa değişiklik yapılması engellenmiştir, çünkü  "kademeli" seçeneği aktif hale getirilerek koruma altına alınan {{PLURAL:$1|sayfada|sayfada}} kullanılmaktadır:
@@ -380,7 +381,8 @@ $2',
 'namespaceprotected'   => "'''$1''' alandındaki sayfaları düzenlemeye izniniz bulunmamaktadır.",
 'customcssjsprotected' => 'Bu sayfayı değiştirmeye yetkiniz bulunmamaktadır, çünkü bu sayfa başka bir kullanıcının kişisel ayarlarını içermektedir.',
 'ns-specialprotected'  => '{{ns:special}} alanadı içindeki sayfalar değiştirilemez.',
-'titleprotected'       => '[[User:$1|$1]] tarafından oluşturulması engellenmesi için bu sayfa koruma altına alınmıştır. Verilen sebep: <i>$2</i>.',
+'titleprotected'       => "[[User:$1|$1]] tarafından oluşturulması engellenmesi için bu sayfa koruma altına alınmıştır.
+Verilen sebep: ''$2''.",
 
 # Login and logout pages
 'logouttitle'                => 'Oturumu kapat',
@@ -610,7 +612,7 @@ Kolaylık olması açısından bu sayfanın silme kayıtları burada belirtilmi�
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Hesap oluşturulamıyor',
-'cantcreateaccount-text' => "Bu IP adresinden (<b>$1</b>) kullaınıcı hesabı oluşturulması [[User:$3|$3]] tarafından engellenmiştir.
+'cantcreateaccount-text' => "Bu IP adresinden ('''$1''') kullaınıcı hesabı oluşturulması [[User:$3|$3]] tarafından engellenmiştir.
 
 $3 tarafından verilen sebep ''$2''",
 
@@ -687,7 +689,7 @@ Bu sayfa değişikiliği kamu arşivlerinden silinmiştir.
 'mergehistory-list'                => 'Birleştirilebilir değişikilik geçmişi.',
 'mergehistory-go'                  => 'Birleştirilebilir değişikilikleri göster',
 'mergehistory-submit'              => 'Revizyonları birleştir',
-'mergehistory-empty'               => 'Hiç bir revizyon birleştirilemez.',
+'mergehistory-empty'               => 'Hiçbir sürüm birleştirilemez.',
 'mergehistory-success'             => '[[:$1]] sayfasının $3 {{PLURAL:$3|revizyonu|revizyonu}} başarıyla [[:$2]] içine birleştirildi.',
 'mergehistory-no-source'           => 'Kaynak sayfa $1 bulunmamaktadır.',
 'mergehistory-no-destination'      => 'Hedef sayfa $1 bulunmamaktadır.',
@@ -900,7 +902,7 @@ veya doğrudan bağlantı için
 'illegalfilename'             => '"$1" dosya adı bazı kullanılmayan karekterler içermektedir. Lütfen, yeni bir dosya adıyla tekrar deneyin.',
 'badfilename'                 => 'Görüntü dosyasının ismi "$1" olarak değiştirildi.',
 'filetype-unwanted-type'      => "'''\".\$1\"''' istenmeyen bir dosya türüdür.  Önerilen dosya türleri \$2.",
-'filetype-banned-type'        => "'''\".\$1\"''' izin verilen bir dosya ytürü değil. İzin verilen dosya türleri \$2.",
+'filetype-banned-type'        => "'''\".\$1\"''' izin verilen bir dosya türü değil. İzin verilen dosya türleri \$2.",
 'filetype-missing'            => 'Dosyanın hiçbir uzantısı yok (".jpg" gibi).',
 'largefileserver'             => 'Bu dosyanın uzunluğu sunucuda izin verilenden daha büyüktür.',
 'emptyfile'                   => 'Yüklediğiniz dosya boş görünüyor. Bunun sebebi dosya adındaki bir yazım hatası olabilir. Lütfen dosyayı gerçekten tyüklemek isteyip istemediğinizden emin olun.',
@@ -924,8 +926,8 @@ veya doğrudan bağlantı için
 'filewasdeleted'              => 'Bu isimde bir dosya yakın zamanda yüklendi ve ardından yöneticiler tarafından silindi. Dosyayı yüklemeden önce, $1 sayfasına bir göz atınız.',
 'upload-wasdeleted'           => "'''Uyarı: Daha önce silinmiş olan bir dosyayı yüklüyorsunuz.'''
 
-Bu dosyanın yüklenmesinin doğru olup olmadığına dikkat etmelisiniz.
-Bu dosyanın silme kayıtları kolaylık olsun diye burada sunulmuştur:",
+Dosyanın yüklenmesinin uygun olup olmadığını dikkate almalısınız.
+Bu dosyanın silme kayıtları kolaylık olması için burada sunulmuştur:",
 
 'upload-proto-error' => 'Hatalı protokol',
 'upload-file-error'  => 'Dahili hata',
@@ -968,7 +970,7 @@ Bu dosyanın silme kayıtları kolaylık olsun diye burada sunulmuştur:",
 'linkstoimage'              => 'Bu görüntü dosyasına bağlantısı olan sayfalar:',
 'nolinkstoimage'            => 'Bu görüntü dosyasına bağlanan sayfa yok.',
 'sharedupload'              => 'Bu dosya ortak alana yüklenmiştir ve diğer projelerde de kullanılıyor olabilir.',
-'shareduploadwiki'          => 'Daha fazla bilgi için $1 sayfasına bakın.',
+'shareduploadwiki'          => 'Lütfen daha fazla bilgi için $1 sayfasına bakın.',
 'shareduploadwiki-linktext' => 'dosya açıklama sayfası',
 'noimage'                   => 'Bu isimde dosya yok. Siz $1.',
 'noimage-linktext'          => 'yükleyebilirsiniz',
@@ -983,7 +985,7 @@ Bu dosyanın silme kayıtları kolaylık olsun diye burada sunulmuştur:",
 # File deletion
 'filedelete'                  => 'Sil $1',
 'filedelete-legend'           => 'Dosya sil',
-'filedelete-intro'            => "'''[[Media:$1|$1]]''' dosyasını silemktesiniz.",
+'filedelete-intro'            => "'''[[Media:$1|$1]]''' dosyasını silmektesiniz.",
 'filedelete-comment'          => 'Silinme sebebi:',
 'filedelete-submit'           => 'Sil',
 'filedelete-success'          => "'''$1''' silindi.",
@@ -1331,8 +1333,6 @@ $1',
 'mycontris'     => 'Katkılarım',
 'contribsub2'   => '$1 ($2)',
 'nocontribs'    => 'Bu kriterlere uyan değişiklik bulunamadı',
-'ucnote'        => 'Aşağıdakiler bu kullanıcının son <b>$2</b> günde yaptığı son <b>$1</b> değişikliktir.',
-'uclinks'       => 'Son $1 değişikliği göster; son $2 günü göster.',
 'uctop'         => '(son)',
 'month'         => 'Ay:',
 'year'          => 'Yıl:',
@@ -1422,12 +1422,19 @@ $1',
 
 # Move page
 'move-page-legend'        => 'İsim değişikliği',
-'movepagetext'            => "Aşağıdaki form kullanılarak sayfanın adı değiştirilir. Beraberinde tüm geçmiş kayıtları da yeni isme aktarılır. Eski isim yeni isme yönlendirme haline dönüşür. Eski başlığa dogru olan bağlantılar olduğu gibi kalır; çift veya geçersiz yönlendirmeleri [[Special:Maintenance|kontrol ediniz.]] Yapacağınız bu değişikllike tüm bağlantıların olması gerektiği gibi çalıştığından sizin sorumlu olduğunuzu unutmayınız.
+'movepagetext'            => "Aşağıdaki form kullanılarak sayfanın adı değiştirilir.
+Beraberinde tüm geçmiş kayıtları da yeni isme aktarılır.
+Eski isim yeni isme yönlendirme haline dönüşür.
+Eski başlığa dogru olan bağlantılar olduğu gibi kalır;
+çift veya geçersiz yönlendirmeleri kontrol ediniz.
+Yapacağınız bu değişikllike tüm bağlantıların olması gerektiği gibi çalıştığından sizin sorumlu olduğunuzu unutmayınız.
 
-Eğer yeni isimde bir isim zaten mevcutsa, isim değişikliği '''yapılmayacaktır''', ancak varolan sayfa içerik olarak boş ise veya sadece yönlendirme ise ve hiç geçmiş hali yoksa isim değişikliği mümkün olacaktır. Bu yanı zamanda demektir ki, yaptığınız isim değişikliğini ilk ismine değiştirerek geri alabilirsiniz ve hiç bir başka sayfaya da dokunmamış olursunuz.
+Eğer yeni isimde bir isim zaten mevcutsa, isim değişikliği '''yapılmayacaktır''', ancak varolan sayfa içerik olarak boş ise veya sadece yönlendirme ise ve hiç geçmiş hali yoksa isim değişikliği mümkün olacaktır.
+Bu yanı zamanda demektir ki, yaptığınız isim değişikliğini ilk ismine değiştirerek geri alabilirsiniz ve hiç bir başka sayfaya da dokunmamış olursunuz.
 
-<b>UYARI!</b>
-Bu değişim popüler bir sayfa için beklenmeyen sonuçlar doğurabilir; lütfen değişikliği yapmadan önce olabilecekleri göz önüne alın.",
+'''UYARI!'''
+Bu değişim popüler bir sayfa için beklenmeyen sonuçlar doğurabilir;
+lütfen değişikliği yapmadan önce olabilecekleri göz önüne alın.",
 'movepagetalktext'        => "İlişikteki tartışma sayfası da (eğer varsa) otomatik olarak yeni isme taşınacaktır. Ama şu durumlarda '''taşınmaz''':
 
 *Alanlar arası bir taşıma ise, (örnek: \"Project:\" --> \"Help:\")

@@ -411,7 +411,8 @@ $2',
 'namespaceprotected'   => "Vos avéd pas la pèrmission de modifiar les pâges de l’èspâço de nom '''« $1 »'''.",
 'customcssjsprotected' => 'Vos avéd pas la pèrmission d’èditar ceta pâge perce que contint des prèferences d’ôtros utilisators.',
 'ns-specialprotected'  => 'Les pâges dens l’èspâço de nom « {{ns:special}} » pôvont pas étre modifiâs.',
-'titleprotected'       => 'Cél titro at étâ protègiê a la crèacion per [[User:$1|$1]]. La rêson avanciê est <i>« $2 »</i>.',
+'titleprotected'       => "Cél titro at étâ protègiê a la crèacion per [[User:$1|$1]].
+La rêson avanciê est « ''$2'' ».",
 
 # Login and logout pages
 'logouttitle'                => 'Dèconèccion',
@@ -612,7 +613,11 @@ Voutra adrèce IP est $3 et voutron identifiant de blocâjo est #$5. Volyéd los
 'editingsection'            => 'Modificacion de $1 (sèccion)',
 'editingcomment'            => 'Modificacion de $1 (comentèro)',
 'editconflict'              => 'Conflit de modificacion : $1',
-'explainconflict'           => '<b>Ceta pâge at étâ sôvâ aprés que vos èyâd comenciê a la modifiar. La zona d’èdicion de d’amont contint lo tèxte tâl qu’il est enregistrâ ora dens la bâsa de balyês. Voutres modificacions aparèssont dens la zona d’èdicion de desot. Vos voléd devêr aduire voutres modificacions u tèxte ègzistent. Solèt lo tèxte de la zona de d’amont serat sôvâ.</b><br />',
+'explainconflict'           => "Ceta pâge at étâ sôvâ aprés que vos èyâd comenciê a la modifiar.
+La zona d’èdicion de d’amont contint lo tèxte tâl qu’il est enregistrâ ora dens la bâsa de balyês.
+Voutres modificacions aparèssont dens la zona d’èdicion de desot.
+Vos voléd devêr aduire voutres modificacions u tèxte ègzistent.
+'''Solèt''' lo tèxte de la zona de d’amont serat sôvâ.",
 'yourtext'                  => 'Voutron tèxte',
 'storedversion'             => 'Vèrsion enregistrâ',
 'nonunicodebrowser'         => '<strong>ATENCION : voutron navigator supôrte pas l’unicode. Una solucion temporèra at étâ trovâ por vos pèrmetre de modifiar en tota suretât un articllo : los caractèros nan-ASCII aparètront dens voutra bouèta d’èdicion a titro de codes hèxadècimâls. Vos devriâd utilisar un navigator ples novél.</strong>',
@@ -659,7 +664,7 @@ Demandâd-vos s’o est verément convegnâblo de la recrèar en vos refèrent u
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Vos pouede pas crèar un compto.',
-'cantcreateaccount-text' => "La crèacion de compto dês ceta adrèce IP (<b>$1</b>) at étâ blocâ per [[User:$3|$3]].
+'cantcreateaccount-text' => "La crèacion de compto dês ceta adrèce IP ('''$1''') at étâ blocâ per [[User:$3|$3]].
 
 La rêson balyê per $3 ére ''$2''.",
 
@@ -921,7 +926,7 @@ Les tropes pas sèlèccionâs seront pas modifiâs. Vos pouede dèsèlèccionar 
 'recentchangestext'                 => 'Siude sur ceta pâge los dèrriérs changements de {{SITENAME}}.',
 'recentchanges-feed-description'    => 'Siude los dèrriérs changements de ceti vouiqui dens un flux.',
 'rcnote'                            => 'Vê-que {{PLURAL:$1|la dèrriére modificacion|les <b>$1</b> dèrriéres modificacions}} dês {{PLURAL:$2|lo jorn passâ|los <b>$2</b> jorns passâs}}, dètèrmenâ{{PLURAL:$1||s}} ceti $3.',
-'rcnotefrom'                        => 'Vê-que les modificacions fêtes dês lo <strong>$2</strong> (<b>$1</b> u fin ples).',
+'rcnotefrom'                        => "Vê-que les modificacions fêtes dês lo '''$2''' ('''$1''' u fin ples).",
 'rclistfrom'                        => 'Afichiér les novèles modificacions dês lo $1.',
 'rcshowhideminor'                   => '$1 les modificacions minores',
 'rcshowhidebots'                    => '$1 los bots',
@@ -1224,7 +1229,7 @@ Cen reprèsente una moyena de {{PLURAL:$5|'''1''' modificacion|'''$5''' modifica
 'ancientpages'            => 'Articllos los muens dèrriérement modifiâs',
 'move'                    => 'Renomar',
 'movethispage'            => 'Renomar la pâge',
-'unusedimagestext'        => '<p>Oubliâd pas que d’ôtros setos pôvont contegnir un lim drêt vers cela émâge, et que ceta pôt étre placiê dens ceta lista pendent qu’el est en rèalitât utilisâ.</p>',
+'unusedimagestext'        => 'Oubliâd pas que d’ôtros setos pôvont contegnir un lim drêt vers cela émâge, et que ceta pôt étre placiê dens ceta lista pendent qu’el est en rèalitât utilisâ.',
 'unusedcategoriestext'    => 'Les catègories siuventes ègzistont mas nion articllo ou ben niona catègorie les utilise.',
 'notargettitle'           => 'Pas de ciba',
 'notargettext'            => 'Endicâd una pâge ciba ou ben un utilisator ciba.',
@@ -1514,8 +1519,6 @@ $1',
 'mycontris'     => 'Contribucions',
 'contribsub2'   => 'Lista de les contribucions de $1 ($2). Les pâges qu’ont étâ èfaciês sont pas afichiês.',
 'nocontribs'    => 'Niona modificacion corrèspondent a cetos critèros at étâ trovâ.',
-'ucnote'        => 'Vê-que les <b>$1</b> dèrriéres modificacions fêtes per ceti utilisator pendent los <b>$2</b> jorns passâs.',
-'uclinks'       => 'Afichiér les $1 dèrriéres modificacions ; afichiér los $2 jorns passâs.',
 'uctop'         => '(dèrriére)',
 'month'         => 'Dês lo mês (et prècèdents) :',
 'year'          => 'Dês l’an (et prècèdents) :',
@@ -1652,19 +1655,16 @@ Volyéd confirmar qu’o est franc cen que vos voléd fâre.',
 # Move page
 'move-page'               => 'Renomar $1',
 'move-page-legend'        => 'Renomar una pâge',
-'movepagetext'            => "Utilisâd lo formulèro ce-desot por renomar una pâge, en dèplacient
-tot son historico vers lo novél nom.
+'movepagetext'            => "Utilisâd lo formulèro ce-desot por renomar una pâge, en dèplacient tot son historico vers lo novél nom.
 Lo viely titro vindrat una pâge de redirèccion vers lo novél titro.
-Los lims vers lo titro de la vielye pâge seront pas changiês ; volyéd controlar que
-cél dèplacement at pas crèâ una redirèccion dobla ou câssa.
+Los lims vers lo titro de la vielye pâge seront pas changiês ;
+volyéd controlar que cél dèplacement at pas crèâ una redirèccion dobla ou câssa.
 Vos dête vos assurar que los lims continuont de pouentar vers lor dèstinacion suposâ.
 
-Una pâge serat '''pas''' dèplaciê s’y at ja una pâge avouéc lo novél titro,
-a muens que la pâge seye voueda, ou ben una redirèccion, et qu’el èye pas d’historico.
-Cen vôt dére que vos pouede renomar una pâge vers sa posicion d’origina
-se vos éd fêt una èrror, et que vos pouede pas èfaciér una pâge ja ègzistenta per cela mètoda.
+Una pâge serat '''pas''' dèplaciê s’y at ja una pâge avouéc lo novél titro, a muens que la pâge seye voueda, ou ben una redirèccion, et qu’el èye pas d’historico.
+Cen vôt dére que vos pouede renomar una pâge vers sa posicion d’origina se vos éd fêt una èrror, et que vos pouede pas èfaciér una pâge ja ègzistenta per cela mètoda.
 
-<b>ATENCION !</b>
+'''ATENCION !'''
 Pôt s’ag·ir d’un changement radicâl et emprèvu por un articllo sovent consultâ ;
 volyéd vos assurar que vos en compregnéd bien les consèquences devant que procèdar.",
 'movepagetalktext'        => 'La pâge de discussion associyê, se presente, serat ôtomaticament renomâ avouéc, <b>a muens que :</b>

@@ -160,7 +160,7 @@ $messages = array(
 'tog-minordefault'            => 'Notare omnes recensiones quasi minores',
 'tog-previewontop'            => 'Monstrare praevisum ante capsam recensiti, non post ipsam',
 'tog-previewonfirst'          => 'Praevisum monstrare recensione incipiente',
-'tog-enotifwatchlistpages'    => 'Mittere mihi litteras electronicas si pagina a me custodita mutatur',
+'tog-enotifwatchlistpages'    => 'Mittere mihi litteras electronicas si pagina in indice paginarum custoditarum meo mutatur',
 'tog-enotifusertalkpages'     => 'Mittere mihi litteras electronicas si mea disputatio mutatur',
 'tog-enotifminoredits'        => 'Mittere mihi litteras electronicas etiam pro recensionibus minoribus',
 'tog-enotifrevealaddr'        => 'Monstrare inscriptio mea electronica in nuntiis notificantibus',
@@ -401,7 +401,8 @@ $1',
 'protectedinterface'  => 'Haec pagina dat textum interfaciei pro logiciali, et est protecta ad vandalismum vetandum.',
 'editinginterface'    => "'''Caveat censor:''' Emendas iam paginam quae textum interfaciei logicialem dat. Mutationes vultum {{grammar:genitive|{{SITENAME}}}} omnibus usoribus afficient. In nuntia MediaWiki vertendo, quaesumus te uti [http://translatewiki.net/wiki/Main_Page?setlang=la Betawiki].",
 'ns-specialprotected' => 'Paginae in spatio nominali "{{ns:special}}" recenseri non possunt.',
-'titleprotected'      => 'Hic titulus protectus est ab usore [[User:$1|$1]] ne creetur. Ratio data est <i>$2</i>.',
+'titleprotected'      => "Hic titulus protectus est ab usore [[User:$1|$1]] ne creetur.
+Ratio data est ''$2''.",
 
 # Login and logout pages
 'logouttitle'                => 'Conventum concludere',
@@ -565,11 +566,11 @@ Si hic es propter errorem, solum '''Retrorsum''' in navigatro tuo preme.",
 'editingsection'            => 'Recensens $1 (partem)',
 'editingcomment'            => 'Recensens $1 (adnotum)',
 'editconflict'              => 'Contentio recensionis: $1',
-'explainconflict'           => 'Alius hanc paginam mutavit postquam eadem mutare incipiebas.
+'explainconflict'           => "Alius hanc paginam mutavit postquam eadem recensere incipiebas.
 Capsa superior paginae verba recentissima continet.
 Mutationes tuae in capsa inferiore monstrantur.
-Mutationes tuae in verbam superiorem adiungare debes.
-<b>Solum</b> verba capsae superioris servabuntur quando "Servare hanc rem" premes.<br />',
+Mutationes tuae in verba superiora adiungare debes.
+'''Solum''' verba capsae superioris servabuntur quando \"Servare hanc rem\" premes.",
 'yourtext'                  => 'Sententia tua',
 'storedversion'             => 'Verba recentissima',
 'nonunicodebrowser'         => '<strong>CAVETO: Navigatorium retiale tuum systemati UNICODE morem non gerit. Modum habemus quo commentationes sine damno recenseas: litterae non-ASCII in capsa sub veste hexadecimali ostendentur.</strong>',
@@ -601,7 +602,7 @@ Considera paginam in partes minores frangere.',
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Ratio creari non potest',
-'cantcreateaccount-text' => "Creatio rationum ab hoc loco IP (<b>$1</b>) obstructa est ab usore [[User:$3|$3]].
+'cantcreateaccount-text' => "Creatio rationum ab hoc loco IP ('''$1''') obstructa est ab usore [[User:$3|$3]].
 
 Ille hanc causam dedit: ''$2''",
 
@@ -1142,8 +1143,6 @@ Si pagina nova cum ipso nomine post deletionem creata est, recensita restituta i
 'mycontris'     => 'Conlationes meae',
 'contribsub2'   => 'Pro $1 ($2)',
 'nocontribs'    => 'Nullae mutationes inventae sunt ex his indiciis.',
-'ucnote'        => 'Subter sunt <b>$1</b> mutationes proximae huius usoris in <b>$2</b> diebus proximis.',
-'uclinks'       => 'Videre $1 mutationes proximas; videre $2 dies proximos.',
 'uctop'         => ' (vertex)',
 'month'         => 'Ab mense (et prior):',
 'year'          => 'Ab anno (et prior):',
@@ -1242,7 +1241,7 @@ redirectiones duplices aut fractas quaerere et figere debebis.
 
 Pagina '''non''' movebitur si pagina sub indice novo iam est, nisi est vacua aut pagina redirectionis et nullam historiam habet.
 
-<b>MONITUM!</b>
+'''MONITUM!'''
 Haec mutatio vehemens et improvisa potest esse pro pagina populare;
 adfirma te consequentias intellegere antequam procedis.",
 'movepagetalktext'        => "Pagina disputationis huius paginae, si est, etiam necessario motabitur '''nisi''':

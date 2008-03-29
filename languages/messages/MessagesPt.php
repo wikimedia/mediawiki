@@ -512,7 +512,8 @@ $2',
 'namespaceprotected'   => "Você não possui permissão para editar páginas no espaço nominal '''$1'''.",
 'customcssjsprotected' => 'Você não possui permissão de editar esta página, já que ela contém configurações pessoais de outro utilizador.',
 'ns-specialprotected'  => 'Não é possível editar páginas no espaço nominal {{ns:special}}.',
-'titleprotected'       => 'Este título foi protegido, para que não seja criado. Quem o protegeu foi [[User:$1|$1]], com a justificativa: <i>$2</i>.',
+'titleprotected'       => "Este título foi protegido, para que não seja criado.
+Quem o protegeu foi [[User:$1|$1]], com a justificativa: ''$2''.",
 
 # Login and logout pages
 'logouttitle'                => 'Desautenticar do sistema',
@@ -780,7 +781,7 @@ O registo de eliminação desta página é exibido a seguir, para sua comodidade
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Não é possível criar uma conta',
-'cantcreateaccount-text' => "Este IP (<b>$1</b>) foi bloqueado de criar novas contas por [[User:$3|$3]].
+'cantcreateaccount-text' => "Este IP ('''$1''') foi bloqueado de criar novas contas por [[User:$3|$3]].
 
 A justificativa apresentada por $3 foi ''$2''",
 
@@ -1640,8 +1641,6 @@ $1',
 'mycontris'     => 'Minhas contribuições',
 'contribsub2'   => 'Para $1 ($2)',
 'nocontribs'    => 'Não foram encontradas mudanças com este critério.',
-'ucnote'        => 'Segue as últimas <b>$1</b> mudanças nos últimos <b>$2</b> dias deste utilizador.',
-'uclinks'       => 'Ver as últimas $1 mudanças; ver os últimos $2 dias.',
 'uctop'         => ' (revisão actual)',
 'month'         => 'Mês (inclusive anteriores):',
 'year'          => 'Ano (inclusive anteriores):',

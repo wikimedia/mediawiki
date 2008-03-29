@@ -383,7 +383,8 @@ $2',
 'namespaceprotected'   => "Non dispón de permisos para modificar páxinas no espazo de nomes '''$1'''.",
 'customcssjsprotected' => 'Non dispón de permisos para modificar esta páxina, dado que contén a configuración persoal doutro usuario.',
 'ns-specialprotected'  => 'Non se poden editar as páxinas no espazo de nomes {{ns:special}}.',
-'titleprotected'       => 'Este título foi protexido da creación polo [[Usuario:$1|$1]]. A razón dada é <i>$2</i>.',
+'titleprotected'       => "Este título foi protexido da creación por [[User:$1|$1]].
+A razón dada foi ''$2''.",
 
 # Login and logout pages
 'logouttitle'                => 'Saída de usuario a anónimo',
@@ -466,8 +467,8 @@ $1 horas.',
 'accountcreated'             => 'Conta creada',
 'accountcreatedtext'         => 'A conta de usuario para $1 foi creada.',
 'createaccount-title'        => 'Creación da conta para {{SITENAME}}',
-'createaccount-text'         => 'Alguén creou unha conta para o seu enderezo de correo electrónico en {{SITENAME}}
-($4). O contrasinal para "$2" é "$3". Debe rexistrarse e mudar o contrasinal agora.
+'createaccount-text'         => 'Alguén creou unha conta chamada "$2" para o seu enderezo de correo electrónico en {{SITENAME}} ($4), e con contrasinal "$3".
+Debe acceder ao sistema e mudar o contrasinal agora.
 
 Pode facer caso omiso desta mensaxe se se creou esta conta por erro.',
 'loginlanguagelabel'         => 'Linguas: $1',
@@ -598,11 +599,11 @@ empregar un servizo de ''proxy'' anónimo defectuoso baseado na web.</strong>",
 'editingsection'            => 'Editando sección de "$1"',
 'editingcomment'            => 'Editando $1 (comentario)',
 'editconflict'              => 'Conflito de edición: $1',
-'explainconflict'           => '<big>Alguén cambiou esta páxina desque comezou a editala.</big>
-*A área de texto superior contén o texto da páxina tal e como existe na actualidade.
-*Os seus cambios móstranse na área inferior.
-*Pode mesturar os seus cambios co texto existente.
-<big><b>Só</b> se gardará o texto na área superior cando prema "Gardar a páxina".</big><br />',
+'explainconflict'           => "Alguén cambiou esta páxina desque comezou a editala.
+A área de texto superior contén o texto da páxina tal e como existe na actualidade.
+Os seus cambios móstranse na área inferior.
+Pode mesturar os seus cambios co texto existente.
+'''Só''' se gardará o texto na área superior cando prema \"Gardar a páxina\".",
 'yourtext'                  => 'O seu texto',
 'storedversion'             => 'Versión gardada',
 'nonunicodebrowser'         => '<strong>ATENCIÓN: O seu navegador non soporta Unicode. Existe unha solución que lle permite editar páxinas con seguridade: os caracteres non incluídos no ASCII aparecerán na caixa de edición como códigos hexadecimais.</strong>',
@@ -651,7 +652,7 @@ Velaquí o rexistro de eliminación desta páxina, por se quere consultalo:",
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Non pode crear unha conta de usuario',
-'cantcreateaccount-text' => "A creación de contas desde este enderezo IP (<b>$1</b>) foi bloqueada por [[User:$3|$3]].
+'cantcreateaccount-text' => "A creación de contas desde este enderezo IP ('''$1''') foi bloqueada por [[User:$3|$3]].
 
 A razón dada por $3 foi ''$2''",
 
@@ -918,7 +919,7 @@ Procurar $3 $9',
 'recentchangestext'                 => 'Seguir as modificacións máis recentes no wiki nesta páxina.',
 'recentchanges-feed-description'    => 'Seguir as mudanzas máis recentes deste wiki con esta fonte de noticias.',
 'rcnote'                            => "Abaixo {{PLURAL:$1|móstrase '''1''' cambio|móstranse os últimos '''$1''' cambios}} {{PLURAL:$2|no último día|nos últimos '''$2''' días}} en $3.",
-'rcnotefrom'                        => 'Abaixo amósanse os cambios desde <b>$2</b> (móstranse ata <b>$1</b>).',
+'rcnotefrom'                        => "Abaixo amósanse os cambios desde '''$2''' (móstranse ata '''$1''').",
 'rclistfrom'                        => 'Mostrar os cambios novos desde $1',
 'rcshowhideminor'                   => '$1 edicións pequenas',
 'rcshowhidebots'                    => '$1 bots',
@@ -949,7 +950,7 @@ Procurar $3 $9',
 'upload'                      => 'Cargar un ficheiro',
 'uploadbtn'                   => 'Cargar un ficheiro',
 'reupload'                    => 'Volver cargar',
-'reuploaddesc'                => 'Voltar ao formulario de carga.',
+'reuploaddesc'                => 'Cancelar a carga e voltar ao formulario de carga',
 'uploadnologin'               => 'Non está dentro do sistema',
 'uploadnologintext'           => 'Ha de [[Special:Userlogin|entrar no sistema]] para poder subir ficheiros.',
 'upload_directory_read_only'  => 'Non se pode escribir no directorio de subida ($1) do servidor web.',
@@ -1227,7 +1228,7 @@ Cada ringleira contén ligazóns cara á primeira e segunda redirección, e tam�
 'ancientpages'            => 'Artigos máis antigos',
 'move'                    => 'Mover',
 'movethispage'            => 'Mover esta páxina',
-'unusedimagestext'        => '<p>Por favor, teña en conta que outros sitios web poden ligar a un ficheiro mediante un enderezo URL e por iso poden aparecer listados aquí, mesmo estando en uso.</p>',
+'unusedimagestext'        => 'Por favor, teña en conta que outros sitios web poden ligar a un ficheiro mediante un enderezo URL e por iso poden aparecer listados aquí, mesmo estando en uso.',
 'unusedcategoriestext'    => 'Existen as seguintes categorías, aínda que ningún artigo ou categoría as emprega.',
 'notargettitle'           => 'Sen obxectivo',
 'notargettext'            => 'Non especificou a páxina ou o usuario no cal facer esta función.',
@@ -1504,8 +1505,6 @@ $1',
 'mycontris'     => 'As miñas contribucións',
 'contribsub2'   => 'De $1 ($2)',
 'nocontribs'    => 'Non se deron atopado cambios con eses criterios.',
-'ucnote'        => 'Abaixo están os últimos <b>$1</b> cambios realizados por este usuario nos <b>$2</b> días.',
-'uclinks'       => 'Visualizar os últimos $1 cambios; visualizar os últimos $2 días.',
 'uctop'         => '(última revisión)',
 'month'         => 'Desde o mes (e anteriores):',
 'year'          => 'Desde o ano (e anteriores):',
@@ -1644,7 +1643,7 @@ Vostede é responsábel de asegurarse de que as ligazóns continúan a apuntar c
 
 Fíxese que a páxina '''non''' vai ser movida se xa existe unha páxina co novo título, a menos que estea baleira ou sexa unha redirección e que non teña historial de edicións. Isto significa que pode volver renomear unha páxina ao seu nome antigo se comete un erro, e que non pode sobreescribir nunha páxina que xa existe.
 
-<b>ATENCIÓN!</b>
+'''ATENCIÓN!'''
 Este cambio nunha páxina popular pode ser drástico e inesperado; por favor, asegúrese de que entende as consecuencias disto antes de proseguir.",
 'movepagetalktext'        => "A páxina de conversa asociada, se existe, será automaticamente movida con esta '''agás que''':
 *Estea a mover a páxina empregando espazos de nomes,
@@ -1661,7 +1660,8 @@ Nestes casos, terá que mover ou mesturar a páxina manualmente se o desexa.",
 'movepagebtn'             => 'Mover páxina',
 'pagemovedsub'            => 'O movemento foi un éxito',
 'movepage-moved'          => '<big>\'\'\'"$1" moveuse para "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
-'articleexists'           => 'Xa existe unha páxina con ese nome, ou o nome que escolleu non é válido. Por favor escolla outro nome.',
+'articleexists'           => 'Xa existe unha páxina con ese nome, ou o nome que escolleu non é válido.
+Por favor escolla outro nome.',
 'cantmove-titleprotected' => 'Vostede non pode mover a páxina a esta ubicación, porque o novo título foi protexido da creación',
 'talkexists'              => 'Só foi movida con éxito a páxina, pero a páxina de conserva non puido ser movida porque xa existe unha co novo título. Por favor, mestúreas de xeito manual.',
 'movedto'                 => 'movido a',

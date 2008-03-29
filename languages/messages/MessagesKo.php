@@ -77,7 +77,7 @@ $messages = array(
 'tog-previewontop'            => '편집상자 앞에 미리 보기 화면을 보여주기',
 'tog-previewonfirst'          => '처음 편집할 때 미리 보기 화면을 보여주기',
 'tog-nocache'                 => '문서 캐시 끄기',
-'tog-enotifwatchlistpages'    => '문서가 바뀌면 이메일을 보내기',
+'tog-enotifwatchlistpages'    => '주시문서가 바뀌면 이메일을 보내기',
 'tog-enotifusertalkpages'     => '내 토론 문서가 바뀌면 이메일을 보내기',
 'tog-enotifminoredits'        => '사소한 편집에도 이메일을 보내기',
 'tog-enotifrevealaddr'        => '알림 메일에 내 이메일 주소를 밝히기',
@@ -152,14 +152,17 @@ $messages = array(
 'dec'           => '12',
 
 # Categories related messages
-'categories'             => '분류',
-'categoriespagetext'     => '위키에 존재하는 분류의 목록입니다.',
-'pagecategories'         => '분류',
-'category_header'        => '‘$1’ 분류에 속하는 문서',
-'subcategories'          => '하위 분류',
-'category-media-header'  => '‘$1’ 분류에 속하는 자료',
-'category-empty'         => '이 분류에 속하는 문서나 자료가 없습니다.',
-'listingcontinuesabbrev' => ' (계속)',
+'categories'                     => '분류',
+'categoriespagetext'             => '문서나 자료를 담고 있는 분류 목록입니다.',
+'pagecategories'                 => '분류',
+'category_header'                => '‘$1’ 분류에 속하는 문서',
+'subcategories'                  => '하위 분류',
+'category-media-header'          => '‘$1’ 분류에 속하는 자료',
+'category-empty'                 => '이 분류에 속하는 문서나 자료가 없습니다.',
+'category-subcat-count'          => '이 분류에는 하위 분류가 $1개 있고, 그 중 $2개를 보여주고 있습니다.',
+'category-subcat-count-limited'  => '이 분류에는 하위 분류가 $1개 있습니다.',
+'category-article-count-limited' => '이 분류에는 문서가 $1개 있습니다.',
+'listingcontinuesabbrev'         => ' (계속)',
 
 'mainpagetext'      => "<big>'''미디어위키가 성공적으로 설치되었습니다.'''</big>",
 'mainpagedocfooter' => '[http://meta.wikimedia.org/wiki/Help:Contents 이곳]에서 위키 프로그램에 대한 정보를 얻을 수 있습니다.
@@ -369,7 +372,7 @@ $2',
 'namespaceprotected'   => "'''$1''' 네임스페이스를 편집할 수 있는 권한이 없습니다.",
 'customcssjsprotected' => '이 문서는 다른 사용자의 개인 설정을 담고 있기 때문에, 편집할 권한이 없습니다.',
 'ns-specialprotected'  => '{{ns:special}} 네임스페이스의 문서는 편집할 수 없습니다.',
-'titleprotected'       => '[[User:$1|$1]] 사용자가 문서 생성을 금지했습니다. 이유는 다음과 같습니다. ‘$1’',
+'titleprotected'       => "[[User:$1|$1]] 사용자가 문서 생성을 금지했습니다. 이유는 다음과 같습니다. ‘''$2''’",
 
 # Login and logout pages
 'logouttitle'                => '로그아웃',
@@ -556,7 +559,10 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'editingsection'            => '$1 편집하기 (부분)',
 'editingcomment'            => '$1 편집하기 (덧붙이기)',
 'editconflict'              => '편집 충돌: $1',
-'explainconflict'           => "문서를 편집하는 도중에 누군가가 이 문서를 바꾸었습니다. 위쪽에 있는 문서가 현재 바뀐 문서이고, 아래쪽의 문서가 당신이 편집한 문서입니다. 아래쪽의 내용을 위쪽에 적절히 합쳐 주시기 바랍니다. '''위쪽의 편집 내역만이''' 저장됩니다.",
+'explainconflict'           => "문서를 편집하는 도중에 누군가가 이 문서를 바꾸었습니다.
+위쪽에 있는 문서가 현재 바뀐 문서이고, 아래쪽의 문서가 당신이 편집한 문서입니다.
+아래쪽의 내용을 위쪽에 적절히 합쳐 주시기 바랍니다.
+'''위쪽의 편집 내역만이''' 저장됩니다.",
 'yourtext'                  => '당신의 편집',
 'storedversion'             => '현재 문서',
 'nonunicodebrowser'         => "'''주의: 당신의 웹 브라우저가 유니코드를 완벽하게 지원하지 않습니다. 몇몇 문자가 16진수 코드로 나타날 수 있습니다.'''",
@@ -600,9 +606,9 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 
 # Account creation failure
 'cantcreateaccounttitle' => '계정을 만들 수 없음',
-'cantcreateaccount-text' => '현재 아이피 주소(<strong>$1</strong>)는 [[User:$3|$3]] 사용자에 의해 계정 생성이 차단된 상태입니다.
+'cantcreateaccount-text' => "현재 아이피 주소('''$1''')는 [[User:$3|$3]] 사용자에 의해 계정 생성이 차단된 상태입니다.
 
-차단 이유는 다음과 같습니다: $2',
+차단 이유는 다음과 같습니다: $2",
 
 # History pages
 'viewpagelogs'        => '이 문서의 기록 보기',
@@ -765,7 +771,7 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'recentchanges'                     => '최근 바뀜',
 'recentchangestext'                 => '위키의 최근 바뀜 내역이 나와 있습니다.',
 'rcnote'                            => '다음은 $3까지 <strong>$2</strong>일간 바뀐 <strong>$1</strong>개의 문서입니다.',
-'rcnotefrom'                        => '다음은 <strong>$2</strong>에서부터 바뀐 <strong>$1</strong>개의 문서입니다.',
+'rcnotefrom'                        => "다음은 '''$2'''에서부터 바뀐 '''$1'''개의 문서입니다.",
 'rclistfrom'                        => '$1 이래로 바뀐 문서',
 'rcshowhideminor'                   => '사소한 편집을 $1',
 'rcshowhidebots'                    => '봇을 $1',
@@ -1026,7 +1032,7 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'ancientpages'            => '오래된 문서 목록',
 'move'                    => '이동',
 'movethispage'            => '문서 이동하기',
-'unusedimagestext'        => '<p>다른 사이트에서 그림의 URL을 직접 사용하고 있을 가능성이 있고, 따라서 그림이 이 목록에 있어도 실제로 어딘가에서 사용하고 있을 수 있습니다.</p>',
+'unusedimagestext'        => '다른 사이트에서 그림의 URL을 직접 사용하고 있을 가능성이 있고, 따라서 그림이 이 목록에 있어도 실제로 어딘가에서 사용하고 있을 수 있습니다.',
 'unusedcategoriestext'    => '사용하지 않는 분류 문서들의 목록입니다.',
 'notargettitle'           => '해당하는 문서 없음',
 'notargettext'            => '기능을 수행할 목표 문서나 목표 사용자를 지정하지 않았습니다.',
@@ -1273,8 +1279,6 @@ $1',
 'mycontris'     => '내 기여 목록',
 'contribsub2'   => '$1($2)의 기여',
 'nocontribs'    => '이 사용자는 어디에도 기여하지 않았습니다.',
-'ucnote'        => "이 사용자가 '''$2'''일 동안에 바꾼 '''$1'''개의 목록입니다.",
-'uclinks'       => '최근 $1개 보기; 최근 $2일 보기',
 'uctop'         => '(최신)',
 'month'         => '월:',
 'year'          => '연도:',
@@ -1389,11 +1393,19 @@ $1',
 
 # Move page
 'move-page-legend'        => '문서 이동하기',
-'movepagetext'            => "아래 틀을 채워 문서의 이름을 바꿀 수 있습니다. 문서의 역사도 모두 새 문서로 옮겨집니다. 기존의 문서는 새 문서로 넘겨주는 문서가 됩니다. 기존 문서에서의 링크는 바뀌지 않습니다. 이중 넘겨주기와 끊긴 넘겨주기에 주의해주세요.
+'movepagetext'            => "아래 틀을 채워 문서의 이름을 바꿀 수 있습니다.
+문서의 역사도 모두 새 문서로 옮겨집니다.
+기존의 문서는 새 문서로 넘겨주는 문서가 됩니다.
+기존 문서에서의 링크는 바뀌지 않습니다.
+이중 넘겨주기와 끊긴 넘겨주기에 주의해주세요.
 
-만약 문서의 새 이름으로 된 문서가 존재할 때, 이 문서가 비었거나 넘겨주기 문서이고 문서 역사가 없을 때에만 이동합니다. 그렇지 않을 경우에는 이동하지 '''않습니다'''. 이것은 실수로 이동한 문서를 되돌릴 수는 있지만, 이미 존재하는 문서 위에 덮어씌울 수는 없다는 것을 의미합니다.
+만약 문서의 새 이름으로 된 문서가 존재할 때, 이 문서가 비었거나 넘겨주기 문서이고 문서 역사가 없을 때에만 이동합니다.
+그렇지 않을 경우에는 이동하지 '''않습니다'''.
+이것은 실수로 이동한 문서를 되돌릴 수는 있지만, 이미 존재하는 문서 위에 덮어씌울 수는 없다는 것을 의미합니다.
 
-'''주의!''' 자주 사용하는 문서를 이동하면 위험한 결과를 가져올 수 있습니다. 이동하기 전에, 이 문서를 이동해도 문제가 없다는 것을 확인해주세요.",
+'''주의!'''
+자주 사용하는 문서를 이동하면 위험한 결과를 가져올 수 있습니다.
+이동하기 전에, 이 문서를 이동해도 문제가 없다는 것을 확인해주세요.",
 'movepagetalktext'        => "딸린 토론 문서도 자동으로 이동합니다. 다음의 경우는 '''이동하지 않습니다''':
 * 이동할 이름으로 된 문서가 이미 있는 경우
 * 아래의 선택을 해제하는 경우

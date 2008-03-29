@@ -150,7 +150,7 @@ $messages = array(
 'tog-previewontop'            => "De ''Preview'' uewen un der Ännerungsfënster weisen",
 'tog-previewonfirst'          => "Beim éischten Änneren de ''Preview'' weisen.",
 'tog-nocache'                 => 'Säitecache deaktivéieren',
-'tog-enotifwatchlistpages'    => 'Schéck mir eng E-Mail wann eng vun de Säiten op menger Iwwerwaachungslëscht geännert gëtt.',
+'tog-enotifwatchlistpages'    => 'Schéckt mir eng E-Mail wann eng vun de Säiten op menger Iwwerwaachungslëscht geännert gëtt',
 'tog-enotifusertalkpages'     => 'Schéckt mir E-Maile wa meng Diskussiounssäit geännert gëtt.',
 'tog-enotifminoredits'        => 'Schéckt mir och bäi kléngen Ännerungen op vu mir iwwerwaachte Säiten eng E-Mail.',
 'tog-enotifrevealaddr'        => 'Meng E-Mailadress an de Benoriichtigungsmaile weisen.',
@@ -163,6 +163,7 @@ $messages = array(
 'tog-watchlisthideown'        => 'Meng Ännerungen op menger Iwwerwaachungslëscht verstoppen',
 'tog-watchlisthidebots'       => 'Ännerungen vu Botten op menger Iwwerwaachungslëscht verstoppen',
 'tog-watchlisthideminor'      => 'Kleng Ännerungen op menger Iwwerwaachungslëscht verstoppen',
+'tog-nolangconversion'        => 'Ëmwandlung vu Sproochvarianten ausschalten',
 'tog-ccmeonemails'            => 'Schéck mir eng Kopie vun de Mailen, déi ech anere Benotzer schécken.',
 'tog-diffonly'                => "Weis bei Versiounevergläicher just d'Ënnerscheeder an net déi ganz Säit",
 'tog-showhiddencats'          => 'Verstoppte Kategorie weisen',
@@ -462,7 +463,7 @@ $2',
 'namespaceprotected'   => "Dir hutt net déi néideg Rechter fir d'Säiten am Nummraum '''$1''' ze änneren.",
 'customcssjsprotected' => 'Dir hutt net déi néideg Rechter fir dës Säit ze änneren, wëll si zu de perséinlechen Astellungen vun engem anere Benotzer gehéiert.',
 'ns-specialprotected'  => 'Säiten am {{ns:special}}-Nummraum kënnen net verännert ginn.',
-'titleprotected'       => 'Eng Säit mat dësem Numm kann net ugeluecht ginn. Dës Spär gouf vum [[User:$1|$1]] gemaach deen als Grond <i>$2</i> uginn huet.',
+'titleprotected'       => "Eng Säit mat dësem Numm kann net ugeluecht ginn. Dës Spär gouf vum [[User:$1|$1]] gemaach deen als Grond ''$2'' uginn huet.",
 
 # Login and logout pages
 'logouttitle'                => 'Benotzer-Ofmeldung',
@@ -664,15 +665,11 @@ D\'Nummer vun ärer Spär ass $5. Gitt dës Nummer w.e.g bei allen Ufroen zu dë
 'editingsection'            => 'Ännere vun $1 (Abschnitt)',
 'editingcomment'            => 'Ännere vun $1 (Bemierkung)',
 'editconflict'              => 'Ännerungskonflikt: $1',
-'explainconflict'           => 'Een anere Benotzer huet un dëser Säit geschafft, während Dir amgaange waart, se ze änneren.
-
+'explainconflict'           => "Een anere Benotzer huet un dëser Säit geschafft, während Dir amgaange waart, se ze änneren.
 Dat iewegt Textfeld weist Iech den aktuellen Text.
-
 Är Ännerunge gesitt Dir am ënneschten Textfeld.
-
 Dir musst Är Ännerungen an dat iewegt Textfeld androen.
-
-<b>Nëmmen</b> den Text aus dem iewegten Textfeld gëtt gehale wann Dir op "Säit späicheren" klickt. <br />',
+'''Nëmmen''' den Text aus dem iewegten Textfeld gëtt gehale wann Dir op \"Säit späicheren\" klickt.",
 'yourtext'                  => 'Ären Text',
 'storedversion'             => 'Gespäichert Versioun',
 'nonunicodebrowser'         => '<strong>OPGEPASST:</strong> Äre Browser ass net Unicode kompatibel. Ännert dat w.e.g. éier Dir eng Säit ännert.',
@@ -716,7 +713,7 @@ Fir iech z'informéieren fannt Dir hei d'Läschlescht mat dem Grond:",
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Benotzerkont konnt net opgemaach ginn',
-'cantcreateaccount-text' => 'Dës IP Adress (<b>$1</b>) gouf vum [[User:$3|$3]] blokéiert fir Benotzer-Konten op der lëtzebuergescher Wikipedia opzemaachen. De Benotzer $3 huet "$2" als Ursaach uginn.',
+'cantcreateaccount-text' => 'Dës IP Adress (\'\'\'$1\'\'\') gouf vum [[User:$3|$3]] blokéiert fir Benotzer-Konten op der lëtzebuergescher Wikipedia opzemaachen. De Benotzer $3 huet "$2" als Ursaach uginn.',
 
 # History pages
 'viewpagelogs'        => 'Logbicher fir dës Säit weisen',
@@ -771,6 +768,7 @@ Vläicht gouf se geläscht oder geréckelt.
 'revdelete-log'           => "Bemierkung (fir d'Logbicher/Lëschten):",
 'revdelete-submit'        => 'Op déi gewielte Versioun uwenden',
 'revdelete-logaction'     => '$1 {{PLURAL:$1|Versioun|Versiounen}} an de Modus $2 gesat',
+'revdelete-success'       => 'Sichtbarkeet vun de Versioune geännert.',
 'pagehist'                => 'Versioune vun dëser Säit',
 'deletedhist'             => 'Geläschte Versiounen',
 
@@ -898,22 +896,23 @@ Sich no: $3 $9',
 'files'                   => 'Fichieren',
 
 # User rights
-'userrights'                 => 'Benotzerrechterverwaltung', # Not used as normal message but as header for the special page itself
-'userrights-lookup-user'     => 'Benotzergrupp verwalten',
-'userrights-user-editname'   => 'Benotzernumm uginn:',
-'editusergroup'              => 'Benotzergruppen änneren',
-'editinguser'                => "Ännere vun de Rechter vum Benotzer '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
-'userrights-editusergroup'   => 'Benotzergruppen änneren',
-'saveusergroups'             => 'Benotzergruppe späicheren',
-'userrights-groupsmember'    => 'Member vun:',
-'userrights-groupsremovable' => 'Gruppen déi geläscht kënne ginn:',
-'userrights-groupsavailable' => "Et ginn d'Gruppen:",
-'userrights-reason'          => 'Grond:',
-'userrights-available-none'  => 'Dir däerft keng Benotzerrechter änneren.',
-'userrights-available-add'   => 'Dir kënnt Benotzer an déi folgend {{PLURAL:$2|Grupp derbäisetzen|Grupppen derbäisetzen}}: $1
+'userrights'                  => 'Benotzerrechterverwaltung', # Not used as normal message but as header for the special page itself
+'userrights-lookup-user'      => 'Benotzergrupp verwalten',
+'userrights-user-editname'    => 'Benotzernumm uginn:',
+'editusergroup'               => 'Benotzergruppen änneren',
+'editinguser'                 => "Ännere vun de Rechter vum Benotzer '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
+'userrights-editusergroup'    => 'Benotzergruppen änneren',
+'saveusergroups'              => 'Benotzergruppe späicheren',
+'userrights-groupsmember'     => 'Member vun:',
+'userrights-groupsremovable'  => 'Gruppen déi geläscht kënne ginn:',
+'userrights-groupsavailable'  => "Et ginn d'Gruppen:",
+'userrights-reason'           => 'Grond:',
+'userrights-available-none'   => 'Dir däerft keng Benotzerrechter änneren.',
+'userrights-available-add'    => 'Dir kënnt Benotzer an déi folgend {{PLURAL:$2|Grupp derbäisetzen|Grupppen derbäisetzen}}: $1
 .',
-'userrights-no-interwiki'    => "Dir hutt net déi néideg Rechter, fir d'Rechter vu Benoutzer op anere Wikien z'änneren.",
-'userrights-nodatabase'      => "D'Datebank $1 gëtt et net oder se ass net lokal.",
+'userrights-available-remove' => 'Dir kënnt Benotzer aus {{PLURAL:$2|dëser Gruppe|dëse(n) $2 Gruppen}} eraushuelen: $1.',
+'userrights-no-interwiki'     => "Dir hutt net déi néideg Rechter, fir d'Rechter vu Benoutzer op anere Wikien z'änneren.",
+'userrights-nodatabase'       => "D'Datebank $1 gëtt et net oder se ass net lokal.",
 
 # Groups
 'group'               => 'Grupp:',
@@ -944,7 +943,7 @@ Sich no: $3 $9',
 'recentchangestext'                 => "Op dëser Säit kënnt Dir déi rezent Ännerungen op '''{{SITENAME}}''' gesinn.",
 'recentchanges-feed-description'    => 'Verfollegt mat dësem Feed déi rezent Ännerungen op {{SITENAME}}.',
 'rcnote'                            => "Ugewise {{PLURAL:$1|gëtt '''1''' Ännerung|ginn déi lescht '''$1''' Ännerungen}} {{PLURAL:$2|vum leschten Dag|vun de leschten '''$2''' Deeg}}. Stand: $3. (<b><tt>N</tt></b>&nbsp;– nei Säiten; <b><tt>k</tt></b>&nbsp;– kleng Ännerung; <b><tt>B</tt></b>&nbsp;– Ännerung durch ee Bot; ''(± Zuel)''&nbsp;– Gréisst vun der Ännerung a Byte)",
-'rcnotefrom'                        => "Ugewise ginn d'Ännerunge vum <b>$2</b> un (maximum <b>$1</b> Ännerunge gi gewisen).",
+'rcnotefrom'                        => "Ugewise ginn d'Ännerunge vum '''$2''' un (maximum '''$1''' Ännerunge gi gewisen).",
 'rclistfrom'                        => 'Nëmmen Ännerungen zënter $1 weisen.',
 'rcshowhideminor'                   => 'Kleng Ännerunge $1',
 'rcshowhidebots'                    => 'Botte $1',
@@ -1106,6 +1105,7 @@ Dir sollt onbedingt bedenken, datt, genee wéi bäi normale Säiten, aner Benotz
 'filedelete-comment'          => 'Grond:',
 'filedelete-submit'           => 'Läschen',
 'filedelete-success'          => "'''$1''' gouf geläscht.",
+'filedelete-success-old'      => "<span class=\"plainlinks\">D'Versioun vum Fichier '''[[Media:\$1|\$1]]''' vum \$2, \$3 Auer gouf geläscht.</span>",
 'filedelete-nofile'           => "'''$1''' gëtt et net op {{SITENAME}}.",
 'filedelete-nofile-old'       => "Et gëtt vun '''$1''' keng Versioun vum $2, $3 Auer.",
 'filedelete-otherreason'      => 'Aneren/zousätzleche Grond:',
@@ -1357,6 +1357,7 @@ Wann dir dës Säit net iwwerwaache wëllt, klickt op \"Net méi iwwerwaachen\" 
 'watching'   => 'Iwwerwaachen …',
 'unwatching' => 'Net méi iwwerwaachen …',
 
+'enotif_mailer'                => '{{SITENAME}} E-Mail-Informatiounssystem',
 'enotif_reset'                 => 'All Säiten als besicht markéieren',
 'enotif_newpagetext'           => 'Dëst ass eng nei Säit.',
 'enotif_impersonal_salutation' => '{{SITENAME}}-Benotzer',
@@ -1485,8 +1486,6 @@ $1',
 'mycontris'     => 'Meng Kontributiounen',
 'contribsub2'   => 'Fir $1 ($2)',
 'nocontribs'    => 'Et goufe keng Ännerunge fonnt, déi dëse Kritèren entspriechen.',
-'ucnote'        => 'Hei stinn dësem Benotzer seng lescht <b>$1</b> Ännerungen vun de leschten <b>$2</b> Deeg.',
-'uclinks'       => 'Weis déi läscht $1 Kontributiounen; weis déi läscht $2 Deeg.',
 'uctop'         => '(aktuell)',
 'month'         => 'Vum Mount (a virdrun):',
 'year'          => 'Vum Joer (a virdrun):',
@@ -1622,8 +1621,9 @@ Dir sidd responsabel datt d'Linke weiderhinn dohinner pointéieren, wou se hisol
 Beuecht w.e.g. datt d'Säit '''net''' geréckelt gëtt, wann ët schonns eng Säit mat deem Titel gëtt, ausser dës ass eidel, ass eng Viruleedung oder huet keen Historique.
 Dëst bedeit datt dir eng Säit ëmbenenne kënnt an datt dir keng Säit iwwerschreiwe kënnt, déi et schonns gëtt.
 
-<b>OPGEPASST!</b>
-Dëst kann en drastesche Changement fir eng populär Säit bedeiten; verstitt w.e.g. d'Konsequenze vun ärer Handlung éier Dir d'Säit réckelt.",
+'''OPGEPASST!'''
+Dëst kann en drastesche Changement fir eng populär Säit bedeiten;
+verstitt w.e.g. d'Konsequenze vun ärer Handlung éier Dir d'Säit réckelt.",
 'movepagetalktext'        => "D'assoziéiert Diskussiounssäit, falls eng do ass, gëtt automatesch matgeréckelt, '''ausser:'''
 *D'Säit gëtt an een anere Nummraum geréckelt.
 *Et gëtt schonn eng Diskussiounssäit mat dësem Numm, oder

@@ -374,7 +374,7 @@ Perräküsümine: $2',
 'namespaceprotected'   => "Sul olõ-i lubat toimõndaq nimeruumi '''$1''' lehti.",
 'customcssjsprotected' => 'Sul olõ-i lubat toimõndaq taad lehte, selle et tan om seen tõõsõ pruukja säädmiisi.',
 'ns-specialprotected'  => 'Tallituslehekülgi ei saaq toimõndaq.',
-'titleprotected'       => 'Pruukja [[User:$1|$1]] om sääntse nimega lehe luumisõ ärq kiildnüq põhjusõga: <i>$2</i>.',
+'titleprotected'       => "Pruukja [[User:$1|$1]] om sääntse nimega lehe luumisõ ärq kiildnüq põhjusõga: ''$2''.",
 
 # Login and logout pages
 'logouttitle'                => 'Nime alt välläminek',
@@ -568,10 +568,11 @@ Ku sa johtuq siiäq kogõmaldaq, sis klõpsaq võrgokaeja '''Tagasi'''-nuppi.",
 'editingsection'            => 'Toimõndõdas lõiku artiklist $1',
 'editingcomment'            => 'Toimõndõdas kommõntaari lehe $1 pääl',
 'editconflict'              => 'Toimõndamisvastaolo: $1',
-'explainconflict'           => 'Kiäki om muutnuq seod lehte perän tuud, ku saq taad toimõndama naksiq.
+'explainconflict'           => "Kiäki om muutnuq seod lehte perän tuud, ku saq taad toimõndama naksiq.
 Ülemädsen toimõnduskastin om teksti perämäne kujo.
 Suq muutmisõq ommaq alomadsõn kastin.
-Sul tulõ naaq viimätsehe kujjo üle viiäq. Ku klõpsahtat nuppi "Pästäq", sis pästetäs <b>õnnõ</b> ülembädse toimõnduskasti tekst.',
+Sul tulõ naaq viimätsehe kujjo üle viiäq.
+Ku klõpsahtat nuppi \"Pästäq\", sis pästetäs '''õnnõ''' ülembädse toimõnduskasti tekst.",
 'yourtext'                  => 'Suq tekst',
 'storedversion'             => 'Pästet kujo',
 'nonunicodebrowser'         => "<strong>Hoiatus: su võrgokaeja tukõ-i Unicode'i. Olõq hüä, võtaq toimõndamisõs leht vallalõ tõõsõn võrgokaejan.</strong>",
@@ -608,7 +609,7 @@ Kas tahat taad lehte tõtõstõ toimõndaq? Kaeq ka sissekirotust seo lehe ärqk
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Pruukjanime luuminõ lää-s kõrda',
-'cantcreateaccount-text' => "Pruukjanime luuminõ taa puutri võrgoaadrõsi päält (<b>$1</b>) om ärq keelet. Kiildjä: [[User:$3|$3]].
+'cantcreateaccount-text' => "Pruukjanime luuminõ taa puutri võrgoaadrõsi päält ('''$1''') om ärq keelet. Kiildjä: [[User:$3|$3]].
 
 $3 kirjäpant põhjus: ''$2''",
 
@@ -820,7 +821,7 @@ mitmõ otsmissõna pruukminõ (sis ilmusõq õnnõ leheküleq, kon ommaq kõik o
 'recentchangestext'                 => 'Kaeq seo lehe pääl viimätsit muutmiisi.',
 'recentchanges-feed-description'    => 'Kaeq seo lehe pääl {{SITENAME}} viimätsit muutmiisi.',
 'rcnote'                            => 'Tan ommaq {{PLURAL:$1|üts muutus|$1 viimäst muutmist}}, miä ommaq tettüq {{PLURAL:$2|üte viimädse päävä|$2 viimädse päävä}} seen (kuupääväst $3 lugõma naatõn).',
-'rcnotefrom'                        => 'Tan ommaq muutmisõq kuupääväst <b>$2</b> pääle (näüdätäs kooniq <b>$1</b> muutmist).',
+'rcnotefrom'                        => "Tan ommaq muutmisõq kuupääväst '''$2''' pääle (näüdätäs kooniq '''$1''' muutmist).",
 'rclistfrom'                        => 'Näütäq muutmiisi kuupääväst $1 pääle',
 'rcshowhideminor'                   => '$1 väikuq parandusõq',
 'rcshowhidebots'                    => '$1 robodiq',
@@ -1320,8 +1321,6 @@ Perämäidsi kistutuisi ja tagasitegemiisi saat kaiaq [[Special:Log/delete|kistu
 'mycontris'     => 'Mu kirotusõq',
 'contribsub2'   => 'Pruukja "$1 ($2)" kirotusõq',
 'nocontribs'    => 'Sääntsit muutmiisi es lövväq.',
-'ucnote'        => 'Näüdätäseq taa pruukja tettüid <b>$1</b> viimäst muutmist viimädse <b>$2</b> päävä seen.',
-'uclinks'       => 'Näütäq viimäst $1 muutmist; viimädse $2 päävä seen.',
 'uctop'         => '(kõgõ vahtsõmb)',
 'month'         => 'Alostõn kuust (ja varrampa):',
 'year'          => 'Alostõn aastagast (ja varrampa):',
@@ -1443,7 +1442,19 @@ Perämäidsi kistutuisi ja tagasitegemiisi saat kaiaq [[Special:Log/delete|kistu
 
 # Move page
 'move-page-legend'        => 'Nõstaq artikli tõistõ paika',
-'movepagetext'            => "Taad vormi pruukin saat lehe ümbre nimetäq. Lehe aolugu pandas kah vahtsõ päälkirä ala. Vana päälkiräga lehest saa vahtsõ lehe pääle ümbresaatmisõ leht. Tõisin artikliin olõvit linke, miä näütäseq vana nimega lehe pääle, ärq ei muudõdaq. Sa piät kaema, et es tulnuq katõkõrdsit ümbresaatmiisi ni et kõik jäänüq tüütämä nigu inne ümbrenimetämist. Lehte '''nimetedä-i ümbre''', ku vahtsõ nimega leht om jo olõman. Erängus om tuu, ku vana leht om tühi vai om esiq ümbresaatmisleht ja täl olõ-i toimõndamisaoluku. Tuu tähendäs, et sa saa-i kogõmalda üle kirotaq jo olõmanolõvat lehte, a saat halvastõ lännü ümbrenimetämise tagasi pöördäq. <strong>KAEQ ETTE!</strong> Või ollaq, et sa nakkat tegemä suurt ja uutmalda muutmist väega loetavahe artiklihe; inne, ku midä muudat, märgiq perrä, miä tuust tullaq või.",
+'movepagetext'            => "Taad vormi pruukin saat lehe ümbre nimetäq.
+Lehe aolugu pandas kah vahtsõ päälkirä ala.
+Vana päälkiräga lehest saa vahtsõ lehe pääle ümbresaatmisõ leht.
+Tõisin artikliin olõvit linke, miä näütäseq vana nimega lehe pääle, ärq ei muudõdaq.
+Sa piät kaema, et es tulnuq katõkõrdsit ümbresaatmiisi ni et kõik jäänüq tüütämä nigu inne ümbrenimetämist.
+
+Lehte '''nimetedä-i ümbre''', ku vahtsõ nimega leht om jo olõman.
+Erängus om tuu, ku vana leht om tühi vai om esiq ümbresaatmisleht ja täl olõ-i toimõndamisaoluku.
+Tuu tähendäs, et sa saa-i kogõmalda üle kirotaq jo olõmanolõvat lehte, a saat halvastõ lännü ümbrenimetämise tagasi pöördäq.
+
+'''KAEQ ETTE!'''
+Või ollaq, et sa nakkat tegemä suurt ja uutmalda muutmist väega loetavahe artiklihe;
+inne, ku midä muudat, märgiq perrä, miä tuust tullaq või.",
 'movepagetalktext'        => "Üten artiklilehekülega pandas tõistõ paika ka arotuskülg, '''vällä arvat sis, ku:'''
 *panõt lehe ütest nimeruumist tõistõ,
 *vahtsõ nime all om jo olõman arotuskülg, kohe om jo midägi kirotõt, vai ku

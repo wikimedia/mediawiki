@@ -358,7 +358,8 @@ $2',
 'namespaceprotected'   => "Du hääst neen Begjuchtigenge, ju Siede in dän '''$1'''-Noomensruum tou beoarbaidjen.",
 'customcssjsprotected' => 'Du bäst nit begjuchtiged disse Siede tou beoarbaidjen, deer ju tou do persöönelke Ienstaalengen fon n uur Benutser heert.',
 'ns-specialprotected'  => 'Sieden in dän {{ns:special}}-Noomensruum konnen nit beoarbaided wäide.',
-'titleprotected'       => 'Ne Siede mäd dissen Noome kon nit moaked wäide. Ju Speere wuude truch [[{{ns:user}}:$1]] mäd ju Begruundenge <i>$2</i> ienroat.',
+'titleprotected'       => "Ne Siede mäd dissen Noome kon nit moaked wäide.
+Ju Speere wuude truch [[User:$1|$1]] mäd ju Begruundenge ''$2'' ienroat.",
 
 # Login and logout pages
 'logouttitle'                => 'Benutser-Oumäldenge',
@@ -500,7 +501,7 @@ In dän Fal dät Benutserkonto uut Fersjoon anlaid wuude, koast du disse Ätterg
 
 :\'\'$2\'\' (<span class="plainlinks">[{{fullurl:Special:Ipblocklist|&action=search&limit=&ip=%23}}$5 Logboukiendraach]</span>)
 
-<p style="border-style: solid; border-color: red; border-width: 1px; padding:5px;"><b>Een Leesetougriep is wieders muugelk,</b>
+<p style="border-style: solid; border-color: red; border-width: 1px; padding:5px;"><b>Een Leesetougriep is wieders muugelk,</b> 
 bloot ju Beoarbaidenge un dät Moakjen fon Sieden in {{SITENAME}} wuude speerd.
 Schuul disse Ättergjucht anwiesd wäide, wan uk bloot leesend tougriepen wuude, bäst du aan (rooden) Link ap ne noch nit existente Siede foulged.</p>
 
@@ -521,7 +522,7 @@ As Gruund wuude ounroat:
 
 :\'\'$2\'\' (<span class="plainlinks">[{{fullurl:Special:Ipblocklist|&action=search&limit=&ip=%23}}$5 Logboukiendraach]</span>)
 
-<p style="border-style: solid; border-color: red; border-width: 1px; padding:5px;"><b>N Leesetougriep is wieders muugelk,</b>
+<p style="border-style: solid; border-color: red; border-width: 1px; padding:5px;"><b>N Leesetougriep is wieders muugelk,</b> 
 bloot ju Beoarbaidenge un dät Moakjen fon Sieden in {{SITENAME}} wuude speerd.
 Schuul disse Ättergjucht anwiesd wäide, owwol bloot leesend tougriepen wuude, bäst du ne (roode) Ferbiendenge ap ne noch nit existente Siede foulged.</p>
 
@@ -583,7 +584,11 @@ Ne Spiekerenge kon dän Siedeninhoold fernäile. Dit geböärt bietiede truch ju
 'editingsection'            => 'Beoarbaidje fon $1 (Apsats)',
 'editingcomment'            => 'Beoarbaidjen fon $1 (Kommentoar)',
 'editconflict'              => 'Beoarbaidengs-Konflikt: "$1"',
-'explainconflict'           => "Uurswäl häd dissen Artikkel annerd, ätterdät du anfangd bäst, him tou beoarbaidjen. Dät buppere Textfäild änthaalt dän aktuälle Artikkel. Dät unnere Textfäild änthaalt dien Annerengen. Föige jädden dien Annerengen in dät buppere Textfäild ien.<br /> '''Bloot''' die Inhoold fon dät buppere Textfäild wäd spiekerd, wan du ap \"Spiekerje\" klikst!",
+'explainconflict'           => "Uurswäl häd dissen Artikkel annerd, ätterdät du anfangd bäst, him tou beoarbaidjen.
+Dät buppere Textfäild änthaalt dän aktuälle Artikkel.
+Dät unnere Textfäild änthaalt dien Annerengen.
+Föige jädden dien Annerengen in dät buppere Textfäild ien.
+'''Bloot''' die Inhoold fon dät buppere Textfäild wäd spiekerd, wan du ap \"Spiekerje\" klikst.",
 'yourtext'                  => 'Dien Text',
 'storedversion'             => 'Spiekerde Version',
 'nonunicodebrowser'         => '<strong style="color: #330000; background: #f0e000;">Oachtenge: Dien Browser kon Unicode-Teekene nit gjucht feroarbaidje. Benutse jädden n uur Browser uum Artikkele tou beoarbaidjen.</strong>',
@@ -625,7 +630,7 @@ Tou Dien Information foulget dät Läsk-Logbouk mäd ju Begründenge foar ju fr�
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Benutserkonto kon nit moaked wäide',
-'cantcreateaccount-text' => "Dät Moakjen fon n Benutserkonto fon ju IP-Adresse <b>$1</b> uut wuude fon [[User:$3|$3]] speerd.
+'cantcreateaccount-text' => "Dät Moakjen fon n Benutserkonto fon ju IP-Adresse '''$1''' uut wuude fon [[User:$3|$3]] speerd.
 
 Gruund fon ju Speere: ''$2''",
 
@@ -877,7 +882,7 @@ Wan du die mäd dät Thema uutkoanst, koast du sälwen ju Siede „[[$1]]“ fer
 'rcnote'                            => "Anwiesd {{PLURAL:$1|wäd '''1''' Annerenge|wäide do lääste '''$1''' Annerengen}} in {{PLURAL:$2|dän lääste Dai|do lääste '''$2''' Deege}}, fon $3. 
 (<b><tt>Näi</tt></b>&nbsp;– näien Artikkel; <b><tt>L</tt></b>&nbsp;– litje Annerenge)
 <b><tt>B</tt></b>&nbsp;– Annerenge truch n Bot; ''(± Taal)''&nbsp;– Gröötenannerenge in Byte)",
-'rcnotefrom'                        => 'Anwiesd wäide do Annerengen siet <b>$2</b> (max. <b>$1</b> Iendraage).',
+'rcnotefrom'                        => "Anwiesd wäide do Annerengen siet '''$2''' (max. '''$1''' Iendraage).",
 'rclistfrom'                        => 'Bloot näie Annerengen siet $1 wiese.',
 'rcshowhideminor'                   => 'Litje Annerengen $1',
 'rcshowhidebots'                    => 'Bots $1',
@@ -1179,7 +1184,7 @@ Lääste schällen dan wächhoald wäide.',
 'ancientpages'            => 'Siet loang uunbeoarbaidede Sieden',
 'move'                    => 'ferschuuwe',
 'movethispage'            => 'Artikkel ferschuuwe',
-'unusedimagestext'        => '<p>Beoachtje jädden, dät uur Websieden muugelkerwiese eenige fon disse Bielden benutsje.</p>',
+'unusedimagestext'        => 'Beoachtje jädden, dät uur Websieden muugelkerwiese eenige fon disse Bielden benutsje.',
 'unusedcategoriestext'    => 'Do foulgjende Kategorien bestounde, wan do apstuuns uk nit in Ferweendenge sunt.',
 'notargettitle'           => 'Naan Artikkel anroat',
 'notargettext'            => 'Du hääst nit anroat, ap wäkke Siede disse Funktion anwoand wäide schäl.',
@@ -1456,8 +1461,6 @@ $1',
 'mycontris'     => 'Oaine Biedraage',
 'contribsub2'   => 'Foar $1 ($2)',
 'nocontribs'    => 'Deer wuuden neen Annerengen foar disse Kriterien fuunen.',
-'ucnote'        => 'Dit sunt do lääste <b>$1</b> Biedraage fon dän Benutser in do lääste <b>$2</b> Deege.',
-'uclinks'       => 'Wies do lääste $1 Biedraage fon dän Benutser in do lääste $2 Deege.',
 'uctop'         => '(aktuäl)',
 'month'         => 'un Mound:',
 'year'          => 'bit Jier:',
@@ -1585,7 +1588,9 @@ Reek dän Gruund foar ju Speere oun.',
 
 # Move page
 'move-page-legend'        => 'Siede ferschuuwe',
-'movepagetext'            => 'Mäd dissen Formular koast du ne Siede touhoope mäd aal Versione tou n uur Noome ferschuuwe. Foar dän oolde Noome wäd ne Fäärelaitenge tou dän Näie iengjucht. Ferwiese ap dän oolde Noome wäide nit annerd.',
+'movepagetext'            => 'Mäd dissen Formular koast du ne Siede touhoope mäd aal Versione tou n uur Noome ferschuuwe.
+Foar dän oolde Noome wäd ne Fäärelaitenge tou dän Näie iengjucht.
+Ferwiese ap dän oolde Noome wäide nit annerd.',
 'movepagetalktext'        => "Ju touheerige Diskussionssiede wäd, sofier deer, mee ferschäuwen, '''of dät moast weese'''
 * du ferschufst ju Siede in n uur [[Wikipedia:Noomensruum|Noomensruum]]
 * deer bestoant al n Diskussionssiede mäd dän näie Noome

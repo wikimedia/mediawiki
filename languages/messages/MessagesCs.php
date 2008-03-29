@@ -628,7 +628,7 @@ $2',
 'namespaceprotected'   => "Nemáte povoleno editovat stránky ve jmenném prostoru '''$1'''.",
 'customcssjsprotected' => 'Nemáte povoleno editovat tuto stránku, protože obsahuje osobní nastavení jiného uživatele.',
 'ns-specialprotected'  => 'Stránky ve jmenném prostoru {{ns:special}} nelze editovat.',
-'titleprotected'       => 'Stránku s tímto názvem nelze založit, protože název zamknul uživatel [[User:$1|$1]] s odůvodněním: <i>$2</i>.',
+'titleprotected'       => "Stránku s tímto názvem nelze založit, protože název zamknul uživatel [[User:$1|$1]] s odůvodněním: ''$2''.",
 
 # Login and logout pages
 'logouttitle'                => 'Na shledanou!',
@@ -843,7 +843,11 @@ Toto se může někdy stát pokud používáte chybující webový anonymizér.<
 'editingsection'            => 'Editace stránky $1 (část)',
 'editingcomment'            => 'Editace stránky $1 (komentář)',
 'editconflict'              => 'Editační konflikt: $1',
-'explainconflict'           => 'Někdo změnil stránku po započetí vaší editace. Výše vidíte aktuální text stránky. Vaše změny jsou uvedeny dole. Musíte sloučit své změny se stávajícím textem. <b>Pouze</b> výše uvedený text zůstane uchován po kliknutí na „Uložit“. <br />',
+'explainconflict'           => "Někdo změnil stránku po započetí vaší editace.
+Výše vidíte aktuální text stránky.
+Vaše změny jsou uvedeny dole.
+Musíte sloučit své změny se stávajícím textem.
+'''Pouze''' výše uvedený text zůstane uchován po kliknutí na „Uložit“.",
 'yourtext'                  => 'Váš text',
 'storedversion'             => 'Uložená verze',
 'nonunicodebrowser'         => '<strong>UPOZORNĚNÍ: Váš prohlížeč není schopen pracovat se znaky Unicode. Abyste mohli tuto stránku bezpečně editovat, je použita pomůcka: všechny znaky mimo ASCII jsou zobrazeny v hexadecimálních kódech.</strong>',
@@ -885,7 +889,7 @@ Níže vidíte výpis z knihy smazaných stránek pro tuto stránku:",
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Nelze vytvořit uživatelský účet',
-'cantcreateaccount-text' => "Zakládání nových účtů z této IP adresy (<b>$1</b>) bylo zablokováno uživatelem [[User:$3|$3]].
+'cantcreateaccount-text' => "Zakládání nových účtů z této IP adresy ('''$1''') bylo zablokováno uživatelem [[User:$3|$3]].
 
 $3 uvádí toto zdůvodnění: ''$2''",
 
@@ -1460,7 +1464,7 @@ Aktuální délka fronty údržby je '''$7'''.",
 'ancientpages'            => 'Nejdéle needitované stránky',
 'move'                    => 'Přesunout',
 'movethispage'            => 'Přesunout stránku',
-'unusedimagestext'        => '<p>Jiné WWW stránky mohou odkazovat na soubor přímo pomocí URL, na takové odkazy se v&nbsp;tomto seznamu nebere zřetel.</p>',
+'unusedimagestext'        => 'Jiné WWW stránky mohou odkazovat na soubor přímo pomocí URL, na takové odkazy se v&nbsp;tomto seznamu nebere zřetel.',
 'unusedcategoriestext'    => 'Následující stránky kategorií existují, avšak žádná stránka ani jiná kategorie je nepoužívá.',
 'notargettitle'           => 'Bez cílové stránky',
 'notargettext'            => 'Této funkci musíte určit cílovou stránku nebo uživatele.',
@@ -1731,8 +1735,6 @@ $1',
 'mycontris'     => 'Mé příspěvky',
 'contribsub2'   => '$1 ($2)',
 'nocontribs'    => 'Nenalezeny žádné změny vyhovující kritériím.',
-'ucnote'        => 'Níže jsou uživatelovy poslední <strong>$1</strong> změny během {{plural:$2|posledního|posledních|posledních}} <strong>$2</strong> {{plural:$2|dne|dnů|dnů}}.',
-'uclinks'       => 'Ukaž posledních $1 změn; ukaž posledních $2 dnů.',
 'uctop'         => ' (aktuální)',
 'month'         => 'Do měsíce:',
 'year'          => 'Do roku:',

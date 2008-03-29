@@ -339,7 +339,11 @@ Se te rizsevi sto messajo de erór pì olte, proa a scołegarte (struca su "và 
 'editingsection'           => 'Modifica $1 (sezsion)',
 'editingcomment'           => 'Modifica $1 (commento)',
 'editconflict'             => 'Conflitto de edizsion: $1',
-'explainconflict'          => 'Qualcun altro ga salvà na so verszion de ła voçe nel tempo in cui te stavi preparando ła to verszion.<br /> La caselła de modifica de sora contegne el testo de la voçe ne ła so forma attuałe (el testo attualmente online). Le to modifiche łe xè inveçe contegnue ne ła caseła de modifica inferiore. Te dovarè inserire, se te vołi, le to modifiche nel testo esistente, e perciò scrivarle ne ła caseła de sora. <b>Soltanto</b> el testo ne ła caseła de sora sarà salvà se te struchi el botón "Salva".<br />',
+'explainconflict'          => "Qualcun altro ga salvà na so verszion de ła voçe nel tempo in cui te stavi preparando ła to verszion.
+La caselła de modifica de sora contegne el testo de la voçe ne ła so forma attuałe (el testo attualmente online).
+Le to modifiche łe xè inveçe contegnue ne ła caseła de modifica inferiore.
+Te dovarè inserire, se te vołi, le to modifiche nel testo esistente, e perciò scrivarle ne ła caseła de sora.
+'''Soltanto''' el testo ne ła caseła de sora sarà salvà se te struchi el botón \"Salva\".",
 'yourtext'                 => 'El to testo',
 'storedversion'            => 'Versione in archivio',
 'editingold'               => '<strong>Attenzsion: Te stè modificando na verzsion de ła voçe non aggiornà. Se te la salvi così, tuti i cambiamenti apportai dopo sta verzsion i verrà persi.</strong>',
@@ -460,7 +464,7 @@ par poder personalixare le to preferenzse.',
 'recentchanges'     => 'Ultime modifeghe',
 'recentchangestext' => 'Sta paxèna presenta łe ultime modifeghe aportae ai contenuti de el sito.',
 'rcnote'            => 'De seguito xè ełencae łe <strong>$1</strong> modifiche pì reçenti aportae ne i ultimi <strong>$2</strong> jorni, agiornae a $3.',
-'rcnotefrom'        => ' Qui di seguito sono elencate le modifiche da <b>$2</b> (fino a <b>$1</b>).',
+'rcnotefrom'        => " Qui di seguito sono elencate le modifiche da '''$2''' (fino a '''$1''').",
 'rclistfrom'        => 'Mostra łe modifeghe aportae a partire da $1',
 'rcshowhideminor'   => '$1 le modifeghe minori',
 'rcshowhideliu'     => '$1 gli utenti registrai',
@@ -722,8 +726,6 @@ Consultare el [[Special:Log/delete|log delle scancełazsioni]] par vardare łe s
 # Contributions
 'mycontris'  => 'i me contributi',
 'nocontribs' => 'Nessuna modifica trovata conformemente a questi criteri.',
-'ucnote'     => 'Qui sotto troverai le ultime <b>$1</b> modifiche effettuate da questo Utente negli ultimi <b>$2</b> giorni.',
-'uclinks'    => 'Vedi le ultime $1 modifiche; vedi gli ultimi $2 giorni.',
 'uctop'      => '(ultima par ła paxèna)',
 
 # What links here
@@ -779,7 +781,18 @@ Per cortesia, conferma che questo è effettivamente quanto tu intendi ora effett
 
 # Move page
 'move-page-legend'        => 'Spostamento de paxèna',
-'movepagetext'            => "Con el modulo sottostante te podi rinominar na paxèna, spostando anca tuta la so cronołogia al novo nome. El vecio titoło diverrà automaticamente un redirect che punta al novo titoło. I link a la vecia paxèna non sarà agiornai (e i punterà quindi al redirect); azsertai de [[Special:Manutenzsion|controłare con cura]] che non se crea doppi redirects o redirects interroti. Resta ne la to responsabilità de accertarte che i link i continua a puntare verso dove i deve dirigerse. Nota ben: la paxèna '''non''' sarà spostà se ve fusse xà una voçe con el novo nome, a meno che non sia na paxèna voda o un redirect, e sempre che non abbia cronologia. Questo significa che, se te commetti un error, te podi novamente rinominar na paxèna col vecio titoło, ma non te podi sovrascriver na paxèna xà esistente. <b>ATTENZSION!</b> Sto cambiamento drastico podaria crear inattesi contrattempi, specialmente se se tratta de na paxèna molto visità. Accertai de aver ben valutà le conseguenzse de lo spostamento, prima de procedere. Nel dubbio, contatta un Aministrador.",
+'movepagetext'            => "Con el modulo sottostante te podi rinominar na paxèna, spostando anca tuta la so cronołogia al novo nome.
+El vecio titoło diverrà automaticamente un redirect che punta al novo titoło.
+I link a la vecia paxèna non sarà agiornai (e i punterà quindi al redirect);
+azsertai de [[Special:Manutenzsion|controłare con cura]] che non se crea doppi redirects o redirects interroti.
+Resta ne la to responsabilità de accertarte che i link i continua a puntare verso dove i deve dirigerse.
+
+Nota ben: la paxèna '''non''' sarà spostà se ve fusse xà una voçe con el novo nome, a meno che non sia na paxèna voda o un redirect, e sempre che non abbia cronologia.
+Questo significa che, se te commetti un error, te podi novamente rinominar na paxèna col vecio titoło, ma non te podi sovrascriver na paxèna xà esistente.
+
+'''ATTENZSION!'''
+Sto cambiamento drastico podaria crear inattesi contrattempi, specialmente se se tratta de na paxèna molto visità.
+Accertai de aver ben valutà le conseguenzse de lo spostamento, prima de procedere.",
 'movepagetalktext'        => "La corrispondente paxèna de discussion sarà spostà automaticamente insieme a ła paxèna prinçipałe, '''tranne che nei seguenti casi:'''
 * Lo spostamento de ła paxèna xè tra namespace diversi
 * In corrispondenzsa del novo titoło esiste xà na paxèna de discussion (non voda)

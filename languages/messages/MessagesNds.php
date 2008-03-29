@@ -503,7 +503,8 @@ Query: $2',
 'namespaceprotected'   => "Du hest keen Rechten, Sieden in’n Naamruum '''$1''' to ännern.",
 'customcssjsprotected' => 'Du hest keen Rechten, disse Siet to ännern. Dor sünd persönliche Instellungen vun en annern Bruker in.',
 'ns-specialprotected'  => 'Sieden in’n Naamruum {{ns:special}} köönt nich ännert warrn.',
-'titleprotected'       => 'Disse Siet is gegen dat nee Opstellen vun [[{{ns:user}}:$1]] schuult worrn. As Grund is angeven: <i>$2</i>.',
+'titleprotected'       => "Disse Siet is gegen dat nee Opstellen vun [[{{ns:user}}:$1]] schuult worrn.
+As Grund is angeven: ''$2''.",
 
 # Login and logout pages
 'logouttitle'                => 'Bruker-Afmellen',
@@ -732,7 +733,7 @@ Dat du bescheed weetst, worüm de Siet vörher wegsmeten worrn is, hier nu de Ut
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Brukerkonto kann nich anleggt warrn',
-'cantcreateaccount-text' => "Dat Opstellen vun Brukerkonten vun de IP-Adress <b>$1</b> ut is vun [[User:$3|$3]] sperrt worrn.
+'cantcreateaccount-text' => "Dat Opstellen vun Brukerkonten vun de IP-Adress '''$1''' ut is vun [[User:$3|$3]] sperrt worrn.
 
 De Grund weer: ''$2''",
 
@@ -1506,8 +1507,6 @@ $1',
 'mycontris'     => 'Mien Arbeid',
 'contribsub2'   => 'För $1 ($2)',
 'nocontribs'    => 'Kene Ännern för disse Kriterien funnen.',
-'ucnote'        => 'Dit sünd de letzten <b>$1</b> Bidreeg vun de Bruker in de letzten <b>$2</b> Doog.',
-'uclinks'       => 'Wies de letzten $1 Bidreeg; wies de letzten $2 Daag.',
 'uctop'         => ' (aktuell)',
 'month'         => 'bet Maand:',
 'year'          => 'Bet Johr:',
@@ -1633,7 +1632,9 @@ Schall de Datenbank-Sparr redig beennt warrn?',
 # Move page
 'move-page'               => 'Schuuv „$1“',
 'move-page-legend'        => 'Siet schuven',
-'movepagetext'            => 'Mit dit Formular kannst du en Siet ümnömen, tosamen mit all Versionen. De ole Titel warrt to den ne’en wiederleidt. Verwiesen op den olen Titel warrt nich ännert un de Diskuschoonssiet warrt ok nich mitschaven.',
+'movepagetext'            => 'Mit dit Formular kannst du en Siet ümnömen, tosamen mit all Versionen.
+De ole Titel warrt to den ne’en wiederleidt.
+Verwiesen op den olen Titel warrt nich ännert un de Diskuschoonssiet warrt ok nich mitschaven.',
 'movepagetalktext'        => "De tohören Diskuschoonssiet warrt, wenn een dor is, mitverschaven, ''mit disse Utnahmen:''
 * Du schuffst de Siet in en annern Naamruum oder
 * dat gifft al en Diskuschoonssiet mit dissen Naam, oder

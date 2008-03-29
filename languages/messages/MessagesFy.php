@@ -397,7 +397,8 @@ Query: $2',
 'namespaceprotected'   => "Jo hawwe gjin rjochten om siden yn'e nammerûmte '''$1''' te bewurkjen.",
 'customcssjsprotected' => "Jo kinne dizze side net bewurkje, om't er persoanlike ynstellings fan in oare brûker befettet.",
 'ns-specialprotected'  => "Siden yn'e nammerûmte {{ns:special}} kinne net bewurke wurde.",
-'titleprotected'       => 'It oanmeitsjen fan dizze side is befeilige troch [[User:$1|$1]]. De oanfierde reden is <i>$2</i>.',
+'titleprotected'       => "It oanmeitsjen fan dizze side is befeilige troch [[User:$1|$1]].
+De oanfierde reden is ''$2''.",
 
 # Login and logout pages
 'logouttitle'               => 'Ofmelde',
@@ -1011,8 +1012,6 @@ troch de lêste ferzje út dy weromsette skiednis ferfangen.',
 'mycontris'     => 'Myn bydragen',
 'contribsub2'   => 'Foar "$1 ($2)"',
 'nocontribs'    => "Der binne gjin feroarings fûn dyt't hjirmei oerienkomme.",
-'ucnote'        => "Dit binne dizze brûker's leste <b>$1</b> feroarings yn de lêste <b>$2</b> dagen.",
-'uclinks'       => 'Besjoch de lêste $1 feroarings; besjoch de lêste $2 dagen.',
 'uctop'         => ' (boppen)',
 'month'         => 'Fan moanne (en earder):',
 'year'          => 'Fan jier (en earder):',

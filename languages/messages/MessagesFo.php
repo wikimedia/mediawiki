@@ -603,7 +603,7 @@ Vinarliga umhugsa at býta síðuna sundur í styttri pettir.</strong>',
 'nchanges'          => '$1 {{PLURAL:$1|broyting|broytingar}}',
 'recentchanges'     => 'Seinastu broytingar',
 'rcnote'            => "Niðanfyri {{PLURAL:$1|stendur '''1''' tann seinasta broytingin|standa '''$1''' tær seinastu broytingarnar}} {{PLURAL:$2|seinasta dagin|seinastu '''$2''' dagarnar}}, frá $3.",
-'rcnotefrom'        => 'Niðanfyri standa broytingarnar síðani <b>$2</b>, (upp til <b>$1</b> er sýndar).',
+'rcnotefrom'        => "Niðanfyri standa broytingarnar síðani '''$2''', (upp til '''$1''' er sýndar).",
 'rclistfrom'        => 'Sýn nýggjar broytingar byrjandi við $1',
 'rcshowhideminor'   => '$1 minni rættingar',
 'rcshowhideliu'     => '$1 skrásettar brúkarar',
@@ -749,9 +749,7 @@ Hvørt rað inniheldur slóðir til fyrstu og aðru ávísing, umframt tekstin �
 'ancientpages'            => 'Elstu síður',
 'move'                    => 'Flyt',
 'movethispage'            => 'Flyt hesa síðuna',
-'unusedimagestext'        => '<p>Vinarliga legg merki til, at vevsíður kunnu slóða til eina mynd við
-beinleiðis URL, so hon kann síggjast her hóast at hon er
-í regluligari nýtslu.</p>',
+'unusedimagestext'        => 'Vinarliga legg merki til, at vevsíður kunnu slóða til eina mynd við beinleiðis URL, so hon kann síggjast her hóast at hon er í regluligari nýtslu.',
 'notargettitle'           => 'Onki mál',
 
 # Book sources
@@ -881,7 +879,6 @@ Sí $2 fyri fulla skráseting av strikingum.',
 'contributions' => 'Brúkaraíkast',
 'mycontris'     => 'Mítt íkast',
 'contribsub2'   => 'Eftir $1 ($2)',
-'uclinks'       => 'Skoða seinastu $1 broytingarnar; skoða seinastu $2 dagarnar.',
 'uctop'         => '(ovast)',
 'month'         => 'Frá mánaði (og áðrenn):',
 'year'          => 'Frá ár (og áðrenn):',
@@ -933,22 +930,19 @@ at læsa dátugrunnin upp aftur tá ið viðgerðin er liðug.',
 
 # Move page
 'move-page-legend'        => 'Flyt síðu',
-'movepagetext'            => "Við frymlinum niðanfyri kanst tú umnevna eina síðu og flyta alla
-hennara søgu við til nýggja navnið.
+'movepagetext'            => "Við frymlinum niðanfyri kanst tú umnevna eina síðu og flyta alla hennara søgu við til nýggja navnið.
 Gamla navnið verður ein tilvísingarsíða til ta nýggju.
-Slóðirnar til gomlu síðuna verða ikki broyttar. Ansa eftir at
-[[Special:Maintenance|kanna]] um tvífaldar ella brotnar tilvísingar eru.
-Tú hevur ábyrgdina fyri at ansa eftir at
-slóðir framvegis fara hagar, tær skulu.
+Slóðirnar til gomlu síðuna verða ikki broyttar.
+Ansa eftir at [[Special:Maintenance|kanna]] um tvífaldar ella brotnar tilvísingar eru.
+Tú hevur ábyrgdina fyri at ansa eftir at slóðir framvegis fara hagar, tær skulu.
 
-Legg merki til at síðan '''ikki''' verður flutt, um
-ein síða longu er við nýggja navninum, uttan at hon er tóm og
-onga søgu hevur. Hetta merkir at tú kanst umnevna eina síðu aftur hagani hon kom, um tú gjørdi eitt mistak. Tú kanst ikki skriva yvir eina verandi síðu.
+Legg merki til at síðan '''ikki''' verður flutt, um ein síða longu er við nýggja navninum, uttan at hon er tóm og onga søgu hevur.
+Hetta merkir at tú kanst umnevna eina síðu aftur hagani hon kom, um tú gjørdi eitt mistak.
+Tú kanst ikki skriva yvir eina verandi síðu.
 
-<b>ÁVARING!</b>
+'''ÁVARING!'''
 Hetta kann vera ein ógvuslig og óvæntað flyting av einari vældámdari síðu.
-Vinarliga tryggja tær, at tú skilur avleiðingarnar av hesum áðrenn
-tú heldur áfam.",
+Vinarliga tryggja tær, at tú skilur avleiðingarnar av hesum áðrenn tú heldur áfam.",
 'movearticle'             => 'Flyt síðu:',
 'movenologin'             => 'Hevur ikki ritað inn',
 'newtitle'                => 'Til nýtt heiti:',

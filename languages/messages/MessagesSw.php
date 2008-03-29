@@ -352,7 +352,7 @@ Ufunguo: (sasa) = tofauti na toleo la sasa, (kabla) = tofauti na toleo lililotan
 'recentchanges'                  => 'Mabadiliko ya karibuni',
 'recentchanges-feed-description' => 'Tumia tawanyiko hili kufuatilia mabadiliko yote ya hivi karibuni katika Wiki.',
 'rcnote'                         => "Yanayofuata {{PLURAL:$1|ni badiliko '''1'''|ni mabadiliko '''$1''' ya mwisho}} kutoka katika {{PLURAL:$2|siku iliyopita|siku '''$2''' zilizopita}}, hadi $3.",
-'rcnotefrom'                     => 'Hapo chini yaonekana mabadiliko tangu <b>$2</b> (tunaonyesha hadi <b>$1</b>).',
+'rcnotefrom'                     => "Hapo chini yaonekana mabadiliko tangu '''$2''' (tunaonyesha hadi '''$1''').",
 'rclistfrom'                     => 'Onyesha mabadiliko mapya kuanzia $1',
 'rcshowhideminor'                => '$1 mabadiliko madogo',
 'rcshowhidebots'                 => '$1 roboti',
@@ -509,7 +509,7 @@ Ukitaka kufuta ukurasa huo kutoka maangalizi yako baadaye, bonyeza \"Acha kufuat
 'watchlist-hide-own'   => 'Ficha hariri zangu',
 'watchlist-hide-minor' => 'Ficha mabadiliko madogo',
 
-# Displayed when you click the "watch" button and it's in the process of watching
+# Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Unafuatilia...',
 'unwatching' => 'Umeacha kufuatilia...',
 
@@ -591,24 +591,18 @@ Hivi ni vipimo kwa ukurasa <strong>$1</strong>:',
 
 # Move page
 'move-page-legend' => 'Sogeza ukurasa',
-'movepagetext'     => "Fomu hapo chini itabadilisha jina la ukurasa,
-na itasogeza historia yake yote katika jina jipya lile lile.
+'movepagetext'     => "Fomu hapo chini itabadilisha jina la ukurasa, na itasogeza historia yake yote katika jina jipya lile lile.
 Jina la awali litakuwa elekezo hadi jina jipya.
 Viungo vilivyounganishwa na ukurasa wa awali havitabadilishwa;
 tafadhali tafutia maelekezo yenye hitilafu na maelekezo mawilimawili.
-Wewe una madaraka kuhakikisha kwamba viungo viendelee
-kuelekea vinapolengwa.
+Wewe una madaraka kuhakikisha kwamba viungo viendelee kuelekea vinapolengwa.
 
-Uwe mwangalifu kwamba ukurasa '''hautasogezwa''' kama tayari
-kuna ukurasa wenye jina jipya, ila ni tupu au ni maelekezo na
-hauna historia ya kuhaririwa.  Yaani unaweza kurudisha ukurasa
-kwenye jina la awali ukikosa, na haiwezekani kufuta
-ukurasa mwingine kwa nasibu.
+Uwe mwangalifu kwamba ukurasa '''hautasogezwa''' kama tayari kuna ukurasa wenye jina jipya, ila ni tupu au ni maelekezo na hauna historia ya kuhaririwa.
+Yaani unaweza kurudisha ukurasa kwenye jina la awali ukikosa, na haiwezekani kufuta ukurasa mwingine kwa nasibu.
 
-<b>ILANI!</b>
-Kusogeza ukurasa wenye wasomaji wengi kunaweza kuathirika
-watumiaji wetu. Tafadhali hakikisha kwamba unaelewa
-matokeo ya kitendo hiki kabla ya kuendelea.",
+'''ILANI!'''
+Kusogeza ukurasa wenye wasomaji wengi kunaweza kuathirika watumiaji wetu.
+Tafadhali hakikisha kwamba unaelewa matokeo ya kitendo hiki kabla ya kuendelea.",
 'movepagetalktext' => "Ukurasa wa majadiliano wa ukurasa huu utasogezwa pamoja yake
 '''ila:'''
 *tayari kuna ukurasa wa majadiliano (usiyo tupu) kwenye jina jipya, au

@@ -175,7 +175,7 @@ $messages = array(
 'tog-previewontop'            => 'Zobrazovať náhľad pred textovým poľom úprav, nie až za ním',
 'tog-previewonfirst'          => 'Zobraziť náhľad pred prvou úpravou',
 'tog-nocache'                 => 'Zakázať priebežné ukladanie stránok do vyrovnávacej pamäte',
-'tog-enotifwatchlistpages'    => 'Upozorniť ma emailom, keď sa stránka zmení',
+'tog-enotifwatchlistpages'    => 'Upozorniť ma emailom, keď sa zmení stránka z môjho zoznamu sledovaných',
 'tog-enotifusertalkpages'     => 'Upozorniť ma emailom po zmene mojej používateľskej diskusnej stránky',
 'tog-enotifminoredits'        => 'Upozorniť ma emailom aj na drobné úpravy stránok',
 'tog-enotifrevealaddr'        => 'Zobraziť moju emailovú adresu v emailoch s upozorneniami',
@@ -503,7 +503,8 @@ $2',
 'namespaceprotected'   => "Nemáte povolenie upravovať stránky v mennom priestore '''$1'''.",
 'customcssjsprotected' => 'Nemáte povolenie na úpravu tejto stránky, pretože obsahuje osobné nastavenia iného používateľa.',
 'ns-specialprotected'  => 'Stránky v mennom pristore {{ns:special}} nie je možné upravovať.',
-'titleprotected'       => 'Používateľ [[User:$1|$1]] zabránil vytváraniu stránky s týmto názvom. Udaný dôvod: <i>$2</i>.',
+'titleprotected'       => "Používateľ [[User:$1|$1]] zabránil vytváraniu stránky s týmto názvom.
+Udaný dôvod: ''$2''.",
 
 # Login and logout pages
 'logouttitle'                => 'Odhlásiť používateľa',
@@ -719,13 +720,11 @@ Ak ste sa sem dostali nechtiac, iba kliknite na tlačidlo '''späť''' vo svojom
 'editingsection'            => 'Úprava stránky $1 (sekcia)',
 'editingcomment'            => 'Úprava stránky $1 (komentár)',
 'editconflict'              => 'Konflikt pri úprave: $1',
-'explainconflict'           => 'Niekto iný zmenil túto stránku, zatiaľ čo
-ste ju upravovali vy.
+'explainconflict'           => "Niekto iný zmenil túto stránku, zatiaľ čo ste ju upravovali vy.
 Horné okno na úpravy obsahuje text stránky tak, ako je momentálne platný.
 Vaše úpravy sú uvedené v dolnom okne na úpravy.
 Budete musieť zlúčiť vaše zmeny s existujúcim textom.
-<b>Iba</b> obsah horného okna sa uloží, keď
-stlačíte „{{MediaWiki:savearticle}}“.<br />',
+'''Iba''' obsah horného okna sa uloží, keď stlačíte „{{MediaWiki:savearticle}}“.",
 'yourtext'                  => 'Váš text',
 'storedversion'             => 'Uložená verzia',
 'nonunicodebrowser'         => '<strong>UPOZORNENIE: Váš prehliadač nepodporuje unicode. Dočasným riešením ako bezpečne upravovať stránky je, že ne-ASCII znaky sa v upravovacom textovom poli zobrazia ako zodpovedajúce hexadecimálne hodnoty.</strong>',
@@ -778,7 +777,7 @@ Odkaz na záznam zmazaní:",
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Nie je možné vytvoriť účet',
-'cantcreateaccount-text' => "Tvorbu účtov z tejto IP adresy (<b>$1</b>) zablokoval [[User:$3|$3]].
+'cantcreateaccount-text' => "Tvorbu účtov z tejto IP adresy ('''$1''') zablokoval [[User:$3|$3]].
 
 Dôvod, ktorý $3 uviedol, je ''$2''",
 
@@ -1048,7 +1047,7 @@ odobrať používateľa. Neoznačené skupiny nebudú zmenené. Odobrať skupinu
 'recentchangestext'                 => 'Pomocou tejto stránky sledujete posledné úpravy stránok {{GRAMMAR:genitív|{{SITENAME}}}}.',
 'recentchanges-feed-description'    => 'Sledovať posledné úpravy tejto wiki týmto kanálom.',
 'rcnote'                            => "Tu {{PLURAL:$1|je posledná uprava|sú posledné '''$1''' úpravy|je posledných '''$1''' úprav}} počas {{PLURAL:$2|posledného dňa|posledných '''$2''' dní}} ($3).",
-'rcnotefrom'                        => 'Nižšie sú zobrazené úpravy od <b>$2</b> (do <b>$1</b>).',
+'rcnotefrom'                        => "Nižšie sú zobrazené úpravy od '''$2''' (do '''$1''').",
 'rclistfrom'                        => 'Zobraziť nové úpravy počnúc od $1',
 'rcshowhideminor'                   => '$1 drobné úpravy',
 'rcshowhidebots'                    => '$1 botov',
@@ -1079,7 +1078,7 @@ odobrať používateľa. Neoznačené skupiny nebudú zmenené. Odobrať skupinu
 'upload'                      => 'Nahrať súbor',
 'uploadbtn'                   => 'Nahrať súbor',
 'reupload'                    => 'Zopakovať nahranie',
-'reuploaddesc'                => 'Späť k nahrávaciemu formuláru.',
+'reuploaddesc'                => 'Zrušiť nahrávanie a vrátiť sa späť na nahrávací formulár.',
 'uploadnologin'               => 'Nie ste prihlásený',
 'uploadnologintext'           => 'Musíte byť [[Special:Userlogin|prihlásený/á]], aby ste mohli nahrávať súbory.',
 'upload_directory_read_only'  => 'Webový server nemôže zapisovať do adresára pre nahrávanie ($1).',
@@ -1141,6 +1140,7 @@ Ak je kontrolovaný súbor rovnaký obrázok v pôvodnej veľkosti, nie je potre
 'uploadvirus'                 => 'Súbor obsahuje vírus! Podrobnosti: $1',
 'sourcefilename'              => 'Názov zdrojového súboru:',
 'destfilename'                => 'Názov cieľového súboru:',
+'upload-maxfilesize'          => 'Maximálna veľkosť súboru: $1',
 'watchthisupload'             => 'Sleduj túto stránku',
 'filewasdeleted'              => 'Súbor s týmto názvom bol už nahraný a následne zmazaný. Mali by ste skontrolovať $1 predtým, ako budete pokračovať na opätovné nahranie.',
 'upload-wasdeleted'           => "'''Upozornenie: Nahrávate súbor, ktorý bol predtým zmazaný.'''
@@ -1354,7 +1354,7 @@ z čoho '''$2''' (alebo '''$4 %''') {{PLURAL:$2|je správca|sú správcovia}} (p
 'ancientpages'            => 'Najdávnejšie upravované stránky',
 'move'                    => 'Presunúť',
 'movethispage'            => 'Presunúť túto stránku',
-'unusedimagestext'        => '<p>Prosím, uvedomte si, že iné web stránky môžu odkazovať na tento súbor priamo URL adresou a tak tu môžu byť uvedené napriek tomu, že ich externé stránky používajú.</p>',
+'unusedimagestext'        => 'Prosím, uvedomte si, že iné web stránky môžu odkazovať na tento súbor priamo URL adresou a tak tu môžu byť uvedené napriek tomu, že ich externé stránky používajú.',
 'unusedcategoriestext'    => 'Nasledujúce kategórie existujú napriek tomu, že do nich nie je zaradená žiadna stránka.',
 'notargettitle'           => 'Nebol zadaný cieľ',
 'notargettext'            => 'Nezadali ste cieľovú stránku alebo používateľa,
@@ -1644,8 +1644,6 @@ $1',
 'mycontris'     => 'Moje príspevky',
 'contribsub2'   => 'Príspevky $1 ($2)',
 'nocontribs'    => 'Neboli nájdené úpravy, ktoré by zodpovedali týmto kritériám.',
-'ucnote'        => 'Nižšie je posledných <b>$1</b> úprav od tohto používateľa uskutočnených počas posledných <b>$2</b> dní.',
-'uclinks'       => 'Zobraziť posledných $1 úprav; zobraziť posledných $2 dní.',
 'uctop'         => '(posledná úprava)',
 'month'         => 'Mesiac:',
 'year'          => 'Rok:',
@@ -1788,19 +1786,16 @@ Nezabudnite po dokončení údržby [[Special:Unlockdb|odstrániť zámok]].',
 Starý názov sa stane presmerovacou stránkou na nový názov.
 Odkazy na starú stránku sa však nezmenia, ubezpečte sa, že ste skontrolovali
 výskyt dvojitých alebo pokazených presmerovaní.
-Vy ste zodpovedný za to, aby odkazy naďalej ukazovali
-tam, kam majú.
+Vy ste zodpovedný za to, aby odkazy naďalej ukazovali tam, kam majú.
 
-Uvedomte si, že stránka sa '''nepremiestni''', ak pod novým názvom
-už stránka existuje. Toto neplatí iba ak je stránka prázdna alebo presmerovacia a nemá
-žiadne predchádzajúce verzie. To znamená, že môžete premenovať stránku späť na názov,
-ktorý mala pred premenovaním, ak ste sa pomýlili, a že nemôžete prepísať
+Uvedomte si, že stránka sa '''nepremiestni''', ak pod novým názvom už stránka existuje.
+Toto neplatí iba ak je stránka prázdna alebo presmerovacia a nemá žiadne predchádzajúce verzie.
+To znamená, že môžete premenovať stránku späť na názov, ktorý mala pred premenovaním, ak ste sa pomýlili, a že nemôžete prepísať
 existujúcu stránku.
 
-<b>UPOZORNENIE!</b>
+'''UPOZORNENIE!'''
 Toto môže byť drastická a nečakaná zmena pre populárnu stránku;
-ubezpečte sa preto, skôr ako budete pokračovať, že chápete
-dôsledky svojho činu.",
+ubezpečte sa preto, skôr ako budete pokračovať, že chápete dôsledky svojho činu.",
 'movepagetalktext'        => "Príslušná diskusná stránka (ak existuje) bude premiestnená spolu so samotnou stránkou; '''nestane sa tak, iba ak:'''
 *už existuje Diskusná stránka pod týmto novým menom, alebo
 *nezaškrtnete nižšie sa nachádzajúci textový rámček.

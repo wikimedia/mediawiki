@@ -392,7 +392,8 @@ $2",
 'namespaceprotected'   => "Je ei hin rechen om pagina's in de naemruumte '''$1''' te bewerken.",
 'customcssjsprotected' => 'Je kan deêze pagina nie bewerken, omda die persoônlijke instelliengen van een aore gebruker bevat.',
 'ns-specialprotected'  => 'Pagina\'s in de naemruumte "{{ns:special}}" kunn\'n nie bewerkt worn.',
-'titleprotected'       => "'t Anmaeken van deêze pagina is beveiligd deur [[User:$1|$1]]. De heheven reeën is <i>$2</i>.",
+'titleprotected'       => "'t Anmaeken van deêze pagina is beveiligd deur [[User:$1|$1]].
+De heheven reeën is ''$2''.",
 
 # Login and logout pages
 'logouttitle'                => 'Gebruker afmelden',
@@ -562,30 +563,73 @@ Je udihe IP-adres is $3 en 't blokkaodenummer is #$5. Vermeld beie hehevens a je
 'whitelistacctitle'         => "'t Anmaeken van nieuwe gebrukers is nie toehestaen",
 'whitelistacctext'          => 'Je dien [[Special:Userlogin|anemeld]] te zien en de juuste rechen te ène om gebrukers an te maeken in {{SITENAME}}.',
 'confirmedittitle'          => 'E-mailbevestigieng is verplicht voeda je kan bewerken',
+'confirmedittext'           => "Je mò jen e-mailadres bevestihen voe da je kan bewerken.
+Voer jen e-mailadres in en bevestig 't via [[Special:Preferences|je vòkeuren]].",
 'nosuchsectiontitle'        => 'Deêze subkop besti nie',
+'nosuchsectiontext'         => 'Je probeern een subkop te bewerken die a nie besti. Omda subkop $1 nie besti, kan je bewerkieng ok nie worn opeslogen.',
 'loginreqtitle'             => 'Anmelden verplicht',
 'loginreqlink'              => 'anmelden',
 'loginreqpagetext'          => "$1 is verplicht om aore pagina's te kunn'n ziene.",
 'accmailtitle'              => 'Wachtwoord verstierd.',
 'accmailtext'               => "'t Wachtwoord vò $1 is nae $2 opgestierd.",
 'newarticle'                => '(Nieuw)',
+'newarticletext'            => "Deêze pagina besti nie. Typ in 't onderstaende veld om de pagina an te maeken (meêr informatie sti op de [[{{MediaWiki:Helppage}}|ulppagina]]).
+Gebruuk de knoppe '''vorige''' in je browser as je ier per ongeluk terecht bin ekomm'n.",
 'anontalkpagetext'          => "----''Dit is de overlegbladzie vò 'n anonieme gebruker die-a gin inlognaem eit of 'm nie gebruukt. Zien/eur IP-adres kan deu meêr as eên gebruker gebruukt ore. A je 'n bericht gekrege è dat-a dudelik nie an joe gericht is, ka je 't beste [[Speciaol:Userlogin|jen eige anmelde]] om zukke verwarrienge in 't vervolg te vòkommen.''",
+'noarticletext'             => 'Deêze pagina bevat hin tekst.
+Je kan [[Special:Search/{{PAGENAME}}|ni deêze term zoeken]] in aore pagina\'s of <span class="plainlinks">[{{fullurl:{{FULLPAGENAME}}|action=edit}} deêze pagina bewerken]</span>.',
+'userpage-userdoesnotexist' => 'Je bewerk een gebrukerspagina van een gebruker die a nie besti (gebruker "$1"). Controleer of a je deêze pagina wè wil anmaeken/bewerken.',
+'clearyourcache'            => '\'\'\'Let op!\'\'\' Leeg je cache naeda je de wiezigiengen ei opeslogen.
+
+{| border="1" cellpadding="3" class=toccolours style="border: 1px #AAAAAA solid; border-collapse: collapse;"
+| Mozilla/Safari/Konqueror || CTRL-SHIFT-R
+|-
+| IE || CTRL-F5
+|-
+| Opera || F5
+|-
+| Safari || CMD-R
+|-
+| Konqueror || F5
+|}',
+'usercssjsyoucanpreview'    => "<strong>Tip:</strong> Gebruuk de knoppe 'Naekieken' om je nieuwe CSS/JS te tessen voe da je opsli.",
+'usercsspreview'            => "'''Dit is alleên een voeôvertonieng van je persoônlijke CSS, dezen is nog nie opeslogen!'''",
+'userjspreview'             => "'''Let op: je test noe je persoônlijke JavaScript. De pagina is nie opeslogen!'''",
+'userinvalidcssjstitle'     => "'''Waerschuwieng:''' der is hin skin \"\$1\". Let op: jen eihen .css- en .js-pagina's behunnen mie een kleine letter, buvobbeld {{ns:user}}:Naem/monobook.css in plekke van {{ns:user}}:Naem/Monobook.css.",
 'updated'                   => '(Biehewerkt)',
 'note'                      => '<strong>Opmerkieng:</strong>',
 'previewnote'               => '<strong>Let op: dit is een controlepagina; je tekst is nie opeslogen!</strong>',
 'previewconflict'           => "Deêze voevertoônieng heef an oe a de tekst in 't bovenste veld deruut zie a je die opsli.",
+'session_fail_preview'      => "<strong>Sorry! Je bewerkieng is nie verwerkt, omdan de sessiehehevens verloorn zien ehaen.
+Probeer 't opnieuw. A 't dan nog nie luk, mel jen eihen dan of en wee an.</strong>",
 'session_fail_preview_html' => "<strong>Sorry! Je bewerkieng is nie verwerkt, omdan sessiehehevens verloren zien ehaene.</strong>
 
 ''Omda in {{SITENAME}} ruwe HTML is ineschaokeld, is een voevertoônieng nie meuhlijk as beschermieng tehen anvall'n mie JavaScript.''
 
 <strong>A dit een lehitieme bewerkieng is, probeer 't dan opnieuw. A 't dan nog nie luk, mel jen eihen dan of en wee an.</strong>",
+'token_suffix_mismatch'     => "<strong>Je bewerkieng is eweiherd omda je browser de leesteêkens in 't bewerkiengstoken onjuust ei behandeld.
+De bewerkieng is eweiherd om vermienkieng van de paginatekst te voorkomm'n.
+Dit gebeur soms a der een webhebaseerde proxydienst wor gebruukt die a fout'n bevat.</strong>",
 'editing'                   => 'Bezig mie bewerken van $1',
 'editingsection'            => 'Bezig mie bewerken van $1 (deêlpagina)',
 'editingcomment'            => 'Bezig mie bewerken van $1 (opmerkieng)',
 'editconflict'              => 'Bewerkiengsconflict: $1',
+'explainconflict'           => "Een aore gebruker ei deêze pagina bewerkt sins a je mie je bewerkieng bin behonnen.
+In 't bovenste deêl van 't venster sti de tekst van de udihe pagina.
+Je bewerkieng sti in 't onderste hedeêlte.
+Je dien je bewerkiengen in te voehen in de bestaende tekst.
+<b>Alleên</b> de tekst in 't bovenste hedeêlte wor opeslogen a je op \"Pagina opslaen\" klik.<br />",
 'yourtext'                  => 'Joe tekst',
 'storedversion'             => 'Opeslogen versie',
 'yourdiff'                  => 'Wiezigiengen',
+'copyrightwarning'          => "Opelet: Aolle biedraegen an {{SITENAME}} worn eacht te zien vrie'eheven onder de $2 (zie $1 voe details).
+A je nie wil da je tekst deur aore ni believen bewerkt en verspreid kan worn, kies dan nie voe 'Pagina Opslaen'.<br />
+Ierbie beloof je ons ok da je deêze tekst zelf eschreven ei, of overenomen uut een vrieë, openbaere bron.<br />
+<strong>GEBRUUK HIN MATERIAOL DAT A BESCHERMD WOR DEUR AUTEURSRECHT, TENZIE A JE DIVOE TOESTEMMIENG                   EI!</strong>",
+'copyrightwarning2'         => "Al je biedraehen an {{SITENAME}} kunn'n bewerkt, ewiezigd of verwiederd worn deur aore gebrukers.
+A je nie wil dan je teksen rihoreus anepast worn deur aore, plek ze ier dan nie.<br />
+Je beloof ok da je de oôrspronkelijke auteur bin van dit materiaol, of da je 't ei ekopieerd uut een bron in 't publieke domein, of een soôrthelieke vrieë bron (zie $1 voor details).
+<strong>GEBRUUK HIN MATERIAOL DAT A BESCHERMD WOR DEUR AUTEURSRECHT, TENZIE A JE DIVOE TOESTEMMIENG EI!</strong>",
 'semiprotectedpagewarning'  => "'''Let op:''' deêze pagina is beveiligd en kan allaen deur herehistreerde gebrukers bewerkt worn.",
 'titleprotectedwarning'     => "<strong>WAERSCHUWIENG: Deêze pagina is beveiligd zodan allaen ienkele gebrukers 't kunn'n anmaeken.</strong>",
 'templatesused'             => "Op deêze pagina gebruukte sjabloon'n:",
@@ -607,6 +651,9 @@ Overweeg of a 't terecht is dat je vadder werk an deêze pagina. Voe je hemak st
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Anmaeken gebruker mislukt.',
+'cantcreateaccount-text' => "'t Anmaeken van gebrukers van dit IP-adres (<b>$1</b>) is eblokkeerd deur [[User:$3|$3]].
+
+De deur $3 opeheven reeën is ''$2''",
 
 # History pages
 'viewpagelogs'        => 'Bekiek de logboeken vò deêze bladzie',

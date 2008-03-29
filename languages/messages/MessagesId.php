@@ -612,7 +612,8 @@ $2',
 'namespaceprotected'   => "Anda tak memiliki hak untuk menyunting halaman di ruang nama '''$1'''.",
 'customcssjsprotected' => 'Anda tak memiliki hak menyunting halaman ini karena mengandung pengaturan pribadi pengguna lain.',
 'ns-specialprotected'  => 'Halaman pada ruang nama {{ns:special}} tidak dapat disunting.',
-'titleprotected'       => 'Judul ini dilindungi dari pembuatan oleh [[User:$1|$1]]. Alasan yang diberikan adalah <i>$2</i>.',
+'titleprotected'       => "Judul ini dilindungi dari pembuatan oleh [[User:$1|$1]].
+Alasan yang diberikan adalah ''$2''.",
 
 # Login and logout pages
 'logouttitle'                => 'Keluar log pengguna',
@@ -1474,7 +1475,7 @@ Telah dimuat sejumlah '''$8''' berkas dan sedang terjadi '''$7''' [http://meta.w
 'watchlist-show-minor' => 'Tampilkan suntingan kecil',
 'watchlist-hide-minor' => 'Sembunyikan suntingan kecil',
 
-# Displayed when you click the "watch" button and it's in the process of watching
+# Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Memantau...',
 'unwatching' => 'Menghilangkan pemantauan...',
 
@@ -1640,8 +1641,6 @@ $1',
 'mycontris'     => 'Kontribusi saya',
 'contribsub2'   => 'Untuk $1 ($2)',
 'nocontribs'    => 'Tidak ada perubahan yang sesuai dengan kriteria tersebut.',
-'ucnote'        => 'Berikut adalah <strong>$1</strong> suntingan terakhir pengguna ini dalam <strong>$2</strong> hari terakhir.',
-'uclinks'       => 'Menampilkan $1 perubahan terakhir; menampilkan $2 hari terakhir.',
 'uctop'         => ' (atas)',
 'month'         => 'Sejak bulan (dan sebelumnya):',
 'year'          => 'Sejak tahun (dan sebelumnya):',

@@ -479,7 +479,8 @@ $2',
 'namespaceprotected'   => "Non si dispone dei permessi necessari per modificare le pagine del namespace '''$1'''.",
 'customcssjsprotected' => 'Non si dispone dei permessi necessari alla modifica della pagina, in quanto contiene le impostazioni personali di un altro utente.',
 'ns-specialprotected'  => 'Non è possibile modificare le pagine del namespace {{ns:special}}.',
-'titleprotected'       => 'La creazione di una pagina con questo titolo è stata bloccata da [[User:$1|$1]]. La motivazione è la seguente: <i>$2</i>.',
+'titleprotected'       => "La creazione di una pagina con questo titolo è stata bloccata da [[User:$1|$1]].
+La motivazione è la seguente: ''$2''.",
 
 # Login and logout pages
 'logouttitle'                => 'Logout utente',
@@ -734,7 +735,7 @@ L'elenco delle relative cancellazioni viene riportato di seguito per comodità:"
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Impossibile registrare un utente',
-'cantcreateaccount-text' => "La creazione di nuovi account a partire da questo indirizzo IP (<b>$1</b>) è stata bloccata da [[User:$3|$3]].
+'cantcreateaccount-text' => "La creazione di nuovi account a partire da questo indirizzo IP ('''$1''') è stata bloccata da [[User:$3|$3]].
 
 La motivazione del blocco fornita da $3 è la seguente: ''$2''",
 
@@ -1088,6 +1089,7 @@ Se si dispone dell'immagine nella risoluzione originale, si prega di caricarla. 
 'uploadvirus'                 => 'Questo file contiene un virus! Dettagli: $1',
 'sourcefilename'              => 'Nome del file di origine:',
 'destfilename'                => 'Nome del file di destinazione:',
+'upload-maxfilesize'          => 'Dimensione massima del file: $1',
 'watchthisupload'             => 'Aggiungi agli osservati speciali',
 'filewasdeleted'              => 'Un file con questo nome è stato già caricato e cancellato in passato. Verificare $1 prima di caricarlo di nuovo.',
 'upload-wasdeleted'           => "'''Attenzione: stai caricando un file che in precedenza è stato cancellato.'''
@@ -1301,7 +1303,7 @@ Ciascuna riga contiene i collegamenti al primo ed al secondo redirect, oltre all
 'ancientpages'            => 'Pagine meno recenti',
 'move'                    => 'Sposta',
 'movethispage'            => 'Sposta questa pagina',
-'unusedimagestext'        => "<p>Si noti che è possibile realizzare collegamenti ai file da altri siti, usando direttamente la URL; questi potrebbero quindi essere utilizzati anche se compaiono nell'elenco.</p>",
+'unusedimagestext'        => "Si noti che è possibile realizzare collegamenti ai file da altri siti, usando direttamente la URL; questi potrebbero quindi essere utilizzati anche se compaiono nell'elenco.",
 'unusedcategoriestext'    => 'Le pagine delle categorie indicate di seguito sono state create ma non contengono nessuna pagina né sottocategoria.',
 'notargettitle'           => 'Dati mancanti',
 'notargettext'            => "Non è stata indicata una pagina o un utente in relazione al quale eseguire l'operazione richiesta.",
@@ -1574,8 +1576,6 @@ $1',
 'mycontris'     => 'Miei contributi',
 'contribsub2'   => 'Per $1 ($2)',
 'nocontribs'    => 'Non sono state trovate modifiche che soddisfino i criteri di ricerca.',
-'ucnote'        => "Di seguito sono elencate le <b>$1</b> modifiche più recenti effettuate dall'utente negli ultimi <b>$2</b> giorni.",
-'uclinks'       => 'Mostra le ultime $1 modifiche; mostra gli ultimi $2 giorni.',
 'uctop'         => ' (ultima per la pagina)',
 'month'         => 'A partire dal mese (e precedenti):',
 'year'          => "A partire dall'anno (e precedenti):",
@@ -2272,36 +2272,38 @@ I collegamenti successivi, sulla stessa riga, sono considerati come eccezioni (o
 'monthsall'        => 'tutti',
 
 # E-mail address confirmation
-'confirmemail'            => 'Conferma indirizzo e-mail',
-'confirmemail_noemail'    => 'Non è stato indicato un indirizzo e-mail valido nelle proprie [[Special:Preferences|preferenze]].',
-'confirmemail_text'       => "Questo sito richiede la verifica dell'indirizzo e-mail prima di poter usare le funzioni connesse all'email. Premere il pulsante qui sotto per inviare una richiesta di conferma al proprio indirizzo; nel messaggio è presente un collegamento che contiene un codice. Visitare il collegamento con il proprio browser per confermare che l'indirizzo e-mail è valido.",
-'confirmemail_pending'    => '<div class="error">
+'confirmemail'             => 'Conferma indirizzo e-mail',
+'confirmemail_noemail'     => 'Non è stato indicato un indirizzo e-mail valido nelle proprie [[Special:Preferences|preferenze]].',
+'confirmemail_text'        => "Questo sito richiede la verifica dell'indirizzo e-mail prima di poter usare le funzioni connesse all'email. Premere il pulsante qui sotto per inviare una richiesta di conferma al proprio indirizzo; nel messaggio è presente un collegamento che contiene un codice. Visitare il collegamento con il proprio browser per confermare che l'indirizzo e-mail è valido.",
+'confirmemail_pending'     => '<div class="error">
 Il codice di conferma è già stato spedito via posta elettronica; se l\'account è stato
 creato di recente, si prega di attendere l\'arrivo del codice per qualche minuto prima
 di tentare di richiederne uno nuovo.
 </div>',
-'confirmemail_send'       => 'Invia un codice di conferma via e-mail.',
-'confirmemail_sent'       => 'Messaggio e-mail di conferma inviato.',
-'confirmemail_oncreate'   => "Un codice di conferma è stato spedito all'indirizzo
+'confirmemail_send'        => 'Invia un codice di conferma via e-mail.',
+'confirmemail_sent'        => 'Messaggio e-mail di conferma inviato.',
+'confirmemail_oncreate'    => "Un codice di conferma è stato spedito all'indirizzo
 di posta elettronica indicato. Il codice non è necessario per accedere al sito,
 ma è necessario fornirlo per poter abilitare tutte le funzioni del sito che fanno
 uso della posta elettronica.",
-'confirmemail_sendfailed' => "Impossibile inviare il messaggio e-mail di conferma. Verificare che l'indirizzo non contenga caratteri non validi.
+'confirmemail_sendfailed'  => "Impossibile inviare il messaggio e-mail di conferma. Verificare che l'indirizzo non contenga caratteri non validi.
 
 Messaggio di errore del mailer: $1",
-'confirmemail_invalid'    => 'Codice di conferma non valido. Il codice potrebbe essere scaduto.',
-'confirmemail_needlogin'  => 'È necessario $1 per confermare il proprio indirizzo e-mail.',
-'confirmemail_success'    => "L'indirizzo e-mail è confermato. Ora è possibile eseguire l'accesso e fare pieno uso del sito.",
-'confirmemail_loggedin'   => "L'indirizzo e-mail è stato confermato.",
-'confirmemail_error'      => 'Errore nel salvataggio della conferma.',
-'confirmemail_subject'    => "{{SITENAME}}: richiesta di conferma dell'indirizzo",
-'confirmemail_body'       => 'Qualcuno, probabilmente tu stesso dall\'indirizzo IP $1, ha registrato l\'account "$2" su {{SITENAME}} indicando questo indirizzo e-mail.
+'confirmemail_invalid'     => 'Codice di conferma non valido. Il codice potrebbe essere scaduto.',
+'confirmemail_needlogin'   => 'È necessario $1 per confermare il proprio indirizzo e-mail.',
+'confirmemail_success'     => "L'indirizzo e-mail è confermato. Ora è possibile eseguire l'accesso e fare pieno uso del sito.",
+'confirmemail_loggedin'    => "L'indirizzo e-mail è stato confermato.",
+'confirmemail_error'       => 'Errore nel salvataggio della conferma.',
+'confirmemail_subject'     => "{{SITENAME}}: richiesta di conferma dell'indirizzo",
+'confirmemail_body'        => 'Qualcuno, probabilmente tu stesso dall\'indirizzo IP $1, ha registrato l\'account "$2" su {{SITENAME}} indicando questo indirizzo e-mail.
 
 Per confermare che l\'account ti appartiene e attivare le funzioni relative all\'invio di e-mail su {{SITENAME}}, apri il collegamento seguente con il tuo browser:
 
 $3
 
 Se l\'account *non* ti appartiene, non seguire il collegamento. Questo codice di conferma scadrà automaticamente alle $4.',
+'confirmemail_invalidated' => 'Richiesta di conferma indirizzo e-mail annullata',
+'invalidateemail'          => 'Annulla richiesta di conferma e-mail',
 
 # Scary transclusion
 'scarytranscludedisabled' => "[L'inclusione di pagine tra siti wiki non è attiva]",

@@ -346,7 +346,8 @@ $2',
 'namespaceprotected'   => "Nu tiinis premisu pa eital páhinas nel \"espaciu e nombris\" '''\$1'''.",
 'customcssjsprotected' => "Nu tiinis premisu pa eital esta páhina ebiu a que contieni la configuración presonal d'otru usuáriu.",
 'ns-specialprotected'  => 'Nu se puein eital las páhinas el {{ns:special}} "espaciu e nombris".',
-'titleprotected'       => 'Esti entítulu á siu atarugau pol [[User:$1|$1]]. La razón es la siguienti: <i>$2</i>.',
+'titleprotected'       => "Esti entítulu á siu atarugau pol [[User:$1|$1]].
+La razón es la siguienti: ''$2''.",
 
 # Login and logout pages
 'logouttitle'                => 'Salil',
@@ -556,11 +557,11 @@ Esti pobrema se dá angunas vezis si estás gastandu un proxy anónimu basau en 
 'editingsection'            => 'Eitandu $1 (seción)',
 'editingcomment'            => 'Eitandu $1 (comentáriu)',
 'editconflict'              => "Conflitu d'eición: $1",
-'explainconflict'           => 'Alguien á hechu chambus nesta páhina dendi que prencipiasti a eitala.
+'explainconflict'           => "Alguien á hechu chambus nesta páhina dendi que prencipiasti a eitala.
 El cuairu e testu superiol endica el testu que desisti atualmenti ena páhina.
 Los tus chambus se muestran nel cuairu e testu inferiol.
 Pa emburacal los tus chambus, ebis tresladalus al cuairu superiol.
-<b>Solu</b> s\'emburacará el testu el cuairu superiol cuandu pursis "Emburacal páhina".<br />',
+'''Solu''' s'emburacará el testu el cuairu superiol cuandu pursis \"Emburacal páhina\".",
 'yourtext'                  => 'El tu testu',
 'storedversion'             => 'Velsión emburacá',
 'nonunicodebrowser'         => "<strong>Atención: El tu escrucaol nu cumpri la norma Unicode. S'á ativau un sistema d'eición alternativu que te premitirá eital artículus con seguráncia, inque los carateris que nu seyan ASCII apaicirán nel cuairu d'eición cumu cóigus esadecimalis.</strong>",
@@ -606,7 +607,7 @@ Velaquí el rustrihu d'esborrau:",
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Nu es posibri crial la cuenta',
-'cantcreateaccount-text' => "La criación de cuentas pol parti e la IP (<b>$1</b>) á siu pará pol el usuáriu [[User:$3|$3]].
+'cantcreateaccount-text' => "La criación de cuentas pol parti e la IP ('''$1''') á siu pará pol el usuáriu [[User:$3|$3]].
 
 La razón dá pol $3 es ''$2''",
 
@@ -852,7 +853,7 @@ Asigurati e qu'esti chambu mantenga la continuiá el estorial la páhina.",
 'recentchangestext'                 => 'Sigui los úrtimus chambus d´esti güiqui nesta páhina.',
 'recentchanges-feed-description'    => 'Sigui los úrtimus chambus nel güiqui nesti feed.',
 'rcnote'                            => "Embahu se {{PLURAL:$1|muestra '''1''' chambu|muestran los úrtimus '''$1''' chambus}} {{PLURAL:$2|dendi ayel|enus úrtimus '''$2''' dias}}, atualizaus a las $3.",
-'rcnotefrom'                        => 'Embahu se muestran los chambus hechus dendi el <b>$2</b> (hata el <b>$1</b>).',
+'rcnotefrom'                        => "Embahu se muestran los chambus hechus dendi el '''$2''' (hata el '''$1''').",
 'rclistfrom'                        => 'Muestral los chambus hechus dendi el $1',
 'rcshowhideminor'                   => '$1 eicionis chiqueninas',
 'rcshowhidebots'                    => '$1 bots',
@@ -1137,8 +1138,7 @@ El longol de la [http://meta.wikimedia.org/wiki/Help:Job_queue cola e tareas] es
 'ancientpages'            => 'Páhinas mas antiguas',
 'move'                    => 'Movel',
 'movethispage'            => 'Movel esta páhina',
-'unusedimagestext'        => "<p>Pol favol, fíhati en qu'otras páhinas web puein atihal a una
-imahin con una URL direta, polo qu'están listás aquí, inque tengan un usu ativu.</p>",
+'unusedimagestext'        => "Pol favol, fíhati en qu'otras páhinas web puein atihal a una imahin con una URL direta, polo qu'están listás aquí, inque tengan un usu ativu.",
 'unusedcategoriestext'    => "Las siguientis categorias desistin, inque nu s'alcuentra denguna páhina/categoria en ellas.",
 'notargettitle'           => 'Dengún ohetivu',
 'notargettext'            => 'Nu as especificau una páhina ohetivu u un usuáriu sobri los que hazel esta hunción.',
@@ -1413,8 +1413,6 @@ $1',
 'mycontris'     => 'Los mis endirguis',
 'contribsub2'   => 'Pa $1 ($2)',
 'nocontribs'    => "Nu s'alcuentrun chambus con esus criterius.",
-'ucnote'        => 'Embahu están los úrtimus <b>$1</b> chambus d´esti usuáriu enus úrtimus <b>$2</b> dias.',
-'uclinks'       => 'Vel los úrtimus $1 chambus; vel los úrtimus $2 dias.',
 'uctop'         => '(úrtimu chambu)',
 'month'         => 'Mes:',
 'year'          => 'Añu:',
@@ -1553,7 +1551,7 @@ Eris responsabri e que los atihus acontinin llevandu andi se suponi que tienin q
 
 Pol otra parti, la páhina '''nu''' se moverá si ya desisti una páhina con el nombri nuevu, a nu sel que seya una páhina vacia u una redireción. Estu senifica que pueis gorvel a poneli el nombri antigu en chascu e marru, peru nu t'es posibri sobriescrebil una páhina ya desistenti.
 
-<b>Avisu!</b>
+'''Avisu!'''
 En páhinas popularis, esta ación puei arrepresental un chambu emportanti;
 pol favol, asigurati e qu'entiendis las consecuéncias enantis d'acontinal.",
 'movepagetalktext'        => "La caraba asociá se moverá con el artículu, '''a nus sel que:'''

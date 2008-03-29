@@ -456,7 +456,7 @@ Mande ou byen si ou ap byen fè kreye li ankò toutbon (gade jounal paj sa a pou
 'recentchanges'                  => 'Modifikasyon yo ki fèk fèt',
 'recentchanges-feed-description' => 'Swvi dènye modifikasyon pou wiki sa a nan flo sa a (RSS,Atom...)',
 'rcnote'                         => 'Men {{PLURAL:$1|dènye modifikasyon an|dènye $1 modifikasyon yo}} depi {{PLURAL:$2|dènye jou|<b>$2</b> dènye jou yo}}, tankou $3.',
-'rcnotefrom'                     => 'Men modifikasyon yo ki fèt depi <strong>$2</strong> (<b>$1</b> dènye).',
+'rcnotefrom'                     => "Men modifikasyon yo ki fèt depi '''$2''' ('''$1''' dènye).",
 'rclistfrom'                     => 'Afiche nouvo modifikasyon yo depi $1.',
 'rcshowhideminor'                => '$1 modifiksayon yo ki pa enpòtan',
 'rcshowhidebots'                 => '$1 wobo',
@@ -687,13 +687,16 @@ Men reglaj pou paj <strong>$1</strong> an kounye a:',
 
 # Move page
 'move-page-legend' => 'Renonmen yon paj',
-'movepagetext'     => 'Itilize fòmilè a pou renonmen yon paj, li ap deplase tout istorik li nan nouvo non an.
-Tit anvan ke yon paj redireksyon pou ale nan nouvo paj an. Lyen vè tit anvan an pe ke chanje; souple, gade byen ke deplasman sa a pa kreye yon redireksyon de fwa. Ou dwèt asire ou ke lyen yon korèk, ke yo genyen yon bon destinasyon sou yo.
+'movepagetext'     => "Itilize fòmilè a pou renonmen yon paj, li ap deplase tout istorik li nan nouvo non an.
+Tit anvan ke yon paj redireksyon pou ale nan nouvo paj an. Lyen vè tit anvan an pe ke chanje;
+souple, gade byen ke deplasman sa a pa kreye yon redireksyon de fwa.
+Ou dwèt asire ou ke lyen yon korèk, ke yo genyen yon bon destinasyon sou yo.
 
 Yon paj pe ke deplase si nouvo paj an egziste deja, eksepte si paj sa vid ou byen ke li menm se yon lèot redireksyon (fo pa li genyen yon istorik na li tou).
 
-<b>Atansyon ! </b>
-Sa ou ap fè a kapab pwovoke yon gwo chanjman nan òganizasyon lòt paj yo. Byen gade ke ou mezire tout konsekans aksyon ke ou ap fè a.',
+'''Atansyon !'''
+Sa ou ap fè a kapab pwovoke yon gwo chanjman nan òganizasyon lòt paj yo.
+Byen gade ke ou mezire tout konsekans aksyon ke ou ap fè a.",
 'movepagetalktext' => 'Paj diskisyon ki asosye, si li egziste, ke otomatikman renonmen tou, <b>eksepte: </b>
 *Ou ap renonmen yon paj nan direksyon yon lòt espas
 *yon paj diskisyon ja egziste ak nouvo non an

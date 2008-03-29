@@ -934,7 +934,7 @@ Li longueur del [http://meta.wikimedia.org/wiki/Help:Job_queue cawêye des bouye
 'ancientpages'            => 'Viyès pådjes',
 'move'                    => 'Displaecî',
 'movethispage'            => 'Displaecî cisse pådje',
-'unusedimagestext'        => "<p>Notez tot l' minme ki d' ôtès waibes polèt aveur des loyéns viè ces imådjes la gråcès a ene direke hårdêye. Do côp, ces imådjes aparexhèt chal, mågré k' ele soeyexhe eployeyes.</p>",
+'unusedimagestext'        => "Notez tot l' minme ki d' ôtès waibes polèt aveur des loyéns viè ces imådjes la gråcès a ene direke hårdêye. Do côp, ces imådjes aparexhèt chal, mågré k' ele soeyexhe eployeyes.",
 'unusedcategoriestext'    => "Les pådjes di categoreye shuvantes egzistént, mins i n' a nol årtike ni categoreye å dvins.",
 
 # Book sources
@@ -1137,8 +1137,6 @@ Loukîz l' [[Special:Log/delete|djournå des disfaçaedjes]] po ene djivêye des
 'mycontris'     => 'Mi ovraedje',
 'contribsub2'   => "Po l' uzeu $1 ($2)",
 'nocontribs'    => "Nou candjmint di trové ki corespondreut a ç' critere la.",
-'ucnote'        => "Chal pa dzo les <b>$1</b> dierins candjmints di l' uzeu so les <b>$2</b> dierins djoûs.",
-'uclinks'       => 'Vey les $1 dierins candjmints; vey les $2 dierins djoûs.',
 
 'sp-contributions-submit' => 'Cweri',
 
@@ -1197,27 +1195,19 @@ stî vandalijheyes).",
 
 # Move page
 'move-page-legend'        => "Displaecî l' pådje",
-'movepagetext'            => "Chal vos ploz candjî l' no d' ene pådje,
-dj' ô bén displaecî l' pådje, eyet si istwere, viè l' novea no.
+'movepagetext'            => "Chal vos ploz candjî l' no d' ene pådje, dj' ô bén displaecî l' pådje, eyet si istwere, viè l' novea no.
 Li vî tite divénrè-st ene pådje di redjiblaedje viè l' novele.
-Les loyéns viè l' viye pådje èn seront nén candjîs; acertinez vs di
-[[Special:DoubleRedirects|verifyî]] s' i n' a nén des dobes
+Les loyéns viè l' viye pådje èn seront nén candjîs; acertinez vs di [[Special:DoubleRedirects|verifyî]] s' i n' a nén des dobes
 ou crons redjiblaedjes.
-Vos estoz responsåve di fé çou k' i fåt po k' les loyéns
-continouwexhe di moenner la k' i fåt.
+Vos estoz responsåve di fé çou k' i fåt po k' les loyéns continouwexhe di moenner la k' i fåt.
 
-Notez k' el pådje èn serè '''nén''' displaeceye s' i gn a ddja ene
-pådje avou l' novea tite, a moens k' ele soeye vude, ou ene pådje
-di redjiblaedje, et k' ele n' åye nole istwere.
-Çoula vout dire ki vos ploz ri-displaecî ene pådje viè l' no k' ele
-aveut djusse divant, et insi disfé vosse prumî displaeçaedje, å cas ou vos vs
-rindrîz conte ki vos avoz fwait ene flotche; ey eto ki vos n' poloz nén
-spotchî par accidint ene pådje k' egzistêye dedja.
+Notez k' el pådje èn serè '''nén''' displaeceye s' i gn a ddja ene pådje avou l' novea tite, a moens k' ele soeye vude, ou ene pådje di redjiblaedje, et k' ele n' åye nole istwere.
+Çoula vout dire ki vos ploz ri-displaecî ene pådje viè l' no k' ele aveut djusse divant, et insi disfé vosse prumî displaeçaedje, å cas ou vos vs rindrîz conte ki vos avoz fwait ene flotche;
+ey eto ki vos n' poloz nén spotchî par accidint ene pådje k' egzistêye dedja.
 
-<b>ASTEME!</b>
-On displaeçaedje pout esse on consecant et nén atindou candjmint po ene
-pådje foirt léjhowe; s' i vs plait tuzez bén åzès consecwinces divant
-d' continouwer.",
+'''ASTEME!'''
+On displaeçaedje pout esse on consecant et nén atindou candjmint po ene pådje foirt léjhowe;
+s' i vs plait tuzez bén åzès consecwinces divant d' continouwer.",
 'movepagetalktext'        => "Li pådje di copene associeye serè
 displaeceye otomaticmint avou, '''a moens ki:'''
 *Ene pådje di copene nén vude egzistêye dedja dizo l' novea no,

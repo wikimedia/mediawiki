@@ -455,7 +455,8 @@ $2',
 'namespaceprotected'   => "'''$1''' isim fezasında saifeler deñiştirmege aqqıñız yoq.",
 'customcssjsprotected' => 'Bu saifede diger qullanıcınıñ şahsiy ayarları (nastroykaları) bar olğanı içün saifeni deñiştirip olamazsıñız.',
 'ns-specialprotected'  => '{{ns:special}} isim fezasındaki saifelerni deñiştirmek yasaq.',
-'titleprotected'       => 'Böyle serlevanen saife yaratmaq yasaqtır. Yasaqlağan: [[User:$1|$1]]. Sebep: <i>$2</i>.',
+'titleprotected'       => "Böyle serlevanen saife yaratmaq yasaqtır. Yasaqlağan: [[User:$1|$1]].
+Sebep: ''$2''.",
 
 # Login and logout pages
 'logouttitle'                => 'Oturımnı qapat',
@@ -656,9 +657,10 @@ Bunıñ kibi problemalar anonimizirlegen hatalı web-proksiler qullanuvdan çıq
 'editingsection'            => '"$1" saifesinde bölüm deñiştirmektesiñiz',
 'editingcomment'            => '$1 saifesine beyanat eklemektesiñiz.',
 'editconflict'              => 'Deñişiklik zıt ketüvi: $1',
-'explainconflict'           => 'Siz saifeni deñiştirgen vaqıtta başqa biri de deñişiklik yaptı.
+'explainconflict'           => "Siz saifeni deñiştirgen vaqıtta başqa biri de deñişiklik yaptı.
 Yuqarıdaki yazı saifeniñ şimdiki alını köstermekte.
-Siziñ deñişiklikleriñiz altqa kösterildi. Soñki deñişikleriñizni yazınıñ içine eklemek kerek olacaqsıñız. "Saifeni saqla"ğa basqanda <b>tek</b> yuqarıdaki yazı saqlanacaqtır. <br />',
+Siziñ deñişiklikleriñiz altqa kösterildi. Soñki deñişikleriñizni yazınıñ içine eklemek kerek olacaqsıñız.
+\"Saifeni saqla\"ğa basqanda '''tek''' yuqarıdaki yazı saqlanacaqtır.",
 'yourtext'                  => 'Siziñ metniñiz',
 'storedversion'             => 'Saqlanğan metin',
 'nonunicodebrowser'         => '<strong>TENBİ: Brauzeriñizde Unicode ködirovkası tanılmaz. Saifeler deñiştirgende bütün ASCII olmağan simvollarnıñ yerine olarnıñ onaltılıq kodu yazılır.</strong>',
@@ -702,7 +704,7 @@ Bu saifeni kerçekten de yañıdan yaratmağa isteysiñizmi? Aşağıda yoq etil
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Esap yaratmaqnıñ iç çaresi yoq.',
-'cantcreateaccount-text' => "Bu IP adresinden (<b>$1</b>) esap yaratuv [[User:$3|$3 qullanıcı]] tarafından blok etildi.
+'cantcreateaccount-text' => "Bu IP adresinden ('''$1''') esap yaratuv [[User:$3|$3 qullanıcı]] tarafından blok etildi.
 
 $3 mına böyle bir sebep belgiledi: ''$2''",
 
@@ -862,7 +864,7 @@ Vikide bu saifege oşağan saifelerni [[{{ns:special}}:Search|tapıp baqıñız]
 'recentchangestext'                 => 'Yapılğan eñ soñki deñişikliklerni bu saifeden közetiñiz.',
 'recentchanges-feed-description'    => 'Bu lenta vastasınen vikide soñki deñişikliklerni közet.',
 'rcnote'                            => "$3 (UTC) tarihında soñki {{PLURAL:$2|künde|'''$2''' künde}} yapılğan '''{{PLURAL:$1|1|$1}}''' deñişiklik:",
-'rcnotefrom'                        => '<b>$2</b> tarihından itibaren yapılğan deñişiklikler aşağıdadır (eñ fazla <b>$1</b> dane saife kösterilmekte).',
+'rcnotefrom'                        => "'''$2''' tarihından itibaren yapılğan deñişiklikler aşağıdadır (eñ fazla '''$1''' dane saife kösterilmekte).",
 'rclistfrom'                        => '$1 tarihından berli yapılğan deñişikliklerni köster',
 'rcshowhideminor'                   => 'kiçik deñişikliklerni $1',
 'rcshowhidebots'                    => 'botlarnı $1',
@@ -1335,8 +1337,6 @@ Qorçalav altına alınğan saifeler tam cedveli [[{{ns:special}}:Protectedpages
 'mycontris'     => 'isselerim',
 'contribsub2'   => '$1 ($2)',
 'nocontribs'    => 'Bu kriteriylerge uyğan deñişiklik tapılamadı',
-'ucnote'        => 'Aşağıda bu qullanıcı yapqan soñki <b>$2</b> kün içinde soñki <b>$1</b> deñişikligi bulunmaqta.',
-'uclinks'       => 'Soñki $1 deñişiklini baq; soñki $2 kün içün baq.',
 'uctop'         => '(soñki)',
 'month'         => 'Bu ay (ve ondan erte):',
 'year'          => 'Bu sene (ve ondan erte):',
@@ -1403,9 +1403,14 @@ Qorçalav altına alınğan saifeler tam cedveli [[{{ns:special}}:Protectedpages
 
 # Move page
 'move-page-legend'        => 'Ad deñişikligi',
-'movepagetext'            => "Aşağıdaki formanı qullanıp saifeniñ adını deñiştirirsiñiz. Bunıñnen beraber deñişiklik jurnalını da yañı adğa avuştırırsıñız. Eski ad yañı adğa yollama olur. Eski adğa doğru olğan bağlantılar olğanı kibi qalır (lütfen, [[Special:DoubleRedirects|çift]] ve [[Special:BrokenRedirects|keçersiz]] yollamalar mevcüt olğanını teşkeriñiz). Bağlantılar endiden berli eskisi kibi çalışmasından emin olmalısıñız.
+'movepagetext'            => "Aşağıdaki formanı qullanıp saifeniñ adını deñiştirirsiñiz.
+Bunıñnen beraber deñişiklik jurnalını da yañı adğa avuştırırsıñız.
+Eski ad yañı adğa yollama olur.
+Eski adğa doğru olğan bağlantılar olğanı kibi qalır (lütfen, [[Special:DoubleRedirects|çift]] ve [[Special:BrokenRedirects|keçersiz]] yollamalar mevcüt olğanını teşkeriñiz).
+Bağlantılar endiden berli eskisi kibi çalışmasından emin olmalısıñız.
 
-Yañı adda bir isim zaten mevcüt olsa, ad deñişikligi '''yapılmaycaq''', ancaq mevcüt olğan saife yollama ya da boş olsa ad deñişikligi mümkün olacaqtır. Bu demek ki, saife adını yañlıştan deñiştirgen olsañız deminki adını keri qaytarıp olasıñız, amma mevcüt olğan saifeni tesadüfen yoq etalmaysıñız.
+Yañı adda bir isim zaten mevcüt olsa, ad deñişikligi '''yapılmaycaq''', ancaq mevcüt olğan saife yollama ya da boş olsa ad deñişikligi mümkün olacaqtır.
+Bu demek ki, saife adını yañlıştan deñiştirgen olsañız deminki adını keri qaytarıp olasıñız, amma mevcüt olğan saifeni tesadüfen yoq etalmaysıñız.
 
 '''TENBİ!'''
 Ad deñiştirüv ''populâr'' saifeler içün büyük deñişmelerge sebep ola bilir. Lütfen, deñişiklikni yapmadan evel ola bileceklerni köz ögüne alıñız.",

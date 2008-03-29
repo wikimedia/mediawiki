@@ -137,7 +137,7 @@ $messages = array(
 'tog-previewontop'            => "Amostrar l'ambiesta prebia antes d'o cuatrón d'edizión",
 'tog-previewonfirst'          => "Amostrar l'ambiesta prebia de l'articlo en a primera edizión",
 'tog-nocache'                 => "Desautibar a ''caché'' de pachinas",
-'tog-enotifwatchlistpages'    => 'Nimbiar-me un correu cuan bi aiga cambeos en una pachina cosirata por yo',
+'tog-enotifwatchlistpages'    => 'Rezibir un correu cuan se faigan cambios en una pachina cosirata por yo',
 'tog-enotifusertalkpages'     => 'Nimbiar-me un correu cuan cambee a mía pachina de descusión',
 'tog-enotifminoredits'        => 'Nimbiar-me un correu tamién cuan bi aiga edizions menors de pachinas',
 'tog-enotifrevealaddr'        => 'Fer beyer a mía adreza de correu-e en os correus de notificazión',
@@ -215,19 +215,23 @@ $messages = array(
 'dec'           => 'abi',
 
 # Categories related messages
-'categories'                    => 'Categorías',
-'categoriespagetext'            => 'As siguients categorías contienen bella pachina u archibo',
-'special-categories-sort-count' => 'ordenar por recuento',
-'special-categories-sort-abc'   => 'ordenar alfabeticament',
-'pagecategories'                => '{{PLURAL:$1|Categoría|Categorías}}',
-'category_header'               => 'Articlos en a categoría "$1"',
-'subcategories'                 => 'Subcategorías',
-'category-media-header'         => 'Contenius multimedia en a categoría "$1"',
-'category-empty'                => "''Ista categoría no tiene por agora garra articlo ni conteniu multimedia''",
-'hidden-categories'             => '{{PLURAL:$1|Categoría amagata|Categorías amagatas}}',
-'hidden-category-category'      => 'Categorías amagatas', # Name of the category where hidden categories will be listed
-'category-subcat-count'         => "{{PLURAL:$2|Ista categoría contiene nomás a siguient subcategoría.|Ista categoría encluye {{PLURAL:$1|a siguient subcategoría|as siguients $1 subcategorías}}, d'un total de $2.}}",
-'category-subcat-count-limited' => 'Ista categoría contiene {{PLURAL:$1|a siguient subcategoría|as siguients $1 subcategorías}}.',
+'categories'                     => 'Categorías',
+'categoriespagetext'             => 'As siguients categorías contienen bella pachina u archibo',
+'special-categories-sort-count'  => 'ordenar por recuento',
+'special-categories-sort-abc'    => 'ordenar alfabeticament',
+'pagecategories'                 => '{{PLURAL:$1|Categoría|Categorías}}',
+'category_header'                => 'Articlos en a categoría "$1"',
+'subcategories'                  => 'Subcategorías',
+'category-media-header'          => 'Contenius multimedia en a categoría "$1"',
+'category-empty'                 => "''Ista categoría no tiene por agora garra articlo ni conteniu multimedia''",
+'hidden-categories'              => '{{PLURAL:$1|Categoría amagata|Categorías amagatas}}',
+'hidden-category-category'       => 'Categorías amagatas', # Name of the category where hidden categories will be listed
+'category-subcat-count'          => "{{PLURAL:$2|Ista categoría contiene nomás a siguient subcategoría.|Ista categoría encluye {{PLURAL:$1|a siguient subcategoría|as siguients $1 subcategorías}}, d'un total de $2.}}",
+'category-subcat-count-limited'  => 'Ista categoría contiene {{PLURAL:$1|a siguient subcategoría|as siguients $1 subcategorías}}.',
+'category-article-count'         => "{{PLURAL:$2|Ista categoría nomás encluye a pachina siguient.|{{PLURAL:$1|A pachina siguient fa parte|As pachinas siguients fan parte}} d'esta categoría, d'un total de $2.}}",
+'category-article-count-limited' => "{{PLURAL:$1|A pachina siguient fa parte|As $1 pachinas siguients fan parte}} d'ista categoría.",
+'category-file-count'            => "{{PLURAL:$2|Ista categoría nomás contiene l'archibo siguient.|{{PLURAL:$1|L'archibo siguient fa parte|Os $1 archibos siguients fan parte}} d'ista categoría, d'un total de $2.}}",
+'category-file-count-limited'    => "{{PLURAL:$1|L'archibo siguient fa parte|Os $1 archibos siguients fan parte}} d'ista categoría.",
 
 'mainpagetext'      => "O programa MediaWiki s'ha instalato correutament.",
 'mainpagedocfooter' => "Consulta a [http://meta.wikimedia.org/wiki/Help:Contents Guía d'usuario] ta mirar informazión sobre cómo usar o software wiki.
@@ -448,7 +452,8 @@ Consulta: $2',
 'namespaceprotected'   => "No tiene premiso ta editar as pachinas d'o espazio de nombres '''$1'''.",
 'customcssjsprotected' => "No tiene premiso ta editar ista pachina porque contiene a confegurazión presonal d'atro usuario.",
 'ns-specialprotected'  => "No ye posible editar as pachinas d'o espazio de nombres {{ns:special}}.",
-'titleprotected'       => 'Iste títol no puede creyar-se porque ye estato protechito por [[User:$1|$1]]. A razón data ye <i>$2</i>.',
+'titleprotected'       => "Iste títol no puede creyar-se porque ye estato protechito por [[User:$1|$1]].
+A razón data ye ''$2''.",
 
 # Login and logout pages
 'logouttitle'                => "Fin d'a sesión",
@@ -660,7 +665,11 @@ Si bi ha plegau por error, punche o botón d'o suyo nabegador ta tornar entazaga
 'editingsection'            => 'Editando $1 (sezión)',
 'editingcomment'            => 'Editando $1 (comentario)',
 'editconflict'              => "Conflito d'edizión: $1",
-'explainconflict'           => "Bel atro usuario ha cambiato ista pachina dende que bustet prenzipió á editar-la. O cuatrón de testo superior contiene o testo d'a pachina como ye autualment. Os suyos cambeos s'amuestran en o cuatrón de testo inferior. Abrá d'encorporar os suyos cambeos en o testo esistent. <b>Nomás</b> o testo en o cuatrón superior s'alzará cuan prete o botón \"Alzar a pachina\". <br />",
+'explainconflict'           => "Bel atro usuario ha cambiato ista pachina dende que bustet prenzipió á editar-la.
+O cuatrón de testo superior contiene o testo d'a pachina como ye autualment.
+Os suyos cambeos s'amuestran en o cuatrón de testo inferior.
+Abrá d'encorporar os suyos cambeos en o testo esistent.
+'''Nomás''' o testo en o cuatrón superior s'alzará cuan prete o botón \"Alzar a pachina\".",
 'yourtext'                  => 'O testo suyo',
 'storedversion'             => 'Bersión almadazenata',
 'nonunicodebrowser'         => "<strong>Pare cuenta: O suyo nabegador no cumple a norma Unicode. S'ha autibato un sistema d'edizión alternatibo que li premitirá d'editar articlos con seguridat: os caráuters no ASCII aparixerán en a caxa d'edizión como codigos exadezimals.</strong>",
@@ -702,7 +711,7 @@ Puede consultar o rechistro de borraus que s'amuestra a continuazión:",
 
 # Account creation failure
 'cantcreateaccounttitle' => 'No se puede creyar a cuenta',
-'cantcreateaccount-text' => "A creyazión de cuentas dende ixa adreza IP (<b>$1</b>) estió bloqueyata por [[User:$3|$3]].
+'cantcreateaccount-text' => "A creyazión de cuentas dende ixa adreza IP ('''$1''') estió bloqueyata por [[User:$3|$3]].
 
 A razón endicata por $3 ye ''$2''",
 
@@ -954,7 +963,7 @@ As collas no trigatas no cambiarán. Puede sacar a selezión pretando de bez a t
 'recentchangestext'                 => "Siga os cambeos más rezients d'a wiki en ista pachina.",
 'recentchanges-feed-description'    => "Seguir en ista canal de notizias os cambeos más rezients d'o wiki.",
 'rcnote'                            => "Contino {{PLURAL:$1|s'amuestra o unico cambeo feito|s'amuestran os '''$1''' zaguers cambeos feitos}} en {{PLURAL:$2|o zaguer día|os zaguers '''$2''' días}}, dica as $3.",
-'rcnotefrom'                        => "Contino s'amuestran os cambeos dende <b>$2</b> (dica <b>$1</b>).",
+'rcnotefrom'                        => "Contino s'amuestran os cambeos dende '''$2''' (dica '''$1''').",
 'rclistfrom'                        => 'Amostrar cambeos rezients dende $1',
 'rcshowhideminor'                   => '$1 edizions menors',
 'rcshowhideliu'                     => '$1 usuarios rechistraus',
@@ -1262,7 +1271,7 @@ d'os que '''$2''' (o '''$4%''') {{PLURAL:$1|en ye $5|en son $5}}.",
 'ancientpages'            => 'Pachinas más biellas',
 'move'                    => 'Tresladar',
 'movethispage'            => 'Tresladar ista pachina',
-'unusedimagestext'        => '<p>Por fabor, pare cuenta que atros puestos web pueden tener binclos ta imachens con una URL dreita y, por ixo, podrían amanixer en ista lista encara que sí se faigan serbir autibament.</p>',
+'unusedimagestext'        => 'Por fabor, pare cuenta que atros puestos web pueden tener binclos ta imachens con una URL dreita y, por ixo, podrían amanixer en ista lista encara que sí se faigan serbir autibament.',
 'unusedcategoriestext'    => 'As siguients categoría son creyatas, pero no bi ha garra articlo u categoría que las faiga serbir.',
 'notargettitle'           => 'No bi ha garra pachina de destino',
 'notargettext'            => 'No ha espezificato en que pachina quiere aplicar ista funzión.',
@@ -1538,8 +1547,6 @@ $1',
 'mycontris'     => 'Contrebuzions',
 'contribsub2'   => 'De $1 ($2)',
 'nocontribs'    => "No s'han trobato cambeos que concordasen con ixos criterios",
-'ucnote'        => "Contino se i amuestran os zaguers <b>$1</b> cambeos d'iste usuario en os zaguers <b>$2</b> días.",
-'uclinks'       => 'Amostrar os zaguers $1 cambeos; amostrar os zaguers $2 días.',
 'uctop'         => '(zaguer cambeo)',
 'month'         => 'Dende o mes (y anteriors):',
 'year'          => "Dende l'año (y anteriors):",
@@ -1672,17 +1679,16 @@ Alcuerde-se-ne d'[[Special:Unlockdb|estrancar a base de datos]] dimpués de rema
 'move-page-legend'        => 'Tresladar pachina',
 'movepagetext'            => "Si fa serbir o formulario siguient se cambiará o nombre á la pachina, tresladando tot o suyo istorial t'o nuebo nombre.
 O títol anterior se tornará en una reendrezera ta o nuebo títol.
-Os binclos ta o títol antigo d'a pachina no se cambiarán. Asegure-se de no deixar reendrezeras dobles u crebatas.
+Os binclos ta o títol antigo d'a pachina no se cambiarán.
+Asegure-se de no deixar reendrezeras dobles u crebatas.
 Ye a suya responsabilidat d'asegurar-se que os binclos continan endrezando t'an que abrían de fer-lo.
 
 Remere que a pachina '''no''' se renombrará si ya esiste una pachina con o nuebo títol, si no ye que estase una pachina bueda u una ''reendrezera'' sin istorial.
-
 Isto senifica que podrá tresladar una pachina á lo suyo títol orichinal si ha feito una error, pero no podrá escribir denzima d'una pachina ya esistent.
 
-<b>¡PARE CUENTA!</b>
+'''¡PARE CUENTA!'''
 Iste puede estar un cambio drastico e inasperato ta una pachina popular;
-por fabor, asegure-se d'acatar as consecuenzias que acarriará ista aizión
-antis de seguir entadebant.",
+por fabor, asegure-se d'acatar as consecuenzias que acarriará ista aizión antis de seguir entadebant.",
 'movepagetalktext'        => "A pachina de descusión asoziata, si esistise, será tresladata automaticament '''de no estar que:'''
 *A pachina se treslade entre espazios de nombres diferents,
 *Ya esista una pachina de descusión no bueda con o nombre nuebo, u

@@ -6,6 +6,7 @@
  * @author Klenje
  * @author לערי ריינהארט
  * @author Helix84
+ * @author Siebrand
  */
 
 $fallback = 'it';
@@ -474,7 +475,7 @@ $2 Liste redirezions &nbsp; Cîr $3 $9',
 'recentchangestext'              => 'Cheste pagjine e mostre i plui recents cambiaments inte {{SITENAME}}.',
 'recentchanges-feed-description' => 'Chest canâl al ripuarte i cambiaments plui recents ai contignûts di cheste wiki.',
 'rcnote'                         => 'Ca sot tu cjatis i ultins <strong>$1</strong> cambiaments tes ultimis <strong>$2</strong> zornadis.',
-'rcnotefrom'                     => 'Ca sot i cambiaments dal <b>$2</b> (fintremai al <b>$1</b>).',
+'rcnotefrom'                     => "Ca sot i cambiaments dal '''$2''' (fintremai al '''$1''').",
 'rclistfrom'                     => 'Mostre i ultins cambiaments dal $1',
 'rcshowhideminor'                => '$1 i piçui cambiaments',
 'rcshowhideliu'                  => '$1 utents jentrâts',
@@ -723,8 +724,6 @@ Cjale $2 par une liste des ultimis eliminazions.',
 'mycontris'     => 'Miei contribûts',
 'contribsub2'   => 'Par $1 ($2)',
 'nocontribs'    => 'Nissun cambiament che al rispiete chescj criteris cjatât.',
-'ucnote'        => 'Ca sot a son i ultins <b>$1</b> cambiaments dal utent tes ultimis <b>$2</b> zornadis.',
-'uclinks'       => 'Viôt i ultins $1 cambiaments; viôt lis ultimis $2 zornadis.',
 'uctop'         => ' (su)',
 'month'         => 'Scomençant dal mês (e prime):',
 'year'          => 'Scomençant dal an (e prime):',

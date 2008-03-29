@@ -177,7 +177,7 @@ $messages = array(
 'tog-previewontop'            => 'Flytt forhåndsvisningen foran redigeringsboksen',
 'tog-previewonfirst'          => 'Vis forhåndsvisning ved første redigering av en side',
 'tog-nocache'                 => 'Skru av mellomlagring av sider («caching»)',
-'tog-enotifwatchlistpages'    => 'Send meg en e-post ved sideendringer',
+'tog-enotifwatchlistpages'    => 'Send meg en e-post når sider på overvåkningslisten blir endret',
 'tog-enotifusertalkpages'     => 'Send meg en e-post ved endringer av brukerdiskusjonssiden min',
 'tog-enotifminoredits'        => 'Send meg en e-post også ved mindre sideendringer',
 'tog-enotifrevealaddr'        => 'Vis min e-postadresse i utgående meldinger',
@@ -494,7 +494,8 @@ $2',
 'namespaceprotected'   => "Du har ikke tillatelse til å redigere sider i navnerommet '''$1'''.",
 'customcssjsprotected' => 'Du har ikke tillatelse til å redigere denne siden, fordi den inneholder en annen brukers personlige innstillinger.',
 'ns-specialprotected'  => 'Sier i navnerommet {{ns:special}} kan ikke redigeres.',
-'titleprotected'       => 'Denne tittelen har blitt låst for oppretting av [[User:$1|$1]]. Den angitte grunnen er <i>$2</i>.',
+'titleprotected'       => "Denne tittelen har blitt låst for oppretting av [[User:$1|$1]].
+Den angitte grunnen er ''$2''.",
 
 # Login and logout pages
 'logouttitle'                => 'Logg ut',
@@ -690,12 +691,11 @@ Din blokkerings-ID er $5. Vennligst ta med denne ID-en i din forespørsel.",
 'editingsection'            => 'Redigerer $1 (seksjon)',
 'editingcomment'            => 'Redigerer $1 (kommentar)',
 'editconflict'              => 'Redigeringskonflikt: $1',
-'explainconflict'           => 'Noen andre har endret teksten siden du begynte å redigere.
+'explainconflict'           => "Noen andre har endret teksten siden du begynte å redigere.
 Den øverste boksen inneholder den nåværende tekst.
 Dine endringer vises i den nederste boksen.
 Du er nødt til å flette dine endringer sammen med den nåværende teksten.
-<b>Kun</b> teksten i den øverste tekstboksen blir lagret når du
-trykker «Lagre siden».<br />',
+'''Kun''' teksten i den øverste tekstboksen blir lagret når du trykker «Lagre siden».",
 'yourtext'                  => 'Din tekst',
 'storedversion'             => 'Den lagrede versjonen',
 'nonunicodebrowser'         => '<strong>ADVARSEL: Nettleseren din har ikke støtte for Unicode. Skru det på før du begynner å redigere artikler.</strong>',
@@ -721,7 +721,7 @@ kopiere teksten din til en tekstfil, så du kan lagre den til senere.</strong>',
 'templatesusedsection'      => 'Maler brukt i denne seksjonen:',
 'template-protected'        => '(beskyttet)',
 'template-semiprotected'    => '(halvbeskyttet)',
-'hiddencategories'          => 'Skjulte kategorier denne siden er medlem av{{PLURAL$1|:|:}}',
+'hiddencategories'          => 'Skjulte kategorier denne siden er medlem av{{PLURAL:$1|:|:}}',
 'edittools'                 => '<!-- Teksten her vil vises under redigerings- og opplastingsboksene. -->',
 'nocreatetitle'             => 'Sideoppretting er begrenset',
 'nocreatetext'              => '{{SITENAME}} har begrensede muligheter for oppretting av nye sider. Du kan gå tilbake og redigere en eksisterende side, eller [[Special:Userlogin|logge inn eller opprette en ny konto]].',
@@ -739,7 +739,7 @@ Du burde vurdere hvorvidt det er passende å fortsette å redigere denne siden. 
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Kan ikke opprette konto',
-'cantcreateaccount-text' => "Kontooppretting fra denne IP-adressen (<b>$1</b>) har blitt blokkert av [[User:$3|$3]].
+'cantcreateaccount-text' => "Kontooppretting fra denne IP-adressen ('''$1''') har blitt blokkert av [[User:$3|$3]].
 
 Grunnen som ble oppgitt av $3 er ''$2''",
 
@@ -994,7 +994,7 @@ Forsikre deg om at denne endringen vil opprettholde historisk sidekontinuitet.',
 'recentchangestext'                 => 'Vis de siste endringene til denne siden',
 'recentchanges-feed-description'    => 'Følg med på siste endringer i denne wikien med denne feed-en.',
 'rcnote'                            => "Nedenfor vises {{PLURAL:$1|én endring|de siste '''$1''' endringene}} fra de siste <strong>$2</strong> dagene, per $3.",
-'rcnotefrom'                        => 'Nedenfor er endringene fra <strong>$2</strong> til <strong>$1</strong> vist.',
+'rcnotefrom'                        => "Nedenfor er endringene fra '''$2''' til '''$1''' vist.",
 'rclistfrom'                        => 'Vis nye endringer med start fra $1',
 'rcshowhideminor'                   => '$1 mindre endringer',
 'rcshowhidebots'                    => '$1 roboter',
@@ -1085,6 +1085,7 @@ Om filen du sjekket er det samme bildet, men i opprinnelig størrelse, er det ik
 'uploadvirus'                 => 'Denne fila inneholder virus! Detaljer: $1',
 'sourcefilename'              => 'Velg en fil:',
 'destfilename'                => 'Ønsket filnavn:',
+'upload-maxfilesize'          => 'Maksimal filstørrelse: $1',
 'watchthisupload'             => 'Overvåk denne siden',
 'filewasdeleted'              => 'Ei fil ved dette navnet har blitt lastet opp tidligere, og så slettet. Sjekk $1 før du forsøker å laste det opp igjen.',
 'upload-wasdeleted'           => "'''Advarsel: Du laster opp en fil som tidligere har blitt slettet.'''
@@ -1292,7 +1293,7 @@ Det har vært totalt {{PLURAL:$3|'''én''' sidevisning|'''$3''' sidevisninger}},
 'ancientpages'            => 'Eldste sider',
 'move'                    => 'Flytt',
 'movethispage'            => 'Flytt denne siden',
-'unusedimagestext'        => '<p>Merk at andre sider kanskje lenker til en fil med en direkte lenke, så filen listes her selv om den faktisk er i bruk.</p>',
+'unusedimagestext'        => 'Merk at andre sider kanskje lenker til en fil med en direkte lenke, så filen listes her selv om den faktisk er i bruk.',
 'unusedcategoriestext'    => 'Følgende kategorier finnes, men det er ingen sider i dem.',
 'notargettitle'           => 'Intet mål',
 'notargettext'            => 'Du oppga ikke en målside eller bruker å utføre denne funksjonen på.',
@@ -1560,8 +1561,6 @@ $1',
 'mycontris'     => 'Egne bidrag',
 'contribsub2'   => 'For $1 ($2)',
 'nocontribs'    => 'Ingen endringer er funnet som passer disse kriteriene.',
-'ucnote'        => 'Her er denne brukerens siste <b>$1</b> endringer i de siste <b>$2</b> dagene.',
-'uclinks'       => 'Vis de siste $1 endringene; vis de siste $2 dagene.',
 'uctop'         => '(topp)',
 'month'         => 'Måned:',
 'year'          => 'År:',
@@ -1701,7 +1700,7 @@ Eventuelle omdirigeringer blir brutt.
 Legg merke til at siden '''ikke''' kan flyttes hvis det allerede finnes en side med den nye tittelen, med mindre den siden er tom eller er en omdirigering uten noen historikk.
 Det betyr at du kan flytte en side tilbake dit den kom fra hvis du gjør en feil.
 
-<b>ADVARSEL!</b>
+'''ADVARSEL!'''
 Dette kan være en drastisk og uventet endring for en populær side;
 vær sikker på at du forstår konsekvensene av dette før du fortsetter.",
 'movepagetalktext'        => "Den tilhørende diskusjonssiden, hvis den finnes, vil automatisk bli flyttet med siden '''med mindre:'''

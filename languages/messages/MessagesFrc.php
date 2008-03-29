@@ -519,7 +519,11 @@ Exemple:  {{ns:user}}:Foo/monobook.css (bon)  {{ns:user}}:Foo/Monobook.css (mauv
 'editingsection'            => 'Changement de $1 (section)',
 'editingcomment'            => 'Changement de $1 (remarque)',
 'editconflict'              => 'Dispute de changement: $1',
-'explainconflict'           => "Quèqu'une d'autre a changé cette page depuis vous avez commencé à la changer.  La boëtte de changements en haut contient le texte de la page comme c'est asteur.  Vos changements sont montrés dans la boëtte de changements en bas.  Il foudra que vous mettez vos changements dans le texte qu'est là asteur.  <b>Juste</b> le texte dans la boëtte de changements en haut va être sauvé quand vous pèsez \"Sauvez\".<br />",
+'explainconflict'           => "Quèqu'une d'autre a changé cette page depuis vous avez commencé à la changer.
+La boëtte de changements en haut contient le texte de la page comme c'est asteur.
+Vos changements sont montrés dans la boëtte de changements en bas.
+Il foudra que vous mettez vos changements dans le texte qu'est là asteur.
+'''Juste''' le texte dans la boëtte de changements en haut va être sauvé quand vous pèsez \"Sauvez\".",
 'yourtext'                  => 'Votre texte',
 'storedversion'             => 'Version sauvée',
 'nonunicodebrowser'         => '<strong>ATTENTION: Votre navigateur supporte pas les caractères unicode.  Une solution de peu de durée a été trouvée pour que vous peuvez changer des articles sans problèmes.  Les caractères qui sont pas ASCII va apparaître dans la boëte de changements comme des codes hexadécimaux.</strong>',

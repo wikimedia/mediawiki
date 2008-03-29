@@ -334,7 +334,8 @@ $2',
 'namespaceprotected'   => "Ye dinna hae permeession tae edit pages in the '''$1''' namespace.",
 'customcssjsprotected' => "Ye dinna hae permeession tae edit this page, sin it hauds anither uiser's personal settins.",
 'ns-specialprotected'  => 'Pages in the {{ns:special}} namespace cannae be editit.',
-'titleprotected'       => 'This teetle haes been protectit frae bein makkit by [[User:$1|$1]]. The grunds for this are: <i>$2</i>.',
+'titleprotected'       => "This teetle haes been protectit frae bein makkit by [[User:$1|$1]].
+The grunds for this are: ''$2''.",
 
 # Login and logout pages
 'logouttitle'                => 'Uiser logoot',
@@ -591,7 +592,7 @@ The deletion log for this page is providit here:",
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Canna mak accoont',
-'cantcreateaccount-text' => "Accoont makkin frae this IP address (<b>$1</b>) haes been blockit by [[User:$3|$3]].
+'cantcreateaccount-text' => "Accoont makkin frae this IP address ('''$1''') haes been blockit by [[User:$3|$3]].
 
 The grund for this, given by $3 is ''$2''",
 
@@ -658,6 +659,7 @@ there micht be parteeculars in the [{{fullurl:Special:Log/delete|page={{FULLPAGE
 'notextmatches'         => 'Nae page text matches',
 'prevn'                 => 'foregaun $1',
 'nextn'                 => 'neist $1',
+'searchall'             => 'aw',
 'showingresults'        => "Shawin ablo up tae {{PLURAL:$1|'''1''' result|'''$1''' results}} stertin wi #'''$2'''.",
 'showingresultsnum'     => "Shawin ablo {{PLURAL:$3|'''1''' result|'''$3''' results}} stertin wi #'''$2'''.",
 'nonefound'             => "'''Mynd''': unsuccessfu rakes is afttimes caused bi rakin for common words like \"hae\" an \"frae\", that isna indexed, or bi specifeein mair nor ae rake term (juist pages haudin aa the rake terms will kythe in the result).",
@@ -929,8 +931,6 @@ afore it wis delete. The actual text o thir deletit reveisions is available tae 
 'contributions' => 'Uiser contreibutions',
 'mycontris'     => 'Ma contreibutions',
 'nocontribs'    => 'Nae chynges wis funnd matchin thae criteria.',
-'ucnote'        => "Ablo is this uiser's last <b>$1</b> chynges in the last <b>$2</b> days.",
-'uclinks'       => 'See the last $1 chynges; see the last $2 days.',
 'uctop'         => ' (tap)',
 'month'         => 'Frae month (an afore):',
 'year'          => 'Frae year (an afore):',
