@@ -5,6 +5,7 @@
  *
  * @author Harvzsf
  * @author לערי ריינהארט
+ * @author Siebrand
  */
 
 $messages = array(
@@ -131,9 +132,9 @@ $messages = array(
 'currentevents'     => 'Mga panhitabo',
 'currentevents-url' => 'Project:Mga panhitabo',
 'disclaimers'       => 'Mga Disclaimer',
-'helppage'          => 'Bulig:Sulod',
+'helppage'          => 'Help:Sulod',
 'mainpage'          => 'Syahan nga Pakli',
-'policy-url'        => 'Proyekto:Polisiya',
+'policy-url'        => 'Project:Polisiya',
 'portal'            => 'Ganghaan han Komunidad',
 'portal-url'        => 'Proyekto:Ganghaan han Komunidad',
 'sitesupport'       => 'Mga Donasyon',

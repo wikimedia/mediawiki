@@ -19,6 +19,7 @@
  * @author Grillo
  * @author Lokal Profil
  * @author Micke
+ * @author Leo Johannes
  */
 
 $skinNames = array(
@@ -706,9 +707,11 @@ Detta händer ibland om du använder buggiga webbaserade anonyma proxytjänster.
 'editingsection'            => 'Redigerar $1 (avsnitt)',
 'editingcomment'            => 'Redigerar $1 (kommentar)',
 'editconflict'              => 'Redigeringskonflikt: $1',
-'explainconflict'           => 'Någon har ändrat den här sidan efter att du började att redigera den.
-Det översta textblocket innehåller den nuvarande texten, och din version syns i det nedersta blocket. Om du infogar dina ändringar i texten i den översta rutan, bibehålls alla ändringar - både dina, och den andres. <strong>Endast</strong> texten i den översta textboxen sparas när du trycker "Spara sida".
-<p>',
+'explainconflict'           => "Någon har ändrat den här sidan efter att du började att redigera den.
+Den översta textrutan innehåller den nuvarande sparade versionen av texten
+Din ändrade version visas i den nedre rutan.
+Om du vill spara dina ändringar så måste du infoga dem i den övre texten.
+'''Endast''' texten i den översta textrutan kommer att sparas när du trycker på \"Spara\".",
 'yourtext'                  => 'Din text',
 'storedversion'             => 'Den sparade versionen',
 'nonunicodebrowser'         => '<strong>VARNING: Din webbläsare saknar stöd för unicode. För att du ska kunna redigera sidor utan problem, så visas icke-ASCII-tecken som hexadecimala koder i redigeringsrutan.</strong>',
@@ -753,7 +756,7 @@ Raderingsloggen för sidan innehåller följande:",
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Kan inte skapa konto',
-'cantcreateaccount-text' => '[[User:$3|$3]] har blockerat den här IP-adressen (<b>$1</b>) från att registrera konton.
+'cantcreateaccount-text' => '[[User:$3|$3]] har blockerat den här IP-adressen (\'\'\'$1\'\'\') från att registrera konton.
 
 Anledningen till blockeringen var "$2".',
 
@@ -1133,7 +1136,9 @@ PICT # allmänt bildprefix
 'upload-file-error'       => 'Internt fel',
 'upload-file-error-text'  => 'Ett internt fel inträffade när en temporär fil skulle skapas på servern. Kontakta en systemadministratör.',
 'upload-misc-error'       => 'Okänt uppladdningsfel',
-'upload-misc-error-text'  => 'Ett okänt fel inträffade under uppladdningen. Kontrollera att URL:en giltig och frösök igen. Om problemet kvarstår, kontakta en systemadministratör.',
+'upload-misc-error-text'  => 'Ett okänt fel inträffade under uppladdningen.
+Kontrollera att URL:en giltig och försök igen.
+Om problemet kvarstår, kontakta en systemadministratör.',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'URL:en kunde inte nås',
@@ -1228,7 +1233,7 @@ Genom att klicka på rubrikerna för kolumnerna kan man ändra sorteringsordning
 
 # Unused templates
 'unusedtemplates'     => 'Oanvända mallar',
-'unusedtemplatestext' => 'Denna sida listar alla de sidor i namnrymden Mall som inte inkluderas på någon annan sida. Innan mallarna raderas, kontrollera att det inte finns andra länkar till dem.',
+'unusedtemplatestext' => 'Denna sida listar alla de sidor i mallnamnrymden som inte inkluderas på någon annan sida. Innan mallarna raderas, kontrollera att det inte finns andra länkar till dem.',
 'unusedtemplateswlh'  => 'andra länkar',
 
 # Random page
@@ -1476,7 +1481,7 @@ Se $2 för noteringar om de senaste raderingarna.',
 'deletedarticle'              => 'raderade "$1"',
 'dellogpage'                  => 'Raderingslogg',
 'dellogpagetext'              => 'Nedan listas de senaste raderingarna och återställningarna.',
-'deletionlog'                 => 'raderingslogg',
+'deletionlog'                 => 'raderingsloggen',
 'reverted'                    => 'Återgått till tidigare version',
 'deletecomment'               => 'Anledning till borttagning:',
 'deleteotherreason'           => 'Annan/ytterligare anledning:',
@@ -1856,7 +1861,7 @@ All överföring mellan wikier (transwiki) listas i  [[Special:Log/import|import
 'tooltip-pt-anonlogin'            => 'Du får gärna logga in, men det är inte nödvändigt',
 'tooltip-pt-logout'               => 'Logga ut',
 'tooltip-ca-talk'                 => 'Diskussion om sidans innehåll',
-'tooltip-ca-edit'                 => 'Du kan redigera den här sidan. Var vänlig och förhandsgranska innan du sparar.',
+'tooltip-ca-edit'                 => 'Du kan redigera den här sidan. Var vänlig förhandsgranska innan du sparar.',
 'tooltip-ca-addsection'           => 'Lägg till en kommentar i den här diskussionen',
 'tooltip-ca-viewsource'           => 'Den här sidan är skrivskyddad. Du kan se källtexten.',
 'tooltip-ca-history'              => 'Tidigare versioner av sidan',
@@ -1883,7 +1888,7 @@ All överföring mellan wikier (transwiki) listas i  [[Special:Log/import|import
 'tooltip-feed-atom'               => 'Atom-matning för den här sidan',
 'tooltip-t-contributions'         => 'Visa lista över bidrag från den här användaren',
 'tooltip-t-emailuser'             => 'Skicka e-post till den här användaren',
-'tooltip-t-upload'                => 'Ladda upp bilder eller mediafiler',
+'tooltip-t-upload'                => 'Ladda upp bilder eller andra mediafiler',
 'tooltip-t-specialpages'          => 'Lista över alla specialsidor',
 'tooltip-t-print'                 => 'Utskriftvänlig version av den här sidan',
 'tooltip-t-permalink'             => 'Permanent länk till den här versionen av sidan',
@@ -2011,7 +2016,7 @@ $1',
 'bad_image_list' => 'Listan fungerar enligt följande:
 
 Listan tar enbart hänsyn till rader som börjar med asterisk (*). Den första länken på en rad anger en otillåten fil.
-Övriga länkar på en rad anger undantag, d.v.s. sidor där filen tillåts användas.',
+Övriga länkar på en rad anger undantag, det vill säga sidor där filen tillåts användas.',
 
 # Metadata
 'metadata'          => 'Metadata',

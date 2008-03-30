@@ -124,15 +124,15 @@ $messages = array(
 'aboutpage'         => 'Project:Okutangaaza ku',
 'copyright'         => 'Ebiri kuno bifugibwa $1.',
 'copyrightpagename' => "bino biriko ekikuguzo eky'obwananyi ekya {{SITENAME}}",
-'copyrightpage'     => "Ebikugizo eby'obwa nannyini ku {{ns:project}}",
+'copyrightpage'     => "{{ns:project}}:Ebikugizo eby'obwa nannyini",
 'currentevents'     => 'Ebibindabinda',
 'currentevents-url' => 'Project:Ebibindabinda',
 'disclaimers'       => "Okutangaaza ku kkomo ery'obuvunaaniro bwaffe obw'omu mateeka",
-'disclaimerpage'    => "Okutangaaza ku kkomo ery'obuvunaaniro bwaffe obw'omu mateeka Project:",
+'disclaimerpage'    => "Project:Okutangaaza ku kkomo ery'obuvunaaniro bwaffe obw'omu mateeka",
 'edithelp'          => 'Funa obuyambi',
-'edithelppage'      => "Obuyambi ku by'okukyusakyusa",
+'edithelppage'      => "Help:Obuyambi ku by'okukyusakyusa",
 'faq'               => 'Ebitera okubuuzibwa',
-'faqpage'           => 'Ebitera okubuuzibwa ku:Project',
+'faqpage'           => 'Project:Ebitera okubuuzibwa ku',
 'helppage'          => 'Help:Endagiriro',
 'mainpage'          => 'Olupapula Olusooka',
 'portal'            => 'Embuga',
@@ -400,7 +400,7 @@ Bw\'oba oyagala okulekerawo okulugoberera, nyiga ku kigambo "Suula" awo ku bbali
 'watch'          => 'Goberera olupapula luno',
 'unwatch'        => 'Lekerawo okugoberera olupapula luno',
 
-# Displayed when you click the "watch" button and it's in the process of watching
+# Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Kikolebwako...',
 'unwatching' => 'Kikolebwako...',
 

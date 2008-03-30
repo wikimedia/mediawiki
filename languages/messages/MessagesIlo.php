@@ -6,6 +6,7 @@
  * @author Saluyot
  * @author לערי ריינהארט
  * @author SPQRobin
+ * @author Siebrand
  */
 
 
@@ -90,7 +91,7 @@ $messages = array(
 'aboutsite'         => 'Maipapan iti {{SITENAME}}',
 'copyright'         => 'Dagiti linaon ket maidaya babaen ti $1.',
 'currentevents'     => 'Paspasamak',
-'currentevents-url' => 'Agdama a paspasamak',
+'currentevents-url' => 'Project:Agdama a paspasamak',
 'edithelp'          => 'Tulong iti panagedit',
 'mainpage'          => 'Umuna a Panid',
 'portal'            => 'Pagdadanonan',

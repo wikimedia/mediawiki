@@ -162,9 +162,6 @@ $messages = array(
 'navigation'     => 'Pandhu Arah',
 'and'            => 'lan',
 
-# Metadata in edit box
-'metadata_help' => 'Metadata:',
-
 'errorpagetitle'    => 'Kasalahan',
 'returnto'          => 'Bali menyang $1.',
 'tagline'           => 'Saka {{SITENAME}}',
@@ -232,7 +229,6 @@ $messages = array(
 'disclaimerpage'    => 'Project:Panyangkalan umum',
 'edithelp'          => 'Pitulung panyuntingan',
 'edithelppage'      => 'Help:panyuntingan',
-'faq'               => 'FAQ',
 'helppage'          => 'Help:Isi',
 'mainpage'          => 'Kaca Utama',
 'policy-url'        => 'Project:Kabijakan',
@@ -252,8 +248,6 @@ $messages = array(
 'versionrequired'     => 'Dibutuhaké MediaWiki vèrsi $1',
 'versionrequiredtext' => 'MediaWiki vèrsi $1 dibutuhaké kanggo nggunakaké kaca iki. Mangga mirsani [[Special:Version|kaca iki]]',
 
-'ok'                      => 'OK',
-'pagetitle'               => '$1 - {{SITENAME}}',
 'retrievedfrom'           => 'Sumber artikel iki saka kaca situs web: "$1"',
 'youhavenewmessages'      => 'Panjenengan kagungan $1 ($2).',
 'newmessageslink'         => 'warta énggal',
@@ -270,8 +264,6 @@ $messages = array(
 'restorelink'             => '$1 suntingan sing wis kabusak',
 'feedlinks'               => 'Asupan:',
 'feed-invalid'            => 'Tipe permintaan asupan ora bener.',
-'feed-atom'               => 'Atom',
-'feed-rss'                => 'RSS',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Artikel',
@@ -631,7 +623,6 @@ Pengurus liyané bakal tetep bisa ngaksès isi sing kadhelikaké iku lan bisa mb
 'qbsettings-floatingright' => 'Ngambang sisih tengen',
 'changepassword'           => 'Ganti tembung sandhi',
 'skin'                     => 'Kulit',
-'math'                     => 'Math',
 'dateformat'               => 'Format tanggal',
 'datedefault'              => 'Ora ana préferènsi',
 'datetime'                 => 'Wektu',
@@ -641,7 +632,6 @@ Pengurus liyané bakal tetep bisa ngaksès isi sing kadhelikaké iku lan bisa mb
 'prefs-watchlist'          => 'Pandelengan',
 'prefs-misc'               => 'Liya-liya',
 'saveprefs'                => 'Simpen',
-'resetprefs'               => 'Reset',
 'oldpassword'              => 'Tembung sandi lawas:',
 'newpassword'              => 'Tembung sandi anyar:',
 'retypenew'                => 'Ketik ulang tembung sandi anyar:',
@@ -671,7 +661,6 @@ Pengurus liyané bakal tetep bisa ngaksès isi sing kadhelikaké iku lan bisa mb
 'group-bureaucrat' => 'Birokrat',
 'group-all'        => '(kabèh)',
 
-'group-bot-member'        => 'Bot',
 'group-sysop-member'      => 'Pangurus',
 'group-bureaucrat-member' => 'Birokrat',
 
@@ -926,7 +915,6 @@ The [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] length is '''\$7''
 'patrol-log-page' => 'Log patroli',
 'patrol-log-line' => 'nandhani $1 saka $2 sing dipatroli $3',
 'patrol-log-auto' => '(otomatis)',
-'patrol-log-diff' => 'r$1',
 
 # Image deletion
 'deletedrevision' => 'Revisi lawas sing dibusak $1.',
@@ -989,7 +977,6 @@ The [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] length is '''\$7''
 'exif-exposuretime'                => 'Wektu pajanan',
 'exif-exposuretime-format'         => '$1 detik ($2)',
 'exif-fnumber'                     => 'Wiji F',
-'exif-fnumber-format'              => 'f/$1',
 'exif-exposureprogram'             => 'Program pajanan',
 'exif-spectralsensitivity'         => 'Sènsitivitas spèktral',
 'exif-isospeedratings'             => 'Rating kacepetan ISO',
@@ -1004,7 +991,6 @@ The [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] length is '''\$7''
 'exif-lightsource'                 => 'Sumber cahya',
 'exif-flash'                       => 'Kilas',
 'exif-focallength'                 => 'Jarak fokus lènsa',
-'exif-focallength-format'          => '$1 mm',
 'exif-subjectarea'                 => 'Wilayah subjèk',
 'exif-flashenergy'                 => 'Énèrgi kilas',
 'exif-spatialfrequencyresponse'    => 'Respons frekwènsi spasial',
@@ -1054,7 +1040,6 @@ The [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] length is '''\$7''
 'exif-gpsdestlongituderef'         => 'Réferènsi bujur saka patujon',
 'exif-gpsdestlongitude'            => 'Bujur tujuan',
 'exif-gpsdestbearingref'           => 'Réferènsi bearing of destination',
-'exif-gpsdestbearing'              => 'Bearing of destination',
 'exif-gpsdestdistanceref'          => 'Réferènsi jarak saka patujon',
 'exif-gpsdestdistance'             => 'Jarak saka patujon',
 'exif-gpsprocessingmethod'         => 'Jeneng métodhe prosès GPS',
@@ -1062,11 +1047,9 @@ The [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] length is '''\$7''
 'exif-gpsdatestamp'                => 'Tanggal GPS',
 'exif-gpsdifferential'             => 'Korèksi diférènsial GPS',
 
-'exif-saturation-0' => 'Normal',
 'exif-saturation-1' => 'Saturasi ngisor',
 'exif-saturation-2' => 'Saturasi dhuwur',
 
-'exif-sharpness-0' => 'Normal',
 'exif-sharpness-1' => 'Lembut',
 'exif-sharpness-2' => 'Atos',
 
@@ -1118,8 +1101,7 @@ Saiki panjenengan bisa log mlebu lan wiwit nganggo wiki.',
 'redirectingto' => 'Dipun-alihaken tumuju [[$1]]...',
 
 # action=purge
-'confirm_purge'        => "Busak ''cache'' kaca iki?$1",
-'confirm_purge_button' => 'OK',
+'confirm_purge' => "Busak ''cache'' kaca iki?$1",
 
 # AJAX search
 'searchcontaining' => "Golèk artikel sing ngamot ''$1''.",

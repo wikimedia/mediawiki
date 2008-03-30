@@ -101,14 +101,14 @@ $messages = array(
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'         => 'ވިކިޕީޑިއާ ގެ ތާރަފު',
-'aboutpage'         => 'މަޝްރޫ:ތާރަފު',
+'aboutpage'         => 'Project:ތާރަފު',
 'copyright'         => 'ހުރިހާ މާއްދާއެއް $1 ގެ ދަށުން ލިބެން އެބަހުއްޓެވެ.',
 'copyrightpagename' => 'ވިކިޕީޑިއާ:ނަކަލުކުރުމުގެ ހައްގު',
-'copyrightpage'     => 'މަޝްރޫ:ނަކަލުކުރުމުގެހައްގު',
+'copyrightpage'     => '{{ns:project}}:ނަކަލުކުރުމުގެހައްގު',
 'currentevents'     => 'ހިނގަމުންދާ ހާދިސާތައް',
 'disclaimers'       => 'އިއުލާނުތައް',
 'edithelp'          => 'ބަދަލުތައް ގެނައުމަށް އެހީ އެއް',
-'helppage'          => 'އެހީ:ފިހުރިސްތު',
+'helppage'          => 'Help:ފިހުރިސްތު',
 'mainpage'          => 'މައި ޞަފްޙާ',
 'portal'            => 'އާންމު ހޮޅުއަށި',
 'privacy'           => 'އަމިއްލަވަންތަ ސިޔާސަތު',

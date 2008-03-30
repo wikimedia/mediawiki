@@ -132,6 +132,7 @@ $messages = array(
 'pagecategories'         => '{{PLURAL:$1|ವರ್ಗ|ವರ್ಗಗಳು}}',
 'category_header'        => '"$1" ವರ್ಗದಲ್ಲಿರುವ ಲೇಖನಗಳು',
 'subcategories'          => 'ಉಪವರ್ಗಗಳು',
+'category-media-header'  => '"$1" ವರ್ಗದಲ್ಲಿರುವ ಚಿತ್ರ/ಶಬ್ದ ಫೈಲುಗಳು',
 'category-empty'         => "''ಈ ವರ್ಗದಲ್ಲಿ ಸದ್ಯದಲ್ಲಿ ಯಾವುದೇ ಪುಟಗಳಾಗಲಿ ಅಥವ ಚಿತ್ರಗಳಾಗಲಿ ಇಲ್ಲ.''",
 'listingcontinuesabbrev' => 'ಮುಂದು.',
 
@@ -200,10 +201,13 @@ $messages = array(
 'categorypage'      => 'ವರ್ಗ ಪುಟ ತೋರು',
 'viewtalkpage'      => 'ಚರ್ಚೆಯನ್ನು ವೀಕ್ಷಿಸಿ',
 'otherlanguages'    => 'ಇತರ ಭಾಷೆಗಳು',
+'redirectedfrom'    => '($1 ಇಂದ ಪುನರ್ನಿರ್ದೇಶಿತ)',
+'redirectpagesub'   => 'ಪುನರ್ನಿರ್ದೇಶನ ಪುಟ',
 'lastmodifiedat'    => 'ಈ ಪುಟವನ್ನು ಕೊನೆಯಾಗಿ $2, $1 ರಂದು ಬದಲಾಯಿಸಲಾಗಿತ್ತು.', # $1 date, $2 time
 'viewcount'         => 'ಈ ಪುಟವನ್ನು {{PLURAL:$1|೧ ಬಾರಿ|$1 ಬಾರಿ}} ವೀಕ್ಷಿಸಲಾಗಿದೆ.',
 'protectedpage'     => 'ಸಂರಕ್ಷಿತ ಪುಟ',
 'jumpto'            => 'ಇಲ್ಲಿಗೆ ಹೋಗು:',
+'jumptonavigation'  => 'ಸಂಚರಣೆ',
 'jumptosearch'      => 'ಹುಡುಕು',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
@@ -215,6 +219,7 @@ $messages = array(
 'currentevents'     => 'ಪ್ರಚಲಿತ',
 'currentevents-url' => 'Project:ಪ್ರಚಲಿತ',
 'disclaimers'       => 'ಅಬಾಧ್ಯತೆಗಳು',
+'disclaimerpage'    => 'Project:ಸಾಮಾನ್ಯ ಅಬಾಧ್ಯತೆಗಳು',
 'edithelp'          => 'ಸಂಪಾದನೆಗೆ ಸಹಾಯ',
 'edithelppage'      => 'Help:ಸಂಪಾದನೆ',
 'helppage'          => 'Help:ಪರಿವಿಡಿ',
@@ -245,6 +250,7 @@ $messages = array(
 'feedlinks'               => 'ಫೀಡ್:',
 'site-rss-feed'           => '$1 RSS ಫೀಡು',
 'site-atom-feed'          => '$1 Atom ಫೀಡು',
+'page-rss-feed'           => '"$1" RSS ಫೀಡು',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'ಲೇಖನ',
@@ -276,6 +282,7 @@ $1',
 'cannotdelete'       => 'ಈ ಪುಟ ಅಥವಾ ಚಿತ್ರವನ್ನು ಅಳಿಸಲಾಗಲಿಲ್ಲ. (ಬೇರೊಬ್ಬ ಸದಸ್ಯರಿಂದ ಆಗಲೇ ಅಳಿಸಲ್ಪಟ್ಟಿರಬಹುದು.)',
 'badtitle'           => 'ಸರಿಯಿಲ್ಲದ ಹೆಸರು',
 'viewsource'         => 'ಆಕರ ವೀಕ್ಷಿಸು',
+'viewsourcefor'      => '$1 ಪುಟಕ್ಕೆ',
 'protectedpagetext'  => 'ಈ ಪುಟವನ್ನು ಸಂಪಾದನೆ ಮಾಡಲಾಗದಂತೆ ಸಂರಕ್ಷಿಸಲಾಗಿದೆ.',
 'viewsourcetext'     => 'ಈ ಪುಟದ ಮೂಲವನ್ನು ನೀವು ವೀಕ್ಷಿಸಬಹುದು ಮತ್ತು ನಕಲು ಮಾಡಬಹುದು:',
 'titleprotected'     => "ಈ ಹೆಸರಿನ ಪುಟವನ್ನು ಸೃಷ್ಟಿಸಲಾಗದಂತೆ [[User:$1|$1]] ಅವರು ಸಂರಕ್ಷಿಸಿದ್ದಾರೆ.
@@ -292,6 +299,7 @@ $1',
 'remembermypassword'         => 'ಈ ಗಣಕಯಂತ್ರದಲ್ಲಿ ನನ್ನ ಪ್ರವೇಶ ಪದವನ್ನು ನೆನಪಿನಲ್ಲಿಟ್ಟುಕೊ',
 'loginproblem'               => '<b>ನಿಮ್ಮ ಲಾಗಿನ್ ನಲ್ಲಿ ತೊ೦ದರೆಯಾಯಿತು.</b><br />ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ!',
 'login'                      => 'ಲಾಗ್ ಇನ್',
+'loginprompt'                => '{{SITENAME}} ತಾಣಕ್ಕೆ ಲಾಗ್ ಇನ್ ಆಗಲು ನಿಮ್ಮ ಗಣಕಯಂತ್ರದಲ್ಲಿ ಕುಕೀ (cookie) ಸೌಲಭ್ಯವಿರಬೇಕು.',
 'userlogin'                  => 'ಲಾಗ್ ಇನ್ - log in',
 'logout'                     => 'ಲಾಗ್ ಔಟ್',
 'userlogout'                 => 'ಲಾಗ್ ಔಟ್ - log out',
@@ -322,9 +330,16 @@ $1',
 'wrongpasswordempty'         => 'ಖಾಲಿ ಪ್ರವೇಶ ಪದವನ್ನು ನೀಡಿರುವಿರಿ. ಮತ್ತೊಮ್ಮೆ ಪ್ರಯತ್ನಿಸಿ.',
 'mailmypassword'             => 'ಹೊಸ ಪ್ರವೇಶ ಪದವನ್ನು ಇ-ಅಂಚೆ ಮೂಲಕ ಕಳುಹಿಸಿ',
 'passwordremindertitle'      => '{{SITENAME}}ಗೆ ಹೊಸ ತಾತ್ಕಾಲಿಕ ಪ್ರವೇಶ ಪದ',
+'passwordremindertext'       => '{{SITENAME}} ($4) ಸೈಟಿಗೆ ಹೊಸ ಪ್ರವೇಶಪದವನ್ನು $1 ಐ.ಪಿ. ವಿಳಾಸದಿಂದ ಕೋರಲಾಗಿದೆ.
+ಸದಸ್ಯ "$2" ಅವರ ಹೊಸ ಪ್ರವೇಶಪದ ಈಗ "$3".
+ನೀವು ಲಾಗ್ ಇನ್ ಆಗಿ ತಮ್ಮ ಪ್ರವೇಶಪದವನ್ನು ಬದಲಾಯಿಸಿ. 
+
+ನೀವು ಈ ಕೋರಿಕೆಯನ್ನು ಮಾಡಿಲ್ಲದಿದ್ದರೆ, ಅಥವ ನೀವು ನಿಮ್ಮ ಹಳೆಯ ಪ್ರವೇಶಪದವನ್ನು ನೆನಪಿಸಿಕೊಂಡರೆ ಈ ಮಾಹಿತಿಗೆ ಗಮನ ನೀಡದೆ ನಿಮ್ಮ ಹಳೆಯ ಪ್ರವೇಶಪದವನ್ನು ಉಪಯೋಗಿಸಲು ಮುಂದುವರೆಸಿರಿ.',
 'noemail'                    => 'ಸದಸ್ಯ "$1" ಅವರ ಹೆಸರಿನಲ್ಲಿ ಯಾವ ಇ-ಅಂಚೆ ವಿಳಾಸವೂ ದಾಖಲಾಗಿಲ್ಲ.',
 'passwordsent'               => '"$1" ಅವರ ಹೆಸರಿನಲ್ಲಿ ನೋಂದಾಯಿತವಾದ ಇ-ಅಂಚೆ ವಿಳಾಸಕ್ಕೆ ಹೊಸ ಪ್ರವೇಶಪದವನ್ನು ಕಳುಹಿಸಲಾಗಿದೆ.
 ಅದನ್ನು ಪಡೆದ ಮೇಲೆ ಮತ್ತೆ ಲಾಗಿನ್ ಆಗಿ.',
+'eauthentsent'               => 'ನೀವು ನೊಂದಾಯಿಸಿದ ಇ-ಅಂಚೆ ವಿಳಾಸಕ್ಕೆ ಧೃಡೀಕರಣ ಅಂಚೆಯನ್ನು ಕಳುಹಿಸಲಾಗಿದೆ. 
+ಈ ವಿಳಾಸಕ್ಕೆ ಮುಂದೆ ಯಾವುದೇ ಇ-ಅಂಚೆ ಕಳುಹಿಸಲ್ಪಡುವ ಮುನ್ನ ನೀವು ಈ ಕಳುಹಿಸಿರುವ ಅಂಚೆಯಲ್ಲಿನ ನಿರ್ದೇಶನಗಳನ್ನು ಪಾಲಿಸಿ, ಈ ವಿಳಾಸವು ನಿಮ್ಮದೇ ಎಂದು ಧೃಡೀಕರಿಸಬೇಕು.',
 'acct_creation_throttle_hit' => 'ಕ್ಷಮಿಸಿ, ನೀವಾಗಲೇ $1 ಖಾತೆಗಳನ್ನು ತೆರೆದಿದ್ದೀರಿ. ಇನ್ನು ಖಾತೆಗಳನ್ನು ತೆರೆಯಲಾಗುವುದಿಲ್ಲ.',
 'emailconfirmlink'           => 'ನಿಮ್ಮ ಇ-ಅಂಚೆ ವಿಳಾಸವನ್ನು ಧೃಡೀಕರಿಸಿ',
 'accountcreated'             => 'ಖಾತೆಯನ್ನು ಸೃಷ್ಟಿಸಲಾಯಿತು',
@@ -340,8 +355,14 @@ $1',
 'italic_tip'      => 'ಓರೆ ಅಕ್ಷರಗಳು',
 'link_sample'     => 'ಸಂಪರ್ಕದ ಹೆಸರು',
 'link_tip'        => 'ಆಂತರಿಕ ಸಂಪರ್ಕ',
+'extlink_sample'  => 'http://www.example.com ಸಂಪರ್ಕ ಶೀರ್ಷಿಕೆ',
 'extlink_tip'     => 'ಬಾಹ್ಯ ಸಂಪರ್ಕ (http:// ಇಂದ ಶುರು ಮಾಡಿ)',
 'headline_sample' => 'ಶಿರೋಲೇಖ',
+'headline_tip'    => '೨ನೇ ಮಟ್ಟದ ತಲೆಬರಹ',
+'math_sample'     => 'ಇಲ್ಲಿ ಸೂತ್ರವನ್ನು ಅಳವಡಿಸಿ',
+'math_tip'        => 'ಗಣಿತ ಸೂತ್ರ (LaTeX)',
+'nowiki_tip'      => 'ವಿಕಿ ರಚನಕ್ರಮವನ್ನು ಅಲಕ್ಷಿಸು',
+'media_tip'       => 'ಫೈಲಿಗೆ ಕೊಂಡಿ',
 'sig_tip'         => 'ಸಮಯಮುದ್ರೆಯೊಂದಿಗೆ ನಿಮ್ಮ ಸಹಿ',
 'hr_tip'          => 'ಅಡ್ಡ ಗೆರೆ (ಆದಷ್ಟು ಕಡಿಮೆ ಉಪಯೋಗಿಸಿ)',
 
@@ -387,7 +408,7 @@ $1',
 ನಿಮ್ಮ ಸಂಪಾದನೆಗಳನ್ನು ಪ್ರಸಕ್ತ ಸ್ವರೂಪದ ಲೇಖನದಲ್ಲಿ ನೀವು ಸೇರಿಸಬೇಕಾಗುತ್ತದೆ.
 ನೀವು ಪುಟವನ್ನು ಉಳಿಸಿದಾಗ '''ಮೇಲಿನ ಚೌಕದಲ್ಲಿ ನೀವು ಮಾಡುವ ಬದಲಾವಣೆಗಳನ್ನು ಮಾತ್ರ''' ಉಳಿಸಲಾಗುತ್ತದೆ.",
 'storedversion'            => 'ಈಗಾಗಲೇ ಉಳಿಸಲಾಗಿರುವ ಆವೃತ್ತಿ',
-'editingold'               => '<strong>ಎಚ್ಚರಿಕೆ: ಈ ಪುಟದ ಹಳೆಯ ಆವೃತ್ತಿಯನ್ನು ಬದಲಾಯಿಸುತ್ತಿದ್ದೀರಿ. ಈ ಬದಲಾವಣೆಗಳನ್ನು ಉಳಿಸಿದಲ್ಲಿ, ನ೦ತರದ ಆವೃತ್ತಿಗಳೆಲ್ಲವೂ ಕಳೆದುಹೋಗುತ್ತವೆ.</strong>',
+'editingold'               => '<strong>ಎಚ್ಚರಿಕೆ: ಈ ಪುಟದ ಹಳೆಯ ಆವೃತ್ತಿಯನ್ನು ಬದಲಾಯಿಸುತ್ತಿದ್ದೀರಿ. ಈ ಬದಲಾವಣೆಗಳನ್ನು ಉಳಿಸಿದಲ್ಲಿ, ನಂತರದ ಆವೃತ್ತಿಗಳೆಲ್ಲವೂ ಕಳೆದುಹೋಗುತ್ತವೆ.</strong>',
 'yourdiff'                 => 'ವ್ಯತ್ಯಾಸಗಳು',
 'copyrightwarning'         => 'ದಯವಿಟ್ಟು ಗಮನಿಸಿ: {{SITENAME}} ಸೈಟಿನಲ್ಲಿ ನಿಮ್ಮ ಎಲ್ಲಾ ಕಾಣಿಕೆಗಳನ್ನೂ $2 ಅಡಿಯಲ್ಲಿ ಬಿಡುಗಡೆ ಮಾಡಲಾಗುತ್ತದೆ (ಮಾಹಿತಿಗೆ $1 ನೋಡಿ). ನಿಮ್ಮ ಸಂಪಾದನೆಗಳನ್ನು ಬೇರೆಯವರು ನಿರ್ಧಾಕ್ಷಿಣ್ಯವಾಗಿ ಬದಲಾಯಿಸಿ ಬೇರೆ ಕಡೆಗಳಲ್ಲಿ ಹಂಚಬಹುದು. ಇದಕ್ಕೆ ನಿಮ್ಮ ಒಪ್ಪಿಗೆ ಇದ್ದರೆ ಮಾತ್ರ ಇಲ್ಲಿ ಸಂಪಾದನೆ ಮಾಡಿ.<br />
 ಅಲ್ಲದೆ ನಿಮ್ಮ ಸಂಪಾದನೆಗಳನ್ನು ಸ್ವತಃ ರಚಿಸಿದ್ದು, ಅಥವ ಕೃತಿಸ್ವಾಮ್ಯತೆಯಿಂದ ಮುಕ್ತವಾಗಿರುವ ಕಡೆಯಿಂದ ಪಡೆದಿದ್ದು ಎಂದು ಪ್ರಮಾಣಿಸುತ್ತಿರುವಿರಿ.
@@ -410,6 +431,7 @@ $1',
 'cantcreateaccounttitle' => 'ಖಾತೆಯನ್ನು ಸೃಷ್ಟಿಸಲಾಗುತ್ತಿಲ್ಲ',
 
 # History pages
+'viewpagelogs'        => 'ಈ ಪುಟಗಳ ದಾಖಲೆಗಳನ್ನು ವೀಕ್ಷಿಸಿ',
 'nohistory'           => 'ಈ ಪುಟಕ್ಕೆ ಬದಲಾವಣೆಗಳ ಇತಿಹಾಸ ಇಲ್ಲ.',
 'currentrev'          => 'ಈಗಿನ ತಿದ್ದುಪಡಿ',
 'revisionasof'        => '$1 ದಿನದ ಆವೃತ್ತಿ',
@@ -426,9 +448,10 @@ $1',
 'historyempty'        => '(ಖಾಲಿ)',
 
 # Revision feed
-'history-feed-title'       => 'ಬದಲಾವಣೆಗಳ ಇತಿಹಾಸ',
-'history-feed-description' => 'ವಿಕಿಯ ಈ ಪುಟದ ಬದಲಾವಣೆಗಳ ಇತಿಹಾಸ',
-'history-feed-empty'       => 'ನೀವು ಕೋರಿರುವ ಪುಟ ಅಸ್ಥಿತ್ವದಲ್ಲಿ ಇಲ್ಲ.
+'history-feed-title'          => 'ಬದಲಾವಣೆಗಳ ಇತಿಹಾಸ',
+'history-feed-description'    => 'ವಿಕಿಯ ಈ ಪುಟದ ಬದಲಾವಣೆಗಳ ಇತಿಹಾಸ',
+'history-feed-item-nocomment' => '$1 $2 ಅಲ್ಲಿ', # user at time
+'history-feed-empty'          => 'ನೀವು ಕೋರಿರುವ ಪುಟ ಅಸ್ಥಿತ್ವದಲ್ಲಿ ಇಲ್ಲ.
 ಅದು ವಿಕಿಯಿಂದ ಅಳಿಸಲ್ಪಟ್ಟಿರಬಹುದು ಅಥವ ಪುನರ್ನಾಮಕಾರಣಗೊಂಡಿರಬಹುದು.
 ಸಂಬಂಧಿತ ಹೊಸ ಪುಟಗಳನ್ನು [[Special:Search|ಹುಡುಕಲು ಪ್ರಯತ್ನಿಸಿ]].',
 
@@ -452,6 +475,7 @@ $1',
 'noexactmatch'          => "'''\"\$1\" ಹೆಸರಿನ ಯಾವ ಪುಟವೂ ಇಲ್ಲ.''' ನೀವು ಅದನ್ನು [[:\$1|ಸೃಷ್ಟಿಸಬಹುದು]].",
 'prevn'                 => 'ಹಿಂದಿನ $1',
 'nextn'                 => 'ಮುಂದಿನ $1',
+'viewprevnext'          => 'ವೀಕ್ಷಿಸು ($1) ($2) ($3)',
 'powersearch'           => 'ಹುಡುಕಿ',
 
 # Preferences page
@@ -506,6 +530,7 @@ $1',
 'hist'                              => 'ಇತಿಹಾಸ',
 'hide'                              => 'ಅಡಗಿಸು',
 'show'                              => 'ತೋರಿಸು',
+'minoreditletter'                   => 'ಚು',
 'newpageletter'                     => 'ಹೊ',
 'boteditletter'                     => 'ಬಾ',
 'number_of_watching_users_pageview' => '[$1 ವೀಕ್ಷಿಸುತ್ತಿರುವ {{PLURAL:$1|ಸದಸ್ಯ|ಸದಸ್ಯರು}}]',
@@ -519,6 +544,7 @@ $1',
 'upload'          => 'ಫೈಲ್ ಅಪ್ಲೋಡ್',
 'uploadbtn'       => 'ಫೈಲನ್ನು ಅಪ್ಲೋಡ್ ಮಾಡಿ',
 'uploadnologin'   => 'ಲಾಗಿನ್ ಆಗಿಲ್ಲ',
+'uploadlogpage'   => 'ಅಪ್ಲೋಡ್ ದಾಖಲೆ',
 'filename'        => 'ಕಡತದ ಹೆಸರು',
 'filedesc'        => 'ಸಾರಾಂಶ',
 'filestatus'      => 'ಕೃತಿಸ್ವಾಮ್ಯತೆ ಸ್ಥಿತಿ:',
@@ -549,8 +575,11 @@ $1',
 'filehist-datetime'         => 'ದಿನ/ಕಾಲ',
 'filehist-user'             => 'ಸದಸ್ಯ',
 'filehist-filesize'         => 'ಫೈಲಿನ ಗಾತ್ರ',
+'filehist-comment'          => 'ವಕ್ಕಣೆ',
+'imagelinks'                => 'ಕೊಂಡಿಗಳು',
 'linkstoimage'              => 'ಈ ಕೆಳಗಿನ ಪುಟಗಳು ಈ ಚಿತ್ರಕ್ಕೆ ಸಂಪರ್ಕ ಹೊಂದಿವೆ:',
 'nolinkstoimage'            => 'ಈ ಫೈಲಿಗೆ ಯಾವ ಪುಟವೂ ಸಂಪರ್ಕ ಹೊಂದಿಲ್ಲ.',
+'sharedupload'              => 'ಈ ಫೈಲಿನ ಮೂಲವನ್ನು ಹಲವರು ಹಂಚಿಕೊಂಡಿರುವರು ಮತ್ತು ಅನೇಕ ಯೋಜನೆಗಳಲ್ಲಿ ಇದು ಉಪಯೋಗದಲ್ಲಿರಬಹುದು.',
 'noimage'                   => 'ಈ ಹೆಸರಿನ ಫೈಲು ಯಾವುದೂ ಇಲ್ಲ. ನಿಮಗೆ ಆದರೆ ಅದನ್ನು $1.',
 'noimage-linktext'          => 'ಅಪ್ಲೋಡ್ ಮಾಡಿ',
 'uploadnewversion-linktext' => 'ಈ ಫೈಲಿನ ಹೊಸ ಆವೃತ್ತಿಯನ್ನು ಅಪ್ಲೋಡ್ ಮಾಡಿ',
@@ -592,6 +621,8 @@ $1',
 'statistics-mostpopular' => 'ಅತ್ಯಂತ ಹೆಚ್ಚು ವೀಕ್ಷಿತ ಪುಟಗಳು',
 
 'disambiguations' => 'ದ್ವಂದ್ವನಿವಾರಣಾ ಪುಟಗಳು',
+
+'doubleredirects' => 'ಮರುಕಳಿಸಿದ ಪುನರ್ನಿರ್ದೇಶನಗಳು',
 
 'brokenredirects'        => 'ಮುರಿದ ರಿಡೈರೆಕ್ಟ್‌ಗಳು',
 'brokenredirectstext'    => 'ಕೆಳಗಿನ ರಿಡೈರೆಕ್ಟುಗಳು ವಿಕಿಯಲ್ಲಿ ಇಲ್ಲದ ಪುಟಗಳಿಗೆ ಸಂಪರ್ಕ ಹೊಂದಿವೆ:',
@@ -645,6 +676,7 @@ $1',
 # Special:Log
 'specialloguserlabel'  => 'ಸದಸ್ಯ:',
 'speciallogtitlelabel' => 'ಶೀರ್ಷಿಕೆ:',
+'log'                  => 'ದಾಖಲೆಗಳು',
 
 # Special:Allpages
 'allpages'       => 'ಎಲ್ಲ ಪುಟಗಳು',
@@ -674,6 +706,7 @@ $1',
 # Watchlist
 'watchlist'            => 'ವೀಕ್ಷಣಾ ಪಟ್ಟಿ',
 'mywatchlist'          => 'ನನ್ನ ವೀಕ್ಷಣಾಪಟ್ಟಿ',
+'watchlistfor'         => "('''$1''' ಅವರ)",
 'nowatchlist'          => 'ನಿಮ್ಮ ವೀಕ್ಷಣಾಪಟ್ಟಿಯಲ್ಲಿ ಯಾವುದೇ ಪುಟಗಳಿಲ್ಲ',
 'watchnologin'         => 'ಲಾಗಿನ್ ಆಗಿಲ್ಲ',
 'addedwatch'           => 'ವೀಕ್ಷಣಾ ಪಟ್ಟಿಗೆ ಸೇರಿಸಲಾಯಿತು',
@@ -706,33 +739,43 @@ $1',
 'enotif_anon_editor' => 'ಅನಾಮಧೇಯ ಸದಸ್ಯ $1',
 
 # Delete/protect/revert
-'deletepage'            => 'ಪುಟವನ್ನು ಅಳಿಸಿ',
-'confirm'               => 'ಧೃಡಪಡಿಸು',
-'exblank'               => 'ಪುಟ ಖಾಲಿ ಇತ್ತು',
-'historywarning'        => 'ಎಚ್ಚರಿಕೆ: ನೀವು ಅಳಿಸಲು ಹೊರಟಿರುವ ಪುಟಕ್ಕೆ ಸಂಪಾದನೆಯ ಇತಿಹಾಸವಿದೆ:',
-'confirmdeletetext'     => 'ಒಂದು ಪುಟವನ್ನು ಮತ್ತು ಅದರ ಸಂಪೂರ್ಣ ಇತಿಹಾಸವನ್ನು ನೀವು ಶಾಶ್ವತವಾಗಿ ಅಳಿಸಿಹಾಕುತ್ತಿರುವಿರಿ.
+'deletepage'                  => 'ಪುಟವನ್ನು ಅಳಿಸಿ',
+'confirm'                     => 'ಧೃಡಪಡಿಸು',
+'exblank'                     => 'ಪುಟ ಖಾಲಿ ಇತ್ತು',
+'historywarning'              => 'ಎಚ್ಚರಿಕೆ: ನೀವು ಅಳಿಸಲು ಹೊರಟಿರುವ ಪುಟಕ್ಕೆ ಸಂಪಾದನೆಯ ಇತಿಹಾಸವಿದೆ:',
+'confirmdeletetext'           => 'ಒಂದು ಪುಟವನ್ನು ಮತ್ತು ಅದರ ಸಂಪೂರ್ಣ ಇತಿಹಾಸವನ್ನು ನೀವು ಶಾಶ್ವತವಾಗಿ ಅಳಿಸಿಹಾಕುತ್ತಿರುವಿರಿ.
 ಇದನ್ನು ನೀವು ಮಾಡಬಯಸುವಿರಿ, ಇದರ ಪರಿಣಾಮಗಳನ್ನು ಬಲ್ಲಿರಿ, ಮತ್ತು [[{{MediaWiki:Policy-url}}|ಕಾರ್ಯನೀತಿಗಳ]] ಅನುಸಾರ ಇದನ್ನು ಮಾಡುತ್ತಿದ್ದೀರಿ ಎಂದು ದೃಢಪಡಿಸಿ.',
-'actioncomplete'        => 'ಕಾರ್ಯ ಸಂಪೂರ್ಣ',
-'deletedtext'           => '"<nowiki>$1</nowiki>" ಅನ್ನು ಅಳಿಸಲಾಯಿತು.
+'actioncomplete'              => 'ಕಾರ್ಯ ಸಂಪೂರ್ಣ',
+'deletedtext'                 => '"<nowiki>$1</nowiki>" ಅನ್ನು ಅಳಿಸಲಾಯಿತು.
 ಇತ್ತೀಚೆಗಿನ ಅಳಿಸುವಿಕೆಗಳ ಪಟ್ಟಿಗಾಗಿ $2 ಅನ್ನು ನೋಡಿ.',
-'deletedarticle'        => '"$1" ಅಳಿಸಲಾಯಿತು',
-'deletionlog'           => 'ಅಳಿಸುವಿಕೆ ದಿನಚರಿ',
-'deletecomment'         => 'ಅಳಿಸುವುದರ ಕಾರಣ',
-'deleteotherreason'     => 'ಇತರ/ಹೆಚ್ಚುವರಿ ಕಾರಣ:',
-'deletereasonotherlist' => 'ಇತರ ಕಾರಣ',
-'deletereason-dropdown' => '*ಸಾಮಾನ್ಯ ಅಳಿಸುವಿಕೆಯ ಕಾರಣಗಳು
+'deletedarticle'              => '"$1" ಅಳಿಸಲಾಯಿತು',
+'dellogpage'                  => 'ಅಳಿಸುವಿಕೆ ದಾಖಲೆ',
+'deletionlog'                 => 'ಅಳಿಸುವಿಕೆ ದಿನಚರಿ',
+'deletecomment'               => 'ಅಳಿಸುವುದರ ಕಾರಣ',
+'deleteotherreason'           => 'ಇತರ/ಹೆಚ್ಚುವರಿ ಕಾರಣ:',
+'deletereasonotherlist'       => 'ಇತರ ಕಾರಣ',
+'deletereason-dropdown'       => '*ಸಾಮಾನ್ಯ ಅಳಿಸುವಿಕೆಯ ಕಾರಣಗಳು
 ** ಸಂಪಾದಕರ ಕೋರಿಕೆ
 ** ಕೃತಿಸ್ವಾಮ್ಯತೆಯ ಉಲ್ಲಂಘನೆ
 ** Vandalism',
-'protectlogpage'        => 'ಸಂರಕ್ಷಣೆ ದಿನಚರಿ',
-'protectedarticle'      => '"[[$1]]" ಸಂರಕ್ಷಿಸಲಾಗಿದೆ',
-'protect-legend'        => 'ಸಂರಕ್ಷಣೆ ಧೃಡಪಡಿಸಿ',
-'protectcomment'        => 'ಸಂರಕ್ಷಿಸಲು ಕಾರಣ:',
-'protect-text'          => 'ನೀವು ಇಲ್ಲಿ <strong><nowiki>$1</nowiki></strong> ಪುಟದ ಸಂರಕ್ಷಣೆ ಮಟ್ಟವನ್ನು ವೀಕ್ಷಿಸಬಹುದು ಮತ್ತು ಬದಲಾಯಿಸಬಹುದು.',
-'protect-level-sysop'   => 'ನಿರ್ವಾಹಕರು ಮಾತ್ರ',
-'protect-cantedit'      => 'ನೀವು ಈ ಪುಟದ ಸಂರಕ್ಷಣೆ ಮಟ್ಟವನ್ನು ಬದಲಾಯಿಸುವ ಅನುಮತಿಯನ್ನು ಹೊಂದಿಲ್ಲ.',
-'restriction-type'      => 'ಅನುಮತಿ:',
-'restriction-level'     => 'ನಿರ್ಬಂಧನೆಯ ಮಟ್ಟ:',
+'protectlogpage'              => 'ಸಂರಕ್ಷಣೆ ದಿನಚರಿ',
+'protectedarticle'            => '"[[$1]]" ಸಂರಕ್ಷಿಸಲಾಗಿದೆ.',
+'protect-legend'              => 'ಸಂರಕ್ಷಣೆ ಧೃಡಪಡಿಸಿ',
+'protectcomment'              => 'ಸಂರಕ್ಷಿಸಲು ಕಾರಣ:',
+'protect-text'                => 'ನೀವು ಇಲ್ಲಿ <strong><nowiki>$1</nowiki></strong> ಪುಟದ ಸಂರಕ್ಷಣೆ ಮಟ್ಟವನ್ನು ವೀಕ್ಷಿಸಬಹುದು ಮತ್ತು ಬದಲಾಯಿಸಬಹುದು.',
+'protect-locked-access'       => 'ನಿಮ್ಮ ಖಾತೆಗೆ ಪುಟ ಸಂರಕ್ಷಣ ಮಟ್ಟಗಳನ್ನು ಬದಲಾಯಿಸುವ ಅನುಮತಿ ಇಲ್ಲ. 
+ಈ ಪುಟದ ಪ್ರಸಕ್ತ ವಸ್ತುಸ್ಥಿತಿ ಹೀಗಿದೆ: <strong>$1</strong>:',
+'protect-cascadeon'           => 'ಈ ಕೆಳಗಿನ ತಡಸಲು ಸಂರಕ್ಷಣೆ (cascading protection) ಹೊಂದಿರುವ {{PLURAL:$1|ಪುಟದಲ್ಲಿ|ಪುಟಗಳಲ್ಲಿ}} ಸೇರ್ಪಡೆ ಆಗಿರುವುದರಿಂದ ಈ ಪುಟವೂ ಸಂರಕ್ಷಿತವಾಗಿದೆ.
+ನೀವು ಈ ಪುಟದ ಸಂರಕ್ಷಣೆ ಮಟ್ಟವನ್ನು ಬದಲಾಯಿಸಬಹುದು, ಆದರೆ ಅದು ತಡಸಲು ಸಂರಕ್ಷಣೆಯನ್ನು ಬದಲಾಯಿಸುವುದಿಲ್ಲ.',
+'protect-fallback'            => '"$1" ಅನುಮತಿ ಬೇಕಾಗಿದೆ',
+'protect-level-autoconfirmed' => 'ನೋಂದಾವಣೆ ಆಗಿಲ್ಲದ ಸದಸ್ಯರನ್ನು ತಡೆಹಿಡಿ',
+'protect-level-sysop'         => 'ನಿರ್ವಾಹಕರು ಮಾತ್ರ',
+'protect-summary-cascade'     => 'ತಡಸಲು (cascading)',
+'protect-expiring'            => 'ಮುಕ್ತಾಯ $1 (UTC)',
+'protect-cascade'             => 'ಈ ಪುಟದಲ್ಲಿ ಸೇರಿಸಲಾಗಿರುವ ಪುಟಗಳನ್ನು ಸಂರಕ್ಷಿಸು (ತಡಸಲು ಸಂರಕ್ಷಣೆ - cascading protection)',
+'protect-cantedit'            => 'ನೀವು ಈ ಪುಟದ ಸಂರಕ್ಷಣೆ ಮಟ್ಟವನ್ನು ಬದಲಾಯಿಸುವ ಅನುಮತಿಯನ್ನು ಹೊಂದಿಲ್ಲ.',
+'restriction-type'            => 'ಅನುಮತಿ:',
+'restriction-level'           => 'ನಿರ್ಬಂಧನೆಯ ಮಟ್ಟ:',
 
 # Restriction levels
 'restriction-level-sysop'         => 'ಪೂರ್ಣವಾಗಿ ಸಂರಕ್ಷಿತ',
@@ -751,6 +794,7 @@ $1',
 
 'sp-contributions-newbies'     => 'ಹೊಸ ಖಾತೆಗಳ ಕಾಣಿಕೆಗಳನ್ನು ಮಾತ್ರ ತೋರಿಸು',
 'sp-contributions-newbies-sub' => 'ಹೊಸ ಖಾತೆಗಳಿಗೆ',
+'sp-contributions-blocklog'    => 'ತಡೆಹಿಡಿಯುವಿಕೆ ದಾಖಲೆ',
 'sp-contributions-search'      => 'ಸಂಪಾದನೆಗಳನ್ನು ಹುಡುಕು',
 'sp-contributions-submit'      => 'ಹುಡುಕು',
 
@@ -760,9 +804,11 @@ $1',
 'linklistsub'         => '(ಸಂಪರ್ಕಗಳ ಪಟ್ಟಿ)',
 'linkshere'           => "'''[[:$1]]'''ಗೆ ಈ ಪುಟಗಳು ಸಂಪರ್ಕ ಹೊಂದಿವೆ:",
 'nolinkshere'         => "'''[[:$1]]''' ಗೆ ಯಾವ ಪುಟಗಳೂ ಸಂಪರ್ಕ ಹೊಂದಿಲ್ಲ.",
+'isredirect'          => 'ಪುನರ್ನಿರ್ದೇಶನ ಪುಟ',
 'istemplate'          => 'ಸೇರ್ಪಡೆ',
 'whatlinkshere-prev'  => '{{PLURAL:$1|ಹಿಂದಿನ|ಹಿಂದಿನ $1}}',
 'whatlinkshere-next'  => '{{PLURAL:$1|ಮುಂದಿನ|ಮುಂದಿನ $1}}',
+'whatlinkshere-links' => '← ಕೊಂಡಿಗಳು',
 
 # Block/unblock
 'blockip'            => 'ಈ ಸದಸ್ಯನನ್ನು ತಡೆ ಹಿಡಿಯಿರಿ',
@@ -812,6 +858,7 @@ $1',
 'talkpagenotmoved' => 'ಜೊತೆಗಿನ ಚರ್ಚೆ ಪುಟವನ್ನು ಸ್ಥಳಾಂತರ <strong>ಮಾಡಲಾಗಲಿಲ್ಲ</strong>.',
 '1movedto2'        => '[[$1]] - [[$2]] ಪುಟಕ್ಕೆ ಸ್ಥಳಾಂತರಿಸಲಾಗಿದೆ',
 '1movedto2_redir'  => '[[$1]] - [[$2]] ಪುಟ ರಿಡೈರೆಕ್ಟ್ ಮೂಲಕ ಸ್ಥಳಾಂತರಿಸಲಾಗಿದೆ',
+'movelogpage'      => 'ಸ್ಥಳಾಂತರಿಕೆ ದಾಖಲೆ',
 'movereason'       => 'ಕಾರಣ',
 
 # Export
@@ -839,7 +886,9 @@ $1',
 'tooltip-pt-watchlist'            => 'ನೀವು ಬದಲಾವಣೆಗಳ ಮೇಲೆ ನಿಗಾ ವಹಿಸುತ್ತಿರುವ ಪುಟಗಳ ಪಟ್ಟಿ',
 'tooltip-pt-mycontris'            => 'ನನ್ನ ಕಾಣಿಕೆಗಳ ಪಟ್ಟಿ',
 'tooltip-pt-login'                => 'ನೀವು ಲಾಗ್ ಇನ್ ಆಗಬೇಕೆಂದು ಕೋರುತ್ತೇವೆ, ಆದರೆ ಅದು ಖಡ್ಡಾಯ ಏನು ಅಲ್ಲ.',
+'tooltip-ca-talk'                 => 'ಮಾಹಿತಿ ಪುಟದ ಬಗ್ಗೆ ಚರ್ಚೆ',
 'tooltip-ca-edit'                 => 'ಈ ಪುಟವನ್ನು ನೀವು ಸಂಪಾದಿಸಬಹುದು. ಉಳಿಸುವ ಮುನ್ನ ಮುನ್ನೋಟವನ್ನು ಉಪಯೋಗಿಸಿ.',
+'tooltip-ca-addsection'           => 'ಈ ಚರ್ಚೆಗೆ ನಿಮ್ಮ ಅಭಿಪ್ರಾಯವನ್ನು ಸೇರಿಸಿ.',
 'tooltip-ca-viewsource'           => 'ಈ ಪುಟ ಸಂರಕ್ಷಿತವಾಗಿದೆ. ಅದರ ಮೂಲವನ್ನು ನೀವು ವೀಕ್ಷಿಸಬಹುದು.',
 'tooltip-ca-protect'              => 'ಈ ಪುಟವನ್ನು ಸಂರಕ್ಷಿಸು',
 'tooltip-ca-delete'               => 'ಈ ಪುಟವನ್ನು ಅಳಿಸು',
@@ -848,8 +897,11 @@ $1',
 'tooltip-ca-unwatch'              => 'ಈ ಪುಟವನ್ನು ನಿಮ್ಮ ವೀಕ್ಷಣಾ ಪಟ್ಟಿಯಿಂದ ತೆಗೆ',
 'tooltip-search'                  => '{{SITENAME}} ಅನ್ನು ಹುಡುಕಿ',
 'tooltip-n-mainpage'              => 'ಮುಖ್ಯ ಪುಟ ನೋಡಿ',
+'tooltip-n-portal'                => 'ಯೋಜನೆಯ ಬಗ್ಗೆ, ನೀವು ಏನು ಮಾಡಬಹುದು, ಎಲ್ಲಿ ಇದರ ಬಗ್ಗೆ ತಿಳಿದುಕೊಳ್ಳಬಹುದು',
+'tooltip-n-currentevents'         => 'ಪ್ರಸಕ್ತ ಆಗುಹೋಗುಗಳ ಬಗ್ಗೆ ಹಿನ್ನಲೆ ಮಾಹಿತಿ ಪಡೆಯಿರಿ',
 'tooltip-n-recentchanges'         => 'ವಿಕಿಯಲ್ಲಿನ ಇತ್ತೀಚಿನ ಬದಲಾವಣೆಗಳ ಪಟ್ಟಿ.',
 'tooltip-n-randompage'            => 'ಯದೃಚ್ಛಿಕ ಪುಟವೊಂದನ್ನು ತೋರಿಸು',
+'tooltip-n-help'                  => 'ಇದರ ಬಗ್ಗೆ ತಿಳಿದುಕೊಳ್ಳಲು ಜಾಗ.',
 'tooltip-n-sitesupport'           => 'ನಮ್ಮನ್ನು ಬೆಂಬಲಿಸಿ',
 'tooltip-t-whatlinkshere'         => 'ಇಲ್ಲಿಗೆ ಸಂಪರ್ಕ ಹೊಂದಿರುವ ಎಲ್ಲಾ ವಿಕಿ ಪುಟಗಳ ಪಟ್ಟಿ',
 'tooltip-t-contributions'         => 'ಈ ಸದಸ್ಯರ ಕಾಣಿಕೆಗಳ ಪಟ್ಟಿಯನ್ನು ತೋರಿಸು',
@@ -857,6 +909,7 @@ $1',
 'tooltip-t-upload'                => 'ಫೈಲನ್ನು ಅಪ್ಲೋಡ್ ಮಾಡಿ',
 'tooltip-t-specialpages'          => 'ಎಲ್ಲಾ ವಿಶೇಷ ಪುಟಗಳ ಪಟ್ಟಿ',
 'tooltip-ca-nstab-user'           => 'ಸದಸ್ಯರ ಪುಟವನ್ನು ವೀಕ್ಷಿಸು',
+'tooltip-ca-nstab-project'        => 'ಯೋಜನೆಯ ಪುಟವನ್ನು ನೋಡಿ',
 'tooltip-ca-nstab-image'          => 'ಕಡತದ ಪುಟ ವೀಕ್ಷಿಸಿ',
 'tooltip-ca-nstab-help'           => 'ಸಹಾಯ ಪುಟವನ್ನು ವೀಕ್ಷಿಸು',
 'tooltip-ca-nstab-category'       => 'ವರ್ಗದ ಪುಟವನ್ನು ನೋಡಿ',
@@ -885,6 +938,13 @@ $1',
 'ilsubmit' => 'ಹುಡುಕು',
 'bydate'   => 'ದಿನಾಂಕಕ್ಕನುಗುಣವಾಗಿ',
 
+# Bad image list
+'bad_image_list' => 'ವ್ಯವಸ್ಥೆಯ ಆಕಾರ ಈ ರೀತಿ:
+
+ಪಟ್ಟಿಯಲ್ಲಿರುವ ದಾಖಲೆಗಳನ್ನು (* ಇಂದ ಪ್ರಾರಂಭವಾಗುವ ಸಾಲುಗಳು) ಮಾತ್ರ ಪರಿಗಣಿಸಲಾಗುತ್ತದೆ.
+ಪ್ರತಿ ಸಾಲಿನ ಮೊದಲ ಕೊಂಡಿಯು ಒಂದು ದೋಷಯುಕ್ತ ಫೈಲಿಗೆ ಕೊಂಡಿಯಾಗಿರಬೇಕು.
+ಅದೇ ಸಾಲಿನ ಮುಂದಿನ ಎಲ್ಲಾ ಕೊಂಡಿಗಳನ್ನು ಪರಿಗಣನೆಯಿಂದ ವಿನಾಯತಿ ಮಾಡಲಾಗುತ್ತದೆ, ಅಂದರೆ ಎಲ್ಲಿ ಪುಟಗಳ ಒಳಗೆ ಫೈಲು ಇರುತ್ತದೆಯೊ ಅಲ್ಲಿ.',
+
 # Metadata
 'metadata-expand'   => 'ವಿಸ್ತಾರವಾದ ವಿವರಗಳನ್ನು ತೋರಿಸು',
 'metadata-collapse' => 'ವಿಸ್ತಾರವಾದ ವಿವರಗಳನ್ನು ಅಡಗಿಸು',
@@ -892,6 +952,9 @@ $1',
 # EXIF tags
 'exif-imagedescription' => 'ಚಿತ್ರದ ಶೀರ್ಷಿಕೆ',
 'exif-copyright'        => 'ಕೃತಿಸ್ವಾಮ್ಯತೆಯನ್ನು ಹೊಂದಿರುವವರು',
+
+# External editor support
+'edit-externally' => 'ಬಾಹ್ಯ ತಂತ್ರಾಂಶವನ್ನು ಉಪಯೋಗಿಸಿ ಇದನ್ನು ಸಂಪಾದಿಸಿ',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'ಎಲ್ಲಾ',
