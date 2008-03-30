@@ -41,11 +41,11 @@ TEXT;
 
 $defaults = array(
 	'begin' => '',
-	'max-slave-length' => 10,
+	'max-slave-lag' => 10,
 	'throttle' => 0,
 	'force' => false
 );
 $options = array_merge( $defaults, $options );
 
-populateCategory( $options['begin'], $options['max-slave-length'],
+populateCategory( $options['begin'], $options['max-slave-lag'],
 	$options['throttle'], $options['force'] );
