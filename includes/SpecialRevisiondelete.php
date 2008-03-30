@@ -713,6 +713,7 @@ class RevisionDeleteForm {
 			$wgOut->addWikiText( Xml::element( 'span', array( 'class' => 'success' ), wfMsg( 'revdelete-success' ) ), false );
 		  	$this->showImages( $request );
 		} else if( $this->deleteKey=='oldimage' ) {
+			$wgOut->addWikiText( Xml::element( 'span', array( 'class' => 'success' ), wfMsg( 'revdelete-success' ) ), false );
 			$this->showImages( $request );
 		}
 	}
