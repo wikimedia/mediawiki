@@ -835,7 +835,7 @@ $2 Rhestri ailgyfeiriadau<br />Chwilio am $3 $9',
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|newid|newid|newid|newid|newid|o newidiadau}}',
 'recentchanges'                     => 'Newidiadau diweddar',
-'recentchangestext'                 => "Traciwch y newidiadau mor diweddar i'r {{SITENAME}} ac i'r tudalen hon.",
+'recentchangestext'                 => "Dilynwch y newidiadau diweddaraf i'r wici ar y dudalen hon.",
 'recentchanges-feed-description'    => "Dilynwch y newidiadau diweddaraf i'r wici gyda'r porthiant hwn.",
 'rcnote'                            => "Isod mae'r '''$1''' newidiad diweddaraf yn ystod y '''$2''' {{PLURAL:$2|diwrnod|diwrnod|ddiwrnod|diwrnod|diwrnod|diwrnod}} diwethaf, hyd at $3.",
 'rcnotefrom'                        => "Isod mae pob newidiad ers '''$2''' (hyd at '''$1''' ohonynt).",
@@ -860,9 +860,10 @@ $2 Rhestri ailgyfeiriadau<br />Chwilio am $3 $9',
 'newsectionsummary'                 => '/* $1 */ adran newydd',
 
 # Recent changes linked
-'recentchangeslinked'         => 'Newidiadau perthnasol',
-'recentchangeslinked-title'   => 'Newidiadau cysylltiedig â $1',
-'recentchangeslinked-summary' => "Mae'r dudalen arbennig hon yn dangos y newidiadau diweddaraf i'r tudalennau sy'n cysylltu â'r dudalen a enwir. Dangosir tudalennau sydd ar eich rhestr gwylio mewn print '''trwm'''.",
+'recentchangeslinked'          => 'Newidiadau perthnasol',
+'recentchangeslinked-title'    => 'Newidiadau cysylltiedig â $1',
+'recentchangeslinked-noresult' => 'Ni chafwyd unrhyw newidiadau i dudalennau cysylltiedig yn ystod cyfnod yr ymholiad.',
+'recentchangeslinked-summary'  => "Mae'r dudalen arbennig hon yn dangos y newidiadau diweddaraf i'r tudalennau sy'n cysylltu â'r dudalen a enwir. Dangosir tudalennau sydd ar eich rhestr gwylio mewn print '''trwm'''.",
 
 # Upload
 'upload'                      => 'Llwytho ffeil i fynu',

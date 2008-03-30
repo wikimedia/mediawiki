@@ -412,7 +412,7 @@ Ou mèt kontakte $1 oubyen yon lòt [[{{MediaWiki:Grouppage-sysop}}|administrat�
 Pou ou kapab kreye paj sa a, komanse ap ekri nan bwat sa a ki anba (gade [[{{MediaWiki:Helppage}}|paj èd an]] pou konnen plis, pou plis enfòmasyon).
 
 Si se paske ou komèt yon erè ke ou ap twouve ou nan paj sa a, klike anlè bouton '''ritounen''' nan bwozè ou a.",
-'noarticletext'          => 'Poko genyen tèks nan paj sa a, ou mèt [[{{ns:special}}:Search/{{PAGENAME}}|fè yon rechèch, fouye ak non paj sa a]] oubyen [{{fullurl:{{FULLPAGENAME}}|action=edit}} modifye li].',
+'noarticletext'          => 'Poko genyen tèks nan paj sa a, ou mèt [[Special:Search/{{PAGENAME}}|fè yon rechèch, fouye ak non paj sa a]] oubyen [{{fullurl:{{FULLPAGENAME}}|action=edit}} modifye li].',
 'previewnote'            => 'Atansyon, tèks sa a se yon previzyalizasyon, li poko anrejistre !',
 'editing'                => 'Modifikasyon pou $1',
 'editingsection'         => 'Modifikasyon pou $1 (seksyon)',

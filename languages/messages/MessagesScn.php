@@ -633,7 +633,7 @@ L'alencu dî relativi cancillaziuni veni riportatu ccà pi comodità:",
 # "Undo" feature
 'undo-success' => "Lu canciamentu hà statu annullatu cu successu. Virificati lu cumfruntu prisentatu ccà sutta pi accuràrivi vhi lu cuntinutu è chiddu addisiatu e doppu sarvati la pàggina pi cumplitari l'annullamentu.",
 'undo-failure' => "Lu canciamentu nun pò èssiri annullatu a càusa d'un cunflittu cu li canciamenti ntermedi.",
-'undo-summary' => 'Annullatu lu canciamentu $1 di [[Special:Cuntribbuti/$2|$2]] ([[User talk:$2|discussioni]])',
+'undo-summary' => 'Annullatu lu canciamentu $1 di [[Special:Contributions/$2|$2]] ([[User talk:$2|discussioni]])',
 
 # Account creation failure
 'cantcreateaccounttitle' => "Mpussìbbili riggistrari n'utenti",

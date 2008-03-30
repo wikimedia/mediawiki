@@ -1795,7 +1795,7 @@ For å eksportere sider, skriv inn titlar i tekstboksen under, ein tittel per li
 'allmessagesdefault'        => 'Standardtekst',
 'allmessagescurrent'        => 'Noverande tekst',
 'allmessagestext'           => 'Dette er ei liste over systemmeldingar i MediaWiki-namnerommet.',
-'allmessagesnotsupportedDB' => '{{ns:special}}:Allmessages er ikkje støtta fordi "wgUseDatabaseMessages" ikkje er aktivert på tenaren.',
+'allmessagesnotsupportedDB' => "'''{{ns:special}}:Allmessages''' er ikkje støtta fordi \"'''\$wgUseDatabaseMessages'''\" ikkje er aktivert på tenaren.",
 
 # Thumbnails
 'thumbnail-more'  => 'Forstørr',

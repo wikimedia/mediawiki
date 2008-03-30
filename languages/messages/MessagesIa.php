@@ -2,6 +2,9 @@
 /** Interlingua (Interlingua)
  *
  * @addtogroup Language
+ *
+ * @author לערי ריינהארט
+ * @author Siebrand
  */
 
 $skinNames = array(
@@ -90,7 +93,6 @@ $messages = array(
 'mypage'        => 'Mi pagina',
 'mytalk'        => 'Mi discussion',
 
-'errorpagetitle'    => 'Error',
 'returnto'          => 'Retornar a $1.',
 'help'              => 'Adjuta',
 'search'            => 'Recercar',
@@ -99,6 +101,7 @@ $messages = array(
 'searcharticle'     => 'Ir',
 'history'           => 'Chronologia',
 'printableversion'  => 'Version imprimibile',
+'edit'              => 'Modificar',
 'editthispage'      => 'Modificar iste pagina',
 'deletethispage'    => 'Eliminar iste pagina',
 'protectthispage'   => 'Proteger iste pagina',
@@ -131,7 +134,6 @@ $messages = array(
 'helppage'          => 'Help:Adjuta',
 'mainpage'          => 'Frontispicio',
 
-'ok'              => 'OK',
 'retrievedfrom'   => 'Recuperate de "$1"',
 'newmessageslink' => 'messages nove',
 
@@ -145,7 +147,6 @@ Tu demandava un pagina special que non es
 recognoscite per le systema de Mediawiki.',
 
 # General errors
-'error'           => 'Error',
 'databaseerror'   => 'Error de base de datos',
 'dberrortext'     => 'Occurreva un error de syntaxe in le consulta al base de datos.
 Le ultime demanda inviate al base de datos esseva:
@@ -360,12 +361,10 @@ e illo del servitor (UTC).',
 'rcnotefrom'        => 'infra es le modificationes a partir de <b>$2</b> (usque a <b>$1</b>).',
 'rclistfrom'        => 'Monstrar nove modificationes a partir de $1',
 'rclinks'           => 'Monstrar le $1 ultime modificationes in le $2 ultime days.',
-'diff'              => 'diff',
 'hist'              => 'prec',
 'hide'              => 'occultar',
 'show'              => 'monstrar',
 'minoreditletter'   => 'M',
-'newpageletter'     => 'N',
 
 # Recent changes linked
 'recentchangeslinked' => 'Modificationes correlate',
@@ -428,7 +427,6 @@ Tote le tempores monstrate es in le fuso horari del servitor (UCT).',
 'uploadedimage'     => '"[[$1]]" cargate',
 
 # Special:Imagelist
-'imgdesc'   => 'desc',
 'imagelist' => 'Lista de imagines',
 
 # Image description page
@@ -514,7 +512,6 @@ o ha optate pro non reciper e-mail de altere usatores.',
 'emailfrom'       => 'De',
 'emailto'         => 'A',
 'emailsubject'    => 'Subjecto',
-'emailmessage'    => 'Message',
 'emailsend'       => 'Inviar',
 'emailsent'       => 'E-mail inviate',
 'emailsenttext'   => 'Tu message de e-mail ha essite inviate.',
@@ -546,7 +543,6 @@ Si tu vole cessar le obsevation de iste pagina posteriormente, clicca \"Cancella
 o imagine del base de datos, conjunctemente con tote su chronologia de versiones.
 Per favor, confirma que, si tu intende facer lo, tu comprende le consequentias,
 e tu lo face de accordo con [[{{MediaWiki:Policy-url}}]].',
-'actioncomplete'    => 'Action complete',
 'deletedtext'       => '"<nowiki>$1</nowiki>" ha essite eliminate.
 Vide $2 pro un registro de eliminationes recente.',
 'deletedarticle'    => '"$1" eliminate',
@@ -579,8 +575,6 @@ non essera automaticamente substituite.',
 'mycontris'     => 'Mi contributiones',
 'contribsub2'   => 'Pro $1 ($2)',
 'nocontribs'    => 'Necun modification ha essite trovate secundo iste criterios.',
-'ucnote'        => 'Infra es le <b>$1</b> ultime modificationes de iste usator in le <b>$2</b> ultime dies.',
-'uclinks'       => 'Vider le $1 ultime modificationes; vider le $2 ultime dies.',
 'uctop'         => ' (alto)',
 
 # What links here
@@ -680,6 +674,9 @@ nove titulo. Per favor fusiona los manualmente.',
 'movetalk'         => 'Mover le pagina de "discussion" tamben, si applicabile.',
 'talkpagemoved'    => 'Le pagina de discussion correspondente tamben ha essite movite.',
 'talkpagenotmoved' => 'Le pagina de discussion correspondente <strong>non</strong> ha essite movite.',
+
+# Namespace 8 related
+'allmessages' => 'Tote le messages del systema',
 
 # Math options
 'mw_math_png'    => 'Sempre produce PNG',

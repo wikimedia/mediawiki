@@ -420,7 +420,7 @@ $messages = array(
 'badaccess-groups' => 'Akcija koju ste pokrenuli je rezervisana za korisnike iz jedne od grupa $1.',
 
 'versionrequired'     => 'Verzija $1 MedijaVikija je potrebna',
-'versionrequiredtext' => 'Verzija $1 MedijaVikija je potrebna da bi se koristila ova strana. Pogledajte [[{{ns:special}}:Version|verziju]]',
+'versionrequiredtext' => 'Verzija $1 MedijaVikija je potrebna da bi se koristila ova strana. Pogledajte [[Special:Version|verziju]]',
 
 'ok'                      => 'da',
 'retrievedfrom'           => 'Dobavljeno iz "$1"',
@@ -642,11 +642,12 @@ Možete kontaktirati korisnika \$1 ili nekog drugog [[{{MediaWiki:Grouppage-syso
 'whitelistedittitle'        => 'Obavezno je prijavljivanje za uređivanje',
 'whitelistedittext'         => 'Morate da se [[{{ns:special}}:Userlogin|prijavite]] da biste menjali članke.',
 'whitelistreadtitle'        => 'Obavezno je prijavljivanje za čitanje',
-'whitelistreadtext'         => 'Morate da se [[{{ns:special}}:Userlogin|prijavite]] da biste čitali članke.',
+'whitelistreadtext'         => 'Morate da se [[Special:Userlogin|prijavite]] da biste čitali članke.',
 'whitelistacctitle'         => 'Nije vam dozvoljeno da napravite nalog',
-'whitelistacctext'          => 'Da bi vam bilo dozvoljeno da pravite naloge na ovom vikiju morate da se [[{{ns:special}}:Userlogin|prijavite]] i imate odgovarajuća ovlašćenja.',
+'whitelistacctext'          => 'Da bi vam bilo dozvoljeno da pravite naloge na ovom vikiju morate da se [[Special:Userlogin|prijavite]] i imate odgovarajuća ovlašćenja.',
 'confirmedittitle'          => 'Potrebna je potvrda adrese e-pošte za uređivanje',
-'confirmedittext'           => 'Morate potvrditi vašu adresu e-pošte pre uređivanja strana. Molimo postavite i potvrdite adresu vaše e-pošte preko vaših [[{{ns:special}}:Preferences|korisničkih podešavanja]].',
+'confirmedittext'           => 'Morate potvrditi vašu adresu e-pošte pre uređivanja strana.
+Molimo postavite i potvrdite adresu vaše e-pošte preko vaših [[Special:Preferences|korisničkih podešavanja]].',
 'loginreqtitle'             => 'Potrebno [[{{ns:special}}:Userlogin|prijavljivanje]]',
 'loginreqlink'              => 'prijava',
 'loginreqpagetext'          => 'Morate $1 da biste videli ostale strane.',
@@ -658,7 +659,7 @@ Da biste je napravili, počnite da kucate u polju ispod
 (pogledajte [[{{ns:help}}:Sadržaj|pomoć]] za više informacija).
 Ako ste došli ovde greškom, samo kliknite dugme '''back''' dugme vašeg brauzera.",
 'anontalkpagetext'          => "---- ''Ovo je stranica za razgovor za anonimnog korisnika koji još nije napravio nalog ili ga ne koristi. Zbog toga moramo da koristimo brojčanu IP adresu kako bismo identifikovali njega ili nju. Takvu adresu može deliti više korisnika. Ako ste anonimni korisnik i mislite da su vam upućene nebitne primedbe, molimo vas da [[{{ns:special}}:Userlogin|napravite nalog ili se prijavite]] da biste izbegli buduću zabunu sa ostalim anonimnim korisnicima.''",
-'noarticletext'             => 'Trenutno nema teksta na ovoj stranici. Možete [[{{ns:special}}:Search/{{PAGENAME}}|pretražiti ovaj naziv]] u ostalim stranicama ili [{{fullurl:{{FULLPAGENAME}}|action=edit}} urediti ovu stranicu].',
+'noarticletext'             => 'Trenutno nema teksta na ovoj stranici. Možete [[Special:Search/{{PAGENAME}}|pretražiti ovaj naziv]] u ostalim stranicama ili [{{fullurl:{{FULLPAGENAME}}|action=edit}} urediti ovu stranicu].',
 'clearyourcache'            => "'''Zapamtite:''' Nakon snimanja, možda morate očistiti keš vašeg brauzera da biste videli promene. '''Mozilla / Firefox / Safari:''' držite ''Shift'' dok klikćete ''Reload'' ili pritisnite  ''Shift+Ctrl+R'' (''Cmd-Shift-R'' na ''Apple Mac'' mašini); '''IE:''' držite ''Ctrl'' dok klikćete ''Refresh'' ili pritisnite ''Ctrl-F5''; '''Konqueror:''': samo kliknite ''Reload'' dugme ili pritisnite ''F5''; korisnici '''Opera''' brauzera možda moraju da u potpunosti očiste svoj keš preko ''Tools→Preferences''.",
 'usercssjsyoucanpreview'    => "<strong>Savet:</strong> Korisitite 'Prikaži pretpregled' dugme da testirate svoj novi CSS/JS pre snimanja.",
 'usercsspreview'            => "'''Zapamtite ovo je samo pretpregled vašeg CSS i da još uvek nije snimljen!'''",
@@ -805,8 +806,7 @@ koje sadrže sve izraze koji se traže će se pojaviti u rezultatu).",
 'preferences'              => 'Podešavanja',
 'mypreferences'            => 'Moja podešavanja',
 'prefsnologin'             => 'Niste prijavljeni',
-'prefsnologintext'         => 'Morate biti [[{{ns:special}}:Userlogin|prijavljeni]]
-da biste podešavali korisnička podešavanja.',
+'prefsnologintext'         => 'Morate biti [[Special:Userlogin|prijavljeni]] da biste podešavali korisnička podešavanja.',
 'prefsreset'               => 'Vraćena su uskladištena podešavanja.',
 'qbsettings'               => 'Brza paleta',
 'qbsettings-none'          => 'Nikakva',
@@ -924,8 +924,7 @@ Neodabrane grupe neće biti promenjene. Možete da deselektujete grupu koristeć
 'reupload'                    => 'Ponovo pošalji',
 'reuploaddesc'                => 'Vrati se na upitnik za slanje.',
 'uploadnologin'               => 'Niste prijavljeni',
-'uploadnologintext'           => 'Morate biti [[{{ns:special}}:Userlogin|prijavljeni]]
-da biste slali fajlove.',
+'uploadnologintext'           => 'Morate biti [[Special:Userlogin|prijavljeni]] da biste slali fajlove.',
 'upload_directory_read_only'  => 'Na direktorijum za slanje ($1) server ne može da piše.',
 'uploaderror'                 => 'Greška pri slanju',
 'uploadtext'                  => "Koristite donji obrazac da pošaljete fajlove. Za gledanje ili pretraživanje već poslatih slika, idite na [[{{ns:special}}:Imagelist|spisak poslatih fajlova]]. Slanja i brisanja se beleže u [[{{ns:special}}:Log/upload|istoriji slanja]]
@@ -1301,8 +1300,6 @@ Pogledajte [[{{ns:special}}:Log/delete|istoriju brisanja]] za spisak skorašnjih
 'mycontris'     => 'Moji prilozi',
 'contribsub2'   => 'Za $1 ($2)',
 'nocontribs'    => 'Nisu nađene promene koje zadovoljavaju ove uslove.',
-'ucnote'        => 'Ispod je poslednjih <b>$1</b> promena u poslednjih <b>$2</b> dana.',
-'uclinks'       => 'Gledaj poslednjih $1 promena; gledaj poslednjih $2 dana.',
 'uctop'         => ' (vrh)',
 
 'sp-contributions-newbies-sub' => 'Za novajlije',
@@ -1470,7 +1467,7 @@ U drugom slučaju, možete takođe koristiti vezu, npr. [[{{ns:special}}:Export/
 'allmessagesdefault'        => 'Standardni tekst',
 'allmessagescurrent'        => 'Trenutni tekst',
 'allmessagestext'           => 'Ovo je spisak svih poruka koje su u {{ns:mediawiki}} imenskom prostoru',
-'allmessagesnotsupportedDB' => "Stranica {{ns:special}}:Allmessages ne može da se koristi zato što je '''\$wgUseDatabaseMessages''' isključen.",
+'allmessagesnotsupportedDB' => "Stranica '''{{ns:special}}:Allmessages''' ne može da se koristi zato što je '''\$wgUseDatabaseMessages''' isključen.",
 'allmessagesfilter'         => 'Filter za imena poruka:',
 'allmessagesmodified'       => 'Prikaži samo izmenjene',
 

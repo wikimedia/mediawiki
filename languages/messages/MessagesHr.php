@@ -674,7 +674,7 @@ Za vašu informaciju slijedi evidencija brisanja s obrazloženjem za prethodno b
 # "Undo" feature
 'undo-success' => 'Izmjena je uklonjena (tekst u okviru ispod ne sadrži zadnju izmjenu). Molim sačuvajte stranicu (provjerite sažetak).',
 'undo-failure' => 'Ova izmjena ne može biti uklonjena zbog postojanja međuinačica.',
-'undo-summary' => 'Uklanjanje izmjene $1 što ju je unio/unijela [[Posebno:Contributions/$2|$2]] ([[Razgovor sa suradnikom:$2]])',
+'undo-summary' => 'Uklanjanje izmjene $1 što ju je unio/unijela [[Special:Contributions/$2|$2]] ([[Razgovor sa suradnikom:$2]])',
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Nije moguće stvoriti suradnički račun',
@@ -932,7 +932,7 @@ Neoznačene skupine neće se promijeniti. Skupinu možete deselektirati istovrem
 
 'grouppage-autoconfirmed' => '{{ns:project}}:Suradnici prijavljeni duže od 4 dana',
 'grouppage-bot'           => '{{ns:project}}:Botovi',
-'grouppage-sysop'         => 'Project:Administrators',
+'grouppage-sysop'         => '{{ns:project}}:Administrators',
 'grouppage-bureaucrat'    => '{{ns:project}}:Birokrati',
 
 # User rights log
@@ -1755,7 +1755,7 @@ U potonjem slučaju možete koristiti i poveznicu, npr. [[{{ns:special}}:Export/
 'allmessagesdefault'        => 'Prvotni tekst',
 'allmessagescurrent'        => 'Trenutačni tekst',
 'allmessagestext'           => 'Ovo je popis svih sistemskih poruka u prostoru MediaWiki: .',
-'allmessagesnotsupportedDB' => 'Uređivanje {{ns:special}}:AllMessages trenutačno nije podržano jer je isključen parametar wgUseDatabaseMessages.',
+'allmessagesnotsupportedDB' => "Uređivanje '''{{ns:special}}:AllMessages''' trenutačno nije podržano jer je isključen parametar '''\$wgUseDatabaseMessages'''.",
 'allmessagesfilter'         => 'Filter imena poruka:',
 'allmessagesmodified'       => 'Prikaži samo promijenjene',
 

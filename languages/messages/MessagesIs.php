@@ -794,7 +794,7 @@ Eyðingarskrá fyrir þessa síðu er útveguð hér til þæginda:",
 # "Undo" feature
 'undo-success' => 'Breytingin hefur verið tekin tilbaka. Vinsamlegast staðfestu og vistaðu svo.',
 'undo-failure' => 'Breytinguna var ekki hægt að taka tilbaka vegna breytinga í millitíðinni.',
-'undo-summary' => 'Tek aftur breytingu $1 frá [[{{ns:special}}:Contributions/$2|$2]] ([[User_talk:$2|Spjall]])',
+'undo-summary' => 'Tek aftur breytingu $1 frá [[Special:Contributions/$2|$2]] ([[User_talk:$2|Spjall]])',
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Ekki hægt að búa til aðgang',

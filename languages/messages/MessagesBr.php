@@ -645,7 +645,7 @@ N'eus nemet an implijerien ganto ar statud merour a c'hall degas kemmoù enni.</
 Gallout a rit mont war-gil ha degas kemmoù en ur bajenn zo anezhi dija, pe [[Special:Userlogin|en em enrollañ ha krouiñ ur gont]].',
 'nocreate-loggedin'         => "N'oc'h ket aotreet da grouiñ pajennoù nevez war {{SITENAME}}.",
 'permissionserrors'         => 'Fazioù Aotre',
-'permissionserrorstext'     => "N'oc'h ket aotreet d'ober kement-mañ ha {{PLURAL:$1|reason|setu perak}} :",
+'permissionserrorstext'     => "N'oc'h ket aotreet d'ober kement-mañ evit {{PLURAL:$1|an abeg-mañ|an abegoù-mañ}} :",
 'recreate-deleted-warn'     => "'''Diwallit : Emaoc'h o krouiñ ur bajenn zo bet diverket c'hoazh.'''
 
 En em soñjit ervat ha talvoudus eo kenderc'hel krouiñ ar bajenn.
@@ -883,7 +883,7 @@ $2 Lakaat ivez ar pajennoù adkas &nbsp; Klask $3 $9',
 'userrights-groupsmember'          => 'Ezel eus :',
 'userrights-groupsremovable'       => "Strolladoù a c'haller diverkañ :",
 'userrights-groupsavailable'       => 'Strolladoù zo :',
-'userrights-groupshelp'            => "Diuzit ar strolladoù a fell deoc'h e vefe ouzhpennet an implijer dezho pe tennet diouto.
+'userrights-groupshelp'            => "Diuzit ar strolladoù a fell deoc'h e vefe ouzhpennet an implijer enno pe lamet diouto.
 Ne vo ket cheñchet ar strolladoù n'int ket bet diuzet.
 Gallout a rit diziuzañ ur strollad gant CTRL + Klik kleiz.",
 'userrights-reason'                => 'Abeg kemmañ :',
@@ -918,8 +918,8 @@ Gallout a rit diziuzañ ur strollad gant CTRL + Klik kleiz.",
 # User rights log
 'rightslog'      => 'Marilh statud an implijerien',
 'rightslogtext'  => "Setu marilh ar c'hemmoù statud bet c'hoarvezet d'an implijerien.",
-'rightslogentry' => 'en/he deus cheñchet strollad $1 eus $2 lakaet da $3',
-'rightsnone'     => '(hini)',
+'rightslogentry' => 'en/he deus cheñchet gwirioù implijer $1 a oa $2 hag a zo bet lakaet da $3',
+'rightsnone'     => '(netra)',
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|kemm|kemm}}',

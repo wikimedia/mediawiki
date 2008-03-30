@@ -635,7 +635,7 @@ Siziñ blok identifikatorıñız — #$5. Lütfen, administratorlarğa mektüple
 'newarticle'                => '(Yañı)',
 'newarticletext'            => "Siz bu bağlantınen şimdilik yoq olğan saifege avuştıñız. Yañı bir saife yaratmaq içün aşağıda bulunğan pencerege metin yazıñız (tafsilâtlı malümat almaq içün [[{{MediaWiki:Helppage}}|yardım saifesine]] baqıñız). Bu saifege tesadüfen avuşqan olsañız, brauzeriñizdeki '''keri''' dögmesine basıñız.",
 'anontalkpagetext'          => "----''Bu muzakere saifesi şimdilik qayd olunmağan ya da oturımını açmağan adsız (anonim) qullanıcığa mensüptir. İdentefikatsiya içün IP adres işletile. Eger siz anonim qullanıcı olsañız ve sizge kelgen beyanatlarnı yañlıştan kelgenini belleseñiz (bir IP adresinden bir qaç qullanıcı faydalanıp ola), lütfen, artıq bunıñ kibi qarışıqlıq olmasın dep [[Special:Userlogin|oturım açıñız]].''",
-'noarticletext'             => 'Bu saife boştır. Bu serlevanı başqa saifelerde [[{{ns:special}}:Search/{{PAGENAME}}|qıdırıp olasıñız]] ya da bu saifeni özüñiz [{{fullurl:{{FULLPAGENAME}}|action=edit}} yazıp olasıñız].',
+'noarticletext'             => 'Bu saife boştır. Bu serlevanı başqa saifelerde [[Special:Search/{{PAGENAME}}|qıdırıp olasıñız]] ya da bu saifeni özüñiz [{{fullurl:{{FULLPAGENAME}}|action=edit}} yazıp olasıñız].',
 'userpage-userdoesnotexist' => '"$1" adlı qullanıcı yoqtır. Tamam bu saifeni deñiştirmege istegeniñizni teşkeriñiz.',
 'clearyourcache'            => "'''İhtar:''' Ayarlarıñıznı (nastroykalarıñıznı) saqlağandan soñ, brauzeriñizniñ keşini de temizlemek kereksiñiz: '''Mozilla / Firefox / Safari:''' ''Shift'' basılı ekende saifeni yañıdan yüklep ya da ''Ctrl-Shift-R'' yapıp (Apple Mac içün ''Cmd-Shift-R'');, '''Internet Explorer:''' ''Ctrl-F5'', '''Konqueror:''' Tek saifeni yañıdan yükle dögmesine basıp.",
 'usercssjsyoucanpreview'    => "<strong>Tevsiye:</strong> Saifeni saqlamazdan evel '''ög baquvnı köster''' dögmesine basıp yapqan yañı saifeñizni közden keçiriñiz.",
@@ -700,7 +700,7 @@ Bu saifeni kerçekten de yañıdan yaratmağa isteysiñizmi? Aşağıda yoq etil
 # "Undo" feature
 'undo-success' => 'Deñişiklik lâğu etile bile. Lütfen, aynı bu deñişiklikler meni meraqlandıra dep emin olmaq içün versiyalar teñeştirilüvini közden keçirip deñişikliklerni tamamen yapmaq içün "Saifeni saqla" dögmesine basıñız.',
 'undo-failure' => 'Aradaki deñişiklikler biri-birine kelişikli olmağanı içün deñişiklik lâğu etilip olamay.',
-'undo-summary' => '[[{{ns:special}}:Contributions/$2|$2]] qullanıcısınıñ $1 nomeralı deñişikligini lâğu etüv, ([[User_talk:$2|muzakere]])',
+'undo-summary' => '[[Special:Contributions/$2|$2]] qullanıcısınıñ $1 nomeralı deñişikligini lâğu etüv, ([[User_talk:$2|muzakere]])',
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Esap yaratmaqnıñ iç çaresi yoq.',
@@ -788,7 +788,7 @@ Vikide bu saifege oşağan saifelerni [[{{ns:special}}:Search|tapıp baqıñız]
 'mypreferences'         => 'Ayarlarım',
 'prefs-edits'           => 'Yapqan deñişiklik sayısı:',
 'prefsnologin'          => 'Oturım açmadıñız',
-'prefsnologintext'      => 'Şahsiy ayarlarıñıznı deñiştirmek içün [[{{ns:special}}:Userlogin|oturım açmaq]] kereksiñiz.',
+'prefsnologintext'      => 'Şahsiy ayarlarıñıznı deñiştirmek içün [[Special:Userlogin|oturım açmaq]] kereksiñiz.',
 'prefsreset'            => 'Ayarlar ilk alına ketirildi.',
 'qbsettings'            => 'Vızlı irişi sutun ayarları (nastroykaları)',
 'changepassword'        => 'Parol deñiştir',

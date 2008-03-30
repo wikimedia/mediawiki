@@ -664,7 +664,7 @@ Jen la loglibro de forigoj por via oportuno:",
 # "Undo" feature
 'undo-success' => 'La redakto estas malfarebla. Bonvolu konfirmi la jenan komparajxon por verigi cxi tiel vi volas, kaj konservu la sxangxojn suben fini malfarante la redakton.',
 'undo-failure' => 'Ne eblas nuligi redakton pro konfliktaj intermezaj redaktoj.',
-'undo-summary' => 'Nuligis revizion $1 de [[{{ns:2}}:$2|$2]] ([[Speciala:Contributions/$2|kontribuoj]], [[{{ns:3}}:$2|diskutpagxo]])',
+'undo-summary' => 'Nuligis revizion $1 de [[User:$2|$2]] ([[Special:Contributions/$2|kontribuoj]], [[User_talk:$2|diskutpagxo]])',
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Ne povas krei konton',

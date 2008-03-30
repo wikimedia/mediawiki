@@ -1446,7 +1446,7 @@ Dans ce cas, vous devrez renommer ou fusionner la page manuellement si vous le d
 'allmessagesdefault'        => 'Omavaf krent',
 'allmessagescurrent'        => 'Noelaf krent',
 'allmessagestext'           => 'Batcoba tir vexala ke bolkstakseem koe Mediawiki xo',
-'allmessagesnotsupportedDB' => "Special:AllMessages n'est pas disponible parce que wgUseDatabaseMessages est désactivé.",
+'allmessagesnotsupportedDB' => "'''{{ns:special}}:AllMessages''' n'est pas disponible parce que '''\$wgUseDatabaseMessages''' est désactivé.",
 'allmessagesfilter'         => 'Staksesparayolt :',
 'allmessagesmodified'       => 'Anton nedira va betakseem',
 

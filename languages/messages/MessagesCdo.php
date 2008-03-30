@@ -1,9 +1,9 @@
 <?php
-/**
-  * Min Dong (Mìng-dĕ̤ng-ngṳ̄/閩東話/福州話)
-  *
-  * @addtogroup Language
-  */
+/** Min Dong Chinese (Mìng-dĕ̤ng-ngṳ̄)
+ *
+ * @addtogroup Language
+ *
+ */
 
 $datePreferences = array(
 	'default',
@@ -291,7 +291,7 @@ Siŭ gáu hâiu, chiāng gái láuk diē siŏh làu.',
 'newarticle'               => '(Sĭng)',
 'newarticletext'           => "Nṳ̄ téng 1 ciáh lièng-giék lì gáu cī miêng gó muôi còng-câi gì hiĕk. Buóh kī-chiū piĕng-siā ciā hiĕk, chiāng diŏh â-dā̤ gì bēng-bēng diē-sié páh cê (chăng-kō̤ [[Help:Mŭk-liŏh]] liēu-gāi gáing sâ̤ séng-sék). Iŏk-sṳ̄ nṳ̄ huák-hiêng cê-gă giàng dâng gó̤, nâ dĭh áik báuk-lāng-ké (''browser'') gì \"'''duōng kó̤ sèng 1 hiĕk'''\" (''back'') cêu â̤-sāi lāu.",
 'anontalkpagetext'         => "----''Cī tiŏng tō̤-lâung-hiĕk mò̤ gó-dêng gì dióng-hô̤, nâ ô 1 ciáh IP dê-cī. Chiāng cé̤ṳ-é: Kō̤-nèng ng-nié 1 ciáh nè̤ng sāi-ê̤ṳng cī ciáh IP dê-cī. Iŏk-sṳ̄ nṳ̄ gó muôi kŭi 1 ciáh dióng-hô̤ bêng-chiā giéng-gáe̤k ciā làu-uâ sê làu ké̤ṳk nṳ̄ gì, chiāng nṳ̄ [[Special:Userlogin|kŭi 1 ciáh dióng-hô̤ hĕ̤k-ciā láuk-diē]], cêu â̤ piáh-miēng ī-hâiu gái huák-sĕng cūng-kuāng ông-dà̤.''",
-'noarticletext'            => 'Ciā hiĕk-miêng gà̤-dēng mò̤ ùng-cê. Nṳ̄ â̤-sāi găk gì-tă hiĕk-miêng [[{{ns:special}}:Sìng-tō̤/{{PAGENAME}}|sìng-tō̤ ĭ gì biĕu-dà̤]] hĕ̤k-ciā [{{fullurl:{{FULLPAGENAME}}|action=edit}} cê-gă siā].',
+'noarticletext'            => 'Ciā hiĕk-miêng gà̤-dēng mò̤ ùng-cê. Nṳ̄ â̤-sāi găk gì-tă hiĕk-miêng [[Special:Search̤/{{PAGENAME}}|sìng-tō̤ ĭ gì biĕu-dà̤]] hĕ̤k-ciā [{{fullurl:{{FULLPAGENAME}}|action=edit}} cê-gă siā].',
 'clearyourcache'           => "'''Cé̤ṳ-é:''' Bō̤-còng cĭ hâiu, kō̤-nèng diŏh tĕ̤ng táh báuk-lāng-ké gì ká̤-chṳ̄ ciáh â̤ káng-giéng diŏh gāi-biéng. '''Mozilla / Firefox / Safari:''' áik ''Reload'' sèng-âu áik diâng ''Shift'', hĕ̤k-ciā áik ''Ctrl-Shift-R'' (Apple Mac sê ''Cmd-Shift-R''); '''IE:''' áik ''Refresh'' sèng-âu áik diâng ''Ctrl'', hĕ̤k-ciā áik ''Ctrl-F5''; '''Konqueror:''' nâ sāi áik ''Reload'', hĕ̤k-ciā áik ''F5''; '''Opera''' ê̤ṳng-hô buóh tĕ̤ng táh ká̤-chṳ̄, chiāng sāi gă-sĭ ''Tools→Preferences''.",
 'previewnote'              => '<strong>Cé̤ṳ-é: Cuòi nâ sê ché káng ùng-cê gì iông-sék; nṳ̄ sū có̤ gì siŭ-gāi gó muôi bō̤-còng!</strong>',
 'editing'                  => 'Siŭ-gāi $1',
@@ -603,7 +603,7 @@ Iŏk-sṳ̄ nṳ̄ buóh-siōng téng nṳ̄ gáng-sê-dăng gà̤-dēng dṳ̀ 
 'watchlist-hide-own'   => 'Káung kī nguāi gì siŭ-gāi',
 'watchlist-hide-minor' => 'Káung kī guó-éu siŭ-gāi',
 
-# Displayed when you click the "watch" button and it's in the process of watching
+# Displayed when you click the "watch" button and it is in the process of watching
 'watching' => 'Gáng-sê...',
 
 'enotif_newpagetext' => 'Cuòi sê sĭng hiĕk.',

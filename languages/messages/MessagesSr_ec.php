@@ -1780,7 +1780,7 @@ $1',
 'allmessagesdefault'        => 'Стандардни текст',
 'allmessagescurrent'        => 'Тренутни текст',
 'allmessagestext'           => 'Ово је списак свих порука које су у МедијаВики именском простору',
-'allmessagesnotsupportedDB' => "''{{ns:special}}:Allmessages'' нису подржане зато што је ''wgUseDatabaseMessages'' искључен.",
+'allmessagesnotsupportedDB' => "'''{{ns:special}}:Allmessages''' нису подржане зато што је '''\$wgUseDatabaseMessages''' искључен.",
 'allmessagesfilter'         => 'Филтер за регуларне изразе:',
 'allmessagesmodified'       => 'Прикажи само измењене',
 

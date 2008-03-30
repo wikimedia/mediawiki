@@ -236,7 +236,6 @@ ikhawundi lakho liyadalwa. musa ukukhohlwa ukuguqula amakhethelo a-{{SITENAME}} 
 'deletepage'     => 'Sula ikhasi',
 'confirm'        => 'Qinisekisa',
 'exblank'        => 'ikhasi elize',
-'confirmprotect' => 'Qinisekisa ukulondoloza',
 'protectcomment' => 'Isizathu ngenxa yalondoloza',
 
 # Restrictions (nouns)

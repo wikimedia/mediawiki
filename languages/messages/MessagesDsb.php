@@ -371,7 +371,7 @@ $messages = array(
 'badaccess-groups' => 'Jano wužywarje kupkow(u) $1 maju pšawo toś tu akciju wuwjasć.',
 
 'versionrequired'     => 'Wersija $1 softwary MediaWiki trěbna',
-'versionrequiredtext' => 'Wersija $1 softwary MediaWiki jo trěbna, aby toś ten bok se mógał wužywaś. Glědaj [[{{ns:special}}:Version]]',
+'versionrequiredtext' => 'Wersija $1 softwary MediaWiki jo trěbna, aby toś ten bok se mógał wužywaś. Glědaj [[Special:Version]]',
 
 'ok'                      => 'Pytaś',
 'retrievedfrom'           => 'Z {{GRAMMAR:genitiw|$1}}',

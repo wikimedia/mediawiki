@@ -1861,7 +1861,7 @@ V druhom prípade môžete tiež použiť odkaz, napr. [[Special:Export/{{Mediaw
 'allmessagesdefault'        => 'štandardný text',
 'allmessagescurrent'        => 'aktuálny text',
 'allmessagestext'           => 'Toto je zoznam všetkých správ dostupných v mennom priestore MediaWiki.',
-'allmessagesnotsupportedDB' => "'''{{ns:special}}:AllMessages''' nie je podporované, pretože '''wgUseDatabaseMessages''' je vypnuté.",
+'allmessagesnotsupportedDB' => "'''{{ns:special}}:AllMessages''' nie je podporované, pretože '''\$wgUseDatabaseMessages''' je vypnuté.",
 'allmessagesfilter'         => 'Filter názvov správ:',
 'allmessagesmodified'       => 'Zobraziť iba zmenené',
 

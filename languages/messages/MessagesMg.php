@@ -821,8 +821,6 @@ pejy vaovao io ny tantaran'ity pejy voafafa ity, fa tsy ho voafafa akory.",
 'contributions' => "Fandraisan'anjaran'ny mpikambana",
 'mycontris'     => 'Ny nosoratako',
 'nocontribs'    => "Tsy misy fanovana mifanaraka amin'ireo critères ireo.",
-'ucnote'        => "Inty ary ny lisitry ny <b>$1</b> farany novain'io mpikambana io tato anatin'ny <b>$2</b> andro.",
-'uclinks'       => 'Jereo ny fanovana $1 farany; jereo ny $2 andro farany.',
 'uctop'         => ' (loha)',
 
 # What links here

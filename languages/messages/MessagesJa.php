@@ -294,7 +294,7 @@ $messages = array(
 'badaccess-groups' => 'この処理は $1 のうちいずれかの権限を持った利用者のみが実行できます。',
 
 'versionrequired'     => 'MediaWiki バージョン $1 が必要',
-'versionrequiredtext' => 'このページの利用には MediaWiki バージョン $1 が必要です。[[Special:Version|{{int:version}}]]を確認してください。',
+'versionrequiredtext' => 'このページの利用には MediaWiki バージョン $1 が必要です。[[Special:Version|バージョン情報]]を確認してください。',
 
 'ok'                      => 'OK',
 'retrievedfrom'           => ' "$1" より作成',
@@ -584,7 +584,7 @@ $1 または他の[[{{MediaWiki:grouppage-sysop}}|管理者]]にこの件につ�
 'newarticletext'            => 'ページを新規に作成するには新しい内容を書き込んでください。',
 'anontalkpagetext'          => "----
 ''これはアカウントをまだ作成していないか、あるいは使っていない匿名利用者のための会話ページです。{{SITENAME}}では匿名利用者の識別は利用者名のかわりにIPアドレスを用います。IPアドレスは何人かで共有されることがあります。もしも、あなたが匿名利用者で無関係なコメントがここに寄せられる場合は、[[Special:Userlogin|アカウントを作成するかログインして]]他の匿名利用者と間違えられないようにしてくださるようお願いします。",
-'noarticletext'             => '現在このページには内容がありません。他のページから[[{{ns:special}}:Search/{{PAGENAME}}|このページタイトルを検索する]]か、[{{fullurl:{{FULLPAGENAME}}|action=edit}} このページを編集]できます。',
+'noarticletext'             => '現在このページには内容がありません。他のページから[[Special:Search/{{PAGENAME}}|このページタイトルを検索する]]か、[{{fullurl:{{FULLPAGENAME}}|action=edit}} このページを編集]できます。',
 'userpage-userdoesnotexist' => '"$1" という名前のアカウントは登録されていません。このページを編集することが適切かどうか確認してください。',
 'clearyourcache'            => "'''お知らせ:''' 保存した後、ブラウザのキャッシュをクリアする必要があります。
 * '''Mozilla / Firefox / Safari:''' [Shift] を押しながら [再読み込み] をクリック、または [Shift]-[Ctrl]-[R] （Macでは [Cmd]-[Shift]-[R]）
@@ -1665,7 +1665,7 @@ $NEWPAGE
 'allmessagesdefault'        => '既定の文章',
 'allmessagescurrent'        => '現在の文章',
 'allmessagestext'           => 'これは{{ns:mediawiki}}名前空間にある全てのシステムメッセージの一覧です。',
-'allmessagesnotsupportedDB' => 'wgUseDatabaseMessages が無効のため、[[{{ns:special}}:Allmessages]] はサポートされません。',
+'allmessagesnotsupportedDB' => "'''\$wgUseDatabaseMessages''' が無効のため、'''{{ns:special}}:Allmessages''' はサポートされません。",
 'allmessagesfilter'         => 'メッセージ名フィルタ:',
 'allmessagesmodified'       => '条件に当てはまるものを表示',
 

@@ -1330,7 +1330,7 @@ air, nó is féidir leat é a coinniú do do chuid shiamsa féin.',
 'allmessagesdefault'        => 'Téacs réamhshocraithe',
 'allmessagescurrent'        => 'Téacs reatha',
 'allmessagestext'           => 'Liosta is ea seo de theachtaireachtaí córais atá le fáil san ainmspás MediaWiki: .',
-'allmessagesnotsupportedDB' => "Níl aon tacaíocht anseo do {{ns:special}}:Allmessages dá bharr go bhfuil '''\$wgUseDatabaseMessages''' druidte.",
+'allmessagesnotsupportedDB' => "Níl aon tacaíocht anseo do '''{{ns:special}}:Allmessages''' dá bharr go bhfuil '''\$wgUseDatabaseMessages''' druidte.",
 'allmessagesfilter'         => "Scagaire teachtaireacht d'ainm:",
 
 # Thumbnails

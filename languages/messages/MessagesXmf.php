@@ -8,6 +8,7 @@
  * @author Alsandro
  * @author Nike
  * @author M.M.S.
+ * @author Siebrand
  */
 
 $fallback = 'ka';
@@ -214,7 +215,7 @@ $messages = array(
 'showpreview'    => 'ოწმახ ძირა',
 'showdiff'       => 'თირუალეფიშ ძირაფა',
 'newarticle'     => '(ახალ)',
-'noarticletext'  => 'ასე თე გვერდც ტექსტ ვა არსეენც, [[{{ns:special}}:Search/{{PAGENAME}}|მიგორეთ თე გვერდიშ სახელ]] შხვა გვერდეფც ვარა [{{fullurl:{{FULLPAGENAME}}|action=edit}} დოჭარით თენა გვერდ].',
+'noarticletext'  => 'ასე თე გვერდც ტექსტ ვა არსეენც, [[Special:Search/{{PAGENAME}}|მიგორეთ თე გვერდიშ სახელ]] შხვა გვერდეფც ვარა [{{fullurl:{{FULLPAGENAME}}|action=edit}} დოჭარით თენა გვერდ].',
 'editing'        => 'რედაქტირება - $1',
 'editingsection' => 'რედაქტირება - $1 (სექცია)',
 'yourtext'       => 'თქვან ტექსტ',
