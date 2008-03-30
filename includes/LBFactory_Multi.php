@@ -102,8 +102,7 @@ class LBFactory_Multi extends LBFactory {
 		return $this->mainLBs[$section];
 	}
 
-	function getExternalLB( $cluster, $wiki = false ) {
-		global $wgExternalServers;
+	function &getExternalLB( $cluster, $wiki = false ) {
 		if ( !isset( $this->extLBs[$cluster] ) ) {
 			if ( !isset( $this->externalLoads[$cluster] ) ) {
 				throw new MWException( __METHOD__.": Unknown cluster \"$cluster\"" );
