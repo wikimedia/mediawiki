@@ -217,7 +217,7 @@ $messages = array(
 'badaccess' => 'Atļaujas kļūda',
 
 'versionrequired'     => "Nepieciešamā ''MediaWiki'' versija: $1.",
-'versionrequiredtext' => "Lai lietotu šo lapu, nepieciešama ''MediaWiki'' versija $1. Sk. [[Special:versija]].",
+'versionrequiredtext' => "Lai lietotu šo lapu, nepieciešama ''MediaWiki'' versija $1. Sk. [[Special:Version|versija]].",
 
 'ok'                  => 'Labi',
 'retrievedfrom'       => 'Saturs iegūts no "$1"',

@@ -2093,7 +2093,7 @@ U kunt wel de broncode bekijken.',
 
 # Scripts
 'common.js'   => '/* JavaScript hier zal invloed hebben op elke pagina voor elke gebruiker. */',
-'monobook.js' => '/* Het wordt aangeraden om [[MediaWiki:common.js]] te gebruiken */',
+'monobook.js' => '/* Het wordt aangeraden om [[MediaWiki:Common.js]] te gebruiken */',
 
 # Metadata
 'nodublincore'      => 'Dublin Core RDF metadata is uitgeschakeld op deze server.',

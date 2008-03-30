@@ -1,6 +1,5 @@
 <?php
-/**
- * Chinese (Simplified) ((‪中文 (简化字)‬)
+/** Simplified Chinese (‪中文(简体)‬)
  *
  * @addtogroup Language
  *
@@ -185,9 +184,9 @@ $messages = array(
 # Categories related messages
 'categories'                     => '页面分类',
 'categoriespagetext'             => '以下的分类中包含了页面或媒体。',
-'pagecategories'                 => '$1个分类',
 'special-categories-sort-count'  => '按数量排列',
 'special-categories-sort-abc'    => '按字母排列',
+'pagecategories'                 => '$1个分类',
 'category_header'                => '"$1"分类中的页面',
 'subcategories'                  => '亚类',
 'category-media-header'          => '"$1"分类中的媒体',
@@ -1352,7 +1351,7 @@ Template:消除歧義',
 'watchlist-show-minor' => '显示小编辑',
 'watchlist-hide-minor' => '隐藏小编辑',
 
-# Displayed when you click the "watch" button and it's in the process of watching
+# Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => '监视……',
 'unwatching' => '解除监视……',
 
@@ -1530,8 +1529,6 @@ $1',
 'mycontris'     => '我的贡献',
 'contribsub2'   => '$1的贡献 ($2)',
 'nocontribs'    => '没有找到符合特征的更改。',
-'ucnote'        => '以下是该用户最近<b>$2</b>天内的最后<b>$1</b>次修改。',
-'uclinks'       => '参看最后$1次修改；参看最后$2天。',
 'uctop'         => '(最新修改)',
 'month'         => '从该月份 (或更早):',
 'year'          => '从该年份 (或更早):',

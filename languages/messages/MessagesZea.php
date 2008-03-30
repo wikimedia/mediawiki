@@ -854,7 +854,7 @@ Kiest 'n aore naem.",
 'allmessagesdefault'        => 'Standerttekst',
 'allmessagescurrent'        => 'Tekst van noe',
 'allmessagestext'           => "Dit is 'n liest van aolle systeemteksten die-an in de MediaWiki-naemruumte stae.",
-'allmessagesnotsupportedDB' => "'''Special:Allmessages''' kan nie gebruukt ore om'at '''\$wgUseDatabaseMessages''' uutgeschaekeld staet.",
+'allmessagesnotsupportedDB' => "'''{{ns:special}}:Allmessages''' kan nie gebruukt ore om'at '''\$wgUseDatabaseMessages''' uutgeschaekeld staet.",
 'allmessagesfilter'         => 'Zoek nae systeemteksten mee...',
 'allmessagesmodified'       => 'Laet alleêne de veranderde teksten zieë',
 

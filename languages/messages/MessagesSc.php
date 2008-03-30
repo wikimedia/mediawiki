@@ -116,14 +116,11 @@ $messages = array(
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'      => 'A proposito di {{SITENAME}}',
-'aboutpage'      => 'Project:About',
 'bugreports'     => 'Segnalazioni di malfunzionamento',
 'bugreportspage' => 'Project:Malfunzionamenti',
-'copyrightpage'  => '{{ns:project}}:Copyrights',
 'currentevents'  => 'Attualità',
 'edithelp'       => 'Guida per la modifica o la scrittura di un articolo',
 'edithelppage'   => 'Help:Come_scrivere_un_articolo',
-'faqpage'        => 'Project:FAQ',
 'helppage'       => 'Help:Aiuto',
 'mainpage'       => 'Pàggina principali',
 
@@ -480,8 +477,6 @@ Se una nuova pagina è stata creata con questo stesso nome dopo la cancellazione
 'contributions' => 'Contributi di questo Utente',
 'contribsub2'   => 'Per $1 ($2)',
 'nocontribs'    => 'Nessuna modifica trovata conformemente a questi criteri.',
-'ucnote'        => 'Qui sotto troverai le ultime <b>$1</b> modifiche effettuate da questo Utente negli ultimi <b>$2</b> giorni.',
-'uclinks'       => 'Vedi le ultime $1 modifiche; vedi gli ultimi $2 giorni.',
 'uctop'         => ' (ultima per la pagina)',
 
 # What links here

@@ -167,9 +167,9 @@ $messages = array(
 
 # Categories related messages
 'categories'                     => '類',
-'pagecategories'                 => '$1類',
 'special-categories-sort-count'  => '排數',
 'special-categories-sort-abc'    => '排字',
+'pagecategories'                 => '$1類',
 'category_header'                => '「$1」中之頁',
 'subcategories'                  => '次類',
 'category-media-header'          => '「$1」中之媒',
@@ -523,7 +523,7 @@ $2',
 'newarticletext'            => '此頁尚缺。欲補，撰於下，有惑見[[{{ns:help}}:Contents|助]]。
 誤入者，返前即可。',
 'anontalkpagetext'          => "----''此匿論也，為未簿或不簿者設，IP俱錄以辨人焉。然IP不獨，恐生亂象，不喜惠[[Special:Userlogin|登簿]]遠之。",
-'noarticletext'             => '此頁無文。子可 [[{{ns:special}}:Search/{{PAGENAME}}|尋同題]]，或[{{fullurl:{{FULLPAGENAME}}|action=edit}} 撰新文]。',
+'noarticletext'             => '此頁無文。子可 [[Special:Search/{{PAGENAME}}|尋同題]]，或[{{fullurl:{{FULLPAGENAME}}|action=edit}} 撰新文]。',
 'userpage-userdoesnotexist' => '"$1"之簿未增也。請建纂本頁前查之。',
 'clearyourcache'            => "'''註：'''重取頁面，文方新焉。
 '''Mozilla / Firefox / Safari:'''押''Shift''並點''重新載入''，或合鍵''Ctrl-Shift-R''（Apple Mac為''Cmd-Shift-R''）。
@@ -1120,7 +1120,7 @@ $2',
 'watchlist-show-minor' => '見校',
 'watchlist-hide-minor' => '藏校',
 
-# Displayed when you click the "watch" button and it's in the process of watching
+# Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => '出陣…',
 'unwatching' => '收兵…',
 
@@ -1156,7 +1156,6 @@ $NEWPAGE
 'confirm'                     => '准',
 'excontent'                   => "文乃'$1'",
 'excontentauthor'             => "文乃'$1'，乃[[Special:Contributions/$2|$2]]獨作。",
-'exbeforeblank'               => "content before blanking was: '$1'",
 'exblank'                     => '缺頁',
 'delete-confirm'              => '刪"$1"',
 'delete-legend'               => '刪',
@@ -1276,8 +1275,6 @@ $NEWPAGE
 'mycontris'     => '吾績',
 'contribsub2'   => '$1勛（$2）',
 'nocontribs'    => '無勛及也。',
-'ucnote'        => '近<b>$2</b>日，此君有<b>$1</b>勛。',
-'uclinks'       => ' 近$1易，近$2日',
 'uctop'         => '(至頂)',
 'month'         => '且不越',
 'year'          => '年不越',
@@ -1462,8 +1459,6 @@ $NEWPAGE
 'thumbnail-more'           => '展',
 'filemissing'              => '喪檔',
 'thumbnail_error'          => '縮圖$1有誤',
-'djvu_page_error'          => 'DjVu page out of range',
-'djvu_no_xml'              => 'Unable to fetch XML for DjVu file',
 'thumbnail_invalid_params' => '縮圖參數不合',
 'thumbnail_dest_directory' => '縮圖匣未可造',
 
@@ -1614,7 +1609,6 @@ $NEWPAGE
 'patrol-log-page' => '誌哨',
 'patrol-log-line' => '令哨$2之$1$3',
 'patrol-log-auto' => '（自行）',
-'patrol-log-diff' => 'r$1',
 
 # Image deletion
 'deletedrevision'                 => '刪舊審$1',
@@ -1694,11 +1688,11 @@ $NEWPAGE
 'monthsall'        => '全',
 
 # E-mail address confirmation
-'confirmemail'            => '核郵驛',
-'confirmemail_noemail'    => '[[Special:Preferences|簿註]]有驛。',
-'confirmemail_send'       => '遣核符',
-'confirmemail_sent'       => '核符遣矣',
-'confirmemail_sendfailed' => '信未遣焉，請核郵驛。
+'confirmemail'             => '核郵驛',
+'confirmemail_noemail'     => '[[Special:Preferences|簿註]]有驛。',
+'confirmemail_send'        => '遣核符',
+'confirmemail_sent'        => '核符遣矣',
+'confirmemail_sendfailed'  => '信未遣焉，請核郵驛。
 
 郵者覆之：$1',
 'confirmemail_invalidated' => '核郵驛消也',

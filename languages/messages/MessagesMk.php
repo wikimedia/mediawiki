@@ -1406,7 +1406,7 @@ $NEWPAGE
 'allmessagesdefault'        => 'Текст по основно',
 'allmessagescurrent'        => 'Сегашен текст',
 'allmessagestext'           => 'Ова е листа на сите системски пораки досапни во МедијаВики: именскиот простор.',
-'allmessagesnotsupportedDB' => '{{ns:special}}:AllMessages не е поддржан бидејќи wgUseDatabaseMessages е исклучен.',
+'allmessagesnotsupportedDB' => "'''{{ns:special}}:AllMessages''' не е поддржан бидејќи '''\$wgUseDatabaseMessages''' е исклучен.",
 'allmessagesfilter'         => 'Филтер за регуларни изрази:',
 'allmessagesmodified'       => 'Прикажи само изменети',
 
