@@ -320,9 +320,9 @@ class ApiMain extends ApiBase {
 		
 		if( $module->shouldCheckMaxlag() && isset( $params['maxlag'] ) ) {
 			// Check for maxlag
-			global $wgLoadBalancer, $wgShowHostnames;
+			global $wgShowHostnames;
 			$maxLag = $params['maxlag'];
-			list( $host, $lag ) = $wgLoadBalancer->getMaxLag();
+			list( $host, $lag ) = wfGetLB()->getMaxLag();
 			if ( $lag > $maxLag ) {
 				if( $wgShowHostnames ) {
 					ApiBase :: dieUsage( "Waiting for $host: $lag seconds lagged", 'maxlag' );

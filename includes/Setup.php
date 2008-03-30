@@ -213,20 +213,6 @@ if( !$wgCommandLineMode && ( $wgRequest->checkSessionCookie() || isset( $_COOKIE
 wfProfileOut( $fname.'-SetupSession' );
 wfProfileIn( $fname.'-globals' );
 
-if ( !$wgDBservers ) {
-	$wgDBservers = array(array(
-		'host' => $wgDBserver,
-		'user' => $wgDBuser,
-		'password' => $wgDBpassword,
-		'dbname' => $wgDBname,
-		'type' => $wgDBtype,
-		'load' => 1,
-		'flags' => ($wgDebugDumpSql ? DBO_DEBUG : 0) | DBO_DEFAULT
-	));
-}
-
-$wgLoadBalancer = new StubObject( 'wgLoadBalancer', 'LoadBalancer', 
-	array( $wgDBservers, false, $wgMasterWaitTimeout, true ) );
 $wgContLang = new StubContLang;
 
 // Now that variant lists may be available...

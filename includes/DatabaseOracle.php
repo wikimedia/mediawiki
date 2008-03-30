@@ -692,6 +692,17 @@ echo "error!\n";
 		return 0;
 	}
 
+	function setFakeSlaveLag() {}
+	function setFakeMaster() {}
+
+	function getDBname() {
+		return $this->mDBname;
+	}
+
+	function getServer() {
+		return $this->mServer;
+	}
+
 } // end DatabaseOracle class
 
 

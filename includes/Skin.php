@@ -1184,7 +1184,7 @@ END;
 	}
 
 	function lastModified() {
-		global $wgLang, $wgArticle, $wgLoadBalancer;
+		global $wgLang, $wgArticle;
 
 		$timestamp = $wgArticle->getTimestamp();
 		if ( $timestamp ) {
@@ -1194,7 +1194,7 @@ END;
 		} else {
 			$s = '';
 		}
-		if ( $wgLoadBalancer->getLaggedSlaveMode() ) {
+		if ( wfGetLB()->getLaggedSlaveMode() ) {
 			$s .= ' <strong>' . wfMsg( 'laggedslavemode' ) . '</strong>';
 		}
 		return $s;

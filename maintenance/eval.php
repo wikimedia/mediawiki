@@ -33,8 +33,9 @@ if ( isset( $options['d'] ) ) {
 		$wgDebugLogFile = '/dev/stdout';
 	}
 	if ( $d > 1 ) {
-		foreach ( $wgLoadBalancer->mServers as $i => $server ) {
-			$wgLoadBalancer->mServers[$i]['flags'] |= DBO_DEBUG;
+		$lb = wfGetLB();
+		foreach ( $lb->mServers as $i => $server ) {
+			$lb->mServers[$i]['flags'] |= DBO_DEBUG;
 		}
 	}
 	if ( $d > 2 ) {

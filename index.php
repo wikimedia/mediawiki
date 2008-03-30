@@ -47,7 +47,7 @@ OutputPage::setEncodings(); # Not really used yet
 
 $maxLag = $wgRequest->getVal( 'maxlag' );
 if ( !is_null( $maxLag ) ) {
-	if ( !$mediaWiki->checkMaxLag( $wgLoadBalancer, $maxLag ) ) {
+	if ( !$mediaWiki->checkMaxLag( $maxLag ) ) {
 		exit;
 	}
 }
@@ -69,7 +69,7 @@ if ( $wgUseAjax && $action == 'ajax' ) {
 
 	$dispatcher = new AjaxDispatcher();
 	$dispatcher->performAction();
-	$mediaWiki->restInPeace( $wgLoadBalancer );
+	$mediaWiki->restInPeace();
 	exit;
 }
 
@@ -90,7 +90,7 @@ $mediaWiki->setVal( 'UseExternalEditor', $wgUseExternalEditor );
 $mediaWiki->setVal( 'UsePathInfo', $wgUsePathInfo );
 
 $mediaWiki->initialize( $wgTitle, $wgArticle, $wgOut, $wgUser, $wgRequest );
-$mediaWiki->finalCleanup( $wgDeferredUpdateList, $wgLoadBalancer, $wgOut );
+$mediaWiki->finalCleanup ( $wgDeferredUpdateList, $wgOut );
 
 # Not sure when $wgPostCommitUpdateList gets set, so I keep this separate from finalCleanup
 $mediaWiki->doUpdates( $wgPostCommitUpdateList );

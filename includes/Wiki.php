@@ -70,13 +70,12 @@ class MediaWiki {
 	 * Check if the maximum lag of database slaves is higher that $maxLag, and
 	 * if it's the case, output an error message
 	 *
-	 * @param LoadBalancer $loadBalancer
 	 * @param int $maxLag maximum lag allowed for the request, as supplied by
 	 *                    the client
-	 * @return bool true if the requet can continue
+	 * @return bool true if the request can continue
 	 */
-	function checkMaxLag( $loadBalancer, $maxLag ) {
-		list( $host, $lag ) = $loadBalancer->getMaxLag();
+	function checkMaxLag( $maxLag ) {
+		list( $host, $lag ) = wfGetLB()->getMaxLag();
 		if ( $lag > $maxLag ) {
 			wfMaxlagError( $host, $lag, $maxLag );
 			return false;
@@ -316,20 +315,18 @@ class MediaWiki {
 	}
 
 	/**
-	 * Cleaning up by doing deferred updates, calling loadbalancer and doing the
-	 * output
+	 * Cleaning up by doing deferred updates, calling LBFactory and doing the output
 	 *
 	 * @param Array $deferredUpdates array of updates to do 
-	 * @param LoadBalancer $loadBalancer
 	 * @param OutputPage $output
 	 */
-	function finalCleanup( &$deferredUpdates, &$loadBalancer, &$output ) {
+	function finalCleanup ( &$deferredUpdates, &$output ) {
 		wfProfileIn( __METHOD__ );
 		$this->doUpdates( $deferredUpdates );
 		$this->doJobs();
-		$loadBalancer->saveMasterPos();
 		# Now commit any transactions, so that unreported errors after output() don't roll back the whole thing
-		$loadBalancer->commitMasterChanges();
+		$factory = wfGetLBFactory();
+		$factory->shutdown();
 		$output->output();
 		wfProfileOut( __METHOD__ );
 	}
