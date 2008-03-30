@@ -37,7 +37,7 @@ abstract class LBFactory {
 	 * @param string $cluster External storage cluster, or false for core
 	 * @param string $wiki Wiki ID, or false for the current wiki
 	 */
-	abstract function getExternalLB( $cluster, $wiki = false );
+	abstract function &getExternalLB( $cluster, $wiki = false );
 
 	/**
 	 * Execute a function for each tracked load balancer
@@ -111,7 +111,7 @@ class LBFactory_Simple extends LBFactory {
 		return $this->mainLB;
 	}
 
-	function getExternalLB( $cluster, $wiki = false ) {
+	function &getExternalLB( $cluster, $wiki = false ) {
 		global $wgExternalServers;
 		if ( !isset( $this->extLBs[$cluster] ) ) {
 			if ( !isset( $wgExternalServers[$cluster] ) ) {
