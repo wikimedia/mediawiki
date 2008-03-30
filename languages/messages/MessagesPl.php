@@ -245,20 +245,24 @@ $messages = array(
 'dec'           => 'gru',
 
 # Categories related messages
-'categories'                    => 'Kategorie',
-'categoriespagetext'            => 'Poniższe kategorie istnieją na wiki.',
-'special-categories-sort-count' => 'sortowanie według liczby',
-'special-categories-sort-abc'   => 'sortowanie alfabetyczne',
-'pagecategories'                => '{{PLURAL:$1|Kategoria|Kategorie|Kategorii}}',
-'category_header'               => 'Strony w kategorii "$1"',
-'subcategories'                 => 'Podkategorie',
-'category-media-header'         => 'Pliki w kategorii "$1"',
-'category-empty'                => "''W tej kategorii nie ma obecnie artykułów ani plików.''",
-'hidden-categories'             => '{{PLURAL:$1|Ukryta kategoria|Ukryte kategorie|Ukrytych kategorii}}',
-'hidden-category-category'      => 'Ukryte kategorie', # Name of the category where hidden categories will be listed
-'category-subcat-count'         => '{{PLURAL:$2|Ta kategoria ma tylko jedną podkategorię.|Ta kategoria ma {{PLURAL:$1|następującą podkategorię|$1 podkategorie|$1 podkategorii}} spośród ogólnej liczby $2.}}',
-'category-subcat-count-limited' => 'Ta kategoria ma {{PLURAL:$1|następującą podkategorię|$1 podkategorie|$1 podkategorii}}.',
-'listingcontinuesabbrev'        => 'c.d.',
+'categories'                     => 'Kategorie',
+'categoriespagetext'             => 'Poniższe kategorie istnieją na wiki.',
+'special-categories-sort-count'  => 'sortowanie według liczby',
+'special-categories-sort-abc'    => 'sortowanie alfabetyczne',
+'pagecategories'                 => '{{PLURAL:$1|Kategoria|Kategorie|Kategorii}}',
+'category_header'                => 'Strony w kategorii "$1"',
+'subcategories'                  => 'Podkategorie',
+'category-media-header'          => 'Pliki w kategorii "$1"',
+'category-empty'                 => "''W tej kategorii nie ma obecnie artykułów ani plików.''",
+'hidden-categories'              => '{{PLURAL:$1|Ukryta kategoria|Ukryte kategorie|Ukrytych kategorii}}',
+'hidden-category-category'       => 'Ukryte kategorie', # Name of the category where hidden categories will be listed
+'category-subcat-count'          => '{{PLURAL:$2|Ta kategoria ma tylko jedną podkategorię.|Ta kategoria ma {{PLURAL:$1|następującą podkategorię|$1 podkategorie|$1 podkategorii}} spośród ogólnej liczby $2.}}',
+'category-subcat-count-limited'  => 'Ta kategoria ma {{PLURAL:$1|następującą podkategorię|$1 podkategorie|$1 podkategorii}}.',
+'category-article-count'         => '{{PLURAL:$2|W kategorii znajduje się jedna strona.|W kategorii {{PLURAL:$1|została pokazana $1 strona|zostały pokazane $1 strony|zostało pokazanych $1 stron}} z łącznej liczby $2 stron.}}',
+'category-article-count-limited' => 'W kategorii {{PLURAL:$1|została pokazana $1 strona|zostały pokazane $1 strony|zostało pokazanych $1 stron}}.',
+'category-file-count'            => '{{PLURAL:$2|W kategorii znajduje się jeden plik.|W kategorii {{PLURAL:$1|został pokazany $1 plik|zostały pokazane $1 pliki|zostało pokazanych $1 plików}} z łącznej liczby $2 plików.}}',
+'category-file-count-limited'    => 'W kategorii {{PLURAL:$1|został pokazany $1 plik|zostały pokazane $1 pliki|zostało pokazanych $1 plików}}.',
+'listingcontinuesabbrev'         => 'c.d.',
 
 'mainpagetext'      => "<big>'''Instalacja MediaWiki powiodła się.'''</big>",
 'mainpagedocfooter' => 'Zobacz [http://meta.wikimedia.org/wiki/Help:Contents przewodnik użytkownika] w celu uzyskania informacji o działaniu oprogramowania wiki.
@@ -810,6 +814,8 @@ Inni administratorzy {{GRAMMAR:D.lp|{{SITENAME}}}} nadal będą mieć dostęp do
 'logdelete-logaction'         => '$1 {{PLURAL:$1|zdarzenie|zdarzenia|zdarzeń}} dla [[$3]] przestawiono w tryb $2',
 'revdelete-success'           => 'Pomyślnie zmieniono widoczność wersji.',
 'logdelete-success'           => 'Pomyślnie zmieniono widoczność zdarzeń.',
+'pagehist'                    => 'Historia edycji strony',
+'deletedhist'                 => 'Usunięta historia edycji',
 
 # Oversight log
 'oversightlog'    => 'Log Oversight',
@@ -827,12 +833,14 @@ Upewnij się, że zmiany będą zapewniać ciągłość historyczną edycji stro
 'mergehistory-go'                  => 'Pokaż możliwe do scalenia zmiany',
 'mergehistory-submit'              => 'Scal historię zmian',
 'mergehistory-empty'               => 'Brak historii zmian do scalenia.',
-'mergehistory-success'             => '$3 zmian [[:$1]] z powodzeniem zostało scalonych z [[:$2]].',
+'mergehistory-success'             => '$3 {{PLURAL:$3|zmiana|zmiany|zmian}} w [[:$1]] z powodzeniem zostało scalonych z [[:$2]].',
 'mergehistory-fail'                => 'Scalenie historii zmian jest niewykonalne. Proszę zmienić ustawienia parametrów.',
 'mergehistory-no-source'           => 'Strona źródłowa $1 nie istnieje.',
 'mergehistory-no-destination'      => 'Strona docelowa $1 nie istnieje.',
 'mergehistory-invalid-source'      => 'Strona źródłowa musi mieć poprawną nazwę.',
 'mergehistory-invalid-destination' => 'Strona docelowa musi mieć poprawną nazwę.',
+'mergehistory-autocomment'         => 'Historia [[:$1]] scalona z [[:$2]]',
+'mergehistory-comment'             => 'Historia [[:$1]] scalona z [[:$2]]: $3',
 
 # Merge log
 'mergelog'           => 'Scalone',
@@ -865,9 +873,13 @@ Upewnij się, że zmiany będą zapewniać ciągłość historyczną edycji stro
 'viewprevnext'          => 'Zobacz ($1) ($2) ($3).',
 'search-result-size'    => '$1 ({{PLURAL:$2|1 słowo|$2 słowa|$2 słów}})',
 'search-result-score'   => 'Trafność: $1%',
+'search-redirect'       => '(przekierowanie $1)',
+'search-section'        => '(sekcja $1)',
+'search-suggest'        => 'Czy chodziło Ci o: $1',
 'searchall'             => 'wszystkie',
 'showingresults'        => "Oto lista składająca się z {{PLURAL:$1|'''1''' wyniku|'''$1''' wyników}}, poczynając od numeru '''$2'''.",
 'showingresultsnum'     => "Oto lista składająca się z {{PLURAL:$3|'''1''' wyniku|'''$3''' wyników}}, poczynając od numeru '''$2'''.",
+'showingresultstotal'   => "Poniżej znajdują się wyniki wyszukiwania '''$1 - $2''' z '''$3'''",
 'nonefound'             => "'''Uwaga''': brak rezultatów wyszukiwania spowodowany jest bardzo często szukaniem najpopularniejszych słów, takich jak \"jest\" czy \"nie\", które nie są indeksowane, albo z powodu podania w zapytaniu więcej niż jednego słowa (na liście odnalezionych stron znajdą się tylko te, które zawierają wszystkie podane słowa).",
 'powersearch'           => 'Szukaj',
 'powersearch-legend'    => 'Wyszukiwanie zaawansowane',
@@ -1103,6 +1115,9 @@ Rejestr usunięć tego pliku jest dla wygody podany poniżej:",
 'upload_source_file' => ' (plik na twoim komputerze)',
 
 # Special:Imagelist
+'imagelist-summary'     => 'To jest strona specjalna pokazująca wszystkie pliki przesłane na serwer.
+Domyślnie na górze listy wyświetlane są ostatnio przesłane pliki.
+Kliknięcie w nagłówek kolumny zmienia sposób sortowania.',
 'imagelist_search_for'  => 'Szukaj grafiki o nazwie:',
 'imgdesc'               => 'opis',
 'imgfile'               => 'plik',
@@ -1135,6 +1150,7 @@ Rejestr usunięć tego pliku jest dla wygody podany poniżej:",
 'noimage'                   => 'Nie istnieje plik o tej nazwie. Możesz go $1.',
 'noimage-linktext'          => 'przesłać',
 'uploadnewversion-linktext' => 'Załaduj nowszą wersję tego pliku',
+'imagepage-searchdupe'      => 'Wyszukiwanie powtarzających się plików',
 
 # File reversion
 'filerevert'                => 'Przywracanie $1',
@@ -1513,7 +1529,7 @@ Naciśnij "wstecz", przeładuj stronę, po czym ponownie wydaj polecenie.',
 'undeleteextrahelp'            => "Aby odtworzyć całą stronę, pozostaw wszystkie pola niezaznaczone i kliknij '''Odtwórz'''. Aby wybrać częściowe odtworzenie należy zaznaczyć odpowiednie pole. Naciśnięcie '''Wyczyść''' wyczyści wszystkie pola, łącznie z opisem komentarza.",
 'undeleterevisions'            => '$1 {{PLURAL:$1|zarchiwizowana wersja|zarchiwizowane wersje|zarchiwizowanych wersji}}',
 'undeletehistory'              => 'Odtworzenie strony spowoduje przywrócenie także jej wszystkich poprzednich wersji. Jeśli od czasu skasowania ktoś utworzył nową stronę o tej nazwie, odtwarzane wersje znajdą się w jej historii, a obecna wersja pozostanie bez zmian.',
-'undeleterevdel'               => 'Odtworzenie strony nie zostanie przeprowadzone w wypadku, gdyby miało skutkować częściowym usunięciem aktualnej wersji. W takiej sytuacji należy odznaczyć lub przywrócić widoczność najnowszym skasowanym wersjom. Nie zostaną pokazane wersje plików, do oglądania których nie masz uprawnień.',
+'undeleterevdel'               => 'Odtworzenie strony nie zostanie przeprowadzone w wypadku, gdyby miało skutkować częściowym usunięciem aktualnej wersji. W takiej sytuacji należy odznaczyć lub przywrócić widoczność najnowszym skasowanym wersjom.',
 'undeletehistorynoadmin'       => 'Ten artykuł został skasowany. Przyczyna usunięcia podana jest w podsumowaniu poniżej, razem z danymi użytkownika, który edytował artykuł przed skasowaniem. Sama treść usuniętych wersji jest dostępna jedynie dla administratorów.',
 'undelete-revision'            => 'Skasowano wersję $1 z $2 autorstwa $3:',
 'undeleterevision-missing'     => 'Nieprawidłowa lub brakująca wersja. Możesz mieć zły link lub wersja mogła zostać odtworzona lub usunięta z archiwum.',
@@ -1951,7 +1967,8 @@ $1',
 
 # Special:Newimages
 'newimages'             => 'Najnowsze grafiki',
-'imagelisttext'         => "Poniżej na {{PLURAL:$1||posortowanej $2}} liście {{PLURAL:$1|znajduje|znajdują}} się '''$1''' {{PLURAL:$1|plik|pliki|plików}}.",
+'imagelisttext'         => "Poniżej na {{PLURAL:$1||posortowanej $2}} liście {{PLURAL:$1|znajduje|znajdują|znajduje}} się '''$1''' {{PLURAL:$1|plik|pliki|plików}}.",
+'newimages-summary'     => 'Na tej stronie specjalnej prezentowane są ostatnio wgrane pliki',
 'showhidebots'          => '($1 boty)',
 'noimages'              => 'Nic.',
 'ilsubmit'              => 'Szukaj',
@@ -2404,6 +2421,6 @@ Wpisz nazwę pliku z pominięciem prefiksu "{{ns:image}}:".',
 'fileduplicatesearch-submit'   => 'Szukaj',
 'fileduplicatesearch-info'     => '$1 × $2 pikseli<br />Rozmiar pliku: $3<br />Typ MIME: $4',
 'fileduplicatesearch-result-1' => 'Plik "$1" nie posiada duplikatu.',
-'fileduplicatesearch-result-n' => 'Plik "$1" posiada {{PLURAL:$2|1 duplikat|$2 {{#switch: $2 |2|3|4 =duplikaty|duplikatów}}}}.',
+'fileduplicatesearch-result-n' => 'Plik "$1" posiada {{PLURAL:$2|$2 duplikat|$2 duplikaty|$2 duplikatów}}.',
 
 );

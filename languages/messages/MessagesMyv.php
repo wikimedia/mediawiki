@@ -213,7 +213,7 @@ $messages = array(
 'aboutsite'         => '{{SITENAME}} ланга',
 'aboutpage'         => 'Project:Эстэдензэ',
 'bugreports'        => 'Ильведькстэ пачтямнэ',
-'bugreportspage'    => 'Проектэсь:Вишка сёрмадовкс ильветькстэ',
+'bugreportspage'    => 'Project:Вишка сёрмадовкс ильветькстэ',
 'copyright'         => '$1-сто муят мезе тесэ.',
 'copyrightpagename' => '{{SITENAME}} копиянь теемань прават',
 'copyrightpage'     => '{{ns:project}}:Ломанень видечинзэ',
@@ -231,7 +231,7 @@ $messages = array(
 'portal'            => 'Велень-сядонь вальма',
 'portal-url'        => 'Проект:Вейтьсэнь вальма',
 'privacy'           => 'Салавачинь политикась',
-'privacypage'       => 'Проектесь:Салавачинь политикась',
+'privacypage'       => 'Project:Салавачинь политикась',
 'sitesupport'       => 'Лезксйармаконь максома',
 'sitesupport-url'   => 'Project:Вальмантень лездамось',
 

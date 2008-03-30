@@ -58,7 +58,7 @@ $messages = array(
 'tog-previewontop'            => 'Montre previzializasyon anvan bwat edite',
 'tog-previewonfirst'          => 'Montre previzializasyon sou premye edit',
 'tog-nocache'                 => 'Dezame paj kapte',
-'tog-enotifwatchlistpages'    => 'E-mèl mwen kan yon paj m’ap gade chanje',
+'tog-enotifwatchlistpages'    => 'Notifye m pa e-mèl kan youn nan paj m’ap swiv yo chanje',
 'tog-enotifusertalkpages'     => 'E-mèl mwen kan paj itilizatè m nan chanje',
 'tog-enotifminoredits'        => 'E-mèl mwen tou pou edit minè paj yo',
 'tog-enotifrevealaddr'        => 'Montre adrès e-mèl mwen nan kominikasyon notifikasyon yo',
@@ -289,18 +289,39 @@ $messages = array(
 'thisisdeleted'           => 'Ou vle wè ubien restore $1 ?',
 'viewdeleted'             => 'Wè $1 ?',
 'restorelink'             => '{{PLURAL:$1|yon revizion efase|$1 revizion efase yo}}',
+'feedlinks'               => 'Nouri:',
+'feed-invalid'            => 'Souskripsyon tip nouri envalid.',
+'feed-unavailable'        => 'Sendikasyon nouri yo pa avalab nan {{SITENAME}}',
 'site-rss-feed'           => 'Flow RSS depi $1',
 'site-atom-feed'          => 'Flow Atom depi $1',
 'page-rss-feed'           => 'Flow RSS pou "$1"',
+'page-atom-feed'          => '"$1" Nouri Atom',
+'red-link-title'          => '$1 (poko ekri)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
-'nstab-user'     => 'Paj itilizatè',
-'nstab-project'  => 'Paj pwojè a',
-'nstab-image'    => 'Fichye',
-'nstab-template' => 'Modèl',
-'nstab-category' => 'Kategori',
+'nstab-main'      => 'Paj',
+'nstab-user'      => 'Paj itilizatè',
+'nstab-media'     => 'Paj Medya',
+'nstab-special'   => 'Espesial',
+'nstab-project'   => 'Paj pwojè a',
+'nstab-image'     => 'Fichye',
+'nstab-mediawiki' => 'Mesaj',
+'nstab-template'  => 'Modèl',
+'nstab-help'      => 'Paj èd',
+'nstab-category'  => 'Kategori',
+
+# Main script and global functions
+'nosuchaction'      => 'Pa gen bagay konsa',
+'nosuchactiontext'  => 'Wiki-a pa rekonèt Aksyon ki espesifye pa URL la',
+'nosuchspecialpage' => 'Pa gen paj especial konsa',
+'nospecialpagetext' => "<big>'''Paj espesial ou demande-a envalid.'''</big>
+
+Ou ka jwenn yon lis paj espesial ki valid yo la [[Special:Specialpages]].",
 
 # General errors
+'error'          => 'Erè',
+'databaseerror'  => '
+Erè nan bazdata.',
 'badtitle'       => 'Tit an pa byen, li move, eseye byen ekri li',
 'badtitletext'   => 'Tit paj ou mande a pa korèk oubyen li pa egziste oubyen li nan yon lòt pwojè wiki (gade nan lòt wiki yo pou wè). Li mèt genyen tou kèk karaktè ki pa rekonèt nan sistèm an, eseye pa itilize yo nan tit ou yo.',
 'viewsource'     => 'Wè kòd tèks sa a',
@@ -322,6 +343,7 @@ $messages = array(
 'gotaccount'            => 'Ou ja genyen yon kont ? $1.',
 'gotaccountlink'        => 'Idantifye ou',
 'yourrealname'          => 'Vre non ou:',
+'yourlanguage'          => 'Langaj:',
 'prefs-help-realname'   => '(pa enpòtan) : si ou mete li, li ke posib pou nou ba ou rekonpans pou kèk kontrisyon ou yo.',
 'loginsuccesstitle'     => 'Ou byen idantifye nan sistèm an',
 'loginsuccess'          => 'Ou konekte kounye a nan {{SITENAME}} epi idantifyan sa a « $1 ».',

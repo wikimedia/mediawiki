@@ -280,7 +280,7 @@ $messages = array(
 'jumptosearch'      => 'ค้นหา',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
-'aboutsite'         => 'เกี่ยวกับ {{SITENAME}}',
+'aboutsite'         => 'เกี่ยวกับ{{SITENAME}}',
 'aboutpage'         => 'Project:เกี่ยวกับเว็บไซต์',
 'bugreports'        => 'รายงานบั๊ก',
 'bugreportspage'    => 'Project:รายงานบั๊ก',
@@ -1468,7 +1468,7 @@ $1',
 'blanknamespace' => '(หลัก)',
 
 # Contributions
-'contributions' => 'เรื่องที่คนนี้เขียน',
+'contributions' => 'เรื่องที่ผู้ใช้รายนี้เขียน',
 'mycontris'     => 'เรื่องที่เขียน',
 'contribsub2'   => 'สำหรับ $1 ($2)',
 'nocontribs'    => 'ไม่มีการเปลี่ยนแปลงตามเงื่อนไขที่ใส่มา',

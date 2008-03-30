@@ -25,6 +25,7 @@
  * @author Technorum
  * @author Toniher
  * @author לערי ריינהארט
+ * @author Dvortygirl
  */
 
 $skinNames = array(
@@ -166,6 +167,7 @@ $messages = array(
 # Categories related messages
 'categories'                     => 'Categorías',
 'categoriespagetext'             => 'Existen las siguientes categorías en este wiki.',
+'special-categories-sort-abc'    => 'ordenar alfabéticamente',
 'pagecategories'                 => '{{PLURAL:$1|Categoría|Categorías}}',
 'category_header'                => 'Artículos en la categoría "$1"',
 'subcategories'                  => 'Subcategorías',
@@ -479,6 +481,10 @@ Hasta que lo hagas, las siguientes funciones no estarán disponibles.',
 'accountcreated'             => 'Cuenta creada',
 'accountcreatedtext'         => 'La cuenta de usuario para $1 ha sido creada.',
 'createaccount-title'        => 'Creación de cuenta para {{SITENAME}}',
+'createaccount-text'         => 'Alguien creyó una cuenta para este correo electrónico en  {{SITENAME}} ($4) con el nombre "$2", y la contraseña "$3".
+Por favor entra y cambia tu contraseña ahora.
+
+Puedes ignorar este mensaje si esta cuenta fue creado erróneamente.',
 'loginlanguagelabel'         => 'Idioma: $1',
 
 # Password reset dialog

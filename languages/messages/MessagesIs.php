@@ -323,6 +323,8 @@ $messages = array(
 # Categories related messages
 'categories'                     => 'Flokkar',
 'categoriespagetext'             => 'Eftirfarandi flokkar innihalda síður eða margmiðlunarefni.',
+'special-categories-sort-count'  => 'raða eftir fjölda',
+'special-categories-sort-abc'    => 'raða eftir stafrófinu',
 'pagecategories'                 => '{{PLURAL:$1|Flokkur|Flokkar}}',
 'category_header'                => 'Greinar í flokknum „$1“',
 'subcategories'                  => 'Undirflokkar',
@@ -645,6 +647,7 @@ Vinsamlegast skráðu þig inn á ný þegar þú hefur móttekið það.',
 Gjörðu svo vel að setja inn rétt netfang eða tæmdu reitinn.',
 'accountcreated'             => 'Aðgangur búinn til',
 'accountcreatedtext'         => 'Notandaaðgangur fyrir $1 er tilbúinn.',
+'createaccount-title'        => 'Innskráningagerð á {{SITENAME}}',
 'loginlanguagelabel'         => 'Tungumál: $1',
 
 # Password reset dialog
@@ -654,6 +657,7 @@ Gjörðu svo vel að setja inn rétt netfang eða tæmdu reitinn.',
 'resetpass_submit'    => 'Skrifðu aðgangsorðið og skráðu þig inn',
 'resetpass_success'   => 'Aðgangsorðinu þínu hefur verið breytt! Skráir þig inn...',
 'resetpass_forbidden' => 'Ekki er hægt að breyta aðgangsorði á {{SITENAME}}',
+'resetpass_missing'   => 'Engin gögn í eyðublaðinu',
 
 # Edit page toolbar
 'bold_sample'     => 'Feitletraður texti',
@@ -779,7 +783,9 @@ Vinsamlegast íhugaðu að skipta síðunni niður í smærri einingar.</strong>
 'template-protected'       => '(vernduð)',
 'template-semiprotected'   => '(hálfsverndað)',
 'nocreatetitle'            => 'Síðugerð takmörkuð',
+'nocreate-loggedin'        => 'Þú hefur ekki leyfi til að búa til nýja síður á {{SITENAME}}.',
 'permissionserrors'        => 'Leyfisvillur',
+'permissionserrorstext'    => 'Þú hefur ekki leyfi til að gera þetta, af eftirfarandi {{PLURAL:$1|ástæðu|ástæðum}}:',
 'recreate-deleted-warn'    => "'''Viðvörun: Þú ert að búa til síðu sem að hefur áður verið eytt.'''
 
 Athuga skal hvort viðunandi sé að gera þessa síðu.
@@ -838,6 +844,14 @@ Prófaðu [[Special:Search|að leita á þessari wiki síðu]] að svipuðum sí
 'revdelete-hide-user'    => 'Fela notandanafn/vistfang',
 'revdelete-hide-image'   => 'Fela efni skráar',
 'revdelete-log'          => 'Athugasemd atburðaskráar:',
+'pagehist'               => 'Breytingaskrá',
+'deletedhist'            => 'Eyðingaskrá',
+
+# Oversight log
+'oversightlog' => 'Yfirsýnaskrá',
+
+# History merging
+'mergehistory-into' => 'Áætlunarsíða:',
 
 # Diffs
 'history-title'           => 'Breytingaskrá fyrir "$1"',

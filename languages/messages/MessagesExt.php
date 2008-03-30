@@ -218,7 +218,7 @@ $messages = array(
 'disclaimerpage'    => 'Project:Arrayu heneral de responsabiliá',
 'edithelp'          => "Ayua d'eición",
 'edithelppage'      => 'Help:Eitandu',
-'faqpage'           => 'Proyeutu:FAQ',
+'faqpage'           => 'Project:FAQ',
 'helppage'          => 'Help:Continius',
 'mainpage'          => 'Páhina prencipal',
 'policy-url'        => 'Project:Pulítica',
@@ -227,7 +227,7 @@ $messages = array(
 'privacy'           => 'Pulítica',
 'privacypage'       => 'Project:Pulítica e privaciá',
 'sitesupport'       => 'Donacionis',
-'sitesupport-url'   => 'Proyeutu:Apoyu al proyeutu',
+'sitesupport-url'   => 'Project:Apoyu al proyeutu',
 
 'badaccess'        => 'Marru colos tus premisus',
 'badaccess-group0' => 'Nu se te premiti hazel esa ación.',

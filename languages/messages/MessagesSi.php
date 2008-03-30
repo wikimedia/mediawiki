@@ -6,6 +6,7 @@
  * @author Asiri wiki
  * @author Nike
  * @author Chandana
+ * @author Siebrand
  */
 
 $namespaceNames = array(
@@ -197,8 +198,8 @@ $messages = array(
 <!--{{SITENAME}}About-->',
 'currentevents' => 'කාලීන සිදුවීම්',
 'edithelp'      => 'සංස්කරණ උදව්',
-'edithelppage'  => 'උදව්:සංස්කරණ',
-'helppage'      => 'උදව්:පටුන',
+'edithelppage'  => 'Help:සංස්කරණ',
+'helppage'      => 'Help:පටුන',
 'mainpage'      => 'මුල් පිටුව',
 'portal'        => 'ප්‍රජා ද්වාරය',
 'portal-url'    => 'Project:ප්‍රජා ද්වාරය',

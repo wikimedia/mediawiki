@@ -7,6 +7,7 @@
  * @author Aksi great
  * @author SPQRobin
  * @author Dsvyas
+ * @author Siebrand
  */
 
 $digitTransformTable = array(
@@ -149,9 +150,9 @@ $messages = array(
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'         => '{{SITENAME}} વિષે',
-'aboutpage'         => 'વિકિપીડિયા:વિષે',
+'aboutpage'         => 'Project:વિષે',
 'currentevents'     => 'વર્તમાન ઘટનાઓ',
-'currentevents-url' => 'પરિયોજના:વર્તમાન ઘટનાઓ',
+'currentevents-url' => 'Project:વર્તમાન ઘટનાઓ',
 'edithelp'          => 'ફેરફારો માટે મદદ',
 'mainpage'          => 'મુખપૃષ્ઠ',
 'portal'            => 'સમાજ મુખપૃષ્ઠ',

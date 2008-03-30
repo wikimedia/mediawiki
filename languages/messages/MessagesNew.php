@@ -88,9 +88,9 @@ $messages = array(
 'jumptosearch'     => 'मालादिसँ',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
-'edithelppage' => 'ग्वहालि:सम्पादन',
+'edithelppage' => 'Help:सम्पादन',
 'mainpage'     => 'मू पौ',
-'policy-url'   => 'ज्याझ्वः:नीति',
+'policy-url'   => 'Project:नीति',
 'portal'       => 'सामाजिक दबू',
 'portal-url'   => 'ज्याझ्वः:सामाजिक दबू',
 'privacy'      => 'दुबिस्ता नियम',

@@ -4,6 +4,7 @@
  * @addtogroup Language
  *
  * @author BobChao
+ * @author Siebrand
  */
 
 $fallback = 'zh-hant';
@@ -242,9 +243,9 @@ $messages = array(
 'bugreportspage'    => 'Project:錯誤報告',
 'copyright'         => '本站的文字內容除另有聲明外，全部以 $1 條款授權使用。',
 'copyrightpagename' => '{{SITENAME}}版權',
-'copyrightpage'     => 'Project:版權訊息',
+'copyrightpage'     => '{{ns:project}}:版權訊息',
 'currentevents'     => '現時事件',
-'currentevents-url' => '現時事件',
+'currentevents-url' => 'Project:現時事件',
 'disclaimers'       => '免責聲明',
 'disclaimerpage'    => 'Project:一般免責聲明',
 'edithelp'          => '編輯說明',
@@ -270,7 +271,6 @@ $messages = array(
 'versionrequired'     => '需要MediaWiki $1 版',
 'versionrequiredtext' => '需要版本$1的 MediaWiki 才能使用此頁。參見[[Special:Version|版本頁]]。',
 
-'ok'                      => 'OK',
 'retrievedfrom'           => '取自"$1"',
 'youhavenewmessages'      => '您有$1（$2）。',
 'newmessageslink'         => '新訊息',
@@ -1239,7 +1239,7 @@ Template:消除歧義',
 'watchlist-show-minor' => '顯示細微修改',
 'watchlist-hide-minor' => '隱藏細微修改',
 
-# Displayed when you click the "watch" button and it's in the process of watching
+# Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => '正在監視...',
 'unwatching' => '正在停止監視...',
 
@@ -1324,7 +1324,6 @@ $NEWPAGE
 'modifiedarticleprotection'   => '已經更改 "[[$1]]" 的保護等級',
 'unprotectedarticle'          => '已解除保護"[[$1]]"',
 'protect-title'               => '正在保護"$1"',
-'confirmprotect'              => '確認保護',
 'protectcomment'              => '註解:',
 'protectexpiry'               => '到期:',
 'protect_expiry_invalid'      => '輸入的終止時間無效。',
@@ -1408,8 +1407,6 @@ $1',
 'mycontris'     => '我的編修記錄',
 'contribsub2'   => '$1的編修記錄 ($2)',
 'nocontribs'    => '沒有找到符合特徵的更改。',
-'ucnote'        => '以下是該使用者最近<b>$2</b>天內的最後<b>$1</b>次修改。',
-'uclinks'       => '參看最後$1次修改；參看最後$2天。',
 'uctop'         => ' (最新修改)',
 'month'         => '從該月份 (或更早):',
 'year'          => '從該年份 (或更早):',

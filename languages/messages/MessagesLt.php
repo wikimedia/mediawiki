@@ -168,6 +168,7 @@ $messages = array(
 # Categories related messages
 'categories'                     => 'Kategorijos',
 'categoriespagetext'             => 'Projekte yra šios kategorijos.',
+'special-categories-sort-count'  => 'rikiuoti pagal skaičių',
 'special-categories-sort-abc'    => 'rikiuoti pagal abėcėlę',
 'pagecategories'                 => '{{PLURAL:$1|Kategorija|Kategorijos}}',
 'category_header'                => 'Puslapiai kategorijoje „$1“',
@@ -253,7 +254,7 @@ $messages = array(
 'toolbox'           => 'Įrankiai',
 'userpage'          => 'Rodyti naudotojo puslapį',
 'projectpage'       => 'Rodyti projekto puslapį',
-'imagepage'         => 'Žiūrėti paveikslėlio puslapį',
+'imagepage'         => 'Žiūrėti failo puslapį',
 'mediawikipage'     => 'Rodyti pranešimo puslapį',
 'templatepage'      => 'Rodyti šablono puslapį',
 'viewhelppage'      => 'Rodyti pagalbos puslapį',
@@ -392,7 +393,8 @@ Prašome pranešti apie tai administratoriui, taip pat nurodant ir URL.',
 'unexpected'           => 'Netikėta reikšmė: „$1“=„$2“.',
 'formerror'            => 'Klaida: nepavyko apdoroti formos duomenų',
 'badarticleerror'      => 'Veiksmas negalimas šiam puslapiui.',
-'cannotdelete'         => 'Nepavyko ištrinti nurodyto puslapio ar failo. (Galbūt jį jau kažkas ištrynė)',
+'cannotdelete'         => 'Nepavyko ištrinti nurodyto puslapio ar failo.
+Galbūt jį jau kažkas kitas ištrynė.',
 'badtitle'             => 'Blogas pavadinimas',
 'badtitletext'         => 'Nurodytas puslapio pavadinimas buvo neleistinas, tuščias arba neteisingai sujungtas tarpkalbinis arba tarpprojektinis pavadinimas. Jame gali būti vienas ar daugiau simbolių, neleistinų pavadinimuose',
 'perfdisabled'         => 'Atsiprašome, bet ši funkcija yra laikinai išjungta, nes tai ypač sulėtina duomenų bazę taip, kad daugiau niekas negali naudotis projektu.',
@@ -421,9 +423,10 @@ Duota priežastis yra ''$2''.",
 
 # Login and logout pages
 'logouttitle'                => 'Naudotojo atsijungimas',
-'logouttext'                 => '<strong>Dabar jūs esate atsijungęs.</strong><br />
+'logouttext'                 => '<strong>Dabar jūs esate atsijungęs.</strong>
+
 Galite toliau naudoti {{SITENAME}} anonimiškai arba prisijunkite iš naujo tuo pačiu ar kitu naudotoju.
-Pastaba: kai kuriuose puslapiuose ir toliau gali rodyti lyg būtumėte prisijungęs iki tol, kol išvalysite savo naršyklės podėlį',
+Pastaba: kai kuriuose puslapiuose ir toliau gali rodyti, kad esate prisijungęs iki tol, kol išvalysite savo naršyklės podėlį.',
 'welcomecreation'            => '== Sveiki, $1! ==
 
 Jūsų paskyra buvo sukurta. Nepamirškite pakeisti savo {{SITENAME}} nustatymų.',
@@ -469,7 +472,7 @@ Jūsų paskyra buvo sukurta. Nepamirškite pakeisti savo {{SITENAME}} nustatymų
 'loginsuccesstitle'          => 'Sėkmingai prisijungėte',
 'loginsuccess'               => "'''Dabar jūs prisijungęs prie {{SITENAME}} kaip „$1“.'''",
 'nosuchuser'                 => 'Nėra jokio naudotojo pavadinto „$1“. Patikrinkite rašybą, arba sukurkite naują paskyrą.',
-'nosuchusershort'            => 'Nėra jokio naudotojo pavadinto „<nowiki>$1</nowiki>“. Patikrinkite rašybą.',
+'nosuchusershort'            => 'Nėra jokio naudotojo, pavadinto „<nowiki>$1</nowiki>“. Patikrinkite rašybą.',
 'nouserspecified'            => 'Jums reikia nurodyti naudotojo vardą.',
 'wrongpassword'              => 'Įvestas neteisingas slaptažodis. Pamėginkite dar kartą.',
 'wrongpasswordempty'         => 'Įvestas slaptažodis yra tuščias. Pamėginkite vėl.',
@@ -503,7 +506,8 @@ nebus siunčiami nei vienai žemiau išvardintai paslaugai.',
 'accountcreated'             => 'Paskyra sukurta',
 'accountcreatedtext'         => 'Naudotojo paskyra $1 buvo sukurta.',
 'createaccount-title'        => '{{SITENAME}} paskyros kūrimas',
-'createaccount-text'         => 'Projekte {{SITENAME}} ($4) kažkas ($1) sukūrė paskyrą „$2“. Paskyros slaptažodis yra „$3“. Jūs turėtumėte prisijungti ir pasikeisti savo slaptažodį.
+'createaccount-text'         => 'Projekte {{SITENAME}} ($4) kažkas sukūrė paskyrą „$2“ su slaptažodžiu „$3“.
+Jūs turėtumėte prisijungti ir pasikeisti savo slaptažodį.
 
 Jūs galite nekreipti dėmesio į laišką, jei ši paskyra buvo sukurta per klaidą.',
 'loginlanguagelabel'         => 'Kalba: $1',
@@ -761,6 +765,8 @@ Kiti administratoriai šiame projekte vis dar galės pasiekti paslėptą turinį
 'logdelete-logaction'         => '$1 {{PLURAL:$1|įvykis|įvykiai|įvykių}} puslapiui [[$3]] nustatyta į $2 režimą',
 'revdelete-success'           => 'Versijos matomumas sėkmingai nustatytas.',
 'logdelete-success'           => 'Įvykio matomumas sėkmingai nustatytas.',
+'pagehist'                    => 'Puslapio istorija',
+'deletedhist'                 => 'Ištrinta istorija',
 
 # Oversight log
 'oversightlog'    => 'Priežiūros istorija',
@@ -785,6 +791,8 @@ Kiti administratoriai šiame projekte vis dar galės pasiekti paslėptą turinį
 'mergehistory-no-destination'      => 'Rezultato puslapis $1 neegzistuoja.',
 'mergehistory-invalid-source'      => 'Pradinis puslapis turi turėti leistiną pavadinimą.',
 'mergehistory-invalid-destination' => 'Rezultato puslapis turi turėti leistiną pavadinimą.',
+'mergehistory-autocomment'         => '[[:$1]] prijungtas prie [[:$2]]',
+'mergehistory-comment'             => '[[:$1]] prijungtas prie [[:$2]]: $3',
 
 # Merge log
 'mergelog'           => 'Sujungimų istorija',
@@ -817,16 +825,20 @@ Kiti administratoriai šiame projekte vis dar galės pasiekti paslėptą turinį
 'viewprevnext'          => 'Žiūrėti ($1) ($2) ($3)',
 'search-result-size'    => '$1 ({{PLURAL:$2|1 žodis|$2 žodžiai|$2 žodžių}})',
 'search-result-score'   => 'Tinkamumas: $1%',
+'search-redirect'       => '(peradresavimas $1)',
+'search-section'        => '(skyrius $1)',
+'search-suggest'        => 'Galbūt norėjote $1',
 'searchall'             => 'visi',
 'showingresults'        => "Žemiau rodoma iki '''$1''' {{PLURAL:$1|rezultato|rezultatų|rezultatų}} pradedant #'''$2'''.",
 'showingresultsnum'     => "Žemiau rodoma '''$3''' {{PLURAL:$3|rezultato|rezultatų|rezultatų}}rezultatų pradedant #'''$2'''.",
+'showingresultstotal'   => "Žemiau rodomi '''$1 - $2''' rezultatai iš '''$3'''",
 'nonefound'             => "'''Pastaba''': Nesėkminga paieška dažnai būna dėl ieškomų
 dažnai naudojamų žodžių, tokių kaip „yra“ ar „iš“, kurie yra
 neindeksuojami, arba nurodžius daugiau nei vieną paieškos žodį (rezultatuose
 bus tik tie puslapiai, kuriuose bus visi paieškos žodžiai).",
 'powersearch'           => 'Ieškoti',
 'powersearch-legend'    => 'Išplėstinė paieška',
-'powersearchtext'       => 'Ieškoti šiose vardų srityse:<br />$1<br /><label>$2 Rodyti peradresavimus</label><br />Ieškoti $3 $9',
+'powersearchtext'       => 'Ieškoti šiose vardų srityse:<br />$1<br />$2 Rodyti peradresavimus<br />Ieškoti $3 $9',
 'searchdisabled'        => 'Projekto {{SITENAME}} paieška yra uždrausta. Galite pamėginti ieškoti Google paieškos sistemoje. Paieškos sistemoje projekto {{SITENAME}} duomenys gali būti pasenę.',
 
 # Preferences page
@@ -1037,6 +1049,7 @@ Jei jūs turite šį paveisklėlį pilna raiška, įkelkite šitą, priešingu a
 'uploadvirus'                 => 'Šiame faile yra virusas! Smulkiau: $1',
 'sourcefilename'              => 'Įkeliamas failas:',
 'destfilename'                => 'Norimas failo vardas:',
+'upload-maxfilesize'          => 'Didžiausias failo dydis: $1',
 'watchthisupload'             => 'Stebėti šį puslapį',
 'filewasdeleted'              => 'Failas šiuo vardu anksčiau buvo įkeltas, o paskui ištrintas. Jums reikėtų patikrinti $1 prieš bandant įkelti jį vėl.',
 'upload-wasdeleted'           => "'''Įspėjimas: Jūs įkeliate failą, kuris anksčiau buvo ištrintas.'''
@@ -1476,6 +1489,7 @@ Prašome paspausti „atgal“ ir perkraukite puslapį iš kurio atėjote, ir pa
 # Undelete
 'undelete'                     => 'Atstatyti ištrintą puslapį',
 'undeletepage'                 => 'Rodyti ir atkurti ištrintus puslapius',
+'undeletepagetitle'            => "'''Tai sudaryta iš ištrintų [[:$1]] versijų'''.",
 'viewdeletedpage'              => 'Rodyti ištrintus puslapius',
 'undeletepagetext'             => 'Žemiau išvardinti puslapiai yra ištrinti, bet dar laikomi
 archyve, todėl jie gali būti atstatyti. Archyvas gali būti periodiškai valomas.',
@@ -2247,28 +2261,28 @@ Visos kitos nuorodos toje pačioje eilutėje yra laikomos išimtimis, t.y. pusla
 'monthsall'        => 'visi',
 
 # E-mail address confirmation
-'confirmemail'            => 'Patvirtinkite el. pašto adresą',
-'confirmemail_noemail'    => 'Jūs neturite nurodę teisingo el. pašto adreso [[{{ns:special}}:Preferences|savo nustatymuose]].',
-'confirmemail_text'       => 'Šiame projekte būtina patvirtinti el. pašto adresą prieš naudojant el. pašto funkcijas. Spustelkite žemiau esantį mygtuką,
+'confirmemail'             => 'Patvirtinkite el. pašto adresą',
+'confirmemail_noemail'     => 'Jūs neturite nurodę teisingo el. pašto adreso [[{{ns:special}}:Preferences|savo nustatymuose]].',
+'confirmemail_text'        => 'Šiame projekte būtina patvirtinti el. pašto adresą prieš naudojant el. pašto funkcijas. Spustelkite žemiau esantį mygtuką,
 kad jūsų el. pašto adresu būtų išsiųstas patvirtinimo kodas.
 Laiške bus atsiųsta nuoroda su kodu, kuria nuėjus, el. pašto adresas bus patvirtintas.',
-'confirmemail_pending'    => '<div class="error">
+'confirmemail_pending'     => '<div class="error">
 Patvirtinimo kodas jau nusiųstas jums; jei neseniai sukūrėte savo paskyrą, jūs turėtumėte palaukti jo dar kelias minutes prieš prašant naujo kodo.
 </div>',
-'confirmemail_send'       => 'Išsiųsti patvirtinimo kodą',
-'confirmemail_sent'       => 'Patvirtinimo laiškas išsiųstas.',
-'confirmemail_oncreate'   => 'Patvirtinimo kodas buvo išsiųstas jūsų el. pašto adresu.
+'confirmemail_send'        => 'Išsiųsti patvirtinimo kodą',
+'confirmemail_sent'        => 'Patvirtinimo laiškas išsiųstas.',
+'confirmemail_oncreate'    => 'Patvirtinimo kodas buvo išsiųstas jūsų el. pašto adresu.
 Šis kodas nėra būtinas, kad prisijungtumėte, bet jums reikės jį duoti prieš įjungiant el. pašto paslaugas projekte.',
-'confirmemail_sendfailed' => 'Nepavyko išsiųsti patvirtinamojo laiško. Patikrinkite, ar adrese nėra klaidingų simbolių.
+'confirmemail_sendfailed'  => 'Nepavyko išsiųsti patvirtinamojo laiško. Patikrinkite, ar adrese nėra klaidingų simbolių.
 
 Pašto tarnyba atsakė: $1',
-'confirmemail_invalid'    => 'Neteisingas patvirtinimo kodas. Kodo galiojimas gali būti jau pasibaigęs.',
-'confirmemail_needlogin'  => 'Jums reikia $1, kad patvirtintumėte savo el. pašto adresą.',
-'confirmemail_success'    => 'Jūsų el. pašto adresas patvirtintas. Dabar galite prisijungti ir mėgautis projektu.',
-'confirmemail_loggedin'   => 'Jūsų el. pašto adresas patvirtintas.',
-'confirmemail_error'      => 'Patvirtinimo metu įvyko neatpažinta klaida.',
-'confirmemail_subject'    => '{{SITENAME}} el. pašto adreso patvirtinimas',
-'confirmemail_body'       => 'Kažkas, tikriausiai jūs IP adresu $1, užregistravo
+'confirmemail_invalid'     => 'Neteisingas patvirtinimo kodas. Kodo galiojimas gali būti jau pasibaigęs.',
+'confirmemail_needlogin'   => 'Jums reikia $1, kad patvirtintumėte savo el. pašto adresą.',
+'confirmemail_success'     => 'Jūsų el. pašto adresas patvirtintas. Dabar galite prisijungti ir mėgautis projektu.',
+'confirmemail_loggedin'    => 'Jūsų el. pašto adresas patvirtintas.',
+'confirmemail_error'       => 'Patvirtinimo metu įvyko neatpažinta klaida.',
+'confirmemail_subject'     => '{{SITENAME}} el. pašto adreso patvirtinimas',
+'confirmemail_body'        => 'Kažkas, tikriausiai jūs IP adresu $1, užregistravo
 paskyrą „$2“ susietą su šiuo el. pašto adresu projekte {{SITENAME}}.
 
 Kad patvirtintumėte, kad ši dėžutė tikrai priklauso jums, ir aktyvuotumėte
@@ -2276,8 +2290,14 @@ el. pašto paslaugas projekte {{SITENAME}}, atverkite šią nuorodą savo naršy
 
 $3
 
-Jei naudotoją registravote *ne* jūs, neatverkite šio adreso. Patvirtinimo kodas
-baigs galioti $4.',
+Jei paskyrą registravote *ne* jūs, eikite šia nuoroda,
+kad atšauktumėte el. pašto adreso patvirtinimą:
+
+$5
+
+Patvirtinimo kodas baigs galioti $4.',
+'confirmemail_invalidated' => 'El. pašto adreso patvirtinimas atšauktas',
+'invalidateemail'          => 'El. pašto patvirtinimo atšaukimas',
 
 # Scary transclusion
 'scarytranscludedisabled' => '[Tarpprojektinis įterpimas yra išjungtas]',
@@ -2405,6 +2425,9 @@ $1',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => 'Ieškoti dublikuotų failų',
+'fileduplicatesearch-summary'  => 'Pasikartojančių failų paieška pagal jų kontrolinę sumą.
+
+Įveskite failo pavadinimą be "{{ns:image}}:" priešdėlio.',
 'fileduplicatesearch-legend'   => 'Ieškoti dublikatų',
 'fileduplicatesearch-filename' => 'Failo vardas:',
 'fileduplicatesearch-submit'   => 'Ieškoti',

@@ -6,6 +6,7 @@
  * @author MCruz
  * @author Malafaya
  * @author Nike
+ * @author Siebrand
  */
 
 $fallback = 'pt';
@@ -105,7 +106,7 @@ $messages = array(
 'currentevents'  => 'Amboras actuais',
 'disclaimers'    => 'Alerta de Conteúdo',
 'disclaimerpage' => 'Project:Aviso geral',
-'helppage'       => 'Ayuda:Conteúdos',
+'helppage'       => 'Help:Conteúdos',
 'mainpage'       => 'Página principal',
 'privacy'        => 'Política de privacidade',
 'sitesupport'    => 'Donativos',

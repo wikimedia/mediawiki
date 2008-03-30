@@ -784,6 +784,8 @@ Atros almenistradors de {{SITENAME}} encara podrán azeder t'o contineiu amagato
 'logdelete-logaction'         => '$1 {{PLURAL:$1|escaizimiento|escaizimientos}} en [[$3]] {{PLURAL:$1|cambiato|cambiatos}} ta o modo $2',
 'revdelete-success'           => "S'ha cambiato correutament a bisibilidat d'as bersions.",
 'logdelete-success'           => "S'ha cambiato correutament a bisibilidat d'os escaizimientos.",
+'pagehist'                    => 'Istorial',
+'deletedhist'                 => 'Istorial de borrau',
 
 # Oversight log
 'oversightlog'    => "Rechistro d'escudios",
@@ -801,12 +803,14 @@ Asegure-se que iste cambio no crebará a continidat de l'istorial d'a pachina.",
 'mergehistory-go'                  => 'Amostrar edizions aunibles',
 'mergehistory-submit'              => 'Aunir bersions',
 'mergehistory-empty'               => 'No puede aunir-se garra rebisión.',
-'mergehistory-success'             => '$3 {{PLURAL:$3|rebisión|rebisions}} de [[:$1]] {{PLURAL:$3|aunita|aunitas}} correutament con [[:$2]].',
+'mergehistory-success'             => '$3 {{PLURAL:$3|rebisión|rebisions}} de [[:$1]] {{PLURAL:$3|combinata|combinatas}} correutament con [[:$2]].',
 'mergehistory-fail'                => "No s'ha puesto aunir os dos istorials, por fabor comprebe a pachina y os parametros de tiempo.",
 'mergehistory-no-source'           => "A pachina d'orichen $1 no esiste.",
 'mergehistory-no-destination'      => 'A pachina de destino $1 no esiste.',
 'mergehistory-invalid-source'      => "A pachina d'orichen ha de tener un títol correuto.",
 'mergehistory-invalid-destination' => 'A pachina de destino ha de tener un títol correuto.',
+'mergehistory-autocomment'         => "S'ha combinato [[:$1]] en [[:$2]]",
+'mergehistory-comment'             => "S'ha combinato [[:$1]] en [[:$2]]: $3",
 
 # Merge log
 'mergelog'           => "Rechistro d'unions",
@@ -839,11 +843,16 @@ Asegure-se que iste cambio no crebará a continidat de l'istorial d'a pachina.",
 'viewprevnext'          => 'Beyer ($1) ($2) ($3)',
 'search-result-size'    => '$1 ({{PLURAL:$2|1 palabra|$2 palabras}})',
 'search-result-score'   => 'Relebanzia: $1%',
+'search-redirect'       => '(reendreza $1)',
+'search-section'        => '(sezion $1)',
+'search-suggest'        => 'Quereba dezir $1?',
 'searchall'             => 'toz',
 'showingresults'        => "Contino se bi {{PLURAL:$1|amuestra '''1''' resultau|amuestran '''$1''' resultaus}} prenzipiando por o numero '''$2'''.",
 'showingresultsnum'     => "Contino se bi {{PLURAL:$3|amuestra '''1''' resultau|amuestran os '''$3''' resultaus}} prenzipiando por o numero '''$2'''.",
+'showingresultstotal'   => "S'amuestran contino os resultaus '''$1 - $2''' de '''$3'''",
 'nonefound'             => "'''Pare cuenta''': Os fallos en mirar pachinas son causatos á ormino por prebar de mirar palabras masiau comuns como \"o\", \"a\" u \"de\", que no i son en o endize, u por escribir más d'una palabra ta mirar (sólo amaneixen en o resultau as pachinas que contiengan todas as palabras).",
 'powersearch'           => 'Busca abanzata',
+'powersearch-legend'    => 'Busca abanzata',
 'powersearchtext'       => 'Mirar en o espazio de nombres:<br />
 $1<br />
 $2 Fer lista de reendrezeras <br />
@@ -990,7 +999,7 @@ As collas no trigatas no cambiarán. Puede sacar a selezión pretando de bez a t
 'upload'                      => 'Cargar archibo',
 'uploadbtn'                   => 'Cargar un archibo',
 'reupload'                    => 'Cargar un atra begada',
-'reuploaddesc'                => "Tornar ta o formulario de carga d'archibos.",
+'reuploaddesc'                => "Anular a carga y tornar ta o formulario de carga d'archibos.",
 'uploadnologin'               => 'No ha enzetato una sesión',
 'uploadnologintext'           => "Ha d'estar [[{{ns:special}}:Userlogin|rechistrau]] ta cargar archibos.",
 'upload_directory_read_only'  => "O serbidor web no puede escribir en o direutorio de carga d'archibos ($1).",
@@ -1062,6 +1071,7 @@ Si tienes esta imagen a toda resolución súbela, si no, por favor cambia el nom
 'uploadvirus'                 => 'Iste archibo tiene un birus! Detalles: $1',
 'sourcefilename'              => "Nombre de l'archivo d'orichen:",
 'destfilename'                => "Nombre de l'archibo de destín:",
+'upload-maxfilesize'          => "Masima grandaria de l'archibo: $1",
 'watchthisupload'             => 'Cosirar ista pachina',
 'filewasdeleted'              => 'Una archibo con iste mesmo nombre ya se cargó denantes y estió borrato dimpués. Abría de comprebar $1 antes de tornar á cargar-lo una atra begada.',
 'upload-wasdeleted'           => "'''Pare cuenta: Ye cargando un archibo que ya estió borrato d'antes más.'''
@@ -1103,6 +1113,9 @@ PICT # misz.
 'upload_source_file' => ' (un archibo en o suyo ordenador)',
 
 # Special:Imagelist
+'imagelist-summary'     => "Ista pachina espezial amuestra toz os archibos cargatos.
+Por defeuto os zaguers archibos cargatos s'amuestran en o cobalto d'a lista.
+Fendo click en un encabezau de colunna se cambia o criterio d'ordenazión.",
 'imagelist_search_for'  => "Mirar por nombre de l'archibo:",
 'imgdesc'               => 'desc',
 'imgfile'               => 'archibo',
@@ -1135,6 +1148,7 @@ PICT # misz.
 'noimage'                   => 'No bi ha garra archibo con ixe nombre, pero puede $1.',
 'noimage-linktext'          => 'cargar-lo',
 'uploadnewversion-linktext' => "Cargar una nueba bersión d'iste archibo",
+'imagepage-searchdupe'      => 'Mirar archibos duplicatos',
 
 # File reversion
 'filerevert'                => 'Rebertir $1',
@@ -1454,8 +1468,8 @@ Se beiga en $2 un rechistro d\'os borraus rezients.',
 'revertpage'                  => "Esfeitas as zagueras edizions reyalizatas por [[Special:Contributions/$2|$2]] ([[User talk:$2|Descusión]]); s'ha retornato t'a zaguera edizión de [[User:$1|$1]]", # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success'            => "Esfeitas as edizions de $1; s'ha retornato á la zaguer bersión de $2.",
 'sessionfailure'              => 'Pareix que bi ha un problema con a suya sesión;
-s\'ha canzelato ista aizión como mida de precura contra secuestros de sesión.
-Por fabor, prete "Entazaga" en o suyo nabegador ta cargar a pachina d\'a que benió, y torne á prebar alabez.',
+s\'ha anulato ista aizión como mida de precura contra secuestros de sesión.
+Por fabor, prete "Entazaga", recargue a pachina d\'a que benió, y torne á prebar alabez.',
 'protectlogpage'              => 'Protezions de pachinas',
 'protectlogtext'              => 'Contino se i amuestra una lista de protezions y esprotezions de pachinas. Se beiga [[Special:Protectedpages|lista de pachinas protechitas]] ta más informazión.',
 'protectedarticle'            => "s'ha protechito [[$1]]",
@@ -1689,12 +1703,12 @@ Isto senifica que podrá tresladar una pachina á lo suyo títol orichinal si ha
 '''¡PARE CUENTA!'''
 Iste puede estar un cambio drastico e inasperato ta una pachina popular;
 por fabor, asegure-se d'acatar as consecuenzias que acarriará ista aizión antis de seguir entadebant.",
-'movepagetalktext'        => "A pachina de descusión asoziata, si esistise, será tresladata automaticament '''de no estar que:'''
-*A pachina se treslade entre espazios de nombres diferents,
-*Ya esista una pachina de descusión no bueda con o nombre nuebo, u
-*Aiga desautibato a opzión \"Tresladar tamién a pachina de descusión\".
+'movepagetalktext'        => "A pachina de descusión asoziata será tresladata automaticament '''de no estar que:'''
 
-En istos casos, abrá de tresladar manualment o conteniu d'a pachina de descusión.",
+*Ya esista una pachina de descusión no bueda con o nombre nuebo, u
+*Desautibe a caixeta d'abaxo.
+
+En ixos casos, si lo deseya, abrá de tresladar u combinar manualment o conteniu d'a pachina de descusión.",
 'movearticle'             => 'Tresladar pachina:',
 'movenologin'             => 'No ha enzetato sesión',
 'movenologintext'         => 'Amenista estar un usuario rechistrato y [[Special:Userlogin|aber-se identificato enzetando una sesión]] ta tresladar una pachina.',
@@ -2234,32 +2248,38 @@ Se consideran nomás os elementos d'una lista (linias que escomienzan por *). O 
 'monthsall'        => '(toz)',
 
 # E-mail address confirmation
-'confirmemail'            => 'Confirmar adreza de correu-e',
-'confirmemail_noemail'    => "No tiene una adreza de correu-e conforme en as suyas [[Special:Preferences|preferenzias d'usuario]].",
-'confirmemail_text'       => "{{SITENAME}} requiere que confirme a suya adreza de correu-e antis de poder usar as funzions de correu-e. Punche o botón de baxo ta nimbiar un mensache de confirmazión t'a suya adreza. O mensache encluirá un binclo con un codigo. Escriba-lo ta confirmar que a suya adreza ye conforme.",
-'confirmemail_pending'    => '<div class="error">
+'confirmemail'             => 'Confirmar adreza de correu-e',
+'confirmemail_noemail'     => "No tiene una adreza de correu-e conforme en as suyas [[Special:Preferences|preferenzias d'usuario]].",
+'confirmemail_text'        => "{{SITENAME}} requiere que confirme a suya adreza de correu-e antis de poder usar as funzions de correu-e. Punche o botón de baxo ta nimbiar un mensache de confirmazión t'a suya adreza. O mensache encluirá un binclo con un codigo. Escriba-lo ta confirmar que a suya adreza ye conforme.",
+'confirmemail_pending'     => '<div class="error">
 Ya se le ha nimbiato un codigo de confirmazión; si creyó una cuenta fa poco tiempo, puede que s\'estime más asperar bels menutos á beyer si le plega antis de pedir un nuebo codigo.
 </div>',
-'confirmemail_send'       => 'Nimbiar un codigo de confirmazión.',
-'confirmemail_sent'       => "S'ha nimbiato un correu de confirmazión.",
-'confirmemail_oncreate'   => "S'ha nimbiato un codigo de confirmazión t'a suya adreza de correu-e.
+'confirmemail_send'        => 'Nimbiar un codigo de confirmazión.',
+'confirmemail_sent'        => "S'ha nimbiato un correu de confirmazión.",
+'confirmemail_oncreate'    => "S'ha nimbiato un codigo de confirmazión t'a suya adreza de correu-e.
 Iste codigo no ye nezesario ta dentrar, pero amenistará escribir-lo antis d'autibar cualsiquier funzión d'o wiki basata en o correu electronico.",
-'confirmemail_sendfailed' => "No s'ha puesto nimbiar o mensache de confirmazión. Por fabor, comprebe que no bi aiga carauters no conformes en l'adreza de correu electronico endicata.
+'confirmemail_sendfailed'  => "No s'ha puesto nimbiar o mensache de confirmazión. Por fabor, comprebe que no bi aiga carauters no conformes en l'adreza de correu electronico endicata.
 
 Correu tornato: $1",
-'confirmemail_invalid'    => 'O codigo de confirmazión no ye conforme. Regular que o codigo sía zircunduzito.',
-'confirmemail_needlogin'  => 'Amenistar $1 ta confirmar a suya adreza de correu-e.',
-'confirmemail_success'    => 'A suya adreza de correu-e ya ye confirmata. Agora puede dentrar en o wiki y espleitiar-lo.',
-'confirmemail_loggedin'   => 'A suya adreza de correu-e ya ye confirmata.',
-'confirmemail_error'      => 'Bella cosa falló en alzar a suya confirmazión.',
-'confirmemail_subject'    => "confirmazión de l'adreza de correu-e de {{SITENAME}}",
-'confirmemail_body'       => 'Belún, probablement bustet mesmo, ha rechistrato una cuenta "$2" con ista adreza de correu-e en {{SITENAME}} dende l\'adreza IP $1.
+'confirmemail_invalid'     => 'O codigo de confirmazión no ye conforme. Regular que o codigo sía zircunduzito.',
+'confirmemail_needlogin'   => 'Amenistar $1 ta confirmar a suya adreza de correu-e.',
+'confirmemail_success'     => 'A suya adreza de correu-e ya ye confirmata. Agora puede dentrar en o wiki y espleitiar-lo.',
+'confirmemail_loggedin'    => 'A suya adreza de correu-e ya ye confirmata.',
+'confirmemail_error'       => 'Bella cosa falló en alzar a suya confirmazión.',
+'confirmemail_subject'     => "confirmazión de l'adreza de correu-e de {{SITENAME}}",
+'confirmemail_body'        => 'Belún, probablement busté mesmo, ha rechistrato una cuenta "$2" con ista adreza de correu-e en {{SITENAME}} dende l\'adreza IP $1.
 
-Ta confirmar que ista cuenta reyalment le perteneixe y autibar as funzions de correu-e en {{SITENAME}}, siga iste binclo:
+Ta confirmar que ista cuenta reyalment le perteneixe y autibar as funzions de correu-e en {{SITENAME}}, ubra iste binclo en o suyo nabegador:
 
 $3
 
-Si a cuenta no ye suya, no siga o binclo. O codigo de confirmazión zircunduzirá en $4.',
+Si a cuenta *no* ye suya, siga iste atro binclo ta anular a confirmazión d\'adreza de correu-e:
+
+$5
+
+Iste codigo de confirmazión zircunduzirá en $4.',
+'confirmemail_invalidated' => "Anular a confirmazión d'adreza de correu-e",
+'invalidateemail'          => 'Anular a confirmazión de correu-e',
 
 # Scary transclusion
 'scarytranscludedisabled' => "[S'ha desautibato a transclusión interwiki]",
