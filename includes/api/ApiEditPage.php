@@ -123,6 +123,7 @@ class ApiEditPage extends ApiBase {
 		# Run hooks
 		# We need to fake $wgRequest for some of them
 		global $wgRequest;
+		$oldRequest = $wgRequest;
 		$wgRequest = $req;
 		$r = array();
 		if(!wfRunHooks('APIEditBeforeSave', array(&$ep, $ep->textbox1, &$r)))
@@ -136,6 +137,7 @@ class ApiEditPage extends ApiBase {
 			else
 				$this->dieUsageMsg(array('hookaborted'));
 		}
+		$wgRequest = $oldRequest;
 		
 		# Do the actual save
 		$oldRevId = $articleObj->getRevIdFetched();
