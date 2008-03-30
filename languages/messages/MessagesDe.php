@@ -416,7 +416,7 @@ $messages = array(
 'badaccess-groups' => 'Diese Aktion ist beschränkt auf Benutzer, die einer der Gruppen „$1“ angehören.',
 
 'versionrequired'     => 'Version $1 von MediaWiki ist erforderlich',
-'versionrequiredtext' => 'Version $1 von MediaWiki ist erforderlich, um diese Seite zu nutzen. Siehe die [[{{ns:special}}:Version|Versionsseite]]',
+'versionrequiredtext' => 'Version $1 von MediaWiki ist erforderlich, um diese Seite zu nutzen. Siehe die [[Special:Version|Versionsseite]]',
 
 'ok'                      => 'Suchen',
 'pagetitle'               => '$1 - {{SITENAME}}',
@@ -794,7 +794,7 @@ Zu deiner Information folgt das Lösch-Logbuch mit der Begründung für die vorh
 # "Undo" feature
 'undo-success' => 'Die Änderung konnte erfolgreich rückgängig gemacht werden. Bitte die Bearbeitung in der Vergleichsansicht kontrollieren und dann auf „Seite speichern“ klicken, um sie zu speichern.',
 'undo-failure' => '<span class="error">Die Änderung konnte nicht rückgängig gemacht werden, da der betroffene Abschnitt zwischenzeitlich verändert wurde.</span>',
-'undo-summary' => 'Änderung $1 von [[{{ns:special}}:Contributions/$2|$2]] ([[User_talk:$2|Diskussion]]) wurde rückgängig gemacht.',
+'undo-summary' => 'Änderung $1 von [[Special:Contributions/$2|$2]] ([[User_talk:$2|Diskussion]]) wurde rückgängig gemacht.',
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Benutzerkonto kann nicht erstellt werden',
@@ -1027,7 +1027,7 @@ Wenn du dich mit dem Thema auskennst, kannst du selbst die Seite „[[$1]]“ ve
 'userrights-available-remove-self' => 'Du kannst dich selbst aus {{PLURAL:$2|dieser Gruppe|diesen Gruppen}} entfernen: $1.',
 'userrights-no-interwiki'          => 'Du hast keine Berechtigung, Benutzerrechte in anderen Wikis zu ändern.',
 'userrights-nodatabase'            => 'Die Datenbank $1 ist nicht vorhanden oder nicht lokal.',
-'userrights-nologin'               => 'Du musst dich mit einem Administrator-Benutzerkonto [[{{#special:Userlogin}}|anmelden]], um Benutzerrechte zu ändern.',
+'userrights-nologin'               => 'Du musst dich mit einem Administrator-Benutzerkonto [[Special:Userlogin|anmelden]], um Benutzerrechte zu ändern.',
 'userrights-notallowed'            => 'Du besitzt nicht die erforderlichen Berechtigungen, um Benutzerrechte zu vergeben.',
 
 # Groups

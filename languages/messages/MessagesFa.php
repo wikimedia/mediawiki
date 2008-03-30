@@ -814,8 +814,7 @@ $3
 'whitelistedittitle'        => 'برای ویرایش باید به سیستم وارد شوید.',
 'whitelistedittext'         => 'برای ویرایش مقاله‌ها باید به سیستم شوید: $1.',
 'whitelistreadtitle'        => 'برای خواندن باید به سیستم وارد شوید',
-'whitelistreadtext'         => '
-برای خواندن مقاله‌ها باید [[Special:Userlogin|به سیستم وارد شوید]].',
+'whitelistreadtext'         => 'برای خواندن مقاله‌ها باید [[Special:Userlogin|به سیستم وارد شوید]].',
 'whitelistacctitle'         => 'شما مجاز نیستید حساب درست کنید.',
 'whitelistacctext'          => 'برای ایجاد حساب در این ویکی باید [[Special:Userlogin|به سیستم وارد شوید]] و اجازه
 ‌های مربوط به این کار را داشته باشید.',

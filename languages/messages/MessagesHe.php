@@ -1158,10 +1158,10 @@ $2',
 'group-sysop-member'         => 'מפעיל מערכת',
 'group-bureaucrat-member'    => 'ביורוקרט',
 
-'grouppage-autoconfirmed' => 'Project:משתמש ותיק',
-'grouppage-bot'           => 'Project:בוט',
-'grouppage-sysop'         => 'Project:מפעיל מערכת',
-'grouppage-bureaucrat'    => 'Project:ביורוקרט',
+'grouppage-autoconfirmed' => '{{ns:project}}:משתמש ותיק',
+'grouppage-bot'           => '{{ns:project}}:בוט',
+'grouppage-sysop'         => '{{ns:project}}:מפעיל מערכת',
+'grouppage-bureaucrat'    => '{{ns:project}}:ביורוקרט',
 
 # User rights log
 'rightslog'      => 'יומן תפקידים',
