@@ -402,6 +402,14 @@ class ParserTest {
 			'wgUseTidy' => false,
 			'wgDefaultLanguageVariant' => $variant,
 			'wgVariantArticlePath' => false,
+			'wgGroupPermissions' => array( '*' => array(
+				'createaccount' => true,
+				'read'          => true,
+				'edit'          => true,
+				'createpage'    => true,
+				'createtalk'    => true,
+			) ),
+			'wgDefaultExternalStore' => array(),
 			);
 		$this->savedGlobals = array();
 		foreach( $settings as $var => $val ) {
@@ -412,7 +420,6 @@ class ParserTest {
 		$GLOBALS['wgLang'] = $langObj;
 		$GLOBALS['wgContLang'] = $langObj;
 
-		$GLOBALS['wgLoadBalancer']->loadMasterPos();
 		//$GLOBALS['wgMessageCache'] = new MessageCache( new BagOStuff(), false, 0, $GLOBALS['wgDBname'] );
 		$this->setupDatabase();
 
@@ -458,7 +465,7 @@ class ParserTest {
 		# Make sure we don't mess with the live DB
 		if (!$setupDB && $wgDBprefix === 'parsertest_') {
 			# oh teh horror
-			$GLOBALS['wgLoadBalancer'] = LoadBalancer::newFromParams( $GLOBALS['wgDBservers'] );
+			LBFactory::destroy();
 			$db = wfGetDB( DB_MASTER );
 
 			$tables = $this->listTables();

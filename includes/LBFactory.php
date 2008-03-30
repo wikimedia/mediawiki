@@ -19,6 +19,15 @@ abstract class LBFactory {
 	}
 
 	/**
+	 * Destory the instance
+	 * Actually used by maintenace/parserTests.inc to force to reopen connection
+	 * when $wgDBprefix has changed
+	 */
+	static function destroy(){
+		self::$instance = null;
+	}
+
+	/**
 	 * Construct a factory based on a configuration array (typically from $wgLBFactoryConf) 
 	 */
 	abstract function __construct( $conf );
