@@ -24,6 +24,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 5745) Special:Whatlinkshere now shows up to $wgMaxRedirectLinksRetrieved
   links through each redirect instead of hardcoded 500
 * Set $wgUploadSizeWarning to false by default
+* Added $wgLBFactoryConf, for generic configuration of multi-master wiki farms
+* Removed $wgAlternateMaster, use $wgLBFactoryConf
 
 === New features in 1.13 ===
 
