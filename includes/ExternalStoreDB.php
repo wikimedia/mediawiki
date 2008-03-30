@@ -32,12 +32,7 @@ class ExternalStoreDB {
 
 	/** @todo Document.*/
 	function &getLoadBalancer( $cluster ) {
-		global $wgExternalServers, $wgExternalLoadBalancers;
-		if ( !array_key_exists( $cluster, $wgExternalLoadBalancers ) ) {
-			$wgExternalLoadBalancers[$cluster] = LoadBalancer::newFromParams( $wgExternalServers[$cluster] );
-		}
-		$wgExternalLoadBalancers[$cluster]->allowLagged(true);
-		return $wgExternalLoadBalancers[$cluster];
+		return wfGetLBFactory()->getExternalLB( $cluster );
 	}
 
 	/** @todo Document.*/

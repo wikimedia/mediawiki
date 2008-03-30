@@ -580,47 +580,60 @@ $wgCheckDBSchema = true;
  */
 $wgSharedDB = null;
 
-# Database load balancer
-# This is a two-dimensional array, an array of server info structures
-# Fields are:
-#   host:        Host name
-#   dbname:      Default database name
-#   user:        DB user
-#   password:    DB password
-#   type:        "mysql" or "postgres"
-#   load:        ratio of DB_SLAVE load, must be >=0, the sum of all loads must be >0
-#   groupLoads:  array of load ratios, the key is the query group name. A query may belong
-#                to several groups, the most specific group defined here is used.
-#
-#   flags:       bit field
-#                   DBO_DEFAULT -- turns on DBO_TRX only if !$wgCommandLineMode (recommended)
-#                   DBO_DEBUG -- equivalent of $wgDebugDumpSql
-#                   DBO_TRX -- wrap entire request in a transaction
-#                   DBO_IGNORE -- ignore errors (not useful in LocalSettings.php)
-#                   DBO_NOBUFFER -- turn off buffering (not useful in LocalSettings.php)
-#
-#   max lag:     (optional) Maximum replication lag before a slave will taken out of rotation
-#   max threads: (optional) Maximum number of running threads
-#
-#   These and any other user-defined properties will be assigned to the mLBInfo member
-#   variable of the Database object.
-#
-# Leave at false to use the single-server variables above. If you set this 
-# variable, the single-server variables will generally be ignored (except 
-# perhaps in some command-line scripts). 
-#
-# The first server listed in this array (with key 0) will be the master. The 
-# rest of the servers will be slaves. To prevent writes to your slaves due to 
-# accidental misconfiguration or MediaWiki bugs, set read_only=1 on all your 
-# slaves in my.cnf. You can set read_only mode at runtime using:
-#
-#     SET @@read_only=1;
-#
-# Since the effect of writing to a slave is so damaging and difficult to clean
-# up, we at Wikimedia set read_only=1 in my.cnf on all our DB servers, even 
-# our masters, and then set read_only=0 on masters at runtime. 
-#
+/**
+ * Database load balancer
+ * This is a two-dimensional array, an array of server info structures
+ * Fields are:
+ *   host:        Host name
+ *   dbname:      Default database name
+ *   user:        DB user
+ *   password:    DB password
+ *   type:        "mysql" or "postgres"
+ *   load:        ratio of DB_SLAVE load, must be >=0, the sum of all loads must be >0
+ *   groupLoads:  array of load ratios, the key is the query group name. A query may belong
+ *                to several groups, the most specific group defined here is used.
+ *
+ *   flags:       bit field
+ *                   DBO_DEFAULT -- turns on DBO_TRX only if !$wgCommandLineMode (recommended)
+ *                   DBO_DEBUG -- equivalent of $wgDebugDumpSql
+ *                   DBO_TRX -- wrap entire request in a transaction
+ *                   DBO_IGNORE -- ignore errors (not useful in LocalSettings.php)
+ *                   DBO_NOBUFFER -- turn off buffering (not useful in LocalSettings.php)
+ *
+ *   max lag:     (optional) Maximum replication lag before a slave will taken out of rotation
+ *   max threads: (optional) Maximum number of running threads
+ *
+ *   These and any other user-defined properties will be assigned to the mLBInfo member
+ *   variable of the Database object.
+ *
+ * Leave at false to use the single-server variables above. If you set this 
+ * variable, the single-server variables will generally be ignored (except 
+ * perhaps in some command-line scripts). 
+ *
+ * The first server listed in this array (with key 0) will be the master. The 
+ * rest of the servers will be slaves. To prevent writes to your slaves due to 
+ * accidental misconfiguration or MediaWiki bugs, set read_only=1 on all your 
+ * slaves in my.cnf. You can set read_only mode at runtime using:
+ *
+ *     SET @@read_only=1;
+ *
+ * Since the effect of writing to a slave is so damaging and difficult to clean
+ * up, we at Wikimedia set read_only=1 in my.cnf on all our DB servers, even 
+ * our masters, and then set read_only=0 on masters at runtime. 
+ */
 $wgDBservers		= false;
+
+/**
+ * Load balancer factory configuration
+ * To set up a multi-master wiki farm, set the class here to something that 
+ * can return a LoadBalancer with an appropriate master on a call to getMainLB().
+ * The class identified here is responsible for reading $wgDBservers, 
+ * $wgDBserver, etc., so overriding it may cause those globals to be ignored.
+ *
+ * The LBFactory_Multi class is provided for this purpose, please see 
+ * includes/LBFactory_Multi.php for configuration information.
+ */
+$wgLBFactoryConf    = array( 'class' => 'LBFactory_Simple' );
 
 /** How long to wait for a slave to catch up to the master */
 $wgMasterWaitTimeout = 10;
@@ -675,19 +688,6 @@ $wgDBmysql5			= false;
  * Array numeric key => database name
  */
 $wgLocalDatabases = array();
-
-/**
- * For multi-wiki clusters with multiple master servers; if an alternate
- * is listed for the requested database, a connection to it will be opened
- * instead of to the current wiki's regular master server when cross-wiki
- * data operations are done from here.
- *
- * Requires that the other server be accessible by network, with the same
- * username/password as the primary.
- *
- * eg $wgAlternateMaster['enwiki'] = 'ariel';
- */
-$wgAlternateMaster = array();
 
 /**
  * Object cache settings

@@ -21,19 +21,13 @@ if ( !$pendingDBs ) {
 	$pendingDBs = array();
 	# Cross-reference DBs by master DB server
 	$dbsByMaster = array();
-	$defaultMaster = isset( $wgAlternateMaster['DEFAULT'] )
-		? $wgAlternateMaster['DEFAULT']
-		: $wgDBserver;
 	foreach ( $wgLocalDatabases as $db ) {
-		if ( isset( $wgAlternateMaster[$db] ) ) {
-			$dbsByMaster[$wgAlternateMaster[$db]][] = $db;
-		} else {
-			$dbsByMaster[$defaultMaster][] = $db;
-		}
+		$lb = wfGetLB( $db );
+		$dbsByMaster[$lb->getServerName(0)][] = $db;
 	}
 
 	foreach ( $dbsByMaster as $master => $dbs ) {
-		$dbConn = new Database( $master, $wgDBuser, $wgDBpassword, $dbs[0] );
+		$dbConn = wfGetDB( DB_MASTER, array(), $dbs[0] );
 		$stype = $dbConn->addQuotes($type);
 
 		# Padding row for MySQL bug

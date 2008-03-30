@@ -1304,6 +1304,17 @@ END;
 		return false;
 	}
 
+	function setFakeSlaveLag() {}
+	function setFakeMaster() {}
+
+	function getDBname() {
+		return $this->mDBname;
+	}
+
+	function getServer() {
+		return $this->mServer;
+	}
+
 	function buildConcat( $stringList ) {
 		return implode( ' || ', $stringList );
 	}

@@ -645,6 +645,7 @@ class DBABagOStuff extends BagOStuff {
 		}
 		$this->mFile = "$dir/mw-cache-" . wfWikiID();
 		$this->mFile .= '.db';
+		wfDebug( __CLASS__.": using cache file {$this->mFile}\n" );
 		$this->mHandler = $handler;
 	}
 

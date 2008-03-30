@@ -11,304 +11,6 @@ define( 'DEADLOCK_DELAY_MIN', 500000 );
 /** Maximum time to wait before retry */
 define( 'DEADLOCK_DELAY_MAX', 1500000 );
 
-/******************************************************************************
- * Utility classes
- *****************************************************************************/
-
-/**
- * Utility class.
- * @addtogroup Database
- */
-class DBObject {
-	public $mData;
-
-	function DBObject($data) {
-		$this->mData = $data;
-	}
-
-	function isLOB() {
-		return false;
-	}
-
-	function data() {
-		return $this->mData;
-	}
-};
-
-/**
- * Utility class
- * @addtogroup Database
- *
- * This allows us to distinguish a blob from a normal string and an array of strings
- */
-class Blob {
-	private $mData;
-	function __construct($data) {
-		$this->mData = $data;
-	}
-	function fetch() {
-		return $this->mData;
-	}
-};
-
-/**
- * Utility class.
- * @addtogroup Database
- */
-class MySQLField {
-	private $name, $tablename, $default, $max_length, $nullable,
-		$is_pk, $is_unique, $is_key, $type;
-	function __construct ($info) {
-		$this->name = $info->name;
-		$this->tablename = $info->table;
-		$this->default = $info->def;
-		$this->max_length = $info->max_length;
-		$this->nullable = !$info->not_null;
-		$this->is_pk = $info->primary_key;
-		$this->is_unique = $info->unique_key;
-		$this->is_multiple = $info->multiple_key;
-		$this->is_key = ($this->is_pk || $this->is_unique || $this->is_multiple);
-		$this->type = $info->type;
-	}
-
-	function name() {
-		return $this->name;
-	}
-
-	function tableName() {
-		return $this->tableName;
-	}
-
-	function defaultValue() {
-		return $this->default;
-	}
-
-	function maxLength() {
-		return $this->max_length;
-	}
-
-	function nullable() {
-		return $this->nullable;
-	}
-
-	function isKey() {
-		return $this->is_key;
-	}
-
-	function isMultipleKey() {
-		return $this->is_multiple;
-	}
-
-	function type() {
-		return $this->type;
-	}
-}
-
-/******************************************************************************
- * Error classes
- *****************************************************************************/
-
-/**
- * Database error base class
- * @addtogroup Database
- */
-class DBError extends MWException {
-	public $db;
-
-	/**
-	 * Construct a database error
-	 * @param Database $db The database object which threw the error
-	 * @param string $error A simple error message to be used for debugging
-	 */
-	function __construct( Database &$db, $error ) {
-		$this->db =& $db;
-		parent::__construct( $error );
-	}
-}
-
-/**
- * @addtogroup Database
- */
-class DBConnectionError extends DBError {
-	public $error;
-	
-	function __construct( Database &$db, $error = 'unknown error' ) {
-		$msg = 'DB connection error';
-		if ( trim( $error ) != '' ) {
-			$msg .= ": $error";
-		}
-		$this->error = $error;
-		parent::__construct( $db, $msg );
-	}
-
-	function useOutputPage() {
-		// Not likely to work
-		return false;
-	}
-
-	function useMessageCache() {
-		// Not likely to work
-		return false;
-	}
-	
-	function getText() {
-		return $this->getMessage() . "\n";
-	}
-
-	function getLogMessage() {
-		# Don't send to the exception log
-		return false;
-	}
-
-	function getPageTitle() {
-		global $wgSitename;
-		return "$wgSitename has a problem";
-	}
-
-	function getHTML() {
-		global $wgTitle, $wgUseFileCache, $title, $wgInputEncoding;
-		global $wgSitename, $wgServer, $wgMessageCache;
-
-		# I give up, Brion is right. Getting the message cache to work when there is no DB is tricky.
-		# Hard coding strings instead.
-
-		$noconnect = "<p><strong>Sorry! This site is experiencing technical difficulties.</strong></p><p>Try waiting a few minutes and reloading.</p><p><small>(Can't contact the database server: $1)</small></p>";
-		$mainpage = 'Main Page';
-		$searchdisabled = <<<EOT
-<p style="margin: 1.5em 2em 1em">$wgSitename search is disabled for performance reasons. You can search via Google in the meantime.
-<span style="font-size: 89%; display: block; margin-left: .2em">Note that their indexes of $wgSitename content may be out of date.</span></p>',
-EOT;
-
-		$googlesearch = "
-<!-- SiteSearch Google -->
-<FORM method=GET action=\"http://www.google.com/search\">
-<TABLE bgcolor=\"#FFFFFF\"><tr><td>
-<A HREF=\"http://www.google.com/\">
-<IMG SRC=\"http://www.google.com/logos/Logo_40wht.gif\"
-border=\"0\" ALT=\"Google\"></A>
-</td>
-<td>
-<INPUT TYPE=text name=q size=31 maxlength=255 value=\"$1\">
-<INPUT type=submit name=btnG VALUE=\"Google Search\">
-<font size=-1>
-<input type=hidden name=domains value=\"$wgServer\"><br /><input type=radio name=sitesearch value=\"\"> WWW <input type=radio name=sitesearch value=\"$wgServer\" checked> $wgServer <br />
-<input type='hidden' name='ie' value='$2'>
-<input type='hidden' name='oe' value='$2'>
-</font>
-</td></tr></TABLE>
-</FORM>
-<!-- SiteSearch Google -->";
-		$cachederror = "The following is a cached copy of the requested page, and may not be up to date. ";
-
-		# No database access
-		if ( is_object( $wgMessageCache ) ) {
-			$wgMessageCache->disable();
-		}
-
-		if ( trim( $this->error ) == '' ) {
-			$this->error = $this->db->getProperty('mServer');
-		}
-
-		$text = str_replace( '$1', $this->error, $noconnect );
-		$text .= wfGetSiteNotice();
-
-		if($wgUseFileCache) {
-			if($wgTitle) {
-				$t =& $wgTitle;
-			} else {
-				if($title) {
-					$t = Title::newFromURL( $title );
-				} elseif (@/**/$_REQUEST['search']) {
-					$search = $_REQUEST['search'];
-					return $searchdisabled .
-					  str_replace( array( '$1', '$2' ), array( htmlspecialchars( $search ),
-					  $wgInputEncoding ), $googlesearch );
-				} else {
-					$t = Title::newFromText( $mainpage );
-				}
-			}
-
-			$cache = new HTMLFileCache( $t );
-			if( $cache->isFileCached() ) {
-				// @todo, FIXME: $msg is not defined on the next line.
-				$msg = '<p style="color: red"><b>'.$msg."<br />\n" .
-					$cachederror . "</b></p>\n";
-
-				$tag = '<div id="article">';
-				$text = str_replace(
-					$tag,
-					$tag . $msg,
-					$cache->fetchPageText() );
-			}
-		}
-
-		return $text;
-	}
-}
-
-/**
- * @addtogroup Database
- */
-class DBQueryError extends DBError {
-	public $error, $errno, $sql, $fname;
-	
-	function __construct( Database &$db, $error, $errno, $sql, $fname ) {
-		$message = "A database error has occurred\n" .
-		  "Query: $sql\n" .
-		  "Function: $fname\n" .
-		  "Error: $errno $error\n";
-
-		parent::__construct( $db, $message );
-		$this->error = $error;
-		$this->errno = $errno;
-		$this->sql = $sql;
-		$this->fname = $fname;
-	}
-
-	function getText() {
-		if ( $this->useMessageCache() ) {
-			return wfMsg( 'dberrortextcl', htmlspecialchars( $this->getSQL() ),
-			  htmlspecialchars( $this->fname ), $this->errno, htmlspecialchars( $this->error ) ) . "\n";
-		} else {
-			return $this->getMessage();
-		}
-	}
-	
-	function getSQL() {
-		global $wgShowSQLErrors;
-		if( !$wgShowSQLErrors ) {
-			return $this->msg( 'sqlhidden', 'SQL hidden' );
-		} else {
-			return $this->sql;
-		}
-	}
-	
-	function getLogMessage() {
-		# Don't send to the exception log
-		return false;
-	}
-
-	function getPageTitle() {
-		return $this->msg( 'databaseerror', 'Database error' );
-	}
-
-	function getHTML() {
-		if ( $this->useMessageCache() ) {
-			return wfMsgNoDB( 'dberrortext', htmlspecialchars( $this->getSQL() ),
-			  htmlspecialchars( $this->fname ), $this->errno, htmlspecialchars( $this->error ) );
-		} else {
-			return nl2br( htmlspecialchars( $this->getMessage() ) );
-		}
-	}
-}
-
-/**
- * @addtogroup Database
- */
-class DBUnexpectedError extends DBError {}
-
-/******************************************************************************/
-
 /**
  * Database abstraction object
  * @addtogroup Database
@@ -330,6 +32,7 @@ class Database {
 	protected $mTrxLevel = 0;
 	protected $mErrorCount = 0;
 	protected $mLBInfo = array();
+	protected $mFakeSlaveLag = null, $mFakeMaster = false;
 
 #------------------------------------------------------------------------------
 # Accessors
@@ -397,6 +100,10 @@ class Database {
 		return wfSetVar( $this->mErrorCount, $count );
 	}
 
+	function tablePrefix( $prefix = null ) {
+		return wfSetVar( $this->mTablePrefix, $prefix );
+	}
+
 	/**
 	 * Properties passed down from the server info array of the load balancer
 	 */
@@ -418,6 +125,20 @@ class Database {
 		} else {
 			$this->mLBInfo[$name] = $value;
 		}
+	}
+
+	/**
+	 * Set lag time in seconds for a fake slave
+	 */
+	function setFakeSlaveLag( $lag ) {
+		$this->mFakeSlaveLag = $lag;
+	}
+
+	/**
+	 * Make this connection a fake master
+	 */
+	function setFakeMaster( $enabled = true ) {
+		$this->mFakeMaster = $enabled;
 	}
 
 	/**
@@ -577,6 +298,8 @@ class Database {
 		global $wguname;
 		wfProfileIn( __METHOD__ );
 
+		$server = 'localhost'; debugging_code_left_in();
+
 		# Test for missing mysql.so
 		# First try to load it
 		if (!@extension_loaded('mysql')) {
@@ -598,8 +321,10 @@ class Database {
 		$success = false;
 
 		wfProfileIn("dbconnect-$server");
-		
-		# LIVE PATCH by Tim, ask Domas for why: retry loop
+
+		# Try to connect up to three times
+		# The kernel's default SYN retransmission period is far too slow for us,
+		# so we use a short timeout plus a manual retry.
 		$this->mConn = false;
 		$max = 3;
 		for ( $i = 0; $i < $max && !$this->mConn; $i++ ) {
@@ -720,6 +445,7 @@ class Database {
 	public function query( $sql, $fname = '', $tempIgnore = false ) {
 		global $wgProfiling;
 
+		$isMaster = !is_null( $this->getLBInfo( 'master' ) );
 		if ( $wgProfiling ) {
 			# generalizeSQL will probably cut down the query to reasonable
 			# logging size most of the time. The substr is really just a sanity check.
@@ -727,12 +453,12 @@ class Database {
 			# Who's been wasting my precious column space? -- TS
 			#$profName = 'query: ' . $fname . ' ' . substr( Database::generalizeSQL( $sql ), 0, 255 );
 
-			if ( is_null( $this->getLBInfo( 'master' ) ) ) {
-				$queryProf = 'query: ' . substr( Database::generalizeSQL( $sql ), 0, 255 );
-				$totalProf = 'Database::query';
-			} else {
+			if ( $isMaster ) {
 				$queryProf = 'query-m: ' . substr( Database::generalizeSQL( $sql ), 0, 255 );
 				$totalProf = 'Database::query-master';
+			} else {
+				$queryProf = 'query: ' . substr( Database::generalizeSQL( $sql ), 0, 255 );
+				$totalProf = 'Database::query';
 			}
 			wfProfileIn( $totalProf );
 			wfProfileIn( $queryProf );
@@ -771,7 +497,11 @@ class Database {
 		if ( $this->debug() ) {
 			$sqlx = substr( $commentedSql, 0, 500 );
 			$sqlx = strtr( $sqlx, "\t\n", '  ' );
-			wfDebug( "SQL: $sqlx\n" );
+			if ( $isMaster ) {
+				wfDebug( "SQL-master: $sqlx\n" );
+			} else {
+				wfDebug( "SQL: $sqlx\n" );
+			}
 		}
 
 		# Do the query and handle errors
@@ -1605,6 +1335,20 @@ class Database {
 	}
 
 	/**
+	 * Get the current DB name
+	 */
+	function getDBname() {
+		return $this->mDBname;
+	}
+
+	/**
+	 * Get the server hostname or IP address
+	 */
+	function getServer() {
+		return $this->mServer;
+	}
+
+	/**
 	 * Format a table name ready for use in constructing an SQL query
 	 *
 	 * This does two important things: it quotes table names which as necessary,
@@ -1976,17 +1720,37 @@ class Database {
 	 * @param string $pos the binlog position
 	 * @param integer $timeout the maximum number of seconds to wait for synchronisation
 	 */
-	function masterPosWait( $file, $pos, $timeout ) {
+	function masterPosWait( MySQLMasterPos $pos, $timeout ) {
 		$fname = 'Database::masterPosWait';
 		wfProfileIn( $fname );
 
-
 		# Commit any open transactions
-		$this->immediateCommit();
+		if ( $this->mTrxLevel ) {
+			$this->immediateCommit();
+		}
+
+		if ( !is_null( $this->mFakeSlaveLag ) ) {
+			$wait = intval( ( $pos->pos - microtime(true) + $this->mFakeSlaveLag ) * 1e6 );
+			if ( $wait > $timeout * 1e6 ) {
+				wfDebug( "Fake slave timed out waiting for $pos ($wait us)\n" );
+				wfProfileOut( $fname );
+				return -1;
+			} elseif ( $wait > 0 ) {
+				wfDebug( "Fake slave waiting $wait us\n" );
+				usleep( $wait );
+				wfProfileOut( $fname );
+				return 1;
+			} else {
+				wfDebug( "Fake slave up to date ($wait us)\n" );
+				wfProfileOut( $fname );
+				return 0;
+			}
+		}
 
 		# Call doQuery() directly, to avoid opening a transaction if DBO_TRX is set
-		$encFile = $this->strencode( $file );
-		$sql = "SELECT MASTER_POS_WAIT('$encFile', $pos, $timeout)";
+		$encFile = $this->addQuotes( $pos->file );
+		$encPos = intval( $pos->pos );
+		$sql = "SELECT MASTER_POS_WAIT($encFile, $encPos, $timeout)";
 		$res = $this->doQuery( $sql );
 		if ( $res && $row = $this->fetchRow( $res ) ) {
 			$this->freeResult( $res );
@@ -2002,12 +1766,17 @@ class Database {
 	 * Get the position of the master from SHOW SLAVE STATUS
 	 */
 	function getSlavePos() {
+		if ( !is_null( $this->mFakeSlaveLag ) ) {
+			$pos = new MySQLMasterPos( 'fake', microtime(true) - $this->mFakeSlaveLag );
+			wfDebug( __METHOD__.": fake slave pos = $pos\n" );
+			return $pos;
+		}
 		$res = $this->query( 'SHOW SLAVE STATUS', 'Database::getSlavePos' );
 		$row = $this->fetchObject( $res );
 		if ( $row ) {
-			return array( $row->Master_Log_File, $row->Read_Master_Log_Pos );
+			return new MySQLMasterPos( $row->Master_Log_File, $row->Read_Master_Log_Pos );
 		} else {
-			return array( false, false );
+			return false;
 		}
 	}
 
@@ -2015,12 +1784,15 @@ class Database {
 	 * Get the position of the master from SHOW MASTER STATUS
 	 */
 	function getMasterPos() {
+		if ( $this->mFakeMaster ) {
+			return new MySQLMasterPos( 'fake', microtime( true ) );
+		}
 		$res = $this->query( 'SHOW MASTER STATUS', 'Database::getMasterPos' );
 		$row = $this->fetchObject( $res );
 		if ( $row ) {
-			return array( $row->File, $row->Position );
+			return new MySQLMasterPos( $row->File, $row->Position );
 		} else {
-			return array( false, false );
+			return false;
 		}
 	}
 
@@ -2149,6 +1921,10 @@ class Database {
 	 * At the moment, this will only work if the DB user has the PROCESS privilege
 	 */
 	function getLag() {
+		if ( !is_null( $this->mFakeSlaveLag ) ) {
+			wfDebug( "getLag: fake slave lagged {$this->mFakeSlaveLag} seconds\n" );
+			return $this->mFakeSlaveLag;
+		}
 		$res = $this->query( 'SHOW PROCESSLIST' );
 		# Find slave SQL thread
 		while ( $row = $this->fetchObject( $res ) ) {
@@ -2349,6 +2125,302 @@ class DatabaseMysql extends Database {
 	# Inherit all
 }
 
+/******************************************************************************
+ * Utility classes
+ *****************************************************************************/
+
+/**
+ * Utility class.
+ * @addtogroup Database
+ */
+class DBObject {
+	public $mData;
+
+	function DBObject($data) {
+		$this->mData = $data;
+	}
+
+	function isLOB() {
+		return false;
+	}
+
+	function data() {
+		return $this->mData;
+	}
+}
+
+/**
+ * Utility class
+ * @addtogroup Database
+ *
+ * This allows us to distinguish a blob from a normal string and an array of strings
+ */
+class Blob {
+	private $mData;
+	function __construct($data) {
+		$this->mData = $data;
+	}
+	function fetch() {
+		return $this->mData;
+	}
+}
+
+/**
+ * Utility class.
+ * @addtogroup Database
+ */
+class MySQLField {
+	private $name, $tablename, $default, $max_length, $nullable,
+		$is_pk, $is_unique, $is_key, $type;
+	function __construct ($info) {
+		$this->name = $info->name;
+		$this->tablename = $info->table;
+		$this->default = $info->def;
+		$this->max_length = $info->max_length;
+		$this->nullable = !$info->not_null;
+		$this->is_pk = $info->primary_key;
+		$this->is_unique = $info->unique_key;
+		$this->is_multiple = $info->multiple_key;
+		$this->is_key = ($this->is_pk || $this->is_unique || $this->is_multiple);
+		$this->type = $info->type;
+	}
+
+	function name() {
+		return $this->name;
+	}
+
+	function tableName() {
+		return $this->tableName;
+	}
+
+	function defaultValue() {
+		return $this->default;
+	}
+
+	function maxLength() {
+		return $this->max_length;
+	}
+
+	function nullable() {
+		return $this->nullable;
+	}
+
+	function isKey() {
+		return $this->is_key;
+	}
+
+	function isMultipleKey() {
+		return $this->is_multiple;
+	}
+
+	function type() {
+		return $this->type;
+	}
+}
+
+/******************************************************************************
+ * Error classes
+ *****************************************************************************/
+
+/**
+ * Database error base class
+ * @addtogroup Database
+ */
+class DBError extends MWException {
+	public $db;
+
+	/**
+	 * Construct a database error
+	 * @param Database $db The database object which threw the error
+	 * @param string $error A simple error message to be used for debugging
+	 */
+	function __construct( Database &$db, $error ) {
+		$this->db =& $db;
+		parent::__construct( $error );
+	}
+}
+
+/**
+ * @addtogroup Database
+ */
+class DBConnectionError extends DBError {
+	public $error;
+	
+	function __construct( Database &$db, $error = 'unknown error' ) {
+		$msg = 'DB connection error';
+		if ( trim( $error ) != '' ) {
+			$msg .= ": $error";
+		}
+		$this->error = $error;
+		parent::__construct( $db, $msg );
+	}
+
+	function useOutputPage() {
+		// Not likely to work
+		return false;
+	}
+
+	function useMessageCache() {
+		// Not likely to work
+		return false;
+	}
+	
+	function getText() {
+		return $this->getMessage() . "\n";
+	}
+
+	function getLogMessage() {
+		# Don't send to the exception log
+		return false;
+	}
+
+	function getPageTitle() {
+		global $wgSitename;
+		return "$wgSitename has a problem";
+	}
+
+	function getHTML() {
+		global $wgTitle, $wgUseFileCache, $title, $wgInputEncoding;
+		global $wgSitename, $wgServer, $wgMessageCache;
+
+		# I give up, Brion is right. Getting the message cache to work when there is no DB is tricky.
+		# Hard coding strings instead.
+
+		$noconnect = "<p><strong>Sorry! This site is experiencing technical difficulties.</strong></p><p>Try waiting a few minutes and reloading.</p><p><small>(Can't contact the database server: $1)</small></p>";
+		$mainpage = 'Main Page';
+		$searchdisabled = <<<EOT
+<p style="margin: 1.5em 2em 1em">$wgSitename search is disabled for performance reasons. You can search via Google in the meantime.
+<span style="font-size: 89%; display: block; margin-left: .2em">Note that their indexes of $wgSitename content may be out of date.</span></p>',
+EOT;
+
+		$googlesearch = "
+<!-- SiteSearch Google -->
+<FORM method=GET action=\"http://www.google.com/search\">
+<TABLE bgcolor=\"#FFFFFF\"><tr><td>
+<A HREF=\"http://www.google.com/\">
+<IMG SRC=\"http://www.google.com/logos/Logo_40wht.gif\"
+border=\"0\" ALT=\"Google\"></A>
+</td>
+<td>
+<INPUT TYPE=text name=q size=31 maxlength=255 value=\"$1\">
+<INPUT type=submit name=btnG VALUE=\"Google Search\">
+<font size=-1>
+<input type=hidden name=domains value=\"$wgServer\"><br /><input type=radio name=sitesearch value=\"\"> WWW <input type=radio name=sitesearch value=\"$wgServer\" checked> $wgServer <br />
+<input type='hidden' name='ie' value='$2'>
+<input type='hidden' name='oe' value='$2'>
+</font>
+</td></tr></TABLE>
+</FORM>
+<!-- SiteSearch Google -->";
+		$cachederror = "The following is a cached copy of the requested page, and may not be up to date. ";
+
+		# No database access
+		if ( is_object( $wgMessageCache ) ) {
+			$wgMessageCache->disable();
+		}
+
+		if ( trim( $this->error ) == '' ) {
+			$this->error = $this->db->getProperty('mServer');
+		}
+
+		$text = str_replace( '$1', $this->error, $noconnect );
+		$text .= wfGetSiteNotice();
+
+		if($wgUseFileCache) {
+			if($wgTitle) {
+				$t =& $wgTitle;
+			} else {
+				if($title) {
+					$t = Title::newFromURL( $title );
+				} elseif (@/**/$_REQUEST['search']) {
+					$search = $_REQUEST['search'];
+					return $searchdisabled .
+					  str_replace( array( '$1', '$2' ), array( htmlspecialchars( $search ),
+					  $wgInputEncoding ), $googlesearch );
+				} else {
+					$t = Title::newFromText( $mainpage );
+				}
+			}
+
+			$cache = new HTMLFileCache( $t );
+			if( $cache->isFileCached() ) {
+				// @todo, FIXME: $msg is not defined on the next line.
+				$msg = '<p style="color: red"><b>'.$msg."<br />\n" .
+					$cachederror . "</b></p>\n";
+
+				$tag = '<div id="article">';
+				$text = str_replace(
+					$tag,
+					$tag . $msg,
+					$cache->fetchPageText() );
+			}
+		}
+
+		return $text;
+	}
+}
+
+/**
+ * @addtogroup Database
+ */
+class DBQueryError extends DBError {
+	public $error, $errno, $sql, $fname;
+	
+	function __construct( Database &$db, $error, $errno, $sql, $fname ) {
+		$message = "A database error has occurred\n" .
+		  "Query: $sql\n" .
+		  "Function: $fname\n" .
+		  "Error: $errno $error\n";
+
+		parent::__construct( $db, $message );
+		$this->error = $error;
+		$this->errno = $errno;
+		$this->sql = $sql;
+		$this->fname = $fname;
+	}
+
+	function getText() {
+		if ( $this->useMessageCache() ) {
+			return wfMsg( 'dberrortextcl', htmlspecialchars( $this->getSQL() ),
+			  htmlspecialchars( $this->fname ), $this->errno, htmlspecialchars( $this->error ) ) . "\n";
+		} else {
+			return $this->getMessage();
+		}
+	}
+	
+	function getSQL() {
+		global $wgShowSQLErrors;
+		if( !$wgShowSQLErrors ) {
+			return $this->msg( 'sqlhidden', 'SQL hidden' );
+		} else {
+			return $this->sql;
+		}
+	}
+	
+	function getLogMessage() {
+		# Don't send to the exception log
+		return false;
+	}
+
+	function getPageTitle() {
+		return $this->msg( 'databaseerror', 'Database error' );
+	}
+
+	function getHTML() {
+		if ( $this->useMessageCache() ) {
+			return wfMsgNoDB( 'dberrortext', htmlspecialchars( $this->getSQL() ),
+			  htmlspecialchars( $this->fname ), $this->errno, htmlspecialchars( $this->error ) );
+		} else {
+			return nl2br( htmlspecialchars( $this->getMessage() ) );
+		}
+	}
+}
+
+/**
+ * @addtogroup Database
+ */
+class DBUnexpectedError extends DBError {}
+
 
 /**
  * Result wrapper for grabbing data queried by someone else
@@ -2454,4 +2526,15 @@ class ResultWrapper implements Iterator {
 	}
 }
 
+class MySQLMasterPos {
+	var $file, $pos;
 
+	function __construct( $file, $pos ) {
+		$this->file = $file;
+		$this->pos = $pos;
+	}
+
+	function __toString() {
+		return "{$this->file}/{$this->pos}";
+	}
+}
