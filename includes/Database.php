@@ -298,8 +298,6 @@ class Database {
 		global $wguname;
 		wfProfileIn( __METHOD__ );
 
-		$server = 'localhost'; debugging_code_left_in();
-
 		# Test for missing mysql.so
 		# First try to load it
 		if (!@extension_loaded('mysql')) {
