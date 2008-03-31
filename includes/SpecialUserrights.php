@@ -355,7 +355,7 @@ class UserrightsPage extends SpecialPage {
 			Xml::openElement( 'table', array( 'border' => '0', 'id' => 'mw-userrights-table-outer' ) ) .
 				"<tr>
 					<td colspan='2'>" .
-						$wgOut->parse( wfMsg( 'userrights-groupshelp' ) ) .
+						$wgOut->parse( wfMsg( 'userrights-groups-help' ) ) .
 					"</td>
 				</tr>
 				<tr>
