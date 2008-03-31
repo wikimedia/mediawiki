@@ -139,7 +139,7 @@ function wfSpecialRecentchanges( $par, $specialPage ) {
 	$hidem  = $hideminor ? 'AND rc_minor = 0' : '';
 	$hidem .= $hidebots ? ' AND rc_bot = 0' : '';
 	$hidem .= $hideliu ? ' AND rc_user = 0' : '';
-	$hidem .= ( $wgUseRCPatrol && $hidepatrolled ) ? ' AND rc_patrolled = 0' : '';
+	$hidem .= ( ChangesList::usePatrol() && $hidepatrolled ) ? ' AND rc_patrolled = 0' : '';
 	$hidem .= $hideanons ? ' AND rc_user != 0' : '';
 	
 	if( $hidemyself ) {
@@ -562,7 +562,7 @@ function rcOptionsPanel( $defaults, $nondefaults ) {
 	$links[] = wfMsgHtml( 'rcshowhidebots', $botLink );
 	$links[] = wfMsgHtml( 'rcshowhideanons', $anonsLink );
 	$links[] = wfMsgHtml( 'rcshowhideliu', $liuLink );
-	if( $wgUseRCPatrol )
+	if( ChangesList::usePatrol() )
 		$links[] = wfMsgHtml( 'rcshowhidepatr', $patrLink );
 	$links[] = wfMsgHtml( 'rcshowhidemine', $myselfLink );
 	$hl = implode( ' | ', $links );
