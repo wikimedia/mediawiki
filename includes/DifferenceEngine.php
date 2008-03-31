@@ -426,9 +426,9 @@ CONTROL;
 		wfProfileIn( $fname );
 		// Check if the diff should be hidden from this user
 		if ( $this->mOldRev && !$this->mOldRev->userCan(Revision::DELETED_TEXT) ) {
-		  	return false;
+		  	return '';
 		} else if ( $this->mNewRev && !$this->mNewRev->userCan(Revision::DELETED_TEXT) ) {
-		  	return false;
+		  	return '';
 		}
 		// Cacheable?
 		$key = false;
