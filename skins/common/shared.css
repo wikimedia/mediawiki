@@ -97,3 +97,7 @@ p.mw-ipb-conveniencelinks, p.mw-filedelete-editreasons, p.mw-delete-editreasons 
 .mw-search-result-data {
 	color: green;
 }
+
+table.mw-userrights-groups * td,table.mw-userrights-groups * th {
+	padding-right: 1.5em;
+}

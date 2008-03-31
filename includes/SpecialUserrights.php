@@ -97,8 +97,7 @@ class UserrightsPage extends SpecialPage {
 				if( $wgUser->matchEditToken( $wgRequest->getVal( 'wpEditToken' ), $this->mTarget ) ) {
 					$this->saveUserGroups(
 						$this->mTarget,
-						$wgRequest->getArray( 'removable' ),
-						$wgRequest->getArray( 'available' ),
+						$wgRequest,
 						$reason
 					);
 				}
@@ -121,12 +120,28 @@ class UserrightsPage extends SpecialPage {
 	 * @param string $reason Reason for group change
 	 * @return null
 	 */
-	function saveUserGroups( $username, $removegroup, $addgroup, $reason = '') {
+	function saveUserGroups( $username, $request, $reason = '') {
 		global $wgUser, $wgGroupsAddToSelf, $wgGroupsRemoveFromSelf;
 
 		$user = $this->fetchUser( $username );
 		if( !$user ) {
 			return;
+		}
+		
+		$allgroups = User::getAllGroups();
+		$addgroup = array();
+		$removegroup = array();
+		
+		// This could possibly create a highly unlikely race condition if permissions are changed between 
+		//  when the form is loaded and when the form is saved. Ignoring it for the moment.
+		foreach ($allgroups as $group) {
+			// We'll tell it to remove all unchecked groups, and add all checked groups.
+			// Later on, this gets filtered for what can actually be removed
+			if ($request->getCheck( "wpGroup-$group" )) {
+				$addgroup[] = $group;
+			} else {
+				$removegroup[] = $group;
+			}
 		}
 		
 		// Validate input set...
@@ -340,23 +355,9 @@ class UserrightsPage extends SpecialPage {
 			Xml::element( 'legend', array(), wfMsg( 'userrights-editusergroup' ) ) .
 			wfMsgExt( 'editinguser', array( 'parse' ), wfEscapeWikiText( $user->getName() ) ) .
 			$grouplist .
-			$this->explainRights() .
+			Xml::openElement( 'p') . $this->groupCheckboxes( $groups ) . Xml::closeElement( 'p' ) . 
 			Xml::openElement( 'table', array( 'border' => '0', 'id' => 'mw-userrights-table-outer' ) ) .
 				"<tr>
-					<td></td>
-					<td>" .
-						Xml::openElement( 'table', array( 'style' => 'width:400px;', 'id' => 'mw-userrights-table-inner' ) ) .	
-							"<tr>
-								<td style='width:50%;'>" . 
-									$this->removeSelect( $removable ) .
-								"</td>
-								<td style='width:50%;'>" . 
-									$this->addSelect( $addable ) .
-								"</td>
-							</tr>" .
-						Xml::closeElement( 'table' ) .
-				"</tr>
-				<tr>
 					<td colspan='2'>" .
 						$wgOut->parse( wfMsg( 'userrights-groupshelp' ) ) .
 					"</td>
@@ -395,74 +396,52 @@ class UserrightsPage extends SpecialPage {
 	}
 
 	/**
-	 * Prepare a list of groups the user is able to add and remove
-	 *
-	 * @return string
-	 */
-	private function explainRights() {
-		global $wgUser, $wgLang;
-
-		$out = array();
-		list( $add, $remove, $addself, $rmself ) = array_values( $this->changeableGroups() );
-
-		if( count( $add ) > 0 )
-			$out[] = wfMsgExt( 'userrights-available-add', 'parseinline', 
-					$wgLang->listToText( $add ), count( $add ) );
-		if( count( $remove ) > 0 )
-			$out[] = wfMsgExt( 'userrights-available-remove', 'parseinline', 
-					$wgLang->listToText( $remove ), count( $add ) );
-		if( count( $addself ) > 0 )
-			$out[] = wfMsgExt( 'userrights-available-add-self', 'parseinline',
-					$wgLang->listToText( $addself ), count( $addself ) );
-		if( count( $rmself ) > 0 )
-			$out[] = wfMsgExt( 'userrights-available-remove-self', 'parseinline',
-					$wgLang->listToText( $rmself ), count( $rmself ) );
-
-		return count( $out ) > 0
-			? implode( '<br />', $out )
-			: wfMsgExt( 'userrights-available-none', 'parseinline' );
-	}
-
-	/**
-	 * Adds the <select> thingie where you can select what groups to remove
-	 *
-	 * @param array $groups The groups that can be removed
-	 * @return string XHTML <select> element
-	 */
-	private function removeSelect( $groups ) {
-		return $this->doSelect( $groups, 'removable' );
-	}
-
-	/**
-	 * Adds the <select> thingie where you can select what groups to add
-	 *
-	 * @param array $groups The groups that can be added
-	 * @return string XHTML <select> element
-	 */
-	private function addSelect( $groups ) {
-		return $this->doSelect( $groups, 'available' );
-	}
-
-	/**
 	 * Adds the <select> thingie where you can select what groups to add/remove
 	 *
 	 * @param array  $groups The groups that can be added/removed
 	 * @param string $name   'removable' or 'available'
 	 * @return string XHTML <select> element
 	 */
-	private function doSelect( $groups, $name ) {
-		$ret = wfMsgHtml( "{$this->mName}-groups$name" ) .
-		Xml::openElement( 'select', array(
-				'name' => "{$name}[]",
-				'multiple' => 'multiple',
-				'size' => '6',
-				'style' => 'width: 100%;'
-			)
-		);
-		foreach ($groups as $group) {
-			$ret .= Xml::element( 'option', array( 'value' => $group ), User::getGroupName( $group ) );
+	private function groupCheckboxes( $usergroups ) {
+		$allgroups = User::getAllGroups();
+		$ret = '';
+		
+		if (count($allgroups)>8) {
+			$column = 1;
+			$settable_col = '';
+			$unsettable_col = '';
+		} else {
+			$column = 0;
 		}
-		$ret .= Xml::closeElement( 'select' );
+		
+		foreach ($allgroups as $group) {
+			$set = in_array( $group, $usergroups );
+			$disabled = !(
+				( $set && $this->canRemove( $group ) ) ||
+				( !$set && $this->canAdd( $group ) ) );
+				
+			$attr = $disabled ? array( 'disabled' => 'disabled' ) : array();
+			$checkbox = wfCheckLabel( User::getGroupMember( $group ), "wpGroup-$group",
+					"wpGroup-$group", $set, $attr );
+				
+			if ($column) {
+				if ($disabled) {
+					$unsettable_col .= "$checkbox<br/>\n";
+				} else {
+					$settable_col .= "$checkbox<br/>\n";
+				}
+			} else {
+				$ret .= " $checkbox ";
+			}
+		}
+		
+		if ($column) {
+			$ret .= '<table class="mw-userrights-groups">';
+			$ret .= '<tr><th>'.wfMsgHtml('userrights-changeable-col').'</th><th>'.wfMsgHtml('userrights-unchangeable-col').'</th></tr>';
+			$ret .= "<tr><td valign=\"top\">$settable_col</td><td valign=\"top\">$unsettable_col</td></tr>";
+			$ret .= "</table>";
+		}
+		
 		return $ret;
 	}
 
@@ -474,7 +453,7 @@ class UserrightsPage extends SpecialPage {
 		// $this->changeableGroups()['remove'] doesn't work, of course. Thanks,
 		// PHP.
 		$groups = $this->changeableGroups();
-		return in_array( $group, $groups['remove'] );
+		return in_array( $group, $groups['remove'] ) || ($this->isself && in_array( $group, $groups['remove-self'] ));
 	}
 
 	/**
@@ -483,7 +462,7 @@ class UserrightsPage extends SpecialPage {
 	 */
 	private function canAdd( $group ) {
 		$groups = $this->changeableGroups();
-		return in_array( $group, $groups['add'] );
+		return in_array( $group, $groups['add'] ) || ($this->isself && in_array( $group, $groups['add-self'] ));
 	}
 
 	/**
