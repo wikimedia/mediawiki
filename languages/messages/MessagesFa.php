@@ -253,7 +253,7 @@ $magicWords = array(
 	'contentlanguage'        => array( 1,    'زبان‌محتوا', 'زبان_محتوا', 'CONTENTLANGUAGE', 'CONTENTLANG' ),
 	'pagesinnamespace'       => array( 1,    'صفحه‌درفضای‌نام', 'صفحه_در_فضای_نام', 'PAGESINNAMESPACE:', 'PAGESINNS:' ),
 	'numberofadmins'         => array( 1,    'تعدادمدیران', 'تعداد_مدیران', 'NUMBEROFADMINS' ),
-	'formatnum'              => array( 0,    'FORMATNUM' ),
+	'formatnum'              => array( 0,    'بافت‌عدد', 'بافت_عدد' ),
 	'padleft'                => array( 0,    'PADLEFT' ),
 	'padright'               => array( 0,    'PADRIGHT' ),
 	'special'                => array( 0,    'ویژه', 'special' ),
@@ -850,7 +850,7 @@ $3
 'usercssjsyoucanpreview'    => "<strong>نکته:</strong> قبل از این که فایل CSS یا JS خود را ذخیره کنید، با استفاده از دکمه '''پیش‌نمایش''' می‌توان آن را آزمایش کنید.",
 'usercsspreview'            => "'''فراموش مکنید که CSS کاربریتان فقط پیش‌نمایش یافته و هنوز ذخیره نشده‌است.'''",
 'userjspreview'             => "'''فراموش مکنید که شما فقط دارید جاوااسکریپت کاربریتان را امتحان می‌کنید/پیش‌نمایشش را می‌بینید. هنوز ذخیره نشده‌است!'''",
-'userinvalidcssjstitle'     => "'''هشدار:''' پوسته‌ای به نام «\$1» وجود ندارد.
+'userinvalidcssjstitle'     => "'''هشدار:''' پوسته‌ای به نام «$1» وجود ندارد.
 به یاد داشته باشید که صفحه‌های شخصی &#8206;.css و &#8206;.js باید عنوانی با حروف کوچک داشته باشند؛ نمونه: {{ns:user}}:فو/monobook.css در مقابل {{ns:user}}:فو/Monobook.css.",
 'updated'                   => '(به‌روز شد)',
 'note'                      => '<strong>نکته:</strong>',
