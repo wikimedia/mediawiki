@@ -98,6 +98,14 @@ p.mw-ipb-conveniencelinks, p.mw-filedelete-editreasons, p.mw-delete-editreasons 
 	color: green;
 }
 
+/*
+ * UserRights stuff
+ */
+.mw-userrights-disabled {
+	color: #888;
+}
+
 table.mw-userrights-groups * td,table.mw-userrights-groups * th {
 	padding-right: 1.5em;
 }
+

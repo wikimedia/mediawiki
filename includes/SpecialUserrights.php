@@ -419,6 +419,7 @@ class UserrightsPage extends SpecialPage {
 			$attr = $disabled ? array( 'disabled' => 'disabled' ) : array();
 			$checkbox = wfCheckLabel( User::getGroupMember( $group ), "wpGroup-$group",
 					"wpGroup-$group", $set, $attr );
+			$checkbox = $disabled ? "<span class='mw-userrights-disabled'>$checkbox</span>" : $checkbox;
 				
 			if ($column) {
 				if ($disabled) {
