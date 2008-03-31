@@ -416,7 +416,7 @@ $messages = array(
 'badaccess-groups' => 'Diese Aktion ist beschränkt auf Benutzer, die einer der Gruppen „$1“ angehören.',
 
 'versionrequired'     => 'Version $1 von MediaWiki ist erforderlich',
-'versionrequiredtext' => 'Version $1 von MediaWiki ist erforderlich, um diese Seite zu nutzen. Siehe die [[Special:Version|Versionsseite]]',
+'versionrequiredtext' => 'Version $1 von MediaWiki ist erforderlich, um diese Seite zu nutzen. Siehe die [[{{#special:version}}|Versionsseite]]',
 
 'ok'                      => 'Suchen',
 'pagetitle'               => '$1 - {{SITENAME}}',
@@ -522,7 +522,7 @@ $2',
 'namespaceprotected'   => "Du hast keine Berechtigung, die Seite im '''$1'''-Namensraum zu bearbeiten.",
 'customcssjsprotected' => 'Du bist nicht berechtigt, diese Seite zu bearbeiten, da sie zu den persönlichen Einstellungen eines anderen Benutzers gehört.',
 'ns-specialprotected'  => 'Seiten im {{ns:special}}-Namensraum können nicht bearbeitet werden.',
-'titleprotected'       => 'Eine Seite mit diesem Namen kann nicht angelegt werden. Die Sperre wurde durch [[{{ns:user}}:$1]] mit der Begründung <i>$2</i> eingerichtet.',
+'titleprotected'       => "Eine Seite mit diesem Namen kann nicht angelegt werden. Die Sperre wurde durch [[{{ns:user}}:$1]] mit der Begründung ''„$2“'' eingerichtet.",
 
 # Login and logout pages
 'logouttitle'                => 'Benutzer-Abmeldung',
@@ -747,11 +747,11 @@ Eine Speicherung kann den Seiteninhalt zerstören. Dies geschieht bisweilen durc
 'editingsection'            => 'Bearbeiten von $1 (Absatz)',
 'editingcomment'            => 'Bearbeiten von $1 (Kommentar)',
 'editconflict'              => 'Bearbeitungskonflikt: $1',
-'explainconflict'           => 'Jemand anders hat diese Seite geändert, nachdem du angefangen hast diese zu bearbeiten.
+'explainconflict'           => "Jemand anders hat diese Seite geändert, nachdem du angefangen hast diese zu bearbeiten.
 Das obere Textfeld enthält den aktuellen Stand.
 Das untere Textfeld enthält deine Änderungen.
 Bitte füge deine Änderungen in das obere Textfeld ein.
-<b>Nur</b> der Inhalt des oberen Textfeldes wird gespeichert, wenn du auf „Seite speichern“ klickst!<br />',
+'''Nur''' der Inhalt des oberen Textfeldes wird gespeichert, wenn du auf „Seite speichern“ klickst!",
 'yourtext'                  => 'Dein Text',
 'storedversion'             => 'Gespeicherte Version',
 'nonunicodebrowser'         => '<strong>Achtung:</strong> Dein Browser kann Unicode-Zeichen nicht richtig verarbeiten. Bitte verwende einen anderen Browser um Seiten zu bearbeiten.',
@@ -794,11 +794,11 @@ Zu deiner Information folgt das Lösch-Logbuch mit der Begründung für die vorh
 # "Undo" feature
 'undo-success' => 'Die Änderung konnte erfolgreich rückgängig gemacht werden. Bitte die Bearbeitung in der Vergleichsansicht kontrollieren und dann auf „Seite speichern“ klicken, um sie zu speichern.',
 'undo-failure' => '<span class="error">Die Änderung konnte nicht rückgängig gemacht werden, da der betroffene Abschnitt zwischenzeitlich verändert wurde.</span>',
-'undo-summary' => 'Änderung $1 von [[Special:Contributions/$2|$2]] ([[User_talk:$2|Diskussion]]) wurde rückgängig gemacht.',
+'undo-summary' => 'Änderung $1 von [[{{#special:Contributions}}/$2|$2]] ([[{{ns:User talk}}:$2|Diskussion]]) wurde rückgängig gemacht.',
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Benutzerkonto kann nicht erstellt werden',
-'cantcreateaccount-text' => "Die Erstellung eines Benutzerkontos von der IP-Adresse <b>$1</b> aus wurde von [[User:$3|$3]] gesperrt.
+'cantcreateaccount-text' => "Die Erstellung eines Benutzerkontos von der IP-Adresse '''($1)''' aus wurde durch [[{{ns:user}}:$3|$3]] gesperrt.
 
 Grund der Sperre: ''$2''",
 
@@ -877,8 +877,8 @@ Nähere Angaben zum Löschvorgang sowie eine Begründung finden sich im [{{fullu
 
 # History merging
 'mergehistory'                     => 'Versionsgeschichten vereinen',
-'mergehistory-header'              => "Mit dieser Spezialseite kannst du die Versionsgeschichte einer Ursprungsseite mit der Versionsgeschichte einer Zielseite vereinen.
-Stelle sicher, dass die Versionsgeschichte eines Artikel historisch korrekt ist.",
+'mergehistory-header'              => 'Mit dieser Spezialseite kannst du die Versionsgeschichte einer Ursprungsseite mit der Versionsgeschichte einer Zielseite vereinen.
+Stelle sicher, dass die Versionsgeschichte eines Artikels historisch korrekt ist.',
 'mergehistory-box'                 => 'Versionsgeschichten zweier Seiten vereinen',
 'mergehistory-from'                => 'Ursprungsseite:',
 'mergehistory-into'                => 'Zielseite:',
@@ -1014,11 +1014,11 @@ Wenn du dich mit dem Thema auskennst, kannst du selbst die Seite „[[$1]]“ ve
 'editusergroup'                    => 'Benutzerrechte bearbeiten',
 'editinguser'                      => "Ändere Benutzerrechte von '''[[{{ns:User}}:$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[{{#Special:Contributions}}/$1|{{int:contribslink}}]])",
 'userrights-editusergroup'         => 'Benutzer-Gruppenzugehörigkeit bearbeiten',
-'saveusergroups'                   => 'Gruppenzugehörigkeit speichern',
+'saveusergroups'                   => 'Gruppenzugehörigkeit ändern',
 'userrights-groupsmember'          => 'Mitglied von:',
 'userrights-groupsremovable'       => 'Entfernbare Gruppen:',
 'userrights-groupsavailable'       => 'Verfügbare Gruppen:',
-'userrights-groupshelp'            => "Wähle die Gruppen, aus denen der Benutzer entfernt oder zu denen er hinzugefügt werden soll. Nicht selektierte Gruppen werden nicht geändert. Eine Selektion kann mit '''Strg + Linksklick''' (bzw. Ctrl + Linksklick) entfernt werden.",
+'userrights-groups-help'           => 'Du kannst du Gruppenzugehörigkeit für diesen Benutzer ändern. Ein markiertes Kästchen bedeutet, dass der Benutzer Mitglied dieser Gruppe ist. Ein unmarkiertes Kästchen, dass er kein Mitglied ist.',
 'userrights-reason'                => 'Grund:',
 'userrights-available-none'        => 'Du darst keine Benutzerrechte verändern.',
 'userrights-available-add'         => 'Du kannst Benutzer {{PLURAL:$2|der folgenden Gruppe|den folgenden $2 Gruppen}} hinzufügen: $1.',
@@ -1027,8 +1027,10 @@ Wenn du dich mit dem Thema auskennst, kannst du selbst die Seite „[[$1]]“ ve
 'userrights-available-remove-self' => 'Du kannst dich selbst aus {{PLURAL:$2|dieser Gruppe|diesen Gruppen}} entfernen: $1.',
 'userrights-no-interwiki'          => 'Du hast keine Berechtigung, Benutzerrechte in anderen Wikis zu ändern.',
 'userrights-nodatabase'            => 'Die Datenbank $1 ist nicht vorhanden oder nicht lokal.',
-'userrights-nologin'               => 'Du musst dich mit einem Administrator-Benutzerkonto [[Special:Userlogin|anmelden]], um Benutzerrechte zu ändern.',
+'userrights-nologin'               => 'Du musst dich mit einem Administrator-Benutzerkonto [[{{#special:Userlogin}}|anmelden]], um Benutzerrechte zu ändern.',
 'userrights-notallowed'            => 'Du besitzt nicht die erforderlichen Berechtigungen, um Benutzerrechte zu vergeben.',
+'userrights-changeable-col'        => 'Gruppenzugehörigkeit, die du ändern kannst',
+'userrights-unchangeable-col'      => 'Gruppenzugehörigkeit, die du nicht ändern kannst',
 
 # Groups
 'group'               => 'Gruppe:',
@@ -1060,7 +1062,7 @@ Wenn du dich mit dem Thema auskennst, kannst du selbst die Seite „[[$1]]“ ve
 'recentchangestext'                 => "Auf dieser Seite kannst du die letzten Änderungen auf '''{{SITENAME}}''' nachverfolgen.",
 'recentchanges-feed-description'    => 'Verfolge mit diesem Feed die letzten Änderungen in {{SITENAME}}.',
 'rcnote'                            => "Angezeigt {{PLURAL:$1|wird '''1''' Änderung|werden die letzten '''$1''' Änderungen}} {{PLURAL:$2|des letzten Tages|der letzten '''$2''' Tage}}. Stand: $3. (<b><tt>Neu</tt></b>&nbsp;– neuer Eintrag; <b><tt>K</tt></b>&nbsp;– kleine Änderung; <b><tt>B</tt></b>&nbsp;– Änderung durch einen Bot; ''(± Zahl)''&nbsp;– Größenänderung in Byte)",
-'rcnotefrom'                        => 'Angezeigt werden die Änderungen seit <b>$2</b> (max. <b>$1</b> Einträge).',
+'rcnotefrom'                        => "Angezeigt werden die Änderungen seit '''$2''' (max. '''$1''' Einträge).",
 'rclistfrom'                        => 'Nur Änderungen seit $1 zeigen.',
 'rcshowhideminor'                   => 'Kleine Änderungen $1',
 'rcshowhidebots'                    => 'Bots $1',
@@ -1396,7 +1398,7 @@ auf die bereits die erste Weiterleitung zeigen sollte.',
 'ancientpages-summary'            => 'Diese Spezialseite zeigt eine Liste von Seiten, die am längsten nicht mehr geändert worden sind.',
 'move'                            => 'Verschieben',
 'movethispage'                    => 'Seite verschieben',
-'unusedimagestext'                => '<p>Bitte beachte, dass andere Webseiten diese Datei mit einer direkten URL verlinken können. Diese wird nicht als Verwendung erkannt, so dass die Datei hier aufgeführt wird.</p>',
+'unusedimagestext'                => 'Bitte beachte, dass andere Webseiten diese Datei mit einer direkten URL verlinken können. Diese wird nicht als Verwendung erkannt, so dass die Datei hier aufgeführt wird.',
 'unusedcategoriestext'            => 'Diese Spezialseite zeigt alle Kategorien, die leer sind, also selbst keine Kategorien oder Seiten enthalten.',
 'notargettitle'                   => 'Keine Seite angegeben',
 'notargettext'                    => 'Du hast nicht angegeben, auf welche Seite diese Funktion angewendet werden soll.',
@@ -1503,7 +1505,7 @@ Wenn du die Seite wieder von deiner Beobachtungsliste entfernen möchtest, klick
 'watchlist-show-minor' => 'kleine Änderungen einblenden',
 'watchlist-hide-minor' => 'kleine Änderungen ausblenden',
 
-# Displayed when you click the "watch" button and it's in the process of watching
+# Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Beobachten …',
 'unwatching' => 'Nicht beobachten …',
 
@@ -1679,8 +1681,6 @@ $1',
 'mycontris'     => 'Eigene Beiträge',
 'contribsub2'   => 'Für $1 ($2)',
 'nocontribs'    => 'Es wurden keine Benutzerbeiträge mit diesen Kriterien gefunden.',
-'ucnote'        => 'Dies sind die letzten <b>$1</b> Beiträge des Benutzers in den letzten <b>$2</b> Tagen.',
-'uclinks'       => 'Zeige die letzten $1 Beiträge; zeige die letzten $2 Tage.',
 'uctop'         => '(aktuell)',
 'month'         => 'und Monat:',
 'year'          => 'bis Jahr:',
@@ -2373,23 +2373,23 @@ Darauf folgende Seitenlinks in derselben Zeile definieren Ausnahmen, in deren Ko
 'monthsall'        => 'alle',
 
 # E-mail address confirmation
-'confirmemail'            => 'E-Mail-Adresse bestätigen (Authentifizierung)',
-'confirmemail_noemail'    => 'Du hast keine gültige E-Mail-Adresse in deinen [[Special:Preferences|persönlichen Einstellungen]] eingetragen.',
-'confirmemail_text'       => '{{SITENAME}} erfordert, dass du deine E-Mail-Adresse bestätigst (authentifizieren), bevor du die erweiterten E-Mail-Funktionen benutzen kannst. Klicke bitte auf die unten stehende, mit „Bestätigungscode zuschicken“ beschriftete Schaltfläche, damit eine automatisch erstellte E-Mail an die angegebene Adresse geschickt wird. Diese E-Mail enthält eine Web-Adresse mit einem Bestätigungscode. Indem du diese Webseite in deinem Webbrowser öffnest, bestätigst du, dass die angegebene E-Mail-Adresse korrekt und gültig ist.',
-'confirmemail_pending'    => '<div class="error">Es wurde dir bereits ein Bestätigungs-Code per E-Mail zugeschickt. Wenn du dein Benutzerkonto erst vor kurzem erstellt hast, warte bitte noch ein paar Minuten auf die E-Mail, bevor du einen neuen Code anforderst.</div>',
-'confirmemail_send'       => 'Bestätigungscode zuschicken',
-'confirmemail_sent'       => 'Bestätigungs-E-Mail wurde verschickt.',
-'confirmemail_oncreate'   => 'Ein Bestätigungs-Code wurde an deine E-Mail-Adresse gesandt. Dieser Code wird für die Anmeldung nicht benötigt, jedoch wird er zur Aktivierung der E-Mail-Funktionen innerhalb des Wikis gebraucht.',
-'confirmemail_sendfailed' => 'Die Bestätigungs-E-Mail konnte nicht versendet werden. Bitte prüfe die E-Mail-Adresse auf ungültige Zeichen.
+'confirmemail'             => 'E-Mail-Adresse bestätigen (Authentifizierung)',
+'confirmemail_noemail'     => 'Du hast keine gültige E-Mail-Adresse in deinen [[Special:Preferences|persönlichen Einstellungen]] eingetragen.',
+'confirmemail_text'        => '{{SITENAME}} erfordert, dass du deine E-Mail-Adresse bestätigst (authentifizieren), bevor du die erweiterten E-Mail-Funktionen benutzen kannst. Klicke bitte auf die unten stehende, mit „Bestätigungscode zuschicken“ beschriftete Schaltfläche, damit eine automatisch erstellte E-Mail an die angegebene Adresse geschickt wird. Diese E-Mail enthält eine Web-Adresse mit einem Bestätigungscode. Indem du diese Webseite in deinem Webbrowser öffnest, bestätigst du, dass die angegebene E-Mail-Adresse korrekt und gültig ist.',
+'confirmemail_pending'     => '<div class="error">Es wurde dir bereits ein Bestätigungs-Code per E-Mail zugeschickt. Wenn du dein Benutzerkonto erst vor kurzem erstellt hast, warte bitte noch ein paar Minuten auf die E-Mail, bevor du einen neuen Code anforderst.</div>',
+'confirmemail_send'        => 'Bestätigungscode zuschicken',
+'confirmemail_sent'        => 'Bestätigungs-E-Mail wurde verschickt.',
+'confirmemail_oncreate'    => 'Ein Bestätigungs-Code wurde an deine E-Mail-Adresse gesandt. Dieser Code wird für die Anmeldung nicht benötigt, jedoch wird er zur Aktivierung der E-Mail-Funktionen innerhalb des Wikis gebraucht.',
+'confirmemail_sendfailed'  => 'Die Bestätigungs-E-Mail konnte nicht versendet werden. Bitte prüfe die E-Mail-Adresse auf ungültige Zeichen.
 
 Rückmeldung des Mailservers: $1',
-'confirmemail_invalid'    => 'Ungültiger Bestätigungscode. Möglicherweise ist der Bestätigungszeitraum verstrichen. Versuche bitte, die Bestätigung zu wiederholen.',
-'confirmemail_needlogin'  => 'Du musst dich $1, um deine E-Mail-Adresse zu bestätigen.',
-'confirmemail_success'    => 'Deine E-Mail-Adresse wurde erfolgreich bestätigt. Du kannst dich jetzt einloggen.',
-'confirmemail_loggedin'   => 'Deine E-Mail-Adresse wurde erfolgreich bestätigt.',
-'confirmemail_error'      => 'Es gab einen Fehler bei der Bestätigung deiner E-Mail-Adresse.',
-'confirmemail_subject'    => '[{{SITENAME}}] - Bestätigung der E-Mail-Adresse',
-'confirmemail_body'       => 'Hallo,
+'confirmemail_invalid'     => 'Ungültiger Bestätigungscode. Möglicherweise ist der Bestätigungszeitraum verstrichen. Versuche bitte, die Bestätigung zu wiederholen.',
+'confirmemail_needlogin'   => 'Du musst dich $1, um deine E-Mail-Adresse zu bestätigen.',
+'confirmemail_success'     => 'Deine E-Mail-Adresse wurde erfolgreich bestätigt. Du kannst dich jetzt einloggen.',
+'confirmemail_loggedin'    => 'Deine E-Mail-Adresse wurde erfolgreich bestätigt.',
+'confirmemail_error'       => 'Es gab einen Fehler bei der Bestätigung deiner E-Mail-Adresse.',
+'confirmemail_subject'     => '[{{SITENAME}}] - Bestätigung der E-Mail-Adresse',
+'confirmemail_body'        => 'Hallo,
 
 jemand mit der IP-Adresse $1, wahrscheinlich du selbst, hat das Benutzerkonto "$2" in {{SITENAME}} registriert.
 
@@ -2407,7 +2407,6 @@ $5
 Dieser Bestätigungscode ist gültig bis $4.',
 'confirmemail_invalidated' => 'E-Mail-Adressbestätigung abbrechen',
 'invalidateemail'          => 'E-Mail-Adressbestätigung abbrechen',
-
 
 # Scary transclusion
 'scarytranscludedisabled' => '[Interwiki-Einbindung ist deaktiviert]',

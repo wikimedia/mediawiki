@@ -165,11 +165,11 @@ Sollte das Problem bestehen bleiben, melden Sie sich ab und danach wieder an.</s
 <strong>Bitte versuchen Sie es erneut, indem Sie unter der folgenden Textvorschau nochmals auf „Seite speichern“ klicken. Sollte das Problem bestehen bleiben, melden Sie sich ab und danach wieder an.</strong>",
 'token_suffix_mismatch'     => '<strong>Ihre Bearbeitung wurde zurückgewiesen, da Ihr Browser Zeichen im Bearbeiten-Token verstümmelt hat.
 Eine Speicherung kann den Seiteninhalt zerstören. Dies geschieht bisweilen durch die Benutzung eines anonymen Proxy-Dienstes, der fehlerhaft arbeitet.</strong>',
-'explainconflict'           => 'Jemand anders hat diese Seite geändert, nachdem Sie angefangen haben diese zu bearbeiten.
+'explainconflict'           => "Jemand anders hat diese Seite geändert, nachdem Sie angefangen haben diese zu bearbeiten.
 Das obere Textfeld enthält den aktuellen Stand.
 Das untere Textfeld enthält Ihre Änderungen.
 Bitte fügen Sie Ihre Änderungen in das obere Textfeld ein.
-<b>Nur</b> der Inhalt des oberen Textfeldes wird gespeichert, wenn Sie auf „Seite speichern“ klicken!<br />',
+'''Nur''' der Inhalt des oberen Textfeldes wird gespeichert, wenn Sie auf „Seite speichern“ klicken!",
 'yourtext'                  => 'Ihr Text',
 'nonunicodebrowser'         => '<strong>Achtung:</strong> Ihr Browser kann Unicode-Zeichen nicht richtig verarbeiten. Bitte verwenden Sie einen anderen Browser um Seiten zu bearbeiten.',
 'editingold'                => '<strong>ACHTUNG: Sie bearbeiten eine alte Version dieser Seite. Wenn Sie speichern, werden alle neueren Versionen überschrieben.</strong>',
@@ -203,10 +203,8 @@ Nähere Angaben zum Löschvorgang sowie eine Begründung finden sich im [{{fullu
 'revdelete-nooldid-text' => 'Sie haben keine Version angegeben, auf die diese Aktion ausgeführt werden soll.',
 
 # History merging
-'mergehistory-header' => "Mit dieser Spezialseite können Sie die Versionsgeschichte einer Ursprungsseite mit der Versionsgeschichte einer Zielseite vereinen.
-Stellen Sie sicher, dass die Versionsgeschichte eines Artikel historisch korrekt ist.
-
-'''Als Minumum muss die aktuelle Version der Ursprungsseite erhalten bleiben.'''",
+'mergehistory-header' => 'Mit dieser Spezialseite können Sie die Versionsgeschichte einer Ursprungsseite mit der Versionsgeschichte einer Zielseite vereinen.
+Stellen Sie sicher, dass die Versionsgeschichte eines Artikels historisch korrekt ist.',
 'mergehistory-merge'  => 'Die folgenden Versionen von „[[:$1]]“ können nach „[[:$2]]“ übertragen werden. Markieren Sie die Version, bis zu der (einschließlich) die Versionen übertragen werden sollen. Bitte beachten Sie, dass die Nutzung der Navigationslinks die Auswahl zurücksetzt.',
 'mergehistory-fail'   => 'Versionsvereinigung nicht möglich, bitte prüfen Sie die Seite und die Zeitangaben.',
 
@@ -219,8 +217,8 @@ Versuchen Sie es über die Volltextsuche.
 Alternativ können Sie auch den [[Special:Allpages|alphabetischen Index]] nach ähnlichen Begriffen durchsuchen.
 
 Wenn Sie sich mit dem Thema auskennen, können Sie selbst die Seite „[[$1]]“ verfassen.",
-'search-suggest'        => 'Meinten Sie „$1“?',
 'toomanymatches'        => 'Es Anzahl der Suchergnisse ist zu groß, bitte versuchen Sie eine andere Abfrage.',
+'search-suggest'        => 'Meinten Sie „$1“?',
 'searchdisabled'        => 'Die {{SITENAME}} Suche wurde deaktiviert. Sie können unterdessen mit Google suchen. Bitte bedenken Sie, dass der Suchindex für {{SITENAME}} veraltet sein kann.',
 
 # Preferences page
@@ -230,16 +228,17 @@ Wenn Sie sich mit dem Thema auskennen, können Sie selbst die Seite „[[$1]]“
 'timezonetext'        => 'Geben Sie die Anzahl der Stunden ein, die zwischen Ihrer Zeitzone und UTC liegen.',
 
 # User rights
-'userrights-groupshelp'            => "Wählen Sie die Gruppen, aus denen der Benutzer entfernt oder zu denen er hinzugefügt werden soll.
-Nicht selektierte Gruppen werden nicht geändert. Eine Selektion kann mit '''Strg + Linksklick''' (bzw. Ctrl + Linksklick) entfernt werden.",
+'userrights-groups-help'           => 'Sie können die Gruppenzugehörigkeit für diesen Benutzer ändern. Ein markiertes Kästchen bedeutet, dass der Benutzer Mitglied dieser Gruppe ist. Ein unmarkiertes Kästchen, dass er kein Mitglied ist.',
 'userrights-available-none'        => 'Sie dürfen keine Benutzerrechte verändern.',
 'userrights-available-add'         => 'Sie können Benutzer {{PLURAL:$2|der folgenden Gruppe|den folgenden $2 Gruppen}} hinzufügen: $1.',
 'userrights-available-remove'      => 'Sie können Benutzer aus {{PLURAL:$2|der folgenden Gruppe|den folgenden $2 Gruppen}} entfernen: $1.',
 'userrights-available-add-self'    => 'Sie können sich selbst {{PLURAL:$2|dieser Gruppe|diesen Gruppen}} hinzufügen: $1.',
 'userrights-available-remove-self' => 'Sie können sich selbst aus {{PLURAL:$2|dieser Gruppe|diesen Gruppen}} entfernen: $1.',
 'userrights-no-interwiki'          => 'Sie haben keine Berechtigung, Benutzerrechte in anderen Wikis zu ändern.',
-'userrights-nologin'               => 'Sie müssen sich mit einem Administrator-Benutzerkonto [[Special:Userlogin|anmelden]], um Benutzerrechte zu ändern.',
+'userrights-nologin'               => 'Sie müssen sich mit einem Administrator-Benutzerkonto [[{{#special:Userlogin}}|anmelden]], um Benutzerrechte zu ändern.',
 'userrights-notallowed'            => 'Sie besitzen nicht die erforderlichen Berechtigungen, um Benutzerrechte zu vergeben.',
+'userrights-changeable-col'        => 'Gruppenzugehörigkeit, die Sie ändern dürfen',
+'userrights-unchangeable-col'      => 'Gruppenzugehörigkeit, die Sie nicht ändern dürfen',
 
 # Recent changes
 'recentchangestext'              => "Auf dieser Seite können Sie die letzten Änderungen auf '''{{SITENAME}}''' nachverfolgen.",
@@ -310,7 +309,7 @@ Bitte geben Sie der Datei einen Namen, der den Inhalt besser beschreibt.',
 'unusedtemplates-summary' => 'Diese Seite listet alle Vorlagen auf, die nicht in anderen Seiten eingebunden sind. Überprüfen Sie andere Links zu den Vorlagen, bevor Sie diese löschen.',
 
 # Miscellaneous special pages
-'unusedimagestext' => '<p>Bitte beachten Sie, dass andere Webseiten diese Datei mit einer direkten URL verlinken können. Diese wird nicht als Verwendung erkannt, so dass die Datei hier aufgeführt wird.</p>',
+'unusedimagestext' => 'Bitte beachten Sie, dass andere Webseiten diese Datei mit einer direkten URL verlinken können. Diese wird nicht als Verwendung erkannt, so dass die Datei hier aufgeführt wird.',
 'notargettext'     => 'Sie haben nicht angegeben, auf welche Seite diese Funktion angewendet werden soll.',
 
 # Book sources
