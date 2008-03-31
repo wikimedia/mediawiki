@@ -1382,7 +1382,9 @@ please see math/README to configure.',
 'userrights-groupsmember'          => 'Member of:',
 'userrights-groupsremovable'       => 'Removable groups:',
 'userrights-groupsavailable'       => 'Available groups:',
-'userrights-groupshelp'            => 'You may alter the groups this user is in. A checked box means the user is in that group. An unchecked box means the user is not in that group.',
+'userrights-groupshelp'            => 'You may alter the groups this user is in.
+A checked box means the user is in that group.
+An unchecked box means the user is not in that group.',
 'userrights-reason'                => 'Reason for change:',
 'userrights-available-none'        => 'You may not alter group membership.',
 'userrights-available-add'         => 'You can add any user to {{PLURAL:$2|this group|these groups}}: $1.',
@@ -1393,8 +1395,8 @@ please see math/README to configure.',
 'userrights-nodatabase'            => 'Database $1 does not exist or is not local.',
 'userrights-nologin'               => 'You must [[Special:Userlogin|log in]] with an administrator account to assign user rights.',
 'userrights-notallowed'            => 'Your account does not have permission to assign user rights.',
-'userrights-changeable-col'	   => 'Groups you can change',
-'userrights-unchangeable-col'	   => 'Groups you cannot change',
+'userrights-changeable-col'        => 'Groups you can change',
+'userrights-unchangeable-col'      => 'Groups you cannot change',
 
 # Groups
 'group'               => 'Group:',

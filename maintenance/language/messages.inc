@@ -786,6 +786,8 @@ $wgMessageStructure = array(
 		'userrights-nodatabase',
 		'userrights-nologin',
 		'userrights-notallowed',
+		'userrights-changeable-col',
+		'userrights-unchangeable-col',
 	),
 	'group' => array(
 		'group',
