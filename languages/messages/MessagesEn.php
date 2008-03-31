@@ -1382,7 +1382,7 @@ please see math/README to configure.',
 'userrights-groupsmember'          => 'Member of:',
 'userrights-groupsremovable'       => 'Removable groups:',
 'userrights-groupsavailable'       => 'Available groups:',
-'userrights-groupshelp'            => 'You may alter the groups this user is in.
+'userrights-groups-help'            => 'You may alter the groups this user is in.
 A checked box means the user is in that group.
 An unchecked box means the user is not in that group.',
 'userrights-reason'                => 'Reason for change:',

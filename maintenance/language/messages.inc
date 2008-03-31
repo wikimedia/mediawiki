@@ -775,7 +775,7 @@ $wgMessageStructure = array(
 		'userrights-groupsmember',
 		'userrights-groupsremovable',
 		'userrights-groupsavailable',
-		'userrights-groupshelp',
+		'userrights-groups-help',
 		'userrights-reason',
 		'userrights-available-none',
 		'userrights-available-add',
