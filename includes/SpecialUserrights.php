@@ -97,7 +97,6 @@ class UserrightsPage extends SpecialPage {
 				if( $wgUser->matchEditToken( $wgRequest->getVal( 'wpEditToken' ), $this->mTarget ) ) {
 					$this->saveUserGroups(
 						$this->mTarget,
-						$wgRequest,
 						$reason
 					);
 				}
@@ -115,13 +114,11 @@ class UserrightsPage extends SpecialPage {
 	 * Data comes from the editUserGroupsForm() form function
 	 *
 	 * @param string $username Username to apply changes to.
-	 * @param array $removegroup id of groups to be removed.
-	 * @param array $addgroup id of groups to be added.
 	 * @param string $reason Reason for group change
 	 * @return null
 	 */
-	function saveUserGroups( $username, $request, $reason = '') {
-		global $wgUser, $wgGroupsAddToSelf, $wgGroupsRemoveFromSelf;
+	function saveUserGroups( $username, $reason = '') {
+		global $wgRequest, $wgUser, $wgGroupsAddToSelf, $wgGroupsRemoveFromSelf;
 
 		$user = $this->fetchUser( $username );
 		if( !$user ) {
@@ -137,7 +134,7 @@ class UserrightsPage extends SpecialPage {
 		foreach ($allgroups as $group) {
 			// We'll tell it to remove all unchecked groups, and add all checked groups.
 			// Later on, this gets filtered for what can actually be removed
-			if ($request->getCheck( "wpGroup-$group" )) {
+			if ($wgRequest->getCheck( "wpGroup-$group" )) {
 				$addgroup[] = $group;
 			} else {
 				$removegroup[] = $group;
@@ -189,7 +186,6 @@ class UserrightsPage extends SpecialPage {
 		if( $newGroups != $oldGroups ) {
 			$log = new LogPage( 'rights' );
 
-			global $wgRequest;
 			$log->addEntry( 'rights',
 				$user->getUserPage(),
 				$wgRequest->getText( 'user-reason' ),
