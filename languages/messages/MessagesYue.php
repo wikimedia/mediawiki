@@ -484,13 +484,13 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'namespaceprotected'   => "你無權編輯響'''$1'''空間名裏面嘅呢一版。",
 'customcssjsprotected' => '你無權編輯呢一版，因為佢包含咗另一位用戶嘅個人設定。',
 'ns-specialprotected'  => '響{{ns:special}}空間名嘅版係唔可以編輯嘅。',
-'titleprotected'       => '呢個標題已經俾[[User:$1|$1]]保護咗防止去開。原因係<i>$2</i>。',
+'titleprotected'       => "呢個標題已經俾[[User:$1|$1]]保護咗防止去開。原因係''$2''。",
 
 # Login and logout pages
 'logouttitle'                => '用戶登出',
-'logouttext'                 => '<strong>你而家已經登出咗。</strong>
+'logouttext'                 => "'''你而家已經登出咗。'''
 
-你仍然可以用匿名身份用{{SITENAME}}，又或者重新登入。但係留意某啲頁面可能會繼續話你登入咗，除非等你清除瀏覽器嘅快取儲存。',
+你仍然可以用匿名身份用{{SITENAME}}，又或者重新登入。但係留意某啲頁面可能會繼續話你登入咗，除非等你清除瀏覽器嘅快取儲存。",
 'welcomecreation'            => '== 歡迎， $1！ ==
 
 你個戶口已經起好。唔好唔記得去改改你嘅{{SITENAME}}喜好設定喎。',
@@ -501,7 +501,9 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'remembermypassword'         => '響呢部電腦度記住我嘅密碼',
 'yourdomainname'             => '你嘅網域:',
 'externaldberror'            => '外部驗證資料庫出錯，或者唔允許你更新你嘅外部帳戶。',
-'loginproblem'               => '<b>你嘅登入手續出咗問題。</b><br />唔該再試吓登入。',
+'loginproblem'               => "'''你嘅登入手續出咗問題。'''
+
+唔該再試吓登入。",
 'login'                      => '登入',
 'loginprompt'                => '你一定要開咗 cookies 先登入到{{SITENAME}}。',
 'userlogin'                  => '登入／開新戶口',
@@ -668,51 +670,53 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'noarticletext'             => '喺呢一頁而家並冇任何嘅文字，你可以喺其它嘅頁面中[[Special:Search/{{PAGENAME}}|搵呢一頁嘅標題]]或者[{{fullurl:{{FULLPAGENAME}}|action=edit}} 編輯呢一頁]。',
 'userpage-userdoesnotexist' => '用戶戶口"$1"重未開。請響䦒／編輯呢版之前先檢查一下。',
 'clearyourcache'            => "'''注意：'''喺儲存之後，你可能要先略過你嘅瀏覽器快取去睇到更改。'''Mozilla / Firefox / Safari:''' 㩒住''Shift''掣再撳''重新載入''，又或者㩒''Ctrl-Shift-R''（喺蘋果Mac中㩒''Cmd-Shift-R''掣）； '''IE:''' 㩒住''Ctrl''掣再撳''重新整理''，又或者㩒''Ctrl-F5''掣； '''Konqueror:''' 就咁以撳個''重載''掣，又或者㩒''F5''； '''Opera'''嘅用戶可能需要先喺''工具→喜好設定''之中清佢哋嘅快取。",
-'usercssjsyoucanpreview'    => '<strong>提示：</strong>響儲存前，用「顯示預覽」個掣嚟測試你嘅新CSS/JS。',
+'usercssjsyoucanpreview'    => "'''提示：'''響儲存前，用「顯示預覽」個掣嚟測試你嘅新CSS/JS。",
 'usercsspreview'            => "'''請注意你而家只係預覽緊你嘅用戶CSS樣式表，內容仍未儲存！'''",
 'userjspreview'             => "'''請注意你而家只係測試／預覽緊你定義嘅JavaScript，佢嘅內容重未儲存！'''",
 'userinvalidcssjstitle'     => "'''警告：''' 無叫做 \"\$1\" 嘅畫面。請記住自訂介面的 .css 和 .js 頁面時應使用細楷，例如：{{ns:user}}:Foo/monobook.css 而唔係 {{ns:user}}:Foo/Monobook.css 。",
 'updated'                   => '(己更新)',
-'note'                      => '<strong>Note:</strong>',
-'previewnote'               => '<strong>請記住呢個只係預覽；更改嘅内容重未儲存！</strong>',
+'note'                      => "'''留意:'''",
+'previewnote'               => "'''請記住呢個只係預覽；更改嘅内容重未儲存！'''",
 'previewconflict'           => '呢個預覽係反映如果你選擇儲存嘅話，嘅上面嘅文字編輯區裏面嘅字會儲存落嚟。',
-'session_fail_preview'      => '<strong>對唔住！由於小節嘅資料唔見咗，我哋唔能夠處理你嘅編輯。
-請再試過喇。如果仍然唔得嘅話，試下登出，然後重新登入。</strong>',
-'session_fail_preview_html' => "<strong>對唔住！有關嘅程序資料已經遺失，我哋唔能夠處理你嘅編輯。</strong>
+'session_fail_preview'      => "'''對唔住！由於小節嘅資料唔見咗，我哋唔能夠處理你嘅編輯。
+請再試過喇。如果仍然唔得嘅話，試下登出，然後重新登入。'''",
+'session_fail_preview_html' => "'''對唔住！有關嘅程序資料已經遺失，我哋唔能夠處理你嘅編輯。'''
 
 ''由於{{SITENAME}}已經開放咗原 HTML 碼，預覽已經隱藏落嚟以預防 JavaScript 嘅攻擊。''
 
-<strong>如果呢個係正當嘅編輯嘗試，請再試過。如果重係唔得嘅話，請先登出然後再登入。</strong>",
-'token_suffix_mismatch'     => '<strong>因為你嘅用戶端度嘅編輯幣整壞咗一啲標點符號字元，你嘅編輯已經拒絕咗。個編輯已經拒絕，以防止嗰版嘅文字損毀。
-當你響度用緊一啲好多臭蟲，以網絡為主嘅匿名代理服務。</strong>',
+'''如果呢個係正當嘅編輯嘗試，請再試過。如果重係唔得嘅話，請先登出然後再登入。'''",
+'token_suffix_mismatch'     => "'''因為你嘅用戶端度嘅編輯幣整壞咗一啲標點符號字元，你嘅編輯已經拒絕咗。個編輯已經拒絕，以防止嗰版嘅文字損毀。
+當你響度用緊一啲好多臭蟲，以網絡為主嘅匿名代理服務。'''",
 'editing'                   => '而家喺度編輯$1',
 'editingsection'            => '而家喺度編輯$1 （小節）',
 'editingcomment'            => '而家喺度編輯$1 （評論）',
 'editconflict'              => '編輯衝突：$1',
-'explainconflict'           => '有其他人喺你開始編輯之後已經更改呢一頁。
+'explainconflict'           => "有其他人喺你開始編輯之後已經更改呢一頁。
 喺上面嗰個空間而家現存嘅頁面文字。
 你嘅更改會喺下面嘅文字空間顯示。
 你需要合併你嘅更改到原有嘅文字。
-喺你撳「儲存頁面」之後，<b>只有</b>喺上面嘅文字區會被儲存。<br />',
+喺你撳「儲存頁面」之後，'''只有'''喺上面嘅文字區會被儲存。",
 'yourtext'                  => '你嘅文字',
 'storedversion'             => '已經儲存咗嘅版本',
-'nonunicodebrowser'         => '<strong>警告：你嘅瀏覽器係唔係用緊 Unicode 。而家暫時有個解決方法，方便你可以安全咁編輯呢版：唔係 ASCII 嘅字元會喺編輯框裏面用十六進位編碼顯示。</strong>',
-'editingold'                => '<strong>警告：你而家係編輯緊喺呢一頁嘅過時版本。如果你儲存佢，喺呢個版本嘅任何更改都會被遺失。</strong>',
+'nonunicodebrowser'         => "'''警告：你嘅瀏覽器係唔係用緊 Unicode 。而家暫時有個解決方法，方便你可以安全咁編輯呢版：唔係 ASCII 嘅字元會喺編輯框裏面用十六進位編碼顯示。'''",
+'editingold'                => "'''警告：你而家係編輯緊喺呢一頁嘅過時版本。如果你儲存佢，喺呢個版本嘅任何更改都會被遺失。'''",
 'yourdiff'                  => '差異',
-'copyrightwarning'          => '請留意喺{{SITENAME}}度，所有喺呢度嘅貢獻會被考慮到喺$2之下發出（睇$1有更詳細嘅資訊）。如果你係唔想你編輯嘅文字無喇喇咁被分發，咁就唔好喺呢度遞交。<br />
+'copyrightwarning'          => "請留意喺{{SITENAME}}度，所有喺呢度嘅貢獻會被考慮到喺$2之下發出（睇$1有更詳細嘅資訊）。如果你係唔想你編輯嘅文字無喇喇咁被分發，咁就唔好喺呢度遞交。
+
 你亦都要同我哋保證啲文字係你自己寫嘅，或者係由公有領域或相似嘅自由資源複製落嚟。
-<strong>喺未有任何許可嘅情況之下千祈唔好遞交有版權嘅作品！</strong>',
-'copyrightwarning2'         => '請留意喺{{SITENAME}}度，所有嘅貢獻可能會被其他嘅貢獻者編輯、修改，或者刪除。如果你係唔想你編輯嘅文字無喇喇咁被編輯，咁就唔好喺呢度遞交。<br />
+'''喺未有任何許可嘅情況之下千祈唔好遞交有版權嘅作品！'''",
+'copyrightwarning2'         => "請留意喺{{SITENAME}}度，所有嘅貢獻可能會被其他嘅貢獻者編輯、修改，或者刪除。如果你係唔想你編輯嘅文字無喇喇咁被編輯，咁就唔好喺呢度遞交。
+
 你亦都要同我哋保證啲文字係你自己寫嘅，或者係由公有領域或相似嘅自由資源複製落嚟（睇$1有更詳細嘅資訊）。
-<strong>喺未有任何許可嘅情況之下千祈唔好遞交有版權嘅作品！</strong>',
-'longpagewarning'           => '<strong>警告：呢一頁有 $1 kilobytes 咁長；有啲瀏覽器可能會喺就離或者超過 32kb 編輯頁面會出現一啲問題。
-請考慮分割呢個頁面到細啲嘅小節。</strong>',
-'longpageerror'             => '<strong>錯誤：你所遞交嘅文字係有 $1 kilobytes 咁長，係長過最大嘅 $2 kilobytes。儲唔到你遞交嘅文字。</strong>',
-'readonlywarning'           => '<strong>錯誤：料庫已經鎖住咗，以便定期保養。而家你唔可以儲起你嘅編輯。你可以儲啲文字落一份文字檔先。</strong>',
-'protectedpagewarning'      => '<strong>警告：呢版已經受到保護，只有管理員權限嘅用戶先至可以改。</strong>',
+'''喺未有任何許可嘅情況之下千祈唔好遞交有版權嘅作品！'''",
+'longpagewarning'           => "'''警告：呢一頁有 $1 kilobytes 咁長；有啲瀏覽器可能會喺就離或者超過 32kb 編輯頁面會出現一啲問題。
+請考慮分割呢個頁面到細啲嘅小節。'''",
+'longpageerror'             => "'''錯誤：你所遞交嘅文字係有 $1 kilobytes 咁長，係長過最大嘅 $2 kilobytes。儲唔到你遞交嘅文字。'''",
+'readonlywarning'           => "'''錯誤：料庫已經鎖住咗，以便定期保養。而家你唔可以儲起你嘅編輯。你可以儲啲文字落一份文字檔先。'''",
+'protectedpagewarning'      => "'''警告：呢版已經受到保護，只有管理員權限嘅用戶先至可以改。'''",
 'semiprotectedpagewarning'  => "'''注意：'''呢一頁已經鎖咗，只有已經註冊嘅用戶先至可以改。",
 'cascadeprotectedwarning'   => "'''警告：'''呢一頁已經鎖咗，只有管理員權限嘅用戶先至可以改，因為佢係響以下連串保護嘅{{PLURAL:$1|一|幾}}頁度包含咗：",
-'titleprotectedwarning'     => '<strong>警告：呢一版已經鎖咗，只有一啲用戶先至可以開到。</strong>',
+'titleprotectedwarning'     => "'''警告：呢一版已經鎖咗，只有一啲用戶先至可以開到。'''",
 'templatesused'             => '喺呢一頁所用嘅模：',
 'templatesusedpreview'      => '喺呢一次預覽所用嘅模：',
 'templatesusedsection'      => '喺呢一小節所用嘅模：',
@@ -738,7 +742,7 @@ MySQL 嘅錯誤回應 "$3: $4"',
 
 # Account creation failure
 'cantcreateaccounttitle' => '唔可以開新戶口',
-'cantcreateaccount-text' => "由呢個IP地址 (<b>$1</b>) 開嘅新戶口已經被[[User:$3|$3]]封鎖。
+'cantcreateaccount-text' => "由呢個IP地址 ('''$1''') 開嘅新戶口已經被[[User:$3|$3]]封鎖。
 
 當中俾$3封鎖嘅原因係''$2''",
 
@@ -875,8 +879,8 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'search-section'        => '(小節 $1)',
 'search-suggest'        => '你係唔係搵: $1',
 'searchall'             => '全部',
-'showingresults'        => '自#<b>$2</b>起顯示最多<b>$1</b>個結果。',
-'showingresultsnum'     => '自#<b>$2</b>起顯示<b>$3</b>個結果。',
+'showingresults'        => "'自#'''$2'''起顯示最多'''$1'''個結果。",
+'showingresultsnum'     => "自#'''$2'''起顯示'''$3'''個結果。",
 'showingresultstotal'   => "下面顯示緊由'''$1 - $2'''，總共'''$3'''項嘅結果",
 'nonefound'             => "'''注意'''：搵嘢結果為空通常係因為你搵嘅係\"have\"、\"from\"等太常用而唔會被索引入數據庫嘅詞，又或者係你指定咗太多嘅關鍵字（只有包含所有你指定嘅關鍵字嘅頁面先至會被搵到出嚟）。",
 'powersearch'           => '進階搵嘢',
@@ -956,17 +960,22 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'userrights-groupsmember'          => '屬於：',
 'userrights-groupsremovable'       => '拎得走嘅組：',
 'userrights-groupsavailable'       => '可用嘅組：',
-'userrights-groupshelp'            => '選擇你想畀用戶加入或移出嘅組。未選擇嘅組將唔會被改變。你可以用CTRL + 撳滑鼠左掣以取消已經選擇嘅一個組',
+'userrights-groupshelp'            => '你可以改嘅位用戶所屬嘅組。
+
+剔咗嘅盒代表個用戶係屬於嗰組。
+未剔嘅盒代表個用戶唔係屬於嗰組。',
 'userrights-reason'                => '更改嘅原因:',
 'userrights-available-none'        => '你唔可以改組成員。',
-'userrights-available-add'         => '你可以加入用戶到{{PLURAL:$2|呢一組|呢幾組}}: $1。',
-'userrights-available-remove'      => '你可以響{{PLURAL:$2|呢一組|呢幾組}}度拎走用戶: $1。',
+'userrights-available-add'         => '你可以加入任何用戶到{{PLURAL:$2|呢一組|呢幾組}}: $1。',
+'userrights-available-remove'      => '你可以響{{PLURAL:$2|呢一組|呢幾組}}度拎走任何用戶: $1。',
 'userrights-available-add-self'    => '你可以將你自己加入到{{PLURAL:$2|呢一組|呢幾組}}: $1。',
 'userrights-available-remove-self' => '你可以響{{PLURAL:$2|呢一組|呢幾組}}度拎走你自己: $1。',
 'userrights-no-interwiki'          => '你並無權限去編輯響其它wiki嘅用戶權限。',
 'userrights-nodatabase'            => '資料庫$1唔存在或者唔係本地嘅。',
 'userrights-nologin'               => '你一定要以操作員戶口[[Special:Userlogin|登入]]咗之後先可以指定用戶權限。',
 'userrights-notallowed'            => '你嘅戶口無權限去指定用戶權限。',
+'userrights-changeable-col'        => '你可以改嘅組',
+'userrights-unchangeable-col'      => '你唔可以改嘅組',
 
 # Groups
 'group'               => '組：',
@@ -997,8 +1006,8 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'recentchanges'                     => '最近更改',
 'recentchangestext'                 => '追蹤對哩一個 wiki 嘅最後更改。',
 'recentchanges-feed-description'    => '追蹤對哩一個 wiki 度呢個集合嘅最後更改。',
-'rcnote'                            => '以下係響$3，近<strong>$2</strong>日嘅最後<strong>$1</strong>次修改。',
-'rcnotefrom'                        => '以下係自<b>$2</b>嘅更改（顯示到<b>$1</b>）。',
+'rcnote'                            => "以下係響$3，近'''$2'''日嘅最後'''$1'''次修改。",
+'rcnotefrom'                        => "以下係自'''$2'''嘅更改（顯示到'''$1'''）。",
 'rclistfrom'                        => '顯示由$1嘅新更改',
 'rcshowhideminor'                   => '$1小編輯',
 'rcshowhidebots'                    => '$1機械人',
@@ -1065,17 +1074,21 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'large-file'                  => '建議檔案嘅大細唔好大過$1 bytes，呢個檔案有$2 bytes',
 'largefileserver'             => '呢個檔案超過咗伺服器設定允許嘅大細。',
 'emptyfile'                   => '你上載嘅檔案似乎係空嘅。噉樣可能係因為你打錯咗個檔名。請檢查吓你係唔係真係要上載呢個檔案。',
-'fileexists'                  => '呢個檔名已經存在，如果你唔肯定係唔係要更改<strong><tt>$1</tt></strong>，請先檢查佢。',
-'filepageexists'              => '呢個檔嘅描述頁已經響<strong><tt>$1</tt></strong>開咗，但係呢個名嘅檔案重未存在。你輸入咗嘅摘要係唔會顯示響個描述頁度。要令到個摘要響嗰度出現，你就要手動噉去編輯佢。',
-'fileexists-extension'        => '一個相似檔名嘅檔案已經存在:<br />
-上載檔案嘅檔名: <strong><tt>$1</tt></strong><br />
-現有檔案嘅檔名: <strong><tt>$2</tt></strong><br />
-請揀一個唔同嘅名。',
+'fileexists'                  => "呢個檔名已經存在，如果你唔肯定係唔係要更改'''<tt>$1</tt>'''，請先檢查佢。",
+'filepageexists'              => "呢個檔嘅描述頁已經響'''<tt>$1</tt></strong>開咗，但係呢個名嘅檔案重未存在。你輸入咗嘅摘要係唔會顯示響個描述頁度。要令到個摘要響嗰度出現，你就要手動噉去編輯佢。'''",
+'fileexists-extension'        => "一個相似檔名嘅檔案已經存在:
+
+上載檔案嘅檔名: '''<tt>$1</tt>'''
+
+現有檔案嘅檔名: '''<tt>$2</tt>'''
+
+請揀一個唔同嘅名。",
 'fileexists-thumb'            => "<center>'''已經存在嘅檔案'''</center>",
-'fileexists-thumbnail-yes'    => '呢個檔案好似係一幅圖像縮細咗嘅版本<i>（縮圖）</i>。請檢查清楚個檔案<strong><tt>$1</tt></strong>。<br />
-如果檢查咗嘅檔案係同原本幅圖個大細係一樣嘅話，就唔使再上載多一幅縮圖。',
-'file-thumbnail-no'           => '個檔名係以<strong><tt>$1</tt></strong>開始。佢好似係一幅圖像嘅縮細版本<i>（縮圖）</i>。
-如果你有呢幅圖像嘅完整大細，唔係嘅話請再改過個檔名。',
+'fileexists-thumbnail-yes'    => "呢個檔案好似係一幅圖像縮細咗嘅版本''（縮圖）''。請檢查清楚個檔案'''<tt>$1</tt>'''。
+
+如果檢查咗嘅檔案係同原本幅圖個大細係一樣嘅話，就唔使再上載多一幅縮圖。",
+'file-thumbnail-no'           => "個檔名係以'''<tt>$1</tt>'''開始。佢好似係一幅圖像嘅縮細版本''（縮圖）''。
+如果你有呢幅圖像嘅完整大細，唔係嘅話請再改過個檔名。",
 'fileexists-forbidden'        => '呢個檔案嘅名已經存在；麻煩返轉去用第二個名嚟上載呢個檔案。[[Image:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => '共享檔案庫入面已經有一個同名嘅檔案；麻煩返轉去用第二個名嚟上載呢個檔案。[[Image:$1|thumb|center|$1]]',
 'successfulupload'            => '成功嘅上載',
@@ -1097,7 +1110,7 @@ MySQL 嘅錯誤回應 "$3: $4"',
 
 你應該要考慮吓繼續上載呢個檔案係唔係適合嘅。
 為咗方便起見，呢個檔案嘅刪除記錄已經響下面提供:",
-'filename-bad-prefix'         => '你上載嘅檔名係以<strong>"$1"</strong>做開頭，通常呢種無含意嘅檔名係響數碼相機度自動編排。請響你個檔案度揀過一個更加有意義嘅檔名。',
+'filename-bad-prefix'         => "你上載嘅檔名係以'''\"$1\"'''做開頭，通常呢種無含意嘅檔名係響數碼相機度自動編排。請響你個檔案度揀過一個更加有意義嘅檔名。",
 
 'upload-proto-error'      => '唔正確嘅協議',
 'upload-proto-error-text' => '遙遠上載需要一個以 <code>http://</code> 或者 <code>ftp://</code> 作為開頭嘅URL。',
@@ -1291,7 +1304,7 @@ Template:搞清楚',
 'ancientpages'            => '舊頁面',
 'move'                    => '移動',
 'movethispage'            => '移動呢一頁',
-'unusedimagestext'        => '<p>請注意，第啲網站會用直接用URL連結到一個檔，所以呢度可能有啲用緊嘅檔。</p>',
+'unusedimagestext'        => '請注意，第啲網站會用直接用URL連結到一個檔，所以呢度可能有啲用緊嘅檔。',
 'unusedcategoriestext'    => '呢啲類存在，但入面冇嘢亦都冇分類。',
 'notargettitle'           => '冇目標',
 'notargettext'            => '你冇指定到呢個功能要用喺嘅對象頁面或用戶。',
@@ -1383,7 +1396,7 @@ Template:搞清楚',
 'watchmethod-list'     => '睇緊被監視頁有乜新修改',
 'watchlistcontains'    => '你嘅監視清單裏面有$1頁。',
 'iteminvalidname'      => "項目'$1'出錯，無效嘅名稱...",
-'wlnote'               => '以下係最近<b>$2</b>個鐘之內嘅最新$1次修改。',
+'wlnote'               => "以下係最近'''$2'''個鐘之內嘅最新$1次修改。",
 'wlshowlast'           => '顯示最近 $1 個鐘 $2 日 $3 嘅修改',
 'watchlist-show-bots'  => '顯示機械人嘅編輯',
 'watchlist-hide-bots'  => '隱藏機械人嘅編輯',
@@ -1468,7 +1481,7 @@ wiki: $PAGEEDITOR_WIKI
 'alreadyrolled'               => '無法反轉[[User:$2|$2]]（[[User talk:$2|留言]]）對[[:$1]]嘅最後編輯；有人已經修改過或者反轉咗呢個頁面。
 
 上次編輯係由[[User:$3|$3]]（[[User talk:$3|留言]]）做嘅。',
-'editcomment'                 => '編輯摘要係："<i>$1</i>".', # only shown if there is an edit comment
+'editcomment'                 => "編輯摘要係：\"''$1''\"。", # only shown if there is an edit comment
 'revertpage'                  => '已經反轉由[[Special:Contributions/$2|$2]]（[[User talk:$2|對話]]）所寫嘅編輯；恢復到[[User:$1|$1]]嘅最後版本。', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success'            => '已經反轉由$1所寫嘅編輯；恢復到$2嘅最後版本。',
 'sessionfailure'              => '你嘅登入會話 (session) 好似有啲問題；為咗防止會話劫持，呢個操作已經取消。請撳「返轉頭」然後重新載入你嚟自嘅頁面，然後再試吓啦。',
@@ -1484,13 +1497,13 @@ wiki: $PAGEEDITOR_WIKI
 'protect_expiry_invalid'      => '到期時間唔正確。',
 'protect_expiry_old'          => '到期時間係響之前過去嘅。',
 'protect-unchain'             => '解除移動權限嘅鎖定',
-'protect-text'                => '你可以喺呢度睇到同修改頁面<strong><nowiki>$1</nowiki></strong>嘅保護等級。',
-'protect-locked-blocked'      => '當你響被封鎖嗰陣唔可以改呢版嘅保護等級。
-呢個係<strong>$1</strong>版嘅現時設定：',
-'protect-locked-dblock'       => '響資料庫主動鎖住咗嗰陣係唔可以改呢版嘅保護等級。
-呢個係<strong>$1</strong>版嘅現時設定：',
-'protect-locked-access'       => '你嘅戶口係無權限去改呢版嘅保護等級。
-呢個係<strong>$1</strong>版嘅現時設定：',
+'protect-text'                => "你可以喺呢度睇到同修改頁面'''<nowiki>$1</nowiki>'''嘅保護等級。",
+'protect-locked-blocked'      => "當你響被封鎖嗰陣唔可以改呢版嘅保護等級。
+呢個係'''$1'''版嘅現時設定：",
+'protect-locked-dblock'       => "響資料庫主動鎖住咗嗰陣係唔可以改呢版嘅保護等級。
+呢個係'''$1'''版嘅現時設定：",
+'protect-locked-access'       => "你嘅戶口係無權限去改呢版嘅保護等級。
+呢個係'''$1'''版嘅現時設定：",
 'protect-cascadeon'           => '呢一版現時正響度保護緊，因為佢係響以下嘅{{PLURAL:$1|一|幾}}頁度包含咗，而當中又開咗連串保護。你可以更改呢一版嘅保護等級，但係呢個修改係唔會影響到嗰個連串保護。',
 'protect-default'             => '（預設）',
 'protect-fallback'            => '需要"$1"嘅許可',
@@ -1566,8 +1579,6 @@ $1',
 'mycontris'     => '我嘅貢獻',
 'contribsub2'   => '$1嘅貢獻 ($2)',
 'nocontribs'    => '搵唔到符合呢啲條件嘅修改。',
-'ucnote'        => '以下係呢個用戶喺最近<b>$2</b>日內嘅最後<b>$1</b>次修改。',
-'uclinks'       => '睇吓最近$2日；睇吓最近嘅$1次修改。',
 'uctop'         => '(最頂)',
 'month'         => '由呢個月 (同更早):',
 'year'          => '由呢一年 (同更早):',
@@ -1706,7 +1717,7 @@ $1',
 
 注意如果已經有一個同個新名同名嘅頁面，噉呢個頁面係搬'''唔到'''嘅，除非嗰個同名嘅頁面係空嘅或者佢係一個跳轉頁，兼且要之前冇編輯過（冇編輯歷史）先得。噉即係講萬一你搞錯咗，你可以將呢個頁面改返去佢改之前噉，你唔可以覆蓋一個現有嘅頁面。
 
-<b>警告！</b>
+'''警告！'''
 噉樣對於一個好多人經過嘅頁面嚟講可能係一個好大嘅同埋出人意表嘅修改；請你喺行動之前確認你清楚噉做嘅後果。",
 'movepagetalktext'        => "相應嘅討論頁會連同佢一齊自動搬過去，'''除非'''：
 *新嘅頁面名下面已經有咗一個非空嘅討論頁，又或者
@@ -1728,7 +1739,7 @@ $1',
 'movedto'                 => '搬去',
 'movetalk'                => '搬相應嘅討論頁',
 'talkpagemoved'           => '相應嘅討論頁已經搬咗。',
-'talkpagenotmoved'        => '相應嘅討論頁<strong>冇</strong>搬到。',
+'talkpagenotmoved'        => "相應嘅討論頁'''冇'''搬到。",
 '1movedto2'               => '[[$1]]搬到去[[$2]]',
 '1movedto2_redir'         => '[[$1]]通過跳轉搬到去[[$2]]',
 'movelogpage'             => '移動日誌',
