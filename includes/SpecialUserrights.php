@@ -387,7 +387,7 @@ class UserrightsPage extends SpecialPage {
 	private static function buildGroupLink( $group ) {
 		static $cache = array();
 		if( !isset( $cache[$group] ) )
-			$cache[$group] = User::makeGroupLinkHtml( $group, User::getGroupMember( $group ) );
+			$cache[$group] = User::makeGroupLinkHtml( $group, User::getGroupName( $group ) );
 		return $cache[$group];
 	}
 
