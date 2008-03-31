@@ -261,7 +261,7 @@ class ChangesList {
 	 * Check whether to enable recent changes patrol features
 	 * @return bool
 	 */
-	function usePatrol() {
+	public static function usePatrol() {
 		global $wgUseRCPatrol, $wgUser;
 		return( $wgUseRCPatrol && ($wgUser->isAllowed('patrol') || $wgUser->isAllowed('patrolmarks')) );
 	}
