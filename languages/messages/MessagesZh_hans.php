@@ -1,5 +1,5 @@
 <?php
-/** Simplified Chinese (‪中文(简体)‬)
+/** Chinese (Simplified) (‪中文 (简化字)‬)
  *
  * @addtogroup Language
  *
@@ -900,17 +900,22 @@ $2',
 'userrights-groupsmember'          => '隶属于:',
 'userrights-groupsremovable'       => '可移除群组:',
 'userrights-groupsavailable'       => '可加入群组:',
-'userrights-groupshelp'            => '选择您想使该用户退出或加入的组群。反选时组群将不改变。您可以通过按住 CTRL 键 + 单击鼠标左键来反选',
+'userrights-groupshelp'            => '您可以改动这位用户所属的组群。
+
+已剔选的核取方块代表该用户属于该组群。
+未剔选的核取方块代表该用户不是属于该组群。',
 'userrights-reason'                => '更改原因:',
 'userrights-available-none'        => '您不可以更改组别成员。',
-'userrights-available-add'         => '您可以加入用户到{{PLURAL:$2|一个|多个}}组中: $1。',
-'userrights-available-remove'      => '您可以从{{PLURAL:$2|一个|多个}}组中移除用户: $1。',
+'userrights-available-add'         => '您可以加入任何用户到{{PLURAL:$2|一个|多个}}组中: $1。',
+'userrights-available-remove'      => '您可以从{{PLURAL:$2|一个|多个}}组中移除任何用户: $1。',
 'userrights-available-add-self'    => '您可以加入您自己到{{PLURAL:$2|一个|多个}}组中: $1。',
 'userrights-available-remove-self' => '您可以从{{PLURAL:$2|一个|多个}}组中移除您自己: $1。',
 'userrights-no-interwiki'          => '您并没有权限去编辑在其它wiki上的用户权限。',
 'userrights-nodatabase'            => '数据库$1不存在或并非为本地的。',
 'userrights-nologin'               => '您必须要以操作员帐户[[Special:Userlogin|登入]]之后才可以指定用户权限。',
 'userrights-notallowed'            => '您的帐户无权限去指定用户权限。',
+'userrights-changeable-col'        => '您可以更改的组群',
+'userrights-unchangeable-col'      => '您不可以更改的组群',
 
 # Groups
 'group'               => '群组:',

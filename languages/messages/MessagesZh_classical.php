@@ -758,17 +758,22 @@ $2',
 'userrights-groupsmember'          => '有員：',
 'userrights-groupsremovable'       => '社可治無：',
 'userrights-groupsavailable'       => '社可治有：',
-'userrights-groupshelp'            => '揀社以增員、減員，未揀者不變也。欲略之，押Ctrl並左擊。',
+'userrights-groupshelp'            => '爾動員之社也。
+
+選解員之社屬。
+未選則非社屬。',
 'userrights-reason'                => '因：',
 'userrights-available-none'        => '爾非改組員也。',
-'userrights-available-add'         => '爾可加簿至{{PLURAL:$2|單組|數組}}也：$1。',
-'userrights-available-remove'      => '爾可自{{PLURAL:$2|單組|數組}}減簿也：$1。',
+'userrights-available-add'         => '爾可加任簿至{{PLURAL:$2|單組|數組}}也：$1。',
+'userrights-available-remove'      => '爾可自{{PLURAL:$2|單組|數組}}減任簿也：$1。',
 'userrights-available-add-self'    => '爾可加己至{{PLURAL:$2|單組|數組}}也：$1。',
 'userrights-available-remove-self' => '爾可自{{PLURAL:$2|單組|數組}}減己也：$1。',
 'userrights-no-interwiki'          => '爾無權改他山wiki之簿權也。',
 'userrights-nodatabase'            => '資料庫$1無存或非本地也。',
 'userrights-nologin'               => '爾以有秩乲簿[[Special:Userlogin|登]]後以定簿之權也。',
 'userrights-notallowed'            => '爾之簿無權定簿之權也。',
+'userrights-changeable-col'        => '爾可動之社',
+'userrights-unchangeable-col'      => '爾非動之社',
 
 # Groups
 'group'               => '社：',
