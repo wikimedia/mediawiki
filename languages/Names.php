@@ -210,7 +210,6 @@
 	'nl' => 'Nederlands',	# Dutch
 	'nn' => "\xE2\x80\xAANorsk (nynorsk)\xE2\x80\xAC",	# Norwegian (Nynorsk)
 	'no' => "\xE2\x80\xAANorsk (bokmål)\xE2\x80\xAC",		# Norwegian
-	'non' => 'Norrǿna',		# Old Norse
 	'nov' => 'Novial',		# Novial
 	'nrm' => 'Nouormand',	# Norman
 	'nso' => 'Sesotho sa Leboa',	# Northern Sotho
