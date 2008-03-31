@@ -285,7 +285,9 @@
 	'ta' => 'தமிழ்',	# Tamil
 	'te' => 'తెలుగు',	# Telugu
 	'tet' => 'Tetun',	# Tetun
-	'tg' => 'Тоҷикӣ',	# Tajiki
+	'tg' => 'Тоҷикӣ/tojikī',	# Tajiki (falls back to tg-cyrl)
+	'tg-cyrl' => 'Тоҷикӣ',	# Tajiki (Cyrllic script) (default)
+	'tg-latn' => 'tojikī',	# Tajiki (Latin script)
 	'th' => 'ไทย',	# Thai
 	'ti' => 'ትግርኛ',		# Tigrinya
 	'tk' => 'Türkmen',	# Turkmen
