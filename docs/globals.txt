@@ -45,6 +45,13 @@ however some of the most important ones are listed below.
 They are typically initialised either in index.php or in 
 Setup.php.
 
+For a description of the classes, see design.txt.
+
+$wgTitle
+	Title object created from the request URL.
+
+$wgArticle
+	Article object corresponding to $wgTitle.
 
 $wgOut
 	OutputPage object for HTTP response.
@@ -53,25 +60,16 @@ $wgUser
 	User object for the user associated with the current
 	request.
 
-$wgTitle
-	Title object created from the request URL.
-
 $wgLang
-	Language object selected by user preferences
+	Language object selected by user preferences.
 
 $wgContLang
 	Language object associated with the wiki being
 	viewed.
 
-$wgArticle
-	Article object corresponding to $wgTitle.
-
 $wgParser
 	Parser object. Parser extensions register their
 	hooks here.
-
-$wgLoadBalancer
-	A LoadBalancer object, manages database connections.
 
 $wgRequest
 	WebRequest object, to get request data
