@@ -391,7 +391,7 @@ $messages = array(
 'badaccess-groups' => 'Handlingen du prøvde å utføre kan kun utføres av $1.',
 
 'versionrequired'     => 'Versjon $1 av MediaWiki påtrengt',
-'versionrequiredtext' => 'Versjon $1 av MediaWiki er nødvendig for å bruke denne siden. Se [[Special:Version]]',
+'versionrequiredtext' => 'Versjon $1 av MediaWiki er nødvendig for å bruke denne siden. Se [[Special:Version|versjonsiden]]',
 
 'ok'                      => 'OK',
 'retrievedfrom'           => 'Hentet fra «$1»',
@@ -952,7 +952,8 @@ Forsikre deg om at denne endringen vil opprettholde historisk sidekontinuitet.',
 'userrights-groupsmember'          => 'Medlem av:',
 'userrights-groupsremovable'       => 'Fjernbare grupper:',
 'userrights-groupsavailable'       => 'Tilgjengelige grupper:',
-'userrights-groupshelp'            => 'Velg grupper du vil at brukeren skal fjernes fra eller lagt til. Ikke valgte grupper forandres ikke. Du kan fjerne merkingen av en gruppe med Ctrl&nbsp;+ Venstreklikk.',
+'userrights-groups-help'           => 'Du kan endre hvilke grupper denne brukeren er medlem av.
+Når en boks er merket betyr det at brukeren er medlem av den gruppen.',
 'userrights-reason'                => 'Endringsgrunn:',
 'userrights-available-none'        => 'Du kan ikke endre gruppemedlemsskaper.',
 'userrights-available-add'         => 'Du kan legge til brukere i {{PLURAL:$2|denne gruppa|disse gruppene}}: $1.',
@@ -963,6 +964,8 @@ Forsikre deg om at denne endringen vil opprettholde historisk sidekontinuitet.',
 'userrights-nodatabase'            => 'Databasen $1 finnes ikke, eller er ikke lokal.',
 'userrights-nologin'               => 'Du må [[Special:Userlogin|logge inn]] med en administratorkonto for å endre brukerrettigheter.',
 'userrights-notallowed'            => 'Kontoen din har ikke tillatelse til å endre brukerrettigheter.',
+'userrights-changeable-col'        => 'Grupper du kan endre',
+'userrights-unchangeable-col'      => 'Grupper du ikke kan endre',
 
 # Groups
 'group'               => 'Gruppe:',

@@ -451,7 +451,7 @@ $messages = array(
 'badaccess-groups' => 'L’action que vous essayez de réaliser n’est accessible qu’aux utilisateurs des groupes $1.',
 
 'versionrequired'     => 'Version $1 de MediaWiki nécessaire',
-'versionrequiredtext' => 'La version $1 de MediaWiki est nécessaire pour utiliser cette page. Consultez [[Special:Version]]',
+'versionrequiredtext' => 'La version $1 de MediaWiki est nécessaire pour utiliser cette page. Consultez [[Special:Version|la page des versions]]',
 
 'ok'                      => 'OK',
 'retrievedfrom'           => 'Récupérée de « $1 »',
@@ -735,7 +735,7 @@ Votre adresse IP est $3 et votre identifiant de blocage est #$5. Veuillez les pr
 Pour créer cette page, entrez votre texte dans la boîte ci-dessous (vous pouvez consulter [[{{MediaWiki:Helppage}}|la page d’aide]] pour plus d’informations).
 Si vous êtes arrivé ici par erreur, cliquez sur le bouton '''retour''' de votre navigateur.",
 'anontalkpagetext'          => "---- ''Vous êtes sur la page de discussion d’un utilisateur anonyme qui n’a pas encore créé de compte ou qui n’en utilise pas. Pour cette raison, nous devons utiliser son adresse IP pour l’identifier. Une adresse IP peut être partagée par plusieurs utilisateurs. Si vous êtes un utilisateur anonyme et si vous constatez que des commentaires qui ne vous concernent pas vous ont été adressés, vous pouvez [[Special:Userlogin|créer un compte ou vous connecter]] afin d’éviter toute confusion future avec d’autres contributeurs anonymes.''",
-'noarticletext'             => 'Il n’y a pour l’instant aucun texte sur cette page ; vous pouvez [[Special:Search/{{PAGENAME}}|lancer une recherche sur le titre de cette page]], vérifier qu’elle n’a pas été [{{fullurl:Special:Log|type=delete&page={{FULLPAGENAMEE}}}} supprimée] ou [{{fullurl:{{FULLPAGENAME}}|action=edit}} modifier cette page].',
+'noarticletext'             => 'Il n’y a pour l’instant aucun texte sur cette page ; vous pouvez [[Special:Search/{{PAGENAME}}|lancer une recherche sur son titre]] dans d’autres pages ou de [{{fullurl:{{FULLPAGENAME}}|action=edit}} la modifier].',
 'userpage-userdoesnotexist' => 'Le compte utilisateur « $1 » n’est pas enregistré. Veuillez vérifier que vous voulez créer cette page.',
 'clearyourcache'            => "'''Note :''' Après avoir sauvegardé la page, vous devrez forcer son rechargement pour voir les changements : '''Mozilla / Konqueror / Firefox :''' ''Shift-Ctrl-R'', '''Internet Explorer / Opera :''' ''Ctrl-F5'', '''Safari :''' ''Cmd-R''.",
 'usercssjsyoucanpreview'    => "'''Astuce :''' utilisez le bouton « Prévisualisation » pour tester votre nouvelle feuille CSS/JS avant de l’enregistrer.",
@@ -1014,7 +1014,6 @@ $2 Inclure les pages de redirection<br /> Rechercher $3 $9',
 'userrights-groupsmember'          => 'Membre de :',
 'userrights-groupsremovable'       => 'Groupes supprimables :',
 'userrights-groupsavailable'       => 'Groupes disponibles :',
-'userrights-groupshelp'            => 'Choisissez les groupes desquels vous voulez retirer ou rajouter l’utilisateur. Les groupes non sélectionnés ne seront pas modifiés. Vous pouvez désélectionner un groupe avec CTRL + clic gauche.',
 'userrights-reason'                => 'Motif du changement :',
 'userrights-available-none'        => 'Vous ne pouvez pas changer l’appartenance aux différents groupes.',
 'userrights-available-add'         => 'Vous pouvez ajouter des utilisateurs à {{PLURAL:$2|ce groupe|ces groupes}}: $1.',

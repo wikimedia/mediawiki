@@ -742,8 +742,6 @@ i yesɛan akk awalen i banen-d).",
 'saveusergroups'              => 'Smekti iderman n yimseqdacen',
 'userrights-groupsmember'     => 'Amaslad deg:',
 'userrights-groupsavailable'  => 'Iderman i yellan:',
-'userrights-groupshelp'       => 'Xtar anda amseqdac yettwakkes/yettnerni seg/deg iderman.
-Iderman ayen ur ten-textareḍ ara ur ttbeddlen ara. Tzemreḍ ad tekkseḍ adrum s CTRL + Click aẓelmaḍ',
 'userrights-reason'           => 'Ayɣer yettubeddel:',
 'userrights-available-add'    => 'Tzemreḍ ad ternuḍ imseqdacen i $1.',
 'userrights-available-remove' => 'Tzemreḍ ad tekkseḍ imseqdacen seg $1.',

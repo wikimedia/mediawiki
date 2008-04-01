@@ -1004,8 +1004,6 @@ $2 Zoznam presmerovaní &nbsp; Hľadanie pre $3 $9',
 'userrights-groupsmember'          => 'Člen skupiny:',
 'userrights-groupsremovable'       => 'Odstrániteľné skupiny:',
 'userrights-groupsavailable'       => 'Dostupné skupiny:',
-'userrights-groupshelp'            => 'Označte skupiny, do ktorých chcete pridať alebo z ktorých chcete
-odobrať používateľa. Neoznačené skupiny nebudú zmenené. Odobrať skupinu možete pomocou CTRL + kliknutie ľavým tlačidlom',
 'userrights-reason'                => 'Dôvod zmeny:',
 'userrights-available-none'        => 'Nie ste oprávnený meniť členstvo v skupine.',
 'userrights-available-add'         => 'Môžete pridávať používateľov do {{PLURAL:$2|skupiny|skupín}}: $1.',

@@ -293,7 +293,7 @@ $messages = array(
 'badaccess-groups' => 'La ago, kiun vi petis, estas limigita al uzuloj en unu el la grupoj $1.',
 
 'versionrequired'     => 'Versio $1 de MediaWiki nepras',
-'versionrequiredtext' => 'La versio $1 de MediaWiki estas necesa por uzi ĉi tiun paĝon. Vidu [[Special:Version]]',
+'versionrequiredtext' => 'La versio $1 de MediaWiki estas necesa por uzi ĉi tiun paĝon. Vidu [[Special:Version|paĝon pri versio]].',
 
 'ok'                      => 'Ek!',
 'retrievedfrom'           => 'Elŝutita el  "$1"',
@@ -590,7 +590,7 @@ Via forbaro-identigo estas $5.  Bonvolu inkluzivi tiun identigon en iuj ajn dema
 'newarticle'                => '(Nova)',
 'newarticletext'            => 'Vi sekvis ligilon al paĝo jam ne ekzistanta. Se vi volas krei ĝin, ektajpu sube (vidu la [[{{MediaWiki:Helppage}}|helpopaĝo]] por klarigoj.) Se vi malintence alvenis ĉi tien, simple alklaku la retrobutonon de via retumilo.',
 'anontalkpagetext'          => "---- ''Jen diskutopaĝo por iu anonima kontribuanto kiu ne jam kreis konton aŭ ne uzas ĝin. Ni tial devas uzi la cifran IP-adreso por identigi lin. la sama IP-adreso povas estis samtempte uzata de pluraj uzantoj. Se vi estas anonimulo kaj preferus eviti tiajn mistrafajn komentojn kaj konfuziĝon kun aliaj anonimuloj de via retejo, bonvolu [[Special:Userlogin|krei konton aŭ ensaluti]].''",
-'noarticletext'             => '(La paĝo nun estas malplena. Se vi ĵus kreis tiun ĉi paĝon klaku [{{fullurl:{{FULLPAGENAME}}|action=purge}} ĉi tien].)',
+'noarticletext'             => 'La paĝo nune estas malplena. Vi povas [[Special:Search/{{PAGENAME}}|serĉi ĉi tiun paĝtitolon]] en aliaj paĝoj aŭ [{{fullurl:{{FULLPAGENAME}}|action=edit}} redakti ĉi tiun paĝon].',
 'userpage-userdoesnotexist' => 'Uzanto-konto "$1" ne estas registrita. Bonvolu konfirmi se vi volas krei/redakti cxi tiu pagxo.',
 'clearyourcache'            => "'''Notu:''' Post konservado vi forviŝu la kaŝmemoron de via foliumilo por vidi la ŝanĝojn : '''Mozilo:''' alklaku ''Reŝarĝi'' (aŭ ''Stir-Shift-R''), '''IE / Opera:''' ''Stir-F5'', '''Safari:''' ''Cmd-R'', '''Konqueror''' ''Stir-R''.",
 'usercssjsyoucanpreview'    => '<strong>Konsileto:</strong> Uzu la "Antaŭrigardan" butonon por provi vian novan css/js antaŭ konservi.',
@@ -664,7 +664,7 @@ Jen la loglibro de forigoj por via oportuno:",
 # "Undo" feature
 'undo-success' => 'La redakto estas malfarebla. Bonvolu konfirmi la jenan komparajxon por verigi cxi tiel vi volas, kaj konservu la sxangxojn suben fini malfarante la redakton.',
 'undo-failure' => 'Ne eblas nuligi redakton pro konfliktaj intermezaj redaktoj.',
-'undo-summary' => 'Nuligis revizion $1 de [[User:$2|$2]] ([[Special:Contributions/$2|kontribuoj]], [[User_talk:$2|diskutpagxo]])',
+'undo-summary' => 'Nuligis revizion $1 de [[Special:Contributions/$2|$2]] ([[User_talk:$2|diskuto]])',
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Ne povas krei konton',
@@ -896,17 +896,18 @@ Ekzemple, por la Centra Eŭropa Horzono, indiku "1" vintre aŭ "2" dum somertemp
 'userrights-groupsmember'          => 'Membro de:',
 'userrights-groupsremovable'       => 'Forigeblaj grupoj:',
 'userrights-groupsavailable'       => 'Disponeblaj grupoj:',
-'userrights-groupshelp'            => 'Selektu grupojn el kiuj vi volas forigi aŭ al kiuj vi volas aldoni uzanton. Neselektitaj grupoj ne estos ŝanĝitaj. Vi povas malselekti grupon per STR.',
 'userrights-reason'                => 'Kialo por ŝanĝo:',
 'userrights-available-none'        => 'Vi ne eblas ŝanĝi membrecon de grupoj.',
-'userrights-available-add'         => 'Vi povas aldoni uzantojn al {{PLURAL:$2|jena grupo|jenaj grupoj}}: $1.',
-'userrights-available-remove'      => 'Vi povas forigi uzantojn al {{PLURAL:$2|jena grupo|jenaj grupoj}}: $1',
+'userrights-available-add'         => 'Vi povas aldoni iujn ajn uzantojn al {{PLURAL:$2|ĉi tiu grupo|ĉi tiuj grupoj}}: $1.',
+'userrights-available-remove'      => 'Vi povas forigi iujn ajn uzantojn de {{PLURAL:$2|ĉi tiu grupo|ĉi tiuj grupoj}}: $1',
 'userrights-available-add-self'    => 'Vi povas aldoni vin al {{PLURAL:$2|jena grupo|jenaj grupoj}}: $1',
 'userrights-available-remove-self' => 'Vi povas forigi vin al {{PLURAL:$2|jena grupo|jenaj grupoj}}: $1.',
 'userrights-no-interwiki'          => 'Vi ne havas permeson redakti uzanto-rajtojn en aliaj vikioj.',
 'userrights-nodatabase'            => 'Datumbazo $1 ne ekzistas aŭ ne estas loka.',
 'userrights-nologin'               => 'Vi nepre [[Special:Userlogin|ensalutu]] kun administranto-konto doni uzanto-rajtojn.',
 'userrights-notallowed'            => 'Via konto ne havas permeson doni uzanto-rajtojn.',
+'userrights-changeable-col'        => 'Grupoj kiujn vi povas ŝanĝi',
+'userrights-unchangeable-col'      => 'Grupoj kiujn vi ne povas ŝanĝi',
 
 # Groups
 'group'               => 'Grupo:',

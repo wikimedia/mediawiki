@@ -810,7 +810,6 @@ long, which is longer than the maximum of $2 kilobytes. It cannot be saved.</str
 'userrights-groupsmember'          => 'Бу бөлөхтөргө киирэр:',
 'userrights-groupsremovable'       => 'Уларытыллар бөлөхтөр:',
 'userrights-groupsavailable'       => 'Бу бөлөхтөргө киириэххэ сөп:',
-'userrights-groupshelp'            => 'Кыттааччыны киллэриэххин эбэтэр таһаарыаххын баҕарар бөлөхтөргүн тал. Талбатах бөлөхтөрүҥ уларыйбаттар. Снять выделение с группы можно используя CTRL + левую клавишу мыши.',
 'userrights-reason'                => 'Уларытыы төрүөтэ:',
 'userrights-available-none'        => 'Бөлөххө киириини уларытар кыаҕыҥ суох.',
 'userrights-available-add'         => 'Эн бу {{PLURAL:$2|бөлөххө|бөлөхтөргө}} кыттааччылары киллэрэр кыахтааххын: $1',

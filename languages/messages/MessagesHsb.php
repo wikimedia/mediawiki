@@ -914,7 +914,6 @@ Móžeš [[{{ns:special}}:Allpages|alfabetiski indeks přepytować]] abo [[:$1|s
 'userrights-groupsmember'          => 'Čłon skupiny:',
 'userrights-groupsremovable'       => 'Wotstronjomne skupiny:',
 'userrights-groupsavailable'       => 'K dispoziciji stejace skupiny:',
-'userrights-groupshelp'            => 'Wubjer skupiny, z kotrychž chceš wužiwarja wotstronić abo kotrymž chceš wužiwarja přidać. Njewubrane skupiny so njezměnja. Móžeš skupinu z STRG + lěwe kliknjenje wotwolić',
 'userrights-reason'                => 'Přičina:',
 'userrights-available-none'        => 'Njesměš wužiwarske prawa změnić.',
 'userrights-available-add'         => 'Směš wužiwarjow k {{PLURAL:$2|tutej skupinje|tutym skupinam}} přidać: $1.',

@@ -806,7 +806,6 @@ Cunsulthà lu [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} rigisthru di ca
 'userrights-groupsmember'     => 'Appartheni a li gruppi:',
 'userrights-groupsremovable'  => 'Gruppi supprimibiri:',
 'userrights-groupsavailable'  => 'Gruppi dipunìbiri:',
-'userrights-groupshelp'       => "Isciubarà i gruppi a li quari si vó lià o buggà l'utenti. L'apparthinènzia a li gruppi non sciubaraddi nò sarà mudìfiggadda. Pa libà un gruppu, incalchà Ctrl + lu buttoni mancu di lu mouse.",
 'userrights-reason'           => 'Mutibu di la mudìffiga:',
 'userrights-available-none'   => "Nò t'è cunsintiddu mudìffigà l'apparthinènzia a li gruppi.",
 'userrights-available-add'    => 'È pussìbiri assuzià utenti a {{PLURAL:$2|chisthu gruppu|chisthi gruppi}}: $1.',

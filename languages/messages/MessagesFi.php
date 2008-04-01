@@ -9,6 +9,7 @@
  * @author לערי ריינהארט
  * @author Siebrand
  * @author M.M.S.
+ * @author Jack Phoenix
  */
 
 $separatorTransformTable = array(',' => "\xc2\xa0", '.' => ',' );
@@ -350,7 +351,7 @@ Taivutusmuodot: {{GRAMMAR:genitive|{{SITENAME}}}} (yön) — {{GRAMMAR:partitive
 'permalink'         => 'Ikilinkki',
 'print'             => 'Tulosta',
 'edit'              => 'Muokkaa',
-'create'            => 'Luo',
+'create'            => 'Luo sivu',
 'editthispage'      => 'Muokkaa tätä sivua',
 'create-this-page'  => 'Luo tämä sivu',
 'delete'            => 'Poista',
@@ -513,7 +514,7 @@ Taivutusmuodot: {{GRAMMAR:genitive|{{SITENAME}}}} (yön) — {{GRAMMAR:partitive
 $2',
 'namespaceprotected'   => "Et voi muokata sivuja nimiavaruudessa '''$1'''.",
 'customcssjsprotected' => 'Sinulla ei ole oikeuksia muuttaa toisten käyttäjien henkilökohtaisia asetuksia.',
-'ns-specialprotected'  => 'Toimintosivuja ei voi muokata.',
+'ns-specialprotected'  => 'Sivuja {{ns:special}}-nimiavaruudessa ei voi muokata.',
 'titleprotected'       => "Käyttäjä [[User:$1|$1]] on asettanut tämän sivun luontikieltoon: ''$2''.",
 
 # Login and logout pages
@@ -691,7 +692,7 @@ Jos olet sitä mieltä, että sinut on estetty syyttä, voit keskustella asiasta
 'usercssjsyoucanpreview'    => 'Voit testata uutta CSS:ää tai JavaScriptiä ennen tallennusta esikatselulla.',
 'usercsspreview'            => "'''Tämä on CSS:n esikatselu.'''",
 'userjspreview'             => "'''Tämä on JavaScriptin esikatselu.'''",
-'userinvalidcssjstitle'     => 'Tyyliä nimeltä ”$1” ei ole olemassa. Käyttäjän määrittelemät .css- ja .js-sivut alkavat pienellä alkukirjaimella.',
+'userinvalidcssjstitle'     => "'''Varoitus:''' Tyyliä nimeltä ”$1” ei ole olemassa. Muista, että käyttäjän määrittelemät .css- ja .js-sivut alkavat pienellä alkukirjaimella, esim. {{ns:user}}:Matti Meikäläinen/monobook.css eikä {{ns:user}}:Matti Meikäläinen/Monobook.css.",
 'updated'                   => '(Päivitetty)',
 'note'                      => 'Huomautus:',
 'previewnote'               => '<strong>Tämä on vasta sivun esikatselu. Sivua ei ole vielä tallennettu!</strong>',
@@ -956,7 +957,7 @@ $1 | $2',
 'userrights-groupsmember'          => 'Jäsenenä ryhmissä',
 'userrights-groupsremovable'       => 'Poistettavat ryhmät',
 'userrights-groupsavailable'       => 'Saatavilla olevat ryhmät',
-'userrights-groupshelp'            => 'Valitse ryhmät, jotka haluat poistaa tai lisätä. Valitsemattomia ryhmiä ei muuteta. Voit poistaa valinnan pitämällä Ctrl-näppäintä pohjassa napsautuksen aikana.',
+'userrights-groups-help'           => 'Voit muuttaa ryhmiä, joissa tämä käyttäjä on. Merkattu ruutu tarkoittaa, että käyttäjä on kyseisessä ryhmässä. Merkkaamaton ruutu tarkoittaa, että käyttäjä ei ole kyseisessä ryhmässä.',
 'userrights-reason'                => 'Kommentti',
 'userrights-available-none'        => 'Et voi muuttaa ryhmäjäsenyyksiä.',
 'userrights-available-add'         => 'Voit lisätä käyttäjiä {{PLURAL:$2|ryhmään|ryhmiin}} $1.',
@@ -967,6 +968,8 @@ $1 | $2',
 'userrights-nodatabase'            => 'Tietokantaa $1 ei ole tai se ei ole paikallinen.',
 'userrights-nologin'               => 'Sinun täytyy [[Special:Userlogin|kirjautua sisään]] ylläpitäjätunnuksella, jotta voisit muuttaa käyttöoikeuksia.',
 'userrights-notallowed'            => 'Tunnuksellasi ei ole lupaa muuttaa käyttöoikeuksia.',
+'userrights-changeable-col'        => 'Ryhmät, joita voit muuttaa',
+'userrights-unchangeable-col'      => 'Ryhmät, joita et voi muuttaa',
 
 # Groups
 'group'               => 'Ryhmä',
@@ -1737,7 +1740,7 @@ Sivujen koko historian vienti on estetty suorituskykysyistä.',
 'allmessagesdefault'        => 'Oletusarvo',
 'allmessagescurrent'        => 'Nykyinen arvo',
 'allmessagestext'           => 'Tämä on luettelo kaikista MediaWiki-nimiavaruudessa olevista viesteistä.',
-'allmessagesnotsupportedDB' => 'Tämä sivu ei ole käytössä, koska <tt>$wgUseDatabaseMessages</tt>-asetus on pois päältä.',
+'allmessagesnotsupportedDB' => "'''{{ns:special}}:Allmessages''' ei ole käytettävissä, koska '''\$wgUseDatabaseMessages'''-asetus on pois päältä.",
 'allmessagesfilter'         => 'Viestiavainsuodatin:',
 'allmessagesmodified'       => 'Näytä vain muutetut',
 

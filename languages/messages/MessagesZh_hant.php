@@ -1,5 +1,5 @@
 <?php
-/** Chinese (Traditional) (‪中文 (傳統字)‬)
+/** Traditional Chinese (‪中文(繁體)‬)
  *
  * @addtogroup Language
  *
@@ -876,10 +876,6 @@ $2',
 'userrights-groupsmember'          => '屬於:',
 'userrights-groupsremovable'       => '可移除群組:',
 'userrights-groupsavailable'       => '可用群組:',
-'userrights-groupshelp'            => '您可以改動這位用戶所屬的群組。
-
-已剔選的核取方塊代表該用戶屬於該群組。
-未剔選的核取方塊代表該用戶不是屬於該群組。',
 'userrights-reason'                => '更改原因:',
 'userrights-available-none'        => '您不可以更改組別成員。',
 'userrights-available-add'         => '您可以加入任何用戶到{{PLURAL:$2|一個|多個}}組中: $1。',
@@ -1717,7 +1713,7 @@ $1',
 'allmessagesdefault'        => '預設的文字',
 'allmessagescurrent'        => '當前的文字',
 'allmessagestext'           => '這裡列出所有可定製的系統介面。',
-'allmessagesnotsupportedDB' => '系統介面功能處於關閉狀態 (wgUseDatabaseMessages)。',
+'allmessagesnotsupportedDB' => "'''{{ns:Special}}:Allmessages'''無法使用，因為'''\$wgUseDatabaseMessages'''選項已被設定關閉。",
 'allmessagesfilter'         => '正則表達式過濾條件：',
 'allmessagesmodified'       => '僅顯示修改過的',
 

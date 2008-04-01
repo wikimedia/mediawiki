@@ -858,7 +858,6 @@ $2リダイレクトを含める &nbsp; &nbsp; &nbsp; $3 $9',
 'userrights-groupsmember'          => '所属グループ:',
 'userrights-groupsremovable'       => '削除可能なグループ:',
 'userrights-groupsavailable'       => '有効なグループ:',
-'userrights-groupshelp'            => 'この利用者に対し、削除または追加するグループを選択してください。選択されていないグループは変更されません。選択の解除は [CTRL]+[左クリック] で行うことができます。',
 'userrights-reason'                => '変更理由:',
 'userrights-available-none'        => '利用者の所属グループを変更することは出来ません。',
 'userrights-available-add'         => '利用者をグループ $1に追加できます。',
@@ -883,10 +882,10 @@ $2リダイレクトを含める &nbsp; &nbsp; &nbsp; $3 $9',
 'group-sysop-member'         => '{{int:group-sysop}}',
 'group-bureaucrat-member'    => '{{int:group-bureaucrat}}',
 
-'grouppage-autoconfirmed' => '{{ns:project}}:{{int:group-autoconfirmed}}',
-'grouppage-bot'           => '{{ns:project}}:{{int:group-bot}}',
-'grouppage-sysop'         => '{{ns:project}}:{{int:group-sysop}}',
-'grouppage-bureaucrat'    => '{{ns:project}}:{{int:group-bureaucrat}}',
+'grouppage-autoconfirmed' => '{{ns:project}}:自動承認された利用者',
+'grouppage-bot'           => '{{ns:project}}:ボット',
+'grouppage-sysop'         => '{{ns:project}}:管理者',
+'grouppage-bureaucrat'    => '{{ns:project}}:ビューロクラット',
 
 # User rights log
 'rightslog'      => '利用者権限変更記録',
@@ -1052,6 +1051,7 @@ $2リダイレクトを含める &nbsp; &nbsp; &nbsp; $3 $9',
 'noimage'                   => '同名のファイルは存在しません。「$1」リンクをクリックしてください。',
 'noimage-linktext'          => 'このファイル名でアップロードする',
 'uploadnewversion-linktext' => 'このファイルの新しいバージョンをアップロードする',
+'imagepage-searchdupe'      => '重複ファイルを検索する',
 
 # File reversion
 'filerevert'                => '$1 を差し戻す',
@@ -2360,5 +2360,17 @@ $1',
 画像は最大解像度で表示され、他のファイルタイプでは関連付けられたプログラムが直接起動します。
 
 ファイル名は"{{ns:image}}:"を付けずに入力してください。',
+
+# Special:FileDuplicateSearch
+'fileduplicatesearch'          => '重複ファイルの検索',
+'fileduplicatesearch-summary'  => '重複ファイルを、ファイルのハッシュ値に基づいて検索します。
+
+先頭の「{{ns:image}}:」を付けないでファイル名を入力してください。',
+'fileduplicatesearch-legend'   => '重複の検索',
+'fileduplicatesearch-filename' => 'ファイル名:',
+'fileduplicatesearch-submit'   => '検索',
+'fileduplicatesearch-info'     => '$1 × $2 ピクセル<br />ファイルサイズ: $3<br />MIMEタイプ: $4',
+'fileduplicatesearch-result-1' => '「$1」と重複するファイルはありません。',
+'fileduplicatesearch-result-n' => '「$1」と重複するファイルが $2 個あります。',
 
 );

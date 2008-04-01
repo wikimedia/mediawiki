@@ -857,8 +857,6 @@ $2 Toen redirects   Zeuk: $3 $9',
 'userrights-groupsmember'          => 'Leed van:',
 'userrights-groupsremovable'       => 'Verwiederbare groepe:',
 'userrights-groupsavailable'       => 'Besjikbare gruup:',
-'userrights-groupshelp'            => 'Selecteer de gruup wo oetse de gebroeker wils wisse of aan toe wils voege.
-Neet geselecteerde gruup waere neet gewiezig. Deselecteer \'ne groep mit "Ctrl + linkermoesknoep".',
 'userrights-reason'                => "Reje veur 't verangere:",
 'userrights-available-none'        => 'Doe moogs gein gebroekersrechte verangere.',
 'userrights-available-add'         => 'Doe kins gebroekers toevoege aan {{PLURAL:$2|deze groep|dees gruup}}: $1.',

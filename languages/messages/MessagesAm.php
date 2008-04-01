@@ -748,7 +748,6 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 'userrights-groupsmember'          => 'አሁን ያሉባቸው ማዕረጎች፦',
 'userrights-groupsremovable'       => 'ከነዚህ ማዕረጎች መውጣት ይቻላል፦',
 'userrights-groupsavailable'       => 'ወደነዚህ ማዕረጎች መጨመር ይቻላል፦',
-'userrights-groupshelp'            => 'ለዚሁ አባል የሚጨመሩበት ወይም የሚወጡበት ማዕረጎች ያመልክቱ። ያልተመለከቱት ማዕረጎች አይቀየሩም። ማዕረግ ለማመልከት ወይም አለማመልከት በ<CTRL> እና ግራ ማውስ-ክሊክ ይቻላል።',
 'userrights-reason'                => 'የመቀየሩ ምክንያት፦',
 'userrights-available-none'        => 'ማዕረጎችን ለመቀየር አይችሉም።',
 'userrights-available-add'         => 'አባላትን {{PLURAL:$2|ወደዚህ ማዕረግ|ወደነዚህ ማዕረጎች}} ለመጨምር ችሎታ አለዎት፦ $1።',

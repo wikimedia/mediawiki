@@ -186,7 +186,7 @@ $messages = array(
 'tog-previewontop'            => 'Mostrar previsão antes da caixa de edição ao invés de ser após',
 'tog-previewonfirst'          => 'Mostrar previsão na primeira edição',
 'tog-nocache'                 => 'Desactivar caching de páginas',
-'tog-enotifwatchlistpages'    => 'Enviar-me um email quando houver mudanças nas páginas vigadas por mim',
+'tog-enotifwatchlistpages'    => 'Enviar-me um email quando uma página vigiada por mim for alterada',
 'tog-enotifusertalkpages'     => 'Enviar-me um email quando a minha página de discussão for editada',
 'tog-enotifminoredits'        => 'Enviar-me um email também quando forem edições menores',
 'tog-enotifrevealaddr'        => 'Revelar o meu endereço de email nas notificações',
@@ -1005,18 +1005,21 @@ Note que os índices do conteúdo da {{SITENAME}} destes sites podem estar desac
 'userrights-groupsmember'          => 'Membro de:',
 'userrights-groupsremovable'       => 'Grupos com remoção possível:',
 'userrights-groupsavailable'       => 'Grupos disponíveis:',
-'userrights-groupshelp'            => 'Seleccione os grupos nos quais deseja que o utilizador seja removido ou adicionado.
-Grupos não seleccionados não serão alterados. Pode seleccionar ou remover a selecção a um grupo com CTRL + Click esquerdo',
+'userrights-groups-help'           => 'Pode alterar os grupos em que este utilizador se encontra.
+Uma caixa de selecção seleccionada significa que o utilizador se encontra naquele grupo.
+Uma caixa de selecção desseleccionada significa que o utilizador não se encontra naquele grupo.',
 'userrights-reason'                => 'Motivo de alterações:',
 'userrights-available-none'        => 'Não será possível alterar o grupo de acesso.',
-'userrights-available-add'         => 'É possível adicionar utilizadores {{PLURAL:$2|neste grupo|nestes grupos}}: $1',
-'userrights-available-remove'      => 'É possível remover utilizadores {{PLURAL:$2|deste grupo|destes grupos}}: $1.',
+'userrights-available-add'         => 'Pode adicionar qualquer utilizador a {{PLURAL:$2|este grupo|estes grupos}}: $1',
+'userrights-available-remove'      => 'Pode remover qualquer utilizador {{PLURAL:$2|deste grupo|destes grupos}}: $1.',
 'userrights-available-add-self'    => 'Você pode adicionar a si mesmo {{PLURAL:$2|neste grupo|nestes grupos}}: $1.',
 'userrights-available-remove-self' => 'Você pode remover a si mesmo {{PLURAL:$2|deste grupo|destes grupos}}: $1.',
 'userrights-no-interwiki'          => 'Você não tem permissão de alterar privilégios de utilizadores em outras wikis.',
 'userrights-nodatabase'            => 'A base de dados $1 não existe ou não é uma base de dados local.',
 'userrights-nologin'               => 'Você precisa [[Special:Userlogin|autenticar-se]] como um administrador para especificar os privilégios de utilizador.',
 'userrights-notallowed'            => 'Sua conta não possui permissão para conceder privilégios a utilizadores.',
+'userrights-changeable-col'        => 'Grupos que pode alterar',
+'userrights-unchangeable-col'      => 'Grupos que não pode alterar',
 
 # Groups
 'group'               => 'Grupo:',
@@ -1139,6 +1142,7 @@ Por gentileza, se você tem acesso à imagem de tamanho completo, prefira envia-
 'uploadvirus'                 => 'O ficheiro contém vírus! Detalhes: $1',
 'sourcefilename'              => 'Nome do ficheiro de origem:',
 'destfilename'                => 'Nome do ficheiro de destino:',
+'upload-maxfilesize'          => 'Tamanho máximo do ficheiro: $1',
 'watchthisupload'             => 'Vigiar esta página',
 'filewasdeleted'              => 'Um ficheiro com este nome foi carregado anteriormente e subsequentemente eliminado. Você precisa verificar o $1 antes de proceder ao carregamento novamente.',
 'upload-wasdeleted'           => "'''Atenção: Você está enviando um ficheiro eliminado anteriormente.'''

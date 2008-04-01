@@ -883,8 +883,6 @@ Atencion, lor endèxacion du contegnu de {{SITENAME}} pôt pas étre a jorn.',
 'userrights-groupsmember'          => 'Membro de :',
 'userrights-groupsremovable'       => 'Tropes suprimâbles :',
 'userrights-groupsavailable'       => 'Tropes disponibles :',
-'userrights-groupshelp'            => 'Chouèsésséd/cièrde les tropes de lesquintes vos voléd enlevar ou ben rapondre l’utilisator.
-Les tropes pas sèlèccionâs seront pas modifiâs. Vos pouede dèsèlèccionar una tropa avouéc CTRL + clic gôcho.',
 'userrights-reason'                => 'Rêson du changement :',
 'userrights-available-none'        => 'Vos pouede pas changiér l’apartegnence a les difèrentes tropes.',
 'userrights-available-add'         => 'Vos pouede apondre des utilisators a {{PLURAL:$2|la tropa siuventa|les tropes siuventes}} : $1.',

@@ -257,7 +257,7 @@ $messages = array(
 'categorypage'      => 'Dangos tudalen gategori',
 'viewtalkpage'      => 'Gwyliwch sgwrs',
 'otherlanguages'    => 'Ieithoedd eraill',
-'redirectedfrom'    => '(Ail-cyfeiriad oddiwrth $1)',
+'redirectedfrom'    => '(Ailgyfeiriad oddi wrth $1)',
 'redirectpagesub'   => 'Tudalen ailgyfeirio',
 'lastmodifiedat'    => 'Newidiwyd y dudalen hon ddiwethaf $2, $1.', # $1 date, $2 time
 'viewcount'         => "{{PLURAL:$1|Ni chafwyd dim|Cafwyd $1|Cafwyd $1|Cafwyd $1|Cafwyd $1|Cafwyd $1}} ymweliad â'r dudalen hon.",
@@ -415,7 +415,7 @@ Mae eich accownt wedi gael eu creu. Peidiwch ac anghofio i personaleiddio eich f
 'yourname'                   => 'Eich enw defnyddwr',
 'yourpassword'               => 'Eich allweddair',
 'yourpasswordagain'          => 'Ail-teipiwch allweddair',
-'remembermypassword'         => 'Cofiwch fy allweddair dros mwy nag un sesiwn.',
+'remembermypassword'         => "Y cyfrifiadur hwn i gofio'r cyfrinair",
 'yourdomainname'             => 'Eich parth',
 'externaldberror'            => "Naill ai: cafwyd gwall dilysu allanol ar databas neu: ar y llaw arall efallai nad oes hawl gennych chi i ddiwygio'ch cyfrif allanol.",
 'loginproblem'               => '<b>Ni lwyddodd y mewngofnodi.</b><br />Ceisiwch eto!',
@@ -484,9 +484,11 @@ Rhydd ichi anwybyddu\'r neges hon os mai camgymeriad oedd creu\'r cyfrif.',
 'loginlanguagelabel'         => 'Iaith: $1',
 
 # Password reset dialog
-'resetpass'        => 'Ailosod cyfrinair y cyfrif',
-'resetpass_header' => 'Ailosod y cyfrinair',
-'resetpass_submit' => 'Gosod y cyfrinair a mewngofnodi',
+'resetpass'          => 'Ailosod cyfrinair y cyfrif',
+'resetpass_announce' => "Fe wnaethoch fewngofnodi gyda chôd dros dro oddi ar e-bost.
+Er mwyn cwblhau'r mewngofnodi, rhaid i chi osod cyfrinair newydd fel hyn:",
+'resetpass_header'   => 'Ailosod y cyfrinair',
+'resetpass_submit'   => 'Gosod y cyfrinair a mewngofnodi',
 
 # Edit page toolbar
 'bold_sample'     => 'Testun cryf',
@@ -804,10 +806,9 @@ $2 Rhestri ailgyfeiriadau<br />Chwilio am $3 $9',
 'saveusergroups'                   => 'Cadw Grŵpiau Defnyddwyr',
 'userrights-groupsmember'          => 'Yn aelod o:',
 'userrights-groupsavailable'       => 'Grwpiau ar gael:',
-'userrights-groupshelp'            => "Bydd dewis grwpiau isod yn ychwanegu'r defnyddiwr i'r grwp, neu yn ei dynnu ohoni. Ni newidir y grwpiau eraill. Gallwch ddiddymu dewis gyda CTRL + Clic Chwith",
 'userrights-reason'                => 'Y rheswm dros y newid:',
-'userrights-available-add'         => 'Gallwch ychwanegu defnyddwyr at y {{PLURAL:$2|grŵp|grŵp|grwpiau|grwpiau|grwpiau|grwpiau}} canlynol: $1.',
-'userrights-available-remove'      => "Gallwch dynnu defnyddwyr o'r {{PLURAL:$2|grŵp|grŵp|grwpiau|grwpiau|grwpiau|grwpiau}} canlynol: $1.",
+'userrights-available-add'         => 'Gallwch ychwanegu defnyddiwr at y {{PLURAL:$2|grŵp|grŵp|grwpiau|grwpiau|grwpiau|grwpiau}} canlynol: $1.',
+'userrights-available-remove'      => "Gallwch dynnu defnyddiwr o'r {{PLURAL:$2|grŵp|grŵp|grwpiau|grwpiau|grwpiau|grwpiau}} canlynol: $1.",
 'userrights-available-add-self'    => "Gallwch ychwanegu'ch hunan at y {{PLURAL:$2|grŵp|grŵp|grwpiau|grwpiau|grwpiau|grwpiau}} canlynol: $1.",
 'userrights-available-remove-self' => "Gallwch dynnu'ch hunan oddi ar y {{PLURAL:$2|grŵp|grŵp|grwpiau|grwpiau|grwpiau|grwpiau}} canlynol: $1.",
 
@@ -1179,8 +1180,8 @@ i adnewid eich rhestr gwylio.',
 Pan fydd y dudalen hon, neu ei thudalen sgwrs, yn newid, fe fyddant yn ymddangos ar eich rhestr gwylio ac hefyd '''yn gryf''' ar restr y [[Special:Recentchanges|newidiadau diweddar]], fel ei bod yn haws eu gweld.
 
 Os ydych am ddiddymu'r dudalen o'r rhestr gwylio, cliciwch ar \"Stopio gwylio\" yn y bar ar frig y dudalen.",
-'removedwatch'         => 'Wedi diswyddo oddiwrth y rhestr gwylio',
-'removedwatchtext'     => 'Mae tudalen "<nowiki>$1</nowiki>" wedi cael ei diswyddo oddiwrth eich rhestr gwylio.',
+'removedwatch'         => 'Tynnwyd oddi ar eich rhestr gwylio',
+'removedwatchtext'     => 'Mae\'r dudalen "[[:$1]]" wedi\'i thynnu oddi ar eich rhestr gwylio.',
 'watch'                => 'Gwylio',
 'watchthispage'        => 'Gwyliwch y tudalen hon',
 'unwatch'              => 'Stopio gwylio',

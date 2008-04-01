@@ -888,8 +888,6 @@ resultáu les páxines que contengan tolos términos de la busca).",
 'userrights-groupsmember'          => 'Miembru de:',
 'userrights-groupsremovable'       => "Grupos d'onde pue ser elimináu:",
 'userrights-groupsavailable'       => 'Grupos disponibles:',
-'userrights-groupshelp'            => 'Seleiciona los grupos de/a los que quies quitar/añader esti usuariu.
-Los grupos non seleicionaos nun se van modificar. Pues deseleicionar un grupu calcando CTRL + Botón Esquierdu del ratón',
 'userrights-reason'                => 'Motivu del cambéu:',
 'userrights-available-none'        => 'Nun pues modificar la pertenencia a un grupu.',
 'userrights-available-add'         => 'Pues añader usuarios a {{PLURAL:$2|esti grupu|estos grupos}}: $1.',

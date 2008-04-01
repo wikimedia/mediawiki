@@ -97,7 +97,7 @@ $messages = array(
 'tog-previewontop'            => "Mostrar la previsualizacion<br />al dessús de la boita d'edicion",
 'tog-previewonfirst'          => 'Mostrar la previsualizacion al moment de la primièra edicion',
 'tog-nocache'                 => "Desactivar l'amagatal de paginas",
-'tog-enotifwatchlistpages'    => 'Avertissètz-me per corrièr electronic en cas de modificacion de la pagina',
+'tog-enotifwatchlistpages'    => 'Autorizar lo mandadís de corrièr electronic quand una pagina de vòstra lista de seguit es modificada',
 'tog-enotifusertalkpages'     => "Desiri recebre un corrièr electronic quand ma pagina d'utilizaire es modificada.",
 'tog-enotifminoredits'        => "Mandatz-me un corrièr electronic quitament per d'edicions menoras de las paginas",
 'tog-enotifrevealaddr'        => 'Afichatz mon adreça electronica dins la notificacion dels corrièrs electronics',
@@ -312,7 +312,7 @@ $messages = array(
 'badaccess-groups' => "L'accion qu'ensajatz de realizar es accessibla pas qu'als utilizaires dels gropes $1.",
 
 'versionrequired'     => 'Version $1 de MediaWiki necessària',
-'versionrequiredtext' => 'La version $1 de MediaWiki es necessària per utilizar aquesta pagina. Consultatz [[Special:Version]]',
+'versionrequiredtext' => 'La version $1 de MediaWiki es necessària per utilizar aquesta pagina. Consultatz [[Special:Version|la pagina de las versions]]',
 
 'ok'                      => "D'acòrdi",
 'retrievedfrom'           => 'Recuperada de "$1"',
@@ -726,6 +726,8 @@ D’autres administrators sus {{SITENAME}} poiràn totjorn accedir al contengut 
 'logdelete-logaction'         => '$1 {{plural:$1|eveniment de [[$3]] cambiat|eveniments de [[$3]] cambiats}} en mòde $2',
 'revdelete-success'           => 'Visibilitat de las versions cambiadas amb succès.',
 'logdelete-success'           => 'Visibilitat dels eveniments cambiada amb succès.',
+'pagehist'                    => 'Istoric de la pagina',
+'deletedhist'                 => 'Istoric de las supressions',
 
 # Oversight log
 'oversightlog'    => 'Jornal oversight',
@@ -749,6 +751,8 @@ Asseguratz-vos qu'aqueste cambiament pòsca conservar la continuitat de l'istori
 'mergehistory-no-destination'      => 'La pagina de destinacion $1 existís pas.',
 'mergehistory-invalid-source'      => 'La pagina d’origina deu aver un títol valid.',
 'mergehistory-invalid-destination' => 'La pagina de destinacion deu aver un títol valid.',
+'mergehistory-autocomment'         => '[[:$1]] fusionat amb [[:$2]]',
+'mergehistory-comment'             => '[[:$1]] fusionat amb [[:$2]] : $3',
 
 # Merge log
 'mergelog'           => 'Jornal de las fusions',
@@ -781,9 +785,13 @@ Asseguratz-vos qu'aqueste cambiament pòsca conservar la continuitat de l'istori
 'viewprevnext'          => 'Veire ($1) ($2) ($3).',
 'search-result-size'    => '$1 ({{PLURAL:$2|1 mot|$2 mots}})',
 'search-result-score'   => 'Pertinéncia : $1%',
+'search-redirect'       => '(redireccion vèrs $1)',
+'search-section'        => '(seccion $1)',
+'search-suggest'        => 'Avètz volgut dire : $1',
 'searchall'             => 'Totes',
 'showingresults'        => 'Afichatge de <b>$1</b> resultats a partir del #<b>$2</b>.',
 'showingresultsnum'     => 'Afichatge de <b>$3</b> resultats a partir del #<b>$2</b>.',
+'showingresultstotal'   => "Visionament dels resultats çaijós '''$1 - $2''' de '''$3'''",
 'nonefound'             => '<strong>Nòta</strong>: l\'abséncia de resultat es sovent deguda a l\'emplec de tèrmes de recèrca tròp corrents, coma "a" o "de",
 que son pas indexats, o a l\'emplec de mantun tèrme de recèrca (solas las paginas
 contenent totes los tèrmes apareisson dins los resultats).',
@@ -869,11 +877,9 @@ per modificar vòstras preferéncias d'utilizaire.",
 'userrights-groupsmember'          => 'Membre de:',
 'userrights-groupsremovable'       => 'Gropes suprimibles :',
 'userrights-groupsavailable'       => 'Gropes disponibles:',
-'userrights-groupshelp'            => "Causissètz las permissions que volètz levar o ajustar a l'utilizaire.
-Los gropes pas seleccionats seràn pas modificats. Podètz deseleccionar un grop amb CTRL + Clic esquèrra.",
 'userrights-reason'                => 'Rason del cambiament:',
 'userrights-available-none'        => 'Podètz pas cambiar l’apartenéncia als diferents gropes.',
-'userrights-available-add'         => "Podètz ajustar d'utilizaires a {{PLURAL:$2|aqueste grop|aquestes gropes}}: $1.",
+'userrights-available-add'         => "Podètz apondre d'utilizaires a {{PLURAL:$2|aqueste grop|aquestes gropes}}: $1.",
 'userrights-available-remove'      => "Podètz levar d'utilizaires d'{{PLURAL:$2|aqueste grop|aquestes gropes}}: $1.",
 'userrights-available-add-self'    => 'Podètz vos ajustar vos-meteis dins {{PLURAL:$2|aqueste grop|aquestes gropes}} : $1.',
 'userrights-available-remove-self' => "Podètz vos levar vos-meteis d'{{PLURAL:$2|aqueste grop|aquestes gropes}} : $1.",
@@ -881,6 +887,8 @@ Los gropes pas seleccionats seràn pas modificats. Podètz deseleccionar un grop
 'userrights-nodatabase'            => 'La banca de donadas « $1 » existís pas o es pas en local.',
 'userrights-nologin'               => "Vos devètz [[Special:Userlogin|connectar]] amb un compte d'administrator per balhar los dreches d'utilizaire.",
 'userrights-notallowed'            => "Vòstre compte es pas abilitat per balhar de dreches d'utilizaire.",
+'userrights-changeable-col'        => 'Gropes que podètz cambiar',
+'userrights-unchangeable-col'      => 'Gropes que podètz pas cambiar',
 
 # Groups
 'group'               => 'Grop:',
@@ -943,7 +951,7 @@ Los gropes pas seleccionats seràn pas modificats. Podètz deseleccionar un grop
 'upload'                      => 'Copiar sul serveire',
 'uploadbtn'                   => 'Copiar un fichièr',
 'reupload'                    => 'Copiar tornarmai',
-'reuploaddesc'                => 'Retorn al formulari.',
+'reuploaddesc'                => 'Anullar lo cargament e tornar al formulari.',
 'uploadnologin'               => 'Non connectat(ada)',
 'uploadnologintext'           => 'Devètz èsser [[Special:Userlogin|connectat(ada)]]
 per copiar de fichièrs sul serveire.',
@@ -1001,6 +1009,7 @@ L'ora indicada es la del serveire (UTC).",
 'uploadvirus'                 => 'Aqueste fichièr conten un virús ! Per mai de detalhs, consultatz : $1',
 'sourcefilename'              => 'Nom del fichièr font :',
 'destfilename'                => 'Nom jolqual lo fichièr serà enregistrat&nbsp;:',
+'upload-maxfilesize'          => 'Talha maximala del fichièr : $1',
 'watchthisupload'             => 'Seguir aqueste fichièr',
 'filewasdeleted'              => 'Un fichièr amb aqueste nom es estat copiat ja, puèi suprimit. Deuriatz verificar lo $1 abans de procedir a una còpia novèla.',
 'upload-wasdeleted'           => "'''Atencion : Sètz a importar un fichièr que ja es estat suprimit deperabans.''' Deuriatz considerar se es oportun de contunhar l'impòrt d'aqueste fichièr. Lo jornal de las supressions vos donarà los elements d'informacion.",
@@ -1632,13 +1641,18 @@ Doblidetz pas de la desvarrolhar quand auretz acabat vòstra operacion de manten
 # Move page
 'move-page'               => 'Desplaçar $1',
 'move-page-legend'        => 'Desplaçar un article',
-'movepagetext'            => "Utilizatz lo formulari çaijós per tornar nomenar un article, en desplaçant totas sas versions anterioras vèrs lo nom novèl.
-Lo títol precedent devendrà una pagina de redireccion vèrs lo títol novèl.
-Los ligams vèrs lo títol ancian seràn pas modificats e la pagina de discussion, s'existís, serà pas desplaçada.
+'movepagetext'            => "Utilizatz lo formulari çaijós per tornar nomenar una pagina, en desplaçant tot son istoric cap al nom novèl.
+Lo títol vendrà una pagina de redireccion cap al títol novèl.
+Los ligams vèrs lo títol de la pagina anciana seràn pas cambiats ;
+verificatz qu'aqueste desplaçament a pas creat de redireccion dobla.
+Vos devètz assegurar que los ligams contunhan de punter cap a lor destinacion supausada.
+
+Una pagina serà pas desplaçada se la pagina del títol novèl existís ja, a mens qu'aquesta darrièra siá voida o en redireccion, e qu’aja pas d’istoric.
+Aquò vòl dire que podètz tornar nomenar una pagina vèrs sa posicion d’origina s'avètz fach una error, mas que podètz pas escafar una pagina que ja existís amb aqueste procediment.
 
 '''ATENCION !'''
-Se pòt agir d'un cambiament radical e inesperat per un article sovent consultat;
-asseguratz-vos que ne comprenètz plan las consequéncias abans de procedir.",
+Aquò pòt provocar un cambiament radical e imprevist per una pagina consultada frequentament.
+Asseguratz-vos de n'avoir compres las consequéncias abans de contunhar.",
 'movepagetalktext'        => "La pagina de discussion associada, se presenta, serà automaticament desplaçada amb '''en defòra de se:'''
 *Desplaçatz una pagina vèrs un autre espaci,
 *Una pagina de discussion ja existís amb lo nom novèl, o
@@ -2198,25 +2212,25 @@ Los autres ligams sus la meteissa linha son considerats coma d'excepcions, per e
 'monthsall'        => 'totes',
 
 # E-mail address confirmation
-'confirmemail'            => "Confirmar l'adreça de corrièr electronic",
-'confirmemail_noemail'    => 'L’adreça de corrièr electronic configurada dins vòstras [[Special:Preferences|preferéncias]] es pas valida.',
-'confirmemail_text'       => '{{SITENAME}} necessita la verificacion de vòstra adreça de corrièr electronic abans de poder utilizar tota foncion de messatjariá. Utilizatz lo boton çaijós per mandar un corrièr electronic de confirmacion a vòstra adreça. Lo corrièr contendrà un ligam contenent un còde, cargatz aqueste ligam dins vòstre navegaire per validar vòstra adreça.',
-'confirmemail_pending'    => '<div class="error">
+'confirmemail'             => "Confirmar l'adreça de corrièr electronic",
+'confirmemail_noemail'     => 'L’adreça de corrièr electronic configurada dins vòstras [[Special:Preferences|preferéncias]] es pas valida.',
+'confirmemail_text'        => '{{SITENAME}} necessita la verificacion de vòstra adreça de corrièr electronic abans de poder utilizar tota foncion de messatjariá. Utilizatz lo boton çaijós per mandar un corrièr electronic de confirmacion a vòstra adreça. Lo corrièr contendrà un ligam contenent un còde, cargatz aqueste ligam dins vòstre navegaire per validar vòstra adreça.',
+'confirmemail_pending'     => '<div class="error">
 Un còde de confirmacion ja vos es estat mandat per corrièr electronic ; se venètz de crear vòstre compte, esperatz qualques minutas que l’e-mail arribe abans de demandar un còde novèl. </div>',
-'confirmemail_send'       => 'Mandar un còde de confirmacion',
-'confirmemail_sent'       => 'Corrièr electronic de confirmacion mandat.',
-'confirmemail_oncreate'   => "Un còde de confirmacion es estat mandat a vòstra adreça de corrièr electronic.
+'confirmemail_send'        => 'Mandar un còde de confirmacion',
+'confirmemail_sent'        => 'Corrièr electronic de confirmacion mandat.',
+'confirmemail_oncreate'    => "Un còde de confirmacion es estat mandat a vòstra adreça de corrièr electronic.
 Aqueste còde es pas requesit per se connectar, mas n'aurètz besonh per activar las foncionalitats ligadas als corrièrs electronics sus aqueste wiki.",
-'confirmemail_sendfailed' => 'Impossible de mandar lo corrièr electronic de confirmacion.
+'confirmemail_sendfailed'  => 'Impossible de mandar lo corrièr electronic de confirmacion.
 
 Verificatz vòstra adreça. Retorn del programa de corrièr electronic : $1',
-'confirmemail_invalid'    => 'Còde de confirmacion incorrècte. Benlèu lo còde a expirat.',
-'confirmemail_needlogin'  => 'Devètz vos $1 per confirmar vòstra adreça de corrièr electronic.',
-'confirmemail_success'    => 'Vòstra adreça de corrièr electronic es confirmada. Ara podètz vos connectar e profitar del wiki.',
-'confirmemail_loggedin'   => 'Vòstra adreça es ara confirmada',
-'confirmemail_error'      => 'Un problèma es subrevengut e volent enregistrar vòstra confirmacion',
-'confirmemail_subject'    => 'Confirmacion d’adreça de corrièr electronic per {{SITENAME}}',
-'confirmemail_body'       => "Qualqu’un, probablament vos amb l’adreça IP $1, a enregistrat un compte « $2 » amb aquesta adreça de corrièr electronic sul sit {{SITENAME}}.
+'confirmemail_invalid'     => 'Còde de confirmacion incorrècte. Benlèu lo còde a expirat.',
+'confirmemail_needlogin'   => 'Devètz vos $1 per confirmar vòstra adreça de corrièr electronic.',
+'confirmemail_success'     => 'Vòstra adreça de corrièr electronic es confirmada. Ara podètz vos connectar e profitar del wiki.',
+'confirmemail_loggedin'    => 'Vòstra adreça es ara confirmada',
+'confirmemail_error'       => 'Un problèma es subrevengut e volent enregistrar vòstra confirmacion',
+'confirmemail_subject'     => 'Confirmacion d’adreça de corrièr electronic per {{SITENAME}}',
+'confirmemail_body'        => "Qualqu’un, probablament vos amb l’adreça IP $1, a enregistrat un compte « $2 » amb aquesta adreça de corrièr electronic sul sit {{SITENAME}}.
 
 Per confirmar qu'aqueste compte vos aparten vertadièrament e activar las foncions de messatjariá sus {{SITENAME}}, seguissètz lo ligam çaijós dins vòstre navegaire :
 
@@ -2224,6 +2238,8 @@ $3
 
 Se s’agís pas de vos, dobrissetz pas lo ligam.
 Aqueste còde de confirmacion expirarà lo $4.",
+'confirmemail_invalidated' => 'Confirmacion de l’adreça de corrièr electronic anullada',
+'invalidateemail'          => 'Anullar la confirmacion del corrièr electronic',
 
 # Scary transclusion
 'scarytranscludedisabled' => '[La transclusion interwiki es desactivada]',

@@ -576,7 +576,7 @@ Spurn: $2',
 Þú getur þó haldið áfram að nota {{SITENAME}} nafnlaust og þú getur skráð þig inn sem annar notandi. Athugaðu að sumar síður kunna að birtast líkt og þú sért ennþá innskráður, hægt er að koma í veg fyrir það með því að hreinsa biðminnið í vafranum.',
 'welcomecreation'            => '== Velkomin(n) $1 ==
 
-Aðgangurinn þinn hefur verið búinn til. Ekki gleyma að breyta [[Special:Preferences|stillingunum]] eftir þínum vilja.',
+Aðgangur þinn hefur verið búinn til. Ekki gleyma að breyta [[Special:Preferences|stillingunum]] þínum að vild.',
 'loginpagetitle'             => 'Innskráning notanda',
 'yourname'                   => 'Notandanafn',
 'yourpassword'               => 'Lykilorð',
@@ -597,7 +597,7 @@ Aðgangurinn þinn hefur verið búinn til. Ekki gleyma að breyta [[Special:Pre
 'gotaccountlink'             => 'Skráðu þig inn',
 'createaccountmail'          => 'með tölvupósti',
 'badretype'                  => 'Lykilorðin sem þú skrifaðir eru ekki eins.',
-'userexists'                 => 'Þetta notandanafn er þegar í notkun. Gjörðu svo vel að velja þér annað notandanafn.',
+'userexists'                 => 'Þetta notandanafn er þegar í notkun. Vinsamlegast veldu þér annað.',
 'youremail'                  => 'Netfang:',
 'username'                   => 'Notandanafn:',
 'uid'                        => 'Raðnúmer:',
@@ -654,7 +654,7 @@ Gjörðu svo vel að setja inn rétt netfang eða tæmdu reitinn.',
 'resetpass'           => 'Endurkalla aðgangsorðið',
 'resetpass_text'      => '<!-- Setja texta hér -->',
 'resetpass_header'    => 'Endurstilla lykilorð',
-'resetpass_submit'    => 'Skrifðu aðgangsorðið og skráðu þig inn',
+'resetpass_submit'    => 'Skrifaðu aðgangsorðið og skráðu þig inn',
 'resetpass_success'   => 'Aðgangsorðinu þínu hefur verið breytt! Skráir þig inn...',
 'resetpass_forbidden' => 'Ekki er hægt að breyta aðgangsorði á {{SITENAME}}',
 'resetpass_missing'   => 'Engin gögn í eyðublaðinu',
@@ -740,11 +740,11 @@ Vistfangið þitt er $5. Vinsamlegast taktu það fram í fyrirspurnum þínum."
 'accmailtitle'             => 'Lykilorð sent.',
 'accmailtext'              => 'Lykilorðið fyrir „$1“ hefur verið sent á $2.',
 'newarticle'               => '(Ný)',
-'newarticletext'           => "Þú hefur fylgt tengli á síðu sem er ekki til enn þá.
-Þú getur búið til síðu með þessu nafni með því að skrifa í formið að neðan
-(meiri upplýsingar á [[{{MediaWiki:Helppage}}|hjálp]]).
-Ef þú hefur óvart vilst hingtað, veldu einfaldlega '''til baka''' á vafranum þínum.",
-'anontalkpagetext'         => "----Þetta er spjallsíða fyrir óskráðan notanda sem hefur ekki búið til aðgang enn þá eða notar hann ekki, slíkir notendur þekkjast á vistfangi sínu. Það getur gerst að margir notendur deili sama vistfangi þannig að athugasemdum sem beint er til eins notanda geta birst á spjallsíðu annars. [[Special:Userlogin|Skráðu þig sem notanda]] til að koma í veg fyrir svona misskilning.''",
+'newarticletext'           => "Þú hefur fylgt tengli á síðu sem ekki er til.
+Þú getur búið til síðu með þessu nafni með því að skrifa í formið fyrir neðan
+(meiri upplýsingar í [[{{MediaWiki:Helppage}}|hjálpinni]]).
+Ef þú hefur óvart villst hingað geturðu notað '''til baka'''-hnappi í vafranum þínum.",
+'anontalkpagetext'         => "----''Þetta er spjallsíða fyrir óskráðan notanda sem hefur ekki búið til aðgang ennþá eða notar hann ekki, slíkir notendur þekkjast á vistfangi sínu. Það kemur fyrir að margir notendur deili sama vistfangi þannig að athugasemdum sem beint er til eins notanda geta birst á spjallsíðu annars. Vinsamlegast [[Special:Userlogin|skráðu þig sem notanda]] til að koma í veg fyrir slíkan misskilning.''",
 'noarticletext'            => 'Hér er engin texti enn sem komið er, þú getur [[Special:Search/{{PAGENAME}}|leitað í öðrum síðum]] eða [{{fullurl:{{FULLPAGENAMEE}}|action=edit}} breytt henni sjálfur].',
 'clearyourcache'           => "'''Ath:''' Eftir að þú hefur vistað breytingar getur þurft að hreinsa flýtiminni vafrans til að sjá þær. Í '''Internet Explorer''': ýttu ''Ctrl-F5'', '''Mozilla''': haltu niðri ''Shift'' og smelltu á Reload (eða ýttu á ''Ctrl-Shift-R''), '''Opera'''/'''Konqueror''': ýttu á ''F5'', '''Safari''': ýttu á ''Cmd-Opt-E''.",
 'usercssjsyoucanpreview'   => '<strong>Ath:</strong> Hægt er að nota „Forskoða“ hnappinn til að prófa CSS og JavaScript kóða áður en hann er vistaður.',
@@ -781,9 +781,9 @@ Vinsamlegast íhugaðu að skipta síðunni niður í smærri einingar.</strong>
 'templatesusedpreview'     => 'Snið notuð á forskoðuninni:',
 'templatesusedsection'     => 'Snið notuð á hlutanum:',
 'template-protected'       => '(vernduð)',
-'template-semiprotected'   => '(hálfsverndað)',
+'template-semiprotected'   => '(hálfvernduð)',
 'nocreatetitle'            => 'Síðugerð takmörkuð',
-'nocreate-loggedin'        => 'Þú hefur ekki leyfi til að búa til nýja síður á {{SITENAME}}.',
+'nocreate-loggedin'        => 'Þú hefur ekki heimild til að búa til nýjar síður á {{SITENAME}}.',
 'permissionserrors'        => 'Leyfisvillur',
 'permissionserrorstext'    => 'Þú hefur ekki leyfi til að gera þetta, af eftirfarandi {{PLURAL:$1|ástæðu|ástæðum}}:',
 'recreate-deleted-warn'    => "'''Viðvörun: Þú ert að búa til síðu sem að hefur áður verið eytt.'''
@@ -837,6 +837,7 @@ Prófaðu [[Special:Search|að leita á þessari wiki síðu]] að svipuðum sí
 'rev-deleted-user'       => '(notandanafn fjarlægt)',
 'rev-deleted-event'      => '(breyting fjarlægð)',
 'rev-delundel'           => 'sýna/fela',
+'revdelete-selected'     => "{{PLURAL:$2|Valin breyting|Valdar breytingar}} fyrir '''$1:'''",
 'logdelete-selected'     => "{{PLURAL:$2|Valin aðgerð|Valdar aðgerðir}} fyrir '''$1:'''",
 'revdelete-legend'       => 'Skráðu hamlanir:',
 'revdelete-hide-text'    => 'Fela breytingatexta',
@@ -946,8 +947,6 @@ Prófaðu [[Special:Search|að leita á þessari wiki síðu]] að svipuðum sí
 'saveusergroups'              => 'Vista notandaflokka',
 'userrights-groupsmember'     => 'Meðlimur:',
 'userrights-groupsavailable'  => 'Tiltækir flokkar:',
-'userrights-groupshelp'       => 'Veldu þá flokka sem að þú vilt fjarlægja eða bæta notandanum við.
-Óvaldir flokkar verða ekki vistaðir. Þú getur afvalið flokk með CTRL + hægri smella',
 'userrights-reason'           => 'Ástæða fyrir breytingunni:',
 'userrights-available-none'   => 'Þú getur ekki breytt notendaréttindum.',
 'userrights-available-add'    => 'Þú getur bætt notendum við {{PLURAL:$2|þessum hóp|þessum hópum}}: $1.',

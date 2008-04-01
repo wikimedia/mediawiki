@@ -92,12 +92,15 @@ $messages = array(
 'dec'           => '12月',
 
 # Categories related messages
-'categories'            => '页面分类',
-'pagecategories'        => '$1个分类',
-'category_header'       => '“$1”分类中个页面',
-'subcategories'         => '亚类',
-'category-media-header' => '"$1"分类中个媒体',
-'category-empty'        => "''该个分类中尚未包含任何文章或媒体。''",
+'categories'                    => '页面分类',
+'pagecategories'                => '$1个分类',
+'category_header'               => '“$1”分类中个页面',
+'subcategories'                 => '亚类',
+'category-media-header'         => '"$1"分类中个媒体',
+'category-empty'                => "''该个分类中尚未包含任何文章或媒体。''",
+'hidden-categories'             => '$1个囥脱分类',
+'hidden-category-category'      => '囥脱分类', # Name of the category where hidden categories will be listed
+'category-subcat-count-limited' => '该个分类中有$1个亚类。',
 
 'mainpagetext'      => "<big>'''已成功安装MediaWiki！'''</big>",
 'mainpagedocfooter' => '请访问[http://meta.wikimedia.org/wiki/Help:Contents 用户手册]以获得使用此维基软件的信息！
@@ -598,7 +601,7 @@ $messages = array(
 'watchlist-show-minor' => '显示小编辑',
 'watchlist-hide-minor' => '隐藏小编辑',
 
-# Displayed when you click the "watch" button and it's in the process of watching
+# Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => '监控……',
 'unwatching' => '解除监控……',
 
