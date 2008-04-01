@@ -549,14 +549,13 @@ class Revision {
 	  * Get revision text associated with an old or archive row
 	  * $row is usually an object from wfFetchRow(), both the flags and the text
 	  * field must be included
-	  * @static
+	  *
 	  * @param integer $row Id of a row
 	  * @param string $prefix table prefix (default 'old_')
 	  * @return string $text|false the text requested
 	  */
 	public static function getRevisionText( $row, $prefix = 'old_' ) {
-		$fname = 'Revision::getRevisionText';
-		wfProfileIn( $fname );
+		wfProfileIn( __METHOD__ );
 
 		# Get data
 		$textField = $prefix . 'text';
@@ -571,7 +570,7 @@ class Revision {
 		if( isset( $row->$textField ) ) {
 			$text = $row->$textField;
 		} else {
-			wfProfileOut( $fname );
+			wfProfileOut( __METHOD__ );
 			return false;
 		}
 
@@ -580,7 +579,7 @@ class Revision {
 			$url=$text;
 			@list(/* $proto */,$path)=explode('://',$url,2);
 			if ($path=="") {
-				wfProfileOut( $fname );
+				wfProfileOut( __METHOD__ );
 				return false;
 			}
 			$text=ExternalStore::fetchFromURL($url);
@@ -600,7 +599,7 @@ class Revision {
 				$obj = unserialize( $text );
 				if ( !is_object( $obj ) ) {
 					// Invalid object
-					wfProfileOut( $fname );
+					wfProfileOut( __METHOD__ );
 					return false;
 				}
 				$text = $obj->getText();
@@ -614,7 +613,7 @@ class Revision {
 				$text = $wgContLang->iconv( $wgLegacyEncoding, $wgInputEncoding, $text );
 			}
 		}
-		wfProfileOut( $fname );
+		wfProfileOut( __METHOD__ );
 		return $text;
 	}
 
@@ -625,11 +624,10 @@ class Revision {
 	 * data is compressed, and 'utf-8' if we're saving in UTF-8
 	 * mode.
 	 *
-	 * @static
 	 * @param mixed $text reference to a text
 	 * @return string
 	 */
-	function compressRevisionText( &$text ) {
+	static function compressRevisionText( &$text ) {
 		global $wgCompressRevisions;
 		$flags = array();
 
@@ -657,9 +655,8 @@ class Revision {
 	 */
 	function insertOn( &$dbw ) {
 		global $wgDefaultExternalStore;
-		
-		$fname = 'Revision::insertOn';
-		wfProfileIn( $fname );
+
+		wfProfileIn( __METHOD__ );
 
 		$data = $this->mText;
 		$flags = Revision::compressRevisionText( $data );
@@ -692,7 +689,7 @@ class Revision {
 					'old_id'    => $old_id,
 					'old_text'  => $data,
 					'old_flags' => $flags,
-				), $fname
+				), __METHOD__
 			);
 			$this->mTextId = $dbw->insertId();
 		}
@@ -713,11 +710,11 @@ class Revision {
 				'rev_timestamp'  => $dbw->timestamp( $this->mTimestamp ),
 				'rev_deleted'    => $this->mDeleted,
 				'rev_len'	     => $this->mSize,
-			), $fname
+			), __METHOD__
 		);
 
 		$this->mId = !is_null($rev_id) ? $rev_id : $dbw->insertId();
-		wfProfileOut( $fname );
+		wfProfileOut( __METHOD__ );
 		return $this->mId;
 	}
 
@@ -729,8 +726,7 @@ class Revision {
 	 * @access private
 	 */
 	function loadText() {
-		$fname = 'Revision::loadText';
-		wfProfileIn( $fname );
+		wfProfileIn( __METHOD__ );
 		
 		// Caching may be beneficial for massive use of external storage
 		global $wgRevisionCacheExpiry, $wgMemc;
@@ -738,7 +734,7 @@ class Revision {
 		if( $wgRevisionCacheExpiry ) {
 			$text = $wgMemc->get( $key );
 			if( is_string( $text ) ) {
-				wfProfileOut( $fname );
+				wfProfileOut( __METHOD__ );
 				return $text;
 			}
 		}
@@ -757,7 +753,7 @@ class Revision {
 			$row = $dbr->selectRow( 'text',
 				array( 'old_text', 'old_flags' ),
 				array( 'old_id' => $this->getTextId() ),
-				$fname);
+				__METHOD__ );
 		}
 
 		if( !$row ) {
@@ -766,16 +762,16 @@ class Revision {
 			$row = $dbw->selectRow( 'text',
 				array( 'old_text', 'old_flags' ),
 				array( 'old_id' => $this->getTextId() ),
-				$fname);
+				__METHOD__ );
 		}
 
-		$text = Revision::getRevisionText( $row );
+		$text = self::getRevisionText( $row );
 		
 		if( $wgRevisionCacheExpiry ) {
 			$wgMemc->set( $key, $text, $wgRevisionCacheExpiry );
 		}
 		
-		wfProfileOut( $fname );
+		wfProfileOut( __METHOD__ );
 
 		return $text;
 	}
