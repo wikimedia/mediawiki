@@ -14,6 +14,7 @@
  * @author Matma Rex
  * @author Szczepan1990
  * @author Leinad
+ * @author Herr Kriss
  */
 
 $namespaceNames = array(
@@ -249,7 +250,7 @@ $messages = array(
 'categoriespagetext'             => 'Poniższe kategorie istnieją na wiki.',
 'special-categories-sort-count'  => 'sortowanie według liczby',
 'special-categories-sort-abc'    => 'sortowanie alfabetyczne',
-'pagecategories'                 => '{{PLURAL:$1|Kategoria|Kategorie|Kategorii}}',
+'pagecategories'                 => '{{PLURAL:$1|Kategoria|Kategorie}}',
 'category_header'                => 'Strony w kategorii "$1"',
 'subcategories'                  => 'Podkategorie',
 'category-media-header'          => 'Pliki w kategorii "$1"',
@@ -959,17 +960,21 @@ Upewnij się, że zmiany będą zapewniać ciągłość historyczną edycji stro
 'userrights-groupsmember'          => 'Należy do:',
 'userrights-groupsremovable'       => 'Usuwalny z grup:',
 'userrights-groupsavailable'       => 'Dostępne grupy:',
-'userrights-groupshelp'            => 'Zaznacz grupy do których użytkownik ma zostać dodany lub z których ma zostać usunięty. Niezaznaczone grupy nie zostaną zmienione. Możesz odznaczyć grupę za pomocą CTRL + lewy przycisk myszy.',
+'userrights-groups-help'           => 'Możesz modyfikować przynależność tego użytkownika do podanych grup.
+Zaznaczone pole oznacza przynależność użytkownika do danej grupy.
+Nie zaznaczone pole oznacza, że użytkownik nie należy do danej grupy.',
 'userrights-reason'                => 'Powód zmiany:',
 'userrights-available-none'        => 'Nie możesz zmieniać przynależności do grup.',
-'userrights-available-add'         => 'Możesz dodać użytkowników do {{PLURAL:$2|grupy|grup}}: $1.',
-'userrights-available-remove'      => 'Możesz usunąć użytkowników z {{PLURAL:$2|grupy|grup}}: $1.',
+'userrights-available-add'         => 'Możesz dodać jakiegokolwiek użytkownika do {{PLURAL:$2|grupy|grup}}: $1.',
+'userrights-available-remove'      => 'Możesz usunąć jakiegokolwiek użytkownika z {{PLURAL:$2|grupy|grup}}: $1.',
 'userrights-available-add-self'    => 'Nie możesz dodać siebie do {{PLURAL:$2|grupy|grup}}: $1.',
 'userrights-available-remove-self' => 'Nie możesz usunąć siebie z {{PLURAL:$2|grupy|group}}: $1.',
 'userrights-no-interwiki'          => 'Nie masz dostępu do edycji uprawnień.',
 'userrights-nodatabase'            => 'Baza danych $1 nie istnieje lub nie jest lokalna.',
 'userrights-nologin'               => 'Musisz [[Special:Userlogin|zalogować się]] na konto administratora, by nadawać uprawnienia użytkownikom.',
 'userrights-notallowed'            => 'Nie masz dostępu do nadawania uprawnień użytkownikom.',
+'userrights-changeable-col'        => 'Grupy, które możesz wybrać',
+'userrights-unchangeable-col'      => 'Grupy, których nie możesz wybrać',
 
 # Groups
 'group'               => 'Grupa:',
@@ -1034,7 +1039,7 @@ Upewnij się, że zmiany będą zapewniać ciągłość historyczną edycji stro
 'reupload'                    => 'Prześlij ponownie',
 'reuploaddesc'                => 'Wróć do formularza wysyłki.',
 'uploadnologin'               => 'Brak logowania',
-'uploadnologintext'           => 'Musisz się [[Special:Userlogin|zalogować]] przed przesłaniem pików.',
+'uploadnologintext'           => 'Musisz się [[Special:Userlogin|zalogować]] przed przesłaniem plików.',
 'upload_directory_read_only'  => 'Serwer nie może zapisywać do katalogu ($1) przeznaczonego na przesyłane pliki.',
 'uploaderror'                 => 'Błąd przesyłki',
 'uploadtext'                  => 'Użyj poniższego formularza do przesłania plików. Jeśli chcesz przejrzeć lub przeszukać dotychczas przesłane pliki, przejdź do [[{{ns:special}}:Imagelist|listy dołączonych plików]]. Wszystkie przesyłki są odnotowane w [[{{ns:special}}:Log/upload|rejestrze przesyłanych plików]].',

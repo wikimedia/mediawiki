@@ -349,15 +349,22 @@ $messages = array(
 'dec'           => 'des',
 
 # Categories related messages
-'categories'             => 'Kategoriar',
-'categoriespagetext'     => 'Wikien har følgjande kategoriar.',
-'pagecategories'         => '{{PLURAL:$1|Kategori|Kategoriar}}',
-'category_header'        => 'Artiklar i kategorien «$1»',
-'subcategories'          => 'Underkategoriar',
-'category-media-header'  => 'Media i kategorien «$1»',
-'category-empty'         => "''Denne kategorien inneheld for tida ingen sider eller anna media.''",
-'hidden-categories'      => '{{PLURAL:$1|Gøymd kategori|Gøymde kategoriar}}',
-'listingcontinuesabbrev' => 'vidare',
+'categories'                    => 'Kategoriar',
+'categoriespagetext'            => 'Wikien har følgjande kategoriar.',
+'special-categories-sort-count' => 'sorter etter storleik',
+'special-categories-sort-abc'   => 'sorter alfabetisk',
+'pagecategories'                => '{{PLURAL:$1|Kategori|Kategoriar}}',
+'category_header'               => 'Artiklar i kategorien «$1»',
+'subcategories'                 => 'Underkategoriar',
+'category-media-header'         => 'Media i kategorien «$1»',
+'category-empty'                => "''Denne kategorien inneheld for tida ingen sider eller anna media.''",
+'hidden-categories'             => '{{PLURAL:$1|Gøymd kategori|Gøymde kategoriar}}',
+'hidden-category-category'      => 'Gøymde kategoriar', # Name of the category where hidden categories will be listed
+'category-subcat-count'         => '{{PLURAL:$2|Denne kategorien har berre den følgjande underkategorien.|Denne kategorien har {{PLURAL:$1|den følgjande underkategorien|dei følgjande $1 underkategoriane}}, av totalt $2.}}',
+'category-subcat-count-limited' => 'Denne kategorien har {{PLURAL:$1|den følgjande underkategorien|dei følgjande $1 underkategoriane}}.',
+'category-article-count'        => '{{PLURAL:$2|Denne kategorien inneheld berre den følgjande sida.|Følgjande {{PLURAL:$1|side|$1 sider}} er i denne kategorien, av totalt $2.}}',
+'category-file-count-limited'   => 'Følgjande {{PLURAL:$1|fil|$1 filer}} er i denne kategorien.',
+'listingcontinuesabbrev'        => 'vidare',
 
 'mainpagetext'      => 'MediaWiki er no installert.',
 'mainpagedocfooter' => 'Sjå [http://meta.wikimedia.org/wiki/Help:Contents brukarmanualen] for informasjon om bruk og konfigurasjonshjelp for wikiprogramvaren.
@@ -476,7 +483,7 @@ $messages = array(
 'badaccess-groups' => 'Handlinga du ba om kan berre utførast av brukarar i gruppene $1.',
 
 'versionrequired'     => 'MediaWiki versjon $1 trengst',
-'versionrequiredtext' => 'For å bruke denne sida trengst MediaWiki versjon $1. Sjå [[Special:Version]]',
+'versionrequiredtext' => 'Ein må ha MediaWiki versjon $1 for å bruke denne sida. Sjå [[Special:Version|versjonssida]].',
 
 'ok'                      => 'OK',
 'retrievedfrom'           => 'Henta frå «$1»',
@@ -753,8 +760,7 @@ Du kan kontakte $1 eller ein annan [[{{MediaWiki:Grouppage-sysop}}|administrator
 * Om du lagrar ei testside, vil du ikkje kunne slette henne sjølv.
 * Dersom du ikkje ønskjer å endre sida, kan du utan risiko klikke på '''attende'''-knappen i nettlesaren din.",
 'anontalkpagetext'          => "---- ''Dette er ei diskusjonsside for ein anonym brukar som ikkje har logga inn på eigen brukarkonto. Vi er difor nøydde til å bruke den numeriske IP-adressa knytt til internettoppkoplinga åt brukaren. Same IP-adressa kan vera knytt til fleire brukarar. Om du er ein anonym brukar og meiner at du har fått irrelevante kommentarar på ei slik side, [[Special:Userlogin|logg inn]] slik at vi unngår framtidige forvekslingar med andre anonyme brukarar.''",
-'noarticletext'             => "'''Sida «{{PAGENAME}}» finst ikkje på {{SITENAME}} enno.'''
-* Klikk på '''[{{fullurl:{{FULLPAGENAME}}|action=edit}} endre]''' for å opprette sida.",
+'noarticletext'             => "Det er ikkje noko tekst på denne sida. Du kan [[Special:Search/{{PAGENAME}}|søke etter henne]] i andre sider, eller klikke på '''[{{fullurl:{{FULLPAGENAME}}|action=edit}} endre]''' for å opprette sida.",
 'userpage-userdoesnotexist' => 'Brukarkontoen «$1» finst ikkje. Vil du verkeleg opprette/endre denne sida?',
 'clearyourcache'            => "'''Merk:''' Etter lagring vil det kanskje vera naudsynt at nettlesaren slettar mellomlageret sitt for at endringane skal tre i kraft. '''Mozilla og Firefox:''' trykk ''Ctrl-Shift-R'', '''Internet Explorer:''' ''Ctrl-F5'', '''Safari:''' ''Cmd-Shift-R'', '''Konqueror:''' ''F5''.",
 'usercssjsyoucanpreview'    => '<strong>Tips:</strong> Bruk «Førehandsvis»-knappen for å teste den nye CSS- eller JS-koden din før du lagrar.',
@@ -913,6 +919,8 @@ Pass på at den nye sida også har innhald frå den innfletta sida.',
 'mergehistory-no-destination'      => 'Målsida $1 finst ikkje.',
 'mergehistory-invalid-source'      => 'Kjeldesida må ha ein gyldig tittel.',
 'mergehistory-invalid-destination' => 'Målsida må ha ein gyldig tittel.',
+'mergehistory-autocomment'         => 'Fletta «[[:$1]]» inn i «[[:$2]]»',
+'mergehistory-comment'             => 'Fletta «[[:$1]]» inn i «[[:$2]]»: $3',
 
 # Merge log
 'mergelog'           => 'Flettingslogg',
@@ -946,11 +954,17 @@ Pass på at den nye sida også har innhald frå den innfletta sida.',
 'nextn'                 => 'neste $1',
 'viewprevnext'          => 'Vis ($1) ($2) ($3).',
 'search-result-size'    => '$1 ({{PLURAL:$2|1 ord|$2 ord}})',
+'search-result-score'   => 'Relevans: $1&nbsp;%',
+'search-redirect'       => '(omdirigering $1)',
+'search-section'        => '(bolk $1)',
+'search-suggest'        => 'Meinte du: «$1»',
 'searchall'             => 'alle',
 'showingresults'        => "Nedanfor er opp til {{PLURAL:$1|'''éitt''' resultat|'''$1''' resultat}} som byrjar med nummer '''$2''' vist.",
 'showingresultsnum'     => "Nedanfor er {{PLURAL:$3|'''éitt''' resultat|'''$3''' resultat}} som byrjar med nummer '''$2''' vist.",
+'showingresultstotal'   => "Under er resultata '''$1-$2''' av '''$3''' viste",
 'nonefound'             => "'''Merk''': søk utan resultat kan komma av at du leitar etter alminnelege engelske ord som ikkje blir indekserte, eller det kan komma av at du har gjeve meir enn eitt søkjeord (berre sider som inneheld alle søkjeorda vil bli funne).",
 'powersearch'           => 'Søk',
+'powersearch-legend'    => 'Avansert søk',
 'powersearchtext'       => 'Søk i namnerom:<br />$1<br />$2<br />List omdirigeringar &nbsp; Søk etter: $3 $9',
 'searchdisabled'        => 'Søkjefunksjonen på {{SITENAME}} er deaktivert på grunn av for stort press på tenarane akkurat no. I mellomtida kan du søkje gjennom Google eller Yahoo! Ver merksam på at registra deira kan vera utdaterte.',
 
@@ -1026,7 +1040,6 @@ Pass på at den nye sida også har innhald frå den innfletta sida.',
 'userrights-groupsmember'          => 'Medlem av:',
 'userrights-groupsremovable'       => 'Grupper som kan fjernast:',
 'userrights-groupsavailable'       => 'Tilgjengelege grupper:',
-'userrights-groupshelp'            => 'Vel grupper du vil at brukaren skal fjernast frå eller leggjast til. Grupper som ikkje er valde vil ikkje bli endra. Du kan velja vekk ei gruppe med [CTRL + venstreklikk]',
 'userrights-reason'                => 'Grunn til endring:',
 'userrights-available-none'        => 'Du kan ikkje endre gruppemedlemsskap.',
 'userrights-available-add'         => 'Du kan legge brukarar til {{PLURAL:$2|denne gruppa|desse gruppene}}: $1.',
@@ -1037,6 +1050,8 @@ Pass på at den nye sida også har innhald frå den innfletta sida.',
 'userrights-nodatabase'            => 'Databasen $1 finst ikkje eller er ikkje lokal.',
 'userrights-nologin'               => 'Du må [[Special:Userlogin|logge inn]] med ein administrator- og/eller byråkratkonto for å endre brukartilgangar.',
 'userrights-notallowed'            => 'Kontoen din har ikkje tilgang til å endre brukartilgangar.',
+'userrights-changeable-col'        => 'Grupper du kan endre',
+'userrights-unchangeable-col'      => 'Grupper du ikkje kan endre',
 
 # Groups
 'group'               => 'Gruppe:',
@@ -1221,6 +1236,7 @@ Sletteloggen for fila finn du her:",
 'noimage'                   => 'Det finst ikkje noka fil med dette namnet, men du kan $1',
 'noimage-linktext'          => 'laste ho opp',
 'uploadnewversion-linktext' => 'Last opp ny versjon av denne fila',
+'imagepage-searchdupe'      => 'Søk etter filer som ligg dobbelt',
 
 # File reversion
 'filerevert'                => 'Rull attende $1',
@@ -1249,6 +1265,7 @@ Sletteloggen for fila finn du her:",
 'filedelete-reason-dropdown'  => '*Vanlege grunnar for sletting
 ** Brot på opphavsretten
 ** Ligg dobbelt',
+'filedelete-edit-reasonlist'  => 'Endre grunnar til sletting',
 
 # MIME search
 'mimesearch'         => 'MIME-søk',
@@ -1437,6 +1454,7 @@ Om du seinere vil fjerne sida frå overvakingslista, klikk på «Fjern overvakin
 'unwatch'              => 'Fjern overvaking',
 'unwatchthispage'      => 'Fjern overvaking',
 'notanarticle'         => 'Ikkje innhaldsside',
+'notvisiblerev'        => 'Sideversjonen er sletta',
 'watchnochange'        => 'Ingen av sidene i overvakingslista er endra i den valde perioden.',
 'watchlist-details'    => 'Du har {{PLURAL:$1|éi side|$1 sider}} i overvakingslista di (diskusjonssider ikkje medrekna).',
 'wlheader-enotif'      => '* Funksjonen for endringsmeldingar per e-post er på.',
@@ -1516,6 +1534,7 @@ For hjelp og meir informasjon:
 ** På førespurnad frå forfattren
 ** Brot på opphavsretten
 ** Hærverk',
+'delete-edit-reasonlist'      => 'Endre grunnar til sletting',
 'delete-toobig'               => 'Denne sida har ein lang endringshistorikk, med meir enn $1 endringar. Sletting av slike sider er avgrensa for å unngå forstyrring av {{SITENAME}} med uhell.',
 'delete-warning-toobig'       => 'Denne sida har ein lang endringshistorikk, med meir enn $1 endringar. Dersom du slettar henne kan det forstyrre handlingar i databasen til {{SITENAME}}, ver varsam.',
 'rollback'                    => 'Rull attende endringar',
@@ -1994,6 +2013,7 @@ Dei andre felta er gøymde som standard.
 'exif-yresolution'                 => 'Oppløysing i høgda',
 'exif-resolutionunit'              => 'Eining for X- og Y-oppløysing',
 'exif-jpeginterchangeformatlength' => 'Byte JPEG-data',
+'exif-transferfunction'            => 'Overføringsfunksjon',
 'exif-referenceblackwhite'         => 'Svart og kvitt referanseverdipar',
 'exif-datetime'                    => 'Dato og tid endra',
 'exif-imagedescription'            => 'Tittel',

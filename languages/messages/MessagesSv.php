@@ -395,7 +395,7 @@ $messages = array(
 'badaccess-groups' => 'Den handling du har begärt kan enbart utföras av användare i grupperna $1.',
 
 'versionrequired'     => 'Version $1 av MediaWiki krävs',
-'versionrequiredtext' => 'För att kunna använda den här sidan, behövs version $1 av MediaWiki. Se [[Special:Version]].',
+'versionrequiredtext' => 'Version $1 av MediaWiki är nödvändig för att använda denna sida. Se [[Special:Version|versionssidan]].',
 
 'ok'                      => 'OK',
 'retrievedfrom'           => 'Den här sidan är hämtad från $1',
@@ -676,12 +676,7 @@ Blockeringens ID är $5. Vänligen ange blockerings-ID i alla förfrågningar so
 'newarticle'                => '(Ny)',
 'newarticletext'            => 'Du har klickat på en länk till en sida som inte finns ännu. Du kan själv skapa sidan genom att skriva i fältet nedan (du kan läsa mer på [[{{MediaWiki:Helppage}}|hjälpsidan]]). Om du inte vill skriva något kan du bara trycka på "tillbaka" i din webbläsare.',
 'anontalkpagetext'          => "---- ''Detta är en diskussionssida för en användare som inte har loggat in. {{SITENAME}} måste därför använda personens numeriska IP-adress för att identifiera honom eller henne. En sådan IP-adress kan ibland användas av flera olika personer. Om du får meddelanden här som inte tycks vara riktade till dig, kan du gärna [[Special:Userlogin|logga in]]. Då undviker du framtida förväxlingar.''",
-'noarticletext'             => "<div class=\"plainlinks\" style=\"border: 1px solid #ccc; padding: 7px;\">'''{{SITENAME}} har inte någon artikel om \"{{PAGENAME}}\" ännu.'''<br />
-*Du kan '''[{{fullurl:{{FULLPAGENAME}}|action=edit}} redigera den här sidan]''' för att skapa en ny artikel.<br />
-*Du kan också [[Special:Search/{{PAGENAME}}|söka efter {{PAGENAME}}]] i andra artiklar på {{SITENAME}}.<br />
-*Det kan också hända att artikeln har raderats. Se då i [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} raderingsloggen].<br />
-----<br />
-*Om du har skapat artikeln under de senaste minuterna kan du ändå få upp denna sida ifall {{SITENAME}}s cache inte hunnit uppdateras. Vänligen vänta då en liten stund och se om artikeln syns senare innan du försöker skapa den igen.</div>",
+'noarticletext'             => 'Det finns just nu ingen text på denna sida. Du kan [[Special:Search/{{PAGENAME}}|söka efter denna sidtitel]] i andra sidor eller [{{fullurl:{{FULLPAGENAME}}|action=edit}} redigera denna sida].',
 'userpage-userdoesnotexist' => '"$1" är inte ett registrerat användarkonto. Tänk efter om du vill skapa/redigera den här sidan.',
 'clearyourcache'            => "'''Obs:''' Sedan du sparat sidan, måste du tömma din webbläsares cache för att se ändringarna. '''Mozilla/Safari/Firefox:''' håll ner ''skift'' och klicka på ''reload'' eller tryck ''ctrl-shift-r'', (cmd-shift-R på mac:ar); '''Internet Explorer:'''  håll ner ctr och klicka på \"Refresh\" eller tryck ''ctrl-f5'', '''Konqueror:''': klicka helt enkelt på \"Reload\" eller F5; '''Opera:''' tryck ''F5''",
 'usercssjsyoucanpreview'    => "<strong>Tips:</strong> Använd 'Visa förhandsgranskning' för att testa din nya css/js innan du sparar.",
@@ -972,17 +967,21 @@ $2 Lista omdirigeringar &nbsp; Sök efter $3 $9',
 'userrights-groupsmember'          => 'Medlem i:',
 'userrights-groupsremovable'       => 'Grupper som kan tas bort:',
 'userrights-groupsavailable'       => 'Tillgängliga grupper:',
-'userrights-groupshelp'            => 'Markera de grupper, som du vill lägga till eller ta bort användare i. De grupper som du inte markerar, kommer inte att förändras. Du kan avmarkera en grupp med CTRL + vänsterklick.',
+'userrights-groups-help'           => 'Du kan ändra vilka grupper denna användare är medlem i.
+En ikryssad ruta betyder användaren är medlem i den gruppen.
+En okryssad ruta betyder att användaren inte är medlem i den gruppen.',
 'userrights-reason'                => 'Anledning till ändringen:',
 'userrights-available-none'        => 'Du kan inte ändra några grupptillhörigheter.',
-'userrights-available-add'         => 'Du kan lägga till användare i följande {{PLURAL:$2|grupp|grupper}}: $1.',
-'userrights-available-remove'      => 'Du kan ta bort användare från följande {{PLURAL:$2|grupp|grupper}}: $1.',
+'userrights-available-add'         => 'Du kan lägga till användare i {{PLURAL:$2|denna grupp|dessa grupper}}: $1.',
+'userrights-available-remove'      => 'Du kan ta bort användare från {{PLURAL:$2|denna grupp|dessa grupper}}: $1.',
 'userrights-available-add-self'    => 'Du kan lägga till dig själv till följande {{PLURAL:$2|grupp|grupper}}: $1.',
 'userrights-available-remove-self' => 'Du kan ta bort dig själv från följande {{PLURAL:$2|grupp|grupper}}: $1.',
 'userrights-no-interwiki'          => 'Du har inte behörighet att ändra användarrättigheter på andra wikis.',
 'userrights-nodatabase'            => 'Databasen $1 finns inte eller så är den inte lokal.',
 'userrights-nologin'               => 'Du måste [[Special:Userlogin|logga in]] med ett administratörskonto för att ändra användarrättigheter.',
 'userrights-notallowed'            => 'Ditt konto har inte behörighet till att ändra användarrättigheter.',
+'userrights-changeable-col'        => 'Grupper du kan ändra',
+'userrights-unchangeable-col'      => 'Grupper du inte kan ändra',
 
 # Groups
 'group'               => 'Grupp:',

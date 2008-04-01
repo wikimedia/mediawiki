@@ -954,17 +954,20 @@ Gli altri amministratori del sito potranno accedere comunque ai contenuti nascos
 'userrights-groupsmember'          => 'Appartiene ai gruppi:',
 'userrights-groupsremovable'       => 'Gruppi eliminabili:',
 'userrights-groupsavailable'       => 'Gruppi disponibili:',
-'userrights-groupshelp'            => "Selezionare i gruppi ai quali si vuole associare o rimuovere l'utente. L'appartenenza ai gruppi non selezionati non verrà modificata. Per deselezionare un gruppo, premere Ctrl + il tasto sinistro del mouse.",
+'userrights-groups-help'           => "È possibile modificare i gruppi cui è assegnato l'utente.
+Una casella di spunta selezionata indica l'appartenenza dell'utente al gruppo; una casella di spunta deselezionata indica la sua mancata appartenenza al gruppo.",
 'userrights-reason'                => 'Motivo della modifica:',
 'userrights-available-none'        => "Non è consentito modificare l'appartenenza ai gruppi.",
-'userrights-available-add'         => 'È possibile associare utenti {{PLURAL:$2|al gruppo|ai gruppi}}: $1.',
-'userrights-available-remove'      => 'È possibile rimuovere utenti {{PLURAL:$2|dal gruppo|dai gruppi}}: $1.',
+'userrights-available-add'         => 'È possibile associare gli utenti {{PLURAL:$2|al gruppo|ai gruppi}}: $1.',
+'userrights-available-remove'      => 'È possibile rimuovere gli utenti {{PLURAL:$2|dal gruppo|dai gruppi}}: $1.',
 'userrights-available-add-self'    => 'È possibile aggiungere il proprio account {{PLURAL:$2|al gruppo indicato|ai gruppi indicati}} di seguito: $1.',
 'userrights-available-remove-self' => 'È possibile rimuovere il proprio account {{PLURAL:$2|dal gruppo indicato|dai gruppi indicati}} di seguito: $1.',
 'userrights-no-interwiki'          => 'Non si dispone dei permessi necessari per modificare i diritti degli utenti su altri siti.',
 'userrights-nodatabase'            => 'Il database $1 non esiste o non è un database locale.',
 'userrights-nologin'               => "Per assegnare diritti agli utenti è necessario [[Special:Userlogin|effettuare l'accesso]] come amministratore.",
 'userrights-notallowed'            => "L'utente non dispone dei permessi necessari per assegnare diritti agli utenti.",
+'userrights-changeable-col'        => 'Gruppi modificabili',
+'userrights-unchangeable-col'      => 'Gruppi non modificabili',
 
 # Groups
 'group'               => 'Gruppo:',

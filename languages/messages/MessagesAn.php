@@ -931,8 +931,6 @@ Mirar $3 $9',
 'userrights-groupsmember'          => 'Miembro de:',
 'userrights-groupsremovable'       => 'Collas sacables:',
 'userrights-groupsavailable'       => 'Collas disponibles:',
-'userrights-groupshelp'            => "Selezione as collas d'as que quiere sacar u adibir bel usuario.
-As collas no trigatas no cambiarán. Puede sacar a selezión pretando de bez a tecla CTRL y o botón zurdo d'a rateta.",
 'userrights-reason'                => 'Razón ta o cambeo:',
 'userrights-available-none'        => "No puede cambiar a pertenenzia á las collas d'usuarios.",
 'userrights-available-add'         => 'Puede adibir usuarios ta {{PLURAL:$2|ista colla|istas collas}}: $1.',

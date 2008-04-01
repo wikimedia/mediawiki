@@ -274,7 +274,7 @@ $messages = array(
 'badaccess-groups' => 'A acción solicitada está limitada aos usuarios nalgún dos grupos $1.',
 
 'versionrequired'     => 'Necesítase a versión $1 de MediaWiki',
-'versionrequiredtext' => 'Necesítase a versión $1 de MediaWiki para utilizar esta páxina. Vexa [[Special:Version]]',
+'versionrequiredtext' => 'Necesítase a versión $1 de MediaWiki para utilizar esta páxina. Vexa [[Special:Version|a páxina da versión]].',
 
 'ok'                      => 'Aceptar',
 'retrievedfrom'           => 'Traído desde "$1"',
@@ -877,7 +877,6 @@ Procurar $3 $9',
 'userrights-groupsmember'          => 'Membro de:',
 'userrights-groupsremovable'       => 'Grupos eliminábeis:',
 'userrights-groupsavailable'       => 'Grupos dispoñíbeis:',
-'userrights-groupshelp'            => 'Escolla os grupos dos que quere retirar ou sumar o usuario. Os grupos non seleccionados non se modificarán. Pode deseleccionar un grupo con CTRL + Clic Esquerdo',
 'userrights-reason'                => 'Razón para a modificación:',
 'userrights-available-none'        => 'Non pode mudar a pertenza ao grupo.',
 'userrights-available-add'         => 'Pode engadir usuarios a {{PLURAL:$2|este grupo|estes grupos}}: $1.',
@@ -1368,7 +1367,7 @@ Feedback e axuda:
 {{fullurl:{{MediaWiki:Helppage}}}}',
 
 # Delete/protect/revert
-'deletepage'                  => 'Borrar unha páxina',
+'deletepage'                  => 'Borrar a páxina',
 'confirm'                     => 'Confirmar',
 'excontent'                   => "o contido era: '$1'",
 'excontentauthor'             => "O texto puña: '$1' (e o único editor foi '$2')",

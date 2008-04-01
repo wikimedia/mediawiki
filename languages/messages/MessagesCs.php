@@ -517,7 +517,7 @@ $messages = array(
 'badaccess-groups' => 'Požadovanou činnost smějí provádět jen uživatelé ve skupinách $1.',
 
 'versionrequired'     => 'Vyžadováno MediaWiki verze $1',
-'versionrequiredtext' => 'Pro použití této stránky je vyžadováno MediaWiki verze $1. Vizte [[Special:Version]].',
+'versionrequiredtext' => 'Pro použití této stránky je vyžadováno MediaWiki verze $1. Vizte [[Special:Version|stránku verze]].',
 
 'ok'                      => 'OK',
 'retrievedfrom'           => 'Citováno z „$1“',
@@ -1111,18 +1111,21 @@ $2 Vypsat přesměrování &nbsp; Hledat $3 $9',
 'userrights-groupsmember'          => 'Člen skupin:',
 'userrights-groupsremovable'       => 'Odebratelné skupiny:',
 'userrights-groupsavailable'       => 'Dostupné skupiny:',
-'userrights-groupshelp'            => 'Zvolte skupiny, do/ze kterých chcete uživatele přidat/odebrat.
-Nezvolené skupiny nebudou změněny. Skupinu můžete vyřadit z vybraných pomocí CTRL + Levé tlačítko myši',
+'userrights-groups-help'           => 'Můžete měnit skupiny, do který je uživatel zařazen.
+Zaškrtnuté políčko znamená, že uživatel je ve skupině.
+Nezaškrtnuté políčko značí, že uživatel ve skupině není.',
 'userrights-reason'                => 'Zdůvodnění:',
 'userrights-available-none'        => 'Nemůžete měnit zařazení do skupin.',
-'userrights-available-add'         => 'Můžete uživatele přidat do {{PLURAL:$2|skupiny|skupin|skupin}}: $1.',
-'userrights-available-remove'      => 'Můžete odebrat uživatele z {{PLURAL:$2|této skupiny|těchto skupin|těchto skupin}}: $1.',
+'userrights-available-add'         => 'Kteréhokoliv uživatele můžete přidat do {{PLURAL:$2|této skupiny|těchto skupin|těchto skupin}}: $1.',
+'userrights-available-remove'      => 'Kteréhokoliv uživatele můžete odebrat z {{PLURAL:$2|této skupiny|těchto skupin|těchto skupin}}: $1.',
 'userrights-available-add-self'    => 'Můžete se přidat do {{PLURAL:$2|této skupiny|těchto skupin|těchto skupin}}: $1.',
 'userrights-available-remove-self' => 'Můžete se odebrat z {{PLURAL:$2|této skupiny|těchto skupin|těchto skupin}}: $1.',
 'userrights-no-interwiki'          => 'Nemáte povoleno měnit uživatelská práva na jiných wiki.',
 'userrights-nodatabase'            => 'Databáze $1 neexistuje nebo není místní.',
 'userrights-nologin'               => 'Musíte se [[Special:Userlogin|přihlásit]] k účtu správce, abyste mohli měnit uživatelská práva.',
 'userrights-notallowed'            => 'Tento účet nemá povoleno měnit uživatelská práva.',
+'userrights-changeable-col'        => 'Skupiny, které můžete měnit',
+'userrights-unchangeable-col'      => 'Skupiny, které nemůžete měnit',
 
 # Groups
 'group'               => 'Skupina:',

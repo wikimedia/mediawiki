@@ -915,8 +915,6 @@ teisės",
 'userrights-groupsmember'          => 'Narys:',
 'userrights-groupsremovable'       => 'Pašalinamos grupės:',
 'userrights-groupsavailable'       => 'Galimos grupės:',
-'userrights-groupshelp'            => 'Pasirinkite grupes, į kurias pridėti ar iš kurių pašalinti naudotoją.
-Nepasirinktos grupės nebus pakeistos. Galite atžymėti grupę laikydami Ctrl ir paspausdami kairiuoju pelės klavišu',
 'userrights-reason'                => 'Keitimo priežastis:',
 'userrights-available-none'        => 'Jūs negalite keisti grupės narystės.',
 'userrights-available-add'         => 'Jūs galite pridėti naudotojus į {{PLURAL:$2|šią grupę|šias grupes}}: $1.',

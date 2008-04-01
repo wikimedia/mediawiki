@@ -908,11 +908,12 @@ Sich no: $3 $9',
 'userrights-groupsavailable'  => "Et ginn d'Gruppen:",
 'userrights-reason'           => 'Grond:',
 'userrights-available-none'   => 'Dir däerft keng Benotzerrechter änneren.',
-'userrights-available-add'    => 'Dir kënnt Benotzer an déi folgend {{PLURAL:$2|Grupp derbäisetzen|Grupppen derbäisetzen}}: $1
-.',
-'userrights-available-remove' => 'Dir kënnt Benotzer aus {{PLURAL:$2|dëser Gruppe|dëse(n) $2 Gruppen}} eraushuelen: $1.',
+'userrights-available-add'    => 'Dir kënnt Benotzer an {{PLURAL:$2|dëse Grupp|dës Grupppen}} derbäisetzen: $1.',
+'userrights-available-remove' => 'Dir kënnt Benotzer aus {{PLURAL:$2|dëser Gruppe|dëse Gruppen}} eraushuelen: $1.',
 'userrights-no-interwiki'     => "Dir hutt net déi néideg Rechter, fir d'Rechter vu Benoutzer op anere Wikien z'änneren.",
 'userrights-nodatabase'       => "D'Datebank $1 gëtt et net oder se ass net lokal.",
+'userrights-changeable-col'   => 'Gruppen déi Dir ännere kënnt',
+'userrights-unchangeable-col' => 'Gruppen déi Dir net ännere kënnt',
 
 # Groups
 'group'               => 'Grupp:',
@@ -1674,7 +1675,7 @@ An deene Fäll musst Dir d'Diskussiounssäit manuell réckelen oder fusionéiere
 'allmessagesdefault'        => 'Standardtext',
 'allmessagescurrent'        => 'Aktuellen Text',
 'allmessagestext'           => "Dëst ass eng Lëscht vun alle '''Messagen am MediaWiki:namespace''', déi vun der MediaWiki-Software benotzt ginn. Si kënnen nëmme vun [[Wikipedia:Administrators|Administrateure]] geännert ginn.",
-'allmessagesnotsupportedDB' => "'''{{ns:special}}:AllMessages''' gëtt den Ament net ënnertstëtzt well d'Datebank ''offline'' ass.",
+'allmessagesnotsupportedDB' => "'''{{ns:special}}: AllMessages''' gëtt den Ament net ënnertstëtzt well '''\$wgUseDatabaseMessages''' ausgeschalt ass.",
 'allmessagesfilter'         => 'Noriichtennummfilter:',
 'allmessagesmodified'       => 'Nëmme geännerter weisen',
 

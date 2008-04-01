@@ -1122,18 +1122,21 @@ De gegevens over {{SITENAME}} zijn mogelijk niet bijgewerkt.',
 'userrights-groupsmember'          => 'Lid van:',
 'userrights-groupsremovable'       => 'Verwijderbare groepen:',
 'userrights-groupsavailable'       => 'Beschikbare groepen:',
-'userrights-groupshelp'            => 'Selecteer de groepen waaruit u de gebruiker wilt verwijderen of aan toe wilt voegen.
-Niet geselecteerde groepen worden niet gewijzigd. Deselecteer een groep met "Ctrl + linkermuisknop".',
+'userrights-groups-help'           => 'U kunt de groepen wijzigen waar deze gebruiker lid van is.
+Een aangekruisd vinkvakje betekent dat de gebruiker lid is van de groep.
+Een niet aangekruisd vinkvakje betekent dat de gebruiker geen lid is van de groep.',
 'userrights-reason'                => 'Reden voor het veranderen:',
 'userrights-available-none'        => 'U mag geen gebruikersrechten veranderen.',
 'userrights-available-add'         => 'U kunt gebruikers toevoegen aan deze {{PLURAL:$2|groep|groepen}}: $1.',
-'userrights-available-remove'      => 'U kunt gebruikers verwijderen van deze {{PLURAL:$2|groep|groepen}}: $1.',
+'userrights-available-remove'      => 'U kunt gebruikers verwijderen uit deze {{PLURAL:$2|groep|groepen}}: $1.',
 'userrights-available-add-self'    => 'U kunt uzelf toevoegen aan deze {{PLURAL:$2|groep|groepen}}: $1.',
 'userrights-available-remove-self' => 'U kunt uzelf verwijderen uit deze {{PLURAL:$2|groep|groepen}}: $1.',
 'userrights-no-interwiki'          => "U hebt geen rechten om gebruikersrechten op andere wiki's te wijzigen.",
 'userrights-nodatabase'            => 'Database $1 bestaat niet of is geen plaatselijke database.',
 'userrights-nologin'               => 'U moet zich [[Special:Userlogin|aanmelden]] met een gebruiker met de juiste rechten om gebruikersrechten toe te wijzen.',
 'userrights-notallowed'            => 'U hebt geen rechten om gebruikersrechten toe te wijzen.',
+'userrights-changeable-col'        => 'Groepen die u kunt beheren',
+'userrights-unchangeable-col'      => 'Groepen die u niet kunt beheren',
 
 # Groups
 'group'               => 'Groep:',

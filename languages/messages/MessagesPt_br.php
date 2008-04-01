@@ -843,8 +843,6 @@ para definir suas preferências.',
 'userrights-editusergroup'         => 'Editar grupos do usuário',
 'saveusergroups'                   => 'Salvar grupos do usuário',
 'userrights-groupsavailable'       => 'Grupos disponíveis:',
-'userrights-groupshelp'            => 'Selecione os grupos nos quais deseja que o usuário seja removido ou adicionado.
-Grupos não selecionados não serão alterados. Você pode selecionar ou des-selecionar um grupo com CTRL + clique esquerdo',
 'userrights-reason'                => 'Motivo das alterações:',
 'userrights-available-none'        => 'Não é possível alterar o grupo de acesso.',
 'userrights-available-add'         => 'É possível adicionar usuários {{PLURAL:$2|neste grupo|nestes grupos}}: $1',

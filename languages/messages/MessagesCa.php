@@ -987,8 +987,6 @@ $2 Llista redireccions   Cerca $3 $9',
 'userrights-groupsmember'          => 'Membre de:',
 'userrights-groupsremovable'       => 'Grups dels quals us podeu treure:',
 'userrights-groupsavailable'       => 'Grups disponibles:',
-'userrights-groupshelp'            => "Seleccioneu els grups dels quals voleu suprimir-ne l'usuari o afegir-lo.
-Els grups no seleccionats no es canviaran. Podeu treure la selecció d'un grup amb CTRL + Clic",
 'userrights-reason'                => 'Motiu del canvi:',
 'userrights-available-none'        => "No podeu alterar l'afiliació al grup.",
 'userrights-available-add'         => 'Podeu afegir usuaris {{PLURAL:$2|al grup|als grups:}} $1.',
@@ -1261,7 +1259,7 @@ Això resulta en una mitjana {{PLURAL:$5|d'una edició|de '''$5''' edicions}} pe
 i {{PLURAL:$6|'''$6''' visita|'''$6''' visites}} per edició.
 
 La mida de la [http://meta.wikimedia.org/wiki/Help:Job_queue cua de treballs] és '''$7'''.",
-'userstatstext'          => "Hi ha '''$1''' usuaris registrats, dels quals {{PLURAL:$2|un (el '''$4%''') n'és $5|'''$2''' (el '''$4%''') en són $5}}.",
+'userstatstext'          => "Hi ha {{PLURAL:$1|'''1''' usuari registrat i, a més,|'''$1''' usuaris registrats, dels quals}} {{PLURAL:$2|un (el '''$4%''') té|'''$2''' (el '''$4%''') tenen}} drets de: $5.",
 'statistics-mostpopular' => 'Pàgines més visualitzades',
 
 'disambiguations'      => 'Pàgines de desambiguació',
@@ -1783,7 +1781,7 @@ Tingueu en compte que la pàgina '''no''' serà traslladada si ja existeix una p
 Això significa que podeu reanomenar de nou una pàgina al seu títol original si cometeu un error, i que no podeu sobreescriure una pàgina existent.
 
 '''ADVERTÈNCIA!'''
-Això pot ser un canvi dràstic i inesperat per a una pàgina popular;
+Açò pot ser un canvi dràstic i inesperat per a una pàgina popular;
 assegureu-vos d'entendre les conseqüències que comporta abans de seguir endavant.",
 'movepagetalktext'        => "La pàgina de discussió associada, si existeix, serà traslladada automàticament '''a menys que:'''
 *Ja existeixi una pàgina de discussió no buida amb el nom nou, o

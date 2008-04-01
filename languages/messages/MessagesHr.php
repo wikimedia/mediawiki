@@ -904,8 +904,6 @@ za podešavanje suradničkih postavki.',
 'userrights-groupsmember'          => 'Član:',
 'userrights-groupsremovable'       => 'Uklonjive grupe:',
 'userrights-groupsavailable'       => 'Dostupne skupine:',
-'userrights-groupshelp'            => 'Izaberite skupine u koje želite dodati ili iz njih ukloniti suradnika.
-Neoznačene skupine neće se promijeniti. Skupinu možete deselektirati istovremenim pritiskom CTRL + lijeva tipka miša',
 'userrights-reason'                => 'Razlog za promjenu:',
 'userrights-available-none'        => 'Ne možete mijenjati prava grupe.',
 'userrights-available-add'         => 'Možete dodavati suradnike {{PLURAL:$2|grupi|grupama|grupama}}: $1.',

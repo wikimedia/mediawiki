@@ -10,6 +10,7 @@
  * @author Nike
  * @author SPQRobin
  * @author Siebrand
+ * @author Meursault2004
  */
 
 /**
@@ -1049,7 +1050,6 @@ Pengurus lain akan dapat mengakses isi tersebunyi dan dapat membatalkan penghapu
 'userrights-groupsmember'          => 'Anggota dari:',
 'userrights-groupsremovable'       => 'Grup yang dapat dicabut:',
 'userrights-groupsavailable'       => 'Grup yang dapat diberikan:',
-'userrights-groupshelp'            => 'Pilih kelompok yang Anda ingin hapus dari atau tambahkan pada pengguna. Kelompok yang tak dipilih tak akan diganti. Anda dapat membatalkan pilihan dengan menekan tombol CTRL + Klik kiri',
 'userrights-reason'                => 'Alasan pengubahan:',
 'userrights-available-none'        => 'Anda tak dapat mengganti keangotaan kelompok.',
 'userrights-available-add'         => 'Anda dapat memasukkan pengguna ke {{PLURAL:$2|grup|grup-grup}}: $1.',
@@ -1572,7 +1572,7 @@ Umpan balik dan bantuan lanjutan:
 'protect-level-autoconfirmed' => 'Hanya pengguna terdaftar',
 'protect-level-sysop'         => 'Hanya pengurus',
 'protect-summary-cascade'     => 'runtun',
-'protect-expiring'            => 'kadalawarsa $1 (UTC)',
+'protect-expiring'            => 'kadaluwarsa $1 (UTC)',
 'protect-cascade'             => 'Lindungi semua halaman yang termasuk dalam halaman ini (perlindungan runtun ).',
 'protect-cantedit'            => 'Anda tidak dapat mengubah tingkatan perlindungan halaman ini karena Anda tidak memiliki hak untuk itu.',
 'restriction-type'            => 'Perlindungan:',

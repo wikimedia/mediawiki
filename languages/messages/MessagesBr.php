@@ -883,9 +883,6 @@ $2 Lakaat ivez ar pajennoù adkas &nbsp; Klask $3 $9',
 'userrights-groupsmember'          => 'Ezel eus :',
 'userrights-groupsremovable'       => "Strolladoù a c'haller diverkañ :",
 'userrights-groupsavailable'       => 'Strolladoù zo :',
-'userrights-groupshelp'            => "Diuzit ar strolladoù a fell deoc'h e vefe ouzhpennet an implijer enno pe lamet diouto.
-Ne vo ket cheñchet ar strolladoù n'int ket bet diuzet.
-Gallout a rit diziuzañ ur strollad gant CTRL + Klik kleiz.",
 'userrights-reason'                => 'Abeg kemmañ :',
 'userrights-available-none'        => "N'hallit ket cheñch roll perzhidi ar strollad",
 'userrights-available-add'         => "Gallout a rit ouzhpennañ implijerien d'ar {{PLURAL:$2|strollad-mañ|strolladoù-mañ}} :$1.",

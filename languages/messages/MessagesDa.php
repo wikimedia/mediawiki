@@ -958,8 +958,6 @@ Vær opmæksom på at bevare kontinuiteten i sidehistorikken.
 'userrights-groupsmember'          => 'Medlem af:',
 'userrights-groupsremovable'       => 'Grupper der kan slettes:',
 'userrights-groupsavailable'       => 'Tilgængelige grupper:',
-'userrights-groupshelp'            => 'Vælg grupper som du ønsker brugeren skal fjernes fra eller føjes til.
-Grupper som ikke er valgt, vil ikke blive ændret. Du kan ophæve valget af en gruppe ved hjælp af CTRL-tasten og et venstreklik.',
 'userrights-reason'                => 'Årsag:',
 'userrights-available-none'        => 'Du kan ikke ændre gruppetilhørsforhold.',
 'userrights-available-add'         => 'Du kan tilføje medlemmer til {{PLURAL:$2|denne gruppe|disse grupper}}: $1.',

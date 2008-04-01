@@ -1187,8 +1187,6 @@ $1 ساعة.',
 'userrights-groupsmember'          => 'عضو في:',
 'userrights-groupsremovable'       => 'المجموعات للإزالة:',
 'userrights-groupsavailable'       => 'المجموعات المتوفرة:',
-'userrights-groupshelp'            => 'قم باختيار المجموعات التي تريد المستخدم أن يضاف إليها أو تتم إزالته منها.
-المجموعات غير المختارة ستترك كما هي. يمكنك إزالة مجموعة بالضغط على كنترل + ضغطة فأرة يسرى.',
 'userrights-reason'                => 'سبب التغيير:',
 'userrights-available-none'        => 'لا يمكنك تعديل مجموعات المستخدم.',
 'userrights-available-add'         => 'يمكنك إضافة المستخدمين إلى {{PLURAL:$2|هذه المجموعة|هذه المجموعات}}: $1.',

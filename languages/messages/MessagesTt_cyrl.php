@@ -290,6 +290,7 @@ $messages = array(
 'nosuchusershort'            => "Кулланучы '''<nowiki>$1</nowiki>''' ирешү исеме белән юк. Исем язу тикшерегез.",
 'nouserspecified'            => 'Сез теркәү исмегезне күрсәтергә тиешсез.',
 'wrongpassword'              => 'Язылган серсүз дөрес түгел. Тагын бер тапкыр сынагыз.',
+'wrongpasswordempty'         => 'Буш түгел серсүзне кертегез әле.',
 'passwordtooshort'           => 'Язылган серсүз начар яки ифрат кыска. Сезсүз $1 хәрефтән булырга һәм кулланучы исеменнән аерылырга тиеш.',
 'mailmypassword'             => 'Серсүзне электрон почтага җибәрергә',
 'passwordremindertitle'      => '{{SITENAME}} кулланучысына яңа вакытлы серсүз',
@@ -578,6 +579,8 @@ $messages = array(
 # Delete/protect/revert
 'deletepage'                  => 'Битне бетерергә',
 'actioncomplete'              => 'Гамәл башкарган',
+'deletedtext'                 => '«<nowiki>$1</nowiki>» бетерергән инде.<br />
+Соңгы бетерүләр карау өчен, $2 кара.',
 'deletedarticle'              => '«[[$1]]» бетерергән',
 'dellogpage'                  => 'Бетерү исемлеге',
 'deletecomment'               => 'Бетерү сәбәбе:',
@@ -591,6 +594,7 @@ $messages = array(
 'protect-level-autoconfirmed' => 'Теркәлмәгән кулланучыларны кысарга',
 'protect-level-sysop'         => 'Идарәчеләр генә',
 'protect-expiring'            => '$1 үтә (UTC)',
+'protect-cantedit'            => 'Сез бу битнең яклау дәрәҗәсене үзгәрә алмыйсыз, чөнки сездә аны үзгәртергә рөхсәтегез юк.',
 'restriction-type'            => 'Рөхсәт:',
 'restriction-level'           => 'Мөмкинлек дәрәҗәсе:',
 

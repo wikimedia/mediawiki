@@ -800,8 +800,6 @@ Hilingon tabî an [[Special:Ipblocklist|lista nin binagat na IP]] para sa lista 
 'saveusergroups'              => 'Itagama an mga Grupo nin Páragamit',
 'userrights-groupsmember'     => 'Myembro kan:',
 'userrights-groupsavailable'  => 'Mga grupong dispuesto:',
-'userrights-groupshelp'       => 'Pilion tabî an mga grupong boot mong halîon o idugang ining parágamit.
-Dai babâgohon an mga grupong dai pigpili. Pwede mong bawîon an pagpili sa pagpindot kan CTRL + Left',
 'userrights-reason'           => 'Rasón kan pagribay:',
 'userrights-available-none'   => 'Dai mo puedeng hirâon an grupo nin mga miembro.',
 'userrights-available-add'    => 'Pwede kang magdugang nin mga parágamit sa $1.',

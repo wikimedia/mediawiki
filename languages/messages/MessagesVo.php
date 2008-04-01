@@ -881,7 +881,6 @@ Kontrololös, va votükam at okipon fovöfi padajenotema.',
 'userrights-groupsmember'          => 'Liman grupa(s):',
 'userrights-groupsremovable'       => 'Grups moükovik:',
 'userrights-groupsavailable'       => 'Grups gebidik:',
-'userrights-groupshelp'            => 'Välolös grupis, de kels vilol moükön gebani u lü kels vilol lüükön gebani. Grups no pevälöls no povotükons. Kanol sävälön grupi me CTRL + Klik Nedetik',
 'userrights-reason'                => 'Kod votükama:',
 'userrights-available-none'        => 'No dalol votükön grupalimanami.',
 'userrights-available-add'         => 'Dalol lüükön gebanis lü {{PLURAL:$2|grup|grups}} at: $1.',
@@ -1335,6 +1334,7 @@ $2 jonon moükamis nulik.',
 ** Copyright violation
 ** Vandalism',
 'delete-edit-reasonlist'      => 'Redakön kodis moükama',
+'delete-toobig'               => 'Pad at labon redakamajenotemi lunik (revids plu $1). Moükam padas somik pemiedükon ad vitön däropami pö {{SITENAME}}.',
 'delete-warning-toobig'       => 'Pad at labon jenotemi lunik: votükams plu $1.
 Prudö! Moükam onik ba osäkädükon jäfidi nünodema: {{SITENAME}}.',
 'rollback'                    => 'Sädunön redakamis',
@@ -1342,6 +1342,9 @@ Prudö! Moükam onik ba osäkädükon jäfidi nünodema: {{SITENAME}}.',
 'rollbacklink'                => 'sädunön vali',
 'rollbackfailed'              => 'Sädunam no eplöpon',
 'cantrollback'                => 'Redakam no kanon pasädunön; keblünan lätik binon lautan teik pada at.',
+'alreadyrolled'               => 'No eplöpos ad sädunön redakami lätik pada: [[:$1]] fa geban: [[User:$2|$2]] ([[User talk:$2|Bespikapad]]); ek ya eredakon ud esädunon padi at.
+
+Redakam lätik päjenükon fa geban: [[User:$3|$3]] ([[User talk:$3|Bespikapad]]).',
 'editcomment'                 => 'Redakamaküpet äbinon: "<i>$1</i>".', # only shown if there is an edit comment
 'revertpage'                  => 'Redakams ela [[Special:Contributions/$2|$2]] ([[User talk:$2|Bespik]]) pegeükons; pad labon nu fomami ma redakam lätik ela [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success'            => 'Redakams gebana: $1 pesädunons; pad pevotükon ad fomam lätik fa geban: $2.',
@@ -1674,6 +1677,7 @@ Ad seveigön padis, penolös tiädis in penamaspad dono, tiädi bal a kedet, e v
 'tooltip-t-permalink'             => 'Yüm laidüpik lü padafomam at',
 'tooltip-ca-nstab-main'           => 'Logön ninädapadi',
 'tooltip-ca-nstab-user'           => 'Logön gebanapadi',
+'tooltip-ca-nstab-media'          => 'Logön ragivapadi',
 'tooltip-ca-nstab-special'        => 'Atos binon pad patik, no kanol redakön oni',
 'tooltip-ca-nstab-project'        => 'Logön proyegapadi',
 'tooltip-ca-nstab-image'          => 'Logön padi ragiva',
@@ -1728,12 +1732,15 @@ Ad seveigön padis, penolös tiädis in penamaspad dono, tiädi bal a kedet, e v
 'patrol-log-auto' => '(itjäfidik)',
 
 # Image deletion
-'deletedrevision'       => 'Fomam büik: $1 pemoükon.',
-'filedeleteerror-short' => 'Pöl pö moükam ragiva: $1',
-'filedeleteerror-long'  => 'Pöls petuvons dü moükam ragiva:
+'deletedrevision'                 => 'Fomam büik: $1 pemoükon.',
+'filedeleteerror-short'           => 'Pöl pö moükam ragiva: $1',
+'filedeleteerror-long'            => 'Pöls petuvons dü moükam ragiva:
 
 $1',
-'filedelete-missing'    => 'Ragiv: "$1" no kanon pamoükön bi no dabinon.',
+'filedelete-missing'              => 'Ragiv: "$1" no kanon pamoükön bi no dabinon.',
+'filedelete-old-unregistered'     => 'Ragivafomam: "$1" no binon in nünodem.',
+'filedelete-current-unregistered' => 'Ragiv: "$1" no binon in nünodem.',
+'filedelete-archive-read-only'    => 'Ragiviär: "$1" no kanon papenön fa dünanünöm bevuresodik.',
 
 # Browsing diffs
 'previousdiff' => '← Dif büik',
@@ -1743,6 +1750,7 @@ $1',
 'imagemaxsize'         => 'Miedükön magodis su pads magodis bepenöls ad:',
 'thumbsize'            => 'Gretot magodüla:',
 'widthheightpage'      => '$1×$2, pads $3',
+'file-info'            => '(ragivagretot: $1, MIME-pated: $2)',
 'file-info-size'       => '($1 × $2 pixel, ragivagret: $3, pated MIME: $4)',
 'file-nohires'         => '<small>Gretot gudikum no pagebidon.</small>',
 'svg-long-desc'        => '(ragiv in fomät: SVG, magodaziöbs $1 × $2, gretot: $3)',
@@ -1779,6 +1787,7 @@ Te lisedaliens (liens me * primöl) pabevobons. Yüm balid liena muton binön y�
 
 # EXIF tags
 'exif-imagewidth'          => 'Vidot',
+'exif-imagelength'         => 'Geilot',
 'exif-imagedescription'    => 'Tiäd magoda',
 'exif-artist'              => 'Lautan',
 'exif-copyright'           => 'Dalaban kopiedagitäta',
@@ -1793,8 +1802,10 @@ Te lisedaliens (liens me * primöl) pabevobons. Yüm balid liena muton binön y�
 'exif-gpslongituderef'     => 'Lunet Lofüdik u Vesüdik',
 'exif-gpslongitude'        => 'Lunet',
 'exif-gpsaltitude'         => 'Geilot',
+'exif-gpsimgdirection'     => 'Lüod magoda',
 'exif-gpsdestlatitude'     => 'Zeilavidet',
 'exif-gpsdestlongitude'    => 'Zeilalunet',
+'exif-gpsdestdistance'     => 'Fagot jü lükömöp',
 'exif-gpsareainformation'  => 'Nem topäda: GPS',
 'exif-gpsdatestamp'        => 'Dät ela GPS',
 
@@ -1812,19 +1823,29 @@ Te lisedaliens (liens me * primöl) pabevobons. Yüm balid liena muton binön y�
 'exif-lightsource-0'  => 'Nesevädik',
 'exif-lightsource-1'  => 'Delalit',
 'exif-lightsource-4'  => 'Kämalelit',
+'exif-lightsource-9'  => 'Stom gudik',
+'exif-lightsource-10' => 'Stom lefogagik',
 'exif-lightsource-11' => 'Jad',
 
 'exif-focalplaneresolutionunit-2' => 'puids',
+
+'exif-scenecapturetype-2' => 'Pöträt',
 
 'exif-gaincontrol-0' => 'Nonik',
 
 'exif-contrast-0' => 'Nomik',
 
 'exif-subjectdistancerange-0' => 'Nesevädik',
+'exif-subjectdistancerange-2' => 'Loged nilik',
+'exif-subjectdistancerange-3' => 'Loged fägik',
 
 # Pseudotags used for GPSLatitudeRef and GPSDestLatitudeRef
 'exif-gpslatitude-n' => 'Videt nolüdik',
 'exif-gpslatitude-s' => 'Videt  Sulüdik',
+
+# Pseudotags used for GPSLongitudeRef and GPSDestLongitudeRef
+'exif-gpslongitude-e' => 'lunet lofüdik',
+'exif-gpslongitude-w' => 'lunet vesüdik',
 
 # Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
 'exif-gpsspeed-k' => 'Milmets a düp',

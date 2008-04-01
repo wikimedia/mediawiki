@@ -838,7 +838,6 @@ Wan du die mäd dät Thema uutkoanst, koast du sälwen ju Siede „[[$1]]“ fer
 'userrights-groupsmember'          => 'Meeglid fon:',
 'userrights-groupsremovable'       => 'Gruppen, do der wächhoald wäide konnen:',
 'userrights-groupsavailable'       => 'Ferföigboare Gruppen:',
-'userrights-groupshelp'            => "Wääl do Gruppen, uut do die Benutser wächhoald of tou do hie touföiged wäide schäl. Nit selektierde Gruppen wäide nit annerd. Ne Uutwoal kon mäd '''Strg + Linksklick''' wier wächhoald wäide.",
 'userrights-reason'                => 'Gruund:',
 'userrights-available-none'        => 'Du duurst neen Benutsergjuchte ferannerje.',
 'userrights-available-add'         => 'Du duurst Benutsere an {{PLURAL:$2|ju foulgjende Gruppe|do foulgjende $2 Grupppen}} touföigje: $1.',
