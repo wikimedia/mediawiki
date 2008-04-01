@@ -59,6 +59,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Image redirects are now enabled
 * (bug 13450) Email confirmation can now be canceled before the expiration
 * (bug 13490) Show upload/file size limit on upload form
+* Redesign of Special:Userrights
 
 === Bug fixes in 1.13 ===
 
@@ -145,7 +146,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 13540) Date format in confirmation e-mail now matches message language
 * (bug 13554) PHP Notice in old pre-processor when list item is empty.
 * (bug 13556) Don't show a blank form if no image is attached in Special:Upload
-* Redesign of Special:Userrights
+* (bug 13576) maintenance/rebuildrecentchanges.php fails
 
 === API changes in 1.13 ===
 

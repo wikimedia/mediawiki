@@ -87,6 +87,7 @@ function rebuildRecentChangesTablePass2()
 			if( $row = $dbw->fetchObject( $res2 ) ) {
 				$lastOldId = intval( $row->rev_id );
 				$lastSize = $row->rev_len; # Grab the last text size
+				if(!is_numeric($lastSize)) $lastSize = 'NULL'; # Set last text size to null if not available
 			} else {
 				# No previous edit
 				$lastOldId = 0;
