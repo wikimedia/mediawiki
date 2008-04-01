@@ -737,7 +737,6 @@ $2 Lidhje përcjellëse &nbsp; Kërko për $3 $9',
 'userrights-groupsmember'    => 'Anëtar i:',
 'userrights-groupsremovable' => 'Grupet që mund të hiqen:',
 'userrights-groupsavailable' => 'Të mundshme:',
-'userrights-groupshelp'      => 'Duke zgjedhur nga lista e anëtarësimit mund të çanëtarësosh, dhe duke zgjedhur nga lista e grupeve të mundshme mund të anëtarësosh. Nuk do të ndryshojë anëtarësimi tek grupet e pazgjedhura. Mund të zgjedhësh ose çzgjedhësh duke mbajtur shtypur butonin Ctrl dhe majtas-shtypur.',
 'userrights-reason'          => 'Arsyeja për ndryshimin:',
 'userrights-available-none'  => 'Nuk ju lejohet anëtarsimi.',
 

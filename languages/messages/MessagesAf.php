@@ -924,7 +924,7 @@ As u die bladsy later van u dophoulys wil verwyder, kliek "verwyder van dophouly
 'watchlist-hide-own'   => 'Versteek my wysigings',
 'watchlist-hide-minor' => 'Versteek klein wysigings',
 
-# Displayed when you click the "watch" button and it's in the process of watching
+# Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Plaas op dophoulys...',
 'unwatching' => 'Verwyder van dophoulys...',
 
@@ -1000,8 +1000,6 @@ As 'n nuwe bladsy met dieselfde naam sedert die skrapping geskep is, sal die her
 'mycontris'     => 'My bydraes',
 'contribsub2'   => 'Vir $1 ($2)',
 'nocontribs'    => 'Geen veranderinge wat by hierdie kriteria pas, is gevind nie.',
-'ucnote'        => 'Hier volg die gebruiker se laaste <b>$1</b> wysigings in die afgelope <b>$2</b> dae.',
-'uclinks'       => 'Vertoon die laaste $1 veranderings; vertoon die afgelope $2 dae.',
 'uctop'         => ' (boontoe)',
 'month'         => 'Vanaf maand (en vroeër):',
 'year'          => 'Vanaf jaar (en vroeër):',

@@ -579,7 +579,6 @@ $messages = array(
 'contributions' => 'صارف کا حصہ',
 'mycontris'     => 'میرا حصہ',
 'contribsub2'   => 'براۓ $1 ($2)',
-'uclinks'       => 'دیکھیں آخری $1 تبدیلیاں؛ دیکھیں آخری $2 دن.',
 'uctop'         => ' (اوپر)',
 
 'sp-contributions-blocklog' => 'نوشتۂ پابندی',

@@ -880,8 +880,6 @@ Wiki-Köbes, enem Sörver-Minsch, oder luur ens en de
 'saveusergroups'             => 'Metmaacher Jruppe avspeichere',
 'userrights-groupsmember'    => 'Es en de Metmaacher Jruppe:<br />',
 'userrights-groupsavailable' => 'Es nit en de Metmaacher Jruppe:<br />',
-'userrights-groupshelp'      => "Sök de Jruppe us, wo dä Metmaacher bei kumme soll oder druss erus soll. Jruppe, die De 
-hee nit ussöks, blieve, wie se sin. Dat Ussöke kanns De bei de miehste Brausere met '''Ctrl + Links Klicke''' / '''Strg + Links Klicke''' maache.",
 
 # Groups
 'group'            => 'Jrupp:',
@@ -1368,8 +1366,6 @@ un widder herjehollte Sigge.',
 'mycontris'     => 'ming Beidräch',
 'contribsub2'   => 'För dä Metmaacher: $1 ($2)',
 'nocontribs'    => 'Mer han kein Änderunge jefonge, en de Logböcher, die do passe däte.',
-'ucnote'        => 'Hee sin däm Metmaacher sing letzte <strong>$1</strong> Änderunge vun de letzte <strong>$2</strong> Dage.',
-'uclinks'       => 'Zeich de letzte <strong>$1</strong> Beidräch, Zeich de letzte <strong>$2</strong> Dage.',
 'uctop'         => ' (Neuste)',
 
 'sp-contributions-newbies-sub' => 'För neu Metmaacher',

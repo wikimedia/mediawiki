@@ -316,7 +316,7 @@ hō‘ike ‘ia i lalo:",
 'watchthispage' => 'E nānā pono i kēia mea',
 'unwatch'       => 'E wehe kia‘i',
 
-# Displayed when you click the "watch" button and it's in the process of watching
+# Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Ke kia‘i nei...',
 'unwatching' => 'Ke wehe-kia‘i nei...',
 

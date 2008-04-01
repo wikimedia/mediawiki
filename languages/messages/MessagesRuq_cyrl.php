@@ -237,7 +237,7 @@ $messages = array(
 'watch'        => 'клајаере',
 'unwatch'      => 'Деклајаера',
 
-# Displayed when you click the "watch" button and it's in the process of watching
+# Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'О клајаере...',
 'unwatching' => 'О деклајаере...',
 

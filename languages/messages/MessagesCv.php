@@ -204,8 +204,7 @@ $messages = array(
 'undeletedrevisions' => '$1 кăларса пăрахнă тӳрлетӳсене каялла тавăрнă',
 
 # Contributions
-'uclinks' => 'Юлашки $1 улшăнусене пăх; юлашки $2 кун хушшинче тунисене пăх.',
-'uctop'   => ' (пуçламăш)',
+'uctop' => ' (пуçламăш)',
 
 # What links here
 'whatlinkshere' => 'Кунта килекен ссылкăсем',

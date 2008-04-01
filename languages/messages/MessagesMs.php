@@ -980,8 +980,6 @@ daripada satu kata kunci (hanya laman yang mengandungi kesemua kata kunci akan d
 'userrights-groupsmember'          => 'Ahli bagi:',
 'userrights-groupsremovable'       => 'Kumpulan boleh buang:',
 'userrights-groupsavailable'       => 'Kumpulan sedia ada:',
-'userrights-groupshelp'            => 'Sila pilih kumpulan untuk menambah atau membuang pengguna tersebut.
-Kumpulan yang tidak dipilih tidak akan diubah. Anda boleh mengecualikan sebarang kumpulan dengan CTRL + klik',
 'userrights-reason'                => 'Sebab perubahan:',
 'userrights-available-none'        => 'Anda tidak boleh mengubah keahlian kumpulan.',
 'userrights-available-add'         => 'Anda boleh menambahkan pengguna ke dalam {{PLURAL:$2|kumpulan|kumpulan-kumpulan}} ini: $1.',
@@ -1428,7 +1426,7 @@ Jika anda mahu membuang laman tersebut daripada senarai pantau, klik \"Nyahpanta
 'watchlist-show-minor' => 'Papar suntingan kecil',
 'watchlist-hide-minor' => 'Sembunyi suntingan kecil',
 
-# Displayed when you click the "watch" button and it's in the process of watching
+# Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Memantau...',
 'unwatching' => 'Menyahpantau...',
 
@@ -1618,8 +1616,6 @@ $1',
 'mycontris'     => 'Sumbangan saya',
 'contribsub2'   => 'Bagi $1 ($2)',
 'nocontribs'    => 'Tiada sebarang perubahan yang sepadan dengan kriteria-kriteria ini.',
-'ucnote'        => 'Berikut ialah <b>$1</b> perubahan terakhir yang dilakukan oleh pengguna ini sejak <b>$2</b> hari yang lalu.',
-'uclinks'       => 'Lihat $1 perubahan terkini; lihat $2 hari yang lalu.',
 'uctop'         => ' (puncak)',
 'month'         => 'Sebelum bulan:',
 'year'          => 'Sebelum tahun:',

@@ -944,7 +944,7 @@ ID вашага блякаваньня — #$5. Калі ласка, улуча�
 'watchlist-show-minor' => 'паказаць дробныя праўкі',
 'watchlist-hide-minor' => 'схаваць дробныя праўкі',
 
-# Displayed when you click the "watch" button and it's in the process of watching
+# Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Дадаецца ў сьпіс назіраньня...',
 'unwatching' => 'Выдаляецца са сьпісу назіраньня...',
 

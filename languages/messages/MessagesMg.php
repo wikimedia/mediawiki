@@ -506,10 +506,6 @@ Fenoy araka ny datin'ny solosainan'ny mpitsidika",
 'saveusergroups'             => 'Tehirizo ny vondrom-pikambana',
 'userrights-groupsmember'    => "Mpikambana amin'ny vondrona:",
 'userrights-groupsavailable' => 'Vondrona misy:',
-'userrights-groupshelp'      => "
-Safidio ny vondrona tianao hanalana na hanatsofohana ny mpikambana.
-Ny vondrona tsy voasafidy dia tsy hiova. Raha tsy tianao hosafidiana indray ny 
-vondrona iray efa voasafidy dia tsindrio ny CTRL + bokotra havia amin'ny totozy",
 
 # User rights log
 'rightslogtext' => "Tantaran'asa momba ny fahazoan-dàlan'ny mpikambana.",

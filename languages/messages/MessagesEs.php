@@ -829,8 +829,6 @@ $2 Listar redirecciones   Buscar $3 $9',
 'userrights-groupsmember'    => 'Miembro de:',
 'userrights-groupsremovable' => 'Grupos removibles:',
 'userrights-groupsavailable' => 'Grupos disponibles:',
-'userrights-groupshelp'      => 'Seleccione los grupos a los que quiere añadir al usuario (o de los que le quiere dar de baja).
-Los grupos no seleccionados no cambiarán. Puede deseleccionar pulsando la tecla CTRL',
 'userrights-reason'          => 'Motivo para el cambio:',
 
 # Groups

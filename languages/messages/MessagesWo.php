@@ -750,7 +750,6 @@ $2 boole ci xëti yoonalaat yi<br /> Seet $3 $9',
 'saveusergroups'             => 'Duggal mbooloo jëjëndikookat yi',
 'userrights-groupsmember'    => 'Way-bokk gu:',
 'userrights-groupsavailable' => 'Mbooloo yi jappandi:',
-'userrights-groupshelp'      => 'Tannal mbooloo yi nga bëgg a jëlee walla yokk ab jëfëndikookat. Mbooloo yi nga tannul duñu soppiku. Man nga tannadi am mbooloo ak CTRL + klig cammooñ.',
 'userrights-reason'          => 'Ngirtey coppite yi :',
 
 # Groups

@@ -252,7 +252,7 @@ No labay mon ekalen may bolong diad listaan na babantayan, tapik mo labat so \"e
 'watch'          => 'bantayan',
 'watchthispage'  => 'Bantayan yan bolong',
 
-# Displayed when you click the "watch" button and it's in the process of watching
+# Displayed when you click the "watch" button and it is in the process of watching
 'watching' => 'Babantayan...',
 
 'enotif_newpagetext' => 'Balo yan bolong.',

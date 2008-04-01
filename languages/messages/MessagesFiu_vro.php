@@ -787,7 +787,6 @@ mitmõ otsmissõna pruukminõ (sis ilmusõq õnnõ leheküleq, kon ommaq kõik o
 'saveusergroups'             => 'Pästäq pruukjidõrühmä muutmisõq',
 'userrights-groupsmember'    => 'Kuulus rühmä:',
 'userrights-groupsavailable' => 'Või mano pandaq rühmihe:',
-'userrights-groupshelp'      => 'Valiq rühmäq, minkast sa tahat pruukjat ärq võttaq vai kohe mano pandaq. Valimalda jätetüid rühmi muudõda-i. Rühmä valimist saa tühäs tetäq CTRL + hüä hiirevaotusõga.',
 'userrights-reason'          => 'Muutmisõ põhjus:',
 
 # Groups

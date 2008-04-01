@@ -75,7 +75,7 @@ $messages = array(
 'watch'       => 'Volgn',
 'unwatch'     => 'Nie volgn',
 
-# Displayed when you click the "watch" button and it's in the process of watching
+# Displayed when you click the "watch" button and it is in the process of watching
 'unwatching' => 'Stoppn me volgn...',
 
 # Undelete

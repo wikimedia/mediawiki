@@ -240,9 +240,9 @@ $messages = array(
 # Categories related messages
 'categories'                     => '類',
 'categoriespagetext'             => '下面嘅類有版或媒體。',
-'pagecategories'                 => '屬於$1類',
 'special-categories-sort-count'  => '跟數量排',
 'special-categories-sort-abc'    => '跟字母排',
+'pagecategories'                 => '屬於$1類',
 'category_header'                => '"$1" 類中嘅版',
 'subcategories'                  => '分類',
 'category-media-header'          => ' "$1" 類嘅媒體',
@@ -257,8 +257,8 @@ $messages = array(
 'category-file-count-limited'    => '呢個類別入邊有$1個檔案。',
 'listingcontinuesabbrev'         => '續',
 
-'mainpagetext'                   => "<big>'''MediaWiki已經裝好。'''</big>",
-'mainpagedocfooter'              => '參閱[http://meta.wikimedia.org/wiki/Help:Contents 用戶指引]（英），裏面有資料講點用wiki軟件。
+'mainpagetext'      => "<big>'''MediaWiki已經裝好。'''</big>",
+'mainpagedocfooter' => '參閱[http://meta.wikimedia.org/wiki/Help:Contents 用戶指引]（英），裏面有資料講點用wiki軟件。
 
 ==開始使用==
 * [http://www.mediawiki.org/wiki/Manual:Configuration_settings 配置設定清單]（英）
@@ -956,10 +956,6 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'userrights-groupsmember'          => '屬於：',
 'userrights-groupsremovable'       => '拎得走嘅組：',
 'userrights-groupsavailable'       => '可用嘅組：',
-'userrights-groupshelp'            => '你可以改嘅位用戶所屬嘅組。
-
-剔咗嘅盒代表個用戶係屬於嗰組。
-未剔嘅盒代表個用戶唔係屬於嗰組。',
 'userrights-reason'                => '更改嘅原因:',
 'userrights-available-none'        => '你唔可以改組成員。',
 'userrights-available-add'         => '你可以加入任何用戶到{{PLURAL:$2|呢一組|呢幾組}}: $1。',
@@ -1106,7 +1102,7 @@ MySQL 嘅錯誤回應 "$3: $4"',
 
 你應該要考慮吓繼續上載呢個檔案係唔係適合嘅。
 為咗方便起見，呢個檔案嘅刪除記錄已經響下面提供:",
-'filename-bad-prefix'         => "你上載嘅檔名係以'''\"$1\"'''做開頭，通常呢種無含意嘅檔名係響數碼相機度自動編排。請響你個檔案度揀過一個更加有意義嘅檔名。",
+'filename-bad-prefix'         => "你上載嘅檔名係以'''\"\$1\"'''做開頭，通常呢種無含意嘅檔名係響數碼相機度自動編排。請響你個檔案度揀過一個更加有意義嘅檔名。",
 
 'upload-proto-error'      => '唔正確嘅協議',
 'upload-proto-error-text' => '遙遠上載需要一個以 <code>http://</code> 或者 <code>ftp://</code> 作為開頭嘅URL。',
@@ -1401,7 +1397,7 @@ Template:搞清楚',
 'watchlist-show-minor' => '顯示小修改',
 'watchlist-hide-minor' => '隱藏小修改',
 
-# Displayed when you click the "watch" button and it's in the process of watching
+# Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => '監視緊...',
 'unwatching' => '唔再監視緊...',
 
@@ -1477,7 +1473,7 @@ wiki: $PAGEEDITOR_WIKI
 'alreadyrolled'               => '無法反轉[[User:$2|$2]]（[[User talk:$2|留言]]）對[[:$1]]嘅最後編輯；有人已經修改過或者反轉咗呢個頁面。
 
 上次編輯係由[[User:$3|$3]]（[[User talk:$3|留言]]）做嘅。',
-'editcomment'                 => "編輯摘要係：\"''$1''\"。", # only shown if there is an edit comment
+'editcomment'                 => "編輯摘要係：\"''\$1''\"。", # only shown if there is an edit comment
 'revertpage'                  => '已經反轉由[[Special:Contributions/$2|$2]]（[[User talk:$2|對話]]）所寫嘅編輯；恢復到[[User:$1|$1]]嘅最後版本。', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success'            => '已經反轉由$1所寫嘅編輯；恢復到$2嘅最後版本。',
 'sessionfailure'              => '你嘅登入會話 (session) 好似有啲問題；為咗防止會話劫持，呢個操作已經取消。請撳「返轉頭」然後重新載入你嚟自嘅頁面，然後再試吓啦。',
