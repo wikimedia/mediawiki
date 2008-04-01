@@ -508,10 +508,14 @@ class EnhancedChangesList extends ChangesList {
 		$r = '<table cellpadding="0" cellspacing="0" border="0" style="background: none"><tr>';
 
 		# Collate list of users
-		$isnew = false;
-		$namehidden = true;
-		$unpatrolled = false;
 		$userlinks = array();
+		# Other properties
+		$unpatrolled = false;
+		$isnew = false;
+		$curId = $currentRevision = 0;
+		# Some catalyst variables...
+		$namehidden = true;
+		$alllogs = true;
 		foreach( $block as $rcObj ) {
 			$oldid = $rcObj->mAttribs['rc_last_oldid'];
 			if( $rcObj->mAttribs['rc_new'] ) {
@@ -529,6 +533,18 @@ class EnhancedChangesList extends ChangesList {
 			if( $rcObj->unpatrolled ) {
 				$unpatrolled = true;
 			}
+			if( $rcObj->mAttribs['rc_type'] != RC_LOG ) {
+				$alllogs = false;
+			}
+			# Get the latest entry with a page_id and oldid
+			# since logs may not have these.
+			if( !$curId && $rcObj->mAttribs['rc_cur_id'] ) {
+				$curId = $rcObj->mAttribs['rc_cur_id'];
+			}
+			if( !$currentRevision && $rcObj->mAttribs['rc_this_oldid'] ) {
+				$currentRevision = $rcObj->mAttribs['rc_this_oldid'];
+			}
+			
 			$bot = $rcObj->mAttribs['rc_bot'];
 			$userlinks[$u]++;
 		}
@@ -564,52 +580,62 @@ class EnhancedChangesList extends ChangesList {
 		$r .= '&nbsp;'.$block[0]->timestamp.'&nbsp;</tt></td><td>';
 
 		# Article link
-		if ( $namehidden )
+		if( $namehidden ) {
 			$r .= ' <span class="history-deleted">' . wfMsgHtml('rev-deleted-event') . '</span>';
-		else
+		} else {
 			$r .= $this->maybeWatchedLink( $block[0]->link, $block[0]->watched );
+		}
+
 		$r .= $wgContLang->getDirMark();
 
-		$curIdEq = 'curid=' . $block[0]->mAttribs['rc_cur_id'];
-		$currentRevision = $block[0]->mAttribs['rc_this_oldid'];
-		if( $block[0]->mAttribs['rc_type'] != RC_LOG ) {
-			# Changes
-			$n = count($block);
-			static $nchanges = array();
-			if ( !isset( $nchanges[$n] ) ) {
-				$nchanges[$n] = wfMsgExt( 'nchanges', array( 'parsemag', 'escape'),
-					$wgLang->formatNum( $n ) );
-			}
-
-			$r .= ' (';
-
+		$curIdEq = 'curid=' . $curId;
+		# Changes message
+		$n = count($block);
+		static $nchanges = array();
+		if ( !isset( $nchanges[$n] ) ) {
+			$nchanges[$n] = wfMsgExt( 'nchanges', array( 'parsemag', 'escape'), $wgLang->formatNum( $n ) );
+		}
+		# Total change link
+		$r .= ' ';
+		if( !$alllogs ) {
+			$r .= '(';
 			if( !ChangesList::userCan($rcObj,Revision::DELETED_TEXT) ) {
-			    $r .= $nchanges[$n];
+				$r .= $nchanges[$n];
 			} else if( $isnew ) {
 				$r .= $nchanges[$n];
 			} else {
 				$r .= $this->skin->makeKnownLinkObj( $block[0]->getTitle(),
 					$nchanges[$n], $curIdEq."&diff=$currentRevision&oldid=$oldid" );
 			}
-			
-			 $r .= ') . . ';
-
-			if( $wgRCShowChangedSize ) {
-				# Character difference
-				$chardiff = $rcObj->getCharacterDifference( $block[ count( $block ) - 1 ]->mAttribs['rc_old_len'],
-						$block[0]->mAttribs['rc_new_len'] );
-				if( $chardiff == '' ) {
-					$r .= ' ';
-				} else {
-					$r .= ' ' . $chardiff. ' . . ';
-				}
-			}
-
-			# History
-			$r .= '(' . $this->skin->makeKnownLinkObj( $block[0]->getTitle(),
-				$this->message['history'], $curIdEq.'&action=history' );
-			$r .= ')';
+			$r .= ') . . ';
 		}
+		
+		# Character difference (does not apply if only log items)
+		if( $wgRCShowChangedSize && !$alllogs ) {
+			$last = 0;
+			$first = count($block) - 1;
+			# Some events (like logs) have an "empty" size, so we need to skip those...
+			while( $last < $first && $block[$last]->mAttribs['rc_new_len'] === NULL ) {
+				$last++;
+			}
+			while( $first > $last && $block[$first]->mAttribs['rc_old_len'] === NULL ) {
+				$first--;
+			}
+			# Get net change
+			$chardiff = $rcObj->getCharacterDifference( $block[$first]->mAttribs['rc_old_len'],
+				$block[$last]->mAttribs['rc_new_len'] );
+			
+			if( $chardiff == '' ) {
+				$r .= ' ';
+			} else {
+				$r .= ' ' . $chardiff. ' . . ';
+			}
+		}
+
+		# History
+		$r .= '(' . $this->skin->makeKnownLinkObj( $block[0]->getTitle(),
+			$this->message['history'], $curIdEq.'&action=history' );
+		$r .= ')';
 
 		$r .= $users;
 		$r .=$this->numberofWatchingusers($block[0]->numberofWatchingusers);
