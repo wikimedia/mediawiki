@@ -640,10 +640,6 @@ Inedbalen wiyaḍ deg wiki-yagi zemren ad ẓren imuren i yettwafren u zemren a 
 'revdelete-success'           => 'Asekkud n tasiwelt yettuxdem.',
 'logdelete-success'           => 'Asekkud n tamirt yettuxdem.',
 
-# Oversight log
-'oversightlog'    => 'Aɣmis n oversight',
-'overlogpagetext' => 'Deg ukessar, d umuɣ n umḥay d wumuɣ n uɛekkil ineggura n wayen yettwaffren ɣef inedbalen. Ẓer [[Special:Ipblocklist|Umuɣ n uɛekkil n IP]].',
-
 # Diffs
 'difference'              => '(Imgerraden ger tisiwal)',
 'lineno'                  => 'Ajerriḍ $1:',

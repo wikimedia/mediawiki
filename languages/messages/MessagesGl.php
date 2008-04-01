@@ -732,10 +732,6 @@ Outros administradores de {{SITENAME}} poderán acceder aínda ao contido oculto
 'pagehist'                    => 'Historial da páxina',
 'deletedhist'                 => 'Historial de borrado',
 
-# Oversight log
-'oversightlog'    => 'Rexistro de edicións ocultadas',
-'overlogpagetext' => 'Abaixo aparece unha listaxe coas eliminacións e bloqueos máis recentes relacionados con contido agochado para os administradores. Vexa [[Special:Ipblocklist|Listaxe de bloqueos de IP]] para unha listaxe das prohibicións e bloqueos que teñen efecto neste momento.',
-
 # History merging
 'mergehistory'                     => 'Fusionar historiais das páxinas',
 'mergehistory-header'              => 'Esta páxina permítelle fusionar revisións dos historiais da páxina de orixe nunha nova páxina.

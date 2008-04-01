@@ -848,9 +848,6 @@ Prófaðu [[Special:Search|að leita á þessari wiki síðu]] að svipuðum sí
 'pagehist'               => 'Breytingaskrá',
 'deletedhist'            => 'Eyðingaskrá',
 
-# Oversight log
-'oversightlog' => 'Yfirsýnaskrá',
-
 # History merging
 'mergehistory-into' => 'Áætlunarsíða:',
 

@@ -697,10 +697,6 @@ Lu motivu è ''$2''",
 'revdelete-success'           => 'Visibbilitati dâ rivisioni mpustata currittamenti.',
 'logdelete-success'           => "Visibbilitati de l'eventu mpustata currittamenti.",
 
-# Oversight log
-'oversightlog'    => 'Riggistru azzioni di oversight',
-'overlogpagetext' => "Ccà sutta veni prisentata na lista dê cancillazioni e dî blocchi ca riguardanu cuntinuti oscurati a l'amministratura. Conzurtari l'[[Special:Ipblocklist|alencu IP bluccati]] pi l'alencu dî blocchi e dî banni attuarmenti operativi.",
-
 # Diffs
 'history-title'           => 'Crunoluggìa dî canciamenti di "$1"',
 'difference'              => '(Diffirenzi tra li rivisioni)',

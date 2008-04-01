@@ -651,9 +651,6 @@ Pengurus liyané bakal tetep bisa ngaksès isi sing kadhelikaké iku lan bisa mb
 'pagehist'                    => 'Sajarah kaca',
 'deletedhist'                 => 'Sajarah sing dibusak',
 
-# Oversight log
-'oversightlog' => 'Log pangawas',
-
 # History merging
 'mergehistory'           => 'Gabung sejarah kaca',
 'mergehistory-box'       => 'Gabungna revisi-revisi saka rong kaca:',

@@ -838,11 +838,6 @@ semula melalui laman ini melainkan mempunyai batasan.',
 'pagehist'                    => 'Sejarah laman',
 'deletedhist'                 => 'Sejarah yang dihapuskan',
 
-# Oversight log
-'oversightlog'    => 'Log pengawas',
-'overlogpagetext' => 'Berikut ialah senarai bagi penghapusan dan sekatan terkini yang melibatkan kandungan
-yang terlindung daripada penyelia. Lihat [[Special:Ipblocklist|senarai sekatan IP]] untuk senarai sekatan yang sedang aktif.',
-
 # History merging
 'mergehistory'                     => 'Gabungkan sejarah laman',
 'mergehistory-header'              => "Anda boleh menggabungkan semua semakan dalam sejarah bagi sesebuah laman sumber ke dalam laman lain.

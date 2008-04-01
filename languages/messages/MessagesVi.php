@@ -800,10 +800,6 @@ Các quản lý khác ở {{SITENAME}} vẫn có thể truy nhập vào nội du
 'pagehist'                    => 'Lịch sử trang',
 'deletedhist'                 => 'Lịch sử đã xóa',
 
-# Oversight log
-'oversightlog'    => 'Nhật trình giám thị',
-'overlogpagetext' => 'Dưới đây là danh sách các tác vụ xóa và cấm gần nhất có liên quan đến nội dung đã được che đi đối với Người quản lý. Xem [[Special:Ipblocklist|danh sách các địa chỉ bị cấm]] để có danh sách các lần cấm hẳn và cấm thành viên hiện tại.',
-
 # History merging
 'mergehistory'                     => 'Trộn lịch sử trang',
 'mergehistory-header'              => 'Trang này cho phép trộn các sửa đổi trong lịch sử của một trang nguồn vào một trang mới hơn.

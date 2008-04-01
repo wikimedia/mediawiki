@@ -623,10 +623,6 @@ Des autres administrateurs sus ce wiki ont la permission de voir et de rétablir
 'revdelete-success'           => 'Vous avez bien changé la visibilité des versions.',
 'logdelete-success'           => 'Vous avez bien changé la visibilité des événements.',
 
-# Oversight log
-'oversightlog'    => "Notes d'oubli",
-'overlogpagetext' => 'Cette liste ici montre les ôtages et les blocages avec du texte caché des administrateurs.  Lire la [[Special:Ipblocklist|liste des comptes bloqués]] pour la liste des blocages courants.',
-
 # Diffs
 'difference'              => '(Différences entre les versions)',
 'lineno'                  => 'Ligne $1:',

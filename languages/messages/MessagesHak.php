@@ -574,10 +574,6 @@ Ngì thùng-sṳ̀ ya-yeu hiong Wikimedia pó-chṳn ngì só thì-kâu ke nui-y
 'revdelete-success'           => 'Siû-thin ke khó-kien-sin yí-kîn sṳ̀n-kûng sat-thin.',
 'logdelete-success'           => 'Sṳ-khien ke khó-kien-sin yí-kîn sṳ̀n-kûng sat-thin.',
 
-# Oversight log
-'oversightlog'    => 'Kam-tuk ki-liu̍k',
-'overlogpagetext' => 'Ha-mien he yit-ke chui-khiûn chhù-hi yî-khi̍p chhâu-chok-yèn fûng-só khiên-sa̍p-to ke nui-yùng lie̍t-péu. Chhâm-siòng ha-mien ke [[Special:Ipblocklist|IP fûng-só lie̍t-péu]] chhà-khon hien-chhai chin-hàng ke fûng-só.',
-
 # Diffs
 'difference'              => '(Siû-thin pán-pún-kiên ke chhâ-yi)',
 'lineno'                  => 'Thi $1-hàng：',

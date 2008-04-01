@@ -759,11 +759,6 @@ postavili dodatna ograničenja.',
 'logdelete-success'           => 'Vidljivost uređivanja uspješno postavljena.',
 'pagehist'                    => 'Povijest stranice',
 
-# Oversight log
-'oversightlog'    => 'Oversight log',
-'overlogpagetext' => 'Slijedi popis posljednjih brisanja stranica i blokiranja koja uključuju sadržaj sakriven od Administratora.
-Vidi [[Special:Ipblocklist|IP popis blokiranja]] za popis trenutačno blokiranih IP adresa.',
-
 # History merging
 'mergehistory'                     => 'Spoji povijesti starih izmjena stranice',
 'mergehistory-header'              => 'Na ovoj stranici spajate povijest jedne stranice u drugu (noviju) stranicu.

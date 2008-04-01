@@ -701,10 +701,6 @@ Uur Administratore ap {{SITENAME}} konnen dän wächhoalde Inhoold of uur wächh
 'revdelete-success'           => 'Versionsansicht mäd Ärfoulch annerd.',
 'logdelete-success'           => 'Logbouk-Aktion mäd Ärfoulch sät.',
 
-# Oversight log
-'oversightlog'    => 'Oversight-Logbouk',
-'overlogpagetext' => 'Dät is dät Logbouk fon do Läskengen un Speeren, do der foar Administratore ferstopped sunt.',
-
 # History merging
 'mergehistory'                     => 'Versionsgeschichten fereenigje',
 'mergehistory-header'              => 'Mäd disse Spezialsiede koast du ju Versionsgeschichte fon ne Uursproangssiede mäd ju Versionsgeschichte fon ne Sielsiede fereenigje.

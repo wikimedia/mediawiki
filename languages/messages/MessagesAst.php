@@ -749,11 +749,6 @@ restricciones adicionales.",
 'revdelete-success'           => 'Visibilidá de revisiones establecida correutamente.',
 'logdelete-success'           => "Visibilidá d'eventos establecida correutamente.",
 
-# Oversight log
-'oversightlog'    => "Rexistru d'ediciones ocultes",
-'overlogpagetext' => "Abaxo amuésase una llista de los borraos y bloqueos más recientes de conteníu
-ocultáu por alministradores. Vete a la [[Special:Ipblocklist|llista de bloqueos d'IP]] pa consultar la llista de bloqueos activos anguaño.",
-
 # History merging
 'mergehistory'                     => 'Fusionar historiales de páxina',
 'mergehistory-header'              => "Esta páxina permítete fusionar revisiones del historial d'una páxina orixe nuna páxina nueva.

@@ -819,10 +819,6 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'pagehist'                    => '頁面歷史',
 'deletedhist'                 => '刪除咗嘅歷史',
 
-# Oversight log
-'oversightlog'    => '監督記錄',
-'overlogpagetext' => '下面係一個最近刪除以及由操作員封鎖牽涉到嘅內容清單。睇睇下面嘅[[Special:Ipblocklist|IP封鎖名單]]去睇現時進行緊嘅封鎖。',
-
 # History merging
 'mergehistory'                     => '合併頁歷史',
 'mergehistory-header'              => '呢一版可以畀你去合併一個來源頁嘅修訂記錄到另一個新頁。

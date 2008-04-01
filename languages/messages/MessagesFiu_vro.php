@@ -679,10 +679,6 @@ Lisateedüst või ollaq [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} k
 'revdelete-success'           => 'Kujo nättävüs paika säet.',
 'logdelete-success'           => 'Muutmiisi nättävüs paika säet.',
 
-# Oversight log
-'oversightlog'    => 'Perrävalvmismuutuisi nimekiri',
-'overlogpagetext' => 'Tan om nimekiri vahtsõmbist kistutuisist ja kinniqpidämiisist, miä pututasõq kõrraldajidõ iist käkitüt sissu. Kaeq [[Special:Ipblocklist|puutridõ võrgoaadrõssidõ kinniqpidämisnimekirjä]], et nätäq, määntseq kinniqpidämiseq ommaq parhillaq jovvun.',
-
 # History merging
 'mergehistory'       => 'Panõq lehti aoluuq kokko',
 'mergehistory-box'   => 'Panõq katõ lehe muutmiisi aolugu kokko:',

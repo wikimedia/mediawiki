@@ -508,9 +508,6 @@ Vinarliga umhugsa at býta síðuna sundur í styttri pettir.</strong>',
 # Revision deletion
 'rev-delundel' => 'skoða/fjal',
 
-# Oversight log
-'oversightlog' => 'Yvurlits logg',
-
 # History merging
 'mergehistory-from' => 'Keldusíða:',
 

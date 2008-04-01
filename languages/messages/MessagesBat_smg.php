@@ -571,10 +571,6 @@ Kėtė admėnėstratuorē šėtom pruojekte vėsdar galės pasėiktė pasliepta 
 'revdelete-unsuppress' => 'Šalėntė apribuojėmos atkortuos versėjės',
 'logdelete-logentry'   => 'pakeists [[$1]] atsėtėkima veiziemoms',
 
-# Oversight log
-'oversightlog'    => 'Privaizuos istuorėjė',
-'overlogpagetext' => 'Žemiau īr sārašos paskotėniu trīnimu ė bluokavėmu. [[Special:Ipblocklist|IP bluokavėmu istuorėjuo]] rasėt šėtuo čieso veikiantiu draudėmu ė bluokavėmu sāraša.',
-
 # History merging
 'mergehistory-success' => '$3 [[:$1]] versėju siekmėngā sojongta so [[:$2]].',
 

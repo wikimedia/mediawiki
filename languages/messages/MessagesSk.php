@@ -860,11 +860,6 @@ nie sú stanovené ďalšie obmedzenia.',
 'pagehist'                    => 'História stránky',
 'deletedhist'                 => 'Zmazaná história',
 
-# Oversight log
-'oversightlog'    => 'Záznam Dozoru',
-'overlogpagetext' => 'Nižšie sa nachádza zoznam posledných mazaní a blokovaní vrátane obsahu skrytého správcom.
-Pozri Záznam momentálne platných [[Special:Ipblocklist|IP blokovaní]].',
-
 # History merging
 'mergehistory'                     => 'Zlúčiť histórie stránok',
 'mergehistory-header'              => 'Táto stránka vám umožňuje zlúčiť histórie revízií zo zdrojovej stránky do novšej stránky.

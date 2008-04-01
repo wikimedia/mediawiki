@@ -724,10 +724,6 @@ $1 または他の[[{{MediaWiki:grouppage-sysop}}|管理者]]にこの件につ�
 'revdelete-success'           => '版の隠蔽状態を変更しました',
 'logdelete-success'           => '操作情報の隠蔽状態を変更しました',
 
-# Oversight log
-'oversightlog'    => '版隠蔽ログ',
-'overlogpagetext' => '以下は{{int:group-sysop}}が最近隠蔽した版削除およびブロックの記録です。現時点で有効な投稿ブロックは[[Special:Ipblocklist|{{int:ipblocklist}}]]をご覧ください。',
-
 # History merging
 'mergehistory'                     => 'ページの統合履歴',
 'mergehistory-header'              => 'ページの履歴を他のページの履歴と統合しようとしています。

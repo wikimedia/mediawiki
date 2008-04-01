@@ -743,11 +743,6 @@ a travèrs de cela méma entèrface, a muens qu’una rèstriccion suplèmentèr
 'revdelete-success'           => 'Visibilitât de les vèrsions changiê avouéc reusséta.',
 'logdelete-success'           => 'Visibilitât des èvènements changiê avouéc reusséta.',
 
-# Oversight log
-'oversightlog'    => 'Jornal de survelyence',
-'overlogpagetext' => 'La lista ce-desot montre les suprèssions et los blocâjos novéls que lo contegnu est mâscâ mémo por los administrators.
-Consultâd la [[Special:Ipblocklist|lista des comptos blocâs]] por la lista des blocâjos en cors.',
-
 # History merging
 'mergehistory'                     => 'Fusion des historicos d’una pâge',
 'mergehistory-header'              => 'Ceta pâge vos pèrmèt de fusionar les vèrsions de l’historico d’una pâge d’origina vers una novèla.

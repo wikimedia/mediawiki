@@ -622,9 +622,6 @@ Informacion: (curt) = quiíxde vercion currentua,
 'revdelete-logaction'     => "$1 {{PLURAL:$1|revicion|revición}} set'de mode $2",
 'logdelete-logaction'     => "$1 {{PLURAL:$1|eventuade|eventuámde}} [[$3]] set'de mode $2",
 
-# Oversight log
-'oversightlog' => 'Logamde oversight',
-
 # Diffs
 'history-title'           => 'Históriade revicionde "$1"',
 'lineno'                  => 'Pozxáat $1:',

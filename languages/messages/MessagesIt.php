@@ -813,10 +813,6 @@ Gli altri amministratori del sito potranno accedere comunque ai contenuti nascos
 'pagehist'                    => 'Cronologia della pagina',
 'deletedhist'                 => 'Cronologia cancellata',
 
-# Oversight log
-'oversightlog'    => 'Registro azioni di oversight',
-'overlogpagetext' => "Qui di seguito viene presentata una lista delle cancellazioni e dei blocchi che riguardano contenuti oscurati agli amministratori. Consultare l'[[Special:Ipblocklist|elenco IP bloccati]] per l'elenco dei blocchi e dei bandi al momento operativi.",
-
 # History merging
 'mergehistory'                     => 'Unione cronologie',
 'mergehistory-header'              => 'Questa pagina consente di unire le revisioni appartenenti alla cronologia di una pagina (detta pagina di origine) alla cronologia di una pagina più recente.

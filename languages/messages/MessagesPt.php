@@ -862,10 +862,6 @@ Outros administradores nesta wiki continuarão a poder aceder ao conteúdo escon
 'pagehist'                    => 'Histórico da página',
 'deletedhist'                 => 'Histórico de eliminações',
 
-# Oversight log
-'oversightlog'    => 'Registo de edições ocultadas',
-'overlogpagetext' => 'É exibida a seguir uma listagem das deleções e bloqueios mais recentes envolvendo conteúdos ocultados por Administradores. Veja a [[{{ns:special}}:Ipblocklist|lista de bloqueios]] para os bloqueios e banimentos atualmente vigentes.',
-
 # History merging
 'mergehistory'                     => 'Fundir histórico de páginas',
 'mergehistory-header'              => 'A partir desta página é possível fundir históricos de edições de uma página em outra.

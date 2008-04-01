@@ -824,10 +824,6 @@ Andra administratörer på {{SITENAME}} kommer fortfarande att kunna läsa det d
 'pagehist'                    => 'Sidhistorik',
 'deletedhist'                 => 'Raderad historik',
 
-# Oversight log
-'oversightlog'    => 'Översynslogg',
-'overlogpagetext' => 'Här nedanför finns en lista över de senaste raderingarna och blockeringarna av innehåll som är gömt för administratörer. Se [[Special:Ipblocklist|listan över blockerade IP]] för en lista över nu gällande blockeringar.',
-
 # History merging
 'mergehistory'                     => 'Sammanfoga sidhistoriker',
 'mergehistory-header'              => 'Med den här specialsidan kan du infoga versioner av en sida i en nyare sidas historik.

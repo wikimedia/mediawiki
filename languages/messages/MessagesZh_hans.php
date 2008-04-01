@@ -758,10 +758,6 @@ $2',
 'pagehist'                    => '页面历史',
 'deletedhist'                 => '已删除之历史',
 
-# Oversight log
-'oversightlog'    => '监督记录',
-'overlogpagetext' => '下面是一个最近删除以及由操作员封锁牵涉到的内容列表。参看下面的[[Special:Ipblocklist|IP封锁列表]]去查看现时进行的封锁。',
-
 # History merging
 'mergehistory'                     => '合并页面历史',
 'mergehistory-header'              => '这一页可以讲您合并一个来源页面的历史到另一个新页面中。

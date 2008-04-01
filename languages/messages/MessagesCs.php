@@ -967,10 +967,6 @@ pokud to provozovatel serveru nezakázal.',
 'pagehist'                    => 'Historie stránky',
 'deletedhist'                 => 'Smazaná historie',
 
-# Oversight log
-'oversightlog'    => 'Kniha dohledu',
-'overlogpagetext' => 'Níže je seznam posledních smazání a blokování s obsah skrytým pro správce. Přehled současných blokování je na [[Special:Ipblocklist|Seznamu probíhajících zablokování]].',
-
 # History merging
 'mergehistory'                     => 'Slučování historií stránek',
 'mergehistory-header'              => 'Tato stránka Vám umožní sloučit historii verzí jedné zdrojové stránky s novější stránkou.

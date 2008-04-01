@@ -814,10 +814,6 @@ Administratorer kan dog fortsat se og gendanne det fjernede indhold, medmindre d
 'logdelete-success'           => 'Logbogs-aktion er indstillet.',
 'deletedhist'                 => 'Slettet historik',
 
-# Oversight log
-'oversightlog'    => 'Oversight-logbog',
-'overlogpagetext' => 'Dette er logbogen med sletninger og spærringer, som er skjult for administratorerne.',
-
 # History merging
 'mergehistory'                     => 'Sammenflet sidehistorikker',
 'mergehistory-header'              => "Denne sider giver mulighed for at flette historikken fra en kildeside ind i en nyere side.

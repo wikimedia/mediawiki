@@ -780,10 +780,6 @@ Druzy administratorojo we {{SITENAME}} móža schowany tekst dale čitać a jón
 'revdelete-success'           => 'Widźomnosć wersije bu wuspěšnje změnjena.',
 'logdelete-success'           => 'Widźomnosć zapiska bu wuspěšnje změnjena.',
 
-# Oversight log
-'oversightlog'    => 'Protokol funkcije Oversight',
-'overlogpagetext' => 'Deleka je lisćina aktualnych wušmórnjenjow a blokowanjow, kotrež su před adminstratorami schowane. Hlej [[Special:Ipblocklist|lisćinu blokowanych IP]] za lisćinu tuchwilnych wuhnaćow a blokowanjow.',
-
 # History merging
 'mergehistory'                     => 'Stawizny stronow zjednoćić',
 'mergehistory-header'              => 'Tuta strona ći dowola wersije stawiznow žórłoweje strony na nowej stronje zjednoćić.

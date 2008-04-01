@@ -718,10 +718,6 @@ Anger beheerders van {{SITENAME}} kinne de verborge inhoud benäöjere en de ver
 'revdelete-success'           => 'Wieziging zichbaarheid succesvol ingesteld.',
 'logdelete-success'           => 'Zichbaarheid van de gebeurtenis succesvol ingesteld.',
 
-# Oversight log
-'oversightlog'    => 'Oversight-logbook',
-'overlogpagetext' => "Hiej onher is 'ne lies mit de meist recente verwiederinge en blokkeringe mit betrekking tot informatie dae neet zichbaar is veur admins. Zee de [[Special:Ipblocklist|Lies van geblokkeerde gebroekers en IP-adresse]] veur 'ne lies van de blokkades en verbanninge die noe gelje.",
-
 # History merging
 'mergehistory'                     => "Gesjiedenis van pagina's samevoege",
 'mergehistory-header'              => "Deze pagina laot uch toe om versies van de gesjiedenis van 'n brónpagina nao 'n nuujere pagina same te voege.

@@ -704,10 +704,6 @@ astawan rikunki [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} qulluy hallch
 'pagehist'                    => "P'anqap wiñay kawsaynin",
 'deletedhist'                 => 'Qullusqa wiñay kawsay',
 
-# Oversight log
-'oversightlog'    => "Yanqalla panta hallch'a",
-'overlogpagetext' => "Kay qatiqpiqa aswan ñaqha qullusqakunatawan hark'asqakunatam rikunki, kamachiqkunamanta pakasqa samiqta ch'aqtaq. [[Special:Ipblocklist|Hark'asqakunamanta p'anqata]] qhaway kunan hark'asqakunata rikunaykipaq.",
-
 # History merging
 'mergehistory'                     => "P'anqa wiñay kawsaykunata huñuy",
 'mergehistory-header'              => "Kay p'anqawanqa huk pukyu p'anqamanta llamk'apusqakunata huk taripana p'anqamanmi huñuyta atinki.

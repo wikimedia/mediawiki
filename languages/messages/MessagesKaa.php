@@ -627,9 +627,6 @@ Sha'rtli belgiler: (ha'z.) = ha'zirgi nusqasi menen parqı,
 'revdelete-log'          => 'Jurnal kommentariyi:',
 'revdelete-logentry'     => "[[$1]] nusqa ko'rinisin o'zgertti",
 
-# Oversight log
-'oversightlog' => 'Nusqa jasırıw jurnalı',
-
 # History merging
 'mergehistory'      => 'Bet tariyxların qos',
 'mergehistory-from' => 'Derek bet:',

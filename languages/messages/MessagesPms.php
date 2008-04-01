@@ -728,10 +728,6 @@ na restrission adissional da j'operator dël sit.",
 'pagehist'                    => 'Stòria dla pàgina',
 'deletedhist'                 => 'Stòria scancelà',
 
-# Oversight log
-'oversightlog'    => "Registr dle ròbe scondùe a j'aministrator",
-'overlogpagetext' => "Ambelessì sota a-i é na lista djë scancelament e blòch pì davsin ant ël temp, ch'a toco contnù ch'a resta scondù a j'aministrator. Ch'a varda la [[Special:Ipblocklist|lista dj'IP blocà]] për vëdde ij blòch ch'a stan travajand.",
-
 # History merging
 'mergehistory'                     => 'Buté ansema jë stòrie',
 'mergehistory-header'              => "Sta pàgina-sì a lassa fene buté le revision ëd na pàgina ansema a cole 'd n'àutra.

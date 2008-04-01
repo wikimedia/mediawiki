@@ -696,11 +696,6 @@ An ibang mga administrador sa ining wiki pwede pang maghiling kan mga nakatagong
 'revdelete-success'           => 'Nakapwesto na an bisibilidad kan pagpakarhay.',
 'logdelete-success'           => 'Nakapuesto na an katalâan kan nangyari.',
 
-# Oversight log
-'oversightlog'    => 'Historial nin pagmanaw',
-'overlogpagetext' => 'Mahihiling sa babâ an lista kan kaaagi pa sanang mga pagparâ asin mga binagat na may mga laog na pigtatago sa mga Sysops.
-Hilingon tabî an [[Special:Ipblocklist|lista nin binagat na IP]] para sa lista kan mga presenteng pagbawal asin pagbagat.',
-
 # Diffs
 'history-title'           => 'Historial kan pagriribay kan "$1"',
 'difference'              => '(Kaibhán kan mga pagpakarhay)',

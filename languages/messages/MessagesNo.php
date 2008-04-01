@@ -811,10 +811,6 @@ Andre administratorer på {{SITENAME}} vil fortsatt kunne se det skjulte innhold
 'pagehist'                    => 'Sidehistorikk',
 'deletedhist'                 => 'Slettet historikk',
 
-# Oversight log
-'oversightlog'    => 'Overoppsynslogg',
-'overlogpagetext' => 'Under er en liste over de siste slettinger og blokkeringer som involverer innhold skjult for administratorer. Se [[Special:Ipblocklist|IP-blokkeringslisten]] for aktive utestengelser.',
-
 # History merging
 'mergehistory'                     => 'Flett sidehistorikker',
 'mergehistory-header'              => 'Denne siden lar deg flette historikken til to sider.

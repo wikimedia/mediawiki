@@ -682,10 +682,6 @@ El restu e çahorilis desti güiqui sí tendrán premisu pa visoreal el continiu
 'revdelete-success'           => 'Visibiliá e revisionis chambá.',
 'logdelete-success'           => "Visibiliá d'eventus chambá.",
 
-# Oversight log
-'oversightlog'    => 'Rustrihu e descúdius',
-'overlogpagetext' => "Embahu se muestra una lista al tentu los úrtimus esborraus i tarugus relacionaus con continius açonchaus de los çahorilis. Consurta la [[Special:Ipblocklist|lista d'IP atarugás]] pa vel una lista colos úrtimus tarugus.",
-
 # History merging
 'mergehistory'                     => 'Uñifical el estorial las páhinas',
 'mergehistory-header'              => "Esta páhina te premiti mestural las revisionis el estorial duna páhina huenti nuna nueva páhina.

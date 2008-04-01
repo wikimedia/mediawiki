@@ -787,10 +787,6 @@ Atros almenistradors de {{SITENAME}} encara podrán azeder t'o contineiu amagato
 'pagehist'                    => 'Istorial',
 'deletedhist'                 => 'Istorial de borrau',
 
-# Oversight log
-'oversightlog'    => "Rechistro d'escudios",
-'overlogpagetext' => "Contino s'amuestra una lista de borraus y bloqueyos más rezients relatibos á contenius amagatos d'os almenistradors d'o sistema. Consulte a [[Special:Ipblocklist|lista d'adrezas IP bloqueyatas]] ta beyer una lista d'os bloqueyos autuals.",
-
 # History merging
 'mergehistory'                     => 'Aunir istorials',
 'mergehistory-header'              => "Ista pachina li premite aunir bersions d'o istorial d'una pachina d'orichen con una nueba pachina.

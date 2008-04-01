@@ -758,9 +758,6 @@ Legenda: (atu) = diferenças da versão atual,
 'revdelete-success'       => 'Visibilidade de edição definida com sucesso.',
 'logdelete-success'       => 'Visibilidade de evento definida com sucesso.',
 
-# Oversight log
-'oversightlog' => 'Registro de edições ocultadas',
-
 # Merge log
 'mergelog' => 'Registro de fusão de históricos',
 

@@ -803,10 +803,6 @@ Dalšne administratory we {{GRAMMAR:lokatiw|{{SITENAME}}}} mógu ale pśecej hy�
 'revdelete-success'           => 'Wiźobnosć wersije jo se z wuspěchom změniła.',
 'logdelete-success'           => 'Wiźobnosć log-lisćiny z wuspěchom změnjona.',
 
-# Oversight log
-'oversightlog'    => 'Pśeglědowa log-lisćina',
-'overlogpagetext' => 'Dołojce jo wiźeś lisćina nejnowšych wulašowanjow a zakazow, kótarež su teke za administratory schowane. Glědaj na [[Special:Ipblocklist|zakazowu lisćinu]], aby wiźeł aktualne zakaze.',
-
 # History merging
 'mergehistory'                     => 'Zwězaś stawizny bokow',
 'mergehistory-header'              => 'Z toś tym bokom móžoš historiju wersijow žrědłowego boka z tej celowego boka zjadnośiś.
