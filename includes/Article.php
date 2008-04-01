@@ -2300,7 +2300,7 @@ class Article {
 		Article::onArticleDelete( $this->mTitle );
 
 		# Log the deletion, if the page was suppressed, log it at Oversight instead
-		$logtype = $suppress ? 'oversight' : 'delete';
+		$logtype = $suppress ? 'suppress' : 'delete';
 		$log = new LogPage( $logtype );
 		$log->addEntry( 'delete', $this->mTitle, $reason );
 

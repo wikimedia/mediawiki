@@ -587,7 +587,7 @@ class UndeleteForm {
 		$this->mPreview = $request->getCheck( 'preview' ) && $posted;
 		$this->mDiff = $request->getCheck( 'diff' );
 		$this->mComment = $request->getText( 'wpComment' );
-		$this->mUnsuppress = $request->getVal( 'wpUnsuppress' ) && $wgUser->isAllowed( 'oversight' );
+		$this->mUnsuppress = $request->getVal( 'wpUnsuppress' ) && $wgUser->isAllowed( 'suppress' );
 		
 		if( $par != "" ) {
 			$this->mTarget = $par;
@@ -972,7 +972,7 @@ class UndeleteForm {
 			# Format the user-visible controls (comment field, submission button)
 			# in a nice little table
 			$align = $wgContLang->isRtl() ? 'left' : 'right';
-			if( $wgUser->isAllowed( 'oversight' ) ) {
+			if( $wgUser->isAllowed( 'suppress' ) ) {
 				$unsuppressBox = 
 					"<tr>
 						<td>&nbsp;</td>
