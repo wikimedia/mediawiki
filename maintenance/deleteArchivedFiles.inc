@@ -8,12 +8,12 @@
  */
 
 require_once( "$IP/includes/FileStore.php" );
+require_once( "$IP/includes/filerepo/File.php" );
 
 function DeleteArchivedFiles( $delete = false ) {
 
 	# Data should come off the master, wrapped in a transaction
 	$dbw = wfGetDB( DB_MASTER );
-	$dbw->begin();
 	
 	$transaction = new FSTransaction();
 	if( !FileStore::lock() ) {
@@ -32,25 +32,26 @@ function DeleteArchivedFiles( $delete = false ) {
 		$id = $row->fa_id;
 		
 		$store = FileStore::get( $group );
-		if ( $store ) {
+		if( $store ) {
 			$path = $store->filePath( $key );
-			if ( $path && file_exists($path) ) {
+			$sha1 = substr( $key, 0, strcspn( $key, '.' ) );
+			$inuse = $dbw->selectField( 'oldimage', '1',
+				array( 'oi_sha1' => $sha1,
+					'oi_deleted & '.File::DELETED_FILE => File::DELETED_FILE ),
+				__METHOD__, array( 'FOR UPDATE' ) );
+			if ( $path && file_exists($path) && !$inuse ) {
 				$transaction->addCommit( FSTransaction::DELETE_FILE, $path );
 				$dbw->query( "DELETE FROM $tbl_arch WHERE fa_id = $id" );
 			} else {
 				echo( "Notice - file '$key' not found in group '$group'\n" );
 			}
 		} else {
-			echo( "Notice - invalid file storage group '$group'\n" );
+			echo( "Notice - invalid file storage group '$group' for file '$key'\n" );
 		}
 	}
 	echo( "done.\n" );
 	
 	$transaction->commit();
-	
-	# This bit's done
-	$dbw->commit();
-
 }
 
 ?>
