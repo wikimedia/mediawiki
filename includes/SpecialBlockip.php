@@ -359,7 +359,7 @@ class IPBlockForm {
 			$logParams[] = $this->blockLogFlags();
 
 			# Make log entry, if the name is hidden, put it in the oversight log
-			$log_type = ($this->BlockHideName) ? 'oversight' : 'block';
+			$log_type = ($this->BlockHideName) ? 'suppress' : 'block';
 			$log = new LogPage( $log_type );
 			$log->addEntry( 'block', Title::makeTitle( NS_USER, $this->BlockAddress ),
 			  $reasonstr, $logParams );

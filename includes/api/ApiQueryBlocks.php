@@ -90,7 +90,7 @@ class ApiQueryBlocks extends ApiQueryBase {
 			$this->addWhere(array('ipb_id' => $params['ids']));
 		if(isset($params['users']))
 			$this->addWhere(array('ipb_address' => $params['users']));
-		if(!$wgUser->isAllowed('oversight'))
+		if(!$wgUser->isAllowed('suppress'))
 			$this->addWhere(array('ipb_deleted' => 0));
 
 		// Purge expired entries on one in every 10 queries

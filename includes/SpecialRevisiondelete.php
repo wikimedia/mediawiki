@@ -455,7 +455,7 @@ class RevisionDeleteForm {
 		}
 		foreach( $this->events as $logid ) {
 			// Don't hide from oversight log!!!
-			if( !isset( $logRows[$logid] ) || $logRows[$logid]->log_type=='oversight' ) {
+			if( !isset( $logRows[$logid] ) || $logRows[$logid]->log_type=='suppress' ) {
 				$wgOut->showErrorPage( 'revdelete-nooldid-title', 'revdelete-nooldid-text' );
 				return;
 			} else if( !LogPage::userCan( $logRows[$logid],Revision::DELETED_RESTRICTED) ) {
@@ -1071,7 +1071,7 @@ class RevisionDeleter {
 				$success = false;
 				continue; // Must exist
 			} else if( !LogPage::userCan($logRows[$logid], Revision::DELETED_RESTRICTED)
-				 || $logRows[$logid]->log_type=='oversight' ) {
+				 || $logRows[$logid]->log_type == 'suppress' ) {
 			// Don't hide from oversight log!!!
     			$userAllowedAll=false;
     			continue;
@@ -1334,7 +1334,7 @@ class RevisionDeleter {
 	 */
 	function updateLog( $title, $count, $nbitfield, $obitfield, $comment, $target, $param, $items = array() ) {
 		// Put things hidden from sysops in the oversight log
-		$logtype = ( ($nbitfield | $obitfield) & Revision::DELETED_RESTRICTED ) ? 'oversight' : 'delete';
+		$logtype = ( ($nbitfield | $obitfield) & Revision::DELETED_RESTRICTED ) ? 'suppress' : 'delete';
 		$log = new LogPage( $logtype );
 		// FIXME: do this better
 		if( $param=='logid' ) {
