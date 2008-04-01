@@ -1189,19 +1189,20 @@ As an administrator on {{SITENAME}} you can view it;
 there may be details in the [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} deletion log].</div>',
 'rev-delundel'                => 'show/hide',
 'revisiondelete'              => 'Delete/undelete revisions',
-'revdelete-nooldid-title'     => 'No target revision',
-'revdelete-nooldid-text'      => 'You have not specified target revision or revisions to perform this function on.',
-'revdelete-selected'          => "{{PLURAL:$2|Selected revision|Selected revisions}} of '''$1:'''",
-'logdelete-selected'          => "{{PLURAL:$2|Selected log event|Selected log events}} for '''$1:'''",
+'revdelete-nooldid-title'     => 'Invalid target revision',
+'revdelete-nooldid-text'      => 'You have either not specified a target revision(s) to perform this 
+function, the specified revision does not exist, or you are attempting to hide the current revision.',
+'revdelete-selected'          => "{{PLURAL:$2|Selected revision|Selected revisions}} of [[:$1]]:",
+'logdelete-selected'          => "{{PLURAL:$1|Selected log event|Selected log events}}:",
 'revdelete-text'              => 'Deleted revisions and events will still appear in the page history and logs, but parts of their content will be inaccessible to the public.
 
 Other admins on {{SITENAME}} will still be able to access the hidden content and can undelete it again through this same interface, unless additional restrictions are set.',
-'revdelete-legend'            => 'Set restrictions:',
+'revdelete-legend'            => 'Set restrictions',
 'revdelete-hide-text'         => 'Hide revision text',
 'revdelete-hide-name'         => 'Hide action and target',
 'revdelete-hide-comment'      => 'Hide edit comment',
 'revdelete-hide-user'         => "Hide editor's username/IP",
-'revdelete-hide-restricted'   => 'Apply these restrictions to sysops as well as others',
+'revdelete-hide-restricted'   => 'Apply these restrictions to Sysops and lock this interface',
 'revdelete-suppress'          => 'Suppress data from sysops as well as others',
 'revdelete-hide-image'        => 'Hide file content',
 'revdelete-unsuppress'        => 'Remove restrictions on restored revisions',
@@ -1210,11 +1211,16 @@ Other admins on {{SITENAME}} will still be able to access the hidden content and
 'revdelete-logentry'          => 'changed revision visibility of [[$1]]',
 'logdelete-logentry'          => 'changed event visibility of [[$1]]',
 'revdelete-logaction'         => '$1 {{PLURAL:$1|revision|revisions}} set to mode $2',
-'logdelete-logaction'         => '$1 {{PLURAL:$1|event|events}} to [[$3]] set to mode $2',
-'revdelete-success'           => 'Revision visibility successfully set.',
-'logdelete-success'           => 'Event visibility successfully set.',
+'logdelete-logaction'         => '$1 {{PLURAL:$1|event|events}} set to mode $2',
+'revdelete-success'           => "'''Revision visibility successfully set.'''",
+'logdelete-success'           => "'''Log visibility successfully set.'''",
+'revdel-restore'              => 'Change visiblity',
 'pagehist'                    => 'Page history',
 'deletedhist'                 => 'Deleted history',
+
+# Suppression log
+'suppressionlog'     => 'Suppression log',
+'suppressionlogtext' => 'Below is a list of the most recent deletions and blocks involving content hidden from sysops. See the [[Special:Ipblocklist|IP block list]] for the list of currently operational bans and blocks.',
 
 # History merging
 'mergehistory'                     => 'Merge page histories',
@@ -1411,6 +1417,11 @@ An unchecked box means the user is not in that group.',
 'grouppage-bot'           => '{{ns:project}}:Bots',
 'grouppage-sysop'         => '{{ns:project}}:Administrators',
 'grouppage-bureaucrat'    => '{{ns:project}}:Bureaucrats',
+
+'suppress'               => 'Oversight',
+'group-suppress'         => 'Oversights',
+'group-suppress-member'  => 'Oversight',
+'grouppage-suppress'     => '{{ns:project}}:Oversight',
 
 # User rights log
 'rightslog'      => 'User rights log',
@@ -1821,7 +1832,7 @@ A page is treated as disambiguation page if it uses a template which is linked f
 'specialloguserlabel'  => 'User:',
 'speciallogtitlelabel' => 'Title:',
 'log'                  => 'Logs',
-'all-logs-page'        => 'All logs',
+'all-logs-page'        => 'All public logs',
 'log-search-legend'    => 'Search for logs',
 'log-search-submit'    => 'Go',
 'alllogstext'          => 'Combined display of all available logs of {{SITENAME}}.
@@ -1965,6 +1976,7 @@ Please confirm that you intend to do this, that you understand the consequences,
 'deletedtext'                 => '"<nowiki>$1</nowiki>" has been deleted.
 See $2 for a record of recent deletions.',
 'deletedarticle'              => 'deleted "[[$1]]"',
+'suppressedarticle'           => 'suppressed "[[$1]]"',
 'dellogpage'                  => 'Deletion log',
 'dellogpagetext'              => 'Below is a list of the most recent deletions.',
 'deletionlog'                 => 'deletion log',
