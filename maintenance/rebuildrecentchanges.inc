@@ -214,8 +214,9 @@ function rebuildRecentChangesTablePass4()
 			$dbw->query( $sql2 );
 		}
 	}
+	global $wgMiserMode;
 	# Flag our recent autopatrolled edits
-	if( !empty($autopatrolgroups) ) {
+	if( !$wgMiserMode && !empty($autopatrolgroups) ) {
 		$patrolwhere = implode(',',$autopatrolgroups);
 		$patrolusers = array();
 
