@@ -1216,10 +1216,6 @@ Other admins on {{SITENAME}} will still be able to access the hidden content and
 'pagehist'                    => 'Page history',
 'deletedhist'                 => 'Deleted history',
 
-# Oversight log
-'oversightlog'    => 'Oversight log',
-'overlogpagetext' => 'Below is a list of the most recent deletions and blocks involving content hidden from sysops. See the [[Special:Ipblocklist|IP block list]] for the list of currently operational bans and blocks.',
-
 # History merging
 'mergehistory'                     => 'Merge page histories',
 'mergehistory-header'              => 'This page lets you merge revisions of the history of one source page into a newer page.

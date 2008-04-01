@@ -951,10 +951,6 @@ vissza tudja ugyanezen a kezelőfelületen keresztül állítani, ha nincs megad
 'pagehist'                    => 'Laptörténet',
 'deletedhist'                 => 'Törölt változatok',
 
-# Oversight log
-'oversightlog'    => 'Adatvédelmi biztos-napló',
-'overlogpagetext' => 'Az alábbiakban látható az adminisztrátorok elől legutóbb elrejtett törlések és blokkok listája. A jelenleg érvényben lévő kitiltásokat és blokkolásokat lásd az [[Special:Ipblocklist|Blokkolt IP-címek listáján]].',
-
 # History merging
 'mergehistory'                     => 'Laptörténetek egyesítése',
 'mergehistory-header'              => 'Ez az oldal lehetővé teszi egy oldal laptörténetének egyesítését egy másikéval.

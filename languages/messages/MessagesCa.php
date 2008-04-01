@@ -840,10 +840,6 @@ Els altres administradors del projecte {{SITENAME}} encara podrien accedir al co
 'pagehist'                    => 'Historial',
 'deletedhist'                 => "Historial d'esborrat",
 
-# Oversight log
-'oversightlog'    => "Registre d'oversight",
-'overlogpagetext' => 'A continuació trabareu una llista dels esborrats i blocatges més recents relacionats amb contingut amagat pels administradors. Vegeu la [[Special:Ipblocklist|llista de blocatges]] per a la llista completa de tots els blocatges actius.',
-
 # History merging
 'mergehistory'                     => 'Fusiona els historials de les pàgines',
 'mergehistory-header'              => "Aquesta pàgina us permet fusionar les revisions de l'historial d'una pàgina origen en una més nova.

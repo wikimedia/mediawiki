@@ -772,9 +772,6 @@ Vläicht gouf se geläscht oder geréckelt.
 'pagehist'                => 'Versioune vun dëser Säit',
 'deletedhist'             => 'Geläschte Versiounen',
 
-# Oversight log
-'overlogpagetext' => "Dëst ass d'Lëscht vun de Läschungen a Spären, déi virun den Administrateure verstoppt sinn.",
-
 # History merging
 'mergehistory'                     => 'Historiquë fusionéieren',
 'mergehistory-header'              => "Mat dëser Spezialsäit kënnt Dir d'Versiounsgeschicht vun enger Ursprungssäit mat der Versiounsgeschicht vun enger Zilsäit zesummeleeën.

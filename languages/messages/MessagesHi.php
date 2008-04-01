@@ -756,10 +756,6 @@ Don't forget to personalize your {{SITENAME}} preferences.",
 'pagehist'                    => 'पन्ने का इतिहास',
 'deletedhist'                 => 'हटाया हुआ इतिहास',
 
-# Oversight log
-'oversightlog'    => 'ओवरसाईट लॉग',
-'overlogpagetext' => 'नीचे सबसे हाल में हटायें गयें अवतरणों (प्रबंधकोंसे भी छुपायें गयें) की सूची हैं। हाल में चल रहे ब्लॉक की सूची  [[Special:Ipblocklist|आईपी ब्लॉक सूची]] यहां देखें।',
-
 # History merging
 'mergehistory'                     => 'पन्ने के इतिहास एकत्रित करें',
 'mergehistory-header'              => 'यह पन्ना एक स्रोत पन्ने का इतिहास किसी अन्य पन्ने में मिलाने के लिये सहायक हैं।

@@ -734,10 +734,6 @@ $2',
 'pagehist'                    => '頁面歷史',
 'deletedhist'                 => '已刪除之歷史',
 
-# Oversight log
-'oversightlog'    => '監督記錄',
-'overlogpagetext' => '下面是一個最近刪除以及由操作員封鎖牽涉到的內容列表。參看下面的[[Special:Ipblocklist|IP封鎖列表]]去查看現時進行的封鎖。',
-
 # History merging
 'mergehistory'                     => '合併頁面歷史',
 'mergehistory-header'              => '這一頁可以講您合併一個來源頁面的歷史到另一個新頁面中。

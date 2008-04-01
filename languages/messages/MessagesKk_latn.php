@@ -1071,11 +1071,6 @@ qoýılğanşa deýin, osı tildesw arqılı joywdı boldırmawı mümkin.',
 'revdelete-success'           => 'Nusqa körinisi sätti qoýıldı.',
 'logdelete-success'           => 'Jazba körinisi sätti qoýıldı.',
 
-# Oversight log
-'oversightlog'    => 'Nusqa jasırw jwrnalı',
-'overlogpagetext' => 'Tömende äkimşilerden jasırılğan mağlumatqa ıqpal etetin jwıqtağı bolğan joyw jäne buğattaw
-tizimi beriledi. Ağımdağı amaldı buğattaw men tïım üşin [[{{ns:special}}:Ipblocklist|IP buğattaw tizimin]] qarañız.',
-
 # History merging
 'mergehistory'                     => 'Better tarïxın biriktirw',
 'mergehistory-header'              => "Bul bet arqılı bir qaýnar bettiñ nusqalar tarïxın jaña betke biriktirwge mümkindik beredi.

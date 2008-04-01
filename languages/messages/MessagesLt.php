@@ -769,10 +769,6 @@ Kiti administratoriai šiame projekte vis dar galės pasiekti paslėptą turinį
 'pagehist'                    => 'Puslapio istorija',
 'deletedhist'                 => 'Ištrinta istorija',
 
-# Oversight log
-'oversightlog'    => 'Priežiūros istorija',
-'overlogpagetext' => 'Žemiau yra paskutinių trynimų ir blokavimų, įskaitant turinio slėpimą nuo administratorių, sąrašas. [[{{ns:special}}:Ipblocklist|IP blokavimų istorijoje]] rasite šiuo metu veikiančių draudimų ir blokavimų sąrašą.',
-
 # History merging
 'mergehistory'                     => 'Sujungti puslapių istorijas',
 'mergehistory-header'              => "Šis puslapis leidžia jus prijungti vieno pirminio puslapio istorijos versijas į naujesnį puslapį. Įsitikinkite, kad šis pakeitimas palaikys istorinį puslapio tęstinumą.

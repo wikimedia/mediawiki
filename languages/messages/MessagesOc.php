@@ -729,10 +729,6 @@ D’autres administrators sus {{SITENAME}} poiràn totjorn accedir al contengut 
 'pagehist'                    => 'Istoric de la pagina',
 'deletedhist'                 => 'Istoric de las supressions',
 
-# Oversight log
-'oversightlog'    => 'Jornal oversight',
-'overlogpagetext' => 'la lista çaijós mòstra las supressions e blocatges recents que lo contengut es amagat quitament pels administrators. Consultatz la [[Special:Ipblocklist|lista dels comptes blocats]] per la lista dels blocatges en cors.',
-
 # History merging
 'mergehistory'                     => "Fusion dels istorics d'una pagina",
 'mergehistory-header'              => "Aquesta pagina vos permet de fusionar las revisions de l'istoric d'una pagina d'origina vèrs una novèla.

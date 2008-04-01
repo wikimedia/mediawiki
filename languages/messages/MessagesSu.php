@@ -679,9 +679,6 @@ Révisi kaca ieu geus dihapus tina arsip publik. Tapi, salaku administrator dina
 'revdelete-logaction'         => '$1 {{PLURAL:$1|révisi|révisi}} dirobah jadi modeu $2',
 'logdelete-logaction'         => '$1 {{PLURAL:$1|robahan|robahan}} ka [[$3]] dirobah jadi modeu $2',
 
-# Oversight log
-'oversightlog' => 'Log pangawas',
-
 # History merging
 'mergehistory'                     => 'Gabungkeun jujutan kaca',
 'mergehistory-header'              => 'Di dieu anjeun bisa ngagabungkeun révisi tina jujutan hiji kaca ka kaca séjén nu leuwih anyar.

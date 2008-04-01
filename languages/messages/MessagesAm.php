@@ -624,9 +624,6 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 'revdelete-hide-image'    => 'የፋይሉ ይዞታ ይደበቅ',
 'revdelete-log'           => 'የመዝገቡ ማጠቃለያ፦',
 
-# Oversight log
-'oversightlog' => 'የላዕላይ መቆጣጠር መዝገብ',
-
 # History merging
 'mergehistory'                     => 'የገጽ ታሪኮች ለመዋሐድ',
 'mergehistory-box'                 => 'የሁለት ገጾች እትሞች ለማዋሐድ፦',

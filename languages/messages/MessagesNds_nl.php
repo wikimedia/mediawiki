@@ -932,10 +932,6 @@ Aandere beheerders van {{SITENAME}} kunnen de verbörgen inhoud bekieken en 't w
 'pagehist'                    => 'Paginageschiedenisse',
 'deletedhist'                 => 'Geschiedenisse dee vort-ehaold is',
 
-# Oversight log
-'oversightlog'    => 'Overzichslogboek',
-'overlogpagetext' => "Hieronder steet een lieste mit pagina's dee krek vort-edaon bin en de leste blokkeringen dee uut-evoerd bin waorvan de inhoud verbörgen is veur beheeerders. Zie de [[Special:Ipblocklist|IP-blokkeerlieste]] veur een lieste mit blokkeringen en verbanningen dee noen van krach bin.",
-
 # History merging
 'mergehistory' => "Geschiedenisse van pagina's bie mekaar doon",
 

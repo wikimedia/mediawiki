@@ -819,10 +819,6 @@ Inni administratorzy {{GRAMMAR:D.lp|{{SITENAME}}}} nadal będą mieć dostęp do
 'pagehist'                    => 'Historia edycji strony',
 'deletedhist'                 => 'Usunięta historia edycji',
 
-# Oversight log
-'oversightlog'    => 'Log Oversight',
-'overlogpagetext' => 'Poniżej znajduje się lista najnowszych usunięć i blokad dotyczących ukrywania zawartości przed administratorami. Wejdź na stronę [[Special:Ipblocklist|IP block list]], by zobaczyć listę aktywnych zakazów i blokad.',
-
 # History merging
 'mergehistory'                     => 'Scal historię zmian stron',
 'mergehistory-header'              => 'Ta strona pozwala na scalenie historii zmian jednej strony z inną nowszą stroną.

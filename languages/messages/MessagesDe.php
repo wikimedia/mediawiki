@@ -871,10 +871,6 @@ Nähere Angaben zum Löschvorgang sowie eine Begründung finden sich im [{{fullu
 'pagehist'                    => 'Versionsgeschichte',
 'deletedhist'                 => 'Gelöschte Versionen',
 
-# Oversight log
-'oversightlog'    => 'Oversight-Logbuch',
-'overlogpagetext' => 'Das ist das Logbuch der Löschungen und Sperren, die vor Administratoren versteckt sind.',
-
 # History merging
 'mergehistory'                     => 'Versionsgeschichten vereinen',
 'mergehistory-header'              => 'Mit dieser Spezialseite kannst du die Versionsgeschichte einer Ursprungsseite mit der Versionsgeschichte einer Zielseite vereinen.

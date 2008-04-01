@@ -679,10 +679,6 @@ Cunsulthà lu [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} rigisthru di ca
 'revdelete-success'           => 'Visibiriddai di la ribisioni impusthadda.',
 'logdelete-success'           => "Visibiriddai di l'eventu impusthadda.",
 
-# Oversight log
-'oversightlog'    => 'Rigisthru di li mudìfigghi traschuraddi',
-'overlogpagetext' => "Inogghi v'è una listha di li canzilladduri e di li brocchi reratibi a cuntinuddi cuaddi pa l'amministhradori. Cunsulthà la [[Special:Ipblocklist|listha di l'IP broccaddi]] pa l'erencu di brocchi e bandi chi so attibi abà.",
-
 # History merging
 'mergehistory'                     => 'Unioni cronologi',
 'mergehistory-box'                 => 'Unì la cronologia di dui pàgini:',

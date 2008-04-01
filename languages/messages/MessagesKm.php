@@ -774,9 +774,6 @@ $2',
 'pagehist'                  => 'ប្រវត្តិទំព័រ',
 'deletedhist'               => 'ប្រវត្តិដែលត្រូវបានលុបចោល',
 
-# Oversight log
-'oversightlog' => 'កំណត់ហេតុ ត្រួតមើល',
-
 # History merging
 'mergehistory'                     => 'បញ្ចូលរួមគ្នា ប្រវត្តិទាំងឡាយ នៃ ទំព័រ',
 'mergehistory-box'                 => 'បញ្ចូលរួមគ្នា កំណែទាំងឡាយ នៃ ពីរ ទំព័រ៖',

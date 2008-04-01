@@ -897,10 +897,6 @@ Andre administratorar på {{SITENAME}} kan framleis sjå det gøymde innhaldet o
 'pagehist'                    => 'Sidehistorikk',
 'deletedhist'                 => 'Sletta historikk',
 
-# Oversight log
-'oversightlog'    => 'Oversynslogg',
-'overlogpagetext' => 'Nedanfor finn du ei liste over dei siste slettingane og blokkeringane som er gøymde for administratorane. Sjå [[Special:Ipblocklist|blokkeringslista]] for ei liste over noverande sperringar og blokkeringar.',
-
 # History merging
 'mergehistory'                     => 'Flett sidehistorikkar',
 'mergehistory-header'              => 'Denne sida lar deg flette historikken til to sider.

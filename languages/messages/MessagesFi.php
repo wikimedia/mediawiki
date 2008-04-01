@@ -816,10 +816,6 @@ Muut ylläpitäjät voivat lukea piilotetun sisällön ja palauttaa sen.',
 'pagehist'                    => 'Muutoshistoria',
 'deletedhist'                 => 'Poistettu muutoshistoria',
 
-# Oversight log
-'oversightlog'    => 'Tietosuojaloki',
-'overlogpagetext' => 'Alla on lista viimeaikaisista poistoista ja estoista liittyen ylläpitäjiltä piilotettuun sisältöön. [[Special:Ipblocklist|Estolistalla]] on luettelo voimassa olevista estoista.',
-
 # History merging
 'mergehistory'                     => 'Yhdistä sivuhistoriat',
 'mergehistory-header'              => 'Tämä sivu mahdollistaa sivun muutoshistorian yhdistämisen uudemman sivun muutoshistoriaan.

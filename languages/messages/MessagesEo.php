@@ -746,10 +746,6 @@ Aliaj administrantoj cxe {{SITENAME}} plu povos aliri la kasxitan entenon kaj re
 'pagehist'                    => 'Paĝa historio',
 'deletedhist'                 => 'Forigita historio',
 
-# Oversight log
-'oversightlog'    => 'Loglibro de superrigardo',
-'overlogpagetext' => 'Jen sube estas listo de la plej lastatempaj forigoj kaj blokoj (baroj) koncernantaj enhavon kasxitan de administrantoj (Sysops). Vidu la [[Special:Ipblocklist|IP-an forbarliston]] por la listo de aktuale funkciantaj forbaroj kaj blokoj.',
-
 # History merging
 'mergehistory'                     => 'Kunigu historiojn de paĝoj',
 'mergehistory-header'              => 'Ĉi paĝo permesas al vi kunigi reviziojn de la historio de unu fonta paĝo en pli novan paĝon.

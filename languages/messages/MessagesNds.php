@@ -805,9 +805,6 @@ Versöök [[Special:Search|dat Söken]] na annere relevante Sieden.',
 'pagehist'                => 'Versionshistorie',
 'deletedhist'             => 'wegsmetene Versionen',
 
-# Oversight log
-'oversightlog' => 'Opsicht-Logbook',
-
 # History merging
 'mergehistory'                     => 'Versionshistorien tohoopföhren',
 'mergehistory-box'                 => 'Versionshistorien vun twee Sieden tohoopföhren',

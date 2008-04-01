@@ -723,10 +723,6 @@ Otros administradores de este wiki aún podrán acceder al contenido oculto y po
 'revdelete-success'           => 'Visibilidad de revisiones cambiada correctamente.',
 'logdelete-success'           => 'Visibilidad de eventos cambiada correctamente.',
 
-# Oversight log
-'oversightlog'    => 'Registro de descuidos',
-'overlogpagetext' => 'A continuación se muestra una lista de los borrados y bloqueos más recientes relacionados con contenidos ocultos de los operadores del sistema. Consulte la [[Special:Ipblocklist|lista de IPs bloqueadas]] para ver una lista de los bloqueos actuales.',
-
 # Diffs
 'history-title'           => 'Historial de revisiones para "$1"',
 'difference'              => '(Diferencias entre revisiones)',

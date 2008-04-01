@@ -678,9 +678,6 @@ Bu sayfa değişikiliği kamu arşivlerinden silinmiştir.
 'pagehist'                    => 'Sayfa geçmişi',
 'deletedhist'                 => 'Silinmiş geçmiş',
 
-# Oversight log
-'oversightlog' => 'Gözetmen kayıtları',
-
 # History merging
 'mergehistory'                     => 'Sayfa geçmişlerini takas et.',
 'mergehistory-box'                 => 'İki sayfanın revizyonlarını birleştir:',

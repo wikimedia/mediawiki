@@ -751,9 +751,6 @@ Vikide bu saifege oşağan saifelerni [[{{ns:special}}:Search|tapıp baqıñız]
 'revdelete-hide-restricted' => 'Bu sıñırlavlarnı administratorlar ve qullanıcılar içün işlet',
 'revdelete-submit'          => 'Saylanğan versiyağa işlet',
 
-# Oversight log
-'oversightlog' => 'Gizleme jurnalı',
-
 # Diffs
 'history-title'           => '"$1" saifesiniñ deñişiklik tarihı',
 'difference'              => '(Versiyalar arası farqlar)',

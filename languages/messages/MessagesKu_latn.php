@@ -662,10 +662,6 @@ Ev verzyona vê rûpelê hatîye jêbirin. Belkî înformasyon di [{{fullurl:Spe
 'revdelete-hide-restricted'   => 'Ev qebûlkirin ji koordînatoran ra ye jî',
 'revdelete-suppress'          => 'Sedemê jêbirinê ji koordînatoran ra jî veşêre',
 
-# Oversight log
-'overlogpagetext' => 'Below is a list of the most recent deletions and blocks involving content
-hidden from Sysops. See the [[Special:Ipblocklist|IP block list]] for the list of currently operational bans and blocks.',
-
 # History merging
 'mergehistory-from' => 'Çavkanîya rûpelê:',
 

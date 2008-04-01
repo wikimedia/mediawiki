@@ -643,10 +643,6 @@ $2',
 'revdelete-success'           => '修訂嗰可見性設置正嘍。',
 'logdelete-success'           => '事件嗰可見性設置正嘍。',
 
-# Oversight log
-'oversightlog'    => '監督記錄',
-'overlogpagetext' => '下底係隻最近刪除同到由操作員封鎖牽涉到嗰內容列表。眵吖底下嗰[[Special:Ipblocklist|IP封鎖列表]]去查看眼下嗰封鎖。',
-
 # History merging
 'mergehistory'                     => '合并頁面歷史',
 'mergehistory-box'                 => '合并兩隻頁面箇版本：',

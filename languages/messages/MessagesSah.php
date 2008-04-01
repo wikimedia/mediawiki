@@ -677,11 +677,6 @@ long, which is longer than the maximum of $2 kilobytes. It cannot be saved.</str
 'revdelete-success'           => 'Торум көстүүтэ сөпкө уларыйда.',
 'logdelete-success'           => 'Дьайыы көстүүтэ сөпкө уларыйда.',
 
-# Oversight log
-'oversightlog'    => 'Кистээһин историята',
-'overlogpagetext' => 'Манна администратордартан кистэммит матырыйаалларыга сигэнэр бүтэһик сотуулар уонна хааччахтааһыннар көстөллөр.
-Билигин туттуллар хааччахтаныылары [[Special:Ipblocklist|манна]] көрүөххэ сөп.',
-
 # History merging
 'mergehistory'                     => 'Силбэһии сирэйин хронологията',
 'mergehistory-header'              => 'Бу сирэй биир ыстатыйа (сирэй) хас да барылын биир саҥа барыл гына оҥорорго аналлаах.

@@ -869,11 +869,6 @@ D’autres administrateurs de {{SITENAME}} pourront toujours accéder au contenu
 'pagehist'                    => 'Historique de la page',
 'deletedhist'                 => 'Historique des suppressions',
 
-# Oversight log
-'oversightlog'    => 'Historique de supervision',
-'overlogpagetext' => 'la liste ci-dessous montre les suppressions et blocages récents dont le contenu est masqué même pour les administrateurs.
-Consulter la [[Special:Ipblocklist|liste des comptes bloqués]] pour la liste des blocages en cours.',
-
 # History merging
 'mergehistory'                     => 'Fusionner les historiques',
 'mergehistory-header'              => 'Cette page vous permet de fusionner les révisions de l’historique d’une page d’origine vers une nouvelle page.

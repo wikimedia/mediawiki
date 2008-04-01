@@ -655,9 +655,6 @@ Yeneen yorkati {{SITENAME}} itam di nañ man a gis ëmbit yu laqu yi te loppanti
 'revdelete-success'           => 'Coppiteg gisinug sumb mi, baax na',
 'logdelete-success'           => 'Gisub xew-xew bi soppiku na bu baax',
 
-# Oversight log
-'overlogpagetext' => 'Lim bii ci suuf day wone farte yeek téye yi mujj te seen ëmbit nëbbu ci ñépp, ba ci yorkat yi sax. yëral [[Special:Ipblocklist|limu sàq yi ñu téye]] ngir gis limu téye yi teew.',
-
 # History merging
 'mergehistory'                     => 'Booleb jaar-jaar yu aw xët',
 'mergehistory-header'              => 'Wii xët day tax nga man a boole sumb yépp yi ne ci jaar-jaaruw xët (di ko wax it xëtu gongikuwaay) ak jaar-jaaru weneen xët wu mujj.

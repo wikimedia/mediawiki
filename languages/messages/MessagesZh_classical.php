@@ -632,10 +632,6 @@ $2',
 'pagehist'                    => '頁史',
 'deletedhist'                 => '刪史',
 
-# Oversight log
-'oversightlog'    => '誌督',
-'overlogpagetext' => '下乃刪及錮物之列也。[[Special:Ipblocklist|IP之錮]]有現之閱。',
-
 # History merging
 'mergehistory'                     => '併頁之誌',
 'mergehistory-header'              => "此頁講汝併一源頁之誌至二頁也。

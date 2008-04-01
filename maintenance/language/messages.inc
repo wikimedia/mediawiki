@@ -629,10 +629,6 @@ $wgMessageStructure = array(
 		'pagehist',
 		'deletedhist',
 	),
-	'oversightlog' => array(
-		'oversightlog',
-		'overlogpagetext',
-	),
 	'mergehistory' => array(
 		'mergehistory',
 		'mergehistory-header',
@@ -2450,7 +2446,6 @@ XHTML id names.",
 	'history'             => 'History pages',
 	'history-feed'        => 'Revision feed',
 	'revdelete'           => 'Revision deletion',
-	'oversightlog'        => 'Oversight log',
 	'mergehistory'        => 'History merging',
 	'mergelog'            => 'Merge log',
 	'diffs'               => 'Diffs',
