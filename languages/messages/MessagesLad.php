@@ -9,6 +9,8 @@
  * @author SPQRobin
  */
 
+$fallback = 'es';
+
 $messages = array(
 # Dates
 'april'  => 'Avril',
