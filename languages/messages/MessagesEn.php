@@ -1192,8 +1192,8 @@ there may be details in the [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}
 'revdelete-nooldid-title'     => 'Invalid target revision',
 'revdelete-nooldid-text'      => 'You have either not specified a target revision(s) to perform this 
 function, the specified revision does not exist, or you are attempting to hide the current revision.',
-'revdelete-selected'          => "{{PLURAL:$2|Selected revision|Selected revisions}} of [[:$1]]:",
-'logdelete-selected'          => "{{PLURAL:$1|Selected log event|Selected log events}}:",
+'revdelete-selected'          => '{{PLURAL:$2|Selected revision|Selected revisions}} of [[:$1]]:',
+'logdelete-selected'          => '{{PLURAL:$1|Selected log event|Selected log events}}:',
 'revdelete-text'              => 'Deleted revisions and events will still appear in the page history and logs, but parts of their content will be inaccessible to the public.
 
 Other admins on {{SITENAME}} will still be able to access the hidden content and can undelete it again through this same interface, unless additional restrictions are set.',
@@ -1406,22 +1406,20 @@ An unchecked box means the user is not in that group.',
 'group-bot'           => 'Bots',
 'group-sysop'         => 'Sysops',
 'group-bureaucrat'    => 'Bureaucrats',
+'group-suppress'      => 'Oversights',
 'group-all'           => '(all)',
 
 'group-autoconfirmed-member' => 'Autoconfirmed user',
 'group-bot-member'           => 'Bot',
 'group-sysop-member'         => 'Sysop',
 'group-bureaucrat-member'    => 'Bureaucrat',
+'group-suppress-member'      => 'Oversight',
 
 'grouppage-autoconfirmed' => '{{ns:project}}:Autoconfirmed users',
 'grouppage-bot'           => '{{ns:project}}:Bots',
 'grouppage-sysop'         => '{{ns:project}}:Administrators',
 'grouppage-bureaucrat'    => '{{ns:project}}:Bureaucrats',
-
-'suppress'               => 'Oversight',
-'group-suppress'         => 'Oversights',
-'group-suppress-member'  => 'Oversight',
-'grouppage-suppress'     => '{{ns:project}}:Oversight',
+'grouppage-suppress'      => '{{ns:project}}:Oversight',
 
 # User rights log
 'rightslog'      => 'User rights log',
@@ -1815,6 +1813,7 @@ A page is treated as disambiguation page if it uses a template which is linked f
 'notargettext'                    => 'You have not specified a target page or user to perform this function on.',
 'pager-newer-n'                   => '{{PLURAL:$1|newer 1|newer $1}}',
 'pager-older-n'                   => '{{PLURAL:$1|older 1|older $1}}',
+'suppress'                        => 'Oversight',
 
 # Book sources
 'booksources'               => 'Book sources',
