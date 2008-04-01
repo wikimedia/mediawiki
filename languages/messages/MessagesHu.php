@@ -1091,8 +1091,6 @@ rendszer nem indexel, vagy több független keresési kifejezés megadása
 'userrights-groupsmember'          => 'Csoporttag:',
 'userrights-groupsremovable'       => 'Eltávolítható csoportok:',
 'userrights-groupsavailable'       => 'Létező csoportok:',
-'userrights-groupshelp'            => 'Jelöld ki azokat a csoportokat, melyekből el akarod távolítani, vagy melyekhez hozzá akarod adni a felhasználót.
-A kijelöletlen csportok változatlanok maradnak. CTRL + bal kattintással tudod egy csoport kijelölését megszüntetni',
 'userrights-reason'                => 'A változtatás indoka:',
 'userrights-available-none'        => 'A csoporttagságot nem módosíthatod.',
 'userrights-available-add'         => 'Adhatsz hozzá felhasználókat a(z) $1 csoporthoz.',

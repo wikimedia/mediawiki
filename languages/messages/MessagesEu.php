@@ -751,7 +751,6 @@ Wiki honetako beste administratzaileek ezkutuko eduki hau ikusteko aukera izango
 'saveusergroups'             => 'Erabiltzaile taldeak gorde',
 'userrights-groupsmember'    => 'Partaide da hemen:',
 'userrights-groupsavailable' => 'Existitzen diren taldeak:',
-'userrights-groupshelp'      => 'Hautatu erabiltzaileari gehitu edo kendu nahi dizkiozun taldeak. Deshautatutako taldeak ez dira aldatuko. Talde bat deshautatu dezakezu CTRL + Ezker Klika eginez',
 'userrights-reason'          => 'Aldatzeko arrazoia:',
 
 # Groups

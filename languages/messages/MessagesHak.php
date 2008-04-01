@@ -671,7 +671,6 @@ Ngì thùng-sṳ̀ ya-yeu hiong Wikimedia pó-chṳn ngì só thì-kâu ke nui-y
 'saveusergroups'             => 'Pó-chhùn yung-fu khiùn-chû',
 'userrights-groupsmember'    => 'Su̍k-yî:',
 'userrights-groupsavailable' => 'Hí-khó yung khiùn-chû:',
-'userrights-groupshelp'      => 'Chhiáng sién-chet ngì sióng-ngiong yung-fu kâ-ngi̍p fe̍t-chá thui-chhut ke khiùn-chû. Mò-yû sién-chet ke khiùn-chû chiông put-voi pûn kói-pien. Ngì ya-he khó-yî yung "CTRL + chó-kit va̍t-chhú "fuk-sién fe̍t-he chhí-sêu yí-kîn sién-chet ke khiùn-chû.',
 'userrights-reason'          => 'Kiên-kói ngièn-yîn:',
 
 # Groups

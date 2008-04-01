@@ -476,8 +476,6 @@ $2 Zeige auch REDIRECTs   Suche nach $3 $9',
 'editinguser'              => 'Bearbeite vo «$1»',
 'userrights-editusergroup' => 'Bearbeite Gruppenzugehörigkeit des Benutzers',
 'saveusergroups'           => 'Speichere Gruppenzugehörigkeit',
-'userrights-groupshelp'    => 'Wähle die Gruppen, aus denen der Benutzer entfernt oder zu denen er hinzugefügt werden soll.
-Nicht selektierte Gruppen werden nicht geändert. Eine Selektion kann mit Strg + Linksklick (bzw. Ctrl + Linksklick) entfernt werden.',
 
 # User rights log
 'rightslogtext' => 'Des ischs Logbuech vun de Änderunge on Bnutzerrechte.',

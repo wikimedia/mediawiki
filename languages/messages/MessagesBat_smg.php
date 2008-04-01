@@ -654,8 +654,6 @@ Kėtė admėnėstratuorē šėtom pruojekte vėsdar galės pasėiktė pasliepta 
 'userrights-editusergroup'   => 'Keistė nauduotuoju gropes',
 'userrights-groupsmember'    => 'Narīs:',
 'userrights-groupsavailable' => 'Galėmas gropės:',
-'userrights-groupshelp'      => "Pasėrėnkėt gropes, i katras pridietė o ėš katrū pašalėntė nauduotoja.
-Nepasirėnktos gropes nabus pakeistos. Galit atžīmiet grope laikīdamė ''Ctrl'' ėr paspausdamė kairiouju pelės klavėšu",
 'userrights-reason'          => 'Keitėma prižastis:',
 'userrights-available-none'  => 'Tamsta nagalėt keistė gropės narīstės.',
 

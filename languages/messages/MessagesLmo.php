@@ -259,7 +259,6 @@ Spiegazziún di símbui: (cur) = difərenza cun la versiún curénta, (ültima) 
 'userrights-groupsmember'     => 'Appartiene ai gruppi:',
 'userrights-groupsremovable'  => 'Gruppi eliminabili:',
 'userrights-groupsavailable'  => 'Gruppi disponibili:',
-'userrights-groupshelp'       => "Selezionare i gruppi ai quali si vuole associare o rimuovere l'utente. L'appartenenza ai gruppi non selezionati non verrà modificata. Per deselezionare un gruppo, premere Ctrl + il tasto sinistro del mouse.",
 'userrights-reason'           => 'Motivo della modifica:',
 'userrights-available-none'   => "Non è consentito modificare l'appartenenza ai gruppi.",
 'userrights-available-add'    => 'È possibile associare utenti {{PLURAL:$2|al gruppo|ai gruppi}}: $1.',

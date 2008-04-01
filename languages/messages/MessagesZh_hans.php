@@ -896,10 +896,6 @@ $2',
 'userrights-groupsmember'          => '隶属于:',
 'userrights-groupsremovable'       => '可移除群组:',
 'userrights-groupsavailable'       => '可加入群组:',
-'userrights-groupshelp'            => '您可以改动这位用户所属的组群。
-
-已剔选的核取方块代表该用户属于该组群。
-未剔选的核取方块代表该用户不是属于该组群。',
 'userrights-reason'                => '更改原因:',
 'userrights-available-none'        => '您不可以更改组别成员。',
 'userrights-available-add'         => '您可以加入任何用户到{{PLURAL:$2|一个|多个}}组中: $1。',

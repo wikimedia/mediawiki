@@ -667,8 +667,6 @@ $2 Seznam se preusmerja   Iskanje za $3 $9',
 'saveusergroups'             => 'Shrani spremembe',
 'userrights-groupsmember'    => 'Član skupine:',
 'userrights-groupsavailable' => 'Skupine, ki so na razpolago:',
-'userrights-groupshelp'      => 'Izberite skupine, iz katerih želite odstraniti ali vanje dodati uporabnika.
-Neoznačene skupine ne bodo spremenjene. Skupino lahko odznačite z levim klikom in hkratnim pritiskom tipke CTRL.',
 
 # Groups
 'group'            => 'Skupina:',

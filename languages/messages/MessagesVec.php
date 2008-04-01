@@ -453,7 +453,6 @@ par poder personalixare le to preferenzse.',
 # User rights
 'userrights-lookup-user'   => 'Gestion de i gruppi utente',
 'userrights-user-editname' => 'Inserire el nome utente:',
-'userrights-groupshelp'    => "Selezsionar i gruppi ai quałi se vołe assoçiare o rimovere l'utente. L'appartenenzsa ai gruppi non selezsionai non verrà modifegà. Par desełezsionare un gruppo, premere Ctrl + el tasto sinistro del mouse.",
 
 # Groups
 'group-sysop' => 'Aministradori',

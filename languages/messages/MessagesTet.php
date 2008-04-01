@@ -465,7 +465,7 @@ $messages = array(
 'watchlist-show-minor' => 'Hatudu osan-rahun',
 'watchlist-hide-minor' => 'Subar osan-rahun',
 
-# Displayed when you click the "watch" button and it's in the process of watching
+# Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Hateke...',
 'unwatching' => 'La hateke...',
 

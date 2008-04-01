@@ -1128,8 +1128,6 @@ $2',
 'userrights-groupsmember'          => 'חבר בקבוצות:',
 'userrights-groupsremovable'       => 'ניתן להסירו מהקבוצות:',
 'userrights-groupsavailable'       => 'קבוצות זמינות:',
-'userrights-groupshelp'            => 'אנא בחרו קבוצות שברצונכם שהמשתמש יתווסף אליהן או יוסר מהן.
-קבוצות שלא נבחרו לא ישתנו. באפשרותכם לבטל בחירה של קבוצה באמצעות לחיצה על הכפתור השמאלי של העכבר ועל Ctrl מעליה.',
 'userrights-reason'                => 'סיבה לשינוי:',
 'userrights-available-none'        => 'אינכם יכולים לשנות את ההשתייכות לקבוצות.',
 'userrights-available-add'         => 'באפשרותכם להוסיף משתמשים {{plural:$2|לקבוצה הבאה|לקבוצות הבאות}}: $1.',
@@ -1565,7 +1563,7 @@ $2',
 'watchlist-show-minor' => 'הצגת עריכות משניות',
 'watchlist-hide-minor' => 'הסתרת עריכות משניות',
 
-# Displayed when you click the "watch" button and it's in the process of watching
+# Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'בהוספה לרשימת המעקב…',
 'unwatching' => 'בהסרה מרשימת המעקב…',
 
@@ -1741,8 +1739,6 @@ $1',
 'mycontris'     => 'התרומות שלי',
 'contribsub2'   => 'עבור $1 ($2)',
 'nocontribs'    => 'לא נמצאו שינויים המתאימים לקריטריונים אלו.',
-'ucnote'        => "להלן '''$1''' השינויים האחרונים שביצע משתמש זה ב־'''$2''' הימים האחרונים:",
-'uclinks'       => 'צפה ב־$1 השינויים האחרונים; צפה ב־$2 הימים האחרונים',
 'uctop'         => '(אחרון)',
 'month'         => 'עד החודש:',
 'year'          => 'עד השנה:',

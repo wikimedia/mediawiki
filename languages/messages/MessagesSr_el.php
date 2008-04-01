@@ -870,8 +870,6 @@ koje sadrže sve izraze koji se traže će se pojaviti u rezultatu).",
 'saveusergroups'             => 'Sačuvaj korisničke grupe',
 'userrights-groupsmember'    => 'Član:',
 'userrights-groupsavailable' => 'Dostupne grupe:',
-'userrights-groupshelp'      => 'Odabrane grupe od kojih želite da se ukloni korisnik ili da se doda.
-Neodabrane grupe neće biti promenjene. Možete da deselektujete grupu koristeći CTRL + levi klik',
 
 # Groups
 'group'            => 'Grupa:',

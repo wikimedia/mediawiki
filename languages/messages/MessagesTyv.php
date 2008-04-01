@@ -548,7 +548,7 @@ $1',
 'watchlist-show-minor' => 'Бичии өскерлиишкиннерни көргүзер',
 'watchlist-hide-minor' => 'Бичии өскерлиишкиннерни чажырар',
 
-# Displayed when you click the "watch" button and it's in the process of watching
+# Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Хайгаарап турар...',
 'unwatching' => 'Хайгааравайн турар...',
 

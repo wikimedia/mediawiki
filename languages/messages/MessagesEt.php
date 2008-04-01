@@ -659,8 +659,6 @@ sisse logida.',
 'saveusergroups'             => 'Salvesta grupi muudatused',
 'userrights-groupsmember'    => 'Kuulub gruppi:',
 'userrights-groupsavailable' => 'Võimalik lisada gruppidesse:',
-'userrights-groupshelp'      => 'Vali grupid, millest sa tahad kasutajat eemaldada või millesse kasutajat lisada.
-Valimata jäetud gruppe ei muudeta. Grupi valikut saab tühistada CTRL + parem kliki abil.',
 
 # Groups
 'group'            => 'Grupp:',

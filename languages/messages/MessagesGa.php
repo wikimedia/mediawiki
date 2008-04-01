@@ -756,8 +756,6 @@ den am an freastalaí (UTC).',
 'saveusergroups'             => 'Sábháil Grúpaí na n-Úsáideoirí',
 'userrights-groupsmember'    => 'Ball de:',
 'userrights-groupsavailable' => 'Grúpaí atá le fáil:',
-'userrights-groupshelp'      => 'Roghnaigh na grúpaí a bhfuil tú ag cur an úsáideoir leis nó ag baint an úsáideoir de.
-Ní bheidh aon athrú le grúpaí neamhroghnaithe. Is féidir leat grúpa a díroghnú le húsáid CTRL + cléchliceáil',
 
 # Groups
 'group'     => 'Grúpa:',

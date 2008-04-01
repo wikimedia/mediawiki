@@ -704,8 +704,6 @@ Les ôtes manaedjeus so ç' wiki ci pôront todi vey li contnou catchî eyet l' 
 'saveusergroups'             => "Schaper des groupes d' uzeus",
 'userrights-groupsmember'    => 'Mimbes di:',
 'userrights-groupsavailable' => "Groupes k' i gn a:",
-'userrights-groupshelp'      => "Tchoezixhoz les groupes ki vos vloz ki l' uzeu (èn) soeye (pus) mimbe.
-Les groupes nén tchoezis èn seront nén candjîs. Vos ploz distchoezi on groupe tot fjhant Ctrl + clitch di hintche",
 'userrights-reason'          => 'Råjhon do candjmint:',
 
 # Groups

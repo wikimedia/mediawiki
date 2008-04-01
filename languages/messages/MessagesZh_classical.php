@@ -754,10 +754,6 @@ $2',
 'userrights-groupsmember'          => '有員：',
 'userrights-groupsremovable'       => '社可治無：',
 'userrights-groupsavailable'       => '社可治有：',
-'userrights-groupshelp'            => '爾動員之社也。
-
-選解員之社屬。
-未選則非社屬。',
 'userrights-reason'                => '因：',
 'userrights-available-none'        => '爾非改組員也。',
 'userrights-available-add'         => '爾可加任簿至{{PLURAL:$2|單組|數組}}也：$1。',
