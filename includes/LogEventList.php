@@ -487,7 +487,7 @@ class LogReader {
 	/**
 	 * @param WebRequest $request For internal use use a FauxRequest object to pass arbitrary parameters.
 	 */
-	function LogReader( $request ) {
+	function __construct( $request ) {
 		global $wgUser;
 		# Get parameters
 		$type = $request->getVal( 'type' );
@@ -497,6 +497,14 @@ class LogReader {
 		
 		$loglist = new LogEventList( $wgUser->getSkin() );
 		$this->pager = new LogPager( $loglist, $type, $user, $title, $pattern );
+	}
+	
+	/**
+	* Is there at least one row?
+	* @return bool
+	*/
+	public function hasRows() {
+		return isset($this->pager) ? ($this->pager->getNumRows() > 0) : false;
 	}
 }
 
@@ -518,7 +526,7 @@ class LogViewer {
 	 * @param integer $flags Bitwise combination of flags:
 	 *     LogEventList::NO_ACTION_LINK   Don't show restore/unblock/block links
 	 */
-	function LogViewer( &$reader, $flags = 0 ) {
+	function __construct( &$reader, $flags = 0 ) {
 		global $wgUser;
 		$this->skin = $wgUser->getSkin();
 		$this->reader =& $reader;
@@ -531,7 +539,7 @@ class LogViewer {
 	/**
 	 * Take over the whole output page in $wgOut with the log display.
 	 */
-	function show() {
+	public function show() {
 		global $wgOut;
 		# Set title and add header
 		$this->logEventList->showHeader( $wgOut, $pager->getType() );
@@ -559,7 +567,7 @@ class LogViewer {
 	 * another page (eg at Special:Undelete)
 	 * @param OutputPage $out where to send output
 	 */
-	function showList( &$out ) {
+	public function showList( &$out ) {
 		$logBody = $this->pager->getBody();
 		if( $logBody ) {
 			$out->addHTML(
