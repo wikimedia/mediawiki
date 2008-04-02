@@ -43,9 +43,9 @@ function wfSpecialLog( $par = '' ) {
 	# Insert list
 	$wgOut->addHTML(
 		$pager->getNavigationBar() . 
-		'<ul id="logevents">' . "\n" .
+		$loglist->beginLogEventList() .
 		$pager->getBody() .
-		'</ul>' . "\n" .
+		$loglist->endLogEventList() .
 		$pager->getNavigationBar()
 	);
 }
@@ -82,25 +82,11 @@ class LogPager extends ReverseChronologicalPager {
 	 * @private
 	 */
 	private function limitType( $type ) {
-		global $wgLogRestrictions, $wgUser;
-		// Reset the array, clears extra "where" clauses when $par is used
-		$hiddenLogs = array();
-		// Nothing to show the user requested a log they can't see
-		if( isset($wgLogRestrictions[$type]) && !$wgUser->isAllowed($wgLogRestrictions[$type]) ) {
-			$this->mConds[] = "NULL";
-			return false;
-		}
 		// Don't show private logs to unpriviledged users
-		foreach( $wgLogRestrictions as $logtype => $right ) {
-			if( !$wgUser->isAllowed($right) || empty($type) ) {
-				$safetype = $this->mDb->strencode( $logtype );
-				$hiddenLogs[] = "'$safetype'";
-			}
+		$hideLogs = LogEventList::getExcludeClause( $this->mDb );
+		if( $hideLogs !== false ) {
+			$this->mConds[] = $hideLogs;
 		}
-		if( !empty($hiddenLogs) ) {
-			$this->mConds[] = 'log_type NOT IN('.implode(',',$hiddenLogs).')';
-		}
-		
 		if( empty($type) ) {
 			return false;
 		}
