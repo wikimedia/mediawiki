@@ -591,10 +591,19 @@ class MessageCache {
 	function enable() { $this->mDisable = false; }
 
 	/** @deprecated */
-	function disableTransform() {}
-	function enableTransform() {}
-	function setTransform( $x ) {}
-	function getTransform() { return false; }
+	function disableTransform(){
+		wfDeprecated( __METHOD__ );
+	}
+	function enableTransform() {
+		wfDeprecated( __METHOD__ );
+	}
+	function setTransform( $x ) {
+		wfDeprecated( __METHOD__ );
+	}
+	function getTransform() {
+		wfDeprecated( __METHOD__ );
+		return false;
+	}
 
 	/**
 	 * Add a message to the cache
