@@ -296,7 +296,12 @@ class RecentChange
 			'rc_patrolled'	=> 0,
 			'rc_new'	=> 0,  # obsolete
 			'rc_old_len'	=> $oldSize,
-			'rc_new_len'	=> $newSize
+			'rc_new_len'	=> $newSize,
+			'rc_deleted'	=> 0,
+			'rc_logid'		=> 0,
+			'rc_log_type'	=> null,
+			'rc_log_action'	=> '',
+			'rc_params'		=> ''
 		);
 
 		$rc->mExtra =  array(
@@ -343,9 +348,14 @@ class RecentChange
 			'rc_moved_to_title' => '',
 			'rc_ip'             => $ip,
 			'rc_patrolled'      => 0,
-			'rc_new'	    => 1, # obsolete
+			'rc_new'	    	=> 1, # obsolete
 			'rc_old_len'        => 0,
-			'rc_new_len'	    => $size
+			'rc_new_len'	    => $size,
+			'rc_deleted'		=> 0,
+			'rc_logid'			=> 0,
+			'rc_log_type'		=> null,
+			'rc_log_action'		=> '',
+			'rc_params'			=> ''
 		);
 
 		$rc->mExtra =  array(
@@ -392,6 +402,11 @@ class RecentChange
 			'rc_patrolled'	=> 1,
 			'rc_old_len'	=> NULL,
 			'rc_new_len'	=> NULL,
+			'rc_deleted'	=> 0,
+			'rc_logid'		=> 0, # notifyMove not used anymore
+			'rc_log_type'	=> null,
+			'rc_log_action'	=> '',
+			'rc_params'		=> ''
 		);
 
 		$rc->mExtra = array(
@@ -410,10 +425,9 @@ class RecentChange
 		RecentChange::notifyMove( $timestamp, $oldTitle, $newTitle, $user, $comment, $ip, true );
 	}
 
-	# A log entry is different to an edit in that previous revisions are
-	# not kept
+	# A log entry is different to an edit in that previous revisions are not kept
 	public static function notifyLog( $timestamp, &$title, &$user, $comment, $ip='',
-	   $type, $action, $target, $logComment, $params )
+	   $type, $action, $target, $logComment, $params, $newId=0 )
 	{
 		global $wgRequest;
 
@@ -428,14 +442,14 @@ class RecentChange
 		$rc->mAttribs = array(
 			'rc_timestamp'	=> $timestamp,
 			'rc_cur_time'	=> $timestamp,
-			'rc_namespace'	=> $title->getNamespace(),
-			'rc_title'	=> $title->getDBkey(),
+			'rc_namespace'	=> $target->getNamespace(),
+			'rc_title'	=> $target->getDBkey(),
 			'rc_type'	=> RC_LOG,
 			'rc_minor'	=> 0,
-			'rc_cur_id'	=> $title->getArticleID(),
+			'rc_cur_id'	=> $target->getArticleID(),
 			'rc_user'	=> $user->getID(),
 			'rc_user_text'	=> $user->getName(),
-			'rc_comment'	=> $comment,
+			'rc_comment'	=> $logComment,
 			'rc_this_oldid'	=> 0,
 			'rc_last_oldid'	=> 0,
 			'rc_bot'	=> $user->isAllowed( 'bot' ) ? $wgRequest->getBool( 'bot' , true ) : 0,
@@ -446,6 +460,11 @@ class RecentChange
 			'rc_new'	=> 0, # obsolete
 			'rc_old_len'	=> NULL,
 			'rc_new_len'	=> NULL,
+			'rc_deleted'	=> 0,
+			'rc_logid'		=> $newId,
+			'rc_log_type'	=> $type,
+			'rc_log_action'	=> $action,
+			'rc_params'		=> $params
 		);
 		$rc->mExtra =  array(
 			'prefixedDBkey'	=> $title->getPrefixedDBkey(),
