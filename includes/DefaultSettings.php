@@ -1160,6 +1160,7 @@ $wgGroupPermissions['bureaucrat']['userrights']  = true;
 // For private log access
 #$wgGroupPermissions['suppress']['suppress'] = true;
 
+// Pending WMF schema change...temporary variable
 $wgAllowLogDeletion = false;
 
 /**
