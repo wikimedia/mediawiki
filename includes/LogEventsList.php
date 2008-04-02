@@ -19,6 +19,7 @@
 
 class LogEventsList {
 	const NO_ACTION_LINK = 1;
+	
 	private $skin;
 	public $flags;
 
@@ -252,7 +253,7 @@ class LogEventsList {
 			}
 		}
 		// Event description
-		if( $row->log_deleted & LogPage::DELETED_ACTION ) {
+		if( self::isDeleted($row,LogPage::DELETED_ACTION) ) {
 			$action = '<span class="history-deleted">' . wfMsgHtml('rev-deleted-event') . '</span>';
 		} else {
 			$action = LogPage::actionText( $row->log_type, $row->log_action, $title, $this->skin, $paramArray, true );
@@ -288,28 +289,6 @@ class LogEventsList {
 	}
 	
 	/**
-	 * SQL clause to skip forbidden log types for this user
-	 * @param Database $db
-	 * @returns mixed (string or false)
-	 */
-	public static function getExcludeClause( $db ) {
-		global $wgLogRestrictions, $wgUser;
-		// Reset the array, clears extra "where" clauses when $par is used
-		$hiddenLogs = array();
-		// Don't show private logs to unpriviledged users
-		foreach( $wgLogRestrictions as $logtype => $right ) {
-			if( !$wgUser->isAllowed($right) ) {
-				$safetype = $db->strencode( $logtype );
-				$hiddenLogs[] = "'$safetype'";
-			}
-		}
-		if( !empty($hiddenLogs) ) {
-			return 'log_type NOT IN(' . implode(',',$hiddenLogs) . ')';
-		}
-		return false;
-	}
-	
-	/**
 	 * Determine if the current user is allowed to view a particular
 	 * field of this log row, if it's marked as deleted.
 	 * @param Row $row
@@ -336,6 +315,28 @@ class LogEventsList {
 	 */
 	public static function isDeleted( $row, $field ) {
 		return ($row->log_deleted & $field) == $field;
+	}
+	
+	/**
+	 * SQL clause to skip forbidden log types for this user
+	 * @param Database $db
+	 * @returns mixed (string or false)
+	 */
+	public static function getExcludeClause( $db ) {
+		global $wgLogRestrictions, $wgUser;
+		// Reset the array, clears extra "where" clauses when $par is used
+		$hiddenLogs = array();
+		// Don't show private logs to unpriviledged users
+		foreach( $wgLogRestrictions as $logtype => $right ) {
+			if( !$wgUser->isAllowed($right) ) {
+				$safetype = $db->strencode( $logtype );
+				$hiddenLogs[] = "'$safetype'";
+			}
+		}
+		if( !empty($hiddenLogs) ) {
+			return 'log_type NOT IN(' . implode(',',$hiddenLogs) . ')';
+		}
+		return false;
 	}
 }
 
