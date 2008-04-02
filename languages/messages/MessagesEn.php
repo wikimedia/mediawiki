@@ -1203,7 +1203,7 @@ Other admins on {{SITENAME}} will still be able to access the hidden content and
 'revdelete-hide-comment'      => 'Hide edit comment',
 'revdelete-hide-user'         => "Hide editor's username/IP",
 'revdelete-hide-restricted'   => 'Apply these restrictions to Sysops and lock this interface',
-'revdelete-suppress'          => 'Suppress data from sysops as well as others',
+'revdelete-suppress'          => 'Suppress data from Sysops as well as others',
 'revdelete-hide-image'        => 'Hide file content',
 'revdelete-unsuppress'        => 'Remove restrictions on restored revisions',
 'revdelete-log'               => 'Log comment:',
