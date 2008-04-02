@@ -845,7 +845,7 @@ La raison donnée par $3 était ''$2''.",
 'revdelete-nooldid-title'     => 'Pas de cible pour la révision',
 'revdelete-nooldid-text'      => 'Vous n’avez pas précisé la ou les révision(s) cible(s) pour utiliser cette fonction.',
 'revdelete-selected'          => "{{PLURAL:$2|Version sélectionnée|Versions sélectionnées}} de '''$1''' :",
-'logdelete-selected'          => "{{PLURAL:$2|Événement d’historique sélectionné|Événements d’historiques sélectionnés}} pour '''$1''' :",
+'logdelete-selected'          => '{{PLURAL:$1|Événement d’historique sélectionné|Événements d’historique sélectionnés}} :',
 'revdelete-text'              => 'Les révisions et événements supprimés apparaîtront encore dans l’historique de l’article, mais leur contenu textuel sera inaccessible au public.
 
 D’autres administrateurs de {{SITENAME}} pourront toujours accéder au contenu caché et le restaurer à nouveau à travers cette même interface, à moins qu’une restriction supplémentaire ne soit mise en place par les opérateurs du site.',
@@ -863,11 +863,16 @@ D’autres administrateurs de {{SITENAME}} pourront toujours accéder au contenu
 'revdelete-logentry'          => 'La visibilité de la version a été modifiée pour [[$1]]',
 'logdelete-logentry'          => 'La visibilité de l’événement a été modifiée pour [[$1]]',
 'revdelete-logaction'         => '$1 {{plural:$1|version changée|versions changées}} en mode $2',
-'logdelete-logaction'         => '$1 {{plural:$1|événement de [[$3]] changé|événements de [[$3]] changés}} en mode $2',
+'logdelete-logaction'         => '$1 {{plural:$1|événement changé|événements changés}} en mode $2',
 'revdelete-success'           => 'Visibilité des versions changées avec succès.',
-'logdelete-success'           => 'Visibilité des événements changée avec succès.',
+'logdelete-success'           => "'''Journal des visibilités paramétré avec succès.'''",
+'revdel-restore'              => 'Modifier la visibilité',
 'pagehist'                    => 'Historique de la page',
 'deletedhist'                 => 'Historique des suppressions',
+
+# Supression log
+'suppressionlog'     => 'Journal des suppressions',
+'suppressionlogtext' => 'Ci-dessous, se trouve la liste des suppressions les plus récentes et des blocages comprenant les révisions cachées aux administrateurs. Voyez [[Special:Ipblocklist|la liste des blocages des IP]] pour la liste des bannissements et des blocages.',
 
 # History merging
 'mergehistory'                     => 'Fusionner les historiques',
@@ -1033,17 +1038,20 @@ Une case non cochée signifie, au contraire, qu'il ne s’y trouve pas.",
 'group-bot'           => 'Bots',
 'group-sysop'         => 'Administrateurs',
 'group-bureaucrat'    => 'Bureaucrates',
+'group-suppress'      => 'Superviseurs',
 'group-all'           => 'Tous',
 
 'group-autoconfirmed-member' => 'Utilisateur enregistré',
 'group-bot-member'           => 'Bot',
 'group-sysop-member'         => 'Administrateur',
 'group-bureaucrat-member'    => 'Bureaucrate',
+'group-suppress-member'      => 'Superviseur',
 
 'grouppage-autoconfirmed' => '{{ns:project}}:Utilisateurs enregistrés',
 'grouppage-bot'           => '{{ns:project}}:Bots',
 'grouppage-sysop'         => '{{ns:project}}:Administrateurs',
 'grouppage-bureaucrat'    => '{{ns:project}}:Bureaucrates',
+'grouppage-suppress'      => '{{ns:project}}:Superviseur',
 
 # User rights log
 'rightslog'      => 'Historique des modifications de statut',
@@ -1370,6 +1378,7 @@ Il y a {{PLURAL:$7|'''$7''' article|'''$7''' articles}} dans [[meta:Help:Job_que
 'notargettext'            => 'Indiquez une page cible ou un utilisateur cible.',
 'pager-newer-n'           => '{{PLURAL:$1|1 plus récente|$1 plus récentes}}',
 'pager-older-n'           => '{{PLURAL:$1|1 plus ancienne|$1 plus anciennes}}',
+'suppress'                => 'Superviseur',
 
 # Book sources
 'booksources'               => 'Ouvrages de référence',
@@ -1518,6 +1527,7 @@ Retour et assistance :
 'deletedtext'                 => '« <nowiki>$1</nowiki> » a été supprimé.
 Voir $2 pour une liste des suppressions récentes.',
 'deletedarticle'              => 'a effacé « [[$1]] »',
+'suppressedarticle'           => 'caché  « [[$1]] »',
 'dellogpage'                  => 'Historique des suppressions',
 'dellogpagetext'              => 'Voici la liste des suppressions récentes.
 L’heure indiquée est celle du serveur (UTC).',
