@@ -40,14 +40,20 @@ function wfSpecialLog( $par = '' ) {
 	$loglist->showHeader( $wgOut, $pager->getType() );
 	# Show form options
 	$loglist->showOptions( $wgOut, $pager->getType(), $pager->getUser(), $pager->getPage(), $pager->getPattern() );
+
 	# Insert list
-	$wgOut->addHTML(
-		$pager->getNavigationBar() . 
-		$loglist->beginLogEventList() .
-		$pager->getBody() .
-		$loglist->endLogEventList() .
-		$pager->getNavigationBar()
-	);
+	$logBody = $pager->getBody();
+	if( $logBody ) {
+		$wgOut->addHTML(
+			$pager->getNavigationBar() . 
+			$loglist->beginLogEventList() .
+			$logBody .
+			$loglist->endLogEventList() .
+			$pager->getNavigationBar()
+		);
+	} else {
+		$wgOut->addWikiMsg( 'logempty' );
+	}
 }
 
 /**
