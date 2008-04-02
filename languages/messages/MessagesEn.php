@@ -829,7 +829,7 @@ For translations, please consider using [http://translatewiki.net/wiki/Main_Page
 $2',
 'namespaceprotected'   => "You do not have permission to edit pages in the '''$1''' namespace.",
 'customcssjsprotected' => "You do not have permission to edit this page, because it contains another user's personal settings.",
-'ns-specialprotected'  => 'Pages in the {{ns:special}} namespace cannot be edited.',
+'ns-specialprotected'  => 'Special pages cannot be edited.',
 'titleprotected'       => "This title has been protected from creation by [[User:$1|$1]].
 The reason given is ''$2''.",
 
@@ -2337,7 +2337,7 @@ In the latter case you can also use a link, e.g. [[{{ns:special}}:Export/{{Media
 'allmessagesdefault'        => 'Default text',
 'allmessagescurrent'        => 'Current text',
 'allmessagestext'           => 'This is a list of system messages available in the MediaWiki namespace.',
-'allmessagesnotsupportedDB' => "'''{{ns:special}}:Allmessages''' cannot be used because '''\$wgUseDatabaseMessages''' is switched off.",
+'allmessagesnotsupportedDB' => "This page cannot be used because '''\$wgUseDatabaseMessages''' is switched off.",
 'allmessagesfilter'         => 'Message name filter:',
 'allmessagesmodified'       => 'Show only modified',
 
