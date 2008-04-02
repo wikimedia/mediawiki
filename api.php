@@ -76,6 +76,11 @@ $processor = new ApiMain($wgRequest, $wgEnableWriteAPI);
 // Process data & print results
 $processor->execute();
 
+// Execute any deferred updates
+$mediawiki = new MediaWiki();
+$mediawiki->doUpdates($wgDeferredUpdateList);
+$mediawiki->doUpdates($wgPostCommitUpdateList);
+
 // Log what the user did, for book-keeping purposes.
 wfProfileOut('api.php');
 wfLogProfilingData();
