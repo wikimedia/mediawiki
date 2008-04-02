@@ -382,8 +382,8 @@ class EmailNotification {
 			}
 		}
 
-		global $wgUsersNotifedOnAllChanges;
-		foreach ( $wgUsersNotifedOnAllChanges as $name ) {
+		global $wgUsersNotifiedOnAllChanges;
+		foreach ( $wgUsersNotifiedOnAllChanges as $name ) {
 			$user = User::newFromName( $name );
 			$this->compose( $user );
 		}

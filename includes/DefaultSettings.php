@@ -1391,7 +1391,7 @@ $wgEnotifUseJobQ = false;
 /** 
  * Array of usernames who will be sent a notification email for every change which occurs on a wiki
  */
-$wgUsersNotifedOnAllChanges = array();
+$wgUsersNotifiedOnAllChanges = array();
 
 /** Show watching users in recent changes, watchlist and page history views */
 $wgRCShowWatchingUsers 				= false; # UPO

@@ -26,6 +26,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Set $wgUploadSizeWarning to false by default
 * Added $wgLBFactoryConf, for generic configuration of multi-master wiki farms
 * Removed $wgAlternateMaster, use $wgLBFactoryConf
+* (bug 13562) Misspelled option $wgUserNotifedOnAllChanges changed to
+  $wgUserNotifiedOnAllChanges
 
 === New features in 1.13 ===
 
