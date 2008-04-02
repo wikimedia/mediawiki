@@ -285,8 +285,6 @@ class LogEventList {
  * @addtogroup SpecialPage
  */
 class LogReader {
-	const NO_ACTION_LINK = 1;
-	
 	var $db, $joinClauses, $whereClauses;
 	var $type = '', $user = '', $title = null, $pattern = false;
 
@@ -514,6 +512,7 @@ class LogReader {
  * @addtogroup SpecialPage
  */
 class LogViewer {
+	const NO_ACTION_LINK = 1;
 	/**
 	 * @var LogReader $reader
 	 */
