@@ -981,8 +981,14 @@ $3
 'logdelete-logaction'         => '$1 {{PLURAL:$1|مورد|مورد}} به [[$3]] به وضعیت $2 تغییر یافتند.',
 'revdelete-success'           => 'تغییر پیدایی نسخه با موفقیت انجام شد.',
 'logdelete-success'           => 'تغییر پیدایی مورد با موفقیت انجام شد.',
+'revdel-restore'              => 'تغییر پیدایی',
 'pagehist'                    => 'تاریخچهٔ صفحه',
 'deletedhist'                 => 'تاریخچهٔ حذف شده',
+
+# Suppression log
+'suppressionlog'     => 'سیاههٔ فرونشانی',
+'suppressionlogtext' => 'در زیر فهرستی از آخرین حذف‌ها و قطع دسترسی‌هایی که حاوی محتوایی هستند که از مدیران پنهان شده‌اند را می‌بینید. 
+برای مشاهدهٔ فهرستی از قطع دسترسی‌های فعال [[Special:Ipblocklist|فهرست قطع‌دسترسی‌ها]] را ببینید.',
 
 # History merging
 'mergehistory'                     => 'ادغام تاریخچه صفحه‌ها',
@@ -1151,17 +1157,20 @@ $2 تغییرمسیرها فهرست شوند &nbsp; جستجو برای $3 $9',
 'group-bot'           => 'ربات‌ها',
 'group-sysop'         => 'مدیران',
 'group-bureaucrat'    => 'دیوان‌سالاران',
+'group-suppress'      => 'ناظران',
 'group-all'           => '(همه)',
 
 'group-autoconfirmed-member' => 'کاربر تاییدشده',
 'group-bot-member'           => 'ربات',
 'group-sysop-member'         => 'مدیر',
 'group-bureaucrat-member'    => 'دیوان‌سالار',
+'group-suppress-member'      => 'ناظر',
 
 'grouppage-autoconfirmed' => '{{ns:project}}:کاربران تاییدشده',
 'grouppage-bot'           => '{{ns:project}}:ربات‌ها',
 'grouppage-sysop'         => '{{ns:project}}:مدیران',
 'grouppage-bureaucrat'    => '{{ns:project}}:دیوان‌سالارها',
+'grouppage-suppress'      => '{{ns:project}}:نظارت',
 
 # User rights log
 'rightslog'      => 'سیاههٔ اختیارات کاربر',
@@ -1484,6 +1493,7 @@ $2 تغییرمسیرها فهرست شوند &nbsp; جستجو برای $3 $9',
 'notargettext'            => 'شما صفحهٔ یا کاربر مقصدی برای انجام این عمل روی آن مشخص نکرده‌اید.',
 'pager-newer-n'           => '{{PLURAL:$1|یک مورد جدیدتر|$1 مورد جدیدتر}}',
 'pager-older-n'           => '{{PLURAL:$1|یک مورد قدیمی‌تر|$1 مورد قدیمی‌تر}}',
+'suppress'                => 'نظارت',
 
 # Book sources
 'booksources'               => 'منابع کتاب',
@@ -1642,6 +1652,7 @@ $NEWPAGE
 'deletedtext'                 => '«<nowiki>$1</nowiki>» حذف شده است.
 برای سابقهٔ حذف‌های اخیر به $2 مراجعه کنید.',
 'deletedarticle'              => '«$1» حذف شد',
+'suppressedarticle'           => '«[[$1]]» را فرونشاند',
 'dellogpage'                  => 'سیاههٔ_حذف',
 'dellogpagetext'              => 'فهرست زیر فهرستی از آخرین حذف‌هاست.
 همهٔ زمان‌های نشان‌داده‌شده زمان خادم (وقت گرینویچ) است.',
