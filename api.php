@@ -77,9 +77,7 @@ $processor = new ApiMain($wgRequest, $wgEnableWriteAPI);
 $processor->execute();
 
 // Execute any deferred updates
-$mediawiki = new MediaWiki();
-$mediawiki->doUpdates($wgDeferredUpdateList);
-$mediawiki->doUpdates($wgPostCommitUpdateList);
+wfDoUpdates();
 
 // Log what the user did, for book-keeping purposes.
 wfProfileOut('api.php');
