@@ -32,9 +32,9 @@ function wfSpecialLog( $par = '' ) {
 	$user = $wgRequest->getText( 'user' );
 	$title = $wgRequest->getText( 'page' );
 	$pattern = $wgRequest->getBool( 'pattern' );
-	# Create a LogPager item to get the results and a LogEventList
+	# Create a LogPager item to get the results and a LogEventsList
 	# item to format them...
-	$loglist = new LogEventList( $wgUser->getSkin() );
+	$loglist = new LogEventsList( $wgUser->getSkin() );
 	$pager = new LogPager( $loglist, $type, $user, $title, $pattern );
 	# Set title and add header
 	$loglist->showHeader( $wgOut, $pager->getType() );
@@ -45,9 +45,9 @@ function wfSpecialLog( $par = '' ) {
 	if( $logBody ) {
 		$wgOut->addHTML(
 			$pager->getNavigationBar() . 
-			$loglist->beginLogEventList() .
+			$loglist->beginLogEventsList() .
 			$logBody .
-			$loglist->endLogEventList() .
+			$loglist->endLogEventsList() .
 			$pager->getNavigationBar()
 		);
 	} else {

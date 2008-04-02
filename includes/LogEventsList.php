@@ -17,7 +17,7 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 # http://www.gnu.org/copyleft/gpl.html
 
-class LogEventList {
+class LogEventsList {
 	const NO_ACTION_LINK = 1;
 	private $skin;
 	public $flags;
@@ -135,11 +135,11 @@ class LogEventList {
 		return Xml::checkLabel( wfMsg( 'log-title-wildcard' ), 'pattern', 'pattern', $pattern );
 	}
 	
-	public function beginLogEventList() {
+	public function beginLogEventsList() {
 		return "<ul>\n";
 	}
 	
-	public function endLogEventList() {
+	public function endLogEventsList() {
 		return "</ul>\n";
 	}
 	
@@ -346,10 +346,10 @@ class LogEventList {
  */
 class LogPager extends ReverseChronologicalPager {
 	private $type = '', $user = '', $title = '', $pattern = '';
-	public $mLogEventList;
+	public $mLogEventsList;
 	/**
 	* constructor
-	* @param LogEventList $loglist,
+	* @param LogEventsList $loglist,
 	* @param string $type,
 	* @param string $user,
 	* @param string $page,
@@ -360,7 +360,7 @@ class LogPager extends ReverseChronologicalPager {
 		parent::__construct();
 		$this->mConds = $conds;
 		
-		$this->mLogEventList = $loglist;
+		$this->mLogEventsList = $loglist;
 		
 		$this->limitType( $type );
 		$this->limitUser( $user );
@@ -375,7 +375,7 @@ class LogPager extends ReverseChronologicalPager {
 	 */
 	private function limitType( $type ) {
 		// Don't show private logs to unpriviledged users
-		$hideLogs = LogEventList::getExcludeClause( $this->mDb );
+		$hideLogs = LogEventsList::getExcludeClause( $this->mDb );
 		if( $hideLogs !== false ) {
 			$this->mConds[] = $hideLogs;
 		}
@@ -457,7 +457,7 @@ class LogPager extends ReverseChronologicalPager {
 	}
 
 	function formatRow( $row ) {
-		return $this->mLogEventList->logLine( $row );
+		return $this->mLogEventsList->logLine( $row );
 	}
 	
 	public function getType() {
@@ -495,7 +495,7 @@ class LogReader {
 		$title = $request->getText( 'page' );
 		$pattern = $request->getBool( 'pattern' );
 		
-		$loglist = new LogEventList( $wgUser->getSkin() );
+		$loglist = new LogEventsList( $wgUser->getSkin() );
 		$this->pager = new LogPager( $loglist, $type, $user, $title, $pattern );
 	}
 	
@@ -524,16 +524,16 @@ class LogViewer {
 	/**
 	 * @param LogReader &$reader where to get our data from
 	 * @param integer $flags Bitwise combination of flags:
-	 *     LogEventList::NO_ACTION_LINK   Don't show restore/unblock/block links
+	 *     LogEventsList::NO_ACTION_LINK   Don't show restore/unblock/block links
 	 */
 	function __construct( &$reader, $flags = 0 ) {
 		global $wgUser;
 		$this->skin = $wgUser->getSkin();
 		$this->reader =& $reader;
-		$this->reader->pager->mLogEventList->flags = $flags;
+		$this->reader->pager->mLogEventsList->flags = $flags;
 		# Aliases for shorter code...
 		$this->pager =& $this->reader->pager;
-		$this->logEventList =& $this->reader->pager->mLogEventList;
+		$this->logEventsList =& $this->reader->pager->mLogEventsList;
 	}
 
 	/**
@@ -542,18 +542,18 @@ class LogViewer {
 	public function show() {
 		global $wgOut;
 		# Set title and add header
-		$this->logEventList->showHeader( $wgOut, $pager->getType() );
+		$this->logEventsList->showHeader( $wgOut, $pager->getType() );
 		# Show form options
-		$this->logEventList->showOptions( $wgOut, $this->pager->getType(), $this->pager->getUser(), 
+		$this->logEventsList->showOptions( $wgOut, $this->pager->getType(), $this->pager->getUser(), 
 			$this->pager->getPage(), $this->pager->getPattern() );
 		# Insert list
 		$logBody = $this->pager->getBody();
 		if( $logBody ) {
 			$wgOut->addHTML(
 				$this->pager->getNavigationBar() . 
-				$this->logEventList->beginLogEventList() .
+				$this->logEventsList->beginLogEventsList() .
 				$logBody .
-				$this->logEventList->endLogEventList() .
+				$this->logEventsList->endLogEventsList() .
 				$this->pager->getNavigationBar()
 			);
 		} else {
@@ -571,9 +571,9 @@ class LogViewer {
 		$logBody = $this->pager->getBody();
 		if( $logBody ) {
 			$out->addHTML(
-				$this->logEventList->beginLogEventList() .
+				$this->logEventsList->beginLogEventsList() .
 				$logBody .
-				$this->logEventList->endLogEventList()
+				$this->logEventsList->endLogEventsList()
 			);
 		} else {
 			$out->addWikiMsg( 'logempty' );
