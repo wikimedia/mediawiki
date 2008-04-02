@@ -50,6 +50,14 @@ function wfSpecialRevisiondelete( $par = null ) {
 				new FauxRequest(
 					array( 'page' => $page->getPrefixedText(), 'type' => 'delete' ) ) ) );
 		$logViewer->showList( $wgOut );
+		if( $wgUser->isAllowed( 'suppress' ) ){
+			$wgOut->addHTML( "<h2>" . htmlspecialchars( LogPage::logName( 'suppress' ) ) . "</h2>\n" );
+			$logViewer = new LogViewer(
+				new LogReader(
+					new FauxRequest(
+						array( 'page' => $page->getPrefixedText(), 'type' => 'suppress' ) ) ) );
+			$logViewer->showList( $wgOut );
+		}
 	}
 }
 
@@ -434,7 +442,7 @@ class RevisionDeleteForm {
 	 * @param WebRequest $request
 	 */
 	function showLogItems( $request ) {
-		global $wgOut, $wgUser, $action;
+		global $wgOut, $wgUser, $action, $wgMessageCache;
 
 		$UserAllowed = true;
 		$wgOut->addWikiText( wfMsgExt( 'logdelete-selected', array('parsemag'), count($this->events) ) );
@@ -455,6 +463,7 @@ class RevisionDeleteForm {
 		while( $row = $dbr->fetchObject( $result ) ) {
 			$logRows[$row->log_id] = $row;
 		}
+		$wgMessageCache->loadAllMessages();
 		foreach( $this->events as $logid ) {
 			// Don't hide from oversight log!!!
 			if( !isset( $logRows[$logid] ) || $logRows[$logid]->log_type=='suppress' ) {
