@@ -332,8 +332,8 @@ class LogEventList {
 	}
 
 	/**
-	 * int $field one of DELETED_* bitfield constants
 	 * @param Row $row
+	 * @param int $field one of DELETED_* bitfield constants
 	 * @return bool
 	 */
 	public static function isDeleted( $row, $field ) {
