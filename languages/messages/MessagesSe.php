@@ -460,7 +460,7 @@ Du geavaheaddjidovddaldat lea dál anus. Ále vajáldahte rievdadit [[Special:Pr
 'revdelete-text'          => 'Sihkojuvvon veršuvnnat oidnojit siiddu siidohistorjjás, muhto daid sisdoallu ii leat álmmolaš.
 
 Eará bajasdoallit sáhtet lohkat čihkojuvvon sisdoalu ja máhcahit dan.',
-'revdelete-legend'        => 'Veršuvnna rádjehusat:',
+'revdelete-legend'        => 'Veršuvnna rádjehusat',
 'revdelete-hide-text'     => 'Čiega veršuvnna sisdoalu',
 'revdelete-hide-name'     => 'Čiega doaibma ja mearri',
 'revdelete-hide-comment'  => 'Čiega čoahkkáigeasu',

@@ -742,7 +742,7 @@ Pśicyna, kótaruž $3 jo zapódał, jo ''$2''.",
 'revnotfoundtext'     => 'Njejo móžno było, wersiju togo boka namakaś, za kótaremž sy pytał. Pšosym kontrolěruj zapódanu URL.',
 'currentrev'          => 'Aktualna wersija',
 'revisionasof'        => 'Wersija wót $1',
-'revision-info'       => 'Wersija wót $1 do $2',
+'revision-info'       => 'Wersija z $1 wót wužywarja $2',
 'previousrevision'    => '← Zachadna rewizija',
 'nextrevision'        => 'Pśiduca wersija →',
 'currentrevisionlink' => 'Aktualna wersija',
@@ -785,7 +785,7 @@ Snaź jo se z wiki wulašował abo hynac pómjenił.
 'revdelete-text'              => 'Wulašowane wersije budu dalej se wujawjowaś w stawiznach boka, ale jich wopśimjeśe njebuźo za zjawnosć wěcej wiźobna.
 
 Dalšne administratory we {{GRAMMAR:lokatiw|{{SITENAME}}}} mógu ale pśecej hyšći schowane wopśimjeśe wiźeś a mógu jo wótnowiś tak dłujko ako njepłaśe restrikcije teke za administratory.',
-'revdelete-legend'            => 'wobgranicowanje póstajiś:',
+'revdelete-legend'            => 'wobgranicowanje póstajiś',
 'revdelete-hide-text'         => 'Tekst wersije schowaś',
 'revdelete-hide-name'         => 'Akciju log-lisćiny schowaś',
 'revdelete-hide-comment'      => 'Komentar wobźěłanja schowaś',
@@ -800,8 +800,8 @@ Dalšne administratory we {{GRAMMAR:lokatiw|{{SITENAME}}}} mógu ale pśecej hy�
 'logdelete-logentry'          => 'wiźobnosć za [[$1]] změnjona.',
 'revdelete-logaction'         => '$1 {{plural:$1|wersija sajźona|wersiji sajźonej|wersije sajźone}} na modus $2.',
 'logdelete-logaction'         => '$1 {{plural:$1|zapis|zapisa|zapise}} za [[$3]] na modus $2 {{plural:$1|sajźony|sajźonej|sajźone}}.',
-'revdelete-success'           => 'Wiźobnosć wersije jo se z wuspěchom změniła.',
-'logdelete-success'           => 'Wiźobnosć log-lisćiny z wuspěchom změnjona.',
+'revdelete-success'           => "'''Wiźobnosć wersije jo se z wuspěchom změniła.'''",
+'logdelete-success'           => "'''Wiźobnosć log-lisćiny z wuspěchom změnjona.'''",
 
 # History merging
 'mergehistory'                     => 'Zwězaś stawizny bokow',

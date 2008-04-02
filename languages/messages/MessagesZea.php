@@ -675,7 +675,7 @@ De deur $3 opeheven reeën is ''$2''",
 'history-feed-title' => 'Bewerkiengsgeschiedenisse',
 
 # Revision deletion
-'revdelete-legend'          => "Versiebeperkiengen instell'n:",
+'revdelete-legend'          => "Versiebeperkiengen instell'n",
 'revdelete-hide-text'       => 'De bewerkte tekst verberhen',
 'revdelete-hide-name'       => 'Actie en doel verberhen',
 'revdelete-hide-comment'    => 'De bewerkiengssaemenvattieng verberhen',
@@ -690,7 +690,7 @@ De deur $3 opeheven reeën is ''$2''",
 'logdelete-logentry'        => 'wiezigen zichbaereid van hebeurtenis [[$1]]',
 'revdelete-logaction'       => '$1 {{PLURAL:$1|wiezigieng|wiezigiengen}} inesteld ni modus $2',
 'logdelete-logaction'       => "$1 {{PLURAL:$1|actie|acties}} om [[$3]] ni modus $2 in te stell'n",
-'revdelete-success'         => 'Zichbaereid van de wiezigieng succesvol inesteld.',
+'revdelete-success'         => "'''Zichbaereid van de wiezigieng succesvol inesteld.'''",
 
 # Search results
 'prevn'        => 'vorrege $1',

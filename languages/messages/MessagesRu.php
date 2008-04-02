@@ -891,8 +891,8 @@ $3 указал следующую причину: ''$2''",
 'revisiondelete'              => 'Удалить / восстановить версии страницы',
 'revdelete-nooldid-title'     => 'Не задана целевая версия',
 'revdelete-nooldid-text'      => 'Вы не задали целевую версию (или версии) для выполнения этой функции.',
-'revdelete-selected'          => "{{PLURAL:$2|Выбранная версия|Выбранные версии}} страницы '''$1:'''",
-'logdelete-selected'          => "{{PLURAL:$2|Выбранная запись|Выбранные записи}} журнала для страницы '''$1:'''",
+'revdelete-selected'          => '{{PLURAL:$2|Выбранная версия|Выбранные версии}} страницы [[:$1]]:',
+'logdelete-selected'          => '{{PLURAL:$2|Выбранная запись|Выбранные записи}} журнала:',
 'revdelete-text'              => 'Удалённые версии будут показываться в истории страницы и журналах,
 но часть их содержания будет недоступна обычным посетителям.
 
@@ -915,8 +915,12 @@ $3 указал следующую причину: ''$2''",
 'logdelete-logaction'         => '$1 {{PLURAL:$1|событие|события|событий}} страницы [[$3]] {{plural:$1|переведено|переведены|переведены}} в режим $2',
 'revdelete-success'           => 'Видимость версии изменена.',
 'logdelete-success'           => 'Видимость события изменена.',
+'revdel-restore'              => 'Изменить видимость',
 'pagehist'                    => 'История страницы',
 'deletedhist'                 => 'История удалений',
+
+# Supression log
+'suppressionlog' => 'Журнал сокрытий',
 
 # History merging
 'mergehistory'                     => 'Объединение историй правок',
@@ -1056,16 +1060,21 @@ $3 указал следующую причину: ''$2''",
 'userrights-groupsmember'          => 'Член групп:',
 'userrights-groupsremovable'       => 'Изменяемые группы:',
 'userrights-groupsavailable'       => 'Доступные группы:',
+'userrights-groups-help'           => 'Вы можете изменить группы, в которые входит этот участник.
+Если около названия группы стоит отметка, значит участник входит в эту группу,
+если отметка не стоит — участник не относится к соответствующей группе.',
 'userrights-reason'                => 'Причина изменения:',
 'userrights-available-none'        => 'Вы не можете изменять членство в группе.',
-'userrights-available-add'         => 'Вы можете добавлять участников {{PLURAL:$2|в группу $1|в группы: $1}}.',
-'userrights-available-remove'      => 'Вы можете удалять участников {{PLURAL:$2|из группы $1|из групп: $1}}.',
+'userrights-available-add'         => 'Вы можете добавить любого участника {{PLURAL:$2|в группу|в группы}}: $1.',
+'userrights-available-remove'      => 'Вы можете удалить любого участника {{PLURAL:$2|из группы|из групп}}: $1.',
 'userrights-available-add-self'    => 'Вы можете включить себя в {{PLURAL:$2|группу $1|следующие группы: $1}}.',
 'userrights-available-remove-self' => 'Вы можете исключить себя из {{PLURAL:$2|группы $1|следующих групп: $1}}.',
 'userrights-no-interwiki'          => 'У вас нет разрешения изменять права участников на других вики.',
 'userrights-nodatabase'            => 'База данных $1 не существует или не является локальной.',
 'userrights-nologin'               => 'Вы должны [[Special:Userlogin|представиться системе]] с учётной записи администратора, чтобы назначать права пользователям.',
 'userrights-notallowed'            => 'С вашей учётной записи не разрешено назначать права пользователям.',
+'userrights-changeable-col'        => 'Группы, которые вы можете изменять',
+'userrights-unchangeable-col'      => 'Группы, которые вы не можете изменять',
 
 # Groups
 'group'               => 'Группа:',
@@ -1073,17 +1082,20 @@ $3 указал следующую причину: ''$2''",
 'group-bot'           => 'Боты',
 'group-sysop'         => 'Администраторы',
 'group-bureaucrat'    => 'Бюрократы',
+'group-suppress'      => 'Ревизоры',
 'group-all'           => '(все)',
 
 'group-autoconfirmed-member' => 'автоподтверждённый участник',
 'group-bot-member'           => 'бот',
 'group-sysop-member'         => 'администратор',
 'group-bureaucrat-member'    => 'бюрократ',
+'group-suppress-member'      => 'Ревизор',
 
 'grouppage-autoconfirmed' => '{{ns:project}}:Автоподтверждённые участники',
 'grouppage-bot'           => '{{ns:project}}:Боты',
 'grouppage-sysop'         => '{{ns:project}}:Администраторы',
 'grouppage-bureaucrat'    => '{{ns:project}}:Бюрократы',
+'grouppage-suppress'      => '{{ns:project}}:Ревизоры',
 
 # User rights log
 'rightslog'      => 'Журнал прав участника',
@@ -1410,6 +1422,7 @@ PICT # различные
 'notargettext'            => 'Вы не указали целевую страницу или участника для этого действия.',
 'pager-newer-n'           => '{{PLURAL:$1|более новая $1|более новые $1}}',
 'pager-older-n'           => '{{PLURAL:$1|более старая $1|более старые $1}}',
+'suppress'                => 'Сокрытие',
 
 # Book sources
 'booksources'               => 'Источники книг',
@@ -1564,6 +1577,7 @@ $NEWPAGE
 'deletedtext'                 => '«<nowiki>$1</nowiki>» была удалена.
 См. $2 для просмотра списка последних удалений.',
 'deletedarticle'              => 'удалена «[[$1]]»',
+'suppressedarticle'           => 'скрыл «[[$1]]»',
 'dellogpage'                  => 'Список удалений',
 'dellogpagetext'              => 'Ниже приведён список последних удалений.',
 'deletionlog'                 => 'список удалений',

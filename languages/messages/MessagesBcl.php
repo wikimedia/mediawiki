@@ -678,7 +678,7 @@ pwede ser na igwang mga detalye sa [{{fullurl:Special:Log/delete|page={{FULLPAGE
 'revdelete-text'              => "An mga pagpakarhay asin mga panyayari na pigparâ mahihiling pa sa historya asin mga historial kan páhina, pero an ibang parte kan mga laog kaini dai na ipapahiling sa publiko.
 
 An ibang mga administrador sa ining wiki pwede pang maghiling kan mga nakatagong laog asin pwede pa nindang bawîon an pagparâ kaini sa paggamit kan parehong ''interface'', kun mayô pang mga ibang restriksyón.",
-'revdelete-legend'            => 'Ipwesto an mga restriksyón:',
+'revdelete-legend'            => 'Ipwesto an mga restriksyón',
 'revdelete-hide-text'         => 'Tagôon an teksto kan pagpakarhay',
 'revdelete-hide-name'         => 'Tagôon an aksyon asin target',
 'revdelete-hide-comment'      => 'Tagôon an komento sa paghirá',
@@ -693,8 +693,8 @@ An ibang mga administrador sa ining wiki pwede pang maghiling kan mga nakatagong
 'logdelete-logentry'          => 'Pigribayan an bisibilidad nin panyayari kan [[$1]]',
 'revdelete-logaction'         => '$1 {{PLURAL:$1|revision|revisions}} pigpwesto sa modang $2',
 'logdelete-logaction'         => '$1 {{PLURAL$1|panyayari|mga panyayari}} sa [[$3]] pigpwesto sa modang $2',
-'revdelete-success'           => 'Nakapwesto na an bisibilidad kan pagpakarhay.',
-'logdelete-success'           => 'Nakapuesto na an katalâan kan nangyari.',
+'revdelete-success'           => "'''Nakapwesto na an bisibilidad kan pagpakarhay.'''",
+'logdelete-success'           => "'''Nakapuesto na an katalâan kan nangyari.'''",
 
 # Diffs
 'history-title'           => 'Historial kan pagriribay kan "$1"',

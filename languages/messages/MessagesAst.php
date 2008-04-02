@@ -731,7 +731,7 @@ y nos rexistros, pero parte del so conteníu nun va ser accesible al públicu.
 Otros alministrados de {{SITENAME}} van siguir pudiendo acceder al conteníu escondíu
 y puen restauralu de nuevo al traviés d'esta mesma interfaz, a nun ser que s'establezan
 restricciones adicionales.",
-'revdelete-legend'            => 'Establecer restricciones:',
+'revdelete-legend'            => 'Establecer restricciones',
 'revdelete-hide-text'         => 'Esconder testu de revisión',
 'revdelete-hide-name'         => 'Esconder aición y oxetivu',
 'revdelete-hide-comment'      => "Esconder comentariu d'edición",
@@ -746,8 +746,8 @@ restricciones adicionales.",
 'logdelete-logentry'          => "camudada la visibilidá d'eventos de [[$1]]",
 'revdelete-logaction'         => '$1 {{PLURAL:$1|revisión establecida|revisiones establecíes}} en mou $2',
 'logdelete-logaction'         => '$1 {{PLURAL:$1|eventu a [[$3]] establecíu|eventos a [[$3]] establecíos}} en mou $2',
-'revdelete-success'           => 'Visibilidá de revisiones establecida correutamente.',
-'logdelete-success'           => "Visibilidá d'eventos establecida correutamente.",
+'revdelete-success'           => "'''Visibilidá de revisiones establecida correutamente.'''",
+'logdelete-success'           => "'''Visibilidá d'eventos establecida correutamente.'''",
 
 # History merging
 'mergehistory'                     => 'Fusionar historiales de páxina',

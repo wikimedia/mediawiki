@@ -712,7 +712,7 @@ pode ampliar detalles no [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} rexi
 'revdelete-text'              => 'As revisión eliminadas aínda aparecerán no historial da páxina, pero o contido do seu texto será inaccesíbel ao público.
 
 Outros administradores de {{SITENAME}} poderán acceder aínda ao contido oculto e poderán volver atrás esa eliminación a través desta mesma interface, a non ser que os operadores do sitio leven a cabo unha restrición adicional.',
-'revdelete-legend'            => 'Aplicar restricións de revisión:',
+'revdelete-legend'            => 'Aplicar restricións de revisión',
 'revdelete-hide-text'         => 'Agochar texto da revisión',
 'revdelete-hide-name'         => 'Agochar acción e destino',
 'revdelete-hide-comment'      => 'Agochar comentario da edición',
@@ -727,10 +727,14 @@ Outros administradores de {{SITENAME}} poderán acceder aínda ao contido oculto
 'logdelete-logentry'          => 'mudouse a visibilidade do evento para [[$1]]',
 'revdelete-logaction'         => '$1 {{PLURAL:$1|revisión|revisións}} configuradas no modo $2',
 'logdelete-logaction'         => '$1 {{PLURAL:$1|evento|eventos}} para [[$3]] configurados no modo $2',
-'revdelete-success'           => 'Configurouse sen problemas a visibilidade da revisión.',
-'logdelete-success'           => 'Configurouse a visibilidade do evento sen problemas.',
+'revdelete-success'           => "'''Configurouse sen problemas a visibilidade da revisión.'''",
+'logdelete-success'           => "'''Configurouse a visibilidade do evento sen problemas.'''",
+'revdel-restore'              => 'Cambiar visibilidade',
 'pagehist'                    => 'Historial da páxina',
 'deletedhist'                 => 'Historial de borrado',
+
+# Supression log
+'suppressionlogtext' => 'Embaixo amósase unha listaxe coas eliminacións e cos bloqueos recentes, que inclúen contido oculto dos administradores. Vexa a [[Special:Ipblocklist|listaxe de enderezos IP bloqueados]] para comprobar as prohibicións e os bloqueos vixentes.',
 
 # History merging
 'mergehistory'                     => 'Fusionar historiais das páxinas',
@@ -765,7 +769,7 @@ Asegúrese de que esta modificación da páxina mantén a continuidade históric
 'lineno'                  => 'Liña $1:',
 'compareselectedversions' => 'Comparar as versións seleccionadas',
 'editundo'                => 'desfacer',
-'diff-multi'              => '(Non se {{PLURAL:$1|mostra unha revisión do historial|mostran $1 revisións do historial}}.)',
+'diff-multi'              => '(Non se {{PLURAL:$1|mostra unha revisión|mostran $1 revisións}} do historial.)',
 
 # Search results
 'searchresults'         => 'Resultados da procura',
@@ -883,6 +887,8 @@ Procurar $3 $9',
 'userrights-nodatabase'            => 'A base de datos $1 non existe ou non é local.',
 'userrights-nologin'               => 'Ten que [[Special:Userlogin|rexistrarse]] cunta conta de administrador para asignar dereitos de usuario.',
 'userrights-notallowed'            => 'A súa conta non dispón de permiso para asignar dereitos de usuario.',
+'userrights-changeable-col'        => 'Os grupos que pode cambiar',
+'userrights-unchangeable-col'      => 'Os grupos que non pode cambiar',
 
 # Groups
 'group'               => 'Grupo:',

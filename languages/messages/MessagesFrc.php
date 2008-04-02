@@ -605,7 +605,7 @@ Assayez de [[Special:Search|charcher dans le wiki]] pour des nouvelles pages.',
 'revdelete-text'              => "La liste des changements va sauver les versions ôtées, mais le public pourra pas voir certains morceaux de ces versions.  
 
 Des autres administrateurs sus ce wiki ont la permission de voir et de rétablir les morceaux cachés hormis qu'y aye des restrictions.",
-'revdelete-legend'            => 'Mettre des restrictions:',
+'revdelete-legend'            => 'Mettre des restrictions',
 'revdelete-hide-text'         => 'Cacher le texte de la version',
 'revdelete-hide-name'         => "Cacher l'action et l'objet",
 'revdelete-hide-comment'      => 'Cacher la remarque du changement',
@@ -620,8 +620,8 @@ Des autres administrateurs sus ce wiki ont la permission de voir et de rétablir
 'logdelete-logentry'          => "La visibilité de l'événement a été changée pour [[$1]]",
 'revdelete-logaction'         => '$1 {{PLURAL:$1|version changée|versions changées}} en mode $2',
 'logdelete-logaction'         => '$1 {{PLURAL:$1|événement de [[$3]] changé|événements de [[$3]] changés}} en mode $2',
-'revdelete-success'           => 'Vous avez bien changé la visibilité des versions.',
-'logdelete-success'           => 'Vous avez bien changé la visibilité des événements.',
+'revdelete-success'           => "'''Vous avez bien changé la visibilité des versions.'''",
+'logdelete-success'           => "'''Vous avez bien changé la visibilité des événements.'''",
 
 # Diffs
 'difference'              => '(Différences entre les versions)',

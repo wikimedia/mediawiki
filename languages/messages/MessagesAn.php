@@ -782,8 +782,8 @@ Atros almenistradors de {{SITENAME}} encara podrán azeder t'o contineiu amagato
 'logdelete-logentry'          => "S'ha cambiato a bisibilidat d'escaizimientos de [[$1]]",
 'revdelete-logaction'         => '$1 {{PLURAL:$1|bersión|bersions}} en modo $2',
 'logdelete-logaction'         => '$1 {{PLURAL:$1|escaizimiento|escaizimientos}} en [[$3]] {{PLURAL:$1|cambiato|cambiatos}} ta o modo $2',
-'revdelete-success'           => "S'ha cambiato correutament a bisibilidat d'as bersions.",
-'logdelete-success'           => "S'ha cambiato correutament a bisibilidat d'os escaizimientos.",
+'revdelete-success'           => "'''S'ha cambiato correutament a bisibilidat d'as bersions.'''",
+'logdelete-success'           => "'''S'ha cambiato correutament a bisibilidat d'os escaizimientos.'''",
 'pagehist'                    => 'Istorial',
 'deletedhist'                 => 'Istorial de borrau',
 

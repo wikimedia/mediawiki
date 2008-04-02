@@ -665,7 +665,7 @@ Bu sayfa değişikiliği kamu arşivlerinden silinmiştir.
 'revdelete-nooldid-text'      => 'Bu fonksiyonu uygulamak için belirli hedef değişiklik veya değişikileriniz yok.',
 'revdelete-selected'          => "'''$1''' sayfasının {{PLURAL:$2|seçili değişikliği|seçili değişiklikleri}}:",
 'logdelete-selected'          => "'''$1''' sayfasının {{PLURAL:$2|seçili kayıt olayı|seçili kayıt olayları}}:",
-'revdelete-legend'            => 'Kısıtlamaları ayarla:',
+'revdelete-legend'            => 'Kısıtlamaları ayarla',
 'revdelete-hide-text'         => 'Değişikilik yazısını gizle',
 'revdelete-hide-name'         => 'Olayı ve hedefi gizle',
 'revdelete-hide-comment'      => 'Özeti gösterme',
@@ -807,7 +807,7 @@ $2 yönlendirmeleri listele &nbsp; Aranacak: $3 $9',
 'userrights-available-remove-self' => 'Kendinizi {{PLURAL:$2|bu gruptan|bu gruplardan}}: $1 silebilirsiniz.',
 'userrights-no-interwiki'          => 'Diğer vikilerdeki kullanıcıların izinlerini değiştirmeye yetkiniz yok.',
 'userrights-nodatabase'            => '$1 veritabanı mevcut veya bölgesel değil',
-'userrights-nologin'               => 'Kullanıcı haklarını atamak için yönetici olarak [[Special:Userlogin|girşi yapmalısınız]].',
+'userrights-nologin'               => 'Kullanıcı haklarını atamak için yönetici hesabı ile [[Special:Userlogin|giriş yapmanız gerekir]].',
 'userrights-notallowed'            => 'Kullanıcı hesabınızın kullanıcı haklarını atamak için izni yok.',
 
 # Groups
@@ -882,7 +882,7 @@ Sayfaya resim koymak için formdaki linklerdimelerşi kullanın;
 veya doğrudan bağlantı için
 *'''<nowiki>[[</nowiki>{{ns:Media}}<nowiki>:Örnek.ogg]]</nowiki>'''",
 'upload-permitted'            => 'İzin verilen dosya türleri: $1.',
-'upload-preferred'            => 'Öerilen dosya türleri: $1.',
+'upload-preferred'            => 'Tercih edilen dosya türleri: $1.',
 'upload-prohibited'           => 'Yasaklanan dosya türleri: $1.',
 'uploadlog'                   => 'yükleme kaydı',
 'uploadlogpage'               => 'Dosya yükleme kayıtları',
@@ -918,7 +918,7 @@ veya doğrudan bağlantı için
 'uploadcorrupt'               => 'Bu dosya ya bozuk ya da uzantısı yanlış. Dosyayı kontrol edip, tekrar yüklemeyi deneyin.',
 'uploadvirus'                 => 'Bu dosya virüslüdür! Detayları: $1',
 'sourcefilename'              => 'Yüklemek istediğiniz dosya:',
-'destfilename'                => 'Hedef dosya:',
+'destfilename'                => 'Hedef dosya adı:',
 'watchthisupload'             => 'Bu sayfayı izle',
 'filewasdeleted'              => 'Bu isimde bir dosya yakın zamanda yüklendi ve ardından yöneticiler tarafından silindi. Dosyayı yüklemeden önce, $1 sayfasına bir göz atınız.',
 'upload-wasdeleted'           => "'''Uyarı: Daha önce silinmiş olan bir dosyayı yüklüyorsunuz.'''

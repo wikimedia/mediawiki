@@ -921,6 +921,8 @@ teisės",
 'userrights-nodatabase'            => 'Duomenų bazė $1 neegzistuoja arba yra ne vietinė.',
 'userrights-nologin'               => 'Jūs privalote [[Special:Userlogin|prisijungti]] kaip administratorius, kad galėtumėte priskirti naudotojų teises.',
 'userrights-notallowed'            => 'Jūsų paskyra neturi teisių priskirti naudotojų teises.',
+'userrights-changeable-col'        => 'Grupės, kurias galite keisti',
+'userrights-unchangeable-col'      => 'Grupės, kurių negalite keisti',
 
 # Groups
 'group'               => 'Grupė:',

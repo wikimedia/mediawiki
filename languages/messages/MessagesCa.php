@@ -820,7 +820,7 @@ Aquesta versió de la pàgina ha estat eliminada dels arxius públics. Com a adm
 'revdelete-text'              => 'Les versions esborrades es mostraran encara als historial i registres de les pàgines, si bé part del seu contingut serà inaccessible al públic.
 
 Els altres administradors del projecte {{SITENAME}} encara podrien accedir al contingut amagat i restituir-lo de nou mitjançant aquesta mateixa interfície, si no hi ha cap altra restricció addicional pels operadors del lloc web.',
-'revdelete-legend'            => 'Defineix restriccions en la revisió:',
+'revdelete-legend'            => 'Defineix restriccions en la revisió',
 'revdelete-hide-text'         => 'Amaga el text de revisió',
 'revdelete-hide-name'         => "Acció d'amagar i objectiu",
 'revdelete-hide-comment'      => "Amaga el comentari de l'edició",
@@ -835,8 +835,8 @@ Els altres administradors del projecte {{SITENAME}} encara podrien accedir al co
 'logdelete-logentry'          => "s'ha canviat la visibilitat de [[$1]]",
 'revdelete-logaction'         => '$1 {{PLURAL:$1|revisió canviada|revisions canviades}} al mode $2',
 'logdelete-logaction'         => '$1 {{PLURAL:$1|element|elements}} a [[$3]] canviats al mode $2',
-'revdelete-success'           => "S'ha establert correctament la visibilitat d'aquesta revissió.",
-'logdelete-success'           => "S'ha establert correctament la visibilitat d'aquest element.",
+'revdelete-success'           => "'''S'ha establert correctament la visibilitat d'aquesta revissió.'''",
+'logdelete-success'           => "'''S'ha establert correctament la visibilitat d'aquest element.'''",
 'pagehist'                    => 'Historial',
 'deletedhist'                 => "Historial d'esborrat",
 
@@ -983,6 +983,9 @@ $2 Llista redireccions   Cerca $3 $9',
 'userrights-groupsmember'          => 'Membre de:',
 'userrights-groupsremovable'       => 'Grups dels quals us podeu treure:',
 'userrights-groupsavailable'       => 'Grups disponibles:',
+'userrights-groups-help'           => "Podeu modificarels grups als quals pertany aquest usuari.
+Els requadres marcats indiquen que l'usuari és dins del grup.
+Els requadres sense macar indiquen que l'usuari no hi pertany.",
 'userrights-reason'                => 'Motiu del canvi:',
 'userrights-available-none'        => "No podeu alterar l'afiliació al grup.",
 'userrights-available-add'         => 'Podeu afegir usuaris {{PLURAL:$2|al grup|als grups:}} $1.',
@@ -993,6 +996,8 @@ $2 Llista redireccions   Cerca $3 $9',
 'userrights-nodatabase'            => 'La base de dades $1 no existeix o no és local.',
 'userrights-nologin'               => "Heu [[Special:Userlogin|d'iniciar una sessió]] amb un compte d'administrador per a poder assignar permisos d'usuari.",
 'userrights-notallowed'            => "El vostre compte no té permisos per a assignar permisos d'usuari.",
+'userrights-changeable-col'        => 'Grups que podeu canviar',
+'userrights-unchangeable-col'      => 'Grups que no podeu canviar',
 
 # Groups
 'group'               => 'Grup:',

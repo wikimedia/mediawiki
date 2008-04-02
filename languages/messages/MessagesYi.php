@@ -692,7 +692,7 @@ Legend: (cur) = difference with current version,
 'revdelete-nooldid-title'     => 'נישטא קיין מטרה ווערסיע',
 'revdelete-nooldid-text'      => 'איר האט נישט ספעסיזיפירט קיין ציל ווערסיע צו דורכפירן די פונקציע דעראויף..',
 'revdelete-selected'          => "{{plural:$2|ווערסיע פון '''$1''' שנבחרה|ווערסיע פון '''$1''' וואס איז געווארן אויסגעוועלט}}:",
-'revdelete-legend'            => 'שטעלט איין בארגרענצונגן:',
+'revdelete-legend'            => 'שטעלט איין בארגרענצונגן',
 'revdelete-hide-text'         => 'באהאלט אינהאלט פון ווערסיע',
 'revdelete-hide-name'         => 'באהאלט אקציע און ציל',
 'revdelete-hide-comment'      => 'באהאלט ענדערן הערה',
@@ -1099,7 +1099,7 @@ $NEWPAGE
 'allmessagescurrent'        => 'איצטיגער טעקסט',
 'allmessagestext'           => 'דאס איז א ליסטע פון אלע סיסטעם מעסעזשעס עוועילבל און מידיעוויקי נעימספעיס. {{ns:mediawiki}}, וואס באדינען דעם אויפהאלט פונעם סייט.
 סיסאפס קענען ענדערן די מעסעזשעס דורך דרוקן אויפן נאמען פון מעסעזש.',
-'allmessagesnotsupportedDB' => 'מען קען זיך נישט באנוצען מיט דעם בלאט וויבאלד די־\$wgUseDatabseMessages איז בטל.',
+'allmessagesnotsupportedDB' => 'מען קען זיך נישט באנוצען מיט דעם בלאט וויבאלד די־$wgUseDatabseMessages איז בטל.',
 'allmessagesfilter'         => 'מעסעדזש נאמען פילטער:',
 'allmessagesmodified'       => 'ווייז נאר מאדיפיצירטע',
 

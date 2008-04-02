@@ -511,7 +511,7 @@ Wenn du Text översetten wist, de betherto noch gornich översett is, denn maak 
 'sqlhidden'            => '(SQL-Affraag versteken)',
 'namespaceprotected'   => "Du hest keen Rechten, Sieden in’n Naamruum '''$1''' to ännern.",
 'customcssjsprotected' => 'Du hest keen Rechten, disse Siet to ännern. Dor sünd persönliche Instellungen vun en annern Bruker in.',
-'ns-specialprotected'  => 'Sieden in’n Naamruum {{ns:special}} köönt nich ännert warrn.',
+'ns-specialprotected'  => 'Spezialsieden köönt nich ännert warrn.',
 'titleprotected'       => "Disse Siet is gegen dat nee Opstellen vun [[{{ns:user}}:$1]] schuult worrn.
 As Grund is angeven: ''$2''.",
 
@@ -793,7 +793,7 @@ Versöök [[Special:Search|dat Söken]] na annere relevante Sieden.',
 'revdelete-nooldid-title' => 'kene Versionen dor, de passt',
 'revdelete-selected'      => "{{PLURAL:$2|wählte Version|wählte Versionen}} vun '''$1:'''",
 'logdelete-selected'      => "{{PLURAL:$2|wählt Logbook-Indrag|wählte Logbook-Indrääg}} för '''$1:'''",
-'revdelete-legend'        => 'Inschränkungen setten:',
+'revdelete-legend'        => 'Inschränkungen setten',
 'revdelete-hide-text'     => 'Versiontext versteken',
 'revdelete-hide-name'     => 'Akschoon un Teel versteken',
 'revdelete-hide-comment'  => 'Kommentar versteken',

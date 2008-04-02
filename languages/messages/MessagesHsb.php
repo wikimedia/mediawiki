@@ -762,7 +762,7 @@ Legenda: (akt) = rozdźěl k tuchwilnej wersiji, (posl) = rozdźěl k předchadn
 'revdelete-text'              => 'Wušmórnjene wersije so w stawiznach dale jewja, jich wobsah pak za wužiwarjow čitajomne njeje.
 
 Druzy administratorojo we {{SITENAME}} móža schowany tekst dale čitać a jón wobnowić, chibazo su tež jich prawa wobmjezowane.',
-'revdelete-legend'            => 'Wobmjezowanja za wersije zrjadować:',
+'revdelete-legend'            => 'Wobmjezowanja za wersije zrjadować',
 'revdelete-hide-text'         => 'Tekst tuteje wersije schować',
 'revdelete-hide-name'         => 'Akciju w protokolach schować',
 'revdelete-hide-comment'      => 'Zjeće schować',
@@ -777,7 +777,7 @@ Druzy administratorojo we {{SITENAME}} móža schowany tekst dale čitać a jón
 'logdelete-logentry'          => 'je widźomnosć za [[$1]] změnił',
 'revdelete-logaction'         => '$1 {{PLURAL:$1|wersiju|wersiji|wersije|wersijow}} do modusa $2 {{PLURAL:$1|stajena|stajenej|stajene|stajenych}}',
 'logdelete-logaction'         => '$1 {{PLURAL:$1|zapisk|zapiskaj|zapiski|zapiskow}} za [[$3]] su nětko w modusu $2',
-'revdelete-success'           => 'Widźomnosć wersije bu wuspěšnje změnjena.',
+'revdelete-success'           => "'''Widźomnosć wersije bu wuspěšnje změnjena.'''",
 'logdelete-success'           => 'Widźomnosć zapiska bu wuspěšnje změnjena.',
 
 # History merging

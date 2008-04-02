@@ -700,7 +700,7 @@ d'r kinne details aanwezig zeen in 't [{{fullurl:Special:Log/delete|page={{PAGEN
 'revdelete-text'              => "Gewisjde bewerkinge zeen zichbaar in de gesjiedenis, maar de inhoud is neet langer publiek toegankelik.
 
 Anger beheerders van {{SITENAME}} kinne de verborge inhoud benäöjere en de verwiedering ongedaon make mit behölp van dit sjerm, tenzij d'r additionele restricties gelje die zeen ingesteld door de systeembeheerder.",
-'revdelete-legend'            => 'Stel versiebeperkinge in:',
+'revdelete-legend'            => 'Stel versiebeperkinge in',
 'revdelete-hide-text'         => 'Verberg de bewerkte teks',
 'revdelete-hide-name'         => 'Actie en doel verberge',
 'revdelete-hide-comment'      => 'De bewerkingssamevatting verberge',
@@ -715,8 +715,8 @@ Anger beheerders van {{SITENAME}} kinne de verborge inhoud benäöjere en de ver
 'logdelete-logentry'          => 'gewiezigde zichbaarheid van gebeurtenis [[$1]]',
 'revdelete-logaction'         => '$1 {{PLURAL:$1|wieziging|wieziginge}} gezat nao mode $2',
 'logdelete-logaction'         => '$1 {{PLURAL:$1|actie|acties}} om [[$3]] nao modus $2 in te stelle',
-'revdelete-success'           => 'Wieziging zichbaarheid succesvol ingesteld.',
-'logdelete-success'           => 'Zichbaarheid van de gebeurtenis succesvol ingesteld.',
+'revdelete-success'           => "'''Wieziging zichbaarheid succesvol ingesteld.'''",
+'logdelete-success'           => "'''Zichbaarheid van de gebeurtenis succesvol ingesteld.'''",
 
 # History merging
 'mergehistory'                     => "Gesjiedenis van pagina's samevoege",

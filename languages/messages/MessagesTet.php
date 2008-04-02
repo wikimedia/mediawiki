@@ -329,14 +329,16 @@ $messages = array(
 'searchresultshead' => 'Buka',
 
 # User rights
-'userrights'                => "Filak kuana uza-na'in", # Not used as normal message but as header for the special page itself
-'userrights-lookup-user'    => "Filak lubu uza-na'in",
-'userrights-user-editname'  => "Hakerek naran uza-na'in ida-nian:",
-'editusergroup'             => "Filak lubu uza-na'in",
-'userrights-editusergroup'  => "Filak lubu uza-na'in",
-'userrights-groupsmember'   => 'Membru iha:',
-'userrights-available-none' => "Ó la bele filak lubu uza-na'in.",
-'userrights-no-interwiki'   => "Ó la bele filak kuana uza-na'in iha wiki seluk.",
+'userrights'                  => "Filak kuana uza-na'in", # Not used as normal message but as header for the special page itself
+'userrights-lookup-user'      => "Filak lubu uza-na'in",
+'userrights-user-editname'    => "Hakerek naran uza-na'in ida-nian:",
+'editusergroup'               => "Filak lubu uza-na'in",
+'userrights-editusergroup'    => "Filak lubu uza-na'in",
+'userrights-groupsmember'     => 'Membru iha:',
+'userrights-available-none'   => "Ó la bele filak lubu uza-na'in.",
+'userrights-available-add'    => "Ó bele tau tan uza-na'in hotu ba lubu ne'e: $1.",
+'userrights-available-remove' => "Ó bele hasai uza-na'in hotu ba lubu ne'e: $1.",
+'userrights-no-interwiki'     => "Ó la bele filak kuana uza-na'in iha wiki seluk.",
 
 # Groups
 'group'            => 'Lubu:',

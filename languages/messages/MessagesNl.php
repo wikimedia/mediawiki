@@ -953,18 +953,18 @@ er kunnen details aanwezig zijn in het [{{fullurl:Special:Log/delete|page={{PAGE
 'rev-delundel'                => 'weergeven/verbergen',
 'revisiondelete'              => 'Versies verwijderen/terugplaatsen',
 'revdelete-nooldid-title'     => 'Geen doelversie',
-'revdelete-nooldid-text'      => 'U hebt geen doelversie(s) voor deze handeling opgegeven.',
-'revdelete-selected'          => "Geselecteerde {{PLURAL:$2|bewerking|bewerkingen}} van '''[[:$1]]''':",
-'logdelete-selected'          => "{{PLURAL:$2|Geselecteerde logboekactie|Geselecteerde logboekacties}} voor '''$1:'''",
+'revdelete-nooldid-text'      => 'U hebt geen doelversie(s) voor deze handeling opgegeven, de aangegeven versie bestaat niet, of u probeert de laatste versie te verbergen.',
+'revdelete-selected'          => 'Geselecteerde {{PLURAL:$2|bewerking|bewerkingen}} van [[:$1]]:',
+'logdelete-selected'          => '{{PLURAL:$1|Geselecteerde logboekactie|Geselecteerde logboekacties}}:',
 'revdelete-text'              => 'Verwijderde bewerkingen zijn zichtbaar in de geschiedenis, maar de inhoud is niet langer publiek toegankelijk.
 
 Andere beheerders van {{SITENAME}} kunnen de verborgen inhoud benaderen en de verwijdering ongedaan maken met behulp van dit scherm, tenzij er aanvullende beperkingen gelden die zijn ingesteld door de systeembeheerder.',
-'revdelete-legend'            => 'Versiebeperkingen instellen:',
+'revdelete-legend'            => 'Versiebeperkingen instellen',
 'revdelete-hide-text'         => 'De bewerkte tekst verbergen',
 'revdelete-hide-name'         => 'Actie en doel verbergen',
 'revdelete-hide-comment'      => 'De bewerkingssamenvatting verbergen',
 'revdelete-hide-user'         => 'Gebruikersnaam/IP van de gebruiker verbergen',
-'revdelete-hide-restricted'   => 'Deze beperkingen toepassen op zowel beheerders als anderen',
+'revdelete-hide-restricted'   => 'Deze beperkingen toepassen op beheerders en deze interface afsluiten',
 'revdelete-suppress'          => 'Gegevens voor zowel beheerders als anderen onderdrukken',
 'revdelete-hide-image'        => 'Bestandsinhoud verbergen',
 'revdelete-unsuppress'        => 'Beperkingen op teruggezette wijzigingen verwijderen',
@@ -973,11 +973,16 @@ Andere beheerders van {{SITENAME}} kunnen de verborgen inhoud benaderen en de ve
 'revdelete-logentry'          => 'zichtbaarheid van bewerkingen is gewijzigd voor [[$1]]',
 'logdelete-logentry'          => 'wijzigde zichtbaarheid van gebeurtenis [[$1]]',
 'revdelete-logaction'         => '$1 {{PLURAL:$1|wijziging|wijzigingen}} ingesteld naar modus $2',
-'logdelete-logaction'         => '$1 {{PLURAL:$1|actie|acties}} om [[$3]] naar modus $2 in te stellen',
-'revdelete-success'           => 'Zichtbaarheid van de wijziging succesvol ingesteld.',
-'logdelete-success'           => 'Zichtbaarheid van de gebeurtenis succesvol ingesteld.',
+'logdelete-logaction'         => '$1 {{PLURAL:$1|actie|acties}} omgezet naar modus $2',
+'revdelete-success'           => "'''Zichtbaarheid van de wijziging succesvol ingesteld.'''",
+'logdelete-success'           => "'''Zichtbaarheid van de gebeurtenis succesvol ingesteld.'''",
+'revdel-restore'              => 'Zichtbaarheid wijzigen',
 'pagehist'                    => 'Paginageschiedenis',
 'deletedhist'                 => 'Verwijderde geschiedenis',
+
+# Supression log
+'suppressionlog'     => 'Verbergingslogboek',
+'suppressionlogtext' => 'De onderstaande lijst bevat de meeste recente verwijderingen en blokkades die voor beheerders verborgen zijn. In de [[Special:Ipblocklist|IP-blokkeerlijst]] zijn de huidige blokkades te bekijken.',
 
 # History merging
 'mergehistory'                     => "Geschiedenis van pagina's samenvoegen",
@@ -1140,17 +1145,20 @@ Een niet aangekruisd vinkvakje betekent dat de gebruiker geen lid is van de groe
 'group-bot'           => 'Bots',
 'group-sysop'         => 'Beheerders',
 'group-bureaucrat'    => 'Bureaucraten',
+'group-suppress'      => 'Toezichthouders',
 'group-all'           => '(alles)',
 
 'group-autoconfirmed-member' => 'Geregistreerde gebruiker',
 'group-bot-member'           => 'Bot',
 'group-sysop-member'         => 'Beheerder',
 'group-bureaucrat-member'    => 'Bureaucraat',
+'group-suppress-member'      => 'Toezichthouder',
 
 'grouppage-autoconfirmed' => '{{ns:project}}:Geregistreerde gebruikers',
 'grouppage-bot'           => '{{ns:project}}:Bots',
 'grouppage-sysop'         => '{{ns:project}}:Beheerders',
 'grouppage-bureaucrat'    => '{{ns:project}}:Bureaucraten',
+'grouppage-suppress'      => '{{ns:project}}:Toezicht',
 
 # User rights log
 'rightslog'      => 'Gebruikersrechtenlogboek',
@@ -1493,6 +1501,7 @@ De lengte van de [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] is ''
 'notargettext'            => 'U hebt niet opgegeven voor welke pagina of gebruiker u deze handeling wilt uitvoeren.',
 'pager-newer-n'           => '{{PLURAL:$1|1 nieuwere|$1 nieuwere}}',
 'pager-older-n'           => '{{PLURAL:$1|1 oudere|$1 oudere}}',
+'suppress'                => 'Toezicht',
 
 # Book sources
 'booksources'               => 'Boekinformatie',
@@ -1642,6 +1651,7 @@ Feedback en andere assistentie:
 'actioncomplete'              => 'Handeling voltooid',
 'deletedtext'                 => '"<nowiki>$1</nowiki>" is verwijderd. Zie het $2 voor een overzicht van recente verwijderingen.',
 'deletedarticle'              => 'verwijderde "[[$1]]"',
+'suppressedarticle'           => 'heeft "[[$1]]" verborgen',
 'dellogpage'                  => 'Verwijderingslogboek',
 'dellogpagetext'              => "Hieronder is een lijst van recent verwijderde pagina's en bestanden weergegeven.",
 'deletionlog'                 => 'Verwijderingslogboek',
@@ -1971,7 +1981,7 @@ In het laatste geval kunt u ook een link gebruiken, bijvoorbeeld [[Special:Expor
 'allmessagesdefault'        => 'Standaardinhoud',
 'allmessagescurrent'        => 'Huidige inhoud',
 'allmessagestext'           => 'Hieronder staan de systeemberichten uit de MediaWiki-naamruimte:',
-'allmessagesnotsupportedDB' => "Er is geen ondersteuning voor '''{{ns:special}}:AllMessages''' omdat '''\$wgUseDatabaseMessages''' is uitgeschakeld.",
+'allmessagesnotsupportedDB' => "Deze pagina kan niet gebruikt worden omdat '''\$wgUseDatabaseMessages''' is uitgeschakeld.",
 'allmessagesfilter'         => 'Bericht naamfilter:',
 'allmessagesmodified'       => 'Alleen gewijzigde systeemteksten bekijken',
 

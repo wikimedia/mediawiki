@@ -390,7 +390,7 @@ $messages = array(
 'badaccess-groups' => 'Činnosť, ktorú požadujete môže vykonať iba člen jednej zo skupín $1.',
 
 'versionrequired'     => 'Požadovaná verzia MediaWiki $1',
-'versionrequiredtext' => 'Na použitie tejto stránky je požadovaná verzia MediaWiki $1. Pozri [[Special:Version]]',
+'versionrequiredtext' => 'Aby ste mohli používať túto stránku, požaduje sa verzia MediaWiki $1. Pozri [[Special:Version]].',
 
 'ok'                      => 'OK',
 'retrievedfrom'           => 'Zdroj: „$1“',
@@ -830,22 +830,22 @@ podrobnosti môžu byť v [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} zá
 </div>',
 'rev-delundel'                => 'zobraziť/skryť',
 'revisiondelete'              => 'Zmazať/obnoviť revízie',
-'revdelete-nooldid-title'     => 'Chýba cieľová revízia',
-'revdelete-nooldid-text'      => 'Nešpecifikovali ste cieľovú revíziu alebo revízie, na ktorých sa má táto funkcia vykonať.',
-'revdelete-selected'          => "{{PLURAL:$2|Vybraná jedna revízia|Vybrané $2 revízie|Vybraných $2 revízií}} z '''$1:'''",
-'logdelete-selected'          => "{{PLURAL:$2|Vybraná udalosť záznamu|Vybrané udalosti záznamu|Vybrané udalosti záznamu}} pre '''$1:'''",
+'revdelete-nooldid-title'     => 'Neplatná cieľová revízia',
+'revdelete-nooldid-text'      => 'Neuviedli ste cieľovú revíziu alebo revízie, na ktorých sa má táto funkcia vykonať, uvedená revízia neexistuje alebo sa pokúšate skryť aktuálnu revíziu.',
+'revdelete-selected'          => '{{PLURAL:$2|Vybraná jedna revízia|Vybrané $2 revízie|Vybraných $2 revízií}} z [[:$1]]:',
+'logdelete-selected'          => '{{PLURAL:$2|Vybraná udalosť záznamu|Vybrané udalosti záznamu}}:',
 'revdelete-text'              => 'Zmazané revízie sú stále viditeľné v histórii úprav stránky,
 ale ich obsah nebude prístupný verejnosti.
 
 Iní správcovia {{GRAMMAR:genitív|{{SITENAME}}}} budú stále môcť pristupovať k skrytému obsahu a môžu
 ho znova obnoviť použitím tohto rozhrania v prípade, že operátormi projektu
 nie sú stanovené ďalšie obmedzenia.',
-'revdelete-legend'            => 'Nastaviť obmedzenia revízie:',
+'revdelete-legend'            => 'Nastaviť obmedzenia',
 'revdelete-hide-text'         => 'Skryť text revízie',
 'revdelete-hide-name'         => 'Skryť činnosť a cieľ',
 'revdelete-hide-comment'      => 'Skryť zhrnutie úprav',
 'revdelete-hide-user'         => 'Skryť používateľské meno/IP',
-'revdelete-hide-restricted'   => 'Použiť tieto obmedzenia na správcov ako aj na ostatných',
+'revdelete-hide-restricted'   => 'Použiť tieto obmedzenia na správcov a zamknúť toto rozhranie',
 'revdelete-suppress'          => 'Potlačiť dáta pred správcami rovnako ako pred ostatnými',
 'revdelete-hide-image'        => 'Skryť obsah súboru',
 'revdelete-unsuppress'        => 'Odstrániť obmedzenia obnovených revízií',
@@ -854,11 +854,16 @@ nie sú stanovené ďalšie obmedzenia.',
 'revdelete-logentry'          => 'viditeľnosť revízie bola zmenená pre [[$1]]',
 'logdelete-logentry'          => 'viditeľnosť udalosti [[$1]] bola zmenená',
 'revdelete-logaction'         => '$1 {{plural:$1|revízia|revízie|revízií}} nastavených do režimu $2',
-'logdelete-logaction'         => '$1 {{plural:$1|udalosť|udalosti|udalostí}} [[$3]] nastavených do režimu $2',
-'revdelete-success'           => 'Viditeľnosť revízie bola úspešne nastavená.',
-'logdelete-success'           => 'Viditeľnosť udalosti bola úspešne nastavená.',
+'logdelete-logaction'         => '$1 {{plural:$1|udalosť nastavená|udalosti nastavené|udalostí nastavených}} do režimu $2',
+'revdelete-success'           => "'''Viditeľnosť revízie bola úspešne nastavená.'''",
+'logdelete-success'           => "'''Viditeľnosť záznamu bola úspešne nastavená.'''",
+'revdel-restore'              => 'Zmeniť viditeľnosť',
 'pagehist'                    => 'História stránky',
 'deletedhist'                 => 'Zmazaná história',
+
+# Supression log
+'suppressionlog'     => 'Záznam potlačení',
+'suppressionlogtext' => 'Toto je zoznam posledných zmazaní a blokovaní vrátane obsahu, ktorý je skrytý pred správcami. Zoznam momentálne účinných blokovaní nájdete na [[Special:Ipblocklist|Zoznam blokovaní IP]].',
 
 # History merging
 'mergehistory'                     => 'Zlúčiť histórie stránok',
@@ -984,7 +989,7 @@ $2 Zoznam presmerovaní &nbsp; Hľadanie pre $3 $9',
 'servertime'               => 'Aktuálny čas na serveri',
 'guesstimezone'            => 'Prevziať z prehliadača',
 'allowemail'               => 'Povoliť prijímanie e-mailov od iných používateľov',
-'defaultns'                => 'Štandardne vyhľadávaj v týchto menných priestoroch:',
+'defaultns'                => 'Štandardne vyhľadávať v týchto menných priestoroch:',
 'default'                  => 'predvolený',
 'files'                    => 'Súbory',
 
@@ -999,16 +1004,21 @@ $2 Zoznam presmerovaní &nbsp; Hľadanie pre $3 $9',
 'userrights-groupsmember'          => 'Člen skupiny:',
 'userrights-groupsremovable'       => 'Odstrániteľné skupiny:',
 'userrights-groupsavailable'       => 'Dostupné skupiny:',
+'userrights-groups-help'           => 'Môžete zmeniť, v ktorých skupinách sa používateľ nachádza.
+Zaškrtnuté pole znamená, že používateľ je v skupine.
+Nezaškrtnuté pole znamená, že používateľ nie je v skupine.',
 'userrights-reason'                => 'Dôvod zmeny:',
 'userrights-available-none'        => 'Nie ste oprávnený meniť členstvo v skupine.',
-'userrights-available-add'         => 'Môžete pridávať používateľov do {{PLURAL:$2|skupiny|skupín}}: $1.',
-'userrights-available-remove'      => 'Môžete odoberať používateľov zo {{PLURAL:$2|skupiny|skupín}}: $1.',
+'userrights-available-add'         => 'Môžete pridať ľubovoľného používateľa do {{PLURAL:$2|tejto skupiny|týchto skupín}}: $1.',
+'userrights-available-remove'      => 'Môžete odobrať ľubovoľného používateľa z {{PLURAL:$2|tejto skupiny|týchto skupín}}: $1.',
 'userrights-available-add-self'    => 'Môžete sa pridať do {{PLURAL:$2|tejto skupiny|týchto skupín}}: $1.',
 'userrights-available-remove-self' => 'Môžete sa odstrániť z {{PLURAL:$2|tejto skupiny|týchto skupín}}: $1.',
 'userrights-no-interwiki'          => 'Nemáte oprávnenie upravovať práva používateľov na iných wiki.',
 'userrights-nodatabase'            => 'Databáza $1 neexistuje alebo nie je lokálna.',
 'userrights-nologin'               => 'Aby ste mohli prideľovať používateľom oprávnenia, musíte sa [[Special:Userlogin|prihlásiť]] s účtom správcu.',
 'userrights-notallowed'            => 'Váš účet nemá oprávnenia prideľovať používateľom oprávnenia.',
+'userrights-changeable-col'        => 'Skupiny, ktoré môžete zmeniť',
+'userrights-unchangeable-col'      => 'Skupiny, ktoré nemôžete zmeniť',
 
 # Groups
 'group'               => 'Skupina:',
@@ -1016,17 +1026,20 @@ $2 Zoznam presmerovaní &nbsp; Hľadanie pre $3 $9',
 'group-bot'           => 'Boti',
 'group-sysop'         => 'Správcovia',
 'group-bureaucrat'    => 'Byrokrati',
+'group-suppress'      => 'Dozorcovia',
 'group-all'           => '(všetci)',
 
 'group-autoconfirmed-member' => 'zaregistrovaný používateľ',
 'group-bot-member'           => 'Bot',
 'group-sysop-member'         => 'Správca',
 'group-bureaucrat-member'    => 'Byrokrat',
+'group-suppress-member'      => 'Dozorca',
 
 'grouppage-autoconfirmed' => '{{ns:project}}:Zaregistrovaní používatelia',
 'grouppage-bot'           => '{{ns:project}}:Boti',
 'grouppage-sysop'         => '{{ns:project}}:Správcovia',
 'grouppage-bureaucrat'    => '{{ns:project}}:Byrokrati',
+'grouppage-suppress'      => '{{ns:project}}:Dozor',
 
 # User rights log
 'rightslog'      => 'Záznam používateľských práv',
@@ -1354,6 +1367,7 @@ z čoho '''$2''' (alebo '''$4 %''') {{PLURAL:$2|je správca|sú správcovia}} (p
 na ktorý/-ého chcete aplikovať túto funkciu.',
 'pager-newer-n'           => '{{PLURAL:$1|1 novší|$1 novšie|$1 novších}}',
 'pager-older-n'           => '{{PLURAL:$1|1 starší|$1 staršie|$1 starších}}',
+'suppress'                => 'Dozor',
 
 # Book sources
 'booksources'               => 'Knižné zdroje',
@@ -1507,6 +1521,7 @@ Návrhy a ďalšia pomoc:
 'deletedtext'                 => '"<nowiki>$1</nowiki>" bol zmazaný.
 Na $2 nájdete zoznam posledných zmazaní.',
 'deletedarticle'              => '„[[$1]]“ zmazaná',
+'suppressedarticle'           => 'potlačil „[[$1]]“',
 'dellogpage'                  => 'Záznam zmazaní',
 'dellogpagetext'              => 'Tu je zoznam posledných zmazaní.',
 'deletionlog'                 => 'záznam zmazaní',
@@ -1854,7 +1869,7 @@ V druhom prípade môžete tiež použiť odkaz, napr. [[Special:Export/{{Mediaw
 'allmessagesdefault'        => 'štandardný text',
 'allmessagescurrent'        => 'aktuálny text',
 'allmessagestext'           => 'Toto je zoznam všetkých správ dostupných v mennom priestore MediaWiki.',
-'allmessagesnotsupportedDB' => "'''{{ns:special}}:AllMessages''' nie je podporované, pretože '''\$wgUseDatabaseMessages''' je vypnuté.",
+'allmessagesnotsupportedDB' => "Túto stránku nemožno použiť, pretože '''\$wgUseDatabaseMessages''' je vypnuté.",
 'allmessagesfilter'         => 'Filter názvov správ:',
 'allmessagesmodified'       => 'Zobraziť iba zmenené',
 

@@ -638,7 +638,7 @@ Ngirtey téye gi $3 joxe, mooy ne: ''$2''.",
 'revdelete-text'              => 'Sumb yi nga far dañuy wéy di feeñ ci jaar-jaaru xët wi, waaye mbind yi ñu ëmb ñépp duñ leen man a gis .
 
 Yeneen yorkati {{SITENAME}} itam di nañ man a gis ëmbit yu laqu yi te loppanti leen, walla xanaa rek kay dañ fee def ay digal yu leen koy tere man a def.',
-'revdelete-legend'            => 'Taxawal ay digal ci sumb yi ñu far :',
+'revdelete-legend'            => 'Taxawal ay digal ci sumb yi ñu far',
 'revdelete-hide-text'         => 'Nëbb mbindum sumb mi',
 'revdelete-hide-name'         => 'Nëbb jëf ji ak njeexitam',
 'revdelete-hide-comment'      => 'Nëbb sanni-kàddub coppite gi',
@@ -652,8 +652,8 @@ Yeneen yorkati {{SITENAME}} itam di nañ man a gis ëmbit yu laqu yi te loppanti
 'revdelete-logentry'          => 'Gisinu sumb mi soppiku na ngir [[$1]]',
 'logdelete-logentry'          => 'Gisub xew-xew bii [[$1]] dañ kaa soppi',
 'logdelete-logaction'         => 'Soppi nga doxaliin bi di $2 ngir {{plural:$1|ab xew-xew bu|ay xew-xew yu}} ñeel [[$3]]',
-'revdelete-success'           => 'Coppiteg gisinug sumb mi, baax na',
-'logdelete-success'           => 'Gisub xew-xew bi soppiku na bu baax',
+'revdelete-success'           => "'''Coppiteg gisinug sumb mi, baax na.'''",
+'logdelete-success'           => "'''Gisub xew-xew bi soppiku na bu baax.'''",
 
 # History merging
 'mergehistory'                     => 'Booleb jaar-jaar yu aw xët',

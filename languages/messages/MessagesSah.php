@@ -659,7 +659,7 @@ long, which is longer than the maximum of $2 kilobytes. It cannot be saved.</str
 
 {{SITENAME}} администратордара кистэммит суруктары көрөр уонна сотуллубуту төттөрү төннөрөр кыахтаахтар
 (эбии хааччахтааһын турбатах буоллаҕына).',
-'revdelete-legend'            => 'Хааччахтааһын:',
+'revdelete-legend'            => 'Хааччахтааһын',
 'revdelete-hide-text'         => 'Сирэй бу торумун кистээ',
 'revdelete-hide-name'         => 'Дьайыыны уонна дьайыы сыалын кистээ.',
 'revdelete-hide-comment'      => 'Ырытыыны кистээ',
@@ -674,8 +674,8 @@ long, which is longer than the maximum of $2 kilobytes. It cannot be saved.</str
 'logdelete-logentry'          => '[[$1]] дьайыы көстүүтэ уларыйда',
 'revdelete-logaction'         => '$1 {{PLURAL:$1|торум|торумнар}} $2 режимҥа {{PLURAL:$1|көстө|көстүлэр}}',
 'logdelete-logaction'         => '$1 {{PLURAL:$1|событие|события|событий}} страницы [[$3]] {{plural:$1|переведено|переведены|переведены}} в режим $2',
-'revdelete-success'           => 'Торум көстүүтэ сөпкө уларыйда.',
-'logdelete-success'           => 'Дьайыы көстүүтэ сөпкө уларыйда.',
+'revdelete-success'           => "'''Торум көстүүтэ сөпкө уларыйда.'''",
+'logdelete-success'           => "'''Дьайыы көстүүтэ сөпкө уларыйда.'''",
 
 # History merging
 'mergehistory'                     => 'Силбэһии сирэйин хронологията',

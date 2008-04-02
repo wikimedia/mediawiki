@@ -719,19 +719,20 @@ povas esti detaloj en la [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} logo
 </div>',
 'rev-delundel'                => 'montru/kaŝu',
 'revisiondelete'              => 'Forigu/Malforigu reviziojn',
-'revdelete-nooldid-title'     => 'Neniu cela revizio',
-'revdelete-nooldid-text'      => 'Vi ne specifis celan revizion aux reviziojn fari cxi funkcion.',
-'revdelete-selected'          => "{{PLURAL:$2|Elektata revizio|Elektataj revizioj}} de '''$1:'''",
-'logdelete-selected'          => "{{PLURAL:$2|Selektata loglibra evento|Selektataj loglibraj eventoj}} por '''$1:'''",
+'revdelete-nooldid-title'     => 'Nevalida cela revizio',
+'revdelete-nooldid-text'      => 'Vi ne specifis celan revizion aux reviziojn fari ĉi tiun 
+funkcion, la specifigita revizio ne ekzistas, aŭ vi estas provanta kaŝi la nunan revizion.',
+'revdelete-selected'          => "{{PLURAL:$2|Selektata revizio|Selektataj revizioj}} de '''[[:$1]]''':",
+'logdelete-selected'          => '{{PLURAL:$1|Selektata loglibra evento|Selektataj loglibraj eventoj}}:',
 'revdelete-text'              => 'Forigitaj versioj kaj eventoj plu aperos en la historipagxoj, sed iliaj tekstoj ne estos alireblaj de  la publiko.
 
 Aliaj administrantoj cxe {{SITENAME}} plu povos aliri la kasxitan entenon kaj restarigi gxin per la sama interfaco, krom se plia limigo estas metita de la pagxaradministrantoj.',
-'revdelete-legend'            => 'Limigu ecojn de versio:',
+'revdelete-legend'            => 'Limigu ecojn de versio',
 'revdelete-hide-text'         => 'Kaŝu tekston de versio',
 'revdelete-hide-name'         => 'Kaŝu agon kaj celon',
 'revdelete-hide-comment'      => 'Kaŝu komenton de redakto',
 'revdelete-hide-user'         => 'Kaŝu nomon aux IP-adreson de redaktinto',
-'revdelete-hide-restricted'   => 'Apliku ĉi limigojn al administrantoj same kiel al aliaj uzantoj',
+'revdelete-hide-restricted'   => 'Apliku ĉi tiujn limigojn al administrantoj kaj ŝlosu ĉi tiun interfacon',
 'revdelete-suppress'          => 'Subpremu datumojn de administrantoj aldone al de aliaj',
 'revdelete-hide-image'        => 'Kaŝu dosier-enhavon',
 'revdelete-unsuppress'        => 'Forigu limigojn al restarigitaj versioj',
@@ -740,11 +741,16 @@ Aliaj administrantoj cxe {{SITENAME}} plu povos aliri la kasxitan entenon kaj re
 'revdelete-logentry'          => 'ŝanĝis videblecon de versio por [[$1]]',
 'logdelete-logentry'          => 'ŝanĝis eventan videblecon de [[$1]]',
 'revdelete-logaction'         => '$1 {{PLURAL:$1|ŝanĝo|ŝanĝoj}} farita por reĝimo $2',
-'logdelete-logaction'         => '$1 {{PLURAL:$1|evento|eventoj}} al [[$3]] farita por reĝimo $2',
-'revdelete-success'           => 'Revizia videbleco estas sukcese farita.',
-'logdelete-success'           => 'Videbleco de evento sukcese farita.',
+'logdelete-logaction'         => '$1 {{PLURAL:$1|evento farita|eventoj faritaj}} por reĝimo $2',
+'revdelete-success'           => "'''Revizia videbleco estas sukcese farita.'''",
+'logdelete-success'           => "'''Videbleco de evento sukcese farita.'''",
+'revdel-restore'              => 'Ŝanĝu videblecon',
 'pagehist'                    => 'Paĝa historio',
 'deletedhist'                 => 'Forigita historio',
+
+# Supression log
+'suppressionlog'     => 'Loglibro pri subigado',
+'suppressionlogtext' => 'Jen listo de la plej lastaj forigoj kaj forbaroj pri enhavo kaŝita per administrantoj. Rigardu la [[Special:Ipblocklist|IP-forbarliston]] por la listo de nune operaciaj forbaroj kaj forigoj.',
 
 # History merging
 'mergehistory'                     => 'Kunigu historiojn de paĝoj',
@@ -911,17 +917,20 @@ Ekzemple, por la Centra Eŭropa Horzono, indiku "1" vintre aŭ "2" dum somertemp
 'group-bot'           => 'Robotoj',
 'group-sysop'         => 'Sisopoj',
 'group-bureaucrat'    => 'Burokratoj',
+'group-suppress'      => 'Superrigardoj',
 'group-all'           => '(ĉiuj)',
 
 'group-autoconfirmed-member' => 'Aŭtomate konfirmita uzanto',
 'group-bot-member'           => 'Roboto',
 'group-sysop-member'         => 'Sisopo',
 'group-bureaucrat-member'    => 'Burokrato',
+'group-suppress-member'      => 'Superrigardo',
 
 'grouppage-autoconfirmed' => '{{ns:project}}:Aŭtomate konfirmitaj uzantoj',
 'grouppage-bot'           => '{{ns:project}}:Robotoj',
 'grouppage-sysop'         => '{{ns:project}}:Administrantoj',
 'grouppage-bureaucrat'    => '{{ns:project}}:Burokratoj',
+'grouppage-suppress'      => '{{ns:project}}:Superrigardo',
 
 # User rights log
 'rightslog'      => 'Loglibro de uzanto-rajtoj',
@@ -1236,6 +1245,7 @@ Tio ne estus enkalkutita en la jena listo.',
 'notargettext'            => 'Vi ne precizigis, kiun paĝon aŭ uzanton priumi.',
 'pager-newer-n'           => '{{PLURAL:$1|pli nova 1|pli novaj $1}}',
 'pager-older-n'           => '{{PLURAL:$1|pli malnova 1|pli malnovaj $1}}',
+'suppress'                => 'Superrigardo',
 
 # Book sources
 'booksources'               => 'Libroservoj',
@@ -1385,6 +1395,7 @@ Reagoj kaj plia helpo :
 'deletedtext'                 => '"<nowiki>$1</nowiki>" estas forigita.
 Vidu la paĝon $2 por registro de lastatempaj forigoj.',
 'deletedarticle'              => 'forigis "$1"',
+'suppressedarticle'           => '"[[$1]]" estas subigita',
 'dellogpage'                  => 'Loglibro de forigoj',
 'dellogpagetext'              => 'Jen listo de la plej lastaj forigoj el la datumaro.
 Ĉiuj tempoj sekvas la horzonon UTC.',

@@ -228,7 +228,9 @@ ning [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide kasutusjuhendit].'
 'permalink'         => 'Püsilink',
 'print'             => 'Prindi',
 'edit'              => 'redigeeri',
+'create'            => 'Loo',
 'editthispage'      => 'Redigeeri seda artiklit',
+'create-this-page'  => 'Loo see lehekülg',
 'delete'            => 'kustuta',
 'deletethispage'    => 'Kustuta see artikkel',
 'undelete_short'    => 'Taasta {{PLURAL:$1|üks muudatus|$1 muudatust}}',
@@ -541,6 +543,10 @@ Te kinnitate ka, et kirjutasite selle ise või võtsite selle kopeerimiskitsendu
 Kaaluge, kas lehe uuesti loomine on kohane.
 Lehe eelnevad kustutamised:",
 
+# "Undo" feature
+'undo-success' => 'Selle redaktsiooni käigus tehtud muudatusi saab eemaldada. Palun kontrolli allolevat võrdlust veendumaks, et tahad need muudatused tõepoolest eemaldada. Seejärel saad lehekülje salvestada.',
+'undo-summary' => 'Tühistati muudatus $1, mille tegi [[Special:Contributions/$2|$2]] ([[Kasutaja arutelu:$2|Arutelu]])',
+
 # History pages
 'viewpagelogs'        => 'Vaata selle lehe logisid',
 'nohistory'           => 'Sellel leheküljel ei ole eelmisi redaktsioone.',
@@ -570,6 +576,7 @@ Legend: (viim) = erinevused võrreldes viimase redaktsiooniga,
 'difference'              => '(Erinevused redaktsioonide vahel)',
 'lineno'                  => 'Rida $1:',
 'compareselectedversions' => 'Võrdle valitud redaktsioone',
+'editundo'                => 'eemalda',
 
 # Search results
 'searchresults'         => 'Otsingu tulemused',
@@ -695,6 +702,7 @@ sisse logida.',
 'minoreditletter'                   => 'P',
 'newpageletter'                     => 'U',
 'number_of_watching_users_pageview' => '[$1 {{PLURAL:$1|jälgiv kasutaja|jälgivat kasutajat}}]',
+'newsectionsummary'                 => '/* $1 */ uus alajaotus',
 
 # Recent changes linked
 'recentchangeslinked' => 'Seotud muudatused',
@@ -736,6 +744,7 @@ Pane tähele, et nagu ka ülejäänud siinsete lehekülgede puhul,
 võivad teised sinu poolt laetud faile saidi huvides
 muuta või kustutada ning juhul kui sa süsteemi kuritarvitad
 võidakse sinu ligipääs sulgeda.',
+'upload-permitted'     => 'Lubatud failitüübid: $1.',
 'uploadlog'            => 'üleslaadimise logi',
 'uploadlogpage'        => 'Üleslaadimise logi',
 'uploadlogpagetext'    => 'Allpool on loend viimastest failide üleslaadimistest. Kõik ajad näidatakse serveri aja järgi.',
@@ -747,6 +756,7 @@ võidakse sinu ligipääs sulgeda.',
 'ignorewarnings'       => 'Ignoreeri hoiatusi',
 'illegalfilename'      => 'Faili "$1" nimi sisaldab sümboleid, mis pole pealkirjades lubatud. Palun nimetage fail ümber ja proovige uuesti.',
 'badfilename'          => 'Pildi nimi on muudetud. Uus nimi on "$1".',
+'filetype-banned-type' => "'''\".\$1\"''' ei ole lubatud failitüüp.  Lubatud failitüübid on \$2.",
 'large-file'           => 'On soovitatav, et üleslaetavad failid ei oleks suuremad kui $1; selle faili suurus on $2.',
 'largefileserver'      => 'Antud fail on suurem serverikonfiguratsiooni poolt lubatavast failisuurusest.',
 'fileexists'           => 'Sellise nimega fail on juba olemas. Palun kontrollige $1, kui te ei ole kindel, kas tahate seda muuta.',
@@ -755,12 +765,16 @@ võidakse sinu ligipääs sulgeda.',
 'uploadwarning'        => 'Üleslaadimise hoiatus',
 'savefile'             => 'Salvesta fail',
 'uploadedimage'        => 'Fail "[[$1]]" on üles laaditud',
+'overwroteimage'       => 'üles laaditud uus variant "[[$1]]"',
 'uploaddisabled'       => 'Üleslaadimine hetkel keelatud',
 'uploaddisabledtext'   => 'Vabandage, faili laadimine pole hetkel võimalik.',
 'uploadcorrupt'        => 'Fail on vigane või vale laiendiga. Palun kontrolli faili ja proovi seda uuesti üles laadida.',
 'uploadvirus'          => 'Fail sisaldab viirust! Täpsemalt: $1',
 'sourcefilename'       => 'Lähtefail:',
 'destfilename'         => 'Failinimi vikis:',
+'watchthisupload'      => 'Jälgi seda lehekülge',
+
+'upload-misc-error' => 'Tundmatu viga üleslaadimisel',
 
 'license'   => 'Litsents:',
 'nolicense' => 'pole valitud',
@@ -770,13 +784,27 @@ võidakse sinu ligipääs sulgeda.',
 'imagelist' => 'Piltide loend',
 
 # Image description page
-'filehist-user'    => 'Kasutaja',
-'filehist-comment' => 'Kommentaar',
-'imagelinks'       => 'Viited pildile',
-'linkstoimage'     => 'Sellele pildile viitavad järgmised leheküljed:',
-'nolinkstoimage'   => 'Selle pildile ei viita ükski lehekülg.',
-'noimage'          => 'Sellise nimega faili pole, võite selle $1.',
-'noimage-linktext' => 'üles laadida',
+'filehist-deleteall' => 'kustuta kõik',
+'filehist-deleteone' => 'kustuta see',
+'filehist-user'      => 'Kasutaja',
+'filehist-comment'   => 'Kommentaar',
+'imagelinks'         => 'Viited pildile',
+'linkstoimage'       => 'Sellele pildile viitavad järgmised leheküljed:',
+'nolinkstoimage'     => 'Sellele pildile ei viita ükski lehekülg.',
+'noimage'            => 'Sellise nimega faili pole, võite selle $1.',
+'noimage-linktext'   => 'üles laadida',
+
+# File deletion
+'filedelete'                  => 'Kustuta $1',
+'filedelete-legend'           => 'Kustuta fail',
+'filedelete-comment'          => 'Kustutamise põhjus:',
+'filedelete-submit'           => 'Kustuta',
+'filedelete-otherreason'      => 'Muu/täiendav põhjus',
+'filedelete-reason-otherlist' => 'Muu põhjus',
+'filedelete-reason-dropdown'  => '*Harilikud kustutamise põhjused
+** Autoriõiguste rikkumine
+** Duplikaat',
+'filedelete-edit-reasonlist'  => 'Redigeeri kustutamise põhjuseid',
 
 # MIME search
 'mimesearch' => 'MIME otsing',
@@ -821,6 +849,7 @@ Administraatori staatuses kasutajaid: <b>$2</b> (vt $3).',
 
 'brokenredirects'        => 'Vigased ümbersuunamised',
 'brokenredirectstext'    => 'Järgmised leheküljed on ümber suunatud olematutele lehekülgedele.',
+'brokenredirects-edit'   => '(redigeeri)',
 'brokenredirects-delete' => '(kustuta)',
 
 # Miscellaneous special pages
@@ -831,9 +860,11 @@ Administraatori staatuses kasutajaid: <b>$2</b> (vt $3).',
 'nrevisions'              => '$1 {{PLURAL:$1|redaktsioon|redaktsiooni}}',
 'nviews'                  => 'Külastuste arv: $1',
 'lonelypages'             => 'Viitamata artiklid',
+'lonelypagestext'         => 'Järgmistele lehekülgedele ei ole linki ühelgi Viki leheküljel.',
 'uncategorizedpages'      => 'Kategoriseerimata leheküljed',
 'uncategorizedcategories' => 'Kategoriseerimata kategooriad',
 'uncategorizedimages'     => 'Kategoriseerimata pildid',
+'uncategorizedtemplates'  => 'Kategoriseerimata mallid',
 'unusedcategories'        => 'Kasutamata kategooriad',
 'unusedimages'            => 'Kasutamata pildid',
 'popularpages'            => 'Loetumad artiklid',
@@ -847,6 +878,7 @@ Administraatori staatuses kasutajaid: <b>$2</b> (vt $3).',
 'shortpages'              => 'Lühikesed artiklid',
 'longpages'               => 'Pikad artiklid',
 'deadendpages'            => 'Edasipääsuta artiklid',
+'deadendpagestext'        => 'Järgmised leheküljed ei viita ühelegi teisele Viki leheküljele.',
 'protectedpages'          => 'Kaitstud leheküljed',
 'listusers'               => 'Kasutajad',
 'specialpages'            => 'Erileheküljed',
@@ -860,6 +892,8 @@ Administraatori staatuses kasutajaid: <b>$2</b> (vt $3).',
 'unusedcategoriestext'    => 'Need kategooriad pole ühesgi artiklis või teises kategoorias kasutuses.',
 'notargettitle'           => 'Puudub sihtlehekülg',
 'notargettext'            => 'Sa ei ole esitanud sihtlehekülge ega kasutajat, kelle kallal seda operatsiooni toime panna.',
+'pager-newer-n'           => '{{PLURAL:$1|uuem 1|uuemad $1}}',
+'pager-older-n'           => '{{PLURAL:$1|vanem 1|vanemad $1}}',
 
 # Book sources
 'booksources' => 'Otsi raamatut',
@@ -884,16 +918,17 @@ Administraatori staatuses kasutajaid: <b>$2</b> (vt $3).',
 'allpagessubmit'    => 'Näita',
 
 # E-mail user
-'emailuser'     => 'Saada sellele kasutajale e-kiri',
-'emailpage'     => 'Saada kasutajale e-kiri',
-'emailpagetext' => 'Kui see kasutaja on oma eelistuste lehel sisestanud e-posti aadressi, siis saate alloleva vormi kaudu talle kirja saata. Et kasutaja saaks vastata, täidetakse kirja saatja väli "kellelt" e-posti aadressiga, mille olete sisestanud oma eelistuste lehel.',
-'emailfrom'     => 'Kellelt',
-'emailto'       => 'Kellele',
-'emailsubject'  => 'Pealkiri',
-'emailmessage'  => 'Sõnum',
-'emailsend'     => 'Saada',
-'emailsent'     => 'E-post saadetud',
-'emailsenttext' => 'Teie sõnum on saadetud.',
+'mailnologintext' => 'Te peate olema [[Eri:Userlogin|sisse logitud]] ja teil peab [[Eri:Preferences|eelistustes]] olema kehtiv e-posti aadress, et saata teistele kasutajatele e-kirju.',
+'emailuser'       => 'Saada sellele kasutajale e-kiri',
+'emailpage'       => 'Saada kasutajale e-kiri',
+'emailpagetext'   => 'Kui see kasutaja on oma eelistuste lehel sisestanud e-posti aadressi, siis saate alloleva vormi kaudu talle kirja saata. Et kasutaja saaks vastata, täidetakse kirja saatja väli "kellelt" e-posti aadressiga, mille olete sisestanud oma eelistuste lehel.',
+'emailfrom'       => 'Kellelt',
+'emailto'         => 'Kellele',
+'emailsubject'    => 'Pealkiri',
+'emailmessage'    => 'Sõnum',
+'emailsend'       => 'Saada',
+'emailsent'       => 'E-post saadetud',
+'emailsenttext'   => 'Teie sõnum on saadetud.',
 
 # Watchlist
 'watchlist'            => 'Minu jälgimisloend',
@@ -951,6 +986,11 @@ Kõik toodud kellaajad järgivad serveriaega (UTC).',
 'reverted'                    => 'Pöörduti tagasi varasemale versioonile',
 'deletecomment'               => 'Kustutamise põhjus',
 'deleteotherreason'           => 'Muu/täiendav põhjus:',
+'deletereasonotherlist'       => 'Muu põhjus',
+'deletereason-dropdown'       => '*Harilikud kustutamise põhjused
+** Autori palve
+** Autoriõiguste rikkumine
+** Vandalism',
 'rollback'                    => 'Tühista muudatused',
 'rollback_short'              => 'Tühista',
 'rollbacklink'                => 'tühista',
@@ -969,6 +1009,7 @@ Kõik toodud kellaajad järgivad serveriaega (UTC).',
 'protect-default'             => '(tavaline)',
 'protect-level-autoconfirmed' => 'Ainult registreeritud kasutajad',
 'protect-level-sysop'         => 'Ainult administraatorid',
+'protect-expiring'            => 'aegub $1 (UTC)',
 'restriction-type'            => 'Lubatud:',
 'restriction-level'           => 'Kaitsmise tase:',
 'minimum-size'                => 'Min suurus',
@@ -1017,8 +1058,10 @@ versioonid varasema ajaloona. Kehtivat versiooni automaatselt välja ei vahetata
 'nocontribs'    => 'Antud kriteeriumile vastavaid muudatusi ei leidnud.',
 'uctop'         => ' (üles)',
 
+'sp-contributions-username' => 'IP aadress või kasutajanimi:',
+
 # What links here
-'whatlinkshere'      => 'Viidad siia',
+'whatlinkshere'      => 'Lingid siia',
 'linklistsub'        => '(Linkide loend)',
 'linkshere'          => 'Siia viitavad järgmised leheküljed:',
 'nolinkshere'        => 'Siia ei viita ükski lehekülg.',
@@ -1100,6 +1143,7 @@ Neil juhtudel teisaldage arutelulehekülg soovi korral eraldi või ühendage ta 
 'movenologintext'  => 'Et lehekülge teisaldada, peate registreeruma
 kasutajaks ja [[Special:Userlogin|sisse logima]]',
 'newtitle'         => 'Uue pealkirja alla',
+'move-watch'       => 'Jälgi seda lehekülge',
 'movepagebtn'      => 'Teisalda artikkel',
 'pagemovedsub'     => 'Artikkel on teisaldatud',
 'articleexists'    => 'Selle nimega artikkel on juba olemas või pole valitud nimi lubatav. Palun valige uus nimi.',
@@ -1274,6 +1318,8 @@ Kui see *ei* ole sinu loodud konto, siis ära kliki lingil. Kinnituskood aegub $
 'redirectingto' => 'Ümbersuunamine lehele [[$1]]...',
 
 # Auto-summaries
+'autosumm-blank'   => 'Kustutatud kogu lehekülje sisu',
+'autosumm-replace' => "Lehekülg asendatud tekstiga '$1'",
 'autoredircomment' => 'Ümbersuunamine lehele [[$1]]',
 'autosumm-new'     => 'Uus lehekülg: $1',
 
@@ -1284,6 +1330,7 @@ Kui see *ei* ole sinu loodud konto, siis ära kliki lingil. Kinnituskood aegub $
 'watchlistedit-normal-explain' => "Siin on lehed, mis on teie jälgimisloendis.Et lehti eemaldada, tehke vastavatesse kastidesse linnukesed ja vajutage nuppu '''Eemalda valitud lehed'''. Te võite ka [[Special:Watchlist/raw|redigeerida lähtefaili]].",
 'watchlistedit-normal-submit'  => 'Eemalda valitud lehed',
 'watchlistedit-normal-done'    => '{{PLURAL:$1|1 leht|Järgmised $1 lehte}} on Teie jälgimisloendist eemaldatud:',
+'watchlistedit-raw-submit'     => 'Uuenda jälgimisloendit',
 'watchlistedit-raw-done'       => 'Teie jälgimisloend on uuendatud.',
 
 # Watchlist editing tools

@@ -694,8 +694,8 @@ Lu motivu è ''$2''",
 'logdelete-logentry'          => "hà canciatu la visibbilitati de l'eventu [[$1]]",
 'revdelete-logaction'         => 'hà mpustatu la mudalitati $2 pi $1 rivisioni',
 'logdelete-logaction'         => "hà mpustatu la mudalitati $2 pi {{PLURAL:$1|n'eventu relativu|$1 eventi relativi}} a [[$3]]",
-'revdelete-success'           => 'Visibbilitati dâ rivisioni mpustata currittamenti.',
-'logdelete-success'           => "Visibbilitati de l'eventu mpustata currittamenti.",
+'revdelete-success'           => "'''Visibbilitati dâ rivisioni mpustata currittamenti.'''",
+'logdelete-success'           => "'''Visibbilitati de l'eventu mpustata currittamenti.'''",
 
 # Diffs
 'history-title'           => 'Crunoluggìa dî canciamenti di "$1"',

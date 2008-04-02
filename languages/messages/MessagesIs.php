@@ -839,7 +839,7 @@ Prófaðu [[Special:Search|að leita á þessari wiki síðu]] að svipuðum sí
 'rev-delundel'           => 'sýna/fela',
 'revdelete-selected'     => "{{PLURAL:$2|Valin breyting|Valdar breytingar}} fyrir '''$1:'''",
 'logdelete-selected'     => "{{PLURAL:$2|Valin aðgerð|Valdar aðgerðir}} fyrir '''$1:'''",
-'revdelete-legend'       => 'Skráðu hamlanir:',
+'revdelete-legend'       => 'Skráðu hamlanir',
 'revdelete-hide-text'    => 'Fela breytingatexta',
 'revdelete-hide-comment' => 'Fela breytingaathugasemdir',
 'revdelete-hide-user'    => 'Fela notandanafn/vistfang',
