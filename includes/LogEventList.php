@@ -541,7 +541,7 @@ class LogViewer {
 				$this->pager->getNavigationBar()
 			);
 		} else {
-			$wgOut->addWikiMsg( 'logempty' );
+			$out->addWikiMsg( 'logempty' );
 		}
 	}
 }
