@@ -205,14 +205,8 @@ class MergehistoryForm {
 
 		# Show relevant lines from the deletion log:
 		$wgOut->addHTML( "<h2>" . htmlspecialchars( LogPage::logName( 'merge' ) ) . "</h2>\n" );
-		$logViewer = new LogViewer(
-			new LogReader(
-				new FauxRequest(
-					array( 'page' => $this->mTargetObj->getPrefixedText(),
-						   'type' => 'merge' ) ) ) );
-		$logViewer->showList( $wgOut );
+		LogEventsList::showLogExtract( $wgOut, 'merge', $this->mTargetObj->getPrefixedText() );
 		
-		# Slip in the hidden controls here
 		# When we submit, go by page ID to avoid some nasty but unlikely collisions.
 		# Such would happen if a page was renamed after the form loaded, but before submit
 		$misc = Xml::hidden( 'targetID', $this->mTargetObj->getArticleID() );

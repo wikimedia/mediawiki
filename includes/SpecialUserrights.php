@@ -540,17 +540,7 @@ class UserrightsPage extends SpecialPage {
 	 * @param OutputPage $output OutputPage to use
 	 */
 	protected function showLogFragment( $user, $output ) {
-		$viewer = new LogViewer(
-			new LogReader(
-				new FauxRequest(
-					array(
-						'type' => 'rights',
-						'page' => $user->getUserPage()->getPrefixedText(),
-					)
-				)
-			)
-		);
 		$output->addHtml( Xml::element( 'h2', null, LogPage::logName( 'rights' ) . "\n" ) );
-		$viewer->showList( $output );
+		LogEventsList::showLogExtract( $output, 'rights', $user->getUserPage()->getPrefixedText() );
 	}
 }

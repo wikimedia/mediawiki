@@ -2205,20 +2205,17 @@ END
 	 * @param OutputPage $out
 	 */
 	private function showDeletionLog( $out ) {
-		$title = $this->mTitle;
-		$reader = new LogReader(
-			new FauxRequest(
-				array(
-					'page' => $title->getPrefixedText(),
-					'type' => 'delete',
-					)
-			)
-		);
-		if( $reader->hasRows() ) {
+		global $wgUser;
+		$loglist = new LogEventsList( $wgUser->getSkin() );
+		$pager = new LogPager( $loglist, 'delete', false, $this->mTitle->getPrefixedText() );
+		if( $pager->getNumRows() > 0 ) {
 			$out->addHtml( '<div id="mw-recreate-deleted-warn">' );
 			$out->addWikiMsg( 'recreate-deleted-warn' );
-			$viewer = new LogViewer( $reader );
-			$viewer->showList( $out );
+			$out->addHTML(
+				$loglist->beginLogEventsList() .
+				$pager->getBody() .
+				$loglist->endLogEventsList()
+			);
 			$out->addHtml( '</div>' );
 		}
 	}
