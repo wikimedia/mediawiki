@@ -158,7 +158,7 @@ class LogEventList {
 		$linkCache =& LinkCache::singleton();
 		$linkCache->addLinkObj( $title );
 		// User links
-		if( LogPage::isDeleted($row,LogPage::DELETED_USER) ) {
+		if( self::isDeleted($row,LogPage::DELETED_USER) ) {
 			$userLink = '<span class="history-deleted">' . wfMsgHtml( 'rev-deleted-user' ) . '</span>';
 		} else {
 			$userLink = $this->skin->userLink( $row->log_user, $row->user_name ) . 
@@ -167,7 +167,7 @@ class LogEventList {
 		// Comment
 		if( $row->log_action == 'create2' ) {
 			$comment = ''; // Suppress from old account creations, useless and can contain incorrect links
-		} else if( LogPage::isDeleted($row,LogPage::DELETED_COMMENT) ) {
+		} else if( self::isDeleted($row,LogPage::DELETED_COMMENT) ) {
 			$comment = '<span class="history-deleted">' . wfMsgHtml('rev-deleted-comment') . '</span>';
 		} else {
 			$comment = $wgContLang->getDirMark() . $this->skin->commentBlock( $row->log_comment );
@@ -275,7 +275,7 @@ class LogEventList {
 	
 		$revdel = SpecialPage::getTitleFor( 'Revisiondelete' );
 		// If event was hidden from sysops
-		if( !LogPage::userCan( $row, Revision::DELETED_RESTRICTED ) ) {
+		if( !self::userCan( $row, LogPage::DELETED_RESTRICTED ) ) {
 			$del = $this->message['rev-delundel'];
 		} else if( $row->log_type == 'suppress' ) {
 			// No one should be hiding from the oversight log
@@ -283,7 +283,7 @@ class LogEventList {
 		} else {
 			$del = $this->skin->makeKnownLinkObj( $revdel, $this->message['rev-delundel'], 'logid='.$row->log_id );
 			// Bolden oversighted content
-			if( LogPage::isDeleted( $row, Revision::DELETED_RESTRICTED ) )
+			if( self::isDeleted( $row, LogPage::DELETED_RESTRICTED ) )
 				$del = "<strong>$del</strong>";
 		}
 		return "<tt>(<small>$del</small>)</tt>";
@@ -309,6 +309,35 @@ class LogEventList {
 			return 'log_type NOT IN(' . implode(',',$hiddenLogs) . ')';
 		}
 		return false;
+	}
+	
+	/**
+	 * Determine if the current user is allowed to view a particular
+	 * field of this log row, if it's marked as deleted.
+	 * @param Row $row
+	 * @param int $field
+	 * @return bool
+	 */
+	public static function userCan( $row, $field ) {
+		if( ( $row->log_deleted & $field ) == $field ) {
+			global $wgUser;
+			$permission = ( $row->log_deleted & LogPage::DELETED_RESTRICTED ) == LogPage::DELETED_RESTRICTED
+				? 'hiderevision'
+				: 'deleterevision';
+			wfDebug( "Checking for $permission due to $field match on $row->log_deleted\n" );
+			return $wgUser->isAllowed( $permission );
+		} else {
+			return true;
+		}
+	}
+
+	/**
+	 * int $field one of DELETED_* bitfield constants
+	 * @param Row $row
+	 * @return bool
+	 */
+	public static function isDeleted( $row, $field ) {
+		return ($row->log_deleted & $field) == $field;
 	}
 }
 

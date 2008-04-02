@@ -312,35 +312,6 @@ class LogPage {
 		}
 		return $messages[$flag];
 	}
-	
-	/**
-	 * Determine if the current user is allowed to view a particular
-	 * field of this log row, if it's marked as deleted.
-	 * @param Row $row
-	 * @param int $field
-	 * @return bool
-	 */
-	public static function userCan( $row, $field ) {
-		if( ( $row->log_deleted & $field ) == $field ) {
-			global $wgUser;
-			$permission = ( $row->log_deleted & self::DELETED_RESTRICTED ) == self::DELETED_RESTRICTED
-				? 'hiderevision'
-				: 'deleterevision';
-			wfDebug( "Checking for $permission due to $field match on $row->log_deleted\n" );
-			return $wgUser->isAllowed( $permission );
-		} else {
-			return true;
-		}
-	}
-
-	/**
-	 * int $field one of DELETED_* bitfield constants
-	 * @param Row $row
-	 * @return bool
-	 */
-	public static function isDeleted( $row, $field ) {
-		return ($row->log_deleted & $field) == $field;
-	}
 }
 
 /**
