@@ -318,6 +318,29 @@ class LogEventsList {
 	}
 	
 	/**
+	 * Quick function to show a short log extract
+	 * @param OutputPage $out
+	 * @param string $type
+	 * @param string $page
+	 */
+	 public static function showLogExtract( $out, $type='', $page='', $user='' ) {
+		global $wgUser;
+		# Insert list of top 50 or so items
+		$loglist = new LogEventsList( $wgUser->getSkin() );
+		$pager = new LogPager( $loglist, $type, $user, $page, '' );
+		$logBody = $pager->getBody();
+		if( $logBody ) {
+			$out->addHTML(
+				$loglist->beginLogEventsList() .
+				$logBody .
+				$loglist->endLogEventsList()
+			);
+		} else {
+			$out->addWikiMsg( 'logempty' );
+		}
+	 }
+	 
+	 /**
 	 * SQL clause to skip forbidden log types for this user
 	 * @param Database $db
 	 * @returns mixed (string or false)
@@ -355,7 +378,7 @@ class LogPager extends ReverseChronologicalPager {
 	* @param string $pattern
 	* @param array $conds
 	*/
-	function __construct( $loglist, $type, $user, $title, $pattern, $conds = array() ) {
+	function __construct( $loglist, $type='', $user='', $title='', $pattern='', $conds = array() ) {
 		parent::__construct();
 		$this->mConds = $conds;
 		

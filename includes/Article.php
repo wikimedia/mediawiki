@@ -2156,12 +2156,7 @@ class Article {
 	 */
 	function showLogExtract( $out ) {
 		$out->addHtml( Xml::element( 'h2', null, LogPage::logName( 'delete' ) ) );
-		$logViewer = new LogViewer(
-			new LogReader(
-				new FauxRequest(
-					array( 'page' => $this->mTitle->getPrefixedText(),
-					       'type' => 'delete' ) ) ) );
-		$logViewer->showList( $out );
+		LogEventsList::showLogExtract( $out, 'delete', $this->mTitle->getPrefixedText() );
 	}
 
 

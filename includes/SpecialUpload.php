@@ -1662,19 +1662,17 @@ wgUploadAutoFill = {$autofill};
 	 * @param string filename
 	 */
 	private function showDeletionLog( $out, $filename ) {
-		$reader = new LogReader(
-			new FauxRequest(
-				array(
-					'page' => $filename,
-					'type' => 'delete',
-					)
-			)
-		);
-		if( $reader->hasRows() ) {
+		global $wgUser;
+		$loglist = new LogEventsList( $wgUser->getSkin() );
+		$pager = new LogPager( $loglist, 'delete', false, $filename );
+		if( $pager->getNumRows() > 0 ) {
 			$out->addHtml( '<div id="mw-upload-deleted-warn">' );
 			$out->addWikiMsg( 'upload-wasdeleted' );
-			$viewer = new LogViewer( $reader );
-			$viewer->showList( $out );
+			$out->addHTML(
+				$loglist->beginLogEventsList() .
+				$pager->getBody() .
+				$loglist->endLogEventsList()
+			);
 			$out->addHtml( '</div>' );
 		}
 	}

@@ -400,9 +400,7 @@ class IPBlockForm {
 
 	function showLogFragment( $out, $title ) {
 		$out->addHtml( Xml::element( 'h2', NULL, LogPage::logName( 'block' ) ) );
-		$request = new FauxRequest( array( 'page' => $title->getPrefixedText(), 'type' => 'block' ) );
-		$viewer = new LogViewer( new LogReader( $request ) );
-		$viewer->showList( $out );
+		LogEventsList::showLogExtract( $out, 'block', $title->getPrefixedText() );
 	}
 
 	/**

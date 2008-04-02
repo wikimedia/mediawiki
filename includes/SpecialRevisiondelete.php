@@ -45,17 +45,10 @@ function wfSpecialRevisiondelete( $par = null ) {
 	# does not exist...might be helpful
 	if( !is_null($page) ) {
 		$wgOut->addHTML( "<h2>" . htmlspecialchars( LogPage::logName( 'delete' ) ) . "</h2>\n" );
-		$logViewer = new LogViewer(
-			new LogReader(
-				new FauxRequest(
-					array( 'page' => $page->getPrefixedText(), 'type' => 'delete' ) ) ) );
-		$logViewer->showList( $wgOut );
+		LogEventsList::showLogExtract( $wgOut, 'delete', $page->getPrefixedText() );
 		if( $wgUser->isAllowed( 'suppress' ) ){
 			$wgOut->addHTML( "<h2>" . htmlspecialchars( LogPage::logName( 'suppress' ) ) . "</h2>\n" );
-			$logViewer = new LogViewer(
-				new LogReader(
-					new FauxRequest(
-						array( 'page' => $page->getPrefixedText(), 'type' => 'suppress' ) ) ) );
+			LogEventsList::showLogExtract( $wgOut, 'suppress', $page->getPrefixedText() );
 			$logViewer->showList( $wgOut );
 		}
 	}
