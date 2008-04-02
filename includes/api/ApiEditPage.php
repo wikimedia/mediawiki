@@ -146,7 +146,9 @@ class ApiEditPage extends ApiBase {
 		# but that breaks API mode detection through is_null($wgTitle)
 		global $wgTitle;
 		$wgTitle = null;
+		$dbw = wfGetDb(DB_MASTER);
 		$retval = $ep->internalAttemptSave($result, $wgUser->isAllowed('bot') && $params['bot']);
+		$dbw->commit();
 		switch($retval)
 		{
 			case EditPage::AS_HOOK_ERROR:
