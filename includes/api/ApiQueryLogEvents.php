@@ -54,7 +54,7 @@ class ApiQueryLogEvents extends ApiQueryBase {
 
 		list($tbl_logging, $tbl_page, $tbl_user) = $db->tableNamesN('logging', 'page', 'user');
 
-		$hideLogs = LogEventList::getExcludeClause($db);
+		$hideLogs = LogEventsList::getExcludeClause($db);
 		if($hideLogs !== false)
 			$this->addWhere($hideLogs);
 
