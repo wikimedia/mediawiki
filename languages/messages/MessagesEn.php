@@ -1831,7 +1831,7 @@ A page is treated as disambiguation page if it uses a template which is linked f
 'specialloguserlabel'  => 'User:',
 'speciallogtitlelabel' => 'Title:',
 'log'                  => 'Logs',
-'all-logs-page'        => 'All public logs',
+'all-logs-page'        => 'All logs',
 'log-search-legend'    => 'Search for logs',
 'log-search-submit'    => 'Go',
 'alllogstext'          => 'Combined display of all available logs of {{SITENAME}}.
