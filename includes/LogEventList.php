@@ -571,11 +571,9 @@ class LogViewer {
 		$logBody = $this->pager->getBody();
 		if( $logBody ) {
 			$out->addHTML(
-				$this->pager->getNavigationBar() . 
 				$this->logEventList->beginLogEventList() .
 				$logBody .
-				$this->logEventList->endLogEventList() .
-				$this->pager->getNavigationBar()
+				$this->logEventList->endLogEventList()
 			);
 		} else {
 			$out->addWikiMsg( 'logempty' );
