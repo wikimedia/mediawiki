@@ -276,7 +276,8 @@ class LogEventList {
 		if( !LogPage::userCan( $row, Revision::DELETED_RESTRICTED ) ) {
 			$del = $this->message['rev-delundel'];
 		} else if( $row->log_type == 'suppress' ) {
-			return ''; // No one should be hiding from the oversight log
+			// No one should be hiding from the oversight log
+			$del = $this->message['rev-delundel'];
 		} else {
 			$del = $this->skin->makeKnownLinkObj( $revdel, $this->message['rev-delundel'], 'logid='.$row->log_id );
 			// Bolden oversighted content
