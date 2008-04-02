@@ -19,6 +19,8 @@
 
 class LogEventList {
 	const NO_ACTION_LINK = 1;
+	private $skin;
+	public $flags;
 
 	function __construct( &$skin, $flags = 0 ) {
 		$this->skin =& $skin;
@@ -310,105 +312,74 @@ class LogEventList {
 	}
 }
 
-
 /**
- *
- * @addtogroup SpecialPage
+ * @addtogroup Pager
  */
-class LogReader {
-	var $db, $joinClauses, $whereClauses;
-	var $type = '', $user = '', $title = null, $pattern = false;
-
+class LogPager extends ReverseChronologicalPager {
+	private $type = '', $user = '', $title = '', $pattern = '';
+	public $mLogEventList;
 	/**
-	 * @param WebRequest $request For internal use use a FauxRequest object to pass arbitrary parameters.
-	 */
-	function LogReader( $request ) {
-		$this->db = wfGetDB( DB_SLAVE );
-		$this->setupQuery( $request );
-	}
-
-	/**
-	 * Basic setup and applies the limiting factors from the WebRequest object.
-	 * @param WebRequest $request
-	 * @private
-	 */
-	function setupQuery( $request ) {
-		$page = $this->db->tableName( 'page' );
-		$user = $this->db->tableName( 'user' );
-		$this->joinClauses = array( 
-			"LEFT OUTER JOIN $page ON log_namespace=page_namespace AND log_title=page_title",
-			"INNER JOIN $user ON user_id=log_user" );
-		$this->whereClauses = array();
-
-		$this->limitType( $request->getVal( 'type' ) );
-		$this->limitUser( $request->getText( 'user' ) );
-		$this->limitTitle( $request->getText( 'page' ) , $request->getBool( 'pattern' ) );
-		$this->limitTime( $request->getVal( 'from' ), '>=' );
-		$this->limitTime( $request->getVal( 'until' ), '<=' );
-
-		list( $this->limit, $this->offset ) = $request->getLimitOffset();
+	* constructor
+	* @param LogEventList $loglist,
+	* @param string $type,
+	* @param string $user,
+	* @param string $page,
+	* @param string $pattern
+	* @param array $conds
+	*/
+	function __construct( $loglist, $type, $user, $title, $pattern, $conds = array() ) {
+		parent::__construct();
+		$this->mConds = $conds;
 		
-		// XXX This all needs to use Pager, ugly hack for now.
-		global $wgMiserMode;
-		if( $wgMiserMode )
-			$this->offset = min( $this->offset, 10000 );
+		$this->mLogEventList = $loglist;
+		
+		$this->limitType( $type );
+		$this->limitUser( $user );
+		$this->limitTitle( $title, $pattern );
 	}
-
+	
 	/**
 	 * Set the log reader to return only entries of the given type.
 	 * Type restrictions enforced here
 	 * @param string $type A log type ('upload', 'delete', etc)
 	 * @private
 	 */
-	function limitType( $type ) {
-		global $wgLogRestrictions, $wgUser;
-		// Reset the array, clears extra "where" clauses when $par is used
-		$this->whereClauses = $hiddenLogs = array();
-		// Nothing to show the user requested a log they can't see
-		if( isset($wgLogRestrictions[$type]) && !$wgUser->isAllowed($wgLogRestrictions[$type]) ) {
-			$this->whereClauses[] = "1 = 0";
-			return false;
-		}
+	private function limitType( $type ) {
 		// Don't show private logs to unpriviledged users
-		foreach( $wgLogRestrictions as $logtype => $right ) {
-			if( !$wgUser->isAllowed($right) || empty($type) ) {
-				$safetype = $this->db->strencode( $logtype );
-				$hiddenLogs[] = "'$safetype'";
-			}
+		$hideLogs = LogEventList::getExcludeClause( $this->mDb );
+		if( $hideLogs !== false ) {
+			$this->mConds[] = $hideLogs;
 		}
-		if( !empty($hiddenLogs) ) {
-			$this->whereClauses[] = 'log_type NOT IN('.implode(',',$hiddenLogs).')';
-		}
-		
 		if( empty($type) ) {
 			return false;
 		}
 		$this->type = $type;
-		$safetype = $this->db->strencode( $type );
-		$this->whereClauses[] = "log_type='$safetype'";
+		$this->mConds['log_type'] = $type;
 	}
-
+	
 	/**
 	 * Set the log reader to return only entries by the given user.
 	 * @param string $name (In)valid user name
 	 * @private
 	 */
 	function limitUser( $name ) {
-		if ( $name == '' )
+		if( $name == '' ) {
 			return false;
+		}
 		$usertitle = Title::makeTitleSafe( NS_USER, $name );
-		if ( is_null( $usertitle ) )
+		if( is_null($usertitle) ) {
 			return false;
+		}
 		$this->user = $usertitle->getText();
-		
 		/* Fetch userid at first, if known, provides awesome query plan afterwards */
-		$userid = $this->db->selectField('user','user_id',array('user_name'=>$this->user));
-		if (!$userid)
+		$userid = User::idFromName( $this->user );
+		if( !$userid ) {
 			/* It should be nicer to abort query at all, 
 			   but for now it won't pass anywhere behind the optimizer */
-			$this->whereClauses[] = "NULL";
-		else
-			$this->whereClauses[] = "log_user=$userid";
+			$this->mConds[] = "NULL";
+		} else {
+			$this->mConds['log_user'] = $userid;
+		}
 	}
 
 	/**
@@ -417,125 +388,87 @@ class LogReader {
 	 * @param string $page Title name as text
 	 * @private
 	 */
-	function limitTitle( $page , $pattern ) {
+	function limitTitle( $page, $pattern ) {
 		global $wgMiserMode;
 		
 		$title = Title::newFromText( $page );
-		
-		if( strlen( $page ) == 0 || !$title instanceof Title )
+		if( strlen($page) == 0 || !$title instanceof Title )
 			return false;
-
-		$this->title =& $title;
+		
+		$this->title = $title->getPrefixedText();
 		$this->pattern = $pattern;
 		$ns = $title->getNamespace();
-		if ( $pattern && !$wgMiserMode ) {
-			$safetitle = $this->db->escapeLike( $title->getDBkey() ); // use escapeLike to avoid expensive search patterns like 't%st%'
-			$this->whereClauses[] = "log_namespace=$ns AND log_title LIKE '$safetitle%'";
+		if( $pattern && !$wgMiserMode ) {
+			# use escapeLike to avoid expensive search patterns like 't%st%'
+			$safetitle = $this->mDb->escapeLike( $title->getDBkey() );
+			$this->mConds['log_namespace'] = $ns;
+			$this->mConds[] = "log_title LIKE '$safetitle%'";
 		} else {
-			$safetitle = $this->db->strencode( $title->getDBkey() );
-			$this->whereClauses[] = "log_namespace=$ns AND log_title = '$safetitle'";
+			$this->mConds['log_namespace'] = $ns;
+			$this->mConds['log_title'] = $title->getDBkey();
 		}
 	}
 
-	/**
-	 * Set the log reader to return only entries in a given time range.
-	 * @param string $time Timestamp of one endpoint
-	 * @param string $direction either ">=" or "<=" operators
-	 * @private
-	 */
-	function limitTime( $time, $direction ) {
-		# Direction should be a comparison operator
-		if( empty( $time ) ) {
-			return false;
-		}
-		$safetime = $this->db->strencode( wfTimestamp( TS_MW, $time ) );
-		$this->whereClauses[] = "log_timestamp $direction '$safetime'";
-	}
-
-	/**
-	 * Build an SQL query from all the set parameters.
-	 * @return string the SQL query
-	 * @private
-	 */
-	function getQuery() {
+	function getQueryInfo() {
+		$this->mConds[] = 'user_id = log_user';
+		# Hack this until live
 		global $wgAllowLogDeletion;
+		$log_id = $wgAllowLogDeletion ? 'log_id' : '0 AS log_id';
+		return array(
+			'tables' => array( 'logging', 'user' ),
+			'fields' => array( 'log_type', 'log_action', 'log_user', 'log_namespace', 'log_title', 
+				'log_params', 'log_comment', $log_id, 'log_deleted', 'log_timestamp', 'user_name' ),
+			'conds' => $this->mConds,
+			'options' => array()
+		);
+	}
+
+	function getIndexField() {
+		return 'log_timestamp';
+	}
+
+	function formatRow( $row ) {
+		return $this->mLogEventList->logLine( $row );
+	}
 	
-		$logging = $this->db->tableName( "logging" );
-		$sql = "SELECT /*! STRAIGHT_JOIN */ log_type, log_action, log_timestamp,
-			log_user, user_name, log_namespace, log_title, page_id,
-			log_comment, log_params, log_deleted ";
-		if( $wgAllowLogDeletion )	
-			$sql .= ", log_id ";
-		
-		$sql .= "FROM $logging ";
-		if( !empty( $this->joinClauses ) ) {
-			$sql .= implode( ' ', $this->joinClauses );
-		}
-		if( !empty( $this->whereClauses ) ) {
-			$sql .= " WHERE " . implode( ' AND ', $this->whereClauses );
-		}
-		$sql .= " ORDER BY log_timestamp DESC ";
-		$sql = $this->db->limitResult($sql, $this->limit, $this->offset );
-		return $sql;
-	}
-
-	/**
-	 * Execute the query and start returning results.
-	 * @return ResultWrapper result object to return the relevant rows
-	 */
-	function getRows() {
-		$res = $this->db->query( $this->getQuery(), __METHOD__ );
-		return $this->db->resultObject( $res );
-	}
-
-	/**
-	 * @return string The query type that this LogReader has been limited to.
-	 */
-	function queryType() {
+	public function getType() {
 		return $this->type;
 	}
-
-	/**
-	 * @return string The username type that this LogReader has been limited to, if any.
-	 */
-	function queryUser() {
+	
+	public function getUser() {
 		return $this->user;
 	}
-
-	/**
-	 * @return boolean The checkbox, if titles should be searched by a pattern too
-	 */
-	function queryPattern() {
+	
+	public function getPage() {
+		return $this->title;
+	}
+	
+	public function getPattern() {
 		return $this->pattern;
 	}
+}
 
+/**
+ *
+ * @addtogroup SpecialPage
+ */
+class LogReader {
+	var $db, $joinClauses, $whereClauses;
+	var $type = '', $user = '', $title = null, $pattern = false;
 	/**
-	 * @return string The text of the title that this LogReader has been limited to.
+	 * @param WebRequest $request For internal use use a FauxRequest object to pass arbitrary parameters.
 	 */
-	function queryTitle() {
-		if( is_null( $this->title ) ) {
-			return '';
-		} else {
-			return $this->title->getPrefixedText();
-		}
+	function LogReader( $request ) {
+		global $wgUser;
+		# Get parameters
+		$type = $request->getVal( 'type' );
+		$user = $request->getText( 'user' );
+		$title = $request->getText( 'page' );
+		$pattern = $request->getBool( 'pattern' );
+		
+		$loglist = new LogEventList( $wgUser->getSkin() );
+		$this->pager = new LogPager( $loglist, $type, $user, $title, $pattern );
 	}
-	
-	/**
-	 * Is there at least one row?
-	 *
-	 * @return bool
-	 */
-	public function hasRows() {
-		# Little hack...
-		$limit = $this->limit;
-		$this->limit = 1;
-		$res = $this->db->query( $this->getQuery() );
-		$this->limit = $limit;
-		$ret = $this->db->numRows( $res ) > 0;
-		$this->db->freeResult( $res );
-		return $ret;
-	}
-	
 }
 
 /**
@@ -560,8 +493,10 @@ class LogViewer {
 		global $wgUser;
 		$this->skin = $wgUser->getSkin();
 		$this->reader =& $reader;
-		$this->flags = $flags;
-		$this->logList = new LogEventList( $wgUser->getSkin(), $flags );
+		$this->reader->pager->mLogEventList->flags = $flags;
+		# Aliases for shorter code...
+		$this->pager =& $this->reader->pager;
+		$this->logEventList =& $this->reader->pager->mLogEventList;
 	}
 
 	/**
@@ -569,52 +504,25 @@ class LogViewer {
 	 */
 	function show() {
 		global $wgOut;
-		$this->logList->showHeader( $wgOut, $this->reader->queryType() );
-		$this->logList->showOptions( $wgOut, $this->reader->queryType(), $this->reader->queryUser(), 
-			$this->reader->queryTitle(), $this->reader->queryPattern() ); 
-		$result = $this->getLogRows();
-		if ( $this->numResults > 0 ) {
-			$this->showPrevNext( $wgOut );
-			$this->doShowList( $wgOut, $result );
-			$this->showPrevNext( $wgOut );
+		# Set title and add header
+		$this->logEventList->showHeader( $wgOut, $pager->getType() );
+		# Show form options
+		$this->logEventList->showOptions( $wgOut, $this->pager->getType(), $this->pager->getUser(), 
+			$this->pager->getPage(), $this->pager->getPattern() );
+		# Insert list
+		$logBody = $this->pager->getBody();
+		if( $logBody ) {
+			$wgOut->addHTML(
+				$this->pager->getNavigationBar() . 
+				$this->logEventList->beginLogEventList() .
+				$logBody .
+				$this->logEventList->endLogEventList() .
+				$this->pager->getNavigationBar()
+			);
 		} else {
-			$this->showError( $wgOut );
+			$wgOut->addWikiMsg( 'logempty' );
 		}
 	}
-
-	/**
-	 * Load the data from the linked LogReader
-	 * Preload the link cache
-	 * Initialise numResults
-	 *
-	 * Must be called before calling showPrevNext
-	 *
-	 * @return object database result set
-	 */
-	function getLogRows() {
-		$result = $this->reader->getRows();
-		$this->numResults = 0;
-
-		// Fetch results and form a batch link existence query
-		$batch = new LinkBatch;
-		while ( $s = $result->fetchObject() ) {
-			// User link
-			$batch->addObj( Title::makeTitleSafe( NS_USER, $s->user_name ) );
-			$batch->addObj( Title::makeTitleSafe( NS_USER_TALK, $s->user_name ) );
-
-			// Move destination link
-			if ( $s->log_type == 'move' ) {
-				$paramArray = LogPage::extractParams( $s->log_params );
-				$title = Title::newFromText( $paramArray[0] );
-				$batch->addObj( $title );
-			}
-			++$this->numResults;
-		}
-		$batch->execute();
-
-		return $result;
-	}
-
 
 	/**
 	 * Output just the list of entries given by the linked LogReader,
@@ -623,51 +531,18 @@ class LogViewer {
 	 * @param OutputPage $out where to send output
 	 */
 	function showList( &$out ) {
-		$result = $this->getLogRows();
-		if ( $this->numResults > 0 ) {
-			$this->doShowList( $out, $result );
+		$logBody = $this->pager->getBody();
+		if( $logBody ) {
+			$out->addHTML(
+				$this->pager->getNavigationBar() . 
+				$this->logEventList->beginLogEventList() .
+				$logBody .
+				$this->logEventList->endLogEventList() .
+				$this->pager->getNavigationBar()
+			);
 		} else {
-			$this->showError( $out );
+			$wgOut->addWikiMsg( 'logempty' );
 		}
-	}
-
-	function doShowList( &$out, $result ) {
-		// Rewind result pointer and go through it again, making the HTML
-		$html = "\n<ul>\n";
-		$result->seek( 0 );
-		while( $s = $result->fetchObject() ) {
-			$html .= $this->logList->logLine( $s );
-		}
-		$html .= "\n</ul>\n";
-		$out->addHTML( $html );
-		$result->free();
-	}
-
-	function showError( &$out ) {
-		$out->addWikiMsg( 'logempty' );
-	}
-
-	/**
-	 * @param OutputPage &$out where to send output
-	 * @private
-	 */
-	function showPrevNext( &$out ) {
-		global $wgContLang,$wgRequest;
-		$pieces = array();
-		$pieces[] = 'type=' . urlencode( $this->reader->queryType() );
-		$pieces[] = 'user=' . urlencode( $this->reader->queryUser() );
-		$pieces[] = 'page=' . urlencode( $this->reader->queryTitle() );
-		$pieces[] = 'pattern=' . urlencode( $this->reader->queryPattern() );
-		$bits = implode( '&', $pieces );
-		list( $limit, $offset ) = $wgRequest->getLimitOffset();
-
-		# TODO: use timestamps instead of offsets to make it more natural
-		# to go huge distances in time
-		$html = wfViewPrevNext( $offset, $limit,
-			$wgContLang->specialpage( 'Log' ),
-			$bits,
-			$this->numResults < $limit);
-		$out->addHTML( '<p>' . $html . '</p>' );
 	}
 }
 
