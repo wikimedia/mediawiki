@@ -133,6 +133,14 @@ class LogEventList {
 		return Xml::checkLabel( wfMsg( 'log-title-wildcard' ), 'pattern', 'pattern', $pattern );
 	}
 	
+	public function beginLogEventList() {
+		return "<ul>\n";
+	}
+	
+	public function endLogEventList() {
+		return "</ul>\n";
+	}
+	
 		/**
 	 * @param Row $row a single row from the result set
 	 * @return string Formatted HTML list item
@@ -250,7 +258,7 @@ class LogEventList {
 			$action = LogPage::actionText( $row->log_type, $row->log_action, $title, $this->skin, $paramArray, true );
 		}
 		
-		return "<li>$del$time $userLink $action $comment $revert</li>";
+		return "<li>$del$time $userLink $action $comment $revert</li>\n";
 	}
 	
 	/**
@@ -276,6 +284,28 @@ class LogEventList {
 				$del = "<strong>$del</strong>";
 		}
 		return "<tt>(<small>$del</small>)</tt>";
+	}
+	
+	/**
+	 * SQL clause to skip forbidden log types for this user
+	 * @param Database $db
+	 * @returns mixed (string or false)
+	 */
+	public static function getExcludeClause( $db ) {
+		global $wgLogRestrictions, $wgUser;
+		// Reset the array, clears extra "where" clauses when $par is used
+		$hiddenLogs = array();
+		// Don't show private logs to unpriviledged users
+		foreach( $wgLogRestrictions as $logtype => $right ) {
+			if( !$wgUser->isAllowed($right) ) {
+				$safetype = $db->strencode( $logtype );
+				$hiddenLogs[] = "'$safetype'";
+			}
+		}
+		if( !empty($hiddenLogs) ) {
+			return 'log_type NOT IN(' . implode(',',$hiddenLogs) . ')';
+		}
+		return false;
 	}
 }
 
