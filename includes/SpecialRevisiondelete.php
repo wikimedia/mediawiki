@@ -469,7 +469,7 @@ class RevisionDeleteForm {
 			if( !isset( $logRows[$logid] ) || $logRows[$logid]->log_type=='suppress' ) {
 				$wgOut->showErrorPage( 'revdelete-nooldid-title', 'revdelete-nooldid-text' );
 				return;
-			} else if( !LogPage::userCan( $logRows[$logid],Revision::DELETED_RESTRICTED) ) {
+			} else if( !LogEventList::userCan( $logRows[$logid],Revision::DELETED_RESTRICTED) ) {
 			// If an event is hidden from sysops
 				if( $action != 'submit') {
 					$wgOut->permissionRequired( 'hiderevision' );
@@ -629,7 +629,7 @@ class RevisionDeleteForm {
 		$loglink = $this->skin->makeKnownLinkObj( $logtitle, wfMsgHtml( 'log' ),
 			wfArrayToCGI( array( 'page' => $title->getPrefixedUrl() ) ) );
 		// Action text
-		if( !LogPage::userCan($row,LogPage::DELETED_ACTION) ) {
+		if( !LogEventList::userCan($row,LogPage::DELETED_ACTION) ) {
 			$action = '<span class="history-deleted">' . wfMsgHtml('rev-deleted-event') . '</span>';	
 		} else {
 			$action = LogPage::actionText( $row->log_type, $row->log_action, $title, 
@@ -639,12 +639,12 @@ class RevisionDeleteForm {
 		}
 		// User links
 		$userLink = $this->skin->userLink( $row->log_user, User::WhoIs($row->log_user) );
-		if( LogPage::isDeleted($row,LogPage::DELETED_USER) ) {
+		if( LogEventList::isDeleted($row,LogPage::DELETED_USER) ) {
 			$userLink = '<span class="history-deleted">' . $userLink . '</span>';
 		}
 		// Comment
 		$comment = $wgContLang->getDirMark() . $this->skin->commentBlock( $row->log_comment );
-		if( LogPage::isDeleted($row,LogPage::DELETED_COMMENT) ) {
+		if( LogEventList::isDeleted($row,LogPage::DELETED_COMMENT) ) {
 			$comment = '<span class="history-deleted">' . $comment . '</span>';
 		}
 		return "<li>($loglink) $date $userLink $action $comment</li>";
@@ -1080,7 +1080,7 @@ class RevisionDeleter {
 			if( !isset($logRows[$logid]) ) {
 				$success = false;
 				continue; // Must exist
-			} else if( !LogPage::userCan($logRows[$logid], Revision::DELETED_RESTRICTED)
+			} else if( !LogEventList::userCan($logRows[$logid], Revision::DELETED_RESTRICTED)
 				 || $logRows[$logid]->log_type == 'suppress' ) {
 			// Don't hide from oversight log!!!
     			$userAllowedAll=false;
