@@ -374,6 +374,11 @@ class LogPager extends ReverseChronologicalPager {
 	 * @private
 	 */
 	private function limitType( $type ) {
+		global $wgLogRestrictions, $wgUser;
+		// Don't even show header for private logs; don't recognize it...
+		if( isset($wgLogRestrictions[$type]) && !$wgUser->isAllowed($wgLogRestrictions[$type]) ) {
+			$type = '';
+		}
 		// Don't show private logs to unpriviledged users
 		$hideLogs = LogEventsList::getExcludeClause( $this->mDb );
 		if( $hideLogs !== false ) {
