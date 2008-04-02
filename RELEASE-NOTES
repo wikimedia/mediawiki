@@ -149,6 +149,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 13554) PHP Notice in old pre-processor when list item is empty.
 * (bug 13556) Don't show a blank form if no image is attached in Special:Upload
 * (bug 13576) maintenance/rebuildrecentchanges.php fails
+* (bug 13441) Allow Special:Recentchanges to show bots only
 
 === API changes in 1.13 ===
 

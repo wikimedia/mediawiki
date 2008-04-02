@@ -132,16 +132,25 @@ function wfSpecialRecentchanges( $par, $specialPage ) {
 
 	# It makes no sense to hide both anons and logged-in users
 	# Where this occurs, force anons to be shown
-	if( $hideanons && $hideliu )
-		$hideanons = false;
+	$forcebot = false;
+	if( $hideanons && $hideliu ){
+		# Check if the user wants to show bots only
+		if( $hidebots ){
+			$hideanons = 0;
+		} else {
+			$forcebot = true;
+			$hidebots = 0;
+		}
+	}
 
 	# Form WHERE fragments for all the options
 	$hidem  = $hideminor ? 'AND rc_minor = 0' : '';
 	$hidem .= $hidebots ? ' AND rc_bot = 0' : '';
-	$hidem .= $hideliu ? ' AND rc_user = 0' : '';
+	$hidem .= $hideliu && !$forcebot ? ' AND rc_user = 0' : '';
 	$hidem .= ( ChangesList::usePatrol() && $hidepatrolled ) ? ' AND rc_patrolled = 0' : '';
-	$hidem .= $hideanons ? ' AND rc_user != 0' : '';
-	
+	$hidem .= $hideanons && !$forcebot ? ' AND rc_user != 0' : '';
+	$hidem .= $forcebot ? ' AND rc_bot = 1' : '';
+
 	if( $hidemyself ) {
 		if( $wgUser->getID() ) {
 			$hidem .= ' AND rc_user != ' . $wgUser->getID();
