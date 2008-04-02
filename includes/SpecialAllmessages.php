@@ -31,15 +31,13 @@ function wfSpecialAllmessages() {
 	$sortedArray = array_merge( Language::getMessagesFor( 'en' ), $wgMessageCache->getExtensionMessagesFor( 'en' ) );
 	ksort( $sortedArray );
 	$messages = array();
-	$wgMessageCache->disableTransform();
 
 	foreach ( $sortedArray as $key => $value ) {
 		$messages[$key]['enmsg'] = $value;
-		$messages[$key]['statmsg'] = wfMsgNoDb( $key );
-		$messages[$key]['msg'] = wfMsg ( $key );
+		$messages[$key]['statmsg'] = wfMsgReal( $key, array(), false, false, false ); // wfMsgNoDbNoTrans doesn't exist
+		$messages[$key]['msg'] = wfMsgNoTrans( $key );
 	}
 
-	$wgMessageCache->enableTransform();
 	wfProfileOut( __METHOD__ . '-setup' );
 
 	wfProfileIn( __METHOD__ . '-output' );
@@ -111,12 +109,12 @@ function wfAllMessagesMakeHTMLText( $messages ) {
 	$sk = $wgUser->getSkin();
 	$talk = wfMsg( 'talkpagelinktext' );
 
-	$input = wfElement( 'input', array(
+	$input = Xml::element( 'input', array(
 		'type'    => 'text',
 		'id'      => 'allmessagesinput',
 		'onkeyup' => 'allmessagesfilter()'
 	), '' );
-	$checkbox = wfElement( 'input', array(
+	$checkbox = Xml::element( 'input', array(
 		'type'    => 'button',
 		'value'   => wfMsgHtml( 'allmessagesmodified' ),
 		'id'      => 'allmessagescheckbox',
