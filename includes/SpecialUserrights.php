@@ -341,7 +341,7 @@ class UserrightsPage extends SpecialPage {
 
 		$grouplist = '';
 		if( count( $list ) > 0 ) {
-			$grouplist = '<p>' . wfMsgHtml( 'userrights-groupsmember' ) . ' ' . implode( ', ', $list ) . '</p>';
+			$grouplist = Xml::tags( 'p', null, wfMsgHtml( 'userrights-groupsmember' ) . ' ' . implode( ', ', $list ) );
 		}
 		$wgOut->addHTML(
 			Xml::openElement( 'form', array( 'method' => 'post', 'action' => $this->getTitle()->getLocalURL(), 'name' => 'editGroup', 'id' => 'mw-userrights-form2' ) ) .
@@ -351,7 +351,7 @@ class UserrightsPage extends SpecialPage {
 			Xml::element( 'legend', array(), wfMsg( 'userrights-editusergroup' ) ) .
 			wfMsgExt( 'editinguser', array( 'parse' ), wfEscapeWikiText( $user->getName() ) ) .
 			$grouplist .
-			Xml::openElement( 'p') . $this->groupCheckboxes( $groups ) . Xml::closeElement( 'p' ) . 
+			Xml::tags( 'p', null, $this->groupCheckboxes( $groups ) ) . 
 			Xml::openElement( 'table', array( 'border' => '0', 'id' => 'mw-userrights-table-outer' ) ) .
 				"<tr>
 					<td colspan='2'>" .
@@ -359,16 +359,16 @@ class UserrightsPage extends SpecialPage {
 					"</td>
 				</tr>
 				<tr>
-					<td>" .
+					<td class='mw-label'>" .
 						Xml::label( wfMsg( 'userrights-reason' ), 'wpReason' ) .
 					"</td>
-					<td>" .
+					<td class='mw-input'>" .
 						Xml::input( 'user-reason', 60, false, array( 'id' => 'wpReason', 'maxlength' => 255 ) ) .
 					"</td>
 				</tr>
 				<tr>
 					<td></td>
-					<td>" .
+					<td class='mw-submit'>" .
 						Xml::submitButton( wfMsg( 'saveusergroups' ), array( 'name' => 'saveusergroups' ) ) .
 					"</td>
 				</tr>" .
@@ -401,36 +401,46 @@ class UserrightsPage extends SpecialPage {
 	private function groupCheckboxes( $usergroups ) {
 		$allgroups = User::getAllGroups();
 		$ret = '';
-		
+
 		$column = 1;
 		$settable_col = '';
 		$unsettable_col = '';
-		
+
 		foreach ($allgroups as $group) {
 			$set = in_array( $group, $usergroups );
 			$disabled = !(
 				( $set && $this->canRemove( $group ) ) ||
 				( !$set && $this->canAdd( $group ) ) );
-				
+
 			$attr = $disabled ? array( 'disabled' => 'disabled' ) : array();
-			$checkbox = wfCheckLabel( User::getGroupMember( $group ), "wpGroup-$group",
+			$checkbox = Xml::checkLabel( User::getGroupMember( $group ), "wpGroup-$group",
 					"wpGroup-$group", $set, $attr );
-			$checkbox = $disabled ? "<span class='mw-userrights-disabled'>$checkbox</span>" : $checkbox;
-				
+			$checkbox = $disabled ? Xml::tags( 'span', array( 'class' => 'mw-userrights-disabled' ), $checkbox ) : $checkbox;
+
 			if ($disabled) {
 				$unsettable_col .= "$checkbox<br/>\n";
 			} else {
 				$settable_col .= "$checkbox<br/>\n";
 			}
 		}
-		
+
 		if ($column) {
-			$ret .= '<table class="mw-userrights-groups">';
-			$ret .= '<tr><th>'.wfMsgHtml('userrights-changeable-col').'</th><th>'.wfMsgHtml('userrights-unchangeable-col').'</th></tr>';
-			$ret .= "<tr><td valign=\"top\">$settable_col</td><td valign=\"top\">$unsettable_col</td></tr>";
-			$ret .= "</table>";
+			$ret .=	Xml::openElement( 'table', array( 'border' => '0', 'class' => 'mw-userrights-groups' ) ) .
+				"<tr>" .
+					xml::element( 'th', null, wfMsg( 'userrights-changeable-col' ) ) .
+					xml::element( 'th', null, wfMsg( 'userrights-unchangeable-col' ) ) .
+				"</tr>
+				<tr>
+					<td style='vertical-align:top;'>
+						$settable_col
+					</td>
+					<td style='vertical-align:top;'>
+						$unsettable_col
+					</td>
+				</tr>" .
+				Xml::closeElement( 'table' );
 		}
-		
+
 		return $ret;
 	}
 
