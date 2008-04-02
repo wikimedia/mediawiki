@@ -35,7 +35,8 @@ class LogEventsList {
 	private function preCacheMessages() {
 		// Precache various messages
 		if( !isset( $this->message ) ) {
-			foreach( explode(' ', 'viewpagelogs revhistory filehist rev-delundel' ) as $msg ) {
+			$messages = 'revertmerge protect_change unblocklink revertmove undeletelink revdel-restore rev-delundel';
+			foreach( explode(' ', $messages ) as $msg ) {
 				$this->message[$msg] = wfMsgExt( $msg, array( 'escape') );
 			}
 		}
@@ -165,9 +166,7 @@ class LogEventsList {
 				$this->skin->userToolLinksRedContribs( $row->log_user, $row->user_name );
 		}
 		// Comment
-		if( $row->log_action == 'create2' ) {
-			$comment = ''; // Suppress from old account creations, useless and can contain incorrect links
-		} else if( self::isDeleted($row,LogPage::DELETED_COMMENT) ) {
+		if( self::isDeleted($row,LogPage::DELETED_COMMENT) ) {
 			$comment = '<span class="history-deleted">' . wfMsgHtml('rev-deleted-comment') . '</span>';
 		} else {
 			$comment = $wgContLang->getDirMark() . $this->skin->commentBlock( $row->log_comment );
@@ -185,7 +184,7 @@ class LogEventsList {
 				$destTitle = Title::newFromText( $paramArray[0] );
 				if( $destTitle ) {
 					$revert = '(' . $this->skin->makeKnownLinkObj( SpecialPage::getTitleFor( 'Movepage' ),
-						wfMsg( 'revertmove' ),
+						$this->message['revertmove'],
 						'wpOldTitle=' . urlencode( $destTitle->getPrefixedDBkey() ) .
 						'&wpNewTitle=' . urlencode( $title->getPrefixedDBkey() ) .
 						'&wpReason=' . urlencode( wfMsgForContent( 'revertmove' ) ) .
@@ -194,20 +193,19 @@ class LogEventsList {
 			// Show undelete link
 			} else if( $row->log_action == 'delete' && $wgUser->isAllowed( 'delete' ) ) {
 				$revert = '(' . $this->skin->makeKnownLinkObj( SpecialPage::getTitleFor( 'Undelete' ),
-					wfMsg( 'undeletelink' ) ,
-					'target='. urlencode( $title->getPrefixedDBkey() ) ) . ')';
+					$this->message['undeletelink'], 'target='. urlencode( $title->getPrefixedDBkey() ) ) . ')';
 			// Show unblock link
 			} else if( $row->log_action == 'block' && $wgUser->isAllowed( 'block' ) ) {
 				$revert = '(' .  $this->skin->makeKnownLinkObj( SpecialPage::getTitleFor( 'Ipblocklist' ),
-					wfMsg( 'unblocklink' ),
+					$this->message['unblocklink'],
 					'action=unblock&ip=' . urlencode( $row->log_title ) ) . ')';
 			// Show change protection link
 			} else if( ( $row->log_action == 'protect' || $row->log_action == 'modify' ) && $wgUser->isAllowed( 'protect' ) ) {
-				$revert = '(' .  $this->skin->makeKnownLinkObj( $title, wfMsg( 'protect_change' ), 'action=unprotect' ) . ')';
+				$revert = '(' .  $this->skin->makeKnownLinkObj( $title, $this->message['protect_change'], 'action=unprotect' ) . ')';
 			// Show unmerge link
 			} else if ( $row->log_action == 'merge' ) {
 				$merge = SpecialPage::getTitleFor( 'Mergehistory' );
-				$revert = '(' .  $this->skin->makeKnownLinkObj( $merge, wfMsg('revertmerge'),
+				$revert = '(' .  $this->skin->makeKnownLinkObj( $merge, $this->message['revertmerge'],
 					wfArrayToCGI( 
 						array('target' => $paramArray[0], 'dest' => $title->getPrefixedText(), 'mergepoint' => $paramArray[1] ) 
 					) 
@@ -220,10 +218,10 @@ class LogEventsList {
 				// Link to each hidden object ID, $paramArray[1] is the url param. List if several...
 				$Ids = explode( ',', $paramArray[2] );
 				if( count($Ids) == 1 ) {
-					$revert = $this->skin->makeKnownLinkObj( $revdel, wfMsgHtml('revdel-restore'),
+					$revert = $this->skin->makeKnownLinkObj( $revdel, $this->message['revdel-restore'],
 						wfArrayToCGI( array('target' => $paramArray[0], $paramArray[1] => $Ids[0] ) ) );
 				} else {
-					$revert .= wfMsgHtml('revdel-restore').':';
+					$revert .= $this->message['revdel-restore'].':';
 					foreach( $Ids as $n => $id ) {
 						$revert .= ' '.$this->skin->makeKnownLinkObj( $revdel, '#'.($n+1),
 							wfArrayToCGI( array('target' => $paramArray[0], $paramArray[1] => $id ) ) );
@@ -233,11 +231,11 @@ class LogEventsList {
 			// Hidden log items, give review link
 			} else if( $row->log_action == 'event' && $wgUser->isAllowed( 'deleterevision' ) ) {
 				$revdel = SpecialPage::getTitleFor( 'Revisiondelete' );
-				$revert .= wfMsgHtml('revdel-restore');
+				$revert .= $this->message['revdel-restore'];
 				$Ids = explode( ',', $paramArray[0] );
 				// Link to each hidden object ID, $paramArray[1] is the url param. List if several...
 				if( count($Ids) == 1 ) {
-					$revert = $this->skin->makeKnownLinkObj( $revdel, wfMsgHtml('revdel-restore'),
+					$revert = $this->skin->makeKnownLinkObj( $revdel, $this->message['revdel-restore'],
 						wfArrayToCGI( array('logid' => $Ids[0] ) ) );
 				} else {
 					foreach( $Ids as $n => $id ) {
