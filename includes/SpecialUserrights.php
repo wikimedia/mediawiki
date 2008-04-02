@@ -402,13 +402,9 @@ class UserrightsPage extends SpecialPage {
 		$allgroups = User::getAllGroups();
 		$ret = '';
 		
-		if (count($allgroups)>8) {
-			$column = 1;
-			$settable_col = '';
-			$unsettable_col = '';
-		} else {
-			$column = 0;
-		}
+		$column = 1;
+		$settable_col = '';
+		$unsettable_col = '';
 		
 		foreach ($allgroups as $group) {
 			$set = in_array( $group, $usergroups );
@@ -421,14 +417,10 @@ class UserrightsPage extends SpecialPage {
 					"wpGroup-$group", $set, $attr );
 			$checkbox = $disabled ? "<span class='mw-userrights-disabled'>$checkbox</span>" : $checkbox;
 				
-			if ($column) {
-				if ($disabled) {
-					$unsettable_col .= "$checkbox<br/>\n";
-				} else {
-					$settable_col .= "$checkbox<br/>\n";
-				}
+			if ($disabled) {
+				$unsettable_col .= "$checkbox<br/>\n";
 			} else {
-				$ret .= " $checkbox ";
+				$settable_col .= "$checkbox<br/>\n";
 			}
 		}
 		
