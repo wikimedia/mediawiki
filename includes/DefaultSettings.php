@@ -1152,9 +1152,15 @@ $wgGroupPermissions['bureaucrat']['userrights']  = true;
 // Permission to change users' groups assignments across wikis
 #$wgGroupPermissions['bureaucrat']['userrights-interwiki'] = true;
 
-// Experimental permissions, not ready for production use
-//$wgGroupPermissions['sysop']['deleterevision'] = true;
-//$wgGroupPermissions['bureaucrat']['hiderevision'] = true;
+#$wgGroupPermissions['sysop']['deleterevision']  = true;
+// To hide usernames
+#$wgGroupPermissions['suppress']['hideuser'] = true;
+// To see hidden revs and unhide revs hidden from Sysops
+#$wgGroupPermissions['suppress']['hiderevision'] = true;
+// For private log access
+#$wgGroupPermissions['suppress']['suppress'] = true;
+
+$wgAllowLogDeletion = false;
 
 /**
  * The developer group is deprecated, but can be activated if need be
@@ -2394,6 +2400,17 @@ $wgLogTypes = array( '',
 	'import',
 	'patrol',
 	'merge',
+	'suppress',
+);
+
+/**
+ * This restricts log access to those who have a certain right
+ * Users without this will not see it in the option menu and can not view it
+ * Restricted logs are not added to recent changes
+ * Logs should remain non-transcludable
+ */
+$wgLogRestrictions = array(
+	'suppress' => 'suppress'
 );
 
 /**
@@ -2413,6 +2430,7 @@ $wgLogNames = array(
 	'import'  => 'importlogpage',
 	'patrol'  => 'patrol-log-page',
 	'merge'   => 'mergelog',
+	'suppress' => 'suppressionlog',
 );
 
 /**
@@ -2432,6 +2450,7 @@ $wgLogHeaders = array(
 	'import'  => 'importlogpagetext',
 	'patrol'  => 'patrol-log-header',
 	'merge'   => 'mergelogpagetext',
+	'suppress' => 'suppressionlogtext',
 );
 
 /**
@@ -2458,6 +2477,11 @@ $wgLogActions = array(
 	'import/upload'     => 'import-logentry-upload',
 	'import/interwiki'  => 'import-logentry-interwiki',
 	'merge/merge'       => 'pagemerge-logentry',
+	'suppress/revision' => 'revdelete-logentry',
+	'suppress/file'     => 'revdelete-logentry',
+	'suppress/event'    => 'logdelete-logentry',
+	'suppress/delete'   => 'suppressedarticle',
+	'suppress/block'	=> 'blocklogentry',
 );
 
 /**
