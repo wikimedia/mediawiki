@@ -625,7 +625,7 @@ $2',
 'revdelete-text'              => '刪吥嗰改動還會到頁面歷史裡度顯示, 但公眾瀏覽伓正佢嗰內容。 
 
 箇站別嗰管理員還係能眵吖弆到嗰內容，同到通過同佢一樣嗰界面恢復刪除，除非設正嘞附加嗰限制。',
-'revdelete-legend'            => '設置修改限制:',
+'revdelete-legend'            => '設置修改限制',
 'revdelete-hide-text'         => '弆到修改內容',
 'revdelete-hide-name'         => '弆到動作同目標',
 'revdelete-hide-comment'      => '弆到編輯說明',
@@ -640,8 +640,8 @@ $2',
 'logdelete-logentry'          => '已更改[[$1]]嗰事件可見性',
 'revdelete-logaction'         => '$1嗰改動設置到嘞模式$2',
 'logdelete-logaction'         => '對[[$3]]嗰$1場事設置到嘞模式$2',
-'revdelete-success'           => '修訂嗰可見性設置正嘍。',
-'logdelete-success'           => '事件嗰可見性設置正嘍。',
+'revdelete-success'           => "'''修訂嗰可見性設置正嘍。'''",
+'logdelete-success'           => "'''事件嗰可見性設置正嘍。'''",
 
 # History merging
 'mergehistory'                     => '合并頁面歷史',

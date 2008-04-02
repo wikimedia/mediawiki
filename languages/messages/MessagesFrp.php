@@ -725,7 +725,7 @@ mas lor contegnu tèxtuèl serat pas accèssiblo u publico.
 
 D’ôtros administrators de {{SITENAME}} porront tojorn arrevar u contegnu cachiê et lo tornar rèstorar
 a travèrs de cela méma entèrface, a muens qu’una rèstriccion suplèmentèra seye betâ en place per los opèrators du seto.',
-'revdelete-legend'            => 'Betar en place des rèstriccions de vèrsion :',
+'revdelete-legend'            => 'Betar en place des rèstriccions de vèrsion',
 'revdelete-hide-text'         => 'Mâscar lo tèxte de la vèrsion',
 'revdelete-hide-name'         => 'Mâscar l’accion et la ciba',
 'revdelete-hide-comment'      => 'Mâscar lo comentèro de modificacion',
@@ -740,8 +740,8 @@ a travèrs de cela méma entèrface, a muens qu’una rèstriccion suplèmentèr
 'logdelete-logentry'          => 'La visibilitât de l’èvènement at étâ modifiâ por [[$1]]',
 'revdelete-logaction'         => '$1 {{PLURAL:$1|vèrsion changiê|vèrsions changiês}} en môdo $2',
 'logdelete-logaction'         => '$1 {{PLURAL:$1|èvènement de [[$3]] changiê|èvènements de [[$3]] changiês}} en môdo $2',
-'revdelete-success'           => 'Visibilitât de les vèrsions changiê avouéc reusséta.',
-'logdelete-success'           => 'Visibilitât des èvènements changiê avouéc reusséta.',
+'revdelete-success'           => "'''Visibilitât de les vèrsions changiê avouéc reusséta.'''",
+'logdelete-success'           => "'''Visibilitât des èvènements changiê avouéc reusséta.'''",
 
 # History merging
 'mergehistory'                     => 'Fusion des historicos d’una pâge',

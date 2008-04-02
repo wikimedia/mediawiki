@@ -402,7 +402,7 @@ Adroddwch y broblem i weinyddwr os gwelwch yn dda, gan roi\'r cyfeiriad gwe (URL
 $2",
 'namespaceprotected'   => "Nid oes caniatâd gennych i olygu tudalennau yn y parth '''$1'''.",
 'customcssjsprotected' => "Nid oes caniatad ganddoch i olygu'r dudalen hon oherwydd bod gosodiadau personol defnyddiwr arall arno.",
-'ns-specialprotected'  => 'Ni ellir golygu tudalennau yn y parth {{ns:special}}.',
+'ns-specialprotected'  => 'Ni ellir golygu tudalennau arbennig.',
 
 # Login and logout pages
 'logouttitle'                => "Allgofnodi'r defnyddiwr",
@@ -489,6 +489,7 @@ Rhydd ichi anwybyddu\'r neges hon os mai camgymeriad oedd creu\'r cyfrif.',
 Er mwyn cwblhau'r mewngofnodi, rhaid i chi osod cyfrinair newydd fel hyn:",
 'resetpass_header'   => 'Ailosod y cyfrinair',
 'resetpass_submit'   => 'Gosod y cyfrinair a mewngofnodi',
+'resetpass_missing'  => 'Dim data ar y ffurflen.',
 
 # Edit page toolbar
 'bold_sample'     => 'Testun cryf',
@@ -555,12 +556,16 @@ Gallwch gysylltu â $1 neu un arall o'r [[{{MediaWiki:Grouppage-sysop}}|gweinydd
 Sylwch mai dim ond y rhai sydd wedi gosod cyfeiriad e-bost yn eu [[Special:Preferences|dewisiadau defnyddiwr]], a hwnnw heb ei flocio, sydd yn gallu 'anfon e-bost at ddefnyddiwr' trwy'r wici.
 
 Cyfeirnod y bloc yw $5. Nodwch hwn wrth drafod y bloc.",
+'blockednoreason'           => 'dim rheswm wedi ei roi',
 'whitelistedittitle'        => 'Rhaid mewngofnodi i golygu',
 'whitelistedittext'         => 'Rhaid $1 i olygu tudalennau.',
 'whitelistreadtitle'        => 'Rhaid mewngofnodi i ddarllen',
 'whitelistreadtext'         => 'Rhaid i chi [[Special:Userlogin|mewngofnodi]] i ddarllen erthyglau.',
 'whitelistacctitle'         => 'Ni chaniateir creu accownt',
 'whitelistacctext'          => 'I gael caniatâd i creu accownt yn y wiki hon, rhaid i chi [[Special:Userlogin|mewngofnodi]] a chael y caniatâd priodol.',
+'confirmedittitle'          => 'Cadarnhad trwy e-bost cyn dechrau golygu.',
+'confirmedittext'           => "Mae'n rhaid i chi gadarnhau eich cyfeiriad e-bost cyn y gallwch ddechrau golygu tudalennau.
+Gosodwch eich cyfeiriad e-bost drwy eich [[Special:Preferences|dewisiadau defnyddiwr]] ac yna'i gadarnhau, os gwelwch yn dda.",
 'nosuchsectiontitle'        => 'Yr adran ddim yn bod',
 'nosuchsectiontext'         => "Rydych wedi ceisio golygu adran nad ydy'n bod. Gan nad oes adran o'r enw $1, ni ellir rhoi eich golygiad ar gadw.",
 'loginreqtitle'             => 'Mae angen mewngofnodi',
@@ -669,12 +674,12 @@ Eglurhad: (cyf.) = gwahaniaethau rhyngddo a'r fersiwn cyfredol,
 
 # Revision deletion
 'rev-delundel'        => 'dangos/cuddio',
-'revdelete-selected'  => "Y {{PLURAL:$2|golygiad|golygiad|golygiadau|golygiadau|golygiadau|golygiadau}} dewisedig o '''$1:'''",
-'logdelete-selected'  => "{{PLURAL:$2|Digwyddiad|Digwyddiad|Digwyddiadau|Digwyddiadau|Digwyddiadau|Digwyddiadau}} dewisedig y lòg ar gyfer '''$1:'''",
+'revdelete-selected'  => 'Y {{PLURAL:$2|golygiad|golygiad|golygiadau|golygiadau|golygiadau|golygiadau}} dewisedig o [[:$1]]:',
+'logdelete-selected'  => "{{PLURAL:$1|Digwyddiad|Digwyddiad|Digwyddiadau|Digwyddiadau|Digwyddiadau|Digwyddiadau}} a ddewiswyd o'r lòg:",
 'logdelete-logentry'  => 'newidiwyd y gallu i weld y digwyddiad [[$1]]',
 'revdelete-logaction' => "Gosodwyd $1 {{PLURAL:$1|diwygiad|diwygiad|ddiwygiad|diwygiad|diwygiad|diwygiad}} i'r modd $2",
-'logdelete-logaction' => "$1 {{PLURAL:$1|digwyddiad|digwyddiad|ddigwyddiad|digwyddiad|digwyddiad|digwyddiad}} i [[$3]] {{PLURAL:$1|wedi'i osod|wedi'i osod|wedi'u gosod|wedi'u gosod|wedi'u gosod|wedi'u gosod}} i'r modd $2",
-'logdelete-success'   => "Llwyddwyd i guddio'r digwyddiad.",
+'logdelete-logaction' => "$1 {{PLURAL:$1|digwyddiad|digwyddiad|ddigwyddiad|digwyddiad|digwyddiad|digwyddiad}} {{PLURAL:$1|wedi'i osod|wedi'i osod|wedi'u gosod|wedi'u gosod|wedi'u gosod|wedi'u gosod}} i'r modd $2",
+'logdelete-success'   => "'''Llwyddwyd i guddio'r digwyddiad.'''",
 
 # History merging
 'mergehistory'                     => 'Cyfuno hanesion y tudalennau',
@@ -878,6 +883,8 @@ I osod ffeil mewn tudalen defnyddiwch gyswllt wici a fydd yn arwain yn syth at y
 '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:Ffeil.jpg]]</nowiki>''',
 '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:Ffeil.png|testun amgen]]</nowiki>''' neu
 '''<nowiki>[[</nowiki>{{ns:media}}<nowiki>:Ffeil.ogg]]</nowiki>'''.",
+'upload-permitted'            => 'Mathau o ffeiliau a ganiateir: $1',
+'upload-prohibited'           => 'Mathau o ffeiliau a waherddir: $1.',
 'uploadlog'                   => 'log llwytho i fynu',
 'uploadlogpage'               => 'log_llwytho_i_fynu',
 'uploadlogpagetext'           => "Isod mae rhestr o'r llwythu ffeil diweddarach.
@@ -1746,7 +1753,11 @@ I gadarnhau mai chi yn wir yw perchennog y cyfrif hwn, ac i alluogi nodweddion e
 
 $3
 
-Os *nad* chi sydd berchen ar y cyfrif hwn, peidiwch a dilyn y cyswllt. Bydd y côd cadarnhau yn dod i ben am $4.',
+Os *nad* chi sydd berchen ar y cyfrif hwn, dilynwch y cyswllt hwn er mwyn dileu cadarnhad y cyfeiriad e-bost:
+
+$5 
+
+Bydd y côd cadarnhau yn dod i ben am $4.',
 
 # Scary transclusion
 'scarytranscludedisabled' => '[Analluogwyd cynhwysiad rhyng-wici]',

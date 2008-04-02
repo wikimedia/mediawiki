@@ -497,7 +497,7 @@ felaktigt länkad till.',
 $2',
 'namespaceprotected'   => "Du har inte behörighet att redigera sidor i namrymden '''$1'''.",
 'customcssjsprotected' => 'Du har inte behörighet att redigera den här sidan eftersom den innehåller en annan användares personliga inställningar.',
-'ns-specialprotected'  => 'Sidor i namnrymden {{ns:special}} kan inte redigeras.',
+'ns-specialprotected'  => 'Specialsidor kan inte redigeras.',
 'titleprotected'       => "Den här sidtiteln har skyddats från att skapas.
 [[User:$1|$1]] skyddade sidan med motiveringen ''$2''.",
 
@@ -797,19 +797,21 @@ Det kan finnas mer information i [{{fullurl:Special:Log/delete|page={{FULLPAGENA
 'rev-deleted-text-view'       => '<div class="mw-warning plainlinks"> Denna version av sidan har avlägsnats från de öppna arkiven. Som administratör på denna wiki kan du se den. Det kan finnas mer information i [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} borttagningsloggen]. </div>',
 'rev-delundel'                => 'visa/göm',
 'revisiondelete'              => 'Ta bort/återställ versioner',
-'revdelete-nooldid-title'     => 'Ingen version angiven',
-'revdelete-nooldid-text'      => 'Du angav inte vilken eller vilka versioner du vill utföra funktionen på.',
-'revdelete-selected'          => "{{PLURAL:$2|Vald version|Valda versioner}} av '''$1:'''",
-'logdelete-selected'          => "{{PLURAL:$2|Vald loggåtgärd|valda loggåtgärder}} för '''$1:'''",
+'revdelete-nooldid-title'     => 'Ogiltig målversion',
+'revdelete-nooldid-text'      => 'Antingen har du inte angivit någon sidversion att utföra funktionen på,
+eller så finns inte den version du angav,
+eller så försöker du gömma den senaste versionen av sidan.',
+'revdelete-selected'          => '{{PLURAL:$2|Vald version|Valda versioner}} av [[:$1]]:',
+'logdelete-selected'          => '{{PLURAL:$1|Vald loggåtgärd|valda loggåtgärder}}:',
 'revdelete-text'              => 'Borttagna versioner och åtgärder kommer fortfarande att synas i historiken och i loggar, men deras innehåll kommer ej att vara tillgängligt för allmänheten.
 
 Andra administratörer på {{SITENAME}} kommer fortfarande att kunna läsa det dolda innehållet och kan återställa sidan genom samma gränssnitt, om inte en ytterligare begränsningar finns.',
-'revdelete-legend'            => 'Ange begränsningar för version:',
+'revdelete-legend'            => 'Ange begränsningar för version',
 'revdelete-hide-text'         => 'Dölj versionstext',
 'revdelete-hide-name'         => 'Dölj åtgärd och sidnamn',
 'revdelete-hide-comment'      => 'Dölj redigeringskommentar',
 'revdelete-hide-user'         => 'Dölj redaktörens användarnamn/IP-adress',
-'revdelete-hide-restricted'   => 'Låt dessa begränsningar gälla administratörer likväl som andra',
+'revdelete-hide-restricted'   => 'Låt dessa begränsningar gälla även för administratörer och lås det här gränssnittet',
 'revdelete-suppress'          => 'Undanhåll data även från administratörer',
 'revdelete-hide-image'        => 'Dölj filinnehåll',
 'revdelete-unsuppress'        => 'Ta bort begränsningar på återställda versioner',
@@ -818,11 +820,16 @@ Andra administratörer på {{SITENAME}} kommer fortfarande att kunna läsa det d
 'revdelete-logentry'          => 'ändrade synlighet för versioner av [[$1]]',
 'logdelete-logentry'          => 'ändrade synlighet för åtgärder på [[$1]]',
 'revdelete-logaction'         => '$1 {{plural:$1|version|versioner}} satta till $2',
-'logdelete-logaction'         => '$1 {{plural:$1|åtgärd|åtgärder}} för [[$3]] satta till $2',
-'revdelete-success'           => 'Ändringen av versionssynlighet är utförd.',
-'logdelete-success'           => 'Ändringen av åtgärdssynlighet är utförd.',
+'logdelete-logaction'         => '$1 {{plural:$1|åtgärd ändrad|åtgärder ändrade}} till läge $2',
+'revdelete-success'           => "'''Versionens synlighet har ändrats.'''",
+'logdelete-success'           => "'''Loggåtgärdens synlighet har ändrats.'''",
+'revdel-restore'              => 'Ändra synlighet',
 'pagehist'                    => 'Sidhistorik',
 'deletedhist'                 => 'Raderad historik',
+
+# Supression log
+'suppressionlog'     => 'Upphävningslogg',
+'suppressionlogtext' => 'Nedan är en lista av dom senaste raderingarna och blockeringarna innefattande innehåll dolt för admimistratörer. Se [[Special:Ipblocklist|IP-blockeringslistan]] för listan över nuvarande operationella förbud och blockeringar.',
 
 # History merging
 'mergehistory'                     => 'Sammanfoga sidhistoriker',
@@ -985,17 +992,20 @@ En okryssad ruta betyder att användaren inte är medlem i den gruppen.',
 'group-bot'           => 'Robotar',
 'group-sysop'         => 'Administratörer',
 'group-bureaucrat'    => 'Byråkrater',
+'group-suppress'      => 'Oversightare',
 'group-all'           => '(alla)',
 
 'group-autoconfirmed-member' => 'Bekräftad användare',
 'group-bot-member'           => 'Robot',
 'group-sysop-member'         => 'Administratör',
 'group-bureaucrat-member'    => 'Byråkrat',
+'group-suppress-member'      => 'Oversight',
 
 'grouppage-autoconfirmed' => '{{ns:project}}:Bekräftade användare',
 'grouppage-bot'           => '{{ns:project}}:Robotar',
 'grouppage-sysop'         => '{{ns:project}}:Administratörer',
 'grouppage-bureaucrat'    => '{{ns:project}}:Byråkrater',
+'grouppage-suppress'      => '{{ns:project}}:Oversight',
 
 # User rights log
 'rightslog'      => 'Användarrättighetslogg',
@@ -1322,6 +1332,7 @@ Sedan denna wiki startades har sidor visats totalt <b>$3</b> {{PLURAL:$3|gång|g
 'notargettext'            => 'Du har inte angivit någon sida eller användare att utföra denna funktion på.',
 'pager-newer-n'           => '$1 nyare',
 'pager-older-n'           => '$1 äldre',
+'suppress'                => 'Oversight',
 
 # Book sources
 'booksources'               => 'Bokkällor',
@@ -1474,6 +1485,7 @@ Bekräfta att du förstår vad du håller på med och vilka konsekvenser detta l
 'deletedtext'                 => '"<nowiki>$1</nowiki>" har tagits bort.
 Se $2 för noteringar om de senaste raderingarna.',
 'deletedarticle'              => 'raderade "$1"',
+'suppressedarticle'           => 'upphävde "[[$1]]"',
 'dellogpage'                  => 'Raderingslogg',
 'dellogpagetext'              => 'Nedan listas de senaste raderingarna och återställningarna.',
 'deletionlog'                 => 'raderingsloggen',
@@ -1793,7 +1805,7 @@ I det senare fallet kan du även använda en länk, exempel [[{{ns:special}}:Exp
 'allmessagestext'           => 'Detta är en lista över alla meddelanden i namnrymden MediaWiki.
 
 De går att översätta lokalt, genom att klicka på länkarna nedan, men översättes med fördel på [http://translatewiki.net/wiki/Main_Page Translatewiki], då slår översättningen igenom på samtliga svenskspråkiga projekt.',
-'allmessagesnotsupportedDB' => "Det finns inte stöd för ''{{ns:special}}:Allmessages'', eftersom '''\$wgUseDatabaseMessages''' är avstängd.",
+'allmessagesnotsupportedDB' => "Den här sidan kan inte användas eftersom '''\$wgUseDatabaseMessages''' är avstängd.",
 'allmessagesfilter'         => 'Filter för meddelandenamn:',
 'allmessagesmodified'       => 'Visa bara ändrade',
 

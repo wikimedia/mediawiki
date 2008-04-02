@@ -109,6 +109,7 @@ $messages = array(
 'category_header'               => '«$1» төркемендәге битләр',
 'subcategories'                 => 'Төркемчәләр',
 'category-media-header'         => '«$1» төркемендәге файллар',
+'category-empty'                => "''Бу төркем әле буш.''",
 'hidden-categories'             => '{{PLURAL:$1|Яшерен төркем|Яшерен төркемнәр}}',
 'hidden-category-category'      => 'Яшерен төркемнәр', # Name of the category where hidden categories will be listed
 'listingcontinuesabbrev'        => 'дәвам',
@@ -301,6 +302,7 @@ $messages = array(
 
 Әгәр сез серсүзне алмаштыру сорамаса идегез яки серсүз хәтерләсәгез,
 сез бу хәбәр игътибарсыз калдыра һәм иске серсүзне куллану дәвам итә аласыз.',
+'noemail'                    => '$1 кулланучы өчен электрон почта адресы язылмаган.',
 'throttled-mailpassword'     => 'Серсүзне искәртмә соңгы $1 сәгать дәвамында инде күндерелде. Начар куллану булдырмау өчен $1 сәгать дәвамында бер тапкырдан күбрәк түгел сорап була.',
 'mailerror'                  => 'Хат күндерү хатасы: $1',
 'acct_creation_throttle_hit' => 'Гафу итегез, сез $1 хисап язмасыгызны төзгәнсез инде. Башка төзү алмыйсыз.',
@@ -565,6 +567,7 @@ $messages = array(
 'mywatchlist'          => 'Күзәтү исемлегем',
 'addedwatch'           => 'Күзәтү исемлегенә өстәгән',
 'removedwatch'         => 'Күзәтү исемлегенән бетерергән',
+'removedwatchtext'     => '«[[:$1]]» бите сезнең күзәтү исемлегездә бетерергән',
 'watch'                => 'Күзәтергә',
 'watchthispage'        => 'Бу битне күзәтергә',
 'unwatch'              => 'Күзәтмәскә',
@@ -578,6 +581,7 @@ $messages = array(
 
 # Delete/protect/revert
 'deletepage'                  => 'Битне бетерергә',
+'historywarning'              => 'Кисәтү: сез бетерергә теләгән биттә үзгәртү тарихы бар:',
 'actioncomplete'              => 'Гамәл башкарган',
 'deletedtext'                 => '«<nowiki>$1</nowiki>» бетерергән инде.<br />
 Соңгы бетерүләр карау өчен, $2 кара.',
@@ -589,11 +593,15 @@ $messages = array(
 'rollbacklink'                => 'кире кайтару',
 'protectlogpage'              => 'Яклану журналы',
 'protectcomment'              => 'Искәрмә:',
+'protect-unchain'             => 'Битнең күчерү рөхсәте ачарга',
+'protect-text'                => 'Биредә сез <strong>[[:$1]]</strong> бите өчен яклау дәрәҗәсене карый һәм үзгәрә аласыз.',
 'protect-default'             => '(килешү буенча)',
 'protect-fallback'            => '«$1»нең рөхсәте кирәк',
 'protect-level-autoconfirmed' => 'Теркәлмәгән кулланучыларны кысарга',
 'protect-level-sysop'         => 'Идарәчеләр генә',
+'protect-summary-cascade'     => 'каскадлы',
 'protect-expiring'            => '$1 үтә (UTC)',
+'protect-cascade'             => 'Бу биткә кергән битләрне якларга (каскадлы яклау)',
 'protect-cantedit'            => 'Сез бу битнең яклау дәрәҗәсене үзгәрә алмыйсыз, чөнки сездә аны үзгәртергә рөхсәтегез юк.',
 'restriction-type'            => 'Рөхсәт:',
 'restriction-level'           => 'Мөмкинлек дәрәҗәсе:',
@@ -627,14 +635,18 @@ $messages = array(
 'contribslink' => 'кертем',
 
 # Move page
-'movearticle'    => 'Битне күчерергә:',
-'newtitle'       => 'Яңа башлам:',
-'move-watch'     => 'Бу битне күзәтергә',
-'movepagebtn'    => 'Битне күчерергә',
-'pagemovedsub'   => 'Бит күчерергән',
-'movepage-moved' => "<big>'''«$1» бит «$2» биткә күчкән'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
-'1movedto2'      => '«[[$1]]» бите «[[$2]]» биткә күчерергән',
-'movereason'     => 'Сәбәп:',
+'movearticle'      => 'Битне күчерергә:',
+'newtitle'         => 'Яңа башлам:',
+'move-watch'       => 'Бу битне күзәтергә',
+'movepagebtn'      => 'Битне күчерергә',
+'pagemovedsub'     => 'Бит күчерергән',
+'movepage-moved'   => "<big>'''«$1» бит «$2» биткә күчкән'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movedto'          => 'күчерергән:',
+'movetalk'         => 'Бәйләнешле фикер алышу битне күчерергә',
+'talkpagemoved'    => 'Бәйләнешле фикер алышу бите шулай ук күчерергән.',
+'talkpagenotmoved' => 'Бәйләнешле фикер алышу бите күчерү <strong>алмаган</strong>.',
+'1movedto2'        => '«[[$1]]» бите «[[$2]]» биткә күчерергән',
+'movereason'       => 'Сәбәп:',
 
 # Namespace 8 related
 'allmessages' => 'Система хәбәрләре',
@@ -676,6 +688,9 @@ $messages = array(
 
 # Special:Newimages
 'newimages' => 'Яңа сүрәтләр җыелмасы',
+
+# EXIF tags
+'exif-brightnessvalue' => 'Яктылык',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'барлык',

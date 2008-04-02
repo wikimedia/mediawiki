@@ -514,7 +514,7 @@ Taivutusmuodot: {{GRAMMAR:genitive|{{SITENAME}}}} (yön) — {{GRAMMAR:partitive
 $2',
 'namespaceprotected'   => "Et voi muokata sivuja nimiavaruudessa '''$1'''.",
 'customcssjsprotected' => 'Sinulla ei ole oikeuksia muuttaa toisten käyttäjien henkilökohtaisia asetuksia.',
-'ns-specialprotected'  => 'Sivuja {{ns:special}}-nimiavaruudessa ei voi muokata.',
+'ns-specialprotected'  => 'Toimintosivuja ei voi muokata.',
 'titleprotected'       => "Käyttäjä [[User:$1|$1]] on asettanut tämän sivun luontikieltoon: ''$2''.",
 
 # Login and logout pages
@@ -813,6 +813,7 @@ Muut ylläpitäjät voivat lukea piilotetun sisällön ja palauttaa sen.',
 'logdelete-logaction'         => '$1 sivun [[$3]] {{PLURAL:$1|tapahtuma|tapahtumaa}} asetettiin tilaan $2',
 'revdelete-success'           => 'Version näkyvyys asetettu.',
 'logdelete-success'           => 'Tapahtuman näkyvyys asetettu.',
+'revdel-restore'              => 'Muuta näkyvyyttä',
 'pagehist'                    => 'Muutoshistoria',
 'deletedhist'                 => 'Poistettu muutoshistoria',
 
@@ -1736,7 +1737,7 @@ Sivujen koko historian vienti on estetty suorituskykysyistä.',
 'allmessagesdefault'        => 'Oletusarvo',
 'allmessagescurrent'        => 'Nykyinen arvo',
 'allmessagestext'           => 'Tämä on luettelo kaikista MediaWiki-nimiavaruudessa olevista viesteistä.',
-'allmessagesnotsupportedDB' => "'''{{ns:special}}:Allmessages''' ei ole käytettävissä, koska '''\$wgUseDatabaseMessages'''-asetus on pois päältä.",
+'allmessagesnotsupportedDB' => 'Tämä sivu ei ole käytössä, koska <tt>$wgUseDatabaseMessages</tt>-asetus on pois päältä.',
 'allmessagesfilter'         => 'Viestiavainsuodatin:',
 'allmessagesmodified'       => 'Näytä vain muutetut',
 

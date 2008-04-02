@@ -656,7 +656,7 @@ Ev verzyona vê rûpelê hatîye jêbirin. Belkî înformasyon di [{{fullurl:Spe
 </div>',
 'rev-delundel'                => 'nîşan bide/veşêre',
 'revisiondelete'              => 'Rêvîsyona jêbibe/dîsa çêke',
-'revdelete-legend'            => 'Qebûlkirinan ji vê versyonê ra:',
+'revdelete-legend'            => 'Qebûlkirinan ji vê versyonê ra',
 'revdelete-hide-comment'      => 'Nivîsandinê kurte yê guherandinê veşêre',
 'revdelete-hide-user'         => "Navî bikarhêner/IP'yê veşêre",
 'revdelete-hide-restricted'   => 'Ev qebûlkirin ji koordînatoran ra ye jî',

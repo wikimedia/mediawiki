@@ -600,7 +600,7 @@ Come manaedjeu so ç\' wiki ci, vos avoz l\' droet del vey; i gn a motoit des de
 'revdelete-text'              => "Les disfacêyès modêyes vont continouwer d' aparexhe dins l' pådje di l' istwere, mins leu contnou n' serè nén veyåve do publik.
 
 Les ôtes manaedjeus so ç' wiki ci pôront todi vey li contnou catchî eyet l' rapexhî åd triviè di cisse minme eterface ci, a moens k' ene restriccion di pus ni soeye metowe en alaedje pås mwaisses-manaedjeus del waibe.",
-'revdelete-legend'            => 'Defini des restriccions sol modêye:',
+'revdelete-legend'            => 'Defini des restriccions sol modêye',
 'revdelete-hide-text'         => "Catchî l' tecse del modêye",
 'revdelete-hide-comment'      => "Catchî l' comintaire di candjmint",
 'revdelete-hide-user'         => "Catchî l' no d' uzeu/adresse IP do candjeu",

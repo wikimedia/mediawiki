@@ -765,7 +765,7 @@ Moguće da ima više detalja u [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}
 ali će njihov sadržaj biti skriven javnosti.
 
 Ostali administratori na ovoj Vikipediji će i dalje imati mogućnost da vide skriveni sadržaj i moći će da ga vrate ponovo putem ove iste komande, sve ukoliko nisu primenjene dodatne restrikcije operatora sajta.',
-'revdelete-legend'            => 'Postavi restrikcije revizija:',
+'revdelete-legend'            => 'Postavi restrikcije revizija',
 'revdelete-hide-text'         => 'Sakrij tekst revizije',
 'revdelete-hide-comment'      => 'Sakrij opis izmene',
 'revdelete-hide-user'         => 'Sakrij korisničko ime/IP adresu korisnika koji je uređivao stranicu',

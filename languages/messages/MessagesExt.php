@@ -664,7 +664,7 @@ puei bel detallis nel [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} rus
 'revdelete-text'              => 'Las revisionis esborrás entovia apaicirán nel estorial la páhina, peru el su continiu nu sedrá acesibri pal púbricu.
 
 El restu e çahorilis desti güiqui sí tendrán premisu pa visoreal el continiu açonchau, i revertil el esborrau si es mestel, a nu sel que los alministraoris del güiqui crein una restrición aicional.',
-'revdelete-legend'            => 'Restricionis:',
+'revdelete-legend'            => 'Restricionis',
 'revdelete-hide-text'         => 'Açonchal el testu la revisión',
 'revdelete-hide-name'         => 'Açonchal ación i ohetivu',
 'revdelete-hide-comment'      => 'Açonchal síntesis la eición',
@@ -679,8 +679,8 @@ El restu e çahorilis desti güiqui sí tendrán premisu pa visoreal el continiu
 'logdelete-logentry'          => "chambá la visibiliá d'eventus de [[$1]]",
 'revdelete-logaction'         => '$1 {{PLURAL:$1|revisión|revisionis}} en mó $2',
 'logdelete-logaction'         => '$1 {{PLURAL:$1|eventu|eventus}} a [[$3]] en mó $2',
-'revdelete-success'           => 'Visibiliá e revisionis chambá.',
-'logdelete-success'           => "Visibiliá d'eventus chambá.",
+'revdelete-success'           => "'''Visibiliá e revisionis chambá.'''",
+'logdelete-success'           => "'''Visibiliá d'eventus chambá.'''",
 
 # History merging
 'mergehistory'                     => 'Uñifical el estorial las páhinas',

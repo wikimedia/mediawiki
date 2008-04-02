@@ -928,7 +928,7 @@ Aandere beheerders van {{SITENAME}} kunnen de verbörgen inhoud bekieken en 't w
 'revdelete-logaction'         => '$1 {{PLURAL:$1|wieziging|wiezigingen}} in-esteld naor modus $2',
 'logdelete-logaction'         => '$1 {{PLURAL:$1|actie|acties}} um [[$3]] naor modus $2 in te stellen',
 'revdelete-success'           => 'Zichbaorheid van de wieziging succesvol in-esteld.',
-'logdelete-success'           => 'Zichbaorheid van de gebeurtenisse is succesvol in-esteld.',
+'logdelete-success'           => "'''Zichbaorheid van de gebeurtenisse is succesvol in-esteld.'''",
 'pagehist'                    => 'Paginageschiedenisse',
 'deletedhist'                 => 'Geschiedenisse dee vort-ehaold is',
 

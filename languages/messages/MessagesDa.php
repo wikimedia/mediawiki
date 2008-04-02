@@ -812,6 +812,7 @@ Administratorer kan dog fortsat se og gendanne det fjernede indhold, medmindre d
 'logdelete-logaction'         => '$1 {{plural:$1|Indførsel|Indførsler}} for [[$3]] sat til modus $2',
 'revdelete-success'           => 'Versionsvisning er ændret.',
 'logdelete-success'           => 'Logbogs-aktion er indstillet.',
+'pagehist'                    => 'Sidehistorik',
 'deletedhist'                 => 'Slettet historik',
 
 # History merging
@@ -2444,6 +2445,7 @@ Indtast filnavnet uden "{{ns:image}}:" præfiks.',
 'fileduplicatesearch-legend'   => 'Søg efter dublet',
 'fileduplicatesearch-filename' => 'Filnavn:',
 'fileduplicatesearch-submit'   => 'Søg',
+'fileduplicatesearch-info'     => '$1 × $2 pixel<br />Filstørrelse: $3<br />MIME-Typ: $4',
 'fileduplicatesearch-result-1' => 'Filen "$1" har ingen identiske dubletter.',
 'fileduplicatesearch-result-n' => 'Filen "$1" har {{PLURAL:$2|1 identisk dublet|$2 identiske dubletter}}.',
 

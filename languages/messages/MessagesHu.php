@@ -946,8 +946,8 @@ vissza tudja ugyanezen a kezelőfelületen keresztül állítani, ha nincs megad
 'logdelete-logentry'          => '[[$1]] eseményének láthatóságának módosítása',
 'revdelete-logaction'         => '$1 változat átállítva $2 módra',
 'logdelete-logaction'         => '[[$3]] $1 eseménye átállítva $2 módra',
-'revdelete-success'           => 'A változat láthatóságának beállítása sikeresen elvégezve.',
-'logdelete-success'           => 'Az esemény láthatóságának beállítása sikeresen elvégezve.',
+'revdelete-success'           => "'''A változat láthatóságának beállítása sikeresen elvégezve.'''",
+'logdelete-success'           => "'''Az esemény láthatóságának beállítása sikeresen elvégezve.'''",
 'pagehist'                    => 'Laptörténet',
 'deletedhist'                 => 'Törölt változatok',
 
@@ -1101,6 +1101,8 @@ rendszer nem indexel, vagy több független keresési kifejezés megadása
 'userrights-nodatabase'            => '$1 adatbázis nem létezik vagy nem helyi.',
 'userrights-nologin'               => '[[Special:Userlogin|Be kell jelentkezned]] egy adminisztrátori fiókkal, hogy felhasználói jogokat adhass.',
 'userrights-notallowed'            => 'A fiókoddal nincs jogod felhasználói jogokat osztani.',
+'userrights-changeable-col'        => 'Megváltoztatható csoportok',
+'userrights-unchangeable-col'      => 'Nem megváltoztatható csoportok',
 
 # Groups
 'group'               => 'Csoport:',

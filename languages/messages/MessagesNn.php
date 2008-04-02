@@ -877,7 +877,7 @@ Grunnen som vart gjeven av $3 er ''$2''",
 'revdelete-text'              => 'Sletta versjonar og oppføringar vert framleis synlege i sidehistorikken og loggane, men delar av innhaldet deira vert ikkje lenger offentleggjort.
 
 Andre administratorar på {{SITENAME}} kan framleis sjå det gøymde innhaldet og attopprette det, med mindre fleire avgrensingar vert lagde inn av sideoperatørane.',
-'revdelete-legend'            => 'Vel avgrensing:',
+'revdelete-legend'            => 'Vel avgrensing',
 'revdelete-hide-text'         => 'Gøym endringssamandraga',
 'revdelete-hide-name'         => 'Gøym handling og sidenamn',
 'revdelete-hide-comment'      => 'Gøym endringssamandraga',
@@ -892,8 +892,8 @@ Andre administratorar på {{SITENAME}} kan framleis sjå det gøymde innhaldet o
 'logdelete-logentry'          => 'endra visinga av loggoppføringane til [[$1]]',
 'revdelete-logaction'         => '{{PLURAL:$1|Éin versjon er sett|$1 versjonar er sette}} til $2',
 'logdelete-logaction'         => '{{PLURAL:$1|Éi loggoppføring på [[$3]] er sett|$1 loggoppføringar på [[$3]] er sette}} til $2',
-'revdelete-success'           => 'Versjonsvisinga er endra.',
-'logdelete-success'           => 'Visinga av loggoppføringar er endra.',
+'revdelete-success'           => "'''Versjonsvisinga er endra.'''",
+'logdelete-success'           => "'''Visinga av loggoppføringar er endra.'''",
 'pagehist'                    => 'Sidehistorikk',
 'deletedhist'                 => 'Sletta historikk',
 

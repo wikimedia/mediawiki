@@ -791,7 +791,7 @@ Denne revisjonen har blitt fjernet fra det offentlige arkivet. Som administrator
 'revdelete-text'              => 'Slettede revisjoner vil fortsatt vises i sidehistorikken, men innholdet vil ikke være tilgjengelig for offentligheten.
 
 Andre administratorer på {{SITENAME}} vil fortsatt kunne se det skjulte innholdet, og kan gjenopprette det, med mindre videre begrensninger blir gitt av sideoperatørene.',
-'revdelete-legend'            => 'Angi revisjonsbegrensninger:',
+'revdelete-legend'            => 'Angi revisjonsbegrensninger',
 'revdelete-hide-text'         => 'Skjul revisjonstekst',
 'revdelete-hide-name'         => 'Skjul handling og mål',
 'revdelete-hide-comment'      => 'Skjul redigeringsforklaring',
@@ -806,8 +806,8 @@ Andre administratorer på {{SITENAME}} vil fortsatt kunne se det skjulte innhold
 'logdelete-logentry'          => 'endre hendelsessynlighet for [[$1]]',
 'revdelete-logaction'         => '$1 {{PLURAL:$1|revisjon|revisjoner}} satt til modus $2',
 'logdelete-logaction'         => '$1 {{plural:$1|hendelse|hendelser}} angående [[$3]] satt til modus $2',
-'revdelete-success'           => 'Revisjonssynlighet satt.',
-'logdelete-success'           => 'Hendelsessynlighet satt.',
+'revdelete-success'           => "'''Revisjonssynlighet satt.'''",
+'logdelete-success'           => "'''Hendelsessynlighet satt.'''",
 'pagehist'                    => 'Sidehistorikk',
 'deletedhist'                 => 'Slettet historikk',
 

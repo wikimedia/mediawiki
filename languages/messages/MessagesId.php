@@ -913,9 +913,11 @@ Pengurus lain akan dapat mengakses isi tersebunyi dan dapat membatalkan penghapu
 'revdelete-logentry'          => 'ubah tampilan revisi untuk [[$1]]',
 'logdelete-logentry'          => 'ubah aturan penyembunyian dari [[$1]]',
 'revdelete-logaction'         => '$1 {{PLURAL:$1|revisi|revisi}} telah diubah menjadi mode $2',
-'logdelete-logaction'         => '$1 {{PLURAL:$1|tindakan|tindakan}} terhadap [[$3]] diubah menjadi mode $2',
+'logdelete-logaction'         => '{{PLURAL:$1|peristiwa|peristiwa}} terhadap $1 diset menjadi mode $2',
 'revdelete-success'           => 'Aturan penyembunyian revisi berhasil diterapkan.',
 'logdelete-success'           => 'Aturan penyembunyian tindakan berhasil diterapkan.',
+'pagehist'                    => 'Sejarah halaman',
+'deletedhist'                 => 'Sejarah yang dihapus',
 
 # History merging
 'mergehistory'                     => 'Gabung sejarah halaman',
@@ -932,7 +934,7 @@ Pengurus lain akan dapat mengakses isi tersebunyi dan dapat membatalkan penghapu
 'mergehistory-fail'                => 'Tidak dapat melakukan penggabungan, harap periksa kembali halaman dan parameter waktu.',
 'mergehistory-no-source'           => 'Halaman sumber $1 tidak ada.',
 'mergehistory-no-destination'      => 'Halaman tujuan $1 tidak ada.',
-'mergehistory-invalid-source'      => 'Judul halaman sumber haruslah judul yang valid.',
+'mergehistory-invalid-source'      => 'Judul halaman sumber haruslah judul yang berlaku.',
 'mergehistory-invalid-destination' => 'Judul halaman tujuan haruslah judul yang valid.',
 
 # Merge log

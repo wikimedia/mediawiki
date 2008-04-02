@@ -122,6 +122,7 @@ $messages = array(
 'navigation'    => 'ભ્રમણ',
 'and'           => 'અને',
 
+'returnto'         => '$1 પર પાછા જાઓ.',
 'tagline'          => '{{SITENAME}} થી',
 'help'             => 'મદદ',
 'search'           => 'શોધો',
@@ -142,6 +143,7 @@ $messages = array(
 'specialpage'      => 'ખાસ પાનુ',
 'talk'             => 'ચર્ચા',
 'toolbox'          => 'ઓજારની પેટી',
+'userpage'         => 'સભ્યનું પાનું જુઓ',
 'viewtalkpage'     => 'ચર્ચા જુઓ',
 'otherlanguages'   => 'બીજી ભાષાઓમાં',
 'lastmodifiedat'   => 'આ પાનાંમાં છેલ્લો ફેરફાર $1ના રોજ $2 વાગ્યે થયો.', # $1 date, $2 time
@@ -154,6 +156,7 @@ $messages = array(
 'currentevents'     => 'વર્તમાન ઘટનાઓ',
 'currentevents-url' => 'Project:વર્તમાન ઘટનાઓ',
 'edithelp'          => 'ફેરફારો માટે મદદ',
+'helppage'          => 'મદદઃસૂચિ',
 'mainpage'          => 'મુખપૃષ્ઠ',
 'portal'            => 'સમાજ મુખપૃષ્ઠ',
 'sitesupport'       => 'દાન',
@@ -170,8 +173,10 @@ $messages = array(
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'લેખ',
+'nstab-user'      => 'મારા વિષે',
 'nstab-special'   => 'ખાસ',
 'nstab-mediawiki' => 'સંદેશ',
+'nstab-template'  => 'ઢાંચો',
 'nstab-help'      => 'મદદનું પાનું',
 
 # Main script and global functions
@@ -182,26 +187,34 @@ $messages = array(
 'viewsourcefor' => '$1ને માટે',
 
 # Login and logout pages
-'userlogin'       => 'Log in / નવું ખાતું ખોલો',
+'login'           => 'પ્રવેશ કરો (લૉગ ઇન કરીને)',
+'userlogin'       => 'પ્રવેશ કરો / નવું ખાતું ખોલો',
 'nologin'         => 'શું તમારૂં ખાતું નથી? $1.',
 'nologinlink'     => 'ખાતું ખોલો',
 'createaccount'   => 'નવું ખાતું ખોલો',
+'gotaccountlink'  => 'પ્રવેશો (લૉગ ઇન કરો)',
 'yourrealname'    => 'સાચું નામ:',
 'yourlanguage'    => 'ભાષા',
+'loginsuccess'    => "'''તમે હવે {{SITENAME}}માં \"\$1\" તરીકે પ્રવેશી ચુક્યા છો.'''",
 'nosuchusershort' => '"<nowiki>$1</nowiki>" નામનો કોઇ સભ્ય નથી, તમારી જોડણી તપાસો.',
 'accountcreated'  => 'ખાતું ખોલવામાં આવ્યું છે',
 
 # Edit pages
-'summary'           => 'સારાંશ',
-'minoredit'         => 'આ એક નાનો સુધારો છે.',
-'watchthis'         => 'આ પાનાને ધ્યાનમાં રાખો',
-'savearticle'       => 'કાર્ય સુરક્ષિત કરો',
-'showpreview'       => 'ઝલક બતાવો',
-'showdiff'          => 'ફેરફારો બતાવો',
-'blockededitsource' => "'''$1''' માટે '''તમારા ફેરફારો''' નીચે દેખાય છે:",
-'newarticle'        => '(નવિન)',
-'editing'           => '$1નો ફેરફાર કરી રહ્યા છે',
-'yourdiff'          => 'ભેદ',
+'summary'               => 'સારાંશ',
+'minoredit'             => 'આ એક નાનો સુધારો છે.',
+'watchthis'             => 'આ પાનાને ધ્યાનમાં રાખો',
+'savearticle'           => 'કાર્ય સુરક્ષિત કરો',
+'preview'               => 'પૂર્વાવલોકન',
+'showpreview'           => 'ઝલક બતાવો',
+'showdiff'              => 'ફેરફારો બતાવો',
+'blockededitsource'     => "'''$1''' માટે '''તમારા ફેરફારો''' નીચે દેખાય છે:",
+'newarticle'            => '(નવિન)',
+'editing'               => '$1નો ફેરફાર કરી રહ્યા છે',
+'yourdiff'              => 'ભેદ',
+'recreate-deleted-warn' => "'''ચેતવણી: તમે જે પાનું નવું બનાવવા જઇ રહ્યાં છો તે પહેલાં દૂર કરવામાં આવ્યું છે.'''
+
+આગળ વધતાં બે વખત વિચારજો અને જો તમને લાગે કે આ પાનું ફરી વાર બનાવવું ઉચિત છે, તો જ અહીં ફેરફાર કરજો.
+પાનું હટવ્યાં પહેલાનાં બધા ફેરફારોની સૂચિ તમારી સહુલીયત માટે અહીં આપી છે:",
 
 # History pages
 'nohistory'    => 'આ પાનાનાં ફેરફારનો ઇતિહાસ નથી.',
@@ -215,8 +228,9 @@ $messages = array(
 'historyempty' => '(ખાલી)',
 
 # Diffs
-'lineno'   => 'લીટી $1:',
-'editundo' => 'રદ કરો',
+'lineno'                  => 'લીટી $1:',
+'compareselectedversions' => 'પસંદ કરેલા સરખાવો',
+'editundo'                => 'રદ કરો',
 
 # Search results
 'searchresults' => 'પરિણામોમાં શોધો',
@@ -229,6 +243,7 @@ $messages = array(
 'mypreferences'     => 'મારી પસંદ',
 'datetime'          => 'તારીખ અને સમય',
 'prefs-watchlist'   => 'ધ્યાનસૂચી',
+'retypenew'         => 'નવી ગુપ્ત સંજ્ઞા (પાસવર્ડ) ફરી લખો:',
 'searchresultshead' => 'શોધો',
 
 # Groups
@@ -243,6 +258,8 @@ $messages = array(
 'rclistfrom'      => '$1 બાદ થયેલા નવા ફેરફારો બતાવો',
 'rcshowhideminor' => 'નાના ફેરફારો $1',
 'rcshowhidebots'  => 'બૉટો $1',
+'rcshowhideliu'   => '$1 સભ્યો લૉગ ઇન થયેલાં છે',
+'rcshowhideanons' => '$1 અનામિ સભ્યો',
 'rcshowhidemine'  => 'મારા ફેરફારો $1',
 'rclinks'         => 'છેલ્લાં $2 દિવસમાં થયેલા છેલ્લાં $1 ફેરફારો દર્શાવો<br />$3',
 'diff'            => 'ભેદ',
@@ -259,21 +276,34 @@ $messages = array(
 # Upload
 'upload' => 'ફાઇલ ચડાવો',
 
+# Unused templates
+'unusedtemplates' => 'વણ વપરાયેલાં ઢાંચા',
+
 # Random page
 'randompage' => 'કોઈ પણ એક લેખ',
 
 'brokenredirects-edit'   => '(ફેરફાર કરો)',
 'brokenredirects-delete' => '(હટાવો)',
 
+'fewestrevisions' => 'સૌથી ઓછાં ફેરફાર થયેલા પાનાં',
+
 # Miscellaneous special pages
-'nmembers'          => '$1 {{PLURAL:$1|સદસ્ય|સદસ્યો}}',
-'specialpage-empty' => 'આ પાનું ખાલી છે.',
-'lonelypages'       => 'અનાથ પાના',
-'shortpages'        => 'નાનાં પાનાં',
-'specialpages'      => 'ખાસ પાનાં',
-'newpages'          => 'નવા પાના',
-'ancientpages'      => 'સૌથી જૂનાં પાના',
-'move'              => 'નામ બદલો',
+'nmembers'                => '$1 {{PLURAL:$1|સદસ્ય|સદસ્યો}}',
+'specialpage-empty'       => 'આ પાનું ખાલી છે.',
+'lonelypages'             => 'અનાથ પાના',
+'uncategorizedcategories' => 'અવર્ગિકૃત શ્રેણીઓ',
+'uncategorizedimages'     => 'અવર્ગિકૃત દસ્તાવેજો',
+'uncategorizedtemplates'  => 'અવર્ગિકૃત ઢાંચાઓ',
+'unusedcategories'        => 'વણ વપરાયેલી શ્રેણીઓ',
+'unusedimages'            => 'વણ વપરાયેલાં દસ્તાવેજો',
+'mostrevisions'           => 'સૌથી વધુ ફેરફાર થયેલા પાનાં',
+'shortpages'              => 'નાનાં પાનાં',
+'longpages'               => 'લાંબા પાનાઓ',
+'protectedpages'          => 'સંરક્ષિત પાનાઓ',
+'specialpages'            => 'ખાસ પાનાં',
+'newpages'                => 'નવા પાના',
+'ancientpages'            => 'સૌથી જૂનાં પાના',
+'move'                    => 'નામ બદલો',
 
 # Book sources
 'booksources-isbn' => 'આઇએસબીએન:',
@@ -321,6 +351,7 @@ $messages = array(
 'confirm'        => 'ખાતરી કરો',
 'exblank'        => 'પાનું ખાલી હતું',
 'actioncomplete' => 'કામ પૂરું થઈ ગયું',
+'rollbacklink'   => 'પાછું વાળો',
 
 # Restrictions (nouns)
 'restriction-edit' => 'બદલો',
@@ -329,29 +360,38 @@ $messages = array(
 'undelete-search-submit' => 'શોધો',
 
 # Namespace form on various pages
+'invert'         => 'પસંદગી ઉલટાવો',
 'blanknamespace' => '(મુખ્ય)',
 
 # Contributions
-'mycontris' => 'મારૂં યોગદાન',
+'contributions' => 'સભ્યનું યોગદાન',
+'mycontris'     => 'મારૂં યોગદાન',
+'uctop'         => '(છેક ઉપર)',
 
-'sp-contributions-submit' => 'શોધો',
+'sp-contributions-blocklog' => 'પ્રતિબંધ સૂચિ',
+'sp-contributions-submit'   => 'શોધો',
 
 # What links here
 'whatlinkshere' => 'અહિયાં શું જોડાય છે',
 'linklistsub'   => '(કડીઓની સૂચી)',
 
 # Block/unblock
+'blockip'            => 'સભ્ય પર પ્રતિબંધ મુકો',
 'ipbreason'          => 'કારણ',
 'ipbreasonotherlist' => 'બીજું કારણ',
 'ipbother'           => 'અન્ય સમય',
 'ipbotheroption'     => 'બીજું',
+'ipblocklist'        => 'પ્રતિબંધિત IP સરનામા અને સભ્યોની યાદી',
 'ipblocklist-submit' => 'શોધો',
 'anononlyblock'      => 'માત્ર અનામી',
+'unblocklink'        => 'પ્રતિબંધ હટાવો',
 'contribslink'       => 'યોગદાન',
+'blocklogpage'       => 'પ્રતિબંધ સૂચિ',
 
 # Move page
 '1movedto2'               => '[[$1]] નું નામ બદલી ને [[$2]] કરવામાં આવ્યું છે.',
 'movereason'              => 'કારણ',
+'revertmove'              => 'પૂર્વવત',
 'delete_and_move'         => 'હટાવો અને નામ બદલો',
 'delete_and_move_confirm' => 'હા, આ પાનું હટાવો',
 
@@ -359,22 +399,29 @@ $messages = array(
 'export-addcat' => 'ઉમેરો',
 
 # Namespace 8 related
+'allmessages'        => 'તંત્ર સંદેશાઓ',
 'allmessagesname'    => 'નામ',
 'allmessagescurrent' => 'વર્તમાન દસ્તાવેજ',
 
 # Tooltip help for the actions
-'tooltip-pt-mytalk'       => 'મારી ચર્ચાનું પાનું',
-'tooltip-pt-preferences'  => 'મારી પસંદ',
-'tooltip-ca-protect'      => 'આ પાનું સુરક્ષિત કરો',
-'tooltip-ca-delete'       => 'આ પાનું હટાવો',
-'tooltip-ca-watch'        => 'આ પાનું તમારી ધ્યાનસૂચીમા ઉમેરો',
-'tooltip-ca-unwatch'      => 'આ પાનું તમારી ધ્યાનસૂચીમાથી કાઢી નાખો',
-'tooltip-search'          => '{{SITENAME}} શોધો',
-'tooltip-p-logo'          => 'મુખપૃષ્ઠ',
-'tooltip-n-mainpage'      => 'મુખપૃષ્ઠ પર જાઓ',
-'tooltip-n-recentchanges' => 'વિકિમાં હાલમા થયેલા ફેરફારો ની સૂચિ.',
-'tooltip-n-sitesupport'   => 'અમારું સમર્થન કરો',
-'tooltip-t-specialpages'  => 'ખાસ પાનાંઓની સૂચિ',
+'tooltip-pt-userpage'             => 'મારૂં પાનું',
+'tooltip-pt-mytalk'               => 'મારી ચર્ચાનું પાનું',
+'tooltip-pt-preferences'          => 'મારી પસંદ',
+'tooltip-ca-addsection'           => 'આ ચર્ચામાં તમારી ટીપ્પણી ઉમેરો.',
+'tooltip-ca-viewsource'           => 'આ પાનુ સંરક્ષિત છે, તમે તેનો સ્ત્રોત જોઇ શકો છો',
+'tooltip-ca-protect'              => 'આ પાનું સુરક્ષિત કરો',
+'tooltip-ca-delete'               => 'આ પાનું હટાવો',
+'tooltip-ca-watch'                => 'આ પાનું તમારી ધ્યાનસૂચીમા ઉમેરો',
+'tooltip-ca-unwatch'              => 'આ પાનું તમારી ધ્યાનસૂચીમાથી કાઢી નાખો',
+'tooltip-search'                  => '{{SITENAME}} શોધો',
+'tooltip-p-logo'                  => 'મુખપૃષ્ઠ',
+'tooltip-n-mainpage'              => 'મુખપૃષ્ઠ પર જાઓ',
+'tooltip-n-recentchanges'         => 'વિકિમાં હાલમા થયેલા ફેરફારો ની સૂચિ.',
+'tooltip-n-sitesupport'           => 'અમારું સમર્થન કરો',
+'tooltip-t-specialpages'          => 'ખાસ પાનાંઓની સૂચિ',
+'tooltip-ca-nstab-user'           => 'સભ્યનું પાનું જુઓ',
+'tooltip-ca-nstab-help'           => 'મદદનું પાનું જુઓ',
+'tooltip-compareselectedversions' => 'અ પાનાનાં પસંદ કરેલા બે વૃત્તાંત વચ્ચેનાં ભેદ જુઓ.',
 
 # Info page
 'infosubtitle' => 'પાના વિષે માહિતી',
@@ -409,6 +456,9 @@ $messages = array(
 'exif-sharpness-0' => 'સામાન્ય',
 
 'exif-subjectdistancerange-0' => 'અજાણ્યો',
+
+# External editor support
+'edit-externally-help' => 'વધુ માહિતિ માટે જુઓ: [http://meta.wikimedia.org/wiki/Help:External_editors setup instructions]',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'બધા',

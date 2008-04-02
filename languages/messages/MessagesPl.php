@@ -247,7 +247,7 @@ $messages = array(
 
 # Categories related messages
 'categories'                     => 'Kategorie',
-'categoriespagetext'             => 'Poniższe kategorie istnieją na wiki.',
+'categoriespagetext'             => 'Poniższe kategorie zawierają jakieś artykuły lub pliki.',
 'special-categories-sort-count'  => 'sortowanie według liczby',
 'special-categories-sort-abc'    => 'sortowanie alfabetyczne',
 'pagecategories'                 => '{{PLURAL:$1|Kategoria|Kategorie}}',
@@ -382,7 +382,7 @@ $messages = array(
 'badaccess-groups' => 'Wykonywanie tej operacji zostało ograniczone do użytkowników w jednej z grup $1.',
 
 'versionrequired'     => 'Wymagana MediaWiki w wersji $1',
-'versionrequiredtext' => 'Wymagane jest MediaWiki w wersji $1 aby skorzystać z tej strony. Zobacz [[Special:Version]]',
+'versionrequiredtext' => 'Użycie tej strony wymaga oprogramowania MediaWiki w wersji $1. Zobacz stronę [[Special:Version|wersja oprogramowania]].',
 
 'ok'                      => 'OK',
 'retrievedfrom'           => 'Źródło: "$1"',
@@ -424,7 +424,9 @@ $messages = array(
 'nosuchaction'      => 'Nie ma takiej operacji',
 'nosuchactiontext'  => 'Oprogramowanie nie rozpoznaje operacji takiej jak podana w URL',
 'nosuchspecialpage' => 'Nie ma takiej strony specjalnej',
-'nospecialpagetext' => 'Oprogramowanie nie rozpoznaje takiej specjalnej strony. Listę stron specjalnych znajdziesz na [[{{ns:special}}:Specialpages]]',
+'nospecialpagetext' => "<big>'''Brak żądanej strony specjalnej.'''</big>
+
+Listę dostępnych stron specjalnych znajdziesz [[Special:Specialpages|tutaj]].",
 
 # General errors
 'error'                => 'Błąd',
@@ -492,7 +494,7 @@ Zapytanie: $2',
 $2',
 'namespaceprotected'   => "Brak uprawnień do edytowania stron w przestrzeni nazw '''$1'''.",
 'customcssjsprotected' => 'Nie masz uprawnień do dokonywania edycji na tej stronie, gdyż zawiera ona ustawienia osobiste innego użytkownika.',
-'ns-specialprotected'  => 'Nie można edytować stron w przestrzeni nazw {{ns:special}}.',
+'ns-specialprotected'  => 'Stron specjalnych nie można edytować.',
 'titleprotected'       => "Utworzenie strony o tej nazwie zostało zablokowane przez [[User:$1|$1]].
 Powód blokady: ''$2''.",
 
@@ -500,8 +502,8 @@ Powód blokady: ''$2''.",
 'logouttitle'                => 'Wylogowanie użytkownika',
 'logouttext'                 => '<strong>Wylogowano Cię</strong>.<br />Możesz kontynuować pracę jako niezarejestrowany użytkownik albo zalogować się ponownie jako ten sam lub inny użytkownik.',
 'welcomecreation'            => '== Witaj, $1! ==
-
-Właśnie utworzyliśmy dla Ciebie konto. Nie zapomnij dostosować [[{{ns:special}}:Preferences|preferencji]].',
+Konto zostało utworzone.
+Nie zapomnij dostosować [[Special:Preferences|preferencji]].',
 'loginpagetitle'             => 'Logowanie',
 'yourname'                   => 'Login',
 'yourpassword'               => 'Hasło',
@@ -674,7 +676,7 @@ Możesz to zrobić w [[Special:Preferences|swoich ustawieniach]].',
 'accmailtext'               => 'Hasło użytkownika "$1" zostało wysłane pod adres $2.',
 'newarticle'                => '(Nowy)',
 'newarticletext'            => "Nie ma jeszcze artykułu o tym tytule. W poniższym polu można wpisać pierwszy jego fragment. Jeśli nie to było Twoim zamiarem, wciśnij po prostu ''Wstecz''.",
-'anontalkpagetext'          => "---- ''To jest strona dyskusyjna dla użytkowników anonimowych - takich, którzy nie mają jeszcze swojego konta lub nie chcą go w tej chwili używać. By ich identyfikować używamy numerów IP. Jeśli jesteś anonimowym użytkownikiem i wydaje Ci się, że zamieszczone tu komentarze nie są skierowane do Ciebie, [[{{ns:special}}:Userlogin|utwórz proszę konto albo zaloguj się]] - dzięki temu unikniesz w przyszłości podobnych nieporozumień.''",
+'anontalkpagetext'          => "---- ''To jest strona dyskusji anonimowego użytkownika - takiego, który nie ma jeszcze swojego konta lub nie chce go w tej chwili używać. By go identyfikować używamy adresów IP. Jednak adres IP może być współdzielony przez wielu użytkowników. Jeśli jesteś anonimowym użytkownikiem i uważasz, że zamieszczone tu komentarze nie są skierowane do Ciebie, [[Special:Userlogin|utwórz proszę konto albo zaloguj się]] - dzięki temu unikniesz w przyszłości podobnych nieporozumień.''",
 'noarticletext'             => 'Nie ma jeszcze artykułu o tym tytule. Możesz [{{fullurl:{{FULLPAGENAME}}|action=edit}} utworzyć artykuł {{FULLPAGENAME}}] lub [[Special:Search/{{FULLPAGENAME}}|poszukać {{FULLPAGENAME}} w innych artykułach]].',
 'userpage-userdoesnotexist' => 'Użytkownik "$1" nie jest zarejestrowany. Upewnij się czy na pewno zamierzałeś stworzyć/zmodyfikować właśnie tę stronę.',
 'clearyourcache'            => "'''Uwaga:''' By zobaczyć zmiany po zapisaniu nowych ustawień poleć przeglądarce wyczyścić zawartość pamięci podręcznej (cache). '''Mozilla / Firefox / Safari:''' przytrzymaj ''Shift'' klikając na ''Odśwież'' lub wciśnij ''Ctrl-Shift-R'' (''Cmd-Shift-R'' na Macintoshu), '''IE :''' przytrzymaj ''Ctrl'' klikając na ''Odśwież'' lub wciśnij ''Ctrl-F5''; '''Konqueror:''': po prostu kliknij przycisk ''Odśwież'' lub wciśnij ''F5''; użytkownicy '''Opery''' mogą być zmuszeni do kompletnego wyczyszczenia ich pamięci podręcznej w menu ''Narzędzia→Preferencje''.",
@@ -728,7 +730,8 @@ Zapisując swoją edycję oświadczasz, że ten tekst jest Twoim dziełem lub po
 'hiddencategories'          => 'Ta strona jest w {{PLURAL:$1|jednej ukrytej kategorii|$1 ukrytych kategoriach}}:',
 'edittools'                 => '<!-- Znajdujący się tutaj tekst zostanie pokazany pod polem edycji i formularzem przesyłania plików. -->',
 'nocreatetitle'             => 'Ograniczono tworzenie stron',
-'nocreatetext'              => 'Na {{GRAMMAR:MS.lp|{{SITENAME}}}} ograniczono możliwość tworzenia nowych stron. Możesz edytować istniejące strony lub [[{{ns:special}}:Userlogin|zalogować się lub utworzyć konto]].',
+'nocreatetext'              => 'Na {{GRAMMAR:MS.lp|{{SITENAME}}}} ograniczono możliwość tworzenia nowych stron.
+Możesz edytować istniejące strony, bądź też [[Special:Userlogin|zalogować się lub utworzyć konto]].',
 'nocreate-loggedin'         => 'Nie masz uprawnień do tworzenia stron na {{GRAMMAR:MS.lp|{{SITENAME}}}}.',
 'permissionserrors'         => 'Błędy uprawnień',
 'permissionserrorstext'     => 'Nie masz uprawnień do tego działania z {{PLURAL:$1|następującej przyczyny|następujących przyczyn}}:',
@@ -775,7 +778,9 @@ Podany przez $3 powód to ''$2''",
 'history-feed-title'          => 'Historia wersji',
 'history-feed-description'    => 'Historia wersji tej strony wiki',
 'history-feed-item-nocomment' => '$1 o $2', # user at time
-'history-feed-empty'          => 'Wybrana strona nie istnieje. Mogła ona zostać usunięta lub przeniesiona pod inną nazwę. Możesz także [[{{ns:special}}:Search|poszukać]] tej strony.',
+'history-feed-empty'          => 'Wybrana strona nie istnieje.
+Mogła zostać usunięta lub jej nazwa została zmieniona.
+Spróbuj [[Special:Search|poszukać]] tej strony.',
 
 # Revision deletion
 'rev-deleted-comment'         => '(komentarz usunięty)',
@@ -794,8 +799,8 @@ Powody usunięcia mogą znajdować się w [{{fullurl:Special:Log/delete|page={{F
 'revisiondelete'              => 'Skasuj/przywróć wersje',
 'revdelete-nooldid-title'     => 'Nie wybrano wersji',
 'revdelete-nooldid-text'      => 'Nie wybrano wersji na których ma zostać wykonana ta operacja.',
-'revdelete-selected'          => '{{PLURAL:$2|Wybrana wersja|Wybrane wersje}} strony [[:$1]]:',
-'logdelete-selected'          => "{{PLURAL:$2|Wybrane zdarzenie z rejestru|Wybrane zdarzenia z rejestru}} dla '''$1:'''",
+'revdelete-selected'          => '{{PLURAL:$2|Zaznaczona wersja|Zaznaczone wersje}} strony [[:$1]]:',
+'logdelete-selected'          => '{{PLURAL:$1|Zaznaczone zdarzenie z rejestru|Zaznaczone zdarzenia z rejestru}}:',
 'revdelete-text'              => 'Usunięte wersje będą nadal widoczne w historii strony ale ich treść nie będzie publicznie dostępna.
 
 Inni administratorzy {{GRAMMAR:D.lp|{{SITENAME}}}} nadal będą mieć dostęp do ukrytych wersji i będą mogli je odtworzyć, chyba że operator serwisu nałożył dodatkowe ograniczenia.',
@@ -804,7 +809,7 @@ Inni administratorzy {{GRAMMAR:D.lp|{{SITENAME}}}} nadal będą mieć dostęp do
 'revdelete-hide-name'         => 'Ukryj akcję i cel',
 'revdelete-hide-comment'      => 'Ukryj komentarz edycji',
 'revdelete-hide-user'         => 'Ukryj nazwę użytkownika/adres IP',
-'revdelete-hide-restricted'   => 'Wprowadź te ograniczenia zarówno dla administratorów jak i dla innych',
+'revdelete-hide-restricted'   => 'Wprowadź te ograniczenia dla administratorów i zablokuj ten interfejs',
 'revdelete-suppress'          => 'Ukryj informacje zarówno przed administratorami jak i przed innymi',
 'revdelete-hide-image'        => 'Ukryj zawartość pliku',
 'revdelete-unsuppress'        => 'Usuń ograniczenia dla odtwarzanej historii zmian',
@@ -813,11 +818,16 @@ Inni administratorzy {{GRAMMAR:D.lp|{{SITENAME}}}} nadal będą mieć dostęp do
 'revdelete-logentry'          => 'zmieniono widoczność wersji w [[$1]]',
 'logdelete-logentry'          => 'zmieniono widoczność zdarzeń dla [[$1]]',
 'revdelete-logaction'         => '$1 {{PLURAL:$1|wersję|wersje|wersji}} ustawiono w tryb $2',
-'logdelete-logaction'         => '$1 {{PLURAL:$1|zdarzenie|zdarzenia|zdarzeń}} dla [[$3]] przestawiono w tryb $2',
-'revdelete-success'           => 'Pomyślnie zmieniono widoczność wersji.',
-'logdelete-success'           => 'Pomyślnie zmieniono widoczność zdarzeń.',
+'logdelete-logaction'         => '$1 {{PLURAL:$1|zdarzenie|zdarzenia|zdarzeń}} przestawiono w tryb $2',
+'revdelete-success'           => "'''Pomyślnie zmieniono widoczność wersji.'''",
+'logdelete-success'           => "'''Pomyślnie zmieniono widoczność zdarzeń.'''",
+'revdel-restore'              => 'Zmień widoczność',
 'pagehist'                    => 'Historia edycji strony',
 'deletedhist'                 => 'Usunięta historia edycji',
+
+# Supression log
+'suppressionlog'     => 'Dziennik utajniania',
+'suppressionlogtext' => 'Poniżej znajduje się lista ostatnich usunięć i blokad ukryta przed administratorami. Zobacz [[Special:Ipblocklist|rejestr blokowania adresów IP]] jeśli chcesz sprawdzić aktualne zakazy i blokady.',
 
 # History merging
 'mergehistory'                     => 'Scal historię zmian stron',
@@ -978,17 +988,20 @@ Nie zaznaczone pole oznacza, że użytkownik nie należy do danej grupy.',
 'group-bot'           => 'Boty',
 'group-sysop'         => 'Administratorzy',
 'group-bureaucrat'    => 'Biurokraci',
+'group-suppress'      => 'Rewizorzy',
 'group-all'           => '(wszyscy)',
 
 'group-autoconfirmed-member' => 'Automatycznie zatwierdzony użytkownik',
 'group-bot-member'           => 'Bot',
 'group-sysop-member'         => 'Administrator',
 'group-bureaucrat-member'    => 'Biurokrata',
+'group-suppress-member'      => 'Rewizor',
 
 'grouppage-autoconfirmed' => '{{ns:project}}:Automatycznie zatwierdzeni użytkownicy',
 'grouppage-bot'           => '{{ns:project}}:Boty',
 'grouppage-sysop'         => '{{ns:project}}:Administratorzy',
 'grouppage-bureaucrat'    => '{{ns:project}}:Biurokraci',
+'grouppage-suppress'      => '{{ns:project}}:Rewizorzy',
 
 # User rights log
 'rightslog'      => 'Uprawnienia',
@@ -1038,7 +1051,13 @@ Nie zaznaczone pole oznacza, że użytkownik nie należy do danej grupy.',
 'uploadnologintext'           => 'Musisz się [[Special:Userlogin|zalogować]] przed przesłaniem plików.',
 'upload_directory_read_only'  => 'Serwer nie może zapisywać do katalogu ($1) przeznaczonego na przesyłane pliki.',
 'uploaderror'                 => 'Błąd przesyłki',
-'uploadtext'                  => 'Użyj poniższego formularza do przesłania plików. Jeśli chcesz przejrzeć lub przeszukać dotychczas przesłane pliki, przejdź do [[{{ns:special}}:Imagelist|listy dołączonych plików]]. Wszystkie przesyłki są odnotowane w [[{{ns:special}}:Log/upload|rejestrze przesyłanych plików]].',
+'uploadtext'                  => "Użyj poniższego formularza do przesłania plików.
+Jeśli chcesz przejrzeć lub przeszukać dotychczas przesłane pliki, przejdź do [[Special:Imagelist|listy dołączonych plików]]. Wszystkie przesyłki są odnotowane w [[Special:Log/upload|rejestrze przesyłanych plików]].
+
+Plik pojawi się na stronie, jeśli użyjesz linku według jednego z następujących wzorów:
+'''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:Plik.jpg]]</nowiki>''',
+'''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:Plik.png|tekst opisu]]</nowiki>''' lub
+'''<nowiki>[[</nowiki>{{ns:media}}<nowiki>:Plik.ogg]]</nowiki>''' aby uzyskać bezpośredni link do pliku.",
 'upload-permitted'            => 'Dopuszczalne formaty plików: $1.',
 'upload-preferred'            => 'Zalecane formaty plików: $1.',
 'upload-prohibited'           => 'Zabronione formaty plików: $1.',
@@ -1304,6 +1323,7 @@ Długość [http://meta.wikimedia.org/wiki/Help:Job_queue kolejki zadań] to '''
 'notargettext'                    => 'Nie podano strony albo użytkownika, dla których ta operacja ma być wykonana.',
 'pager-newer-n'                   => '{{PLURAL:$1|1 nowszy|$1 nowsze|$1 nowszych}}',
 'pager-older-n'                   => '{{PLURAL:$1|1 starszy|$1 starsze|$1 starszych}}',
+'suppress'                        => 'Przoczenie',
 
 # Book sources
 'booksources'               => 'Książki',
@@ -1345,7 +1365,7 @@ Długość [http://meta.wikimedia.org/wiki/Help:Job_queue kolejki zadań] to '''
 
 # E-mail user
 'mailnologin'     => 'Brak adresu',
-'mailnologintext' => 'Musisz się [[{{ns:special}}:Userlogin|zalogować]] i mieć wpisany aktualny adres e-mailowy w swoich [[{{ns:special}}:Preferences|preferencjach]], aby móc wysłać e-mail do innych użytkowników.',
+'mailnologintext' => 'Musisz się [[Special:Userlogin|zalogować]] i mieć wpisany aktualny adres e-mailowy w swoich [[Special:Preferences|preferencjach]], aby móc wysłać e-mail do innego użytkownika.',
 'emailuser'       => 'Wyślij e-mail do tego użytkownika',
 'emailpage'       => 'Wyślij e-mail do użytkownika',
 'emailpagetext'   => 'Jeśli ten użytkownik wpisał poprawny adres e-mailowy w swoich preferencjach, to poniższy formularz umożliwi Ci wysłanie jednej wiadomości. Adres e-mailowy, który został przez Ciebie wprowadzony w Twoich preferencjach pojawi się w polu "Od", dzięki temu odbiorca będzie mógł Ci odpowiedzieć.',
@@ -1370,11 +1390,11 @@ Długość [http://meta.wikimedia.org/wiki/Help:Job_queue kolejki zadań] to '''
 'nowatchlist'          => 'Nie ma żadnych pozycji na liście obserwowanych przez Ciebie stron.',
 'watchlistanontext'    => '$1 aby obejrzeć lub edytować elementy listy obserwowanych.',
 'watchnologin'         => 'Brak logowania',
-'watchnologintext'     => 'Musisz się [[{{ns:special}}:Userlogin|zalogować]] przed modyfikacją listy obserwowanych artykułów.',
+'watchnologintext'     => 'Musisz się [[Special:Userlogin|zalogować]] przed modyfikacją listy obserwowanych artykułów.',
 'addedwatch'           => 'Dodana do listy obserwowanych',
-'addedwatchtext'       => 'Strona "[[:$1|$1]]" została dodana do Twojej [[{{ns:special}}:Watchlist|listy obserwowanych]].
+'addedwatchtext'       => 'Strona "[[:$1|$1]]" została dodana do Twojej [[Special:Watchlist|listy obserwowanych]].
 Na tej liście znajdzie się rejestr przyszłych zmian tej strony i związanej z nią strony dyskusji,
-a nazwa samej strony zostanie \'\'\'wytłuszczona\'\'\' na [[{{ns:special}}:Recentchanges|liście ostatnich zmian]],
+a nazwa samej strony zostanie \'\'\'wytłuszczona\'\'\' na [[Special:Recentchanges|liście ostatnich zmian]],
 aby łatwiej było Ci sam fakt zmiany zauważyć.
 
 Jeśli chcesz usunąć stronę ze swojej listy obserwowanych, kliknij na zakładkę "nie obserwuj".',
@@ -1445,7 +1465,7 @@ Pomoc:
 'deletepage'                  => 'Usuń stronę',
 'confirm'                     => 'Potwierdź',
 'excontent'                   => 'Zawartość strony "$1"',
-'excontentauthor'             => 'treść: "$1" (jedyny autor: [[{{ns:special}}:Contributions/$2|$2]])',
+'excontentauthor'             => 'treść: "$1" (jedyny autor: [[Special:Contributions/$2|$2]])',
 'exbeforeblank'               => 'Poprzednia zawartość pustej strony "$1"',
 'exblank'                     => 'Strona była pusta',
 'delete-confirm'              => 'Usuń "$1"',
@@ -1455,6 +1475,7 @@ Pomoc:
 'actioncomplete'              => 'Operacja wykonana',
 'deletedtext'                 => 'Usunięto "<nowiki>$1</nowiki>". Rejestr ostatnio dokonanych kasowań możesz obejrzeć tutaj: $2.',
 'deletedarticle'              => 'usunięto "[[$1]]"',
+'suppressedarticle'           => 'utajniono "[[$1]]"',
 'dellogpage'                  => 'Usunięte',
 'dellogpagetext'              => 'To jest lista ostatnio wykonanych kasowań.',
 'deletionlog'                 => 'rejestr usunięć',
@@ -1474,9 +1495,13 @@ Pomoc:
 'rollbacklink'                => 'cofnij',
 'rollbackfailed'              => 'Nie udało się cofnąć zmiany',
 'cantrollback'                => 'Nie można cofnąć edycji; jest tylko jedna wersja tej strony.',
-'alreadyrolled'               => 'Nie można cofnąć ostatniej zmiany strony [[:$1|$1]], której autorem jest [[{{ns:user}}:$2|$2]] ([[{{ns:user_talk}}:$2|Dyskusja]]). Ktoś inny zdążył już to zrobić lub wprowadził własne poprawki do treści strony. Autorem ostatniej zmiany jest teraz [[{{ns:user}}:$3|$3]] ([[{{ns:user_talk}}:$3|Dyskusja]]).',
+'alreadyrolled'               => 'Nie można dla strony [[:$1|$1]] cofnąć ostatniej zmiany, którą wykonał [[User:$2|$2]] ([[User talk:$2|dyskusja]]).
+Ktoś inny zdążył już to zrobić lub wprowadził własne poprawki do treści strony.
+
+Autorem ostatniej zmiany jest teraz [[User:$3|$3]] ([[User talk:$3|dyskusja]]).',
 'editcomment'                 => 'Opisano ją następująco: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'                  => 'Wycofano edycję użytkownika [[{{ns:special}}:Contributions/$2|$2]] ([[User_talk:$2|dyskusja]]). Autor przywróconej wersji to [[User:$1|$1]].', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'revertpage'                  => 'Wycofano edycję użytkownika [[Special:Contributions/$2|$2]] ([[User talk:$2|dyskusja]]).
+Autor przywróconej wersji to [[User:$1|$1]].', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success'            => 'Wycofano edycje użytkownika $1; powrócono do ostatniej wersji autorstwa $2.',
 'sessionfailure'              => 'Błąd weryfikacji sesji. Twoje polecenie zostało anulowane, aby uniknąć przechwycenia sesji.
 
@@ -1545,9 +1570,9 @@ Naciśnij "wstecz", przeładuj stronę, po czym ponownie wydaj polecenie.',
 'undeletedrevisions-files'     => 'Odtworzono $1 {{PLURAL:$1|wersję|wersje|wersji}} i $2 {{PLURAL:$2|plik|pliki|plików}}',
 'undeletedfiles'               => 'Odtworzono $1 {{PLURAL:$1|plik|pliki|plików}}',
 'cannotundelete'               => 'Odtworzenie nie powiodło się. Ktoś inny mógł odtworzyć stronę pierwszy.',
-'undeletedpage'                => '<big>Odtworzono stronę $1.</big>
+'undeletedpage'                => "<big>'''Odtworzono stronę $1.'''</big>
 
-Zobacz [[{{ns:special}}:Log/delete]], jeśli chcesz przejrzeć rejestr ostatnio usuniętych i odtworzonych stron.',
+Zobacz [[Special:Log/delete|rejestr usunięć]], jeśli chcesz przejrzeć ostatnie operacje usuwania i odtwarzania stron.",
 'undelete-header'              => 'Zobacz [[Special:Log/delete|rejestr usunięć]] aby sprawdzić ostatnio skasowane strony.',
 'undelete-search-box'          => 'Szukaj usuniętych stron',
 'undelete-search-prefix'       => 'Strony zaczynające się od:',
@@ -1628,7 +1653,8 @@ $1',
 'ipbhidename'                 => 'Ukryj nazwę użytkownika/adres IP w rejestrze blokad, na liście bieżących blokad i liście użytkowników',
 'badipaddress'                => 'Adres IP jest źle utworzony',
 'blockipsuccesssub'           => 'Zablokowanie powiodło się',
-'blockipsuccesstext'          => 'Użytkownik [[{{ns:special}}:Contributions/$1|$1]] został zablokowany. <br />Przejdź do [[{{ns:special}}:Ipblocklist|listy zablokowanych adresów IP]] by przejrzeć blokady.',
+'blockipsuccesstext'          => 'Użytkownik [[Special:Contributions/$1|$1]] został zablokowany.<br />
+Przejdź do [[Special:Ipblocklist|listy zablokowanych adresów IP]] by przejrzeć blokady.',
 'ipb-edit-dropdown'           => 'Edytuj przyczynę blokady',
 'ipb-unblock-addr'            => 'Odblokuj $1',
 'ipb-unblock'                 => 'Odblokuj użytkownika lub adres IP',
@@ -1655,7 +1681,8 @@ $1',
 'blocklink'                   => 'zablokuj',
 'unblocklink'                 => 'odblokuj',
 'contribslink'                => 'wkład',
-'autoblocker'                 => 'Zablokowano Cię automatycznie, ponieważ używasz tego samego adresu IP, co użytkownik "[[{{ns:user}}:$1|$1]]". Powód: "$2"',
+'autoblocker'                 => 'Zablokowano Cię automatycznie, ponieważ używasz tego samego adresu IP, co użytkownik "[[User:$1|$1]]".
+Powód blokady $1 to: "$2"',
 'blocklogpage'                => 'Historia blokad',
 'blocklogentry'               => 'zablokowano "[[$1]]", czas blokady: $2 $3',
 'blocklogtext'                => 'Poniżej znajduje się lista blokad założonych i zdjętych z poszczególnych adresów IP. Na liście nie znajdą się adresy IP, które zablokowano w sposób automatyczny. By przejrzeć listę obecnie aktywnych blokad, przejdź na stronę [[Special:Ipblocklist|zablokowanych adresów i użytkowników]].',
@@ -1690,7 +1717,8 @@ $1',
 'locknoconfirm'       => 'Nie zaznaczyłeś pola potwierdzenia.',
 'lockdbsuccesssub'    => 'Baza danych została pomyślnie zablokowana',
 'unlockdbsuccesssub'  => 'Blokada bazy danych usunięta',
-'lockdbsuccesstext'   => 'Baza danych została zablokowana.<br />Pamiętaj by [[{{ns:special}}:Unlockdb|usunąć blokadę]] po zakończeniu działań administracyjnych.',
+'lockdbsuccesstext'   => 'Baza danych została zablokowana.<br />
+Pamiętaj by [[Special:Unlockdb|usunąć blokadę]] po zakończeniu działań administracyjnych.',
 'unlockdbsuccesstext' => 'Baza danych została odblokowana.',
 'lockfilenotwritable' => 'Nie można zapisać pliku blokady bazy danych. Aby móc blokować i odblokowywać bazę danych, plik musi mieć właściwe prawa dostępu.',
 'databasenotlocked'   => 'Baza danych nie jest zablokowana.',
@@ -1715,7 +1743,7 @@ Może to być drastyczna lub nieprzewidywalna zmiana w przypadku popularnych str
 W takich przypadkach tekst dyskusji trzeba przenieść, i ewentualnie połączyć z istniejącym, ręcznie. Możesz też zrezygnować z przeniesienia dyskusji (poniższy ''checkbox'').",
 'movearticle'             => 'Przeniesienie strony',
 'movenologin'             => 'Brak logowania',
-'movenologintext'         => 'Musisz być zarejestrowanym i [[{{ns:special}}:Userlogin|zalogowanym]] użytkownikiem aby móc przenieść stronę.',
+'movenologintext'         => 'Musisz być zarejestrowanym i [[Special:Userlogin|zalogowanym]] użytkownikiem aby móc przenieść stronę.',
 'movenotallowed'          => 'Nie masz uprawnień do przenoszenia stron na {{GRAMMAR:C.lp|{{SITENAME}}}}.',
 'newtitle'                => 'Nowy tytuł',
 'move-watch'              => 'Obserwuj tę stronę',
@@ -1746,11 +1774,12 @@ Artykuł docelowy "[[:$1|$1]]" już istnieje. Czy chcesz go usunąć, by zrobić
 
 # Export
 'export'            => 'Eksport stron',
-'exporttext'        => 'Możesz wyeksportować tekst i historię edycji danej strony lub zestawu stron w postaci XML. Taki zrzut można potem (jak import już będzie działać) zaimportować do innej wiki działającej na oprogramowaniu MediaWiki, obrabiać lub po prostu trzymać dla zabawy.
+'exporttext'        => 'Możesz wyeksportować treść i historię edycji jednej strony lub zestawu stron w postaci XML.
+Taki zrzut można później zaimportować do innej wiki działającej na oprogramowaniu MediaWiki korzystając ze [[Special:Import|strony importu]].
 
-Żeby uzyskać kilka stron wpisz ich nazwy jedna pod drugą.
+Wyeksportowanie wielu stron wymaga wpisania poniżej tytułów stron, po jednym tytule w wierszu oraz określenia czy ma zostać wyeksportowana bieżąca czy wszystkie wersje strony z opisami edycji lub też tylko bieżąca wersja z opisem ostatniej edycji.
 
-Można również użyć łącza, np. [[{{ns:special}}:Export/{{Mediawiki:mainpage}}]] dla strony {{Mediawiki:mainpage}}.',
+Możesz również użyć łącza, np. [[Special:Export/{{MediaWiki:Mainpage}}]] dla strony "[[{{Mediawiki:mainpage}}]]".',
 'exportcuronly'     => 'Tylko bieżąca wersja, bez historii',
 'exportnohistory'   => "----
 '''Uwaga:''' możliwość eksportowania pełnej historii stron została wyłączona.",
@@ -1782,7 +1811,9 @@ Można również użyć łącza, np. [[{{ns:special}}:Export/{{Mediawiki:mainpag
 # Special:Import
 'import'                     => 'Importuj strony',
 'importinterwiki'            => 'Import transwiki',
-'import-interwiki-text'      => 'Wybierz wiki i nazwę strony do importowania. Daty oraz nazwy autorów zostaną zachowane. Wszystkie operacje importu transwiki są odnotowywane w [[{{ns:special}}:Log/import|rejestrze importu]].',
+'import-interwiki-text'      => 'Wybierz wiki i nazwę strony do importowania.
+Daty oraz nazwy autorów zostaną zachowane.
+Wszystkie operacje importu transwiki są odnotowywane w [[Special:Log/import|rejestrze importu]].',
 'import-interwiki-history'   => 'Kopiuj całą historię edycji tej strony',
 'import-interwiki-submit'    => 'Importuj',
 'import-interwiki-namespace' => 'Przenieś strony do przestrzeni nazw:',
@@ -2304,9 +2335,9 @@ $1
 
 # Delete conflict
 'deletedwhileediting' => 'Uwaga: Ta strona została usunięta po tym, jak rozpocząłeś jej edycję!',
-'confirmrecreate'     => "Użytkownik [[{{ns:user}}:$1|$1]] ([[{{ns:user_talk}}:$1|Dyskusja]]) usunął ten artykuł po tym jak rozpocząłeś jego edycję, podając jako powód usunięcia:
+'confirmrecreate'     => "Użytkownik [[User:$1|$1]] ([[User talk:$1|dyskusja]]) usunął ten artykuł po tym jak rozpocząłeś jego edycję, podając jako powód usunięcia:
 : ''$2''
-Potwierdź chęć odtworzenia tego artykułu.",
+Potwierdź chęć ponownego utworzenia tego artykułu.",
 'recreate'            => 'Odtwórz',
 
 # HTML dump

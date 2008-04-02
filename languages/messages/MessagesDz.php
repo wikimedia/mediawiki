@@ -33,16 +33,68 @@ $messages = array(
 'august'    => 'སྤྱི་ཟླ་བརྒྱད་པ།',
 'september' => 'སྤྱི་ཟླ་དགུ་པ།',
 'october'   => 'སྤྱི་ཟླ་བཅུ་པ།',
+'november'  => 'སྤྱི་ཟླ་བཅུ་གཅིག་པ།',
+'december'  => 'སྤྱི་ཟླ་བཅུ་གཉིས་པ།',
+'jan'       => 'ཟླ་༡ པ།',
+'feb'       => 'ཟླ་༢ པ།',
+'mar'       => 'ཟླ་༣ པ།',
+'apr'       => 'ཟླ་༤ པ།',
+'may'       => 'ཟླ་༥ པ།',
 
+'tagline'          => '{{SITENAME}} ལས།',
 'search'           => 'འཚོལ་ཞིབ།',
+'searchbutton'     => 'འཚོལ་ཞིབ།',
+'searcharticle'    => 'འགྱོ།',
+'printableversion' => 'དཔར་བསྐྲུན་འབད་བཏུབ་པའི་ཐོན་རིམ།',
 'edit'             => 'ཞུན་དག།',
 'talkpagelinktext' => 'བློ།',
+'personaltools'    => 'རང་དོན་ལག་ཆས།',
+'talk'             => 'གྲོས་བསྡུར།',
+'views'            => 'མཐོང་སྣང་།',
+'toolbox'          => 'ལག་ཆས་སྒྲོམ།',
+'jumptosearch'     => 'འཚོལ་ཞིབ།',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
-'aboutsite' => '{{SITENAME}} གི་སྐོར་ལས།',
-'mainpage'  => 'མ་ཤོག།',
-'privacy'   => 'སྒེར་གསང་སྲིད་བྱུས།',
+'aboutsite'   => '{{SITENAME}} གི་སྐོར་ལས།',
+'aboutpage'   => 'Project:སྐོར་ལས།',
+'mainpage'    => 'མ་ཤོག།',
+'privacy'     => 'སྒེར་གསང་སྲིད་བྱུས།',
+'privacypage' => 'Project:སྒེར་གསང་སྲིད་བྱུས།',
 
-'editsection' => 'ཞུན་དག།',
+'retrievedfrom'   => '"$1" ལས་ སླར་འདྲེན་འབད་ཡོདཔ།',
+'editsection'     => 'ཞུན་དག།',
+'editsectionhint' => 'དབྱེ་ཚན་:$1 ཞུན་དག་འབད།',
+
+# Login and logout pages
+'userlogin' => 'ནང་བསྐྱོད་འབད་ / རྩིས་ཐོ་གསརཔ་བཟོ།',
+
+# History pages
+'last' => 'མཇུག།',
+
+# Search results
+'powersearch' => 'མཐོ་རིམ་ཅན་གྱི་འཚོལ་ཞིབ།',
+
+# Upload
+'upload' => 'ཡིག་སྣོད་སྐྱེལ་བཙུགས་འབད།',
+
+# Miscellaneous special pages
+'specialpages' => 'དམིགས་བསལ་ཤོག་ལེབ།',
+
+# Special:Allpages
+'alphaindexline' => '$1 ལས་ $2',
+
+# Block/unblock
+'contribslink' => 'ཕན་འདེབས།',
+
+# Tooltip help for the actions
+'tooltip-ca-talk'         => 'ནང་དོན་ཤོག་ལེབ་ཀྱི་སྐོར་ལས་གྲོས་བསྡུར།',
+'tooltip-search'          => '{{SITENAME}} འཚོལ་ཞིབ་འབད།',
+'tooltip-n-mainpage'      => 'མ་ཤོག་ལུ་བལྟ་ཞིབ་འབད།',
+'tooltip-n-recentchanges' => 'ཝི་ཀི་ནང་གི་ཕྲལ་གྱི་བསྒྱུར་བཅོས་ཐོ་ཡིག།',
+'tooltip-n-randompage'    => 'རིམ་བྲལ་ཤོག་ལེབ་ཅིག་ མངོན་གསལ་འབད།',
+'tooltip-n-sitesupport'   => 'ང་བཅས་ལུ་རྒྱབ་སྐྱོར་འབད།',
+'tooltip-t-whatlinkshere' => 'ནཱ་ལུ་ འབྲེལ་མཐུད་འབད་བའི་ཝི་ཀི་ཤོག་ལེབ་ག་ར་གི་ཐོ་ཡིག།',
+'tooltip-t-upload'        => 'ཡིག་སྣོད་སྐྱེལ་བཙུགས་འབད།',
+'tooltip-t-specialpages'  => 'དམིགས་བསལ་ཤོག་ལེབ་ཚུ་གི་ཐོ་ཡིག།',
 
 );

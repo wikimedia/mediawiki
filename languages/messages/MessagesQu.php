@@ -684,7 +684,7 @@ astawan rikunki [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} qulluy hallch
 'revdelete-text'              => "Qullusqa llamk'apusqakunaqa p'anqap wiñay kawsayninpi paqarinqaraqmi, samiqnintaq manam uyanalla qhawanapaqchu.
 
 {{SITENAME}}pi huk kamachiqkunaqa p'anqap pakasqa samiqninta qhawaspa qullusqa kaymanta kutichiyta atinkuraqmi kay kaqlla uyapuratam llamk'achispa, kay wikip kamariqninkuna mana huk saywachanakunata tiyachiptinqa.",
-'revdelete-legend'            => "Llamk'apuypaq saywachanakunata tiyachiy:",
+'revdelete-legend'            => "Llamk'apuypaq saywachanakunata tiyachiy",
 'revdelete-hide-text'         => 'Qhawana qillqata pakay',
 'revdelete-hide-name'         => 'Rurayta paqtaytapas pakay',
 'revdelete-hide-comment'      => "Llamk'apuymanta willapuyta pakay",
@@ -699,8 +699,8 @@ astawan rikunki [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} qulluy hallch
 'logdelete-logentry'          => 'hukchasqa [[$1]]-paq tukusqap rikunalla kaynin',
 'revdelete-logaction'         => "$1 {{PLURAL:$1|llamk'apusqa|llamk'apusqakuna}} $2 hamuyman",
 'logdelete-logaction'         => '$1 {{PLURAL:$1|tukusqa|tukusqakuna}} [[$3]]-man $2 hamuypi',
-'revdelete-success'           => "Llamk'apusqap rikunalla kayninqa aypalla hukchasqañam.",
-'logdelete-success'           => 'Tukusqap rikunalla kayninqa aypalla hukchasqañam.',
+'revdelete-success'           => "'''Llamk'apusqap rikunalla kayninqa aypalla hukchasqañam.'''",
+'logdelete-success'           => "'''Tukusqap rikunalla kayninqa aypalla hukchasqañam.'''",
 'pagehist'                    => "P'anqap wiñay kawsaynin",
 'deletedhist'                 => 'Qullusqa wiñay kawsay',
 

@@ -808,8 +808,8 @@ Gli altri amministratori del sito potranno accedere comunque ai contenuti nascos
 'logdelete-logentry'          => "ha modificato la visibilità dell'evento [[$1]]",
 'revdelete-logaction'         => 'ha impostato la modalità $2 per {{plural:$1|una revisione|$1 revisioni}}',
 'logdelete-logaction'         => 'ha impostato la modalità $2 per {{plural:$1|un evento relativo|$1 eventi relativi}} a [[$3]]',
-'revdelete-success'           => 'Visibilità della revisione impostata correttamente.',
-'logdelete-success'           => "Visibilità dell'evento impostata correttamente.",
+'revdelete-success'           => "'''Visibilità della revisione impostata correttamente.'''",
+'logdelete-success'           => "'''Visibilità dell'evento impostata correttamente.'''",
 'pagehist'                    => 'Cronologia della pagina',
 'deletedhist'                 => 'Cronologia cancellata',
 

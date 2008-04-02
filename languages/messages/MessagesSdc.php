@@ -661,7 +661,7 @@ Cunsulthà lu [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} rigisthru di ca
 'revdelete-nooldid-text'      => "No hai ippizzificaddu la o li versioni di la pàgina i' la quari eseguì chistha funzioni.",
 'revdelete-selected'          => "{{PLURAL:$2|Versioni sciubaradda|Versioni sciubaraddi}} di '''$1:'''",
 'logdelete-selected'          => "{{PLURAL:$2|Eventu di lu rigisthru sciubaraddu|Eventi di li rigisthri sciubaraddi}} pa '''$1:'''",
-'revdelete-legend'            => 'Impustha li sighenti limitazioni i li versioni canzilladdi:',
+'revdelete-legend'            => 'Impustha li sighenti limitazioni i li versioni canzilladdi',
 'revdelete-hide-text'         => 'Cua lu testhu di la versioni',
 'revdelete-hide-name'         => 'Cua azioni e oggettu di la matessi',
 'revdelete-hide-comment'      => "Cua l'oggettu di la mudìfigga",
@@ -676,8 +676,8 @@ Cunsulthà lu [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} rigisthru di ca
 'logdelete-logentry'          => "à mudìfiggaddu la visibiriddai di l'eventu [[$1]]",
 'revdelete-logaction'         => 'à impusthaddu la manera $2 pa {{PLURAL:$1|una ribisioni|$1 ribisioni}}',
 'logdelete-logaction'         => "à impusthaddu la manera $2 pa {{PLURAL:$1|un'eventu reratibu|$1 eventi reratibi}} a [[$3]]",
-'revdelete-success'           => 'Visibiriddai di la ribisioni impusthadda.',
-'logdelete-success'           => "Visibiriddai di l'eventu impusthadda.",
+'revdelete-success'           => "'''Visibiriddai di la ribisioni impusthadda.'''",
+'logdelete-success'           => "'''Visibiriddai di l'eventu impusthadda.'''",
 
 # History merging
 'mergehistory'                     => 'Unioni cronologi',
