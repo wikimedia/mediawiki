@@ -630,7 +630,7 @@ $wgMessageStructure = array(
 		'pagehist',
 		'deletedhist',
 	),
-	'supression' => array(
+	'suppression' => array(
 		'suppressionlog',
 		'suppressionlogtext',
 	),
@@ -2456,7 +2456,7 @@ XHTML id names.",
 	'history'             => 'History pages',
 	'history-feed'        => 'Revision feed',
 	'revdelete'           => 'Revision deletion',
-	'supression'          => 'Supression log',
+	'suppression'         => 'Suppression log',
 	'mergehistory'        => 'History merging',
 	'mergelog'            => 'Merge log',
 	'diffs'               => 'Diffs',
