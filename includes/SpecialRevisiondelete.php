@@ -49,7 +49,6 @@ function wfSpecialRevisiondelete( $par = null ) {
 		if( $wgUser->isAllowed( 'suppress' ) ){
 			$wgOut->addHTML( "<h2>" . htmlspecialchars( LogPage::logName( 'suppress' ) ) . "</h2>\n" );
 			LogEventsList::showLogExtract( $wgOut, 'suppress', $page->getPrefixedText() );
-			$logViewer->showList( $wgOut );
 		}
 	}
 }
