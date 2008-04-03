@@ -1392,7 +1392,7 @@ $1',
 'ipboptions'                  => '2 uri:2 hours,1 jornu:1 day,3 jorna:3 days,1 simana:1 week,2 simani:2 weeks,1 misi:1 month,3 misi:3 months,6 misi:6 months,1 annu:1 year,nfinitu:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'              => 'àutru',
 'ipbotherreason'              => 'Àutri mutivi/dittagghi:',
-'ipbhidename'                 => "Ammuccia lu nomu utenti o lu nnirizzu IP dô log dî blocchi, di l'alencu dî blocchi attivi e di l'alencu utenti.",
+'ipbhidename'                 => "Ammuccia lu nomu utenti dô log dî blocchi, di l'alencu dî blocchi attivi e di l'alencu utenti.",
 'badipaddress'                => 'Ndirizzu IP nun vàlidu.',
 'blockipsuccesssub'           => 'Bloccu esiquitu',
 'blockipsuccesstext'          => "[[{{ns:special}}:Contributions/$1|$1]] fu bluccatu.

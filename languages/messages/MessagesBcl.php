@@ -1419,7 +1419,7 @@ Magkaag nin espisipikong rason (halimbawa, magtao nin ehemplo kan mga páhinang 
 'ipboptions'                  => '2ng oras:2 hours,1ng aldaw:1 day,3ng aldaw:3 days,1ng semana:1 week,2ng semana:2 weeks,1ng bulan:1 month,3ng bulan:3 months,6 na bulan:6 months,1ng taon:1 year,daing kasagkoran:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'              => 'iba',
 'ipbotherreason'              => 'Iba/dugang na rasón:',
-'ipbhidename'                 => 'Itago an ngaran in paragamit/IP para dai mahiling sa historial nin pagbagat, nakaandar na lista nin binagat asin lista nin paragamit',
+'ipbhidename'                 => 'Itago an ngaran in paragamit para dai mahiling sa historial nin pagbagat, nakaandar na lista nin binagat asin lista nin paragamit',
 'badipaddress'                => 'Dai pwede ining IP',
 'blockipsuccesssub'           => 'Nagibo na an pagbagát',
 'blockipsuccesstext'          => 'Binagat si [[Special:Contributions/$1|$1]].

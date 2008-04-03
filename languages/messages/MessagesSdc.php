@@ -1413,7 +1413,7 @@ $1",
 'ipboptions'                  => '2 ori:2 hours,1 dì:1 day,3 dì:3 days,1 chedda:1 week,2 cheddi:2 weeks,1 mesi:1 month,3 mesi:3 months,6 mesi:6 months,1 anni:1 year,infiniddu:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'              => 'althru',
 'ipbotherreason'              => 'Althri dettàgli/rasgioni aggiuntiba:',
-'ipbhidename'                 => "Cua l'innòmu utenti o l'indirizzu IP da lu rigisthru di li brocchi, da l'erencu di li brocci attibi e da l'erencu utenti.",
+'ipbhidename'                 => "Cua l'innòmu utenti da lu rigisthru di li brocchi, da l'erencu di li brocci attibi e da l'erencu utenti.",
 'badipaddress'                => 'Indirizzu IP invàriddu',
 'blockipsuccesssub'           => 'Broccu eseguiddu',
 'blockipsuccesstext'          => "[[Special:Contributions/$1|$1]] è isthaddu broccaddu.

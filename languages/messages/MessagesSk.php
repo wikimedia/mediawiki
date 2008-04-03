@@ -15,6 +15,7 @@
  * @author Michawiki
  * @author לערי ריינהארט
  * @author Siebrand
+ * @author Sp5uhe
  */
 
 $datePreferences = array(
@@ -861,7 +862,7 @@ nie sú stanovené ďalšie obmedzenia.',
 'pagehist'                    => 'História stránky',
 'deletedhist'                 => 'Zmazaná história',
 
-# Supression log
+# Suppression log
 'suppressionlog'     => 'Záznam potlačení',
 'suppressionlogtext' => 'Toto je zoznam posledných zmazaní a blokovaní vrátane obsahu, ktorý je skrytý pred správcami. Zoznam momentálne účinných blokovaní nájdete na [[Special:Ipblocklist|Zoznam blokovaní IP]].',
 
@@ -1705,7 +1706,7 @@ Nižšie uveďte konkrétny dôvod (napríklad uveďte konkrétne stránky, ktor
 'ipboptions'                  => '2 hodiny:2 hours,1 deň:1 day,3 dni:3 days,1 týždeň:1 week,2 týždne:2 weeks,1 mesiac:1 month,3 mesiace:3 months,6 mesiacov:6 months,1 rok:1 year,na neurčito:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'              => 'iný čas',
 'ipbotherreason'              => 'Iný/ďalší dôvod',
-'ipbhidename'                 => 'Skryť používateľa/IP zo záznamu blokovaní, aktívneho zoznamu blokovaní a zoznamu používateľov',
+'ipbhidename'                 => 'Skryť používateľa zo záznamu blokovaní, aktívneho zoznamu blokovaní a zoznamu používateľov',
 'badipaddress'                => 'IP adresa má nesprávny formát.',
 'blockipsuccesssub'           => 'Zablokovanie bolo úspešné',
 'blockipsuccesstext'          => '„$1“ bol/a zablokovaný/á.<br />
@@ -1853,7 +1854,7 @@ wiki používajúceho MediaWiki softvér pomocou stránky Special:Import.
 
 Pre export stránok zadajte názvy do tohto poľa, jeden názov na riadok, a zvoľte, či chcete iba súčasnú verziu s informáciou o poslednej úprave alebo aj všetky staršie verzie s históriou úprav.
 
-V druhom prípade môžete tiež použiť odkaz, napr. [[Special:Export/{{Mediawiki:Mainpage}}]] pre stránku {{Mediawiki:Mainpage}}.',
+V druhom prípade môžete tiež použiť odkaz, napr. [[{{ns:special}}:Export/{{Mediawiki:Mainpage}}]] pre stránku {{Mediawiki:Mainpage}}.',
 'exportcuronly'     => 'Zahrň iba aktuálnu verziu, nie kompletnú históriu',
 'exportnohistory'   => "----
 '''Poznámka:''' Exportovanie plnej histórie stránok pomocou tohto formulára bolo vypnuté z dôvodov výkonnosti.",

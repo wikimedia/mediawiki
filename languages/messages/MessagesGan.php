@@ -1383,7 +1383,7 @@ $NEWPAGE
 'ipboptions'                  => '兩個鍾頭:2 hours,一日:1 day,三日:3 days,一個禮拜:1 week,兩個禮拜:2 weeks,一個月:1 month,三個月:3 months,六個月:6 months,一年:1 year,一世:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'              => '別嗰',
 'ipbotherreason'              => '別嗰／附加原因:',
-'ipbhidename'                 => '封鎖日誌、活躍封鎖列表同用戶列表裡頭弆到用戶名／IP',
+'ipbhidename'                 => '封鎖日誌、活躍封鎖列表同用戶列表裡頭弆到用戶名',
 'badipaddress'                => 'IP位置伓對。',
 'blockipsuccesssub'           => '封鎖正嘞',
 'blockipsuccesstext'          => '[[Special:Contributions/$1|$1]]封卟嘞。 <br />望吖[[Special:Ipblocklist|拕封IP列表]]來審過封鎖。',

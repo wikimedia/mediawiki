@@ -1580,7 +1580,7 @@ Che a scriva codì che st'adrëssa IP-sì a dev second chiel (chila) esse blocà
 'ipboptions'                  => "2 ore:2 ore,1 dì:1 dì,3 dì:3 dì,na sman-a:na sman-a,2 sman-e:2 sman-e,1 mèis:1 mèis,3 mèis:3 mèis,6 mèis:6 mèis,n'ann:n'ann,për sempe:për sempe", # display1:time1,display2:time2,...
 'ipbotheroption'              => "d'àutr",
 'ipbotherreason'              => 'Àotri motiv/spiegon',
-'ipbhidename'                 => "Stërma lë stranòm/IP da 'nt ël registr dij blòch, da col dij blòch ativ e da 'nt la lista dj'utent",
+'ipbhidename'                 => "Stërma lë stranòm da 'nt ël registr dij blòch, da col dij blòch ativ e da 'nt la lista dj'utent",
 'badipaddress'                => "L'adrëssa IP che a l'ha dane a l'é nen giusta.",
 'blockipsuccesssub'           => 'Blocagi fait',
 'blockipsuccesstext'          => ' L\'adrëssa IP "$1" a l\'é staita blocà.<br />

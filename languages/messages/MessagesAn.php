@@ -1611,7 +1611,7 @@ as pachinas que s'han bandalizatas).",
 'ipboptions'                  => '2 oras:2 hours,1 día:1 day,3 días:3 days,1 semana:1 week,2 semanas:2 weeks,1 mes:1 month,3 meses:3 months,6 meses:6 months,1 año:1 year,ta cutio:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'              => 'atro',
 'ipbotherreason'              => 'Razons diferens u adizionals',
-'ipbhidename'                 => "Amagar usuario/IP en o rechistro de bloqueyos, a lista de bloqueyos autibos y a lista d'usuarios",
+'ipbhidename'                 => "Amagar usuario en o rechistro de bloqueyos, a lista de bloqueyos autibos y a lista d'usuarios",
 'badipaddress'                => "L'adreza IP no ye conforme.",
 'blockipsuccesssub'           => "O bloqueyo s'ha feito correutament",
 'blockipsuccesstext'          => "L'adreza IP [[Special:Contributions/$1|$1]] ye bloqueyata. <br />Ir t'a [[Special:Ipblocklist|lista d'adrezas IP bloqueyatas]] ta beyer os bloqueyos.",

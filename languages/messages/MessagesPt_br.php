@@ -1317,7 +1317,7 @@ Isto só deve ser feito para prevenir vandalismo, e de acordo com a [[{{MediaWik
 'ipbanononly'              => 'Bloquear apenas usuários anônimos',
 'ipbsubmit'                => 'Bloquear este endereço',
 'ipboptions'               => '2 horas:2 hours,1 dia:1 day,3 dias:3 days,1 semana:1 week,2 semanas:2 weeks,1 mês:1 month,3 meses:3 months,6 meses:6 months,1 ano:1 year,indefinido:infinite', # display1:time1,display2:time2,...
-'ipbhidename'              => 'Ocultar usuário/IP do registro de bloqueios, lista de bloqueios e lista de usuários',
+'ipbhidename'              => 'Ocultar usuário do registro de bloqueios, lista de bloqueios e lista de usuários',
 'badipaddress'             => 'O endereço de IP está mal-formado.',
 'blockipsuccesssub'        => 'Bloqueio bem sucedido',
 'blockipsuccesstext'       => 'O endereço de IP "$1" Foi bloqueado.

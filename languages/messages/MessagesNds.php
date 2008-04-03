@@ -1562,7 +1562,7 @@ Ok den Grund för dat Blocken indregen.',
 'ipboptions'                  => '1 Stünn:1 hour,2 Stünnen:2 hours,6 Stünnen:6 hours,1 Dag:1 day,3 Daag:3 days,1 Week:1 week,2 Weken:2 weeks,1 Maand:1 month,3 Maand:3 months,1 Johr:1 year,ahn Enn:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'              => 'Annere Duer',
 'ipbotherreason'              => 'Annern Grund:',
-'ipbhidename'                 => 'Brukernaam/IP-Adress in dat Sperr-Logbook, de List vun de aktiven Sperren un de Brukerlist versteken.',
+'ipbhidename'                 => 'Brukernaam in dat Sperr-Logbook, de List vun de aktiven Sperren un de Brukerlist versteken.',
 'badipaddress'                => 'De IP-Adress hett en falsch Format.',
 'blockipsuccesssub'           => 'Blocken hett Spood',
 'blockipsuccesstext'          => 'De IP-Adress „$1“ is nu blockt.

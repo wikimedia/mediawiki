@@ -675,7 +675,7 @@ Za vašu informaciju slijedi evidencija brisanja s obrazloženjem za prethodno b
 # "Undo" feature
 'undo-success' => 'Izmjena je uklonjena (tekst u okviru ispod ne sadrži zadnju izmjenu). Molim sačuvajte stranicu (provjerite sažetak).',
 'undo-failure' => 'Ova izmjena ne može biti uklonjena zbog postojanja međuinačica.',
-'undo-summary' => 'Uklanjanje izmjene $1 što ju je unio/unijela [[Special:Contributions/$2|$2]] ([[Razgovor sa suradnikom:$2|razgovor]])',
+'undo-summary' => 'Uklanjanje izmjene $1 što ju je unio/unijela [[Special:Contributions/$2|$2]] ([[User talk:$2|razgovor]])',
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Nije moguće stvoriti suradnički račun',
@@ -1604,7 +1604,7 @@ vandalizirane).',
 'ipboptions'                  => '2 sata:2 hours,6 sati:6 hours,1 dan:1 day,3 dana:3 days,1 tjedan:1 week,2 tjedna:2 weeks,1 mjesec:1 month,3 mjeseca:3 months,6 mjeseci:6 months,1 godine:1 year,zauvijek:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'              => 'drugo',
 'ipbotherreason'              => 'Drugi/dodatni razlog:',
-'ipbhidename'                 => 'Sakrij suradničko ime/IP adresu iz evidencije blokiranja, popisa blokiranja i popisa suradnika',
+'ipbhidename'                 => 'Sakrij suradničko ime iz evidencije blokiranja, popisa blokiranja i popisa suradnika',
 'badipaddress'                => 'Nevaljana IP adresa.',
 'blockipsuccesssub'           => 'Uspješno blokirano',
 'blockipsuccesstext'          => 'Suradnik [[{{ns:special}}:Contributions/$1|$1]] je blokiran.

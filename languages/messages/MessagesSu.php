@@ -1417,7 +1417,7 @@ $1',
 'ipboptions'                  => '2 jam:2 hours,sapoé:1 day,3 poé:3 days,saminggu:1 week,2 minggu:2 weeks,sabulan:1 month,3 bulan:3 months,6 bulan:6 months,sataun:1 year,tanpa wates:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'              => 'séjénna',
 'ipbotherreason'              => 'Alesan séjén/tambahan',
-'ipbhidename'                 => 'Sumputkeun landihan pamaké/IP tina log peungpeuk, daptar peungpeuk aktif, jeung daptar pamaké',
+'ipbhidename'                 => 'Sumputkeun landihan pamaké tina log peungpeuk, daptar peungpeuk aktif, jeung daptar pamaké',
 'badipaddress'                => 'Alamat IP teu sah',
 'blockipsuccesssub'           => 'Meungpeuk geus hasil',
 'blockipsuccesstext'          => '"$1" dipeungpeuk.

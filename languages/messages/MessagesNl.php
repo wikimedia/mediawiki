@@ -980,7 +980,7 @@ Andere beheerders van {{SITENAME}} kunnen de verborgen inhoud benaderen en de ve
 'pagehist'                    => 'Paginageschiedenis',
 'deletedhist'                 => 'Verwijderde geschiedenis',
 
-# Supression log
+# Suppression log
 'suppressionlog'     => 'Verbergingslogboek',
 'suppressionlogtext' => 'De onderstaande lijst bevat de meeste recente verwijderingen en blokkades die voor beheerders verborgen zijn. In de [[Special:Ipblocklist|IP-blokkeerlijst]] zijn de huidige blokkades te bekijken.',
 
@@ -1827,7 +1827,7 @@ Geef hieronder een reden op (bijvoorbeeld welke pagina's gevandaliseerd zijn).",
 'ipboptions'                  => '15 minuten:15 min,1 uur:1 hour,2 uur:2 hours,6 uur:6 hours,12 uur:12 hours,1 dag:1 day,3 dagen:3 days,1 week:1 week,2 weken:2 weeks,1 maand:1 month,3 maanden:3 months,6 maanden:6 months,1 jaar:1 year,onbeperkt:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'              => 'ander verloop',
 'ipbotherreason'              => 'Andere/eventuele reden:',
-'ipbhidename'                 => 'Gebruikersnaam/IP van het blokkeerlogboek, de actieve blokkeerlijst en de gebruikerslijst verbergen',
+'ipbhidename'                 => 'Gebruiker in het blokkeerlogboek, de actieve blokkeerlijst en de gebruikerslijst verbergen',
 'badipaddress'                => 'Geen geldig IP-adres',
 'blockipsuccesssub'           => 'Blokkering geslaagd',
 'blockipsuccesstext'          => '[[Special:Contributions/$1|$1]] is geblokkeerd.<br />

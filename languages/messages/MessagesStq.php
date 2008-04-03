@@ -1510,7 +1510,7 @@ Reek dän Gruund foar ju Speere oun.',
 'ipboptions'                  => '1 Uure:1 hour,2 Uuren:2 hours,6 Uuren:6 hours,1 Dai:1 day,3 Deege:3 days,1 Wiek:1 week,2 Wieke:2 weeks,1 Mound:1 month,3 Mounde:3 months,1 Jier:1 year,Uunbestimd:indefinite', # display1:time1,display2:time2,...
 'ipbotheroption'              => 'Uur Duur',
 'ipbotherreason'              => 'Uur/additionelle Begründenge:',
-'ipbhidename'                 => 'Benutsernoome/IP-Adresse in dät Speer-Logbouk, in ju Lieste fon aktive Speeren un in dät Benutserferteeknis ferstopje.',
+'ipbhidename'                 => 'Benutsernoome in dät Speer-Logbouk, in ju Lieste fon aktive Speeren un in dät Benutserferteeknis ferstopje.',
 'badipaddress'                => 'Dissen Benutser bestoant nit, d.h. die Noome is falsk',
 'blockipsuccesssub'           => 'Blokkoade geloangen',
 'blockipsuccesstext'          => 'Ju IP-Adrässe [[Special:Contributions/$1|$1]] wuude blokkierd.

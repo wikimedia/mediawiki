@@ -1567,7 +1567,7 @@ Balyéd ce-desot una rêson cllâra (per ègzemplo en endiquent les pâges qu’
 'ipboptions'                  => '2 hores:2 hours,1 jorn:1 day,3 jorns:3 days,1 semana:1 week,2 semanes:2 weeks,1 mês:1 month,3 mês:3 months,6 mês:6 months,1 an:1 year,sen fin:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'              => 'ôtra',
 'ipbotherreason'              => 'Rêson difèrenta ou suplèmentèra :',
-'ipbhidename'                 => 'Mâscar lo nom d’utilisator ou l’IP de l’historico des blocâjos, de la lista des blocâjos actifs et de la lista des utilisators',
+'ipbhidename'                 => 'Mâscar lo nom d’utilisator de l’historico des blocâjos, de la lista des blocâjos actifs et de la lista des utilisators',
 'badipaddress'                => 'L’adrèce IP est fôssa.',
 'blockipsuccesssub'           => 'Blocâjo reussi',
 'blockipsuccesstext'          => '[[Special:Contributions/$1|$1]] at étâ blocâ.

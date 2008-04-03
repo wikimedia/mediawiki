@@ -799,8 +799,13 @@ Các quản lý khác ở {{SITENAME}} vẫn có thể truy nhập vào nội du
 'logdelete-logaction'         => '$1 {{PLURAL:$1|sự kiện|sự kiện}} được thiết lập chế độ $2',
 'revdelete-success'           => "'''Khả năng nhìn thấy của phiên bản đã được thiết lập thành công.'''",
 'logdelete-success'           => "'''Khả năng nhìn thấy của sự kiện đã được thiết lập thành công.'''",
+'revdel-restore'              => 'Thay đổi mức khả kiến',
 'pagehist'                    => 'Lịch sử trang',
 'deletedhist'                 => 'Lịch sử đã xóa',
+
+# Suppression log
+'suppressionlog'     => 'Nhật trình giấu',
+'suppressionlogtext' => 'Dưới đây là danh sách các tác vụ xóa và cấm liên quan đến nội dung mà các quản lý không nhìn thấy. Xem [[Special:Ipblocklist|danh sách các IP bị cấm]] để xem danh sách các tác vụ cấm chỉ và cấm thông thường hiện nay.',
 
 # History merging
 'mergehistory'                     => 'Trộn lịch sử trang',
@@ -959,17 +964,20 @@ Xin hãy bảo đảm giữ vững tính liên tục của lịch sử trang.',
 'group-bot'           => 'Robot',
 'group-sysop'         => 'Quản lý',
 'group-bureaucrat'    => 'Hành chính viên',
+'group-suppress'      => 'Giám sát viên',
 'group-all'           => '(tất cả)',
 
 'group-autoconfirmed-member' => 'Thành viên tự động xác nhận',
 'group-bot-member'           => 'Robot',
 'group-sysop-member'         => 'Quản lý',
 'group-bureaucrat-member'    => 'Hành chính viên',
+'group-suppress-member'      => 'Giám sát viên',
 
 'grouppage-autoconfirmed' => '{{ns:project}}:Thành viên tự động xác nhận',
 'grouppage-bot'           => '{{ns:project}}:Robot',
 'grouppage-sysop'         => '{{ns:project}}:Người quản lý',
 'grouppage-bureaucrat'    => '{{ns:project}}:Hành chính viên',
+'grouppage-suppress'      => '{{ns:project}}:Giám sát viên',
 
 # User rights log
 'rightslog'      => 'Nhật trình cấp quyền thành viên',
@@ -1292,6 +1300,7 @@ Có '''$8''' tập tin đã được tải lên.
 'notargettext'            => 'Xin chỉ rõ trang hoặc thành viên cần thực hiện tác vụ.',
 'pager-newer-n'           => '$1 mới hơn',
 'pager-older-n'           => '$1 cũ hơn',
+'suppress'                => 'Giám sát viên',
 
 # Book sources
 'booksources'               => 'Nguồn sách',
@@ -1444,6 +1453,7 @@ Xin xác nhận việc bạn định làm, và hiểu rõ những hệ lụy c�
 'actioncomplete'              => 'Đã thực hiện xong',
 'deletedtext'                 => 'Đã xóa “<nowiki>$1</nowiki>”. Xem danh sách các xóa bỏ gần nhất tại $2.',
 'deletedarticle'              => 'đã xóa “$1”',
+'suppressedarticle'           => 'đã giấu "[[$1]]"',
 'dellogpage'                  => 'Nhật trình xóa',
 'dellogpagetext'              => 'Dưới đây là danh sách các trang bị xóa gần đây nhất.',
 'deletionlog'                 => 'nhật trình xóa',
@@ -1778,7 +1788,7 @@ Trong trường hợp sau bạn cũng có thể dùng một liên kết, ví d�
 'allmessagesdefault'        => 'Nội dung mặc định',
 'allmessagescurrent'        => 'Nội dung hiện thời',
 'allmessagestext'           => 'Đây là toàn bộ thông báo hệ thống có trong không gian tên MediaWiki.',
-'allmessagesnotsupportedDB' => "'''{{ns:special}}:Allmessages''' không dùng được vì biến '''\$wgUseDatabaseMessages''' đã bị tắt.",
+'allmessagesnotsupportedDB' => "Trang này không dùng được vì biến '''\$wgUseDatabaseMessages''' đã bị tắt.",
 'allmessagesfilter'         => 'Bộ lọc tên thông báo:',
 'allmessagesmodified'       => 'Chỉ hiển thị các thông báo đã được sửa đổi.',
 

@@ -1469,7 +1469,7 @@ $1',
 'ipboptions'             => '2 ойхть (част):2 hours,1 ши:1 day,3 шит:3 days,1 тарга (недля):1 week,2 таргат (недлят):2 weeks,1 ков:1 month,3 кофт:3 months,6 кофт:6 months,1 киза:1 year,пефтома:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'         => 'иля',
 'ipbotherreason'         => 'Иля/поладомань туфтал:',
-'ipbhidename'            => 'Кяшемс тиить лемоц/IP сёлгома лувомаста, тяниень сёлгома лувомать ди тиинь лувомать',
+'ipbhidename'            => 'Кяшемс тиить лемоц сёлгома лувомаста, тяниень сёлгома лувомать ди тиинь лувомать',
 'badipaddress'           => 'Аф кондясти IP адрес',
 'blockipsuccesssub'      => 'Сёлгома йотафтф',
 'blockipsuccesstext'     => '[[Special:Contributions/$1|$1]] сёлгозь.<br />

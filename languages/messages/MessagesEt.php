@@ -918,7 +918,7 @@ Administraatori staatuses kasutajaid: <b>$2</b> (vt $3).',
 'allpagessubmit'    => 'Näita',
 
 # E-mail user
-'mailnologintext' => 'Te peate olema [[Eri:Userlogin|sisse logitud]] ja teil peab [[Eri:Preferences|eelistustes]] olema kehtiv e-posti aadress, et saata teistele kasutajatele e-kirju.',
+'mailnologintext' => 'Te peate olema [[Special:Userlogin|sisse logitud]] ja teil peab [[Special:Preferences|eelistustes]] olema kehtiv e-posti aadress, et saata teistele kasutajatele e-kirju.',
 'emailuser'       => 'Saada sellele kasutajale e-kiri',
 'emailpage'       => 'Saada kasutajale e-kiri',
 'emailpagetext'   => 'Kui see kasutaja on oma eelistuste lehel sisestanud e-posti aadressi, siis saate alloleva vormi kaudu talle kirja saata. Et kasutaja saaks vastata, täidetakse kirja saatja väli "kellelt" e-posti aadressiga, mille olete sisestanud oma eelistuste lehel.',
