@@ -212,7 +212,7 @@ class LogEventsList {
 					) 
 				) . ')';
 			// If an edit was hidden from a page give a review link to the history
-			} else if( $row->log_action == 'revision' && $wgUser->isAllowed( 'deleterevision' ) ) {
+			} else if( $row->log_action == 'revision' && $wgUser->isAllowed( 'deleterevision' ) && !empty( $paramArray ) ) {
 				$revdel = SpecialPage::getTitleFor( 'Revisiondelete' );
 				// Different revision types use different URL params...
 				$subtype = isset($paramArray[2]) ? $paramArray[1] : '';
