@@ -32,11 +32,13 @@ $namespaceNames = array(
 );
 
 $skinNames = array(
-	'standard'     => 'Standard',
-	'nostalgia'    => 'Melkoni',
-	'cologneblue'  => 'Glaz Kologn',
-	'monobook'     => 'MonoBook',
-	'myskin'       => 'MySkin'
+	'standard'    => 'Standard',
+	'nostalgia'   => 'Melkoni',
+	'cologneblue' => 'Glaz Kologn',
+	'monobook'    => 'MonoBook',
+	'myskin'      => 'MySkin',
+	'chick'       => 'Plogig',
+	'simple'      => 'Eeun',
 );
 
 $bookstoreList = array(
