@@ -1557,7 +1557,7 @@ Donatz çaijós una rason precisa (per exemple en indicant las paginas que son e
 'ipboptions'                  => '2 oras:2 hours,1 jorn:1 day,3 jorns:3 days,1 setmana:1 week,2 setmanas:2 weeks,1 mes:1 month,3 meses:3 months,6 meses:6 months,1 an:1 year,indefinidament:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'              => 'autre',
 'ipbotherreason'              => 'Motiu diferent o suplementari',
-'ipbhidename'                 => "Amagar lo nom d’utilizaire o l’IP de l'istoric de blocatge, de la lista dels blocatges actius e de la lista dels utilizaires",
+'ipbhidename'                 => "Amagar lo nom d’utilizaire de l'istoric de blocatge, de la lista dels blocatges actius e de la lista dels utilizaires",
 'badipaddress'                => "L'adreça IP es incorrècta",
 'blockipsuccesssub'           => 'Blocatge capitat',
 'blockipsuccesstext'          => 'L\'adreça IP "$1" es estada blocada.

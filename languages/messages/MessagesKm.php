@@ -1947,6 +1947,10 @@ $1',
 'autoredircomment' => 'បញ្ជូនបន្តទៅ [[$1]]',
 'autosumm-new'     => 'ទំព័រថ្មី៖ $1',
 
+# Size units
+'size-bytes'     => '$1បៃ',
+'size-kilobytes' => '$1គីឡូបៃ',
+
 # Live preview
 'livepreview-loading' => 'កំពុងផ្ទុក…',
 'livepreview-ready'   => 'កំពុងផ្ទុក… ហើយ!',

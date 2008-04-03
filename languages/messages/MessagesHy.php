@@ -1641,7 +1641,7 @@ $1',
 'ipboptions'                  => '2 ժամ:2 hours,1 օր:1 day,3 օր:3 days,1 շաբաթ:1 week,2 շաբաթ:2 weeks,1 ամիս:1 month,3 ամիս:3 months,6 ամիս:6 months,1 տարի:1 year,առհավետ:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'              => 'այլ',
 'ipbotherreason'              => 'Այլ/հավելյալ պատճառներ.',
-'ipbhidename'                 => 'Թաքցնել մասնակցի անունը/IP-հասցեն արգելափակման տեղեկամատյանից, գործող արգելափակումների ցանկից և մասնակիցների ցանկից։',
+'ipbhidename'                 => 'Թաքցնել մասնակցի անունը-հասցեն արգելափակման տեղեկամատյանից, գործող արգելափակումների ցանկից և մասնակիցների ցանկից։',
 'badipaddress'                => 'Սխալ IP-հասցե',
 'blockipsuccesssub'           => 'Արգելափակումը կատարված է',
 'blockipsuccesstext'          => '[[Special:Contributions/$1|«$1»]] արգելափակված է։

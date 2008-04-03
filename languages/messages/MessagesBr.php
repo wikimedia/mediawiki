@@ -739,7 +739,7 @@ Gouest e vo merourien all {{SITENAME}} da dapout krog en testennoù kuzhet ha da
 'pagehist'                    => 'Istor ar bajenn',
 'deletedhist'                 => 'Diverkañ an istor',
 
-# Supression log
+# Suppression log
 'suppressionlog'     => 'Marilh diverkañ',
 'suppressionlogtext' => 'A-is emañ roll an diverkadennoù hag ar stankadennoù diwezhañ enno danvez kuzhet diouzh ar verourien. Gwelet [[Special:Ipblocklist|roll an IPoù stanket]] evit kaout roll ar stankadennoù e talvoud evit poent.',
 
@@ -1581,7 +1581,7 @@ Roit a-is an abeg resis (o verkañ, da skouer, roll ar pajennoù bet graet gaou 
 'ipboptions'                  => '2 eurvezh:2 hours,1 devezh:1 day,3 devezh:3 days,1 sizhunvezh:1 week,2 sizhunvezh:2 weeks,1 mizvezh:1 month,3 mizvezh:3 months,6 mizvezh:6 months,1 bloaz:1 year,da viken:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'              => 'prantad all',
 'ipbotherreason'              => 'Abeg all/ouzhpenn',
-'ipbhidename'                 => 'Kuzhat an anv implijer pe IP ar marilh stankañ, diouzh roll ar stankadennoù red hag ar roll implijerien',
+'ipbhidename'                 => 'Kuzhat an anv implijer ar marilh stankañ, diouzh roll ar stankadennoù red hag ar roll implijerien',
 'badipaddress'                => "Kamm eo ar chomlec'h IP.",
 'blockipsuccesssub'           => 'Stankadenn deuet da benn vat',
 'blockipsuccesstext'          => 'Stanket eo bet chomlec\'h IP "$1".

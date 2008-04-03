@@ -802,7 +802,7 @@ Det kan finnas mer information i [{{fullurl:Special:Log/delete|page={{FULLPAGENA
 eller så finns inte den version du angav,
 eller så försöker du gömma den senaste versionen av sidan.',
 'revdelete-selected'          => '{{PLURAL:$2|Vald version|Valda versioner}} av [[:$1]]:',
-'logdelete-selected'          => '{{PLURAL:$1|Vald loggåtgärd|valda loggåtgärder}}:',
+'logdelete-selected'          => '{{PLURAL:$1|Vald loggåtgärd|Valda loggåtgärder}}:',
 'revdelete-text'              => 'Borttagna versioner och åtgärder kommer fortfarande att synas i historiken och i loggar, men deras innehåll kommer ej att vara tillgängligt för allmänheten.
 
 Andra administratörer på {{SITENAME}} kommer fortfarande att kunna läsa det dolda innehållet och kan återställa sidan genom samma gränssnitt, om inte en ytterligare begränsningar finns.',
@@ -827,7 +827,7 @@ Andra administratörer på {{SITENAME}} kommer fortfarande att kunna läsa det d
 'pagehist'                    => 'Sidhistorik',
 'deletedhist'                 => 'Raderad historik',
 
-# Supression log
+# Suppression log
 'suppressionlog'     => 'Upphävningslogg',
 'suppressionlogtext' => 'Nedan är en lista av dom senaste raderingarna och blockeringarna innefattande innehåll dolt för admimistratörer. Se [[Special:Ipblocklist|IP-blockeringslistan]] för listan över nuvarande operationella förbud och blockeringar.',
 

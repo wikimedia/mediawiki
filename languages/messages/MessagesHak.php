@@ -1167,7 +1167,7 @@ Chhiáng chhâm-kháu [[Special:Log/delete|chhù-hi ngit-ki]] lòi chhà-chhut c
 'ipboptions'                  => '2 séu-sṳ̀:2 séu-sṳ̀, 1 thiên:1 thiên, 3 thiên:3 thiên, 1 chû:1 chû, 2 chû:2 chû, 1-ke ngie̍t:1-ke ngie̍t, 3-ke ngie̍t:3-ke ngie̍t, 6-ke ngie̍t:6-ke ngie̍t, 1-ngièn:1-ngièn, yún-kiú :yún-kiú', # display1:time1,display2:time2,...
 'ipbotheroption'              => 'khì-thâ',
 'ipbotherreason'              => 'Khì-thâ lî-yù:',
-'ipbhidename'                 => 'Chhai chhà-fûng ngit-ki, fa̍t-chhiok chhà-fûng lie̍t-péu yî-khi̍p yung-fu lie̍t-péu chûng yún-chhòng yung-fu-miàng/IP',
+'ipbhidename'                 => 'Chhai chhà-fûng ngit-ki, fa̍t-chhiok chhà-fûng lie̍t-péu yî-khi̍p yung-fu lie̍t-péu chûng yún-chhòng yung-fu-miàng.',
 'badipaddress'                => 'IP-ke thi-tiám mò chṳn-khok.',
 'blockipsuccesssub'           => 'chhà-fûng sṳ̀n-kûng',
 'blockipsuccesstext'          => '[[Special:Contributions/$1|$1]] yí-kîn pûn chhà-fûng. <br />Chhâm-siòng [[Special:Ipblocklist|pûn-fûng IP thi-tiám lie̍t-péu]] yî fu̍k-sṳ́m chhà-fûng.',

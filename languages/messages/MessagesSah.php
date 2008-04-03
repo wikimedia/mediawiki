@@ -1481,7 +1481,7 @@ $1',
 'ipboptions'                  => '2 чаас:2 hours,1 күн:1 day,3 күн:3 day,1 нэдиэлэ:1 week,2 нэдиэлэ:2 week,1 ый:1 month,3 ый:3 month,6 ый:6 month,1 сыл:1 month,больдьоҕо суох:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'              => 'атын',
 'ipbotherreason'              => 'Атын/эбии биричиинэлэр:',
-'ipbhidename'                 => 'Кыттааччы аатын/IP-тын бобуу сурунаалыгар, бобуллубуттар уонна кытааччылар уопсай испииһэктэригэр көрдөрүмэ',
+'ipbhidename'                 => 'Кыттааччы аатын бобуу сурунаалыгар, бобуллубуттар уонна кытааччылар уопсай испииһэктэригэр көрдөрүмэ',
 'badipaddress'                => 'IP аадырыһа сыыһа',
 'blockipsuccesssub'           => 'Тохтотулунна',
 'blockipsuccesstext'          => '[[Special:Contributions/$1|«$1»]] бобуллубут/тохтотуллубут.<br />

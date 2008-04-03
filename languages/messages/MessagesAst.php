@@ -1562,7 +1562,7 @@ Esto debería facese sólo pa prevenir vandalismu como indiquen les [[{{MediaWik
 'ipboptions'                  => '2 hores:2 hours,1 día:1 day,3 díes:3 days,1 selmana:1 week,2 selmanes:2 weeks,1 mes:1 month,3 meses:3 months,6 meses:6 months,1 añu:1 year,pa siempre:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'              => 'otru',
 'ipbotherreason'              => 'Otru motivu/motivu adicional:',
-'ipbhidename'                 => "Ocultar el nome d'usuariu / IP del rexistru de bloqueos, de la llista de bloqueos activos y de la llista d'usuarios",
+'ipbhidename'                 => "Ocultar el nome d'usuariu del rexistru de bloqueos, de la llista de bloqueos activos y de la llista d'usuarios",
 'badipaddress'                => 'IP non válida',
 'blockipsuccesssub'           => 'Bloquéu fechu correctamente',
 'blockipsuccesstext'          => "Bloquióse al usuariu [[Special:Contributions/$1|$1]].

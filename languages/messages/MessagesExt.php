@@ -659,8 +659,8 @@ puei bel detallis nel [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} rus
 'revisiondelete'              => 'Esborral/arrecuperal revisionis',
 'revdelete-nooldid-title'     => 'Nu ai una revisión destinu',
 'revdelete-nooldid-text'      => 'Nu as prehisau denguna revisión destinu ondi realizal esta hunción.',
-'revdelete-selected'          => "{{PLURAL:$2|Revisión aseñalá e|Revisionis aseñalás de}} '''$1:'''",
-'logdelete-selected'          => "{{PLURAL:$2|Un eventu aseñalau|$2 eventus aseñalaus}} el rustrihu pa '''$1:'''",
+'revdelete-selected'          => "{{PLURAL:$2|Revisión aseñalá e|Revisionis aseñalás de}} '''[[:$1]]''':",
+'logdelete-selected'          => '{{PLURAL:$1|Eventu el rustrihu aseñalau|Eventus del rustrihu aseñalaus}}:',
 'revdelete-text'              => 'Las revisionis esborrás entovia apaicirán nel estorial la páhina, peru el su continiu nu sedrá acesibri pal púbricu.
 
 El restu e çahorilis desti güiqui sí tendrán premisu pa visoreal el continiu açonchau, i revertil el esborrau si es mestel, a nu sel que los alministraoris del güiqui crein una restrición aicional.',
@@ -669,7 +669,7 @@ El restu e çahorilis desti güiqui sí tendrán premisu pa visoreal el continiu
 'revdelete-hide-name'         => 'Açonchal ación i ohetivu',
 'revdelete-hide-comment'      => 'Açonchal síntesis la eición',
 'revdelete-hide-user'         => 'Açonchal nombri d´usuáriu/IP el eitol',
-'revdelete-hide-restricted'   => 'Tamién aprical estus tarugus a los çahorilis',
+'revdelete-hide-restricted'   => 'Tamién aprical estus tarugus a los çahorilis i atarugal esta entrihazi',
 'revdelete-suppress'          => 'Esborral tamién los datus los çahorilis',
 'revdelete-hide-image'        => 'Açonchal el continiu el archivu',
 'revdelete-unsuppress'        => 'Esborral restricionis enas revisionis arrecuperás',
@@ -678,7 +678,7 @@ El restu e çahorilis desti güiqui sí tendrán premisu pa visoreal el continiu
 'revdelete-logentry'          => 'chambá la visibiliá la revisión pa [[$1]]',
 'logdelete-logentry'          => "chambá la visibiliá d'eventus de [[$1]]",
 'revdelete-logaction'         => '$1 {{PLURAL:$1|revisión|revisionis}} en mó $2',
-'logdelete-logaction'         => '$1 {{PLURAL:$1|eventu|eventus}} a [[$3]] en mó $2',
+'logdelete-logaction'         => '$1 {{PLURAL:$1|eventu|eventus}} en mó $2',
 'revdelete-success'           => "'''Visibiliá e revisionis chambá.'''",
 'logdelete-success'           => "'''Visibiliá d'eventus chambá.'''",
 
@@ -694,7 +694,7 @@ Asigurati e qu'esti chambu mantenga la continuiá el estorial la páhina.",
 'mergehistory-go'                  => 'Muestral eicionis uñificabris',
 'mergehistory-submit'              => 'Uñifical revisionis',
 'mergehistory-empty'               => 'Nu es posibri uñifical denguna revisión.',
-'mergehistory-success'             => "S'án uñificau $3 revisionis de [[:$1]] en [[:$2]].",
+'mergehistory-success'             => "S'án mesturau $3 {{PLURAL:$3|revisión|revisionis}} de [[:$1]] en [[:$2]].",
 'mergehistory-fail'                => 'Nu es posibri uñifical los estorialis. Pol favol, compreba la páhina i los parámetrus de tiempu.',
 'mergehistory-no-source'           => 'La páhina huenti $1 nu desisti.',
 'mergehistory-no-destination'      => 'La páhina e destinu $1 nu desisti.',
@@ -811,7 +811,7 @@ Asigurati e qu'esti chambu mantenga la continuiá el estorial la páhina.",
 'userrights-groupsavailable'       => 'Grupus disponibris:',
 'userrights-reason'                => 'Razón el chambu:',
 'userrights-available-none'        => 'Nu pueis chambal los miembrus del grupu.',
-'userrights-available-add'         => 'Pueis añiil usuárius a {{PLURAL:$2|esti grupu|estus grupus}}: $1.',
+'userrights-available-add'         => 'Pueis añiil cualisquiel usuáriu a {{PLURAL:$2|esti grupu|estus grupus}}: $1.',
 'userrights-available-remove'      => 'Pueis esborral usuárius {{PLURAL:$2|del siguienti grupu|de los siguientis grupus}}: $1.',
 'userrights-available-add-self'    => 'Pueis uñilti tu mesmu {{PLURAL:$2|al siguienti grupu|a los siguientis grupus}}: $1.',
 'userrights-available-remove-self' => 'Pueis esborralti {{PLURAL:$2|del siguienti grupu|de los siguientis grupus}}: $1.',
@@ -879,7 +879,7 @@ Asigurati e qu'esti chambu mantenga la continuiá el estorial la páhina.",
 'upload'                      => 'Empuntal archivu',
 'uploadbtn'                   => 'Empuntal archivu',
 'reupload'                    => 'Re-empuntal',
-'reuploaddesc'                => 'Gorvel al hormulariu d´empuntu.',
+'reuploaddesc'                => 'Cancelal el empuntu i gorvel al hormuláriu.',
 'uploadnologin'               => 'Nu estás rustriu',
 'uploadnologintext'           => 'Ebis estal [[Special:Userlogin|rustriu]]
 pa empuntal archivus.',
@@ -1460,7 +1460,7 @@ Escrebi una razón concreta embahu (pol sabulugal, almientandu páhinas qu'aigan
 'ipboptions'                  => '2 oras:2 hours,1 dia:1 day,3 dias:3 days,1 semana:1 week,2 semanas:2 weeks,1 mes:1 month,3 mesis:3 months,6 mesis:6 months,1 añu:1 year,enfinitu:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'              => 'otru',
 'ipbotherreason'              => 'Anguna otra razón?:',
-'ipbhidename'                 => 'Açonchal nombri d´usuáriu/IP nel "rustrihu e tarugus", "lista e tarugus ativus" i "lista d´usuárius"',
+'ipbhidename'                 => 'Açonchal nombri d´usuáriu nel "rustrihu e tarugus", "lista e tarugus ativus" i "lista d´usuárius"',
 'badipaddress'                => 'Direción IP nu premitia',
 'blockipsuccesssub'           => 'Usuáriu atarugau!',
 'blockipsuccesstext'          => "La direción IP [[Special:Contributions/$1|$1]] á siu atarugá.
@@ -1603,7 +1603,7 @@ Ya desisti la páhina "[[$1]]". Te petaria esborrala pa premitil el treslau?',
 'allmessagesdefault'        => 'Testu pol defeutu',
 'allmessagescurrent'        => 'Testu atual',
 'allmessagestext'           => 'Esta es una lista e mensahis el sistema disponibris nel espaciu e nombris MediaWiki:',
-'allmessagesnotsupportedDB' => "Nu se puei gastal '''{{ns:special}}:Allmessages''' polque '''\$wgUseDatabaseMessages''' está desativau.",
+'allmessagesnotsupportedDB' => "Nu se puei gastal esta páhina polque '''\$wgUseDatabaseMessages''' está desativau.",
 'allmessagesfilter'         => 'Filtru e mensahis:',
 'allmessagesmodified'       => 'Solu muestral chambaus',
 
@@ -1642,7 +1642,7 @@ Tolas acionis d'emporteau transwiki se rustrin nel [[Special:Log/import|rustrihu
 # Import log
 'importlogpage'                    => 'Emporteal rustrihu',
 'importlogpagetext'                => "Emporteacionis alministrativas de páhinas con estorial d'edicionis d'otras güiquis.",
-'import-logentry-upload'           => "emporteá [[$1]] pol empuntu d'archivu",
+'import-logentry-upload'           => "á emporteau [[$1]] pol empuntu d'archivu",
 'import-logentry-upload-detail'    => '$1 {{PLURAL:$1|revisión|revisionis}}',
 'import-logentry-interwiki'        => 'trasgüiquipeau $1',
 'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|revisión|revisionis}} dendi $2',
@@ -2068,8 +2068,12 @@ las caraterísticas el email en {{SITENAME}}, abri esti atihu nel tu escrucaol:
 
 $3
 
-Si la cuenta *nu* es tuya, nu abras el atihu. El coigu e confirmación
-caucará en $4.',
+Si nu as siu tú quien á rustriu la cuenta, pursa nel siguienti atihu
+pa cancelal la confirmación del email:
+
+$5
+
+El coigu e confirmación caucará en $4.',
 
 # Scary transclusion
 'scarytranscludedisabled' => '[El EntelGüiqui está desativau]',

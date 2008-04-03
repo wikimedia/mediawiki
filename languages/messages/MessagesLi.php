@@ -1515,7 +1515,7 @@ $1",
 'ipboptions'                  => '2 oer:2 hours,1 daag:1 day,3 daag:3 days,1 waek:1 week,2 waek:2 weeks,1 maondj:1 month,3 maondj:3 months,6 maondj:6 months,1 jaor:1 year,veur iwweg:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'              => 'anger verloup',
 'ipbotherreason'              => 'Angere/eventuele rejer:',
-'ipbhidename'                 => "Verberg gebroekersnaam/IP van 't blokkeerlogbook, de actieve blokkeerlies en de gebroekerslies",
+'ipbhidename'                 => "Verberg gebroekersnaam van 't blokkeerlogbook, de actieve blokkeerlies en de gebroekerslies",
 'badipaddress'                => "'t IP-adres haet 'n ongeldige opmaak.",
 'blockipsuccesssub'           => 'Blokkaad gelök',
 'blockipsuccesstext'          => '\'t IP-adres "$1" is geblokkeerd.<br />

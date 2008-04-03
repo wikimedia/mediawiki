@@ -503,7 +503,7 @@ MySQL returned error "$3: $4".',
 $2',
 'namespaceprotected'   => "'''$1''' नामविश्वातील पाने बदलण्याची आपणांस परवानगी नाही.",
 'customcssjsprotected' => 'या पानावर इतर सदस्याच्या व्यक्तिगत पसंती असल्यामुळे, तुम्हाला हे पान संपादीत करण्याची परवानगी नाही.',
-'ns-specialprotected'  => 'विशेष ({{ns:special}}) नामविश्वातील पाने संपादीत करता येत नाहीत.',
+'ns-specialprotected'  => 'विशेष पाने संपादीत करता येत नाहीत.',
 'titleprotected'       => "या शीर्षकाचे पान सदस्य [[User:$1|$1]]ने निर्मीत करण्यापासून सुरक्षित केलेले आहे.
 ''$2'' हे कारण नमूद केलेले आहे.",
 
@@ -836,7 +836,7 @@ $3ने ''$2'' कारण दिले आहे.",
 'pagehist'                    => 'पानाचा इतिहास',
 'deletedhist'                 => 'वगळलेला इतिहास',
 
-# Supression log
+# Suppression log
 'suppressionlog'     => 'सप्रेशन नोंद',
 'suppressionlogtext' => 'खाली सर्वात अलीकडील ब्लॉक तसेच प्रबंधकांपासून लपविलेला मजकूर वगळण्याची यादी आहे. सध्या अस्तित्वात असेलेले प्रतिबंध पाहण्यासाठी [[Special:Ipblocklist|IP ब्लॉक यादी]] पहा.',
 
@@ -1803,7 +1803,7 @@ $1',
 'allmessagesdefault'        => 'सुरुवातीचा मजकूर',
 'allmessagescurrent'        => 'सध्याचा मजकूर',
 'allmessagestext'           => 'MediaWiki नामविश्वातील सर्व प्रणाली संदेशांची यादी',
-'allmessagesnotsupportedDB' => "'''{{ns:special}}:Allmessages''' वापरता येत नाही कारण'''\$wgUseDatabaseMessages''' मालवला आहे.",
+'allmessagesnotsupportedDB' => "हे पान संपादित करता येत नाही कारण'''\$wgUseDatabaseMessages''' मालवला आहे.",
 'allmessagesfilter'         => 'संदेशनावांची चाळणी:',
 'allmessagesmodified'       => 'फक्त बदललेले दाखवा',
 

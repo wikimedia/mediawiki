@@ -609,7 +609,7 @@ Lekérdezés: $2',
 $2',
 'namespaceprotected'   => "Nincs jogosultságod a(z) '''$1''' névtérbeli lapok szerkesztésére.",
 'customcssjsprotected' => 'Nincs jogosultságod a lap szerkesztéséhez, mert egy másik felhasználó személyes beállításait tartalmazza.',
-'ns-specialprotected'  => 'A {{ns:special}} névtérben található lapok nem szerkeszthetőek.',
+'ns-specialprotected'  => 'A speciális lapok nem szerkeszthetőek.',
 'titleprotected'       => "A cikk elkészítését [[User:$1|$1]] blokkolta, oka: ''$2''.",
 
 # Login and logout pages
@@ -922,8 +922,9 @@ Ezt a változatot eltávolították a nyilvános archívumokból.
 Mivel adminisztrátor vagy ezen a webhelyen, te megtekintheted; további részleteket a [{{fullurl:Special:Napló/delete|page={{FULLPAGENAMEE}}}} törlési naplóban] találhatsz.</div>',
 'rev-delundel'                => 'megjelenítés/elrejtés',
 'revisiondelete'              => 'Változatok törlése/helyreállítása',
-'revdelete-nooldid-title'     => 'Nem adtad meg a célváltozatot',
-'revdelete-nooldid-text'      => 'Nem adtad meg a célváltozatot vagy változatokat, melyeken el akarod végezni a műveletet.',
+'revdelete-nooldid-title'     => 'Érvénytelen célváltozat',
+'revdelete-nooldid-text'      => 'Nem adtad meg a célváltozato(ka)t, a megadott változat nem létezik,
+vagy a legutolsó változatot próbáltad meg elrejteni.',
 'revdelete-selected'          => "{{PLURAL:$2|Kiválasztott változat|Kiválasztott változatok}} - '''$1:'''",
 'logdelete-selected'          => "{{PLURAL:$2|Kiválasztott naplóesemény|Kiválasztott naplóesemények}} - '''$1:'''",
 'revdelete-text'              => 'A törölt változatok és események még láthatók lesznek a lap előzményeiben és naplójában,
@@ -936,7 +937,7 @@ vissza tudja ugyanezen a kezelőfelületen keresztül állítani, ha nincs megad
 'revdelete-hide-name'         => 'Művelet és cél elrejtése',
 'revdelete-hide-comment'      => 'Megjegyzés módosításának elrejtése',
 'revdelete-hide-user'         => 'A szerkesztő felhasználónevének/IP-címének elrejtése',
-'revdelete-hide-restricted'   => 'Alkalmazás az adminisztrátorokra és a többi felhasználóra is',
+'revdelete-hide-restricted'   => 'Alkalmazás adminisztrátorokra, valamint a felület lezárása',
 'revdelete-suppress'          => 'Adatok elrejtése az adminisztrátorok és a többi felhasználó elöl is',
 'revdelete-hide-image'        => 'A fájl tartalomának elrejtése',
 'revdelete-unsuppress'        => 'Korlátozások eltávolítása a visszaállított változatokról',
@@ -945,11 +946,16 @@ vissza tudja ugyanezen a kezelőfelületen keresztül állítani, ha nincs megad
 'revdelete-logentry'          => '[[$1]] változatának láthatóságának módosítása',
 'logdelete-logentry'          => '[[$1]] eseményének láthatóságának módosítása',
 'revdelete-logaction'         => '$1 változat átállítva $2 módra',
-'logdelete-logaction'         => '[[$3]] $1 eseménye átállítva $2 módra',
+'logdelete-logaction'         => '$1 esemény átállítva $2 módra',
 'revdelete-success'           => "'''A változat láthatóságának beállítása sikeresen elvégezve.'''",
 'logdelete-success'           => "'''Az esemény láthatóságának beállítása sikeresen elvégezve.'''",
+'revdel-restore'              => 'Láthatóság megváltoztatása',
 'pagehist'                    => 'Laptörténet',
 'deletedhist'                 => 'Törölt változatok',
+
+# Suppression log
+'suppressionlog'     => 'Adatvédelmibiztos-napló',
+'suppressionlogtext' => 'Lenn látható az adminisztrátorok elől legutóbb elrejtett törlések és blokkok listája. Lásd a [[Special:Ipblocklist|blokkolt IP-címek listája]] lapot a jelenleg érvényben lévő kitiltásokhoz és blokkokhoz.',
 
 # History merging
 'mergehistory'                     => 'Laptörténetek egyesítése',
@@ -1091,6 +1097,9 @@ rendszer nem indexel, vagy több független keresési kifejezés megadása
 'userrights-groupsmember'          => 'Csoporttag:',
 'userrights-groupsremovable'       => 'Eltávolítható csoportok:',
 'userrights-groupsavailable'       => 'Létező csoportok:',
+'userrights-groups-help'           => 'Beállíthatod, hogy a felhasználó mely csoportokba tartozik.
+A bepipált doboz azt jelenti, hogy a felhasználó benne van a csoportban,
+az üres azt, hogy nem.',
 'userrights-reason'                => 'A változtatás indoka:',
 'userrights-available-none'        => 'A csoporttagságot nem módosíthatod.',
 'userrights-available-add'         => 'Adhatsz hozzá felhasználókat a(z) $1 csoporthoz.',
@@ -1110,17 +1119,20 @@ rendszer nem indexel, vagy több független keresési kifejezés megadása
 'group-bot'           => 'botok',
 'group-sysop'         => 'adminisztrátorok',
 'group-bureaucrat'    => 'bürokraták',
+'group-suppress'      => 'adatvédelmi biztosok',
 'group-all'           => '(mind)',
 
 'group-autoconfirmed-member' => 'automatikusan megerősített felhasználó',
 'group-bot-member'           => 'bot',
 'group-sysop-member'         => 'adminisztrátor',
 'group-bureaucrat-member'    => 'bürokrata',
+'group-suppress-member'      => 'adatvédelmi biztos',
 
 'grouppage-autoconfirmed' => '{{ns:project}}:Automatikusan megerősített felhasználók',
 'grouppage-bot'           => '{{ns:project}}:Botok',
 'grouppage-sysop'         => '{{ns:project}}:Adminisztrátorok',
 'grouppage-bureaucrat'    => '{{ns:project}}:Bürokraták',
+'grouppage-suppress'      => '{{ns:project}}:Adatvédelmi biztosok',
 
 # User rights log
 'rightslog'      => 'Felhasználói jogosultságok naplója',
@@ -1446,6 +1458,7 @@ ellenére, hogy aktívan használják.</p>',
 'notargettext'            => 'Nem adtál meg lapot vagy usert keresési célpontnak.',
 'pager-newer-n'           => '{{PLURAL:$1|1 újabb|$1 újabb}}',
 'pager-older-n'           => '{{PLURAL:$1|1 régebbi|$1 régebbi}}',
+'suppress'                => 'adatvédelmi biztos',
 
 # Book sources
 'booksources'               => 'Könyvforrások',
@@ -1607,6 +1620,7 @@ Kérjük, erősítsd meg, hogy valóban ezt szándékozod tenni,
 'deletedtext'                 => 'A(z) „<nowiki>$1</nowiki>” lapot törölted.
 A legutóbbi törlések listájához lásd a $2 lapot.',
 'deletedarticle'              => '„$1” törölve',
+'suppressedarticle'           => 'elrejtette a(z) „[[$1]]” szócikket',
 'dellogpage'                  => 'Törlési_napló',
 'dellogpagetext'              => 'Itt láthatók a legutóbb törölt lapok.',
 'deletionlog'                 => 'törlési napló',

@@ -15,6 +15,7 @@
  * @author Szczepan1990
  * @author Leinad
  * @author Herr Kriss
+ * @author Lajsikonik
  */
 
 $namespaceNames = array(
@@ -150,7 +151,7 @@ $messages = array(
 'tog-underline'               => 'Podkreślenie linków:',
 'tog-highlightbroken'         => 'Oznacz <a href="" class="new">tak</a> linki do brakujących stron (alternatywa: dołączany znak zapytania<a href="" class="internal">?</a>).',
 'tog-justify'                 => 'Wyrównuj tekst w akapitach do obu stron',
-'tog-hideminor'               => 'Ukryj drobne poprawki w "Ostatnich zmianach"',
+'tog-hideminor'               => 'Ukryj drobne poprawki w „Ostatnich zmianach”',
 'tog-extendwatchlist'         => 'Rozszerzona lista obserwowanych',
 'tog-usenewrc'                => 'Rozszerzenie ostatnich zmian (JavaScript)',
 'tog-numberheadings'          => 'Automatyczna numeracja nagłówków',
@@ -177,12 +178,13 @@ $messages = array(
 'tog-fancysig'                => 'Podpis bez automatycznego linku',
 'tog-externaleditor'          => 'Domyślnie używaj zewnętrznego edytora',
 'tog-externaldiff'            => 'Domyślnie używaj zewnętrznego programu pokazującego zmiany',
-'tog-showjumplinks'           => 'Włącz odnośniki "skocz do"',
+'tog-showjumplinks'           => 'Włącz odnośniki „skocz do”',
 'tog-uselivepreview'          => 'Używaj dynamicznego podglądu (JavaScript) (eksperymentalny)',
 'tog-forceeditsummary'        => 'Informuj o niewypełnieniu opisu zmian',
 'tog-watchlisthideown'        => 'Ukryj moje edycje w obserwowanych',
 'tog-watchlisthidebots'       => 'Ukryj edycje botów w obserwowanych',
 'tog-watchlisthideminor'      => 'Ukryj drobne zmiany w obserwowanych',
+'tog-nolangconversion'        => 'Wyłącz odmianę',
 'tog-ccmeonemails'            => 'Przesyłaj mi kopie wiadomości wysłanych do innych użytkowników',
 'tog-diffonly'                => 'Nie pokazuj treści stron pod porównaniami zmian',
 'tog-showhiddencats'          => 'Pokaż ukryte kategorie',
@@ -251,7 +253,7 @@ $messages = array(
 'special-categories-sort-count'  => 'sortowanie według liczby',
 'special-categories-sort-abc'    => 'sortowanie alfabetyczne',
 'pagecategories'                 => '{{PLURAL:$1|Kategoria|Kategorie}}',
-'category_header'                => 'Strony w kategorii "$1"',
+'category_header'                => 'Strony w kategorii „$1”',
 'subcategories'                  => 'Podkategorie',
 'category-media-header'          => 'Pliki w kategorii "$1"',
 'category-empty'                 => "''W tej kategorii nie ma obecnie artykułów ani plików.''",
@@ -825,7 +827,7 @@ Inni administratorzy {{GRAMMAR:D.lp|{{SITENAME}}}} nadal będą mieć dostęp do
 'pagehist'                    => 'Historia edycji strony',
 'deletedhist'                 => 'Usunięta historia edycji',
 
-# Supression log
+# Suppression log
 'suppressionlog'     => 'Dziennik utajniania',
 'suppressionlogtext' => 'Poniżej znajduje się lista ostatnich usunięć i blokad ukryta przed administratorami. Zobacz [[Special:Ipblocklist|rejestr blokowania adresów IP]] jeśli chcesz sprawdzić aktualne zakazy i blokady.',
 
@@ -918,7 +920,7 @@ Upewnij się, że zmiany będą zapewniać ciągłość historyczną edycji stro
 'math_unknown_function'    => 'nieznana funkcja',
 'math_lexing_error'        => 'błąd leksera',
 'math_syntax_error'        => 'błąd składni',
-'math_image_error'         => 'konwersja do formatu PNG niepowiodła się ; sprawdź, czy poprawnie zainstalowane są latex, dvips, gs i convert.',
+'math_image_error'         => 'konwersja do formatu PNG nie powiodła się; sprawdź, czy poprawnie zainstalowane są latex, dvips, gs i convert.',
 'math_bad_tmpdir'          => 'Nie można utworzyć lub zapisywać w tymczasowym katalogu dla wzorów matematycznych',
 'math_bad_output'          => 'Nie można utworzyć lub zapisywać w wyjściowym katalogu dla wzorów matematycznych',
 'math_notexvc'             => 'Brak texvc; zapoznaj się z math/README w celu konfiguracji.',
@@ -974,7 +976,7 @@ Nie zaznaczone pole oznacza, że użytkownik nie należy do danej grupy.',
 'userrights-available-add'         => 'Możesz dodać jakiegokolwiek użytkownika do {{PLURAL:$2|grupy|grup}}: $1.',
 'userrights-available-remove'      => 'Możesz usunąć jakiegokolwiek użytkownika z {{PLURAL:$2|grupy|grup}}: $1.',
 'userrights-available-add-self'    => 'Nie możesz dodać siebie do {{PLURAL:$2|grupy|grup}}: $1.',
-'userrights-available-remove-self' => 'Nie możesz usunąć siebie z {{PLURAL:$2|grupy|group}}: $1.',
+'userrights-available-remove-self' => 'Nie możesz usunąć siebie z {{PLURAL:$2|grupy|grup}}: $1.',
 'userrights-no-interwiki'          => 'Nie masz dostępu do edycji uprawnień.',
 'userrights-nodatabase'            => 'Baza danych $1 nie istnieje lub nie jest lokalna.',
 'userrights-nologin'               => 'Musisz [[Special:Userlogin|zalogować się]] na konto administratora, by nadawać uprawnienia użytkownikom.',
@@ -1021,7 +1023,7 @@ Nie zaznaczone pole oznacza, że użytkownik nie należy do danej grupy.',
 'rcshowhidebots'                    => '$1 boty',
 'rcshowhideliu'                     => '$1 zalogowanych',
 'rcshowhideanons'                   => '$1 anonimowych',
-'rcshowhidepatr'                    => '$1 patrolowane',
+'rcshowhidepatr'                    => '$1 spatrolowane',
 'rcshowhidemine'                    => '$1 moje edycje',
 'rclinks'                           => 'Wyświetl ostatnie $1 zmian w ciągu ostatnich $2 dni.<br />$3',
 'diff'                              => 'różn',
@@ -1115,6 +1117,20 @@ Jeśli posiadasz tę grafikę w pełnym rozmiarze - prześlij ją, inaczej będz
 Zastanów się, czy powinno się ładować ten plik.
 Rejestr usunięć tego pliku jest dla wygody podany poniżej:",
 'filename-bad-prefix'         => 'Nazwa pliku, który ładujesz, zaczyna się od <strong>"$1"</strong> &ndash; jest to nazwa zazwyczaj przypisywana automatycznie przez cyfrowe aparaty fotograficzne, która nie daje żadnych informacji o zawartości pliku. Prosimy o wybranie bardziej zrozumiałej nazwy pliku.',
+'filename-prefix-blacklist'   => ' #<!-- nie modyfikuj tej linii --> <pre>
+# Składnia jest następująca:
+#   * Wszystko od znaku "#" do końca linii uznawane jest za komentarz
+#   * Każda niepusta linia jest zazwyczaj używanym początkiem nazwy pliku przez aparaty określonego producenta
+CIMG # Casio
+DSC_ # Nikon
+DSCF # Fuji
+DSCN # Nikon
+DUW # niektóre telefony komórkowe
+IMG # ogólny
+JD # Jenoptik
+MGP # Pentax
+PICT # wiele różnych
+ #</pre> <!-- nie modyfikuj tej linii -->',
 
 'upload-proto-error'      => 'Nieprawidłowy protokół',
 'upload-proto-error-text' => 'Zdalne przesyłanie plików wymaga podania adresu URL zaczynającego się na <code>http://</code> lub <code>ftp://</code>.',
@@ -1779,14 +1795,14 @@ Taki zrzut można później zaimportować do innej wiki działającej na oprogra
 
 Wyeksportowanie wielu stron wymaga wpisania poniżej tytułów stron, po jednym tytule w wierszu oraz określenia czy ma zostać wyeksportowana bieżąca czy wszystkie wersje strony z opisami edycji lub też tylko bieżąca wersja z opisem ostatniej edycji.
 
-Możesz również użyć łącza, np. [[Special:Export/{{MediaWiki:Mainpage}}]] dla strony "[[{{Mediawiki:mainpage}}]]".',
+Możesz również użyć łącza, np. [[{{ns:special}}:Export/{{MediaWiki:Mainpage}}]] dla strony "[[{{MediaWiki:Mainpage}}]]".',
 'exportcuronly'     => 'Tylko bieżąca wersja, bez historii',
 'exportnohistory'   => "----
 '''Uwaga:''' możliwość eksportowania pełnej historii stron została wyłączona.",
 'export-submit'     => 'Eksportuj',
 'export-addcattext' => 'Dodaj strony z kategorii:',
 'export-addcat'     => 'Dodaj',
-'export-download'   => 'Oferuj do zapisania jako plik',
+'export-download'   => 'Zapisz do pliku',
 'export-templates'  => 'Dołącz szablony',
 
 # Namespace 8 related
@@ -1967,7 +1983,7 @@ Wszystkie operacje importu transwiki są odnotowywane w [[Special:Log/import|rej
 'markedaspatrollederror-noautopatrol' => 'Nie masz uprawnień wymaganych do oznaczania swoich edycji jako sprawdzone.',
 
 # Patrol log
-'patrol-log-page' => 'Patrolowane',
+'patrol-log-page' => 'Dziennik patrolowania',
 'patrol-log-line' => 'oznacza wersję $1 hasła $2 jako sprawdzoną $3',
 'patrol-log-auto' => '(automatycznie)',
 
@@ -2378,6 +2394,9 @@ $1',
 'autosumm-replace' => "UWAGA! Zastąpienie treści hasła bardzo krótkim tekstem: '$1'",
 'autoredircomment' => 'Przekierowanie do [[$1]]',
 'autosumm-new'     => 'Nowa strona: $1',
+
+# Size units
+'size-kilobytes' => '$1 kB',
 
 # Live preview
 'livepreview-loading' => 'Trwa ładowanie…',

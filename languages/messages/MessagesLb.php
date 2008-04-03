@@ -758,6 +758,7 @@ Vläicht gouf se geläscht oder geréckelt.
 'revdelete-nooldid-title' => 'Ongülteg Zilversioun',
 'revdelete-nooldid-text'  => 'Dir hutt entweder keng Versioun uginn fir dës Funktioun ze benotzen, déi Versioun déi Diruginn huet gëtt et net, oder dir versicht déi aktuell Versioun ze verstoppen.',
 'revdelete-selected'      => "{{PLURAL:$2|Gewielte Versioun|Gewielte Versioune}} vu(n) '''$1''' :",
+'logdelete-selected'      => "Ausgewielten {{PLURAL:$2|Evenement|Evenementer}} aus dem Logbuch fir '''$1:'''",
 'revdelete-hide-text'     => 'Text vun der Versioun verstoppen',
 'revdelete-hide-name'     => 'Logbuch-Aktioun verstoppen',
 'revdelete-hide-comment'  => 'Bemierkung verstoppen',
@@ -773,7 +774,7 @@ Vläicht gouf se geläscht oder geréckelt.
 'pagehist'                => 'Versioune vun dëser Säit',
 'deletedhist'             => 'Geläschte Versiounen',
 
-# Supression log
+# Suppression log
 'suppressionlog'     => 'Lëscht vun de verstoppten a geläschte Säiten',
 'suppressionlogtext' => "Ënnendrënner ass eng Lëscht vun de rezente geläschte Säiten a Spären déi fir d'Administrateuren net sichtbar sinn. Kuckt[[Special:Ipblocklist|Lëscht vun de gesparten IPen]] fir déi akrtuell Spären.",
 
@@ -914,6 +915,7 @@ Sich no: $3 $9',
 'userrights-available-remove' => 'Dir kënnt Benotzer aus {{PLURAL:$2|dëser Gruppe|dëse Gruppen}} eraushuelen: $1.',
 'userrights-no-interwiki'     => "Dir hutt net déi néideg Rechter, fir d'Rechter vu Benoutzer op anere Wikien z'änneren.",
 'userrights-nodatabase'       => "D'Datebank $1 gëtt et net oder se ass net lokal.",
+'userrights-notallowed'       => "Dir hutt net déi néideg Rechter fir d'Rechter vun anere Benotzer z'änneren.",
 'userrights-changeable-col'   => 'Gruppen déi Dir ännere kënnt',
 'userrights-unchangeable-col' => 'Gruppen déi Dir net ännere kënnt',
 
@@ -939,9 +941,10 @@ Sich no: $3 $9',
 'grouppage-suppress'      => '{{ns:project}}:Iwwersiicht',
 
 # User rights log
-'rightslog'     => 'Logbuch vun de Benotzerrechter',
-'rightslogtext' => "Dëst ass d'Lëscht vun den Ännerunge vu Benotzerrechter.",
-'rightsnone'    => '(keen)',
+'rightslog'      => 'Logbuch vun de Benotzerrechter',
+'rightslogtext'  => "Dëst ass d'Lëscht vun den Ännerunge vu Benotzerrechter.",
+'rightslogentry' => "huet d'Benotzerrechter vum $1 vun $2 op $3 geännert.",
+'rightsnone'     => '(keen)',
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|Ännerung|Ännerungen}}',
@@ -1546,7 +1549,7 @@ $1',
 'ipboptions'                  => '1 Stonn:1 hour,2 Stonen:2 hours,6 Stonnen:6 hours,1 Dag:1 day,3 Deeg:3 days,1 Woch:1 week,2 Wochen:2 weeks,1 Mount:1 month,3 Méint:3 months,1 Joer:1 year,Onbegrenzt:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'              => 'Aner Dauer',
 'ipbotherreason'              => 'Aneren oder zousätzleche Grond:',
-'ipbhidename'                 => 'Benotzernumm/IP-Adress an der Spärlëscht, der Lëscht vun den aktive Spären an der Lëscht vun de Benotzer verstoppen',
+'ipbhidename'                 => 'Benotzernumm an der Spärlëscht, der Lëscht vun den aktive Spären an der Lëscht vun de Benotzer verstoppen',
 'badipaddress'                => "D'IP-Adress huet dat falscht Format.",
 'blockipsuccesssub'           => 'Gouf gespaart',
 'blockipsuccesstext'          => "[[Special:Contributions/$1|$1]] gouf gespaart. <br />

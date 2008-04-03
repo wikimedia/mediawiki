@@ -748,7 +748,7 @@ Aliaj administrantoj cxe {{SITENAME}} plu povos aliri la kasxitan entenon kaj re
 'pagehist'                    => 'Paĝa historio',
 'deletedhist'                 => 'Forigita historio',
 
-# Supression log
+# Suppression log
 'suppressionlog'     => 'Loglibro pri subigado',
 'suppressionlogtext' => 'Jen listo de la plej lastaj forigoj kaj forbaroj pri enhavo kaŝita per administrantoj. Rigardu la [[Special:Ipblocklist|IP-forbarliston]] por la listo de nune operaciaj forbaroj kaj forigoj.',
 
@@ -1572,7 +1572,7 @@ $1',
 'ipboptions'                  => '2 horoj:2 hours,1 tago:1 day,3 tagoj:3 days,1 semajno:1 week,2 semajnoj:2 weeks,1 monato:1 month,3 monatoj:3 months,6 monatoj:6 months,1 jaro:1 year,porĉiam:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'              => 'alia',
 'ipbotherreason'              => 'Alia/aldona kaŭzo:',
-'ipbhidename'                 => 'Kaŝu la uzantonomon/IP-on de la forbara loglibro, de la aktuala forbarlisto kaj de la uzantolisto.',
+'ipbhidename'                 => 'Kaŝu la uzantonomon de la forbara loglibro, de la aktuala forbarlisto kaj de la uzantolisto.',
 'badipaddress'                => 'Neniu uzanto, aŭ la IP-adreso estas misformita.',
 'blockipsuccesssub'           => 'Oni sukcese forbaris la adreson/nomon.',
 'blockipsuccesstext'          => '"$1" estas forbarita. <br />Vidu la [[Special:Ipblocklist|liston de IP-forbaroj]].',

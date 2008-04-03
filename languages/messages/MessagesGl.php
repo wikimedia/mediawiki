@@ -733,7 +733,7 @@ Outros administradores de {{SITENAME}} poderán acceder aínda ao contido oculto
 'pagehist'                    => 'Historial da páxina',
 'deletedhist'                 => 'Historial de borrado',
 
-# Supression log
+# Suppression log
 'suppressionlogtext' => 'Embaixo amósase unha listaxe coas eliminacións e cos bloqueos recentes, que inclúen contido oculto dos administradores. Vexa a [[Special:Ipblocklist|listaxe de enderezos IP bloqueados]] para comprobar as prohibicións e os bloqueos vixentes.',
 
 # History merging
@@ -1560,7 +1560,7 @@ Explique a razón específica do bloqueo (por exemplo, citando as páxinas concr
 'ipboptions'                  => '2 horas:2 hours,1 día:1 day,3 días:3 days,1 semana:1 week,2 semanas:2 weeks,1 mes:1 month,3 meses:3 months,6 meses:6 months,1 ano:1 year,para sempre:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'              => 'outra',
 'ipbotherreason'              => 'Outros motivos adicionais:',
-'ipbhidename'                 => 'Agochar nome de usuario/IP no rexistro de bloqueos, na listaxe de bloqueos activos e na listaxe de usuarios',
+'ipbhidename'                 => 'Agochar nome de usuario no rexistro de bloqueos, na listaxe de bloqueos activos e na listaxe de usuarios',
 'badipaddress'                => 'O enderezo IP non é válido',
 'blockipsuccesssub'           => 'Bloqueo con éxito',
 'blockipsuccesstext'          => 'O enderezo IP [[Special:Contributions/$1|$1]] foi bloqueado.<br />

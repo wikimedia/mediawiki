@@ -171,16 +171,20 @@ $messages = array(
 'dec'           => 'Rhag',
 
 # Categories related messages
-'categories'               => 'Categorïau',
-'categoriespagetext'       => "Mae'r categorïau isod yn y wici.",
-'pagecategories'           => '{{PLURAL:$1|Categori|Categori|Categorïau|Categorïau|Categorïau|Categorïau}}',
-'category_header'          => 'Erthyglau yn y categori "$1"',
-'subcategories'            => 'Is-categorïau',
-'category-media-header'    => "Cyfryngau yn y categori '$1'",
-'category-empty'           => "''Ar hyn o bryd nid oes unrhyw erthyglau na ffeiliau yn y categori hwn.''",
-'hidden-categories'        => '{{PLURAL:$1|Categori cuddiedig|Categori cuddiedig|Categorïau cuddiedig|Categorïau cuddiedig|Categorïau cuddiedig|Categorïau cuddiedig}}',
-'hidden-category-category' => 'Categorïau cuddiedig', # Name of the category where hidden categories will be listed
-'listingcontinuesabbrev'   => ' parh.',
+'categories'                     => 'Categorïau',
+'categoriespagetext'             => "Mae'r categorïau isod yn y wici.",
+'pagecategories'                 => '{{PLURAL:$1|Categori|Categori|Categorïau|Categorïau|Categorïau|Categorïau}}',
+'category_header'                => 'Erthyglau yn y categori "$1"',
+'subcategories'                  => 'Is-categorïau',
+'category-media-header'          => "Cyfryngau yn y categori '$1'",
+'category-empty'                 => "''Ar hyn o bryd nid oes unrhyw erthyglau na ffeiliau yn y categori hwn.''",
+'hidden-categories'              => '{{PLURAL:$1|Categori cuddiedig|Categori cuddiedig|Categorïau cuddiedig|Categorïau cuddiedig|Categorïau cuddiedig|Categorïau cuddiedig}}',
+'hidden-category-category'       => 'Categorïau cuddiedig', # Name of the category where hidden categories will be listed
+'category-subcat-count'          => "{{PLURAL:$2|Nid oes dim is-gategorïau yn y categori hwn|Dim ond yr is-gategori sy'n dilyn sydd gan y categori hwn|Mae'r {{PLURAL:$1|is-gategori|is-gategori|$1 is-gategori|$1 is-gategori|$1 is-gategori|$1 is-gategori}} sy'n dilyn yn y categori hwn, o'r cyfanswm $2.}}",
+'category-subcat-count-limited'  => 'Mae gan y categori hwn $1 {{PLURAL:$1|is-gategori|is-gategori|is-gategori|is-gategori|is-gategori|is-gategori|}}.',
+'category-article-count'         => "{{PLURAL:$2|Nid oes dim tudalennau yn y categori hwn|Dim ond y dudalen sy'n dilyn sydd yn y categori hwn|Mae'r {{PLURAL:$1|tudalen|tudalen|$1 dudalen|$1 tudalen|$1 thudalen|$1 tudalen}} sy'n dilyn yn y categori hwn, o'r cyfanswm $2.}}",
+'category-article-count-limited' => "Mae'r {{PLURAL:$1|tudalen|dudalen|$1 dudalen|$1 tudalen|$1 thudalen|$1 tudalen}} sy'n dilyn yn y categori hwn.",
+'listingcontinuesabbrev'         => ' parh.',
 
 'mainpagetext'      => "<big>'''Wedi llwyddo gosod meddalwedd Mediawiki yma'''</big>",
 'mainpagedocfooter' => 'Ceir cymorth (yn Saesneg) ar ddefnyddio meddalwedd wici yn y [http://meta.wikimedia.org/wiki/Help:Contents Canllaw Defnyddwyr] ar wefan Wikimedia.
@@ -1409,7 +1413,7 @@ Ceir cofnod o'r tudalennau a ddilëwyd neu a adferwyd yn ddiweddar ar y [[Specia
 'ipboptions'                  => '2 awr:2 hours,ddiwrnod:1 day,3 niwrnod:3 days,wythnos:1 week,bythefnos:2 weeks,fis:1 month,3 mis:3 months,6 mis:6 months,flwyddyn:1 year,5 mlynedd:5 years,amhenodol:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'              => 'arall',
 'ipbotherreason'              => 'Rheswm arall:',
-'ipbhidename'                 => "Cuddio'r enw defnyddiwr/IP o'r lòg blocio, rhestr y blociau cyfredol a'r rhestr defnyddwyr",
+'ipbhidename'                 => "Cuddio'r enw defnyddiwr o'r lòg blocio, rhestr y blociau cyfredol a'r rhestr defnyddwyr",
 'badipaddress'                => 'Cyfeiriad IP annilys.',
 'blockipsuccesssub'           => 'Y blocio wedi llwyddo',
 'blockipsuccesstext'          => 'Mae cyfeiriad IP [[Special:Contributions/$1|$1]] wedi cael ei flocio.

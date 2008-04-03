@@ -78,6 +78,7 @@ $messages = array(
 'qbedit'    => 'Editar',
 'mytalk'    => 'Mie cumbersa',
 
+'returnto'         => 'Retornar para $1.',
 'tagline'          => 'De {{SITENAME}}',
 'help'             => 'Ajuda',
 'search'           => 'Pesquisa',
@@ -96,6 +97,7 @@ $messages = array(
 'talk'             => 'Çcusson',
 'views'            => 'Bistas',
 'toolbox'          => 'Caixa de Ferramentas',
+'redirectedfrom'   => '(Redireccionado de <b>$1</b>)',
 'jumpto'           => 'Saltar a:',
 'jumptonavigation' => 'navegaçon',
 'jumptosearch'     => 'pesquisa',
@@ -103,12 +105,15 @@ $messages = array(
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'      => 'Sobre {{SITENAME}}',
 'aboutpage'      => 'Project:Sobre',
+'copyrightpage'  => '{{ns:project}}:Direitos de autor',
 'currentevents'  => 'Amboras actuais',
 'disclaimers'    => 'Alerta de Conteúdo',
 'disclaimerpage' => 'Project:Aviso geral',
+'edithelp'       => 'Ajuda de edição',
 'helppage'       => 'Help:Conteúdos',
 'mainpage'       => 'Página principal',
 'privacy'        => 'Política de privacidade',
+'privacypage'    => 'Projecto:Política de privacidade',
 'sitesupport'    => 'Donativos',
 
 'retrievedfrom'      => 'Obtido an "$1"',
@@ -149,13 +154,18 @@ $messages = array(
 'bold_tip'        => 'Testo negro',
 'italic_sample'   => 'Testo itálico',
 'italic_tip'      => 'Testo an itálico',
+'extlink_sample'  => 'http://www.exemplo.pt títalu de ligaçon externa',
 'headline_sample' => 'Testo de cabeçalho',
+'headline_tip'    => 'Secção de nível 2',
+'nowiki_sample'   => 'Inserir texto não-formatado aqui',
 'nowiki_tip'      => 'Ignorar formato wiki',
 
 # Edit pages
 'summary'               => 'Sumário',
+'minoredit'             => 'Marcar como edição mínima',
 'preview'               => 'Prever',
 'showpreview'           => 'Mostrar prebison',
+'showdiff'              => 'Mostrar alterações',
 'blockedtext'           => '<big>O seu nome de utilizador ou endereço de IP foi bloqueado</big>
 
 O bloqueio foi realizado por $1. O motivo apresentado foi \'\'$2\'\'.
@@ -185,11 +195,12 @@ Certifique-se de que é adequado prosseguir a edição de esta página.
 O registo de eliminação desta página é exibido a seguir, para sua comodidade:",
 
 # History pages
-'currentrev' => 'Revison actual',
-'cur'        => 'act',
-'last'       => 'último',
-'page_first' => 'purmeira',
-'page_last'  => 'última',
+'currentrev'   => 'Revison actual',
+'revisionasof' => 'Revisão de $1',
+'cur'          => 'act',
+'last'         => 'último',
+'page_first'   => 'purmeira',
+'page_last'    => 'última',
 
 # Revision feed
 'history-feed-item-nocomment' => '$1 a $2', # user at time
@@ -202,13 +213,14 @@ O registo de eliminação desta página é exibido a seguir, para sua comodidade
 'prevn'        => 'anteriores $1',
 'nextn'        => 'próximos $1',
 'viewprevnext' => 'Ber ($1) ($2) ($3)',
-'powersearch'  => 'Pesquisa',
+'powersearch'  => 'Pesquisa avançada',
 
 # Preferences page
 'mypreferences' => 'Las mies preferencias',
 
 # Recent changes
 'recentchanges'   => 'Alteraçons recentes',
+'rcshowhideminor' => '$1 edições mínimas',
 'rcshowhidebots'  => '$1 robots',
 'rcshowhideliu'   => '$1 utilizadores registados',
 'rcshowhidemine'  => '$1 mies ediçons',
@@ -231,12 +243,16 @@ O registo de eliminação desta página é exibido a seguir, para sua comodidade
 'imagelist' => 'Lista de ficheiros',
 
 # Image description page
+'filehist'          => 'Histórico de l ficheiro',
 'filehist-current'  => 'actual',
 'filehist-datetime' => 'Data/Hora',
 'filehist-user'     => 'Utilizador',
 'filehist-filesize' => 'Tamanho de ficheiro',
 'filehist-comment'  => 'Comentário',
 'imagelinks'        => 'Ligaçons (andereços web)',
+
+# Random page
+'randompage' => 'Página aleatória',
 
 # Miscellaneous special pages
 'nbytes'       => '$1 {{PLURAL:$1|byte|bytes}}',
@@ -263,9 +279,14 @@ O registo de eliminação desta página é exibido a seguir, para sua comodidade
 'watch'        => 'Bigiar',
 'wlshowlast'   => 'Ber últimas $1 horas $2 dias $3',
 
+# Displayed when you click the "watch" button and it is in the process of watching
+'watching'   => 'Vigiando...',
+'unwatching' => 'Deixando de vigiar...',
+
 # Delete/protect/revert
 'deletepage'              => 'Apagar página',
 'deletedarticle'          => 'apagado "[[$1]]"',
+'dellogpage'              => 'Registo de eliminação',
 'rollbacklink'            => 'voltar',
 'protect-legend'          => 'Confirmar protecçon',
 'protect-summary-cascade' => 'p. progressiva',
@@ -277,9 +298,10 @@ O registo de eliminação desta página é exibido a seguir, para sua comodidade
 'blanknamespace' => '(Principal)',
 
 # Contributions
-'mycontris'   => 'Mies contribuiçons',
-'contribsub2' => 'Para $1 ($2)',
-'uctop'       => ' (revison actual)',
+'contributions' => 'Contribuições do utilizador',
+'mycontris'     => 'Mies contribuiçons',
+'contribsub2'   => 'Para $1 ($2)',
+'uctop'         => ' (revison actual)',
 
 'sp-contributions-newbies-sub' => 'Para nuobas cuontas',
 
@@ -306,23 +328,29 @@ O registo de eliminação desta página é exibido a seguir, para sua comodidade
 'thumbnail-more' => 'Aumentar',
 
 # Tooltip help for the actions
-'tooltip-pt-userpage'       => "La mie página d'utilizador",
-'tooltip-pt-mytalk'         => 'Página de mie cumbersa',
-'tooltip-pt-preferences'    => 'Las mies preferencias',
-'tooltip-pt-mycontris'      => 'Lhista das mies contribuiçons',
-'tooltip-pt-login'          => 'Você é encorajado a autenticar-se, apesar disso não ser obrigatório.',
-'tooltip-pt-logout'         => 'Sair',
-'tooltip-ca-delete'         => 'Apagar esta página',
-'tooltip-ca-move'           => 'Mover esta página',
-'tooltip-search'            => 'Pesquisa {{SITENAME}}',
-'tooltip-n-mainpage'        => 'Visitar la página principal',
-'tooltip-n-randompage'      => 'Carregar página aleatória',
-'tooltip-t-whatlinkshere'   => 'Lista de todas las páginas que se lhigam a yesta',
-'tooltip-t-upload'          => 'Carregar imagens ou ficheiros',
-'tooltip-t-specialpages'    => 'Lista de páginas especiais',
-'tooltip-ca-nstab-image'    => 'Ber la página de l ficheiro',
-'tooltip-ca-nstab-template' => 'Ber l modelo',
-'tooltip-save'              => 'Grabar sues alterações',
+'tooltip-pt-userpage'             => "La mie página d'utilizador",
+'tooltip-pt-mytalk'               => 'Página de mie cumbersa',
+'tooltip-pt-preferences'          => 'Las mies preferencias',
+'tooltip-pt-mycontris'            => 'Lhista das mies contribuiçons',
+'tooltip-pt-login'                => 'Você é encorajado a autenticar-se, apesar disso não ser obrigatório.',
+'tooltip-pt-logout'               => 'Sair',
+'tooltip-ca-delete'               => 'Apagar esta página',
+'tooltip-ca-move'                 => 'Mover esta página',
+'tooltip-search'                  => 'Pesquisa {{SITENAME}}',
+'tooltip-n-mainpage'              => 'Visitar la página principal',
+'tooltip-n-portal'                => 'Sobre l proyecto',
+'tooltip-n-currentevents'         => 'Informaçon temática sobre amboras actuales',
+'tooltip-n-recentchanges'         => 'Lhista de mudanças recentes nesta wiki.',
+'tooltip-n-randompage'            => 'Carregar página aleatória',
+'tooltip-n-help'                  => 'Local com informação auxiliar.',
+'tooltip-n-sitesupport'           => 'Ayude-nos',
+'tooltip-t-whatlinkshere'         => 'Lista de todas las páginas que se lhigam a yesta',
+'tooltip-t-upload'                => 'Carregar imagens ou ficheiros',
+'tooltip-t-specialpages'          => 'Lista de páginas especiais',
+'tooltip-ca-nstab-image'          => 'Ber la página de l ficheiro',
+'tooltip-ca-nstab-template'       => 'Ber l modelo',
+'tooltip-save'                    => 'Grabar sues alterações',
+'tooltip-compareselectedversions' => 'Ber las diferenças antre las dues versons seleccionadas desta página.',
 
 # Media information
 'file-info-size' => '($1 × $2 pixel, tamanho: $3, tipo MIME: $4)',
@@ -330,10 +358,10 @@ O registo de eliminação desta página é exibido a seguir, para sua comodidade
 'show-big-image' => 'Resoluçon completa',
 
 # Bad image list
-'bad_image_list' => 'The format is as follows:
+'bad_image_list' => 'O formato é o seguinte:
 
-Only list items (lines starting with *) are considered. The first link on a line must be a link to a bad image.
-Any subsequent links on the same line are considered to be exceptions, i.e. articles where the image may occur inline.',
+Apenas são considerados itens de lista (linhas começadas por *). O primeiro link numa linha deve ser um link para uma "bad image".
+Links subsequentes na mesma linha são considerados excepções, i.e. artigos onde a imagem pode ocorrer "inline".',
 
 # Metadata
 'metadata' => 'Metadados',

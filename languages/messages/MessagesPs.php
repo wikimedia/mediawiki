@@ -224,6 +224,7 @@ $messages = array(
 'permalink'         => 'تلپاتې تړن',
 'print'             => 'چاپ',
 'edit'              => 'سمادول',
+'create'            => 'جوړول',
 'editthispage'      => 'دا مخ سماد کړی',
 'delete'            => 'ړنګول',
 'deletethispage'    => 'دا مخ ړنګ کړه',

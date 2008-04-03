@@ -40,6 +40,13 @@ $messages = array(
 'mar'       => 'ཟླ་༣ པ།',
 'apr'       => 'ཟླ་༤ པ།',
 'may'       => 'ཟླ་༥ པ།',
+'jun'       => 'ཟླ་༦ པ།',
+'jul'       => 'ཟླ་༧ པ།',
+'aug'       => 'ཟླ་༨ པ།',
+'sep'       => 'ཟླ་༩ པ།',
+'oct'       => 'ཟླ་༡༠ པ།',
+'nov'       => 'ཟླ་༡༡ པ།',
+'dec'       => 'ཟླ་༡༢ པ།',
 
 'tagline'          => '{{SITENAME}} ལས།',
 'search'           => 'འཚོལ་ཞིབ།',
@@ -68,8 +75,14 @@ $messages = array(
 # Login and logout pages
 'userlogin' => 'ནང་བསྐྱོད་འབད་ / རྩིས་ཐོ་གསརཔ་བཟོ།',
 
+# Edit pages
+'summary' => 'བཅུད་དོན།',
+
 # History pages
 'last' => 'མཇུག།',
+
+# Diffs
+'editundo' => 'འབད་བཤོལ།',
 
 # Search results
 'powersearch' => 'མཐོ་རིམ་ཅན་གྱི་འཚོལ་ཞིབ།',

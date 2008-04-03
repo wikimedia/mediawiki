@@ -1785,7 +1785,7 @@ $1',
 'ipboptions'                  => '2 hodiny:2 hours,1 den:1 day,3 dny:3 days,1 týden:1 week,2 týdny:2 weeks,1 měsíc:1 month,3 měsíce:3 months,6 měsíců:6 months,1 rok:1 year,do odvolání:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'              => 'jiný',
 'ipbotherreason'              => 'Jiný nebo další důvod:',
-'ipbhidename'                 => 'Skrýt uživatelské jméno nebo IP v knize zablokování a seznamu probíhajících bloků',
+'ipbhidename'                 => 'Skrýt uživatelské jméno nebo v knize zablokování a seznamu probíhajících bloků',
 'badipaddress'                => 'Neplatná IP adresa',
 'blockipsuccesssub'           => 'Zablokování uspělo',
 'blockipsuccesstext'          => 'Uživatel „[[Special:Contributions/$1|$1]]“ je zablokován. <br />Podívejte se na [[Special:Ipblocklist|seznam zablokovaných]], [[Special:Log/block|kniha zablokování]] zaznamenává všechny podobné úkony.',

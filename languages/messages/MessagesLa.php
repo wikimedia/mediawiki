@@ -400,7 +400,7 @@ $1',
 'viewsourcetext'      => 'Fontem videas et exscribeas:',
 'protectedinterface'  => 'Haec pagina dat textum interfaciei pro logiciali, et est protecta ad vandalismum vetandum.',
 'editinginterface'    => "'''Caveat censor:''' Emendas iam paginam quae textum interfaciei logicialem dat. Mutationes vultum {{grammar:genitive|{{SITENAME}}}} omnibus usoribus afficient. In nuntia MediaWiki vertendo, quaesumus te uti [http://translatewiki.net/wiki/Main_Page?setlang=la Betawiki].",
-'ns-specialprotected' => 'Paginae in spatio nominali "{{ns:special}}" recenseri non possunt.',
+'ns-specialprotected' => 'Paginae speciales recenseri non possunt.',
 'titleprotected'      => "Hic titulus protectus est ab usore [[User:$1|$1]] ne creetur.
 Ratio data est ''$2''.",
 
@@ -1289,7 +1289,7 @@ Quaesitum "[[$1]]" etiam existit. Vin tu eam delere ut moveas?',
 'allmessagesdefault'        => 'Textus originalis',
 'allmessagescurrent'        => 'Textus recens',
 'allmessagestext'           => 'Hic est index omnium nuntiorum in MediaWiki.',
-'allmessagesnotsupportedDB' => "'''{{ns:special}}:Allmessages''' non adhibier potest, quia '''\$wgUseDatabaseMessages''' non iam agitur.",
+'allmessagesnotsupportedDB' => "Haec pagina non adhibier potest, quia '''\$wgUseDatabaseMessages''' non iam agitur.",
 'allmessagesfilter'         => 'Colum nominibus nuntiorum:',
 'allmessagesmodified'       => 'Ea modificata sola monstrare',
 

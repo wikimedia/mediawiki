@@ -478,7 +478,7 @@ Query: $2',
 $2',
 'namespaceprotected'   => "Non si dispone dei permessi necessari per modificare le pagine del namespace '''$1'''.",
 'customcssjsprotected' => 'Non si dispone dei permessi necessari alla modifica della pagina, in quanto contiene le impostazioni personali di un altro utente.',
-'ns-specialprotected'  => 'Non è possibile modificare le pagine del namespace {{ns:special}}.',
+'ns-specialprotected'  => 'Non è possibile modificare le pagine speciali.',
 'titleprotected'       => "La creazione di una pagina con questo titolo è stata bloccata da [[User:$1|$1]].
 La motivazione è la seguente: ''$2''.",
 
@@ -1626,7 +1626,7 @@ $1',
 'ipboptions'                  => '2 ore:2 hours,1 giorno:1 day,3 giorni:3 days,1 settimana:1 week,2 settimane:2 weeks,1 mese:1 month,3 mesi:3 months,6 mesi:6 months,1 anno:1 year,infinito:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'              => 'altro',
 'ipbotherreason'              => 'Altri motivi/dettagli:',
-'ipbhidename'                 => "Nascondi il nome utente o l'indirizzo IP dal log dei blocchi, dall'elenco dei blocchi attivi e dall'elenco utenti.",
+'ipbhidename'                 => "Nascondi il nome utente dal log dei blocchi, dall'elenco dei blocchi attivi e dall'elenco utenti.",
 'badipaddress'                => 'Indirizzo IP non valido.',
 'blockipsuccesssub'           => 'Blocco eseguito',
 'blockipsuccesstext'          => '[[Special:Contributions/$1|$1]] è stato bloccato.
