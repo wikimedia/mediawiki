@@ -69,6 +69,9 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 				case 'statistics' :
 					$this->appendStatistics($p);
 					break;
+				case 'usergroups' :
+					$this->appendUserGroups($p);
+					break;
 			}
 		}
 	}
@@ -224,7 +227,21 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		$data['jobs'] = intval(SiteStats::jobs());
 		$this->getResult()->addValue('query', $property, $data);
 	}	
-	
+
+	protected function appendUserGroups($property) {
+		global $wgGroupPermissions;
+
+		$data = array ();
+		foreach ($wgGroupPermissions as $group => $permissions) {
+			$arr = array ('name' => $group, 'rights' => array_keys($permissions, true));
+			$this->getResult()->setIndexedTagName($arr['rights'], 'permission');
+			$data[] = $arr;
+		}
+
+		$this->getResult()->setIndexedTagName($data, 'group');
+		$this->getResult()->addValue('query', $property, $data);
+	}
+
 	public function getAllowedParams() {
 		return array (
 		
@@ -239,6 +256,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 					'interwikimap',
 					'dbrepllag',
 					'statistics',
+					'usergroups',
 				)),
 
 			'filteriw' => array (
@@ -262,6 +280,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 				' "statistics"   - Returns site statistics',
 				' "interwikimap" - Returns interwiki map (optionally filtered)',
 				' "dbrepllag"    - Returns database server with the highest replication lag',
+				' "usergroups"   - Returns user groups and the associated permissions',
 			),
 			'filteriw' =>  'Return only local or only nonlocal entries of the interwiki map',
 			'showalldb' => 'List all database servers, not just the one lagging the most',
