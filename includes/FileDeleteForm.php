@@ -75,31 +75,8 @@ class FileDeleteForm {
 			} elseif ( $reason == 'other' ) {
 				$reason = $this->DeleteReason;
 			}
-				
-			$article = null;
-			if( $this->oldimage ) {
-				$status = $this->file->deleteOld( $this->oldimage, $reason, $suppress );
-				if( $status->ok ) {
-					// Need to do a log item
-					$log = new LogPage( 'delete' );
-					$logComment = wfMsgForContent( 'deletedrevision', $this->oldimage );
-					if( trim( $reason ) != '' )
-						$logComment .= ": {$reason}";
-					$log->addEntry( 'delete', $this->title, $logComment );
-				}
-			} else {
-				$status = $this->file->delete( $reason, $suppress );
-				if( $status->ok ) {
-					// Need to delete the associated article
-					$article = new Article( $this->title );					
-					if( wfRunHooks('ArticleDelete', array(&$article, &$wgUser, &$reason)) ){												
-						if( $article->doDeleteArticle( $reason, $suppress ) )
-							wfRunHooks('ArticleDeleteComplete', array(&$article, &$wgUser, $reason));
-					}
-				}
-			}
-			if( $status->isGood() ) wfRunHooks('FileDeleteComplete', array( 
-				&$this->file, &$this->oldimage, &$article, &$wgUser, &$reason));
+			
+			$status = self::doDelete( $this->title, $this->file, $this->oldimage, $reason, $suppress );
 			
 			if( !$status->isGood() )
 				$wgOut->addWikiText( $status->getWikiText( 'filedeleteerror-short', 'filedeleteerror-long' ) );
@@ -115,6 +92,35 @@ class FileDeleteForm {
 		
 		$this->showForm();
 		$this->showLogEntries();
+	}
+	
+	public static function doDelete( &$title, &$file, &$oldimage, $reason, $suppress ) {
+		$article = null;
+		if( $oldimage ) {
+			$status = $file->deleteOld( $oldimage, $reason, $suppress );
+			if( $status->ok ) {
+				// Need to do a log item
+				$log = new LogPage( 'delete' );
+				$logComment = wfMsgForContent( 'deletedrevision', $oldimage );
+				if( trim( $reason ) != '' )
+					$logComment .= ": {$reason}";
+					$log->addEntry( 'delete', $title, $logComment );
+			}
+		} else {
+			$status = $file->delete( $reason, $suppress );
+			if( $status->ok ) {
+				// Need to delete the associated article
+				$article = new Article( $title );					
+				if( wfRunHooks('ArticleDelete', array(&$article, &$wgUser, &$reason)) ) {												
+					if( $article->doDeleteArticle( $reason, $suppress ) )
+						wfRunHooks('ArticleDeleteComplete', array(&$article, &$wgUser, $reason));
+				}
+			}
+		}
+		if( $status->isGood() ) wfRunHooks('FileDeleteComplete', array( 
+			&$file, &$oldimage, &$article, &$wgUser, &$reason));
+		
+		return $status;
 	}
 
 	/**
