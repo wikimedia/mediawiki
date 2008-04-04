@@ -167,6 +167,7 @@ $messages = array(
 
 # Categories related messages
 'categories'                     => '類',
+'categoriespagetext'             => '大典有頁或媒。',
 'special-categories-sort-count'  => '排數',
 'special-categories-sort-abc'    => '排字',
 'pagecategories'                 => '$1類',
@@ -393,7 +394,7 @@ $1',
 $2',
 'namespaceprotected'   => "子權未逮，莫能纂'''$1'''。",
 'customcssjsprotected' => '牽他人，子權未逮，莫能纂之。',
-'ns-specialprotected'  => '{{ns:special}}禁纂也。',
+'ns-specialprotected'  => '奇頁禁纂也。',
 'titleprotected'       => '緘焉自[[User:$1|$1]]防建也。因<i>$2</i>也。',
 
 # Login and logout pages
@@ -620,17 +621,33 @@ $2',
 'rev-delundel'                => '見/藏',
 'revisiondelete'              => '刪、還審',
 'revdelete-nooldid-title'     => '無此審。',
-'revdelete-nooldid-text'      => '審未擇，不可為之。',
-'revdelete-selected'          => '審[[:$1]]已擇$2。',
+'revdelete-nooldid-text'      => '審未擇，審未存，爾隱現審，不可為之。',
+'revdelete-selected'          => '審[[:$1]]已擇$2：',
+'logdelete-selected'          => '已擇誌$1：',
 'revdelete-text'              => '刪審雖見誌，其文摒公眾，惟有秩可得之。無規則有秩可復還焉。',
-'revdelete-legend'            => '審，規之以：',
+'revdelete-legend'            => '審，規之以',
 'revdelete-hide-text'         => '藏審文',
 'revdelete-hide-comment'      => '藏贊',
 'revdelete-hide-user'         => '簿、IP以藏',
+'revdelete-hide-restricted'   => '限有秩以鎖之',
+'revdelete-suppress'          => '廢有秩與簿之事',
+'revdelete-hide-image'        => '藏檔',
+'revdelete-unsuppress'        => '復審解限',
 'revdelete-log'               => '誌贊：',
 'revdelete-submit'            => '擇審使之',
+'revdelete-logentry'          => '[[$1]]之見審動矣',
+'logdelete-logentry'          => '[[$1]]之事見動矣',
+'revdelete-logaction'         => '$1審設模$2矣',
+'logdelete-logaction'         => '$1事設模$2矣',
+'revdelete-success'           => "'''見審已設也。'''",
+'logdelete-success'           => "'''見事已設也。'''",
+'revdel-restore'              => '動見之',
 'pagehist'                    => '頁史',
 'deletedhist'                 => '刪史',
+
+# Suppression log
+'suppressionlog'     => '誌廢',
+'suppressionlogtext' => '下乃刪及錮物之列也。[[Special:Ipblocklist|IP之錮]]有現之閱。',
 
 # History merging
 'mergehistory'                     => '併頁之誌',
@@ -754,6 +771,10 @@ $2',
 'userrights-groupsmember'          => '有員：',
 'userrights-groupsremovable'       => '社可治無：',
 'userrights-groupsavailable'       => '社可治有：',
+'userrights-groups-help'           => '爾動員之社也。
+
+選解員之社屬。
+未選則非社屬。',
 'userrights-reason'                => '因：',
 'userrights-available-none'        => '爾非改組員也。',
 'userrights-available-add'         => '爾可加任簿至{{PLURAL:$2|單組|數組}}也：$1。',
@@ -773,17 +794,20 @@ $2',
 'group-bot'           => '僕',
 'group-sysop'         => '有秩',
 'group-bureaucrat'    => '門下',
+'group-suppress'      => '監',
 'group-all'           => '（眾）',
 
 'group-autoconfirmed-member' => '自證其簿',
 'group-bot-member'           => '僕',
 'group-sysop-member'         => '有秩',
 'group-bureaucrat-member'    => '門下',
+'group-suppress-member'      => '監',
 
 'grouppage-autoconfirmed' => '{{ns:project}}:自證其簿',
 'grouppage-bot'           => '{{ns:project}}:僕',
 'grouppage-sysop'         => '{{ns:project}}:有秩',
 'grouppage-bureaucrat'    => '{{ns:project}}:門下',
+'grouppage-suppress'      => '{{ns:project}}:監',
 
 # User rights log
 'rightsnone' => '（凡）',
@@ -857,7 +881,7 @@ $2',
 'large-file'                 => '檔長$2仟位元組，不逾$1為佳。',
 'emptyfile'                  => '無以獻，疑謬名也，惠核之。',
 'fileexists'                 => '<strong><tt>$1</tt></strong>存矣，欲蓋之則再也。',
-'filepageexists'             => '此檔之述於<strong><tt>$1</tt></strong>存矣，檔未存也。爾入述無存也。要現之，爾需篡之。',
+'filepageexists'             => '此檔之述於<strong><tt>$1</tt></strong>存矣，檔未存也。爾入述無存也。要現之，爾需纂之。',
 'fileexists-thumb'           => "<center>'''現存之檔'''</center>",
 'successfulupload'           => '檔案安矣',
 'overwroteimage'             => '新置「[[$1]]」矣',
@@ -930,7 +954,7 @@ $2',
 *常刪之因
 ** 侵版權
 ** 重檔',
-'filedelete-edit-reasonlist'  => '篡刪因',
+'filedelete-edit-reasonlist'  => '纂刪因',
 
 # MIME search
 'mimesearch'         => '篩檔',
@@ -1024,6 +1048,7 @@ $2',
 'notargettext'            => '簿、頁未定，無可為之。',
 'pager-newer-n'           => '新$1次',
 'pager-older-n'           => '陳$1次',
+'suppress'                => '監',
 
 # Book sources
 'booksources'               => '書海',
@@ -1085,6 +1110,7 @@ $2',
 
 # Watchlist
 'watchlist'            => '哨站',
+'mywatchlist'          => '哨站',
 'watchlistfor'         => "（'''$1'''之哨）",
 'nowatchlist'          => '無哨',
 'watchlistanontext'    => '$1以治哨',
@@ -1160,7 +1186,8 @@ $NEWPAGE
 'confirmdeletetext'           => '欲刪此物與誌，知後果、合[[{{MediaWiki:Policy-url}}]]後再為之。',
 'actioncomplete'              => '成矣',
 'deletedtext'                 => '"<nowiki>$1</nowiki>"刪矣，見誌刪於$2。',
-'deletedarticle'              => '刪焉"[[$1]]"',
+'deletedarticle'              => '刪焉「[[$1]]」',
+'suppressedarticle'           => '廢焉「[[$1]]」',
 'dellogpage'                  => '誌刪',
 'dellogpagetext'              => '近刪如下：',
 'deletionlog'                 => '誌刪',
@@ -1173,7 +1200,7 @@ $NEWPAGE
 ** 作者之求
 ** 侵版權
 ** 破壞',
-'delete-edit-reasonlist'      => '篡刪因',
+'delete-edit-reasonlist'      => '纂刪因',
 'delete-toobig'               => '此頁含大誌，過$1修。刪頁限矣，防於{{SITENAME}}之亂也。',
 'delete-warning-toobig'       => '此頁含大誌，過$1修。刪之可亂{{SITENAME}}之事也；續時留神之。',
 'rollback'                    => '退修',
@@ -1324,7 +1351,7 @@ $NEWPAGE
 'ipboptions'                  => '二時:2 hours,一日:1 day,三日:3 days,一週:1 week,二週:2 weeks,一月:1 month,三月:3 months,六月:6 months,一年:1 year,永如:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'              => '它',
 'ipbotherreason'              => '補證、加證曰',
-'ipbhidename'                 => '簿名、IP址隱乎誌禁、表禁、點簿。',
+'ipbhidename'                 => '簿名隱乎誌禁、表禁、點簿。',
 'badipaddress'                => 'IP不格',
 'blockipsuccesssub'           => '禁焉',
 'blockipsuccesstext'          => '[[{{ns:special}}:Contributions/$1|$1]]禁焉。表禁<br />見[[{{ns:special}}:Ipblocklist|此]]。',
@@ -1448,7 +1475,7 @@ $NEWPAGE
 'allmessagesdefault'        => '慣文',
 'allmessagescurrent'        => '今文',
 'allmessagestext'           => '此列MediaWiki官話。',
-'allmessagesnotsupportedDB' => "'''\$wgUseDatabaseMessages'''閉庫，'''{{ns:special}}:Allmessages'''",
+'allmessagesnotsupportedDB' => "'''\$wgUseDatabaseMessages'''閉庫，'''無纂也。",
 'allmessagesfilter'         => '含辭：',
 'allmessagesmodified'       => '見易',
 
