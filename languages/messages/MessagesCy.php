@@ -488,12 +488,16 @@ Rhydd ichi anwybyddu\'r neges hon os mai camgymeriad oedd creu\'r cyfrif.',
 'loginlanguagelabel'         => 'Iaith: $1',
 
 # Password reset dialog
-'resetpass'          => 'Ailosod cyfrinair y cyfrif',
-'resetpass_announce' => "Fe wnaethoch fewngofnodi gyda chôd dros dro oddi ar e-bost.
+'resetpass'               => 'Ailosod cyfrinair y cyfrif',
+'resetpass_announce'      => "Fe wnaethoch fewngofnodi gyda chôd dros dro oddi ar e-bost.
 Er mwyn cwblhau'r mewngofnodi, rhaid i chi osod cyfrinair newydd fel hyn:",
-'resetpass_header'   => 'Ailosod y cyfrinair',
-'resetpass_submit'   => 'Gosod y cyfrinair a mewngofnodi',
-'resetpass_missing'  => 'Dim data ar y ffurflen.',
+'resetpass_header'        => 'Ailosod y cyfrinair',
+'resetpass_submit'        => 'Gosod y cyfrinair a mewngofnodi',
+'resetpass_success'       => "Llwyddodd y newid i'ch cyfrinair! Wrthi'n mewngofnodi...",
+'resetpass_bad_temporary' => 'Cyfrinair dros dro annilys.
+Efallai eich bod eisoes wedi llwyddo newid eich cyfrinair neu eich bod wedi gwneud cais am gyfrinair dros dro newydd.',
+'resetpass_forbidden'     => 'Ni ellir newid cyfrineiriau ar {{SITENAME}}',
+'resetpass_missing'       => 'Dim data ar y ffurflen.',
 
 # Edit page toolbar
 'bold_sample'     => 'Testun cryf',
@@ -730,6 +734,7 @@ Pan yn gwneud hyn dylid sicrhau nad yw dilyniant hanes tudalennau yn cael ei ddi
 'prevn'                 => 'y $1 cynt',
 'nextn'                 => 'y $1 nesaf',
 'viewprevnext'          => 'Dangos ($1) ($2) ($3).',
+'search-result-size'    => '$1 ({{PLURAL:$2|dim geiriau|$2 gair|$2 air|$2 gair|$2 gair|$2 gair|}})',
 'searchall'             => 'oll',
 'showingresults'        => "Yn dangos hyd at $1 {{PLURAL:$1|canlyniad|canlyniad|ganlyniad|chanlyniad|chanlyniad|canlyniad}} isod gan ddechrau gyda rhif '''$2'''.",
 'showingresultsnum'     => "Yn dangos $3 {{PLURAL:$3|canlyniad|canlyniad|ganlyniad|chanlyniad|chanlyniad|canlyniad}} isod gan ddechrau gyda rhif '''$2'''.",
@@ -776,7 +781,7 @@ $2 Rhestri ailgyfeiriadau<br />Chwilio am $3 $9',
 'prefs-watchlist-edits'    => "Nifer y golygiadau i'w dangos wrth ehangu'r rhestr gwylio:",
 'prefs-misc'               => 'Amrywiol',
 'saveprefs'                => 'Cadw ffafraethau',
-'resetprefs'               => 'Ail-setio ffafraethau',
+'resetprefs'               => 'Ailosod',
 'oldpassword'              => 'Hen gyfrinair:',
 'newpassword'              => 'Cyfrinair newydd:',
 'retypenew'                => 'Ail-teipiwch yr allweddair newydd',
@@ -1757,7 +1762,7 @@ I gadarnhau mai chi yn wir yw perchennog y cyfrif hwn, ac i alluogi nodweddion e
 
 $3
 
-Os *nad* chi sydd berchen ar y cyfrif hwn, dilynwch y cyswllt hwn er mwyn dileu cadarnhad y cyfeiriad e-bost:
+Os *nad* chi sydd berchen y cyfrif hwn, dilynwch y cyswllt hwn er mwyn dileu cadarnhad y cyfeiriad e-bost:
 
 $5 
 
@@ -1847,5 +1852,10 @@ Gallwch hefyd [[Special:Watchlist/edit|ddefnyddio'r rhestr arferol]].",
 # Special:Version
 'version'              => 'Fersiwn', # Not used as normal message but as header for the special page itself
 'version-specialpages' => 'Tudalennau arbennig',
+
+# Special:FileDuplicateSearch
+'fileduplicatesearch-submit'   => 'Chwilier',
+'fileduplicatesearch-result-1' => 'Nid oes yr un ffeil i gael sydd yn union yr un fath â\'r ffeil "$1".',
+'fileduplicatesearch-result-n' => '{{PLURAL:$2|Nid oes yr un ffeil|Mae $2 ffeil|Mae $2 ffeil|Mae $2 ffeil|Mae $2 ffeil|Mae $2 ffeil|}} i gael sydd yn union yr un fath â\'r ffeil "$1".',
 
 );

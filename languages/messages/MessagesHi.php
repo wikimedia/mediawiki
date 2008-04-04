@@ -312,7 +312,7 @@ $messages = array(
 'red-link-title'          => '$1 (अब तक बनाया नहीं)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
-'nstab-main'      => 'लेख',
+'nstab-main'      => 'पन्ना',
 'nstab-user'      => 'सदस्य',
 'nstab-media'     => 'मीडिया',
 'nstab-special'   => 'विशेष',
@@ -394,7 +394,7 @@ $1',
 $2',
 'namespaceprotected'   => "आपको '''$1''' नामस्थानमें समाविष्ट पन्नोंको बदलने की अनुमति नहीं हैं ।",
 'customcssjsprotected' => 'इस पन्नेपर दुसरे सदस्यकी व्यक्तिगत वरीयताएं होने के कारण, आपको यह पन्ना बदलने की अनुमति नहीं हैं ।',
-'ns-specialprotected'  => 'विशेष ({{ns:special}}) नामस्थानमें पायें जाने वाले पन्ने बदलें नहीं जा सकतें ।',
+'ns-specialprotected'  => 'विशेष पन्ने बदलें नहीं जा सकतें ।',
 'titleprotected'       => "सदस्य [[User:$1|$1]] ने इस शीर्षक का पन्ना बनानेसे मना किया हुआ हैं ।
 इसके लिये दिया हुआ कारण ''$2'' ।",
 
@@ -719,7 +719,7 @@ Don't forget to personalize your {{SITENAME}} preferences.",
 # Revision deletion
 'rev-deleted-comment'         => '(टिप्पणी हटाई)',
 'rev-deleted-user'            => '(सदस्यनाम हटाया)',
-'rev-deleted-event'           => '(नोंद हटाई)',
+'rev-deleted-event'           => '(कार्यकी नोंद हटाई)',
 'rev-deleted-text-permission' => '<div class="mw-warning plainlinks">
 इस लेख का अवतरण सामान्य डाटाबेससे हटाया गया हैं।
 इसकी अधिक जानकारी [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} हटाने की सूची] में पाईं जा सकती हैं।</div>',
@@ -1668,7 +1668,7 @@ $1',
 'allmessagesdefault'        => 'डिफॉल्ट पाठ',
 'allmessagescurrent'        => 'वर्तमान पाठ',
 'allmessagestext'           => 'यह मीडियाविकि नेमस्पेस में उपलब्ध वयवस्था संदेशों की सूची है।',
-'allmessagesnotsupportedDB' => "'''{{ns:special}}:सभी प्रणाली संदेश''' का इस्तेमाल नहीं कर सकते क्योंकी '''\$wgUseDatabaseMessages''' बंद हैं।",
+'allmessagesnotsupportedDB' => "इस पन्ने का इस्तेमाल नहीं कर सकते क्योंकी '''\$wgUseDatabaseMessages''' बंद हैं।",
 'allmessagesfilter'         => 'संदेशनाम फिल्टर:',
 'allmessagesmodified'       => 'केवल परिवर्तित दिखायें',
 

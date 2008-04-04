@@ -551,12 +551,15 @@ Dowéinst ass et bis ewell net méiglech, fir déi folgend Funktiounen E-Mailen 
 'loginlanguagelabel'         => 'Sprooch: $1',
 
 # Password reset dialog
-'resetpass'           => 'Passwuert fir Benotzerkont zrécksetzen',
-'resetpass_text'      => '<!-- Schreiwt ären Text heihin-->',
-'resetpass_header'    => 'Passwuert zrécksetzen',
-'resetpass_submit'    => 'Passwuert aginn an umellen',
-'resetpass_forbidden' => 'Passwierder kënnen op {{SITENAME}} net geännert ginn.',
-'resetpass_missing'   => 'Eidelt Formular',
+'resetpass'               => 'Passwuert fir Benotzerkont zrécksetzen',
+'resetpass_text'          => '<!-- Schreiwt ären Text heihin-->',
+'resetpass_header'        => 'Passwuert zrécksetzen',
+'resetpass_submit'        => 'Passwuert aginn an umellen',
+'resetpass_success'       => 'Ärt Passwuert gouf geännert. Logged iech elo an ...',
+'resetpass_bad_temporary' => 'Ongültegt temporairt Passwuert. 
+Dir hutt ärt Passwuert scho geännert oder een  neit temporairt Passwuert ugefrot.',
+'resetpass_forbidden'     => 'Passwierder kënnen op {{SITENAME}} net geännert ginn.',
+'resetpass_missing'       => 'Eidelt Formular',
 
 # Edit page toolbar
 'bold_sample'     => 'Fettgedréckten Text',

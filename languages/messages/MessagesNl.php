@@ -942,7 +942,7 @@ Wellicht is die verwijderd of hernoemd.
 # Revision deletion
 'rev-deleted-comment'         => '(opmerking verwijderd)',
 'rev-deleted-user'            => '(gebruiker verwijderd)',
-'rev-deleted-event'           => '(actie verwijderd)',
+'rev-deleted-event'           => '(logboekregel verwijderd)',
 'rev-deleted-text-permission' => '<div class="mw-warning plainlinks">
 Deze bewerking van de pagina is verwijderd uit de publieke archieven.
 Er kunnen details aanwezig zijn in het [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} verwijderingslogboek].

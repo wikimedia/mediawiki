@@ -10,7 +10,11 @@
 
 
 $messages = array(
-'underline-never' => 'Καμίαν',
+# User preference toggles
+'tog-showhiddencats' => 'Δείξον κρυμμένα κατηγορίας',
+
+'underline-always' => 'Πάντα',
+'underline-never'  => 'Καμίαν',
 
 # Dates
 'sunday'        => 'Κερεκήν',
@@ -65,16 +69,25 @@ $messages = array(
 'dec'           => 'Δεκ',
 
 # Categories related messages
-'categories'      => 'Κατηγορίας',
-'category_header' => 'Σελίδας τη κατηγορίας "$1"',
+'categories'               => 'Κατηγορίας',
+'category_header'          => 'Σελίδας τη κατηγορίας "$1"',
+'subcategories'            => 'Υποκατηγορίας',
+'category-media-header'    => 'Μέσα απές σην κατηγορίαν "$1"',
+'category-empty'           => "''Ατή η κατηγορίαν πα 'κ εχ' νέ σελίδας νέ μέσα.''",
+'hidden-category-category' => 'Κρυμμέν κατηγορίας', # Name of the category where hidden categories will be listed
 
-'cancel' => "Άφ'σον",
-'qbfind' => 'Εύρον',
-'qbedit' => 'Άλλαξον',
-'mypage' => "Τ' εμόν η σελίδαν",
-'mytalk' => "Τ' εμόν το καλάτσεμαν",
-'and'    => 'και',
+'cancel'         => "Άφ'σον",
+'qbfind'         => 'Εύρον',
+'qbedit'         => 'Άλλαξον',
+'qbpageoptions'  => 'Ατή η σελίδαν',
+'qbmyoptions'    => "Τ' εμά τα σελίδας",
+'qbspecialpages' => 'Ειδικά σελίδας',
+'mypage'         => "Τ' εμόν η σελίδαν",
+'mytalk'         => "Τ' εμόν το καλάτσεμαν",
+'anontalk'       => "Καλάτσεμα για τ'ατό το IP",
+'and'            => 'και',
 
+'returnto'          => 'Επιστροφήν σο $1.',
 'tagline'           => 'Ασό {{SITENAME}}',
 'help'              => 'Βοήθειαν',
 'search'            => 'αράεμαν',
@@ -84,8 +97,11 @@ $messages = array(
 'history'           => 'Ιστορίαν τη σελίδας',
 'history_short'     => 'Ιστορίαν',
 'edit'              => 'Άλλαξον',
+'create'            => 'Ποίσον',
 'editthispage'      => 'Άλλαξον τη σελίδαν ατέν',
+'create-this-page'  => 'Ποίσον τη σελίδαν',
 'delete'            => 'Σβήσον',
+'deletethispage'    => 'Σβήσον τη σελίδαν',
 'protect'           => 'Ασπάλιγμα',
 'protect_change'    => "Άλλαγμα τ' ασπάλιγματη",
 'protectthispage'   => 'Ασπάλιγμα ατουνού τη σελίδας',
@@ -94,7 +110,11 @@ $messages = array(
 'newpage'           => 'Νέον σελίδαν',
 'talkpage'          => 'Καλάτσεμαν για τη σελίδαν ατέν',
 'talkpagelinktext'  => 'Καλάτσεμαν',
+'specialpage'       => 'Ειδικόν σελίδαν',
+'postcomment'       => 'Ποίσον σχόλιον',
 'talk'              => 'Καλάτσεμαν',
+'views'             => 'Τερέματα',
+'userpage'          => 'Τέρεν σελίδαν χρήστε',
 'otherlanguages'    => "Σ' άλλα γλώσσας",
 'protectedpage'     => 'Ασπαλιζμένον σελίδαν',
 'jumpto'            => 'Δέβα σο:',
@@ -102,38 +122,58 @@ $messages = array(
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'mainpage'    => 'Αρχικόν σελίδαν',
+'portal'      => 'Πύλην τη κοινότητας',
 'sitesupport' => 'Δωρεάς',
 
 'youhavenewmessages'  => 'Έχετε $1 ($2).',
 'newmessageslink'     => 'καινούρεα μενέματα',
 'newmessagesdifflink' => 'υστερνόν αλλαγήν',
+'editsection'         => 'άλλαξον',
 'editold'             => 'άλλαξον',
 'showtoc'             => 'δείξον',
 'hidetoc'             => 'κρύψον',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
-'nstab-user'     => 'Σελίδα χρήστε',
-'nstab-image'    => 'Εικόναν',
-'nstab-template' => 'Πρότυπον',
-'nstab-category' => 'Κατηγορίαν',
+'nstab-main'      => 'Σελίδαν',
+'nstab-user'      => 'Σελίδα χρήστε',
+'nstab-special'   => 'Ειδικόν',
+'nstab-image'     => 'Εικόναν',
+'nstab-mediawiki' => 'Μένεμα',
+'nstab-template'  => 'Πρότυπον',
+'nstab-category'  => 'Κατηγορίαν',
+
+# Main script and global functions
+'nosuchaction'      => "Αΐκον ενέργειαν 'κ εχ'.",
+'nosuchspecialpage' => "Αΐκον ειδικόν σελίδαν 'κ εχ'.",
 
 # General errors
-'viewsourcefor' => 'για $1',
+'badarticleerror'   => "Ατή η ενέργειαν 'κ επορεί να ίνεται σ'ατήν τη σελίδαν.",
+'viewsourcefor'     => 'για $1',
+'protectedpagetext' => "Ατή η σελίδαν εν ασπαλιγμένη και 'κ αλλάζεται.",
+'viewsourcetext'    => "Μπορείτε να τερείτε και να αντιγράφετε το κείμενον τ' ατεινές τη σελίδας:",
 
 # Login and logout pages
-'yourname'          => 'Όνεμα χρήστε:',
-'yourpassword'      => 'Σημάδι:',
-'login'             => 'Είσοδος',
-'userlogin'         => 'Είσοδος / Ποίσον λογαριασμόν',
-'logout'            => 'οξουκά',
-'userlogout'        => 'Οξουκά',
-'nologin'           => "Λογαριασμόν 'κ έχετε; $1.",
-'nologinlink'       => 'Ποίσον λογαριασμόν',
-'createaccount'     => 'Ποίσον λογαριασμόν',
-'username'          => 'Όνεμα χρήστε:',
-'yourlanguage'      => "Τ' εσόν η γώσσαν:",
-'loginerror'        => 'Σφάλμα εγγραφές',
-'loginsuccesstitle' => 'Έντον η είσοδος',
+'yourname'            => 'Όνεμα χρήστε:',
+'yourpassword'        => 'Σημάδι:',
+'yourpasswordagain'   => "Ξαν' γράψτεν το σημάδι:",
+'login'               => 'Είσοδος',
+'userlogin'           => 'Είσοδος / Ποίσον λογαριασμόν',
+'logout'              => 'οξουκά',
+'userlogout'          => 'Οξουκά',
+'notloggedin'         => 'Ευρίσκεζνε οξουκά ασή Βικιπαίδειαν',
+'nologin'             => "Λογαριασμόν 'κ έχετε; $1.",
+'nologinlink'         => 'Ποίσον λογαριασμόν',
+'createaccount'       => 'Ποίσον λογαριασμόν',
+'gotaccount'          => 'Λογαριασμόν έχετε; $1.',
+'gotaccountlink'      => 'Είσοδος',
+'badretype'           => "Τα σημάδε ντ' εγράψετεν 'κ ταιριάζνε.",
+'username'            => 'Όνεμα χρήστε:',
+'yourlanguage'        => "Τ' εσόν η γώσσαν:",
+'loginerror'          => 'Σφάλμα εγγραφής',
+'loginsuccesstitle'   => 'Έντον η είσοδος',
+'accountcreated'      => 'Ο λογαριασμόν έντον',
+'createaccount-title' => 'Δημιουργίαν λογαριασμού για {{SITENAME}}',
+'loginlanguagelabel'  => 'Γλώσσαν: $1',
 
 # Edit page toolbar
 'headline_sample' => 'Κείμενον τίτλονος',
