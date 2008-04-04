@@ -722,7 +722,7 @@ $2',
 # Revision deletion
 'rev-deleted-comment'         => '(注释已移除)',
 'rev-deleted-user'            => '(用户名已移除)',
-'rev-deleted-event'           => '(项目已移除)',
+'rev-deleted-event'           => '(日志动作已移除)',
 'rev-deleted-text-permission' => '<div class="mw-warning plainlinks">该页面修订已经被从公共文档中移除。
 在[{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} 删除日志]中您可能会查看到详细的信息。</div>',
 'rev-deleted-text-view'       => "<div class='mw-warning plainlinks'>

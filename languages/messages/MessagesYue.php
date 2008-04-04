@@ -782,7 +782,7 @@ MySQL 嘅錯誤回應 "$3: $4"',
 # Revision deletion
 'rev-deleted-comment'         => '(評論已經移除咗)',
 'rev-deleted-user'            => '(用戶名已經移除咗)',
-'rev-deleted-event'           => '(項目已經移除咗)',
+'rev-deleted-event'           => '(日誌動作已經移除咗)',
 'rev-deleted-text-permission' => '<div class="mw-warning plainlinks">
 呢頁嘅修訂喺公共檔案庫中已經被洗咗。
 喺[{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} 刪除日誌]裏面可能會有更詳細嘅資料。</div>',
