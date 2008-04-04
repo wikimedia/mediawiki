@@ -50,6 +50,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 		$this->fld_size = isset($prop['size']);
 		$this->fld_sha1 = isset($prop['sha1']);
 		$this->fld_metadata = isset($prop['metadata']);
+		$this->fld_archivename = isset($prop['archivename']);
 		
 		if($params['urlheight'] != -1 && $params['urlwidth'] == -1)
 			$this->dieUsage("iiurlheight cannot be used without iiurlwidth", 'iiurlwidth');
@@ -144,6 +145,9 @@ class ApiQueryImageInfo extends ApiQueryBase {
 			$vals['metadata'] = $metadata ? $metadata : null;
 			$this->getResult()->setIndexedTagName_recursive($vals['metadata'], 'meta');
 		}
+		if($this->fld_archivename && $f->isOld())
+			$vals['archivename'] = $f->getArchiveName();
+		
 		return $vals;
 	}
 
@@ -159,7 +163,8 @@ class ApiQueryImageInfo extends ApiQueryBase {
 					'url',
 					'size',
 					'sha1',
-					'metadata'
+					'metadata',
+					'archivename'
 				)
 			),
 			'limit' => array(
