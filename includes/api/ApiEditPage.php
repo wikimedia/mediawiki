@@ -147,7 +147,9 @@ class ApiEditPage extends ApiBase {
 		global $wgTitle;
 		$wgTitle = null;
 		$dbw = wfGetDb(DB_MASTER);
+		$dbw->begin();
 		$retval = $ep->internalAttemptSave($result, $wgUser->isAllowed('bot') && $params['bot']);
+	`	$dbw->commit();
 		switch($retval)
 		{
 			case EditPage::AS_HOOK_ERROR:
