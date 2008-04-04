@@ -322,6 +322,7 @@ class LogEventsList {
 	 * @param OutputPage $out
 	 * @param string $type
 	 * @param string $page
+	 * @param string $user
 	 */
 	 public static function showLogExtract( $out, $type='', $page='', $user='' ) {
 		global $wgUser;
