@@ -1264,7 +1264,7 @@ class RevisionDeleter {
 		$this->dbw->update( 'oldimage',
 			array( 'oi_deleted' => $bitfield ),
 			array( 'oi_name' => $file->getName(),
-				'oi_timestamp' => $file->getTimestamp() ),
+				'oi_timestamp' => $this->dbw->timestamp( $file->getTimestamp() ) ),
 			__METHOD__ );
 	}
 	
