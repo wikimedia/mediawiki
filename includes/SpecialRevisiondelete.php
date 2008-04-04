@@ -882,7 +882,7 @@ class RevisionDeleter {
 			   $Id_set[]=$timestamp;
 			   $count++;
 			   
-			   $this->updateArchive( $revObjs[$timestamp], $bitfield );
+			   $this->updateArchive( $revObjs[$timestamp], $title, $bitfield );
 			}
 		}
 		// For logging, maintain a count of revisions
@@ -1234,31 +1234,37 @@ class RevisionDeleter {
 	function updateRevision( $rev, $bitfield ) {
 		$this->dbw->update( 'revision',
 			array( 'rev_deleted' => $bitfield ),
-			array( 'rev_id' => $rev->getId() ),
+			array( 'rev_id' => $rev->getId(),
+				'rev_page' => $rev->getPage() ),
 			__METHOD__ );
 	}
 	
 	/**
 	 * Update the revision's rev_deleted field
 	 * @param Revision $rev
+	 * @param Title $title
 	 * @param int $bitfield new rev_deleted bitfield value
 	 */
-	function updateArchive( $rev, $bitfield ) {
+	function updateArchive( $rev, $title, $bitfield ) {
 		$this->dbw->update( 'archive',
 			array( 'ar_deleted' => $bitfield ),
-			array( 'ar_rev_id' => $rev->getId() ),
+			array( 'ar_namespace' => $title->getNamespace(),
+				'ar_title'     => $title->getDBKey(),
+				'ar_timestamp' => $this->dbw->timestamp( $rev->getTimestamp() ),
+				'ar_rev_id' => $rev->getId() ),
 			__METHOD__ );
 	}
 
 	/**
 	 * Update the images's oi_deleted field
-	 * @param File $oimage
+	 * @param File $file
 	 * @param int $bitfield new rev_deleted bitfield value
 	 */
-	function updateOldFiles( $oimage, $bitfield ) {
+	function updateOldFiles( $file, $bitfield ) {
 		$this->dbw->update( 'oldimage',
 			array( 'oi_deleted' => $bitfield ),
-			array( 'oi_archive_name' => $oimage->archive_name ),
+			array( 'oi_name' => $file->getName(),
+				'oi_timestamp' => $file->getTimestamp() ),
 			__METHOD__ );
 	}
 	
@@ -1295,7 +1301,8 @@ class RevisionDeleter {
 		$this->dbw->update( 'recentchanges',
 			array( 'rc_deleted' => $bitfield,
 				   'rc_patrolled' => 1 ),
-			array( 'rc_this_oldid' => $rev->getId() ),
+			array( 'rc_this_oldid' => $rev->getId(),
+				'rc_timestamp' => $this->dbw->timestamp( $rev->getTimestamp() ) ),
 			__METHOD__ );
 	}
 	
