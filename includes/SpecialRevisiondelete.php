@@ -518,20 +518,22 @@ class RevisionDeleteForm {
 	 */
 	private function historyLine( $rev ) {
 		global $wgContLang;
-		$date = $wgContLang->timeanddate( $rev->getTimestamp() );
 		
-		$difflink=''; $del = '';
+		$date = $wgContLang->timeanddate( $rev->getTimestamp() );
+		$difflink = $del = '';
 		// Live revisions
 		if( $this->deleteKey=='oldid' ) {
+			$revlink = $this->skin->makeLinkObj( $this->page, $date, 'oldid=' . $rev->getId() );
 			$difflink = '(' . $this->skin->makeKnownLinkObj( $this->page, wfMsgHtml('diff'), 
 				'diff=' . $rev->getId() . '&oldid=prev' ) . ')';
-			$revlink = $this->skin->makeLinkObj( $this->page, $date, 'oldid=' . $rev->getId() );
-		} else {
 		// Archived revisions
+		} else {
 			$undelete = SpecialPage::getTitleFor( 'Undelete' );
 			$target = $this->page->getPrefixedText();
 			$revlink = $this->skin->makeLinkObj( $undelete, $date, 
 				"target=$target&timestamp=" . $rev->getTimestamp() );
+			$difflink = '(' . $this->skin->makeKnownLinkObj( $undelete, wfMsgHtml('diff'), 
+				"target=$target&diff=prev&timestamp=" . $rev->getTimestamp() ) . ')';
 		}
 	
 		if( $rev->isDeleted(Revision::DELETED_TEXT) ) {
@@ -539,6 +541,7 @@ class RevisionDeleteForm {
 			$del = ' <tt>' . wfMsgHtml( 'deletedrev' ) . '</tt>';
 			if( !$rev->userCan(Revision::DELETED_TEXT) ) {
 				$revlink = '<span class="history-deleted">'.$date.'</span>';
+				$difflink = '(' . wfMsgHtml('diff') . ')';
 			}
 		}
 		

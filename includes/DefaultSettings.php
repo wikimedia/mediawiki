@@ -2470,6 +2470,7 @@ $wgLogActions = array(
 	'delete/delete'     => 'deletedarticle',
 	'delete/restore'    => 'undeletedarticle',
 	'delete/revision'   => 'revdelete-logentry',
+	'delete/event'      => 'logdelete-logentry',
 	'upload/upload'     => 'uploadedimage',
 	'upload/overwrite'  => 'overwroteimage',
 	'upload/revert'     => 'uploadedimage',
