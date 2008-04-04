@@ -187,6 +187,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Added fallback8bitEncoding field to meta=siteinfo&siprop=general output
 * (bug 13544) Added prop=revid to action=parse
 * (bug 13603) Added siprop=usergroups to meta=siteinfo
+* Cleaned up redirect resolution
+* Added possibility to obtain all external links through list=exturlusage
 
 === Languages updated in 1.13 ===
 

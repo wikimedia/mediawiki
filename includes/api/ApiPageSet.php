@@ -512,68 +512,33 @@ class ApiPageSet extends ApiQueryBase {
 	}
 
 	private function getRedirectTargets() {
-
-		$linkBatch = new LinkBatch();
+		$lb = new LinkBatch();
 		$db = $this->getDB();
 
-		// find redirect targets for all redirect pages
 		$this->profileDBIn();
-		$res = $db->select('pagelinks', array (
-			'pl_from',
-			'pl_namespace',
-			'pl_title'
-		), array (
-			'pl_from' => array_keys($this->mPendingRedirectIDs
-		)), __METHOD__);
+		$res = $db->select('redirect', array(
+				'rd_from',
+				'rd_namespace',
+				'rd_title'
+			), array('rd_from' => array_keys($this->mPendingRedirectIDs)),
+			__METHOD__
+		);
 		$this->profileDBOut();
 
-		while ($row = $db->fetchObject($res)) {
-
-			$plfrom = intval($row->pl_from);
-
-			// Bug 7304 workaround 
-			// ( http://bugzilla.wikipedia.org/show_bug.cgi?id=7304 )
-			// A redirect page may have more than one link.
-			// This code will only use the first link returned. 
-			if (isset ($this->mPendingRedirectIDs[$plfrom])) { // remove line when bug 7304 is fixed 
-
-				$titleStrFrom = $this->mPendingRedirectIDs[$plfrom]->getPrefixedText();
-				$titleStrTo = Title :: makeTitle($row->pl_namespace, $row->pl_title)->getPrefixedText();
-				unset ($this->mPendingRedirectIDs[$plfrom]); // remove line when bug 7304 is fixed
-
-				// Avoid an infinite loop by checking if we have already processed this target
-				if (!isset ($this->mAllPages[$row->pl_namespace][$row->pl_title])) {
-					$linkBatch->add($row->pl_namespace, $row->pl_title);
-				}
-			} else {
-				// This redirect page has more than one link.
-				// This is very slow, but safer until bug 7304 is resolved
-				$title = Title :: newFromID($plfrom);
-				$titleStrFrom = $title->getPrefixedText();
-
-				$article = new Article($title);
-				$text = $article->getContent();
-				$titleTo = Title :: newFromRedirect($text);
-				$titleStrTo = $titleTo->getPrefixedText();
-
-				if (is_null($titleStrTo))
-					ApiBase :: dieDebug(__METHOD__, 'Bug7304 workaround: redir target from {$title->getPrefixedText()} not found');
-
-				// Avoid an infinite loop by checking if we have already processed this target
-				if (!isset ($this->mAllPages[$titleTo->getNamespace()][$titleTo->getDBkey()])) {
-					$linkBatch->addObj($titleTo);
-				}
-			}
-
-			$this->mRedirectTitles[$titleStrFrom] = $titleStrTo;
+		while($row = $db->fetchObject($res))
+		{
+			$rdfrom = intval($row->rd_from);
+			$from = Title::newFromId($row->rd_from)->getPrefixedText();
+			$to = Title::makeTitle($row->rd_namespace, $row->rd_title)->getPrefixedText();
+			unset($this->mPendingRedirectIDs[$rdfrom]);
+			if(!isset($this->mAllPages[$row->rd_namespace][$row->rd_title]))
+				$lb->add($row->rd_namespace, $row->rd_title);
+			$this->mRedirectTitles[$from] = $to;
 		}
 		$db->freeResult($res);
-
-		// All IDs must exist in the page table
-		if (!empty($this->mPendingRedirectIDs[$plfrom]))
+		if(!empty($this->mPendingRedirectIDs))
 			ApiBase :: dieDebug(__METHOD__, 'Invalid redirect IDs were found');
-
-		return $linkBatch;
+		return $lb;
 	}
 
 	/**
