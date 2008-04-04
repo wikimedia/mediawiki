@@ -804,7 +804,7 @@ Intenteu [[Special:Search|cercar al mateix wiki]] per a noves pàgines rellevant
 # Revision deletion
 'rev-deleted-comment'         => "(s'ha suprimit el comentari)",
 'rev-deleted-user'            => "(s'ha suprimit el nom d'usuari)",
-'rev-deleted-event'           => '(revisió esborrada)',
+'rev-deleted-event'           => "s'ha suprimit el registre d'accions",
 'rev-deleted-text-permission' => '<div class="mw-warning plainlinks">
 Aquesta versió de la pàgina ha estat eliminada dels arxius públics. Vegeu més detalls al [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} registre d\'esborrats].
 </div>',
@@ -813,10 +813,11 @@ Aquesta versió de la pàgina ha estat eliminada dels arxius públics. Com a adm
 </div>',
 'rev-delundel'                => 'mostra/amaga',
 'revisiondelete'              => 'Esborrar/restaurar revisions',
-'revdelete-nooldid-title'     => 'No hi ha pàgina per a la reversió',
-'revdelete-nooldid-text'      => 'No heu especificat la versió des de la qual voleu aplicar aquesta funció.',
-'revdelete-selected'          => '{{PLURAL:$2|Versió seleccionada|Versions seleccionades}} de [[:$1]]:',
-'logdelete-selected'          => "{{PLURAL:$2|Registre seleccionat|Registres seleccionats}} per '''$1:'''",
+'revdelete-nooldid-title'     => 'La revisió objectiu no és vàlida',
+'revdelete-nooldid-text'      => "No heu especificat unes revisions objectius per a realitzar aquesta
+funció, la revisió especificada no existeix, o bé esteu provant d'amagar l'actual revisió.",
+'revdelete-selected'          => '{{PLURAL:$2|Revisió seleccionada|Revisions seleccionades}} de [[:$1]]:',
+'logdelete-selected'          => '{{PLURAL:$1|Esdeveniment del registre seleccionat|Esdeveniments del registre seleccionats}}:',
 'revdelete-text'              => 'Les versions esborrades es mostraran encara als historial i registres de les pàgines, si bé part del seu contingut serà inaccessible al públic.
 
 Els altres administradors del projecte {{SITENAME}} encara podrien accedir al contingut amagat i restituir-lo de nou mitjançant aquesta mateixa interfície, si no hi ha cap altra restricció addicional pels operadors del lloc web.',
@@ -825,7 +826,7 @@ Els altres administradors del projecte {{SITENAME}} encara podrien accedir al co
 'revdelete-hide-name'         => "Acció d'amagar i objectiu",
 'revdelete-hide-comment'      => "Amaga el comentari de l'edició",
 'revdelete-hide-user'         => "Amaga el nom d'usuari o la IP de l'editor",
-'revdelete-hide-restricted'   => 'Aplica aquestes restriccions als administradors com també als altres',
+'revdelete-hide-restricted'   => 'Aplica aquestes restriccions als administradors i bloqueja aquesta interfície',
 'revdelete-suppress'          => 'Suprimeix també les dades dels administradors',
 'revdelete-hide-image'        => 'Amaga el contingut del fitxer',
 'revdelete-unsuppress'        => 'Suprimir les restriccions de les revisions restaurades',
@@ -834,11 +835,16 @@ Els altres administradors del projecte {{SITENAME}} encara podrien accedir al co
 'revdelete-logentry'          => "s'ha canviat la visibilitat de la revisió de [[$1]]",
 'logdelete-logentry'          => "s'ha canviat la visibilitat de [[$1]]",
 'revdelete-logaction'         => '$1 {{PLURAL:$1|revisió canviada|revisions canviades}} al mode $2',
-'logdelete-logaction'         => '$1 {{PLURAL:$1|element|elements}} a [[$3]] canviats al mode $2',
+'logdelete-logaction'         => '$1 {{PLURAL:$1|esdeveniment|esdeveniments}} canviats al mode $2',
 'revdelete-success'           => "'''S'ha establert correctament la visibilitat d'aquesta revissió.'''",
 'logdelete-success'           => "'''S'ha establert correctament la visibilitat d'aquest element.'''",
+'revdel-restore'              => "Canvia'n la visibilitat",
 'pagehist'                    => 'Historial',
 'deletedhist'                 => "Historial d'esborrat",
+
+# Suppression log
+'suppressionlog'     => 'Registre de supressió',
+'suppressionlogtext' => "A continuació hi ha una llista de les eliminacions i blocatges més recents, on hi ha implicat contingut amagat dels administradors. Vegeu la [[Special:Ipblocklist|la llista de blocatges d'IP]] per a consultar la llista de bandejos i blocatges en curs actualment.",
 
 # History merging
 'mergehistory'                     => 'Fusiona els historials de les pàgines',
@@ -1005,17 +1011,20 @@ Els requadres sense macar indiquen que l'usuari no hi pertany.",
 'group-bot'           => 'bots',
 'group-sysop'         => 'administradors',
 'group-bureaucrat'    => 'buròcrates',
+'group-suppress'      => 'Descuits',
 'group-all'           => '(tots)',
 
 'group-autoconfirmed-member' => 'Usuari autoconfirmat',
 'group-bot-member'           => 'bot',
 'group-sysop-member'         => 'administrador',
 'group-bureaucrat-member'    => 'buròcrata',
+'group-suppress-member'      => 'Descuit',
 
 'grouppage-autoconfirmed' => '{{ns:project}}:Usuaris autoconfirmats',
 'grouppage-bot'           => '{{ns:project}}:Bots',
 'grouppage-sysop'         => '{{ns:project}}:Administradors',
 'grouppage-bureaucrat'    => '{{ns:project}}:Buròcrates',
+'grouppage-suppress'      => '{{ns:project}}:Descuit',
 
 # User rights log
 'rightslog'      => "Registre dels permisos d'usuari",
@@ -1337,6 +1346,7 @@ segon redireccionament, la qual cosa dóna normalment l\'article "real", al que 
 'notargettext'            => 'No heu especificat a quina pàgina dur a terme aquesta funció.',
 'pager-newer-n'           => '{{PLURAL:$1|1 posterior|$1 posteriors}}',
 'pager-older-n'           => '{{PLURAL:$1|anterior|$1 anteriors}}',
+'suppress'                => 'Descuit',
 
 # Book sources
 'booksources'               => 'Obres de referència',
@@ -1500,6 +1510,7 @@ conseqüències, i que el que esteu fent està d'acord amb la [[{{MediaWiki:Poli
 'deletedtext'                 => '"<nowiki>$1</nowiki>" ha estat esborrat.
 Mostra $2 per a un registre dels esborrats més recents.',
 'deletedarticle'              => 'eliminat "[[$1]]"',
+'suppressedarticle'           => "s'ha suprimit «[[$1]]»",
 'dellogpage'                  => "Registre d'eliminació",
 'dellogpagetext'              => 'Davall hi ha un llistat dels esborraments més recents.',
 'deletionlog'                 => "Registre d'esborrats",

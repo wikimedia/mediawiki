@@ -603,6 +603,9 @@ Ing ngisor iki kapacak log pambusakan saka kaca iki:",
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Akun ora bisa digawé',
+'cantcreateaccount-text' => "Saka alamat IP iki ('''$1''') ora diparengaké nggawé akun utawa rékening. Sing mblokir utawa ora marengaké iku [[User:$3|$3]].
+
+Alesané miturut $3 yaiku ''$2''",
 
 # History pages
 'viewpagelogs'        => 'Mirsani log kaca iki',
@@ -705,6 +708,8 @@ Pengurus liyané bakal tetep bisa ngaksès isi sing kadhelikaké iku lan bisa mb
 'noexactmatch'          => "'''Ora ana kaca mawa irah-irahan utawa judhul \"\$1\".''' Panjenengan bisa [[:\$1|nggawé kaca iki]].",
 'noexactmatch-nocreate' => "'''Ora ana kaca mawa irah-irahan utawa judhul \"\$1\".'''",
 'toomanymatches'        => "Olèhé panjenengan golèk ngasilaké kakèhan pituwas, mangga nglebokaké ''query'' liyané",
+'textmatches'           => 'Tèks artikel sing cocog',
+'notextmatches'         => 'Ora ana tèks kaca sing cocog',
 'prevn'                 => '$1 sadurungé',
 'nextn'                 => '$1 sabanjuré',
 'viewprevnext'          => 'Deleng ($1) ($2) ($3)',
@@ -750,6 +755,7 @@ Pengurus liyané bakal tetep bisa ngaksès isi sing kadhelikaké iku lan bisa mb
 'prefs-watchlist-days'     => 'Cacahé dina sing dituduhaké ing daftar pangawasan:',
 'prefs-misc'               => 'Liya-liya',
 'saveprefs'                => 'Simpen',
+'resetprefs'               => "''Reset''",
 'oldpassword'              => 'Tembung sandi lawas:',
 'newpassword'              => 'Tembung sandi anyar:',
 'retypenew'                => 'Ketik ulang tembung sandi anyar:',
@@ -812,6 +818,7 @@ Pengurus liyané bakal tetep bisa ngaksès isi sing kadhelikaké iku lan bisa mb
 # Recent changes
 'nchanges'                       => '$1 pangowahan',
 'recentchanges'                  => 'Owah-owahan',
+'recentchangestext'              => 'Runutna owah-owahan pungkasan ing wiki iki ing kaca iki.',
 'recentchanges-feed-description' => "Urutna owah-owahan anyar ing wiki ing ''feed'' iki.",
 'rcnote'                         => 'Ing ngisor iki kapacak owahan-owahan <strong>$1</strong> pungkasan ing  <strong>$2</strong> dina pungkasan iki $3.',
 'rcnotefrom'                     => 'Ing ngisor iki owah-owahan wiwit <strong>$2</strong> (kapacak nganti <strong>$1</strong> owah-owahan).',
@@ -840,43 +847,51 @@ Pengurus liyané bakal tetep bisa ngaksès isi sing kadhelikaké iku lan bisa mb
 'recentchangeslinked-summary'  => "Kaca astaméwa (kaca kusus) iki mènèhi daftar owah-owahan pungkasan ing kaca-kaca sing kagandhèng. Kaca sing panjenengan awasi ditandhani '''kandel'''.",
 
 # Upload
-'upload'             => 'Unggah',
-'uploadbtn'          => 'Unggahna berkas',
-'reupload'           => 'Unggah ulang',
-'reuploaddesc'       => 'Bali ing formulir pamotan',
-'uploadnologin'      => 'Durung mlebu log',
-'uploadnologintext'  => 'Panjenengan kudu [[Special:Userlogin|mlebu log]] supaya olèh ngunggahaké gambar utawa berkas liyané.',
-'uploaderror'        => 'Kaluputan ngamot berkas',
-'uploadlog'          => 'log pangunggahan',
-'uploadlogpage'      => 'Log pangunggahan',
-'filename'           => 'Jeneng berkas',
-'filedesc'           => 'Ringkesan',
-'fileuploadsummary'  => 'Ringkesan:',
-'filestatus'         => 'Status hak cipta',
-'filesource'         => 'Sumber',
-'uploadedfiles'      => 'Berkas sing wis diamot',
-'badfilename'        => 'Berkas wis diowahi dados "$1".',
-'filetype-missing'   => 'Berkas ini ora duwé ekstènsi (contoné ".jpg").',
-'largefileserver'    => 'Berkas iki luwih gedhé tinimbang sing bisa kaparengaké server.',
-'successfulupload'   => 'Kasil diamot',
-'uploadwarning'      => 'Pèngetan pangunggahan berkas',
-'savefile'           => 'Simpen berkas',
-'uploadedimage'      => 'gambar "[[$1]]" kaunggahaké',
-'overwroteimage'     => 'ngunggahaké vèrsi anyar saka "[[$1]]"',
-'uploaddisabled'     => 'Nuwun sèwu, fasilitas pangunggahan dipatèni.',
-'uploaddisabledtext' => 'Pangunggahan berkas ora diidinaké ing {{SITENAME}}.',
-'uploadvirus'        => 'Berkas iki ngamot virus! Détil: $1',
-'sourcefilename'     => 'Jeneng berkas sumber',
-'destfilename'       => 'Jeneng berkas sing dituju',
-'upload-maxfilesize' => 'Ukuran maksimal berkas: $1',
-'watchthisupload'    => 'Awasana kaca iki',
-'upload-wasdeleted'  => "'''PÈNGET: Panjenengan ngamot utawa ngunggahaké sawijining berkas sing wis tau dibusak.'''
+'upload'               => 'Unggah',
+'uploadbtn'            => 'Unggahna berkas',
+'reupload'             => 'Unggah ulang',
+'reuploaddesc'         => 'Bali ing formulir pamotan',
+'uploadnologin'        => 'Durung mlebu log',
+'uploadnologintext'    => 'Panjenengan kudu [[Special:Userlogin|mlebu log]] supaya olèh ngunggahaké gambar utawa berkas liyané.',
+'uploaderror'          => 'Kaluputan pangunggahan berkas',
+'uploadlog'            => 'log pangunggahan',
+'uploadlogpage'        => 'Log pangunggahan',
+'filename'             => 'Jeneng berkas',
+'filedesc'             => 'Ringkesan',
+'fileuploadsummary'    => 'Ringkesan:',
+'filestatus'           => 'Status hak cipta',
+'filesource'           => 'Sumber',
+'uploadedfiles'        => 'Berkas sing wis diamot',
+'minlength1'           => 'Jeneng berkas paling ora minimal kudu awujud saaksara.',
+'badfilename'          => 'Berkas wis diowahi dados "$1".',
+'filetype-missing'     => 'Berkas ini ora duwé ekstènsi (contoné ".jpg").',
+'largefileserver'      => 'Berkas iki luwih gedhé tinimbang sing bisa kaparengaké server.',
+'fileexists-thumb'     => "<center>'''Berkas sing wis ana'''</center>",
+'fileexists-forbidden' => 'Berkas mawa jeneng sing padha wis ana; 
+tulung berkasé diunggahaké manèh mawa jeneng liya. [[{{ns:image}}:$1|thumb|center|$1]]',
+'successfulupload'     => 'Kasil diamot',
+'uploadwarning'        => 'Pèngetan pangunggahan berkas',
+'savefile'             => 'Simpen berkas',
+'uploadedimage'        => 'gambar "[[$1]]" kaunggahaké',
+'overwroteimage'       => 'ngunggahaké vèrsi anyar saka "[[$1]]"',
+'uploaddisabled'       => 'Nuwun sèwu, fasilitas pangunggahan dipatèni.',
+'uploaddisabledtext'   => 'Pangunggahan berkas ora diidinaké ing {{SITENAME}}.',
+'uploadvirus'          => 'Berkas iki ngamot virus! Détil: $1',
+'sourcefilename'       => 'Jeneng berkas sumber',
+'destfilename'         => 'Jeneng berkas sing dituju',
+'upload-maxfilesize'   => 'Ukuran maksimal berkas: $1',
+'watchthisupload'      => 'Awasana kaca iki',
+'upload-wasdeleted'    => "'''PÈNGET: Panjenengan ngunggahaké sawijining berkas sing wis tau dibusak.'''
 
 Panjenengan kudu nggalih perlu utawa ora mbanjuraké pangunggahan berkas ini.
 Log pambusakan berkas iki kaya mangkéné:",
 
 'upload-proto-error' => 'Protokol ora bener',
 'upload-file-error'  => 'Kaluputan internal',
+
+'nolicense'          => 'Durung ana sing dipilih',
+'license-nopreview'  => '(Pratayang ora sumedya)',
+'upload_source_file' => ' (sawijining berkas ing komputeré panjenengan)',
 
 # Special:Imagelist
 'imagelist_search_for'  => 'Golèk jeneng gambar:',
@@ -905,13 +920,39 @@ Log pambusakan berkas iki kaya mangkéné:",
 'linkstoimage'              => 'Kaca-kaca sing kapacak iki duwé pranala menyang berkas iki:',
 'nolinkstoimage'            => 'Ora ana kaca sing nyambung menyang berkas iki.',
 'sharedupload'              => 'Berkas iki sawijining pangunggahan bebarengan sing uga bisa dienggo déning proyèk-proyèk liyané.',
+'shareduploadwiki-linktext' => 'kaca dèskripsi berkas',
 'noimage'                   => 'Ora ana berkas mawa jeneng iku, panjenengan bisa $1.',
 'noimage-linktext'          => 'ngunggah gambar',
 'uploadnewversion-linktext' => 'Unggahna vèrsi sing luwih anyar tinimbang gambar iki',
+'imagepage-searchdupe'      => 'Golèk berkas duplikat',
+
+# File reversion
+'filerevert'         => 'Balèkna $1',
+'filerevert-legend'  => 'Balèkna berkas',
+'filerevert-comment' => 'Komentar:',
+
+# File deletion
+'filedelete'                  => 'Mbusak $1',
+'filedelete-legend'           => 'Mbusak berkas',
+'filedelete-intro'            => "Panjenengan mbusak '''[[Media:$1|$1]]'''.",
+'filedelete-intro-old'        => '<span class="plainlinks">Panjenengan mbusak vèrsi \'\'\'[[Media:$1|$1]]\'\'\' per [$4 $3, $2].</span>',
+'filedelete-comment'          => 'Komentar:',
+'filedelete-submit'           => 'Busak',
+'filedelete-success'          => "'''$1''' wis dibusak.",
+'filedelete-nofile'           => "'''$1''' ora ana ing {{SITENAME}}.",
+'filedelete-otherreason'      => 'Alesan tambahan/liya:',
+'filedelete-reason-otherlist' => 'Alesan liya',
+'filedelete-reason-dropdown'  => '*Alesan pambusakan
+** Nglanggar hak cipta
+** Berkas duplikat',
+'filedelete-edit-reasonlist'  => 'Sunting alesan pambusakan',
 
 # MIME search
 'mimesearch' => 'Panggolèkan MIME',
 'download'   => 'undhuh',
+
+# Unwatched pages
+'unwatchedpages' => 'Kaca-kaca sing ora diawasi',
 
 # List redirects
 'listredirects' => 'Daftar pengalihan',
@@ -1068,6 +1109,7 @@ The [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] length is '''\$7''
 'confirm'                     => 'Dhedhes (konfirmasi)',
 'excontent'                   => "isi sadurungé: '$1'",
 'excontentauthor'             => "isiné mung arupa: '$1' (lan siji-sijiné sing nyumbang yaiku '$2')",
+'exbeforeblank'               => "isi sadurungé dikosongaké: '$1'",
 'exblank'                     => 'kaca kosong',
 'delete-confirm'              => 'Busak "$1"',
 'delete-legend'               => 'Busak',
@@ -1077,17 +1119,28 @@ The [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] length is '''\$7''
 'deletedtext'                 => '"<nowiki>$1</nowiki>" sampun kabusak. Coba pirsani $2 kanggé log paling énggal kaca ingkang kabusak.',
 'deletedarticle'              => 'mbusak "[[$1]]"',
 'dellogpage'                  => 'Cathetan pambusakan',
+'dellogpagetext'              => 'Ing ngisor iki kapacak log pambusakan kaca sing anyar dhéwé.',
 'deletionlog'                 => 'Cathetan sing dibusak',
+'reverted'                    => 'Dibalèkaké ing revisi sadurungé',
 'deletecomment'               => 'Alesan dipun-busak',
 'deleteotherreason'           => 'Alesan liya utawa tambahan:',
 'deletereasonotherlist'       => 'Alesan liya',
+'deletereason-dropdown'       => '*Alesan pambusakan
+** Disuwun sing nulis
+** Nglanggar hak cipta
+** Vandalisme',
 'rollback'                    => 'Mangsulaken suntingan',
 'rollback_short'              => 'Balèkna',
 'rollbacklink'                => 'balèaké',
 'rollbackfailed'              => 'Pambalèkan gagal dilakoni',
+'editcomment'                 => 'Komentar panyuntingané yaiku: "<em>$1</em>".', # only shown if there is an edit comment
 'revertpage'                  => 'Suntingan [[Special:Contributions/$2|$2]] ([[User_talk:$2|dhiskusi]]) dipunwangsulaken dhateng ing vèrsi pungkasan déning [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'sessionfailure'              => 'Katoné ana masalah karo sèsi log panjenengan; log panjenengan wis dibatalaké kanggo nyegah pambajakan. Mangga mencèt tombol "back" lan unggahaké manèh kaca sadurungé mlebu log, lan coba manèh.',
 'protectlogpage'              => 'Log pangreksan',
+'protectedarticle'            => 'ngreksa "[[$1]]"',
+'modifiedarticleprotection'   => 'ngowahi tingkat pangreksan "[[$1]]"',
+'unprotectedarticle'          => 'ngilangi pangreksan "[[$1]]"',
+'protect-title'               => 'Ngowahi tingkatan pangreksan kanggo "$1"',
 'protect-legend'              => 'Konfirmasi pangreksan',
 'protectcomment'              => 'Komentar:',
 'protectexpiry'               => 'Kadaluwarsa:',
@@ -1107,6 +1160,9 @@ The [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] length is '''\$7''
 'protect-cantedit'            => 'Panjenengan ora pareng ngowahi tingkatan pangreksan kaca iki amerga panjenengan ora kagungan idin nyunting kaca iki.',
 'restriction-type'            => 'Pangreksan:',
 'restriction-level'           => 'Tingkatan pambatesan:',
+'minimum-size'                => 'Ukuran minimum',
+'maximum-size'                => 'Ukuran maksimum',
+'pagesize'                    => '(bita)',
 
 # Restrictions (nouns)
 'restriction-edit'   => 'Panyuntingan',
@@ -1167,6 +1223,7 @@ Panjenengan mbokmenawa ngetutaké pranala sing salah, utawa revisi iku wis dipul
 
 # Block/unblock
 'blockip'                 => 'Blokir panganggo',
+'blockip-legend'          => 'Blokir panganggo',
 'ipaddress'               => 'Alamat IP',
 'ipadressorusername'      => 'Alamat IP utawa jeneng panganggo',
 'ipbexpiry'               => 'Kadaluwarsa',
@@ -1180,11 +1237,13 @@ Panjenengan mbokmenawa ngetutaké pranala sing salah, utawa revisi iku wis dipul
 'ipboptions'              => '2 jam:2 hours,1 dina:1 day,3 dina:3 days,1 minggu:1 week,2 minggu:2 weeks,1 sasi:1 month,3 sasi:3 months,6 sasi:6 months,1 taun:1 year,tanpa wates:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'          => 'liyané',
 'ipbotherreason'          => 'Alesan liya/tambahan',
+'ipbhidename'             => 'Delikna jeneng panganggo utawa alamat IP saka log pamblokiran, daftar blokir aktif, sarta daftar panganggo',
 'badipaddress'            => 'Alamat IP klèntu',
 'blockipsuccesssub'       => 'Pemblokiran suksès',
 'blockipsuccesstext'      => 'Alamat IP utawa panganggo "$1" wis diblokir. <br />Delengen [[Special:Ipblocklist|Daftar IP lan panganggo diblokir]] kanggo ndeleng manèh pemblokiran.',
 'ipb-edit-dropdown'       => 'Sunting alesan pamblokiran',
 'ipb-unblock-addr'        => 'Ilangna blokir $1',
+'ipb-unblock'             => 'Ilangna blokir sawijining panganggo utawa alamat IP',
 'ipblocklist'             => 'Daftar pemblokiran',
 'ipblocklist-username'    => 'Jeneng panganggo utawa alamat IP:',
 'ipblocklist-submit'      => 'Golèk',
@@ -1208,6 +1267,7 @@ Panjenengan mbokmenawa ngetutaké pranala sing salah, utawa revisi iku wis dipul
 'locknoconfirm' => 'Panjenengan ora mènèhi tandha cèk ing kothak konfirmasi.',
 
 # Move page
+'move-page'               => 'Pindhahna $1',
 'move-page-legend'        => 'Mindhah kaca',
 'movepagetext'            => "Formulir ing ngisor iki bakal ngowahi jeneng sawijining kaca, mindhah kabèh sajarahé menyang kaca sing anyar. Irah-irahan utawa judhul sing lawas bakal dadi kaca pangalihan menyang irah-irahan sing anyar. Pranala menyang kaca sing lawas ora bakal diowahi; dadi pastèkna dhisik mriksa pangalihan dobel utawa pangalihan sing rusak sawisé pamindhahan. Panjenengan sing tanggung jawab mastèkaké menawa kabèh pranala-pranala tetep nyambung ing kaca panujon kaya samesthiné.
 
@@ -1234,22 +1294,24 @@ Ing kasus-kasus iku, yèn panjenengan gayuh, panjenengan bisa mindhahaké utawa 
 'movetalk'                => 'Pindahna kaca dhiskusi sing ana gandhèngané.',
 'talkpagemoved'           => 'Kaca dhiskusi sing ana gandhèngané uga mèú dipindhahaké.',
 'talkpagenotmoved'        => 'Kaca dhiskusi sing kagandhèng <strong>ora</strong> mèlu dipindhahaké.',
-'1movedto2'               => '$1 dipun-alihaken menyang $2',
+'1movedto2'               => '$1 dialihaké menyang $2',
 '1movedto2_redir'         => '[[$1]] dipunalihaken menyang [[$2]] via pangalihan',
 'movelogpage'             => 'Log pamindhahan',
 'movelogpagetext'         => 'Ing ngisor iki kapacak log pangalihan kaca.',
 'movereason'              => 'Alesan:',
-'revertmove'              => 'balèaké',
+'revertmove'              => 'balèkaké',
 'delete_and_move'         => 'busak lan kapindahaken',
 'delete_and_move_confirm' => 'Ya, busak kaca iku.',
 
 # Export
-'export' => 'Ekspor kaca',
+'export'        => 'Ekspor kaca',
+'export-addcat' => 'Tambahna',
 
 # Namespace 8 related
-'allmessages'         => 'Kabeh Laporan',
+'allmessages'         => 'Kabèh laporan sistém',
 'allmessagesname'     => 'Asma (jeneng)',
-'allmessagescurrent'  => 'Teks saiki',
+'allmessagesdefault'  => 'Tèks baku',
+'allmessagescurrent'  => 'Tèks saiki',
 'allmessagestext'     => 'Punika pesen-pesen saking sistem ingkang kacawisaken wonten ing MediaWiki namespace.',
 'allmessagesfilter'   => 'Saringan jeneng pesen:',
 'allmessagesmodified' => 'Namung tampilanipun ingkang owah',
@@ -1259,8 +1321,13 @@ Ing kasus-kasus iku, yèn panjenengan gayuh, panjenengan bisa mindhahaké utawa 
 'thumbnail_error' => "Kaluputan nalika nggawé gambar cilik (''thumbnail''): $1",
 
 # Special:Import
+'import'             => 'Impor kaca',
+'importinterwiki'    => 'Impor transwiki',
+'importfailed'       => 'Impor gagal: $1',
+'importcantopen'     => 'Berkas impor ora bisa dibukak',
 'importbadinterwiki' => 'Pranala interwiki rusak',
 'importnotext'       => 'Kosong utawa ora ana tèks',
+'importsuccess'      => 'Impor suksès!',
 
 # Import log
 'importlogpage' => 'Log impor',
@@ -1312,14 +1379,16 @@ Ing kasus-kasus iku, yèn panjenengan gayuh, panjenengan bisa mindhahaké utawa 
 # Attribution
 'anonymous'        => 'Panganggé {{SITENAME}} ingkang mboten kinawruhan.',
 'lastmodifiedatby' => 'Kaca iki pungkasan diowahi  $2, $1 déning $3.', # $1 date, $2 time, $3 user
+'others'           => 'liya-liyané',
 
 # Math options
 'mw_math_source' => 'Dijarna waé minangka TeX (kanggo panjlajah wèb tèks)',
 
 # Patrolling
-'markaspatrolleddiff' => 'Tandhanana wis dipatroli',
-'markaspatrolledtext' => 'Tandhanana artikel iki wis dipatroli',
-'markedaspatrolled'   => 'Ditandhani wis dipatroli',
+'markaspatrolleddiff'    => 'Tandhanana wis dipatroli',
+'markaspatrolledtext'    => 'Tandhanana artikel iki wis dipatroli',
+'markedaspatrolled'      => 'Ditandhani wis dipatroli',
+'markedaspatrollederror' => 'Ora bisa awèh tandha wis dipatroli',
 
 # Patrol log
 'patrol-log-page' => 'Log patroli',
@@ -1329,6 +1398,7 @@ Ing kasus-kasus iku, yèn panjenengan gayuh, panjenengan bisa mindhahaké utawa 
 # Image deletion
 'deletedrevision'       => 'Revisi lawas sing dibusak $1.',
 'filedeleteerror-short' => 'Kaluputan nalika mbusak berkas: $1',
+'filedelete-missing'    => 'Berkas "$1" ora bisa dibusak amerga ora ditemokaké.',
 
 # Browsing diffs
 'previousdiff' => '←Prabédan sadurungé',
@@ -1344,6 +1414,7 @@ Ing kasus-kasus iku, yèn panjenengan gayuh, panjenengan bisa mindhahaké utawa 
 
 # Special:Newimages
 'newimages'             => 'Galeri berkas anyar',
+'noimages'              => 'Ora ana sing dideleng.',
 'ilsubmit'              => 'Golek',
 'bydate'                => 'miturut tanggal',
 'sp-newimages-showfrom' => 'Tuduhna gambar anyar wiwit saka $2, $1',
@@ -1494,7 +1565,11 @@ Pranala-pranala sabanjuré ing baris sing padha dianggep minangka ''pengecualian
 
 'exif-exposureprogram-1' => 'Mawa tangan (manual)',
 
+'exif-meteringmode-1' => 'Rata-rata',
+
 'exif-lightsource-255' => 'Sumber cahya liya',
+
+'exif-focalplaneresolutionunit-2' => 'inci',
 
 'exif-scenecapturetype-0' => 'Standar',
 'exif-scenecapturetype-1' => "Dawa (''landscape'')",
@@ -1617,8 +1692,8 @@ Konfirmasi iki bakal kadaluwarsa ing $4.',
 'autosumm-new'     => "←Nggawé kaca sing isiné '$1'",
 
 # Live preview
-'livepreview-loading' => 'Ngamot…',
-'livepreview-ready'   => 'Ngamot… Rampung!',
+'livepreview-loading' => 'Ngunggahaké…',
+'livepreview-ready'   => 'Ngunggahaké… Rampung!',
 'livepreview-failed'  => 'Pratayang langsung gagal! Coba karo pratayang normal.',
 'livepreview-error'   => 'Gagal nyambung: $1 "$2"
 Cobanen mawa pratayang normal.',
@@ -1648,15 +1723,16 @@ Cobanen mawa pratayang normal.',
 'watchlisttools-raw'  => 'Sunting daftar pangawasan mentah',
 
 # Special:Version
-'version'                  => 'Versi', # Not used as normal message but as header for the special page itself
-'version-specialpages'     => 'Kaca astaméwa (kaca kusus)',
-'version-variables'        => 'Variabel',
-'version-other'            => 'Liyané',
-'version-version'          => 'Vèrsi',
-'version-license'          => 'Lisènsi',
-'version-software'         => "''Software'' wis diinstalasi",
-'version-software-product' => 'Prodhuk',
-'version-software-version' => 'Vèrsi',
+'version'                   => 'Versi', # Not used as normal message but as header for the special page itself
+'version-specialpages'      => 'Kaca astaméwa (kaca kusus)',
+'version-variables'         => 'Variabel',
+'version-other'             => 'Liyané',
+'version-hook-subscribedby' => 'Dilanggani déning',
+'version-version'           => 'Vèrsi',
+'version-license'           => 'Lisènsi',
+'version-software'          => "''Software'' wis diinstalasi",
+'version-software-product'  => 'Prodhuk',
+'version-software-version'  => 'Vèrsi',
 
 # Special:Filepath
 'filepath'        => 'Lokasi berkas',

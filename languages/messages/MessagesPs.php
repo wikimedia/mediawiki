@@ -180,16 +180,18 @@ $messages = array(
 'dec'           => 'ډيسمبر',
 
 # Categories related messages
-'categories'               => 'وېشنيزې',
-'categoriespagetext'       => 'په دغه ويکي (wiki) کې همدا لاندينۍ وېشنيزې دي.',
-'pagecategories'           => '{{PLURAL:$1|وېشنيزه|وېشنيزې}}',
-'category_header'          => 'د "$1" په وېشنيزه کې شته مخونه',
-'subcategories'            => 'وړې-وېشنيزې',
-'category-media-header'    => '"$1" رسنۍ په وېشنيزه کې',
-'category-empty'           => "''تر اوسه پورې همدا وېشنيزه هېڅ کوم مخ يا کومه رسنيزه دوتنه نلري.''",
-'hidden-categories'        => '{{PLURAL:$1|پټه وېشنيزه|پټې وېشنيزې}}',
-'hidden-category-category' => 'پټې وېشنيزې', # Name of the category where hidden categories will be listed
-'listingcontinuesabbrev'   => 'پرله پسې',
+'categories'                  => 'وېشنيزې',
+'categoriespagetext'          => 'په دغه ويکي (wiki) کې همدا لاندينۍ وېشنيزې دي.',
+'special-categories-sort-abc' => 'د ابېڅو له مخې اوډل',
+'pagecategories'              => '{{PLURAL:$1|وېشنيزه|وېشنيزې}}',
+'category_header'             => 'د "$1" په وېشنيزه کې شته مخونه',
+'subcategories'               => 'وړې-وېشنيزې',
+'category-media-header'       => '"$1" رسنۍ په وېشنيزه کې',
+'category-empty'              => "''تر اوسه پورې همدا وېشنيزه هېڅ کوم مخ يا کومه رسنيزه دوتنه نلري.''",
+'hidden-categories'           => '{{PLURAL:$1|پټه وېشنيزه|پټې وېشنيزې}}',
+'hidden-category-category'    => 'پټې وېشنيزې', # Name of the category where hidden categories will be listed
+'category-file-count-limited' => 'په اوسنۍ وېشنيزه کې {{PLURAL:$1|يوه دوتنه ده|$1 دوتنې دي}}.',
+'listingcontinuesabbrev'      => 'پرله پسې',
 
 'mainpagetext' => "<big>'''MediaWiki په برياليتوب سره نصب شو.'''</big>",
 
@@ -226,6 +228,7 @@ $messages = array(
 'edit'              => 'سمادول',
 'create'            => 'جوړول',
 'editthispage'      => 'دا مخ سماد کړی',
+'create-this-page'  => 'همدا مخ ليکل',
 'delete'            => 'ړنګول',
 'deletethispage'    => 'دا مخ ړنګ کړه',
 'protect'           => 'ژغورل',

@@ -422,6 +422,7 @@ If ye pad at dabinon, ba etuvol säkädi in nünömasit. Nunolös, begö! osi gu
 'perfdisabled'         => 'Dun at penemögükon nelaidüpo bi nevifükon vüki so vemo, das nek kanon gebön oni.',
 'perfcached'           => 'Nüns sököl ekömons se el caché e ba no binons anuik.',
 'perfcachedts'         => 'Nüns sököl kömons se mem nelaidüpik e päbevobons lätiküno ün: $1.',
+'querypage-no-updates' => 'Atimükam pada at penemögükon. Nünods isik no poflifedükons suno.',
 'wrong_wfQuery_params' => 'Paramets neverätik lü wfQuery()<br />
 Dun: $1<br />
 Beg: $2',
@@ -437,7 +438,7 @@ Beg: $2',
 'cascadeprotected'     => 'Pad at pejelon ta redakam, bi pakeninükon fa {{PLURAL:$1|pad|pads}} sököl, kels pejelons ma „jänajel“: $2',
 'namespaceprotected'   => "No dalol redakön padis in nemaspad: '''$1'''.",
 'customcssjsprotected' => 'No dalol redakön padi at, bi keninükon parametis pösodik gebana votik.',
-'ns-specialprotected'  => 'Pads in nemaspad: {{ns:special}} no kanons paredakön.',
+'ns-specialprotected'  => 'Pads patik no kanons paredakön.',
 'titleprotected'       => "Jaf tiäda at penemögükon fa geban: [[User:$1|$1]].
 Kod binon: ''$2''.",
 
@@ -454,6 +455,7 @@ Kal olik pejafon. No glömolöd ad votükön buükamis olik in {{SITENAME}}.',
 'yourpasswordagain'          => 'Klavolös dönu letavödi',
 'remembermypassword'         => 'Dakipolöd ninädamanünis obik in nünöm at',
 'yourdomainname'             => 'Domen olik:',
+'externaldberror'            => 'U ejenon fümükamapöl plödik nünödema, u no dalol atimükön kali plödik ola.',
 'loginproblem'               => '<b>No eplöpos ad nunädön oli.</b><br />Steifülolös dönu!',
 'login'                      => 'Nunädolös obi',
 'loginprompt'                => 'Mutol mögükön „kekilis“ ad kanön nunädön oli in {{SITENAME}}.',
@@ -625,6 +627,7 @@ If binol is pölo, välolös knopi: '''geikön''' bevüresodatävöma olik.",
 'userjspreview'             => "'''Memolös, das anu te blufol/büologol eli JavaScript olik, no nog pedakipon!'''",
 'userinvalidcssjstitle'     => "'''Nuned:''' No dabinon fomät: \"\$1\".
 Memolös, das pads: .css e .js mutons labön tiädi minudik: {{ns:user}}:Foo/monobook.css, no {{ns:user}}:Foo/Monobook.css.",
+'updated'                   => '(peatimükon)',
 'note'                      => '<strong>Penet:</strong>',
 'previewnote'               => '<strong>Is pajonon te büologed; votükams no nog pedakipons!</strong>',
 'previewconflict'           => 'Büologed at jonon vödemi in redakamaspad löpik soäsä opubon if odakipol oni.',
@@ -750,6 +753,9 @@ Ninäd peklänedöl at binon ye nog lügolovik guvanes votik vüka at: kanons no
 'revdel-restore'              => 'Votükön logovi',
 'pagehist'                    => 'Padajenotem',
 'deletedhist'                 => 'Jenotem pemoüköl',
+
+# Suppression log
+'suppressionlogtext' => 'Is palisedons moükams e blokams lätik, kels ätefons ninädi de guvans peklänedöli. Logolös [[Special:Ipblocklist|lisedi ladetas-IP pebloköl]], kö pajonons blokams anu lonöföls.',
 
 # History merging
 'mergehistory'                     => 'Balön padajenotemis',
@@ -1368,6 +1374,8 @@ Redakam lätik päjenükon fa geban: [[User:$3|$3]] ([[User talk:$3|Bespikapad]]
 'revertpage'                  => 'Redakams ela [[Special:Contributions/$2|$2]] ([[User talk:$2|Bespik]]) pegeükons; pad labon nu fomami ma redakam lätik ela [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success'            => 'Redakams gebana: $1 pesädunons; pad pevotükon ad fomam lätik fa geban: $2.',
 'protectlogpage'              => 'Jenotalised jelodamas',
+'protectlogtext'              => 'Is palisedons pads pelökofärmüköl e pemaifüköls.
+Logolös [[Special:Protectedpages|lisedi padas pejelöl]], kö pajonons padijelams anu lonöföls.',
 'protectedarticle'            => 'ejelon padi: "[[$1]]"',
 'modifiedarticleprotection'   => 'evotükon jelanivodi pada: "[[$1]]"',
 'unprotectedarticle'          => 'Pad: "[[$1]]" pesäjelon.',
@@ -1654,6 +1662,7 @@ Ad seveigön padis, penolös tiädis in penamaspad dono, tiädi bal a kedet, e v
 'import-revision-count'      => '{{PLURAL:$1|fomam|fomams}} $1',
 'importbadinterwiki'         => 'Yüm vüvükik dädik',
 'importnotext'               => 'Vödem vagik',
+'xml-error-string'           => '$1 pö lien: $2, kolum: $3 (jölat: $4): $5',
 
 # Import log
 'importlogpage'                    => 'Jenotalised nüveigamas',
@@ -1820,6 +1829,7 @@ Te lisedaliens (liens me * primöl) pabevobons. Yüm balid liena muton binön y�
 'exif-colorspace'          => 'Kölaspad',
 'exif-usercomment'         => 'Küpets gebana',
 'exif-exposuretime-format' => '$1 sek ($2)',
+'exif-fnumber'             => 'Num-F',
 'exif-lightsource'         => 'Litafonät',
 'exif-flash'               => 'Kämalelit',
 'exif-flashenergy'         => 'Nämet kämalelita',

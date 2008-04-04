@@ -61,7 +61,7 @@ $messages = array(
 
 # Dates
 'sunday'        => 'Ńedźela',
-'monday'        => 'Pyńdźołek',
+'monday'        => 'Pyńdźouek',
 'tuesday'       => 'Wtorek',
 'wednesday'     => 'Střoda',
 'thursday'      => 'Štwortek',
@@ -883,6 +883,7 @@ Zaznačůne pole uoznača přinoležność užytkowńika do danej grupy.
 'number_of_watching_users_pageview' => '[$1 {{PLURAL:$1|dowajůncy pozůr užytkowńik|dowajůncych pozůr užytkowńikůw}}]',
 'rc_categories'                     => 'Uůgrańič do katygorii (oddźelej za půmocům "|")',
 'rc_categories_any'                 => 'Wšyskie',
+'newsectionsummary'                 => '/* $1 */ nowo tajla',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Pomjéńane w adrésowanych',
@@ -892,11 +893,63 @@ Zaznačůne pole uoznača přinoležność užytkowńika do danej grupy.
 Artikle na pozorli'śće sům '''rube'''.",
 
 # Upload
-'upload'        => 'Wćepnij plik',
-'uploadbtn'     => 'Wćepnij sam plik',
-'uploadlogpage' => 'Wćepane sam',
-'filename'      => 'Mjano pliku',
-'uploadedimage' => 'wćepano "[[$1]]"',
+'upload'                      => 'Wćepnij plik',
+'uploadbtn'                   => 'Wćepnij sam plik',
+'reupload'                    => 'Wćepnij zaś',
+'reuploaddesc'                => 'Nazod do formulařa uod wćepywańo.',
+'uploadnologin'               => 'Ńy jest žeś zalogůwany',
+'uploadnologintext'           => 'Muśyš śe [[Special:Userlogin|zalůgować]] ńim wćepńeš pliki.',
+'upload_directory_read_only'  => 'Serwer ńy može škryflać do katalůgu ($1) kery je přeznačůny na wćepywane pliki.',
+'uploaderror'                 => 'Feler při wćepywańu',
+'uploadtext'                  => "Ůžyj formulařa půńižej do wćepywańo plikůw.
+Jak chceš přejřeć dotychčas wćepane pliki, abo w ńich šnupać, přeńdź do [[Special:Imagelist|listy douůnčůnych plikůw]]. Wšyjstke wćepańo uodnotowane sům we [[Special:Log/upload|rejeře přesůuanych plikůw]].
+
+Plik pojawi śe na zajće, jak užyješ linka wedle jydnygo s nastympujůncych wzorůw:
+'''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:Plik.jpg]]</nowiki>''',
+'''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:Plik.png|tekst uopisu]]</nowiki>''' abo
+'''<nowiki>[[</nowiki>{{ns:media}}<nowiki>:Plik.ogg]]</nowiki>''' coby uzyskać bezpośredńi link do plika.",
+'upload-permitted'            => 'Dopuščalne formaty plikůw: $1.',
+'upload-preferred'            => 'Zalecane formaty plikůw: $1.',
+'upload-prohibited'           => 'Zakozane formaty plikůw: $1.',
+'uploadlog'                   => 'Wykoz wćepywań',
+'uploadlogpage'               => 'Wćepane sam',
+'uploadlogpagetext'           => 'Půńižej znojdowo śe lista plikůw wćepanych na uostatku.',
+'filename'                    => 'Mjano pliku',
+'filedesc'                    => 'Uopis',
+'fileuploadsummary'           => 'Uopis:',
+'filestatus'                  => 'Status prawny:',
+'filesource'                  => 'Kod zdřůduowy:',
+'uploadedfiles'               => 'Wćepane pliki',
+'ignorewarning'               => 'Zignoruj uostřežyńo i wymuś wćepańe pliku.',
+'ignorewarnings'              => 'Ignoruj uostřežyńo',
+'minlength1'                  => 'Mjano plika muśi mjeć aby jedna buchštaba.',
+'illegalfilename'             => 'Mjano plika ("$1") mo znoki zakozane we titlach zajtůw. Proša zmjyńić mjano plika i wćepać go zaś.',
+'badfilename'                 => 'Mjano plika zostouo zmjyńone na "$1".',
+'filetype-badmime'            => 'Wćepywanie plikůw ou typje MIME "$1" je sam zakozane.',
+'filetype-unwanted-type'      => "'''\".\$1\"''' ńy je zalecanym typym plika. Preferowane sům pliki we formatach \$2.",
+'filetype-banned-type'        => "'''\".\$1\"''' je ńydozwolůnym typym plika. Dostympne sům pliki we formatach \$2.",
+'filetype-missing'            => 'Plik ńy mo rozšyřyńo (np. ".jpg").',
+'large-file'                  => 'Zaleco śe coby rozmjar plika ńy bůu wjynkšy jak $1 bajtůw. Tyn plik mo rozmjar $2 bajtůw.',
+'largefileserver'             => 'Plik je wjynkšy ńiž maksymalny dozwolůny rozmjar.',
+'emptyfile'                   => 'Wćepywany plik cheba je pusty. Može to być bez tůž, co žeś wklepou zuo buchštaba w jygo mjańe. Sprowdź, čy mjano kere žeś wklepou je poprawne.',
+'fileexists'                  => 'Plik uo takym mjańe juž je sam wćepany! Wćepańe nowyj grafiki ńyodwracalńe wyćepńe ta kero sam juž je wćepano ($1)! Sprowdź čy žeś je pewny co chceš tyn plik sam wćepać.',
+'filepageexists'              => 'Je juž sam zajta uopisu tygo plika utwořůno <strong><tt>$1</tt></strong>, ino ńy ma terozki plika uo tym mjańy. Informacyje uo pliku, kere žeś wćepou, ńy bydům pokozane na zajće uopisu. Jakbyś chćou coby te informacyje zostouy pokozane, muśyš jeich sprowjać rynčńy.',
+'fileexists-extension'        => 'Plik uo podobnym mjańe juž sam je:<br />
+Mjano wćepywanygo plika: <strong><tt>$1</tt></strong><br />
+Mjano plika kery juž sam je: <strong><tt>$2</tt></strong><br />
+Wybjer proša inkše mjano.',
+'fileexists-thumb'            => "<center>'''Istniejůnco grafika'''</center>",
+'fileexists-thumbnail-yes'    => 'Zdowo śe co tyn plik je půmńijšůnům wersyjom grafiki <i>(mińjaturkom)</i>. Uobejřij plik: <strong><tt>$1</tt></strong>.<br />
+Jak to je ta sama grafika, ino wjelgo, ńy muśiš juž jei sam zaś wćepywać.',
+'file-thumbnail-no'           => 'Mjano plika začyno śe uod <strong><tt>$1</tt></strong>. Zdowo śe, co to je půmńijšůna grafika <i>(mińaturka)</i>.
+Jak moš ta grafika we peunym rozmjaře - wćepej ja sam, abo bydźeš muśou zmjyńić mjano wćepywanygo terozki plika.',
+'fileexists-forbidden'        => 'Plik uo takym mjańy juž sům můmy! Idź nazod i wćepej tyn plik pod inkšym mjanym. [[Image:$1|thumb|center|$1]]',
+'fileexists-shared-forbidden' => 'Plik uo takym mjańe juž sam momy! Idź nazod i wćepej tyn plik pod inkšym mjanym. [[Image:$1|thumb|center|$1]]',
+'successfulupload'            => 'Wćepańe plika udouo śe',
+'uploadwarning'               => 'Uostřežyńe uo wćepywańu',
+'savefile'                    => 'Naškryflej plik',
+'uploadedimage'               => 'wćepano "[[$1]]"',
+'overwroteimage'              => 'wćepano nowšo wersyjo "[[$1]]"',
 
 'license' => 'Licencyjo:',
 

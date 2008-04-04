@@ -1749,7 +1749,7 @@ $1',
 'ipboptions'                  => '2 timmar:2 hours,1 dag:1 day,3 dagar:3 days,1 vecka:1 week,2 veckor:2 weeks,1 månad:1 month,3 månader:3 months,6 månader:6 months,1 år:1 year,oändlig:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'              => 'annan tidsperiod',
 'ipbotherreason'              => 'Annan/ytterligare anledning',
-'ipbhidename'                 => 'Dölj användarnamnet/IP-adressen från blockeringsloggen och listorna över blockerade användare och användare',
+'ipbhidename'                 => 'Dölj användarnamnet från blockeringsloggen, blockeringslistan och användarlistan',
 'badipaddress'                => 'Du har inte skrivit IP-adressen korrekt.',
 'blockipsuccesssub'           => 'Blockeringen är utförd',
 'blockipsuccesstext'          => '[[Special:Contributions/$1|$1]] har blockerats.
