@@ -612,6 +612,7 @@ $2',
 # Revision deletion
 'rev-deleted-comment'         => '（此註刪矣）',
 'rev-deleted-user'            => '（此簿刪矣）',
+'rev-deleted-event'           => '（此誌刪矣）',
 'rev-deleted-text-permission' => '<div class="mw-warning plainlinks">
 此審刪矣，詳見[{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}}誌刪]。
 </div>',
