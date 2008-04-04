@@ -520,7 +520,7 @@ class EnhancedChangesList extends ChangesList {
 	/**
 	 * Enhanced RC group
 	 */
-	private function recentChangesBlockGroup( $block ) {
+	protected function recentChangesBlockGroup( $block ) {
 		global $wgLang, $wgContLang, $wgRCShowChangedSize;
 		$r = '<table cellpadding="0" cellspacing="0" border="0" style="background: none"><tr>';
 
@@ -728,7 +728,7 @@ class EnhancedChangesList extends ChangesList {
 		return $r;
 	}
 
-	private function maybeWatchedLink( $link, $watched=false ) {
+	protected function maybeWatchedLink( $link, $watched=false ) {
 		if( $watched ) {
 			// FIXME: css style might be more appropriate
 			return '<strong class="mw-watched">' . $link . '</strong>';
@@ -757,7 +757,7 @@ class EnhancedChangesList extends ChangesList {
 	 * @return string HTML <img> tag
 	 * @access private
 	 */
-	private function sideArrow() {
+	protected function sideArrow() {
 		global $wgContLang;
 		$dir = $wgContLang->isRTL() ? 'l' : 'r';
 		return $this->arrow( $dir, '+' );
@@ -769,7 +769,7 @@ class EnhancedChangesList extends ChangesList {
 	 * @return string HTML <img> tag
 	 * @access private
 	 */
-	private function downArrow() {
+	protected function downArrow() {
 		return $this->arrow( 'd', '-' );
 	}
 
@@ -778,7 +778,7 @@ class EnhancedChangesList extends ChangesList {
 	 * @return string HTML <img> tag
 	 * @access private
 	 */
-	private function spacerArrow() {
+	protected function spacerArrow() {
 		return $this->arrow( '', ' ' );
 	}
 	
@@ -787,7 +787,7 @@ class EnhancedChangesList extends ChangesList {
 	 * @return string HTML <td> tag
 	 * @access private
 	 */	
-	private function spacerIndent() {
+	protected function spacerIndent() {
 		return '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
 	}
 
@@ -795,7 +795,7 @@ class EnhancedChangesList extends ChangesList {
 	 * Enhanced RC ungrouped line.
 	 * @return string a HTML formated line (generated using $r)
 	 */
-	private function recentChangesBlockLine( $rcObj ) {
+	protected function recentChangesBlockLine( $rcObj ) {
 		global $wgContLang, $wgRCShowChangedSize;
 
 		# Get rc_xxxx variables
@@ -871,7 +871,7 @@ class EnhancedChangesList extends ChangesList {
 	 * If enhanced RC is in use, this function takes the previously cached
 	 * RC lines, arranges them, and outputs the HTML
 	 */
-	private function recentChangesBlock() {
+	protected function recentChangesBlock() {
 		if( count ( $this->rc_cache ) == 0 ) {
 			return '';
 		}
