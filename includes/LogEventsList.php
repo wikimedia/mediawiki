@@ -509,8 +509,7 @@ class LogPager extends ReverseChronologicalPager {
  * @addtogroup SpecialPage
  */
 class LogReader {
-	var $db, $joinClauses, $whereClauses;
-	var $type = '', $user = '', $title = null, $pattern = false;
+	var $pager;
 	/**
 	 * @param WebRequest $request For internal use use a FauxRequest object to pass arbitrary parameters.
 	 */
@@ -545,9 +544,6 @@ class LogViewer {
 	 * @var LogReader $reader
 	 */
 	var $reader;
-	var $numResults = 0;
-	var $flags = 0;
-
 	/**
 	 * @param LogReader &$reader where to get our data from
 	 * @param integer $flags Bitwise combination of flags:
@@ -555,7 +551,6 @@ class LogViewer {
 	 */
 	function __construct( &$reader, $flags = 0 ) {
 		global $wgUser;
-		$this->skin = $wgUser->getSkin();
 		$this->reader =& $reader;
 		$this->reader->pager->mLogEventsList->flags = $flags;
 		# Aliases for shorter code...
