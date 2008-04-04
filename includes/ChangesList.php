@@ -306,7 +306,7 @@ class OldChangesList extends ChangesList {
 	/**
 	 * Format a line using the old system (aka without any javascript).
 	 */
-	function recentChangesLine( &$rc, $watched = false ) {
+	public function recentChangesLine( &$rc, $watched = false ) {
 		global $wgContLang, $wgRCShowChangedSize;
 
 		$fname = 'ChangesList::recentChangesLineOld';
@@ -389,7 +389,7 @@ class EnhancedChangesList extends ChangesList {
 	/**
 	 * Format a line for enhanced recentchange (aka with javascript and block of lines).
 	 */
-	function recentChangesLine( &$baseRC, $watched = false ) {
+	public function recentChangesLine( &$baseRC, $watched = false ) {
 		global $wgLang, $wgContLang;
 
 		# Create a specialised object
@@ -520,7 +520,7 @@ class EnhancedChangesList extends ChangesList {
 	/**
 	 * Enhanced RC group
 	 */
-	function recentChangesBlockGroup( $block ) {
+	private function recentChangesBlockGroup( $block ) {
 		global $wgLang, $wgContLang, $wgRCShowChangedSize;
 		$r = '<table cellpadding="0" cellspacing="0" border="0" style="background: none"><tr>';
 
@@ -650,10 +650,13 @@ class EnhancedChangesList extends ChangesList {
 		}
 
 		# History
-		$r .= '(' . $this->skin->makeKnownLinkObj( $block[0]->getTitle(),
-			$this->message['history'], $curIdEq.'&action=history' );
-		$r .= ')';
-
+		if( $namehidden ) {
+			$r .= '(' . $this->message['history'] . ')';
+		} else {
+			$r .= '(' . $this->skin->makeKnownLinkObj( $block[0]->getTitle(),
+				$this->message['history'], $curIdEq.'&action=history' ) . ')';
+		}
+		
 		$r .= $users;
 		$r .=$this->numberofWatchingusers($block[0]->numberofWatchingusers);
 		
@@ -725,7 +728,7 @@ class EnhancedChangesList extends ChangesList {
 		return $r;
 	}
 
-	function maybeWatchedLink( $link, $watched=false ) {
+	private function maybeWatchedLink( $link, $watched=false ) {
 		if( $watched ) {
 			// FIXME: css style might be more appropriate
 			return '<strong class="mw-watched">' . $link . '</strong>';
@@ -741,7 +744,7 @@ class EnhancedChangesList extends ChangesList {
 	 * @return string HTML <img> tag
 	 * @access private
 	 */
-	function arrow( $dir, $alt='' ) {
+	private function arrow( $dir, $alt='' ) {
 		global $wgStylePath;
 		$encUrl = htmlspecialchars( $wgStylePath . '/common/images/Arr_' . $dir . '.png' );
 		$encAlt = htmlspecialchars( $alt );
@@ -754,7 +757,7 @@ class EnhancedChangesList extends ChangesList {
 	 * @return string HTML <img> tag
 	 * @access private
 	 */
-	function sideArrow() {
+	private function sideArrow() {
 		global $wgContLang;
 		$dir = $wgContLang->isRTL() ? 'l' : 'r';
 		return $this->arrow( $dir, '+' );
@@ -766,7 +769,7 @@ class EnhancedChangesList extends ChangesList {
 	 * @return string HTML <img> tag
 	 * @access private
 	 */
-	function downArrow() {
+	private function downArrow() {
 		return $this->arrow( 'd', '-' );
 	}
 
@@ -775,7 +778,7 @@ class EnhancedChangesList extends ChangesList {
 	 * @return string HTML <img> tag
 	 * @access private
 	 */
-	function spacerArrow() {
+	private function spacerArrow() {
 		return $this->arrow( '', ' ' );
 	}
 	
@@ -784,7 +787,7 @@ class EnhancedChangesList extends ChangesList {
 	 * @return string HTML <td> tag
 	 * @access private
 	 */	
-	function spacerIndent() {
+	private function spacerIndent() {
 		return '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
 	}
 
@@ -792,7 +795,7 @@ class EnhancedChangesList extends ChangesList {
 	 * Enhanced RC ungrouped line.
 	 * @return string a HTML formated line (generated using $r)
 	 */
-	function recentChangesBlockLine( $rcObj ) {
+	private function recentChangesBlockLine( $rcObj ) {
 		global $wgContLang, $wgRCShowChangedSize;
 
 		# Get rc_xxxx variables
@@ -868,7 +871,7 @@ class EnhancedChangesList extends ChangesList {
 	 * If enhanced RC is in use, this function takes the previously cached
 	 * RC lines, arranges them, and outputs the HTML
 	 */
-	function recentChangesBlock() {
+	private function recentChangesBlock() {
 		if( count ( $this->rc_cache ) == 0 ) {
 			return '';
 		}
@@ -888,7 +891,7 @@ class EnhancedChangesList extends ChangesList {
  	 * Returns text for the end of RC
 	 * If enhanced RC is in use, returns pretty much all the text
 	 */
-	function endRecentChangesList() {
+	public function endRecentChangesList() {
 		return $this->recentChangesBlock() . parent::endRecentChangesList();
 	}
 
