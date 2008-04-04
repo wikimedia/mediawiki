@@ -153,7 +153,7 @@ class Article {
 				$ret = wfMsg( $wgUser->isLoggedIn() ? 'noarticletext' : 'noarticletextanon' );
 			}
 
-			return "<div class='noarticletext'>$ret</div>";
+			return "<div class='noarticletext'>\n$ret\n</div>";
 		} else {
 			$this->loadContent();
 			wfProfileOut( __METHOD__ );
