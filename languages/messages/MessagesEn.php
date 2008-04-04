@@ -2664,9 +2664,10 @@ Variants for Chinese language
 'variantname-ku-latn' => 'ku-Latn', # only translate this message to other languages if you have to change it
 'variantname-ku'      => 'ku', # only translate this message to other languages if you have to change it
 
-'variantname-tg-cyrl' => 'tg-Cyrl',
-'variantname-tg-latn' => 'tg-Latn',
-'variantname-tg'      => 'tg',
+# Variants for Tajiki language
+'variantname-tg-cyrl' => 'tg-Cyrl', # only translate this message to other languages if you have to change it
+'variantname-tg-latn' => 'tg-Latn', # only translate this message to other languages if you have to change it
+'variantname-tg'      => 'tg', # only translate this message to other languages if you have to change it
 
 # Metadata
 'metadata'          => 'Metadata',
