@@ -1,5 +1,5 @@
 <?php
-/** Traditional Chinese (‪中文(繁體)‬)
+/** Traditional Chinese (‪中文(傳統字)‬)
  *
  * @addtogroup Language
  *
@@ -410,7 +410,7 @@ MySQL返回錯誤「$3: $4」。',
 $2',
 'namespaceprotected'   => "您並沒有權限編輯'''$1'''名字空間的頁面。",
 'customcssjsprotected' => '您並無許可權去編輯這個頁面，因為它包含了另一位用戶的個人設定。',
-'ns-specialprotected'  => '在{{ns:special}}名字空間中的頁面是不可以編輯的。',
+'ns-specialprotected'  => '特殊頁面是不可以編輯的。',
 'titleprotected'       => '這個標題已經被[[User:$1|$1]]保護以防止建立。理由是<i>$2</i>。',
 
 # Login and logout pages
@@ -707,20 +707,21 @@ $2',
 </div>",
 'rev-delundel'                => '顯示/隱藏',
 'revisiondelete'              => '刪除/恢復刪除修訂',
-'revdelete-nooldid-title'     => '沒有目標修訂',
-'revdelete-nooldid-text'      => '您沒有指定此操作的目標修訂。',
+'revdelete-nooldid-title'     => '無效的目標修訂',
+'revdelete-nooldid-text'      => '您尚未指定一個目標修訂去進行這個功能、
+所指定的修訂不存在，或者您嘗試去隱藏現時的修訂。',
 'revdelete-selected'          => "選取'''$1'''的$2次修訂:",
-'logdelete-selected'          => "選取'''$1'''的$2個日誌項目:",
+'logdelete-selected'          => "選取'''$1'''的日誌項目:",
 'revdelete-text'              => '刪除的修訂仍將顯示在頁面歷史中, 但它們的文字內容已不能被公眾訪問。
 
 在{{SITENAME}}的其他管理員將仍能訪問隱藏的內容並透過與此相同的介面恢復刪除，除非網站工作者進行了一些附加的限制。',
-'revdelete-legend'            => '設定修訂限制:',
+'revdelete-legend'            => '設定修訂限制',
 'revdelete-hide-text'         => '隱藏修訂文字',
 'revdelete-hide-name'         => '隱藏動作和目標',
 'revdelete-hide-comment'      => '隱藏編輯說明',
 'revdelete-hide-user'         => '隱藏編輯者的用戶名/IP',
-'revdelete-hide-restricted'   => '將此限制同樣應用於管理員',
-'revdelete-suppress'          => '同時壓制由操作員以及其他用戶的資料',
+'revdelete-hide-restricted'   => '將此限制同樣應用於管理員同時鎖定這個界面',
+'revdelete-suppress'          => '同時廢止由操作員以及其他用戶的資料',
 'revdelete-hide-image'        => '隱藏檔案內容',
 'revdelete-unsuppress'        => '在已恢復的修訂中移除限制',
 'revdelete-log'               => '日誌註釋:',
@@ -728,11 +729,16 @@ $2',
 'revdelete-logentry'          => '[[$1]]的修訂可見性已更改',
 'logdelete-logentry'          => '[[$1]]的事件可見性已更改',
 'revdelete-logaction'         => '$1次修訂己經設定至模式$2',
-'logdelete-logaction'         => '對於[[$3]]的$1個事件己經設定至模式$2',
-'revdelete-success'           => '修訂的可見性已經成功設定。',
-'logdelete-success'           => '事件的可見性已經成功設定。',
+'logdelete-logaction'         => '$1個事件己經設定至模式$2',
+'revdelete-success'           => "'''修訂的可見性已經成功設定。'''",
+'logdelete-success'           => "'''事件的可見性已經成功設定。'''",
+'revdel-restore'              => '更改可見性',
 'pagehist'                    => '頁面歷史',
 'deletedhist'                 => '已刪除之歷史',
+
+# Suppression log
+'suppressionlog'     => '廢止日誌',
+'suppressionlogtext' => '以下是最近刪除以及由操作員牽涉到內容封鎖的清單。參看[[Special:Ipblocklist|IP封鎖名單]]去參看現時進行中的禁止以及封鎖之名單。',
 
 # History merging
 'mergehistory'                     => '合併頁面歷史',
@@ -872,6 +878,10 @@ $2',
 'userrights-groupsmember'          => '屬於:',
 'userrights-groupsremovable'       => '可移除群組:',
 'userrights-groupsavailable'       => '可用群組:',
+'userrights-groups-help'            => '您可以改動這位用戶所屬的群組。
+
+已剔選的核取方塊代表該用戶屬於該群組。
+未剔選的核取方塊代表該用戶不是屬於該群組。',
 'userrights-reason'                => '更改原因:',
 'userrights-available-none'        => '您不可以更改組別成員。',
 'userrights-available-add'         => '您可以加入任何用戶到{{PLURAL:$2|一個|多個}}組中: $1。',
@@ -891,17 +901,20 @@ $2',
 'group-bot'           => '機器人',
 'group-sysop'         => '操作員',
 'group-bureaucrat'    => '行政員',
+'group-suppress'      => '監督',
 'group-all'           => '(全部)',
 
 'group-autoconfirmed-member' => '自動確認用戶',
 'group-bot-member'           => '機器人',
 'group-sysop-member'         => '操作員',
 'group-bureaucrat-member'    => '行政員',
+'group-suppress-member'      => '監督',
 
 'grouppage-autoconfirmed' => '{{ns:project}}:自動確認用戶',
 'grouppage-bot'           => '{{ns:project}}:機器人',
 'grouppage-sysop'         => '{{ns:project}}:操作員',
 'grouppage-bureaucrat'    => '{{ns:project}}:行政員',
+'grouppage-suppress'      => '{{ns:project}}:監督',
 
 # User rights log
 'rightslog'      => '用戶權限日誌',
@@ -1224,6 +1237,7 @@ Template:消除歧義',
 'notargettext'            => '您還沒有指定一個目標頁面或用戶以進行此項操作。',
 'pager-newer-n'           => '新$1次',
 'pager-older-n'           => '舊$1次',
+'suppress'                => '監督',
 
 # Book sources
 'booksources'               => '網路書源',
@@ -1378,7 +1392,8 @@ $NEWPAGE
 請確定您要進行此項操作，並且了解其後果，同時您的行為符合[[{{MediaWiki:Policy-url}}]]。',
 'actioncomplete'              => '操作完成',
 'deletedtext'                 => '「<nowiki>$1</nowiki>」已經被刪除。最近刪除的紀錄請參見$2。',
-'deletedarticle'              => '已刪除「$1」',
+'deletedarticle'              => '已刪除「[[$1]]」',
+'suppressedarticle'           => '已廢止「[[$1]]」',
 'dellogpage'                  => '刪除紀錄',
 'dellogpagetext'              => '以下是最近刪除的紀錄列表。',
 'deletionlog'                 => '刪除紀錄',
@@ -1555,7 +1570,7 @@ $1',
 'ipboptions'                  => '2小時:2 hours,1天:1 day,3天:3 days,1周:1 week,2周:2 weeks,1個月:1 month,3個月:3 months,6個月:6 months,1年:1 year,永久:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'              => '其它',
 'ipbotherreason'              => '其它／附帶原因:',
-'ipbhidename'                 => '在查封日誌、活躍查封列表以及用戶列表中隱藏用戶名／IP',
+'ipbhidename'                 => '在查封日誌、活躍查封列表以及用戶列表中隱藏用戶名',
 'badipaddress'                => 'IP地址不正確。',
 'blockipsuccesssub'           => '查封成功',
 'blockipsuccesstext'          => '[[Special:Contributions/$1|$1]]已經被查封。
@@ -1709,7 +1724,7 @@ $1',
 'allmessagesdefault'        => '預設的文字',
 'allmessagescurrent'        => '當前的文字',
 'allmessagestext'           => '這裡列出所有可定製的系統介面。',
-'allmessagesnotsupportedDB' => "'''{{ns:Special}}:Allmessages'''無法使用，因為'''\$wgUseDatabaseMessages'''選項已被設定關閉。",
+'allmessagesnotsupportedDB' => "這個頁面無法使用，因為'''\$wgUseDatabaseMessages'''已被設定關閉。",
 'allmessagesfilter'         => '正則表達式過濾條件：',
 'allmessagesmodified'       => '僅顯示修改過的',
 
