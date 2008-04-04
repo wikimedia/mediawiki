@@ -189,6 +189,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 13603) Added siprop=usergroups to meta=siteinfo
 * Cleaned up redirect resolution
 * Added possibility to obtain all external links through list=exturlusage
+* (bug 13606) Added archivename to iiprop
 
 === Languages updated in 1.13 ===
 

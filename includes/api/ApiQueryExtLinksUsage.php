@@ -54,30 +54,29 @@ class ApiQueryExtLinksUsage extends ApiQueryGeneratorBase {
 		
 		// Find the right prefix
 		global $wgUrlProtocols;
-		if(!is_null($protocol) && $protocol != '' && !in_array($protocol, $wgUrlProtocols))
-		{
-			foreach ($wgUrlProtocols as $p) {
-				if( substr( $p, 0, strlen( $protocol ) ) === $protocol ) {
-					$protocol = $p;
-					break;
-				}
+		foreach ($wgUrlProtocols as $p) {
+			if( substr( $p, 0, strlen( $protocol ) ) === $protocol ) {
+				$protocol = $p;
+				break;
 			}
 		}
 		
-		$db = $this->getDb();
-		$this->addTables(array('page','externallinks'));	// must be in this order for 'USE INDEX' 
-		$this->addOption('USE INDEX', 'el_index');
-		$this->addWhere('page_id=el_from');
-		$this->addWhereFld('page_namespace', $params['namespace']);
-
-		if(!is_null($query) || $query != '')
-		{
+		$likeQuery = false;
+		if (!is_null($query)) {
 			$likeQuery = LinkFilter::makeLike($query , $protocol);
 			if (!$likeQuery)
 				$this->dieUsage('Invalid query', 'bad_query');
 			$likeQuery = substr($likeQuery, 0, strpos($likeQuery,'%')+1);
-			$this->addWhere('el_index LIKE ' . $db->addQuotes( $likeQuery ));
 		}
+
+		$this->addTables(array('page','externallinks'));	// must be in this order for 'USE INDEX' 
+		$this->addOption('USE INDEX', 'el_index');
+
+		$db = $this->getDB();
+		$this->addWhere('page_id=el_from');
+		if ($likeQuery)
+			$this->addWhere('el_index LIKE ' . $db->addQuotes( $likeQuery ));
+		$this->addWhereFld('page_namespace', $params['namespace']);
 
 		$prop = array_flip($params['prop']);
 		$fld_ids = isset($prop['ids']);
@@ -181,7 +180,7 @@ class ApiQueryExtLinksUsage extends ApiQueryGeneratorBase {
 			'prop' => 'What pieces of information to include',
 			'offset' => 'Used for paging. Use the value returned for "continue"',
 			'protocol' => 'Protocol of the url',
-			'query' => 'Search string without protocol. See [[Special:LinkSearch]]. Leave empty to list all external links (euprotocol will be ignored)',
+			'query' => 'Search string without protocol. See [[Special:LinkSearch]]',
 			'namespace' => 'The page namespace(s) to enumerate.',
 			'limit' => 'How many entries to return.'
 		);
