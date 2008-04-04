@@ -1179,7 +1179,7 @@ Try [[Special:Search|searching on the wiki]] for relevant new pages.',
 # Revision deletion
 'rev-deleted-comment'         => '(comment removed)',
 'rev-deleted-user'            => '(username removed)',
-'rev-deleted-event'           => '(entry removed)',
+'rev-deleted-event'           => '(log action removed)',
 'rev-deleted-text-permission' => '<div class="mw-warning plainlinks">
 This page revision has been removed from the public archives.
 There may be details in the [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} deletion log].</div>',
