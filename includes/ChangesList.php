@@ -742,7 +742,6 @@ class EnhancedChangesList extends ChangesList {
 	 * @param string $dir one of '', 'd', 'l', 'r'
 	 * @param string $alt text
 	 * @return string HTML <img> tag
-	 * @access private
 	 */
 	protected function arrow( $dir, $alt='' ) {
 		global $wgStylePath;
@@ -755,7 +754,6 @@ class EnhancedChangesList extends ChangesList {
 	 * Generate HTML for a right- or left-facing arrow,
 	 * depending on language direction.
 	 * @return string HTML <img> tag
-	 * @access private
 	 */
 	protected function sideArrow() {
 		global $wgContLang;
@@ -767,7 +765,6 @@ class EnhancedChangesList extends ChangesList {
 	 * Generate HTML for a down-facing arrow
 	 * depending on language direction.
 	 * @return string HTML <img> tag
-	 * @access private
 	 */
 	protected function downArrow() {
 		return $this->arrow( 'd', '-' );
@@ -776,7 +773,6 @@ class EnhancedChangesList extends ChangesList {
 	/**
 	 * Generate HTML for a spacer image
 	 * @return string HTML <img> tag
-	 * @access private
 	 */
 	protected function spacerArrow() {
 		return $this->arrow( '', ' ' );
@@ -785,7 +781,6 @@ class EnhancedChangesList extends ChangesList {
 	/**
 	 * Add a set of spaces
 	 * @return string HTML <td> tag
-	 * @access private
 	 */	
 	protected function spacerIndent() {
 		return '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
