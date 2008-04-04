@@ -951,7 +951,7 @@ $2',
 # Revision deletion
 'rev-deleted-comment'         => '(תקציר העריכה הוסתר)',
 'rev-deleted-user'            => '(שם המשתמש הוסתר)',
-'rev-deleted-event'           => '(הרישום הוסתר)',
+'rev-deleted-event'           => '(פעולת היומן הוסתרה)',
 'rev-deleted-text-permission' => '<div class="mw-warning plainlinks">
 גרסת הדף הזו הוסרה מהארכיונים הציבוריים. ייתכן שישנם פרטים נוספים על כך ב[{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} יומן המחיקות].
 </div>',
