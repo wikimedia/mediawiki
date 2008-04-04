@@ -1315,7 +1315,8 @@ class RevisionDeleter {
 		$this->dbw->update( 'recentchanges',
 			array( 'rc_deleted' => $bitfield,
 				   'rc_patrolled' => 1 ),
-			array( 'rc_logid' => $row->log_id ),
+			array( 'rc_logid' => $row->log_id,
+				'rc_timestamp' => $row->log_timestamp ),
 			__METHOD__ );
 	}
 	
