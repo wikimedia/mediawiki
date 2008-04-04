@@ -744,7 +744,7 @@ class EnhancedChangesList extends ChangesList {
 	 * @return string HTML <img> tag
 	 * @access private
 	 */
-	private function arrow( $dir, $alt='' ) {
+	protected function arrow( $dir, $alt='' ) {
 		global $wgStylePath;
 		$encUrl = htmlspecialchars( $wgStylePath . '/common/images/Arr_' . $dir . '.png' );
 		$encAlt = htmlspecialchars( $alt );
