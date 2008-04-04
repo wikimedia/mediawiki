@@ -27,7 +27,10 @@ class ChangesList {
 	# Called by history lists and recent changes
 	#
 
-	/** @todo document */
+	/** 
+	* Changeslist contructor
+	* @param Skin $skin
+	*/
 	function __construct( &$skin ) {
 		$this->skin =& $skin;
 		$this->preCacheMessages();
@@ -54,7 +57,7 @@ class ChangesList {
 	 * As we use the same small set of messages in various methods and that
 	 * they are called often, we call them once and save them in $this->message
 	 */
-	function preCacheMessages() {
+	private function preCacheMessages() {
 		// Precache various messages
 		if( !isset( $this->message ) ) {
 			foreach( explode(' ', 'cur diff hist minoreditletter newpageletter last '.
@@ -67,8 +70,14 @@ class ChangesList {
 
 	/**
 	 * Returns the appropriate flags for new page, minor change and patrolling
+	 * @param bool $new
+	 * @param bool $minor
+	 * @param bool $patrolled
+	 * @param string $nothing, string to use for empty space
+	 * @param bool $bot
+	 * @return string
 	 */
-	function recentChangesFlags( $new, $minor, $patrolled, $nothing = '&nbsp;', $bot = false ) {
+	protected function recentChangesFlags( $new, $minor, $patrolled, $nothing = '&nbsp;', $bot = false ) {
 		$f = $new ? '<span class="newpage">' . $this->message['newpageletter'] . '</span>'
 				: $nothing;
 		$f .= $minor ? '<span class="minor">' . $this->message['minoreditletter'] . '</span>'
@@ -80,8 +89,9 @@ class ChangesList {
 
 	/**
 	 * Returns text for the start of the tabular part of RC
+	 * @return string
 	 */
-	function beginRecentChangesList() {
+	public function beginRecentChangesList() {
 		$this->rc_cache = array();
 		$this->rcMoveIndex = 0;
 		$this->rcCacheIndex = 0;
@@ -92,8 +102,9 @@ class ChangesList {
 
 	/**
  	 * Returns text for the end of RC
+	 * @return string
 	 */
-	function endRecentChangesList() {
+	public function endRecentChangesList() {
 		if( $this->rclistOpen ) {
 			return "</ul>\n";
 		} else {
@@ -101,34 +112,7 @@ class ChangesList {
 		}
 	}
 
-	/**
-	 * int $field one of DELETED_* bitfield constants
-	 * @return bool
-	 */
-	function isDeleted( $rc, $field ) {
-		return ($rc->mAttribs['rc_deleted'] & $field) == $field;
-	}
-	
-	/**
-	 * Determine if the current user is allowed to view a particular
-	 * field of this revision, if it's marked as deleted.
-	 * @param int $field
-	 * @return bool
-	 */
-	function userCan( $rc, $field ) {
-		if( ( $rc->mAttribs['rc_deleted'] & $field ) == $field ) {
-			global $wgUser;
-			$permission = ( $rc->mAttribs['rc_deleted'] & Revision::DELETED_RESTRICTED ) == Revision::DELETED_RESTRICTED
-				? 'hiderevision'
-				: 'deleterevision';
-			wfDebug( "Checking for $permission due to $field match on $rc->mAttribs['rc_deleted']\n" );
-			return $wgUser->isAllowed( $permission );
-		} else {
-			return true;
-		}
-	}
-
-	function insertMove( &$s, $rc ) {
+	protected function insertMove( &$s, $rc ) {
 		# Diff
 		$s .= '(' . $this->message['diff'] . ') (';
 		# Hist
@@ -141,7 +125,7 @@ class ChangesList {
 			$this->skin->makeKnownLinkObj( $rc->getMovedToTitle(), '' ) );
 	}
 
-	function insertDateHeader(&$s, $rc_timestamp) {
+	protected function insertDateHeader(&$s, $rc_timestamp) {
 		global $wgLang;
 
 		# Make date header if necessary
@@ -157,12 +141,12 @@ class ChangesList {
 		}
 	}
 
-	function insertLog(&$s, $title, $logtype) {
+	protected function insertLog(&$s, $title, $logtype) {
 		$logname = LogPage::logName( $logtype );
 		$s .= '(' . $this->skin->makeKnownLinkObj($title, $logname ) . ')';
 	}
 
-	function insertDiffHist(&$s, &$rc, $unpatrolled) {
+	protected function insertDiffHist(&$s, &$rc, $unpatrolled) {
 		# Diff link
 		if( !$this->userCan($rc,Revision::DELETED_TEXT) ) {
 			$diffLink = $this->message['diff'];
@@ -190,7 +174,7 @@ class ChangesList {
 		$s .= ') . . ';
 	}
 
-	function insertArticleLink(&$s, &$rc, $unpatrolled, $watched) {
+	protected function insertArticleLink(&$s, &$rc, $unpatrolled, $watched) {
 		# Article link
 		# If it's a new article, there is no diff link, but if it hasn't been
 		# patrolled yet, we need to give users a way to do so
@@ -214,14 +198,14 @@ class ChangesList {
 		$s .= ' '.$articlelink;
 	}
 
-	function insertTimestamp(&$s, $rc) {
+	protected function insertTimestamp(&$s, $rc) {
 		global $wgLang;
 		# Timestamp
 		$s .= $this->message['semicolon-separator'] . ' ' . $wgLang->time( $rc->mAttribs['rc_timestamp'], true, true ) . ' . . ';
 	}
 
 	/** Insert links to user page, user talk page and eventually a blocking link */
-	function insertUserRelatedLinks(&$s, &$rc) {
+	protected function insertUserRelatedLinks(&$s, &$rc) {
 		if ( $this->isDeleted($rc,Revision::DELETED_USER) ) {
 		   $s .= ' <span class="history-deleted">' . wfMsgHtml('rev-deleted-user') . '</span>';   
 		} else {
@@ -231,7 +215,7 @@ class ChangesList {
 	}
 
 	/** insert a formatted action */
-	function insertAction(&$s, &$rc) {
+	protected function insertAction(&$s, &$rc) {
 		# Add action
 		if( $rc->mAttribs['rc_type'] == RC_LOG ) {
 			// log action
@@ -245,7 +229,7 @@ class ChangesList {
 	}
 
 	/** insert a formatted comment */
-	function insertComment(&$s, &$rc) {
+	protected function insertComment(&$s, &$rc) {
 		# Add comment
 		if( $rc->mAttribs['rc_type'] != RC_MOVE && $rc->mAttribs['rc_type'] != RC_MOVE_OVER_REDIRECT ) {
 			// log comment
@@ -269,7 +253,7 @@ class ChangesList {
 	/**
 	 * Returns the string which indicates the number of watching users
 	 */
-	function numberofWatchingusers( $count ) {
+	protected function numberofWatchingusers( $count ) {
 		global $wgLang;
 		static $cache = array();
 		if ( $count > 0 ) {
@@ -280,6 +264,36 @@ class ChangesList {
 			return $cache[$count];
 		} else {
 			return '';
+		}
+	}
+	
+	/**
+	 * Determine if said field of a revision is hidden
+	 * @param RCCacheEntry $rc
+	 * @param int $field one of DELETED_* bitfield constants
+	 * @return bool
+	 */
+	public static function isDeleted( $rc, $field ) {
+		return ($rc->mAttribs['rc_deleted'] & $field) == $field;
+	}
+	
+	/**
+	 * Determine if the current user is allowed to view a particular
+	 * field of this revision, if it's marked as deleted.
+	 * @param RCCacheEntry $rc
+	 * @param int $field
+	 * @return bool
+	 */
+	public static function userCan( $rc, $field ) {
+		if( ( $rc->mAttribs['rc_deleted'] & $field ) == $field ) {
+			global $wgUser;
+			$permission = ( $rc->mAttribs['rc_deleted'] & Revision::DELETED_RESTRICTED ) == Revision::DELETED_RESTRICTED
+				? 'hiderevision'
+				: 'deleterevision';
+			wfDebug( "Checking for $permission due to $field match on $rc->mAttribs['rc_deleted']\n" );
+			return $wgUser->isAllowed( $permission );
+		} else {
+			return true;
 		}
 	}
 }
@@ -699,8 +713,9 @@ class EnhancedChangesList extends ChangesList {
 			// log comment
 			parent::insertComment( $r, $rcObj );
 			# Mark revision as deleted
-			if ( !$rc_log_type && $this->isDeleted($rcObj,Revision::DELETED_TEXT) )
+			if( !$rc_log_type && $this->isDeleted($rcObj,Revision::DELETED_TEXT) ) {
 				$r .= ' <tt>' . wfMsgHtml( 'deletedrev' ) . '</tt>';
+			}
 
 			$r .= "</td></tr>\n";
 		}
