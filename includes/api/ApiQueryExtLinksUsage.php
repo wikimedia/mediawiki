@@ -51,30 +51,33 @@ class ApiQueryExtLinksUsage extends ApiQueryGeneratorBase {
 
 		$protocol = $params['protocol'];
 		$query = $params['query'];
-		if (is_null($query))
-			$this->dieUsage('Missing required query parameter', 'params');
 		
 		// Find the right prefix
 		global $wgUrlProtocols;
-		foreach ($wgUrlProtocols as $p) {
-			if( substr( $p, 0, strlen( $protocol ) ) === $protocol ) {
-				$protocol = $p;
-				break;
+		if(!is_null($protocol) && $protocol != '' && !in_array($protocol, $wgUrlProtocols))
+		{
+			foreach ($wgUrlProtocols as $p) {
+				if( substr( $p, 0, strlen( $protocol ) ) === $protocol ) {
+					$protocol = $p;
+					break;
+				}
 			}
 		}
 		
-		$likeQuery = LinkFilter::makeLike($query , $protocol);
-		if (!$likeQuery)
-			$this->dieUsage('Invalid query', 'bad_query');
-		$likeQuery = substr($likeQuery, 0, strpos($likeQuery,'%')+1);
-
+		$db = $this->getDb();
 		$this->addTables(array('page','externallinks'));	// must be in this order for 'USE INDEX' 
 		$this->addOption('USE INDEX', 'el_index');
-
-		$db = $this->getDB();
 		$this->addWhere('page_id=el_from');
-		$this->addWhere('el_index LIKE ' . $db->addQuotes( $likeQuery ));
 		$this->addWhereFld('page_namespace', $params['namespace']);
+
+		if(!is_null($query) || $query != '')
+		{
+			$likeQuery = LinkFilter::makeLike($query , $protocol);
+			if (!$likeQuery)
+				$this->dieUsage('Invalid query', 'bad_query');
+			$likeQuery = substr($likeQuery, 0, strpos($likeQuery,'%')+1);
+			$this->addWhere('el_index LIKE ' . $db->addQuotes( $likeQuery ));
+		}
 
 		$prop = array_flip($params['prop']);
 		$fld_ids = isset($prop['ids']);
@@ -178,7 +181,7 @@ class ApiQueryExtLinksUsage extends ApiQueryGeneratorBase {
 			'prop' => 'What pieces of information to include',
 			'offset' => 'Used for paging. Use the value returned for "continue"',
 			'protocol' => 'Protocol of the url',
-			'query' => 'Search string without protocol. See [[Special:LinkSearch]]',
+			'query' => 'Search string without protocol. See [[Special:LinkSearch]]. Leave empty to list all external links (euprotocol will be ignored)',
 			'namespace' => 'The page namespace(s) to enumerate.',
 			'limit' => 'How many entries to return.'
 		);
