@@ -66,7 +66,7 @@
 	'de' => 'Deutsch',		# German ("Du")
 	'de-formal' => 'Deutsch (Sie-Form)',		# German - formal address ("Sie")
 	'diq' => 'Zazaki',		# Zazaki
-	'dk' => 'Dansk (deprecated:da)', 		# Unused code currently redirecting to Danish, 'da' is correct for the language
+	'dk' => 'Dansk (deprecated:da)', 		# Unused code currently falls back to Danish, 'da' is correct for the language
 	'dsb' => 'Dolnoserbski', # Lower Sorbian
 	'dv' => 'ދިވެހިބަސް',		# Dhivehi
 	'dz' => 'ཇོང་ཁ',		# Bhutani
@@ -107,6 +107,9 @@
 	'haw' => 'Hawai`i',		# Hawaiian
 	'he' => 'עברית',	# Hebrew
 	'hi' => 'हिन्दी',	# Hindi
+	'hif' => 'Fiji Hindi/फ़ीजी हिन्दी',	# Fijian Hindi (falls back to hif-latn)
+	'hif-deva' => 'फ़ीजी हिन्दी',	# Hindi
+	'hif-latn' => 'Fiji Hindi',	# Hindi
 	'hil' => 'Ilonggo',	# Hiligaynon
 	'ho' => 'Hiri Motu',	# Hiri Motu
 	'hr' => 'Hrvatski',		# Croatian
@@ -243,7 +246,7 @@
 	'roa-rup' => 'Armãneashce', # Aromanian
 	'roa-tara' => 'Tarandíne',	# Tarantino
 	'ru' => 'Русский',	# Russian
-	'ruq' => 'Vlăheşte',	# Megleno-Romanian (redirects to ruq-latn)
+	'ruq' => 'Vlăheşte',	# Megleno-Romanian (falls back to ruq-latn)
 	'ruq-cyrl' => 'Влахесте',	# Megleno-Romanian (Cyrillic script)
 	'ruq-grek' => 'Βλαεστε',	# Megleno-Romanian (Greek script)
 	'ruq-latn' => 'Vlăheşte',	# Megleno-Romanian (Latin script)
