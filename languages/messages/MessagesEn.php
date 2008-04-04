@@ -2664,6 +2664,10 @@ Variants for Chinese language
 'variantname-ku-latn' => 'ku-Latn', # only translate this message to other languages if you have to change it
 'variantname-ku'      => 'ku', # only translate this message to other languages if you have to change it
 
+'variantname-tg-cyrl' => 'tg-Cyrl',
+'variantname-tg-latn' => 'tg-Latn',
+'variantname-tg'      => 'tg',
+
 # Metadata
 'metadata'          => 'Metadata',
 'metadata-help'     => 'This file contains additional information, probably added from the digital camera or scanner used to create or digitize it.

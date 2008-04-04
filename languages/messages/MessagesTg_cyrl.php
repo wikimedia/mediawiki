@@ -2385,4 +2385,8 @@ $1',
 'fileduplicatesearch-result-1' => 'Парвандаи "$1" мавриди такрорӣ надорад.',
 'fileduplicatesearch-result-n' => 'Парвандаи "$1" дорои {{PLURAL:$2|1 мавриди такрорӣ|$2 мавриди такрорӣ}} аст.',
 
+# Unknown messages
+'variantname-tg'      => 'кирилликӣ',
+'variantname-tg-latn' => 'lotinī',
+
 );
