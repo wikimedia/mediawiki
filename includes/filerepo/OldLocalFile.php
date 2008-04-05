@@ -45,8 +45,7 @@ class OldLocalFile extends LocalFile {
 	}
 
 	function getCacheKey() {
-		$hashedName = md5($this->getName());
-		return wfMemcKey( 'oldfile', $hashedName );
+		return false;
 	}
 
 	function getArchiveName() {
@@ -62,105 +61,6 @@ class OldLocalFile extends LocalFile {
 	
 	function isVisible() { 
 		return $this->exists() && !$this->isDeleted(File::DELETED_FILE);
-	}
-
-	/**
-	 * Try to load file metadata from memcached. Returns true on success.
-	 */
-	function loadFromCache() {
-		global $wgMemc;
-		wfProfileIn( __METHOD__ );
-		$this->dataLoaded = false;
-		$key = $this->getCacheKey();
-		if ( !$key ) {
-			return false;
-		}
-		$oldImages = $wgMemc->get( $key );
-
-		if ( isset( $oldImages['version'] ) && $oldImages['version'] == self::CACHE_VERSION ) {
-			unset( $oldImages['version'] );
-			$more = isset( $oldImages['more'] );
-			unset( $oldImages['more'] );
-			$found = false;
-			if ( is_null( $this->requestedTime ) ) {
-				foreach ( $oldImages as $timestamp => $info ) {
-					if ( $info['archive_name'] == $this->archive_name ) {
-						$found = true;
-						break;
-					}
-				}
-			} else {
-				krsort( $oldImages );
-				foreach ( $oldImages as $timestamp => $info ) {
-					if ( $timestamp == $this->requestedTime ) {
-						$found = true;
-						break;
-					}
-				}
-			}
-			if ( $found ) {
-				wfDebug( "Pulling file metadata from cache key {$key}[{$timestamp}]\n" );
-				$this->dataLoaded = true;
-				$this->fileExists = true;
-				foreach ( $info as $name => $value ) {
-					$this->$name = $value;
-				}
-			} elseif ( $more ) {
-				wfDebug( "Cache key was truncated, oldimage row might be found in the database\n" );
-			} else {
-				wfDebug( "Image did not exist at the specified time.\n" );
-				$this->fileExists = false;
-				$this->dataLoaded = true;
-			}
-		}
-
-		if ( $this->dataLoaded ) {
-			wfIncrStats( 'image_cache_hit' );
-		} else {
-			wfIncrStats( 'image_cache_miss' );
-		}
-
-		wfProfileOut( __METHOD__ );
-		return $this->dataLoaded;
-	}
-
-	function saveToCache() {
-		// If a timestamp was specified, cache the entire history of the image (up to MAX_CACHE_ROWS).
-		if ( is_null( $this->requestedTime ) ) {
-			return;
-		}
-		// This is expensive, so we only do it if $wgMemc is real
-		global $wgMemc;
-		if ( $wgMemc instanceof FakeMemcachedClient ) {
-			return;
-		}
-		$key = $this->getCacheKey();
-		if ( !$key ) { 
-			return;
-		}
-		wfProfileIn( __METHOD__ );
-
-		$dbr = $this->repo->getSlaveDB();
-		$res = $dbr->select( 'oldimage', $this->getCacheFields( 'oi_' ),
-			array( 'oi_name' => $this->getName() ), __METHOD__, 
-			array( 
-				'LIMIT' => self::MAX_CACHE_ROWS + 1,
-				'ORDER BY' => 'oi_timestamp DESC',
-			));
-		$cache = array( 'version' => self::CACHE_VERSION );
-		$numRows = $dbr->numRows( $res );
-		if ( $numRows > self::MAX_CACHE_ROWS ) {
-			$cache['more'] = true;
-			$numRows--;
-		}
-		for ( $i = 0; $i < $numRows; $i++ ) {
-			$row = $dbr->fetchObject( $res );
-			$decoded = $this->decodeRow( $row, 'oi_' );
-			$cache[$row->oi_timestamp] = $decoded;
-		}
-		$dbr->freeResult( $res );
-		$wgMemc->set( $key, $cache, 7*86400 /* 1 week */ );
-		wfProfileOut( __METHOD__ );
 	}
 
 	function loadFromDB() {
