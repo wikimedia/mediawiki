@@ -152,6 +152,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 13441) Allow Special:Recentchanges to show bots only
 * (bug 13431) Show true message source in Special:Allmessages&ot=php / xml
 * (bug 13616) Replace underscores in search terms by spaces
+* (bug 13463) Login successful page doesn't use user's preferred interface language
 
 === API changes in 1.13 ===
 
