@@ -8,10 +8,11 @@
  */
 class FileRevertForm {
 
-	private $title = null;
-	private $file = null;
-	private $oldimage = '';
-	private $timestamp = false;
+	protected $title = null;
+	protected $file = null;
+	protected $archiveName = '';
+	protected $timestamp = false;
+	protected $oldFile;
 	
 	/**
 	 * Constructor
@@ -48,10 +49,10 @@ class FileRevertForm {
 			return;
 		}
 		
-		$this->oldimage = $wgRequest->getText( 'oldimage' );
+		$this->archiveName = $wgRequest->getText( 'oldimage' );
 		$token = $wgRequest->getText( 'wpEditToken' );
 		if( !$this->isValidOldSpec() ) {
-			$wgOut->showUnexpectedValueError( 'oldimage', htmlspecialchars( $this->oldimage ) );
+			$wgOut->showUnexpectedValueError( 'oldimage', htmlspecialchars( $this->archiveName ) );
 			return;
 		}
 		
@@ -62,8 +63,8 @@ class FileRevertForm {
 		}
 		
 		// Perform the reversion if appropriate
-		if( $wgRequest->wasPosted() && $wgUser->matchEditToken( $token, $this->oldimage ) ) {
-			$source = $this->file->getArchiveVirtualUrl( $this->oldimage );
+		if( $wgRequest->wasPosted() && $wgUser->matchEditToken( $token, $this->archiveName ) ) {
+			$source = $this->file->getArchiveVirtualUrl( $this->archiveName );
 			$comment = $wgRequest->getText( 'wpComment' );
 			// TODO: Preserve file properties from database instead of reloading from file
 			$status = $this->file->upload( $source, $comment, $comment );
@@ -71,7 +72,7 @@ class FileRevertForm {
 				$wgOut->addHtml( wfMsgExt( 'filerevert-success', 'parse', $this->title->getText(),
 					$wgLang->date( $this->getTimestamp(), true ),
 					$wgLang->time( $this->getTimestamp(), true ),
-					wfExpandUrl( $this->file->getArchiveUrl( $this->oldimage ) ) ) );
+					wfExpandUrl( $this->file->getArchiveUrl( $this->archiveName ) ) ) );
 				$wgOut->returnToMain( false, $this->title );
 			} else {
 				$wgOut->addWikiText( $status->getWikiText() );
@@ -86,16 +87,16 @@ class FileRevertForm {
 	/**
 	 * Show the confirmation form
 	 */
-	private function showForm() {
+	protected function showForm() {
 		global $wgOut, $wgUser, $wgRequest, $wgLang, $wgContLang;
 		$timestamp = $this->getTimestamp();
 
 		$form  = Xml::openElement( 'form', array( 'method' => 'post', 'action' => $this->getAction() ) );
-		$form .= Xml::hidden( 'wpEditToken', $wgUser->editToken( $this->oldimage ) );
+		$form .= Xml::hidden( 'wpEditToken', $wgUser->editToken( $this->archiveName ) );
 		$form .= '<fieldset><legend>' . wfMsgHtml( 'filerevert-legend' ) . '</legend>';
 		$form .= wfMsgExt( 'filerevert-intro', 'parse', $this->title->getText(),
 			$wgLang->date( $timestamp, true ), $wgLang->time( $timestamp, true ),
-			wfExpandUrl( $this->file->getArchiveUrl( $this->oldimage ) ) );
+			wfExpandUrl( $this->file->getArchiveUrl( $this->archiveName ) ) );
 		$form .= '<p>' . Xml::inputLabel( wfMsg( 'filerevert-comment' ), 'wpComment', 'wpComment',
 			60, wfMsgForContent( 'filerevert-defaultcomment',
 			$wgContLang->date( $timestamp, false, false ), $wgContLang->time( $timestamp, false, false ) ) ) . '</p>';
@@ -109,7 +110,7 @@ class FileRevertForm {
 	/**
 	 * Set headers, titles and other bits
 	 */
-	private function setHeaders() {
+	protected function setHeaders() {
 		global $wgOut, $wgUser;
 		$wgOut->setPageTitle( wfMsg( 'filerevert', $this->title->getText() ) );
 		$wgOut->setRobotPolicy( 'noindex,nofollow' );
@@ -121,10 +122,10 @@ class FileRevertForm {
 	 *
 	 * @return bool
 	 */
-	private function isValidOldSpec() {
-		return strlen( $this->oldimage ) >= 16
-			&& strpos( $this->oldimage, '/' ) === false
-			&& strpos( $this->oldimage, '\\' ) === false;
+	protected function isValidOldSpec() {
+		return strlen( $this->archiveName ) >= 16
+			&& strpos( $this->archiveName, '/' ) === false
+			&& strpos( $this->archiveName, '\\' ) === false;
 	}
 	
 	/**
@@ -133,9 +134,8 @@ class FileRevertForm {
 	 *
 	 * @return bool
 	 */
-	private function haveOldVersion() {
-		$file = wfFindFile( $this->title, $this->oldimage );
-		return $file && $file->exists() && $file->isLocal();
+	protected function haveOldVersion() {
+		return $this->getOldFile()->exists();
 	}
 	
 	/**
@@ -143,10 +143,10 @@ class FileRevertForm {
 	 *
 	 * @return string
 	 */
-	private function getAction() {
+	protected function getAction() {
 		$q = array();
 		$q[] = 'action=revert';
-		$q[] = 'oldimage=' . urlencode( $this->oldimage );
+		$q[] = 'oldimage=' . urlencode( $this->archiveName );
 		return $this->title->getLocalUrl( implode( '&', $q ) );
 	}
 	
@@ -155,12 +155,17 @@ class FileRevertForm {
 	 *
 	 * @return string
 	 */
-	private function getTimestamp() {
+	protected function getTimestamp() {
 		if( $this->timestamp === false ) {
-			$file = RepoGroup::singleton()->getLocalRepo()->newFromArchiveName( $this->title, $this->oldimage );
-			$this->timestamp = $file->getTimestamp();
+			$this->timestamp = $this->getOldFile()->getTimestamp();
 		}
 		return $this->timestamp;
 	}
-	
+
+	protected function getOldFile() {
+		if ( !isset( $this->oldFile ) ) {
+			$this->oldFile = RepoGroup::singleton()->getLocalRepo()->newFromArchiveName( $this->title, $this->archiveName );
+		}
+		return $this->oldFile;
+	}
 }
