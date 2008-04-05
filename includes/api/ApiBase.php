@@ -353,10 +353,10 @@ abstract class ApiBase {
 	/**
 	 * Get a value for the given parameter 
 	 */
-	protected function getParameter($paramName) {
+	protected function getParameter($paramName, $parseMaxLimit = true) {
 		$params = $this->getAllowedParams();
 		$paramSettings = $params[$paramName];
-		return $this->getParameterFromSettings($paramName, $paramSettings);
+		return $this->getParameterFromSettings($paramName, $paramSettings, $parseMaxLimit);
 	}
 
 	/**
