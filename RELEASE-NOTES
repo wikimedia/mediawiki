@@ -191,6 +191,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Cleaned up redirect resolution
 * Added possibility to obtain all external links through list=exturlusage
 * (bug 13606) Added archivename to iiprop
+* (bug 11633) Explicitly convert redirect titles to strings due to PHP's
+  very weak typing on array keys.
 
 === Languages updated in 1.13 ===
 

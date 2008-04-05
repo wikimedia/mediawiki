@@ -275,7 +275,7 @@ class ApiQuery extends ApiBase {
 		$redirValues = array ();
 		foreach ($pageSet->getRedirectTitles() as $titleStrFrom => $titleStrTo) {
 			$redirValues[] = array (
-				'from' => $titleStrFrom,
+				'from' => strval($titleStrFrom),
 				'to' => $titleStrTo
 			);
 		}
