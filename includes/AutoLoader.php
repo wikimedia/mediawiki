@@ -242,6 +242,7 @@ function __autoload($className) {
 		'SpecialVersion' => 'includes/SpecialVersion.php',
 		'SqlBagOStuff' => 'includes/BagOStuff.php',
 		'SquidUpdate' => 'includes/SquidUpdate.php',
+		'Status' => 'includes/Status.php',
 		'StringUtils' => 'includes/StringUtils.php',
 		'TableDiffFormatter' => 'includes/DifferenceEngine.php',
 		'TablePager' => 'includes/Pager.php',

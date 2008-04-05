@@ -565,6 +565,13 @@ $wgDBprefix         = '';
 /** MySQL table options to use during installation or update */
 $wgDBTableOptions = 'TYPE=InnoDB';
 
+/**
+ * Make all database connections secretly go to localhost. Fool the load balancer
+ * thinking there is an arbitrarily large cluster of servers to connect to. 
+ * Useful for debugging.
+ */
+$wgAllDBsAreLocalhost = false;
+
 /**#@-*/
 
 
@@ -2663,6 +2670,7 @@ $wgExternalStores = false;
 /**
  * An array of external mysql servers, e.g.
  * $wgExternalServers = array( 'cluster1' => array( 'srv28', 'srv29', 'srv30' ) );
+ * Used by LBFactory_Simple, may be ignored if $wgLBFactoryConf is set to another class.
  */
 $wgExternalServers = array();
 
