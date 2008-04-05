@@ -370,9 +370,8 @@ class ApiMain extends ApiBase {
 		/* If the help message is requested in the default (xmlfm) format,
 		 * tell the printer not to escape ampersands so that our links do
 		 * not break. */
-		$params = $this->extractRequestParams();
 		$printer->setUnescapeAmps ( ( $this->mAction == 'help' || $isError ) 
-				&& $params['format'] == ApiMain::API_DEFAULT_FORMAT );
+				&& $this->getParameter('format') == ApiMain::API_DEFAULT_FORMAT );
 
 		$printer->initPrinter($isError);
 
