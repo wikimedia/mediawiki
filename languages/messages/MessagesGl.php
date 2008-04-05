@@ -359,7 +359,8 @@ Se non é o caso, pode ter atopado un erro no programa. Por favor, informe a un 
 'unexpected'           => 'Valor inesperado: "$1"="$2".',
 'formerror'            => 'Erro: non se pode enviar o formulario',
 'badarticleerror'      => 'Non pode efectuarse esta acción nesta páxina.',
-'cannotdelete'         => 'Non se pode borrar a páxina ou imaxe especificada. (Se cadra xa a borrou alguén)',
+'cannotdelete'         => 'Non se pode borrar a páxina ou imaxe especificada.
+Se cadra xa foi borrada por alguén.',
 'badtitle'             => 'Título incorrecto',
 'badtitletext'         => 'O título da páxina pedida non era válido, estaba baleiro ou proviña dunha ligazón inter-lingua ou inter-wiki incorrecta. Pode conter un ou máis caracteres dos que non se poden empregar nos títulos.',
 'perfdisabled'         => 'Sentímolo! Esta funcionalidade foi deshabilitada temporalmente porque fai moi lenta a base de datos até o punto no que non se pode usar o wiki.',
@@ -502,7 +503,7 @@ Pode facer caso omiso desta mensaxe se se creou esta conta por erro.',
 'image_sample'    => 'Exemplo.jpg',
 'image_tip'       => 'Ficheiro embebido',
 'media_sample'    => 'Exemplo.mp3',
-'media_tip'       => 'Ligazón a ficheiro',
+'media_tip'       => 'Ligazón a un ficheiro',
 'sig_tip'         => 'A súa sinatura con selo temporal',
 'hr_tip'          => 'Liña horizontal (úsea con moderación)',
 
@@ -1382,7 +1383,8 @@ Feedback e axuda:
 'confirmdeletetext'           => 'Está a piques de borrar de xeito permanente unha páxina ou imaxe con todo o seu historial na base de datos.
 Por favor, confirme que é realmente a súa intención, que comprende as consecuencias e que está obrando de acordo coas regras [[{{MediaWiki:Policy-url}}|da política e normas]].',
 'actioncomplete'              => 'A acción foi completada',
-'deletedtext'                 => '"<nowiki>$1</nowiki>" foi borrado. En $2 pode ver unha listaxe dos borrados recentes.',
+'deletedtext'                 => '"<nowiki>$1</nowiki>" foi borrado.
+No $2 pode ver unha listaxe dos borrados recentes.',
 'deletedarticle'              => '"[[$1]]" foi borrado',
 'dellogpage'                  => 'Rexistro de borrado',
 'dellogpagetext'              => 'Abaixo está a listaxe dos borrados máis recentes.',

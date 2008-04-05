@@ -417,7 +417,7 @@ All Spezialsäiten déi et gëtt sinn op der [[{{ns:special}}:Specialpages|Lesch
 'nodb'                 => "D'Datebank $1 konnt net gewielt ginn",
 'cachederror'          => 'Folgend Säit ass eng Kopie aus dem Cache an net onbedéngt aktuell.',
 'laggedslavemode'      => 'Opgepasst: Dës Säit ass net onbedingt um neiste Stand.',
-'readonly'             => "D'Datebank ass gespart",
+'readonly'             => "D'Datebank ass gespaart",
 'enterlockreason'      => "Gitt w.e.g. e Grond u firwat d'Datebak gespaart ass, a wéi laang dës Spär ongeféier bestoe soll.",
 'readonlytext'         => 'Datebank ass am Moment fir all Ännerunge gespaart, wahrscheinlech wéinst Maintenance vun der Datebank, duerno ass erëm alles beim alen.
 
@@ -755,7 +755,7 @@ Vläicht gouf se geläscht oder geréckelt.
 # Revision deletion
 'rev-deleted-comment'     => '(Bemierkung geläscht)',
 'rev-deleted-user'        => '(Benotzernumm ewechgeholl)',
-'rev-deleted-event'       => '(Aktioun ewechgeholl)',
+'rev-deleted-event'       => '(Aktioun aus dem Logbuch erausgeholl)',
 'rev-delundel'            => 'weisen/verstoppen',
 'revisiondelete'          => 'Versioune läschen/restauréieren',
 'revdelete-nooldid-title' => 'Ongülteg Zilversioun',
@@ -902,25 +902,26 @@ Sich no: $3 $9',
 'files'                   => 'Fichieren',
 
 # User rights
-'userrights'                  => 'Benotzerrechterverwaltung', # Not used as normal message but as header for the special page itself
-'userrights-lookup-user'      => 'Benotzergrupp verwalten',
-'userrights-user-editname'    => 'Benotzernumm uginn:',
-'editusergroup'               => 'Benotzergruppen änneren',
-'editinguser'                 => "Ännere vun de Rechter vum Benotzer '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
-'userrights-editusergroup'    => 'Benotzergruppen änneren',
-'saveusergroups'              => 'Benotzergruppe späicheren',
-'userrights-groupsmember'     => 'Member vun:',
-'userrights-groupsremovable'  => 'Gruppen déi geläscht kënne ginn:',
-'userrights-groupsavailable'  => "Et ginn d'Gruppen:",
-'userrights-reason'           => 'Grond:',
-'userrights-available-none'   => 'Dir däerft keng Benotzerrechter änneren.',
-'userrights-available-add'    => 'Dir kënnt Benotzer an {{PLURAL:$2|dëse Grupp|dës Grupppen}} derbäisetzen: $1.',
-'userrights-available-remove' => 'Dir kënnt Benotzer aus {{PLURAL:$2|dëser Gruppe|dëse Gruppen}} eraushuelen: $1.',
-'userrights-no-interwiki'     => "Dir hutt net déi néideg Rechter, fir d'Rechter vu Benoutzer op anere Wikien z'änneren.",
-'userrights-nodatabase'       => "D'Datebank $1 gëtt et net oder se ass net lokal.",
-'userrights-notallowed'       => "Dir hutt net déi néideg Rechter fir d'Rechter vun anere Benotzer z'änneren.",
-'userrights-changeable-col'   => 'Gruppen déi Dir ännere kënnt',
-'userrights-unchangeable-col' => 'Gruppen déi Dir net ännere kënnt',
+'userrights'                    => 'Benotzerrechterverwaltung', # Not used as normal message but as header for the special page itself
+'userrights-lookup-user'        => 'Benotzergrupp verwalten',
+'userrights-user-editname'      => 'Benotzernumm uginn:',
+'editusergroup'                 => 'Benotzergruppen änneren',
+'editinguser'                   => "Ännere vun de Rechter vum Benotzer '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
+'userrights-editusergroup'      => 'Benotzergruppen änneren',
+'saveusergroups'                => 'Benotzergruppe späicheren',
+'userrights-groupsmember'       => 'Member vun:',
+'userrights-groupsremovable'    => 'Gruppen déi geläscht kënne ginn:',
+'userrights-groupsavailable'    => "Et ginn d'Gruppen:",
+'userrights-reason'             => 'Grond:',
+'userrights-available-none'     => 'Dir däerft keng Benotzerrechter änneren.',
+'userrights-available-add'      => 'Dir kënnt Benotzer an {{PLURAL:$2|dëse Grupp|dës Grupppen}} derbäisetzen: $1.',
+'userrights-available-remove'   => 'Dir kënnt Benotzer aus {{PLURAL:$2|dëser Gruppe|dëse Gruppen}} eraushuelen: $1.',
+'userrights-available-add-self' => 'Dir kënnt iech selwer an {{PLURAL:$2|dëse Grupp|dës Gruppen}} derbäisetzen: $1.',
+'userrights-no-interwiki'       => "Dir hutt net déi néideg Rechter, fir d'Rechter vu Benoutzer op anere Wikien z'änneren.",
+'userrights-nodatabase'         => "D'Datebank $1 gëtt et net oder se ass net lokal.",
+'userrights-notallowed'         => "Dir hutt net déi néideg Rechter fir d'Rechter vun anere Benotzer z'änneren.",
+'userrights-changeable-col'     => 'Gruppen déi Dir ännere kënnt',
+'userrights-unchangeable-col'   => 'Gruppen déi Dir net ännere kënnt',
 
 # Groups
 'group'               => 'Grupp:',
@@ -1033,6 +1034,7 @@ Dir sollt onbedingt bedenken, datt, genee wéi bäi normale Säiten, aner Benotz
 'emptyfile'            => 'De Fichier deen Dir eropgelueden hutt, schéngt eidel ze sinn. Dëst kann duerch en Tippfeeler am Numm vum Fichier kommen. Préift w.e.g. no, op Dir dëse Fichier wierklech eropluede wëllt.',
 'fileexists'           => 'Et gëtt schonn e Fichier mat dësem Numm, kuckt w.e.g. $1 wann Dir net sécher sidd, op Dir den Numm ännere wëllt.',
 'fileexists-thumb'     => "<center>'''Dëse Fichier gëtt et'''</center>",
+'fileexists-forbidden' => "Et gëtt schonn e Fichier mat ësem Nummm. Gitt w.e.g. z'réck a lued dëse Fichier ënntert engem aner Numm erop. [[Image:$1|thumb|center|$1]]",
 'successfulupload'     => 'Eroplueden erfollegräich',
 'uploadwarning'        => 'Opgepasst',
 'savefile'             => 'Fichier späicheren',
@@ -1047,6 +1049,7 @@ Dir sollt onbedingt bedenken, datt, genee wéi bäi normale Säiten, aner Benotz
 'destfilename'         => 'Numm vum Fichier',
 'upload-maxfilesize'   => 'Maximal Fichiersgréisst: $1',
 'watchthisupload'      => 'Dës Säit iwwerwaachen',
+'filewasdeleted'       => 'E Fichier matt dësem Numm gouf schonn eemol eropgelueden an duerno nees geläscht. kuckt w.e.g op $1 no, ier Dir dee Fichier nach eng Kéier eroplued.',
 'filename-bad-prefix'  => 'Den Numm vum Fichier fänkt mat <strong>„$1“</strong> un. Dësen Numm ass automatesch vun der Kamera gi ginn a seet näischt iwwert dat aus, wat drop ass. Gitt dem Fichier w.e.gl. en Numm, deen den Inhalt besser beschreift, an deen net verwiesselt ka ginn.',
 
 'upload-proto-error'     => 'Falsche Protokoll',
@@ -1129,6 +1132,7 @@ Dir sollt onbedingt bedenken, datt, genee wéi bäi normale Säiten, aner Benotz
 
 # MIME search
 'mimesearch' => 'Sich no MIME-Zort',
+'mimetype'   => 'MIME-Typ:',
 'download'   => 'eroflueden',
 
 # Unwatched pages
@@ -1594,6 +1598,7 @@ Kuckt d'[[Special:Ipblocklist|IP Spär-Lëscht]] fir all Spären ze gesin.",
 'block-log-flags-noautoblock' => 'Autoblock deaktivéiert',
 'block-log-flags-noemail'     => 'E-Mail gespaart',
 'range_block_disabled'        => 'Dem Administrateur seng Fähegkeet fir ganz Adressberäicher ze spären ass ausser Kraaft.',
+'ipb_expiry_invalid'          => "D'Dauer déi Dir uginn hutt ass ongülteg.",
 'ipb_already_blocked'         => '„$1“ ass scho gespaart',
 'ipb_cant_unblock'            => "Feeler: D'Nummer vun der Spär $1 gouf net fonnt. D'Spär gouf waarscheinlech schonn opgehuewen.",
 'ip_range_invalid'            => 'Ongëltegen IP Block.',

@@ -255,6 +255,7 @@ $messages = array(
 'categorypage'      => 'د وېشنيزې مخ کتل',
 'viewtalkpage'      => 'خبرې اترې کتل',
 'otherlanguages'    => 'په نورو ژبو کې',
+'redirectpagesub'   => 'ورګرځېدلی مخ',
 'lastmodifiedat'    => 'دا مخ وروستی ځل په $2، $1 بدلون موندلی.', # $1 date, $2 time
 'viewcount'         => 'همدا مخ {{PLURAL:$1|يو وار|$1 واره}} کتل شوی.',
 'protectedpage'     => 'ژغورلی مخ',
@@ -280,6 +281,7 @@ $messages = array(
 'privacy'           => 'د محرميت تګلاره',
 'privacypage'       => 'Project:د محرميت_تګلاره',
 'sitesupport'       => 'بسپنې',
+'sitesupport-url'   => 'Project:د وېبځي ملاتړ',
 
 'badaccess'        => 'د لاسرسۍ تېروتنه',
 'badaccess-group0' => 'تاسو د غوښتل شوې کړنې د ترسره کولو اجازه نه لرۍ.',
@@ -423,6 +425,7 @@ $messages = array(
 'italic_tip'      => 'کوږ ليک',
 'link_sample'     => 'د تړن سرليک',
 'link_tip'        => 'کورنی تړن',
+'extlink_sample'  => 'http://www.example.com د تړنې سرليک',
 'extlink_tip'     => 'باندنۍ تړنې (د http:// مختاړی مه هېروی)',
 'headline_sample' => 'سرليک',
 'headline_tip'    => 'د ۲ کچې سرليک',
@@ -534,6 +537,7 @@ $messages = array(
 'prefs-edits'           => 'د سمادونو شمېر:',
 'prefsnologin'          => 'غونډال کې نه ياست ننوتي',
 'prefsnologintext'      => 'ددې لپاره چې د کارونکي غوره توبونه وټاکۍ نو تاسو ته پکار ده چې لومړی غونډال کې [[Special:Userlogin|ننوتنه]] ترسره کړی.',
+'qbsettings-none'       => 'هېڅ',
 'changepassword'        => 'پټنوم بدلول',
 'skin'                  => 'بڼه',
 'math'                  => 'شمېرپوهنه',
@@ -701,6 +705,9 @@ $messages = array(
 # Unwatched pages
 'unwatchedpages' => 'ناکتلي مخونه',
 
+# List redirects
+'listredirects' => 'د ورګرځېدنو لړليک',
+
 # Unused templates
 'unusedtemplates'    => 'نه کارېدلي کينډۍ',
 'unusedtemplateswlh' => 'نور تړنونه',
@@ -709,10 +716,16 @@ $messages = array(
 'randompage'         => 'ناټاکلی مخ',
 'randompage-nopages' => 'په همدغه نوم-تشيال کې هېڅ کوم مخ نشته.',
 
+# Random redirect
+'randomredirect' => 'ناټاکلی ورګرځېدنه',
+
 # Statistics
 'statistics'             => 'شمار',
 'statistics-mostpopular' => 'تر ټولو ډېر کتل شوي مخونه',
 
+'doubleredirects' => 'دوه ځلي ورګرځېدنې',
+
+'brokenredirects'        => 'ماتې ورګرځېدنې',
 'brokenredirects-delete' => '(ړنګول)',
 
 'withoutinterwiki'        => 'د ژبې د تړنو بې برخې مخونه',
@@ -861,6 +874,8 @@ $messages = array(
 'deletecomment'               => 'د ړنګولو سبب',
 'deleteotherreason'           => 'بل/اضافه سبب:',
 'deletereasonotherlist'       => 'بل سبب',
+'rollback_short'              => 'په شابېول',
+'rollbacklink'                => 'په شابېول',
 'protectlogpage'              => 'د ژغورنې يادښت',
 'protectedarticle'            => '"[[$1]]" وژغورلی شو',
 'protect-legend'              => 'د ژغورلو پخلی کول',
@@ -920,6 +935,7 @@ $messages = array(
 'linklistsub'         => '(د تړنونو لړليک)',
 'linkshere'           => "دغه لانديني مخونه د '''[[:$1]]''' سره تړنې لري:",
 'nolinkshere'         => "د '''[[:$1]]''' سره هېڅ يو مخ هم تړنې نه لري .",
+'isredirect'          => 'ورګرځېدلی مخ',
 'whatlinkshere-prev'  => '{{PLURAL:$1|پخوانی|پخواني $1}}',
 'whatlinkshere-next'  => '{{PLURAL:$1|راتلونکی|راتلونکي $1}}',
 'whatlinkshere-links' => '← تړنې',

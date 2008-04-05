@@ -652,7 +652,7 @@ Konu ile alakalı diğer sayfaları bulmak için [[Special:Search|vikide arama y
 # Revision deletion
 'rev-deleted-comment'         => '(yorum silindi)',
 'rev-deleted-user'            => '(kullanıcı adı silindi)',
-'rev-deleted-event'           => '(madde silindi)',
+'rev-deleted-event'           => '(kayıt işlemi silindi)',
 'rev-deleted-text-permission' => '<div class="mw-warning plainlinks">
 Bu sayfa değişikliği kamu arşivlerinden silinmiştir.
 [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Silme kayıtlarında] ayrıntıları bulabilirsiniz.</div>',
@@ -661,16 +661,16 @@ Bu sayfa değişikiliği kamu arşivlerinden silinmiştir.
 {{SITENAME}} üzerinde bir yönetici iseniz görebilirsiniz; [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Silme kayıtlarında] detaylar olabilir.</div>',
 'rev-delundel'                => 'göster/gizle',
 'revisiondelete'              => 'Sürümleri sil/geri getir',
-'revdelete-nooldid-title'     => 'Hedef değişiklik yok',
+'revdelete-nooldid-title'     => 'Hedef sürüm geçersiz',
 'revdelete-nooldid-text'      => 'Bu fonksiyonu uygulamak için belirli hedef değişiklik veya değişikileriniz yok.',
-'revdelete-selected'          => "'''$1''' sayfasının {{PLURAL:$2|seçili değişikliği|seçili değişiklikleri}}:",
+'revdelete-selected'          => '[[:$1]] sayfasının {{PLURAL:$2|seçili değişikliği|seçili değişiklikleri}}:',
 'logdelete-selected'          => "'''$1''' sayfasının {{PLURAL:$2|seçili kayıt olayı|seçili kayıt olayları}}:",
 'revdelete-legend'            => 'Kısıtlamaları ayarla',
 'revdelete-hide-text'         => 'Değişikilik yazısını gizle',
 'revdelete-hide-name'         => 'Olayı ve hedefi gizle',
 'revdelete-hide-comment'      => 'Özeti gösterme',
 'revdelete-hide-user'         => "Değişikliği yapan kullanıcı adını/IP'i gizle",
-'revdelete-hide-restricted'   => 'Bu kısıtlamaları yöneticilere ve kullanıcılara uygula',
+'revdelete-hide-restricted'   => 'Bu kısıtlamaları yönetici ve kullanıcılara uygula ve de bu arayüzü kilitle.',
 'revdelete-suppress'          => 'Hem diğerlerinden hem de yöneticilerden veriyi gizle',
 'revdelete-hide-image'        => 'Dosya içeriğini gizle',
 'revdelete-log'               => 'Log açıklama:',

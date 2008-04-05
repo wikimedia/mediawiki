@@ -1,5 +1,5 @@
 <?php
-/** Traditional Chinese (‪中文(傳統字)‬)
+/** Traditional Chinese (‪中文(繁體)‬)
  *
  * @addtogroup Language
  *
@@ -878,7 +878,7 @@ $2',
 'userrights-groupsmember'          => '屬於:',
 'userrights-groupsremovable'       => '可移除群組:',
 'userrights-groupsavailable'       => '可用群組:',
-'userrights-groups-help'            => '您可以改動這位用戶所屬的群組。
+'userrights-groups-help'           => '您可以改動這位用戶所屬的群組。
 
 已剔選的核取方塊代表該用戶屬於該群組。
 未剔選的核取方塊代表該用戶不是屬於該群組。',
@@ -1229,7 +1229,7 @@ Template:消除歧義',
 'newpages'                => '最新頁面',
 'newpages-username'       => '用戶名:',
 'ancientpages'            => '最舊頁面',
-'move'                    => '移動',
+'move'                    => '重新命名',
 'movethispage'            => '移動本頁',
 'unusedimagestext'        => '<p>請注意其它網站可能直接透過 URL 鏈接此檔案，所以這裡列出的圖像有可能依然被使用。</p>',
 'unusedcategoriestext'    => '雖然沒有被其它頁面或者分類所採用，但列表中的分類頁依然存在。',
@@ -1458,7 +1458,7 @@ $NEWPAGE
 
 # Restrictions (nouns)
 'restriction-edit'   => '編輯',
-'restriction-move'   => '移動',
+'restriction-move'   => '重新命名',
 'restriction-create' => '建立',
 
 # Restriction levels

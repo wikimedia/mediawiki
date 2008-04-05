@@ -170,7 +170,7 @@ $messages = array(
 'tog-previewontop'            => 'Pokazuj podgląd przed obszarem edycji',
 'tog-previewonfirst'          => 'Pokaż podgląd strony podczas pierwszej edycji',
 'tog-nocache'                 => 'Wyłącz pamięć podręczną',
-'tog-enotifwatchlistpages'    => 'Wyślij e-mail kiedy strona z listy moich obserwowanych zostanie zmodyfikowana',
+'tog-enotifwatchlistpages'    => 'Jeśli strona z listy moich obserwowanych zostanie zmodyfikowana wyślij do mnie e-mail',
 'tog-enotifusertalkpages'     => 'Wyślij e-mail kiedy moja strona dyskusji zostanie zmodyfikowana',
 'tog-enotifminoredits'        => 'Wyślij e-mail także w przypadku drobnych zmian na stronach',
 'tog-enotifrevealaddr'        => 'Nie ukrywaj mojego adresu e-mail w powiadomieniach',
@@ -259,7 +259,7 @@ $messages = array(
 'category-empty'                 => "''W tej kategorii nie ma obecnie artykułów ani plików.''",
 'hidden-categories'              => '{{PLURAL:$1|Ukryta kategoria|Ukryte kategorie|Ukrytych kategorii}}',
 'hidden-category-category'       => 'Ukryte kategorie', # Name of the category where hidden categories will be listed
-'category-subcat-count'          => '{{PLURAL:$2|Ta kategoria ma tylko jedną podkategorię.|Ta kategoria ma {{PLURAL:$1|następującą podkategorię|$1 podkategorie|$1 podkategorii}} spośród ogólnej liczby $2.}}',
+'category-subcat-count'          => '{{PLURAL:$2|Ta kategoria ma tylko jedną podkategorię.|Ta kategoria ma {{PLURAL:$1|tylko jedną podkategorię|$1 podkategorie|$1 podkategorii}} spośród ogólnej liczby $2.}}',
 'category-subcat-count-limited'  => 'Ta kategoria ma {{PLURAL:$1|następującą podkategorię|$1 podkategorie|$1 podkategorii}}.',
 'category-article-count'         => '{{PLURAL:$2|W tej kategorii jest tylko jedna strona.|W tej kategorii {{PLURAL:$1|jest $1 strona|są $1 strony|jest $1 stron}} z ogólnej liczby $2 stron.}}',
 'category-article-count-limited' => 'W tej kategorii {{PLURAL:$1|jest $1 strona|są $1 strony|jest $1 stron}}.',
@@ -681,7 +681,7 @@ Podaj adres e-mail i potwierdź go w swoich [[Special:Preferences|ustawieniach u
 'anontalkpagetext'          => "---- ''To jest strona dyskusji anonimowego użytkownika - takiego, który nie ma jeszcze swojego konta lub nie chce go w tej chwili używać. By go identyfikować używamy adresów IP. Jednak adres IP może być współdzielony przez wielu użytkowników. Jeśli jesteś anonimowym użytkownikiem i uważasz, że zamieszczone tu komentarze nie są skierowane do Ciebie, [[Special:Userlogin|utwórz proszę konto albo zaloguj się]] - dzięki temu unikniesz w przyszłości podobnych nieporozumień.''",
 'noarticletext'             => 'Nie ma jeszcze artykułu o tym tytule. Możesz [{{fullurl:{{FULLPAGENAME}}|action=edit}} utworzyć artykuł {{FULLPAGENAME}}] lub [[Special:Search/{{PAGENAME}}|poszukać {{PAGENAME}} w innych artykułach]].',
 'userpage-userdoesnotexist' => 'Użytkownik "$1" nie jest zarejestrowany. Upewnij się czy na pewno zamierzałeś stworzyć/zmodyfikować właśnie tę stronę.',
-'clearyourcache'            => "'''Uwaga:''' By zobaczyć zmiany po zapisaniu nowych ustawień poleć przeglądarce wyczyścić zawartość pamięci podręcznej (cache). '''Mozilla / Firefox / Safari:''' przytrzymaj ''Shift'' klikając na ''Odśwież'' lub wciśnij ''Ctrl-Shift-R'' (''Cmd-Shift-R'' na Macintoshu), '''IE :''' przytrzymaj ''Ctrl'' klikając na ''Odśwież'' lub wciśnij ''Ctrl-F5''; '''Konqueror:''': po prostu kliknij przycisk ''Odśwież'' lub wciśnij ''F5''; użytkownicy '''Opery''' mogą być zmuszeni do kompletnego wyczyszczenia ich pamięci podręcznej w menu ''Narzędzia→Preferencje''.",
+'clearyourcache'            => "'''Uwaga:''' Zmiany po zapisaniu nowych ustawień mogą nie być widoczne. Należy wyczyścić zawartość pamięci podręcznej przeglądarki internetowej. '''Mozilla / Firefox / Safari:''' przytrzymaj wciśnięty ''Shift'' i kliknij na ''Odśwież'' lub wciśnij ''Ctrl-Shift-R'' (''Cmd-Shift-R'' na Macintoshu), '''IE :''' przytrzymaj ''Ctrl'' i kliknij na ''Odśwież'' lub wciśnij ''Ctrl-F5''; '''Konqueror:''': po prostu kliknij przycisk ''Odśwież'' lub wciśnij ''F5''; '''Opera''' może wymagać wyczyszczenia pamięci podręcznej w menu ''Narzędzia→Preferencje''.",
 'usercssjsyoucanpreview'    => '<strong>Wskazówka:</strong> Użyj przycisku "Podgląd", aby przetestować Twój nowy arkusz stylów CSS lub kod JavaScript przed jego zapisaniem.',
 'usercsspreview'            => "'''Pamiętaj, że to na razie tylko podgląd Twojego arkusza stylów - nic jeszcze nie zostało zapisane!'''",
 'userjspreview'             => "'''Pamiętaj, że to na razie tylko podgląd Twojego JavaScriptu - nic jeszcze nie zostało zapisane!'''",
@@ -812,9 +812,9 @@ Inni administratorzy {{GRAMMAR:D.lp|{{SITENAME}}}} nadal będą mieć dostęp do
 'revdelete-hide-comment'      => 'Ukryj komentarz edycji',
 'revdelete-hide-user'         => 'Ukryj nazwę użytkownika/adres IP',
 'revdelete-hide-restricted'   => 'Wprowadź te ograniczenia dla administratorów i zablokuj ten interfejs',
-'revdelete-suppress'          => 'Ukryj informacje zarówno przed administratorami jak i przed innymi',
+'revdelete-suppress'          => 'Utajnij informacje zarówno przed administratorami jak i przed innymi',
 'revdelete-hide-image'        => 'Ukryj zawartość pliku',
-'revdelete-unsuppress'        => 'Usuń ograniczenia dla odtwarzanej historii zmian',
+'revdelete-unsuppress'        => 'Usuń utajnienie dla odtwarzanej historii zmian',
 'revdelete-log'               => 'Komentarz:',
 'revdelete-submit'            => 'Zaakceptuj dla wybranych wersji',
 'revdelete-logentry'          => 'zmieniono widoczność wersji w [[$1]]',
@@ -829,11 +829,11 @@ Inni administratorzy {{GRAMMAR:D.lp|{{SITENAME}}}} nadal będą mieć dostęp do
 
 # Suppression log
 'suppressionlog'     => 'Dziennik utajniania',
-'suppressionlogtext' => 'Poniżej znajduje się lista ostatnich usunięć i blokad ukryta przed administratorami. Zobacz [[Special:Ipblocklist|rejestr blokowania adresów IP]] jeśli chcesz sprawdzić aktualne zakazy i blokady.',
+'suppressionlogtext' => 'Poniżej znajduje się lista ostatnich usunięć i blokad utajniona przed administratorami. Zobacz [[Special:Ipblocklist|rejestr blokowania adresów IP]] jeśli chcesz sprawdzić aktualne zakazy i blokady.',
 
 # History merging
 'mergehistory'                     => 'Scal historię zmian stron',
-'mergehistory-header'              => 'Ta strona pozwala na scalenie historii zmian jednej strony z inną nowszą stroną.
+'mergehistory-header'              => 'Ta strona pozwala na scalenie historii zmian jednej strony z historią innej nowszej strony.
 Upewnij się, że zmiany będą zapewniać ciągłość historyczną edycji strony.',
 'mergehistory-box'                 => 'Scal historię zmian dwóch stron:',
 'mergehistory-from'                => 'Strona źródłowa:',
@@ -974,8 +974,8 @@ Zaznaczone pole oznacza przynależność użytkownika do danej grupy.
 Nie zaznaczone pole oznacza, że użytkownik nie należy do danej grupy.',
 'userrights-reason'                => 'Powód zmiany:',
 'userrights-available-none'        => 'Nie możesz zmieniać przynależności do grup.',
-'userrights-available-add'         => 'Możesz dodać jakiegokolwiek użytkownika do {{PLURAL:$2|grupy|grup}}: $1.',
-'userrights-available-remove'      => 'Możesz usunąć jakiegokolwiek użytkownika z {{PLURAL:$2|grupy|grup}}: $1.',
+'userrights-available-add'         => 'Możesz dodać dowolnego użytkownika do {{PLURAL:$2|grupy|grup}}: $1.',
+'userrights-available-remove'      => 'Możesz usunąć dowolnego użytkownika z {{PLURAL:$2|grupy|grup}}: $1.',
 'userrights-available-add-self'    => 'Nie możesz dodać siebie do {{PLURAL:$2|grupy|grup}}: $1.',
 'userrights-available-remove-self' => 'Nie możesz usunąć siebie z {{PLURAL:$2|grupy|grup}}: $1.',
 'userrights-no-interwiki'          => 'Nie masz dostępu do edycji uprawnień.',
@@ -1085,7 +1085,7 @@ Plik pojawi się na stronie, jeśli użyjesz linku według jednego z następują
 'large-file'                  => 'Zalecane jest aby rozmiar pliku nie był większy niż $1 bajtów. Ten plik ma rozmiar $2 bajtów.',
 'largefileserver'             => 'Plik jest większy niż maksymalny dozwolony rozmiar.',
 'emptyfile'                   => 'Przesłany plik wydaje się być pusty. Może być to spowodowane literówką w nazwie pliku. Sprawdź, czy nazwa jest prawidłowa.',
-'fileexists'                  => 'Plik o takiej nazwie już istnieje! Załadowanie nowej grafiki nieodwracalnie usunie już istniejącą ($1)! Upewnij się, że wiesz, co robisz.',
+'fileexists'                  => 'Plik o takiej nazwie już istnieje. Sprawdź <strong><tt>$1</tt></strong>, jeśli nie jesteś pewien czy chcesz go wymienić.',
 'filepageexists'              => 'Istnieje już strona opisu tego pliku utworzona <strong><tt>$1</tt></strong>, ale nie ma obecnie pliku o tej nazwie. Informacje o pliku, które wprowadziłeś nie pojawią się na stronie opisu. Jeśli chcesz by informacje te zostały wyświetlone musisz je ręcznie wyedytować.',
 'fileexists-extension'        => 'Plik o podobnej nazwie już istnieje:<br />
 Nazwa przesyłanego pliku: <strong><tt>$1</tt></strong><br />
@@ -1110,7 +1110,7 @@ Jeśli posiadasz tę grafikę w pełnym rozmiarze - prześlij ją, inaczej będz
 'uploadvirus'                 => 'W tym pliku jest wirus! Szczegóły: $1',
 'sourcefilename'              => 'Nazwa oryginalna:',
 'destfilename'                => 'Nazwa docelowa:',
-'upload-maxfilesize'          => 'Maksymalny rozmiar pliku: $1',
+'upload-maxfilesize'          => 'Maksymalna wielkość pliku: $1',
 'watchthisupload'             => 'Obserwuj tę stronę',
 'filewasdeleted'              => 'Plik o tej nazwie istniał, ale został skasowany. Zanim załadujesz go ponownie, sprawdź $1.',
 'upload-wasdeleted'           => "'''Ostrzeżenie: Ładujesz plik, który był poprzednio usunięty.'''
@@ -1210,7 +1210,7 @@ Kliknięcie w nagłówek kolumny zmienia sposób sortowania.',
 'filedelete-success'          => "Skasowano plik '''$1'''.",
 'filedelete-success-old'      => '<span class="plainlinks">Skasowano plik \'\'\'[[Media:$1|$1]]\'\'\' w wersji z $3, $2.</span>',
 'filedelete-nofile'           => "Plik '''$1''' nie istnieje w {{GRAMMAR:MS.pl|{{SITENAME}}}}.",
-'filedelete-nofile-old'       => "Nie ma zarchiwizowanje wersji '''$1''' o podanych atrybutach.",
+'filedelete-nofile-old'       => "Nie ma zarchiwizowanej wersji '''$1''' o podanych atrybutach.",
 'filedelete-iscurrent'        => 'Próbujesz skasować najnowszą wersję tego pliku. Musisz najpierw przywrócić starszą wersję.',
 'filedelete-otherreason'      => 'Inna/dodatkowa przyczyna:',
 'filedelete-reason-otherlist' => 'Inna przyczyna',
@@ -2322,13 +2322,17 @@ Program zwrócił komunikat: $1',
 'confirmemail_loggedin'    => 'Twój adres email został zweryfikowany.',
 'confirmemail_error'       => 'Pojawiły się błędy przy zapisywaniu potwierdzenia.',
 'confirmemail_subject'     => '{{SITENAME}} - potwierdzenie adresu e-mail',
-'confirmemail_body'        => 'Ktoś łącząc się z komputera o adresie IP $1 zarejestrował w {{GRAMMAR:MS.lp|{{SITENAME}}}} konto "$2" podając niniejszy adres e-mail.
+'confirmemail_body'        => 'Ktoś łącząc się z komputera o adresie IP $1
+zarejestrował w {{GRAMMAR:MS.lp|{{SITENAME}}}} konto "$2" podając niniejszy adres e-mail.
 
-Aby potwierdzić, że to Ty zarejestrowałeś/aś to konto oraz aby włączyć wszystkie funkcje korzystające z poczty elektronicznej, otwórz w swojej przeglądarce ten link:
+Aby potwierdzić, że to Ty zarejestrowałeś/aś to konto oraz, aby włączyć
+wszystkie funkcje korzystające z poczty elektronicznej, otwórz w swojej
+przeglądarce ten link:
 
 $3
 
-Jeśli to *nie* Ty zarejestrowałeś/aś to konto, otwórz w swojej przeglądarce poniższy link, aby anulować potwierdzenie adresu e-mail:
+Jeśli to *nie* Ty zarejestrowałeś/aś konto, otwórz w swojej przeglądarce
+poniższy link, aby anulować potwierdzenie adresu e-mail:
 
 $5
 
@@ -2465,15 +2469,15 @@ Titles on your watchlist are shown below, and can be edited by
 'filepath-summary' => 'Ta strona specjalna zwraca pełną ścieżkę do pliku. Grafiki są pokazywane w pełnej rozdzielczości, inne typy plików są otwierane w skojarzonym z nimi programie. Wpisz nazwę pliku bez prefiksu "{{ns:image}}:".',
 
 # Special:FileDuplicateSearch
-'fileduplicatesearch'          => 'Szukaj duplikatu pliku',
-'fileduplicatesearch-summary'  => 'Szukaj duplikatu pliku na podstawie jego wartości funkcji skrótu.
+'fileduplicatesearch'          => 'Szukaj duplikatów pliku',
+'fileduplicatesearch-summary'  => 'Szukaj duplikatów pliku na podstawie wartości funkcji skrótu.
 
 Wpisz nazwę pliku z pominięciem prefiksu "{{ns:image}}:".',
-'fileduplicatesearch-legend'   => 'Szukaj duplikatu pliku',
+'fileduplicatesearch-legend'   => 'Szukaj duplikatów pliku',
 'fileduplicatesearch-filename' => 'Nazwa pliku:',
 'fileduplicatesearch-submit'   => 'Szukaj',
-'fileduplicatesearch-info'     => '$1 × $2 pikseli<br />Rozmiar pliku: $3<br />Typ MIME: $4',
-'fileduplicatesearch-result-1' => 'Plik "$1" nie posiada duplikatu.',
+'fileduplicatesearch-info'     => '$1 × $2 pikseli<br />Wielkość pliku: $3<br />Typ MIME: $4',
+'fileduplicatesearch-result-1' => 'Nie ma duplikatu pliku "$1".',
 'fileduplicatesearch-result-n' => 'Na {{GRAMMAR:MS.lp|{{SITENAME}}}} {{PLURAL:$2|jest dodatkowa kopia|są $2 dodatkowe kopie|jest $2 dodatkowych kopii}} pliku "$1".',
 
 );

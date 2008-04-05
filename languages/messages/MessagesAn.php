@@ -750,7 +750,7 @@ Prebe de [[Special:Search|mirar en o wiki]] atras pachinas relebants.",
 # Revision deletion
 'rev-deleted-comment'         => "(s'ha sacato iste comentario)",
 'rev-deleted-user'            => "(s'ha sacato iste nombre d'usuario)",
-'rev-deleted-event'           => "(s'ha sacata ista dentrada)",
+'rev-deleted-event'           => "(Aizión borrata d'o rechistro)",
 'rev-deleted-text-permission' => '<div class="mw-warning plainlinks">
 Ista bersión d\'a pachina ye estata sacata d\'os archibos publicos.
 Puede trobar más detalles en o [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} rechistro de borrau].</div>',
@@ -760,19 +760,19 @@ Puede beyer-la porque ye almenistrador/a d'iste wiki;
 puede trobar más detalles en o [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} rechistro de borrau].</div>",
 'rev-delundel'                => 'amostrar/amagar',
 'revisiondelete'              => 'Borrar/esfer borrau de bersions',
-'revdelete-nooldid-title'     => 'No ha espezificato una bersión de destino',
-'revdelete-nooldid-text'      => 'No ha espezificato una bersión u bersions ta aplicar ista funzión sobre ellas.',
+'revdelete-nooldid-title'     => 'A bersión de destino no ye conforme',
+'revdelete-nooldid-text'      => 'No ha espezificato garra bersión de destino ta aplicar-le ista funzión, a bersión espezificata no esiste u ye mirando de amagar a bersión autual.',
 'revdelete-selected'          => '{{PLURAL:$2|Bersión trigata|Bersions trigatas}} de [[:$1]]:',
-'logdelete-selected'          => "{{PLURAL:$2|Aizión d'o rechistro trigata|$2 aizions d'o rechistro trigatas}} ta '''$1:'''",
+'logdelete-selected'          => "{{PLURAL:$1|Escaizimiento d'o rechistro trigato|Escaizimientos d'o rechistro trigatos}}:",
 'revdelete-text'              => "As bersions borratas encara aparixerán en o istorial y o rechistro d'a pachina, pero os suyos contenius no serán azesibles ta o publico.
 
 Atros almenistradors de {{SITENAME}} encara podrán azeder t'o contineiu amagato y podrán esfer o borrau á trabiés d'a mesma interfaz, fueras de si os operadors establen restrizions adizionals.",
-'revdelete-legend'            => 'Definir restrizions de bersión:',
+'revdelete-legend'            => 'Establir restrizions:',
 'revdelete-hide-text'         => "Amagar o testo d'a bersión",
 'revdelete-hide-name'         => 'Amagar aizión y obchetibo',
 'revdelete-hide-comment'      => "Amagar comentario d'edizión",
 'revdelete-hide-user'         => "Amagar o nombre/l'adreza IP d'o editor",
-'revdelete-hide-restricted'   => "Aplicar istas restrizions á os almenistradors igual como á la resta d'usuarios",
+'revdelete-hide-restricted'   => 'Aplicar istas restrizions á os almenistradors y bloqueyar ista interfaz',
 'revdelete-suppress'          => "Sacar os datos d'os almenistradors igual como os d'a resta d'usuarios",
 'revdelete-hide-image'        => "Amagar o conteniu de l'archibo",
 'revdelete-unsuppress'        => "Sacar restrizions d'as bersions restauradas",
@@ -781,11 +781,16 @@ Atros almenistradors de {{SITENAME}} encara podrán azeder t'o contineiu amagato
 'revdelete-logentry'          => "S'ha cambiato a bisibilidat d'a bersión de [[$1]]",
 'logdelete-logentry'          => "S'ha cambiato a bisibilidat d'escaizimientos de [[$1]]",
 'revdelete-logaction'         => '$1 {{PLURAL:$1|bersión|bersions}} en modo $2',
-'logdelete-logaction'         => '$1 {{PLURAL:$1|escaizimiento|escaizimientos}} en [[$3]] {{PLURAL:$1|cambiato|cambiatos}} ta o modo $2',
+'logdelete-logaction'         => '$1 {{PLURAL:$1|escaizimiento ficato|escaizimientos ficatos}} en o modo $2',
 'revdelete-success'           => "'''S'ha cambiato correutament a bisibilidat d'as bersions.'''",
 'logdelete-success'           => "'''S'ha cambiato correutament a bisibilidat d'os escaizimientos.'''",
+'revdel-restore'              => 'Cambiar a bisibilidat',
 'pagehist'                    => 'Istorial',
 'deletedhist'                 => 'Istorial de borrau',
+
+# Suppression log
+'suppressionlog'     => 'Rechistro de supresions',
+'suppressionlogtext' => "Más t'abaxo bi ye una lista d'os zaguers borraus y bloqueyos referitos á contenius amagaus ta os almenistradors. Mire-se a [[Special:Ipblocklist|lista d'adrezas IP bloqueyatas]] ta beyer a lista de bloqueyos y bedas bichents.",
 
 # History merging
 'mergehistory'                     => 'Aunir istorials',
@@ -927,32 +932,40 @@ Mirar $3 $9',
 'userrights-groupsmember'          => 'Miembro de:',
 'userrights-groupsremovable'       => 'Collas sacables:',
 'userrights-groupsavailable'       => 'Collas disponibles:',
+'userrights-groups-help'           => "Puede cambiar as collas en as que bi ye iste usuario.
+Un caxa siñalata sinnifica que l'usuario ye en ixa colla.
+Una caxa no siñalata sinnifica que l'usuario no ye en ixa colla.",
 'userrights-reason'                => 'Razón ta o cambeo:',
 'userrights-available-none'        => "No puede cambiar a pertenenzia á las collas d'usuarios.",
-'userrights-available-add'         => 'Puede adibir usuarios ta {{PLURAL:$2|ista colla|istas collas}}: $1.',
-'userrights-available-remove'      => "Puede sacar usuarios d'{{PLURAL:$2|ista colla|istas collas}}: $1.",
+'userrights-available-add'         => 'Puede adibir cualsiquier usuario ta {{PLURAL:$2|ista colla|istas collas}}: $1.',
+'userrights-available-remove'      => "Puede sacar cualsiquier usuario d'{{PLURAL:$2|ista colla|istas collas}}: $1.",
 'userrights-available-add-self'    => 'Puede adibir-se bustet mesmo ta {{PLURAL:$2|iste grupo|istos grupos}}: $1.',
 'userrights-available-remove-self' => "Puede sacar-se bustet mesmo d'{{PLURAL:$2|iste grupo|istos grupos}}: $1.",
 'userrights-no-interwiki'          => "No tiene premiso ta editar os dreitos d'usuario en atras wikis.",
 'userrights-nodatabase'            => 'A base de datos $1 no esiste u no ye local.',
 'userrights-nologin'               => "Ha d'[[Special:Userlogin|enzetar una sesión]] con una cuenta d'almenistrador ta poder dar dreitos d'usuario.",
 'userrights-notallowed'            => "A suya cuenta no tiene premisos ta dar dreitos d'usuario.",
+'userrights-changeable-col'        => 'Grupos que puede cambiar',
+'userrights-unchangeable-col'      => 'Collas que no puede cambiar',
 
 # Groups
 'group'               => 'Colla:',
 'group-autoconfirmed' => 'Usuarios Autoconfirmatos',
 'group-sysop'         => 'Almenistradors',
 'group-bureaucrat'    => 'Burocratas',
+'group-suppress'      => 'Superbisors',
 'group-all'           => '(toz)',
 
 'group-autoconfirmed-member' => 'Usuario autoconfirmato',
 'group-sysop-member'         => 'Almenistrador',
 'group-bureaucrat-member'    => 'Burocrata',
+'group-suppress-member'      => 'Superbisor',
 
 'grouppage-autoconfirmed' => '{{ns:project}}:Usuarios autoconfirmatos',
 'grouppage-bot'           => '{{ns:project}}:Bots',
 'grouppage-sysop'         => '{{ns:project}}:Almenistradors',
 'grouppage-bureaucrat'    => '{{ns:project}}:Burocratas',
+'grouppage-suppress'      => '{{ns:project}}:Superbisors',
 
 # User rights log
 'rightslog'      => "Rechistro de premisos d'os usuarios",
@@ -1285,6 +1298,7 @@ d'os que '''$2''' (o '''$4%''') {{PLURAL:$1|en ye $5|en son $5}}.",
 'notargettext'            => 'No ha espezificato en que pachina quiere aplicar ista funzión.',
 'pager-newer-n'           => '{{PLURAL:$1|1 más rezient|$1 más rezients}}',
 'pager-older-n'           => '{{PLURAL:$1|1 más antiga|$1 más antigas}}',
+'suppress'                => 'Superbisión',
 
 # Book sources
 'booksources'               => 'Fuents de libros',
@@ -1438,6 +1452,7 @@ Por fabor, confirme que reyalment ye mirando de fer ixo, que entiende as consecu
 'deletedtext'                 => '"<nowiki>$1</nowiki>" ha estato borrato.
 Se beiga en $2 un rechistro d\'os borraus rezients.',
 'deletedarticle'              => 'borrato "$1"',
+'suppressedarticle'           => 's\'ha supreso "[[$1]]"',
 'dellogpage'                  => 'Rechistro de borraus',
 'dellogpagetext'              => "Contino se i amuestra una lista d'os borraus más rezients.",
 'deletionlog'                 => 'rechistro de borraus',
@@ -1756,7 +1771,7 @@ En iste zaguer caso tamién puede usar un binclo, por exemplo [[Special:Export/{
 'allmessagesdefault'        => 'Testo por defeuto',
 'allmessagescurrent'        => 'Testo autual',
 'allmessagestext'           => 'Ista ye una lista de toz os mensaches disponibles en o espazio de nombres MediaWiki.',
-'allmessagesnotsupportedDB' => '{{ns:special}}:AllMessages no ye disponible porque wgUseDatabaseMessages ye desautibato.',
+'allmessagesnotsupportedDB' => 'Ista pachina no ye disponible porque wgUseDatabaseMessages ye desautibato.',
 'allmessagesfilter'         => "Filtrar por a etiqueta d'os mensaches:",
 'allmessagesmodified'       => 'Amostrar nomás os mensaches cambiatos',
 

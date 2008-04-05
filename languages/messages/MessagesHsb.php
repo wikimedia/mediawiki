@@ -10,6 +10,7 @@
  * @author לערי ריינהארט
  * @author SPQRobin
  * @author M.M.S.
+ * @author Tlustulimu
  */
 
 $fallback = 'de';
@@ -267,7 +268,9 @@ $messages = array(
 'permalink'         => 'Trajny wotkaz',
 'print'             => 'Ćišćeć',
 'edit'              => 'wobdźěłać',
+'create'            => 'Wudźěłać',
 'editthispage'      => 'Stronu wobdźěłać',
+'create-this-page'  => 'Stronu wudźěłać',
 'delete'            => 'Wušmórnyć',
 'deletethispage'    => 'Stronu wušmórnyć',
 'undelete_short'    => '{{PLURAL:$1|jednu wersiju|$1 wersiji|$1 wersije|$1 wersijow}} wobnowić',
