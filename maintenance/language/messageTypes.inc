@@ -502,3 +502,8 @@ $wgEXIFMessages = array(
 	'exif-gpsdirection-t',
 	'exif-gpsdirection-m',
 );
+
+/** Messages that shouldn't be escaped with addcslashes (regexp, ...) */
+$wgNoEscapeMessages = array( 
+	'linkprefix',
+);
