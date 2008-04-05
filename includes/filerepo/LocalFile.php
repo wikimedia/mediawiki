@@ -56,8 +56,10 @@ class LocalFile extends File
 	/**
 	 * Create a LocalFile from a title
 	 * Do not call this except from inside a repo class.
+	 *
+	 * Note: $unused param is only here to avoid an E_STRICT
 	 */
-	static function newFromTitle( $title, $repo ) {
+	static function newFromTitle( $title, $repo, $unused = null ) {
 		return new self( $title, $repo );
 	}
 
@@ -1087,75 +1089,6 @@ class LocalFile extends File
 		$dbw->rollback();
 	}
 } // LocalFile class
-
-#------------------------------------------------------------------------------
-
-/**
- * Backwards compatibility class
- */
-class Image extends LocalFile {
-	function __construct( $title ) {
-		$repo = RepoGroup::singleton()->getLocalRepo();
-		parent::__construct( $title, $repo );
-	}
-
-	/**
-	 * Wrapper for wfFindFile(), for backwards-compatibility only
-	 * Do not use in core code.
-	 * @deprecated
-	 */
-	static function newFromTitle( $title, $time = false ) {
-		$img = wfFindFile( $title, $time );
-		if ( !$img ) {
-			$img = wfLocalFile( $title );
-		}
-		return $img;
-	}
-	
-	/**
-	 * Wrapper for wfFindFile(), for backwards-compatibility only.
-	 * Do not use in core code.
-	 *
-	 * @param string $name name of the image, used to create a title object using Title::makeTitleSafe
-	 * @return image object or null if invalid title
-	 * @deprecated
-	 */
-	static function newFromName( $name ) {
-		$title = Title::makeTitleSafe( NS_IMAGE, $name );
-		if ( is_object( $title ) ) {
-			$img = wfFindFile( $title );
-			if ( !$img ) {
-				$img = wfLocalFile( $title );
-			}
-			return $img;
-		} else {
-			return NULL;
-		}
-	}
-	
-	/**
-	 * Return the URL of an image, provided its name.
-	 *
-	 * Backwards-compatibility for extensions.
-	 * Note that fromSharedDirectory will only use the shared path for files
-	 * that actually exist there now, and will return local paths otherwise.
-	 *
-	 * @param string $name	Name of the image, without the leading "Image:"
-	 * @param boolean $fromSharedDirectory	Should this be in $wgSharedUploadPath?
-	 * @return string URL of $name image
-	 * @deprecated
-	 */
-	static function imageUrl( $name, $fromSharedDirectory = false ) {
-		$image = null;
-		if( $fromSharedDirectory ) {
-			$image = wfFindFile( $name );
-		}
-		if( !$image ) {
-			$image = wfLocalFile( $name );
-		}
-		return $image->getUrl();
-	}
-}
 
 #------------------------------------------------------------------------------
 
