@@ -8,6 +8,7 @@
  * @author Siebrand
  * @author Spacebirdy
  * @author Manie
+ * @author Arnobarnard
  */
 
 $skinNames = array(
@@ -81,6 +82,7 @@ $messages = array(
 'tog-watchlisthideminor'      => 'Versteek klein wysigings van my dophoulys',
 'tog-ccmeonemails'            => "Stuur my 'n kopie van die e-pos wat ek aan ander stuur",
 'tog-diffonly'                => "Moenie 'n bladsy se inhoud onder die wysigingsverskil wys nie",
+'tog-showhiddencats'          => 'Wys versteekte kategorië',
 
 'underline-always'  => 'Altyd',
 'underline-never'   => 'Nooit',
@@ -141,14 +143,16 @@ $messages = array(
 'dec'           => 'Des',
 
 # Categories related messages
-'categories'             => 'Kategorieë',
-'categoriespagetext'     => 'Die volgende kategorieë bestaan op die wiki.',
-'pagecategories'         => '{{PLURAL:$1|Kategorie|Kategorieë}}',
-'category_header'        => 'Artikels in "$1"-kategorie',
-'subcategories'          => 'Subkategorieë',
-'category-media-header'  => 'Media in kategorie "$1"',
-'category-empty'         => "''Hierdie kategorie bevat geen artikels of media nie.''",
-'listingcontinuesabbrev' => 'vervolg',
+'categories'                  => 'Kategorieë',
+'categoriespagetext'          => 'Die volgende kategorieë bestaan op die wiki.',
+'special-categories-sort-abc' => 'sorteer alfabeties',
+'pagecategories'              => '{{PLURAL:$1|Kategorie|Kategorieë}}',
+'category_header'             => 'Artikels in "$1"-kategorie',
+'subcategories'               => 'Subkategorieë',
+'category-media-header'       => 'Media in kategorie "$1"',
+'category-empty'              => "''Hierdie kategorie bevat geen artikels of media nie.''",
+'hidden-category-category'    => 'Versteekte kategorië', # Name of the category where hidden categories will be listed
+'listingcontinuesabbrev'      => 'vervolg',
 
 'mainpagetext' => "<big>'''MediaWiki is suksesvol geïnstalleer.'''</big>",
 
@@ -180,12 +184,15 @@ $messages = array(
 'searcharticle'     => 'Wys',
 'history'           => 'Ouer weergawes',
 'history_short'     => 'Geskiedenis',
+'updatedmarker'     => 'opgedateer sedert my laaste besoek',
 'info_short'        => 'Inligting',
 'printableversion'  => 'Drukbare weergawe',
 'permalink'         => 'Permanente skakel',
 'print'             => 'Druk',
 'edit'              => 'Wysig',
+'create'            => 'Skep',
 'editthispage'      => 'Wysig hierdie bladsy',
+'create-this-page'  => 'Skep hierdie bladsy',
 'delete'            => 'Skrap',
 'deletethispage'    => 'Skrap bladsy',
 'undelete_short'    => 'Herstel {{PLURAL:$1|een wysiging|$1 wysigings}}',
@@ -281,48 +288,50 @@ $messages = array(
 'nospecialpagetext' => 'Ongeldige spesiale bladsy gespesifeer.',
 
 # General errors
-'error'              => 'Fout',
-'databaseerror'      => 'Databasisfout',
-'dberrortext'        => 'Sintaksisfout in databasisnavraag.
+'error'               => 'Fout',
+'databaseerror'       => 'Databasisfout',
+'dberrortext'         => 'Sintaksisfout in databasisnavraag.
 Die laaste navraag was:
 <blockquote><tt>$1</tt></blockquote>
 van funksie "<tt>$2</tt>".
 MySQL foutboodskap "<tt>$3: $4</tt>".',
-'noconnect'          => 'Kon nie met databasis op $1 konnekteer nie',
-'nodb'               => 'Kon nie databasis $1 selekteer nie',
-'cachederror'        => "Die volgende is 'n gekaste kopie van die aangevraagde blad, en is dalk nie op datum nie.",
-'readonly'           => 'Databasis gesluit',
-'enterlockreason'    => 'Rede vir die sluiting,
+'noconnect'           => 'Kon nie met databasis op $1 konnekteer nie',
+'nodb'                => 'Kon nie databasis $1 selekteer nie',
+'cachederror'         => "Die volgende is 'n gekaste kopie van die aangevraagde blad, en is dalk nie op datum nie.",
+'readonly'            => 'Databasis gesluit',
+'enterlockreason'     => 'Rede vir die sluiting,
 en beraming van wanneer ontsluiting sal plaas vind',
-'readonlytext'       => 'Die {{SITENAME}} databasis is tans gesluit vir nuwe
+'readonlytext'        => 'Die {{SITENAME}} databasis is tans gesluit vir nuwe
 artikelwysigings, waarskynlik vir roetine databasisonderhoud,
 waarna dit terug sal wees na normaal.
 Die administreerder wat dit gesluit het se verduideliking:
 
 $1',
-'missingarticle'     => 'Die databasis het nie die teks van die veronderstelde bladsy "$1" gekry nie.
+'missingarticle'      => 'Die databasis het nie die teks van die veronderstelde bladsy "$1" gekry nie.
 Nie databasisfout nie, moontlik sagtewarefout.
 Raporteer die adres asseblief aan enige administrateur.',
-'readonly_lag'       => 'Die databasis is outomaties gesluit terwyl die slaafdatabasisse sinchroniseer met die meester',
-'internalerror'      => 'Interne fout',
-'filecopyerror'      => 'Kon nie lêer van "$1" na "$2" kopieer nie.',
-'filerenameerror'    => 'Kon nie lêernaam van "$1" na "$2" wysig nie.',
-'filedeleteerror'    => 'Kon nie lêer "$1" skrap nie.',
-'filenotfound'       => 'Kon nie lêer "$1" vind nie.',
-'unexpected'         => 'Onverwagte waarde: "$1"="$2".',
-'formerror'          => 'Fout: kon vorm nie stuur nie',
-'badarticleerror'    => 'Die aksie kon nie op hierdie bladsy uitgevoer word nie.',
-'cannotdelete'       => 'Kon nie die bladsy of prent skrap nie, iemand anders het dit miskien reeds geskrap.',
-'badtitle'           => 'Ongeldige titel',
-'badtitletext'       => "Die bladsytitel waarvoor gevra is, is ongeldig, leeg, of
+'readonly_lag'        => 'Die databasis is outomaties gesluit terwyl die slaafdatabasisse sinchroniseer met die meester',
+'internalerror'       => 'Interne fout',
+'filecopyerror'       => 'Kon nie lêer van "$1" na "$2" kopieer nie.',
+'filerenameerror'     => 'Kon nie lêernaam van "$1" na "$2" wysig nie.',
+'filedeleteerror'     => 'Kon nie lêer "$1" skrap nie.',
+'filenotfound'        => 'Kon nie lêer "$1" vind nie.',
+'unexpected'          => 'Onverwagte waarde: "$1"="$2".',
+'formerror'           => 'Fout: kon vorm nie stuur nie',
+'badarticleerror'     => 'Die aksie kon nie op hierdie bladsy uitgevoer word nie.',
+'cannotdelete'        => 'Kon nie die bladsy of prent skrap nie, iemand anders het dit miskien reeds geskrap.',
+'badtitle'            => 'Ongeldige titel',
+'badtitletext'        => "Die bladsytitel waarvoor gevra is, is ongeldig, leeg, of
 'n verkeerd geskakelde tussen-taal of tussen-wiki titel.",
-'perfdisabled'       => 'Jammer, hierdie funksie is tydelik afgeskakel omdat dit die databasis soveel verstadig dat dit onbruikbaar vir andere raak.',
-'perfcached'         => "ie volgende inligting is 'n gekaste kopie en mag dalk nie volledig op datum wees nie.",
-'perfcachedts'       => 'Die volgende data is gekas. Laaste opdatering: $1',
-'viewsource'         => 'Bekyk bronteks',
-'viewsourcefor'      => 'vir $1',
-'editinginterface'   => "'''Waarskuwing:''' Jy is besig om 'n bladsy te redigeer wat koppelvlakinligting aan die programmatuur voorsien. Wysigings aan hierdie bladsy sal die voorkoms van die gebruikerskoppelvlak vir ander gebruikers beïnvloed. Vir vertalings, overweeg om [http://translatewiki.net/wiki/Main_Page?setlang=af Betawiki] (die vertalingsprojek vir MediaWiki) te gebruik.",
-'namespaceprotected' => "U het nie die rechte nie om bladsye in die '''$1'''-naamruimte te wysig.",
+'perfdisabled'        => 'Jammer, hierdie funksie is tydelik afgeskakel omdat dit die databasis soveel verstadig dat dit onbruikbaar vir andere raak.',
+'perfcached'          => "ie volgende inligting is 'n gekaste kopie en mag dalk nie volledig op datum wees nie.",
+'perfcachedts'        => 'Die volgende data is gekas. Laaste opdatering: $1',
+'viewsource'          => 'Bekyk bronteks',
+'viewsourcefor'       => 'vir $1',
+'protectedpagetext'   => 'Hierdie bladsy is gesluit om redigering te verhoed.',
+'editinginterface'    => "'''Waarskuwing:''' Jy is besig om 'n bladsy te redigeer wat koppelvlakinligting aan die programmatuur voorsien. Wysigings aan hierdie bladsy sal die voorkoms van die gebruikerskoppelvlak vir ander gebruikers beïnvloed. Vir vertalings, overweeg om [http://translatewiki.net/wiki/Main_Page?setlang=af Betawiki] (die vertalingsprojek vir MediaWiki) te gebruik.",
+'namespaceprotected'  => "U het nie die rechte nie om bladsye in die '''$1'''-naamruimte te wysig.",
+'ns-specialprotected' => 'Spesiale bladsye kan nie geredigeer word nie.',
 
 # Login and logout pages
 'logouttitle'                => 'Teken uit',
@@ -342,6 +351,7 @@ moenie vergeet om jou persoonlike voorkeure te stel nie.',
 'userlogin'                  => 'Teken in',
 'logout'                     => 'Teken uit',
 'userlogout'                 => 'Teken uit',
+'notloggedin'                => 'Nie ingeteken nie',
 'nologin'                    => 'Nog nie geregistreer nie? $1.',
 'nologinlink'                => "Skep gerus 'n rekening",
 'createaccount'              => 'Skep nuwe rekening',
@@ -481,6 +491,7 @@ Probeer asseblief die bladsy verkort en die detail na subartikels skuif sodat di
 'protectedpagewarning'     => '<strong>WAARSKUWING: Hierdie blad is beskerm, en slegs administrateurs kan die inhoud verander.</strong>',
 'semiprotectedpagewarning' => "'''Let wel:''' Hierdie artikel is beskerm sodat slegs ingetekende gebruikers dit kan wysig.",
 'templatesused'            => 'Sjablone in gebruik op hierdie blad:',
+'templatesusedpreview'     => 'Sjablone in hierdie voorskou gebruik:',
 'template-protected'       => '(beskermd)',
 'permissionserrorstext'    => 'U het nie toestemming om hierdie te doen nie, om die volgende {{PLURAL:$1|rede|redes}}:',
 
@@ -731,6 +742,7 @@ Let asseblief op dat, soos met {{SITENAME}} bladsye, mag ander jou gelaaide lêe
 'filehist-current'          => 'huidig',
 'filehist-datetime'         => 'Datum/Tyd',
 'filehist-user'             => 'Gebruiker',
+'filehist-dimensions'       => 'Dimensies',
 'filehist-filesize'         => 'Lêergrootte',
 'filehist-comment'          => 'Opmerking',
 'imagelinks'                => 'Prentskakels',
@@ -760,6 +772,7 @@ Let asseblief op dat, soos met {{SITENAME}} bladsye, mag ander jou gelaaide lêe
 'listredirects' => 'Lys aansture',
 
 # Unused templates
+'unusedtemplates'     => 'Ongebruikte sjablone',
 'unusedtemplatestext' => "Hierdie blad lys alle bladsye in die sjabloonnaamruimte wat nêrens in 'n ander blad ingesluit word nie. Onthou om ook ander skakels na die sjablone na te gaan voor verwydering.",
 'unusedtemplateswlh'  => 'ander skakels',
 
@@ -1357,7 +1370,9 @@ $1',
 'watchlisttools-raw'  => 'Redigeer brondophoulys',
 
 # Special:Version
-'version' => 'Weergawe', # Not used as normal message but as header for the special page itself
+'version'                  => 'Weergawe', # Not used as normal message but as header for the special page itself
+'version-specialpages'     => 'Spesiale bladsye',
+'version-software-version' => 'Weergawe',
 
 # Special:Filepath
 'filepath'        => 'Lêerpad',

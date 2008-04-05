@@ -10,6 +10,7 @@
  * @author LeighvsOptimvsMaximvs
  * @author Siebrand
  * @author לערי ריינהארט
+ * @author Rafaelgarcia
  */
 
 $skinNames = array(
@@ -268,7 +269,7 @@ $messages = array(
 'navigation'     => 'Navigatio',
 'and'            => 'et',
 
-'errorpagetitle'    => 'Error',
+'errorpagetitle'    => 'Erratum',
 'returnto'          => 'Redire ad $1.',
 'tagline'           => 'E {{grammar:ablative|{{SITENAME}}}}',
 'help'              => 'Adiutatum',
@@ -321,7 +322,7 @@ $messages = array(
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'         => 'De {{grammar:ablative|{{SITENAME}}}}',
 'aboutpage'         => 'Project:De {{grammar:ablative|{{SITENAME}}}}',
-'bugreports'        => 'Renuntiare errores',
+'bugreports'        => 'Renuntiare errata',
 'bugreportspage'    => 'Project:Renuntiare errores',
 'copyright'         => 'Res ad manum sub $1.',
 'copyrightpagename' => '{{grammar:genitive|{{SITENAME}}}} verba privata',
@@ -331,7 +332,7 @@ $messages = array(
 'disclaimers'       => 'Repudiationes',
 'disclaimerpage'    => 'Project:Repudiationes',
 'edithelp'          => 'Opes pro recensendo',
-'edithelppage'      => 'Help:Quam paginam recensere',
+'edithelppage'      => 'Help:De recensendo',
 'faq'               => 'Quaestiones frequentes',
 'faqpage'           => 'Project:Quaestiones frequentes',
 'helppage'          => 'Help:Auxilium pro editione',
@@ -343,7 +344,7 @@ $messages = array(
 'sitesupport'       => 'Donationes',
 'sitesupport-url'   => 'Project:Donationes',
 
-'badaccess'        => 'Error permissu',
+'badaccess'        => 'Permissus erratum',
 'badaccess-group0' => 'Non licet tibi actum quod petivisti agere.',
 'badaccess-group1' => 'Actum quod petivisti solum potest agi ab usoribus ex grege $1.',
 'badaccess-group2' => 'Actum quod petivisti solum potest agi ab usoribus ex uno gregum $1.',
@@ -383,13 +384,13 @@ $messages = array(
 'nospecialpagetext' => 'Paginam specialem invalidam petivisti. Pro indice paginarum specialum validarum, vide [[Special:Specialpages|{{MediaWiki:Specialpages}}]].',
 
 # General errors
-'error'               => 'Error',
-'databaseerror'       => 'Error in basi datorum',
+'error'               => 'Erratum',
+'databaseerror'       => 'Erratum in basi datorum',
 'noconnect'           => 'Nos paenitet! {{SITENAME}} per aerumnas technicas agit, et server basis datorum invenire non potest. <br />
 $1',
 'cachederror'         => 'Quae sequuntur sunt ex exemplo conditivo paginae quaesitae, fortasse non recente.',
-'internalerror'       => 'Error internus',
-'internalerror_info'  => 'Error internus: $1',
+'internalerror'       => 'Erratum internum',
+'internalerror_info'  => 'Erratum internum: $1',
 'badarticleerror'     => 'Haec actio non perfici potest in hac pagina.',
 'cannotdelete'        => 'Pagina vel fasciculus deleri non potuit. (Fortasse usor alius iam deleverat.)',
 'badtitle'            => 'Titulus malus',
@@ -776,49 +777,49 @@ Titulus: (nov) = dissimilis ab forma novissima, (prox) = dissimilis ab forma pro
 'recentchangeslinked-summary' => "Subter sunt nuperrime mutata paginis annexis. Paginae a te custoditae '''litteris pinguis''' monstrantur.",
 
 # Upload
-'upload'            => 'Fasciculum onerare',
-'uploadbtn'         => 'Fasciculum onerare',
-'reupload'          => 'Reonerare',
-'reuploaddesc'      => 'Non onerare sed redire ad formulam onerationis',
+'upload'            => 'Fasciculum imponere',
+'uploadbtn'         => 'Fasciculum imponere',
+'reupload'          => 'Iterum imponere',
+'reuploaddesc'      => 'Siste imponere et ad imponendi formam redi',
 'uploadnologin'     => 'Conventum non apertum est',
-'uploadnologintext' => '[[Special:Userlogin|Aperire conventum]] debes ut fasciculos oneres.',
-'uploaderror'       => 'Error onerati',
-'uploadtext'        => "Utere formam subter ad fasciculos onerandos.
-Ut videas aut quaeras fasciculos oneratos antea, adi [[Special:Imagelist|indicem fasciculorum oneratorum]]. Onerata et deleta in [[Special:Log/upload|notatione oneratorum]] notata sunt.
+'uploadnologintext' => 'Oportet [[Special:Userlogin|aperire conventum]] ut fasciculos imponas.',
+'uploaderror'       => 'Imponendi erratum',
+'uploadtext'        => "Utere formam subter ad fasciculos imponendos.<br/>
+Ut fasciculos antea impositos videas aut quaeras, adi [[Special:Imagelist|indicem fasciculorum impositorum]]. Fasciculi impositi et deleti quoque in [[Special:Log/upload|notatione fasciculorum impositorum]] notantur.
 
-Ad fasciculum includendum in pagina, utere nexu
-'''<nowiki>[[</nowiki>{{ns:image}}:File.jpg]]''' aut
-'''<nowiki>[[</nowiki>{{ns:image}}:File.png|verba alia]]''' aut
-'''<nowiki>[[</nowiki>{{ns:media}}:File.ogg]]''' pro nexum directum ad fasciculum.",
-'uploadlog'         => 'Notatio onerati',
-'uploadlogpage'     => 'Notatio onerati',
-'uploadlogpagetext' => 'Subter est index fasciculorum recentissimorum oneratorum.',
+Ad fasciculum in pagina includendum, utere nexu
+'''<nowiki>[[</nowiki>{{ns:image}}:Fasciculus.jpg]]''' aut
+'''<nowiki>[[</nowiki>{{ns:image}}:Fasciculus.png|verba alia]]''' aut
+'''<nowiki>[[</nowiki>{{ns:media}}:Fasciculus.ogg]]''' pro nexum ad fasciculum directum.",
+'uploadlog'         => 'notatio fasciculorum impositorum',
+'uploadlogpage'     => 'Notatio fasciculorum impositorum',
+'uploadlogpagetext' => 'Subter est index fasciculorum recentissimorum impositorum.',
 'filename'          => 'Nomen fasciculi',
 'filedesc'          => 'Descriptio',
 'fileuploadsummary' => 'Descriptio:',
 'filestatus'        => 'Locus verborum privatorum:',
 'filesource'        => 'Fons:',
-'uploadedfiles'     => 'Fasciculi onerati',
+'uploadedfiles'     => 'Fasciculi impositi',
 'ignorewarning'     => 'Ignorare monita et servare fasciculum',
-'ignorewarnings'    => 'Ignorare monita omnes',
+'ignorewarnings'    => 'Ignorare monita omnia',
 'minlength1'        => 'Nomina fasciculorum saltem unam litteram habere debent.',
 'badfilename'       => 'Nomen fasciculi ad "$1" mutatum est.',
 'large-file'        => 'Suasum est ut fasciculi $1 magnitudine non excedant; magnitudo huius fasciculi est $2.',
 'fileexists-thumb'  => "<center>'''Imago quae iam est'''</center>",
-'successfulupload'  => 'Oneratum perfectum',
-'uploadwarning'     => 'Monitus onerati',
+'successfulupload'  => 'Impositum est perfectum',
+'uploadwarning'     => 'Monitus imponendi',
 'savefile'          => 'Servare fasciculum',
-'uploadedimage'     => 'oneravit "[[$1]]"',
+'uploadedimage'     => 'imposuit "[[$1]]"',
 'uploadvirus'       => 'Fasciculi huic est virus! Singula: $1',
 'watchthisupload'   => 'Custodire hanc paginam',
 
-'upload-file-error' => 'Error internus',
+'upload-file-error' => 'Erratum internum',
 
 'license-nopreview' => '(Praevisum monstrari non potest)',
 
 # Special:Imagelist
 'imgfile'               => 'fasciculus',
-'imagelist'             => 'Fasciculi',
+'imagelist'             => 'Index fasciculorum',
 'imagelist_name'        => 'Nomen',
 'imagelist_user'        => 'Usor',
 'imagelist_size'        => 'Magnitudo',
@@ -840,8 +841,8 @@ Ad fasciculum includendum in pagina, utere nexu
 'linkstoimage'              => 'Paginae sequentes ad hunc fasciculum nectunt:',
 'nolinkstoimage'            => 'Nullae paginae ad hunc fasciculum nectunt.',
 'noimage'                   => 'Fasciculus huius nominis non est. $1 potes.',
-'noimage-linktext'          => 'Fasciculum huius nominis onerare',
-'uploadnewversion-linktext' => 'Emendationem novam huius fasciculi onerare',
+'noimage-linktext'          => 'Fasciculum huius nominis imponere',
+'uploadnewversion-linktext' => 'Emendationem novam huius fasciculi imponere',
 
 # File reversion
 'filerevert-legend'         => 'Reverti fasciculum',
@@ -893,7 +894,7 @@ Ad fasciculum includendum in pagina, utere nexu
 Hic numerus paginas disputationum includit, paginas de {{grammar:ablative|{{SITENAME}}}}, stipulas, paginas redirectionum, et paginas alias quae probabiliter non sunt paginae contenta habentes legitimae.
 His exclusis, {{PLURAL:$2|est '''1''' pagina|sunt '''$2''' paginae}} quae contenta recta habere {{PLURAL:$2|putatur|putantur}}.
 
-'''$8''' {{PLURAL:$8|fasciculus oneratus est.|fasciculi onerati sunt.}}
+'''$8''' {{PLURAL:$8|fasciculus impositus est.|fasciculi impositi sunt.}}
 
 {{PLURAL:$3|Pagina '''1''' visa est|Paginae '''$3''' visae sunt}}, et '''$4''' {{PLURAL:$4|recensio paginae facta est|recensiones paginarum factae sunt}}
 ab initio {{grammar:genitive|{{SITENAME}}}}.
@@ -974,7 +975,7 @@ Hoc aequat fere '''$5''' mutationes per paginam, et '''$6''' visae per mutatione
 'all-logs-page'        => 'Acta omnia',
 'log-search-legend'    => 'In actis quaerere',
 'log-search-submit'    => 'Ire',
-'alllogstext'          => 'Ostentantur mixte indices onerationum, deletionum, protectionum, obstructionum, et administratorum.
+'alllogstext'          => 'Ostentantur acta omnia {{grammar:genitive|{{SITENAME}}}}.
 Adspectum graciliorem potes facere modum indicum, nomen usoris, vel paginam petitam seligendo.',
 'log-title-wildcard'   => 'Quaerere titulos qui incipiunt litteris',
 
@@ -1334,7 +1335,7 @@ Quaesitum "[[$1]]" etiam existit. Vin tu eam delere ut moveas?',
 'tooltip-feed-atom'               => 'Atom feed',
 'tooltip-t-contributions'         => 'Videre conlationes huius usoris',
 'tooltip-t-emailuser'             => 'Mittere litteras electronicas huic usori',
-'tooltip-t-upload'                => 'Fasciculos vel imagines onerare',
+'tooltip-t-upload'                => 'Fasciculos imponere',
 'tooltip-t-specialpages'          => 'Index paginarum specialium',
 'tooltip-ca-nstab-main'           => 'Videre paginam',
 'tooltip-ca-nstab-user'           => 'Videre paginam usoris',
@@ -1473,8 +1474,8 @@ Quaesumus, adfirma ut iterum hanc paginam crees.",
 'size-gigabytes' => '$1 gigaocteti',
 
 # Live preview
-'livepreview-loading' => 'Onerans…',
-'livepreview-ready'   => 'Onerans… Factum!',
+'livepreview-loading' => 'Depromens…',
+'livepreview-ready'   => 'Depromens… Praesto!',
 
 # Watchlist editor
 'watchlistedit-normal-title'  => 'Indicem paginarum custoditarum recensere',

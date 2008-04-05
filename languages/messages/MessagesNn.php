@@ -14,6 +14,7 @@
  * @author SPQRobin
  * @author Dittaeva
  * @author M.M.S.
+ * @author Jorunn
  */
 
 /**
@@ -349,22 +350,24 @@ $messages = array(
 'dec'           => 'des',
 
 # Categories related messages
-'categories'                    => 'Kategoriar',
-'categoriespagetext'            => 'Wikien har følgjande kategoriar.',
-'special-categories-sort-count' => 'sorter etter storleik',
-'special-categories-sort-abc'   => 'sorter alfabetisk',
-'pagecategories'                => '{{PLURAL:$1|Kategori|Kategoriar}}',
-'category_header'               => 'Artiklar i kategorien «$1»',
-'subcategories'                 => 'Underkategoriar',
-'category-media-header'         => 'Media i kategorien «$1»',
-'category-empty'                => "''Denne kategorien inneheld for tida ingen sider eller anna media.''",
-'hidden-categories'             => '{{PLURAL:$1|Gøymd kategori|Gøymde kategoriar}}',
-'hidden-category-category'      => 'Gøymde kategoriar', # Name of the category where hidden categories will be listed
-'category-subcat-count'         => '{{PLURAL:$2|Denne kategorien har berre den følgjande underkategorien.|Denne kategorien har {{PLURAL:$1|den følgjande underkategorien|dei følgjande $1 underkategoriane}}, av totalt $2.}}',
-'category-subcat-count-limited' => 'Denne kategorien har {{PLURAL:$1|den følgjande underkategorien|dei følgjande $1 underkategoriane}}.',
-'category-article-count'        => '{{PLURAL:$2|Denne kategorien inneheld berre den følgjande sida.|Følgjande {{PLURAL:$1|side|$1 sider}} er i denne kategorien, av totalt $2.}}',
-'category-file-count-limited'   => 'Følgjande {{PLURAL:$1|fil|$1 filer}} er i denne kategorien.',
-'listingcontinuesabbrev'        => 'vidare',
+'categories'                     => 'Kategoriar',
+'categoriespagetext'             => 'Wikien har følgjande kategoriar.',
+'special-categories-sort-count'  => 'sorter etter storleik',
+'special-categories-sort-abc'    => 'sorter alfabetisk',
+'pagecategories'                 => '{{PLURAL:$1|Kategori|Kategoriar}}',
+'category_header'                => 'Artiklar i kategorien «$1»',
+'subcategories'                  => 'Underkategoriar',
+'category-media-header'          => 'Media i kategorien «$1»',
+'category-empty'                 => "''Denne kategorien inneheld for tida ingen sider eller anna media.''",
+'hidden-categories'              => '{{PLURAL:$1|Gøymd kategori|Gøymde kategoriar}}',
+'hidden-category-category'       => 'Gøymde kategoriar', # Name of the category where hidden categories will be listed
+'category-subcat-count'          => '{{PLURAL:$2|Denne kategorien har berre den følgjande underkategorien.|Denne kategorien har {{PLURAL:$1|den følgjande underkategorien|dei følgjande $1 underkategoriane}}, av totalt $2.}}',
+'category-subcat-count-limited'  => 'Denne kategorien har {{PLURAL:$1|den følgjande underkategorien|dei følgjande $1 underkategoriane}}.',
+'category-article-count'         => '{{PLURAL:$2|Denne kategorien inneheld berre den følgjande sida.|Følgjande {{PLURAL:$1|side|$1 sider}} er i denne kategorien, av totalt $2.}}',
+'category-article-count-limited' => 'Følgjande {{PLURAL:$1|side|$1 sider}} er i denne kategorien.',
+'category-file-count'            => '{{PLURAL:$2|Denne kategorien inneheld berre den følgjande fila.|Følgjande {{PLURAL:$1|fil|$1 filer}} er i denne kategorien, av totalt $2.}}',
+'category-file-count-limited'    => 'Følgjande {{PLURAL:$1|fil|$1 filer}} er i denne kategorien.',
+'listingcontinuesabbrev'         => 'vidare',
 
 'mainpagetext'      => 'MediaWiki er no installert.',
 'mainpagedocfooter' => 'Sjå [http://meta.wikimedia.org/wiki/Help:Contents brukarmanualen] for informasjon om bruk og konfigurasjonshjelp for wikiprogramvaren.
@@ -1590,6 +1593,7 @@ Her er dei noverande innstillingane for sida <strong>$1</strong>:',
 # Undelete
 'undelete'                     => 'Sletta sider',
 'undeletepage'                 => 'Sletta sider',
+'undeletepagetitle'            => "'''Følgjande innhald er sletta versjonar av [[:$1]]'''.",
 'viewdeletedpage'              => 'Sjå sletta sider',
 'undeletepagetext'             => 'Dei følgjande sidene er sletta, men dei finst enno i arkivet og kan attopprettast. Arkivet blir periodevis sletta.',
 'undeleterevisions'            => '{{PLURAL:$1|Éin versjon arkivert|$1 versjonar arkiverte}}',
@@ -1607,11 +1611,15 @@ Her er dei noverande innstillingane for sida <strong>$1</strong>:',
 'undeletedrevisions-files'     => '{{PLURAL:$1|Éin versjon|$1 versjonar}} og {{PLURAL:$2|éi fil|$2 filer}} er attoppretta',
 'undeletedfiles'               => '{{PLURAL:$1|Éi fil|$1 filer}} er attoppretta',
 'cannotundelete'               => 'Feil ved attoppretting, andre kan allereie ha attoppretta sida.',
+'undeletedpage'                => "<big>'''$1 er attoppretta'''</big>
+
+Sjå [[Special:Log/delete|sletteloggen]] for eit oversyn over sider som nyleg er sletta eller attoppretta.",
 'undelete-header'              => 'Sjå [[Special:Log/delete|sletteloggen]] for dei sist sletta sidene.',
 'undelete-search-box'          => 'Søk i sletta sider',
 'undelete-search-prefix'       => 'Vis sider frå og med:',
 'undelete-search-submit'       => 'Søk',
 'undelete-no-results'          => 'Fann ingen treff i arkivet over sletta sider.',
+'undelete-filename-mismatch'   => 'Filversjonen med tidstrykk $1 kan ikkje attopprettast: filnamnet samsvarer ikkje.',
 'undelete-cleanup-error'       => 'Feil ved sletting av den ubrukte arkivfila «$1».',
 'undelete-missing-filearchive' => 'Kunne ikkje attopprette filarkivet med nummer $1 fordi det ikkje ligg i databasen. Det kan allereie ver attoppretta.',
 'undelete-error-short'         => 'Veil ved sletting av fila: $1',
@@ -2224,6 +2232,8 @@ til adressa di. E-posten kjem med ei lenkje som har ein kode; opne
 lenkja i nettlesaren din for å stadfeste at e-postadressa di er gyldig.',
 'confirmemail_send'       => 'Send stadfestingsmelding',
 'confirmemail_sent'       => 'Stadfestingsmelding er sendt.',
+'confirmemail_oncreate'   => 'Ein stadfestingskode er no send til e-postadressa di.
+Koden trengst ikkje for å få logga seg inn, men er naudsynd om ein skal aktivere e-postbaserte tenester på denne wikien.',
 'confirmemail_sendfailed' => 'Kunne ikkje sende stadfestingsmelding. Sjå til at adressa ikkje har ugyldige bokstavar.
 
 E-postsendaren gav denne meldinga: $1',

@@ -819,7 +819,7 @@ Skúste [[Special:Search|vyhľadávať na wiki]] relevantné nové stránky.',
 # Revision deletion
 'rev-deleted-comment'         => '(komentár odstránený)',
 'rev-deleted-user'            => '(používateľské meno odstránené)',
-'rev-deleted-event'           => '(záznam odstránený)',
+'rev-deleted-event'           => '(činnosť odstránená zo záznamu)',
 'rev-deleted-text-permission' => '<div class="mw-warning plainlinks">
 Táto revízia stránky bola odstránená z verejných archívov.
 Podrobnosti nájdete v [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} zázname mazaní].

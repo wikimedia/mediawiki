@@ -217,7 +217,7 @@ $messages = array(
 
 # General errors
 'error'        => 'Σφάλμα',
-'filenotfound' => '"$1" οὐχ ηὑρέθη',
+'filenotfound' => 'Γραφὴ "$1" οὐχ ηὑρέθη',
 
 # Login and logout pages
 'welcomecreation'   => '== Χαῖρε, $1! ==
@@ -323,9 +323,11 @@ $messages = array(
 'newpageletter'   => 'Ν',
 
 # Recent changes linked
+'recentchangeslinked'       => 'Οἰκεῖαι μεταβολαί',
 'recentchangeslinked-title' => 'Μεταβολαὶ οἰκεῖαι $1',
 
 # Upload
+'upload'            => 'Ἀνάγειν γραφήν',
 'uploadnologin'     => 'Οὐκ ἐγγεγραμμένος',
 'filedesc'          => 'Τὸ κεφάλαιον',
 'fileuploadsummary' => 'Τὸ κεφάλαιον:',
@@ -357,6 +359,8 @@ $messages = array(
 # Miscellaneous special pages
 'ncategories'  => '$1 {{PLURAL:$1|Γένος|Γένη}}',
 'shortpages'   => 'Δέλτοι μικραί',
+'longpages'    => 'Δέλτοι μακραί',
+'specialpages' => ' Εἰδικαὶ δέλτοι',
 'newpages'     => 'Δέλτοι νέαι',
 'move'         => 'κινεῖν',
 'movethispage' => 'Κινεῖν τήνδε τὴν δέλτον',

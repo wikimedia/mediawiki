@@ -838,7 +838,7 @@ mais detalhes no [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} registo de e
 'revdelete-nooldid-text'      => 'Não especificou nenhuma revisão, ou revisões,
 no qual aplicar esta função.',
 'revdelete-selected'          => "{{PLURAL:$2|Edição seleccionada|Edições seleccionadas}} para '''[[:$1]]''':",
-'logdelete-selected'          => "{{PLURAL:$2|Evento de registo seleccionado|Eventos de registo seleccionados}} para '''$1:'''",
+'logdelete-selected'          => '{{PLURAL:$2|Evento de registo seleccionado|Eventos de registo seleccionados}}:',
 'revdelete-text'              => "Revisões eliminadas continuarão a aparecer no histórico da página, apesar de o seu conteúdo textual estar inacessível ao público.
 
 Outros administradores nesta wiki continuarão a poder aceder ao conteúdo escondido e restaurá-lo através desta mesma ''interface'', a menos que uma restrição adicional seja definida.",
@@ -859,8 +859,12 @@ Outros administradores nesta wiki continuarão a poder aceder ao conteúdo escon
 'logdelete-logaction'         => '$1 {{PLURAL:$1|evento|eventos}} de [[$3]] {{PLURAL:$1|definido|definidos}} como $2',
 'revdelete-success'           => 'Visibilidade de edição definida com sucesso.',
 'logdelete-success'           => 'Visibilidade de evento definida com sucesso.',
+'revdel-restore'              => 'Alterar visibilidade',
 'pagehist'                    => 'Histórico da página',
 'deletedhist'                 => 'Histórico de eliminações',
+
+# Suppression log
+'suppressionlog' => 'Registo de supressões',
 
 # History merging
 'mergehistory'                     => 'Fundir histórico de páginas',
@@ -1023,17 +1027,20 @@ Uma caixa de selecção desseleccionada significa que o utilizador não se encon
 'group-bot'           => 'Robôs',
 'group-sysop'         => 'Administradores',
 'group-bureaucrat'    => 'Burocratas',
+'group-suppress'      => 'Oversights',
 'group-all'           => '(todos)',
 
 'group-autoconfirmed-member' => 'Utilizador auto-confirmado',
 'group-bot-member'           => 'Robô',
 'group-sysop-member'         => 'Administrador',
 'group-bureaucrat-member'    => 'Burocrata',
+'group-suppress-member'      => 'Oversight',
 
 'grouppage-autoconfirmed' => '{{ns:project}}:Auto-confirmados',
 'grouppage-bot'           => '{{ns:project}}:Robôs',
 'grouppage-sysop'         => '{{ns:project}}:Administradores',
 'grouppage-bureaucrat'    => '{{ns:project}}:Burocratas',
+'grouppage-suppress'      => '{{ns:project}}:Oversight',
 
 # User rights log
 'rightslog'      => 'Registo de privilégios de utilizador',
@@ -1515,6 +1522,7 @@ Por favor, confirme que possui a intenção de fazer isto, que compreende as con
 'deletedtext'                 => '"<nowiki>$1</nowiki>" foi eliminada.
 Consulte $2 para um registo de eliminações recentes.',
 'deletedarticle'              => 'eliminada "[[$1]]"',
+'suppressedarticle'           => 'suprimiu "[[$1]]"',
 'dellogpage'                  => 'Registo de eliminação',
 'dellogpagetext'              => 'Abaixo uma lista das eliminações mais recentes.',
 'deletionlog'                 => 'registo de eliminação',
@@ -1835,7 +1843,7 @@ Se desejar, pode utilizar uma ligação, por exemplo [[{{ns:special}}:Export/{{M
 'allmessagesdefault'        => 'Texto padrão',
 'allmessagescurrent'        => 'Texto actual',
 'allmessagestext'           => 'Esta é uma lista de todas mensagens de sistema disponíveis no espaço nominal {{ns:mediawiki}}:.',
-'allmessagesnotsupportedDB' => "'''{{ns:special}}:Allmessages''' não pode ser utilizado devido ao '''\$wgUseDatabaseMessages''' estar desligado.",
+'allmessagesnotsupportedDB' => "Esta página não pode ser utilizada, uma vez que '''\$wgUseDatabaseMessages''' foi desativado.",
 'allmessagesfilter'         => 'Filtro de nome de mensagem:',
 'allmessagesmodified'       => 'Mostrar apenas modificados',
 

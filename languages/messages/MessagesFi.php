@@ -802,7 +802,7 @@ Muut ylläpitäjät voivat lukea piilotetun sisällön ja palauttaa sen.',
 'revdelete-hide-name'         => 'Piilota toiminto ja kohde',
 'revdelete-hide-comment'      => 'Piilota yhteenveto',
 'revdelete-hide-user'         => 'Piilota tekijän tunnus tai IP-osoite',
-'revdelete-hide-restricted'   => 'Käytä näitä rajoituksia myös ylläpitäjiin',
+'revdelete-hide-restricted'   => 'Käytä näitä rajoituksia myös ylläpitäjiin ja lukitse tämä käyttöliittymä',
 'revdelete-suppress'          => 'Piilota myös ylläpitäjiltä',
 'revdelete-hide-image'        => 'Piilota tiedoston sisältö',
 'revdelete-unsuppress'        => 'Poista rajoitukset palautetuilta versiolta',
@@ -817,6 +817,9 @@ Muut ylläpitäjät voivat lukea piilotetun sisällön ja palauttaa sen.',
 'revdel-restore'              => 'Muuta näkyvyyttä',
 'pagehist'                    => 'Muutoshistoria',
 'deletedhist'                 => 'Poistettu muutoshistoria',
+
+# Suppression log
+'suppressionlogtext' => 'Alla on lista uusimmista poistoista ja muokkausestoista, jotka sisältävät ylläpitäjiltä piilotettua materiaalia. Katso [[Special:Ipblocklist|muokkausestolista]] nähdäksesi tämänhetkiset muokkausestot.',
 
 # History merging
 'mergehistory'                     => 'Yhdistä sivuhistoriat',

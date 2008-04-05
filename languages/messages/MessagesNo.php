@@ -775,7 +775,7 @@ Grunnen som ble oppgitt av $3 er ''$2''",
 # Revision deletion
 'rev-deleted-comment'         => '(kommentar fjernet)',
 'rev-deleted-user'            => '(brukernavn fjernet)',
-'rev-deleted-event'           => '(fjernet)',
+'rev-deleted-event'           => '(fjernet loggoppføring)',
 'rev-deleted-text-permission' => '<div class="mw-warning plainlinks">
 Denne revisjonen har blitt fjernet fra de offentlige arkivene. Det kan være detaljer i [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} slettingsloggen].
 </div>',
@@ -784,10 +784,10 @@ Denne revisjonen har blitt fjernet fra det offentlige arkivet. Som administrator
 </div>',
 'rev-delundel'                => 'vis/skjul',
 'revisiondelete'              => 'Slett/gjenopprett revisjoner',
-'revdelete-nooldid-title'     => 'Ingen målrevisjon',
-'revdelete-nooldid-text'      => 'Du anga ikke en målrevisjon eller målrevisjoner for denne funksjonen.',
-'revdelete-selected'          => "{{PLURAL:$2|Valgt revisjon|Valgte revisjoner}} av '''$1:'''",
-'logdelete-selected'          => "{{PLURAL:$2|Valgt loggbegivenhet|Valgte loggelementer}} for '''$1:'''",
+'revdelete-nooldid-title'     => 'Ugyldig målversjon',
+'revdelete-nooldid-text'      => 'Du har ikke angitt en målversjon for denne funksjonen, den angitte versjonen finnes ikke, eller du forsøker å skjule den nåværende versjonen.',
+'revdelete-selected'          => '{{PLURAL:$2|Valgt revisjon|Valgte revisjoner}} av [[:$1]]:',
+'logdelete-selected'          => '!{{PLURAL:$1|Valgt loggoppføring|Valgte loggoppføringer}}:',
 'revdelete-text'              => 'Slettede revisjoner vil fortsatt vises i sidehistorikken, men innholdet vil ikke være tilgjengelig for offentligheten.
 
 Andre administratorer på {{SITENAME}} vil fortsatt kunne se det skjulte innholdet, og kan gjenopprette det, med mindre videre begrensninger blir gitt av sideoperatørene.',
@@ -796,7 +796,7 @@ Andre administratorer på {{SITENAME}} vil fortsatt kunne se det skjulte innhold
 'revdelete-hide-name'         => 'Skjul handling og mål',
 'revdelete-hide-comment'      => 'Skjul redigeringsforklaring',
 'revdelete-hide-user'         => 'Skjul bidragsyters brukernavn eller IP',
-'revdelete-hide-restricted'   => 'Disse restriksjonene gjelder også for administratorer',
+'revdelete-hide-restricted'   => 'La disse begrensningene gjelde for administratorer også, og steng dette grensesnittet',
 'revdelete-suppress'          => 'Fjern informasjon også fra administratorer',
 'revdelete-hide-image'        => 'Skjul filinnhold',
 'revdelete-unsuppress'        => 'Fjern betingelser på gjenopprettede revisjoner',
@@ -805,11 +805,16 @@ Andre administratorer på {{SITENAME}} vil fortsatt kunne se det skjulte innhold
 'revdelete-logentry'          => 'endre revisjonssynlighet for [[$1]]',
 'logdelete-logentry'          => 'endre hendelsessynlighet for [[$1]]',
 'revdelete-logaction'         => '$1 {{PLURAL:$1|revisjon|revisjoner}} satt til modus $2',
-'logdelete-logaction'         => '$1 {{plural:$1|hendelse|hendelser}} angående [[$3]] satt til modus $2',
+'logdelete-logaction'         => '$1 {{plural:$1|oppføring|oppføringer}} for [[$3]] satt til modus $2',
 'revdelete-success'           => "'''Revisjonssynlighet satt.'''",
 'logdelete-success'           => "'''Hendelsessynlighet satt.'''",
+'revdel-restore'              => 'Ender synlighet',
 'pagehist'                    => 'Sidehistorikk',
 'deletedhist'                 => 'Slettet historikk',
+
+# Suppression log
+'suppressionlog'     => 'Sidefjerningslogg',
+'suppressionlogtext' => 'Nedenfor er en liste over sider og blokkeringer med innhold skjult fra administratorer. Se [[Special:Ipblocklist|blokkeringslisten]] for oversikten over nåværende blokkeringer.',
 
 # History merging
 'mergehistory'                     => 'Flett sidehistorikker',
@@ -969,17 +974,20 @@ Når en boks er merket betyr det at brukeren er medlem av den gruppen.',
 'group-bot'           => 'Roboter',
 'group-sysop'         => 'Administratorer',
 'group-bureaucrat'    => 'Byråkrater',
+'group-suppress'      => 'Sidefjernere',
 'group-all'           => '(alle)',
 
 'group-autoconfirmed-member' => 'Autobekreftet bruker',
 'group-bot-member'           => 'robot',
 'group-sysop-member'         => 'administrator',
 'group-bureaucrat-member'    => 'byråkrat',
+'group-suppress-member'      => 'Sidefjerner',
 
 'grouppage-autoconfirmed' => '{{ns:project}}:Autobekreftede brukere',
 'grouppage-bot'           => '{{ns:project}}:Roboter',
 'grouppage-sysop'         => '{{ns:project}}:Administratorer',
 'grouppage-bureaucrat'    => '{{ns:project}}:Byråkrater',
+'grouppage-suppress'      => '{{ns:project}}:Sidefjerning',
 
 # User rights log
 'rightslog'      => 'Rettighetslogg',
@@ -1298,6 +1306,7 @@ Det har vært totalt {{PLURAL:$3|'''én''' sidevisning|'''$3''' sidevisninger}},
 'notargettext'            => 'Du oppga ikke en målside eller bruker å utføre denne funksjonen på.',
 'pager-newer-n'           => '{{PLURAL:$1|1 nyere|$1 nyere}}',
 'pager-older-n'           => '{{PLURAL:$1|1 eldre|$1 eldre}}',
+'suppress'                => 'Sidefjerning',
 
 # Book sources
 'booksources'               => 'Bokkilder',
@@ -1445,6 +1454,7 @@ Tilbakemeldinger og videre assistanse:
 'actioncomplete'              => 'Gjennomført',
 'deletedtext'                 => '«<nowiki>$1</nowiki>» er slettet. Se $2 for en oversikt over de siste slettingene.',
 'deletedarticle'              => 'slettet «[[$1]]»',
+'suppressedarticle'           => 'fjernet «[[$1]]»',
 'dellogpage'                  => 'Slettingslogg',
 'dellogpagetext'              => 'Under er ei liste over nylige slettinger.',
 'deletionlog'                 => 'slettingslogg',

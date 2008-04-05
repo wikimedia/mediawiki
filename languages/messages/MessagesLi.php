@@ -990,6 +990,7 @@ Es 't gecontroleerde bestand dezelfde afbeilding van oorspronkelike grootte is, 
 'uploadvirus'                 => "'t Bestand bevat 'n virus! Details: $1",
 'sourcefilename'              => 'Oorspronkelike bestandsnaam:',
 'destfilename'                => 'Doeltitel:',
+'upload-maxfilesize'          => 'Maximale bestandjsgrootte: $1',
 'watchthisupload'             => 'Volg dees pazjena',
 'filewasdeleted'              => "d'r Is eerder 'n bestandj mit deze naam verwiederd. Raodpleeg 't $1 veurdetse 't opnuuj toevoegs.",
 'upload-wasdeleted'           => "'''Waarsjuwing: Doe bös 'n bestand det eerder verwiederd woor aan 't uploade.'''
@@ -1194,6 +1195,7 @@ Op eder raegel vings te de ierste redirectpazjena, de twiede redirectpazjena en 
 'notargettext'            => 'Ger hubt neet gezag veur welleke pagina ger deze functie wilt bekieke.',
 'pager-newer-n'           => '{{PLURAL:$1|nujere 1|nujer $1}}',
 'pager-older-n'           => '{{PLURAL:$1|ajere 1|ajer $1}}',
+'suppress'                => 'Toezich',
 
 # Book sources
 'booksources'               => 'Bookwinkele',
@@ -1343,6 +1345,7 @@ Commentaar en wiejer assistentie:
 'actioncomplete'              => 'Actie voltoeid',
 'deletedtext'                 => '"<nowiki>$1</nowiki>" is gewis. Zuug $2 vuur \'n euverzich van recèntelik gewisde pazjena\'s.',
 'deletedarticle'              => '"$1" is gewis',
+'suppressedarticle'           => 'haet "[[$1]]" verborge',
 'dellogpage'                  => 'Wislogbook',
 'dellogpagetext'              => "Hie volg 'n lies van de meis recèntelik gewisde pazjena's en plaetjes.",
 'deletionlog'                 => 'Wislogbook',
@@ -1648,7 +1651,7 @@ In 't letste geval kanse ouch 'ne link gebroeken, beveurbeild [[Special:Export/{
 'allmessagesdefault'        => 'Obligaten teks',
 'allmessagescurrent'        => 'Hujige teks',
 'allmessagestext'           => "Dit is 'n lies van alle systeemberichte besjikbaar in de MediaWiki:-naamruumde.",
-'allmessagesnotsupportedDB' => "'''{{ns:special}}:Allmessages''' neet óngersjteundj ómdat '''\$wgUseDatabaseMessages''' oet (off) sjteit.",
+'allmessagesnotsupportedDB' => "Deze pagina kan neet gebroek waere omdet '''\$wgUseDatabaseMessages''' oet steit.",
 'allmessagesfilter'         => 'Berich naamfilter:',
 'allmessagesmodified'       => 'Tuun allein gewiezigde systeemtekste',
 
@@ -2135,26 +2138,26 @@ Alle volgende links die op dezelfde regel staon, waere behanjeld es oetzönjerin
 'monthsall'        => 'al',
 
 # E-mail address confirmation
-'confirmemail'            => 'Bevèstig e-mailadres',
-'confirmemail_noemail'    => 'Doe höbs gein geldig e-mailadres ingegaeve in dien [[{{ns:special}}:Preferences|veurkäöre]].',
-'confirmemail_text'       => "Deze wiki vereis dats te dien e-mailadres instèls iedats te e-mailfuncties
+'confirmemail'             => 'Bevèstig e-mailadres',
+'confirmemail_noemail'     => 'Doe höbs gein geldig e-mailadres ingegaeve in dien [[{{ns:special}}:Preferences|veurkäöre]].',
+'confirmemail_text'        => "Deze wiki vereis dats te dien e-mailadres instèls iedats te e-mailfuncties
 gebroeks. Klik op de knop hieónger óm e bevèstegingsberich nao dien adres te
 sjikke. D'n e-mail zal 'ne link mèt 'n code bevatte; eupen de link in diene
 browser óm te bevestege dat dien e-mailadres werk.",
-'confirmemail_pending'    => "<div class=\"error\">Dao is al 'n bevestigingsberich aan dich versjik. Wens te zjus diene gebroeker aangemaak höbs, wach dan e paar minute pès 't aankump veurdets te opnuuj 'n e-mail leuts sjikke.</div>",
-'confirmemail_send'       => "Sjik 'n bevèstegingcode",
-'confirmemail_sent'       => 'Bevèstegingsberich versjik.',
-'confirmemail_oncreate'   => "D'r is 'n bevestigingscode nao dien e-mailadres versjik. Dees code is neet nudig óm aan te melje, meh doe mós dees waal bevestige veurdets te de e-mailmäögelikheite van deze wiki kèns nótse.",
-'confirmemail_sendfailed' => "Kós 't bevèstegingsberich neet versjikke. Zuug dien e-mailadres nao op óngeljige karakters.
+'confirmemail_pending'     => "<div class=\"error\">Dao is al 'n bevestigingsberich aan dich versjik. Wens te zjus diene gebroeker aangemaak höbs, wach dan e paar minute pès 't aankump veurdets te opnuuj 'n e-mail leuts sjikke.</div>",
+'confirmemail_send'        => "Sjik 'n bevèstegingcode",
+'confirmemail_sent'        => 'Bevèstegingsberich versjik.',
+'confirmemail_oncreate'    => "D'r is 'n bevestigingscode nao dien e-mailadres versjik. Dees code is neet nudig óm aan te melje, meh doe mós dees waal bevestige veurdets te de e-mailmäögelikheite van deze wiki kèns nótse.",
+'confirmemail_sendfailed'  => "Kós 't bevèstegingsberich neet versjikke. Zuug dien e-mailadres nao op óngeljige karakters.
 
 't E-mailprogramma goof: $1",
-'confirmemail_invalid'    => 'Óngeljige bevèstigingscode. De code is meugelik verloupe.',
-'confirmemail_needlogin'  => 'Doe mós $1 óm dien e-mailadres te bevestige.',
-'confirmemail_success'    => 'Dien e-mailadres is bevesteg. De kins noe inlogke en van de wiki genete.',
-'confirmemail_loggedin'   => 'Dien e-mailadres is noe vasgelag.',
-'confirmemail_error'      => "Bie 't opsjlaon van eur bevèstiging is get fout gegange.",
-'confirmemail_subject'    => 'Bevèstiging e-mailadres veur {{SITENAME}}',
-'confirmemail_body'       => "Emes, waorsjienlik doe vanaaf 't IP-adres $1, heet 'n account $2
+'confirmemail_invalid'     => 'Óngeljige bevèstigingscode. De code is meugelik verloupe.',
+'confirmemail_needlogin'   => 'Doe mós $1 óm dien e-mailadres te bevestige.',
+'confirmemail_success'     => 'Dien e-mailadres is bevesteg. De kins noe inlogke en van de wiki genete.',
+'confirmemail_loggedin'    => 'Dien e-mailadres is noe vasgelag.',
+'confirmemail_error'       => "Bie 't opsjlaon van eur bevèstiging is get fout gegange.",
+'confirmemail_subject'     => 'Bevèstiging e-mailadres veur {{SITENAME}}',
+'confirmemail_body'        => "Emes, waorsjienlik doe vanaaf 't IP-adres $1, heet 'n account $2
 aangemaak mit dit e-mailadres op {{SITENAME}}.
 
 Eupen óm te bevèstige dat dit account wirkelik van dich is en de
@@ -2164,6 +2167,8 @@ $3
 
 Es geer dit *neet* zeet, dan volg de link neet. Dees bevèstigingscode
 blief geljig tot $4",
+'confirmemail_invalidated' => 'De e-mailbevestiging is geannuleerdj',
+'invalidateemail'          => 'E-mailbevestiging annulere',
 
 # Scary transclusion
 'scarytranscludedisabled' => '[Interwikitransclusie is oetgesjakeld]',

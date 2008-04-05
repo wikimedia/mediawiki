@@ -206,7 +206,7 @@ $messages = array(
 'metadata_help' => 'Metadatumoj:',
 
 'errorpagetitle'    => 'Eraro',
-'returnto'          => 'Revenu al $1.',
+'returnto'          => 'Reiru al $1.',
 'tagline'           => 'El {{SITENAME}}',
 'help'              => 'Helpo',
 'search'            => 'Serĉu',
@@ -707,7 +707,7 @@ Provu [[Special:Search|sercxi en la vikio]] por rilataj novaj pagxoj.',
 # Revision deletion
 'rev-deleted-comment'         => '(komento nuligita)',
 'rev-deleted-user'            => '(uzanto-nomo forigita)',
-'rev-deleted-event'           => '(ero forigita)',
+'rev-deleted-event'           => '(loglibrero forigita)',
 'rev-deleted-text-permission' => '<div class="mw-warning plainlinks">
 Cxi versio de la pagxo estis forigita de publikaj arhxivoj.
 Povas esti detaloj en la [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} logolibro de forigoj].
@@ -898,6 +898,9 @@ Ekzemple, por la Centra Eŭropa Horzono, indiku "1" vintre aŭ "2" dum somertemp
 'userrights-groupsmember'          => 'Membro de:',
 'userrights-groupsremovable'       => 'Forigeblaj grupoj:',
 'userrights-groupsavailable'       => 'Disponeblaj grupoj:',
+'userrights-groups-help'           => 'Vi povas modifi la grupojn kiun ĉi uzanto enestas.
+Markita markbutono signifas ke la uzanto estas en tiu grupo.
+Nemarkita markbutono signifas ke la uzanto ne estas in tiu grupo.',
 'userrights-reason'                => 'Kialo por ŝanĝo:',
 'userrights-available-none'        => 'Vi ne eblas ŝanĝi membrecon de grupoj.',
 'userrights-available-add'         => 'Vi povas aldoni iujn ajn uzantojn al {{PLURAL:$2|ĉi tiu grupo|ĉi tiuj grupoj}}: $1.',
@@ -1388,7 +1391,7 @@ Reagoj kaj plia helpo :
 'exbeforeblank'               => "antaŭ malplenigo enhavis: '$1'",
 'exblank'                     => 'estis malplena',
 'delete-confirm'              => 'Forviŝu "$1"',
-'delete-legend'               => 'Forviŝi',
+'delete-legend'               => 'Forigu',
 'historywarning'              => 'Averto: la forigota paĝo havas historion:',
 'confirmdeletetext'           => 'Vi forigos la artikolon aŭ dosieron kaj forviŝos ĝian tutan historion el la datumaro.<br /> Bonvolu konfirmi, ke vi vere intencas tion, kaj ke vi komprenas la sekvojn, kaj ke vi ja sekvas la [[{{MediaWiki:Policy-url}}|regulojn pri forigado]].',
 'actioncomplete'              => 'Ago farita',

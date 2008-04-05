@@ -10,6 +10,7 @@
  * @author לערי ריינהארט
  * @author Mssetiadi
  * @author SPQRobin
+ * @author Meursault2004
  */
 
 $fallback = 'id';
@@ -1568,7 +1569,7 @@ Artikel nu dituju "[[$1]]" geus aya. Badé dihapus baé sangkan bisa mindahkeun?
 'importinterwiki'            => 'Impor transwiki',
 'import-interwiki-history'   => 'Salin sakabéh vérsi jujutan pikeun ieu kaca',
 'import-interwiki-submit'    => 'Impor',
-'import-interwiki-namespace' => 'PIndahkeun kaca ka rohang spasi',
+'import-interwiki-namespace' => 'Pindahkeun kaca ka rohang spasi',
 'importtext'                 => 'Mangga ékspor koropakna ti sumber nu dipaké ku wiki migunakeun fungsi Special:Export, simpen na piringan anjeun, teras muatkeun di dieu.',
 'importstart'                => 'Ngimpor kaca...',
 'import-revision-count'      => '$1 vérsi heubeul',

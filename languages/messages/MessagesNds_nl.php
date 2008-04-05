@@ -598,7 +598,7 @@ Query: $2',
 $2',
 'namespaceprotected'   => "Je bin neet bevoeg um pagina is de '''$1'''-naamruumte te bewarken.",
 'customcssjsprotected' => 'Je kunnen disse pagina neet bewarken umdat der persoonlijke instellingen van een aandere gebruker in staon.',
-'ns-specialprotected'  => 'Pagina\'s in de naamruumte "{{ns:special}}" kunnen neet bewark wonnen.',
+'ns-specialprotected'  => "Speciale pagina's kunnen neet bewörk wonnen.",
 'titleprotected'       => "'t Anmaken van disse pagina is beveilig deur [[User:$1|$1]].
 De op-egeven rejen is ''$2''.",
 
@@ -907,8 +907,8 @@ der kan veerdere infermasie staon in 't [{{fullurl:Special:Log/delete|page={{PAG
 'revisiondelete'              => 'Wiezigingen vortdoon/herstellen',
 'revdelete-nooldid-title'     => 'Gien doelversie',
 'revdelete-nooldid-text'      => 'Je hemmen gien versie an-egeven waor disse actie op uut-evoerd mut wonnen.',
-'revdelete-selected'          => "Esillekteren {{PLURAL:$2|bewarking|bewarkingen}} van '''[[:$1]]''':",
-'logdelete-selected'          => "{{PLURAL:$2|Esillekteren logboekboekactie|Esillekteren logboekacties}} veur '''$1:'''",
+'revdelete-selected'          => "{{PLURAL:$2|Esillekteren bewarking|Esillekteren bewarkingen}} van '''[[:$1]]''':",
+'logdelete-selected'          => '{{PLURAL:$2|Esillecteren logboekboekactie|Esillecteren logboekacties}}:',
 'revdelete-text'              => "Bewarkingen dee vort-ehaold bin, ku-j wel zien in de geschiedenisse, mar de inhoud is neet langer pebliekelijk toegankelijk.
 
 Aandere beheerders van {{SITENAME}} kunnen de verbörgen inhoud bekieken en 't weerummeplaosen mit behulpe van dit scharm, behalven as der aandere beparkingen gelden dee in-esteld bin deur de systeembeheerder.",
@@ -926,7 +926,7 @@ Aandere beheerders van {{SITENAME}} kunnen de verbörgen inhoud bekieken en 't w
 'revdelete-logentry'          => 'zichbaorheid van bewarkingen is ewiezig veur [[$1]]',
 'logdelete-logentry'          => 'wiezigen zichbaorheid van gebeurtenisse [[$1]]',
 'revdelete-logaction'         => '$1 {{PLURAL:$1|wieziging|wiezigingen}} in-esteld naor modus $2',
-'logdelete-logaction'         => '$1 {{PLURAL:$1|actie|acties}} um [[$3]] naor modus $2 in te stellen',
+'logdelete-logaction'         => '$1 {{PLURAL:$1|actie|acties}} ummezet naor modus $2',
 'revdelete-success'           => 'Zichbaorheid van de wieziging succesvol in-esteld.',
 'logdelete-success'           => "'''Zichbaorheid van de gebeurtenisse is succesvol in-esteld.'''",
 'pagehist'                    => 'Paginageschiedenisse',
