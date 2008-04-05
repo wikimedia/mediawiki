@@ -5,15 +5,15 @@
  * Ignores the old configuration globals
  *
  * Configuration: 
- *     sectionsByDB		           A map of database names to section names
+ *     sectionsByDB                A map of database names to section names
  *
  *     sectionLoads                A 2-d map. For each section, gives a map of server names to load ratios.
  *                                 For example: array( 'section1' => array( 'db1' => 100, 'db2' => 100 ) )
  *
- *     mainTemplate                A server info associative array as documented for $wgDBservers. The host,
+ *     serverTemplate              A server info associative array as documented for $wgDBservers. The host,
  *                                 hostName and load entries will be overridden.
  *
- *     groupLoadsBySection	       A 3-d map giving server load ratios for each section and group. For example:
+ *     groupLoadsBySection         A 3-d map giving server load ratios for each section and group. For example:
  *                                 array( 'section1' => array( 'group1' => array( 'db1' => 100, 'db2' => 100 ) ) )
  *
  *     groupLoadsByDB              A 3-d map giving server load ratios by DB name.
@@ -22,23 +22,22 @@
  *
  *     externalLoads               A map of external storage cluster name to server load map
  *
- *     externalTemplate            A server info structure used for external storage servers
+ *     externalTemplateOverrides   A set of server info keys overriding serverTemplate for external storage
  *
- *     templateOverridesByServer   A 2-d map overriding mainTemplate or externalTemplate on a 
- *                                 server-by-server basis.
+ *     templateOverridesByServer   A 2-d map overriding serverTemplate and externalTemplateOverrides on a 
+ *                                 server-by-server basis. Applies to both core and external storage.
  *
- *     templateOverridesByCluster  A 2-d map overriding externalTemplate by cluster
+ *     templateOverridesByCluster  A 2-d map overriding the server info by external storage cluster
  *
- *     masterTemplateOverrides     An override array for mainTemplate and externalTemplate for all
- *                                 master servers.
+ *     masterTemplateOverrides     An override array for all master servers.
  *
  */
 class LBFactory_Multi extends LBFactory {
 	// Required settings
-	var $sectionsByDB, $sectionLoads, $mainTemplate;
+	var $sectionsByDB, $sectionLoads, $serverTemplate;
 	// Optional settings
 	var $groupLoadsBySection = array(), $groupLoadsByDB = array(), $hostsByName = array();
-	var $externalLoads = array(), $externalTemplate, $templateOverridesByServer;
+	var $externalLoads = array(), $externalTemplateOverrides, $templateOverridesByServer;
 	var $templateOverridesByCluster, $masterTemplateOverrides;
 	// Other stuff
 	var $conf, $mainLBs = array(), $extLBs = array();
@@ -47,9 +46,9 @@ class LBFactory_Multi extends LBFactory {
 	function __construct( $conf ) {
 		$this->chronProt = new ChronologyProtector;
 		$this->conf = $conf;
-		$required = array( 'sectionsByDB', 'sectionLoads', 'mainTemplate' );
+		$required = array( 'sectionsByDB', 'sectionLoads', 'serverTemplate' );
 		$optional = array( 'groupLoadsBySection', 'groupLoadsByDB', 'hostsByName', 
-			'externalLoads', 'externalTemplate', 'templateOverridesByServer',
+			'externalLoads', 'externalTemplateOverrides', 'templateOverridesByServer',
 			'templateOverridesByCluster', 'masterTemplateOverrides' );
 
 		foreach ( $required as $key ) {
@@ -95,7 +94,7 @@ class LBFactory_Multi extends LBFactory {
 			if ( isset( $this->groupLoadsBySection[$section] ) ) {
 				$groupLoads = array_merge_recursive( $groupLoads, $this->groupLoadsBySection[$section] );
 			}
-			$this->mainLBs[$section] = $this->newLoadBalancer( $this->mainTemplate, 
+			$this->mainLBs[$section] = $this->newLoadBalancer( $this->serverTemplate, 
 				$this->sectionLoads[$section], $groupLoads, "main-$section" );
 			$this->chronProt->initLB( $this->mainLBs[$section] );
 		}
@@ -107,12 +106,12 @@ class LBFactory_Multi extends LBFactory {
 			if ( !isset( $this->externalLoads[$cluster] ) ) {
 				throw new MWException( __METHOD__.": Unknown cluster \"$cluster\"" );
 			}
+			$template = $this->serverTemplate;
+			if ( isset( $this->externalTemplateOverrides ) ) {
+				$template = $this->externalTemplateOverrides + $template;
+			}
 			if ( isset( $this->templateOverridesByCluster[$cluster] ) ) {
-				$template = $this->templateOverridesByCluster[$cluster];
-			} elseif ( isset( $this->externalTemplate ) ) {
-				$template = $this->externalTemplate;
-			} else {
-				$template = $this->mainTemplate;
+				$template = $this->templateOverridesByCluster[$cluster] + $template;
 			}
 			$this->extLBs[$cluster] = $this->newLoadBalancer( $template, 
 				$this->externalLoads[$cluster], array(), "ext-$cluster" );
