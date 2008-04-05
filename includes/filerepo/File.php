@@ -1040,7 +1040,7 @@ abstract class File {
 		if ( !file_exists( $path ) ) {
 			return false;
 		}
-		return wfTimestamp( filemtime( $path ) );
+		return wfTimestamp( TS_MW, filemtime( $path ) );
 	}
 
 	/**
