@@ -457,6 +457,11 @@ class LoginForm {
 				$wgUser->setCookies();
 
 				if( $this->hasSessionCookie() ) {
+					/* Replace the language object to provide user interface in correct
+					 * language immediately on this first page load.
+					 */
+					global $wgLang;
+					$wgLang = Language::factory( $wgUser->getOption( 'language' ) );
 					return $this->successfulLogin( wfMsg( 'loginsuccess', $wgUser->getName() ) );
 				} else {
 					return $this->cookieRedirectCheck( 'login' );
