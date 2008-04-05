@@ -11,7 +11,10 @@ class OldLocalFile extends LocalFile {
 	const CACHE_VERSION = 1;
 	const MAX_CACHE_ROWS = 20;
 
-	static function newFromTitle( $title, $repo, $time ) {
+	static function newFromTitle( $title, $repo, $time = null ) {
+		# The null default value is only here to avoid an E_STRICT
+		if( $time === null )
+			throw new MWException( __METHOD__.' got null for $time parameter' );
 		return new self( $title, $repo, $time, null );
 	}
 

@@ -297,7 +297,7 @@ function __autoload($className) {
 		'ForeignDBRepo' => 'includes/filerepo/ForeignDBRepo.php',
 		'ForeignDBViaLBRepo' => 'includes/filerepo/ForeignDBViaLBRepo.php',
 		'FSRepo' => 'includes/filerepo/FSRepo.php',
-		'Image' => 'includes/filerepo/LocalFile.php',
+		'Image' => 'includes/filerepo/Image.php',
 		'LocalFileDeleteBatch' => 'includes/filerepo/LocalFile.php',
 		'LocalFile' => 'includes/filerepo/LocalFile.php',
 		'LocalFileRestoreBatch' => 'includes/filerepo/LocalFile.php',
