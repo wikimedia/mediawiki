@@ -193,6 +193,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 13606) Added archivename to iiprop
 * (bug 11633) Explicitly convert redirect titles to strings due to PHP's
   very weak typing on array keys.
+* (bug 12136) Extend allowed characters in JSON callback to ][.'"_A-Za-z0-9
 
 === Languages updated in 1.13 ===
 

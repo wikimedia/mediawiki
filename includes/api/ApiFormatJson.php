@@ -54,7 +54,7 @@ class ApiFormatJson extends ApiFormatBase {
 		$params = $this->extractRequestParams();
 		$callback = $params['callback'];
 		if(!is_null($callback)) {
-			$prefix = ereg_replace("[^_A-Za-z0-9]", "", $callback ) . "(";
+			$prefix = preg_replace("/[^][.\\'\\\"_A-Za-z0-9]/", "", $callback ) . "(";
 			$suffix = ")";
 		}
 
