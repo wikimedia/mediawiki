@@ -71,7 +71,7 @@ abstract class FileRepo {
 	}
 
 	/**
-	 * Find an instance of the named file that existed at the specified time
+	 * Find an instance of the named file created at the specified time
 	 * Returns false if the file did not exist. Repositories not supporting 
 	 * version control should return false if the time is specified.
 	 *
