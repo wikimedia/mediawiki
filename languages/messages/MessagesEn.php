@@ -1210,13 +1210,21 @@ Other admins on {{SITENAME}} will still be able to access the hidden content and
 'revdelete-submit'            => 'Apply to selected revision',
 'revdelete-logentry'          => 'changed revision visibility of [[$1]]',
 'logdelete-logentry'          => 'changed event visibility of [[$1]]',
-'revdelete-logaction'         => '$1 {{PLURAL:$1|revision|revisions}} set to mode $2',
-'logdelete-logaction'         => '$1 {{PLURAL:$1|event|events}} set to mode $2',
 'revdelete-success'           => "'''Revision visibility successfully set.'''",
 'logdelete-success'           => "'''Log visibility successfully set.'''",
 'revdel-restore'              => 'Change visiblity',
 'pagehist'                    => 'Page history',
 'deletedhist'                 => 'Deleted history',
+
+# Revision deletion - log messages
+'revdelete-content'           => 'content',
+'revdelete-summary'           => 'edit summary',
+'revdelete-uname'             => 'username',
+'revdelete-restricted'        => 'applied restrictions to sysops',
+'revdelete-unrestricted'      => 'removed restrictions for sysops',
+'revdelete-hid'               => 'hid $1',
+'revdelete-unhid'             => 'unhid $1',
+'revdelete-log-message'       => '$1 for $2 {{PLURAL:$2|revisions|revision}}: $3',
 
 # Suppression log
 'suppressionlog'     => 'Suppression log',

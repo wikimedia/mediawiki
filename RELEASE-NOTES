@@ -62,6 +62,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 13450) Email confirmation can now be canceled before the expiration
 * (bug 13490) Show upload/file size limit on upload form
 * Redesign of Special:Userrights
+* Make rev_deleted log entries more intelligible.
 
 === Bug fixes in 1.13 ===
 
