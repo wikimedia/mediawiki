@@ -40,7 +40,7 @@ class DifferenceEngine {
 	 * @param $rcid Integer: ??? FIXME (default 0)
 	 * @param $refreshCache boolean If set, refreshes the diff cache
 	 */
-	function DifferenceEngine( $titleObj = null, $old = 0, $new = 0, $rcid = 0, $refreshCache = false ) {
+	function __construct( $titleObj = null, $old = 0, $new = 0, $rcid = 0, $refreshCache = false ) {
 		$this->mTitle = $titleObj;
 		wfDebug("DifferenceEngine old '$old' new '$new' rcid '$rcid'\n");
 
@@ -74,8 +74,7 @@ class DifferenceEngine {
 
 	function showDiffPage( $diffOnly = false ) {
 		global $wgUser, $wgOut, $wgUseExternalEditor, $wgUseRCPatrol;
-		$fname = 'DifferenceEngine::showDiffPage';
-		wfProfileIn( $fname );
+		wfProfileIn( __METHOD__ );
 
 	 	# If external diffs are enabled both globally and for the user,
 		# we'll use the application/x-external-editor interface to call
@@ -111,7 +110,7 @@ CONTROL;
 			$t = $this->mTitle->getPrefixedText() . " (Diff: {$this->mOldid}, {$this->mNewid})";
 			$wgOut->setPagetitle( wfMsg( 'errorpagetitle' ) );
 			$wgOut->addWikiMsg( 'missingarticle', "<nowiki>$t</nowiki>" );
-			wfProfileOut( $fname );
+			wfProfileOut( __METHOD__ );
 			return;
 		}
 		
@@ -127,7 +126,7 @@ CONTROL;
 		if ( $this->mOldid === false ) {
 			$this->showFirstRevision();
 			$this->renderNewRevision();  // should we respect $diffOnly here or not?
-			wfProfileOut( $fname );
+			wfProfileOut( __METHOD__ );
 			return;
 		}
 
@@ -146,7 +145,7 @@ CONTROL;
 		if ( !( $this->mOldPage->userCanRead() && $this->mNewPage->userCanRead() ) ) {
 			$wgOut->loginToUse();
 			$wgOut->output();
-			wfProfileOut( $fname );
+			wfProfileOut( __METHOD__ );
 			exit;
 		}
 
@@ -211,13 +210,11 @@ CONTROL;
 		$newminor = '';
 
 		if ($this->mOldRev->mMinorEdit == 1) {
-			$oldminor = wfElement( 'span', array( 'class' => 'minor' ),
-				wfMsg( 'minoreditletter') ) . ' ';
+			$oldminor = Xml::span( wfMsg( 'minoreditletter'), 'minor' ) . ' ';
 		}
 
 		if ($this->mNewRev->mMinorEdit == 1) {
-			$newminor = wfElement( 'span', array( 'class' => 'minor' ),
-			wfMsg( 'minoreditletter') ) . ' ';
+			$newminor = Xml::span( wfMsg( 'minoreditletter'), 'minor' ) . ' ';
 		}
 		
 		$rdel = ''; $ldel = '';
@@ -225,7 +222,7 @@ CONTROL;
 			$revdel = SpecialPage::getTitleFor( 'Revisiondelete' );
 			if( !$this->mOldRev->userCan( Revision::DELETED_RESTRICTED ) ) {
 			// If revision was hidden from sysops
-				$ldel = wfMsgHtml('rev-delundel');	
+				$ldel = wfMsgHtml('rev-delundel');
 			} else {
 				$ldel = $sk->makeKnownLinkObj( $revdel,
 					wfMsgHtml('rev-delundel'),
@@ -269,7 +266,7 @@ CONTROL;
 		if ( !$diffOnly )
 			$this->renderNewRevision();
 
-		wfProfileOut( $fname );
+		wfProfileOut( __METHOD__ );
 	}
 
 	/**
@@ -277,8 +274,7 @@ CONTROL;
 	 */
 	function renderNewRevision() {
 		global $wgOut;
-		$fname = 'DifferenceEngine::renderNewRevision';
-		wfProfileIn( $fname );
+		wfProfileIn( __METHOD__ );
 
 		$wgOut->addHTML( "<hr /><h2>{$this->mPagetitle}</h2>\n" );
 		#add deleted rev tag if needed
@@ -316,7 +312,7 @@ CONTROL;
 			$wgOut->parserOptions()->setEditSection( $oldEditSectionSetting );
 		}
 
-		wfProfileOut( $fname );
+		wfProfileOut( __METHOD__ );
 	}
 
 	/**
@@ -325,9 +321,7 @@ CONTROL;
 	 */
 	function showFirstRevision() {
 		global $wgOut, $wgUser;
-
-		$fname = 'DifferenceEngine::showFirstRevision';
-		wfProfileIn( $fname );
+		wfProfileIn( __METHOD__ );
 
 		# Get article text from the DB
 		#
@@ -336,7 +330,7 @@ CONTROL;
 			  "{$this->mNewid})";
 			$wgOut->setPagetitle( wfMsg( 'errorpagetitle' ) );
 			$wgOut->addWikiMsg( 'missingarticle', "<nowiki>$t</nowiki>" );
-			wfProfileOut( $fname );
+			wfProfileOut( __METHOD__ );
 			return;
 		}
 		if ( $this->mNewRev->isCurrent() ) {
@@ -348,7 +342,7 @@ CONTROL;
 		if ( !( $this->mTitle->userCanRead() ) ) {
 			$wgOut->loginToUse();
 			$wgOut->output();
-			wfProfileOut( $fname );
+			wfProfileOut( __METHOD__ );
 			exit;
 		}
 
@@ -367,7 +361,7 @@ CONTROL;
 		$wgOut->setSubtitle( wfMsg( 'difference' ) );
 		$wgOut->setRobotpolicy( 'noindex,nofollow' );
 
-		wfProfileOut( $fname );
+		wfProfileOut( __METHOD__ );
 	}
 
 	/**
@@ -422,8 +416,7 @@ CONTROL;
 	 */
 	function getDiffBody() {
 		global $wgMemc;
-		$fname = 'DifferenceEngine::getDiffBody';
-		wfProfileIn( $fname );
+		wfProfileIn( __METHOD__ );
 		// Check if the diff should be hidden from this user
 		if ( $this->mOldRev && !$this->mOldRev->userCan(Revision::DELETED_TEXT) ) {
 		  	return '';
@@ -441,7 +434,7 @@ CONTROL;
 					wfIncrStats( 'diff_cache_hit' );
 					$difftext = $this->localiseLineNumbers( $difftext );
 					$difftext .= "\n<!-- diff cache key $key -->\n";
-					wfProfileOut( $fname );
+					wfProfileOut( __METHOD__ );
 					return $difftext;
 				}
 			} // don't try to load but save the result
@@ -449,7 +442,7 @@ CONTROL;
 
 		// Loadtext is permission safe, this just clears out the diff
 		if ( !$this->loadText() ) {
-			wfProfileOut( $fname );
+			wfProfileOut( __METHOD__ );
 			return false;
 		}
 
@@ -466,7 +459,7 @@ CONTROL;
 		if ( $difftext !== false ) {
 			$difftext = $this->localiseLineNumbers( $difftext );
 		}
-		wfProfileOut( $fname );
+		wfProfileOut( __METHOD__ );
 		return $difftext;
 	}
 
@@ -476,7 +469,6 @@ CONTROL;
 	 */
 	function generateDiffBody( $otext, $ntext ) {
 		global $wgExternalDiffEngine, $wgContLang;
-		$fname = 'DifferenceEngine::generateDiffBody';
 
 		$otext = str_replace( "\r\n", "\n", $otext );
 		$ntext = str_replace( "\r\n", "\n", $ntext );
@@ -496,9 +488,9 @@ CONTROL;
 			# Better external diff engine, the 2 may some day be dropped
 			# This one does the escaping and segmenting itself
 			if ( !function_exists( 'wikidiff2_do_diff' ) ) {
-				wfProfileIn( "$fname-dl" );
+				wfProfileIn( __METHOD__ . "-dl" );
 				@dl('php_wikidiff2.so');
-				wfProfileOut( "$fname-dl" );
+				wfProfileOut( __METHOD__ . "-dl" );
 			}
 			if ( function_exists( 'wikidiff2_do_diff' ) ) {
 				wfProfileIn( 'wikidiff2_do_diff' );
@@ -515,12 +507,12 @@ CONTROL;
 
 			$tempFile1 = fopen( $tempName1, "w" );
 			if ( !$tempFile1 ) {
-				wfProfileOut( $fname );
+				wfProfileOut( __METHOD__ );
 				return false;
 			}
 			$tempFile2 = fopen( $tempName2, "w" );
 			if ( !$tempFile2 ) {
-				wfProfileOut( $fname );
+				wfProfileOut( __METHOD__ );
 				return false;
 			}
 			fwrite( $tempFile1, $otext );
@@ -528,9 +520,9 @@ CONTROL;
 			fclose( $tempFile1 );
 			fclose( $tempFile2 );
 			$cmd = wfEscapeShellArg( $wgExternalDiffEngine, $tempName1, $tempName2 );
-			wfProfileIn( "$fname-shellexec" );
+			wfProfileIn( __METHOD__ . "-shellexec" );
 			$difftext = wfShellExec( $cmd );
-			wfProfileOut( "$fname-shellexec" );
+			wfProfileOut( __METHOD__ . "-shellexec" );
 			unlink( $tempName1 );
 			unlink( $tempName2 );
 			return $difftext;
@@ -894,13 +886,11 @@ class _DiffOp_Change extends _DiffOp {
  * @private
  * @addtogroup DifferenceEngine
  */
-class _DiffEngine
-{
+class _DiffEngine {
 	const MAX_XREF_LENGTH =  10000;
 
 	function diff ($from_lines, $to_lines) {
-		$fname = '_DiffEngine::diff';
-		wfProfileIn( $fname );
+		wfProfileIn( __METHOD__ );
 
 		$n_from = sizeof($from_lines);
 		$n_to = sizeof($to_lines);
@@ -987,7 +977,7 @@ class _DiffEngine
 			elseif ($add)
 				$edits[] = new _DiffOp_Add($add);
 		}
-		wfProfileOut( $fname );
+		wfProfileOut( __METHOD__ );
 		return $edits;
 	}
 
@@ -1020,8 +1010,7 @@ class _DiffEngine
 	 * of the portions it is going to specify.
 	 */
 	function _diag ($xoff, $xlim, $yoff, $ylim, $nchunks) {
-		$fname = '_DiffEngine::_diag';
-		wfProfileIn( $fname );
+		wfProfileIn( __METHOD__ );
 		$flip = false;
 
 		if ($xlim - $xoff > $ylim - $yoff) {
@@ -1047,7 +1036,7 @@ class _DiffEngine
 		$numer = $xlim - $xoff + $nchunks - 1;
 		$x = $xoff;
 		for ($chunk = 0; $chunk < $nchunks; $chunk++) {
-			wfProfileIn( "$fname-chunk" );
+			wfProfileIn( __METHOD__ . "-chunk" );
 			if ($chunk > 0)
 				for ($i = 0; $i <= $this->lcs; $i++)
 					$ymids[$i][$chunk-1] = $this->seq[$i];
@@ -1081,7 +1070,7 @@ class _DiffEngine
 					}
 				}
 			}
-			wfProfileOut( "$fname-chunk" );
+			wfProfileOut( __METHOD__ . "-chunk" );
 		}
 
 		$seps[] = $flip ? array($yoff, $xoff) : array($xoff, $yoff);
@@ -1093,19 +1082,18 @@ class _DiffEngine
 		}
 		$seps[] = $flip ? array($ylim, $xlim) : array($xlim, $ylim);
 
-		wfProfileOut( $fname );
+		wfProfileOut( __METHOD__ );
 		return array($this->lcs, $seps);
 	}
 
 	function _lcs_pos ($ypos) {
-		$fname = '_DiffEngine::_lcs_pos';
-		wfProfileIn( $fname );
+		wfProfileIn( __METHOD__ );
 
 		$end = $this->lcs;
 		if ($end == 0 || $ypos > $this->seq[$end]) {
 			$this->seq[++$this->lcs] = $ypos;
 			$this->in_seq[$ypos] = 1;
-			wfProfileOut( $fname );
+			wfProfileOut( __METHOD__ );
 			return $this->lcs;
 		}
 
@@ -1123,7 +1111,7 @@ class _DiffEngine
 		$this->in_seq[$this->seq[$end]] = false;
 		$this->seq[$end] = $ypos;
 		$this->in_seq[$ypos] = 1;
-		wfProfileOut( $fname );
+		wfProfileOut( __METHOD__ );
 		return $end;
 	}
 
@@ -1139,8 +1127,7 @@ class _DiffEngine
 	 * All line numbers are origin-0 and discarded lines are not counted.
 	 */
 	function _compareseq ($xoff, $xlim, $yoff, $ylim) {
-		$fname = '_DiffEngine::_compareseq';
-		wfProfileIn( $fname );
+		wfProfileIn( __METHOD__ );
 
 		// Slide down the bottom initial diagonal.
 		while ($xoff < $xlim && $yoff < $ylim
@@ -1183,7 +1170,7 @@ class _DiffEngine
 				$pt1 = $pt2;
 			}
 		}
-		wfProfileOut( $fname );
+		wfProfileOut( __METHOD__ );
 	}
 
 	/* Adjust inserts/deletes of identical lines to join changes
@@ -1199,8 +1186,7 @@ class _DiffEngine
 	 * This is extracted verbatim from analyze.c (GNU diffutils-2.7).
 	 */
 	function _shift_boundaries ($lines, &$changed, $other_changed) {
-		$fname = '_DiffEngine::_shift_boundaries';
-		wfProfileIn( $fname );
+		wfProfileIn( __METHOD__ );
 		$i = 0;
 		$j = 0;
 
@@ -1305,7 +1291,7 @@ class _DiffEngine
 				USE_ASSERTS && assert('$j >= 0 && !$other_changed[$j]');
 			}
 		}
-		wfProfileOut( $fname );
+		wfProfileOut( __METHOD__ );
 	}
 }
 
@@ -1423,8 +1409,7 @@ class Diff
 	 * This is here only for debugging purposes.
 	 */
 	function _check ($from_lines, $to_lines) {
-		$fname = 'Diff::_check';
-		wfProfileIn( $fname );
+		wfProfileIn( __METHOD__ );
 		if (serialize($from_lines) != serialize($this->orig()))
 			trigger_error("Reconstructed original doesn't match", E_USER_ERROR);
 		if (serialize($to_lines) != serialize($this->closing()))
@@ -1446,7 +1431,7 @@ class Diff
 
 		$lcs = $this->lcs();
 		trigger_error('Diff okay: LCS = '.$lcs, E_USER_NOTICE);
-		wfProfileOut( $fname );
+		wfProfileOut( __METHOD__ );
 	}
 }
 
@@ -1481,9 +1466,8 @@ class MappedDiff extends Diff
 	 *	have the same number of elements as $to_lines.
 	 */
 	function MappedDiff($from_lines, $to_lines,
-						$mapped_from_lines, $mapped_to_lines) {
-		$fname = 'MappedDiff::MappedDiff';
-		wfProfileIn( $fname );
+		$mapped_from_lines, $mapped_to_lines) {
+		wfProfileIn( __METHOD__ );
 
 		assert(sizeof($from_lines) == sizeof($mapped_from_lines));
 		assert(sizeof($to_lines) == sizeof($mapped_to_lines));
@@ -1504,7 +1488,7 @@ class MappedDiff extends Diff
 				$yi += sizeof($closing);
 			}
 		}
-		wfProfileOut( $fname );
+		wfProfileOut( __METHOD__ );
 	}
 }
 
@@ -1518,8 +1502,7 @@ class MappedDiff extends Diff
  * @private
  * @addtogroup DifferenceEngine
  */
-class DiffFormatter
-{
+class DiffFormatter {
 	/**
 	 * Number of leading context "lines" to preserve.
 	 *
@@ -1543,8 +1526,7 @@ class DiffFormatter
 	 * @return string The formatted output.
 	 */
 	function format($diff) {
-		$fname = 'DiffFormatter::format';
-		wfProfileIn( $fname );
+		wfProfileIn( __METHOD__ );
 
 		$xi = $yi = 1;
 		$block = false;
@@ -1598,13 +1580,12 @@ class DiffFormatter
 						  $block);
 
 		$end = $this->_end_diff();
-		wfProfileOut( $fname );
+		wfProfileOut( __METHOD__ );
 		return $end;
 	}
 
 	function _block($xbeg, $xlen, $ybeg, $ylen, &$edits) {
-		$fname = 'DiffFormatter::_block';
-		wfProfileIn( $fname );
+		wfProfileIn( __METHOD__ );
 		$this->_start_block($this->_block_header($xbeg, $xlen, $ybeg, $ylen));
 		foreach ($edits as $edit) {
 			if ($edit->type == 'copy')
@@ -1619,7 +1600,7 @@ class DiffFormatter
 				trigger_error('Unknown edit type', E_USER_ERROR);
 		}
 		$this->_end_block();
-		wfProfileOut( $fname );
+		wfProfileOut( __METHOD__ );
 	}
 
 	function _start_diff() {
@@ -1676,8 +1657,7 @@ class DiffFormatter
  * @addtogroup DifferenceEngine
  */
 
-class UnifiedDiffFormatter extends DiffFormatter
-{
+class UnifiedDiffFormatter extends DiffFormatter {
 	var $leading_context_lines = 2;
 	var $trailing_context_lines = 2;
 	
@@ -1700,19 +1680,15 @@ class UnifiedDiffFormatter extends DiffFormatter
  * A pseudo-formatter that just passes along the Diff::$edits array
  * @addtogroup DifferenceEngine
  */
-class ArrayDiffFormatter extends DiffFormatter
-{
-	function format($diff)
-	{
+class ArrayDiffFormatter extends DiffFormatter {
+	function format($diff) {
 		$oldline = 1;
 		$newline = 1;
 		$retval = array();
 		foreach($diff->edits as $edit)
-			switch($edit->type)
-			{
+			switch($edit->type) {
 				case 'add':
-					foreach($edit->closing as $l)
-					{
+					foreach($edit->closing as $l) {
 						$retval[] = array(
 							'action' => 'add',
 							'new'=> $l,
@@ -1721,8 +1697,7 @@ class ArrayDiffFormatter extends DiffFormatter
 					}
 					break;
 				case 'delete':
-					foreach($edit->orig as $l)
-					{
+					foreach($edit->orig as $l) {
 						$retval[] = array(
 							'action' => 'delete',
 							'old' => $l,
@@ -1731,8 +1706,7 @@ class ArrayDiffFormatter extends DiffFormatter
 					}
 					break;
 				case 'change':
-					foreach($edit->orig as $i => $l)
-					{
+					foreach($edit->orig as $i => $l) {
 						$retval[] = array(
 							'action' => 'change',
 							'old' => $l,
@@ -1747,7 +1721,7 @@ class ArrayDiffFormatter extends DiffFormatter
 					$newline += count($edit->orig);
 			}
 		return $retval;
-	}			
+	}
 }
 
 /**
@@ -1755,7 +1729,7 @@ class ArrayDiffFormatter extends DiffFormatter
  *
  */
 
-define('NBSP', '&#160;');			// iso-8859-x non-breaking space.
+define('NBSP', '&#160;'); // iso-8859-x non-breaking space.
 
 /**
  * @todo document
@@ -1823,25 +1797,22 @@ class _HWLDF_WordAccumulator {
  * @private
  * @addtogroup DifferenceEngine
  */
-class WordLevelDiff extends MappedDiff
-{
+class WordLevelDiff extends MappedDiff {
 	const MAX_LINE_LENGTH = 10000;
 
 	function WordLevelDiff ($orig_lines, $closing_lines) {
-		$fname = 'WordLevelDiff::WordLevelDiff';
-		wfProfileIn( $fname );
+		wfProfileIn( __METHOD__ );
 
 		list ($orig_words, $orig_stripped) = $this->_split($orig_lines);
 		list ($closing_words, $closing_stripped) = $this->_split($closing_lines);
 
 		$this->MappedDiff($orig_words, $closing_words,
-						  $orig_stripped, $closing_stripped);
-		wfProfileOut( $fname );
+			$orig_stripped, $closing_stripped);
+		wfProfileOut( __METHOD__ );
 	}
 
 	function _split($lines) {
-		$fname = 'WordLevelDiff::_split';
-		wfProfileIn( $fname );
+		wfProfileIn( __METHOD__ );
 
 		$words = array();
 		$stripped = array();
@@ -1868,13 +1839,12 @@ class WordLevelDiff extends MappedDiff
 				}
 			}
 		}
-		wfProfileOut( $fname );
+		wfProfileOut( __METHOD__ );
 		return array($words, $stripped);
 	}
 
 	function orig () {
-		$fname = 'WordLevelDiff::orig';
-		wfProfileIn( $fname );
+		wfProfileIn( __METHOD__ );
 		$orig = new _HWLDF_WordAccumulator;
 
 		foreach ($this->edits as $edit) {
@@ -1884,13 +1854,12 @@ class WordLevelDiff extends MappedDiff
 				$orig->addWords($edit->orig, 'del');
 		}
 		$lines = $orig->getLines();
-		wfProfileOut( $fname );
+		wfProfileOut( __METHOD__ );
 		return $lines;
 	}
 
 	function closing () {
-		$fname = 'WordLevelDiff::closing';
-		wfProfileIn( $fname );
+		wfProfileIn( __METHOD__ );
 		$closing = new _HWLDF_WordAccumulator;
 
 		foreach ($this->edits as $edit) {
@@ -1900,19 +1869,18 @@ class WordLevelDiff extends MappedDiff
 				$closing->addWords($edit->closing, 'ins');
 		}
 		$lines = $closing->getLines();
-		wfProfileOut( $fname );
+		wfProfileOut( __METHOD__ );
 		return $lines;
 	}
 }
 
 /**
- *	Wikipedia Table style diff formatter.
+ * Wikipedia Table style diff formatter.
  * @todo document
  * @private
  * @addtogroup DifferenceEngine
  */
-class TableDiffFormatter extends DiffFormatter
-{
+class TableDiffFormatter extends DiffFormatter {
 	function TableDiffFormatter() {
 		$this->leading_context_lines = 2;
 		$this->trailing_context_lines = 2;
@@ -1993,8 +1961,7 @@ class TableDiffFormatter extends DiffFormatter
 	}
 
 	function _changed( $orig, $closing ) {
-		$fname = 'TableDiffFormatter::_changed';
-		wfProfileIn( $fname );
+		wfProfileIn( __METHOD__ );
 
 		$diff = new WordLevelDiff( $orig, $closing );
 		$del = $diff->orig();
@@ -2012,7 +1979,7 @@ class TableDiffFormatter extends DiffFormatter
 			echo '<tr>' . $this->emptyLine() .
 				$this->addedLine( $line ) . "</tr>\n";
 		}
-		wfProfileOut( $fname );
+		wfProfileOut( __METHOD__ );
 	}
 }
 
