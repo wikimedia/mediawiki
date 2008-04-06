@@ -74,7 +74,7 @@ class LocalRepo extends FSRepo {
 	 * Function link Title::getArticleID().
 	 * We can't say Title object, what database it should use, so we duplicate that function here.
 	 */
-	private function getArticleID( $title ) {
+	protected function getArticleID( $title ) {
 		if( !$title instanceof Title ) {
 			return 0;
 		}
@@ -92,6 +92,11 @@ class LocalRepo extends FSRepo {
 	}
 
 	function checkRedirect( $title ) {
+		global $wgFileRedirects;
+		if( !$wgFileRedirects ) {
+			return false;
+		}
+
 		if( $title instanceof Title && $title->getNamespace() == NS_MEDIA ) {
 			$title = Title::makeTitle( NS_IMAGE, $title->getText() );
 		}
