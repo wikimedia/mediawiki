@@ -1392,6 +1392,8 @@ class RevisionDeleter {
 	 * @param String $comment The comment associated with the change.
 	 */
 	function getLogMessage ( $count, $nbitfield, $obitfield, $comment ) {
+		global $wgLang;
+
 		$s = '';
 		$changes = $this->getChanges( $nbitfield, $obitfield );
 
@@ -1412,7 +1414,8 @@ class RevisionDeleter {
 				$s = $changes[2][0];
 		}
 
-		$ret = wfMsgExt ( 'revdelete-log-message', array( 'parsemag' ), $s, $count );
+		$ret = wfMsgExt ( 'revdelete-log-message', array( 'parsemag' ), 
+			$s, $wgLang->formatNum($count) );
 
 		if ( $comment )
 			$ret .= ": $comment";
