@@ -1371,8 +1371,8 @@ class RevisionDeleter {
 		$this->checkItem ( wfMsgForContent ( 'revdelete-uname' ),   4, $diff, $n, &$ret );
 
 		// Restriction application to sysops
-		if ( $diff & 8 ) {
-			if ( $n & 8 )
+		if ( $diff & Revision::DELETED_RESTRICTED ) {
+			if ( $n & Revision::DELETED_RESTRICTED )
 				$ret[2][] = wfMsgForContent ( 'revdelete-restricted' );
 			else
 				$ret[2][] = wfMsgForContent ( 'revdelete-unrestricted' );
