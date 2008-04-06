@@ -113,8 +113,8 @@ table.mw-userrights-groups * td,table.mw-userrights-groups * th {
 /* the auto-generated edit comments */
 .autocomment { color: gray; }
 #pagehistory .history-user {
-    margin-left: 1.4em;
-    margin-right: 0.4em;
+    margin-left: 0.4em;
+    margin-right: 0.2em;
 }
 #pagehistory span.minor { font-weight: bold; }
 #pagehistory li { border: 1px solid white; }
