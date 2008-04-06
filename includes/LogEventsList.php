@@ -230,7 +230,7 @@ class LogEventsList {
 				}
 				$revert = "($revert)";
 			// Hidden log items, give review link
-			} else if( $row->log_action == 'event' && $wgUser->isAllowed( 'deleterevision' ) && isset($paramArray[2]) ) {
+			} else if( $row->log_action == 'event' && $wgUser->isAllowed( 'deleterevision' ) && isset($paramArray[0]) ) {
 				$revdel = SpecialPage::getTitleFor( 'Revisiondelete' );
 				$revert .= $this->message['revdel-restore'];
 				$Ids = explode( ',', $paramArray[0] );
