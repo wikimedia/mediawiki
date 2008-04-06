@@ -9,7 +9,7 @@ define( "REPORTING_INTERVAL", 100 );
 #define( "REPORTING_INTERVAL", 1 );
 
 function refreshLinks( $start, $newOnly = false, $maxLag = false, $end = 0, $redirectsOnly = false, $oldRedirectsOnly = false ) {
-	global $wgUser, $wgParser, $wgUseImageResize, $wgUseTidy;
+	global $wgUser, $wgParser, $wgUseTidy;
 
 	$fname = 'refreshLinks';
 	$dbr = wfGetDB( DB_SLAVE );
@@ -21,8 +21,7 @@ function refreshLinks( $start, $newOnly = false, $maxLag = false, $end = 0, $red
 	# Don't generate extension images (e.g. Timeline)
 	$wgParser->clearTagHooks();
 
-	# Don't generate thumbnail images
-	$wgUseImageResize = false;
+	# Don't use HTML tidy
 	$wgUseTidy = false;
 
 	$what = $redirectsOnly ? "redirects" : "links";

@@ -447,10 +447,10 @@ class Database {
 	 * @throws DBQueryError Thrown when the database returns an error of any kind
 	 */
 	public function query( $sql, $fname = '', $tempIgnore = false ) {
-		global $wgProfiling;
+		global $wgProfiler;
 
 		$isMaster = !is_null( $this->getLBInfo( 'master' ) );
-		if ( $wgProfiling ) {
+		if ( isset( $wgProfiler ) ) {
 			# generalizeSQL will probably cut down the query to reasonable
 			# logging size most of the time. The substr is really just a sanity check.
 
@@ -533,7 +533,7 @@ class Database {
 			$this->reportQueryError( $this->lastError(), $this->lastErrno(), $sql, $fname, $tempIgnore );
 		}
 
-		if ( $wgProfiling ) {
+		if ( isset( $wgProfiler ) ) {
 			wfProfileOut( $queryProf );
 			wfProfileOut( $totalProf );
 		}

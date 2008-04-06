@@ -110,8 +110,8 @@ class LinkCache {
 		if ( 0 != $id ) { return $id; }
 
 		$fname = 'LinkCache::addLinkObj';
-		global $wgProfiling, $wgProfiler;
-		if ( $wgProfiling && isset( $wgProfiler ) ) {
+		global $wgProfiler;
+		if ( isset( $wgProfiler ) ) {
 			$fname .= ' (' . $wgProfiler->getCurrentSection() . ')';
 		}
 
