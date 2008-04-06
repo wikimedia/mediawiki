@@ -1344,8 +1344,7 @@ class RevisionDeleter {
 	 * @param int $diff The xor of the old and new bitfields.
 	 * @param array $arr The array to update.
 	 */
-	function checkItem ( $desc, $field, $diff, $new, $arr )
-	{
+	function checkItem ( $desc, $field, $diff, $new, $arr ) {
 		if ( $diff & $field ) {
 			$arr [ ( $new & $field ) ? 0 : 1 ][] = $desc;
 		}
@@ -1363,8 +1362,7 @@ class RevisionDeleter {
 	 * @param int $o The old bitfield.
 	 * @return An array as described above.
 	 */
-	function getChanges ( $n, $o )
-	{
+	function getChanges ( $n, $o ) {
 		$diff = $n ^ $o;
 		$ret = array ( 0 => array(), 1 => array(), 2 => array() );
 
@@ -1393,8 +1391,7 @@ class RevisionDeleter {
 	 * @param int $obitfield The old bitfield for the revision.
 	 * @param String $comment The comment associated with the change.
 	 */
-	function getLogMessage ( $count, $nbitfield, $obitfield, $comment )
-	{
+	function getLogMessage ( $count, $nbitfield, $obitfield, $comment ) {
 		$s = '';
 		$changes = $this->getChanges( $nbitfield, $obitfield );
 
@@ -1437,7 +1434,6 @@ class RevisionDeleter {
 	
 		$reason = $this->getLogMessage ( $count, $nbitfield, $obitfield, $comment );
 
-		// FIXME: do this better
 		if( $param=='logid' ) {
 			$params = array( implode( ',', $items) );
 			$log->addEntry( 'event', $title, $reason, $params );
