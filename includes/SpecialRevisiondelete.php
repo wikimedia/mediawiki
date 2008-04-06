@@ -1412,7 +1412,12 @@ class RevisionDeleter {
 				$s = $changes[2][0];
 		}
 
-		return wfMsg ( 'revdelete-log-message', $s, $count, $comment );
+		$ret = wfMsg ( 'revdelete-log-message', $s, $count );
+
+		if ( $comment )
+			$ret .= ": $comment";
+
+		return $ret;
 
 	}
 
