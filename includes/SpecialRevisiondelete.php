@@ -1366,16 +1366,16 @@ class RevisionDeleter {
 		$diff = $n ^ $o;
 		$ret = array ( 0 => array(), 1 => array(), 2 => array() );
 
-		$this->checkItem ( wfMsg ( 'revdelete-content' ), 1, $diff, $n, &$ret );
-		$this->checkItem ( wfMsg ( 'revdelete-summary' ), 2, $diff, $n, &$ret );
-		$this->checkItem ( wfMsg ( 'revdelete-uname' ),   4, $diff, $n, &$ret );
+		$this->checkItem ( wfMsgForContent ( 'revdelete-content' ), 1, $diff, $n, &$ret );
+		$this->checkItem ( wfMsgForContent ( 'revdelete-summary' ), 2, $diff, $n, &$ret );
+		$this->checkItem ( wfMsgForContent ( 'revdelete-uname' ),   4, $diff, $n, &$ret );
 
 		// Restriction application to sysops
 		if ( $diff & 8 ) {
 			if ( $n & 8 )
-				$ret[2][] = wfMsg ( 'revdelete-restricted' );
+				$ret[2][] = wfMsgForContent ( 'revdelete-restricted' );
 			else
-				$ret[2][] = wfMsg ( 'revdelete-unrestricted' );
+				$ret[2][] = wfMsgForContent ( 'revdelete-unrestricted' );
 		}
 
 		return $ret;
@@ -1392,19 +1392,19 @@ class RevisionDeleter {
 	 * @param String $comment The comment associated with the change.
 	 */
 	function getLogMessage ( $count, $nbitfield, $obitfield, $comment ) {
-		global $wgLang;
+		global $wgContLang;
 
 		$s = '';
 		$changes = $this->getChanges( $nbitfield, $obitfield );
 
 		if ( count ( $changes[0] ) ) {
-			$s .= wfMsg ( 'revdelete-hid', implode ( ', ', $changes[0] ) );
+			$s .= wfMsgForContent ( 'revdelete-hid', implode ( ', ', $changes[0] ) );
 		}
 
 		if ( count ( $changes[1] ) ) {
 			if ($s) $s .= '; ';
 
-			$s .= wfMsg ( 'revdelete-unhid', implode ( ', ', $changes[1] ) );
+			$s .= wfMsgForContent ( 'revdelete-unhid', implode ( ', ', $changes[1] ) );
 		}
 
 		if ( count ( $changes[2] )) {
@@ -1414,8 +1414,8 @@ class RevisionDeleter {
 				$s = $changes[2][0];
 		}
 
-		$ret = wfMsgExt ( 'revdelete-log-message', array( 'parsemag' ), 
-			$s, $wgLang->formatNum($count) );
+		$ret = wfMsgExt ( 'revdelete-log-message', array( 'parsemag', 'content' ), 
+			$s, $wgContLang->formatNum( $count ) );
 
 		if ( $comment )
 			$ret .= ": $comment";
