@@ -158,6 +158,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 13463) Login successful page doesn't use user's preferred interface language
 * (bug 13630) Fixed warnings for pass by reference at call time in
   Special:Revisiondelete when generating the log entry.
+* (bug 12064) BeforePageDisplay hook is now called for all skins
 
 === API changes in 1.13 ===
 

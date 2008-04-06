@@ -779,6 +779,10 @@ class OutputPage {
 		if ($this->mArticleBodyOnly) {
 			$this->out($this->mBodytext);
 		} else {
+			// Hook that allows last minute changes to the output page, e.g.
+			// adding of CSS or Javascript by extensions.
+			wfRunHooks( 'BeforePageDisplay', array( &$this ) );
+
 			wfProfileIn( 'Output-skin' );
 			$sk->outputPage( $this );
 			wfProfileOut( 'Output-skin' );
