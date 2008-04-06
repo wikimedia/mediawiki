@@ -383,26 +383,9 @@ div.townBox dl dd {
     padding: 0;
 }
 
-/* Page history styling */
-/* the auto-generated edit comments */
-.autocomment { color: gray; }
-#pagehistory .history-user {
-    margin-left: 1.4em;
-    margin-right: 0.4em;
-}
-#pagehistory span.minor { font-weight: bold; }
-#pagehistory li { border: 1px solid White; }
-#pagehistory li.selected {
-    background-color:#f9f9f9;
-    border:1px dashed #aaaaaa;
-}
-
 a.external { color: #3366bb; }
-
 div#footer { text-align: center; }
-
 ul#f-list li { list-style: none;  text-align: center; }
-
 div.portlet { margin: 0.5em 0; }
 
 .redirectText {

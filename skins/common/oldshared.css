@@ -101,16 +101,6 @@ img.thumbborder {
 /* Page history styling */
 /* the auto-generated edit comments */
 .autocomment { color: #4b4b4b; }
-#pagehistory .history-user {
-    margin-left: 1.4em;
-    margin-right: 0.4em;
-}
-#pagehistory span.minor { font-weight: bold; }
-#pagehistory li { border: 1px solid White; }
-#pagehistory li.selected {
-    background-color:#f9f9f9;
-    border:1px dashed #aaaaaa;
-}
 
 img { border: none; }
 

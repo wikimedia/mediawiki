@@ -540,26 +540,6 @@ div.townBox dl dd {
 	padding: 0;
 }
 
-/* Page history styling */
-/* the auto-generated edit comments */
-.autocomment {
-	color: gray;
-}
-#pagehistory .history-user {
-	margin-left: 1.4em;
-	margin-right: .4em;
-}
-#pagehistory span.minor {
-	font-weight: bold;
-}
-#pagehistory li {
-	border: 1px solid white;
-}
-#pagehistory li.selected {
-	background-color: #f9f9f9;
-	border: 1px dashed #aaa;
-}
-
 /*
 ** keep the whitespace in front of the ^=, hides rule from konqueror
 ** this is css3, the validator doesn't like it when validating as css2
