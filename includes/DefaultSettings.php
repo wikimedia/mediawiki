@@ -2494,6 +2494,11 @@ $wgLogActions = array(
 );
 
 /**
+ * Group logs under date headings similar to enhanced recent changes.
+ */
+$wgDateGroupedLogs = true;
+
+/**
  * Experimental preview feature to fetch rendered text
  * over an XMLHttpRequest from JavaScript instead of
  * forcing a submit and reload of the whole page.
