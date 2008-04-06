@@ -15,12 +15,7 @@
  * @addtogroup Maintenance
  */
 
-$wgForceLoadBalancing = (getenv('MW_BALANCE') ? true : false);
-$wgUseNormalUser = (getenv('MW_WIKIUSER') ? true : false);
-if (getenv('MW_PROFILING')) {
-	define('MW_CMDLINE_CALLBACK', 'wfSetProfiling');
-}
-function wfSetProfiling() { $GLOBALS['wgProfiling'] = true; }
+$wgUseNormalUser = (bool)getenv('MW_WIKIUSER');
 
 $optionsWithArgs = array( 'd' );
 

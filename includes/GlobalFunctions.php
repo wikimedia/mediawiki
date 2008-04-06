@@ -255,29 +255,30 @@ function wfErrorLog( $text, $file ) {
  */
 function wfLogProfilingData() {
 	global $wgRequestTime, $wgDebugLogFile, $wgDebugRawPage, $wgRequest;
-	global $wgProfiling, $wgUser;
-	if ( $wgProfiling ) {
-		$now = wfTime();
-		$elapsed = $now - $wgRequestTime;
-		$prof = wfGetProfilingOutput( $wgRequestTime, $elapsed );
-		$forward = '';
-		if( !empty( $_SERVER['HTTP_X_FORWARDED_FOR'] ) )
-			$forward = ' forwarded for ' . $_SERVER['HTTP_X_FORWARDED_FOR'];
-		if( !empty( $_SERVER['HTTP_CLIENT_IP'] ) )
-			$forward .= ' client IP ' . $_SERVER['HTTP_CLIENT_IP'];
-		if( !empty( $_SERVER['HTTP_FROM'] ) )
-			$forward .= ' from ' . $_SERVER['HTTP_FROM'];
-		if( $forward )
-			$forward = "\t(proxied via {$_SERVER['REMOTE_ADDR']}{$forward})";
-		// Don't unstub $wgUser at this late stage just for statistics purposes
-		if( StubObject::isRealObject($wgUser) && $wgUser->isAnon() )
-			$forward .= ' anon';
-		$log = sprintf( "%s\t%04.3f\t%s\n",
-		  gmdate( 'YmdHis' ), $elapsed,
-		  urldecode( $wgRequest->getRequestURL() . $forward ) );
-		if ( '' != $wgDebugLogFile && ( $wgRequest->getVal('action') != 'raw' || $wgDebugRawPage ) ) {
-			wfErrorLog( $log . $prof, $wgDebugLogFile );
-		}
+	global $wgProfiler, $wgUser;
+	if ( !isset( $wgProfiler ) )
+		return;
+
+	$now = wfTime();
+	$elapsed = $now - $wgRequestTime;
+	$prof = wfGetProfilingOutput( $wgRequestTime, $elapsed );
+	$forward = '';
+	if( !empty( $_SERVER['HTTP_X_FORWARDED_FOR'] ) )
+		$forward = ' forwarded for ' . $_SERVER['HTTP_X_FORWARDED_FOR'];
+	if( !empty( $_SERVER['HTTP_CLIENT_IP'] ) )
+		$forward .= ' client IP ' . $_SERVER['HTTP_CLIENT_IP'];
+	if( !empty( $_SERVER['HTTP_FROM'] ) )
+		$forward .= ' from ' . $_SERVER['HTTP_FROM'];
+	if( $forward )
+		$forward = "\t(proxied via {$_SERVER['REMOTE_ADDR']}{$forward})";
+	// Don't unstub $wgUser at this late stage just for statistics purposes
+	if( StubObject::isRealObject($wgUser) && $wgUser->isAnon() )
+		$forward .= ' anon';
+	$log = sprintf( "%s\t%04.3f\t%s\n",
+	  gmdate( 'YmdHis' ), $elapsed,
+	  urldecode( $wgRequest->getRequestURL() . $forward ) );
+	if ( '' != $wgDebugLogFile && ( $wgRequest->getVal('action') != 'raw' || $wgDebugRawPage ) ) {
+		wfErrorLog( $log . $prof, $wgDebugLogFile );
 	}
 }
 
