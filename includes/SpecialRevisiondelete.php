@@ -1344,7 +1344,7 @@ class RevisionDeleter {
 	 * @param int $diff The xor of the old and new bitfields.
 	 * @param array $arr The array to update.
 	 */
-	function checkItem ( $desc, $field, $diff, $new, $arr ) {
+	function checkItem ( $desc, $field, $diff, $new, &$arr ) {
 		if ( $diff & $field ) {
 			$arr [ ( $new & $field ) ? 0 : 1 ][] = $desc;
 		}
@@ -1366,9 +1366,9 @@ class RevisionDeleter {
 		$diff = $n ^ $o;
 		$ret = array ( 0 => array(), 1 => array(), 2 => array() );
 
-		$this->checkItem ( wfMsgForContent ( 'revdelete-content' ), 1, $diff, $n, &$ret );
-		$this->checkItem ( wfMsgForContent ( 'revdelete-summary' ), 2, $diff, $n, &$ret );
-		$this->checkItem ( wfMsgForContent ( 'revdelete-uname' ),   4, $diff, $n, &$ret );
+		$this->checkItem ( wfMsgForContent ( 'revdelete-content' ), 1, $diff, $n, $ret );
+		$this->checkItem ( wfMsgForContent ( 'revdelete-summary' ), 2, $diff, $n, $ret );
+		$this->checkItem ( wfMsgForContent ( 'revdelete-uname' ),   4, $diff, $n, $ret );
 
 		// Restriction application to sysops
 		if ( $diff & Revision::DELETED_RESTRICTED ) {
