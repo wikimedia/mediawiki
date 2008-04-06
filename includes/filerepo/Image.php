@@ -6,6 +6,7 @@
  */
 class Image extends LocalFile {
 	function __construct( $title ) {
+		wfDeprecated( __METHOD__ );
 		$repo = RepoGroup::singleton()->getLocalRepo();
 		parent::__construct( $title, $repo );
 	}
@@ -16,6 +17,7 @@ class Image extends LocalFile {
 	 * @deprecated
 	 */
 	static function newFromTitle( $title, $time = false ) {
+		wfDeprecated( __METHOD__ );
 		$img = wfFindFile( $title, $time );
 		if ( !$img ) {
 			$img = wfLocalFile( $title );
@@ -32,6 +34,7 @@ class Image extends LocalFile {
 	 * @deprecated
 	 */
 	static function newFromName( $name ) {
+		wfDeprecated( __METHOD__ );
 		$title = Title::makeTitleSafe( NS_IMAGE, $name );
 		if ( is_object( $title ) ) {
 			$img = wfFindFile( $title );
@@ -57,6 +60,7 @@ class Image extends LocalFile {
 	 * @deprecated
 	 */
 	static function imageUrl( $name, $fromSharedDirectory = false ) {
+		wfDeprecated( __METHOD__ );
 		$image = null;
 		if( $fromSharedDirectory ) {
 			$image = wfFindFile( $name );
