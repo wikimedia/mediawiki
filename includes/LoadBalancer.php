@@ -86,9 +86,9 @@ class LoadBalancer {
 		return $i;
 	}
 
-	function getRandomNonLagged( $loads ) {
+	function getRandomNonLagged( $loads, $wiki = false ) {
 		# Unset excessively lagged servers
-		$lags = $this->getLagTimes();
+		$lags = $this->getLagTimes( $wiki );
 		foreach ( $lags as $i => $lag ) {
 			if ( $i != 0 && isset( $this->mServers[$i]['max lag'] ) ) {
 				if ( $lag === false ) {
@@ -185,7 +185,7 @@ class LoadBalancer {
 				if ( $wgReadOnly || $this->mAllowLagged || $laggedSlaveMode ) {
 					$i = $this->pickRandom( $currentLoads );
 				} else {
-					$i = $this->getRandomNonLagged( $currentLoads );
+					$i = $this->getRandomNonLagged( $currentLoads, $wiki );
 					if ( $i === false && count( $currentLoads ) != 0 )  {
 						# All slaves lagged. Switch to read-only mode
 						$wgReadOnly = wfMsgNoDBForContent( 'readonly_lag' );
@@ -595,7 +595,7 @@ class LoadBalancer {
 		$class = 'Database' . ucfirst( $type );
 
 		# Create object
-		wfDebug( "Connecting to $host...\n" );
+		wfDebug( "Connecting to $host $dbname...\n" );
 		$db = new $class( $host, $user, $password, $dbname, 1, $flags );
 		if ( $db->isOpen() ) {
 			wfDebug( "Connected\n" );
@@ -690,14 +690,18 @@ class LoadBalancer {
 		# master (however unlikely that may be), then we can fetch the position from the slave.
 		$masterConn = $this->getAnyOpenConnection( 0 );
 		if ( !$masterConn ) {
-			$conn = $this->getConnection( DB_SLAVE );
-			$pos = $conn->getSlavePos();
-			wfDebug( "Master pos fetched from slave\n" );
+			for ( $i = 1; $i < count( $this->mServers ); $i++ ) {
+				$conn = $this->getAnyOpenConnection( $i );
+				if ( $conn ) {
+					wfDebug( "Master pos fetched from slave\n" );
+					return $conn->getSlavePos();
+				}
+			}
 		} else {
-			$pos = $masterConn->getMasterPos();
 			wfDebug( "Master pos fetched from master\n" );
+			return $masterConn->getMasterPos();
 		}
-		return $pos;
+		return false;
 	}
 
 	/**
@@ -801,8 +805,9 @@ class LoadBalancer {
 	}
 
 	/**
-	 * Get the hostname and lag time of the most-lagged slave
-	 * This is useful for maintenance scripts that need to throttle their updates
+	 * Get the hostname and lag time of the most-lagged slave.
+	 * This is useful for maintenance scripts that need to throttle their updates.
+	 * May attempt to open connections to slaves on the default DB.
 	 */
 	function getMaxLag() {
 		$maxLag = -1;
@@ -828,7 +833,7 @@ class LoadBalancer {
 	 * Get lag time for each server
 	 * Results are cached for a short time in memcached, and indefinitely in the process cache
 	 */
-	function getLagTimes() {
+	function getLagTimes( $wiki = false ) {
 		wfProfileIn( __METHOD__ );
 
 		if ( !isset( $this->mLagTimes ) ) {
@@ -861,7 +866,7 @@ class LoadBalancer {
 					$times[$i] = 0;
 				} elseif ( false !== ( $conn = $this->getAnyOpenConnection( $i ) ) ) {
 					$times[$i] = $conn->getLag();
-				} elseif ( false !== ( $conn = $this->openConnection( $i ) ) ) {
+				} elseif ( false !== ( $conn = $this->openConnection( $i, $wiki ) ) ) {
 					$times[$i] = $conn->getLag();
 				}
 			}
