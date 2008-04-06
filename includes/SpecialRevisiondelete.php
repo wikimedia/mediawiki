@@ -1333,7 +1333,92 @@ class RevisionDeleter {
 		// Extensions that require referencing previous revisions may need this
 		wfRunHooks( 'ArticleRevisionVisiblitySet', array( &$title ) );
 	}
-	
+
+	/**
+	 * Checks for a change in the bitfield for a certain option and updates the
+	 * provided array accordingly.
+	 *
+	 * @param String $desc Description to add to the array if the option was 
+	 * enabled / disabled.
+	 * @param int $field The bitmask describing the single option.
+	 * @param int $diff The xor of the old and new bitfields.
+	 * @param array $arr The array to update.
+	 */
+	function checkItem ( $desc, $field, $diff, $new, $arr )
+	{
+		if ( $diff & $field ) {
+			$arr [ ( $new & $field ) ? 0 : 1 ][] = $desc;
+		}
+	}
+
+	/**
+	 * Gets an array describing the changes made to the visibilit of the revision.
+	 * If the resulting array is $arr, then $arr[0] will contain an array of strings
+	 * describing the items that were hidden, $arr[2] will contain an array of strings
+	 * describing the items that were unhidden, and $arr[3] will contain an array with
+	 * a single string, which can be one of "applied restrictions to sysops", 
+	 * "removed restrictions from sysops", or null.
+	 *
+	 * @param int $n The new bitfield.
+	 * @param int $o The old bitfield.
+	 * @return An array as described above.
+	 */
+	function getChanges ( $n, $o )
+	{
+		$diff = $n ^ $o;
+		$ret = array ( 0 => array(), 1 => array(), 2 => array() );
+
+		$this->checkItem ( wfMsg ( 'revdelete-content' ), 1, $diff, $n, &$ret );
+		$this->checkItem ( wfMsg ( 'revdelete-summary' ), 2, $diff, $n, &$ret );
+		$this->checkItem ( wfMsg ( 'revdelete-uname' ),   4, $diff, $n, &$ret );
+
+		// Restriction application to sysops
+		if ( $diff & 8 ) {
+			if ( $n & 8 )
+				$ret[2][] = wfMsg ( 'revdelete-restricted' );
+			else
+				$ret[2][] = wfMsg ( 'revdelete-unrestricted' );
+		}
+
+		return $ret;
+	}
+
+	/**
+	 * Gets a log message to describe the given revision visibility change. This
+	 * message will be of the form "[hid {content, edit summary, username}]; 
+	 * [unhid {...}][applied restrictions to sysops] for $count revisions: $comment".
+	 *
+	 * @param int $count The number of effected revisions.
+	 * @param int $nbitfield The new bitfield for the revision.
+	 * @param int $obitfield The old bitfield for the revision.
+	 * @param String $comment The comment associated with the change.
+	 */
+	function getLogMessage ( $count, $nbitfield, $obitfield, $comment )
+	{
+		$s = '';
+		$changes = $this->getChanges( $nbitfield, $obitfield );
+
+		if ( count ( $changes[0] ) ) {
+			$s .= wfMsg ( 'revdelete-hid', implode ( ', ', $changes[0] ) );
+		}
+
+		if ( count ( $changes[1] ) ) {
+			if ($s) $s .= '; ';
+
+			$s .= wfMsg ( 'revdelete-unhid', implode ( ', ', $changes[1] ) );
+		}
+
+		if ( count ( $changes[2] )) {
+			if ($s)
+				$s .= ' (' . $changes[2][0] . ')';
+			else
+				$s = $changes[2][0];
+		}
+
+		return wfMsg ( 'revdelete-log-message', $s, $count, $comment );
+
+	}
+
 	/**
 	 * Record a log entry on the action
 	 * @param Title $title, page where item was removed from
@@ -1349,17 +1434,16 @@ class RevisionDeleter {
 		// Put things hidden from sysops in the oversight log
 		$logtype = ( ($nbitfield | $obitfield) & Revision::DELETED_RESTRICTED ) ? 'suppress' : 'delete';
 		$log = new LogPage( $logtype );
+	
+		$reason = $this->getLogMessage ( $count, $nbitfield, $obitfield, $comment );
+
 		// FIXME: do this better
 		if( $param=='logid' ) {
 			$params = array( implode( ',', $items) );
-    		$reason = wfMsgExt('logdelete-logaction', array('parsemag'), $count, $nbitfield );
-			if($comment) $reason .= ": $comment";
 			$log->addEntry( 'event', $title, $reason, $params );
 		} else {
 			// Add params for effected page and ids
 			$params = array( $target->getPrefixedText(), $param, implode( ',', $items) );
-    		$reason = wfMsgExt('revdelete-logaction', array('parsemag'), $count, $nbitfield );
-			if($comment) $reason .= ": $comment";
 			$log->addEntry( 'revision', $title, $reason, $params );
 		}
 	}
