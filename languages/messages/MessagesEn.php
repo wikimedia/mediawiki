@@ -1223,6 +1223,7 @@ Other admins on {{SITENAME}} will still be able to access the hidden content and
 'revdelete-hid'               => 'hid $1',
 'revdelete-unhid'             => 'unhid $1',
 'revdelete-log-message'       => '$1 for $2 {{PLURAL:$2|revision|revisions}}',
+'logdelete-log-message'       => '$1 for $2 {{PLURAL:$2|event|events}}',
 
 # Suppression log
 'suppressionlog'     => 'Suppression log',
