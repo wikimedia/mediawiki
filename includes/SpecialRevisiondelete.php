@@ -1366,9 +1366,12 @@ class RevisionDeleter {
 		$diff = $n ^ $o;
 		$ret = array ( 0 => array(), 1 => array(), 2 => array() );
 
-		$this->checkItem ( wfMsgForContent ( 'revdelete-content' ), 1, $diff, $n, $ret );
-		$this->checkItem ( wfMsgForContent ( 'revdelete-summary' ), 2, $diff, $n, $ret );
-		$this->checkItem ( wfMsgForContent ( 'revdelete-uname' ),   4, $diff, $n, $ret );
+		$this->checkItem ( wfMsgForContent ( 'revdelete-content' ), 
+				Revision::DELETED_TEXT, $diff, $n, $ret );
+		$this->checkItem ( wfMsgForContent ( 'revdelete-summary' ), 
+				Revision::DELETED_COMMENT, $diff, $n, $ret );
+		$this->checkItem ( wfMsgForContent ( 'revdelete-uname' ), 
+				Revision::DELETED_USER, $diff, $n, $ret );
 
 		// Restriction application to sysops
 		if ( $diff & Revision::DELETED_RESTRICTED ) {
