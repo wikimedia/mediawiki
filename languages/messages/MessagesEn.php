@@ -1215,8 +1215,6 @@ Other admins on {{SITENAME}} will still be able to access the hidden content and
 'revdel-restore'              => 'Change visiblity',
 'pagehist'                    => 'Page history',
 'deletedhist'                 => 'Deleted history',
-
-# Revision deletion - log messages
 'revdelete-content'           => 'content',
 'revdelete-summary'           => 'edit summary',
 'revdelete-uname'             => 'username',
@@ -1224,7 +1222,7 @@ Other admins on {{SITENAME}} will still be able to access the hidden content and
 'revdelete-unrestricted'      => 'removed restrictions for sysops',
 'revdelete-hid'               => 'hid $1',
 'revdelete-unhid'             => 'unhid $1',
-'revdelete-log-message'       => '$1 for $2 {{PLURAL:$2|revisions|revision}}: $3',
+'revdelete-log-message'       => '$1 for $2 {{PLURAL:$2|revision|revisions}}',
 
 # Suppression log
 'suppressionlog'     => 'Suppression log',

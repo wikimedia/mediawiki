@@ -1412,7 +1412,7 @@ class RevisionDeleter {
 				$s = $changes[2][0];
 		}
 
-		$ret = wfMsg ( 'revdelete-log-message', $s, $count );
+		$ret = wfMsgExt ( 'revdelete-log-message', array( 'parsemag' ), $s, $count );
 
 		if ( $comment )
 			$ret .= ": $comment";
