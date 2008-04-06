@@ -15,7 +15,6 @@ class MessageWriter {
 	static $messageComments;
 	static $ignoredMessages;
 	static $optionalMessages;
-	static $noEscapeMessages;
 
 	/**
 	 * Write a messages array as a PHP text and write it to the messages file.
@@ -78,7 +77,6 @@ class MessageWriter {
 			require( dirname( __FILE__ ) . '/messageTypes.inc' );
 			self::$ignoredMessages = $wgIgnoredMessages;
 			self::$optionalMessages = $wgOptionalMessages;
-			self::$noEscapeMessages = $wgNoEscapeMessages;
 
 			self::$loaded = true;
 		}
@@ -212,8 +210,7 @@ $blockComment
 
 			# Check for the appropriate apostrophe and add the value
 			# Quote \ here, because it needs always escaping
-			if( !in_array( $key, self::$noEscapeMessages ) )
-				$value = addcslashes( $value, '\\' );
+			$value = addcslashes( $value, '\\' );
 
 			# For readability
 			$single = "'";
