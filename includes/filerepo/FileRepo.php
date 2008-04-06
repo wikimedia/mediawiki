@@ -46,7 +46,7 @@ abstract class FileRepo {
 	/**
 	 * Create a new File object from the local repository
 	 * @param mixed $title Title object or string
-	 * @param mixed $time Time at which the image is supposed to have existed. 
+	 * @param mixed $time Time at which the image was uploaded. 
 	 *                    If this is specified, the returned object will be an 
 	 *                    instance of the repository's old file class instead of
 	 *                    a current file. Repositories not supporting version 
@@ -72,12 +72,19 @@ abstract class FileRepo {
 
 	/**
 	 * Find an instance of the named file created at the specified time
-	 * Returns false if the file did not exist. Repositories not supporting 
+	 * Returns false if the file does not exist. Repositories not supporting 
 	 * version control should return false if the time is specified.
 	 *
+	 * @param mixed $title Title object or string
 	 * @param mixed $time 14-character timestamp, or false for the current version
 	 */
 	function findFile( $title, $time = false, $flags = 0 ) {
+		if ( !($title instanceof Title) ) {
+			$title = Title::makeTitleSafe( NS_IMAGE, $title );
+			if ( !is_object( $title ) ) {
+				return false;
+			}
+		}
 		# First try the current version of the file to see if it precedes the timestamp
 		$img = $this->newFile( $title );
 		if ( !$img ) {
