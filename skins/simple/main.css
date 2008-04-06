@@ -259,7 +259,7 @@ td.diff-deletedline {
 
 .diffchange { background-color: #FFCDF3; text-decoration: none; }
 .autocomment { color:  grey; }
-#pagehistory span.user {
+#pagehistory .history-user {
     margin-left: 1.4em;
     margin-right: 0.4em;
 }
