@@ -101,7 +101,7 @@ img.thumbborder {
 /* Page history styling */
 /* the auto-generated edit comments */
 .autocomment { color: #4b4b4b; }
-#pagehistory span.user {
+#pagehistory .history-user {
     margin-left: 1.4em;
     margin-right: 0.4em;
 }

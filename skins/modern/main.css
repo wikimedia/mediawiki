@@ -602,7 +602,7 @@ img.thumbborder {
 }
 
 
-#pagehistory span.user {
+#pagehistory .history-user {
 	margin-left: 1.4em;
 	margin-right: .4em;
 }

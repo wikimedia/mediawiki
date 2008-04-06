@@ -386,7 +386,7 @@ div.townBox dl dd {
 /* Page history styling */
 /* the auto-generated edit comments */
 .autocomment { color: gray; }
-#pagehistory span.user {
+#pagehistory .history-user {
     margin-left: 1.4em;
     margin-right: 0.4em;
 }

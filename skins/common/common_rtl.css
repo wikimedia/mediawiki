@@ -14,7 +14,7 @@ fieldset.operaprefsection {
     margin-right: 18em;
 }
 /* page history */
-#pagehistory span.user { 
+#pagehistory .history-user { 
     margin-right: 1.4em;
     margin-left: 0.4em;
 }
