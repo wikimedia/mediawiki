@@ -544,7 +544,7 @@ class EditPage {
 			$this->summary = $wgLang->truncate( $request->getText( 'wpSummary'  ), 250 );
 			
 			# Remove extra headings from summaries and new sections.
-			$this->summary = preg_replace('/^(\s*)=+(.*?)=+(\s*)$/', '$1$2$3', $this->summary);
+			$this->summary = preg_replace('/^\s*=+\s*(.*?)\s*=+\s*$/', '$1$2$3', $this->summary);
 
 			$this->edittime = $request->getVal( 'wpEdittime' );
 			$this->starttime = $request->getVal( 'wpStarttime' );
