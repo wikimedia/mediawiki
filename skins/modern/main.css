@@ -597,26 +597,6 @@ img.thumbborder {
 	overflow: hidden;
 }
 
-.autocomment {
-        color: gray;
-}
-
-
-#pagehistory .history-user {
-	margin-left: 1.4em;
-	margin-right: .4em;
-}
-#pagehistory span.minor {
-	font-weight: bold;
-}
-#pagehistory li {
-	border: 1px solid white;
-}
-#pagehistory li.selected {
-	background-color: #f9f9f9;
-	border: 1px dashed #aaa;
-}
-
 /* disable interwiki styling */
 #mw_content a.extiw,
 #mw_content a.extiw:active {
