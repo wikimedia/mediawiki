@@ -1389,9 +1389,10 @@ class RevisionDeleter {
 	 * @param int $count The number of effected revisions.
 	 * @param int $nbitfield The new bitfield for the revision.
 	 * @param int $obitfield The old bitfield for the revision.
-	 * @param String $comment The comment associated with the change.
+	 * @param string $comment The comment associated with the change.
+	 * @param bool $isForLog
 	 */
-	function getLogMessage ( $count, $nbitfield, $obitfield, $comment ) {
+	function getLogMessage ( $count, $nbitfield, $obitfield, $comment, $isForLog = false ) {
 		global $wgContLang;
 
 		$s = '';
@@ -1414,7 +1415,8 @@ class RevisionDeleter {
 				$s = $changes[2][0];
 		}
 
-		$ret = wfMsgExt ( 'revdelete-log-message', array( 'parsemag', 'content' ), 
+		$msg = $isForLog ? 'logdelete-log-message' : 'revdelete-log-message';
+		$ret = wfMsgExt ( $msg, array( 'parsemag', 'content' ), 
 			$s, $wgContLang->formatNum( $count ) );
 
 		if ( $comment )
@@ -1440,9 +1442,9 @@ class RevisionDeleter {
 		$logtype = ( ($nbitfield | $obitfield) & Revision::DELETED_RESTRICTED ) ? 'suppress' : 'delete';
 		$log = new LogPage( $logtype );
 	
-		$reason = $this->getLogMessage ( $count, $nbitfield, $obitfield, $comment );
+		$reason = $this->getLogMessage ( $count, $nbitfield, $obitfield, $comment, $param == 'logid' );
 
-		if( $param=='logid' ) {
+		if( $param == 'logid' ) {
 			$params = array( implode( ',', $items) );
 			$log->addEntry( 'event', $title, $reason, $params );
 		} else {
