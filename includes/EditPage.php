@@ -539,9 +539,9 @@ class EditPage {
 			# whitespace from the text boxes. This may be significant formatting.
 			$this->textbox1 = $this->safeUnicodeInput( $request, 'wpTextbox1' );
 			$this->textbox2 = $this->safeUnicodeInput( $request, 'wpTextbox2' );
-			$this->mMetaData = rtrim( $request->getText( 'metadata'   ) );
+			$this->mMetaData = rtrim( $request->getText( 'metadata' ) );
 			# Truncate for whole multibyte characters. +5 bytes for ellipsis
-			$this->summary   = $wgLang->truncate( $request->getText( 'wpSummary'  ), 250 );
+			$this->summary = $wgLang->truncate( $request->getText( 'wpSummary'  ), 250 );
 			
 			# Remove extra headings and whitespace from summaries and new sections.
 			$this->summary = trim(preg_replace('/^=+(.*?)=+$/', '$1', trim($this->summary)));
@@ -581,7 +581,7 @@ class EditPage {
 					$this->preview = true;
 				}
 			}
-			$this->save    = ! ( $this->preview OR $this->diff );
+			$this->save = !$this->preview && !$this->diff;
 			if( !preg_match( '/^\d{14}$/', $this->edittime )) {
 				$this->edittime = null;
 			}
@@ -924,7 +924,7 @@ class EditPage {
 			}
 		}
 
-		#And a similar thing for new sections
+		# And a similar thing for new sections
 		if( $this->section == 'new' && !$this->allowBlankSummary && $wgUser->getOption( 'forceeditsummary' ) ) {
 			if (trim($this->summary) == '') {
 				$this->missingSummary = true;
