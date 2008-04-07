@@ -114,6 +114,7 @@ $messages = array(
 'postcomment'       => 'Ποίσον σχόλιον',
 'talk'              => 'Καλάτσεμαν',
 'views'             => 'Τερέματα',
+'toolbox'           => 'Εργαλεία',
 'userpage'          => 'Τέρεν σελίδαν χρήστε',
 'otherlanguages'    => "Σ' άλλα γλώσσας",
 'protectedpage'     => 'Ασπαλιζμένον σελίδαν',
@@ -190,9 +191,13 @@ $messages = array(
 # Revision feed
 'history-feed-item-nocomment' => '$1 σο $2', # user at time
 
+# Diffs
+'lineno' => 'Γραμμή $1:',
+
 # Search results
 'noexactmatch' => "'''Η Βικιπαίδειαν 'κ εχ' σελίδαν με τ' όνεμα \"\$1\".'''
 Μπορείτε να [[:\$1|εφτάτε τη σελίδαν]].",
+'viewprevnext' => 'Τέρεν ($1) ($2) ($3)',
 'powersearch'  => 'Εύρον',
 
 # Preferences page
@@ -221,6 +226,7 @@ $messages = array(
 
 # Miscellaneous special pages
 'lonelypages'    => 'Ορφανά σελίδας',
+'longpages'      => 'Τρανά σελίδας',
 'protectedpages' => 'Ασπαλιγμένα σελίδας',
 'listusers'      => 'Κατάλογον χρήστιων',
 'specialpages'   => 'Ειδικά σελίδας',
@@ -305,6 +311,7 @@ $messages = array(
 'tooltip-n-mainpage'        => 'Τερέστεν το αρχικόν τη σελίδαν',
 'tooltip-n-recentchanges'   => 'Η λίστα με τα υστερνά αλλαγάς σο wiki.',
 'tooltip-n-help'            => "Αδά θα ευρίετε τα απαντήσεις ντ' αραεύετε.",
+'tooltip-n-sitesupport'     => 'Βοηθέστεν το έργον.',
 'tooltip-t-whatlinkshere'   => "Ούλ' τ' άρθρα ντο δεκνίζνε σο παρόν το άρθρον",
 'tooltip-ca-nstab-user'     => 'Τέρεν τη σελίδαν τη χρήστε',
 'tooltip-ca-nstab-image'    => 'Τερέστεν την εικόναν',
@@ -319,6 +326,7 @@ $messages = array(
 'metadata-collapse' => 'Κρύψον τα λεπτομέρειας',
 
 # 'all' in various places, this might be different for inflected languages
+'watchlistall2' => 'ούλαι',
 'namespacesall' => 'όλεα',
 'monthsall'     => 'ούλαι',
 

@@ -133,7 +133,7 @@ $messages = array(
 'tog-previewontop'            => 'Přehlad nad wobdźěłanskim polom pokazać',
 'tog-previewonfirst'          => 'Do składowanja přeco přehlad pokazać',
 'tog-nocache'                 => 'Pufrowanje stronow znjemóžnić',
-'tog-enotifwatchlistpages'    => 'Mejlku pósłać, hdyž so strona, kotruž wobkedźbuju, změni',
+'tog-enotifwatchlistpages'    => 'E-mejlku pósłać, hdyž so strona z wobkedźbowankow změni',
 'tog-enotifusertalkpages'     => 'Mejlku pósłać, hdyž so moja wužiwarska diskusijna strona změni',
 'tog-enotifminoredits'        => 'Tež dla snadnych změnow mejlki pósłać',
 'tog-enotifrevealaddr'        => 'Moju e-mejlowu adresu w e-mejlowych zdźělenkach wotkryć',
@@ -211,16 +211,21 @@ $messages = array(
 'dec'           => 'dec',
 
 # Categories related messages
-'categories'               => '{{PLURAL:$1|Kategorija|Kategoriji|Kategorije|Kategorije}}',
-'categoriespagetext'       => 'Slědowace kategorije w tutym wikiju eksistuja:',
-'pagecategories'           => '{{PLURAL:$1|Kategorija|Kategoriji|Kategorije|Kategorije}}',
-'category_header'          => 'Nastawki w kategoriji „$1”',
-'subcategories'            => 'Podkategorije',
-'category-media-header'    => 'Dataje w kategoriji „$1”',
-'category-empty'           => "''Tuta kategorija tuchwilu žane nastawki abo medije njewobsahuje.''",
-'hidden-categories'        => '{{PLURAL:$1|Schowana kategorija|Schowane kategorije}}',
-'hidden-category-category' => 'Schowane kategorije', # Name of the category where hidden categories will be listed
-'listingcontinuesabbrev'   => ' (pokročowane)',
+'categories'                     => '{{PLURAL:$1|Kategorija|Kategoriji|Kategorije|Kategorije}}',
+'categoriespagetext'             => 'Slědowace kategorije w tutym wikiju eksistuja:',
+'special-categories-sort-count'  => 'Po ličbje sortěrować',
+'special-categories-sort-abc'    => 'Alfabetisce sortěrować',
+'pagecategories'                 => '{{PLURAL:$1|Kategorija|Kategoriji|Kategorije|Kategorije}}',
+'category_header'                => 'Nastawki w kategoriji „$1”',
+'subcategories'                  => 'Podkategorije',
+'category-media-header'          => 'Dataje w kategoriji „$1”',
+'category-empty'                 => "''Tuta kategorija tuchwilu žane nastawki abo medije njewobsahuje.''",
+'hidden-categories'              => '{{PLURAL:$1|Schowana kategorija|Schowane kategorije}}',
+'hidden-category-category'       => 'Schowane kategorije', # Name of the category where hidden categories will be listed
+'category-subcat-count-limited'  => 'Tuta kategorija ma {{PLURAL:$1|slědowacu podkategoriju|slědowacej $1 podkategoriji|slědowace $1 podkategorije|slědowacych $1 podkategorijow}}:',
+'category-article-count-limited' => '{{PLURAL:$1|Slědowaca strona je|Slědowacej $1 stronje stej|Slědowace $1 strony su|Slědowacych $1 stronow je}} w tutej kategoriji:',
+'category-file-count-limited'    => '{{PLURAL:$1|Slědowaca dataj je|Slědowacej $1 dataji stej|Slědowace $1 dataje su|Slědowacych $1 je}} w tutej kategoriji:',
+'listingcontinuesabbrev'         => ' (pokročowane)',
 
 'mainpagetext'      => '<big><b>MediaWiki bu wuspěšnje instalowany.</b></big>',
 'mainpagedocfooter' => 'Prošu hlej [http://meta.wikimedia.org/wiki/Help:Contents dokumentaciju] za informacije wo wužiwanju softwary.
@@ -268,7 +273,7 @@ $messages = array(
 'permalink'         => 'Trajny wotkaz',
 'print'             => 'Ćišćeć',
 'edit'              => 'wobdźěłać',
-'create'            => 'Wudźěłać',
+'create'            => 'Wutworić',
 'editthispage'      => 'Stronu wobdźěłać',
 'create-this-page'  => 'Stronu wudźěłać',
 'delete'            => 'Wušmórnyć',
@@ -340,7 +345,7 @@ $messages = array(
 'badaccess-groups' => 'Tuta akcija da so jenož wot wužiwarjow skupin $1 wuwjesć.',
 
 'versionrequired'     => 'Wersija $1 softwary MediaWiki trěbna',
-'versionrequiredtext' => 'Wersija $1 softwary MediaWiki je trěbna, zo by so tuta strona wužiwać móhła. Hlej [[Special:Version]]',
+'versionrequiredtext' => 'Wersija $1 MediaWiki je trěbna, zo by so tuta strona wužiwać móhła. Hlej [[Special:Version|wersijowu stronu]]',
 
 'ok'                      => 'W porjadku',
 'retrievedfrom'           => 'Z {{GRAMMAR:genitiw|$1}}',
@@ -451,7 +456,7 @@ Wotprašenje: $2',
 $2',
 'namespaceprotected'   => "Nimaš dowolnosć, zo by stronu w mjenowym rumje '''$1''' wobdźěłał.",
 'customcssjsprotected' => 'Nimaš prawo, zo by tutu stronu wobdźěłał, dokelž wosobinske nastajenja druheho wužiwarja wobsahuje.',
-'ns-specialprotected'  => 'Strony w mjenowym rumje {{ns:special}} njehodźa so wobdźěłać.',
+'ns-specialprotected'  => 'Specialne strony njedadźa so wobdźěłać.',
 'titleprotected'       => "Tutón titul bu přećiwo wutworjenju přez [[User:$1|$1]] škitany.
 Podata přičina je ''$2''.",
 
@@ -753,24 +758,24 @@ Legenda: (akt) = rozdźěl k tuchwilnej wersiji, (posl) = rozdźěl k předchadn
 # Revision deletion
 'rev-deleted-comment'         => '(komentar wotstronjeny)',
 'rev-deleted-user'            => '(wužiwarske mjeno wotstronjene)',
-'rev-deleted-event'           => '(akcija bu wotstronjena)',
+'rev-deleted-event'           => '(Protokolowa akcija bu wotstronjena)',
 'rev-deleted-text-permission' => '<div class="mw-warning plainlinks">Tuta wersija bu wušmórnjena a njeda so wjace čitać. Přićinu móžeš w [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} protokolu wušmórnjenjow] zhonić.</div>',
 'rev-deleted-text-view'       => '<div class="mw-warning plainlinks">Tuta wersija bu wušmórnjena a njeda so wjace čitać. Jako administrator móžeš ju pak dale čitać. Přićinu móžeš w [{{fullurl:{{ns:special}}:Log/delete|page={{PAGENAMEE}}}} protokolu wušmórnjenjow] zhonić.</div>',
 'rev-delundel'                => 'pokazać/schować',
 'revisiondelete'              => 'Wersije wušmórnyć/wobnowić',
-'revdelete-nooldid-title'     => 'Žana wersija podata',
-'revdelete-nooldid-text'      => 'Njejsy cilowu wersiju abo cilowe wersije podał, zo by tutu funkciju wužił.',
-'revdelete-selected'          => '{{PLURAL:$2|Wubrana wersija|Wubrane wersije}} wot [[:$1]]:',
+'revdelete-nooldid-title'     => 'Njepłaćiwa cilowa wersija',
+'revdelete-nooldid-text'      => 'Pak njejsy cilowu wersiju podał, zo by tutu funkciju wuwjedł, podata wersija njeeksistuje pak pospytuješ aktualnu wersiju schować.',
+'revdelete-selected'          => '{{PLURAL:$2|Wubrana wersija|Wubranej wersiji|Wubrane wersije|Wubranych wersijow}} wot [[:$1]]:',
 'logdelete-selected'          => "{{PLURAL:$2|Wubrany zapisk z protokola|Wubranej zapiskaj z protokola|Wubrane zapiski z protokola|Wubrane zapiski z protokola}} za '''$1:'''",
 'revdelete-text'              => 'Wušmórnjene wersije so w stawiznach dale jewja, jich wobsah pak za wužiwarjow čitajomne njeje.
 
 Druzy administratorojo we {{SITENAME}} móža schowany tekst dale čitać a jón wobnowić, chibazo su tež jich prawa wobmjezowane.',
-'revdelete-legend'            => 'Wobmjezowanja za wersije zrjadować',
+'revdelete-legend'            => 'Wobmjezowanja za widźomnosć nastajić',
 'revdelete-hide-text'         => 'Tekst tuteje wersije schować',
 'revdelete-hide-name'         => 'Akciju w protokolach schować',
 'revdelete-hide-comment'      => 'Zjeće schować',
 'revdelete-hide-user'         => 'Wužiwarske mjeno/IP-adresu schować',
-'revdelete-hide-restricted'   => 'Tute wobmjezowanja na administratorow kaž tež na druhich wužiwarjow nałožować',
+'revdelete-hide-restricted'   => 'Tute wobmjezowanja na administratorow nałožić a tutón interfejs zawrěć',
 'revdelete-suppress'          => 'Přičinu wušmórnjenja tež za administratorow schować',
 'revdelete-hide-image'        => 'Wobsah wobraza schować',
 'revdelete-unsuppress'        => 'Wobmjezowanja za wobnowjene wersije zběhnyć',
@@ -778,10 +783,19 @@ Druzy administratorojo we {{SITENAME}} móža schowany tekst dale čitać a jón
 'revdelete-submit'            => 'Na wubranu wersiju nałožować',
 'revdelete-logentry'          => 'Widźomnosć wersije změnjena za [[$1]]',
 'logdelete-logentry'          => 'je widźomnosć za [[$1]] změnił',
-'revdelete-logaction'         => '$1 {{PLURAL:$1|wersiju|wersiji|wersije|wersijow}} do modusa $2 {{PLURAL:$1|stajena|stajenej|stajene|stajenych}}',
-'logdelete-logaction'         => '$1 {{PLURAL:$1|zapisk|zapiskaj|zapiski|zapiskow}} za [[$3]] su nětko w modusu $2',
 'revdelete-success'           => "'''Widźomnosć wersije bu wuspěšnje změnjena.'''",
 'logdelete-success'           => 'Widźomnosć zapiska bu wuspěšnje změnjena.',
+'revdel-restore'              => 'Widźomnosć změnić',
+'pagehist'                    => 'Stawizny strony',
+'deletedhist'                 => 'Wušmórnjene stawizny',
+'revdelete-content'           => 'wobsah',
+'revdelete-summary'           => 'zjeće wobdźěłać',
+'revdelete-uname'             => 'wužiwarske mjeno',
+'revdelete-restricted'        => 'na administratorow nałožene wobmjezowanja',
+'revdelete-unrestricted'      => 'Wobmjezowanja za administratorow wotstronjene',
+'revdelete-hid'               => '$1 schowany',
+'revdelete-unhid'             => '$1 pokazany',
+'revdelete-log-message'       => '$1 za $2 {{PLURAL:$2|wersija|wersiji|wersije|wersijow}}',
 
 # History merging
 'mergehistory'                     => 'Stawizny stronow zjednoćić',
@@ -795,12 +809,14 @@ Zawěsć, zo tuta změna stawiznisku kontinuitu strony wobchowuje.',
 'mergehistory-go'                  => 'Zjednoćujomne změny pokazać',
 'mergehistory-submit'              => 'Wersije zjednoćić',
 'mergehistory-empty'               => 'Njehodźa so žane wersije zjednoćeć.',
-'mergehistory-success'             => '$3 {{PLURAL:$3|wersija|wersiji|wersije|wersijow}} wot [[:$1]] wuspěšnje z [[:$2]] zjednoćene.',
+'mergehistory-success'             => '$3 {{PLURAL:$3|wersija|wersiji|wersije|wersijow}} wot [[:$1]] wuspěšnje z [[:$2]] {{PLURAL:$3|zjednoćena|zjednoćenej|zjednoćene|zjednoćene}}.',
 'mergehistory-fail'                => 'Njeje móžno zjednócenje stawiznow přewjesć, prošu přepruwuj stronu a časowe parametry.',
 'mergehistory-no-source'           => 'Žórłowa strona $1 njeeksistuje.',
 'mergehistory-no-destination'      => 'Cilowa strona $1 njeeksistuje.',
 'mergehistory-invalid-source'      => 'Žórłowa strona dyrbi płaćiwy titul być.',
 'mergehistory-invalid-destination' => 'Cilowa strona dyrbi płaćiwy titul być.',
+'mergehistory-autocomment'         => '[[:$1]] z [[:$2]] zjednoćeny',
+'mergehistory-comment'             => '[[:$1]] z [[:$2]] zjednoćeny: $3',
 
 # Merge log
 'mergelog'           => 'Protokol zjednoćenja',
@@ -833,11 +849,18 @@ Móžeš [[{{ns:special}}:Allpages|alfabetiski indeks přepytować]] abo [[:$1|s
 'prevn'                 => 'předchadne $1',
 'nextn'                 => 'přichodne $1',
 'viewprevnext'          => '($1) ($2) ($3) pokazać',
+'search-result-size'    => '$1 ({{PLURAL:$2|1 słowo|$2 słowje|$2 słowa|$2 słowow}})',
+'search-result-score'   => 'Relewanca: $1 %',
+'search-redirect'       => '(Daleposrědkowanje $1)',
+'search-section'        => '(wotrězk $1)',
+'search-suggest'        => 'Měnješe ty $1?',
 'searchall'             => 'wšě',
 'showingresults'        => "Deleka so hač {{PLURAL:$1|'''1''' wuslědk pokazuje|'''$1''' wuslědkaj pokazujetej|'''$1''' wuslědki pokazuja|'''$1''' wuslědkow pokazuje}}, započinajo z #'''$2'''.",
 'showingresultsnum'     => "Deleka so {{PLURAL:$3|'''1''' wuslědk pokazuje|'''$3''' wuslědkaj pokazujetej|'''$3''' wuslědki pokazuja|'''$3''' wuslědkow pokazuje}}, započinajo z #'''$2'''.",
+'showingresultstotal'   => "Slěduja wuslědki '''$1–$2''' z '''$3'''",
 'nonefound'             => '<b>Kedźbu:</b> Pytanja bjez wuspěcha so často z pytanjom za powšitkownymi słowami zawinuja, kotrež so njeindicěruja abo přez podaće wjace hač jednoho pytanskeho wuraza. Jenož strony, kotrež wšě pytanske wurazy wobsahuja, so w lisćinje wuslědkow zjewja. W tym padźe spytaj ličbu pytanskich wurazow pomjeńšić.',
 'powersearch'           => 'Pytać',
+'powersearch-legend'    => 'Rozšěrjene pytanje',
 'powersearchtext'       => 'W mjenowych rumach pytać:<br />$1<br />$2 Daleposrědkowanja naličeć<br />Za wurazom pytać: $3 $9',
 'searchdisabled'        => 'Pytanje w {{GRAMMAR:lokatiw|{{SITENAME}}}} tuchwilu móžne njeje. Móžeš mjeztym z Google pytać. Wobkedźbuj, zo móža wuslědki z wobsaha {{GRAMMAR:genitiw|{{SITENAME}}}} zestarjene być.',
 
@@ -915,14 +938,16 @@ Móžeš [[{{ns:special}}:Allpages|alfabetiski indeks přepytować]] abo [[:$1|s
 'userrights-groupsavailable'       => 'K dispoziciji stejace skupiny:',
 'userrights-reason'                => 'Přičina:',
 'userrights-available-none'        => 'Njesměš wužiwarske prawa změnić.',
-'userrights-available-add'         => 'Směš wužiwarjow k {{PLURAL:$2|tutej skupinje|tutym skupinam}} přidać: $1.',
-'userrights-available-remove'      => 'Směš wužiwarjow z {{PLURAL:$2|tuteje skupiny|tutych skupinow}} wotstronić: $1.',
+'userrights-available-add'         => 'Móžeš wužiwarja k {{PLURAL:$2|tutej skupinje|tutymaj skupinomaj|tutym skupinam|tutym skupinam}} přidać: $1.',
+'userrights-available-remove'      => 'Móžeš wužiwarja z {{PLURAL:$2|tuteje skupiny|tuteju skupinow|tutych skupinow|tutych skupinow}} wotstronić: $1.',
 'userrights-available-add-self'    => 'Móžeš so k {{PLURAL:$2|tutej skupinje|tutymaj skupinomaj|tutym skupinam|tutym skupinam}} přidać: $1.',
 'userrights-available-remove-self' => 'Móžeš so z {{PLURAL:$2|tuteje skupiny|tuteju skupinow|tutych skupinow|tutych skupinow}} wotstronić: $1.',
 'userrights-no-interwiki'          => 'Nimaš prawo wužiwarske prawa w druhich wikijach změnić.',
 'userrights-nodatabase'            => 'Datowa banka $1 njeeksistuje abo lokalna njeje.',
 'userrights-nologin'               => 'Dyrbiš so z admininstratorowym kontom [[Special:Userlogin|přizjewić]], zo by wužiwarske prawa změnił.',
 'userrights-notallowed'            => 'Twoje konto nima trěbne prawa, zo by wužiwarske prawa přidźělił.',
+'userrights-changeable-col'        => 'Skupiny, kotrež móžeš změnić',
+'userrights-unchangeable-col'      => 'Skupiny, kotrež njemóžeš změnić',
 
 # Groups
 'group'               => 'Skupina:',
@@ -986,7 +1011,7 @@ Móžeš [[{{ns:special}}:Allpages|alfabetiski indeks přepytować]] abo [[:$1|s
 'upload'                      => 'Dataju nahrać',
 'uploadbtn'                   => 'Dataju nahrać',
 'reupload'                    => 'Znowa nahrać',
-'reuploaddesc'                => 'Wróćo k nahrawanskemu formularej.',
+'reuploaddesc'                => 'Nahraće přetorhnyć a so k nahrawanskemu formularej wróćić.',
 'uploadnologin'               => 'Njepřizjewjeny',
 'uploadnologintext'           => 'Dyrbiš [[Special:Userlogin|přizjewjeny]] być, zo by dataje nahrawać móhł.',
 'upload_directory_read_only'  => 'Nahrawanski zapis ($1) njehodźi so přez webserwer popisować.',
@@ -1124,6 +1149,7 @@ PICT # misc.
 'noimage'                   => 'Žana dataja z tutym mjenom njeeksistuje. Móžeš $1.',
 'noimage-linktext'          => 'ju nahrać',
 'uploadnewversion-linktext' => 'nowu wersiju tuteje dataje nahrać',
+'imagepage-searchdupe'      => 'Dwójne dataje pytać',
 
 # File reversion
 'filerevert'                => 'Wersiju $1 cofnyć',
@@ -1523,7 +1549,8 @@ Poslednja změna bě wot wužiwarja [[User:$3|$3]] ([[User talk:$3|Diskusija]]).
 'undeleteextrahelp'            => 'Zo by stronu z wšěmi wersijemi wobnowił zapodaj prošu přičinu a klikń na „Wobnowić”. Chceš-li jenož jednotliwe wersije wobnowić, wuběr prošu jich markěrowanske kašćiki, zapodaj přičinu a klikń na „Wobnowić”. Kliknjenje na „Cofnyć” wuprózdni komentarowe polo a wšě kašćiki.',
 'undeleterevisions'            => '$1 {{PLURAL:$1|wersija|wersiji|wersije|wersijow}} {{PLURAL:$1|archiwowana|archiwowanej|archiwowane|archiwowane}}',
 'undeletehistory'              => 'Jeli tutu stronu wobnowiš, so wšě (tež prjedy wušmórnjene) wersije zaso do stawiznow wobnowja. Jeli bu po wušmórnjenju nowa strona ze samsnym mjenom wutworjena, budu so wobnowjene wersije w prjedawšich stawiznach jewić. Wobkedźbuj tež, zo wobmjezowanja za datajowe wersije so po wobnowjenju zhubja.',
-'undeleterevdel'               => 'Wobnowjenje so přewjedźe, hdyž je najaktualniša wersija schowana abo wobsahuje schowane dźěle. W tutym padźe njesměš najaktualnišu wersiju wubrać abo dyrbiš jeje status na normalnu widźomnosć změnić. Wersije, kotrychž widźomnosć su za tebje schowane, so njewobnowjeja.',
+'undeleterevdel'               => 'Wobnowjenje so njepřewjedźe, jeli je najwyša strona docpěta abo datajowa wersija budźe so zdźěla wušmórnje. 
+W tutym padźe dyrbiš najnowšu wušmórnjenu wersiju znjemóžnić abo pokazać.',
 'undeletehistorynoadmin'       => 'Strona bu wušmórnjena. Přičina za wušmórnjenje so deleka w zjeću pokazuje, zhromadnje z podrobnosćemi wužiwarjow, kotřiž běchu tutu stronu do zničenja wobdźěłali. Tuchwilny wobsah strony je jenož administratoram přistupny.',
 'undelete-revision'            => 'Wušmórnjena wersija strony $1 - $2, $3:',
 'undeleterevision-missing'     => 'Njepłaćiwa abo pobrachowaca wersija. Pak je wotkaz wopačny, pak bu wotpowědna wersija z archiwa wobnowjena abo wotstronjena.',
@@ -1757,7 +1784,7 @@ W poslednim padźe móžeš tež wotkaz wužiwać, na př. „[[{{ns:special}}:E
 'allmessagesdefault'        => 'Standardny tekst',
 'allmessagescurrent'        => 'Aktualny tekst',
 'allmessagestext'           => 'To je lisćina wšěch systemowych zdźělenkow, kotrež w mjenowym rumje MediaWiki k dispoziciji steja.',
-'allmessagesnotsupportedDB' => "'''{{ns:special}}:Allmessages''' njemóže so wužiwać, dokelž '''\$wgUseDatabaseMessages''' je wotpinaty.",
+'allmessagesnotsupportedDB' => "Tuta strona njeda so wužiwać, dokelž '''\$wgUseDatabaseMessages''' bu znjemóžnjeny.",
 'allmessagesfilter'         => 'Filter za jednotliwe zdźělenki:',
 'allmessagesmodified'       => 'Jenož změnjene pokazać',
 
@@ -1968,7 +1995,7 @@ $1',
 'noimages'              => 'Žane dataje.',
 'ilsubmit'              => 'Pytać',
 'bydate'                => 'datumje',
-'sp-newimages-showfrom' => 'Nowe dataje pokazać, započinajo z $1',
+'sp-newimages-showfrom' => 'Nowe dataje pokazać, započinajo wot $1, $2',
 
 # Bad image list
 'bad_image_list' => 'Format:
@@ -2399,5 +2426,14 @@ Spytaj normalny přehlad.',
 'filepath-summary' => 'Tuta specialna strona wróća dospołny puć aktualneje datajoweje wersije. Wobrazy so połnym rozeznaću pokazuja, druhe datajowe typy so ze zwjazanym programom startuja.
 
 Zapodaj datajowe mjeno bjez dodawka "{{ns:image}}:".',
+
+# Special:FileDuplicateSearch
+'fileduplicatesearch'          => 'Dwójne dataje pytać',
+'fileduplicatesearch-legend'   => 'Duplikaty pytać',
+'fileduplicatesearch-filename' => 'Datajowe mjeno:',
+'fileduplicatesearch-submit'   => 'Pytać',
+
+# Unknown messages
+'logdelete-log-message' => '$1 za $2 {{PLURAL:$2|podawk|podawkaj|podawki|podawkow}}',
 
 );

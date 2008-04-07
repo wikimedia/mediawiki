@@ -910,13 +910,19 @@ $3 зазначив наступну причину: ''$2''",
 'revdelete-submit'            => 'Застосувати до вибраної версії',
 'revdelete-logentry'          => 'Змінено видимість версії сторінки для [[$1]]',
 'logdelete-logentry'          => 'змінена видимість події для [[$1]]',
-'revdelete-logaction'         => '$1 {{PLURAL:$1|версія переведена|версії переведені|версій переведені}} до режиму $2',
-'logdelete-logaction'         => '$1 {{PLURAL:$1|подія переведена|події переведені|подій переведені}} до режиму $2',
 'revdelete-success'           => "'''Видимість версії успішно змінена.'''",
 'logdelete-success'           => "'''Видимість події успішно змінена.'''",
 'revdel-restore'              => 'Змінити видимість',
 'pagehist'                    => 'Історія сторінки',
 'deletedhist'                 => 'Історія вилучень',
+'revdelete-content'           => 'вміст',
+'revdelete-summary'           => 'коментар до редагування',
+'revdelete-uname'             => "ім'я користувача",
+'revdelete-restricted'        => 'застосовані обмеження для адміністраторів',
+'revdelete-unrestricted'      => 'зняті обмеження для адміністраторів',
+'revdelete-hid'               => 'приховано $1',
+'revdelete-unhid'             => 'розкрито $1',
+'revdelete-log-message'       => '$1 для $2 {{PLURAL:$2|редагування|редагувань|редагувань}}',
 
 # Suppression log
 'suppressionlog'     => 'Журнал приховувань',
@@ -2607,5 +2613,8 @@ $1',
 'fileduplicatesearch-info'     => '$1 × $2 пікселів<br />Розмір файлу: $3<br />MIME-тип: $4',
 'fileduplicatesearch-result-1' => 'Файл «$1» не має ідентичних.',
 'fileduplicatesearch-result-n' => 'Файл «$1» має {{PLURAL:$2|1 ідентичний дублікат|$2 ідентичних дублікатів}}.',
+
+# Unknown messages
+'logdelete-log-message' => '$1 для $2 {{PLURAL:$2|події|подій}}',
 
 );

@@ -681,13 +681,11 @@ Eglurhad: (cyf.) = gwahaniaethau rhyngddo a'r fersiwn cyfredol,
 'history-feed-item-nocomment' => '$1 am $2', # user at time
 
 # Revision deletion
-'rev-delundel'        => 'dangos/cuddio',
-'revdelete-selected'  => 'Y {{PLURAL:$2|golygiad|golygiad|golygiadau|golygiadau|golygiadau|golygiadau}} dewisedig o [[:$1]]:',
-'logdelete-selected'  => "{{PLURAL:$1|Digwyddiad|Digwyddiad|Digwyddiadau|Digwyddiadau|Digwyddiadau|Digwyddiadau}} a ddewiswyd o'r lòg:",
-'logdelete-logentry'  => 'newidiwyd y gallu i weld y digwyddiad [[$1]]',
-'revdelete-logaction' => "Gosodwyd $1 {{PLURAL:$1|diwygiad|diwygiad|ddiwygiad|diwygiad|diwygiad|diwygiad}} i'r modd $2",
-'logdelete-logaction' => "$1 {{PLURAL:$1|digwyddiad|digwyddiad|ddigwyddiad|digwyddiad|digwyddiad|digwyddiad}} {{PLURAL:$1|wedi'i osod|wedi'i osod|wedi'u gosod|wedi'u gosod|wedi'u gosod|wedi'u gosod}} i'r modd $2",
-'logdelete-success'   => "'''Llwyddwyd i guddio'r digwyddiad.'''",
+'rev-delundel'       => 'dangos/cuddio',
+'revdelete-selected' => 'Y {{PLURAL:$2|golygiad|golygiad|golygiadau|golygiadau|golygiadau|golygiadau}} dewisedig o [[:$1]]:',
+'logdelete-selected' => "{{PLURAL:$1|Digwyddiad|Digwyddiad|Digwyddiadau|Digwyddiadau|Digwyddiadau|Digwyddiadau}} a ddewiswyd o'r lòg:",
+'logdelete-logentry' => 'newidiwyd y gallu i weld y digwyddiad [[$1]]',
+'logdelete-success'  => "'''Llwyddwyd i guddio'r digwyddiad.'''",
 
 # History merging
 'mergehistory'                     => 'Cyfuno hanesion y tudalennau',
@@ -790,7 +788,7 @@ $2 Rhestri ailgyfeiriadau<br />Chwilio am $3 $9',
 'rows'                     => 'Rhesi',
 'columns'                  => 'Colofnau:',
 'searchresultshead'        => 'Canlyniadau chwilio',
-'resultsperpage'           => 'Hitiau i ddangos ar pob tudalen',
+'resultsperpage'           => 'Cyfradd taro fesul tudalen:',
 'contextlines'             => "Nifer y llinellau i'w dangos ar gyfer pob hit:",
 'contextchars'             => 'Characters of context per line',
 'recentchangesdays'        => "Nifer y diwrnodau i'w dangos yn 'newidiadau diweddar':",
@@ -1319,7 +1317,7 @@ Dyma'r gosodiadau diogelu cyfredol ar gyfer y dudalen <strong>$1</strong>:",
 'protect-expiring'            => 'yn dod i ben am $1 (UTC)',
 'protect-cascade'             => 'Diogelwch dudalennau sydd wedi eu cynnwys yn y dudalen hon (diogelu sgydol)',
 'protect-cantedit'            => "Ni allwch newid lefel diogelu'r dudalen hon, am nad yw'r gallu i olygu'r dudalen ganddoch.",
-'restriction-type'            => 'Caniatâd:',
+'restriction-type'            => 'Cyfyngiad:',
 'restriction-level'           => 'Lefel cyfyngu:',
 'minimum-size'                => 'Maint lleiaf',
 'maximum-size'                => 'Maint mwyaf',
@@ -1331,8 +1329,9 @@ Dyma'r gosodiadau diogelu cyfredol ar gyfer y dudalen <strong>$1</strong>:",
 'restriction-create' => 'Gosod',
 
 # Restriction levels
-'restriction-level-sysop' => 'llwyr diogelwyd',
-'restriction-level-all'   => 'unrhyw lefel',
+'restriction-level-sysop'         => 'llwyr diogelwyd',
+'restriction-level-autoconfirmed' => 'lled-ddiogelwyd',
+'restriction-level-all'           => 'pob lefel',
 
 # Undelete
 'undelete'                 => 'Gwrthdroi tudalen wedi dileuo',

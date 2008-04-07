@@ -727,8 +727,6 @@ Outros administradores de {{SITENAME}} poderán acceder aínda ao contido oculto
 'revdelete-submit'            => 'Aplicar á revisión seleccionada',
 'revdelete-logentry'          => 'mudouse a visibilidade da revisión para [[$1]]',
 'logdelete-logentry'          => 'mudouse a visibilidade do evento para [[$1]]',
-'revdelete-logaction'         => '$1 {{PLURAL:$1|revisión|revisións}} configuradas no modo $2',
-'logdelete-logaction'         => '$1 {{PLURAL:$1|evento|eventos}} configurados no modo $2',
 'revdelete-success'           => "'''Configurouse sen problemas a visibilidade da revisión.'''",
 'logdelete-success'           => "'''Configurouse a visibilidade do evento sen problemas.'''",
 'revdel-restore'              => 'Cambiar visibilidade',

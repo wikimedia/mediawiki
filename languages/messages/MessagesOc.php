@@ -694,7 +694,7 @@ La rason donada per $3 èra ''$2''.",
 # Revision deletion
 'rev-deleted-comment'         => '(Comentari suprimit)',
 'rev-deleted-user'            => '(nom d’utilizaire suprimit)',
-'rev-deleted-event'           => '(comentari suprimit)',
+'rev-deleted-event'           => '(entrada suprimida)',
 'rev-deleted-text-permission' => '<div class="mw-warning plainlinks">
 Aquesta version de la pagina es estada levada dels archius publics.
 Pòt i aver de detalhs dins lo [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} jornal de las supressions].
@@ -722,12 +722,15 @@ D’autres administrators sus {{SITENAME}} poiràn totjorn accedir al contengut 
 'revdelete-submit'            => 'La visibilitat de la version es estada modificada per [[$1]]',
 'revdelete-logentry'          => 'La visibilitat de la version es estada modificada per [[$1]]',
 'logdelete-logentry'          => 'La visibilitat de l’eveniment es estada modificada per [[$1]]',
-'revdelete-logaction'         => '$1 {{plural:$1|version cambiada|versions cambiadas}} en mòde $2',
-'logdelete-logaction'         => '$1 {{plural:$1|eveniment de [[$3]] cambiat|eveniments de [[$3]] cambiats}} en mòde $2',
 'revdelete-success'           => "'''Visibilitat de las versions cambiadas amb succès.'''",
 'logdelete-success'           => "'''Visibilitat dels eveniments cambiada amb succès.'''",
 'pagehist'                    => 'Istoric de la pagina',
 'deletedhist'                 => 'Istoric de las supressions',
+'revdelete-log-message'       => '$1 per $2 {{PLURAL:$2|revision|revisions}}',
+
+# Suppression log
+'suppressionlog'     => 'Jornal de las supressions',
+'suppressionlogtext' => 'Çaijós, se tròba la tièra de las supressions mai recentas e dels blocatges comprenent las revisions amagadas als administrators. Vejatz [[Special:Ipblocklist|la lista dels blocatges de las IP]] per la lista dels fòrabandiments e dels blocatges.',
 
 # History merging
 'mergehistory'                     => "Fusion dels istorics d'una pagina",
@@ -873,6 +876,9 @@ per modificar vòstras preferéncias d'utilizaire.",
 'userrights-groupsmember'          => 'Membre de:',
 'userrights-groupsremovable'       => 'Gropes suprimibles :',
 'userrights-groupsavailable'       => 'Gropes disponibles:',
+'userrights-groups-help'           => "Podètz remanegar los gropes alsquals aparten aqueste utilizaire.
+Una casa marcada significa que l'utilizaire se tròba dins aqueste grop.
+Una casa pas marcada significa, al contrari, que s’i tròba pas.",
 'userrights-reason'                => 'Rason del cambiament:',
 'userrights-available-none'        => 'Podètz pas cambiar l’apartenéncia als diferents gropes.',
 'userrights-available-add'         => "Podètz apondre d'utilizaires a {{PLURAL:$2|aqueste grop|aquestes gropes}}: $1.",
@@ -892,17 +898,20 @@ per modificar vòstras preferéncias d'utilizaire.",
 'group-bot'           => 'Bòts',
 'group-sysop'         => 'Administrators',
 'group-bureaucrat'    => 'Burocratas',
+'group-suppress'      => 'Supervisors',
 'group-all'           => '(totes)',
 
 'group-autoconfirmed-member' => 'Utilizaire enregistrat',
 'group-bot-member'           => 'Bòt',
 'group-sysop-member'         => 'Administrator',
 'group-bureaucrat-member'    => 'Burocrata',
+'group-suppress-member'      => 'Supervisor',
 
 'grouppage-autoconfirmed' => '{{ns:project}}:Utilizaires enregistrats',
 'grouppage-bot'           => '{{ns:project}}:Bòts',
 'grouppage-sysop'         => '{{ns:project}}:Administrators',
 'grouppage-bureaucrat'    => '{{ns:project}}:Burocratas',
+'grouppage-suppress'      => '{{ns:project}}:Supervisor',
 
 # User rights log
 'rightslog'      => "Istoric de las modificacions d'estatut",
@@ -1224,6 +1233,7 @@ I a {{PLURAL:\$7|'''\$7''' article|'''\$7''' articles}} dins [[meta:Help:Job_que
 'notargettext'            => 'Indicatz una pagina cibla o un utilizaire cibla.',
 'pager-newer-n'           => '{{PLURAL:$1|1 mai recenta|$1 mai recentas}}',
 'pager-older-n'           => '{{PLURAL:$1|1 mai anciana|$1 mai ancianas}}',
+'suppress'                => 'Supervisor',
 
 # Book sources
 'booksources'               => 'Obratges de referéncia',
@@ -1376,6 +1386,7 @@ Confirmatz qu'es plan çò que volètz far, que ne comprenètz las consequéncia
 'deletedtext'                 => '"<nowiki>$1</nowiki>" es estat suprimit.
 Vejatz $2 per una lista de las supressions recentas.',
 'deletedarticle'              => 'escafament de "[[$1]]"',
+'suppressedarticle'           => 'amagat  « [[$1]] »',
 'dellogpage'                  => 'Traça dels escafaments',
 'dellogpagetext'              => "Vaquí la lista de las supressions recentas.
 L'ora indicada es la del serveire (UTC).

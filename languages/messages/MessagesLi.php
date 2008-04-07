@@ -713,8 +713,6 @@ Anger beheerders van {{SITENAME}} kinne de verborge inhoud benäöjere en de ver
 'revdelete-submit'            => 'Pas toe op de geselecteerde bewèrking',
 'revdelete-logentry'          => 'zichbaarheid van bewerkinge is gewiezig veur [[$1]]',
 'logdelete-logentry'          => 'gewiezigde zichbaarheid van gebeurtenis [[$1]]',
-'revdelete-logaction'         => '$1 {{PLURAL:$1|wieziging|wieziginge}} gezat nao mode $2',
-'logdelete-logaction'         => '$1 {{PLURAL:$1|actie|acties}} om [[$3]] nao modus $2 in te stelle',
 'revdelete-success'           => "'''Wieziging zichbaarheid succesvol ingesteld.'''",
 'logdelete-success'           => "'''Zichbaarheid van de gebeurtenis succesvol ingesteld.'''",
 

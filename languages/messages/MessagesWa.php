@@ -608,7 +608,6 @@ Les ôtes manaedjeus so ç' wiki ci pôront todi vey li contnou catchî eyet l' 
 'revdelete-log'               => 'Comintaire pol djournå:',
 'revdelete-submit'            => 'Apliker al modêye tchoezeye',
 'revdelete-logentry'          => 'li veyåvisté des modêyes a stî candjeye po [[$1]]',
-'logdelete-logaction'         => '$1 {{PLURAL:$1|evenmint|evenmints}} po [[$3]] metou e môde $2',
 
 # Diffs
 'difference'              => '(Diferinces inte les modêyes)',

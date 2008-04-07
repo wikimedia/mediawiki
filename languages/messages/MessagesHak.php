@@ -569,8 +569,6 @@ Ngì thùng-sṳ̀ ya-yeu hiong Wikimedia pó-chṳn ngì só thì-kâu ke nui-y
 'revdelete-submit'            => 'Yin-yung chhut-yì sién-chhí ke siû-thin',
 'revdelete-logentry'          => '[[$1]]-ke siû-thin khó-kien-sin yí-kîn kiên-kói',
 'logdelete-logentry'          => '[[$1]]-ke sṳ-khien khó-kien-sin yí-kîn kiên-kói',
-'revdelete-logaction'         => '$1-chhṳ siû-thin yí-kîn sat-thin chṳ mù-sṳt $2',
-'logdelete-logaction'         => 'Tui-yî [[$3]] ke $1-ke sṳ-khien yí-kîn sat-thin chṳ mù-sṳt $2',
 'revdelete-success'           => "'''Siû-thin ke khó-kien-sin yí-kîn sṳ̀n-kûng sat-thin.'''",
 'logdelete-success'           => "'''Sṳ-khien ke khó-kien-sin yí-kîn sṳ̀n-kûng sat-thin.'''",
 

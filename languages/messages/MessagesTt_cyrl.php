@@ -112,6 +112,7 @@ $messages = array(
 'category-empty'                => "''Бу төркем әле буш.''",
 'hidden-categories'             => '{{PLURAL:$1|Яшерен төркем|Яшерен төркемнәр}}',
 'hidden-category-category'      => 'Яшерен төркемнәр', # Name of the category where hidden categories will be listed
+'category-file-count-limited'   => 'Агымдагы төркемдә {{PLURAL:$1|$1 файл}} бар.',
 'listingcontinuesabbrev'        => 'дәвам',
 
 'about'          => 'Тасвир',
@@ -136,7 +137,7 @@ $messages = array(
 'metadata_help' => 'Мета мәгълүматлар:',
 
 'errorpagetitle'    => 'Хата',
-'returnto'          => 'Биткә $1 кайту.',
+'returnto'          => '$1 битенә кайтырга.',
 'tagline'           => '{{grammar:genitive|{{SITENAME}}}} дан',
 'help'              => 'Белешмә',
 'search'            => 'Эзләү',
@@ -200,6 +201,7 @@ $messages = array(
 'disclaimerpage'    => 'Project:Җаваплылыктан баш тарту',
 'edithelp'          => 'Үзгәртү хакында',
 'edithelppage'      => 'Help:Үзгәртү',
+'faq'               => 'ЕБС (FAQ)',
 'helppage'          => 'Help:Эчтәлек',
 'mainpage'          => 'Төп бит',
 'policy-url'        => 'Project:Сәясәт',
@@ -210,9 +212,14 @@ $messages = array(
 'sitesupport'       => 'Иганә',
 'sitesupport-url'   => 'Project:Ярдәм',
 
-'badaccess' => 'Рөхсәт хатасы',
+'badaccess'        => 'Рөхсәт хатасы',
+'badaccess-group0' => 'Сез сораган гамәлне башкара алмыйсыз.',
+'badaccess-group1' => 'Сораган гамәл $1 төркеменең кулланучылары гына өчен.',
+'badaccess-group2' => 'Сораган гамәл $1 төркемләренең кулланучылары гына өчен.',
+'badaccess-groups' => 'Сораган гамәл $1 төркемләренең кулланучылары гына өчен.',
 
-'versionrequired' => 'MediaWiki версия $1 белән кирәк',
+'versionrequired'     => 'MediaWiki версия $1 белән кирәк',
+'versionrequiredtext' => "Бу бит белән эшләү өчен MediaWiki'нең $1 юрама кирәк. [[Special:Version|Юрама битене]] кара.",
 
 'ok'                      => 'Ярар',
 'retrievedfrom'           => 'Чыганак — «$1»',
@@ -226,9 +233,13 @@ $messages = array(
 'toc'                     => 'Эчтәлек',
 'showtoc'                 => 'күрсәтергә',
 'hidetoc'                 => 'яшерергә',
+'thisisdeleted'           => '$1 караргамы яки торгызыргамы?',
+'viewdeleted'             => '$1 караргамы?',
+'restorelink'             => '{{PLURAL:$1|$1 бетерергән төзәтмә}}',
 'site-rss-feed'           => '$1 — RSS тасмасы',
 'site-atom-feed'          => '$1 — Atom тасмасы',
 'page-rss-feed'           => '«$1» — RSS тасмасы',
+'page-atom-feed'          => '«$1» — Atom тасмасы',
 'red-link-title'          => '$1 (әле язылмаган)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
@@ -290,7 +301,7 @@ $messages = array(
 'loginerror'                 => 'Керү хатасы',
 'prefs-help-email-required'  => 'Электрон почта адресы кирәк.',
 'loginsuccesstitle'          => 'Керү уңышлы үтте',
-'loginsuccess'               => "Сез '''$1''' исем белән кергәнсез.",
+'loginsuccess'               => "'''Сез {{SITENAME}} проектына $1 исеме белән кергәнсез.'''",
 'nosuchuser'                 => '$1 исемле кулланучы барлыкта юк.<br />
 Язылышыгызны тикшерегез яки яңа хисап язмасыны төзегез.',
 'nosuchusershort'            => "Кулланучы '''<nowiki>$1</nowiki>''' ирешү исеме белән юк. Исем язу тикшерегез.",
@@ -426,13 +437,19 @@ $messages = array(
 'editundo'                => 'үткәрмәү',
 
 # Search results
-'noexactmatch'       => "'''«$1» атлы битне әле юк.'''
+'searchresults'       => 'Эзләү нәтиҗәләре',
+'noexactmatch'        => "'''«$1» атлы битне әле юк.'''
 Аны [[:$1|төзергә]] мөмкин.",
-'prevn'              => 'алдагы $1',
-'nextn'              => 'чираттагы $1',
-'viewprevnext'       => '($1) ($2) ($3) карарга',
-'powersearch'        => 'Өстәмә эзләү',
-'powersearch-legend' => 'Өстәмә эзләү',
+'prevn'               => 'алдагы $1',
+'nextn'               => 'чираттагы $1',
+'viewprevnext'        => '($1) ($2) ($3) карарга',
+'search-result-size'  => '$1 ({{PLURAL:$2|$2 сүз}})',
+'search-redirect'     => '($1 җибәрүлеге)',
+'search-section'      => '($1 бүлеге)',
+'searchall'           => 'барлык',
+'showingresultstotal' => "Астарак '''$3''' данәдән '''$1—$2''' нәтиҗәләре күрсәтелгән",
+'powersearch'         => 'Өстәмә эзләү',
+'powersearch-legend'  => 'Өстәмә эзләү',
 
 # Preferences page
 'preferences'           => 'Көйләнмәләр',
@@ -442,6 +459,11 @@ $messages = array(
 'prefsnologintext'      => 'Кулланучы көйләнмәләрене үзгәртү өчен, сез [[Special:Userlogin|керергә]] тиешсез.',
 'qbsettings'            => 'Күчешләр аслыгы',
 'qbsettings-none'       => 'Күрсәтмәскә',
+'changepassword'        => 'Серсүзне алыштырырга',
+'skin'                  => 'Күренеш',
+'math'                  => 'Формулалар',
+'dateformat'            => 'Датаның форматы',
+'datetime'              => 'Дата һәм вакыт',
 'prefs-personal'        => 'Шәхси мәгълүматлар',
 'prefs-rc'              => 'Баягы төзәтмәләр',
 'prefs-watchlist'       => 'Күзәтү исемлеге',
@@ -453,36 +475,60 @@ $messages = array(
 'oldpassword'           => 'Иске серсүз:',
 'newpassword'           => 'Яңа серсүз:',
 'retypenew'             => 'Яңа серсүзне кабатлагыз:',
+'textboxsize'           => 'Үзгәртү',
+'rows'                  => 'Юллар:',
+'columns'               => 'Баганалар:',
+'servertime'            => 'Серверның вакыты',
+'default'               => 'килешү буенча',
+'files'                 => 'Файллар',
+
+# User rights
+'userrights-groupsmember' => 'Әгъза:',
+
+# Groups
+'group-bot'        => 'Ботлар',
+'group-sysop'      => 'Идарәчеләр',
+'group-bureaucrat' => 'Бюрократлар',
+'group-suppress'   => 'Тикшерүчеләр',
+'group-all'        => '(барлык)',
 
 'group-autoconfirmed-member' => 'Авторасланган кулланучы',
 'group-bot-member'           => 'Бот',
 'group-sysop-member'         => 'Идарәче',
 'group-bureaucrat-member'    => 'Бюрократ',
+'group-suppress-member'      => 'Тикшерүче',
 
-'grouppage-sysop' => '{{ns:project}}:Идарәчеләр',
+'grouppage-autoconfirmed' => '{{ns:project}}:Авторасланган кулланучылар',
+'grouppage-bot'           => '{{ns:project}}:Ботлар',
+'grouppage-sysop'         => '{{ns:project}}:Идарәчеләр',
+'grouppage-bureaucrat'    => '{{ns:project}}:Бюрократлар',
+'grouppage-suppress'      => '{{ns:project}}:Тикшерүчеләр',
 
 # User rights log
-'rightslog' => 'Кулланучының хокуклары журналы',
+'rightslog'  => 'Кулланучының хокуклары журналы',
+'rightsnone' => '(юк)',
 
 # Recent changes
-'nchanges'        => '$1 {{PLURAL:$1|төзәтмә|төзәтмә}}',
-'recentchanges'   => 'Баягы төзәтмәләр',
-'rcnotefrom'      => "Астарак '''$2''' башлап ('''$1''' кадәр) төзәтмәләр күрсәтелгән.",
-'rclistfrom'      => '$1 башлап яңа төзәтмәләрне күрсәтергә',
-'rcshowhideminor' => '$1 әһәмиятсез үзгәртүләр',
-'rcshowhidebots'  => '$1 бот',
-'rcshowhideliu'   => '$1 кергән кулланучы',
-'rcshowhideanons' => '$1 кермәгән кулланучы',
-'rcshowhidepatr'  => '$1 тикшерергән үзгәртү',
-'rcshowhidemine'  => '$1 минем үзгәртү',
-'rclinks'         => 'Соңгы $2 көн эчендә соңгы $1 төзәтмәне күрсәтергә<br />$3',
-'diff'            => 'аерма.',
-'hist'            => 'тарих',
-'hide'            => 'Яшерергә',
-'show'            => 'Күрсәтергә',
-'minoreditletter' => 'ә',
-'newpageletter'   => 'Я',
-'boteditletter'   => 'б',
+'nchanges'                          => '$1 {{PLURAL:$1|төзәтмә|төзәтмә}}',
+'recentchanges'                     => 'Баягы төзәтмәләр',
+'rcnotefrom'                        => "Астарак '''$2''' башлап ('''$1''' кадәр) төзәтмәләр күрсәтелгән.",
+'rclistfrom'                        => '$1 башлап яңа төзәтмәләрне күрсәтергә',
+'rcshowhideminor'                   => '$1 әһәмиятсез үзгәртүләр',
+'rcshowhidebots'                    => '$1 бот',
+'rcshowhideliu'                     => '$1 кергән кулланучы',
+'rcshowhideanons'                   => '$1 кермәгән кулланучы',
+'rcshowhidepatr'                    => '$1 тикшерергән үзгәртү',
+'rcshowhidemine'                    => '$1 минем үзгәртү',
+'rclinks'                           => 'Соңгы $2 көн эчендә соңгы $1 төзәтмәне күрсәтергә<br />$3',
+'diff'                              => 'аерма.',
+'hist'                              => 'тарих',
+'hide'                              => 'Яшерергә',
+'show'                              => 'Күрсәтергә',
+'minoreditletter'                   => 'ә',
+'newpageletter'                     => 'Я',
+'boteditletter'                     => 'б',
+'number_of_watching_users_pageview' => '[$1 {{PLURAL:$1|күзәтеп тора кулланучы}}]',
+'rc_categories_any'                 => 'Һәрбер',
 
 # Recent changes linked
 'recentchangeslinked'       => 'Бәйләнешле төзәтмәләр',

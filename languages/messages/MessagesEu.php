@@ -193,6 +193,7 @@ $messages = array(
 'edit'              => 'Aldatu',
 'create'            => 'Sortu',
 'editthispage'      => 'Orrialde hau aldatu',
+'create-this-page'  => 'Orrialde hau sortu',
 'delete'            => 'Ezabatu',
 'deletethispage'    => 'Orrialde hau ezabatu',
 'undelete_short'    => 'Berreskuratu {{PLURAL:$1|aldaketa bat|$1 aldaketa}}',

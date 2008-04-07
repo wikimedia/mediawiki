@@ -800,8 +800,6 @@ Dalšne administratory we {{GRAMMAR:lokatiw|{{SITENAME}}}} mógu ale pśecej hy�
 'revdelete-submit'            => 'We wuzwólonej wersiji nałožyś',
 'revdelete-logentry'          => 'Woglědanje wersije změnjone za [[$1]]',
 'logdelete-logentry'          => 'wiźobnosć za [[$1]] změnjona.',
-'revdelete-logaction'         => '$1 {{plural:$1|wersija sajźona|wersiji sajźonej|wersije sajźone}} na modus $2.',
-'logdelete-logaction'         => '$1 {{plural:$1|zapis|zapisa|zapise}} za [[$3]] na modus $2 {{plural:$1|sajźony|sajźonej|sajźone}}.',
 'revdelete-success'           => "'''Wiźobnosć wersije jo se z wuspěchom změniła.'''",
 'logdelete-success'           => "'''Wiźobnosć log-lisćiny z wuspěchom změnjona.'''",
 

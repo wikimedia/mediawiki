@@ -720,7 +720,7 @@ Marteze e kavot munudoù all war [{{fullurl:Special:Log/delete|page={{PAGENAMEE}
 met n'hallo ket an dud sellet outo.
 
 Gouest e vo merourien all {{SITENAME}} da dapout krog en testennoù kuzhet ha da ziziverkañ anezho en-dro dre an hevelep etrefas, nemet e vije bet lakaet e plas strishadurioù ouzhpenn gant renerien al lec'hienn.",
-'revdelete-legend'            => 'Lakaat strishadurioù',
+'revdelete-legend'            => 'Lakaat strishadurioù gwelet',
 'revdelete-hide-text'         => 'Kuzhat testenn ar stumm',
 'revdelete-hide-name'         => 'Kuzhat an ober hag ar vukadenn',
 'revdelete-hide-comment'      => "Kuzhat notenn ar c'hemm",
@@ -733,13 +733,19 @@ Gouest e vo merourien all {{SITENAME}} da dapout krog en testennoù kuzhet ha da
 'revdelete-submit'            => 'Lakaat da dalvezout evit ar stumm diuzet',
 'revdelete-logentry'          => 'Cheñchet eo bet hewelusted ar stumm evit [[$1]]',
 'logdelete-logentry'          => 'kemmet eo bet gwelusted an darvoud evit [[$1]]',
-'revdelete-logaction'         => '$1 {{plural:$1|stumm kemmet|stumm kemmet}} e mod $2',
-'logdelete-logaction'         => '$1 {{plural:$1|darvoud|darvoud}} kemmet e mod $2',
 'revdelete-success'           => "'''Gwelusted ar stummoù kaset da benn vat.'''",
 'logdelete-success'           => "'''Gwelusted an darvoud kaset da benn vat.'''",
 'revdel-restore'              => 'Cheñch ar gweluster',
 'pagehist'                    => 'Istor ar bajenn',
 'deletedhist'                 => 'Diverkañ an istor',
+'revdelete-content'           => 'danvez',
+'revdelete-summary'           => 'kemmañ an diverrañ',
+'revdelete-uname'             => 'anv implijer',
+'revdelete-restricted'        => 'Lakaat ar strishadurioù da dalvezout evit ar verourien',
+'revdelete-unrestricted'      => 'dilemel ar strishadurioù evit ar verourien',
+'revdelete-hid'               => 'kuzhat $1',
+'revdelete-unhid'             => 'diguzhat $1',
+'revdelete-log-message'       => '$1 evit $2 {{PLURAL:$2|adweladenn|adweladenn}}',
 
 # Suppression log
 'suppressionlog'     => 'Marilh diverkañ',

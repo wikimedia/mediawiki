@@ -336,9 +336,7 @@ Waxaa lagayaabaa in laga tir tiray wikigan, ama magacii laga badalay.
 Iskuday in aad [[Special:Search|karaadiso wikigan]] beyjaj laxiira oo cusub.',
 
 # Revision deletion
-'rev-delundel'        => "i'tus/qari",
-'revdelete-logaction' => '$1 {{plural:$1|revision|revisions}} set to mode $2',
-'logdelete-logaction' => '$1 {{plural:$1|event|events}} to [[$3]] set to mode $2',
+'rev-delundel' => "i'tus/qari",
 
 # Diffs
 'diff-multi' => '({{plural:$1|One intermediate revision|$1 intermediate revisions}} not shown.)',

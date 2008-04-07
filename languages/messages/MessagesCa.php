@@ -834,8 +834,6 @@ Els altres administradors del projecte {{SITENAME}} encara podrien accedir al co
 'revdelete-submit'            => 'Aplica a la revisió seleccionada',
 'revdelete-logentry'          => "s'ha canviat la visibilitat de la revisió de [[$1]]",
 'logdelete-logentry'          => "s'ha canviat la visibilitat de [[$1]]",
-'revdelete-logaction'         => '$1 {{PLURAL:$1|revisió canviada|revisions canviades}} al mode $2',
-'logdelete-logaction'         => '$1 {{PLURAL:$1|esdeveniment|esdeveniments}} canviats al mode $2',
 'revdelete-success'           => "'''S'ha establert correctament la visibilitat d'aquesta revissió.'''",
 'logdelete-success'           => "'''S'ha establert correctament la visibilitat d'aquest element.'''",
 'revdel-restore'              => "Canvia'n la visibilitat",

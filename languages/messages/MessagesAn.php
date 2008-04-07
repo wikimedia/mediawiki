@@ -780,8 +780,6 @@ Atros almenistradors de {{SITENAME}} encara podrán azeder t'o contineiu amagato
 'revdelete-submit'            => 'Aplicar á la bersión trigata',
 'revdelete-logentry'          => "S'ha cambiato a bisibilidat d'a bersión de [[$1]]",
 'logdelete-logentry'          => "S'ha cambiato a bisibilidat d'escaizimientos de [[$1]]",
-'revdelete-logaction'         => '$1 {{PLURAL:$1|bersión|bersions}} en modo $2',
-'logdelete-logaction'         => '$1 {{PLURAL:$1|escaizimiento ficato|escaizimientos ficatos}} en o modo $2',
 'revdelete-success'           => "'''S'ha cambiato correutament a bisibilidat d'as bersions.'''",
 'logdelete-success'           => "'''S'ha cambiato correutament a bisibilidat d'os escaizimientos.'''",
 'revdel-restore'              => 'Cambiar a bisibilidat',

@@ -738,8 +738,6 @@ a travèrs de cela méma entèrface, a muens qu’una rèstriccion suplèmentèr
 'revdelete-submit'            => 'Aplicar a la vèrsion sèlèccionâ',
 'revdelete-logentry'          => 'La visibilitât de la vèrsion at étâ modifiâ por [[$1]]',
 'logdelete-logentry'          => 'La visibilitât de l’èvènement at étâ modifiâ por [[$1]]',
-'revdelete-logaction'         => '$1 {{PLURAL:$1|vèrsion changiê|vèrsions changiês}} en môdo $2',
-'logdelete-logaction'         => '$1 {{PLURAL:$1|èvènement de [[$3]] changiê|èvènements de [[$3]] changiês}} en môdo $2',
 'revdelete-success'           => "'''Visibilitât de les vèrsions changiê avouéc reusséta.'''",
 'logdelete-success'           => "'''Visibilitât des èvènements changiê avouéc reusséta.'''",
 

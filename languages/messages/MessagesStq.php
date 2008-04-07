@@ -696,8 +696,6 @@ Uur Administratore ap {{SITENAME}} konnen dän wächhoalde Inhoold of uur wächh
 'revdelete-submit'            => 'Ap uutwäälde Version anweende',
 'revdelete-logentry'          => 'Versionsansicht annerd foar [[$1]]',
 'logdelete-logentry'          => 'annerde ju Sichtboarkaid foar [[$1]]',
-'revdelete-logaction'         => '$1 {{plural:$1|Version|Versione}} ap Modus $2 sät',
-'logdelete-logaction'         => '$1 {{plural:$1|Iendraach|Iendraage}} foar [[$3]] ap Modus $2 sät',
 'revdelete-success'           => "'''Versionsansicht mäd Ärfoulch annerd.'''",
 'logdelete-success'           => "'''Logbouk-Aktion mäd Ärfoulch sät.'''",
 

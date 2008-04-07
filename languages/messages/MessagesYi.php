@@ -87,7 +87,7 @@ $messages = array(
 'tog-previewontop'            => 'צײַג די "פֿאָרויסיגע װײַזונג" גלײַך בײַ דער ערשטער באַאַרבעטונג',
 'tog-previewonfirst'          => 'ווייזט פאראויסדיגע ווייזונג אינעם ערשטען ענדערונג',
 'tog-nocache'                 => "ס'זאל זיך נישט קעשן די בלאט",
-'tog-enotifwatchlistpages'    => 'אימעיל מיך ווען בלעטער וואס איך פאס אויף ווערט גענדערט',
+'tog-enotifwatchlistpages'    => 'שיק מיר א בליצבריוו ווען א בלאט וואס איך פאס אויף ווערט געענדערט',
 'tog-enotifusertalkpages'     => 'אימעיל מיך ווען עס ווערט גענדערט מיין באנוצער בלאט',
 'tog-enotifminoredits'        => 'אימעיל מיך פאר מינדערע עדיטס צו די בלעטער',
 'tog-enotifrevealaddr'        => 'דעק אויף מיין בליצפאסט אדרעס אין פאסט מודעות',
@@ -163,15 +163,18 @@ $messages = array(
 'dec'           => 'דעץ׳',
 
 # Categories related messages
-'categories'               => '{{PLURAL:$1|קאַטעגאָריע|קאַטעגאָריעס}}',
-'categoriespagetext'       => 'די פאלגענדע קאַטעגאָריעס עקזיסטירט אין {{SITENAME}}.',
-'pagecategories'           => '{{PLURAL:$1|קאַטעגאָריע|קאַטעגאָריעס}}',
-'category_header'          => 'אַרטיקלען אין קאַטעגאָריע "$1"',
-'subcategories'            => 'אונטערקאַטעגאָריעס',
-'category-media-header'    => 'מידיע אין קאטעגאריע "$1"',
-'category-empty'           => "'''די קאטעגאריע האט נישט קיין בלעטער אדער מעדיע.'''",
-'hidden-categories'        => '{{plural:$1|באהאלטענע קאטעגאריע|באהאלטענע קאטעגאריעס}}',
-'hidden-category-category' => 'באהאלטענע קאטעגאריעס', # Name of the category where hidden categories will be listed
+'categories'                     => '{{PLURAL:$1|קאַטעגאָריע|קאַטעגאָריעס}}',
+'categoriespagetext'             => 'די פאלגענדע קאַטעגאָריעס אנטהאלטן בלעטער אדער מעדיע.',
+'pagecategories'                 => '{{PLURAL:$1|קאַטעגאָריע|קאַטעגאָריעס}}',
+'category_header'                => 'אַרטיקלען אין קאַטעגאָריע "$1"',
+'subcategories'                  => 'אונטערקאַטעגאָריעס',
+'category-media-header'          => 'מידיע אין קאטעגאריע "$1"',
+'category-empty'                 => "'''די קאטעגאריע האט נישט קיין בלעטער אדער מעדיע.'''",
+'hidden-categories'              => '{{plural:$1|באהאלטענע קאטעגאריע|באהאלטענע קאטעגאריעס}}',
+'hidden-category-category'       => 'באהאלטענע קאטעגאריעס', # Name of the category where hidden categories will be listed
+'category-subcat-count-limited'  => 'די קאטעגאריע האט די פאלגנדע {{plural:$1|אונטערקאטעגאריע|$1 אונטערקאטעגאריעס}}.',
+'category-article-count-limited' => 'די קאטעגאריע אנטהאלט {{plural:$1|דעם פאלגנדן בלאט|די פאלגנדע $1 בלעטער}}.',
+'listingcontinuesabbrev'         => '(המשך)',
 
 'mainpagetext'      => "'''מעדיעוויקי אינסטאלירט מיט דערפאלג.'''",
 'mainpagedocfooter' => 'געבט זיך אן עצה מיט [http://meta.wikimedia.org/wiki/Help:Contents אנווייזער פאר באנוצער] פאר אינפארמאציע וויאזוי זיך באנוצען מיט וויקי סאפטוועיר.
@@ -289,7 +292,7 @@ $messages = array(
 'badaccess-groups' => 'די אקציע וואס איר האט פארלאנגט צו טאן איז באגרעניצט צו באנוצער אין איינע פון די גרופעס $1.',
 
 'versionrequired'     => 'ווערסיע $1 פון מעדיעוויקי פארלאנגט זיך',
-'versionrequiredtext' => 'ווערסיע $1 פון מידיעוויקי פארלאנגט זיך צו נוצען דעם בלאט. פאר מער אינפארמאציע זעהט [[Special:Version|ווערסיע בלאט]].',
+'versionrequiredtext' => 'ווערסיע $1 פון מעדיעוויקי פארלאנגט זיך צו נוצן דעם בלאט. פאר מער אינפארמאציע זעהט [[Special:Version|ווערסיע בלאט]].',
 
 'ok'                      => 'יאָ',
 'retrievedfrom'           => 'גענומען פון "$1"',
@@ -690,7 +693,7 @@ Legend: (cur) = difference with current version,
 'rev-delundel'                => 'ווייז/באהאלט',
 'revisiondelete'              => 'אויסמעקן\\צוריקשטעלן רעוויזיעס',
 'revdelete-nooldid-title'     => 'נישטא קיין מטרה ווערסיע',
-'revdelete-nooldid-text'      => 'איר האט נישט ספעסיזיפירט קיין ציל ווערסיע צו דורכפירן די פונקציע דעראויף..',
+'revdelete-nooldid-text'      => 'איר האט נישט ספעציפירט קיין ציל ווערסיע דורצוכפירן די פונקציע.',
 'revdelete-selected'          => "{{plural:$2|ווערסיע פון '''$1''' שנבחרה|ווערסיע פון '''$1''' וואס איז געווארן אויסגעוועלט}}:",
 'revdelete-legend'            => 'שטעלט איין בארגרענצונגן',
 'revdelete-hide-text'         => 'באהאלט אינהאלט פון ווערסיע',
@@ -1099,7 +1102,7 @@ $NEWPAGE
 'allmessagescurrent'        => 'איצטיגער טעקסט',
 'allmessagestext'           => 'דאס איז א ליסטע פון אלע סיסטעם מעסעזשעס עוועילבל און מידיעוויקי נעימספעיס. {{ns:mediawiki}}, וואס באדינען דעם אויפהאלט פונעם סייט.
 סיסאפס קענען ענדערן די מעסעזשעס דורך דרוקן אויפן נאמען פון מעסעזש.',
-'allmessagesnotsupportedDB' => 'מען קען זיך נישט באנוצען מיט דעם בלאט וויבאלד די־$wgUseDatabseMessages איז בטל.',
+'allmessagesnotsupportedDB' => 'מען קען זיך נישט באניצן מיט דעם בלאט וויבאלד די $wgUseDatabseMessages איז געווארן בטל.',
 'allmessagesfilter'         => 'מעסעדזש נאמען פילטער:',
 'allmessagesmodified'       => 'ווייז נאר מאדיפיצירטע',
 

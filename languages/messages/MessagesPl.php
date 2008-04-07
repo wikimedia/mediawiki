@@ -158,16 +158,16 @@ $messages = array(
 'tog-showtoolbar'             => 'Pokaż pasek narzędzi (JavaScript)',
 'tog-editondblclick'          => 'Podwójne kliknięcie rozpoczyna edycję (JavaScript)',
 'tog-editsection'             => 'Możliwość edycji poszczególnych sekcji strony',
-'tog-editsectiononrightclick' => 'Kliknięcie prawym klawiszem myszy na tytule sekcji<br />rozpoczyna jej edycję (JavaScript)',
-'tog-showtoc'                 => 'Pokaż spis treści (na stronach zawierających więcej niż 3 nagłówki)',
-'tog-rememberpassword'        => 'Pamiętaj hasło między sesjami',
+'tog-editsectiononrightclick' => 'Kliknięcie prawym klawiszem myszy na tytule sekcji rozpoczyna jej edycję (JavaScript)',
+'tog-showtoc'                 => 'Pokaż spis treści (na stronach o więcej niż 3 nagłówkach)',
+'tog-rememberpassword'        => 'Pamiętaj hasło między sesjami na tym komputerze',
 'tog-editwidth'               => 'Obszar edycji o pełnej szerokości',
-'tog-watchcreations'          => 'Dodaj tworzone przeze mnie strony do obserwowanych',
-'tog-watchdefault'            => 'Obserwuj strony, które będę edytować',
-'tog-watchmoves'              => 'Obserwuj strony, które będę przenosić',
-'tog-watchdeletion'           => 'Dodaj strony, które usuwam, do listy obserwowanych',
+'tog-watchcreations'          => 'Dodaj do obserwowanych strony tworzone przeze mnie',
+'tog-watchdefault'            => 'Dodaj do obserwowanych strony, które edytuję',
+'tog-watchmoves'              => 'Dodaj do obserwowanych strony, które przenoszę',
+'tog-watchdeletion'           => 'Dodaj do listy obserwowanych strony, które usuwam',
 'tog-minordefault'            => 'Wszystkie zmiany oznaczaj domyślnie jako drobne',
-'tog-previewontop'            => 'Pokazuj podgląd przed obszarem edycji',
+'tog-previewontop'            => 'Pokazuj podgląd powyżej obszaru edycji',
 'tog-previewonfirst'          => 'Pokaż podgląd strony podczas pierwszej edycji',
 'tog-nocache'                 => 'Wyłącz pamięć podręczną',
 'tog-enotifwatchlistpages'    => 'Jeśli strona z listy moich obserwowanych zostanie zmodyfikowana wyślij do mnie e-mail',
@@ -249,14 +249,14 @@ $messages = array(
 
 # Categories related messages
 'categories'                     => 'Kategorie',
-'categoriespagetext'             => 'Poniższe kategorie zawierają jakieś artykuły lub pliki.',
+'categoriespagetext'             => 'Poniższe kategorie zawierają jakieś strony lub pliki.',
 'special-categories-sort-count'  => 'sortowanie według liczby',
 'special-categories-sort-abc'    => 'sortowanie alfabetyczne',
 'pagecategories'                 => '{{PLURAL:$1|Kategoria|Kategorie}}',
 'category_header'                => 'Strony w kategorii „$1”',
 'subcategories'                  => 'Podkategorie',
 'category-media-header'          => 'Pliki w kategorii "$1"',
-'category-empty'                 => "''W tej kategorii nie ma obecnie artykułów ani plików.''",
+'category-empty'                 => "''W tej kategorii nie ma obecnie ani stron, ani plików.''",
 'hidden-categories'              => '{{PLURAL:$1|Ukryta kategoria|Ukryte kategorie|Ukrytych kategorii}}',
 'hidden-category-category'       => 'Ukryte kategorie', # Name of the category where hidden categories will be listed
 'category-subcat-count'          => '{{PLURAL:$2|Ta kategoria ma tylko jedną podkategorię.|Ta kategoria ma {{PLURAL:$1|tylko jedną podkategorię|$1 podkategorie|$1 podkategorii}} spośród ogólnej liczby $2.}}',
@@ -329,7 +329,7 @@ $messages = array(
 'specialpage'       => 'Strona specjalna',
 'personaltools'     => 'Osobiste',
 'postcomment'       => 'Skomentuj',
-'articlepage'       => 'Strona artykułu',
+'articlepage'       => 'Strona',
 'talk'              => 'Dyskusja',
 'views'             => 'Widok',
 'toolbox'           => 'Narzędzia',
@@ -449,11 +449,9 @@ MySQL zgłosił błąd "$3: $4"',
 'laggedslavemode'      => 'Uwaga: Ta strona może nie zawierać najnowszych aktualizacji.',
 'readonly'             => 'Baza danych jest zablokowana',
 'enterlockreason'      => 'Podaj powód zablokowania bazy oraz szacunkowy czas jej odblokowania',
-'readonlytext'         => 'Baza danych jest w tej chwili zablokowana
-- nie można wprowadzać nowych artykułów ani modyfikować istniejących. Powodem
-są prawdopodobnie czynności administracyjne. Po ich zakończeniu przywrócona
-zostanie pełna funkcjonalność bazy.
-Administrator, który zablokował bazę, podał następujące wyjaśnienie:<br /> $1',
+'readonlytext'         => 'Baza danych jest obecnie zablokowana - nie można wprowadzać nowych informacji ani modyfikować istniejących. Powodem są prawdopodobnie czynności administracyjne. Po ich zakończeniu przywrócona zostanie pełna funkcjonalność bazy.
+
+Administrator, który zablokował bazę, podał następujące wyjaśnienie: $1',
 'missingarticle'       => 'Oprogramowanie nie odnalazło tekstu strony "$1", która powinna się znajdować w bazie.
 
 Zazwyczaj zdarza się to, gdy zostanie wybrane łącze do usuniętej strony,
@@ -661,7 +659,7 @@ Identyfikator Twojej blokady to $5. Zanotuj go i podaj administratorowi.',
 'blockedoriginalsource'     => "Źródło '''$1''' zostało pokazane poniżej:",
 'blockededitsource'         => "Tekst '''Twoich edycji''' na '''$1''' został pokazany poniżej:",
 'whitelistedittitle'        => 'Przed edycją musisz się zalogować',
-'whitelistedittext'         => 'Musisz $1 żeby móc edytować artykuły.',
+'whitelistedittext'         => 'Musisz $1 by edytować strony.',
 'whitelistreadtitle'        => 'Przed przeczytaniem musisz się zalogować',
 'whitelistreadtext'         => 'Musisz się [[Special:Userlogin|zalogować]], żeby czytać strony.',
 'whitelistacctitle'         => 'Nie wolno ci zakładać konta',
@@ -677,9 +675,9 @@ Podaj adres e-mail i potwierdź go w swoich [[Special:Preferences|ustawieniach u
 'accmailtitle'              => 'Hasło wysłane.',
 'accmailtext'               => 'Hasło użytkownika "$1" zostało wysłane pod adres $2.',
 'newarticle'                => '(Nowy)',
-'newarticletext'            => "Nie ma jeszcze artykułu o tym tytule. W poniższym polu można wpisać pierwszy jego fragment. Jeśli nie to było Twoim zamiarem, wciśnij po prostu ''Wstecz''.",
+'newarticletext'            => "Nie ma jeszcze strony o tym tytule. W poniższym polu można wpisać pierwszy jej fragment. Jeśli nie to było Twoim zamiarem, wciśnij po prostu ''Wstecz''.",
 'anontalkpagetext'          => "---- ''To jest strona dyskusji anonimowego użytkownika - takiego, który nie ma jeszcze swojego konta lub nie chce go w tej chwili używać. By go identyfikować używamy adresów IP. Jednak adres IP może być współdzielony przez wielu użytkowników. Jeśli jesteś anonimowym użytkownikiem i uważasz, że zamieszczone tu komentarze nie są skierowane do Ciebie, [[Special:Userlogin|utwórz proszę konto albo zaloguj się]] - dzięki temu unikniesz w przyszłości podobnych nieporozumień.''",
-'noarticletext'             => 'Nie ma jeszcze artykułu o tym tytule. Możesz [{{fullurl:{{FULLPAGENAME}}|action=edit}} utworzyć artykuł {{FULLPAGENAME}}] lub [[Special:Search/{{PAGENAME}}|poszukać {{PAGENAME}} w innych artykułach]].',
+'noarticletext'             => 'Nie ma jeszcze strony o tym tytule. Możesz [[Special:Search/{{PAGENAME}}|poszukać {{PAGENAME}} na innych stronach]] lub [{{fullurl:{{FULLPAGENAME}}|action=edit}} utworzyć stronę {{FULLPAGENAME}}].',
 'userpage-userdoesnotexist' => 'Użytkownik "$1" nie jest zarejestrowany. Upewnij się czy na pewno zamierzałeś stworzyć/zmodyfikować właśnie tę stronę.',
 'clearyourcache'            => "'''Uwaga:''' Zmiany po zapisaniu nowych ustawień mogą nie być widoczne. Należy wyczyścić zawartość pamięci podręcznej przeglądarki internetowej. '''Mozilla / Firefox / Safari:''' przytrzymaj wciśnięty ''Shift'' i kliknij na ''Odśwież'' lub wciśnij ''Ctrl-Shift-R'' (''Cmd-Shift-R'' na Macintoshu), '''IE :''' przytrzymaj ''Ctrl'' i kliknij na ''Odśwież'' lub wciśnij ''Ctrl-F5''; '''Konqueror:''': po prostu kliknij przycisk ''Odśwież'' lub wciśnij ''F5''; '''Opera''' może wymagać wyczyszczenia pamięci podręcznej w menu ''Narzędzia→Preferencje''.",
 'usercssjsyoucanpreview'    => '<strong>Wskazówka:</strong> Użyj przycisku "Podgląd", aby przetestować Twój nowy arkusz stylów CSS lub kod JavaScript przed jego zapisaniem.',
@@ -688,7 +686,7 @@ Podaj adres e-mail i potwierdź go w swoich [[Special:Preferences|ustawieniach u
 'userinvalidcssjstitle'     => "'''Uwaga:''' Nie ma skórki o nazwie \"\$1\". Pamiętaj, że strony użytkownika zawierające CSS i JavaScript powinny zaczynać się małą literą, np. {{ns:user}}:Foo/monobook.css.",
 'updated'                   => '(Zmodyfikowano)',
 'note'                      => '<strong>Uwaga:</strong>',
-'previewnote'               => '<strong>To jest tylko podgląd - artykuł nie został jeszcze zapisany!</strong>',
+'previewnote'               => '<strong>To jest tylko podgląd - strona nie została jeszcze zapisana!</strong>',
 'previewconflict'           => 'Wersja podglądana odnosi się do tekstu z górnego pola edycji. Tak będzie wyglądać strona jeśli zdecydujesz się ją zapisać.',
 'session_fail_preview'      => '<strong>Przepraszamy! Serwer nie może przetworzyć tej edycji z powodu utraty danych sesji. Spróbuj jeszcze raz. Jeśli to nie pomoże - wyloguj się i zaloguj ponownie.</strong>',
 'session_fail_preview_html' => "<strong>Przepraszamy! Serwer nie może przetworzyć tej edycji z powodu utraty danych sesji.</strong>
@@ -701,11 +699,11 @@ Podaj adres e-mail i potwierdź go w swoich [[Special:Preferences|ustawieniach u
 'editingsection'            => 'Edytujesz "$1" (fragment)',
 'editingcomment'            => 'Edytujesz "$1" (komentarz)',
 'editconflict'              => 'Konflikt edycji: $1',
-'explainconflict'           => 'Ktoś zdążył wprowadzić swoją wersję artykułu w trakcie Twojej edycji.
-Górne pole edycji zawiera tekst strony aktualnie zapisany w bazie danych.
-Twoje zmiany znajdują się w dolnym polu edycji.
+'explainconflict'           => "Ktoś zmienił treść strony w trakcie Twojej edycji.
+Górne pole zawiera tekst strony aktualnie zapisany w bazie danych.
+Twoje zmiany znajdują się w dolnym polu.
 By wprowadzić swoje zmiany musisz zmodyfikować tekst z górnego pola.
-<b>Tylko</b> tekst z górnego pola będzie zapisany w bazie gdy wciśniesz "Zapisz".<br />',
+'''Tylko''' tekst z górnego pola zostanie zapisany w bazie gdy wciśniesz \"Zapisz\".",
 'yourtext'                  => 'Twój tekst',
 'storedversion'             => 'Zapisana wersja',
 'nonunicodebrowser'         => '<strong>Uwaga! Twoja przeglądarka nie umie poprawnie rozpoznawać kodowania UTF-8 (Unicode). Z tego powodu wszystkie znaki, których Twoja przeglądarka nie jest w stanie rozpoznać, zostały zastąpione ich kodami heksadecymalnymi.</strong>',
@@ -719,7 +717,7 @@ Zapisując swoją edycję oświadczasz, że ten tekst jest Twoim dziełem lub po
 <strong>PROSZĘ NIE UŻYWAĆ MATERIAŁÓW CHRONIONYCH PRAWEM AUTORSKIM BEZ POZWOLENIA WŁAŚCICIELA!</strong>",
 'longpagewarning'           => '<strong>Uwaga: Ta strona ma $1 kilobajt-y/-ów; w przypadku niektórych przeglądarek mogą wystąpić problemy w edycji stron mających więcej niż 32 kilobajty. Jeśli to możliwe, spróbuj podzielić tekst na mniejsze części.</strong>',
 'longpageerror'             => '<strong>Błąd: Przesłany przez Ciebie tekst ma $1 kilobajtów. Maksymalna długość tekstu nie może przekraczać $2 kilobajtów. Twój tekst nie zostanie zapisany.</strong>',
-'readonlywarning'           => '<strong>Uwaga: Baza danych została chwilowo zablokowana do celów administracyjnych. Nie można więc na razie zapisać nowej wersji artykułu. Proponujemy przenieść jej tekst do prywatnego pliku (wytnij/wklej) i zachować na później.</strong>',
+'readonlywarning'           => '<strong>UWAGA: Baza danych została zablokowana do celów administracyjnych. W tej chwili nie można zapisać nowej wersji strony. Zapisz jej treść do pliku (wytnij/wklej) i zachowaj na później.</strong>',
 'protectedpagewarning'      => '<strong>Uwaga: Modyfikacja tej strony została zablokowana. Mogą ją edytować jedynie użytkownicy z prawami administratora.</strong>',
 'semiprotectedpagewarning'  => "'''Uwaga:''' Ta strona została zabezpieczona i tylko zarejestrowani użytkownicy mogą ją edytować.",
 'cascadeprotectedwarning'   => "'''Uwaga:''' Ta strona została zabezpieczona i tylko użytkownicy z uprawnieniami administratora mogą ją edytować. Strona ta jest zawarta na {{PLURAL:$1|następującej stronie, która została zabezpieczona|następujących stronach, które zostały zabezpieczone}} z włączoną opcją dziedziczenia:",
@@ -819,13 +817,19 @@ Inni administratorzy {{GRAMMAR:D.lp|{{SITENAME}}}} nadal będą mieć dostęp do
 'revdelete-submit'            => 'Zaakceptuj dla wybranych wersji',
 'revdelete-logentry'          => 'zmieniono widoczność wersji w [[$1]]',
 'logdelete-logentry'          => 'zmieniono widoczność zdarzeń dla [[$1]]',
-'revdelete-logaction'         => '$1 {{PLURAL:$1|wersję|wersje|wersji}} ustawiono w tryb $2',
-'logdelete-logaction'         => '$1 {{PLURAL:$1|zdarzenie|zdarzenia|zdarzeń}} przestawiono w tryb $2',
 'revdelete-success'           => "'''Pomyślnie zmieniono widoczność wersji.'''",
 'logdelete-success'           => "'''Pomyślnie zmieniono widoczność zdarzeń.'''",
 'revdel-restore'              => 'Zmień widoczność',
 'pagehist'                    => 'Historia edycji strony',
 'deletedhist'                 => 'Usunięta historia edycji',
+'revdelete-content'           => 'zawartość',
+'revdelete-summary'           => 'opis zmian',
+'revdelete-uname'             => 'nazwa użytkownika',
+'revdelete-restricted'        => 'ustaw ograniczenia dla administratorów',
+'revdelete-unrestricted'      => 'usuń ograniczenia dla administratorów',
+'revdelete-hid'               => 'ukryj $1',
+'revdelete-unhid'             => 'nie ukrywaj $1',
+'revdelete-log-message'       => '$1 - $2 {{PLURAL:$2|wersja|wersje|wersji}}',
 
 # Suppression log
 'suppressionlog'     => 'Dziennik utajniania',
@@ -941,9 +945,9 @@ sprawdź, czy poprawnie zainstalowane są latex, dvips, gs i convert.',
 'columns'                  => 'Kolumny:',
 'searchresultshead'        => 'Wyszukiwanie',
 'resultsperpage'           => 'Liczba wyników na stronie',
-'contextlines'             => 'Pierwsze wiersze artykułu',
+'contextlines'             => 'Pierwsze wiersze stron',
 'contextchars'             => 'Litery kontekstu w linijce',
-'stub-threshold'           => 'Maksymalny rozmiar artykułu oznaczanego jako <a href="#" class="stub">stub (zalążek)</a>',
+'stub-threshold'           => 'Maksymalny (w bajtach) rozmiar strony oznaczanej jako <a href="#" class="stub">stub (zalążek)</a>:',
 'recentchangesdays'        => 'Liczba dni do pokazania w ostatnich zmianach:',
 'recentchangescount'       => 'Liczba pozycji na liście ostatnich zmian:',
 'savedprefs'               => 'Twoje preferencje zostały zapisane.',
@@ -1248,7 +1252,7 @@ Kliknięcie w nagłówek kolumny zmienia sposób sortowania.',
 
 # Statistics
 'statistics'             => 'Statystyka',
-'sitestats'              => 'Statystyka artykułów',
+'sitestats'              => 'Statystyka {{GRAMMAR:D.lp|{{SITENAME}}}}',
 'userstats'              => 'Statystyka użytkowników',
 'sitestatstext'          => "W bazie danych jest w sumie '''\$1''' {{PLURAL:\$1|strona|strony|stron}}.
 
@@ -1265,7 +1269,9 @@ Długość [http://meta.wikimedia.org/wiki/Help:Job_queue kolejki zadań] to '''
 'disambiguations'         => 'Strony ujednoznaczniające',
 'disambiguations-summary' => 'Poniżej znajduje się lista stron ujednoznaczniających.',
 'disambiguationspage'     => '{{ns:template}}:disambig',
-'disambiguations-text'    => "Poniższe artykuły odwołują się do '''stron ujednoznaczniających''', a powinny odwoływać się bezpośrednio do hasła związanego z treścią artykułu.<br />Strona uznawana jest za ujednoznaczniającą jeśli zawiera ona szablon określony w [[MediaWiki:disambiguationspage]].",
+'disambiguations-text'    => "Poniższe strony odwołują się do '''stron ujednoznaczniających''',
+a powinny odwoływać się bezpośrednio do stron treści.<br />
+Strona uznawana jest za ujednoznaczniającą jeśli zawiera ona szablon linkowany przez komunikat [[MediaWiki:Disambiguationspage]]",
 
 'doubleredirects'     => 'Podwójne przekierowania',
 'doubleredirectstext' => 'Na tej liście mogą znajdować się przekierowania pozorne. Oznacza to, że poniżej pierwszej linii artykułu, zawierającej "#REDIRECT ...", może znajdować się dodatkowy tekst.<br />Każdy wiersz listy zawiera odwołania do pierwszego i drugiego przekierowania oraz pierwszą linię tekstu drugiego przekierowania. Umożliwia to w większości przypadków odnalezienie właściwego artykułu, do którego powinno się przekierowywać.',
@@ -2479,5 +2485,8 @@ Wpisz nazwę pliku z pominięciem prefiksu "{{ns:image}}:".',
 'fileduplicatesearch-info'     => '$1 × $2 pikseli<br />Wielkość pliku: $3<br />Typ MIME: $4',
 'fileduplicatesearch-result-1' => 'Nie ma duplikatu pliku "$1".',
 'fileduplicatesearch-result-n' => 'Na {{GRAMMAR:MS.lp|{{SITENAME}}}} {{PLURAL:$2|jest dodatkowa kopia|są $2 dodatkowe kopie|jest $2 dodatkowych kopii}} pliku "$1".',
+
+# Unknown messages
+'logdelete-log-message' => '$1 - $2 {{PLURAL:$2|zdarzenie|zdarzenia|zdarzeń}}',
 
 );

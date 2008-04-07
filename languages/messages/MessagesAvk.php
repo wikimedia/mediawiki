@@ -601,8 +601,6 @@ Ta ropasusu warzafu bu yo va [[Special:Search|aneyara ko wiki]] yawal.',
 'revdelete-submit'          => 'Ko reban siatos rewar',
 'revdelete-logentry'        => 'Betayana betarafa rowinuca ke [[$1]]',
 'logdelete-logentry'        => 'Betayana bifafa rowinuca ke [[$1]]',
-'revdelete-logaction'       => '$1 plekuyuna {{PLURAL:$1|betara|betara}} kan $2 cave',
-'logdelete-logaction'       => '$1 plekuyun {{PLURAL:$1|bif|bif}} van [[$3]] kan $2 cave',
 'revdelete-success'         => "'''Kiewaskinon plekuyuna betarafa rowinuca.'''",
 'logdelete-success'         => "'''Kiewaskinon plekuyuna bifafa rowinuca.'''",
 

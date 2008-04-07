@@ -635,8 +635,6 @@ Inedbalen wiyaḍ deg wiki-yagi zemren ad ẓren imuren i yettwafren u zemren a 
 'revdelete-submit'            => 'Eg-it i tasiwelt tettwafren',
 'revdelete-logentry'          => 'asekkud n tasiwelt tettubeddel i  [[$1]]',
 'logdelete-logentry'          => 'asekkud n tamirt tettubeddel i [[$1]]',
-'revdelete-logaction'         => '$1 {{plural:$1|tasiwelt tettuxdem|tisiwal ttuxedment}} i anaw $2',
-'logdelete-logaction'         => '$1 {{plural:$1|tamirt|isallen}} n [[$3]] {{plural:$1|tettuxdem|ttuxedmen}} i anaw $2',
 'revdelete-success'           => "'''Asekkud n tasiwelt yettuxdem.'''",
 'logdelete-success'           => "'''Asekkud n tamirt yettuxdem.'''",
 

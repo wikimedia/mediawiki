@@ -674,8 +674,6 @@ Cunsulthà lu [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} rigisthru di ca
 'revdelete-submit'            => 'Apprica a la ribisioni isciubaradda',
 'revdelete-logentry'          => 'à mudìfiggaddu la visibiriddai pa una ribisioni di [[$1]]',
 'logdelete-logentry'          => "à mudìfiggaddu la visibiriddai di l'eventu [[$1]]",
-'revdelete-logaction'         => 'à impusthaddu la manera $2 pa {{PLURAL:$1|una ribisioni|$1 ribisioni}}',
-'logdelete-logaction'         => "à impusthaddu la manera $2 pa {{PLURAL:$1|un'eventu reratibu|$1 eventi reratibi}} a [[$3]]",
 'revdelete-success'           => "'''Visibiriddai di la ribisioni impusthadda.'''",
 'logdelete-success'           => "'''Visibiriddai di l'eventu impusthadda.'''",
 

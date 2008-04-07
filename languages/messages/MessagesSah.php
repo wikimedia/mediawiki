@@ -672,8 +672,6 @@ long, which is longer than the maximum of $2 kilobytes. It cannot be saved.</str
 'revdelete-submit'            => 'Маны талбыт торуммар тутун',
 'revdelete-logentry'          => '[[$1]] сирэй торумун көстүүтэ уларыйда',
 'logdelete-logentry'          => '[[$1]] дьайыы көстүүтэ уларыйда',
-'revdelete-logaction'         => '$1 {{PLURAL:$1|торум|торумнар}} $2 режимҥа {{PLURAL:$1|көстө|көстүлэр}}',
-'logdelete-logaction'         => '$1 {{PLURAL:$1|событие|события|событий}} страницы [[$3]] {{plural:$1|переведено|переведены|переведены}} в режим $2',
 'revdelete-success'           => "'''Торум көстүүтэ сөпкө уларыйда.'''",
 'logdelete-success'           => "'''Дьайыы көстүүтэ сөпкө уларыйда.'''",
 
