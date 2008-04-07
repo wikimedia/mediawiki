@@ -59,6 +59,8 @@ class ApiQueryRecentChanges extends ApiQueryBase {
 		 * 		AND rc_timestamp < $end AND rc_namespace = $namespace 
 		 * 		AND rc_deleted = '0'
 		 */
+		$db = $this->getDB();
+		$rc = $db->tableName('recentchanges');
 		$this->addWhereRange('rc_timestamp', $dir, $start, $end);
 		$this->addWhereFld('rc_namespace', $namespace);
 		$this->addWhereFld('rc_deleted', 0);
@@ -105,7 +107,8 @@ class ApiQueryRecentChanges extends ApiQueryBase {
 			$this->addWhereIf('rc_user = 0', isset ($show['anon']));
 			$this->addWhereIf('rc_user != 0', isset ($show['!anon']));
 			$this->addWhereIf('page_is_redirect = 1', isset ($show['redirect']));
-			$this->addWhereIf('page_is_redirect = 0', isset ($show['!redirect']));
+			// Don't throw log entries out the window here
+			$this->addWhereIf('page_is_redirect = 0 OR page_is_redirect IS NULL', isset ($show['!redirect']));
 		}
 
 		/* Add the fields we're concerned with to out query. */
@@ -153,19 +156,17 @@ class ApiQueryRecentChanges extends ApiQueryBase {
 			$this->addFieldsIf('rc_patrolled', $this->fld_patrolled);
 			if($this->fld_redirect || isset($show['redirect']) || isset($show['!redirect']))
 			{
-				$this->addTables('page');
-				$this->addWhere('page_namespace=rc_namespace');
-				$this->addWhere('page_title=rc_title');
+				$page = $db->tableName('page');
+				$tables = "$page RIGHT JOIN $rc FORCE INDEX(rc_timestamp) ON page_namespace=rc_namespace AND page_title=rc_title";
 				$this->addFields('page_is_redirect');
 			}
 		}
-		$this->addTables('recentchanges');
+		if(!isset($tables))
+			$tables = "$rc FORCE INDEX(rc_timestamp)";
+		$this->addTables($tables);
 		/* Specify the limit for our query. It's $limit+1 because we (possibly) need to 
 		 * generate a "continue" parameter, to allow paging. */
 		$this->addOption('LIMIT', $limit +1);
-
-		/* Specify the index to use in the query as rc_timestamp, instead of rc_revid (default). */
-		$this->addOption('USE INDEX', 'rc_timestamp');
 
 		$data = array ();
 		$count = 0;
