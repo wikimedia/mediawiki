@@ -202,6 +202,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   very weak typing on array keys.
 * (bug 12136) Extend allowed characters in JSON callback to ][.'"_A-Za-z0-9
 * (bug 11673) Return error 'unknown_action' in specified format
+* (bug 13618) Added rcprop=redirect and rcshow=redirect to list=recentchanges
 
 === Languages updated in 1.13 ===
 
