@@ -429,7 +429,8 @@ rendered inline in wiki pages or galleries in category pages.
 &$time: image timestamp
 
 'BeforePageDisplay': Prior to outputting a page
-$out: OutputPage object
+&$out: OutputPage object
+&$skin: Skin object
 
 'BeforeParserFetchTemplateAndtitle': before a template is fetched by Parser
 &$parser: Parser object
