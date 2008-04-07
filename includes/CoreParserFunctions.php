@@ -41,6 +41,7 @@ class CoreParserFunctions {
 		$parser->setFunctionHook( 'special',          array( __CLASS__, 'special'          ) );
 		$parser->setFunctionHook( 'defaultsort',      array( __CLASS__, 'defaultsort'      ), SFH_NO_HASH );
 		$parser->setFunctionHook( 'filepath',         array( __CLASS__, 'filepath'         ), SFH_NO_HASH );
+		$parser->setFunctionHook( 'pagesincategory',  array( __CLASS__, 'pagesincategory'  ), SFH_NO_HASH );
 		$parser->setFunctionHook( 'tag',              array( __CLASS__, 'tagObj'           ), SFH_OBJECT_ARGS );
 
 		if ( $wgAllowDisplayTitle ) {
@@ -213,6 +214,23 @@ class CoreParserFunctions {
 	}
 	static function pagesinnamespace( $parser, $namespace = 0, $raw = null ) {
 		return self::formatRaw( SiteStats::pagesInNs( intval( $namespace ) ), $raw );
+	}
+	
+	static function pagesincategory( $parser, $category = '', $raw = null ) {
+		global $wgExpensiveParserFunctionLimit;
+		if ($category == '') {
+			return 0;
+		}
+		$parser->mExpensiveFunctionCount++;
+		if ($parser->mExpensiveFunctionCount <= $wgExpensiveParserFunctionLimit) {
+			$category = Category::newFromName($category);
+			$count = $category->getPageCount();
+			if ( !$count ) {
+				$count = 0;
+			}
+			return self::formatRaw( $count, $raw );
+		}
+		return 0;
 	}
 
 	static function language( $parser, $arg = '' ) {

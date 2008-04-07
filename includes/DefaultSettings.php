@@ -3011,3 +3011,9 @@ $wgPagePropLinkInvalidations = array(
  * Special:Whatlinkshere/RedirectDestination
  */
 $wgMaxRedirectLinksRetrieved = 500;
+
+/**
+* Maximum number of calls to expensive parser functions
+* such as PAGESINCATEGORY.
+*/
+$wgExpensiveParserFunctionLimit = 100;
