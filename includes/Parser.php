@@ -4465,7 +4465,16 @@ class Parser
 						$validated = $handler->validateParam( $paramName, $value );
 					} else {
 						# Validate internal parameters
-						$validated = ( $value === false || is_numeric( trim( $value ) ) );
+						switch( $paramName ) {
+						case "manualthumb":
+							/// @fixme - possibly check validity here?
+							/// downstream behavior seems odd with missing manual thumbs.
+							$validated = true;
+							break;
+						default:
+							// Most other things appear to be empty or numeric...
+							$validated = ( $value === false || is_numeric( trim( $value ) ) );
+						}
 					}
 
 					if ( $validated ) {
