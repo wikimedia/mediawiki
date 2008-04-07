@@ -1,5 +1,5 @@
 <?php
-/** Traditional Chinese (‪中文(繁體)‬)
+/** Traditional Chinese (‪中文(傳統字)‬)
  *
  * @addtogroup Language
  *
@@ -715,7 +715,7 @@ $2',
 'revdelete-text'              => '刪除的修訂仍將顯示在頁面歷史中, 但它們的文字內容已不能被公眾訪問。
 
 在{{SITENAME}}的其他管理員將仍能訪問隱藏的內容並透過與此相同的介面恢復刪除，除非網站工作者進行了一些附加的限制。',
-'revdelete-legend'            => '設定修訂限制',
+'revdelete-legend'            => '設定可見性之限制',
 'revdelete-hide-text'         => '隱藏修訂文字',
 'revdelete-hide-name'         => '隱藏動作和目標',
 'revdelete-hide-comment'      => '隱藏編輯說明',
@@ -728,13 +728,20 @@ $2',
 'revdelete-submit'            => '應用於選取的修訂',
 'revdelete-logentry'          => '[[$1]]的修訂可見性已更改',
 'logdelete-logentry'          => '[[$1]]的事件可見性已更改',
-'revdelete-logaction'         => '$1次修訂己經設定至模式$2',
-'logdelete-logaction'         => '$1個事件己經設定至模式$2',
 'revdelete-success'           => "'''修訂的可見性已經成功設定。'''",
 'logdelete-success'           => "'''事件的可見性已經成功設定。'''",
 'revdel-restore'              => '更改可見性',
 'pagehist'                    => '頁面歷史',
 'deletedhist'                 => '已刪除之歷史',
+'revdelete-content'           => '內容',
+'revdelete-summary'           => '編輯摘要',
+'revdelete-uname'             => '用戶名',
+'revdelete-restricted'        => '已應用限制至操作員',
+'revdelete-unrestricted'      => '已移除對於操作員的限制',
+'revdelete-hid'               => '隱藏 $1',
+'revdelete-unhid'             => '不隱藏 $1',
+'revdelete-log-message'       => '$1的$2次修訂',
+'logdelete-log-message'       => '$1的$2項事件',
 
 # Suppression log
 'suppressionlog'     => '廢止日誌',
@@ -1229,7 +1236,7 @@ Template:消除歧義',
 'newpages'                => '最新頁面',
 'newpages-username'       => '用戶名:',
 'ancientpages'            => '最舊頁面',
-'move'                    => '重新命名',
+'move'                    => '移動',
 'movethispage'            => '移動本頁',
 'unusedimagestext'        => '<p>請注意其它網站可能直接透過 URL 鏈接此檔案，所以這裡列出的圖像有可能依然被使用。</p>',
 'unusedcategoriestext'    => '雖然沒有被其它頁面或者分類所採用，但列表中的分類頁依然存在。',
@@ -1458,7 +1465,7 @@ $NEWPAGE
 
 # Restrictions (nouns)
 'restriction-edit'   => '編輯',
-'restriction-move'   => '重新命名',
+'restriction-move'   => '移動',
 'restriction-create' => '建立',
 
 # Restriction levels
