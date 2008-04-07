@@ -102,6 +102,7 @@ class Parser
 	var $mIncludeSizes, $mPPNodeCount, $mDefaultSort;
 	var $mTplExpandCache; // empty-frame expansion cache
 	var $mTplRedirCache, $mTplDomCache, $mHeadings, $mDoubleUnderscores;
+	var $mExpensiveFunctionCount; // number of expensive parser function calls
 
 	# Temporary
 	# These are variables reset at least once per parse regardless of $clearState
@@ -217,6 +218,7 @@ class Parser
 		$this->mDefaultSort = false;
 		$this->mHeadings = array();
 		$this->mDoubleUnderscores = array();
+		$this->mExpensiveFunctionCount = 0;
 
 		# Fix cloning
 		if ( isset( $this->mPreprocessor ) && $this->mPreprocessor->parser !== $this ) {
@@ -390,17 +392,31 @@ class Parser
 				array_values( $tidyregs ),
 				$text );
 		}
+		global $wgExpensiveParserFunctionLimit;
+		if ( $this->mExpensiveFunctionCount > $wgExpensiveParserFunctionLimit ) {
+			if ( is_callable( array( $this->mOutput, 'addWarning' ) ) ) {
+				$warning = wfMsg( 'expensive-parserfunction-warning', $this->mExpensiveFunctionCount, $wgExpensiveParserFunctionLimit );
+				$this->mOutput->addWarning( $warning );
+				$cat = Title::makeTitleSafe( NS_CATEGORY, wfMsgForContent( 'expensive-parserfunction-category' ) );
+				if ( $cat ) {
+					$this->mOutput->addCategory( $cat->getDBkey(), $this->getDefaultSort() );
+				}
+			}
+		}
 
 		wfRunHooks( 'ParserAfterTidy', array( &$this, &$text ) );
 
 		# Information on include size limits, for the benefit of users who try to skirt them
 		if ( $this->mOptions->getEnableLimitReport() ) {
+			global $wgExpensiveParserFunctionLimit;
 			$max = $this->mOptions->getMaxIncludeSize();
+			$PFreport = "Expensive parser function count: {$this->mExpensiveFunctionCount}/$wgExpensiveParserFunctionLimit\n";
 			$limitReport = 
 				"NewPP limit report\n" . 
 				"Preprocessor node count: {$this->mPPNodeCount}/{$this->mOptions->mMaxPPNodeCount}\n" .
 				"Post-expand include size: {$this->mIncludeSizes['post-expand']}/$max bytes\n" .
-				"Template argument size: {$this->mIncludeSizes['arg']}/$max bytes\n";
+				"Template argument size: {$this->mIncludeSizes['arg']}/$max bytes\n".
+				$PFreport;
 			wfRunHooks( 'ParserLimitReport', array( $this, &$limitReport ) );
 			$text .= "\n<!-- \n$limitReport-->\n";
 		}

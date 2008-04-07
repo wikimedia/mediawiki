@@ -102,6 +102,7 @@ class MagicWord {
 		'pagesinnamespace',
 		'numberofadmins',
 		'defaultsort',
+		'pagesincategory',
 	);
 	
 	/* Array of caching hints for ParserCache */

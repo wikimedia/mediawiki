@@ -338,6 +338,7 @@ $magicWords = array(
 	'filepath'               => array( 0,    'FILEPATH:'              ),
 	'tag'                    => array( 0,    'tag'                    ),
 	'hiddencat'              => array( 1,    '__HIDDENCAT__'          ),
+	'pagesincategory'        => array( 1,    'PAGESINCATEGORY', 'PAGESINCAT' ),
 );
 
 /**
@@ -1128,6 +1129,10 @@ You can go back and edit an existing page, or [[Special:Userlogin|log in or crea
 
 You should consider whether it is appropriate to continue editing this page.
 The deletion log for this page is provided here for convenience:",
+'expensive-parserfunction-warning'  => 'Warning: This page contains too many expensive parser function calls.
+
+It should have less than $2, there are now $1.',
+'expensive-parserfunction-category' => 'Pages with too many expensive parser function calls',
 
 # "Undo" feature
 'undo-success' => 'The edit can be undone. Please check the comparison below to verify that this is what you want to do, and then save the changes below to finish undoing the edit.',

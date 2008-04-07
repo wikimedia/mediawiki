@@ -65,6 +65,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Redesign of Special:Userrights
 * Make rev_deleted log entries more intelligible.
 * Logs are grouped under date headings similar to enhanced changes list
+* (6943) Added PAGESINCATEGORY: magic word
+
 
 === Bug fixes in 1.13 ===
 
