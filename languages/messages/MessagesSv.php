@@ -921,6 +921,7 @@ Andra administratörer på {{SITENAME}} kommer fortfarande att kunna läsa det d
 'revdelete-hid'               => 'dolde $1',
 'revdelete-unhid'             => 'synliggjorde $1',
 'revdelete-log-message'       => '$1 för $2 {{PLURAL:$2|sidversion|sidversioner}}',
+'logdelete-log-message'       => '$1 för $2 {{PLURAL:$2|åtgärd|åtgärder}}',
 
 # Suppression log
 'suppressionlog'     => 'Upphävningslogg',
@@ -2569,8 +2570,5 @@ Skriv filnamnet utan prefixet "{{ns:image}}:" .',
 'fileduplicatesearch-info'     => '$1 × $2 pixel<br />Filstorlek: $3<br />MIME-typ: $4',
 'fileduplicatesearch-result-1' => 'Filen "$1" har inga identiska dubbletter.',
 'fileduplicatesearch-result-n' => 'Filen "$1" har {{PLURAL:$2|1 identisk dubblett|$2 identiska dubbletter}}.',
-
-# Unknown messages
-'logdelete-log-message' => '$1 för $2 {{PLURAL:$2|åtgärd|åtgärder}}',
 
 );

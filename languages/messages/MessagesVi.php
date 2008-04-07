@@ -808,6 +808,7 @@ Các quản lý khác ở {{SITENAME}} vẫn có thể truy nhập vào nội du
 'revdelete-hid'               => 'đã ẩn $1',
 'revdelete-unhid'             => 'đã hiện $1',
 'revdelete-log-message'       => '$2 {{PLURAL:$2|phiên bản|phiên bản}} được $1',
+'logdelete-log-message'       => '$1 của $2 {{PLURAL:$2|sự kiện|sự kiện}}',
 
 # Suppression log
 'suppressionlog'     => 'Nhật trình giấu',
@@ -2467,8 +2468,5 @@ Hãy cho vào tên của tập tin, trừ tiền tố “{{ns:image}}:”.',
 'fileduplicatesearch-info'     => '$1 × $2 điểm ảnh<br />Kích thước tập tin: $3<br />Định dạng MIME: $4',
 'fileduplicatesearch-result-1' => 'Không có bản sao y hệt với tập tin “$1”.',
 'fileduplicatesearch-result-n' => 'Có {{PLURAL:$2|1 bản sao|$2 bản sao}} y hệt với tập tin “$1”.',
-
-# Unknown messages
-'logdelete-log-message' => '$1 của $2 {{PLURAL:$2|sự kiện|sự kiện}}',
 
 );

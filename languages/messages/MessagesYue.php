@@ -969,7 +969,7 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'userrights-groupsmember'          => '屬於：',
 'userrights-groupsremovable'       => '拎得走嘅組：',
 'userrights-groupsavailable'       => '可用嘅組：',
-'userrights-groups-help'            => '你可以改嘅位用戶所屬嘅組。
+'userrights-groups-help'           => '你可以改嘅位用戶所屬嘅組。
 
 剔咗嘅盒代表個用戶係屬於嗰組。
 未剔嘅盒代表個用戶唔係屬於嗰組。',
