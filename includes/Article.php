@@ -1368,7 +1368,8 @@ class Article {
 					'page'       => $this->getId(),
 					'comment'    => $summary,
 					'minor_edit' => $isminor,
-					'text'       => $text
+					'text'       => $text,
+					'parent_id'  => $lastRevision
 					) );
 
 				$dbw->begin();

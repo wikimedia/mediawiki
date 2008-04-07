@@ -225,21 +225,13 @@ class Revision {
 	 * @static
 	 */
 	private static function fetchFromConds( $db, $conditions ) {
+		$fields = self::selectFields();
+		$fields[] = 'page_namespace';
+		$fields[] = 'page_title';
+		$fields[] = 'page_latest';
 		$res = $db->select(
 			array( 'page', 'revision' ),
-			array( 'page_namespace',
-			       'page_title',
-			       'page_latest',
-			       'rev_id',
-			       'rev_page',
-			       'rev_text_id',
-			       'rev_comment',
-			       'rev_user_text',
-			       'rev_user',
-			       'rev_minor_edit',
-			       'rev_timestamp',
-			       'rev_deleted',
-			       'rev_len' ),
+			$fields,
 			$conditions,
 			'Revision::fetchRow',
 			array( 'LIMIT' => 1 ) );
@@ -258,11 +250,12 @@ class Revision {
 			'rev_text_id',
 			'rev_timestamp',
 			'rev_comment',
-			'rev_minor_edit',
-			'rev_user',
 			'rev_user_text,'.
+			'rev_user',
+			'rev_minor_edit',
 			'rev_deleted',
-			'rev_len'
+			'rev_len',
+			'rev_parent_id'
 		);
 	}
 
@@ -281,6 +274,7 @@ class Revision {
 			$this->mMinorEdit = intval( $row->rev_minor_edit );
 			$this->mTimestamp =         $row->rev_timestamp;
 			$this->mDeleted   = intval( $row->rev_deleted );
+			$this->mParentId  = intval( $row->rev_parent_id );
 			
 			if( !isset( $row->rev_len ) || is_null( $row->rev_len ) )
 				$this->mSize = null;
@@ -317,6 +311,7 @@ class Revision {
 			$this->mTimestamp = isset( $row['timestamp']  ) ? strval( $row['timestamp']  ) : wfTimestamp( TS_MW );
 			$this->mDeleted   = isset( $row['deleted']    ) ? intval( $row['deleted']    ) : 0;
 			$this->mSize      = isset( $row['len']        ) ? intval( $row['len']        ) : null;
+			$this->mParentId  = isset( $row['parent_id']  ) ? intval( $row['parent_id']  ) : 0;
 			
 			// Enforce spacing trimming on supplied text
 			$this->mComment   = isset( $row['comment']    ) ?  trim( strval( $row['comment'] ) ) : null;
@@ -338,23 +333,34 @@ class Revision {
 	 */
 
 	/**
+	 * Get revision ID
 	 * @return int
 	 */
-	function getId() {
+	public function getId() {
 		return $this->mId;
 	}
 
 	/**
+	 * Get text row ID
 	 * @return int
 	 */
-	function getTextId() {
+	public function getTextId() {
 		return $this->mTextId;
+	}
+	
+	/**
+	 * Get parent revision ID (the original previous page revision)
+	 * @return int
+	 */
+	public function getParentId() {
+		return $this->mParentId;
 	}
 
 	/**
 	 * Returns the length of the text in this revision, or null if unknown.
+	 * @return int
 	 */
-	function getSize() {
+	public function getSize() {
 		return $this->mSize;
 	}
 
@@ -362,7 +368,7 @@ class Revision {
 	 * Returns the title of the page associated with this entry.
 	 * @return Title
 	 */
-	function getTitle() {
+	public function getTitle() {
 		if( isset( $this->mTitle ) ) {
 			return $this->mTitle;
 		}
@@ -384,14 +390,15 @@ class Revision {
 	 * Set the title of the revision
 	 * @param Title $title
 	 */
-	function setTitle( $title ) {
+	public function setTitle( $title ) {
 		$this->mTitle = $title;
 	}
 
 	/**
+	 * Get the page ID
 	 * @return int
 	 */
-	function getPage() {
+	public function getPage() {
 		return $this->mPage;
 	}
 
@@ -399,7 +406,7 @@ class Revision {
 	 * Fetch revision's user id if it's available to all users
 	 * @return int
 	 */
-	function getUser() {
+	public function getUser() {
 		if( $this->isDeleted( self::DELETED_USER ) ) {
 			return 0;
 		} else {
@@ -411,7 +418,7 @@ class Revision {
 	 * Fetch revision's user id without regard for the current user's permissions
 	 * @return string
 	 */
-	function getRawUser() {
+	public function getRawUser() {
 		return $this->mUser;
 	}
 
@@ -419,7 +426,7 @@ class Revision {
 	 * Fetch revision's username if it's available to all users
 	 * @return string
 	 */
-	function getUserText() {
+	public function getUserText() {
 		if( $this->isDeleted( self::DELETED_USER ) ) {
 			return "";
 		} else {
@@ -431,7 +438,7 @@ class Revision {
 	 * Fetch revision's username without regard for view restrictions
 	 * @return string
 	 */
-	function getRawUserText() {
+	public function getRawUserText() {
 		return $this->mUserText;
 	}
 	
@@ -451,14 +458,14 @@ class Revision {
 	 * Fetch revision comment without regard for the current user's permissions
 	 * @return string
 	 */
-	function getRawComment() {
+	public function getRawComment() {
 		return $this->mComment;
 	}
 
 	/**
 	 * @return bool
 	 */
-	function isMinor() {
+	public function isMinor() {
 		return (bool)$this->mMinorEdit;
 	}
 
@@ -466,7 +473,7 @@ class Revision {
 	 * int $field one of DELETED_* bitfield constants
 	 * @return bool
 	 */
-	function isDeleted( $field ) {
+	public function isDeleted( $field ) {
 		return ($this->mDeleted & $field) == $field;
 	}
 
@@ -474,7 +481,7 @@ class Revision {
 	 * Fetch revision text if it's available to all users
 	 * @return string
 	 */
-	function getText() {
+	public function getText() {
 		if( $this->isDeleted( self::DELETED_TEXT ) ) {
 			return "";
 		} else {
@@ -486,7 +493,7 @@ class Revision {
 	 * Fetch revision text without regard for view restrictions
 	 * @return string
 	 */
-	function getRawText() {
+	public function getRawText() {
 		if( is_null( $this->mText ) ) {
 			// Revision text is immutable. Load on demand:
 			$this->mText = $this->loadText();
@@ -498,7 +505,7 @@ class Revision {
 	 * Fetch revision text if it's available to THIS user
 	 * @return string
 	 */
-	function revText() {
+	public function revText() {
 		if( !$this->userCan( self::DELETED_TEXT ) ) {
 			return "";
 		} else {
@@ -509,23 +516,24 @@ class Revision {
 	/**
 	 * @return string
 	 */
-	function getTimestamp() {
+	public function getTimestamp() {
 		return wfTimestamp(TS_MW, $this->mTimestamp);
 	}
 
 	/**
 	 * @return bool
 	 */
-	function isCurrent() {
+	public function isCurrent() {
 		return $this->mCurrent;
 	}
 
 	/**
+	 * Get previous revision for this title
 	 * @return Revision
 	 */
-	function getPrevious() {
+	public function getPrevious() {
 		$prev = $this->mTitle->getPreviousRevisionID( $this->mId );
-		if ( $prev ) {
+		if( $prev ) {
 			return Revision::newFromTitle( $this->mTitle, $prev );
 		} else {
 			return null;
@@ -535,7 +543,7 @@ class Revision {
 	/**
 	 * @return Revision
 	 */
-	function getNext() {
+	public function getNext() {
 		$next = $this->mTitle->getNextRevisionID( $this->mId );
 		if ( $next ) {
 			return Revision::newFromTitle( $this->mTitle, $next );
@@ -543,7 +551,35 @@ class Revision {
 			return null;
 		}
 	}
-	/**#@-*/
+	
+	/**
+	 * Get previous revision Id for this page_id
+	 * This is used to populate rev_parent_id on save
+	 * @param Database $db
+	 * @return int
+	 */
+	private function getPreviousRevisionId( $db ) {
+		if( is_null($this->mPage) ) {
+			return 0;
+		}
+		# Use page_latest if ID is not given
+		if( !$this->mId ) {
+			$revID = $db->selectField( 'page', 'page_latest',
+				array( 'page_id' => $this->mPage ),
+				__METHOD__ );
+		} else {
+			$revID = $this->mId;
+		}
+		if( !$revID ) {
+			return 0;
+		}
+		$prevId = $db->selectField( 'revision', 'rev_id',
+			array( 'rev_page' => $this->mPage, 'rev_id < ' . $revID ),
+			__METHOD__,
+			array( 'ORDER BY' => 'rev_id DESC' ) );
+		# Always return an integer
+		return intval($prevId);
+	}
 
 	/**
 	  * Get revision text associated with an old or archive row
@@ -627,7 +663,7 @@ class Revision {
 	 * @param mixed $text reference to a text
 	 * @return string
 	 */
-	static function compressRevisionText( &$text ) {
+	public static function compressRevisionText( &$text ) {
 		global $wgCompressRevisions;
 		$flags = array();
 
@@ -653,7 +689,7 @@ class Revision {
 	 * @param Database $dbw
 	 * @return int
 	 */
-	function insertOn( &$dbw ) {
+	public function insertOn( &$dbw ) {
 		global $wgDefaultExternalStore;
 
 		wfProfileIn( __METHOD__ );
@@ -710,6 +746,7 @@ class Revision {
 				'rev_timestamp'  => $dbw->timestamp( $this->mTimestamp ),
 				'rev_deleted'    => $this->mDeleted,
 				'rev_len'	     => $this->mSize,
+				'rev_parent_id'  => $this->mParentId ? $this->mParentId : $this->getPreviousRevisionId( $dbw )
 			), __METHOD__
 		);
 
@@ -723,9 +760,8 @@ class Revision {
 	 * Currently hardcoded to the 'text' table storage engine.
 	 *
 	 * @return string
-	 * @access private
 	 */
-	function loadText() {
+	private function loadText() {
 		wfProfileIn( __METHOD__ );
 		
 		// Caching may be beneficial for massive use of external storage
@@ -808,6 +844,7 @@ class Revision {
 				'comment'    => $summary,
 				'minor_edit' => $minor,
 				'text_id'    => $current->rev_text_id,
+				'parent_id'  => $current->page_latest
 				) );
 		} else {
 			$revision = null;
@@ -825,7 +862,7 @@ class Revision {
 	 *                          self::DELETED_USER
 	 * @return bool
 	 */
-	function userCan( $field ) {
+	public function userCan( $field ) {
 		if( ( $this->mDeleted & $field ) == $field ) {
 			global $wgUser;
 			$permission = ( $this->mDeleted & self::DELETED_RESTRICTED ) == self::DELETED_RESTRICTED
@@ -856,6 +893,11 @@ class Revision {
 		return $timestamp;
 	}
 	
+	/**
+	 * Get count of revisions per page...not very efficient
+	 * @param Database $db
+	 * @param int $id, page id
+	 */
 	static function countByPageId( $db, $id ) {
 		$row = $db->selectRow( 'revision', 'COUNT(*) AS revCount',
 			array( 'rev_page' => $id ), __METHOD__ );
@@ -865,6 +907,11 @@ class Revision {
 		return 0;
 	}
 	
+	/**
+	 * Get count of revisions per page...not very efficient
+	 * @param Database $db
+	 * @param Title $title
+	 */
 	static function countByTitle( $db, $title ) {
 		$id = $title->getArticleId();
 		if( $id ) {
