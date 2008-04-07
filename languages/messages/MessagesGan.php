@@ -638,8 +638,6 @@ $2',
 'revdelete-submit'            => '應用到選正嗰修改',
 'revdelete-logentry'          => '已更改[[$1]]嗰修改可見性',
 'logdelete-logentry'          => '已更改[[$1]]嗰事件可見性',
-'revdelete-logaction'         => '$1嗰改動設置到嘞模式$2',
-'logdelete-logaction'         => '對[[$3]]嗰$1場事設置到嘞模式$2',
 'revdelete-success'           => "'''修訂嗰可見性設置正嘍。'''",
 'logdelete-success'           => "'''事件嗰可見性設置正嘍。'''",
 

@@ -619,8 +619,6 @@ Informacion: (curt) = quiíxde vercion currentua,
 'revdelete-log'           => 'Commentuade log:',
 'revdelete-logentry'      => 'quiixöx revicion visibilitiitde [[$1]]',
 'logdelete-logentry'      => 'quiixöx eventua visibilitiitde [[$1]]',
-'revdelete-logaction'     => "$1 {{PLURAL:$1|revicion|revición}} set'de mode $2",
-'logdelete-logaction'     => "$1 {{PLURAL:$1|eventuade|eventuámde}} [[$3]] set'de mode $2",
 
 # Diffs
 'history-title'           => 'Históriade revicionde "$1"',

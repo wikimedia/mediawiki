@@ -270,7 +270,7 @@ $messages = array(
 'viewcount'         => 'Ин саҳифа {{PLURAL:$1|бор|$1 бор}} дида шудааст.',
 'protectedpage'     => 'Саҳифаи муҳофизатшуда',
 'jumpto'            => 'Ҷаҳиш ба:',
-'jumptonavigation'  => 'новбари',
+'jumptonavigation'  => 'гаштан',
 'jumptosearch'      => 'Ҷустуҷӯи',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
@@ -725,7 +725,7 @@ $1',
 'revdelete-text'              => 'Нусхаҳои ва мавориди ҳазфшуда камокам дар таърих ва гузоришҳои саҳифа қобили мушоҳида ҳастанд, аммо бахшҳои аз мӯҳтавои он ба умум қобили мушоҳида нахоҳанд буд.
 
 Дигар мудирон дар {{SITENAME}} ҳанӯз метавонанд ба ин мӯҳтавои пинҳонро дастрасӣ кунанд ва ҳатто мавориди ҳазфшударо эҳё кунанд, магар он ки маҳдудиятҳои дигаре амалӣ гардад.',
-'revdelete-legend'            => 'Танзими маҳдудиятҳои нусха',
+'revdelete-legend'            => 'Танзими маҳдудиятҳои падидорӣ',
 'revdelete-hide-text'         => 'Пинҳон кардани нусхаи матн',
 'revdelete-hide-name'         => 'Пинҳон кардани амал ва ҳадаф',
 'revdelete-hide-comment'      => 'Пинҳон кардани тавзеҳи вироиш',
@@ -738,13 +738,19 @@ $1',
 'revdelete-submit'            => 'Амали кардан бар нусхаи интихобшуда',
 'revdelete-logentry'          => 'тағйири намоии нусха дар [[$1]]',
 'logdelete-logentry'          => 'тағйири намоии маврид дар [[$1]]',
-'revdelete-logaction'         => '$1 нусха ба вазъияти $2 тағйир {{PLURAL:$1|ёфт|ёфтанд}}',
-'logdelete-logaction'         => '$1 {{PLURAL:$1|маврид|маворид}} ба $2 тағйир ёфтанд.',
 'revdelete-success'           => "'''Тағйири намоёнии нусха бо муваффақият анҷом шуд.'''",
 'logdelete-success'           => "'''Тағйири намоёнии маврид бо муваффақият анҷом шуд.'''",
 'revdel-restore'              => 'Тағйири падидорӣ',
 'pagehist'                    => 'Таърихи саҳифа',
 'deletedhist'                 => 'Таърихи ҳазфшуда',
+'revdelete-content'           => 'мӯҳтаво',
+'revdelete-summary'           => 'вироиши хулоса',
+'revdelete-uname'             => 'номи корбар',
+'revdelete-restricted'        => 'маҳдудиятҳо ба мудирон амалӣ шуданд',
+'revdelete-unrestricted'      => 'маҳдудиятҳо аз мудирон бардошта шуданд',
+'revdelete-hid'               => '$1-ро пинҳон кард',
+'revdelete-unhid'             => '$1-ро аз ҳолати пинҳон дар овард',
+'revdelete-log-message'       => '$1 барои $2 {{PLURAL:$2|нусха|нусха}}',
 
 # Suppression log
 'suppressionlog'     => 'Гузориши мавқуфсозӣ',
@@ -964,7 +970,7 @@ $1',
 'recentchangeslinked-summary'  => "Ин саҳифаи вижа тағйироти охири саҳифаҳои пайвастаро дар бар мегирад. Саҳифаҳои дар рӯизати назароти шумо буда  '''пурранг''' ҳастанд.",
 
 # Upload
-'upload'                      => 'Фиристодани файл',
+'upload'                      => 'Фиристодани парванда',
 'uploadbtn'                   => 'Фиристодани файл',
 'reupload'                    => 'Боргузории дубора',
 'reuploaddesc'                => 'Боргузориро лағв кунед ва ба форми боргузорӣ баргардед.',
@@ -1140,7 +1146,7 @@ $1',
 'unusedtemplateswlh'  => 'дигар пайвандҳо',
 
 # Random page
-'randompage'         => 'Саҳифаҳои тасодуфӣ',
+'randompage'         => 'Саҳифаи тасодуфӣ',
 'randompage-nopages' => 'Ҳеҷ саҳифае дар ин фазои ном мавҷуд нест.',
 
 # Random redirect
@@ -2398,5 +2404,8 @@ $1',
 'fileduplicatesearch-info'     => '$1 × $2 пиксел<br />Андозаи парванда: $3<br />Навъи MIME: $4',
 'fileduplicatesearch-result-1' => 'Парвандаи "$1" мавриди такрорӣ надорад.',
 'fileduplicatesearch-result-n' => 'Парвандаи "$1" дорои {{PLURAL:$2|1 мавриди такрорӣ|$2 мавриди такрорӣ}} аст.',
+
+# Unknown messages
+'logdelete-log-message' => '$1 барои $2 {{PLURAL:$2|воқеа|воқеаҳо}}',
 
 );

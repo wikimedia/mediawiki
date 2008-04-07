@@ -651,7 +651,6 @@ Yeneen yorkati {{SITENAME}} itam di nañ man a gis ëmbit yu laqu yi te loppanti
 'revdelete-submit'            => 'Def ko ci sumb mi falu',
 'revdelete-logentry'          => 'Gisinu sumb mi soppiku na ngir [[$1]]',
 'logdelete-logentry'          => 'Gisub xew-xew bii [[$1]] dañ kaa soppi',
-'logdelete-logaction'         => 'Soppi nga doxaliin bi di $2 ngir {{plural:$1|ab xew-xew bu|ay xew-xew yu}} ñeel [[$3]]',
 'revdelete-success'           => "'''Coppiteg gisinug sumb mi, baax na.'''",
 'logdelete-success'           => "'''Gisub xew-xew bi soppiku na bu baax.'''",
 

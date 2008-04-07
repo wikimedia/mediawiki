@@ -2541,4 +2541,7 @@ Entrez le nom du fichier sans le préfixe « {{ns:image}}: ».',
 'fileduplicatesearch-result-1' => 'Le fichier « $1 » n’a pas de double identique.',
 'fileduplicatesearch-result-n' => 'Le fichier « $1 » a {{PLURAL:$2|1 double identique|$2 doubles identiques}}.',
 
+# Unknown messages
+'logdelete-log-message' => '$1 sur $2 {{PLURAL:$2|évènement|évènements}}',
+
 );

@@ -1,5 +1,5 @@
 <?php
-/** Traditional Chinese (‪中文(傳統字)‬)
+/** Traditional Chinese (‪中文(繁體)‬)
  *
  * @addtogroup Language
  *
@@ -741,7 +741,6 @@ $2',
 'revdelete-hid'               => '隱藏 $1',
 'revdelete-unhid'             => '不隱藏 $1',
 'revdelete-log-message'       => '$1的$2次修訂',
-'logdelete-log-message'       => '$1的$2項事件',
 
 # Suppression log
 'suppressionlog'     => '廢止日誌',
@@ -2412,5 +2411,8 @@ $5
 'fileduplicatesearch-info'     => '$1 × $2 像素<br />檔案大小: $3<br />MIME類型: $4',
 'fileduplicatesearch-result-1' => '檔案 "$1" 無完全相同的重覆。',
 'fileduplicatesearch-result-n' => '檔案 "$1" 有$2項完全相同的重覆。',
+
+# Unknown messages
+'logdelete-log-message' => '$1的$2項事件',
 
 );

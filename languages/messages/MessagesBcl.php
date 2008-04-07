@@ -691,8 +691,6 @@ An ibang mga administrador sa ining wiki pwede pang maghiling kan mga nakatagong
 'revdelete-submit'            => 'Ibílang sa piniling pagpakarhay',
 'revdelete-logentry'          => 'pigribayan an bisibilidad nin panyayari kan $1 [[$1]]',
 'logdelete-logentry'          => 'Pigribayan an bisibilidad nin panyayari kan [[$1]]',
-'revdelete-logaction'         => '$1 {{PLURAL:$1|revision|revisions}} pigpwesto sa modang $2',
-'logdelete-logaction'         => '$1 {{PLURAL$1|panyayari|mga panyayari}} sa [[$3]] pigpwesto sa modang $2',
 'revdelete-success'           => "'''Nakapwesto na an bisibilidad kan pagpakarhay.'''",
 'logdelete-success'           => "'''Nakapuesto na an katalâan kan nangyari.'''",
 

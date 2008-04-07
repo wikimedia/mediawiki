@@ -284,7 +284,7 @@ $messages = array(
 'nstab-mediawiki' => 'Komunikat',
 'nstab-template'  => 'Šablôna',
 'nstab-help'      => 'Zajta pomocy',
-'nstab-category'  => 'Katégoryjo',
+'nstab-category'  => 'Kategoryja',
 
 # Main script and global functions
 'nosuchaction'      => 'Ńy ma takiy uoperacje',
@@ -666,13 +666,19 @@ Inkśi admińistratoři {{GRAMMAR:D.lp|{{SITENAME}}}} dali bydům mjeć dostymp 
 'revdelete-submit'            => 'Zaakceptuj do wybranych wersyji',
 'revdelete-logentry'          => 'půmjyńůno widočność wersyji w [[$1]]',
 'logdelete-logentry'          => 'půmjyńůno widočność zdořyńůw w [[$1]]',
-'revdelete-logaction'         => '$1 {{PLURAL:$1|wersyja|wersyje|wersyji}} naštalůwano na tryb $2',
-'logdelete-logaction'         => '$1 {{PLURAL:$1|zdařyńe|zdařyńa|zdařyń}} do [[$3]] přećapano na tryb $2',
 'revdelete-success'           => 'Půmyślńy zmjyńůno widočność wersyji.',
 'logdelete-success'           => 'Půmyślńy půmjyńůno widočność zdařyń',
 'revdel-restore'              => 'Půmjyń widočność',
 'pagehist'                    => 'Historia sprowjyń zajty',
 'deletedhist'                 => 'Wyćepano historyja sprowjyń',
+'revdelete-content'           => 'zawartość',
+'revdelete-summary'           => 'uopis pomjyńań',
+'revdelete-uname'             => 'mjano užytkowńika',
+'revdelete-restricted'        => 'naštaluj uograničyńo do administratorůw',
+'revdelete-unrestricted'      => 'wycofej uograničyńo do administratorůw',
+'revdelete-hid'               => 'schrůń $1',
+'revdelete-unhid'             => 'ńy schrůńyj $1',
+'revdelete-log-message'       => '$1 - $2 {{PLURAL:$2|wersyjo|wersyji|wersjůw}}',
 
 # Suppression log
 'suppressionlog'     => 'Log schrůńyńć',
@@ -1111,15 +1117,21 @@ Duůgość [http://meta.wikymedja.org/wiki/Help:Job_queue kolejki zadań] je '''
 
 # Miscellaneous special pages
 'nbytes'                  => '$1 {{PLURAL:$1|bajty|bajtůw}}',
+'ncategories'             => '$1 {{PLURAL:$1|kategoryja|kategorje|kategorjůw}}',
 'nlinks'                  => '$1 {{PLURAL:$1|link|linki|linkůw}}',
 'nmembers'                => '$1 {{PLURAL:$1|elyment|elymenty|elymentůw}}',
+'nrevisions'              => '$1 {{PLURAL:$1|wersja|wersje|wersjůw}}',
+'nviews'                  => 'filowano $1 {{PLURAL:$1|roz|rozůw}}',
+'specialpage-empty'       => 'Ta zajta je pusto.',
 'lonelypages'             => 'Poćepńynte zajty',
+'lonelypagestext'         => 'Do zajtůw půńižej ńy adresuje žodno inkšo zajta we {{GRAMMAR:MS.lp|{{SITENAME}}}}.',
 'uncategorizedpages'      => 'Zajty bez kategoryje',
 'uncategorizedcategories' => 'Kategoryje bez kategoriůw',
 'uncategorizedimages'     => 'Pliki bez kategoriůw',
 'uncategorizedtemplates'  => 'Šablôny bez kategorii',
 'unusedcategories'        => 'Ńyužywane kategoryje',
 'unusedimages'            => 'Ńyužywane pliki',
+'popularpages'            => 'Zajty we kere nojčynśćej sam filujům',
 'wantedcategories'        => 'Potřebne katygoryje',
 'wantedpages'             => 'Nojpotřebńijše zajty',
 'mostlinked'              => 'Nojčyńśćej adrésowane',
@@ -1132,7 +1144,9 @@ Duůgość [http://meta.wikymedja.org/wiki/Help:Job_queue kolejki zadań] je '''
 'shortpages'              => 'Nojkrůtše zajty',
 'longpages'               => 'Dugje artikle',
 'deadendpages'            => 'Artikle bez linkůw',
+'deadendpagestext'        => 'Zajty wymjyńůne půńižej ńy majům uodnośńikůw do žodnych inkšych zajtůw kere sům na tej wiki.',
 'protectedpages'          => 'Zawarte zajty',
+'protectedpagestext'      => 'Zajty wymjyńůne půńižej sům zawarte uod prećepywańo i sprowjańo.',
 'protectedtitles'         => 'Zawarte mjana artikli',
 'listusers'               => 'Lista užytkowńikůw',
 'specialpages'            => 'Extra zajty',
@@ -1431,5 +1445,8 @@ Nostympne linki w lińii uwažůmy za wyjůntki, to sům nazwy zajtůw, kaj plik
 'fileduplicatesearch'          => 'Šnupej za duplikatym plika',
 'fileduplicatesearch-filename' => 'Mjano pliku:',
 'fileduplicatesearch-submit'   => 'Šnupej',
+
+# Unknown messages
+'logdelete-log-message' => '$1 - $2 {{PLURAL:$2|zdařyńe|zdařyńa|zdařyń}}',
 
 );

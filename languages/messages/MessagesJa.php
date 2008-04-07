@@ -719,8 +719,6 @@ $1 または他の[[{{MediaWiki:grouppage-sysop}}|管理者]]にこの件につ�
 'revdelete-submit'            => '隠蔽の設定を適用',
 'revdelete-logentry'          => '[[$1]]の版の削除情報を操作しました',
 'logdelete-logentry'          => '[[$1]]の版の操作情報を変更しました',
-'revdelete-logaction'         => '$1 版の状態を$2に変更しました',
-'logdelete-logaction'         => '[[$3]]に対する$1操作の状態を$2に変更しました',
 'revdelete-success'           => '版の隠蔽状態を変更しました',
 'logdelete-success'           => '操作情報の隠蔽状態を変更しました',
 

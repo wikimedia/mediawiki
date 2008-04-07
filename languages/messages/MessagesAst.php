@@ -744,8 +744,6 @@ restricciones adicionales.",
 'revdelete-submit'            => 'Aplicar a la revisión seleicionada',
 'revdelete-logentry'          => 'camudada la visibilidá de revisiones de [[$1]]',
 'logdelete-logentry'          => "camudada la visibilidá d'eventos de [[$1]]",
-'revdelete-logaction'         => '$1 {{PLURAL:$1|revisión establecida|revisiones establecíes}} en mou $2',
-'logdelete-logaction'         => '$1 {{PLURAL:$1|eventu a [[$3]] establecíu|eventos a [[$3]] establecíos}} en mou $2',
 'revdelete-success'           => "'''Visibilidá de revisiones establecida correutamente.'''",
 'logdelete-success'           => "'''Visibilidá d'eventos establecida correutamente.'''",
 

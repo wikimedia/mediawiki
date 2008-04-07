@@ -693,8 +693,6 @@ El restu e çahorilis desti güiqui sí tendrán premisu pa visoreal el continiu
 'revdelete-submit'            => 'Aprical a la revisión aseñalá',
 'revdelete-logentry'          => 'chambá la visibiliá la revisión pa [[$1]]',
 'logdelete-logentry'          => "chambá la visibiliá d'eventus de [[$1]]",
-'revdelete-logaction'         => '$1 {{PLURAL:$1|revisión|revisionis}} en mó $2',
-'logdelete-logaction'         => '$1 {{PLURAL:$1|eventu|eventus}} en mó $2',
 'revdelete-success'           => "'''Visibiliá e revisionis chambá.'''",
 'logdelete-success'           => "'''Visibiliá d'eventus chambá.'''",
 'revdel-restore'              => 'Chambal visibiliá',

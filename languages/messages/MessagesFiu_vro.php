@@ -674,8 +674,6 @@ Lisateedüst või ollaq [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} k
 'revdelete-submit'            => 'Võtaq käüki valitulõ kujolõ',
 'revdelete-logentry'          => 'muudõt lehe [[$1]] kujo nättävüst',
 'logdelete-logentry'          => 'muudõt lehe [[$1]] muutmiisi nättävüst',
-'revdelete-logaction'         => '$1 {{plural:$1|kujo|kujjo}} säet muudu $2',
-'logdelete-logaction'         => '$1 {{plural:$1|muutminõ|muutmist}} lehele [[$3]] säet muudu $2',
 'revdelete-success'           => "'''Kujo nättävüs paika säet.'''",
 'logdelete-success'           => "'''Muutmiisi nättävüs paika säet.'''",
 

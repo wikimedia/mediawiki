@@ -688,8 +688,6 @@ De deur $3 opeheven reeën is ''$2''",
 'revdelete-submit'          => 'Toepassen op de hesillecteerde bewerkieng',
 'revdelete-logentry'        => 'zichbaereid van bewerkiengen is ewiezigd voe [[$1]]',
 'logdelete-logentry'        => 'wiezigen zichbaereid van hebeurtenis [[$1]]',
-'revdelete-logaction'       => '$1 {{PLURAL:$1|wiezigieng|wiezigiengen}} inesteld ni modus $2',
-'logdelete-logaction'       => "$1 {{PLURAL:$1|actie|acties}} om [[$3]] ni modus $2 in te stell'n",
 'revdelete-success'         => "'''Zichbaereid van de wiezigieng succesvol inesteld.'''",
 
 # Search results

@@ -753,8 +753,6 @@ Legenda: (atu) = diferenças da versão atual,
 'revdelete-submit'        => 'Aplicar à edição selecionada',
 'revdelete-logentry'      => 'foi modificada a visibilidade de edição para [[$1]]',
 'logdelete-logentry'      => 'foi alterada a visibilidade de eventos para [[$1]]',
-'revdelete-logaction'     => '$1 {{PLURAL:$1|edição definida|edições definidas}} como $2',
-'logdelete-logaction'     => '$1 {{PLURAL:$1|evento|eventos}} de [[$3]] {{PLURAL:$1|definido|definidos}} como $2',
 'revdelete-success'       => "'''Visibilidade de edição definida com sucesso.'''",
 'logdelete-success'       => "'''Visibilidade de evento definida com sucesso.'''",
 
