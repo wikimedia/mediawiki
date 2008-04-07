@@ -781,7 +781,7 @@ class OutputPage {
 		} else {
 			// Hook that allows last minute changes to the output page, e.g.
 			// adding of CSS or Javascript by extensions.
-			wfRunHooks( 'BeforePageDisplay', array( &$this ) );
+			wfRunHooks( 'BeforePageDisplay', array( &$this, &$sk ) );
 
 			wfProfileIn( 'Output-skin' );
 			$sk->outputPage( $this );
