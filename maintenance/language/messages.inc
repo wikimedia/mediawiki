@@ -637,6 +637,7 @@ $wgMessageStructure = array(
 		'revdelete-hid',
 		'revdelete-unhid',
 		'revdelete-log-message',
+		'logdelete-log-message',
 	),
 	'suppression' => array(
 		'suppressionlog',
