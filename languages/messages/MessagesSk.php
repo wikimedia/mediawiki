@@ -868,6 +868,7 @@ nie sú stanovené ďalšie obmedzenia.',
 'revdelete-hid'               => 'skryl $1',
 'revdelete-unhid'             => 'odkryl $1',
 'revdelete-log-message'       => '$1 $2 {{PLURAL:$2|revíziu|revízie|revízií}}',
+'logdelete-log-message'       => '$1 $2 {{PLURAL:$2|udalosť|udalosti|udalostí}}',
 
 # Suppression log
 'suppressionlog'     => 'Záznam potlačení',
@@ -2556,8 +2557,5 @@ Zadajte názov súboru bez predpony „{{ns:image}}:“.',
 'fileduplicatesearch-info'     => '$1 × $2 pixelov<br />Veľkosť súboru: $3<br />Typ MIME: $4',
 'fileduplicatesearch-result-1' => 'Súbor „$1“ nemá žiadny identický duplikát.',
 'fileduplicatesearch-result-n' => 'Súbor „$1“ má {{PLURAL:$2|1 identický duplikát|$2 identické duplikáty|$3 identických duplikátov}}.',
-
-# Unknown messages
-'logdelete-log-message' => '$1 $2 {{PLURAL:$2|udalosť|udalosti|udalostí}}',
 
 );

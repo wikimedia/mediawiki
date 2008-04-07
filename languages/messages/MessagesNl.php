@@ -985,6 +985,7 @@ Andere beheerders van {{SITENAME}} kunnen de verborgen inhoud benaderen en de ve
 'revdelete-hid'               => 'heeft $1 verborgen',
 'revdelete-unhid'             => 'heeft $1 zichtbaar gemaakt',
 'revdelete-log-message'       => '$1 voor $2 {{PLURAL:$2|versie|versies}}',
+'logdelete-log-message'       => '$1 voor $2 {{PLURAL:$2|logboekregel|logboekregels}}',
 
 # Suppression log
 'suppressionlog'     => 'Verbergingslogboek',
@@ -2686,8 +2687,5 @@ Voer de bestandsnaam in zonder het voorvoegsel "{{ns:image}}:".',
 'fileduplicatesearch-info'     => '$1 × $2 pixels<br />Bestandsgrootte: $3<br />MIME-type: $4',
 'fileduplicatesearch-result-1' => 'Het bestand "$1" heeft geen duplicaten.',
 'fileduplicatesearch-result-n' => 'Het bestand "$1" heeft {{PLURAL:$2|één duplicaat|$2 duplicaten}}.',
-
-# Unknown messages
-'logdelete-log-message' => '$1 voor $2 {{PLURAL:$2|logboekregel|logboekregels}}',
 
 );

@@ -830,6 +830,7 @@ Inni administratorzy {{GRAMMAR:D.lp|{{SITENAME}}}} nadal będą mieć dostęp do
 'revdelete-hid'               => 'ukryj $1',
 'revdelete-unhid'             => 'nie ukrywaj $1',
 'revdelete-log-message'       => '$1 - $2 {{PLURAL:$2|wersja|wersje|wersji}}',
+'logdelete-log-message'       => '$1 - $2 {{PLURAL:$2|zdarzenie|zdarzenia|zdarzeń}}',
 
 # Suppression log
 'suppressionlog'     => 'Dziennik utajniania',
@@ -2485,8 +2486,5 @@ Wpisz nazwę pliku z pominięciem prefiksu "{{ns:image}}:".',
 'fileduplicatesearch-info'     => '$1 × $2 pikseli<br />Wielkość pliku: $3<br />Typ MIME: $4',
 'fileduplicatesearch-result-1' => 'Nie ma duplikatu pliku "$1".',
 'fileduplicatesearch-result-n' => 'Na {{GRAMMAR:MS.lp|{{SITENAME}}}} {{PLURAL:$2|jest dodatkowa kopia|są $2 dodatkowe kopie|jest $2 dodatkowych kopii}} pliku "$1".',
-
-# Unknown messages
-'logdelete-log-message' => '$1 - $2 {{PLURAL:$2|zdarzenie|zdarzenia|zdarzeń}}',
 
 );

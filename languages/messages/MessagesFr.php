@@ -875,6 +875,7 @@ D’autres administrateurs de {{SITENAME}} pourront toujours accéder au contenu
 'revdelete-hid'               => 'cacher $1',
 'revdelete-unhid'             => 'afficher $1',
 'revdelete-log-message'       => '$1 pour $2 {{PLURAL:$2|révision|révisions}}',
+'logdelete-log-message'       => '$1 sur $2 {{PLURAL:$2|évènement|évènements}}',
 
 # Suppression log
 'suppressionlog'     => 'Journal des suppressions',
@@ -2540,8 +2541,5 @@ Entrez le nom du fichier sans le préfixe « {{ns:image}}: ».',
 'fileduplicatesearch-info'     => '$1 × $2 pixels<br />Taille du fichier : $3<br />MIME type : $4',
 'fileduplicatesearch-result-1' => 'Le fichier « $1 » n’a pas de double identique.',
 'fileduplicatesearch-result-n' => 'Le fichier « $1 » a {{PLURAL:$2|1 double identique|$2 doubles identiques}}.',
-
-# Unknown messages
-'logdelete-log-message' => '$1 sur $2 {{PLURAL:$2|évènement|évènements}}',
 
 );

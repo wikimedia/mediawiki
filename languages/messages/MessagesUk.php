@@ -923,6 +923,7 @@ $3 зазначив наступну причину: ''$2''",
 'revdelete-hid'               => 'приховано $1',
 'revdelete-unhid'             => 'розкрито $1',
 'revdelete-log-message'       => '$1 для $2 {{PLURAL:$2|редагування|редагувань|редагувань}}',
+'logdelete-log-message'       => '$1 для $2 {{PLURAL:$2|події|подій}}',
 
 # Suppression log
 'suppressionlog'     => 'Журнал приховувань',
@@ -2613,8 +2614,5 @@ $1',
 'fileduplicatesearch-info'     => '$1 × $2 пікселів<br />Розмір файлу: $3<br />MIME-тип: $4',
 'fileduplicatesearch-result-1' => 'Файл «$1» не має ідентичних.',
 'fileduplicatesearch-result-n' => 'Файл «$1» має {{PLURAL:$2|1 ідентичний дублікат|$2 ідентичних дублікатів}}.',
-
-# Unknown messages
-'logdelete-log-message' => '$1 для $2 {{PLURAL:$2|події|подій}}',
 
 );

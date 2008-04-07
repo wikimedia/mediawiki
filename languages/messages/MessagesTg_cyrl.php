@@ -751,6 +751,7 @@ $1',
 'revdelete-hid'               => '$1-ро пинҳон кард',
 'revdelete-unhid'             => '$1-ро аз ҳолати пинҳон дар овард',
 'revdelete-log-message'       => '$1 барои $2 {{PLURAL:$2|нусха|нусха}}',
+'logdelete-log-message'       => '$1 барои $2 {{PLURAL:$2|воқеа|воқеаҳо}}',
 
 # Suppression log
 'suppressionlog'     => 'Гузориши мавқуфсозӣ',
@@ -2404,8 +2405,5 @@ $1',
 'fileduplicatesearch-info'     => '$1 × $2 пиксел<br />Андозаи парванда: $3<br />Навъи MIME: $4',
 'fileduplicatesearch-result-1' => 'Парвандаи "$1" мавриди такрорӣ надорад.',
 'fileduplicatesearch-result-n' => 'Парвандаи "$1" дорои {{PLURAL:$2|1 мавриди такрорӣ|$2 мавриди такрорӣ}} аст.',
-
-# Unknown messages
-'logdelete-log-message' => '$1 барои $2 {{PLURAL:$2|воқеа|воқеаҳо}}',
 
 );

@@ -759,6 +759,7 @@ Ninäd peklänedöl at binon ye nog lügolovik guvanes votik vüka at: kanons no
 'revdelete-hid'               => '$1 peklänedon',
 'revdelete-unhid'             => '$1 pesäklänedon',
 'revdelete-log-message'       => '$1 tefü {{PLURAL:$2|fomam|fomams}} $2',
+'logdelete-log-message'       => '$1 tefü {{PLURAL:$2|jenot|jenots}} $2',
 
 # Suppression log
 'suppressionlogtext' => 'Is palisedons moükams e blokams lätik, kels ätefons ninädi de guvans peklänedöli. Logolös [[Special:Ipblocklist|lisedi ladetas-IP pebloköl]], kö pajonons blokams anu lonöföls.',
@@ -2048,8 +2049,5 @@ Penolös ragivanemi nen foyümot: „{{ns:image}}:“',
 # Special:FileDuplicateSearch
 'fileduplicatesearch-filename' => 'Ragivanem:',
 'fileduplicatesearch-submit'   => 'Sukön',
-
-# Unknown messages
-'logdelete-log-message' => '$1 tefü {{PLURAL:$2|jenot|jenots}} $2',
 
 );

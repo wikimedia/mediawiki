@@ -796,6 +796,7 @@ Druzy administratorojo we {{SITENAME}} móža schowany tekst dale čitać a jón
 'revdelete-hid'               => '$1 schowany',
 'revdelete-unhid'             => '$1 pokazany',
 'revdelete-log-message'       => '$1 za $2 {{PLURAL:$2|wersija|wersiji|wersije|wersijow}}',
+'logdelete-log-message'       => '$1 za $2 {{PLURAL:$2|podawk|podawkaj|podawki|podawkow}}',
 
 # History merging
 'mergehistory'                     => 'Stawizny stronow zjednoćić',
@@ -2432,8 +2433,5 @@ Zapodaj datajowe mjeno bjez dodawka "{{ns:image}}:".',
 'fileduplicatesearch-legend'   => 'Duplikaty pytać',
 'fileduplicatesearch-filename' => 'Datajowe mjeno:',
 'fileduplicatesearch-submit'   => 'Pytać',
-
-# Unknown messages
-'logdelete-log-message' => '$1 za $2 {{PLURAL:$2|podawk|podawkaj|podawki|podawkow}}',
 
 );

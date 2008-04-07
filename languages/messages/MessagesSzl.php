@@ -679,6 +679,7 @@ Inkśi admińistratoři {{GRAMMAR:D.lp|{{SITENAME}}}} dali bydům mjeć dostymp 
 'revdelete-hid'               => 'schrůń $1',
 'revdelete-unhid'             => 'ńy schrůńyj $1',
 'revdelete-log-message'       => '$1 - $2 {{PLURAL:$2|wersyjo|wersyji|wersjůw}}',
+'logdelete-log-message'       => '$1 - $2 {{PLURAL:$2|zdařyńe|zdařyńa|zdařyń}}',
 
 # Suppression log
 'suppressionlog'     => 'Log schrůńyńć',
@@ -1445,8 +1446,5 @@ Nostympne linki w lińii uwažůmy za wyjůntki, to sům nazwy zajtůw, kaj plik
 'fileduplicatesearch'          => 'Šnupej za duplikatym plika',
 'fileduplicatesearch-filename' => 'Mjano pliku:',
 'fileduplicatesearch-submit'   => 'Šnupej',
-
-# Unknown messages
-'logdelete-log-message' => '$1 - $2 {{PLURAL:$2|zdařyńe|zdařyńa|zdařyń}}',
 
 );

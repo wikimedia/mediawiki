@@ -694,6 +694,7 @@ Pengurus liyané bakal tetep bisa ngaksès isi sing kadhelikaké iku lan bisa mb
 'revdelete-hid'               => 'delikaké $1',
 'revdelete-unhid'             => 'buka pandelikan $1',
 'revdelete-log-message'       => '$1 kanggo $2 {{PLURAL:$2|révisi|révisi}}',
+'logdelete-log-message'       => '$1 kanggo $2 {{PLURAL:$2|prastawa|prastawa}}',
 
 # Suppression log
 'suppressionlog'     => "Log barang-barang sing didelikaké (''oversight'')",
@@ -2325,8 +2326,5 @@ Lebokna jeneng berkas tanpa imbuhan awal "{{ns:image}}:".',
 'fileduplicatesearch-info'     => '$1 × $2 piksel<br />Ukuran berkas: $3<br />Tipe MIME: $4',
 'fileduplicatesearch-result-1' => 'Berkas "$1" ora duwé duplikat idèntik.',
 'fileduplicatesearch-result-n' => 'Berkas "$1" ora ndarbèni {{PLURAL:$2|1 duplikat idèntik|$2 duplikat idèntik}}.',
-
-# Unknown messages
-'logdelete-log-message' => '$1 kanggo $2 {{PLURAL:$2|prastawa|prastawa}}',
 
 );

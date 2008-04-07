@@ -817,6 +817,7 @@ Andre administratorer på {{SITENAME}} vil fortsatt kunne se det skjulte innhold
 'revdelete-hid'               => 'skjulte $1',
 'revdelete-unhid'             => 'synliggjorde $1',
 'revdelete-log-message'       => '$1 for $2 {{PLURAL:$2|revisjon|revisjoner}}',
+'logdelete-log-message'       => '$1 for $2 {{PLURAL:$2|element|elementer}}',
 
 # Suppression log
 'suppressionlog'     => 'Sidefjerningslogg',
@@ -2461,8 +2462,5 @@ Skriv inn filnavn uten «{{ns:image}}:»-prefikset.',
 'fileduplicatesearch-info'     => '$1 × $2 piksler<br />Filstørrelse: $3<br />MIME-type: $4',
 'fileduplicatesearch-result-1' => 'Det er ingen duplikater av «$1».',
 'fileduplicatesearch-result-n' => 'Det er {{PLURAL:$2|ett duplikat|$2 duplikater}} av «$1».',
-
-# Unknown messages
-'logdelete-log-message' => '$1 for $2 {{PLURAL:$2|element|elementer}}',
 
 );
