@@ -209,7 +209,7 @@ class PageHistory {
 		$rev = new Revision( $row );
 		$rev->setTitle( $this->mTitle );
 
-		$s = '<li>';
+		$s = '';
 		$curlink = $this->curLink( $rev, $latest );
 		$lastlink = $this->lastLink( $rev, $next, $counter );
 		$arbitrary = $this->diffButtons( $rev, $firstInList, $counter );
@@ -288,10 +288,8 @@ class PageHistory {
 		}
 		
 		wfRunHooks( 'PageHistoryLineEnding', array( &$row , &$s ) );
-		
-		$s .= "</li>\n";
 
-		return $s;
+		return "<li>$s</li>\n";
 	}
 	
 	/** 
