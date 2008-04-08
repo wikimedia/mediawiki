@@ -3476,6 +3476,7 @@ class Parser
 						if($prevtoclevel < $wgMaxTocLevel) {
 							# Unindent only if the previous toc level was shown :p
 							$toc .= $sk->tocUnindent( $prevtoclevel - $toclevel );
+							$prevtoclevel = $toclevel;
 						} else {
 							$toc .= $sk->tocLineEnd();
 						}
