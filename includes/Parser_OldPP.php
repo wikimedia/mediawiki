@@ -4160,7 +4160,7 @@ class Parser_OldPP
 			wfProfileOut( $fname.'-check' );
 
 			# Do a second query for different language variants of links and categories
-			if( $wgContLang->hasVariants() ){
+			if( $wgContLang->hasVariants() ) {
 				$linkBatch = new LinkBatch();
 				$variantMap = array(); // maps $pdbkey_Variant => $keys (of link holders)
 				$categoryMap = array(); // maps $category_variant => $category (dbkeys)
@@ -4212,7 +4212,6 @@ class Parser_OldPP
 					$titleClause = $linkBatch->constructSet('page', $dbr);
 
 					$variantQuery =  "SELECT page_id, page_namespace, page_title, page_len, page_is_redirect";
-					}
 
 					$variantQuery .= " FROM $page WHERE $titleClause";
 					if ( $options & RLH_FOR_UPDATE ) {
