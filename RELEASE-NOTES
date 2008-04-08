@@ -28,7 +28,6 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Removed $wgAlternateMaster, use $wgLBFactoryConf
 * (bug 13562) Misspelled option $wgUserNotifedOnAllChanges changed to
   $wgUserNotifiedOnAllChanges
-* $wgDateGroupedLogs can be set to false to restore old log formatting
 
 === New features in 1.13 ===
 
@@ -64,7 +63,6 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 13490) Show upload/file size limit on upload form
 * Redesign of Special:Userrights
 * Make rev_deleted log entries more intelligible.
-* Logs are grouped under date headings similar to enhanced changes list
 * (6943) Added PAGESINCATEGORY: magic word
 * (13624) Fix regression with manual thumb= parameter on images
 
