@@ -276,7 +276,7 @@ class Revision {
 			$this->mDeleted   = intval( $row->rev_deleted );
 			
 			if( !isset( $row->rev_parent_id ) )
-				$this->mParentId = 0;
+				$this->mParentId = is_null($row->rev_parent_id) ? null : 0;
 			else
 				$this->mParentId  = intval( $row->rev_parent_id );
 			
@@ -315,7 +315,7 @@ class Revision {
 			$this->mTimestamp = isset( $row['timestamp']  ) ? strval( $row['timestamp']  ) : wfTimestamp( TS_MW );
 			$this->mDeleted   = isset( $row['deleted']    ) ? intval( $row['deleted']    ) : 0;
 			$this->mSize      = isset( $row['len']        ) ? intval( $row['len']        ) : null;
-			$this->mParentId  = isset( $row['parent_id']  ) ? intval( $row['parent_id']  ) : 0;
+			$this->mParentId  = isset( $row['parent_id']  ) ? intval( $row['parent_id']  ) : null;
 			
 			// Enforce spacing trimming on supplied text
 			$this->mComment   = isset( $row['comment']    ) ?  trim( strval( $row['comment'] ) ) : null;
