@@ -790,6 +790,10 @@ speichern kannst. Sichere den Text und versuche die Änderungen später einzuspi
 
 Bitte prüfe sorgfältig, ob die erneute Seitenerstellung den Richtlinien entspricht.
 Zu deiner Information folgt das Lösch-Logbuch mit der Begründung für die vorhergehende Löschung:",
+'expensive-parserfunction-warning'  => 'Achtung: Diese Seite enthält zu viele Aufrufe aufwändiger Parserfunktionen.
+ 
+Es dürfen nicht mehr als $2 Aufrufe sein, aktuell sind es $1 Aufrufe.',
+'expensive-parserfunction-category' => 'Seiten, die aufwändige Parserfunktionen zu oft aufrufen',
 
 # "Undo" feature
 'undo-success' => 'Die Änderung konnte erfolgreich rückgängig gemacht werden. Bitte die Bearbeitung in der Vergleichsansicht kontrollieren und dann auf „Seite speichern“ klicken, um sie zu speichern.',
@@ -851,7 +855,7 @@ Nähere Angaben zum Löschvorgang sowie eine Begründung finden sich im [{{fullu
 'revdelete-text'              => 'Der Inhalt oder andere Bestandteile gelöschter Versionen sind nicht mehr öffentlich einsehbar, erscheinen jedoch weiterhin als Einträge in der Versionsgeschichte.
 
 {{SITENAME}}-Administratoren können den entfernten Inhalt oder andere entfernte Bestandteile weiterhin einsehen und wiederherstellen, es sei denn, es wurde festgelegt, dass die Zugangsbeschränkungen auch für Administratoren gelten.',
-'revdelete-legend'            => 'Einschränkungen für die Versionen festlegen',
+'revdelete-legend'            => 'Setzen der Sichtbarkeits-Einschränkungen',
 'revdelete-hide-text'         => 'Text der Version verstecken',
 'revdelete-hide-name'         => 'Logbuch-Aktion verstecken',
 'revdelete-hide-comment'      => 'Bearbeitungskommentar verstecken',
@@ -864,13 +868,22 @@ Nähere Angaben zum Löschvorgang sowie eine Begründung finden sich im [{{fullu
 'revdelete-submit'            => 'Auf ausgewählte Version anwenden',
 'revdelete-logentry'          => 'Versionsansicht geändert für „[[$1]]“',
 'logdelete-logentry'          => 'änderte die Sichtbarkeit für „[[$1]]“',
-'revdelete-logaction'         => '$1 {{plural:$1|Version|Versionen}} auf Modus $2 gesetzt',
-'logdelete-logaction'         => '$1 {{plural:$1|Logbucheintrag|Logbucheinträge}} auf Modus $2 gesetzt',
 'revdelete-success'           => "'''Versionsansicht erfolgreich geändert.'''",
 'logdelete-success'           => "'''Logbuchansicht erfolgreich geändert.'''",
 'revdel-restore'              => 'Sichtbarkeit ändern',
 'pagehist'                    => 'Versionsgeschichte',
 'deletedhist'                 => 'Gelöschte Versionen',
+
+# Revision deletion - log messages
+'revdelete-content'      => 'Seiteninhalt',
+'revdelete-summary'      => 'Zusammenfassungskommentar',
+'revdelete-uname'        => 'Benutzername',
+'revdelete-restricted'   => 'Einschränkungen gelten auch für Administratoren',
+'revdelete-unrestricted' => 'Einschränkungen für Administratoren aufgehoben',
+'revdelete-hid'          => 'versteckte $1',
+'revdelete-unhid'        => 'machte $1 wieder öffentlich',
+'revdelete-log-message'  => '$1 für $2 {{PLURAL:$2|Version|Versionen}}: $3',
+'logdelete-log-message'  => '$1 für $2 {{PLURAL:$2|Logbucheintrag|Logbucheinträge}}',
 
 # Suppression log
 'suppressionlog'     => 'Oversight-Logbuch',
@@ -944,7 +957,8 @@ Wenn du dich mit dem Thema auskennst, kannst du selbst die Seite „[[$1]]“ ve
 'powersearch'           => 'Erweiterte Suche',
 'powersearch-legend'    => 'Erweiterte Suche',
 'powersearchtext'       => 'Suche in Namensräumen:<br />$1<br />$2 Weiterleitungen anzeigen<br />Suche nach: $3 $9',
-'searchdisabled'        => 'Die {{SITENAME}} Suche wurde deaktiviert. Du kannst unterdessen mit Google suchen. Bitte bedenken, dass der Suchindex für {{SITENAME}} veraltet sein kann.',
+'search-external'       => 'Externe Suche',
+'searchdisabled'        => 'Die {{SITENAME}}-Suche ist deaktiviert. Du kannst unterdessen mit Google suchen. Bitte bedenke, dass der Suchindex für {{SITENAME}} veraltet sein kann.',
 
 # Preferences page
 'preferences'              => 'Einstellungen',
