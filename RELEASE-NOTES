@@ -157,7 +157,6 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 13576) maintenance/rebuildrecentchanges.php fails
 * (bug 13441) Allow Special:Recentchanges to show bots only
 * (bug 13431) Show true message source in Special:Allmessages&ot=php / xml
-* (bug 13616) Replace underscores in search terms by spaces
 * (bug 13463) Login successful page doesn't use user's preferred interface language
 * (bug 13630) Fixed warnings for pass by reference at call time in
   Special:Revisiondelete when generating the log entry.
