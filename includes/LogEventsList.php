@@ -372,15 +372,17 @@ class LogEventsList {
 		global $wgLogRestrictions, $wgUser;
 		// Reset the array, clears extra "where" clauses when $par is used
 		$hiddenLogs = array();
-		// Don't show private logs to unpriviledged users
+		// Don't show private logs to unprivileged users
 		foreach( $wgLogRestrictions as $logtype => $right ) {
 			if( !$wgUser->isAllowed($right) ) {
 				$safetype = $db->strencode( $logtype );
-				$hiddenLogs[] = "'$safetype'";
+				$hiddenLogs[] = $safetype;
 			}
 		}
-		if( !empty($hiddenLogs) ) {
-			return 'log_type NOT IN(' . implode(',',$hiddenLogs) . ')';
+		if( count($hiddenLogs) == 1 ) {
+			return 'log_type != ' . $db->addQuotes( $hiddenLogs[0] );
+		} elseif( !empty( $hiddenLogs ) ) {
+			return 'log_type NOT IN (' . $db->makeList($hiddenLogs) . ')';
 		}
 		return false;
 	}
