@@ -313,7 +313,8 @@ class ParserTest {
 			} else if (preg_match('/\\bcat\\b/i', $opts)) {
 				global $wgOut;
 				$wgOut->addCategoryLinks($output->getCategories());
-				$out = $this->tidy( implode( ' ', $wgOut->getCategoryLinks() ) );
+				$cats = $wgOut->getCategoryLinks();
+				$out = $this->tidy( implode( ' ', $cats['normal'] ) );
 			}
 
 			$result = $this->tidy($result);
