@@ -431,7 +431,6 @@ class LogPager extends ReverseChronologicalPager {
 		if( is_null($usertitle) ) {
 			return false;
 		}
-		$this->user = $usertitle->getText();
 		/* Fetch userid at first, if known, provides awesome query plan afterwards */
 		$userid = User::idFromName( $this->user );
 		if( !$userid ) {
@@ -440,6 +439,7 @@ class LogPager extends ReverseChronologicalPager {
 			$this->mConds[] = "NULL";
 		} else {
 			$this->mConds['log_user'] = $userid;
+			$this->user = $usertitle->getText();
 		}
 	}
 
