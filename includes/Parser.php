@@ -4030,7 +4030,7 @@ class Parser
 					$pdbk = $title->getPrefixedDBkey();
 					$linkCache->addGoodLinkObj( $s->page_id, $title );
 					$this->mOutput->addLink( $title, $s->page_id );
-					$colours[$pdbk] = $sk->getLinkColour( $s, $threshold );
+					$colours[$pdbk] = $sk->getLinkColour( $title, $threshold );
 					//add id to the extension todolist
 					$linkcolour_ids[$s->page_id] = $pdbk;
 				}
@@ -4128,7 +4128,7 @@ class Parser
 
 								// set pdbk and colour
 								$pdbks[$key] = $varPdbk;
-								$colours[$varPdbk] = $sk->getLinkColour( $s, $threshold );
+								$colours[$varPdbk] = $sk->getLinkColour( $variantTitle, $threshold );
 								$linkcolour_ids[$s->page_id] = $pdbk;
 							}
 							wfRunHooks( 'GetLinkColours', array( $linkcolour_ids, &$colours ) );
