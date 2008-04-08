@@ -498,6 +498,8 @@ class LogPager extends ReverseChronologicalPager {
 			$index = array( 'USE INDEX' => array( 'logging' => 'user_time' ) );
 		} else if( $this->title || $this->pattern ) {
 			$index = array( 'USE INDEX' => array( 'logging' => 'page_time' ) );
+		} else if( $this->type ) {
+			$index = array( 'USE INDEX' => array( 'logging' => 'type_time' ) );
 		} else {
 			$index = array( 'USE INDEX' => array( 'logging' => 'times' ) );
 		}
