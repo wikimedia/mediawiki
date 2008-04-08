@@ -457,13 +457,13 @@ class LogPager extends ReverseChronologicalPager {
 			return false;
 		
 		$this->title = $title->getPrefixedText();
-		$this->pattern = $pattern;
 		$ns = $title->getNamespace();
 		if( $pattern && !$wgMiserMode ) {
 			# use escapeLike to avoid expensive search patterns like 't%st%'
 			$safetitle = $this->mDb->escapeLike( $title->getDBkey() );
 			$this->mConds['log_namespace'] = $ns;
 			$this->mConds[] = "log_title LIKE '$safetitle%'";
+			$this->pattern = $pattern;
 		} else {
 			$this->mConds['log_namespace'] = $ns;
 			$this->mConds['log_title'] = $title->getDBkey();
