@@ -9,6 +9,7 @@
  * @author Kaffi
  * @author Robby
  * @author Nike
+ * @author Jon Harald Søby
  */
 
 $fallback = 'de';
@@ -765,6 +766,7 @@ Dir fannt eventuell méi Informatiounen an der [{{fullurl:Special:Log/delete|pag
 'revdelete-nooldid-text'      => 'Dir hutt entweder keng Versioun uginn fir dës Funktioun ze benotzen, déi Versioun déi Diruginn huet gëtt et net, oder dir versicht déi aktuell Versioun ze verstoppen.',
 'revdelete-selected'          => "{{PLURAL:$2|Gewielte Versioun|Gewielte Versioune}} vu(n) '''$1''' :",
 'logdelete-selected'          => "Ausgewielten {{PLURAL:$2|Evenement|Evenementer}} aus dem Logbuch fir '''$1:'''",
+'revdelete-legend'            => "Limitatioune fir d'Sichtbarkeet festleeën",
 'revdelete-hide-text'         => 'Text vun der Versioun verstoppen',
 'revdelete-hide-name'         => 'Logbuch-Aktioun verstoppen',
 'revdelete-hide-comment'      => 'Bemierkung verstoppen',
@@ -883,7 +885,7 @@ Sich no: $3 $9',
 'prefs-watchlist-edits'   => 'Maximal Zuel vun den Ännerungen déi an der erweiderter Iwwerwaachungslëscht ugewise solle ginn:',
 'prefs-misc'              => 'Verschiddenes',
 'saveprefs'               => 'Späicheren',
-'resetprefs'              => 'Zrécksetzen',
+'resetprefs'              => 'Net gespäichert Ännerungen zrécksetzen',
 'oldpassword'             => 'Aalt Passwuert:',
 'newpassword'             => 'Neit Passwuert:',
 'retypenew'               => 'Neit Passwuert (nachemol):',

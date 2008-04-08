@@ -796,7 +796,7 @@ $3ने ''$2'' कारण दिले आहे.",
 # Revision deletion
 'rev-deleted-comment'         => '(प्रतिक्रीया वगळली)',
 'rev-deleted-user'            => '(सदस्य नाव वगळले)',
-'rev-deleted-event'           => '(प्रविष्ठी वगळली)',
+'rev-deleted-event'           => '(कार्य नोंद वगळली)',
 'rev-deleted-text-permission' => '<div class="mw-warning plainlinks">
 या पानाची आवृत्ती सार्वजनिक विदागारातून वगळण्यात आली आहे.
 
@@ -815,7 +815,7 @@ $3ने ''$2'' कारण दिले आहे.",
 'revdelete-text'              => 'वगळलेल्या नोंदी आणि घटना अजूनही पानाच्या इतिहासात आणि नोंदीत आढळेल,परंतु मजकुराचा भाग सार्वजनिक स्वरूपात उपलब्ध राहणार नाही.
 
 अजून इतर  प्रतिबंध घातल्या शिवाय {{SITENAME}}चे इतर प्रबंधक झाकलेला मजकुर याच दुव्याने परतवू शकतील.',
-'revdelete-legend'            => 'बंधने निश्चित करा',
+'revdelete-legend'            => 'दृश्य बंधने निश्चित करा',
 'revdelete-hide-text'         => 'आवर्तीत मजकुर लपवा',
 'revdelete-hide-name'         => 'कृती आणि ध्येय लपवा',
 'revdelete-hide-comment'      => 'संपादन प्रतिक्रीया लपवा',
@@ -833,6 +833,15 @@ $3ने ''$2'' कारण दिले आहे.",
 'revdel-restore'              => 'दृश्यता बदला',
 'pagehist'                    => 'पानाचा इतिहास',
 'deletedhist'                 => 'वगळलेला इतिहास',
+'revdelete-content'           => 'कंटेंट',
+'revdelete-summary'           => 'संपादन माहिती',
+'revdelete-uname'             => 'सदस्यनाम',
+'revdelete-restricted'        => 'प्रबंधकांना बंधने दिली',
+'revdelete-unrestricted'      => 'प्रबंधकांची बंधने काढली',
+'revdelete-hid'               => 'लपवा $1',
+'revdelete-unhid'             => 'अनहिड $1',
+'revdelete-log-message'       => '$2 {{PLURAL:$2|आवॄत्ती|आवृत्त्यां}}साठी $1',
+'logdelete-log-message'       => '$2 {{PLURAL:$2|घटने|घटनां}}साठी $1',
 
 # Suppression log
 'suppressionlog'     => 'सप्रेशन नोंद',
@@ -938,7 +947,7 @@ $3ने ''$2'' कारण दिले आहे.",
 'prefs-watchlist-edits'    => 'वाढीव पहार्‍याच्या सूचीत दिसणार्‍या संपादनांची संख्या:',
 'prefs-misc'               => 'इतर',
 'saveprefs'                => 'जतन करा',
-'resetprefs'               => 'पूर्ववत',
+'resetprefs'               => 'न जतन केलेले बदल रद्द करा',
 'oldpassword'              => 'जुना परवलीचा शब्दः',
 'newpassword'              => 'नवीन परवलीचा शब्द:',
 'retypenew'                => 'पुन्हा एकदा परवलीचा शब्द',
@@ -1649,7 +1658,7 @@ $1',
 'ipboptions'                  => '२ तास:2 hours,१ दिवस:1 day,३ दिवस:3 days,१ आठवडा:1 week,२ आठवडे:2 weeks,१ महिना:1 month,३ महिने:3 months,६ महिने:6 months,१ वर्ष:1 year,अनंत:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'              => 'इतर',
 'ipbotherreason'              => 'इतर/अजून कारण:',
-'ipbhidename'                 => 'सदस्य नाम/अंकपत्ता प्रतिबंधन नोंदी, प्रतिबंधनाची चालू यादी आणि सदस्य यादी इत्यादीतून लपवा',
+'ipbhidename'                 => 'सदस्य नाम प्रतिबंधन नोंदी, प्रतिबंधनाची चालू यादी आणि सदस्य यादी इत्यादीतून लपवा',
 'badipaddress'                => 'अंकपत्ता बरोबर नाही.',
 'blockipsuccesssub'           => 'आडवणूक यशस्वी झाली',
 'blockipsuccesstext'          => '[[Special:Contributions/$1|$1]]ला प्रतिबंधीत केले.<br />

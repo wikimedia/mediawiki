@@ -718,10 +718,11 @@ Otros administradores de este wiki aún podrán acceder al contenido oculto y po
 'revdelete-submit'            => 'Aplicar a la revisión seleccionada',
 'revdelete-logentry'          => 'cambiada la visibilidad de la revisión para [[$1]]',
 'logdelete-logentry'          => 'cambiada la visibilidad de eventos de [[$1]]',
-'revdelete-logaction'         => '$1 {{PLURAL:$1|revisión|revisiones}} en modo $2',
-'logdelete-logaction'         => '$1 {{PLURAL:$1|evento|eventos}} a [[$3]] en modo $2',
 'revdelete-success'           => 'Visibilidad de revisiones cambiada correctamente.',
 'logdelete-success'           => 'Visibilidad de eventos cambiada correctamente.',
+'revdelete-uname'             => 'nombre de usuario',
+'revdelete-hid'               => 'ocultar $1',
+'revdelete-unhid'             => 'mostrar $1',
 
 # Diffs
 'history-title'           => 'Historial de revisiones para "$1"',
@@ -1011,13 +1012,14 @@ archivo a esa fecha.',
 'filerevert-submit'  => 'Revertir',
 
 # File deletion
-'filedelete'            => 'Borrar $1',
-'filedelete-legend'     => 'Borrar archivo',
-'filedelete-intro'      => "Estás borrando '''[[Media:$1|$1]]'''.",
-'filedelete-comment'    => 'Motivo:',
-'filedelete-submit'     => 'Borrar',
-'filedelete-success'    => "'''$1''' ha sido borrado.",
-'filedelete-nofile-old' => "No existe una versión guardada de '''$1''' con los atributos especificados.",
+'filedelete'                  => 'Borrar $1',
+'filedelete-legend'           => 'Borrar archivo',
+'filedelete-intro'            => "Estás borrando '''[[Media:$1|$1]]'''.",
+'filedelete-comment'          => 'Motivo:',
+'filedelete-submit'           => 'Borrar',
+'filedelete-success'          => "'''$1''' ha sido borrado.",
+'filedelete-nofile-old'       => "No existe una versión guardada de '''$1''' con los atributos especificados.",
+'filedelete-reason-otherlist' => 'Otra razón',
 
 # MIME search
 'mimesearch' => 'Búsqueda MIME',

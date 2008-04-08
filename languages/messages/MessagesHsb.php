@@ -222,8 +222,11 @@ $messages = array(
 'category-empty'                 => "''Tuta kategorija tuchwilu žane nastawki abo medije njewobsahuje.''",
 'hidden-categories'              => '{{PLURAL:$1|Schowana kategorija|Schowane kategorije}}',
 'hidden-category-category'       => 'Schowane kategorije', # Name of the category where hidden categories will be listed
+'category-subcat-count'          => '{{PLURAL:$2|Tuta kategorija ma jenož slědowacu podkategoriju.|Tuta kategorija ma {{PLURAL:$1|slědowacu podkategoriju|$1 slědowacej podkategoriji|$1 slědowace podkategorije|$1 slědowacych podkategorijow}} z dohromady $2.}}',
 'category-subcat-count-limited'  => 'Tuta kategorija ma {{PLURAL:$1|slědowacu podkategoriju|slědowacej $1 podkategoriji|slědowace $1 podkategorije|slědowacych $1 podkategorijow}}:',
+'category-article-count'         => '{{PLURAL:$2|Tuta kategorija wobsahuje jenož slědowacu stronu.|{{PLURAL:$1|Slědowaca strona je|Slědowacej $1 stronje stej|Slědowace $1 strony su|Slědowacych $1 stronow je}} w tutej kategoriji z dohromady $2.}}',
 'category-article-count-limited' => '{{PLURAL:$1|Slědowaca strona je|Slědowacej $1 stronje stej|Slědowace $1 strony su|Slědowacych $1 stronow je}} w tutej kategoriji:',
+'category-file-count'            => '{{PLURAL:$2|Tuta kategorija wobsahuje jenož slědowacu stronu.|{{PLURAL:$1|Slědowaca dataja je|Slědowacej $1 dataji stej|Slědowace $1 dataje|Slědowacych $1 datajow je}} w tutej kategoriji z dohromady $2.}}',
 'category-file-count-limited'    => '{{PLURAL:$1|Slědowaca dataj je|Slědowacej $1 dataji stej|Slědowace $1 dataje su|Slědowacych $1 je}} w tutej kategoriji:',
 'listingcontinuesabbrev'         => ' (pokročowane)',
 
@@ -798,6 +801,9 @@ Druzy administratorojo we {{SITENAME}} móža schowany tekst dale čitać a jón
 'revdelete-log-message'       => '$1 za $2 {{PLURAL:$2|wersija|wersiji|wersije|wersijow}}',
 'logdelete-log-message'       => '$1 za $2 {{PLURAL:$2|podawk|podawkaj|podawki|podawkow}}',
 
+# Suppression log
+'suppressionlog' => 'Protokol potłóčenjow',
+
 # History merging
 'mergehistory'                     => 'Stawizny stronow zjednoćić',
 'mergehistory-header'              => 'Tuta strona ći dowola wersije stawiznow žórłoweje strony na nowej stronje zjednoćić.
@@ -900,7 +906,7 @@ Móžeš [[{{ns:special}}:Allpages|alfabetiski indeks přepytować]] abo [[:$1|s
 'prefs-watchlist-edits'    => 'Ličba změnow, kotrež maja so we wobkedźbowankach pokazać:',
 'prefs-misc'               => 'Wšelake nastajenja',
 'saveprefs'                => 'Składować',
-'resetprefs'               => 'Wróćo stajić',
+'resetprefs'               => 'Njeskładowane změny zaćisnyć',
 'oldpassword'              => 'Stare hesło:',
 'newpassword'              => 'Nowe hesło:',
 'retypenew'                => 'Nowe hesło wospjetować:',
@@ -1074,6 +1080,7 @@ Prošu přepruwuj, hač maš dataju w połnym rozeznaću a nahraj ju, hewak wuzw
 'uploadvirus'                 => 'Dataja wirus wobsahuje! Podrobnosće: $1',
 'sourcefilename'              => 'Mjeno žórłoweje dataje:',
 'destfilename'                => 'Mjeno ciloweje dataje:',
+'upload-maxfilesize'          => 'Maksimalna datajowa wulkosć: $1',
 'watchthisupload'             => 'Stronu wobkedźbować',
 'filewasdeleted'              => 'Dataja z tutym mjenom bu prjedy nahrata a pozdźišo wušmórnjena. Prošu přepruwuj $1 prjedy hač ju znowa składuješ.',
 'upload-wasdeleted'           => "'''Kedźbu: Nahrawaš dataju, kotraž bu prjedy wušmórnjena.'''
@@ -1475,6 +1482,7 @@ Prošu potwjerdź, zo maš wotpohlad to činić, zo rozumiš sćěwki a zo to wo
 'actioncomplete'              => 'Dokónčene',
 'deletedtext'                 => 'Strona „<nowiki>$1</nowiki>” bu wušmórnjena. Hlej $2 za lisćinu aktualnych wušmórnjenjow.',
 'deletedarticle'              => 'je stronu [[$1]] wušmórnył.',
+'suppressedarticle'           => '"[[$1]]" potłóčeny',
 'dellogpage'                  => 'Protokol wušmórnjenjow',
 'dellogpagetext'              => 'Deleka je lisćina najaktualnišich wušmórnjenjow.',
 'deletionlog'                 => 'Protokol wušmórnjenjow',
@@ -1545,6 +1553,7 @@ Poslednja změna bě wot wužiwarja [[User:$3|$3]] ([[User talk:$3|Diskusija]]).
 # Undelete
 'undelete'                     => 'Wušmórnjenu stronu wobnowić',
 'undeletepage'                 => 'Wušmórnjene strony wobnowić',
+'undeletepagetitle'            => "'''Slědowace wudaće pokazuje wušmórnjene wersije wot [[:$1]]'''.",
 'viewdeletedpage'              => 'Wušmórnjene strony wobhladać',
 'undeletepagetext'             => 'Tute strony buchu wušmórnjene, su pak hišće w datowej bance składowane a móža so wobnowić.',
 'undeleteextrahelp'            => 'Zo by stronu z wšěmi wersijemi wobnowił zapodaj prošu přičinu a klikń na „Wobnowić”. Chceš-li jenož jednotliwe wersije wobnowić, wuběr prošu jich markěrowanske kašćiki, zapodaj přičinu a klikń na „Wobnowić”. Kliknjenje na „Cofnyć” wuprózdni komentarowe polo a wšě kašćiki.',
@@ -2277,21 +2286,21 @@ Nasledne wotkazy na samsnej lince definuja wuwzaća, hdźež so wobraz smě naje
 'monthsall'        => 'wšě',
 
 # E-mail address confirmation
-'confirmemail'            => 'Emailowu adresu wobkrućić',
-'confirmemail_noemail'    => 'Njejsy płaćiwu e-mejlowu adresu w swojich [[Special:Preferences|nastajenjach]] podał.',
-'confirmemail_text'       => 'Tutón wiki žada, zo swoju e-mejlowu adresu wobkrućiš, prjedy hač e-mejlowe funkcije wužiješ. Zaktiwuzij tłóčatko deleka, zo by swojej adresy wobkrućensku mejlku pósłał. Mejlka zapřijmje wotkaz, kotryž kod wobsahuje; wočiń wotkaz we swojim wobhladowaku, zo by wobkrućił, zo twoja e-mejlowa adresa je płaćiwa.',
-'confirmemail_pending'    => '<div class="error"> Potwjerdźenski kod bu hižo z e-mejlu připósłany. Jeli sy runje swoje konto wutworił, wočakaj prošu někotre mjeńšiny, prjedy hač sej nowy kod žadaš.</div>',
-'confirmemail_send'       => 'Wobkrućenski kod pósłać',
-'confirmemail_sent'       => 'Wobkrućenska mejlka bu wotesłana.',
-'confirmemail_oncreate'   => 'Wobkrućenski kod bu na twoju e-mejlowu adresu pósłany. Tutón kod za přizjewjenje trěbne njeje, trjebaš jón pak, zo by e-mejlowe funkcije we wikiju aktiwizował.',
-'confirmemail_sendfailed' => 'Wobkrućenska mejlka njeda so wotesłać. Přepruwuj adresu za njepłaćiwymi znamješkami. E-mejlowy program wotmołwi: $1',
-'confirmemail_invalid'    => 'Njepłaćiwy wobkrućacy kod. Kod je snano spadnył.',
-'confirmemail_needlogin'  => 'Dyrbiš so $1, zo by e-mejlowu adresu wobkrućić móhł.',
-'confirmemail_success'    => 'Twoja e-mejlowa adresa bu wobkrućena. Móžeš so nětko přizjewić.',
-'confirmemail_loggedin'   => 'Twoja e-mejlowa adresu bu nětko wobkrućena.',
-'confirmemail_error'      => 'Zmylk při wobkrućenju twojeje e-mailoweje adresy.',
-'confirmemail_subject'    => '{{SITENAME}} – wobkrućenje e-mejloweje adresy',
-'confirmemail_body'       => 'Něchtó, najskerje ty z IP-adresu $1, je wužiwarske konto „$2” z tutej e-mejlowej adresu we {{GRAMMAR:lokatiw|{{SITENAME}}}} wutworił.
+'confirmemail'             => 'Emailowu adresu wobkrućić',
+'confirmemail_noemail'     => 'Njejsy płaćiwu e-mejlowu adresu w swojich [[Special:Preferences|nastajenjach]] podał.',
+'confirmemail_text'        => 'Tutón wiki žada, zo swoju e-mejlowu adresu wobkrućiš, prjedy hač e-mejlowe funkcije wužiješ. Zaktiwuzij tłóčatko deleka, zo by swojej adresy wobkrućensku mejlku pósłał. Mejlka zapřijmje wotkaz, kotryž kod wobsahuje; wočiń wotkaz we swojim wobhladowaku, zo by wobkrućił, zo twoja e-mejlowa adresa je płaćiwa.',
+'confirmemail_pending'     => '<div class="error"> Potwjerdźenski kod bu hižo z e-mejlu připósłany. Jeli sy runje swoje konto wutworił, wočakaj prošu někotre mjeńšiny, prjedy hač sej nowy kod žadaš.</div>',
+'confirmemail_send'        => 'Wobkrućenski kod pósłać',
+'confirmemail_sent'        => 'Wobkrućenska mejlka bu wotesłana.',
+'confirmemail_oncreate'    => 'Wobkrućenski kod bu na twoju e-mejlowu adresu pósłany. Tutón kod za přizjewjenje trěbne njeje, trjebaš jón pak, zo by e-mejlowe funkcije we wikiju aktiwizował.',
+'confirmemail_sendfailed'  => 'Wobkrućenska mejlka njeda so wotesłać. Přepruwuj adresu za njepłaćiwymi znamješkami. E-mejlowy program wotmołwi: $1',
+'confirmemail_invalid'     => 'Njepłaćiwy wobkrućacy kod. Kod je snano spadnył.',
+'confirmemail_needlogin'   => 'Dyrbiš so $1, zo by e-mejlowu adresu wobkrućić móhł.',
+'confirmemail_success'     => 'Twoja e-mejlowa adresa bu wobkrućena. Móžeš so nětko přizjewić.',
+'confirmemail_loggedin'    => 'Twoja e-mejlowa adresu bu nětko wobkrućena.',
+'confirmemail_error'       => 'Zmylk při wobkrućenju twojeje e-mailoweje adresy.',
+'confirmemail_subject'     => '{{SITENAME}} – wobkrućenje e-mejloweje adresy',
+'confirmemail_body'        => 'Něchtó, najskerje ty z IP-adresu $1, je wužiwarske konto „$2” z tutej e-mejlowej adresu we {{GRAMMAR:lokatiw|{{SITENAME}}}} wutworił.
 
 Zo by so wobkrućiło, zo tute konto woprawdźe tebi słuša a zo bychu so e-mejlowe funkcije we {{GRAMMAR:lokatiw|{{SITENAME}}}} zaktiwizowali, wočiń tutón wotkaz w swojim wobhladowaku: $3.
 
@@ -2299,6 +2308,8 @@ Jeli to *njejsy*, njeslěduj wotkaz. Tutón wobkrućenski kod spadnje dnja $4.
 
 --
 {{SITENAME}}: {{fullurl:{{Mediawiki:mainpage}}}}',
+'confirmemail_invalidated' => 'E-mejlowe potwjerdźenje přetorhnjene',
+'invalidateemail'          => 'E-mejlowe potwjerdźenje přetorhnyć',
 
 # Scary transclusion
 'scarytranscludedisabled' => '[Zapřijeće mjezyrěčnych wotkazow je znjemóžnjene]',
@@ -2433,5 +2444,8 @@ Zapodaj datajowe mjeno bjez dodawka "{{ns:image}}:".',
 'fileduplicatesearch-legend'   => 'Duplikaty pytać',
 'fileduplicatesearch-filename' => 'Datajowe mjeno:',
 'fileduplicatesearch-submit'   => 'Pytać',
+'fileduplicatesearch-info'     => '$1 × $2 pikselow<br />Datajowa wulkosć: $3<br />Typ MIME: $4',
+'fileduplicatesearch-result-1' => 'Dataja "$1" identiske duplikaty nima.',
+'fileduplicatesearch-result-n' => 'Dataja "$1" ma {{PLURAL:$2|1 identiski duplikat|$2 identiskej duplikataj|$2 identiske duplikaty|$2 identiskich duplikatow}}.',
 
 );

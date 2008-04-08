@@ -819,6 +819,7 @@ Muut ylläpitäjät voivat lukea piilotetun sisällön ja palauttaa sen.',
 'revdelete-summary'           => 'yhteenveto',
 'revdelete-uname'             => 'käyttäjänimi',
 'revdelete-hid'               => 'piilotti $1',
+'revdelete-unhid'             => 'palautti näkyviin $1',
 
 # Suppression log
 'suppressionlogtext' => 'Alla on lista uusimmista poistoista ja muokkausestoista, jotka sisältävät ylläpitäjiltä piilotettua materiaalia. Katso [[Special:Ipblocklist|muokkausestolista]] nähdäksesi tämänhetkiset muokkausestot.',
@@ -980,17 +981,20 @@ $1 | $2',
 'group-bot'           => 'botit',
 'group-sysop'         => 'ylläpitäjät',
 'group-bureaucrat'    => 'byrokraatit',
+'group-suppress'      => 'häivytysoikeuden käyttäjät',
 'group-all'           => '(kaikki)',
 
 'group-autoconfirmed-member' => 'Automaattisesti hyväksytty käyttäjä',
 'group-bot-member'           => 'botti',
 'group-sysop-member'         => 'ylläpitäjä',
 'group-bureaucrat-member'    => 'byrokraatti',
+'group-suppress-member'      => 'häivytysoikeuden käyttäjä',
 
 'grouppage-autoconfirmed' => '{{ns:project}}:Automaattisesti hyväksytyt käyttäjät',
 'grouppage-bot'           => '{{ns:project}}:Botit',
 'grouppage-sysop'         => '{{ns:project}}:Ylläpitäjät',
 'grouppage-bureaucrat'    => '{{ns:project}}:Byrokraatit',
+'grouppage-suppress'      => '{{ns:project}}:Häivytysoikeudet',
 
 # User rights log
 'rightslog'      => 'Käyttöoikeusloki',

@@ -12,6 +12,7 @@
  * @author לערי ריינהארט
  * @author SPQRobin
  * @author Toliño
+ * @author Jon Harald Søby
  */
 
 $namespaceNames = array(
@@ -714,7 +715,7 @@ función, a revisión especificada non existe, ou está intentando agochar a rev
 'revdelete-text'              => 'As revisión eliminadas aínda aparecerán no historial da páxina, pero o contido do seu texto será inaccesíbel ao público.
 
 Outros administradores de {{SITENAME}} poderán acceder aínda ao contido oculto e poderán volver atrás esa eliminación a través desta mesma interface, a non ser que os operadores do sitio leven a cabo unha restrición adicional.',
-'revdelete-legend'            => 'Aplicar restricións de revisión',
+'revdelete-legend'            => 'Aplicar restricións de visibilidade',
 'revdelete-hide-text'         => 'Agochar texto da revisión',
 'revdelete-hide-name'         => 'Agochar acción e destino',
 'revdelete-hide-comment'      => 'Agochar comentario da edición',
@@ -794,7 +795,7 @@ Asegúrese de que esta modificación da páxina mantén a continuidade históric
 'searchall'             => 'todo',
 'showingresults'        => "Amósanse {{PLURAL:$1|'''1''' resultado|'''$1''' resultados}} comezando polo número '''$2'''.",
 'showingresultsnum'     => "Amosando {{PLURAL:$3|'''1''' resultado|'''$3''' resultados}} comezando co número '''$2'''.",
-'showingresultstotal'   => "Amosando embaixo os resultados '''$1 - $2''' de '''$3'''",
+'showingresultstotal'   => "Embaixo amósanse os resultados do '''$1''' ao '''$2''', dun total de '''$3'''",
 'nonefound'             => "'''Nota''': as procuras sen éxito son causadas usualmente por procurar usando palabras usuais como \"ter\" e \"desde\", que non están incluídas no índice da base de datos, ou por especificar máis dunha palabra de procura (só van aparecer no resultado as páxinas que teñan todas as palabras).",
 'powersearch'           => 'Procurar',
 'powersearch-legend'    => 'Busca avanzada',
@@ -840,7 +841,7 @@ Procurar $3 $9',
 'prefs-watchlist-edits'    => 'Número de edicións para mostrar na listaxe de vixilancia completa:',
 'prefs-misc'               => 'Preferencias varias',
 'saveprefs'                => 'Gardar as preferencias',
-'resetprefs'               => 'Voltar as preferencias ao inicio',
+'resetprefs'               => 'Eliminar os cambios non gardados',
 'oldpassword'              => 'Contrasinal antigo:',
 'newpassword'              => 'Contrasinal novo:',
 'retypenew'                => 'Insira outra vez o novo contrasinal:',
@@ -1015,7 +1016,8 @@ Se dispón dunha versión desta imaxe de maior resolución, envíe esta última.
 'destfilename'                => 'Nome do ficheiro de destino:',
 'upload-maxfilesize'          => 'Tamaño máximo para o ficheiro: $1',
 'watchthisupload'             => 'Vixiar esta páxina',
-'filewasdeleted'              => 'Un ficheiro con ese nome foi cargado con anterioridade e a continuación borrado. Debe comprobar $1 antes de proceder a cargalo outra vez.',
+'filewasdeleted'              => 'Un ficheiro con ese nome foi cargado con anterioridade e a continuación borrado.
+Debe comprobar o $1 antes de proceder a cargalo outra vez.',
 'upload-wasdeleted'           => "'''Aviso: Está enviando un ficheiro que foi previamente borrado.'''
 
 Debe considerar se é apropiado continuar enviando este ficheiro. O rexistro do seu borrado proporciónase aquí para a súa comodidade.",
@@ -1538,7 +1540,7 @@ $1',
 'blockiptext'                 => 'Use o seguinte formulario para bloquear o acceso de escritura desde un enderezo IP ou para bloquear a un usuario específico.
 Isto debería facerse só para previr vandalismo, e de acordo coa [[{{MediaWiki:Policy-url}}|política e normas]] vixentes.
 Explique a razón específica do bloqueo (por exemplo, citando as páxinas concretas que sufriron vandalismo).',
-'ipaddress'                   => 'Enderezo IP/nome de usuario',
+'ipaddress'                   => 'Enderezo IP:',
 'ipadressorusername'          => 'Enderezo IP ou nome do usuario:',
 'ipbexpiry'                   => 'Duración:',
 'ipbreason'                   => 'Razón:',
@@ -1557,7 +1559,7 @@ Explique a razón específica do bloqueo (por exemplo, citando as páxinas concr
 'ipbemailban'                 => 'Impedir que o usuario envíe correos electrónicos',
 'ipbenableautoblock'          => 'Bloquear automaticamente o último enderezo IP utilizado por este usuario, e calquera outro enderezo desde o que intente editar',
 'ipbsubmit'                   => 'Bloquear este usuario',
-'ipbother'                    => 'Outro período de tempo',
+'ipbother'                    => 'Outro período de tempo:',
 'ipboptions'                  => '2 horas:2 hours,1 día:1 day,3 días:3 days,1 semana:1 week,2 semanas:2 weeks,1 mes:1 month,3 meses:3 months,6 meses:6 months,1 ano:1 year,para sempre:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'              => 'outra',
 'ipbotherreason'              => 'Outros motivos adicionais:',
