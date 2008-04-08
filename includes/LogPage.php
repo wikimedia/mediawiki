@@ -131,11 +131,12 @@ class LogPage {
 
 	/**
 	 * @todo handle missing log types
-	 * @static
+	 * @param string $type logtype
+	 * @return string Headertext of this logtype
 	 */
 	static function logHeader( $type ) {
 		global $wgLogHeaders;
-		return wfMsgHtml( $wgLogHeaders[$type] );
+		return Xml::element( 'div', array( 'class' => 'mw-log-headertext' ), wfMsg( $wgLogHeaders[$type] ) );
 	}
 
 	/**
