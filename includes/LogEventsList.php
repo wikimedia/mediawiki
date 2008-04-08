@@ -269,7 +269,7 @@ class LogEventsList {
 		if ( $wgDateGroupedLogs ) {
 			$time = $wgLang->time( wfTimestamp(TS_MW, $row->log_timestamp), true );
 			$date = $wgLang->date( wfTimestamp(TS_MW, $row->log_timestamp), true );
-			$line = Xml::tags('div', null, "$del$time $userLink $action $comment $revert" );
+			$line = Xml::tags('div', array( 'class' => 'mw-log-entry' ), "$del$time $userLink $action $comment $revert" );
 
 			static $lastdate = false;
 			if ( $date !== $lastdate ) {
