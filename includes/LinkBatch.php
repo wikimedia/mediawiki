@@ -82,6 +82,8 @@ class LinkBatch {
 
 	/**
 	 * Add a ResultWrapper containing IDs and titles to a LinkCache object
+	 * Title are initialized here and they will go to the static title cache 
+	 * field of the Title class.
 	 */
 	function addResultToCache( $cache, $res ) {
 		if ( !$res ) {
@@ -93,7 +95,7 @@ class LinkBatch {
 		$ids = array();
 		$remaining = $this->data;
 		while ( $row = $res->fetchObject() ) {
-			$title = Title::makeTitle( $row->page_namespace, $row->page_title );
+			$title = Title::newFromRow( $row );
 			$cache->addGoodLinkObj( $row->page_id, $title );
 			$ids[$title->getPrefixedDBkey()] = $row->page_id;
 			unset( $remaining[$row->page_namespace][$row->page_title] );
@@ -128,7 +130,7 @@ class LinkBatch {
 			wfProfileOut( __METHOD__ );
 			return false;
 		}
-		$sql = "SELECT page_id, page_namespace, page_title FROM $page WHERE $set";
+		$sql = "SELECT page_id, page_namespace, page_title, page_len, page_is_redirect FROM $page WHERE $set";
 
 		// Do query
 		$res = new ResultWrapper( $dbr,  $dbr->query( $sql, __METHOD__ ) );

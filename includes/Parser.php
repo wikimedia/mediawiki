@@ -4003,10 +4003,7 @@ class Parser
 					# Not in the link cache, add it to the query
 					if ( !isset( $current ) ) {
 						$current = $ns;
-						$query =  "SELECT page_id, page_namespace, page_title, page_is_redirect";
-						if ( $threshold > 0 ) {
-							$query .= ', page_len';
-						}
+						$query =  "SELECT page_id, page_namespace, page_title, page_is_redirect, page_len";
 						$query .= " FROM $page WHERE (page_namespace=$ns AND page_title IN(";
 					} elseif ( $current != $ns ) {
 						$current = $ns;
@@ -4029,7 +4026,7 @@ class Parser
 				# Fetch data and form into an associative array
 				# non-existent = broken
 				while ( $s = $dbr->fetchObject($res) ) {
-					$title = Title::makeTitle( $s->page_namespace, $s->page_title );
+					$title = Title::newFromRow( $s );
 					$pdbk = $title->getPrefixedDBkey();
 					$linkCache->addGoodLinkObj( $s->page_id, $title );
 					$this->mOutput->addLink( $title, $s->page_id );
@@ -4094,10 +4091,7 @@ class Parser
 					// construct query
 					$titleClause = $linkBatch->constructSet('page', $dbr);
 
-					$variantQuery =  "SELECT page_id, page_namespace, page_title, page_is_redirect";
-					if ( $threshold > 0 ) {
-						$variantQuery .= ', page_len';
-					}
+					$variantQuery =  "SELECT page_id, page_namespace, page_title, page_is_redirect, page_len";
 
 					$variantQuery .= " FROM $page WHERE $titleClause";
 					if ( $options & RLH_FOR_UPDATE ) {
@@ -4109,7 +4103,7 @@ class Parser
 					// for each found variants, figure out link holders and replace
 					while ( $s = $dbr->fetchObject($varRes) ) {
 
-						$variantTitle = Title::makeTitle( $s->page_namespace, $s->page_title );
+						$variantTitle = Title::newFromRow( $s );
 						$varPdbk = $variantTitle->getPrefixedDBkey();
 						$vardbk = $variantTitle->getDBkey();
 

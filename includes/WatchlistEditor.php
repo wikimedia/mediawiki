@@ -205,14 +205,15 @@ class WatchlistEditor {
 		$dbr = wfGetDB( DB_MASTER );
 		$uid = intval( $user->getId() );
 		list( $watchlist, $page ) = $dbr->tableNamesN( 'watchlist', 'page' );
-		$sql = "SELECT wl_namespace, wl_title, page_id, page_is_redirect
+		$sql = "SELECT wl_namespace, wl_title, page_id, page_len, page_is_redirect, 
+			page_namespace, page_title 
 			FROM {$watchlist} LEFT JOIN {$page} ON ( wl_namespace = page_namespace
 			AND wl_title = page_title ) WHERE wl_user = {$uid}";
 		$res = $dbr->query( $sql, __METHOD__ );
 		if( $res && $dbr->numRows( $res ) > 0 ) {
 			$cache = LinkCache::singleton();
 			while( $row = $dbr->fetchObject( $res ) ) {
-				$title = Title::makeTitleSafe( $row->wl_namespace, $row->wl_title );
+				$title = Title::newFromRow( $row );
 				if( $title instanceof Title ) {
 					// Update the link cache while we're at it
 					if( $row->page_id ) {

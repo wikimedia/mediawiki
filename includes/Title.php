@@ -63,6 +63,8 @@ class Title {
 	var $mDefaultNamespace;   	# Namespace index when there is no namespace
 	                    		# Zero except in {{transclusion}} tags
 	var $mWatched;      		# Is $wgUser watching this page? NULL if unfilled, accessed through userIsWatching()
+	var $mLength;              # The page length, 0 for special pages
+	var $mRedirect;            # Is the article at this title a redirect?
 	/**#@-*/
 
 
@@ -83,6 +85,8 @@ class Title {
 		$this->mWatched = NULL;
 		$this->mLatestID = false;
 		$this->mOldRestrictions = false;
+		$this->mLength = -1;
+		$this->mRedirect = null;
 	}
 
 	/**
@@ -219,6 +223,20 @@ class Title {
 			$titles[] = Title::makeTitle( $row->page_namespace, $row->page_title );
 		}
 		return $titles;
+	}
+	
+	/**
+	 * Make a Title object from a DB row
+	 * @param Row $row (needs at least page_title,page_namespace)
+	 */
+	public static function newFromRow( $row ) {
+		$t = self::makeTitle( $row->page_namespace, $row->page_title );
+		$t->mArticleID = isset($row->page_id) ? $row->page_id : -1;
+		$t->mLength = isset($row->page_len) ? $row->page_len : -1;
+		$t->mRedirect = isset($row->page_is_redirect) ? $row->page_is_redirect : -1;
+		$t->mLatest = isset($row->page_latest) ? $row->page_latest : 0;
+		
+		return $t;
 	}
 
 	/**
@@ -1463,6 +1481,47 @@ class Title {
 	public function isTalkPage() {
 		return MWNamespace::isTalk( $this->getNamespace() );
 	}
+	
+	/**
+	 * Is this an article that is a redirect page?
+	 * @return bool
+	 */
+	public function isRedirect() {
+		if( $this->mRedirect !== null )
+			return $this->mRedirect;
+		# Zero for special pages
+		if( $this->mArticleID <= 0 )
+			return 0;
+
+		$dbr = wfGetDB( DB_SLAVE );
+		$redir = $dbr->selectField( 'page', 'page_is_redirect',
+			array( 'page_id' => $this->mArticleID ),
+			__METHOD__ );
+
+		$this->mRedirect = $redir ? true : false;
+
+		return $this->mRedirect;
+	}
+	
+	/**
+	 * What is the length of this page (-1 for special pages)?
+	 * @return bool
+	 */
+	public function getLength() {
+		if( $this->mLength != -1 || $this->mArticleID == 0 )
+			return $this->mLength;
+		# Zero for special pages
+		if( $this->mArticleID <= 0 )
+			return -1;
+
+		$dbr = wfGetDB( DB_SLAVE );
+		$len = $dbr->selectField( 'page', 'page_len',
+			array( 'page_id' => $this->mArticleID ),
+			__METHOD__ );
+		$this->mLength = intval($len);
+
+		return $this->mLength;
+	}
 
 	/**
 	 * Is this a subpage?
@@ -2173,7 +2232,7 @@ class Title {
 		}
 
 		$res = $db->select( array( 'page', $table ),
-			array( 'page_namespace', 'page_title', 'page_id' ),
+			array( 'page_namespace', 'page_title', 'page_id', 'page_len', 'page_is_redirect' ),
 			array(
 				"{$prefix}_from=page_id",
 				"{$prefix}_namespace" => $this->getNamespace(),
@@ -2185,7 +2244,7 @@ class Title {
 		if ( $db->numRows( $res ) ) {
 			while ( $row = $db->fetchObject( $res ) ) {
 				if ( $titleObj = Title::makeTitle( $row->page_namespace, $row->page_title ) ) {
-					$linkCache->addGoodLinkObj( $row->page_id, $titleObj );
+					$linkCache->addGoodLinkObj( $row->page_id, $titleObj, $row->page_len, $row->page_is_redir );
 					$retVal[] = $titleObj;
 				}
 			}
