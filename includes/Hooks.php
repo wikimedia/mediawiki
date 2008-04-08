@@ -108,6 +108,9 @@ function wfRunHooks($event, $args = array()) {
 			$callback = $func;
 		}
 
+		// Run autoloader (workaround for call_user_func_array bug)
+		is_callable( $callback );
+
 		/* Call the hook. */
 		wfProfileIn( $func );
 		$retval = call_user_func_array( $callback, $hook_args );
