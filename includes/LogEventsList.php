@@ -160,7 +160,7 @@ class LogEventsList {
 			$userLink = '<span class="history-deleted">' . wfMsgHtml( 'rev-deleted-user' ) . '</span>';
 		} else {
 			$userLink = $this->skin->userLink( $row->log_user, $row->user_name ) .
-				$this->skin->userToolLinks( $row->log_user, $row->user_name );
+				$this->skin->userToolLinks( $row->log_user, $row->user_name, true, 0, $row->user_editcount );
 		}
 		// Comment
 		if( self::isDeleted($row,LogPage::DELETED_COMMENT) ) {
@@ -432,7 +432,7 @@ class LogPager extends ReverseChronologicalPager {
 			return false;
 		}
 		/* Fetch userid at first, if known, provides awesome query plan afterwards */
-		$userid = User::idFromName( $this->user );
+		$userid = User::idFromName( $name );
 		if( !$userid ) {
 			/* It should be nicer to abort query at all, 
 			   but for now it won't pass anywhere behind the optimizer */
@@ -485,8 +485,8 @@ class LogPager extends ReverseChronologicalPager {
 		}
 		return array(
 			'tables' => array( 'logging', 'user' ),
-			'fields' => array( 'log_type', 'log_action', 'log_user', 'log_namespace', 'log_title', 
-				'log_params', 'log_comment', $log_id, 'log_deleted', 'log_timestamp', 'user_name' ),
+			'fields' => array( 'log_type', 'log_action', 'log_user', 'log_namespace', 'log_title', 'log_params', 
+				'log_comment', $log_id, 'log_deleted', 'log_timestamp', 'user_name', 'user_editcount' ),
 			'conds' => $this->mConds,
 			'options' => $index
 		);
@@ -499,14 +499,16 @@ class LogPager extends ReverseChronologicalPager {
 	function getStartBody() {
 		wfProfileIn( __METHOD__ );
 		# Do a link batch query
-		$lb = new LinkBatch;
-		while( $row = $this->mResult->fetchObject() ) {
-			$lb->add( $row->log_namespace, $row->log_title );
-			$lb->addObj( Title::makeTitleSafe( NS_USER, $row->user_name ) );
-			$lb->addObj( Title::makeTitleSafe( NS_USER_TALK, $row->user_name ) );
+		if( $this->getNumRows() > 0 ) {
+			$lb = new LinkBatch;
+			while( $row = $this->mResult->fetchObject() ) {
+				$lb->add( $row->log_namespace, $row->log_title );
+				$lb->addObj( Title::makeTitleSafe( NS_USER, $row->user_name ) );
+				$lb->addObj( Title::makeTitleSafe( NS_USER_TALK, $row->user_name ) );
+			}
+			$lb->execute();
+			$this->mResult->seek( 0 );
 		}
-		$lb->execute();
-		$this->mResult->seek( 0 );
 		wfProfileOut( __METHOD__ );
 		return '';
 	}
