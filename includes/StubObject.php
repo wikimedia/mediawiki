@@ -17,32 +17,74 @@
  */
 class StubObject {
 	var $mGlobal, $mClass, $mParams;
+
+	/**
+	 * Constructor.
+	 *
+	 * @param String $global name of the global variable.
+	 * @param String $class name of the class of the real object.
+	 * @param Array $param array of parameters to pass to contructor of the real
+	 *                     object.
+	 */
 	function __construct( $global = null, $class = null, $params = array() ) {
 		$this->mGlobal = $global;
 		$this->mClass = $class;
 		$this->mParams = $params;
 	}
 
+	/**
+	 * Returns a bool value whetever $obj is a stub object. Can be used to break
+	 * a infinite loop when unstubbing an object.
+	 *
+	 * @param Object $obj object to check.
+	 * @return bool true if $obj is not an instance of StubObject class.
+	 */
 	static function isRealObject( $obj ) {
 		return is_object( $obj ) && !($obj instanceof StubObject);
 	}
 
+	/**
+	 * Function called if any function exists with that name in this object.
+	 * It is used to unstub the object. Only used internally, PHP will call
+	 * self::__call() function and that function will call this function.
+	 * This function will also call the function with the same name in the real
+	 * object.
+	 *
+	 * @param String $name name of the function called.
+	 * @param Array $args array of arguments.
+	 */
 	function _call( $name, $args ) {
 		$this->_unstub( $name, 5 );
 		return call_user_func_array( array( $GLOBALS[$this->mGlobal], $name ), $args );
 	}
 
+	/**
+	 * Create a new object to replace this stub object.
+	 */
 	function _newObject() {
 		return wfCreateObject( $this->mClass, $this->mParams );
 	}
 
+	/**
+	 * Function called by PHP if no function with that name exists in this
+	 * object.
+	 *
+	 * @param String $name name of the function called
+	 * @param Array $args array of arguments
+	 */
 	function __call( $name, $args ) {
 		return $this->_call( $name, $args );
 	}
 
 	/**
+	 * This function creates a new object of the real class and replace it in
+	 * the global variable.
 	 * This is public, for the convenience of external callers wishing to access 
 	 * properties, e.g. eval.php
+	 *
+	 * @param String $name name of the method called in this object.
+	 * @param Integer $level level to go in the stact trace to get the function
+	 *                       who called this function.
 	 */
 	function _unstub( $name = '_unstub', $level = 2 ) {
 		static $recursionLevel = 0;
@@ -61,13 +103,18 @@ class StubObject {
 	}
 }
 
+/**
+ * Stub object for the content language of this wiki. This object have to be in
+ * $wgContLang global.
+ */
 class StubContLang extends StubObject {
+
 	function __construct() {
 		parent::__construct( 'wgContLang' );
 	}
 
 	function __call( $name, $args ) {
-		return StubObject::_call( $name, $args );
+		return $this->_call( $name, $args );
 	}
 
 	function _newObject() {
@@ -78,7 +125,14 @@ class StubContLang extends StubObject {
 		return $obj;
 	}
 }
+
+/**
+ * Stub object for the user language. It depends of the user preferences and
+ * "uselang" parameter that can be passed to inde.php. This object have to be
+ * in $wgLang global.
+ */
 class StubUserLang extends StubObject {
+
 	function __construct() {
 		parent::__construct( 'wgLang' );
 	}
@@ -89,13 +143,13 @@ class StubUserLang extends StubObject {
 
 	function _newObject() {
 		global $wgContLanguageCode, $wgRequest, $wgUser, $wgContLang;
-		$code = $wgRequest->getVal('uselang', $wgUser->getOption('language') );
+		$code = $wgRequest->getVal( 'uselang', $wgUser->getOption( 'language' ) );
 
 		// if variant is explicitely selected, use it instead the one from wgUser
 		// see bug #7605
-		if($wgContLang->hasVariants()){
+		if( $wgContLang->hasVariants() ){
 			$variant = $wgContLang->getPreferredVariant();
-			if($variant != $wgContLanguageCode)
+			if( $variant != $wgContLanguageCode )
 				$code = $variant;
 		}	 
 
@@ -113,7 +167,15 @@ class StubUserLang extends StubObject {
 		}
 	}
 }
+
+/**
+ * Stub object for the user. The initialisation of the will depend of
+ * $wgCommandLineMode. If it's true, it will be an anonymous user and if it's
+ * false, the user will be loaded from credidentails provided by cookies. This
+ * object have to be in $wgUser global.
+ */
 class StubUser extends StubObject {
+
 	function __construct() {
 		parent::__construct( 'wgUser' );
 	}
@@ -128,10 +190,8 @@ class StubUser extends StubObject {
 			$user = new User;
 		} else {
 			$user = User::newFromSession();
-			wfRunHooks('AutoAuthenticate',array(&$user));
+			wfRunHooks( 'AutoAuthenticate', array( &$user ) );
 		}
 		return $user;
 	}
 }
-
-
