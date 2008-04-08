@@ -568,7 +568,7 @@ class Revision {
 		}
 		# Use page_latest if ID is not given
 		if( !$this->mId ) {
-			$prevID = $db->selectField( 'page', 'page_latest',
+			$prevId = $db->selectField( 'page', 'page_latest',
 				array( 'page_id' => $this->mPage ),
 				__METHOD__ );
 		} else {
