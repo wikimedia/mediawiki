@@ -231,6 +231,7 @@ class Title {
 	 */
 	public static function newFromRow( $row ) {
 		$t = self::makeTitle( $row->page_namespace, $row->page_title );
+		
 		$t->mArticleID = isset($row->page_id) ? $row->page_id : -1;
 		$t->mLength = isset($row->page_len) ? $row->page_len : -1;
 		$t->mRedirect = isset($row->page_is_redirect) ? (bool)$row->page_is_redirect : null;
@@ -1490,33 +1491,33 @@ class Title {
 		if( $this->mRedirect !== null )
 			return $this->mRedirect;
 		# Zero for special pages
-		if( $this->mArticleID <= 0 )
+		if( $this->getNamespace() == NS_SPECIAL )
 			return 0;
 
 		$dbr = wfGetDB( DB_SLAVE );
 		$redir = $dbr->selectField( 'page', 'page_is_redirect',
-			array( 'page_id' => $this->mArticleID ),
+			array( 'page_id' => $this->getArticleId() ),
 			__METHOD__ );
 
-		$this->mRedirect = $redir ? true : false;
+		$this->mRedirect = (bool)$redir;
 
 		return $this->mRedirect;
 	}
 	
 	/**
-	 * What is the length of this page (-1 for special pages)?
+	 * What is the length of this page?
 	 * @return bool
 	 */
 	public function getLength() {
 		if( $this->mLength != -1 || $this->mArticleID == 0 )
 			return $this->mLength;
 		# Zero for special pages
-		if( $this->mArticleID <= 0 )
-			return -1;
+		if( $this->getNamespace() == NS_SPECIAL )
+			return 0;
 
 		$dbr = wfGetDB( DB_SLAVE );
 		$len = $dbr->selectField( 'page', 'page_len',
-			array( 'page_id' => $this->mArticleID ),
+			array( 'page_id' => $this->getArticleId() ),
 			__METHOD__ );
 		$this->mLength = intval($len);
 
