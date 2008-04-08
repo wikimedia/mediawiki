@@ -101,14 +101,20 @@ EOT;
 	function sync( $srcTable, $dstTable ) {
 		$batchSize = 1000;
 		$minTs = $this->dbw->selectField( $srcTable, 'MIN(log_timestamp)', false, __METHOD__ );
+		$minTsUnix = wfTimestamp( TS_UNIX, $minTs );
 		$numRowsCopied = 0;
 		
 		while ( true ) {
 			$maxTs = $this->dbw->selectField( $srcTable, 'MAX(log_timestamp)', false, __METHOD__ );
 			$copyPos = $this->dbw->selectField( $dstTable, 'MAX(log_timestamp)', false, __METHOD__ );
+			$maxTsUnix = wfTimestamp( TS_UNIX, $maxTs );
+			$copyPosUnix = wfTimestamp( TS_UNIX, $copyPos );
 
-			$percent = ( wfTimestamp( TS_UNIX, $maxTs ) - wfTimestamp( TS_UNIX, $minTs ) )
-				/ wfTimestamp( TS_UNIX, $copyPos ) * 100;
+			if ( $copyPos === null ) {
+				$percent = 0;
+			} else {
+				$percent = ( $copyPosUnix - $minTsUnix ) / ( $maxTsUnix - $minTsUnix ) * 100;
+			}
 			printf( "%s  %.2f%%\n", $copyPos, $percent );
 			
 			# Handle all entries with timestamp equal to $copyPos
