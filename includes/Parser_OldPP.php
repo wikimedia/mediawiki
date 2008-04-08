@@ -4121,7 +4121,6 @@ class Parser_OldPP
 					if ( !isset( $current ) ) {
 						$current = $ns;
 						$query =  "SELECT page_id, page_namespace, page_title, page_len, page_is_redirect";
-						}
 						$query .= " FROM $page WHERE (page_namespace=$ns AND page_title IN(";
 					} elseif ( $current != $ns ) {
 						$current = $ns;
