@@ -233,7 +233,7 @@ class Title {
 		$t = self::makeTitle( $row->page_namespace, $row->page_title );
 		$t->mArticleID = isset($row->page_id) ? $row->page_id : -1;
 		$t->mLength = isset($row->page_len) ? $row->page_len : -1;
-		$t->mRedirect = isset($row->page_is_redirect) ? $row->page_is_redirect : -1;
+		$t->mRedirect = isset($row->page_is_redirect) ? (bool)$row->page_is_redirect : null;
 		$t->mLatest = isset($row->page_latest) ? $row->page_latest : 0;
 		
 		return $t;
