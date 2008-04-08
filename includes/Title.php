@@ -2244,7 +2244,7 @@ class Title {
 		if ( $db->numRows( $res ) ) {
 			while ( $row = $db->fetchObject( $res ) ) {
 				if ( $titleObj = Title::makeTitle( $row->page_namespace, $row->page_title ) ) {
-					$linkCache->addGoodLinkObj( $row->page_id, $titleObj, $row->page_len, $row->page_is_redir );
+					$linkCache->addGoodLinkObj( $row->page_id, $titleObj );
 					$retVal[] = $titleObj;
 				}
 			}
