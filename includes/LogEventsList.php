@@ -136,19 +136,13 @@ class LogEventsList {
 	private function getTitlePattern( $pattern ) {
 		return Xml::checkLabel( wfMsg( 'log-title-wildcard' ), 'pattern', 'pattern', $pattern );
 	}
-
-
-	protected function getWrapperElement() {
-		global $wgDateGroupedLogs;
-		return $wgDateGroupedLogs ? 'div' : 'ul';
-	}
 	
 	public function beginLogEventsList() {
-		return Xml::openElement( $this->getWrapperElement() ) . "\n";
+		return "<ul>\n";
 	}
 	
 	public function endLogEventsList() {
-		return Xml::closeElement( $this->getWrapperElement() ) . "\n";
+		return "</ul>\n";
 	}
 	
 		/**
@@ -260,24 +254,8 @@ class LogEventsList {
 		} else {
 			$action = LogPage::actionText( $row->log_type, $row->log_action, $title, $this->skin, $paramArray, true );
 		}
-
-		global $wgDateGroupedLogs;
-		if ( $wgDateGroupedLogs ) {
-			$time = $wgLang->time( wfTimestamp(TS_MW, $row->log_timestamp), true );
-			$date = $wgLang->date( wfTimestamp(TS_MW, $row->log_timestamp), true );
-			$line = Xml::tags('div', array( 'class' => 'mw-log-entry' ), "$del$time $userLink $action $comment $revert" );
-
-			static $lastdate = false;
-			if ( $date !== $lastdate ) {
-				$lastdate = $date;
-				return Xml::element('h4', null, $date) . "\n" . $line;
-			} else {
-				return $line;
-			}
-		} else {
-			return Xml::tags('li', null, "$del$time $userLink $action $comment $revert" );
-		}
-
+		
+		return "<li>$del$time $userLink $action $comment $revert</li>\n";
 	}
 	
 	/**
