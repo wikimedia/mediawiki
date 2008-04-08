@@ -136,7 +136,7 @@ class LogPage {
 	 */
 	static function logHeader( $type ) {
 		global $wgLogHeaders;
-		return Xml::element( 'div', array( 'class' => 'mw-log-headertext' ), wfMsg( $wgLogHeaders[$type] ) );
+		return wfMsgExt($wgLogHeaders[$type],array('parseinline'));
 	}
 
 	/**
