@@ -494,10 +494,10 @@ class LogPager extends ReverseChronologicalPager {
 		global $wgAllowLogDeletion;
 		$log_id = $wgAllowLogDeletion ? 'log_id' : '0 AS log_id';
 		# Don't use the wrong logging index
-		if( $this->user ) {
-			$index = array( 'USE INDEX' => array( 'logging' => 'user_time' ) );
-		} else if( $this->title || $this->pattern ) {
+		if( $this->title || $this->pattern ) {
 			$index = array( 'USE INDEX' => array( 'logging' => 'page_time' ) );
+		} else if( $this->user ) {
+			$index = array( 'USE INDEX' => array( 'logging' => 'user_time' ) );
 		} else if( $this->type ) {
 			$index = array( 'USE INDEX' => array( 'logging' => 'type_time' ) );
 		} else {
