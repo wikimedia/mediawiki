@@ -252,7 +252,7 @@ $messages = array(
 'search'            => 'Suk',
 'searchbutton'      => 'Sukolöd',
 'go'                => 'Gololöd',
-'searcharticle'     => 'Getolöd',
+'searcharticle'     => 'Maifükön padi',
 'history'           => 'Padajenotem',
 'history_short'     => 'Jenotem',
 'updatedmarker'     => 'pävotükon pos visit lätik oba',
@@ -1105,7 +1105,8 @@ Klikolös tiädi padüla ad votükön sökaleodi at.',
 'imagepage-searchdupe'      => 'Sukön ragivis pedönuöl',
 
 # File reversion
-'filerevert-comment' => 'Küpet:',
+'filerevert-comment'    => 'Küpet:',
+'filerevert-badversion' => 'No dabinon fomam topik büik ragiva at labü timamäk pegevöl',
 
 # File deletion
 'filedelete'                  => 'Moükön padi: $1',
@@ -1246,6 +1247,7 @@ Lunot [http://meta.wikimedia.org/wiki/Help:Job_queue vobodapoodkeda] binon '''\$
 'log'                  => 'Jenotaliseds',
 'all-logs-page'        => 'Jenotaliseds valik',
 'log-search-legend'    => 'Sukön jenotalisedis',
+'log-search-submit'    => 'Maifükön padi',
 'alllogstext'          => 'Kobojonam jenotalisedas löpükamas, moükamas, jelodamas, blokamas e guvanas.
 Ad brefükam lisedi, kanoy välön lisedasoti, gebananemi, u padi tefik.',
 'logempty'             => 'No dabinons notets in jenotalised at.',
@@ -1832,29 +1834,38 @@ Te lisedaliens (liens me * primöl) pabevobons. Yüm balid liena muton binön y�
 * focallength', # Do not translate list items
 
 # EXIF tags
-'exif-imagewidth'          => 'Vidot',
-'exif-imagelength'         => 'Geilot',
-'exif-imagedescription'    => 'Tiäd magoda',
-'exif-artist'              => 'Lautan',
-'exif-copyright'           => 'Dalaban kopiedagitäta',
-'exif-colorspace'          => 'Kölaspad',
-'exif-usercomment'         => 'Küpets gebana',
-'exif-exposuretime-format' => '$1 sek ($2)',
-'exif-fnumber'             => 'Num-F',
-'exif-lightsource'         => 'Litafonät',
-'exif-flash'               => 'Kämalelit',
-'exif-flashenergy'         => 'Nämet kämalelita',
-'exif-gpslatituderef'      => 'Videt Nolüdik u Sulüdik',
-'exif-gpslatitude'         => 'Videt',
-'exif-gpslongituderef'     => 'Lunet Lofüdik u Vesüdik',
-'exif-gpslongitude'        => 'Lunet',
-'exif-gpsaltitude'         => 'Geilot',
-'exif-gpsimgdirection'     => 'Lüod magoda',
-'exif-gpsdestlatitude'     => 'Zeilavidet',
-'exif-gpsdestlongitude'    => 'Zeilalunet',
-'exif-gpsdestdistance'     => 'Fagot jü lükömöp',
-'exif-gpsareainformation'  => 'Nem topäda: GPS',
-'exif-gpsdatestamp'        => 'Dät ela GPS',
+'exif-imagewidth'             => 'Vidot',
+'exif-imagelength'            => 'Geilot',
+'exif-stripoffsets'           => 'Topam magodanünodas',
+'exif-imagedescription'       => 'Tiäd magoda',
+'exif-artist'                 => 'Lautan',
+'exif-copyright'              => 'Dalaban kopiedagitäta',
+'exif-colorspace'             => 'Kölaspad',
+'exif-compressedbitsperpixel' => 'Mod kobopedama magoda',
+'exif-pixelydimension'        => 'Magodavidot lonöföl',
+'exif-pixelxdimension'        => 'Magodageilot lonöföl',
+'exif-usercomment'            => 'Küpets gebana',
+'exif-exposuretime-format'    => '$1 sek ($2)',
+'exif-fnumber'                => 'Num-F',
+'exif-lightsource'            => 'Litafonät',
+'exif-flash'                  => 'Kämalelit',
+'exif-flashenergy'            => 'Nämet kämalelita',
+'exif-gpslatituderef'         => 'Videt Nolüdik u Sulüdik',
+'exif-gpslatitude'            => 'Videt',
+'exif-gpslongituderef'        => 'Lunet Lofüdik u Vesüdik',
+'exif-gpslongitude'           => 'Lunet',
+'exif-gpsaltitude'            => 'Geilot',
+'exif-gpsspeedref'            => 'Vifotastabäd',
+'exif-gpstrack'               => 'Mufalüod',
+'exif-gpsimgdirection'        => 'Lüod magoda',
+'exif-gpsdestlatitude'        => 'Zeilavidet',
+'exif-gpsdestlongitude'       => 'Zeilalunet',
+'exif-gpsdestdistance'        => 'Fagot jü lükömöp',
+'exif-gpsareainformation'     => 'Nem topäda: GPS',
+'exif-gpsdatestamp'           => 'Dät ela GPS',
+
+# EXIF attributes
+'exif-compression-1' => 'No pekobopedöl',
 
 'exif-unknowndate' => 'Dät nesevädik',
 
@@ -1868,6 +1879,7 @@ Te lisedaliens (liens me * primöl) pabevobons. Yüm balid liena muton binön y�
 'exif-subjectdistance-value' => 'Mets $1',
 
 'exif-meteringmode-0'   => 'Nesevädik',
+'exif-meteringmode-1'   => 'Zäned',
 'exif-meteringmode-255' => 'Votik',
 
 'exif-lightsource-0'   => 'Nesevädik',
@@ -1883,6 +1895,7 @@ Te lisedaliens (liens me * primöl) pabevobons. Yüm balid liena muton binön y�
 'exif-sensingmethod-1' => 'No pemiedetöl',
 
 'exif-scenecapturetype-2' => 'Pöträt',
+'exif-scenecapturetype-3' => 'Ün neit',
 
 'exif-gaincontrol-0' => 'Nonik',
 

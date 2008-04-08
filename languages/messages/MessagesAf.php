@@ -154,7 +154,13 @@ $messages = array(
 'hidden-category-category'    => 'Versteekte kategorië', # Name of the category where hidden categories will be listed
 'listingcontinuesabbrev'      => 'vervolg',
 
-'mainpagetext' => "<big>'''MediaWiki is suksesvol geïnstalleer.'''</big>",
+'mainpagetext'      => "<big>'''MediaWiki is suksesvol geïnstalleer.'''</big>",
+'mainpagedocfooter' => "Konsulteer '''[http://meta.wikimedia.org/wiki/Help:Contents User's Guide]''' vir inligting oor hoe om die wiki sagteware te gebruik.
+
+== Hoe om te Begin ==
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Configuration settings list]
+* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ]
+* [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]",
 
 'about'          => 'Omtrent',
 'article'        => 'Inhoudbladsy',
@@ -173,6 +179,9 @@ $messages = array(
 'anontalk'       => 'Besprekingsblad vir hierdie IP',
 'navigation'     => 'Navigasie',
 'and'            => 'en',
+
+# Metadata in edit box
+'metadata_help' => 'Metadata:',
 
 'errorpagetitle'    => 'Fout',
 'returnto'          => 'Keer terug na $1.',
@@ -206,6 +215,7 @@ $messages = array(
 'talkpagelinktext'  => 'Besprekings',
 'specialpage'       => 'Spesiale bladsy',
 'personaltools'     => 'Persoonlike gereedskap',
+'postcomment'       => 'Lewer kommentaar',
 'articlepage'       => 'Lees artikel',
 'talk'              => 'Bespreking',
 'views'             => 'Aansigte',
@@ -222,7 +232,7 @@ $messages = array(
 'redirectedfrom'    => '(Aangestuur vanaf $1)',
 'redirectpagesub'   => 'Aanstuurblad',
 'lastmodifiedat'    => 'Laaste wysiging op $2, $1.', # $1 date, $2 time
-'viewcount'         => 'Hierdie bladsy is al $1 keer aangevra.',
+'viewcount'         => 'Hierdie bladsy is al {{PLURAL:$1|keer|$1 kere}} aangevra.',
 'protectedpage'     => 'Beskermde bladsy',
 'jumpto'            => 'Spring na:',
 'jumptonavigation'  => 'navigasie',
@@ -230,44 +240,55 @@ $messages = array(
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'         => 'Inligting oor {{SITENAME}}',
-'aboutpage'         => 'Project:Omtrent',
-'bugreports'        => 'Foutrapporte',
-'bugreportspage'    => 'Project:FoutRapporte',
+'aboutpage'         => 'Projek:Omtrent',
+'bugreports'        => 'Foutverslae',
+'bugreportspage'    => 'Projek:Foutverslae',
 'copyright'         => 'Teks is beskikbaar onderhewig aan $1.',
 'copyrightpagename' => '{{SITENAME}} kopiereg',
 'copyrightpage'     => '{{ns:project}}:kopiereg',
 'currentevents'     => 'Huidige gebeure',
-'currentevents-url' => 'Project:Huidige gebeure',
+'currentevents-url' => 'Projek:Huidige gebeure',
 'disclaimers'       => 'Voorbehoud',
-'disclaimerpage'    => 'Project:Voorwaarden',
+'disclaimerpage'    => 'Projek:Voorwaardes',
 'edithelp'          => 'Wysighulp',
 'edithelppage'      => 'Help:Wysig',
 'faq'               => 'Gewilde vrae',
-'faqpage'           => 'Project:GewildeVrae',
+'faqpage'           => 'Projek:GewildeVrae',
 'helppage'          => 'Help:Hulp',
 'mainpage'          => 'Tuisblad',
+'policy-url'        => 'Projek:Beleid',
 'portal'            => 'Gebruikersportaal',
-'portal-url'        => 'Project:Gebruikersportaal',
+'portal-url'        => 'Projek:Gebruikersportaal',
 'privacy'           => 'Privaatheidsbeleid',
 'privacypage'       => 'Project:Privaatheidsbeleid',
 'sitesupport'       => 'Skenkings',
-'sitesupport-url'   => 'Project:Skenkings',
+'sitesupport-url'   => 'Projek:Skenkings',
 
-'ok'                  => 'Aanvaar',
-'retrievedfrom'       => 'Ontsluit van "$1"',
-'youhavenewmessages'  => 'Jy het $1 (sien $2).',
-'newmessageslink'     => 'nuwe boodskappe',
-'newmessagesdifflink' => 'die laaste wysiging',
-'editsection'         => 'wysig',
-'editold'             => 'wysig',
-'editsectionhint'     => 'Wysig afdeling: $1',
-'toc'                 => 'Inhoud',
-'showtoc'             => 'wys',
-'hidetoc'             => 'versteek',
-'thisisdeleted'       => 'Bekyk of herstel $1?',
-'viewdeleted'         => 'Bekyk $1?',
-'restorelink'         => '{{PLURAL:$1|die geskrapte wysiging|$1 geskrapte wysigings}}',
-'red-link-title'      => '$1 (nog nie geskryf nie)',
+'badaccess'        => 'Toestemmingsfout',
+'badaccess-group0' => 'U is nie toegelaat om die aksie uit te voer wat U aangevra het nie.',
+'badaccess-group1' => 'Die aksie wat U aangevra het is beperk tot gebruikers in groep $1.',
+'badaccess-group2' => 'Die aksie wat U aangevra het is beperk tot gebruikers in een van die groepe $1.',
+'badaccess-groups' => 'Die aksie wat U aangevra het is beperk tot gebruikers in een van die groepe $1.',
+
+'versionrequired'     => 'Weergawe $1 van MediaWiki benodig',
+'versionrequiredtext' => 'Weergawe $1 van MediaWiki word benodig om hierdie bladsy te gebruik. Sien [[Special:Version|version page]].',
+
+'ok'                      => 'Aanvaar',
+'retrievedfrom'           => 'Ontsluit van "$1"',
+'youhavenewmessages'      => 'U het $1 (sien $2).',
+'newmessageslink'         => 'nuwe boodskappe',
+'newmessagesdifflink'     => 'die laaste wysiging',
+'youhavenewmessagesmulti' => 'U het nuwe boodskappe op $1',
+'editsection'             => 'wysig',
+'editold'                 => 'wysig',
+'editsectionhint'         => 'Wysig afdeling: $1',
+'toc'                     => 'Inhoud',
+'showtoc'                 => 'wys',
+'hidetoc'                 => 'versteek',
+'thisisdeleted'           => 'Bekyk of herstel $1?',
+'viewdeleted'             => 'Bekyk $1?',
+'restorelink'             => '{{PLURAL:$1|die geskrapte wysiging|$1 geskrapte wysigings}}',
+'red-link-title'          => '$1 (nog nie geskryf nie)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Artikel',
@@ -288,55 +309,74 @@ $messages = array(
 'nospecialpagetext' => 'Ongeldige spesiale bladsy gespesifeer.',
 
 # General errors
-'error'               => 'Fout',
-'databaseerror'       => 'Databasisfout',
-'dberrortext'         => 'Sintaksisfout in databasisnavraag.
+'error'                => 'Fout',
+'databaseerror'        => 'Databasisfout',
+'dberrortext'          => 'Sintaksisfout in databasisnavraag.
 Die laaste navraag was:
 <blockquote><tt>$1</tt></blockquote>
 van funksie "<tt>$2</tt>".
 MySQL foutboodskap "<tt>$3: $4</tt>".',
-'noconnect'           => 'Kon nie met databasis op $1 konnekteer nie',
-'nodb'                => 'Kon nie databasis $1 selekteer nie',
-'cachederror'         => "Die volgende is 'n gekaste kopie van die aangevraagde blad, en is dalk nie op datum nie.",
-'readonly'            => 'Databasis gesluit',
-'enterlockreason'     => 'Rede vir die sluiting,
+'dberrortextcl'        => 'Sintaksisfout in databasisnavraag.
+Die laaste navraag was:
+<blockquote><tt>$1</tt></blockquote>
+van funksie "<tt>$2</tt>".
+MySQL foutboodskap "<tt>$3: $4</tt>".',
+'noconnect'            => 'Kon nie met databasis op $1 konnekteer nie',
+'nodb'                 => 'Kon nie databasis $1 selekteer nie',
+'cachederror'          => "Die volgende is 'n gekaste kopie van die aangevraagde blad, en is dalk nie op datum nie.",
+'laggedslavemode'      => 'Waarskuwing: Onlangse wysigings dalk nie in bladsy vervat nie.',
+'readonly'             => 'Databasis gesluit',
+'enterlockreason'      => 'Rede vir die sluiting,
 en beraming van wanneer ontsluiting sal plaas vind',
-'readonlytext'        => 'Die {{SITENAME}} databasis is tans gesluit vir nuwe
+'readonlytext'         => 'Die {{SITENAME}} databasis is tans gesluit vir nuwe
 artikelwysigings, waarskynlik vir roetine databasisonderhoud,
 waarna dit terug sal wees na normaal.
 Die administreerder wat dit gesluit het se verduideliking:
 
 $1',
-'missingarticle'      => 'Die databasis het nie die teks van die veronderstelde bladsy "$1" gekry nie.
+'missingarticle'       => 'Die databasis het nie die teks van die veronderstelde bladsy "$1" gekry nie.
 Nie databasisfout nie, moontlik sagtewarefout.
 Raporteer die adres asseblief aan enige administrateur.',
-'readonly_lag'        => 'Die databasis is outomaties gesluit terwyl die slaafdatabasisse sinchroniseer met die meester',
-'internalerror'       => 'Interne fout',
-'filecopyerror'       => 'Kon nie lêer van "$1" na "$2" kopieer nie.',
-'filerenameerror'     => 'Kon nie lêernaam van "$1" na "$2" wysig nie.',
-'filedeleteerror'     => 'Kon nie lêer "$1" skrap nie.',
-'filenotfound'        => 'Kon nie lêer "$1" vind nie.',
-'unexpected'          => 'Onverwagte waarde: "$1"="$2".',
-'formerror'           => 'Fout: kon vorm nie stuur nie',
-'badarticleerror'     => 'Die aksie kon nie op hierdie bladsy uitgevoer word nie.',
-'cannotdelete'        => 'Kon nie die bladsy of prent skrap nie, iemand anders het dit miskien reeds geskrap.',
-'badtitle'            => 'Ongeldige titel',
-'badtitletext'        => "Die bladsytitel waarvoor gevra is, is ongeldig, leeg, of
+'readonly_lag'         => 'Die databasis is outomaties gesluit terwyl die slaafdatabasisse sinchroniseer met die meester',
+'internalerror'        => 'Interne fout',
+'internalerror_info'   => 'Interne fout: $1',
+'filecopyerror'        => 'Kon nie lêer van "$1" na "$2" kopieer nie.',
+'filerenameerror'      => 'Kon nie lêernaam van "$1" na "$2" wysig nie.',
+'filedeleteerror'      => 'Kon nie lêer "$1" skrap nie.',
+'directorycreateerror' => 'Kon nie gids "$1" skep nie.',
+'filenotfound'         => 'Kon nie lêer "$1" vind nie.',
+'fileexistserror'      => 'Nie moontlik om na lêer "$1" te skryf: lêer bestaan reeds',
+'unexpected'           => 'Onverwagte waarde: "$1"="$2".',
+'formerror'            => 'Fout: kon vorm nie stuur nie',
+'badarticleerror'      => 'Die aksie kon nie op hierdie bladsy uitgevoer word nie.',
+'cannotdelete'         => 'Kon nie die bladsy of prent skrap nie, iemand anders het dit miskien reeds geskrap.',
+'badtitle'             => 'Ongeldige titel',
+'badtitletext'         => "Die bladsytitel waarvoor gevra is, is ongeldig, leeg, of
 'n verkeerd geskakelde tussen-taal of tussen-wiki titel.",
-'perfdisabled'        => 'Jammer, hierdie funksie is tydelik afgeskakel omdat dit die databasis soveel verstadig dat dit onbruikbaar vir andere raak.',
-'perfcached'          => "ie volgende inligting is 'n gekaste kopie en mag dalk nie volledig op datum wees nie.",
-'perfcachedts'        => 'Die volgende data is gekas. Laaste opdatering: $1',
-'viewsource'          => 'Bekyk bronteks',
-'viewsourcefor'       => 'vir $1',
-'protectedpagetext'   => 'Hierdie bladsy is gesluit om redigering te verhoed.',
-'editinginterface'    => "'''Waarskuwing:''' Jy is besig om 'n bladsy te redigeer wat koppelvlakinligting aan die programmatuur voorsien. Wysigings aan hierdie bladsy sal die voorkoms van die gebruikerskoppelvlak vir ander gebruikers beïnvloed. Vir vertalings, overweeg om [http://translatewiki.net/wiki/Main_Page?setlang=af Betawiki] (die vertalingsprojek vir MediaWiki) te gebruik.",
-'namespaceprotected'  => "U het nie die rechte nie om bladsye in die '''$1'''-naamruimte te wysig.",
-'ns-specialprotected' => 'Spesiale bladsye kan nie geredigeer word nie.',
+'perfdisabled'         => 'Jammer, hierdie funksie is tydelik afgeskakel omdat dit die databasis soveel verstadig dat dit onbruikbaar vir andere raak.',
+'perfcached'           => "Die volgende inligting is 'n gekaste kopie en mag dalk nie volledig op datum wees nie.",
+'perfcachedts'         => 'Die volgende data is gekas. Laaste opdatering: $1',
+'querypage-no-updates' => 'Opdatering van hierdie bladsy is huidiglik afgeskakel. Inligting hier sal nie tans verfris word nie.',
+'wrong_wfQuery_params' => 'Foutiewe parameters na wfQuery()<br />
+Funksie: $1<br />
+Navraag: $2',
+'viewsource'           => 'Bekyk bronteks',
+'viewsourcefor'        => 'vir $1',
+'actionthrottled'      => 'Outo-rem op aksie uitgevoer',
+'actionthrottledtext'  => "As 'n teen-strooi aksie, word U beperk om hierdie aksie te veel keer in 'n kort tyd uit te voer, en U het hierdie limiet oorskry.
+Probeer asseblief weer oor 'n paar minute.",
+'protectedpagetext'    => 'Hierdie bladsy is beskerm om redigering te verhoed.',
+'viewsourcetext'       => 'U kan die bronteks van hierdie bladsy bekyk en wysig:',
+'protectedinterface'   => 'Hierdie bladsy verskaf intervlak teks vir die sagteware, en is beskerm om misbruik te voorkom.',
+'editinginterface'     => "'''Waarskuwing:''' U is besig om 'n bladsy te redigeer wat koppelvlakinligting aan die programmatuur voorsien. Wysigings aan hierdie bladsy sal die voorkoms van die gebruikerskoppelvlak vir ander gebruikers beïnvloed. Vir vertalings, overweeg om [http://translatewiki.net/wiki/Main_Page?setlang=af Betawiki] (die vertalingsprojek vir MediaWiki) te gebruik.",
+'cascadeprotected'     => 'Hierdie bladsy is beskerm teen redigering omdat dit ingesluit is in die volgende {{PLURAL:$1|bladsy|bladsye}} wat beskerm is met die "kaskade" opsie aangeskakel: $2',
+'namespaceprotected'   => "U het nie toestemming om bladsye in die '''$1'''-naamruimte te wysig nie.",
+'ns-specialprotected'  => 'Spesiale bladsye kan nie geredigeer word nie.',
 
 # Login and logout pages
 'logouttitle'                => 'Teken uit',
-'logouttext'                 => "Jy is nou uitgeteken, en kan aanhou om
-{{SITENAME}} anoniem te gebruik; of jy kan inteken as dieselfde of 'n ander gebruiker.",
+'logouttext'                 => "U is nou uitgeteken, en kan aanhou om
+{{SITENAME}} anoniem te gebruik; of U kan inteken as dieselfde of 'n ander gebruiker.",
 'welcomecreation'            => '<h2>Welkom, $1.</h2>
 Jou rekening is geskep;
 moenie vergeet om jou persoonlike voorkeure te stel nie.',
@@ -374,23 +414,28 @@ moenie vergeet om jou persoonlike voorkeure te stel nie.',
 'nocookieslogin'             => '{{SITENAME}} gebruik koekies vir die aanteken van gebruikers, maar u blaaier laat dit nie toe nie. Skakel dit asseblief aan en probeer weer.',
 'noname'                     => 'Ongeldige gebruikersnaam.',
 'loginsuccesstitle'          => 'Suksesvolle intekening',
-'loginsuccess'               => 'Jy is ingeteken by {{SITENAME}} as "$1".',
+'loginsuccess'               => 'U is ingeteken by {{SITENAME}} as "$1".',
 'nosuchuser'                 => 'Daar is geen gebruikersnaam "$1" nie. Maak seker dit is reg gespel, of gebruik die vorm hier onder om \'n nuwe rekening te skep.',
+'nosuchusershort'            => 'Daar is geen gebruikersnaam "<nowiki>$1</nowiki>" nie. Maak seker dit is reg gespel.',
+'nouserspecified'            => "U moet 'n gebruikersnaam spesifiseer.",
 'wrongpassword'              => 'Ongeldige wagwoord, probeer weer.',
 'wrongpasswordempty'         => 'Die wagwoord was leeg. Probeer asseblief weer.',
 'passwordtooshort'           => 'U wagwoord is te kort. Dit moet ten minste $1 karakters hê.',
 'mailmypassword'             => 'E-pos nuwe wagwoord',
 'passwordremindertitle'      => 'Wagwoordwenk van {{SITENAME}}',
-'passwordremindertext'       => 'Iemand (waarskynlik jy, van IP-adres $1)
-het gevra dat ons vir jou \'n nuwe {{SITENAME}}-wagwoord ($4) stuur.
+'passwordremindertext'       => 'Iemand (waarskynlik U, van IP-adres $1)
+het gevra dat ons vir U \'n nuwe {{SITENAME}}-wagwoord ($4) stuur.
 Die wagwoord vir gebruiker "$2" is nou "$3".
-Teken asseblief in en verander jou wagwoord.',
+Teken asseblief in en verander U wagwoord.
+
+Indien iemand anders hierdie navraag gerig het of as U die wagwoord onthou en U nie meer die wagwoord wil wysig nie, kan U hierdie boodskap ignoreer en voortgaan om U ou wagwoord te gebruik.',
 'noemail'                    => 'Daar is geen e-posadres vir gebruiker "$1" nie.',
 'passwordsent'               => 'Nuwe wagwoord gestuur na e-posadres vir "$1".
 Teken asseblief in na jy dit ontvang het.',
 'eauthentsent'               => "'n Bevestigingpos is gestuur na die gekose e-posadres.
 Voordat ander pos na die adres gestuur word,
 moet die instruksies in bogenoemde pos gevolg word om te bevestig dat die adres werklik u adres is.",
+'mailerror'                  => 'Fout tydens e-pos versending: $1',
 'acct_creation_throttle_hit' => 'Jammer. U het reeds $1 rekeninge geskep. U kan nie nog skep nie.',
 'emailauthenticated'         => 'U e-posadres is bevestig op $1.',
 'emailnotauthenticated'      => 'U e-poasadres is <strong>nog nie bevestig nie</strong>. Geen e-pos sal gestuur word vir die volgende funksies nie.',
@@ -436,18 +481,16 @@ moet die instruksies in bogenoemde pos gevolg word om te bevestig dat die adres 
 'missingcommenttext'       => 'Tik die opsomming onder.',
 'summary-preview'          => 'Opsomming nakijken',
 'blockedtitle'             => 'Gebruiker is geblokkeer',
-'blockedtext'              => "<big>'''Jou gebruikersnaam of IP-adres is geblokkeer.'''</big>
+'blockedtext'              => "<big>'''U gebruikersnaam of IP-adres is geblokkeer.'''</big>
 
-The block was made by $1. The reason given is ''$2''.
+Die blokkering is deur $1 gedoen. Die rede gegee is ''$2''.
 
-* Start of block: $8
-* Expiry of block: $6
-* Intended blockee: $7
+* Begin van blokkering: $8
+* Verval van blokkering: $6
+* Blokkering gemik op: $7
 
-Jy mag $1 of een van die ander [[{{MediaWiki:Grouppage-sysop}}|administreerders]] kontak om dit te bespreek.
-You cannot use the 'email this user' feature unless a valid email address is specified in your
-[[Special:Preferences|account preferences]] and you have not been blocked from using it.
-Your current IP address is $3, and the block ID is #$5. Please include either or both of these in any queries.",
+U mag $1 of een van die ander [[{{MediaWiki:Grouppage-sysop}}|administreerders]] kontak om dit te bespreek.
+U kan nie die 'e-pos hierdie gebruiker' opsie gebruik tensy 'n geldige e-pos adres gespesifiseer is in U [[Special:Preferences|rekening voorkeure]] en U is nie geblokkeer om dit te gebruik nie. U huidige IP-adres is $3, en die blokkering ID is #$5. Sluit asseblief een of albei hierdie verwysings in by enige navrae.",
 'blockednoreason'          => 'geen rede gegeef nie',
 'whitelistedittext'        => 'U moet $1 om bladsye te wysig.',
 'confirmedittitle'         => 'E-pos-bevestiging nodig om te redigeer',

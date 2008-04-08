@@ -16,6 +16,7 @@
  * @author לערי ריינהארט
  * @author Siebrand
  * @author Smeira
+ * @author Jon Harald Søby
  */
 
 $skinNames = array(
@@ -821,7 +822,7 @@ funció, la revisió especificada no existeix, o bé esteu provant d'amagar l'ac
 'revdelete-text'              => 'Les versions esborrades es mostraran encara als historial i registres de les pàgines, si bé part del seu contingut serà inaccessible al públic.
 
 Els altres administradors del projecte {{SITENAME}} encara podrien accedir al contingut amagat i restituir-lo de nou mitjançant aquesta mateixa interfície, si no hi ha cap altra restricció addicional pels operadors del lloc web.',
-'revdelete-legend'            => 'Defineix restriccions en la revisió',
+'revdelete-legend'            => 'Defineix restriccions en la visibilitat',
 'revdelete-hide-text'         => 'Amaga el text de revisió',
 'revdelete-hide-name'         => "Acció d'amagar i objectiu",
 'revdelete-hide-comment'      => "Amaga el comentari de l'edició",
@@ -839,6 +840,16 @@ Els altres administradors del projecte {{SITENAME}} encara podrien accedir al co
 'revdel-restore'              => "Canvia'n la visibilitat",
 'pagehist'                    => 'Historial',
 'deletedhist'                 => "Historial d'esborrat",
+'revdelete-content'           => 'el contingut',
+'revdelete-summary'           => "el resum d'edició",
+'revdelete-uname'             => "el nom d'usuari",
+'revdelete-restricted'        => 'ha aplicat restriccions al administradors',
+'revdelete-unrestricted'      => 'ha esborrat les restriccions per a administradors',
+'revdelete-hid'               => 'ha amagat $1',
+'revdelete-unhid'             => 'ha tornat a mostrar $1',
+'revdelete-log-message'       => '$1 de {{PLURAL:$2|la revisió|les revisions}}
+$2',
+'logdelete-log-message'       => "$1 per {{PLURAL:$2|l'esdeveniment|els esdeveniments}} $2",
 
 # Suppression log
 'suppressionlog'     => 'Registre de supressió',
@@ -950,7 +961,7 @@ $2 Llista redireccions   Cerca $3 $9',
 'prefs-watchlist-edits'    => 'Nombre de modificacions a mostrar en una llista estesa de seguiment:',
 'prefs-misc'               => 'Altres preferències',
 'saveprefs'                => 'Desa les preferències',
-'resetprefs'               => 'Torna a preferències per defecte',
+'resetprefs'               => 'Esborra els canvis no guardats',
 'oldpassword'              => 'Contrasenya antiga',
 'newpassword'              => 'Contrasenya nova',
 'retypenew'                => 'Torneu a escriure la nova contrasenya:',
@@ -1009,20 +1020,20 @@ Els requadres sense macar indiquen que l'usuari no hi pertany.",
 'group-bot'           => 'bots',
 'group-sysop'         => 'administradors',
 'group-bureaucrat'    => 'buròcrates',
-'group-suppress'      => 'Descuits',
+'group-suppress'      => 'Oversights',
 'group-all'           => '(tots)',
 
 'group-autoconfirmed-member' => 'Usuari autoconfirmat',
 'group-bot-member'           => 'bot',
 'group-sysop-member'         => 'administrador',
 'group-bureaucrat-member'    => 'buròcrata',
-'group-suppress-member'      => 'Descuit',
+'group-suppress-member'      => 'Oversight',
 
 'grouppage-autoconfirmed' => '{{ns:project}}:Usuaris autoconfirmats',
 'grouppage-bot'           => '{{ns:project}}:Bots',
 'grouppage-sysop'         => '{{ns:project}}:Administradors',
 'grouppage-bureaucrat'    => '{{ns:project}}:Buròcrates',
-'grouppage-suppress'      => '{{ns:project}}:Descuit',
+'grouppage-suppress'      => '{{ns:project}}:Oversight',
 
 # User rights log
 'rightslog'      => "Registre dels permisos d'usuari",
@@ -1344,7 +1355,7 @@ segon redireccionament, la qual cosa dóna normalment l\'article "real", al que 
 'notargettext'            => 'No heu especificat a quina pàgina dur a terme aquesta funció.',
 'pager-newer-n'           => '{{PLURAL:$1|1 posterior|$1 posteriors}}',
 'pager-older-n'           => '{{PLURAL:$1|anterior|$1 anteriors}}',
-'suppress'                => 'Descuit',
+'suppress'                => 'Oversight',
 
 # Book sources
 'booksources'               => 'Obres de referència',

@@ -993,11 +993,11 @@ Xin hãy bảo đảm giữ vững tính liên tục của lịch sử trang.',
 'rightsnone'     => '(không có)',
 
 # Recent changes
-'nchanges'                          => '$1 thay đổi',
+'nchanges'                          => '$1 {{PLURAL:$1|thay đổi|thay đổi}}',
 'recentchanges'                     => 'Thay đổi gần đây',
 'recentchangestext'                 => 'Xem các thay đổi gần đây nhất tại wiki trên trang này.',
 'recentchanges-feed-description'    => 'Theo dõi các thay đổi gần đây nhất của wiki dùng feed này.',
-'rcnote'                            => "Dưới đây là '''$1''' thay đổi gần nhất trong '''$2''' ngày qua, tính tới $3.",
+'rcnote'                            => "Dưới đây là {{PLURAL:$1|'''1''' thay đổi|'''$1''' thay đổi gần nhất}} trong {{PLURAL:$2|ngày qua|'''$2''' ngày qua}}, tính tới $3.",
 'rcnotefrom'                        => "Thay đổi từ '''$2''' (hiển thị tối đa '''$1''' thay đổi).",
 'rclistfrom'                        => 'Xem thay đổi từ $1.',
 'rcshowhideminor'                   => '$1 sửa đổi nhỏ',
@@ -1014,7 +1014,7 @@ Xin hãy bảo đảm giữ vững tính liên tục của lịch sử trang.',
 'minoreditletter'                   => 'n',
 'newpageletter'                     => 'M',
 'boteditletter'                     => 'b',
-'number_of_watching_users_pageview' => '[$1 người đang xem]',
+'number_of_watching_users_pageview' => '[$1 {{PLURAL:$1|người|người}} đang xem]',
 'rc_categories'                     => 'Hạn chế theo thể loại (phân cách bằng “|”)',
 'rc_categories_any'                 => 'Cái nào cũng được',
 'newsectionsummary'                 => 'Đề mục mới: /* $1 */',
@@ -1228,14 +1228,16 @@ Hãy nhấn chuột vào tiêu đề cột để thay đổi thứ tự sắp x�
 'statistics'             => 'Thống kê',
 'sitestats'              => 'Thống kê {{SITENAME}}',
 'userstats'              => 'Thống kê thành viên',
-'sitestatstext'          => "Hiện có $1 trang trong cơ sở dữ liệu. Trong số đó có các trang “thảo luận”, trang liên quan đến {{SITENAME}}, các trang “sơ khai” ngắn, và những trang khác không tính là trang có nội dung. Nếu không tính đến các trang đó, có $2 trang là những trang có nội dung tốt.
+'sitestatstext'          => "Hiện có {{PLURAL:$1|'''1''' trang|tổng cộng '''$1''' trang}} trong cơ sở dữ liệu.
+Trong số đó có các trang “thảo luận”, trang liên quan đến {{SITENAME}}, các trang “sơ khai” ngắn, và những trang khác không tính là trang có nội dung.
+Nếu không tính đến các trang đó, có {{PLURAL:$2|'''1'''|'''$2'''}} trang là những trang có nội dung tốt.
 
-Có '''$8''' tập tin đã được tải lên.
+Có '''$8''' đã được tải lên.
 
 Đã có tổng cộng '''$3''' lần truy cập, và '''$4''' sửa đổi từ khi {{SITENAME}} được khởi tạo. Như vậy trung bình có '''$5''' sửa đổi tại mỗi trang, và '''$6''' lần truy cập trên mỗi sửa đổi.
 
 Độ dài của [http://meta.wikimedia.org/wiki/Help:Job_queue hàng đợi việc] là '''$7'''.",
-'userstatstext'          => "Có '''$1''' [[Special:Listusers|thành viên]] đã đăng ký tài khoản, trong số đó có '''$2''' thành viên (chiếm '''$4%''' trên tổng số) là $5.",
+'userstatstext'          => "Có '''$1''' [[Special:Listusers|thành viên]] đã đăng ký tài khoản, trong số đó có '''$2''' thành viên (chiếm '''$4%''' trên tổng số) {{PLURAL:$2||}} là $5.",
 'statistics-mostpopular' => 'Các trang được xem nhiều nhất',
 
 'disambiguations'      => 'Trang định hướng',
@@ -1257,12 +1259,12 @@ Có '''$8''' tập tin đã được tải lên.
 'fewestrevisions' => 'Trang có ít sửa đổi nhất',
 
 # Miscellaneous special pages
-'nbytes'                  => '$1 byte',
-'ncategories'             => '$1 thể loại',
-'nlinks'                  => '$1 liên kết',
-'nmembers'                => '$1 thành viên',
-'nrevisions'              => '$1 phiên bản',
-'nviews'                  => '$1 lượt truy cập',
+'nbytes'                  => '$1 {{PLURAL:$1|byte|byte}}',
+'ncategories'             => '$1 {{PLURAL:$1|thể loại|thể loại}}',
+'nlinks'                  => '$1 {{PLURAL:$1|liên kết|liên kết}}',
+'nmembers'                => '$1 {{PLURAL:$1|thành viên|thành viên}}',
+'nrevisions'              => '$1 {{PLURAL:$1|phiên bản|phiên bản}}',
+'nviews'                  => '$1 {{PLURAL:$1|lượt truy cập|lượt truy cập}}',
 'specialpage-empty'       => 'Trang này đang trống.',
 'lonelypages'             => 'Trang mồ côi',
 'lonelypagestext'         => 'Chưa có trang nào liên kết đến các trang này trong {{SITENAME}}.',
@@ -1305,8 +1307,8 @@ Có '''$8''' tập tin đã được tải lên.
 'unusedcategoriestext'    => 'Các trang thể loại này tồn tại mặc dù không có trang hay tiểu thể loại nào thuộc về nó.',
 'notargettitle'           => 'Chưa có mục tiêu',
 'notargettext'            => 'Xin chỉ rõ trang hoặc thành viên cần thực hiện tác vụ.',
-'pager-newer-n'           => '$1 mới hơn',
-'pager-older-n'           => '$1 cũ hơn',
+'pager-newer-n'           => '{{PLURAL:$1|1|$1}} mới hơn',
+'pager-older-n'           => '{{PLURAL:$1|1|$1}} cũ hơn',
 'suppress'                => 'Giám sát viên',
 
 # Book sources
@@ -1389,12 +1391,12 @@ Nếu bạn muốn cho trang này ra khỏi danh sách theo dõi, nhấn vào "N
 'notanarticle'         => 'Không phải trang có nội dung',
 'notvisiblerev'        => 'Phiên bản bị xóa',
 'watchnochange'        => 'Không có trang nào bạn theo dõi được sửa đổi.',
-'watchlist-details'    => 'Bạn đang theo dõi $1 trang không kể trang thảo luận.',
+'watchlist-details'    => 'Bạn đang theo dõi {{PLURAL:$1|$1 trang|$1 trang}} không kể trang thảo luận.',
 'wlheader-enotif'      => '* Đã bật thông báo qua thư điện tử.',
 'wlheader-showupdated' => "* Các trang đã thay đổi từ lần cuối bạn xem chúng được in '''đậm'''",
 'watchmethod-recent'   => 'Dưới đây hiện thay đổi mới với các trang theo dõi.',
 'watchmethod-list'     => 'Dưới đây hiện danh sách các trang theo dõi.',
-'watchlistcontains'    => 'Danh sách theo dõi của bạn có $1 trang.',
+'watchlistcontains'    => 'Danh sách theo dõi của bạn có $1 {{PLURAL:$1|trang|trang}}.',
 'iteminvalidname'      => 'Tên trang “$1” không hợp lệ…',
 'wlnote'               => "Dưới đây là {{PLURAL:$1|sửa đổi cuối cùng|'''$1''' sửa đổi mới nhất}} trong '''$2''' giờ qua.",
 'wlshowlast'           => 'Xem $1 giờ $2 ngày qua, hoặc $3',
@@ -1540,7 +1542,7 @@ hiện tại của trang <strong>$1</strong>:',
 'undeleteextrahelp'            => "Để phục hồi toàn bộ trang, hãy để trống các hộp kiểm và bấm nút '''''Phục hồi'''''.
 Để thực hiện phục hồi có chọn lọc, hãy đánh dấu vào hộp kiểm của các phiên bản muốn phục hồi và bấm nút '''''Phục hồi'''''.
 Bấm nút '''''Tẩy trống''''' sẽ tẩy trống ô lý do và tất cả các hộp kiểm.",
-'undeleterevisions'            => '$1 bản đã được lưu',
+'undeleterevisions'            => '$1 {{PLURAL:$1|bản|bản}} đã được lưu',
 'undeletehistory'              => 'Nếu bạn khôi phục trang này, tất cả các phiên bản của nó sẽ được phục hồi vào lịch sử của trang.
 Nếu một trang mới có cùng tên đã được tạo ra kể từ khi xóa trang này, các phiên bản được khôi phục sẽ xuất hiện trong lịch sử trước.
 Cũng chú ý rằng các giới hạn áp dụng lên các phiên bản tập tin sẽ bị mất khi phục hồi',
@@ -1557,10 +1559,11 @@ Chỉ cóngười quản lý mới xem được văn bản đầy đủ của nh
 'undeletereset'                => 'Tẩy trống',
 'undeletecomment'              => 'Lý do:',
 'undeletedarticle'             => 'đã phục hồi “$1”',
-'undeletedrevisions'           => '$1 bản được phục hồi',
-'undeletedrevisions-files'     => '$1 bản và $2 tập tin đã được phục hồi',
-'undeletedfiles'               => '$1 tập tin đã được phục hồi',
-'cannotundelete'               => 'Phục hồi thất bại; một người nào khác đã phục hồi trang này rồi.',
+'undeletedrevisions'           => '$1 {{PLURAL:$1|bản|bản}} được phục hồi',
+'undeletedrevisions-files'     => '$1 {{PLURAL:$1|bản|bản}} và $2 {{PLURAL:$2|tập tin|tập tin}} đã được phục hồi',
+'undeletedfiles'               => '$1 {{PLURAL:$1|tập tin|tập tin}} đã được phục hồi',
+'cannotundelete'               => 'Phục hồi thất bại;
+một người nào khác đã phục hồi trang này rồi.',
 'undeletedpage'                => "<big>'''$1 đã được khôi phục'''</big>
 
 Xem nhật trình xóa và phục hồi các trang gần đây tại [[Special:Log/delete|nhật trình xóa]].",
@@ -1817,7 +1820,7 @@ Trong trường hợp sau bạn cũng có thể dùng một liên kết, ví d�
 'import-interwiki-namespace' => 'Chuyển các trang vào không gian tên:',
 'importtext'                 => 'Xin hãy xuất tập tin từ wiki nguồn sử dụng tính năng Special:Export, lưu nó vào máy của bạn rồi tải nó lên đây.',
 'importstart'                => 'Đang nhập các trang…',
-'import-revision-count'      => '$1 phiên bản',
+'import-revision-count'      => '$1 {{PLURAL:$1|phiên bản|phiên bản}}',
 'importnopages'              => 'Không có trang để nhập vào.',
 'importfailed'               => 'Không nhập được: $1',
 'importunknownsource'        => 'Không hiểu nguồn trang để nhập vào',
@@ -1840,9 +1843,9 @@ Trong trường hợp sau bạn cũng có thể dùng một liên kết, ví d�
 'importlogpage'                    => 'Nhật trình nhập trang',
 'importlogpagetext'                => 'Đây là danh sách các trang được quản lý nhập vào đây. Các trang này có lịch sử sửa đổi từ hồi ở wiki khác.',
 'import-logentry-upload'           => 'nhập vào [[$1]] bằng cách tải tập tin',
-'import-logentry-upload-detail'    => '$1 phiên bản',
+'import-logentry-upload-detail'    => '$1 {{PLURAL:$1|phiên bản|phiên bản}}',
 'import-logentry-interwiki'        => 'đã nhập vào $1 từ wiki khác',
-'import-logentry-interwiki-detail' => '$1 phiên bản từ $2',
+'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|phiên bản|phiên bản}} từ $2',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'             => 'Trang thành viên của tôi',
@@ -1999,7 +2002,7 @@ $1',
 
 # Special:Newimages
 'newimages'             => 'Trang trưng bày hình ảnh mới',
-'imagelisttext'         => "Dưới đây là danh sách '''$1''' tập tin xếp theo $2.",
+'imagelisttext'         => "Dưới đây là danh sách '''$1''' {{PLURAL:$1|tập tin|tập tin}} xếp theo $2.",
 'newimages-summary'     => 'Trang đặc biệt này hiển thị các tập tin được tải lên gần đây nhất.',
 'showhidebots'          => '($1 robot)',
 'noimages'              => 'Chưa có hình.',
@@ -2404,21 +2407,21 @@ $1',
 'lag-warn-high'   => 'Do độ trễ của máy chủ cơ sở dữ liệu, những thay đổi trong vòng $1 giây trở lại đây có thể chưa xuất hiện trong danh sách.',
 
 # Watchlist editor
-'watchlistedit-numitems'       => 'Danh sách theo dõi của bạn có $1 trang, không tính các trang thảo luận.',
+'watchlistedit-numitems'       => 'Danh sách theo dõi của bạn có $1 {{PLURAL:$1|tựa đề|tựa đề}}, không tính các trang thảo luận.',
 'watchlistedit-noitems'        => 'Danh sách các trang bạn theo dõi hiện không có gì.',
 'watchlistedit-normal-title'   => 'Sửa các trang tôi theo dõi',
 'watchlistedit-normal-legend'  => 'Bỏ các trang đang theo dõi ra khỏi danh sách',
 'watchlistedit-normal-explain' => 'Tên các trang bạn theo dõi được hiển thị dưới đây. Để xóa một tên trang, chọn vào hộp kiểm bên cạnh nó, rồi nhấn “Bỏ trang đã chọn”. Bạn cũng có thể [[{{ns:Special}}:Watchlist/raw|sửa danh sách theo dạng thô]].',
 'watchlistedit-normal-submit'  => 'Bỏ trang đã chọn',
-'watchlistedit-normal-done'    => '$1 trang đã được xóa khỏi danh sách các trang theo dõi:',
+'watchlistedit-normal-done'    => '$1 {{PLURAL:$1|tựa đề|tựa đề}} đã được xóa khỏi danh sách các trang theo dõi:',
 'watchlistedit-raw-title'      => 'Sửa danh sách theo dõi dạng thô',
 'watchlistedit-raw-legend'     => 'Sửa danh sách theo dõi dạng thô',
 'watchlistedit-raw-explain'    => 'Tên các trang bạn theo dõi đuọc hiển thị dưới đây, và có thể được sửa chữa bằng cách thêm vào hoặc bỏ ra khỏi danh sách; mỗi trang một hàng. Khi xong, nhấn nút ”Cập nhật Trang tôi theo dõi”. Bạn cũng có thể [[{{ns:Special}}:Watchlist/edit|dùng trình soạn thảo chuẩn]] để sửa danh sách này.',
 'watchlistedit-raw-titles'     => 'Tên các trang:',
 'watchlistedit-raw-submit'     => 'Cập nhật Trang tôi theo dõi',
 'watchlistedit-raw-done'       => 'Danh sách các trang bạn theo dõi đã được cập nhật.',
-'watchlistedit-raw-added'      => '$1 trang đã được thêm vào:',
-'watchlistedit-raw-removed'    => '$1 trang đã được xóa khỏi danh sách:',
+'watchlistedit-raw-added'      => '$1 {{PLURAL:$1|tựa đề|tựa đề}} đã được thêm vào:',
+'watchlistedit-raw-removed'    => '$1 {{PLURAL:$1|tựa đề|tựa đề}} đã được xóa khỏi danh sách:',
 
 # Watchlist editing tools
 'watchlisttools-view' => 'Xem thay đổi trên các trang theo dõi',

@@ -960,8 +960,6 @@ pokud to provozovatel serveru nezakázal.',
 'revdelete-submit'            => 'Aplikovat nastavení',
 'revdelete-logentry'          => 'změnil viditelnost revizí u [[$1]]',
 'logdelete-logentry'          => 'mění viditelnost události [[$1]]',
-'revdelete-logaction'         => 'U $1 {{PLURAL:$1|revize|revizí|revizí}} nastaven mód $2',
-'logdelete-logaction'         => 'U $1 {{PLURAL:$1|události|událostí}} nastaven mód $2',
 'revdelete-success'           => "'''Viditelnost revize úspěšně nastavena.'''",
 'logdelete-success'           => "'''Viditelnost události úspěšně nastavena.'''",
 'revdel-restore'              => 'Změnit viditelnost',
@@ -2445,13 +2443,15 @@ Poštovní program hlásí: $1',
 'confirmemail_subject'     => 'Potvrzení e-mailové adresy pro {{grammar:4sg|{{SITENAME}}}}',
 'confirmemail_body'        => 'Někdo (patrně vy, z IP adresy $1) si registroval účet se jménem "$2" a touto e-mailovou adresou na {{grammar:6sg|{{SITENAME}}}}.
 
-Pokud si přejete aktivovat e-mailové funkce na {{grammar:6sg|{{SITENAME}}}}, tak pro potvrzení,
-že tato adresa opravdu patří vám, přejděte svým internetovým prohlížečem na následující adresu:
+Pokud si přejete aktivovat e-mailové funkce na {{grammar:6sg|{{SITENAME}}}}, tak pro potvrzení, že tato adresa opravdu patří vám, přejděte svým internetovým prohlížečem na následující adresu:
 
 $3
 
-Pokud jste o toto potvrzení *nežádali*, neklikejte na předchozí odkaz. Platnost tohoto potvrzovacího
-kódu vyprší $4.',
+Pokud jste o toto potvrzení *nežádali*, klikněte na následující odkaz, čímž potvrzení zrušíte:
+
+$5
+
+Platnost tohoto potvrzovacího kódu vyprší $4.',
 'confirmemail_invalidated' => 'Potvrzení e-mailové adresy bylo zrušeno',
 'invalidateemail'          => 'Zrušit potvrzení e-mailové adresy',
 

@@ -419,7 +419,7 @@ Vi rajtas daŭre vikiumi sennome, aŭ vi povas reensaluti kiel la sama aŭ kiel 
 
 Via konto estas kreita. <span style="color:#ff0000">Ne forgesu fari viajn [[special:Preferences|{{SITENAME}}-preferojn]]!</span>',
 'loginpagetitle'             => 'Ensalutu / enskribu',
-'yourname'                   => 'Via salutnomo',
+'yourname'                   => 'Salutnomo:',
 'yourpassword'               => 'Via pasvorto',
 'yourpasswordagain'          => 'Retajpu pasvorton',
 'remembermypassword'         => 'Rememoru mian pasvorton',
@@ -727,7 +727,7 @@ funkcion, la specifigita revizio ne ekzistas, aŭ vi estas provanta kaŝi la nun
 'revdelete-text'              => 'Forigitaj versioj kaj eventoj plu aperos en la historipagxoj, sed iliaj tekstoj ne estos alireblaj de  la publiko.
 
 Aliaj administrantoj cxe {{SITENAME}} plu povos aliri la kasxitan entenon kaj restarigi gxin per la sama interfaco, krom se plia limigo estas metita de la pagxaradministrantoj.',
-'revdelete-legend'            => 'Limigu ecojn de versio',
+'revdelete-legend'            => 'Faru videblecajn limigojn',
 'revdelete-hide-text'         => 'Kaŝu tekston de versio',
 'revdelete-hide-name'         => 'Kaŝu agon kaj celon',
 'revdelete-hide-comment'      => 'Kaŝu komenton de redakto',
@@ -745,6 +745,11 @@ Aliaj administrantoj cxe {{SITENAME}} plu povos aliri la kasxitan entenon kaj re
 'revdel-restore'              => 'Ŝanĝu videblecon',
 'pagehist'                    => 'Paĝa historio',
 'deletedhist'                 => 'Forigita historio',
+'revdelete-content'           => 'enhavo',
+'revdelete-summary'           => 'redaktu resumon',
+'revdelete-uname'             => 'salutnomo',
+'revdelete-hid'               => 'kaŝis $1',
+'revdelete-unhid'             => 'malkaŝis $1',
 
 # Suppression log
 'suppressionlog'     => 'Loglibro pri subigado',
@@ -857,7 +862,7 @@ indekso pro troŝarĝita servilo. Intertempe, vi povas serĉi per <i>guglo</i> a
 'prefs-watchlist-edits'    => 'Maksimuma nombro de ŝanĝoj montrendaj en ekspandita atentaro:',
 'prefs-misc'               => 'Miksitaĵoj',
 'saveprefs'                => 'Konservu preferojn',
-'resetprefs'               => 'Restarigi antaŭajn preferojn',
+'resetprefs'               => 'Forviŝu nekonservitajn ŝanĝojn',
 'oldpassword'              => 'Malnova pasvorto',
 'newpassword'              => 'Nova pasvorto',
 'retypenew'                => 'Retajpu novan pasvorton',

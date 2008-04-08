@@ -8,6 +8,7 @@
  * @author SPQRobin
  * @author Siebrand
  * @author לערי ריינהארט
+ * @author Jon Harald Søby
  */
 
 $namespaceNames = array(
@@ -700,7 +701,7 @@ Implijit [[Special:Search|klaskit er wiki]] evit kavout pajennoù all a c'hallfe
 # Revision deletion
 'rev-deleted-comment'         => '(evezhiadenn diverket)',
 'rev-deleted-user'            => '(anv implijer diverket)',
-'rev-deleted-event'           => '(meneg dilamet)',
+'rev-deleted-event'           => '(elfenn dilamet)',
 'rev-deleted-text-permission' => '<div class="mw-warning plainlinks">
 Lamet eo bet kuit ar stumm-mañ eus ar bajenn eus an dielloù foran.
 Marteze e kavot munudoù war [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} roll ar pajennoù diverket].
@@ -746,6 +747,7 @@ Gouest e vo merourien all {{SITENAME}} da dapout krog en testennoù kuzhet ha da
 'revdelete-hid'               => 'kuzhat $1',
 'revdelete-unhid'             => 'diguzhat $1',
 'revdelete-log-message'       => '$1 evit $2 {{PLURAL:$2|adweladenn|adweladenn}}',
+'logdelete-log-message'       => '$1 evit $2 {{PLURAL:$2|darvoud|darvoud}}',
 
 # Suppression log
 'suppressionlog'     => 'Marilh diverkañ',

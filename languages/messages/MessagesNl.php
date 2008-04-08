@@ -748,23 +748,23 @@ Negeer dit bericht als deze gebruiker zonder uw medeweten is aangemaakt.',
 'hr_tip'          => 'Horizontale lijn (gebruik spaarzaam)',
 
 # Edit pages
-'summary'                   => 'Samenvatting',
-'subject'                   => 'Onderwerp/kop',
-'minoredit'                 => 'Dit is een kleine bewerking',
-'watchthis'                 => 'Deze pagina volgen',
-'savearticle'               => 'Pagina opslaan',
-'preview'                   => 'Nakijken',
-'showpreview'               => 'Bewerking ter controle bekijken',
-'showlivepreview'           => 'Bewerking ter controle bekijken',
-'showdiff'                  => 'Wijzigingen bekijken',
-'anoneditwarning'           => "'''Waarschuwing:''' u bent niet aangemeld. Uw IP-adres wordt opgeslagen als u wijzigingen op deze pagina maakt.",
-'missingsummary'            => "'''Herinnering:''' u hebt geen samenvatting opgegeven voor uw bewerking. Als u nogmaals op ''Pagina opslaan'' klikt wordt de bewerking zonder samenvatting opgeslagen.",
-'missingcommenttext'        => 'Plaats uw opmerking hieronder, alstublieft.',
-'missingcommentheader'      => "'''Let op:''' U hebt geen onderwerp/kop voor deze opmerking opgegeven. Als u opnieuw op \"opslaan\" klikt, wordt uw wijziging zonder een onderwerp/kop opgeslagen.",
-'summary-preview'           => 'Samenvatting nakijken',
-'subject-preview'           => 'Nakijken onderwerp/kop',
-'blockedtitle'              => 'Gebruiker is geblokkeerd',
-'blockedtext'               => "<big>'''Uw gebruiker of IP-adres is geblokkeerd.'''</big>
+'summary'                           => 'Samenvatting',
+'subject'                           => 'Onderwerp/kop',
+'minoredit'                         => 'Dit is een kleine bewerking',
+'watchthis'                         => 'Deze pagina volgen',
+'savearticle'                       => 'Pagina opslaan',
+'preview'                           => 'Nakijken',
+'showpreview'                       => 'Bewerking ter controle bekijken',
+'showlivepreview'                   => 'Bewerking ter controle bekijken',
+'showdiff'                          => 'Wijzigingen bekijken',
+'anoneditwarning'                   => "'''Waarschuwing:''' u bent niet aangemeld. Uw IP-adres wordt opgeslagen als u wijzigingen op deze pagina maakt.",
+'missingsummary'                    => "'''Herinnering:''' u hebt geen samenvatting opgegeven voor uw bewerking. Als u nogmaals op ''Pagina opslaan'' klikt wordt de bewerking zonder samenvatting opgeslagen.",
+'missingcommenttext'                => 'Plaats uw opmerking hieronder, alstublieft.',
+'missingcommentheader'              => "'''Let op:''' U hebt geen onderwerp/kop voor deze opmerking opgegeven. Als u opnieuw op \"opslaan\" klikt, wordt uw wijziging zonder een onderwerp/kop opgeslagen.",
+'summary-preview'                   => 'Samenvatting nakijken',
+'subject-preview'                   => 'Nakijken onderwerp/kop',
+'blockedtitle'                      => 'Gebruiker is geblokkeerd',
+'blockedtext'                       => "<big>'''Uw gebruiker of IP-adres is geblokkeerd.'''</big>
 
 De blokkade is uitgevoerd door $1.
 De opgegeven reden is ''$2''.
@@ -776,7 +776,7 @@ De opgegeven reden is ''$2''.
 U kunt contact opnemen met $1 of een andere [[{{MediaWiki:Grouppage-sysop}}|beheerder]] om de blokkade te bespreken.
 U kunt geen gebruik maken van de functie 'e-mail deze gebruiker', tenzij u een geldig e-mailadres hebt opgegeven in uw [[Special:Preferences|voorkeuren]] en het gebruik van deze functie niet geblokkeerd is.
 Uw huidige IP-adres is $3 en het blokkadenummer is #$5. Vermeld beide gegevens als u ergens op deze blokkade reageert.",
-'autoblockedtext'           => "Uw IP-adres is automatisch geblokkeerd, omdat het is gebruikt door een andere gebruiker, die is geblokkeerd door $1.
+'autoblockedtext'                   => "Uw IP-adres is automatisch geblokkeerd, omdat het is gebruikt door een andere gebruiker, die is geblokkeerd door $1.
 De opgegeven reden is:
 
 :''$2''
@@ -787,33 +787,33 @@ De opgegeven reden is:
 U kunt deze blokkade bespreken met $1 of een andere [[{{MediaWiki:Grouppage-sysop}}|beheerder]].
 U kunt geen gebruik maken van de functie 'e-mail deze gebruiker', tenzij u een geldig e-mailadres hebt opgegeven in uw [[Special:Preferences|voorkeuren]] en het gebruik van deze functie niet is geblokkeerd.
 Uw huidige IP-adres is $3 en het blokkadenummer is #$5. Vermeld beide gegevens als u ergens over deze blokkade reageert.",
-'blockednoreason'           => 'geen reden opgegeven',
-'blockedoriginalsource'     => "Hieronder staat de brontekst van '''$1''':",
-'blockededitsource'         => "Hieronder staat de tekst van '''uw bewerkingen''' aan '''$1''':",
-'whitelistedittitle'        => 'Voor bewerken is aanmelden verplicht',
-'whitelistedittext'         => "U moet $1 om pagina's te bewerken.",
-'whitelistreadtitle'        => 'Voor leestoegang is aanmelden verplicht',
-'whitelistreadtext'         => "[[Special:Preferences|Meld u aan]] voor leestoegang tot pagina's.",
-'whitelistacctitle'         => 'Het aanmaken van nieuwe gebruikers is niet toegestaan',
-'whitelistacctext'          => 'U dient [[Special:Userlogin|aangemeld]] te zijn en de juiste rechten te hebben om gebruikers aan te maken in {{SITENAME}}.',
-'confirmedittitle'          => 'E-mailbevestiging is verplicht voordat u kunt bewerken',
-'confirmedittext'           => 'U moet uw e-mailadres bevestigen voor u kunt bewerken.
+'blockednoreason'                   => 'geen reden opgegeven',
+'blockedoriginalsource'             => "Hieronder staat de brontekst van '''$1''':",
+'blockededitsource'                 => "Hieronder staat de tekst van '''uw bewerkingen''' aan '''$1''':",
+'whitelistedittitle'                => 'Voor bewerken is aanmelden verplicht',
+'whitelistedittext'                 => "U moet $1 om pagina's te bewerken.",
+'whitelistreadtitle'                => 'Voor leestoegang is aanmelden verplicht',
+'whitelistreadtext'                 => "[[Special:Preferences|Meld u aan]] voor leestoegang tot pagina's.",
+'whitelistacctitle'                 => 'Het aanmaken van nieuwe gebruikers is niet toegestaan',
+'whitelistacctext'                  => 'U dient [[Special:Userlogin|aangemeld]] te zijn en de juiste rechten te hebben om gebruikers aan te maken in {{SITENAME}}.',
+'confirmedittitle'                  => 'E-mailbevestiging is verplicht voordat u kunt bewerken',
+'confirmedittext'                   => 'U moet uw e-mailadres bevestigen voor u kunt bewerken.
 Voer uw e-mailadres in en bevestig het via [[Special:Preferences|uw voorkeuren]].',
-'nosuchsectiontitle'        => 'Deze subkop bestaat niet',
-'nosuchsectiontext'         => 'U probeerde een subkop te bewerken dat niet bestaat. Omdat subkop $1 niet bestaat, kan uw bewerking ook niet worden opgeslagen.',
-'loginreqtitle'             => 'Aanmelden verplicht',
-'loginreqlink'              => 'aanmelden',
-'loginreqpagetext'          => "$1 is verplicht om andere pagina's te kunnen zien.",
-'accmailtitle'              => 'Wachtwoord verzonden.',
-'accmailtext'               => 'Het wachtwoord voor "$1" is verzonden naar $2.',
-'newarticle'                => '(Nieuw)',
-'newarticletext'            => "Deze pagina bestaat niet. Typ in het onderstaande veld om de pagina aan te maken (meer informatie staat op de [[{{MediaWiki:Helppage}}|hulppagina]]).
+'nosuchsectiontitle'                => 'Deze subkop bestaat niet',
+'nosuchsectiontext'                 => 'U probeerde een subkop te bewerken dat niet bestaat. Omdat subkop $1 niet bestaat, kan uw bewerking ook niet worden opgeslagen.',
+'loginreqtitle'                     => 'Aanmelden verplicht',
+'loginreqlink'                      => 'aanmelden',
+'loginreqpagetext'                  => "$1 is verplicht om andere pagina's te kunnen zien.",
+'accmailtitle'                      => 'Wachtwoord verzonden.',
+'accmailtext'                       => 'Het wachtwoord voor "$1" is verzonden naar $2.',
+'newarticle'                        => '(Nieuw)',
+'newarticletext'                    => "Deze pagina bestaat niet. Typ in het onderstaande veld om de pagina aan te maken (meer informatie staat op de [[{{MediaWiki:Helppage}}|hulppagina]]).
 Gebruik de knop '''vorige''' in uw browser als u hier per ongeluk terecht bent gekomen.",
-'anontalkpagetext'          => "----''Deze overlegpagina hoort bij een anonieme gebruiker die hetzij geen gebruikersnaam heeft, hetzij deze niet gebruikt. We gebruiken daarom het IP-adres ter identificatie. Het is mogelijk dat meerdere personen hetzelfde IP-adres gebruiken. Mogelijk ontvangt u hier berichten die niet voor u bedoeld zijn. Als u dat wilt voorkomen, [[Special:Userlogin/signup|maak dan een gebruikersnaam aan]] of [[Special:Userlogin|meld u aan]] om verwarring met andere anonieme gebruikers te voorkomen.''",
-'noarticletext'             => 'Deze pagina bevat geen tekst.
+'anontalkpagetext'                  => "----''Deze overlegpagina hoort bij een anonieme gebruiker die hetzij geen gebruikersnaam heeft, hetzij deze niet gebruikt. We gebruiken daarom het IP-adres ter identificatie. Het is mogelijk dat meerdere personen hetzelfde IP-adres gebruiken. Mogelijk ontvangt u hier berichten die niet voor u bedoeld zijn. Als u dat wilt voorkomen, [[Special:Userlogin/signup|maak dan een gebruikersnaam aan]] of [[Special:Userlogin|meld u aan]] om verwarring met andere anonieme gebruikers te voorkomen.''",
+'noarticletext'                     => 'Deze pagina bevat geen tekst.
 U kunt [[Special:Search/{{PAGENAME}}|naar deze term zoeken]] in andere pagina\'s of <span class="plainlinks">[{{fullurl:{{FULLPAGENAME}}|action=edit}} deze pagina bewerken]</span>.',
-'userpage-userdoesnotexist' => 'U bewerkt een gebruikerspagina van een gebruiker die niet bestaat (gebruiker "$1"). Controleer of u deze pagina wel wilt aanmaken/bewerken.',
-'clearyourcache'            => '\'\'\'Let op!\'\'\' Leeg uw cache nadat u de wijzigingen hebt opgeslagen.
+'userpage-userdoesnotexist'         => 'U bewerkt een gebruikerspagina van een gebruiker die niet bestaat (gebruiker "$1"). Controleer of u deze pagina wel wilt aanmaken/bewerken.',
+'clearyourcache'                    => '\'\'\'Let op!\'\'\' Leeg uw cache nadat u de wijzigingen hebt opgeslagen.
 
 {| border="1" cellpadding="3" class=toccolours style="border: 1px #AAAAAA solid; border-collapse: collapse;"
 | Mozilla/Safari/Konqueror || CTRL-SHIFT-R
@@ -826,74 +826,78 @@ U kunt [[Special:Search/{{PAGENAME}}|naar deze term zoeken]] in andere pagina\'s
 |-
 | Konqueror || F5
 |}',
-'usercssjsyoucanpreview'    => "<strong>Tip:</strong> Gebruik de knop 'Bewerking ter controle bekijken' om uw nieuwe CSS/JS te testen alvorens op te slaan.",
-'usercsspreview'            => "'''Dit is alleen een voorvertoning van uw persoonlijke CSS, deze is nog niet opgeslagen!'''",
-'userjspreview'             => "'''Let op: u test nu uw persoonlijke JavaScript. De pagina is niet opgeslagen!'''",
-'userinvalidcssjstitle'     => "'''Waarschuwing:''' er is geen skin \"\$1\". Let op: uw eigen .css- en .js-pagina's beginnen met een kleine letter, bijvoorbeeld {{ns:user}}:Naam/monobook.css in plaats van {{ns:user}}:Naam/Monobook.css.",
-'updated'                   => '(Bijgewerkt)',
-'note'                      => '<strong>Opmerking:</strong>',
-'previewnote'               => '<strong>Let op: dit is een controlepagina; uw tekst is niet opgeslagen!</strong>',
-'previewconflict'           => 'Deze voorvertoning geeft aan hoe de tekst in het bovenste veld eruit ziet als u deze opslaat.',
-'session_fail_preview'      => '<strong>Sorry! Uw bewerking is niet verwerkt, omdat de sessiegegevens verloren zijn gegaan.
+'usercssjsyoucanpreview'            => "<strong>Tip:</strong> Gebruik de knop 'Bewerking ter controle bekijken' om uw nieuwe CSS/JS te testen alvorens op te slaan.",
+'usercsspreview'                    => "'''Dit is alleen een voorvertoning van uw persoonlijke CSS, deze is nog niet opgeslagen!'''",
+'userjspreview'                     => "'''Let op: u test nu uw persoonlijke JavaScript. De pagina is niet opgeslagen!'''",
+'userinvalidcssjstitle'             => "'''Waarschuwing:''' er is geen skin \"\$1\". Let op: uw eigen .css- en .js-pagina's beginnen met een kleine letter, bijvoorbeeld {{ns:user}}:Naam/monobook.css in plaats van {{ns:user}}:Naam/Monobook.css.",
+'updated'                           => '(Bijgewerkt)',
+'note'                              => '<strong>Opmerking:</strong>',
+'previewnote'                       => '<strong>Let op: dit is een controlepagina; uw tekst is niet opgeslagen!</strong>',
+'previewconflict'                   => 'Deze voorvertoning geeft aan hoe de tekst in het bovenste veld eruit ziet als u deze opslaat.',
+'session_fail_preview'              => '<strong>Sorry! Uw bewerking is niet verwerkt, omdat de sessiegegevens verloren zijn gegaan.
 Probeer het opnieuw. Als het dan nog niet lukt, meld u zich dan af en weer aan.</strong>',
-'session_fail_preview_html' => "<strong>Sorry! Uw bewerking is niet verwerkt, omdat sessiegegevens verloren zijn gegaan.</strong>
+'session_fail_preview_html'         => "<strong>Sorry! Uw bewerking is niet verwerkt, omdat sessiegegevens verloren zijn gegaan.</strong>
 
 ''Omdat in {{SITENAME}} ruwe HTML is ingeschakeld, is een voorvertoning niet mogelijk als bescherming tegen aanvallen met JavaScript.''
 
 <strong>Als dit een legitieme bewerking is, probeer het dan opnieuw. Als het dan nog niet lukt, meld u zich dan af en weer aan.</strong>",
-'token_suffix_mismatch'     => '<strong>Uw bewerking is geweigerd omdat uw browser de leestekens in het bewerkingstoken onjuist heeft behandeld.
+'token_suffix_mismatch'             => '<strong>Uw bewerking is geweigerd omdat uw browser de leestekens in het bewerkingstoken onjuist heeft behandeld.
 De bewerking is geweigerd om verminking van de paginatekst te voorkomen.
 Dit gebeurt soms als er een webgebaseerde proxydienst wordt gebruikt die fouten bevat.</strong>',
-'editing'                   => 'Bezig met bewerken van $1',
-'editingsection'            => 'Bezig met bewerken van $1 (deelpagina)',
-'editingcomment'            => 'Bezig met bewerken van $1 (opmerking)',
-'editconflict'              => 'Bewerkingsconflict: $1',
-'explainconflict'           => "Een andere gebruiker heeft deze pagina bewerkt sinds u met uw bewerking bent begonnen.
+'editing'                           => 'Bezig met bewerken van $1',
+'editingsection'                    => 'Bezig met bewerken van $1 (deelpagina)',
+'editingcomment'                    => 'Bezig met bewerken van $1 (opmerking)',
+'editconflict'                      => 'Bewerkingsconflict: $1',
+'explainconflict'                   => "Een andere gebruiker heeft deze pagina bewerkt sinds u met uw bewerking bent begonnen.
 In het bovenste deel van het venster staat de tekst van de huidige pagina.
 Uw bewerking staat in het onderste gedeelte.
 U dient uw bewerkingen in te voegen in de bestaande tekst.
 '''Alleen''' de tekst in het bovenste gedeelte wordt opgeslagen als u op \"Pagina opslaan\" klikt.",
-'yourtext'                  => 'Uw tekst',
-'storedversion'             => 'Opgeslagen versie',
-'nonunicodebrowser'         => "<strong>WAARSCHUWING: Uw browser kan niet goed overweg met unicode.
+'yourtext'                          => 'Uw tekst',
+'storedversion'                     => 'Opgeslagen versie',
+'nonunicodebrowser'                 => "<strong>WAARSCHUWING: Uw browser kan niet goed overweg met unicode.
 Hiermee wordt door de MediaWiki-software rekening gehouden zodat u toch zonder problemen pagina's kunt bewerken: niet-ASCII karakters worden in het bewerkingsveld weergegeven als hexadecimale codes.</strong>",
-'editingold'                => '<strong>WAARSCHUWING!
+'editingold'                        => '<strong>WAARSCHUWING!
 U bewerkt een oude versie van deze pagina.
 Als u uw bewerking opslaat, gaan alle wijzigingen die na deze versie gemaakt zijn verloren.</strong>',
-'yourdiff'                  => 'Wijzigingen',
-'copyrightwarning'          => "Opgelet: Alle bijdragen aan {{SITENAME}} worden geacht te zijn vrijgegeven onder de $2 (zie $1 voor details).
+'yourdiff'                          => 'Wijzigingen',
+'copyrightwarning'                  => "Opgelet: Alle bijdragen aan {{SITENAME}} worden geacht te zijn vrijgegeven onder de $2 (zie $1 voor details).
 Als u niet wilt dat uw tekst door anderen naar believen bewerkt en verspreid kan worden, kies dan niet voor 'Pagina Opslaan'.<br />
 Hierbij belooft u ons tevens dat u deze tekst zelf hebt geschreven, of overgenomen uit een vrije, openbare bron.<br />
 <strong>GEBRUIK GEEN MATERIAAL DAT BESCHERMD WORDT DOOR AUTEURSRECHT, TENZIJ U DAARVOOR TOESTEMMING HEBT!</strong>",
-'copyrightwarning2'         => 'Al uw bijdragen aan {{SITENAME}} kunnen bewerkt, gewijzigd of verwijderd worden door andere gebruikers.
+'copyrightwarning2'                 => 'Al uw bijdragen aan {{SITENAME}} kunnen bewerkt, gewijzigd of verwijderd worden door andere gebruikers.
 Als u niet wilt dat uw teksten rigoureus aangepast worden door anderen, plaats ze hier dan niet.<br />
 U belooft ook u dat u de oorspronkelijke auteur bent van dit materiaal, of dat u het hebt gekopieerd uit een bron in het publieke domein, of een soortgelijke vrije bron (zie $1 voor details).
 <strong>GEBRUIK GEEN MATERIAAL DAT BESCHERMD WORDT DOOR AUTEURSRECHT, TENZIJ U DAARVOOR TOESTEMMING HEBT!</strong>',
-'longpagewarning'           => "<strong>WAARSCHUWING: Deze pagina is $1 kilobyte groot; sommige browsers hebben problemen met het bewerken van pagina's die groter zijn dan 32kb. Wellicht kan deze pagina gesplitst worden in kleinere delen.</strong>",
-'longpageerror'             => '<strong>FOUT: de tekst die u hebt toegevoegd heeft is $1 kilobyte groot, wat groter is dan het maximum van $2 kilobyte.
+'longpagewarning'                   => "<strong>WAARSCHUWING: Deze pagina is $1 kilobyte groot; sommige browsers hebben problemen met het bewerken van pagina's die groter zijn dan 32kb. Wellicht kan deze pagina gesplitst worden in kleinere delen.</strong>",
+'longpageerror'                     => '<strong>FOUT: de tekst die u hebt toegevoegd heeft is $1 kilobyte groot, wat groter is dan het maximum van $2 kilobyte.
 Opslaan is niet mogelijk.</strong>',
-'readonlywarning'           => '<strong>WAARSCHUWING: de database is geblokkeerd voor onderhoud, dus u kunt deze nu niet opslaan.
+'readonlywarning'                   => '<strong>WAARSCHUWING: de database is geblokkeerd voor onderhoud, dus u kunt deze nu niet opslaan.
 Het is misschien verstandig om uw tekst tijdelijk in een tekstbestand op te slaan om dit te bewaren voor wanneer de blokkering van de database opgeheven is.</strong>',
-'protectedpagewarning'      => '<strong>WAARSCHUWING! Deze beveiligde pagina kan alleen door gebruikers met beheerdersrechten bewerkt worden.</strong>',
-'semiprotectedpagewarning'  => "'''Let op:''' deze pagina is beveiligd en kan alleen door geregistreerde gebruikers bewerkt worden.",
-'cascadeprotectedwarning'   => "'''Waarschuwing:''' Deze pagina is beveiligd en kan alleen door beheerders bewerkt worden, omdat deze is opgenomen in de volgende {{PLURAL:$1|pagina|pagina's}} die beveiligd {{PLURAL:$1|is|zijn}} met de cascade-optie:",
-'titleprotectedwarning'     => '<strong>WAARSCHUWING: Deze pagina is beveiligd zodat alleen enkele gebruikers het kunnen aanmaken.</strong>',
-'templatesused'             => 'Op deze pagina gebruikte sjablonen:',
-'templatesusedpreview'      => 'Sjablonen gebruikt in deze voorvertoning:',
-'templatesusedsection'      => 'Sjablonen die gebruikt worden in deze subkop:',
-'template-protected'        => '(beveiligd)',
-'template-semiprotected'    => '(semibeveiligd)',
-'hiddencategories'          => 'Deze pagina valt in de volgende verborgen {{PLURAL:$1|categorie|categorieën}}:',
-'edittools'                 => '<!-- Deze tekst wordt weergegeven onder bewerkings- en uploadformulieren. -->',
-'nocreatetitle'             => "Het aanmaken van pagina's is beperkt",
-'nocreatetext'              => "{{SITENAME}} heeft de mogelijkheid om nieuwe pagina's te maken beperkt.
+'protectedpagewarning'              => '<strong>WAARSCHUWING! Deze beveiligde pagina kan alleen door gebruikers met beheerdersrechten bewerkt worden.</strong>',
+'semiprotectedpagewarning'          => "'''Let op:''' deze pagina is beveiligd en kan alleen door geregistreerde gebruikers bewerkt worden.",
+'cascadeprotectedwarning'           => "'''Waarschuwing:''' Deze pagina is beveiligd en kan alleen door beheerders bewerkt worden, omdat deze is opgenomen in de volgende {{PLURAL:$1|pagina|pagina's}} die beveiligd {{PLURAL:$1|is|zijn}} met de cascade-optie:",
+'titleprotectedwarning'             => '<strong>WAARSCHUWING: Deze pagina is beveiligd zodat alleen enkele gebruikers het kunnen aanmaken.</strong>',
+'templatesused'                     => 'Op deze pagina gebruikte sjablonen:',
+'templatesusedpreview'              => 'Sjablonen gebruikt in deze voorvertoning:',
+'templatesusedsection'              => 'Sjablonen die gebruikt worden in deze subkop:',
+'template-protected'                => '(beveiligd)',
+'template-semiprotected'            => '(semibeveiligd)',
+'hiddencategories'                  => 'Deze pagina valt in de volgende verborgen {{PLURAL:$1|categorie|categorieën}}:',
+'edittools'                         => '<!-- Deze tekst wordt weergegeven onder bewerkings- en uploadformulieren. -->',
+'nocreatetitle'                     => "Het aanmaken van pagina's is beperkt",
+'nocreatetext'                      => "{{SITENAME}} heeft de mogelijkheid om nieuwe pagina's te maken beperkt.
 U kunt reeds bestaande pagina's wijzigen, of u kunt [[Special:Userlogin|zich aanmelden of een gebruiker aanmaken]].",
-'nocreate-loggedin'         => "U kunt geen nieuwe pagina's maken op {{SITENAME}}.",
-'permissionserrors'         => 'Fouten in rechten',
-'permissionserrorstext'     => 'U hebt geen rechten om dit te doen wegens de volgende {{PLURAL:$1|reden|redenen}}:',
-'recreate-deleted-warn'     => "'''Waarschuwing: u bent bezig met het aanmaken van een pagina die in het verleden verwijderd is.'''
+'nocreate-loggedin'                 => "U kunt geen nieuwe pagina's maken op {{SITENAME}}.",
+'permissionserrors'                 => 'Fouten in rechten',
+'permissionserrorstext'             => 'U hebt geen rechten om dit te doen wegens de volgende {{PLURAL:$1|reden|redenen}}:',
+'recreate-deleted-warn'             => "'''Waarschuwing: u bent bezig met het aanmaken van een pagina die in het verleden verwijderd is.'''
 
 Overweeg of het terecht is dat u verder werkt aan deze pagina. Voor uw gemak staat hieronder het verwijderingslogboek voor deze pagina:",
+'expensive-parserfunction-warning'  => 'Waarschuwing: deze pagina gebruikt te veel kostbare parserfuncties.
+
+Nu zijn het er $1, terwijl het er minder dan $2 moeten zijn.',
+'expensive-parserfunction-category' => "Pagina's die te veel kostbare parserfuncties gebruiken",
 
 # "Undo" feature
 'undo-success' => 'Hieronder staat de tekst waarin de wijziging ongedaan is gemaakt. Controleer voor het opslaan of het resultaat gewenst is.',
@@ -1076,7 +1080,7 @@ De gegevens over {{SITENAME}} zijn mogelijk niet bijgewerkt.',
 'math'                     => 'Formules',
 'dateformat'               => 'Datumopmaak',
 'datedefault'              => 'Geen voorkeur',
-'datetime'                 => 'Datum/tijd',
+'datetime'                 => 'Datum en tijd',
 'math_failure'             => 'Parsen mislukt',
 'math_unknown_error'       => 'onbekende fout',
 'math_unknown_function'    => 'onbekende functie',
