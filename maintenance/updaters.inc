@@ -135,6 +135,7 @@ $wgMysqlUpdates = array(
 	array( 'add_table', 'updatelog',                         'patch-updatelog.sql' ),
 	array( 'add_table', 'category',                          'patch-category.sql' ),
 	array( 'do_category_population' ),
+	array( 'do_populate_parent_id' ),
 );
 
 
@@ -1149,6 +1150,14 @@ function do_category_population() {
 "populateCategory.php.\n";
 	populateCategory( '', 10, 0, true );
 	echo "Done populating category table.\n";
+}
+
+function do_populate_parent_id() {
+	if( update_row_exists( 'populate rev_parent_id' ) ) {
+		echo "...rev_parent_id column already populated.\n";
+		return;
+	}
+	require_once( 'populateParentId.inc' );
 }
 
 function
