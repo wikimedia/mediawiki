@@ -158,19 +158,15 @@ class LogEventsList {
 	 */
 	public function logLine( $row ) {
 		global $wgLang, $wgUser, $wgContLang;
-		$skin = $wgUser->getSkin();
+		
 		$title = Title::makeTitle( $row->log_namespace, $row->log_title );
 		$time = $wgLang->timeanddate( wfTimestamp(TS_MW, $row->log_timestamp), true );
-		// Enter the existence or non-existence of this page into the link cache,
-		// for faster makeLinkObj() in LogPage::actionText()
-		$linkCache =& LinkCache::singleton();
-		$linkCache->addLinkObj( $title );
 		// User links
 		if( self::isDeleted($row,LogPage::DELETED_USER) ) {
 			$userLink = '<span class="history-deleted">' . wfMsgHtml( 'rev-deleted-user' ) . '</span>';
 		} else {
-			$userLink = $this->skin->userLink( $row->log_user, $row->user_name ) . 
-				$this->skin->userToolLinksRedContribs( $row->log_user, $row->user_name );
+			$userLink = $this->skin->userLink( $row->log_user, $row->user_name );
+				$this->skin->userToolLinks( $row->log_user, $row->user_name );
 		}
 		// Comment
 		if( self::isDeleted($row,LogPage::DELETED_COMMENT) ) {
@@ -496,10 +492,8 @@ class LogPager extends ReverseChronologicalPager {
 		global $wgAllowLogDeletion;
 		$log_id = $wgAllowLogDeletion ? 'log_id' : '0 AS log_id';
 		# Don't use the wrong logging index
-		if( $this->title || $this->pattern ) {
-			$index = array( 'USE INDEX' => array( 'logging' => 'page_time' ) );
-		} else if( $this->user ) {
-			$index = array( 'USE INDEX' => array( 'logging' => 'user_time' ) );
+		if( $this->title || $this->pattern || $this->user ) {
+			$index = array( 'USE INDEX' => array( 'logging' => array('page_time','user_time') ) );
 		} else if( $this->type ) {
 			$index = array( 'USE INDEX' => array( 'logging' => 'type_time' ) );
 		} else {
@@ -516,6 +510,21 @@ class LogPager extends ReverseChronologicalPager {
 
 	function getIndexField() {
 		return 'log_timestamp';
+	}
+	
+	function getStartBody() {
+		wfProfileIn( __METHOD__ );
+		# Do a link batch query
+		$lb = new LinkBatch;
+		while( $row = $this->mResult->fetchObject() ) {
+			$lb->add( $row->log_namespace, $row->log_title );
+			$lb->addObj( Title::makeTitleSafe( NS_USER, $row->user_name ) );
+			$lb->addObj( Title::makeTitleSafe( NS_USER_TALK, $row->user_name ) );
+		}
+		$lb->execute();
+		$this->mResult->seek( 0 );
+		wfProfileOut( __METHOD__ );
+		return '';
 	}
 
 	function formatRow( $row ) {
