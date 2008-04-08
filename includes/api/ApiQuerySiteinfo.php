@@ -195,12 +195,12 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		if ($includeAll) {
 			if (!$wgShowHostnames)
 				$this->dieUsage('Cannot view all servers info unless $wgShowHostnames is true', 'includeAllDenied');
-			
-			global $wgDBservers;
-			$lags = wfGetLB()->getLagTimes();
+
+			$lb = wfGetLB();
+			$lags = $lb->getLagTimes();
 			foreach( $lags as $i => $lag ) {
 				$data[] = array (
-					'host' => $wgDBservers[$i]['host'],
+					'host' => $lb->getServerName( $i ),
 					'lag' => $lag);
 			}
 		} else {
