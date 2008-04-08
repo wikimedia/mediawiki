@@ -30,6 +30,8 @@ class ContribsPager extends ReverseChronologicalPager {
 	function getDefaultQuery() {
 		$query = parent::getDefaultQuery();
 		$query['target'] = $this->target;
+		$query['month'] = $this->month;
+		$query['year'] = $this->year;
 		return $query;
 	}
 
@@ -279,9 +281,7 @@ function wfSpecialContributions( $par = null ) {
 	wfRunHooks( 'SpecialContributionsBeforeMainOutput', $id );
 
 	$wgOut->addHTML( contributionsForm( $options ) );
-	# Show original selected options, don't apply them so as to allow paging
-	$_GET['year'] = ''; // hack for Pager
-	$_GET['month'] = ''; // hack for Pager
+	
 	if( $skip ) {
 		$options['year'] = '';
 		$options['month'] = '';

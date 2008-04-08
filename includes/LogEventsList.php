@@ -386,8 +386,12 @@ class LogPager extends ReverseChronologicalPager {
 		$this->limitType( $type );
 		$this->limitUser( $user );
 		$this->limitTitle( $title, $pattern );
-		# Hack to recognize subpage parameter
-		$_GET['type'] = $type;
+	}
+	
+	function getDefaultQuery() {
+		$query = parent::getDefaultQuery();
+		$query['type'] = $this->type;
+		return $query;
 	}
 	
 	/**
