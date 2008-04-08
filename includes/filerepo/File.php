@@ -852,7 +852,7 @@ abstract class File {
 		if ( $db->numRows( $res ) ) {
 			while ( $row = $db->fetchObject( $res ) ) {
 				if ( $titleObj = Title::newFromRow( $row ) ) {
-					$linkCache->addGoodLinkObj( $row->page_id, $titleObj, $row->page_len, $row->page_is_redirect );
+					$linkCache->addGoodLinkObj( $row->page_id, $titleObj );
 					$retVal[] = $titleObj;
 				}
 			}
