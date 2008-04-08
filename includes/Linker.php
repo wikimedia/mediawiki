@@ -79,20 +79,16 @@ class Linker {
 	/**
 	 * Return the CSS colour of a known link
 	 *
-	 * @param mixed $s
+	 * @param Title $t
 	 * @param integer $threshold user defined threshold
 	 * @return string CSS class
 	 */
-	function getLinkColour( $s, $threshold ) {
-		if( $s === false ) {
-			return '';
-		}
-
+	function getLinkColour( $t, $threshold ) {
 		$colour = '';
-		if ( !empty( $s->page_is_redirect ) ) {
+		if ( $t->isRedirect() ) {
 			# Page is a redirect
 			$colour = 'mw-redirect';
-		} elseif ( $threshold > 0 && $s->page_len < $threshold && MWNamespace::isContent( $s->page_namespace ) ) {
+		} elseif ( $threshold > 0 && $t->getLength() < $threshold && MWNamespace::isContent( $t->getNamespace() ) ) {
 			# Page is a stub
 			$colour = 'stub';
 		}
@@ -256,15 +252,8 @@ class Linker {
 			} else {
 				$colour = '';
 				if ( $nt->isContentPage() ) {
-					# FIXME: This is stupid, we should combine this query with
-					# the Title::getArticleID() query above.
 					$threshold = $wgUser->getOption('stubthreshold');
-					$dbr = wfGetDB( DB_SLAVE );
-					$s = $dbr->selectRow(
-						array( 'page' ),
-						array( 'page_len', 'page_is_redirect', 'page_namespace' ),
-						array( 'page_id' => $aid ), __METHOD__ ) ;
-					$colour = $this->getLinkColour( $s, $threshold );
+					$colour = $this->getLinkColour( $nt, $threshold );
 				}
 				$retVal = $this->makeColouredLinkObj( $nt, $colour, $text, $query, $trail, $prefix );
 			}

@@ -844,14 +844,15 @@ abstract class File {
 
 		list( $page, $imagelinks ) = $db->tableNamesN( 'page', 'imagelinks' );
 		$encName = $db->addQuotes( $this->getName() );
-		$sql = "SELECT page_namespace,page_title,page_id FROM $page,$imagelinks WHERE page_id=il_from AND il_to=$encName $options";
+		$sql = "SELECT page_namespace,page_title,page_id,page_len,page_is_redirect, 
+			FROM $page,$imagelinks WHERE page_id=il_from AND il_to=$encName $options";
 		$res = $db->query( $sql, __METHOD__ );
 
 		$retVal = array();
 		if ( $db->numRows( $res ) ) {
 			while ( $row = $db->fetchObject( $res ) ) {
-				if ( $titleObj = Title::makeTitle( $row->page_namespace, $row->page_title ) ) {
-					$linkCache->addGoodLinkObj( $row->page_id, $titleObj );
+				if ( $titleObj = Title::newFromRow( $row ) ) {
+					$linkCache->addGoodLinkObj( $row->page_id, $titleObj, $row->page_len, $row->page_is_redirect );
 					$retVal[] = $titleObj;
 				}
 			}

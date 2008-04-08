@@ -11,7 +11,7 @@ class ContribsPager extends ReverseChronologicalPager {
 
 	function __construct( $target, $namespace = false, $year = false, $month = false ) {
 		parent::__construct();
-		foreach( explode( ' ', 'uctop diff newarticle rollbacklink diff hist minoreditletter' ) as $msg ) {
+		foreach( explode( ' ', 'uctop diff newarticle rollbacklink diff hist newpageletter minoreditletter' ) as $msg ) {
 			$this->messages[$msg] = wfMsgExt( $msg, array( 'escape') );
 		}
 		$this->target = $target;
@@ -42,7 +42,7 @@ class ContribsPager extends ReverseChronologicalPager {
 			'fields' => array( 
 				'page_namespace', 'page_title', 'page_is_new', 'page_latest', 'rev_id', 'rev_page', 
 				'rev_text_id', 'rev_timestamp', 'rev_comment', 'rev_minor_edit', 'rev_user', 
-				'rev_user_text', 'rev_deleted'
+				'rev_user_text', 'rev_parent_id', 'rev_deleted'
 			),
 			'conds' => $conds,
 			'options' => array( 'USE INDEX' => $index )
@@ -165,6 +165,12 @@ class ContribsPager extends ReverseChronologicalPager {
 		if( $rev->isDeleted( Revision::DELETED_TEXT ) ) {
 			$d = '<span class="history-deleted">' . $d . '</span>';
 		}
+		
+		if( $rev->getParentId() === 0 ) {
+			$nflag = '<span class="newpage">' . $this->messages['newpageletter'] . '</span>';
+		} else {
+			$nflag = '';
+		}
 
 		if( $row->rev_minor_edit ) {
 			$mflag = '<span class="minor">' . $this->messages['minoreditletter'] . '</span> ';
@@ -172,7 +178,7 @@ class ContribsPager extends ReverseChronologicalPager {
 			$mflag = '';
 		}
 
-		$ret = "{$d} {$histlink} {$difftext} {$mflag} {$link}{$userlink}{$comment} {$topmarktext}";
+		$ret = "{$d} {$histlink} {$difftext} {$nflag}{$mflag} {$link}{$userlink}{$comment} {$topmarktext}";
 		if( $rev->isDeleted( Revision::DELETED_TEXT ) ) {
 			$ret .= ' ' . wfMsgHtml( 'deletedrev' );
 		}

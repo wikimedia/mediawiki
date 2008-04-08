@@ -4120,9 +4120,7 @@ class Parser_OldPP
 					# Not in the link cache, add it to the query
 					if ( !isset( $current ) ) {
 						$current = $ns;
-						$query =  "SELECT page_id, page_namespace, page_title";
-						if ( $threshold > 0 ) {
-							$query .= ', page_len, page_is_redirect';
+						$query =  "SELECT page_id, page_namespace, page_title, page_len, page_is_redirect";
 						}
 						$query .= " FROM $page WHERE (page_namespace=$ns AND page_title IN(";
 					} elseif ( $current != $ns ) {
@@ -4148,7 +4146,7 @@ class Parser_OldPP
 				# 1 = known
 				# 2 = stub
 				while ( $s = $dbr->fetchObject($res) ) {
-					$title = Title::makeTitle( $s->page_namespace, $s->page_title );
+					$title = Title::newFromRow( $s );
 					$pdbk = $title->getPrefixedDBkey();
 					$linkCache->addGoodLinkObj( $s->page_id, $title );
 					$this->mOutput->addLink( $title, $s->page_id );
@@ -4163,7 +4161,7 @@ class Parser_OldPP
 			wfProfileOut( $fname.'-check' );
 
 			# Do a second query for different language variants of links and categories
-			if($wgContLang->hasVariants()){
+			if( $wgContLang->hasVariants() ){
 				$linkBatch = new LinkBatch();
 				$variantMap = array(); // maps $pdbkey_Variant => $keys (of link holders)
 				$categoryMap = array(); // maps $category_variant => $category (dbkeys)
@@ -4210,13 +4208,11 @@ class Parser_OldPP
 				}
 
 
-				if(!$linkBatch->isEmpty()){
+				if ( !$linkBatch->isEmpty() ){
 					// construct query
 					$titleClause = $linkBatch->constructSet('page', $dbr);
 
-					$variantQuery =  "SELECT page_id, page_namespace, page_title";
-					if ( $threshold > 0 ) {
-						$variantQuery .= ', page_len, page_is_redirect';
+					$variantQuery =  "SELECT page_id, page_namespace, page_title, page_len, page_is_redirect";
 					}
 
 					$variantQuery .= " FROM $page WHERE $titleClause";
@@ -4229,7 +4225,7 @@ class Parser_OldPP
 					// for each found variants, figure out link holders and replace
 					while ( $s = $dbr->fetchObject($varRes) ) {
 
-						$variantTitle = Title::makeTitle( $s->page_namespace, $s->page_title );
+						$variantTitle = Title::newFromRow( $s );
 						$varPdbk = $variantTitle->getPrefixedDBkey();
 						$vardbk = $variantTitle->getDBkey();
 
