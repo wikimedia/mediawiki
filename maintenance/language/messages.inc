@@ -554,6 +554,8 @@ $wgMessageStructure = array(
 		'permissionserrors',
 		'permissionserrorstext',
 		'recreate-deleted-warn',
+		'expensive-parserfunction-warning',
+		'expensive-parserfunction-category',
 	),
 	'undo' => array(
 		'undo-success',
