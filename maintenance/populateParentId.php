@@ -6,7 +6,7 @@
  * and to find new page edits by users.
  */
 
-define( 'BATCH_SIZE', 100 );
+define( 'BATCH_SIZE', 500 );
 
 require_once 'commandLine.inc';
 	
@@ -24,23 +24,25 @@ function populate_rev_parent_id( $db ) {
 	$end = $db->selectField( 'revision', 'MAX(rev_id)', false, __FUNCTION__ );
 	$blockStart = $start;
 	$blockEnd = $start + BATCH_SIZE - 1;
+	$count = 0;
 	while( $blockEnd <= $end ) {
 		$cond = "rev_id BETWEEN $blockStart AND $blockEnd";
-		$res = $db->select( 'revision', array('rev_id', 'rev_page'), $cond, __FUNCTION__ );
+		$res = $db->select( 'revision', array('rev_id','rev_page'), $cond, __FUNCTION__ );
 		# Go through and update rev_parent_id from these rows.
 		# Assume that the previous revision of the title was
 		# the original previous revision of the title when the
 		# edit was made...
-		while( $row = $db->fetchObject( $res ) ) {
+		foreach( $res as $row ) {
 			$previousID = $db->selectField( 'revision', 'rev_id', 
-				array( 'rev_page' => $row->rev_page, 'rev_id < ' . $row->rev_id ), 
+				array( 'rev_page' => $row->rev_page, "rev_id < '{$row->rev_id}'" ), 
 				__FUNCTION__,
 				array( 'ORDER BY' => 'rev_id DESC' ) );
 			# Update the row...
 			$db->update( 'revision',
 				array( 'rev_parent_id' => intval($previousID) ),
-				array( 'rev_page' => $row->rev_page, 'rev_id' => $row->rev_id ),
+				array( 'rev_id' => $row->rev_id ),
 				__FUNCTION__ );
+			$count++;
 		}
 		$blockStart += BATCH_SIZE;
 		$blockEnd += BATCH_SIZE;
@@ -51,7 +53,7 @@ function populate_rev_parent_id( $db ) {
 		__FUNCTION__,
 		'IGNORE' );
 	if( $logged ) {
-		echo "rev_parent_id population complete\n";
+		echo "rev_parent_id population complete ... {$count} rows\n";
 		return true;
 	} else {
 		echo "Could not insert rev_parent_id population row.\n";
