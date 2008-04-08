@@ -127,6 +127,8 @@ $wgMysqlUpdates = array(
 	array( 'do_oldimage_user_index' ),
 	array( 'add_field', 'archive',       'ar_page_id',       'patch-archive-page_id.sql'),
 	array( 'add_field', 'image',         'img_sha1',         'patch-img_sha1.sql' ),
+
+	// 1.12
 	array( 'add_table', 'protected_titles',                  'patch-protected_titles.sql' ),
 	
 	// 1.13
@@ -1157,7 +1159,7 @@ function do_populate_parent_id() {
 		echo "...rev_parent_id column already populated.\n";
 		return;
 	}
-	require_once( 'populateParentId.inc' );
+	require_once( 'populateParentId.php' );
 }
 
 function
