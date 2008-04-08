@@ -564,20 +564,15 @@ class Revision {
 		}
 		# Use page_latest if ID is not given
 		if( !$this->mId ) {
-			$revID = $db->selectField( 'page', 'page_latest',
+			$prevID = $db->selectField( 'page', 'page_latest',
 				array( 'page_id' => $this->mPage ),
 				__METHOD__ );
 		} else {
-			$revID = $this->mId;
+			$prevId = $db->selectField( 'revision', 'rev_id',
+				array( 'rev_page' => $this->mPage, 'rev_id < ' . $this->mId ),
+				__METHOD__,
+				array( 'ORDER BY' => 'rev_id DESC' ) );
 		}
-		if( !$revID ) {
-			return 0;
-		}
-		$prevId = $db->selectField( 'revision', 'rev_id',
-			array( 'rev_page' => $this->mPage, 'rev_id < ' . $revID ),
-			__METHOD__,
-			array( 'ORDER BY' => 'rev_id DESC' ) );
-		# Always return an integer
 		return intval($prevId);
 	}
 
