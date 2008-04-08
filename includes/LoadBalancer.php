@@ -364,7 +364,9 @@ class LoadBalancer {
 		}
 
 		# Query groups
-		if ( !is_array( $groups ) ) {
+		if ( $i == DB_MASTER ) { 
+			$i = $this->getWriterIndex();
+		} elseif ( !is_array( $groups ) ) {
 			$groupIndex = $this->getReaderIndex( $groups, $wiki );
 			if ( $groupIndex !== false ) {
 				$serverName = $this->getServerName( $groupIndex );
@@ -386,8 +388,6 @@ class LoadBalancer {
 		# Operation-based index
 		if ( $i == DB_SLAVE ) {
 			$i = $this->getReaderIndex( false, $wiki );
-		} elseif ( $i == DB_MASTER ) {
-			$i = $this->getWriterIndex();
 		} elseif ( $i == DB_LAST ) {
 			# Just use $this->mLastIndex, which should already be set
 			$i = $this->mLastIndex;
