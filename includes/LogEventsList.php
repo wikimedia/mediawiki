@@ -51,7 +51,7 @@ class LogEventsList {
 	public function showHeader( $out, $type ) {
 		if( LogPage::isLogType( $type ) ) {
 			$out->setPageTitle( LogPage::logName( $type ) );
-			$out->addWikiText( LogPage::logHeader( $type ) );
+			$out->addHtml( LogPage::logHeader( $type ) );
 		}
 	}
 
