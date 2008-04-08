@@ -843,9 +843,10 @@ class Linker {
 	 * @param string $userText User name or IP address
 	 * @param bool $redContribsWhenNoEdits Should the contributions link be red if the user has no edits?
 	 * @param int $flags Customisation flags (e.g. self::TOOL_LINKS_NOBLOCK)
+	 * @param int $edits, user edit count (optional, for performance)
 	 * @return string
 	 */
-	public function userToolLinks( $userId, $userText, $redContribsWhenNoEdits = false, $flags = 0 ) {
+	public function userToolLinks( $userId, $userText, $redContribsWhenNoEdits = false, $flags = 0, $edits=null ) {
 		global $wgUser, $wgDisableAnonTalk, $wgSysopUserBans;
 		$talkable = !( $wgDisableAnonTalk && 0 == $userId );
 		$blockable = ( $wgSysopUserBans || 0 == $userId ) && !$flags & self::TOOL_LINKS_NOBLOCK;
@@ -856,7 +857,8 @@ class Linker {
 		}
 		if( $userId ) {
 			// check if the user has an edit
-			if( $redContribsWhenNoEdits && User::edits( $userId ) == 0 ) {
+			$count = !is_null($edits) ? $edits : User::edits( $userId );
+			if( $redContribsWhenNoEdits && $count == 0 ) {
 				$style = " class='new'";
 			} else {
 				$style = '';
