@@ -159,7 +159,7 @@ class LogEventsList {
 		if( self::isDeleted($row,LogPage::DELETED_USER) ) {
 			$userLink = '<span class="history-deleted">' . wfMsgHtml( 'rev-deleted-user' ) . '</span>';
 		} else {
-			$userLink = $this->skin->userLink( $row->log_user, $row->user_name );
+			$userLink = $this->skin->userLink( $row->log_user, $row->user_name ) .
 				$this->skin->userToolLinks( $row->log_user, $row->user_name );
 		}
 		// Comment
