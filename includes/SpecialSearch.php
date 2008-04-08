@@ -143,13 +143,16 @@ class SpecialSearch {
 				return;
 			}
 			global $wgInputEncoding;
-			$wgOut->addHTML( wfMsg( 'searchdisabled' ) );
-			$wgOut->addHTML(
+			$wgOut->addHTML( 
+				Xml::openElement( 'fieldset' ) .
+				Xml::element( 'legend', null, wfMsg( 'search-external' ) ) .
+				Xml::element( 'p', array( 'class' => 'mw-searchdisabled' ), wfMsg( 'searchdisabled' ) ) .
 				wfMsg( 'googlesearch',
 					htmlspecialchars( $term ),
 					htmlspecialchars( $wgInputEncoding ),
 					htmlspecialchars( wfMsg( 'searchbutton' ) )
-				)
+				) .
+				Xml::closeElement( 'fieldset' )
 			);
 			wfProfileOut( $fname );
 			return;

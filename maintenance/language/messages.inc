@@ -707,6 +707,7 @@ $wgMessageStructure = array(
 		'powersearch',
 		'powersearch-legend',
 		'powersearchtext',
+		'search-external',
 		'searchdisabled',
 		'googlesearch',
 	),

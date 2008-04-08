@@ -1300,6 +1300,7 @@ You can [[:\$1|create this page]].",
 'powersearch'           => 'Advanced search',
 'powersearch-legend'    => 'Advanced search',
 'powersearchtext'       => 'Search in namespaces:<br />$1<br />$2 List redirects<br />Search for $3 $9',
+'search-external'       => 'External search',
 'searchdisabled'        => '{{SITENAME}} search is disabled.
 You can search via Google in the meantime.
 Note that their indexes of {{SITENAME}} content may be out of date.',
