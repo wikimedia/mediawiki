@@ -274,7 +274,11 @@ class Revision {
 			$this->mMinorEdit = intval( $row->rev_minor_edit );
 			$this->mTimestamp =         $row->rev_timestamp;
 			$this->mDeleted   = intval( $row->rev_deleted );
-			$this->mParentId  = intval( $row->rev_parent_id );
+			
+			if( !isset( $row->rev_parent_id ) )
+				$this->mParentId = 0;
+			else
+				$this->mParentId  = intval( $row->rev_parent_id );
 			
 			if( !isset( $row->rev_len ) || is_null( $row->rev_len ) )
 				$this->mSize = null;
