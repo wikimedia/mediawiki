@@ -68,7 +68,7 @@ function rebuildRecentChangesTablePass2()
 	print( "Updating links and size differences...\n" );
 
 	# Fill in the rc_last_oldid field, which points to the previous edit
-	$sql = "SELECT rc_cur_id,rc_this_oldid FROM $recentchanges " .
+	$sql = "SELECT rc_cur_id,rc_this_oldid,rc_timestamp FROM $recentchanges " .
 	  "ORDER BY rc_cur_id,rc_timestamp";
 	$res = $dbw->query( $sql, DB_MASTER );
 
@@ -79,9 +79,10 @@ function rebuildRecentChangesTablePass2()
 		if( $obj->rc_cur_id != $lastCurId ) {
 			# Switch! Look up the previous last edit, if any
 			$lastCurId = intval( $obj->rc_cur_id );
+			$emit = $obj->rc_timestamp;
 			$sql2 = "SELECT rev_id,rev_len FROM $revision " .
 				"WHERE rev_page={$lastCurId} ".
-				"AND rev_id < '{$obj->rc_this_oldid}' ORDER BY rev_id DESC LIMIT 1";
+				"AND rev_timestamp<'{$emit}' ORDER BY rev_timestamp DESC LIMIT 1";
 			$res2 = $dbw->query( $sql2 );
 			if( $row = $dbw->fetchObject( $res2 ) ) {
 				$lastOldId = intval($row->rev_id);
