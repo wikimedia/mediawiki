@@ -287,8 +287,8 @@ class OutputPage {
 		$pageTable = $dbr->tableName( 'page' );
 		$where = $lb->constructSet( 'page', $dbr );
 		$propsTable = $dbr->tableName( 'page_props' );
-		$sql = "SELECT page_id, page_namespace, page_title, pp_value FROM $pageTable LEFT JOIN $propsTable " . 
-			" ON pp_propname='hiddencat' AND pp_page=page_id WHERE $where";
+		$sql = "SELECT page_id, page_namespace, page_title, page_len, page_is_redirect, pp_value
+			FROM $pageTable LEFT JOIN $propsTable ON pp_propname='hiddencat' AND pp_page=page_id WHERE $where";
 		$res = $dbr->query( $sql, __METHOD__ );
 
 		# Add the results to the link cache
