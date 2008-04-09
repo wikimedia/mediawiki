@@ -39,10 +39,29 @@ function populate_rev_parent_id( $db ) {
 		# the original previous revision of the title when the
 		# edit was made...
 		foreach( $res as $row ) {
+			# First, check rows with the same timestamp other than this one
+			# with a smaller rev ID. The highest ID "wins". This avoids loops
+			# as either id or timestamp need to be going from parent_id to parent_id
 			$previousID = $db->selectField( 'revision', 'rev_id', 
-				array( 'rev_page' => $row->rev_page, "rev_timestamp < '{$row->rev_timestamp}'" ), 
+				array( 'rev_page' => $row->rev_page, 'rev_timestamp' => $row->rev_timestamp,
+					"rev_id < {$row->rev_id}" ), 
 				__FUNCTION__,
-				array( 'ORDER BY' => 'rev_timestamp DESC' ) );
+				array( 'ORDER BY' => 'rev_id DESC' ) );
+			# If there are none, check the the highest ID with a lower timestamp
+			if( !$previousID ) {
+				# Get the highest older timestamp
+				$lastTimestamp = $db->selectField( 'revision', 'rev_timestamp', 
+					array( 'rev_page' => $row->rev_page, "rev_timestamp < '{$row->rev_timestamp}'" ), 
+					__FUNCTION__,
+					array( 'ORDER BY' => 'rev_timestamp DESC' ) );
+				# If there is one, let the highest rev ID win
+				if( $lastTimestamp ) {
+					$previousID = $db->selectField( 'revision', 'rev_id', 
+						array( 'rev_page' => $row->rev_page, 'rev_timestamp' => $lastTimestamp ), 
+						__FUNCTION__,
+						array( 'ORDER BY' => 'rev_id DESC' ) );
+				}
+			}
 			$previousID = intval($previousID);
 			if( $previousID != $row->rev_parent_id )
 				$changed++;
