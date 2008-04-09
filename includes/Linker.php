@@ -857,9 +857,9 @@ class Linker {
 		}
 		if( $userId ) {
 			// check if the user has an edit
-			$count = !is_null($edits) ? $edits : User::edits( $userId );
-			if( $redContribsWhenNoEdits && $count == 0 ) {
-				$style = " class='new'";
+			if( $redContribsWhenNoEdits ) {
+				$count = !is_null($edits) ? $edits : User::edits( $userId );
+				$style = ($count == 0) ? " class='new'" : '';
 			} else {
 				$style = '';
 			}
