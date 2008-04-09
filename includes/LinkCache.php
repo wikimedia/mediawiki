@@ -32,18 +32,18 @@ class LinkCache {
 		$this->mBadLinks = array();
 	}
 
-	/* private */ function getKey( $title ) {
+	private function getKey( $title ) {
 		return wfMemcKey( 'lc', 'title', $title );
 	}
 
 	/**
 	 * General accessor to get/set whether SELECT FOR UPDATE should be used
 	 */
-	function forUpdate( $update = NULL ) {
+	public function forUpdate( $update = NULL ) {
 		return wfSetVar( $this->mForUpdate, $update );
 	}
 
-	function getGoodLinkID( $title ) {
+	public function getGoodLinkID( $title ) {
 		if ( array_key_exists( $title, $this->mGoodLinks ) ) {
 			return $this->mGoodLinks[$title];
 		} else {
@@ -58,7 +58,7 @@ class LinkCache {
 	 * @param string $field ('length','redirect')
 	 * @return mixed
 	 */
-	function getGoodLinkFieldObj( $title, $field ) {
+	public function getGoodLinkFieldObj( $title, $field ) {
 		$dbkey = $title->getPrefixedDbKey();
 		if ( array_key_exists( $dbkey, $this->mGoodLinkFields ) ) {
 			return $this->mGoodLinkFields[$dbkey][$field];
@@ -67,7 +67,7 @@ class LinkCache {
 		}
 	}
 
-	function isBadLink( $title ) {
+	public function isBadLink( $title ) {
 		return array_key_exists( $title, $this->mBadLinks );
 	}
 
@@ -78,14 +78,14 @@ class LinkCache {
 	 * @param int $len
 	 * @param int $redir
 	 */
-	function addGoodLinkObj( $id, $title, $len = -1, $redir = NULL ) {
+	public function addGoodLinkObj( $id, $title, $len = -1, $redir = NULL ) {
 		$dbkey = $title->getPrefixedDbKey();
 		$this->mGoodLinks[$dbkey] = $id;
 		$this->mGoodLinkFields[$dbkey] = array( 'length' => $len, 'redirect' => $redir );
 		$this->mPageLinks[$dbkey] = $title;
 	}
 
-	function addBadLinkObj( $title ) {
+	public function addBadLinkObj( $title ) {
 		$dbkey = $title->getPrefixedDbKey();
 		if ( ! $this->isBadLink( $dbkey ) ) {
 			$this->mBadLinks[$dbkey] = 1;
@@ -93,20 +93,20 @@ class LinkCache {
 		}
 	}
 
-	function clearBadLink( $title ) {
+	public function clearBadLink( $title ) {
 		unset( $this->mBadLinks[$title] );
 		$this->clearLink( $title );
 	}
 
-	function clearLink( $title ) {
+	public function clearLink( $title ) {
 		global $wgMemc, $wgLinkCacheMemcached;
 		if( $wgLinkCacheMemcached )
 			$wgMemc->delete( $this->getKey( $title ) );
 	}
 
-	function getPageLinks() { return $this->mPageLinks; }
-	function getGoodLinks() { return $this->mGoodLinks; }
-	function getBadLinks() { return array_keys( $this->mBadLinks ); }
+	public function getPageLinks() { return $this->mPageLinks; }
+	public function getGoodLinks() { return $this->mGoodLinks; }
+	public function getBadLinks() { return array_keys( $this->mBadLinks ); }
 
 	/**
 	 * Add a title to the link cache, return the page_id or zero if non-existent
@@ -115,7 +115,7 @@ class LinkCache {
 	 * @param $redir bool, is redirect?
 	 * @return integer
 	 */
-	function addLink( $title, $len = -1, $redir = NULL ) {
+	public function addLink( $title, $len = -1, $redir = NULL ) {
 		$nt = Title::newFromDBkey( $title );
 		if( $nt ) {
 			return $this->addLinkObj( $nt, $len, $redir );
@@ -131,7 +131,7 @@ class LinkCache {
 	 * @param $redir bool, is redirect?
 	 * @return integer
 	 */
-	function addLinkObj( &$nt, $len = -1, $redirect = NULL ) {
+	public function addLinkObj( &$nt, $len = -1, $redirect = NULL ) {
 		global $wgMemc, $wgLinkCacheMemcached, $wgAntiLockFlags;
 		$title = $nt->getPrefixedDBkey();
 		if ( $this->isBadLink( $title ) ) { return 0; }
@@ -198,7 +198,7 @@ class LinkCache {
 	/**
 	 * Clears cache
 	 */
-	function clear() {
+	public function clear() {
 		$this->mPageLinks = array();
 		$this->mGoodLinks = array();
 		$this->mGoodLinkFields = array();

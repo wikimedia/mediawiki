@@ -18,7 +18,7 @@ class LinkBatch {
 		}
 	}
 
-	function addObj( $title ) {
+	public function addObj( $title ) {
 		if ( is_object( $title ) ) {
 			$this->add( $title->getNamespace(), $title->getDBkey() );
 		} else {
@@ -26,7 +26,7 @@ class LinkBatch {
 		}
 	}
 
-	function add( $ns, $dbkey ) {
+	public function add( $ns, $dbkey ) {
 		if ( $ns < 0 ) {
 			return;
 		}
@@ -41,21 +41,21 @@ class LinkBatch {
 	 * Set the link list to a given 2-d array
 	 * First key is the namespace, second is the DB key, value arbitrary
 	 */
-	function setArray( $array ) {
+	public function setArray( $array ) {
 		$this->data = $array;
 	}
 
 	/**
 	 * Returns true if no pages have been added, false otherwise.
 	 */
-	function isEmpty() {
+	public function isEmpty() {
 		return ($this->getSize() == 0);
 	}
 
 	/**
 	 * Returns the size of the batch.
 	 */
-	function getSize() {
+	public function getSize() {
 		return count( $this->data );
 	}
 
@@ -63,7 +63,7 @@ class LinkBatch {
 	 * Do the query and add the results to the LinkCache object
 	 * Return an array mapping PDBK to ID
 	 */
-	 function execute() {
+	 public function execute() {
 	 	$linkCache =& LinkCache::singleton();
 	 	return $this->executeInto( $linkCache );
 	 }
@@ -72,7 +72,7 @@ class LinkBatch {
 	 * Do the query and add the results to a given LinkCache object
 	 * Return an array mapping PDBK to ID
 	 */
-	function executeInto( &$cache ) {
+	protected function executeInto( &$cache ) {
 		wfProfileIn( __METHOD__ );
 		$res = $this->doQuery();
 		$ids = $this->addResultToCache( $cache, $res );
@@ -86,7 +86,7 @@ class LinkBatch {
 	 * This function *also* stores extra fields of the title used for link 
 	 * parsing to avoid extra DB queries.
 	 */
-	function addResultToCache( $cache, $res ) {
+	public function addResultToCache( $cache, $res ) {
 		if ( !$res ) {
 			return array();
 		}
@@ -116,7 +116,7 @@ class LinkBatch {
 	/**
 	 * Perform the existence test query, return a ResultWrapper with page_id fields
 	 */
-	function doQuery() {
+	public function doQuery() {
 		if ( $this->isEmpty() ) {
 			return false;
 		}
@@ -146,7 +146,7 @@ class LinkBatch {
 	 * @return string
 	 * @public
 	 */
-	function constructSet( $prefix, &$db ) {
+	public function constructSet( $prefix, &$db ) {
 		$first = true;
 		$firstTitle = true;
 		$sql = '';
