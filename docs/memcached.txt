@@ -128,16 +128,6 @@ Lag time of the databases:
 	expriy: 5 secondes
 	cleared by: nothing
 
-Link Cache:
-	controlled by: $wgLinkCacheMemcached
-	key: $wgDBname:lc:title:$title
-	ex: wikidb:lc:title:Wikipedia:Welcome,_Newcomers!
-	stores: cur_id of page, or 0 if page does not exist
-	set in: LinkCache::addLink()
-	expriry: one day
-	cleared by: LinkCache::clearBadLink()
-		should be cleared on page deletion and rename
-
 Localisation:
 	key: $wgDBname:localisation:$lang
 	ex: wikidb:localisation:de
