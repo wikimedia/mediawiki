@@ -160,6 +160,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 12064) BeforePageDisplay hook is now called for all skins
 * (bug 13624) Fix regression with manual thumb= parameter on images
 * (bug 11039) Add missing labels on protection form
+* (bug 13458) Preview/edit toolbar spacing now works consistently
 
 
 === API changes in 1.13 ===
