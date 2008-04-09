@@ -12,8 +12,11 @@ function wfSpecialUserlogout() {
 
 	$wgUser->logout();
 	$wgOut->setRobotpolicy( 'noindex,nofollow' );
-	$wgOut->addHTML( wfMsgExt( 'logouttext', array( 'parse' ) ) );
+	
+	// Hook.
+	$injected_html = '';
+	wfRunHooks( 'UserLogoutComplete', array(&$wgUser, &$injected_html) );
+	
+	$wgOut->addHTML( wfMsgExt( 'logouttext', array( 'parse' ) ) . $injected_html );
 	$wgOut->returnToMain();
 }
-
-
