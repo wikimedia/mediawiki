@@ -712,7 +712,6 @@ $wgParserCacheType = CACHE_ANYTHING;
 $wgParserCacheExpireTime = 86400;
 
 $wgSessionsInMemcached = false;
-$wgLinkCacheMemcached = false; # Not fully tested
 
 /**
  * Memcached-specific settings
