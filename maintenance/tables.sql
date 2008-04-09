@@ -1055,6 +1055,9 @@ CREATE TABLE /*$wgDBprefix*/transcache (
 ) /*$wgDBTableOptions*/;
 
 CREATE TABLE /*$wgDBprefix*/logging (
+  -- Log ID, for referring to this specific log entry, probably for deletion and such.
+  log_id int unsigned NOT NULL auto_increment,
+
   -- Symbolic keys for the general log type and the action type
   -- within the log. The output format will be controlled by the
   -- action field, but only the type controls categorization.
@@ -1077,9 +1080,6 @@ CREATE TABLE /*$wgDBprefix*/logging (
   
   -- LF separated list of miscellaneous parameters
   log_params blob NOT NULL,
-
-  -- Log ID, for referring to this specific log entry, probably for deletion and such.
-  log_id int unsigned NOT NULL auto_increment,
 
   -- rev_deleted for logs
   log_deleted tinyint unsigned NOT NULL default '0',
