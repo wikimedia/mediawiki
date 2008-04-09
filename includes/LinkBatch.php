@@ -81,9 +81,10 @@ class LinkBatch {
 	}
 
 	/**
-	 * Add a ResultWrapper containing IDs and titles to a LinkCache object
-	 * Title are initialized here and they will go to the static title cache 
-	 * field of the Title class.
+	 * Add a ResultWrapper containing IDs and titles to a LinkCache object.
+	 * As normal, titles will go into the static Title cache field. 
+	 * This function *also* stores extra fields of the title used for link 
+	 * parsing to avoid extra DB queries.
 	 */
 	function addResultToCache( $cache, $res ) {
 		if ( !$res ) {
