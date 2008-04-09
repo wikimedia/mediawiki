@@ -74,6 +74,7 @@
 	'el' => 'Ελληνικά',	# Greek
 	'eml' => 'Emiliàn e rumagnòl',	# Emiliano-Romagnolo / Sammarinese
 	'en' => 'English',		# English
+	'en-gb' => 'British English',		# British English
 	'eo' => 'Esperanto',	# Esperanto
 	'es' => 'Español',	# Spanish
 	'et' => 'Eesti',		# Estonian

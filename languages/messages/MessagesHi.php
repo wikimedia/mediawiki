@@ -10,6 +10,7 @@
  * @author Aksi great
  * @author SPQRobin
  * @author Siebrand
+ * @author Jon Harald Søby
  */
 
 $namespaceNames = array(
@@ -284,7 +285,7 @@ $messages = array(
 'versionrequired'     => 'मीडीयाविकिका $1 अवतरण ज़रूरी हैं ।',
 'versionrequiredtext' => 'यह पन्ना इस्तेमाल करने के लिये मीडियाविकीका $1 अवतरण ज़रूरी हैं । देखें [[Special:Version|अवतरण सूची]] ।',
 
-'ok'                      => 'ठीक़',
+'ok'                      => 'ओके',
 'pagetitle'               => '$1 - विकिपीडिया',
 'retrievedfrom'           => '"$1" से लिया गया',
 'youhavenewmessages'      => 'आपके लिए $1 है। ($2)',
@@ -407,7 +408,7 @@ $2',
 'welcomecreation'            => "<h2>स्वागतम्‌, $1!</h2><p>आपका अकाउन्ट बना दिया गया है.
 Don't forget to personalize your {{SITENAME}} preferences.",
 'loginpagetitle'             => 'सदस्य लॉग इन',
-'yourname'                   => 'आपका नाम',
+'yourname'                   => 'सदस्यनाम:',
 'yourpassword'               => 'आपका पासवर्ड',
 'yourpasswordagain'          => 'पासवर्ड दुबारा लिखें',
 'remembermypassword'         => 'इस कंप्यूटर पर मेरी लॉग-इन सूचना याद रखें।',
@@ -1530,7 +1531,7 @@ $1',
 'ipboptions'                  => '२ घंटे:2 hours,१ दिन:1 day,३ दिन:3 days,१ हफ्ता:1 week,२ हफ्ते:2 weeks,१ महिना:1 month,३ महिने:3 months,६ महिने:6 months,१ साल:1 year,हमेशा के लिये:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'              => 'अन्य',
 'ipbotherreason'              => 'अन्य/दूसरा कारण:',
-'ipbhidename'                 => 'ब्लॉक सूची, चल रहें ब्लॉक की सूची और सदस्य सूची से आईपी एड्रेस/सदस्यनाम छुपायें',
+'ipbhidename'                 => 'ब्लॉक सूची, चल रहें ब्लॉक की सूची और सदस्य सूची से सदस्यनाम छुपायें',
 'badipaddress'                => 'अमान्य आईपी पता।',
 'blockipsuccesssub'           => 'अवरोधन सफल ।(संपादन करने से रोक दिया गया है)',
 'ipb-edit-dropdown'           => 'ब्लॉक कारण संपादित करें',
@@ -2123,9 +2124,10 @@ $1',
 'confirmemail' => 'ई-मेल प्रमाणित करे',
 
 # action=purge
-'confirm_purge' => 'क्या आप यह पृष्ठ का कैश ख़ाली करने चाहिए?
+'confirm_purge'        => 'क्या आप यह पृष्ठ का कैश ख़ाली करने चाहिए?
 
 $1',
+'confirm_purge_button' => 'ओके',
 
 # AJAX search
 'searchcontaining' => 'उन लेखों को खोजे जिनमे $1 हो।',

@@ -733,6 +733,12 @@ Outros administradores de {{SITENAME}} poderán acceder aínda ao contido oculto
 'revdel-restore'              => 'Cambiar visibilidade',
 'pagehist'                    => 'Historial da páxina',
 'deletedhist'                 => 'Historial de borrado',
+'revdelete-content'           => 'contido',
+'revdelete-summary'           => 'resumo de edición',
+'revdelete-uname'             => 'nome de usuario',
+'revdelete-hid'               => 'agochar $1',
+'revdelete-unhid'             => 'amosar $1',
+'revdelete-log-message'       => '$1 para $2 {{PLURAL:$2|revisión|revisións}}',
 
 # Suppression log
 'suppressionlogtext' => 'Embaixo amósase unha listaxe coas eliminacións e cos bloqueos recentes, que inclúen contido oculto dos administradores. Vexa a [[Special:Ipblocklist|listaxe de enderezos IP bloqueados]] para comprobar as prohibicións e os bloqueos vixentes.',
@@ -803,6 +809,7 @@ Asegúrese de que esta modificación da páxina mantén a continuidade históric
 $1<br />
 $2 Lista de redireccións<br />
 Procurar $3 $9',
+'search-external'       => 'Procura externa',
 'searchdisabled'        => '<p style="margin: 1.5em 2em 1em">As procuras en {{SITENAME}} están deshabilitadas por cuestións de rendemento. Mentres tanto pode procurar usando o Google.
 <span style="font-size: 89%; display: block; margin-left: .2em">Note que os seus índices do contido de {{SITENAME}} poden estar desactualizados.</span></p>',
 
@@ -1251,7 +1258,7 @@ Cada ringleira contén ligazóns cara á primeira e segunda redirección, e tam�
 'all-logs-page'        => 'Todos os rexistros',
 'log-search-legend'    => 'Procurar rexistros',
 'log-search-submit'    => 'Executar',
-'alllogstext'          => 'Vista combinada dos rexistros de carga de ficheiros de {{SITENAME}}.
+'alllogstext'          => 'Vista combinada de todos os rexistros dipoñibles en {{SITENAME}}.
 Pode precisar máis a vista seleccionando o tipo de rexistro, o nome de usuario ou a páxina afectada.',
 'logempty'             => 'Non se atopou ningún ítem relacionado no rexistro.',
 'log-title-wildcard'   => 'Procurar títulos que comecen con este texto',

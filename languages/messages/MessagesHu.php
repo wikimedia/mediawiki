@@ -957,6 +957,8 @@ vissza tudja ugyanezen a kezelőfelületen keresztül állítani, ha nincs megad
 'revdelete-unrestricted'      => 'változatot fedett fel az adminisztrátoroknak',
 'revdelete-hid'               => 'változat $1 rejtette el',
 'revdelete-unhid'             => 'változat $1 fedte fel',
+'revdelete-log-message'       => '$2 $1',
+'logdelete-log-message'       => '$1 $2',
 
 # Suppression log
 'suppressionlog'     => 'Adatvédelmibiztos-napló',
@@ -1028,6 +1030,7 @@ rendszer nem indexel, vagy több független keresési kifejezés megadása
 'powersearch'           => 'Részletes keresés',
 'powersearch-legend'    => 'Részletes keresés',
 'powersearchtext'       => 'Keresés a névterekben:<br />$1<br />$2 Átirányítások listája &nbsp; Keresés:$3 $9',
+'search-external'       => 'Külső kereső',
 'searchdisabled'        => 'Elnézésed kérjük, de a teljes szöveges keresés terhelési okok miatt átmenetileg nem használható. Ezidő alatt használhatod a lenti Google keresést, mely viszont lehetséges, hogy nem teljesen friss adatokkal dolgozik.',
 
 # Preferences page

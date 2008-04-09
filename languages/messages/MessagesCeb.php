@@ -6,6 +6,7 @@
  * @author SPQRobin
  * @author Abastillas
  * @author לערי ריינהארט
+ * @author Nike
  */
 
 $messages = array(
@@ -181,7 +182,7 @@ $messages = array(
 'badaccess-groups' => 'Ang aksyon nga imong gipangayo mahimo lamang ihatag sa mga miyembro sa mga grupong $1.',
 
 'versionrequired'     => 'Gikinahanglan ang Bersyong $1 sa MediaWiki',
-'versionrequiredtext' => 'Gikinahanglan ang Bersyong $1 sa MediaWiki aron magamit kining panid. Tan-awa ang [[Special:Bersyon|panid sa bersyon]].',
+'versionrequiredtext' => 'Gikinahanglan ang Bersyong $1 sa MediaWiki aron magamit kining panid. Tan-awa ang [[Special:Version|panid sa bersyon]].',
 
 'retrievedfrom'           => 'Gikuha gikan sa "$1"',
 'youhavenewmessages'      => 'Aduna kay $1 ($2).',

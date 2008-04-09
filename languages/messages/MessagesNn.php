@@ -707,23 +707,23 @@ Du kan oversjå denne meldinga dersom kontoen vart oppretta med eit uhell.',
 'hr_tip'          => 'Vassrett line',
 
 # Edit pages
-'summary'                   => 'Samandrag',
-'subject'                   => 'Emne/overskrift',
-'minoredit'                 => 'Småplukk',
-'watchthis'                 => 'Overvak denne sida',
-'savearticle'               => 'Lagre',
-'preview'                   => 'Førehandsvising',
-'showpreview'               => 'Førehandsvis',
-'showlivepreview'           => 'Levande førehandsvising',
-'showdiff'                  => 'Vis skilnad',
-'anoneditwarning'           => "'''Åtvaring:''' Du er ikkje innlogga. IP-adressa di vert lagra i historikken for denne sida.",
-'missingsummary'            => "'''Påminning:''' Du har ikkje skrive noko endringssamandrag. Dersom du trykkjer «Lagre» ein gong til, vert endringa di lagra utan.",
-'missingcommenttext'        => 'Ver venleg og skriv ein kommentar nedanfor.',
-'missingcommentheader'      => "'''Påminning:''' Du har ikkje oppgjeve noko emne/overskrift for denne kommentaren. Dersom du trykkjer «Lagre» ein gong til, vert endringa di lagra utan.",
-'summary-preview'           => 'Førehandsvising av endringssamandraget',
-'subject-preview'           => 'Førehandsvising av emne/overskrift',
-'blockedtitle'              => 'Brukaren er blokkert',
-'blockedtext'               => "<big>'''Brukarnamnet ditt eller IP-adressa di er blokkert frå endring.'''</big>
+'summary'                           => 'Samandrag',
+'subject'                           => 'Emne/overskrift',
+'minoredit'                         => 'Småplukk',
+'watchthis'                         => 'Overvak denne sida',
+'savearticle'                       => 'Lagre',
+'preview'                           => 'Førehandsvising',
+'showpreview'                       => 'Førehandsvis',
+'showlivepreview'                   => 'Levande førehandsvising',
+'showdiff'                          => 'Vis skilnad',
+'anoneditwarning'                   => "'''Åtvaring:''' Du er ikkje innlogga. IP-adressa di vert lagra i historikken for denne sida.",
+'missingsummary'                    => "'''Påminning:''' Du har ikkje skrive noko endringssamandrag. Dersom du trykkjer «Lagre» ein gong til, vert endringa di lagra utan.",
+'missingcommenttext'                => 'Ver venleg og skriv ein kommentar nedanfor.',
+'missingcommentheader'              => "'''Påminning:''' Du har ikkje oppgjeve noko emne/overskrift for denne kommentaren. Dersom du trykkjer «Lagre» ein gong til, vert endringa di lagra utan.",
+'summary-preview'                   => 'Førehandsvising av endringssamandraget',
+'subject-preview'                   => 'Førehandsvising av emne/overskrift',
+'blockedtitle'                      => 'Brukaren er blokkert',
+'blockedtext'                       => "<big>'''Brukarnamnet ditt eller IP-adressa di er blokkert frå endring.'''</big>
 
 Blokkeringa vart gjort av $1. Denne grunnen vart gjeven: ''$2''.
 
@@ -732,98 +732,102 @@ Blokkeringa vart gjort av $1. Denne grunnen vart gjeven: ''$2''.
 * Blokkeringa var meint på: $7
 
 Du kan kontakte $1 eller ein annan [[{{MediaWiki:Grouppage-sysop}}|administrator]] for å diskutere blokkeringa. Ver merksam på at du ikkje kan bruke «send e-post til brukar»-funksjonen så lenge du ikkje har ei gyldig e-postadresse registrert i [[Special:Preferences|innstillingane dine]]. IP-adressa di er $3, og blokkeringsnummeret er $5. Ver venleg og opplys om dette ved eventuelle førespurnader.",
-'autoblockedtext'           => "IP-adressa di er automatisk blokkert frå endring fordi ho vart brukt av ein annan brukar som vart blokkert av $1. Denne grunnen vart gjeven: ''$2''.
+'autoblockedtext'                   => "IP-adressa di er automatisk blokkert frå endring fordi ho vart brukt av ein annan brukar som vart blokkert av $1. Denne grunnen vart gjeven: ''$2''.
 
 * Blokkeringa byrja: $8
 * Blokkeringa utgår: $6
 
 Du kan kontakte $1 eller ein annan [[{{MediaWiki:Grouppage-sysop}}|administrator]] for å diskutere blokkeringa. Ver merksam på at du ikkje kan bruke «send e-post til brukar»-funksjonen så lenge du ikkje har ei gyldig e-postadresse registrert i [[Special:Preferences|innstillingane dine]]. Blokkeringsnummeret ditt er $5. Ver venleg og opplys om dette ved eventuelle førespurnader.",
-'blockednoreason'           => 'inga grunngjeving',
-'blockedoriginalsource'     => "Kjeldekoden til '''$1''' er vist nedanfor:",
-'blockededitsource'         => "Teksten i '''endringane dine''' på '''$1''' er vist nedanfor:",
-'whitelistedittitle'        => 'Du lyt logge inn for å gjera endringar',
-'whitelistedittext'         => 'Du lyt $1 for å endre sider.',
-'whitelistreadtitle'        => 'Du lyt logge inn for å lesa',
-'whitelistreadtext'         => 'Du lyt [[Special:Userlogin|logge inn]] for å lesa sider.',
-'whitelistacctitle'         => 'Du har ikkje løyve til å laga brukarkonto',
-'whitelistacctext'          => 'For å lage brukarkonto her på {{SITENAME}} må du [[Special:Userlogin|logge inn]] og ha rett type tilgang.',
-'confirmedittitle'          => 'Du må stadfeste e-postadressa di før du kan endre noko',
-'confirmedittext'           => 'Du må stadfeste e-postadressa di før du kan endre sidene. Ver venleg og legg inn og stadfest e-postadressa di i [[Special:Preferences|innstillingane dine]].',
-'nosuchsectiontitle'        => 'Ingen slik bolk',
-'nosuchsectiontext'         => 'Du prøvde å endre ein bolk som ikkje finst. Sidan det ikkje er {{PLURAL:bolkar|$1 bolkar}} i teksten, er det ingen stad å lagre endringa di.',
-'loginreqtitle'             => 'Innlogging trengst',
-'loginreqlink'              => 'logge inn',
-'loginreqpagetext'          => 'Du lyt $1 for å lesa andre sider.',
-'accmailtitle'              => 'Passord er sendt.',
-'accmailtext'               => 'Passordet for «$1» er vorte sendt til $2.',
-'newarticle'                => '(Ny)',
-'newarticletext'            => "'''{{SITENAME}} har ikkje noka side med namnet {{PAGENAME}} enno.'''
+'blockednoreason'                   => 'inga grunngjeving',
+'blockedoriginalsource'             => "Kjeldekoden til '''$1''' er vist nedanfor:",
+'blockededitsource'                 => "Teksten i '''endringane dine''' på '''$1''' er vist nedanfor:",
+'whitelistedittitle'                => 'Du lyt logge inn for å gjera endringar',
+'whitelistedittext'                 => 'Du lyt $1 for å endre sider.',
+'whitelistreadtitle'                => 'Du lyt logge inn for å lesa',
+'whitelistreadtext'                 => 'Du lyt [[Special:Userlogin|logge inn]] for å lesa sider.',
+'whitelistacctitle'                 => 'Du har ikkje løyve til å laga brukarkonto',
+'whitelistacctext'                  => 'For å lage brukarkonto her på {{SITENAME}} må du [[Special:Userlogin|logge inn]] og ha rett type tilgang.',
+'confirmedittitle'                  => 'Du må stadfeste e-postadressa di før du kan endre noko',
+'confirmedittext'                   => 'Du må stadfeste e-postadressa di før du kan endre sidene. Ver venleg og legg inn og stadfest e-postadressa di i [[Special:Preferences|innstillingane dine]].',
+'nosuchsectiontitle'                => 'Ingen slik bolk',
+'nosuchsectiontext'                 => 'Du prøvde å endre ein bolk som ikkje finst. Sidan det ikkje er {{PLURAL:bolkar|$1 bolkar}} i teksten, er det ingen stad å lagre endringa di.',
+'loginreqtitle'                     => 'Innlogging trengst',
+'loginreqlink'                      => 'logge inn',
+'loginreqpagetext'                  => 'Du lyt $1 for å lesa andre sider.',
+'accmailtitle'                      => 'Passord er sendt.',
+'accmailtext'                       => 'Passordet for «$1» er vorte sendt til $2.',
+'newarticle'                        => '(Ny)',
+'newarticletext'                    => "'''{{SITENAME}} har ikkje noka side med namnet {{PAGENAME}} enno.'''
 * For å lage ei slik side kan du skrive i boksen under og klikke på «Lagre». Endringane vil vere synlege med det same.
 * Om du er ny her er det tilrådd å sjå på [[{{MediaWiki:Helppage}}|hjelpesida]] først.
 * Om du lagrar ei testside, vil du ikkje kunne slette henne sjølv.
 * Dersom du ikkje ønskjer å endre sida, kan du utan risiko klikke på '''attende'''-knappen i nettlesaren din.",
-'anontalkpagetext'          => "---- ''Dette er ei diskusjonsside for ein anonym brukar som ikkje har logga inn på eigen brukarkonto. Vi er difor nøydde til å bruke den numeriske IP-adressa knytt til internettoppkoplinga åt brukaren. Same IP-adressa kan vera knytt til fleire brukarar. Om du er ein anonym brukar og meiner at du har fått irrelevante kommentarar på ei slik side, [[Special:Userlogin|logg inn]] slik at vi unngår framtidige forvekslingar med andre anonyme brukarar.''",
-'noarticletext'             => "Det er ikkje noko tekst på denne sida. Du kan [[Special:Search/{{PAGENAME}}|søke etter henne]] i andre sider, eller klikke på '''[{{fullurl:{{FULLPAGENAME}}|action=edit}} endre]''' for å opprette sida.",
-'userpage-userdoesnotexist' => 'Brukarkontoen «$1» finst ikkje. Vil du verkeleg opprette/endre denne sida?',
-'clearyourcache'            => "'''Merk:''' Etter lagring vil det kanskje vera naudsynt at nettlesaren slettar mellomlageret sitt for at endringane skal tre i kraft. '''Mozilla og Firefox:''' trykk ''Ctrl-Shift-R'', '''Internet Explorer:''' ''Ctrl-F5'', '''Safari:''' ''Cmd-Shift-R'', '''Konqueror:''' ''F5''.",
-'usercssjsyoucanpreview'    => '<strong>Tips:</strong> Bruk «Førehandsvis»-knappen for å teste den nye CSS- eller JS-koden din før du lagrar.',
-'usercsspreview'            => "'''Hugs at du berre testar ditt eige CSS, det har ikkje vorte lagra enno!'''",
-'userjspreview'             => "'''Hugs at du berre testar ditt eige JavaScript, det har ikkje vorte lagra enno!!'''",
-'userinvalidcssjstitle'     => "'''Åtvaring:''' Det finst ikkje noka sidedrakt som heiter «$1». Hugs på at vanlege .css- og .js-sider brukar titlar med små bokstavar, til dømes {{ns:user}}:Døme/monobook.css, og ikkje {{ns:user}}:Døme/Monobook.css.",
-'updated'                   => '(Oppdatert)',
-'note'                      => '<strong>Merk:</strong>',
-'previewnote'               => 'Hugs at dette berre er ei førehandsvising og at teksten ikkje er lagra!',
-'previewconflict'           => 'Dette er ei førehandsvising av teksten i endringsboksen over, slik han vil sjå ut om du lagrar han',
-'session_fail_preview'      => '<strong>Beklagar! Endringa di kunne ikkje lagrast. Ver venleg og prøv ein gong til. Dersom det framleis ikkje går, prøv å logge deg ut og inn att.</strong>',
-'session_fail_preview_html' => "<strong>Beklagar! Endringa di kunne ikkje lagrast.</strong>
+'anontalkpagetext'                  => "---- ''Dette er ei diskusjonsside for ein anonym brukar som ikkje har logga inn på eigen brukarkonto. Vi er difor nøydde til å bruke den numeriske IP-adressa knytt til internettoppkoplinga åt brukaren. Same IP-adressa kan vera knytt til fleire brukarar. Om du er ein anonym brukar og meiner at du har fått irrelevante kommentarar på ei slik side, [[Special:Userlogin|logg inn]] slik at vi unngår framtidige forvekslingar med andre anonyme brukarar.''",
+'noarticletext'                     => "Det er ikkje noko tekst på denne sida. Du kan [[Special:Search/{{PAGENAME}}|søke etter henne]] i andre sider, eller klikke på '''[{{fullurl:{{FULLPAGENAME}}|action=edit}} endre]''' for å opprette sida.",
+'userpage-userdoesnotexist'         => 'Brukarkontoen «$1» finst ikkje. Vil du verkeleg opprette/endre denne sida?',
+'clearyourcache'                    => "'''Merk:''' Etter lagring vil det kanskje vera naudsynt at nettlesaren slettar mellomlageret sitt for at endringane skal tre i kraft. '''Mozilla og Firefox:''' trykk ''Ctrl-Shift-R'', '''Internet Explorer:''' ''Ctrl-F5'', '''Safari:''' ''Cmd-Shift-R'', '''Konqueror:''' ''F5''.",
+'usercssjsyoucanpreview'            => '<strong>Tips:</strong> Bruk «Førehandsvis»-knappen for å teste den nye CSS- eller JS-koden din før du lagrar.',
+'usercsspreview'                    => "'''Hugs at du berre testar ditt eige CSS, det har ikkje vorte lagra enno!'''",
+'userjspreview'                     => "'''Hugs at du berre testar ditt eige JavaScript, det har ikkje vorte lagra enno!!'''",
+'userinvalidcssjstitle'             => "'''Åtvaring:''' Det finst ikkje noka sidedrakt som heiter «$1». Hugs på at vanlege .css- og .js-sider brukar titlar med små bokstavar, til dømes {{ns:user}}:Døme/monobook.css, og ikkje {{ns:user}}:Døme/Monobook.css.",
+'updated'                           => '(Oppdatert)',
+'note'                              => '<strong>Merk:</strong>',
+'previewnote'                       => 'Hugs at dette berre er ei førehandsvising og at teksten ikkje er lagra!',
+'previewconflict'                   => 'Dette er ei førehandsvising av teksten i endringsboksen over, slik han vil sjå ut om du lagrar han',
+'session_fail_preview'              => '<strong>Beklagar! Endringa di kunne ikkje lagrast. Ver venleg og prøv ein gong til. Dersom det framleis ikkje går, prøv å logge deg ut og inn att.</strong>',
+'session_fail_preview_html'         => "<strong>Beklagar! Endringa di kunne ikkje lagrast.</strong>
 
 ''Fordi {{SITENAME}} har rå HTML-kode slått på, er førehandsvisinga gøymd grunna fare for JavaScript-angrep.''
 
 <strong>Dersom dette er eit heilt vanleg forsøk på endring, prøv ein gong til. Dersom det framleis ikkje går, prøv å logge deg ut og inn att.</strong>",
-'token_suffix_mismatch'     => '<strong>Endringa di vart avvist fordi klienten/nettlesaren din lagar teiknfeil i teksten. Dette vart gjort for å hindre øydelegging av teksten på sida. Slikt kan av og til hende når ein brukar feilprogrammerte og vevbaserte anonyme proxytenester.</strong>',
-'editing'                   => 'Endrar $1',
-'editingsection'            => 'Endrar $1 (bolk)',
-'editingcomment'            => 'Endrar $1 (kommentar)',
-'editconflict'              => 'Endringskonflikt: $1',
-'explainconflict'           => 'Nokon annan har endra teksten sidan du byrja å skrive. Den øvste boksen inneheld den noverande teksten. Skilnaden mellom den lagra versjonen og din endra versjon er viste under. Versjonen som du har endra er i den nedste boksen. Du lyt flette endringane dine saman med den noverande teksten. <strong>Berre</strong> teksten i den øvste tekstboksen vil bli lagra når du klikkar på «Lagre».<br />',
-'yourtext'                  => 'Teksten din',
-'storedversion'             => 'Den lagra versjonen',
-'nonunicodebrowser'         => '<strong>ÅTVARING: Nettlesaren din støttar ikkje «Unicode». For å omgå problemet blir teikn utanfor ASCII-standarden viste som heksadesimale kodar. Det vil vera ein fordel om du byter nettlesar. Sjå [[hjelp:unicode]] for meir informasjon.</strong><br />',
-'editingold'                => '<strong>ÅTVARING: Du endrar ein gammal versjon av denne sida. Om du lagrar ho, vil alle endringar gjorde etter denne versjonen bli overskrivne.</strong> (Men dei kan hentast fram att frå historikken.)<br />',
-'yourdiff'                  => 'Skilnader',
-'copyrightwarning'          => 'Merk deg at alle bidrag til {{SITENAME}} er å rekne som utgjevne under $2 (sjå $1 for detaljar). Om du ikkje vil ha teksten endra og kopiert under desse vilkåra, kan du ikkje leggje han her.<br />
+'token_suffix_mismatch'             => '<strong>Endringa di vart avvist fordi klienten/nettlesaren din lagar teiknfeil i teksten. Dette vart gjort for å hindre øydelegging av teksten på sida. Slikt kan av og til hende når ein brukar feilprogrammerte og vevbaserte anonyme proxytenester.</strong>',
+'editing'                           => 'Endrar $1',
+'editingsection'                    => 'Endrar $1 (bolk)',
+'editingcomment'                    => 'Endrar $1 (kommentar)',
+'editconflict'                      => 'Endringskonflikt: $1',
+'explainconflict'                   => 'Nokon annan har endra teksten sidan du byrja å skrive. Den øvste boksen inneheld den noverande teksten. Skilnaden mellom den lagra versjonen og din endra versjon er viste under. Versjonen som du har endra er i den nedste boksen. Du lyt flette endringane dine saman med den noverande teksten. <strong>Berre</strong> teksten i den øvste tekstboksen vil bli lagra når du klikkar på «Lagre».<br />',
+'yourtext'                          => 'Teksten din',
+'storedversion'                     => 'Den lagra versjonen',
+'nonunicodebrowser'                 => '<strong>ÅTVARING: Nettlesaren din støttar ikkje «Unicode». For å omgå problemet blir teikn utanfor ASCII-standarden viste som heksadesimale kodar. Det vil vera ein fordel om du byter nettlesar. Sjå [[hjelp:unicode]] for meir informasjon.</strong><br />',
+'editingold'                        => '<strong>ÅTVARING: Du endrar ein gammal versjon av denne sida. Om du lagrar ho, vil alle endringar gjorde etter denne versjonen bli overskrivne.</strong> (Men dei kan hentast fram att frå historikken.)<br />',
+'yourdiff'                          => 'Skilnader',
+'copyrightwarning'                  => 'Merk deg at alle bidrag til {{SITENAME}} er å rekne som utgjevne under $2 (sjå $1 for detaljar). Om du ikkje vil ha teksten endra og kopiert under desse vilkåra, kan du ikkje leggje han her.<br />
 Teksten må du ha skrive sjølv, eller kopiert frå ein ressurs som er kompatibel med vilkåra eller ikkje verna av opphavsrett.
 
 <strong>LEGG ALDRI INN MATERIALE SOM ANDRE HAR OPPHAVSRETT TIL UTAN LØYVE FRÅ DEI!</strong>',
-'copyrightwarning2'         => 'Merk deg at alle bidrag til {{SITENAME}} kan bli endra, omskrive og fjerna av andre bidragsytarar. Om du ikkje vil ha teksten endra under desse vilkåra, kan du ikkje leggje han her.<br />
+'copyrightwarning2'                 => 'Merk deg at alle bidrag til {{SITENAME}} kan bli endra, omskrive og fjerna av andre bidragsytarar. Om du ikkje vil ha teksten endra under desse vilkåra, kan du ikkje leggje han her.<br />
 Teksten må du ha skrive sjølv eller ha kopiert frå ein ressurs som er kompatibel med vilkåra eller ikkje verna av opphavsrett (sjå $1 for detaljar).
 
 <strong>LEGG ALDRI INN MATERIALE SOM ANDRE HAR OPPHAVSRETT TIL UTAN LØYVE FRÅ DEI!</strong>',
-'longpagewarning'           => '<strong>ÅTVARING: Denne sida er $1 KB lang; nokre nettlesarar kan ha problem med å handsama endringar av sider som nærmar seg eller er lengre enn 32 KB. Du bør vurdere å dele opp sida i mindre bolkar.</strong><br />',
-'longpageerror'             => '<strong>Feil: Teksten du har prøvd å lagre er $1 kilobyte
+'longpagewarning'                   => '<strong>ÅTVARING: Denne sida er $1 KB lang; nokre nettlesarar kan ha problem med å handsama endringar av sider som nærmar seg eller er lengre enn 32 KB. Du bør vurdere å dele opp sida i mindre bolkar.</strong><br />',
+'longpageerror'                     => '<strong>Feil: Teksten du har prøvd å lagre er $1 kilobyte
 lang, altså lenger enn $2 kilobyte som er maksimum. Han kan difor ikkje lagrast.</strong>',
-'readonlywarning'           => '<strong>ÅTVARING: Databasen er skriveverna på grunn av vedlikehald, difor kan du ikkje lagre endringane dine akkurat no. Det kan vera lurt å  kopiere teksten din åt ei tekstfil, så du kan lagre han her seinare.</strong><br />',
-'protectedpagewarning'      => '<strong>ÅTVARING: Denne sida er verna, slik at berre administratorar kan endre ho.</strong><br />',
-'semiprotectedpagewarning'  => "'''NB:''' Denne sida er verna slik at berre registrerte brukarar kan endre henne.",
-'cascadeprotectedwarning'   => "'''Åtvaring:''' Denne sida er verna så berre brukarar med administratortilgang kan endre henne. Dette er fordi ho er inkludert i {{PLURAL:$1|denne djupverna sida|desse djupverna sidene}}:",
-'titleprotectedwarning'     => '<strong>Åtvaring: Denne sida er verna, så berre nokre brukarar kan opprette henne.</strong>',
-'templatesused'             => 'Malar som er brukte på denne sida:',
-'templatesusedpreview'      => 'Malar som er brukte i denne førehandsvisinga:',
-'templatesusedsection'      => 'Malar som er brukte i denne bolken:',
-'template-protected'        => '(verna)',
-'template-semiprotected'    => '(delvis verna)',
-'hiddencategories'          => 'Denne sida er med i {{PLURAL:$1|éin gøymd kategori|$1 gøymde kategoriar}}:',
-'edittools'                 => '<!-- Teksten her vert synt mellom tekstboksen og «Lagre»-knappen når ein endrar ei side. -->',
-'nocreatetitle'             => 'Avgrensa sideoppretting',
-'nocreatetext'              => '{{SITENAME}} har avgrensa mogelegheita for å opprette nye sider.
+'readonlywarning'                   => '<strong>ÅTVARING: Databasen er skriveverna på grunn av vedlikehald, difor kan du ikkje lagre endringane dine akkurat no. Det kan vera lurt å  kopiere teksten din åt ei tekstfil, så du kan lagre han her seinare.</strong><br />',
+'protectedpagewarning'              => '<strong>ÅTVARING: Denne sida er verna, slik at berre administratorar kan endre ho.</strong><br />',
+'semiprotectedpagewarning'          => "'''NB:''' Denne sida er verna slik at berre registrerte brukarar kan endre henne.",
+'cascadeprotectedwarning'           => "'''Åtvaring:''' Denne sida er verna så berre brukarar med administratortilgang kan endre henne. Dette er fordi ho er inkludert i {{PLURAL:$1|denne djupverna sida|desse djupverna sidene}}:",
+'titleprotectedwarning'             => '<strong>Åtvaring: Denne sida er verna, så berre nokre brukarar kan opprette henne.</strong>',
+'templatesused'                     => 'Malar som er brukte på denne sida:',
+'templatesusedpreview'              => 'Malar som er brukte i denne førehandsvisinga:',
+'templatesusedsection'              => 'Malar som er brukte i denne bolken:',
+'template-protected'                => '(verna)',
+'template-semiprotected'            => '(delvis verna)',
+'hiddencategories'                  => 'Denne sida er med i {{PLURAL:$1|éin gøymd kategori|$1 gøymde kategoriar}}:',
+'edittools'                         => '<!-- Teksten her vert synt mellom tekstboksen og «Lagre»-knappen når ein endrar ei side. -->',
+'nocreatetitle'                     => 'Avgrensa sideoppretting',
+'nocreatetext'                      => '{{SITENAME}} har avgrensa mogelegheita for å opprette nye sider.
 Du kan gå attende og endre ei eksisterande side, [[Special:Userlogin|logge inn eller opprette ein brukarkonto]].',
-'nocreate-loggedin'         => 'Du har ikkje tilgang til å opprette nye sider på {{SITENAME}}.',
-'permissionserrors'         => 'Tilgangsfeil',
-'permissionserrorstext'     => 'Du har ikkje tilgang til å gjere dette, {{PLURAL:$1|grunnen|grunnane}} til det finn du her:',
-'recreate-deleted-warn'     => "'''Åtvaring: Du nyopprettar ei side som tidlegare har vorte sletta.'''
+'nocreate-loggedin'                 => 'Du har ikkje tilgang til å opprette nye sider på {{SITENAME}}.',
+'permissionserrors'                 => 'Tilgangsfeil',
+'permissionserrorstext'             => 'Du har ikkje tilgang til å gjere dette, {{PLURAL:$1|grunnen|grunnane}} til det finn du her:',
+'recreate-deleted-warn'             => "'''Åtvaring: Du nyopprettar ei side som tidlegare har vorte sletta.'''
 
 Du bør tenkje over om det er lurt å halde fram med å endre denne sida.
 Sletteloggen for sida finn du her:",
+'expensive-parserfunction-warning'  => 'Åtvaring: Denne sida inneheld for mange prosesskrevande parsarfunksjonar.
+
+Det burde vere færre enn $2, men er no $1.',
+'expensive-parserfunction-category' => 'Sider med for mange prosesskrevande parserfunksjonar',
 
 # "Undo" feature
 'undo-success' => 'Endringa kan attenderullast. Ver venleg og sjå over skilnadene nedanfor for å vere sikker på at du vil attenderulle. Deretter kan du lagre attenderullinga.',
@@ -895,8 +899,15 @@ Andre administratorar på {{SITENAME}} kan framleis sjå det gøymde innhaldet o
 'logdelete-logentry'          => 'endra visinga av loggoppføringane til [[$1]]',
 'revdelete-success'           => "'''Versjonsvisinga er endra.'''",
 'logdelete-success'           => "'''Visinga av loggoppføringar er endra.'''",
+'revdel-restore'              => 'Endr synlegheita',
 'pagehist'                    => 'Sidehistorikk',
 'deletedhist'                 => 'Sletta historikk',
+'revdelete-content'           => 'innhald',
+'revdelete-summary'           => 'Samandrag',
+'revdelete-uname'             => 'brukarnamn',
+'revdelete-hid'               => 'løynde $1',
+'revdelete-unhid'             => 'gjorde $1 synleg',
+'revdelete-log-message'       => '$1 for $2 {{PLURAL:$2|revisjon|revisjonar}}',
 
 # History merging
 'mergehistory'                     => 'Flett sidehistorikkar',
@@ -963,6 +974,7 @@ Pass på at den nye sida også har innhald frå den innfletta sida.',
 'powersearch'           => 'Søk',
 'powersearch-legend'    => 'Avansert søk',
 'powersearchtext'       => 'Søk i namnerom:<br />$1<br />$2<br />List omdirigeringar &nbsp; Søk etter: $3 $9',
+'search-external'       => 'Eksternt søk',
 'searchdisabled'        => 'Søkjefunksjonen på {{SITENAME}} er deaktivert på grunn av for stort press på tenarane akkurat no. I mellomtida kan du søkje gjennom Google eller Yahoo! Ver merksam på at registra deira kan vera utdaterte.',
 
 # Preferences page
@@ -1201,6 +1213,7 @@ Sletteloggen for fila finn du her:",
 'upload_source_file' => ' (ei fil på datamaskina di)',
 
 # Special:Imagelist
+'imagelist-summary'     => 'Denne spesialsida viser alle opplasta filer. Dei sist opplasta filene vert viste på toppen som standard. Klikk på ei kolonneoverskrift for å byte sorteringsmetode.',
 'imagelist_search_for'  => 'Søk etter filnamn:',
 'imgdesc'               => 'skildring',
 'imgfile'               => 'fil',
@@ -1824,20 +1837,25 @@ For å eksportere sider, skriv inn titlar i tekstboksen under, ein tittel per li
 'thumbnail_error' => 'Feil ved oppretting av miniatyrbilete: $1',
 
 # Special:Import
-'import'                  => 'Importer sider',
-'importinterwiki'         => 'Transwikiimport',
-'import-interwiki-submit' => 'Importer',
-'importtext'              => 'Du må først eksportere sida du vil importere til ei fil som du lagrar på maskina di, deretter kan du laste ho inn her.
+'import'                     => 'Importer sider',
+'importinterwiki'            => 'Transwikiimport',
+'import-interwiki-history'   => 'Kopier all historikken for denne sida',
+'import-interwiki-submit'    => 'Importer',
+'import-interwiki-namespace' => 'Flytt sidene til namnerommet:',
+'importtext'                 => 'Du må først eksportere sida du vil importere til ei fil som du lagrar på maskina di, deretter kan du laste ho inn her.
 For å eksportere bruker du [[Special:Export|eksportsida]] på kjeldewikien; hugs at kjelda òg må bruke MediaWiki-programvaren.',
-'importstart'             => 'Importerer sidene…',
-'import-revision-count'   => '$1 {{PLURAL:$1|versjon|versjonar}}',
-'importnopages'           => 'Ingen sider å importere.',
-'importfailed'            => 'Importeringa var mislukka: $1',
-'importnotext'            => 'Tom eller ingen tekst',
-'importsuccess'           => 'Importeringa er ferdig!',
-'importhistoryconflict'   => 'Det kan vera at det er konflikt i historikken (kanskje sida vart importert før)',
-'importnosources'         => 'Ingen kjelder for transwikiimport er oppgjevne og funksjonen for opplasting av historikk er deaktivert.',
-'import-parse-failure'    => 'Feil i tolking av XML-import',
+'importstart'                => 'Importerer sidene…',
+'import-revision-count'      => '$1 {{PLURAL:$1|versjon|versjonar}}',
+'importnopages'              => 'Ingen sider å importere.',
+'importfailed'               => 'Importeringa var mislukka: $1',
+'importunknownsource'        => 'Ukjend importkjeldetype',
+'importcantopen'             => 'Kunne ikkje opne importfil',
+'importbadinterwiki'         => 'Ugyldig interwikilenkje',
+'importnotext'               => 'Tom eller ingen tekst',
+'importsuccess'              => 'Importeringa er ferdig!',
+'importhistoryconflict'      => 'Det kan vera at det er konflikt i historikken (kanskje sida vart importert før)',
+'importnosources'            => 'Ingen kjelder for transwikiimport er oppgjevne og funksjonen for opplasting av historikk er deaktivert.',
+'import-parse-failure'       => 'Feil i tolking av XML-import',
 
 # Import log
 'importlogpage'                 => 'Importeringslogg',
@@ -1866,6 +1884,8 @@ For å eksportere bruker du [[Special:Export|eksportsida]] på kjeldewikien; hug
 'tooltip-ca-watch'                => 'Legg denne sida til i overvakingslista di',
 'tooltip-ca-unwatch'              => 'Fjern denne sida frå overvakingslista di',
 'tooltip-search'                  => 'Søk gjennom denne wikien',
+'tooltip-search-go'               => 'Gå til ei side med dette namnet om ho finst',
+'tooltip-search-fulltext'         => 'Søk etter sider som inneheld denne teksten',
 'tooltip-p-logo'                  => 'Hovudside',
 'tooltip-n-mainpage'              => 'Gå til hovudsida',
 'tooltip-n-portal'                => 'Om prosjektet, kva du kan gjera, kvar du finn saker og ting',
@@ -1946,16 +1966,28 @@ For å eksportere bruker du [[Special:Export|eksportsida]] på kjeldewikien; hug
 'mw_math_mathml' => 'MathML dersom mogleg (eksperimentell)',
 
 # Patrolling
-'markaspatrolleddiff'   => 'Merk som patruljert',
-'markaspatrolledtext'   => 'Merk denne innhaldssida som patruljert',
-'markedaspatrolled'     => 'Merk som patruljert',
-'markedaspatrolledtext' => 'Den valde versjonen er vorten merkt som patruljert.',
-'rcpatroldisabled'      => 'Siste-endringar-patruljering er deaktivert',
-'rcpatroldisabledtext'  => 'Patruljeringsfunksjonen er deaktivert.',
+'markaspatrolleddiff'                 => 'Merk som patruljert',
+'markaspatrolledtext'                 => 'Merk denne innhaldssida som patruljert',
+'markedaspatrolled'                   => 'Merk som patruljert',
+'markedaspatrolledtext'               => 'Den valde versjonen er vorten merkt som patruljert.',
+'rcpatroldisabled'                    => 'Siste-endringar-patruljering er deaktivert',
+'rcpatroldisabledtext'                => 'Patruljeringsfunksjonen er deaktivert.',
+'markedaspatrollederror-noautopatrol' => 'Ein har ikkje høve til å merkje sine eigne endringar som godkjende.',
+
+# Patrol log
+'patrol-log-line' => 'merka $1 av $2 godkjend $3',
+'patrol-log-auto' => '(automatisk)',
 
 # Image deletion
-'deletedrevision'       => 'Slett gammal versjon $1',
-'filedeleteerror-short' => 'Feil ved sletting av fila: $1',
+'deletedrevision'                 => 'Slett gammal versjon $1',
+'filedeleteerror-short'           => 'Feil ved sletting av fila: $1',
+'filedeleteerror-long'            => 'Det vart ein feil under filslettinga av:
+
+$1',
+'filedelete-missing'              => 'Det finst ikkje noko fil som heiter «$1», og difor går det heller ikkje å slette noko slik fil.',
+'filedelete-old-unregistered'     => 'Filversjonen «$1» finst ikkje i databasen.',
+'filedelete-current-unregistered' => 'Fila «$1» finst ikkje i databasen.',
+'filedelete-archive-read-only'    => 'Webserveraren har ikkje skrivetilgang til arkivkatalogen "$1".',
 
 # Browsing diffs
 'previousdiff' => '← Gå til førre skilnaden',
@@ -1965,6 +1997,7 @@ For å eksportere bruker du [[Special:Export|eksportsida]] på kjeldewikien; hug
 'mediawarning'         => "'''Åtvaring''': Denne fila kan innehalda skadelege program, ved å opna ho kan systemet ditt ta skade.<hr />",
 'imagemaxsize'         => 'Avgrens bilete på filsider til (pikslar):',
 'thumbsize'            => 'Miniatyrstørrelse:',
+'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|side|sider}}',
 'file-info'            => '(filstorleik: $1, MIME-type: $2)',
 'file-info-size'       => '($1 × $2 pikslar, filstorleik: $3, MIME-type: $4)',
 'file-nohires'         => '<small>Høgare oppløysing er ikkje tilgjengeleg.</small>',
@@ -1975,6 +2008,7 @@ For å eksportere bruker du [[Special:Export|eksportsida]] på kjeldewikien; hug
 # Special:Newimages
 'newimages'             => 'Filgalleri',
 'imagelisttext'         => 'Her er ei liste med {{PLURAL:$1|éi fil sortert|$1 filer sorterte}} $2.',
+'newimages-summary'     => 'Denne spesialsida syner dei sist opplasta filene.',
 'showhidebots'          => '($1 robotar)',
 'noimages'              => 'Her er ingen filer som kan visast.',
 'ilsubmit'              => 'Søk',
@@ -2016,6 +2050,8 @@ Dei andre felta er gøymde som standard.
 'exif-resolutionunit'              => 'Eining for X- og Y-oppløysing',
 'exif-jpeginterchangeformatlength' => 'Byte JPEG-data',
 'exif-transferfunction'            => 'Overføringsfunksjon',
+'exif-primarychromaticities'       => 'Reinheita til primærfargane',
+'exif-ycbcrcoefficients'           => 'Koeffisientar for fargeromstransformasjonsmatrise',
 'exif-referenceblackwhite'         => 'Svart og kvitt referanseverdipar',
 'exif-datetime'                    => 'Dato og tid endra',
 'exif-imagedescription'            => 'Tittel',
@@ -2027,6 +2063,8 @@ Dei andre felta er gøymde som standard.
 'exif-exifversion'                 => 'Exif-versjon',
 'exif-flashpixversion'             => 'Støtta Flashpix versjon',
 'exif-colorspace'                  => 'Fargerom',
+'exif-componentsconfiguration'     => 'Komponentanalyse',
+'exif-compressedbitsperpixel'      => 'Komprimerte bits pr. pixel',
 'exif-pixelydimension'             => 'Gyldig biletbreidd',
 'exif-pixelxdimension'             => 'Gyldig bilethøgd',
 'exif-makernote'                   => 'Produsentnotat',
@@ -2038,12 +2076,17 @@ Dei andre felta er gøymde som standard.
 'exif-subsectimeoriginal'          => 'Dato og tid laga subsekund',
 'exif-subsectimedigitized'         => 'Dato og tid digitalisert subsekund',
 'exif-exposuretime'                => 'Eksponeringstid',
+'exif-exposuretime-format'         => '$1 sekund ($2)',
 'exif-fnumber'                     => 'F-nummer',
 'exif-exposureprogram'             => 'Eksponeringsprogram',
+'exif-spectralsensitivity'         => 'Spektralsensitivitet',
 'exif-isospeedratings'             => 'Lyskjensle (ISO)',
+'exif-oecf'                        => 'Optoelektronisk omregningsfaktor',
 'exif-shutterspeedvalue'           => 'Lukkarfart',
 'exif-aperturevalue'               => 'Blendartal',
 'exif-brightnessvalue'             => 'Lysstyrke',
+'exif-exposurebiasvalue'           => 'Eksponeringsinnstilling',
+'exif-maxaperturevalue'            => 'Maksimal blendar',
 'exif-subjectdistance'             => 'Motivavstand',
 'exif-meteringmode'                => 'Lysmålarmodus',
 'exif-lightsource'                 => 'Lyskjelde',
@@ -2051,6 +2094,9 @@ Dei andre felta er gøymde som standard.
 'exif-focallength'                 => 'Linsefokallengd',
 'exif-subjectarea'                 => 'Motivområde',
 'exif-flashenergy'                 => 'Blitsstyrke',
+'exif-spatialfrequencyresponse'    => 'Romleg frekvensrespons',
+'exif-focalplanexresolution'       => 'Oppløysing i fokalplan X',
+'exif-focalplaneyresolution'       => 'Oppløysing i fokalplan Y',
 'exif-focalplaneresolutionunit'    => 'Oppløysingseining for fokalplanet',
 'exif-subjectlocation'             => 'Motivplassering',
 'exif-exposureindex'               => 'Eksponeringsindeks',
@@ -2058,6 +2104,7 @@ Dei andre felta er gøymde som standard.
 'exif-filesource'                  => 'Filkjelde',
 'exif-scenetype'                   => 'Scenetype',
 'exif-cfapattern'                  => 'CFA-mønster',
+'exif-customrendered'              => 'Tilpassa biletehandsaming',
 'exif-exposuremode'                => 'Eksponeringsmodus',
 'exif-whitebalance'                => 'Kvitbalanse',
 'exif-digitalzoomratio'            => 'Digital zoom-rate',
@@ -2066,6 +2113,7 @@ Dei andre felta er gøymde som standard.
 'exif-contrast'                    => 'Kontrast',
 'exif-saturation'                  => 'Metting',
 'exif-sharpness'                   => 'Skarpleik',
+'exif-devicesettingdescription'    => 'Apparatinnstilling',
 'exif-subjectdistancerange'        => 'Motivavstandsområde',
 'exif-imageuniqueid'               => 'Unik bilete-ID',
 'exif-gpsversionid'                => 'GPS-merke-versjon',
@@ -2146,6 +2194,7 @@ Dei andre felta er gøymde som standard.
 'exif-lightsource-17'  => 'Standardlys A',
 'exif-lightsource-18'  => 'Standardlys B',
 'exif-lightsource-19'  => 'Standardlys C',
+'exif-lightsource-24'  => 'ISO studio kunstljos',
 'exif-lightsource-255' => 'Anna lyskjelde',
 
 'exif-focalplaneresolutionunit-2' => 'tommar',
@@ -2228,6 +2277,8 @@ Dei andre felta er gøymde som standard.
 før du får brukt funksjonar knytt til e-post. Klikk på knappen under for å sende ei stadfestingsmelding
 til adressa di. E-posten kjem med ei lenkje som har ein kode; opne
 lenkja i nettlesaren din for å stadfeste at e-postadressa di er gyldig.',
+'confirmemail_pending'    => '<div class="error">Ein stadfestingskode har alt vorte send til deg på e-post;
+gjer vel å vente nokre minutt før du ber om ny kode om du nett har oppretta kontoen din.</div>',
 'confirmemail_send'       => 'Send stadfestingsmelding',
 'confirmemail_sent'       => 'Stadfestingsmelding er sendt.',
 'confirmemail_oncreate'   => 'Ein stadfestingskode er no send til e-postadressa di.
@@ -2236,6 +2287,7 @@ Koden trengst ikkje for å få logga seg inn, men er naudsynd om ein skal aktive
 
 E-postsendaren gav denne meldinga: $1',
 'confirmemail_invalid'    => 'Feil stadfestingskode. Koden er kanskje for forelda.',
+'confirmemail_needlogin'  => 'Du må $1 for å stadfeste e-postadressa di.',
 'confirmemail_success'    => 'E-postadressa di er stadfest. Du kan no logge inn og kose deg med {{SITENAME}}.',
 'confirmemail_loggedin'   => 'E-postadressa di er stadfest.',
 'confirmemail_error'      => 'Noko gjekk gale når stadfestinga di skulle lagrast.',
@@ -2249,6 +2301,7 @@ $3
 
 Dersom dette *ikkje* er deg, må du ikkje opne lenkja. Denne stadfestingskoden
 blir forelda $4.',
+'invalidateemail'         => 'Avbryt stadfestinga av e-postadressa',
 
 # Scary transclusion
 'scarytranscludefailed'  => '[Henting av mal for $1 gjekk ikkje, beklagar]',

@@ -609,23 +609,23 @@ Du kan ignorere denne beskjeden dersom kontoen ble opprettet ved en feil.',
 'hr_tip'          => 'Horisontal linje',
 
 # Edit pages
-'summary'                   => 'Redigeringsforklaring',
-'subject'                   => 'Overskrift',
-'minoredit'                 => 'Mindre endring',
-'watchthis'                 => 'Overvåk denne siden',
-'savearticle'               => 'Lagre siden',
-'preview'                   => 'Forhåndsvisning',
-'showpreview'               => 'Forhåndsvisning',
-'showlivepreview'           => 'Levende forhåndsvisning',
-'showdiff'                  => 'Vis endringer',
-'anoneditwarning'           => "'''Advarsel:''' Du er ikke logget inn. IP-adressen din blir bevart i sidens redigeringshistorikk.",
-'missingsummary'            => "'''Påminnelse:''' Du har ikke lagt inn en [[Help:Redigeringsforklaring|redigeringsforklaring]]. velger du ''Lagre siden'' en gang til blir endringene lagret uten forklaring.",
-'missingcommenttext'        => 'Vennligst legg inn en kommentar under.',
-'missingcommentheader'      => "'''Merk:''' Du har ikke angitt et emne/overskrift for denne kommentaren. Om du trykker Lagre igjen, vil redigeringen din bli lagret uten en.",
-'summary-preview'           => 'Forhåndsvisning av sammendrag',
-'subject-preview'           => 'Forhåndsvisning av emne/overskrift',
-'blockedtitle'              => 'Brukeren er blokkert',
-'blockedtext'               => "<big>'''Ditt brukernavn eller din IP-adresse har blitt blokkert.'''</big>
+'summary'                           => 'Redigeringsforklaring',
+'subject'                           => 'Overskrift',
+'minoredit'                         => 'Mindre endring',
+'watchthis'                         => 'Overvåk denne siden',
+'savearticle'                       => 'Lagre siden',
+'preview'                           => 'Forhåndsvisning',
+'showpreview'                       => 'Forhåndsvisning',
+'showlivepreview'                   => 'Levende forhåndsvisning',
+'showdiff'                          => 'Vis endringer',
+'anoneditwarning'                   => "'''Advarsel:''' Du er ikke logget inn. IP-adressen din blir bevart i sidens redigeringshistorikk.",
+'missingsummary'                    => "'''Påminnelse:''' Du har ikke lagt inn en [[Help:Redigeringsforklaring|redigeringsforklaring]]. velger du ''Lagre siden'' en gang til blir endringene lagret uten forklaring.",
+'missingcommenttext'                => 'Vennligst legg inn en kommentar under.',
+'missingcommentheader'              => "'''Merk:''' Du har ikke angitt et emne/overskrift for denne kommentaren. Om du trykker Lagre igjen, vil redigeringen din bli lagret uten en.",
+'summary-preview'                   => 'Forhåndsvisning av sammendrag',
+'subject-preview'                   => 'Forhåndsvisning av emne/overskrift',
+'blockedtitle'                      => 'Brukeren er blokkert',
+'blockedtext'                       => "<big>'''Ditt brukernavn eller din IP-adresse har blitt blokkert.'''</big>
 
 Blokkeringen ble utført av $1. Grunnen som ble oppgitt var ''$2''.
 
@@ -634,7 +634,7 @@ Blokkeringen ble utført av $1. Grunnen som ble oppgitt var ''$2''.
 * Blokkering ment på: $7
 
 Du kan kontakte $1 eller en annen [[{{MediaWiki:Grouppage-sysop}}|administrator]] for å diskutere blokkeringen. Du kan ikke bruke «E-post til denne brukeren-funksjonen med mindre du har oppgitt en gyldig e-postadresse i [[Special:Preferences|innstillingene dine]]. Din nåværende IP-adresse er $3, og blokkerings-ID-en er #$5. Vennligst ta med begge disse ved henvendelser.",
-'autoblockedtext'           => "Din IP-adresse har blitt automatisk blokkert fordi den ble brukt av en annen bruker som ble blokkert av $1.
+'autoblockedtext'                   => "Din IP-adresse har blitt automatisk blokkert fordi den ble brukt av en annen bruker som ble blokkert av $1.
 Den oppgitte grunnen var:
 
 :'''$2'''
@@ -647,90 +647,94 @@ Du kan kontakte $1 eller en av de andre [[{{MediaWiki:Grouppage-sysop}}|administ
 Merk at du ikke kan bruke «E-post til denne brukeren»-funksjonen med mindre du har registrert en gyldig e-postadresse i [[Special:Preferences|innstillingene dine]].
 
 Din blokkerings-ID er $5. Vennligst ta med denne ID-en i din forespørsel.",
-'blockednoreason'           => 'ingen grunn gitt',
-'blockedoriginalsource'     => "Kildekoden til '''$1''' vises nedenfor:",
-'blockededitsource'         => "Kildekoden '''dine endringer''' på '''$1''' vises nedenfor:",
-'whitelistedittitle'        => 'Du må logge inn for å redigere',
-'whitelistedittext'         => 'Du må $1 for å redigere artikler.',
-'whitelistreadtitle'        => 'Du må logge inn for å kunne lese',
-'whitelistreadtext'         => 'Du må [[Special:Userlogin|logge inn]] for å lese artikler.',
-'whitelistacctitle'         => 'Du har ikke adgang til å opprette en konto',
-'whitelistacctext'          => 'For å få adgang til å opprette kontoer på {{SITENAME}} må du [[Special:Userlogin|logge inn]] og ha riktige rettigheter.',
-'confirmedittitle'          => 'E-postbekreftelse nødvendig før du kan redigere',
-'confirmedittext'           => 'Du må bekrefte e-postadressen din før du kan redigere sider. Vennligst oppgi og bekreft e-postadressen din via [[Special:Preferences|innstillingene dine]].',
-'nosuchsectiontitle'        => 'Ingen slik seksjon',
-'nosuchsectiontext'         => 'Du prøvde å redigere en seksjon som ikke eksisterer. Siden det ikke finnes noen seksjon «$1», er det ikke mulig å lagre endringen din.',
-'loginreqtitle'             => 'Innlogging kreves',
-'loginreqlink'              => 'logge inn',
-'loginreqpagetext'          => 'Du må $1 for å se andre sider.',
-'accmailtitle'              => 'Passord sendt.',
-'accmailtext'               => 'Passordet for «$1» ble sendt til $2.',
-'newarticle'                => '(Ny)',
-'newarticletext'            => "Du fulgte en lenke til en side som ikke finnes ennå. For å opprette siden, start å skrive i boksen nedenfor (se [[{{MediaWiki:Helppage}}|hjelpesiden]] for mer informasjon). Om du kom hit ved en feil, bare trykk på nettleserens '''tilbake'''-knapp.",
-'anontalkpagetext'          => "----
+'blockednoreason'                   => 'ingen grunn gitt',
+'blockedoriginalsource'             => "Kildekoden til '''$1''' vises nedenfor:",
+'blockededitsource'                 => "Kildekoden '''dine endringer''' på '''$1''' vises nedenfor:",
+'whitelistedittitle'                => 'Du må logge inn for å redigere',
+'whitelistedittext'                 => 'Du må $1 for å redigere artikler.',
+'whitelistreadtitle'                => 'Du må logge inn for å kunne lese',
+'whitelistreadtext'                 => 'Du må [[Special:Userlogin|logge inn]] for å lese artikler.',
+'whitelistacctitle'                 => 'Du har ikke adgang til å opprette en konto',
+'whitelistacctext'                  => 'For å få adgang til å opprette kontoer på {{SITENAME}} må du [[Special:Userlogin|logge inn]] og ha riktige rettigheter.',
+'confirmedittitle'                  => 'E-postbekreftelse nødvendig før du kan redigere',
+'confirmedittext'                   => 'Du må bekrefte e-postadressen din før du kan redigere sider. Vennligst oppgi og bekreft e-postadressen din via [[Special:Preferences|innstillingene dine]].',
+'nosuchsectiontitle'                => 'Ingen slik seksjon',
+'nosuchsectiontext'                 => 'Du prøvde å redigere en seksjon som ikke eksisterer. Siden det ikke finnes noen seksjon «$1», er det ikke mulig å lagre endringen din.',
+'loginreqtitle'                     => 'Innlogging kreves',
+'loginreqlink'                      => 'logge inn',
+'loginreqpagetext'                  => 'Du må $1 for å se andre sider.',
+'accmailtitle'                      => 'Passord sendt.',
+'accmailtext'                       => 'Passordet for «$1» ble sendt til $2.',
+'newarticle'                        => '(Ny)',
+'newarticletext'                    => "Du fulgte en lenke til en side som ikke finnes ennå. For å opprette siden, start å skrive i boksen nedenfor (se [[{{MediaWiki:Helppage}}|hjelpesiden]] for mer informasjon). Om du kom hit ved en feil, bare trykk på nettleserens '''tilbake'''-knapp.",
+'anontalkpagetext'                  => "----
 ''Dette er en diskusjonsside for en uregistrert bruker som ikke har opprettet konto eller ikke er logget inn. Vi er derfor nødt til å bruke den numeriske IP-adressen til å identifisere ham eller henne. En IP-adresse kan være delt mellom flere brukere. Hvis du er en uregistrert bruker og synes at du har fått irrelevante kommentarer på en slik side, [[Special:Userlogin|logg på]] så vi unngår framtidige forvekslinger med andre uregistrerte brukere.''",
-'noarticletext'             => 'Det er ikke noe tekst på denne siden. Du kan [[Special:Search/{{PAGENAME}}|søke etter siden]] i andre sider, eller [{{fullurl:{{FULLPAGENAME}}|action=edit}} redigere siden].',
-'userpage-userdoesnotexist' => 'Brukerkontoen «$1» er ikke registrert. Sjekk om du ønsker å opprette/redigere denne siden.',
-'clearyourcache'            => "'''Merk:''' Etter lagring vil det kanskje være nødvendig at nettleseren sletter mellomlageret sitt for at endringene skal tre i kraft. '''Mozilla og Firefox:''' trykk ''Ctrl-Shift-R'', '''Internet Explorer:''' ''Ctrl-F5'', '''Safari:''' ''Cmd-Shift-R'' i engelskspråklig versjon, ''Cmd-Alt-E'' i norskspråklig versjon, '''Konqueror og Opera:''' ''F5''.",
-'usercssjsyoucanpreview'    => '<strong>Tips:</strong> Bruk «Forhåndsvisning»-knappen for å teste din nye CSS/JS før du lagrer.',
-'usercsspreview'            => "'''Husk at dette bare er en forhåndsvisning av din bruker-CSS og at den ikke er lagret!'''",
-'userjspreview'             => "'''Husk at dette bare er en test eller forhåndsvisning av ditt bruker-JavaScript, og det ikke er lagret!'''",
-'userinvalidcssjstitle'     => "'''Advarsel:''' Det finnes ikke noe utseende ved navn «$1». Husk at .css- og .js-sider bruker titler i små bokstaver, for eksempel {{ns:user}}:Eksempel/monobook.css, ikke {{ns:user}}:Eksempel/Monobook.css",
-'updated'                   => '(Oppdatert)',
-'note'                      => '<strong>Merk:</strong>',
-'previewnote'               => '<strong>Dette er bare en forhåndsvisning; endringer har ikke blitt lagret!</strong>',
-'previewconflict'           => 'Slik vil teksten i redigeringsvinduet se ut dersom du lagrer den.',
-'session_fail_preview'      => '<strong>Beklager! Klarte ikke å lagre redigeringen din. Prøv igjen. Om det fortsetter å gå galt, prøv å logge ut og så inn igjen.</strong>',
-'session_fail_preview_html' => "<strong>Beklager! Klarte ikke å lagre redigeringen din på grunn av tap av øktdata.</strong>
+'noarticletext'                     => 'Det er ikke noe tekst på denne siden. Du kan [[Special:Search/{{PAGENAME}}|søke etter siden]] i andre sider, eller [{{fullurl:{{FULLPAGENAME}}|action=edit}} redigere siden].',
+'userpage-userdoesnotexist'         => 'Brukerkontoen «$1» er ikke registrert. Sjekk om du ønsker å opprette/redigere denne siden.',
+'clearyourcache'                    => "'''Merk:''' Etter lagring vil det kanskje være nødvendig at nettleseren sletter mellomlageret sitt for at endringene skal tre i kraft. '''Mozilla og Firefox:''' trykk ''Ctrl-Shift-R'', '''Internet Explorer:''' ''Ctrl-F5'', '''Safari:''' ''Cmd-Shift-R'' i engelskspråklig versjon, ''Cmd-Alt-E'' i norskspråklig versjon, '''Konqueror og Opera:''' ''F5''.",
+'usercssjsyoucanpreview'            => '<strong>Tips:</strong> Bruk «Forhåndsvisning»-knappen for å teste din nye CSS/JS før du lagrer.',
+'usercsspreview'                    => "'''Husk at dette bare er en forhåndsvisning av din bruker-CSS og at den ikke er lagret!'''",
+'userjspreview'                     => "'''Husk at dette bare er en test eller forhåndsvisning av ditt bruker-JavaScript, og det ikke er lagret!'''",
+'userinvalidcssjstitle'             => "'''Advarsel:''' Det finnes ikke noe utseende ved navn «$1». Husk at .css- og .js-sider bruker titler i små bokstaver, for eksempel {{ns:user}}:Eksempel/monobook.css, ikke {{ns:user}}:Eksempel/Monobook.css",
+'updated'                           => '(Oppdatert)',
+'note'                              => '<strong>Merk:</strong>',
+'previewnote'                       => '<strong>Dette er bare en forhåndsvisning; endringer har ikke blitt lagret!</strong>',
+'previewconflict'                   => 'Slik vil teksten i redigeringsvinduet se ut dersom du lagrer den.',
+'session_fail_preview'              => '<strong>Beklager! Klarte ikke å lagre redigeringen din. Prøv igjen. Om det fortsetter å gå galt, prøv å logge ut og så inn igjen.</strong>',
+'session_fail_preview_html'         => "<strong>Beklager! Klarte ikke å lagre redigeringen din på grunn av tap av øktdata.</strong>
 
 ''Fordi {{SITENAME}} har rå HTML slått på, er forhåndsvisningen skjult for å forhindre JavaScript-angrep.''
 
 <strong>Om dette er et legitimt redigeringsforsøk, prøv igjen. Om det da ikke fungerer, prøv å logge ut og logge inn igjen.</strong>",
-'token_suffix_mismatch'     => '<strong>Redigeringen din har blitt avvist fordi klienten din ikke hadde punktasjonstegn i redigeringsteksten. Redigeringen har blitt avvist for å hindre ødeleggelse av artikkelteksten. Dette forekommer av og til når man bruker vevbaserte anonyme proxytjenester.</strong>',
-'editing'                   => 'Redigerer $1',
-'editingsection'            => 'Redigerer $1 (seksjon)',
-'editingcomment'            => 'Redigerer $1 (kommentar)',
-'editconflict'              => 'Redigeringskonflikt: $1',
-'explainconflict'           => "Noen andre har endret teksten siden du begynte å redigere.
+'token_suffix_mismatch'             => '<strong>Redigeringen din har blitt avvist fordi klienten din ikke hadde punktasjonstegn i redigeringsteksten. Redigeringen har blitt avvist for å hindre ødeleggelse av artikkelteksten. Dette forekommer av og til når man bruker vevbaserte anonyme proxytjenester.</strong>',
+'editing'                           => 'Redigerer $1',
+'editingsection'                    => 'Redigerer $1 (seksjon)',
+'editingcomment'                    => 'Redigerer $1 (kommentar)',
+'editconflict'                      => 'Redigeringskonflikt: $1',
+'explainconflict'                   => "Noen andre har endret teksten siden du begynte å redigere.
 Den øverste boksen inneholder den nåværende tekst.
 Dine endringer vises i den nederste boksen.
 Du er nødt til å flette dine endringer sammen med den nåværende teksten.
 '''Kun''' teksten i den øverste tekstboksen blir lagret når du trykker «Lagre siden».",
-'yourtext'                  => 'Din tekst',
-'storedversion'             => 'Den lagrede versjonen',
-'nonunicodebrowser'         => '<strong>ADVARSEL: Nettleseren din har ikke støtte for Unicode. Skru det på før du begynner å redigere artikler.</strong>',
-'editingold'                => '<strong>ADVARSEL:
+'yourtext'                          => 'Din tekst',
+'storedversion'                     => 'Den lagrede versjonen',
+'nonunicodebrowser'                 => '<strong>ADVARSEL: Nettleseren din har ikke støtte for Unicode. Skru det på før du begynner å redigere artikler.</strong>',
+'editingold'                        => '<strong>ADVARSEL:
 Du redigerer en gammel versjon av denne siden.
 Hvis du lagrer den, vil alle endringer foretatt siden denne versjonen bli overskrevet.</strong>',
-'yourdiff'                  => 'Forskjeller',
-'copyrightwarning'          => 'Vennligst merk at alle bidrag til {{SITENAME}} anses som utgitt under $2 (se $1 for detaljer). Om du ikke vil at dine bidrag skal kunne redigeres og distribuert fritt, ikke legg det til her.<br />
+'yourdiff'                          => 'Forskjeller',
+'copyrightwarning'                  => 'Vennligst merk at alle bidrag til {{SITENAME}} anses som utgitt under $2 (se $1 for detaljer). Om du ikke vil at dine bidrag skal kunne redigeres og distribuert fritt, ikke legg det til her.<br />
 Du lover også at du har skrevet dette selv, eller kopiert det fra en ressurs som er i public domain eller lignende. <strong>IKKE LEGG TIL OPPHAVSBESKYTTET MATERIALE UTEN TILLATELSE!</strong>',
-'copyrightwarning2'         => 'Vennligst merk at alle bidrag til {{SITENAME}} kan bli redigert, endret eller fjernet av andre bidragsytere. Om du ikke vil at dine bidrag skal kunne redigeres fritt, ikke legg det til her.<br />
+'copyrightwarning2'                 => 'Vennligst merk at alle bidrag til {{SITENAME}} kan bli redigert, endret eller fjernet av andre bidragsytere. Om du ikke vil at dine bidrag skal kunne redigeres fritt, ikke legg det til her.<br />
 Du lover også at du har skrevet dette selv, eller kopiert det fra en ressurs som er i public domain eller lignende (se $1 for detaljer). <strong>IKKE LEGG TIL OPPHAVSBESKYTTET MATERIALE UTEN TILLATELSE!</strong>',
-'longpagewarning'           => '<strong>ADVARSEL: Denne siden er $1&nbsp;kB lang; noen eldre nettlesere kan ha problemer med å redigere sider som nærmer seg eller er lengre enn 32&nbsp;kB. Overvei om ikke siden kan deles opp i mindre deler.</strong>',
-'longpageerror'             => '<strong>FEIL: Teksten du prøvde å lagre er $1&nbsp;kB lang, dvs. lenger enn det maksimale $2&nbsp;kB. Den kan ikke lagres.</strong>',
-'readonlywarning'           => '<strong>ADVARSEL: Databasen er låst på grunn av vedlikehold,
+'longpagewarning'                   => '<strong>ADVARSEL: Denne siden er $1&nbsp;kB lang; noen eldre nettlesere kan ha problemer med å redigere sider som nærmer seg eller er lengre enn 32&nbsp;kB. Overvei om ikke siden kan deles opp i mindre deler.</strong>',
+'longpageerror'                     => '<strong>FEIL: Teksten du prøvde å lagre er $1&nbsp;kB lang, dvs. lenger enn det maksimale $2&nbsp;kB. Den kan ikke lagres.</strong>',
+'readonlywarning'                   => '<strong>ADVARSEL: Databasen er låst på grunn av vedlikehold,
 så du kan ikke lagre dine endringer akkurat nå. Det kan være en god idé å
 kopiere teksten din til en tekstfil, så du kan lagre den til senere.</strong>',
-'protectedpagewarning'      => '<strong>ADVARSEL: Denne siden er låst, slik at kun brukere med administratorrettigheter kan redigere den.</strong>',
-'semiprotectedpagewarning'  => "'''Merk:''' Denne siden har blitt låst slik at kun registrerte brukere kan endre den. Nyopprettede og uregistrerte brukere kan ikke redigere.",
-'cascadeprotectedwarning'   => "'''Advarsel:''' Denne siden har blitt låst slik at kun brukere med administratorrettigheter kan redigere den, fordi den inkluderes på følgende dypbeskyttede sider:<!--{{PLURAL:$1}}-->",
-'titleprotectedwarning'     => '<strong>ADVARSEL: Denne siden har blitt låst slik at kun visse brukere kan opprette den.</strong>',
-'templatesused'             => 'Maler i bruk på denne siden:',
-'templatesusedpreview'      => 'Maler som brukes i denne forhåndsvisningen:',
-'templatesusedsection'      => 'Maler brukt i denne seksjonen:',
-'template-protected'        => '(beskyttet)',
-'template-semiprotected'    => '(halvbeskyttet)',
-'hiddencategories'          => 'Skjulte kategorier denne siden er medlem av{{PLURAL:$1|:|:}}',
-'edittools'                 => '<!-- Teksten her vil vises under redigerings- og opplastingsboksene. -->',
-'nocreatetitle'             => 'Sideoppretting er begrenset',
-'nocreatetext'              => '{{SITENAME}} har begrensede muligheter for oppretting av nye sider. Du kan gå tilbake og redigere en eksisterende side, eller [[Special:Userlogin|logge inn eller opprette en ny konto]].',
-'nocreate-loggedin'         => 'Du har ikke tillatelse til å opprette sider på {{SITENAME}}.',
-'permissionserrors'         => 'Tilgangsfeil',
-'permissionserrorstext'     => 'Du har ikke tillatelse til å utføre dette, av følgende {{PLURAL:$1|grunn|grunner}}:',
-'recreate-deleted-warn'     => "'''Advarsel: Du gjenskaper en side som tidligere har blitt slettet.'''
+'protectedpagewarning'              => '<strong>ADVARSEL: Denne siden er låst, slik at kun brukere med administratorrettigheter kan redigere den.</strong>',
+'semiprotectedpagewarning'          => "'''Merk:''' Denne siden har blitt låst slik at kun registrerte brukere kan endre den. Nyopprettede og uregistrerte brukere kan ikke redigere.",
+'cascadeprotectedwarning'           => "'''Advarsel:''' Denne siden har blitt låst slik at kun brukere med administratorrettigheter kan redigere den, fordi den inkluderes på følgende dypbeskyttede sider:<!--{{PLURAL:$1}}-->",
+'titleprotectedwarning'             => '<strong>ADVARSEL: Denne siden har blitt låst slik at kun visse brukere kan opprette den.</strong>',
+'templatesused'                     => 'Maler i bruk på denne siden:',
+'templatesusedpreview'              => 'Maler som brukes i denne forhåndsvisningen:',
+'templatesusedsection'              => 'Maler brukt i denne seksjonen:',
+'template-protected'                => '(beskyttet)',
+'template-semiprotected'            => '(halvbeskyttet)',
+'hiddencategories'                  => 'Skjulte kategorier denne siden er medlem av{{PLURAL:$1|:|:}}',
+'edittools'                         => '<!-- Teksten her vil vises under redigerings- og opplastingsboksene. -->',
+'nocreatetitle'                     => 'Sideoppretting er begrenset',
+'nocreatetext'                      => '{{SITENAME}} har begrensede muligheter for oppretting av nye sider. Du kan gå tilbake og redigere en eksisterende side, eller [[Special:Userlogin|logge inn eller opprette en ny konto]].',
+'nocreate-loggedin'                 => 'Du har ikke tillatelse til å opprette sider på {{SITENAME}}.',
+'permissionserrors'                 => 'Tilgangsfeil',
+'permissionserrorstext'             => 'Du har ikke tillatelse til å utføre dette, av følgende {{PLURAL:$1|grunn|grunner}}:',
+'recreate-deleted-warn'             => "'''Advarsel: Du gjenskaper en side som tidligere har blitt slettet.'''
 
 Du burde vurdere hvorvidt det er passende å fortsette å redigere denne siden. Slettingsloggen for denne siden gjengis her:",
+'expensive-parserfunction-warning'  => 'Advarsel: Denne siden inneholder for mange prosesskrevende parserfunksjoner.
+
+Det burde være mindre enn $2, men er nå $1.',
+'expensive-parserfunction-category' => 'Sider med for mange prosesskrevende parserfunksjoner',
 
 # "Undo" feature
 'undo-success' => 'Redigeringen kan omgjøres. Sjekk sammenligningen under for å bekrefte at du vil gjøre dette, og lagre endringene for å fullføre omgjøringen.',
@@ -886,6 +890,7 @@ Forsikre deg om at denne endringen vil opprettholde historisk sidekontinuitet.',
 'powersearch'           => 'Avansert søk',
 'powersearch-legend'    => 'Avansert søk',
 'powersearchtext'       => 'Søk i navnerom:<br />$1<br />$2 List opp omdirigeringer<br />Søk etter $3 $9',
+'search-external'       => 'Eksternt søk',
 'searchdisabled'        => 'Søkefunksjonen er slått av. Du kan søke via Google i mellomtiden. Merk at Googles indeksering av {{SITENAME}} muligens er utdatert.',
 
 # Preferences page

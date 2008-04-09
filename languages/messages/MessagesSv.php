@@ -832,10 +832,10 @@ Du kan redigera existerande sidor, eller [[Special:Userlogin|logga in eller skap
 
 Du bör överväga om det är lämpligt att fortsätta redigera sidan.
 Raderingsloggen för sidan innehåller följande:",
-'expensive-parserfunction-warning'  => 'Varning: Denna sida innehåller för många expansiva parserfunktionskommandon.
+'expensive-parserfunction-warning'  => 'Varning: Denna sida innehåller för många anrop av resurskrävande parserfunktioner.
 
-Den borde ha mindre än $2, det är nu $1.',
-'expensive-parserfunction-category' => 'Sidor med för många expansiva parserfunktionskommandon',
+Antalet anrop borde vara mindre än $2, det är nu $1.',
+'expensive-parserfunction-category' => 'Sidor med för många resurskrävande parserfunktioner',
 
 # "Undo" feature
 'undo-success' => 'Sidan kan återställas till tidigare version. Var god och kontrollera jämförelsen nedan för att bekräfta att detta är vad du avser att göra och slutför återställningen genom att spara.',
@@ -996,7 +996,10 @@ Se till att sidhistorikens kontinuitet behålls när du sammanfogar historik.',
 'powersearchtext'       => 'Sök i namnrymderna :<br />
 $1<br />
 $2 Lista omdirigeringar &nbsp; Sök efter $3 $9',
-'searchdisabled'        => 'Fulltextssökning på {{SITENAME}} har tyvärr tillfälligt stängts av p.g.a. prestandaproblem. Tills detta har fixats, kan du använda Google-sökningen nedan. Resultaten därifrån kan dock vara något föråldrade.',
+'search-external'       => 'Extern sökning',
+'searchdisabled'        => 'Sökfunktionen på {{SITENAME}} är avstängd.
+Du kan istället göra sökningar med hjälp av Google.
+Notera dock att deras indexering av {{SITENAME}} kan vara något föråldrad.',
 
 # Preferences page
 'preferences'              => 'Inställningar',

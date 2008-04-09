@@ -1,5 +1,5 @@
 <?php
-/** Fiji Hindi (Latin) (Fiji Hindi)
+/** Fiji Hindi/फ़ीजी हिन्दी (Latin) (Fiji Hindi/फ़ीजी हिन्दी (Latin))
  *
  * @addtogroup Language
  *
@@ -11,6 +11,8 @@
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Links ke underline karo:',
+
+# Dates
 
 # Categories related messages
 'categories'             => 'Vibhag',
@@ -40,6 +42,7 @@ $messages = array(
 'permalink'        => 'Pakka link',
 'edit'             => 'Badlo',
 'editthispage'     => 'Ii panna ke sampadan karo',
+'delete'           => 'Delete karo',
 'protect'          => 'Bachao',
 'newpage'          => 'Nawaa panna',
 'talkpage'         => 'Ii panna ke baare me salah karo',
@@ -56,6 +59,7 @@ $messages = array(
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'         => '{{SITENAME}} ke baare me',
 'aboutpage'         => 'Project:Ke baare me',
+'copyrightpage'     => '{{ns:project}}:Chhaape ke adhikaar',
 'currentevents'     => 'Abhi ke ghatna',
 'currentevents-url' => 'Project:Abhi ke ghatna',
 'disclaimers'       => 'Adhikaar tyaagna',
@@ -123,12 +127,15 @@ Agar jo aur koi ii request karis hai nai to aap aapan password yaad kar liya hai
 'eauthentsent'          => 'Ek confirmation e-mail nominated e-mail address be bhej dewa gais hai. Aur mail ii account pe bheje se pahile e-mail me likha instructions ke follow karo, ii confirm kare ke khatir ki account aap ke hai.',
 
 # Edit page toolbar
-'math_sample' => 'Hian pe formula insert karo',
-'nowiki_tip'  => 'Wiki bhasa ke anusaar badlao nahi karo',
-'sig_tip'     => 'Aapke signature time ke saathe',
+'link_tip'       => 'Bhitari jorr',
+'math_sample'    => 'Hian pe formula insert karo',
+'nowiki_tip'     => 'Wiki bhasa ke anusaar badlao nahi karo',
+'sig_tip'        => 'Aapke signature time ke saathe',
+'hr_tip'         => 'Samthar line (bahut jaada nai kaam me laana)',
 
 # Edit pages
 'summary'                => 'Sanchhipt',
+'subject'                => 'Subject/headline',
 'minoredit'              => 'Ii minor edit hai',
 'watchthis'              => 'Ii panna ke dhyaan rakho',
 'savearticle'            => 'Save panna',
@@ -198,7 +205,6 @@ Legend: (abhi) = abhi ke version se farka,
 # Diffs
 'history-title'           => ' "$1" ke sansodhan ke itihaas',
 'difference'              => '(Badlao me farak)',
-'lineno'                  => 'Line $1:',
 'compareselectedversions' => 'Chuna gae version ke compare karo',
 'editundo'                => 'badlao ke pahile jaise kar do',
 'diff-multi'              => '({{PLURAL:$1|Ek biich waala badlao|$1 biich waala badlao}} nai dekhawa jae hai.)',
@@ -214,6 +220,7 @@ Legend: (abhi) = abhi ke version se farka,
 'preferences'   => 'Pasand',
 'mypreferences' => 'Hamaar preferences',
 'retypenew'     => 'Password fir se type karo:',
+
 
 # User rights log
 'rightslog' => 'Sadasya adhikar suchi',
@@ -257,9 +264,13 @@ Legend: (abhi) = abhi ke version se farka,
 # Image description page
 'filehist'                  => 'File ke itihaas',
 'filehist-help'             => 'File ke dekhe khatir, jaise uu time dekhe me lagat rahaa, date/time pe click karo.',
+'filehist-current'          => 'abhi waala',
 'filehist-datetime'         => 'Din/Time',
+'filehist-user'             => 'Sadasya',
+'filehist-dimensions'       => 'Lambai aur chaurai',
 'filehist-filesize'         => 'File ke size',
 'filehist-comment'          => 'Tiprrin',
+'imagelinks'                => 'Jorr',
 'linkstoimage'              => 'Ii sab panna ii file se link hae hai:',
 'nolinkstoimage'            => 'Ii file se koi panna nai jurre hai.',
 'sharedupload'              => 'Ii file baatal hai aur duusra project me bhi kaam lawa jaae sake hai.',
@@ -279,10 +290,13 @@ Legend: (abhi) = abhi ke version se farka,
 # Random page
 'randompage' => 'Koi bhi panna',
 
+# Random redirect
+
 # Statistics
 'statistics' => 'Aankrra',
 
 'disambiguations' => 'Disambiguation panna',
+
 
 'brokenredirects' => 'Tuuta redirects',
 
@@ -308,6 +322,7 @@ Legend: (abhi) = abhi ke version se farka,
 'mostrevisions'           => 'Sab se jaada badlao waala panna',
 'shortpages'              => 'Chhota panna',
 'longpages'               => 'Lamba panna',
+'deadendpages'            => 'Jon panna se koi jurre nai hai',
 'protectedpages'          => 'Surakchhit panna',
 'listusers'               => 'Sadasya ke suchi',
 'specialpages'            => 'Khaas panna',
@@ -320,9 +335,9 @@ Legend: (abhi) = abhi ke version se farka,
 'booksources' => 'Pustak sources',
 
 # Special:Log
-'specialloguserlabel' => 'Sadasya:',
-'log'                 => 'Suchi',
-'all-logs-page'       => 'Sab suchi',
+'specialloguserlabel'  => 'Sadasya:',
+'log'                  => 'Suchi',
+'all-logs-page'        => 'Sab suchi',
 
 # Special:Allpages
 'allpages'       => 'Sab panna',
@@ -339,10 +354,14 @@ Legend: (abhi) = abhi ke version se farka,
 
 # Watchlist
 'watchlist'            => 'Hamaar dhyan suchi',
+'mywatchlist'          => 'Hamaar dhyaan suchi',
 'watchlistfor'         => "('''$1''' ke khatir)",
+'addedwatch'           => 'Dhyan suchi me jorro',
 'addedwatchtext'       => "Panna \"[[:\$1]]\" ke aap ke [[Special:Watchlist|watchlist]] me jorr dewa gais hai.
 Ii panna ke aage ke badlao
 Future changes to this page and its associated talk page will be listed there, and the page will appear '''bolded''' in the [[Special:Recentchanges|list of recent changes]] to make it easier to pick out.",
+'removedwatch'         => 'Dhyan suchi me se hatao',
+'removedwatchtext'     => 'Panna "[[:$1]]" ke aap ke dhyan suchi se hatae dewa gae hai.',
 'watch'                => 'Dekho',
 'watchthispage'        => 'Ii panna par dhyan rakho',
 'unwatch'              => 'Nai dekho',
@@ -357,18 +376,29 @@ Future changes to this page and its associated talk page will be listed there, a
 'unwatching' => 'Nai dekhtaa...',
 
 # Delete/protect/revert
-'deletepage'            => 'Pana ke delete karo',
-'historywarning'        => 'Sawadhan: Jon page aap delete kare waala hai ke itihaas hai:',
-'confirmdeletetext'     => 'Aap ek panna ke uske itihaas ke saathe delete kare waala hai.
+'deletepage'                  => 'Pana ke delete karo',
+'historywarning'              => 'Sawadhan: Jon page aap delete kare waala hai ke itihaas hai:',
+'confirmdeletetext'           => 'Aap ek panna ke uske itihaas ke saathe delete kare waala hai.
 Meharbani kar ke iske confirm karo, ki aap iske consequences ke samajhta hai, aur aap iske [[{{MediaWiki:Policy-url}}|the policy]] ke policy ke niche delete karta hai.',
-'actioncomplete'        => 'Action puura hoe gais hai',
-'deletedtext'           => '"<nowiki>$1</nowiki>" ke delete kar dewa gais hai. Abhi jaldi ke deletions ke record dekhe khatir $2 ke dekho.',
-'deletedarticle'        => '"[[$1]]" ke hatae dewa gis hai',
-'dellogpage'            => 'Hatane ke suchi',
-'deletecomment'         => 'Delete kare ke kaaran:',
-'deleteotherreason'     => 'Aur/duusra kaaran:',
-'deletereasonotherlist' => 'Duusra kaaran',
-'protectlogpage'        => 'Surakchha suchi',
+'actioncomplete'              => 'Action puura hoe gais hai',
+'deletedtext'                 => '"<nowiki>$1</nowiki>" ke delete kar dewa gais hai. Abhi jaldi ke deletions ke record dekhe khatir $2 ke dekho.',
+'deletedarticle'              => '"[[$1]]" ke hatae dewa gis hai',
+'dellogpage'                  => 'Hatane ke suchi',
+'deletecomment'               => 'Delete kare ke kaaran:',
+'deleteotherreason'           => 'Aur/duusra kaaran:',
+'deletereasonotherlist'       => 'Duusra kaaran',
+'rollbacklink'                => 'pahile jaise karo',
+'protectlogpage'              => 'Surakchha suchi',
+'protectcomment'              => 'Tiprri:',
+'protectexpiry'               => 'Khalas hoe hai:',
+'protect_expiry_invalid'      => 'Khalas hoe waala time valid nai hai.',
+'protect_expiry_old'          => 'Khalas hoe waala time past me hai.',
+'protect-unchain'             => 'Naam badle waala ijaajat kholo',
+'protect-locked-access'       => 'Aap ke account ke panna ke ijaajat badle ijaajat nai dewe hai.
+Panna ke abhi ke settings hian hai <strong>$1</strong>:',
+'protect-expiring'            => '$1 khalaas hoe hai (UTC)',
+'restriction-type'            => 'Ijaajat:',
+'restriction-level'           => 'Roke ke niyam:',
 
 # Undelete
 'undeletebtn' => 'Pahile jaise kar do',
@@ -397,6 +427,7 @@ Meharbani kar ke iske confirm karo, ki aap iske consequences ke samajhta hai, au
 'istemplate'          => 'milao',
 'whatlinkshere-prev'  => '{{PLURAL:$1|pahile waala|pahile waala $1}}',
 'whatlinkshere-next'  => '{{PLURAL:$1|aage waala|aage waala $1}}',
+'whatlinkshere-links' => '← jorr',
 
 # Block/unblock
 'blockip'       => 'Sadasya ke roko',
@@ -425,6 +456,7 @@ Ii prastithi me, aap ke manually move yah merge kare ke parri.",
 'movearticle'      => 'Panna ke naam badli karo:',
 'newtitle'         => 'Nawaa title pe:',
 'move-watch'       => 'Ii panna pe dhyan rakho',
+'movepagebtn'      => 'Panna ke naam badlo',
 'pagemovedsub'     => 'Panna ke naam badle me safalta',
 'movepage-moved'   => '<big>\'\'\'"$1" ke naam badal ke "$2" kar dewa gais hai\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'    => 'Uu naam ke panna abhi hai, nai to jon naam aap choose karaa hai valid nai hai.
@@ -452,6 +484,9 @@ Meharbani kar ke duusra naam choose karo.',
 'importlogpage' => 'Suchi ke import karo',
 
 # Tooltip help for the actions
+'tooltip-pt-userpage'             => 'Hamaar sadasya panna',
+'tooltip-pt-mytalk'               => 'Hamaar baat waala panna',
+'tooltip-pt-preferences'          => 'Hamaar pasand',
 'tooltip-pt-watchlist'            => 'Panna ke list jispe aap dhyan rakhaa hai',
 'tooltip-pt-mycontris'            => 'Hamaar yog daan ke list',
 'tooltip-pt-login'                => 'Aap log in karo ke to achchha hai, lekin jarurat nahi hai.',
