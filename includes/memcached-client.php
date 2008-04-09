@@ -402,6 +402,10 @@ class memcached
       $fname = 'memcached::get';
       wfProfileIn( $fname );
 
+      if ( $this->_debug ) {
+         $this->_debugprint( "get($key)\n" );
+      }
+
       if (!$this->_active) {
 	 wfProfileOut( $fname );
          return false;
@@ -429,7 +433,7 @@ class memcached
 
       if ($this->_debug)
          foreach ($val as $k => $v)
-            $this->_debugprint(@sprintf("MemCache: sock %s got %s => %s\r\n", serialize($sock), $k, $v));
+            $this->_debugprint(sprintf("MemCache: sock %s got %s\n", serialize($sock), $k));
 
       wfProfileOut( $fname );
       return @$val[$key];
@@ -495,7 +499,7 @@ class memcached
 
       if ($this->_debug)
          foreach ($val as $k => $v)
-            $this->_debugprint(sprintf("MemCache: got %s => %s\r\n", $k, $v));
+            $this->_debugprint(sprintf("MemCache: got %s\n", $k));
 
       return $val;
    }
