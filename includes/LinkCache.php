@@ -111,12 +111,14 @@ class LinkCache {
 	/**
 	 * Add a title to the link cache, return the page_id or zero if non-existent
 	 * @param $title String: title to add
+	 * @param $len int, page size
+	 * @param $redir bool, is redirect?
 	 * @return integer
 	 */
-	function addLink( $title ) {
+	function addLink( $title, $len = -1, $redir = NULL ) {
 		$nt = Title::newFromDBkey( $title );
 		if( $nt ) {
-			return $this->addLinkObj( $nt );
+			return $this->addLinkObj( $nt, $len, $redir );
 		} else {
 			return 0;
 		}
@@ -125,9 +127,11 @@ class LinkCache {
 	/**
 	 * Add a title to the link cache, return the page_id or zero if non-existent
 	 * @param $nt Title to add.
+	 * @param $len int, page size
+	 * @param $redir bool, is redirect?
 	 * @return integer
 	 */
-	function addLinkObj( &$nt ) {
+	function addLinkObj( &$nt, $len = -1, $redirect = NULL ) {
 		global $wgMemc, $wgLinkCacheMemcached, $wgAntiLockFlags;
 		$title = $nt->getPrefixedDBkey();
 		if ( $this->isBadLink( $title ) ) { return 0; }
@@ -151,8 +155,6 @@ class LinkCache {
 		}
 		# Some fields heavily used for linking...
 		$id = NULL;
-		$len = -1;
-		$redirect = NULL;
 		
 		if( $wgLinkCacheMemcached ) {
 			$id = $wgMemc->get( $key = $this->getKey( $title ) );
