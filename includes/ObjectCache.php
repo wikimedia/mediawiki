@@ -53,7 +53,7 @@ function &wfGetCache( $inputType ) {
 			if (!class_exists("MemcachedClientforWiki")) {
 				class MemCachedClientforWiki extends memcached {
 					function _debugprint( $text ) {
-						wfDebug( "memcached: $text\n" );
+						wfDebug( "memcached: $text" );
 					}
 				}
 			}
