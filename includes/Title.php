@@ -234,7 +234,7 @@ class Title {
 
 		$t->mArticleID = isset($row->page_id) ? intval($row->page_id) : -1;
 		$t->mLength = isset($row->page_len) ? intval($row->page_len) : -1;
-		$t->mRedirect = isset($row->page_is_redirect) ? intval($row->page_is_redirect) : NULL;
+		$t->mRedirect = isset($row->page_is_redirect) ? (bool)$row->page_is_redirect : NULL;
 		$t->mLatestID = isset($row->page_latest) ? $row->page_latest : false;
 
 		return $t;
@@ -1856,15 +1856,17 @@ class Title {
 	 * @return bool
 	 */
 	public function isRedirect( $flags = 0 ) {
+		if( !is_null($this->mRedirect) )
+			return $this->mRedirect;
 		# Zero for special pages. 
 		# Also, calling getArticleID() loads the field from cache!
 		if( !$this->getArticleID($flags) || $this->getNamespace() == NS_SPECIAL ) {
 			return false;
 		}
 		$linkCache =& LinkCache::singleton();
-		$this->mRedirect = $linkCache->getGoodLinkFieldObj( $this, 'redirect' );
+		$this->mRedirect = (bool)$linkCache->getGoodLinkFieldObj( $this, 'redirect' );
 
-		return (bool)$this->mRedirect;
+		return $this->mRedirect;
 	}
 	
 	/**
@@ -1874,15 +1876,17 @@ class Title {
 	 * @return bool
 	 */
 	public function getLength( $flags = 0 ) {
+		if( $this->mLength != -1 )
+			return $this->mLength;
 		# Zero for special pages. 
 		# Also, calling getArticleID() loads the field from cache!
 		if( !$this->getArticleID($flags) || $this->getNamespace() == NS_SPECIAL ) {
 			return 0;
 		}
 		$linkCache =& LinkCache::singleton();
-		$this->mLength = $linkCache->getGoodLinkFieldObj( $this, 'length' );
+		$this->mLength = intval( $linkCache->getGoodLinkFieldObj( $this, 'length' ) );
 
-		return intval($this->mLength);
+		return $this->mLength;
 	}
 
 	public function getLatestRevID() {
