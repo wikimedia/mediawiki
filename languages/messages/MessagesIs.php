@@ -14,6 +14,7 @@
  * @author SPQRobin
  * @author לערי ריינהארט
  * @author M.M.S.
+ * @author Jon Harald Søby
  */
 
 $skinNames = array(
@@ -566,7 +567,7 @@ Spurn: $2',
 'sqlhidden'            => '(SQL-fyrirspurn falin)',
 'namespaceprotected'   => "Þú hefur ekki leyfi til að breyta síðum í '''$1''' nafnrýminu.",
 'customcssjsprotected' => 'Þú hefur ekki leyfi til að breyta þessari síð því hún inniheldur notendastillingar fyrir annann notanda.',
-'ns-specialprotected'  => 'Ekki er hægt að breyta síðum í {{ns:special}} nafnrýminu.',
+'ns-specialprotected'  => 'Kerfissíðum er ekki hægt að breyta.',
 'titleprotected'       => "Ekki er hægt að búa til síðu með þessum titli því hann var verndaður af [[User:$1|$1]].
 Ástæðan er ''$2''.",
 
@@ -876,7 +877,9 @@ Prófaðu [[Special:Search|að leita á þessari wiki síðu]] að svipuðum sí
 'search-result-size'    => '$1 ({{PLURAL:$2|1 orð|$2 orð}})',
 'showingresults'        => "Sýni {{PLURAL:$1|'''1''' niðurstöðu|'''$1''' niðurstöður}} frá og með #'''$2'''.",
 'showingresultsnum'     => "Sýni {{PLURAL:$3|'''$3''' niðurstöðu|'''$3''' niðurstöður}} frá og með #<b>$2</b>.",
+'nonefound'             => "'''Athugaðu''': Leitir misheppnast oft þegar leitað er að algengum orðum eins og „hafa“ og „frá“, sem eru ekki skráð, eða með því að tilgreina fleiri en eitt leitarorð. Aðeins síður með öll tilgreind leitarorð munu koma á listann.",
 'powersearch'           => 'Ítarleg leit',
+'powersearch-legend'    => 'Ítarlegri leit',
 'powersearchtext'       => 'Leita í eftirfarandi nafnrýmum :<br />$1<br />$2 Sýna tilvísarnir<br />Leita að $3 $9',
 
 # Preferences page

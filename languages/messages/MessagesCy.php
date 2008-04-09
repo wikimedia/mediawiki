@@ -180,10 +180,11 @@ $messages = array(
 'category-empty'                 => "''Ar hyn o bryd nid oes unrhyw erthyglau na ffeiliau yn y categori hwn.''",
 'hidden-categories'              => '{{PLURAL:$1|Categori cuddiedig|Categori cuddiedig|Categorïau cuddiedig|Categorïau cuddiedig|Categorïau cuddiedig|Categorïau cuddiedig}}',
 'hidden-category-category'       => 'Categorïau cuddiedig', # Name of the category where hidden categories will be listed
-'category-subcat-count'          => "{{PLURAL:$2|Nid oes dim is-gategorïau yn y categori hwn|Dim ond yr is-gategori sy'n dilyn sydd gan y categori hwn|Mae'r {{PLURAL:$1|is-gategori|is-gategori|$1 is-gategori|$1 is-gategori|$1 is-gategori|$1 is-gategori}} sy'n dilyn yn y categori hwn, o'r cyfanswm $2.}}",
+'category-subcat-count'          => "{{PLURAL:$1|Nid oes dim is-gategorïau|Dim ond yr is-gategori sy'n dilyn sydd|Mae'r $1 is-gategori sy'n dilyn ymhlith cyfanswm o $2|Mae'r $1 is-gategori sy'n dilyn ymhlith cyfanswm o $2|Mae'r $1 is-gategori sy'n dilyn ymhlith cyfanswm o $2|Mae'r $1 is-gategori sy'n dilyn ymhlith cyfanswm o $2}} yn y categori hwn.",
 'category-subcat-count-limited'  => 'Mae gan y categori hwn $1 {{PLURAL:$1|is-gategori|is-gategori|is-gategori|is-gategori|is-gategori|is-gategori|}}.',
-'category-article-count'         => "{{PLURAL:$2|Nid oes dim tudalennau yn y categori hwn|Dim ond y dudalen sy'n dilyn sydd yn y categori hwn|Mae'r {{PLURAL:$1|tudalen|tudalen|$1 dudalen|$1 tudalen|$1 thudalen|$1 tudalen}} sy'n dilyn yn y categori hwn, o'r cyfanswm $2.}}",
+'category-article-count'         => "{{PLURAL:$1|Nid oes dim tudalennau|Dim ond y dudalen sy'n dilyn sydd|Mae'r $1 dudalen|Mae'r $1 tudalen|Mae'r $1 thudalen|Mae'r $1 tudalen}} sy'n dilyn ymlith cyfanswm o $2}} yn y categori hwn.",
 'category-article-count-limited' => "Mae'r {{PLURAL:$1|tudalen|dudalen|$1 dudalen|$1 tudalen|$1 thudalen|$1 tudalen}} sy'n dilyn yn y categori hwn.",
+'category-file-count'            => "{{PLURAL:$2|Nid oes dim ffeiliau|Dim ond y ffeil sy'n dilyn sydd|Mae'r $1 ffeil sy'n dilyn ymlith cyfanswm o $2|Mae'r $1 ffeil sy'n dilyn ymlith cyfanswm o $2|Mae'r $1 ffeil sy'n dilyn ymlith cyfanswm o $2|Mae'r $1 ffeil sy'n dilyn ymlith cyfanswm o $2}} yn y categori hwn.",
 'listingcontinuesabbrev'         => ' parh.',
 
 'mainpagetext'      => "<big>'''Wedi llwyddo gosod meddalwedd Mediawiki yma'''</big>",

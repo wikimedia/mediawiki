@@ -648,6 +648,7 @@ Treoir: (rth) = difríocht ón leagan reatha, (rmh) = difríocht ón leagan roim
 'histfirst'           => 'An ceann is luaithe',
 'histlast'            => 'An ceann is déanaí',
 'historysize'         => '({{PLURAL:$1|1 beart|$1 bheart}})',
+'historyempty'        => '(folamh)',
 
 # Revision feed
 'history-feed-item-nocomment' => '$1 ag $2', # user at time

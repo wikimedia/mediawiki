@@ -136,6 +136,8 @@ $messages = array(
 'history'          => 'પાનાનો ઇતિહાસ',
 'history_short'    => 'ઇતિહાસ',
 'info_short'       => 'માહિતી',
+'printableversion' => 'છાપવા માટેની આવૃત્તિ',
+'permalink'        => 'સ્થાયી કડી',
 'edit'             => 'ફેરફાર કરો',
 'editthispage'     => 'આ પાના માં ફેરફાર કરો',
 'delete'           => 'હટાવો',
@@ -145,11 +147,14 @@ $messages = array(
 'talkpage'         => 'આ પાના વિષે ચર્ચા કરો',
 'talkpagelinktext' => 'ચર્ચા',
 'specialpage'      => 'ખાસ પાનુ',
+'personaltools'    => 'વ્યક્તિગત સાધનો',
 'talk'             => 'ચર્ચા',
+'views'            => 'અવલોકનો',
 'toolbox'          => 'ઓજારની પેટી',
 'userpage'         => 'સભ્યનું પાનું જુઓ',
 'viewtalkpage'     => 'ચર્ચા જુઓ',
 'otherlanguages'   => 'બીજી ભાષાઓમાં',
+'redirectedfrom'   => '($1 થી અહીં વાળેલું)',
 'lastmodifiedat'   => 'આ પાનાંમાં છેલ્લો ફેરફાર $1ના રોજ $2 વાગ્યે થયો.', # $1 date, $2 time
 'jumptonavigation' => 'ભ્રમણ',
 'jumptosearch'     => 'શોધો',
@@ -157,12 +162,18 @@ $messages = array(
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'         => '{{SITENAME}} વિષે',
 'aboutpage'         => 'Project:વિષે',
+'copyrightpage'     => '{{ns:પરિયોજના}}:પ્રકાશનાધિકાર',
 'currentevents'     => 'વર્તમાન ઘટનાઓ',
 'currentevents-url' => 'Project:વર્તમાન ઘટનાઓ',
+'disclaimers'       => 'જાહેર ઇનકાર',
+'disclaimerpage'    => 'પરિયોજના: સામાન્ય જાહેર ઇનકાર',
 'edithelp'          => 'ફેરફારો માટે મદદ',
+'edithelppage'      => 'મદદઃફેરફાર',
 'helppage'          => 'મદદઃસૂચિ',
 'mainpage'          => 'મુખપૃષ્ઠ',
 'portal'            => 'સમાજ મુખપૃષ્ઠ',
+'privacy'           => 'ગોપનિયતા નીતિ',
+'privacypage'       => 'પરિયોજના: ગોપનિયતા નીતિ',
 'sitesupport'       => 'દાન',
 
 'ok'                  => 'મંજૂર',
@@ -171,6 +182,8 @@ $messages = array(
 'newmessagesdifflink' => 'છેલ્લો ફેરફાર',
 'editsection'         => 'ફેરફાર કરો',
 'editold'             => 'ફેરફાર કરો',
+'editsectionhint'     => 'ફેરફાર કરો - પરિચ્છેદ: $1',
+'toc'                 => 'અનુક્રમ',
 'showtoc'             => 'બતાવો',
 'hidetoc'             => 'છુપાવો',
 'viewdeleted'         => '$1 જોવું છે?',
@@ -193,6 +206,7 @@ $messages = array(
 # Login and logout pages
 'login'           => 'પ્રવેશ કરો (લૉગ ઇન કરીને)',
 'userlogin'       => 'પ્રવેશ કરો / નવું ખાતું ખોલો',
+'userlogout'      => 'બહાર નીકળો/લૉગ આઉટ',
 'nologin'         => 'શું તમારૂં ખાતું નથી? $1.',
 'nologinlink'     => 'ખાતું ખોલો',
 'createaccount'   => 'નવું ખાતું ખોલો',
@@ -205,6 +219,7 @@ $messages = array(
 
 # Edit pages
 'summary'               => 'સારાંશ',
+'subject'               => 'વિષય/શિર્ષક',
 'minoredit'             => 'આ એક નાનો સુધારો છે.',
 'watchthis'             => 'આ પાનાને ધ્યાનમાં રાખો',
 'savearticle'           => 'કાર્ય સુરક્ષિત કરો',
@@ -221,15 +236,17 @@ $messages = array(
 પાનું હટવ્યાં પહેલાનાં બધા ફેરફારોની સૂચિ તમારી સહુલીયત માટે અહીં આપી છે:",
 
 # History pages
-'nohistory'    => 'આ પાનાનાં ફેરફારનો ઇતિહાસ નથી.',
-'cur'          => 'વર્તમાન',
-'next'         => 'આગળ',
-'last'         => 'છેલ્લું',
-'page_first'   => 'પહેલું',
-'page_last'    => 'છેલ્લું',
-'histfirst'    => 'સૌથી જુનું',
-'histlast'     => 'સૌથી નવું',
-'historyempty' => '(ખાલી)',
+'nohistory'        => 'આ પાનાનાં ફેરફારનો ઇતિહાસ નથી.',
+'revisionasof'     => '$1 સુધીનાં પુનરાવર્તન',
+'previousrevision' => '←જુના ફેરફારો',
+'cur'              => 'વર્તમાન',
+'next'             => 'આગળ',
+'last'             => 'છેલ્લું',
+'page_first'       => 'પહેલું',
+'page_last'        => 'છેલ્લું',
+'histfirst'        => 'સૌથી જુનું',
+'histlast'         => 'સૌથી નવું',
+'historyempty'     => '(ખાલી)',
 
 # Diffs
 'lineno'                  => 'લીટી $1:',
@@ -267,6 +284,7 @@ $messages = array(
 
 # Recent changes
 'recentchanges'     => 'હાલ માં થયેલા ફેરફાર',
+'rcnote'            => "નીચે $3 અને તે પહેલાનાં '''$2''' દિવસમાં {{PLURAL:$1| થયેલો '''1''' માત્ર ફેરફાર|થયેલાં છેલ્લા  '''$1''' ફેરફારો}} દર્શાવ્યાં છે .",
 'rclistfrom'        => '$1 બાદ થયેલા નવા ફેરફારો બતાવો',
 'rcshowhideminor'   => 'નાના ફેરફારો $1',
 'rcshowhidebots'    => 'બૉટો $1',
@@ -293,6 +311,10 @@ $messages = array(
 'reupload'   => 'ફરી ચડાવો',
 'filesource' => 'સ્ત્રોત:',
 
+# Image description page
+'filehist'   => 'ફાઇલનો ઇતિહાસ',
+'imagelinks' => 'કડીઓ',
+
 # Unused templates
 'unusedtemplates' => 'વણ વપરાયેલાં ઢાંચા',
 
@@ -305,6 +327,7 @@ $messages = array(
 'fewestrevisions' => 'સૌથી ઓછાં ફેરફાર થયેલા પાનાં',
 
 # Miscellaneous special pages
+'nbytes'                  => '$1 {{PLURAL:$1|બાઇટ|બાઇટ્સ}}',
 'nmembers'                => '$1 {{PLURAL:$1|સદસ્ય|સદસ્યો}}',
 'specialpage-empty'       => 'આ પાનું ખાલી છે.',
 'lonelypages'             => 'અનાથ પાના',
@@ -354,11 +377,16 @@ $messages = array(
 'mywatchlist'          => 'મારી ધ્યાનસૂચિ',
 'watchlistfor'         => "('''$1'''ને માટે)",
 'watch'                => 'ધ્યાન માં રાખો',
+'unwatch'              => 'ધ્યાનસૂચિમાંથી હટાવો',
 'watchlist-details'    => 'ચર્ચા વાળા પાના ન ગણતા {{PLURAL:$1|$1 પાનું|$1 પાનાં}} ધ્યાનસૂચી મા છે.',
 'watchlistcontains'    => 'તમારી ધ્યાનસૂચીમાં $1 {{PLURAL:$1|પાનું|પાનાં}} છે.',
 'watchlist-hide-bots'  => 'બૉટના ફેરફાર સંતાડો',
 'watchlist-hide-own'   => 'મારા ફેરફાર સંતાડો',
 'watchlist-hide-minor' => 'નાના ફેરફાર સંતાડો',
+
+# Displayed when you click the "watch" button and it is in the process of watching
+'watching'   => 'નજર રાખી રહ્યાં છો...',
+'unwatching' => 'નજર રાખવાની બંધ કરી છે...',
 
 'enotif_newpagetext' => 'આ નવું પાનું છે.',
 'changed'            => 'બદલાયેલું',
@@ -383,14 +411,16 @@ $messages = array(
 # Contributions
 'contributions' => 'સભ્યનું યોગદાન',
 'mycontris'     => 'મારૂં યોગદાન',
+'contribsub2'   => '$1 માટે ($2)',
 'uctop'         => '(છેક ઉપર)',
 
 'sp-contributions-blocklog' => 'પ્રતિબંધ સૂચિ',
 'sp-contributions-submit'   => 'શોધો',
 
 # What links here
-'whatlinkshere' => 'અહિયાં શું જોડાય છે',
-'linklistsub'   => '(કડીઓની સૂચી)',
+'whatlinkshere'       => 'અહિયાં શું જોડાય છે',
+'linklistsub'         => '(કડીઓની સૂચી)',
+'whatlinkshere-links' => '←  કડીઓ',
 
 # Block/unblock
 'blockip'            => 'સભ્ય પર પ્રતિબંધ મુકો',
@@ -401,6 +431,7 @@ $messages = array(
 'ipblocklist'        => 'પ્રતિબંધિત IP સરનામા અને સભ્યોની યાદી',
 'ipblocklist-submit' => 'શોધો',
 'anononlyblock'      => 'માત્ર અનામી',
+'blocklink'          => 'પ્રતિબંધ',
 'unblocklink'        => 'પ્રતિબંધ હટાવો',
 'contribslink'       => 'યોગદાન',
 'blocklogpage'       => 'પ્રતિબંધ સૂચિ',
@@ -420,10 +451,19 @@ $messages = array(
 'allmessagesname'    => 'નામ',
 'allmessagescurrent' => 'વર્તમાન દસ્તાવેજ',
 
+# Thumbnails
+'thumbnail-more' => 'વિસ્તૃત કરો',
+
 # Tooltip help for the actions
 'tooltip-pt-userpage'             => 'મારૂં પાનું',
 'tooltip-pt-mytalk'               => 'મારી ચર્ચાનું પાનું',
 'tooltip-pt-preferences'          => 'મારી પસંદ',
+'tooltip-pt-watchlist'            => 'તમે દેખરેખ રાખી રહ્યાં હોવ તેવા પાનાઓની યાદી',
+'tooltip-pt-mycontris'            => 'મારા યોગદાનની યાદી',
+'tooltip-pt-login'                => 'આપને લોગ ઇન કરવા ભલામણ કરવામાં આવે છે, જોકે તે આવશ્યક નથી',
+'tooltip-pt-logout'               => 'બહાર નીકળો/લૉગ આઉટ કરો',
+'tooltip-ca-talk'                 => 'અનુક્રમણિકાનાં પાના વિષે ચર્ચા',
+'tooltip-ca-edit'                 => "આપ આ પાનામાં ફેરફાર કરી શકો છો, કાર્ય સુરક્ષિત કરતાં પહેલાં 'ફેરફાર બતાવો' બટન ઉપર ક્લિક કરીને જોઇ લેશો",
 'tooltip-ca-addsection'           => 'આ ચર્ચામાં તમારી ટીપ્પણી ઉમેરો.',
 'tooltip-ca-viewsource'           => 'આ પાનુ સંરક્ષિત છે, તમે તેનો સ્ત્રોત જોઇ શકો છો',
 'tooltip-ca-protect'              => 'આ પાનું સુરક્ષિત કરો',
@@ -433,11 +473,21 @@ $messages = array(
 'tooltip-search'                  => '{{SITENAME}} શોધો',
 'tooltip-p-logo'                  => 'મુખપૃષ્ઠ',
 'tooltip-n-mainpage'              => 'મુખપૃષ્ઠ પર જાઓ',
+'tooltip-n-portal'                => 'પરિયોજના વિષે, આપ શું કરી શકો અને વસ્તુઓ ક્યાં શોધશો',
+'tooltip-n-currentevents'         => 'પ્રસ્તુત ઘટનાની પૃષ્ઠભૂમિની માહિતિ શોધો',
 'tooltip-n-recentchanges'         => 'વિકિમાં હાલમા થયેલા ફેરફારો ની સૂચિ.',
+'tooltip-n-randompage'            => 'કોઇ પણ એક લેખ બતાવો',
+'tooltip-n-help'                  => 'શોધવા માટેની જગ્યા.',
 'tooltip-n-sitesupport'           => 'અમારું સમર્થન કરો',
+'tooltip-t-whatlinkshere'         => 'અહીં જોડાતા બધાં વિકિ પાનાઓની યાદી',
+'tooltip-t-upload'                => 'ફાઇલ ચડાવો',
 'tooltip-t-specialpages'          => 'ખાસ પાનાંઓની સૂચિ',
 'tooltip-ca-nstab-user'           => 'સભ્યનું પાનું જુઓ',
+'tooltip-ca-nstab-template'       => 'ઢાંચો જુઓ',
 'tooltip-ca-nstab-help'           => 'મદદનું પાનું જુઓ',
+'tooltip-save'                    => 'તમે કરેલાં ફેરફારો સુરક્ષિત કરો',
+'tooltip-preview'                 => 'તમે કરેલાં ફેરફારો જોવા મળશે, કૃપા કરી કાર્ય સુરક્ષિત કરતાં પહેલા આ જોઇ લો',
+'tooltip-diff'                    => 'તમે માહિતિમાં કયા ફેરફારો કર્યા છે તે જોવા મળશે',
 'tooltip-compareselectedversions' => 'અ પાનાનાં પસંદ કરેલા બે વૃત્તાંત વચ્ચેનાં ભેદ જુઓ.',
 
 # Info page

@@ -917,6 +917,8 @@ $2',
 'logdelete-success'           => 'Видимостта на събитието беше променена.',
 'pagehist'                    => 'История на страницата',
 'deletedhist'                 => 'Изтрита история',
+'revdelete-content'           => 'съдържание',
+'revdelete-summary'           => 'резюме',
 'revdelete-uname'             => 'потребителско име',
 'revdelete-log-message'       => '$1 за $2 {{PLURAL:$2|версия|версии}}',
 

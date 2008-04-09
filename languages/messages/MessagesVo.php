@@ -827,6 +827,7 @@ Kontrololös, va votükam at okipon fovöfi padajenotema.',
 'powersearch'           => 'Suk',
 'powersearch-legend'    => 'Suk komplitikum',
 'powersearchtext'       => 'Suk in nemaspad:<br />$1<br />$2 Lisedön lüodükömis<br />Sukazeil: $3 $9',
+'search-external'       => 'Suk plödik',
 'searchdisabled'        => 'Suk in {{SITENAME}} penemogükon. Vütimo kanol sukön yufü el Google. Demolös, das liseds onik tefü ninäd in {{SITENAME}} ba no binon anuik.',
 
 # Preferences page
@@ -917,19 +918,25 @@ Bügil vagik sinifon, das geban no duton lü grup tefik.',
 'userrights-unchangeable-col'      => 'Grups fa ol nevotükoviks',
 
 # Groups
-'group'            => 'Grup:',
-'group-bot'        => 'Bots',
-'group-sysop'      => 'Guvans',
-'group-bureaucrat' => 'Bürans',
-'group-all'        => '(valik)',
+'group'               => 'Grup:',
+'group-autoconfirmed' => 'Gebans itjäfidiko pezepöls',
+'group-bot'           => 'Bots',
+'group-sysop'         => 'Guvans',
+'group-bureaucrat'    => 'Bürans',
+'group-suppress'      => 'Lovelogams',
+'group-all'           => '(valik)',
 
-'group-bot-member'        => 'Bot',
-'group-sysop-member'      => 'Guvan',
-'group-bureaucrat-member' => 'Büran',
+'group-autoconfirmed-member' => 'Geban itjäfidiko pezepöl',
+'group-bot-member'           => 'Bot',
+'group-sysop-member'         => 'Guvan',
+'group-bureaucrat-member'    => 'Büran',
+'group-suppress-member'      => 'Lovelogam',
 
-'grouppage-bot'        => '{{ns:project}}:Bots',
-'grouppage-sysop'      => '{{ns:project}}:Guvans',
-'grouppage-bureaucrat' => '{{ns:project}}:Bürans',
+'grouppage-autoconfirmed' => '{{ns:project}}:Gebans itjäfidiko pezepöls',
+'grouppage-bot'           => '{{ns:project}}:Bots',
+'grouppage-sysop'         => '{{ns:project}}:Guvans',
+'grouppage-bureaucrat'    => '{{ns:project}}:Bürans',
+'grouppage-suppress'      => '{{ns:project}}:Lovelogam',
 
 # User rights log
 'rightslog'      => 'Jenotalised gebanagitätas',
@@ -1665,6 +1672,7 @@ Ad seveigön padis, penolös tiädis in penamaspad dono, tiädi bal a kedet, e v
 'thumbnail-more'           => 'Gretükön',
 'filemissing'              => 'Ragiv deföl',
 'thumbnail_error'          => 'Pöl pö jafam magodila: $1',
+'thumbnail_invalid_params' => 'Paramets magodila no lonöfons',
 'thumbnail_dest_directory' => 'No emögos ad jafön zeilaragiviäri',
 
 # Special:Import
@@ -1845,6 +1853,9 @@ Te lisedaliens (liens me * primöl) pabevobons. Yüm balid liena muton binön y�
 'exif-pixelydimension'        => 'Magodavidot lonöföl',
 'exif-pixelxdimension'        => 'Magodageilot lonöföl',
 'exif-usercomment'            => 'Küpets gebana',
+'exif-relatedsoundfile'       => 'Tonaragiv tefik',
+'exif-datetimeoriginal'       => 'Dät e tim jafama nünodas',
+'exif-datetimedigitized'      => 'Dät e tim numatükama',
 'exif-exposuretime-format'    => '$1 sek ($2)',
 'exif-fnumber'                => 'Num-F',
 'exif-lightsource'            => 'Litafonät',
@@ -1855,6 +1866,7 @@ Te lisedaliens (liens me * primöl) pabevobons. Yüm balid liena muton binön y�
 'exif-gpslongituderef'        => 'Lunet Lofüdik u Vesüdik',
 'exif-gpslongitude'           => 'Lunet',
 'exif-gpsaltitude'            => 'Geilot',
+'exif-gpstimestamp'           => 'tim-GPS (glok taumik)',
 'exif-gpsspeedref'            => 'Vifotastabäd',
 'exif-gpstrack'               => 'Mufalüod',
 'exif-gpsimgdirection'        => 'Lüod magoda',
@@ -1870,6 +1882,7 @@ Te lisedaliens (liens me * primöl) pabevobons. Yüm balid liena muton binön y�
 'exif-unknowndate' => 'Dät nesevädik',
 
 'exif-orientation-1' => 'Nomik', # 0th row: top; 0th column: left
+'exif-orientation-3' => 'Mö 180° pefleköl', # 0th row: bottom; 0th column: right
 
 'exif-componentsconfiguration-0' => 'no dabinon',
 

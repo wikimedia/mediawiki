@@ -176,7 +176,7 @@ $messages = array(
 'tog-watchlisthideown'        => 'Celare meas recensiones in paginarum custoditarum indice',
 'tog-watchlisthidebots'       => 'Celare recensiones automatarias in paginarum custoditarum indice',
 'tog-watchlisthideminor'      => 'Celare recensiones minores in paginarum custoditarum indice',
-'tog-ccmeonemails'            => 'Mitte ad me transcriptiones litterarum quas ad alios usores mitto',
+'tog-ccmeonemails'            => 'Mitte mihi transcriptiones litterarum quas ad alios usores mitto',
 'tog-showhiddencats'          => 'Categorias celatas monstrare',
 
 'underline-always'  => 'Semper',
@@ -256,7 +256,7 @@ $messages = array(
 'category-file-count'            => '{{PLURAL:$2|Huic categoriae est solum unus fasciculus.|Huic categoriae {{PLURAL:$1|est hic fasciculus|sunt hi $1 fasciculi}} ex omnino $2 fasciculis.}}',
 'category-file-count-limited'    => 'Huic categoriae {{PLURAL:$1|est hic fasciculus|sunt hi $1 fasciculi}}.',
 
-'about'          => 'De',
+'about'          => 'De hoc',
 'article'        => 'Pagina contenta continens',
 'newwindow'      => '(in fenestra nova aperietur)',
 'cancel'         => 'Abrogare',
@@ -740,7 +740,7 @@ Titulus: (nov) = dissimilis ab forma novissima, (prox) = dissimilis ab forma pro
 'timezoneoffset'           => 'Dissimilitudo cinguli horae¹',
 'servertime'               => 'Hora moderatri nunc est',
 'guesstimezone'            => 'Hora ex navigatro scribere',
-'allowemail'               => 'Sinere litteras electronicas mitti tuae inscriptioni electronicae',
+'allowemail'               => 'Sinere litteras electronicas inscriptioni electronicae meae mittere',
 'defaultns'                => 'Quaerere per haec spatia nominalia a defalta:',
 'files'                    => 'Fasciculi',
 
@@ -1058,7 +1058,7 @@ Inscriptio electronica qui in praeferentiis tuis dedis ut "Ab" inscriptione appa
 Si paginam ex indice paginarum custoditarum removere vis, imprime \"decustodire\" ab summa pagina.",
 'removedwatch'         => 'Non iam custodita',
 'removedwatchtext'     => 'Pagina "[[:$1]]" non iam custodita est.',
-'watch'                => 'custodire',
+'watch'                => 'Custodire',
 'watchthispage'        => 'Custodire hanc paginam',
 'unwatch'              => 'Decustodire',
 'unwatchthispage'      => 'Abrogare custoditum',

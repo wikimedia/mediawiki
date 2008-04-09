@@ -754,8 +754,6 @@ postavili dodatna ograničenja.',
 'revdelete-submit'            => 'Izvrši brisanje/sakrivanje',
 'revdelete-logentry'          => 'promijenjena su prava pristupa za stranicu [[$1]]',
 'logdelete-logentry'          => 'promijenjena vidljivost uređivanja [[$1]]',
-'revdelete-logaction'         => '$1 {{PLURAL:$1|izmjena|izmjene|izmjena}} postavljena u mod $2',
-'logdelete-logaction'         => '$1 {{PLURAL:$1|događaj|događaja|događaja}} od [[$3]] postavljena u mod $2',
 'revdelete-success'           => "'''Vidljivost promjene uspješno postavljena.'''",
 'logdelete-success'           => "'''Vidljivost uređivanja uspješno postavljena.'''",
 'pagehist'                    => 'Povijest stranice',
@@ -829,7 +827,7 @@ Primijetite da uporaba navigacijskih poveznica resetira vaše izbore u koloni.',
 Traženje u prostoru :<br />
 $1<br />
 $2 Popis se preusmjerava   Traženje za $3 $9',
-'searchdisabled'        => '<p>Oprostite! Pretraga po cjelokupnoj bazi je zbog bržeg rada projekta {{SITENAME}} trenutačno onomogućena. Možete se poslužiti tražilicom Google.</p>',
+'searchdisabled'        => '<p>Oprostite! Pretraga po cjelokupnoj bazi je zbog bržeg rada projekta {{SITENAME}} trenutačno onemogućena. Možete se poslužiti tražilicom Google.</p>',
 
 # Preferences page
 'preferences'              => 'Postavke',

@@ -182,6 +182,7 @@ $magicWords = array(
 	'defaultsort'         => array( '1', 'DEFAULTSORT:', 'STANDAARDSORTERING:' ),
 	'filepath'            => array( '0', 'FILEPATH:', 'BESTANDSPAD:' ),
 	'hiddencat'           => array( '1', '__HIDDENCAT__', '__VERBORGENCAT__' ),
+	'pagesincategory'     => array( '1', 'PAGESINCATEGORY', 'PAGESINCAT', 'PAGINASINCATEGORIE', 'PAGINASINCAT' ),
 );
 
 $specialPageAliases = array(
@@ -927,7 +928,7 @@ Controleer alstublieft de URL die u gebruikte om naar deze pagina te gaan.',
 'last'                => 'vorige',
 'page_first'          => 'eerste',
 'page_last'           => 'laatste',
-'histlegend'          => 'Selectie voor diff: selecteer de te vergelijken versies en toets ENTER of de knop onderaan.<br />
+'histlegend'          => 'Selectie voor verschillen: selecteer de te vergelijken versies en toets ENTER of de knop onderaan.<br />
 Verklaring afkortingen: (huidig) = verschil met huidige versie, (vorige) = verschil met voorgaande versie, k = kleine wijziging',
 'deletedrev'          => '[verwijderd]',
 'histfirst'           => 'Oudste',
@@ -1058,6 +1059,7 @@ Zorg dat u deze wijziging de geschiedenisdoorlopendheid van de pagina behoudt.',
 'powersearch'           => 'Uitgebreid zoeken',
 'powersearch-legend'    => 'Uitgebreid zoeken',
 'powersearchtext'       => 'Zoeken in naamruimten:<br />$1<br />$2 Doorverwijzingen weergeven<br />Zoeken naar $3 $9',
+'search-external'       => 'Extern zoeken',
 'searchdisabled'        => 'Zoeken in {{SITENAME}} is niet mogelijk.
 U kunt gebruik maken van Google.
 De gegevens over {{SITENAME}} zijn mogelijk niet bijgewerkt.',
