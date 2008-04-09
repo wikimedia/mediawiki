@@ -170,7 +170,7 @@ class CategoryViewer {
 	 */
 	function addImage( Title $title, $sortkey, $pageLength, $isRedirect = false ) {
 		if ( $this->showGallery ) {
-			$image = new Image( $title );
+			$image = wfLocalFile( $title );
 			if( $this->flip ) {
 				$this->gallery->insert( $image );
 			} else {
