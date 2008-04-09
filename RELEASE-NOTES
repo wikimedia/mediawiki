@@ -161,6 +161,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 13624) Fix regression with manual thumb= parameter on images
 * (bug 11039) Add missing labels on protection form
 * (bug 13458) Preview/edit toolbar spacing now works consistently
+* (bug 13433) Fix action=render on Image: pages
 
 
 === API changes in 1.13 ===
