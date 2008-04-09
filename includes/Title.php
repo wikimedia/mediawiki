@@ -1836,7 +1836,7 @@ class Title {
 	 * @return int the ID
 	 */
 	public function getArticleID( $flags = 0 ) {
-		$linkCache =& LinkCache::singleton();
+		$linkCache = LinkCache::singleton();
 		if ( $flags & GAID_FOR_UPDATE ) {
 			$oldUpdate = $linkCache->forUpdate( true );
 			$this->mArticleID = $linkCache->addLinkObj( $this );
@@ -1863,7 +1863,7 @@ class Title {
 		if( !$this->getArticleID($flags) || $this->getNamespace() == NS_SPECIAL ) {
 			return false;
 		}
-		$linkCache =& LinkCache::singleton();
+		$linkCache = LinkCache::singleton();
 		$this->mRedirect = (bool)$linkCache->getGoodLinkFieldObj( $this, 'redirect' );
 
 		return $this->mRedirect;
@@ -1883,7 +1883,7 @@ class Title {
 		if( !$this->getArticleID($flags) || $this->getNamespace() == NS_SPECIAL ) {
 			return 0;
 		}
-		$linkCache =& LinkCache::singleton();
+		$linkCache = LinkCache::singleton();
 		$this->mLength = intval( $linkCache->getGoodLinkFieldObj( $this, 'length' ) );
 
 		return $this->mLength;
@@ -1911,7 +1911,7 @@ class Title {
 	 * @param int $newid the new Article ID
 	 */
 	public function resetArticleID( $newid ) {
-		$linkCache =& LinkCache::singleton();
+		$linkCache = LinkCache::singleton();
 		$linkCache->clearBadLink( $this->getPrefixedDBkey() );
 
 		if ( 0 == $newid ) { $this->mArticleID = -1; }
@@ -2223,7 +2223,7 @@ class Title {
 	 * @return array the Title objects linking here
 	 */
 	public function getLinksTo( $options = '', $table = 'pagelinks', $prefix = 'pl' ) {
-		$linkCache =& LinkCache::singleton();
+		$linkCache = LinkCache::singleton();
 
 		if ( $options ) {
 			$db = wfGetDB( DB_MASTER );

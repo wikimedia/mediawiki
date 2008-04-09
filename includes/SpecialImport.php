@@ -358,7 +358,7 @@ class WikiRevision {
 		}
 
 		// avoid memory leak...?
-		$linkCache =& LinkCache::singleton();
+		$linkCache = LinkCache::singleton();
 		$linkCache->clear();
 
 		$article = new Article( $this->title );

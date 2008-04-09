@@ -303,7 +303,7 @@ class Article {
 			$data = $this->pageDataFromId( $dbr, $this->getId() );
 		}
 
-		$lc =& LinkCache::singleton();
+		$lc = LinkCache::singleton();
 		if ( $data ) {
 			$lc->addGoodLinkObj( $data->page_id, $this->mTitle, $data->page_len, $data->page_is_redirect );
 
@@ -618,7 +618,7 @@ class Article {
 
 		wfProfileIn( __METHOD__ );
 
-		$parserCache =& ParserCache::singleton();
+		$parserCache = ParserCache::singleton();
 		$ns = $this->mTitle->getNamespace(); # shortcut
 
 		# Get variables from query string
@@ -2595,7 +2595,7 @@ class Article {
 
 		# Save it to the parser cache
 		if ( $wgEnableParserCache ) {
-			$parserCache =& ParserCache::singleton();
+			$parserCache = ParserCache::singleton();
 			$parserCache->save( $editInfo->output, $this, $wgUser );
 		}
 
@@ -3294,7 +3294,7 @@ class Article {
 		$popts->setTidy(false);
 		$popts->enableLimitReport( false );
 		if ( $wgEnableParserCache && $cache && $this && $parserOutput->getCacheTime() != -1 ) {
-			$parserCache =& ParserCache::singleton();
+			$parserCache = ParserCache::singleton();
 			$parserCache->save( $parserOutput, $this, $wgUser );
 		}
 

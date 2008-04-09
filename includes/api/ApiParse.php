@@ -58,7 +58,7 @@ class ApiParse extends ApiBase {
 			$articleObj = new Article($titleObj);
 			if(isset($prop['revid']))
 				$revid = $articleObj->getRevIdFetched();
-			$pcache =& ParserCache::singleton();
+			$pcache = ParserCache::singleton();
 			$p_result = $pcache->get($articleObj, $wgUser);
 			if(!$p_result) {
 				$p_result = $wgParser->parse($articleObj->getContent(), $titleObj, new ParserOptions());

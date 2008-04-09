@@ -17,7 +17,7 @@ class RefreshLinksJob extends Job {
 		global $wgParser;
 		wfProfileIn( __METHOD__ );
 
-		$linkCache =& LinkCache::singleton();
+		$linkCache = LinkCache::singleton();
 		$linkCache->clear();
 
 		if ( is_null( $this->title ) ) {

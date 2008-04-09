@@ -125,7 +125,7 @@ class TitleCleanup extends TableCleanup {
 				),
 				array( 'page_id' => $row->page_id ),
 				'cleanupTitles::moveInconsistentPage' );
-			$linkCache =& LinkCache::singleton();
+			$linkCache = LinkCache::singleton();
 			$linkCache->clear();
 		}
 	}

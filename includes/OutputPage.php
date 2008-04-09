@@ -458,7 +458,7 @@ class OutputPage {
 			$popts, true, true, $this->mRevisionId );
 		$popts->setTidy(false);
 		if ( $cache && $article && $parserOutput->getCacheTime() != -1 ) {
-			$parserCache =& ParserCache::singleton();
+			$parserCache = ParserCache::singleton();
 			$parserCache->save( $parserOutput, $article, $wgUser );
 		}
 
@@ -518,7 +518,7 @@ class OutputPage {
 	 * @return bool True if successful, else false.
 	 */
 	public function tryParserCache( &$article, $user ) {
-		$parserCache =& ParserCache::singleton();
+		$parserCache = ParserCache::singleton();
 		$parserOutput = $parserCache->get( $article, $user );
 		if ( $parserOutput !== false ) {
 			$this->addParserOutput( $parserOutput );
