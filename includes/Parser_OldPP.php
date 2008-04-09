@@ -4147,7 +4147,7 @@ class Parser_OldPP
 				while ( $s = $dbr->fetchObject($res) ) {
 					$title = Title::newFromRow( $s );
 					$pdbk = $title->getPrefixedDBkey();
-					$linkCache->addGoodLinkObj( $s->page_id, $title );
+					$linkCache->addGoodLinkObj( $s->page_id, $title, $s->page_len, $s->page_is_redirect );
 					$this->mOutput->addLink( $title, $s->page_id );
 
 					$colours[$pdbk] = ( $threshold == 0 || (
@@ -4230,7 +4230,7 @@ class Parser_OldPP
 						$holderKeys = array();
 						if(isset($variantMap[$varPdbk])){
 							$holderKeys = $variantMap[$varPdbk];
-							$linkCache->addGoodLinkObj( $s->page_id, $variantTitle );
+							$linkCache->addGoodLinkObj( $s->page_id, $variantTitle, $s->page_len, $s->page_is_redirect );
 							$this->mOutput->addLink( $variantTitle, $s->page_id );
 						}
 

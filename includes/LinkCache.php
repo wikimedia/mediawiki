@@ -7,7 +7,7 @@
 class LinkCache {
 	// Increment $mClassVer whenever old serialized versions of this class
 	// becomes incompatible with the new version.
-	/* private */ var $mClassVer = 3;
+	/* private */ var $mClassVer = 4;
 
 	/* private */ var $mPageLinks;
 	/* private */ var $mGoodLinks, $mBadLinks;
@@ -28,6 +28,7 @@ class LinkCache {
 		$this->mForUpdate = false;
 		$this->mPageLinks = array();
 		$this->mGoodLinks = array();
+		$this->mGoodLinkFields = array();
 		$this->mBadLinks = array();
 	}
 
@@ -49,14 +50,38 @@ class LinkCache {
 			return 0;
 		}
 	}
+	
+	/**
+	 * Get a field of a title object from cache. 
+	 * If this link is not good, it will return NULL.
+	 * @param Title $title
+	 * @param string $field ('length','redirect')
+	 * @return mixed
+	 */
+	function getGoodLinkFieldObj( $title, $field ) {
+		$dbkey = $title->getPrefixedDbKey();
+		if ( array_key_exists( $dbkey, $this->mGoodLinkFields ) ) {
+			return $this->mGoodLinkFields[$dbkey][$field];
+		} else {
+			return NULL;
+		}
+	}
 
 	function isBadLink( $title ) {
 		return array_key_exists( $title, $this->mBadLinks );
 	}
 
-	function addGoodLinkObj( $id, $title ) {
+	/**
+	 * Add a link for the title to the link cache
+	 * @param int $id
+	 * @param Title $title
+	 * @param int $len
+	 * @param int $redir
+	 */
+	function addGoodLinkObj( $id, $title, $len = -1, $redir = NULL ) {
 		$dbkey = $title->getPrefixedDbKey();
 		$this->mGoodLinks[$dbkey] = $id;
+		$this->mGoodLinkFields[$dbkey] = array( 'length' => $len, 'redirect' => $redir );
 		$this->mPageLinks[$dbkey] = $title;
 	}
 
@@ -124,11 +149,15 @@ class LinkCache {
 			wfProfileOut( $fname );
 			return 0;
 		}
-
+		# Some fields heavily used for linking...
 		$id = NULL;
-		if( $wgLinkCacheMemcached )
+		$len = -1;
+		$redirect = NULL;
+		
+		if( $wgLinkCacheMemcached ) {
 			$id = $wgMemc->get( $key = $this->getKey( $title ) );
-		if( ! is_integer( $id ) ) {
+		}
+		if( !is_integer( $id ) ) {
 			if ( $this->mForUpdate ) {
 				$db = wfGetDB( DB_MASTER );
 				if ( !( $wgAntiLockFlags & ALF_NO_LINK_LOCK ) ) {
@@ -141,20 +170,24 @@ class LinkCache {
 				$options = array();
 			}
 
-			$id = $db->selectField( 'page', 'page_id',
-					array( 'page_namespace' => $ns, 'page_title' => $t ),
-					$fname, $options );
-			if ( !$id ) {
-				$id = 0;
-			}
-			if( $wgLinkCacheMemcached )
+			$s = $db->selectRow( 'page', 
+				array( 'page_id', 'page_len', 'page_is_redirect' ),
+				array( 'page_namespace' => $ns, 'page_title' => $t ),
+				$fname, $options );
+			# Set fields...
+			$id = $s ? $s->page_id : 0;
+			$len = $s ? $s->page_len : -1;
+			$redirect = $s ? $s->page_is_redirect : 0;
+
+			if( $wgLinkCacheMemcached ) {
 				$wgMemc->add( $key, $id, 3600*24 );
+			}
 		}
 
 		if( 0 == $id ) {
 			$this->addBadLinkObj( $nt );
 		} else {
-			$this->addGoodLinkObj( $id, $nt );
+			$this->addGoodLinkObj( $id, $nt, $len, $redirect );
 		}
 		wfProfileOut( $fname );
 		return $id;
@@ -166,6 +199,7 @@ class LinkCache {
 	function clear() {
 		$this->mPageLinks = array();
 		$this->mGoodLinks = array();
+		$this->mGoodLinkFields = array();
 		$this->mBadLinks = array();
 	}
 }

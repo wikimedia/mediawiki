@@ -96,7 +96,7 @@ class LinkBatch {
 		$remaining = $this->data;
 		while ( $row = $res->fetchObject() ) {
 			$title = Title::newFromRow( $row );
-			$cache->addGoodLinkObj( $row->page_id, $title );
+			$cache->addGoodLinkObj( $row->page_id, $title, $row->page_len, $row->page_is_redirect );
 			$ids[$title->getPrefixedDBkey()] = $row->page_id;
 			unset( $remaining[$row->page_namespace][$row->page_title] );
 		}
