@@ -41,7 +41,7 @@ function populate_rev_parent_id( $db ) {
 		foreach( $res as $row ) {
 			# First, check rows with the same timestamp other than this one
 			# with a smaller rev ID. The highest ID "wins". This avoids loops
-			# as either id or timestamp need to be going from parent_id to parent_id
+			# as timestamp can only decrease and never loops with IDs (from parent to parent)
 			$previousID = $db->selectField( 'revision', 'rev_id', 
 				array( 'rev_page' => $row->rev_page, 'rev_timestamp' => $row->rev_timestamp,
 					"rev_id < {$row->rev_id}" ), 
