@@ -63,8 +63,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 13490) Show upload/file size limit on upload form
 * Redesign of Special:Userrights
 * Make rev_deleted log entries more intelligible.
-* (6943) Added PAGESINCATEGORY: magic word
-* (13624) Fix regression with manual thumb= parameter on images
+* (bug 6943) Added PAGESINCATEGORY: magic word
 
 
 === Bug fixes in 1.13 ===
@@ -159,6 +158,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 13630) Fixed warnings for pass by reference at call time in
   Special:Revisiondelete when generating the log entry.
 * (bug 12064) BeforePageDisplay hook is now called for all skins
+* (bug 13624) Fix regression with manual thumb= parameter on images
+* (bug 11039) Add missing labels on protection form
+
 
 === API changes in 1.13 ===
 
