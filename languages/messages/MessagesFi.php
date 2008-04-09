@@ -842,8 +842,6 @@ Uuden ja vanhan sivun muutoksien pitää muodostaa jatkumo – ne eivät saa men
 'mergehistory-no-destination'      => 'Kohdesivua $1 ei ole olemassa.',
 'mergehistory-invalid-source'      => 'Lähdesivulla pitää olla kelvollinen nimi.',
 'mergehistory-invalid-destination' => 'Kohdesivulla pitää olla kelvollinen nimi.',
-'mergehistory-autocomment'         => 'Fuusioida [[:$1]] ardor [[:$2]]',
-'mergehistory-comment'             => 'Fuusioida [[:$1]] ardor [[:$2]]: $3',
 
 # Merge log
 'mergelog'           => 'Yhdistämisloki',
