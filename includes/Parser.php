@@ -4026,7 +4026,7 @@ class Parser
 				# Fetch data and form into an associative array
 				# non-existent = broken
 				while ( $s = $dbr->fetchObject($res) ) {
-					$title = Title::newFromRow( $s );
+					$title = Title::makeTitle( $s->page_namespace, $s->page_title );
 					$pdbk = $title->getPrefixedDBkey();
 					$linkCache->addGoodLinkObj( $s->page_id, $title, $s->page_len, $s->page_is_redirect );
 					$this->mOutput->addLink( $title, $s->page_id );
@@ -4103,7 +4103,7 @@ class Parser
 					// for each found variants, figure out link holders and replace
 					while ( $s = $dbr->fetchObject($varRes) ) {
 
-						$variantTitle = Title::newFromRow( $s );
+						$variantTitle = Title::makeTitle( $s->page_namespace, $s->page_title );
 						$varPdbk = $variantTitle->getPrefixedDBkey();
 						$vardbk = $variantTitle->getDBkey();
 
