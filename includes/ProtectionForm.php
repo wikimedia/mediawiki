@@ -233,7 +233,10 @@ class ProtectionForm {
 
 		foreach( $this->mRestrictions as $action => $required ) {
 			/* Not all languages have V_x <-> N_x relation */
-			$out .= Xml::element( 'th', null, wfMsg( 'restriction-' . $action ) );
+			$label = Xml::element( 'label',
+					array( 'for' => "mwProtect-level-$action" ),
+					wfMsg( 'restriction-' . $action ) );
+			$out .= "<th>$label</th>";
 		}
 		$out .= "</tr>
 			<tr>\n";
