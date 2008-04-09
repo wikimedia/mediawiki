@@ -1567,7 +1567,7 @@ END
 
 			$parserOptions->setTidy(true);
 			$parserOptions->enableLimitReport();
-			$parserOutput = $wgParser->parse( $this->mArticle->preSaveTransform( $toparse ) ."\n\n",
+			$parserOutput = $wgParser->parse( $this->mArticle->preSaveTransform( $toparse ),
 					$this->mTitle, $parserOptions );
 
 			$previewHTML = $parserOutput->getText();
@@ -1595,9 +1595,16 @@ END
 		if ( $this->isConflict ) {
 			$previewhead.='<h2>' . htmlspecialchars( wfMsg( 'previewconflict' ) ) . "</h2>\n";
 		}
+		
+		if( $wgUser->getOption( 'previewontop' ) ) {
+			// Spacer for the edit toolbar
+			$previewfoot = '<p><br /></p>';
+		} else {
+			$previewfoot = '';
+		}
 
 		wfProfileOut( $fname );
-		return $previewhead . $previewHTML;
+		return $previewhead . $previewHTML . $previewfoot;
 	}
 
 	/**
