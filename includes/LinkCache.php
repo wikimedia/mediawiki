@@ -32,10 +32,6 @@ class LinkCache {
 		$this->mBadLinks = array();
 	}
 
-	private function getKey( $title ) {
-		return wfMemcKey( 'lc', 'title', $title );
-	}
-
 	/**
 	 * General accessor to get/set whether SELECT FOR UPDATE should be used
 	 */
@@ -98,11 +94,8 @@ class LinkCache {
 		$this->clearLink( $title );
 	}
 
-	public function clearLink( $title ) {
-		global $wgMemc, $wgLinkCacheMemcached;
-		if( $wgLinkCacheMemcached )
-			$wgMemc->delete( $this->getKey( $title ) );
-	}
+	/* obsolete, for old $wgLinkCacheMemcached stuff */
+	public function clearLink( $title ) {}
 
 	public function getPageLinks() { return $this->mPageLinks; }
 	public function getGoodLinks() { return $this->mGoodLinks; }
@@ -132,7 +125,7 @@ class LinkCache {
 	 * @return integer
 	 */
 	public function addLinkObj( &$nt, $len = -1, $redirect = NULL ) {
-		global $wgMemc, $wgLinkCacheMemcached, $wgAntiLockFlags;
+		global $wgAntiLockFlags;
 		$title = $nt->getPrefixedDBkey();
 		if ( $this->isBadLink( $title ) ) { return 0; }
 		$id = $this->getGoodLinkID( $title );
@@ -156,9 +149,6 @@ class LinkCache {
 		# Some fields heavily used for linking...
 		$id = NULL;
 		
-		if( $wgLinkCacheMemcached ) {
-			$id = $wgMemc->get( $key = $this->getKey( $title ) );
-		}
 		if( !is_integer( $id ) ) {
 			if ( $this->mForUpdate ) {
 				$db = wfGetDB( DB_MASTER );
@@ -180,10 +170,6 @@ class LinkCache {
 			$id = $s ? $s->page_id : 0;
 			$len = $s ? $s->page_len : -1;
 			$redirect = $s ? $s->page_is_redirect : 0;
-
-			if( $wgLinkCacheMemcached ) {
-				$wgMemc->add( $key, $id, 3600*24 );
-			}
 		}
 
 		if( 0 == $id ) {
