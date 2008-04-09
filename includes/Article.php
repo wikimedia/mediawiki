@@ -305,7 +305,7 @@ class Article {
 
 		$lc =& LinkCache::singleton();
 		if ( $data ) {
-			$lc->addGoodLinkObj( $data->page_id, $this->mTitle );
+			$lc->addGoodLinkObj( $data->page_id, $this->mTitle, $data->page_len, $data->page_is_redirect );
 
 			$this->mTitle->mArticleID = $data->page_id;
 

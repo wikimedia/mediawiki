@@ -217,7 +217,7 @@ class WatchlistEditor {
 				if( $title instanceof Title ) {
 					// Update the link cache while we're at it
 					if( $row->page_id ) {
-						$cache->addGoodLinkObj( $row->page_id, $title );
+						$cache->addGoodLinkObj( $row->page_id, $title, $row->page_len, $row->page_is_redirect );
 					} else {
 						$cache->addBadLinkObj( $title );
 					}

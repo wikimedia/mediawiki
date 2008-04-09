@@ -86,7 +86,7 @@ class Title {
 		$this->mLatestID = false;
 		$this->mOldRestrictions = false;
 		$this->mLength = -1;
-		$this->mRedirect = null;
+		$this->mRedirect = NULL;
 	}
 
 	/**
@@ -231,12 +231,12 @@ class Title {
 	 */
 	public static function newFromRow( $row ) {
 		$t = self::makeTitle( $row->page_namespace, $row->page_title );
-		
-		$t->mArticleID = isset($row->page_id) ? $row->page_id : -1;
-		$t->mLength = isset($row->page_len) ? $row->page_len : -1;
-		$t->mRedirect = isset($row->page_is_redirect) ? (bool)$row->page_is_redirect : null;
-		$t->mLatest = isset($row->page_latest) ? $row->page_latest : 0;
-		
+
+		$t->mArticleID = isset($row->page_id) ? intval($row->page_id) : -1;
+		$t->mLength = isset($row->page_len) ? intval($row->page_len) : -1;
+		$t->mRedirect = isset($row->page_is_redirect) ? intval($row->page_is_redirect) : NULL;
+		$t->mLatestID = isset($row->page_latest) ? $row->page_latest : false;
+
 		return $t;
 	}
 
@@ -1482,47 +1482,6 @@ class Title {
 	public function isTalkPage() {
 		return MWNamespace::isTalk( $this->getNamespace() );
 	}
-	
-	/**
-	 * Is this an article that is a redirect page?
-	 * @return bool
-	 */
-	public function isRedirect() {
-		if( $this->mRedirect !== null )
-			return $this->mRedirect;
-		# Zero for special pages
-		if( $this->getNamespace() == NS_SPECIAL )
-			return 0;
-
-		$dbr = wfGetDB( DB_SLAVE );
-		$redir = $dbr->selectField( 'page', 'page_is_redirect',
-			array( 'page_id' => $this->getArticleId() ),
-			__METHOD__ );
-
-		$this->mRedirect = (bool)$redir;
-
-		return $this->mRedirect;
-	}
-	
-	/**
-	 * What is the length of this page?
-	 * @return bool
-	 */
-	public function getLength() {
-		if( $this->mLength != -1 || $this->mArticleID == 0 )
-			return $this->mLength;
-		# Zero for special pages
-		if( $this->getNamespace() == NS_SPECIAL )
-			return 0;
-
-		$dbr = wfGetDB( DB_SLAVE );
-		$len = $dbr->selectField( 'page', 'page_len',
-			array( 'page_id' => $this->getArticleId() ),
-			__METHOD__ );
-		$this->mLength = intval($len);
-
-		return $this->mLength;
-	}
 
 	/**
 	 * Is this a subpage?
@@ -1889,6 +1848,42 @@ class Title {
 		}
 		return $this->mArticleID;
 	}
+	
+	/**
+	 * Is this an article that is a redirect page?
+	 * Uses link cache, adding it if necessary
+	 * @param int $flags a bit field; may be GAID_FOR_UPDATE to select for update
+	 * @return bool
+	 */
+	public function isRedirect( $flags = 0 ) {
+		# Zero for special pages. 
+		# Also, calling getArticleID() loads the field from cache!
+		if( !$this->getArticleID($flags) || $this->getNamespace() == NS_SPECIAL ) {
+			return false;
+		}
+		$linkCache =& LinkCache::singleton();
+		$this->mRedirect = $linkCache->getGoodLinkFieldObj( $this, 'redirect' );
+
+		return (bool)$this->mRedirect;
+	}
+	
+	/**
+	 * What is the length of this page?
+	 * Uses link cache, adding it if necessary
+	 * @param int $flags a bit field; may be GAID_FOR_UPDATE to select for update
+	 * @return bool
+	 */
+	public function getLength( $flags = 0 ) {
+		# Zero for special pages. 
+		# Also, calling getArticleID() loads the field from cache!
+		if( !$this->getArticleID($flags) || $this->getNamespace() == NS_SPECIAL ) {
+			return 0;
+		}
+		$linkCache =& LinkCache::singleton();
+		$this->mLength = $linkCache->getGoodLinkFieldObj( $this, 'length' );
+
+		return intval($this->mLength);
+	}
 
 	public function getLatestRevID() {
 		if ($this->mLatestID !== false)
@@ -2245,7 +2240,7 @@ class Title {
 		if ( $db->numRows( $res ) ) {
 			while ( $row = $db->fetchObject( $res ) ) {
 				if ( $titleObj = Title::makeTitle( $row->page_namespace, $row->page_title ) ) {
-					$linkCache->addGoodLinkObj( $row->page_id, $titleObj );
+					$linkCache->addGoodLinkObj( $row->page_id, $titleObj, $row->page_len, $row->page_is_redirect );
 					$retVal[] = $titleObj;
 				}
 			}
