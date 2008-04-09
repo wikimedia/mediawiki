@@ -509,6 +509,9 @@ class EnhancedChangesList extends ChangesList {
 			# Use an @ character to prevent collision with page names
 			$this->rc_cache['@@' . ($this->rcMoveIndex++)] = array($rc);
 		} else {
+			if( $rc_type == RC_LOG ){
+				$secureName = SpecialPage::getTitleFor( 'Log', $rc_log_type )->getPrefixedDBkey();
+			}
 			if( !isset( $this->rc_cache[$secureName] ) ) {
 				$this->rc_cache[$secureName] = array();
 			}
@@ -597,7 +600,16 @@ class EnhancedChangesList extends ChangesList {
 		$r .= '&nbsp;'.$block[0]->timestamp.'&nbsp;</tt></td><td>';
 
 		# Article link
-		if( $namehidden ) {
+		if( $alllogs ){
+			$logtype = $block[0]->mAttribs['rc_log_type'];
+			if( is_null( $logtype ) ){
+				//Old format
+				$r .= $block[0]->link;
+			} else {
+				$logname = LogPage::logName( $logtype );
+				$r .= ' (' . $this->skin->makeKnownLinkObj( SpecialPage::getTitleFor( 'Log', $logtype ), $logname ) . ')';
+			}
+		} else if( $namehidden ) {
 			$r .= ' <span class="history-deleted">' . wfMsgHtml('rev-deleted-event') . '</span>';
 		} else {
 			$r .= $this->maybeWatchedLink( $block[0]->link, $block[0]->watched );
@@ -610,7 +622,7 @@ class EnhancedChangesList extends ChangesList {
 		$n = count($block);
 		static $nchanges = array();
 		if ( !isset( $nchanges[$n] ) ) {
-			$nchanges[$n] = wfMsgExt( 'nchanges', array( 'parsemag', 'escape'), $wgLang->formatNum( $n ) );
+			$nchanges[$n] = wfMsgExt( 'nchanges', array( 'parsemag', 'escape' ), $wgLang->formatNum( $n ) );
 		}
 		# Total change link
 		$r .= ' ';
@@ -650,7 +662,7 @@ class EnhancedChangesList extends ChangesList {
 		}
 
 		# History
-		if( $namehidden ) {
+		if( $namehidden || $alllogs ) {
 			$r .= '(' . $this->message['history'] . ')';
 		} else {
 			$r .= '(' . $this->skin->makeKnownLinkObj( $block[0]->getTitle(),
@@ -691,16 +703,12 @@ class EnhancedChangesList extends ChangesList {
 			}
 			$r .= $link;
 			
-			if ( !$rc_log_type ) {
+			if ( !$rc_type == RC_LOG || $rc_type == RC_NEW ) {
 				$r .= ' (';
 				$r .= $rcObj->curlink;
 				$r .= $this->message['semicolon-separator'] . ' ';
 				$r .= $rcObj->lastlink;
 				$r .= ')';
-			} else {
-				$logname = LogPage::logName( $rc_log_type );
-				$logtitle = Title::newFromText( "Log/$rc_log_type", NS_SPECIAL );
-				$r .= '(' . $this->skin->makeKnownLinkObj($logtitle, $logname ) . ')';
 			}
 			$r .= ' . . ';
 
