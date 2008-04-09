@@ -187,11 +187,11 @@ function wfSpecialWatchlist( $par ) {
 		$wltsfield=", ${watchlist}.wl_notificationtimestamp ";
 	}
 	$sql = "SELECT ${recentchanges}.* ${wltsfield}
-	  FROM $watchlist,$recentchanges,$page
+	  FROM $watchlist,$recentchanges
+	  LEFT JOIN $page ON rc_cur_id=page_id
 	  WHERE wl_user=$uid
 	  AND wl_namespace=rc_namespace
 	  AND wl_title=rc_title
-	  AND rc_cur_id=page_id
 	  $andcutoff
 	  $andLatest
 	  $andHideOwn
