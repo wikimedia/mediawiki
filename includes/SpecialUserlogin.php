@@ -603,12 +603,14 @@ class LoginForm {
 
 		# Run any hooks; ignore results
 
-		wfRunHooks('UserLoginComplete', array(&$wgUser));
+		$injected_html = '';
+		wfRunHooks('UserLoginComplete', array(&$wgUser, &$injected_html));
 
 		$wgOut->setPageTitle( wfMsg( 'loginsuccesstitle' ) );
 		$wgOut->setRobotpolicy( 'noindex,nofollow' );
 		$wgOut->setArticleRelated( false );
 		$wgOut->addWikiText( $msg );
+		$wgOut->addHtml( $injected_html );
 		if ( !empty( $this->mReturnTo ) ) {
 			$wgOut->returnToMain( $auto, $this->mReturnTo );
 		} else {

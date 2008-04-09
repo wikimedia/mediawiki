@@ -1119,6 +1119,7 @@ $user: User to get groups for
 
 'UserLoginComplete': after a user has logged in
 $user: the user object that was created on login
+$inject_html: Any HTML to inject after the "logged in" message.
 		    
 'UserLoginForm': change to manipulate the login form
 $template: SimpleTemplate instance for the form
@@ -1128,6 +1129,7 @@ $user: the user object that is about to be logged out
        
 'UserLogoutComplete': after a user has logged out
 $user: the user object _after_ logout (won't have name, ID, etc.)
+$inject_html: Any HTML to inject after the "logged out" message.
 
 'UserRights': After a user's group memberships are changed
 $user  : User object that was changed

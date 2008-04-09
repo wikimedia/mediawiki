@@ -1976,7 +1976,6 @@ class User {
 		global $wgUser;
 		if( wfRunHooks( 'UserLogout', array(&$this) ) ) {
 			$this->doLogout();
-			wfRunHooks( 'UserLogoutComplete', array(&$wgUser) );
 		}
 	}
 
