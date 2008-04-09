@@ -4081,7 +4081,7 @@ class Parser_OldPP
 		$pdbks = array();
 		$colours = array();
 		$sk = $this->mOptions->getSkin();
-		$linkCache =& LinkCache::singleton();
+		$linkCache = LinkCache::singleton();
 
 		if ( !empty( $this->mLinkHolders['namespaces'] ) ) {
 			wfProfileIn( $fname.'-check' );

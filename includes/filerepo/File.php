@@ -840,7 +840,7 @@ abstract class File {
 		} else {
 			$db = wfGetDB( DB_SLAVE );
 		}
-		$linkCache =& LinkCache::singleton();
+		$linkCache = LinkCache::singleton();
 
 		list( $page, $imagelinks ) = $db->tableNamesN( 'page', 'imagelinks' );
 		$encName = $db->addQuotes( $this->getName() );

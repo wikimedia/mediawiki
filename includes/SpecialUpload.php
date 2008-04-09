@@ -1246,8 +1246,8 @@ wgUploadAutoFill = {$autofill};
 	 */
 	function verify( $tmpfile, $extension ) {
 		#magically determine mime type
-		$magic=& MimeMagic::singleton();
-		$mime= $magic->guessMimeType($tmpfile,false);
+		$magic = MimeMagic::singleton();
+		$mime = $magic->guessMimeType($tmpfile,false);
 
 		#check mime type, if desired
 		global $wgVerifyMimeType;
@@ -1292,7 +1292,7 @@ wgUploadAutoFill = {$autofill};
 	 * @return bool
 	 */
 	function verifyExtension( $mime, $extension ) {
-		$magic =& MimeMagic::singleton();
+		$magic = MimeMagic::singleton();
 
 		if ( ! $mime || $mime == 'unknown' || $mime == 'unknown/unknown' )
 			if ( ! $magic->isRecognizableExtension( $extension ) ) {

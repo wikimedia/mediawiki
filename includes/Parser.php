@@ -978,7 +978,7 @@ class Parser
 		$text = $this->doDoubleUnderscore( $text );
 		$text = $this->doHeadings( $text );
 		if($this->mOptions->getUseDynamicDates()) {
-			$df =& DateFormatter::getInstance();
+			$df = DateFormatter::getInstance();
 			$text = $df->reformat( $this->mOptions->getDateFormat(), $text );
 		}
 		$text = $this->doAllQuotes( $text );
@@ -2737,7 +2737,7 @@ class Parser
 		# SUBST
 		wfProfileIn( __METHOD__.'-modifiers' );
 		if ( !$found ) {
-			$mwSubst =& MagicWord::get( 'subst' );
+			$mwSubst = MagicWord::get( 'subst' );
 			if ( $mwSubst->matchStartAndRemove( $part1 ) xor $this->ot['wiki'] ) {
 				# One of two possibilities is true:
 				# 1) Found SUBST but not in the PST phase
@@ -2763,17 +2763,17 @@ class Parser
 		# MSG, MSGNW and RAW
 		if ( !$found ) {
 			# Check for MSGNW:
-			$mwMsgnw =& MagicWord::get( 'msgnw' );
+			$mwMsgnw = MagicWord::get( 'msgnw' );
 			if ( $mwMsgnw->matchStartAndRemove( $part1 ) ) {
 				$nowiki = true;
 			} else {
 				# Remove obsolete MSG:
-				$mwMsg =& MagicWord::get( 'msg' );
+				$mwMsg = MagicWord::get( 'msg' );
 				$mwMsg->matchStartAndRemove( $part1 );
 			}
 
 			# Check for RAW:
-			$mwRaw =& MagicWord::get( 'raw' );
+			$mwRaw = MagicWord::get( 'raw' );
 			if ( $mwRaw->matchStartAndRemove( $part1 ) ) {
 				$forceRawInterwiki = true;
 			}
@@ -3964,7 +3964,7 @@ class Parser
 		$colours = array();
 		$linkcolour_ids = array();
 		$sk = $this->mOptions->getSkin();
-		$linkCache =& LinkCache::singleton();
+		$linkCache = LinkCache::singleton();
 
 		if ( !empty( $this->mLinkHolders['namespaces'] ) ) {
 			wfProfileIn( $fname.'-check' );

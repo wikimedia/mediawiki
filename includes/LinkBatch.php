@@ -64,7 +64,7 @@ class LinkBatch {
 	 * Return an array mapping PDBK to ID
 	 */
 	 public function execute() {
-	 	$linkCache =& LinkCache::singleton();
+	 	$linkCache = LinkCache::singleton();
 	 	return $this->executeInto( $linkCache );
 	 }
 
