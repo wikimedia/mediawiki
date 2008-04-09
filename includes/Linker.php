@@ -880,9 +880,12 @@ class Linker {
 
 	/**
 	 * Alias for userToolLinks( $userId, $userText, true );
+	 * @param int $userId User identifier
+	 * @param string $userText User name or IP address
+	 * @param int $edits, user edit count (optional, for performance)
 	 */
-	public function userToolLinksRedContribs( $userId, $userText ) {
-		return $this->userToolLinks( $userId, $userText, true );
+	public function userToolLinksRedContribs( $userId, $userText, $edits=null ) {
+		return $this->userToolLinks( $userId, $userText, true, 0, $edits );
 	}
 
 
