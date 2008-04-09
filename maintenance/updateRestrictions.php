@@ -23,10 +23,13 @@ function migrate_page_restrictions( $db ) {
 	
 	$start = $db->selectField( 'page', 'MIN(page_id)', false, __FUNCTION__ );
 	$end = $db->selectField( 'page', 'MAX(page_id)', false, __FUNCTION__ );
+	# Do remaining chunk
+	$end += BATCH_SIZE - 1;
 	$blockStart = $start;
 	$blockEnd = $start + BATCH_SIZE - 1;
 	$encodedExpiry = 'infinity';
 	while ( $blockEnd <= $end ) {
+		echo "...doing page_id from $blockStart to $blockEnd\n";
 		$cond = "page_id BETWEEN $blockStart AND $blockEnd AND page_restrictions !='' AND page_restrictions !='edit=:move='";
 		$res = $db->select( 'page', array('page_id', 'page_restrictions'), $cond, __FUNCTION__ );
 		$batch = array();
@@ -58,8 +61,8 @@ function migrate_page_restrictions( $db ) {
 		if ( count( $batch ) ) {
 			$db->insert( 'page_restrictions', $batch, __FUNCTION__, array( 'IGNORE' ) );
 		}
-		$blockStart += BATCH_SIZE;
-		$blockEnd += BATCH_SIZE;
+		$blockStart += BATCH_SIZE - 1;
+		$blockEnd += BATCH_SIZE - 1;
 		wfWaitForSlaves( 5 );
 	}
 }
