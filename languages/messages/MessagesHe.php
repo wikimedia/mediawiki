@@ -206,6 +206,7 @@ $specialPageAliases = array(
 	'Imagelist'                 => array( 'רשימת_תמונות', 'תמונות' ),
 	'Newimages'                 => array( 'תמונות_חדשות', 'גלריית_תמונות_חדשות' ),
 	'Listusers'                 => array( 'רשימת_משתמשים', 'משתמשים' ),
+	'Listgrouprights'           => array( 'רשימת_הרשאות_לקבוצה' ),
 	'Statistics'                => array( 'סטטיסטיקות' ),
 	'Randompage'                => array( 'אקראי', 'דף_אקראי' ),
 	'Lonelypages'               => array( 'דפים_יתומים' ),
@@ -1533,6 +1534,13 @@ $2',
 'listusersfrom'      => 'הצגת משתמשים החל מ:',
 'listusers-submit'   => 'הצגה',
 'listusers-noresult' => 'לא נמצאו משתמשים.',
+
+# Special:Listgrouprights
+'listgrouprights'         => 'רשימת הרשאות לקבוצה',
+'listgrouprights-summary' => 'זוהי רשימה של קבוצות המשתמש המוגדרות באתר זה, עם הרשאות של כל אחת.',
+'listgrouprights-group'   => 'קבוצה',
+'listgrouprights-rights'  => 'הרשאות',
+'listgrouprights-link'    => '[[Help:הרשאות#$1|$1]]',
 
 # E-mail user
 'mailnologin'     => 'אין כתובת לשליחה',
