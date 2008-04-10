@@ -912,7 +912,7 @@ Andra administratörer på {{SITENAME}} kommer fortfarande att kunna läsa det d
 'revdelete-log'               => 'Kommentar:',
 'revdelete-submit'            => 'Tillämpa på vald version',
 'revdelete-logentry'          => 'ändrade synlighet för versioner av [[$1]]',
-'logdelete-logentry'          => 'ändrade synlighet för åtgärder på [[$1]]',
+'logdelete-logentry'          => 'ändrade synlighet för åtgärder i [[$1]]',
 'revdelete-success'           => "'''Versionens synlighet har ändrats.'''",
 'logdelete-success'           => "'''Loggåtgärdens synlighet har ändrats.'''",
 'revdel-restore'              => 'Ändra synlighet',
@@ -1476,6 +1476,13 @@ Sedan denna wiki startades har sidor visats totalt <b>$3</b> {{PLURAL:$3|gång|g
 'listusers-submit'   => 'Visa',
 'listusers-noresult' => 'Ingen användare hittades.',
 
+# Special:Listgrouprights
+'listgrouprights'         => 'Behörigheter för användargrupper',
+'listgrouprights-summary' => 'Följande lista visar vilka användargrupper som är definierade på den här wikin och vilka behörigheter grupperna har.',
+'listgrouprights-group'   => 'Grupp',
+'listgrouprights-rights'  => 'Behörigheter',
+'listgrouprights-link'    => '[[Help:Gruppbehörigheter#$1|$1]]',
+
 # E-mail user
 'mailnologin'     => 'Ingen adress att skicka till',
 'mailnologintext' => 'För att kunna skicka e-post till andra användare, måste du vara [[Special:Userlogin|inloggad]] och ha angivit en korrekt e-postadress i dina [[Special:Preferences|användarinställningar]].',
@@ -1906,9 +1913,8 @@ I det senare fallet kan du även använda en länk, exempel [[{{ns:special}}:Exp
 'allmessagesname'           => 'Namn',
 'allmessagesdefault'        => 'Standardtext',
 'allmessagescurrent'        => 'Nuvarande text',
-'allmessagestext'           => 'Detta är en lista över alla meddelanden i namnrymden MediaWiki.
-
-De går att översätta lokalt, genom att klicka på länkarna nedan, men översättes med fördel på [http://translatewiki.net/wiki/Main_Page Translatewiki], då slår översättningen igenom på samtliga svenskspråkiga projekt.',
+'allmessagestext'           => 'Detta är en lista över systemmeddelanden tillgängliga i MediaWiki-namnrymden.
+Var god besök [http://translatewiki.net Betawiki] om du vill bidra till den generiska MediaWiki-översättningen.',
 'allmessagesnotsupportedDB' => "Den här sidan kan inte användas eftersom '''\$wgUseDatabaseMessages''' är avstängd.",
 'allmessagesfilter'         => 'Filter för meddelandenamn:',
 'allmessagesmodified'       => 'Visa bara ändrade',

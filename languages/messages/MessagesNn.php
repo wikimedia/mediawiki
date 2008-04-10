@@ -414,7 +414,7 @@ $messages = array(
 'permalink'         => 'Fast lenkje',
 'print'             => 'Skriv ut',
 'edit'              => 'Endre',
-'create'            => 'Lag',
+'create'            => 'opprett',
 'editthispage'      => 'Endre sida',
 'create-this-page'  => 'Lag denne sida',
 'delete'            => 'Slett',
@@ -759,7 +759,7 @@ Du kan kontakte $1 eller ein annan [[{{MediaWiki:Grouppage-sysop}}|administrator
 'accmailtext'                       => 'Passordet for «$1» er vorte sendt til $2.',
 'newarticle'                        => '(Ny)',
 'newarticletext'                    => "'''{{SITENAME}} har ikkje noka side med namnet {{PAGENAME}} enno.'''
-* For å lage ei slik side kan du skrive i boksen under og klikke på «Lagre». Endringane vil vere synlege med det same.
+* For å opprette ei slik side kan du skrive i boksen under og klikke på «Lagre». Endringane vil vere synlege med det same.
 * Om du er ny her er det tilrådd å sjå på [[{{MediaWiki:Helppage}}|hjelpesida]] først.
 * Om du lagrar ei testside, vil du ikkje kunne slette henne sjølv.
 * Dersom du ikkje ønskjer å endre sida, kan du utan risiko klikke på '''attende'''-knappen i nettlesaren din.",
@@ -873,24 +873,24 @@ Grunnen som vart gjeven av $3 er ''$2''",
 # Revision deletion
 'rev-deleted-comment'         => '(samandraget er fjerna)',
 'rev-deleted-user'            => '(brukarnamnet er fjerna)',
-'rev-deleted-event'           => '(fjerna)',
+'rev-deleted-event'           => '(fjerna loggoppføring)',
 'rev-deleted-text-permission' => '<div class="mw-warning plainlinks">Denne versjonen av sida er fjerna frå den offentlege historikken. Det kan ligge detaljar om dette i [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} sletteloggen].</div>',
 'rev-deleted-text-view'       => '<div class="mw-warning plainlinks">Denne versjonen av sida er fjerna frå den offentlege historikken, men du som administrator på {{SITENAME}} kan sjå han. Det kan ligge detaljar om fjerninga i [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} sletteloggen].</div>',
 'rev-delundel'                => 'vis/gøym',
 'revisiondelete'              => 'Slett/attopprett versjonar',
-'revdelete-nooldid-title'     => 'Inga endring er oppgjeve',
-'revdelete-nooldid-text'      => 'Du har ikkje oppgjeve kva for versjon(ar) du vil utføre denne handlinga på.',
-'revdelete-selected'          => "{{PLURAL:$2|Vald versjon|Valde versjonar}} av '''$1''':",
-'logdelete-selected'          => "{{PLURAL:$2|Vald loggoppføring|Valde loggoppføringar for}} for '''$1''':",
+'revdelete-nooldid-title'     => 'Ugyldig målversjon',
+'revdelete-nooldid-text'      => 'Du har ikkje oppgjeve kva for versjon(ar) du vil utføre denne handlinga på, versjonen eksisterer ikkje, eller du prøver å gøyme den noverande versjonen.',
+'revdelete-selected'          => '{{PLURAL:$2|Vald versjon|Valde versjonar}} av [[:$1]]:',
+'logdelete-selected'          => '{{PLURAL:$2|Vald loggoppføring|Valde loggoppføringar for}} for [[:$1]]:',
 'revdelete-text'              => 'Sletta versjonar og oppføringar vert framleis synlege i sidehistorikken og loggane, men delar av innhaldet deira vert ikkje lenger offentleggjort.
 
 Andre administratorar på {{SITENAME}} kan framleis sjå det gøymde innhaldet og attopprette det, med mindre fleire avgrensingar vert lagde inn av sideoperatørane.',
-'revdelete-legend'            => 'Vel avgrensing',
+'revdelete-legend'            => 'Vel avgrensing for synlegdom',
 'revdelete-hide-text'         => 'Gøym endringssamandraga',
 'revdelete-hide-name'         => 'Gøym handling og sidenamn',
 'revdelete-hide-comment'      => 'Gøym endringssamandraga',
 'revdelete-hide-user'         => 'Gøym brukarnamn/IP-adresse',
-'revdelete-hide-restricted'   => 'La desse avgrensingane gjelde for administratorar også',
+'revdelete-hide-restricted'   => 'La desse avgrensingane gjelde for administratorar også, og steng dette grensesnittet',
 'revdelete-suppress'          => 'Fjern informasjon frå administratorar også',
 'revdelete-hide-image'        => 'Skjul filinnhald',
 'revdelete-unsuppress'        => 'Fjern avgrensingane på dei attoppretta versjonane',
@@ -906,9 +906,15 @@ Andre administratorar på {{SITENAME}} kan framleis sjå det gøymde innhaldet o
 'revdelete-content'           => 'innhald',
 'revdelete-summary'           => 'Samandrag',
 'revdelete-uname'             => 'brukarnamn',
+'revdelete-restricted'        => 'la til avgrensingar for administratorar',
+'revdelete-unrestricted'      => 'fjerna avgrensingar for administratorar',
 'revdelete-hid'               => 'løynde $1',
 'revdelete-unhid'             => 'gjorde $1 synleg',
 'revdelete-log-message'       => '$1 for $2 {{PLURAL:$2|revisjon|revisjonar}}',
+'logdelete-log-message'       => '$1 for {{PLURAL:$2|éitt element|$2 element}}',
+
+# Suppression log
+'suppressionlog' => 'Logg over historikkfjerningar',
 
 # History merging
 'mergehistory'                     => 'Flett sidehistorikkar',
@@ -976,7 +982,9 @@ Pass på at den nye sida også har innhald frå den innfletta sida.',
 'powersearch-legend'    => 'Avansert søk',
 'powersearchtext'       => 'Søk i namnerom:<br />$1<br />$2<br />List omdirigeringar &nbsp; Søk etter: $3 $9',
 'search-external'       => 'Eksternt søk',
-'searchdisabled'        => 'Søkjefunksjonen på {{SITENAME}} er deaktivert på grunn av for stort press på tenarane akkurat no. I mellomtida kan du søkje gjennom Google eller Yahoo! Ver merksam på at registra deira kan vera utdaterte.',
+'searchdisabled'        => 'Søkjefunksjonen på {{SITENAME}} er slått av akkurat no.
+I mellomtida kan du søkje gjennom Google.
+Ver merksam på at registra deira kan vera utdaterte.',
 
 # Preferences page
 'preferences'              => 'Innstillingar',
@@ -1069,17 +1077,20 @@ Pass på at den nye sida også har innhald frå den innfletta sida.',
 'group-bot'           => 'Robotar',
 'group-sysop'         => 'Administratorar',
 'group-bureaucrat'    => 'Byråkratar',
+'group-suppress'      => 'Historikkfjernarar',
 'group-all'           => '(alle)',
 
 'group-autoconfirmed-member' => 'Automatisk godkjend brukar',
 'group-bot-member'           => 'Robot',
 'group-sysop-member'         => 'Administrator',
 'group-bureaucrat-member'    => 'Byråkrat',
+'group-suppress-member'      => 'Historikkfjernar',
 
 'grouppage-autoconfirmed' => '{{ns:project}}:Automatisk godkjende brukarar',
 'grouppage-bot'           => '{{ns:project}}:Robotar',
 'grouppage-sysop'         => '{{ns:project}}:Administratorar',
 'grouppage-bureaucrat'    => '{{ns:project}}:Byråkratar',
+'grouppage-suppress'      => '{{ns:project}}:Historikkfjerning',
 
 # User rights log
 'rightslog'      => 'Brukartilgangslogg',
@@ -1387,6 +1398,7 @@ Alle sidene er vortne viste {{PLURAL:$3|'''éin''' gong|'''$3''' gonger}} og end
 'notargettext'            => 'Du har ikkje spesifisert noka målside eller nokon brukar å bruke denne funksjonen på.',
 'pager-newer-n'           => '{{PLURAL:$1|nyare|nyare $1}}',
 'pager-older-n'           => '{{PLURAL:$1|eldre|eldre $1}}',
+'suppress'                => 'Historikkfjerning',
 
 # Book sources
 'booksources'               => 'Bokkjelder',
@@ -1425,6 +1437,13 @@ Alle sidene er vortne viste {{PLURAL:$3|'''éin''' gong|'''$3''' gonger}} og end
 'listusersfrom'      => 'Vis brukarnamna frå og med:',
 'listusers-submit'   => 'Vis',
 'listusers-noresult' => 'Ingen brukarnamn vart funne.',
+
+# Special:Listgrouprights
+'listgrouprights'         => 'Tilgangar for brukargrupper',
+'listgrouprights-summary' => 'Lista nedanfor viser brukargruppene på denne wikien, med dei tilhøyrande tilgangane.',
+'listgrouprights-group'   => 'Gruppe',
+'listgrouprights-rights'  => 'Tilgangar',
+'listgrouprights-link'    => '[[Help:Gruppetilgangar#$1|$1]]',
 
 # E-mail user
 'mailnologin'     => 'Inga avsendaradresse',
@@ -1534,6 +1553,7 @@ For hjelp og meir informasjon:
 'actioncomplete'              => 'Ferdig',
 'deletedtext'                 => '«<nowiki>$1</nowiki>» er sletta. Sjå $2 for eit oversyn over dei siste slettingane.',
 'deletedarticle'              => 'sletta «[[$1]]»',
+'suppressedarticle'           => 'gøymde «[[$1]]»',
 'dellogpage'                  => 'Slettelogg',
 'dellogpagetext'              => 'Her er ei liste over dei siste slettingane.',
 'deletionlog'                 => 'slettelogg',
@@ -1830,7 +1850,7 @@ For å eksportere sider, skriv inn titlar i tekstboksen under, ein tittel per li
 'allmessagesdefault'        => 'Standardtekst',
 'allmessagescurrent'        => 'Noverande tekst',
 'allmessagestext'           => 'Dette er ei liste over systemmeldingar i MediaWiki-namnerommet.',
-'allmessagesnotsupportedDB' => "'''{{ns:special}}:Allmessages''' er ikkje støtta fordi \"'''\$wgUseDatabaseMessages'''\" ikkje er aktivert på tenaren.",
+'allmessagesnotsupportedDB' => "Denne sida er ikkje brukande fordi \"'''\$wgUseDatabaseMessages'''\" er slått av.",
 
 # Thumbnails
 'thumbnail-more'  => 'Forstørr',
@@ -2019,12 +2039,14 @@ $1',
 # Bad image list
 'bad_image_list' => 'Formatet er slik:
 
-Berre liner som startar med asterisk (*) vert tekne med. Den fyrste lenkja på ei line må gå til ei uønskt fil.
+Berre liner som startar med asterisk (*) vert tekne med.
+Den fyrste lenkja på ei line må gå til ei uønskt fil.
 Alle andre lenkjer på same line vert sett på som unnatak, med andre ord sider der fila kan brukast.',
 
 # Metadata
 'metadata'          => 'Utvida informasjon',
-'metadata-help'     => 'Denne fila inneheld tilleggsopplysningar, mest sannsynleg frå digitalkameraet eller skannaren som vart brukt til å lage eller digitalisere henne. Dersom fila har vore endra sidan ho vart oppretta, kan nokre av opplysningane vere feil.',
+'metadata-help'     => 'Denne fila inneheld tilleggsopplysningar, mest sannsynleg frå digitalkameraet eller skannaren som vart brukt til å lage eller digitalisere henne.
+Dersom fila har vore endra sidan ho vart oppretta, kan nokre av opplysningane vere feil.',
 'metadata-expand'   => 'Vis utvida opplysningar',
 'metadata-collapse' => 'Gøym utvida opplysningar',
 'metadata-fields'   => 'EXIF-metadatafelta denne meldinga inneheld vert med på filskildringssida når dei utvida opplysningane er slått av.
@@ -2427,5 +2449,7 @@ $1',
 # Special:FileDuplicateSearch
 'fileduplicatesearch-filename' => 'Filnamn:',
 'fileduplicatesearch-submit'   => 'Søk',
+'fileduplicatesearch-result-1' => 'Det er ingen kopiar av fila «$1».',
+'fileduplicatesearch-result-n' => 'Det er {{PLURAL:$2|éin kopi|$2 kopiar}} av fila «$1».',
 
 );

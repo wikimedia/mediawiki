@@ -11,6 +11,7 @@
  * @author Teak
  * @author Siebrand
  * @author SPQRobin
+ * @author ToePeu
  */
 
 $namespaceNames = array(
@@ -373,7 +374,7 @@ $2',
 'namespaceprotected'   => "'''$1''' 네임스페이스를 편집할 수 있는 권한이 없습니다.",
 'customcssjsprotected' => '이 문서는 다른 사용자의 개인 설정을 담고 있기 때문에, 편집할 권한이 없습니다.',
 'ns-specialprotected'  => '{{ns:special}} 네임스페이스의 문서는 편집할 수 없습니다.',
-'titleprotected'       => "[[User:$1|$1]] 사용자가 문서 생성을 금지했습니다. 이유는 다음과 같습니다. ‘''$2''’",
+'titleprotected'       => "[[{{ns:User}}:$1|$1]] 사용자가 문서 생성을 금지했습니다. 이유는 다음과 같습니다. ‘''$2''’",
 
 # Login and logout pages
 'logouttitle'                => '로그아웃',
@@ -415,6 +416,7 @@ $2',
 'prefs-help-realname'        => '실명 기입은 자유입니다. 실명을 입력할 경우 문서 기여에 자신의 이름이 들어가게 됩니다.',
 'loginerror'                 => '로그인 오류',
 'prefs-help-email'           => '이메일 주소 입력은 선택사항입니다. 이메일 주소를 입력하면, 이메일을 직접 공개하지 않고도 다른 사용자가 연락을 보낼 수 있습니다.',
+'prefs-help-email-required'  => '이메일 주소가 필요합니다.',
 'nocookiesnew'               => '사용자 계정을 만들었지만, 아직 로그인하지 않았습니다. {{SITENAME}}에서는 로그인 정보를 저장하기 위해 쿠키를 사용합니다. 지금 사용하는 웹 브라우저는 쿠키를 사용하지 않도록 설정되어 있습니다. 로그인하기 전에 웹 브라우저에서 쿠키를 사용하도록 설정해주세요.',
 'nocookieslogin'             => '{{SITENAME}}에서는 로그인을 위해 쿠키를 사용합니다. 당신의 웹 브라우저에서 쿠키가 비활성되어 있습니다. 쿠키 사용을 활성화한 다음 로그인해 주세요.',
 'noname'                     => '사용자 이름이 올바르지 않습니다.',
@@ -671,7 +673,7 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'nonefound'             => "'''참고''': ‘have’, ‘from’과 같은 일반적인 단어는 검색 색인에 들어가지 않아서, 이런 단어를 포함한 경우 검색이 효과적이지 않을 수 있습니다. 또는 여러 단어를 동시에 검색한 경우에도 효과적인 검색이 되지 않습니다(검색하려는 단어가 모두 들어 있는 문서만이 결과에 나타납니다).",
 'powersearch'           => '찾기',
 'powersearchtext'       => '다음의 네임스페이스에서 찾기:<br />$1<br />$2 넘겨주기 표시<br />$3를 $9',
-'searchdisabled'        => '{{SITENAME}} 검색 기능이 비활성화되어 있습니다. 기능이 작동하지 않는 동안에는 Google을 이용해 검색할 수 있습니다. 검색 엔진의 내용은 최근 것이 아닐 수 있다는 점을 주의해주세요.',
+'searchdisabled'        => '{{SITENAME}} 검색 기능이 비활성화되어 있습니다. 기능이 작동하지 않는 동안에는 구글(Google)을 이용해 검색할 수 있습니다. 검색 엔진의 내용은 최근 것이 아닐 수 있다는 점을 주의해주세요.',
 
 # Preferences page
 'preferences'              => '사용자 환경 설정',
@@ -801,7 +803,7 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'upload'                      => '파일 올리기',
 'uploadbtn'                   => '파일 올리기',
 'reupload'                    => '다시 올리기',
-'reuploaddesc'                => '올리기 양식으로 돌아가기',
+'reuploaddesc'                => '올리기를 취소하고 올리기 양식으로 돌아가기',
 'uploadnologin'               => '로그인하지 않음',
 'uploadnologintext'           => '파일을 올리려면 [[Special:Userlogin|로그인]]해야 합니다.',
 'upload_directory_read_only'  => '파일 저장 디렉토리($1)에 쓰기 권한이 없습니다.',
@@ -860,8 +862,7 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'upload-proto-error-text' => '파일을 URL로 올리려면 <code>http://</code>이나 <code>ftp://</code>로 시작해야 합니다.',
 'upload-file-error'       => '내부 오류',
 'upload-file-error-text'  => '서버에 임시 파일을 만드는 과정에서 내부 오류가 발생했습니다. 시스템 관리자에게 연락해주세요.',
-'upload-misc-error'       => 'Unknown upload error
-알 수 없는 파일 올리기 오류',
+'upload-misc-error'       => '알 수 없는 파일 올리기 오류',
 'upload-misc-error-text'  => '파일을 올리는 중 알 수 없는 오류가 발생했습니다. URL이 올바르고 접근 가능한지를 확인하고 다시 시도해주세요. 문제가 계속되면 시스템 관리자에게 연락해주세요.',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
@@ -1334,6 +1335,7 @@ $1',
 'badipaddress'                => '잘못된 IP 주소',
 'blockipsuccesssub'           => '차단 완료',
 'blockipsuccesstext'          => '[[Special:Contributions/$1|$1]] 사용자가 차단되었습니다. 차단된 사용자 목록은 [[Special:Ipblocklist|여기]]에서 볼 수 있습니다.',
+'ipb-edit-dropdown'           => '차단 사유 고치기',
 'ipb-unblock-addr'            => '$1 차단 해제하기',
 'ipb-unblock'                 => '사용자/IP 주소 차단 해제하기',
 'ipb-blocklist-addr'          => '$1의 현재 차단 기록 보기',
@@ -1470,7 +1472,8 @@ $1',
 'djvu_no_xml'     => 'DjVu 파일의 XML 정보를 읽을 수 없음',
 
 # Special:Import
-'import' => '문서 가져오기',
+'import'     => '문서 가져오기',
+'importtext' => '원본 위키에서 Special:Export 기능을 사용해 자료를 내려받아서 여기에 올려주세요.',
 
 # Import log
 'importlogpage'     => '파일 올리기 기록',
@@ -1626,7 +1629,7 @@ $1',
 'noimages'              => '그림이 없습니다.',
 'ilsubmit'              => '찾기',
 'bydate'                => '날짜',
-'sp-newimages-showfrom' => '$1부터 올라온 그림 목록 보기',
+'sp-newimages-showfrom' => '$1 $2부터 올라온 그림 목록 보기',
 
 # Metadata
 'metadata'          => '메타데이터',
@@ -1670,11 +1673,15 @@ $1',
 'confirmemail_subject'    => '{{SITENAME}} 이메일 주소 인증',
 'confirmemail_body'       => '$1 아이피 주소를 사용하는 사용자가 {{SITENAME}}의 ‘$2’ 계정에 이메일 인증 신청을 했습니다.
 
-만약 이 계정이 당신의 계정이라면, 다음 주소를 열어서 이메일 인증을 해 주세요:
+이 계정이 당신의 계정이라면, 아래 주소를 열어서 이메일 인증을 해 주세요.
 
 $3
 
-만약 당신의 계정이 아니라면, 문서를 열지 마세요. 인증 코드는 $4에 만료됩니다.',
+당신의 계정이 아니라면, 이메일 인증 신청을 취소하기 위해 아래의 주소를 열어주세요.
+
+$5
+
+인증 코드는 $4에 만료됩니다.',
 
 # Scary transclusion
 'scarytranscludedisabled' => '[인터위키가 비활성되어 있습니다]',

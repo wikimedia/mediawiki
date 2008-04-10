@@ -5,6 +5,7 @@
  *
  * @author Nike
  * @author G - ג
+ * @author Siebrand
  */
 
 $namespaceNames = array(
@@ -331,7 +332,7 @@ per fare lo upload di files.',
 
 Per visualizzare o cercare immagini precedentemente caricate su {{SITENAME}}, vai alla [[Special:Imagelist|lista delle immagini già caricate]].
 Uploads e cancellazioni delle immagini sono registrati nello
-[[Project:Upload_log|upload log]].
+upload log.
 
 Usa il modulo sottostante per caricare nuovi files immagine da utilizzare per arricchire ed illustrare i tuoi articoli.
 Sulla maggior parte dei browsers, dovresti vedere un bottone con la scritta \"Browse...\" (oppure \"Sfoglia...\", che aprirà una comune finestra di dialogo.

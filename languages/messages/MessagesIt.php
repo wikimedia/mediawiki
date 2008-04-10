@@ -18,6 +18,7 @@
  * @author לערי ריינהארט
  * @author Siebrand
  * @author SPQRobin
+ * @author Candalua
  */
 
 $namespaceNames = array(
@@ -602,23 +603,23 @@ Se l\'accesso è stato creato per errore, si può ignorare questo messaggio.',
 'hr_tip'          => 'Linea orizzontale (usare con giudizio)',
 
 # Edit pages
-'summary'                   => 'Oggetto',
-'subject'                   => 'Argomento (intestazione)',
-'minoredit'                 => 'Questa è una modifica minore',
-'watchthis'                 => 'Aggiungi agli osservati speciali',
-'savearticle'               => 'Salva la pagina',
-'preview'                   => 'Anteprima',
-'showpreview'               => 'Visualizza anteprima',
-'showlivepreview'           => "Funzione ''Live preview''",
-'showdiff'                  => 'Mostra cambiamenti',
-'anoneditwarning'           => "'''Attenzione:''' Accesso non effettuato. Nella cronologia della pagina verrà registrato l'indirizzo IP.",
-'missingsummary'            => "'''Attenzione:''' Non è stato specificato l'oggetto della modifica. Premendo di nuovo 'Salva la pagina' la modifica verrà salvata con l'oggetto vuoto.",
-'missingcommenttext'        => 'Inserire un commento qui sotto.',
-'missingcommentheader'      => "'''Attenzione:''' Non è stata specificata l'intestazione di questo commento. Premendo di nuovo '''Salva la pagina''' la modifica verrà salvata senza intestazione.",
-'summary-preview'           => 'Anteprima oggetto',
-'subject-preview'           => 'Anteprima oggetto/intestazione',
-'blockedtitle'              => 'Utente bloccato.',
-'blockedtext'               => "<big>'''Questo nome utente o indirizzo IP sono stati bloccati.'''</big>
+'summary'                           => 'Oggetto',
+'subject'                           => 'Argomento (intestazione)',
+'minoredit'                         => 'Questa è una modifica minore',
+'watchthis'                         => 'Aggiungi agli osservati speciali',
+'savearticle'                       => 'Salva la pagina',
+'preview'                           => 'Anteprima',
+'showpreview'                       => 'Visualizza anteprima',
+'showlivepreview'                   => "Funzione ''Live preview''",
+'showdiff'                          => 'Mostra cambiamenti',
+'anoneditwarning'                   => "'''Attenzione:''' Accesso non effettuato. Nella cronologia della pagina verrà registrato l'indirizzo IP.",
+'missingsummary'                    => "'''Attenzione:''' Non è stato specificato l'oggetto della modifica. Premendo di nuovo 'Salva la pagina' la modifica verrà salvata con l'oggetto vuoto.",
+'missingcommenttext'                => 'Inserire un commento qui sotto.',
+'missingcommentheader'              => "'''Attenzione:''' Non è stata specificata l'intestazione di questo commento. Premendo di nuovo '''Salva la pagina''' la modifica verrà salvata senza intestazione.",
+'summary-preview'                   => 'Anteprima oggetto',
+'subject-preview'                   => 'Anteprima oggetto/intestazione',
+'blockedtitle'                      => 'Utente bloccato.',
+'blockedtext'                       => "<big>'''Questo nome utente o indirizzo IP sono stati bloccati.'''</big>
 
 Il blocco è stato imposto da $1. La motivazione del blocco è la seguente: ''$2''
 
@@ -631,7 +632,7 @@ Se lo si desidera, è possibile contattare $1 o un altro [[{{MediaWiki:Grouppage
 Si noti che la funzione 'Scrivi all'utente' non è attiva se non è stato registrato un indirizzo e-mail valido nelle proprie [[{{ns:special}}:Preferences|preferenze]].
 
 Si prega di specificare l'indirizzo IP attuale ($3) o il numero del blocco (ID #$5) in qualsiasi richiesta di chiarimenti.",
-'autoblockedtext'           => "Questo indirizzo IP è stato bloccato automaticamente perché condiviso con un altro utente, a sua volta bloccato da $1.
+'autoblockedtext'                   => "Questo indirizzo IP è stato bloccato automaticamente perché condiviso con un altro utente, a sua volta bloccato da $1.
 La motivazione del blocco è la seguente:
 
 :''$2''
@@ -644,90 +645,94 @@ La motivazione del blocco è la seguente:
 Si noti che la funzione 'Scrivi all'utente' non è attiva se non è stato registrato un indirizzo e-mail valido nelle proprie [[Special:Preferences|preferenze]].
 
 Si prega di specificare il numero del blocco (ID #$5) in qualsiasi richiesta di chiarimenti.",
-'blockednoreason'           => 'nessuna motivazione indicata',
-'blockedoriginalsource'     => "Di seguito viene mostrato il codice sorgente della pagina '''$1''':",
-'blockededitsource'         => "Di seguito vengono mostrate le '''modifiche apportate''' alla pagina '''$1''':",
-'whitelistedittitle'        => 'Accesso necessario per la modifica delle pagine',
-'whitelistedittext'         => 'Per modificare le pagine è necessario $1.',
-'whitelistreadtitle'        => 'Accesso necessario per la lettura delle pagine',
-'whitelistreadtext'         => "Per essere abilitato alla lettura delle pagine è necessario [[Special:Userlogin|eseguire l'accesso]].",
-'whitelistacctitle'         => 'Creazione di un nuovo accesso non consentita',
-'whitelistacctext'          => "Per essere abilitati alla creazione di nuovi accessi su questo sito è necessario [[Special:Userlogin|effettuare l'accesso]] ed aver ricevuto le opportune autorizzazioni.",
-'confirmedittitle'          => 'Conferma della e-mail necessaria per la modifica delle pagine',
-'confirmedittext'           => "Per essere abilitati alla modifica delle pagine è necessario confermare il proprio indirizzo e-mail. Per impostare e confermare l'indirizzo servirsi delle [[Special:Preferences|preferenze]].",
-'nosuchsectiontitle'        => 'La sezione non esiste',
-'nosuchsectiontext'         => 'Si è tentato di modificare una sezione inesistente. Non è possibile salvare le modifiche in quanto la sezione $1 non esiste.',
-'loginreqtitle'             => "Per modificare questa pagina è necessario eseguire l'accesso al sito.",
-'loginreqlink'              => "eseguire l'accesso",
-'loginreqpagetext'          => 'Per vedere altre pagine è necessario $1.',
-'accmailtitle'              => 'Password inviata.',
-'accmailtext'               => 'La password per l\'utente "$1" è stata inviata all\'indirizzo $2.',
-'newarticle'                => '(Nuovo)',
-'newarticletext'            => "Il collegamento appena seguito corrisponde a una pagina non ancora esistente.
+'blockednoreason'                   => 'nessuna motivazione indicata',
+'blockedoriginalsource'             => "Di seguito viene mostrato il codice sorgente della pagina '''$1''':",
+'blockededitsource'                 => "Di seguito vengono mostrate le '''modifiche apportate''' alla pagina '''$1''':",
+'whitelistedittitle'                => 'Accesso necessario per la modifica delle pagine',
+'whitelistedittext'                 => 'Per modificare le pagine è necessario $1.',
+'whitelistreadtitle'                => 'Accesso necessario per la lettura delle pagine',
+'whitelistreadtext'                 => "Per essere abilitato alla lettura delle pagine è necessario [[Special:Userlogin|eseguire l'accesso]].",
+'whitelistacctitle'                 => 'Creazione di un nuovo accesso non consentita',
+'whitelistacctext'                  => "Per essere abilitati alla creazione di nuovi accessi su questo sito è necessario [[Special:Userlogin|effettuare l'accesso]] ed aver ricevuto le opportune autorizzazioni.",
+'confirmedittitle'                  => 'Conferma della e-mail necessaria per la modifica delle pagine',
+'confirmedittext'                   => "Per essere abilitati alla modifica delle pagine è necessario confermare il proprio indirizzo e-mail. Per impostare e confermare l'indirizzo servirsi delle [[Special:Preferences|preferenze]].",
+'nosuchsectiontitle'                => 'La sezione non esiste',
+'nosuchsectiontext'                 => 'Si è tentato di modificare una sezione inesistente. Non è possibile salvare le modifiche in quanto la sezione $1 non esiste.',
+'loginreqtitle'                     => "Per modificare questa pagina è necessario eseguire l'accesso al sito.",
+'loginreqlink'                      => "eseguire l'accesso",
+'loginreqpagetext'                  => 'Per vedere altre pagine è necessario $1.',
+'accmailtitle'                      => 'Password inviata.',
+'accmailtext'                       => 'La password per l\'utente "$1" è stata inviata all\'indirizzo $2.',
+'newarticle'                        => '(Nuovo)',
+'newarticletext'                    => "Il collegamento appena seguito corrisponde a una pagina non ancora esistente.
 Se si desidera creare la pagina ora, basta cominciare a scrivere il testo nella casella qui sotto
 (fare riferimento alle [[{{MediaWiki:Helppage}}|pagine di aiuto]] per maggiori informazioni).
 Se il collegamento è stato seguito per errore, è sufficiente fare clic sul pulsante '''Indietro''' del proprio browser.",
-'anontalkpagetext'          => "----''Questa è la pagina di discussione di un utente anonimo, che non ha ancora creato un accesso o comunque non lo usa. Per identificarlo è quindi necessario usare il numero del suo indirizzo IP. Gli indirizzi IP possono però essere condivisi da più utenti. Se sei un utente anonimo e ritieni che i commenti presenti in questa pagina non si riferiscano a te, [[Special:Userlogin|crea un nuovo accesso o entra]] con quello che già hai per evitare di essere confuso con altri utenti anonimi in futuro''",
-'noarticletext'             => 'In questo momento la pagina richiesta è vuota. È possibile [[Special:Search/{{PAGENAME}}|cercare questo titolo]] nelle altre pagine del sito oppure [{{fullurl:{{FULLPAGENAME}}|action=edit}} modificare la pagina ora].',
-'userpage-userdoesnotexist' => 'L\'account "$1" non corrisponde a un utente registrato. Verificare che si intenda davvero creare o modificare questa pagina.',
-'clearyourcache'            => "'''Nota:''' dopo aver salvato è necessario pulire la cache del proprio browser per vedere i cambiamenti. Per '''Mozilla / Firefox / Safari''': fare clic su ''Ricarica'' tenendo premuto il tasto delle maiuscole, oppure premere ''Ctrl-Maiusc-R'' (''Cmd-Maiusc-R'' su Mac); per '''Internet Explorer:''' mantenere premuto il tasto ''Ctrl'' mentre si preme il pulsante ''Aggiorna'' o premere ''Ctrl-F5''; per '''Konqueror''': premere il pulsante ''Ricarica'' o il tasto ''F5''; per '''Opera''' può essere necessario svuotare completamente la cache dal menu ''Strumenti → Preferenze''.",
-'usercssjsyoucanpreview'    => "<strong>Suggerimento:</strong> si consiglia di usare il pulsante 'Visualizza anteprima' per provare i nuovi CSS o JavaScript prima di salvarli.",
-'usercsspreview'            => "'''Questa è solo un'anteprima del proprio CSS personale; le modifiche non sono ancora state salvate!'''",
-'userjspreview'             => "'''Questa è solo un'anteprima per provare il proprio JavaScript personale; le modifiche non sono ancora state salvate!'''",
-'userinvalidcssjstitle'     => "'''Attenzione:'''  Non esiste alcuna skin con nome \"\$1\". Si noti che le pagine per i .css e .js personalizzati hanno l'iniziale del titolo minuscola, ad esempio {{ns:user}}:Esempio/monobook.css e non {{ns:user}}:Esempio/Monobook.css.",
-'updated'                   => '(Aggiornato)',
-'note'                      => '<strong>NOTA:</strong>',
-'previewnote'               => 'Questa è solo una anteprima; le modifiche alla pagina NON sono ancora state salvate!',
-'previewconflict'           => "L'anteprima corrisponde al testo presente nella casella di modifica superiore e rappresenta la pagina come apparirà se si sceglie di premere 'Salva la pagina' in questo momento.",
-'session_fail_preview'      => '<strong>Siamo spiacenti, non è stato possibile elaborare la modifica perché sono andati persi i dati relativi alla sessione. Se il problema persiste, si può provare a scollegarsi ed effettuare un nuovo accesso.</strong>',
-'session_fail_preview_html' => "<strong>Siamo spiacenti, non è stato possibile elaborare la modifica perché sono andati persi i dati relativi alla sessione.</strong>
+'anontalkpagetext'                  => "----''Questa è la pagina di discussione di un utente anonimo, che non ha ancora creato un accesso o comunque non lo usa. Per identificarlo è quindi necessario usare il numero del suo indirizzo IP. Gli indirizzi IP possono però essere condivisi da più utenti. Se sei un utente anonimo e ritieni che i commenti presenti in questa pagina non si riferiscano a te, [[Special:Userlogin|crea un nuovo accesso o entra]] con quello che già hai per evitare di essere confuso con altri utenti anonimi in futuro''",
+'noarticletext'                     => 'In questo momento la pagina richiesta è vuota. È possibile [[Special:Search/{{PAGENAME}}|cercare questo titolo]] nelle altre pagine del sito oppure [{{fullurl:{{FULLPAGENAME}}|action=edit}} modificare la pagina ora].',
+'userpage-userdoesnotexist'         => 'L\'account "$1" non corrisponde a un utente registrato. Verificare che si intenda davvero creare o modificare questa pagina.',
+'clearyourcache'                    => "'''Nota:''' dopo aver salvato è necessario pulire la cache del proprio browser per vedere i cambiamenti. Per '''Mozilla / Firefox / Safari''': fare clic su ''Ricarica'' tenendo premuto il tasto delle maiuscole, oppure premere ''Ctrl-Maiusc-R'' (''Cmd-Maiusc-R'' su Mac); per '''Internet Explorer:''' mantenere premuto il tasto ''Ctrl'' mentre si preme il pulsante ''Aggiorna'' o premere ''Ctrl-F5''; per '''Konqueror''': premere il pulsante ''Ricarica'' o il tasto ''F5''; per '''Opera''' può essere necessario svuotare completamente la cache dal menu ''Strumenti → Preferenze''.",
+'usercssjsyoucanpreview'            => "<strong>Suggerimento:</strong> si consiglia di usare il pulsante 'Visualizza anteprima' per provare i nuovi CSS o JavaScript prima di salvarli.",
+'usercsspreview'                    => "'''Questa è solo un'anteprima del proprio CSS personale; le modifiche non sono ancora state salvate!'''",
+'userjspreview'                     => "'''Questa è solo un'anteprima per provare il proprio JavaScript personale; le modifiche non sono ancora state salvate!'''",
+'userinvalidcssjstitle'             => "'''Attenzione:'''  Non esiste alcuna skin con nome \"\$1\". Si noti che le pagine per i .css e .js personalizzati hanno l'iniziale del titolo minuscola, ad esempio {{ns:user}}:Esempio/monobook.css e non {{ns:user}}:Esempio/Monobook.css.",
+'updated'                           => '(Aggiornato)',
+'note'                              => '<strong>NOTA:</strong>',
+'previewnote'                       => 'Questa è solo una anteprima; le modifiche alla pagina NON sono ancora state salvate!',
+'previewconflict'                   => "L'anteprima corrisponde al testo presente nella casella di modifica superiore e rappresenta la pagina come apparirà se si sceglie di premere 'Salva la pagina' in questo momento.",
+'session_fail_preview'              => '<strong>Siamo spiacenti, non è stato possibile elaborare la modifica perché sono andati persi i dati relativi alla sessione. Se il problema persiste, si può provare a scollegarsi ed effettuare un nuovo accesso.</strong>',
+'session_fail_preview_html'         => "<strong>Siamo spiacenti, non è stato possibile elaborare la modifica perché sono andati persi i dati relativi alla sessione.</strong>
 
 ''Poiché in questo sito è abilitato l'uso di HTML senza limitazioni, l'anteprima non viene visualizzata; si tratta di una misura di sicurezza contro gli attacchi JavaScript.''
 
 <strong>Se il problema persiste, si può provare a scollegarsi ed effettuare un nuovo accesso.</strong>",
-'token_suffix_mismatch'     => "<strong>La modifica non è stata salvata perché il client ha mostrato di gestire in modo errato i caratteri di punteggiatura nel token associato alla stessa. Per evitare una possibile corruzione del testo della pagina, è stata rifiutata l'intera modifica. Questa situazione può verificarsi, talvolta, quando vengono usati alcuni servizi di proxy anonimi via web che presentano dei bug.</strong>",
-'editing'                   => 'Modifica di $1',
-'editingsection'            => 'Modifica di $1 (sezione)',
-'editingcomment'            => 'Modifica di $1 (commento)',
-'editconflict'              => 'Conflitto di edizione su $1',
-'explainconflict'           => "Un altro utente ha salvato una nuova versione della pagina mentre stavi effettuando le modifiche.<br />
+'token_suffix_mismatch'             => "<strong>La modifica non è stata salvata perché il client ha mostrato di gestire in modo errato i caratteri di punteggiatura nel token associato alla stessa. Per evitare una possibile corruzione del testo della pagina, è stata rifiutata l'intera modifica. Questa situazione può verificarsi, talvolta, quando vengono usati alcuni servizi di proxy anonimi via web che presentano dei bug.</strong>",
+'editing'                           => 'Modifica di $1',
+'editingsection'                    => 'Modifica di $1 (sezione)',
+'editingcomment'                    => 'Modifica di $1 (commento)',
+'editconflict'                      => 'Conflitto di edizione su $1',
+'explainconflict'                   => "Un altro utente ha salvato una nuova versione della pagina mentre stavi effettuando le modifiche.<br />
 La casella di modifica superiore contiene il testo della pagina attualmente online, così come è stato aggiornato dall'altro utente. La versione con le tue modifiche è invece riportata nella casella di modifica inferiore. Se desideri confermarle, devi riportare le tue modifiche nel testo esistente (casella superiore).
 Premendo il pulsante 'Salva la pagina', verrà salvato <b>solo</b> il testo contenuto nella casella di modifica superiore.<br />",
-'yourtext'                  => 'Il tuo testo',
-'storedversion'             => 'La versione memorizzata',
-'nonunicodebrowser'         => '<strong>Attenzione: Si sta utilizzando un browser non compatibile con i caratteri Unicode. Per consentire la modifica delle pagine senza creare inconvenienti, i caratteri non ASCII vengono visualizzati nella casella di modifica sotto forma di codici esadecimali.</strong>',
-'editingold'                => '<strong>Attenzione: si sta modificando una versione non aggiornata della pagina.<br />
+'yourtext'                          => 'Il tuo testo',
+'storedversion'                     => 'La versione memorizzata',
+'nonunicodebrowser'                 => '<strong>Attenzione: Si sta utilizzando un browser non compatibile con i caratteri Unicode. Per consentire la modifica delle pagine senza creare inconvenienti, i caratteri non ASCII vengono visualizzati nella casella di modifica sotto forma di codici esadecimali.</strong>',
+'editingold'                        => '<strong>Attenzione: si sta modificando una versione non aggiornata della pagina.<br />
 Se si sceglie di salvarla, tutti i cambiamenti apportati dopo questa revisione andranno perduti.</strong>',
-'yourdiff'                  => 'Differenze',
-'copyrightwarning'          => "Nota: tutti i contributi a {{SITENAME}} si considerano rilasciati nei termini della licenza d'uso $2 (vedi $1 per maggiori dettagli). Se non desideri che i tuoi testi possano essere modificati e ridistribuiti da chiunque senza alcuna limitazione, non inviarli a {{SITENAME}}.<br />
+'yourdiff'                          => 'Differenze',
+'copyrightwarning'                  => "Nota: tutti i contributi a {{SITENAME}} si considerano rilasciati nei termini della licenza d'uso $2 (vedi $1 per maggiori dettagli). Se non desideri che i tuoi testi possano essere modificati e ridistribuiti da chiunque senza alcuna limitazione, non inviarli a {{SITENAME}}.<br />
 Con l'invio del testo dichiari inoltre, sotto la tua responsabilità, che il testo è stato scritto da te personalmente oppure che è stato copiato da una fonte di pubblico dominio o analogamente libera.
 <strong>NON INVIARE MATERIALE COPERTO DA DIRITTO DI AUTORE SENZA AUTORIZZAZIONE!</strong>",
-'copyrightwarning2'         => "Nota: tutti i contributi inviati a {{SITENAME}} possono essere modificati, stravolti o cancellati da parte degli altri partecipanti. Se non desideri che i tuoi testi possano essere modificati senza alcun riguardo, non inviarli a questo sito.<br />
+'copyrightwarning2'                 => "Nota: tutti i contributi inviati a {{SITENAME}} possono essere modificati, stravolti o cancellati da parte degli altri partecipanti. Se non desideri che i tuoi testi possano essere modificati senza alcun riguardo, non inviarli a questo sito.<br />
 Con l'invio del testo dichiari inoltre, sotto la tua responsabilità, che il testo è stato scritto da te personalmente oppure che è stato copiato da una fonte di pubblico dominio o analogamente libera. (vedi $1 per maggiori dettagli)
 <strong>NON INVIARE MATERIALE COPERTO DA DIRITTO DI AUTORE SENZA AUTORIZZAZIONE!</strong>",
-'longpagewarning'           => "<strong>ATTENZIONE: Questa pagina è lunga $1 kilobyte; alcuni browser potrebbero presentare dei problemi nella modifica di pagine che si avvicinano o superano i 32 KB. Valuta l'opportunità di suddividere la pagina in sezioni più piccole.</strong>",
-'longpageerror'             => '<strong>ERRORE: Il testo inviato è lungo $1 kilobyte, più della dimensione massima consentita ($2 kilobyte). Il testo non può essere salvato.</strong>',
-'readonlywarning'           => '<strong>ATTENZIONE: Il database è stato bloccato per manutenzione, è quindi impossibile salvare le modifiche in questo momento. Per non perderle, è possibile copiare quanto inserito finora nella casella di modifica, incollarlo in un programma di elaborazione testi e salvarlo in attesa dello sblocco del database.</strong>',
-'protectedpagewarning'      => '<strong>ATTENZIONE: Questa pagina è stata bloccata in modo che solo gli utenti con privilegi di amministratore possano modificarla.</strong>',
-'semiprotectedpagewarning'  => "'''Nota:''' Questa pagina è stata bloccata in modo che solo gli utenti registrati possano modificarla.",
-'cascadeprotectedwarning'   => "'''Attenzione:''' Questa pagina è stata bloccata in modo che solo gli utenti con privilegi di amministratore possano modificarla. Ciò avviene perché la pagina è inclusa {{PLURAL:\$1|nella pagina indicata di seguito, che è stata protetta|nelle pagine indicate di seguito, che sono state protette}} selezionando la protezione \"ricorsiva\":",
-'titleprotectedwarning'     => '<strong>ATTENZIONE:  Questa pagina è stata bloccata in modo che solo alcune categorie di utenti possano crearla.</strong>',
-'templatesused'             => 'Template utilizzati in questa pagina:',
-'templatesusedpreview'      => 'Template utilizzati in questa anteprima:',
-'templatesusedsection'      => 'Template utilizzati in questa sezione:',
-'template-protected'        => '(protetto)',
-'template-semiprotected'    => '(semiprotetto)',
-'hiddencategories'          => 'Questa pagina appartiene a {{PLURAL:$1|una categoria nascosta|$1 categorie nascoste}}:',
-'edittools'                 => '<!-- Testo che appare al di sotto del modulo di modifica e di upload. -->',
-'nocreatetitle'             => 'Creazione delle pagine limitata',
-'nocreatetext'              => 'La possibilità di creare nuove pagine su {{SITENAME}} è stata limitata ai soli utenti registrati. È possibile tornare indietro e modificare una pagina esistente, oppure [[Special:Userlogin|entrare o creare un nuovo accesso]].',
-'nocreate-loggedin'         => 'Non si dispone dei permessi necessari a creare nuove pagine su {{SITENAME}}.',
-'permissionserrors'         => 'Errore nei permessi',
-'permissionserrorstext'     => "Non si dispone dei permessi necessari ad eseguire l'azione richiesta, per {{PLURAL:$1|il seguente motivo|i seguenti motivi}}:",
-'recreate-deleted-warn'     => "'''Attenzione: si sta per ricreare una pagina già cancellata in passato.'''
+'longpagewarning'                   => "<strong>ATTENZIONE: Questa pagina è lunga $1 kilobyte; alcuni browser potrebbero presentare dei problemi nella modifica di pagine che si avvicinano o superano i 32 KB. Valuta l'opportunità di suddividere la pagina in sezioni più piccole.</strong>",
+'longpageerror'                     => '<strong>ERRORE: Il testo inviato è lungo $1 kilobyte, più della dimensione massima consentita ($2 kilobyte). Il testo non può essere salvato.</strong>',
+'readonlywarning'                   => '<strong>ATTENZIONE: Il database è stato bloccato per manutenzione, è quindi impossibile salvare le modifiche in questo momento. Per non perderle, è possibile copiare quanto inserito finora nella casella di modifica, incollarlo in un programma di elaborazione testi e salvarlo in attesa dello sblocco del database.</strong>',
+'protectedpagewarning'              => '<strong>ATTENZIONE: Questa pagina è stata bloccata in modo che solo gli utenti con privilegi di amministratore possano modificarla.</strong>',
+'semiprotectedpagewarning'          => "'''Nota:''' Questa pagina è stata bloccata in modo che solo gli utenti registrati possano modificarla.",
+'cascadeprotectedwarning'           => "'''Attenzione:''' Questa pagina è stata bloccata in modo che solo gli utenti con privilegi di amministratore possano modificarla. Ciò avviene perché la pagina è inclusa {{PLURAL:\$1|nella pagina indicata di seguito, che è stata protetta|nelle pagine indicate di seguito, che sono state protette}} selezionando la protezione \"ricorsiva\":",
+'titleprotectedwarning'             => '<strong>ATTENZIONE:  Questa pagina è stata bloccata in modo che solo alcune categorie di utenti possano crearla.</strong>',
+'templatesused'                     => 'Template utilizzati in questa pagina:',
+'templatesusedpreview'              => 'Template utilizzati in questa anteprima:',
+'templatesusedsection'              => 'Template utilizzati in questa sezione:',
+'template-protected'                => '(protetto)',
+'template-semiprotected'            => '(semiprotetto)',
+'hiddencategories'                  => 'Questa pagina appartiene a {{PLURAL:$1|una categoria nascosta|$1 categorie nascoste}}:',
+'edittools'                         => '<!-- Testo che appare al di sotto del modulo di modifica e di upload. -->',
+'nocreatetitle'                     => 'Creazione delle pagine limitata',
+'nocreatetext'                      => 'La possibilità di creare nuove pagine su {{SITENAME}} è stata limitata ai soli utenti registrati. È possibile tornare indietro e modificare una pagina esistente, oppure [[Special:Userlogin|entrare o creare un nuovo accesso]].',
+'nocreate-loggedin'                 => 'Non si dispone dei permessi necessari a creare nuove pagine su {{SITENAME}}.',
+'permissionserrors'                 => 'Errore nei permessi',
+'permissionserrorstext'             => "Non si dispone dei permessi necessari ad eseguire l'azione richiesta, per {{PLURAL:$1|il seguente motivo|i seguenti motivi}}:",
+'recreate-deleted-warn'             => "'''Attenzione: si sta per ricreare una pagina già cancellata in passato.'''
 
 Accertarsi che sia davvero opportuno continuare a modificare questa pagina.
 L'elenco delle relative cancellazioni viene riportato di seguito per comodità:",
+'expensive-parserfunction-warning'  => 'Attenzione: Questa pagina contiene troppe chiamate alle parser functions.
+
+Dovrebbe averne meno di $2, al momento ce ne sono $1.',
+'expensive-parserfunction-category' => 'Pagine con troppe chiamate alle parser functions',
 
 # "Undo" feature
 'undo-success' => 'Questa modifica può essere annullata. Verificare il confronto presentato di seguito per accertarsi che il contenuto corrisponda a quanto desiderato e quindi salvare le modifiche per completare la procedura di annullamento.',
@@ -807,12 +812,24 @@ Gli altri amministratori del sito potranno accedere comunque ai contenuti nascos
 'revdelete-submit'            => 'Applica alla revisione selezionata',
 'revdelete-logentry'          => 'ha modificato la visibilità per una revisione di [[$1]]',
 'logdelete-logentry'          => "ha modificato la visibilità dell'evento [[$1]]",
-'revdelete-logaction'         => 'ha impostato la modalità $2 per {{plural:$1|una revisione|$1 revisioni}}',
-'logdelete-logaction'         => 'ha impostato la modalità $2 per {{plural:$1|un evento relativo|$1 eventi relativi}} a [[$3]]',
 'revdelete-success'           => "'''Visibilità della revisione impostata correttamente.'''",
 'logdelete-success'           => "'''Visibilità dell'evento impostata correttamente.'''",
+'revdel-restore'              => 'Cambia la visibilità',
 'pagehist'                    => 'Cronologia della pagina',
 'deletedhist'                 => 'Cronologia cancellata',
+'revdelete-content'           => 'contenuto',
+'revdelete-summary'           => 'riassunto della modifica',
+'revdelete-uname'             => 'nome utente',
+'revdelete-restricted'        => 'restrizioni ai soli amministratori attivate',
+'revdelete-unrestricted'      => 'restrizioni ai soli amministratori rimosse',
+'revdelete-hid'               => 'nascondi $1',
+'revdelete-unhid'             => 'rendi visibile $1',
+'revdelete-log-message'       => '$1 per $2 {{PLURAL:$2|revisione|revisioni}}',
+'logdelete-log-message'       => '$1 per $2 {{PLURAL:$2|evento|eventi}}',
+
+# Suppression log
+'suppressionlog'     => 'Log delle soppressioni',
+'suppressionlogtext' => "Qui sotto si trova un elenco delle cancellazioni e dei blocchi più recenti riguardanti contenuti nascosti agli amministratori. Vedi l'[[Special:Ipblocklist|elenco degli IP bloccati]] per l'elenco dei ban e dei blocchi attivi al momento.",
 
 # History merging
 'mergehistory'                     => 'Unione cronologie',
@@ -877,6 +894,7 @@ Gli altri amministratori del sito potranno accedere comunque ai contenuti nascos
 'powersearch'           => 'Ricerca',
 'powersearch-legend'    => 'Ricerca avanzata',
 'powersearchtext'       => 'Ricerca nei seguenti namespace:<br />$1<br />$2 Mostra i redirect<br />Criteri di ricerca: $3 $9',
+'search-external'       => 'Ricerca esterna',
 'searchdisabled'        => 'La ricerca interna di {{SITENAME}} non è attiva; nel frattempo si può provare ad usare un motore di ricerca esterno come Google. (Si noti però che i contenuti di {{SITENAME}} presenti in tali motori potrebbero non essere aggiornati.)',
 
 # Preferences page
@@ -1349,6 +1367,13 @@ Ciascuna riga contiene i collegamenti al primo ed al secondo redirect, oltre all
 'listusers-submit'   => 'Mostra',
 'listusers-noresult' => 'Nessun utente risponde ai criteri impostati.',
 
+# Special:Listgrouprights
+'listgrouprights'         => 'Diritti del gruppo utente',
+'listgrouprights-summary' => "Di seguito sono elencati i gruppi utente definiti per questo wiki, con i diritti d'accesso loro associati.",
+'listgrouprights-group'   => 'Gruppo',
+'listgrouprights-rights'  => 'Diritti',
+'listgrouprights-link'    => '[[Help:Diritti del gruppo#$1|$1]]',
+
 # E-mail user
 'mailnologin'     => 'Nessun indirizzo cui inviare il messaggio',
 'mailnologintext' => 'Per inviare messaggi e-mail ad altri utenti è necessario [[Special:Userlogin|accedere al sito]] e aver registrato un indirizzo valido nelle proprie [[Special:Preferences|preferenze]].',
@@ -1457,6 +1482,7 @@ Per dare il tuo feedback e ricevere ulteriore assistenza:
 'actioncomplete'              => 'Azione completata',
 'deletedtext'                 => 'La pagina "<nowiki>$1</nowiki>" è stata cancellata. Consultare il $2 per un elenco delle pagine cancellate di recente.',
 'deletedarticle'              => 'ha cancellato "[[$1]]"',
+'suppressedarticle'           => 'soppresso "[[$1]]"',
 'dellogpage'                  => 'Cancellazioni',
 'dellogpagetext'              => 'Di seguito sono elencate le pagine cancellate di recente.',
 'deletionlog'                 => 'Log delle cancellazioni',

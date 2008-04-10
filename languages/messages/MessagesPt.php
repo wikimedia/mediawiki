@@ -943,6 +943,7 @@ que não são indexadas, ou pela especificação de mais de um termo (somente as
 'powersearch'           => 'Pesquisa avançada',
 'powersearch-legend'    => 'Pesquisa avançada',
 'powersearchtext'       => 'Pesquisar nos espaços nominais:<br />$1<br />$2 Listar redireccionamentos<br />Pesquisar por $3 $9',
+'search-external'       => 'Pesquisa externa',
 'searchdisabled'        => 'O motor de pesquisa na {{SITENAME}} foi desactivado por motivos de desempenho. Enquanto isso pode fazer a sua pesquisa através do Google ou do Yahoo!.<br />
 Note que os índices do conteúdo da {{SITENAME}} destes sites podem estar desactualizados.',
 
@@ -1418,6 +1419,13 @@ Você pode diminuir a lista escolhendo um tipo de registo, um nome de utilizador
 'listusersfrom'      => 'Mostrar utilizadores começando em:',
 'listusers-submit'   => 'Exibir',
 'listusers-noresult' => 'Não foram encontrados utilizadores para a forma pesquisada.',
+
+# Special:Listgrouprights
+'listgrouprights'         => 'Privilégios de grupo de utilizadores',
+'listgrouprights-summary' => 'A seguinte lista contém os grupos de utilizadores definidos neste wiki, com os seus privilégios de acessos associados.',
+'listgrouprights-group'   => 'Grupo',
+'listgrouprights-rights'  => 'Privilégios',
+'listgrouprights-link'    => '[[{{ns:Help}}:Privilégios de grupo#$1|$1]]',
 
 # E-mail user
 'mailnologin'     => 'Nenhum endereço de envio',

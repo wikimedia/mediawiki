@@ -758,7 +758,7 @@ Podeu editar les planes ja existents o bé [[Special:Userlogin|entrar en un comp
 
 Hauríeu de considerar si és realment necessari continuar editant aquesta pàgina.
 A continuació s'ofereix el registre d'esborraments de la pàgina:",
-'expensive-parserfunction-warning'  => "Atenció: Aquesta pàgina conté massa crides a funcions parserfunction.
+'expensive-parserfunction-warning'  => "Atenció: Aquesta pàgina conté massa crides a funcions parserfunction complexes.
 
 Actualment hi ha $1 crides i n'haurien $2 com a molt.",
 'expensive-parserfunction-category' => 'Pàgines amb massa crides de parser function',
@@ -1402,6 +1402,13 @@ Podeu reduir l'extensió seleccionant el tipus de identificació, el nom del usu
 'listusers-submit'   => 'Mostra',
 'listusers-noresult' => "No s'han trobat coincidències de noms d'usuaris. Si us plau, busqueu també amb variacions per majúscules i minúscules.",
 
+# Special:Listgrouprights
+'listgrouprights'         => "Drets dels grups d'usuaris",
+'listgrouprights-summary' => "A continuació hi ha una llista dels grups d'usuaris definits al wiki, així com dels seus drets d'accés associats.",
+'listgrouprights-group'   => 'Grup',
+'listgrouprights-rights'  => 'Drets',
+'listgrouprights-link'    => '[[Help:Drets del grup#$1|$1]]',
+
 # E-mail user
 'mailnologin'     => "No enviïs l'adreça",
 'mailnologintext' => "Heu d'haver [[Special:Userlogin|entrat]]
@@ -1871,7 +1878,7 @@ En el darrer cas, podeu fer servir un enllaç com ara [[{{ns:special}}:Export/{{
 'allmessagesname'           => 'Etiqueta',
 'allmessagesdefault'        => 'Text per defecte',
 'allmessagescurrent'        => 'Text actual',
-'allmessagestext'           => "Tot seguit hi ha una llista dels missatges del sistema que es troben a l'espai de noms ''MediaWiki''.",
+'allmessagestext'           => "Tot seguit hi ha una llista dels missatges del sistema que es troben a l'espai de noms ''MediaWiki''. La traducció genèrica d'aquests missatges no s'hauria de fer localment sinó a la traducció del programari MediaWiki. Si voleu ajudar-hi visiteu [http://translatewiki.net Betawiki].",
 'allmessagesnotsupportedDB' => "No es pot processar '''{{ns:special}}:Allmessages''' perquè la variable '''\$wgUseDatabaseMessages''' està desactivada.",
 'allmessagesfilter'         => 'Cerca etiqueta de missatge:',
 'allmessagesmodified'       => 'Mostra només missatges modificats',

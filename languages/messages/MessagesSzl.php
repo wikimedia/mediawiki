@@ -754,6 +754,7 @@ Možyš [[:\$1|tako utwořyć]], abo sprůbować pounygo šnupańa.",
 'powersearch'           => 'Šnupańe zaawansowane',
 'powersearch-legend'    => 'Šnupańe zaawansowane',
 'powersearchtext'       => 'Šnupej w přestřyńach mjan:<br />$1<br />$2 Pokož překerowańa<br />Šukany tekst $3 $9',
+'search-external'       => 'Šnupańy zewnyntřne',
 'searchdisabled'        => 'Šnupańy we {{GRAMMAR:MS.lp|{{SITENAME}}}} zostouo zawarte. Zańim go zouůnčům, možeš sprůbować šnupańo bez Google. Ino zauwaž, co informacyje uo treśći {{GRAMMAR:MS.lp|{{SITENAME}}}} můgům być we Google ńyakuratne.',
 
 # Preferences page
@@ -1178,23 +1179,34 @@ Duůgość [http://meta.wikymedja.org/wiki/Help:Job_queue kolejki zadań] je '''
 # Book sources
 'booksources'               => 'Kśąžki',
 'booksources-search-legend' => 'Šnupej za zdřůduůma kśiůnžkowymi',
+'booksources-go'            => 'Pokož',
+'booksources-text'          => 'Půńižej znojdowo śe lista uodnośńikůw do inkšych witryn, kere pośredńičům we spředažy nowych i užywanych kśiąžek, a tyž můgům mjeć dalše informacyje uo pošukiwany bez ćebje kśůnžce',
 
 # Special:Log
 'specialloguserlabel'  => 'Užytkowńik:',
 'speciallogtitlelabel' => 'Titel:',
 'log'                  => 'Rejery uoperacjůw',
 'all-logs-page'        => 'Wšyjstkie uoperacyje',
+'log-search-legend'    => 'Šnupej w rejeře',
+'log-search-submit'    => 'Šnupej',
+'alllogstext'          => 'Wspůlny rejer wšyjstkych typůw uoperacyji do {{GRAMMAR:D.lp|{{SITENAME}}}}.
+Možeš zawyńźić ličba wyńikůw wybjerajůnc typ rejeru, mjano užytkowńika abo titel zajty',
+'logempty'             => 'Ńy ma wpisůw we rejeře',
+'log-title-wildcard'   => 'Šnupej za titlami kere začynojům śe uod tygo tekstu',
 
 # Special:Allpages
-'allpages'       => 'Wšyskie zajty',
-'alphaindexline' => 'úod $1 do $2',
-'nextpage'       => 'Nastympno zajta ($1)',
-'prevpage'       => 'Popředńo zajta ($1)',
-'allpagesfrom'   => 'Zajty začynojůnce śe na:',
-'allarticles'    => 'Wšyskie zajty',
-'allpagesnext'   => 'Nastympno',
-'allpagessubmit' => 'Pokož',
-'allpagesprefix' => 'Pokož artikle s prefiksym:',
+'allpages'          => 'Wšyskie zajty',
+'alphaindexline'    => 'úod $1 do $2',
+'nextpage'          => 'Nastympno zajta ($1)',
+'prevpage'          => 'Popředńo zajta ($1)',
+'allpagesfrom'      => 'Zajty začynojůnce śe na:',
+'allarticles'       => 'Wšyskie zajty',
+'allinnamespace'    => 'Wšyjstke zajty (we přestřyńi mjan $1)',
+'allnotinnamespace' => 'Wšyjstke zajty (ino bes přestřyńi mjan $1)',
+'allpagesprev'      => 'Popředńo',
+'allpagesnext'      => 'Nastympno',
+'allpagessubmit'    => 'Pokož',
+'allpagesprefix'    => 'Pokož artikle s prefiksym:',
 
 # E-mail user
 'emailuser' => 'Wyślij e-brif do tygo užytkowńika',

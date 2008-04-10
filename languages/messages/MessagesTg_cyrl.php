@@ -821,6 +821,7 @@ $1',
 'powersearch'           => 'Ҷустуҷӯ',
 'powersearch-legend'    => 'Ҷустуҷӯи пешрафта',
 'powersearchtext'       => 'Ҷустуҷӯ дар фазоҳои ном:<br />$1<br />$2 Тағйири масирҳо феҳрист шаванд<br />Ҷустуҷӯ барои $3 $9',
+'search-external'       => 'Ҷустуҷӯи хориҷӣ',
 'searchdisabled'        => 'Ҷустуҷу дар {{SITENAME}} ғайрифаъол карда шудааст. Шумо метавонед тариқи Google дар ҳол ҷустуҷӯ кунед. Таваҷҷӯҳ кунед, ки натоиҷи ҷустуҷӯ {{SITENAME}} метавонад барӯз набошад.',
 
 # Preferences page
@@ -1280,6 +1281,9 @@ $1',
 'listusersfrom'      => 'Намоиши корбарон бо шурӯъ аз:',
 'listusers-submit'   => 'Нишон додани',
 'listusers-noresult' => 'Ҳеҷ корбаре ёфт нашуд.',
+
+# Special:Listgrouprights
+'listgrouprights-group' => 'Гурӯҳ',
 
 # E-mail user
 'mailnologin'     => 'Нишонае аз фиристанда вуҷуд надорад',

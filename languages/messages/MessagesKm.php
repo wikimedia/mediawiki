@@ -1442,7 +1442,7 @@ $NEWPAGE
 # What links here
 'whatlinkshere'       => 'អ្វី​ដែលភ្ជាប់មកទីនេះ',
 'whatlinkshere-title' => 'ទំព័រ​តភ្ជាប់​ទៅ $1',
-'whatlinkshere-page'  => 'ទំព័រ ៖',
+'whatlinkshere-page'  => 'ទំព័រ៖',
 'linklistsub'         => '(បញ្ជី​នៃ​តំនភ្ជាប់)',
 'linkshere'           => "ទំព័រដូចតទៅ​នេះតភ្ជាប់មក '''[[:$1]]''' ៖",
 'nolinkshere'         => "គ្មានទំព័រណាមួយតភ្ជាប់ទៅ '''[[:$1]]''' ទេ។",

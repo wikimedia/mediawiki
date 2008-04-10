@@ -1556,6 +1556,13 @@ U kunt ook kiezen voor specifieke logboeken en filteren op gebruiker en paginana
 'listusers-submit'   => 'Weergeven',
 'listusers-noresult' => 'Geen gebruiker(s) gevonden.',
 
+# Special:Listgrouprights
+'listgrouprights'         => 'Rechten van gebruikersgroepen',
+'listgrouprights-summary' => 'Op deze pagina staan de gebruikersgroepen in deze wiki beschreven, met hun bijbehorende rechten.',
+'listgrouprights-group'   => 'Groep',
+'listgrouprights-rights'  => 'Rechten',
+'listgrouprights-link'    => '[[Help:Gebruikersrechten#$1|$1]]',
+
 # E-mail user
 'mailnologin'     => 'Geen verzendadres beschikbaar',
 'mailnologintext' => 'U moet [[Special:Userlogin|aangemeld]] zijn en een geldig e-mailadres in uw [[Special:Preferences|voorkeuren]] vermelden om andere gebruikers te kunnen e-mailen.',
@@ -1994,7 +2001,7 @@ In het laatste geval kunt u ook een link gebruiken, bijvoorbeeld [[Special:Expor
 'allmessagesname'           => 'Naam',
 'allmessagesdefault'        => 'Standaardinhoud',
 'allmessagescurrent'        => 'Huidige inhoud',
-'allmessagestext'           => 'Hieronder staan de systeemberichten uit de MediaWiki-naamruimte:',
+'allmessagestext'           => 'Hieronder staan de systeemberichten uit de MediaWiki-naamruimte. Ga alstublieft naar [http://translatewiki.net Betawiki] als u wilt bijdragen aan de algemene vertaling voor MediaWiki.',
 'allmessagesnotsupportedDB' => "Deze pagina kan niet gebruikt worden omdat '''\$wgUseDatabaseMessages''' is uitgeschakeld.",
 'allmessagesfilter'         => 'Bericht naamfilter:',
 'allmessagesmodified'       => 'Alleen gewijzigde systeemteksten bekijken',
