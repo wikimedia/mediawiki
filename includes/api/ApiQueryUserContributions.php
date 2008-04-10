@@ -62,6 +62,8 @@ class ApiQueryContributions extends ApiQueryBase {
 
 		if(isset($this->params['userprefix']))
 		{
+			if(!preg_match('/^\d{1,3}\.\d{1,3}\./', $this->params['userprefix']))
+				$this->dieUsage("ucuserprefix must contain at least two octets terminated by a period", 'baduserprefix');
 			$this->prefixMode = true;
 			$this->userprefix = $this->params['userprefix'];
 		}
@@ -137,13 +139,13 @@ class ApiQueryContributions extends ApiQueryBase {
 		$this->addWhereFld('rev_deleted', 0);
 		// We only want pages by the specified users.
 		if($this->prefixMode)
+		{
+			$this->addWhere(array('rev_user' => 0));
 			$this->addWhere("rev_user_text LIKE '" . $this->getDb()->escapeLike($this->userprefix) . "%'");
+		}
 		else 
 			$this->addWhereFld( 'rev_user_text', $this->usernames );
 		// ... and in the specified timeframe.
-		// Ensure the same sort order for rev_user_text and rev_timestamp
-		// so our query is indexed
-		$this->addWhereRange('rev_user_text', $this->params['dir'], null, null);
 		$this->addWhereRange('rev_timestamp', 
 			$this->params['dir'], $this->params['start'], $this->params['end'] );
 		$this->addWhereFld('page_namespace', $this->params['namespace']);
@@ -268,7 +270,10 @@ class ApiQueryContributions extends ApiQueryBase {
 			'start' => 'The start timestamp to return from.',
 			'end' => 'The end timestamp to return to.',
 			'user' => 'The user to retrieve contributions for.',
-			'userprefix' => 'Retrieve contibutions for all users whose names begin with this value. Overrides ucuser.',
+			'userprefix' => array(
+				'Retrieve contibutions for all IP addresses that begin with this value.',
+				'Overrides ucuser. Must contain at least two octets terminated by a period'
+			),
 			'dir' => 'The direction to search (older or newer).',
 			'namespace' => 'Only list contributions in these namespaces',
 			'prop' => 'Include additional pieces of information',
