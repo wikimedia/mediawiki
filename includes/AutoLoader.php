@@ -234,6 +234,7 @@ function __autoload($className) {
 		'SkinTemplate' => 'includes/SkinTemplate.php',
 		'SpecialAllpages' => 'includes/SpecialAllpages.php',
 		'SpecialBookSources' => 'includes/SpecialBooksources.php',
+		'SpecialListGroupRights' => 'includes/SpecialListgrouprights.php',
 		'SpecialMostlinkedtemplates' => 'includes/SpecialMostlinkedtemplates.php',
 		'SpecialPage' => 'includes/SpecialPage.php',
 		'SpecialPrefixindex' => 'includes/SpecialPrefixindex.php',

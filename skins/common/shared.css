@@ -122,3 +122,17 @@ table.mw-userrights-groups * td,table.mw-userrights-groups * th {
     background-color: #f9f9f9;
     border: 1px dashed #aaa;
 }
+
+table.mw-listgrouprights-table  {
+	border: 1px solid #ccc;
+	border-collapse: collapse;
+}
+
+table.mw-listgrouprights-table tr  {
+	vertical-align: top;
+}
+
+table.mw-listgrouprights-table td, table.mw-listgrouprights-table th {
+	padding: 0.5em 0.2em 0.5em 0.2em;
+	border: 1px solid #ccc;
+}

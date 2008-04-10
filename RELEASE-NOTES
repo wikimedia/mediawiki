@@ -64,7 +64,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Redesign of Special:Userrights
 * Make rev_deleted log entries more intelligible.
 * (bug 6943) Added PAGESINCATEGORY: magic word
-
+* (bug 13604) Added Special:ListGroupRights
 
 === Bug fixes in 1.13 ===
 
