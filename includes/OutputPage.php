@@ -544,11 +544,20 @@ class OutputPage {
 	}
 
 	function getCacheVaryCookies() {
-		global $wgCookiePrefix;
-		return array( 
-			"{$wgCookiePrefix}Token",
-			"{$wgCookiePrefix}LoggedOut",
-			session_name() );
+		global $wgCookiePrefix, $wgCacheVaryCookies;
+		static $cookies;
+		if ( $cookies === null ) {
+			$cookies = array_merge( 
+				array(
+					"{$wgCookiePrefix}Token",
+					"{$wgCookiePrefix}LoggedOut",
+					session_name()
+				),
+				$wgCacheVaryCookies
+			);
+			wfRunHooks('GetCacheVaryCookies', array( $this, &$cookies ) );
+		}
+		return $cookies;
 	}
 
 	function uncacheableBecauseRequestVars() {
