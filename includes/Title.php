@@ -2852,6 +2852,7 @@ class Title {
 
 	/**
 	 * Get the number of revisions between the given revision IDs.
+	 * Used for diffs and other things that really need it.
 	 *
 	 * @param integer $old  Revision ID.
 	 * @param integer $new  Revision ID.
@@ -2863,7 +2864,8 @@ class Title {
 			'rev_page = ' . intval( $this->getArticleId() ) .
 			' AND rev_id > ' . intval( $old ) .
 			' AND rev_id < ' . intval( $new ),
-			__METHOD__ );
+			__METHOD__,
+			array( 'USE INDEX' => 'PRIMARY' ) );
 	}
 
 	/**
