@@ -162,6 +162,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 11039) Add missing labels on protection form
 * (bug 13458) Preview/edit toolbar spacing now works consistently
 * (bug 13433) Fix action=render on Image: pages
+* (bug 13678) Fix CSS validation for Monobook
 
 
 === API changes in 1.13 ===

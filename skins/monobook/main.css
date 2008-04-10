@@ -1443,7 +1443,7 @@ div#searchTarget ul li:before {
 div#searchTargetHide {
 	float:right;
 	border:solid 1px black;
-	background:gainsboro;
+	background:#DCDCDC;
 	padding:2px;
 }
 
