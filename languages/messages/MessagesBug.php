@@ -47,9 +47,10 @@ $messages = array(
 'imagepage'        => 'Ita halamang rapang',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
-'aboutsite' => 'Tentang {{SITENAME}}',
-'mainpage'  => 'ᨒᨛᨄ ᨕᨗᨉᨚᨙᨕ',
-'portal'    => 'Portal komunitas',
+'aboutsite'            => 'Tentang {{SITENAME}}',
+'mainpage'             => 'ᨒᨛᨄ ᨕᨗᨉᨚᨙᨕ',
+'mainpage-description' => 'ᨒᨛᨄ ᨕᨗᨉᨚᨙᨕ',
+'portal'               => 'Portal komunitas',
 
 'editsection' => 'ᨙᨕᨉᨗ',
 

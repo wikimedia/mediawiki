@@ -65,6 +65,10 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Make rev_deleted log entries more intelligible.
 * (bug 6943) Added PAGESINCATEGORY: magic word
 * (bug 13604) Added Special:ListGroupRights
+* Added message 'mainpage-description' as duplicate of 'mainpage' and added it
+  to message 'sidebar'
+** (bug 6332) Lacking entry Mainpage-url
+** (bug 8617) Separate main page url and name
 
 === Bug fixes in 1.13 ===
 

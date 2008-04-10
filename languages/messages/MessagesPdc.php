@@ -47,9 +47,10 @@ $messages = array(
 'jumptosearch'   => 'guuck uff',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
-'mainpage'   => 'Haaptblatt',
-'portal'     => 'Gmeeschafts-Portal',
-'portal-url' => 'Project:Gmeeschafts-Portal',
+'mainpage'             => 'Haaptblatt',
+'mainpage-description' => 'Haaptblatt',
+'portal'               => 'Gmeeschafts-Portal',
+'portal-url'           => 'Project:Gmeeschafts-Portal',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-help' => 'Hilf',

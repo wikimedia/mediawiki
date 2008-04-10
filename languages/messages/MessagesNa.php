@@ -36,13 +36,14 @@ $messages = array(
 'toolbox'        => 'Dabadi n bwait makur',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
-'currentevents'     => 'Imwin',
-'currentevents-url' => 'Project:Imwin',
-'edithelp'          => 'Oomo/edar Ipuok',
-'edithelppage'      => 'Help:Oomo/edar',
-'helppage'          => 'Help:Oangan',
-'mainpage'          => 'Bwiema peij',
-'sitesupport'       => 'Eadu a me',
+'currentevents'        => 'Imwin',
+'currentevents-url'    => 'Project:Imwin',
+'edithelp'             => 'Oomo/edar Ipuok',
+'edithelppage'         => 'Help:Oomo/edar',
+'helppage'             => 'Help:Oangan',
+'mainpage'             => 'Bwiema peij',
+'mainpage-description' => 'Bwiema peij',
+'sitesupport'          => 'Eadu a me',
 
 'editsection' => 'Kiwiwid',
 'showtoc'     => 'oduwen',

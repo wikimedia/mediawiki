@@ -49,8 +49,9 @@ $messages = array(
 'jumptosearch'     => 'Cwmh',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
-'edithelp' => 'Caeuq mungz san-zonz',
-'mainpage' => 'Mae meh',
+'edithelp'             => 'Caeuq mungz san-zonz',
+'mainpage'             => 'Mae meh',
+'mainpage-description' => 'Mae meh',
 
 'youhavenewmessages' => 'Mungz meiz $1（$2）。',
 

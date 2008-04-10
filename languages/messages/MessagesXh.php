@@ -57,10 +57,11 @@ $messages = array(
 'otherlanguages' => 'Kwezinye Ilwimi',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
-'currentevents' => 'Imisebenzi Eyenzekayo',
-'edithelp'      => 'Uncedo ngoTshintsho',
-'mainpage'      => 'Iphepha Elingundoqo',
-'sitesupport'   => 'Amalizo',
+'currentevents'        => 'Imisebenzi Eyenzekayo',
+'edithelp'             => 'Uncedo ngoTshintsho',
+'mainpage'             => 'Iphepha Elingundoqo',
+'mainpage-description' => 'Iphepha Elingundoqo',
+'sitesupport'          => 'Amalizo',
 
 'newmessageslink'         => 'imiyalezo emitsha',
 'youhavenewmessagesmulti' => 'Unemiyalezo emitsha ku $1',

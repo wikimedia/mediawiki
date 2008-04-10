@@ -80,12 +80,13 @@ $messages = array(
 'jumptosearch'     => 'Vaqaqara',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
-'currentevents'     => 'Tukutuku kuruvaki',
-'currentevents-url' => 'Project:Tukutuku kuruvaki',
-'edithelp'          => 'Veivukei',
-'mainpage'          => 'Tabana levu',
-'portal'            => 'Soqosoqo toso',
-'sitesupport'       => 'Soli',
+'currentevents'        => 'Tukutuku kuruvaki',
+'currentevents-url'    => 'Project:Tukutuku kuruvaki',
+'edithelp'             => 'Veivukei',
+'mainpage'             => 'Tabana levu',
+'mainpage-description' => 'Tabana levu',
+'portal'               => 'Soqosoqo toso',
+'sitesupport'          => 'Soli',
 
 'editsection' => 'Veisautaki',
 'editold'     => 'Veisautaki',

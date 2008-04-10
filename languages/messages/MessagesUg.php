@@ -27,8 +27,9 @@ $messages = array(
 'jumptosearch'     => 'izdash',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
-'mainpage'    => 'Bash Bet',
-'sitesupport' => 'Iana Toplash',
+'mainpage'             => 'Bash Bet',
+'mainpage-description' => 'Bash Bet',
+'sitesupport'          => 'Iana Toplash',
 
 'editsection' => 'uzgartish',
 'editold'     => 'uzgartish',

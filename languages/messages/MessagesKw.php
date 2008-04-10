@@ -54,11 +54,12 @@ $messages = array(
 'otherlanguages'   => 'Tavosow erell',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
-'currentevents' => 'Darvosow a-lemmyn',
-'helppage'      => 'Help:Gweres',
-'mainpage'      => 'Pennfolenn/Penfolen',
-'portal'        => 'Porth kemmynieth',
-'sitesupport'   => 'Riansow',
+'currentevents'        => 'Darvosow a-lemmyn',
+'helppage'             => 'Help:Gweres',
+'mainpage'             => 'Pennfolenn/Penfolen',
+'mainpage-description' => 'Pennfolenn/Penfolen',
+'portal'               => 'Porth kemmynieth',
+'sitesupport'          => 'Riansow',
 
 'ok'          => 'Sur',
 'editsection' => 'chanjya',

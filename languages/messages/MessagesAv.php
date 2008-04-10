@@ -34,11 +34,12 @@ $messages = array(
 'otherlanguages' => 'Цойги мацIазда',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
-'currentevents' => 'Жакъасел лъугьа-бахъинал',
-'mainpage'      => 'БетIераб гьумер',
-'portal'        => 'Майдан',
-'portal-url'    => 'Project:Майдан',
-'sitesupport'   => 'Садакъа',
+'currentevents'        => 'Жакъасел лъугьа-бахъинал',
+'mainpage'             => 'БетIераб гьумер',
+'mainpage-description' => 'БетIераб гьумер',
+'portal'               => 'Майдан',
+'portal-url'           => 'Project:Майдан',
+'sitesupport'          => 'Садакъа',
 
 'editsection' => 'хисизабизе',
 

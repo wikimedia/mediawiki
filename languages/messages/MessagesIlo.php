@@ -88,14 +88,15 @@ $messages = array(
 'jumptosearch'      => 'agbirok',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
-'aboutsite'         => 'Maipapan iti {{SITENAME}}',
-'copyright'         => 'Dagiti linaon ket maidaya babaen ti $1.',
-'currentevents'     => 'Paspasamak',
-'currentevents-url' => 'Project:Agdama a paspasamak',
-'edithelp'          => 'Tulong iti panagedit',
-'mainpage'          => 'Umuna a Panid',
-'portal'            => 'Pagdadanonan',
-'sitesupport'       => 'Donasion',
+'aboutsite'            => 'Maipapan iti {{SITENAME}}',
+'copyright'            => 'Dagiti linaon ket maidaya babaen ti $1.',
+'currentevents'        => 'Paspasamak',
+'currentevents-url'    => 'Project:Agdama a paspasamak',
+'edithelp'             => 'Tulong iti panagedit',
+'mainpage'             => 'Umuna a Panid',
+'mainpage-description' => 'Umuna a Panid',
+'portal'               => 'Pagdadanonan',
+'sitesupport'          => 'Donasion',
 
 'youhavenewmessages' => 'Addaanka iti $1 ($2).',
 'newmessageslink'    => 'kabarbaro a mensahe',

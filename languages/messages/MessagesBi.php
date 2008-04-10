@@ -70,7 +70,8 @@ $messages = array(
 'talk'             => 'Tingting',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
-'mainpage' => 'Nambawan Pej',
+'mainpage'             => 'Nambawan Pej',
+'mainpage-description' => 'Nambawan Pej',
 
 'retrievedfrom' => 'Kam long "$1"',
 'editsection'   => 'jenisim hem',

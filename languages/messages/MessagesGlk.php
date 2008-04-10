@@ -27,10 +27,11 @@ $messages = array(
 'jumptosearch'     => 'واموج',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
-'currentevents' => 'تازه چیؤن',
-'mainpage'      => 'گت ولگ',
-'portal'        => 'امه جیگا',
-'privacy'       => 'رازبداری',
-'sitesupport'   => 'بال زئن',
+'currentevents'        => 'تازه چیؤن',
+'mainpage'             => 'گت ولگ',
+'mainpage-description' => 'گت ولگ',
+'portal'               => 'امه جیگا',
+'privacy'              => 'رازبداری',
+'sitesupport'          => 'بال زئن',
 
 );

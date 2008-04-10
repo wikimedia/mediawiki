@@ -65,11 +65,12 @@ $messages = array(
 'jumptosearch'   => 'phuputso',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
-'faq'         => 'Dipotso-mehla',
-'mainpage'    => 'Leqephe la pele',
-'portal'      => 'Potjho e kopano',
-'portal-url'  => 'Project:Potjho e kopano',
-'sitesupport' => 'Dimpho',
+'faq'                  => 'Dipotso-mehla',
+'mainpage'             => 'Leqephe la pele',
+'mainpage-description' => 'Leqephe la pele',
+'portal'               => 'Potjho e kopano',
+'portal-url'           => 'Project:Potjho e kopano',
+'sitesupport'          => 'Dimpho',
 
 'retrievedfrom'   => 'E tswa ho "$1"',
 'newmessageslink' => 'melaetsa e metjha',

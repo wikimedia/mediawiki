@@ -88,14 +88,15 @@ $messages = array(
 'lastmodifiedat'   => 'Disi pagine blid lastim modifika: $2 ye $1.', # $1 date, $2 time
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
-'aboutsite'     => 'Pri {{SITENAME}}',
-'aboutpage'     => 'Project:Pri',
-'currentevents' => 'Nuni eventes',
-'edithelp'      => 'Help pri modifiko de pagines',
-'helppage'      => 'Help:Kontenaje',
-'mainpage'      => 'Chefi pagine',
-'portal'        => 'Li komun chambre',
-'sitesupport'   => 'Donationes',
+'aboutsite'            => 'Pri {{SITENAME}}',
+'aboutpage'            => 'Project:Pri',
+'currentevents'        => 'Nuni eventes',
+'edithelp'             => 'Help pri modifiko de pagines',
+'helppage'             => 'Help:Kontenaje',
+'mainpage'             => 'Chefi pagine',
+'mainpage-description' => 'Chefi pagine',
+'portal'               => 'Li komun chambre',
+'sitesupport'          => 'Donationes',
 
 'badaccess' => 'Permisione erore',
 

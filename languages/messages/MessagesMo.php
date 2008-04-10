@@ -57,13 +57,14 @@ $messages = array(
 'jumptosearch'     => 'кэутаре',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
-'aboutsite'      => 'Деспре {{SITENAME}}',
-'aboutpage'      => 'Project:Деспре',
-'disclaimers'    => 'Деклараций',
-'disclaimerpage' => 'Project:Декларацие ӂенералэ',
-'mainpage'       => 'Прима паӂина',
-'privacy'        => 'Политика де интимитате',
-'privacypage'    => 'Project:Политика де интимитате',
+'aboutsite'            => 'Деспре {{SITENAME}}',
+'aboutpage'            => 'Project:Деспре',
+'disclaimers'          => 'Деклараций',
+'disclaimerpage'       => 'Project:Декларацие ӂенералэ',
+'mainpage'             => 'Прима паӂина',
+'mainpage-description' => 'Прима паӂина',
+'privacy'              => 'Политика де интимитате',
+'privacypage'          => 'Project:Политика де интимитате',
 
 'retrievedfrom'   => 'Адус де ла "$1"',
 'editsection'     => 'едитязэ',

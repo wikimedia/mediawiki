@@ -30,12 +30,13 @@ $messages = array(
 'talk'          => 'diskushun',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
-'currentevents'     => 'Dem Kurent Iwent',
-'currentevents-url' => 'Project:Dem Kurent Iwent',
-'helppage'          => 'Help:Dem Kontent',
-'mainpage'          => 'Mien Paij',
-'portal'            => "Trii'nohlij",
-'sitesupport'       => 'Doenaiishun',
+'currentevents'        => 'Dem Kurent Iwent',
+'currentevents-url'    => 'Project:Dem Kurent Iwent',
+'helppage'             => 'Help:Dem Kontent',
+'mainpage'             => 'Mien Paij',
+'mainpage-description' => 'Mien Paij',
+'portal'               => "Trii'nohlij",
+'sitesupport'          => 'Doenaiishun',
 
 'editold' => 'edet',
 

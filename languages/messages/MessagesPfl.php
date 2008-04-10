@@ -33,14 +33,15 @@ $messages = array(
 'jumptosearch'   => 'Suche',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
-'aboutsite'     => 'Iwwer {{SITENAME}}',
-'copyright'     => 'Was do drin schdeht isch unner $1 verfiechbar.',
-'currentevents' => 'Was grad so bassiert isch',
-'disclaimers'   => 'Hafdungsausschluß',
-'mainpage'      => 'Startseid',
-'portal'        => '{{SITENAME}}-Pordal',
-'privacy'       => 'Dadeschutz',
-'sitesupport'   => 'Spende',
+'aboutsite'            => 'Iwwer {{SITENAME}}',
+'copyright'            => 'Was do drin schdeht isch unner $1 verfiechbar.',
+'currentevents'        => 'Was grad so bassiert isch',
+'disclaimers'          => 'Hafdungsausschluß',
+'mainpage'             => 'Startseid',
+'mainpage-description' => 'Startseid',
+'portal'               => '{{SITENAME}}-Pordal',
+'privacy'              => 'Dadeschutz',
+'sitesupport'          => 'Spende',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Adiggel',

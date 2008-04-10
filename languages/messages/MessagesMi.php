@@ -45,12 +45,13 @@ $messages = array(
 'toolbox'          => 'Pouaka utauta',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
-'currentevents'     => 'Kōrero',
-'currentevents-url' => 'Project:Kōrero',
-'mainpage'          => 'Hau Kāinga',
-'portal'            => 'Tomokanga hapori',
-'portal-url'        => 'Project:Tomokanga hapori',
-'sitesupport'       => 'Koha',
+'currentevents'        => 'Kōrero',
+'currentevents-url'    => 'Project:Kōrero',
+'mainpage'             => 'Hau Kāinga',
+'mainpage-description' => 'Hau Kāinga',
+'portal'               => 'Tomokanga hapori',
+'portal-url'           => 'Project:Tomokanga hapori',
+'sitesupport'          => 'Koha',
 
 'toc'     => 'Rārangi kōrero',
 'showtoc' => 'whakakite',

@@ -457,7 +457,7 @@ XHTML id names.
 */
 'sidebar' => '
 * navigation
-** mainpage|mainpage
+** mainpage|mainpage-description
 ** portal-url|portal
 ** currentevents-url|currentevents
 ** recentchanges-url|recentchanges
@@ -673,30 +673,31 @@ XHTML id names.
 'jumptosearch'      => 'search',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
-'aboutsite'         => 'About {{SITENAME}}',
-'aboutpage'         => 'Project:About',
-'bugreports'        => 'Bug reports',
-'bugreportspage'    => 'Project:Bug reports',
-'copyright'         => 'Content is available under $1.',
-'copyrightpagename' => '{{SITENAME}} copyright',
-'copyrightpage'     => '{{ns:project}}:Copyrights',
-'currentevents'     => 'Current events',
-'currentevents-url' => 'Project:Current events',
-'disclaimers'       => 'Disclaimers',
-'disclaimerpage'    => 'Project:General disclaimer',
-'edithelp'          => 'Editing help',
-'edithelppage'      => 'Help:Editing',
-'faq'               => 'FAQ',
-'faqpage'           => 'Project:FAQ',
-'helppage'          => 'Help:Contents',
-'mainpage'          => 'Main Page',
-'policy-url'        => 'Project:Policy',
-'portal'            => 'Community portal',
-'portal-url'        => 'Project:Community Portal',
-'privacy'           => 'Privacy policy',
-'privacypage'       => 'Project:Privacy policy',
-'sitesupport'       => 'Donations',
-'sitesupport-url'   => 'Project:Site support',
+'aboutsite'            => 'About {{SITENAME}}',
+'aboutpage'            => 'Project:About',
+'bugreports'           => 'Bug reports',
+'bugreportspage'       => 'Project:Bug reports',
+'copyright'            => 'Content is available under $1.',
+'copyrightpagename'    => '{{SITENAME}} copyright',
+'copyrightpage'        => '{{ns:project}}:Copyrights',
+'currentevents'        => 'Current events',
+'currentevents-url'    => 'Project:Current events',
+'disclaimers'          => 'Disclaimers',
+'disclaimerpage'       => 'Project:General disclaimer',
+'edithelp'             => 'Editing help',
+'edithelppage'         => 'Help:Editing',
+'faq'                  => 'FAQ',
+'faqpage'              => 'Project:FAQ',
+'helppage'             => 'Help:Contents',
+'mainpage'             => 'Main Page',
+'mainpage-description' => 'Main Page',
+'policy-url'           => 'Project:Policy',
+'portal'               => 'Community portal',
+'portal-url'           => 'Project:Community Portal',
+'privacy'              => 'Privacy policy',
+'privacypage'          => 'Project:Privacy policy',
+'sitesupport'          => 'Donations',
+'sitesupport-url'      => 'Project:Site support',
 
 'badaccess'        => 'Permission error',
 'badaccess-group0' => 'You are not allowed to execute the action you have requested.',

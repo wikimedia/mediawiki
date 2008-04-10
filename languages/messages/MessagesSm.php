@@ -82,13 +82,14 @@ $messages = array(
 'jumptosearch'     => "Su'e",
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
-'currentevents'     => 'Tala Fou',
-'currentevents-url' => 'Project:Tala Fou',
-'edithelp'          => 'Fesoasoani e teuteu',
-'mainpage'          => 'Itulau Muamua',
-'portal'            => 'Vaega mo Tagata Lautele',
-'portal-url'        => 'Project:Vaega mo Tagata Lautele',
-'sitesupport'       => 'Meaalofa tupe',
+'currentevents'        => 'Tala Fou',
+'currentevents-url'    => 'Project:Tala Fou',
+'edithelp'             => 'Fesoasoani e teuteu',
+'mainpage'             => 'Itulau Muamua',
+'mainpage-description' => 'Itulau Muamua',
+'portal'               => 'Vaega mo Tagata Lautele',
+'portal-url'           => 'Project:Vaega mo Tagata Lautele',
+'sitesupport'          => 'Meaalofa tupe',
 
 'youhavenewmessages'      => "'Ua iai lau $1 ($2).",
 'newmessageslink'         => "Poloa'i fou",

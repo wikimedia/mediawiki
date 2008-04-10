@@ -91,14 +91,15 @@ $messages = array(
 'jumptonavigation' => 'ol bikpela pes',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
-'currentevents'     => 'Karen afeas',
-'currentevents-url' => 'Project:Karen afeas',
-'edithelp'          => 'Halivim mi long pasin bilong wokim senis',
-'mainpage'          => 'Fran Pes',
-'portal'            => 'Bung ples',
-'portal-url'        => 'Project:Bung ples',
-'sitesupport'       => 'Givim moni',
-'sitesupport-url'   => 'Project:Givim moni',
+'currentevents'        => 'Karen afeas',
+'currentevents-url'    => 'Project:Karen afeas',
+'edithelp'             => 'Halivim mi long pasin bilong wokim senis',
+'mainpage'             => 'Fran Pes',
+'mainpage-description' => 'Fran Pes',
+'portal'               => 'Bung ples',
+'portal-url'           => 'Project:Bung ples',
+'sitesupport'          => 'Givim moni',
+'sitesupport-url'      => 'Project:Givim moni',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Stori',
