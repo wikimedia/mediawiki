@@ -363,6 +363,7 @@ $specialPageAliases = array(
 	'Imagelist'                 => array( 'ImageList' ),
 	'Newimages'                 => array( 'NewImages' ),
 	'Listusers'                 => array( 'ListUsers', 'UserList' ),
+	'Listgrouprights'           => array( 'ListGroupRights' ),
 	'Statistics'                => array( 'Statistics' ),
 	'Randompage'                => array( 'Random', 'RandomPage' ),
 	'Lonelypages'               => array( 'LonelyPages', 'OrphanedPages' ),
@@ -1875,6 +1876,13 @@ It may contain one or more characters which cannot be used in titles.',
 'listusersfrom'      => 'Display users starting at:',
 'listusers-submit'   => 'Show',
 'listusers-noresult' => 'No user found.',
+
+# Special:Listgrouprights
+'listgrouprights'         => 'User group rights',
+'listgrouprights-summary' => 'The following is a list of user groups defined on this wiki, with their associated access rights.',
+'listgrouprights-group'   => 'Group',
+'listgrouprights-rights'  => 'Rights',
+'listgrouprights-link'    => "[[{{ns:help}}:Group rights#$1|$1]]",
 
 # E-mail user
 'mailnologin'     => 'No send address',
