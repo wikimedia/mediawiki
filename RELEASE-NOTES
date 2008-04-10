@@ -163,7 +163,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 13458) Preview/edit toolbar spacing now works consistently
 * (bug 13433) Fix action=render on Image: pages
 * (bug 13678) Fix CSS validation for Monobook
-
+* (bug 13684) Links in Special:ListGroupRights should be in content language
 
 === API changes in 1.13 ===
 

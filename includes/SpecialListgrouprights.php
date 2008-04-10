@@ -50,7 +50,7 @@ class SpecialListGroupRights extends SpecialPage {
 						$grouplink .
 					'</td>
 					<td>' .
-						SpecialListGroupRights::formatPermissions( $permissions ) .
+						self::formatPermissions( $permissions ) .
 					'</td>
 				</tr>'
 			);
@@ -67,12 +67,11 @@ class SpecialListGroupRights extends SpecialPage {
 	 * @return string List of all granted permissions, separated by comma separator
 	 */
 	 private static function formatPermissions( $permissions ) {
-		global $wgUser;
 		$r = array();
 		foreach( $permissions as $permission => $granted ) {
 			if ( $granted ) {
 				$permission = htmlspecialchars( $permission );
-				$r[] = wfMsgExt( 'listgrouprights-link', array( 'parseinline' ), $permission );
+				$r[] = wfMsgExt( 'listgrouprights-link', array( 'parseinline', 'content' ), $permission );
 			}
 		}
 		sort( $r );
