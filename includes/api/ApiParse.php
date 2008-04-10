@@ -43,30 +43,49 @@ class ApiParse extends ApiBase {
 		$text = $params['text'];
 		$title = $params['title'];
 		$page = $params['page'];
+		$oldid = $params['oldid'];
 		if(!is_null($page) && (!is_null($text) || $title != "API"))
 			$this->dieUsage("The page parameter cannot be used together with the text and title parameters", 'params');
 		$prop = array_flip($params['prop']);
 		$revid = false;
 		
 		global $wgParser, $wgUser;
-		if(!is_null($page)) {
-			$titleObj = Title::newFromText($page);
-			if(!$titleObj)
-				$this->dieUsage("The page you specified doesn't exist", 'missingtitle');
-
-			// Try the parser cache first
-			$articleObj = new Article($titleObj);
-			if(isset($prop['revid']))
-				$revid = $articleObj->getRevIdFetched();
-			$pcache = ParserCache::singleton();
-			$p_result = $pcache->get($articleObj, $wgUser);
-			if(!$p_result) {
-				$p_result = $wgParser->parse($articleObj->getContent(), $titleObj, new ParserOptions());
-				global $wgUseParserCache;
-				if($wgUseParserCache)
-					$pcache->save($p_result, $articleObj, $wgUser);
+		if(!is_null($oldid) || !is_null($page))
+		{
+			if(!is_null($oldid))
+			{
+				# Don't use the parser cache
+				$rev = Revision::newFromID($oldid);
+				if(!$rev)
+					$this->dieUsage("There is no revision ID $oldid", 'missingrev');
+				if(!$rev->userCan(Revision::DELETED_TEXT))
+					$this->dieUsage("You don't have permission to view deleted revisions", 'permissiondenied');
+				$text = $rev->getRawText();
+				$titleObj = $rev->getTitle();
+				$p_result = $wgParser->parse($text, $titleObj, new ParserOptions());
 			}
-		} else {
+			else
+			{
+				$titleObj = Title::newFromText($page);
+				if(!$titleObj)
+					$this->dieUsage("The page you specified doesn't exist", 'missingtitle');
+
+				// Try the parser cache first
+				$articleObj = new Article($titleObj);
+				if(isset($prop['revid']))
+					$oldid = $articleObj->getRevIdFetched();
+				$pcache = ParserCache::singleton();
+				$p_result = $pcache->get($articleObj, $wgUser);
+				if(!$p_result) {
+					$p_result = $wgParser->parse($articleObj->getContent(), $titleObj, new ParserOptions());
+					global $wgUseParserCache;
+					if($wgUseParserCache)
+						$pcache->save($p_result, $articleObj, $wgUser);
+				}
+			}
+		}
+		else
+		{
 			$titleObj = Title::newFromText($title);
 			if(!$titleObj)
 				$titleObj = Title::newFromText("API");
@@ -94,8 +113,8 @@ class ApiParse extends ApiBase {
 			$result_array['externallinks'] = array_keys($p_result->getExternalLinks());
 		if(isset($prop['sections']))
 			$result_array['sections'] = $p_result->getSections();
-		if($revid !== false)
-			$result_array['revid'] = $revid;
+		if($oldid !== false)
+			$result_array['revid'] = $oldid;
 
 		$result_mapping = array(
 			'langlinks' => 'll',
@@ -162,6 +181,7 @@ class ApiParse extends ApiBase {
 			),
 			'text' => null,
 			'page' => null,
+			'oldid' => null,
 			'prop' => array(
 				ApiBase :: PARAM_DFLT => 'text|langlinks|categories|links|templates|images|externallinks|sections|revid',
 				ApiBase :: PARAM_ISMULTI => true,
@@ -185,6 +205,7 @@ class ApiParse extends ApiBase {
 			'text' => 'Wikitext to parse',
 			'title' => 'Title of page the text belongs to',
 			'page' => 'Parse the content of this page. Cannot be used together with text and title',
+			'oldid' => 'Parse the content of this revision. Overrides page',
 			'prop' => array('Which pieces of information to get.',
 					'NOTE: Section tree is only generated if there are more than 4 sections, or if the __TOC__ keyword is present'
 			),

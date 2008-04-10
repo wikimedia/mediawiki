@@ -208,6 +208,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 12136) Extend allowed characters in JSON callback to ][.'"_A-Za-z0-9
 * (bug 11673) Return error 'unknown_action' in specified format
 * (bug 13618) Added rcprop=redirect and rcshow=redirect to list=recentchanges
+* (bug 13544) Added oldid parameter to action=parse to allow for parsing of old revisions
 
 === Languages updated in 1.13 ===
 
