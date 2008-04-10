@@ -607,6 +607,11 @@ $reason: reason
 'GetBlockedStatus': after loading blocking status of an user from the database
 $user: user (object) being checked
 
+'GetCacheVaryCookies': get cookies that should vary cache options
+$out: OutputPage object
+&$cookies: array of cookies name, add a value to it if you want to add a cookie
+	that have to vary cache options
+
 'GetFullURL': modify fully-qualified URLs used in redirects/export/offsite data
 $title: Title object of page
 $url: string value as output (out parameter, can modify)
