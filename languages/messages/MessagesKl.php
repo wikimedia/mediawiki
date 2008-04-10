@@ -76,11 +76,12 @@ $messages = array(
 'jumptosearch'     => 'ujaarlerit',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
-'aboutsite'     => '{{SITENAME}} pillugu',
-'aboutpage'     => 'Project:Pillugu',
-'currentevents' => 'Maannakkut pisut',
-'mainpage'      => 'Saqqaa',
-'portal'        => 'Allaatiginnittartup saqqai',
+'aboutsite'            => '{{SITENAME}} pillugu',
+'aboutpage'            => 'Project:Pillugu',
+'currentevents'        => 'Maannakkut pisut',
+'mainpage'             => 'Saqqaa',
+'mainpage-description' => 'Saqqaa',
+'portal'               => 'Allaatiginnittartup saqqai',
 
 'editsection'     => 'aaqqissuutiguk',
 'editold'         => 'aaqqissuutiguk',

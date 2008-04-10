@@ -47,9 +47,10 @@ $messages = array(
 'redirectedfrom' => '(Balulama tuka $1)',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
-'currentevents'     => 'Mambu ya mpa',
-'currentevents-url' => 'Project:Mambu ya mpa',
-'mainpage'          => 'Lukaya ya mfumu',
+'currentevents'        => 'Mambu ya mpa',
+'currentevents-url'    => 'Project:Mambu ya mpa',
+'mainpage'             => 'Lukaya ya mfumu',
+'mainpage-description' => 'Lukaya ya mfumu',
 
 'retrievedfrom' => 'Receptum de "$1"',
 

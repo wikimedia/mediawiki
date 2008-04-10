@@ -236,6 +236,7 @@ $wgMessageStructure = array(
 		'help',
 		'helppage',
 		'mainpage',
+		'mainpage-description',
 		'policy-url',
 		'portal',
 		'portal-url',

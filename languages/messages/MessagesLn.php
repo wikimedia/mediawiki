@@ -39,8 +39,9 @@ $messages = array(
 'otherlanguages'   => 'Na nkótá isúsu',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
-'mainpage' => 'Lokásá ya libosó',
-'portal'   => 'Bísó na bísó',
+'mainpage'             => 'Lokásá ya libosó',
+'mainpage-description' => 'Lokásá ya libosó',
+'portal'               => 'Bísó na bísó',
 
 'ok'      => 'Nandimi',
 'hidetoc' => 'kobomba',

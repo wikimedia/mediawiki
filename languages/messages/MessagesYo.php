@@ -76,12 +76,13 @@ $messages = array(
 'jumptonavigation' => 'atọ́ka',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
-'edithelp'     => "Ìrànlọ́wọ́ láti s'àtúnṣe",
-'edithelppage' => 'Help:Àtúnṣe',
-'mainpage'     => 'Ojúewé Àkọ́kọ́',
-'portal'       => 'Èbúté àwùjọ',
-'portal-url'   => 'Project:Èbúté Àwùjọ',
-'sitesupport'  => 'Se ẹ̀bùn owó',
+'edithelp'             => "Ìrànlọ́wọ́ láti s'àtúnṣe",
+'edithelppage'         => 'Help:Àtúnṣe',
+'mainpage'             => 'Ojúewé Àkọ́kọ́',
+'mainpage-description' => 'Ojúewé Àkọ́kọ́',
+'portal'               => 'Èbúté àwùjọ',
+'portal-url'           => 'Project:Èbúté Àwùjọ',
+'sitesupport'          => 'Se ẹ̀bùn owó',
 
 'badaccess-group0' => "A kò gbàyín l'áyè l'áti ṣe ohun tí ẹ bèrè fún.",
 

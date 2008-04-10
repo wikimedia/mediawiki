@@ -202,16 +202,17 @@ $messages = array(
 'jumptosearch'     => 'szëkbë',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
-'aboutsite'       => 'Ò {{SITENAME}}',
-'aboutpage'       => 'Project:Ò_{{SITENAME}}',
-'copyright'       => 'Zamkłosc hewòtny starnë je ùżëczónô wedle reglów $1.',
-'disclaimers'     => 'Prawné zastrzedżi',
-'disclaimerpage'  => 'Project:General_disclaimer',
-'edithelp'        => 'Pòmòc do edicëji',
-'mainpage'        => 'Przédnô starna',
-'portal'          => 'Pòrtal wëcmaniznë',
-'portal-url'      => 'Project:Pòrtal wëcmaniznë',
-'sitesupport-url' => 'Project:Wspiarcé dlô starnë',
+'aboutsite'            => 'Ò {{SITENAME}}',
+'aboutpage'            => 'Project:Ò_{{SITENAME}}',
+'copyright'            => 'Zamkłosc hewòtny starnë je ùżëczónô wedle reglów $1.',
+'disclaimers'          => 'Prawné zastrzedżi',
+'disclaimerpage'       => 'Project:General_disclaimer',
+'edithelp'             => 'Pòmòc do edicëji',
+'mainpage'             => 'Przédnô starna',
+'mainpage-description' => 'Przédnô starna',
+'portal'               => 'Pòrtal wëcmaniznë',
+'portal-url'           => 'Project:Pòrtal wëcmaniznë',
+'sitesupport-url'      => 'Project:Wspiarcé dlô starnë',
 
 'badaccess' => 'Procëmprawne ùdowierzenie',
 

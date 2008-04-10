@@ -72,15 +72,16 @@ $messages = array(
 'jumptosearch'     => 'sisku',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
-'copyright'         => "lo selvau cu gubni ja'i la'o gy. $1 .gy.",
-'currentevents'     => 'nuzba ckupau',
-'currentevents-url' => 'Project:nuzba ckupau',
-'disclaimers'       => "xusra lo za'i na fuzme",
-'mainpage'          => 'ralju ckupau',
-'portal'            => 'bende ckupau',
-'portal-url'        => 'Project:bende ckupau',
-'privacy'           => "javni be sera'a lo sivni",
-'sitesupport'       => 'jdini sidju',
+'copyright'            => "lo selvau cu gubni ja'i la'o gy. $1 .gy.",
+'currentevents'        => 'nuzba ckupau',
+'currentevents-url'    => 'Project:nuzba ckupau',
+'disclaimers'          => "xusra lo za'i na fuzme",
+'mainpage'             => 'ralju ckupau',
+'mainpage-description' => 'ralju ckupau',
+'portal'               => 'bende ckupau',
+'portal-url'           => 'Project:bende ckupau',
+'privacy'              => "javni be sera'a lo sivni",
+'sitesupport'          => 'jdini sidju',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-mediawiki' => 'notci',

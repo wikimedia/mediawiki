@@ -218,8 +218,9 @@ $messages = array(
 'jumptosearch'      => 'گه‌ڕان',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
-'faq'      => 'پرسیاری هه‌میشه‌ دووباره‌(پهد(',
-'mainpage' => 'ده‌ستپێك',
+'faq'                  => 'پرسیاری هه‌میشه‌ دووباره‌(پهد(',
+'mainpage'             => 'ده‌ستپێك',
+'mainpage-description' => 'ده‌ستپێك',
 
 'versionrequired'     => 'پێویستیت به‌ وه‌شانی $1 ـی‌ ویكیمیدیایه‌',
 'versionrequiredtext' => 'پێویستیت به‌ وه‌شانی $1 ـێ ویكیمیدیا هه‌یه‌ بۆ به‌كاربردنی ئه‌م په‌ڕه‌یه‌. ته‌ماشای [[Special:version|وه‌شانی]] بكه‌.',

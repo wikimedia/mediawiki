@@ -194,16 +194,17 @@ $messages = array(
 'jumptosearch'     => 'සොයන්න',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
-'aboutsite'     => '{{SITENAME}}ගැන
+'aboutsite'            => '{{SITENAME}}ගැන
 <!--{{SITENAME}}About-->',
-'currentevents' => 'කාලීන සිදුවීම්',
-'edithelp'      => 'සංස්කරණ උදව්',
-'edithelppage'  => 'Help:සංස්කරණ',
-'helppage'      => 'Help:පටුන',
-'mainpage'      => 'මුල් පිටුව',
-'portal'        => 'ප්‍රජා ද්වාරය',
-'portal-url'    => 'Project:ප්‍රජා ද්වාරය',
-'sitesupport'   => 'පරිත්‍යාග',
+'currentevents'        => 'කාලීන සිදුවීම්',
+'edithelp'             => 'සංස්කරණ උදව්',
+'edithelppage'         => 'Help:සංස්කරණ',
+'helppage'             => 'Help:පටුන',
+'mainpage'             => 'මුල් පිටුව',
+'mainpage-description' => 'මුල් පිටුව',
+'portal'               => 'ප්‍රජා ද්වාරය',
+'portal-url'           => 'Project:ප්‍රජා ද්වාරය',
+'sitesupport'          => 'පරිත්‍යාග',
 
 'ok'                  => 'හරි',
 'newmessagesdifflink' => 'අවසාන වෙනස',

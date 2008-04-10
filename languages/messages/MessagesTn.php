@@ -63,14 +63,15 @@ $messages = array(
 'otherlanguages'   => 'Ka dipuo di sele',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
-'currentevents' => 'Ditiragalo tsa sešeng',
-'disclaimers'   => 'Tlhapa diatla',
-'edithelp'      => 'Thuso ya go fetola',
-'mainpage'      => 'Tsebe ya konokono',
-'portal'        => 'Patlelo ya setšhaba',
-'portal-url'    => 'Project:Patlelo ya setšhaba',
-'privacy'       => 'Melawana ya sephiri',
-'sitesupport'   => 'Dimpho',
+'currentevents'        => 'Ditiragalo tsa sešeng',
+'disclaimers'          => 'Tlhapa diatla',
+'edithelp'             => 'Thuso ya go fetola',
+'mainpage'             => 'Tsebe ya konokono',
+'mainpage-description' => 'Tsebe ya konokono',
+'portal'               => 'Patlelo ya setšhaba',
+'portal-url'           => 'Project:Patlelo ya setšhaba',
+'privacy'              => 'Melawana ya sephiri',
+'sitesupport'          => 'Dimpho',
 
 'youhavenewmessages'      => 'O na le $1 ($2).',
 'newmessageslink'         => 'molaetsa o moša',

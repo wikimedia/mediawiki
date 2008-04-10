@@ -86,12 +86,13 @@ $messages = array(
 'jumptosearch'     => 'haere',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
-'aboutsite'   => 'Nō {{SITENAME}}',
-'aboutpage'   => 'Project:Nō',
-'edithelp'    => 'Tauturu',
-'mainpage'    => 'Fa’ari’ira’a',
-'portal'      => 'Fare auhoa',
-'sitesupport' => 'Pūpū i te ō',
+'aboutsite'            => 'Nō {{SITENAME}}',
+'aboutpage'            => 'Project:Nō',
+'edithelp'             => 'Tauturu',
+'mainpage'             => 'Fa’ari’ira’a',
+'mainpage-description' => 'Fa’ari’ira’a',
+'portal'               => 'Fare auhoa',
+'sitesupport'          => 'Pūpū i te ō',
 
 'newmessageslink'     => 'Te mau poro’i ’āpī',
 'newmessagesdifflink' => 'fa’ahuru-’ē-ra’a hope’a',

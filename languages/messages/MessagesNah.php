@@ -51,13 +51,14 @@ $messages = array(
 'lastmodifiedat' => 'Inīn zāzanilli ōtlapatlac catca īpan $2, $1.', # $1 date, $2 time
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
-'copyright'   => 'Tlahcuilōltzin cah yōllōxoxouhqui īpan $1',
-'disclaimers' => 'Nahuatīllahtōl',
-'edithelp'    => 'Patlaliztechcopa tēpalēhuiliztli',
-'mainpage'    => 'Calīxatl',
-'portal'      => 'Calīxcuātl tocalpōl',
-'portal-url'  => 'Project:Calīxcuātl tocalpōl',
-'privacy'     => 'Tlahcuilōlli piyaliznahuatīlli',
+'copyright'            => 'Tlahcuilōltzin cah yōllōxoxouhqui īpan $1',
+'disclaimers'          => 'Nahuatīllahtōl',
+'edithelp'             => 'Patlaliztechcopa tēpalēhuiliztli',
+'mainpage'             => 'Calīxatl',
+'mainpage-description' => 'Calīxatl',
+'portal'               => 'Calīxcuātl tocalpōl',
+'portal-url'           => 'Project:Calīxcuātl tocalpōl',
+'privacy'              => 'Tlahcuilōlli piyaliznahuatīlli',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main' => 'tlahcuilōlli',

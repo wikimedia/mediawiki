@@ -60,13 +60,14 @@ $messages = array(
 'otherlanguages'   => 'Mimwe Mitauro',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
-'currentevents'     => 'Zvirikuitika',
-'currentevents-url' => 'Project:Zvirikuitika',
-'disclaimers'       => 'Matandanyadzi',
-'edithelp'          => 'Mashandurirwo',
-'mainpage'          => 'Peji Rekutanga',
-'portal'            => 'Mukova wegutse',
-'sitesupport'       => 'Zvipo',
+'currentevents'        => 'Zvirikuitika',
+'currentevents-url'    => 'Project:Zvirikuitika',
+'disclaimers'          => 'Matandanyadzi',
+'edithelp'             => 'Mashandurirwo',
+'mainpage'             => 'Peji Rekutanga',
+'mainpage-description' => 'Peji Rekutanga',
+'portal'               => 'Mukova wegutse',
+'sitesupport'          => 'Zvipo',
 
 'newmessageslink'         => 'mashoko matsva',
 'youhavenewmessagesmulti' => 'Une mashoko matsva pa$1',

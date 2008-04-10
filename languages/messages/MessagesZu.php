@@ -70,14 +70,15 @@ $messages = array(
 'jumptosearch'     => 'Sesha',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
-'currentevents'     => 'Izehlakalo ezimanje',
-'currentevents-url' => 'Project:Izehlakalo ezimanje',
-'edithelp'          => 'Usizo ngokuhlela',
-'helppage'          => 'Help:Isiqikili',
-'mainpage'          => 'Ikhasi Elikhulu',
-'portal'            => 'Umnyango wamgwamanda',
-'portal-url'        => 'Project:Umnyango wamgwamanda',
-'sitesupport'       => 'Izipho',
+'currentevents'        => 'Izehlakalo ezimanje',
+'currentevents-url'    => 'Project:Izehlakalo ezimanje',
+'edithelp'             => 'Usizo ngokuhlela',
+'helppage'             => 'Help:Isiqikili',
+'mainpage'             => 'Ikhasi Elikhulu',
+'mainpage-description' => 'Ikhasi Elikhulu',
+'portal'               => 'Umnyango wamgwamanda',
+'portal-url'           => 'Project:Umnyango wamgwamanda',
+'sitesupport'          => 'Izipho',
 
 'newmessageslink'         => 'Imilayezo emisha',
 'youhavenewmessagesmulti' => 'Uyanemilayezo emisha e $1',

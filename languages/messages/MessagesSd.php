@@ -37,12 +37,13 @@ $messages = array(
 'categorypage'     => 'زمراتي صفحو ڏسو',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
-'aboutsite'         => '{{SITENAME}} بابت',
-'aboutpage'         => 'Project:بابت',
-'copyright'         => 'سمورو مواد $1 تحت ميسر ڪجي ٿو',
-'currentevents'     => 'ھاڻوڪا واقعا',
-'currentevents-url' => 'Project:اعداد',
-'mainpage'          => 'مُک صفحو',
+'aboutsite'            => '{{SITENAME}} بابت',
+'aboutpage'            => 'Project:بابت',
+'copyright'            => 'سمورو مواد $1 تحت ميسر ڪجي ٿو',
+'currentevents'        => 'ھاڻوڪا واقعا',
+'currentevents-url'    => 'Project:اعداد',
+'mainpage'             => 'مُک صفحو',
+'mainpage-description' => 'مُک صفحو',
 
 # General errors
 'viewsource' => 'ڪوڊ ڏسو',

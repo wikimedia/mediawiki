@@ -60,16 +60,17 @@ $messages = array(
 'jumptosearch'      => 'anapen',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
-'aboutsite'         => 'Nipakar ed {{SITENAME}}',
-'aboutpage'         => 'Project:Nipaakar',
-'currentevents'     => 'Saray nagagawa natan',
-'currentevents-url' => 'Project:Saray nagagawa natan',
-'edithelp'          => 'Tolong nipakar ed panagbalo na artikulo',
-'helppage'          => 'Help:Saray Laman',
-'mainpage'          => 'Arapan ya Bolong',
-'portal'            => 'Pwerta na komyunidad',
-'portal-url'        => 'Project:Pwerta na Komyunidad',
-'sitesupport'       => 'Donasyon',
+'aboutsite'            => 'Nipakar ed {{SITENAME}}',
+'aboutpage'            => 'Project:Nipaakar',
+'currentevents'        => 'Saray nagagawa natan',
+'currentevents-url'    => 'Project:Saray nagagawa natan',
+'edithelp'             => 'Tolong nipakar ed panagbalo na artikulo',
+'helppage'             => 'Help:Saray Laman',
+'mainpage'             => 'Arapan ya Bolong',
+'mainpage-description' => 'Arapan ya Bolong',
+'portal'               => 'Pwerta na komyunidad',
+'portal-url'           => 'Project:Pwerta na Komyunidad',
+'sitesupport'          => 'Donasyon',
 
 'badaccess-group0' => 'Agmo sarag ya gaween so action ya kekerewen mo.',
 

@@ -65,12 +65,13 @@ $messages = array(
 'jumptosearch'     => 'Caftã',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
-'currentevents' => 'Evenimente di tora',
-'disclaimers'   => 'Nipricunuschire',
-'edithelp'      => 'Agiutor ti alãxire',
-'mainpage'      => 'Prota frãndzã',
-'portal'        => 'Portal-a comunitatiljei',
-'sitesupport'   => 'Donatsiur',
+'currentevents'        => 'Evenimente di tora',
+'disclaimers'          => 'Nipricunuschire',
+'edithelp'             => 'Agiutor ti alãxire',
+'mainpage'             => 'Prota frãndzã',
+'mainpage-description' => 'Prota frãndzã',
+'portal'               => 'Portal-a comunitatiljei',
+'sitesupport'          => 'Donatsiur',
 
 'newmessageslink'         => 'dimãndare nao',
 'youhavenewmessagesmulti' => 'Avets nãi dimãndãri pi $1',

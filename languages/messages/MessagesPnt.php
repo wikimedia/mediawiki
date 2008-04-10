@@ -122,9 +122,10 @@ $messages = array(
 'jumptosearch'      => 'αράεμαν',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
-'mainpage'    => 'Αρχικόν σελίδαν',
-'portal'      => 'Πύλην τη κοινότητας',
-'sitesupport' => 'Δωρεάς',
+'mainpage'             => 'Αρχικόν σελίδαν',
+'mainpage-description' => 'Αρχικόν σελίδαν',
+'portal'               => 'Πύλην τη κοινότητας',
+'sitesupport'          => 'Δωρεάς',
 
 'youhavenewmessages'  => 'Έχετε $1 ($2).',
 'newmessageslink'     => 'καινούρεα μενέματα',

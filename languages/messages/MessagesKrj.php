@@ -152,10 +152,11 @@ $messages = array(
 'jumptosearch'      => 'sagap',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
-'bugreports'  => "Mga report kang ''bug''",
-'edithelp'    => 'Panoytoy sa Pag-ilis',
-'mainpage'    => 'Pono nga Pahina',
-'sitesupport' => 'Donasyon',
+'bugreports'           => "Mga report kang ''bug''",
+'edithelp'             => 'Panoytoy sa Pag-ilis',
+'mainpage'             => 'Pono nga Pahina',
+'mainpage-description' => 'Pono nga Pahina',
+'sitesupport'          => 'Donasyon',
 
 'badaccess'        => 'Sayup sa lisensya',
 'badaccess-group0' => 'Indi kaw ginpasogtan nga himoon ang lihuk nga ginalaum mo.',

@@ -143,11 +143,12 @@ $messages = array(
 'jumptosearch'     => 'поискъ',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
-'currentevents' => 'Нынѣщьнꙗ събытиꙗ',
-'mainpage'      => 'Главьна страница',
-'portal'        => 'Обьщины съвѣтъ',
-'portal-url'    => 'Project:Обьщени съвѣтъ',
-'sitesupport'   => 'Даꙗниꙗ',
+'currentevents'        => 'Нынѣщьнꙗ събытиꙗ',
+'mainpage'             => 'Главьна страница',
+'mainpage-description' => 'Главьна страница',
+'portal'               => 'Обьщины съвѣтъ',
+'portal-url'           => 'Project:Обьщени съвѣтъ',
+'sitesupport'          => 'Даꙗниꙗ',
 
 'editsection' => 'исправи',
 'editold'     => 'исправи',

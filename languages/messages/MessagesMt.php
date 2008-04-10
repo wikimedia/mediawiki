@@ -23,15 +23,16 @@ $messages = array(
 'toolbox'          => 'Għodda',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
-'aboutsite'         => 'Dwar {{SITENAME}}',
-'currentevents'     => 'Ġrajjiet kurrenti',
-'currentevents-url' => 'Project:Ġrajjiet kurrenti',
-'disclaimers'       => 'Ċaħdiet',
-'mainpage'          => 'Paġna prinċipali',
-'portal'            => 'Portal tal-komunità',
-'portal-url'        => 'Project:Portal tal-komunità',
-'sitesupport'       => 'Donazzjonijiet',
-'sitesupport-url'   => 'Project:Donazzjonijiet',
+'aboutsite'            => 'Dwar {{SITENAME}}',
+'currentevents'        => 'Ġrajjiet kurrenti',
+'currentevents-url'    => 'Project:Ġrajjiet kurrenti',
+'disclaimers'          => 'Ċaħdiet',
+'mainpage'             => 'Paġna prinċipali',
+'mainpage-description' => 'Paġna prinċipali',
+'portal'               => 'Portal tal-komunità',
+'portal-url'           => 'Project:Portal tal-komunità',
+'sitesupport'          => 'Donazzjonijiet',
+'sitesupport-url'      => 'Project:Donazzjonijiet',
 
 'youhavenewmessages' => 'Għandek $1 ($2).',
 
