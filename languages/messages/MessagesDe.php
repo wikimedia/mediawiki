@@ -1464,6 +1464,13 @@ auf die bereits die erste Weiterleitung zeigen sollte.',
 'listusers-submit'   => 'Zeige',
 'listusers-noresult' => 'Keinen Benutzer gefunden.',
 
+# Special:Listgrouprights
+'listgrouprights'         => 'Benutzergruppen-Rechte',
+'listgrouprights-summary' => 'Dies ist eine Liste der in diesem Wiki definierten Benutzergruppen und den damit verbundenen Rechten.',
+'listgrouprights-group'   => 'Gruppe',
+'listgrouprights-rights'  => 'Rechte',
+'listgrouprights-link'    => "[[Help:Gruppenrechte#$1|$1]]",
+
 # E-mail user
 'mailnologin'     => 'Fehler beim E-Mail-Versand',
 'mailnologintext' => 'Du musst [[{{ns:special}}:Userlogin|angemeldet sein]] und eine [[{{ns:special}}:Confirmemail|bestätigte]] E-Mail-Adresse haben, um anderen Benutzern E-Mails schicken zu können.',
