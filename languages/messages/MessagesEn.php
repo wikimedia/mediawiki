@@ -1882,7 +1882,7 @@ It may contain one or more characters which cannot be used in titles.',
 'listgrouprights-summary' => 'The following is a list of user groups defined on this wiki, with their associated access rights.',
 'listgrouprights-group'   => 'Group',
 'listgrouprights-rights'  => 'Rights',
-'listgrouprights-link'    => "[[{{ns:help}}:Group rights#$1|$1]]",
+'listgrouprights-link'    => "[[Help:Group rights#$1|$1]]",
 
 # E-mail user
 'mailnologin'     => 'No send address',
