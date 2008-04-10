@@ -2862,7 +2862,8 @@ class Title {
 		return $dbr->selectField( 'revision', 'count(*)',
 			'rev_page = ' . intval( $this->getArticleId() ) .
 			' AND rev_id > ' . intval( $old ) .
-			' AND rev_id < ' . intval( $new ) );
+			' AND rev_id < ' . intval( $new ),
+			__METHOD__ );
 	}
 
 	/**
