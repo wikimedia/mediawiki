@@ -1501,6 +1501,9 @@ $wgCookiePath = '/';
 $wgCookieSecure = ($wgProto == 'https');
 $wgDisableCookieCheck = false;
 
+/** A list of cookies that vary the cache (for use by extensions) */
+$wgCacheVaryCookies = array();
+
 /** Override to customise the session name */
 $wgSessionName = false;
 
