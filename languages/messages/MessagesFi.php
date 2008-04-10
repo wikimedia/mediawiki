@@ -888,6 +888,7 @@ $1 | $2',
 'powersearch'           => 'Etsi',
 'powersearch-legend'    => 'Laajennettu haku',
 'powersearchtext'       => 'Hae nimiavaruuksista: $1<br /><br />$2 Luettele ohjaukset<br /><br />$3 $9',
+'search-external'       => 'Ulkoinen haku',
 'searchdisabled'        => 'Tekstihaku on poistettu toistaiseksi käytöstä suuren kuorman vuoksi. Voit käyttää alla olevaa Googlen hakukenttää sivujen etsimiseen, kunnes haku tulee taas käyttöön. <small>Huomaa, että ulkopuoliset kopiot {{GRAMMAR:genitive|{{SITENAME}}}} sisällöstä eivät välttämättä ole ajan tasalla.</small>',
 
 # Preferences page
@@ -978,14 +979,14 @@ $1 | $2',
 
 # Groups
 'group'               => 'Ryhmä',
-'group-autoconfirmed' => 'Automaattisesti hyväksytyt käyttäjät',
+'group-autoconfirmed' => 'automaattisesti hyväksytyt käyttäjät',
 'group-bot'           => 'botit',
 'group-sysop'         => 'ylläpitäjät',
 'group-bureaucrat'    => 'byrokraatit',
 'group-suppress'      => 'häivytysoikeuden käyttäjät',
 'group-all'           => '(kaikki)',
 
-'group-autoconfirmed-member' => 'Automaattisesti hyväksytty käyttäjä',
+'group-autoconfirmed-member' => 'automaattisesti hyväksytty käyttäjä',
 'group-bot-member'           => 'botti',
 'group-sysop-member'         => 'ylläpitäjä',
 'group-bureaucrat-member'    => 'byrokraatti',
@@ -1339,6 +1340,12 @@ Ohjelmiston suorittamia ylläpitotöitä on jonossa '''$7''' {{PLURAL:$7|kappale
 'listusersfrom'      => 'Katkaisuhaku',
 'listusers-submit'   => 'Hae',
 'listusers-noresult' => 'Käyttäjiä ei löytynyt.',
+
+# Special:Listgrouprights
+'listgrouprights'        => 'Käyttäjäryhmien oikeudet',
+'listgrouprights-group'  => 'Ryhmä',
+'listgrouprights-rights' => 'Oikeudet',
+'listgrouprights-link'   => '[[Help:Käyttöoikeudet#$1|$1]]',
 
 # E-mail user
 'mailnologin'     => 'Lähettäjän osoite puuttuu',

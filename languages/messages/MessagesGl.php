@@ -179,7 +179,7 @@ $messages = array(
 'qbspecialpages' => 'Páxinas especiais',
 'moredotdotdot'  => 'Máis...',
 'mypage'         => 'A miña páxina',
-'mytalk'         => 'As miñas conversas',
+'mytalk'         => 'A miña conversa',
 'anontalk'       => 'Conversa para este enderezo IP',
 'navigation'     => 'Navegación',
 'and'            => 'e',
@@ -397,7 +397,7 @@ Pode continuar usando {{SITENAME}} de xeito anónimo, ou pode acceder de novo co
 'welcomecreation'            => '== Reciba a nosa benvida, $1! ==
 Creouse a súa conta.
 Non esqueza [[Special:Preferences|personalizar]] as súas preferencias en {{SITENAME}}.',
-'loginpagetitle'             => 'Acceso de Usuario',
+'loginpagetitle'             => 'Acceso de usuario',
 'yourname'                   => 'O seu nome de usuario:',
 'yourpassword'               => 'O seu contrasinal:',
 'yourpasswordagain'          => 'Insira o seu contrasinal outra vez:',
@@ -438,14 +438,15 @@ Non esqueza [[Special:Preferences|personalizar]] as súas preferencias en {{SITE
 'noname'                     => 'Non especificou un nome de usuario válido.',
 'loginsuccesstitle'          => 'Acceso con éxito',
 'loginsuccess'               => "'''Accedeu ao sistema {{SITENAME}} como \"\$1\".'''",
-'nosuchuser'                 => 'Non hai ningún usuario co nome "$1".
-Verifique a sintaxe ou use o formulario que aparece a continuación para crear unha nova conta de usuario.',
-'nosuchusershort'            => 'Non hai un usuario co nome "<nowiki>$1</nowiki>". Verifique o nome que inseriu.',
+'nosuchuser'                 => 'Non hai ningún usuario chamado "$1".
+Verifique o nome que inseriu ou cree unha nova conta.',
+'nosuchusershort'            => 'Non hai ningún usuario chamado "<nowiki>$1</nowiki>".
+Verifique o nome que inseriu.',
 'nouserspecified'            => 'Debe especificar un nome de usuario.',
 'wrongpassword'              => 'O contrasinal escrito é incorrecto. Por favor, insira outro.',
 'wrongpasswordempty'         => 'O contrasinal estaba en branco. Por favor, ténteo de novo.',
 'passwordtooshort'           => 'O seu contrasinal é demasiado curto. Debe conter como mínimo $1 caracteres e ten que ser diferente do nome de usuario.',
-'mailmypassword'             => 'Envíeme un contrasinal novo',
+'mailmypassword'             => 'Enviádeme un contrasinal novo por correo electrónico',
 'passwordremindertitle'      => 'Novo contrasinal temporal para {{SITENAME}}',
 'passwordremindertext'       => 'Alguén (probablemente vostede, desde o enderezo IP $1)
 pediu que lle enviásemos un novo contrasinal para entrar en {{SITENAME}} ($4).
@@ -522,7 +523,7 @@ Pode facer caso omiso desta mensaxe se se creou esta conta por erro.',
 'anoneditwarning'           => "'''Aviso:''' Non está dentro do sistema.
 O seu enderezo IP quedará rexistrado no historial das revisións desta páxina.",
 'missingsummary'            => "'''Aviso:''' Esqueceu incluír o texto do campo resumo.
-Se preme en \"Gardar a páxina\", a súa edición gardarase sen ningunha descrición da edición.",
+Se preme en \"Gardar a páxina\" a súa edición gardarase sen ningunha descrición da edición.",
 'missingcommenttext'        => 'Por favor escriba un comentario a continuación.',
 'missingcommentheader'      => "'''Aviso:''' Non escribiu ningún texto no asunto/cabeceira deste comentario. Se preme en \"Gardar a páxina\", a súa edición gardarase sen el.",
 'summary-preview'           => 'Vista previa do resumo',
@@ -737,11 +738,15 @@ Outros administradores de {{SITENAME}} poderán acceder aínda ao contido oculto
 'revdelete-content'           => 'contido',
 'revdelete-summary'           => 'resumo de edición',
 'revdelete-uname'             => 'nome de usuario',
+'revdelete-restricted'        => 'aplicadas as restricións aos administradores',
+'revdelete-unrestricted'      => 'eliminadas as restricións aos administradores',
 'revdelete-hid'               => 'agochar $1',
 'revdelete-unhid'             => 'amosar $1',
 'revdelete-log-message'       => '$1 para $2 {{PLURAL:$2|revisión|revisións}}',
+'logdelete-log-message'       => '$1 para $2 {{PLURAL:$2|evento|eventos}}',
 
 # Suppression log
+'suppressionlog'     => 'Rexistro de supresión',
 'suppressionlogtext' => 'Embaixo amósase unha listaxe coas eliminacións e cos bloqueos recentes, que inclúen contido oculto dos administradores. Vexa a [[Special:Ipblocklist|listaxe de enderezos IP bloqueados]] para comprobar as prohibicións e os bloqueos vixentes.',
 
 # History merging
@@ -877,15 +882,18 @@ Procurar $3 $9',
 
 # User rights
 'userrights'                       => 'Xestión dos dereitos de usuario', # Not used as normal message but as header for the special page itself
-'userrights-lookup-user'           => 'Administrar grupos de usuarios',
-'userrights-user-editname'         => 'Escriba un nome de usuario:',
-'editusergroup'                    => 'Editar os grupos de usuarios',
+'userrights-lookup-user'           => 'Administrar os grupos do usuario',
+'userrights-user-editname'         => 'Escriba o nome do usuario:',
+'editusergroup'                    => 'Editar os grupos do usuario',
 'editinguser'                      => "Mudando os dereitos do usuario '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
-'userrights-editusergroup'         => 'Editar grupos de usuarios',
-'saveusergroups'                   => 'Gardar grupos de usuarios',
+'userrights-editusergroup'         => 'Editar os grupos do usuario',
+'saveusergroups'                   => 'Gardar os grupos do usuario',
 'userrights-groupsmember'          => 'Membro de:',
 'userrights-groupsremovable'       => 'Grupos eliminábeis:',
 'userrights-groupsavailable'       => 'Grupos dispoñíbeis:',
+'userrights-groups-help'           => 'Pode cambiar os grupos aos que o usuario pertence.
+Se a caixa ten un sinal (✓) significa que o usuario pertence a ese grupo.
+Se pola contra non o ten, significa que non pertence.',
 'userrights-reason'                => 'Razón para a modificación:',
 'userrights-available-none'        => 'Non pode mudar a pertenza ao grupo.',
 'userrights-available-add'         => 'Pode engadir calquera usuario a {{PLURAL:$2|este grupo|estes grupos}}: $1.',
@@ -905,17 +913,20 @@ Procurar $3 $9',
 'group-bot'           => 'Bots',
 'group-sysop'         => 'Administradores',
 'group-bureaucrat'    => 'Burócratas',
+'group-suppress'      => 'Supervisores',
 'group-all'           => '(todos)',
 
 'group-autoconfirmed-member' => 'Usuario auto-confirmado',
 'group-bot-member'           => 'Bot',
 'group-sysop-member'         => 'Administrador',
 'group-bureaucrat-member'    => 'Burócrata',
+'group-suppress-member'      => 'Supervisor',
 
 'grouppage-autoconfirmed' => '{{ns:project}}:Usuarios auto-confirmados',
 'grouppage-bot'           => '{{ns:project}}:Bots',
 'grouppage-sysop'         => '{{ns:project}}:Administradores',
 'grouppage-bureaucrat'    => '{{ns:project}}:Burócratas',
+'grouppage-suppress'      => '{{ns:project}}:Supervisor',
 
 # User rights log
 'rightslog'      => 'Rexistro de burócrata',
@@ -958,7 +969,7 @@ Procurar $3 $9',
 
 # Upload
 'upload'                      => 'Cargar un ficheiro',
-'uploadbtn'                   => 'Cargar un ficheiro',
+'uploadbtn'                   => 'Cargar o ficheiro',
 'reupload'                    => 'Volver cargar',
 'reuploaddesc'                => 'Cancelar a carga e voltar ao formulario de carga',
 'uploadnologin'               => 'Non está dentro do sistema',
@@ -995,13 +1006,14 @@ Para incluír un ficheiro na páxina, use unha ligazón do seguinte xeito:
 'filetype-missing'            => 'O ficheiro non conta cunha extensión (como ".jpg").',
 'large-file'                  => 'Recoméndase que o tamaño dos ficheiros non supere $1; este ficheiro ocupa $2.',
 'largefileserver'             => 'Este ficheiro é de maior tamaño có permitido pola configuración do servidor.',
-'emptyfile'                   => 'O ficheiro que cargou semella estar baleiro. Isto pode deberse a un erro ortográfico no seu nome. Por favor verifique se realmente quere cargar este ficheiro.',
+'emptyfile'                   => 'O ficheiro que cargou semella estar baleiro. Isto pode deberse a un erro ortográfico no seu nome.
+Por favor verifique se realmente quere cargar este ficheiro.',
 'fileexists'                  => 'Xa existe un ficheiro con ese nome. Por favor, verifique <strong><tt>$1</tt></strong> se non está seguro de que quere cambialo.',
 'filepageexists'              => 'A páxina de descrición deste ficheiro xa foi creada en <strong><tt>$1</tt></strong>, pero polo de agora non existe ningún ficheiro con este nome. O resumo que escribiu non aparecerá na páxina de descrición. Para facer que o resumo apareza alí, necesitará editar a páxina manualmente',
-'fileexists-extension'        => 'Xa hai un ficheiro cun nome semellante:<br />
+'fileexists-extension'        => 'Xa existe un ficheiro cun nome semellante:<br />
 Nome do ficheiro que tenta cargar: <strong><tt>$1</tt></strong><br />
-Nome de ficheiro que hai: <strong><tt>$2</tt></strong><br />
-A única diferenza é o uso de minúsculas/maiúsculas na extensión. Por favor comprobe se se trata dun ficheiro diferente e cárgueo con outro nome.',
+Nome de ficheiro existente: <strong><tt>$2</tt></strong><br />
+Por favor, escolla un nome diferente.',
 'fileexists-thumb'            => "<center>'''Imaxe existente'''</center>",
 'fileexists-thumbnail-yes'    => 'Parece que o ficheiro é unha imaxe de tamaño reducido <i>(miniatura)</i>. Comprobe o ficheiro <strong><tt>$1</tt></strong>.<br />
 Se o ficheiro seleccionado é a mesma imaxe de tamaño orixinal non é preciso enviar unha miniatura adicional.',
@@ -1134,7 +1146,8 @@ Premendo nun cabezallo da columna cambia a ordenación.',
 
 # MIME search
 'mimesearch'         => 'Busca MIME',
-'mimesearch-summary' => 'Esta páxina permite filtrar os ficheiros segundo o seu tipo MIME. Entrada: tipodecontido/subtipo, p.ex. <tt>image/jpeg</tt>.',
+'mimesearch-summary' => 'Esta páxina permite filtrar os ficheiros segundo o seu tipo MIME.
+Entrada: tipodecontido/subtipo, p.ex. <tt>image/jpeg</tt>.',
 'mimetype'           => 'Tipo MIME:',
 'download'           => 'descargar',
 
@@ -1245,6 +1258,7 @@ Cada ringleira contén ligazóns cara á primeira e segunda redirección, e tam�
 'notargettext'            => 'Non especificou a páxina ou o usuario no cal facer esta función.',
 'pager-newer-n'           => '{{PLURAL:$1|1 máis recente|$1 máis recentes}}',
 'pager-older-n'           => '{{PLURAL:$1|1 máis vella|$1 máis vellas}}',
+'suppress'                => 'Supervisor',
 
 # Book sources
 'booksources'               => 'Fontes dos libros',
@@ -1284,6 +1298,12 @@ Pode precisar máis a vista seleccionando o tipo de rexistro, o nome de usuario 
 'listusersfrom'      => 'Mostrar os usuarios comezando por:',
 'listusers-submit'   => 'Amosar',
 'listusers-noresult' => 'Non se atoparon usuarios. Comprobe tamén variantes con maiúsculas e minúsculas.',
+
+# Special:Listgrouprights
+'listgrouprights'         => 'Dereitos dun usuario segundo o seu grupo',
+'listgrouprights-summary' => 'A seguinte listaxe mostra os grupos de usuario definidos neste wiki, cos seus dereitos de acceso asociados.',
+'listgrouprights-group'   => 'Grupo',
+'listgrouprights-rights'  => 'Dereitos',
 
 # E-mail user
 'mailnologin'     => 'Non existe enderezo para o envío',
@@ -1394,6 +1414,7 @@ Por favor, confirme que é realmente a súa intención, que comprende as consecu
 'deletedtext'                 => '"<nowiki>$1</nowiki>" foi borrado.
 No $2 pode ver unha listaxe dos borrados recentes.',
 'deletedarticle'              => '"[[$1]]" foi borrado',
+'suppressedarticle'           => 'suprimiu "[[$1]]"',
 'dellogpage'                  => 'Rexistro de borrado',
 'dellogpagetext'              => 'Abaixo está a listaxe dos borrados máis recentes.',
 'deletionlog'                 => 'rexistro de borrado',
@@ -1509,7 +1530,7 @@ $1',
 
 # Namespace form on various pages
 'namespace'      => 'Espazo de nomes:',
-'invert'         => 'Invertir selección',
+'invert'         => 'Invertir a selección',
 'blanknamespace' => '(Principal)',
 
 # Contributions
@@ -1663,13 +1684,13 @@ Este cambio nunha páxina popular pode ser drástico e inesperado; por favor, as
 *Desactive a opción de abaixo.
 
 Nestes casos, terá que mover ou mesturar a páxina manualmente se o desexa.",
-'movearticle'             => 'Mover páxina:',
+'movearticle'             => 'Mover esta páxina:',
 'movenologin'             => 'Non está dentro do sistema',
 'movenologintext'         => 'Vostede ha ser un usuario rexistrado e estar [[Special:Userlogin|dentro do sistema]] para mover unha páxina.',
 'movenotallowed'          => 'Non ten permiso para mover páxinas en {{SITENAME}}.',
-'newtitle'                => 'Ao novo título',
+'newtitle'                => 'Ao novo título:',
 'move-watch'              => 'Vixiar esta páxina',
-'movepagebtn'             => 'Mover páxina',
+'movepagebtn'             => 'Mover a páxina',
 'pagemovedsub'            => 'O movemento foi un éxito',
 'movepage-moved'          => '<big>\'\'\'"$1" moveuse para "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => 'Xa existe unha páxina con ese nome, ou o nome que escolleu non é válido.
@@ -1716,7 +1737,8 @@ No último caso, pode usar tamén unha ligazón, por exemplo [[{{ns:special}}:Ex
 'allmessagesname'           => 'Nome',
 'allmessagesdefault'        => 'Texto predeterminado',
 'allmessagescurrent'        => 'Texto actual',
-'allmessagestext'           => 'Esta é unha listaxe de todas as mensaxes dispoñíbeis no espazo de nomes MediaWiki.',
+'allmessagestext'           => 'Esta é unha listaxe de todas as mensaxes dispoñíbeis no espazo de nomes MediaWiki.
+Por favor, visite [http://translatewiki.net Betawiki] se quere contribuír á localización xenérica de MediaWiki.',
 'allmessagesnotsupportedDB' => "'''{{ns:special}}:Allmessages''' non está dispoñíbel porque '''\$wgUseDatabaseMessages''' está desactivado.",
 'allmessagesfilter'         => 'Filtro de nome de mensaxe:',
 'allmessagesmodified'       => 'Só mostrar modificadas',
@@ -2310,15 +2332,15 @@ $1',
 'autosumm-new'     => 'Nova páxina: $1',
 
 # Live preview
-'livepreview-loading' => 'A carregar…',
-'livepreview-ready'   => 'A carregar… Listo!',
+'livepreview-loading' => 'Cargando…',
+'livepreview-ready'   => 'Cargando… Listo!',
 'livepreview-failed'  => 'Fallou a vista previa en tempo real!
 Tente a vista previa normal.',
 'livepreview-error'   => 'Fallou a conexión: $1 "$2"
 Tente a vista previa normal.',
 
 # Friendlier slave lag warnings
-'lag-warn-normal' => 'Pode que as edicións feitas no(s) último(s) $1 segundo(s) non aparezan nesta listaxe.',
+'lag-warn-normal' => 'Pode que as edicións feitas nos últimos $1 segundos non aparezan nesta listaxe.',
 'lag-warn-high'   => 'Debido a unha grande demora do servidor da base de datos, pode que nesta listaxe non aparezan as modificacións feitas no(s) último(s) $1 segundo(s).',
 
 # Watchlist editor

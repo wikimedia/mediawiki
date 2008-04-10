@@ -15,6 +15,7 @@
  * @author לערי ריינהארט
  * @author Kkkdc
  * @author JtFuruhata
+ * @author Mzm5zbC3
  */
 
 $skinNames = array(
@@ -776,6 +777,7 @@ $1 または他の[[{{MediaWiki:grouppage-sysop}}|管理者]]にこの件につ�
 'showingresultsnum'     => '<b>$2</b> 件目から <b>$3</b> 件を表示しています。',
 'nonefound'             => "'''※'''検索がうまくいかないのは、「ある」や「から」のような一般的な語で索引付けがされていないか、複数の検索語を指定している（全ての検索語を含むページだけが結果に示されます）などのためかもしれません。",
 'powersearch'           => '検索',
+'powersearch-legend'    => '高度な検索',
 'powersearchtext'       => '検索する名前空間 :<br />
 $1<br />
 $2リダイレクトを含める &nbsp; &nbsp; &nbsp; $3 $9',
@@ -863,6 +865,8 @@ $2リダイレクトを含める &nbsp; &nbsp; &nbsp; $3 $9',
 'userrights-nodatabase'            => 'データベース $1は存在しないか、ローカル上にありません。',
 'userrights-nologin'               => '利用者情報を変更するには[[Special:Userlogin|ログイン]]する必要があります。',
 'userrights-notallowed'            => '利用者情報を変更する権限がありません。',
+'userrights-changeable-col'        => '変更可能なグループ',
+'userrights-unchangeable-col'      => '変更できないグループ',
 
 # Groups
 'group'               => 'グループ:',
@@ -987,6 +991,7 @@ $2リダイレクトを含める &nbsp; &nbsp; &nbsp; $3 $9',
 'uploadvirus'                 => 'このファイルにはウイルスが含まれています!! &nbsp;詳細: $1',
 'sourcefilename'              => 'ファイル名:',
 'destfilename'                => '掲載するファイル名:',
+'upload-maxfilesize'          => '最大ファイルサイズ: $1',
 'watchthisupload'             => 'このページをウォッチ',
 'filewasdeleted'              => 'この名前のファイルは一度アップロードされその後削除されています。アップロードの前に$1を確認してみてください。',
 'upload-wasdeleted'           => "'''警告:あなたは過去に削除されたファイルをアップロードしようとしています。'''
@@ -1014,6 +1019,9 @@ $2リダイレクトを含める &nbsp; &nbsp; &nbsp; $3 $9',
 'upload_source_file' => '（あなたのコンピューター上のファイル）',
 
 # Special:Imagelist
+'imagelist-summary'     => 'この特別ページではすべてのアップロードされたファイルの一覧を表示します。
+
+ソートのデフォルトでは新しい順です。ヘッダのクリックでソート順と種類を変更できます。',
 'imagelist_search_for'  => 'メディア名で検索:',
 'imgdesc'               => '詳細',
 'imgfile'               => 'ファイル',
@@ -1224,6 +1232,13 @@ $2リダイレクトを含める &nbsp; &nbsp; &nbsp; $3 $9',
 'listusersfrom'      => 'この文字から表示:',
 'listusers-submit'   => '表示',
 'listusers-noresult' => '利用者が見つかりませんでした。大文字・小文字の区別を確認してください。',
+
+# Special:Listgrouprights
+'listgrouprights'         => 'ユーザのグループと権限',
+'listgrouprights-summary' => '以下は{{SITENAME}}に登録されているユーザのグループと権限の一覧です。',
+'listgrouprights-group'   => 'グループ',
+'listgrouprights-rights'  => '権限',
+'listgrouprights-link'    => '[[Help:グループと権限#$1|$1]]',
 
 # E-mail user
 'mailnologin'     => 'メールアドレスの記載がありません。',
@@ -1864,6 +1879,7 @@ $NEWPAGE
 # Special:Newimages
 'newimages'             => '新規画像展示室',
 'imagelisttext'         => "'''$1''' {{PLURAL:$1|個|個}}のファイルを $2 に表示しています",
+'newimages-summary'     => 'この特別ページでは最近、アップロードされたファイルを表示します。',
 'showhidebots'          => '（ボットを$1）',
 'noimages'              => '画像がありません。',
 'ilsubmit'              => '検索',

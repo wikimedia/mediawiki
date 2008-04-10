@@ -8,6 +8,7 @@
  * @author SPQRobin
  * @author Dsvyas
  * @author Siebrand
+ * @author Nike
  */
 
 $digitTransformTable = array(
@@ -119,6 +120,7 @@ $messages = array(
 'listingcontinuesabbrev'      => 'ચાલુ..',
 
 'about'         => 'વિષે',
+'newwindow'     => '(નવા પાનામાં ખુલશે)',
 'cancel'        => 'રદ કરો',
 'moredotdotdot' => 'વધારે...',
 'mypage'        => 'મારું પાનું',
@@ -156,25 +158,26 @@ $messages = array(
 'otherlanguages'   => 'બીજી ભાષાઓમાં',
 'redirectedfrom'   => '($1 થી અહીં વાળેલું)',
 'lastmodifiedat'   => 'આ પાનાંમાં છેલ્લો ફેરફાર $1ના રોજ $2 વાગ્યે થયો.', # $1 date, $2 time
+'jumpto'           => 'સીધા આના પર જાઓ:',
 'jumptonavigation' => 'ભ્રમણ',
 'jumptosearch'     => 'શોધો',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => '{{SITENAME}} વિષે',
 'aboutpage'            => 'Project:વિષે',
-'copyrightpage'        => '{{ns:પરિયોજના}}:પ્રકાશનાધિકાર',
+'copyrightpage'        => '{{ns:project}}:પ્રકાશનાધિકાર',
 'currentevents'        => 'વર્તમાન ઘટનાઓ',
 'currentevents-url'    => 'Project:વર્તમાન ઘટનાઓ',
 'disclaimers'          => 'જાહેર ઇનકાર',
-'disclaimerpage'       => 'પરિયોજના: સામાન્ય જાહેર ઇનકાર',
+'disclaimerpage'       => 'Project:સામાન્ય જાહેર ઇનકાર',
 'edithelp'             => 'ફેરફારો માટે મદદ',
-'edithelppage'         => 'મદદઃફેરફાર',
+'edithelppage'         => 'Help:ફેરફાર',
 'helppage'             => 'મદદઃસૂચિ',
 'mainpage'             => 'મુખપૃષ્ઠ',
 'mainpage-description' => 'મુખપૃષ્ઠ',
 'portal'               => 'સમાજ મુખપૃષ્ઠ',
 'privacy'              => 'ગોપનિયતા નીતિ',
-'privacypage'          => 'પરિયોજના: ગોપનિયતા નીતિ',
+'privacypage'          => 'Project:ગોપનિયતા નીતિ',
 'sitesupport'          => 'દાન',
 
 'ok'                  => 'મંજૂર',
@@ -193,6 +196,7 @@ $messages = array(
 'nstab-main'      => 'લેખ',
 'nstab-user'      => 'મારા વિષે',
 'nstab-special'   => 'ખાસ',
+'nstab-image'     => 'ફાઇલ/દસ્તાવેજ',
 'nstab-mediawiki' => 'સંદેશ',
 'nstab-template'  => 'ઢાંચો',
 'nstab-help'      => 'મદદનું પાનું',
@@ -202,6 +206,7 @@ $messages = array(
 
 # General errors
 'badtitle'      => 'ખરાબ નામ',
+'viewsource'    => 'સ્ત્રોત જુઓ',
 'viewsourcefor' => '$1ને માટે',
 
 # Login and logout pages
@@ -218,6 +223,26 @@ $messages = array(
 'nosuchusershort' => '"<nowiki>$1</nowiki>" નામનો કોઇ સભ્ય નથી, તમારી જોડણી તપાસો.',
 'accountcreated'  => 'ખાતું ખોલવામાં આવ્યું છે',
 
+# Edit page toolbar
+'bold_sample'     => 'ઘાટા અક્ષર',
+'bold_tip'        => 'ઘાટા અક્ષર',
+'italic_sample'   => 'ત્રાંસા અક્ષર',
+'italic_tip'      => 'ઇટાલિક (ત્રાંસુ) લખાણ',
+'link_sample'     => 'કડીનું શિર્ષક',
+'link_tip'        => 'આંતરિક કડી',
+'extlink_sample'  => 'http://www.example.com કડીનું શિર્ષક',
+'extlink_tip'     => "બાહ્ય કડી (શરૂઆતામાં '''http://''' ઉમેરવાનું ભુલશો નહી)",
+'headline_sample' => 'મથાળાનાં મોટા અક્ષર',
+'headline_tip'    => 'બીજા ક્રમનું મથાળું',
+'math_sample'     => 'સૂત્ર અહીં દાખલ કરો',
+'math_tip'        => 'ગણિતિક સૂત્ર (LaTeX)',
+'nowiki_sample'   => 'ફોર્મેટ કર્યા વગરનું લખાણ અહીં ઉમેરો',
+'nowiki_tip'      => 'વિકિ ફોર્મેટીંગને અવગણો',
+'image_tip'       => 'અંદર વણાયેલી (Embedded) ફાઇલ',
+'media_tip'       => 'ફાઇલની કડી',
+'sig_tip'         => 'તમારી સહી (સમય સાથે)',
+'hr_tip'          => 'આડી લીટી (શક્ય તેટલો ઓછો ઉપયોગ કરો)',
+
 # Edit pages
 'summary'               => 'સારાંશ',
 'subject'               => 'વિષય/શિર્ષક',
@@ -229,8 +254,10 @@ $messages = array(
 'showdiff'              => 'ફેરફારો બતાવો',
 'blockededitsource'     => "'''$1''' માટે '''તમારા ફેરફારો''' નીચે દેખાય છે:",
 'newarticle'            => '(નવિન)',
+'noarticletext'         => 'આ પાનામાં હાલમાં કોઇ માહિતિ નથી, તમે  [[Special:Search/{{PAGENAME}}|આ શબ્દ]] ધરાવતાં અન્ય લેખો શોધી શકો છો, અથવા  [{{fullurl:{{FULLPAGENAME}}|action=edit}} આ પાનામાં ફેરફાર કરી] માહિતિ ઉમેરવાનું શરૂ કરો.',
 'editing'               => '$1નો ફેરફાર કરી રહ્યા છે',
 'yourdiff'              => 'ભેદ',
+'template-protected'    => '(સુરક્ષિત)',
 'recreate-deleted-warn' => "'''ચેતવણી: તમે જે પાનું નવું બનાવવા જઇ રહ્યાં છો તે પહેલાં દૂર કરવામાં આવ્યું છે.'''
 
 આગળ વધતાં બે વખત વિચારજો અને જો તમને લાગે કે આ પાનું ફરી વાર બનાવવું ઉચિત છે, તો જ અહીં ફેરફાર કરજો.
@@ -256,6 +283,8 @@ $messages = array(
 
 # Search results
 'searchresults' => 'પરિણામોમાં શોધો',
+'noexactmatch'  => "'''\"\$1\" શિર્ષક વાળું કોઇ પાનું નથી.'''
+<br>તમે [[:\$1|આ પાનું બનાવી શકો છો]].",
 'prevn'         => 'પાછળનાં $1',
 'nextn'         => 'આગળનાં $1',
 'viewprevnext'  => 'જુઓ: ($1) ($2) ($3)',
@@ -303,8 +332,10 @@ $messages = array(
 'rc_categories_any' => 'કોઇ પણ',
 
 # Recent changes linked
-'recentchangeslinked'       => 'આની સાથે જોડાયેલા ફેરફાર',
-'recentchangeslinked-title' => '$1 ને લગતા ફેરફારો',
+'recentchangeslinked'         => 'આની સાથે જોડાયેલા ફેરફાર',
+'recentchangeslinked-title'   => '$1 ને લગતા ફેરફારો',
+'recentchangeslinked-summary' => "આ ખાસ પાનામાં એવા પાનાઓની યાદી છે જે અન્યત્ર જોડાયેલાં છે અને તેમાં ફેરફાર થાયા છે.
+<br>તમારી ધ્યાનસૂચિમાં હોય તેવા પાનાં '''ઘાટા અક્ષર'''માં વર્ણવ્યાં છે",
 
 # Upload
 'upload'     => 'ફાઇલ ચડાવો',
@@ -313,8 +344,16 @@ $messages = array(
 'filesource' => 'સ્ત્રોત:',
 
 # Image description page
-'filehist'   => 'ફાઇલનો ઇતિહાસ',
-'imagelinks' => 'કડીઓ',
+'filehist'            => 'ફાઇલનો ઇતિહાસ',
+'filehist-help'       => 'તારિખ/સમય ઉપર ક્લિક કરવાથી તે સમયે ફાઇલ કેવી હતી તે જોવા મળશે',
+'filehist-current'    => 'વર્તમાન',
+'filehist-datetime'   => 'તારીખ/સમય',
+'filehist-user'       => 'સભ્ય',
+'filehist-dimensions' => 'પરિમાણ',
+'filehist-filesize'   => 'ફાઇલનું કદ',
+'filehist-comment'    => 'ટિપ્પણી',
+'imagelinks'          => 'કડીઓ',
+'linkstoimage'        => 'આ ફાઇલ સાથે નીચેનાં પાનાઓ જોડાએલાં છે',
 
 # Unused templates
 'unusedtemplates' => 'વણ વપરાયેલાં ઢાંચા',
@@ -406,6 +445,7 @@ $messages = array(
 'undelete-search-submit' => 'શોધો',
 
 # Namespace form on various pages
+'namespace'      => 'નામસ્થળ:',
 'invert'         => 'પસંદગી ઉલટાવો',
 'blanknamespace' => '(મુખ્ય)',
 
@@ -420,6 +460,7 @@ $messages = array(
 
 # What links here
 'whatlinkshere'       => 'અહિયાં શું જોડાય છે',
+'whatlinkshere-title' => 'પાનાંઓ કે જે $1 સાથે જોડાય છે',
 'linklistsub'         => '(કડીઓની સૂચી)',
 'whatlinkshere-links' => '←  કડીઓ',
 
@@ -469,6 +510,7 @@ $messages = array(
 'tooltip-ca-viewsource'           => 'આ પાનુ સંરક્ષિત છે, તમે તેનો સ્ત્રોત જોઇ શકો છો',
 'tooltip-ca-protect'              => 'આ પાનું સુરક્ષિત કરો',
 'tooltip-ca-delete'               => 'આ પાનું હટાવો',
+'tooltip-ca-move'                 => 'આ પાનું ખસેડો',
 'tooltip-ca-watch'                => 'આ પાનું તમારી ધ્યાનસૂચીમા ઉમેરો',
 'tooltip-ca-unwatch'              => 'આ પાનું તમારી ધ્યાનસૂચીમાથી કાઢી નાખો',
 'tooltip-search'                  => '{{SITENAME}} શોધો',
@@ -484,6 +526,7 @@ $messages = array(
 'tooltip-t-upload'                => 'ફાઇલ ચડાવો',
 'tooltip-t-specialpages'          => 'ખાસ પાનાંઓની સૂચિ',
 'tooltip-ca-nstab-user'           => 'સભ્યનું પાનું જુઓ',
+'tooltip-ca-nstab-image'          => 'ફાઇલ વિષેનું પાનું જુઓ',
 'tooltip-ca-nstab-template'       => 'ઢાંચો જુઓ',
 'tooltip-ca-nstab-help'           => 'મદદનું પાનું જુઓ',
 'tooltip-save'                    => 'તમે કરેલાં ફેરફારો સુરક્ષિત કરો',

@@ -286,8 +286,8 @@ $messages = array(
 'sitesupport'          => 'Donacije',
 'sitesupport-url'      => 'Project:Donacije',
 
-'versionrequired'     => 'Verzija $1 MedijaVikija je potrebna',
-'versionrequiredtext' => 'Verzija $1 MedijaVikija je potrebna da bi se koristila ova strana. Pogledajte [[Special:Version|verziju]]',
+'versionrequired'     => 'Potrebna je verzija $1 MediaWikija',
+'versionrequiredtext' => 'Potrebna je verzija $1 MediaWikija da bi se koristila ova strana. Pogledaj [[Special:Version|verziju]].',
 
 'ok'                      => 'da',
 'retrievedfrom'           => 'Dobavljeno iz "$1"',
@@ -313,7 +313,7 @@ $messages = array(
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Članak',
 'nstab-user'      => 'Korisnička stranica',
-'nstab-media'     => 'Medija',
+'nstab-media'     => 'Mediji',
 'nstab-special'   => 'Posebna',
 'nstab-project'   => 'Članak',
 'nstab-image'     => 'Slika',
@@ -1082,8 +1082,11 @@ stranica za razgovor nije mogla biti premještena jer takva već postoji na novo
 
 # Export
 'export'        => 'Izvezite stranice',
-'exporttext'    => 'Možete izvesti tekst i istoriju promjena određene stranice
-ili grupe stranice u XML formatu.  Ovo onda može biti uvezeno u drugi viki koji koristi MedijaViki softver, transformisano, ili korišćeno za Vaše lične potrebe.',
+'exporttext'    => 'Možete izvesti tekst i historiju jedne ili više stranica uklopljene u XML kod. U budućim verzijama MediaWiki programa bit će moguće uvesti ovakvu stranicu u neki drugi wiki. Trenutna verzija to još ne podržava.
+
+Za izvoz stranica unesite njihove naslove u polje ispod, jedan naslov po retku, i označite želite li trenutačnu verziju zajedno sa svim prijašnjima, ili samo trenutnu verziju sa informacijom o zadnjoj promjeni.
+
+U drugom slučaju možete koristiti i vezu, npr. [[{{ns:special}}:Export/{{MediaWiki:Mainpage}}]] za članak [[{{MediaWiki:Mainpage}}]].',
 'exportcuronly' => 'Uključite samo trenutnu reviziju, ne cijelu istoriju',
 
 # Namespace 8 related

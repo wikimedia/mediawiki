@@ -1345,7 +1345,7 @@ $NEWPAGE
 
 # What links here
 'whatlinkshere'       => '有什哩連到箇首',
-'whatlinkshere-title' => '連到箇首嗰頁面',
+'whatlinkshere-title' => '連到 $1 嗰頁面',
 'whatlinkshere-page'  => '頁面:',
 'linklistsub'         => '(連結列表)',
 'linkshere'           => '下底嗰頁面連結到[[:$1]]：',

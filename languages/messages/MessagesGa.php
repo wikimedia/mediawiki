@@ -11,6 +11,7 @@
  * @author SPQRobin
  * @author Nike
  * @author Spacebirdy
+ * @author Jon Harald Søby
  */
 
 $skinNames = array(
@@ -804,11 +805,11 @@ den am an freastalaí (UTC).',
 'uploadnologin'     => 'Nil tú logáilte isteach',
 'uploadnologintext' => 'Ní mór duit [[Special:Userlogin|logáil isteach]] chun comhaid a huaslódáil.',
 'uploaderror'       => 'Earráid uaslódála',
-'uploadtext'        => "'''STOP!''' Sul má dhéanann tú uaslódáil anseo, bí cinnte an [[{{MediaWiki:Policy-url}}|polasaí úsáide íomhá]] atá ag {{SITENAME}} a léamh agus géilleadh dó.
+'uploadtext'        => "'''STOP!''' Sul má dhéanann tú uaslódáil anseo, bí cinnte an polasaí úsáide íomhá atá ag {{SITENAME}} a léamh agus géilleadh dó.
 
 Má tá comhad ann cheana leis an ainm céanna atá tú ag tabhairt don chomhad nua, cuirfear an comhad nua in áit an sean-chomhaid gan fógra. Mar sin, muna roghnaíonn tú comhad, is fearr féachaint an bhfuil comhad leis an ainm chéanna ann cheana féin.
 
-Le breathnú nó cuardach a dhéanamh ar íomhánna a uaslódáladh cheana féin, téigh go dtí an [[Special:Imagelist|liosta íomhánna]] uaslódáilte. Déantar liosta de uaslódála agus scriosaidh ar an [[{{ns:project}}:Special:Log/upload|liosta uaslódála]].
+Le breathnú nó cuardach a dhéanamh ar íomhánna a uaslódáladh cheana féin, téigh go dtí an [[Special:Imagelist|liosta íomhánna]] uaslódáilte. Déantar liosta de uaslódála agus scriosaidh ar an [[Special:Log/upload|liosta uaslódála]].
 
 Bain úsáid as an bhfoirm thíos chun íomhá-chomhaid nua a uaslódáil. Is féidir leat na h-íomhánna a úsáid i do chuid alt. Ar an gcuid is mó de na líonléitheoirí, feicfidh tú cnaipe \"Brabhsáil...\" nó rud éigin mar sin. Lé brú ar an gcnaipe seo, gheobhaigh tú an ghnáthbhosca dialóige comhad-oscailte dod'chóras oibriúcháin. Nuair a roghnaíonn tú comhad, líonfar ainm an chomhaid sa téacsbhosca in aice leis an gcnaipe. Caithfidh tú dearfú le brú sa bhosca beag nach bhfuil tú ag sárú aon chóipcheart leis an suaslódáil seo. Brúigh an cnaipe \"Uaslódáil\" chun an uaslódáil a chríochnú. Mura bhfuil nasc Idirlín tapaidh agat, beidh roinnt ama uait leis seo.
 

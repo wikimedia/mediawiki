@@ -1356,6 +1356,13 @@ Bạn có thể thu hẹp kết quả bằng cách chọn loại nhật trình, 
 'listusers-submit'   => 'Liệt kê',
 'listusers-noresult' => 'Không thấy thành viên.',
 
+# Special:Listgrouprights
+'listgrouprights'         => 'Nhóm thành viên',
+'listgrouprights-summary' => 'Dưới đây là danh sách nhóm thành viên tại wiki này, với những khả năng của từng nhóm.',
+'listgrouprights-group'   => 'Nhóm',
+'listgrouprights-rights'  => 'Khả năng',
+'listgrouprights-link'    => '[[Help:Khả năng của nhóm thành viên#$1|$1]]',
+
 # E-mail user
 'mailnologin'     => 'Không có địa chỉ gửi thư',
 'mailnologintext' => 'Bạn phải [[Special:Userlogin|đăng nhập]] và khai báo một địa chỉ thư điện tử hợp lệ trong phần [[Special:Preferences|tùy chọn cá nhân]] thì mới gửi được thư cho người khác.',
@@ -1803,7 +1810,8 @@ Trong trường hợp sau bạn cũng có thể dùng một liên kết, ví d�
 'allmessagesname'           => 'Tên thông báo',
 'allmessagesdefault'        => 'Nội dung mặc định',
 'allmessagescurrent'        => 'Nội dung hiện thời',
-'allmessagestext'           => 'Đây là toàn bộ thông báo hệ thống có trong không gian tên MediaWiki.',
+'allmessagestext'           => 'Đây là toàn bộ thông báo hệ thống có trong không gian tên MediaWiki.
+Mời vào [http://translatewiki.net Betawiki] nếu bạn muốn đóng góp dịch chung cả MediaWiki.',
 'allmessagesnotsupportedDB' => "Trang này không dùng được vì biến '''\$wgUseDatabaseMessages''' đã bị tắt.",
 'allmessagesfilter'         => 'Bộ lọc tên thông báo:',
 'allmessagesmodified'       => 'Chỉ hiển thị các thông báo đã được sửa đổi.',

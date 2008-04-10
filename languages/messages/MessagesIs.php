@@ -965,11 +965,13 @@ Prófaðu [[Special:Search|að leita á þessari wiki síðu]] að svipuðum sí
 'group-bot-member'           => 'Vélmenni',
 'group-sysop-member'         => 'Stjórnandi',
 'group-bureaucrat-member'    => 'Möppudýr',
+'group-suppress-member'      => 'Umsjón',
 
 'grouppage-autoconfirmed' => '{{ns:project}}:Sjálfkrafa staðfesting notenda',
 'grouppage-bot'           => '{{ns:project}}:Vélmenni',
-'grouppage-sysop'         => '{{ns:project}}:Stjórnendur',
+'grouppage-sysop'         => '{{ns:project}}:Möppudýr',
 'grouppage-bureaucrat'    => '{{ns:project}}:Möppudýr',
+'grouppage-suppress'      => '{{ns:project}}:Umsjón',
 
 # User rights log
 'rightslog'      => 'Réttindaskrá notenda',
@@ -1030,6 +1032,8 @@ Til að tengja í skrána frá síðu, notaðu eftirfarandi aðferðir
 'filename'          => 'Skráarnafn',
 'filedesc'          => 'Lýsing',
 'fileuploadsummary' => 'Ágrip:',
+'filestatus'        => 'Staða höfundaréttar:',
+'filesource'        => 'Heimild:',
 'uploadedfiles'     => 'Hlóð inn skráunum',
 'ignorewarning'     => 'Hunsa viðvaranir og vista þessa skrá',
 'ignorewarnings'    => 'Hunsa allar viðvaranir',

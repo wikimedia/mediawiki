@@ -323,7 +323,7 @@ $messages = array(
 'nstab-mediawiki' => 'संदेश',
 'nstab-template'  => 'टेम्प्लेट',
 'nstab-help'      => 'सहायता पृष्ठ',
-'nstab-category'  => 'विभाग',
+'nstab-category'  => 'श्रेणी',
 
 # Main script and global functions
 'nosuchaction'      => 'ऐसा कोई कार्य नहीं है',
@@ -738,7 +738,7 @@ Don't forget to personalize your {{SITENAME}} preferences.",
 'revdelete-text'              => 'हटायें गयें अवतरण और घटनायें अभी भी पन्ने के इतिहास और लॉग सूचीमें नजर आयेंगे, पर इसके पाठ सामान्य सदस्य देख नहीं पायेंगे।
 
 {{SITENAME}} अन्य प्रबंधक अभी भी इसे देख सकते हैं और पुनर्स्थापित भी कर सकतें हैं, जब तक इससे ज्यादा प्रतिबंध ना लगायें जायें।',
-'revdelete-legend'            => 'प्रतिबंध निश्चित करें',
+'revdelete-legend'            => 'दृश्य प्रतिबंध निश्चित करें',
 'revdelete-hide-text'         => 'अवरतणका पाठ छुपायें',
 'revdelete-hide-name'         => 'क्रिया और लक्ष्य को छुपायें',
 'revdelete-hide-comment'      => 'संपादन टिप्पणी छुपायें',
@@ -861,7 +861,7 @@ latex, dvips, gs, और convert के इन्स्टॉलेशन की
 'prefs-watchlist-edits'    => 'बढ़ाई हुई ध्यानसूची में दिखाने के ज्यादा से ज्यादा बदलाव:',
 'prefs-misc'               => 'अन्य',
 'saveprefs'                => 'संजोयें',
-'resetprefs'               => 'पूर्ववत करें',
+'resetprefs'               => 'ना संजोये गये बदलाव रद्द करें',
 'oldpassword'              => 'पुराना पासवर्ड',
 'newpassword'              => 'नया कूटशब्द',
 'retypenew'                => 'नया कूटशब्द पुन: लिखें',

@@ -8,6 +8,7 @@
  * @author לערי ריינהארט
  * @author Sundar
  * @author Siebrand
+ * @author Jon Harald Søby
  */
 
 $skinNames = array(
@@ -712,6 +713,8 @@ $1 பயனரையோ அல்லது வேறு [[{{MediaWiki:Grouppage
 'logdelete-success'           => "'''நிகழ்வு பார்வையியலுமை வெற்றிகரமாக அமைக்கப்பட்டது.'''",
 'pagehist'                    => 'பக்க வரலாறு',
 'deletedhist'                 => 'நீக்கப்பட்ட வரலாறு',
+'revdelete-content'           => 'உள்ளடக்கம்',
+'revdelete-uname'             => 'பயனர் பெயர்',
 
 # History merging
 'mergehistory'                     => 'பக்க வரலாறுகளை இணை',
@@ -809,7 +812,7 @@ $1 பயனரையோ அல்லது வேறு [[{{MediaWiki:Grouppage
 'prefs-watchlist-edits'    => 'விரிவாக்கப்பட்ட கவனிப்புப் பட்டியலில் காட்டவேண்டிய தொகுப்புகளின் எண்ணிக்கை:',
 'prefs-misc'               => 'பலதரப்பட்டவை',
 'saveprefs'                => 'சேமி',
-'resetprefs'               => 'மீட்டமை',
+'resetprefs'               => 'சேமிக்காத மாற்றங்கள் நீக்குக',
 'oldpassword'              => 'பழைய கடவுச்சொல்:',
 'newpassword'              => 'புதிய கடவுச்சொல்:',
 'retypenew'                => 'புதிய கடவுச்சொல்லை மீண்டும் தட்டச்சிடு',
@@ -848,8 +851,8 @@ $1 பயனரையோ அல்லது வேறு [[{{MediaWiki:Grouppage
 'userrights-groupsavailable'       => 'கையிலிருப்பிலுள்ள குழுக்கள்:',
 'userrights-reason'                => 'மாற்றத்துக்கான காரணம்:',
 'userrights-available-none'        => 'உங்களால் குழு அங்கத்துவத்தை மாற்ற முடியாது.',
-'userrights-available-add'         => 'இந்தக் {{PLURAL:$2|குழுவுக்கு|குழுக்களுக்கு}} பயனர்களை இணைக்கலாம்: $1.',
-'userrights-available-remove'      => 'இந்தக் {{PLURAL:$2|குழுவிலிருந்து|குழுக்களிலிருந்து}} பயனர்களை நீக்க்கலாம்: $1.',
+'userrights-available-add'         => 'இந்தக் {{PLURAL:$2|குழுவுக்கு|குழுக்களுக்கு}} எந்தவொரு பயனரையும் இணைக்கலாம்: $1.',
+'userrights-available-remove'      => 'இந்தக் {{PLURAL:$2|குழுவிலிருந்து|குழுக்களிலிருந்து}} எந்தவொரு பயனரையும் நீக்க்கலாம்: $1.',
 'userrights-available-add-self'    => 'இந்தக் {{PLURAL:$2|குழுவுக்கு|குழுக்களுக்கு}} உங்களை இணைத்துக் கொள்ளலாம்: $1.',
 'userrights-available-remove-self' => 'இந்தக் {{PLURAL:$2|குழுவிலிருந்து|குழுக்களிலிருந்து}} உங்களை நீக்கிக் கொள்ளலாம்: $1.',
 'userrights-no-interwiki'          => 'ஏனைய விக்கிகளில் பயனர் உரிமைகளை மாற்றும் அனுமதி உங்களுக்குக் கிடையாது.',
@@ -1411,7 +1414,7 @@ $NEWPAGE
 'undelete-nodiff'              => 'முந்தைய திருத்தங்கள் காணப்படவில்லை.',
 'undeletebtn'                  => 'மீட்டெடு',
 'undeletelink'                 => 'மீட்டெடு',
-'undeletereset'                => 'மீட்டமை',
+'undeletereset'                => 'மீட்டமைக்க',
 'undeletecomment'              => 'கருத்து:',
 'undeletedarticle'             => '"$1" மீட்டெடுக்கப்பட்டது',
 'undeletedrevisions'           => '{{PLURAL:$1|1 திருத்தம் மீட்கப்பட்டது|$1 திருத்தங்கள் மீட்கப்பட்டன}}',
@@ -1635,7 +1638,8 @@ $1',
 'allmessagesname'           => 'பெயர்',
 'allmessagesdefault'        => 'இயல்பிருப்பு உரை',
 'allmessagescurrent'        => 'தற்போதைய உரை',
-'allmessagestext'           => 'இது மீடியாவிக்கி பெயர்வெளியிலுள்ள எல்லா முறைமை சார் தகவல்களினதும் பட்டியலாகும்.',
+'allmessagestext'           => 'இது மீடியாவிக்கி பெயர்வெளியிலுள்ள எல்லா முறைமை சார் தகவல்களினதும் பட்டியலாகும்.
+மொழிபெயர்ப்பில் உதவ விரும்பின் அருள்கூர்ந்து [http://translatewiki.net பீட்டாவிக்கி] தளத்துக்கு செல்லவும்.',
 'allmessagesnotsupportedDB' => "'''\$wgUseDatabaseMessages''' பூட்டப்பட்டுள்ளப் படியால் '''{{ns:special}}:Allmessages''' என்பதை பயன்படுத்த முடியாது.",
 'allmessagesfilter'         => 'தகவல் பெயர் வடி:',
 'allmessagesmodified'       => 'மாற்றம் செய்யப்பட்டவற்றை மட்டும் காட்டு',

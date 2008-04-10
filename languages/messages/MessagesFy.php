@@ -595,7 +595,7 @@ Gean nei of de keppeling dy jo brûkt hawwe wol goed is.",
 
 # Search results
 'searchresults'         => 'Sykresultaat',
-'searchresulttext'      => '"[[Project:Syk-rie|Ynformaasje oer it sykjen|Sykje troch de {{SITENAME}}]]" troch de {{SITENAME}}.',
+'searchresulttext'      => '[[{{MediaWiki:Helppage}}|{{int:help}}]]; Ynformaasje oer it sykjen troch de {{SITENAME}}.',
 'searchsubtitle'        => 'Foar fraach "[[:$1]]"',
 'searchsubtitleinvalid' => 'Foar fraach "$1"',
 'noexactmatch'          => 'Der is gjin side mei krekt dizze titel. Faaks is it better en Sykje nei dizze tekst.',

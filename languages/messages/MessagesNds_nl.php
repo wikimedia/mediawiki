@@ -926,15 +926,29 @@ Aandere beheerders van {{SITENAME}} kunnen de verbörgen inhoud bekieken en 't w
 'revdelete-submit'            => 'De esillecteren versie toepassen',
 'revdelete-logentry'          => 'zichbaorheid van bewarkingen is ewiezig veur [[$1]]',
 'logdelete-logentry'          => 'wiezigen zichbaorheid van gebeurtenisse [[$1]]',
-'revdelete-logaction'         => '$1 {{PLURAL:$1|wieziging|wiezigingen}} in-esteld naor modus $2',
-'logdelete-logaction'         => '$1 {{PLURAL:$1|actie|acties}} ummezet naor modus $2',
 'revdelete-success'           => 'Zichbaorheid van de wieziging succesvol in-esteld.',
 'logdelete-success'           => "'''Zichbaorheid van de gebeurtenisse is succesvol in-esteld.'''",
+'revdel-restore'              => 'Zichbaorheid wiezigen',
 'pagehist'                    => 'Paginageschiedenisse',
 'deletedhist'                 => 'Geschiedenisse dee vort-ehaold is',
+'revdelete-content'           => 'inhoud',
+'revdelete-summary'           => 'samenvatting bewarken',
+'revdelete-uname'             => 'gebrukersnaam',
+'revdelete-hid'               => 'hef $1 verbörgen',
+'revdelete-unhid'             => 'hef $1 zichbaor emaak',
+'revdelete-log-message'       => '$1 veur $2 {{PLURAL:$2|versie|versies}}',
+'logdelete-log-message'       => '$1 veur $2 {{PLURAL:$2|logboekregel|logboekregels}}',
+
+# Suppression log
+'suppressionlog' => 'Verbargingslogboek',
 
 # History merging
-'mergehistory' => "Geschiedenisse van pagina's bie mekaar doon",
+'mergehistory'        => "Geschiedenisse van pagina's bie mekaar doon",
+'mergehistory-from'   => 'Bronpagina:',
+'mergehistory-into'   => 'Bestemmingspagina:',
+'mergehistory-list'   => 'Samenvoegbaore bewarkingsgeschiedenisse',
+'mergehistory-go'     => 'Samenvoegbaore bewarkingen bekieken',
+'mergehistory-submit' => 'Versies bie mekaar doon',
 
 # Merge log
 'pagemerge-logentry' => 'voegen [[$1]] naor [[$2]] samen (versies tot en mit $3)',
@@ -1192,12 +1206,14 @@ A-j disse ofbeelding in volle grootte hemmen voeg 't dan toe, wiezig aanders de 
 'uploadnewversion-linktext' => 'Een niejere versie van dit bestand toevoegen.',
 
 # File reversion
-'filerevert'            => '$1 weerummedreien',
-'filerevert-legend'     => 'Bestand weerummezetten',
-'filerevert-comment'    => 'Opmarkingen:',
-'filerevert-submit'     => 'Weerummedreien',
-'filerevert-success'    => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\' is weerummedreid naor de [$4 versie op $2, $3]</span>.',
-'filerevert-badversion' => 'Der is gien veurige lokale versie van dit bestand mit de op-egeven tied.',
+'filerevert'                => '$1 weerummedreien',
+'filerevert-legend'         => 'Bestand weerummezetten',
+'filerevert-intro'          => '<span class="plainlinks">Je bin \'\'\'[[Media:$1|$1]]\'\'\' an \'t weerummedreien tot de [$4 versie van $2, $3]</span>.',
+'filerevert-comment'        => 'Opmarkingen:',
+'filerevert-defaultcomment' => 'Weerummedreid tot de versie van $1, $2',
+'filerevert-submit'         => 'Weerummedreien',
+'filerevert-success'        => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\' is weerummedreid naor de [$4 versie op $2, $3]</span>.',
+'filerevert-badversion'     => 'Der is gien veurige lokale versie van dit bestand mit de op-egeven tied.',
 
 # File deletion
 'filedelete'                  => '$1 vortdoon',
@@ -2160,7 +2176,10 @@ Kiek de pagina op de normale meniere nao.',
 'version-software-product'         => 'Preduk',
 
 # Special:Filepath
-'filepath'        => 'Bestanslokasie',
-'filepath-submit' => 'Zeuken',
+'filepath'         => 'Bestanslokasie',
+'filepath-submit'  => 'Zeuken',
+'filepath-summary' => "Disse speciale pagina geef 't hele pad veur een bestand. Ofbeeldingen wonnen in resolusie helemaole weer-egeven. Aandere bestanstypen wonnen gelieke in 't mit 't MIME-type verbunnen pregramma los edaon.
+
+Voer de bestansnaam in zonder 't veurvoegsel \"{{ns:image}}:\".",
 
 );

@@ -21,6 +21,7 @@
  * @author SPQRobin
  * @author Guillom
  * @author Jon Harald Søby
+ * @author IAlex
  */
 
 $skinNames = array(
@@ -1431,6 +1432,13 @@ Il y a {{PLURAL:$7|'''$7''' article|'''$7''' articles}} dans [[meta:Help:Job_que
 'listusersfrom'      => 'Afficher les utilisateurs à partir de :',
 'listusers-submit'   => 'Montrer',
 'listusers-noresult' => 'Aucun utilisateur trouvé. Vérifiez aussi les variantes de casse.',
+
+# Special:Listgrouprights
+'listgrouprights'         => 'Droits des groupes utilisateur',
+'listgrouprights-summary' => "Cette page contient une liste des groupes définis sur ce wiki ainsi que les droits d'accès qui y sont associés.",
+'listgrouprights-group'   => 'Groupe',
+'listgrouprights-rights'  => 'Droits associés',
+'listgrouprights-link'    => '[[Help:Droits des groupes#$1|$1]]',
 
 # E-mail user
 'mailnologin'     => 'Pas d’adresse',

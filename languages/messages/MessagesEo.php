@@ -1304,6 +1304,13 @@ komprenata kiel rekomendo aŭ reklamo.',
 'listusers-submit'   => 'Montri',
 'listusers-noresult' => 'Neniu uzanto trovita.',
 
+# Special:Listgrouprights
+'listgrouprights'         => 'Gruprajtoj de uzantoj',
+'listgrouprights-summary' => 'Jen listo de uzanto-grupoj difinitaj en ĉi tiu vikio, kun ties asociaj atingrajtoj.',
+'listgrouprights-group'   => 'Grupo',
+'listgrouprights-rights'  => 'Rajtoj',
+'listgrouprights-link'    => '[[Help:Group rights#$1|$1]]',
+
 # E-mail user
 'mailnologin'     => 'Neniu alsendota adreso',
 'mailnologintext' => 'Vi nepre estu [[Special:Userlogin|salutanta]] kaj havanta validan retpoŝtadreson en viaj [[Special:Preferences|preferoj]] por retpoŝti al aliaj uzantoj.',

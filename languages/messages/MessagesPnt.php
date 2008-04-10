@@ -16,6 +16,8 @@ $messages = array(
 'underline-always' => 'Πάντα',
 'underline-never'  => 'Καμίαν',
 
+'skinpreview' => '(Πρώτον τέρεμα)',
+
 # Dates
 'sunday'        => 'Κερεκήν',
 'monday'        => 'Δευτέραν',
@@ -69,12 +71,20 @@ $messages = array(
 'dec'           => 'Δεκ',
 
 # Categories related messages
-'categories'               => 'Κατηγορίας',
-'category_header'          => 'Σελίδας τη κατηγορίας "$1"',
-'subcategories'            => 'Υποκατηγορίας',
-'category-media-header'    => 'Μέσα απές σην κατηγορίαν "$1"',
-'category-empty'           => "''Ατή η κατηγορίαν πα 'κ εχ' νέ σελίδας νέ μέσα.''",
-'hidden-category-category' => 'Κρυμμέν κατηγορίας', # Name of the category where hidden categories will be listed
+'categories'                     => 'Κατηγορίας',
+'categoriespagetext'             => 'Τα κατηγορίας αφκά καικά έχνε σελίδας και μέσα.',
+'pagecategories'                 => '{{PLURAL:$1|Κατηγορίαν|Κατηγορίας}}',
+'category_header'                => 'Σελίδας τη κατηγορίας "$1"',
+'subcategories'                  => 'Υποκατηγορίας',
+'category-media-header'          => 'Μέσα απές σην κατηγορίαν "$1"',
+'category-empty'                 => "''Ατή η κατηγορίαν πα 'κ εχ' νέ σελίδας νέ μέσα.''",
+'hidden-categories'              => '{{PLURAL:$1|Κρυμμένον κατηγορίαν|Κρυμμένα κατηγορίας}}',
+'hidden-category-category'       => 'Κρυμμέν κατηγορίας', # Name of the category where hidden categories will be listed
+'category-subcat-count-limited'  => "Η κατηγορίαν ατή έχ' αφκά καικά {{PLURAL:$1|την υποκατηγορίαν|$1 τα υποκατηγορίας}}.",
+'category-article-count'         => "{{PLURAL:$2|Αυτή η κατηγορίαν έχ' την αφκά καικά σελίδαν μαναχόν.| Αφκά καικά {{PLURAL:$1|η σελίδαν εν|$1 τα σελίδας είναι}} σην κατηγορίαν ατέν, απές σο σύνολον τη $2.}}",
+'category-article-count-limited' => 'Αφκά καικά {{PLURAL:$1|η σελίδαν εν|$1 τα σελίδας είναι}} σην κατηγορίαν ατέν.',
+'category-file-count'            => "{{PLURAL:$2|Αυτή η κατηγορίαν έχ' το αφκά καικά αρχείον μαναχόν.| Αφκά καικά {{PLURAL:$1|το αρχείον εν|$1 τα αρχεία είναι}} σην κατηγορίαν ατέν, απές σο σύνολον τη $2.}}",
+'category-file-count-limited'    => "{{PLURAL:$1|Τ' αρχείον|$1 Τ' αρχεία}} αφκά καικά είν' σην κατηγορίαν.",
 
 'cancel'         => "Άφ'σον",
 'qbfind'         => 'Εύρον',
@@ -181,11 +191,15 @@ $messages = array(
 'headline_sample' => 'Κείμενον τίτλονος',
 
 # Edit pages
-'minoredit'          => 'Ατό εν μικρόν αλλαγήν',
+'minoredit'          => 'Μικρόν αλλαγήν',
 'watchthis'          => 'Ωρία τη σελίδαν ατέν',
 'savearticle'        => 'Κρα τη σελίδαν',
+'preview'            => 'Πρώτον τέρεμα',
+'showpreview'        => 'Δείξον το πρώτον τέρεμα',
 'showdiff'           => "Δείξον τ' αλλαγάς",
 'newarticle'         => '(Νέον)',
+'previewnote'        => "<strong>Ατό εν το πρώτον το τέρεμαν μαναχόν.
+Τ' αλλαγάς κ' εκρατέθαν!</strong>",
 'editing'            => 'Αλλαγήν $1',
 'template-protected' => '(ασπαλιγμένον)',
 
@@ -226,15 +240,21 @@ $messages = array(
 'statistics' => 'Στατιστικήν',
 
 # Miscellaneous special pages
-'lonelypages'    => 'Ορφανά σελίδας',
-'longpages'      => 'Τρανά σελίδας',
-'protectedpages' => 'Ασπαλιγμένα σελίδας',
-'listusers'      => 'Κατάλογον χρήστιων',
-'specialpages'   => 'Ειδικά σελίδας',
-'newpages'       => 'Καινούρεα σελίδας',
-'ancientpages'   => 'Ασ’ όλιον παλαιά σελίδας',
-'move'           => 'Αχταρμάν',
-'movethispage'   => 'Ποίσον έναν αχταρμάν τη σελίδαν',
+'lonelypages'             => 'Ορφανά σελίδας',
+'uncategorizedpages'      => "Σελίδας ντο 'κ έχνε κατηγορίαν",
+'uncategorizedcategories' => "Κατηγορίας ντο 'κ έχνε κατηγορίας",
+'wantedcategories'        => 'Κατηγορίας ντο θέλουμε',
+'wantedpages'             => 'Σελίδας ντο θέλουμε',
+'mostcategories'          => "Σελίδας με τ' ασ' όλτς πολλά κατηγορίας",
+'shortpages'              => 'Μικρά σελίδας',
+'longpages'               => 'Τρανά σελίδας',
+'protectedpages'          => 'Ασπαλιγμένα σελίδας',
+'listusers'               => 'Κατάλογον χρήστιων',
+'specialpages'            => 'Ειδικά σελίδας',
+'newpages'                => 'Καινούρεα σελίδας',
+'ancientpages'            => 'Ασ’ όλιον παλαιά σελίδας',
+'move'                    => 'Αχταρμάν',
+'movethispage'            => 'Ποίσον έναν αχταρμάν τη σελίδαν',
 
 # Book sources
 'booksources-go' => 'Δέβα',
@@ -262,12 +282,14 @@ $messages = array(
 'unwatching' => "'κ ωριάζω...",
 
 # Delete/protect/revert
-'deletepage'       => 'Σβήσον τη σελίδαν',
-'actioncomplete'   => 'Η ενέργειαν ετελέθεν',
-'deletedarticle'   => 'νεβζινέθεν η "[[$1]]"',
-'deletecomment'    => 'Λόγον για το σβήσιμο:',
-'protectcomment'   => 'Σχόλιον:',
-'restriction-type' => 'Δικαίωμαν:',
+'deletepage'            => 'Σβήσον τη σελίδαν',
+'actioncomplete'        => 'Η ενέργειαν ετελέθεν',
+'deletedarticle'        => 'νεβζινέθεν η "[[$1]]"',
+'deletecomment'         => 'Λόγον για το σβήσιμο:',
+'deleteotherreason'     => 'Άλλον/αλλομίαν λόγον:',
+'deletereasonotherlist' => 'Άλλον λόγον',
+'protectcomment'        => 'Σχόλιον:',
+'restriction-type'      => 'Δικαίωμαν:',
 
 # Namespace form on various pages
 'namespace' => 'Περιοχήν:',
@@ -291,7 +313,12 @@ $messages = array(
 'newtitle'    => 'Νέον τίτλον:',
 'move-watch'  => 'Αυτό τη σελίδαν ωρία',
 'movepagebtn' => 'Ποίσον αχταρμάν τη σελίδαν',
+'movedto'     => 'επήγεν σο',
+'1movedto2'   => '[[$1]] επήγεν σο [[$2]]',
 'movereason'  => 'Λόγον:',
+
+# Namespace 8 related
+'allmessages' => 'Μενέματα σύστηματη',
 
 # Thumbnails
 'thumbnail_error' => 'Έντον λάθος ση δημιουργίαν τη μικρογραφίας: $1',
@@ -305,6 +332,7 @@ $messages = array(
 'tooltip-pt-login'          => "Μπορείτε νε εφτάτε έναν λογαριασμόν αλλά 'κ πρεπ'.",
 'tooltip-pt-logout'         => 'Απιδεβένετεν τη Βικιπαίδειαν',
 'tooltip-ca-talk'           => 'Καλάτσεμαν για το άρθρον ατό',
+'tooltip-ca-edit'           => "Επορείς ν' αλλάζεις τη σελίδαν. Άμαν τέρεν τ' αλλαγάς πριν να κρατείς ατέν.",
 'tooltip-ca-viewsource'     => "Ατό η σελίδαν εν ασπαλιγμένον. Άμαν μπορείτε να τερείτε το κείμενον ατ'ς.",
 'tooltip-ca-protect'        => 'Ασπάλιγμα τη σελίδας',
 'tooltip-ca-delete'         => 'Σβήσον τη σελίδαν',
@@ -319,6 +347,7 @@ $messages = array(
 'tooltip-ca-nstab-template' => 'Τερέστεν τα πρότυπα',
 'tooltip-ca-nstab-category' => 'Τέρεν το σελίδαν τη κατηγορίας',
 'tooltip-save'              => "Κρα τ' αλλαγάς",
+'tooltip-preview'           => "Τέρεν τ' αλλαγάς πριχού να κρατείς τη σελίδαν!",
 'tooltip-diff'              => "Δείξον τ' αλλαγάς ντ' εποίκες σο κείμενον.",
 
 # Metadata

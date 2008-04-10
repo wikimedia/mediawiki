@@ -800,7 +800,7 @@ $2 Lidhje përcjellëse &nbsp; Kërko për $3 $9',
 'uploadnologintext'           => 'Duhet të keni [[Special:Userlogin|hyrë brenda]] për të dhënë skeda.',
 'upload_directory_read_only'  => 'Skedari i ngarkimit ($1) nuk mund të shkruhet nga shërbyesi.',
 'uploaderror'                 => 'Gabim dhënie',
-'uploadtext'                  => "'''NDALO!''' Përpara se të jepni këtu skedë, lexoni dhe ndiqni [[Project:Rregullat e përdorimit të figurave|Rregullat e përdorimit të figurave]] të {{SITENAME}}-s. Mos jepni skeda për të cilat autori (ose ju) nuk ka dhënë të drejtë për përdorim nën licencat e përdorura nga {{SITENAME}}.
+'uploadtext'                  => "'''NDALO!''' Përpara se të jepni këtu skedë, lexoni dhe ndiqni Rregullat e përdorimit të figurave të {{SITENAME}}-s. Mos jepni skeda për të cilat autori (ose ju) nuk ka dhënë të drejtë për përdorim nën licencat e përdorura nga {{SITENAME}}.
 
 Për të parë ose për të kërkuar figurat e dhëna më parë,
 shkoni tek [[Special:Imagelist|lista e figurave të dhëna]].

@@ -49,10 +49,17 @@ Pabusten ing pamanaliling dake kapamilatan [alilan] ning suglung',
 'wed'       => 'Mie',
 'thu'       => 'Jue',
 'fri'       => 'Bie',
+'january'   => 'Eneru',
+'february'  => 'Febreru',
+'march'     => 'Marsu',
 'april'     => 'Abril',
 'june'      => 'Juniu',
 'july'      => 'Juliu',
 'august'    => 'Agostu',
+'september' => 'Setiembri',
+'october'   => 'Octubri',
+'november'  => 'Noviembri',
+'december'  => 'Diciembri',
 'april-gen' => 'Abril',
 'apr'       => 'Abr',
 
@@ -63,18 +70,27 @@ Pabusten ing pamanaliling dake kapamilatan [alilan] ning suglung',
 'anontalk'       => 'Pamakisabi para keng IPing ini',
 'and'            => 'at',
 
-'help'           => 'Saup',
-'go'             => 'Sulung',
-'history'        => 'Amlat ning bulung',
-'history_short'  => 'Amlat',
-'permalink'      => 'Suglung a permanenti',
-'edit'           => 'Alilan',
-'delete'         => 'Buran',
-'deletethispage' => 'Buran ya ing bulung a ini',
-'articlepage'    => 'Lawen me ing kalamnan ning bulung',
-'otherlanguages' => 'Kareng aliwang amanu',
-'lastmodifiedat' => 'Tauli yang miyalilan ining bulung anyang $2, $1.', # $1 date, $2 time
-'jumptosearch'   => 'paintunan',
+'tagline'          => 'Ibat king {{SITENAME}}',
+'help'             => 'Saup',
+'search'           => 'Maintun',
+'searchbutton'     => 'Maintun',
+'go'               => 'Sulung',
+'searcharticle'    => 'Sulung',
+'history'          => 'Amlat ning bulung',
+'history_short'    => 'Amlat',
+'permalink'        => 'Suglung a permanenti',
+'edit'             => 'Alilan',
+'delete'           => 'Buran',
+'deletethispage'   => 'Buran ya ing bulung a ini',
+'personaltools'    => 'Sariling kasangkapan',
+'articlepage'      => 'Lawen me ing kalamnan ning bulung',
+'talk'             => 'Pamisabi-sabi',
+'toolbox'          => 'Kasangkapan',
+'otherlanguages'   => 'Kareng aliwang amanu',
+'lastmodifiedat'   => 'Tauli yang miyalilan ining bulung anyang $2, $1.', # $1 date, $2 time
+'jumpto'           => 'Lundag ka king:',
+'jumptonavigation' => 'pamaglibut',
+'jumptosearch'     => 'paintunan',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'Tungkul {{SITENAME}}',
@@ -96,7 +112,10 @@ Pabusten ing pamanaliling dake kapamilatan [alilan] ning suglung',
 'badaccess-group2' => 'Ing pamipamuk a inyawad mu kareng yang talagamit karing metung a lupun $1.',
 'badaccess-groups' => 'Ing pamipamuk a inyawad mu kareng yang talagamit karing metung a lupun $1.',
 
-'editold' => 'alilan',
+'retrievedfrom'   => 'Mekua ya king "$1"',
+'editsection'     => 'mag-edit',
+'editold'         => 'alilan',
+'editsectionhint' => 'Mag-edit dake: $1',
 
 # General errors
 'databaseerror'   => 'Pamagkamali king database (simpanan)',
@@ -111,6 +130,7 @@ Pabusten ing pamanaliling dake kapamilatan [alilan] ning suglung',
 'welcomecreation'            => '== Malaus ka, $1! ==
 
 Melalang ne ing kekang account. E mo kakalingwan alilan deng kekang piniling {{SITENAME}}',
+'userlogin'                  => 'Mag-login / maglalang account',
 'createaccount'              => 'Maglalang kang account',
 'badretype'                  => 'Ding password a linub mu ela mibabage.',
 'yourlanguage'               => 'Amanu:',
@@ -126,9 +146,12 @@ e malyaring gumamit king password recovery function bang e mayayabusu iti.',
 'resetpass_forbidden' => 'E la malyaring alilan deng password keng wiking ini',
 
 # Edit page toolbar
-'bold_sample' => 'Makapasalang kulitian',
+'bold_sample' => 'Makapasalang kulitan',
 'bold_tip'    => 'Makapal pangasulat',
+'link_sample' => 'Bansag ning suglung',
+'link_tip'    => 'Suglung a pangkilub',
 'extlink_tip' => 'Suglung a palwal (tandanan me ing http:// prefix)',
+'media_tip'   => 'Suglung king simpan (File link)',
 
 # Edit pages
 'anoneditwarning'       => "'''Babala:''' Eka makalog-in.  Ing kekang IP address mitala ya kening bulung ning amlat pamanalili.",
@@ -154,6 +177,7 @@ Mangaku ka mu naman a ika mismu ing sinulat kaniti, o acopia me ketang metung a 
 'viewpagelogs'        => 'Lon la reng log para king bulung a ini',
 'currentrev'          => 'Kasalungsungan a pangayalili',
 'currentrevisionlink' => 'Kasalungsungan a pamagbayu',
+'last'                => 'tauli',
 
 # Revision feed
 'history-feed-empty' => 'Ala yu ing bulung a paintunan mu.
@@ -308,6 +332,7 @@ mu nung sanu retang bulung a sinira da).',
 'anononlyblock'            => 'anon. bukud tangi',
 'createaccountblock'       => 'makasabat ing pamaglalang account',
 'blocklink'                => 'sabat',
+'contribslink'             => 'ambag',
 'autoblocker'              => 'Tambing yang mesabat uling bayu-bayu ne pamung ginamit "[[User:$1|$1]]" ing kekang IP address.  Mesabat ya i $1 uling: "\'\'\'$2\'\'\'"',
 'blocklogpage'             => 'Sabat tala',
 'blocklogentry'            => 'Mesabat ya ing "[[$1]]" a mapupus kilub ning $2 $3',
@@ -341,7 +366,19 @@ Gumamit na kang aliwang lagyu.',
 'import' => 'Maglub bulung',
 
 # Tooltip help for the actions
-'tooltip-p-logo' => 'Pun Bulung',
+'tooltip-pt-login'        => 'Agkat da kang mag login, oneng e sapilitan iti.',
+'tooltip-ca-talk'         => 'Pamisabi-sabi tungkul king content page',
+'tooltip-search'          => 'Maintun {{SITENAME}}',
+'tooltip-p-logo'          => 'Pun Bulung',
+'tooltip-n-mainpage'      => 'Munta king Pun Bulung',
+'tooltip-n-portal'        => 'Tungkul keng proyektu, nanung agawa mu, nung nu ka makapanintun king kailangan mu',
+'tooltip-n-recentchanges' => 'Ing listaan da reng bayung mengayalili king wiki.',
+'tooltip-n-randompage'    => 'Maglulan ka andiang sanung bulung',
+'tooltip-n-help'          => 'Ing lugal nung nu malyaring abalu.',
+'tooltip-n-sitesupport'   => 'Saupan yu kami',
+'tooltip-t-whatlinkshere' => 'Listaan da reng eganaganang bulung ning wiki a makasuglung keni',
+'tooltip-t-upload'        => 'Maglulan simpan (upload files)',
+'tooltip-t-specialpages'  => 'Listaan da reng anggang espesial a bulung',
 
 # Stylesheets
 'common.css'   => '/** CSS mikabit keni maging mabisa ya karing eganaganang pabalat */',
@@ -360,6 +397,13 @@ Gumamit na kang aliwang lagyu.',
 # Special:Newimages
 'ilsubmit' => 'Manintun',
 'bydate'   => 'agpang keng aldo',
+
+# Bad image list
+'bad_image_list' => 'Ing ayus (format) yapin ing makatuki:
+
+Den mung bageng makalista (gulis a magumpisa king *) ing makayabe.
+Kailangan yang suglung king simpan (file) a maki dipirensia (bad file) ing mumunang sulung king gulis.
+Kailangan, e la mamayun king patakaran (exceptions) deng suglung katuki na, alimbawa, deng bulung nung nu ya lunto king gulis (inline) ing simpan.',
 
 # EXIF tags
 'exif-software'        => 'Software a megamit',
