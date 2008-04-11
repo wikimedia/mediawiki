@@ -275,9 +275,7 @@
 	'sq' => 'Shqip',		# Albanian
 	'sr' => 'Српски / Srpski',	# Serbian
 	'sr-ec' => 'ћирилица',	# Serbian cyrillic ekavian
-	'sr-jc' => 'ијекавица',	# Serbian cyrillic iyekvian # 2008-04-10: probably obsolete. 'sr' community has been asked for clarity
 	'sr-el' => 'latinica',	# Serbian latin ekavian
-	'sr-jl' => 'ijekavica',	# Serbian latin iyekavian # 2008-04-10: probably obsolete. 'sr' community has been asked for clarity
 	'srn' => 'Sranantongo',		# Sranan Tongo
 	'ss' => 'SiSwati',		# Swati
 	'st' => 'Sesotho',		# Southern Sotho

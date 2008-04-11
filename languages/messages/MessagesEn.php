@@ -2671,8 +2671,6 @@ Variants for Chinese language
 # Variants for Serbian language
 'variantname-sr-ec' => 'sr-ec', # only translate this message to other languages if you have to change it
 'variantname-sr-el' => 'sr-el', # only translate this message to other languages if you have to change it
-'variantname-sr-jc' => 'sr-jc', # only translate this message to other languages if you have to change it
-'variantname-sr-jl' => 'sr-jl', # only translate this message to other languages if you have to change it
 'variantname-sr'    => 'sr', # only translate this message to other languages if you have to change it
 
 # Variants for Kazakh language

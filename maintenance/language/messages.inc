@@ -1886,8 +1886,6 @@ $wgMessageStructure = array(
 	'variantname-sr' => array(
 		'variantname-sr-ec',
 		'variantname-sr-el',
-		'variantname-sr-jc',
-		'variantname-sr-jl',
 		'variantname-sr',
 	),
 	'variantname-kk' => array(

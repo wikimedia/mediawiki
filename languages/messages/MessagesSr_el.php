@@ -1639,8 +1639,6 @@ Svi transviki uvozi su zabeleženi u [[Posebno:Log/import|istoriji uvoza]].',
 # Variants for Serbian language
 'variantname-sr-ec' => 'ћирилица',
 'variantname-sr-el' => 'latinica',
-'variantname-sr-jc' => 'jekav',
-'variantname-sr-jl' => 'jekav',
 'variantname-sr'    => 'disable',
 
 # Metadata
