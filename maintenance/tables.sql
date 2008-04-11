@@ -384,6 +384,9 @@ CREATE TABLE /*$wgDBprefix*/archive (
   -- Will be NULL for pages deleted prior to 1.11.
   ar_page_id int unsigned,
   
+  -- Original previous revision
+  ar_parent_id int unsigned default NULL,
+  
   KEY name_title_timestamp (ar_namespace,ar_title,ar_timestamp),
   KEY usertext_timestamp (ar_user_text,ar_timestamp)
 
