@@ -1537,11 +1537,11 @@ $2',
 'listusers-noresult' => 'לא נמצאו משתמשים.',
 
 # Special:Listgrouprights
-'listgrouprights'         => 'רשימת הרשאות לקבוצה',
-'listgrouprights-summary' => 'זוהי רשימה של קבוצות המשתמש המוגדרות באתר זה, עם הרשאות של כל אחת.',
-'listgrouprights-group'   => 'קבוצה',
-'listgrouprights-rights'  => 'הרשאות',
-'listgrouprights-link'    => '[[Help:הרשאות#$1|$1]]',
+'listgrouprights'          => 'רשימת הרשאות לקבוצה',
+'listgrouprights-summary'  => 'זוהי רשימה של קבוצות המשתמש המוגדרות באתר זה, עם הרשאות של כל אחת.',
+'listgrouprights-group'    => 'קבוצה',
+'listgrouprights-rights'   => 'הרשאות',
+'listgrouprights-helppage' => 'Help:הרשאות',
 
 # E-mail user
 'mailnologin'     => 'אין כתובת לשליחה',

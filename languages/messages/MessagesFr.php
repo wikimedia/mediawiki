@@ -1434,11 +1434,11 @@ Il y a {{PLURAL:$7|'''$7''' article|'''$7''' articles}} dans [[meta:Help:Job_que
 'listusers-noresult' => 'Aucun utilisateur trouvé. Vérifiez aussi les variantes de casse.',
 
 # Special:Listgrouprights
-'listgrouprights'         => 'Droits des groupes utilisateur',
-'listgrouprights-summary' => "Cette page contient une liste des groupes définis sur ce wiki ainsi que les droits d'accès qui y sont associés.",
-'listgrouprights-group'   => 'Groupe',
-'listgrouprights-rights'  => 'Droits associés',
-'listgrouprights-link'    => '[[Help:Droits des groupes#$1|$1]]',
+'listgrouprights'          => 'Droits des groupes utilisateur',
+'listgrouprights-summary'  => "Cette page contient une liste des groupes définis sur ce wiki ainsi que les droits d'accès qui y sont associés.",
+'listgrouprights-group'    => 'Groupe',
+'listgrouprights-rights'   => 'Droits associés',
+'listgrouprights-helppage' => 'Help:Droits des groupes',
 
 # E-mail user
 'mailnologin'     => 'Pas d’adresse',

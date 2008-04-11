@@ -1370,11 +1370,11 @@ Template:搞清楚',
 'listusers-noresult' => '搵唔到用戶。',
 
 # Special:Listgrouprights
-'listgrouprights'         => '用戶組權限',
-'listgrouprights-summary' => '下面係一個響呢個wiki定義咗嘅用戶權限一覽，同埋佢哋嘅存取權。',
-'listgrouprights-group'   => '組',
-'listgrouprights-rights'  => '權',
-'listgrouprights-link'    => '[[Help:組權限#$1|$1]]',
+'listgrouprights'          => '用戶組權限',
+'listgrouprights-summary'  => '下面係一個響呢個wiki定義咗嘅用戶權限一覽，同埋佢哋嘅存取權。',
+'listgrouprights-group'    => '組',
+'listgrouprights-rights'   => '權',
+'listgrouprights-helppage' => 'Help:組權限',
 
 # E-mail user
 'mailnologin'     => '冇傳送地址',

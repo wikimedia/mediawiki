@@ -1334,11 +1334,11 @@ An all Rei sti Linken zur éischter an zweeter Viruleedung, souwéi déi éischt
 'listusers-noresult' => 'Kee Benotzer fonnt.',
 
 # Special:Listgrouprights
-'listgrouprights'         => 'Rechter vun de Benotzergruppen',
-'listgrouprights-summary' => 'Dëst ass eng Lëscht vun den op dëser Wiki definéierte Benotzergruppen an den domatt verbonnene Rechter.',
-'listgrouprights-group'   => 'Grupp',
-'listgrouprights-rights'  => 'Rechter',
-'listgrouprights-link'    => '[[Help:Grupperechter#$1|$1]]',
+'listgrouprights'          => 'Rechter vun de Benotzergruppen',
+'listgrouprights-summary'  => 'Dëst ass eng Lëscht vun den op dëser Wiki definéierte Benotzergruppen an den domatt verbonnene Rechter.',
+'listgrouprights-group'    => 'Grupp',
+'listgrouprights-rights'   => 'Rechter',
+'listgrouprights-helppage' => 'Help:Grupperechter',
 
 # E-mail user
 'mailnologintext' => 'Dir musst [[Special:Userlogin|ugemellt]] sinn an eng gülteg E-Mail Adress an äre [[Special:Preferences|Asteelunge]] aginn hunn, fir engem anere Benotzer eng E-Mail ze schécken.',

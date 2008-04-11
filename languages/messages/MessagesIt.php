@@ -1368,11 +1368,11 @@ Ciascuna riga contiene i collegamenti al primo ed al secondo redirect, oltre all
 'listusers-noresult' => 'Nessun utente risponde ai criteri impostati.',
 
 # Special:Listgrouprights
-'listgrouprights'         => 'Diritti del gruppo utente',
-'listgrouprights-summary' => "Di seguito sono elencati i gruppi utente definiti per questo wiki, con i diritti d'accesso loro associati.",
-'listgrouprights-group'   => 'Gruppo',
-'listgrouprights-rights'  => 'Diritti',
-'listgrouprights-link'    => '[[Help:Diritti del gruppo#$1|$1]]',
+'listgrouprights'          => 'Diritti del gruppo utente',
+'listgrouprights-summary'  => "Di seguito sono elencati i gruppi utente definiti per questo wiki, con i diritti d'accesso loro associati.",
+'listgrouprights-group'    => 'Gruppo',
+'listgrouprights-rights'   => 'Diritti',
+'listgrouprights-helppage' => 'Help:Diritti del gruppo',
 
 # E-mail user
 'mailnologin'     => 'Nessun indirizzo cui inviare il messaggio',

@@ -128,11 +128,11 @@ Agar jo aur koi ii request karis hai nai to aap aapan password yaad kar liya hai
 'eauthentsent'          => 'Ek confirmation e-mail nominated e-mail address be bhej dewa gais hai. Aur mail ii account pe bheje se pahile e-mail me likha instructions ke follow karo, ii confirm kare ke khatir ki account aap ke hai.',
 
 # Edit page toolbar
-'link_tip'        => 'Bhitari jorr',
-'math_sample'     => 'Hian pe formula insert karo',
-'nowiki_tip'      => 'Wiki bhasa ke anusaar badlao nahi karo',
-'sig_tip'         => 'Aapke signature time ke saathe',
-'hr_tip'          => 'Samthar line (bahut jaada nai kaam me laana)',
+'link_tip'    => 'Bhitari jorr',
+'math_sample' => 'Hian pe formula insert karo',
+'nowiki_tip'  => 'Wiki bhasa ke anusaar badlao nahi karo',
+'sig_tip'     => 'Aapke signature time ke saathe',
+'hr_tip'      => 'Samthar line (bahut jaada nai kaam me laana)',
 
 # Edit pages
 'summary'                => 'Sanchhipt',
@@ -333,9 +333,9 @@ Legend: (abhi) = abhi ke version se farka,
 'booksources' => 'Pustak sources',
 
 # Special:Log
-'specialloguserlabel'  => 'Sadasya:',
-'log'                  => 'Suchi',
-'all-logs-page'        => 'Sab suchi',
+'specialloguserlabel' => 'Sadasya:',
+'log'                 => 'Suchi',
+'all-logs-page'       => 'Sab suchi',
 
 # Special:Allpages
 'allpages'       => 'Sab panna',
@@ -374,29 +374,29 @@ Future changes to this page and its associated talk page will be listed there, a
 'unwatching' => 'Nai dekhtaa...',
 
 # Delete/protect/revert
-'deletepage'                  => 'Pana ke delete karo',
-'historywarning'              => 'Sawadhan: Jon page aap delete kare waala hai ke itihaas hai:',
-'confirmdeletetext'           => 'Aap ek panna ke uske itihaas ke saathe delete kare waala hai.
+'deletepage'             => 'Pana ke delete karo',
+'historywarning'         => 'Sawadhan: Jon page aap delete kare waala hai ke itihaas hai:',
+'confirmdeletetext'      => 'Aap ek panna ke uske itihaas ke saathe delete kare waala hai.
 Meharbani kar ke iske confirm karo, ki aap iske consequences ke samajhta hai, aur aap iske [[{{MediaWiki:Policy-url}}|the policy]] ke policy ke niche delete karta hai.',
-'actioncomplete'              => 'Action puura hoe gais hai',
-'deletedtext'                 => '"<nowiki>$1</nowiki>" ke delete kar dewa gais hai. Abhi jaldi ke deletions ke record dekhe khatir $2 ke dekho.',
-'deletedarticle'              => '"[[$1]]" ke hatae dewa gis hai',
-'dellogpage'                  => 'Hatane ke suchi',
-'deletecomment'               => 'Delete kare ke kaaran:',
-'deleteotherreason'           => 'Aur/duusra kaaran:',
-'deletereasonotherlist'       => 'Duusra kaaran',
-'rollbacklink'                => 'pahile jaise karo',
-'protectlogpage'              => 'Surakchha suchi',
-'protectcomment'              => 'Tiprri:',
-'protectexpiry'               => 'Khalas hoe hai:',
-'protect_expiry_invalid'      => 'Khalas hoe waala time valid nai hai.',
-'protect_expiry_old'          => 'Khalas hoe waala time past me hai.',
-'protect-unchain'             => 'Naam badle waala ijaajat kholo',
-'protect-locked-access'       => 'Aap ke account ke panna ke ijaajat badle ijaajat nai dewe hai.
+'actioncomplete'         => 'Action puura hoe gais hai',
+'deletedtext'            => '"<nowiki>$1</nowiki>" ke delete kar dewa gais hai. Abhi jaldi ke deletions ke record dekhe khatir $2 ke dekho.',
+'deletedarticle'         => '"[[$1]]" ke hatae dewa gis hai',
+'dellogpage'             => 'Hatane ke suchi',
+'deletecomment'          => 'Delete kare ke kaaran:',
+'deleteotherreason'      => 'Aur/duusra kaaran:',
+'deletereasonotherlist'  => 'Duusra kaaran',
+'rollbacklink'           => 'pahile jaise karo',
+'protectlogpage'         => 'Surakchha suchi',
+'protectcomment'         => 'Tiprri:',
+'protectexpiry'          => 'Khalas hoe hai:',
+'protect_expiry_invalid' => 'Khalas hoe waala time valid nai hai.',
+'protect_expiry_old'     => 'Khalas hoe waala time past me hai.',
+'protect-unchain'        => 'Naam badle waala ijaajat kholo',
+'protect-locked-access'  => 'Aap ke account ke panna ke ijaajat badle ijaajat nai dewe hai.
 Panna ke abhi ke settings hian hai <strong>$1</strong>:',
-'protect-expiring'            => '$1 khalaas hoe hai (UTC)',
-'restriction-type'            => 'Ijaajat:',
-'restriction-level'           => 'Roke ke niyam:',
+'protect-expiring'       => '$1 khalaas hoe hai (UTC)',
+'restriction-type'       => 'Ijaajat:',
+'restriction-level'      => 'Roke ke niyam:',
 
 # Undelete
 'undeletebtn' => 'Pahile jaise kar do',

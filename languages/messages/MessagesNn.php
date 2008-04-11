@@ -1439,11 +1439,11 @@ Alle sidene er vortne viste {{PLURAL:$3|'''éin''' gong|'''$3''' gonger}} og end
 'listusers-noresult' => 'Ingen brukarnamn vart funne.',
 
 # Special:Listgrouprights
-'listgrouprights'         => 'Tilgangar for brukargrupper',
-'listgrouprights-summary' => 'Lista nedanfor viser brukargruppene på denne wikien, med dei tilhøyrande tilgangane.',
-'listgrouprights-group'   => 'Gruppe',
-'listgrouprights-rights'  => 'Tilgangar',
-'listgrouprights-link'    => '[[Help:Gruppetilgangar#$1|$1]]',
+'listgrouprights'          => 'Tilgangar for brukargrupper',
+'listgrouprights-summary'  => 'Lista nedanfor viser brukargruppene på denne wikien, med dei tilhøyrande tilgangane.',
+'listgrouprights-group'    => 'Gruppe',
+'listgrouprights-rights'   => 'Tilgangar',
+'listgrouprights-helppage' => 'Help:Gruppetilgangar',
 
 # E-mail user
 'mailnologin'     => 'Inga avsendaradresse',

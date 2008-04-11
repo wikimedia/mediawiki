@@ -1557,11 +1557,11 @@ U kunt ook kiezen voor specifieke logboeken en filteren op gebruiker en paginana
 'listusers-noresult' => 'Geen gebruiker(s) gevonden.',
 
 # Special:Listgrouprights
-'listgrouprights'         => 'Rechten van gebruikersgroepen',
-'listgrouprights-summary' => 'Op deze pagina staan de gebruikersgroepen in deze wiki beschreven, met hun bijbehorende rechten.',
-'listgrouprights-group'   => 'Groep',
-'listgrouprights-rights'  => 'Rechten',
-'listgrouprights-link'    => '[[Help:Gebruikersrechten#$1|$1]]',
+'listgrouprights'          => 'Rechten van gebruikersgroepen',
+'listgrouprights-summary'  => 'Op deze pagina staan de gebruikersgroepen in deze wiki beschreven, met hun bijbehorende rechten.',
+'listgrouprights-group'    => 'Groep',
+'listgrouprights-rights'   => 'Rechten',
+'listgrouprights-helppage' => 'Help:Gebruikersrechten',
 
 # E-mail user
 'mailnologin'     => 'Geen verzendadres beschikbaar',

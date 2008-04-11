@@ -1612,11 +1612,11 @@ PICT # misc.
 'listusers-noresult' => 'لم يتم إيجاد مستخدم.',
 
 # Special:Listgrouprights
-'listgrouprights'         => 'صلاحيات مجموعات المستخدمين',
-'listgrouprights-summary' => 'التالي قائمة بمجموعات المستخدمين المعرفة في هذه الويكي، مع صلاحياتها المصاحبة.',
-'listgrouprights-group'   => 'المجموعة',
-'listgrouprights-rights'  => 'الصلاحيات',
-'listgrouprights-link'    => '[[Help:صلاحيات المجموعات#$1|$1]]',
+'listgrouprights'          => 'صلاحيات مجموعات المستخدمين',
+'listgrouprights-summary'  => 'التالي قائمة بمجموعات المستخدمين المعرفة في هذه الويكي، مع صلاحياتها المصاحبة.',
+'listgrouprights-group'    => 'المجموعة',
+'listgrouprights-rights'   => 'الصلاحيات',
+'listgrouprights-helppage' => 'Help:صلاحيات المجموعات',
 
 # E-mail user
 'mailnologin'     => 'لا يوجد عنوان للإرسال',

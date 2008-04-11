@@ -1309,7 +1309,6 @@ komprenata kiel rekomendo aŭ reklamo.',
 'listgrouprights-summary' => 'Jen listo de uzanto-grupoj difinitaj en ĉi tiu vikio, kun ties asociaj atingrajtoj.',
 'listgrouprights-group'   => 'Grupo',
 'listgrouprights-rights'  => 'Rajtoj',
-'listgrouprights-link'    => '[[Help:Group rights#$1|$1]]',
 
 # E-mail user
 'mailnologin'     => 'Neniu alsendota adreso',

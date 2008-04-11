@@ -1532,11 +1532,11 @@ Zobrazení můžete zúžit výběrem typu záznamu, uživatelského jména nebo
 'listusers-noresult' => 'Nenalezen žádný uživatel.',
 
 # Special:Listgrouprights
-'listgrouprights'         => 'Práva skupin uživatelů',
-'listgrouprights-summary' => 'Toto je seznam skupin uživatelů definovaných na této wiki a&nbsp;jejich přístupových práv',
-'listgrouprights-group'   => 'Skupina',
-'listgrouprights-rights'  => 'Práva',
-'listgrouprights-link'    => '[[Help:Práva skupiny#$1|$1]]',
+'listgrouprights'          => 'Práva skupin uživatelů',
+'listgrouprights-summary'  => 'Toto je seznam skupin uživatelů definovaných na této wiki a&nbsp;jejich přístupových práv',
+'listgrouprights-group'    => 'Skupina',
+'listgrouprights-rights'   => 'Práva',
+'listgrouprights-helppage' => 'Help:Práva skupiny',
 
 # E-mail user
 'mailnologin'     => 'Bez odesílací adresy',

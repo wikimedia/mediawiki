@@ -1103,11 +1103,11 @@ $2',
 'listusers-noresult' => '尋無簿。',
 
 # Special:Listgrouprights
-'listgrouprights'         => '簿組權',
-'listgrouprights-summary' => '下乃wiki之簿權表及存取之權也。',
-'listgrouprights-group'   => '組',
-'listgrouprights-rights'  => '權',
-'listgrouprights-link'    => '[[Help:組權#$1|$1]]',
+'listgrouprights'          => '簿組權',
+'listgrouprights-summary'  => '下乃wiki之簿權表及存取之權也。',
+'listgrouprights-group'    => '組',
+'listgrouprights-rights'   => '權',
+'listgrouprights-helppage' => 'Help:組權',
 
 # E-mail user
 'mailnologin'     => '無驛',

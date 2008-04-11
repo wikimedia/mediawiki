@@ -1268,11 +1268,11 @@ La [http://meta.wikimedia.org/wiki/Help:Job_queue coa] la contien '''\$7''' pro�
 'listusers-noresult' => 'Nissun utente el risponde ai criteri inpostà.',
 
 # Special:Listgrouprights
-'listgrouprights'         => 'Diriti dei grupi utenti',
-'listgrouprights-summary' => 'Sta qua la xe na lista dei grupi de utenti definìi su sta wiki, coi diriti asocià a ognuno.',
-'listgrouprights-group'   => 'Grupo',
-'listgrouprights-rights'  => 'Diriti',
-'listgrouprights-link'    => '[[Help:Diriti dei grupi#$1|$1]]',
+'listgrouprights'          => 'Diriti dei grupi utenti',
+'listgrouprights-summary'  => 'Sta qua la xe na lista dei grupi de utenti definìi su sta wiki, coi diriti asocià a ognuno.',
+'listgrouprights-group'    => 'Grupo',
+'listgrouprights-rights'   => 'Diriti',
+'listgrouprights-helppage' => 'Help:Diriti dei grupi',
 
 # E-mail user
 'mailnologin'     => 'Nissun indirizo a cui mandarghe el messagio',

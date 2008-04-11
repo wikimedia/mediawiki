@@ -1464,11 +1464,11 @@ auf die bereits die erste Weiterleitung zeigen sollte.',
 'listusers-noresult' => 'Keinen Benutzer gefunden.',
 
 # Special:Listgrouprights
-'listgrouprights'         => 'Benutzergruppen-Rechte',
-'listgrouprights-summary' => 'Dies ist eine Liste der in diesem Wiki definierten Benutzergruppen und den damit verbundenen Rechten.',
-'listgrouprights-group'   => 'Gruppe',
-'listgrouprights-rights'  => 'Rechte',
-'listgrouprights-link'    => '[[Help:Gruppenrechte#$1|$1]]',
+'listgrouprights'          => 'Benutzergruppen-Rechte',
+'listgrouprights-summary'  => 'Dies ist eine Liste der in diesem Wiki definierten Benutzergruppen und den damit verbundenen Rechten.',
+'listgrouprights-group'    => 'Gruppe',
+'listgrouprights-rights'   => 'Rechte',
+'listgrouprights-helppage' => 'Help:Gruppenrechte',
 
 # E-mail user
 'mailnologin'     => 'Fehler beim E-Mail-Versand',

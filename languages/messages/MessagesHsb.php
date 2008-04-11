@@ -1388,7 +1388,6 @@ Dołhosć [http://meta.wikimedia.org/wiki/Help:Job_queue rynka nadawkow] je '''$
 'listgrouprights-summary' => 'Slěduje lisćina wužiwarskich skupinow na tutej wikiji z jich wotpowědnymi přistupnymi prawami.',
 'listgrouprights-group'   => 'Skupina',
 'listgrouprights-rights'  => 'Prawa',
-'listgrouprights-link'    => '[[Help:Group rights#$1|$1]]',
 
 # E-mail user
 'mailnologin'     => 'Njejsy přizjewjeny.',

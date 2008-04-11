@@ -1476,11 +1476,11 @@ PICT # различные
 'listusers-noresult' => 'Не найдено участников.',
 
 # Special:Listgrouprights
-'listgrouprights'         => 'Права групп участников',
-'listgrouprights-summary' => 'Ниже представлен список определённых в этой вики групп участников, указаны соответствующие им права доступа.',
-'listgrouprights-group'   => 'Группа',
-'listgrouprights-rights'  => 'Права',
-'listgrouprights-link'    => '[[Help:Права групп#$1|$1]]',
+'listgrouprights'          => 'Права групп участников',
+'listgrouprights-summary'  => 'Ниже представлен список определённых в этой вики групп участников, указаны соответствующие им права доступа.',
+'listgrouprights-group'    => 'Группа',
+'listgrouprights-rights'   => 'Права',
+'listgrouprights-helppage' => 'Help:Права групп',
 
 # E-mail user
 'mailnologin'     => 'Адрес для отправки отсутствует',

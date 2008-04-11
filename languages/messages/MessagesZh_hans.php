@@ -1316,11 +1316,11 @@ Template:消除歧義',
 'listusers-noresult' => '找不到用户。',
 
 # Special:Listgrouprights
-'listgrouprights'         => '用户群组权限',
-'listgrouprights-summary' => '以下面是一个在这个wiki中定义出来的用户权限列表，以及它们的访问权。',
-'listgrouprights-group'   => '群组',
-'listgrouprights-rights'  => '权限',
-'listgrouprights-link'    => '[[Help:群组权限#$1|$1]]',
+'listgrouprights'          => '用户群组权限',
+'listgrouprights-summary'  => '以下面是一个在这个wiki中定义出来的用户权限列表，以及它们的访问权。',
+'listgrouprights-group'    => '群组',
+'listgrouprights-rights'   => '权限',
+'listgrouprights-helppage' => 'Help:群组权限',
 
 # E-mail user
 'mailnologin'     => '无电邮地址',

@@ -1257,11 +1257,11 @@ Rikuyniykitaqa k'ullkuchaytam atinki hallch'a layata, ruraqpa sutinta icha chaya
 'listusers-noresult' => 'Ruraqqa manam tarisqachu.',
 
 # Special:Listgrouprights
-'listgrouprights'         => 'Ruraq huñup hayñinkuna',
-'listgrouprights-summary' => "Kay qatiq sutisuyupiqa kay wikipi sut'ichasqa ruraq huñukunatam, kikinpa chayamuna hayñinkunatawan rikunki.",
-'listgrouprights-group'   => 'Huñu',
-'listgrouprights-rights'  => 'Hayñikuna',
-'listgrouprights-link'    => '[[Help:Ruraq huñup hayñinkuna#$1|$1]]',
+'listgrouprights'          => 'Ruraq huñup hayñinkuna',
+'listgrouprights-summary'  => "Kay qatiq sutisuyupiqa kay wikipi sut'ichasqa ruraq huñukunatam, kikinpa chayamuna hayñinkunatawan rikunki.",
+'listgrouprights-group'    => 'Huñu',
+'listgrouprights-rights'   => 'Hayñikuna',
+'listgrouprights-helppage' => 'Help:Ruraq huñup hayñinkuna',
 
 # E-mail user
 'mailnologin'     => 'Imamaytataqa ama kachaychu',

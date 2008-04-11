@@ -1425,11 +1425,11 @@ Môžete zmenšiť rozsah, ak zvolíte typ záznamu, používateľské meno aleb
 'listusers-noresult' => 'Neboli nájdení používatelia. Prosím, skontrolujte aj varianty s veľkými/malými písmenami.',
 
 # Special:Listgrouprights
-'listgrouprights'         => 'Práva skupiny používateľov',
-'listgrouprights-summary' => 'Toto je zoznam skupín používateľov definovaných na tejto wiki a ich prístupových práv',
-'listgrouprights-group'   => 'Skupina',
-'listgrouprights-rights'  => 'Práva',
-'listgrouprights-link'    => '[[Help:Práva skupiny#$1|$1]]',
+'listgrouprights'          => 'Práva skupiny používateľov',
+'listgrouprights-summary'  => 'Toto je zoznam skupín používateľov definovaných na tejto wiki a ich prístupových práv',
+'listgrouprights-group'    => 'Skupina',
+'listgrouprights-rights'   => 'Práva',
+'listgrouprights-helppage' => 'Help:Práva skupiny',
 
 # E-mail user
 'mailnologin'     => 'Žiadna adresa na zaslanie',

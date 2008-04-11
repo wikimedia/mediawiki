@@ -1477,11 +1477,11 @@ Sedan denna wiki startades har sidor visats totalt <b>$3</b> {{PLURAL:$3|gång|g
 'listusers-noresult' => 'Ingen användare hittades.',
 
 # Special:Listgrouprights
-'listgrouprights'         => 'Behörigheter för användargrupper',
-'listgrouprights-summary' => 'Följande lista visar vilka användargrupper som är definierade på den här wikin och vilka behörigheter grupperna har.',
-'listgrouprights-group'   => 'Grupp',
-'listgrouprights-rights'  => 'Behörigheter',
-'listgrouprights-link'    => '[[Help:Gruppbehörigheter#$1|$1]]',
+'listgrouprights'          => 'Behörigheter för användargrupper',
+'listgrouprights-summary'  => 'Följande lista visar vilka användargrupper som är definierade på den här wikin och vilka behörigheter grupperna har.',
+'listgrouprights-group'    => 'Grupp',
+'listgrouprights-rights'   => 'Behörigheter',
+'listgrouprights-helppage' => 'Help:Gruppbehörigheter',
 
 # E-mail user
 'mailnologin'     => 'Ingen adress att skicka till',
