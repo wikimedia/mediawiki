@@ -21,5 +21,8 @@ test: t/Test.php
 fast: t/Test.php
 	$(PROVE_BIN) $(FAST_TESTS)
 
+maint:
+	$(PROVE_BIN) $(MAINTENANCE_TESTS)
+
 verbose: t/Test.php
 	$(PROVE_BIN) -v $(ALL_TESTS) | egrep -v '^ok'
