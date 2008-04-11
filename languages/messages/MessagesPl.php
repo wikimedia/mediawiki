@@ -1464,11 +1464,11 @@ Możesz zawęzić liczbę wyników przez wybranie typu rejestru, nazwy użytkown
 'listusers-noresult' => 'Nie znaleziono żadnego użytkownika.',
 
 # Special:Listgrouprights
-'listgrouprights'         => 'Uprawnienia grup użytkowników',
-'listgrouprights-summary' => 'Poniżej znajduje się spis grup użytkowników zdefiniowanych na tej wiki, z wyszczególnieniem przydzielonych im praw dostępu.',
-'listgrouprights-group'   => 'Grupa',
-'listgrouprights-rights'  => 'Uprawnienia',
-'listgrouprights-link'    => '[[Help:Uprawnienia grup użytkowników#$1|$1]]',
+'listgrouprights'          => 'Uprawnienia grup użytkowników',
+'listgrouprights-summary'  => 'Poniżej znajduje się spis grup użytkowników zdefiniowanych na tej wiki, z wyszczególnieniem przydzielonych im praw dostępu.',
+'listgrouprights-group'    => 'Grupa',
+'listgrouprights-rights'   => 'Uprawnienia',
+'listgrouprights-helppage' => 'Help:Uprawnienia grup użytkowników',
 
 # E-mail user
 'mailnologin'     => 'Brak adresu',

@@ -1342,10 +1342,10 @@ Ohjelmiston suorittamia ylläpitotöitä on jonossa '''$7''' {{PLURAL:$7|kappale
 'listusers-noresult' => 'Käyttäjiä ei löytynyt.',
 
 # Special:Listgrouprights
-'listgrouprights'        => 'Käyttäjäryhmien oikeudet',
-'listgrouprights-group'  => 'Ryhmä',
-'listgrouprights-rights' => 'Oikeudet',
-'listgrouprights-link'   => '[[Help:Käyttöoikeudet#$1|$1]]',
+'listgrouprights'          => 'Käyttäjäryhmien oikeudet',
+'listgrouprights-group'    => 'Ryhmä',
+'listgrouprights-rights'   => 'Oikeudet',
+'listgrouprights-helppage' => 'Help:Käyttöoikeudet',
 
 # E-mail user
 'mailnologin'     => 'Lähettäjän osoite puuttuu',

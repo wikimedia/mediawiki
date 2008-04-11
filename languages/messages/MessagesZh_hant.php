@@ -1292,11 +1292,11 @@ Template:消除歧義',
 'listusers-noresult' => '找不到用戶。',
 
 # Special:Listgrouprights
-'listgrouprights'         => '用戶群組權限',
-'listgrouprights-summary' => '以下面是一個在這個wiki中定義出來的用戶權限清單，以及它們的存取權。',
-'listgrouprights-group'   => '群組',
-'listgrouprights-rights'  => '權限',
-'listgrouprights-link'    => '[[Help:群組權限#$1|$1]]',
+'listgrouprights'          => '用戶群組權限',
+'listgrouprights-summary'  => '以下面是一個在這個wiki中定義出來的用戶權限清單，以及它們的存取權。',
+'listgrouprights-group'    => '群組',
+'listgrouprights-rights'   => '權限',
+'listgrouprights-helppage' => 'Help:群組權限',
 
 # E-mail user
 'mailnologin'     => '無電郵地址',

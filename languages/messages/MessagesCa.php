@@ -1403,11 +1403,11 @@ Podeu reduir l'extensió seleccionant el tipus de identificació, el nom del usu
 'listusers-noresult' => "No s'han trobat coincidències de noms d'usuaris. Si us plau, busqueu també amb variacions per majúscules i minúscules.",
 
 # Special:Listgrouprights
-'listgrouprights'         => "Drets dels grups d'usuaris",
-'listgrouprights-summary' => "A continuació hi ha una llista dels grups d'usuaris definits al wiki, així com dels seus drets d'accés associats.",
-'listgrouprights-group'   => 'Grup',
-'listgrouprights-rights'  => 'Drets',
-'listgrouprights-link'    => '[[Help:Drets del grup#$1|$1]]',
+'listgrouprights'          => "Drets dels grups d'usuaris",
+'listgrouprights-summary'  => "A continuació hi ha una llista dels grups d'usuaris definits al wiki, així com dels seus drets d'accés associats.",
+'listgrouprights-group'    => 'Grup',
+'listgrouprights-rights'   => 'Drets',
+'listgrouprights-helppage' => 'Help:Drets del grup',
 
 # E-mail user
 'mailnologin'     => "No enviïs l'adreça",

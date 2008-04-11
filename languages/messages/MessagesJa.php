@@ -1234,11 +1234,11 @@ $2リダイレクトを含める &nbsp; &nbsp; &nbsp; $3 $9',
 'listusers-noresult' => '利用者が見つかりませんでした。大文字・小文字の区別を確認してください。',
 
 # Special:Listgrouprights
-'listgrouprights'         => 'ユーザのグループと権限',
-'listgrouprights-summary' => '以下は{{SITENAME}}に登録されているユーザのグループと権限の一覧です。',
-'listgrouprights-group'   => 'グループ',
-'listgrouprights-rights'  => '権限',
-'listgrouprights-link'    => '[[Help:グループと権限#$1|$1]]',
+'listgrouprights'          => 'ユーザのグループと権限',
+'listgrouprights-summary'  => '以下は{{SITENAME}}に登録されているユーザのグループと権限の一覧です。',
+'listgrouprights-group'    => 'グループ',
+'listgrouprights-rights'   => '権限',
+'listgrouprights-helppage' => 'Help:グループと権限',
 
 # E-mail user
 'mailnologin'     => 'メールアドレスの記載がありません。',

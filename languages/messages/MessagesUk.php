@@ -1485,11 +1485,11 @@ $2 Показувати перенаправлення   Пошук на $3 $9',
 'listusers-noresult' => 'Не знайдено користувачів.',
 
 # Special:Listgrouprights
-'listgrouprights'         => 'Групи прав користувачів',
-'listgrouprights-summary' => 'Нижче наведений список груп користувачів у цій вікі і права для кожної групи.',
-'listgrouprights-group'   => 'Група',
-'listgrouprights-rights'  => 'Права',
-'listgrouprights-link'    => '[[Help:Права користувачів#$1|$1]]',
+'listgrouprights'          => 'Групи прав користувачів',
+'listgrouprights-summary'  => 'Нижче наведений список груп користувачів у цій вікі і права для кожної групи.',
+'listgrouprights-group'    => 'Група',
+'listgrouprights-rights'   => 'Права',
+'listgrouprights-helppage' => 'Help:Права користувачів',
 
 # E-mail user
 'mailnologin'     => 'Відсутня адреса для відправки',

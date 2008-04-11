@@ -108,6 +108,7 @@ $wgIgnoredMessages = array(
 	'trackback',
 	'trackbackexcerpt',
 	'uploadfooter',
+	'listgrouprights-link',
 );
 
 /** Optional messages, which may be translated only if changed in the other language. */

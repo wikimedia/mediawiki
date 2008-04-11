@@ -1421,11 +1421,11 @@ Você pode diminuir a lista escolhendo um tipo de registo, um nome de utilizador
 'listusers-noresult' => 'Não foram encontrados utilizadores para a forma pesquisada.',
 
 # Special:Listgrouprights
-'listgrouprights'         => 'Privilégios de grupo de utilizadores',
-'listgrouprights-summary' => 'A seguinte lista contém os grupos de utilizadores definidos neste wiki, com os seus privilégios de acessos associados.',
-'listgrouprights-group'   => 'Grupo',
-'listgrouprights-rights'  => 'Privilégios',
-'listgrouprights-link'    => '[[{{ns:Help}}:Privilégios de grupo#$1|$1]]',
+'listgrouprights'          => 'Privilégios de grupo de utilizadores',
+'listgrouprights-summary'  => 'A seguinte lista contém os grupos de utilizadores definidos neste wiki, com os seus privilégios de acessos associados.',
+'listgrouprights-group'    => 'Grupo',
+'listgrouprights-rights'   => 'Privilégios',
+'listgrouprights-helppage' => 'Help:Privilégios de grupo',
 
 # E-mail user
 'mailnologin'     => 'Nenhum endereço de envio',

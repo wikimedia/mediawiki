@@ -1357,11 +1357,11 @@ Bạn có thể thu hẹp kết quả bằng cách chọn loại nhật trình, 
 'listusers-noresult' => 'Không thấy thành viên.',
 
 # Special:Listgrouprights
-'listgrouprights'         => 'Nhóm thành viên',
-'listgrouprights-summary' => 'Dưới đây là danh sách nhóm thành viên tại wiki này, với những khả năng của từng nhóm.',
-'listgrouprights-group'   => 'Nhóm',
-'listgrouprights-rights'  => 'Khả năng',
-'listgrouprights-link'    => '[[Help:Khả năng của nhóm thành viên#$1|$1]]',
+'listgrouprights'          => 'Nhóm thành viên',
+'listgrouprights-summary'  => 'Dưới đây là danh sách nhóm thành viên tại wiki này, với những khả năng của từng nhóm.',
+'listgrouprights-group'    => 'Nhóm',
+'listgrouprights-rights'   => 'Khả năng',
+'listgrouprights-helppage' => 'Help:Khả năng của nhóm thành viên',
 
 # E-mail user
 'mailnologin'     => 'Không có địa chỉ gửi thư',

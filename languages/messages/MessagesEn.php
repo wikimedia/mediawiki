@@ -1879,11 +1879,12 @@ It may contain one or more characters which cannot be used in titles.',
 'listusers-noresult' => 'No user found.',
 
 # Special:Listgrouprights
-'listgrouprights'         => 'User group rights',
-'listgrouprights-summary' => 'The following is a list of user groups defined on this wiki, with their associated access rights.',
-'listgrouprights-group'   => 'Group',
-'listgrouprights-rights'  => 'Rights',
-'listgrouprights-link'    => '[[Help:Group rights#$1|$1]]',
+'listgrouprights'          => 'User group rights',
+'listgrouprights-summary'  => 'The following is a list of user groups defined on this wiki, with their associated access rights.',
+'listgrouprights-group'    => 'Group',
+'listgrouprights-rights'   => 'Rights',
+'listgrouprights-link'     => '[[{{MediaWiki:Listgrouprights-helppage}}#$1|$1]]', # do not translate or duplicate this message to other languages
+'listgrouprights-helppage' => 'Group rights',
 
 # E-mail user
 'mailnologin'     => 'No send address',
