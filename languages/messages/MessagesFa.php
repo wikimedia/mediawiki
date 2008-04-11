@@ -1547,6 +1547,13 @@ $2 تغییرمسیرها فهرست شوند &nbsp; جستجو برای $3 $9',
 'listusers-submit'   => 'نمایش',
 'listusers-noresult' => 'هیچ کاربری یافت نشد.',
 
+# Special:Listgrouprights
+'listgrouprights'          => 'اختیارات گروه کاربری',
+'listgrouprights-summary'  => 'متن زیر فهرستی است از گروه‌های کاربری تعریف شده روی این ویکی، و اختیاراتی که به آن‌ها داده شده‌است.',
+'listgrouprights-group'    => 'گروه',
+'listgrouprights-rights'   => 'اختیارات',
+'listgrouprights-helppage' => 'اختیارات گروه',
+
 # E-mail user
 'mailnologin'     => 'نشانی‌ای از فرستنده وجود ندارد.',
 'mailnologintext' => 'برای فرستادن پست الکترونیکی به کاربران دیگر باید [[Special:Userlogin|به سیستم وارد شوید]]
