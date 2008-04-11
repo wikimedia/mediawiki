@@ -2343,14 +2343,15 @@ class Article {
 		# Clear caches
 		Article::onArticleDelete( $this->mTitle );
 
+		# Clear the cached article id so the interface doesn't act like we exist
+		$this->mTitle->resetArticleID( 0 );
+		$this->mTitle->mArticleID = 0;
+
 		# Log the deletion, if the page was suppressed, log it at Oversight instead
 		$logtype = $suppress ? 'suppress' : 'delete';
 		$log = new LogPage( $logtype );
 		$log->addEntry( 'delete', $this->mTitle, $reason );
-
-		# Clear the cached article id so the interface doesn't act like we exist
-		$this->mTitle->resetArticleID( 0 );
-		$this->mTitle->mArticleID = 0;
+		
 		return true;
 	}
 
