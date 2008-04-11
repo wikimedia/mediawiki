@@ -79,7 +79,7 @@ class WebRequest {
 				}
 				$a = parse_url( $url );
 				if( $a ) {
-					$path = $a['path'];
+					$path = isset( $a['path'] ) ? $a['path'] : '';
 					
 					global $wgScript;
 					if( $path == $wgScript ) {

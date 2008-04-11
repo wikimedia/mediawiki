@@ -169,6 +169,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 13433) Fix action=render on Image: pages
 * (bug 13678) Fix CSS validation for Monobook
 * (bug 13684) Links in Special:ListGroupRights should be in content language
+* (bug 13690) Fix PHP notice on accessing some URLs
 
 === API changes in 1.13 ===
 
