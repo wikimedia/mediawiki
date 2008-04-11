@@ -2085,7 +2085,7 @@ You can change this page's protection level, but it will not affect the cascadin
 # Undelete
 'undelete'                     => 'View deleted pages',
 'undeletepage'                 => 'View and restore deleted pages',
-'undeletepagetitle'            => "'''The following consists of deleted revisions of [[:$1]]'''.",
+'undeletepagetitle'            => "'''The following consists of deleted revisions of [[:$1|$1]]'''.",
 'viewdeletedpage'              => 'View deleted pages',
 'undeletepagetext'             => 'The following pages have been deleted but are still in the archive and can be restored.
 The archive may be periodically cleaned out.',
