@@ -1884,7 +1884,7 @@ It may contain one or more characters which cannot be used in titles.',
 'listgrouprights-group'    => 'Group',
 'listgrouprights-rights'   => 'Rights',
 'listgrouprights-link'     => '[[{{MediaWiki:Listgrouprights-helppage}}#$1|$1]]', # do not translate or duplicate this message to other languages
-'listgrouprights-helppage' => 'Group rights',
+'listgrouprights-helppage' => 'Help:Group rights',
 
 # E-mail user
 'mailnologin'     => 'No send address',
