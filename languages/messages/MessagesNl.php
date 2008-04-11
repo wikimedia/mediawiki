@@ -2001,7 +2001,7 @@ In het laatste geval kunt u ook een link gebruiken, bijvoorbeeld [[Special:Expor
 'allmessagesname'           => 'Naam',
 'allmessagesdefault'        => 'Standaardinhoud',
 'allmessagescurrent'        => 'Huidige inhoud',
-'allmessagestext'           => 'Hieronder staan de systeemberichten uit de MediaWiki-naamruimte. Ga alstublieft naar [http://translatewiki.net Betawiki] als u wilt bijdragen aan de algemene vertaling voor MediaWiki.',
+'allmessagestext'           => 'Hieronder staan de systeemberichten uit de MediaWiki-naamruimte. Ga alstublieft naar [http://www.mediawiki.org/wiki/Localisation MediaWiki localisatie] en [http://translatewiki.net Betawiki] als u wilt bijdragen aan de algemene vertaling voor MediaWiki.',
 'allmessagesnotsupportedDB' => "Deze pagina kan niet gebruikt worden omdat '''\$wgUseDatabaseMessages''' is uitgeschakeld.",
 'allmessagesfilter'         => 'Bericht naamfilter:',
 'allmessagesmodified'       => 'Alleen gewijzigde systeemteksten bekijken',

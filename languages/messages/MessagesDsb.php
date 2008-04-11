@@ -1772,7 +1772,8 @@ W slědnem padźe móžoš teke wótkaz wužywaś, na pś. [[{{ns:special}}:Expo
 'allmessagesname'           => 'Mě',
 'allmessagesdefault'        => 'Standardny tekst',
 'allmessagescurrent'        => 'Aktualny tekst',
-'allmessagestext'           => 'How jo lisćina systemowych tekstow MediaWiki.',
+'allmessagestext'           => 'How jo lisćina systemowych tekstow MediaWiki.
+Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] and [http://translatewiki.net Betawiki] if you wish to contribute to the generic MediaWiki localisation.',
 'allmessagesnotsupportedDB' => "'''{{ns:special}}:Allmessages''' njejo tuchylu móžno, dokulaž jo datowa banka offline.",
 'allmessagesfilter'         => 'Filter za mjenja powěsćow:',
 'allmessagesmodified'       => 'Jano změnjone pokazaś',

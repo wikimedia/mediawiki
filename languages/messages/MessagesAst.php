@@ -1718,7 +1718,8 @@ Por último, tamién pues usar un enllaz: p.e. [[{{ns:special}}:Export/{{MediaWi
 'allmessagesname'           => 'Nome',
 'allmessagesdefault'        => 'Testu por defeutu',
 'allmessagescurrent'        => 'Testu actual',
-'allmessagestext'           => 'Esta ye una llista de tolos mensaxes disponibles nel espaciu de nomes de MediaWiki.',
+'allmessagestext'           => 'Esta ye una llista de tolos mensaxes disponibles nel espaciu de nomes de MediaWiki.
+Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] and [http://translatewiki.net Betawiki] if you wish to contribute to the generic MediaWiki localisation.',
 'allmessagesnotsupportedDB' => "Nun pue usase '''{{ns:special}}:Allmessages''' porque '''\$wgUseDatabaseMessages''' ta deshabilitáu.",
 'allmessagesfilter'         => 'Filtru pal nome del mensax:',
 'allmessagesmodified'       => 'Amosar solo modificaos',

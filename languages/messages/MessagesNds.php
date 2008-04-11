@@ -8,6 +8,7 @@
  * @author SPQRobin
  * @author לערי ריינהארט
  * @author Siebrand
+ * @author Jon Harald Søby
  */
 
 $fallback = 'de';
@@ -1696,7 +1697,8 @@ Diskuschoonssiet nich, vun wegen dat dat dor al ene Siet mit dissen Titel gifft.
 'allmessagesname'           => 'Naam',
 'allmessagesdefault'        => 'Standardtext',
 'allmessagescurrent'        => 'Text nu',
-'allmessagestext'           => 'Dit is de List vun all de Systemnarichten, de dat in den Mediawiki-Naamruum gifft.',
+'allmessagestext'           => 'Dit is de List vun all de Systemnarichten, de dat in den Mediawiki-Naamruum gifft.
+Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] and [http://translatewiki.net Betawiki] if you wish to contribute to the generic MediaWiki localisation.',
 'allmessagesnotsupportedDB' => '{{ns:special}}:Allmessages is nich ünnerstütt, vun wegen dat wgUseDatabaseMessages utstellt is.',
 'allmessagesfilter'         => 'Narichtennaamfilter:',
 'allmessagesmodified'       => 'Blot ännerte wiesen',

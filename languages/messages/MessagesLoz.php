@@ -7,6 +7,7 @@
  * @author Litingatinga Silozi
  * @author Ooswesthoesbes
  * @author Siebrand
+ * @author Jon Harald Søby
  */
 
 
@@ -928,7 +929,8 @@ Teri yaki, a nyanganyisize.",
 'allmessagesname'    => 'Sebu',
 'allmessagesdefault' => 'Selt orge',
 'allmessagescurrent' => 'Selt nca',
-'allmessagestext'    => 'Bye mukoloko sa mukoloko di mulumiwani di MediaWiki poo.',
+'allmessagestext'    => 'Bye mukoloko sa mukoloko di mulumiwani di MediaWiki poo.
+Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] and [http://translatewiki.net Betawiki] if you wish to contribute to the generic MediaWiki localisation.',
 
 # Thumbnails
 'thumbnail-more'  => 'Pusize',

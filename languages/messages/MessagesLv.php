@@ -11,6 +11,7 @@
  * @author Siebrand
  * @author SPQRobin
  * @author M.M.S.
+ * @author Jon Harald Søby
  */
 
 /*
@@ -935,7 +936,8 @@ Ja tomēr vēlēsies, tad tev šī diskusiju lapa būs jāpārvieto vai jāapvie
 'allmessagesname'           => 'Nosaukums',
 'allmessagesdefault'        => 'Sākotnējais teksts',
 'allmessagescurrent'        => 'Pašreizējais teksts',
-'allmessagestext'           => "Šajā lapā ir visu \"'''Mediawiki:'''\" lapās atrodamo sistēmas paziņojumu uzskaitījums.",
+'allmessagestext'           => "Šajā lapā ir visu \"'''Mediawiki:'''\" lapās atrodamo sistēmas paziņojumu uzskaitījums.
+Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] and [http://translatewiki.net Betawiki] if you wish to contribute to the generic MediaWiki localisation.",
 'allmessagesnotsupportedDB' => '{{ns:special}}:Allmessages not supported because wgUseDatabaseMessages is off.',
 
 # Thumbnails

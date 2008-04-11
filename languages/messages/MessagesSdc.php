@@ -10,6 +10,7 @@
  * @author Antofa
  * @author Nike
  * @author SPQRobin
+ * @author Jon Harald Søby
  */
 
 $messages = array(
@@ -1550,7 +1551,8 @@ In chisth'ulthimu casu si pó utilizzà puru un cullegamentu, pa esempiu [[{{ns:
 'allmessagesname'           => 'Nommu',
 'allmessagesdefault'        => 'Testhu pridifiniddu',
 'allmessagescurrent'        => 'Testhu attuari',
-'allmessagestext'           => "Chistha è la listha di tutti l'imbasciaddi di sisthema dipunìbiri i' lu tipu di pàgina MediaWiki:",
+'allmessagestext'           => "Chistha è la listha di tutti l'imbasciaddi di sisthema dipunìbiri i' lu tipu di pàgina MediaWiki:
+Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] and [http://translatewiki.net Betawiki] if you wish to contribute to the generic MediaWiki localisation.",
 'allmessagesnotsupportedDB' => "'''{{ns:special}}:Allmessages''' nò è supporthaddu parchí l'indicadori '''\$wgUseDatabaseMessages''' nò è attibuu.",
 'allmessagesfilter'         => "Filthru i' l'imbasciaddi:",
 'allmessagesmodified'       => 'Musthra soru chiddi mudìfiggaddi.',

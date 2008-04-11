@@ -1779,7 +1779,8 @@ For å eksportere sider, skriv inn titler i tekstboksen under, én tittel per li
 'allmessagesname'           => 'Navn',
 'allmessagesdefault'        => 'Standardtekst',
 'allmessagescurrent'        => 'Nåværende tekst',
-'allmessagestext'           => 'Dette er en liste over tilgjengelige systemmeldinger i MediaWiki-navnerommet.',
+'allmessagestext'           => 'Dette er en liste over tilgjengelige systemmeldinger i MediaWiki-navnerommet.
+Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] and [http://translatewiki.net Betawiki] if you wish to contribute to the generic MediaWiki localisation.',
 'allmessagesnotsupportedDB' => "''{{ns:special}}:Allmessages'' kan ikke brukes fordi '''\$wgUseDatabaseMessages''' er slått av.",
 'allmessagesfilter'         => 'Filter:',
 'allmessagesmodified'       => 'Vis kun endrede',

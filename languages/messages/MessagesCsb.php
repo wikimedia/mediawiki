@@ -8,6 +8,7 @@
  * @author SPQRobin
  * @author לערי ריינהארט
  * @author Nike
+ * @author Jon Harald Søby
  */
 
 $namespaceNames = array(
@@ -656,7 +657,8 @@ Czej chcesz remôc starnã z lëste ùzéronëch artiklów, klikni ''Òprzestôj
 'allmessagesname'           => 'Miono',
 'allmessagesdefault'        => 'Domëslny tekst',
 'allmessagescurrent'        => 'Terny tekst',
-'allmessagestext'           => 'To je zestôwk systemòwëch ògłosów przistãpnëch w rumie mion MediaWiki.',
+'allmessagestext'           => 'To je zestôwk systemòwëch ògłosów przistãpnëch w rumie mion MediaWiki.
+Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] and [http://translatewiki.net Betawiki] if you wish to contribute to the generic MediaWiki localisation.',
 'allmessagesnotsupportedDB' => "'''{{ns:special}}:Allmessages''' nie mòże bëc brëkòwónô, temù że '''\$wgUseDatabaseMessages''' je wëłączony.",
 'allmessagesfilter'         => 'Filter mion ògłosów:',
 'allmessagesmodified'       => 'Pòkażë blós zjinaczone',

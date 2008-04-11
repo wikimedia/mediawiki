@@ -7,6 +7,7 @@
  * @author Nike
  * @author Siebrand
  * @author SPQRobin
+ * @author Jon Harald Søby
  */
 
 $messages = array(
@@ -1292,7 +1293,8 @@ Ngì khok-ngin sî-yeu chhù-thet ngièn hong-mien khi̍p chin-hàng yì-thung m
 'allmessagesname'           => 'Miàng-chhṳ̂n',
 'allmessagesdefault'        => 'Yi-sat ke vùn-sṳ',
 'allmessagescurrent'        => 'Tông-chhièn ke vùn-sṳ',
-'allmessagestext'           => 'Liá-piên lie̍t-chhut só-yû hí-khó thin-chṳ ke ne-thúng kie-mien.',
+'allmessagestext'           => 'Liá-piên lie̍t-chhut só-yû hí-khó thin-chṳ ke ne-thúng kie-mien.
+Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] and [http://translatewiki.net Betawiki] if you wish to contribute to the generic MediaWiki localisation.',
 'allmessagesnotsupportedDB' => 'Ne-thúng kie-mien kûng-yung chhu-yî kôan-pit chong-thai (wgUseDatabaseMessages)。',
 'allmessagesfilter'         => 'Chang-chet péu-tha̍t sṳt ko-li thiàu-khien:',
 'allmessagesmodified'       => 'Chṳ́ hién-sṳ kiên-kói ko ke.',

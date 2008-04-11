@@ -556,7 +556,8 @@ Pumili muli ng ibang pangalan.',
 'allmessagesname'           => 'Pangalan',
 'allmessagesdefault'        => 'Tinakdang teksto',
 'allmessagescurrent'        => 'Kasalukuyang teksto',
-'allmessagestext'           => 'Ito ay isang tala ng mga mensaheng pansistema na matatagpuan sa ngalan-espasyong MediaWiki.',
+'allmessagestext'           => 'Ito ay isang tala ng mga mensaheng pansistema na matatagpuan sa ngalan-espasyong MediaWiki.
+Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] and [http://translatewiki.net Betawiki] if you wish to contribute to the generic MediaWiki localisation.',
 'allmessagesnotsupportedDB' => "Hindi magamit ang '''{{ns:special}}:Allmessages''' dahil nakapatay ang '''\$wgUseDatabaseMessages'''.",
 
 # Thumbnails

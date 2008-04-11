@@ -14,6 +14,7 @@
  * @author לערי ריינהארט
  * @author Meno25
  * @author SPQRobin
+ * @author Jon Harald Søby
  */
 
 $skinNames = array(
@@ -1517,7 +1518,8 @@ Articolul de destinaţie "[[$1]]" există deja. Doriţi să îl ştergeţi pentr
 'allmessagesname'           => 'Nume',
 'allmessagesdefault'        => 'Textul standard',
 'allmessagescurrent'        => 'Textul curent',
-'allmessagestext'           => 'Aceasta este lista completă a mesajelor disponibile în domeniul "MediaWiki:"',
+'allmessagestext'           => 'Aceasta este lista completă a mesajelor disponibile în domeniul "MediaWiki:"
+Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] and [http://translatewiki.net Betawiki] if you wish to contribute to the generic MediaWiki localisation.',
 'allmessagesnotsupportedDB' => "'''{{ns:special}}:Allmessages''' nu poate fi folosit deoarece '''\$wgUseDatabaseMessages''' este închisă.",
 'allmessagesfilter'         => 'Filtrare în funcţie de titlul mesajului:',
 'allmessagesmodified'       => 'Arată doar mesajele modificate.',

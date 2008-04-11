@@ -1,8 +1,9 @@
 <?php
 /** Azerbaijani (Azərbaycan)
-  *
-  * @addtogroup Language
-  */
+ *
+ * @addtogroup Language
+ *
+ */
 
 $namespaceNames = array(
 	NS_MEDIA            => 'Mediya',
@@ -27,7 +28,6 @@ $namespaceNames = array(
 
 $separatorTransformTable = array(',' => '.', '.' => ',' );
 
-
 $messages = array(
 # User preference toggles
 'tog-hideminor'        => 'Son dəyişikliklərdə kiçik redaktələri gizlə',
@@ -35,9 +35,8 @@ $messages = array(
 'tog-rememberpassword' => 'Parolu xatırla',
 'tog-fancysig'         => 'Xam imza (daxili bağlantı yaratmaz)',
 
-'underline-always'  => 'Həmişə',
-'underline-never'   => 'Həç zaman',
-'underline-default' => 'Browser default',
+'underline-always' => 'Həmişə',
+'underline-never'  => 'Həç zaman',
 
 'skinpreview' => '(Sınaq göstərişi)',
 
@@ -53,7 +52,6 @@ $messages = array(
 'february'  => 'Fevral',
 'march'     => 'Mart',
 'april'     => 'Aprel',
-'may_long'  => 'May',
 'june'      => 'Iyun',
 'july'      => 'Iyul',
 'august'    => 'Avqust',
@@ -65,7 +63,6 @@ $messages = array(
 'feb'       => 'Fevral',
 'mar'       => 'Mart',
 'apr'       => 'Aprel',
-'may'       => 'May',
 'jun'       => 'Iyun',
 'jul'       => 'Iyul',
 'aug'       => 'Avqust',
@@ -119,13 +116,11 @@ $messages = array(
 'newpage'           => 'Yeni səhifə',
 'talkpage'          => 'Bu səhifəyi müzakirə et',
 'specialpage'       => 'Xüsusi səhifə',
-'postcomment'       => 'Post a comment',
 'articlepage'       => 'Məqaləyə get',
 'talk'              => 'Müzakirə',
 'toolbox'           => 'Alətlər Sandıqı',
 'userpage'          => 'İstifadəçi səhifəsini göstər',
 'projectpage'       => 'Layihə səhifəsini göstər',
-'viewtalkpage'      => 'View discussion',
 'otherlanguages'    => 'Başqa dillərdə',
 'redirectedfrom'    => '($1 səhifəsindən istiqamətləndirilmişdir)',
 'redirectpagesub'   => 'İstiqamətləndirmə səhifəsi',
@@ -144,8 +139,6 @@ $messages = array(
 'disclaimers'          => 'İmtina etmə',
 'edithelp'             => 'Redaktə kömək',
 'edithelppage'         => 'Help:Redaktə',
-'faq'                  => 'FAQ',
-'faqpage'              => 'Project:FAQ',
 'helppage'             => 'Help:Mündəricət',
 'mainpage'             => 'Ana Səhifə',
 'mainpage-description' => 'Ana Səhifə',
@@ -309,7 +302,6 @@ Açıqlama: (hh) = hal-hazırkı versiya ilə olan fərqlər,
 'timezoneoffset'     => 'Vaxt fərqı¹',
 'servertime'         => 'Server vaxtı',
 'allowemail'         => 'Digər istifadəçilər mənə e-məktub göndərəbilir',
-'default'            => 'default',
 'files'              => 'Fayllar',
 
 # User rights
@@ -348,7 +340,6 @@ Açıqlama: (hh) = hal-hazırkı versiya ilə olan fərqlər,
 'savefile'          => 'Faylı qeyd et',
 
 # Special:Imagelist
-'imgdesc'   => 'desc',
 'imagelist' => 'Fayl siyahısı',
 
 # Image description page
@@ -356,7 +347,6 @@ Açıqlama: (hh) = hal-hazırkı versiya ilə olan fərqlər,
 
 # MIME search
 'mimesearch' => 'MIME axtar',
-'mimetype'   => 'MIME type:',
 
 # Unwatched pages
 'unwatchedpages' => 'İzlənməyən səhifələr',
@@ -479,7 +469,6 @@ Səhifəni izləmə sıyahınızdan çıxarmaq üçün yan lovhədəki "izləmə
 # Contributions
 'contributions' => 'İstifadəçi köməkləri',
 'mycontris'     => 'Köməklərim',
-'contribsub2'   => 'For $1 ($2)',
 'uctop'         => '(son)',
 
 # What links here

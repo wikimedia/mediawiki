@@ -843,7 +843,7 @@ mais detalhes no [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} registo de e
 'revdelete-nooldid-text'      => 'Não especificou nenhuma revisão, ou revisões,
 no qual aplicar esta função.',
 'revdelete-selected'          => "{{PLURAL:$2|Edição seleccionada|Edições seleccionadas}} para '''[[:$1]]''':",
-'logdelete-selected'          => '{{PLURAL:$2|Evento de registo seleccionado|Eventos de registo seleccionados}}:',
+'logdelete-selected'          => '{{PLURAL:$1|Evento de registo seleccionado|Eventos de registo seleccionados}}:',
 'revdelete-text'              => "Revisões eliminadas continuarão a aparecer no histórico da página, apesar de o seu conteúdo textual estar inacessível ao público.
 
 Outros administradores nesta wiki continuarão a poder aceder ao conteúdo escondido e restaurá-lo através desta mesma ''interface'', a menos que uma restrição adicional seja definida.",

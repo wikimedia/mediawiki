@@ -6,6 +6,7 @@
  * @author Ævar Arnfjörð Bjarmason <avarab@gmail.com>
  * @author Tenzin
  * @author Jon Harald Søby
+ * @author Siebrand
  */
 
 $digitTransformTable = array(
@@ -319,7 +320,7 @@ $messages = array(
 'nchanges'                       => '$1 {{PLURAL:$1|བསྒྱུར་བཅོས་|བསྒྱུར་བཅོས་ཚུ}}',
 'recentchanges'                  => 'འཕྲལ་གྱི་བསྒྱུར་བཅོས',
 'recentchanges-feed-description' => 'འབྱུང་སའི་ནང་ ཝི་ཀི་ལུ་འཕྲལ་གྱི་བསྒྱུར་བཅོས་འབད་མི་འདི་ རྗེས་འཚོལ་འབད།',
-'rcnote'                         => "གཤམ་འཁོད་ཚུ་ $3 ཚུན་ཚོད་ཀྱི་ མཇུག་མཐའ {{PLURAL:$2|ཉིནམ་|'''$2''' ཉིནམ་}} གྱི་ {{PLURAL:$1|བསྒྱུར་བཅོས་ | '''$1''' བསྒྱུར་བཅོས་ཚུ་ }}} ཨིན།",
+'rcnote'                         => "གཤམ་འཁོད་ཚུ་ $3 ཚུན་ཚོད་ཀྱི་ མཇུག་མཐའ {{PLURAL:$2|ཉིནམ་|'''$2''' ཉིནམ་}} གྱི་ {{PLURAL:$1|བསྒྱུར་བཅོས་ | '''$1''' བསྒྱུར་བཅོས་ཚུ་ }} ཨིན།",
 'rcnotefrom'                     => "འོག་གི་ཚུ་ '''$2''' (up to '''$1''' shown) ལས་ཚུར་གྱི་བསྒྱུར་བཅོས་ཨིན།",
 'rclistfrom'                     => '$1 ལས་ འགོ་བཟུང་སྟེ་ བསྒྱུར་བཅོས་གསརཔ་ཚུ་སྟོན་',
 'rcshowhideminor'                => '$1 གལ་གནད་ཆུང་བའི་ཞུན་དག།',
@@ -649,7 +650,7 @@ $messages = array(
 'file-nohires'         => '<small>ཧུམ་ཆ་ལེགས་ཤོམ་མིན་འདུག།</small>',
 'svg-long-desc'        => '(ཨེསི་བི་ཇི་ཡིག་སྣོད་  $1 × $2 པིག་སེལསི་ཆུང་སུ་ཅིག་  ཡིག་སྣོད་ཚད་: $3)',
 'show-big-image'       => 'ཧུམ་ཆ་གང་།',
-'show-big-image-thumb' => '<small>སྔོན་ལྟའི་ཚད་: $༡ × $༢ པིག་སེལསི་</small>',
+'show-big-image-thumb' => '<small>སྔོན་ལྟའི་ཚད་: $1 × $2 པིག་སེལསི་</small>',
 
 # Special:Newimages
 'newimages' => 'ཡིག་སྣོད་གསར་པའི་སྟོན་ཁང་།',

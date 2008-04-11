@@ -8,6 +8,7 @@
  * @author SPQRobin
  * @author Siebrand
  * @author Pyt
+ * @author Jon Harald Søby
  */
 
 $fallback = 'de';
@@ -1640,7 +1641,8 @@ Moatest du him foar ju Ferschuuwenge läskje?',
 'allmessagesname'           => 'Noome',
 'allmessagesdefault'        => 'Standardtext',
 'allmessagescurrent'        => 'Dissen Text',
-'allmessagestext'           => 'Dit is ne Lieste fon aal System-Ättergjuchte do in dän MediaWiki-Noomenruum tou Ferföigenge stounde.',
+'allmessagestext'           => 'Dit is ne Lieste fon aal System-Ättergjuchte do in dän MediaWiki-Noomenruum tou Ferföigenge stounde.
+Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] and [http://translatewiki.net Betawiki] if you wish to contribute to the generic MediaWiki localisation.',
 'allmessagesnotsupportedDB' => "'''{{ns:special}}:Allmessages''' is in Momänt nit muugelk, deeruum dät die Doatenboank offline is.",
 'allmessagesfilter'         => 'Ättergjuchtennoomensfilter:',
 'allmessagesmodified'       => 'Bloot annerde wiese',

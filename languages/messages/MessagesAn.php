@@ -9,6 +9,7 @@
  * @author Nike
  * @author Siebrand
  * @author לערי ריינהארט
+ * @author Jon Harald Søby
  */
 
 $fallback = 'es';
@@ -1769,7 +1770,8 @@ En iste zaguer caso tamién puede usar un binclo, por exemplo [[Special:Export/{
 'allmessagesname'           => 'Nombre',
 'allmessagesdefault'        => 'Testo por defeuto',
 'allmessagescurrent'        => 'Testo autual',
-'allmessagestext'           => 'Ista ye una lista de toz os mensaches disponibles en o espazio de nombres MediaWiki.',
+'allmessagestext'           => 'Ista ye una lista de toz os mensaches disponibles en o espazio de nombres MediaWiki.
+Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] and [http://translatewiki.net Betawiki] if you wish to contribute to the generic MediaWiki localisation.',
 'allmessagesnotsupportedDB' => 'Ista pachina no ye disponible porque wgUseDatabaseMessages ye desautibato.',
 'allmessagesfilter'         => "Filtrar por a etiqueta d'os mensaches:",
 'allmessagesmodified'       => 'Amostrar nomás os mensaches cambiatos',
