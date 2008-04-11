@@ -1102,6 +1102,13 @@ $2',
 'listusers-submit'   => '見',
 'listusers-noresult' => '尋無簿。',
 
+# Special:Listgrouprights
+'listgrouprights'         => '簿組權',
+'listgrouprights-summary' => '下乃wiki之簿權表及存取之權也。',
+'listgrouprights-group'   => '組',
+'listgrouprights-rights'  => '權',
+'listgrouprights-link'    => '[[Help:組權#$1|$1]]',
+
 # E-mail user
 'mailnologin'     => '無驛',
 'mailnologintext' => '[[Special:Userlogin|登簿]]置郵，方可捎書。',
@@ -1488,7 +1495,8 @@ $NEWPAGE
 'allmessagesname'           => '話',
 'allmessagesdefault'        => '慣文',
 'allmessagescurrent'        => '今文',
-'allmessagestext'           => '此列MediaWiki官話。',
+'allmessagestext'           => '此列MediaWiki官話。
+如貢正宗MediaWiki本地化，[http://www.mediawiki.org/wiki/Localisation MediaWiki本地化]與[http://translatewiki.net Betawiki]閱之。',
 'allmessagesnotsupportedDB' => "'''\$wgUseDatabaseMessages'''閉庫，'''無纂也。",
 'allmessagesfilter'         => '含辭：',
 'allmessagesmodified'       => '見易',

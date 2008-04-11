@@ -529,7 +529,8 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'badsig'                     => '無效嘅程式碼簽名；請檢查 HTML 有無錯。所有屬性都要用雙引號括住。',
 'badsiglength'               => '綽號太長喇；佢嘅長度一定要響$1個字元以下。',
 'email'                      => '電郵',
-'prefs-help-realname'        => '真名係可以選填嘅，如果你選擇提供佢，佢會用來喺有需要嘅時候標示你嘅作品。',
+'prefs-help-realname'        => '真名係可以選填嘅。
+如果你選擇提供佢，佢會用來喺有需要嘅時候標示你嘅作品。',
 'loginerror'                 => '登入錯誤',
 'prefs-help-email'           => '電郵地址係可以選填嘅，但係佢響啟用咗之後等人可以響唔知你電郵地址嘅情況之下都可以聯絡你。',
 'prefs-help-email-required'  => '需要電郵地址。',
@@ -1368,6 +1369,13 @@ Template:搞清楚',
 'listusers-submit'   => '顯示',
 'listusers-noresult' => '搵唔到用戶。',
 
+# Special:Listgrouprights
+'listgrouprights'         => '用戶組權限',
+'listgrouprights-summary' => '下面係一個響呢個wiki定義咗嘅用戶權限一覽，同埋佢哋嘅存取權。',
+'listgrouprights-group'   => '組',
+'listgrouprights-rights'  => '權',
+'listgrouprights-link'    => '[[Help:組權限#$1|$1]]',
+
 # E-mail user
 'mailnologin'     => '冇傳送地址',
 'mailnologintext' => '你一定要[[Special:Userlogin|登入咗]]同埋喺你嘅[[Special:Preferences|喜好設定]]度有個有效嘅電郵地址先可以傳送電郵畀其他用戶。',
@@ -1796,7 +1804,8 @@ $1',
 'allmessagesname'           => '名稱',
 'allmessagesdefault'        => '預設文字',
 'allmessagescurrent'        => '現時文字',
-'allmessagestext'           => '以下係 MediaWiki 空間名入邊現有系統信息嘅清單。',
+'allmessagestext'           => '以下係 MediaWiki 空間名入邊現有系統信息嘅清單。
+如果想貢獻正宗嘅MediaWiki本地化嘅話，請參閱[http://www.mediawiki.org/wiki/Localisation MediaWiki本地化]同埋[http://translatewiki.net Betawiki]。',
 'allmessagesnotsupportedDB' => "呢一版唔可以用，因為'''\$wgUseDatabaseMessages'''已經閂咗。",
 'allmessagesfilter'         => '信息名過濾（器）：',
 'allmessagesmodified'       => '只顯示修改過嘅',

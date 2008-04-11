@@ -451,7 +451,8 @@ $2',
 'badsig'                     => '錯誤的原始簽名；請檢查HTML標籤。',
 'badsiglength'               => '暱稱過長；它的長度必須在$1個字元以下。',
 'email'                      => '電子郵件',
-'prefs-help-realname'        => '真實姓名是可選的，如果您選擇提供它，那它便用以對您的貢獻署名。',
+'prefs-help-realname'        => '真實姓名是可選的。
+如果您選擇提供它，那它便用以對您的貢獻署名。',
 'loginerror'                 => '登入錯誤',
 'prefs-help-email'           => '電子郵件是可選的，但當啟用它後可以在您沒有公開自己的用戶身分時透過您的用戶頁或用戶討論頁與您聯繫。',
 'prefs-help-email-required'  => '需要電子郵件地址。',
@@ -1290,6 +1291,13 @@ Template:消除歧義',
 'listusers-submit'   => '顯示',
 'listusers-noresult' => '找不到用戶。',
 
+# Special:Listgrouprights
+'listgrouprights'         => '用戶群組權限',
+'listgrouprights-summary' => '以下面是一個在這個wiki中定義出來的用戶權限清單，以及它們的存取權。',
+'listgrouprights-group'   => '群組',
+'listgrouprights-rights'  => '權限',
+'listgrouprights-link'    => '[[Help:群組權限#$1|$1]]',
+
 # E-mail user
 'mailnologin'     => '無電郵地址',
 'mailnologintext' => '您必須先[[Special:Userlogin|登入]]
@@ -1736,7 +1744,8 @@ $1',
 'allmessagesname'           => '名稱',
 'allmessagesdefault'        => '預設的文字',
 'allmessagescurrent'        => '當前的文字',
-'allmessagestext'           => '這裡列出所有可定製的系統介面。',
+'allmessagestext'           => '這裡列出所有可定製的系統介面。
+如果想貢獻正宗的MediaWiki本地化的話，請參閱[http://www.mediawiki.org/wiki/Localisation MediaWiki本地化]以及[http://translatewiki.net Betawiki]。',
 'allmessagesnotsupportedDB' => "這個頁面無法使用，因為'''\$wgUseDatabaseMessages'''已被設定關閉。",
 'allmessagesfilter'         => '正則表達式過濾條件：',
 'allmessagesmodified'       => '僅顯示修改過的',
