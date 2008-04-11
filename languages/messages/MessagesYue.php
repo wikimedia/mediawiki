@@ -2042,8 +2042,6 @@ Variants for Chinese language
 # Variants for Serbian language
 'variantname-sr-ec' => '斯拉夫易卡語',
 'variantname-sr-el' => '拉丁易卡語',
-'variantname-sr-jc' => '斯拉夫耶卡語',
-'variantname-sr-jl' => '拉丁耶卡語',
 'variantname-sr'    => '無變換',
 
 # Variants for Kazakh language

@@ -54,9 +54,7 @@ class SrConverter extends LanguageConverter {
 	function loadDefaultTables() {
 		$this->mTables = array(
 			'sr-ec' => new ReplacementArray( $this->mToCyrillics ),
-			'sr-jc' => new ReplacementArray( $this->mToCyrillics),
 			'sr-el' => new ReplacementArray( $this->mToLatin),
-			'sr-jl' => new ReplacementArray( $this->mToLatin),
 			'sr'    => new ReplacementArray()
 		);
 	}
@@ -169,8 +167,6 @@ class LanguageSr extends LanguageSr_ec {
 
 		parent::__construct();
 
-		// these variants are currently UNUSED:
-		// 'sr-jc', 'sr-jl' 
 		$variants = array('sr', 'sr-ec', 'sr-el');
 		$variantfallbacks = array(
 			'sr'    => 'sr-ec',

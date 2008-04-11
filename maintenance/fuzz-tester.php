@@ -1318,7 +1318,7 @@ class viewPageTest extends pageTest {
                         "li", "lo", "lt", "lv", "mk", "ml", "ms", "nah", "nap", "nds", 
                         "nds-nl", "nl", "nn", "no", "non", "nv", "oc", "or", "os", "pa", 
                         "pl", "pms", "ps", "pt", "pt-br", "qu", "rmy", "ro", "ru", "sc", 
-                        "sd", "sk", "sl", "sq", "sr", "sr-ec", "sr-el", "sr-jc", "sr-jl", 
+                        "sd", "sk", "sl", "sq", "sr", "sr-ec", "sr-el",
                         "su", "sv", "ta", "te", "th", "tlh", "tr", "tt", "ty", "tyv", "udm", 
                         "ug", "uk", "ur", "utf8", "vec", "vi", "wa", "xal", "yi", "za", 
                         "zh", "zh-cn", "zh-hk", "zh-sg", "zh-tw", "zh-tw") ),

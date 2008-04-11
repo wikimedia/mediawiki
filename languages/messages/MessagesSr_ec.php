@@ -2005,8 +2005,6 @@ $1',
 # Variants for Serbian language
 'variantname-sr-ec' => 'ћирилица',
 'variantname-sr-el' => 'latinica',
-'variantname-sr-jc' => 'јекав',
-'variantname-sr-jl' => 'jekav',
 'variantname-sr'    => 'disable',
 
 # Metadata
