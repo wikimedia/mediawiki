@@ -1117,7 +1117,8 @@ $NEWPAGE
 'allmessagesdefault'        => 'דיפאלט טעקסט',
 'allmessagescurrent'        => 'איצטיגער טעקסט',
 'allmessagestext'           => 'דאס איז א ליסטע פון אלע סיסטעם מעסעזשעס עוועילבל און מידיעוויקי נעימספעיס. {{ns:mediawiki}}, וואס באדינען דעם אויפהאלט פונעם סייט.
-סיסאפס קענען ענדערן די מעסעזשעס דורך דרוקן אויפן נאמען פון מעסעזש.',
+סיסאפס קענען ענדערן די מעסעזשעס דורך דרוקן אויפן נאמען פון מעסעזש.
+Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] and [http://translatewiki.net Betawiki] if you wish to contribute to the generic MediaWiki localisation.',
 'allmessagesnotsupportedDB' => 'מען קען זיך נישט באניצן מיט דעם בלאט וויבאלד די $wgUseDatabseMessages איז געווארן בטל.',
 'allmessagesfilter'         => 'מעסעדזש נאמען פילטער:',
 'allmessagesmodified'       => 'ווייז נאר מאדיפיצירטע',

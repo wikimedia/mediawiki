@@ -8,6 +8,7 @@
  * @author Siebrand
  * @author Teak
  * @author SPQRobin
+ * @author Jon Harald Søby
  */
 
 $messages = array(
@@ -339,7 +340,8 @@ MySQL маннык сыыһаны төнүннэрдэ "$3: $4"',
 'protectedinterface'   => 'Бу сирэй бырагыраамма холбуурун хааччыйар, онон моһуогурууттан халытан хатанан турар',
 'editinginterface'     => "'''Болҕой:''' Быраҕыраамма тас көстүүтүн (интерфейсын) хааччыйар тиэкиһи уларытаары гынан эрэҕин. Бу сирэйи уларыттаххына атын кыттааччылар көрөллөрүгэр бырагыраамма көстүүтэ уларыйыа. Тылбаастыыр буоллаххына Медиавики бырайыактарын сахалыы тылбааһын [http://translatewiki.net/wiki/Main_Page?setlang=sah Betawiki] туһан.",
 'sqlhidden'            => '(SQL ыйытык кистэммит)',
-'cascadeprotected'     => 'Бу сирэй уларыйар кыаҕа суох, тоҕо диэтэххэ уларыйара бобуллубут (каскаднай көмүскэл холбоммут) {{PLURAL:$1|сирэй бөлөҕөр|сирэйдэр бөлөхтөрүгэр}} киирэр:',
+'cascadeprotected'     => 'Бу сирэй уларыйар кыаҕа суох, тоҕо диэтэххэ уларыйара бобуллубут (каскаднай көмүскэл холбоммут) {{PLURAL:$1|сирэй бөлөҕөр|сирэйдэр бөлөхтөрүгэр}} киирэр:
+$2',
 'namespaceprotected'   => "Эн '''$1''' аат эйгэтигэр киирэр сирэйдэри уларытар кыаҕыҥ суох.",
 'customcssjsprotected' => 'Эн бу сирэйи уларытар кыаҕыҥ суох, тоҕо диэтэххэ онтуҥ атын киһи тус бэйэтин туруорууларын таарыйар.',
 'ns-specialprotected'  => '{{ns:special}} ааттаах сирэйдэр уларытыллыбаттар.',
@@ -1633,7 +1635,8 @@ $1',
 'allmessagesname'           => 'Биллэрии',
 'allmessagesdefault'        => 'Туспа этиллибэтэҕинэ суруллар тиэкис',
 'allmessagescurrent'        => 'Билиҥҥи тиэкис',
-'allmessagestext'           => 'Манна систиэмэ биллэриилэрин испииһэгэ көстөр.',
+'allmessagestext'           => 'Манна систиэмэ биллэриилэрин испииһэгэ көстөр.
+Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] and [http://translatewiki.net Betawiki] if you wish to contribute to the generic MediaWiki localisation.',
 'allmessagesnotsupportedDB' => "'''{{ns:special}}:Allmessages''' туттуллар кыаҕа суох, тоҕо диэтэххэ '''\$wgUseDatabaseMessages''' араарыллыбыт.",
 'allmessagesfilter'         => 'Сурук аатын фильтра:',
 'allmessagesmodified'       => 'Уларыйбыттары эрэ көрдөр',

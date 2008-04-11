@@ -530,25 +530,25 @@ Don't forget to personalize your {{SITENAME}} preferences.",
 'hr_tip'          => 'हॉरिझॉंटल लाईन (कम इस्तेमाल करें)',
 
 # Edit pages
-'summary'                   => 'सारांश',
-'subject'                   => 'विषय/शीर्षक',
-'minoredit'                 => 'यह एक छोटा बदलाव है',
-'watchthis'                 => 'इस पृष्ठ को ध्यानसूची में डालें',
-'savearticle'               => 'बदलाव संजोयें',
-'preview'                   => 'झलक',
-'showpreview'               => 'झलक दिखायें',
-'showlivepreview'           => 'सीधी झलक',
-'showdiff'                  => 'बदलाव दिखाएं',
-'anoneditwarning'           => "'''सावधान:''' आपने लॉग इन नहीं किया। इस पृष्ठ के इतिहास में आपका आइपी पता अंकित किया जाएगा।",
-'missingsummary'            => "'''तकाज़ा (स्मरण-पत्र):''' आपने संपादन सारांश नहीं दिया हुआ हैं ।
+'summary'                           => 'सारांश',
+'subject'                           => 'विषय/शीर्षक',
+'minoredit'                         => 'यह एक छोटा बदलाव है',
+'watchthis'                         => 'इस पृष्ठ को ध्यानसूची में डालें',
+'savearticle'                       => 'बदलाव संजोयें',
+'preview'                           => 'झलक',
+'showpreview'                       => 'झलक दिखायें',
+'showlivepreview'                   => 'सीधी झलक',
+'showdiff'                          => 'बदलाव दिखाएं',
+'anoneditwarning'                   => "'''सावधान:''' आपने लॉग इन नहीं किया। इस पृष्ठ के इतिहास में आपका आइपी पता अंकित किया जाएगा।",
+'missingsummary'                    => "'''तकाज़ा (स्मरण-पत्र):''' आपने संपादन सारांश नहीं दिया हुआ हैं ।
 अगर आप दुबारा संजोयेंपर क्लीक करते हैं तो आपका संपादन बिना सारांश दिये संजोया जायेगा ।",
-'missingcommenttext'        => 'कृपया नीचे टिप्पणी दें ।',
-'missingcommentheader'      => "'''स्मरण-पत्र:''' आपने इस टिप्पणीको शीर्षक नहीं दिया हैं ।
+'missingcommenttext'                => 'कृपया नीचे टिप्पणी दें ।',
+'missingcommentheader'              => "'''स्मरण-पत्र:''' आपने इस टिप्पणीको शीर्षक नहीं दिया हैं ।
 अगर आप दुबारा संजोयें पर क्लीक करें तो आपके बदलाव संजोयें जायेंगे ।",
-'summary-preview'           => 'सारांशकी झलक',
-'subject-preview'           => 'विषय/शीर्षक की झलक',
-'blockedtitle'              => 'सदस्य अवरुद्ध है',
-'blockedtext'               => "<big>'''आपका सदस्यनाम अथवा IP एड्रेस ब्लॉक कर दिया गया हैं ।'''</big>
+'summary-preview'                   => 'सारांशकी झलक',
+'subject-preview'                   => 'विषय/शीर्षक की झलक',
+'blockedtitle'                      => 'सदस्य अवरुद्ध है',
+'blockedtext'                       => "<big>'''आपका सदस्यनाम अथवा IP एड्रेस ब्लॉक कर दिया गया हैं ।'''</big>
 
 यह ब्लॉक $1 ने दिया है । इसके लिये ''$2'' यह कारन दिया हुआ हैं ।
 
@@ -558,7 +558,7 @@ Don't forget to personalize your {{SITENAME}} preferences.",
 
 आप इस ब्लॉकके बारेमें वार्तालाप के लिये $1 या [[{{MediaWiki:Grouppage-sysop}}|प्रबन्धकोंसे]] संपर्क कर सकते हैं ।
 आप जबतक वैध इमेल पता अपने [[Special:Preferences|सदस्य पसंद]] पन्नेपर देते नहीं तबतक आप ’सदस्यको इमेल भेजें’ यह कड़ि इस्तेमाल नहीं कर सकतें । आपको ऐसा करनेसे नहीं रोका गया है । आपका अभीका IP एड्रेस $3 यह है, और आपका ब्लॉक क्रमांक #$5 हैं । कृपया इस विषयपर होनेवाले वार्तालापमें इनमेंसे किसीकाभी प्रयोग किजीयें ।",
-'autoblockedtext'           => 'आपका आईपी एड्रेस अपनेआप ब्लॉक हो गया हैं क्योंकी यह उस सदस्य ने इस्तेमाल किया था, जिसे $1 ने ब्लॉक किया हैं।
+'autoblockedtext'                   => 'आपका आईपी एड्रेस अपनेआप ब्लॉक हो गया हैं क्योंकी यह उस सदस्य ने इस्तेमाल किया था, जिसे $1 ने ब्लॉक किया हैं।
 ब्लॉक करने का कारण नीचे दिया हैं:
 
 :\'\'$2\'\'
@@ -572,33 +572,33 @@ Don't forget to personalize your {{SITENAME}} preferences.",
 
 आपका ब्लाक आईडी $5 हैं।
 अपने कोईभी पृच्छामें इसका इस्तेमाल करें।',
-'blockednoreason'           => 'कारण दिया नहीं हैं',
-'blockedoriginalsource'     => "'''$1''' का स्रोत इसके नीचे दिया गया है:",
-'blockededitsource'         => "'''$1''' को '''आपके बदलाव''' का पाठ्य नीचे दर्शाया गया हैं:",
-'whitelistedittitle'        => 'संपादित करनें के लिये लॉग इन करना ज़रूरी हैं',
-'whitelistedittext'         => 'लेख संपादित करने के लियें $1 करें ।',
-'whitelistreadtitle'        => 'पढ़ने के लिये लॉग इन करना ज़रूरी हैं',
-'whitelistreadtext'         => 'लेख पढ़ने के लिये [[Special:Userlogin|लॉग इन]] करना ज़रूरी हैं ।',
-'whitelistacctitle'         => 'आप नया खाता नहीं बना सकतें',
-'whitelistacctext'          => '{{SITENAME}} पर नया खाता बनाने से पहलें आपने [[Special:Userlogin|लॉग]] इन किया होना और साथ ही उचित अधिकार प्राप्त कर लेना ज़रूरी हैं ।',
-'confirmedittitle'          => 'संपादित करने के लियें इ-मेल से पुष्टि करना आवश्यक हैं',
-'confirmedittext'           => 'संपादन करने से पहले आपने अपना इ-मेल पता प्रमाणित कराना आवश्यक हैं ।
+'blockednoreason'                   => 'कारण दिया नहीं हैं',
+'blockedoriginalsource'             => "'''$1''' का स्रोत इसके नीचे दिया गया है:",
+'blockededitsource'                 => "'''$1''' को '''आपके बदलाव''' का पाठ्य नीचे दर्शाया गया हैं:",
+'whitelistedittitle'                => 'संपादित करनें के लिये लॉग इन करना ज़रूरी हैं',
+'whitelistedittext'                 => 'लेख संपादित करने के लियें $1 करें ।',
+'whitelistreadtitle'                => 'पढ़ने के लिये लॉग इन करना ज़रूरी हैं',
+'whitelistreadtext'                 => 'लेख पढ़ने के लिये [[Special:Userlogin|लॉग इन]] करना ज़रूरी हैं ।',
+'whitelistacctitle'                 => 'आप नया खाता नहीं बना सकतें',
+'whitelistacctext'                  => '{{SITENAME}} पर नया खाता बनाने से पहलें आपने [[Special:Userlogin|लॉग]] इन किया होना और साथ ही उचित अधिकार प्राप्त कर लेना ज़रूरी हैं ।',
+'confirmedittitle'                  => 'संपादित करने के लियें इ-मेल से पुष्टि करना आवश्यक हैं',
+'confirmedittext'                   => 'संपादन करने से पहले आपने अपना इ-मेल पता प्रमाणित कराना आवश्यक हैं ।
 कृपया अपनी [[Special:Preferences|सदस्य वरीयताएं]] में जाकर अपना इ-मेल पता दें और उसे प्रमाणित करें ।',
-'nosuchsectiontitle'        => 'ऐसा कोई विभाग नहीं हैं',
-'nosuchsectiontext'         => 'आपने एक ऐसा विभाग संपादित करनेकी कोशीश की हैं जो अस्तित्व में नहीं हैं । विभाग $1 ना होने के कारण, आपके बदलाव संजोनेकी जगह नहीं हैं ।',
-'loginreqtitle'             => 'लॉग इन आवश्यक हैं',
-'loginreqlink'              => 'लॉग इन',
-'loginreqpagetext'          => 'अन्य पन्ने देखने के लिये आपको $1 करना आवश्यक हैं ।',
-'accmailtitle'              => 'पासवर्ड भेज दिया गया है।',
-'accmailtext'               => "'$1' का पासवर्ड $2 को भेज दिया गया है।",
-'newarticle'                => '(नया)',
-'newarticletext'            => 'आप जो लेख चाहते हैं वह अभीतक लिखा नहीं गया हैं । यह लेख लिखनेके लिये नीचे पाठ्य लिखियें । सहाय्यताके लिये [[{{MediaWiki:Helppage}}|यहां]] क्लीक किजीयें ।
+'nosuchsectiontitle'                => 'ऐसा कोई विभाग नहीं हैं',
+'nosuchsectiontext'                 => 'आपने एक ऐसा विभाग संपादित करनेकी कोशीश की हैं जो अस्तित्व में नहीं हैं । विभाग $1 ना होने के कारण, आपके बदलाव संजोनेकी जगह नहीं हैं ।',
+'loginreqtitle'                     => 'लॉग इन आवश्यक हैं',
+'loginreqlink'                      => 'लॉग इन',
+'loginreqpagetext'                  => 'अन्य पन्ने देखने के लिये आपको $1 करना आवश्यक हैं ।',
+'accmailtitle'                      => 'पासवर्ड भेज दिया गया है।',
+'accmailtext'                       => "'$1' का पासवर्ड $2 को भेज दिया गया है।",
+'newarticle'                        => '(नया)',
+'newarticletext'                    => 'आप जो लेख चाहते हैं वह अभीतक लिखा नहीं गया हैं । यह लेख लिखनेके लिये नीचे पाठ्य लिखियें । सहाय्यताके लिये [[{{MediaWiki:Helppage}}|यहां]] क्लीक किजीयें ।
 
 अगर आप यहांपर गलतीसे आये हैं तो अपने ब्राउज़रके बॅक (back) पर क्लीक किजीयें ।',
-'anontalkpagetext'          => "---- ''यह वार्ता पन्ना उस अज्ञात सदस्य के लिये है जिसने या तो अकाउन्ट नहीं बनाया है या वह उसे प्रयोग नहीं कर रहा है । इसलिये उसकी पहचान के लिये हम उसका आ ई पी ऐड्रस प्रयोग कर रहे हैं । ऐसे आ ई पी ऐड्रस कई लोगों के बीच शेयर किये जा सके हैं । अगर आप एक अज्ञात सदस्य हैं और आपको लगता है कि आपके बारे में अप्रासंगिक टीका टिप्पणी की गयी है तो कृपया  [[Special:Userlogin|अकाउन्ट बनायें या लॉग इन करें]] जिससे भविष्य में अन्य अज्ञात सदस्यों के साथ  कोई गलतफहमी न हों .''",
-'noarticletext'             => 'इस लेखमें अभी कुछभी पाठ्य नहीं हैं । आप विकिपीडियापर होनेवाले दुसरे लेखोंमें इस [[Special:Search/{{PAGENAME}}|शीर्षक को खोज सकते हैं]] या फिर यह लेख [{{fullurl:{{FULLPAGENAME}}|action=edit}} तैयार कर सकते हैं] ।',
-'userpage-userdoesnotexist' => 'सदस्य खाता "$1" पंजिकृत नहीं हैं । कृपया यह लेख आप संपादित अथवा निर्मित करना चाहते हैं इसकी जाँच करें ।',
-'clearyourcache'            => "'''सुचना''': यह पृष्ठ सुरक्षित करने बाद, बदलावों देखने लिए आपका ब्राउज़र का कैश ख़ाली करने की ज़रूरत हो सकती है। 
+'anontalkpagetext'                  => "---- ''यह वार्ता पन्ना उस अज्ञात सदस्य के लिये है जिसने या तो अकाउन्ट नहीं बनाया है या वह उसे प्रयोग नहीं कर रहा है । इसलिये उसकी पहचान के लिये हम उसका आ ई पी ऐड्रस प्रयोग कर रहे हैं । ऐसे आ ई पी ऐड्रस कई लोगों के बीच शेयर किये जा सके हैं । अगर आप एक अज्ञात सदस्य हैं और आपको लगता है कि आपके बारे में अप्रासंगिक टीका टिप्पणी की गयी है तो कृपया  [[Special:Userlogin|अकाउन्ट बनायें या लॉग इन करें]] जिससे भविष्य में अन्य अज्ञात सदस्यों के साथ  कोई गलतफहमी न हों .''",
+'noarticletext'                     => 'इस लेखमें अभी कुछभी पाठ्य नहीं हैं । आप विकिपीडियापर होनेवाले दुसरे लेखोंमें इस [[Special:Search/{{PAGENAME}}|शीर्षक को खोज सकते हैं]] या फिर यह लेख [{{fullurl:{{FULLPAGENAME}}|action=edit}} तैयार कर सकते हैं] ।',
+'userpage-userdoesnotexist'         => 'सदस्य खाता "$1" पंजिकृत नहीं हैं । कृपया यह लेख आप संपादित अथवा निर्मित करना चाहते हैं इसकी जाँच करें ।',
+'clearyourcache'                    => "'''सुचना''': यह पृष्ठ सुरक्षित करने बाद, बदलावों देखने लिए आपका ब्राउज़र का कैश ख़ाली करने की ज़रूरत हो सकती है। 
 
 '''मोज़िला / फ़ायरफ़ॉक्स / सफ़ारी:''' ''shift hold'' करें जब आप ''reload'' क्लिक करते है, या ''Ctrl-Shift-R'' (अपल मैक में ''Cmd-Shift-R'') दबाएँ; 
 
@@ -606,73 +606,77 @@ Don't forget to personalize your {{SITENAME}} preferences.",
 '''कॉङ्करर:''' सिर्फ़ ''Reload'' बटन पर क्लिक करें, या ''F5'' दबाएँ; 
 
 '''ऑपरा''' सदस्य को ''Tools→Preferences'' में सम्पूर्ण कैश ख़ाली करने की ज़रूरत हो सकती है।",
-'usercssjsyoucanpreview'    => '<strong>टीप:</strong>आपका नया CSS/JS संजोने से पहले ’झलक’ देखें ।',
-'usercsspreview'            => "'''आप अपने सी.एस.एस.की सिर्फ झलक देख रहें हैं, वह अभीतक संजोई नहीं हैं इसका खयाल रखें ।'''",
-'userjspreview'             => "'''आप अपने जावास्क्रीप्टकी सिर्फ झलक देख रहें हैं, वह अभीतक संजोई नहीं हैं इसका खयाल रखें ।'''",
-'userinvalidcssjstitle'     => "'''ताक़ीद:''' \"\$1\" नामसे कोई त्वचा नहीं हैं ।
+'usercssjsyoucanpreview'            => '<strong>टीप:</strong>आपका नया CSS/JS संजोने से पहले ’झलक’ देखें ।',
+'usercsspreview'                    => "'''आप अपने सी.एस.एस.की सिर्फ झलक देख रहें हैं, वह अभीतक संजोई नहीं हैं इसका खयाल रखें ।'''",
+'userjspreview'                     => "'''आप अपने जावास्क्रीप्टकी सिर्फ झलक देख रहें हैं, वह अभीतक संजोई नहीं हैं इसका खयाल रखें ।'''",
+'userinvalidcssjstitle'             => "'''ताक़ीद:''' \"\$1\" नामसे कोई त्वचा नहीं हैं ।
 कृपया ध्यान में रहें की बदली हुई .css और .js फ़ाईलें नीचे स्तरकी लिपी का इस्तेमाल करती हैं, उदा.  {{ns:user}}:Foo/monobook.css के विरुध {{ns:user}}:Foo/Monobook.css ।",
-'updated'                   => '(अद्यतनीत)',
-'note'                      => '<strong>सूचना:</strong>',
-'previewnote'               => 'याद रखें, यह केवल एक झलक है और अभी तक सुरक्षित  नहीं किया गया है!',
-'previewconflict'           => 'उपरी बदलाव संजोये जाने के बाद उपरी पाठ इस झलकके अनुसार दिखाया जायेगा।',
-'session_fail_preview'      => '<strong>माफ किजीयें! आपके बदलाव सेशन डाटा के नष्ट होने के कारण संजोयें नहीं गयें हैं।
+'updated'                           => '(अद्यतनीत)',
+'note'                              => '<strong>सूचना:</strong>',
+'previewnote'                       => 'याद रखें, यह केवल एक झलक है और अभी तक सुरक्षित  नहीं किया गया है!',
+'previewconflict'                   => 'उपरी बदलाव संजोये जाने के बाद उपरी पाठ इस झलकके अनुसार दिखाया जायेगा।',
+'session_fail_preview'              => '<strong>माफ किजीयें! आपके बदलाव सेशन डाटा के नष्ट होने के कारण संजोयें नहीं गयें हैं।
 कृपया पुन: यत्न करें। अगर इसके बाद भी ऐसा ही होता हैं तो कॄपया लॉग आउट करके फिरसे लॉग इन करें।</strong>',
-'session_fail_preview_html' => "<strong>माफ किजीयें! आपके बदलाव सत्र डाटा नष्ट होने के कारण संजोयें नहीं जा सकें।</strong>
+'session_fail_preview_html'         => "<strong>माफ किजीयें! आपके बदलाव सत्र डाटा नष्ट होने के कारण संजोयें नहीं जा सकें।</strong>
 
 ''चूंकी {{SITENAME}} HTML पर निर्भर हैं, जावास्क्रीप्ट पर होने वाले संभाव्य हमलोंसे बचाव के लिये झलक नहीं दिखाईं गईं हैं।''
 
 <strong>अगर यह आपका वैध संपादन यत्न था, तो कृपया पुन: यत्न करें। अगर इसके बाद भी ऐसा ही हुआ तो कृपया लॉग आउट करके फिरसे लॉग इन करें।</strong>",
-'token_suffix_mismatch'     => '<strong>आपके द्वारा किये गये बदलाव रद्द कर दियें गयें हैं क्योंकी आपके क्लायंटने आपके संपादनमें दियें हुए विरामचिन्होंमें बदलाव कियें हैं।
+'token_suffix_mismatch'             => '<strong>आपके द्वारा किये गये बदलाव रद्द कर दियें गयें हैं क्योंकी आपके क्लायंटने आपके संपादनमें दियें हुए विरामचिन्होंमें बदलाव कियें हैं।
 लेख के पाठमें खराबी ना आयें इसलियें यह बदलाव रद्द कर दियें गयें हैं।
 ऐसा शायद आप अनामक प्रोक्सी इस्तेमाल करने से हो सकता हैं।</strong>',
-'editing'                   => '$1 सम्पादन',
-'editingsection'            => '$1 सम्पादन (अनुभाग)',
-'editingcomment'            => '$1 (टिप्पणी) सम्पादन',
-'editconflict'              => 'संपादन अंतर्विरोध: $1',
-'explainconflict'           => 'आपने बदलाव शुरु करने बाद और किसीने बदलाव किये हैं।
+'editing'                           => '$1 सम्पादन',
+'editingsection'                    => '$1 सम्पादन (अनुभाग)',
+'editingcomment'                    => '$1 (टिप्पणी) सम्पादन',
+'editconflict'                      => 'संपादन अंतर्विरोध: $1',
+'explainconflict'                   => 'आपने बदलाव शुरु करने बाद और किसीने बदलाव किये हैं।
 उपरी हिस्से में अभीका पाठ दर्शाया गया हैं, तो नीचले हिस्से में आपके बदलाव दर्शायें गयें हैं।
 आपको यह बदलाव अभी खुद एकत्रित करने पडेंगे।
 अगर आपने "बदलाव संजोयें" पर क्लिक किया तो <b>सिर्फ</b> उपरी हिस्से में दिखने वाला पाठ संजोया जायेगा।<br />',
-'yourtext'                  => 'आपका पाठ',
-'storedversion'             => 'संजोया हुआ अवतरण',
-'nonunicodebrowser'         => '<strong>सावधान: आपका ब्राउज़र यूनिकोड आधारित नहीं हैं। 
+'yourtext'                          => 'आपका पाठ',
+'storedversion'                     => 'संजोया हुआ अवतरण',
+'nonunicodebrowser'                 => '<strong>सावधान: आपका ब्राउज़र यूनिकोड आधारित नहीं हैं। 
 आपके द्वारा सुयोग्य संपादन होने के लिये: ASCII न होने वाले चिन्ह षट्‍पदी कोड (hexadecimal) में दर्शायें जायेंगे।</strong>',
-'editingold'                => '<strong>सूचना: आप इस पृष्ठ का कालातीत अवतरण संपादित कर रहें हैं।
+'editingold'                        => '<strong>सूचना: आप इस पृष्ठ का कालातीत अवतरण संपादित कर रहें हैं।
 अगर आप इसे संजोतें हैं, तो इस अवतरण के बाद हुए सभी बदलाव नष्ट हो जायेंगे।</strong>',
-'yourdiff'                  => 'अंतर',
-'copyrightwarning'          => 'कृपया ध्यान रहे कि {{SITENAME}} को किये गये सभी योगदान $2
+'yourdiff'                          => 'अंतर',
+'copyrightwarning'                  => 'कृपया ध्यान रहे कि {{SITENAME}} को किये गये सभी योगदान $2
 की शर्तों के तहत् उपलब्ध किये हुए माने जायेंगे (अधिक जानकारी के लिये $1 देखें) । अगर आप अपनी लिखाई को बदलते और पुनः वितरित होते नहीं देखना चाहते हैं तो यहां योगदान नहीं करें । <br />
 आप यह भी प्रमाणित कर रहे हैं कि यह आपने स्वयं लिखा है अथवा जनार्पीत या किसी अन्य मुक्त स्रोत से कॉपी किया है । <strong>कॉपीराइट वाले लेखों को, बिना अनुमति के, यहाँ नहीं डालिये !</strong>',
-'copyrightwarning2'         => '{{SITENAME}} पर लिखा हुआ कोईभी पाठ अन्य सदस्योंद्वारा बदला जा सकता है या फिर निकाला भी जा सकता हैं।
+'copyrightwarning2'                 => '{{SITENAME}} पर लिखा हुआ कोईभी पाठ अन्य सदस्योंद्वारा बदला जा सकता है या फिर निकाला भी जा सकता हैं।
 अगर आपको अपने लिखे हुए पाठ में संपादन होना नामंजूर हैं तो कृपया यहां पर मत लिखें।<br />
 आप हमें यह भी वचन देतें हैं कि यह आपने खुद लिखा हैं या फिर कोई पब्लिक डोमेन या ऐसे ही किसी मुक्त स्रोतसे कापी किया हैं। (अधिक जानकारी के लिये $1 देखें)।
 <strong>कॉपीराइट वाले लेखों को, बिना अनुमति के, यहाँ न डाले।</strong>',
-'longpagewarning'           => '<strong>सूचना: यह पन्ना $1 किलोबाईट्सका है; कुछ ब्राउज़र्स 32kb से ज्यादा बडे पन्नोंको ठीक से नहीं दिखा सकते या संपादित करने में असुविधा हो सकती है ।
+'longpagewarning'                   => '<strong>सूचना: यह पन्ना $1 किलोबाईट्सका है; कुछ ब्राउज़र्स 32kb से ज्यादा बडे पन्नोंको ठीक से नहीं दिखा सकते या संपादित करने में असुविधा हो सकती है ।
 कृपया इस पन्नेके उससे कम आकारके विभाग बनाईये ।</strong>',
-'longpageerror'             => '<strong>गलती: आपने दिया हुआ पाठ $1 कीलोबाईट लंबा हैं, जो $2 केबी के मर्यादा से बाहर हैं।
+'longpageerror'                     => '<strong>गलती: आपने दिया हुआ पाठ $1 कीलोबाईट लंबा हैं, जो $2 केबी के मर्यादा से बाहर हैं।
 इसे संजोया नहीं जा सकता।</strong>',
-'readonlywarning'           => '<strong>सावधान: डाटाबेस रख रखाव के लियें बंद कर दिया गया हैं, इसलिये अभी आपके बदलाव संजोयें नहीं जा सकतें।
+'readonlywarning'                   => '<strong>सावधान: डाटाबेस रख रखाव के लियें बंद कर दिया गया हैं, इसलिये अभी आपके बदलाव संजोयें नहीं जा सकतें।
 अगर आप चाहतें हैं तो इस पाठ को टैक्स्ट फ़ाईल में कट-पेस्ट करके रख सकतें हैं।</strong>',
-'protectedpagewarning'      => '<strong>सुचना:  यह लेख सुरक्षित कर दिया गया हैं और सिर्फ प्रबंधक इसमें बदलाव कर सकतें हैं।</strong>',
-'semiprotectedpagewarning'  => "'''सूचना:''' यह लेख सुरक्षित कर दिया गया हैं और सिर्फ पंजीकृत सदस्य ही इसमें बदलाव कर सकतें हैं।",
-'cascadeprotectedwarning'   => "'''सावधान:''' यह लेख निम्नलिखीत सुरक्षा-सीढी {{PLURAL:$1|पन्ने से|पन्नों से}} जुडा हुआ होने के कारण सुरक्षित हुआ हैं, और सिर्फ प्रबंधक ही इसमें बदलाव कर सकतें हैं:",
-'titleprotectedwarning'     => '<strong>सुचना:  यह लेख सुरक्षित हैं और कुछ सदस्य ही इसका निर्माण कर सकतें हैं।</strong>',
-'templatesused'             => 'इस पृष्ठ पर प्रयुक्त साँचे:',
-'templatesusedpreview'      => 'इस झलकमें इस्तेमाल किये हुए टेम्प्लेट्स:',
-'templatesusedsection'      => 'इस विभागमें इस्तेमाल किये गये साँचे:',
-'template-protected'        => '(सुरक्षित)',
-'template-semiprotected'    => '(अर्ध-सुरक्षीत)',
-'hiddencategories'          => 'यह लेख निम्नलिखित {{PLURAL:$1|1 छुपाई हुई श्रेणीमें|$1 छुपाईं हुईं श्रेणियोंमें}} हैं:',
-'nocreatetitle'             => 'लेख निर्माणमें प्रतिबंध',
-'nocreatetext'              => '{{SITENAME}} पर नये लेख लिखनेके लिये मनाई की गई हैं ।
+'protectedpagewarning'              => '<strong>सुचना:  यह लेख सुरक्षित कर दिया गया हैं और सिर्फ प्रबंधक इसमें बदलाव कर सकतें हैं।</strong>',
+'semiprotectedpagewarning'          => "'''सूचना:''' यह लेख सुरक्षित कर दिया गया हैं और सिर्फ पंजीकृत सदस्य ही इसमें बदलाव कर सकतें हैं।",
+'cascadeprotectedwarning'           => "'''सावधान:''' यह लेख निम्नलिखीत सुरक्षा-सीढी {{PLURAL:$1|पन्ने से|पन्नों से}} जुडा हुआ होने के कारण सुरक्षित हुआ हैं, और सिर्फ प्रबंधक ही इसमें बदलाव कर सकतें हैं:",
+'titleprotectedwarning'             => '<strong>सुचना:  यह लेख सुरक्षित हैं और कुछ सदस्य ही इसका निर्माण कर सकतें हैं।</strong>',
+'templatesused'                     => 'इस पृष्ठ पर प्रयुक्त साँचे:',
+'templatesusedpreview'              => 'इस झलकमें इस्तेमाल किये हुए टेम्प्लेट्स:',
+'templatesusedsection'              => 'इस विभागमें इस्तेमाल किये गये साँचे:',
+'template-protected'                => '(सुरक्षित)',
+'template-semiprotected'            => '(अर्ध-सुरक्षीत)',
+'hiddencategories'                  => 'यह लेख निम्नलिखित {{PLURAL:$1|1 छुपाई हुई श्रेणीमें|$1 छुपाईं हुईं श्रेणियोंमें}} हैं:',
+'nocreatetitle'                     => 'लेख निर्माणमें प्रतिबंध',
+'nocreatetext'                      => '{{SITENAME}} पर नये लेख लिखनेके लिये मनाई की गई हैं ।
 आप पीछे जाकर अस्तित्वमें होनेवाले लेखोंको संपादित कर सकते हैं, अथवा [[Special:Userlogin|नया ख़ाता खोलें / प्रवेश करें]] ।',
-'nocreate-loggedin'         => '{{SITENAME}} पर नये पन्ने बनाने का आपको अधिकार नहीं हैं।',
-'permissionserrors'         => 'अधिकारोंमें गलती',
-'permissionserrorstext'     => 'निम्नलिखित {{PLURAL:$1|कारण|कारणोंसे}} आपको ऐसा करने की अनुमति नहीं हैं:',
-'recreate-deleted-warn'     => "'''चेतावनी: आप एक पहले से मिटाये गये पृष्ठ को पुनर्निर्मित कर रहे हैं।'''
+'nocreate-loggedin'                 => '{{SITENAME}} पर नये पन्ने बनाने का आपको अधिकार नहीं हैं।',
+'permissionserrors'                 => 'अधिकारोंमें गलती',
+'permissionserrorstext'             => 'निम्नलिखित {{PLURAL:$1|कारण|कारणोंसे}} आपको ऐसा करने की अनुमति नहीं हैं:',
+'recreate-deleted-warn'             => "'''चेतावनी: आप एक पहले से मिटाये गये पृष्ठ को पुनर्निर्मित कर रहे हैं।'''
 
 आप को विचार करना चाहिये क्या इस पृष्ठ का संपादन चालू रखना उचित होगा।
 इस पृष्ट को मिटाने का अभिलेख/प्रचालेख सुविधा के लिये उपलब्ध कराया गया है:",
+'expensive-parserfunction-warning'  => 'सूचना: इस पन्नेपर बहुत सारे किमती पार्सर क्रिया कॉल हैं।
+
+वे $2 से कम होने चाहिये, पर अभी $1 हैं।',
+'expensive-parserfunction-category' => 'बहुत सारे किमती पार्सर क्रिया कॉल होने वाले पन्ने',
 
 # "Undo" feature
 'undo-success' => 'यह संपादन पूर्ववत किया जा सकता हैं। ऐसा करने के लिये कृपया निम्नलिखित पाठ को ध्यान से देखकर बदलाव संजोयें।',
@@ -753,8 +757,21 @@ Don't forget to personalize your {{SITENAME}} preferences.",
 'logdelete-logentry'          => '[[$1]] की घटना दृष्यता बदली गईं',
 'revdelete-success'           => "'''अवतरण दृष्यता सैट कर दी गईं हैं।'''",
 'logdelete-success'           => "'''सूची दृष्यता बदली गईं।'''",
+'revdel-restore'              => 'दृश्यता बदलें',
 'pagehist'                    => 'पन्ने का इतिहास',
 'deletedhist'                 => 'हटाया हुआ इतिहास',
+'revdelete-content'           => 'कंटेंट',
+'revdelete-summary'           => 'बदलाव ज़ानकारी',
+'revdelete-uname'             => 'सदस्यनाम',
+'revdelete-restricted'        => 'प्रबंधकोंको प्रतिबंधित किया',
+'revdelete-unrestricted'      => 'प्रबंधकोंके प्रबंधन हटायें',
+'revdelete-hid'               => 'छुपायें $1',
+'revdelete-unhid'             => 'दर्शायें $1',
+'revdelete-log-message'       => '$2 {{PLURAL:$2|अवतरण|अवतरणों}}के लिये $1',
+'logdelete-log-message'       => '$2 {{PLURAL:$2|घटना|घटनाओं}}के लिये $1',
+
+# Suppression log
+'suppressionlog' => 'सप्रेशन सूची',
 
 # History merging
 'mergehistory'                     => 'पन्ने के इतिहास एकत्रित करें',
@@ -820,6 +837,7 @@ Don't forget to personalize your {{SITENAME}} preferences.",
 'powersearch'           => 'खोज',
 'powersearch-legend'    => 'एडव्हन्स्ड खोज़',
 'powersearchtext'       => 'नामस्थानमें खोज़:<br />$1<br />$2 अनुप्रेषितें<br />$3 $9 के लिये खोज़',
+'search-external'       => 'बाहरी खोज',
 'searchdisabled'        => '{{SITENAME}} पर खोज के लिये मनाई कर दी गईं हैं।
 तब तक गूगलसे खोज करें।
 {{SITENAME}} के उनके इंडेक्स पुराने हो सकतें हैं, इसका ध्यान रखें।',
@@ -920,17 +938,20 @@ latex, dvips, gs, और convert के इन्स्टॉलेशन की
 'group-bot'           => 'बोट्स',
 'group-sysop'         => 'प्रबंधक',
 'group-bureaucrat'    => 'प्रशासक',
+'group-suppress'      => 'ओवरसाईट्स',
 'group-all'           => '(सभी)',
 
 'group-autoconfirmed-member' => 'पंजीकृत सदस्य',
 'group-bot-member'           => 'बोट्स',
 'group-sysop-member'         => 'प्रबंधक',
 'group-bureaucrat-member'    => 'प्रशासक',
+'group-suppress-member'      => 'ओवरसाईट',
 
 'grouppage-autoconfirmed' => '{{ns:project}}:पंजीकृत सदस्य',
 'grouppage-bot'           => '{{ns:project}}:बोट्स',
 'grouppage-sysop'         => '{{ns:project}}:प्रबंधक',
 'grouppage-bureaucrat'    => '{{ns:project}}:प्रशासक',
+'grouppage-suppress'      => '{{ns:project}}:ओवरसाईट',
 
 # User rights log
 'rightslog'      => 'सदस्य अधिकार सूची',
@@ -939,7 +960,7 @@ latex, dvips, gs, और convert के इन्स्टॉलेशन की
 'rightsnone'     => '(बिल्कुल नहीं)',
 
 # Recent changes
-'nchanges'                          => '$1 बदलाव',
+'nchanges'                          => '$1 {{PLURAL:$1|बदलाव|बदलाव}}',
 'recentchanges'                     => 'हाल में हुए बदलाव',
 'recentchangestext'                 => 'इस विकिपर हाल में हुए बदलाव इस पन्ने पर देखें जा सकतें हैं।',
 'recentchanges-feed-description'    => 'इस फ़ीडमें होनेवाले विकिपर हाल में हुए बदलाव देखियें ।',
@@ -1249,6 +1270,7 @@ latex, dvips, gs, और convert के इन्स्टॉलेशन की
 'notargettext'            => 'इस क्रिया को करने के लिये आपने लक्ष्य पॄष्ठ या सदस्य बताया नहीं हैं।',
 'pager-newer-n'           => '{{PLURAL:$1|नया 1|नये $1}}',
 'pager-older-n'           => '{{PLURAL:$1|पुराना 1|पुराने $1}}',
+'suppress'                => 'ओवरसाईट',
 
 # Book sources
 'booksources'               => 'पुस्तक के स्रोत',
@@ -1289,6 +1311,9 @@ latex, dvips, gs, और convert के इन्स्टॉलेशन की
 'listusersfrom'      => 'इस शब्द से शुरु होनेवाले सदस्य दर्शायें:',
 'listusers-submit'   => 'दर्शायें',
 'listusers-noresult' => 'सदस्य मिला नहीं।',
+
+# Special:Listgrouprights
+'listgrouprights' => 'सदस्य ग्रुप अधिकार',
 
 # E-mail user
 'mailnologin'     => 'पानेवाले का एड्रेस दिया नहीं',
@@ -2112,17 +2137,59 @@ $1',
 
 'exif-saturation-0' => 'सामान्य',
 
+'exif-gpsmeasuremode-2' => '२-बाजूओंवाली मेज़रमेंट',
+'exif-gpsmeasuremode-3' => '३-बाजूओंवाली मेज़रमेंट',
+
+# Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
+'exif-gpsspeed-k' => 'कि.मी. प्रति घंटा',
+'exif-gpsspeed-m' => 'मील प्रति घंटा',
+'exif-gpsspeed-n' => 'गांठ',
+
+# Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
+'exif-gpsdirection-t' => 'असली दिशा',
+'exif-gpsdirection-m' => 'मैग्नेटिक दिशा',
+
 # External editor support
 'edit-externally'      => 'बाहरी प्रणालीका इस्तेमाल करते हुए इस फ़ाईल को संपादित करें ।',
 'edit-externally-help' => 'अधिक जानकारीके लिये [http://meta.wikimedia.org/wiki/Help:External_editors सेट‍अप जानकारीयाँ] देखें ।',
 
 # 'all' in various places, this might be different for inflected languages
-'watchlistall2' => 'सभी',
-'namespacesall' => 'समस्त',
-'monthsall'     => 'सभी',
+'recentchangesall' => 'सभी',
+'imagelistall'     => 'सभी',
+'watchlistall2'    => 'सभी',
+'namespacesall'    => 'सभी',
+'monthsall'        => 'सभी',
 
 # E-mail address confirmation
-'confirmemail' => 'ई-मेल प्रमाणित करे',
+'confirmemail'             => 'ई-मेल प्रमाणित करे',
+'confirmemail_noemail'     => 'आपके [[Special:Preferences|सदस्य वरीयतायें]]में वैध इ-मेल एड्रेस नहीं दिया हुआ हैं।',
+'confirmemail_send'        => 'एक कन्फर्मेशन कोड भेजें',
+'confirmemail_sent'        => 'कन्फर्मेशन इ-मेल भेज दिया।',
+'confirmemail_loggedin'    => 'आपके इ-मेल एड्रेस का प्रमाणिकरण पूरा हो गया हैं।',
+'confirmemail_subject'     => '{{SITENAME}} इ-मेल एड्रेस प्रमाणिकरण',
+'confirmemail_invalidated' => 'इ-मेल एड्रेस प्रमाणिकरण रद्द कर दिया गया हैं',
+'invalidateemail'          => 'इ-मेल प्रमाणिकरण रद्द करें',
+
+# Scary transclusion
+'scarytranscludedisabled' => '[आंतरविकि ट्रान्स्क्लुडिंग बंद हैं]',
+'scarytranscludefailed'   => '[$1 के लिये साचा मंगा नहीं पायें; माफ किजीये]',
+'scarytranscludetoolong'  => '[URL बहुत लंबी; माफ किजीये]',
+
+# Trackbacks
+'trackbackbox'      => '<div id="mw_trackbacks">इस पन्ने के लिये ट्रैकबैक:<br />$1</div>',
+'trackbackremove'   => ' ([$1 हटायें])',
+'trackbacklink'     => 'ट्रैकबैक',
+'trackbackdeleteok' => 'ट्रैकबैक को हटाया गया।',
+
+# Delete conflict
+'deletedwhileediting' => 'सूचना: आपके द्वारा संपादन शुरू होने के बाद यह पन्ना हटाया गया हैं!',
+'confirmrecreate'     => "सदस्य [[User:$1|$1]] ([[User talk:$1|वार्ता]]) ने आपके द्वारा संपादन शुरू होने के बाद यह पन्ना निम्नलिखित कारण देकर हटाया हैं:
+: ''$2''
+क्या आप इसे फिरसे बनाना चाहतें हैं, इसकी निश्चिती करें।",
+'recreate'            => 'फिरसे बनायें',
+
+# HTML dump
+'redirectingto' => '[[$1]] की तरफ़ भेज रहें हैं...',
 
 # action=purge
 'confirm_purge'        => 'क्या आप यह पृष्ठ का कैश ख़ाली करने चाहिए?
@@ -2132,19 +2199,161 @@ $1',
 
 # AJAX search
 'searchcontaining' => 'उन लेखों को खोजे जिनमे $1 हो।',
+'searchnamed'      => "''$1'' नाम से शुरू होने वाले पन्ने खोजें",
 'articletitles'    => "लेख जो ''$1'' से शुरु होते हैं",
+'hideresults'      => 'रिज़ल्ट छुपायें',
+'useajaxsearch'    => 'AJAX खोज का इस्तेमाल करें',
+
+# Separators for various lists, etc.
+'autocomment-prefix' => '-',
+
+# Multipage image navigation
+'imgmultipageprev' => '← पिछला पन्ना',
+'imgmultipagenext' => 'अगला पन्ना →',
+'imgmultigo'       => 'जायें!',
+'imgmultigotopre'  => 'पन्ने पर जायें',
+
+# Table pager
+'ascending_abbrev'         => 'asc',
+'descending_abbrev'        => 'ज़ानकारी',
+'table_pager_next'         => 'अगला पन्ना',
+'table_pager_prev'         => 'पिछला पन्ना',
+'table_pager_first'        => 'पहला पन्ना',
+'table_pager_last'         => 'आखिरी पन्ना',
+'table_pager_limit'        => 'एक पन्नेपर $1 आइटम दर्शायें',
+'table_pager_limit_submit' => 'जायें',
+'table_pager_empty'        => 'रिज़ल्ट नहीं',
 
 # Auto-summaries
 'autosumm-blank'   => 'पृष्ठ से सम्पूर्ण विषयवस्तु हटा रहा है',
 'autosumm-replace' => "पृष्ठ को '$1' से बदल रहा है।",
+'autoredircomment' => '[[$1]] को अनुप्रेषित',
 'autosumm-new'     => 'नया पृष्ठ: $1',
+
+# Live preview
+'livepreview-loading' => 'लोड हो रहा हैं...',
+'livepreview-ready'   => 'लोड हो रहा हैं... तैयार!',
+'livepreview-failed'  => 'लाइव झलक नहीं दिखा पायें। साधारण झलक देखें।',
+'livepreview-error'   => 'संपर्क नहीं कर पायें: $1 "$2"। साधारण झलक देखें।',
+
+# Friendlier slave lag warnings
+'lag-warn-normal' => '$1 सैकेंदोंसे नये बदलाव इस सूची में शायद नहीं दर्शायें जायेंगे।',
+'lag-warn-high'   => 'डाटाबेस के ज्यादा लैग के कारण, $1 सैकेंदोंसे नये बदलाव इस सूची में शायद नहीं दर्शायें जायेंगे।',
+
+# Watchlist editor
+'watchlistedit-numitems'       => 'आपकी ध्यानसूची में {{PLURAL:$1|1 शीर्षक|$1 शीर्षक}} हैं, जिसमें वार्ता पृष्ठ नहीं गिनें हैं।',
+'watchlistedit-noitems'        => 'आपकी ध्यानसूचीमें शीर्षक नहीं हैं।',
+'watchlistedit-normal-title'   => 'ध्यानसूची बदलें',
+'watchlistedit-normal-legend'  => 'ध्यानसूची से शीर्षक हटायें',
+'watchlistedit-normal-explain' => 'आपकी ध्यानसूची में उपलब्ध शीर्षक नीचे दिये गये हैं।
+एक शीर्षक हटाने के लिये, उसके आगे दिये बक्से पर क्लिक करें, और शीर्षक हटायें पर क्लिक करें।
+आप [[Special:Watchlist/raw|कच्ची ध्यानसूची का संपादन]] भी कर सकतें हैं।',
+'watchlistedit-normal-submit'  => 'शीर्षक हटायें',
+'watchlistedit-normal-done'    => 'आपकी ध्यानसूचीसे {{PLURAL:$1|1शीर्षक|$1 शीर्षक}} हटा दिये:',
+'watchlistedit-raw-title'      => 'कच्ची ध्यानसूची बदलें',
+'watchlistedit-raw-legend'     => 'कच्ची ध्यानसूची बदलें',
+'watchlistedit-raw-explain'    => 'आपकी ध्यानसूची में उपलब्ध शीर्षक नीचे दिये गये हैं, और वे सूची से निकालकर या बढाकर बदलें जा सकतें हैं;
+हर लाइन पर एक शीर्षक देकर।
+जब खतम हो जायें, तो ध्यानसूची अपडेट पर क्लिक करें।
+आप [[Special:Watchlist/edit|स्टैण्डर्ड संपादक का इस्तेमाल]] भी कर सकतें हैं।',
+'watchlistedit-raw-titles'     => 'शीर्षक:',
+'watchlistedit-raw-submit'     => 'ध्यानसूची अपडेट करें',
+'watchlistedit-raw-done'       => 'आपकी ध्यानसूची अपडेट कर दी गई हैं',
+'watchlistedit-raw-added'      => '{{PLURAL:$1|1शीर्षक|$1 शीर्षक}} बढा दिये:',
+'watchlistedit-raw-removed'    => '{{PLURAL:$1|1शीर्षक|$1 शीर्षक}} हटा दिये:',
 
 # Watchlist editing tools
 'watchlisttools-view' => 'आधारित बदलाव देखें',
 'watchlisttools-edit' => 'ध्यानसूची देखें एवं संपादित करें',
 'watchlisttools-raw'  => 'रॉ ध्यानसूची देखें एवम्‌ संपादित करें',
 
+# Iranian month names
+'iranian-calendar-m1'  => 'फ़र्वर्दिन',
+'iranian-calendar-m2'  => 'ओर्दिबेहेश्ट',
+'iranian-calendar-m3'  => 'खोर्दाद',
+'iranian-calendar-m4'  => 'तीर',
+'iranian-calendar-m5'  => 'मोर्दाद',
+'iranian-calendar-m6'  => 'शाहरीवार',
+'iranian-calendar-m7'  => 'मेहर',
+'iranian-calendar-m8'  => 'अबान',
+'iranian-calendar-m9'  => 'अज़र',
+'iranian-calendar-m10' => 'डे',
+'iranian-calendar-m11' => 'बाहमान',
+'iranian-calendar-m12' => 'एसफण्ड (Esfand)',
+
+# Hebrew month names
+'hebrew-calendar-m1'      => 'तिश्रेई (Tishrei)',
+'hebrew-calendar-m2'      => 'शेस्वान (Cheshvan)',
+'hebrew-calendar-m3'      => 'किस्लेव (Kislev)',
+'hebrew-calendar-m4'      => 'टेवेट (Tevet)',
+'hebrew-calendar-m5'      => 'शेवट (Shevat)',
+'hebrew-calendar-m6'      => 'अडार',
+'hebrew-calendar-m6a'     => 'अडार I (Adar)',
+'hebrew-calendar-m6b'     => 'अडार II (Adar)',
+'hebrew-calendar-m7'      => 'निसान (Nisan)',
+'hebrew-calendar-m8'      => 'अय्यर (Iyar)',
+'hebrew-calendar-m9'      => 'सिवान (Sivan)',
+'hebrew-calendar-m10'     => 'तामुज़ (Tamuz)',
+'hebrew-calendar-m11'     => 'एवी (Av)',
+'hebrew-calendar-m12'     => 'एलुल (Elul)',
+'hebrew-calendar-m1-gen'  => 'तिश्रेई (Tishrei)',
+'hebrew-calendar-m2-gen'  => 'शेस्वान (Cheshvan)',
+'hebrew-calendar-m3-gen'  => 'किस्लेव (Kislev)',
+'hebrew-calendar-m4-gen'  => 'टेवेट (Tevet)',
+'hebrew-calendar-m5-gen'  => 'शेवट (Shevat)',
+'hebrew-calendar-m6-gen'  => 'अडार',
+'hebrew-calendar-m6a-gen' => 'अडार I (Adar)',
+'hebrew-calendar-m6b-gen' => 'अडार II (Adar)',
+'hebrew-calendar-m7-gen'  => 'निसान (Nisan)',
+'hebrew-calendar-m8-gen'  => 'अय्यर (Iyar)',
+'hebrew-calendar-m9-gen'  => 'सिवान (Sivan)',
+'hebrew-calendar-m10-gen' => 'तामुज़ (Tamuz)',
+'hebrew-calendar-m11-gen' => 'एवी (Av)',
+'hebrew-calendar-m12-gen' => 'एलुल (Elul)',
+
+# Core parser functions
+'unknown_extension_tag' => 'गलत एक्स्टेंशन टैग "$1"',
+
 # Special:Version
-'version' => 'रूपान्तर', # Not used as normal message but as header for the special page itself
+'version'                          => 'रूपान्तर', # Not used as normal message but as header for the special page itself
+'version-extensions'               => 'इन्स्टॉल की हुई एक्स्टेंशन',
+'version-specialpages'             => 'विशेष पन्ने',
+'version-parserhooks'              => 'पार्सर हूक',
+'version-variables'                => 'वेरिएबल',
+'version-other'                    => 'अन्य',
+'version-mediahandlers'            => 'मीडिया हॅंडलर',
+'version-hooks'                    => 'हूक',
+'version-extension-functions'      => 'एक्सटेंशन कार्य',
+'version-parser-extensiontags'     => 'पार्सर एक्स्टेंशन टैग',
+'version-parser-function-hooks'    => 'पार्सर कार्य हूक',
+'version-skin-extension-functions' => 'त्वचा एक्स्टेंशन क्रिया',
+'version-hook-name'                => 'हूक नाम',
+'version-hook-subscribedby'        => 'ने सदस्यत्व लिया',
+'version-version'                  => 'अवतरण',
+'version-license'                  => 'लाइसेन्स',
+'version-software'                 => 'इन्स्टॉल की हुई प्रणाली',
+'version-software-product'         => 'प्रोडक्ट',
+'version-software-version'         => 'अवतरण',
+
+# Special:Filepath
+'filepath'         => 'फ़ाइल पाथ',
+'filepath-page'    => 'फ़ाइल:',
+'filepath-submit'  => 'पाथ',
+'filepath-summary' => 'यह विशेष पृष्ठ फ़ाईल का पूरा पाथ देता हैं।
+चित्र पूरे रिज़ोल्यूशनके साथ दिखता हैं, अन्य फ़ाईल प्रकार उनके संबंधित प्रोग्रेम डाइरेक्टरी से शुरू होते हैं।
+
+फ़ाईलनाम "{{ns:image}}:" उपपद के बिना लिखें।',
+
+# Special:FileDuplicateSearch
+'fileduplicatesearch'          => 'फ़ाईल द्विरावृत्ति खोजें',
+'fileduplicatesearch-summary'  => 'हैश वैल्यू के अनुसार फ़ाईल की द्विरावृत्ति खोजें।
+
+फ़ाईलनाम "{{ns:image}}:" उपपद के बिना लिखें।',
+'fileduplicatesearch-legend'   => 'द्विरावृत्ति के लिये खोजें',
+'fileduplicatesearch-filename' => 'फ़ाईलनाम:',
+'fileduplicatesearch-submit'   => 'खोज',
+'fileduplicatesearch-info'     => '$1 × $2 पीक्सेल<br />फ़ाईल का आकार: $3<br />MIME प्रकार: $4',
+'fileduplicatesearch-result-1' => 'फ़ाईल  "$1" में द्विरावृत्ति नही हैं।',
+'fileduplicatesearch-result-n' => 'फ़ाईल "$1" में {{PLURAL:$2|1 द्विरावृत्ति|$2 द्विरावृत्तियाँ}} मिले हैं।',
 
 );

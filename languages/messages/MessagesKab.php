@@ -8,6 +8,7 @@
  * @author Teak
  * @author SPQRobin
  * @author Siebrand
+ * @author Jon Harald Søby
  */
 
 $namespaceNames = array(
@@ -1279,7 +1280,8 @@ Anda tebɣiḍ tesmimeḍ "[[$1]]" yella yagi. tebɣiḍ ad temḥuḍ iwakken y
 'allmessagesname'           => 'Isem',
 'allmessagesdefault'        => 'Aḍris ameslugen',
 'allmessagescurrent'        => 'Aḍris n tura',
-'allmessagestext'           => 'Wagi d umuɣ n izen n system i yellan deg yisem n taɣult.',
+'allmessagestext'           => 'Wagi d umuɣ n izen n system i yellan deg yisem n taɣult.
+Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] and [http://translatewiki.net Betawiki] if you wish to contribute to the generic MediaWiki localisation.',
 'allmessagesnotsupportedDB' => "'''{{ns:special}}:Allmessages''' ut yezmir ara ad yettuseqdac axaṭer '''\$wgUseDatabaseMessages''' yettwakkes.",
 'allmessagesfilter'         => 'Tastayt n yisem n izen:',
 'allmessagesmodified'       => 'Ssken win yettubeddlen kan',

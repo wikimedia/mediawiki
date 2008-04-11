@@ -1393,7 +1393,7 @@ Paskėrties straipsnis „[[$1]]“ jau īr. A nuorėt ana ėštrintė, kū gali
 'showhidebots'          => '($1 robotos)',
 'ilsubmit'              => 'Ėiškoutė',
 'bydate'                => 'palē data',
-'sp-newimages-showfrom' => 'Ruodītė naujus abruozdielius pradedant nū $1',
+'sp-newimages-showfrom' => 'Ruodītė naujus abruozdielius pradedant nū $2, $1',
 
 # Bad image list
 'bad_image_list' => 'Fuormats tuoks īr:

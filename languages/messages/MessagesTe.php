@@ -1696,7 +1696,8 @@ $NEWPAGE
 'allmessagesname'           => 'పేరు',
 'allmessagesdefault'        => 'డీఫాల్టు పాఠ్యం',
 'allmessagescurrent'        => 'ప్రస్తుత పాఠ్యం',
-'allmessagestext'           => 'మీడియావికీ నేంస్పేసులో ఉన్న అన్ని సిస్టం సందేశాల జాబితా ఇది.',
+'allmessagestext'           => 'మీడియావికీ నేంస్పేసులో ఉన్న అన్ని సిస్టం సందేశాల జాబితా ఇది.
+Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] and [http://translatewiki.net Betawiki] if you wish to contribute to the generic MediaWiki localisation.',
 'allmessagesnotsupportedDB' => "'''\$wgUseDatabaseMessages'''ను ఆఫ్‌లో పెట్టడం వలన '''{{ns:special}}:Allmessages''' వాడలేరు.",
 'allmessagesfilter'         => 'సమాచారం పేరుపై ఫిల్టరు:',
 'allmessagesmodified'       => 'మార్చినవాటినే చూపించు',

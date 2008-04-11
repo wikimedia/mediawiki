@@ -8,6 +8,7 @@
  * @author Helix84
  * @author Demicx
  * @author Gangleri
+ * @author Siebrand
  */
 
 $namespaceNames = array(
@@ -871,7 +872,7 @@ Ako kasnije želite da uklonite stranicu sa vašeg spiska praćenih članaka, kl
 'enotif_reset'       => 'Označi sve strane kao posjećene',
 'enotif_newpagetext' => 'Ovo je novi članak.',
 'enotif_subject'     => '{{SITENAME}} strana $PAGETITLE je bila $CHANGEDORCREATED od strane $PAGEEDITOR',
-'enotif_lastvisited' => 'Pogledajte {{fullurl:$PAGETITLE_RAWURL|diff=0&oldid=$OLDID}} za sve izmjene od vaše poslednje posjete.',
+'enotif_lastvisited' => 'Pogledajte $1 za sve izmjene od vaše poslednje posjete.',
 'enotif_body'        => 'Dragi $WATCHINGUSERNAME,
 
 {{SITENAME}} strana $PAGETITLE je bila $CHANGEDORCREATED $PAGEEDITDATE od strane $PAGEEDITOR,

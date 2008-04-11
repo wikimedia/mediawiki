@@ -11,6 +11,7 @@
  * @author לערי ריינהארט
  * @author Max sonnelid
  * @author M.M.S.
+ * @author Jon Harald Søby
  */
 
 $skinNames = array(
@@ -974,7 +975,8 @@ Grein við navninum "[[$1]]" finst longu. Ynskir tú at strika hana til tess at 
 'allmessagesname'           => 'Navn',
 'allmessagesdefault'        => 'Enskur tekstur',
 'allmessagescurrent'        => 'Verandi tekstur',
-'allmessagestext'           => 'Hetta er eitt yvirlit av tøkum kervisboðum í MediaWiki-navnarúmi.',
+'allmessagestext'           => 'Hetta er eitt yvirlit av tøkum kervisboðum í MediaWiki-navnarúmi.
+Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] and [http://translatewiki.net Betawiki] if you wish to contribute to the generic MediaWiki localisation.',
 'allmessagesnotsupportedDB' => "'''{{ns:special}}:AllMessages''' er ikki stuðlað orsakað av at '''\$wgUseDatabaseMessages''' er sløkt.",
 'allmessagesfilter'         => 'Boð navn filtur:',
 'allmessagesmodified'       => 'Vís bert broytt',

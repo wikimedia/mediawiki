@@ -841,7 +841,7 @@ podrobnosti môžu byť v [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} zá
 'revdelete-nooldid-title'     => 'Neplatná cieľová revízia',
 'revdelete-nooldid-text'      => 'Neuviedli ste cieľovú revíziu alebo revízie, na ktorých sa má táto funkcia vykonať, uvedená revízia neexistuje alebo sa pokúšate skryť aktuálnu revíziu.',
 'revdelete-selected'          => '{{PLURAL:$2|Vybraná jedna revízia|Vybrané $2 revízie|Vybraných $2 revízií}} z [[:$1]]:',
-'logdelete-selected'          => '{{PLURAL:$2|Vybraná udalosť záznamu|Vybrané udalosti záznamu}}:',
+'logdelete-selected'          => '{{PLURAL:$1|Vybraná udalosť záznamu|Vybrané udalosti záznamu}}:',
 'revdelete-text'              => 'Zmazané revízie sú stále viditeľné v histórii úprav stránky,
 ale ich obsah nebude prístupný verejnosti.
 

@@ -1556,7 +1556,8 @@ Yn achos yr ail ddewis, mae modd defnyddio cyswllt, e.e. [[{{ns:special}}:Export
 'allmessagesname'           => 'Enw',
 'allmessagesdefault'        => 'Testun rhagosodedig',
 'allmessagescurrent'        => 'Testun cyfredol',
-'allmessagestext'           => "Dyma restr o'r holl negeseuon yn y parth MediaWiki:",
+'allmessagestext'           => "Dyma restr o'r holl negeseuon yn y parth MediaWiki:
+Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] and [http://translatewiki.net Betawiki] if you wish to contribute to the generic MediaWiki localisation.",
 'allmessagesnotsupportedDB' => "Nid yw '''{{ns:special}}:PobNeges''' yn cael ei gynnal gan fod '''\$wgUseDatabaseMessages''' wedi ei ddiffodd.",
 'allmessagesfilter'         => 'Hidl enw neges:',
 'allmessagesmodified'       => 'Dangos y rhai a ddiwygiwyd yn unig',

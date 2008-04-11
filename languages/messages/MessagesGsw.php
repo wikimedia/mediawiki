@@ -7,6 +7,8 @@
  * @author Helix84
  * @author Siebrand
  * @author לערי ריינהארט
+ * @author SPQRobin
+ * @author Jon Harald Søby
  */
 
 $fallback = 'de';
@@ -746,7 +748,8 @@ I söttigne Fäll müessti d Diskussionssyten allefalls vo Hand kopiert wärde."
 'allmessagesname'           => 'Name',
 'allmessagesdefault'        => 'Standard-Tekscht',
 'allmessagescurrent'        => 'jetzige Tekscht',
-'allmessagestext'           => 'Sell isch e Lischte vo alle mögliche Systemnochrichte ussem MediaWiki Namensruum.',
+'allmessagestext'           => 'Sell isch e Lischte vo alle mögliche Systemnochrichte ussem MediaWiki Namensruum.
+Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] and [http://translatewiki.net Betawiki] if you wish to contribute to the generic MediaWiki localisation.',
 'allmessagesnotsupportedDB' => "'''{{ns:special}}:Allmessages''' cha nit bruucht wärde will '''\$wgUseDatabaseMessages''' abgschalte isch.",
 'allmessagesfilter'         => 'Nochrichte nochem Name filtere:',
 'allmessagesmodified'       => 'numme gänderti aazeige',

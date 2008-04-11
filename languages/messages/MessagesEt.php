@@ -10,6 +10,7 @@
  * @author Siebrand
  * @author לערי ריינהארט
  * @author M.M.S.
+ * @author Jon Harald Søby
  */
 
 $namespaceNames = array(
@@ -1169,7 +1170,8 @@ kasutajaks ja [[Special:Userlogin|sisse logima]]',
 'allmessagesname'    => 'Nimi',
 'allmessagesdefault' => 'Vaikimisi tekst',
 'allmessagescurrent' => 'Praegune tekst',
-'allmessagestext'    => 'See on loend kõikidest kättesaadavatest süsteemi sõnumitest MediaWiki: nimeruumis.',
+'allmessagestext'    => 'See on loend kõikidest kättesaadavatest süsteemi sõnumitest MediaWiki: nimeruumis.
+Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] and [http://translatewiki.net Betawiki] if you wish to contribute to the generic MediaWiki localisation.',
 
 # Thumbnails
 'thumbnail-more' => 'Suurenda',

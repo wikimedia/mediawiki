@@ -1837,7 +1837,8 @@ Dalam pilihan kedua tadi, anda juga boleh menggunakan pautan, umpamanya [[{{ns:s
 'allmessagesname'           => 'Nama',
 'allmessagesdefault'        => 'Teks lalai',
 'allmessagescurrent'        => 'Teks semasa',
-'allmessagestext'           => 'Ini ialah senarai pesanan sistem yang tersedia dalam ruang nama MediaWiki.',
+'allmessagestext'           => 'Ini ialah senarai pesanan sistem yang tersedia dalam ruang nama MediaWiki.
+Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] and [http://translatewiki.net Betawiki] if you wish to contribute to the generic MediaWiki localisation.',
 'allmessagesnotsupportedDB' => "'''{{ns:special}}:Allmessages''' tidak boleh digunakan kerana '''\$wgUseDatabaseMessages''' dipadamkan.",
 'allmessagesfilter'         => 'Tapis nama mesej:',
 'allmessagesmodified'       => 'Hanya tunjukkan yang telah diubah',

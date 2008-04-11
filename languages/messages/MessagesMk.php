@@ -1404,7 +1404,8 @@ $NEWPAGE
 'allmessagesname'           => 'Име',
 'allmessagesdefault'        => 'Текст по основно',
 'allmessagescurrent'        => 'Сегашен текст',
-'allmessagestext'           => 'Ова е листа на сите системски пораки досапни во МедијаВики: именскиот простор.',
+'allmessagestext'           => 'Ова е листа на сите системски пораки досапни во МедијаВики: именскиот простор.
+Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] and [http://translatewiki.net Betawiki] if you wish to contribute to the generic MediaWiki localisation.',
 'allmessagesnotsupportedDB' => "'''{{ns:special}}:AllMessages''' не е поддржан бидејќи '''\$wgUseDatabaseMessages''' е исклучен.",
 'allmessagesfilter'         => 'Филтер за регуларни изрази:',
 'allmessagesmodified'       => 'Прикажи само изменети',

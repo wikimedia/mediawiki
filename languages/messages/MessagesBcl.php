@@ -10,6 +10,7 @@
  * @author Siebrand
  * @author Nike
  * @author SPQRobin
+ * @author Jon Harald Søby
  */
 
 $namespaceNames = array(
@@ -1556,7 +1557,8 @@ Sa kaso kan huri, pwede ka man na maggamit nin takod, arog kan [[{{ns:special}}:
 'allmessagesname'           => 'Pangaran',
 'allmessagesdefault'        => 'Tekstong normal',
 'allmessagescurrent'        => 'Presenteng teksto',
-'allmessagestext'           => 'Ini an lista kan mga mensahe sa sistema sa ngaran-espacio na MediaWiki.',
+'allmessagestext'           => 'Ini an lista kan mga mensahe sa sistema sa ngaran-espacio na MediaWiki.
+Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] and [http://translatewiki.net Betawiki] if you wish to contribute to the generic MediaWiki localisation.',
 'allmessagesnotsupportedDB' => "Dai pwedeng gamiton an '''{{ns:special}}:Allmessages''' ta sarado an '''\$wgUseDatabaseMessages'''.",
 'allmessagesfilter'         => 'Pansara nin pangaran kan mensahe:',
 'allmessagesmodified'       => 'An mga pigmodikar sana an ipahiling',

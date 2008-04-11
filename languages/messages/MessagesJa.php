@@ -1674,7 +1674,8 @@ $NEWPAGE
 'allmessagesname'           => 'メッセージ名',
 'allmessagesdefault'        => '既定の文章',
 'allmessagescurrent'        => '現在の文章',
-'allmessagestext'           => 'これは{{ns:mediawiki}}名前空間にある全てのシステムメッセージの一覧です。',
+'allmessagestext'           => 'これは{{ns:mediawiki}}名前空間にある全てのシステムメッセージの一覧です。
+Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] and [http://translatewiki.net Betawiki] if you wish to contribute to the generic MediaWiki localisation.',
 'allmessagesnotsupportedDB' => "'''\$wgUseDatabaseMessages''' が無効のため、'''{{ns:special}}:Allmessages''' はサポートされません。",
 'allmessagesfilter'         => 'メッセージ名フィルタ:',
 'allmessagesmodified'       => '条件に当てはまるものを表示',

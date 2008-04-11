@@ -1459,7 +1459,8 @@ Lütfen, başqa bir ad saylap yazıñız.',
 'allmessagesname'     => 'İsim',
 'allmessagesdefault'  => 'Original metin',
 'allmessagescurrent'  => 'Qullanımdaki metin',
-'allmessagestext'     => 'Bu cedvel MediaWikide mevcüt olğan bütün terminlerniñ cedvelidir.',
+'allmessagestext'     => 'Bu cedvel MediaWikide mevcüt olğan bütün terminlerniñ cedvelidir.
+Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] and [http://translatewiki.net Betawiki] if you wish to contribute to the generic MediaWiki localisation.',
 'allmessagesfilter'   => 'Metin ayrıştırıcı filtrı:',
 'allmessagesmodified' => 'Tek deñiştirilgenlerni köster',
 

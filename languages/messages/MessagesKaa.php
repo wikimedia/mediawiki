@@ -8,6 +8,7 @@
  * @author AlefZet
  * @author Siebrand
  * @author SPQRobin
+ * @author Jon Harald Søby
  */
 
 $fallback = 'kk-latn';
@@ -1256,7 +1257,8 @@ Basqa atama saylan'",
 'allmessagesname'     => 'Atama',
 'allmessagesdefault'  => 'Defolt tekst',
 'allmessagescurrent'  => "Ha'zirgi tekst",
-'allmessagestext'     => "Bul {{ns:mediawiki}} isimler ko'pligindegi bar bolg'an sistema xabarları dizimi.",
+'allmessagestext'     => "Bul {{ns:mediawiki}} isimler ko'pligindegi bar bolg'an sistema xabarları dizimi.
+Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] and [http://translatewiki.net Betawiki] if you wish to contribute to the generic MediaWiki localisation.",
 'allmessagesfilter'   => 'Xabar atamasın filtrlew:',
 'allmessagesmodified' => "Tek o'zgertilgenlerdi ko'rset",
 

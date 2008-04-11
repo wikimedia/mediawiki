@@ -1913,8 +1913,8 @@ I det senare fallet kan du även använda en länk, exempel [[{{ns:special}}:Exp
 'allmessagesname'           => 'Namn',
 'allmessagesdefault'        => 'Standardtext',
 'allmessagescurrent'        => 'Nuvarande text',
-'allmessagestext'           => 'Detta är en lista över systemmeddelanden tillgängliga i MediaWiki-namnrymden.
-Var god besök [http://translatewiki.net Betawiki] om du vill bidra till den generiska MediaWiki-översättningen.',
+'allmessagestext'           => 'Detta är en lista över alla meddelanden i namnrymden MediaWiki.
+Besök [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] eller [http://translatewiki.net Betawiki] om du vill bidra till översättningen av MediaWiki.',
 'allmessagesnotsupportedDB' => "Den här sidan kan inte användas eftersom '''\$wgUseDatabaseMessages''' är avstängd.",
 'allmessagesfilter'         => 'Filter för meddelandenamn:',
 'allmessagesmodified'       => 'Visa bara ändrade',

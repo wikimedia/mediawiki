@@ -540,7 +540,8 @@ L\'artitgel da destinaziun "[[$1]]" exista gia. Vul ti stidar el per far plaz pe
 'allmessagesname'           => 'num',
 'allmessagesdefault'        => 'text original',
 'allmessagescurrent'        => 'text actual',
-'allmessagestext'           => 'Quai è ina glista da tut las communicaziuns dals differents tips da paginas (namespace) da MediaWiki che vegnan utilisadas da la software da MediaWiki.',
+'allmessagestext'           => 'Quai è ina glista da tut las communicaziuns dals differents tips da paginas (namespace) da MediaWiki che vegnan utilisadas da la software da MediaWiki.
+Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] and [http://translatewiki.net Betawiki] if you wish to contribute to the generic MediaWiki localisation.',
 'allmessagesnotsupportedDB' => "'''{{ns:special}}:Allmessages''' è en il mument betg accessibel perquai che la datoteca è offline.",
 'allmessagesfilter'         => 'filter dals nums da las novitads:',
 'allmessagesmodified'       => 'Be mussar modifitgads',
