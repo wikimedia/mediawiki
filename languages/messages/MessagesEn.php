@@ -1220,7 +1220,7 @@ Other admins on {{SITENAME}} will still be able to access the hidden content and
 'logdelete-logentry'          => 'changed event visibility of [[$1]]',
 'revdelete-success'           => "'''Revision visibility successfully set.'''",
 'logdelete-success'           => "'''Log visibility successfully set.'''",
-'revdel-restore'              => 'Change visiblity',
+'revdel-restore'              => 'Change visibility',
 'pagehist'                    => 'Page history',
 'deletedhist'                 => 'Deleted history',
 'revdelete-content'           => 'content',
