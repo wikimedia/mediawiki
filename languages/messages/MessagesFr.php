@@ -2096,7 +2096,9 @@ $1',
 'noimages'              => 'Aucune image à afficher.',
 'ilsubmit'              => 'Chercher',
 'bydate'                => 'par date',
-'sp-newimages-showfrom' => 'Afficher les images importées depuis le $1',
+'sp-newimages-showfrom' => 'Voici un lien sur [[Special:Newimages]] qui vous donne une galerie des fichiers les plus récents.
+* $1 désigne une date (exemple : 19 mars 2008)
+* $2 désigne une heure (exemple : 12:15)',
 
 # Bad image list
 'bad_image_list' => 'Le format est le suivant :
