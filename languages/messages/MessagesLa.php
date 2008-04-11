@@ -937,7 +937,9 @@ Hoc aequat fere '''$5''' mutationes per paginam, et '''$6''' visae per mutatione
 
 'disambiguations'      => 'Paginae disambiguationis',
 'disambiguationspage'  => 'Template:Discretiva',
-'disambiguations-text' => "Paginae subter ad '''paginam discretivam''' nectunt. Ad aptam paginam nectere debent.<br />Pagina discretivam esse putatur si formulam adhibet ad quem [[MediaWiki:disambiguationspage]] nectit.",
+'disambiguations-text' => "Paginae subter ad '''paginam discretivam''' nectunt.
+Eae ad aptas paginas magis nectendae sunt.<br />
+Pagina discretivam esse putatur si formulam adhibet ad quem [[MediaWiki:Disambiguationspage]] nectit.",
 
 'doubleredirects' => 'Redirectiones duplices',
 
