@@ -2502,3 +2502,12 @@ function wfWaitForSlaves( $maxLag ) {
 		}
 	}
 }
+
+/** Generate a random 32-character hexadecimal token.
+ * @param mixed $salt Some sort of salt, if necessary, to add to random characters before hashing.
+ */
+ function wfGenerateToken( $salt = '' ) {
+ 	$salt = serialize($salt);
+ 	
+ 	return md5( mt_rand( 0, 0x7fffffff ) . $salt );
+ }
