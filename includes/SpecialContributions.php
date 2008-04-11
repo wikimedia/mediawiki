@@ -147,7 +147,8 @@ class ContribsPager extends ReverseChronologicalPager {
 			}
 
 		}
-		if( $rev->userCan( Revision::DELETED_TEXT ) ) {
+		# Is there a visable previous revision?
+		if( $rev->userCan(Revision::DELETED_TEXT) && $rev->getParentId() !== 0 ) {
 			$difftext = '(' . $sk->makeKnownLinkObj( $page, $this->messages['diff'], 'diff=prev&oldid='.$row->rev_id ) . ')';
 		} else {
 			$difftext = '(' . $this->messages['diff'] . ')';
