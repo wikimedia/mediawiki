@@ -95,7 +95,7 @@ class ApiMain extends ApiBase {
 		'dbgfm' => 'ApiFormatDbg'
 	);
 
-	private $mPrinter, $mModules, $mModuleNames, $mFormats, $mFormatNames;
+	private $mPrinter, $mModules, $mModuleNames, $mFormats, $mFormatNames, $mCommit;
 	private $mResult, $mAction, $mShowVersions, $mEnableWrite, $mRequest, $mInternalMode, $mSquidMaxage;
 
 	/**
@@ -150,6 +150,7 @@ class ApiMain extends ApiBase {
 		$this->mRequest = & $request;
 
 		$this->mSquidMaxage = 0;
+		$this->mCommit = false;
 	}
 
 	/**
@@ -195,6 +196,13 @@ class ApiMain extends ApiBase {
 	public function createPrinterByName($format) {
 		return new $this->mFormats[$format] ($this, $format);
 	}
+	
+	/**
+	 * Schedule a database commit
+	 */
+	public function scheduleCommit() {
+		$this->mCommit = true;
+	}
 
 	/**
 	 * Execute api request. Any errors will be handled if the API was called by the remote client. 
@@ -205,6 +213,11 @@ class ApiMain extends ApiBase {
 			$this->executeAction();
 		else
 			$this->executeActionWithErrorHandling();
+		if($this->mCommit)
+		{
+			$dbw = wfGetDb(DB_MASTER);
+			$dbw->immediateCommit();
+		}
 		$this->profileOut();
 	}
 
@@ -615,5 +628,6 @@ class UsageException extends Exception {
 		return "{$this->getCodeString()}: {$this->getMessage()}";
 	}
 }
+
 
 

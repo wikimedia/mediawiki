@@ -528,7 +528,7 @@ class ApiPageSet extends ApiQueryBase {
 		while($row = $db->fetchObject($res))
 		{
 			$rdfrom = intval($row->rd_from);
-			$from = Title::newFromId($row->rd_from)->getPrefixedText();
+			$from = $this->mPendingRedirectIDs[$rdfrom]->getPrefixedText();
 			$to = Title::makeTitle($row->rd_namespace, $row->rd_title)->getPrefixedText();
 			unset($this->mPendingRedirectIDs[$rdfrom]);
 			if(!isset($this->mAllPages[$row->rd_namespace][$row->rd_title]))
@@ -537,7 +537,22 @@ class ApiPageSet extends ApiQueryBase {
 		}
 		$db->freeResult($res);
 		if(!empty($this->mPendingRedirectIDs))
-			ApiBase :: dieDebug(__METHOD__, 'Invalid redirect IDs were found');
+		{
+			# We found pages that aren't in the redirect table
+			# Add them
+			foreach($this->mPendingRedirectIDs as $id => $title)
+			{
+				$article = new Article($title);
+				$rt = $article->insertRedirect();
+				if(!$rt)
+					# What the hell. Let's just ignore this
+					continue;
+				$lb->addObj($rt);
+				$this->mRedirectTitles[$title->getPrefixedText()] = $rt->getPrefixedText();
+				unset($this->mPendingRedirectIDs[$id]);
+			}
+			$this->getMain()->scheduleCommit();
+		}
 		return $lb;
 	}
 
@@ -616,4 +631,5 @@ class ApiPageSet extends ApiQueryBase {
 		return __CLASS__ . ': $Id$';
 	}
 }
+
 

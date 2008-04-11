@@ -66,8 +66,6 @@ class ApiDelete extends ApiBase {
 
 		$articleObj = new Article($titleObj);
 		$reason = (isset($params['reason']) ? $params['reason'] : NULL);
-		$dbw = wfGetDb(DB_MASTER);
-		$dbw->begin();
 		$retval = self::delete($articleObj, $params['token'], $reason);
 		
 		if(!empty($retval))
@@ -78,7 +76,7 @@ class ApiDelete extends ApiBase {
 			$articleObj->doWatch();
 		else if($params['unwatch'])
 			$articleObj->doUnwatch();
-		$dbw->commit();
+		$this->getMain()->scheduleCommit();
 		$r = array('title' => $titleObj->getPrefixedText(), 'reason' => $reason);
 		$this->getResult()->addValue(null, $this->getModuleName(), $r);
 	}

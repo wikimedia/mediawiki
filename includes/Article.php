@@ -34,6 +34,7 @@ class Article {
 	var $mTouched;			//!<
 	var $mUser;				//!<
 	var $mUserText;			//!<
+	var $mRedirectTarget;		//!<
 	/**@}}*/
 
 	/**
@@ -57,11 +58,57 @@ class Article {
 	}
 
 	/**
+	 * If this page is a redirect, get its target
+	 *
+	 * The target will be fetched from the redirect table if possible.
+	 * If this page doesn't have an entry there, call insertRedirect()
+	 * @return mixed Title object, or null if this page is not a redirect
+	 */
+	public function getRedirectTarget() {
+		if(!$this->mTitle || !$this->mTitle->isRedirect())
+			return null;
+		if(!is_null($this->mRedirectTarget))
+			return $this->mRedirectTarget;
+
+		# Query the redirect table
+		$dbr = wfGetDb(DB_SLAVE);
+		$res = $dbr->select('redirect',
+				array('rd_namespace', 'rd_title'),
+				array('rd_from' => $this->getID()),
+				__METHOD__
+		);
+		$row = $dbr->fetchObject($res);
+		if($row)
+			return $this->mRedirectTarget = Title::makeTitle($row->rd_namespace, $row->rd_title);
+
+		# This page doesn't have an entry in the redirect table
+		return $this->mRedirectTarget = $this->insertRedirect();
+	}
+
+	/**
+	 * Insert an entry for this page into the redirect table.
+	 *
+	 * Don't call this function directly unless you know what you're doing.
+	 * @return Title object
+	 */
+	public function insertRedirect() {
+		$retval = Title::newFromRedirect($this->getContent());
+		if(!$retval)
+			return null;
+		$dbw = wfGetDb(DB_MASTER);
+		$dbw->insert('redirect', array(
+				'rd_from' => $this->getID(),
+				'rd_namespace' => $retval->getNamespace(),
+				'rd_title' => $retval->getDBKey()
+		));
+		return $retval;
+	}
+
+	/**
 	 * @return mixed false, Title of in-wiki target, or string with URL
 	 */
 	function followRedirect() {
-		$text = $this->getContent();
-		$rt = Title::newFromRedirect( $text );
+		$rt = $this->getRedirectTarget();
 
 		# process if title object is valid and not special:userlogout
 		if( $rt ) {
@@ -114,6 +161,7 @@ class Article {
 
 		$this->mCurID = $this->mUser = $this->mCounter = -1; # Not loaded
 		$this->mRedirectedFrom = null; # Title object if set
+		$this->mRedirectTarget = null; # Title object if set
 		$this->mUserText =
 		$this->mTimestamp = $this->mComment = '';
 		$this->mGoodAdjustment = $this->mTotalAdjustment = 0;
@@ -801,7 +849,7 @@ class Article {
 			
 			}
 			
-			elseif ( $rt = Title::newFromRedirect( $text ) ) {
+			elseif ( $rt = $this->getRedirectTarget() ) {
 				# Display redirect
 				$imageDir = $wgContLang->isRTL() ? 'rtl' : 'ltr';
 				$imageUrl = $wgStylePath.'/common/images/redirect' . $imageDir . '.png';

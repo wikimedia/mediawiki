@@ -79,8 +79,6 @@ class ApiMove extends ApiBase {
 			// We don't care about multiple errors, just report one of them
 			$this->dieUsageMsg(current($errors));
 
-		$dbw = wfGetDB(DB_MASTER);
-		$dbw->begin();		
 		$retval = $fromTitle->moveTo($toTitle, true, $params['reason'], !$params['noredirect']);
 		if($retval !== true)
 			$this->dieUsageMsg(array($retval));
@@ -118,7 +116,7 @@ class ApiMove extends ApiBase {
 			$wgUser->removeWatch($fromTitle);
 			$wgUser->removeWatch($toTitle);
 		}
-		$dbw->commit(); // Make sure all changes are really written to the DB
+		$this->getMain()->scheduleCommit();
 		$this->getResult()->addValue(null, $this->getModuleName(), $r);
 	}
 	
