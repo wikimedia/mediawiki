@@ -611,7 +611,7 @@ V jiném případě jste možná narazil(a) na chybu v programu. Oznamte to pros
 'perfdisabled'         => 'Omlouváme se. Tato služba byla dočasně znepřístupněna, protože zpomalovala databázi natolik, že nikdo nemohl používat wiki.',
 'perfcached'           => 'Následující data jsou z cache a nemusí být plně aktuální:',
 'perfcachedts'         => 'Následující data jsou z cache, která byla naposledy aktualizována $1.',
-'querypage-no-updates' => 'Aktualizace této stránky je vypnuta. Data teď nebudou obnoveny.',
+'querypage-no-updates' => 'Aktualizace této stránky je vypnuta. Data nyní nebudou obnovována.',
 'wrong_wfQuery_params' => 'Nesprávné parametry do wfQuery()<br />
 Funkce: $1<br />
 Dotaz: $2',
@@ -1530,6 +1530,13 @@ Zobrazení můžete zúžit výběrem typu záznamu, uživatelského jména nebo
 'listusersfrom'      => 'Zobrazit uživatele počínaje od:',
 'listusers-submit'   => 'Ukázat',
 'listusers-noresult' => 'Nenalezen žádný uživatel.',
+
+# Special:Listgrouprights
+'listgrouprights'         => 'Práva skupin uživatelů',
+'listgrouprights-summary' => 'Toto je seznam skupin uživatelů definovaných na této wiki a&nbsp;jejich přístupových práv',
+'listgrouprights-group'   => 'Skupina',
+'listgrouprights-rights'  => 'Práva',
+'listgrouprights-link'    => '[[Help:Práva skupiny#$1|$1]]',
 
 # E-mail user
 'mailnologin'     => 'Bez odesílací adresy',

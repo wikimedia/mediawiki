@@ -1240,6 +1240,13 @@ Panjenengan bisa ngwatesi panuduhan mawa milih jenis log, jeneng panganggo, utaw
 'listusers-submit'   => 'Tuduhna',
 'listusers-noresult' => 'Panganggo ora ditemokaké.',
 
+# Special:Listgrouprights
+'listgrouprights'         => 'Hak-hak grup panganggo',
+'listgrouprights-summary' => 'Ing ngisor iki kapacak daftar grup panganggo sing didéfinisi ing wiki iki, karo hak-hak aksès gandhèngané.',
+'listgrouprights-group'   => 'Grup',
+'listgrouprights-rights'  => 'Hak-hak',
+'listgrouprights-link'    => '[[Help:Hak-hak grup#$1|$1]]',
+
 # E-mail user
 'mailnologin'     => 'Ora ana alamat layang e-mail',
 'mailnologintext' => 'Panjenengan kudu [[Special:Userlogin|mlebu log]] lan kagungan alamat e-mail sing sah ing [[Special:Preferences|preféèrensi]] yèn kersa ngirim layang e-mail kanggo panganggo liya.',

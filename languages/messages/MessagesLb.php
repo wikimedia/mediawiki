@@ -1333,6 +1333,13 @@ An all Rei sti Linken zur éischter an zweeter Viruleedung, souwéi déi éischt
 'listusers-submit'   => 'Weis',
 'listusers-noresult' => 'Kee Benotzer fonnt.',
 
+# Special:Listgrouprights
+'listgrouprights'         => 'Rechter vun de Benotzergruppen',
+'listgrouprights-summary' => 'Dëst ass eng Lëscht vun den op dëser Wiki definéierte Benotzergruppen an den domatt verbonnene Rechter.',
+'listgrouprights-group'   => 'Grupp',
+'listgrouprights-rights'  => 'Rechter',
+'listgrouprights-link'    => '[[Help:Grupperechter#$1|$1]]',
+
 # E-mail user
 'mailnologintext' => 'Dir musst [[Special:Userlogin|ugemellt]] sinn an eng gülteg E-Mail Adress an äre [[Special:Preferences|Asteelunge]] aginn hunn, fir engem anere Benotzer eng E-Mail ze schécken.',
 'emailuser'       => 'Dësem Benotzer eng E-Mail schécken',
@@ -1441,6 +1448,8 @@ W.e.g. konfirméiert, datt Dir dëst wierklech wëllt, datt Dir d'Konsequenze ve
 'revertpage'                  => 'Ännerunge vum [[User:$2|$2]] ([[Special:Contributions/$2|Kontributioune]]) geläscht an déi lescht Versioun vum [[User:$1|$1]] restauréiert', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success'            => "D'Ännerunge vum $1 goufen zréckgesat op déi lescht Versioun vum $2.",
 'protectlogpage'              => 'Protectiouns-Logbuch',
+'protectlogtext'              => "Dëst ass d'Lëscht vun de Säitespären.
+Kuckt d'[[{{ns:special}}:Protectedpages|Lëscht vun de protegéierte Säite]] fir eng L!escht vun den aktuelle Säite-Protectiounen.",
 'protectedarticle'            => 'huet [[$1]] protegéiert',
 'modifiedarticleprotection'   => 'huet d\'Protectioun vun "[[$1]]" geännert',
 'unprotectedarticle'          => "huet d'Spär vu(n) [[$1]] opgehuewen",
