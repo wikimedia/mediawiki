@@ -35,6 +35,7 @@ $namespaceNames = array(
 $datePreferences = array(
 	'default',
 	'vo',
+	'vo plain',
 	'ISO 8601',
 );
 
@@ -44,6 +45,10 @@ $dateFormats = array(
 	'vo time' => 'H:i',
 	'vo date' => 'Y F j"id"',
 	'vo both' => 'H:i, Y F j"id"',
+
+	'vo plain time' => 'H:i',
+	'vo plain date' => 'Y F j',
+	'vo plain both' => 'H:i, Y F j',
 );
 
 $specialPageAliases = array(
