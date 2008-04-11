@@ -1246,13 +1246,15 @@ class EditPage {
 		# For a bit more sophisticated detection of blank summaries, hash the
 		# automatic one and pass that in the hidden field wpAutoSummary.
 		$summaryhiddens =  '';
-		if( $this->missingSummary ) $summaryhiddens .= wfHidden( 'wpIgnoreBlankSummary', true );
+		if( $this->missingSummary ) $summaryhiddens .= Xml::hidden( 'wpIgnoreBlankSummary', true );
 		$autosumm = $this->autoSumm ? $this->autoSumm : md5( $this->summary );
-		$summaryhiddens .= wfHidden( 'wpAutoSummary', $autosumm );
+		$summaryhiddens .= Xml::hidden( 'wpAutoSummary', $autosumm );
 		if( $this->section == 'new' ) {
 			$commentsubject="<span id='wpSummaryLabel'><label for='wpSummary'>{$subject}:</label></span>\n<div class='editOptions'>\n<input tabindex='1' type='text' value=\"$summarytext\" name='wpSummary' id='wpSummary' maxlength='200' size='60' />{$summaryhiddens}<br />";
 			$editsummary = '';
-			$subjectpreview = $summarytext && $this->preview ? "<div class=\"mw-summary-preview\">".wfMsg('subject-preview').':'.$sk->commentBlock( $this->summary, $this->mTitle )."</div>\n" : '';
+			global $wgParser;
+			$formattedSummary = wfMsgForContent( 'newsectionsummary', $wgParser->stripSectionName( $this->summary ) );
+			$subjectpreview = $summarytext && $this->preview ? "<div class=\"mw-summary-preview\">".wfMsg('subject-preview').':'.$sk->commentBlock( $formattedSummary, $this->mTitle, true )."</div>\n" : '';
 			$summarypreview = '';
 		} else {
 			$commentsubject = '';
