@@ -87,14 +87,12 @@ class ApiBlock extends ApiBase {
 		$form->BlockEmail = $params['noemail'];
 		$form->BlockHideName = $params['hidename'];
 
-		$dbw = wfGetDb(DB_MASTER);
-		$dbw->begin();
 		$retval = $form->doBlock($userID, $expiry);
 		if(!empty($retval))
 			// We don't care about multiple errors, just report one of them
 			$this->dieUsageMsg($retval);
+		$this->getMain()->scheduleCommit();
 
-		$dbw->commit();
 		$res['user'] = $params['user'];
 		$res['userID'] = $userID;
 		$res['expiry'] = ($expiry == Block::infinity() ? 'infinite' : $expiry);

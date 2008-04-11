@@ -62,15 +62,13 @@ class ApiRollback extends ApiBase {
 		$articleObj = new Article($titleObj);
 		$summary = (isset($params['summary']) ? $params['summary'] : "");
 		$details = null;
-		$dbw = wfGetDb(DB_MASTER);
-		$dbw->begin();
 		$retval = $articleObj->doRollback($username, $summary, $params['token'], $params['markbot'], $details);
 
 		if(!empty($retval))
 			// We don't care about multiple errors, just report one of them
 			$this->dieUsageMsg(current($retval));
 
-		$dbw->commit();
+		$this->getMain()->scheduleCommit();
 		$current = $target = $summary = NULL;
 		extract($details);
 

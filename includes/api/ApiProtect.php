@@ -85,8 +85,6 @@ class ApiProtect extends ApiBase {
 				$this->dieUsageMsg(array('missingtitles-createonly'));
 		}
 
-		$dbw = wfGetDb(DB_MASTER);
-		$dbw->begin();
 		if($titleObj->exists()) {
 			$articleObj = new Article($titleObj);
 			$ok = $articleObj->updateRestrictions($protections, $params['reason'], $params['cascade'], $expiry);
@@ -96,7 +94,7 @@ class ApiProtect extends ApiBase {
 			// This is very weird. Maybe the article was deleted or the user was blocked/desysopped in the meantime?
 			// Just throw an unknown error in this case, as it's very likely to be a race condition
 			$this->dieUsageMsg(array());
-		$dbw->commit();
+		$this->getMain()->scheduleCommit();
 		$res = array('title' => $titleObj->getPrefixedText(), 'reason' => $params['reason']);
 		if($expiry == Block::infinity())
 			$res['expiry'] = 'infinity';

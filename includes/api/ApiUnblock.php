@@ -70,13 +70,11 @@ class ApiUnblock extends ApiBase {
 		$id = $params['id'];
 		$user = $params['user'];
 		$reason = (is_null($params['reason']) ? '' : $params['reason']);
-		$dbw = wfGetDb(DB_MASTER);
-		$dbw->begin();
 		$retval = IPUnblockForm::doUnblock($id, $user, $reason, $range);
 		if(!empty($retval))
 			$this->dieUsageMsg($retval);
 
-		$dbw->commit();
+		$this->getMain()->scheduleCommit();
 		$res['id'] = $id;
 		$res['user'] = $user;
 		$res['reason'] = $reason;

@@ -73,7 +73,7 @@ class ApiUndelete extends ApiBase {
 		if(!is_array($retval))
 			$this->dieUsageMsg(array('cannotundelete'));
 
-		$dbw->commit();
+		$this->getMain()->scheduleCommit();
 		$info['title'] = $titleObj->getPrefixedText();
 		$info['revisions'] = $retval[0];
 		$info['fileversions'] = $retval[1];
