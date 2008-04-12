@@ -521,6 +521,7 @@ $messages = array(
 'youhavenewmessagesmulti' => 'U hebt nieuwe berichten op $1',
 'editsection'             => 'bewerken',
 'editold'                 => 'bewerken',
+'viewsourceold'           => 'brontekst bekijken',
 'editsectionhint'         => 'Deelpagina bewerken: $1',
 'toc'                     => 'Inhoud',
 'showtoc'                 => 'bekijken',
@@ -634,8 +635,7 @@ De gegeven reden is ''$2''.",
 U kunt {{SITENAME}} nu anoniem gebruiken of weer aanmelden als dezelfde of een andere gebruiker.
 Mogelijk worden nog een aantal pagina's weergegeven alsof u aangemeld bent totdat u de cache van uw browser leegt.",
 'welcomecreation'            => '== Welkom, $1! ==
-
-Uw gebruiker is aangemaakt. Vergeet niet uw voorkeuren voor {{SITENAME}} aan te passen.',
+Uw gebruiker is geregistreerd. Vergeet niet uw voorkeuren voor {{SITENAME}} aan te passen.',
 'loginpagetitle'             => 'Gebruikersnaam',
 'yourname'                   => 'Gebruikersnaam:',
 'yourpassword'               => 'Wachtwoord:',
@@ -647,13 +647,13 @@ Uw gebruiker is aangemaakt. Vergeet niet uw voorkeuren voor {{SITENAME}} aan te 
 Probeer het alstublieft opnieuw.',
 'login'                      => 'Aanmelden',
 'loginprompt'                => 'U moet cookies ingeschakeld hebben om u te kunnen aanmelden bij {{SITENAME}}.',
-'userlogin'                  => 'Aanmelden / Inschrijven',
+'userlogin'                  => 'Aanmelden / registreren',
 'logout'                     => 'Afmelden',
 'userlogout'                 => 'Afmelden',
 'notloggedin'                => 'Niet aangemeld',
 'nologin'                    => 'Nog geen gebruikersnaam? $1.',
-'nologinlink'                => 'Maak een gebruiker aan',
-'createaccount'              => 'Gebruiker aanmaken',
+'nologinlink'                => 'Registreren',
+'createaccount'              => 'Registreren',
 'gotaccount'                 => 'Hebt u al een gebruikersnaam? $1.',
 'gotaccountlink'             => 'Aanmelden',
 'createaccountmail'          => 'per e-mail',
@@ -674,7 +674,7 @@ Kies alstublieft een andere naam.',
 'loginerror'                 => 'Aanmeldfout',
 'prefs-help-email'           => 'E-mailadres is optioneel, maar stelt anderen in staat contact met u op te nemen via uw gebruikers- of overlegpagina zonder dat u uw identiteit prijsgeeft.',
 'prefs-help-email-required'  => 'Hiervoor is een e-mailadres nodig.',
-'nocookiesnew'               => 'De gebruiker is aangemaakt maar niet aangemeld.
+'nocookiesnew'               => 'De gebruiker is geregistreerd, maar niet aangemeld.
 {{SITENAME}} gebruikt cookies voor het aanmelden van gebruikers.
 Schakel die alstublieft in en meld daarna aan met uw nieuwe gebruikersnaam en wachtwoord.',
 'nocookieslogin'             => '{{SITENAME}} gebruikt cookies voor het aanmelden van gebruikers. Cookies zijn uitgeschakeld in uw browser. Schakel deze optie alstublieft aan en probeer het opnieuw.',
@@ -701,8 +701,8 @@ Meld u alstublieft aan nadat u het hebt ontvangen.',
 'eauthentsent'               => 'Er is een bevestigingse-mail naar het opgegeven e-mailadres gezonden. Volg de aanwijzingen in de e-mail om aan te geven dat het uw e-mailadres is. Tot die tijd kunnen er geen e-mails naar het e-mailadres gezonden worden.',
 'throttled-mailpassword'     => 'In de laatste $1 uur is er al een wachtwoordherinnering gestuurd. Om misbruik te voorkomen wordt er slechts één wachtwoordherinnering per $1 uur verzonden.',
 'mailerror'                  => 'Fout bij het verzenden van e-mail: $1',
-'acct_creation_throttle_hit' => 'Sorry, er zijn al $1 gebruikers aangemaakt vanaf dit IP-adres.
-U kunt geen nieuwe gebruikers meer aanmaken.',
+'acct_creation_throttle_hit' => 'Sorry, er zijn al $1 gebruikers geregistreerd vanaf dit IP-adres.
+U kunt geen nieuwe gebruikers meer registreren.',
 'emailauthenticated'         => 'Uw e-mailadres is bevestigd op $1.',
 'emailnotauthenticated'      => 'Uw e-mailadres is <strong>niet bevestigd</strong>. U ontvangt geen e-mail voor de onderstaande functies.',
 'noemailprefs'               => 'Geef een e-mailadres op om deze functies te gebruiken.',
@@ -711,7 +711,7 @@ U kunt geen nieuwe gebruikers meer aanmaken.',
 Geef alstublieft een geldig e-mailadres op of laat het veld leeg.',
 'accountcreated'             => 'Gebruiker aangemaakt',
 'accountcreatedtext'         => 'De gebruiker $1 is aangemaakt.',
-'createaccount-title'        => 'Gebruikers aanmaken voor {{SITENAME}}',
+'createaccount-title'        => 'Gebruikers registreren voor {{SITENAME}}',
 'createaccount-text'         => 'Iemand heeft een gebruiker op {{SITENAME}} ($4) aangemaakt met de naam "$2" en uw e-mailadres. Het wachtwoord voor "$2" is "$3". Meld u aan en wijzig uw wachtwoord.
 
 Negeer dit bericht als deze gebruiker zonder uw medeweten is aangemaakt.',
@@ -797,7 +797,7 @@ Uw huidige IP-adres is $3 en het blokkadenummer is #$5. Vermeld beide gegevens a
 'whitelistedittext'                 => "U moet $1 om pagina's te bewerken.",
 'whitelistreadtitle'                => 'Voor leestoegang is aanmelden verplicht',
 'whitelistreadtext'                 => "[[Special:Preferences|Meld u aan]] voor leestoegang tot pagina's.",
-'whitelistacctitle'                 => 'Het aanmaken van nieuwe gebruikers is niet toegestaan',
+'whitelistacctitle'                 => 'U kunt geen gebruiker registreren',
 'whitelistacctext'                  => 'U dient [[Special:Userlogin|aangemeld]] te zijn en de juiste rechten te hebben om gebruikers aan te maken in {{SITENAME}}.',
 'confirmedittitle'                  => 'E-mailbevestiging is verplicht voordat u kunt bewerken',
 'confirmedittext'                   => 'U moet uw e-mailadres bevestigen voor u kunt bewerken.
@@ -890,7 +890,7 @@ Het is misschien verstandig om uw tekst tijdelijk in een tekstbestand op te slaa
 'edittools'                         => '<!-- Deze tekst wordt weergegeven onder bewerkings- en uploadformulieren. -->',
 'nocreatetitle'                     => "Het aanmaken van pagina's is beperkt",
 'nocreatetext'                      => "{{SITENAME}} heeft de mogelijkheid om nieuwe pagina's te maken beperkt.
-U kunt reeds bestaande pagina's wijzigen, of u kunt [[Special:Userlogin|zich aanmelden of een gebruiker aanmaken]].",
+U kunt reeds bestaande pagina's wijzigen, of u kunt [[Special:Userlogin|zich aanmelden of registreren]].",
 'nocreate-loggedin'                 => "U kunt geen nieuwe pagina's maken op {{SITENAME}}.",
 'permissionserrors'                 => 'Fouten in rechten',
 'permissionserrorstext'             => 'U hebt geen rechten om dit te doen wegens de volgende {{PLURAL:$1|reden|redenen}}:',
@@ -908,8 +908,8 @@ Nu zijn het er $1, terwijl het er minder dan $2 moeten zijn.',
 'undo-summary' => 'Versie $1 van [[Special:Contributions/$2|$2]] ([[User talk:$2|overleg]]) ongedaan gemaakt.',
 
 # Account creation failure
-'cantcreateaccounttitle' => 'Aanmaken gebruiker mislukt.',
-'cantcreateaccount-text' => "Het aanmaken van gebruikers van dit IP-adres ('''$1''') is geblokkeerd door [[User:$3|$3]].
+'cantcreateaccounttitle' => 'Registreren is mislukt.',
+'cantcreateaccount-text' => "Registreren vanaf dit IP-adres ('''$1''') is geblokkeerd door [[User:$3|$3]].
 
 De door $3 opgegeven reden is ''$2''",
 
@@ -1584,6 +1584,8 @@ Het e-mailadres dat u hebt opgegeven bij uw voorkeuren wordt als afzender gebrui
 'emailccsubject'  => 'Kopie van uw bericht aan $1: $2',
 'emailsent'       => 'E-mail verzonden',
 'emailsenttext'   => 'Uw e-mail is verzonden.',
+'emailuserfooter' => "--
+Deze e-mail is verstuurd via de optie 'Deze gebruiker e-mailen' van {{SITENAME}}",
 
 # Watchlist
 'watchlist'            => 'Volglijst',
@@ -1821,9 +1823,9 @@ $1',
 'whatlinkshere-prev'       => '{{PLURAL:$1|vorige|vorige $1}}',
 'whatlinkshere-next'       => '{{PLURAL:$1|volgende|volgende $1}}',
 'whatlinkshere-links'      => '← links daarnaar',
-'whatlinkshere-hideredirs' => '$1 doorverwijzingen',
-'whatlinkshere-hidetrans'  => '$1 transclusies',
-'whatlinkshere-hidelinks'  => '$1 verwijzigingen',
+'whatlinkshere-hideredirs' => 'doorverwijzingen $1',
+'whatlinkshere-hidetrans'  => 'transclusies $1',
+'whatlinkshere-hidelinks'  => 'verwijzigingen $1',
 
 # Block/unblock
 'blockip'                     => 'Gebruiker blokkeren',
@@ -1844,7 +1846,7 @@ Geef hieronder een reden op (bijvoorbeeld welke pagina's gevandaliseerd zijn).",
 ** Misbruik door meerdere gebruikers
 ** Onaanvaardbare gebruikersnaam",
 'ipbanononly'                 => 'Alleen anonieme gebruikers blokkeren',
-'ipbcreateaccount'            => 'Aanmaken gebruikers blokkeren',
+'ipbcreateaccount'            => 'Registreren gebruikers blokkeren',
 'ipbemailban'                 => 'Gebruiker weerhouden van het sturen van e-mail',
 'ipbenableautoblock'          => 'Automatisch de IP-adressen van deze gebruiker blokkeren',
 'ipbsubmit'                   => 'Deze gebruiker blokkeren',
@@ -1876,7 +1878,7 @@ Zie de [[Special:Ipblocklist|Lijst van geblokkeerde IP-adressen]] voor recente b
 'expiringblock'               => 'verloopt op $1',
 'anononlyblock'               => 'alleen anoniemen',
 'noautoblockblock'            => 'autoblok uitgeschakeld',
-'createaccountblock'          => 'aanmaken gebruikers geblokkeerd',
+'createaccountblock'          => 'registreren gebruikers geblokkeerd',
 'emailblock'                  => 'e-mail geblokkeerd',
 'ipblocklist-empty'           => 'De blokkeerlijst is leeg.',
 'ipblocklist-no-results'      => 'Dit IP-adres of deze gebruikersnaam is niet geblokkeerd.',
@@ -1889,7 +1891,7 @@ Zie de [[Special:Ipblocklist|Lijst van geblokkeerde IP-adressen]] voor recente b
 'blocklogtext'                => 'Hier ziet u een lijst van de recente blokkeringen en deblokkeringen. Automatische blokkeringen en deblokkeringen komen niet in het logboek. Zie de [[Special:Ipblocklist|Ipblocklist]] voor geblokkeerde adressen.',
 'unblocklogentry'             => 'heeft de blokkade van $1 opgeheven',
 'block-log-flags-anononly'    => 'alleen anoniemen',
-'block-log-flags-nocreate'    => 'aanmaken gebruikers geblokkeerd',
+'block-log-flags-nocreate'    => 'registreren gebruikers geblokkeerd',
 'block-log-flags-noautoblock' => 'autoblokkeren is uitgeschakeld',
 'block-log-flags-noemail'     => 'e-mail geblokkeerd',
 'range_block_disabled'        => 'De mogelijkheid voor beheerders om een groep IP-addressen te blokkeren is uitgeschakeld.',
@@ -1906,7 +1908,7 @@ Neem alstublieft contact op met uw Internet-provider of uw helpdesk en stel die 
 'proxyblocksuccess'           => 'Geslaagd.',
 'sorbsreason'                 => 'Uw IP-adres staat bekend als open proxyserver in de DNS-blacklist die {{SITENAME}} gebruikt.',
 'sorbs_create_account_reason' => 'Uw IP-adres staat bekend als open proxyserver in de DNS-blacklist die {{SITENAME}} gebruikt.
-U kunt geen gebruiker aanmaken.',
+U kunt geen gebruiker registreren.',
 
 # Developer tools
 'lockdb'              => 'Database blokkeren',
@@ -2706,5 +2708,16 @@ Voer de bestandsnaam in zonder het voorvoegsel "{{ns:image}}:".',
 'fileduplicatesearch-info'     => '$1 × $2 pixels<br />Bestandsgrootte: $3<br />MIME-type: $4',
 'fileduplicatesearch-result-1' => 'Het bestand "$1" heeft geen duplicaten.',
 'fileduplicatesearch-result-n' => 'Het bestand "$1" heeft {{PLURAL:$2|één duplicaat|$2 duplicaten}}.',
+
+# Special:SpecialPages
+'specialpages-group-maintenance' => 'Onderhoudsrapporten',
+'specialpages-group-other'       => "Overige speciale pagina's",
+'specialpages-group-login'       => 'Aanmelden/registreren',
+'specialpages-group-changes'     => 'Recente wijzigingen en logboeken',
+'specialpages-group-media'       => 'Mediaoverzichten',
+'specialpages-group-users'       => 'Gebruikers en rechten',
+'specialpages-group-needy'       => "Pagina's die aandacht nodig hebben",
+'specialpages-group-highuse'     => "Veelgebruikte pagina's",
+'specialpages-group-permissions' => 'Gebruikersrechten instellen',
 
 );
