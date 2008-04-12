@@ -1663,7 +1663,7 @@ wgUploadAutoFill = {$autofill};
 	 */
 	private function showDeletionLog( $out, $filename ) {
 		global $wgUser;
-		$loglist = new LogEventsList( $wgUser->getSkin() );
+		$loglist = new LogEventsList( $wgUser->getSkin(), $out );
 		$pager = new LogPager( $loglist, 'delete', false, $filename );
 		if( $pager->getNumRows() > 0 ) {
 			$out->addHtml( '<div id="mw-upload-deleted-warn">' );
