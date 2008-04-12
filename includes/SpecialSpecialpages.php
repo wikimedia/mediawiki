@@ -69,7 +69,7 @@ function wfSpecialSpecialpages_gen($pages,$heading,$sk) {
 		$max = count($sortedPages) - 1;
 		$count = 0;
 		
-		$wgOut->addHTML( "<h3 class='mw-specialpagesgroup'>".wfMsgHtml("specialpages-group-$group")."</h3>\n" );
+		$wgOut->addHTML( "<h4 class='mw-specialpagesgroup'>".wfMsgHtml("specialpages-group-$group")."</h4>\n" );
 		$wgOut->addHTML( "<table style='width: 100%;' class='mw-specialpages-table'><tr>" );
 		$wgOut->addHTML( "<td width='30%' valign='top'><ul>\n" );
 		foreach ( $sortedPages as $desc => $title ) {
