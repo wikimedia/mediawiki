@@ -179,6 +179,8 @@ class EmailUserForm {
 				$mailFrom = $from;
 				$replyTo = null;
 			}
+			
+			$this->text .= wfMsgForContent( 'emailuser-footer' );
 
 			$mailResult = UserMailer::send( $to, $mailFrom, $subject, $this->text, $replyTo );
 
