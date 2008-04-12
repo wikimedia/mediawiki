@@ -138,7 +138,7 @@ table.mw-listgrouprights-table td, table.mw-listgrouprights-table th {
 }
 
 /* Special:SpecialPages styling */
-h3.mw-specialpagesgroup {
+h4.mw-specialpagesgroup {
 	background-color: #dcdcdc;
 	padding: 2px;
 	margin: .3em 0em 0em 0em;
