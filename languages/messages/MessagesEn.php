@@ -3278,7 +3278,7 @@ Enter the filename without the "{{ns:image}}:" prefix.',
 # Special:SpecialPages
 'specialpages-group-maintenance' => 'Maintenance reports',
 'specialpages-group-other'       => 'Other special pages',
-'specialpages-group-login'       => 'Login/sign up',
+'specialpages-group-login'       => 'Login / sign up',
 'specialpages-group-changes'     => 'Recent changes and logs',
 'specialpages-group-media'       => 'Media reports',
 'specialpages-group-users'       => 'Users and rights',
