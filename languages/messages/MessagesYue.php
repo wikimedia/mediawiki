@@ -1395,6 +1395,8 @@ Template:搞清楚',
 'emailccsubject'  => '你畀$1: $2封信嘅副本',
 'emailsent'       => '電郵已傳送',
 'emailsenttext'   => '你嘅電郵信息已傳送。',
+'emailuserfooter'	  => "--
+呢封電郵係用響{{SITENAME}}嘅'發電郵畀呢位用戶'功能發出嘅",
 
 # Watchlist
 'watchlist'            => '監視清單',
@@ -1634,7 +1636,6 @@ $1',
 'whatlinkshere-hideredirs' => '$1跳轉',
 'whatlinkshere-hidetrans'  => '$1包含',
 'whatlinkshere-hidelinks'  => '$1連結',
-
 
 # Block/unblock
 'blockip'                     => '封鎖用戶',
