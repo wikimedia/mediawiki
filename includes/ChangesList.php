@@ -439,7 +439,10 @@ class EnhancedChangesList extends ChangesList {
 		// New unpatrolled pages
 		} else if( $rc->unpatrolled && $rc_type == RC_NEW ) {
 			$clink = $this->skin->makeKnownLinkObj( $rc->getTitle(), '', "rcid={$rc_id}" );
-		// Other edits or log entries
+		// Log entries
+		} else if( $rc_type == RC_LOG ) {
+			$clink = $this->skin->makeLinkObj( $rc->getTitle(), '' );
+		// Edits
 		} else {
 			$clink = $this->skin->makeKnownLinkObj( $rc->getTitle(), '' );
 		}
@@ -509,7 +512,9 @@ class EnhancedChangesList extends ChangesList {
 			# Use an @ character to prevent collision with page names
 			$this->rc_cache['@@' . ($this->rcMoveIndex++)] = array($rc);
 		} else {
-			if( $rc_type == RC_LOG ){
+			global $wgRCTypeGroupedLogs;
+			# Some logs are best grouped by type (block,rights)
+			if( $rc_type == RC_LOG && in_array($rc_log_type,$wgRCTypeGroupedLogs) ){
 				$secureName = SpecialPage::getTitleFor( 'Log', $rc_log_type )->getPrefixedDBkey();
 			}
 			if( !isset( $this->rc_cache[$secureName] ) ) {
@@ -600,16 +605,7 @@ class EnhancedChangesList extends ChangesList {
 		$r .= '&nbsp;'.$block[0]->timestamp.'&nbsp;</tt></td><td>';
 
 		# Article link
-		if( $alllogs ){
-			$logtype = $block[0]->mAttribs['rc_log_type'];
-			if( is_null( $logtype ) ){
-				//Old format
-				$r .= $block[0]->link;
-			} else {
-				$logname = LogPage::logName( $logtype );
-				$r .= ' (' . $this->skin->makeKnownLinkObj( SpecialPage::getTitleFor( 'Log', $logtype ), $logname ) . ')';
-			}
-		} else if( $namehidden ) {
+		if( $namehidden ) {
 			$r .= ' <span class="history-deleted">' . wfMsgHtml('rev-deleted-event') . '</span>';
 		} else {
 			$r .= $this->maybeWatchedLink( $block[0]->link, $block[0]->watched );
