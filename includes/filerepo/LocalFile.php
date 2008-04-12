@@ -862,6 +862,12 @@ class LocalFile extends File
 		# Invalidate cache for all pages using this file
 		$update = new HTMLCacheUpdate( $this->getTitle(), 'imagelinks' );
 		$update->doUpdate();
+		# Invalidate cache for all pages that redirects on this page
+		$redirs = $this->getTitle()->getRedirectsHere();
+		foreach( $redirs as $redir ) {
+			$update = new HTMLCacheUpdate( $redir, 'imagelinks' );
+			$update->doUpdate();
+		}
 
 		return true;
 	}
