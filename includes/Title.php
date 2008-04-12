@@ -3056,5 +3056,15 @@ class Title {
 	public function isContentPage() {
 		return MWNamespace::isContent( $this->getNamespace() );
 	}
-	
+
+	public function getRedirectsHere() {
+		$redirs = array();
+		$dbr = wfGetDB( DB_SLAVE );
+		$result = $dbr->query( "SELECT page_title, page_namespace FROM page JOIN redirect ON page_id = rd_from WHERE rd_title = "
+			. $dbr->addQuotes( $this->getDBKey() ) . " AND rd_namespace = " . $this->getNamespace(), __METHOD__ );
+		while( $row = $dbr->fetchObject( $result ) ) {
+			$redirs[] = self::newFromRow( $row );
+		}
+		return $redirs;
+	}
 }

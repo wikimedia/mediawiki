@@ -73,6 +73,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 6934) Allow separated inclusions, links, redirects on whatlinkshere
 * Add a footer (emailuser-footer) to the bottom of messages sent with
 Special:EmailUser
+* Cache image redirects
 
 === Bug fixes in 1.13 ===
 
@@ -174,6 +175,7 @@ Special:EmailUser
 * (bug 13684) Links in Special:ListGroupRights should be in content language
 * (bug 13690) Fix PHP notice on accessing some URLs
 * Hide (undo) link if user isn't able to edit page
+* Invalidate cache of pages that includes images via redirects on upload
 
 === API changes in 1.13 ===
 
