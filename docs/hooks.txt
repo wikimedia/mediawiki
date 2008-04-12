@@ -912,7 +912,8 @@ $user: the User object to load preferences from
                    returning false prevents the preferences from being saved.
 $form: the PreferencesForm
 $user: the User object to save preferences to
-$message: change this to set an error message (ignored if the hook does notreturn fals)
+$message: change this to set an error message (ignored if the hook does not return false)
+$old: old preferences of the user
 
 'SearchUpdate': Prior to search update completion
 $id : Page id
