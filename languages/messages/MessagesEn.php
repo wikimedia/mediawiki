@@ -3254,6 +3254,17 @@ You can also [[Special:Watchlist/edit|use the standard editor]].',
 'version-software-product'         => 'Product',
 'version-software-version'         => 'Version',
 
+# Special:SpecialPages
+'specialpages-group-maintenance'  => 'Maintenance reports',
+'specialpages-group-other'        => 'Other special pages',
+'specialpages-group-login'        => 'Login/sign up',
+'specialpages-group-changes'      => 'Recent changes and logs',
+'specialpages-group-media'        => 'Media reports',
+'specialpages-group-users'        => 'Users and rights',
+'specialpages-group-needy'        => 'Pages in need of work',
+'specialpages-group-highuse'      => 'High use pages',
+'specialpages-group-permissions'  => 'Set user permissions',
+
 # Special:Filepath
 'filepath'         => 'File path',
 'filepath-page'    => 'File:',

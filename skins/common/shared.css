@@ -136,3 +136,15 @@ table.mw-listgrouprights-table td, table.mw-listgrouprights-table th {
 	padding: 0.5em 0.2em 0.5em 0.2em;
 	border: 1px solid #ccc;
 }
+
+/* Special:SpecialPages styling */
+h3.mw-specialpagesgroup {
+	background-color: #dcdcdc;
+	padding: 2px;
+	margin: .3em 0em 0em 0em;
+}
+
+table.mw-specialpages-table {
+	background-color: #f9f9f9;
+}
+
