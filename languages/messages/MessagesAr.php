@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 /** Arabic (العربية)
  *
  * @addtogroup Language
@@ -1866,18 +1866,21 @@ $1',
 'sp-contributions-submit'      => 'بحث',
 
 # What links here
-'whatlinkshere'       => 'ماذا يصل هنا',
-'whatlinkshere-title' => 'الصفحات التي تصل إلى $1',
-'whatlinkshere-page'  => 'الصفحة:',
-'linklistsub'         => '(قائمة الوصلات)',
-'linkshere'           => "الصفحات التالية تحتوي على وصلة إلى '''[[:$1]]''':",
-'nolinkshere'         => "لا توجد صفحات تصل إلى '''[[:$1]]'''.",
-'nolinkshere-ns'      => "لا تصل أي صفحة إلى '''[[:$1]]''' في النطاق المختار.",
-'isredirect'          => 'صفحة تحويل',
-'istemplate'          => 'مضمن',
-'whatlinkshere-prev'  => '{{PLURAL:$1|السابق|الـ $1 السابقة}}',
-'whatlinkshere-next'  => '{{PLURAL:$1|القادمة|الـ $1 القادمة}}',
-'whatlinkshere-links' => '← وصلات',
+'whatlinkshere'            => 'ماذا يصل هنا',
+'whatlinkshere-title'      => 'الصفحات التي تصل إلى $1',
+'whatlinkshere-page'       => 'الصفحة:',
+'linklistsub'              => '(قائمة الوصلات)',
+'linkshere'                => "الصفحات التالية تحتوي على وصلة إلى '''[[:$1]]''':",
+'nolinkshere'              => "لا توجد صفحات تصل إلى '''[[:$1]]'''.",
+'nolinkshere-ns'           => "لا تصل أي صفحة إلى '''[[:$1]]''' في النطاق المختار.",
+'isredirect'               => 'صفحة تحويل',
+'istemplate'               => 'مضمن',
+'whatlinkshere-prev'       => '{{PLURAL:$1|السابق|الـ $1 السابقة}}',
+'whatlinkshere-next'       => '{{PLURAL:$1|القادمة|الـ $1 القادمة}}',
+'whatlinkshere-links'      => '← وصلات',
+'whatlinkshere-hideredirs' => '$1 تحويلة',
+'whatlinkshere-hidetrans'  => '$1 تضمين',
+'whatlinkshere-hidelinks'  => '$1 وصلة',
 
 # Block/unblock
 'blockip'                     => 'منع مستخدم',
