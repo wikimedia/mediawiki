@@ -72,7 +72,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Automatically add old redirects to the redirect table when needed
 * (bug 6934) Allow separated inclusions, links, redirects on whatlinkshere
 * Add a footer (emailuser-footer) to the bottom of messages sent with
-Special:EmailUser
+  Special:EmailUser
 * Cache image redirects
 
 === Bug fixes in 1.13 ===
@@ -177,6 +177,8 @@ Special:EmailUser
 * Hide (undo) link if user isn't able to edit page
 * Invalidate cache of pages that includes images via redirects on upload
 * (bug 13705) Don't show rollback link in page history if called with dir=prev
+* (bug 13708) Don't set "Search results" title when loading Special:Search
+  without query
 
 === API changes in 1.13 ===
 
