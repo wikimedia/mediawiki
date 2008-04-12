@@ -236,6 +236,7 @@ class PreferencesForm {
 			}
 		}
 		$wgUser->setRealName( $this->mRealName );
+		$oldOptions = $wgUser->mOptions;
 
 		if( $wgUser->getOption( 'language' ) !== $this->mUserLanguage ) {
 			$needRedirect = true;
@@ -336,13 +337,13 @@ class PreferencesForm {
 			}
 		}
 
-		if (!$wgAuth->updateExternalDB($wgUser)) {
+		if( !$wgAuth->updateExternalDB( $wgUser ) ){
 			$this->mainPrefsForm( 'error', wfMsg( 'externaldberror' ) );
 			return;
 		}
 
 		$msg = '';
-		if ( !wfRunHooks( 'SavePreferences', array( $this, $wgUser, &$msg ) ) ) {
+		if ( !wfRunHooks( 'SavePreferences', array( $this, $wgUser, &$msg, $oldOptions ) ) ) {
 			$this->mainPrefsForm( 'error', $msg );
 			return;
 		}
@@ -352,7 +353,7 @@ class PreferencesForm {
 
 		if( $needRedirect && $error === false ) {
 			$title = SpecialPage::getTitleFor( 'Preferences' );
-			$wgOut->redirect($title->getFullURL('success'));
+			$wgOut->redirect( $title->getFullURL( 'success' ) );
 			return;
 		}
 
