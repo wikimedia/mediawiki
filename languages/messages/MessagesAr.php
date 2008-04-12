@@ -2058,7 +2058,7 @@ $1',
 'allmessagesdefault'        => 'النص الافتراضي',
 'allmessagescurrent'        => 'النص الحالي',
 'allmessagestext'           => 'هذه قائمة برسائل النظام المتوفرة في نطاق ميدياويكي.
-من فضلك زر [http://translatewiki.net بيتاويكي] لو كنت ترغب في المساهمة في ترجمة ميدياويكي الأساسية.',
+من فضلك زر [http://www.mediawiki.org/wiki/Localisation ترجمة ميدياويكي] و [http://translatewiki.net بيتاويكي] لو كنت ترغب في المساهمة في ترجمة ميدياويكي الأساسية.',
 'allmessagesnotsupportedDB' => "لا يمكن استخدام '''{{ns:special}}:Allmessages''' لأن المتغير '''\$wgUseDatabaseMessages''' غير مشغل.",
 'allmessagesfilter'         => 'بحث باسم الرسالة:',
 'allmessagesmodified'       => 'اعرض المتغير فقط',

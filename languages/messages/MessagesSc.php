@@ -4,8 +4,8 @@
  * @addtogroup Language
  *
  * @author Nike
- * @author G - ג
  * @author Siebrand
+ * @author לערי ריינהארט
  */
 
 $namespaceNames = array(
@@ -328,7 +328,7 @@ per poter personalizzare le tue preferenze.',
 per fare lo upload di files.',
 'uploaderror'       => 'Errore di Upload',
 'uploadtext'        => "'''FERMA!''' Prima di effettuare un upload su {{SITENAME}}, accertati di avere ben letto e soprattutto compreso
-[[Project:Image_use_policy|le regole di {{SITENAME}} sull'uso delle immagini]].
+le regole di {{SITENAME}} sull'uso delle immagini.
 
 Per visualizzare o cercare immagini precedentemente caricate su {{SITENAME}}, vai alla [[Special:Imagelist|lista delle immagini già caricate]].
 Uploads e cancellazioni delle immagini sono registrati nello

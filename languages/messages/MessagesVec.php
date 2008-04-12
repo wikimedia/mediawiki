@@ -1697,7 +1697,7 @@ La voçe specificà come destinassion "[[$1]]" l\'esiste xà. Vóto scancełarla
 'allmessagesdefault'        => 'Testo de default',
 'allmessagescurrent'        => "Testo come che el xe 'deso",
 'allmessagestext'           => "Sta quà l'è na lista de tuti i messagi disponibili nel namespace MediaWiki.
-Par piaser visita [http://translatewiki.net Betawiki] se te voli jutarne par la traduzion del software MediaWiki ne le varie lengue.",
+Par piaser visita [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] e [http://translatewiki.net Betawiki] se te voli jutarne par la traduzion del software MediaWiki ne le varie lengue.",
 'allmessagesnotsupportedDB' => "'''{{ns:special}}:Allmessages''' no'l xè supportà parché '''\$wgUseDatabaseMessages''' no'l xè ativo.",
 'allmessagesfilter'         => 'Filto su i messaj:',
 'allmessagesmodified'       => 'Mostra soło quełi modefegà.',

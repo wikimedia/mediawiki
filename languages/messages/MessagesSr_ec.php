@@ -11,6 +11,7 @@
  * @author Nike
  * @author SPQRobin
  * @author Jon Harald Søby
+ * @author Millosh
  */
 
 $namespaceNames = array(
@@ -314,19 +315,23 @@ $messages = array(
 'dec'           => 'дец',
 
 # Categories related messages
-'categories'                    => '{{PLURAL:$1|Категорија|Категорије}}',
-'categoriespagetext'            => 'Следеће категорије садрже странице или мултимедијалне фајлове.',
-'special-categories-sort-count' => 'сортирај по броју',
-'special-categories-sort-abc'   => 'сортирај азбучно',
-'pagecategories'                => '{{PLURAL:$1|Категорија|Категорије|Категорије}} страница',
-'category_header'               => 'Чланака у категорији "$1"',
-'subcategories'                 => 'Поткатегорије',
-'category-media-header'         => 'Мултимедијалних фајлова у категорији "$1"',
-'category-empty'                => "''Ова категорија тренутно не садржи чланке нити медије.''",
-'hidden-categories'             => '{{PLURAL:$1|Скривена категорија|Скривене категорије|Скривених категорија}}',
-'hidden-category-category'      => 'Скривене категорије', # Name of the category where hidden categories will be listed
-'category-subcat-count-limited' => 'Ова категорија садржи {{PLURAL:$1|следећу поткатегорију|$1 следеће поткатегорије}}.',
-'listingcontinuesabbrev'        => 'наст.',
+'categories'                     => '{{PLURAL:$1|Категорија|Категорије}}',
+'categoriespagetext'             => 'Следеће категорије садрже странице или мултимедијалне фајлове.',
+'special-categories-sort-count'  => 'сортирај по броју',
+'special-categories-sort-abc'    => 'сортирај азбучно',
+'pagecategories'                 => '{{PLURAL:$1|Категорија|Категорије|Категорије}} страница',
+'category_header'                => 'Чланака у категорији "$1"',
+'subcategories'                  => 'Поткатегорије',
+'category-media-header'          => 'Мултимедијалних фајлова у категорији "$1"',
+'category-empty'                 => "''Ова категорија тренутно не садржи чланке нити медије.''",
+'hidden-categories'              => '{{PLURAL:$1|Скривена категорија|Скривене категорије|Скривених категорија}}',
+'hidden-category-category'       => 'Скривене категорије', # Name of the category where hidden categories will be listed
+'category-subcat-count'          => '{{PLURAL:$2|Ова категорија има само следећу поткатегорију.|Ова категорија има {{PLURAL:$1|следећу поткатегорију|$1 следеће поткатегорије|$1 следећих поткатегорија}}, од укупно $2.}}',
+'category-subcat-count-limited'  => 'Ова категорија садржи {{PLURAL:$1|следећу поткатегорију|$1 следеће поткатегорије}}.',
+'category-article-count'         => '{{PLURAL:$2|Ова категорија садржи само следећу страну.|{{PLURAL:$1|страна је|$1 стране је|$1 страна је}} у овој категорији од укупно $2.}}',
+'category-article-count-limited' => '{{PLURAL:$1|Следећа страна је|$1 следеће стране су|$1 следећих страна је}} у овој категорији.',
+'category-file-count'            => '{{PLURAL:$2|Ова категорија садржи само следећи фајл.|{{PLURAL:$1|Следећи фајл је|$1 следећа фајла су|$1 следећих фајлова су}} у овој категорији, од укупно $2.}}',
+'listingcontinuesabbrev'         => 'наст.',
 
 'mainpagetext'      => "<big>'''МедијаВики је успешно инсталиран.'''</big>",
 'mainpagedocfooter' => 'Молимо видите [http://meta.wikimedia.org/wiki/Help:Contents кориснички водич] за информације о употреби вики софтвера.

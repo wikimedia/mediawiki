@@ -1,8 +1,11 @@
 <?php
-/** Guaraní (avañe'ẽ)
-  *
-  * @addtogroup Language
-  */
+/** Guarani (Avañe'ẽ)
+ *
+ * @addtogroup Language
+ *
+ * @author Hugo.arg
+ * @author Nike
+ */
 
 $fallback = 'es';
 
@@ -28,19 +31,29 @@ $namespaceNames = array(
 );
 
 $messages = array(
+'underline-always' => 'Akói',
+'underline-never'  => "Araka'eve",
+
 # Dates
+'sunday'       => 'arateĩ',
+'monday'       => 'arakői',
+'tuesday'      => 'araapy',
+'wednesday'    => 'ararundy',
+'thursday'     => 'arapo',
+'friday'       => 'arapoteĩ',
+'saturday'     => 'arapokői',
 'january'      => 'jasyteĩ',
-'february'     => 'jasykõi',
+'february'     => 'jasykői',
 'march'        => 'jasyapy',
 'april'        => 'jasyrundy',
 'may_long'     => 'jasypo',
 'june'         => 'jasypoteĩ',
-'july'         => 'jasypokõi',
+'july'         => 'jasypokői',
 'august'       => 'jasypoapy',
 'september'    => 'jasyporundy',
 'october'      => 'jasypa',
 'november'     => 'jasypateĩ',
-'december'     => 'jasypakõi',
+'december'     => 'jasypakői',
 'january-gen'  => 'jasyteĩ',
 'february-gen' => 'jasykõi',
 'jan'          => 'jasyteĩ',
@@ -49,7 +62,8 @@ $messages = array(
 'dec'          => 'jasypakõi',
 
 # Categories related messages
-'categories' => 'Ñemohenda',
+'categories'     => 'Ñemohendakuéra',
+'pagecategories' => '{{PLURAL:$1|Ñemohenda|Ñemohendakuéra}}',
 
 'about'          => 'Rehegua',
 'article'        => 'Kuatiahai',
@@ -115,7 +129,7 @@ $messages = array(
 'nstab-main'      => 'Kuatiahai',
 'nstab-user'      => 'Puruhára',
 'nstab-special'   => "Mba'echĩchĩ",
-'nstab-image'     => "Ta'anga",
+'nstab-image'     => "Ta'ãnga",
 'nstab-mediawiki' => 'Marandu',
 'nstab-template'  => 'Tembiecharã',
 'nstab-category'  => 'Ñemohenda',
@@ -137,7 +151,7 @@ $messages = array(
 'nologinlink'        => 'Téra ñemohenda',
 'youremail'          => "Ñe'ẽveve",
 'yourlanguage'       => "Ñe'ẽ:",
-'email'              => 'Pareha eleytrónico',
+'email'              => 'Pareha eleytróniko',
 'loginsuccesstitle'  => 'Remoñepyrũ hekopete ne rembiapo',
 'nosuchusershort'    => 'No hay un usuario con el nombre "$1". Compruebe que lo ha escrito correctamente.',
 'mailmypassword'     => "Embou chéve ñe'ẽveve rupive peteĩ temiñemĩ pyahu",
@@ -168,7 +182,9 @@ $messages = array(
 'showdiff'              => 'Tojechauka ñemoambue',
 'missingsummary'        => "'''Atención:''' No has escrito un resumen de edición. Si haces clic nuevamente en «Hai» tu edición se grabará sin él.",
 'subject-preview'       => "Previsualización del mba'ekuaarã/teraete",
-'newarticletext'        => "Rehapykuehókuri peteĩ joaju peteĩ kuatiarogue ndaipórivape. Nde remoheñoisérõ ko kuatiarogue, eñepyrũkatu ehai. Reikotevẽvérõ marandu, emoñe'ẽ kuatiarogue ñepytyvõ rehegua. Oiméramo reikereínte térã rejavyhaguére, upéicharõ terehojey [[Help:Ayuda|kuatiarogue mboyveguápe]].",
+'newarticletext'        => "Rehapykuehókuri peteĩ joaju peteĩ kuatiarogue ndaipórivape.
+Nde remoheñoisérõ ko kuatiarogue, eñepyrũkatu ehai.
+Reikotevẽvérõ marandu, emoñe'ẽ kuatiarogue ñepytyvõ rehegua. Oiméramo reikereínte térã rejavyhaguére, upéicharõ terehojey [[{{MediaWiki:Helppage}}|kuatiarogue mboyveguápe]].",
 'userinvalidcssjstitle' => "'''Aviso:''' No existe la piel \"\$1\". Recuerda que las páginas personalizadas .css y .js tienen un título en minúsculas, p.e. Usuario:Foo/monobook.css en vez de  Usuario:Foo/Monobook.css.",
 'editing'               => 'Ojehaihína $1',
 'editingsection'        => 'Ojehaihína $1 (vore)',
@@ -208,12 +224,12 @@ Aipórõ, eñeha'ãna emboja'o ne rembiapo, vore michĩvévape.</strong>",
 
 # User rights
 'userrights-lookup-user'     => 'Configurar grupos de usuarios',
-'userrights-user-editname'   => 'Escriba un nombre de usuario:',
+'userrights-user-editname'   => 'Ehaimi peteĩ téra puruháragua:',
 'editusergroup'              => 'Modificar grupos de usuarios',
 'editinguser'                => 'Ojehaihína $1',
 'userrights-editusergroup'   => 'Modificar grupos de usuarios',
 'saveusergroups'             => 'Guardar grupos de usuarios',
-'userrights-groupsmember'    => 'Miembro de:',
+'userrights-groupsmember'    => 'Pehengue:',
 'userrights-groupsavailable' => 'Grupos disponibles:',
 'userrights-reason'          => 'Motivo para el cambio:',
 
@@ -221,7 +237,7 @@ Aipórõ, eñeha'ãna emboja'o ne rembiapo, vore michĩvévape.</strong>",
 'group-all' => '(opaite)',
 
 # Recent changes
-'nchanges'          => '$1 cambios',
+'nchanges'          => '$1 ñemoambue',
 'recentchanges'     => 'Oñemoambue pyahúva',
 'rcnote'            => 'Iguýpe oĩ umi <b>$1</b> oñemoambue pyahúva ko ara<b>$2</b>ndýpe, hekopyahúva $3',
 'rclistfrom'        => 'Tojehechauka oñemoambue pyahúva $1 guive',
@@ -294,9 +310,9 @@ Reomĩsérõ ta'ãnga peteĩ kuatiaroguépe, eipuru peteĩ joaju:
 
 # Miscellaneous special pages
 'nbytes'                  => '$1 bytes',
-'ncategories'             => '$1 categorías',
-'nlinks'                  => '$1 enlaces',
-'nmembers'                => '$1 artículos',
+'ncategories'             => '$1 ñemohendakuéra',
+'nlinks'                  => '$1 joaju',
+'nmembers'                => '$1 kuatiahai',
 'nrevisions'              => '$1 revisiones',
 'nviews'                  => '$1 vistas',
 'lonelypages'             => "Kuatiarogue ityre'ỹva",

@@ -106,6 +106,7 @@ $messages = array(
 'searcharticle'     => 'Δέβα',
 'history'           => 'Ιστορίαν τη σελίδας',
 'history_short'     => 'Ιστορίαν',
+'printableversion'  => 'Μορφή εκτύπωσης',
 'edit'              => 'Άλλαξον',
 'create'            => 'Ποίσον',
 'editthispage'      => 'Άλλαξον τη σελίδαν ατέν',
@@ -121,6 +122,7 @@ $messages = array(
 'talkpage'          => 'Καλάτσεμαν για τη σελίδαν ατέν',
 'talkpagelinktext'  => 'Καλάτσεμαν',
 'specialpage'       => 'Ειδικόν σελίδαν',
+'personaltools'     => 'Προσωπικά εργαλεία',
 'postcomment'       => 'Ποίσον σχόλιον',
 'talk'              => 'Καλάτσεμαν',
 'views'             => 'Τερέματα',
@@ -137,11 +139,13 @@ $messages = array(
 'portal'               => 'Πύλην τη κοινότητας',
 'sitesupport'          => 'Δωρεάς',
 
+'retrievedfrom'       => 'Ασο "$1"',
 'youhavenewmessages'  => 'Έχετε $1 ($2).',
 'newmessageslink'     => 'καινούρεα μενέματα',
 'newmessagesdifflink' => 'υστερνόν αλλαγήν',
 'editsection'         => 'άλλαξον',
 'editold'             => 'άλλαξον',
+'editsectionhint'     => 'Άλλαξον φελίν: $1',
 'showtoc'             => 'δείξον',
 'hidetoc'             => 'κρύψον',
 
@@ -203,6 +207,10 @@ $messages = array(
 'editing'            => 'Αλλαγήν $1',
 'template-protected' => '(ασπαλιγμένον)',
 
+# History pages
+'revisionasof'     => 'Μορφήν τη $1',
+'previousrevision' => '←Παλαιόν μορφήν',
+
 # Revision feed
 'history-feed-item-nocomment' => '$1 σο $2', # user at time
 
@@ -228,6 +236,9 @@ $messages = array(
 
 # Recent changes linked
 'recentchangeslinked-title' => 'Αλλαγάς τη $1',
+
+# Upload
+'upload' => 'Φόρτωμα αρχείου',
 
 # Image description page
 'filehist-current'  => 'υστερινά',
@@ -264,6 +275,7 @@ $messages = array(
 
 # Special:Allpages
 'allpages'       => 'Όλεα τα σελίδας',
+'alphaindexline' => '$1 ους $2',
 'allarticles'    => 'Όλεα τα σελίδας',
 'allpagessubmit' => 'Δέβα',
 
@@ -337,11 +349,14 @@ $messages = array(
 'tooltip-ca-protect'        => 'Ασπάλιγμα τη σελίδας',
 'tooltip-ca-delete'         => 'Σβήσον τη σελίδαν',
 'tooltip-ca-move'           => 'Ποίσον αχταρμάν τη σελίδαν',
+'tooltip-search'            => 'Εύρον σο {{SITENAME}}',
 'tooltip-n-mainpage'        => 'Τερέστεν το αρχικόν τη σελίδαν',
 'tooltip-n-recentchanges'   => 'Η λίστα με τα υστερνά αλλαγάς σο wiki.',
 'tooltip-n-help'            => "Αδά θα ευρίετε τα απαντήσεις ντ' αραεύετε.",
 'tooltip-n-sitesupport'     => 'Βοηθέστεν το έργον.',
 'tooltip-t-whatlinkshere'   => "Ούλ' τ' άρθρα ντο δεκνίζνε σο παρόν το άρθρον",
+'tooltip-t-upload'          => 'Φόρτωμα αρχείων',
+'tooltip-t-specialpages'    => 'Κατάλογον με τα ειδικά σελίδας',
 'tooltip-ca-nstab-user'     => 'Τέρεν τη σελίδαν τη χρήστε',
 'tooltip-ca-nstab-image'    => 'Τερέστεν την εικόναν',
 'tooltip-ca-nstab-template' => 'Τερέστεν τα πρότυπα',

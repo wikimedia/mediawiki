@@ -2320,14 +2320,17 @@ Nasledne wotkazy na samsnej lince definuja wuwzaća, hdźež so wobraz smě naje
 'confirmemail_loggedin'    => 'Twoja e-mejlowa adresu bu nětko wobkrućena.',
 'confirmemail_error'       => 'Zmylk při wobkrućenju twojeje e-mailoweje adresy.',
 'confirmemail_subject'     => '{{SITENAME}} – wobkrućenje e-mejloweje adresy',
-'confirmemail_body'        => 'Něchtó, najskerje ty z IP-adresu $1, je wužiwarske konto „$2” z tutej e-mejlowej adresu we {{GRAMMAR:lokatiw|{{SITENAME}}}} wutworił.
+'confirmemail_body'        => 'Něchtó, najskerje ty z IP-adresu $1, je wužiwarske konto "$2" z tutej e-mejlowej adresu we {{GRAMMAR:lokatiw|{{SITENAME}}}} zregistrował.
 
-Zo by so wobkrućiło, zo tute konto woprawdźe tebi słuša a zo bychu so e-mejlowe funkcije we {{GRAMMAR:lokatiw|{{SITENAME}}}} zaktiwizowali, wočiń tutón wotkaz w swojim wobhladowaku: $3.
+Zo by so wobkrućiło, zo tute konto woprawdźe tebi słuša a zo bychu so e-mejlowe funkcije we {{GRAMMAR:lokatiw|{{SITENAME}}}} zaktiwizowali, wočiń tutón wotkaz w swojim wobhladowaku:
 
-Jeli to *njejsy*, njeslěduj wotkaz. Tutón wobkrućenski kod spadnje dnja $4.
+$3
 
---
-{{SITENAME}}: {{fullurl:{{Mediawiki:mainpage}}}}',
+Jeli *njej*sy konto zregistrował, slěduj wotkaz, zo by wobkrućenje e-mejloweje adresy přetorhnył:
+
+$5
+
+Tute wobkrućenski kod spadnje $4.',
 'confirmemail_invalidated' => 'E-mejlowe potwjerdźenje přetorhnjene',
 'invalidateemail'          => 'E-mejlowe potwjerdźenje přetorhnyć',
 

@@ -252,6 +252,8 @@ $messages = array(
 'preview'               => 'પૂર્વાવલોકન',
 'showpreview'           => 'ઝલક બતાવો',
 'showdiff'              => 'ફેરફારો બતાવો',
+'anoneditwarning'       => "'''ચેતવણી:''' તમે તમારા સભ્ય નામથી પ્રવેશ કર્યો નથી.
+આ પાનાનાં ઇતિહાસમાં તમારૂં આઇ.પી. (IP) એડ્રેસ નોંધવામાં આવશે.",
 'blockededitsource'     => "'''$1''' માટે '''તમારા ફેરફારો''' નીચે દેખાય છે:",
 'newarticle'            => '(નવિન)',
 'noarticletext'         => 'આ પાનામાં હાલમાં કોઇ માહિતિ નથી, તમે  [[Special:Search/{{PAGENAME}}|આ શબ્દ]] ધરાવતાં અન્ય લેખો શોધી શકો છો, અથવા  [{{fullurl:{{FULLPAGENAME}}|action=edit}} આ પાનામાં ફેરફાર કરી] માહિતિ ઉમેરવાનું શરૂ કરો.',
@@ -332,9 +334,10 @@ $messages = array(
 'rc_categories_any' => 'કોઇ પણ',
 
 # Recent changes linked
-'recentchangeslinked'         => 'આની સાથે જોડાયેલા ફેરફાર',
-'recentchangeslinked-title'   => '$1 ને લગતા ફેરફારો',
-'recentchangeslinked-summary' => "આ ખાસ પાનામાં એવા પાનાઓની યાદી છે જે અન્યત્ર જોડાયેલાં છે અને તેમાં ફેરફાર થાયા છે.
+'recentchangeslinked'          => 'આની સાથે જોડાયેલા ફેરફાર',
+'recentchangeslinked-title'    => '$1 ને લગતા ફેરફારો',
+'recentchangeslinked-noresult' => 'સંકળાયેલાં પાનાંમાં સુચવેલા સમય દરમ્યાન કોઇ ફેરફાર થયાં નથી.',
+'recentchangeslinked-summary'  => "આ ખાસ પાનામાં એવા પાનાઓની યાદી છે જે અન્યત્ર જોડાયેલાં છે અને તેમાં ફેરફાર થાયા છે.
 <br>તમારી ધ્યાનસૂચિમાં હોય તેવા પાનાં '''ઘાટા અક્ષર'''માં વર્ણવ્યાં છે",
 
 # Upload
@@ -539,10 +542,17 @@ $messages = array(
 'numedits'     => 'ફેરફારોની સંખ્યા (લેખ): $1',
 'numtalkedits' => 'ફેરફારોની સંખ્યા (ચર્ચાનું પાનું): $1',
 
+# Media information
+'file-info-size'       => '($1 × $2 પીક્સલ, ફાઇલનું કદ: $3, MIME પ્રકાર: $4)',
+'show-big-image-thumb' => '<small>આ પુર્વાવલોકનનું પરિમાણ: $1 × $2 પીક્સલ</small>',
+
 # Special:Newimages
 'noimages' => 'જોવા માટે કશું નથી.',
 'ilsubmit' => 'શોધો',
 'bydate'   => 'તારીખ પ્રમાણે',
+
+# Metadata
+'metadata' => 'મૅટાડેટા',
 
 # EXIF tags
 'exif-imagewidth'  => 'પહોળાઈ',

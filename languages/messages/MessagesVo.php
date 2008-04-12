@@ -1827,7 +1827,7 @@ $1',
 'noimages'              => 'Nos ad logön.',
 'ilsubmit'              => 'Sukolöd',
 'bydate'                => 'ma dät',
-'sp-newimages-showfrom' => 'Jonolöd magodis nulik, primölo tü düp $1',
+'sp-newimages-showfrom' => 'Jonolöd ragivis nulik, primölo tü düp $2, $1',
 
 # Bad image list
 'bad_image_list' => 'Fomät pabevobon ön mod soik:

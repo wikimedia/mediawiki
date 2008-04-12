@@ -769,7 +769,7 @@ puede trobar más detalles en o [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}
 'revdelete-text'              => "As bersions borratas encara aparixerán en o istorial y o rechistro d'a pachina, pero os suyos contenius no serán azesibles ta o publico.
 
 Atros almenistradors de {{SITENAME}} encara podrán azeder t'o contineiu amagato y podrán esfer o borrau á trabiés d'a mesma interfaz, fueras de si os operadors establen restrizions adizionals.",
-'revdelete-legend'            => 'Establir restrizions:',
+'revdelete-legend'            => 'Establir as restrizions de bisibilidat:',
 'revdelete-hide-text'         => "Amagar o testo d'a bersión",
 'revdelete-hide-name'         => 'Amagar aizión y obchetibo',
 'revdelete-hide-comment'      => "Amagar comentario d'edizión",
@@ -1770,8 +1770,8 @@ En iste zaguer caso tamién puede usar un binclo, por exemplo [[Special:Export/{
 'allmessagesname'           => 'Nombre',
 'allmessagesdefault'        => 'Testo por defeuto',
 'allmessagescurrent'        => 'Testo autual',
-'allmessagestext'           => 'Ista ye una lista de toz os mensaches disponibles en o espazio de nombres MediaWiki.
-Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] and [http://translatewiki.net Betawiki] if you wish to contribute to the generic MediaWiki localisation.',
+'allmessagestext'           => "Ista ye una lista de toz os mensaches disponibles en o espazio de nombres MediaWiki.
+Besite por fabor [http://www.mediawiki.org/wiki/Localisation a pachina sobre localizazión de MediaWiki] y  [http://translatewiki.net Betawiki] si deseya contrebuyir t'a localizazión cheneral de MediaWiki.",
 'allmessagesnotsupportedDB' => 'Ista pachina no ye disponible porque wgUseDatabaseMessages ye desautibato.',
 'allmessagesfilter'         => "Filtrar por a etiqueta d'os mensaches:",
 'allmessagesmodified'       => 'Amostrar nomás os mensaches cambiatos',

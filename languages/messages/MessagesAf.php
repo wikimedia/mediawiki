@@ -596,13 +596,15 @@ Probeer asseblief die bladsy verkort en die detail na subartikels skuif sodat di
 'history-feed-title' => 'Weergawegeskiedenis',
 
 # Revision deletion
-'rev-deleted-user'  => '(gebruikersnaam geskrap)',
-'rev-delundel'      => 'wys/versteek',
-'pagehist'          => 'Bladsy geskiedenis',
-'deletedhist'       => 'Verwyderde geskiedenis',
-'revdelete-content' => 'inhoud',
-'revdelete-summary' => 'redigeringsopsomming',
-'revdelete-uname'   => 'gebruikersnaam',
+'rev-deleted-comment'    => '(opsomming geskrap)',
+'rev-deleted-user'       => '(gebruikersnaam geskrap)',
+'rev-delundel'           => 'wys/versteek',
+'revdelete-hide-comment' => 'Versteek wysigopsomming',
+'pagehist'               => 'Bladsy geskiedenis',
+'deletedhist'            => 'Verwyderde geskiedenis',
+'revdelete-content'      => 'inhoud',
+'revdelete-summary'      => 'redigeringsopsomming',
+'revdelete-uname'        => 'gebruikersnaam',
 
 # History merging
 'mergehistory-from'                => 'Bronbladsy:',

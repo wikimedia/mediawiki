@@ -7,6 +7,7 @@
  * @author Tenzin
  * @author Jon Harald Søby
  * @author Siebrand
+ * @author Nike
  */
 
 $digitTransformTable = array(
@@ -299,7 +300,7 @@ $messages = array(
 'diff-multi'              => '({{PLURAL:$1|བར་ནའི་བསྐྱར་ཞིབ་གཅིག་|$1 བར་ནའི་བསྐྱར་ཞིབ་ཚུ་}} མ་སྟོན་པས།)',
 
 # Search results
-'noexactmatch' => "'''མགོ་མིང་ \\\"\$1\\\" ཅན་མའི་ཤོག་ལེབ་མེད།'''
+'noexactmatch' => "'''མགོ་མིང་ \"\$1\" ཅན་མའི་ཤོག་ལེབ་མེད།'''
 ཁྱོད་ཀྱིས་ [[:\$1|ཤོག་ལེབ་འདི་ གསརཔ་བཟོ་ཚུགས།]]",
 'prevn'        => 'ཧེ་མའི་ $1',
 'nextn'        => 'ཤུལ་མའི་ $1',

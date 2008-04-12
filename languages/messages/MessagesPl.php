@@ -1932,7 +1932,7 @@ Możesz również użyć linku, np. [[{{ns:special}}:Export/{{MediaWiki:Mainpage
 'allmessagesdefault'        => 'Tekst domyślny',
 'allmessagescurrent'        => 'Tekst obecny',
 'allmessagestext'           => 'Oto lista wszystkich komunikatów systemowych dostępnych w przestrzeni nazw MediaWiki.
-Odwiedź [http://translatewiki.net Betawiki] jeśli chcesz uczestniczyć w tłumaczeniu oprogramowania MediaWiki.',
+Odwiedź [http://www.mediawiki.org/wiki/Localisation Tłumaczenie MediaWiki] oraz [http://translatewiki.net Betawiki] jeśli chcesz uczestniczyć w tłumaczeniu oprogramowania MediaWiki.',
 'allmessagesnotsupportedDB' => "Ta strona nie może być użyta, ponieważ zmienna '''\$wgUseDatabaseMessages''' jest wyłączona.",
 'allmessagesfilter'         => 'Filtr nazw komunikatów:',
 'allmessagesmodified'       => 'Pokaż tylko zmodyfikowane',

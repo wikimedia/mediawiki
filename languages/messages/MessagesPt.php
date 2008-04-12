@@ -1150,7 +1150,7 @@ Por gentileza, se você tem acesso à imagem de tamanho completo, prefira envia-
 'successfulupload'            => 'Envio efectuado com sucesso',
 'uploadwarning'               => 'Aviso de envio',
 'savefile'                    => 'Salvar ficheiro',
-'uploadedimage'               => 'enviado "[[$1]]"',
+'uploadedimage'               => 'carregou "[[$1]]"',
 'overwroteimage'              => 'foi enviada uma nova versão de "[[$1]]"',
 'uploaddisabled'              => 'Carregamentos desactivados',
 'uploaddisabledtext'          => 'O carregamento de ficheiros encontra-se desactivado nesta wiki.',
@@ -2076,7 +2076,7 @@ $1',
 'noimages'              => 'Nada para ver.',
 'ilsubmit'              => 'Procurar',
 'bydate'                => 'por data',
-'sp-newimages-showfrom' => 'Mostrar novas imagens começando de $1',
+'sp-newimages-showfrom' => 'Mostrar novos ficheiros a partir de $2, $1',
 
 # Bad image list
 'bad_image_list' => 'The format is as follows:
@@ -2379,15 +2379,20 @@ Mailer retornou: $1',
 'confirmemail_loggedin'    => 'O seu endereço de e-mail foi agora confirmado.',
 'confirmemail_error'       => 'Alguma coisa correu mal ao guardar a sua confirmação.',
 'confirmemail_subject'     => '{{SITENAME}} confirmação de endereço de e-mail',
-'confirmemail_body'        => 'Alguém, provavelmente você com o endereço de IP $1, registou uma conta "$2" com este endereço de e-mail na {{SITENAME}}.
+'confirmemail_body'        => 'Alguém, provavelmente você com o endereço de IP $1,
+registou uma conta "$2" com este endereço de e-mail em {{SITENAME}}.
 
 Para confirmar que esta conta realmente é sua, e para activar
-as funcionalidades de e-mail na {{SITENAME}}, abra o seguinte endereço no seu navegador:
+as funcionalidades de e-mail em {{SITENAME}}, abra o seguinte endereço no seu navegador:
 
 $3
 
-Caso este *não* seja você, não siga o endereço. Este código de confirmação
-irá expirar a $4.',
+Caso este *não* seja você, siga o seguinte endereço
+para cancelar a confirmação do endereço de e-mail:
+
+$5
+
+Este código de confirmação irá expirar a $4.',
 'confirmemail_invalidated' => 'Confirmação de endereço de e-mail cancelada',
 'invalidateemail'          => 'Cancelar confirmação de e-mail',
 

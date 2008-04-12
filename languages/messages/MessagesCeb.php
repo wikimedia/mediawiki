@@ -154,8 +154,8 @@ $messages = array(
 'redirectedfrom'    => '(Naredirek gikan sa $1)',
 'redirectpagesub'   => 'Panid sa redirekta',
 'lastmodifiedat'    => 'Kini nga panid kataposang giusab niadtong $2, $1.', # $1 date, $2 time
-'viewcount'         => 'kini nga panid gi-ablihan na sa {{PLURAL:$1|maka-usa|$1 ka higayon}}.',
-'protectedpage'     => 'Gi-protektahang panid',
+'viewcount'         => 'Naablihan na sa {{PLURAL:$1|maka-usa|$1 ka higayon}} ang kining panid.',
+'protectedpage'     => 'Giprotektahang panid',
 'jumpto'            => 'Ambak sa:',
 'jumptonavigation'  => 'tabok-tabok',
 'jumptosearch'      => 'pangita',
@@ -164,18 +164,18 @@ $messages = array(
 'aboutsite'            => 'Mahitungod sa {{SITENAME}}',
 'aboutpage'            => 'Project:Mahitungod sa',
 'copyright'            => 'Mga sulod makita sa $1.',
-'copyrightpagename'    => 'Katungod sa Pagpatik sa {{SITENAME}}',
+'copyrightpagename'    => '{{SITENAME}} katungod sa pagpatik',
 'currentevents'        => 'Mga bag-ong panghitabo',
 'disclaimers'          => 'Mga pagpasabot',
 'edithelp'             => 'Tabang sa pag-usab',
-'edithelppage'         => 'Help:Pag-usab',
-'helppage'             => 'Help:Mga Sulod',
+'edithelppage'         => 'Tabang:Pag-usab',
+'helppage'             => 'Tabang:Mga sulod',
 'mainpage'             => 'Unang Panid',
 'mainpage-description' => 'Unang Panid',
 'portal'               => 'Tubaan',
 'portal-url'           => 'Project:Ganghaan sa Komunidad',
 'privacy'              => 'Palisiya sa personal nga impormasyon',
-'privacypage'          => 'Project:Palisiya sa Pribasiya',
+'privacypage'          => 'Project:Palisiya sa pribasidad',
 'sitesupport'          => 'Mga donasyon',
 
 'badaccess-group0' => 'Wala ikaw tugoti sa pagpadayon sa aksyon nga imong gipangayo.',
@@ -194,7 +194,7 @@ $messages = array(
 'editsection'             => 'usba',
 'editsectionhint'         => 'Usba ang seksyong: $1',
 'showtoc'                 => 'ipakita',
-'hidetoc'                 => 'tago-a',
+'hidetoc'                 => 'tagoa',
 'thisisdeleted'           => 'Ipakita o ibalik ang $1?',
 'viewdeleted'             => 'Ipakita ang $1?',
 'feed-unavailable'        => "Wala tugoti ang mga ''Syndication Feeds'' sa {{SITENAME}}",
@@ -207,8 +207,8 @@ $messages = array(
 'nstab-image'     => 'Payl',
 'nstab-mediawiki' => 'Mensahe',
 'nstab-template'  => 'Plantilya',
-'nstab-help'      => 'Panid sa Tabang',
-'nstab-category'  => 'Kategorya',
+'nstab-help'      => 'Panid sa tabang',
+'nstab-category'  => 'Kategoriya',
 
 # Main script and global functions
 'nosuchaction'      => 'Walay maong aksyon',
@@ -219,21 +219,21 @@ $messages = array(
 Ang lista sa mga balidong espesyal nga mga panid makita sa [[Special:Specialpages]].",
 
 # General errors
-'noconnect'          => "Pasaylo-a, apan ang wiki anaay problemang teknikal, ug dili maka-kontak sa serber sa ''database''.<br />
+'noconnect'          => "Pasayloa, adunay problemang teknikal sa karon ang kini nga wiki, ug dili makakontak sa serber sa ''database''.<br />
 $1",
 'cachederror'        => "Ang mosunod usa ka gi-''cache'' nga kopya sa gihangyong panid, ug mahimong karaan na.",
-'laggedslavemode'    => 'Pahibalo: Mahimong dili mahi-apil sa panid ang mga bag-ong kausaban.',
-'readonly'           => 'Gitrangkahan ang Database',
-'internalerror'      => 'Internal nga error',
-'internalerror_info' => 'Internal nga error: $1',
+'laggedslavemode'    => 'Pahibalo: Mahimong dili mahiapil sa panid ang mga bag-ong kausaban.',
+'readonly'           => 'Gitrangkahan ang database',
+'internalerror'      => 'Internal nga sayop',
+'internalerror_info' => 'Internal nga sayop: $1',
 'filecopyerror'      => 'Dili makopya ang payl nga "$1" ngadto sa "$2".',
-'filerenameerror'    => 'Dili mailisa\'g pangalan ang "$1" ngadto sa "$2".',
+'filerenameerror'    => 'Dili mailisag ngalan ang payl "$1" ngadto sa "$2".',
 'filenotfound'       => 'Dili makita ang payl nga "$1".',
-'formerror'          => 'Error: dili mahatag ang porma',
-'badtitle'           => 'Bati nga ulohan',
-'badtitletext'       => 'Ang gihangyong ulohan sa panid mahimong inbalido, walay sulod, o nasayop ug sumpay nga inter-pinulongan o inter-wiki nga ulohan.
-Basin aduna kini usa o daghan pang mga karakter nga dili magamit sip titulo.',
-'perfdisabled'       => "Pasaylo-a, apan kini nga  ''feature'' temporaryong gihunong tungod kay gipahinay niini ang ''database'', sa punto nga dili na magamit ang wiki.",
+'formerror'          => 'Sayop: dili masumiter ang porma',
+'badtitle'           => 'Bati nga titulo',
+'badtitletext'       => 'Ang gihangyong titulo sa panid mahimong inbalido, walay sulod, o nasayop og sumpay nga inter-pinulongan o inter-wiki nga titulo.
+Basin aduna kini usa o daghan pang mga karakter nga dili magamit isip titulo.',
+'perfdisabled'       => "Pasayloa, ang kini nga  ''feature'' temporaryong gihunong tungod kay gipahinay niini ang ''database'' sa punto nga dili na magamit ang wiki.",
 
 # Login and logout pages
 'login'      => 'Sulod',
@@ -242,16 +242,19 @@ Basin aduna kini usa o daghan pang mga karakter nga dili magamit sip titulo.',
 'userlogout' => 'Biya',
 
 # Edit pages
-'summary'     => 'Mubong sugid',
-'minoredit'   => 'Ginagmay lang nga kausaban',
-'watchthis'   => 'Bantayi kining maong panid',
-'savearticle' => 'Tipigi ang panid',
-'showpreview' => 'Paunang tan-aw',
-'showdiff'    => 'Ipakita ang kalainan',
-'editing'     => 'Nagausab sa $1',
+'summary'          => 'Mubong sugid',
+'minoredit'        => 'Ginagmay lang nga kausaban',
+'watchthis'        => 'Bantayi kining maong panid',
+'savearticle'      => 'Tipigi ang panid',
+'showpreview'      => 'Paunang tan-aw',
+'showdiff'         => 'Ipakita ang kalainan',
+'editing'          => 'Nagausab sa $1',
+'copyrightwarning' => 'Palihog hinumdomi nga ang tanang kontribusyon sa {{SITENAME}} giisip nga ubos sa $2 (basaha ang $1 alang sa dugang hisgot). Kon dili nimo buot nga ang imong mga sinulat mausab ni bisan kinsa ug maapud-apod bisan dili ka pangayoan og pagtugot, ayaw sila ibutang dinhi.<br />
+Nagatimaan ka usab nga ikaw mismo ang nagsulat niini, o gisuno nimo kini gikan sa usa ka publikong rekursos.
+<strong>AYAW PAGBUTANG DINHI OG MGA SINULAT NGA MAY NANAG-IYA SA KATUNGOD SA PAGPATIK!</strong>',
 
 # Search results
-'powersearch' => 'Pangita',
+'powersearch' => 'Abansadong pagpangita',
 
 # Preferences page
 'mypreferences' => 'Akong preperensiya',
@@ -273,6 +276,9 @@ Basin aduna kini usa o daghan pang mga karakter nga dili magamit sip titulo.',
 # Miscellaneous special pages
 'specialpages' => 'Espesyal nga mga panid',
 
+# Special:Allpages
+'alphaindexline' => '$1 hangtod $2',
+
 # Watchlist
 'mywatchlist' => 'Akong gibantayan',
 'watch'       => 'Bantayi',
@@ -287,5 +293,20 @@ Basin aduna kini usa o daghan pang mga karakter nga dili magamit sip titulo.',
 
 # Block/unblock
 'contribslink' => 'mga tampo',
+
+# Tooltip help for the actions
+'tooltip-pt-login'        => "Gihangyo ka namo sa pag-''log-in'', apan wala kini kinahanglana aron makausab ka sa mga panid.",
+'tooltip-ca-talk'         => 'Panaghisgot kabahin sa panid',
+'tooltip-ca-edit'         => "Mahimo mo kining usbon ang maong panid. Palihog gamita ang ''preview'' nga tuplokanan sa dili mo pa tipigan ang panid.",
+'tooltip-n-mainpage'      => 'Dalikyati ang Unang Panid',
+'tooltip-n-portal'        => 'Kabahin sa proyekto, unsay imong mahimo, asa mangita sa mga impormasyon',
+'tooltip-n-currentevents' => 'Pangita og nahaunang impormasyon sa mga bag-ong panghitabo',
+'tooltip-n-recentchanges' => 'Ang listahan sa mga bag-ong gi-usab dinhi sa wiki.',
+'tooltip-n-randompage'    => 'Pag-abli og bisan unsang panid',
+'tooltip-n-help'          => 'Ang dapit nga angay mong pangitaan.',
+'tooltip-n-sitesupport'   => 'Tabangi kami',
+'tooltip-t-whatlinkshere' => 'Talaan sa mga wiki nga panid nga misumpay dinhi',
+'tooltip-t-upload'        => 'Pagsumiter og mga payl',
+'tooltip-t-specialpages'  => 'Talaan sa mga espesyal nga panid',
 
 );

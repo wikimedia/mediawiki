@@ -8,6 +8,7 @@
  * @author Pimke
  * @author Siebrand
  * @author Jon Harald Søby
+ * @author SPQRobin
  */
 
 $fallback = 'pl';
@@ -588,7 +589,7 @@ By wćepać swoje pomjyńańo muśiš pomjyńać tekst w polu na wiyrchu.
 'nocreatetext'                      => 'Na {{GRAMMAR:MS.lp|{{SITENAME}}}} twořyńe nowych zajtów uograničono. Možesz sprowjać te co już sóm, abo [[{{ns:special}}:Userlogin|zalogować sie, abo štartnůnć konto]].',
 'nocreate-loggedin'                 => 'Ńy moš uprowńyń do škryflańo zajtów na {{GRAMMAR:MS.lp|{{SITENAME}}}}.',
 'permissionserrors'                 => 'Felerne uprowńyńa',
-'permissionserrorstext'             => 'Ńy moš uprowńyń do takiy akcje s kuli tego, co:',
+'permissionserrorstext'             => 'Ńy moš uprowńyń do takiy akcje {{PLURAL:$1|s kuli tego, co:|bez tůž, co:}}',
 'recreate-deleted-warn'             => "'''Dej pozůr: Průbuješ wćepać nazod zajta kero juž bůua wyćepano.'''
 
 Zastanůw śe, čy sprowjańy nazod tyi zajty mo uzasadńjyńe. Dla wygody užytkowńikůw, ńižyi pokozano rejestr wyćepńjyńć tyi zajty:",
@@ -1207,16 +1208,49 @@ Možeš zawyńźić ličba wyńikůw wybjerajůnc typ rejeru, mjano užytkowńik
 'allpagesnext'      => 'Nastympno',
 'allpagessubmit'    => 'Pokož',
 'allpagesprefix'    => 'Pokož artikle s prefiksym:',
+'allpagesbadtitle'  => 'Podane mjano je felerne, zawjera prefiks mjyndzyprojektowy abo mjyndzyjynzykowy. Može uůne tyž zawjerać jako buchštaba abo inkše znaki, kerych ńy wolno užywać we titlach.',
+'allpages-bad-ns'   => '{{GRAMMAR:MS.lp|{{SITENAME}}}} ńy mo přestřyńi mjan „$1”.',
+
+# Special:Listusers
+'listusersfrom'      => 'Pokaž užytkowńikůw začynojůnc uod:',
+'listusers-submit'   => 'Pokož',
+'listusers-noresult' => 'Ńy znejdźůno žodnygo užytkowńika.',
+
+# Special:Listgrouprights
+'listgrouprights'          => 'Uprawńyńo grup užytkowńikůw',
+'listgrouprights-summary'  => 'Půńižy znojdowo śe spis grup užytkowńikůw zdefińowanych na tej wiki, s wyščygůlńyńym přidźelůnych im praw dostympu.',
+'listgrouprights-group'    => 'Grupa',
+'listgrouprights-rights'   => 'Uprawńyńo',
+'listgrouprights-helppage' => 'Help:Uprawńyńo grup užytkowńikůw',
 
 # E-mail user
-'emailuser' => 'Wyślij e-brif do tygo užytkowńika',
-'emailfrom' => 'Uod',
-'emailto'   => 'Do',
+'mailnologin'     => 'Brak adresu',
+'mailnologintext' => 'Muśyš śe [[Special:Userlogin|zalůgować]] i mjeć wpisany aktualny adres e-brif w swojich [[Specjal:Preferences|preferyncyjach]], coby můc wysuać e-brif do inkšygo užytkowńika.',
+'emailuser'       => 'Wyślij e-brif do tygo užytkowńika',
+'emailpage'       => 'Wyślij e-brif do užytkowńika',
+'emailpagetext'   => 'Půńižšy formulař pozwala na wysuańy jydnej wjadůmośći do užytkowńika pod warůnkym, aže wpisou uůn poprawny adres e-brif w swojich preferyncyjoch. Adres e-brif, kery zostou bez Ćebje wprowadzůny w Twoich preferyncyjoch ukaže śe w polu „Uod”, bez tůž uodbjorca bydźe můg Ci uodpowjydźeć.',
+'usermailererror' => 'Moduu uobsůgi počty zwrůćiu feler:',
+'defemailsubject' => 'Wjadůmość uod {{GRAMMAR:D.pl|{{SITENAME}}}}',
+'noemailtitle'    => 'Brak adresu e-brif',
+'noemailtext'     => 'Tyn užytkowńik ńy podou poprawnygo adresu e-brif, albo zadecydowou, co ńy chce uotřimywać wjadůmośći e-brif uod inkšych užytkowńikůw',
+'emailfrom'       => 'Uod',
+'emailto'         => 'Do',
+'emailsubject'    => 'Tymat',
+'emailmessage'    => 'Wjadůmość',
+'emailsend'       => 'Wyślij',
+'emailccme'       => 'Wyślij mi kopja moiy wjadomości.',
+'emailccsubject'  => 'Kopja Twojej wjadůmośći do $1: $2',
+'emailsent'       => 'Wjadůmość zostoua wysuano',
+'emailsenttext'   => 'Twoja wjadůmość zostoua wysuano.',
 
 # Watchlist
 'watchlist'            => 'Pozorlista',
 'mywatchlist'          => 'Mojo pozorlista',
 'watchlistfor'         => "(dla užytkowńika '''$1''')",
+'nowatchlist'          => 'Ńy ma žodnych pozycyji na liśće zajtůw, na kere dowoš pozůr.',
+'watchlistanontext'    => '$1 coby uobejřeć abo sprowjać elymynty listy zajtůw, na kere dowoš pozůr',
+'watchnologin'         => 'Ńy jest žeś zalůgowany',
+'watchnologintext'     => 'Muśyš śe [[Special:Userlogin|zalůgować]] coby modyfikować lista zajtůw, na kere dowoš pozůr.',
 'addedwatch'           => 'Dodane do pozorlisty',
 'addedwatchtext'       => 'Zajta "[[:$1|$1]]" zostoua dodano do Twojyj [[{{ns:special}}:Watchlist|listy artikli, na kere dowoš pozůr]].
 Na tyi liśće bydzieš miou rejer přišuych sprawjyń tyi zajty i jei zajty godki, a mjano zajty bydziesz miou škryflane \'\'\'tůustym\'\'\' na [[{{ns:special}}:Recentchanges|liśće pomjyńanych na ůostatku]],
@@ -1228,6 +1262,10 @@ Kiejbyś chciou wyćepać ta zajta z Twojiy listy artikli, na kere dowoš pozůr
 'watch'                => 'Dej pozor',
 'watchthispage'        => 'Dej pozor',
 'unwatch'              => 'Njy dowej pozoru',
+'unwatchthispage'      => 'Přestoń dować pozůr',
+'notanarticle'         => 'To ńy je artikel',
+'notvisiblerev'        => 'Wersyja zostoua wyćepano',
+'watchnochange'        => 'Žodno ze zajtůw, na kere dowoš pozůr, ńy bůua sprowjano w podanym uokreśe.',
 'watchlist-details'    => "{{PLURAL:$1|$1 artikel|$1 artiklůw}} na pozorli'śće bez godek.",
 'wlshowlast'           => 'Pokož uostatńy $1 godźin $2 dńi ($3)',
 'watchlist-hide-bots'  => 'schowej sprowjyńa botůw',
