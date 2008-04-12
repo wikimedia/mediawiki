@@ -71,6 +71,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 ** (bug 8617) Separate main page url and name
 * Automatically add old redirects to the redirect table when needed
 * (bug 6934) Allow separated inclusions, links, redirects on whatlinkshere
+* Add a footer (emailuser-footer) to the bottom of messages sent with
+Special:EmailUser
 
 === Bug fixes in 1.13 ===
 
