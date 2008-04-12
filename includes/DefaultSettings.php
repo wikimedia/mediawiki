@@ -1417,6 +1417,8 @@ $wgRCShowWatchingUsers 				= false; # UPO
 $wgPageShowWatchingUsers 			= false;
 /** Show the amount of changed characters in recent changes */
 $wgRCShowChangedSize				= true;
+/** Logs that are grouped by log type, not page */
+$wgRCTypeGroupedLogs = array( 'block', 'rights' );
 
 /**
  * If the difference between the character counts of the text
