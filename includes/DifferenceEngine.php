@@ -638,6 +638,9 @@ CONTROL;
 		
 		// Update the new revision ID in case it was 0 (makes life easier doing UI stuff)
 		$this->mNewid = $this->mNewRev->getId();
+
+		// Check if page is editable
+		$editable = $this->mNewRev->getTitle()->userCan( 'edit' );
 		
 		// Set assorted variables
 		$timestamp = $wgLang->timeanddate( $this->mNewRev->getTimestamp(), true );
@@ -647,16 +650,16 @@ CONTROL;
 			$this->mPagetitle = htmlspecialchars( wfMsg( 'currentrev' ) );
 			$newEdit = $this->mNewPage->escapeLocalUrl( 'action=edit' );
 
-			$this->mNewtitle = "<a href='$newLink'>{$this->mPagetitle}</a> ($timestamp)"
-				. " (<a href='$newEdit'>" . htmlspecialchars( wfMsg( 'editold' ) ) . "</a>)";
+			$this->mNewtitle = "<a href='$newLink'>{$this->mPagetitle}</a> ($timestamp)";
+			$this->mNewtitle .= " (<a href='$newEdit'>" . wfMsgHtml( $editable ? 'editold' : 'viewsourceold' ) . "</a>)";
 
 		} else {
 			$newLink = $this->mNewPage->escapeLocalUrl( 'oldid=' . $this->mNewid );
 			$newEdit = $this->mNewPage->escapeLocalUrl( 'action=edit&oldid=' . $this->mNewid );
 			$this->mPagetitle = wfMsgHTML( 'revisionasof', $timestamp );
 
-			$this->mNewtitle = "<a href='$newLink'>{$this->mPagetitle}</a>"
-				. " (<a href='$newEdit'>" . htmlspecialchars( wfMsg( 'editold' ) ) . "</a>)";
+			$this->mNewtitle = "<a href='$newLink'>{$this->mPagetitle}</a>";
+			$this->mNewtitle .= " (<a href='$newEdit'>" . wfMsgHtml( $editable ? 'editold' : 'viewsourceold' ) . "</a>)";
 		}
 		if ( !$this->mNewRev->userCan(Revision::DELETED_TEXT) ) {
 		  	$this->mNewtitle = "<span class='history-deleted'>{$this->mPagetitle}</span>";
@@ -693,10 +696,10 @@ CONTROL;
 			$this->mOldPagetitle = htmlspecialchars( wfMsg( 'revisionasof', $t ) );
 			
 			$this->mOldtitle = "<a href='$oldLink'>{$this->mOldPagetitle}</a>"
-				. " (<a href='$oldEdit'>" . htmlspecialchars( wfMsg( 'editold' ) ) . "</a>)";
+				. " (<a href='$oldEdit'>" . wfMsgHtml( $editable ? 'editold' : 'viewsourceold' ) . "</a>)";
 			// Add an "undo" link
 			$newUndo = $this->mNewPage->escapeLocalUrl( 'action=edit&undoafter=' . $this->mOldid . '&undo=' . $this->mNewid);
-			if ( $this->mNewRev->userCan(Revision::DELETED_TEXT) )
+			if ( $editable && $this->mNewRev->userCan(Revision::DELETED_TEXT) )
 				$this->mNewtitle .= " (<a href='$newUndo'>" . htmlspecialchars( wfMsg( 'editundo' ) ) . "</a>)";
 			
 			if ( !$this->mOldRev->userCan(Revision::DELETED_TEXT) ) {

@@ -173,6 +173,7 @@ Special:EmailUser
 * (bug 13678) Fix CSS validation for Monobook
 * (bug 13684) Links in Special:ListGroupRights should be in content language
 * (bug 13690) Fix PHP notice on accessing some URLs
+* Hide (undo) link if user isn't able to edit page
 
 === API changes in 1.13 ===
 

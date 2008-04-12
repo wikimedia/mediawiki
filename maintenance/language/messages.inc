@@ -270,6 +270,7 @@ $wgMessageStructure = array(
 		'editsection',
 		'editsection-brackets',
 		'editold',
+		'viewsourceold',
 		'editsectionhint',
 		'toc',
 		'showtoc',
