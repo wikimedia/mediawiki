@@ -1160,6 +1160,8 @@ class Article {
 				$dbw->delete( 'redirect', $where, __METHOD__);
 			}
 
+			if( $this->getTitle()->getNamespace() == NS_IMAGE )
+				RepoGroup::singleton()->getLocalRepo()->invalidateImageRedirect( $this->getTitle() );
 			wfProfileOut( __METHOD__ );
 			return ( $dbw->affectedRows() != 0 );
 		}
