@@ -2642,6 +2642,7 @@ Variants for Chinese language",
 	'version'               => 'Special:Version',
 	'filepath'              => 'Special:Filepath',
 	'fileduplicatesearch'   => 'Special:FileDuplicateSearch',
+	'specialpages-group'    => 'Special:SpecialPages',
 );
 
 /** Short comments for standalone messages */
