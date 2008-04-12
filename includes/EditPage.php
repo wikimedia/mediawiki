@@ -2215,7 +2215,7 @@ END
 	 */
 	private function showDeletionLog( $out ) {
 		global $wgUser;
-		$loglist = new LogEventsList( $wgUser->getSkin() );
+		$loglist = new LogEventsList( $wgUser->getSkin(), $out );
 		$pager = new LogPager( $loglist, 'delete', false, $this->mTitle->getPrefixedText() );
 		if( $pager->getNumRows() > 0 ) {
 			$out->addHtml( '<div id="mw-recreate-deleted-warn">' );
