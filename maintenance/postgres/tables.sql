@@ -135,6 +135,7 @@ CREATE TABLE archive (
   ar_title       TEXT         NOT NULL,
   ar_text        TEXT, -- technically should be bytea, but not used anymore
   ar_page_id     INTEGER          NULL,
+  ar_parent_id   INTEGER          NULL,
   ar_comment     TEXT,
   ar_user        INTEGER          NULL  REFERENCES mwuser(user_id) ON DELETE SET NULL,
   ar_user_text   TEXT         NOT NULL,
