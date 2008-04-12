@@ -547,6 +547,7 @@ $messages = array(
 'youhavenewmessagesmulti' => 'יש לך הודעות חדשות ב־$1',
 'editsection'             => 'עריכה',
 'editold'                 => 'עריכה',
+'viewsourceold'           => 'הצגת מקור',
 'editsectionhint'         => 'עריכת פסקה: $1',
 'toc'                     => 'תוכן עניינים',
 'showtoc'                 => 'הצגה',
