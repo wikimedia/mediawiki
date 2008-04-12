@@ -1778,8 +1778,8 @@ class Article {
 		$updated = Article::flattenRestrictions( $limit );
 
 		$changed = ( $current != $updated );
-		$changed = $changed || ($this->mTitle->areRestrictionsCascading() != $cascade);
-		$changed = $changed || ($this->mTitle->mRestrictionsExpiry != $expiry);
+		$changed = $changed || ($updated && $this->mTitle->areRestrictionsCascading() != $cascade);
+		$changed = $changed || ($updated && $this->mTitle->mRestrictionsExpiry != $expiry);
 		$protect = ( $updated != '' );
 
 		# If nothing's changed, do nothing
