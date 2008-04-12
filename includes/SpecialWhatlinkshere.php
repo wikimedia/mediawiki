@@ -344,8 +344,8 @@ class WhatLinksHerePage {
 	}
 
 	function getFilterPanel() {
-		$show = wfMsg( 'show' );
-		$hide = wfMsg( 'hide' );
+		$show = wfMsgHtml( 'show' );
+		$hide = wfMsgHtml( 'hide' );
 		$links = array();
 		foreach( array( 'hidetrans', 'hidelinks', 'hideredirs' ) as $type ) {
 			$chosen = $this->$type;
