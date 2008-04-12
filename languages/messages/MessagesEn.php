@@ -1907,7 +1907,7 @@ The e-mail address you entered in your user preferences will appear as the "From
 'emailccsubject'  => 'Copy of your message to $1: $2',
 'emailsent'       => 'E-mail sent',
 'emailsenttext'   => 'Your e-mail message has been sent.',
-'emailuserfooter'	  => "--
+'emailuserfooter' => "--
 This email was sent using the 'email user' feature of {{SITENAME}}",
 
 # Watchlist
@@ -2160,23 +2160,23 @@ $1',
 'sp-contributions-footer-anon' => '-', # do not translate or duplicate this message to other languages
 
 # What links here
-'whatlinkshere'         => 'What links here',
-'whatlinkshere-title'   => 'Pages that link to $1',
-'whatlinkshere-summary' => '', # only translate this message to other languages if you have to change it
-'whatlinkshere-page'    => 'Page:',
-'whatlinkshere-barrow'  => '>', # only translate this message to other languages if you have to change it
-'linklistsub'           => '(List of links)',
-'linkshere'             => "The following pages link to '''[[:$1]]''':",
-'nolinkshere'           => "No pages link to '''[[:$1]]'''.",
-'nolinkshere-ns'        => "No pages link to '''[[:$1]]''' in the chosen namespace.",
-'isredirect'            => 'redirect page',
-'istemplate'            => 'inclusion',
-'whatlinkshere-prev'    => '{{PLURAL:$1|previous|previous $1}}',
-'whatlinkshere-next'    => '{{PLURAL:$1|next|next $1}}',
-'whatlinkshere-links'   => '← links',
-'whatlinkshere-hideredirs'  => '$1 redirects',
-'whatlinkshere-hidetrans'   => '$1 transclusions',
-'whatlinkshere-hidelinks'   => '$1 links',
+'whatlinkshere'            => 'What links here',
+'whatlinkshere-title'      => 'Pages that link to $1',
+'whatlinkshere-summary'    => '', # only translate this message to other languages if you have to change it
+'whatlinkshere-page'       => 'Page:',
+'whatlinkshere-barrow'     => '>', # only translate this message to other languages if you have to change it
+'linklistsub'              => '(List of links)',
+'linkshere'                => "The following pages link to '''[[:$1]]''':",
+'nolinkshere'              => "No pages link to '''[[:$1]]'''.",
+'nolinkshere-ns'           => "No pages link to '''[[:$1]]''' in the chosen namespace.",
+'isredirect'               => 'redirect page',
+'istemplate'               => 'inclusion',
+'whatlinkshere-prev'       => '{{PLURAL:$1|previous|previous $1}}',
+'whatlinkshere-next'       => '{{PLURAL:$1|next|next $1}}',
+'whatlinkshere-links'      => '← links',
+'whatlinkshere-hideredirs' => '$1 redirects',
+'whatlinkshere-hidetrans'  => '$1 transclusions',
+'whatlinkshere-hidelinks'  => '$1 links',
 
 # Block/unblock
 'blockip'                     => 'Block user',
@@ -3254,17 +3254,6 @@ You can also [[Special:Watchlist/edit|use the standard editor]].',
 'version-software-product'         => 'Product',
 'version-software-version'         => 'Version',
 
-# Special:SpecialPages
-'specialpages-group-maintenance'  => 'Maintenance reports',
-'specialpages-group-other'        => 'Other special pages',
-'specialpages-group-login'        => 'Login/sign up',
-'specialpages-group-changes'      => 'Recent changes and logs',
-'specialpages-group-media'        => 'Media reports',
-'specialpages-group-users'        => 'Users and rights',
-'specialpages-group-needy'        => 'Pages in need of work',
-'specialpages-group-highuse'      => 'High use pages',
-'specialpages-group-permissions'  => 'Set user permissions',
-
 # Special:Filepath
 'filepath'         => 'File path',
 'filepath-page'    => 'File:',
@@ -3285,5 +3274,16 @@ Enter the filename without the "{{ns:image}}:" prefix.',
 'fileduplicatesearch-info'     => '$1 × $2 pixel<br />File size: $3<br />MIME type: $4',
 'fileduplicatesearch-result-1' => 'The file "$1" has no identical duplication.',
 'fileduplicatesearch-result-n' => 'The file "$1" has {{PLURAL:$2|1 identical duplication|$2 identical duplications}}.',
+
+# Special:SpecialPages
+'specialpages-group-maintenance' => 'Maintenance reports',
+'specialpages-group-other'       => 'Other special pages',
+'specialpages-group-login'       => 'Login/sign up',
+'specialpages-group-changes'     => 'Recent changes and logs',
+'specialpages-group-media'       => 'Media reports',
+'specialpages-group-users'       => 'Users and rights',
+'specialpages-group-needy'       => 'Pages in need of work',
+'specialpages-group-highuse'     => 'High use pages',
+'specialpages-group-permissions' => 'Set user permissions',
 
 );
