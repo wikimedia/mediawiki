@@ -32,14 +32,23 @@ function wfSpecialLog( $par = '' ) {
 	$user = $wgRequest->getText( 'user' );
 	$title = $wgRequest->getText( 'page' );
 	$pattern = $wgRequest->getBool( 'pattern' );
+	$y = $wgRequest->getIntOrNull( 'year' );
+	$m = $wgRequest->getIntOrNull( 'month' );
+	# Don't let the user get stuck with a certain date
+	$skip = $wgRequest->getText( 'offset' ) || $wgRequest->getText( 'dir' ) == 'prev';
+	if( $skip ) {
+		$y = '';
+		$m = '';
+	}
 	# Create a LogPager item to get the results and a LogEventsList
 	# item to format them...
-	$loglist = new LogEventsList( $wgUser->getSkin() );
-	$pager = new LogPager( $loglist, $type, $user, $title, $pattern );
+	$loglist = new LogEventsList( $wgUser->getSkin(), $wgOut, 0 );
+	$pager = new LogPager( $loglist, $type, $user, $title, $pattern, array(), $y, $m );
 	# Set title and add header
-	$loglist->showHeader( $wgOut, $pager->getType() );
+	$loglist->showHeader( $pager->getType() );
 	# Show form options
-	$loglist->showOptions( $wgOut, $pager->getType(), $pager->getUser(), $pager->getPage(), $pager->getPattern() );
+	$loglist->showOptions( $pager->getType(), $pager->getUser(), $pager->getPage(), $pager->getPattern(), 
+		$pager->getYear(), $pager->getMonth() );
 	# Insert list
 	$logBody = $pager->getBody();
 	if( $logBody ) {

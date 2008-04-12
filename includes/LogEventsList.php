@@ -21,10 +21,12 @@ class LogEventsList {
 	const NO_ACTION_LINK = 1;
 	
 	private $skin;
+	private $out;
 	public $flags;
 
-	function __construct( &$skin, $flags = 0 ) {
+	function __construct( &$skin, &$out, $flags = 0 ) {
 		$this->skin =& $skin;
+		$this->out =& $out;
 		$this->flags = $flags;
 		$this->preCacheMessages();
 	}
@@ -45,47 +47,50 @@ class LogEventsList {
 	
 	/**
 	 * Set page title and show header for this log type
-	 * @param OutputPage $out where to send output
 	 * @param strin $type
 	 */
-	public function showHeader( $out, $type ) {
+	public function showHeader( $type ) {
 		if( LogPage::isLogType( $type ) ) {
-			$out->setPageTitle( LogPage::logName( $type ) );
-			$out->addHtml( LogPage::logHeader( $type ) );
+			$this->out->setPageTitle( LogPage::logName( $type ) );
+			$this->out->addHtml( LogPage::logHeader( $type ) );
 		}
 	}
 
 	/**
 	 * Show options for the log list
-	 * @param OutputPage $out where to send output
 	 * @param string $type,
 	 * @param string $user,
 	 * @param string $page,
 	 * @param string $pattern
+	 * @param int $year
+	 * @parm int $month
 	 */
-	public function showOptions( $out, $type, $user, $page, $pattern ) {
+	public function showOptions( $type='', $user='', $page='', $pattern='', $year='', $month='' ) {
 		global $wgScript, $wgMiserMode;
 		$action = htmlspecialchars( $wgScript );
 		$title = SpecialPage::getTitleFor( 'Log' );
 		$special = htmlspecialchars( $title->getPrefixedDBkey() );
-		$out->addHTML( "<form action=\"$action\" method=\"get\"><fieldset>" .
+		
+		$this->out->addHTML( "<form action=\"$action\" method=\"get\"><fieldset>" .
 			Xml::element( 'legend', array(), wfMsg( 'log' ) ) .
 			Xml::hidden( 'title', $special ) . "\n" .
 			$this->getTypeMenu( $type ) . "\n" .
 			$this->getUserInput( $user ) . "\n" .
 			$this->getTitleInput( $page ) . "\n" .
 			( !$wgMiserMode ? ($this->getTitlePattern( $pattern )."\n") : "" ) .
-			Xml::submitButton( wfMsg( 'allpagessubmit' ) ) . "\n" .
+			"<p>" . $this->getDateMenu( $year, $month ) . "\n" .
+			Xml::submitButton( wfMsg( 'allpagessubmit' ) ) . "</p>\n" .
 			"</fieldset></form>" );
 	}
 
 	/**
 	 * @return string Formatted HTML
+	 * @param string $queryType
 	 */
 	private function getTypeMenu( $queryType ) {
 		global $wgLogRestrictions, $wgUser;
 	
-		$out = "<select name='type'>\n";
+		$html = "<select name='type'>\n";
 
 		$validTypes = LogPage::validTypes();
 		$m = array(); // Temporary array
@@ -105,36 +110,71 @@ class LogEventsList {
 			// Restricted types
 			if ( isset($wgLogRestrictions[$type]) ) {
 				if ( $wgUser->isAllowed( $wgLogRestrictions[$type] ) ) {
-					$out .= Xml::option( $text, $type, $selected ) . "\n";
+					$html .= Xml::option( $text, $type, $selected ) . "\n";
 				}
 			} else {
-				$out .= Xml::option( $text, $type, $selected ) . "\n";
+				$html .= Xml::option( $text, $type, $selected ) . "\n";
 			}
 		}
 
-		$out .= '</select>';
-		return $out;
+		$html .= '</select>';
+		return $html;
 	}
 
 	/**
 	 * @return string Formatted HTML
+	 * @param string $user
 	 */
 	private function getUserInput( $user ) {
-		return Xml::inputLabel( wfMsg( 'specialloguserlabel' ), 'user', 'user', 12, $user );
+		return Xml::inputLabel( wfMsg( 'specialloguserlabel' ), 'user', 'user', 15, $user );
 	}
 
 	/**
 	 * @return string Formatted HTML
+	 * @param string $title
 	 */
 	private function getTitleInput( $title ) {
 		return Xml::inputLabel( wfMsg( 'speciallogtitlelabel' ), 'page', 'page', 20, $title );
+	}
+	
+	/**
+	 * @return string Formatted HTML
+	 * @param int $year
+	 * @param int $month
+	 */
+	private function getDateMenu( $year, $month ) {
+		# Offset overrides year/month selection
+		if( $month && $month !== -1 ) {
+			$encMonth = intval( $month );
+		} else {
+			$encMonth = '';
+		}
+		if ( $year ) {
+			$encYear = intval( $year );
+		} else if( $encMonth ) {
+			$thisMonth = intval( gmdate( 'n' ) );
+			$thisYear = intval( gmdate( 'Y' ) );
+			if( intval($encMonth) > $thisMonth ) {
+				$thisYear--;
+			}
+			$encYear = $thisYear;
+		} else {
+			$encYear = '';
+		}
+		return Xml::label( wfMsg( 'year' ), 'year' ) . ' '.
+			Xml::input( 'year', 4, $encYear, array('id' => 'year', 'maxlength' => 4) ) .
+			' '.
+			Xml::label( wfMsg( 'month' ), 'month' ) . ' '.
+			Xml::monthSelector( $encMonth, -1 );
 	}
 
 	/**
 	 * @return boolean Checkbox
 	 */
 	private function getTitlePattern( $pattern ) {
-		return Xml::checkLabel( wfMsg( 'log-title-wildcard' ), 'pattern', 'pattern', $pattern );
+		return '<span style="white-space: nowrap">' .
+			Xml::checkLabel( wfMsg( 'log-title-wildcard' ), 'pattern', 'pattern', $pattern ) .
+			'</span>';
 	}
 	
 	public function beginLogEventsList() {
@@ -323,7 +363,7 @@ class LogEventsList {
 	 public static function showLogExtract( $out, $type='', $page='', $user='' ) {
 		global $wgUser;
 		# Insert list of top 50 or so items
-		$loglist = new LogEventsList( $wgUser->getSkin() );
+		$loglist = new LogEventsList( $wgUser->getSkin(), $out, 0 );
 		$pager = new LogPager( $loglist, $type, $user, $page, '' );
 		$logBody = $pager->getBody();
 		if( $logBody ) {
@@ -366,7 +406,7 @@ class LogEventsList {
  * @addtogroup Pager
  */
 class LogPager extends ReverseChronologicalPager {
-	private $type = '', $user = '', $title = '', $pattern = '';
+	private $type = '', $user = '', $title = '', $pattern = '', $year = '', $month = '';
 	public $mLogEventsList;
 	/**
 	* constructor
@@ -377,20 +417,23 @@ class LogPager extends ReverseChronologicalPager {
 	* @param string $pattern
 	* @param array $conds
 	*/
-	function __construct( $loglist, $type='', $user='', $title='', $pattern='', $conds = array() ) {
+	function __construct( $list, $type='', $user='', $title='', $pattern='', $conds=array(), $y=false, $m=false ) {
 		parent::__construct();
 		$this->mConds = $conds;
 		
-		$this->mLogEventsList = $loglist;
+		$this->mLogEventsList = $list;
 		
 		$this->limitType( $type );
 		$this->limitUser( $user );
 		$this->limitTitle( $title, $pattern );
+		$this->limitDate( $y, $m );
 	}
 	
 	function getDefaultQuery() {
 		$query = parent::getDefaultQuery();
 		$query['type'] = $this->type;
+		$query['month'] = $this->month;
+		$query['year'] = $this->year;
 		return $query;
 	}
 	
@@ -469,6 +512,45 @@ class LogPager extends ReverseChronologicalPager {
 			$this->mConds['log_title'] = $title->getDBkey();
 		}
 	}
+	
+	/**
+	 * Set the log reader to return only entries from given date.
+	 * @param int $year
+	 * @param int $month
+	 * @private
+	 */
+	function limitDate( $year, $month ) {
+		$year = intval($year);
+		$month = intval($month);
+		
+		$this->year = ($year > 0 && $year < 10000) ? $year : '';
+		$this->month = ($month > 0 && $month < 13) ? $month : '';
+		
+		if( $this->year || $this->month ) {
+			// Assume this year if only a month is given
+			if( $this->year ) {
+				$year_start = $this->year;
+			} else {
+				$year_start = substr( wfTimestampNow(), 0, 4 );
+				$thisMonth = gmdate( 'n' );
+				if( $this->month > $thisMonth ) {
+					// Future contributions aren't supposed to happen. :)
+					$year_start--;
+				}
+			}
+			
+			if( $this->month ) {
+				$month_end = str_pad($this->month + 1, 2, '0', STR_PAD_LEFT);
+				$year_end = $year_start;
+			} else {
+				$month_end = 0;
+				$year_end = $year_start + 1;
+			}
+			$ts_end = str_pad($year_end . $month_end, 14, '0' );
+
+			$this->mOffset = $ts_end;
+		}
+	}
 
 	function getQueryInfo() {
 		$this->mConds[] = 'user_id = log_user';
@@ -532,10 +614,18 @@ class LogPager extends ReverseChronologicalPager {
 	public function getPattern() {
 		return $this->pattern;
 	}
+	
+	public function getYear() {
+		return $this->year;
+	}
+	
+	public function getMonth() {
+		return $this->month;
+	}
 }
 
 /**
- *
+ * @Deprecated
  * @addtogroup SpecialPage
  */
 class LogReader {
@@ -544,15 +634,23 @@ class LogReader {
 	 * @param WebRequest $request For internal use use a FauxRequest object to pass arbitrary parameters.
 	 */
 	function __construct( $request ) {
-		global $wgUser;
+		global $wgUser, $wgOut;
 		# Get parameters
 		$type = $request->getVal( 'type' );
 		$user = $request->getText( 'user' );
 		$title = $request->getText( 'page' );
 		$pattern = $request->getBool( 'pattern' );
-		
-		$loglist = new LogEventsList( $wgUser->getSkin() );
-		$this->pager = new LogPager( $loglist, $type, $user, $title, $pattern );
+		$y = $request->getIntOrNull( 'year' );
+		$m = $request->getIntOrNull( 'month' );
+		# Don't let the user get stuck with a certain date
+		$skip = $request->getText( 'offset' ) || $request->getText( 'dir' ) == 'prev';
+		if( $skip ) {
+			$y = '';
+			$m = '';
+		}
+		# Use new list class to output results
+		$loglist = new LogEventsList( $wgUser->getSkin(), $wgOut, 0 );
+		$this->pager = new LogPager( $loglist, $type, $user, $title, $pattern, $y, $m );
 	}
 	
 	/**
@@ -565,7 +663,7 @@ class LogReader {
 }
 
 /**
- *
+ * @Deprecated
  * @addtogroup SpecialPage
  */
 class LogViewer {
@@ -585,27 +683,26 @@ class LogViewer {
 		$this->reader->pager->mLogEventsList->flags = $flags;
 		# Aliases for shorter code...
 		$this->pager =& $this->reader->pager;
-		$this->logEventsList =& $this->reader->pager->mLogEventsList;
+		$this->list =& $this->reader->pager->mLogEventsList;
 	}
 
 	/**
 	 * Take over the whole output page in $wgOut with the log display.
 	 */
 	public function show() {
-		global $wgOut;
 		# Set title and add header
-		$this->logEventsList->showHeader( $wgOut, $pager->getType() );
+		$this->list->showHeader( $pager->getType() );
 		# Show form options
-		$this->logEventsList->showOptions( $wgOut, $this->pager->getType(), $this->pager->getUser(), 
-			$this->pager->getPage(), $this->pager->getPattern() );
+		$this->list->showOptions( $this->pager->getType(), $this->pager->getUser(), $this->pager->getPage(), 
+			$this->pager->getPattern(), $this->pager->getYear(), $this->pager->getMonth() );
 		# Insert list
 		$logBody = $this->pager->getBody();
 		if( $logBody ) {
 			$wgOut->addHTML(
 				$this->pager->getNavigationBar() . 
-				$this->logEventsList->beginLogEventsList() .
+				$this->list->beginLogEventsList() .
 				$logBody .
-				$this->logEventsList->endLogEventsList() .
+				$this->list->endLogEventsList() .
 				$this->pager->getNavigationBar()
 			);
 		} else {
@@ -623,9 +720,9 @@ class LogViewer {
 		$logBody = $this->pager->getBody();
 		if( $logBody ) {
 			$out->addHTML(
-				$this->logEventsList->beginLogEventsList() .
+				$this->list->beginLogEventsList() .
 				$logBody .
-				$this->logEventsList->endLogEventsList()
+				$this->list->endLogEventsList()
 			);
 		} else {
 			$out->addWikiMsg( 'logempty' );
