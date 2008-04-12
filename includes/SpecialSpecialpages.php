@@ -37,25 +37,53 @@ function wfSpecialSpecialpages_gen($pages,$heading,$sk) {
 	}
 
 	/** Put them into a sortable array */
-	$sortedPages = array();
+	$groups = array();
 	foreach ( $pages as $page ) {
 		if ( $page->isListed() ) {
-			$sortedPages[$page->getDescription()] = $page->getTitle();
+			$group = SpecialPage::getGroup( $page );
+			if( !isset($groups[$group]) ) {
+				$groups[$group] = array();
+			}
+			$groups[$group][$page->getDescription()] = $page->getTitle();
 		}
 	}
 
 	/** Sort */
 	if ( $wgSortSpecialPages ) {
-		ksort( $sortedPages );
+		foreach( $groups as $group => $sortedPages ) {
+			ksort( $groups[$group] );
+		}
+	}
+	
+	/** Always move "other" to end */
+	if( array_key_exists('other',$groups) ) {
+		$other = $groups['other'];
+		unset( $groups['other'] );
+		$groups['other'] = $other;
 	}
 
 	/** Now output the HTML */
-	$wgOut->addHTML( '<h2>' . wfMsgHtml( $heading ) . "</h2>\n<ul>" );
-	foreach ( $sortedPages as $desc => $title ) {
-		$link = $sk->makeKnownLinkObj( $title , htmlspecialchars( $desc ) );
-		$wgOut->addHTML( "<li>{$link}</li>\n" );
+	$wgOut->addHTML( '<h2>' . wfMsgHtml( $heading ) . "</h2>\n" );
+	foreach ( $groups as $group => $sortedPages ) {
+		$middle = ceil( count($sortedPages)/2 );
+		$max = count($sortedPages) - 1;
+		$count = 0;
+		
+		$wgOut->addHTML( "<h3 class='mw-specialpagesgroup'>".wfMsgHtml("specialpages-group-$group")."</h3>\n" );
+		$wgOut->addHTML( "<table style='width: 100%;' class='mw-specialpages-table'><tr>" );
+		$wgOut->addHTML( "<td width='30%' valign='top'><ul>\n" );
+		foreach ( $sortedPages as $desc => $title ) {
+			$link = $sk->makeKnownLinkObj( $title , htmlspecialchars( $desc ) );
+			$wgOut->addHTML( "<li>{$link}</li>\n" );
+			
+			# Slit up the larger groups
+			$count++;
+			if( $max > 3 && $count == $middle && $count < $max ) {
+				$wgOut->addHTML( "</ul></td><td width='10%'></td><td width='30%' valign='top'><ul>" );
+			}
+		}
+		$wgOut->addHTML( "</ul></td><td width='30%' valign='top'></td></tr></table>\n" );
 	}
-	$wgOut->addHTML( "</ul>\n" );
 }
 
 

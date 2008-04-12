@@ -68,7 +68,15 @@ class SpecialPage
 	 * Query parameters that can be passed through redirects
 	 */
 	var $mAllowedRedirectParams = array();
-
+	/**
+	 * List of special pages, followed by parameters.
+	 * If the only parameter is a string, that is the page name.
+	 * Otherwise, it is an array. The format is one of:
+	 ** array( 'SpecialPage', name, right )
+	 ** array( 'IncludableSpecialPage', name, right, listed? )
+	 ** array( 'UnlistedSpecialPage', name, right )
+	 ** array( 'SpecialRedirectToSpecial', name, page to redirect to, special page param, ... )
+	 */
 	static public $mList = array(
 		'DoubleRedirects'           => array( 'SpecialPage', 'DoubleRedirects' ),
 		'BrokenRedirects'           => array( 'SpecialPage', 'BrokenRedirects' ),
@@ -117,7 +125,7 @@ class SpecialPage
 		'Specialpages'              => array( 'UnlistedSpecialPage', 'Specialpages' ),
 		'Contributions'             => array( 'SpecialPage', 'Contributions' ),
 		'Emailuser'                 => array( 'UnlistedSpecialPage', 'Emailuser' ),
-		'Whatlinkshere'             => array( 'SpecialPage', 'Whatlinkshere' ),
+		'Whatlinkshere'             => array( 'UnlistedSpecialPage', 'Whatlinkshere' ),
 		'Recentchangeslinked'       => array( 'UnlistedSpecialPage', 'Recentchangeslinked' ),
 		'Movepage'                  => array( 'UnlistedSpecialPage', 'Movepage' ),
 		'Blockme'                   => array( 'UnlistedSpecialPage', 'Blockme' ),
@@ -154,6 +162,97 @@ class SpecialPage
 
 	static public $mAliases;
 	static public $mListInitialised = false;
+	/**
+	 * List of special pages, followed by what subtitle they should go under
+	 * at Special:SpecialPages
+	 */
+	static public $mGroupsList = array(
+		'DoubleRedirects'           => 'maintenance',
+		'BrokenRedirects'           => 'maintenance',
+		'Lonelypages'               => 'maintenance',
+		'Uncategorizedpages'        => 'maintenance',
+		'Uncategorizedcategories'   => 'maintenance',
+		'Uncategorizedimages'       => 'maintenance',
+		'Uncategorizedtemplates'    => 'maintenance',
+		'Unusedcategories'          => 'maintenance',
+		'Unusedimages'              => 'maintenance',
+		'Protectedpages'            => 'maintenance',
+		'Protectedtitles'           => 'maintenance',
+		'Unusedtemplates'           => 'maintenance',
+		'Withoutinterwiki'          => 'maintenance',
+		'Longpages'                 => 'maintenance',
+
+		'Userlogin'                 => 'login',
+		'Userlogout'                => 'login',
+		'CreateAccount'             => 'login',
+
+		'Recentchanges'             => 'changes',
+		'Recentchangeslinked'       => 'changes',
+		'Watchlist'                 => 'changes',
+		'Newimages'                 => 'changes',
+		'Newpages'                  => 'changes',
+		'Log'                       => 'changes',
+		
+		'Upload'                    => 'media',
+		'Imagelist'                 => 'media',
+		'MIMEsearch'                => 'media',
+		'FileDuplicateSearch'       => 'media',
+		'Filepath'                  => 'media',
+		
+		'Listusers'                 => 'users',
+		'Listgrouprights'           => 'users',
+		'Ipblocklist'               => 'users',
+		'Contributions'             => 'users',
+		'Emailuser'                 => 'users',
+		'Listadmins'                => 'users',
+		'Listbots'                  => 'users',
+		
+		'Wantedpages'               => 'needy',
+		'Wantedcategories'          => 'needy',
+		'Shortpages'                => 'needy',
+		'Ancientpages'              => 'needy',
+		'Deadendpages'              => 'needy',
+		
+		'Mostlinked'                => 'highuse',
+		'Mostlinkedcategories'      => 'highuse',
+		'Mostlinkedtemplates'       => 'highuse',
+		'Mostcategories'            => 'highuse',
+		'Mostimages'                => 'highuse',
+		'Mostrevisions'             => 'highuse',
+		
+		'Userrights'                => 'permissions',
+		'Blockip'                   => 'permissions',
+		
+		'Statistics'                => 'other',
+		'Fewestrevisions'           => 'other',
+		'Randompage'                => 'other',
+		'Disambiguations'           => 'other',
+		'Specialpages'              => 'other',
+		'Blockme'                   => 'other',
+		'Movepage'                  => 'other',
+		'MergeHistory'              => 'other',
+		'Lockdb'                    => 'other',
+		'Unlockdb'                  => 'other',
+		'Version'                   => 'other',
+		'Whatlinkshere'             => 'other',
+		'Booksources'               => 'other',
+		'Revisiondelete'            => 'other',
+		'Export'                    => 'other',
+		'Categories'                => 'other',
+		'Undelete'                  => 'other',
+		'Import'                    => 'other',
+		'Unwatchedpages'            => 'other',
+		'Randomredirect'            => 'other',
+		'Allpages'                  => 'other',
+		'Allmessages'               => 'other',
+		'Prefixindex'               => 'other',
+		'Listredirects'             => 'other',
+		'Preferences'               => 'other',
+		'Resetpass'                 => 'other',
+		'Mypage'                    => 'other',
+		'Mytalk'                    => 'other',
+		'Mycontributions'           => 'other',
+		);
 
 	/**#@-*/
 
@@ -264,6 +363,37 @@ class SpecialPage
 			self::initList();
 		}
 		self::$mList[$page->mName] = $page;
+	}
+	
+	/**
+	 * Add a page to a certain display group for Special:SpecialPages
+	 *
+	 * @param mixed $page Must either be an array specifying a class name and 
+	 *                    constructor parameters, or an object.
+	 * @param string $group
+	 * @static
+	 */
+	static function setGroup( &$page, $group ) {
+		if ( !self::$mListInitialised ) {
+			self::initList();
+		}
+		self::$mGroupsList[$page->mName] = $group;
+	}
+	
+	/**
+	 * Add a page to a certain display group for Special:SpecialPages
+	 *
+	 * @param mixed $page Must either be an array specifying a class name and 
+	 *                    constructor parameters, or an object.
+	 * @static
+	 */
+	static function getGroup( &$page ) {
+		if ( !self::$mListInitialised ) {
+			self::initList();
+		}
+		$group = isset(self::$mGroupsList[$page->mName]) ? 
+			self::$mGroupsList[$page->mName] : 'other';
+		return $group;
 	}
 
 	/**
