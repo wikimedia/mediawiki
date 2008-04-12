@@ -70,6 +70,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 ** (bug 6332) Lacking entry Mainpage-url
 ** (bug 8617) Separate main page url and name
 * Automatically add old redirects to the redirect table when needed
+* (bug 6934) Allow separated inclusions, links, redirects on whatlinkshere
 
 === Bug fixes in 1.13 ===
 

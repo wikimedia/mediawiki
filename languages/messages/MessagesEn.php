@@ -2171,6 +2171,9 @@ $1',
 'whatlinkshere-prev'    => '{{PLURAL:$1|previous|previous $1}}',
 'whatlinkshere-next'    => '{{PLURAL:$1|next|next $1}}',
 'whatlinkshere-links'   => '← links',
+'whatlinkshere-hideredirs'  => '$1 redirects',
+'whatlinkshere-hidetrans'   => '$1 transclusions',
+'whatlinkshere-hidelinks'   => '$1 links',
 
 # Block/unblock
 'blockip'                     => 'Block user',

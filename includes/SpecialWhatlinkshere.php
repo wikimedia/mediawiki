@@ -22,6 +22,7 @@ class WhatLinksHerePage {
 	var $request, $par;
 	var $limit, $from, $back, $target;
 	var $selfTitle, $skin;
+	var $hideredirs, $hidetrans, $hidelinks, $fetchlinks;
 
 	private $namespace;
 
@@ -41,6 +42,11 @@ class WhatLinksHerePage {
 		}
 		$this->from = $this->request->getInt( 'from' );
 		$this->back = $this->request->getInt( 'back' );
+
+		$this->hideredirs = $this->request->getInt( 'hideredirs' );
+		$this->hidetrans = $this->request->getInt( 'hidetrans' );
+		$this->hidelinks = $this->request->getInt( 'hidelinks' );
+		$this->fetchlinks = !$this->hidelinks || !$this->hideredirs;
 
 		$targetString = isset($this->par) ? $this->par : $this->request->getVal( 'target' );
 
@@ -121,15 +127,19 @@ class WhatLinksHerePage {
 		$options['LIMIT'] = $queryLimit;
 		$fields = array( 'page_id', 'page_namespace', 'page_title', 'page_is_redirect' );
 
-		$options['ORDER BY'] = 'pl_from';
-		$plRes = $dbr->select( array( 'pagelinks', 'page' ), $fields,
-			$plConds, $fname, $options );
+		if( $this->fetchlinks ) {
+			$options['ORDER BY'] = 'pl_from';
+			$plRes = $dbr->select( array( 'pagelinks', 'page' ), $fields,
+				$plConds, $fname, $options );
+		}
 
-		$options['ORDER BY'] = 'tl_from';
-		$tlRes = $dbr->select( array( 'templatelinks', 'page' ), $fields,
-			$tlConds, $fname, $options );
+		if( !$this->hidetrans ) {
+			$options['ORDER BY'] = 'tl_from';
+			$tlRes = $dbr->select( array( 'templatelinks', 'page' ), $fields,
+				$tlConds, $fname, $options );
+		}
 
-		if ( !$dbr->numRows( $plRes ) && !$dbr->numRows( $tlRes ) ) {
+		if( ( !$this->fetchlinks || !$dbr->numRows( $plRes ) ) && ( $this->hidetrans || !$dbr->numRows( $tlRes ) ) ) {
 			if ( 0 == $level ) {
 				$options = array(); // reinitialize for a further namespace search
 				// really no links to here
@@ -139,6 +149,9 @@ class WhatLinksHerePage {
 				$wgOut->addHTML( $this->whatlinkshereForm( $options ) );
 				$errMsg = isset( $this->namespace ) ? 'nolinkshere-ns' : 'nolinkshere';
 				$wgOut->addWikiMsg( $errMsg, $this->target->getPrefixedText() );
+				// Show filters only if there are links
+				if( $this->hidelinks || $this->hidetrans || $this->hideredirs )
+					$wgOut->addHTML( $this->getFilterPanel() );
 			}
 			return;
 		}
@@ -161,16 +174,21 @@ class WhatLinksHerePage {
 		// Read the rows into an array and remove duplicates
 		// templatelinks comes second so that the templatelinks row overwrites the
 		// pagelinks row, so we get (inclusion) rather than nothing
-		while ( $row = $dbr->fetchObject( $plRes ) ) {
-			$row->is_template = 0;
-			$rows[$row->page_id] = $row;
+		if( $this->fetchlinks ) {
+			while ( $row = $dbr->fetchObject( $plRes ) ) {
+				$row->is_template = 0;
+				$rows[$row->page_id] = $row;
+			}
+			$dbr->freeResult( $plRes );
+			
 		}
-		$dbr->freeResult( $plRes );
-		while ( $row = $dbr->fetchObject( $tlRes ) ) {
-			$row->is_template = 1;
-			$rows[$row->page_id] = $row;
+		if( !$this->hidetrans ) {
+			while ( $row = $dbr->fetchObject( $tlRes ) ) {
+				$row->is_template = 1;
+				$rows[$row->page_id] = $row;
+			}
+			$dbr->freeResult( $tlRes );
 		}
-		$dbr->freeResult( $tlRes );
 
 		// Sort by key and then change the keys to 0-based indices
 		ksort( $rows );
@@ -193,6 +211,7 @@ class WhatLinksHerePage {
 
 		if ( $level == 0 ) {
 			$wgOut->addHTML( $this->whatlinkshereForm( $options ) );
+			$wgOut->addHTML( $this->getFilterPanel() );
 			$wgOut->addWikiMsg( 'linkshere', $this->target->getPrefixedText() );
 
 			$prevnext = $this->getPrevNext( $limit, $prevId, $nextId, $options['namespace'] );
@@ -202,6 +221,11 @@ class WhatLinksHerePage {
 		$wgOut->addHTML( '<ul>' );
 		foreach ( $rows as $row ) {
 			$nt = Title::makeTitle( $row->page_namespace, $row->page_title );
+
+			if( $this->hideredirs && $row->page_is_redirect )
+				continue;
+			if( $this->hidelinks && ( !$row->page_is_redirect && !$row->is_template ) )
+				continue;
 
 			if ( $row->page_is_redirect ) {
 				$extra = 'redirect=no';
@@ -317,6 +341,19 @@ class WhatLinksHerePage {
 	/** Set the namespace we are filtering on */
 	private function setNamespace( $ns ) {
 		$this->namespace = $ns;
+	}
+
+	function getFilterPanel() {
+		$show = wfMsg( 'show' );
+		$hide = wfMsg( 'hide' );
+		$links = array();
+		foreach( array( 'hidetrans', 'hidelinks', 'hideredirs' ) as $type ) {
+			$chosen = $this->$type;
+			$msg = wfMsgHtml( "whatlinkshere-{$type}", $chosen ? $show : $hide );
+			$url = $this->request->appendQueryValue( $type, intval( !$chosen ), true );
+			$links[] = $this->makeSelfLink( $msg, $url );
+		}
+		return '<p>' . implode( '&nbsp;|&nbsp;', $links ) . '</p>';
 	}
 
 }

@@ -1744,6 +1744,9 @@ $1',
 'whatlinkshere-prev'  => '{{PLURAL:$1|предыдущая|предыдущие|предыдущие}} $1',
 'whatlinkshere-next'  => '{{PLURAL:$1|следующая|следующие|следующие}} $1',
 'whatlinkshere-links' => '← ссылки',
+'whatlinkshere-hideredirs'  => '$1 перенаправления',
+'whatlinkshere-hidetrans'   => '$1 включения',
+'whatlinkshere-hidelinks'   => '$1 ссылки',
 
 # Block/unblock
 'blockip'                     => 'Заблокировать',
