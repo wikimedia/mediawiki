@@ -795,9 +795,7 @@ Legend: (cur) = difference with current version,
 
 # Recent changes
 'recentchanges'     => 'לעצטע ענדערונגען',
-'rcnote'            => 'אונטער זײַנען די לעצטע <strong>$1</strong> ענדערונגען אין די לעצטע <strong>$2</strong> טאָג. $3
-
-',
+'rcnote'            => "אונטן {{PLURAL:$1|איז '''1''' ענדערונג | זײַנען די לעצטע '''$1''' ענדערונגען}} אין {{plural:$2|דעם לעצטן טאג|די לעצטע $2 טעג}}, ביז $3.",
 'rclistfrom'        => 'װײַז נײַע ענדערונגען זינט $1',
 'rcshowhideminor'   => '$1 מינדערדיגע ענדערונגן',
 'rcshowhidebots'    => '$1 באטס',

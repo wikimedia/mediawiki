@@ -10,6 +10,7 @@
  * @author Teferra
  * @author לערי ריינהארט
  * @author M.M.S.
+ * @author Jon Harald Søby
  */
 
 $messages = array(
@@ -710,7 +711,7 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 'prefs-watchlist-edits'    => 'በተደረጁት ዝርዝር ስንት ለውጥ ይታይ፤',
 'prefs-misc'               => 'ልዩ ልዩ ምርጫዎች',
 'saveprefs'                => 'ይቆጠብ',
-'resetprefs'               => 'ይታደስ',
+'resetprefs'               => 'እንደ በፊቱ ይታደስ',
 'oldpassword'              => 'የአሁኑ መግቢያ ቃልዎ',
 'newpassword'              => 'አዲስ መግቢያ ቃል',
 'retypenew'                => 'አዲስ መግቢያ ቃል ዳግመኛ',

@@ -171,6 +171,7 @@ $messages = array(
 'categorypage'      => 'Ὁρᾶν γένους δέλτον',
 'viewtalkpage'      => 'Ὁρᾶν διάλεκτον',
 'otherlanguages'    => 'Βαρβαριστὶ',
+'lastmodifiedat'    => 'Ἥδε ἡ δέλτος ὕστατον μετεβλήθη $2, $1.', # $1 date, $2 time
 'protectedpage'     => 'Πεφυλαγμένη δέλτος',
 'jumpto'            => 'Πηδᾶν πρὸς:',
 'jumptonavigation'  => 'περιήγησις',

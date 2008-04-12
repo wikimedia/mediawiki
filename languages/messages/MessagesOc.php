@@ -598,7 +598,7 @@ Vòstre identificant de blocatge es $5. Precizatz-lo dins tota requèsta.',
 'noarticletext'                     => "Pel moment, i a pas cap de tèxt sus aquesta pagina ; podètz [[Special:Search/{{PAGENAME}}|aviar una recèrca sul títol d'aquesta pagina]] o [{{fullurl:{{NAMESPACE}}:{{FULLPAGENAME}}|action=edit}} modificar aquesta pagina].",
 'userpage-userdoesnotexist'         => "Lo compte d'utilizaire « $1 » es pas enregistrat. Indicatz se volètz crear o editar aquesta pagina.",
 'clearyourcache'                    => 'Nòta : Aprèp aver salvagardat, devètz forçar lo recargament de la pagina per veire los cambiaments : Mozilla / Konqueror / Firefox : ctrl-shift-r, IE / Opera : ctrl-f5, Safari : cmd-r.',
-'usercssjsyoucanpreview'            => "'''Astúcia :''' utilisatz lo boton '''Previsualisacion''' per testar vòstra fuèlha novèla css/js abans de l'enregistrar.<br />Per importar vòstra fuèlha monobook dempuèi una URL, utilisatz ''@import url (VÒSTRA_URL_AICÍ&action=raw&ctype=text/css)''",
+'usercssjsyoucanpreview'            => "'''Astúcia :''' utilizatz lo boton '''Previsualizacion''' per testar vòstre fuèlh novèl css/js abans de l'enregistrar.<br />Per importar vòstre fuèlh monobook dempuèi una URL, utilizatz ''@import url (VÒSTRA_URL_AICÍ&action=raw&ctype=text/css)''",
 'usercsspreview'                    => "'''Remembratz-vos que sètz a previsualizar vòstra pròpria fuèlha CSS e qu’es pas encara estada enregistrada !'''",
 'userjspreview'                     => "'''Remembrat-vos que sètz a visualizar o testar vòstre còde JavaScript e qu’es pas encara estat enregistrat !'''",
 'userinvalidcssjstitle'             => "'''Atencion :''' existís pas d'estil « $1 ». Remembratz-vos que las paginas personalas amb extensions .css e .js utilizan de títols en minusculas aprèp lo nom d'utilizaire e la barra de fraccion /.<br />Atal, {{ns:user}}:Foo/monobook.css es valid, alara que {{ns:user}}:Foo/Monobook.css serà una fuèlha d'estil invalida.",
@@ -1288,6 +1288,13 @@ I a {{PLURAL:\$7|'''\$7''' article|'''\$7''' articles}} dins [[meta:Help:Job_que
 'listusersfrom'      => 'Afichar los utilizaires a partir de :',
 'listusers-submit'   => 'Mostrar',
 'listusers-noresult' => "S'es pas trobat de noms d'utilizaires correspondents. Cercatz tanben amb de majusculas e minusculas.",
+
+# Special:Listgrouprights
+'listgrouprights'          => "Dreches dels gropes d'utilizaires",
+'listgrouprights-summary'  => "Aquesta pagina conten una tièra dels gropes definits sus aqueste wiki e mai los dreches d'accès qu'i son associats.",
+'listgrouprights-group'    => 'Grop',
+'listgrouprights-rights'   => 'Dreches associats',
+'listgrouprights-helppage' => 'Help:Dreches dels gropes',
 
 # E-mail user
 'mailnologin'     => "Pas d'adreça",
@@ -2118,7 +2125,7 @@ Los autres ligams sus la meteissa linha son considerats coma d'excepcions, per e
 'exif-exposureprogram-2' => 'Programa normal',
 'exif-exposureprogram-3' => 'Prioritat a la dobertura',
 'exif-exposureprogram-4' => 'Prioritat a l’obturacion',
-'exif-exposureprogram-5' => 'Programa creacion (preferéncia a la pregondor de camp)',
+'exif-exposureprogram-5' => 'Programa creacion (preferéncia a la prigondor de camp)',
 'exif-exposureprogram-6' => 'Programa accion (preferéncia a la velocitat d’obturacion)',
 'exif-exposureprogram-7' => 'Mòde retrach (per clichats de prèp amb arrièr plan vague)',
 'exif-exposureprogram-8' => 'Mòde paisatge (per de clichats de paisatges nets)',

@@ -12,6 +12,7 @@
  * @author Siebrand
  * @author לערי ריינהארט
  * @author SPQRobin
+ * @author Jon Harald Søby
  */
 
 $namespaceNames = array(
@@ -58,6 +59,7 @@ $messages = array(
 'tog-watchdefault'         => 'ನಾನು ಸಂಪಾದಿಸುವ ಪುಟಗಳನ್ನು ವೀಕ್ಷಣಾಪಟ್ಟಿಗೆ ಸೇರಿಸು',
 'tog-watchmoves'           => 'ನಾನು ಸ್ಥಳಾಂತರಿಸುವ ಪುಟಗಳನ್ನು ನನ್ನ ವೀಕ್ಷಣಾಪಟ್ಟಿಗೆ ಸೇರಿಸು',
 'tog-watchdeletion'        => 'ನಾನು ಅಳಿಸುವ ಪುಟಗಳನ್ನು ನನ್ನ ವೀಕ್ಷಣಾ ಪಟ್ಟಿಗೆ ಸೇರಿಸು',
+'tog-minordefault'         => 'ನನ್ನ ಎಲ್ಲಾ ಸಂಪಾದನೆಗಳನ್ನು ಚುಟುಕಾದವು ಎಂದು ಗುರುತು ಮಾಡು',
 'tog-previewonfirst'       => 'ಮೊದಲ ಬದಲಾವಣೆಯ ನಂತರ ಮುನ್ನೋಟವನ್ನು ತೋರಿಸು',
 'tog-enotifwatchlistpages' => 'ನನ್ನ ವೀಕ್ಷಣಾ ಪಟ್ಟಿಯಲ್ಲಿರುವ ಯಾವುದಾದರೂ ಪುಟವು ಬದಲಾದಾಗ ನನಗೆ ಇ-ಅಂಚೆ ಕಳುಹಿಸು.',
 'tog-enotifusertalkpages'  => 'ನನ್ನ ಚರ್ಚೆ ಪುಟ ಬದಲಾದರೆ ನನಗೆ ಇ-ಅಂಚೆ ಕಳುಹಿಸು',
@@ -137,8 +139,11 @@ $messages = array(
 'category-empty'                 => "''ಈ ವರ್ಗದಲ್ಲಿ ಸದ್ಯದಲ್ಲಿ ಯಾವುದೇ ಪುಟಗಳಾಗಲಿ ಅಥವ ಚಿತ್ರಗಳಾಗಲಿ ಇಲ್ಲ.''",
 'hidden-categories'              => '{{PLURAL:$1|ಅಡಗಿಸಲ್ಪಟ್ಟ ವರ್ಗ|ಅಡಗಿಸಲ್ಪಟ್ಟ ವರ್ಗಗಳು}}',
 'hidden-category-category'       => 'ಅಡಗಿಸಲ್ಪಟ್ಟಿರುವ ವರ್ಗಗಳು', # Name of the category where hidden categories will be listed
+'category-subcat-count'          => '{{PLURAL:$2|ಈ ವರ್ಗದಲ್ಲಿ ಈ ಕೆಳಗಿನ ಉಪವರ್ಗ ಇದೆ.|ಈ ವರ್ಗದಲ್ಲಿ ಈ ಕೆಳಗಿನ {{PLURAL:$1|ಉಪವರ್ಗವನ್ನು|$1 ಉಪವರ್ಗಗಳನ್ನು}} ಸೇರಿಸಿ, ಒಟ್ಟು $2 ಇವೆ.}}',
 'category-subcat-count-limited'  => 'ಈ ವರ್ಗದಲ್ಲಿ ಕೆಳಗೆ ತೋರಿಸಿರುವ {{PLURAL:$1|ಉಪವರ್ಗ|$1 ಉಪವರ್ಗಗಳು}} ಇವೆ.',
+'category-article-count'         => '{{PLURAL:$2|ಈ ವರ್ಗದಲ್ಲಿ ಈ ಕೆಳಗಿನ ಪುಟವೊಂದು ಇದೆ.|ಈ ವರ್ಗದಲ್ಲಿ ಈ ಕೆಳಗಿನ {{PLURAL:$1|ಪುಟವನ್ನು|$1 ಪುಟಗಳನ್ನು}} ಸೇರಿಸಿ, ಒಟ್ಟು $2 ಪುಟಗಳು ಇವೆ.}}',
 'category-article-count-limited' => 'ಪ್ರಸಕ್ತ ವರ್ಗದಲ್ಲಿ ಈ ಕೆಳಗಿನ {{PLURAL:$1|ಪುಟ ಇದೆ|$1 ಪುಟಗಳು ಇವೆ}}.',
+'category-file-count'            => '{{PLURAL:$2|ಈ ವರ್ಗದಲ್ಲಿ ಈ ಕೆಳಗಿನ ಫೈಲು ಇದೆ.|ಈ ವರ್ಗದಲ್ಲಿ ಈ ಕೆಳಗಿನ {{PLURAL:$1|ಫೈಲನ್ನು|$1 ಫೈಲುಗಳನ್ನು}} ಸೇರಿಸಿ, ಒಟ್ಟು $2 ಇವೆ.}}',
 'category-file-count-limited'    => 'ಪ್ರಸಕ್ತ ವರ್ಗದಲ್ಲಿ ಈ ಕೆಳಗಿನ {{PLURAL:$1|ಫೈಲು ಇದೆ|$1 ಫೈಲುಗಳು ಇವೆ}}.',
 'listingcontinuesabbrev'         => 'ಮುಂದು.',
 
@@ -244,6 +249,9 @@ $messages = array(
 
 'badaccess'        => 'ಅನುಮತಿ ದೋಷ',
 'badaccess-group0' => 'ನೀವು ಕೋರಿರುವ ಕ್ರಿಯೆಯನ್ನು ನಿರ್ವಹಿಲು ನಿಮಗೆ ಅನುಮತಿ ಇಲ್ಲ.',
+'badaccess-group1' => 'ನೀವು ಕೋರಿರುವ ಕ್ರಿಯೆಯು ಕೇವಲ $1 ಗುಂಪಿಗೆ ಸೇರಿರುವ ಬಳಕೆದಾರರಿಗೆ ಸೀಮಿತ.',
+'badaccess-group2' => 'ನೀವು ಕೋರಿರುವ ಕ್ರಿಯೆಯು ಕೇವಲ $1 ಗುಂಪುಗಳಲ್ಲಿ ಒಂದಕ್ಕೆ ಸೇರಿರುವ ಬಳಕೆದಾರರಿಗೆ ಸೀಮಿತ.',
+'badaccess-groups' => 'ನೀವು ಕೋರಿರುವ ಕ್ರಿಯೆಯು ಕೇವಲ $1 ಗುಂಪುಗಳಲ್ಲಿ ಒಂದಕ್ಕೆ ಸೇರಿರುವ ಬಳಕೆದಾರರಿಗೆ ಸೀಮಿತ.',
 
 'versionrequired'     => 'ಮೀಡಿಯವಿಕಿಯ $1 ನೇ ಅವೃತ್ತಿ ಬೇಕಾಗುತ್ತದೆ',
 'versionrequiredtext' => 'ಈ ಪುಟವನ್ನು ವೀಕ್ಷಿಸಲು ಮೀಡಿಯವಿಕಿಯ $1 ನೇ ಆವೃತ್ತಿ ಬೇಕಾಗಿದೆ. [[Special:Version|ಆವೃತ್ತಿ]] ಪುಟವನ್ನು ನೋಡಿ.',
@@ -300,12 +308,15 @@ $1',
 'filerenameerror'      => '"$1" ಫೈಲನ್ನು "$2" ಎಂದು ಮರುನಾಮಕರಣ ಮಾಡಲು ಆಗಲಿಲ್ಲ.',
 'filedeleteerror'      => '"$1" ಫೈಲ್ ಅನ್ನು ಅಳಿಸಲಾಗಲಿಲ್ಲ.',
 'filenotfound'         => '"$1" ಫೈಲನ್ನು ಹುಡುಕಲಾಗಲಿಲ್ಲ.',
+'fileexistserror'      => 'ಫೈಲು "$1" ಅನ್ನು ಬರೆಯಲಾಗಲಿಲ್ಲ: ಫೈಲು ಆಗಲೆ ಇದೆ',
+'unexpected'           => 'ಅನಿರೀಕ್ಷಿತ ಮೌಲ್ಯ: "$1"="$2".',
 'formerror'            => 'ದೋಷ: ಅರ್ಜಿ ಕಳುಹಿಸಲಾಗಲಿಲ್ಲ',
 'badarticleerror'      => 'ಈ ಪುಟದ ಮೇಲೆ ನೀವು ಪ್ರಯತ್ನಿಸಿದ ಕಾರ್ಯವನ್ನು ನಡೆಸಲಾಗದು.',
 'cannotdelete'         => 'ಈ ಪುಟ ಅಥವಾ ಚಿತ್ರವನ್ನು ಅಳಿಸಲಾಗಲಿಲ್ಲ. (ಬೇರೊಬ್ಬ ಸದಸ್ಯರಿಂದ ಆಗಲೇ ಅಳಿಸಲ್ಪಟ್ಟಿರಬಹುದು.)',
 'badtitle'             => 'ಸರಿಯಿಲ್ಲದ ಹೆಸರು',
 'badtitletext'         => 'ನೀವು ಕೋರಿದ ಪುಟದ ಶೀರ್ಷಿಕೆ ಸಿಂಧುವಲ್ಲದ್ದು ಅಥವ ಖಾಲಿ ಅಥವ ಸರಿಯಾದ ಕೊಂಡಿಯಲ್ಲದ ಅಂತರ-ಭಾಷೆ/ಅಂತರ-ವಿಕಿ ಸಂಪರ್ಕವಾಗಿದೆ. 
 ಅದರಲ್ಲಿ ಒಂದು ಅಥವ ಹೆಚ್ಚು ಶೀರ್ಷಿಕೆಯಲ್ಲಿ ಬಳಸಲು ನಿಷಿದ್ಧವಾಗಿರುವ ಅಕ್ಷರಗಳು ಇರಬಹುದು.',
+'perfdisabled'         => 'ಕ್ಷಮಿಸಿ! ಈ ಲಕ್ಷಣವು ಡೇಟಾಬೇಸ್ ಅನ್ನು ಯಾರೂ ಉಪಯೋಗಿಸಲು ಆಗದಷ್ಟು ನಿಧಾನವಾಗಿಸುತ್ತ ಇರುವುದರಿಂದ ಇದನ್ನು ತಾತ್ಕಾಲಿಕವಾಗಿ ಸ್ಥಗಿತಗೊಳಿಸಲಾಗಿದೆ.',
 'viewsource'           => 'ಆಕರ ವೀಕ್ಷಿಸು',
 'viewsourcefor'        => '$1 ಪುಟಕ್ಕೆ',
 'protectedpagetext'    => 'ಈ ಪುಟವನ್ನು ಸಂಪಾದನೆ ಮಾಡಲಾಗದಂತೆ ಸಂರಕ್ಷಿಸಲಾಗಿದೆ.',
@@ -356,6 +367,7 @@ $1',
 'loginerror'                 => 'ಲಾಗಿನ್ ದೋಷ',
 'prefs-help-email'           => 'ಇ-ಅಂಚೆ ವಿಳಾಸ ಕಡ್ಡಾಯವಲ್ಲ, ಆದರೆ ನೀವು ಅದನ್ನು ನೀಡಿದರೆ ಬೇರೆಯವರು ನಿಮ್ಮನ್ನು ಇತರರಿಗೆ ತಿಳಿಯದಂತೆ ನಿಮ್ಮ ಸದಸ್ಯ ಪುಟ ಅಥವ ಚರ್ಚೆ ಪುಟದ ಮೂಲಕ ಸಂಪರ್ಕಿಸಬಹುದು.',
 'prefs-help-email-required'  => 'ಇ-ಅಂಚೆ ವಿಳಾಸ ಬೇಕಾಗಿದೆ.',
+'noname'                     => 'ನೀವು ಸರಿಯಾದ ಬಳಕೆದಾರ ಹೆಸರನ್ನು ಸೂಚಿಸಿಲ್ಲ.',
 'loginsuccesstitle'          => 'ಲಾಗಿನ್ ಯಶಸ್ವಿ',
 'loginsuccess'               => 'ನೀವು ಈಗ "$1" ಆಗಿ ವಿಕಿಪೀಡಿಯಕ್ಕೆ ಲಾಗಿನ್ ಆಗಿದ್ದೀರಿ.',
 'nosuchuser'                 => '"$1" ಹೆಸರಿನ ಯಾವ ಸದಸ್ಯರೂ ಇಲ್ಲ.
@@ -393,6 +405,7 @@ $1',
 'loginlanguagelabel'         => 'ಭಾಷೆ: $1',
 
 # Password reset dialog
+'resetpass_submit'    => 'ಪ್ರವೇಶ ಪದವನ್ನು ನಿಶ್ಚಯಿಸಿ ಲಾಗ್ ಇನ್ ಆಗಿ',
 'resetpass_success'   => 'ನಿಮ್ಮ ಪ್ರವೇಶ ಪದವನ್ನು ಯಶಸ್ವಿಯಾಗಿ ಬದಲಾಯಿಸಲಾಗಿದೆ. ಈಗ ನಿಮ್ಮನ್ನು ಲಾಗ್ ಇನ್ ಮಾಡಲಾಗುತ್ತಿದೆ...',
 'resetpass_forbidden' => '{{SITENAME}} ಅಲ್ಲಿ ಪ್ರವೇಶಪದಗಳನ್ನು ಬದಲಾಯಿಸುವಂತಿಲ್ಲ.',
 
@@ -427,6 +440,8 @@ $1',
 'showdiff'                 => 'ಬದಲಾವಣೆಗಳನ್ನು ತೋರಿಸು',
 'anoneditwarning'          => "'''ಎಚ್ಚರ:''' ನೀವು ಲಾಗ್ ಇನ್ ಆಗಿಲ್ಲ. ನಿಮ್ಮ ಐಪಿ ವಿಳಾಸವು ಪುಟದ ಸಂಪಾದನೆಗಳ ಇತಿಹಾಸದಲ್ಲಿ ದಾಖಲಾಗುತ್ತದೆ.",
 'missingsummary'           => "'''ಗಮನಿಸಿ:''' ನಿಮ್ಮ ಸಂಪಾದನೆಯ ಸಾರಾಂಶವನ್ನು ನೀವು ನೀಡಿಲ್ಲ. ಮತ್ತೊಮ್ಮೆ \"ಉಳಿಸು\" ಗುಂಡಿಯನ್ನು ಒತ್ತಿದರೆ, ಸಾರಾಂಶವಿಲ್ಲದೆಯೇ ನಿಮ್ಮ ಸಂಪಾದನೆಯನ್ನು ಉಳಿಸಲಾಗುವುದು.",
+'missingcommentheader'     => "'''ಗಮನಿಸಿ:''' ಈ ವ್ಯಾಖ್ಯಾನದ ವಿಷಯ ಅಥವ ತಲೆಬರಹ ನೀವು ಸೂಚಿಸಿಲ್ಲ.
+ಮತ್ತೊಮೆ ಉಳಿಸಿ ಅನ್ನು ಒತ್ತಿದರೆ ನಿಮ್ಮ ಸಂಪಾದನೆಯನ್ನು ಹಾಗೆಯೇ ಉಳಿಸಲಾಗುವುದು.",
 'summary-preview'          => 'ತಾತ್ಪರ್ಯ ಮುನ್ನೋಟ',
 'subject-preview'          => 'ವಿಷಯದ/ತಲೆಬರಹದ ಮುನ್ನೋಟ',
 'blockedtitle'             => 'ಈ ಸದಸ್ಯರನ್ನು ತಡೆ ಹಿಡಿಯಲಾಗಿದೆ.',
@@ -443,8 +458,10 @@ $1',
 ನಿಮ್ಮ ಪ್ರಸಕ್ತ IP ವಿಳಾಸವು \$3, ಮತ್ತು ಈ ನಿರ್ಭಂಧನೆಯ ಕ್ರಮಸಂಖ್ಯೆ (ID) #\$5. ದಯವಿಟ್ಟು ನಿಮ್ಮ ಸಂಪರ್ಕಗಳಲ್ಲಿ ಈ ಸಂಖ್ಯೆಗಳನ್ನು ಸೇರಿಸಿ.",
 'blockednoreason'          => 'ಯಾವ ಕಾರಣವೂ ನೀಡಲಾಗಿಲ್ಲ',
 'whitelistedittitle'       => 'ಸಂಪಾದನೆ ಮಾಡಲು ಲಾಗ್ ಇನ್ ಆಗಿರಬೇಕು',
+'whitelistedittext'        => 'ಪುಟಗಳನ್ನು ಸಂಪಾದಿಸಲು ನೀವು $1 ಆಗಬೇಕು.',
 'whitelistreadtitle'       => 'ಓದಲು ಲಾಗ್ ಇನ್ ಆಗಿರಬೇಕು',
 'whitelistreadtext'        => 'ಪುಟಗಳನ್ನು ಓದಲು ನೀವು [[Special:Userlogin|ಲಾಗ್ ಇನ್]] ಆಗಬೇಕು.',
+'whitelistacctitle'        => 'ನಿಮಗೆ ಖಾತೆಯನ್ನು ತಗೆಯಲು ಅನುಮತಿ ಇಲ್ಲ',
 'confirmedittitle'         => 'ಸಂಪಾದನೆ ಮಾಡಲು ಇ-ಅಂಚೆ ಧೃಡೀಕರಣ ಬೇಕು',
 'confirmedittext'          => 'ಪುಟಗಳನ್ನು ಸಂಪಾದಿಸುವ ಮುನ್ನ ನೀವು ನಿಮ್ಮ ಇ-ಅಂಚೆ ವಿಳಾಸವನ್ನು ಧೃಡೀಕರಿಸಬೇಕು.
 ದಯವಿಟ್ಟು [[Special:Preferences|ಬಳಕೆದಾರ ಆಯ್ಕೆಗಳು]] ಪುಟದಲ್ಲಿ ತಮ್ಮ ಇ-ಅಂಚೆ ವಿಳಾಸವನ್ನು ನಮೂದಿಸಿ ಮತ್ತು ಧೃಡೀಕರಿಸಿ.',
@@ -535,16 +552,25 @@ $1',
 ಸಂಬಂಧಿತ ಹೊಸ ಪುಟಗಳನ್ನು [[Special:Search|ಹುಡುಕಲು ಪ್ರಯತ್ನಿಸಿ]].',
 
 # Revision deletion
-'rev-deleted-user' => '(ಬಳಕೆದಾರ ಹೆಸರು ತಗೆಯಲ್ಪಟ್ಟಿದೆ)',
-'rev-delundel'     => 'ತೋರಿಸು/ಅಡಗಿಸು',
-'pagehist'         => 'ಪುಟದ ಇತಿಹಾಸ',
-'deletedhist'      => 'ಅಳಿಸಲ್ಪಟ್ಟ ಇತಿಹಾಸ',
+'rev-deleted-user'  => '(ಬಳಕೆದಾರ ಹೆಸರು ತಗೆಯಲ್ಪಟ್ಟಿದೆ)',
+'rev-delundel'      => 'ತೋರಿಸು/ಅಡಗಿಸು',
+'pagehist'          => 'ಪುಟದ ಇತಿಹಾಸ',
+'deletedhist'       => 'ಅಳಿಸಲ್ಪಟ್ಟ ಇತಿಹಾಸ',
+'revdelete-summary' => 'ಸಂಪಾದನೆಯ ತಾತ್ಪರ್ಯ',
+'revdelete-uname'   => 'ಬಳಕೆಯ ಹೆಸರು',
+'revdelete-hid'     => '$1 ಅಡಗಿಸಲಾಯಿತು',
 
 # History merging
-'mergehistory'             => 'ಪುಟ ಇತಿಹಾಸಗಳನ್ನು ವಿಲೀನಗೊಳಿಸು',
-'mergehistory-go'          => 'ವಿಲೀನಗೊಳಿಸಬಹುದಾದ ಸಂಪಾದನೆಗಳನ್ನು ತೋರಿಸು',
-'mergehistory-submit'      => 'ಆವೃತ್ತಿಗಳನ್ನು ವಿಲೀನಗೊಳಿಸು',
-'mergehistory-autocomment' => '[[:$1]] ಅನ್ನು [[:$2]] ಪುಟದೊಳಗೆ ವಿಲೀನಗೊಳಿಸಲಾಯಿತು',
+'mergehistory'                => 'ಪುಟ ಇತಿಹಾಸಗಳನ್ನು ವಿಲೀನಗೊಳಿಸು',
+'mergehistory-box'            => 'ಈ ಎರಡು ಪುಟಗಳ ಸಂಪಾದನೆಗಳನ್ನು ಸೇರ್ಪಡೆ ಮಾಡು:',
+'mergehistory-from'           => 'ಮೂಲ ಪುಟ:',
+'mergehistory-list'           => 'ಸೇರ್ಪಡೆ ಮಾಡಬಹುದಾದಂತ ಸಂಪಾದನೆಗಳ ಇತಿಹಾಸ',
+'mergehistory-go'             => 'ವಿಲೀನಗೊಳಿಸಬಹುದಾದ ಸಂಪಾದನೆಗಳನ್ನು ತೋರಿಸು',
+'mergehistory-submit'         => 'ಆವೃತ್ತಿಗಳನ್ನು ವಿಲೀನಗೊಳಿಸು',
+'mergehistory-empty'          => 'ಯಾವ ಸಂಪಾದನೆಗಳನ್ನೂ ಸೇರ್ಪಡೆ ಮಾಡಲು ಆಗುವುದಿಲ್ಲ.',
+'mergehistory-no-source'      => 'ಮೂಲ ಪುಟ $1 ಅಸ್ಥಿತ್ವದಲ್ಲಿ ಇಲ್ಲ.',
+'mergehistory-invalid-source' => 'ಮೂಲ ಪುಟ ಸರಿಯಾದ ಶೀರ್ಷಿಕೆಯಾಗಿರಬೇಕು.',
+'mergehistory-autocomment'    => '[[:$1]] ಅನ್ನು [[:$2]] ಪುಟದೊಳಗೆ ವಿಲೀನಗೊಳಿಸಲಾಯಿತು',
 
 # Merge log
 'mergelog' => 'ಸೇರ್ಪಡೆಯ ದಾಖಲೆ',
@@ -566,8 +592,11 @@ $1',
 'prevn'                 => 'ಹಿಂದಿನ $1',
 'nextn'                 => 'ಮುಂದಿನ $1',
 'viewprevnext'          => 'ವೀಕ್ಷಿಸು ($1) ($2) ($3)',
+'search-result-size'    => '$1 ({{PLURAL:$2|೧ ಪದ|$2 ಪದಗಳು}})',
 'searchall'             => 'ಎಲ್ಲಾ',
+'showingresultstotal'   => "ಒಟ್ಟು '''$3''' ಶೋಧನೆಯ ಫಲಿತಾಂಶಗಳಲ್ಲಿ '''$1 - $2''' ಕೆಳಗೆ ತೋರಿಸಲಾಗುತ್ತಿದೆ",
 'powersearch'           => 'ಹುಡುಕಿ',
+'powersearch-legend'    => 'ಮುಂದುವರೆದ ಹುಡುಕಾಟ',
 
 # Preferences page
 'preferences'          => 'ಇಚ್ಛೆಗಳು',
@@ -1185,10 +1214,25 @@ $1',
 * focallength', # Do not translate list items
 
 # EXIF tags
-'exif-imagewidth'       => 'ಅಗಲ',
-'exif-imagelength'      => 'ಎತ್ತರ',
-'exif-imagedescription' => 'ಚಿತ್ರದ ಶೀರ್ಷಿಕೆ',
-'exif-copyright'        => 'ಕೃತಿಸ್ವಾಮ್ಯತೆಯನ್ನು ಹೊಂದಿರುವವರು',
+'exif-imagewidth'         => 'ಅಗಲ',
+'exif-imagelength'        => 'ಎತ್ತರ',
+'exif-imagedescription'   => 'ಚಿತ್ರದ ಶೀರ್ಷಿಕೆ',
+'exif-copyright'          => 'ಕೃತಿಸ್ವಾಮ್ಯತೆಯನ್ನು ಹೊಂದಿರುವವರು',
+'exif-gpsareainformation' => 'GPS ಪ್ರದೇಶದ ಹೆಸರು',
+'exif-gpsdatestamp'       => 'GPS ದಿನಾಂಕ',
+
+'exif-unknowndate' => 'ದಿನಾಂಕ ತಿಳಿದಿಲ್ಲ',
+
+'exif-componentsconfiguration-0' => 'ಅಸ್ಥಿತ್ವದಲ್ಲಿ ಇಲ್ಲ',
+
+'exif-meteringmode-0'   => 'ತಿಳಿದಿಲ್ಲ',
+'exif-meteringmode-1'   => 'ಸರಾಸರಿ',
+'exif-meteringmode-255' => 'ಇತರ',
+
+'exif-lightsource-0'  => 'ತಿಳಿದಿಲ್ಲ',
+'exif-lightsource-11' => 'ನೆರಳು',
+
+'exif-focalplaneresolutionunit-2' => 'ಇಂಚುಗಳು',
 
 # External editor support
 'edit-externally'      => 'ಬಾಹ್ಯ ತಂತ್ರಾಂಶವನ್ನು ಉಪಯೋಗಿಸಿ ಇದನ್ನು ಸಂಪಾದಿಸಿ',
@@ -1202,33 +1246,58 @@ $1',
 'monthsall'        => 'ಎಲ್ಲಾ',
 
 # E-mail address confirmation
-'confirmemail'          => 'ಇ-ಅಂಚೆ ವಿಳಾಸವನ್ನು ಖಾತ್ರಿ ಮಾಡಿ',
-'confirmemail_success'  => 'ನಿಮ್ಮ ಇ-ಅಂಚೆ ವಿಳಾಸ ಖಾತ್ರಿಗೊಂಡಿದೆ. ಈಗ ನೀವು ಲಾಗಿನ್ ಆಗಿ ವಿಕಿಯನ್ನು ಉಪಯೋಗಿಸಬಹುದು.',
-'confirmemail_loggedin' => 'ನಿಮ್ಮ ಇ-ಅಂಚೆ ವಿಳಾಸ ಈಗ ಖಾತ್ರಿಗೊಂಡಿದೆ.',
+'confirmemail'           => 'ಇ-ಅಂಚೆ ವಿಳಾಸವನ್ನು ಖಾತ್ರಿ ಮಾಡಿ',
+'confirmemail_sent'      => 'ಧೃಡೀಕರಣ ಇ-ಅಂಚೆ ಕಳುಹಿಸಲಾಯಿತು.',
+'confirmemail_needlogin' => 'ನಿಮ್ಮ ಇ-ಅಂಚೆ ವಿಳಾಸವನ್ನು ಧೃಡೀಕರಿಸಲು ನೀವು $1 ಮಾಡಬೇಕು.',
+'confirmemail_success'   => 'ನಿಮ್ಮ ಇ-ಅಂಚೆ ವಿಳಾಸ ಖಾತ್ರಿಗೊಂಡಿದೆ. ಈಗ ನೀವು ಲಾಗಿನ್ ಆಗಿ ವಿಕಿಯನ್ನು ಉಪಯೋಗಿಸಬಹುದು.',
+'confirmemail_loggedin'  => 'ನಿಮ್ಮ ಇ-ಅಂಚೆ ವಿಳಾಸ ಈಗ ಖಾತ್ರಿಗೊಂಡಿದೆ.',
+'confirmemail_error'     => 'ನಿಮ್ಮ ಧೃಡೀಕರಣವನ್ನು ಉಳಿಸುವಲ್ಲಿ ಏನೋ ದೋಷವಾಯಿತು.',
+'confirmemail_subject'   => '{{SITENAME}} ಇ-ಅಂಚೆ ವಿಳಾಸ ಧೃಡೀಕರಣ',
 
 # Trackbacks
 'trackbackremove' => ' ([$1 ಅಳಿಸು])',
 
 # Delete conflict
 'deletedwhileediting' => 'ಸೂಚನೆ: ನೀವು ಸಂಪಾದನೆ ಪ್ರಾರಂಭಿಸಿದ ನಂತರ ಈ ಪುಟವನ್ನು ಅಳಿಸಲಾಗಿದೆ!',
+'confirmrecreate'     => "ಸದಸ್ಯ [[User:$1|$1]] ([[User talk:$1|ಚರ್ಚೆ]]) ನೀವು ಸಂಪಾದನೆ ಶುರು ಮಾಡಿದ ಮೇಲೆ ಕೆಳಗಿನ ಕಾರಣ ನೀಡಿ ಈ ಪುಟವನ್ನು ಅಳಿಸಿದ್ದಾರೆ:
+: ''$2''
+ದಯವಿಟ್ಟು ಈ ಪುಟವನ್ನು ನೀವು ಪುನಃ ಸೃಷ್ಟಿಸಬೇಕೆಂದಿರುವಿರಿ ಎಂದು ಧೃಡೀಕರಿಸಿ.",
 'recreate'            => 'ಪುನಃ ಸೃಷ್ಟಿಸು',
 
 # HTML dump
 'redirectingto' => '[[$1]] ಪುಟಕ್ಕೆ ಪುನರ್ನಿರ್ದೇಶಿತವಾಗುತ್ತಿದೆ...',
 
+# AJAX search
+'searchcontaining' => "''$1'' ಅನ್ನು ಹೊಂದಿರುವ ಪುಟಗಳನ್ನು ಹುಡುಕು.",
+'searchnamed'      => "''$1'' ಎಂದು ಹೆಸರಿಸಲಾದ ಪುಟಗಳನ್ನು ಹುಡುಕು.",
+'articletitles'    => "''$1'' ಇಂದ ಪ್ರಾರಂಭವಾಗುವ ಪುಟಗಳು",
+'hideresults'      => 'ಫಲಿತಾಂಶಗಳನ್ನು ಅಡಗಿಸು',
+
 # Multipage image navigation
 'imgmultipageprev' => '← ಹಿಂದಿನ ಪುಟ',
 'imgmultipagenext' => 'ಮುಂದಿನ ಪುಟ →',
+'imgmultigo'       => 'ಹೋಗು!',
+'imgmultigotopre'  => 'ಪುಟಕ್ಕೆ ಹೋಗು',
 
 # Table pager
-'table_pager_next'  => 'ಮುಂದಿನ ಪುಟ',
-'table_pager_prev'  => 'ಹಿಂದಿನ ಪುಟ',
-'table_pager_first' => 'ಮೊದಲ ಪುಟ',
-'table_pager_last'  => 'ಕೊನೆಯ ಪುಟ',
+'ascending_abbrev'         => 'ಏರು',
+'descending_abbrev'        => 'ಇಳಿ',
+'table_pager_next'         => 'ಮುಂದಿನ ಪುಟ',
+'table_pager_prev'         => 'ಹಿಂದಿನ ಪುಟ',
+'table_pager_first'        => 'ಮೊದಲ ಪುಟ',
+'table_pager_last'         => 'ಕೊನೆಯ ಪುಟ',
+'table_pager_limit'        => 'ಪ್ರತಿ ಪುಟಕ್ಕೆ $1 ಅಂಶಗಳನ್ನು ತೋರಿಸು',
+'table_pager_limit_submit' => 'ಹೋಗು',
+'table_pager_empty'        => 'ಯಾವ ಫಲಿತಾಂಶಗಳೂ ಇಲ್ಲ',
 
 # Auto-summaries
-'autosumm-blank' => 'ಪುಟದಲ್ಲಿರುವ ಎಲ್ಲಾ ಮಾಹಿತಿಯನ್ನೂ ತಗೆಯುತ್ತಿರುವೆ',
-'autosumm-new'   => 'ಹೊಸ ಪುಟ: $1',
+'autosumm-blank'   => 'ಪುಟದಲ್ಲಿರುವ ಎಲ್ಲಾ ಮಾಹಿತಿಯನ್ನೂ ತಗೆಯುತ್ತಿರುವೆ',
+'autosumm-replace' => "ಪುಟದ ಮಾಹಿತಿ ತಗೆದು '$1' ಎಂದು ಬರೆಯಲಾಗಿದೆ",
+'autoredircomment' => '[[$1]] ಪುಟಕ್ಕೆ ಪುನರ್ನಿರ್ದೇಶನ',
+'autosumm-new'     => 'ಹೊಸ ಪುಟ: $1',
+
+# Friendlier slave lag warnings
+'lag-warn-normal' => '$1 ಕ್ಷಣಗಳಿಗಿಂತ ಹೊಸದಾದ ಬದಲಾವಣೆಗಳು ಈ ಪಟ್ಟಿಯಲ್ಲಿ ತೋರದೆ ಇರಬಹುದು.',
 
 # Watchlist editor
 'watchlistedit-numitems'       => 'ಚರ್ಚೆ ಪುಟಗಳನ್ನು ಹೊರತುಪಡಿಸಿ, ನಿಮ್ಮ ವೀಕ್ಷಣಾಪಟ್ಟಿಯಲ್ಲಿ {{PLURAL:$1|೧ ಶೀರ್ಷಿಕೆ ಇದೆ|$1 ಶೀರ್ಷಿಕೆಗಳು ಇವೆ}}.',
@@ -1242,6 +1311,8 @@ $1',
 'watchlistedit-raw-title'      => 'ಮೂಲ ವೀಕ್ಷಣಾಪಟ್ಟಿಯನ್ನು ಸಂಪಾದಿಸು',
 'watchlistedit-raw-legend'     => 'ಮೂಲ ವೀಕ್ಷಣಾಪಟ್ಟಿಯನ್ನು ಸಂಪಾದಿಸು',
 'watchlistedit-raw-titles'     => 'ಶೀರ್ಷಿಕೆಗಳು:',
+'watchlistedit-raw-added'      => '{{PLURAL:$1|೧ ಶೀರ್ಷಿಕೆಯನ್ನು|$1 ಶೀರ್ಷಿಕೆಗಳನ್ನು}} ಸೇರಿಸಲಾಯಿತು:',
+'watchlistedit-raw-removed'    => '{{PLURAL:$1|೧ ಶೀರ್ಷಿಕೆಯನ್ನು|$1 ಶೀರ್ಷಿಕೆಗಳನ್ನು}} ತೆಗೆಯಲಾಯಿತು:',
 
 # Watchlist editing tools
 'watchlisttools-view' => 'ಸೂಚಿಸಲ್ಪಟ್ಟ ಬದಲಾವಣೆಗಳನ್ನು ವೀಕ್ಷಿಸಿ',

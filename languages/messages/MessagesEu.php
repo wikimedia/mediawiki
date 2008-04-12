@@ -635,6 +635,7 @@ Wiki honetako beste administratzaileek ezkutuko eduki hau ikusteko aukera izango
 'revdelete-log'               => 'Erregistroaren iruzkina:',
 'revdelete-submit'            => 'Hautatutako berrikuspenari aplikatu',
 'revdelete-logentry'          => '[[$1]](r)entzako berriskupen ikusgaitasuna aldatu da',
+'revdelete-uname'             => 'Erabiltzaile izena',
 
 # History merging
 'mergehistory'                     => 'Orrialdeen historiak bateratu',

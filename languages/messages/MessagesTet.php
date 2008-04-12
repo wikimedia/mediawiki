@@ -42,31 +42,37 @@ $namespaceAliases = array(
 );
 
 $specialPageAliases = array(
-	'Watchlist'                 => array( "Lista_hateke" ),
-	'Recentchanges'             => array( "Mudansa_foufoun_sira" ),
-	'Upload'                    => array( "Tau_iha_arkivu_laran" ),
-	'Imagelist'                 => array( "Lista_imajen" ),
-	'Newimages'                 => array( "Imajen_foun" ),
-	'Listusers'                 => array( "Lista_uza-na'in" ),
-	'Statistics'                => array( "Estatístika" ),
-	'Randompage'                => array( "Pájina_ruma" ),
-	'Shortpages'                => array( "Pájina_badak" ),
-	'Longpages'                 => array( "Pájina_naruk" ),
-	'Protectedpages'            => array( "Pájina_sira-ne'ebé_proteje_tiha" ),
-	'Allpages'                  => array( "Pájina_hotu" ),
-	'Ipblocklist'               => array( "Lista_ema_sira-ne'ebé_blokeiu_tiha" ),
-	'Specialpages'              => array( "Pájina_espesiál_sira" ),
-	'Whatlinkshere'             => array( "Pájina_sira_ne'ebé_bá_iha_ne'e" ),
-	'Movepage'                  => array( "Book" ),
-	'Categories'                => array( "Kategoría" ),
-	'Version'                   => array( "Versaun" ),
-	'Allmessages'               => array( "Mensajen_hotu" ),
-	'Blockip'                   => array( "Blokeiu" ),
-	'Undelete'                  => array( "Restaurar" ),
-	'Userrights'                => array( "Kuana" ),
-	'Mypage'                    => array( "Ha'u-nia_pájina" ),
-	'Listadmins'                => array( "Lista_administradór" ),
-	'Search'                    => array( "Buka" ),
+	'CreateAccount'             => array( 'Rejista' ),
+	'Preferences'               => array( 'Preferénsia' ),
+	'Watchlist'                 => array( 'Lista_hateke' ),
+	'Recentchanges'             => array( 'Mudansa_foufoun_sira' ),
+	'Upload'                    => array( 'Tau_iha_arkivu_laran' ),
+	'Imagelist'                 => array( 'Lista_imajen' ),
+	'Newimages'                 => array( 'Imajen_foun' ),
+	'Listusers'                 => array( 'Lista_uza-na\'in' ),
+	'Statistics'                => array( 'Estatístika' ),
+	'Randompage'                => array( 'Pájina_ruma' ),
+	'Shortpages'                => array( 'Pájina_badak' ),
+	'Longpages'                 => array( 'Pájina_naruk' ),
+	'Protectedpages'            => array( 'Pájina_sira-ne\'ebé_proteje_tiha' ),
+	'Allpages'                  => array( 'Pájina_hotu' ),
+	'Ipblocklist'               => array( 'Lista_ema_sira-ne\'ebé_blokeiu_tiha' ),
+	'Specialpages'              => array( 'Pájina_espesiál_sira' ),
+	'Contributions'             => array( 'kontribuisaun' ),
+	'Emailuser'                 => array( 'Haruka_korreiu_eletróniku' ),
+	'Whatlinkshere'             => array( 'Pájina_sira_ne\'ebé_bá_iha_ne\'e' ),
+	'Movepage'                  => array( 'Book' ),
+	'Categories'                => array( 'Kategoria' ),
+	'Export'                    => array( 'Esporta' ),
+	'Version'                   => array( 'Versaun' ),
+	'Allmessages'               => array( 'Mensajen_hotu' ),
+	'Blockip'                   => array( 'Blokeiu' ),
+	'Undelete'                  => array( 'Restaurar' ),
+	'Userrights'                => array( 'Kuana', 'Priviléjiu' ),
+	'Mypage'                    => array( 'Ha\'u-nia_pájina' ),
+	'Listadmins'                => array( 'Lista_administradór' ),
+	'Search'                    => array( 'Buka' ),
+	'Withoutinterwiki'          => array( 'Laiha_interwiki' ),
 );
 
 $messages = array(
@@ -337,8 +343,8 @@ $messages = array(
 'userrights-editusergroup'    => "Filak lubu uza-na'in",
 'userrights-groupsmember'     => 'Membru iha:',
 'userrights-available-none'   => "Ó la bele filak lubu uza-na'in.",
-'userrights-available-add'    => "Ó bele tau tan uza-na'in hotu ba lubu ne'e: $1.",
-'userrights-available-remove' => "Ó bele hasai uza-na'in hotu ba lubu ne'e: $1.",
+'userrights-available-add'    => "Ó bele tau tan uza-na'in hotu ba lubu ne'e{{PLURAL:$2||}}: $1.",
+'userrights-available-remove' => "Ó bele hasai uza-na'in hotu ba lubu ne'e{{PLURAL:$2||}}: $1.",
 'userrights-no-interwiki'     => "Ó la bele filak kuana uza-na'in iha wiki seluk.",
 
 # Groups
@@ -449,6 +455,10 @@ $messages = array(
 # Special:Listusers
 'listusers-submit' => 'Hatudu',
 
+# Special:Listgrouprights
+'listgrouprights-group'  => 'Lubu',
+'listgrouprights-rights' => 'Priviléjiu',
+
 # E-mail user
 'emailuser'       => "Haruka korreiu eletróniku ba uza-na'in ne'e",
 'defemailsubject' => '{{SITENAME}} korreiu eletróniku',
@@ -503,12 +513,13 @@ $messages = array(
 'restriction-create' => 'Kria',
 
 # Undelete
-'undelete'           => 'Haree pájina halakon tiha',
-'undeletebtn'        => 'Restaurar',
-'undeletelink'       => 'restaurar',
-'undeletecomment'    => 'Komentáriu:',
-'undeletedarticle'   => 'restaurar "[[$1]]"',
-'undeletedrevisions' => 'restaurar $1 versaun',
+'undelete'               => 'Haree pájina halakon tiha',
+'undeletebtn'            => 'Restaurar',
+'undeletelink'           => 'restaurar',
+'undeletecomment'        => 'Komentáriu:',
+'undeletedarticle'       => 'restaurar "[[$1]]"',
+'undeletedrevisions'     => 'restaurar $1 versaun',
+'undelete-search-submit' => 'Buka',
 
 # Namespace form on various pages
 'blanknamespace' => '(Prinsipál)',
@@ -649,5 +660,8 @@ $messages = array(
 'version-other'            => 'Seluk',
 'version-version'          => 'Versaun',
 'version-software-version' => 'Versaun',
+
+# Special:FileDuplicateSearch
+'fileduplicatesearch-submit' => 'Buka',
 
 );

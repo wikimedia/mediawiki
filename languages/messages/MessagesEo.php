@@ -1305,10 +1305,11 @@ komprenata kiel rekomendo aŭ reklamo.',
 'listusers-noresult' => 'Neniu uzanto trovita.',
 
 # Special:Listgrouprights
-'listgrouprights'         => 'Gruprajtoj de uzantoj',
-'listgrouprights-summary' => 'Jen listo de uzanto-grupoj difinitaj en ĉi tiu vikio, kun ties asociaj atingrajtoj.',
-'listgrouprights-group'   => 'Grupo',
-'listgrouprights-rights'  => 'Rajtoj',
+'listgrouprights'          => 'Gruprajtoj de uzantoj',
+'listgrouprights-summary'  => 'Jen listo de uzanto-grupoj difinitaj en ĉi tiu vikio, kun ties asociaj atingrajtoj.',
+'listgrouprights-group'    => 'Grupo',
+'listgrouprights-rights'   => 'Rajtoj',
+'listgrouprights-helppage' => 'Help:Grupaj rajtoj',
 
 # E-mail user
 'mailnologin'     => 'Neniu alsendota adreso',
@@ -2259,17 +2260,21 @@ Retpoŝta programo sciigis: $1',
 'confirmemail_loggedin'    => 'Via retadreso estas nun konfirmita.',
 'confirmemail_error'       => 'Io misokazis dum konservo de via konfirmo.',
 'confirmemail_subject'     => '{{SITENAME}} konfirmado de retadreso',
-'confirmemail_body'        => 'Iu, verŝajne vi ĉe la IP-adreso $1, enregistrigis per tiu
-ĉi retpoŝtadreso la konton "$2" ĉe {{SITENAME}}.
+'confirmemail_body'        => 'Iu, verŝajne vi, ĉe la IP-adreso $1, 
+enregistrigis konton "$2" ĉe {{SITENAME}} kun ĉi retadreso ĉe {{SITENAME}}.
 
-Malfermu tiun ĉi ligon en via retumilo, por konfirmi ke la
-konto ja apartenas al vi kaj por malŝlosi retpoŝtajn
-kapablojn ĉe {{SITENAME}}:
+Konfirmi ke ĉi tiu konto ja apartenas al vi kaj por malŝlosi 
+retpoŝtajn kapablojn ĉe {{SITENAME}}, malfermu tiun ĉi ligon en via retumilo:
 
 $3
 
-Se vi ne mendis ĉi tiun mesaĝon, ne alklaku la ligon. Tiu
-ĉi konfirmokodo eksvalidiĝos je $4.',
+Se vi ne enregistrigis la konton, sekvu ĉi tiu ligilo por 
+nuligi la retpoŝtan konfirmadon.
+
+$5
+
+
+Ĉi tiu konfirmokodo eksvalidiĝos je $4.',
 'confirmemail_invalidated' => 'Konfirmado de retadreso estas nuligita',
 'invalidateemail'          => 'Nuligi konfirmadon de retadreso',
 

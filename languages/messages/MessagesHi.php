@@ -84,6 +84,7 @@ $messages = array(
 'tog-watchlisthideown'        => 'मेरी ध्यानसूचीसे मेरे बदलाव छुपायें',
 'tog-watchlisthidebots'       => 'मेरी ध्यानसूचीसे बोटोंद्वारा किये हुए बदलाव छुपायें',
 'tog-watchlisthideminor'      => 'मेरी ध्यानसूचीसे छोटे बदलाव छुपायें',
+'tog-nolangconversion'        => 'वेरियंट्स के बदलाव बंद करें',
 'tog-ccmeonemails'            => 'मैने अन्य सदस्योंको भेजे इ-मेल की कापी मुझे भी भेजें',
 'tog-diffonly'                => 'अवतरणोंमें फर्क दर्शाते समय पुराने अवतरण न दिखायें',
 'tog-showhiddencats'          => 'छुपाई हुई श्रेणियाँ दर्शायें',
@@ -436,6 +437,7 @@ Don't forget to personalize your {{SITENAME}} preferences.",
 'uid'                        => 'सदस्य क्रमांक:',
 'yourrealname'               => 'आपका असली नाम*',
 'yourlanguage'               => 'भाषा:',
+'yourvariant'                => 'वेरियंट:',
 'yournick'                   => 'आपका उपनाम (दस्तखत/सही के लिये)',
 'badsig'                     => 'गलत कच्चा दस्तखत, HTML टैग की जाँच करें ।',
 'badsiglength'               => 'अत्याधिक बड़ा उपनाम; $1 अक्षरों से कम होना चाहिये',
@@ -499,6 +501,7 @@ Don't forget to personalize your {{SITENAME}} preferences.",
 'resetpass'               => 'कूटशब्द रिसेट करें',
 'resetpass_announce'      => 'आप इ-मेल से प्राप्त अस्थायी कोडसे लॉग इन हैं ।
 लॉग इन को पूरा करने के लिये, आप एक नया कूटशब्द दें:',
+'resetpass_text'          => '<!-- पाठ यहां लिखें -->',
 'resetpass_header'        => 'कूटशब्द रिसेट करें',
 'resetpass_submit'        => 'कूटशब्द बनाईयें और लॉग इन करें',
 'resetpass_success'       => 'आपका कूटशब्द बदल दिया गया हैं! अभी आपको लॉग इन करवा रहें हैं...',
@@ -663,6 +666,7 @@ Don't forget to personalize your {{SITENAME}} preferences.",
 'template-protected'                => '(सुरक्षित)',
 'template-semiprotected'            => '(अर्ध-सुरक्षीत)',
 'hiddencategories'                  => 'यह लेख निम्नलिखित {{PLURAL:$1|1 छुपाई हुई श्रेणीमें|$1 छुपाईं हुईं श्रेणियोंमें}} हैं:',
+'edittools'                         => '<!-- यहां दिया हुआ पाठ संपादन और अपलोड फ़ार्म के नीचे दर्शाया जायेगा। -->',
 'nocreatetitle'                     => 'लेख निर्माणमें प्रतिबंध',
 'nocreatetext'                      => '{{SITENAME}} पर नये लेख लिखनेके लिये मनाई की गई हैं ।
 आप पीछे जाकर अस्तित्वमें होनेवाले लेखोंको संपादित कर सकते हैं, अथवा [[Special:Userlogin|नया ख़ाता खोलें / प्रवेश करें]] ।',
@@ -771,7 +775,8 @@ Don't forget to personalize your {{SITENAME}} preferences.",
 'logdelete-log-message'       => '$2 {{PLURAL:$2|घटना|घटनाओं}}के लिये $1',
 
 # Suppression log
-'suppressionlog' => 'सप्रेशन सूची',
+'suppressionlog'     => 'सप्रेशन सूची',
+'suppressionlogtext' => 'नीचे प्रबंधकोंसे छुपायें गयें ब्लॉक और हटाये गये पन्नों की सूची हैं। अभी अस्तित्वमें होने वाले ब्लॉक देखने के लिये [[Special:Ipblocklist|आइपी ब्लॉक सूची]] देखें।',
 
 # History merging
 'mergehistory'                     => 'पन्ने के इतिहास एकत्रित करें',
@@ -1076,6 +1081,20 @@ latex, dvips, gs, और convert के इन्स्टॉलेशन की
 इस फ़ाईल की हटाने की सूची आपके सहायता के लिये यहां दी गई हैं:",
 'filename-bad-prefix'         => 'आप अपलोड कर रहे फ़ाईल का नाम <strong>"$1"</strong> से शुरू होता हैं, जो की डिजिटल कैमेरे द्वारा दिया गया नाम हैं।
 कृपया इस फ़ाईलके लिये कोई दूसरा ज्यादा ज़ानकारीयुक्त नाम चुनें।',
+'filename-prefix-blacklist'   => '#<!-- leave this line exactly as it is --> <pre>
+# रूपरेखा इस प्रकार हैं:
+#   *  "#" अक्षर से शुरु होने वाली लाइनें टिप्पणीयाँ हैं।
+#   *हर नई लाईन कैमेरा उत्पादक द्वारा लगाये जाने वाले उपपदोंकी सूची हैं।
+CIMG # Casio
+DSC_ # Nikon
+DSCF # Fuji
+DSCN # Nikon
+DUW # some mobil phones
+IMG # generic
+JD # Jenoptik
+MGP # Pentax
+PICT # misc.
+ #</pre> <!-- leave this line exactly as it is -->',
 
 'upload-proto-error'      => 'गलत प्रोटोकोल',
 'upload-proto-error-text' => 'रिमोट अपलोड के लिये URL का नाम <code>http://</code> या <code>ftp://</code> से शुरु होना आवश्यक हैं।',
@@ -1265,6 +1284,7 @@ latex, dvips, gs, और convert के इन्स्टॉलेशन की
 'ancientpages'            => 'सबसे पुराने लेख',
 'move'                    => 'नाम बदलें',
 'movethispage'            => 'पन्ने का नाम बदलें',
+'unusedimagestext'        => 'कृपया ध्यान दें की अन्य वेब साइट इस फ़ाईल को डाइरेक्ट कड़ीयाँ दे सकतीं हैं, इसलिये इस्तेमाल होने के बावजूदभी इस सूची में दिख सकती हैं।',
 'unusedcategoriestext'    => 'निम्नलिखित श्रेणी पन्ने अस्तित्वमें हैं जबकि कोईभी लेख या अन्य श्रेणियाँ इनका इस्तेमाल नहीं करते हैं।',
 'notargettitle'           => 'लक्ष्य नहीं',
 'notargettext'            => 'इस क्रिया को करने के लिये आपने लक्ष्य पॄष्ठ या सदस्य बताया नहीं हैं।',
@@ -1313,7 +1333,10 @@ latex, dvips, gs, और convert के इन्स्टॉलेशन की
 'listusers-noresult' => 'सदस्य मिला नहीं।',
 
 # Special:Listgrouprights
-'listgrouprights' => 'सदस्य ग्रुप अधिकार',
+'listgrouprights'         => 'सदस्य ग्रुप अधिकार',
+'listgrouprights-summary' => 'नीचे विकिपर बनायें गये ग्रुपोंकी सूची उन ग्रुपोंके सदस्योंको प्राप्त अधिकारोंके साथ दर्शायी गई हैं।',
+'listgrouprights-group'   => 'ग्रुप',
+'listgrouprights-rights'  => 'अधिकार',
 
 # E-mail user
 'mailnologin'     => 'पानेवाले का एड्रेस दिया नहीं',
@@ -1403,6 +1426,7 @@ latex, dvips, gs, और convert के इन्स्टॉलेशन की
 'deletedtext'                 => '"<nowiki>$1</nowiki>" को हटाया गया है ।
 हाल में हटाये गये लेखोंकी सूची के लिये $2 देखें ।',
 'deletedarticle'              => '"$1" को हटाया गया है।',
+'suppressedarticle'           => '"[[$1]]" को सप्रेस किया',
 'dellogpage'                  => 'हटाने की सूची',
 'dellogpagetext'              => 'नीचे हाल में हटायें गये पन्नोंकी सूची हैं।',
 'deletionlog'                 => 'हटाने की सूची',
@@ -1548,6 +1572,14 @@ $1',
 'ipbexpiry'                   => 'समाप्ति:',
 'ipbreason'                   => 'कारण',
 'ipbreasonotherlist'          => 'दूसरा कारण',
+'ipbreason-dropdown'          => '*ब्लॉक करने के साधारण कारण
+** गलत ज़ानकारी भरना
+** पन्नोंसे पाठ हटाना
+** बाहरी साइट्सकी कड़ीयाँ देना
+** पन्ने में कचरा भरना
+** सदस्योंको तंग करना
+** एक से ज्यादा खातें खोलकर परेशान करना
+** अवैध सदस्यनाम',
 'ipbanononly'                 => 'सिर्फ अनामक सदस्योंको ब्लॉक करें',
 'ipbcreateaccount'            => 'खाते का निर्माण रोकें',
 'ipbemailban'                 => 'सदस्य को इ-मेल भेजने से रोकें',
@@ -1805,6 +1837,14 @@ $1',
 'tooltip-watch'                   => 'यह पन्ना अपनी ध्यानसूची में डालियें ।',
 'tooltip-recreate'                => 'यह पन्ना पहले हटाया होने के बावजूद फिरसे बनायें',
 'tooltip-upload'                  => 'अपलोड शुरू करें',
+
+# Stylesheets
+'common.css'   => '/* यहां रखी css सभी त्वचाओंपर असर करेगी */',
+'monobook.css' => '/* यहां रखी गई css मोनोबुक त्वचा का इस्तेमाल करने वाले सभी सदस्योंपर असर करेगी */',
+
+# Scripts
+'common.js'   => '/* यहां लिखी गई जावास्क्रीप्ट सभी सदस्योंके लिये इस्तेमाल में लाई जायेगी। */',
+'monobook.js' => '/* डिप्रिकेटेड;[[MediaWiki:common.js]] का इस्तेमाल करें */',
 
 # Metadata
 'nodublincore'      => 'Dublin Core RDF metadata इस सर्वर के लिये प्राप्त नहीं हैं।',
@@ -2095,6 +2135,7 @@ $1',
 'exif-lightsource-17'  => 'प्रमाण प्रकाश A',
 'exif-lightsource-18'  => 'प्रमाण प्रकाश B',
 'exif-lightsource-19'  => 'प्रमाण प्रकाश C',
+'exif-lightsource-21'  => 'D75',
 'exif-lightsource-24'  => 'ISO स्टूडीयो टंगस्टन',
 'exif-lightsource-255' => 'अन्य प्रकाश स्रोत',
 
@@ -2136,6 +2177,28 @@ $1',
 'exif-contrast-2' => 'हार्ड',
 
 'exif-saturation-0' => 'सामान्य',
+'exif-saturation-1' => 'निम्न सैचुरेशन',
+'exif-saturation-2' => 'उच्च सैचुरेशन',
+
+'exif-sharpness-0' => 'साधारण',
+'exif-sharpness-1' => 'मृदू',
+'exif-sharpness-2' => 'कठीन',
+
+'exif-subjectdistancerange-0' => 'अज्ञात',
+'exif-subjectdistancerange-1' => 'मैक्रो',
+'exif-subjectdistancerange-2' => 'नजदीक से देखें',
+'exif-subjectdistancerange-3' => 'दूर से देखें',
+
+# Pseudotags used for GPSLatitudeRef and GPSDestLatitudeRef
+'exif-gpslatitude-n' => 'उत्तरी अक्षांश',
+'exif-gpslatitude-s' => 'दक्षिणी अक्षांश',
+
+# Pseudotags used for GPSLongitudeRef and GPSDestLongitudeRef
+'exif-gpslongitude-e' => 'पूर्वी रेखांश',
+'exif-gpslongitude-w' => 'पश्चिमी रेखांश',
+
+'exif-gpsstatus-a' => 'मेज़रमेंट चल रहा हैं',
+'exif-gpsstatus-v' => 'मेज़रमेंट इन्टरोपरेबिलीटी',
 
 'exif-gpsmeasuremode-2' => '२-बाजूओंवाली मेज़रमेंट',
 'exif-gpsmeasuremode-3' => '३-बाजूओंवाली मेज़रमेंट',
@@ -2163,10 +2226,42 @@ $1',
 # E-mail address confirmation
 'confirmemail'             => 'ई-मेल प्रमाणित करे',
 'confirmemail_noemail'     => 'आपके [[Special:Preferences|सदस्य वरीयतायें]]में वैध इ-मेल एड्रेस नहीं दिया हुआ हैं।',
+'confirmemail_text'        => '{{SITENAME}} पर उपलब्ध इ-मेल सुविधाओंका लाभ उठाने के लिये प्रमाणित एड्रेस होना जरूरी हैं।
+आपके एड्रेस पर एक कन्फर्मेशन कोड भेजने के लिये नीचे दिये बटन पर क्लिक करें।
+उस मेल में एक कोड से लदी एक कड़ी होगी;
+आपके इ-मेल के प्रमाणिकरण के लिये इसे अपने ब्राउज़रमें खोलें।',
+'confirmemail_pending'     => '<div class="error">आपको पहलेसे ही एक कन्फर्मेशन कोड भेजा गया हैं;
+अगर आपने हालमें खाता खोला हैं, तो नये कोड की माँग करने से पहले कुछ पल उसका इंतज़ार करें।</div>',
 'confirmemail_send'        => 'एक कन्फर्मेशन कोड भेजें',
 'confirmemail_sent'        => 'कन्फर्मेशन इ-मेल भेज दिया।',
+'confirmemail_oncreate'    => 'आपके इ-मेल पते पर एक कन्फर्मेशन कोड भेजा गया हैं।
+लॉग इन करने के लिये इसकी आवश्यकता नहीं हैं, पर इस विकिपर उपलब्ध इ-मेल आधारित सुविधाओंका इस्तेमाल करने के लिये यह देना जरूरी हैं।',
+'confirmemail_sendfailed'  => 'कन्फर्मेशन इ-मेल भेज नहीं पायें।
+कृपया गलतीयोंके लिये इ-मेल एड्रेस जाँचें।
+
+मेलर ने दिया: $1',
+'confirmemail_invalid'     => 'गलत कन्फर्मेशन कोड।
+कोड रद्द हो गया होने की संभावना हैं।',
+'confirmemail_needlogin'   => 'आपका इ-मेल पता प्रमाणित करने के लिये, आपको $1 करना पडेगा।',
+'confirmemail_success'     => 'आपका इ-मेल पता अभी प्रमाणित हो गया हैं।
+अभी आप लॉग इन करके विकि का मज़ा ले सकतें हैं।',
 'confirmemail_loggedin'    => 'आपके इ-मेल एड्रेस का प्रमाणिकरण पूरा हो गया हैं।',
+'confirmemail_error'       => 'आपकी निश्चिती संजोते समय कुछ गलती हुई हैं।',
 'confirmemail_subject'     => '{{SITENAME}} इ-मेल एड्रेस प्रमाणिकरण',
+'confirmemail_body'        => 'किसीने, शायद आपने,  $1 आइपी एड्रेस से,
+{{SITENAME}} पर  "$2" इस नाम से खाता खोलने की माँग की हैं।
+
+यह खाता आपही का हैं और {{SITENAME}} पर उपलब्ध इ-मेल
+सुविधा शुरू करने के लिये, नीचे दी गई कड़ी अपने ब्राउज़रमें खोलें:
+
+$3
+
+अगर यह माँग आपने *नहीं* की हैं, तो इसे रद्द करने के लिये
+नीचे दी हुई कड़ी खोलें:
+
+$5
+
+यह निश्चिती कोड $4 को समाप्त हो जायेगा।',
 'confirmemail_invalidated' => 'इ-मेल एड्रेस प्रमाणिकरण रद्द कर दिया गया हैं',
 'invalidateemail'          => 'इ-मेल प्रमाणिकरण रद्द करें',
 
