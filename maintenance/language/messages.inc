@@ -2449,6 +2449,16 @@ $wgMessageStructure = array(
 		'fileduplicatesearch-info',
 		'fileduplicatesearch-result-1',
 		'fileduplicatesearch-result-n',
+	),'specialpages-group' => array(
+		'specialpages-group-maintenance',
+		'specialpages-group-other',
+		'specialpages-group-login',
+		'specialpages-group-changes',
+		'specialpages-group-media',
+		'specialpages-group-users',
+		'specialpages-group-needy',
+		'specialpages-group-highuse',
+		'specialpages-group-permissions',
 	),
 );
 
