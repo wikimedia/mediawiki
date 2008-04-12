@@ -95,10 +95,7 @@ class LocalRepo extends FSRepo {
 	}
 
 	function checkRedirect( $title ) {
-		global $wgFileRedirects, $wgMemc;
-		if( !$wgFileRedirects ) {
-			return false;
-		}
+		global $wgMemc;
 
 		if( is_string( $title ) ) {
 			$title = Title::newFromTitle( $title );
