@@ -490,6 +490,24 @@ class WebRequest {
 		return htmlspecialchars( $this->appendQuery( $query ) );
 	}
 
+	function appendQueryValue( $key, $value, $onlyquery = false ) {
+		return $this->appendQueryArray( array( $key => $value ), $onlyquery );
+	}
+
+	/**
+	 * Appends or replaces value of query variables.
+	 * @param $array Array of values to replace/add to query
+	 * @return string
+	 */
+	function appendQueryArray( $array, $onlyquery = false ) {
+		global $wgTitle;
+		$newquery = $_GET;
+		unset( $newquery['title'] );
+		$newquery = array_merge( $newquery, $array );
+		$query = wfArrayToCGI( $newquery );
+		return $onlyquery ? $query : $wgTitle->getLocalURL( $basequery );
+	}
+
 	/**
 	 * Check for limit and offset parameters on the input, and return sensible
 	 * defaults if not given. The limit must be positive and is capped at 5000.
