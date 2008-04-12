@@ -176,6 +176,7 @@ Special:EmailUser
 * (bug 13690) Fix PHP notice on accessing some URLs
 * Hide (undo) link if user isn't able to edit page
 * Invalidate cache of pages that includes images via redirects on upload
+* (bug 13705) Don't show rollback link in page history if called with dir=prev
 
 === API changes in 1.13 ===
 

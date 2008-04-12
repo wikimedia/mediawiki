@@ -611,7 +611,7 @@ class PageHistoryPager extends ReverseChronologicalPager {
 
 	function formatRow( $row ) {
 		if ( $this->mLastRow ) {
-			$latest = $this->mCounter == 1 && $this->mOffset == '';
+			$latest = $this->mCounter == 1 && $this->mOffset == '' && !$this->mIsBackwards;
 			$firstInList = $this->mCounter == 1;
 			$s = $this->mPageHistory->historyLine( $this->mLastRow, $row, $this->mCounter++, 
 				$this->mPageHistory->getNotificationTimestamp(), $latest, $firstInList );
@@ -630,7 +630,7 @@ class PageHistoryPager extends ReverseChronologicalPager {
 
 	function getEndBody() {
 		if ( $this->mLastRow ) {
-			$latest = $this->mCounter == 1 && $this->mOffset == 0;
+			$latest = $this->mCounter == 1 && $this->mOffset == 0 && !$this->mIsBackwards;
 			$firstInList = $this->mCounter == 1;
 			if ( $this->mIsBackwards ) {
 				# Next row is unknown, but for UI reasons, probably exists if an offset has been specified
