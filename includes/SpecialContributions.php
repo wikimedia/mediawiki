@@ -7,7 +7,7 @@
 class ContribsPager extends ReverseChronologicalPager {
 	public $mDefaultDirection = true;
 	var $messages, $target;
-	var $namespace = '', $mDb;
+	var $namespace = '', $year = '', $month = '', $mDb;
 
 	function __construct( $target, $namespace = false, $year = false, $month = false ) {
 		parent::__construct();
@@ -281,12 +281,12 @@ function wfSpecialContributions( $par = null ) {
 
 	wfRunHooks( 'SpecialContributionsBeforeMainOutput', $id );
 
-	$wgOut->addHTML( contributionsForm( $options ) );
-	
 	if( $skip ) {
 		$options['year'] = '';
 		$options['month'] = '';
 	}
+
+	$wgOut->addHTML( contributionsForm( $options ) );
 
 	$pager = new ContribsPager( $target, $options['namespace'], $options['year'], $options['month'] );
 	if ( !$pager->getNumRows() ) {
