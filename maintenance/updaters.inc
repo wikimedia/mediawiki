@@ -1375,6 +1375,7 @@ function do_postgres_updates() {
 		array("archive",       "ar_deleted",           "SMALLINT NOT NULL DEFAULT 0"),
 		array("archive",       "ar_len",               "INTEGER"),
 		array("archive",       "ar_page_id",           "INTEGER"),
+		array("archive",       "ar_parent_id",         "INTEGER"),
 		array("image",         "img_sha1",             "TEXT NOT NULL DEFAULT ''"),
 		array("ipblocks",      "ipb_anon_only",        "CHAR NOT NULL DEFAULT '0'"),
 		array("ipblocks",      "ipb_by_text",          "TEXT NOT NULL DEFAULT ''"),
