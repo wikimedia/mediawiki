@@ -435,5 +435,14 @@ abstract class FileRepo {
 	function checkRedirect( $title ) {
 		return false;
 	}
+
+	/**
+	 * Invalidates image redirect cache related to that image
+	 * STUB
+	 *
+	 * @param Title $title Title of image
+	 */
+	function invalidateImageRedirect( $title ) {
+	}
 }
 

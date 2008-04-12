@@ -461,12 +461,6 @@ $wgHashedSharedUploadDirectory = true;
  */
 $wgRepositoryBaseUrl = "http://commons.wikimedia.org/wiki/Image:";
 
-/**
- * File redirects
- * If enabled, MediaWiki checks redirects in Image: namespace.
- */
-$wgFileRedirects = false;
-
 #
 # Email settings
 #
