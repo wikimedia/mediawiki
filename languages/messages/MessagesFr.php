@@ -464,6 +464,7 @@ $messages = array(
 'youhavenewmessagesmulti' => 'Vous avez de nouveaux messages sur $1.',
 'editsection'             => 'modifier',
 'editold'                 => 'modifier',
+'viewsourceold'           => 'voir la source',
 'editsectionhint'         => 'Modifier la section : $1',
 'toc'                     => 'Sommaire',
 'showtoc'                 => 'afficher',
@@ -1106,6 +1107,7 @@ Une case non cochée signifie, au contraire, qu'il ne s’y trouve pas.",
 'recentchangeslinked-title'    => 'Suivi des liens associés à $1',
 'recentchangeslinked-noresult' => 'Aucun changement sur les pages liées pendant la période choisie.',
 'recentchangeslinked-summary'  => "Cette page spéciale montre les modifications récentes sur les pages qui sont liées. Les pages de votre liste de suivi sont '''en gras'''.",
+'recentchangeslinked-page'     => 'Nom de la page',
 
 # Upload
 'upload'                      => 'Importer un fichier',
@@ -1461,6 +1463,8 @@ Il y a {{PLURAL:$7|'''$7''' article|'''$7''' articles}} dans [[meta:Help:Job_que
 'emailccsubject'  => 'Copie de votre message à $1 : $2',
 'emailsent'       => 'Message envoyé',
 'emailsenttext'   => 'Votre message a été envoyé.',
+'emailuserfooter' => "--
+Ce courriel a été envoyé en utilisant la fonction 'envoyer un courriel à l'utilisateur' de {{SITENAME}}",
 
 # Watchlist
 'watchlist'            => 'Liste de suivi',
@@ -2559,5 +2563,16 @@ Entrez le nom du fichier sans le préfixe « {{ns:image}}: ».',
 'fileduplicatesearch-info'     => '$1 × $2 pixels<br />Taille du fichier : $3<br />MIME type : $4',
 'fileduplicatesearch-result-1' => 'Le fichier « $1 » n’a pas de double identique.',
 'fileduplicatesearch-result-n' => 'Le fichier « $1 » a {{PLURAL:$2|1 double identique|$2 doubles identiques}}.',
+
+# Special:SpecialPages
+'specialpages-group-maintenance' => 'Rapport de maintenance',
+'specialpages-group-other'       => 'Autres pages spéciales',
+'specialpages-group-login'       => 'Se connecter / s’enregistrer',
+'specialpages-group-changes'     => 'Modifications récentes et journaux',
+'specialpages-group-media'       => 'Rapports des médias',
+'specialpages-group-users'       => 'Utilisateurs et droits rattachés',
+'specialpages-group-needy'       => 'Pages nécessitant des travaux',
+'specialpages-group-highuse'     => 'Utilisation intense des pages',
+'specialpages-group-permissions' => 'Paramétrer les permissions des utilisateurs',
 
 );
