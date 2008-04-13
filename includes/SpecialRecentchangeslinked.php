@@ -22,6 +22,9 @@ function wfSpecialRecentchangeslinked( $par = NULL ) {
 	$hideminor = $wgRequest->getBool( 'hideminor' ) ? 1 : 0;
 	$showlinkedto = $wgRequest->getBool( 'showlinkedto' ) ? 1 : 0;
 
+	$title = Title::newFromURL( $target );
+	$target = $title ? $title->getPrefixedText() : '';
+
 	$wgOut->setPagetitle( wfMsg( 'recentchangeslinked' ) );
 	$sk = $wgUser->getSkin();
 
