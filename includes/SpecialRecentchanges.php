@@ -147,7 +147,7 @@ function wfSpecialRecentchanges( $par, $specialPage ) {
 	$hidem  = $hideminor ? 'AND rc_minor = 0' : '';
 	$hidem .= $hidebots ? ' AND rc_bot = 0' : '';
 	$hidem .= $hideliu && !$forcebot ? ' AND rc_user = 0' : '';
-	$hidem .= ( ChangesList::usePatrol() && $hidepatrolled ) ? ' AND rc_patrolled = 0' : '';
+	$hidem .= ($wgUser->usePatrol() && $hidepatrolled ) ? ' AND rc_patrolled = 0' : '';
 	$hidem .= $hideanons && !$forcebot ? ' AND rc_user != 0' : '';
 	$hidem .= $forcebot ? ' AND rc_bot = 1' : '';
 
@@ -521,7 +521,7 @@ function makeOptionsLink( $title, $override, $options ) {
  * @param $nondefaults
  */
 function rcOptionsPanel( $defaults, $nondefaults ) {
-	global $wgLang, $wgUseRCPatrol;
+	global $wgLang, $wgUser;
 
 	$options = $nondefaults + $defaults;
 
@@ -571,7 +571,7 @@ function rcOptionsPanel( $defaults, $nondefaults ) {
 	$links[] = wfMsgHtml( 'rcshowhidebots', $botLink );
 	$links[] = wfMsgHtml( 'rcshowhideanons', $anonsLink );
 	$links[] = wfMsgHtml( 'rcshowhideliu', $liuLink );
-	if( ChangesList::usePatrol() )
+	if( $wgUser->usePatrol() )
 		$links[] = wfMsgHtml( 'rcshowhidepatr', $patrLink );
 	$links[] = wfMsgHtml( 'rcshowhidemine', $myselfLink );
 	$hl = implode( ' | ', $links );

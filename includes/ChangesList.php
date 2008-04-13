@@ -242,15 +242,6 @@ class ChangesList {
 	}
 
 	/**
-	 * Check whether to enable recent changes patrol features
-	 * @return bool
-	 */
-	public static function usePatrol() {
-		global $wgUseRCPatrol, $wgUser;
-		return( $wgUseRCPatrol && ($wgUser->isAllowed('patrol') || $wgUser->isAllowed('patrolmarks')) );
-	}
-
-	/**
 	 * Returns the string which indicates the number of watching users
 	 */
 	protected function numberofWatchingusers( $count ) {
@@ -307,7 +298,7 @@ class OldChangesList extends ChangesList {
 	 * Format a line using the old system (aka without any javascript).
 	 */
 	public function recentChangesLine( &$rc, $watched = false ) {
-		global $wgContLang, $wgRCShowChangedSize;
+		global $wgContLang, $wgRCShowChangedSize, $wgUser;
 
 		$fname = 'ChangesList::recentChangesLineOld';
 		wfProfileIn( $fname );
@@ -317,7 +308,7 @@ class OldChangesList extends ChangesList {
 		extract( $rc->mAttribs );
 
 		# Should patrol-related stuff be shown?
-		$unpatrolled = $this->usePatrol() && $rc_patrolled == 0;
+		$unpatrolled = $wgUser->usePatrol() && $rc_patrolled == 0;
 
 		$this->insertDateHeader($s,$rc_timestamp);
 
@@ -390,7 +381,7 @@ class EnhancedChangesList extends ChangesList {
 	 * Format a line for enhanced recentchange (aka with javascript and block of lines).
 	 */
 	public function recentChangesLine( &$baseRC, $watched = false ) {
-		global $wgLang, $wgContLang;
+		global $wgLang, $wgContLang, $wgUser;
 
 		# Create a specialised object
 		$rc = RCCacheEntry::newFromParent( $baseRC );
@@ -412,7 +403,7 @@ class EnhancedChangesList extends ChangesList {
 		}
 
 		# Should patrol-related stuff be shown?
-		if( $this->usePatrol() ) {
+		if( $wgUser->usePatrol() ) {
 		  	$rc->unpatrolled = !$rc_patrolled;
 		} else {
 			$rc->unpatrolled = false;
