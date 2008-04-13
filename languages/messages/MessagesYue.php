@@ -385,6 +385,7 @@ $messages = array(
 'youhavenewmessagesmulti' => '你響 $1 有新信',
 'editsection'             => '編輯',
 'editold'                 => '編輯',
+'viewsourceold'           => '睇吓原始碼',
 'editsectionhint'         => '編輯小節: $1',
 'toc'                     => '目錄',
 'showtoc'                 => '展開',
@@ -2501,5 +2502,16 @@ $1',
 'fileduplicatesearch-info'     => '$1 × $2 像素<br />檔案大細: $3<br />MIME類型: $4',
 'fileduplicatesearch-result-1' => '個檔案 "$1" 無完全相同嘅重覆。',
 'fileduplicatesearch-result-n' => '個檔案 "$1" 有$2項完全相同嘅重覆。',
+
+# Special:SpecialPages
+'specialpages-group-maintenance' => '維護報告',
+'specialpages-group-other'       => '其它特別頁',
+'specialpages-group-login'       => '登入／開戶口',
+'specialpages-group-changes'     => '最近更改同日誌',
+'specialpages-group-media'       => '媒體報告',
+'specialpages-group-users'       => '用戶同權限',
+'specialpages-group-needy'       => '需要做嘢嘅版',
+'specialpages-group-highuse'     => '高度使用頁',
+'specialpages-group-permissions' => '設定用戶權限',
 
 );

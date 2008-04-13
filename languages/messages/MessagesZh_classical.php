@@ -311,6 +311,7 @@ $messages = array(
 'youhavenewmessagesmulti' => '新訊於$1',
 'editsection'             => '纂',
 'editold'                 => '纂',
+'viewsourceold'           => '察源碼',
 'editsectionhint'         => '纂 $1',
 'toc'                     => '章',
 'showtoc'                 => '示',
@@ -1889,5 +1890,16 @@ $1',
 'fileduplicatesearch-info'     => '$1 × $2 像素<br />大小: $3<br />MIME類型: $4',
 'fileduplicatesearch-result-1' => '案 "$1" 無重也。',
 'fileduplicatesearch-result-n' => '案 "$1" 重有$2。',
+
+# Special:SpecialPages
+'specialpages-group-maintenance' => '護報',
+'specialpages-group-other'       => '它之奇頁',
+'specialpages-group-login'       => '登／增',
+'specialpages-group-changes'     => '近易與誌',
+'specialpages-group-media'       => '媒報',
+'specialpages-group-users'       => '簿與權',
+'specialpages-group-needy'       => '作事之頁',
+'specialpages-group-highuse'     => '高用頁',
+'specialpages-group-permissions' => '設簿權',
 
 );

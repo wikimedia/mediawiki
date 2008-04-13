@@ -312,6 +312,7 @@ $messages = array(
 'youhavenewmessagesmulti' => '您在 $1 有一條新訊息',
 'editsection'             => '編輯',
 'editold'                 => '編輯',
+'viewsourceold'           => '檢視原始碼',
 'editsectionhint'         => '編輯段落: $1',
 'toc'                     => '目錄',
 'showtoc'                 => '顯示',
@@ -2432,5 +2433,16 @@ $5
 'fileduplicatesearch-info'     => '$1 × $2 像素<br />檔案大小: $3<br />MIME類型: $4',
 'fileduplicatesearch-result-1' => '檔案 "$1" 無完全相同的重覆。',
 'fileduplicatesearch-result-n' => '檔案 "$1" 有$2項完全相同的重覆。',
+
+# Special:SpecialPages
+'specialpages-group-maintenance' => '維護報告',
+'specialpages-group-other'       => '其它特殊頁面',
+'specialpages-group-login'       => '登入／創建',
+'specialpages-group-changes'     => '最近更改和日誌',
+'specialpages-group-media'       => '媒體報告',
+'specialpages-group-users'       => '用戶和權限',
+'specialpages-group-needy'       => '需要做事情的頁面',
+'specialpages-group-highuse'     => '高度使用頁面',
+'specialpages-group-permissions' => '設定用戶權限',
 
 );
