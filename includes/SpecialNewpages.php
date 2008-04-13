@@ -270,13 +270,11 @@ class NewPagesForm {
 	}
 	
 	protected function feedItemDesc( $row ) {
-		if( isset( $row->rev_id ) ) {
-			$revision = Revision::newFromId( $row->rev_id );
-			if( $revision ) {
-				return '<p>' . htmlspecialchars( wfMsg( 'summary' ) ) . ': ' .
-					htmlspecialchars( $revision->getComment() ) . "</p>\n<hr />\n<div>" .
-					nl2br( htmlspecialchars( $revision->getText() ) ) . "</div>";
-			}
+		$revision = Revision::newFromId( $row->rev_id );
+		if( $revision ) {
+			return '<p>' . htmlspecialchars( wfMsg( 'summary' ) ) . ': ' .
+				htmlspecialchars( $revision->getComment() ) . "</p>\n<hr />\n<div>" .
+				nl2br( htmlspecialchars( $revision->getText() ) ) . "</div>";
 		}
 		return '';
 	}
