@@ -5,9 +5,9 @@
  *
  * @author Trengarasu
  * @author Mayooranathan
- * @author לערי ריינהארט
- * @author Sundar
  * @author Siebrand
+ * @author Sundar
+ * @author לערי ריינהארט
  * @author Jon Harald Søby
  */
 
@@ -913,7 +913,7 @@ $1 பயனரையோ அல்லது வேறு [[{{MediaWiki:Grouppage
 
 # Recent changes linked
 'recentchangeslinked'          => 'தொடர்பான மாற்றங்கள்',
-'recentchangeslinked-title'    => '$1 பக்கத்துடன் தொடர்புடைய மாற்றங்கள்',
+'recentchangeslinked-title'    => '"$1" பக்கத்துடன் தொடர்புடைய மாற்றங்கள்',
 'recentchangeslinked-noresult' => 'குறித்த நேரத்தில் இப்பக்கத்துடன் இணைக்கப்பட்ட பக்கங்களில் மாற்றங்கள் ஏதுமில்லை.',
 'recentchangeslinked-summary'  => "இணைக்கப்பட்டப் பக்கங்களின் கடைசி மாற்றங்களை இச்சிறப்புப் பக்கம் பட்டியலிடுகிறது. உங்கள் கவணிப்புப் பட்டியலில் உள்ளப் பக்கங்கள் '''தடித்த எழுத்துக்களில்''' உள்ளன.",
 

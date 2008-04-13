@@ -498,7 +498,7 @@ Mande ou byen si ou ap byen fè kreye li ankò toutbon (gade jounal paj sa a pou
 
 # Recent changes linked
 'recentchangeslinked'          => 'Swivi pou lyen yo',
-'recentchangeslinked-title'    => 'Chanjman ki an relasyon ak $1',
+'recentchangeslinked-title'    => 'Chanjman ki an relasyon ak "$1"',
 'recentchangeslinked-noresult' => 'Pa genyen pyès chanjman nan paj sa yo pou peryòd ou chwazi an.e.',
 'recentchangeslinked-summary'  => "Paj espesyal sa a ap monter dènye chanjman nan paj ki genyen lyen. Paj yo ki nan lis swivi ou an ap ekri '''fonse'''",
 

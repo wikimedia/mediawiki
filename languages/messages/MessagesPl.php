@@ -396,6 +396,7 @@ $messages = array(
 'youhavenewmessagesmulti' => 'Masz nowe wiadomości na $1',
 'editsection'             => 'edytuj',
 'editold'                 => 'edytuj',
+'viewsourceold'           => 'pokaż źródło',
 'editsectionhint'         => 'Edytuj sekcję: $1',
 'toc'                     => 'Spis treści',
 'showtoc'                 => 'pokaż',
@@ -572,7 +573,7 @@ Musi mieć co najmniej $1 znaków i być inne niż Twoja nazwa użytkownika.',
 'passwordremindertitle'      => 'Nowe tymczasowe hasło do {{GRAMMAR:D.lp|{{SITENAME}}}}',
 'passwordremindertext'       => 'Ktoś (prawdopodobnie Ty, spod adresu IP $1)
 poprosił o przesłanie nowego hasła do {{GRAMMAR:D.lp|{{SITENAME}}}} ($4).
-Nowe hasło użytkownika "$2" to "$3".
+Nowym hasłem użytkownika „$2” jest „$3”.
 Najlepiej będzie, gdy zalogujesz się teraz i od razu zmienisz hasło.
 
 Jeśli to nie Ty prosiłeś o przesłanie hasła i nie chcesz zmieniać poprzedniego hasła wystarczy, że zignorujesz tą wiadomość i dalej będziesz się posługiwał swoim dotychczasowym hasłem.',
@@ -597,7 +598,7 @@ Proszę wpisać poprawny adres e-mail lub wyczyścić pole.',
 'accountcreated'             => 'Konto zostało utworzone',
 'accountcreatedtext'         => 'Konto dla $1 zostało utworzone.',
 'createaccount-title'        => 'Utworzenie konta w {{GRAMMAR:MS.lp|{{SITENAME}}}}',
-'createaccount-text'         => 'Ktoś utworzył w {{GRAMMAR:MS.lp|{{SITENAME}}}} ($4) dla Twojego adresu e-mail konto "$2". Aktualne hasło to "$3". Powinieneś się teraz zalogować i je zmienić.
+'createaccount-text'         => 'Ktoś utworzył w {{GRAMMAR:MS.lp|{{SITENAME}}}} ($4), podając Twój adres e-mail, konto „$2”. Aktualnym hasłem jest „$3”. Powinieneś się teraz zalogować i je zmienić.
 
 Możesz zignorować tą wiadomość, jeśli konto zostało stworzone przez pomyłkę.',
 'loginlanguagelabel'         => 'Język: $1',
@@ -879,7 +880,8 @@ Inni administratorzy {{GRAMMAR:D.lp|{{SITENAME}}}} nadal będą mieć dostęp do
 
 # Suppression log
 'suppressionlog'     => 'Dziennik utajniania',
-'suppressionlogtext' => 'Poniżej znajduje się lista ostatnich usunięć i blokad utajniona przed administratorami. Zobacz [[Special:Ipblocklist|rejestr blokowania adresów IP]] jeśli chcesz sprawdzić aktualne zakazy i blokady.',
+'suppressionlogtext' => 'Poniżej znajduje się lista usunięć i blokad utajnionych przed administratorami.
+Zobacz [[Special:Ipblocklist|rejestr blokowania adresów IP]] jeśli chcesz sprawdzić aktualne zakazy i blokady.',
 
 # History merging
 'mergehistory'                     => 'Scal historię zmian stron',
@@ -1098,10 +1100,11 @@ Nie zaznaczone pole oznacza, że użytkownik nie należy do danej grupy.',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Zmiany w dolinkowanych',
-'recentchangeslinked-title'    => 'Zmiany w stronach linkowanych z $1',
+'recentchangeslinked-title'    => 'Zmiany w linkowanych z „$1”',
 'recentchangeslinked-noresult' => 'Nie było żadnych zmian na dolinkowanych stronych w wybranym okresie.',
 'recentchangeslinked-summary'  => "Ta strona specjalna zawiera listę ostatnich zmian dokonanych na stronach dolinkowanych.
 Tytuły stron znajdujących się na Twojej liście obserwowanych zostały '''wytłuszczone'''.",
+'recentchangeslinked-page'     => 'Tytuł strony',
 
 # Upload
 'upload'                      => 'Prześlij plik',
@@ -1489,6 +1492,8 @@ Możesz zawęzić liczbę wyników przez wybranie typu rejestru, nazwy użytkown
 'emailccsubject'  => 'Kopia Twojej wiadomości do $1: $2',
 'emailsent'       => 'Wiadomość została wysłana',
 'emailsenttext'   => 'Twoja wiadomość została wysłana.',
+'emailuserfooter' => '--
+Wiadomość wysłano z {{GRAMMAR:D.lp|{{SITENAME}}}} przy pomocy „Wyślij e-mail do tego użytkownika”.',
 
 # Watchlist
 'watchlist'            => 'Obserwowane',
@@ -1730,18 +1735,21 @@ $1',
 'sp-contributions-submit'      => 'Szukaj',
 
 # What links here
-'whatlinkshere'       => 'Linkujące',
-'whatlinkshere-title' => 'Strony linkujące do $1',
-'whatlinkshere-page'  => 'Strona:',
-'linklistsub'         => '(Lista linków)',
-'linkshere'           => "Następujące strony odwołują się do '''[[:$1]]''':",
-'nolinkshere'         => "Żadna strona nie odwołuje się do '''[[:$1]]'''.",
-'nolinkshere-ns'      => "Żadna strona nie odwołuje się do '''[[:$1]]''' w wybranej przestrzeni nazw.",
-'isredirect'          => 'strona przekierowująca',
-'istemplate'          => 'dołączony szablon',
-'whatlinkshere-prev'  => '{{PLURAL:$1|poprzednie|poprzednie $1}}',
-'whatlinkshere-next'  => '{{PLURAL:$1|następne|następne $1}}',
-'whatlinkshere-links' => '← linkujące',
+'whatlinkshere'            => 'Linkujące',
+'whatlinkshere-title'      => 'Strony linkujące do $1',
+'whatlinkshere-page'       => 'Strona:',
+'linklistsub'              => '(Lista linków)',
+'linkshere'                => "Następujące strony odwołują się do '''[[:$1]]''':",
+'nolinkshere'              => "Żadna strona nie odwołuje się do '''[[:$1]]'''.",
+'nolinkshere-ns'           => "Żadna strona nie odwołuje się do '''[[:$1]]''' w wybranej przestrzeni nazw.",
+'isredirect'               => 'strona przekierowująca',
+'istemplate'               => 'dołączony szablon',
+'whatlinkshere-prev'       => '{{PLURAL:$1|poprzednie|poprzednie $1}}',
+'whatlinkshere-next'       => '{{PLURAL:$1|następne|następne $1}}',
+'whatlinkshere-links'      => '← linkujące',
+'whatlinkshere-hideredirs' => '$1 {{PLURAL:$1|przekierowanie|przekierowania|przekierowań}}',
+'whatlinkshere-hidetrans'  => '$1 {{PLURAL:$1|dołączenie|dołączenia|dołączeń}}',
+'whatlinkshere-hidelinks'  => '$1 {{PLURAL:$1|link|linki|linków}}',
 
 # Block/unblock
 'blockip'                     => 'Zablokuj użytkownika',
@@ -2456,15 +2464,15 @@ Możesz się zalogować i korzystać z szerszego wachlarza funkcjonalności wiki
 'confirmemail_error'       => 'Pojawiły się błędy przy zapisywaniu potwierdzenia.',
 'confirmemail_subject'     => '{{SITENAME}} - potwierdzenie adresu e-mail',
 'confirmemail_body'        => 'Ktoś łącząc się z komputera o adresie IP $1
-zarejestrował w {{GRAMMAR:MS.lp|{{SITENAME}}}} konto "$2" podając niniejszy adres e-mail.
+zarejestrował w {{GRAMMAR:MS.lp|{{SITENAME}}}} konto „$2” podając niniejszy adres e-mail.
 
-Aby potwierdzić, że to Ty zarejestrowałeś/aś to konto oraz, aby włączyć
+Aby potwierdzić, że to Ty zarejestrowałeś to konto oraz, aby włączyć
 wszystkie funkcje korzystające z poczty elektronicznej, otwórz w swojej
 przeglądarce ten link:
 
 $3
 
-Jeśli to *nie* Ty zarejestrowałeś/aś konto, otwórz w swojej przeglądarce
+Jeśli to *nie* Ty zarejestrowałeś konto, otwórz w swojej przeglądarce
 poniższy link, aby anulować potwierdzenie adresu e-mail:
 
 $5
@@ -2612,5 +2620,16 @@ Wpisz nazwę pliku z pominięciem prefiksu „{{ns:image}}:”.',
 'fileduplicatesearch-info'     => '$1 × $2 pikseli<br />Wielkość pliku: $3<br />Typ MIME: $4',
 'fileduplicatesearch-result-1' => 'Nie ma duplikatu pliku „$1”.',
 'fileduplicatesearch-result-n' => 'W {{GRAMMAR:MS.lp|{{SITENAME}}}} {{PLURAL:$2|jest dodatkowa kopia|są $2 dodatkowe kopie|jest $2 dodatkowych kopii}} pliku „$1”.',
+
+# Special:SpecialPages
+'specialpages-group-maintenance' => 'Raporty konserwacyjne',
+'specialpages-group-other'       => 'Inne strony specjalne',
+'specialpages-group-login'       => 'Logowanie / rejestracja',
+'specialpages-group-changes'     => 'Ostatnie zmiany i rejestry',
+'specialpages-group-media'       => 'Raporty dla mediów',
+'specialpages-group-users'       => 'Użytkownicy i uprawnienia',
+'specialpages-group-needy'       => 'Strony wymagające poprawek',
+'specialpages-group-highuse'     => 'Strony często używane',
+'specialpages-group-permissions' => 'Uprawnienia użytkowników',
 
 );

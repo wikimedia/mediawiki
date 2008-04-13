@@ -4,19 +4,18 @@
  * @addtogroup Language
  *
  * @author Valasek
- * @author helix84
  * @author Palica
  * @author Liso
  * @author Maros
- * @author Helix84
- * @author Robbot
- * @author Nike
  * @author SPQRobin
- * @author Michawiki
- * @author לערי ריינהארט
- * @author Siebrand
  * @author Sp5uhe
+ * @author Helix84
+ * @author Siebrand
+ * @author לערי ריינהארט
  * @author Kandy Talbot
+ * @author Michawiki
+ * @author Nike
+ * @author Sp5uhe
  * @author Jon Harald Søby
  */
 
@@ -404,6 +403,7 @@ $messages = array(
 'youhavenewmessagesmulti' => 'Máte nové správy na $1',
 'editsection'             => 'upraviť',
 'editold'                 => 'upraviť',
+'viewsourceold'           => 'zobraziť zdroj',
 'editsectionhint'         => 'Upraviť sekciu: $1',
 'toc'                     => 'Obsah',
 'showtoc'                 => 'zobraziť',
@@ -854,7 +854,7 @@ nie sú stanovené ďalšie obmedzenia.',
 'revdelete-hide-comment'      => 'Skryť zhrnutie úprav',
 'revdelete-hide-user'         => 'Skryť používateľské meno/IP',
 'revdelete-hide-restricted'   => 'Použiť tieto obmedzenia na správcov a zamknúť toto rozhranie',
-'revdelete-suppress'          => 'Potlačiť dáta pred správcami rovnako ako pred ostatnými',
+'revdelete-suppress'          => 'Skryť údaje pred správcami rovnako ako pred ostatnými',
 'revdelete-hide-image'        => 'Skryť obsah súboru',
 'revdelete-unsuppress'        => 'Odstrániť obmedzenia obnovených revízií',
 'revdelete-log'               => 'Komentár záznamu:',
@@ -878,7 +878,7 @@ nie sú stanovené ďalšie obmedzenia.',
 
 # Suppression log
 'suppressionlog'     => 'Záznam potlačení',
-'suppressionlogtext' => 'Toto je zoznam posledných zmazaní a blokovaní vrátane obsahu, ktorý je skrytý pred správcami. Zoznam momentálne účinných blokovaní nájdete na [[Special:Ipblocklist|Zoznam blokovaní IP]].',
+'suppressionlogtext' => 'Toto je zoznam zmazaní a blokovaní vrátane obsahu, ktorý je skrytý pred správcami. Zoznam momentálne účinných blokovaní nájdete na [[Special:Ipblocklist|Zoznam blokovaní IP]].',
 
 # History merging
 'mergehistory'                     => 'Zlúčiť histórie stránok',
@@ -1092,9 +1092,10 @@ Nezaškrtnuté pole znamená, že používateľ nie je v skupine.',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Súvisiace úpravy',
-'recentchangeslinked-title'    => 'Zmeny týkajúce sa $1',
+'recentchangeslinked-title'    => 'Zmeny týkajúce sa "$1"',
 'recentchangeslinked-noresult' => 'V zadanom období neboli odkazované stránky zmenené.',
 'recentchangeslinked-summary'  => "Táto špeciálna stránka obsahuje zoznam posledných úprav na odkazovaných stránkach. Stránky, ktoré sa nachádzajú vo vašom zozname sledovaných sú vyznačené '''hrubo'''.",
+'recentchangeslinked-page'     => 'Názov stránky',
 
 # Upload
 'upload'                      => 'Nahrať súbor',
@@ -1455,6 +1456,8 @@ alebo sa rozhodol, že nebude prijímať e-maily od druhých používateľov.',
 'emailccsubject'  => 'Kópia správy pre $1: $2',
 'emailsent'       => 'E-mail bol odoslaný',
 'emailsenttext'   => 'Vaša e-mailová správa bola odoslaná.',
+'emailuserfooter' => '--
+Tento email bol poslaný pomocou funkcie {{GRAMMAR:genitív|{{SITENAME}}}} „E-mail používateľovi“',
 
 # Watchlist
 'watchlist'            => 'Sledované stránky',
@@ -1687,18 +1690,21 @@ $1',
 'sp-contributions-submit'      => 'Hľadať',
 
 # What links here
-'whatlinkshere'       => 'Odkazy na túto stránku',
-'whatlinkshere-title' => 'Stránky odkazujúce na $1',
-'whatlinkshere-page'  => 'Page:',
-'linklistsub'         => '(Zoznam odkazov)',
-'linkshere'           => "Nasledujúce stránky odkazujú na '''[[:$1]]''':",
-'nolinkshere'         => "Žiadne stránky neodkazujú na '''[[:$1]]'''.",
-'nolinkshere-ns'      => "Žiadne stránky neodkazujú na '''[[:$1]]''' vo zvolenom mennom priestore.",
-'isredirect'          => 'presmerovacia stránka',
-'istemplate'          => 'použitá',
-'whatlinkshere-prev'  => '{{PLURAL:$1|predchádzajúca|predchádzajúce $1|predchádzajúcich $1}}',
-'whatlinkshere-next'  => '{{PLURAL:$1|nasledujúca|nasledujúce $1|nasledujúcich $1}}',
-'whatlinkshere-links' => '← odkazy',
+'whatlinkshere'            => 'Odkazy na túto stránku',
+'whatlinkshere-title'      => 'Stránky odkazujúce na $1',
+'whatlinkshere-page'       => 'Page:',
+'linklistsub'              => '(Zoznam odkazov)',
+'linkshere'                => "Nasledujúce stránky odkazujú na '''[[:$1]]''':",
+'nolinkshere'              => "Žiadne stránky neodkazujú na '''[[:$1]]'''.",
+'nolinkshere-ns'           => "Žiadne stránky neodkazujú na '''[[:$1]]''' vo zvolenom mennom priestore.",
+'isredirect'               => 'presmerovacia stránka',
+'istemplate'               => 'použitá',
+'whatlinkshere-prev'       => '{{PLURAL:$1|predchádzajúca|predchádzajúce $1|predchádzajúcich $1}}',
+'whatlinkshere-next'       => '{{PLURAL:$1|nasledujúca|nasledujúce $1|nasledujúcich $1}}',
+'whatlinkshere-links'      => '← odkazy',
+'whatlinkshere-hideredirs' => '$1 presmerovania',
+'whatlinkshere-hidetrans'  => '$1 transklúzie',
+'whatlinkshere-hidelinks'  => '$1 odkazy',
 
 # Block/unblock
 'blockip'                     => 'Zablokovať používateľa',
@@ -2571,5 +2577,16 @@ Zadajte názov súboru bez predpony „{{ns:image}}:“.',
 'fileduplicatesearch-info'     => '$1 × $2 pixelov<br />Veľkosť súboru: $3<br />Typ MIME: $4',
 'fileduplicatesearch-result-1' => 'Súbor „$1“ nemá žiadny identický duplikát.',
 'fileduplicatesearch-result-n' => 'Súbor „$1“ má {{PLURAL:$2|1 identický duplikát|$2 identické duplikáty|$3 identických duplikátov}}.',
+
+# Special:SpecialPages
+'specialpages-group-maintenance' => 'Údržbové správy',
+'specialpages-group-other'       => 'Iné špeciálne stránky',
+'specialpages-group-login'       => 'Prihlásenie / registrácia',
+'specialpages-group-changes'     => 'Posledné zmeny a záznamy',
+'specialpages-group-media'       => 'Správy o multimédiách',
+'specialpages-group-users'       => 'Používatelia a skupiny',
+'specialpages-group-needy'       => 'Stránky, ktoré treba vylepšiť',
+'specialpages-group-highuse'     => 'Často používané stránky',
+'specialpages-group-permissions' => 'Oprávnenia používateľa',
 
 );

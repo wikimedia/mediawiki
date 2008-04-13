@@ -4,18 +4,17 @@
  * @addtogroup Language
  *
  * @author Uğur Başak
- * @author Dbl2010
- * @author Katpatuka
  * @author SPQRobin
+ * @author Srhat
+ * @author Dbl2010
+ * @author Erkan Yilmaz
+ * @author Katpatuka
+ * @author Karduelis
+ * @author לערי ריינהארט
  * @author Siebrand
  * @author Nike
- * @author Jon Harald Søby
- * @author לערי ריינהארט
- * @author Myildirim2007
- * @author Karduelis
- * @author Srhat
- * @author Erkan Yilmaz
  * @author Suelnur
+ * @author Myildirim2007
  */
 
 $namespaceNames = array(
@@ -723,6 +722,7 @@ Bu sayfa değişikiliği kamu arşivlerinden silinmiştir.
 'viewprevnext'          => '($1) ($2) ($3).',
 'search-result-size'    => '$1 ({{PLURAL:$2|1 kelime|$2 kelime}})',
 'search-result-score'   => 'Uygunluk: $1%',
+'search-redirect'       => '(yönlendirme $1)',
 'search-suggest'        => 'Bunu mu demek istediniz: $1',
 'searchall'             => 'hepsi',
 'showingresults'        => '<b>$2.</b> sonuçtan başlayarak <b>$1</b> sonuç aşağıdadır:',
@@ -860,7 +860,7 @@ $2 yönlendirmeleri listele &nbsp; Aranacak: $3 $9',
 
 # Recent changes linked
 'recentchangeslinked'          => 'İlgili değişiklikler',
-'recentchangeslinked-title'    => '$1 ile ilişkili değişiklikler',
+'recentchangeslinked-title'    => '"$1" ile ilişkili değişiklikler',
 'recentchangeslinked-noresult' => 'Verilen süre içerisinde belirtilen sayfaya bağlı diğer sayfalarda değişikilik bulunmamaktadır.',
 'recentchangeslinked-summary'  => "Bu özel sayfa belirtilen sayfaya bağlı olan sayfalarda yapılan değişiklikleri listeler. İzleme listenizde olan sayfalar '''kalın''' yazıyla gösterilir.",
 

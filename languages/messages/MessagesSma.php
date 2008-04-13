@@ -3,13 +3,10 @@
  *
  * @addtogroup Language
  *
- * @author Max sonnelid
+ * @author M.M.S.
  * @author Siebrand
  * @author Nike
- * @author M.M.S.
  */
-
-
 
 $messages = array(
 # User preference toggles
@@ -399,7 +396,7 @@ Dov dorje värrhtoedimmie gååvnese bielieh, jallh [[Special:Userlogin|logge s�
 
 # Recent changes linked
 'recentchangeslinked'          => 'Värrhtoedimmieh nille krïense bielieh',
-'recentchangeslinked-title'    => 'Värrhtoedimmie laktaseaddji gåajkoe $1',
+'recentchangeslinked-title'    => 'Värrhtoedimmie laktaseaddji gåajkoe "$1"',
 'recentchangeslinked-noresult' => 'Ijje kïrense bielieh värrhtoedimmie nuelesne dïhte veeljeme tïjje-boelhke.',
 'recentchangeslinked-summary'  => "Dïhte joekoelaakan bielie lästoe dah minngemes värrhtoedimmieh nille bielieh goh lea lïenghke. Bielieh nille dov sïektjedhlästoe lea '''buajtehks'''.",
 

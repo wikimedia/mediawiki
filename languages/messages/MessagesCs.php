@@ -1198,7 +1198,7 @@ $3',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Související změny',
-'recentchangeslinked-title'    => 'Související změny pro stránku $1',
+'recentchangeslinked-title'    => 'Související změny pro stránku "$1"',
 'recentchangeslinked-noresult' => 'V zadaném období nebyly na odkazovaných stránkách žádné změny.',
 'recentchangeslinked-summary'  => "Níže jsou poslední změny na odkazovaných stránkách. Vaše sledované stránky jsou '''zvýrazněny'''.",
 

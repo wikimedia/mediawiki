@@ -5,8 +5,9 @@
  *
  * @author Adfokati
  * @author Jordi
- * @author Siebrand
  * @author Ooswesthoesbes
+ * @author Siebrand
+ * @author Jon Harald Søby
  */
 
 $fallback = 'nl';
@@ -583,7 +584,7 @@ A kan ben trowe efu dribi.
 
 # Recent changes linked
 'recentchangeslinked'          => 'Saamga kenki',
-'recentchangeslinked-title'    => 'Saamga kenki nanga $1',
+'recentchangeslinked-title'    => 'Saamga kenki nanga "$1"',
 'recentchangeslinked-noresult' => 'Da ben no kenki ini a gi ten opo den peprewoysi dy fu dyaso skaki sey.',
 'recentchangeslinked-summary'  => "Disi spesyal papira libi den bakaseywan kenki opo peprewoysi dy ben skaki fu disi papira si. Peprewoysi opo [[Special:Watchlist|yu sirey]] ben '''deki'''.",
 

@@ -429,7 +429,7 @@ Leggenda: (corr) = differense co-a verscion corrente, (prec) = differense co-a v
 
 # Recent changes linked
 'recentchangeslinked'          => 'Cangiamenti correlæ',
-'recentchangeslinked-title'    => 'Modiffiche correlæ a $1',
+'recentchangeslinked-title'    => 'Modiffiche correlæ a "$1"',
 'recentchangeslinked-noresult' => 'Nisciûn cangiamento a-e paggine collegæ into periodo speçificòu.',
 'recentchangeslinked-summary'  => "'Sta paggina speçiâ a fa vedde e modiffiche ciû reçenti a-e paggine collegæ a quella specificâa. E paggine osservæ son dipinte in '''grascietto'''.",
 

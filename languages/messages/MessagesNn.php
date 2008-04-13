@@ -1127,7 +1127,7 @@ Ver merksam på at registra deira kan vera utdaterte.',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Relaterte endringar',
-'recentchangeslinked-title'    => 'Endringar relaterte til $1',
+'recentchangeslinked-title'    => 'Endringar relaterte til "$1"',
 'recentchangeslinked-noresult' => 'Det er ikkje gjort endringar på sidene som var lenkja hit i den oppgjevne perioden.',
 'recentchangeslinked-summary'  => "Denne spesialsida inneheld alle endringane som er gjort på sider som vert lenkja til frå denne. Dei av sidene du har på overvakingslista di er '''utheva'''.",
 

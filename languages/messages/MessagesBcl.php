@@ -849,7 +849,7 @@ An ibang mga administrador sa ining wiki pwede pang maghiling kan mga nakatagong
 
 # Recent changes linked
 'recentchangeslinked'          => 'Mga angay na pagbabâgo',
-'recentchangeslinked-title'    => 'Mga pagbabâgong angay sa $1',
+'recentchangeslinked-title'    => 'Mga pagbabâgong angay sa "$1"',
 'recentchangeslinked-noresult' => 'Warang mga pagbabago sa mga pahinang nakatakod sa itinaong pagkalawig.',
 'recentchangeslinked-summary'  => "Linista kaining especial na páhina an mga huring pagbabago sa mga páhinang nakatakod. An mga páhinang pigbabantayan mo nakasurat na  '''maitom'''.",
 

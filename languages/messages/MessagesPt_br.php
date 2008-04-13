@@ -5,12 +5,12 @@
  *
  * @author Yves Marques Junqueira
  * @author Rodrigo Calanca Nishino
- * @author Siebrand
- * @author לערי ריינהארט
  * @author 555
+ * @author Siebrand
  * @author Nike
- * @author SPQRobin
+ * @author לערי ריינהארט
  * @author Lijealso
+ * @author SPQRobin
  */
 
 $fallback = 'pt';
@@ -901,7 +901,7 @@ para definir suas preferências.',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Alterações relacionadas',
-'recentchangeslinked-title'    => 'Alterações relacionadas com $1',
+'recentchangeslinked-title'    => 'Alterações relacionadas com "$1"',
 'recentchangeslinked-noresult' => 'Não ocorreram alterações em páginas relacionadas no intervalo de tempo fornecido.',
 'recentchangeslinked-summary'  => "Esta página especial lista as alterações mais recentes de páginas que possuam um link a outra. Páginas que estejam em sua lista de páginas vigiadas são exibidas em '''negrito'''.",
 

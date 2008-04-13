@@ -554,7 +554,7 @@ Leka [[Special:Search|go fetleka wikii]] go humana matlakala a mapsha.',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Diphetogo tša go tswalana',
-'recentchangeslinked-title'    => 'Diphetogo tša go tswalana le $1',
+'recentchangeslinked-title'    => 'Diphetogo tša go tswalana le "$1"',
 'recentchangeslinked-noresult' => 'Gago na diphetogo go matlakala a hlomaganya ka sebaka/sekga seo o se kgethilego.',
 'recentchangeslinked-summary'  => "Letlakala le le laetša diphetogo tša bjale matlakaleng a go hlomaganya. Matlakala ago ba lenanong la gago la matlakala ditlhapetšo a '''ngwadilwe ka bogolo'''.",
 

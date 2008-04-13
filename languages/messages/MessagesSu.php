@@ -5,12 +5,12 @@
  *
  * @author Kandar
  * @author Irwangatot
- * @author Nike
- * @author Siebrand
- * @author לערי ריינהארט
  * @author Mssetiadi
- * @author SPQRobin
+ * @author Siebrand
+ * @author Nike
+ * @author לערי ריינהארט
  * @author Meursault2004
+ * @author SPQRobin
  */
 
 $fallback = 'id';
@@ -678,8 +678,6 @@ Révisi kaca ieu geus dihapus tina arsip publik. Tapi, salaku administrator dina
 'revdelete-log'               => 'Koméntar log:',
 'revdelete-submit'            => 'Terapkeun kana révisi nu dipilih',
 'revdelete-logentry'          => 'robah tampilan révisi pikeun [[$1]]',
-'revdelete-logaction'         => '$1 {{PLURAL:$1|révisi|révisi}} dirobah jadi modeu $2',
-'logdelete-logaction'         => '$1 {{PLURAL:$1|robahan|robahan}} ka [[$3]] dirobah jadi modeu $2',
 
 # History merging
 'mergehistory'                     => 'Gabungkeun jujutan kaca',
@@ -874,7 +872,7 @@ $2 Daptarkeun alihan &nbsp; Sungsi $3 $9',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Parobahan nu patali',
-'recentchangeslinked-title'    => 'Parobahan patali ka $1',
+'recentchangeslinked-title'    => 'Parobahan patali ka "$1"',
 'recentchangeslinked-noresult' => 'Dina selang waktu anu dipénta, euweuh parobahan dina kaca-kaca anu numbu.',
 'recentchangeslinked-summary'  => "Ieu kaca husus ngabéréndélkeun parobahan anyar anu numbu. Kaca anu diawaskeun némbongan '''kandel'''.",
 

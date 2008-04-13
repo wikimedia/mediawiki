@@ -435,6 +435,7 @@ Taivutusmuodot: {{GRAMMAR:genitive|{{SITENAME}}}} (yön) — {{GRAMMAR:partitive
 'youhavenewmessagesmulti' => 'Sinulla on uusia viestejä sivuilla $1',
 'editsection'             => 'muokkaa',
 'editold'                 => 'muokkaa',
+'viewsourceold'           => 'näytä lähdekoodi',
 'editsectionhint'         => 'Muokkaa osiota $1',
 'toc'                     => 'Sisällysluettelo',
 'showtoc'                 => 'näytä',
@@ -786,7 +787,7 @@ Kokeile [[Special:Search|hakua]] löytääksesi asiaan liittyviä sivuja.',
 # Revision deletion
 'rev-deleted-comment'         => '(kommentti poistettu)',
 'rev-deleted-user'            => '(käyttäjänimi poistettu)',
-'rev-deleted-event'           => '(tapahtuma poistettu)',
+'rev-deleted-event'           => '(lokitapahtuma poistettu)',
 'rev-deleted-text-permission' => '<div class="mw-warning plainlinks">Tämä versio on poistettu julkisesta arkistosta. [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} Poistolokissa] saattaa olla lisätietoja.</div>',
 'rev-deleted-text-view'       => '<div class="mw-warning plainlinks">Tämä versio on poistettu julkisesta arkistosta.</div>',
 'rev-delundel'                => 'näytä tai piilota',
@@ -843,6 +844,8 @@ Uuden ja vanhan sivun muutoksien pitää muodostaa jatkumo – ne eivät saa men
 'mergehistory-no-destination'      => 'Kohdesivua $1 ei ole olemassa.',
 'mergehistory-invalid-source'      => 'Lähdesivulla pitää olla kelvollinen nimi.',
 'mergehistory-invalid-destination' => 'Kohdesivulla pitää olla kelvollinen nimi.',
+'mergehistory-autocomment'         => 'Yhdisti sivun [[:$1]] sivuun [[:$2]]',
+'mergehistory-comment'             => 'Yhdisti sivun [[:$1]] sivuun [[:$2]]: $3',
 
 # Merge log
 'mergelog'           => 'Yhdistämisloki',
@@ -1036,6 +1039,7 @@ $1 | $2',
 'recentchangeslinked-title'    => 'Sivulta $1 linkitettyjen sivujen muutokset',
 'recentchangeslinked-noresult' => 'Ei muutoksia linkitettyihin sivuihin annetulla aikavälillä.',
 'recentchangeslinked-summary'  => "Tämä toimintosivu näyttää muutokset sivuihin, joihin on viitattu tältä sivulta. Tarkkailulistallasi olevat sivut on '''paksunnettu'''.",
+'recentchangeslinked-page'     => 'Sivun nimi',
 
 # Upload
 'upload'                      => 'Tallenna tiedosto',
@@ -1343,6 +1347,7 @@ Ohjelmiston suorittamia ylläpitotöitä on jonossa '''$7''' {{PLURAL:$7|kappale
 
 # Special:Listgrouprights
 'listgrouprights'          => 'Käyttäjäryhmien oikeudet',
+'listgrouprights-summary'  => 'Seuraava on lista tässä wikissä määritellyistä käyttäjäryhmistä ja kyseisten ryhmien käyttäjäoikeuksista.',
 'listgrouprights-group'    => 'Ryhmä',
 'listgrouprights-rights'   => 'Oikeudet',
 'listgrouprights-helppage' => 'Help:Käyttöoikeudet',
@@ -1366,6 +1371,8 @@ Ohjelmiston suorittamia ylläpitotöitä on jonossa '''$7''' {{PLURAL:$7|kappale
 'emailccsubject'  => 'Kopio lähettämästäsi viestistä osoitteeseen $1: $2',
 'emailsent'       => 'Sähköposti lähetetty',
 'emailsenttext'   => 'Sähköpostiviestisi on lähetetty.',
+'emailuserfooter' => '--
+Tämä sähköposti lähetettiin käyttäen {{GRAMMAR:genitive|{{SITENAME}}}} lähetä sähköpostia -toimintoa.',
 
 # Watchlist
 'watchlist'            => 'Tarkkailulista',
@@ -1580,18 +1587,21 @@ $1',
 'sp-contributions-submit'      => 'Hae',
 
 # What links here
-'whatlinkshere'       => 'Tänne viittaavat sivut',
-'whatlinkshere-title' => 'Sivut, jotka viittaavat sivulle $1',
-'whatlinkshere-page'  => 'Sivu',
-'linklistsub'         => 'Lista linkeistä',
-'linkshere'           => 'Seuraavilta sivuilta on linkki sivulle <strong>[[:$1]]</strong>:',
-'nolinkshere'         => 'Sivulle <strong>[[:$1]]</strong> ei ole linkkejä.',
-'nolinkshere-ns'      => 'Sivulle <strong>[[:$1]]</strong> ei ole linkkejä valitussa nimiavaruudessa.',
-'isredirect'          => 'ohjaussivu',
-'istemplate'          => 'sisällytetty mallineeseen',
-'whatlinkshere-prev'  => '← {{PLURAL:$1|edellinen sivu|$1 edellistä sivua}}',
-'whatlinkshere-next'  => '{{PLURAL:$1|seuraava sivu|$1 seuraavaa sivua}} →',
-'whatlinkshere-links' => 'viittaukset',
+'whatlinkshere'            => 'Tänne viittaavat sivut',
+'whatlinkshere-title'      => 'Sivut, jotka viittaavat sivulle $1',
+'whatlinkshere-page'       => 'Sivu',
+'linklistsub'              => 'Lista linkeistä',
+'linkshere'                => 'Seuraavilta sivuilta on linkki sivulle <strong>[[:$1]]</strong>:',
+'nolinkshere'              => 'Sivulle <strong>[[:$1]]</strong> ei ole linkkejä.',
+'nolinkshere-ns'           => 'Sivulle <strong>[[:$1]]</strong> ei ole linkkejä valitussa nimiavaruudessa.',
+'isredirect'               => 'ohjaussivu',
+'istemplate'               => 'sisällytetty mallineeseen',
+'whatlinkshere-prev'       => '← {{PLURAL:$1|edellinen sivu|$1 edellistä sivua}}',
+'whatlinkshere-next'       => '{{PLURAL:$1|seuraava sivu|$1 seuraavaa sivua}} →',
+'whatlinkshere-links'      => 'viittaukset',
+'whatlinkshere-hideredirs' => '$1 ohjaukset',
+'whatlinkshere-hidetrans'  => '$1 sisällytykset',
+'whatlinkshere-hidelinks'  => '$1 linkit',
 
 # Block/unblock
 'blockip'                     => 'Aseta muokkausesto',
@@ -2416,5 +2426,16 @@ Kirjoita tiedostonimi ilman ”{{ns:image}}:”-etuliitettä.',
 'fileduplicatesearch-info'     => '$1×$2 kuvapistettä<br />Tiedostokoko: $3<br />MIME-tyyppi: $4',
 'fileduplicatesearch-result-1' => 'Tiedostolla ”$1” ei ole identtisiä kaksoiskappaleita.',
 'fileduplicatesearch-result-n' => 'Tiedostolla ”$1” on {{PLURAL:$2|yksi identtinen kaksoiskappale|$2 identtistä kaksoiskappaletta}}.',
+
+# Special:SpecialPages
+'specialpages-group-maintenance' => 'Ylläpito',
+'specialpages-group-other'       => 'Muut',
+'specialpages-group-login'       => 'Kirjautuminen ja tunnusten luonti',
+'specialpages-group-changes'     => 'Muutokset ja lokit',
+'specialpages-group-media'       => 'Media',
+'specialpages-group-users'       => 'Käyttäjät',
+'specialpages-group-needy'       => 'Huomiota kaipaavat sivut',
+'specialpages-group-highuse'     => 'Sivujen käyttöaste',
+'specialpages-group-permissions' => 'Käyttöoikeudet',
 
 );

@@ -4,10 +4,10 @@
  * @addtogroup Language
  *
  * @author Maartenvdbent
+ * @author Pyt
+ * @author Siebrand
  * @author Nike
  * @author SPQRobin
- * @author Siebrand
- * @author Pyt
  * @author Jon Harald Søby
  */
 

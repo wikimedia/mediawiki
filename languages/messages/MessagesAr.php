@@ -601,6 +601,7 @@ $messages = array(
 'youhavenewmessagesmulti' => 'لديك رسائل جديدة على $1',
 'editsection'             => 'تحرير',
 'editold'                 => 'تحرير',
+'viewsourceold'           => 'اعرض المصدر',
 'editsectionhint'         => 'تحرير القسم: $1',
 'toc'                     => 'محتويات',
 'showtoc'                 => 'عرض',
@@ -1059,7 +1060,8 @@ $1 ساعة.',
 
 # Suppression log
 'suppressionlog'     => 'سجل الإخفاء',
-'suppressionlogtext' => 'بالأسفل قائمة بآخر عمليات الحذف والمنع المتضمنة لمحتوى تم إخفاؤه عن مديري النظام. انظر [[Special:Ipblocklist|قائمة منع الأيبي]] لقائمة عمليات المنع الفعالة حاليا.',
+'suppressionlogtext' => 'بالأسفل قائمة بعمليات الحذف والمنع التي تتضمن محتوى مخفي من الإداريين.
+انظر [[خاص:Ipblocklist|لقائمة المنع]] لترى عمليات المنع القائمة الآن.',
 
 # History merging
 'mergehistory'                     => 'دمج تواريخ الصفحة',
@@ -1275,9 +1277,10 @@ $1 ساعة.',
 
 # Recent changes linked
 'recentchangeslinked'          => 'تغييرات ذات علاقة',
-'recentchangeslinked-title'    => 'التغييرات المرتبطة ب$1',
+'recentchangeslinked-title'    => 'التغييرات المرتبطة ب "$1"',
 'recentchangeslinked-noresult' => 'لم تحدث تعديلات في الصفحات التي لها وصلات هنا خلال الفترة المحددة.',
 'recentchangeslinked-summary'  => "هذه الصفحة الخاصة تعرض آخر التغييرات في الصفحات الموصولة. الصفحات في قائمة مراقبتك معروضة '''بخط عريض'''.",
+'recentchangeslinked-page'     => 'اسم الصفحة',
 
 # Upload
 'upload'                      => 'رفع ملف',
@@ -1641,6 +1644,8 @@ PICT # misc.
 'emailccsubject'  => 'نسخة من رسالتك إلى $1: $2',
 'emailsent'       => 'تم إرسال البريد الإلكتروني',
 'emailsenttext'   => 'تم إرسال رسالتك الإلكترونية.',
+'emailuserfooter' => "--
+هذه الرسالة الإلكترونية تم إرسالها باستخدام خاصية 'مراسلة المستخدم' ل {{SITENAME}}",
 
 # Watchlist
 'watchlist'            => 'قائمة مراقبتي',
@@ -2818,5 +2823,16 @@ $1',
 'fileduplicatesearch-info'     => '$1 × $2 بكسل<br />حجم الملف: $3<br />نوع MIME: $4',
 'fileduplicatesearch-result-1' => 'الملف "$1" ليس له تكرار مطابق.',
 'fileduplicatesearch-result-n' => 'الملف "$1" له {{PLURAL:$2|1 تكرار مطابق|$2 تكرار مطابق}}.',
+
+# Special:SpecialPages
+'specialpages-group-maintenance' => 'تقارير الصيانة',
+'specialpages-group-other'       => 'صفحات خاصة أخرى',
+'specialpages-group-login'       => 'ادخل / سجل',
+'specialpages-group-changes'     => 'السجلات وأحدث التغييرات',
+'specialpages-group-media'       => 'تقارير الميديا',
+'specialpages-group-users'       => 'المستخدمون والصلاحيات',
+'specialpages-group-needy'       => 'صفحات بحاجة للعمل',
+'specialpages-group-highuse'     => 'صفحات استخدام عال',
+'specialpages-group-permissions' => 'صلاحيات المستخدم',
 
 );

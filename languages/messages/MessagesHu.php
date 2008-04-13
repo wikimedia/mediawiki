@@ -509,6 +509,7 @@ $messages = array(
 'youhavenewmessagesmulti' => 'Új üzenetet vár a(z) $1 lapon',
 'editsection'             => 'szerkesztés',
 'editold'                 => 'szerkesztés',
+'viewsourceold'           => 'lapforrás',
 'editsectionhint'         => 'Szakasz szerkesztése: $1',
 'toc'                     => 'Tartalomjegyzék',
 'showtoc'                 => 'megjelenítés',
@@ -1115,8 +1116,8 @@ A bepipált doboz azt jelenti, hogy a felhasználó benne van a csoportban,
 az üres azt, hogy nem.',
 'userrights-reason'                => 'A változtatás indoka:',
 'userrights-available-none'        => 'A csoporttagságot nem módosíthatod.',
-'userrights-available-add'         => 'Adhatsz hozzá felhasználókat a(z) $1 csoporthoz.',
-'userrights-available-remove'      => 'Távolíthatsz el felhazsnálókat a(z) $1 csoportból.',
+'userrights-available-add'         => 'A következő {{PLURAL:$2|csoportokhoz|csoporthoz}} adhatsz hozzá felhasználókat: $1.',
+'userrights-available-remove'      => 'Bármelyik felhasználót eltávolíthatod {{PLURAL:$2|ebből a csoportból|ezekből a csoportokból}}: $1.',
 'userrights-available-add-self'    => 'A következő {{PLURAL:$2|csoporthoz|csoportokhoz}} adhatod hozzá magadat: $1.',
 'userrights-available-remove-self' => 'A következő {{PLURAL:$2|csoportból|csoportokból}} távolíthatod el magad: $1.',
 'userrights-no-interwiki'          => 'Nincs jogod a felhasználók jogainak szerkesztésére más wikiken.',
@@ -1185,6 +1186,7 @@ az üres azt, hogy nem.',
 'recentchangeslinked-title'    => 'A(z) $1 lappal kapcsolatos változtatások',
 'recentchangeslinked-noresult' => 'Nem történt változtatás a hivatkozott lapokon a megadott időtartam alatt.',
 'recentchangeslinked-summary'  => "Ezek azoknak a lapoknak a legutóbbi változtatásai, amik be vannak linkelve erről az oldalról. Amik fenn vannak a figyelőlistádon, azok '''félkövérrel''' szerepelnek.",
+'recentchangeslinked-page'     => 'Lap neve',
 
 # Upload
 'upload'                      => 'Fájl feltöltése',
@@ -1514,10 +1516,11 @@ Szűkítheted a listát a naplótípus, a műveletet végző felhasználó vagy 
 'listusers-noresult' => 'Nem található felhasználó.',
 
 # Special:Listgrouprights
-'listgrouprights'         => 'Felhasználói csoportok jogai',
-'listgrouprights-summary' => 'Lenn láthatóak a wikiben létező felhasználói csoportok, valamint az azokhoz tartozó jogok.',
-'listgrouprights-group'   => 'Csoport',
-'listgrouprights-rights'  => 'Jogok',
+'listgrouprights'          => 'Felhasználói csoportok jogai',
+'listgrouprights-summary'  => 'Lenn láthatóak a wikiben létező felhasználói csoportok, valamint az azokhoz tartozó jogok.',
+'listgrouprights-group'    => 'Csoport',
+'listgrouprights-rights'   => 'Jogok',
+'listgrouprights-helppage' => 'Help:Csoportok jogai',
 
 # E-mail user
 'mailnologin'     => 'Nincs feladó',
@@ -1545,6 +1548,8 @@ nem kíván másoktól leveleket kapni.',
 'emailccsubject'  => '$1 szerkesztőnek küldött $2 tárgyú üzenet másolata',
 'emailsent'       => 'E-mail elküldve',
 'emailsenttext'   => 'Az e-mail üzenetedet elküldtem.',
+'emailuserfooter' => '--
+Ez az üzenet a {{SITENAME}} wikiről lett küldve az „E-mail küldése ezen szerkesztőnek” használatával',
 
 # Watchlist
 'watchlist'            => 'Figyelőlistám',
@@ -1687,12 +1692,14 @@ Kérjük, hogy nyomd meg a "vissza" gombot, és töltsd le újra az oldalt, ahon
 Itt vannak a(z) <strong>$1</strong> lap jelenlegi beállításai:',
 'protect-locked-access'       => 'A fiókod számára nem engedélyezett a védelmi szintek megváltoztatása.
 Itt vannak a(z) <strong>$1</strong> lap jelenlegi beállításai:',
-'protect-cascadeon'           => 'A lap le van védve, mert tartalmazzák az alábbi lapok, amelyeken be van kapcsolva a kaszkád védelem. Ezen lap védelmi szintjének a megváltoztatása a kaszkád védelemre nincs hatással.',
+'protect-cascadeon'           => 'A lap le van védve, mert {{PLURAL:$1|tartalmazza az alábbi lap, amelyen|mert tartalmazzák az alábbi lapok, amelyeken}}
+be van kapcsolva a kaszkád védelem.
+Megváltoztathatod ezen lap védelmi szintjét, de az nem lesz hatással a kaszkád védelemre.',
 'protect-default'             => '(alapértelmezett)',
 'protect-fallback'            => '"$1" engedély szükséges hozzá',
 'protect-level-autoconfirmed' => 'Csak regisztrált felhasználók',
 'protect-level-sysop'         => 'Csak adminisztrátorok',
-'protect-summary-cascade'     => 'részben fedő',
+'protect-summary-cascade'     => 'kaszkád védelem',
 'protect-expiring'            => 'lejár: $1 (UTC)',
 'protect-cascade'             => 'Kaszkád védelem – védjen le minden lapot, amit ez a lap tartalmaz.',
 'protect-cantedit'            => 'Nem változtathatod meg a lap védelmi szintjét, mert nincs jogod a szerkesztéséhez.',
@@ -1782,18 +1789,21 @@ $1',
 'sp-contributions-submit'      => 'Keresés',
 
 # What links here
-'whatlinkshere'       => 'Mi hivatkozik erre',
-'whatlinkshere-title' => 'A(z) $1 lapra hivatkozó lapok',
-'whatlinkshere-page'  => 'Oldal:',
-'linklistsub'         => '(Hivatkozások )',
-'linkshere'           => 'Az alábbi lapok hivatkoznak erre: [[:$1]]',
-'nolinkshere'         => '[[:$1]]: erre a lapra semmi nem hivatkozik.',
-'nolinkshere-ns'      => "A kiválasztott nvtartományban egy lap sem hivatkozik a(z) '''[[:$1]]''' szócikkre.",
-'isredirect'          => 'átirányítás',
-'istemplate'          => 'beillesztve',
-'whatlinkshere-prev'  => '{{PLURAL:$1|előző|előző $1}}',
-'whatlinkshere-next'  => '{{PLURAL:$1|következő|következő $1}}',
-'whatlinkshere-links' => '← erre mutató hivatkozások',
+'whatlinkshere'            => 'Mi hivatkozik erre',
+'whatlinkshere-title'      => 'A(z) $1 lapra hivatkozó lapok',
+'whatlinkshere-page'       => 'Oldal:',
+'linklistsub'              => '(Hivatkozások )',
+'linkshere'                => 'Az alábbi lapok hivatkoznak erre: [[:$1]]',
+'nolinkshere'              => '[[:$1]]: erre a lapra semmi nem hivatkozik.',
+'nolinkshere-ns'           => "A kiválasztott nvtartományban egy lap sem hivatkozik a(z) '''[[:$1]]''' szócikkre.",
+'isredirect'               => 'átirányítás',
+'istemplate'               => 'beillesztve',
+'whatlinkshere-prev'       => '{{PLURAL:$1|előző|előző $1}}',
+'whatlinkshere-next'       => '{{PLURAL:$1|következő|következő $1}}',
+'whatlinkshere-links'      => '← erre mutató hivatkozások',
+'whatlinkshere-hideredirs' => 'átirányítások $1',
+'whatlinkshere-hidetrans'  => 'beillesztések $1',
+'whatlinkshere-hidelinks'  => 'linkek $1',
 
 # Block/unblock
 'blockip'                     => 'Blokkolás',
@@ -1979,8 +1989,8 @@ Az utóbbi esetben közvetlen hivatkozást is használhatsz, például a [[Speci
 'allmessagesname'           => 'Név',
 'allmessagesdefault'        => 'Alapértelmezett szöveg',
 'allmessagescurrent'        => 'Jelenlegi szöveg',
-'allmessagestext'           => 'Ez a MediaWiki-névtérben elérhető összes üzenet listája.
-Ha fordítani szeretnél, látogass el a [http://translatewiki.net Betawiki]re.',
+'allmessagestext'           => 'Ez a MediaWiki-névtérben elérhető összes rendszerüzenet listája.
+Ha részt szeretnél venni a MediaWiki fordításában, látogass el a [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] és a [http://translatewiki.net Betawiki] oldalakra.',
 'allmessagesnotsupportedDB' => "A '''''{{ns:special}}:Allmessages''''' lap nem használható, mert a '''\$wgUseDatabaseMessages''' ki van kapcsolva.",
 'allmessagesfilter'         => 'Üzenetnevek szűrése:',
 'allmessagesmodified'       => 'Csak a módosítottak mutatása',
@@ -2649,6 +2659,17 @@ Add meg a fájl nevét „{{ns:image}}:” előtag nélkül.',
 'fileduplicatesearch-submit'   => 'Keresés',
 'fileduplicatesearch-info'     => '$1 × $2 pixel<br />Fájlméret: $3<br />MIME-típus: $4',
 'fileduplicatesearch-result-1' => 'A(z) „$1“ nevű fájlnak nincs duplikátuma.',
-'fileduplicatesearch-result-n' => 'A(z) „$1“ nevű fájlnak nincs duplikátuma.',
+'fileduplicatesearch-result-n' => 'A(z) „$1” nevű fájlnak $1 duplikátuma van.',
+
+# Special:SpecialPages
+'specialpages-group-maintenance' => 'Állapotjelentések',
+'specialpages-group-other'       => 'További speciális lapok',
+'specialpages-group-login'       => 'Bejelentkezés / fiók létrehozása',
+'specialpages-group-changes'     => 'Friss változások, naplók',
+'specialpages-group-media'       => 'Médiafájlok',
+'specialpages-group-users'       => 'Felhasználók és jogok',
+'specialpages-group-needy'       => 'Figyelmet igénylő lapok',
+'specialpages-group-highuse'     => 'Gyakran használt lapok',
+'specialpages-group-permissions' => 'Felhasználók jogai',
 
 );

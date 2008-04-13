@@ -26,6 +26,8 @@
  * @author Toniher
  * @author לערי ריינהארט
  * @author Dvortygirl
+ * @author Cvmontuy
+ * @author Drini
  */
 
 $skinNames = array(
@@ -210,6 +212,9 @@ $messages = array(
 'navigation'     => 'Navegación',
 'and'            => 'y',
 
+# Metadata in edit box
+'metadata_help' => 'Metadatos:',
+
 'errorpagetitle'    => 'Error',
 'returnto'          => 'Volver a $1.',
 'tagline'           => 'De {{SITENAME}}',
@@ -307,6 +312,7 @@ $messages = array(
 'youhavenewmessagesmulti' => 'Tienes nuevos mensajes en $1',
 'editsection'             => 'editar',
 'editold'                 => 'editar',
+'viewsourceold'           => 'ver código fuente',
 'editsectionhint'         => 'Editar sección: $1',
 'toc'                     => 'Tabla de contenidos',
 'showtoc'                 => 'mostrar',
@@ -537,27 +543,32 @@ Puedes ignorar este mensaje si esta cuenta fue creado erróneamente.',
 'summary-preview'           => 'Previsualización del resumen',
 'subject-preview'           => 'Previsualización del tema/título',
 'blockedtitle'              => 'El usuario está bloqueado',
-'blockedtext'               => "<big>'''Tu nombre de usuario o dirección IP ha sido bloqueada.'''</big>
+'blockedtext'               => '<big>\'\'\'Tu nombre de usuario o dirección IP ha sido bloqueada.\'\'\'</big>
 
-El bloqueo fue hecho por \$1. La razón dada es ''\$2''.
+El bloqueo fue hecho por $1. La razón dada es \'\'$2\'\'.
 
-Puedes contactar con \$1 o con otro [[{{MediaWiki:Grouppage-sysop}}|administrador]] para discutir el bloqueo.
+* Inicio del bloqueo: $8
+* Caducidad del bloqueo: $6
+* Bloqueo destinado a: $7 
 
-No puedes usar el enlace \"enviar correo electrónico a este usuario\" si no has registrado una dirección válida de correo electrónico en tus [[Special:Preferences|preferencias]]. Tu dirección IP actual es \$3, y el identificador del bloqueo es #\$5. Por favor incluye uno o ambos datos en cualquier consulta que hagas.",
-'autoblockedtext'           => 'Tu dirección IP ha sido bloqueada automáticamente porque era utilizada por otro ususario que fue bloqueado por $1.
+Puedes contactar con $1 o con otro [[{{MediaWiki:Grouppage-sysop}}|administrador]] para discutir el bloqueo.
+
+No puedes usar el enlace "enviar correo electrónico a este usuario" si no has registrado una dirección válida de correo electrónico en tus [[Special:Preferences|preferencias]]. Tu dirección IP actual es $3, y el identificador del bloqueo es #$5. Por favor incluye uno o ambos datos en cualquier consulta que hagas.',
+'autoblockedtext'           => 'Tu dirección IP ha sido bloqueada automáticamente porque fue utilizada por otro usuario que fue bloqueado por $1.
 
 La razón dada es esta:
 
 :\'\'$2\'\'
 
-Caducidad del bloqueo: $6
-
+* Inicio del bloqueo: $8
+* Caducidad del bloqueo: $6
 
 Puedes contactar con $1 o con otro de los [[{{MediaWiki:Grouppage-sysop}}|administradores]] para discutir el bloqueo.
 
 Nota que no puedes utilizar la función "Enviar correo electrónico a este usuario" a menos que tengas una dirección de correo electrónico válida registrada en tus [[Special:Preferences|preferencias de usuario]].
 
-Tu identificador de bloqueo es $5. Por favor, incluye este identificador en cualquier petición que hagas.',
+Tu identificador de bloqueo es $5.
+Por favor, incluye este identificador en cualquier petición que hagas.',
 'blockedoriginalsource'     => "El código fuente de '''$1''' se muestra a continuación:",
 'blockededitsource'         => "El texto de '''tus ediciones''' a '''$1''' se muestran a continuación:",
 'whitelistedittitle'        => 'Se requiere identificación para editar.',
@@ -623,7 +634,7 @@ Por favor considere la posibilidad de dividir esta página en secciones más peq
 Puede copiar y pegar el texto a un archivo en su ordenador y grabarlo para más tarde.</strong>',
 'protectedpagewarning'      => '<strong>ADVERTENCIA: Esta página ha sido protegida de manera que sólo usuarios con permisos de administrador pueden editarla.</strong>',
 'semiprotectedpagewarning'  => "'''Nota:''' Esta página ha sido protegida para que sólo usuarios registrados puedan editarla.",
-'cascadeprotectedwarning'   => "'''Aviso:''' Esta página está protegida, sólo los administradores pueden editarla porque está transcluida en las siguientes páginas protegidas con la opción de ''cascada'':",
+'cascadeprotectedwarning'   => "'''Aviso:''' Esta página está protegida, sólo los administradores pueden editarla porque está incluida en  {{PLURAL:$1|la siguiente página protegida|las siguientes páginas protegidas}} en cascada:",
 'templatesused'             => 'Plantillas usadas en esta página:',
 'templatesusedpreview'      => 'Plantillas usadas en esta previsualización:',
 'templatesusedsection'      => 'Plantillas usadas en esta sección:',
@@ -721,9 +732,18 @@ Otros administradores de este wiki aún podrán acceder al contenido oculto y po
 'logdelete-logentry'          => 'cambiada la visibilidad de eventos de [[$1]]',
 'revdelete-success'           => 'Visibilidad de revisiones cambiada correctamente.',
 'logdelete-success'           => 'Visibilidad de eventos cambiada correctamente.',
+'revdel-restore'              => 'Cambiar visibilidad',
+'pagehist'                    => 'Historial de la página',
+'revdelete-content'           => 'contenido',
+'revdelete-summary'           => 'editar resumen',
 'revdelete-uname'             => 'nombre de usuario',
 'revdelete-hid'               => 'ocultar $1',
 'revdelete-unhid'             => 'mostrar $1',
+
+# History merging
+'mergehistory-from'                => 'Página origen:',
+'mergehistory-into'                => 'Página destino:',
+'mergehistory-invalid-destination' => 'La página de destino ha de tener un título válido.',
 
 # Diffs
 'history-title'           => 'Historial de revisiones para "$1"',
@@ -740,6 +760,7 @@ Otros administradores de este wiki aún podrán acceder al contenido oculto y po
 'searchsubtitleinvalid' => 'Para consulta "$1"',
 'noexactmatch'          => "'''No existe una página llamada \"\$1\".''' Puedes [[:\$1|crearla]].",
 'noexactmatch-nocreate' => "'''No existe la página \"\$1\".'''",
+'toomanymatches'        => 'Los resultados fueron demasiado extensos, por favor intente una consulta diferente',
 'titlematches'          => 'Coincidencias de título de artículo',
 'notitlematches'        => 'No hay coincidencias de título de artículo',
 'textmatches'           => 'Coincidencias de texto de artículo',
@@ -821,17 +842,20 @@ $2 Listar redirecciones   Buscar $3 $9',
 'files'                    => 'Archivos',
 
 # User rights
-'userrights'                 => 'Configuración de permisos de usuarios', # Not used as normal message but as header for the special page itself
-'userrights-lookup-user'     => 'Configurar grupos de usuarios',
-'userrights-user-editname'   => 'Escriba un nombre de usuario:',
-'editusergroup'              => 'Modificar grupos de usuarios',
-'editinguser'                => "Editando '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
-'userrights-editusergroup'   => 'Modificar grupos de usuarios',
-'saveusergroups'             => 'Guardar grupos de usuarios',
-'userrights-groupsmember'    => 'Miembro de:',
-'userrights-groupsremovable' => 'Grupos removibles:',
-'userrights-groupsavailable' => 'Grupos disponibles:',
-'userrights-reason'          => 'Motivo para el cambio:',
+'userrights'                  => 'Configuración de permisos de usuarios', # Not used as normal message but as header for the special page itself
+'userrights-lookup-user'      => 'Configurar grupos de usuarios',
+'userrights-user-editname'    => 'Escriba un nombre de usuario:',
+'editusergroup'               => 'Modificar grupos de usuarios',
+'editinguser'                 => "Editando '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
+'userrights-editusergroup'    => 'Modificar grupos de usuarios',
+'saveusergroups'              => 'Guardar grupos de usuarios',
+'userrights-groupsmember'     => 'Miembro de:',
+'userrights-groupsremovable'  => 'Grupos removibles:',
+'userrights-groupsavailable'  => 'Grupos disponibles:',
+'userrights-reason'           => 'Motivo para el cambio:',
+'userrights-nodatabase'       => 'La base de datos $1 no existe o no es local.',
+'userrights-changeable-col'   => 'Grupos que puede cambiar',
+'userrights-unchangeable-col' => 'Grupos que no puede cambiar',
 
 # Groups
 'group'            => 'Grupo:',
@@ -884,7 +908,7 @@ $2 Listar redirecciones   Buscar $3 $9',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Cambios en enlazadas',
-'recentchangeslinked-title'    => 'Cambios relacionados con $1',
+'recentchangeslinked-title'    => 'Cambios relacionados con "$1"',
 'recentchangeslinked-noresult' => 'No hubo cambios en las páginas enlazadas durante el periodo indicado.',
 'recentchangeslinked-summary'  => "Esta página especial lista los últimos cambios en las páginas enlazadas. Las páginas en su lista de seguimiento están en '''negrita'''.",
 
@@ -952,8 +976,8 @@ Si tienes esta imagen a toda resolución súbela, si no, por favor cambia el nom
 'uploadscripted'              => 'Este archivo contiene script o código HTML que puede ser interpretado erróneamente por un navegador.',
 'uploadcorrupt'               => 'Este archivo está corrupto o la extensión indicada no se corresponde con el tipo de archivo. Por favor, comprueba el archivo y vuelve a subirlo.',
 'uploadvirus'                 => '¡El archivo contiene un virus! Detalles: $1',
-'sourcefilename'              => 'Nombre del archivo origen',
-'destfilename'                => 'Nombre del archivo de destino',
+'sourcefilename'              => 'Nombre del archivo origen:',
+'destfilename'                => 'Nombre del archivo de destino:',
 'watchthisupload'             => 'Vigilar esta página',
 'filewasdeleted'              => 'Un archivo con este nombre se subió con anterioridad y posteriormente ha sido borrado. Deberías revisar el $1 antes de subirlo de nuevo.',
 
@@ -990,6 +1014,8 @@ Si tienes esta imagen a toda resolución súbela, si no, por favor cambia el nom
 'filehist'                  => 'Historial del archivo',
 'filehist-help'             => 'Haga clic sobre una fecha/hora para ver el
 archivo a esa fecha.',
+'filehist-deleteall'        => 'borrar todo',
+'filehist-deleteone'        => 'borrar esto',
 'filehist-revert'           => 'revertir',
 'filehist-current'          => 'act',
 'filehist-datetime'         => 'Fecha/Hora',
@@ -1781,16 +1807,18 @@ Todas las importaciones transwiki se registran en el [[Special:Log/import|regist
 # Special:Newimages
 'newimages'             => 'Galería de imágenes nuevas',
 'imagelisttext'         => 'Abajo hay una lista de $1 imágenes ordenadas $2.',
+'showhidebots'          => '($1 bots)',
 'noimages'              => 'No hay nada que ver.',
 'ilsubmit'              => 'Búsqueda',
 'bydate'                => 'por fecha',
-'sp-newimages-showfrom' => 'Mostrar nuevas imágenes empezando por $1',
+'sp-newimages-showfrom' => 'Mostrar nuevas imágenes empezando por $2, $1',
 
 # Bad image list
-'bad_image_list' => 'El formato sigue:
+'bad_image_list' => 'El formato es el siguiente:
 
-Solamente se reconocen elementos de la lista (líneas que empiezan con *). El enlace primero en una línea tiene que enlazar a la imagen que no quieres aparecer en artículos.
-Los siguientes enlaces en la misma línea se consideran las exepciones (los artículos donde se puede ver la imagen).',
+Solamente elementos enlistados (líneas que inician con *) serán tomados en cuenta.
+El primer enlace de cada linea debe ser un enlace al archivo que se quiere bloquear.
+Todos los demás enlaces en la misma línea se tomarán como excepciones (es decir, páginas donde sí se puede usar el archivo).',
 
 # Metadata
 'metadata'          => 'Metadatos',
@@ -2089,7 +2117,11 @@ Para confirmar que esta cuenta realmente le pertenece y activar el correo en {{S
 
 $3
 
-Si la cuenta no es suya, no siga el enlace. El código de confirmación expirará en $4.',
+Si la cuenta *no* es suya, siga este enlace para cancelar la confirmación de la dirección de correo:
+
+$5
+
+El código de confirmación expirará en $4.',
 
 # Scary transclusion
 'scarytranscludedisabled' => '[Transclusión interwiki está deshabilitada]',

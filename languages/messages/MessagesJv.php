@@ -211,7 +211,7 @@ $messages = array(
 'create-this-page'  => 'Nggawé kaca iki',
 'delete'            => 'Busak',
 'deletethispage'    => 'Busak kaca iki',
-'undelete_short'    => 'Batal busak $1 suntingan',
+'undelete_short'    => 'Batal busak $1 {{PLURAL:$1|suntingan|suntingan}}',
 'protect'           => 'Reksanen',
 'protect_change'    => 'ngowahi reksanan',
 'protectthispage'   => 'Reksanen kaca iki',
@@ -239,7 +239,7 @@ $messages = array(
 'redirectedfrom'    => '(Dialihkan dari $1)',
 'redirectpagesub'   => 'Kaca pangalihan',
 'lastmodifiedat'    => 'Kaca iki diowahi pungkasané nalika $2, $1.', # $1 date, $2 time
-'viewcount'         => 'Kaca iki wis tau diaksès cacahé ping $1.<br />',
+'viewcount'         => 'Kaca iki wis tau diaksès cacahé ping {{PLURAL:$1|siji|$1}}.',
 'protectedpage'     => 'Kaca sing direksa',
 'jumpto'            => 'Langsung menyang:',
 'jumptonavigation'  => 'navigasi',
@@ -289,13 +289,14 @@ $messages = array(
 'youhavenewmessagesmulti' => 'Panjenengan olèh pesen-pesen anyar $1',
 'editsection'             => 'sunting',
 'editold'                 => 'sunting',
+'viewsourceold'           => 'deleng sumber',
 'editsectionhint'         => 'Sunting bagian: $1',
 'toc'                     => 'Bab lan paragraf',
 'showtoc'                 => 'tuduhna',
 'hidetoc'                 => 'delikna',
 'thisisdeleted'           => 'Mirsani utawa mbalèkaké $1?',
 'viewdeleted'             => 'Mirsani $1?',
-'restorelink'             => '$1 suntingan sing wis kabusak',
+'restorelink'             => '$1 {{PLURAL:$1|suntingan|suntingan}} sing wis kabusak',
 'feedlinks'               => 'Asupan:',
 'feed-invalid'            => 'Tipe permintaan asupan ora bener.',
 'feed-unavailable'        => "Umpan sindikasi (''syndication feeds'') ora ana ing {{SITENAME}}",
@@ -647,7 +648,7 @@ Alesané miturut $3 yaiku ''$2''",
 'deletedrev'          => '[dibusak]',
 'histfirst'           => 'Suwé dhéwé',
 'histlast'            => 'Anyar dhéwé',
-'historysize'         => '($1 bita)',
+'historysize'         => '($1 {{PLURAL:$1|bita|bita}})',
 'historyempty'        => '(kosong)',
 
 # Revision feed
@@ -889,11 +890,11 @@ Kothak sing ora dicèk tegesé panganggo iku ora ana ing grup iku.',
 'rightsnone'     => '(ora ana)',
 
 # Recent changes
-'nchanges'                          => '$1 pangowahan',
+'nchanges'                          => '$1 {{PLURAL:$1|pangowahan|owah-owahan}}',
 'recentchanges'                     => 'Owah-owahan',
 'recentchangestext'                 => 'Runutna owah-owahan pungkasan ing wiki iki ing kaca iki.',
 'recentchanges-feed-description'    => "Urutna owah-owahan anyar ing wiki ing ''feed'' iki.",
-'rcnote'                            => 'Ing ngisor iki kapacak owahan-owahan <strong>$1</strong> pungkasan ing  <strong>$2</strong> dina pungkasan iki $3.',
+'rcnote'                            => 'Ing ngisor iki kapacak {{PLURAL:$1|pangowahan|owah-owahan}} pungkasan ing  <strong>$2</strong> dina pungkasan nganti $3.',
 'rcnotefrom'                        => 'Ing ngisor iki owah-owahan wiwit <strong>$2</strong> (kapacak nganti <strong>$1</strong> owah-owahan).',
 'rclistfrom'                        => 'Saiki nuduhaké owah-owahan wiwit tanggal $1',
 'rcshowhideminor'                   => '$1 suntingan sithik',
@@ -917,9 +918,10 @@ Kothak sing ora dicèk tegesé panganggo iku ora ana ing grup iku.',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Pranala Pilihan',
-'recentchangeslinked-title'    => 'Owah-owahan sing ana gandhèngané karo $1',
+'recentchangeslinked-title'    => 'Owah-owahan sing ana gandhèngané karo "$1"',
 'recentchangeslinked-noresult' => 'Ora ana owah-owahan ing kaca-kaca kagandhèng iki salawasé periode sing wis ditemtokaké.',
 'recentchangeslinked-summary'  => "Kaca astaméwa (kaca kusus) iki mènèhi daftar owah-owahan pungkasan ing kaca-kaca sing kagandhèng. Kaca sing panjenengan awasi ditandhani '''kandel'''.",
+'recentchangeslinked-page'     => 'Jeneng kaca',
 
 # Upload
 'upload'                      => 'Unggah',
@@ -1127,7 +1129,7 @@ Sampun naté wonten '''\$3''' kaca dipun tontonaken kaliyan '''\$4''' kaca naté
 Dados tegesipun rata-rata wonten '''\$5''' suntingan per kaca kaliyan '''\$6''' tayangan per suntingan.
 
 The [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] length is '''\$7'''.",
-'userstatstext'          => "Wonten '''$1''' panganggé ingkang sampun ndaftar. '''$2''' (utawi '''$4%''') antawisipun punika $5.",
+'userstatstext'          => "Ana '''$1''' [[Special:Listusers|{{PLURAL:$1|panganggo|panganggo}}]] sing wis ndaftar. '''$2''' (utawa '''$4%''') antarané iku {{PLURAL:$2|duwé|duwé}} hak aksès $5.",
 'statistics-mostpopular' => 'Kaca sing paling akèh dituduhaké',
 
 'disambiguations'      => 'Kaca disambiguasi',
@@ -1497,19 +1499,21 @@ $1',
 'sp-contributions-submit'      => 'Golèk',
 
 # What links here
-'whatlinkshere'        => 'Pranala balik',
-'whatlinkshere-title'  => 'Kaca-kaca sing duwé pranala menyang $1',
-'whatlinkshere-page'   => 'Kaca:',
-'whatlinkshere-barrow' => '&lt;',
-'linklistsub'          => '(Daftar pranala)',
-'linkshere'            => "Kaca-kaca iki nduwé pranala menyang '''[[:$1]]''':",
-'nolinkshere'          => "Ora ana kaca sing nduwé pranala menyang '''[[:$1]]'''.",
-'nolinkshere-ns'       => " Ora ana kaca sing nduwé pranala menyang '''[[:$1]]''' ing bilik jeneng sing kapilih.",
-'isredirect'           => 'kaca pangalihan',
-'istemplate'           => 'karo cithakan',
-'whatlinkshere-prev'   => '$1 sadurungé',
-'whatlinkshere-next'   => '$1 sabanjuré',
-'whatlinkshere-links'  => '← pranala',
+'whatlinkshere'           => 'Pranala balik',
+'whatlinkshere-title'     => 'Kaca-kaca sing duwé pranala menyang $1',
+'whatlinkshere-page'      => 'Kaca:',
+'whatlinkshere-barrow'    => '&lt;',
+'linklistsub'             => '(Daftar pranala)',
+'linkshere'               => "Kaca-kaca iki nduwé pranala menyang '''[[:$1]]''':",
+'nolinkshere'             => "Ora ana kaca sing nduwé pranala menyang '''[[:$1]]'''.",
+'nolinkshere-ns'          => " Ora ana kaca sing nduwé pranala menyang '''[[:$1]]''' ing bilik jeneng sing kapilih.",
+'isredirect'              => 'kaca pangalihan',
+'istemplate'              => 'karo cithakan',
+'whatlinkshere-prev'      => '{{PLURAL:$1|sadurungé|$1 sadurungé}}',
+'whatlinkshere-next'      => '{{PLURAL:$1|sabanjuré|$1 sabanjuré}}',
+'whatlinkshere-links'     => '← pranala',
+'whatlinkshere-hidetrans' => '$1 transklusi',
+'whatlinkshere-hidelinks' => 'pranala-pranala $1',
 
 # Block/unblock
 'blockip'                     => 'Blokir panganggo',
@@ -2339,5 +2343,10 @@ Lebokna jeneng berkas tanpa imbuhan awal "{{ns:image}}:".',
 'fileduplicatesearch-info'     => '$1 × $2 piksel<br />Ukuran berkas: $3<br />Tipe MIME: $4',
 'fileduplicatesearch-result-1' => 'Berkas "$1" ora duwé duplikat idèntik.',
 'fileduplicatesearch-result-n' => 'Berkas "$1" ora ndarbèni {{PLURAL:$2|1 duplikat idèntik|$2 duplikat idèntik}}.',
+
+# Special:SpecialPages
+'specialpages-group-maintenance' => 'Lapuran pangopènan',
+'specialpages-group-other'       => 'Kaca-kaca astaméwa liyané',
+'specialpages-group-needy'       => 'Kaca-kaca sing kudu dibenakaké',
 
 );

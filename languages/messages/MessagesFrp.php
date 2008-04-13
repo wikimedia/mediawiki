@@ -942,7 +942,7 @@ Atencion, lor endèxacion du contegnu de {{SITENAME}} pôt pas étre a jorn.',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Siuvu des lims',
-'recentchangeslinked-title'    => 'Siuvu des lims liyês a $1',
+'recentchangeslinked-title'    => 'Siuvu des lims liyês a "$1"',
 'recentchangeslinked-noresult' => 'Nion changement sur les pâges liyês pendent la pèrioda chouèsia/cièrdua.',
 'recentchangeslinked-summary'  => "Ceta pâge spèciâla montre los dèrriérs changements sur les pâges que sont liyês. Les pâges de voutra lista de siuvu sont '''en grâs'''.",
 

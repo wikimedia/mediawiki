@@ -68,6 +68,7 @@ $messages = array(
 'dec'           => 'Dez',
 
 # Categories related messages
+'categories'             => 'Categories',
 'category_header'        => 'Páginas na categoria "$1"',
 'listingcontinuesabbrev' => 'cont.',
 
@@ -78,6 +79,7 @@ $messages = array(
 'qbedit'    => 'Editar',
 'mytalk'    => 'Mie cumbersa',
 
+'errorpagetitle'   => 'Erro',
 'returnto'         => 'Retornar para $1.',
 'tagline'          => 'De {{SITENAME}}',
 'help'             => 'Ajuda',
@@ -92,6 +94,7 @@ $messages = array(
 'delete'           => 'Apagar',
 'protect'          => 'Proteger',
 'newpage'          => 'Nuoba página',
+'talkpage'         => 'Çcutir yesta página',
 'talkpagelinktext' => 'Cumbersar',
 'personaltools'    => 'Ferramentas pessoais',
 'talk'             => 'Çcusson',
@@ -110,6 +113,7 @@ $messages = array(
 'disclaimers'          => 'Alerta de Conteúdo',
 'disclaimerpage'       => 'Project:Aviso geral',
 'edithelp'             => 'Ajuda de edição',
+'edithelppage'         => 'Help:Editar',
 'helppage'             => 'Help:Conteúdos',
 'mainpage'             => 'Página principal',
 'mainpage-description' => 'Página principal',
@@ -155,18 +159,28 @@ $messages = array(
 'bold_tip'        => 'Testo negro',
 'italic_sample'   => 'Testo itálico',
 'italic_tip'      => 'Testo an itálico',
+'link_sample'     => 'Título da ligação',
+'link_tip'        => 'Ligação interna',
 'extlink_sample'  => 'http://www.exemplo.pt títalu de ligaçon externa',
 'headline_sample' => 'Testo de cabeçalho',
 'headline_tip'    => 'Secção de nível 2',
+'math_sample'     => 'Inserir fórmula aqui',
+'math_tip'        => 'Fórmula matemática (LaTeX)',
 'nowiki_sample'   => 'Inserir texto não-formatado aqui',
 'nowiki_tip'      => 'Ignorar formato wiki',
+'image_tip'       => 'Ficheiro embebido',
+'media_tip'       => 'Ligação para ficheiro',
+'sig_tip'         => 'Sua assinatura, com hora e data',
 
 # Edit pages
 'summary'               => 'Sumário',
+'subject'               => 'Assunto/cabeçalho',
 'minoredit'             => 'Marcar como edição mínima',
+'watchthis'             => 'Observar esta página',
 'preview'               => 'Prever',
 'showpreview'           => 'Mostrar prebison',
 'showdiff'              => 'Mostrar alterações',
+'anoneditwarning'       => "'''Atenção''': Você não se encontra autenticado. O seu endereço de IP será registado no histórico de edições desta página.",
 'blockedtext'           => '<big>O seu nome de utilizador ou endereço de IP foi bloqueado</big>
 
 O bloqueio foi realizado por $1. O motivo apresentado foi \'\'$2\'\'.
@@ -189,6 +203,10 @@ Se você chegou até aqui por angano, clique ne l boton '''boltar''' (o ''back''
 'copyrightwarning'      => 'Por fabor, note que todas las sues contribuiçons an {{SITENAME}} son consideradas cumo lhançadas ne ls termos de la lhicença $2 (ber $1 para detalhes). Se num deseija que o sue testo seija inexoravelmente editado i redistribuído de tal forma, num lo enbie.<br />
 Você está, al mesmo tempo, a garantir-nos que isto ye algo escrito por si, o algo copiado de unha fonte de testos an domínio público o similarmente de teor libre.
 <strong>NUM ENBIE TRABALHO PROTEGIDO POR DREITOS DE AUTOR SAN A DEBIDA PERMISSON!</strong>',
+'longpagewarning'       => '<strong>AVISO: Esta página possui $1 kilobytes; alguns
+navegadores possuem problemas em editar páginas maiores que 32kb.
+Por favor, considere seccionar a página em secções de menor dimensão.</strong>',
+'templatesusedpreview'  => 'Templates usados nesta previsão:',
 'template-protected'    => '(protegida)',
 'recreate-deleted-warn' => "'''Atenção: Você está a criar uma página já anteriormente eliminada.'''
 
@@ -196,12 +214,13 @@ Certifique-se de que é adequado prosseguir a edição de esta página.
 O registo de eliminação desta página é exibido a seguir, para sua comodidade:",
 
 # History pages
-'currentrev'   => 'Revison actual',
-'revisionasof' => 'Revisão de $1',
-'cur'          => 'act',
-'last'         => 'último',
-'page_first'   => 'purmeira',
-'page_last'    => 'última',
+'currentrev'       => 'Revison actual',
+'revisionasof'     => 'Revisão de $1',
+'previousrevision' => '← Versão anterior',
+'cur'              => 'act',
+'last'             => 'último',
+'page_first'       => 'purmeira',
+'page_last'        => 'última',
 
 # Revision feed
 'history-feed-item-nocomment' => '$1 a $2', # user at time
@@ -220,11 +239,15 @@ O registo de eliminação desta página é exibido a seguir, para sua comodidade
 'mypreferences' => 'Las mies preferencias',
 
 # Recent changes
+'nchanges'        => '$1 {{PLURAL:$1|alteração|alterações}}',
 'recentchanges'   => 'Alteraçons recentes',
+'rcnote'          => "A seguir {{PLURAL:$1|está listada '''uma''' alteração ocorrida|estão listadas '''$1''' alterações ocorridas}} {{PLURAL:$2|no último dia|nos últimos '''$2''' dias}}, a partir de $3.",
+'rclistfrom'      => 'Mostrar as novas alterações a partir de $1',
 'rcshowhideminor' => '$1 edições mínimas',
 'rcshowhidebots'  => '$1 robots',
 'rcshowhideliu'   => '$1 utilizadores registados',
 'rcshowhidemine'  => '$1 mies ediçons',
+'rclinks'         => 'Mostrar as últimas $1 mudanças nos últimos $2 dias<br />$3',
 'diff'            => 'dif',
 'hist'            => 'hist',
 'hide'            => 'Esconder',
@@ -234,11 +257,14 @@ O registo de eliminação desta página é exibido a seguir, para sua comodidade
 'boteditletter'   => 'b',
 
 # Recent changes linked
-'recentchangeslinked' => 'Alterações relacionadas',
+'recentchangeslinked'          => 'Alterações relacionadas',
+'recentchangeslinked-noresult' => 'Não ocorreram alterações em páginas relacionadas no intervalo de tempo fornecido.',
+'recentchangeslinked-summary'  => "Esta página especial lista as alterações mais recentes de páginas que possuam um link a outra. Páginas que estejam em sua lista de artigos vigiados são exibidas em '''negrito'''.",
 
 # Upload
 'upload'        => 'Carregar ficheiro',
 'uploadlogpage' => 'Registo de carregamento',
+'uploadedimage' => 'carregou "[[$1]]"',
 
 # Special:Imagelist
 'imagelist' => 'Lista de ficheiros',
@@ -251,6 +277,7 @@ O registo de eliminação desta página é exibido a seguir, para sua comodidade
 'filehist-filesize' => 'Tamanho de ficheiro',
 'filehist-comment'  => 'Comentário',
 'imagelinks'        => 'Ligaçons (andereços web)',
+'linkstoimage'      => 'As seguintes páginas apontam para este ficheiro:',
 
 # Random page
 'randompage' => 'Página aleatória',
@@ -262,12 +289,14 @@ O registo de eliminação desta página é exibido a seguir, para sua comodidade
 'specialpages' => 'Páginas speciales',
 'newpages'     => 'Nuovas páginas',
 'move'         => 'Mover',
+'movethispage' => 'Mover esta página',
 
 # Book sources
 'booksources' => 'Fontes de lhibros',
 
 # Special:Log
-'log' => 'Registos',
+'log'           => 'Registos',
+'all-logs-page' => 'Todos os registos',
 
 # Special:Allpages
 'allpages'       => 'Todas las páginas',
@@ -276,8 +305,10 @@ O registo de eliminação desta página é exibido a seguir, para sua comodidade
 'allpagessubmit' => 'Ir',
 
 # Watchlist
+'mywatchlist'  => 'Artigos vigiados',
 'watchlistfor' => "(para '''$1''')",
 'watch'        => 'Bigiar',
+'unwatch'      => 'Desinteressar-se',
 'wlshowlast'   => 'Ber últimas $1 horas $2 dias $3',
 
 # Displayed when you click the "watch" button and it is in the process of watching
@@ -289,6 +320,7 @@ O registo de eliminação desta página é exibido a seguir, para sua comodidade
 'deletedarticle'          => 'apagado "[[$1]]"',
 'dellogpage'              => 'Registo de eliminação',
 'rollbacklink'            => 'voltar',
+'protectlogpage'          => 'Registo de protecção',
 'protect-legend'          => 'Confirmar protecçon',
 'protect-summary-cascade' => 'p. progressiva',
 
@@ -305,10 +337,14 @@ O registo de eliminação desta página é exibido a seguir, para sua comodidade
 'uctop'         => ' (revison actual)',
 
 'sp-contributions-newbies-sub' => 'Para nuobas cuontas',
+'sp-contributions-blocklog'    => 'Registo de bloqueios',
 
 # What links here
 'whatlinkshere'       => 'Páginas afluentes',
 'whatlinkshere-title' => 'Páginas que apontam para $1',
+'linklistsub'         => '(Lista de ligações)',
+'linkshere'           => "As seguintes páginas possuem ligações para '''[[:$1]]''':",
+'isredirect'          => 'página de redireccionamento',
 'istemplate'          => 'incluson',
 'whatlinkshere-links' => '← andereços da anternet',
 
@@ -322,19 +358,26 @@ O registo de eliminação desta página é exibido a seguir, para sua comodidade
 'newtitle'         => 'Para nuovo títalo',
 'movepagebtn'      => 'Mover página',
 'movedto'          => 'movido para',
+'1movedto2'        => '[[$1]] foi movido para [[$2]]',
 'movelogpage'      => 'Registo de movimentos',
 'revertmove'       => 'reverter',
 
 # Thumbnails
-'thumbnail-more' => 'Aumentar',
+'thumbnail-more'  => 'Aumentar',
+'thumbnail_error' => 'Erro ao criar miniatura: $1',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'             => "La mie página d'utilizador",
 'tooltip-pt-mytalk'               => 'Página de mie cumbersa',
 'tooltip-pt-preferences'          => 'Las mies preferencias',
+'tooltip-pt-watchlist'            => 'Lista de artigos vigiados.',
 'tooltip-pt-mycontris'            => 'Lhista das mies contribuiçons',
 'tooltip-pt-login'                => 'Você é encorajado a autenticar-se, apesar disso não ser obrigatório.',
 'tooltip-pt-logout'               => 'Sair',
+'tooltip-ca-talk'                 => 'Discussão sobre o conteúdo da página',
+'tooltip-ca-edit'                 => 'Você pode editar esta página. Por favor, use o botão Mostrar Previsão antes de gravar.',
+'tooltip-ca-viewsource'           => 'Esta página está protegida. No entanto, você pode ver o seu código.',
+'tooltip-ca-protect'              => 'Proteger esta página',
 'tooltip-ca-delete'               => 'Apagar esta página',
 'tooltip-ca-move'                 => 'Mover esta página',
 'tooltip-search'                  => 'Pesquisa {{SITENAME}}',
@@ -351,12 +394,16 @@ O registo de eliminação desta página é exibido a seguir, para sua comodidade
 'tooltip-ca-nstab-image'          => 'Ber la página de l ficheiro',
 'tooltip-ca-nstab-template'       => 'Ber l modelo',
 'tooltip-save'                    => 'Grabar sues alterações',
+'tooltip-preview'                 => 'Prever as alterações, por favor utilizar antes de gravar!',
+'tooltip-diff'                    => 'Mostrar alterações que fez a este texto.',
 'tooltip-compareselectedversions' => 'Ber las diferenças antre las dues versons seleccionadas desta página.',
 
 # Media information
-'file-info-size' => '($1 × $2 pixel, tamanho: $3, tipo MIME: $4)',
-'svg-long-desc'  => '(ficheiro SVG, de $1 × $2 pixels, tamanho: $3)',
-'show-big-image' => 'Resoluçon completa',
+'file-info-size'       => '($1 × $2 pixel, tamanho: $3, tipo MIME: $4)',
+'file-nohires'         => '<small>Sem resolução maior disponível.</small>',
+'svg-long-desc'        => '(ficheiro SVG, de $1 × $2 pixels, tamanho: $3)',
+'show-big-image'       => 'Resoluçon completa',
+'show-big-image-thumb' => '<small>Tamanho desta previsão: $1 × $2 pixels</small>',
 
 # Bad image list
 'bad_image_list' => 'O formato é o seguinte:
@@ -365,7 +412,14 @@ Apenas são considerados itens de lista (linhas começadas por *). O primeiro li
 Links subsequentes na mesma linha são considerados excepções, i.e. artigos onde a imagem pode ocorrer "inline".',
 
 # Metadata
-'metadata' => 'Metadados',
+'metadata'        => 'Metadados',
+'metadata-fields' => 'Os campos de metadados EXIF listados nesta mensagem poderão estar presente na exibição da página de imagem quando a tabela de metadados estiver no modo "expandida". Outros poderão estar escondidos por padrão.
+* make
+* model
+* datetimeoriginal
+* exposuretime
+* fnumber
+* focallength', # Do not translate list items
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'todas',

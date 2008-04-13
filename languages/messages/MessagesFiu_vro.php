@@ -838,7 +838,7 @@ mitmõ otsmissõna pruukminõ (sis ilmusõq õnnõ leheküleq, kon ommaq kõik o
 
 # Recent changes linked
 'recentchangeslinked'          => 'Siiäq putvaq muutmisõq',
-'recentchangeslinked-title'    => 'Muutusõq noidõ lehti pääl, kohe näüdätäs lähe päält $1',
+'recentchangeslinked-title'    => 'Muutusõq noidõ lehti pääl, kohe näüdätäs lähe päält "$1"',
 'recentchangeslinked-noresult' => 'Taaha putvit lehti olõ-i taa ao seen muudõt.',
 'recentchangeslinked-summary'  => "Taan nimekirän ommaq noidõ lehti muutmisõq, mink pääle näütäs linke. Naad leheq ommaq perräkaemisnimekirän märgidüq '''paksu kiräga'''.",
 

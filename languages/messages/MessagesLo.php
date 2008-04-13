@@ -484,7 +484,7 @@ $messages = array(
 
 # Recent changes linked
 'recentchangeslinked'          => 'ການດັດແກ້ທີ່ກ່ຽວຂ້ອງ',
-'recentchangeslinked-title'    => 'ການປ່ຽນແປງກ່ຽວຂ້ອງກັບ $1',
+'recentchangeslinked-title'    => 'ການປ່ຽນແປງກ່ຽວຂ້ອງກັບ "$1"',
 'recentchangeslinked-noresult' => 'ບໍ່ມີການປ່ຽນແປງຢູ່ໜ້າລິ້ງຄ໌ໃນໄລຍະດັ່ງກ່າວ.',
 
 # Upload

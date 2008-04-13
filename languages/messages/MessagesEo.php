@@ -983,7 +983,7 @@ Nemarkita markbutono signifas ke la uzanto ne estas in tiu grupo.',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Rilataj paĝoj',
-'recentchangeslinked-title'    => 'Ŝanĝoj rilataj al $1',
+'recentchangeslinked-title'    => 'Ŝanĝoj rilataj al "$1"',
 'recentchangeslinked-noresult' => 'Neniuj sxangxoj en ligitaj pagxoj dum la donata periodo.',
 'recentchangeslinked-summary'  => "Ĉi tiu speciala paĝo listigas la lastajn ŝanĝojn en ligitaj paĝoj. Paĝoj en via atentaro estas '''grasaj'''.",
 

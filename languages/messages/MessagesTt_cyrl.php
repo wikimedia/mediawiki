@@ -132,6 +132,8 @@ $messages = array(
 'category-file-count-limited'    => 'Агымдагы төркемдә {{PLURAL:$1|$1 файл}} бар.',
 'listingcontinuesabbrev'         => 'дәвам',
 
+'mainpagetext' => '<big>«MediaWiki» уңышлы куелган.</big>',
+
 'about'          => 'Тасвир',
 'article'        => 'Эчтәлек бите',
 'newwindow'      => '(яңа тәрәзәдә ачыла)',
@@ -202,6 +204,7 @@ $messages = array(
 'redirectedfrom'    => '($1 битенән җибәрелгән)',
 'redirectpagesub'   => 'Башка биткә юнәлтү бит',
 'lastmodifiedat'    => 'Бу битне соңгы үзгәртү: $2, $1.', # $1 date, $2 time
+'viewcount'         => 'Бу битк $1 {{PLURAL:$1|тапкыр}} мөрәҗәгать ителә.',
 'protectedpage'     => 'Якланган бит',
 'jumpto'            => 'Күчергә:',
 'jumptonavigation'  => 'күчешлек',
@@ -210,6 +213,7 @@ $messages = array(
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => '{{GRAMMAR:genitive|{{SITENAME}}}} турында',
 'aboutpage'            => 'Project:Тасвир',
+'bugreports'           => 'Хата хисаблары',
 'copyrightpagename'    => '{{SITENAME}} проектының авторлык хокукы',
 'copyrightpage'        => '{{ns:project}}:Авторлык хокуклары',
 'currentevents'        => 'Агымдагы вакыйгалар',
@@ -247,6 +251,7 @@ $messages = array(
 'youhavenewmessagesmulti' => 'Сезнең $1 да яңа хәбәрләр бар',
 'editsection'             => 'үзгәртү',
 'editold'                 => 'үзгәртергә',
+'viewsourceold'           => 'баштагы текст карарга',
 'editsectionhint'         => '$1 бүлекне үзгәртергә',
 'toc'                     => 'Эчтәлек',
 'showtoc'                 => 'күрсәтергә',
@@ -306,12 +311,22 @@ $1',
 Зинһар, URL күрсәтеп, моның турында администраторга әйтегез.',
 'internalerror'        => 'Эчке хата',
 'internalerror_info'   => 'Эчке хата: $1',
+'filecopyerror'        => '«$2» файлгагы «$1» файлның копиясен ясап булмый.',
+'filerenameerror'      => '«$1» файлга «$2» исемне биреп булмый.',
 'filedeleteerror'      => '«$1» файлны бетерә алмаган.',
+'directorycreateerror' => '«$1» директорияне тудыра булмый.',
 'filenotfound'         => '«$1» файлны таба алмаган.',
 'fileexistserror'      => '«$1» файлга язып булмыый: файл инде була.',
 'unexpected'           => 'Көтелмәгән әһәмият: «$1»=«$2».',
 'formerror'            => 'Хата: форма мәгълүматларын тапшырып булмый',
+'badarticleerror'      => 'Бу биттә андый гамәл итеп булмый.',
+'cannotdelete'         => 'Бу битне яки файлны бетереп булмый. Бәлки, ул инде бетерелгән.',
 'badtitle'             => 'Яраксыз башлам',
+'badtitletext'         => 'Битнең соралган исеме дөрес түгел я юк, яки телара я интервики исем дөрес түгел күрсәтелгән. Бәлки, исемдә ярамаган символлар куллыйлар.',
+'perfdisabled'         => 'Гафу итегез, бу мөмкинлек сервер мәшгульлеге аркасында кулланып булмый.',
+'perfcached'           => 'Бу мәгълүматлар кештән бирелгәннәр һәм, бәлки, аларда соңгы үзгәртмәләр юк.',
+'perfcachedts'         => 'Бу мәгълүматлар кештән бирелгәннәр, ул соңгы тапкырда $1 яңарды.',
+'querypage-no-updates' => 'Хәзер бу битне үзгәртеп булмый. Бу мәгълүматлар хәзер яңармаслар.',
 'wrong_wfQuery_params' => 'Ярамаган параметрлар wfQuery() функция өчен<br />
 Функция: $1<br />
 Сорау: $2',
@@ -319,13 +334,29 @@ $1',
 'viewsourcefor'        => 'Бит «$1»',
 'actionthrottled'      => 'Гамәл кысылган',
 'actionthrottledtext'  => 'Спам белән көрәш өчен аз вакыт эчендә еш бу гамәл куллану кысылган. Зинһар, соңгырак кабатлыйгыз.',
+'protectedpagetext'    => 'Бу битне үзгәртеп булмый.',
 'viewsourcetext'       => 'Сез бу битнең башлангыч текстны карый һәм күчермә аласыз:',
+'protectedinterface'   => 'Бу биттә программа интерфейс хәбәре бар. Вандализмга каршы, бу битне үзгәртеп булмый.',
+'editinginterface'     => "'''Игътибар:''' Сез MediaWiki системасы хәбәре беләнге битне үзгәртәсез. Бу башка кулланучылар интерфейсын үзгәртер. Сезнең тәрҗемә итәсегез килсә, зинһар, [http://translatewiki.net/wiki/Main_Page?setlang=tt-cyrl Betawiki] кулланыгыз.",
 'sqlhidden'            => '(SQL соравы яшерелгән)',
+'cascadeprotected'     => 'Бу бит үзгәртүдән сакланган, чөнки ул андый "каскад" сакланган {{PLURAL:$1|биткә|битләргә}} өстәлгән:
+$2',
 'namespaceprotected'   => "'''$1''' исем киңлегендәге битләрне үзгәртү өчен сезнең рөхсәтегез юк.",
+'customcssjsprotected' => 'Сез бу битне үзгәртә алмыйсыз, чөнки анда башка кулланычының көйләнмәләре бар.',
 'ns-specialprotected'  => 'Махсус битләрне үзгәртеп булмый.',
+'titleprotected'       => "Бу исем белән битне тудыру [[Кулланучы:$1|$1]] белән тыелган.
+Андый сәбәп күрсәтелгән: ''$2''.",
 
 # Login and logout pages
 'logouttitle'                => 'Чыгарга',
+'logouttext'                 => '<strong>Сез хәзер чыккансыз.</strong>
+
+Сез проект аноним кебек куллана аласыз, яки Сез шул кулланучы да я башка кулланучы кебек керә аласыз.
+Ниндидер битләр һәм хәбәрләр, Сез кермәгәнсез, дип кебек күрсәтеләләр, әгәр сез кешегез бушалып калдырмасагыз.',
+'welcomecreation'            => '== Рәхим итегез, $1! ==
+
+Сез теркәлгәнсез.
+[[{{ns:special}}:Preferences|Сайт персональ көйләргә]] онытмагыз.',
 'loginpagetitle'             => 'Кулланучының теркәү исеме',
 'yourname'                   => 'Кулланучы исеме:',
 'yourpassword'               => 'Серсүз:',
@@ -349,6 +380,7 @@ $1',
 'yourrealname'               => 'Чын исем:',
 'yourlanguage'               => 'Тел:',
 'yournick'                   => 'Тахалус:',
+'badsig'                     => 'Имза дөрес түгел. HTML-теглар тикшерегез.',
 'badsiglength'               => 'Ирешү исем ифрат озын, ул $1 хәрефтән күбрәк түгел булырга тиеш.',
 'email'                      => 'Электрон почта',
 'prefs-help-realname'        => 'Чын исемегез (кирәкми): аны күрсәтсәгез, ул битне үзгәртүче күрсәтү өчен файдалаячак.',
@@ -587,7 +619,7 @@ $1',
 
 # Recent changes linked
 'recentchangeslinked'       => 'Бәйләнешле төзәтмәләр',
-'recentchangeslinked-title' => '$1 битенә бәйләнешле төзәтмәләр',
+'recentchangeslinked-title' => '"$1" битенә бәйләнешле төзәтмәләр',
 
 # Upload
 'upload'        => 'Файлны йөкләргә',

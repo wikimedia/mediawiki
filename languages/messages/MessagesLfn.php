@@ -436,7 +436,7 @@ La arcivo de sutraes per esta paje es asi per conveni:",
 
 # Recent changes linked
 'recentchangeslinked'          => 'Cambias relateda',
-'recentchangeslinked-title'    => 'Cambias relatada a $1',
+'recentchangeslinked-title'    => 'Cambias relatada a "$1"',
 'recentchangeslinked-noresult' => 'No cambias de pajes liada entre esta periodo.',
 'recentchangeslinked-summary'  => "Esta paje spesial es un lista de la cambias plu resente de es liada. Pajes a tu lista de pajes oservada es en leteras '''forte'''.",
 

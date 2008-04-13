@@ -495,6 +495,7 @@ $messages = array(
 'youhavenewmessagesmulti' => 'Du har nya meddelanden på $1',
 'editsection'             => 'redigera',
 'editold'                 => 'redigera',
+'viewsourceold'           => 'visa wikitext',
 'editsectionhint'         => 'Redigera avsnitt: $1',
 'toc'                     => 'Innehåll',
 'showtoc'                 => 'visa',
@@ -929,8 +930,9 @@ Andra administratörer på {{SITENAME}} kommer fortfarande att kunna läsa det d
 'logdelete-log-message'       => '$1 för $2 {{PLURAL:$2|åtgärd|åtgärder}}',
 
 # Suppression log
-'suppressionlog'     => 'Upphävningslogg',
-'suppressionlogtext' => 'Nedan är en lista av dom senaste raderingarna och blockeringarna innefattande innehåll dolt för admimistratörer. Se [[Special:Ipblocklist|IP-blockeringslistan]] för listan över nuvarande operationella förbud och blockeringar.',
+'suppressionlog'     => 'Versionsraderingslogg',
+'suppressionlogtext' => 'Nedan visas en lista över raderingar och blockeringar som berör innehåll dolt för administratörer.
+Se [[Special:Ipblocklist|blockeringslistan]] för listan över gällande blockeringar.',
 
 # History merging
 'mergehistory'                     => 'Sammanfoga sidhistoriker',
@@ -1150,6 +1152,7 @@ $3',
 'recentchangeslinked-title'    => 'Angränsande ändringar till $1',
 'recentchangeslinked-noresult' => 'Inga angränsande sidor ändrades under den angivna tidsperioden.',
 'recentchangeslinked-summary'  => "Den här specialsidan listar de senaste ändringarna på angränsande sidor. Sidor på din övervakningslista är markerade med '''fet''' stil.",
+'recentchangeslinked-page'     => 'Sidnamn',
 
 # Upload
 'upload'                      => 'Ladda upp fil',
@@ -1466,7 +1469,7 @@ Sedan denna wiki startades har sidor visats totalt <b>$3</b> {{PLURAL:$3|gång|g
 'allnotinnamespace' => 'Alla sidor (inte i namnrymden $1)',
 'allpagesprev'      => 'Föregående',
 'allpagesnext'      => 'Nästa',
-'allpagessubmit'    => 'Utför',
+'allpagessubmit'    => 'Visa',
 'allpagesprefix'    => 'Visa sidor med prefixet:',
 'allpagesbadtitle'  => 'Den sökta sidtiteln var ogiltig eller så innehöll den ett prefix för annan språkversion eller interwiki-prefix. Titeln kan innehålla bokstäver som inte är tillåtna i sidtitlar.',
 'allpages-bad-ns'   => 'Namnrymden "$1" finns inte på {{SITENAME}}.',
@@ -1505,6 +1508,8 @@ i "Från"-fältet i detta meddelande, så mottagaren har möjlighet att svara.',
 'emailccsubject'  => 'Kopia av ditt meddelande till $1: $2',
 'emailsent'       => 'E-post har nu skickats',
 'emailsenttext'   => 'Din e-post har skickats.',
+'emailuserfooter' => '-- 
+Detta mejl skickades med hjälp av funktionen "skicka e-post till användare" på {{SITENAME}}',
 
 # Watchlist
 'watchlist'            => 'Min övervakningslista',
@@ -2587,5 +2592,16 @@ Skriv filnamnet utan prefixet "{{ns:image}}:" .',
 'fileduplicatesearch-info'     => '$1 × $2 pixel<br />Filstorlek: $3<br />MIME-typ: $4',
 'fileduplicatesearch-result-1' => 'Filen "$1" har inga identiska dubbletter.',
 'fileduplicatesearch-result-n' => 'Filen "$1" har {{PLURAL:$2|1 identisk dubblett|$2 identiska dubbletter}}.',
+
+# Special:SpecialPages
+'specialpages-group-maintenance' => 'Underhållsrapporter',
+'specialpages-group-other'       => 'Övriga specialsidor',
+'specialpages-group-login'       => 'Inloggning/registrering',
+'specialpages-group-changes'     => 'Senaste ändringar och loggar',
+'specialpages-group-media'       => 'Mediafiler',
+'specialpages-group-users'       => 'Användare och behörigheter',
+'specialpages-group-needy'       => 'Sidor som behöver åtgärdas',
+'specialpages-group-highuse'     => 'Sidor som används mycket',
+'specialpages-group-permissions' => 'Användarbehörigheter',
 
 );

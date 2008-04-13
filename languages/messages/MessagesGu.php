@@ -335,7 +335,7 @@ $messages = array(
 
 # Recent changes linked
 'recentchangeslinked'          => 'આની સાથે જોડાયેલા ફેરફાર',
-'recentchangeslinked-title'    => '$1 ને લગતા ફેરફારો',
+'recentchangeslinked-title'    => '"$1" ને લગતા ફેરફારો',
 'recentchangeslinked-noresult' => 'સંકળાયેલાં પાનાંમાં સુચવેલા સમય દરમ્યાન કોઇ ફેરફાર થયાં નથી.',
 'recentchangeslinked-summary'  => "આ ખાસ પાનામાં એવા પાનાઓની યાદી છે જે અન્યત્ર જોડાયેલાં છે અને તેમાં ફેરફાર થાયા છે.
 <br>તમારી ધ્યાનસૂચિમાં હોય તેવા પાનાં '''ઘાટા અક્ષર'''માં વર્ણવ્યાં છે",

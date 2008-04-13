@@ -3,12 +3,12 @@
  *
  * @addtogroup Language
  *
- * @author Tonyfroio
  * @author Niklas Laxström
- * @author Siebrand
- * @author לערי ריינהארט
- * @author Nike
  * @author Sarvaturi
+ * @author Tonyfroio
+ * @author לערי ריינהארט
+ * @author Sarvaturi
+ * @author Siebrand
  */
 
 $fallback = 'it';
@@ -847,7 +847,7 @@ Lu motivu è ''$2''",
 
 # Recent changes linked
 'recentchangeslinked'          => 'Canciamenti culligati',
-'recentchangeslinked-title'    => 'Canciamenti culligati a $1',
+'recentchangeslinked-title'    => 'Canciamenti culligati a "$1"',
 'recentchangeslinked-noresult' => 'Nuddu canciamentu ê pàggini culligati ntô pirìudu spicificatu.',
 'recentchangeslinked-summary'  => "Chista pàggina spiciali ammustra li canci cchiù ricenti ê pàggini culligati a chidda spicificata. Li pàggini taliati sugnu evidenziati 'n '''grassettu'''.",
 

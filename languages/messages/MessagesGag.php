@@ -543,7 +543,7 @@ Nışannar: (bitki) = şindiki versiyalan aradaki fark,
 
 # Recent changes linked
 'recentchangeslinked'          => 'İlgili diişilmäklär',
-'recentchangeslinked-title'    => '$1 ilgili diişmäklär',
+'recentchangeslinked-title'    => '"$1" ilgili diişmäklär',
 'recentchangeslinked-noresult' => 'Baalantılı sayfalarda verilmiş devirde diişmäk olmadı.',
 'recentchangeslinked-summary'  => "Bu maasus sayfa baalantılı sayfalardaki diişmäkleri sayêr. Sizin bakmaa listasındaki sayfalar verildi '''kalın''' bukvalarnan.",
 

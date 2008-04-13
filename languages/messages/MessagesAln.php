@@ -7,6 +7,7 @@
  * @author Dardan
  * @author Nike
  * @author M.M.S.
+ * @author Siebrand
  */
 
 $fallback = 'sq';
@@ -456,7 +457,7 @@ Muneni me [[$1|fillu një artikull]] me kët titull.
 
 # Recent changes linked
 'recentchangeslinked'       => 'Ndryshimet fqinje',
-'recentchangeslinked-title' => 'Ndryshimet në lidhje me $1',
+'recentchangeslinked-title' => 'Ndryshimet në lidhje me "$1"',
 
 # Upload
 'upload' => 'Ngarkoni skeda',

@@ -996,7 +996,8 @@ Andere beheerders van {{SITENAME}} kunnen de verborgen inhoud benaderen en de ve
 
 # Suppression log
 'suppressionlog'     => 'Verbergingslogboek',
-'suppressionlogtext' => 'De onderstaande lijst bevat de meeste recente verwijderingen en blokkades die voor beheerders verborgen zijn. In de [[Special:Ipblocklist|IP-blokkeerlijst]] zijn de huidige blokkades te bekijken.',
+'suppressionlogtext' => 'De onderstaande lijst bevat de verwijderingen en blokkades die voor beheerders verborgen zijn.
+In de [[Special:Ipblocklist|IP-blokkeerlijst]] zijn de huidige blokkades te bekijken.',
 
 # History merging
 'mergehistory'                     => "Geschiedenis van pagina's samenvoegen",
@@ -1210,10 +1211,11 @@ Een niet aangekruisd vinkvakje betekent dat de gebruiker geen lid is van de groe
 
 # Recent changes linked
 'recentchangeslinked'          => 'Verwante wijzigingen',
-'recentchangeslinked-title'    => 'Wijzigingen verwant aan $1',
+'recentchangeslinked-title'    => 'Wijzigingen verwant aan "$1"',
 'recentchangeslinked-noresult' => "Er zijn geen bewerkingen in de gegeven periode geweest op de pagina's die vanaf hier gelinkt worden.",
 'recentchangeslinked-summary'  => "Deze speciale pagina geeft de laatste bewerkingen weer op pagina's die gelinkt worden vanaf deze pagina.
 Pagina's die op [[Special:Watchlist|uw volglijst]] staan worden '''vet''' weergegeven.",
+'recentchangeslinked-page'     => 'Paginanaam',
 
 # Upload
 'upload'                      => 'Bestand uploaden',
@@ -2712,12 +2714,12 @@ Voer de bestandsnaam in zonder het voorvoegsel "{{ns:image}}:".',
 # Special:SpecialPages
 'specialpages-group-maintenance' => 'Onderhoudsrapporten',
 'specialpages-group-other'       => "Overige speciale pagina's",
-'specialpages-group-login'       => 'Aanmelden/registreren',
+'specialpages-group-login'       => 'Aanmelden / registreren',
 'specialpages-group-changes'     => 'Recente wijzigingen en logboeken',
 'specialpages-group-media'       => 'Mediaoverzichten',
 'specialpages-group-users'       => 'Gebruikers en rechten',
 'specialpages-group-needy'       => "Pagina's die aandacht nodig hebben",
 'specialpages-group-highuse'     => "Veelgebruikte pagina's",
-'specialpages-group-permissions' => 'Gebruikersrechten instellen',
+'specialpages-group-permissions' => 'Gebruikersrechten',
 
 );

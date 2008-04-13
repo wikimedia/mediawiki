@@ -802,7 +802,7 @@ $1 საათში.',
 
 # Recent changes linked
 'recentchangeslinked'          => 'დაკავშირებული ცვლილებები',
-'recentchangeslinked-title'    => '$1-თან დაკავშირებული ცვლილებები',
+'recentchangeslinked-title'    => '"$1"-თან დაკავშირებული ცვლილებები',
 'recentchangeslinked-noresult' => 'მითითებულ პერიოდში ცვლილებები დაკავშირებულ გვერდებზე არ მომხდარა.',
 
 # Upload

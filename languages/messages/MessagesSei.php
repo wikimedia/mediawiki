@@ -5,12 +5,11 @@
  *
  * @author SeriCtam
  * @author Ccaxjoj Iteja Z Iti Poop
- * @author Teak
  * @author Siebrand
  * @author SPQRobin
+ * @author Jon Harald Søby
+ * @author Teak
  */
-
-
 
 $messages = array(
 # User preference toggles
@@ -744,7 +743,7 @@ Informacion: (curt) = quiíxde vercion currentua,
 
 # Recent changes linked
 'recentchangeslinked'       => 'Quiix hámíigonix',
-'recentchangeslinked-title' => 'Quiix hámíigonixde $1',
+'recentchangeslinked-title' => 'Quiix hámíigonixde "$1"',
 
 # Upload
 'upload'            => 'Ciúchan uploadan',

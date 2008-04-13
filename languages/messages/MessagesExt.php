@@ -907,7 +907,7 @@ Un cuairu sin aseñalal endica qu'el usuáriu nu está nesi grupu.",
 
 # Recent changes linked
 'recentchangeslinked'          => 'Chambus relacionaus',
-'recentchangeslinked-title'    => 'Chambus relacionaus con $1',
+'recentchangeslinked-title'    => 'Chambus relacionaus con "$1"',
 'recentchangeslinked-noresult' => 'Nu ai chambus enas páhinas atihás nel períu lihiu.',
 'recentchangeslinked-summary'  => "Nesta páhina especial ai una lista colos úrtimus chambus en páhinas qu´están enlazás. Las páhinas de la tu lista e seguimientu están en '''negrina'''.",
 

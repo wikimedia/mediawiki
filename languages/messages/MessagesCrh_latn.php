@@ -885,7 +885,7 @@ Vikide bu saifege oşağan saifelerni [[{{ns:special}}:Search|tapıp baqıñız]
 
 # Recent changes linked
 'recentchangeslinked'          => 'Bağlı deñişiklikler',
-'recentchangeslinked-title'    => '$1 ile bağlı deñişiklikler',
+'recentchangeslinked-title'    => '"$1" ile bağlı deñişiklikler',
 'recentchangeslinked-noresult' => 'Saylanğan vaqıtta bağlı saifelerde iç deñişiklik yoq edi.',
 'recentchangeslinked-summary'  => "Bu mahsus saifede bağlı saifelerde soñki yapqan deñişiklikler cedveli mevcüt. Közetüv cedveliñizdeki saifeler '''qalın''' olaraq kösterile.",
 

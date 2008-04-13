@@ -349,6 +349,7 @@ $messages = array(
 'youhavenewmessagesmulti' => 'Labol nunis nulik su $1',
 'editsection'             => 'redakön',
 'editold'                 => 'redakön',
+'viewsourceold'           => 'logön fonätavödemi',
 'editsectionhint'         => 'Redakolöd dilädi: $1',
 'toc'                     => 'Ninäd',
 'showtoc'                 => 'jonolöd',
@@ -979,7 +980,7 @@ Bügil vagik sinifon, das geban no duton lü grup tefik.',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Votükams teföl',
-'recentchangeslinked-title'    => 'Votükams tefü pad: $1',
+'recentchangeslinked-title'    => 'Votükams tefü pad: "$1"',
 'recentchangeslinked-noresult' => 'Pads ad pad at peyümöls no pevotükons ün period at.',
 'recentchangeslinked-summary'  => "Su pad patik at palisedons votükams padas, kels yumons ad pad at. Pads galädaliseda olik '''pakazetons'''.",
 
@@ -1128,6 +1129,7 @@ Klikolös tiädi padüla ad votükön sökaleodi at.',
 'filedelete-comment'          => 'Küpet:',
 'filedelete-submit'           => 'Moükön',
 'filedelete-success'          => "'''$1''' pemoükon.",
+'filedelete-success-old'      => '<span class="plainlinks">Fomam ela \'\'\'[[Media:$1|$1]]\'\'\' timü $3, $2 pemoükon.</span>',
 'filedelete-nofile'           => "'''$1''' no dabinon in {{SITENAME}}.",
 'filedelete-nofile-old'       => "No dabinon fomam peregistaröl pada: '''$1''' labü pats pevipöl.",
 'filedelete-iscurrent'        => 'Steifülol ad moükön fomami nulikün ragiva at. Mutol büo geikön ad fomam büik.',
@@ -1247,6 +1249,7 @@ Lunot [http://meta.wikimedia.org/wiki/Help:Job_queue vobodapoodkeda] binon '''\$
 'notargettext'            => 'No evälol fonätapadi u fonätagebani, keli dun at otefon:',
 'pager-newer-n'           => '{{PLURAL:$1|nulikum 1|nulikum $1}}',
 'pager-older-n'           => '{{PLURAL:$1|büikum 1|büikum $1}}',
+'suppress'                => 'Lovelogam',
 
 # Book sources
 'booksources'               => 'Bukafons',
@@ -1287,6 +1290,13 @@ Ad brefükam lisedi, kanoy välön lisedasoti, gebananemi, u padi tefik.',
 'listusers-submit'   => 'Jonolöd',
 'listusers-noresult' => 'Geban nonik petuvon.',
 
+# Special:Listgrouprights
+'listgrouprights'          => 'Gitäts gebanagrupa',
+'listgrouprights-summary'  => 'Is palisedons gebanagrups in vük at dabinöls, sa gitäts tefik onsik.',
+'listgrouprights-group'    => 'Grup',
+'listgrouprights-rights'   => 'Gitäts',
+'listgrouprights-helppage' => 'Help:Grupagitäts',
+
 # E-mail user
 'mailnologin'     => 'Ladet nonik ad sedön',
 'mailnologintext' => 'Mutol [[Special:Userlogin|nunädön oli]] e labön ladeti leäktronik lonöföl pö [[Special:Preferences|buükams olik]] ad dalön sedön poti leäktronik gebanes votik.',
@@ -1306,6 +1316,8 @@ fomet at osedon one penedi bal. Ladet leäktronik in gebanabuükams olik opubon 
 'emailccsubject'  => 'Kopied peneda olik ele $1: $2',
 'emailsent'       => 'Pened pesedon',
 'emailsenttext'   => 'Pened leäktronik ola pesedon.',
+'emailuserfooter' => '--
+Pened leäktronik at pesedon medü büd: sedön gebane penedi in {{SITENAME}}',
 
 # Watchlist
 'watchlist'            => 'Galädalised obik',
@@ -1504,18 +1516,20 @@ $1',
 'sp-contributions-submit'      => 'Suk',
 
 # What links here
-'whatlinkshere'       => 'Yüms isio',
-'whatlinkshere-title' => 'Pads ad $1 yumöls',
-'whatlinkshere-page'  => 'Pad:',
-'linklistsub'         => '(Yümalised)',
-'linkshere'           => "Pads sököl payümons ko '''[[:$1]]''':",
-'nolinkshere'         => "Pads nonik peyümons lü '''[[:$1]]'''.",
-'nolinkshere-ns'      => "Pads nonik yumons lü pad: '''[[:$1]]''' in nemaspad pevälöl.",
-'isredirect'          => 'lüodükömapad',
-'istemplate'          => 'ninükam',
-'whatlinkshere-prev'  => '{{PLURAL:$1|büik|büik $1}}',
-'whatlinkshere-next'  => '{{PLURAL:$1|sököl|sököl $1}}',
-'whatlinkshere-links' => '← yüms',
+'whatlinkshere'            => 'Yüms isio',
+'whatlinkshere-title'      => 'Pads ad $1 yumöls',
+'whatlinkshere-page'       => 'Pad:',
+'linklistsub'              => '(Yümalised)',
+'linkshere'                => "Pads sököl payümons ko '''[[:$1]]''':",
+'nolinkshere'              => "Pads nonik peyümons lü '''[[:$1]]'''.",
+'nolinkshere-ns'           => "Pads nonik yumons lü pad: '''[[:$1]]''' in nemaspad pevälöl.",
+'isredirect'               => 'lüodükömapad',
+'istemplate'               => 'ninükam',
+'whatlinkshere-prev'       => '{{PLURAL:$1|büik|büik $1}}',
+'whatlinkshere-next'       => '{{PLURAL:$1|sököl|sököl $1}}',
+'whatlinkshere-links'      => '← yüms',
+'whatlinkshere-hideredirs' => '$1 lüodüköms',
+'whatlinkshere-hidelinks'  => '$1 yüms',
 
 # Block/unblock
 'blockip'                     => 'Blokön gebani',
@@ -1850,7 +1864,9 @@ Te lisedaliens (liens me * primöl) pabevobons. Yüm balid liena muton binön y�
 # EXIF tags
 'exif-imagewidth'             => 'Vidot',
 'exif-imagelength'            => 'Geilot',
+'exif-compression'            => 'Skemat kobopedama',
 'exif-stripoffsets'           => 'Topam magodanünodas',
+'exif-datetime'               => 'Dät e tim votükama ragiva',
 'exif-imagedescription'       => 'Tiäd magoda',
 'exif-artist'                 => 'Lautan',
 'exif-copyright'              => 'Dalaban kopiedagitäta',
@@ -1867,6 +1883,7 @@ Te lisedaliens (liens me * primöl) pabevobons. Yüm balid liena muton binön y�
 'exif-lightsource'            => 'Litafonät',
 'exif-flash'                  => 'Kämalelit',
 'exif-flashenergy'            => 'Nämet kämalelita',
+'exif-filesource'             => 'Fonät ragiva',
 'exif-gpslatituderef'         => 'Videt Nolüdik u Sulüdik',
 'exif-gpslatitude'            => 'Videt',
 'exif-gpslongituderef'        => 'Lunet Lofüdik u Vesüdik',
@@ -1971,15 +1988,17 @@ Potanünöm egesedon: $1',
 'confirmemail_loggedin'   => 'Ladeti leäktronik ola nu pefümedon.',
 'confirmemail_error'      => 'Bos no eplöpon pö registaram fümedama olik.',
 'confirmemail_subject'    => 'Fümedam ladeta leäktronik pro: {{SITENAME}}',
-'confirmemail_body'       => 'Ek, bo ol se ladet-IP: $1, ejafon kali:
-"$2" me ladeti leäktronik at lä {{SITENAME}}.
+'confirmemail_body'       => 'Ek, bo ol, se ladet-IP: $1, ejafon kali: „$2‟ me ladeti leäktronik at lä {{SITENAME}}.
 
-Ad fümedön, das kal at jenöfiko binon olik, ed ad dalön gebön
-poti leäktronik in {{SITENAME}}, sökolös yümi at in bevüresodatävöm olik:
+Ad fümedön, das kal at binon jenöfiko olik, ed ad dalön gebön
+poti leäktronik in {{SITENAME}}, sökolös yümi fovik me bevüresodatävöm olik:
 
 $3
 
-If no binol utan, kel ejafon kali, no sökolös yümi.
+If *no* binol utan, kel ejafon kali, sökolös yümi fovik ad sädunön fümedami leäktronik:
+
+$5
+
 Fümedakot at operon lonöfi okik ün $4.',
 
 # Scary transclusion
@@ -2081,5 +2100,14 @@ Penolös ragivanemi nen foyümot: „{{ns:image}}:“',
 # Special:FileDuplicateSearch
 'fileduplicatesearch-filename' => 'Ragivanem:',
 'fileduplicatesearch-submit'   => 'Sukön',
+
+# Special:SpecialPages
+'specialpages-group-other'       => 'Pads patik votik',
+'specialpages-group-login'       => 'Nunädön oki / jafön kali',
+'specialpages-group-changes'     => 'Votükams nulik e jenotaliseds',
+'specialpages-group-users'       => 'Gebans e gitäts',
+'specialpages-group-needy'       => 'Pads bevobami neodöls',
+'specialpages-group-highuse'     => 'Pads suvo pegeböls',
+'specialpages-group-permissions' => 'Lonön gebanadälis',
 
 );

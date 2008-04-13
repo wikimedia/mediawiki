@@ -18,6 +18,7 @@
  * @author Badseed
  * @author Flyax
  * @author Jon Harald Søby
+ * @author Sinopeus
  */
 
 /**
@@ -1099,7 +1100,7 @@ $2 Εμφάνιση ανακατευθύνσεων &nbsp; Κριτήρια αν�
 
 # Recent changes linked
 'recentchangeslinked'          => 'Σχετικές αλλαγές',
-'recentchangeslinked-title'    => 'Αλλαγές σχετικές με το $1',
+'recentchangeslinked-title'    => 'Αλλαγές σχετικές με το "$1"',
 'recentchangeslinked-noresult' => 'Δεν υπάρχουν αλλαγές στις συνδεδεμένες σελίδες κατά τη διάρκεια της δοσμένης περιόδου.',
 'recentchangeslinked-summary'  => "Αυτή η ειδική σελίδα απαριθμεί τις τελευταίες αλλαγές σε σελίδες που είναι σύνδεσμοι. Οι σελίδες στη λίστα παρακολούθησής σας είναι '''έντονα γραμμένες'''.",
 

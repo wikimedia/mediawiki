@@ -951,7 +951,7 @@ Na casela de spunta selezionà la indica l'apartenenza de l'utente al grupo; na 
 
 # Recent changes linked
 'recentchangeslinked'          => 'Modifeghe corełae',
-'recentchangeslinked-title'    => 'Modifiche ligà a $1',
+'recentchangeslinked-title'    => 'Modifiche ligà a "$1"',
 'recentchangeslinked-noresult' => 'Nel periodo specificà no ghe xe stà nissuna modifica a le pagine colegà.',
 'recentchangeslinked-summary'  => "Sta pagina speciale la fa védar le modifiche piassè recenti a le pagine ligà a quela specificà. 
 Le pagine su la lista dei osservati speciali le xe in '''grasseto'''.",
@@ -1293,6 +1293,8 @@ La [http://meta.wikimedia.org/wiki/Help:Job_queue coa] la contien '''\$7''' pro�
 'emailccsubject'  => 'Copia del messagio invià a $1: $2',
 'emailsent'       => 'E-mail invià',
 'emailsenttext'   => 'La to e-mail xè stà invià',
+'emailuserfooter' => '--
+Sta e-mail la xe stà spedìa doparando la funzion "Scrivi a l\'utente" de {{SITENAME}}',
 
 # Watchlist
 'watchlist'            => 'osservati speciali',
@@ -1516,18 +1518,21 @@ $1',
 'sp-contributions-submit'      => 'Riçerca',
 
 # What links here
-'whatlinkshere'       => 'Pàxene che le punta qua',
-'whatlinkshere-title' => 'Pagine che punta a $1',
-'whatlinkshere-page'  => 'Pagina:',
-'linklistsub'         => '(Lista di link)',
-'linkshere'           => "Ste pagine qua le contien dei colegamenti a '''[[:$1]]''':",
-'nolinkshere'         => "Nissuna pagina la contien colegamenti che punta a '''[[:$1]]'''.",
-'nolinkshere-ns'      => "No ghe xe pagine che punta a '''[[:$1]]''' nel namespace selezionà.",
-'isredirect'          => 'pagina de reindirizamento',
-'istemplate'          => 'inclusion',
-'whatlinkshere-prev'  => '{{PLURAL:$1|precedente|precedenti $1}}',
-'whatlinkshere-next'  => '{{PLURAL:$1|sucessivo|sucessivi $1}}',
-'whatlinkshere-links' => '← colegamenti',
+'whatlinkshere'            => 'Pàxene che le punta qua',
+'whatlinkshere-title'      => 'Pagine che punta a $1',
+'whatlinkshere-page'       => 'Pagina:',
+'linklistsub'              => '(Lista di link)',
+'linkshere'                => "Ste pagine qua le contien dei colegamenti a '''[[:$1]]''':",
+'nolinkshere'              => "Nissuna pagina la contien colegamenti che punta a '''[[:$1]]'''.",
+'nolinkshere-ns'           => "No ghe xe pagine che punta a '''[[:$1]]''' nel namespace selezionà.",
+'isredirect'               => 'pagina de reindirizamento',
+'istemplate'               => 'inclusion',
+'whatlinkshere-prev'       => '{{PLURAL:$1|precedente|precedenti $1}}',
+'whatlinkshere-next'       => '{{PLURAL:$1|sucessivo|sucessivi $1}}',
+'whatlinkshere-links'      => '← colegamenti',
+'whatlinkshere-hideredirs' => '$1 i redirect',
+'whatlinkshere-hidetrans'  => '$1 le inclusion',
+'whatlinkshere-hidelinks'  => '$1 i colegamenti',
 
 # Block/unblock
 'blockip'                     => 'Bloca indirisso IP',

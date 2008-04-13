@@ -1076,7 +1076,7 @@ Els requadres sense macar indiquen que l'usuari no hi pertany.",
 
 # Recent changes linked
 'recentchangeslinked'          => "Seguiment d'enllaços",
-'recentchangeslinked-title'    => 'Canvis relacionats amb $1',
+'recentchangeslinked-title'    => 'Canvis relacionats amb "$1"',
 'recentchangeslinked-noresult' => 'No ha hagut cap canvi a les pàgines enllaçades durant el període de temps.',
 'recentchangeslinked-summary'  => "Aquesta pàgina especial mostra els canvis recents de les pàgines enllaçades. Les pàgines de la vostra llista de seguiment són en '''negreta'''.",
 

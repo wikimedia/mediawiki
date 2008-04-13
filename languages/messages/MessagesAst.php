@@ -946,7 +946,7 @@ resultáu les páxines que contengan tolos términos de la busca).",
 
 # Recent changes linked
 'recentchangeslinked'          => 'Cambeos rellacionaos',
-'recentchangeslinked-title'    => 'Cambeos rellacionaos con $1',
+'recentchangeslinked-title'    => 'Cambeos rellacionaos con "$1"',
 'recentchangeslinked-noresult' => 'Nun hebo cambeos nes páxines enllaciaes nel periodu conseñáu.',
 'recentchangeslinked-summary'  => "Esta páxina especial llista los caberos cambeos nes páxines enllacies. Les páxines de la to llista de vixilancia tán en '''negrina'''.",
 

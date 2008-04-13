@@ -4,12 +4,12 @@
  * @addtogroup Language
  *
  * @author Rob Church <robchur@gmail.com>
- * @author SPQRobin
  * @author Steinbach
  * @author Troefkaart
  * @author Adnergje
- * @author Siebrand
  * @author NJ
+ * @author SPQRobin
+ * @author Siebrand
  * @author Nike
  * @author Jon Harald Søby
  */
