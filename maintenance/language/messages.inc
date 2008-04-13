@@ -1139,6 +1139,7 @@ $wgMessageStructure = array(
 		'deadendpages-summary',
 		'deadendpagestext',
 		'protectedpages',
+		'protectedpages-indef',
 		'protectedpages-summary',
 		'protectedpagestext',
 		'protectedpagesempty',
