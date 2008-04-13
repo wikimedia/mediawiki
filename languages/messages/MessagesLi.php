@@ -916,7 +916,7 @@ $2 Toen redirects   Zeuk: $3 $9',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Volg links',
-'recentchangeslinked-title'    => 'Wieziginge verwantj mit $1',
+'recentchangeslinked-title'    => 'Wieziginge verwantj mit "$1"',
 'recentchangeslinked-noresult' => "d'r Zeen gein bewerkinge in de gegaeve periode gewaes op de pagina's die vanaaf hiej gelink waere.",
 'recentchangeslinked-summary'  => "Deze speciale pagina tuunt de letste bewerkinge op pagina's die gelink waere vanaaf deze pagina. Pagina's die op [[Special:Watchlist|diene volglies]] staon waere '''vet''' weergegaeve.",
 

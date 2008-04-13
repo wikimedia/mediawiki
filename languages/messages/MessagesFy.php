@@ -696,7 +696,7 @@ mooglik. Foar now kinne jo sykje fia Google:</p>",
 
 # Recent changes linked
 'recentchangeslinked'          => 'Folgje keppelings',
-'recentchangeslinked-title'    => 'Feroarings yn ferbân mei $1',
+'recentchangeslinked-title'    => 'Feroarings yn ferbân mei "$1"',
 'recentchangeslinked-noresult' => "Der hawwe gjin bewurkings yn 'e bedoelde perioade west op'e siden dy't hjirwei linke wurde.",
 'recentchangeslinked-summary'  => "Dizze spesjale side lit de lêste bewurkings sjen op siden dy't linke wurde fan dizze side ôf. Siden dy't op [[Special:Watchlist|jo folchlist]] steane, wurde '''tsjûk''' werjûn.",
 

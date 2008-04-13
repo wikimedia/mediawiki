@@ -946,7 +946,7 @@ $2',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Звязаныя праўкі',
-'recentchangeslinked-title'    => 'Змяненні, якія датычаць $1',
+'recentchangeslinked-title'    => 'Змяненні, якія датычаць "$1"',
 'recentchangeslinked-noresult' => 'Без змяненняў на далучаных старонках за азначаны перыяд.',
 'recentchangeslinked-summary'  => "Гэтая адмысловая старонка пералічвае апошнія змяненні на далучаных старонках. Старонкі, назіраныя вамі, выдзелены '''стылем'''.",
 

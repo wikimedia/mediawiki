@@ -412,6 +412,7 @@ $messages = array(
 'youhavenewmessagesmulti' => 'Tem novas mensagens em $1',
 'editsection'             => 'editar',
 'editold'                 => 'editar',
+'viewsourceold'           => 'ver código',
 'editsectionhint'         => 'Editar secção: $1',
 'toc'                     => 'Tabela de conteúdo',
 'showtoc'                 => 'mostrar',
@@ -877,7 +878,8 @@ Outros administradores nesta wiki continuarão a poder aceder ao conteúdo escon
 
 # Suppression log
 'suppressionlog'     => 'Registo de supressões',
-'suppressionlogtext' => 'Abaixo está uma lista das remoções e bloqueios envolvendo conteúdo ocultado a administradores. Veja [[Special:Ipblocklist|a lista de bloqueios IP]] para uma lista de banimentos e bloqueios em efeito neste momento.',
+'suppressionlogtext' => 'Abaixo está uma lista das remoções e bloqueios envolvendo conteúdo ocultado a administradores.
+Veja a [[Special:Ipblocklist|lista de bloqueios IP]] para uma lista de banimentos e bloqueios em efeito neste momento.',
 
 # History merging
 'mergehistory'                     => 'Fundir histórico de páginas',
@@ -1091,9 +1093,10 @@ Uma caixa de selecção desseleccionada significa que o utilizador não se encon
 
 # Recent changes linked
 'recentchangeslinked'          => 'Alterações relacionadas',
-'recentchangeslinked-title'    => 'Alterações relacionadas com $1',
+'recentchangeslinked-title'    => 'Alterações relacionadas com "$1"',
 'recentchangeslinked-noresult' => 'Não ocorreram alterações em páginas relacionadas no intervalo de tempo fornecido.',
 'recentchangeslinked-summary'  => "Esta página especial lista as alterações mais recentes de páginas que possuam um link a outra. Páginas que estejam em sua lista de artigos vigiados são exibidas em '''negrito'''.",
+'recentchangeslinked-page'     => 'Nome da página',
 
 # Upload
 'upload'                      => 'Carregar ficheiro',
@@ -1451,6 +1454,8 @@ para que o destinatário lhe possa responder.',
 'emailccsubject'  => 'Cópia de sua mensagem para $1: $2',
 'emailsent'       => 'E-mail enviado',
 'emailsenttext'   => 'A sua mensagem foi enviada.',
+'emailuserfooter' => "--
+Este email foi enviado usando a funcionalidade 'contactar este utilizador' de {{SITENAME}}",
 
 # Watchlist
 'watchlist'            => 'Artigos vigiados',
@@ -1684,18 +1689,21 @@ $1',
 'sp-contributions-submit'      => 'Pesquisar',
 
 # What links here
-'whatlinkshere'       => 'Páginas afluentes',
-'whatlinkshere-title' => 'Páginas que apontam para $1',
-'whatlinkshere-page'  => 'Página:',
-'linklistsub'         => '(Lista de ligações)',
-'linkshere'           => "As seguintes páginas possuem ligações para '''[[:$1]]''':",
-'nolinkshere'         => "Não existem ligações para '''[[:$1]]'''.",
-'nolinkshere-ns'      => "Não há links para '''[[:$1]]''' no espaço nominal selecionado.",
-'isredirect'          => 'página de redireccionamento',
-'istemplate'          => 'inclusão',
-'whatlinkshere-prev'  => '{{PLURAL:$1|anterior|$1 anteriores}}',
-'whatlinkshere-next'  => '{{PLURAL:$1|próximo|próximos $1}}',
-'whatlinkshere-links' => '← links',
+'whatlinkshere'            => 'Páginas afluentes',
+'whatlinkshere-title'      => 'Páginas que apontam para $1',
+'whatlinkshere-page'       => 'Página:',
+'linklistsub'              => '(Lista de ligações)',
+'linkshere'                => "As seguintes páginas possuem ligações para '''[[:$1]]''':",
+'nolinkshere'              => "Não existem ligações para '''[[:$1]]'''.",
+'nolinkshere-ns'           => "Não há links para '''[[:$1]]''' no espaço nominal selecionado.",
+'isredirect'               => 'página de redireccionamento',
+'istemplate'               => 'inclusão',
+'whatlinkshere-prev'       => '{{PLURAL:$1|anterior|$1 anteriores}}',
+'whatlinkshere-next'       => '{{PLURAL:$1|próximo|próximos $1}}',
+'whatlinkshere-links'      => '← links',
+'whatlinkshere-hideredirs' => '$1 redireccionamentos',
+'whatlinkshere-hidetrans'  => '$1 transclusões',
+'whatlinkshere-hidelinks'  => '$1 ligações',
 
 # Block/unblock
 'blockip'                     => 'Bloquear utilizador',
@@ -2535,5 +2543,16 @@ Entre com o nome de ficheiro sem fornecer o prefixo "{{ns:image}}:".',
 'fileduplicatesearch-info'     => '$1 × $2 pixels<br />Tamanho: $3<br />tipo MIME: $4',
 'fileduplicatesearch-result-1' => 'O ficheiro "$1" não possui cópias idênticas.',
 'fileduplicatesearch-result-n' => 'O ficheiro "$1" possui {{PLURAL:$2|uma cópia idêntica|$2 cópias idênticas}}.',
+
+# Special:SpecialPages
+'specialpages-group-maintenance' => 'Relatórios de manutenção',
+'specialpages-group-other'       => 'Outras páginas especiais',
+'specialpages-group-login'       => 'Entrar / registar-se',
+'specialpages-group-changes'     => 'Mudanças e registos recentes',
+'specialpages-group-media'       => 'Relatórios de media',
+'specialpages-group-users'       => 'Utilizadores e privilégios',
+'specialpages-group-needy'       => 'Páginas a necessitar de trabalho',
+'specialpages-group-highuse'     => 'Páginas muito usadas',
+'specialpages-group-permissions' => 'Permissões de utilizador',
 
 );

@@ -4,6 +4,8 @@
  * @addtogroup Language
  *
  * @author Ghaly
+ * @author Alnokta
+ * @author Nike
  */
 
 $fallback = 'ar';
@@ -174,6 +176,7 @@ $messages = array(
 'hist'            => 'تاريخ',
 'minoreditletter' => 'ص',
 'newpageletter'   => 'ج',
+'boteditletter'   => 'ب',
 
 # Recent changes linked
 'recentchangeslinked-summary' => "دى صفحة مخصوصه بتعرض اخر التغييرات في الصفحات الموصوله. الصفحات اللى   فى  قايمة مراقبتك معروضه''' بحروف عريضه'''",
@@ -185,6 +188,7 @@ $messages = array(
 # Image description page
 'filehist'          => 'تاريخ الملف',
 'filehist-help'     => 'اضغط على الساعه/التاريخ علشان تشوف الفايل زى ما كان فى  الوقت ده.',
+'filehist-current'  => 'دلوقتي',
 'filehist-datetime' => 'الساعه / التاريخ',
 'filehist-user'     => 'يوزر',
 'filehist-filesize' => 'حجم الفايل',
@@ -198,6 +202,7 @@ $messages = array(
 # Miscellaneous special pages
 'nbytes'       => '$1 {{PLURAL:$1|بايت|بايت}}',
 'specialpages' => 'صفحات مخصوصه',
+'move'         => 'انقل',
 
 # Book sources
 'booksources' => 'مصادر من كتب',
@@ -207,8 +212,9 @@ $messages = array(
 'alphaindexline' => '$1 ل $2',
 
 # Watchlist
-'watch'   => 'راقب',
-'unwatch' => 'بطل مراقبه',
+'mywatchlist' => 'لستة  الصفحات اللى باراقبها',
+'watch'       => 'راقب',
+'unwatch'     => 'بطل مراقبه',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'راقب...',
@@ -227,11 +233,12 @@ $messages = array(
 
 # What links here
 'whatlinkshere'       => 'ايه بيوصل هنا',
+'whatlinkshere-title' => 'الصفحات اللي بتودي ل $1',
 'nolinkshere'         => "مافيش صفحات بتوصل ل '''[[:$1]]'''.",
 'whatlinkshere-links' => '← وصلات',
 
 # Block/unblock
-'ipboptions'   => '(ar)ربع ساعه:15 minutes,ساعه واحده:1 hour,ساعتين:2 hours,يوم:1 day,تلات ايام:3 days,اسبوع:1 week,اسبوعين:2 weeks,شهر:1 month,تلات شهور:3 months,ست شهور:6 months,عام واحد:1 year,دايم:infinite', # display1:time1,display2:time2,...
+'ipboptions'   => 'ربع ساعة:15 minutes,ساعة واحدة:1 hour,ساعتين:2 hours,يوم:1 day,ثلاثة أيام:3 days,أسبوع:1 week,أسبوعان:2 weeks,شهر:1 month,ثلاثة شهور:3 months,ستة شهور:6 months,عام واحد:1 year,دائم:infinite', # display1:time1,display2:time2,...
 'blocklink'    => 'منع',
 'contribslink' => 'تعديلات',
 

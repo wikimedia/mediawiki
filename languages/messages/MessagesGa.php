@@ -795,7 +795,7 @@ den am an freastalaí (UTC).',
 
 # Recent changes linked
 'recentchangeslinked'       => 'Athruithe gaolmhara',
-'recentchangeslinked-title' => 'Athruithe gaolmhar le $1',
+'recentchangeslinked-title' => 'Athruithe gaolmhar le "$1"',
 
 # Upload
 'upload'            => 'Uaslódáil comhad',

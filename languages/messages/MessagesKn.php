@@ -667,7 +667,7 @@ $1',
 
 # Recent changes linked
 'recentchangeslinked'          => 'ಸಂಬಂಧಪಟ್ಟ ಬದಲಾವಣೆಗಳು',
-'recentchangeslinked-title'    => '$1 ಪುಟಕ್ಕೆ ಸಂಬಂಧಿಸಿದ ಬದಲಾವಣೆಗಳು',
+'recentchangeslinked-title'    => '"$1" ಪುಟಕ್ಕೆ ಸಂಬಂಧಿಸಿದ ಬದಲಾವಣೆಗಳು',
 'recentchangeslinked-noresult' => 'ಸೂಚಿತ ಕಾಲದಲ್ಲಿ ಸಂಪರ್ಕ ಹೊಂದಿರುವ ಪುಟಗಳಲ್ಲಿ ಯಾವ ಬದಲಾವಣೆಗಳೂ ಇಲ್ಲ.',
 'recentchangeslinked-summary'  => "ಈ ವಿಶೇಷ ಪುಟ ಸಂಪರ್ಕ ಹೊಂದಿರುವ ಪುಟಗಳ ಕೊನೆ ಬದಲಾವಣೆಗಳನ್ನು ಪಟ್ಟಿ ಮಾಡುತ್ತದೆ. 
 ನಿಮ್ಮ ವೀಕ್ಷಣಾಪಟ್ಟಿಯಲ್ಲಿ ಇರುವ ಪುಟಗಳು '''ದಪ್ಪ ಅಕ್ಷರ'''ಗಳಲ್ಲಿ ಇವೆ.",

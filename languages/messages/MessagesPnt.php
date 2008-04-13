@@ -5,6 +5,7 @@
  *
  * @author Consta
  * @author Sinopeus
+ * @author Siebrand
  */
 
 
@@ -85,6 +86,7 @@ $messages = array(
 'category-article-count-limited' => 'Αφκά καικά {{PLURAL:$1|η σελίδαν εν|$1 τα σελίδας είναι}} σην κατηγορίαν ατέν.',
 'category-file-count'            => "{{PLURAL:$2|Αυτή η κατηγορίαν έχ' το αφκά καικά αρχείον μαναχόν.| Αφκά καικά {{PLURAL:$1|το αρχείον εν|$1 τα αρχεία είναι}} σην κατηγορίαν ατέν, απές σο σύνολον τη $2.}}",
 'category-file-count-limited'    => "{{PLURAL:$1|Τ' αρχείον|$1 Τ' αρχεία}} αφκά καικά είν' σην κατηγορίαν.",
+'listingcontinuesabbrev'         => 'συνεχίζεται...',
 
 'cancel'         => "Άφ'σον",
 'qbfind'         => 'Εύρον',
@@ -134,6 +136,7 @@ $messages = array(
 'jumptosearch'      => 'αράεμαν',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+'helppage'             => 'Help:Περιεχόμενα',
 'mainpage'             => 'Αρχικόν σελίδαν',
 'mainpage-description' => 'Αρχικόν σελίδαν',
 'portal'               => 'Πύλην τη κοινότητας',
@@ -192,7 +195,14 @@ $messages = array(
 'loginlanguagelabel'  => 'Γλώσσαν: $1',
 
 # Edit page toolbar
+'link_sample'     => 'Τίτλος σύνδεσμονος',
+'link_tip'        => 'Εσωτερικόν σύνδεσμον',
+'extlink_sample'  => 'http://www.paradeigma.com τίτλος σύνδεσμονος',
+'extlink_tip'     => 'Εξωτερικόν σύνδεσμος (να μην ανασπάλλετε το πρόθεμαν http:// )',
 'headline_sample' => 'Κείμενον τίτλονος',
+'nowiki_sample'   => 'Αδακά πα να εισάγετε το μη μορφοποιημένον κείμενον.',
+'nowiki_tip'      => "Ξάι 'κ να τερείται η μορφοποίηση Wiki.",
+'sig_tip'         => 'Η υπογραφήν εσούν με ώραν κι ημερομηνίαν',
 
 # Edit pages
 'minoredit'          => 'Μικρόν αλλαγήν',
@@ -205,6 +215,7 @@ $messages = array(
 'previewnote'        => "<strong>Ατό εν το πρώτον το τέρεμαν μαναχόν.
 Τ' αλλαγάς κ' εκρατέθαν!</strong>",
 'editing'            => 'Αλλαγήν $1',
+'editingsection'     => 'Αλλαγήν $1 (τμήμα)',
 'template-protected' => '(ασπαλιγμένον)',
 
 # History pages
@@ -220,6 +231,8 @@ $messages = array(
 # Search results
 'noexactmatch' => "'''Η Βικιπαίδειαν 'κ εχ' σελίδαν με τ' όνεμα \"\$1\".'''
 Μπορείτε να [[:\$1|εφτάτε τη σελίδαν]].",
+'prevn'        => '$1 προηγουμένων',
+'nextn'        => '$1 επομένων',
 'viewprevnext' => 'Τέρεν ($1) ($2) ($3)',
 'powersearch'  => 'Εύρον',
 
@@ -230,22 +243,27 @@ $messages = array(
 # Recent changes
 'recentchanges'   => 'Υστερνά αλλαγάς',
 'rcshowhideminor' => '$1 τα μικρά αλλαγάς',
+'rclinks'         => "Δείξον τα $1 υστερνά τ' αλλαγάς α σα $2 υστερνά τα ημέρας<br />$3",
+'hist'            => 'ιστ.',
 'hide'            => 'Κρύψον',
 'show'            => 'Δείξον',
 'minoreditletter' => 'μ',
 
 # Recent changes linked
-'recentchangeslinked-title' => 'Αλλαγάς τη $1',
+'recentchangeslinked-title' => 'Αλλαγάς τη "$1"',
 
 # Upload
 'upload' => 'Φόρτωμα αρχείου',
 
 # Image description page
-'filehist-current'  => 'υστερινά',
-'filehist-user'     => 'Χρήστες',
-'filehist-filesize' => 'Μέγεθος',
-'filehist-comment'  => 'Σχόλιον',
-'linkstoimage'      => "Ατά τα σελίδας δεκνίζ'νε σην εικόναν:",
+'filehist-current'    => 'υστερινά',
+'filehist-datetime'   => 'Ώραν/Ημερομ.',
+'filehist-user'       => 'Χρήστες',
+'filehist-dimensions' => 'Διαστάσεις',
+'filehist-filesize'   => 'Μέγεθος',
+'filehist-comment'    => 'Σχόλιον',
+'imagelinks'          => 'Σύνδεσμοι',
+'linkstoimage'        => "Ατά τα σελίδας δεκνίζ'νε σην εικόναν:",
 
 # Statistics
 'statistics' => 'Στατιστικήν',
@@ -276,12 +294,18 @@ $messages = array(
 # Special:Allpages
 'allpages'       => 'Όλεα τα σελίδας',
 'alphaindexline' => '$1 ους $2',
+'nextpage'       => 'Επόμενον σελίδα ($1)',
+'prevpage'       => 'Προηγούμενον σελίδα ($1)',
 'allarticles'    => 'Όλεα τα σελίδας',
 'allpagessubmit' => 'Δέβα',
+
+# E-mail user
+'emailuser' => 'Στείλον μένεμαν σον χρήστεν ατόν.',
 
 # Watchlist
 'watchlist'            => "Σελίδας ντ' ωριάζω",
 'mywatchlist'          => "Σελίδας ντ' ωριάζω",
+'watchlistfor'         => "(για '''$1''')",
 'watch'                => 'Ωρίαγμαν',
 'watchthispage'        => 'Ωρίαν τη σελίδαν',
 'unwatch'              => 'Τέλος τη ωρίαγματη',
@@ -316,6 +340,7 @@ $messages = array(
 'linklistsub'         => "(Κατάλογον με τοι συνδέσμ')",
 'linkshere'           => "Αυτά τα σελίδας συνδέουν ση σελίδαν '''[[:$1]]''':",
 'whatlinkshere-prev'  => '{{PLURAL:$1|προτεσνή|προτεσνά $1}}',
+'whatlinkshere-links' => '← σύνδεσμοι',
 
 # Block/unblock
 'contribslink' => "Δουλείαν ατ'",
@@ -328,6 +353,9 @@ $messages = array(
 'movedto'     => 'επήγεν σο',
 '1movedto2'   => '[[$1]] επήγεν σο [[$2]]',
 'movereason'  => 'Λόγον:',
+
+# Export
+'export' => 'Εξαγωγήν σελίδιων',
 
 # Namespace 8 related
 'allmessages' => 'Μενέματα σύστηματη',

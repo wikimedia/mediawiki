@@ -902,7 +902,7 @@ Zaznačůne pole uoznača přinoležność užytkowńika do danej grupy.
 
 # Recent changes linked
 'recentchangeslinked'          => 'Pomjéńane w adrésowanych',
-'recentchangeslinked-title'    => 'Pomjyńyńo w adrésowanych s $1',
+'recentchangeslinked-title'    => 'Pomjyńyńo w adrésowanych s "$1"',
 'recentchangeslinked-noresult' => 'Nikt nic niy pomjyńoł w dolinkowanych bez čas uo kery žeś pytou.',
 'recentchangeslinked-summary'  => "To je ekstra zajta, na kerej možeš uobočyć zmjany w artiklach dolinkowanych.
 Artikle na pozorli'śće sům '''rube'''.",
@@ -1167,7 +1167,7 @@ Duůgość [http://meta.wikymedja.org/wiki/Help:Job_queue kolejki zadań] je '''
 'newpages'                => 'Nowe zajty',
 'newpages-username'       => 'Mjano užytkowńika:',
 'ancientpages'            => 'Nojstarše artikle',
-'move'                    => 'Přećepnij',
+'move'                    => 'Přećep',
 'movethispage'            => 'Přećepej ta zajta',
 'unusedimagestext'        => 'Pamjyntej, proša, aže inkše witryny, np. projekty Wikimedja w inkšych godkach, můgům adresować do tych plikůw užywajůnc bezpośredńo URL. Bez tůž ńykere ze plikůw můgům sam być na tej liśće pokozane mimo, aže žodna zajta ńy adresuje do ńich.',
 'unusedcategoriestext'    => 'Katygorje pokazane půńižej istńejům, choć ńy kořisto s ńich žadyn artikel ańi katygorja.',
@@ -1198,7 +1198,7 @@ Možeš zawyńźić ličba wyńikůw wybjerajůnc typ rejeru, mjano užytkowńik
 # Special:Allpages
 'allpages'          => 'Wšyskie zajty',
 'alphaindexline'    => 'úod $1 do $2',
-'nextpage'          => 'Nastympno zajta ($1)',
+'nextpage'          => 'Nostympno zajta ($1)',
 'prevpage'          => 'Popředńo zajta ($1)',
 'allpagesfrom'      => 'Zajty začynojůnce śe na:',
 'allarticles'       => 'Wšyskie zajty',
@@ -1242,6 +1242,8 @@ Možeš zawyńźić ličba wyńikůw wybjerajůnc typ rejeru, mjano užytkowńik
 'emailccsubject'  => 'Kopja Twojej wjadůmośći do $1: $2',
 'emailsent'       => 'Wjadůmość zostoua wysuano',
 'emailsenttext'   => 'Twoja wjadůmość zostoua wysuano.',
+'emailuserfooter' => "--
+Tyn e-brif wysuano užywajůnc uopcyji 'wyślij e-brif do tygo užytkowńika' na {{SITENAME}}",
 
 # Watchlist
 'watchlist'            => 'Pozorlista',
@@ -1267,26 +1269,88 @@ Kiejbyś chciou wyćepać ta zajta z Twojiy listy artikli, na kere dowoš pozůr
 'notvisiblerev'        => 'Wersyja zostoua wyćepano',
 'watchnochange'        => 'Žodno ze zajtůw, na kere dowoš pozůr, ńy bůua sprowjano w podanym uokreśe.',
 'watchlist-details'    => "{{PLURAL:$1|$1 artikel|$1 artiklůw}} na pozorli'śće bez godek.",
+'wlheader-enotif'      => '* Wysůuańy powjadůmjyń na adres e-brif je zouůnčůne',
+'wlheader-showupdated' => "* Zajty, kere bouy sprowjane uod Twoi uostatńi wizyty na ńych zostoy naškryflane '''tuustym'''",
+'watchmethod-recent'   => 'šnupańy za půmjyńanymi na uostatku w zajtach, na kere dowoš pozůr',
+'watchmethod-list'     => 'šnupańy w zajtach, na kere dowoš pozůr pośrůd půmjyńanych na uostatku',
+'watchlistcontains'    => 'Lista zajtůw, na kere dowoš pozůr mo {{PLURAL:$1|jedna pozycja|$1 pozycje|$1 pozycyji}}.',
+'iteminvalidname'      => 'Problym ze pozycjům „$1”, felerne mjano...',
+'wlnote'               => "Půńižy pokazano {{PLURAL:$1|ostatńy sprawjyńy dokůnane|ostatńy '''$1''' sprawjyńe dokůnane|ostatńych '''$1''' sprawjyń dokůnanych}} bez {{PLURAL:$2|uostatńo godźina|uostatńich '''$2''' godźin}}.",
 'wlshowlast'           => 'Pokož uostatńy $1 godźin $2 dńi ($3)',
+'watchlist-show-bots'  => 'pokaž sprowjyńo botůw',
 'watchlist-hide-bots'  => 'schowej sprowjyńa botůw',
+'watchlist-show-own'   => 'pokož bezy mje sprowjůne',
 'watchlist-hide-own'   => 'schowej moje sprawjyńa',
+'watchlist-show-minor' => 'pokož drobne pomjyńańa',
 'watchlist-hide-minor' => 'Schowej drobne pomjyńańa',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Dowom pozor...',
 'unwatching' => 'Njy dowom pozoru...',
 
+'enotif_mailer'                => 'Powjadomjyńe s {{GRAMMAR:D.lp|{{SITENAME}}}}',
+'enotif_reset'                 => 'Uoznoč wšyjstke zajty kej uodwjydzůne',
+'enotif_newpagetext'           => 'To je nowo zajta.',
+'enotif_impersonal_salutation' => 'užytkowńik {{GRAMMAR:D.lp|{{SITENAME}}}}',
+'changed'                      => 'pomjyńono',
+'created'                      => 'utwořono',
+'enotif_subject'               => 'Zajta $PAGETITLE we {{GRAMMAR:MS.lp|{{SITENAME}}}} zostoua $CHANGEDORCREATED bez užytkowńika $PAGEEDITOR',
+'enotif_lastvisited'           => 'Uobejřij na zajće $1 wšyjstke půmjyńańo uod Twojej uostatńij wizyty.',
+'enotif_lastdiff'              => 'Uobejřij na zajće $1 te pomjyńeńe.',
+'enotif_anon_editor'           => 'užytkowńik anůnimowy $1',
+'enotif_body'                  => 'Drogi/o $WATCHINGUSERNAME,
+
+zajta $PAGETITLE we {{GRAMMAR:MS.lp|{{SITENAME}}}} zostoua $CHANGEDORCREATED $PAGEEDITDATE bez užytkowńika $PAGEEDITOR. Uobejřij na zajće $PAGETITLE_URL aktualno wersja.
+
+$NEWPAGE
+
+Opis pomjyńeńa: $PAGESUMMARY $PAGEMINOREDIT
+
+Skůntaktuj śe s autorym:
+e-brif: $PAGEEDITOR_EMAIL
+wiki: $PAGEEDITOR_WIKI
+
+W připadku kolejnych půmjyńań nowe powjadůmjyńo ńy bydům wysuane, dopůki ńy uodwjydziš tyi zajty.
+Možeš tyž zresetować wšyjstke flagi powjadůmjyń na swojej liśće zajtůw, na kere dowoš pozůr.
+
+	Wjadůmość systymu powjadůmjyń {{GRAMMAR:D.lp|{{SITENAME}}}}
+
+--
+Kejbyś chćou půmjyńić štalowańo swojej listy zajtůw, na kere dowoš pozůr, uodwjydź
+{{fullurl:{{ns:special}}:Watchlist/edit}}
+
+Pomoc:
+{{fullurl:{{MediaWiki:Helppage}}}}',
+
 # Delete/protect/revert
 'deletepage'                  => 'Wyćep artikel',
+'confirm'                     => 'Potwjyrdź',
+'excontent'                   => 'zawartość zajty „$1”',
+'excontentauthor'             => 'treść: „$1” (jedyny aůtor: [[Special:Contributions/$2|$2]])',
+'exbeforeblank'               => 'popředńo zawartość uobecńy pustej zajty: „$1”',
+'exblank'                     => 'Zajta byua pusto',
+'delete-confirm'              => 'Wyćep „$1”',
+'delete-legend'               => 'Wyćep',
 'historywarning'              => 'Pozor! Ta zajta kerům chceš wyćepnůńć mo historjo:',
 'confirmdeletetext'           => 'Chceš wyćepnůńć trwale artikel abo plik s bazy danych s historią. Pokož, aže wjyš co robdza, i to aže to je tak jak godojům [[{{MediaWiki:Policy-url}}|zasady]].',
 'actioncomplete'              => 'Fertig',
 'deletedtext'                 => 'Wyćepano "<nowiki>$1</nowiki>". Rejer uostatnio zrobiůnych wyćepań možeš uobejžyć tukej: $2.',
 'deletedarticle'              => 'wyciepnjynto "[[$1]]"',
+'suppressedarticle'           => 'utajńjyu [[$1]]',
 'dellogpage'                  => 'Wyćepane',
+'dellogpagetext'              => 'To je lista uostatńo wykůnanych wyćepań.',
+'deletionlog'                 => 'rejer wyćepań',
+'reverted'                    => 'Přiwrůcůno popředńo wersyja',
 'deletecomment'               => 'Čymu chceš wyćepnůńć:',
 'deleteotherreason'           => 'Inkšy powůd:',
 'deletereasonotherlist'       => 'Inkszy powůd',
+'deletereason-dropdown'       => '* Nojčynstše přičyny wyćepańa
+** Prośba autora
+** Narušyńy praw autorskych
+** Wandalizm',
+'delete-edit-reasonlist'      => 'Sprowjańe listy powodůw wyćepańo zajty',
+'delete-toobig'               => 'Ta zajta mo bardzo dugo historja sprowjyń, wjyncy jak $1 {{PLURAL:$1|pomjeńańe|pomjeńańa|pomjeńań}}.
+Jei wyćepańe moguo by spowodować zakuůcyńo w pracy {{GRAMMAR:D.lp|{{SITENAME}}}} i bez tůž zostouo uůgrańičůne.',
 'rollbacklink'                => 'cofej',
 'protectlogpage'              => 'Zawarte',
 'protectcomment'              => 'Kůmyntoř:',
@@ -1310,10 +1374,16 @@ Kiejbyś chciou wyćepać ta zajta z Twojiy listy artikli, na kere dowoš pozůr
 
 # Restrictions (nouns)
 'restriction-edit' => 'Sprowjéj',
+'restriction-move' => 'Přećepńjyńće',
 
 # Undelete
+'undelete'               => 'Pokož wyćepńjynte zajty',
+'undeletepage'           => 'Pokož a odtwůř wyćepńjynte zajty',
+'viewdeletedpage'        => 'Pokož wyćepńjynte zajty',
+'undelete-revision'      => 'Wyćiepnjynto wersjo $1 z $2 uod $3:',
 'undeletebtn'            => 'Uodtwůř',
 'undeletelink'           => 'uodtwůř',
+'undelete-search-box'    => 'Šnupej za wyćepńjyntymi zajtami',
 'undelete-search-submit' => 'Šnupej',
 
 # Namespace form on various pages
@@ -1336,6 +1406,7 @@ Kiejbyś chciou wyćepać ta zajta z Twojiy listy artikli, na kere dowoš pozůr
 # What links here
 'whatlinkshere'       => 'Co sam linkuje',
 'whatlinkshere-title' => 'Zajty kere sům adrésowane do $1',
+'whatlinkshere-page'  => 'Zajta:',
 'linklistsub'         => '(Lista linków)',
 'linkshere'           => "Nastympůjůnce zajty sóm adrésůwane do '''[[:$1]]''':",
 'nolinkshere'         => "Žodno zajta ńy je adrésowana do '''[[:$1]]'''.",
@@ -1347,12 +1418,15 @@ Kiejbyś chciou wyćepać ta zajta z Twojiy listy artikli, na kere dowoš pozůr
 
 # Block/unblock
 'blockip'            => 'Zawřij sprowjyńo užytkowńikowi',
+'ipbexpiry'          => 'Wygaso:',
 'ipbreason'          => 'Čymu:',
 'ipbreasonotherlist' => 'Inkszy powůd',
 'ipboptions'         => '2 godźiny:2 hours,1 dźyń:1 day,3 dńi:3 days,1 tydźyń:1 week,2 tygodńy:2 weeks,1 mjeśůnc:1 month,3 mjeśůnce:3 months,6 mjeśency:6 months,1 rok:1 year,ńyskůńčůny:infińite', # display1:time1,display2:time2,...
+'ipbotheroption'     => 'inkšy',
 'ipbotherreason'     => 'Inkšy powůd:',
 'ipblocklist'        => 'Lista užytkowńikůw i adresůw IP ze zawartymi sprowjyńami',
 'ipblocklist-submit' => 'Šnupej',
+'expiringblock'      => 'wygaso $1',
 'blocklink'          => 'zablokuj',
 'unblocklink'        => 'uodymknij',
 'contribslink'       => 'wkůod',
@@ -1360,6 +1434,7 @@ Kiejbyś chciou wyćepać ta zajta z Twojiy listy artikli, na kere dowoš pozůr
 'blocklogentry'      => 'zawarto [[$1]], bydźe uodymkńynty: $2 $3',
 
 # Move page
+'move-page'               => 'Přećep $1',
 'move-page-legend'        => 'Přećiś artikel',
 'movepagetext'            => "Při půmocy formulařa půńižej možeš půmjyńyć nazwa zajty i přećepnůńć jei historja. Pod downym titlym uostańe zajta překerowujůnca. Zajty adresowane na stary titel uostanům jak bůuy. Sprowdź, čy žeś ńy uostawieu kajś podwůjne abo zerwane překerowańy. Žeś je uodpedźalny za to, coby adresowańy bůuo do wuaśćiwych artiklůw!
 
@@ -1391,16 +1466,20 @@ Wybjer inkše mjano.',
 'movelogpage'             => 'Přećepńynte',
 'movereason'              => 'Čymu:',
 'revertmove'              => 'cofej',
+'delete_and_move'         => 'Wyćep i przećep',
 'delete_and_move_confirm' => 'Toć, wyćep zajta',
 
 # Export
-'export' => 'Export zajtůw',
+'export'        => 'Export zajtůw',
+'export-addcat' => 'Dodej',
 
 # Namespace 8 related
-'allmessages' => 'Komunikaty',
+'allmessages'     => 'Komunikaty',
+'allmessagesname' => 'Mjano',
 
 # Thumbnails
 'thumbnail-more'  => 'Powjynkš',
+'filemissing'     => 'Njy mo pliku',
 'thumbnail_error' => 'Feler při gynerowańu mińatury: $1',
 
 # Import log
@@ -1424,6 +1503,7 @@ Wybjer inkše mjano.',
 'tooltip-ca-watch'                => 'Dodej artikel do pozorlisty',
 'tooltip-ca-unwatch'              => 'Wyciep ten artikel z pozorlisty',
 'tooltip-search'                  => 'Šnupej we serwisie {{SITENAME}}',
+'tooltip-p-logo'                  => 'Přodńo zajta',
 'tooltip-n-mainpage'              => 'Přelyź na Přodńo zajta',
 'tooltip-n-portal'                => 'Uo projekće, co sam možeš majštrować, kaj idźe znolyźć informacyje',
 'tooltip-n-currentevents'         => 'Informacyje uo aktualnych wydařyńach',
@@ -1432,6 +1512,7 @@ Wybjer inkše mjano.',
 'tooltip-n-help'                  => 'Zapoznej sie z obsůgą wiki',
 'tooltip-n-sitesupport'           => 'Wspůmůž nas',
 'tooltip-t-whatlinkshere'         => 'Pokož lista zajtůw kere sam sům adrésowane',
+'tooltip-feed-rss'                => 'Kanau RSS do tyj zajty',
 'tooltip-t-contributions'         => 'Pokož lista sprowjyń tygo užytkowńika',
 'tooltip-t-emailuser'             => 'Wyślij e-brif do tygo užytkowńika',
 'tooltip-t-upload'                => 'Wćepńij plik na serwer',
@@ -1449,11 +1530,15 @@ Wybjer inkše mjano.',
 'tooltip-compareselectedversions' => 'Zoboč růžńica mjyndzy wybranymi wersyjami zajty.',
 'tooltip-watch'                   => 'Dodej tyn artikel do pozorlisty',
 
+# Attribution
+'others' => 'inkśi',
+
 # Browsing diffs
 'previousdiff' => '← Popředńy sprowjyńy',
 'nextdiff'     => 'Nostympno dyferéncyjo →',
 
 # Media information
+'widthheightpage'      => '$1×$2, $3 zajt',
 'file-info-size'       => '($1 × $2 pikseli, rozmior plika: $3, typ MIME: $4)',
 'file-nohires'         => '<small>Uobrozek we wjynkšej rozdźelčośći ńy je dostympny.</small>',
 'svg-long-desc'        => '(Plik SVG, nůminalńe $1 × $2 pixelůw, rozmior plika: $3)',
@@ -1461,8 +1546,9 @@ Wybjer inkše mjano.',
 'show-big-image-thumb' => '<small>Rozmiar podglůndu: $1 × $2 pikseli</small>',
 
 # Special:Newimages
-'newimages' => 'Galerjo nowych uobrozkůw',
-'ilsubmit'  => 'Šnupej',
+'newimages'    => 'Galerjo nowych uobrozkůw',
+'showhidebots' => '($1 boty)',
+'ilsubmit'     => 'Šnupej',
 
 # Bad image list
 'bad_image_list' => 'Dane noležy prowadźić we formaće:
@@ -1485,7 +1571,20 @@ Nostympne linki w lińii uwažůmy za wyjůntki, to sům nazwy zajtůw, kaj plik
 * focallength', # Do not translate list items
 
 # EXIF tags
+'exif-imagedescription'    => 'Titel uobrozka',
+'exif-artist'              => 'Autor',
 'exif-exposuretime-format' => '$1 s ($2)',
+
+'exif-meteringmode-255' => 'inkšy',
+
+'exif-contrast-1' => 'Lichy',
+'exif-contrast-2' => 'Srogi',
+
+'exif-sharpness-0' => 'Normalno',
+'exif-sharpness-1' => 'Licho',
+'exif-sharpness-2' => 'Srogo',
+
+'exif-subjectdistancerange-1' => 'Makro',
 
 # External editor support
 'edit-externally'      => 'Edytuj tyn plik bez zewnyntřno aplikacyjo',
@@ -1499,6 +1598,20 @@ Nostympne linki w lińii uwažůmy za wyjůntki, to sům nazwy zajtůw, kaj plik
 # action=purge
 'confirm_purge_button' => 'OK',
 
+# AJAX search
+'hideresults' => 'Schowej wyniki',
+
+# Multipage image navigation
+'imgmultipageprev' => '← popředńo zajta',
+'imgmultipagenext' => 'nostympno zajta →',
+
+# Table pager
+'table_pager_next' => 'Nostympno zajta',
+'table_pager_prev' => 'Popředńo zajta',
+
+# Watchlist editor
+'watchlistedit-raw-titles' => 'Title:',
+
 # Watchlist editing tools
 'watchlisttools-view' => 'Pokož wažńijše pomjyńańo',
 'watchlisttools-edit' => 'Pokož i zmjyńoj pozorliste',
@@ -1506,7 +1619,10 @@ Nostympne linki w lińii uwažůmy za wyjůntki, to sům nazwy zajtůw, kaj plik
 
 # Special:Version
 'version'                  => 'Wersjo', # Not used as normal message but as header for the special page itself
+'version-specialpages'     => 'Ekstra zajty',
+'version-other'            => 'Inkše',
 'version-version'          => 'Wersjo',
+'version-license'          => 'Licencjo',
 'version-software-version' => 'Wersjo',
 
 # Special:Filepath

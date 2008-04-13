@@ -6,7 +6,6 @@
  * @author HalanTul
  * @author Bert Jickty
  * @author Siebrand
- * @author Teak
  * @author SPQRobin
  * @author Jon Harald Søby
  */
@@ -870,7 +869,7 @@ long, which is longer than the maximum of $2 kilobytes. It cannot be saved.</str
 
 # Recent changes linked
 'recentchangeslinked'          => 'Сигэнэр уларытыылар',
-'recentchangeslinked-title'    => '$1 кытта сибээстээх уларытыылар',
+'recentchangeslinked-title'    => '"$1" кытта сибээстээх уларытыылар',
 'recentchangeslinked-noresult' => 'Сигэммит сирэйдэргэ этиллибит кэмҥэ уларытыылар оҥоһуллубатылар.',
 'recentchangeslinked-summary'  => "Бу анал сирэйгэ сигэнэр сирэйдэр бүтэһик уларыйыылара көһүннүлэр. Кэтэнэр сирэйдэр '''модьу бичигинэн''' бэлиэтэннилэр.",
 

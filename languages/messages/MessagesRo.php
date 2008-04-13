@@ -7,12 +7,9 @@
  * @author KlaudiuMihaila
  * @author Laurap
  * @author SCriBu
- * @author Nike
- * @author Gangleri
- * @author Siebrand
- * @author Teak
  * @author לערי ריינהארט
- * @author Meno25
+ * @author Nike
+ * @author Siebrand
  * @author SPQRobin
  * @author Jon Harald Søby
  */
@@ -862,7 +859,7 @@ $3',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Modificări corelate',
-'recentchangeslinked-title'    => 'Modificări legate de $1',
+'recentchangeslinked-title'    => 'Modificări legate de "$1"',
 'recentchangeslinked-noresult' => 'Nici o schimbare la paginile legate în perioada dată.',
 
 # Upload

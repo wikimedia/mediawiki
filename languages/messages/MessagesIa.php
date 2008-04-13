@@ -57,6 +57,13 @@ $messages = array(
 'thursday'  => 'jovedi',
 'friday'    => 'venerdi',
 'saturday'  => 'sabbato',
+'sun'       => 'dom',
+'mon'       => 'lun',
+'tue'       => 'mar',
+'wed'       => 'mer',
+'thu'       => 'jov',
+'fri'       => 'ven',
+'sat'       => 'sab',
 'january'   => 'januario',
 'february'  => 'februario',
 'march'     => 'martio',
@@ -108,7 +115,9 @@ $messages = array(
 'unprotectthispage' => 'Disproteger iste pagina',
 'newpage'           => 'Nove pagina',
 'talkpage'          => 'Discuter iste pagina',
+'talkpagelinktext'  => 'Discussion',
 'articlepage'       => 'Vider article',
+'talk'              => 'Discussion',
 'userpage'          => 'Vider pagina del usator',
 'projectpage'       => 'Vider metapagina',
 'imagepage'         => 'Vider pagina de imagine',
@@ -315,6 +324,7 @@ $2 Listar redireciones &nbsp; Recercar pro $3 $9',
 
 # Preferences page
 'preferences'              => 'Preferentias',
+'mypreferences'            => 'Mi preferentias',
 'prefsnologin'             => 'Session non aperte',
 'prefsnologintext'         => 'Tu debe [[Special:Userlogin|aperir un session]]
 pro definir tu preferentias.',
@@ -467,26 +477,28 @@ al qual le prime redirection deberea referer se.',
 'brokenredirectstext' => 'Le redirectiones sequente se liga a articulos inexistente.',
 
 # Miscellaneous special pages
-'nbytes'           => '$1 bytes',
-'nlinks'           => '$1 ligamines',
-'nviews'           => '$1 visitas',
-'lonelypages'      => 'Paginas orphanas',
-'unusedimages'     => 'Imagines non usate',
-'popularpages'     => 'Paginas popular',
-'wantedpages'      => 'Paginas plus demandate',
-'shortpages'       => 'Paginas curte',
-'longpages'        => 'Paginas longe',
-'listusers'        => 'Lista de usatores',
-'specialpages'     => 'Paginas special',
-'spheading'        => 'Paginas special',
-'newpages'         => 'Nove paginas',
-'movethispage'     => 'Mover iste pagina',
-'unusedimagestext' => '<p>Nota que altere sitos del web
+'nbytes'                 => '$1 bytes',
+'nlinks'                 => '$1 ligamines',
+'nviews'                 => '$1 visitas',
+'lonelypages'            => 'Paginas orphanas',
+'uncategorizedpages'     => 'Paginas non classificate',
+'uncategorizedtemplates' => 'Patronos non classificate',
+'unusedimages'           => 'Imagines non usate',
+'popularpages'           => 'Paginas popular',
+'wantedpages'            => 'Paginas plus demandate',
+'shortpages'             => 'Paginas curte',
+'longpages'              => 'Paginas longe',
+'listusers'              => 'Lista de usatores',
+'specialpages'           => 'Paginas special',
+'spheading'              => 'Paginas special',
+'newpages'               => 'Nove paginas',
+'movethispage'           => 'Mover iste pagina',
+'unusedimagestext'       => '<p>Nota que altere sitos del web
 tal como le {{SITENAME}}s international pote ligar se a un imagine
 con un URL directe, e consequentemente illos pote esser listate
 hic malgrado esser in uso active.',
-'notargettitle'    => 'Sin scopo',
-'notargettext'     => 'Tu non ha specificate un pagina o usator super le qual
+'notargettitle'          => 'Sin scopo',
+'notargettext'           => 'Tu non ha specificate un pagina o usator super le qual
 executar iste function.',
 
 # Book sources
@@ -571,6 +583,10 @@ non essera automaticamente substituite.',
 'undeletebtn'       => 'Restautar!',
 'undeletedarticle'  => '"$1" restaurate',
 
+# Namespace form on various pages
+'namespace'      => 'Spatio de nomine:',
+'blanknamespace' => '(Principal)',
+
 # Contributions
 'contributions' => 'Contributiones de usator',
 'mycontris'     => 'Mi contributiones',
@@ -602,7 +618,7 @@ specific que ha essite vandalisate).',
 <br />Vide [[Special:Ipblocklist|Lista de IPs blocate]] pro revider le blocages.',
 'unblockip'          => 'Disblocar adresse IP',
 'unblockiptext'      => 'Usa le formulario infra pro restaurar le accesso de scriptura
-a un adresse de IP blocate previemente.',
+a un adresse IP blocate previemente.',
 'ipusubmit'          => 'Disbloca iste adresse',
 'ipblocklist'        => 'Lista de adresses IP blocate',
 'blocklistline'      => '$1, $2 ha blockate $3 ($4)',
@@ -675,9 +691,22 @@ nove titulo. Per favor fusiona los manualmente.',
 'movetalk'         => 'Mover le pagina de "discussion" tamben, si applicabile.',
 'talkpagemoved'    => 'Le pagina de discussion correspondente tamben ha essite movite.',
 'talkpagenotmoved' => 'Le pagina de discussion correspondente <strong>non</strong> ha essite movite.',
+'1movedto2'        => '[[$1]] movite a [[$2]]',
+'1movedto2_redir'  => '[[$1]] movite a [[$2]] trans redirection',
 
 # Namespace 8 related
 'allmessages' => 'Tote le messages del systema',
+
+# Tooltip help for the actions
+'tooltip-pt-preferences' => 'Mi preferentias',
+'tooltip-search'         => 'Recercar {{SITENAME}}',
+'tooltip-p-logo'         => 'Frontispicio',
+'tooltip-n-mainpage'     => 'Visitar le Frontispicio',
+'tooltip-n-portal'       => 'A proposito del projecto, que vos pote facer, ubi trovar cosas',
+'tooltip-n-sitesupport'  => 'Sustene nos',
+'tooltip-save'           => 'Salvar tu modificationes',
+'tooltip-preview'        => 'Previsualisar tu cambios, per favor usa isto ante salvar!',
+'tooltip-watch'          => 'Adder iste pagina a tu lista de paginas sub observation',
 
 # Math options
 'mw_math_png'    => 'Sempre produce PNG',

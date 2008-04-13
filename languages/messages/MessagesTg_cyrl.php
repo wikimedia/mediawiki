@@ -3,16 +3,15 @@
  *
  * @addtogroup Language
  *
- * @author Francis Tyers
- * @author SPQRobin
- * @author Soroush
+ * @author Ibrahim
  * @author FrancisTyers
+ * @author SPQRobin
  * @author Siebrand
  * @author לערי ריינהארט
- * @author Cbrown1023
- * @author Ibrahim
- * @author Nike
  * @author Farrukh
+ * @author Soroush
+ * @author Nike
+ * @author Cbrown1023
  */
 
 $namespaceNames = array(
@@ -968,7 +967,7 @@ $1',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Таъғироти монандӣ',
-'recentchangeslinked-title'    => 'Тағйирҳои алоқаманд ба $1',
+'recentchangeslinked-title'    => 'Тағйирҳои алоқаманд ба "$1"',
 'recentchangeslinked-noresult' => 'Дар давоми замони додашуда тағйире дар саҳифаҳои пайваста рух надодааст.',
 'recentchangeslinked-summary'  => "Ин саҳифаи вижа тағйироти охири саҳифаҳои пайвастаро дар бар мегирад. Саҳифаҳои дар рӯизати назароти шумо буда  '''пурранг''' ҳастанд.",
 

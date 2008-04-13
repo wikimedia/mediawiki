@@ -763,7 +763,7 @@ Sha'rtli belgiler: (ha'z.) = ha'zirgi nusqasi menen parqı,
 
 # Recent changes linked
 'recentchangeslinked'          => "Baylanıslı o'zgerisler",
-'recentchangeslinked-title'    => "$1 baylanıslı o'zgerisler",
+'recentchangeslinked-title'    => '"$1" baylanıslı o\'zgerisler',
 'recentchangeslinked-noresult' => "Siltelgen betlerde berilgen waqıt dawamında hesh qanday o'zgeris bolmag'an.",
 'recentchangeslinked-summary'  => "Bul arnawlı bette siltelgen betlerdegi aqırg'ı o'zgerisler dizimi ko'rsetilgen. Baqlaw dizimin'izdegi betler '''juwan''' ha'ribi menen ko'rsetilgen.",
 

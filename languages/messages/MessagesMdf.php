@@ -876,7 +876,7 @@ $3 макссь туфталсь - ''$2''",
 
 # Recent changes linked
 'recentchangeslinked'          => 'Сюлмаф полафнематне',
-'recentchangeslinked-title'    => 'Полафнемат сюлмафт $1 мархта',
+'recentchangeslinked-title'    => 'Полафнемат сюлмафт "$1" мархта',
 'recentchangeslinked-noresult' => 'Сюлмаф лопава тя пингста полафнемат ашельхть.',
 'recentchangeslinked-summary'  => "Тя башка лопас сувафнезь мекольце полафнемат сюлмаф лопава. Тонь ванома сёрмалувомастонь лопатне '''тяштезь эчкста'''.",
 

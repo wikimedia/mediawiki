@@ -382,6 +382,7 @@ I seguenti collegamenti sono in lingua inglese:
 'youhavenewmessagesmulti' => 'Hai nuovi messaggi su $1',
 'editsection'             => 'modifica',
 'editold'                 => 'modifica',
+'viewsourceold'           => 'visualizza sorgente',
 'editsectionhint'         => 'Modifica la sezione $1',
 'toc'                     => 'Indice',
 'showtoc'                 => 'mostra',
@@ -795,7 +796,7 @@ Consultare il [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} log di cancella
 'revdelete-nooldid-title'     => 'Versione non specificata',
 'revdelete-nooldid-text'      => 'Non è stata specificata alcuna versione della pagina su cui eseguire questa funzione.',
 'revdelete-selected'          => '{{PLURAL:$2|Versione selezionata|Versioni selezionate}} di [[:$1]]:',
-'logdelete-selected'          => "{{PLURAL:$2|Evento del registro selezionato|Eventi del registro selezionati}} per '''$1:'''",
+'logdelete-selected'          => '{{PLURAL:$1|Evento del registro selezionato|Eventi del registro selezionati}}:',
 'revdelete-text'              => 'Le versioni cancellate restano visibili nella cronologia della pagina, mentre il testo contenuto non è accessibile al pubblico.
 
 Gli altri amministratori del sito potranno accedere comunque ai contenuti nascosti e ripristinarli attraverso questa stessa interfaccia, se non sono state impostate altre limitazioni in fase di installazione del sito.',
@@ -1037,7 +1038,7 @@ Una casella di spunta selezionata indica l'appartenenza dell'utente al gruppo; u
 
 # Recent changes linked
 'recentchangeslinked'          => 'Modifiche correlate',
-'recentchangeslinked-title'    => 'Modifiche correlate a $1',
+'recentchangeslinked-title'    => 'Modifiche correlate a "$1"',
 'recentchangeslinked-noresult' => 'Nessuna modifica alle pagine collegate nel periodo specificato.',
 'recentchangeslinked-summary'  => "Questa pagina speciale mostra le modifiche più recenti alle pagine collegate a quella specificata. Le pagine osservate sono evidenziate in '''grassetto'''.",
 
@@ -1393,6 +1394,8 @@ Ciascuna riga contiene i collegamenti al primo ed al secondo redirect, oltre all
 'emailccsubject'  => 'Copia del messaggio inviato a $1: $2',
 'emailsent'       => 'Messaggio inviato',
 'emailsenttext'   => 'Il messaggio e-mail è stato inviato.',
+'emailuserfooter' => "--
+Questa email è stata mandata usando la funzione 'invia un'email all'utente' di {{SITENAME}}",
 
 # Watchlist
 'watchlist'            => 'Osservati speciali',
@@ -1614,18 +1617,20 @@ $1',
 'sp-contributions-submit'      => 'Ricerca',
 
 # What links here
-'whatlinkshere'       => 'Puntano qui',
-'whatlinkshere-title' => 'Pagine che puntano a $1',
-'whatlinkshere-page'  => 'Pagina:',
-'linklistsub'         => '(Lista dei collegamenti)',
-'linkshere'           => "Le seguenti pagine contengono dei collegamenti a '''[[:$1]]''':",
-'nolinkshere'         => "Nessuna pagina contiene collegamenti che puntano a '''[[:$1]]'''.",
-'nolinkshere-ns'      => "Non vi sono pagine che puntano a '''[[:$1]]''' nel namespace selezionato.",
-'isredirect'          => 'redirect',
-'istemplate'          => 'inclusione',
-'whatlinkshere-prev'  => '{{PLURAL:$1|precedente|precedenti $1}}',
-'whatlinkshere-next'  => '{{PLURAL:$1|successivo|successivi $1}}',
-'whatlinkshere-links' => '← collegamenti',
+'whatlinkshere'            => 'Puntano qui',
+'whatlinkshere-title'      => 'Pagine che puntano a $1',
+'whatlinkshere-page'       => 'Pagina:',
+'linklistsub'              => '(Lista dei collegamenti)',
+'linkshere'                => "Le seguenti pagine contengono dei collegamenti a '''[[:$1]]''':",
+'nolinkshere'              => "Nessuna pagina contiene collegamenti che puntano a '''[[:$1]]'''.",
+'nolinkshere-ns'           => "Non vi sono pagine che puntano a '''[[:$1]]''' nel namespace selezionato.",
+'isredirect'               => 'redirect',
+'istemplate'               => 'inclusione',
+'whatlinkshere-prev'       => '{{PLURAL:$1|precedente|precedenti $1}}',
+'whatlinkshere-next'       => '{{PLURAL:$1|successivo|successivi $1}}',
+'whatlinkshere-links'      => '← collegamenti',
+'whatlinkshere-hideredirs' => '$1 redirect',
+'whatlinkshere-hidelinks'  => '$1 link',
 
 # Block/unblock
 'blockip'                     => 'Blocco utente',
@@ -2323,11 +2328,15 @@ Messaggio di errore del mailer: $1",
 'confirmemail_subject'     => "{{SITENAME}}: richiesta di conferma dell'indirizzo",
 'confirmemail_body'        => 'Qualcuno, probabilmente tu stesso dall\'indirizzo IP $1, ha registrato l\'account "$2" su {{SITENAME}} indicando questo indirizzo e-mail.
 
-Per confermare che l\'account ti appartiene e attivare le funzioni relative all\'invio di e-mail su {{SITENAME}}, apri il collegamento seguente con il tuo browser:
+Per confermare che l\'account ti appartiene veramente e attivare le funzioni relative all\'invio di e-mail su {{SITENAME}}, apri il collegamento seguente con il tuo browser:
 
 $3
 
-Se l\'account *non* ti appartiene, non seguire il collegamento. Questo codice di conferma scadrà automaticamente alle $4.',
+Se *non* hai registrato tu l\'account, segui questo collegamento per annullare la conferma dell\'indirizzo e-mail:
+
+$5
+
+Questo codice di conferma scadrà automaticamente alle $4.',
 'confirmemail_invalidated' => 'Richiesta di conferma indirizzo e-mail annullata',
 'invalidateemail'          => 'Annulla richiesta di conferma e-mail',
 
@@ -2470,5 +2479,14 @@ Inserire il nome del file senza il prefisso \"{{ns:image}}:\"",
 'fileduplicatesearch-info'     => '$1 × $2 pixel<br />Dimensioni: $3<br />Tipo MIME: $4',
 'fileduplicatesearch-result-1' => 'Non esistono duplicati identici al file "$1".',
 'fileduplicatesearch-result-n' => '{{PLURAL:$2|Esiste un duplicato identico|Esistono $2 duplicati identici}} al file "$1".',
+
+# Special:SpecialPages
+'specialpages-group-maintenance' => 'Resoconti di manutenzione',
+'specialpages-group-other'       => 'Altre pagine speciali',
+'specialpages-group-login'       => 'Login / registrazione',
+'specialpages-group-changes'     => 'Ultime modifiche e registri',
+'specialpages-group-users'       => 'Utenti e diritti',
+'specialpages-group-highuse'     => 'Pagine molto usate',
+'specialpages-group-permissions' => 'Attribuisci i permessi agli utenti',
 
 );

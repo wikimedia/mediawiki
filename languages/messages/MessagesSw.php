@@ -3,16 +3,14 @@
  *
  * @addtogroup Language
  *
- * @author לערי ריינהארט
- * @author Siebrand
  * @author Robert Ullmann
  * @author Malangali
+ * @author לערי ריינהארט
+ * @author Siebrand
  * @author Nike
  * @author SPQRobin
  * @author Marcos
  */
-
-
 
 $messages = array(
 # User preference toggles
@@ -372,7 +370,7 @@ Ufunguo: (sasa) = tofauti na toleo la sasa, (kabla) = tofauti na toleo lililotan
 
 # Recent changes linked
 'recentchangeslinked'          => 'Mabadiliko husika',
-'recentchangeslinked-title'    => 'Mabadiliko kuhusiana na $1',
+'recentchangeslinked-title'    => 'Mabadiliko kuhusiana na "$1"',
 'recentchangeslinked-noresult' => 'Hakuna mabadiliko kwenye kurasa zilizounganishwa wakati wa muda huo.',
 'recentchangeslinked-summary'  => "Ukurasa maalum huu unaorodhesha mabadiliko ya mwisho katika kurasa zinazoungwa.  Kurasa katika maangalizi yako ni za '''koze'''.",
 

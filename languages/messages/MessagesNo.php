@@ -402,6 +402,7 @@ $messages = array(
 'youhavenewmessagesmulti' => 'Du har nye beskjeder på $1',
 'editsection'             => 'rediger',
 'editold'                 => 'rediger',
+'viewsourceold'           => 'vis kilde',
 'editsectionhint'         => 'Rediger seksjon: $1',
 'toc'                     => 'Innhold',
 'showtoc'                 => 'vis',
@@ -826,7 +827,8 @@ Andre administratorer på {{SITENAME}} vil fortsatt kunne se det skjulte innhold
 
 # Suppression log
 'suppressionlog'     => 'Sidefjerningslogg',
-'suppressionlogtext' => 'Nedenfor er en liste over sider og blokkeringer med innhold skjult fra administratorer. Se [[Special:Ipblocklist|blokkeringslisten]] for oversikten over nåværende blokkeringer.',
+'suppressionlogtext' => 'Nedenfor er en liste over sider og blokkeringer med innhold skjult fra administratorer.
+Se [[Special:Ipblocklist|blokkeringslisten]] for oversikten over nåværende blokkeringer.',
 
 # History merging
 'mergehistory'                     => 'Flett sidehistorikker',
@@ -1037,9 +1039,10 @@ Når en boks er merket betyr det at brukeren er medlem av den gruppen.',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Relaterte endringer',
-'recentchangeslinked-title'    => 'Endringer relatert til $1',
+'recentchangeslinked-title'    => 'Endringer relatert til «$1»',
 'recentchangeslinked-noresult' => 'Ingen endringer på lenkede sider i den gitte perioden.',
 'recentchangeslinked-summary'  => "Denne spesialsiden lister opp alle de siste endringene som har skjedd på sider som lenkes til fra denne. Sider som også er på din overvåkningsliste vises i '''fet skrift'''.",
+'recentchangeslinked-page'     => 'Sidenavn',
 
 # Upload
 'upload'                      => 'Last opp fil',
@@ -1385,6 +1388,8 @@ Det har vært totalt {{PLURAL:$3|'''én''' sidevisning|'''$3''' sidevisninger}},
 'emailccsubject'  => 'Kopi av din beskjed til $1: $2',
 'emailsent'       => 'E-post sendt',
 'emailsenttext'   => 'E-postbeskjeden er sendt',
+'emailuserfooter' => '--
+Denne e-posten ble sendt ved hjelp av «E-post til bruker»-funksjonen på {{SITENAME}}',
 
 # Watchlist
 'watchlist'            => 'Overvåkningsliste',
@@ -1602,18 +1607,21 @@ $1',
 'sp-contributions-submit'      => 'Søk',
 
 # What links here
-'whatlinkshere'       => 'Lenker hit',
-'whatlinkshere-title' => 'Sider som lenker til $1',
-'whatlinkshere-page'  => 'Side:',
-'linklistsub'         => '(Liste over lenker)',
-'linkshere'           => "Følgende sider lenker til '''[[:$1]]''':",
-'nolinkshere'         => "Ingen sider lenker til '''[[:$1]]'''.",
-'nolinkshere-ns'      => "Ingen sider lenker til '''[[:$1]]''' i valgte navnerom.",
-'isredirect'          => 'omdirigeringsside',
-'istemplate'          => 'inkludert som mal',
-'whatlinkshere-prev'  => '{{PLURAL:$1|forrige|forrige $1}}',
-'whatlinkshere-next'  => '{{PLURAL:$1|neste|neste $1}}',
-'whatlinkshere-links' => '← lenker',
+'whatlinkshere'            => 'Lenker hit',
+'whatlinkshere-title'      => 'Sider som lenker til $1',
+'whatlinkshere-page'       => 'Side:',
+'linklistsub'              => '(Liste over lenker)',
+'linkshere'                => "Følgende sider lenker til '''[[:$1]]''':",
+'nolinkshere'              => "Ingen sider lenker til '''[[:$1]]'''.",
+'nolinkshere-ns'           => "Ingen sider lenker til '''[[:$1]]''' i valgte navnerom.",
+'isredirect'               => 'omdirigeringsside',
+'istemplate'               => 'inkludert som mal',
+'whatlinkshere-prev'       => '{{PLURAL:$1|forrige|forrige $1}}',
+'whatlinkshere-next'       => '{{PLURAL:$1|neste|neste $1}}',
+'whatlinkshere-links'      => '← lenker',
+'whatlinkshere-hideredirs' => '$1 omdirigeringer',
+'whatlinkshere-hidetrans'  => '$1 inkluderinger',
+'whatlinkshere-hidelinks'  => '$1 lenker',
 
 # Block/unblock
 'blockip'                     => 'Blokker bruker',
@@ -2476,5 +2484,16 @@ Skriv inn filnavn uten «{{ns:image}}:»-prefikset.',
 'fileduplicatesearch-info'     => '$1 × $2 piksler<br />Filstørrelse: $3<br />MIME-type: $4',
 'fileduplicatesearch-result-1' => 'Det er ingen duplikater av «$1».',
 'fileduplicatesearch-result-n' => 'Det er {{PLURAL:$2|ett duplikat|$2 duplikater}} av «$1».',
+
+# Special:SpecialPages
+'specialpages-group-maintenance' => 'Vedlikeholdsrapporter',
+'specialpages-group-other'       => 'Andre spesialsider',
+'specialpages-group-login'       => 'Innlogging / registrering',
+'specialpages-group-changes'     => 'Siste endringer og logger',
+'specialpages-group-media'       => 'Mediarapporter',
+'specialpages-group-users'       => 'Brukere og rettigheter',
+'specialpages-group-needy'       => 'Sider som trenger arbeid',
+'specialpages-group-highuse'     => 'Ofte brukte sider',
+'specialpages-group-permissions' => 'Brukerrettigheter',
 
 );

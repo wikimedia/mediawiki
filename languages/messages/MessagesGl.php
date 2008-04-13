@@ -286,6 +286,7 @@ $messages = array(
 'youhavenewmessagesmulti' => 'Ten mensaxes novas en $1',
 'editsection'             => 'editar',
 'editold'                 => 'editar',
+'viewsourceold'           => 'ver código fonte',
 'editsectionhint'         => 'Editar sección: $1',
 'toc'                     => 'Índice',
 'showtoc'                 => 'amosar',
@@ -963,9 +964,10 @@ Se pola contra non o ten, significa que non pertence.',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Cambios relacionados',
-'recentchangeslinked-title'    => 'Cambios relacionados con $1',
+'recentchangeslinked-title'    => 'Cambios relacionados con "$1"',
 'recentchangeslinked-noresult' => 'Non se produciron mudanzas nas páxinas vinculadas durante o período solicitado.',
 'recentchangeslinked-summary'  => "Esta páxina especial lista as modificacións recentes nas páxinas vinculadas. As páxinas da súa listaxe de vixilancia aparecen en '''negra'''.",
+'recentchangeslinked-page'     => 'Nome da páxina:',
 
 # Upload
 'upload'                      => 'Cargar un ficheiro',
@@ -1225,7 +1227,7 @@ Cada ringleira contén ligazóns cara á primeira e segunda redirección, e tam�
 'unusedimages'            => 'Imaxes sen uso',
 'popularpages'            => 'Páxinas populares',
 'wantedcategories'        => 'Categorías sen comprobar',
-'wantedpages'             => 'Páxinas buscadas',
+'wantedpages'             => 'Páxinas requiridas',
 'mostlinked'              => 'Páxinas máis enlazadas',
 'mostlinkedcategories'    => 'Categorías máis enlazadas',
 'mostlinkedtemplates'     => 'Modelos máis enlazados',
@@ -1243,7 +1245,7 @@ Cada ringleira contén ligazóns cara á primeira e segunda redirección, e tam�
 'protectedtitles'         => 'Títulos protexidos',
 'protectedtitlestext'     => 'Os seguintes títulos están protexidos da creación',
 'protectedtitlesempty'    => 'Actualmente non están protexidos títulos con eses parámetros.',
-'listusers'               => 'Lista de usuarios',
+'listusers'               => 'Listaxe de usuarios',
 'specialpages'            => 'Páxinas especiais',
 'spheading'               => 'Páxinas especiais para todos os usuarios',
 'restrictedpheading'      => 'Páxinas especiais restrinxidas',
@@ -1300,10 +1302,11 @@ Pode precisar máis a vista seleccionando o tipo de rexistro, o nome de usuario 
 'listusers-noresult' => 'Non se atoparon usuarios. Comprobe tamén variantes con maiúsculas e minúsculas.',
 
 # Special:Listgrouprights
-'listgrouprights'         => 'Dereitos dun usuario segundo o seu grupo',
-'listgrouprights-summary' => 'A seguinte listaxe mostra os grupos de usuario definidos neste wiki, cos seus dereitos de acceso asociados.',
-'listgrouprights-group'   => 'Grupo',
-'listgrouprights-rights'  => 'Dereitos',
+'listgrouprights'          => 'Dereitos dun usuario segundo o seu grupo',
+'listgrouprights-summary'  => 'A seguinte listaxe mostra os grupos de usuario definidos neste wiki, cos seus dereitos de acceso asociados.',
+'listgrouprights-group'    => 'Grupo',
+'listgrouprights-rights'   => 'Dereitos',
+'listgrouprights-helppage' => 'Help:Dereiros do grupo',
 
 # E-mail user
 'mailnologin'     => 'Non existe enderezo para o envío',
@@ -1324,6 +1327,8 @@ Pode precisar máis a vista seleccionando o tipo de rexistro, o nome de usuario 
 'emailccsubject'  => 'Copia da mensaxe para $1: $2',
 'emailsent'       => 'Mensaxe enviada',
 'emailsenttext'   => 'A súa mensaxe de correo electrónico foi enviada.',
+'emailuserfooter' => '--
+Este correo electrónico foi enviado usando a característica "enviar un correo electrónico a este usuario" de {{SITENAME}}',
 
 # Watchlist
 'watchlist'            => 'A miña listaxe de vixilancia',
@@ -1491,7 +1496,9 @@ Velaquí a configuración actual da páxina <strong>$1</strong>:',
 'undeletepagetitle'            => "'''O que segue consiste nas revisións eliminadas de [[:$1]]'''.",
 'viewdeletedpage'              => 'Ver as páxinas borradas',
 'undeletepagetext'             => 'As seguintes páxinas foron borradas pero aínda están no arquivo e poden ser restauradas. O arquivo vai ser limpado periodicamente.',
-'undeleteextrahelp'            => "Para restaurar a páxina completa deixe todas as caixas sen marcar e prema en '''''Restaurar'''''. Para realizar unha recuperación parcial, marque só aquelas caixas que correspondan ás revisións que se queiran recuperar e a continuación prema en '''''Restaurar'''''. Premendo en '''''Borrar''''' limpa o campo comentario en todas as caixas.",
+'undeleteextrahelp'            => "Para restaurar a páxina completa deixe todas as caixas sen marcar e prema en '''''Restaurar'''''.
+Para realizar unha recuperación parcial, marque só aquelas caixas que correspondan ás revisións que se queiran recuperar e a continuación prema en '''''Restaurar'''''.
+Premendo en '''''Borrar''''' limpa o campo comentario en todas as caixas.",
 'undeleterevisions'            => '$1 {{PLURAL:$1|revisión|revisións}} arquivadas',
 'undeletehistory'              => 'Se restaura a páxina, todas as revisións van ser restauradas no historial.
 Se se creou unha páxina nova co mesmo nome desde o seu borrado, as revisións restauradas van aparecer no historial anterior. Teña tamén en conta que as restricións sobre as revisións dos ficheiros pérdense cando se restauran',
@@ -1550,18 +1557,21 @@ $1',
 'sp-contributions-submit'      => 'Procurar',
 
 # What links here
-'whatlinkshere'       => 'Páxinas que ligan con esta',
-'whatlinkshere-title' => 'Páxinas que ligan con $1',
-'whatlinkshere-page'  => 'Páxina:',
-'linklistsub'         => '(Lista de ligazóns)',
-'linkshere'           => "As seguintes páxinas ligan con '''[[:$1]]''':",
-'nolinkshere'         => "Ningunha páxina liga con '''[[:$1]]'''.",
-'nolinkshere-ns'      => "Ningunha páxina liga con '''[[:$1]]''' no espazo de nomes elixido.",
-'isredirect'          => 'páxina redirixida',
-'istemplate'          => 'inclusión',
-'whatlinkshere-prev'  => '{{PLURAL:$1|anterior|anteriores $1}}',
-'whatlinkshere-next'  => '{{PLURAL:$1|seguinte|seguintes $1}}',
-'whatlinkshere-links' => '← ligazóns',
+'whatlinkshere'            => 'Páxinas que ligan con esta',
+'whatlinkshere-title'      => 'Páxinas que ligan con $1',
+'whatlinkshere-page'       => 'Páxina:',
+'linklistsub'              => '(Lista de ligazóns)',
+'linkshere'                => "As seguintes páxinas ligan con '''[[:$1]]''':",
+'nolinkshere'              => "Ningunha páxina liga con '''[[:$1]]'''.",
+'nolinkshere-ns'           => "Ningunha páxina liga con '''[[:$1]]''' no espazo de nomes elixido.",
+'isredirect'               => 'páxina redirixida',
+'istemplate'               => 'inclusión',
+'whatlinkshere-prev'       => '{{PLURAL:$1|anterior|anteriores $1}}',
+'whatlinkshere-next'       => '{{PLURAL:$1|seguinte|seguintes $1}}',
+'whatlinkshere-links'      => '← ligazóns',
+'whatlinkshere-hideredirs' => '$1 as redireccións',
+'whatlinkshere-hidetrans'  => '$1 as transclusións',
+'whatlinkshere-hidelinks'  => '$1 as ligazóns',
 
 # Block/unblock
 'blockip'                     => 'Bloqueo de usuario',
@@ -1877,7 +1887,8 @@ Todas as accións relacionadas coa importación entre wikis poden verse no [[Spe
 
 # Spam protection
 'spamprotectiontitle' => 'Filtro de protección de correo electrónico non solicitado (spam)',
-'spamprotectiontext'  => "A páxina que quixo gardar foi bloqueada polo filtro ''antispam''. Isto probabelmente se deba a unha ligazón cara a un sitio externo.",
+'spamprotectiontext'  => "A páxina que quixo gardar foi bloqueada polo filtro ''antispam''.
+Isto, probabelmente, se debe a unha ligazón cara a un sitio externo.",
 'spamprotectionmatch' => 'O seguinte texto foi o que activou o noso filtro de correo electrónico non solicitado (spam): $1',
 'spambot_username'    => 'MediaWiki limpeza de spam',
 'spam_reverting'      => 'Revertida á última edición sen ligazóns a $1',
@@ -2394,7 +2405,7 @@ Tamén pode [[Special:Watchlist/edit|empregar o editor normal]].',
 'version-software-version'         => 'Versión',
 
 # Special:Filepath
-'filepath'         => 'Ruta do arquivo',
+'filepath'         => 'Ruta do ficheiro',
 'filepath-page'    => 'Arquivo:',
 'filepath-submit'  => 'Ruta',
 'filepath-summary' => 'Esta páxina especial devolve a ruta completa a un ficheiro.
@@ -2413,5 +2424,14 @@ Introduza o nome do ficheiro sen o prefixo "{{ns:image}}:".',
 'fileduplicatesearch-info'     => '$1 × $2 píxeles<br />Tamaño do ficheiro: $3<br />Tipo MIME: $4',
 'fileduplicatesearch-result-1' => 'O ficheiro "$1" non ten un duplicado idéntico.',
 'fileduplicatesearch-result-n' => 'O ficheiro "$1" ten {{PLURAL:$2|1 duplicado idéntico|$2 duplicados idénticos}}.',
+
+# Special:SpecialPages
+'specialpages-group-other'       => 'Outras páxinas especiais',
+'specialpages-group-login'       => 'Rexistro',
+'specialpages-group-changes'     => 'Cambios recentes e rexistros',
+'specialpages-group-users'       => 'Usuarios e dereitos',
+'specialpages-group-needy'       => 'Páxinas que precisan de traballo',
+'specialpages-group-highuse'     => 'Páxinas con máis uso',
+'specialpages-group-permissions' => 'Permisos de usuario',
 
 );

@@ -3,20 +3,18 @@
  *
  * @addtogroup Language
  *
- * @author Erzianj jurnalist
  * @author Botuzhaleny-sodamo
+ * @author Erzianj jurnalist
+ * @author Amdf
  * @author MF-Warburg
+ * @author Siebrand
  * @author Tupikovs
  * @author Sura
  * @author Nike
- * @author Max sonnelid
- * @author Amdf
  * @author SPQRobin
- * @author Siebrand
  * @author M.M.S.
+ * @author Jon Harald Søby
  */
-
-
 
 $messages = array(
 # User preference toggles
@@ -606,7 +604,7 @@ $messages = array(
 
 # Recent changes linked
 'recentchangeslinked'          => 'Сюлмавозь лиякстоматьне',
-'recentchangeslinked-title'    => 'Полавтнемат-лиякстомтомат конат кандовить теватезэнь $1',
+'recentchangeslinked-title'    => 'Полавтнемат-лиякстомтомат конат кандовить теватезэнь "$1"',
 'recentchangeslinked-noresult' => 'Кодаткак полавтомат сюлмавозь лопатьнесэ те шкастонть.',
 'recentchangeslinked-summary'  => "Те башка лопасонть максозь потмокс меельцень витнематьнень-петнематнень, сулмавозь лопатнесэ. Лопатне ванома потмоксто '''эчкестэ тештезь'''",
 

@@ -993,7 +993,7 @@ latex, dvips, gs, और convert के इन्स्टॉलेशन की
 
 # Recent changes linked
 'recentchangeslinked'          => 'पन्ने से जुडे बदलाव',
-'recentchangeslinked-title'    => '$1 में हुए बदलाव',
+'recentchangeslinked-title'    => '"$1" में हुए बदलाव',
 'recentchangeslinked-noresult' => 'जुडे हुए पन्नोंमें दिये हुए अवसरमें कोई भी बदलाव नहीं हुए हैं ।',
 'recentchangeslinked-summary'  => "यह विशेष पृष्ठ जुड़े हुए पन्नोंके बदलाव दर्शाता हैं। आपकी ध्यानसूची में रखे पन्ने '''बोल्ड''' दिखेंगे।",
 
@@ -1333,10 +1333,11 @@ PICT # misc.
 'listusers-noresult' => 'सदस्य मिला नहीं।',
 
 # Special:Listgrouprights
-'listgrouprights'         => 'सदस्य ग्रुप अधिकार',
-'listgrouprights-summary' => 'नीचे विकिपर बनायें गये ग्रुपोंकी सूची उन ग्रुपोंके सदस्योंको प्राप्त अधिकारोंके साथ दर्शायी गई हैं।',
-'listgrouprights-group'   => 'ग्रुप',
-'listgrouprights-rights'  => 'अधिकार',
+'listgrouprights'          => 'सदस्य ग्रुप अधिकार',
+'listgrouprights-summary'  => 'नीचे विकिपर बनायें गये ग्रुपोंकी सूची उन ग्रुपोंके सदस्योंको प्राप्त अधिकारोंके साथ दर्शायी गई हैं।',
+'listgrouprights-group'    => 'ग्रुप',
+'listgrouprights-rights'   => 'अधिकार',
+'listgrouprights-helppage' => 'Help:ग्रुप अधिकार',
 
 # E-mail user
 'mailnologin'     => 'पानेवाले का एड्रेस दिया नहीं',
@@ -1551,18 +1552,21 @@ $1',
 'sp-contributions-submit'      => 'खोज',
 
 # What links here
-'whatlinkshere'       => 'यहाँ क्या जुड़ता है',
-'whatlinkshere-title' => '$1को जुडे हुए पन्ने',
-'whatlinkshere-page'  => 'पन्ना:',
-'linklistsub'         => '(कडियों की सूची)',
-'linkshere'           => "नीचे दिये हुए पन्ने '''[[:$1]]''' से जुडते हैं:",
-'nolinkshere'         => "'''[[:$1]]''' को कुछभी जुडता नहीं हैं ।",
-'nolinkshere-ns'      => "चुने हुए नामस्थानसे '''[[:$1]]''' को जुडने वाले पन्ने नहीं हैं।",
-'isredirect'          => 'पुनर्निर्देशन पन्ना',
-'istemplate'          => 'मिलाईयें',
-'whatlinkshere-prev'  => '{{PLURAL:$1|पिछला|पिछले $1}}',
-'whatlinkshere-next'  => '{{PLURAL:$1|अगला|अगले $1}}',
-'whatlinkshere-links' => '← कड़ियाँ',
+'whatlinkshere'            => 'यहाँ क्या जुड़ता है',
+'whatlinkshere-title'      => '$1को जुडे हुए पन्ने',
+'whatlinkshere-page'       => 'पन्ना:',
+'linklistsub'              => '(कडियों की सूची)',
+'linkshere'                => "नीचे दिये हुए पन्ने '''[[:$1]]''' से जुडते हैं:",
+'nolinkshere'              => "'''[[:$1]]''' को कुछभी जुडता नहीं हैं ।",
+'nolinkshere-ns'           => "चुने हुए नामस्थानसे '''[[:$1]]''' को जुडने वाले पन्ने नहीं हैं।",
+'isredirect'               => 'पुनर्निर्देशन पन्ना',
+'istemplate'               => 'मिलाईयें',
+'whatlinkshere-prev'       => '{{PLURAL:$1|पिछला|पिछले $1}}',
+'whatlinkshere-next'       => '{{PLURAL:$1|अगला|अगले $1}}',
+'whatlinkshere-links'      => '← कड़ियाँ',
+'whatlinkshere-hideredirs' => '$1 अनुप्रेषितें',
+'whatlinkshere-hidetrans'  => '$1 ट्रान्स्क्ल्युजन्स',
+'whatlinkshere-hidelinks'  => '$1 कड़ीयाँ',
 
 # Block/unblock
 'blockip'                     => 'अवरोधित करें',

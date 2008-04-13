@@ -4,8 +4,8 @@
  * @addtogroup Language
  *
  * @author Ibou
- * @author SF-Language
  * @author Siebrand
+ * @author SF-Language
  * @author SPQRobin
  * @author Jon Harald Søby
  */
@@ -36,7 +36,7 @@ $messages = array(
 'tog-previewontop'            => 'Tegal wonendi ngi ci kaw balaa boyotu coppite gi',
 'tog-previewonfirst'          => 'wone wonendi gi su dee soppi gu njëkk la',
 'tog-nocache'                 => 'Doxadil ndenciti xët yi',
-'tog-enotifwatchlistpages'    => 'Yónne ma ab bataaxal su ab xët bu ne ci sama limu toppte soppikoo',
+'tog-enotifwatchlistpages'    => 'Yónne ma ab bataaxal su aw xët wu ne ci sama limu toppte soppikoo',
 'tog-enotifusertalkpages'     => 'Yónne ma ab bataaxal su ay coppite amee ci sama xëtu waxtaanuwaay',
 'tog-enotifminoredits'        => 'Yónne ma ab bataaxal donte coppite yu néew la ñu',
 'tog-enotifrevealaddr'        => 'Wone sama makkaan gu mbëjfeppal ci bataaxali yëgle yi',
@@ -541,7 +541,7 @@ Sa màkkaanu IP mooy $3 xammeekaayu téye gi mooy #$5. Di la sakku nga joxe leen
 'editingsection'            => 'Coppiteg $1 (xaaj)',
 'editingcomment'            => 'Coppiteg $1 (sanni-kàddu)',
 'editconflict'              => 'jàppanteb coppite ci: $1',
-'explainconflict'           => "Am na beneen jëfandikukat bu soppi xët wi, mu gën a bees, ci bi ngay soog a door say coppite.
+'explainconflict'           => "Am na beneen jëfandikukat bu soppi xët wi, mu gën a mujj, ci bi ngay soog a door say coppite.
 Mbind yi ne ci boyotu coppite bi ci kaw, ñooy yi teew nii ci dattub njoxe bi, ni ko beneen jëfandikukat bi soppee.
 Yaw nag say coppite ñoo nekk ci boyotu coppite bi ci suuf.
 Soo nammee denc say coppite, faaw nga duggal leen ci boyot bi ci kaw.
@@ -633,7 +633,7 @@ Ngirtey téye gi $3 joxe, mooy ne: ''$2''.",
 'rev-deleted-text-view'       => '<div class="mw-warning plainlinks"> mii sumb mu xët wi dañ kaa fare ci rënkuwaay bi ñépp man a gis. Li nga doon yorkat moo tax nga man gis mbind mi. Saytul [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} jaar-jaaru farte yi] ngir yeneeni xibaar.</div>',
 'rev-delundel'                => 'wone/nëbb',
 'revisiondelete'              => 'Far/Lopppanti ay sumb',
-'revdelete-nooldid-title'     => 'Waxoo ban sumb',
+'revdelete-nooldid-title'     => 'Waxoo man sumb',
 'revdelete-nooldid-text'      => 'Waxoo ci ban sumb ngay amal solo sii.',
 'revdelete-selected'          => "{{PLURAL:$2|Sumb mi falu mu|Sumb yi falu yu}} '''$1''' :",
 'logdelete-selected'          => "{{PLURAL:$2|Xew-xewu yéenekaay bi falu|xew-xewi yéenekaay yi falu}} ngir '''$1''' :",

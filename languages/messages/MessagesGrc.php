@@ -10,6 +10,7 @@
  * @author SPQRobin
  * @author Nike
  * @author Yannos
+ * @author Siebrand
  */
 
 $dateFormats = array(
@@ -327,7 +328,7 @@ $messages = array(
 
 # Recent changes linked
 'recentchangeslinked'       => 'Οἰκεῖαι μεταβολαί',
-'recentchangeslinked-title' => 'Μεταβολαὶ οἰκεῖαι $1',
+'recentchangeslinked-title' => 'Μεταβολαὶ οἰκεῖαι "$1"',
 
 # Upload
 'upload'            => 'Ἀνάγειν γραφήν',

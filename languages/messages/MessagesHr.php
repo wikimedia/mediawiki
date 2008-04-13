@@ -3,18 +3,17 @@
  *
  * @addtogroup Language
  *
+ * @author SpeedyGonsales
  * @author MayaSimFan
  * @author Roberta F.
- * @author SpeedyGonsales
- * @author Treecko
- * @author Luka Krstulovic
- * @author Nike
- * @author Siebrand
- * @author לערי ריינהארט
  * @author Dnik
- * @author Suradnik13
- * @author SPQRobin
  * @author Dalibor Bosits
+ * @author Luka Krstulovic
+ * @author Siebrand
+ * @author Treecko
+ * @author לערי ריינהארט
+ * @author Nike
+ * @author Suradnik13
  * @author Demicx
  */
 
@@ -972,7 +971,7 @@ Neoznačena kućica pokazuje da suradnik ne pripada grupi.',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Povezane stranice',
-'recentchangeslinked-title'    => 'Povezane promjene sa $1',
+'recentchangeslinked-title'    => 'Povezane promjene sa "$1"',
 'recentchangeslinked-noresult' => 'Nema promjena na povezanim stranicama u zadanom periodu.',
 'recentchangeslinked-summary'  => "Ova posebna stranica prikazuje promjene na povezanim stranicama. Stranice koje su na vašem popisu praćenja su '''podebljane'''.",
 

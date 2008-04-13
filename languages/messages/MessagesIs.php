@@ -1008,7 +1008,7 @@ Prófaðu [[Special:Search|að leita á þessari wiki síðu]] að svipuðum sí
 
 # Recent changes linked
 'recentchangeslinked'       => 'Skyldar breytingar',
-'recentchangeslinked-title' => 'Breytingar tengdar $1',
+'recentchangeslinked-title' => 'Breytingar tengdar "$1"',
 
 # Upload
 'upload'            => 'Hlaða inn skrá',

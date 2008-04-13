@@ -797,7 +797,7 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 
 # Recent changes linked
 'recentchangeslinked'         => '가리키는 글의 바뀜',
-'recentchangeslinked-title'   => '$1 문서에 관련된 문서 바뀜',
+'recentchangeslinked-title'   => '"$1" 문서에 관련된 문서 바뀜',
 'recentchangeslinked-summary' => "해당 문서를 링크한 문서에 대한 최근 바뀜이 나와 있습니다. 주시하는 문서의 경우에는 '''굵은''' 글씨로 나타납니다.",
 
 # Upload

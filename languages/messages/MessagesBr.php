@@ -972,7 +972,7 @@ Ul log diask a dalvez n'emañ ket an implijer er strollad.",
 
 # Recent changes linked
 'recentchangeslinked'          => 'Heuliañ al liammoù',
-'recentchangeslinked-title'    => 'Kemmoù a denn da $1',
+'recentchangeslinked-title'    => 'Kemmoù a denn da "$1"',
 'recentchangeslinked-noresult' => 'Kemm ebet war ar pajennoù liammet e-pad an amzer spisaet.',
 'recentchangeslinked-summary'  => "Rollet eo war ar bajenn zibar-mañ ar c'hemmoù diwezhañ bet degaset war ar pajennoù liammet. E '''tev''' emañ ar pajennoù zo war ho roll evezhiañ.",
 

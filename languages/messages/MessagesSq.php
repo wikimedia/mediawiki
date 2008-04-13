@@ -4,11 +4,12 @@
  * @addtogroup Language
  *
  * @author Dori
- * @author Siebrand
- * @author לערי ריינהארט
- * @author Ergon
- * @author SPQRobin
  * @author Cradel
+ * @author Ergon
+ * @author לערי ריינהארט
+ * @author Siebrand
+ * @author SPQRobin
+ * @author Jon Harald Søby
  */
 
 $skinNames = array(
@@ -789,7 +790,7 @@ $2 Lidhje përcjellëse &nbsp; Kërko për $3 $9',
 
 # Recent changes linked
 'recentchangeslinked'       => 'Ndryshimet fqinje',
-'recentchangeslinked-title' => 'Ndryshimet në lidhje me $1',
+'recentchangeslinked-title' => 'Ndryshimet në lidhje me "$1"',
 
 # Upload
 'upload'                      => 'Ngarkoni skeda',

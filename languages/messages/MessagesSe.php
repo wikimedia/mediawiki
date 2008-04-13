@@ -4,10 +4,11 @@
  * @addtogroup Language
  *
  * @author Skuolfi
- * @author Siebrand
- * @author Teak
  * @author לערי ריינהארט
+ * @author Siebrand
  * @author SPQRobin
+ * @author Jon Harald Søby
+ * @author Teak
  */
 
 $messages = array(
@@ -606,7 +607,7 @@ $1 | $2',
 
 # Recent changes linked
 'recentchangeslinked'       => 'Dán siiddu varas rievdadusat',
-'recentchangeslinked-title' => '$1 laktaseaddji rievdadusat',
+'recentchangeslinked-title' => '"$1" laktaseaddji rievdadusat',
 
 # Upload
 'upload'             => 'Lasit fiilla',

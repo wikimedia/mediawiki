@@ -5,7 +5,6 @@
  *
  * @author Bellayet
  * @author Zaheen
- * @author G - ג
  * @author Siebrand
  * @author Nike
  * @author לערי ריינהארט
@@ -884,7 +883,7 @@ $3-এর দেয়া কারণ হল ''$2''",
 
 # Recent changes linked
 'recentchangeslinked'          => 'সম্পর্কিত পরিবর্তন',
-'recentchangeslinked-title'    => '$1-এর সাথে সম্পর্কিত পরিবর্তনসমূহ',
+'recentchangeslinked-title'    => '"$1"-এর সাথে সম্পর্কিত পরিবর্তনসমূহ',
 'recentchangeslinked-noresult' => 'সংযোগকৃত পাতাগুলিতে প্রদত্ত সময়সীমার জন্য কোন পরিবর্তন হয়নি।',
 'recentchangeslinked-summary'  => "এই বিশেষ পাতাটিতে পরস্পর সংযুক্ত পাতাগুলির তালিকা দেয়া হল। আপনার নজরতালিকায় রাখা পাতাগুলি '''গাঢ়''' করে দেখানো হয়েছে।",
 

@@ -3,10 +3,10 @@
  *
  * @addtogroup Language
  *
- * @author SPQRobin
  * @author Ahmed-Najib-Biabani-Ibrahimkhel
- * @author לערי ריינהארט
+ * @author SPQRobin
  * @author Siebrand
+ * @author לערי ריינהארט
  */
 
 $specialPageAliases = array(
@@ -611,7 +611,7 @@ $messages = array(
 
 # Recent changes linked
 'recentchangeslinked'       => 'اړونده بدلونونه',
-'recentchangeslinked-title' => '$1 ته اړونده بدلونونه',
+'recentchangeslinked-title' => '"$1" ته اړونده بدلونونه',
 
 # Upload
 'upload'               => 'دوتنه پورته کول',
@@ -971,6 +971,17 @@ $messages = array(
 
 # Move page
 'move-page-legend'        => 'مخ لېږدول',
+'movepagetext'            => "د لاندينۍ فورمې په کارولو سره تاسو د يوه مخ نوم بدلولی شی، چې په همدې توګه به د يوه مخ ټول پېښليک د هغه د نوي نوم سرليک ته ولېږدېږي.
+پخوانی نوم به د نوي نوم ورګرځونکی مخ وګرځي او نوي سرليک ته به وګرځولی شي.
+هغه تړنې چې په زاړه مخ کې وې په هغو کې به هېڅ کوم بدلون را نه شي;
+د ماتو ورګرځونو يا دوه ځله ورګرځونو د ستونزو د پېښېدو په خاطر ځان ډاډمن کړی چې ستاسې ورګرځونې ماتې يا دوه ځله نه وي.
+You are responsible for making sure that links continue to point where they are supposed to go.
+
+Note that the page will '''not''' be moved if there is already a page at the new title, unless it is empty or a redirect and has no past edit history. This means that you can rename a page back to where it was just renamed from if you make a mistake, and you cannot overwrite an existing page.
+
+'''ګواښنه!'''
+This can be a drastic and unexpected change for a popular page;
+please be sure you understand the consequences of this before proceeding.",
 'movearticle'             => 'مخ لېږدول',
 'movenologin'             => 'غونډال کې نه ياست ننوتي',
 'movenologintext'         => 'ددې لپاره چې يو مخ ولېږدوی، نو تاسو بايد يو ثبت شوی کارونکی او غونډال کې [[Special:Userlogin|ننوتي]] اوسۍ.',

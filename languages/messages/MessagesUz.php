@@ -5,6 +5,7 @@
  *
  * @author Behzod Saidov <behzodsaidov@gmail.com>
  * @author Abdulla
+ * @author Siebrand
  */
 
 $fallback8bitEncoding = 'windows-1252';
@@ -348,7 +349,7 @@ Bu yerda: (joriy) = hozirgi koʻrinish bilan farq,
 
 # Recent changes linked
 'recentchangeslinked'          => "Bog'langan o'zgarishlar",
-'recentchangeslinked-title'    => '$1 ga aloqador oʻzgarishlar',
+'recentchangeslinked-title'    => '"$1" ga aloqador oʻzgarishlar',
 'recentchangeslinked-noresult' => 'Berilgan davrda bogʻlangan sahifalarda oʻzgarishlar boʻlmagan.',
 'recentchangeslinked-summary'  => "Ushbu maxsus sahifa unga bogʻlangan sahifalardagi soʻnggi oʻzgarishlarni koʻrsatadi. Kuzatuv roʻyxatingizdagi sahifalar '''qalin''' qilib koʻrsatilgan.",
 

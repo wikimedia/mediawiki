@@ -622,7 +622,7 @@ $2 Liste redirezions &nbsp; Cîr $3 $9',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Cambiaments leâts',
-'recentchangeslinked-title'    => 'Cambiaments leâts a $1',
+'recentchangeslinked-title'    => 'Cambiaments leâts a "$1"',
 'recentchangeslinked-noresult' => 'Nissun cambiament aes pagjinis leadis tal periodi specificât.',
 'recentchangeslinked-summary'  => "Cheste pagjine speciâl e mostre i cambiaments plui recents aes pagjinis leadis a chê specificade. Lis pagjinis tignudis di voli a son mostradis in '''gruessut'''.",
 

@@ -657,8 +657,8 @@ Y rheswm a roddwyd dros y bloc gan $3 yw ''$2''.",
 # History pages
 'viewpagelogs'        => "Dangos logiau'r dudalen hon",
 'nohistory'           => "Does dim hanes golygu i'r dudalen hon.",
-'revnotfound'         => 'Cywiriad nid wedi darganfod',
-'revnotfoundtext'     => 'Ni ellir darganfod yr hen cywiriad y tudalen rydych wedi gofyn amdano. Gwiriwch yr URL rydych wedi defnyddio i darganfod y tudalen hon.',
+'revnotfound'         => "Ni ddaethpwyd o hyd i'r diwygiad",
+'revnotfoundtext'     => "Ni ddaethpwyd o hyd i'r hen ddiwygiad o'r dudalen y gofynnwyd amdano. Gwnewch yn siwr fod yr URL yn gywir os gwelwch yn dda.",
 'currentrev'          => 'Diwygiad cyfoes',
 'revisionasof'        => 'Diwygiad $1',
 'revision-info'       => 'Y fersiwn a roddwyd ar gadw am $1 gan $2',
@@ -691,9 +691,12 @@ Hwyrach bod manylion pellach ar y [{{fullurl:Special:Log/delete|page={{FULLPAGEN
 'revdelete-selected'          => 'Y {{PLURAL:$2|golygiad|golygiad|golygiadau|golygiadau|golygiadau|golygiadau}} dewisedig o [[:$1]]:',
 'logdelete-selected'          => "{{PLURAL:$1|Digwyddiad|Digwyddiad|Digwyddiadau|Digwyddiadau|Digwyddiadau|Digwyddiadau}} a ddewiswyd o'r lòg:",
 'revdelete-hide-name'         => "Cuddio'r weithred a'r targed",
+'revdelete-suppress'          => 'Atal data oddi wrth Weinyddwyr yn ogystal ag eraill',
 'revdelete-hide-image'        => 'Cuddio cynnwys y ffeil',
+'revdelete-unsuppress'        => "Tynnu'r cyfyngiadau ar y golygiadau a adferwyd",
 'revdelete-logentry'          => 'newidiwyd y gallu i weld golygiadau ar [[$1]]',
 'logdelete-logentry'          => 'newidiwyd y gallu i weld y digwyddiad [[$1]]',
+'revdelete-success'           => "'''Llwyddodd y newid i'r gallu i weld golygiadau.'''",
 'logdelete-success'           => "'''Llwyddwyd i guddio'r digwyddiad.'''",
 'revdel-restore'              => 'Newid gwelededd',
 'pagehist'                    => 'Hanes y dudalen',
@@ -727,6 +730,7 @@ Pan yn gwneud hyn dylid sicrhau nad yw dilyniant hanes tudalennau yn cael ei ddi
 # Merge log
 'mergelog'           => 'Lòg cyfuno',
 'pagemerge-logentry' => 'llyncwyd [[$1]] gan [[$2]] (golygiadau hyd at $3)',
+'revertmerge'        => 'Daduno',
 'mergelogpagetext'   => "Fe ddilyn rhestr o'r achosion diweddaraf o hanes tudalen yn cael ei gyfuno a hanes tudalen arall.",
 
 # Diffs
@@ -762,7 +766,9 @@ Pan yn gwneud hyn dylid sicrhau nad yw dilyniant hanes tudalennau yn cael ei ddi
 'powersearchtext'       => 'Chwilio yn y parthau:<br />
 $1<br />
 $2 Rhestri ailgyfeiriadau<br />Chwilio am $3 $9',
-'searchdisabled'        => "<p>Mae'r peiriant chwilio'r holl databas wedi cael eu troi i ffwrdd i gwneud pethau'n hawddach ar y gwasanaethwr. Gobeithiwn fydd yn bosibl i troi'r peiriant ymlaen cyn bo hir, ond yn y cyfamser mae'n posibl gofyn Google:</p>",
+'searchdisabled'        => "Mae'r teclyn chwilio ar {{SITENAME}} wedi'i analluogi dros dro.
+Yn y cyfamser gallwch chwilio drwy Google.
+Cofiwch y gall mynegeion Google o gynnwys {{SITENAME}} fod ar ei hôl hi.",
 
 # Preferences page
 'preferences'              => 'Dewisiadau',
@@ -799,12 +805,12 @@ $2 Rhestri ailgyfeiriadau<br />Chwilio am $3 $9',
 'prefs-watchlist-edits'    => "Nifer y golygiadau i'w dangos wrth ehangu'r rhestr gwylio:",
 'prefs-misc'               => 'Amrywiol',
 'saveprefs'                => "Cadw'r dewisiadau",
-'resetprefs'               => 'Ailosod',
+'resetprefs'               => "Clirio'r darpar newidiadau",
 'oldpassword'              => 'Hen gyfrinair:',
 'newpassword'              => 'Cyfrinair newydd:',
 'retypenew'                => 'Ail-deipiwch y cyfrinair newydd:',
 'textboxsize'              => 'Maint y bocs testun',
-'rows'                     => 'Rhesi',
+'rows'                     => 'Rhesi:',
 'columns'                  => 'Colofnau:',
 'searchresultshead'        => 'Canlyniadau chwilio',
 'resultsperpage'           => 'Cyfradd taro fesul tudalen:',
@@ -858,7 +864,7 @@ $2 Rhestri ailgyfeiriadau<br />Chwilio am $3 $9',
 'grouppage-sysop'         => '{{ns:project}}:Gweinyddwyr',
 
 # User rights log
-'rightslogtext' => 'Dyma log o newidiadau i hawliau defnyddwyr.',
+'rightslogtext' => 'Lòg y newidiadau i alluoedd defnyddwyr yw hwn.',
 'rightsnone'    => '(dim)',
 
 # Recent changes
@@ -890,7 +896,7 @@ $2 Rhestri ailgyfeiriadau<br />Chwilio am $3 $9',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Newidiadau perthnasol',
-'recentchangeslinked-title'    => 'Newidiadau cysylltiedig â $1',
+'recentchangeslinked-title'    => 'Newidiadau cysylltiedig â "$1"',
 'recentchangeslinked-noresult' => 'Ni chafwyd unrhyw newidiadau i dudalennau cysylltiedig yn ystod cyfnod yr ymholiad.',
 'recentchangeslinked-summary'  => "Mae'r dudalen arbennig hon yn dangos y newidiadau diweddaraf i'r tudalennau sy'n cysylltu â'r dudalen a enwir. Dangosir tudalennau sydd ar eich rhestr gwylio mewn print '''trwm'''.",
 
@@ -1289,7 +1295,7 @@ Gwelwch y $2 am gofnod o\'r dileuon diweddar.',
 'dellogpage'                  => 'Log dileuon',
 'dellogpagetext'              => "Ceir rhestr isod o'r dileadau diweddaraf.",
 'deletionlog'                 => 'log dileuon',
-'reverted'                    => 'Wedi mynd nôl i fersiwn gynt',
+'reverted'                    => "Wedi gwrthdroi i'r golygiad cynt",
 'deletecomment'               => 'Esboniad am y dileu:',
 'deleteotherreason'           => 'Rheswm arall:',
 'deletereasonotherlist'       => 'Rheswm arall',
@@ -1297,10 +1303,10 @@ Gwelwch y $2 am gofnod o\'r dileuon diweddar.',
 ** Ar gais yr awdur
 ** Torri'r hawlfraint
 ** Fandaliaeth",
-'rollback'                    => 'Roliwch golygon yn ôl',
-'rollback_short'              => 'Rolio nôl',
-'rollbacklink'                => 'rolio nôl',
-'rollbackfailed'              => 'Methwyd rolio nôl',
+'rollback'                    => 'Gwrthdroi golygiadau',
+'rollback_short'              => 'Gwrthdroi',
+'rollbacklink'                => 'gwrthdroi',
+'rollbackfailed'              => 'Methodd y gwrthdroi',
 'cantrollback'                => "Wedi methu gwrthdroi'r golygiad; y cyfrannwr diwethaf oedd unig awdur y dudalen hon.",
 'alreadyrolled'               => "Nid yw'n bosib dadwneud y golygiad diwethaf i'r dudalen [[:$1|$1]] gan [[User:$2|$2]] ([[User_talk:$2|Sgwrs]]);
 mae rhywun arall eisoes wedi dadwneud y golygiad neu wedi golygu'r dudalen.
@@ -1308,6 +1314,8 @@ mae rhywun arall eisoes wedi dadwneud y golygiad neu wedi golygu'r dudalen.
 [[User:$3|$3]] ([[User_talk:$3|Sgwrs]]) a wnaeth y golygiad diwethaf.",
 'editcomment'                 => 'Crynodeb y golygiad oedd: "<i>$1</i>".', # only shown if there is an edit comment
 'revertpage'                  => 'Wedi gwrthdroi golygiadau gan [[Special:Contributions/$2|$2]] ([[User talk:$2|Sgwrs]]); wedi adfer y golygiad diweddaraf gan [[User:$1|$1]].', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'rollback-success'            => "Gwrthdrowyd y golygiadau gan $1; 
+wedi gwrthdroi i'r golygiad olaf gan $2.",
 'sessionfailure'              => "Mae'n debyg fod yna broblem gyda'ch sesiwn mewngofnodi; diddymwyd y weithred er mwyn diogelu'r sustem rhag ddefnyddwyr maleisus. Gwasgwch botwm 'nôl' eich porwr ac ail-lwythwch y dudalen honno, yna ceisiwch eto.",
 'protectlogpage'              => 'Lòg diogelu',
 'protectlogtext'              => 'Isod mae rhestr o bob gweithred diogelu (a dad-ddiogelu) tudalen.',
@@ -1574,8 +1582,8 @@ Yn achos yr ail ddewis, mae modd defnyddio cyswllt, e.e. [[{{ns:special}}:Export
 'allmessagesname'           => 'Enw',
 'allmessagesdefault'        => 'Testun rhagosodedig',
 'allmessagescurrent'        => 'Testun cyfredol',
-'allmessagestext'           => "Dyma restr o'r holl negeseuon yn y parth MediaWiki:
-Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] and [http://translatewiki.net Betawiki] if you wish to contribute to the generic MediaWiki localisation.",
+'allmessagestext'           => "Dyma restr o'r holl negeseuon yn y parth MediaWici.
+Os ydych am gyfrannu at y gwaith o gyfieithu ar gyfer holl prosiectau Mediawiki ar y cyd, mae croeso i chi ymweld â [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] a [http://translatewiki.net Betawiki].",
 'allmessagesnotsupportedDB' => "Nid yw '''{{ns:special}}:PobNeges''' yn cael ei gynnal gan fod '''\$wgUseDatabaseMessages''' wedi ei ddiffodd.",
 'allmessagesfilter'         => 'Hidl enw neges:',
 'allmessagesmodified'       => 'Dangos y rhai a ddiwygiwyd yn unig',

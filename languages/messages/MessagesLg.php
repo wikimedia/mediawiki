@@ -7,8 +7,6 @@
  * @author Siebrand
  */
 
-
-
 $messages = array(
 # User preference toggles
 'tog-showtoc'          => 'Teekawo endagiriro (singa ku lupapula kubaako emitwe gisukka mu esatu)',
@@ -335,7 +333,7 @@ oba ku gano agali ku lupapula luno.<br />
 
 # Recent changes linked
 'recentchangeslinked'          => 'Ebikyusiddwa ebyekuusa ku lupapula luno',
-'recentchangeslinked-title'    => 'Enkyukakyuka ezikwatagana ne $1',
+'recentchangeslinked-title'    => 'Enkyukakyuka ezikwatagana ne "$1"',
 'recentchangeslinked-noresult' => 'Empapula eziriko enyunzi tewali lukyuse mu kiseera kino.',
 'recentchangeslinked-summary'  => "Olulpapula olw'enjawulo luno luliko olukalala lw'ebikyuse ku mpapula eziriko enyunzi ezigguka ku lw'obadde otunuulira. Ebiwandikidwa mu '''nukuta enziggumivu''' biri ku mpapula z'ogoberera.",
 

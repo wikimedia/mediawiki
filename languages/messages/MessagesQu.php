@@ -3,11 +3,12 @@
  *
  * @addtogroup Language
  *
+ * @author Nike
  * @author AlimanRuna
  * @author Siebrand
  * @author Nike
- * @author SPQRobin
  * @author לערי ריינהארט
+ * @author SPQRobin
  * @author Jon Harald Søby
  */
 
@@ -934,7 +935,7 @@ Mana sananchasqa kahachataq niyta munan, ruraqqa manam kay huñupichu kachkan, n
 
 # Recent changes linked
 'recentchangeslinked'          => "Hukchasqa t'inkimuq",
-'recentchangeslinked-title'    => "$1-wan t'inkisqa hukchasqa",
+'recentchangeslinked-title'    => '"$1"-wan t\'inkisqa hukchasqa',
 'recentchangeslinked-noresult' => "Nisqa mit'apiqa manam hukchasqa t'inkimuqkuna kanchu.",
 'recentchangeslinked-summary'  => "Kay sapaq p'anqaqa t'inkisqa p'anqakunapi ñaqha hukchasqakunatam rikuchin. Watiqasqayki p'anqakunaqa '''yanasapa qillqasqam'''.",
 

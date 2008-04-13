@@ -559,7 +559,7 @@ Informasi: (bye) = petuho a nca selt,
 
 # Recent changes linked
 'recentchangeslinked'          => 'Petuho adusi',
-'recentchangeslinked-title'    => 'Petuho dadusi di $1',
+'recentchangeslinked-title'    => 'Petuho dadusi di "$1"',
 'recentchangeslinked-noresult' => "Ni petuhoni kwa ling'ki petulo kwa bye datum.",
 'recentchangeslinked-summary'  => "Bye petulo zwenti kamukile lapu-kona petuho di petulo sa ling'ki. Petulo di zwa mukoloko di kentezi sa '''ombelu'''.",
 

@@ -3,13 +3,12 @@
  *
  * @addtogroup Language
  *
- * @author Cornelia
  * @author Felis
- * @author Siebrand
- * @author Teak
  * @author Antofa
- * @author Nike
+ * @author Cornelia
+ * @author Siebrand
  * @author SPQRobin
+ * @author Nike
  * @author Jon Harald Søby
  */
 
@@ -864,7 +863,7 @@ Cunsulthà lu [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} rigisthru di ca
 
 # Recent changes linked
 'recentchangeslinked'          => 'Mudìfigghi curriraddi',
-'recentchangeslinked-title'    => 'Mudìfigghi curriraddi a $1',
+'recentchangeslinked-title'    => 'Mudìfigghi curriraddi a "$1"',
 'recentchangeslinked-noresult' => "Nisciuna mudìfigga a li pàgini curriraddi i' lu perìodu sciubaraddu.",
 'recentchangeslinked-summary'  => "Chistha pàgina ippiziari musthra li mudìfigghi più rizzenti a li pàgini curriraddi a chidda sciubaradda. Li pàgini abbaidaddi so evidenziaddi in '''grasseddu'''.",
 

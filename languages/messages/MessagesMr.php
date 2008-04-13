@@ -1062,7 +1062,7 @@ $3ने ''$2'' कारण दिले आहे.",
 
 # Recent changes linked
 'recentchangeslinked'          => 'या पृष्ठासंबंधीचे बदल',
-'recentchangeslinked-title'    => '$1 च्या संदर्भातील बदल',
+'recentchangeslinked-title'    => '"$1" च्या संदर्भातील बदल',
 'recentchangeslinked-noresult' => 'जोडलेल्या पानांमध्ये दिलेल्या कालावधीत काहीही बदल झालेले नाहीत.',
 'recentchangeslinked-summary'  => "हे विशेष पृष्ठ जोडलेल्या पानांवरील बदल दर्शवते. तुमच्या पहार्‍याच्या सूचीतील पाने '''ठळक''' दिसतील.",
 

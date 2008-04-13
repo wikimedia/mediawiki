@@ -5,7 +5,6 @@
  *
  * @author Trần Thế Trung
  * @author Nguyễn Thanh Quang
- * @author SPQRobin
  * @author Mxn
  * @author Apple
  * @author Arisa
@@ -15,12 +14,13 @@
  * @author Tmct
  * @author Tttrung
  * @author Vietbio
- * @author Vinhtantran
  * @author Vương Ngân Hà
- * @author לערי ריינהארט
- * @author Nike
- * @author Siebrand
+ * @author Vinhtantran
  * @author Minh Nguyen
+ * @author Siebrand
+ * @author לערי ריינהארט
+ * @author SPQRobin
+ * @author Nike
  */
 
 $namespaceNames = array(
@@ -378,6 +378,7 @@ $messages = array(
 'youhavenewmessagesmulti' => 'Bạn có tin nhắn mới ở $1',
 'editsection'             => 'sửa',
 'editold'                 => 'sửa',
+'viewsourceold'           => 'xem mã nguồn',
 'editsectionhint'         => 'Sửa đổi đề mục: $1',
 'toc'                     => 'Mục lục',
 'showtoc'                 => 'xem',
@@ -817,7 +818,8 @@ Các quản lý khác ở {{SITENAME}} vẫn có thể truy nhập vào nội du
 
 # Suppression log
 'suppressionlog'     => 'Nhật trình giấu',
-'suppressionlogtext' => 'Dưới đây là danh sách các tác vụ xóa và cấm liên quan đến nội dung mà các quản lý không nhìn thấy. Xem [[Special:Ipblocklist|danh sách các IP bị cấm]] để xem danh sách các tác vụ cấm chỉ và cấm thông thường hiện nay.',
+'suppressionlogtext' => 'Dưới đây là danh sách các tác vụ xóa và cấm liên quan đến nội dung mà các quản lý không nhìn thấy. 
+Xem [[Special:Ipblocklist|danh sách các IP bị cấm]] để xem danh sách các tác vụ cấm chỉ và cấm thông thường hiện nay.',
 
 # History merging
 'mergehistory'                     => 'Trộn lịch sử trang',
@@ -1027,9 +1029,10 @@ Xin hãy bảo đảm giữ vững tính liên tục của lịch sử trang.',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Thay đổi liên quan',
-'recentchangeslinked-title'    => 'Những thay đổi liên quan tới $1',
+'recentchangeslinked-title'    => 'Những thay đổi liên quan tới “$1”',
 'recentchangeslinked-noresult' => 'Không có thay đổi nào trên trang liên kết trong khoảng thời gian đó.',
 'recentchangeslinked-summary'  => "Trang đặc biệt này liệt kê các thay đổi gần đây nhất trên các trang được liên kết. Các trang trong danh sách bạn theo dõi được '''in đậm'''.",
+'recentchangeslinked-page'     => 'Tên trang',
 
 # Upload
 'upload'                      => 'Tải tập tin lên',
@@ -1382,6 +1385,8 @@ Bạn có thể thu hẹp kết quả bằng cách chọn loại nhật trình, 
 'emailccsubject'  => 'Bản sao của thư gửi cho $1: $2',
 'emailsent'       => 'Đã gửi',
 'emailsenttext'   => 'Thư của bạn đã được gửi.',
+'emailuserfooter' => "--
+Thư này được gửi thông qua tính năng 'gửi thư cho thành viên' của {{SITENAME}}",
 
 # Watchlist
 'watchlist'            => 'Trang tôi theo dõi',
@@ -1616,18 +1621,21 @@ $1',
 'sp-contributions-submit'      => 'Tìm kiếm',
 
 # What links here
-'whatlinkshere'       => 'Các liên kết đến đây',
-'whatlinkshere-title' => 'Các trang liên kết đến $1',
-'whatlinkshere-page'  => 'Trang:',
-'linklistsub'         => '(Danh sách liên kết)',
-'linkshere'           => "Các trang sau liên kết đến '''[[:$1]]''':",
-'nolinkshere'         => "Không có trang nào liên kết đến '''[[:$1]]'''.",
-'nolinkshere-ns'      => "Không có trang nào liên kết đến '''[[:$1]]''' trong không gian tên đã chọn.",
-'isredirect'          => 'trang đổi hướng',
-'istemplate'          => 'được nhúng vào',
-'whatlinkshere-prev'  => '{{PLURAL:$1|kết quả trước|$1 kết quả trước}}',
-'whatlinkshere-next'  => '{{PLURAL:$1|kết quả sau|$1 kết quả sau}}',
-'whatlinkshere-links' => '← liên kết',
+'whatlinkshere'            => 'Các liên kết đến đây',
+'whatlinkshere-title'      => 'Các trang liên kết đến $1',
+'whatlinkshere-page'       => 'Trang:',
+'linklistsub'              => '(Danh sách liên kết)',
+'linkshere'                => "Các trang sau liên kết đến '''[[:$1]]''':",
+'nolinkshere'              => "Không có trang nào liên kết đến '''[[:$1]]'''.",
+'nolinkshere-ns'           => "Không có trang nào liên kết đến '''[[:$1]]''' trong không gian tên đã chọn.",
+'isredirect'               => 'trang đổi hướng',
+'istemplate'               => 'được nhúng vào',
+'whatlinkshere-prev'       => '{{PLURAL:$1|kết quả trước|$1 kết quả trước}}',
+'whatlinkshere-next'       => '{{PLURAL:$1|kết quả sau|$1 kết quả sau}}',
+'whatlinkshere-links'      => '← liên kết',
+'whatlinkshere-hideredirs' => '$1 trang đổi hướng',
+'whatlinkshere-hidetrans'  => '$1 trang nhúng',
+'whatlinkshere-hidelinks'  => '$1 liên kết',
 
 # Block/unblock
 'blockip'                     => 'Cấm thành viên',
@@ -1811,7 +1819,7 @@ Trong trường hợp sau bạn cũng có thể dùng một liên kết, ví d�
 'allmessagesdefault'        => 'Nội dung mặc định',
 'allmessagescurrent'        => 'Nội dung hiện thời',
 'allmessagestext'           => 'Đây là toàn bộ thông báo hệ thống có trong không gian tên MediaWiki.
-Mời vào [http://translatewiki.net Betawiki] nếu bạn muốn đóng góp dịch chung cả MediaWiki.',
+Mời vào [http://www.mediawiki.org/wiki/Localisation Địa phương hóa MediaWiki]  và [http://translatewiki.net Betawiki] nếu bạn muốn đóng góp dịch chung cả MediaWiki.',
 'allmessagesnotsupportedDB' => "Trang này không dùng được vì biến '''\$wgUseDatabaseMessages''' đã bị tắt.",
 'allmessagesfilter'         => 'Bộ lọc tên thông báo:',
 'allmessagesmodified'       => 'Chỉ hiển thị các thông báo đã được sửa đổi.',
@@ -2485,5 +2493,16 @@ Hãy cho vào tên của tập tin, trừ tiền tố “{{ns:image}}:”.',
 'fileduplicatesearch-info'     => '$1 × $2 điểm ảnh<br />Kích thước tập tin: $3<br />Định dạng MIME: $4',
 'fileduplicatesearch-result-1' => 'Không có bản sao y hệt với tập tin “$1”.',
 'fileduplicatesearch-result-n' => 'Có {{PLURAL:$2|1 bản sao|$2 bản sao}} y hệt với tập tin “$1”.',
+
+# Special:SpecialPages
+'specialpages-group-maintenance' => 'Báo cáo bảo quản',
+'specialpages-group-other'       => 'Những trang đặc biệt khác',
+'specialpages-group-login'       => 'Đăng nhập / Mở tài khoản',
+'specialpages-group-changes'     => 'Thay đổi gần đây và nhật trình',
+'specialpages-group-media'       => 'Báo cáo phương tiện',
+'specialpages-group-users'       => 'Thành viên và chức năng',
+'specialpages-group-needy'       => 'Trang cần quan tâm',
+'specialpages-group-highuse'     => 'Trang được dùng nhiều',
+'specialpages-group-permissions' => 'Khả năng thành viên',
 
 );

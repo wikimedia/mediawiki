@@ -367,6 +367,7 @@ $messages = array(
 'youhavenewmessagesmulti' => 'Habes nuntia nova in $1',
 'editsection'             => 'recensere',
 'editold'                 => 'recensere',
+'viewsourceold'           => 'fontem videre',
 'editsectionhint'         => 'Recensere partem: $1',
 'toc'                     => 'Index',
 'showtoc'                 => 'monstrare',
@@ -795,8 +796,9 @@ Titulus: (nov) = dissimilis ab forma novissima, (prox) = dissimilis ab forma pro
 
 # Recent changes linked
 'recentchangeslinked'         => 'Nuper mutata annexorum',
-'recentchangeslinked-title'   => 'Nuper mutata in paginis quibus pagina $1 nectit',
+'recentchangeslinked-title'   => 'Nuper mutata in paginis quibus pagina "$1" nectit',
 'recentchangeslinked-summary' => "Subter sunt nuperrime mutata paginis annexis. Paginae a te custoditae '''litteris pinguis''' monstrantur.",
+'recentchangeslinked-page'    => 'Titulus paginae',
 
 # Upload
 'upload'             => 'Fasciculum imponere',
@@ -1047,6 +1049,8 @@ Inscriptio electronica qui in praeferentiis tuis dedis ut "Ab" inscriptione appa
 'emailsend'       => 'Mittere',
 'emailsent'       => 'Litterae electronicae missae sunt',
 'emailsenttext'   => 'Nuntium tuum missum est.',
+'emailuserfooter' => '--
+Hae litterae electronicae a quodam usore {{grammar:genitive|{{SITENAME}}}} missae sunt',
 
 # Watchlist
 'watchlist'            => 'Paginae custoditae',
@@ -1195,17 +1199,20 @@ Si pagina nova cum ipso nomine post deletionem creata est, recensita restituta i
 'sp-contributions-submit'      => 'Ire',
 
 # What links here
-'whatlinkshere'       => 'Nexus ad paginam',
-'whatlinkshere-title' => 'Paginae quae ad $1 nectunt',
-'whatlinkshere-page'  => 'Pagina:',
-'linklistsub'         => '(Index nexuum)',
-'linkshere'           => "Hae paginae ad '''[[:$1]]''' nectunt:",
-'nolinkshere'         => "Nullae paginae ad '''[[:$1]]''' nectunt.",
-'isredirect'          => 'pagina redirectionis',
-'istemplate'          => 'inclusio',
-'whatlinkshere-prev'  => '{{PLURAL:$1|superior|$1 superiores}}',
-'whatlinkshere-next'  => '{{PLURAL:$1|proxima|proxima $1}}',
-'whatlinkshere-links' => '← nexus',
+'whatlinkshere'            => 'Nexus ad paginam',
+'whatlinkshere-title'      => 'Paginae quae ad $1 nectunt',
+'whatlinkshere-page'       => 'Pagina:',
+'linklistsub'              => '(Index nexuum)',
+'linkshere'                => "Hae paginae ad '''[[:$1]]''' nectunt:",
+'nolinkshere'              => "Nullae paginae ad '''[[:$1]]''' nectunt.",
+'isredirect'               => 'pagina redirectionis',
+'istemplate'               => 'inclusio',
+'whatlinkshere-prev'       => '{{PLURAL:$1|superior|$1 superiores}}',
+'whatlinkshere-next'       => '{{PLURAL:$1|proxima|proxima $1}}',
+'whatlinkshere-links'      => '← nexus',
+'whatlinkshere-hideredirs' => '$1 redirectiones',
+'whatlinkshere-hidetrans'  => '$1 inclusiones alia in pagina',
+'whatlinkshere-hidelinks'  => '$1 nexus',
 
 # Block/unblock
 'blockip'                  => 'Usorem obstruere',

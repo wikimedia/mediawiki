@@ -964,7 +964,7 @@ Una casa pas marcada significa, al contrari, que s’i tròba pas.",
 
 # Recent changes linked
 'recentchangeslinked'          => 'Seguit dels ligams',
-'recentchangeslinked-title'    => 'Seguit dels ligams associats a $1',
+'recentchangeslinked-title'    => 'Seguit dels ligams associats a "$1"',
 'recentchangeslinked-noresult' => 'Cap de cambiament sus las paginas ligadas pendent lo periòde causit.',
 'recentchangeslinked-summary'  => "Aquesta pagina especiala mòstra las modificacions recentas sus las paginas que son ligadas. Las paginas de vòstra lista de seguit son '''en gras'''.",
 

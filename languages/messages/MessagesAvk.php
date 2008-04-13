@@ -11,8 +11,6 @@
  * @author Nkosi ya Cabinda
  */
 
-
-
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Levconhani gluyasiki se',
@@ -826,7 +824,7 @@ contenant tous les termes apparaissent dans les résultats).",
 
 # Recent changes linked
 'recentchangeslinked'          => 'Gluyasikisuzdara',
-'recentchangeslinked-title'    => 'Betakseem skedas va $1',
+'recentchangeslinked-title'    => 'Betakseem skedas va "$1"',
 'recentchangeslinked-noresult' => 'Meka betara va gluyasikikirafu bu remi bata rekola.',
 'recentchangeslinked-summary'  => "Batu aptafu bu va ironokaf betakseem va gluyasikikirafu bu vexalar. Bu koe rinafi suzdasiki tir '''vastaakorafu'''.",
 

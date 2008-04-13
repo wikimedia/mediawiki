@@ -1127,7 +1127,7 @@ $2',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Свързани промени',
-'recentchangeslinked-title'    => 'Промени, свързани с $1',
+'recentchangeslinked-title'    => 'Промени, свързани с "$1"',
 'recentchangeslinked-noresult' => 'Няма промени в свързаните страници за дадения период.',
 'recentchangeslinked-summary'  => "Тази специална страница показва последните промени в свързаните страници. Страниците от списъка ви за наблюдение се показват в '''получер'''.",
 
