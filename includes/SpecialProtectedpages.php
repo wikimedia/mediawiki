@@ -118,7 +118,7 @@ class ProtectedPagesForm {
 			$this->getTypeMenu( $type ) . "&nbsp;\n" .
 			$this->getLevelMenu( $level ) . "&nbsp;\n" .
 			"<span style='white-space: nowrap'>" .
-			$this->getExpiryCheck( $indefOnly ) . "\n" .
+			$this->getExpiryCheck( $indefOnly ) . "&nbsp;\n" .
 			$this->getSizeLimit( $sizetype, $size ) . "\n" .
 			"</span>" .
 			"&nbsp;" . Xml::submitButton( wfMsg( 'allpagessubmit' ) ) . "\n" .
