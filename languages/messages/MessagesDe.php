@@ -429,6 +429,7 @@ $messages = array(
 'youhavenewmessagesmulti' => 'Du hast neue Nachrichten: $1',
 'editsection'             => 'Bearbeiten',
 'editold'                 => 'Bearbeiten',
+'viewsourceold'           => 'Quelltext zeigen',
 'editsectionhint'         => 'Abschnitt bearbeiten: $1',
 'toc'                     => 'Inhaltsverzeichnis',
 'showtoc'                 => 'Anzeigen',
@@ -1106,7 +1107,8 @@ Wenn du dich mit dem Thema auskennst, kannst du selbst die Seite „[[$1]]“ ve
 'recentchangeslinked'          => 'Änderungen an verlinkten Seiten',
 'recentchangeslinked-title'    => 'Änderungen an Seiten, die von „$1“ verlinkt sind',
 'recentchangeslinked-noresult' => 'Im ausgewählten Zeitraum wurden an den verlinkten Seiten keine Änderungen vorgenommen.',
-'recentchangeslinked-summary'  => "Diese Spezialseite listet die letzten Änderungen der verlinkten Seiten auf. Seiten auf deiner Beobachtungsliste sind '''fett''' geschrieben.",
+'recentchangeslinked-summary'  => "Diese Spezialseite listet die letzten Änderungen der verlinkten Seiten auf. Seiten auf deiner Beobachtungsliste sind '''fett''' geschrieben.",+'recentchangeslinked-page'     => 'Page name',
+'recentchangeslinked-page'     => 'Seite:',
 
 # Upload
 'upload'                      => 'Hochladen',
@@ -1490,6 +1492,8 @@ auf die bereits die erste Weiterleitung zeigen sollte.',
 'emailccsubject'  => 'Kopie deiner Nachricht an $1: $2',
 'emailsent'       => 'E-Mail verschickt',
 'emailsenttext'   => 'Deine E-Mail wurde verschickt.',
+'emailuserfooter' => "--
+Diese E-Mail wurde unter Benutzung der Funktion 'E-Mail an diesen Benutzer' von {{SITENAME}} versandt.",
 
 # Watchlist
 'watchlist'            => 'Beobachtungsliste',
@@ -1653,7 +1657,7 @@ Bitte gehe zurück und versuche den Vorgang erneut auszuführen.',
 # Undelete
 'undelete'                     => 'Gelöschte Seite wiederherstellen',
 'undeletepage'                 => 'Gelöschte Seite wiederherstellen',
-'undeletepagetitle'            => "'''Die folgende Ausgabe zeigt die gelöschten Versionen von [[:$1]]'''.",
+'undeletepagetitle'            => "'''Die folgende Ausgabe zeigt die gelöschten Versionen von [[:$1|$1]]'''.",
 'viewdeletedpage'              => 'Gelöschte Seiten anzeigen',
 'undeletepagetext'             => 'Die folgenden Seiten wurden gelöscht und können von Administratoren wiederhergestellt werden:',
 'undeleteextrahelp'            => '* Um die Seite komplett mit allen Versionen wiederherzustellen, gib bitte eine Begründung an und klicke auf „Wiederherstellen“.
@@ -1720,19 +1724,22 @@ $1',
 'sp-contributions-submit'      => 'Suchen',
 
 # What links here
-'whatlinkshere'         => 'Links auf diese Seite',
-'whatlinkshere-title'   => 'Seiten, die auf „$1“ verlinken',
-'whatlinkshere-summary' => 'Diese Spezialseite listet alle internen Links auf eine bestimmte Seite auf. Die möglichen Zusätze „(Vorlageneinbindung)“ und „(Weiterleitungsseite)“ zeigen jeweils an, dass die Seite nicht durch einen normalen Wikilink eingebunden ist. ',
-'whatlinkshere-page'    => 'Seite:',
-'linklistsub'           => '(Linkliste)',
-'linkshere'             => "Die folgenden Seiten verlinken auf '''„[[:$1]]“''':",
-'nolinkshere'           => "Keine Seite verlinkt auf '''„[[:$1]]“'''.",
-'nolinkshere-ns'        => "Keine Seite verlinkt auf '''„[[:$1]]“''' im gewählten Namensraum.",
-'isredirect'            => 'Weiterleitungsseite',
-'istemplate'            => 'Vorlageneinbindung',
-'whatlinkshere-prev'    => '{{PLURAL:$1|vorheriger|vorherige $1}}',
-'whatlinkshere-next'    => '{{PLURAL:$1|nächster|nächste $1}}',
-'whatlinkshere-links'   => '← Links',
+'whatlinkshere'             => 'Links auf diese Seite',
+'whatlinkshere-title'       => 'Seiten, die auf „$1“ verlinken',
+'whatlinkshere-summary'     => 'Diese Spezialseite listet alle internen Links auf eine bestimmte Seite auf. Die möglichen Zusätze „(Vorlageneinbindung)“ und „(Weiterleitungsseite)“ zeigen jeweils an, dass die Seite nicht durch einen normalen Wikilink eingebunden ist. ',
+'whatlinkshere-page'        => 'Seite:',
+'linklistsub'               => '(Linkliste)',
+'linkshere'                 => "Die folgenden Seiten verlinken auf '''„[[:$1]]“''':",
+'nolinkshere'               => "Keine Seite verlinkt auf '''„[[:$1]]“'''.",
+'nolinkshere-ns'            => "Keine Seite verlinkt auf '''„[[:$1]]“''' im gewählten Namensraum.",
+'isredirect'                => 'Weiterleitungsseite',
+'istemplate'                => 'Vorlageneinbindung',
+'whatlinkshere-prev'        => '{{PLURAL:$1|vorheriger|vorherige $1}}',
+'whatlinkshere-next'        => '{{PLURAL:$1|nächster|nächste $1}}',
+'whatlinkshere-links'       => '← Links',
+'whatlinkshere-hideredirs'  => 'Weiterleitungen $1',
+'whatlinkshere-hidetrans'   => 'Vorlageneinbindungen $1',
+'whatlinkshere-hidelinks'   => 'Links $1',
 
 # Block/unblock
 'blockip'                     => 'IP-Adresse/Benutzer sperren',
@@ -2576,5 +2583,16 @@ Die Eingabe muss ohne den Zusatz „{{ns:image}}:“ erfolgen.',
 'fileduplicatesearch-info'     => '$1 × $2 Pixel<br />Dateigröße: $3<br />MIME-Typ: $4',
 'fileduplicatesearch-result-1' => 'Die Datei „$1“ hat keine identischen Duplikate.',
 'fileduplicatesearch-result-n' => 'Die Datei „$1“ hat {{PLURAL:$2|1 identisches Duplikat|$2 identische Duplikate}}.',
+
+# Special:SpecialPages
+'specialpages-group-maintenance' => 'Wartungslisten',
+'specialpages-group-other'       => 'Andere Spezialseiten',
+'specialpages-group-login'       => 'Anmelden',
+'specialpages-group-changes'     => 'Letzte Änderungen und Logbücher',
+'specialpages-group-media'       => 'Medien',
+'specialpages-group-users'       => 'Benutzer und Rechte',
+'specialpages-group-needy'       => 'Seiten, die bearbeitet werden sollten',
+'specialpages-group-highuse'     => 'Häufig benutzte Seiten',
+'specialpages-group-permissions' => 'Benutzerrechte',
 
 );
