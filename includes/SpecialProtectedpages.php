@@ -117,7 +117,7 @@ class ProtectedPagesForm {
 			$this->getNamespaceMenu( $namespace ) . "&nbsp;\n" .
 			$this->getTypeMenu( $type ) . "&nbsp;\n" .
 			$this->getLevelMenu( $level ) . "&nbsp;\n" .
-			"<span style='white-space: nowrap'>&nbsp;&nbsp;" .
+			"<br/><span style='white-space: nowrap'>&nbsp;&nbsp;" .
 			$this->getExpiryCheck( $indefOnly ) . "&nbsp;\n" .
 			$this->getSizeLimit( $sizetype, $size ) . "&nbsp;\n" .
 			"</span>" .
