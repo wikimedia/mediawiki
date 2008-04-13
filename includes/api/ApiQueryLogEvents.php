@@ -219,7 +219,6 @@ class ApiQueryLogEvents extends ApiQueryBase {
 				)
 			),
 			'type' => array (
-				ApiBase :: PARAM_ISMULTI => true,
 				ApiBase :: PARAM_TYPE => $wgLogTypes
 			),
 			'start' => array (
