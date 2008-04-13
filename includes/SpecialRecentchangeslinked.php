@@ -14,7 +14,7 @@ require_once( 'SpecialRecentchanges.php' );
  * @param string $par parent page we will look at
  */
 function wfSpecialRecentchangeslinked( $par = NULL ) {
-	global $wgUser, $wgOut, $wgLang, $wgContLang, $wgRequest, $wgTitle;
+	global $wgUser, $wgOut, $wgLang, $wgContLang, $wgRequest, $wgTitle, $wgScript;
 	$fname = 'wfSpecialRecentchangeslinked';
 
 	$days = $wgRequest->getInt( 'days' );
@@ -24,8 +24,18 @@ function wfSpecialRecentchangeslinked( $par = NULL ) {
 	$wgOut->setPagetitle( wfMsg( 'recentchangeslinked' ) );
 	$sk = $wgUser->getSkin();
 
-	if (is_null($target)) {
-		$wgOut->showErrorPage( 'notargettitle', 'notargettext' );
+	$wgOut->addHTML( 
+		Xml::openElement( 'form', array( 'method' => 'get', 'action' => $wgScript ) ) .
+		Xml::openElement( 'fieldset' ) .
+		Xml::element( 'legend', array(), wfMsg( 'recentchangeslinked' ) ) . "\n" .
+		Xml::inputLabel( wfMsg( 'recentchangeslinked-page' ), 'target', 'recentchangeslinked-target', 40, $target ) .
+		Xml::hidden( 'title', $wgTitle->getPrefixedText() ). "\n" .
+		Xml::submitButton( wfMsg( 'allpagessubmit' ) ) . "\n" .
+		Xml::closeElement( 'fieldset' ) .
+		Xml::closeElement( 'form' ) . "\n"
+	);
+
+	if ( !$target ) {
 		return;
 	}
 	$nt = Title::newFromURL( $target );
