@@ -117,9 +117,9 @@ class ProtectedPagesForm {
 			$this->getNamespaceMenu( $namespace ) . "&nbsp;\n" .
 			$this->getTypeMenu( $type ) . "&nbsp;\n" .
 			$this->getLevelMenu( $level ) . "&nbsp;\n" .
-			"<span style='white-space: nowrap'>" .
+			"<span style='white-space: nowrap'>&nbsp;&nbsp;" .
 			$this->getExpiryCheck( $indefOnly ) . "&nbsp;\n" .
-			$this->getSizeLimit( $sizetype, $size ) . "\n" .
+			$this->getSizeLimit( $sizetype, $size ) . "&nbsp;\n" .
 			"</span>" .
 			"&nbsp;" . Xml::submitButton( wfMsg( 'allpagessubmit' ) ) . "\n" .
 			"</fieldset></form>";
@@ -143,7 +143,7 @@ class ProtectedPagesForm {
 	 */
 	protected function getExpiryCheck( $indefOnly ) {
 		$out = Xml::check( 'indefonly', $indefOnly, array('id' => 'indefonly') ) . ' ';
-		$out .= Xml::label( wfMsg("protectedpages-indef"), 'indefonly' ) . "</p>\n";
+		$out .= Xml::label( wfMsg("protectedpages-indef"), 'indefonly' ) . "\n";
 		return $out;
 	}
 	

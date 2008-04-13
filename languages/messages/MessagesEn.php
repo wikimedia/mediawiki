@@ -1808,6 +1808,7 @@ A page is treated as disambiguation page if it uses a template which is linked f
 'deadendpages-summary'            => '', # only translate this message to other languages if you have to change it
 'deadendpagestext'                => 'The following pages do not link to other pages in {{SITENAME}}.',
 'protectedpages'                  => 'Protected pages',
+'protectedpages-indef'            => 'Indefinite protections only',
 'protectedpages-summary'          => '', # only translate this message to other languages if you have to change it
 'protectedpagestext'              => 'The following pages are protected from moving or editing',
 'protectedpagesempty'             => 'No pages are currently protected with these parameters.',
