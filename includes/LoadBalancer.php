@@ -142,7 +142,8 @@ class LoadBalancer {
 		if ( count( $this->mServers ) == 1 )  {
 			# Skip the load balancing if there's only one server
 			return 0;
-		} elseif ( $this->mReadIndex >= 0 ) {
+		} elseif ( $group === false and $this->mReadIndex >= 0 ) {
+			# Shortcut if generic reader exists already
 			return $this->mReadIndex;
 		}
 
@@ -268,7 +269,7 @@ class LoadBalancer {
 					$this->mServers[$i]['slave pos'] = $conn->getSlavePos();
 				}
 			}
-			if ( $i !== false ) {
+			if ( $this->mReadIndex <=0 && $this->mLoads[$i]>0 && $i !== false ) {
 				$this->mReadIndex = $i;
 			}
 		}
