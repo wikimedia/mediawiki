@@ -147,7 +147,7 @@ class Xml {
 			$options[] = self::option( wfMsg( 'monthsall' ), $allmonths, $selected === $allmonths ); 	 
 		for( $i = 1; $i < 13; $i++ ) 	 
 				$options[] = self::option( $wgLang->getMonthName( $i ), $i, $selected === $i ); 	 
-		return self::openElement( 'select', array( 'id' => $id, 'name' => 'month', 'class' => 'monthselector' ) ) 	 
+		return self::openElement( 'select', array( 'id' => $id, 'name' => 'month', 'class' => 'mw-month-selector' ) ) 	 
 			. implode( "\n", $options ) 	 
 			. self::closeElement( 'select' ); 	 
 	}
