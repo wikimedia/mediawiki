@@ -471,9 +471,10 @@ class LoadBalancer {
 	 */
 	function openConnection( $i, $wiki = false ) {
 		wfProfileIn( __METHOD__ );
-
 		if ( $wiki !== false ) {
-			return $this->openForeignConnection( $i, $wiki );
+			$conn = $this->openForeignConnection( $i, $wiki );
+			wfProfileOut( __METHOD__);
+			return $conn;
 		}
 		if ( isset( $this->mConns['local'][$i][0] ) ) {
 			$conn = $this->mConns['local'][$i][0];
@@ -513,8 +514,8 @@ class LoadBalancer {
 	 * @return Database
 	 */
 	function openForeignConnection( $i, $wiki ) {
+		wfProfileIn(__METHOD__);
 		list( $dbName, $prefix ) = wfSplitWikiID( $wiki );
-
 		if ( isset( $this->mConns['foreignUsed'][$i][$wiki] ) ) {
 			// Reuse an already-used connection
 			$conn = $this->mConns['foreignUsed'][$i][$wiki];
@@ -563,6 +564,7 @@ class LoadBalancer {
 			$refCount = $conn->getLBInfo( 'foreignPoolRefCount' );
 			$conn->setLBInfo( 'foreignPoolRefCount', $refCount + 1 );
 		}
+		wfProfileOut(__METHOD__);
 		return $conn;
 	}
 
