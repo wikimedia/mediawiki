@@ -308,7 +308,7 @@ class OldChangesList extends ChangesList {
 		extract( $rc->mAttribs );
 
 		# Should patrol-related stuff be shown?
-		$unpatrolled = $wgUser->usePatrol() && $rc_patrolled == 0;
+		$unpatrolled = $wgUser->useRCPatrol() && $rc_patrolled == 0;
 
 		$this->insertDateHeader($s,$rc_timestamp);
 
@@ -403,7 +403,7 @@ class EnhancedChangesList extends ChangesList {
 		}
 
 		# Should patrol-related stuff be shown?
-		if( $wgUser->usePatrol() ) {
+		if( $wgUser->useRCPatrol() ) {
 		  	$rc->unpatrolled = !$rc_patrolled;
 		} else {
 			$rc->unpatrolled = false;
