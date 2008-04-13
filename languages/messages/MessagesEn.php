@@ -1477,10 +1477,11 @@ An unchecked box means the user is not in that group.',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Related changes',
-'recentchangeslinked-title'    => 'Changes related to $1',
+'recentchangeslinked-title'    => 'Changes related to "$1"',
 'recentchangeslinked-noresult' => 'No changes on linked pages during the given period.',
 'recentchangeslinked-summary'  => "This special page lists the last changes on pages who are linked.
 Pages on your watchlist are '''bold'''.",
+'recentchangeslinked-page'     => 'Page name',
 
 # Upload
 'upload'                      => 'Upload file',
