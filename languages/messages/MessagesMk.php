@@ -1247,8 +1247,6 @@ $NEWPAGE
 'nolinkshere'         => "Ниедна страница не е поврзана со '''[[:$1]]'''.",
 'isredirect'          => 'пренасочувачка страница',
 'istemplate'          => 'вклучување',
-'whatlinkshere-prev'  => 'previous $1',
-'whatlinkshere-next'  => 'next $1',
 
 # Block/unblock
 'blockip'                     => 'Блокирај го корисникот',
