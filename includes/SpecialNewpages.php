@@ -100,7 +100,6 @@ class NewPagesForm {
 		}
 		$hidden = implode( "\n", $hidden );
 
-		global $wgMiserMode;
 		$form = Xml::openElement( 'form', array( 'method' => 'get', 'action' => $wgScript ) ) .
 			Xml::hidden( 'title', $self->getPrefixedDBkey() ) .
 			Xml::openElement( 'fieldset' ) .
@@ -111,7 +110,7 @@ class NewPagesForm {
 					Xml::label( wfMsg( 'namespace' ), 'namespace' ) .
 				"</td>
 				<td>" .
-					Xml::namespaceSelector( $options['namespace'], $wgMiserMode ? null : 'all' ) .
+					Xml::namespaceSelector( $options['namespace'], 'all' ) .
 				"</td>
 			</tr>
 			<tr>
@@ -292,8 +291,7 @@ class NewPagesPager extends ReverseChronologicalPager {
 		$this->mForm = $form;
 		$this->mConds = $conds;
 		
-		global $wgMiserMode;
-		$this->namespace = (!$wgMiserMode && $namespace === "all") ? false : intval($namespace);
+		$this->namespace = ($namespace === "all") ? false : intval($namespace);
 		$this->user = $user;
 		
 		$this->hideliu = (bool)$hliu;
