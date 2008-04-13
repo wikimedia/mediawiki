@@ -1776,6 +1776,24 @@ class User {
 
 		return in_array( $action, $this->getRights() );
 	}
+	
+	/**
+	* Check whether to enable recent changes patrol features for this user
+	* @return bool
+	*/
+	public function useRCPatrol() {
+		global $wgUseRCPatrol;
+		return( $wgUseRCPatrol && ($this->isAllowed('patrol') || $this->isAllowed('patrolmarks')) );
+	}
+	
+	/**
+	* Check whether to enable recent changes patrol features for this user
+	* @return bool
+	*/
+	public function useNPPatrol() {
+		global $wgUseRCPatrol, $wgUseNPPatrol;
+		return( ($wgUseRCPatrol || $wgUseNPPatrol) && ($this->isAllowed('patrol') || $this->isAllowed('patrolmarks')) );
+	}
 
 	/**
 	 * Load a skin if it doesn't exist or return it
