@@ -331,7 +331,7 @@ class LogEventsList {
 	 * @return bool
 	 */
 	public static function typeAction( $row, $type, $action ) {
-		return ( $row->log_type == $type && $row->log_action = $action );
+		return ( $row->log_type == $type && $row->log_action == $action );
 	}
 	
 	/**
