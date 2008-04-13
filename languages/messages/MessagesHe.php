@@ -1006,7 +1006,7 @@ $2',
 
 # Suppression log
 'suppressionlog'     => 'יומן הסתרות',
-'suppressionlogtext' => 'להלן רשימת המחיקות והחסימות האחרונות הכוללות תוכן המוסתר ממפעילי המערכת. ראו את  [[Special:Ipblocklist|רשימת המשתמשים החסומים]] לרשימת החסימות הפעילות כעת.',
+'suppressionlogtext' => 'להלן רשימת המחיקות והחסימות הכוללות תוכן המוסתר ממפעילי המערכת. ראו את  [[Special:Ipblocklist|רשימת המשתמשים החסומים]] לרשימת החסימות הפעילות כעת.',
 
 # History merging
 'mergehistory'                     => 'מיזוג גרסאות של דפים',
@@ -1226,6 +1226,7 @@ $2',
 'recentchangeslinked-title'    => 'שינויים בדפים המקושרים לדף $1',
 'recentchangeslinked-noresult' => 'לא היו שינויים בדפים המקושרים בתקופה זו.',
 'recentchangeslinked-summary'  => "בדף זה רשומים השינויים האחרונים בדפים המקושרים. דפים המופיעים ברשימת המעקב שלכם מופיעים ב'''הדגשה'''.",
+'recentchangeslinked-page'     => 'שם הדף',
 
 # Upload
 'upload'                      => 'העלאת קובץ לשרת',
@@ -2705,5 +2706,16 @@ $1',
 'fileduplicatesearch-info'     => '$1 × $2 פיקסלים<br />גודל הקובץ: $3<br />סוג MIME: $4',
 'fileduplicatesearch-result-1' => 'אין קובץ כפול לקובץ "$1".',
 'fileduplicatesearch-result-n' => 'לקובץ "$1" יש {{plural:$2|עותק כפול אחד|$2 עותקים כפולים}}.',
+
+# Special:SpecialPages
+'specialpages-group-maintenance' => 'דיווחי תחזוקה',
+'specialpages-group-other'       => 'דפים מיוחדים אחרים',
+'specialpages-group-login'       => 'כניסה / הרשמה לחשבון',
+'specialpages-group-changes'     => 'שינויים אחרונים ויומנים',
+'specialpages-group-media'       => 'קובצי מדיה',
+'specialpages-group-users'       => 'משתמשים והרשאות',
+'specialpages-group-needy'       => 'דפים הדורשים עבודה',
+'specialpages-group-highuse'     => 'דפים בשימוש רב',
+'specialpages-group-permissions' => 'הרשאות משתמש',
 
 );
