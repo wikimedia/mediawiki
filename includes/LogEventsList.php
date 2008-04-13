@@ -217,7 +217,7 @@ class LogEventsList {
 		}
 		// Add review links and such...
 		if( !($this->flags & self::NO_ACTION_LINK) && !($row->log_deleted & LogPage::DELETED_ACTION) ) {
-			if( $row->log_type == 'move' && isset( $paramArray[0] ) && $wgUser->isAllowed( 'move' ) ) {
+			if( self::typeAction($row,'move','move') && isset( $paramArray[0] ) && $wgUser->isAllowed( 'move' ) ) {
 				$destTitle = Title::newFromText( $paramArray[0] );
 				if( $destTitle ) {
 					$revert = '(' . $this->skin->makeKnownLinkObj( SpecialPage::getTitleFor( 'Movepage' ),
@@ -228,19 +228,19 @@ class LogEventsList {
 						'&wpMovetalk=0' ) . ')';
 				}
 			// Show undelete link
-			} else if( $row->log_type == 'delete' && $row->log_action == 'delete' && $wgUser->isAllowed( 'delete' ) ) {
+			} else if( self::typeAction($row,'delete','delete') && $wgUser->isAllowed( 'delete' ) ) {
 				$revert = '(' . $this->skin->makeKnownLinkObj( SpecialPage::getTitleFor( 'Undelete' ),
 					$this->message['undeletelink'], 'target='. urlencode( $title->getPrefixedDBkey() ) ) . ')';
 			// Show unblock link
-			} else if( $row->log_action == 'block' && $wgUser->isAllowed( 'block' ) ) {
+			} else if( self::typeAction($row,'block','block') && $wgUser->isAllowed( 'block' ) ) {
 				$revert = '(' .  $this->skin->makeKnownLinkObj( SpecialPage::getTitleFor( 'Ipblocklist' ),
 					$this->message['unblocklink'],
 					'action=unblock&ip=' . urlencode( $row->log_title ) ) . ')';
 			// Show change protection link
-			} else if( ( $row->log_action == 'protect' || $row->log_action == 'modify' ) && $wgUser->isAllowed( 'protect' ) ) {
+			} else if( self::typeAction($row,'protect','modify') && $wgUser->isAllowed( 'protect' ) ) {
 				$revert = '(' .  $this->skin->makeKnownLinkObj( $title, $this->message['protect_change'], 'action=unprotect' ) . ')';
 			// Show unmerge link
-			} else if ( $row->log_action == 'merge' ) {
+			} else if ( self::typeAction($row,'merge','merge') ) {
 				$merge = SpecialPage::getTitleFor( 'Mergehistory' );
 				$revert = '(' .  $this->skin->makeKnownLinkObj( $merge, $this->message['revertmerge'],
 					wfArrayToCGI( 
@@ -248,7 +248,7 @@ class LogEventsList {
 					) 
 				) . ')';
 			// If an edit was hidden from a page give a review link to the history
-			} else if( $row->log_action == 'revision' && $wgUser->isAllowed( 'deleterevision' ) && isset($paramArray[2]) ) {
+			} else if( self::typeAction($row,'delete','revision') && $wgUser->isAllowed( 'deleterevision' ) && isset($paramArray[2]) ) {
 				$revdel = SpecialPage::getTitleFor( 'Revisiondelete' );
 				// Different revision types use different URL params...
 				$subtype = isset($paramArray[2]) ? $paramArray[1] : '';
@@ -266,7 +266,7 @@ class LogEventsList {
 				}
 				$revert = "($revert)";
 			// Hidden log items, give review link
-			} else if( $row->log_action == 'event' && $wgUser->isAllowed( 'deleterevision' ) && isset($paramArray[0]) ) {
+			} else if( self::typeAction($row,'delete','event') && $wgUser->isAllowed( 'deleterevision' ) && isset($paramArray[0]) ) {
 				$revdel = SpecialPage::getTitleFor( 'Revisiondelete' );
 				$revert .= $this->message['revdel-restore'];
 				$Ids = explode( ',', $paramArray[0] );
@@ -300,7 +300,7 @@ class LogEventsList {
 	
 	/**
 	 * @param Row $row
-	 * @private
+	 * @return string
 	 */
 	private function showhideLinks( $row ) {
 		global $wgAllowLogDeletion;
@@ -322,6 +322,16 @@ class LogEventsList {
 				$del = "<strong>$del</strong>";
 		}
 		return "<tt>(<small>$del</small>)</tt>";
+	}
+	
+	/**
+	 * @param Row $row
+	 * @param string $type
+	 * @param string $action
+	 * @return bool
+	 */
+	public static function typeAction( $row, $type, $action ) {
+		return ( $row->log_type == $type && $row->log_action = $action );
 	}
 	
 	/**
