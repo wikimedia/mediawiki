@@ -72,7 +72,7 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 			$this->addFields(array('cl_from', 'cl_sortkey'));
 		}
 
-		$this->addFieldsIf('cl_timestamp', $fld_timestamp);
+		$this->addFieldsIf('cl_timestamp', $fld_timestamp || $params['sort'] == 'timestamp');
 		$this->addTables(array('page','categorylinks'));	// must be in this order for 'USE INDEX' 
 									// Not needed after bug 10280 is applied to servers
 		if($params['sort'] == 'timestamp')
@@ -105,7 +105,10 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 			if (++ $count > $limit) {
 				// We've reached the one extra which shows that there are additional pages to be had. Stop here...
 				// TODO: Security issue - if the user has no right to view next title, it will still be shown
-				$this->setContinueEnumParameter('continue', $this->getContinueStr($row, $lastSortKey));
+				if ($params['sort'] == 'timestamp')
+					$this->setContinueEnumParameter('start', $row->cl_timestamp);
+				else
+					$this->setContinueEnumParameter('continue', $this->getContinueStr($row, $lastSortKey));
 				break;
 			}
 
