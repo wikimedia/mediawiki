@@ -240,6 +240,15 @@ class ChangesList {
 			}
 		}
 	}
+	
+	/**
+	 * Check whether to enable recent changes patrol features
+	 * @return bool
+	 */
+	public static function usePatrol() {
+		global $wgUser;
+		return $wgUser->useRCPatrol();
+	}
 
 	/**
 	 * Returns the string which indicates the number of watching users
