@@ -13,7 +13,7 @@ class ProtectedPagesForm {
 	protected $IdLevel = 'level';
 	protected $IdType  = 'type';
 
-	function showList( $msg = '' ) {
+	public function showList( $msg = '' ) {
 		global $wgOut, $wgRequest;
 
 		$wgOut->setPagetitle( wfMsg( "protectedpages" ) );
@@ -31,10 +31,11 @@ class ProtectedPagesForm {
 		$sizetype = $wgRequest->getVal( 'sizetype' );
 		$size = $wgRequest->getIntOrNull( 'size' );
 		$NS = $wgRequest->getIntOrNull( 'namespace' );
+		$indefOnly = $wgRequest->getBool( 'indefonly' ) ? 1 : 0;
 
-		$pager = new ProtectedPagesPager( $this, array(), $type, $level, $NS, $sizetype, $size );	
+		$pager = new ProtectedPagesPager( $this, array(), $type, $level, $NS, $sizetype, $size, $indefOnly );	
 
-		$wgOut->addHTML( $this->showOptions( $NS, $type, $level, $sizetype, $size ) );
+		$wgOut->addHTML( $this->showOptions( $NS, $type, $level, $sizetype, $size, $indefOnly ) );
 
 		if ( $pager->getNumRows() ) {
 			$s = $pager->getNavigationBar();
@@ -51,7 +52,7 @@ class ProtectedPagesForm {
 	/**
 	 * Callback function to output a restriction
 	 */
-	function formatRow( $row ) {
+	public function formatRow( $row ) {
 		global $wgUser, $wgLang, $wgContLang;
 
 		wfProfileIn( __METHOD__ );
@@ -101,9 +102,10 @@ class ProtectedPagesForm {
 	 * @param $type string
 	 * @param $level string
 	 * @param $minsize int
+	 * @param $indefOnly bool
 	 * @private
 	 */
-	function showOptions( $namespace, $type='edit', $level, $sizetype, $size ) {
+	protected function showOptions( $namespace, $type='edit', $level, $sizetype, $size, $indefOnly ) {
 		global $wgScript;
 		$action = htmlspecialchars( $wgScript );
 		$title = SpecialPage::getTitleFor( 'ProtectedPages' );
@@ -114,8 +116,11 @@ class ProtectedPagesForm {
 			Xml::hidden( 'title', $special ) . "&nbsp;\n" .
 			$this->getNamespaceMenu( $namespace ) . "&nbsp;\n" .
 			$this->getTypeMenu( $type ) . "&nbsp;\n" .
-			$this->getLevelMenu( $level ) . "<br/>\n" .
+			$this->getLevelMenu( $level ) . "&nbsp;\n" .
+			"<span style='white-space: nowrap'>" .
+			$this->getExpiryCheck( $indefOnly ) . "\n" .
 			$this->getSizeLimit( $sizetype, $size ) . "\n" .
+			"</span>" .
 			"&nbsp;" . Xml::submitButton( wfMsg( 'allpagessubmit' ) ) . "\n" .
 			"</fieldset></form>";
 	}
@@ -127,17 +132,25 @@ class ProtectedPagesForm {
 	 * @param mixed $namespace Pre-select namespace
 	 * @return string
 	 */
-	function getNamespaceMenu( $namespace = null ) {
-		return Xml::label( wfMsg( 'namespace' ), 'namespace' )
-			. '&nbsp;'
-			. Xml::namespaceSelector( $namespace, '' );
+	protected function getNamespaceMenu( $namespace = null ) {
+		return "<span style='white-space: nowrap'>" .
+			Xml::label( wfMsg( 'namespace' ), 'namespace' ) . '&nbsp;'
+			. Xml::namespaceSelector( $namespace, '' ) . "</span>";
 	}
 	
 	/**
 	 * @return string Formatted HTML
-	 * @private
 	 */
-	function getSizeLimit( $sizetype, $size ) {	
+	protected function getExpiryCheck( $indefOnly ) {
+		$out = Xml::check( 'indefonly', $indefOnly, array('id' => 'indefonly') ) . ' ';
+		$out .= Xml::label( wfMsg("protectedpages-indef"), 'indefonly' ) . "</p>\n";
+		return $out;
+	}
+	
+	/**
+	 * @return string Formatted HTML
+	 */
+	protected function getSizeLimit( $sizetype, $size ) {	
 		$out = Xml::radio( 'sizetype', 'min', ($sizetype=='min'), array('id' => 'wpmin') );
 		$out .= Xml::label( wfMsg("minimum-size"), 'wpmin' );
 		$out .= "&nbsp;".Xml::radio( 'sizetype', 'max', ($sizetype=='max'), array('id' => 'wpmax') );
@@ -149,9 +162,8 @@ class ProtectedPagesForm {
 		
 	/**
 	 * @return string Formatted HTML
-	 * @private
 	 */
-	function getTypeMenu( $pr_type ) {
+	protected function getTypeMenu( $pr_type ) {
 		global $wgRestrictionTypes;
 	
 		$m = array(); // Temporary array
@@ -169,18 +181,17 @@ class ProtectedPagesForm {
 			$options[] = Xml::option( $text, $type, $selected ) . "\n";
 		}
 
-		return
+		return "<span style='white-space: nowrap'>" .
 			Xml::label( wfMsg('restriction-type') , $this->IdType ) . '&nbsp;' .
 			Xml::tags( 'select',
 				array( 'id' => $this->IdType, 'name' => $this->IdType ),
-				implode( "\n", $options ) );
+				implode( "\n", $options ) ) . "</span>";
 	}
 
 	/**
 	 * @return string Formatted HTML
-	 * @private
 	 */	
-	function getLevelMenu( $pr_level ) {
+	protected function getLevelMenu( $pr_level ) {
 		global $wgRestrictionLevels;
 
 		$m = array( wfMsg('restriction-level-all') => 0 ); // Temporary array
@@ -214,8 +225,9 @@ class ProtectedPagesForm {
  */
 class ProtectedPagesPager extends AlphabeticPager {
 	public $mForm, $mConds;
+	private $type, $level, $namespace, $sizetype, $size, $indefonly;
 
-	function __construct( $form, $conds = array(), $type, $level, $namespace, $sizetype='', $size=0 ) {
+	function __construct( $form, $conds = array(), $type, $level, $namespace, $sizetype='', $size=0, $indefonly=false ) {
 		$this->mForm = $form;
 		$this->mConds = $conds;
 		$this->type = ( $type ) ? $type : 'edit';
@@ -223,6 +235,7 @@ class ProtectedPagesPager extends AlphabeticPager {
 		$this->namespace = $namespace;
 		$this->sizetype = $sizetype;
 		$this->size = intval($size);
+		$this->indefonly = (bool)$indefonly;
 		parent::__construct();
 	}
 
@@ -255,6 +268,10 @@ class ProtectedPagesPager extends AlphabeticPager {
 			$conds[] = 'page_len>=' . $this->size;
 		} else if( $this->sizetype=='max' ) {
 			$conds[] = 'page_len<=' . $this->size;
+		}
+		
+		if( $this->indefonly ) {
+			$conds[] = "pr_expiry = 'infinity' OR pr_expiry IS NULL";
 		}
 		
 		if( $this->level )
