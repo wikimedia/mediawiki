@@ -396,6 +396,9 @@ class QueryPage {
 			for( $i = 0; $i < $num && $row = $dbr->fetchObject( $res ); $i++ ) {
 				$line = $this->formatResult( $skin, $row );
 				if( $line ) {
+					$attr = ( isset( $row->usepatrol ) && $row->usepatrol && $row->patrolled == 0 )
+						? ' class="not-patrolled"'
+						: '';
 					$html[] = $this->listoutput
 						? $line
 						: "<li{$attr}>{$line}</li>\n";
