@@ -18,7 +18,7 @@ function wfSpecialRecentchangeslinked( $par = NULL ) {
 	$fname = 'wfSpecialRecentchangeslinked';
 
 	$days = $wgRequest->getInt( 'days' );
-	$target = isset($par) ? $par : $wgRequest->getText( 'target' );
+	$target = isset($par) ? $par : $wgRequest->getVal( 'target' );
 	$hideminor = $wgRequest->getBool( 'hideminor' ) ? 1 : 0;
 
 	$wgOut->setPagetitle( wfMsg( 'recentchangeslinked' ) );
