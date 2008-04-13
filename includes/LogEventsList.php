@@ -228,7 +228,7 @@ class LogEventsList {
 						'&wpMovetalk=0' ) . ')';
 				}
 			// Show undelete link
-			} else if( $row->log_action == 'delete' && $wgUser->isAllowed( 'delete' ) ) {
+			} else if( $row->log_type == 'delete' && $row->log_action == 'delete' && $wgUser->isAllowed( 'delete' ) ) {
 				$revert = '(' . $this->skin->makeKnownLinkObj( SpecialPage::getTitleFor( 'Undelete' ),
 					$this->message['undeletelink'], 'target='. urlencode( $title->getPrefixedDBkey() ) ) . ')';
 			// Show unblock link
