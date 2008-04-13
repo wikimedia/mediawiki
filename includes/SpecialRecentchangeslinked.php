@@ -20,6 +20,7 @@ function wfSpecialRecentchangeslinked( $par = NULL ) {
 	$days = $wgRequest->getInt( 'days' );
 	$target = isset($par) ? $par : $wgRequest->getVal( 'target' );
 	$hideminor = $wgRequest->getBool( 'hideminor' ) ? 1 : 0;
+	$showlinkedto = $wgRequest->getBool( 'showlinkedto' ) ? 1 : 0;
 
 	$wgOut->setPagetitle( wfMsg( 'recentchangeslinked' ) );
 	$sk = $wgUser->getSkin();
@@ -29,6 +30,8 @@ function wfSpecialRecentchangeslinked( $par = NULL ) {
 		Xml::openElement( 'fieldset' ) .
 		Xml::element( 'legend', array(), wfMsg( 'recentchangeslinked' ) ) . "\n" .
 		Xml::inputLabel( wfMsg( 'recentchangeslinked-page' ), 'target', 'recentchangeslinked-target', 40, $target ) .
+		'<p>' . Xml::check( 'showlinkedto', $showlinkedto, array('id' => 'showlinkedto') ) .
+		' ' . Xml::label( wfMsg("recentchangeslinked-to"), 'showlinkedto' ) . "</p>\n" .
 		Xml::hidden( 'title', $wgTitle->getPrefixedText() ). "\n" .
 		Xml::submitButton( wfMsg( 'allpagessubmit' ) ) . "\n" .
 		Xml::closeElement( 'fieldset' ) .
@@ -119,6 +122,14 @@ function wfSpecialRecentchangeslinked( $par = NULL ) {
 $GROUPBY
  ";
 	} else {
+		if( $showlinkedto ) {
+			$ns = $dbr->addQuotes( $nt->getNamespace() );
+			$dbkey = $dbr->addQuotes( $nt->getDBkey() );
+			$joinConds = "AND pl_namespace={$ns} AND pl_title={$dbkey} AND pl_from=rc_cur_id";
+		} else {
+			$joinConds = "AND pl_namespace=rc_namespace AND pl_title=rc_title AND pl_from=$id";
+		}
+	
 		$sql =
 "SELECT /* wfSpecialRecentchangeslinked */
 			rc_id,
@@ -147,9 +158,7 @@ $GROUPBY
 " . ($uid ? " LEFT OUTER JOIN $watchlist ON wl_user={$uid} AND wl_title=rc_title AND wl_namespace=rc_namespace " : "") . "
    WHERE rc_timestamp > '{$cutoff}'
 	{$cmq}
-     AND pl_namespace=rc_namespace
-     AND pl_title=rc_title
-     AND pl_from=$id
+    {$joinConds}
 $GROUPBY
 ";
 	}
