@@ -29,7 +29,6 @@ $wgQueryPages = array(
 	array( 'MostlinkedPage',                'Mostlinked'                    ),
 	array( 'MostrevisionsPage',             'Mostrevisions'                 ),
 	array( 'FewestrevisionsPage',           'Fewestrevisions'               ),
-	array( 'NewPagesPage',                  'Newpages'                      ),
 	array( 'ShortPagesPage',                'Shortpages'                    ),
 	array( 'UncategorizedCategoriesPage',   'Uncategorizedcategories'       ),
 	array( 'UncategorizedPagesPage',        'Uncategorizedpages'            ),
@@ -397,9 +396,6 @@ class QueryPage {
 			for( $i = 0; $i < $num && $row = $dbr->fetchObject( $res ); $i++ ) {
 				$line = $this->formatResult( $skin, $row );
 				if( $line ) {
-					$attr = ( isset( $row->usepatrol ) && $row->usepatrol && $row->patrolled == 0 )
-						? ' class="not-patrolled"'
-						: '';
 					$html[] = $this->listoutput
 						? $line
 						: "<li{$attr}>{$line}</li>\n";
