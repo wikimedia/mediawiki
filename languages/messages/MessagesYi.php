@@ -664,16 +664,12 @@ $1 שעות.',
 'revisionasof'        => 'רעוויזיע ביי $1',
 'revision-info'       => 'רעוויזיע ביי $1 פון $2',
 'previousrevision'    => '→ עלטערער ווערסיע',
-'nextrevision'        => 'Newer revision ←',
 'currentrevisionlink' => 'איצטיגע ווערסיע',
 'cur'                 => 'איצט',
 'next'                => 'קומענדיגע',
 'last'                => 'לעצטע',
 'page_first'          => 'ערשט',
 'page_last'           => 'לעצט',
-'histlegend'          => 'Diff selection: mark the radio boxes of the versions to compare and hit enter or the button at the bottom.<br />
-Legend: (cur) = difference with current version,
-(צו לעצט) = difference with preceding version, מ = minor edit.',
 'deletedrev'          => '[אויסגעמעקט]',
 'histfirst'           => 'ערשטע',
 'histlast'            => 'לעצטיגע',
@@ -727,7 +723,6 @@ Legend: (cur) = difference with current version,
 'noexactmatch-nocreate' => 'נישטא קיין בלאט מיטן קעפל "$1".',
 'prevn'                 => '$1 פריערדיגע',
 'nextn'                 => '$1 קומענדיגע',
-'viewprevnext'          => '($1) ($2) ($3).',
 'searchall'             => 'אלץ',
 'powersearch'           => 'זוכן',
 
@@ -1001,7 +996,6 @@ $NEWPAGE
 'revertpage'        => 'אויפֿגעריכט פון באַנוצער $2 צוריק צום לעצטע ווערסיע פון באַנוצער $1', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 
 # Undelete
-'undeletebtn'    => 'Restore!',
 'cannotundelete' => 'צוריקשטעלונג איז דורכגעפאלן; עס איז מעגליך אז אן אנדערע האט דאס שוין צוריקגעשטעלט.',
 
 # Namespace form on various pages
@@ -1198,7 +1192,6 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 
 # Special:Newimages
 'newimages'     => 'גאַלעריע אויף נײַע בילדער',
-'imagelisttext' => 'Below is a list of $1 files sorted $2.',
 'showhidebots'  => '($1 ראָבאָמן)',
 'ilsubmit'      => 'זוכן',
 'bydate'        => 'לויטן דאטום',
