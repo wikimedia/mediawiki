@@ -242,14 +242,12 @@ class ProtectedPagesPager extends AlphabeticPager {
 	function getStartBody() {
 		wfProfileIn( __METHOD__ );
 		# Do a link batch query
-		$this->mResult->seek( 0 );
 		$lb = new LinkBatch;
-
-		while ( $row = $this->mResult->fetchObject() ) {
+		while( $row = $this->mResult->fetchObject() ) {
 			$lb->add( $row->page_namespace, $row->page_title );
 		}
-
 		$lb->execute();
+		
 		wfProfileOut( __METHOD__ );
 		return '';
 	}
