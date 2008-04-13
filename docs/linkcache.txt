@@ -8,10 +8,6 @@ batches with the LinkBatch class, or the equivalent in Parser::replaceLinkHolder
 so the link cache is mostly useful for short snippets of parsed text (such as
 the site notice), and for links in the navigation areas of the skin.
 
-The content of the LinkCache can be stored in memcached if $wgLinkCacheMemcached
-is set to true. This can reduce the load of the database server as link cache
-will be persistent between requests.
-
 The link cache was formerly used to track links used in a document for the
 purposes of updating the link tables. This application is now deprecated.
 
