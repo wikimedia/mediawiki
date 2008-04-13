@@ -10,6 +10,8 @@
  */
 class UnusedCategoriesPage extends QueryPage {
 
+	function isExpensive() { return true; }
+
 	function getName() {
 		return 'Unusedcategories';
 	}
