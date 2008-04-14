@@ -661,7 +661,8 @@ $2',
 
 # Suppression log
 'suppressionlog'     => '誌廢',
-'suppressionlogtext' => '下乃刪及錮物之列也。[[Special:Ipblocklist|IP之錮]]有現之閱。',
+'suppressionlogtext' => '下乃刪及錮物之列也。
+[[Special:Ipblocklist|IP之錮]]有現之閱。',
 
 # History merging
 'mergehistory'                     => '併頁之誌',
@@ -854,9 +855,13 @@ $2',
 
 # Recent changes linked
 'recentchangeslinked'          => '援引',
-'recentchangeslinked-title'    => '$1援引近易',
+'recentchangeslinked-title'    => '「$1」援引近易',
 'recentchangeslinked-noresult' => '限期內無近易。',
-'recentchangeslinked-summary'  => "援引近易如下，有哨者'''粗體'''。",
+'recentchangeslinked-summary'  => "此奇頁乃列''由''頁援之近易。
+斯為類者，則示員援之近易。
+有[[Special:Watchlist|爾有哨]]者'''粗體'''。",
+'recentchangeslinked-page'     => '頁名',
+'recentchangeslinked-to'       => "示援頁",
 
 # Upload
 'upload'                     => '進獻',
@@ -1048,6 +1053,8 @@ $2',
 'mostrevisions'           => '屢審',
 'shortpages'              => '短篇',
 'longpages'               => '長言',
+'protectedpages'          => '頁錮',
+'protectedpages-indef'    => '只示無期之錮',
 'listusers'               => '點簿',
 'specialpages'            => '特查',
 'spheading'               => '民處',
@@ -1900,6 +1907,6 @@ $1',
 'specialpages-group-users'       => '簿與權',
 'specialpages-group-needy'       => '作事之頁',
 'specialpages-group-highuse'     => '高用頁',
-'specialpages-group-permissions' => '設簿權',
+'specialpages-group-permissions' => '簿權',
 
 );
