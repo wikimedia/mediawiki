@@ -225,6 +225,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 13618) Added rcprop=redirect and rcshow=redirect to list=recentchanges
 * (bug 13544) Added oldid parameter to action=parse to allow for parsing of old revisions
 * (bug 13718) Return the proper continue parameter for cmsort=timestamp
+* action=login now returns the correct waiting time in the details property
 
 === Languages updated in 1.13 ===
 
