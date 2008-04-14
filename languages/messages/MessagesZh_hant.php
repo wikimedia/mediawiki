@@ -752,7 +752,8 @@ $2',
 
 # Suppression log
 'suppressionlog'     => '廢止日誌',
-'suppressionlogtext' => '以下是最近刪除以及由操作員牽涉到內容封鎖的清單。參看[[Special:Ipblocklist|IP封鎖名單]]去參看現時進行中的禁止以及封鎖之名單。',
+'suppressionlogtext' => '以下是刪除以及由操作員牽涉到內容封鎖的清單。
+參看[[Special:Ipblocklist|IP封鎖名單]]去參看現時進行中的禁止以及封鎖之名單。',
 
 # History merging
 'mergehistory'                     => '合併頁面歷史',
@@ -966,9 +967,13 @@ $2',
 
 # Recent changes linked
 'recentchangeslinked'          => '鏈出更改',
-'recentchangeslinked-title'    => '對於$1有關的鏈出更改',
+'recentchangeslinked-title'    => '對於「$1」有關的鏈出更改',
 'recentchangeslinked-noresult' => '在這一段時間中連結的頁面並無更改。',
-'recentchangeslinked-summary'  => "這一個特殊頁面列示這一頁鏈出頁面的最近更改。在您監視列表中的頁面會以'''粗體'''表示。",
+'recentchangeslinked-summary'  => "這一個特殊頁面列示''由''所給出的一個頁面之連結到頁面的最近更改。
+但是，如果該頁面給出的是一個分類的話，它便會列示成員頁面的最近更改。
+在[[Special:Watchlist|您的監視列表]]中的頁面會以'''粗體'''顯示。",
+'recentchangeslinked-page'     => '頁面名稱',
+'recentchangeslinked-to'       => "顯示連到所給出的頁面",
 
 # Upload
 'upload'                      => '上傳檔案',
@@ -1232,6 +1237,7 @@ Template:消除歧義',
 'deadendpages'            => '斷鏈頁面',
 'deadendpagestext'        => '以下頁面沒有連結到{{SITENAME}}中的其它頁面。',
 'protectedpages'          => '已保護頁面',
+'protectedpages-indef'    => '只有無期之保護頁面',
 'protectedpagestext'      => '以下頁面已經被保護以防止移動或編輯',
 'protectedpagesempty'     => '在這些參數下沒有頁面正在保護。',
 'protectedtitles'         => '已保護的標題',
@@ -2443,6 +2449,6 @@ $5
 'specialpages-group-users'       => '用戶和權限',
 'specialpages-group-needy'       => '需要做事情的頁面',
 'specialpages-group-highuse'     => '高度使用頁面',
-'specialpages-group-permissions' => '設定用戶權限',
+'specialpages-group-permissions' => '用戶權限',
 
 );

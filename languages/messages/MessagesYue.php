@@ -837,7 +837,8 @@ MySQL 嘅錯誤回應 "$3: $4"',
 
 # Suppression log
 'suppressionlog'     => '廢止日誌',
-'suppressionlogtext' => '下面係最近刪除同埋由操作員牽涉到內容封鎖嘅一覽。睇吓[[Special:Ipblocklist|IP封鎖一覽]]去睇現時進行緊嘅禁止同埋封鎖表。',
+'suppressionlogtext' => '下面係刪除同埋由操作員牽涉到內容封鎖嘅一覽。
+睇吓[[Special:Ipblocklist|IP封鎖一覽]]去睇現時進行緊嘅禁止同埋封鎖表。',
 
 # History merging
 'mergehistory'                     => '合併頁歷史',
@@ -1050,9 +1051,13 @@ MySQL 嘅錯誤回應 "$3: $4"',
 
 # Recent changes linked
 'recentchangeslinked'          => '連結頁嘅更改',
-'recentchangeslinked-title'    => '對$1有關嘅更改',
+'recentchangeslinked-title'    => '對「$1」有關嘅更改',
 'recentchangeslinked-noresult' => '響呢一段時間內連結頁並無更改。',
-'recentchangeslinked-summary'  => "呢一個特別頁列示咗呢一版連出去嘅頁面嘅最近更改。響你嘅監視清單度嘅頁面會以'''粗體'''表示。",
+'recentchangeslinked-summary'  => "呢一個特別頁列示咗''由''所畀到嘅一版連結到頁嘅最近更改。
+之但係，如果嗰一版畀到嘅係一個分類嘅話，佢就會列示成員頁嘅最近更改。
+響[[Special:Watchlist|你張監視清單]]嘅版會以'''粗體'''顯示。",
+'recentchangeslinked-page'     => '頁名',
+'recentchangeslinked-to'       => "顯示連到所畀到嘅版",
 
 # Upload
 'upload'                      => '上載檔案',
@@ -1310,6 +1315,7 @@ Template:搞清楚',
 'deadendpages'            => '掘頭頁',
 'deadendpagestext'        => '呢啲頁無連到{{SITENAME}}內嘅任何一頁。',
 'protectedpages'          => '保護頁',
+'protectedpages-indef'    => '只有無期保謢頁',
 'protectedpagestext'      => '以下嘅頁面係受保頁面，唔能夠移動或編輯',
 'protectedpagesempty'     => '響呢啲參數度，現時無頁面響度保護緊。',
 'protectedtitles'         => '保護咗嘅標題',
@@ -2512,6 +2518,6 @@ $1',
 'specialpages-group-users'       => '用戶同權限',
 'specialpages-group-needy'       => '需要做嘢嘅版',
 'specialpages-group-highuse'     => '高度使用頁',
-'specialpages-group-permissions' => '設定用戶權限',
+'specialpages-group-permissions' => '用戶權限',
 
 );
