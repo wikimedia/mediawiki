@@ -1454,7 +1454,7 @@ $NEWPAGE
 'restriction-type'            => 'Дастраси:',
 'restriction-level'           => 'Сатҳи маҳдудият:',
 'minimum-size'                => 'Ҳадди ақали андоза',
-'maximum-size'                => 'Ҳадди аксари андоза',
+'maximum-size'                => 'Ҳадди аксари андоза:',
 'pagesize'                    => '(байт)',
 
 # Restrictions (nouns)

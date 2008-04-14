@@ -1151,8 +1151,10 @@ $3',
 'recentchangeslinked'          => 'Ändringar på angränsande sidor',
 'recentchangeslinked-title'    => 'Angränsande ändringar till $1',
 'recentchangeslinked-noresult' => 'Inga angränsande sidor ändrades under den angivna tidsperioden.',
-'recentchangeslinked-summary'  => "Den här specialsidan listar de senaste ändringarna på angränsande sidor. Sidor på din övervakningslista är markerade med '''fet''' stil.",
-'recentchangeslinked-page'     => 'Sidnamn',
+'recentchangeslinked-summary'  => "Detta är en lista över dom senaste ändringarna till sidor länkade från en specifierad sida (eller till medlemmar av en specifierad kategori).
+Sidor på [[Special:Watchlist|din övervakningslista]] är i '''fetstil'''.",
+'recentchangeslinked-page'     => 'Sidnamn:',
+'recentchangeslinked-to'       => 'Visa ändringar på sidor med länkar till den givna sidan istället',
 
 # Upload
 'upload'                      => 'Ladda upp fil',
@@ -1419,6 +1421,7 @@ Sedan denna wiki startades har sidor visats totalt <b>$3</b> {{PLURAL:$3|gång|g
 'deadendpages'            => 'Sidor utan länkar',
 'deadendpagestext'        => 'Följande sidor saknar länkar till andra sidor på den här wikin.',
 'protectedpages'          => 'Skyddade sidor',
+'protectedpages-indef'    => 'Endast skydd på obestämd tid',
 'protectedpagestext'      => 'Följande sidor är skyddade mot redigering eller flyttning.',
 'protectedpagesempty'     => 'Inga sidor är skyddade under de villkoren.',
 'protectedtitles'         => 'Skyddade titlar',
@@ -1659,7 +1662,7 @@ Nuvarande skrivskyddsinställning för sidan <strong>$1</strong> är:',
 'restriction-type'            => 'Typ av skydd',
 'restriction-level'           => 'Skyddsnivå',
 'minimum-size'                => 'Minsta storlek',
-'maximum-size'                => 'Största storlek',
+'maximum-size'                => 'Största storlek:',
 'pagesize'                    => '(byte)',
 
 # Restrictions (nouns)

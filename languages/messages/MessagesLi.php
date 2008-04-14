@@ -1403,7 +1403,7 @@ Dit zeen de hujige instellinge veur de pazjena <strong>[[$1]]</strong>:",
 'restriction-type'            => 'Rech:',
 'restriction-level'           => 'Bepèrkingsniveau:',
 'minimum-size'                => 'Min. gruutde',
-'maximum-size'                => 'Max. gruutde',
+'maximum-size'                => 'Max. gruutde:',
 'pagesize'                    => '(bytes)',
 
 # Restrictions (nouns)

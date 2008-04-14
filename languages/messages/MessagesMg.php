@@ -4,10 +4,10 @@
  * @addtogroup Language
  *
  * @author SPQRobin
- * @author Alno
  * @author Siebrand
- * @author לערי ריינהארט
+ * @author Alno
  * @author Nike
+ * @author לערי ריינהארט
  */
 
 $fallback = 'fr';

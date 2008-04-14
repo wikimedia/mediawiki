@@ -887,7 +887,7 @@ D’autres administrateurs de {{SITENAME}} pourront toujours accéder au contenu
 
 # Suppression log
 'suppressionlog'     => 'Journal des suppressions',
-'suppressionlogtext' => 'Ci-dessous, se trouve la liste des suppressions les plus récentes et des blocages comprenant les révisions cachées aux administrateurs. Voyez [[Special:Ipblocklist|la liste des blocages des IP]] pour la liste des bannissements et des blocages.',
+'suppressionlogtext' => 'Ci-dessous, se trouve la liste des suppressions et des blocages comprenant les révisions cachées aux administrateurs. Voyez [[Special:Ipblocklist|la liste des blocages des IP]] pour la liste des bannissements et des blocages opérationels.',
 
 # History merging
 'mergehistory'                     => 'Fusionner les historiques',
@@ -1107,7 +1107,8 @@ Une case non cochée signifie, au contraire, qu'il ne s’y trouve pas.",
 'recentchangeslinked-title'    => 'Suivi des liens associés à $1',
 'recentchangeslinked-noresult' => 'Aucun changement sur les pages liées pendant la période choisie.',
 'recentchangeslinked-summary'  => "Cette page spéciale montre les modifications récentes sur les pages qui sont liées. Les pages de votre liste de suivi sont '''en gras'''.",
-'recentchangeslinked-page'     => 'Nom de la page',
+'recentchangeslinked-page'     => 'Nom de la page:',
+'recentchangeslinked-to'       => 'Afficher les changements vers les pages liées au lieu de la page donnée',
 
 # Upload
 'upload'                      => 'Importer un fichier',
@@ -1375,6 +1376,7 @@ Il y a {{PLURAL:$7|'''$7''' article|'''$7''' articles}} dans [[meta:Help:Job_que
 'deadendpages'            => 'Pages en impasse',
 'deadendpagestext'        => 'Les pages suivantes ne contiennent aucun lien vers d’autres pages du wiki.',
 'protectedpages'          => 'Pages protégées',
+'protectedpages-indef'    => 'Uniquement les protections permanentes',
 'protectedpagestext'      => 'Les pages suivantes sont protégées contre les modifications et/ou le renommage :',
 'protectedpagesempty'     => 'Aucune page n’est protégée actuellement.',
 'protectedtitles'         => 'Titres protégés',
@@ -2573,6 +2575,6 @@ Entrez le nom du fichier sans le préfixe « {{ns:image}}: ».',
 'specialpages-group-users'       => 'Utilisateurs et droits rattachés',
 'specialpages-group-needy'       => 'Pages nécessitant des travaux',
 'specialpages-group-highuse'     => 'Utilisation intense des pages',
-'specialpages-group-permissions' => 'Paramétrer les permissions des utilisateurs',
+'specialpages-group-permissions' => 'Permissions des utilisateurs',
 
 );

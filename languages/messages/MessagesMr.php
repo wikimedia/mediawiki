@@ -1553,7 +1553,7 @@ $NEWPAGE
 'restriction-type'            => 'परवानगी:',
 'restriction-level'           => 'सुरक्षापातळी:',
 'minimum-size'                => 'किमान आकार',
-'maximum-size'                => 'महत्तम आकार',
+'maximum-size'                => 'महत्तम आकार:',
 'pagesize'                    => '(बाइट)',
 
 # Restrictions (nouns)

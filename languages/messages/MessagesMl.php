@@ -8,14 +8,13 @@
  * @author Manjith Joseph <manjithkaini@gmail.com>
  * @author Praveen Prakash <me.praveen@gmail.com>
  * @author Shiju Alex <shijualexonline@gmail.com>
- * @author לערי ריינהארט
- * @author Jyothis
- * @author Anoopan
  * @author Shijualex
  * @author Jacob.jose
- * @author Siebrand
- * @author Nike
  * @author Praveenp
+ * @author לערי ריינהארט
+ * @author Siebrand
+ * @author Anoopan
+ * @author Jyothis
  */
 
 $namespaceNames = array(

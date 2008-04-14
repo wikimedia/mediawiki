@@ -5,11 +5,11 @@
  *
  * @author WikedKentaur
  * @author SPQRobin
- * @author Nike
- * @author Võrok
  * @author Siebrand
- * @author לערי ריינהארט
  * @author M.M.S.
+ * @author Nike
+ * @author לערי ריינהארט
+ * @author Võrok
  * @author Jon Harald Søby
  */
 
@@ -1015,7 +1015,7 @@ Kõik toodud kellaajad järgivad serveriaega (UTC).',
 'restriction-type'            => 'Lubatud:',
 'restriction-level'           => 'Kaitsmise tase:',
 'minimum-size'                => 'Min suurus',
-'maximum-size'                => 'Max suurus',
+'maximum-size'                => 'Max suurus:',
 'pagesize'                    => '(baiti)',
 
 # Restrictions (nouns)

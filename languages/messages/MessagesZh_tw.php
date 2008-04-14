@@ -5,6 +5,7 @@
  *
  * @author BobChao
  * @author Siebrand
+ * @author לערי ריינהארט
  */
 
 $fallback = 'zh-hant';
@@ -686,8 +687,6 @@ $2',
 'revdelete-submit'            => '應用於選取的修訂',
 'revdelete-logentry'          => '[[$1]]的修訂可見性已更改',
 'logdelete-logentry'          => '[[$1]]的事件可見性已更改',
-'revdelete-logaction'         => '$1次修訂己經設定至模式$2',
-'logdelete-logaction'         => '對於[[$3]]的$1個事件己經設定至模式$2',
 'revdelete-success'           => '修訂的可見性已經成功設定。',
 'logdelete-success'           => '事件的可見性已經成功設定。',
 

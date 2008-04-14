@@ -639,6 +639,11 @@ Memolös, das pads: .css e .js mutons labön tiädi minudik: {{ns:user}}:Foo/mon
 'previewnote'               => '<strong>Is pajonon te büologed; votükams no nog pedakipons!</strong>',
 'previewconflict'           => 'Büologed at jonon vödemi in redakamaspad löpik soäsä opubon if odakipol oni.',
 'session_fail_preview'      => '<strong>Pidö! No emögos ad lasumön votükamis olik kodü per redakamanünas.<br />Steifülolös dönu. If no oplöpol, tän senunädolös e genunädolös oli, e steifülolös nogna.</strong>',
+'session_fail_preview_html' => "<strong>Liedo no eplöpos ad zepön redakami olik kodü per nünodas.</strong>
+
+''Bi {{SITENAME}} emogükon gebi kota: HTML krüdik, büologed peklänedon as jel ta tataks me el JavaScript.
+
+<strong>If evilol dunön redakami legik, steifülolös dönu. If no jäfidon, senunädolös oli e nunädolös oli dönu.</strong>",
 'editing'                   => 'Redakam pada: $1',
 'editingsection'            => 'Redakam pada: $1 (diläd)',
 'editingcomment'            => 'Redakam pada: $1 (küpet)',
@@ -647,6 +652,8 @@ Memolös, das pads: .css e .js mutons labön tiädi minudik: {{ns:user}}:Foo/mon
 <b>Te vödem balid podakipon!</b><br />',
 'yourtext'                  => 'Vödem olik',
 'storedversion'             => 'Fomam pedakipöl',
+'nonunicodebrowser'         => '<strong>NÜNED: Bevüresodatävöm olik no kanon gebön eli Unicode.
+Ad dälön ole ad redakön padis, malats no-ASCII opubons in redakamabog as kots degmälnumatik.</strong>',
 'editingold'                => '<strong>NUNED: Anu redakol fomami büik pada at. If dakipol oni, votükams posik onepubons.</strong>',
 'yourdiff'                  => 'Difs',
 'copyrightwarning'          => 'Demolös, das keblünots valik lü Vükiped padasumons ma el $2 (logolöd eli $1 tefü notets). If no vilol, das vödems olik poredakons nenmisero e poseagivons ma vil alana, tän no pladolös oni isio.<br />
@@ -859,6 +866,7 @@ Kontrololös, va votükam at okipon fovöfi padajenotema.',
 'math_failure'             => 'Diletam fomüla no eplöpon',
 'math_unknown_error'       => 'pök nesevädik',
 'math_unknown_function'    => 'dun nesevädik',
+'math_lexing_error'        => 'vödidiletam no eplöpon',
 'math_syntax_error'        => 'süntagapöl',
 'math_image_error'         => 'Feajafam ela PNG no eplöpon;
 vestigolös stitami verätik ela latex, ela dvips, ela gs, e feajafön',
@@ -982,7 +990,11 @@ Bügil vagik sinifon, das geban no duton lü grup tefik.',
 'recentchangeslinked'          => 'Votükams teföl',
 'recentchangeslinked-title'    => 'Votükams tefü pad: "$1"',
 'recentchangeslinked-noresult' => 'Pads ad pad at peyümöls no pevotükons ün period at.',
-'recentchangeslinked-summary'  => "Su pad patik at palisedons votükams padas, kels yumons ad pad at. Pads galädaliseda olik '''pakazetons'''.",
+'recentchangeslinked-summary'  => "Su pad patik at palisedons votükams padas, ad kels pad pevälöl yumon. 
+If ye pad pevälöl binon klad, palisedons is votükams nulik padas in klad at.
+Pads galädaliseda olik '''pakazetons'''.",
+'recentchangeslinked-page'     => 'Padanem:',
+'recentchangeslinked-to'       => 'Jonön güo votükamis padas, kels yumons ad pad pevälöl',
 
 # Upload
 'upload'                      => 'Löpükön ragivi',
@@ -1230,6 +1242,7 @@ Lunot [http://meta.wikimedia.org/wiki/Help:Job_queue vobodapoodkeda] binon '''\$
 'deadendpages'            => 'Pads nen yüms lü votiks',
 'deadendpagestext'        => 'Pads sököl no labons yümis ad pads votik in vüki at.',
 'protectedpages'          => 'Pads pejelöl',
+'protectedpages-indef'    => 'Te jels nefümik',
 'protectedpagestext'      => 'Pads fovik pejelons e no kanons patöpätükön u paredakön',
 'protectedpagesempty'     => 'Pads nonik pejelons',
 'protectedtitles'         => 'Tiäds pejelöl',
@@ -1441,7 +1454,7 @@ Ekö! parametem anuik pada: <strong>$1</strong>:',
 'restriction-type'            => 'Däl:',
 'restriction-level'           => 'Miedükamanivod:',
 'minimum-size'                => 'Gretot smalikün',
-'maximum-size'                => 'Gretot gretikün',
+'maximum-size'                => 'Gretot gretikün:',
 'pagesize'                    => '(jöläts)',
 
 # Restrictions (nouns)
@@ -1697,17 +1710,40 @@ Ad seveigön padis, penolös tiädis in penamaspad dono, tiädi bal a kedet, e v
 
 # Special:Import
 'import'                     => 'Nüveigön padis',
+'importinterwiki'            => 'Nüveigam vü vüks',
+'import-interwiki-text'      => 'Levälolös vüki e padatiädi ad nüveigön.
+Däts fomamas e nems redakanas pokipedons.
+Nüveigs vüvükik valik pajonons su [[Special:Log/import|nüveigamalised]].',
 'import-interwiki-history'   => 'Kopiedön fomamis valik jenotema pada at',
+'import-interwiki-submit'    => 'Nüveigön',
 'import-interwiki-namespace' => 'Topätükon padis ini nemaspad:',
+'importtext'                 => 'Seveigolös ragivi se fonätavük me el Patikos:Seveig, dakipolös oni su nünöm olik e löpükolös oni isio.',
 'importstart'                => 'Nüveigölo padis...',
 'import-revision-count'      => '{{PLURAL:$1|fomam|fomams}} $1',
+'importnopages'              => 'Pads nonik ad nüveigön.',
+'importfailed'               => 'Nüveigam no eplöpon: <nowiki>$1</nowiki>',
+'importunknownsource'        => 'Sot nüveigamafonäta nesevädon',
+'importcantopen'             => 'No eplöpos ad maifükön ragivi nüveigabik',
 'importbadinterwiki'         => 'Yüm vüvükik dädik',
 'importnotext'               => 'Vödem vagik',
+'importsuccess'              => 'Nüveigam efinikon!',
+'importhistoryconflict'      => 'Dabinon konflit jenotemas (pad at ba ya pänüveigon balna ün paset)',
+'importnosources'            => 'Nüveigafonäts vüvükik nonik pelevälons e löpükam stedöfik jenotemas penemögükon.',
+'importnofile'               => 'Ragiv nüveigabik nonik pelöpükon.',
+'importuploaderrorsize'      => 'Löpükam ragiva nüveigabik no eplöpon. Gretot ragiva pluon demü gretot gretikün pedälöl.',
+'importuploaderrorpartial'   => 'Löpükam ragiva nüveigabik no eplöpon. Ragiv pelöpükon te dilo.',
+'importuploaderrortemp'      => 'Löpükam ragiva nüveigabik no eplöpon. Ragiviär nelaidüpik nekomon.',
+'import-parse-failure'       => 'Pöl pö nüveigam ela XML',
+'import-noarticle'           => 'Pad nüveigabik nonik!',
+'import-nonewrevisions'      => 'Fomams valik ya pinüveigons.',
 'xml-error-string'           => '$1 pö lien: $2, kolum: $3 (jölat: $4): $5',
 
 # Import log
 'importlogpage'                    => 'Jenotalised nüveigamas',
+'importlogpagetext'                => 'Nüveigam guverik padas labü redakamajenotem se vüks votik',
+'import-logentry-upload'           => 'pad: [[$1]] penüveigon medü ragivilöpükam',
 'import-logentry-upload-detail'    => '{{PLURAL:$1|fomam|fomams}} $1',
+'import-logentry-interwiki'        => 'pevotavükükon: $1',
 'import-logentry-interwiki-detail' => '{{PLURAL:$1|fomam|fomams}} $1 se $2',
 
 # Tooltip help for the actions
@@ -1862,42 +1898,43 @@ Te lisedaliens (liens me * primöl) pabevobons. Yüm balid liena muton binön y�
 * focallength', # Do not translate list items
 
 # EXIF tags
-'exif-imagewidth'             => 'Vidot',
-'exif-imagelength'            => 'Geilot',
-'exif-compression'            => 'Skemat kobopedama',
-'exif-stripoffsets'           => 'Topam magodanünodas',
-'exif-datetime'               => 'Dät e tim votükama ragiva',
-'exif-imagedescription'       => 'Tiäd magoda',
-'exif-artist'                 => 'Lautan',
-'exif-copyright'              => 'Dalaban kopiedagitäta',
-'exif-colorspace'             => 'Kölaspad',
-'exif-compressedbitsperpixel' => 'Mod kobopedama magoda',
-'exif-pixelydimension'        => 'Magodavidot lonöföl',
-'exif-pixelxdimension'        => 'Magodageilot lonöföl',
-'exif-usercomment'            => 'Küpets gebana',
-'exif-relatedsoundfile'       => 'Tonaragiv tefik',
-'exif-datetimeoriginal'       => 'Dät e tim jafama nünodas',
-'exif-datetimedigitized'      => 'Dät e tim numatükama',
-'exif-exposuretime-format'    => '$1 sek ($2)',
-'exif-fnumber'                => 'Num-F',
-'exif-lightsource'            => 'Litafonät',
-'exif-flash'                  => 'Kämalelit',
-'exif-flashenergy'            => 'Nämet kämalelita',
-'exif-filesource'             => 'Fonät ragiva',
-'exif-gpslatituderef'         => 'Videt Nolüdik u Sulüdik',
-'exif-gpslatitude'            => 'Videt',
-'exif-gpslongituderef'        => 'Lunet Lofüdik u Vesüdik',
-'exif-gpslongitude'           => 'Lunet',
-'exif-gpsaltitude'            => 'Geilot',
-'exif-gpstimestamp'           => 'tim-GPS (glok taumik)',
-'exif-gpsspeedref'            => 'Vifotastabäd',
-'exif-gpstrack'               => 'Mufalüod',
-'exif-gpsimgdirection'        => 'Lüod magoda',
-'exif-gpsdestlatitude'        => 'Zeilavidet',
-'exif-gpsdestlongitude'       => 'Zeilalunet',
-'exif-gpsdestdistance'        => 'Fagot jü lükömöp',
-'exif-gpsareainformation'     => 'Nem topäda: GPS',
-'exif-gpsdatestamp'           => 'Dät ela GPS',
+'exif-imagewidth'                  => 'Vidot',
+'exif-imagelength'                 => 'Geilot',
+'exif-compression'                 => 'Skemat kobopedama',
+'exif-stripoffsets'                => 'Topam magodanünodas',
+'exif-jpeginterchangeformatlength' => 'Jöläts nünodas: JPEG',
+'exif-datetime'                    => 'Dät e tim votükama ragiva',
+'exif-imagedescription'            => 'Tiäd magoda',
+'exif-artist'                      => 'Lautan',
+'exif-copyright'                   => 'Dalaban kopiedagitäta',
+'exif-colorspace'                  => 'Kölaspad',
+'exif-compressedbitsperpixel'      => 'Mod kobopedama magoda',
+'exif-pixelydimension'             => 'Magodavidot lonöföl',
+'exif-pixelxdimension'             => 'Magodageilot lonöföl',
+'exif-usercomment'                 => 'Küpets gebana',
+'exif-relatedsoundfile'            => 'Tonaragiv tefik',
+'exif-datetimeoriginal'            => 'Dät e tim jafama nünodas',
+'exif-datetimedigitized'           => 'Dät e tim numatükama',
+'exif-exposuretime-format'         => '$1 sek ($2)',
+'exif-fnumber'                     => 'Num-F',
+'exif-lightsource'                 => 'Litafonät',
+'exif-flash'                       => 'Kämalelit',
+'exif-flashenergy'                 => 'Nämet kämalelita',
+'exif-filesource'                  => 'Fonät ragiva',
+'exif-gpslatituderef'              => 'Videt Nolüdik u Sulüdik',
+'exif-gpslatitude'                 => 'Videt',
+'exif-gpslongituderef'             => 'Lunet Lofüdik u Vesüdik',
+'exif-gpslongitude'                => 'Lunet',
+'exif-gpsaltitude'                 => 'Geilot',
+'exif-gpstimestamp'                => 'tim-GPS (glok taumik)',
+'exif-gpsspeedref'                 => 'Vifotastabäd',
+'exif-gpstrack'                    => 'Mufalüod',
+'exif-gpsimgdirection'             => 'Lüod magoda',
+'exif-gpsdestlatitude'             => 'Zeilavidet',
+'exif-gpsdestlongitude'            => 'Zeilalunet',
+'exif-gpsdestdistance'             => 'Fagot jü lükömöp',
+'exif-gpsareainformation'          => 'Nem topäda: GPS',
+'exif-gpsdatestamp'                => 'Dät ela GPS',
 
 # EXIF attributes
 'exif-compression-1' => 'No pekobopedöl',
@@ -2018,9 +2055,10 @@ Fümedolös, das jenöfo vilol dönujafön padi at.",
 'redirectingto' => 'Lüodükölo lü: [[$1]]...',
 
 # action=purge
-'confirm_purge' => 'Vagükön eli caché pada at?
+'confirm_purge'        => 'Vagükön eli caché pada at?
 
 $1',
+'confirm_purge_button' => 'Si!',
 
 # AJAX search
 'searchcontaining' => "Sukön padis labü ''$1''.",
@@ -2036,6 +2074,8 @@ $1',
 'imgmultigotopre'  => 'Golön lü pad',
 
 # Table pager
+'ascending_abbrev'         => 'löpio',
+'descending_abbrev'        => 'donio',
 'table_pager_next'         => 'Pad sököl',
 'table_pager_prev'         => 'Pad büik',
 'table_pager_first'        => 'Pad balid',
@@ -2086,6 +2126,7 @@ Kanol i [[Special:Watchlist/edit|gebön redakametodi kösömik]].',
 'version-specialpages'     => 'Pads patik',
 'version-other'            => 'Votik',
 'version-version'          => 'Fomam',
+'version-license'          => 'Dälazöt',
 'version-software-product' => 'Prodäd',
 'version-software-version' => 'Fomam',
 
@@ -2108,6 +2149,6 @@ Penolös ragivanemi nen foyümot: „{{ns:image}}:“',
 'specialpages-group-users'       => 'Gebans e gitäts',
 'specialpages-group-needy'       => 'Pads bevobami neodöls',
 'specialpages-group-highuse'     => 'Pads suvo pegeböls',
-'specialpages-group-permissions' => 'Lonön gebanadälis',
+'specialpages-group-permissions' => 'Gebanadäls',
 
 );

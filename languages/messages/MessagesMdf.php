@@ -8,6 +8,7 @@
  * @author Nike
  * @author SPQRobin
  * @author Siebrand
+ * @author Jon Harald Søby
  */
 
 $fallbak = 'ru';
@@ -1353,7 +1354,7 @@ $NEWPAGE
 'restriction-type'            => 'Мярьговома:',
 'restriction-level'           => 'Пякстама вийсь:',
 'minimum-size'                => 'Минимум кувалмоц',
-'maximum-size'                => 'Максимум кувалмоц',
+'maximum-size'                => 'Максимум кувалмоц:',
 'pagesize'                    => '(байтт)',
 
 # Restrictions (nouns)

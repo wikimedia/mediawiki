@@ -866,6 +866,7 @@ Dir kënnt [[:\$1|déi Säit uleeën]].",
 <br />
 $2 Viruleedunge weisen<br />
 Sich no: $3 $9',
+'search-external'       => 'Extern Sich',
 'searchdisabled'        => "D'Sichfunktioun op {{SITENAME}} ass ausgeschalt. Dir kënnt iwwerdeems mat H!ellef vu Google sichen. Bedenkt awer, datt deenen hire  Sichindex fir {{SITENAME}} eventuell net dem aktuellste Stand entsprecht.",
 
 # Preferences page
@@ -1008,8 +1009,11 @@ Een ugekräizten Haischen bedeit, datt de Benotzer net Member vun dësem Grupp a
 'recentchangeslinked'          => 'Ännerungen op verlinkte Säiten',
 'recentchangeslinked-title'    => 'Ännerungen a Verbindung matt "$1"',
 'recentchangeslinked-noresult' => 'Am ausgewielten Zäitraum goufen op de verlinkte Säite keng Ännerunge gemaach.',
-'recentchangeslinked-summary'  => "Op dëser Spezialsäite stinn déi rezent Ännerungen vun de verlinkte Säiten. Säiten déi op menger Iwwerwaachungslëscht stinn si '''fett''' geschriwwen.",
-'recentchangeslinked-page'     => 'Säitennumm',
+'recentchangeslinked-summary'  => "Op dëser Spezialsäite stinn déi rezent Ännerungen vun de verlinkte Säiten op eng Bestëmmte Säit.
+Wann dës bestëmmte Säit eng Kategorie ass, da ginn hei déi Rezent Ännerungen vun de Membersäite vun der kategorie ugewisen.
+Säiten déi op menger Iwwerwaachungslëscht stinn si '''fett''' geschriwwen.",
+'recentchangeslinked-page'     => 'Säitennumm:',
+'recentchangeslinked-to'       => 'Weis Ännerungen zu de verlinkte Säiten aplaz vun der gefroter Säit',
 
 # Upload
 'upload'               => 'Eroplueden',
@@ -1400,6 +1404,7 @@ Wann dir dës Säit net iwwerwaache wëllt, klickt op \"Net méi iwwerwaachen\" 
 'watchmethod-recent'   => 'Rezent Ännerungen gin op iwwerwaacht Säiten iwwerpréift',
 'watchmethod-list'     => 'Verfollegt Säite ginn op rezent Ännerungen iwwerpréift',
 'watchlistcontains'    => 'Op ärer Iwwerwaachungslëscht $1 {{PLURAL:$1|steet $1 Säit|stinn $1 Säiten}}.',
+'iteminvalidname'      => "Problem mat dem Objet '$1', ongültege Numm ...",
 'wlnote'               => "Hei {{PLURAL:$1|ass déi lescht Ännerung|sinn dé lescht '''$1''' Ännerunge}} vun {{PLURAL:$2|der leschter Stonn|de leschte(n) '''$2''' Stonnen}}.",
 'wlshowlast'           => "Weis d'Ännerunge vun de leschte(n) $1 Stonnen, $2 Deeg oder $3 (an de leschten 30 Deeg).",
 'watchlist-show-bots'  => 'Bot-Ännerunge weisen',
@@ -1528,6 +1533,7 @@ Am [[Special:Log/delete|Läsch-Logbuch]] fannt Dir déi geläscht a restauréier
 'undelete-search-box'        => 'Sich no geläschte Säiten',
 'undelete-search-prefix'     => 'Weis Säiten déi esou ufänken:',
 'undelete-search-submit'     => 'Sichen',
+'undelete-no-results'        => 'Et goufen am Archiv keng Säite fonnt déi op är Sich passen.',
 'undelete-filename-mismatch' => "D'Dateiversioun vum $1 konnt net restauréiert ginn: De Fichier gouf net fonnt.",
 'undelete-bad-store-key'     => "D'Versioun vum Fichier mat dem Zäitstempel $1 konnt net restauréiert ginn: De Fichier war scho virum Läschen net méi do.",
 'undelete-error-short'       => 'Feeler bäim Restauréieren vum Fichier: $1',
@@ -1778,6 +1784,7 @@ Besicht w.e.g. [http://translatewiki.net Betawiki] an [http://translatewiki.net 
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'             => 'Meng Benotzersäit',
+'tooltip-pt-anonuserpage'         => 'Benotzersäit vun der IP-Adress vun däer aus Dir den Ament Ännerungen maachtt',
 'tooltip-pt-mytalk'               => 'Meng Diskussioun',
 'tooltip-pt-anontalk'             => "Diskussioun iwwer d'Ännerungen déi vun dëser IP-Adress aus gemaach gi sinn",
 'tooltip-pt-preferences'          => 'Meng Astellungen',
@@ -1884,6 +1891,7 @@ Besicht w.e.g. [http://translatewiki.net Betawiki] an [http://translatewiki.net 
 'filedeleteerror-long'            => 'Bäim Läsche vum Fichier si Feeler festgestallt ginn:
 
 $1',
+'filedelete-missing'              => 'De Fichier "$1" kann net geläscht ginn, well et e net gëtt.',
 'filedelete-current-unregistered' => 'Dee Fichier "$1" ass net an der Datebank.',
 
 # Browsing diffs

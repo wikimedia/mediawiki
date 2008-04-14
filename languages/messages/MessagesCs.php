@@ -1701,7 +1701,7 @@ Současné nastavení pro tuto stránku je: <strong>$1</strong>:',
 'restriction-type'            => 'Omezení:',
 'restriction-level'           => 'Úroveň omezení:',
 'minimum-size'                => 'Min. velikost',
-'maximum-size'                => 'Max. velikost',
+'maximum-size'                => 'Max. velikost:',
 'pagesize'                    => '(bajtů)',
 
 # Restrictions (nouns)

@@ -1078,7 +1078,7 @@ Aqırg'ı o'shirilgenlerdin' dizimin ko'riw ushin \$2 ni qaran'",
 'restriction-type'            => 'Ruxsatnama:',
 'restriction-level'           => "Sheklew da'rejesi:",
 'minimum-size'                => "En' az o'lshemi",
-'maximum-size'                => "En' ko'p o'lshemi",
+'maximum-size'                => "En' ko'p o'lshemi:",
 'pagesize'                    => '(bayt)',
 
 # Restrictions (nouns)

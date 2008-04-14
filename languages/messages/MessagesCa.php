@@ -402,6 +402,7 @@ $messages = array(
 'youhavenewmessagesmulti' => 'Teniu nous missatges a $1',
 'editsection'             => 'edita',
 'editold'                 => 'edita',
+'viewsourceold'           => 'mostra codi font',
 'editsectionhint'         => 'Edita la secció: $1',
 'toc'                     => 'Contingut',
 'showtoc'                 => 'desplega',
@@ -858,7 +859,7 @@ $2',
 
 # Suppression log
 'suppressionlog'     => 'Registre de supressió',
-'suppressionlogtext' => "A continuació hi ha una llista de les eliminacions i blocatges més recents, on hi ha implicat contingut amagat dels administradors. Vegeu la [[Special:Ipblocklist|la llista de blocatges d'IP]] per a consultar la llista de bandejos i blocatges en curs actualment.",
+'suppressionlogtext' => 'A continuació hi ha una llista de les eliminacions i blocatges que impliquen un contingut amagat als administradors. Vegeu la [[Special:Ipblocklist|llista de blocatges]] per a consultar la llista de bandejos i blocatges actualment en curs.',
 
 # History merging
 'mergehistory'                     => 'Fusiona els historials de les pàgines',
@@ -1076,9 +1077,12 @@ Els requadres sense macar indiquen que l'usuari no hi pertany.",
 
 # Recent changes linked
 'recentchangeslinked'          => "Seguiment d'enllaços",
-'recentchangeslinked-title'    => 'Canvis relacionats amb "$1"',
+'recentchangeslinked-title'    => 'Canvis relacionats amb «$1»',
 'recentchangeslinked-noresult' => 'No ha hagut cap canvi a les pàgines enllaçades durant el període de temps.',
-'recentchangeslinked-summary'  => "Aquesta pàgina especial mostra els canvis recents de les pàgines enllaçades. Les pàgines de la vostra llista de seguiment són en '''negreta'''.",
+'recentchangeslinked-summary'  => "A continuació trobareu una llista dels canvis recents a les pàgines enllaçades des de la pàgina donada (o entre els membres d'una categoria especificada).
+Les pàgines de la vostra [[Special:Watchlist|llista de seguiment]] apareixen en '''negreta'''.",
+'recentchangeslinked-page'     => 'Nom de la pàgina:',
+'recentchangeslinked-to'       => 'Mostra els canvis de les pàgines enllaçades amb la pàgina donada',
 
 # Upload
 'upload'                      => 'Carrega',
@@ -1341,6 +1345,7 @@ segon redireccionament, la qual cosa dóna normalment l\'article "real", al que 
 'deadendpages'            => 'Pàgines atzucac',
 'deadendpagestext'        => "Aquestes pàgines no tenen enllaços a d'altres pàgines del projecte {{SITENAME}}.",
 'protectedpages'          => 'Pàgines protegides',
+'protectedpages-indef'    => 'Només proteccions indefinides',
 'protectedpagestext'      => 'Les pàgines següents estan protegides perquè no es puguin editar o reanomenar',
 'protectedpagesempty'     => 'No hi ha cap pàgina protegida per ara',
 'protectedtitles'         => 'Títols protegits',
@@ -1437,6 +1442,8 @@ respondre.",
 'emailccsubject'  => 'Còpia del vostre missatge a $1: $2',
 'emailsent'       => 'Correu electrònic enviat',
 'emailsenttext'   => 'El vostre correu electrònic ha estat enviat.',
+'emailuserfooter' => '--
+Aquest missatge de correu electrònic ha estat enviat amb la funció corresponent del wiki del projecte {{SITENAME}}.',
 
 # Watchlist
 'watchlist'            => 'Llista de seguiment',
@@ -1594,7 +1601,7 @@ Ací es troben els paràmetres actuals de la pàgina <strong>$1</strong>:',
 'restriction-type'            => 'Permís:',
 'restriction-level'           => 'Nivell de restricció:',
 'minimum-size'                => 'Mida mínima',
-'maximum-size'                => 'Mida màxima',
+'maximum-size'                => 'Mida màxima:',
 'pagesize'                    => '(bytes)',
 
 # Restrictions (nouns)
@@ -1678,18 +1685,21 @@ $1",
 'sp-contributions-submit'      => 'Cerca',
 
 # What links here
-'whatlinkshere'       => 'Què hi enllaça',
-'whatlinkshere-title' => 'Pàgines que enllacen a $1',
-'whatlinkshere-page'  => 'Pàgina:',
-'linklistsub'         => "(Llista d'enllaços)",
-'linkshere'           => "Les següents pàgines enllacen amb '''[[:$1]]''':",
-'nolinkshere'         => "Cap pàgina no enllaça amb '''[[:$1]]'''.",
-'nolinkshere-ns'      => "No s'enllaça cap pàgina a '''[[:$1]]''' en l'espai de noms triat.",
-'isredirect'          => 'pàgina redirigida',
-'istemplate'          => 'inclosa',
-'whatlinkshere-prev'  => '{{PLURAL:$1|anterior|anteriors $1}}',
-'whatlinkshere-next'  => '{{PLURAL:$1|següent|següents $1}}',
-'whatlinkshere-links' => '← enllaços',
+'whatlinkshere'            => 'Què hi enllaça',
+'whatlinkshere-title'      => 'Pàgines que enllacen a $1',
+'whatlinkshere-page'       => 'Pàgina:',
+'linklistsub'              => "(Llista d'enllaços)",
+'linkshere'                => "Les següents pàgines enllacen amb '''[[:$1]]''':",
+'nolinkshere'              => "Cap pàgina no enllaça amb '''[[:$1]]'''.",
+'nolinkshere-ns'           => "No s'enllaça cap pàgina a '''[[:$1]]''' en l'espai de noms triat.",
+'isredirect'               => 'pàgina redirigida',
+'istemplate'               => 'inclosa',
+'whatlinkshere-prev'       => '{{PLURAL:$1|anterior|anteriors $1}}',
+'whatlinkshere-next'       => '{{PLURAL:$1|següent|següents $1}}',
+'whatlinkshere-links'      => '← enllaços',
+'whatlinkshere-hideredirs' => '$1 redireccions',
+'whatlinkshere-hidetrans'  => '$1 inclusions',
+'whatlinkshere-hidelinks'  => '$1 enllaços',
 
 # Block/unblock
 'blockip'                     => "Blocatge d'usuaris",
@@ -2558,5 +2568,15 @@ Introduïu el nom del fitxer sense el prefix «{{ns:image}}:».",
 'fileduplicatesearch-info'     => '$1 × $2 píxels<br />Mida del fitxer: $3<br />Tipus MIME: $4',
 'fileduplicatesearch-result-1' => 'El fitxer «$1» no té cap duplicació idèntica.',
 'fileduplicatesearch-result-n' => 'El fitxer «$1» té {{PLURAL:$2|1 duplicació idèntica|$2 duplicacions idèntiques}}.',
+
+# Special:SpecialPages
+'specialpages-group-maintenance' => 'Informes de manteniment',
+'specialpages-group-other'       => 'Altres pàgines especials',
+'specialpages-group-login'       => 'Entrada/Registre',
+'specialpages-group-changes'     => 'Canvis recents i registres',
+'specialpages-group-users'       => 'Usuaris i drets',
+'specialpages-group-needy'       => 'Pàgines amb necessitat de treball',
+'specialpages-group-highuse'     => "Pàgines d'alt ús",
+'specialpages-group-permissions' => "Permisos d'usuari",
 
 );

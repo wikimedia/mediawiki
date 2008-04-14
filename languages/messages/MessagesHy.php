@@ -6,8 +6,8 @@
  * @author Ruben Vardanyan (me@RubenVardanyan.com)
  * @author Teak
  * @author Togaed
- * @author Siebrand
  * @author לערי ריינהארט
+ * @author Siebrand
  * @author SPQRobin
  */
 
@@ -1534,7 +1534,7 @@ $NEWPAGE
 'restriction-type'            => 'Իրավունքներ.',
 'restriction-level'           => 'Սահմանափակման մակարդակ.',
 'minimum-size'                => 'Նվազագույն չափ',
-'maximum-size'                => 'Առավելագույն չափ',
+'maximum-size'                => 'Առավելագույն չափ:',
 'pagesize'                    => '(բայթ)',
 
 # Restrictions (nouns)

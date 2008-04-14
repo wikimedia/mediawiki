@@ -814,7 +814,7 @@ $2',
 'restriction-type'            => 'Рөхсәт:',
 'restriction-level'           => 'Мөмкинлек дәрәҗәсе:',
 'minimum-size'                => 'Иң кечкенә зурлык',
-'maximum-size'                => 'Иң югары зурлык',
+'maximum-size'                => 'Иң югары зурлык:',
 'pagesize'                    => '(байт)',
 
 # Restrictions (nouns)

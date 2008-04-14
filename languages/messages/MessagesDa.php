@@ -7,8 +7,8 @@
  * @author Anders Wegge Jakobsen <awegge@gmail.com>
  * @author Morten
  * @author Jon Harald Søby
- * @author M.M.S.
  * @author Peter Andersen
+ * @author M.M.S.
  * @author Siebrand
  */
 
@@ -391,6 +391,7 @@ $messages = array(
 'youhavenewmessagesmulti' => 'Der er nye meddelelser til dig: $1',
 'editsection'             => 'redigér',
 'editold'                 => 'redigér',
+'viewsourceold'           => 'vis kilden',
 'editsectionhint'         => 'Rediger afsnit: $1',
 'toc'                     => 'Indholdsfortegnelse',
 'showtoc'                 => 'vis',
@@ -609,23 +610,23 @@ Denne besked kan ignorewres, hvis denne konto er oprettet som følge af en fejl.
 'hr_tip'          => 'Horisontal linje (brug den sparsomt)',
 
 # Edit pages
-'summary'                   => 'Beskrivelse',
-'subject'                   => 'Emne/overskrift',
-'minoredit'                 => 'Dette er en mindre ændring.',
-'watchthis'                 => 'Overvåg denne side',
-'savearticle'               => 'Gem side',
-'preview'                   => 'Forhåndsvisning',
-'showpreview'               => 'Forhåndsvisning',
-'showlivepreview'           => 'Live-forhåndsvisning',
-'showdiff'                  => 'Vis ændringer',
-'anoneditwarning'           => 'Du arbejder uden at være logget på. Istedet for brugernavn vises så IP-adressen i versionshistorikken.',
-'missingsummary'            => "'''Bemærk:''' du har ikke angivet en resume. Hvis du atter trykker på „Gem“, gemmes ændringerne uden resume.",
-'missingcommenttext'        => 'Indtast venligst et resume.',
-'missingcommentheader'      => "'''BEMÆRK:''' du har ikke angivet en overskrift i feltet „Emne:“. Hvis du igen trykker på „Gem side“, gemmes bearbejdningen uden overskrift.",
-'summary-preview'           => 'Forhåndsvisning af resumelinien',
-'subject-preview'           => 'Forhåndsvisning af emnet',
-'blockedtitle'              => 'Brugeren er blokeret',
-'blockedtext'               => "<big>'''Dit brugernavn eller din IP-adresse er blevet blokeret.'''</big>
+'summary'                           => 'Beskrivelse',
+'subject'                           => 'Emne/overskrift',
+'minoredit'                         => 'Dette er en mindre ændring.',
+'watchthis'                         => 'Overvåg denne side',
+'savearticle'                       => 'Gem side',
+'preview'                           => 'Forhåndsvisning',
+'showpreview'                       => 'Forhåndsvisning',
+'showlivepreview'                   => 'Live-forhåndsvisning',
+'showdiff'                          => 'Vis ændringer',
+'anoneditwarning'                   => 'Du arbejder uden at være logget på. Istedet for brugernavn vises så IP-adressen i versionshistorikken.',
+'missingsummary'                    => "'''Bemærk:''' du har ikke angivet en resume. Hvis du atter trykker på „Gem“, gemmes ændringerne uden resume.",
+'missingcommenttext'                => 'Indtast venligst et resume.',
+'missingcommentheader'              => "'''BEMÆRK:''' du har ikke angivet en overskrift i feltet „Emne:“. Hvis du igen trykker på „Gem side“, gemmes bearbejdningen uden overskrift.",
+'summary-preview'                   => 'Forhåndsvisning af resumelinien',
+'subject-preview'                   => 'Forhåndsvisning af emnet',
+'blockedtitle'                      => 'Brugeren er blokeret',
+'blockedtext'                       => "<big>'''Dit brugernavn eller din IP-adresse er blevet blokeret.'''</big>
 
 Blokeringen er lavet af $1. Begrundelsen er ''$2''.
 
@@ -636,7 +637,7 @@ Blokeringen er rettet mod: $7
 Du kan kontakte $1 eller en af de andre [[{{MediaWiki:Grouppage-sysop}}|administratorer]] for at diskutere blokeringen.
 Du kan ikke bruge funktionen 'e-mail til denne bruger' medmindre der er angivet en gyldig email-addresse i dine
 [[Special:Preferences|kontoindstillinger]]. Din nuværende IP-addresse er $3, og blokerings-ID er #$5. Angiv venligst en eller begge i alle henvendelser.",
-'autoblockedtext'           => 'Den IP-adresse er blevet blokeret automatisk, fordi den blev brugt af en anden bruger, som blev blokeret af $1.
+'autoblockedtext'                   => 'Den IP-adresse er blevet blokeret automatisk, fordi den blev brugt af en anden bruger, som blev blokeret af $1.
 Begrundelsen for det er:
 
 :\'\'$2\'\'
@@ -649,94 +650,98 @@ Du kan kontakte $1 eller en af de andre [[{{MediaWiki:Grouppage-sysop}}|administ
 Bemærk, at du ikke kan bruge funktionen "e-mail til denne bruger" medmindre du har en gyldig e-mail addresse registreret i din [[Special:Preferences|brugerindstilling]].
 
 Din blokerings-ID er $5. Angiv venligst denne ID ved alle henvendelser.',
-'blockednoreason'           => 'ingen begrundelse givet',
-'blockedoriginalsource'     => "Kildekoden fra '''$1''' vises her:",
-'blockededitsource'         => "Kildekoden fra '''Dine ændringer''' til '''$1''':",
-'whitelistedittitle'        => 'Log på for at redigere',
-'whitelistedittext'         => 'Du skal $1 for at kunne ændre artikler.',
-'whitelistreadtitle'        => 'Log på for at læse',
-'whitelistreadtext'         => 'Du skal [[Special:Userlogin|logge på]] for at læse artikler.',
-'whitelistacctitle'         => 'Du har ikke lov til at oprette en konto',
-'whitelistacctext'          => 'For at få lov til at lave en konto på denne wiki skal du [[Special:Userlogin|logge på]] og have passende rettigheder.',
-'confirmedittitle'          => 'For at kunne bearbejde er bekræftelsen af E-mail-adressen nødvendig.',
-'confirmedittext'           => 'Du skal først bekræfte E-mail-adressen, før du kan lave ændringer. Udfyld og bekræft din E-mail-adresse i dine [[Special:Preferences|Indstillinger]].',
-'nosuchsectiontitle'        => 'Afsnit findes ikke',
-'nosuchsectiontext'         => 'Du forsøgte at ændre det ikke eksisterende afsnit $1. Det er dog kun muligt at ændre eksisterende afsnit.',
-'loginreqtitle'             => 'Log på nødvendigt',
-'loginreqlink'              => 'logge på',
-'loginreqpagetext'          => 'Du skal $1 for at se andre sider.',
-'accmailtitle'              => 'Adgangskode sendt.',
-'accmailtext'               => "Adgangskoden for '$1' er sendt til $2.",
-'newarticle'                => '(Ny)',
-'newarticletext'            => "'''{{SITENAME}} har endnu ikke nogen {{NAMESPACE}}-side ved navn {{PAGENAME}}.'''<br /> Du kan begynde en side ved at skrive i boksen herunder. (se [[{{MediaWiki:Helppage}}|hjælpen]] for yderligere oplysninger).<br /> Eller du kan [[Special:Search/{{PAGENAME}}|søge efter {{PAGENAME}} i {{SITENAME}}]].<br /> Hvis det ikke var din mening, så tryk på '''Tilbage'''- eller '''Back'''-knappen.",
-'anontalkpagetext'          => "---- ''Dette er en diskussionsside for en anonym bruger, der ikke har oprettet en konto endnu eller ikke bruger den. Vi er derfor nødt til at bruge den nummeriske IP-adresse til at identificere ham eller hende. En IP-adresse kan være delt mellem flere brugere. Hvis du er en anonym bruger og synes, at du har fået irrelevante kommentarer på sådan en side, så vær venlig at oprette en brugerkonto og [[Special:Userlogin|logge på]], så vi undgår fremtidige forvekslinger med andre anonyme brugere.''",
-'noarticletext'             => "'''{{SITENAME}} har ikke nogen side med præcis dette navn.''' * Du kan '''[{{fullurl:{{FULLPAGENAME}}|action=edit}} starte siden {{PAGENAME}}]''' * Eller [[Special:Search/{{PAGENAME}}|søge efter {{PAGENAME}}]] i andre artikler ---- * Hvis du har oprettet denne artikel indenfor de sidste få minutter, så kan de skyldes at der er lidt forsinkelse i opdateringen af {{SITENAME}}s cache. Vent venligst og tjek igen senere om artiklen dukker op, inden du forsøger at oprette artiklen igen.",
-'userpage-userdoesnotexist' => 'Brugerkontoen "$1" findes ikke. Overvej om du ønsker at oprette eller redigere denne side.',
-'clearyourcache'            => "'''Bemærk''', efter at have gemt, er du nødt til at tømme din browsers cache for at kunne se ændringerne. '''Mozilla / Firefox / Safari''': hold ''shifttasten'' nede og klik på ''reload'' eller tryk på ''control-shift-r'' (Mac: ''cmd-shift-r''); '''Internet Explorer''': hold ''controltasten'' nede og klik på ''refresh'' eller tryk på ''control-F5''; '''Konqueror''': klik på ''reload'' eller tryk på ''F5''",
-'usercssjsyoucanpreview'    => "<strong>Tip:</strong> Brug knappen 'forhåndsvisning' til at teste dit nye css/js før du gemmer.",
-'usercsspreview'            => "'''Husk at du kun tester/forhåndsviser dit eget css, den er ikke gemt endnu!'''",
-'userjspreview'             => "'''Husk at du kun tester/forhåndsviser dit eget javascript, det er ikke gemt endnu!'''",
-'userinvalidcssjstitle'     => "'''Advarsel:''' Der findes intet skin „$1“. Tænk på, at brugerspecifikke .css- og .js-sider begynder med små bogstaver, altså f.eks. ''{{ns:user}}:Hansen/monobook.css'' og ikke ''{{ns:user}}:Hansen/Monobook.css''.",
-'updated'                   => '(Opdateret)',
-'note'                      => '<strong>Bemærk:</strong>',
-'previewnote'               => 'Husk at dette er kun en forhåndsvisning, siden er ikke gemt endnu!',
-'previewconflict'           => 'Denne forhåndsvisning er resultatet af den redigérbare tekst ovenfor, sådan vil det komme til at se ud hvis du vælger at gemme teksten.',
-'session_fail_preview'      => '<strong>Din ændring kunne ikke gemmes, da dine sessionsdata er gået tabt.
+'blockednoreason'                   => 'ingen begrundelse givet',
+'blockedoriginalsource'             => "Kildekoden fra '''$1''' vises her:",
+'blockededitsource'                 => "Kildekoden fra '''Dine ændringer''' til '''$1''':",
+'whitelistedittitle'                => 'Log på for at redigere',
+'whitelistedittext'                 => 'Du skal $1 for at kunne ændre artikler.',
+'whitelistreadtitle'                => 'Log på for at læse',
+'whitelistreadtext'                 => 'Du skal [[Special:Userlogin|logge på]] for at læse artikler.',
+'whitelistacctitle'                 => 'Du har ikke lov til at oprette en konto',
+'whitelistacctext'                  => 'For at få lov til at lave en konto på denne wiki skal du [[Special:Userlogin|logge på]] og have passende rettigheder.',
+'confirmedittitle'                  => 'For at kunne bearbejde er bekræftelsen af E-mail-adressen nødvendig.',
+'confirmedittext'                   => 'Du skal først bekræfte E-mail-adressen, før du kan lave ændringer. Udfyld og bekræft din E-mail-adresse i dine [[Special:Preferences|Indstillinger]].',
+'nosuchsectiontitle'                => 'Afsnit findes ikke',
+'nosuchsectiontext'                 => 'Du forsøgte at ændre det ikke eksisterende afsnit $1. Det er dog kun muligt at ændre eksisterende afsnit.',
+'loginreqtitle'                     => 'Log på nødvendigt',
+'loginreqlink'                      => 'logge på',
+'loginreqpagetext'                  => 'Du skal $1 for at se andre sider.',
+'accmailtitle'                      => 'Adgangskode sendt.',
+'accmailtext'                       => "Adgangskoden for '$1' er sendt til $2.",
+'newarticle'                        => '(Ny)',
+'newarticletext'                    => "'''{{SITENAME}} har endnu ikke nogen {{NAMESPACE}}-side ved navn {{PAGENAME}}.'''<br /> Du kan begynde en side ved at skrive i boksen herunder. (se [[{{MediaWiki:Helppage}}|hjælpen]] for yderligere oplysninger).<br /> Eller du kan [[Special:Search/{{PAGENAME}}|søge efter {{PAGENAME}} i {{SITENAME}}]].<br /> Hvis det ikke var din mening, så tryk på '''Tilbage'''- eller '''Back'''-knappen.",
+'anontalkpagetext'                  => "---- ''Dette er en diskussionsside for en anonym bruger, der ikke har oprettet en konto endnu eller ikke bruger den. Vi er derfor nødt til at bruge den nummeriske IP-adresse til at identificere ham eller hende. En IP-adresse kan være delt mellem flere brugere. Hvis du er en anonym bruger og synes, at du har fået irrelevante kommentarer på sådan en side, så vær venlig at oprette en brugerkonto og [[Special:Userlogin|logge på]], så vi undgår fremtidige forvekslinger med andre anonyme brugere.''",
+'noarticletext'                     => "'''{{SITENAME}} har ikke nogen side med præcis dette navn.''' * Du kan '''[{{fullurl:{{FULLPAGENAME}}|action=edit}} starte siden {{PAGENAME}}]''' * Eller [[Special:Search/{{PAGENAME}}|søge efter {{PAGENAME}}]] i andre artikler ---- * Hvis du har oprettet denne artikel indenfor de sidste få minutter, så kan de skyldes at der er lidt forsinkelse i opdateringen af {{SITENAME}}s cache. Vent venligst og tjek igen senere om artiklen dukker op, inden du forsøger at oprette artiklen igen.",
+'userpage-userdoesnotexist'         => 'Brugerkontoen "$1" findes ikke. Overvej om du ønsker at oprette eller redigere denne side.',
+'clearyourcache'                    => "'''Bemærk''', efter at have gemt, er du nødt til at tømme din browsers cache for at kunne se ændringerne. '''Mozilla / Firefox / Safari''': hold ''shifttasten'' nede og klik på ''reload'' eller tryk på ''control-shift-r'' (Mac: ''cmd-shift-r''); '''Internet Explorer''': hold ''controltasten'' nede og klik på ''refresh'' eller tryk på ''control-F5''; '''Konqueror''': klik på ''reload'' eller tryk på ''F5''",
+'usercssjsyoucanpreview'            => "<strong>Tip:</strong> Brug knappen 'forhåndsvisning' til at teste dit nye css/js før du gemmer.",
+'usercsspreview'                    => "'''Husk at du kun tester/forhåndsviser dit eget css, den er ikke gemt endnu!'''",
+'userjspreview'                     => "'''Husk at du kun tester/forhåndsviser dit eget javascript, det er ikke gemt endnu!'''",
+'userinvalidcssjstitle'             => "'''Advarsel:''' Der findes intet skin „$1“. Tænk på, at brugerspecifikke .css- og .js-sider begynder med små bogstaver, altså f.eks. ''{{ns:user}}:Hansen/monobook.css'' og ikke ''{{ns:user}}:Hansen/Monobook.css''.",
+'updated'                           => '(Opdateret)',
+'note'                              => '<strong>Bemærk:</strong>',
+'previewnote'                       => 'Husk at dette er kun en forhåndsvisning, siden er ikke gemt endnu!',
+'previewconflict'                   => 'Denne forhåndsvisning er resultatet af den redigérbare tekst ovenfor, sådan vil det komme til at se ud hvis du vælger at gemme teksten.',
+'session_fail_preview'              => '<strong>Din ændring kunne ikke gemmes, da dine sessionsdata er gået tabt.
 Prøv venligst igen. Hvis problemet fortsætter, log af og log på igen.</strong>',
-'session_fail_preview_html' => "<strong>Din ændring kunne ikke gemmes, da dine sessionsdata er gået tabt.</strong>
+'session_fail_preview_html'         => "<strong>Din ændring kunne ikke gemmes, da dine sessionsdata er gået tabt.</strong>
 
 ''Da ren HTM er aktiveret i denne Wiki, er forhåndsvisningen blændet ud for at forebygge JavaScript-angreb.''
 
 <strong>Forsøg venligst igen. Hvis problemet fortsætter, log af og log på igen.</strong>",
-'token_suffix_mismatch'     => '<strong>Din redigering er afvist, da din browser har forvansket tegnsætningen i redigeringskontrolfilen. Afvisningen sker for at forhindre utilsigtede ændringer i artiklen. Denne fejl opstår nogle gange, når du redigerer gennem en fejlprogrammeret webbaseret anonymiseringstjeneste.</strong>',
-'editing'                   => 'Redigerer $1',
-'editingsection'            => 'Redigerer $1 (afsnit)',
-'editingcomment'            => 'Redigerer $1 (kommentar)',
-'editconflict'              => 'Redigeringskonflikt: $1',
-'explainconflict'           => 'Nogen har ændret denne side, efter du startede på at redigere den.
+'token_suffix_mismatch'             => '<strong>Din redigering er afvist, da din browser har forvansket tegnsætningen i redigeringskontrolfilen. Afvisningen sker for at forhindre utilsigtede ændringer i artiklen. Denne fejl opstår nogle gange, når du redigerer gennem en fejlprogrammeret webbaseret anonymiseringstjeneste.</strong>',
+'editing'                           => 'Redigerer $1',
+'editingsection'                    => 'Redigerer $1 (afsnit)',
+'editingcomment'                    => 'Redigerer $1 (kommentar)',
+'editconflict'                      => 'Redigeringskonflikt: $1',
+'explainconflict'                   => 'Nogen har ændret denne side, efter du startede på at redigere den.
 Den øverste tekstboks indeholder den nuværende tekst.
 Dine ændringer er vist i den nederste tekstboks.
 Du er nødt til at sammenflette dine ændringer med den eksisterende tekst.
 <b>Kun</b> teksten i den øverste tekstboks vil blive gemt når du trykker "Gem side".<br />',
-'yourtext'                  => 'Din tekst',
-'storedversion'             => 'Den gemte version',
-'nonunicodebrowser'         => '<strong>Advarsel: Din browser er ikke unicode-kompatibel, skift eller opdater din browser før du redigerer en artikel.</strong>',
-'editingold'                => '<strong>ADVARSEL: Du redigerer en gammel version af denne side.
+'yourtext'                          => 'Din tekst',
+'storedversion'                     => 'Den gemte version',
+'nonunicodebrowser'                 => '<strong>Advarsel: Din browser er ikke unicode-kompatibel, skift eller opdater din browser før du redigerer en artikel.</strong>',
+'editingold'                        => '<strong>ADVARSEL: Du redigerer en gammel version af denne side.
 Hvis du gemmer den, vil alle ændringer foretaget siden denne revision blive overskrevet.</strong>',
-'yourdiff'                  => 'Forskelle',
-'copyrightwarning'          => '<strong>Husk: <big>kopier ingen websider</big>, som ikke tilhører dig selv, brug <big>ingen ophavsretsligt beskyttede værker</big> uden tilladelse fra ejeren!</strong><br />
+'yourdiff'                          => 'Forskelle',
+'copyrightwarning'                  => '<strong>Husk: <big>kopier ingen websider</big>, som ikke tilhører dig selv, brug <big>ingen ophavsretsligt beskyttede værker</big> uden tilladelse fra ejeren!</strong><br />
 Du lover os hermed, at du selv <strong>har skrevet teksten</strong>, at teksten tilhører almenheden, er (<strong>public domain</strong>), eller at <strong>ophavsrets-indehaveren</strong> har givet sin <strong>tilladelse</strong>. Hvis denne tekst allerede er offentliggkort andre steder, skriv det venligst på diskussionssiden.
 <i>Bemærk venligst, at alle {{SITENAME}}-artikler automatisk står under „$2“ (se $1 for detaljer). Hvis du ikke vil, at dit arbejde her ændres og udbredes af andre, så tryk ikke på „Gem“.</i>',
-'copyrightwarning2'         => 'Bemærk venligst, at alle artikler på {{SITENAME}} kan bearbejdes, ændres eller slettes af andre brugere.
+'copyrightwarning2'                 => 'Bemærk venligst, at alle artikler på {{SITENAME}} kan bearbejdes, ændres eller slettes af andre brugere.
 Læg ingen tekster ind, hvis du ikke kan acceptere at disse kan ændres.
 
 Du bekræfter hermed også, at du selv har skrevet denne tekst eller kopieret den fra en offentlig kilde
 (se $1 for detaljer). <strong>OVERFØR IKKE OPHAVSRETSLIGT BESKYTTET INDHOLD!</strong>',
-'longpagewarning'           => '<strong>ADVARSEL: Denne side er $1 kilobyte stor; nogle browsere kan have problemer med at redigere sider der nærmer sig eller er større end 32 Kb.
+'longpagewarning'                   => '<strong>ADVARSEL: Denne side er $1 kilobyte stor; nogle browsere kan have problemer med at redigere sider der nærmer sig eller er større end 32 Kb.
 Overvej om siden kan opdeles i mindre dele.</strong>',
-'longpageerror'             => '<strong>FEJL: Teksten, som du ville gemme, er $1 kB stor. Det er større end det tilladet maksimum på $2 kB. Det er ikke muligt at gemme.</strong>',
-'readonlywarning'           => '<strong>ADVARSEL: Databasen er låst på grund af vedligeholdelse,
+'longpageerror'                     => '<strong>FEJL: Teksten, som du ville gemme, er $1 kB stor. Det er større end det tilladet maksimum på $2 kB. Det er ikke muligt at gemme.</strong>',
+'readonlywarning'                   => '<strong>ADVARSEL: Databasen er låst på grund af vedligeholdelse,
 så du kan ikke gemme dine ændringer lige nu. Det kan godt være en god ide at kopiere din tekst til en tekstfil, så du kan gemme den til senere.</strong>',
-'protectedpagewarning'      => '<strong>ADVARSEL: Denne side er skrivebeskyttet, så kun administratorer kan redigere den.</strong>',
-'semiprotectedpagewarning'  => "'''Halv spærring:''' Siden er spærret, så kun registrerede brugere kan ændre den.",
-'cascadeprotectedwarning'   => "'''BEMÆRK: Denne side er skrivebeskyttet, så den kun kan ændres af brugere med Administratorrettigheder. Den er indeholdt i nedenstående {{PLURAL:$1|side|sider}}, som er skrivebeskyttet med tilvalg af nedarvende sidebeskyttelse:'''",
-'titleprotectedwarning'     => '<strong>ADVARSEL:  Den side er låst så kun nogle brugere kan oprette den.</strong>',
-'templatesused'             => 'Skabeloner der er brugt på denne side:',
-'templatesusedpreview'      => 'Følgende skabeloner bruges af denne artikelforhåndsvisning:',
-'templatesusedsection'      => 'Følgende skabeloner bruges af dette afsnit:',
-'template-protected'        => '(skrivebeskyttet)',
-'template-semiprotected'    => '(skrivebeskyttet for ikke anmeldte og nye brugere)',
-'hiddencategories'          => 'Denne side er kategoriseret i {{PLURAL:$1|1 skjult kategorie|$1 skjulte kategorier}}:',
-'edittools'                 => '<!-- Denne tekst vises under formularen „Ændre“ samt "Upload". -->',
-'nocreatetitle'             => 'Oprettelse af nye sider er begrænset.',
-'nocreatetext'              => 'Serveren har begrænset oprettelse af nye sider. Bestående sider kan ændres eller [[Special:Userlogin|logge på]].',
-'nocreate-loggedin'         => 'Du har ikke rettigheder til at oprette nye sider.',
-'permissionserrors'         => 'Rettighedskonflikt',
-'permissionserrorstext'     => 'Du har ikke rettigheder til at gennemføre denne handling, {{PLURAL:$1|årsagen|årsagerne}} er:',
-'recreate-deleted-warn'     => "'''Advarsel: Du er ved at genskabe en tidligere slettet side.'''
+'protectedpagewarning'              => '<strong>ADVARSEL: Denne side er skrivebeskyttet, så kun administratorer kan redigere den.</strong>',
+'semiprotectedpagewarning'          => "'''Halv spærring:''' Siden er spærret, så kun registrerede brugere kan ændre den.",
+'cascadeprotectedwarning'           => "'''BEMÆRK: Denne side er skrivebeskyttet, så den kun kan ændres af brugere med Administratorrettigheder. Den er indeholdt i nedenstående {{PLURAL:$1|side|sider}}, som er skrivebeskyttet med tilvalg af nedarvende sidebeskyttelse:'''",
+'titleprotectedwarning'             => '<strong>ADVARSEL:  Den side er låst så kun nogle brugere kan oprette den.</strong>',
+'templatesused'                     => 'Skabeloner der er brugt på denne side:',
+'templatesusedpreview'              => 'Følgende skabeloner bruges af denne artikelforhåndsvisning:',
+'templatesusedsection'              => 'Følgende skabeloner bruges af dette afsnit:',
+'template-protected'                => '(skrivebeskyttet)',
+'template-semiprotected'            => '(skrivebeskyttet for ikke anmeldte og nye brugere)',
+'hiddencategories'                  => 'Denne side er kategoriseret i {{PLURAL:$1|1 skjult kategorie|$1 skjulte kategorier}}:',
+'edittools'                         => '<!-- Denne tekst vises under formularen „Ændre“ samt "Upload". -->',
+'nocreatetitle'                     => 'Oprettelse af nye sider er begrænset.',
+'nocreatetext'                      => 'Serveren har begrænset oprettelse af nye sider. Bestående sider kan ændres eller [[Special:Userlogin|logge på]].',
+'nocreate-loggedin'                 => 'Du har ikke rettigheder til at oprette nye sider.',
+'permissionserrors'                 => 'Rettighedskonflikt',
+'permissionserrorstext'             => 'Du har ikke rettigheder til at gennemføre denne handling, {{PLURAL:$1|årsagen|årsagerne}} er:',
+'recreate-deleted-warn'             => "'''Advarsel: Du er ved at genskabe en tidligere slettet side.'''
 
 Overvej om det er passende at genoprette siden. De slettede versioner for
 denne side er vist nedenfor:",
+'expensive-parserfunction-warning'  => 'Advarsel: Denne side indeholder ligeledes mange bekostelig analysere funktion opringninger.
+
+Det burde være mindre end $2, der er nu $1.',
+'expensive-parserfunction-category' => 'Sider med for mange bekostelige analysere funktion opringninger',
 
 # "Undo" feature
 'undo-success' => 'Ændringen er nu annulleret. Kontroller venligst bearbejdningen i sammenligningen og klik så på „Gem side“, for at gemme den.',
@@ -809,8 +814,6 @@ Administratorer kan dog fortsat se og gendanne det fjernede indhold, medmindre d
 'revdelete-submit'            => 'Bruge på udvalgte versioner',
 'revdelete-logentry'          => 'Versionsvisning ændret for [[$1]]',
 'logdelete-logentry'          => 'ændrede synligheden for [[$1]]',
-'revdelete-logaction'         => '$1 {{plural:$1|Version|Versioner}} sat til modus $2',
-'logdelete-logaction'         => '$1 {{plural:$1|Indførsel|Indførsler}} for [[$3]] sat til modus $2',
 'revdelete-success'           => 'Versionsvisning er ændret.',
 'logdelete-success'           => 'Logbogs-aktion er indstillet.',
 'pagehist'                    => 'Sidehistorik',
@@ -913,7 +916,7 @@ Vær opmæksom på at bevare kontinuiteten i sidehistorikken.
 'math_bad_output'          => 'Kan ikke skrive til eller oprette uddata-mappe til math',
 'math_notexvc'             => 'Manglende eksekvérbar texvc; se math/README for opsætningsoplysninger.',
 'prefs-personal'           => 'Brugerdata',
-'prefs-rc'                 => 'Seneste ændringer og artikelstumper',
+'prefs-rc'                 => 'Seneste ændringer',
 'prefs-watchlist'          => 'Overvågningsliste',
 'prefs-watchlist-days'     => 'Antal dage, som overvågningslisten standardmæssigt skal omfatte:',
 'prefs-watchlist-edits'    => 'Antal redigeringer der vises i udvidet overvågningsliste:',

@@ -4,8 +4,8 @@
  * @addtogroup Language
  *
  * @author Hakka
- * @author Nike
  * @author Siebrand
+ * @author Nike
  * @author SPQRobin
  * @author Jon Harald Søby
  */
@@ -1072,7 +1072,7 @@ Yî-ha he <strong>$1</strong> hien-sṳ̀ ke pó-fu khi̍p-phe̍t:',
 'restriction-type'            => 'Khièn-han:',
 'restriction-level'           => 'Han-chṳ khi̍p-phe̍t:',
 'minimum-size'                => 'Chui-séu thai-séu',
-'maximum-size'                => 'Chui-thai thai-séu',
+'maximum-size'                => 'Chui-thai thai-séu:',
 'pagesize'                    => '(Vi-ngièn-chû)',
 
 # Restrictions (nouns)

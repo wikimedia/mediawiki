@@ -1457,7 +1457,7 @@ Ambelessì a-i son le regolassion corente për la pàgina <strong>$1</strong>:",
 'restriction-type'            => 'Përmess',
 'restriction-level'           => 'Livel ëd restrission',
 'minimum-size'                => 'Amzura mìnima (an byte)',
-'maximum-size'                => 'Amzura màssima',
+'maximum-size'                => 'Amzura màssima:',
 'pagesize'                    => '(byte)',
 
 # Restrictions (nouns)

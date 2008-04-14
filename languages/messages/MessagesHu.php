@@ -983,7 +983,7 @@ Győződj meg róla, hogy a laptörténet folytonossága megmarad.',
 'mergehistory-submit'              => 'Változatok egyesítése',
 'mergehistory-empty'               => 'Nincs egyesíthető változás.',
 'mergehistory-success'             => '[[:$1]] $3 változata sikeresen egyesítve lett a(z) [[:$2]] lappal.',
-'mergehistory-fail'                => 'Nem sikerült a laptörténetek egyesítése, kérlek ellenőrízd újra az oldalt és a megadott időparamétereket.',
+'mergehistory-fail'                => 'Nem sikerült a laptörténetek egyesítése. Kérlek, ellenőrizd újra az oldalt és a megadott időparamétereket.',
 'mergehistory-no-source'           => 'Nem létezik forráslap $1 néven.',
 'mergehistory-no-destination'      => 'Nem létezik céllap $1 néven.',
 'mergehistory-invalid-source'      => 'A forráslapnak érvényes címet kell megadni.',
@@ -1186,7 +1186,7 @@ az üres azt, hogy nem.',
 'recentchangeslinked-title'    => 'A(z) $1 lappal kapcsolatos változtatások',
 'recentchangeslinked-noresult' => 'Nem történt változtatás a hivatkozott lapokon a megadott időtartam alatt.',
 'recentchangeslinked-summary'  => "Ezek azoknak a lapoknak a legutóbbi változtatásai, amik be vannak linkelve erről az oldalról. Amik fenn vannak a figyelőlistádon, azok '''félkövérrel''' szerepelnek.",
-'recentchangeslinked-page'     => 'Lap neve',
+'recentchangeslinked-page'     => 'Lap neve:',
 
 # Upload
 'upload'                      => 'Fájl feltöltése',
@@ -1943,8 +1943,7 @@ Ezen esetekben a vitalapot külön, kézzel kell átnevezned a kívánságaid sz
 'articleexists'           => 'Ilyen névvel már létezik lap, vagy az általad választott név érvénytelen.
 Kérlek, válassz egy másik nevet.',
 'cantmove-titleprotected' => 'Nem nevezheted át a lapot, mert az új cím le van védve a létrehozás ellen.',
-'talkexists'              => 'A lap áthelyezése sikerült, de a hozzá tartozó vitalapot nem tudtam áthelyezni mert már létezik egy egyező nevű
-lap az új helyen. Kérjük gondoskodj a két lap összefűzéséről.',
+'talkexists'              => 'A lap átnevezése sikerült, de a hozzá tartozó vitalapot nem tudtam átnevezni, mert már létezik egy egyező nevű lap az új helyen. Kérjük, gondoskodj a két lap összefűzéséről.',
 'movedto'                 => 'átnevezve',
 'movetalk'                => 'Nevezd át a vitalapot is, ha lehetséges',
 'talkpagemoved'           => 'Az oldal vitalapját is átmozgattam.',

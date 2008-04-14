@@ -4,10 +4,9 @@
  * @addtogroup Language
  *
  * @author Slomox
- * @author Nike
- * @author SPQRobin
- * @author לערי ריינהארט
  * @author Siebrand
+ * @author לערי ריינהארט
+ * @author Nike
  * @author Jon Harald Søby
  */
 

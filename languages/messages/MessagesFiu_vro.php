@@ -1264,7 +1264,7 @@ Tan ommaq lehe <strong>$1</strong> parhilladsõq säädmiseq:',
 'restriction-type'            => 'Luba',
 'restriction-level'           => 'Piirdmisastõq',
 'minimum-size'                => 'Kõgõ vähämb maht (baidõn)',
-'maximum-size'                => 'Kõgõ suurõmb lubat suurus',
+'maximum-size'                => 'Kõgõ suurõmb lubat suurus:',
 'pagesize'                    => '(baiti)',
 
 # Restrictions (nouns)

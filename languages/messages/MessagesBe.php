@@ -1432,7 +1432,7 @@ $NEWPAGE
 'restriction-type'            => 'Дазвол:',
 'restriction-level'           => 'Абмежаванне на ўзроўні:',
 'minimum-size'                => "Мін. аб'ём",
-'maximum-size'                => "Макс. аб'ём",
+'maximum-size'                => "Макс. аб'ём:",
 'pagesize'                    => '(байты)',
 
 # Restrictions (nouns)

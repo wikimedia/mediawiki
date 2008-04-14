@@ -763,8 +763,8 @@ Gunakna tombol radio kanggo nggabungaké révisi-révisi sing digawé sadurungé
 'search-section'        => '(sèksi $1)',
 'search-suggest'        => 'Apa panjenengan kersané: $1',
 'searchall'             => 'kabèh',
-'showingresults'        => 'Ing ngandhap punika dipuntuduhaken <strong>$1</strong> kasil, wiwitanipun saking #<strong>$2</strong>.',
-'showingresultsnum'     => 'Ing ngandhap punika dipuntuduhaken <strong>$3</strong> kasil, wiwitanipun saking #<strong>$2</strong>.',
+'showingresults'        => "Ing ngisor iki dituduhaké {{PLURAL:$1|'''1''' kasil|'''$1''' kasil}}, wiwitané saking #<strong>$2</strong>.",
+'showingresultsnum'     => "Ing ngisor iki dituduhaké {{PLURAL:$3|'''1''' kasil|'''$3''' kasil}}, wiwitané saka #<strong>$2</strong>.",
 'showingresultstotal'   => "Ing ngisor iki kapacak pituwas '''$1 - $2''' of '''$3'''",
 'nonefound'             => "'''Cathetan''': Menawa olèhé nggolèk léma utawa èntri iku gagal, biasané prekara iki disebabaké amerga olèhé nggolèk tetembungan kerep nganggo tembung-tembung sing umum. Kayata ing basa Inggris tembung-tembung ''\"have\"'' lan ''\"from\"'' ora dilebokaké indèks, utawa nentokaké luwih saka kriterium panggolèkan. Namung kaca-kaca sing ngandhut kabèh kriteria panggolèkan bakal muncul ing pituwasé panggolèkan.",
 'powersearch'           => 'Golèk',
@@ -920,8 +920,10 @@ Kothak sing ora dicèk tegesé panganggo iku ora ana ing grup iku.',
 'recentchangeslinked'          => 'Pranala Pilihan',
 'recentchangeslinked-title'    => 'Owah-owahan sing ana gandhèngané karo "$1"',
 'recentchangeslinked-noresult' => 'Ora ana owah-owahan ing kaca-kaca kagandhèng iki salawasé periode sing wis ditemtokaké.',
-'recentchangeslinked-summary'  => "Kaca astaméwa (kaca kusus) iki mènèhi daftar owah-owahan pungkasan ing kaca-kaca sing kagandhèng. Kaca sing panjenengan awasi ditandhani '''kandel'''.",
-'recentchangeslinked-page'     => 'Jeneng kaca',
+'recentchangeslinked-summary'  => "Kaca astaméwa (kaca kusus) iki mènèhi daftar owah-owahan pungkasan ing kaca-kaca sing kagandhèng. Nanging, yèn kaca sing diawasi iku sawijining kategori, sing didaftar iku owah-owahané kaca sing diandhut.
+Kaca sing [[Special:Watchlist|panjenengan awasi]] ditandhani '''kandel'''.",
+'recentchangeslinked-page'     => 'Jeneng kaca:',
+'recentchangeslinked-to'       => 'Nuduhaké owah-owahan menyang kaca sing disambung menyang kaca-kaca iki',
 
 # Upload
 'upload'                      => 'Unggah',
@@ -1118,17 +1120,17 @@ Mangga bali ing vèrsi sing luwih lawas dhisik.',
 'statistics'             => 'Statistik',
 'sitestats'              => 'Statistik situs',
 'userstats'              => 'Statistik panganggo',
-'sitestatstext'          => "Sapunika wonten '''\$1''' kaca total ing ''database''. Ing punika kalebet kaca-kaca \"talk\", prakawis {{SITENAME}}, artikel \"stub\" (rintisan), kaca pangalih (''redirect''), kaliyan kaca-kaca ingkang sanès kaca isi.
+'sitestatstext'          => "{{SITENAME}} saiki iki duwèni '''\$2''' {{PLURAL:\$1|kaca|kaca}} artikel sing absah. 
 
-Sasanèsipun punika, wonten '''\$2''' kaca ingkang mbokmenawi sah.
+Saliyané iku saiki gunggungé ana {{PLURAL:\$1|kaca|kaca}} ''database''. Ing iku kalebu kaca-kaca dhiskusi, prakara {{SITENAME}}, artikel \"stub\" (rintisan), kaca pangalihan (''redirect''), karo kaca-kaca sing dudu kaca isi.
 
-'''\$8''' files have been uploaded.
+Banjur wis ana '''\$8''' berkas sing diunggahaké.
 
-Sampun naté wonten '''\$3''' kaca dipun tontonaken kaliyan '''\$4''' kaca naté dipun sunting sasampunipun wiki punika dipun adegaken.
+Wis tau ana '''\$3''' kaca dituduhaké karo '''\$4''' kaca tau disunting sawisé wiki iki diadegaké.
 
-Dados tegesipun rata-rata wonten '''\$5''' suntingan per kaca kaliyan '''\$6''' tayangan per suntingan.
+Dadi tegesé rata-rata ana '''\$5''' suntingan per kaca karo '''\$6''' tayangan per suntingan.
 
-The [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] length is '''\$7'''.",
+Dawané [http://meta.wikimedia.org/wiki/Help:Job_queue antrian tugas] ana '''\$7'''.",
 'userstatstext'          => "Ana '''$1''' [[Special:Listusers|{{PLURAL:$1|panganggo|panganggo}}]] sing wis ndaftar. '''$2''' (utawa '''$4%''') antarané iku {{PLURAL:$2|duwé|duwé}} hak aksès $5.",
 'statistics-mostpopular' => 'Kaca sing paling akèh dituduhaké',
 
@@ -1181,6 +1183,7 @@ The [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] length is '''\$7''
 'deadendpages'            => 'Kaca-kaca buntu (tanpa pranala)',
 'deadendpagestext'        => 'kaca-kaca iki ora nduwé pranala tekan ngendi waé ing wiki iki..',
 'protectedpages'          => 'Kaca sing direksa',
+'protectedpages-indef'    => 'Namung pangreksan ora langgeng waé',
 'protectedpagestext'      => 'Kaca-kaca sing kapacak iki direksa déning pangalihan utawa panyuntingan.',
 'protectedpagesempty'     => 'Saat ini tidak ada halaman yang sedang dilindungi.',
 'protectedtitles'         => 'Irah-irahan sing direksa',
@@ -1268,6 +1271,8 @@ Panjenengan bisa ngwatesi panuduhan mawa milih jenis log, jeneng panganggo, utaw
 'emailccsubject'  => 'Salinan pesen panjenengan kanggo $1: $2',
 'emailsent'       => 'Layang e-mail wis dikirim',
 'emailsenttext'   => 'Layang e-mail panjenengan wis dikirim.',
+'emailuserfooter' => "--
+E-mail iki dikirim nganggo fitur 'kirimana panganggao e-mail' saka {{SITENAME}}",
 
 # Watchlist
 'watchlist'            => 'Daftar artikel pilihan',
@@ -1417,7 +1422,7 @@ Ing ngisor iki kapacak konfigurasi kanggo kaca <strong>$1</strong>:',
 'restriction-type'            => 'Pangreksan:',
 'restriction-level'           => 'Tingkatan pambatesan:',
 'minimum-size'                => 'Ukuran minimum',
-'maximum-size'                => 'Ukuran maksimum',
+'maximum-size'                => 'Ukuran maksimum:',
 'pagesize'                    => '(bita)',
 
 # Restrictions (nouns)
@@ -1499,21 +1504,22 @@ $1',
 'sp-contributions-submit'      => 'Golèk',
 
 # What links here
-'whatlinkshere'           => 'Pranala balik',
-'whatlinkshere-title'     => 'Kaca-kaca sing duwé pranala menyang $1',
-'whatlinkshere-page'      => 'Kaca:',
-'whatlinkshere-barrow'    => '&lt;',
-'linklistsub'             => '(Daftar pranala)',
-'linkshere'               => "Kaca-kaca iki nduwé pranala menyang '''[[:$1]]''':",
-'nolinkshere'             => "Ora ana kaca sing nduwé pranala menyang '''[[:$1]]'''.",
-'nolinkshere-ns'          => " Ora ana kaca sing nduwé pranala menyang '''[[:$1]]''' ing bilik jeneng sing kapilih.",
-'isredirect'              => 'kaca pangalihan',
-'istemplate'              => 'karo cithakan',
-'whatlinkshere-prev'      => '{{PLURAL:$1|sadurungé|$1 sadurungé}}',
-'whatlinkshere-next'      => '{{PLURAL:$1|sabanjuré|$1 sabanjuré}}',
-'whatlinkshere-links'     => '← pranala',
-'whatlinkshere-hidetrans' => '$1 transklusi',
-'whatlinkshere-hidelinks' => 'pranala-pranala $1',
+'whatlinkshere'            => 'Pranala balik',
+'whatlinkshere-title'      => 'Kaca-kaca sing duwé pranala menyang $1',
+'whatlinkshere-page'       => 'Kaca:',
+'whatlinkshere-barrow'     => '&lt;',
+'linklistsub'              => '(Daftar pranala)',
+'linkshere'                => "Kaca-kaca iki nduwé pranala menyang '''[[:$1]]''':",
+'nolinkshere'              => "Ora ana kaca sing nduwé pranala menyang '''[[:$1]]'''.",
+'nolinkshere-ns'           => " Ora ana kaca sing nduwé pranala menyang '''[[:$1]]''' ing bilik jeneng sing kapilih.",
+'isredirect'               => 'kaca pangalihan',
+'istemplate'               => 'karo cithakan',
+'whatlinkshere-prev'       => '{{PLURAL:$1|sadurungé|$1 sadurungé}}',
+'whatlinkshere-next'       => '{{PLURAL:$1|sabanjuré|$1 sabanjuré}}',
+'whatlinkshere-links'      => '← pranala',
+'whatlinkshere-hideredirs' => '$1 pangalihan-pangalihan',
+'whatlinkshere-hidetrans'  => '$1 transklusi',
+'whatlinkshere-hidelinks'  => 'pranala-pranala $1',
 
 # Block/unblock
 'blockip'                     => 'Blokir panganggo',
@@ -2347,6 +2353,12 @@ Lebokna jeneng berkas tanpa imbuhan awal "{{ns:image}}:".',
 # Special:SpecialPages
 'specialpages-group-maintenance' => 'Lapuran pangopènan',
 'specialpages-group-other'       => 'Kaca-kaca astaméwa liyané',
+'specialpages-group-login'       => 'Mlebu log / ndaftar',
+'specialpages-group-changes'     => 'Owah-owahan pungkasan lan log',
+'specialpages-group-media'       => 'Lapuran média',
+'specialpages-group-users'       => 'Panganggo lan hak-haké',
 'specialpages-group-needy'       => 'Kaca-kaca sing kudu dibenakaké',
+'specialpages-group-highuse'     => 'Kaca-kaca sing akèh dienggo',
+'specialpages-group-permissions' => 'Idin-idin panganggo',
 
 );

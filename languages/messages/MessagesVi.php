@@ -1032,7 +1032,7 @@ Xin hãy bảo đảm giữ vững tính liên tục của lịch sử trang.',
 'recentchangeslinked-title'    => 'Những thay đổi liên quan tới “$1”',
 'recentchangeslinked-noresult' => 'Không có thay đổi nào trên trang liên kết trong khoảng thời gian đó.',
 'recentchangeslinked-summary'  => "Trang đặc biệt này liệt kê các thay đổi gần đây nhất trên các trang được liên kết. Các trang trong danh sách bạn theo dõi được '''in đậm'''.",
-'recentchangeslinked-page'     => 'Tên trang',
+'recentchangeslinked-page'     => 'Tên trang:',
 
 # Upload
 'upload'                      => 'Tải tập tin lên',
@@ -1538,7 +1538,7 @@ hiện tại của trang <strong>$1</strong>:',
 'restriction-type'            => 'Quyền:',
 'restriction-level'           => 'Mức độ hạn chế:',
 'minimum-size'                => 'Kích thước tối thiểu',
-'maximum-size'                => 'Kích thước tối đa',
+'maximum-size'                => 'Kích thước tối đa:',
 'pagesize'                    => '(byte)',
 
 # Restrictions (nouns)

@@ -798,7 +798,7 @@ Titulus: (nov) = dissimilis ab forma novissima, (prox) = dissimilis ab forma pro
 'recentchangeslinked'         => 'Nuper mutata annexorum',
 'recentchangeslinked-title'   => 'Nuper mutata in paginis quibus pagina "$1" nectit',
 'recentchangeslinked-summary' => "Subter sunt nuperrime mutata paginis annexis. Paginae a te custoditae '''litteris pinguis''' monstrantur.",
-'recentchangeslinked-page'    => 'Titulus paginae',
+'recentchangeslinked-page'    => 'Titulus paginae:',
 
 # Upload
 'upload'             => 'Fasciculum imponere',
@@ -983,6 +983,7 @@ Pagina discretivam esse putatur si formulam adhibet ad quem [[MediaWiki:Disambig
 'deadendpages'            => 'Paginae sine nexu',
 'deadendpagestext'        => 'Paginae subter non nectunt ad alias paginas ullas in {{grammar:ablative|{{SITENAME}}}}.',
 'protectedpages'          => 'Paginae protectae',
+'protectedpages-indef'    => 'Solum protectiones infinitas',
 'protectedpagestext'      => 'Paginae sequentes protectae sunt a movendo ac recensendo',
 'protectedtitles'         => 'Tituli protecti',
 'protectedtitlestext'     => 'Hi tituli protecti sunt ne creentur paginae',

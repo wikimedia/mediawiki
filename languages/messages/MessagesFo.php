@@ -4,13 +4,12 @@
  * @addtogroup Language
  *
  * @author Spacebirdy
+ * @author לערי ריינהארט
  * @author S.Örvarr.S
+ * @author M.M.S.
+ * @author Siebrand
  * @author Nike
  * @author SPQRobin
- * @author Siebrand
- * @author לערי ריינהארט
- * @author Max sonnelid
- * @author M.M.S.
  * @author Jon Harald Søby
  */
 
@@ -286,6 +285,7 @@ $messages = array(
 'disclaimers'          => 'Fyrivarni',
 'disclaimerpage'       => 'Project:Fyrivarni',
 'edithelp'             => 'Rættihjálp',
+'edithelppage'         => 'Help:Rættihjálp',
 'faq'                  => 'OSS',
 'faqpage'              => 'Project:OSS',
 'helppage'             => 'Help:Innihald',
@@ -294,6 +294,7 @@ $messages = array(
 'portal'               => 'Forsíða fyri høvundar',
 'portal-url'           => 'Project:Forsíða fyri høvundar',
 'privacy'              => 'Handfaring av persónligum upplýsingum',
+'privacypage'          => 'Project:Handfaring av persónligum upplýsingum',
 
 'badaccess' => 'Loyvisbrek',
 
@@ -759,6 +760,7 @@ Hvørt rað inniheldur slóðir til fyrstu og aðru ávísing, umframt tekstin �
 'specialloguserlabel'  => 'Brúkari:',
 'speciallogtitlelabel' => 'Heitið:',
 'log'                  => 'Gerðabøkur',
+'all-logs-page'        => 'Øll gerðabøkur',
 'log-search-submit'    => 'Far',
 'alllogstext'          => 'Samansett sýning av upplegging, striking, friðing, forðing og sysop-gerðabókum.
 Tú kanst avmarka sýningina við at velja gerðabókaslag, brúkaranavn ella ávirkaðu síðuna.',
@@ -859,6 +861,7 @@ Sí $2 fyri fulla skráseting av strikingum.',
 'protect-title'      => 'Friðar "$1"',
 'protect-legend'     => 'Vátta friðing',
 'protectcomment'     => 'Orsøk til friðing:',
+'restriction-type'   => 'Verndstøða:',
 'pagesize'           => '(být)',
 
 # Undelete
@@ -883,6 +886,7 @@ Sí $2 fyri fulla skráseting av strikingum.',
 'year'          => 'Frá ár (og áðrenn):',
 
 'sp-contributions-newbies'  => 'Vís bert íkast frá nýggjum kontoum',
+'sp-contributions-blocklog' => 'Banna gerðabøkur',
 'sp-contributions-search'   => 'Leita eftir íkøstum',
 'sp-contributions-username' => 'IP adressa ella brúkaranavn:',
 'sp-contributions-submit'   => 'Leita',

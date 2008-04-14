@@ -1320,7 +1320,7 @@ Asupan jeung bantuan salajengna:
 'restriction-type'            => 'Ngonci:',
 'restriction-level'           => 'Hambalan ngonci:',
 'minimum-size'                => 'Ukuran minimum',
-'maximum-size'                => 'Ukuran maksimum',
+'maximum-size'                => 'Ukuran maksimum:',
 'pagesize'                    => '(bit)',
 
 # Restrictions (nouns)

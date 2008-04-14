@@ -1344,7 +1344,7 @@ $NEWPAGE
 'restriction-type'            => 'অনুমতি:',
 'restriction-level'           => 'বাধার স্তর:',
 'minimum-size'                => 'ন্যূনতম আকার',
-'maximum-size'                => 'সর্বোচ্চ আকার',
+'maximum-size'                => 'সর্বোচ্চ আকার:',
 'pagesize'                    => '(বাইট)',
 
 # Restrictions (nouns)

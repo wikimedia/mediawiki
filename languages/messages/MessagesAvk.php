@@ -1273,7 +1273,7 @@ Noeltaf plekukseem ke <strong>$1</strong> bu batlize tid :',
 'restriction-type'            => 'Rictara :',
 'restriction-level'           => 'Irutareka :',
 'minimum-size'                => 'Volcugaf lum',
-'maximum-size'                => 'Cugaf lum',
+'maximum-size'                => 'Cugaf lum:',
 'pagesize'                    => '(byte)',
 
 # Restrictions (nouns)

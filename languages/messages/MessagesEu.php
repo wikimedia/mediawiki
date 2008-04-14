@@ -1223,7 +1223,7 @@ Laguntza:
 'restriction-type'            => 'Baimena:',
 'restriction-level'           => 'Murrizketa maila:',
 'minimum-size'                => 'Tamaina minimoa',
-'maximum-size'                => 'Tamaina maximoa',
+'maximum-size'                => 'Tamaina maximoa:',
 
 # Restrictions (nouns)
 'restriction-edit'   => 'Aldatu',

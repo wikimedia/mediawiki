@@ -1316,7 +1316,7 @@ L'impusthazioni currenti pa la pàgina so <strong>$1</strong>:",
 'restriction-type'            => 'Primmissu:',
 'restriction-level'           => 'Libellu di isthrigniddura',
 'minimum-size'                => 'Misura mìnima (in byte)',
-'maximum-size'                => 'Misura màssima (in byte)',
+'maximum-size'                => 'Misura màssima (in byte):',
 'pagesize'                    => '(byte)',
 
 # Restrictions (nouns)

@@ -1470,7 +1470,7 @@ Clicatz sus « Precedent » e tornatz cargar la pagina d’ont venètz, puèi en
 'restriction-type'            => 'Permission :',
 'restriction-level'           => 'Nivèl de restriccion',
 'minimum-size'                => 'Talha minimom (octets)',
-'maximum-size'                => 'Talha maximala',
+'maximum-size'                => 'Talha maximala:',
 'pagesize'                    => '(octets)',
 
 # Restrictions (nouns)

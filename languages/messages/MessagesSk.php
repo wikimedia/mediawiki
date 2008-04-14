@@ -15,7 +15,6 @@
  * @author Kandy Talbot
  * @author Michawiki
  * @author Nike
- * @author Sp5uhe
  * @author Jon Harald Søby
  */
 
@@ -1094,8 +1093,10 @@ Nezaškrtnuté pole znamená, že používateľ nie je v skupine.',
 'recentchangeslinked'          => 'Súvisiace úpravy',
 'recentchangeslinked-title'    => 'Zmeny týkajúce sa "$1"',
 'recentchangeslinked-noresult' => 'V zadanom období neboli odkazované stránky zmenené.',
-'recentchangeslinked-summary'  => "Táto špeciálna stránka obsahuje zoznam posledných úprav na odkazovaných stránkach. Stránky, ktoré sa nachádzajú vo vašom zozname sledovaných sú vyznačené '''hrubo'''.",
-'recentchangeslinked-page'     => 'Názov stránky',
+'recentchangeslinked-summary'  => "Táto špeciálna stránka obsahuje zoznam posledných úprav stránok, ''na ktoré odkazuje'' zadaná stránka (alebo ktoré patria do zadanej kategórie).
+Stránky, ktoré sa nachádzajú vo vašom [[Special:Watchlist|zozname sledovaných]] sú vyznačené '''hrubo'''.",
+'recentchangeslinked-page'     => 'Názov stránky:',
+'recentchangeslinked-to'       => "Zobraziť zmeny na stránkach, ''ktoré odkazujú na'' zadanú stránku",
 
 # Upload
 'upload'                      => 'Nahrať súbor',
@@ -1363,6 +1364,7 @@ z čoho '''$2''' (alebo '''$4 %''') {{PLURAL:$2|je správca|sú správcovia}} (p
 'deadendpages'            => 'Slepé stránky',
 'deadendpagestext'        => 'Nasledujúce stránky neodkazujú na žiadne iné stránky na {{GRAMMAR:lokál|{{SITENAME}}}}.',
 'protectedpages'          => 'Zamknuté stránky',
+'protectedpages-indef'    => 'Zamknutia iba na neurčito',
 'protectedpagestext'      => 'Upravovanie alebo presúvanie nasledovných stránok je zamknuté',
 'protectedpagesempty'     => 'Momentálne nie sú žiadne stránky s týmito parametrami zamknuté.',
 'protectedtitles'         => 'Zamknuté názvy',
@@ -1608,7 +1610,7 @@ Tu sú aktuálne nastavenia stránky <strong>$1</strong>:',
 'restriction-type'            => 'Povolenie:',
 'restriction-level'           => 'Úroveň obmedzenia:',
 'minimum-size'                => 'Minimálna veľkosť:',
-'maximum-size'                => 'Maximálna veľkosť',
+'maximum-size'                => 'Maximálna veľkosť:',
 'pagesize'                    => '(bajtov)',
 
 # Restrictions (nouns)

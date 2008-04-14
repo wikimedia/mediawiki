@@ -331,7 +331,7 @@ Bu yerda: (joriy) = hozirgi koʻrinish bilan farq,
 # Recent changes
 'recentchanges'     => "Yangi o'zgartirishlar",
 'recentchangestext' => "Bu sahifada siz oxirgi o'zgartirishlarni ko'rishingiz mumkin.",
-'rcnote'            => "Quyida oxirgi '''$2''' kun davomida sodir bo'lgan $1 o'zgartirishlar ko'rsatilgan. ($3)<!--Below are the last <strong>$1</strong> changes in the last <strong>$2</strong> days, as of $3.-->",
+'rcnote'            => "Quyida oxirgi '''$2''' kun davomida sodir bo'lgan $1 o'zgartirishlar ko'rsatilgan. ($3)",
 'rclistfrom'        => "$1dan boshlab yangi o'zgartirishlarni ko'rsat.",
 'rcshowhideminor'   => 'Kichik tahrirlarni $1',
 'rcshowhidebots'    => 'Botlarni $1',

@@ -1508,7 +1508,7 @@ Contino se i amuestran as opzions autuals d'a pachina <strong>$1</strong>:",
 'restriction-type'            => 'Premiso:',
 'restriction-level'           => 'Libel de restrizión:',
 'minimum-size'                => 'Grandaria menima',
-'maximum-size'                => 'Grandaria maisima',
+'maximum-size'                => 'Grandaria maisima:',
 
 # Restrictions (nouns)
 'restriction-edit'   => 'Editar',

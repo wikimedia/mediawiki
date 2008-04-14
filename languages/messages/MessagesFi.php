@@ -824,7 +824,8 @@ Muut ylläpitäjät voivat lukea piilotetun sisällön ja palauttaa sen.',
 'revdelete-unhid'             => 'palautti näkyviin $1',
 
 # Suppression log
-'suppressionlogtext' => 'Alla on lista uusimmista poistoista ja muokkausestoista, jotka sisältävät ylläpitäjiltä piilotettua materiaalia. Katso [[Special:Ipblocklist|muokkausestolista]] nähdäksesi tämänhetkiset muokkausestot.',
+'suppressionlogtext' => 'Alla on lista uusimmista poistoista ja muokkausestoista, jotka sisältävät ylläpitäjiltä piilotettua materiaalia.
+[[Special:Ipblocklist|Muokkausestolistassa]] on tämänhetkiset muokkausestot.',
 
 # History merging
 'mergehistory'                     => 'Yhdistä sivuhistoriat',
@@ -1039,7 +1040,7 @@ $1 | $2',
 'recentchangeslinked-title'    => 'Sivulta $1 linkitettyjen sivujen muutokset',
 'recentchangeslinked-noresult' => 'Ei muutoksia linkitettyihin sivuihin annetulla aikavälillä.',
 'recentchangeslinked-summary'  => "Tämä toimintosivu näyttää muutokset sivuihin, joihin on viitattu tältä sivulta. Tarkkailulistallasi olevat sivut on '''paksunnettu'''.",
-'recentchangeslinked-page'     => 'Sivun nimi',
+'recentchangeslinked-page'     => 'Sivun nimi:',
 
 # Upload
 'upload'                      => 'Tallenna tiedosto',
