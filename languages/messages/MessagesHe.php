@@ -1225,10 +1225,9 @@ $2',
 'recentchangeslinked'          => 'שינויים בדפים המקושרים',
 'recentchangeslinked-title'    => 'שינויים בדפים המקושרים לדף $1',
 'recentchangeslinked-noresult' => 'לא היו שינויים בדפים המקושרים בתקופה זו.',
-'recentchangeslinked-summary'  => "בדף מיוחד זה רשומים השינויים האחרונים בדפים המקושרים '''מתוך''' הדף הנתון.
-עם זאת, אם הדף הנתון הינו קטגוריה, מוצגים השינויים האחרונים בדפים החברים בקטגוריה במקום זאת.
+'recentchangeslinked-summary'  => "בדף מיוחד זה רשומים השינויים האחרונים בדפים המקושרים מתוך הדף (או בדפים החברים בקטגוריה).
 דפים ב[[Special:Watchlist|רשימת המעקב שלכם]] מוצגים ב'''הדגשה'''.",
-'recentchangeslinked-page'     => 'שם הדף',
+'recentchangeslinked-page'     => 'שם הדף:',
 'recentchangeslinked-to'       => 'הצגת השינויים בדפים המקשרים לדף הנתון במקום זאת',
 
 # Upload
@@ -1722,7 +1721,7 @@ $NEWPAGE
 'restriction-type'            => 'הרשאה:',
 'restriction-level'           => 'רמת ההגבלה:',
 'minimum-size'                => 'גודל מינימלי',
-'maximum-size'                => 'גודל מקסימלי',
+'maximum-size'                => 'גודל מקסימלי:',
 'pagesize'                    => '(בבתים)',
 
 # Restrictions (nouns)
