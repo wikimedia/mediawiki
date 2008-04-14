@@ -365,15 +365,16 @@ class SpecialPage
 	/**
 	 * Add a page to a certain display group for Special:SpecialPages
 	 *
-	 * @param SpecialPage $page
+	 * @param mixed $page (SpecialPage or string)
 	 * @param string $group
 	 * @static
 	 */
-	static function setGroup( &$page, $group ) {
+	static function setGroup( $page, $group ) {
 		if ( !self::$mListInitialised ) {
 			self::initList();
 		}
-		self::$mGroupsList[$page->mName] = $group;
+		$name = is_object($page) ? $page->mName : $page;
+		self::$mGroupsList[$name] = $group;
 	}
 
 	/**
