@@ -933,7 +933,8 @@ $3 указал следующую причину: ''$2''",
 
 # Suppression log
 'suppressionlog'     => 'Журнал сокрытий',
-'suppressionlogtext' => 'Ниже представлен список недавних удалений и блокировок, включающих скрытые от админисраторов материалы. См. [[Special:Ipblocklist|список IP-блокировок]], чтобы просмотреть список текущих блокировок.',
+'suppressionlogtext' => 'Ниже представлен список недавних удалений и блокировок, включающих скрытые от админисраторов материалы.
+См. [[Special:Ipblocklist|список IP-блокировок]], чтобы просмотреть список текущих блокировок.',
 
 # History merging
 'mergehistory'                     => 'Объединение историй правок',
@@ -1148,7 +1149,11 @@ $3 указал следующую причину: ''$2''",
 'recentchangeslinked'          => 'Связанные правки',
 'recentchangeslinked-title'    => 'Связанные правки для $1',
 'recentchangeslinked-noresult' => 'На связанных страницах не было изменений за указанный период.',
-'recentchangeslinked-summary'  => "На этой служебной странице представлен список последних изменений на связанных страницах. Страницы из списка наблюдения '''выделены'''.",
+'recentchangeslinked-summary'  => "!! На этой служебной странице представлен список последних изменений на связанных страницах. Страницы из списка наблюдения '''выделены'''.",
+'recentchangeslinked-page'     => 'Название страницы:',
+'recentchangeslinked-to'       => 'Show changes to pages linked to the given page instead
+
+Показать изменения на страницах, связанных с указанной',
 
 # Upload
 'upload'                      => 'Загрузить файл',
@@ -1415,6 +1420,7 @@ PICT # различные
 'deadendpages'            => 'Тупиковые страницы',
 'deadendpagestext'        => 'Следующие страницы не содержат ссылок на другие страницы в этой вики.',
 'protectedpages'          => 'Защищённые страницы',
+'protectedpages-indef'    => 'Только бессрочные защиты',
 'protectedpagestext'      => 'Следующие страницы защищены от переименования или изменения.',
 'protectedpagesempty'     => 'В настоящий момент нет защищённых страниц с указанными параметрами',
 'protectedtitles'         => 'Запрещённые названия',
@@ -1657,7 +1663,7 @@ $NEWPAGE
 'restriction-type'            => 'Права:',
 'restriction-level'           => 'Уровень доступа:',
 'minimum-size'                => 'Минимальный размер',
-'maximum-size'                => 'Максимальный размер',
+'maximum-size'                => 'Максимальный размер:',
 'pagesize'                    => '(байт)',
 
 # Restrictions (nouns)
@@ -2688,5 +2694,16 @@ $1',
 'fileduplicatesearch-info'     => '$1 × $2 пикселов<br />Размер файла: $3<br />MIME-тип: $4',
 'fileduplicatesearch-result-1' => 'Файл «$1» не имеет идентичных дубликатов.',
 'fileduplicatesearch-result-n' => 'Файл «$1» имеет $2 {{PLURAL:$2|идентичный дубликат|идентичных дубликата|идентичных дубликатов}}.',
+
+# Special:SpecialPages
+'specialpages-group-maintenance' => 'Отчёты технического обслуживания',
+'specialpages-group-other'       => 'Другие служебные страницы',
+'specialpages-group-login'       => 'Представиться / Зарегистрироваться',
+'specialpages-group-changes'     => 'Свежие правки и журналы',
+'specialpages-group-media'       => 'Отчёты о медиа-материалах',
+'specialpages-group-users'       => 'Участники и права',
+'specialpages-group-needy'       => 'Страницы, требующие обработки',
+'specialpages-group-highuse'     => 'Интенсивно использующиеся страницы',
+'specialpages-group-permissions' => 'Права участников',
 
 );

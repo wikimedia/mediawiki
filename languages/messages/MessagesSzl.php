@@ -261,6 +261,7 @@ $messages = array(
 'youhavenewmessagesmulti' => 'Moš nowe wjadomości: $1',
 'editsection'             => 'sprowjéj',
 'editold'                 => 'sprowjéj',
+'viewsourceold'           => 'pokož zdřuduo',
 'editsectionhint'         => 'Sprowjéj tajla: $1',
 'toc'                     => 'Spis treśći',
 'showtoc'                 => 'pokož',
@@ -905,7 +906,9 @@ Zaznačůne pole uoznača přinoležność užytkowńika do danej grupy.
 'recentchangeslinked-title'    => 'Pomjyńyńo w adrésowanych s "$1"',
 'recentchangeslinked-noresult' => 'Nikt nic niy pomjyńoł w dolinkowanych bez čas uo kery žeś pytou.',
 'recentchangeslinked-summary'  => "To je ekstra zajta, na kerej možeš uobočyć zmjany w artiklach dolinkowanych.
-Artikle na pozorli'śće sům '''rube'''.",
+Artikle na [[Special:Watchlist|pozorliśće]] sům '''rube'''.",
+'recentchangeslinked-page'     => 'Mjano zajty:',
+'recentchangeslinked-to'       => 'Pokož pomjyńańa na zajtach adresowanych do podany zajty',
 
 # Upload
 'upload'                      => 'Wćepnij plik',
@@ -1155,6 +1158,7 @@ Duůgość [http://meta.wikymedja.org/wiki/Help:Job_queue kolejki zadań] je '''
 'deadendpages'            => 'Artikle bez linkůw',
 'deadendpagestext'        => 'Zajty wymjyńůne půńižej ńy majům uodnośńikůw do žodnych inkšych zajtůw kere sům na tej wiki.',
 'protectedpages'          => 'Zawarte zajty',
+'protectedpages-indef'    => 'Yno zabezpječyńo ńyokreślůne',
 'protectedpagestext'      => 'Zajty wymjyńůne půńižej sům zawarte uod prećepywańo i sprowjańo.',
 'protectedpagesempty'     => 'Žodno zajta ńy je terozki zawarto s podanymi parametrami.',
 'protectedtitles'         => 'Zawarte mjana artikli',
@@ -1351,7 +1355,12 @@ Pomoc:
 'delete-edit-reasonlist'      => 'Sprowjańe listy powodůw wyćepańo zajty',
 'delete-toobig'               => 'Ta zajta mo bardzo dugo historja sprowjyń, wjyncy jak $1 {{PLURAL:$1|pomjeńańe|pomjeńańa|pomjeńań}}.
 Jei wyćepańe moguo by spowodować zakuůcyńo w pracy {{GRAMMAR:D.lp|{{SITENAME}}}} i bez tůž zostouo uůgrańičůne.',
+'delete-warning-toobig'       => 'Ta zajta mo bardzo dugo historia sprowjyń, wjyncy kej $1 {{PLURAL:$1|pomjyńeńe|pomjyńańo|pomjyńań}}.
+Dej pozůr, bo jei wyćepańe može spowodować zakuůcyńo w pracy {{GRAMMAR:D.lp|{{SITENAME}}}}.',
+'rollback'                    => 'Wycofej sprowjyńe',
+'rollback_short'              => 'Cofej',
 'rollbacklink'                => 'cofej',
+'rollbackfailed'              => 'Ńy idźe wycofać sprowjyńo',
 'protectlogpage'              => 'Zawarte',
 'protectcomment'              => 'Kůmyntoř:',
 'protectexpiry'               => 'Wygaso:',

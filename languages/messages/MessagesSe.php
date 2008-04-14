@@ -949,7 +949,7 @@ $1 | $2',
 'restriction-type'            => 'Rádjehus',
 'restriction-level'           => 'Suodjálus',
 'minimum-size'                => 'Min. sturrodat',
-'maximum-size'                => 'Maks. sturrodat',
+'maximum-size'                => 'Maks. sturrodat:',
 'pagesize'                    => 'stávvala',
 
 # Restrictions (nouns)

@@ -1548,7 +1548,7 @@ Pšosym nawroś se na bok, wót kótaregož sy pśišeł a wopytaj hyšći raz.'
 'restriction-type'            => 'Status šćita',
 'restriction-level'           => 'Rownina šćita:',
 'minimum-size'                => 'Minimalna wjelikosć (bytes)',
-'maximum-size'                => 'maksimalna wjelikosć',
+'maximum-size'                => 'maksimalna wjelikosć:',
 'pagesize'                    => '(byty)',
 
 # Restrictions (nouns)

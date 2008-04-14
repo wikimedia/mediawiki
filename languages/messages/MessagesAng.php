@@ -4,12 +4,10 @@
  * @addtogroup Language
  *
  * @author SPQRobin
- * @author Siebrand
  * @author JJohnson
  * @author Wōdenhelm
+ * @author Siebrand
  */
-
-
 
 $messages = array(
 # User preference toggles
@@ -96,7 +94,6 @@ $messages = array(
 'mainpagedocfooter' => 'Þeahtian [http://meta.wikimedia.org/wiki/Help:Contents Brūcendlǣdend] for helpe on bryce þǣre wiki software.
 
 == Onginnende ==
-
 * [http://www.mediawiki.org/wiki/Manual:Configuration_settings Configuration settings list]
 * [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ]
 * [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]',

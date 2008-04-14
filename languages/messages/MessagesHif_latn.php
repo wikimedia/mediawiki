@@ -252,7 +252,7 @@ Legend: (abhi) = abhi ke version se farka,
 'recentchangeslinked'          => 'Panna ke jurraa badlao',
 'recentchangeslinked-title'    => '"$1" ke badlao',
 'recentchangeslinked-noresult' => 'Linked pages me ii time ke bhitar koi changes nai bhae.',
-'recentchangeslinked-summary'  => "Ii visesh panna pahile waala badlao jon panna hian par linked hai ke list kare hai. Aap ke watchlist me panna '''bold''' hai.",
+'recentchangeslinked-summary'  => "Ii visesh panna pahile waala badlao jon panna hian par linked hai ke list kare hai.  Agar jo jon panna dewa gais hi ek vibhag hai, tab ii khali jaldi ke badlao dekhae hai. Aap ke watchlist me panna  [[Special:Watchlist|your watchlist]] '''bold''' hai.",
 
 # Upload
 'upload'        => 'File ke upload karo',

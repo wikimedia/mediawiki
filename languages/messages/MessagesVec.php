@@ -286,6 +286,7 @@ I seguenti colegamenti i xe in lengua inglese:
 'youhavenewmessagesmulti' => 'Te ghè novi messagi su $1',
 'editsection'             => 'modifica',
 'editold'                 => 'modifica',
+'viewsourceold'           => 'mostra sorgente',
 'editsectionhint'         => 'Modifica sezión: $1',
 'toc'                     => 'Indice',
 'showtoc'                 => 'mostra',
@@ -954,7 +955,10 @@ Na casela de spunta selezionà la indica l'apartenenza de l'utente al grupo; na 
 'recentchangeslinked-title'    => 'Modifiche ligà a "$1"',
 'recentchangeslinked-noresult' => 'Nel periodo specificà no ghe xe stà nissuna modifica a le pagine colegà.',
 'recentchangeslinked-summary'  => "Sta pagina speciale la fa védar le modifiche piassè recenti a le pagine ligà a quela specificà. 
-Le pagine su la lista dei osservati speciali le xe in '''grasseto'''.",
+Se però la pagina specificà la xe na categoria, vien elencà le modifiche piassè reçenti a le pagine contegnù ne la categoria.
+Le pagine che te stè tegnendo d'ocio sui [[Special:Watchlist|osservati speciali]] le xe in '''grasseto'''.",
+'recentchangeslinked-page'     => 'Nome de la pagina:',
+'recentchangeslinked-to'       => 'Mostra le modifiche su le pagine ligà a la pagina data.',
 
 # Upload
 'upload'                      => 'Carga su un file',
@@ -1207,6 +1211,7 @@ La [http://meta.wikimedia.org/wiki/Help:Job_queue coa] la contien '''\$7''' pro�
 'deadendpages'            => 'Pàxene senza uscita',
 'deadendpagestext'        => 'Le pagine indicà de seguito no le gà colegamenti verso altre pagine de {{SITENAME}}.',
 'protectedpages'          => 'Pagine protete',
+'protectedpages-indef'    => 'Solo le protezion infinìe',
 'protectedpagestext'      => 'De seguito vien presentà un elenco de pagine protete, che no se pol modificar o spostar',
 'protectedpagesempty'     => 'Al momento no ghe xe pagine protete',
 'protectedtitles'         => 'Titoli proteti',
@@ -1443,7 +1448,7 @@ Le impostazion atuali par la pagina le xe <strong>$1</strong>:',
 'restriction-type'            => 'Parmesso:',
 'restriction-level'           => 'Livel de restrizion',
 'minimum-size'                => 'Dimension minima (in byte)',
-'maximum-size'                => 'Dimension massima',
+'maximum-size'                => 'Dimension massima:',
 'pagesize'                    => '(byte)',
 
 # Restrictions (nouns)
@@ -2374,5 +2379,15 @@ Inserissi el nome del file senza el prefisso \"{{ns:image}}:\"",
 'fileduplicatesearch-info'     => '$1 × $2 pixel<br />Dimension: $3<br />Tipo MIME: $4',
 'fileduplicatesearch-result-1' => 'No ghe xe duplicati conpagni del file "$1".',
 'fileduplicatesearch-result-n' => 'Ghe xe {{PLURAL:$2|un duplicato conpagno|$2 duplicati conpagni}} al file "$1".',
+
+# Special:SpecialPages
+'specialpages-group-maintenance' => 'Resoconti de manutenzion',
+'specialpages-group-other'       => 'Altre pagine speciali',
+'specialpages-group-login'       => 'Login / registrazion',
+'specialpages-group-changes'     => 'Ultime modifiche e registri',
+'specialpages-group-users'       => 'Utenti e diriti',
+'specialpages-group-needy'       => 'Pagine che ga bisogno de laori',
+'specialpages-group-highuse'     => 'Pagine doparà assè',
+'specialpages-group-permissions' => 'Permessi utenti',
 
 );

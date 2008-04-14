@@ -612,6 +612,7 @@ $messages = array(
 # Recent changes linked
 'recentchangeslinked'       => 'اړونده بدلونونه',
 'recentchangeslinked-title' => '"$1" ته اړونده بدلونونه',
+'recentchangeslinked-page'  => 'د مخ نوم:',
 
 # Upload
 'upload'               => 'دوتنه پورته کول',
@@ -804,6 +805,9 @@ $messages = array(
 'listusersfrom'      => 'هغه کارونکي ښکاره کړه چې نومونه يې پېلېږي په:',
 'listusers-submit'   => 'ښکاره کول',
 'listusers-noresult' => 'هېڅ کوم کارونکی و نه موندل شو.',
+
+# Special:Listgrouprights
+'listgrouprights-group' => 'ډله',
 
 # E-mail user
 'mailnologin'     => 'هېڅ کومه لېږل شوې پته نشته',
@@ -1096,7 +1100,7 @@ please be sure you understand the consequences of this before proceeding.",
 'noimages'              => 'د کتلو لپاره څه نشته.',
 'ilsubmit'              => 'لټون',
 'bydate'                => 'د نېټې له مخې',
-'sp-newimages-showfrom' => 'هغه نوي انځورونه چې په $1 پيلېږي ښکاره کول',
+'sp-newimages-showfrom' => 'هغه نوې دوتنې چې په $1 په $2 بجو پيلېږي ښکاره کول',
 
 # Video information, used by Language::formatTimePeriod() to format lengths in the above messages
 'hours-abbrev' => 'ساعتونه',

@@ -719,7 +719,7 @@ An ibang mga administrador sa ining wiki pwede pang maghiling kan mga nakatagong
 'viewprevnext'          => 'Hilingón ($1) ($2) ($3)',
 'searchall'             => 'gabos',
 'showingresults'        => "Pigpapahiling sa babâ sagkod sa {{PLURAL:$1|'''1''' resulta|'''$1''' mga resulta}} poon sa #'''$2'''.",
-'showingresultsnum'     => "Pigpapahiling sa babâ {{KADKLAN:$3|'''1''' resulta|'''$3''' mga resulta}} poon sa #'''$2'''.",
+'showingresultsnum'     => "Pigpapahiling sa babâ {{PLURAL:$3|'''1''' resulta|'''$3''' mga resulta}} poon sa #'''$2'''.",
 'nonefound'             => "'''Pagiromdom''': An mga prakasong paghanap pirmeng kawsa kan paghanap kan mga tataramon na komún arog kan \"may\" asin \"sa\", huli ta an mga ini dai nakaíndise, o sa pagpili kan sobra sa sarong tataramon (an mga páhina sana na igwá kan gabos na pighahanap na tataramon an maipapahiling sa resulta).",
 'powersearch'           => 'Hanápon',
 'powersearchtext'       => 'Hanápon sa mga ngaran-espacio:<br />$1<br />$2 Ilista an mga redirekta<br />Hanápon an $3 $9',
@@ -1305,7 +1305,7 @@ Ini an mga presenteng pwesto kan páhina <strong>$1</strong>:",
 'restriction-type'            => 'Permiso:',
 'restriction-level'           => 'Tángga kan restriksyón:',
 'minimum-size'                => 'Pinaka sadit na sukol',
-'maximum-size'                => 'Pinaka dakula na sukol',
+'maximum-size'                => 'Pinaka dakula na sukol:',
 'pagesize'                    => '(oktetos)',
 
 # Restrictions (nouns)

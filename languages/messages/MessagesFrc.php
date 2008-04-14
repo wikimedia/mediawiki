@@ -10,8 +10,6 @@
  * @author SPQRobin
  */
 
-
-
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Souligner les liens:',
@@ -193,7 +191,7 @@ $messages = array(
 'redirectedfrom'    => '(Envoyé ici de la page $1)',
 'redirectpagesub'   => 'Page de redirection',
 'lastmodifiedat'    => 'Cette page a été changée le $1 à $2.', # $1 date, $2 time
-'viewcount'         => 'Cette page a été visitée $1 fois.',
+'viewcount'         => 'Cette page a été visitée {{PLURAL:$1|$1 fois|$1 fois}}.',
 'protectedpage'     => 'Page protégée',
 'jumpto'            => 'Aller à:',
 'jumptosearch'      => 'charcher',

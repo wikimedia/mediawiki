@@ -304,6 +304,7 @@ $messages = array(
 'youhavenewmessagesmulti' => 'Vi havas novajn mesaĝojn ĉe $1',
 'editsection'             => '<small>redaktu</small>',
 'editold'                 => 'redaktu',
+'viewsourceold'           => 'rigardu fonttekston',
 'editsectionhint'         => 'Redaktu sekcion: $1',
 'toc'                     => 'Enhavo',
 'showtoc'                 => 'montru',
@@ -762,7 +763,8 @@ Aliaj administrantoj cxe {{SITENAME}} plu povos aliri la kasxitan entenon kaj re
 
 # Suppression log
 'suppressionlog'     => 'Loglibro pri subigado',
-'suppressionlogtext' => 'Jen listo de la plej lastaj forigoj kaj forbaroj pri enhavo kaŝita per administrantoj. Rigardu la [[Special:Ipblocklist|IP-forbarliston]] por la listo de nune operaciaj forbaroj kaj forigoj.',
+'suppressionlogtext' => 'Jen listo de forigoj kaj forbaroj pri enhavo kaŝita per administrantoj. 
+Rigardu la [[Special:Ipblocklist|IP-forbarliston]] por la listo de nune operaciaj forbaroj kaj forigoj.',
 
 # History merging
 'mergehistory'                     => 'Kunigu historiojn de paĝoj',
@@ -985,7 +987,10 @@ Nemarkita markbutono signifas ke la uzanto ne estas in tiu grupo.',
 'recentchangeslinked'          => 'Rilataj paĝoj',
 'recentchangeslinked-title'    => 'Ŝanĝoj rilataj al "$1"',
 'recentchangeslinked-noresult' => 'Neniuj sxangxoj en ligitaj pagxoj dum la donata periodo.',
-'recentchangeslinked-summary'  => "Ĉi tiu speciala paĝo listigas la lastajn ŝanĝojn en ligitaj paĝoj. Paĝoj en via atentaro estas '''grasaj'''.",
+'recentchangeslinked-summary'  => "Jen listo de ŝanĝoj faritaj lastatempe al paĝoj ligitaj el specifa paĝo (aŭ al membroj de specifa kategorio).
+Paĝoj en [[Special:Watchlist|via atentaro]] estas '''grasaj'''.",
+'recentchangeslinked-page'     => 'Nomo de paĝo:',
+'recentchangeslinked-to'       => 'Montru ŝanĝojn al paĝoj ligitaj al la specifa paĝo anstataŭe.',
 
 # Upload
 'upload'                      => 'Alŝutu dosieron',
@@ -1239,6 +1244,7 @@ La nuna longeco de la [http://meta.wikimedia.org/wiki/Help:Job_queue laborenda v
 'deadendpages'            => 'Seneliraj paĝoj',
 'deadendpagestext'        => 'La sekvaj paĝoj ne ligas al aliaj paĝoj en {{SITENAME}}.',
 'protectedpages'          => 'Protektitaj paĝoj',
+'protectedpages-indef'    => 'Nur ĉiamaj protektaĵoj',
 'protectedpagestext'      => 'La sekvaj paĝoj estas protektitaj kontraŭ movigo aŭ redaktado',
 'protectedpagesempty'     => 'Neniuj paĝoj estas momente protektitaj kun ĉi tiuj parametroj.',
 'protectedtitles'         => 'Protektitaj titoloj',
@@ -1330,6 +1336,8 @@ komprenata kiel rekomendo aŭ reklamo.',
 'emailccsubject'  => 'Kopio de via mesaĝo al $1: $2',
 'emailsent'       => 'Retmesaĝo sendita',
 'emailsenttext'   => 'Via retmesaĝo estas sendita.',
+'emailuserfooter' => "--
+Ĉi tiu retpoŝto estis sendita uzante la 'retpoŝtu uzanton' eco de {{SITENAME}}",
 
 # Watchlist
 'watchlist'            => 'Atentaro',
@@ -1477,7 +1485,7 @@ Jen la aktualaj valoroj por la paĝo <strong>$1</strong>:',
 'restriction-type'            => 'Permeso:',
 'restriction-level'           => 'Nivelo de limigo:',
 'minimum-size'                => 'Minimuma grandeco',
-'maximum-size'                => 'Maksimuma grandeco',
+'maximum-size'                => 'Maksimuma grandeco:',
 'pagesize'                    => '(bitokoj)',
 
 # Restrictions (nouns)
@@ -1556,18 +1564,21 @@ $1',
 'sp-contributions-submit'      => 'Serĉu',
 
 # What links here
-'whatlinkshere'       => 'Ligiloj ĉi tien',
-'whatlinkshere-title' => 'Pagxoj ligantaj al $1',
-'whatlinkshere-page'  => 'Paĝo:',
-'linklistsub'         => '(Listo de ligiloj)',
-'linkshere'           => "La jenaj paĝoj ligas al '''[[:$1]]''':",
-'nolinkshere'         => "Neniu paĝo ligas al '''[[:$1]]'''.",
-'nolinkshere-ns'      => "Neniuj paĝoj ligas al '''[[:$1]]''' en la elektita nomspaco.",
-'isredirect'          => 'alidirekto',
-'istemplate'          => 'inkludo',
-'whatlinkshere-prev'  => '{{PLURAL:$1|antaŭa|antaŭa $1}}',
-'whatlinkshere-next'  => '{{PLURAL:$1|posta|posta $1}}',
-'whatlinkshere-links' => '← ligiloj',
+'whatlinkshere'            => 'Ligiloj ĉi tien',
+'whatlinkshere-title'      => 'Pagxoj ligantaj al $1',
+'whatlinkshere-page'       => 'Paĝo:',
+'linklistsub'              => '(Listo de ligiloj)',
+'linkshere'                => "La jenaj paĝoj ligas al '''[[:$1]]''':",
+'nolinkshere'              => "Neniu paĝo ligas al '''[[:$1]]'''.",
+'nolinkshere-ns'           => "Neniuj paĝoj ligas al '''[[:$1]]''' en la elektita nomspaco.",
+'isredirect'               => 'alidirekto',
+'istemplate'               => 'inkludo',
+'whatlinkshere-prev'       => '{{PLURAL:$1|antaŭa|antaŭa $1}}',
+'whatlinkshere-next'       => '{{PLURAL:$1|posta|posta $1}}',
+'whatlinkshere-links'      => '← ligiloj',
+'whatlinkshere-hideredirs' => '$1 alidirektiloj',
+'whatlinkshere-hidetrans'  => '$1 transinkluzivaĵoj',
+'whatlinkshere-hidelinks'  => '$1 ligiloj',
 
 # Block/unblock
 'blockip'                     => 'Forbaru uzanton/IP-adreson',
@@ -2414,5 +2425,16 @@ Enigu la dosiernomon sen la "{{ns:image}}:" prefikso.',
 'fileduplicatesearch-info'     => '$1 × $2 rastrumero<br />Dosiera pezo: $3<br />MIME-tipo: $4',
 'fileduplicatesearch-result-1' => 'La dosiero "$1" ne havas identan duplikaton.',
 'fileduplicatesearch-result-n' => 'La dosiero "$1" havas {{PLURAL:$2|1 identan duplikaton|$2 identajn duplikatojn}}.',
+
+# Special:SpecialPages
+'specialpages-group-maintenance' => 'Raportoj pri prizorgado',
+'specialpages-group-other'       => 'Aliaj specialaj paĝoj',
+'specialpages-group-login'       => 'Ensalutu / Kreu novan konton',
+'specialpages-group-changes'     => 'Lastaj ŝanĝoj kaj loglibroj',
+'specialpages-group-media'       => 'Raportoj el gazetoj',
+'specialpages-group-users'       => 'Uzantoj kaj rajtoj',
+'specialpages-group-needy'       => 'Paĝoj bezonantaj laboron',
+'specialpages-group-highuse'     => 'Plej uzitaj paĝoj',
+'specialpages-group-permissions' => 'Permesoj de uzantoj',
 
 );

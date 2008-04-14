@@ -1348,7 +1348,7 @@ Dyma'r gosodiadau diogelu cyfredol ar gyfer y dudalen <strong>$1</strong>:",
 'restriction-type'            => 'Cyfyngiad:',
 'restriction-level'           => 'Lefel cyfyngu:',
 'minimum-size'                => 'Maint lleiaf',
-'maximum-size'                => 'Maint mwyaf',
+'maximum-size'                => 'Maint mwyaf:',
 'pagesize'                    => '(beit)',
 
 # Restrictions (nouns)

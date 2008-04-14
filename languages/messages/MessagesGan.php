@@ -1273,7 +1273,7 @@ $NEWPAGE
 'restriction-type'            => '許可權:',
 'restriction-level'           => '限制級別:',
 'minimum-size'                => '最細碼子',
-'maximum-size'                => '最大碼子',
+'maximum-size'                => '最大碼子:',
 'pagesize'                    => '（字節）',
 
 # Restrictions (nouns)

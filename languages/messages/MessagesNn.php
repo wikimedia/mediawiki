@@ -497,6 +497,7 @@ $messages = array(
 'youhavenewmessagesmulti' => 'Du har nye meldingar på $1',
 'editsection'             => 'endre',
 'editold'                 => 'endre',
+'viewsourceold'           => 'vis kjeldetekst',
 'editsectionhint'         => 'Endre bolk: $1',
 'toc'                     => 'Innhaldsliste',
 'showtoc'                 => 'vis',
@@ -1015,7 +1016,7 @@ Ver merksam på at registra deira kan vera utdaterte.',
 'math_bad_output'          => 'Kan ikkje skrive til eller laga mattemappe',
 'math_notexvc'             => 'Manglar texvc-program; sjå math/README for konfigurasjon.',
 'prefs-personal'           => 'Brukaropplysningar',
-'prefs-rc'                 => 'Siste endringar og spirer',
+'prefs-rc'                 => 'Siste endringar',
 'prefs-watchlist'          => 'Overvakingsliste',
 'prefs-watchlist-days'     => 'Tal på dagar som skal visast i overvakingslista:',
 'prefs-watchlist-edits'    => 'Talet på endringar som vert viste i den utvida overvakingslista:',
@@ -1130,6 +1131,7 @@ Ver merksam på at registra deira kan vera utdaterte.',
 'recentchangeslinked-title'    => 'Endringar relaterte til "$1"',
 'recentchangeslinked-noresult' => 'Det er ikkje gjort endringar på sidene som var lenkja hit i den oppgjevne perioden.',
 'recentchangeslinked-summary'  => "Denne spesialsida inneheld alle endringane som er gjort på sider som vert lenkja til frå denne. Dei av sidene du har på overvakingslista di er '''utheva'''.",
+'recentchangeslinked-page'     => 'Sidnamn:',
 
 # Upload
 'upload'                      => 'Last opp fil',
@@ -1609,7 +1611,7 @@ Her er dei noverande innstillingane for sida <strong>$1</strong>:',
 'restriction-type'            => 'Tilgang:',
 'restriction-level'           => 'Avgrensingsnivå:',
 'minimum-size'                => 'Minimumstorleik',
-'maximum-size'                => 'Maksimumstorleik',
+'maximum-size'                => 'Maksimumstorleik:',
 'pagesize'                    => '(byte)',
 
 # Restrictions (nouns)
@@ -1681,18 +1683,21 @@ $1',
 'sp-contributions-submit'      => 'Søk',
 
 # What links here
-'whatlinkshere'       => 'Lenkjer hit',
-'whatlinkshere-title' => 'Sider som har lenkje til $1',
-'whatlinkshere-page'  => 'Side:',
-'linklistsub'         => '(Liste over lenkjer)',
-'linkshere'           => "Desse sidene har lenkjer til '''[[:$1]]''':",
-'nolinkshere'         => "Inga side har lenkje '''[[:$1]]'''.",
-'nolinkshere-ns'      => "Ingen sider har lenkje til '''[[:$1]]''' i det valde namnerommet.",
-'isredirect'          => 'omdirigeringsside',
-'istemplate'          => 'inkludert som mal',
-'whatlinkshere-prev'  => '{{PLURAL:$1|førre|førre $1}}',
-'whatlinkshere-next'  => '{{PLURAL:$1|neste|neste $1}}',
-'whatlinkshere-links' => '← lenkjer',
+'whatlinkshere'            => 'Lenkjer hit',
+'whatlinkshere-title'      => 'Sider som har lenkje til $1',
+'whatlinkshere-page'       => 'Side:',
+'linklistsub'              => '(Liste over lenkjer)',
+'linkshere'                => "Desse sidene har lenkjer til '''[[:$1]]''':",
+'nolinkshere'              => "Inga side har lenkje '''[[:$1]]'''.",
+'nolinkshere-ns'           => "Ingen sider har lenkje til '''[[:$1]]''' i det valde namnerommet.",
+'isredirect'               => 'omdirigeringsside',
+'istemplate'               => 'inkludert som mal',
+'whatlinkshere-prev'       => '{{PLURAL:$1|førre|førre $1}}',
+'whatlinkshere-next'       => '{{PLURAL:$1|neste|neste $1}}',
+'whatlinkshere-links'      => '← lenkjer',
+'whatlinkshere-hideredirs' => '$1 omdirigeringer',
+'whatlinkshere-hidetrans'  => '$1 inkluderinger',
+'whatlinkshere-hidelinks'  => '$1 lenkjer',
 
 # Block/unblock
 'blockip'                     => 'Blokker brukar',
@@ -2248,6 +2253,7 @@ Dei andre felta er gøymde som standard.
 
 'exif-contrast-0' => 'Normal',
 'exif-contrast-1' => 'Mjuk',
+'exif-contrast-2' => 'Hard',
 
 'exif-saturation-0' => 'Normal',
 'exif-saturation-1' => 'Låg metting',
@@ -2255,6 +2261,7 @@ Dei andre felta er gøymde som standard.
 
 'exif-sharpness-0' => 'Normal',
 'exif-sharpness-1' => 'Mjuk',
+'exif-sharpness-2' => 'Hard',
 
 'exif-subjectdistancerange-0' => 'Ukjent',
 'exif-subjectdistancerange-1' => 'Makro',
@@ -2449,7 +2456,13 @@ $1',
 # Special:FileDuplicateSearch
 'fileduplicatesearch-filename' => 'Filnamn:',
 'fileduplicatesearch-submit'   => 'Søk',
+'fileduplicatesearch-info'     => '$1 × $2 piksler<br />Filstorleik: $3<br />MIME-type: $4',
 'fileduplicatesearch-result-1' => 'Det er ingen kopiar av fila «$1».',
 'fileduplicatesearch-result-n' => 'Det er {{PLURAL:$2|éin kopi|$2 kopiar}} av fila «$1».',
+
+# Special:SpecialPages
+'specialpages-group-other' => 'Andre spesialsider',
+'specialpages-group-login' => 'Innlogging / registrering',
+'specialpages-group-needy' => 'Sider som trengjer arbeid',
 
 );

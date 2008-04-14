@@ -1096,7 +1096,8 @@ Uma caixa de selecção desseleccionada significa que o utilizador não se encon
 'recentchangeslinked-title'    => 'Alterações relacionadas com "$1"',
 'recentchangeslinked-noresult' => 'Não ocorreram alterações em páginas relacionadas no intervalo de tempo fornecido.',
 'recentchangeslinked-summary'  => "Esta página especial lista as alterações mais recentes de páginas que possuam um link a outra. Páginas que estejam em sua lista de artigos vigiados são exibidas em '''negrito'''.",
-'recentchangeslinked-page'     => 'Nome da página',
+'recentchangeslinked-page'     => 'Nome da página:',
+'recentchangeslinked-to'       => 'Mostrar alterações a páginas relacionadas com a página fornecida',
 
 # Upload
 'upload'                      => 'Carregar ficheiro',
@@ -1362,6 +1363,7 @@ O tamanho da [http://meta.wikimedia.org/wiki/Help:Job_queue fila de tarefas] é 
 'deadendpages'            => 'Páginas sem saída',
 'deadendpagestext'        => 'As seguintes páginas não contêm hiperligações para outras páginas nesta wiki.',
 'protectedpages'          => 'Páginas protegidas',
+'protectedpages-indef'    => 'Protecções infinitas apenas',
 'protectedpagestext'      => 'As seguintes páginas encontram-se protegidas contra edições ou movimentações',
 'protectedpagesempty'     => 'Não existem páginas, neste momento, protegidas com tais parâmetros.',
 'protectedtitles'         => 'Títulos protegidos',

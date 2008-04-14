@@ -496,7 +496,7 @@ Ignoraţi acest mesaj, dacă acea creare a fost o greşeală.',
 'nowiki_sample'   => 'Introduceţi text neformatat aici',
 'nowiki_tip'      => 'Ignoră formatarea wiki',
 'image_sample'    => 'Exemplu.jpg',
-'image_tip'       => 'Inserează imagine',
+'image_tip'       => 'Fişier inserat',
 'media_sample'    => 'Exemplu.ogg',
 'media_tip'       => 'Legătură la fişier',
 'sig_tip'         => 'Semnătura dvs. datată',
@@ -615,10 +615,14 @@ ceea ce înseamnă mai mult decât maximum de $2 kilobytes. Salvarea nu este pos
 'template-semiprotected'    => '(semi-protejat)',
 'edittools'                 => '<!-- Acest text va apărea după caseta de editare şi formularele de trimitere fişier. -->',
 'nocreatetitle'             => 'Creare de pagini limitată',
-'nocreatetext'              => 'Acest site a restricţionat abilitatea de creare a paginilor noi. Puteţi edita o pagină deja existentă sau puteţi să vă [[Special:Userlogin|autentificaţi/creaţi]] un cont de utilizator.',
+'nocreatetext'              => '{{SITENAME}} a restricţionat abilitatea de a crea pagini noi.
+Puteţi edita o pagină deja existentă sau puteţi să vă [[Special:Userlogin|autentificaţi/creaţi]] un cont de utilizator.',
 'nocreate-loggedin'         => 'Nu ai permisiunea să creezi pagini noi pe această wiki.',
 'permissionserrors'         => 'Erori de permisiune',
 'permissionserrorstext'     => 'Nu aveţi permisiune pentru a face acest lucru, din următoarele {{PLURAL:$1|motiv|motive}}:',
+'recreate-deleted-warn'     => "'''Atenție: Recreaţi o pagină care a fost ştearsă anterior.'''
+
+Pentru a verifica dacă recrearea paginii este într-adevăr oportună iată aici jurnalul ştergerilor:",
 
 # "Undo" feature
 'undo-success' => 'Modificarea poate fi anulată. Verificaţi diferenţa de dedesupt şi apoi salvaţi pentru a termina anularea modificării.',
@@ -723,7 +727,7 @@ Alţi administratori de pe acest wiki vor putea accesa conţinutul ascuns şi î
 'showingresults'        => 'Mai jos apar <b>$1</b> rezultate începând cu #<b>$2</b>.',
 'showingresultsnum'     => 'Mai jos apar <b>$3</b> rezultate începând cu #<b>$2</b>.',
 'nonefound'             => "'''Notă''': căutările nereuşite sunt în general datorate căutării unor cuvinte prea comune care nu sunt indexate, sau cautărilor a mai multe cuvinte (numai articolele care conţin ''toate'' cuvintele specificate apar ca rezultate).",
-'powersearch'           => 'Caută',
+'powersearch'           => 'Căutare avansată',
 'powersearchtext'       => 'Caută în secţiunile:<br />
 $1<br />
 $2 Redirecţionări<br />
@@ -834,6 +838,7 @@ Căutări după $3 $9',
 'nchanges'                          => '$1 {{PLURAL:$1|modificare|modificări}}',
 'recentchanges'                     => 'Schimbări recente',
 'recentchangestext'                 => 'Schimbări recente ... (Log)',
+'recentchanges-feed-description'    => 'Urmăreşte cele mai recente schimbări folosind acest flux.',
 'rcnote'                            => 'Mai jos se află ultimele <strong>$1</strong> modificări din ultimele <strong>$2</strong> zile sau din <strong>$3</strong>.',
 'rcnotefrom'                        => 'Dedesubt sunt modificările de la <b>$2</b> (maxim <b>$1</b> de modificări sunt afişate - schimbă numărul maxim de linii alegând altă valoare mai jos).',
 'rclistfrom'                        => 'Arată modificările începând de la $1',
@@ -861,6 +866,10 @@ $3',
 'recentchangeslinked'          => 'Modificări corelate',
 'recentchangeslinked-title'    => 'Modificări legate de "$1"',
 'recentchangeslinked-noresult' => 'Nici o schimbare la paginile legate în perioada dată.',
+'recentchangeslinked-summary'  => "Lista de mai jos cuprinde ultimele modificări operate asupra paginilor cu legături ''de la'' pagina dată.
+Însă, dacă pagina dată este o categorie, afişează schimbările recente asupra paginilor conţinute în aceasta.
+
+Paginile pe care le [[Special:Watchlist|urmăriţi]] apar în '''aldine'''.",
 
 # Upload
 'upload'                      => 'Trimite fişier',
@@ -1263,6 +1272,10 @@ Ultima editare a fost făcută de către [[User:$3|$3]] ([[User talk:$3|discuţi
 'protect_expiry_old'          => 'Timpul de expirare este în trecut.',
 'protect-unchain'             => 'Deblochează permisiunile de mutare',
 'protect-text'                => 'Poţi vizualiza sau modifica nivelul de protecţie pentru pagina <strong><nowiki>$1</nowiki></strong>.',
+'protect-locked-access'       => 'Contul dumneavoastră nu are dreptul de a schimba nivelurile de protejare.
+Aici sunt setările curente pentru pagina <strong>$1</strong>:',
+'protect-cascadeon'           => 'Această pagină este protejată deoarece este inclusă în {{PLURAL:$1|următoarea pagină, ce are|următoarele pagini ce au}} activată protejarea la modificare în cascadă.
+Puteţi schimba nivelul de protejare al acestei pagini, dar asta nu va afecta protecţia în cascadă.',
 'protect-default'             => '(standard)',
 'protect-fallback'            => 'Cere permisiunea "$1"',
 'protect-level-autoconfirmed' => 'Blochează utilizatorii neînregistraţi',
@@ -1274,7 +1287,7 @@ Ultima editare a fost făcută de către [[User:$3|$3]] ([[User talk:$3|discuţi
 'restriction-type'            => 'Permisiune:',
 'restriction-level'           => 'Nivel de restricţie:',
 'minimum-size'                => 'Mărime minimă',
-'maximum-size'                => 'Mărime maximă',
+'maximum-size'                => 'Mărime maximă:',
 'pagesize'                    => '(octeţi)',
 
 # Restrictions (nouns)
@@ -1328,6 +1341,7 @@ $1',
 'nocontribs'    => 'Nu a fost găsită nici o modificare care să satisfacă acest criteriu.',
 'uctop'         => '(sus)',
 'month'         => 'Din luna (şi dinainte):',
+'year'          => 'Începând cu anul (şi precedenţii):',
 
 'sp-contributions-newbies'     => 'Arată doar contribuţiile conturilor noi',
 'sp-contributions-newbies-sub' => 'Pentru începători',
@@ -1689,6 +1703,7 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 'file-info'            => '(mărime fişier: $1, tip MIME: $2)',
 'file-info-size'       => '($1 × $2 pixeli, mărime fişier: $3, tip MIME: $4)',
 'file-nohires'         => '<small>Rezoluţii mai mari nu sunt disponibile.</small>',
+'svg-long-desc'        => '(fişier SVG, cu dimensiunea nominală de $1 × $2 pixeli, mărime fişier: $3)',
 'show-big-image'       => 'Măreşte rezoluţia imaginii',
 'show-big-image-thumb' => '<small>Mărimea acestei previzualizări: $1 × $2 pixeli</small>',
 
@@ -1701,11 +1716,28 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 'bydate'                => 'după dată',
 'sp-newimages-showfrom' => 'Arată imaginile noi începând cu $1',
 
+# Bad image list
+'bad_image_list' => 'Formatul este următorul:
+
+Numai elementele unei liste sunt luate în considerare. (Acestea sunt linii ce încep cu *)
+
+Prima legătură de pe linie trebuie să fie spre un fişier defectuos.
+
+Orice legături ce urmează pe aceeaşi linie sunt considerate excepţii, adică pagini unde fişierul poate apărea inclus direct.',
+
 # Metadata
 'metadata'          => 'Informaţii',
 'metadata-help'     => 'Acest fişier conţine informaţii suplimentare, introduse probabil de aparatul fotografic digital sau scannerul care l-a generat. Dacă fişierul a fost modificat între timp, este posibil ca unele detalii să nu mai fie valabile.',
 'metadata-expand'   => 'Afişează detalii suplimentare',
 'metadata-collapse' => 'Ascunde detalii suplimentare',
+'metadata-fields'   => 'Datele suplimentare EXIF listate aici vor fi incluse în pagina dedicată imaginii când tabelul cu metadata este restrâns.
+Altele vor fi ascunse implicit.
+* make
+* model
+* datetimeoriginal
+* exposuretime
+* fnumber
+* focallength', # Do not translate list items
 
 # EXIF tags
 'exif-imagewidth'                  => 'Lăţime',
@@ -2057,6 +2089,8 @@ Vă rugăm să confirmaţi faptul că într-adevăr doriţi să recreaţi acest 
 
 # Watchlist editing tools
 'watchlisttools-view' => 'Vizualizează schimbările relevante',
+'watchlisttools-edit' => 'Vezi şi modifică lista paginilor urmărite',
+'watchlisttools-raw'  => 'Modifică lista neprelucrată a paginilor urmărite',
 
 # Special:Version
 'version' => 'Versiune', # Not used as normal message but as header for the special page itself

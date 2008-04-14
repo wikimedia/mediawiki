@@ -290,6 +290,7 @@ $messages = array(
 'youhavenewmessagesmulti' => 'U het nuwe boodskappe op $1',
 'editsection'             => 'wysig',
 'editold'                 => 'wysig',
+'viewsourceold'           => 'bekyk bronteks',
 'editsectionhint'         => 'Wysig afdeling: $1',
 'toc'                     => 'Inhoud',
 'showtoc'                 => 'wys',
@@ -496,6 +497,7 @@ moet die instruksies in bogenoemde pos gevolg word om te bevestig dat die adres 
 'savearticle'              => 'Stoor bladsy',
 'preview'                  => 'Voorskou',
 'showpreview'              => 'Wys voorskou',
+'showlivepreview'          => 'Lewendige voorskou',
 'showdiff'                 => 'Wys veranderings',
 'anoneditwarning'          => "'''Waarskuwing:''' Aangesien u nie aangeteken is nie, sal u IP-adres in dié blad se wysigingsgeskiedenis gestoor word.",
 'missingsummary'           => "'''Onthou:''' Geen opsomming van die wysiging is verskaf nie. As \"Stoor\" weer geklik word, word die wysiging sonder opsomming gestoor.",
@@ -513,14 +515,17 @@ Die blokkering is deur $1 gedoen. Die rede gegee is ''$2''.
 U mag $1 of een van die ander [[{{MediaWiki:Grouppage-sysop}}|administreerders]] kontak om dit te bespreek.
 U kan nie die 'e-pos hierdie gebruiker' opsie gebruik tensy 'n geldige e-pos adres gespesifiseer is in U [[Special:Preferences|rekening voorkeure]] en U is nie geblokkeer om dit te gebruik nie. U huidige IP-adres is $3, en die blokkering ID is #$5. Sluit asseblief een of albei hierdie verwysings in by enige navrae.",
 'blockednoreason'          => 'geen rede gegeef nie',
+'blockedoriginalsource'    => "Die bronteks van '''$1''' word onder gewys:",
 'whitelistedittitle'       => 'Inteken benodig om te redigeer',
 'whitelistedittext'        => 'U moet $1 om bladsye te wysig.',
 'whitelistreadtitle'       => 'Inteken benodig om te bekyk',
+'whitelistreadtext'        => 'U moet [[Special:Userlogin|inteken]] om bladsye te lees.',
 'whitelistacctitle'        => "U kan nie 'n rekening te skep nie",
 'confirmedittitle'         => 'E-pos-bevestiging nodig om te redigeer',
 'confirmedittext'          => 'U moet u e-posadres bevestig voor u bladsye wysig. Verstel en bevestig asseblief u e-posadres by u [[Special:Preferences|voorkeure]].',
 'loginreqtitle'            => 'Inteken Benodig',
 'loginreqlink'             => 'teken in',
+'loginreqpagetext'         => 'U moet $1 om ander bladsye te bekyk.',
 'accmailtitle'             => 'Wagwoord gestuur.',
 'accmailtext'              => "Die wagwoord van '$1' is gestuur aan $2.",
 'newarticle'               => '(Nuut)',
@@ -593,18 +598,21 @@ Probeer asseblief die bladsy verkort en die detail na subartikels skuif sodat di
 'historyempty'        => '(leeg)',
 
 # Revision feed
-'history-feed-title' => 'Weergawegeskiedenis',
+'history-feed-title'          => 'Weergawegeskiedenis',
+'history-feed-item-nocomment' => '$1 by $2', # user at time
 
 # Revision deletion
-'rev-deleted-comment'    => '(opsomming geskrap)',
-'rev-deleted-user'       => '(gebruikersnaam geskrap)',
-'rev-delundel'           => 'wys/versteek',
-'revdelete-hide-comment' => 'Versteek wysigopsomming',
-'pagehist'               => 'Bladsy geskiedenis',
-'deletedhist'            => 'Verwyderde geskiedenis',
-'revdelete-content'      => 'inhoud',
-'revdelete-summary'      => 'redigeringsopsomming',
-'revdelete-uname'        => 'gebruikersnaam',
+'rev-deleted-comment'     => '(opsomming geskrap)',
+'rev-deleted-user'        => '(gebruikersnaam geskrap)',
+'rev-delundel'            => 'wys/versteek',
+'revisiondelete'          => 'Verwyder/herstel weergawes',
+'revdelete-nooldid-title' => 'Ongeldige teiken weergawe',
+'revdelete-hide-comment'  => 'Versteek wysigopsomming',
+'pagehist'                => 'Bladsy geskiedenis',
+'deletedhist'             => 'Verwyderde geskiedenis',
+'revdelete-content'       => 'inhoud',
+'revdelete-summary'       => 'redigeringsopsomming',
+'revdelete-uname'         => 'gebruikersnaam',
 
 # History merging
 'mergehistory-from'                => 'Bronbladsy:',
@@ -821,7 +829,8 @@ Let asseblief op dat, soos met {{SITENAME}} bladsye, mag ander jou gelaaide lêe
 'destfilename'      => 'Teikenlêernaam:',
 'watchthisupload'   => 'Hou hierdie bladsy dop',
 
-'license' => 'Lisensiëring:',
+'license'           => 'Lisensiëring:',
+'license-nopreview' => '(Voorskou nie beskikbaar)',
 
 # Special:Imagelist
 'imagelist_search_for'  => 'Soek vir medianaam:',
@@ -882,10 +891,10 @@ Let asseblief op dat, soos met {{SITENAME}} bladsye, mag ander jou gelaaide lêe
 'randomredirect' => 'Lukrake aanstuur',
 
 # Statistics
-'statistics'    => 'Statistiek',
-'sitestats'     => 'Werfstatistiek',
-'userstats'     => 'Gebruikerstatistiek',
-'sitestatstext' => "Daar is {{PLURAL:\$1|'''1''' bladsy|'n totaal van '''\$1''' bladsye}} in die databasis.
+'statistics'             => 'Statistiek',
+'sitestats'              => 'Werfstatistiek',
+'userstats'              => 'Gebruikerstatistiek',
+'sitestatstext'          => "Daar is {{PLURAL:\$1|'''1''' bladsy|'n totaal van '''\$1''' bladsye}} in die databasis.
 Dit sluit \"bespreek\"-bladsye in, bladsye oor {{SITENAME}}, minimale \"verkorte\"
 bladsye, wegwysbladsye, en ander wat waarskynlik nie as artikels kwalifiseer nie.
 Uitsluitend bogenoemde, is daar {{PLURAL:\$2|'''1''' bladsy|'''\$2''' bladsye}} wat waarskynlik {{PLURAL:\$2|bladsy|bladsye}} met ware inhoud is.
@@ -896,7 +905,8 @@ Uitsluitend bogenoemde, is daar {{PLURAL:\$2|'''1''' bladsy|'''\$2''' bladsye}} 
 Dit werk uit op gemiddeld '''\$5''' veranderings per bladsy, en bladsye word '''\$6''' keer per verandering aangevra.
 
 Die ''[http://meta.wikimedia.org/wiki/Help:Job_queue job queue]''-lengte is '''\$7'''.",
-'userstatstext' => "Daar is {{PLURAL:$1|'''1''' geregistreerde [[Special:Listusers|gebruiker]]|'''$1''' geregistreerde [[Special:Listusers|gebruikers]]}}, waarvan '''$2''' (of '''$4%''') $5 regte het.",
+'userstatstext'          => "Daar is {{PLURAL:$1|'''1''' geregistreerde [[Special:Listusers|gebruiker]]|'''$1''' geregistreerde [[Special:Listusers|gebruikers]]}}, waarvan '''$2''' (of '''$4%''') $5 regte het.",
+'statistics-mostpopular' => 'Mees bekykte bladsye',
 
 'disambiguations'     => 'Bladsye wat onduidelikhede opklaar',
 'disambiguationspage' => 'Template:Dubbelsinnig',
@@ -911,6 +921,7 @@ Elke ry bevat skakels na die eerste en die tweede aanstuur, asook die eerste re�
 'brokenredirects-delete' => '(skrap)',
 
 'withoutinterwiki'        => 'Bladsye sonder taalskakels',
+'withoutinterwiki-header' => 'Die volgende bladsye het nie skakels na weergawes in ander tale nie:',
 'withoutinterwiki-submit' => 'Wys',
 
 'fewestrevisions' => 'Artikels met die minste wysigings',
@@ -923,6 +934,7 @@ Elke ry bevat skakels na die eerste en die tweede aanstuur, asook die eerste re�
 'nrevisions'              => '$1 {{PLURAL:$1|weergawe|weergawes}}',
 'nviews'                  => '$1 {{PLURAL:$1|keer|kere}} aangevra',
 'lonelypages'             => 'Weesbladsye',
+'lonelypagestext'         => 'Die volgende bladsye is nie geskakel vanaf ander bladsye in {{SITENAME}} nie:',
 'uncategorizedpages'      => 'Ongekategoriseerde bladsye',
 'uncategorizedcategories' => 'Ongekategoriseerde kategorieë',
 'uncategorizedimages'     => 'Ongekategoriseerde lêers',
@@ -942,7 +954,9 @@ Elke ry bevat skakels na die eerste en die tweede aanstuur, asook die eerste re�
 'shortpages'              => 'Kort bladsye',
 'longpages'               => 'Lang bladsye',
 'deadendpages'            => 'Doodloopbladsye',
+'deadendpagestext'        => 'Die volgende bladsye bevat nie skakels na ander bladsye in {{SITENAME}} nie:',
 'protectedpages'          => 'Beskermde bladsye',
+'protectedpagestext'      => 'Die volgende bladsye is beskerm teen verskuiwing of wysiging:',
 'listusers'               => 'Gebruikerslys',
 'specialpages'            => 'Spesiale bladsye',
 'spheading'               => 'Spesiale bladsye',
@@ -955,6 +969,8 @@ Elke ry bevat skakels na die eerste en die tweede aanstuur, asook die eerste re�
 'unusedcategoriestext'    => 'Die volgende kategoriebladsye bestaan alhoewel geen artikel of kategorie hulle gebruik nie.',
 'notargettitle'           => 'Geen teiken',
 'notargettext'            => "Jy het nie 'n teikenbladsy of gebruiker waarmee hierdie funksie moet werk, gespesifiseer nie.",
+'pager-newer-n'           => '{{PLURAL:$1|nuwer 1|nuwer $1}}',
+'pager-older-n'           => '{{PLURAL:$1|ouer 1|ouer $1}}',
 
 # Book sources
 'booksources'               => 'Boekbronne',
@@ -1042,9 +1058,13 @@ As u die bladsy later van u dophoulys wil verwyder, kliek "verwyder van dophouly
 'watching'   => 'Plaas op dophoulys...',
 'unwatching' => 'Verwyder van dophoulys...',
 
+'enotif_reset'                 => 'Merk alle besoekte bladsye',
 'enotif_newpagetext'           => "Dis 'n nuwe bladsy.",
 'enotif_impersonal_salutation' => '{{SITENAME}} gebruiker',
 'changed'                      => 'verander',
+'created'                      => 'geskep',
+'enotif_lastvisited'           => 'Sien $1 vir alle wysigings sedert U laaste besoek.',
+'enotif_lastdiff'              => 'Sien $1 om hierdie wysiging te bekyk.',
 
 # Delete/protect/revert
 'deletepage'                  => 'Skrap bladsy',
@@ -1085,6 +1105,8 @@ Kyk na $2 vir \'n rekord van onlangse skrappings.',
 'protect-default'             => '(normaal)',
 'protect-level-autoconfirmed' => 'Beskerm teen anonieme wysigings',
 'protect-level-sysop'         => 'Slegs administrateurs',
+'minimum-size'                => 'Minimum grootte',
+'maximum-size'                => 'Maksimum grootte:',
 'pagesize'                    => '(grepe)',
 
 # Restrictions (nouns)
@@ -1092,17 +1114,22 @@ Kyk na $2 vir \'n rekord van onlangse skrappings.',
 'restriction-move' => 'Skuif',
 
 # Undelete
-'undelete'               => 'Herstel geskrapte bladsy',
-'undeletepage'           => 'Bekyk en herstel geskrapte bladsye',
-'undeletepagetext'       => 'Die volgende bladsye is geskrap, maar hulle is nog in die argief en kan herstel word. Die argief kan periodiek skoongemaak word.',
-'undeleterevisions'      => '$1 {{PLURAL:$1|weergawe|weergawes}} in argief',
-'undeletehistory'        => "As jy die bladsy herstel, sal alle weergawes herstel word.
+'undelete'                 => 'Herstel geskrapte bladsy',
+'undeletepage'             => 'Bekyk en herstel geskrapte bladsye',
+'undeletepagetext'         => 'Die volgende bladsye is geskrap, maar hulle is nog in die argief en kan herstel word. Die argief kan periodiek skoongemaak word.',
+'undeleterevisions'        => '$1 {{PLURAL:$1|weergawe|weergawes}} in argief',
+'undeletehistory'          => "As jy die bladsy herstel, sal alle weergawes herstel word.
 As 'n nuwe bladsy met dieselfde naam sedert die skrapping geskep is, sal die herstelde weergawes in die nuwe bladsy se voorgeskiedenis verskyn en die huidige weergawe van die lewendige bladsy sal nie outomaties vervang word nie.",
-'undeletebtn'            => 'Herstel',
-'undeletelink'           => 'herstel',
-'undeletedarticle'       => 'het "$1" herstel',
-'cannotundelete'         => 'Skrapping onsuksesvol; miskien het iemand anders dié bladsy al geskrap.',
-'undelete-search-submit' => 'Soek',
+'undeletebtn'              => 'Herstel',
+'undeletelink'             => 'herstel',
+'undeletedarticle'         => 'het "$1" herstel',
+'undeletedrevisions'       => '{{PLURAL:$1|1 weergawe|$1 weergawes}} herstel',
+'undeletedrevisions-files' => '{{PLURAL:$1|1 weergawe|$1 weergawes}} en {{PLURAL:$2|1 lêer|$2 lêers}} herstel',
+'undeletedfiles'           => '{{PLURAL:$1|1 lêer|$1 lêers}} herstel',
+'cannotundelete'           => 'Skrapping onsuksesvol; miskien het iemand anders dié bladsy al geskrap.',
+'undelete-search-box'      => 'Soek verwyderde bladsye',
+'undelete-search-prefix'   => 'Wys bladsye wat begin met:',
+'undelete-search-submit'   => 'Soek',
 
 # Namespace form on various pages
 'namespace'      => 'Naamruimte:',
@@ -1260,6 +1287,10 @@ Die teikenartikel "[[$1]]" bestaan reeds. Wil u dit skrap om plek te maak vir di
 'import'       => 'Voer bladsye in',
 'importfailed' => 'Intrek onsuksesvol: $1',
 
+# Import log
+'import-logentry-upload-detail'    => '$1 {{PLURAL:$1|weergawe|weergawes}}',
+'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|weergawe|weergawes}} vanaf $2',
+
 # Tooltip help for the actions
 'tooltip-pt-userpage'             => 'My gebruikerbladsy',
 'tooltip-pt-anonuserpage'         => 'Die gebruikerbladsy vir die IP-adres waaronder u redigeer',
@@ -1322,10 +1353,11 @@ Die teikenartikel "[[$1]]" bestaan reeds. Wil u dit skrap om plek te maak vir di
 'common.css' => '/** Gemeenskaplike CSS vir alle omslae */',
 
 # Attribution
-'anonymous' => 'Anonieme gebruiker(s) van {{SITENAME}}',
-'siteuser'  => '{{SITENAME}} gebruiker $1',
-'others'    => 'ander',
-'siteusers' => '{{SITENAME}} gebruiker(s) $1',
+'anonymous'        => 'Anonieme gebruiker(s) van {{SITENAME}}',
+'siteuser'         => '{{SITENAME}} gebruiker $1',
+'lastmodifiedatby' => 'Hierdie bladsy is laaste gewysig $2, $1 deur $3.', # $1 date, $2 time, $3 user
+'others'           => 'ander',
+'siteusers'        => '{{SITENAME}} gebruiker(s) $1',
 
 # Math options
 'mw_math_png'    => 'Gebruik altyd PNG.',
@@ -1361,6 +1393,9 @@ Die teikenartikel "[[$1]]" bestaan reeds. Wil u dit skrap om plek te maak vir di
 # EXIF tags
 'exif-imagewidth'          => 'Breedte',
 'exif-imagelength'         => 'Hoogte',
+'exif-orientation'         => 'Oriëntasie',
+'exif-xresolution'         => 'Horisontale resolusie',
+'exif-yresolution'         => 'Vertikale resolusie',
 'exif-imagedescription'    => 'Beeldtitel',
 'exif-artist'              => 'Bewerker',
 'exif-colorspace'          => 'Kleurruimte',
@@ -1452,6 +1487,12 @@ $1',
 
 # AJAX search
 'articletitles' => "Artikels wat met ''$1'' begin",
+
+# Table pager
+'table_pager_next'  => 'Volgende bladsy',
+'table_pager_prev'  => 'Vorige bladsy',
+'table_pager_first' => 'Eerste bladsy',
+'table_pager_last'  => 'Laaste bladsy',
 
 # Auto-summaries
 'autosumm-blank'   => 'Alle inhoud uit bladsy verwyder',

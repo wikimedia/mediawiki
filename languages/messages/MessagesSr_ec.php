@@ -1543,7 +1543,7 @@ Protect pages included in this page (cascading protection)',
 'restriction-type'            => 'Овлашћење:',
 'restriction-level'           => 'Ниво заштите:',
 'minimum-size'                => 'Мин величина',
-'maximum-size'                => 'Макс величина',
+'maximum-size'                => 'Макс величина:',
 'pagesize'                    => '(бајта)',
 
 # Restrictions (nouns)

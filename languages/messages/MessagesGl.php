@@ -231,7 +231,7 @@ $messages = array(
 'templatepage'      => 'Ver a páxina do modelo',
 'viewhelppage'      => 'Ver a páxina de axuda',
 'categorypage'      => 'Ver páxina de categoría',
-'viewtalkpage'      => 'Ver conversa',
+'viewtalkpage'      => 'Ver a conversa',
 'otherlanguages'    => 'Outras linguas',
 'redirectedfrom'    => '(Redirixido desde $1)',
 'redirectpagesub'   => 'Páxina de redirección',
@@ -698,7 +698,7 @@ Probe a [[{{ns:special}}:Search/{{PAGENAME}}|buscar no wiki]] para atopar as pá
 # Revision deletion
 'rev-deleted-comment'         => '(comentario eliminado)',
 'rev-deleted-user'            => '(nome de usuario eliminado)',
-'rev-deleted-event'           => '(entrada eliminada)',
+'rev-deleted-event'           => '(rexistro de evento eliminado)',
 'rev-deleted-text-permission' => '<div class="mw-warning plainlinks">
 Esta revisión da páxina foi eliminada dos arquivos públicos.
 Pode ampliar detalles no [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} rexistro de borrado].
@@ -748,7 +748,8 @@ Outros administradores de {{SITENAME}} poderán acceder aínda ao contido oculto
 
 # Suppression log
 'suppressionlog'     => 'Rexistro de supresión',
-'suppressionlogtext' => 'Embaixo amósase unha listaxe coas eliminacións e cos bloqueos recentes, que inclúen contido oculto dos administradores. Vexa a [[Special:Ipblocklist|listaxe de enderezos IP bloqueados]] para comprobar as prohibicións e os bloqueos vixentes.',
+'suppressionlogtext' => 'Embaixo amósase unha listaxe coas eliminacións e cos bloqueos recentes, que inclúen contido oculto dos administradores.
+Vexa a [[Special:Ipblocklist|listaxe de enderezos IP bloqueados]] para comprobar as prohibicións e os bloqueos vixentes.',
 
 # History merging
 'mergehistory'                     => 'Fusionar historiais das páxinas',
@@ -797,9 +798,9 @@ Asegúrese de que esta modificación da páxina mantén a continuidade históric
 'notitlematches'        => 'Non coincide ningún título de páxina',
 'textmatches'           => 'O texto da páxina coincide',
 'notextmatches'         => 'Non se atopou o texto en ningunha páxina',
-'prevn'                 => '$1 previas',
+'prevn'                 => '$1 anteriores',
 'nextn'                 => '$1 seguintes',
-'viewprevnext'          => 'Ver ($1) ($2) ($3).',
+'viewprevnext'          => 'Ver as ($1) ($2) ($3)',
 'search-result-size'    => '$1 ({{PLURAL:$2|1 palabra|$2 palabras}})',
 'search-result-score'   => 'Relevancia: $1%',
 'search-redirect'       => '(redirixir $1)',
@@ -965,9 +966,12 @@ Se pola contra non o ten, significa que non pertence.',
 # Recent changes linked
 'recentchangeslinked'          => 'Cambios relacionados',
 'recentchangeslinked-title'    => 'Cambios relacionados con "$1"',
-'recentchangeslinked-noresult' => 'Non se produciron mudanzas nas páxinas vinculadas durante o período solicitado.',
-'recentchangeslinked-summary'  => "Esta páxina especial lista as modificacións recentes nas páxinas vinculadas. As páxinas da súa listaxe de vixilancia aparecen en '''negra'''.",
+'recentchangeslinked-noresult' => 'Non se produciron cambios nas páxinas vinculadas a esta durante o período solicitado.',
+'recentchangeslinked-summary'  => "Esta páxina especial lista as últimas modificacións nas páxinas vinculadas a ela.
+Non obstante, se esta páxina é unha categoría, serán listados os cambios recentes das páxinas que forman parte dela.
+As páxinas da súa [[Special:Watchlist|listaxe de vixilancia]] aparecen en '''negra'''.",
 'recentchangeslinked-page'     => 'Nome da páxina:',
+'recentchangeslinked-to'       => 'Amosar os cambios relacionados das páxinas que ligan coa dada',
 
 # Upload
 'upload'                      => 'Cargar un ficheiro',
@@ -1216,7 +1220,7 @@ Cada ringleira contén ligazóns cara á primeira e segunda redirección, e tam�
 'nmembers'                => '$1 {{PLURAL:$1|páxina|páxinas}}',
 'nrevisions'              => '$1 {{PLURAL:$1|revisión|revisións}}',
 'nviews'                  => '$1 {{PLURAL:$1|vista|vistas}}',
-'specialpage-empty'       => 'Esta páxina está baleira.',
+'specialpage-empty'       => 'Non hai resultados para o que solicitou.',
 'lonelypages'             => 'Páxinas orfas',
 'lonelypagestext'         => 'As seguintes páxinas están illadas, non están enlazadas desde outras páxinas de {{SITENAME}}.',
 'uncategorizedpages'      => 'Páxinas sen categorías',
@@ -1240,6 +1244,7 @@ Cada ringleira contén ligazóns cara á primeira e segunda redirección, e tam�
 'deadendpages'            => 'Páxinas sen ligazóns cara a outras',
 'deadendpagestext'        => 'Estas páxinas non enlazan con ningunha outra páxina de {{SITENAME}}.',
 'protectedpages'          => 'Páxinas protexidas',
+'protectedpages-indef'    => 'Só as proteccións indefinidas',
 'protectedpagestext'      => 'As seguintes páxinas están protexidas fronte á edición ou traslado',
 'protectedpagesempty'     => 'Non hai páxinas protexidas neste momento',
 'protectedtitles'         => 'Títulos protexidos',
@@ -1257,7 +1262,7 @@ Cada ringleira contén ligazóns cara á primeira e segunda redirección, e tam�
 'unusedimagestext'        => 'Por favor, teña en conta que outros sitios web poden ligar a un ficheiro mediante un enderezo URL e por iso poden aparecer listados aquí, mesmo estando en uso.',
 'unusedcategoriestext'    => 'Existen as seguintes categorías, aínda que ningún artigo ou categoría as emprega.',
 'notargettitle'           => 'Sen obxectivo',
-'notargettext'            => 'Non especificou a páxina ou o usuario no cal facer esta función.',
+'notargettext'            => 'Non especificou a páxina ou o usuario no cal levar a cabo esta función.',
 'pager-newer-n'           => '{{PLURAL:$1|1 máis recente|$1 máis recentes}}',
 'pager-older-n'           => '{{PLURAL:$1|1 máis vella|$1 máis vellas}}',
 'suppress'                => 'Supervisor',
@@ -1335,8 +1340,8 @@ Este correo electrónico foi enviado usando a característica "enviar un correo 
 'mywatchlist'          => 'A miña listaxe de vixilancia',
 'watchlistfor'         => "(de '''$1''')",
 'nowatchlist'          => 'Non ten ítems na súa listaxe de vixilancia.',
-'watchlistanontext'    => 'Por favor $1 para ver ou editar os ítems da súa listaxe de vixilancia.',
-'watchnologin'         => 'Non rexistrado',
+'watchlistanontext'    => 'Faga o favor de $1 ao sistema para ver ou editar os ítems da súa listaxe de vixilancia.',
+'watchnologin'         => 'Non accedeu ao sistema',
 'watchnologintext'     => 'Para modificar a súa listaxe de vixilancia debe estar [[Special:Userlogin|rexistrado]].',
 'addedwatch'           => 'Engadido á listaxe de vixilancia',
 'addedwatchtext'       => "A páxina \"[[:\$1]]\" foi engadida á súa [[Special:Watchlist|listaxe de vixilancia]].
@@ -1477,7 +1482,7 @@ Velaquí a configuración actual da páxina <strong>$1</strong>:',
 'restriction-type'            => 'Permiso',
 'restriction-level'           => 'Nivel de protección:',
 'minimum-size'                => 'Tamaño mínimo (bytes)',
-'maximum-size'                => 'Tamaño máximo',
+'maximum-size'                => 'Tamaño máximo:',
 'pagesize'                    => '(bytes)',
 
 # Restrictions (nouns)
@@ -1566,8 +1571,8 @@ $1',
 'nolinkshere-ns'           => "Ningunha páxina liga con '''[[:$1]]''' no espazo de nomes elixido.",
 'isredirect'               => 'páxina redirixida',
 'istemplate'               => 'inclusión',
-'whatlinkshere-prev'       => '{{PLURAL:$1|anterior|anteriores $1}}',
-'whatlinkshere-next'       => '{{PLURAL:$1|seguinte|seguintes $1}}',
+'whatlinkshere-prev'       => '{{PLURAL:$1|anterior|$1 anteriores}}',
+'whatlinkshere-next'       => '{{PLURAL:$1|seguinte|$1 seguintes}}',
 'whatlinkshere-links'      => '← ligazóns',
 'whatlinkshere-hideredirs' => '$1 as redireccións',
 'whatlinkshere-hidetrans'  => '$1 as transclusións',
@@ -1739,7 +1744,7 @@ No último caso, pode usar tamén unha ligazón, por exemplo [[{{ns:special}}:Ex
 'export-submit'     => 'Exportar',
 'export-addcattext' => 'Engadir páxinas da categoría:',
 'export-addcat'     => 'Engadir',
-'export-download'   => 'Ofrecer gardar como un ficheiro.',
+'export-download'   => 'Ofrecer gardar como un ficheiro',
 'export-templates'  => 'Incluír modelos',
 
 # Namespace 8 related
@@ -2406,7 +2411,7 @@ Tamén pode [[Special:Watchlist/edit|empregar o editor normal]].',
 
 # Special:Filepath
 'filepath'         => 'Ruta do ficheiro',
-'filepath-page'    => 'Arquivo:',
+'filepath-page'    => 'Ficheiro:',
 'filepath-submit'  => 'Ruta',
 'filepath-summary' => 'Esta páxina especial devolve a ruta completa a un ficheiro.
 As imaxes móstranse na súa resolución completa; outros tipos de ficheiros inícianse directamente co seu programa asociado.
@@ -2415,7 +2420,7 @@ Introduza o nome do ficheiro sen o prefixo "{{ns:image}}:"',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => 'Procurar ficheiros duplicados',
-'fileduplicatesearch-summary'  => 'Procurar ficheiros duplicados a partir do valor de hash (un mecanismo de comprobación).
+'fileduplicatesearch-summary'  => 'Procurar ficheiros duplicados a partir do valor de <i>hash</i> (un mecanismo de comprobación).
 
 Introduza o nome do ficheiro sen o prefixo "{{ns:image}}:".',
 'fileduplicatesearch-legend'   => 'Procurar un duplicado',
@@ -2426,9 +2431,11 @@ Introduza o nome do ficheiro sen o prefixo "{{ns:image}}:".',
 'fileduplicatesearch-result-n' => 'O ficheiro "$1" ten {{PLURAL:$2|1 duplicado idéntico|$2 duplicados idénticos}}.',
 
 # Special:SpecialPages
+'specialpages-group-maintenance' => 'Informes de mantenemento',
 'specialpages-group-other'       => 'Outras páxinas especiais',
 'specialpages-group-login'       => 'Rexistro',
 'specialpages-group-changes'     => 'Cambios recentes e rexistros',
+'specialpages-group-media'       => 'Informes multimedia',
 'specialpages-group-users'       => 'Usuarios e dereitos',
 'specialpages-group-needy'       => 'Páxinas que precisan de traballo',
 'specialpages-group-highuse'     => 'Páxinas con máis uso',

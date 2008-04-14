@@ -1599,7 +1599,7 @@ Tο σύστημα ειδοποίησης του {{SITENAME}}
 'restriction-type'            => 'Δικαίωμα:',
 'restriction-level'           => 'Επίπεδο περιορισμού:',
 'minimum-size'                => 'Ελάχιστο μέγεθος',
-'maximum-size'                => 'Μέγιστο μέγεθος',
+'maximum-size'                => 'Μέγιστο μέγεθος:',
 'pagesize'                    => '(bytes)',
 
 # Restrictions (nouns)

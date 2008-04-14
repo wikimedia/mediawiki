@@ -4,10 +4,8 @@
  * @addtogroup Language
  *
  * @author Bangin
- * @author Nike
- * @author SieBot
  * @author Siebrand
- * @author SPQRobin
+ * @author Nike
  */
 
 $namespaceNames = array(

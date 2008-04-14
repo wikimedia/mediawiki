@@ -1388,7 +1388,7 @@ $NEWPAGE
 'restriction-type'            => 'அனுமதி:',
 'restriction-level'           => 'தடை அளவு:',
 'minimum-size'                => 'குறைந்த அளவு',
-'maximum-size'                => 'கூடிய அளவு',
+'maximum-size'                => 'கூடிய அளவு:',
 'pagesize'                    => '(பைட்டுகள்)',
 
 # Restrictions (nouns)

@@ -473,6 +473,7 @@ $messages = array(
 'youhavenewmessagesmulti' => 'Имате нови съобщения в $1',
 'editsection'             => 'редактиране',
 'editold'                 => 'редактиране',
+'viewsourceold'           => 'преглед на кода',
 'editsectionhint'         => 'Редактиране на раздел: $1',
 'toc'                     => 'Съдържание',
 'showtoc'                 => 'показване',
@@ -1127,9 +1128,10 @@ $2',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Свързани промени',
-'recentchangeslinked-title'    => 'Промени, свързани с "$1"',
+'recentchangeslinked-title'    => 'Промени, свързани с „$1“',
 'recentchangeslinked-noresult' => 'Няма промени в свързаните страници за дадения период.',
 'recentchangeslinked-summary'  => "Тази специална страница показва последните промени в свързаните страници. Страниците от списъка ви за наблюдение се показват в '''получер'''.",
+'recentchangeslinked-page'     => 'Име на страницата:',
 
 # Upload
 'upload'                      => 'Качване',
@@ -1440,6 +1442,11 @@ $2',
 'listusers-submit'   => 'Показване',
 'listusers-noresult' => 'Няма намерени потребители.',
 
+# Special:Listgrouprights
+'listgrouprights-group'    => 'Група',
+'listgrouprights-rights'   => 'Права',
+'listgrouprights-helppage' => 'Help:Права на групите',
+
 # E-mail user
 'mailnologin'     => 'Няма електронна поща',
 'mailnologintext' => 'Необходимо е да [[{{ns:special}}:Userlogin|влезете]] и да посочите валидна електронна поща в [[{{ns:special}}:Preferences|настройките]] си, за да може да пращате писма на други потребители.',
@@ -1459,6 +1466,8 @@ $2',
 'emailccsubject'  => 'Копие на писмото ви до $1: $2',
 'emailsent'       => 'Писмото е изпратено',
 'emailsenttext'   => 'Писмото ви беше изпратено.',
+'emailuserfooter' => "--
+Това писмо е изпратено чрез възможността 'изпращане на писмо до потребителя' в {{SITENAME}}",
 
 # Watchlist
 'watchlist'            => 'Моят списък за наблюдение',
@@ -2502,5 +2511,12 @@ $1',
 'fileduplicatesearch-info'     => '$1 × $2 пиксела<br />Размер на файла: $3<br />MIME тип: $4',
 'fileduplicatesearch-result-1' => 'Файлът "$1" няма идентично копие.',
 'fileduplicatesearch-result-n' => 'Файлът "$1" има {{PLURAL:$2|едно идентично копие|$2 идентични копия}}.',
+
+# Special:SpecialPages
+'specialpages-group-other'       => 'Други специални страници',
+'specialpages-group-login'       => 'Влизане / регистриране',
+'specialpages-group-changes'     => 'Последни промени и дневници',
+'specialpages-group-users'       => 'Потребители и права',
+'specialpages-group-permissions' => 'Потребителски права',
 
 );

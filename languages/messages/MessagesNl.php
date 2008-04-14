@@ -1213,9 +1213,10 @@ Een niet aangekruisd vinkvakje betekent dat de gebruiker geen lid is van de groe
 'recentchangeslinked'          => 'Verwante wijzigingen',
 'recentchangeslinked-title'    => 'Wijzigingen verwant aan "$1"',
 'recentchangeslinked-noresult' => "Er zijn geen bewerkingen in de gegeven periode geweest op de pagina's die vanaf hier gelinkt worden.",
-'recentchangeslinked-summary'  => "Deze speciale pagina geeft de laatste bewerkingen weer op pagina's die gelinkt worden vanaf deze pagina.
+'recentchangeslinked-summary'  => "Deze speciale pagina geeft de laatste bewerkingen weer op pagina's die gelinkt worden een aangegeven pagina, of vanuit pagina's in een aangegeven pagina een categorie.
 Pagina's die op [[Special:Watchlist|uw volglijst]] staan worden '''vet''' weergegeven.",
-'recentchangeslinked-page'     => 'Paginanaam',
+'recentchangeslinked-page'     => 'Paginanaam:',
+'recentchangeslinked-to'       => "Wijzigingen weergeven naar de gelinkte pagina's",
 
 # Upload
 'upload'                      => 'Bestand uploaden',
@@ -1498,6 +1499,7 @@ De lengte van de [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] is ''
 'deadendpages'            => "Pagina's zonder links",
 'deadendpagestext'        => "De onderstaande pagina's verwijzen niet naar andere pagina's in deze wiki.",
 'protectedpages'          => "Beveiligde pagina's",
+'protectedpages-indef'    => 'Alleen blokkades zonder verloopdatum',
 'protectedpagestext'      => "De volgende pagina's zijn beveiligd en kunnen niet bewerkt of hernoemd worden",
 'protectedpagesempty'     => "Er zijn momenteel geen pagina's beveiligd die aan deze parameters voldoen.",
 'protectedtitles'         => 'Beveiligde titels',
@@ -1736,7 +1738,7 @@ Dit zijn de huidige instellingen voor de pagina <strong>[[$1]]</strong>:",
 'restriction-type'            => 'Rechten:',
 'restriction-level'           => 'Beperkingsniveau:',
 'minimum-size'                => 'Min. grootte',
-'maximum-size'                => 'Max. grootte',
+'maximum-size'                => 'Max. grootte:',
 'pagesize'                    => '(bytes)',
 
 # Restrictions (nouns)

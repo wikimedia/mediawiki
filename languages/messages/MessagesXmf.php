@@ -4,11 +4,11 @@
  * @addtogroup Language
  *
  * @author Dato deutschland
- * @author Malafaya
  * @author Alsandro
- * @author Nike
- * @author M.M.S.
+ * @author Malafaya
  * @author Siebrand
+ * @author M.M.S.
+ * @author Nike
  */
 
 $fallback = 'ka';

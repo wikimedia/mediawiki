@@ -136,10 +136,13 @@ $messages = array(
 'jumptosearch'      => 'αράεμαν',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+'aboutpage'            => 'Project:Σχετικά',
+'copyrightpage'        => '{{ns:project}}:Δικαιώματα Πνευματή',
 'helppage'             => 'Help:Περιεχόμενα',
-'mainpage'             => 'Αρχικόν σελίδαν',
-'mainpage-description' => 'Αρχικόν σελίδαν',
+'mainpage'             => 'Αρχικόν σελίδα',
+'mainpage-description' => 'Αρχικόν σελίδα',
 'portal'               => 'Πύλην τη κοινότητας',
+'portal-url'           => 'Project:Πύλη κοινότητας',
 'sitesupport'          => 'Δωρεάς',
 
 'retrievedfrom'       => 'Ασο "$1"',
@@ -149,6 +152,7 @@ $messages = array(
 'editsection'         => 'άλλαξον',
 'editold'             => 'άλλαξον',
 'editsectionhint'     => 'Άλλαξον φελίν: $1',
+'toc'                 => 'Περιεχόμενα',
 'showtoc'             => 'δείξον',
 'hidetoc'             => 'κρύψον',
 
@@ -190,6 +194,7 @@ $messages = array(
 'yourlanguage'        => "Τ' εσόν η γώσσαν:",
 'loginerror'          => 'Σφάλμα εγγραφής',
 'loginsuccesstitle'   => 'Έντον η είσοδος',
+'mailmypassword'      => 'Αποστολή κωδικού',
 'accountcreated'      => 'Ο λογαριασμόν έντον',
 'createaccount-title' => 'Δημιουργίαν λογαριασμού για {{SITENAME}}',
 'loginlanguagelabel'  => 'Γλώσσαν: $1',
@@ -200,11 +205,14 @@ $messages = array(
 'extlink_sample'  => 'http://www.paradeigma.com τίτλος σύνδεσμονος',
 'extlink_tip'     => 'Εξωτερικόν σύνδεσμος (να μην ανασπάλλετε το πρόθεμαν http:// )',
 'headline_sample' => 'Κείμενον τίτλονος',
+'math_sample'     => 'Αδά εισάγετε την φόρμουλαν',
 'nowiki_sample'   => 'Αδακά πα να εισάγετε το μη μορφοποιημένον κείμενον.',
 'nowiki_tip'      => "Ξάι 'κ να τερείται η μορφοποίηση Wiki.",
 'sig_tip'         => 'Η υπογραφήν εσούν με ώραν κι ημερομηνίαν',
 
 # Edit pages
+'summary'            => 'Σύνοψη',
+'subject'            => 'Θέμα/επικεφαλίδα',
 'minoredit'          => 'Μικρόν αλλαγήν',
 'watchthis'          => 'Ωρία τη σελίδαν ατέν',
 'savearticle'        => 'Κρα τη σελίδαν',
@@ -221,6 +229,8 @@ $messages = array(
 # History pages
 'revisionasof'     => 'Μορφήν τη $1',
 'previousrevision' => '←Παλαιόν μορφήν',
+'histfirst'        => "Ασ' όλεα παλαιόν",
+'histlast'         => "Ασ' όλεα καινούρ'",
 
 # Revision feed
 'history-feed-item-nocomment' => '$1 σο $2', # user at time
@@ -244,10 +254,13 @@ $messages = array(
 'recentchanges'   => 'Υστερνά αλλαγάς',
 'rcshowhideminor' => '$1 τα μικρά αλλαγάς',
 'rclinks'         => "Δείξον τα $1 υστερνά τ' αλλαγάς α σα $2 υστερνά τα ημέρας<br />$3",
+'diff'            => 'διαφορά',
 'hist'            => 'ιστ.',
 'hide'            => 'Κρύψον',
 'show'            => 'Δείξον',
 'minoreditletter' => 'μ',
+'newpageletter'   => 'Ν',
+'boteditletter'   => 'b',
 
 # Recent changes linked
 'recentchangeslinked-title' => 'Αλλαγάς τη "$1"',
@@ -256,6 +269,7 @@ $messages = array(
 'upload' => 'Φόρτωμα αρχείου',
 
 # Image description page
+'filehist'            => 'Ιστορικό αρχείου',
 'filehist-current'    => 'υστερινά',
 'filehist-datetime'   => 'Ώραν/Ημερομ.',
 'filehist-user'       => 'Χρήστες',
@@ -265,10 +279,17 @@ $messages = array(
 'imagelinks'          => 'Σύνδεσμοι',
 'linkstoimage'        => "Ατά τα σελίδας δεκνίζ'νε σην εικόναν:",
 
+# MIME search
+'mimesearch' => 'Αράεμαν MIME',
+
+# Random page
+'randompage' => 'Κατά τύχην σελίδα',
+
 # Statistics
 'statistics' => 'Στατιστικήν',
 
 # Miscellaneous special pages
+'nmembers'                => '$1 {{PLURAL:$1|μέλος|μέλη}}',
 'lonelypages'             => 'Ορφανά σελίδας',
 'uncategorizedpages'      => "Σελίδας ντο 'κ έχνε κατηγορίαν",
 'uncategorizedcategories' => "Κατηγορίας ντο 'κ έχνε κατηγορίας",
@@ -277,6 +298,7 @@ $messages = array(
 'mostcategories'          => "Σελίδας με τ' ασ' όλτς πολλά κατηγορίας",
 'shortpages'              => 'Μικρά σελίδας',
 'longpages'               => 'Τρανά σελίδας',
+'deadendpages'            => 'Αδιέξοδα σελίδας',
 'protectedpages'          => 'Ασπαλιγμένα σελίδας',
 'listusers'               => 'Κατάλογον χρήστιων',
 'specialpages'            => 'Ειδικά σελίδας',
@@ -318,27 +340,37 @@ $messages = array(
 'unwatching' => "'κ ωριάζω...",
 
 # Delete/protect/revert
-'deletepage'            => 'Σβήσον τη σελίδαν',
-'actioncomplete'        => 'Η ενέργειαν ετελέθεν',
-'deletedarticle'        => 'νεβζινέθεν η "[[$1]]"',
-'deletecomment'         => 'Λόγον για το σβήσιμο:',
-'deleteotherreason'     => 'Άλλον/αλλομίαν λόγον:',
-'deletereasonotherlist' => 'Άλλον λόγον',
-'protectcomment'        => 'Σχόλιον:',
-'restriction-type'      => 'Δικαίωμαν:',
+'deletepage'              => 'Σβήσον τη σελίδαν',
+'actioncomplete'          => 'Η ενέργειαν ετελέθεν',
+'deletedarticle'          => 'νεβζινέθεν η "[[$1]]"',
+'deletecomment'           => 'Λόγον για το σβήσιμο:',
+'deleteotherreason'       => 'Άλλον/αλλομίαν λόγον:',
+'deletereasonotherlist'   => 'Άλλον λόγον',
+'protectcomment'          => 'Σχόλιον:',
+'protect-default'         => '(προεπιλεγμένον)',
+'protect-summary-cascade' => 'διαδοχικόν',
+'protect-expiring'        => 'λήγει στις $1 (UTC)',
+'restriction-type'        => 'Δικαίωμαν:',
+'restriction-level'       => 'Επίπεδον περιορισμού:',
 
 # Namespace form on various pages
-'namespace' => 'Περιοχήν:',
+'namespace'      => 'Περιοχήν:',
+'blanknamespace' => '(Αρχικόν περιοχή)',
 
 # Contributions
 'contributions' => "Δουλείας ντ' εποίκε ο χρήστες",
 'mycontris'     => "Δουλείας ντ' εποίκα",
+'contribsub2'   => 'Για τον/την $1 ($2)',
+'uctop'         => '(υστερνά)',
+
+'sp-contributions-newbies-sub' => 'Για τα καινούρεα τοι λογαριασμούς',
 
 # What links here
 'whatlinkshere'       => "Ντο δεκνίζ' αδακές",
 'whatlinkshere-title' => 'Σελίδας ντο συνδέουν σο $1',
 'linklistsub'         => "(Κατάλογον με τοι συνδέσμ')",
 'linkshere'           => "Αυτά τα σελίδας συνδέουν ση σελίδαν '''[[:$1]]''':",
+'istemplate'          => 'ενσωμάτωση',
 'whatlinkshere-prev'  => '{{PLURAL:$1|προτεσνή|προτεσνά $1}}',
 'whatlinkshere-links' => '← σύνδεσμοι',
 
@@ -353,6 +385,7 @@ $messages = array(
 'movedto'     => 'επήγεν σο',
 '1movedto2'   => '[[$1]] επήγεν σο [[$2]]',
 'movereason'  => 'Λόγον:',
+'revertmove'  => 'επαναφορά',
 
 # Export
 'export' => 'Εξαγωγήν σελίδιων',
@@ -379,7 +412,9 @@ $messages = array(
 'tooltip-ca-move'           => 'Ποίσον αχταρμάν τη σελίδαν',
 'tooltip-search'            => 'Εύρον σο {{SITENAME}}',
 'tooltip-n-mainpage'        => 'Τερέστεν το αρχικόν τη σελίδαν',
+'tooltip-n-portal'          => 'Σχετικά με το Wiκi - πώς μπορείτε να εφτάτε γιαρτήμ, πού θα ευρίετε πράγματα',
 'tooltip-n-recentchanges'   => 'Η λίστα με τα υστερνά αλλαγάς σο wiki.',
+'tooltip-n-randompage'      => 'Κατά τύχην εύρον σελίδαν και δείξον ατέν',
 'tooltip-n-help'            => "Αδά θα ευρίετε τα απαντήσεις ντ' αραεύετε.",
 'tooltip-n-sitesupport'     => 'Βοηθέστεν το έργον.',
 'tooltip-t-whatlinkshere'   => "Ούλ' τ' άρθρα ντο δεκνίζνε σο παρόν το άρθρον",
@@ -408,5 +443,8 @@ $messages = array(
 
 # Table pager
 'table_pager_limit_submit' => 'Δέβα',
+
+# Special:Version
+'version' => 'Έκδοση', # Not used as normal message but as header for the special page itself
 
 );

@@ -1479,7 +1479,7 @@ Slijede trenutačne postavke stranice <strong>$1</strong>:',
 'restriction-type'            => 'Dopuštenje:',
 'restriction-level'           => 'Nivo ograničenja:',
 'minimum-size'                => 'Najmanja veličina',
-'maximum-size'                => 'Najveća veličina',
+'maximum-size'                => 'Najveća veličina:',
 'pagesize'                    => '(bajtova)',
 
 # Restrictions (nouns)

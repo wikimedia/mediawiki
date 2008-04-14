@@ -13,6 +13,7 @@
  * @author T-Rithy
  * @author Lovekhmer
  * @author Nike
+ * @author Jon Harald Søby
  */
 
 $digitTransformTable = array(
@@ -1384,7 +1385,7 @@ $NEWPAGE
 'restriction-type'            => 'ការអនុញ្ញាត៖',
 'restriction-level'           => 'កំរិត​នៃ​ការដាក់កំហិត ៖',
 'minimum-size'                => 'ទំហំអប្បបរិមា',
-'maximum-size'                => 'ទំហំអតិបរិមា',
+'maximum-size'                => 'ទំហំអតិបរិមា:',
 'pagesize'                    => '(បៃ)',
 
 # Restrictions (nouns)

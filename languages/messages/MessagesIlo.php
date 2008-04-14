@@ -19,31 +19,40 @@ $messages = array(
 'underline-always' => 'Kanayon',
 
 # Dates
-'sunday'      => 'Domingo',
-'monday'      => 'Lunes',
-'tuesday'     => 'Martes',
-'wednesday'   => 'Miercoles',
-'thursday'    => 'Jueves',
-'friday'      => 'Viernes',
-'saturday'    => 'Sabado',
-'january'     => 'Enero',
-'february'    => 'Febrero',
-'march'       => 'Marso',
-'april'       => 'Abril',
-'may_long'    => 'Mayo',
-'june'        => 'Junio',
-'july'        => 'Julio',
-'august'      => 'Agosto',
-'september'   => 'Setiembre',
-'october'     => 'Octobre',
-'november'    => 'Noviembre',
-'december'    => 'Deciembre',
-'january-gen' => 'Enero',
-'august-gen'  => 'Agosto',
-'october-gen' => 'Octobre',
-'jan'         => 'Ene',
-'apr'         => 'Abr',
-'aug'         => 'Ago',
+'sunday'        => 'Domingo',
+'monday'        => 'Lunes',
+'tuesday'       => 'Martes',
+'wednesday'     => 'Miercoles',
+'thursday'      => 'Jueves',
+'friday'        => 'Viernes',
+'saturday'      => 'Sabado',
+'january'       => 'Enero',
+'february'      => 'Febrero',
+'march'         => 'Marso',
+'april'         => 'Abril',
+'may_long'      => 'Mayo',
+'june'          => 'Junio',
+'july'          => 'Julio',
+'august'        => 'Agosto',
+'september'     => 'Setiembre',
+'october'       => 'Octobre',
+'november'      => 'Noviembre',
+'december'      => 'Deciembre',
+'january-gen'   => 'Enero',
+'february-gen'  => 'Febrero',
+'march-gen'     => 'Marso',
+'april-gen'     => 'Abril',
+'may-gen'       => 'Mayo',
+'june-gen'      => 'Junio',
+'july-gen'      => 'Julio',
+'august-gen'    => 'Agosto',
+'september-gen' => 'Setiembre',
+'october-gen'   => 'Octobre',
+'november-gen'  => 'Noviembre',
+'december-gen'  => 'Deciembre',
+'jan'           => 'Ene',
+'apr'           => 'Abr',
+'aug'           => 'Ago',
 
 # Categories related messages
 'categories'                    => 'Dagiti Categoria',
@@ -53,9 +62,11 @@ $messages = array(
 'subcategories'                 => 'Dagiti subcategoria',
 
 'about'          => 'Maipapan iti',
+'article'        => 'Panid ti linaon',
 'newwindow'      => '(aglukat iti sabali a tawa)',
 'cancel'         => 'Ibabawi',
 'qbfind'         => 'Biroken',
+'qbpageoptions'  => 'Daytoy a panid',
 'qbmyoptions'    => 'Pampanidko',
 'qbspecialpages' => 'Espesial a pampanid',
 'moredotdotdot'  => 'Adu pay...',
@@ -88,6 +99,7 @@ $messages = array(
 'talkpagelinktext'  => 'Makipatang',
 'specialpage'       => 'naiduma a panid',
 'postcomment'       => 'Mangipaskil iti paliiw',
+'articlepage'       => 'Kitaen ti panid ti linaon',
 'talk'              => 'Pagtutungtongan',
 'toolbox'           => 'ramramit',
 'viewtalkpage'      => 'Kitaen ti tungtungan',
@@ -107,12 +119,15 @@ $messages = array(
 'portal'               => 'Pagdadanonan',
 'sitesupport'          => 'Donasion',
 
-'youhavenewmessages' => 'Addaanka iti $1 ($2).',
-'newmessageslink'    => 'kabarbaro a mensahe',
-'editsection'        => 'baliwan',
-'toc'                => 'Linaon',
-'showtoc'            => 'ipakita',
-'hidetoc'            => 'ilemmeng',
+'youhavenewmessages'  => 'Addaanka iti $1 ($2).',
+'newmessageslink'     => 'kabarbaro a mensahe',
+'newmessagesdifflink' => 'naudi a baliw',
+'editsection'         => 'baliwan',
+'editold'             => 'baliwan',
+'viewsourceold'       => 'kitaen ti taudan',
+'toc'                 => 'Linaon',
+'showtoc'             => 'ipakita',
+'hidetoc'             => 'ilemmeng',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Articulo',
@@ -122,12 +137,17 @@ $messages = array(
 'nstab-category'  => 'Categoria',
 
 # General errors
+'error'               => 'Biddut',
 'internalerror'       => 'Internal a biddut',
+'internalerror_info'  => 'Internal a biddut: $1',
+'filenotfound'        => 'Saan a masarakan ti file a "$1".',
 'viewsource'          => 'Kitaen ti source',
+'viewsourcetext'      => 'Mabalinmo a kitaen ken kopiaen ti taudan daytoy a panid:',
 'namespaceprotected'  => "Awananka iti pammalubos a mangbaliw kadagiti panid iti '''$1''' a namespace.",
 'ns-specialprotected' => 'Saan a mabalin  a baliwan dagiti espesial a panid.',
 
 # Login and logout pages
+'logouttitle'        => 'Rummuar ti agar-aramat',
 'loginpagetitle'     => 'Pagserkan ti agar-aramat',
 'yourname'           => 'Nagan:',
 'yourpasswordagain'  => 'Uliten ti password',
@@ -141,7 +161,10 @@ $messages = array(
 'notloggedin'        => 'Saan a naka-logged in',
 'nologinlink'        => 'Mangaramid iti account',
 'createaccount'      => 'Mangaramid iti baro nga account',
+'gotaccountlink'     => 'Sumrek',
 'createaccountmail'  => 'babaen ti e-mail',
+'userexists'         => 'Maus-usaren ti nagan nga impanmo.
+Pangngaasim ta mangpilika sabali a nagan.',
 'yourrealname'       => 'Pudno a nagan:',
 'yourlanguage'       => 'Pagsasao:',
 'yournick'           => 'Birngas:',
@@ -150,9 +173,13 @@ $messages = array(
 'loginsuccess'       => "'''Nakastrekkan iti {{SITENAME}} a kas \"\$1\".'''",
 'nosuchuser'         => 'Awan ti agar-aramat nga agnagan iti "$1". Kitaem ti espelingmo, wenno mangaramidka iti baro nga account.',
 'wrongpassword'      => 'Biddut (wenno awan) ti password nga impanmo. Padasem koma manen, apo.',
+'wrongpasswordempty' => 'Blanko ti impanmo a pasesbalikas. Padasem koma manen.',
 'passwordtooshort'   => 'Ababa unay ti impanmo a password. Masapul nga addaan iti uray la koma $1 a characters.',
 'mailmypassword'     => 'Emailandak iti baro a password',
 'emailconfirmlink'   => 'Kompirmaem ti e-mail addressmo',
+'accountcreated'     => 'Naaramiden ti account',
+'accountcreatedtext' => 'Naaramiden ti account a pagaramat ni $1.',
+'loginlanguagelabel' => 'Lengguahe: $1',
 
 # Password reset dialog
 'resetpass_success'   => 'Sibaballigi a nabaliwan ti pasesbalikasmo! Sumsumrekkan...',
@@ -165,6 +192,7 @@ $messages = array(
 'savearticle'          => 'I-save ti panid',
 'showpreview'          => 'Ipakita ti preview',
 'showdiff'             => 'Ipakita ti balbaliw',
+'blockednoreason'      => 'awan rason a naited',
 'whitelistedittitle'   => 'Masapul a nakastrekka tapno makaeditka',
 'whitelistedittext'    => 'Nasken a $1 ka tapno makaeditka iti pampanid.',
 'loginreqtitle'        => 'Masapul ti panag-login',
@@ -188,12 +216,15 @@ Kasta met nga ikarim kadakami a bukodmo a sinurat wenno gapuanan daytoy, wenno k
 
 # History pages
 'currentrev'          => 'Agdama a revision',
+'revisionasof'        => 'Panangbalbaliw sipud $1',
+'revision-info'       => 'Panangbaliw sipud $1 ni $2',
 'previousrevision'    => '←Nadadaan a panangbalbaliw',
 'nextrevision'        => 'Nabarbaro a panangbalbaliw→',
 'currentrevisionlink' => 'kitaen ti agdama a revision',
 'next'                => 'sumaruno',
 'last'                => 'naudi',
 'page_first'          => 'umuna',
+'page_last'           => 'naudi',
 'histfirst'           => 'Kaunaan',
 'histlast'            => 'Kaudian',
 
@@ -219,6 +250,8 @@ Kasta met nga ikarim kadakami a bukodmo a sinurat wenno gapuanan daytoy, wenno k
 
 # Preferences page
 'preferences'    => 'preferencias',
+'mypreferences'  => 'Dagiti preferenciak',
+'prefs-edits'    => 'Bilang dagiti binalbaliwan:',
 'prefsnologin'   => 'Saan a naka-log in',
 'changepassword' => 'Baliwan ti password',
 'prefs-rc'       => 'Kaudian a balbaliw',
@@ -231,7 +264,8 @@ Kasta met nga ikarim kadakami a bukodmo a sinurat wenno gapuanan daytoy, wenno k
 'userrights-reason'       => 'Rason ti panangbaliw:',
 
 # Groups
-'group' => 'Grupo:',
+'group'     => 'Grupo:',
+'group-all' => '(amin)',
 
 # User rights log
 'rightsnone' => '(awan)',
@@ -240,6 +274,9 @@ Kasta met nga ikarim kadakami a bukodmo a sinurat wenno gapuanan daytoy, wenno k
 'recentchanges'     => 'Kaudian a balbaliw',
 'recentchangestext' => 'Bantayan iti daytoy a panid dagiti kauudian a panakabalbaliw ti wiki.',
 'rclistfrom'        => 'Ipakita dagiti kabarbaro a balbaliw mangrugi iti $1',
+'rcshowhidebots'    => '$1 a bots',
+'rcshowhideliu'     => '$1 ti nakastrek nga agar-aramat',
+'rcshowhideanons'   => '$1 a di am-ammo nga agar-aramat',
 'rclinks'           => 'Ipakita dagiti naudi a $1 a balbaliw iti kallabes a $2 nga al-aldaw<br />$3',
 'hide'              => 'Ilemmeng',
 'show'              => 'Ipakita',
@@ -249,10 +286,13 @@ Kasta met nga ikarim kadakami a bukodmo a sinurat wenno gapuanan daytoy, wenno k
 'recentchangeslinked' => 'Mainaig a balbaliw',
 
 # Upload
-'upload'           => 'Mangipan iti file',
-'uploadnologin'    => 'Saan a nakastrek',
-'filedesc'         => 'Pakabuklan',
-'successfulupload' => 'Balligi ti panag-upload',
+'upload'            => 'Mangipan iti file',
+'uploadbtn'         => 'Ipan ti file',
+'uploadnologin'     => 'Saan a nakastrek',
+'filedesc'          => 'Pakabuklan',
+'fileuploadsummary' => 'Pakabuklan:',
+'filesource'        => 'Taudan:',
+'successfulupload'  => 'Balligi ti panag-upload',
 
 # Special:Imagelist
 'imagelist_name' => 'Nagan',
@@ -284,11 +324,16 @@ Kasta met nga ikarim kadakami a bukodmo a sinurat wenno gapuanan daytoy, wenno k
 # Special:Allpages
 'allpages'       => 'Amin a panid',
 'nextpage'       => 'sumaruno a panid ($1)',
+'prevpage'       => 'Napalabas a panid ($1)',
 'allpagesfrom'   => 'Ipakita dagiti panid a mangrugi iti:',
 'allarticles'    => 'Amin nga articulo',
+'allinnamespace' => 'Amin a pampanid ($1 namespace)',
 'allpagesprev'   => 'napalabas',
 'allpagesnext'   => 'Sumaruno',
 'allpagessubmit' => 'mapanen',
+
+# Special:Listusers
+'listusers-submit' => 'Ipakita',
 
 # E-mail user
 'emailuser'    => 'Emailan daytoy nga agar-aramat',
@@ -296,19 +341,24 @@ Kasta met nga ikarim kadakami a bukodmo a sinurat wenno gapuanan daytoy, wenno k
 'emailfrom'    => 'Manipud',
 'emailto'      => 'Ken ni',
 'emailmessage' => 'Mensahe',
+'emailsend'    => 'Ipatulod',
 
 # Watchlist
-'watchlist'        => 'Dagiti bambantayak',
-'mywatchlist'      => 'Dagiti bambantayak',
-'nowatchlist'      => 'Awan ti pampanid iti listaan dagiti bambantayam.',
-'watchnologin'     => 'Saan a nakastrek',
-'watchnologintext' => 'Nasken a [[Special:Userlogin|naka-loginka]] tapno mabaliwam dagiti bambantayam a panid.',
-'addedwatch'       => 'Nainayon kadagiti bambantayan',
-'watch'            => 'bantayan',
-'watchthispage'    => 'Bantayan daytoy a panid',
-'unwatch'          => 'saanen a bantayan',
-'unwatchthispage'  => 'Isardeng a bantayan daytoy a panid',
-'wlshowlast'       => 'Ipakita dagiti naudi a $1 nga or-oras $2 nga al-aldaw $3',
+'watchlist'          => 'Dagiti bambantayak',
+'mywatchlist'        => 'Dagiti bambantayak',
+'nowatchlist'        => 'Awan ti pampanid iti listaan dagiti bambantayam.',
+'watchnologin'       => 'Saan a nakastrek',
+'watchnologintext'   => 'Nasken a [[Special:Userlogin|naka-loginka]] tapno mabaliwam dagiti bambantayam a panid.',
+'addedwatch'         => 'Nainayon kadagiti bambantayan',
+'removedwatch'       => 'Naikkaten kadagiti bambantayan',
+'watch'              => 'bantayan',
+'watchthispage'      => 'Bantayan daytoy a panid',
+'unwatch'            => 'saanen a bantayan',
+'unwatchthispage'    => 'Isardeng a bantayan daytoy a panid',
+'notvisiblerev'      => 'Naikkaten ti panangbalbaliw',
+'wlshowlast'         => 'Ipakita dagiti naudi a $1 nga or-oras $2 nga al-aldaw $3',
+'watchlist-show-own' => 'Ipakita dagiti panangbalbaliwko',
+'watchlist-hide-own' => 'Ilemmeng dagiti panangbalbaliwko',
 
 'enotif_newpagetext' => 'Baro daytoy a panid.',
 'changed'            => 'nabaliwan',
@@ -316,9 +366,11 @@ Kasta met nga ikarim kadakami a bukodmo a sinurat wenno gapuanan daytoy, wenno k
 'enotif_anon_editor' => 'di am-ammo nga agar-aramat $1',
 
 # Delete/protect/revert
+'deletepage'          => 'Ikkaten ti panid',
 'confirm'             => 'pasingkedan',
 'excontent'           => "ti linaon ket: '$1'",
 'excontentauthor'     => "ti linaonna ket: '$1' (ket ti laeng contributor ket ni '[[Special:Contributions/$1|$2]]')",
+'exblank'             => 'blanko ti panid',
 'delete-confirm'      => 'Ikkaten ti "$1"',
 'delete-legend'       => 'Ikkaten',
 'deletecomment'       => 'Rason no apay nga ikkaten',
@@ -329,8 +381,13 @@ Kasta met nga ikarim kadakami a bukodmo a sinurat wenno gapuanan daytoy, wenno k
 'protect-level-sysop' => 'Sysops laeng',
 
 # Restrictions (nouns)
-'restriction-edit' => 'Baliwan',
-'restriction-move' => 'Iyakar',
+'restriction-edit'   => 'Baliwan',
+'restriction-move'   => 'Iyakar',
+'restriction-create' => 'Aramiden',
+
+# Undelete
+'undelete'     => 'Kitaen dagiti naikkat a pampanid',
+'undeletepage' => 'Kitaen ken isubli dagiti naikkat a panid',
 
 # Contributions
 'mycontris' => 'dagiti naaramidak',
@@ -366,11 +423,14 @@ Kasta met nga ikarim kadakami a bukodmo a sinurat wenno gapuanan daytoy, wenno k
 # Tooltip help for the actions
 'tooltip-pt-logout'  => 'Rummuaren',
 'tooltip-ca-protect' => 'Saluadan daytoy a panid',
+'tooltip-ca-delete'  => 'Ikkaten daytoy a panid',
+'tooltip-ca-move'    => 'Iyakar daytoy a panid',
 
 # Attribution
 'others' => 'dadduma pay',
 
 # Special:Newimages
+'noimages' => 'Awan ti makita.',
 'ilsubmit' => 'agbirok',
 'bydate'   => 'babaen ti petsa',
 

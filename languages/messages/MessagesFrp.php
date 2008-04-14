@@ -169,16 +169,18 @@ $messages = array(
 'dec'           => 'dèc',
 
 # Categories related messages
-'categories'               => 'Catègories',
-'categoriespagetext'       => 'Les catègories siuventes contegnont des pâges ou des fichiérs multimèdia.',
-'pagecategories'           => '{{PLURAL:$1|Catègorie |Catègories }}',
-'category_header'          => 'Pâges dens la catègorie « $1 »',
-'subcategories'            => 'Sot-catègories',
-'category-media-header'    => 'Fichiérs multimèdia dens la catègorie « $1 »',
-'category-empty'           => "''Ceta catègorie contint gins d’articllo, de sot-catègorie ou de fichiér multimèdia.''",
-'hidden-categories'        => '{{PLURAL:$1|Catègorie cachiê|Catègories cachiês}}',
-'hidden-category-category' => 'Catègories cachiês', # Name of the category where hidden categories will be listed
-'listingcontinuesabbrev'   => '(suita)',
+'categories'                    => 'Catègories',
+'categoriespagetext'            => 'Les catègories siuventes contegnont des pâges ou des fichiérs multimèdia.',
+'special-categories-sort-count' => 'tri per compto',
+'special-categories-sort-abc'   => 'tri alfabètico',
+'pagecategories'                => '{{PLURAL:$1|Catègorie |Catègories }}',
+'category_header'               => 'Pâges dens la catègorie « $1 »',
+'subcategories'                 => 'Sot-catègories',
+'category-media-header'         => 'Fichiérs multimèdia dens la catègorie « $1 »',
+'category-empty'                => "''Ceta catègorie contint gins d’articllo, de sot-catègorie ou de fichiér multimèdia.''",
+'hidden-categories'             => '{{PLURAL:$1|Catègorie cachiê|Catègories cachiês}}',
+'hidden-category-category'      => 'Catègories cachiês', # Name of the category where hidden categories will be listed
+'listingcontinuesabbrev'        => '(suita)',
 
 'mainpagetext'      => "<big>'''MediaWiki at étâ enstalâ avouéc reusséta.'''</big>",
 'mainpagedocfooter' => 'Consultâd lo [http://meta.wikimedia.org/wiki/Aide:Contenu guido d’utilisator] por més d’enformacions sur l’usâjo de la programeria vouiqui.
@@ -1445,7 +1447,7 @@ Vê-que los règllâjos d’ora de la pâge <strong>$1</strong> :',
 'restriction-type'            => 'Pèrmission :',
 'restriction-level'           => 'Nivô de rèstriccion :',
 'minimum-size'                => 'Talye la ples petiôta',
-'maximum-size'                => 'Talye la ples granta',
+'maximum-size'                => 'Talye la ples granta:',
 'pagesize'                    => '(octèts)',
 
 # Restrictions (nouns)

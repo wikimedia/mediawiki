@@ -7,8 +7,8 @@
  * @author Sarvaturi
  * @author Tonyfroio
  * @author לערי ריינהארט
- * @author Sarvaturi
  * @author Siebrand
+ * @author Nike
  */
 
 $fallback = 'it';
@@ -1291,7 +1291,7 @@ Li mpostazzioni correnti pâ pàggina sugnu <strong>$1</strong>:',
 'restriction-type'            => 'Pirmissu',
 'restriction-level'           => 'Liveddu di ristrizzioni:',
 'minimum-size'                => "Dimensioni minima ('n byte)",
-'maximum-size'                => 'Dimensioni massima',
+'maximum-size'                => 'Dimensioni massima:',
 
 # Restrictions (nouns)
 'restriction-edit' => 'Cancia',

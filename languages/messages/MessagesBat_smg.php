@@ -5,8 +5,8 @@
  *
  * @author Hugo.arg
  * @author Zordsdavini
- * @author לערי ריינהארט
  * @author Siebrand
+ * @author לערי ריינהארט
  * @author Nike
  */
 

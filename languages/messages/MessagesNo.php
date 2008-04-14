@@ -1041,8 +1041,11 @@ Når en boks er merket betyr det at brukeren er medlem av den gruppen.',
 'recentchangeslinked'          => 'Relaterte endringer',
 'recentchangeslinked-title'    => 'Endringer relatert til «$1»',
 'recentchangeslinked-noresult' => 'Ingen endringer på lenkede sider i den gitte perioden.',
-'recentchangeslinked-summary'  => "Denne spesialsiden lister opp alle de siste endringene som har skjedd på sider som lenkes til fra denne. Sider som også er på din overvåkningsliste vises i '''fet skrift'''.",
-'recentchangeslinked-page'     => 'Sidenavn',
+'recentchangeslinked-summary'  => "Denne spesialsiden lister opp alle de siste endringene som har skjedd på sider som ''lenkes til'' fra denne.
+Om den gitte siden er en kategori vises de siste endringene på sidene i kategorien i stedet.
+Sider som også er på din overvåkningsliste vises i '''fet skrift'''.",
+'recentchangeslinked-page'     => 'Sidenavn:',
+'recentchangeslinked-to'       => 'Vis endringer på sider som lenker til den gitte siden i stedet',
 
 # Upload
 'upload'                      => 'Last opp fil',
@@ -1302,6 +1305,7 @@ Det har vært totalt {{PLURAL:$3|'''én''' sidevisning|'''$3''' sidevisninger}},
 'deadendpages'            => 'Blindveisider',
 'deadendpagestext'        => 'Følgende sider lenker ikke til andre sider på {{SITENAME}}.',
 'protectedpages'          => 'Låste sider',
+'protectedpages-indef'    => 'Kun beskyttelser på ubestemt tid',
 'protectedpagestext'      => 'Følgende sider er låst for flytting eller redigering',
 'protectedpagesempty'     => 'Ingen sider er for øyeblikket låst med disse paramterne.',
 'protectedtitles'         => 'Beskyttede titler',
@@ -1532,7 +1536,7 @@ Tilbakemeldinger og videre assistanse:
 'restriction-type'            => 'Tillatelse',
 'restriction-level'           => 'Restriksjonsnivå',
 'minimum-size'                => 'Minimumstørrelse (byte)',
-'maximum-size'                => 'Maksimumstørrelse',
+'maximum-size'                => 'Maksimumstørrelse:',
 'pagesize'                    => '(byte)',
 
 # Restrictions (nouns)

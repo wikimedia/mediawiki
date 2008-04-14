@@ -1279,8 +1279,11 @@ $1 ساعة.',
 'recentchangeslinked'          => 'تغييرات ذات علاقة',
 'recentchangeslinked-title'    => 'التغييرات المرتبطة ب "$1"',
 'recentchangeslinked-noresult' => 'لم تحدث تعديلات في الصفحات التي لها وصلات هنا خلال الفترة المحددة.',
-'recentchangeslinked-summary'  => "هذه الصفحة الخاصة تعرض آخر التغييرات في الصفحات الموصولة. الصفحات في قائمة مراقبتك معروضة '''بخط عريض'''.",
-'recentchangeslinked-page'     => 'اسم الصفحة',
+'recentchangeslinked-summary'  => "تعرض هذه الصفحة الخاصة آخر التغييرات للصفحات الموصولة ''من'' الصفحة المعطاة.
+بأي حال، إذا كانت الصفحة المعطاة هي تصنيف، فأنها تعرض أحدث التغييرات للصفحات الموجودة بها عوضا عن ذلك.
+الصفحات في [[Special:Watchlist|قائمة مراقبتك]] '''سميكة'''.",
+'recentchangeslinked-page'     => 'اسم الصفحة:',
+'recentchangeslinked-to'       => 'اظهر التغييرات للصفحات الموصولة للصفحة المعطاة عوضا عن ذلك',
 
 # Upload
 'upload'                      => 'رفع ملف',
@@ -1552,6 +1555,7 @@ PICT # misc.
 'deadendpages'            => 'صفحات نهاية مسدودة',
 'deadendpagestext'        => 'الصفحات التالية لا تصل إلى صفحات أخرى في {{SITENAME}}.',
 'protectedpages'          => 'صفحات محمية',
+'protectedpages-indef'    => 'عمليات الحماية غير المحددة فقط',
 'protectedpagestext'      => 'الصفحات التالية محمية من النقل أو التعديل',
 'protectedpagesempty'     => 'لا توجد صفحات محمية حاليا بهذه المحددات.',
 'protectedtitles'         => 'عناوين محمية',
@@ -1794,7 +1798,7 @@ $NEWPAGE
 'restriction-type'            => 'سماح:',
 'restriction-level'           => 'مستوى الضوابط:',
 'minimum-size'                => 'الحجم الأدنى',
-'maximum-size'                => 'الحجم الأقصى',
+'maximum-size'                => 'الحجم الأقصى:',
 'pagesize'                    => '(بايت)',
 
 # Restrictions (nouns)

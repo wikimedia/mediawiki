@@ -1385,7 +1385,7 @@ Síðasta breyting er frá [[User:$3|$3]] ([[User_talk:$3|Spjall]]).',
 'restriction-type'            => 'Réttindi:',
 'restriction-level'           => 'Takmarkaði við:',
 'minimum-size'                => 'Lágmarksstærð',
-'maximum-size'                => 'Hámarksstærð',
+'maximum-size'                => 'Hámarksstærð:',
 'pagesize'                    => '(bæt)',
 
 # Restrictions (nouns)

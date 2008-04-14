@@ -3,16 +3,16 @@
  *
  * @addtogroup Language
  *
- * @author Mpradeep
- * @author Nike
- * @author Siebrand
- * @author Sunil Mohan
  * @author Ævar Arnfjörð Bjarmason <avarab@gmail.com>
- * @author לערי ריינהארט
+ * @author Mpradeep
  * @author Veeven
  * @author Chaduvari
- * @author SPQRobin
+ * @author Sunil Mohan
+ * @author Siebrand
+ * @author לערי ריינהארט
  * @author వైజాసత్య
+ * @author SPQRobin
+ * @author Nike
  */
 
 $namespaceNames = array(
@@ -2358,5 +2358,9 @@ $1',
 'fileduplicatesearch-info'     => '$1 × $2 పిక్సెళ్లు<br />ఫైలు సైజు: $3<br />మైము రకం: $4',
 'fileduplicatesearch-result-1' => '"$1" అనే పేరుగల ఫైలుకు సరిసమానమైన మారుప్రతులు లేవు.',
 'fileduplicatesearch-result-n' => '"$1" అనే పేరుగల ఫైలుకు {{PLURAL:$2|ఒక మారుప్రతి ఉంది|$2 మారుప్రతులున్నాయి}}.',
+
+# Special:SpecialPages
+'specialpages-group-other'       => 'ఇతర ప్రత్యేక పేజీలు',
+'specialpages-group-permissions' => 'వాడుకరి అనుమతులు',
 
 );

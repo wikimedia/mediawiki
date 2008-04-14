@@ -1434,7 +1434,7 @@ Esta ye la configuración actual pa la páxina <strong>$1</strong>:',
 'restriction-type'            => 'Permisu:',
 'restriction-level'           => 'Nivel de restricción:',
 'minimum-size'                => 'Tamañu mínimu',
-'maximum-size'                => 'Tamañu máximu',
+'maximum-size'                => 'Tamañu máximu:',
 'pagesize'                    => '(bytes)',
 
 # Restrictions (nouns)

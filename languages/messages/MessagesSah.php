@@ -1355,7 +1355,7 @@ $NEWPAGE
 'restriction-type'            => 'Маны оҥорор кыахтааххын:',
 'restriction-level'           => 'Киирии таһыма:',
 'minimum-size'                => 'Оччугуй',
-'maximum-size'                => 'Бөдөҥ',
+'maximum-size'                => 'Бөдөҥ:',
 'pagesize'                    => '(байт)',
 
 # Restrictions (nouns)

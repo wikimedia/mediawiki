@@ -310,6 +310,7 @@ $messages = array(
 'youhavenewmessagesmulti' => "Kemennoù nevez zo ganeoc'h war $1",
 'editsection'             => 'kemmañ',
 'editold'                 => 'kemmañ',
+'viewsourceold'           => 'gwelet ar vammenn',
 'editsectionhint'         => 'Kemmañ ar rann : $1',
 'toc'                     => 'Taolenn',
 'showtoc'                 => 'diskouez',
@@ -756,7 +757,7 @@ Gouest e vo merourien all {{SITENAME}} da dapout krog en testennoù kuzhet ha da
 
 # Suppression log
 'suppressionlog'     => 'Marilh diverkañ',
-'suppressionlogtext' => 'A-is emañ roll an diverkadennoù hag ar stankadennoù diwezhañ enno danvez kuzhet diouzh ar verourien. Gwelet [[Special:Ipblocklist|roll an IPoù stanket]] evit kaout roll ar stankadennoù e talvoud evit poent.',
+'suppressionlogtext' => 'A-is emañ roll an diverkadennoù hag ar stankadennoù diwezhañ enno an adweladennoù kuzhet ouzh ar verourien. Gwelet [[Special:Ipblocklist|roll an IPoù stanket]] evit kaout roll ar stankadennoù ha forbannadennoù e talvoud evit poent.',
 
 # History merging
 'mergehistory'                     => 'Kendeuziñ istor ur bajenn',
@@ -975,6 +976,7 @@ Ul log diask a dalvez n'emañ ket an implijer er strollad.",
 'recentchangeslinked-title'    => 'Kemmoù a denn da "$1"',
 'recentchangeslinked-noresult' => 'Kemm ebet war ar pajennoù liammet e-pad an amzer spisaet.',
 'recentchangeslinked-summary'  => "Rollet eo war ar bajenn zibar-mañ ar c'hemmoù diwezhañ bet degaset war ar pajennoù liammet. E '''tev''' emañ ar pajennoù zo war ho roll evezhiañ.",
+'recentchangeslinked-page'     => 'Anv ar bajenn:',
 
 # Upload
 'upload'                      => 'Kargañ war ar servijer',
@@ -1305,6 +1307,13 @@ Hirder al [http://meta.wikimedia.org/wiki/Help:Job_queue lostennad labour] zo pa
 'listusers-submit'   => 'Diskouez',
 'listusers-noresult' => "N'eus bet kavet implijer ebet.",
 
+# Special:Listgrouprights
+'listgrouprights'          => 'Gwirioù ar strolladoù implijer',
+'listgrouprights-summary'  => 'War ar bajenn-mañ ez eus ur roll eus ar strolladoù implijer termenet war ar wiki-mañ, gant ar gwirioù moned stag outo.',
+'listgrouprights-group'    => 'Strollad',
+'listgrouprights-rights'   => 'Gwirioù',
+'listgrouprights-helppage' => 'Skoazell : Gwirioù ar strolladoù',
+
 # E-mail user
 'mailnologin'     => "Chomlec'h ebet",
 'mailnologintext' => "Ret eo deoc'h bezañ [[Special:Userlogin|luget]]
@@ -1327,6 +1336,8 @@ E maezienn \"Kaser\" ho postel e vo merket ar chomlec'h postel resisaet ganeoc'h
 'emailccsubject'  => 'Eilenn eus ho kemennadenn da $1: $2',
 'emailsent'       => 'Postel kaset',
 'emailsenttext'   => 'Kaset eo bet ho postel.',
+'emailuserfooter' => "--
+Kaset eo bet ar postel-mañ en ur ober gant an arc'hwel 'kas ur postel d'an implijer' eus {{SITENAME}}",
 
 # Watchlist
 'watchlist'            => 'Rollad evezhiañ',
@@ -1479,7 +1490,7 @@ Setu an doare a-vremañ evit ar bajenn-mañ <strong>$1</strong>:",
 'restriction-type'            => 'Aotre',
 'restriction-level'           => 'Live strishaat :',
 'minimum-size'                => 'Ment vihanañ (oktedoù)',
-'maximum-size'                => 'Ment vrasañ',
+'maximum-size'                => 'Ment vrasañ:',
 'pagesize'                    => '(okted)',
 
 # Restrictions (nouns)
@@ -1556,18 +1567,21 @@ $1',
 'sp-contributions-submit'      => 'Klask',
 
 # What links here
-'whatlinkshere'       => 'Pajennoù liammet',
-'whatlinkshere-title' => 'Pajennoù liammet ouzh $1',
-'whatlinkshere-page'  => 'Pajenn :',
-'linklistsub'         => '(Roll al liammoù)',
-'linkshere'           => "Ar pajennoù a-is zo enno ul liamm a gas war-du '''[[:$1]]''':",
-'nolinkshere'         => "N'eus pajenn ebet enni ul liamm war-du '''[[:$1]]'''.",
-'nolinkshere-ns'      => "Pajenn ebet n'eo liammet ouzh '''[[:$1]]''' en esaouenn anv dibabet.",
-'isredirect'          => 'pajenn adkas',
-'istemplate'          => 'enframmet',
-'whatlinkshere-prev'  => '{{PLURAL:$1|kent|kent $1}}',
-'whatlinkshere-next'  => "{{PLURAL:$1|war-lerc'h|war-lerc'h $1}}",
-'whatlinkshere-links' => '← liammoù',
+'whatlinkshere'            => 'Pajennoù liammet',
+'whatlinkshere-title'      => 'Pajennoù liammet ouzh $1',
+'whatlinkshere-page'       => 'Pajenn :',
+'linklistsub'              => '(Roll al liammoù)',
+'linkshere'                => "Ar pajennoù a-is zo enno ul liamm a gas war-du '''[[:$1]]''':",
+'nolinkshere'              => "N'eus pajenn ebet enni ul liamm war-du '''[[:$1]]'''.",
+'nolinkshere-ns'           => "Pajenn ebet n'eo liammet ouzh '''[[:$1]]''' en esaouenn anv dibabet.",
+'isredirect'               => 'pajenn adkas',
+'istemplate'               => 'enframmet',
+'whatlinkshere-prev'       => '{{PLURAL:$1|kent|kent $1}}',
+'whatlinkshere-next'       => "{{PLURAL:$1|war-lerc'h|war-lerc'h $1}}",
+'whatlinkshere-links'      => '← liammoù',
+'whatlinkshere-hideredirs' => '$1 adkas',
+'whatlinkshere-hidetrans'  => '$1 treuzkluzadur',
+'whatlinkshere-hidelinks'  => '$1 liamm',
 
 # Block/unblock
 'blockip'                     => "Stankañ ur chomlec'h IP",
@@ -2424,5 +2438,16 @@ Merkañ anv ar restr hep ar rakger "{{ns:image}}:"',
 'fileduplicatesearch-info'     => '$1 × $2 piksel<br />Ment ar restr : $3<br />seurt MIME : $4',
 'fileduplicatesearch-result-1' => 'N\'eus ket a zoubloù heñvel-poch gant ar restr "$1".',
 'fileduplicatesearch-result-n' => '{{PLURAL:$2|1 doubl heñvel-poch|$2 doubl heñvel-poch}} zo gant ar restr "$1".',
+
+# Special:SpecialPages
+'specialpages-group-maintenance' => "Rentaoù-kont trezalc'h",
+'specialpages-group-other'       => 'Pajennoù dibar all',
+'specialpages-group-login'       => 'Em lugañ / en em enrollañ',
+'specialpages-group-changes'     => 'Kemmoù diwezhañ ha marilhoù',
+'specialpages-group-media'       => 'Danevell ar mediaoù',
+'specialpages-group-users'       => 'An implijerien hag o gwirioù',
+'specialpages-group-needy'       => "Pajennoù zo labour d'ober warno",
+'specialpages-group-highuse'     => 'Implij stank ar pajennoù',
+'specialpages-group-permissions' => 'Aotreoù an implijer',
 
 );

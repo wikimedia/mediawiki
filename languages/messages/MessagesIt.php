@@ -1542,7 +1542,7 @@ Le impostazioni correnti per la pagina sono <strong>$1</strong>:',
 'restriction-type'            => 'Permesso',
 'restriction-level'           => 'Livello di restrizione',
 'minimum-size'                => 'Dimensione minima (in byte)',
-'maximum-size'                => 'Dimensione massima',
+'maximum-size'                => 'Dimensione massima:',
 'pagesize'                    => '(byte)',
 
 # Restrictions (nouns)
