@@ -980,7 +980,7 @@ class User {
 
 		$found = false;
 		$host = '';
-
+		// FIXME: IPv6 ???
 		$m = array();
 		if ( preg_match( '/^(\d{1,3})\.(\d{1,3})\.(\d{1,3})\.(\d{1,3})$/', $ip, $m ) ) {
 			# Make hostname
