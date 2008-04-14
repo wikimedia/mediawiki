@@ -352,10 +352,7 @@ class SpecialPage
 	 * method for adding special pages in extensions. It's now suggested that you add
 	 * an associative record to $wgSpecialPages. This avoids autoloading SpecialPage.
 	 *
-	 * @param mixed $page Must either be an array specifying a class name and
-	 *                    constructor parameters, or an object. The object,
-	 *                    when constructed, must have an execute() method which
-	 *                    sends HTML to $wgOut.
+	 * @param SpecialPage $page
 	 * @static
 	 */
 	static function addPage( &$page ) {
@@ -368,8 +365,7 @@ class SpecialPage
 	/**
 	 * Add a page to a certain display group for Special:SpecialPages
 	 *
-	 * @param mixed $page Must either be an array specifying a class name and
-	 *                    constructor parameters, or an object.
+	 * @param SpecialPage $page
 	 * @param string $group
 	 * @static
 	 */
@@ -383,8 +379,7 @@ class SpecialPage
 	/**
 	 * Add a page to a certain display group for Special:SpecialPages
 	 *
-	 * @param mixed $page Must either be an array specifying a class name and
-	 *                    constructor parameters, or an object.
+	 * @param SpecialPage $page
 	 * @static
 	 */
 	static function getGroup( &$page ) {
