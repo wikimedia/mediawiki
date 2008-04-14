@@ -7,6 +7,11 @@
  * @author G - ג
  * @author Huji <huji.huji at gmail.com>
  * @author Gangleri
+ * @author Huji
+ * @author Mardetanha
+ * @author לערי ריינהארט
+ * @author Siebrand
+ * @author Gangleri
  */
 
 $skinNames = array(
@@ -522,6 +527,7 @@ $messages = array(
 'youhavenewmessagesmulti' => 'پیغامهای جدیدی در $1 دارید.',
 'editsection'             => 'ویرایش',
 'editold'                 => 'ویرایش',
+'viewsourceold'           => 'مشاهدهٔ منبع',
 'editsectionhint'         => 'ویرایش بخش: $1',
 'toc'                     => 'فهرست مندرجات',
 'showtoc'                 => 'نمایش داده شود',
@@ -1225,6 +1231,8 @@ $2 تغییرمسیرها فهرست شوند &nbsp; جستجو برای $3 $9',
 'recentchangeslinked-noresult' => 'در بازهٔ ‌زمانی داده‌شده تغییری در صفحه‌های پیوندداده رخ نداده‌است.',
 'recentchangeslinked-summary'  => "این صفحهٔ ویژه تغییرات اخیر در صفحه‌های پیوند داده شده به این صفحه را نشان می‌دهد.
 صفحه‌های که در فهرست پی‌گیریهای شما باشند به صورت '''سیاه''' نشان داده می‌شوند.",
+'recentchangeslinked-page'     => 'نام صفحه:',
+'recentchangeslinked-to'       => 'تغییرات صفحه‌های که به صفحه مورد نظر پیوند‌ دارند را نمایش بده',
 
 # Upload
 'upload'                      => 'بارگذاری پرونده',
@@ -1324,7 +1332,7 @@ $2 تغییرمسیرها فهرست شوند &nbsp; جستجو برای $3 $9',
 
 # Special:Imagelist
 'imagelist-summary'     => 'این صفحهٔ ویژه تمام پرونده‌های بارگذاری شده را نشان می‌دهد.
-به طور پیش‌فرض آخرین پرونده‌های بازگذاری شده بالاتر نمایش داده می‌شوند
+به طور پیش‌فرض آخرین پرونده‌های بازگذاری شده بالاتر نمایش داده می‌شوند.
 کلیک کردن روی عنوان ستون‌ها باعث تغییر ترتیب نمایش پرونده‌ها می‌شود.',
 'imagelist_search_for'  => 'جستجوی نام تصویر:',
 'imgdesc'               => 'توصیف',
@@ -1485,6 +1493,7 @@ $2 تغییرمسیرها فهرست شوند &nbsp; جستجو برای $3 $9',
 'deadendpages'            => 'صفحه‌های بن‌بست',
 'deadendpagestext'        => 'صفحه‌های زیر به هیچ صفحهٔ دیگر در این ویکی پیوند ندارند.',
 'protectedpages'          => 'صفحه‌های حفاظت‌شده',
+'protectedpages-indef'    => 'فقط حفاظت‌های بی‌پایان',
 'protectedpagestext'      => 'صفحه‌های زیر در برابر ویرایش یا انتقال حفاظت شده‌اند:',
 'protectedpagesempty'     => 'در حال حاضر هیچ‌صفحه‌ای محافظت نشده‌است.',
 'protectedtitles'         => 'عنوان‌های محافظت شده',
@@ -1548,11 +1557,11 @@ $2 تغییرمسیرها فهرست شوند &nbsp; جستجو برای $3 $9',
 'listusers-noresult' => 'هیچ کاربری یافت نشد.',
 
 # Special:Listgrouprights
-'listgrouprights'          => 'اختیارات گروه کاربری',
-'listgrouprights-summary'  => 'متن زیر فهرستی است از گروه‌های کاربری تعریف شده روی این ویکی، و اختیاراتی که به آن‌ها داده شده‌است.',
+'listgrouprights'          => 'اختیارات گروه‌های کاربری',
+'listgrouprights-summary'  => 'فهرست زير، گروه‌های کاربری تعريف شده در اين ويکی و دسترسی‌های متناظرشان است.',
 'listgrouprights-group'    => 'گروه',
-'listgrouprights-rights'   => 'اختیارات',
-'listgrouprights-helppage' => 'اختیارات گروه',
+'listgrouprights-rights'   => 'دسترسی‌ها',
+'listgrouprights-helppage' => 'Help:دسترسی‌های گروهی',
 
 # E-mail user
 'mailnologin'     => 'نشانی‌ای از فرستنده وجود ندارد.',
@@ -1579,6 +1588,7 @@ $2 تغییرمسیرها فهرست شوند &nbsp; جستجو برای $3 $9',
 'emailccsubject'  => 'رونوشت پیغام شما به $1: $2',
 'emailsent'       => 'پست الکترونیکی فرستاده شد',
 'emailsenttext'   => 'پیغام پست الکترونیکی شما فرستاده شد.',
+'emailuserfooter' => "این پست‌الکترونیکی با استفاده از ویژگی  'پست الکترونیکی به کاربر' {{SITENAME}} فرستاده شده‌است",
 
 # Watchlist
 'watchlist'            => 'فهرست پی‌گیری‌های من',
@@ -1813,19 +1823,22 @@ $1',
 'sp-contributions-submit'      => 'جستجو',
 
 # What links here
-'whatlinkshere'        => 'پیوندهای به این صفحه',
-'whatlinkshere-title'  => 'صفحه‌هایی که به $1 پیوند دارند',
-'whatlinkshere-page'   => 'صفحه:',
-'whatlinkshere-barrow' => '&gt;',
-'linklistsub'          => '(فهرست پیوندها)',
-'linkshere'            => "صفحه‌های زیر به '''[[:$1]]''' پیوند دارند:",
-'nolinkshere'          => "هیچ صفحه‌ای به '''[[:$1]]''' پیوند ندارد.",
-'nolinkshere-ns'       => "هیچ صفحه‌ای از فضای نام انتخاب شده به '''[[:$1]]''' پیوند ندارد.",
-'isredirect'           => 'صفحهٔ تغییر مسیر',
-'istemplate'           => 'استفاده‌شده در صفحه',
-'whatlinkshere-prev'   => '{{PLURAL:$1|قبلی|$1 مورد قبلی}}',
-'whatlinkshere-next'   => '{{PLURAL:$1|بعدی|$1 مورد بعدی}}',
-'whatlinkshere-links'  => '← پیوندها',
+'whatlinkshere'            => 'پیوندهای به این صفحه',
+'whatlinkshere-title'      => 'صفحه‌هایی که به $1 پیوند دارند',
+'whatlinkshere-page'       => 'صفحه:',
+'whatlinkshere-barrow'     => '&gt;',
+'linklistsub'              => '(فهرست پیوندها)',
+'linkshere'                => "صفحه‌های زیر به '''[[:$1]]''' پیوند دارند:",
+'nolinkshere'              => "هیچ صفحه‌ای به '''[[:$1]]''' پیوند ندارد.",
+'nolinkshere-ns'           => "هیچ صفحه‌ای از فضای نام انتخاب شده به '''[[:$1]]''' پیوند ندارد.",
+'isredirect'               => 'صفحهٔ تغییر مسیر',
+'istemplate'               => 'استفاده‌شده در صفحه',
+'whatlinkshere-prev'       => '{{PLURAL:$1|قبلی|$1 مورد قبلی}}',
+'whatlinkshere-next'       => '{{PLURAL:$1|بعدی|$1 مورد بعدی}}',
+'whatlinkshere-links'      => '← پیوندها',
+'whatlinkshere-hideredirs' => '$1 تغییرمسیر',
+'whatlinkshere-hidetrans'  => '$1 تراگنجانش',
+'whatlinkshere-hidelinks'  => '$1 پیوند',
 
 # Block/unblock
 'blockip'                     => 'بستن کاربر',
@@ -2749,5 +2762,16 @@ $1',
 'fileduplicatesearch-info'     => '$1 Ã— $2 پیکسل<br />اندازه پرونده: $3<br />نوع MIME: $4',
 'fileduplicatesearch-result-1' => 'پروندهٔ «$1» مورد تکراری ندارد.',
 'fileduplicatesearch-result-n' => 'پروندهٔ «$1» دارای {{PLURAL:$2|یک مورد تکراری|$2 مورد تکراری}} است.',
+
+# Special:SpecialPages
+'specialpages-group-maintenance' => 'گزارش نگهداری',
+'specialpages-group-other'       => 'صفحه‌های ویژهٔ دیگر',
+'specialpages-group-login'       => 'ورود / ثبت نام',
+'specialpages-group-changes'     => 'تغییرات اخیر و سیاهه‌ها',
+'specialpages-group-media'       => 'گزارش رسانه‌ها',
+'specialpages-group-users'       => 'کاربرها و دسترسی‌ها',
+'specialpages-group-needy'       => 'صفحه‌هایی که هنوز کار دارند',
+'specialpages-group-highuse'     => 'صفحه‌های پربازدید',
+'specialpages-group-permissions' => 'اختیارات کاربر',
 
 );
