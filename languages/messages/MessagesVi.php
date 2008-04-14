@@ -1385,8 +1385,6 @@ Bạn có thể thu hẹp kết quả bằng cách chọn loại nhật trình, 
 'emailccsubject'  => 'Bản sao của thư gửi cho $1: $2',
 'emailsent'       => 'Đã gửi',
 'emailsenttext'   => 'Thư của bạn đã được gửi.',
-'emailuserfooter' => "--
-Thư này được gửi thông qua tính năng 'gửi thư cho thành viên' của {{SITENAME}}",
 
 # Watchlist
 'watchlist'            => 'Trang tôi theo dõi',

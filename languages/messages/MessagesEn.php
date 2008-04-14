@@ -1911,8 +1911,6 @@ The e-mail address you entered in your user preferences will appear as the "From
 'emailccsubject'  => 'Copy of your message to $1: $2',
 'emailsent'       => 'E-mail sent',
 'emailsenttext'   => 'Your e-mail message has been sent.',
-'emailuserfooter' => "--
-This email was sent using the 'email user' feature of {{SITENAME}}",
 
 # Watchlist
 'watchlist'            => 'My watchlist',

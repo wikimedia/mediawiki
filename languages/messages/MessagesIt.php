@@ -1394,8 +1394,6 @@ Ciascuna riga contiene i collegamenti al primo ed al secondo redirect, oltre all
 'emailccsubject'  => 'Copia del messaggio inviato a $1: $2',
 'emailsent'       => 'Messaggio inviato',
 'emailsenttext'   => 'Il messaggio e-mail è stato inviato.',
-'emailuserfooter' => "--
-Questa email è stata mandata usando la funzione 'invia un'email all'utente' di {{SITENAME}}",
 
 # Watchlist
 'watchlist'            => 'Osservati speciali',

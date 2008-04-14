@@ -1298,8 +1298,6 @@ La [http://meta.wikimedia.org/wiki/Help:Job_queue coa] la contien '''\$7''' pro�
 'emailccsubject'  => 'Copia del messagio invià a $1: $2',
 'emailsent'       => 'E-mail invià',
 'emailsenttext'   => 'La to e-mail xè stà invià',
-'emailuserfooter' => '--
-Sta e-mail la xe stà spedìa doparando la funzion "Scrivi a l\'utente" de {{SITENAME}}',
 
 # Watchlist
 'watchlist'            => 'osservati speciali',

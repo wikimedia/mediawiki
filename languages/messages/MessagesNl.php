@@ -1588,8 +1588,6 @@ Het e-mailadres dat u hebt opgegeven bij uw voorkeuren wordt als afzender gebrui
 'emailccsubject'  => 'Kopie van uw bericht aan $1: $2',
 'emailsent'       => 'E-mail verzonden',
 'emailsenttext'   => 'Uw e-mail is verzonden.',
-'emailuserfooter' => "--
-Deze e-mail is verstuurd via de optie 'Deze gebruiker e-mailen' van {{SITENAME}}",
 
 # Watchlist
 'watchlist'            => 'Volglijst',

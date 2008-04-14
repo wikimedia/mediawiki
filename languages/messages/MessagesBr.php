@@ -1336,8 +1336,6 @@ E maezienn \"Kaser\" ho postel e vo merket ar chomlec'h postel resisaet ganeoc'h
 'emailccsubject'  => 'Eilenn eus ho kemennadenn da $1: $2',
 'emailsent'       => 'Postel kaset',
 'emailsenttext'   => 'Kaset eo bet ho postel.',
-'emailuserfooter' => "--
-Kaset eo bet ar postel-mañ en ur ober gant an arc'hwel 'kas ur postel d'an implijer' eus {{SITENAME}}",
 
 # Watchlist
 'watchlist'            => 'Rollad evezhiañ',

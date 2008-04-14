@@ -1557,8 +1557,6 @@ Możesz zawęzić liczbę wyników poprzez wybranie typu rejestru, nazwy użytko
 'emailccsubject'  => 'Kopia Twojej wiadomości do $1: $2',
 'emailsent'       => 'Wiadomość została wysłana',
 'emailsenttext'   => 'Twoja wiadomość została wysłana.',
-'emailuserfooter' => '--
-Wiadomość wysłano z {{GRAMMAR:D.lp|{{SITENAME}}}} przy pomocy „Wyślij e-mail do tego użytkownika”.',
 
 # Watchlist
 'watchlist'            => 'Obserwowane',

@@ -1494,8 +1494,6 @@ auf die bereits die erste Weiterleitung zeigen sollte.',
 'emailccsubject'  => 'Kopie deiner Nachricht an $1: $2',
 'emailsent'       => 'E-Mail verschickt',
 'emailsenttext'   => 'Deine E-Mail wurde verschickt.',
-'emailuserfooter' => "--
-Diese E-Mail wurde unter Benutzung der Funktion 'E-Mail an diesen Benutzer' von {{SITENAME}} versandt.",
 
 # Watchlist
 'watchlist'            => 'Beobachtungsliste',

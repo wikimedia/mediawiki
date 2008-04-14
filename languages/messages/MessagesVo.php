@@ -1329,8 +1329,6 @@ fomet at osedon one penedi bal. Ladet leäktronik in gebanabuükams olik opubon 
 'emailccsubject'  => 'Kopied peneda olik ele $1: $2',
 'emailsent'       => 'Pened pesedon',
 'emailsenttext'   => 'Pened leäktronik ola pesedon.',
-'emailuserfooter' => '--
-Pened leäktronik at pesedon medü büd: sedön gebane penedi in {{SITENAME}}',
 
 # Watchlist
 'watchlist'            => 'Galädalised obik',

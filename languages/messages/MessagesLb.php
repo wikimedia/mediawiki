@@ -1374,8 +1374,6 @@ An all Rei sti Linken zur éischter an zweeter Viruleedung, souwéi déi éischt
 'emailccsubject'  => 'Kopie vun denger Noriicht un $1: $2',
 'emailsent'       => 'E-Mail geschéckt',
 'emailsenttext'   => 'Är E-Mail gouf fortgeschéckt.',
-'emailuserfooter' => "--
-Dësen E-mail gouf mat Hellëf vun der Funktioun 'Dësem Benotzer eng E-mail schécken' vun {{SITENAME}} geschéckt",
 
 # Watchlist
 'watchlist'            => 'Meng Iwwerwaachungslëscht',

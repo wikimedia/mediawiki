@@ -1511,8 +1511,6 @@ i "Från"-fältet i detta meddelande, så mottagaren har möjlighet att svara.',
 'emailccsubject'  => 'Kopia av ditt meddelande till $1: $2',
 'emailsent'       => 'E-post har nu skickats',
 'emailsenttext'   => 'Din e-post har skickats.',
-'emailuserfooter' => '-- 
-Detta mejl skickades med hjälp av funktionen "skicka e-post till användare" på {{SITENAME}}',
 
 # Watchlist
 'watchlist'            => 'Min övervakningslista',

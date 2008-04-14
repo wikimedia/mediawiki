@@ -1442,8 +1442,6 @@ respondre.",
 'emailccsubject'  => 'Còpia del vostre missatge a $1: $2',
 'emailsent'       => 'Correu electrònic enviat',
 'emailsenttext'   => 'El vostre correu electrònic ha estat enviat.',
-'emailuserfooter' => '--
-Aquest missatge de correu electrònic ha estat enviat amb la funció corresponent del wiki del projecte {{SITENAME}}.',
 
 # Watchlist
 'watchlist'            => 'Llista de seguiment',

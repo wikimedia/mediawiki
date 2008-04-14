@@ -1332,8 +1332,6 @@ Pode precisar máis a vista seleccionando o tipo de rexistro, o nome de usuario 
 'emailccsubject'  => 'Copia da mensaxe para $1: $2',
 'emailsent'       => 'Mensaxe enviada',
 'emailsenttext'   => 'A súa mensaxe de correo electrónico foi enviada.',
-'emailuserfooter' => '--
-Este correo electrónico foi enviado usando a característica "enviar un correo electrónico a este usuario" de {{SITENAME}}',
 
 # Watchlist
 'watchlist'            => 'A miña listaxe de vixilancia',

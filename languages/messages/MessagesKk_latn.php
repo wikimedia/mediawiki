@@ -1714,8 +1714,6 @@ Qatıswşı baptawıñızda engizgen e-poşta jaýıñız «Kimnen» degen bas j
 'emailccsubject'  => '$1 degenge jiberilgen xatıñızdıñ köşirmesi: $2',
 'emailsent'       => 'Xat jiberildi',
 'emailsenttext'   => 'E-poşta xatıñız jiberildi.',
-'emailuserfooter' => '--
-Bul xat {{SITENAME}} jobasınıñ «Qatıswşığa xat jiberw» erekşeligin qoldanıp jiberildi',
 
 # Watchlist
 'watchlist'            => 'Baqılaw tizimi',

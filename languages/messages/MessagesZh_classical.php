@@ -1136,8 +1136,6 @@ $2',
 'emailccsubject'  => '致$1複本：$2',
 'emailsent'       => '書遣矣',
 'emailsenttext'   => '書遣矣',
-'emailuserfooter'	  => "--
-此郵乃{{SITENAME}}上「捎書」功能之發也",
 
 # Watchlist
 'watchlist'            => '哨站',

@@ -1456,8 +1456,6 @@ para que o destinatário lhe possa responder.',
 'emailccsubject'  => 'Cópia de sua mensagem para $1: $2',
 'emailsent'       => 'E-mail enviado',
 'emailsenttext'   => 'A sua mensagem foi enviada.',
-'emailuserfooter' => "--
-Este email foi enviado usando a funcionalidade 'contactar este utilizador' de {{SITENAME}}",
 
 # Watchlist
 'watchlist'            => 'Artigos vigiados',

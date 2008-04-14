@@ -1548,8 +1548,6 @@ nem kíván másoktól leveleket kapni.',
 'emailccsubject'  => '$1 szerkesztőnek küldött $2 tárgyú üzenet másolata',
 'emailsent'       => 'E-mail elküldve',
 'emailsenttext'   => 'Az e-mail üzenetedet elküldtem.',
-'emailuserfooter' => '--
-Ez az üzenet a {{SITENAME}} wikiről lett küldve az „E-mail küldése ezen szerkesztőnek” használatával',
 
 # Watchlist
 'watchlist'            => 'Figyelőlistám',
