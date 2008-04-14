@@ -1,7 +1,5 @@
 <?php
-
 /**
- * @package MediaWiki
  * @addtogroup Ajax
  */
 
