@@ -34,7 +34,7 @@ function wfSpecialRecentchangeslinked( $par = NULL ) {
 		Xml::element( 'legend', array(), wfMsg( 'recentchangeslinked' ) ) . "\n" .
 		Xml::inputLabel( wfMsg( 'recentchangeslinked-page' ), 'target', 'recentchangeslinked-target', 40, $target ) .
 		"&nbsp;&nbsp;&nbsp;<span style='white-space: nowrap'>" . 
-		Xml::check( 'showlinkedto', $showlinkedto, array('id' => 'showlinkedto') ) .
+		Xml::check( 'showlinkedto', $showlinkedto, array('id' => 'showlinkedto') ) . ' ' .
 		Xml::label( wfMsg("recentchangeslinked-to"), 'showlinkedto' ) . 
 		"</span><br/>\n" .
 		Xml::hidden( 'title', $wgTitle->getPrefixedText() ). "\n" .
