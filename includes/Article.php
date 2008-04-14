@@ -899,7 +899,7 @@ class Article {
 
 		# check if we're displaying a [[User talk:x.x.x.x]] anonymous talk page
 		if( $ns == NS_USER_TALK &&
-			User::isIP( $this->mTitle->getText() ) ) {
+			IP::isValid( $this->mTitle->getText() ) ) {
 			$wgOut->addWikiMsg('anontalkpagetext');
 		}
 
