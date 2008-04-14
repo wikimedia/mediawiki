@@ -5857,6 +5857,20 @@ start
 xxx
 !! end
 
+!! test
+Section replacement test with initial whitespace (bug 13728)
+!! options
+replace=2,"xxx"
+!! input
+ Preformatted initial line
+==a==
+===a===
+!! result
+ Preformatted initial line
+==a==
+xxx
+!! end
+
 
 !! test
 Section extraction, heading followed by pre with 20 spaces (bug 6398)
