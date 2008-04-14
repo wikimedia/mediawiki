@@ -2339,7 +2339,9 @@ class Article {
 		if ( !$dbw->cleanupTriggers() ) {
 
 			# Clean up recentchanges entries...
-			$dbw->delete( 'recentchanges', array( 'rc_namespace' => $ns, 'rc_title' => $t ), __METHOD__ );
+			$dbw->delete( 'recentchanges', 
+				array( 'rc_namespace' => $ns, 'rc_title' => $t, 'rc_type != '.RC_LOG ),
+				__METHOD__ );
 		}
 
 		# Clear caches
