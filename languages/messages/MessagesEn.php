@@ -1482,8 +1482,8 @@ An unchecked box means the user is not in that group.',
 'recentchangeslinked-noresult' => 'No changes on linked pages during the given period.',
 'recentchangeslinked-summary'  => "This is a list of changes made recently to pages linked from a specified page (or to members of a specified category).
 Pages on [[Special:Watchlist|your watchlist]] are '''bold'''.",
-'recentchangeslinked-page'     => 'Page name',
-'recentchangeslinked-to'       => "Show changes to pages linked to the given page instead",
+'recentchangeslinked-page'     => 'Page name:',
+'recentchangeslinked-to'       => 'Show changes to pages linked to the given page instead',
 
 # Upload
 'upload'                      => 'Upload file',
@@ -2076,7 +2076,7 @@ You can change this page's protection level, but it will not affect the cascadin
 'restriction-type'            => 'Permission:',
 'restriction-level'           => 'Restriction level:',
 'minimum-size'                => 'Min size',
-'maximum-size'                => 'Max size',
+'maximum-size'                => 'Max size:',
 'pagesize'                    => '(bytes)',
 
 # Restrictions (nouns)
