@@ -4662,7 +4662,7 @@ class Parser
 
 		if ( is_string( $outText ) ) {
 			// Re-insert stripped tags
-			$outText = trim( $this->mStripState->unstripBoth( $outText ) );
+			$outText = rtrim( $this->mStripState->unstripBoth( $outText ) );
 		}
 
 		return $outText;
