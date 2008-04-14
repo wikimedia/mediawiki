@@ -30,24 +30,24 @@ if (!defined('MEDIAWIKI')) {
 
 /**
  * Query module to get list of random pages
- * 
+ *
  * @addtogroup API
  */
- 
+
  class ApiQueryRandom extends ApiQueryGeneratorBase {
 
 	public function __construct($query, $moduleName) {
 		parent :: __construct($query, $moduleName, 'rn');
 	}
-	
+
 	public function execute() {
 		$this->run();
 	}
-	
+
 	public function executeGenerator($resultPageSet) {
 		$this->run($resultPageSet);
 	}
-	
+
 	protected function prepareQuery($randstr, $limit, $namespace, &$resultPageSet) {
 		$this->resetQueryParams();
 		$this->addTables('page');
@@ -104,7 +104,7 @@ if (!defined('MEDIAWIKI')) {
 		if(is_null($resultPageSet)) {
 			$result->setIndexedTagName($data, 'page');
 			$result->addValue('query', $this->getModuleName(), $data);
-		}		
+		}
 	}
 
 	private function extractRowInfo($row) {
@@ -115,7 +115,7 @@ if (!defined('MEDIAWIKI')) {
 		$vals['id'] = $row->page_id;
 		return $vals;
 	}
-		
+
 	public function getAllowedParams() {
 		return array (
 			'namespace' => array(

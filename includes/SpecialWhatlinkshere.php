@@ -115,12 +115,12 @@ class WhatLinksHerePage {
 			$from = (int)$from; // just in case
 			$tlConds[] = "tl_from >= $from";
 			$plConds[] = "pl_from >= $from";
-		} 
+		}
 
 		// Read an extra row as an at-end check
 		$queryLimit = $limit + 1;
 
-		// enforce join order, sometimes namespace selector may 
+		// enforce join order, sometimes namespace selector may
 		// trigger filesorts which are far less efficient than scanning many entries
 		$options[] = 'STRAIGHT_JOIN';
 
@@ -180,7 +180,7 @@ class WhatLinksHerePage {
 				$rows[$row->page_id] = $row;
 			}
 			$dbr->freeResult( $plRes );
-			
+
 		}
 		if( !$this->hidetrans ) {
 			while ( $row = $dbr->fetchObject( $tlRes ) ) {
@@ -256,7 +256,7 @@ class WhatLinksHerePage {
 				'target=' . $nt->getPrefixedUrl()
 			);
 			$wgOut->addHtml( ' <span class="mw-whatlinkshere-tools">(' . $wlh . ')</span>' );
-			
+
 			if ( $row->page_is_redirect ) {
 				if ( $level < 2 ) {
 					$this->showIndirectLinks( $level + 1, $nt, $wgMaxRedirectLinksRetrieved );
@@ -355,5 +355,4 @@ class WhatLinksHerePage {
 		}
 		return '<p>' . implode( '&nbsp;|&nbsp;', $links ) . '</p>';
 	}
-
 }

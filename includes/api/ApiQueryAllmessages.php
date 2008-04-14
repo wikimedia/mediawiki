@@ -30,7 +30,7 @@ if (!defined('MEDIAWIKI')) {
 
 /**
  * A query action to return messages from site message cache
- * 
+ *
  * @addtogroup API
  */
 class ApiQueryAllmessages extends ApiQueryBase {
@@ -42,13 +42,13 @@ class ApiQueryAllmessages extends ApiQueryBase {
 	public function execute() {
 		global $wgMessageCache;
 		$params = $this->extractRequestParams();
-		
+
 		if(!is_null($params['lang']))
 		{
 			global $wgLang;
 			$wgLang = Language::factory($params['lang']);
 		}
-			
+
 
 		//Determine which messages should we print
 		$messages_target = array();
@@ -60,7 +60,7 @@ class ApiQueryAllmessages extends ApiQueryBase {
 		} else {
 			$messages_target = explode( '|', $params['messages'] );
 		}
-		
+
 		//Filter messages
 		if( isset( $params['filter'] ) ) {
 			$messages_filtered = array();

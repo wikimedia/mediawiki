@@ -35,7 +35,7 @@ class RawPage {
 		$ctype = $this->mRequest->getVal( 'ctype' );
 		$smaxage = $this->mRequest->getIntOrNull( 'smaxage', $wgSquidMaxage );
 		$maxage = $this->mRequest->getInt( 'maxage', $wgSquidMaxage );
-		
+
 		$this->mExpandTemplates = $this->mRequest->getVal( 'templates' ) === 'expand';
 		$this->mUseMessageCache = $this->mRequest->getBool( 'usemsgcache' );
 
@@ -66,7 +66,7 @@ class RawPage {
 				break;
 		}
 		$this->mOldId = $oldid;
-		
+
 		# special case for 'generated' raw things: user css/js
 		$gen = $this->mRequest->getVal( 'gen' );
 
@@ -82,7 +82,7 @@ class RawPage {
 			$this->mGen = false;
 		}
 		$this->mCharset = $wgInputEncoding;
-		
+
 		# Force caching for CSS and JS raw content, default: 5 minutes
 		if (is_null($smaxage) and ($ctype=='text/css' or $ctype==$wgJsMimeType)) {
 			$this->mSmaxage = intval($wgForcedRawSMaxage);
@@ -90,8 +90,8 @@ class RawPage {
 			$this->mSmaxage = intval( $smaxage );
 		}
 		$this->mMaxage = $maxage;
-		
-		# Output may contain user-specific data; 
+
+		# Output may contain user-specific data;
 		# vary generated content for open sessions and private wikis
 		if ($this->mGen or !$wgGroupPermissions['*']['read']) {
 			$this->mPrivateCache = ( $this->mSmaxage == 0 ) ||
@@ -99,7 +99,7 @@ class RawPage {
 		} else {
 			$this->mPrivateCache = false;
 		}
-		
+
 		if ( $ctype == '' or ! in_array( $ctype, $allowedCTypes ) ) {
 			$this->mContentType = 'text/x-wiki';
 		} else {
@@ -125,7 +125,7 @@ class RawPage {
 		} else {
 			$url = $_SERVER['PHP_SELF'];
 		}
-		
+
 		if( strcmp( $wgScript, $url ) ) {
 			# Internet Explorer will ignore the Content-Type header if it
 			# thinks it sees a file extension it recognizes. Make sure that
@@ -210,7 +210,7 @@ class RawPage {
 			# have the pages.
 			header( "HTTP/1.0 404 Not Found" );
 		}
-		
+
 		// Special-case for empty CSS/JS
 		//
 		// Internet Explorer for Mac handles empty files badly;
@@ -224,7 +224,7 @@ class RawPage {
 				$this->mContentType == 'text/javascript' ) ) {
 			return "/* Empty */";
 		}
-		
+
 		return $this->parseArticleText( $text );
 	}
 
@@ -239,4 +239,3 @@ class RawPage {
 				return $text;
 	}
 }
-

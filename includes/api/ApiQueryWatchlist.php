@@ -31,7 +31,7 @@ if (!defined('MEDIAWIKI')) {
 /**
  * This query action allows clients to retrieve a list of recently modified pages
  * that are part of the logged-in user's watchlist.
- * 
+ *
  * @addtogroup API
  */
 class ApiQueryWatchlist extends ApiQueryGeneratorBase {
@@ -50,7 +50,7 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 
 	private $fld_ids = false, $fld_title = false, $fld_patrol = false, $fld_flags = false,
 			$fld_timestamp = false, $fld_user = false, $fld_comment = false, $fld_sizes = false;
-	
+
 	private function run($resultPageSet = null) {
 		global $wgUser, $wgDBtype;
 
@@ -134,15 +134,15 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 		$this->addWhereRange('rc_timestamp', $dir, $start, $end);
 		$this->addWhereFld('wl_namespace', $namespace);
 		$this->addWhereIf('rc_this_oldid=page_latest', !$allrev);
-		
+
 		if (!is_null($show)) {
 			$show = array_flip($show);
 
 			/* Check for conflicting parameters. */
-			if ((isset ($show['minor']) && isset ($show['!minor'])) 
-					|| (isset ($show['bot']) && isset ($show['!bot'])) 
+			if ((isset ($show['minor']) && isset ($show['!minor']))
+					|| (isset ($show['bot']) && isset ($show['!bot']))
 					|| (isset ($show['anon']) && isset ($show['!anon']))) {
-						
+
 				$this->dieUsage("Incorrect parameter - mutually exclusive values may not be supplied", 'show');
 			}
 
@@ -155,7 +155,7 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 			$this->addWhereIf('rc_user != 0', isset ($show['!anon']));
 		}
 
-		
+
 		# This is an index optimization for mysql, as done in the Special:Watchlist page
 		$this->addWhereIf("rc_timestamp > ''", !isset ($start) && !isset ($end) && $wgDBtype == 'mysql');
 
@@ -205,9 +205,9 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 
 		if ($this->fld_ids) {
 			$vals['pageid'] = intval($row->rc_cur_id);
-			$vals['revid'] = intval($row->rc_this_oldid); 
+			$vals['revid'] = intval($row->rc_this_oldid);
 		}
-		
+
 		if ($this->fld_title)
 			ApiQueryBase :: addTitleInfo($vals, Title :: makeTitle($row->rc_namespace, $row->rc_title));
 
@@ -332,4 +332,3 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 		return __CLASS__ . ': $Id$';
 	}
 }
-

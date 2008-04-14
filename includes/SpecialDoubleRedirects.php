@@ -23,7 +23,7 @@ class DoubleRedirectsPage extends PageQueryPage {
 	}
 
 	function getSQLText( &$dbr, $namespace = null, $title = null ) {
-		
+
 		list( $page, $redirect ) = $dbr->tableNamesN( 'page', 'redirect' );
 
 		$limitToTitle = !( $namespace === null && $title === null );
@@ -48,7 +48,7 @@ class DoubleRedirectsPage extends PageQueryPage {
 
 		return $sql;
 	}
-	
+
 	function getSQL() {
 		$dbr = wfGetDB( DB_SLAVE );
 		return $this->getSQLText( $dbr );
@@ -60,7 +60,7 @@ class DoubleRedirectsPage extends PageQueryPage {
 
 	function formatResult( $skin, $result ) {
 		global $wgContLang;
-	
+
 		$fname = 'DoubleRedirectsPage::formatResult';
 		$titleA = Title::makeTitle( $result->namespace, $result->title );
 
@@ -101,4 +101,3 @@ function wfSpecialDoubleRedirects() {
 	return $sdr->doQuery( $offset, $limit );
 
 }
-

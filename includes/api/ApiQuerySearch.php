@@ -30,7 +30,7 @@ if (!defined('MEDIAWIKI')) {
 
 /**
  * Query module to perform full text search within wiki titles and content
- * 
+ *
  * @addtogroup API
  */
 class ApiQuerySearch extends ApiQueryGeneratorBase {
@@ -52,7 +52,7 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 		$params = $this->extractRequestParams();
 
 		$limit = $params['limit'];
-		$query = $params['search'];		
+		$query = $params['search'];
 		if (is_null($query) || empty($query))
 			$this->dieUsage("empty search string is not allowed", 'param-search');
 
@@ -60,13 +60,13 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 		$search->setLimitOffset( $limit+1, $params['offset'] );
 		$search->setNamespaces( $params['namespace'] );
 		$search->showRedirects = $params['redirects'];
-		
+
 		if ($params['what'] == 'text')
 			$matches = $search->searchText( $query );
 		else
 			$matches = $search->searchTitle( $query );
 		if (is_null($matches))
-			$this->dieUsage("{$params['what']} search is disabled", 
+			$this->dieUsage("{$params['what']} search is disabled",
 					"search-{$params['what']}-disabled");
 
 		$data = array ();
@@ -103,7 +103,7 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 			'namespace' => array (
 				ApiBase :: PARAM_DFLT => 0,
 				ApiBase :: PARAM_TYPE => 'namespace',
-				ApiBase :: PARAM_ISMULTI => true, 
+				ApiBase :: PARAM_ISMULTI => true,
 			),
 			'what' => array (
 				ApiBase :: PARAM_DFLT => 'title',
@@ -151,4 +151,3 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 		return __CLASS__ . ': $Id$';
 	}
 }
-

@@ -133,4 +133,3 @@ class UploadFormMogile extends UploadForm {
 		}
 	}
 }
-

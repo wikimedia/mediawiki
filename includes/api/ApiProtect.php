@@ -40,7 +40,7 @@ class ApiProtect extends ApiBase {
 		global $wgUser;
 		$this->getMain()->requestWriteMode();
 		$params = $this->extractRequestParams();
-		
+
 		$titleObj = NULL;
 		if(!isset($params['title']))
 			$this->dieUsageMsg(array('missingparam', 'title'));
@@ -55,12 +55,12 @@ class ApiProtect extends ApiBase {
 		$titleObj = Title::newFromText($params['title']);
 		if(!$titleObj)
 			$this->dieUsageMsg(array('invalidtitle', $params['title']));
-			
+
 		$errors = $titleObj->getUserPermissionsErrors('protect', $wgUser);
 		if(!empty($errors))
 			// We don't care about multiple errors, just report one of them
 			$this->dieUsageMsg(current($errors));
-		
+
 		if(in_array($params['expiry'], array('infinite', 'indefinite', 'never')))
 			$expiry = Block::infinity();
 		else
@@ -68,7 +68,7 @@ class ApiProtect extends ApiBase {
 			$expiry = strtotime($params['expiry']);
 			if($expiry < 0 || $expiry == false)
 				$this->dieUsageMsg(array('invalidexpiry'));
-			
+
 			$expiry = wfTimestamp(TS_MW, $expiry);
 			if($expiry < wfTimestampNow())
 				$this->dieUsageMsg(array('pastexpiry'));

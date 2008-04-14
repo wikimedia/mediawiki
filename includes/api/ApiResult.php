@@ -33,16 +33,16 @@ if (!defined('MEDIAWIKI')) {
  * It simply wraps a nested array() structure, adding some functions to simplify array's modifications.
  * As various modules execute, they add different pieces of information to this result,
  * structuring it as it will be given to the client.
- * 
+ *
  * Each subarray may either be a dictionary - key-value pairs with unique keys,
  * or lists, where the items are added using $data[] = $value notation.
- * 
+ *
  * There are two special key values that change how XML output is generated:
  *   '_element' This key sets the tag name for the rest of the elements in the current array.
  *              It is only inserted if the formatter returned true for getNeedsRawData()
  *   '*'        This key has special meaning only to the XML formatter, and is outputed as is
- * 				for all others. In XML it becomes the content of the current element.          
- * 
+ * 				for all others. In XML it becomes the content of the current element.
+ *
  * @addtogroup API
  */
 class ApiResult extends ApiBase {
@@ -64,15 +64,15 @@ class ApiResult extends ApiBase {
 	public function reset() {
 		$this->mData = array ();
 	}
-	
+
 	/**
-	 * Call this function when special elements such as '_element' 
-	 * are needed by the formatter, for example in XML printing. 
+	 * Call this function when special elements such as '_element'
+	 * are needed by the formatter, for example in XML printing.
 	 */
 	public function setRawMode() {
 		$this->mIsRawMode = true;
 	}
-	
+
 	/**
 	 * Returns true if the result is being created for the formatter that requested raw data.
 	 */
@@ -139,7 +139,7 @@ class ApiResult extends ApiBase {
 		// Do not use setElement() as it is ok to call this more than once
 		$arr['_element'] = $tag;
 	}
-	
+
 	/**
 	 * Calls setIndexedTagName() on $arr and each sub-array
 	 */
@@ -160,7 +160,7 @@ class ApiResult extends ApiBase {
 	 * Add value to the output data at the given path.
 	 * Path is an indexed array, each element specifing the branch at which to add the new value
 	 * Setting $path to array('a','b','c') is equivalent to data['a']['b']['c'] = $value
-	 * If $name is empty, the $value is added as a next list element data[] = $value  
+	 * If $name is empty, the $value is added as a next list element data[] = $value
 	 */
 	public function addValue($path, $name, $value) {
 
@@ -199,17 +199,17 @@ class ApiResult extends ApiBase {
 if (!function_exists('array_intersect_key')) {
 	function array_intersect_key($isec, $keys) {
 		$argc = func_num_args();
-		
+
 		if ($argc > 2) {
 			for ($i = 1; !empty($isec) && $i < $argc; $i++) {
 				$arr = func_get_arg($i);
-				
+
 				foreach (array_keys($isec) as $key) {
-					if (!isset($arr[$key])) 
+					if (!isset($arr[$key]))
 						unset($isec[$key]);
 				}
 			}
-			
+
 			return $isec;
 		} else {
 			$res = array();
@@ -217,7 +217,7 @@ if (!function_exists('array_intersect_key')) {
 				if (isset($keys[$key]))
 					$res[$key] = $isec[$key];
 			}
-		
+
 			return $res;
 		}
 	}

@@ -220,5 +220,3 @@ class UsercreateTemplate extends QuickTemplate {
 
 	}
 }
-
-?>

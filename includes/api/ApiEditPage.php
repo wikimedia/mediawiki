@@ -52,14 +52,14 @@ class ApiEditPage extends ApiBase {
 			$this->dieUsageMsg(array('missingparam', 'token'));
 		if(!$wgUser->matchEditToken($params['token']))
 			$this->dieUsageMsg(array('sessionfailure'));
-		
+
 		$titleObj = Title::newFromText($params['title']);
 		if(!$titleObj)
 			$this->dieUsageMsg(array('invalidtitle', $params['title']));
 
 		if($params['createonly'] && $titleObj->exists())
 			$this->dieUsageMsg(array('createonly-exists'));
-		
+
 		// Now let's check whether we're even allowed to do this
 		$errors = $titleObj->getUserPermissionsErrors('edit', $wgUser);
 		if(!$titleObj->exists())
@@ -101,7 +101,7 @@ class ApiEditPage extends ApiBase {
 				$this->dieUsage("The section parameter must be set to an integer or 'new'", "invalidsection");
 			$reqArr['wpSection'] = $params['section'];
 		}
-		
+
 		if($params['watch'])
 			$watch = true;
 		else if($params['unwatch'])
@@ -132,13 +132,13 @@ class ApiEditPage extends ApiBase {
 			{
 				$r['result'] = "Failure";
 				$this->getResult()->addValue(null, $this->getModuleName(), $r);
-				return; 
-			}	
+				return;
+			}
 			else
 				$this->dieUsageMsg(array('hookaborted'));
 		}
 		$wgRequest = $oldRequest;
-		
+
 		# Do the actual save
 		$oldRevId = $articleObj->getRevIdFetched();
 		$result = null;

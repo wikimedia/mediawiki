@@ -22,5 +22,3 @@ function wfProfileOut( $fn = '' ) {
 function wfGetProfilingOutput( $s, $e ) {}
 function wfProfileClose() {}
 $wgProfiling = false;
-
-

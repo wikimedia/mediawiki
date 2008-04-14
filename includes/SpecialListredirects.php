@@ -27,7 +27,7 @@ class ListredirectsPage extends QueryPage {
 
 	function formatResult( $skin, $result ) {
 		global $wgContLang;
-	
+
 		# Make a link to the redirect itself
 		$rd_title = Title::makeTitle( $result->namespace, $result->title );
 		$rd_link = $skin->makeLinkObj( $rd_title, '', 'redirect=no' );
@@ -48,7 +48,6 @@ class ListredirectsPage extends QueryPage {
 			return "<s>$rd_link</s>";
 		}
 	}
-
 }
 
 function wfSpecialListredirects() {
@@ -56,5 +55,3 @@ function wfSpecialListredirects() {
 	$lrp = new ListredirectsPage();
 	$lrp->doQuery( $offset, $limit );
 }
-
-

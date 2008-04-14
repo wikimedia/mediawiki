@@ -397,7 +397,7 @@ class LoginForm {
 		if( !wfRunHooks( 'AbortLogin', array( $u, $this->mPassword, &$abort ) ) ) {
 			return $abort;
 		}
-		
+
 		if (!$u->checkPassword( $this->mPassword )) {
 			if( $u->checkTemporaryPassword( $this->mPassword ) ) {
 				// The e-mailed temporary password should not be used
@@ -636,10 +636,10 @@ class LoginForm {
 		global $wgOut, $wgUser;
 
 		# Let's be nice about this, it's likely that this feature will be used
-		# for blocking large numbers of innocent people, e.g. range blocks on 
-		# schools. Don't blame it on the user. There's a small chance that it 
-		# really is the user's fault, i.e. the username is blocked and they 
-		# haven't bothered to log out before trying to create an account to 
+		# for blocking large numbers of innocent people, e.g. range blocks on
+		# schools. Don't blame it on the user. There's a small chance that it
+		# really is the user's fault, i.e. the username is blocked and they
+		# haven't bothered to log out before trying to create an account to
 		# evade it, but we'll leave that to their guilty conscience to figure
 		# out.
 
@@ -866,5 +866,3 @@ class LoginForm {
 		return $skin->makeKnownLinkObj( $self, htmlspecialchars( $text ), implode( '&', $attr ) );
 	}
 }
-
-

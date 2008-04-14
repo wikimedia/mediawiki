@@ -81,7 +81,7 @@ class SquidUpdate {
 			echo implode("<br />\n", $urlArr) . "<br />\n";
 			return;
 		}*/
-		
+
 		if( empty( $urlArr ) ) {
 			return;
 		}
@@ -222,7 +222,7 @@ class SquidUpdate {
 					throw new MWException( 'Bad purge URL' );
 				}
 				$url = SquidUpdate::expand( $url );
-				
+
 				// Construct a minimal HTCP request diagram
 				// as per RFC 2756
 				// Opcode 'CLR', no response desired, no auth
@@ -260,7 +260,7 @@ class SquidUpdate {
 			wfDebug( $text );
 		}
 	}
-	
+
 	/**
 	 * Expand local URLs to fully-qualified URLs using the internal protocol
 	 * and host defined in $wgInternalServer. Input that's already fully-
@@ -282,4 +282,3 @@ class SquidUpdate {
 		return $url;
 	}
 }
-

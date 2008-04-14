@@ -28,7 +28,7 @@ abstract class LBFactory {
 	}
 
 	/**
-	 * Construct a factory based on a configuration array (typically from $wgLBFactoryConf) 
+	 * Construct a factory based on a configuration array (typically from $wgLBFactoryConf)
 	 */
 	abstract function __construct( $conf );
 
@@ -168,7 +168,7 @@ class ChronologyProtector {
 	 *
 	 * @param LoadBalancer $lb
 	 */
-	function initLB( $lb ) {	
+	function initLB( $lb ) {
 		if ( $this->startupPos === null ) {
 			if ( !empty( $_SESSION[__CLASS__] ) ) {
 				$this->startupPos = $_SESSION[__CLASS__];
@@ -211,10 +211,9 @@ class ChronologyProtector {
 	 */
 	function shutdown() {
 		if ( session_id() != '' && count( $this->shutdownPos ) ) {
-			wfDebug( __METHOD__.": saving master pos for " . 
+			wfDebug( __METHOD__.": saving master pos for " .
 				count( $this->shutdownPos ) . " master(s)\n" );
 			$_SESSION[__CLASS__] = $this->shutdownPos;
 		}
 	}
 }
-

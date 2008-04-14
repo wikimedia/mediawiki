@@ -56,4 +56,3 @@ class ApiFormatDbg extends ApiFormatBase {
 		return __CLASS__ . ': $Id$';
 	}
 }
-

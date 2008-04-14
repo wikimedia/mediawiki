@@ -13,7 +13,7 @@ class FileRevertForm {
 	protected $archiveName = '';
 	protected $timestamp = false;
 	protected $oldFile;
-	
+
 	/**
 	 * Constructor
 	 *
@@ -23,7 +23,7 @@ class FileRevertForm {
 		$this->title = $file->getTitle();
 		$this->file = $file;
 	}
-	
+
 	/**
 	 * Fulfil the request; shows the form or reverts the file,
 	 * pending authentication, confirmation, etc.
@@ -48,20 +48,20 @@ class FileRevertForm {
 			$wgOut->blockedPage();
 			return;
 		}
-		
+
 		$this->archiveName = $wgRequest->getText( 'oldimage' );
 		$token = $wgRequest->getText( 'wpEditToken' );
 		if( !$this->isValidOldSpec() ) {
 			$wgOut->showUnexpectedValueError( 'oldimage', htmlspecialchars( $this->archiveName ) );
 			return;
 		}
-		
+
 		if( !$this->haveOldVersion() ) {
 			$wgOut->addHtml( wfMsgExt( 'filerevert-badversion', 'parse' ) );
 			$wgOut->returnToMain( false, $this->title );
 			return;
 		}
-		
+
 		// Perform the reversion if appropriate
 		if( $wgRequest->wasPosted() && $wgUser->matchEditToken( $token, $this->archiveName ) ) {
 			$source = $this->file->getArchiveVirtualUrl( $this->archiveName );
@@ -79,11 +79,11 @@ class FileRevertForm {
 			}
 			return;
 		}
-		
+
 		// Show the form
-		$this->showForm();		
+		$this->showForm();
 	}
-	
+
 	/**
 	 * Show the confirmation form
 	 */
@@ -103,10 +103,10 @@ class FileRevertForm {
 		$form .= '<p>' . Xml::submitButton( wfMsg( 'filerevert-submit' ) ) . '</p>';
 		$form .= '</fieldset>';
 		$form .= '</form>';
-		
+
 		$wgOut->addHtml( $form );
 	}
-	
+
 	/**
 	 * Set headers, titles and other bits
 	 */
@@ -116,7 +116,7 @@ class FileRevertForm {
 		$wgOut->setRobotPolicy( 'noindex,nofollow' );
 		$wgOut->setSubtitle( wfMsg( 'filerevert-backlink', $wgUser->getSkin()->makeKnownLinkObj( $this->title ) ) );
 	}
-	
+
 	/**
 	 * Is the provided `oldimage` value valid?
 	 *
@@ -127,7 +127,7 @@ class FileRevertForm {
 			&& strpos( $this->archiveName, '/' ) === false
 			&& strpos( $this->archiveName, '\\' ) === false;
 	}
-	
+
 	/**
 	 * Does the provided `oldimage` value correspond
 	 * to an existing, local, old version of this file?
@@ -137,7 +137,7 @@ class FileRevertForm {
 	protected function haveOldVersion() {
 		return $this->getOldFile()->exists();
 	}
-	
+
 	/**
 	 * Prepare the form action
 	 *
@@ -149,7 +149,7 @@ class FileRevertForm {
 		$q[] = 'oldimage=' . urlencode( $this->archiveName );
 		return $this->title->getLocalUrl( implode( '&', $q ) );
 	}
-	
+
 	/**
 	 * Extract the timestamp of the old version
 	 *

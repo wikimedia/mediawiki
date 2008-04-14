@@ -362,9 +362,9 @@ function showChunk( $namespace = NS_MAIN, $from, $including = false ) {
 		$wgOut->addHTML( '</p>' );
 
 	}
-	
+
 }
-	
+
 /**
  * @param int $ns the namespace of the article
  * @param string $text the name of the article
@@ -393,5 +393,3 @@ function getNamespaceKeyAndText ($ns, $text) {
 	}
 }
 }
-
-?>

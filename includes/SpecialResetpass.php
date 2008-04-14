@@ -21,18 +21,18 @@ class PasswordResetForm extends SpecialPage {
 			$this->mTemporaryPassword = $wgRequest->getVal( 'wpPassword' );
 		}
 	}
-	
+
 	/**
 	 * Main execution point
 	 */
 	function execute( $par ) {
 		global $wgUser, $wgAuth, $wgOut, $wgRequest;
-		
+
 		if( !$wgAuth->allowPasswordChange() ) {
 			$this->error( wfMsg( 'resetpass_forbidden' ) );
 			return;
 		}
-		
+
 		if( $this->mName === null && !$wgRequest->wasPosted() ) {
 			$this->error( wfMsg( 'resetpass_missing' ) );
 			return;
@@ -44,7 +44,7 @@ class PasswordResetForm extends SpecialPage {
 			try {
 				$this->attemptReset( $newpass, $retype );
 				$wgOut->addWikiMsg( 'resetpass_success' );
-				
+
 				$data = array(
 					'action' => 'submitlogin',
 					'wpName' => $this->mName,
@@ -56,7 +56,7 @@ class PasswordResetForm extends SpecialPage {
 				}
 				$login = new LoginForm( new FauxRequest( $data, true ) );
 				$login->execute();
-				
+
 				return;
 			} catch( PasswordError $e ) {
 				$this->error( $e->getMessage() );
@@ -64,20 +64,20 @@ class PasswordResetForm extends SpecialPage {
 		}
 		$this->showForm();
 	}
-	
+
 	function error( $msg ) {
 		global $wgOut;
 		$wgOut->addHtml( '<div class="errorbox">' .
 			htmlspecialchars( $msg ) .
 			'</div>' );
 	}
-	
+
 	function showForm() {
 		global $wgOut, $wgUser, $wgRequest;
 
 		$wgOut->disallowUserJs();
-		
-		$self = SpecialPage::getTitleFor( 'Resetpass' );		
+
+		$self = SpecialPage::getTitleFor( 'Resetpass' );
 		$form  =
 			'<div id="userloginForm">' .
 			wfOpenElement( 'form',
@@ -117,7 +117,7 @@ class PasswordResetForm extends SpecialPage {
 			'</div>';
 		$wgOut->addHtml( $form );
 	}
-	
+
 	function pretty( $fields ) {
 		$out = '';
 		foreach( $fields as $list ) {
@@ -139,7 +139,7 @@ class PasswordResetForm extends SpecialPage {
 		}
 		return $out;
 	}
-	
+
 	/**
 	 * @throws PasswordError when cannot set the new password because requirements not met.
 	 */
@@ -148,18 +148,16 @@ class PasswordResetForm extends SpecialPage {
 		if( $user->isAnon() ) {
 			throw new PasswordError( 'no such user' );
 		}
-		
+
 		if( !$user->checkTemporaryPassword( $this->mTemporaryPassword ) ) {
 			throw new PasswordError( wfMsg( 'resetpass_bad_temporary' ) );
 		}
-		
+
 		if( $newpass !== $retype ) {
 			throw new PasswordError( wfMsg( 'badretype' ) );
 		}
-		
+
 		$user->setPassword( $newpass );
 		$user->saveSettings();
 	}
 }
-
-

@@ -26,14 +26,14 @@
 /**
  * This abstract class implements many basic API functions, and is the base of all API classes.
  * The class functions are divided into several areas of functionality:
- * 
+ *
  * Module parameters: Derived classes can define getAllowedParams() to specify which parameters to expect,
  * 	how to parse and validate them.
- * 
+ *
  * Profiling: various methods to allow keeping tabs on various tasks and their time costs
- * 
+ *
  * Self-documentation: code to allow api to document its own state.
- * 
+ *
  * @addtogroup API
  */
 abstract class ApiBase {
@@ -68,18 +68,18 @@ abstract class ApiBase {
 	 *****************************************************************************/
 
 	/**
-	 * Evaluates the parameters, performs the requested query, and sets up the 
-	 * result. Concrete implementations of ApiBase must override this method to 
+	 * Evaluates the parameters, performs the requested query, and sets up the
+	 * result. Concrete implementations of ApiBase must override this method to
 	 * provide whatever functionality their module offers. Implementations must
 	 * not produce any output on their own and are not expected to handle any
-	 * errors. 
+	 * errors.
 	 *
 	 * The execute method will be invoked directly by ApiMain immediately before
 	 * the result of the module is output. Aside from the constructor, implementations
 	 * should assume that no other methods will be called externally on the module
 	 * before the result is processed.
 	 *
-	 * The result data should be stored in the result object referred to by 
+	 * The result data should be stored in the result object referred to by
 	 * "getResult()". Refer to ApiResult.php for details on populating a result
 	 * object.
 	 */
@@ -93,21 +93,21 @@ abstract class ApiBase {
 	public abstract function getVersion();
 
 	/**
-	 * Get the name of the module being executed by this instance 
+	 * Get the name of the module being executed by this instance
 	 */
 	public function getModuleName() {
 		return $this->mModuleName;
 	}
 
 	/**
-	 * Get parameter prefix (usually two letters or an empty string). 
+	 * Get parameter prefix (usually two letters or an empty string).
 	 */
 	public function getModulePrefix() {
 		return $this->mModulePrefix;
-	}	
+	}
 
 	/**
-	 * Get the name of the module as shown in the profiler log 
+	 * Get the name of the module as shown in the profiler log
 	 */
 	public function getModuleProfileName($db = false) {
 		if ($db)
@@ -124,7 +124,7 @@ abstract class ApiBase {
 	}
 
 	/**
-	 * Returns true if this module is the main module ($this === $this->mMainModule), 
+	 * Returns true if this module is the main module ($this === $this->mMainModule),
 	 * false otherwise.
 	 */
 	public function isMain() {
@@ -151,7 +151,7 @@ abstract class ApiBase {
 	}
 
 	/**
-	 * Set warning section for this module. Users should monitor this section to 
+	 * Set warning section for this module. Users should monitor this section to
 	 * notice any changes in API.
 	 */
 	public function setWarning($warning) {
@@ -163,7 +163,7 @@ abstract class ApiBase {
 	/**
 	 * If the module may only be used with a certain format module,
 	 * it should override this method to return an instance of that formatter.
-	 * A value of null means the default format will be used.  
+	 * A value of null means the default format will be used.
 	 */
 	public function getCustomPrinter() {
 		return null;
@@ -210,7 +210,7 @@ abstract class ApiBase {
 				$versions = $this->getVersion();
 				$pattern = '(\$.*) ([0-9a-z_]+\.php) (.*\$)';
 				$replacement = '\\0' . "\n    " . 'http://svn.wikimedia.org/viewvc/mediawiki/trunk/phase3/includes/api/\\2';
-				
+
 				if (is_array($versions)) {
 					foreach ($versions as &$v)
 						$v = eregi_replace($pattern, $replacement, $v);
@@ -226,7 +226,7 @@ abstract class ApiBase {
 		return $msg;
 	}
 
-	/** 
+	/**
 	 * Generates the parameter descriptions for this module, to be displayed in the
 	 * module's help.
 	 */
@@ -277,7 +277,7 @@ abstract class ApiBase {
 										$intRangeStr = "The value must be no more than {$paramSettings[self :: PARAM_MAX]}";
 									else
 										$intRangeStr = "The value must be between {$paramSettings[self :: PARAM_MIN]} and {$paramSettings[self :: PARAM_MAX]}";
-										
+
 									$desc .= $paramPrefix . $intRangeStr;
 								}
 								break;
@@ -327,7 +327,7 @@ abstract class ApiBase {
 
 	/**
 	 * This method mangles parameter name based on the prefix supplied to the constructor.
-	 * Override this method to change parameter name during runtime 
+	 * Override this method to change parameter name during runtime
 	 */
 	public function encodeParamName($paramName) {
 		return $this->mModulePrefix . $paramName;
@@ -351,7 +351,7 @@ abstract class ApiBase {
 	}
 
 	/**
-	 * Get a value for the given parameter 
+	 * Get a value for the given parameter
 	 */
 	protected function getParameter($paramName, $parseMaxLimit = true) {
 		$params = $this->getAllowedParams();
@@ -438,7 +438,7 @@ abstract class ApiBase {
 						$value = is_array($value) ? array_map('intval', $value) : intval($value);
 						$min = isset ($paramSettings[self :: PARAM_MIN]) ? $paramSettings[self :: PARAM_MIN] : null;
 						$max = isset ($paramSettings[self :: PARAM_MAX]) ? $paramSettings[self :: PARAM_MAX] : null;
-						
+
 						if (!is_null($min) || !is_null($max)) {
 							$values = is_array($value) ? $value : array($value);
 							foreach ($values as $v) {
@@ -498,12 +498,12 @@ abstract class ApiBase {
 	/**
 	* Return an array of values that were given in a 'a|b|c' notation,
 	* after it optionally validates them against the list allowed values.
-	* 
+	*
 	* @param valueName - The name of the parameter (for error reporting)
 	* @param value - The value being parsed
 	* @param allowMultiple - Can $value contain more than one value separated by '|'?
 	* @param allowedValues - An array of values to check against. If null, all values are accepted.
-	* @return (allowMultiple ? an_array_of_values : a_single_value) 
+	* @return (allowMultiple ? an_array_of_values : a_single_value)
 	*/
 	protected function parseMultiValue($valueName, $value, $allowMultiple, $allowedValues) {
 		if( trim($value) === "" )
@@ -549,12 +549,12 @@ abstract class ApiBase {
 	}
 
 	/**
-	 * Call main module's error handler 
+	 * Call main module's error handler
 	 */
 	public function dieUsage($description, $errorCode, $httpRespCode = 0) {
 		throw new UsageException($description, $this->encodeParamName($errorCode), $httpRespCode);
 	}
-	
+
 	/**
 	 * Array that maps message keys to error messages. $1 and friends are replaced.
 	 */
@@ -562,7 +562,7 @@ abstract class ApiBase {
 		// This one MUST be present, or dieUsageMsg() will recurse infinitely
 		'unknownerror' => array('code' => 'unknownerror', 'info' => "Unknown error: ``\$1''"),
 		'unknownerror-nocode' => array('code' => 'unknownerror', 'info' => 'Unknown error'),
-		
+
 		// Messages from Title::getUserPermissionsErrors()
 		'ns-specialprotected' => array('code' => 'unsupportednamespace', 'info' => "Pages in the Special namespace can't be edited"),
 		'protectedinterface' => array('code' => 'protectednamespace-interface', 'info' => "You're not allowed to edit interface messages"),
@@ -583,11 +583,11 @@ abstract class ApiBase {
 		'confirmedittext' => array('code' => 'confirmemail', 'info' => "You must confirm your e-mail address before you can edit"),
 		'blockedtext' => array('code' => 'blocked', 'info' => "You have been blocked from editing"),
 		'autoblockedtext' => array('code' => 'autoblocked', 'info' => "Your IP address has been blocked automatically, because it was used by a blocked user"),
-		
+
 		// Miscellaneous interface messages
 		'actionthrottledtext' => array('code' => 'ratelimited', 'info' => "You've exceeded your rate limit. Please wait some time and try again"),
 		'alreadyrolled' => array('code' => 'alreadyrolled', 'info' => "The page you tried to rollback was already rolled back"),
-		'cantrollback' => array('code' => 'onlyauthor', 'info' => "The page you tried to rollback only has one author"), 
+		'cantrollback' => array('code' => 'onlyauthor', 'info' => "The page you tried to rollback only has one author"),
 		'readonlytext' => array('code' => 'readonly', 'info' => "The wiki is currently in read-only mode"),
 		'sessionfailure' => array('code' => 'badtoken', 'info' => "Invalid token"),
 		'cannotdelete' => array('code' => 'cantdelete', 'info' => "Couldn't delete ``\$1''. Maybe it was deleted already by someone else"),
@@ -608,7 +608,7 @@ abstract class ApiBase {
 		'ipb_already_blocked' => array('code' => 'alreadyblocked', 'info' => "The user you tried to block was already blocked"),
 		'ipb_blocked_as_range' => array('code' => 'blockedasrange', 'info' => "IP address ``\$1'' was blocked as part of range ``\$2''. You can't unblock the IP invidually, but you can unblock the range as a whole."),
 		'ipb_cant_unblock' => array('code' => 'cantunblock', 'info' => "The block you specified was not found. It may have been unblocked already"),
-		
+
 		// API-specific messages
 		'missingparam' => array('code' => 'no$1', 'info' => "The \$1 parameter must be set"),
 		'invalidtitle' => array('code' => 'invalidtitle', 'info' => "Bad title ``\$1''"),
@@ -639,7 +639,7 @@ abstract class ApiBase {
 		'blankpage' => array('code' => 'emptypage', 'info' => "Creating new, empty pages is not allowed"),
 		'editconflict' => array('code' => 'editconflict', 'info' => "Edit conflict detected"),
 	);
-	
+
 	/**
 	 * Output the error message related to a certain array
 	 * @param array $error Element of a getUserPermissionsErrors()
@@ -672,7 +672,7 @@ abstract class ApiBase {
 	public function isEditMode() {
 		return false;
 	}
-	
+
 	/**
 	 * Indicates whether this module must be called with a POST request
 	 */
@@ -712,7 +712,7 @@ abstract class ApiBase {
 
 	/**
 	 * When modules crash, sometimes it is needed to do a profileOut() regardless
-	 * of the profiling state the module was in. This method does such cleanup. 
+	 * of the profiling state the module was in. This method does such cleanup.
 	 */
 	public function safeProfileOut() {
 		if ($this->mTimeIn !== 0) {
@@ -773,7 +773,7 @@ abstract class ApiBase {
 			ApiBase :: dieDebug(__METHOD__, 'called without calling profileDBOut() first');
 		return $this->mDBTime;
 	}
-	
+
 	public static function debugPrint($value, $name = 'unknown', $backtrace = false) {
 		print "\n\n<pre><b>Debuging value '$name':</b>\n\n";
 		var_export($value);
@@ -788,6 +788,5 @@ abstract class ApiBase {
 	 */
 	public static function getBaseVersion() {
 		return __CLASS__ . ': $Id$';
-	} 
+	}
 }
-

@@ -30,7 +30,7 @@ if (!defined('MEDIAWIKI')) {
 
 /**
  * A query module to enumerate pages that belong to a category.
- * 
+ *
  * @addtogroup API
  */
 class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
@@ -51,13 +51,13 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 
 		$params = $this->extractRequestParams();
 
-		if ( !isset($params['title']) || is_null($params['title']) ) 
+		if ( !isset($params['title']) || is_null($params['title']) )
 			$this->dieUsage("The cmtitle parameter is required", 'notitle');
 		$categoryTitle = Title::newFromText($params['title']);
 
 		if ( is_null( $categoryTitle ) || $categoryTitle->getNamespace() != NS_CATEGORY )
 			$this->dieUsage("The category name you entered is not valid", 'invalidcategory');
-		
+
 		$prop = array_flip($params['prop']);
 		$fld_ids = isset($prop['ids']);
 		$fld_title = isset($prop['title']);
@@ -73,7 +73,7 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 		}
 
 		$this->addFieldsIf('cl_timestamp', $fld_timestamp || $params['sort'] == 'timestamp');
-		$this->addTables(array('page','categorylinks'));	// must be in this order for 'USE INDEX' 
+		$this->addTables(array('page','categorylinks'));	// must be in this order for 'USE INDEX'
 									// Not needed after bug 10280 is applied to servers
 		if($params['sort'] == 'timestamp')
 		{
@@ -87,11 +87,11 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 		}
 
 		$this->addWhere('cl_from=page_id');
-		$this->setContinuation($params['continue']);		
+		$this->setContinuation($params['continue']);
 		$this->addWhereFld('cl_to', $categoryTitle->getDBkey());
 		$this->addWhereFld('page_namespace', $params['namespace']);
 		$this->addWhereRange('cl_timestamp', ($params['dir'] == 'asc' ? 'newer' : 'older'), $params['start'], $params['end']);
-		
+
 		$limit = $params['limit'];
 		$this->addOption('LIMIT', $limit +1);
 
@@ -112,12 +112,12 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 				break;
 			}
 
-			$lastSortKey = $row->cl_sortkey;	// detect duplicate sortkeys 
-			
+			$lastSortKey = $row->cl_sortkey;	// detect duplicate sortkeys
+
 			if (is_null($resultPageSet)) {
 				$vals = array();
 				if ($fld_ids)
-					$vals['pageid'] = intval($row->page_id); 
+					$vals['pageid'] = intval($row->page_id);
 				if ($fld_title) {
 					$title = Title :: makeTitle($row->page_namespace, $row->page_title);
 					$vals['ns'] = intval($title->getNamespace());
@@ -139,29 +139,29 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 			$this->getResult()->addValue('query', $this->getModuleName(), $data);
 		}
 	}
-	
+
 	private function getContinueStr($row, $lastSortKey) {
 		$ret = $row->cl_sortkey . '|';
 		if ($row->cl_sortkey == $lastSortKey)	// duplicate sort key, add cl_from
 			$ret .= $row->cl_from;
 		return $ret;
 	}
-	
+
 	/**
-	 * Add DB WHERE clause to continue previous query based on 'continue' parameter 
+	 * Add DB WHERE clause to continue previous query based on 'continue' parameter
 	 */
 	private function setContinuation($continue) {
 		if (is_null($continue))
 			return;	// This is not a continuation request
-			
+
 		$continueList = explode('|', $continue);
 		$hasError = count($continueList) != 2;
 		$from = 0;
 		if (!$hasError && strlen($continueList[1]) > 0) {
 			$from = intval($continueList[1]);
-			$hasError = ($from == 0); 
+			$hasError = ($from == 0);
 		}
-		
+
 		if ($hasError)
 			$this->dieUsage("Invalid continue param. You should pass the original value returned by the previous query", "badcontinue");
 
@@ -255,4 +255,3 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 		return __CLASS__ . ': $Id$';
 	}
 }
-

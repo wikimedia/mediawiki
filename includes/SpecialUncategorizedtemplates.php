@@ -27,5 +27,3 @@ function wfSpecialUncategorizedtemplates() {
 	$utp = new UncategorizedTemplatesPage();
 	$utp->doQuery( $offset, $limit );
 }
-
-

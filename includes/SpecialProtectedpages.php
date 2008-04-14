@@ -33,13 +33,13 @@ class ProtectedPagesForm {
 		$NS = $wgRequest->getIntOrNull( 'namespace' );
 		$indefOnly = $wgRequest->getBool( 'indefonly' ) ? 1 : 0;
 
-		$pager = new ProtectedPagesPager( $this, array(), $type, $level, $NS, $sizetype, $size, $indefOnly );	
+		$pager = new ProtectedPagesPager( $this, array(), $type, $level, $NS, $sizetype, $size, $indefOnly );
 
 		$wgOut->addHTML( $this->showOptions( $NS, $type, $level, $sizetype, $size, $indefOnly ) );
 
 		if ( $pager->getNumRows() ) {
 			$s = $pager->getNavigationBar();
-			$s .= "<ul>" . 
+			$s .= "<ul>" .
 				$pager->getBody() .
 				"</ul>";
 			$s .= $pager->getNavigationBar();
@@ -61,7 +61,7 @@ class ProtectedPagesForm {
 
 		if( is_null( $skin ) )
 			$skin = $wgUser->getSkin();
-		
+
 		$title = Title::makeTitleSafe( $row->page_namespace, $row->page_title );
 		$link = $skin->makeLinkObj( $title );
 
@@ -79,12 +79,12 @@ class ProtectedPagesForm {
 
 		if ( $row->pr_expiry != 'infinity' && strlen($row->pr_expiry) ) {
 			$expiry = Block::decodeExpiry( $row->pr_expiry );
-	
+
 			$expiry_description = wfMsgForContent( 'protect-expiring', $wgLang->timeanddate( $expiry ) );
 
 			$description_items[] = $expiry_description;
 		}
-		
+
 		if (!is_null($size = $row->page_len)) {
 			if ($size == 0)
 				$stxt = ' <small>' . wfMsgHtml('historyempty') . '</small>';
@@ -96,7 +96,7 @@ class ProtectedPagesForm {
 
 		return '<li>' . wfSpecialList( $link . $stxt, implode( $description_items, ', ' ) ) . "</li>\n";
 	}
-	
+
 	/**
 	 * @param $namespace int
 	 * @param $type string
@@ -124,7 +124,7 @@ class ProtectedPagesForm {
 			"&nbsp;" . Xml::submitButton( wfMsg( 'allpagessubmit' ) ) . "\n" .
 			"</fieldset></form>";
 	}
-	
+
 	/**
 	 * Prepare the namespace filter drop-down; standard namespace
 	 * selector, sans the MediaWiki namespace
@@ -137,7 +137,7 @@ class ProtectedPagesForm {
 			Xml::label( wfMsg( 'namespace' ), 'namespace' ) . '&nbsp;'
 			. Xml::namespaceSelector( $namespace, '' ) . "</span>";
 	}
-	
+
 	/**
 	 * @return string Formatted HTML
 	 */
@@ -146,11 +146,11 @@ class ProtectedPagesForm {
 		$out .= Xml::label( wfMsg("protectedpages-indef"), 'indefonly' ) . "\n";
 		return $out;
 	}
-	
+
 	/**
 	 * @return string Formatted HTML
 	 */
-	protected function getSizeLimit( $sizetype, $size ) {	
+	protected function getSizeLimit( $sizetype, $size ) {
 		$out = Xml::radio( 'sizetype', 'min', ($sizetype=='min'), array('id' => 'wpmin') );
 		$out .= Xml::label( wfMsg("minimum-size"), 'wpmin' );
 		$out .= "&nbsp;".Xml::radio( 'sizetype', 'max', ($sizetype=='max'), array('id' => 'wpmax') );
@@ -159,13 +159,13 @@ class ProtectedPagesForm {
 		$out .= ' '.wfMsgHtml('pagesize');
 		return $out;
 	}
-		
+
 	/**
 	 * @return string Formatted HTML
 	 */
 	protected function getTypeMenu( $pr_type ) {
 		global $wgRestrictionTypes;
-	
+
 		$m = array(); // Temporary array
 		$options = array();
 
@@ -190,7 +190,7 @@ class ProtectedPagesForm {
 
 	/**
 	 * @return string Formatted HTML
-	 */	
+	 */
 	protected function getLevelMenu( $pr_level ) {
 		global $wgRestrictionLevels;
 
@@ -247,11 +247,11 @@ class ProtectedPagesPager extends AlphabeticPager {
 			$lb->add( $row->page_namespace, $row->page_title );
 		}
 		$lb->execute();
-		
+
 		wfProfileOut( __METHOD__ );
 		return '';
 	}
-	
+
 	function formatRow( $row ) {
 		return $this->mForm->formatRow( $row );
 	}
@@ -261,17 +261,17 @@ class ProtectedPagesPager extends AlphabeticPager {
 		$conds[] = 'pr_expiry>' . $this->mDb->addQuotes( $this->mDb->timestamp() );
 		$conds[] = 'page_id=pr_page';
 		$conds[] = 'pr_type=' . $this->mDb->addQuotes( $this->type );
-		
+
 		if( $this->sizetype=='min' ) {
 			$conds[] = 'page_len>=' . $this->size;
 		} else if( $this->sizetype=='max' ) {
 			$conds[] = 'page_len<=' . $this->size;
 		}
-		
+
 		if( $this->indefonly ) {
 			$conds[] = "pr_expiry = 'infinity' OR pr_expiry IS NULL";
 		}
-		
+
 		if( $this->level )
 			$conds[] = 'pr_level=' . $this->mDb->addQuotes( $this->level );
 		if( !is_null($this->namespace) )
@@ -297,6 +297,3 @@ function wfSpecialProtectedpages() {
 
 	$ppForm->showList();
 }
-
-
-

@@ -71,5 +71,3 @@ function wfSpecialMostlinkedCategories() {
 
 	$wpp->doQuery( $offset, $limit );
 }
-
-

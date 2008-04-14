@@ -17,8 +17,8 @@ class ORABlob {
 }
 
 /**
- * The oci8 extension is fairly weak and doesn't support oci_num_rows, among 
- * other things.  We use a wrapper class to handle that and other 
+ * The oci8 extension is fairly weak and doesn't support oci_num_rows, among
+ * other things.  We use a wrapper class to handle that and other
  * Oracle-specific bits, like converting column names back to lowercase.
  * @addtogroup Database
  */
@@ -204,7 +204,7 @@ class DatabaseOracle extends Database {
 			$e = oci_error($this->mConn);
 			$this->reportQueryError($e['message'], $e['code'], $sql, __FUNCTION__);
 		}
-		
+
 		if (oci_execute($stmt, $this->execFlags()) == false) {
 			$e = oci_error($stmt);
 			$this->reportQueryError($e['message'], $e['code'], $sql, __FUNCTION__);
@@ -367,7 +367,7 @@ class DatabaseOracle extends Database {
 
 		oci_free_statement($stmt);
 	}
-	
+
 	function tableName( $name ) {
 		# Replace reserved words with better ones
 		switch( $name ) {
@@ -530,7 +530,7 @@ class DatabaseOracle extends Database {
 	}
 
 	function reportQueryError($error, $errno, $sql, $fname, $tempIgnore = false) {
-		# Ignore errors during error handling to avoid infinite 
+		# Ignore errors during error handling to avoid infinite
 		# recursion
 		$ignore = $this->ignoreErrors(true);
 		++$this->mErrorCount;
@@ -653,10 +653,10 @@ echo "error!\n";
 
 		if ( isset( $options['GROUP BY'] ) ) $preLimitTail .= " GROUP BY {$options['GROUP BY']}";
 		if ( isset( $options['ORDER BY'] ) ) $preLimitTail .= " ORDER BY {$options['ORDER BY']}";
-		
+
 		if (isset($options['LIMIT'])) {
 		//	$tailOpts .= $this->limitResult('', $options['LIMIT'],
-		//		isset($options['OFFSET']) ? $options['OFFSET'] 
+		//		isset($options['OFFSET']) ? $options['OFFSET']
 		//		: false);
 		}
 
@@ -669,7 +669,7 @@ echo "error!\n";
 		} else {
 			$useIndex = '';
 		}
-		
+
 		return array( $startOpts, $useIndex, $preLimitTail, $postLimitTail );
 	}
 
@@ -704,5 +704,3 @@ echo "error!\n";
 	}
 
 } // end DatabaseOracle class
-
-

@@ -64,11 +64,11 @@ class ParserOptions
 		return $this->mDateFormat;
 	}
 
-	function getTimestamp() { 
+	function getTimestamp() {
 		if ( !isset( $this->mTimestamp ) ) {
 			$this->mTimestamp = wfTimestampNow();
 		}
-		return $this->mTimestamp; 
+		return $this->mTimestamp;
 	}
 
 	function setUseTeX( $x )                    { return wfSetVar( $this->mUseTeX, $x ); }
@@ -147,5 +147,3 @@ class ParserOptions
 		wfProfileOut( $fname );
 	}
 }
-
-

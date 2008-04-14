@@ -58,8 +58,8 @@ class OldLocalFile extends LocalFile {
 	function isOld() {
 		return true;
 	}
-	
-	function isVisible() { 
+
+	function isVisible() {
 		return $this->exists() && !$this->isDeleted(File::DELETED_FILE);
 	}
 
@@ -97,11 +97,11 @@ class OldLocalFile extends LocalFile {
 	function getUrlRel() {
 		return 'archive/' . $this->getHashPath() . urlencode( $this->getArchiveName() );
 	}
-	
+
 	function upgradeRow() {
 		wfProfileIn( __METHOD__ );
 		$this->loadFromFile();
-		
+
 		# Don't destroy file info of missing files
 		if ( !$this->fileExists ) {
 			wfDebug( __METHOD__.": file does not exist, aborting\n" );
@@ -123,14 +123,14 @@ class OldLocalFile extends LocalFile {
 				'oi_minor_mime' => $minor,
 				'oi_metadata' => $this->metadata,
 				'oi_sha1' => $this->sha1,
-			), array( 
-				'oi_name' => $this->getName(), 
+			), array(
+				'oi_name' => $this->getName(),
 				'oi_archive_name' => $this->archive_name ),
 			__METHOD__
 		);
 		wfProfileOut( __METHOD__ );
 	}
-	
+
 	/**
 	 * int $field one of DELETED_* bitfield constants
 	 * for file or revision rows
@@ -139,11 +139,11 @@ class OldLocalFile extends LocalFile {
 	function isDeleted( $field ) {
 		return ($this->deleted & $field) == $field;
 	}
-	
+
 	/**
 	 * Determine if the current user is allowed to view a particular
 	 * field of this FileStore image file, if it's marked as deleted.
-	 * @param int $field					
+	 * @param int $field
 	 * @return bool
 	 */
 	function userCan( $field ) {
@@ -158,7 +158,4 @@ class OldLocalFile extends LocalFile {
 			return true;
 		}
 	}
-
 }
-
-

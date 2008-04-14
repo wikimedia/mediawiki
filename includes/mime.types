@@ -57,14 +57,14 @@ application/xhtml+xml xhtml xht
 application/xslt+xml xslt
 application/xml xml xsl xsd
 application/xml-dtd dtd
-application/zip zip jar xpi  sxc stc  sxd std   sxi sti   sxm stm   sxw stw  
+application/zip zip jar xpi  sxc stc  sxd std   sxi sti   sxm stm   sxw stw
 audio/basic au snd
 audio/midi mid midi kar
 audio/mpeg mpga mp2 mp3
-audio/ogg ogg 
+audio/ogg ogg
 audio/x-aiff aif aiff aifc
 audio/x-mpegurl m3u
-audio/x-ogg ogg 
+audio/x-ogg ogg
 audio/x-pn-realaudio ram rm
 audio/x-pn-realaudio-plugin rpm
 audio/x-realaudio ra

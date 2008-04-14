@@ -30,7 +30,7 @@ if (!defined('MEDIAWIKI')) {
 
 /**
  * Query module to enumerate links from all pages together.
- * 
+ *
  * @addtogroup API
  */
 class ApiQueryAllLinks extends ApiQueryGeneratorBase {
@@ -66,7 +66,7 @@ class ApiQueryAllLinks extends ApiQueryGeneratorBase {
 
 		$this->addTables('pagelinks');
 		$this->addWhereFld('pl_namespace', $params['namespace']);
-		
+
 		if (!is_null($params['from']))
 			$this->addWhere('pl_title>=' . $db->addQuotes(ApiQueryBase :: titleToKey($params['from'])));
 		if (isset ($params['prefix']))

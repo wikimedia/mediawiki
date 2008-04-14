@@ -59,5 +59,3 @@ function wfSpecialAncientpages() {
 
 	$app->doQuery( $offset, $limit );
 }
-
-

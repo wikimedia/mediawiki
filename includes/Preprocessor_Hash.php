@@ -19,22 +19,22 @@ class Preprocessor_Hash implements Preprocessor {
 
 	/**
 	 * Preprocess some wikitext and return the document tree.
-	 * This is the ghost of Parser::replace_variables(). 
+	 * This is the ghost of Parser::replace_variables().
 	 *
 	 * @param string $text The text to parse
 	 * @param integer flags Bitwise combination of:
-	 *          Parser::PTD_FOR_INCLUSION    Handle <noinclude>/<includeonly> as if the text is being 
-	 *                                     included. Default is to assume a direct page view. 
+	 *          Parser::PTD_FOR_INCLUSION    Handle <noinclude>/<includeonly> as if the text is being
+	 *                                     included. Default is to assume a direct page view.
 	 *
 	 * The generated DOM tree must depend only on the input text and the flags.
-	 * The DOM tree must be the same in OT_HTML and OT_WIKI mode, to avoid a regression of bug 4899. 
+	 * The DOM tree must be the same in OT_HTML and OT_WIKI mode, to avoid a regression of bug 4899.
 	 *
-	 * Any flag added to the $flags parameter here, or any other parameter liable to cause a 
-	 * change in the DOM tree for a given text, must be passed through the section identifier 
-	 * in the section edit link and thus back to extractSections(). 
+	 * Any flag added to the $flags parameter here, or any other parameter liable to cause a
+	 * change in the DOM tree for a given text, must be passed through the section identifier
+	 * in the section edit link and thus back to extractSections().
 	 *
-	 * The output of this function is currently only cached in process memory, but a persistent 
-	 * cache may be implemented at a later date which takes further advantage of these strict 
+	 * The output of this function is currently only cached in process memory, but a persistent
+	 * cache may be implemented at a later date which takes further advantage of these strict
 	 * dependency requirements.
 	 *
 	 * @private
@@ -81,7 +81,7 @@ class Preprocessor_Hash implements Preprocessor {
 
 		// Use "A" modifier (anchored) instead of "^", because ^ doesn't work with an offset
 		$elementsRegex = "~($xmlishRegex)(?:\s|\/>|>)|(!--)~iA";
-	
+
 		$stack = new PPDStack_Hash;
 
 		$searchBase = "[{<\n";
@@ -197,7 +197,7 @@ class Preprocessor_Hash implements Preprocessor {
 					// To avoid leaving blank lines, when a comment is both preceded
 					// and followed by a newline (ignoring spaces), trim leading and
 					// trailing spaces and one of the newlines.
-					
+
 					// Find the end
 					$endPos = strpos( $text, '-->', $i + 4 );
 					if ( $endPos === false ) {
@@ -212,10 +212,10 @@ class Preprocessor_Hash implements Preprocessor {
 						// $wsEnd will be the position of the last space
 						$wsEnd = $endPos + 2 + strspn( $text, ' ', $endPos + 3 );
 						// Eat the line if possible
-						// TODO: This could theoretically be done if $wsStart == 0, i.e. for comments at 
-						// the overall start. That's not how Sanitizer::removeHTMLcomments() did it, but 
+						// TODO: This could theoretically be done if $wsStart == 0, i.e. for comments at
+						// the overall start. That's not how Sanitizer::removeHTMLcomments() did it, but
 						// it's a possible beneficial b/c break.
-						if ( $wsStart > 0 && substr( $text, $wsStart - 1, 1 ) == "\n" 
+						if ( $wsStart > 0 && substr( $text, $wsStart - 1, 1 ) == "\n"
 							&& substr( $text, $wsEnd + 1, 1 ) == "\n" )
 						{
 							$startPos = $wsStart;
@@ -223,9 +223,9 @@ class Preprocessor_Hash implements Preprocessor {
 							// Remove leading whitespace from the end of the accumulator
 							// Sanity check first though
 							$wsLength = $i - $wsStart;
-							if ( $wsLength > 0 
+							if ( $wsLength > 0
 								&& $accum->lastNode instanceof PPNode_Hash_Text
-								&& substr( $accum->lastNode->value, -$wsLength ) === str_repeat( ' ', $wsLength ) ) 
+								&& substr( $accum->lastNode->value, -$wsLength ) === str_repeat( ' ', $wsLength ) )
 							{
 								$accum->lastNode->value = substr( $accum->lastNode->value, 0, -$wsLength );
 							}
@@ -305,7 +305,7 @@ class Preprocessor_Hash implements Preprocessor {
 				if ( $attrEnd <= $attrStart ) {
 					$attr = '';
 				} else {
-					// Note that the attr element contains the whitespace between name and attribute, 
+					// Note that the attr element contains the whitespace between name and attribute,
 					// this is necessary for precise reconstruction during pre-save transform.
 					$attr = substr( $text, $attrStart, $attrEnd - $attrStart );
 				}
@@ -323,7 +323,7 @@ class Preprocessor_Hash implements Preprocessor {
 			}
 
 			elseif ( $found == 'line-start' ) {
-				// Is this the start of a heading? 
+				// Is this the start of a heading?
 				// Line break belongs before the heading element in any case
 				if ( $fakeLineStart ) {
 					$fakeLineStart = false;
@@ -331,7 +331,7 @@ class Preprocessor_Hash implements Preprocessor {
 					$accum->addLiteral( $curChar );
 					$i++;
 				}
-				
+
 				$count = strspn( $text, '=', $i, 6 );
 				if ( $count == 1 && $findEquals ) {
 					// DWIM: This looks kind of like a name/value separator
@@ -409,12 +409,12 @@ class Preprocessor_Hash implements Preprocessor {
 					$accum->addAccum( $element );
 				}
 				// Note that we do NOT increment the input pointer.
-				// This is because the closing linebreak could be the opening linebreak of 
+				// This is because the closing linebreak could be the opening linebreak of
 				// another heading. Infinite loops are avoided because the next iteration MUST
-				// hit the heading open case above, which unconditionally increments the 
+				// hit the heading open case above, which unconditionally increments the
 				// input pointer.
 			}
-			
+
 			elseif ( $found == 'open' ) {
 				# count opening brace characters
 				$count = strspn( $text, $curChar, $i );
@@ -484,7 +484,7 @@ class Preprocessor_Hash implements Preprocessor {
 
 					$element = new PPNode_Hash_Tree( $name );
 
-					# The invocation is at the start of the line if lineStart is set in 
+					# The invocation is at the start of the line if lineStart is set in
 					# the stack, and all opening brackets are used up.
 					if ( $maxCount == $matchingCount && !empty( $piece->lineStart ) ) {
 						$element->addChild( new PPNode_Hash_Attr( 'lineStart', 1 ) );
@@ -581,14 +581,14 @@ class Preprocessor_Hash implements Preprocessor {
 					$accum->addAccum( $element );
 				}
 			}
-			
+
 			elseif ( $found == 'pipe' ) {
 				$findEquals = true; // shortcut for getFlags()
 				$stack->addPart();
 				$accum =& $stack->getAccum();
 				++$i;
 			}
-			
+
 			elseif ( $found == 'equals' ) {
 				$findEquals = false; // shortcut for getFlags()
 				$accum->addNodeWithText( 'equals', '=' );
@@ -713,7 +713,7 @@ class PPDAccum_Hash {
 
 	/**
 	 * Append a PPAccum_Hash
-	 * Takes over ownership of the nodes in the source argument. These nodes may 
+	 * Takes over ownership of the nodes in the source argument. These nodes may
 	 * subsequently be modified, especially nextSibling.
 	 */
 	function addAccum( $accum ) {
@@ -800,7 +800,7 @@ class PPFrame_Hash implements PPFrame {
 			return $root;
 		}
 
-		if ( ++$this->parser->mPPNodeCount > $this->parser->mOptions->mMaxPPNodeCount ) 
+		if ( ++$this->parser->mPPNodeCount > $this->parser->mOptions->mMaxPPNodeCount )
 		{
 			return '<span class="error">Node-count limit exceeded</span>';
 		}
@@ -838,7 +838,7 @@ class PPFrame_Hash implements PPFrame {
 					$index++;
 				}
 			} else {
-				// Copy to $contextNode and then delete from iterator stack, 
+				// Copy to $contextNode and then delete from iterator stack,
 				// because this is not an iterator but we do have to execute it once
 				$contextNode = $iteratorStack[$level];
 				$iteratorStack[$level] = false;
@@ -886,9 +886,9 @@ class PPFrame_Hash implements PPFrame {
 				} elseif ( $contextNode->name == 'comment' ) {
 					# HTML-style comment
 					# Remove it in HTML, pre+remove and STRIP_COMMENTS modes
-					if ( $this->parser->ot['html'] 
-						|| ( $this->parser->ot['pre'] && $this->parser->mOptions->getRemoveComments() ) 
-						|| ( $flags & self::STRIP_COMMENTS ) ) 
+					if ( $this->parser->ot['html']
+						|| ( $this->parser->ot['pre'] && $this->parser->mOptions->getRemoveComments() )
+						|| ( $flags & self::STRIP_COMMENTS ) )
 					{
 						$out .= '';
 					}
@@ -904,7 +904,7 @@ class PPFrame_Hash implements PPFrame {
 				} elseif ( $contextNode->name == 'ignore' ) {
 					# Output suppression used by <includeonly> etc.
 					# OT_WIKI will only respect <ignore> in substed templates.
-					# The other output types respect it unless NO_IGNORE is set. 
+					# The other output types respect it unless NO_IGNORE is set.
 					# extractSections() sets NO_IGNORE and so never respects it.
 					if ( ( !isset( $this->parent ) && $this->parser->ot['wiki'] ) || ( $flags & self::NO_IGNORE ) ) {
 						$out .= $contextNode->firstChild->value;
@@ -1017,7 +1017,7 @@ class PPFrame_Hash implements PPFrame {
 	}
 
 	/**
-	 * Makes an object that, when expand()ed, will be the same as one obtained 
+	 * Makes an object that, when expand()ed, will be the same as one obtained
 	 * with implode()
 	 */
 	function virtualImplode( $sep /*, ... */ ) {
@@ -1145,7 +1145,7 @@ class PPTemplateFrame_Hash extends PPFrame_Hash {
 			} else {
 				$s .= ', ';
 			}
-			$s .= "\"$name\":\"" . 
+			$s .= "\"$name\":\"" .
 				str_replace( '"', '\\"', $value->__toString() ) . '"';
 		}
 		$s .= '}';
@@ -1175,7 +1175,7 @@ class PPTemplateFrame_Hash extends PPFrame_Hash {
 		}
 		if ( !isset( $this->namedExpansionCache[$name] ) ) {
 			# Trim named arguments post-expand, for backwards compatibility
-			$this->namedExpansionCache[$name] = trim( 
+			$this->namedExpansionCache[$name] = trim(
 				$this->parent->expand( $this->namedArgs[$name], self::STRIP_COMMENTS ) );
 		}
 		return $this->namedExpansionCache[$name];
@@ -1274,7 +1274,7 @@ class PPNode_Hash_Tree implements PPNode {
 	 * Split a <part> node into an associative array containing:
 	 *    name          PPNode name
 	 *    index         String index
-	 *    value         PPNode value 
+	 *    value         PPNode value
 	 */
 	function splitArg() {
 		$bits = array();
@@ -1284,7 +1284,7 @@ class PPNode_Hash_Tree implements PPNode {
 			}
 			if ( $child->name === 'name' ) {
 				$bits['name'] = $child;
-				if ( $child->firstChild instanceof PPNode_Hash_Attr 
+				if ( $child->firstChild instanceof PPNode_Hash_Attr
 					&& $child->firstChild->name === 'index' )
 				{
 					$bits['index'] = $child->firstChild->value;
@@ -1302,7 +1302,7 @@ class PPNode_Hash_Tree implements PPNode {
 		}
 		return $bits;
 	}
-	
+
 	/**
 	 * Split an <ext> node into an associative array containing name, attr, inner and close
 	 * All values in the resulting array are PPNodes. Inner and close are optional.
@@ -1423,12 +1423,12 @@ class PPNode_Hash_Array implements PPNode {
 		return var_export( $this, true );
 	}
 
-	function getLength() { 
-		return count( $this->value ); 
+	function getLength() {
+		return count( $this->value );
 	}
 
-	function item( $i ) { 
-		return $this->value[$i]; 
+	function item( $i ) {
+		return $this->value[$i];
 	}
 
 	function getName() { return '#nodelist'; }
@@ -1457,7 +1457,7 @@ class PPNode_Hash_Attr implements PPNode {
 		return "<@{$this->name}>" . htmlspecialchars( $this->value ) . "</@{$this->name}>";
 	}
 
-	function getName() { 
+	function getName() {
 		return $this->name;
 	}
 
@@ -1474,4 +1474,3 @@ class PPNode_Hash_Attr implements PPNode {
 	function splitExt() { throw new MWException( __METHOD__ . ': not supported' ); }
 	function splitHeading() { throw new MWException( __METHOD__ . ': not supported' ); }
 }
-

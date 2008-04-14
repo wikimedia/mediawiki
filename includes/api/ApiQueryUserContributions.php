@@ -30,7 +30,7 @@ if (!defined('MEDIAWIKI')) {
 
 /**
  * This query action adds a list of a specified user's contributions to the output.
- * 
+ *
  * @addtogroup API
  */
 class ApiQueryContributions extends ApiQueryBase {
@@ -48,7 +48,7 @@ class ApiQueryContributions extends ApiQueryBase {
 		// Parse some parameters
 		$this->params = $this->extractRequestParams();
 
-		$prop = array_flip($this->params['prop']);		
+		$prop = array_flip($this->params['prop']);
 		$this->fld_ids = isset($prop['ids']);
 		$this->fld_title = isset($prop['title']);
 		$this->fld_comment = isset($prop['comment']);
@@ -123,7 +123,7 @@ class ApiQueryContributions extends ApiQueryBase {
 			$this->dieUsage( 'User parameter may not be empty', 'param_user' );
 		}
 	}
-	
+
 	/**
 	 * Prepares the query and returns the limit of rows requested
 	 */
@@ -133,18 +133,18 @@ class ApiQueryContributions extends ApiQueryBase {
 		//anything we retrieve.
 		list ($tbl_page, $tbl_revision) = $this->getDB()->tableNamesN('page', 'revision');
 		$this->addTables("$tbl_revision LEFT OUTER JOIN $tbl_page ON page_id=rev_page");
-		
+
 		$this->addWhereFld('rev_deleted', 0);
 		// We only want pages by the specified users.
 		if($this->prefixMode)
 			$this->addWhere("rev_user_text LIKE '" . $this->getDb()->escapeLike($this->userprefix) . "%'");
-		else 
+		else
 			$this->addWhereFld( 'rev_user_text', $this->usernames );
 		// ... and in the specified timeframe.
 		// Ensure the same sort order for rev_user_text and rev_timestamp
 		// so our query is indexed
 		$this->addWhereRange('rev_user_text', $this->params['dir'], null, null);
-		$this->addWhereRange('rev_timestamp', 
+		$this->addWhereRange('rev_timestamp',
 			$this->params['dir'], $this->params['start'], $this->params['end'] );
 		$this->addWhereFld('page_namespace', $this->params['namespace']);
 
@@ -161,14 +161,14 @@ class ApiQueryContributions extends ApiQueryBase {
 
 		// Mandatory fields: timestamp allows request continuation
 		// ns+title checks if the user has access rights for this page
-		// user_text is necessary if multiple users were specified  
+		// user_text is necessary if multiple users were specified
 		$this->addFields(array(
 			'rev_timestamp',
 			'page_namespace',
 			'page_title',
 			'rev_user_text',
 			));
-				
+
 		$this->addFieldsIf('rev_page', $this->fld_ids);
 		$this->addFieldsIf('rev_id', $this->fld_ids);
 		// $this->addFieldsIf('rev_text_id', $this->fld_ids); // Should this field be exposed?
@@ -176,7 +176,7 @@ class ApiQueryContributions extends ApiQueryBase {
 		$this->addFieldsIf('rev_minor_edit', $this->fld_flags);
 		$this->addFieldsIf('page_is_new', $this->fld_flags);
 	}
-	
+
 	/**
 	 * Extract fields from the database row and append them to a result array
 	 */
@@ -187,12 +187,12 @@ class ApiQueryContributions extends ApiQueryBase {
 		$vals['user'] = $row->rev_user_text;
 		if ($this->fld_ids) {
 			$vals['pageid'] = intval($row->rev_page);
-			$vals['revid'] = intval($row->rev_id); 
+			$vals['revid'] = intval($row->rev_id);
 			// $vals['textid'] = intval($row->rev_text_id);	// todo: Should this field be exposed?
 		}
-		
+
 		if ($this->fld_title)
-			ApiQueryBase :: addTitleInfo($vals, 
+			ApiQueryBase :: addTitleInfo($vals,
 				Title :: makeTitle($row->page_namespace, $row->page_title));
 
 		if ($this->fld_timestamp)
@@ -291,4 +291,3 @@ class ApiQueryContributions extends ApiQueryBase {
 		return __CLASS__ . ': $Id$';
 	}
 }
-

@@ -24,15 +24,15 @@ class LocalRepo extends FSRepo {
 			throw new MWException( __METHOD__.': invalid row' );
 		}
 	}
-	
+
 	function newFromArchiveName( $title, $archiveName ) {
 		return OldLocalFile::newFromArchiveName( $title, $this, $archiveName );
 	}
 
 	/**
-	 * Delete files in the deleted directory if they are not referenced in the 
-	 * filearchive table. This needs to be done in the repo because it needs to 
-	 * interleave database locks with file operations, which is potentially a 
+	 * Delete files in the deleted directory if they are not referenced in the
+	 * filearchive table. This needs to be done in the repo because it needs to
+	 * interleave database locks with file operations, which is potentially a
 	 * remote operation.
 	 * @return FileRepoStatus
 	 */
@@ -45,7 +45,7 @@ class LocalRepo extends FSRepo {
 			$hashPath = $this->getDeletedHashPath( $key );
 			$path = "$root/$hashPath$key";
 			$dbw->begin();
-			$inuse = $dbw->selectField( 'filearchive', '1', 
+			$inuse = $dbw->selectField( 'filearchive', '1',
 				array( 'fa_storage_group' => 'deleted', 'fa_storage_key' => $key ),
 				__METHOD__, array( 'FOR UPDATE' ) );
 			if( !$inuse ) {
@@ -53,7 +53,7 @@ class LocalRepo extends FSRepo {
 				$ext = substr( $key, strcspn($key,'.') + 1 );
 				$ext = File::normalizeExtension($ext);
 				$inuse = $dbw->selectField( 'oldimage', '1',
-					array( 'oi_sha1' => $sha1, 
+					array( 'oi_sha1' => $sha1,
 						"oi_archive_name LIKE '%.{$ext}'",
 						'oi_deleted & '.File::DELETED_FILE => File::DELETED_FILE ),
 					__METHOD__, array( 'FOR UPDATE' ) );

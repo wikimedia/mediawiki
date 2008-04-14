@@ -84,7 +84,7 @@ class ParserOutput
 	function addExternalLink( $url )     { $this->mExternalLinks[$url] = 1; }
 	function addWarning( $s )            { $this->mWarnings[] = $s; }
 
-	function addOutputHook( $hook, $data = false ) { 
+	function addOutputHook( $hook, $data = false ) {
 		$this->mOutputHooks[] = array( $hook, $data );
 	}
 
@@ -106,7 +106,7 @@ class ParserOutput
 		}
 		$this->mLinks[$ns][$dbk] = $id;
 	}
-	
+
 	function addImage( $name ) {
 		$this->mImages[$name] = 1;
 	}
@@ -143,8 +143,8 @@ class ParserOutput
 	}
 
 	/**
-	 * Add some text to the <head>. 
-	 * If $tag is set, the section with that tag will only be included once 
+	 * Add some text to the <head>.
+	 * If $tag is set, the section with that tag will only be included once
 	 * in a given page.
 	 */
 	function addHeadItem( $section, $tag = false ) {
@@ -154,7 +154,7 @@ class ParserOutput
 			$this->mHeadItems[] = $section;
 		}
 	}
-	
+
 	/**
 	 * Override the title to be used for display
 	 * -- this is assumed to have been validated
@@ -165,7 +165,7 @@ class ParserOutput
 	public function setDisplayTitle( $text ) {
 		$this->displayTitle = $text;
 	}
-	
+
 	/**
 	 * Get the title to be used for display
 	 *
@@ -174,14 +174,14 @@ class ParserOutput
 	public function getDisplayTitle() {
 		return $this->displayTitle;
 	}
-	
+
 	/**
 	 * Fairly generic flag setter thingy.
 	 */
 	public function setFlag( $flag ) {
 		$this->mFlags[$flag] = true;
 	}
-	
+
 	public function getFlag( $flag ) {
 		return isset( $this->mFlags[$flag] );
 	}
@@ -193,7 +193,7 @@ class ParserOutput
 		$this->mProperties[$name] = $value;
 	}
 
-	public function getProperty( $name ){ 
+	public function getProperty( $name ){
 		return isset( $this->mProperties[$name] ) ? $this->mProperties[$name] : false;
 	}
 
@@ -204,5 +204,3 @@ class ParserOutput
 		return $this->mProperties;
 	}
 }
-
-

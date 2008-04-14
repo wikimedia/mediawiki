@@ -68,4 +68,3 @@ CONTROL;
 		echo $control;
 	}
 }
-

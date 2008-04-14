@@ -66,7 +66,7 @@ class ApiExpandTemplates extends ApiBase {
 
 	public function getAllowedParams() {
 		return array (
-			'title' => array( 
+			'title' => array(
 				ApiBase :: PARAM_DFLT => 'API',
 			),
 			'text' => null
@@ -94,4 +94,3 @@ class ApiExpandTemplates extends ApiBase {
 		return __CLASS__ . ': $Id$';
 	}
 }
-

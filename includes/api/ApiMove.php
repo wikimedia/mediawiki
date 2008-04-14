@@ -36,14 +36,14 @@ class ApiMove extends ApiBase {
 	public function __construct($main, $action) {
 		parent :: __construct($main, $action);
 	}
-	
+
 	public function execute() {
 		global $wgUser;
 		$this->getMain()->requestWriteMode();
 		$params = $this->extractRequestParams();
 		if(is_null($params['reason']))
 			$params['reason'] = '';
-	
+
 		$titleObj = NULL;
 		if(!isset($params['from']))
 			$this->dieUsageMsg(array('missingparam', 'from'));
@@ -69,7 +69,7 @@ class ApiMove extends ApiBase {
 		// Run getUserPermissionsErrors() here so we get message arguments too,
 		// rather than just a message key. The latter is troublesome for messages
 		// that use arguments.
-		// FIXME: moveTo() should really return an array, requires some 
+		// FIXME: moveTo() should really return an array, requires some
 		//	  refactoring of other code, though (mainly SpecialMovepage.php)
 		$errors = array_merge($fromTitle->getUserPermissionsErrors('move', $wgUser),
 					$fromTitle->getUserPermissionsErrors('edit', $wgUser),
@@ -86,7 +86,7 @@ class ApiMove extends ApiBase {
 		$r = array('from' => $fromTitle->getPrefixedText(), 'to' => $toTitle->getPrefixedText(), 'reason' => $params['reason']);
 		if(!$params['noredirect'] || !$wgUser->isAllowed('suppressredirect'))
 			$r['redirectcreated'] = '';
-	
+
 		if($params['movetalk'] && $fromTalk->exists() && !$fromTitle->isTalkPage())
 		{
 			// We need to move the talk page as well
@@ -102,9 +102,9 @@ class ApiMove extends ApiBase {
 			{
 				$r['talkmove-error-code'] = ApiBase::$messageMap[$retval]['code'];
 				$r['talkmove-error-info'] = ApiBase::$messageMap[$retval]['info'];
-			}	
+			}
 		}
-		
+
 		# Watch pages
 		if($params['watch'] || $wgUser->getOption('watchmoves'))
 		{
@@ -119,9 +119,9 @@ class ApiMove extends ApiBase {
 		$this->getMain()->scheduleCommit();
 		$this->getResult()->addValue(null, $this->getModuleName(), $r);
 	}
-	
+
 	public function mustBePosted() { return true; }
-	
+
 	public function getAllowedParams() {
 		return array (
 			'from' => null,

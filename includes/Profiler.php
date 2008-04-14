@@ -316,7 +316,7 @@ class Profiler {
 
 		$name = substr($name, 0, 255);
 		$encname = $dbw->strencode($name);
-		
+
 		if ($wgProfilePerHost) {
 			$pfhost = $wguname['nodename'];
 		} else {
@@ -347,7 +347,7 @@ class Profiler {
 		$elt = end($this->mWorkStack);
 		return $elt[0];
 	}
-	
+
 	static function getCaller( $level ) {
 		$backtrace = wfDebugBacktrace();
 		if ( isset( $backtrace[$level] ) ) {
@@ -363,5 +363,3 @@ class Profiler {
 	}
 
 }
-
-

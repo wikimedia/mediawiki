@@ -48,7 +48,7 @@ class ApiOpenSearch extends ApiBase {
 
 		// Open search results may be stored for a very long time
 		$this->getMain()->setCacheMaxAge(1200);
-		
+
 		$srchres = PrefixSearch::titleSearch( $search, $limit );
 
 		// Set top level elements
@@ -91,4 +91,3 @@ class ApiOpenSearch extends ApiBase {
 		return __CLASS__ . ': $Id$';
 	}
 }
-

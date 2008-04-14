@@ -392,7 +392,7 @@ function __autoload($className) {
 		'ApiUnblock' => 'includes/api/ApiUnblock.php',
 		'ApiUndelete' => 'includes/api/ApiUndelete.php',
 	);
-	
+
 	wfProfileIn( __METHOD__ );
 	if ( isset( $localClasses[$className] ) ) {
 		$filename = $localClasses[$className];
@@ -427,14 +427,14 @@ function __autoload($className) {
 function wfLoadAllExtensions() {
 	global $wgAutoloadClasses;
 
-	# It is crucial that SpecialPage.php is included before any special page 
+	# It is crucial that SpecialPage.php is included before any special page
 	# extensions are loaded. Otherwise the parent class will not be available
-	# when APC loads the early-bound extension class. Normally this is 
-	# guaranteed by entering special pages via SpecialPage members such as 
+	# when APC loads the early-bound extension class. Normally this is
+	# guaranteed by entering special pages via SpecialPage members such as
 	# executePath(), but here we have to take a more explicit measure.
-	
+
 	require_once( dirname(__FILE__) . '/SpecialPage.php' );
-	
+
 	foreach( $wgAutoloadClasses as $class => $file ) {
 		if( !( class_exists( $class ) || interface_exists( $class ) ) ) {
 			require( $file );

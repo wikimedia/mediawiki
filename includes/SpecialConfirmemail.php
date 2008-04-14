@@ -9,14 +9,14 @@
  * @author Rob Church <robchur@gmail.com>
  */
 class EmailConfirmation extends UnlistedSpecialPage {
-	
+
 	/**
 	 * Constructor
 	 */
 	public function __construct() {
 		parent::__construct( 'Confirmemail' );
 	}
-	
+
 	/**
 	 * Main execution point
 	 *
@@ -43,7 +43,7 @@ class EmailConfirmation extends UnlistedSpecialPage {
 			$this->attemptConfirm( $code );
 		}
 	}
-	
+
 	/**
 	 * Show a nice form for the user to request a confirmation mail
 	 */
@@ -65,15 +65,15 @@ class EmailConfirmation extends UnlistedSpecialPage {
 				$wgOut->addWikiMsg( 'confirmemail_pending' );
 			}
 			$wgOut->addWikiMsg( 'confirmemail_text' );
-			$self = SpecialPage::getTitleFor( 'Confirmemail' );		
+			$self = SpecialPage::getTitleFor( 'Confirmemail' );
 			$form  = wfOpenElement( 'form', array( 'method' => 'post', 'action' => $self->getLocalUrl() ) );
 			$form .= wfHidden( 'token', $wgUser->editToken() );
 			$form .= wfSubmitButton( wfMsgHtml( 'confirmemail_send' ) );
 			$form .= wfCloseElement( 'form' );
 			$wgOut->addHtml( $form );
-		}				
+		}
 	}
-	
+
 	/**
 	 * Attempt to confirm the user's email address and show success or failure
 	 * as needed; if successful, take the user to log in
@@ -98,26 +98,26 @@ class EmailConfirmation extends UnlistedSpecialPage {
 			$wgOut->addWikiMsg( 'confirmemail_invalid' );
 		}
 	}
-	
+
 }
 
 /**
- * Special page allows users to cancel an email confirmation using the e-mail 
+ * Special page allows users to cancel an email confirmation using the e-mail
  * confirmation code
  *
  * @addtogroup SpecialPage
  */
 class EmailInvalidation extends UnlistedSpecialPage {
-	
+
 	public function __construct() {
 		parent::__construct( 'Invalidateemail' );
 	}
-	
+
 	function execute( $code ) {
 		$this->setHeaders();
 		$this->attemptInvalidate( $code );
 	}
-	
+
 	/**
 	 * Attempt to invalidate the user's email address and show success or failure
 	 * as needed; if successful, link to main page
@@ -140,5 +140,5 @@ class EmailInvalidation extends UnlistedSpecialPage {
 		} else {
 			$wgOut->addWikiMsg( 'confirmemail_invalid' );
 		}
-	}	
+	}
 }

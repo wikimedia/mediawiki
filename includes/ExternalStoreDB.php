@@ -139,4 +139,3 @@ class ExternalStoreDB {
 		return "DB://$cluster/$id";
 	}
 }
-

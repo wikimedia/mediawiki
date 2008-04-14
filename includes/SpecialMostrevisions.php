@@ -62,5 +62,3 @@ function wfSpecialMostrevisions() {
 
 	$wpp->doQuery( $offset, $limit );
 }
-
-

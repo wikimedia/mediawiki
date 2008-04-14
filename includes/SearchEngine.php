@@ -51,7 +51,7 @@ class SearchEngine {
 		if($wgContLang->hasVariants()){
 			$allSearchTerms = array_merge($allSearchTerms,$wgContLang->convertLinkToAllVariants($searchterm));
 		}
-		
+
 		foreach($allSearchTerms as $term){
 
 			# Exact match? No need to look further.
@@ -123,7 +123,7 @@ class SearchEngine {
 		if ( $title->getNamespace() == NS_USER ) {
 			return $title;
 		}
-		
+
 		# Go to images that exist even if there's no local page.
 		# There may have been a funny upload, or it may be on a shared
 		# file repository such as Wikimedia Commons.
@@ -145,7 +145,7 @@ class SearchEngine {
 		if( preg_match( '/^"([^"]+)"$/', $searchterm, $matches ) ) {
 			return SearchEngine::getNearMatch( $matches[1] );
 		}
-		
+
 		return NULL;
 	}
 
@@ -176,7 +176,7 @@ class SearchEngine {
 	function setNamespaces( $namespaces ) {
 		$this->namespaces = $namespaces;
 	}
-	
+
 	/**
 	 * Parse some common prefixes: all (search everything)
 	 * or namespace names
@@ -185,10 +185,10 @@ class SearchEngine {
 	 */
 	function replacePrefixes( $query ){
 		global $wgContLang;
-				
+
 		if( strpos($query,':') === false )
 			return $query; // nothing to do
-			
+
 		$parsed = $query;
 		$allkeyword = wfMsg('searchall').":";
 		if( strncmp($query, $allkeyword, strlen($allkeyword)) == 0 ){
@@ -204,7 +204,7 @@ class SearchEngine {
 		}
 		if(trim($parsed) == '')
 			return $query; // prefix was the whole query
-			
+
 		return $parsed;
 	}
 
@@ -345,7 +345,7 @@ class SearchResultSet {
 	function getSuggestionQuery(){
 		return null;
 	}
-	
+
 	/**
 	 * @return string highlighted suggested query, '' if none
 	 */
@@ -362,7 +362,7 @@ class SearchResultSet {
 	function next() {
 		return false;
 	}
-	
+
 	/**
 	 * Frees the result set, if applicable.
 	 * @ access public
@@ -404,63 +404,63 @@ class SearchResult {
 	function getScore() {
 		return null;
 	}
-	
+
 	/**
-	 * @return string highlighted text snippet, null if not supported 
+	 * @return string highlighted text snippet, null if not supported
 	 */
 	function getTextSnippet(){
-		return null;		
+		return null;
 	}
-	
+
 	/**
 	 * @return string highlighted title, '' if not supported
 	 */
 	function getTitleSnippet(){
 		return '';
 	}
-	
+
 	/**
 	 * @return string highlighted redirect name (redirect to this page), '' if none or not supported
 	 */
 	function getRedirectSnippet(){
 		return '';
 	}
-	
+
 	/**
 	 * @return Title object for the redirect to this page, null if none or not supported
 	 */
 	function getRedirectTitle(){
 		return null;
 	}
-	
+
 	/**
 	 * @return string highlighted relevant section name, null if none or not supported
 	 */
 	function getSectionSnippet(){
 		return '';
 	}
-	
+
 	/**
-	 * @return Title object (pagename+fragment) for the section, null if none or not supported 
+	 * @return Title object (pagename+fragment) for the section, null if none or not supported
 	 */
 	function getSectionTitle(){
 		return null;
 	}
-	
+
 	/**
 	 * @return string timestamp, null if not supported
 	 */
 	function getTimestamp(){
 		return null;
 	}
-	
+
 	/**
 	 * @return int number of words, null if not supported
 	 */
 	function getWordCount(){
 		return null;
 	}
-	
+
 	/**
 	 * @return int size in bytes, null if not supported
 	 */
@@ -483,4 +483,3 @@ class SearchEngineDummy {
 	function searchtitle() {}
 	function searchtext() {}
 }
-

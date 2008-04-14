@@ -83,5 +83,3 @@ class FakeTitle {
 	function trackbackURL() { $this->error(); }
 	function trackbackRDF() { $this->error(); }
 }
-
-

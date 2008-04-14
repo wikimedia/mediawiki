@@ -300,5 +300,3 @@ class AtomFeed extends ChannelFeed {
 	</feed><?php
 	}
 }
-
-?>

@@ -72,9 +72,9 @@ class UsersPager extends AlphabeticPager {
 			'tables' => " $user LEFT JOIN $user_groups ON user_id=ug_user LEFT JOIN $ipblocks ON user_id=ipb_user AND ipb_auto=0 ",
 			'fields' => array('user_name',
 				'MAX(user_id) AS user_id',
-				'COUNT(ug_group) AS numgroups', 
+				'COUNT(ug_group) AS numgroups',
 				'MAX(ug_group) AS singlegroup'),
-			'options' => array('GROUP BY' => 'user_name'), 
+			'options' => array('GROUP BY' => 'user_name'),
 			'conds' => $conds
 		);
 
@@ -96,7 +96,7 @@ class UsersPager extends AlphabeticPager {
 		} else {
 			$groups = '';
 		}
-		
+
 		$item = wfSpecialList( $name, $groups );
 		wfRunHooks( 'SpecialListusersFormatRow', array( &$item, $row ) );
 		return "<li>{$item}</li>";

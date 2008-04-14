@@ -40,7 +40,7 @@ class ApiUndelete extends ApiBase {
 		global $wgUser;
 		$this->getMain()->requestWriteMode();
 		$params = $this->extractRequestParams();
-		
+
 		$titleObj = NULL;
 		if(!isset($params['title']))
 			$this->dieUsageMsg(array('missingparam', 'title'));
@@ -80,9 +80,9 @@ class ApiUndelete extends ApiBase {
 		$info['reason'] = $retval[2];
 		$this->getResult()->addValue(null, $this->getModuleName(), $info);
 	}
-	
+
 	public function mustBePosted() { return true; }
-	
+
 	public function getAllowedParams() {
 		return array (
 			'title' => null,

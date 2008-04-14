@@ -188,5 +188,3 @@ class Categoryfinder {
 	}
 
 } # END OF CLASS "Categoryfinder"
-
-

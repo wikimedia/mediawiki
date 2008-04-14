@@ -104,5 +104,3 @@ while( true ) {
 	$clean = '';
 	$norm = '';
 }
-
-

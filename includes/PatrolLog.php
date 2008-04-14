@@ -31,7 +31,7 @@ class PatrolLog {
 			return false;
 		}
 	}
-	
+
 	/**
 	 * Generate the log action text corresponding to a patrol log item
 	 *
@@ -67,7 +67,7 @@ class PatrolLog {
 			return '';
 		}
 	}
-	
+
 	/**
 	 * Prepare log parameters for a patrolled change
 	 *
@@ -82,6 +82,4 @@ class PatrolLog {
 			(int)$auto
 		);
 	}
-
 }
-

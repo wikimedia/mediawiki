@@ -16,7 +16,7 @@ class PostgresField {
 	global $wgDBmwschema;
 
 		$q = <<<END
-SELECT 
+SELECT
 CASE WHEN typname = 'int2' THEN 'smallint'
 WHEN typname = 'int4' THEN 'integer'
 WHEN typname = 'int8' THEN 'bigint'
@@ -222,7 +222,7 @@ class DatabasePostgres extends Database {
 				dieout('</ul>');
 			}
 			$perms = pg_fetch_result($res, 0, 0);
-		
+
 			$SQL = "SELECT 1 FROM pg_catalog.pg_user WHERE usename = " . $this->addQuotes($wgDBuser);
 			$rows = $this->numRows($this->doQuery($SQL));
 			if ($rows) {
@@ -263,7 +263,7 @@ class DatabasePostgres extends Database {
 
 				// Reconnect to check out tsearch2 rights for this user
 				print "<li>Connecting to \"$wgDBname\" as superuser \"$wgDBsuperuser\" to check rights...";
-				
+
 				$hstring="";
 				if ($this->mServer!=false && $this->mServer!="") {
 					$hstring="host=$this->mServer ";
@@ -288,7 +288,7 @@ class DatabasePostgres extends Database {
 					print "Please see <a href='http://www.devx.com/opensource/Article/21674/0/page/2'>this article</a>";
 					print " for instructions or ask on #postgresql on irc.freenode.net</li>\n";
 					dieout("</ul>");
-				}				
+				}
 				print "OK</li>\n";
 				print "<li>Ensuring that user \"$wgDBuser\" has select rights on the tsearch2 tables...";
 				foreach (array('cfg','cfgmap','dict','parser') as $table) {
@@ -335,17 +335,17 @@ class DatabasePostgres extends Database {
 				}
 				print "OK</li>";
 			}
-			
+
 			// Install plpgsql if needed
 			$this->setup_plpgsql();
 
 			$wgDBsuperuser = '';
 			return true; // Reconnect as regular user
-			
+
 		} // end superuser
-									 
+
 		if (!defined('POSTGRES_SEARCHPATH')) {
-										 
+
 			if ($this->numeric_version < 8.3) {
 				// Do we have the basic tsearch2 table?
 				print "<li>Checking for tsearch2 in the schema \"$wgDBts2schema\"...";
@@ -356,7 +356,7 @@ class DatabasePostgres extends Database {
 					dieout("</ul>");
 				}
 				print "OK</li>\n";
-				
+
 				// Does this user have the rights to the tsearch2 tables?
 				$ctype = pg_fetch_result($this->doQuery("SHOW lc_ctype"),0,0);
 				print "<li>Checking tsearch2 permissions...";
@@ -410,7 +410,7 @@ class DatabasePostgres extends Database {
 					}
 					print "OK</li>";
 				}
-				
+
 				// Final test: try out a simple tsearch2 query
 				$SQL = "SELECT $safetsschema.to_tsvector('default','MediaWiki tsearch2 testing')";
 				$res = $this->doQuery($SQL);
@@ -420,7 +420,7 @@ class DatabasePostgres extends Database {
 				}
 				print "OK</li>";
 			}
-			
+
 			// Install plpgsql if needed
 			$this->setup_plpgsql();
 
@@ -446,7 +446,7 @@ class DatabasePostgres extends Database {
 			else {
 				print "<li>Schema \"$wgDBmwschema\" exists and is owned by \"$wgDBuser\". Excellent.</li>\n";
 			}
-			
+
 			// Always return GMT time to accomodate the existing integer-based timestamp assumption
 			print "<li>Setting the timezone to GMT for user \"$wgDBuser\" ...";
 			$SQL = "ALTER USER $safeuser SET timezone = 'GMT'";
@@ -479,7 +479,7 @@ class DatabasePostgres extends Database {
 				print "<li>Failed to set datestyle</li>\n";
 				dieout("</ul>");
 			}
-			
+
 			// Fix up the search paths if needed
 			print "<li>Setting the search path for user \"$wgDBuser\" ...";
 			$path = $this->quote_ident($wgDBmwschema);
@@ -658,7 +658,7 @@ class DatabasePostgres extends Database {
 	 * Returns -1 if count cannot be found
 	 * Takes same arguments as Database::select()
 	 */
-	
+
 	function estimateRowCount( $table, $vars='*', $conds='', $fname = 'Database::estimateRowCount', $options = array() ) {
 		$options['EXPLAIN'] = true;
 		$res = $this->select( $table, $vars, $conds, $fname, $options );
@@ -708,7 +708,7 @@ class DatabasePostgres extends Database {
 	/**
 	 * INSERT wrapper, inserts an array into a table
 	 *
-	 * $args may be a single associative array, or an array of these with numeric keys, 
+	 * $args may be a single associative array, or an array of these with numeric keys,
 	 * for multi-row insert (Postgres version 8.2 and above only).
 	 *
 	 * @param array $table   String: Name of the table to insert to.
@@ -997,7 +997,7 @@ class DatabasePostgres extends Database {
 
 
 	/**
-	 * Query whether a given relation exists (in the given schema, or the 
+	 * Query whether a given relation exists (in the given schema, or the
 	 * default mw one if not given)
 	 */
 	function relationExists( $table, $types, $schema = false ) {
@@ -1019,13 +1019,13 @@ class DatabasePostgres extends Database {
 	}
 
 	/*
-	 * For backward compatibility, this function checks both tables and 
+	 * For backward compatibility, this function checks both tables and
 	 * views.
 	 */
 	function tableExists ($table, $schema = false) {
 		return $this->relationExists($table, array('r', 'v'), $schema);
 	}
-	
+
 	function sequenceExists ($sequence, $schema = false) {
 		return $this->relationExists($sequence, 'S', $schema);
 	}
@@ -1063,8 +1063,8 @@ END;
 		global $wgDBmwschema;
 		$SQL = sprintf("SELECT 1 FROM information_schema.table_constraints ".
 			   "WHERE constraint_schema = %s AND table_name = %s AND constraint_name = %s",
-			$this->addQuotes($wgDBmwschema),	
-			$this->addQuotes($table),	
+			$this->addQuotes($wgDBmwschema),
+			$this->addQuotes($table),
 			$this->addQuotes($constraint));
 		$res = $this->query($SQL);
 		if (!$res)
@@ -1272,17 +1272,17 @@ END;
 		if ( isset( $options['GROUP BY'] ) ) $preLimitTail .= " GROUP BY " . $options['GROUP BY'];
 		if ( isset( $options['HAVING'] ) ) $preLimitTail .= " HAVING {$options['HAVING']}";
 		if ( isset( $options['ORDER BY'] ) ) $preLimitTail .= " ORDER BY " . $options['ORDER BY'];
-		
+
 		//if (isset($options['LIMIT'])) {
 		//	$tailOpts .= $this->limitResult('', $options['LIMIT'],
-		//		isset($options['OFFSET']) ? $options['OFFSET'] 
+		//		isset($options['OFFSET']) ? $options['OFFSET']
 		//		: false);
 		//}
 
 		if ( isset( $noKeyOptions['FOR UPDATE'] ) ) $postLimitTail .= ' FOR UPDATE';
 		if ( isset( $noKeyOptions['LOCK IN SHARE MODE'] ) ) $postLimitTail .= ' LOCK IN SHARE MODE';
 		if ( isset( $noKeyOptions['DISTINCT'] ) || isset( $noKeyOptions['DISTINCTROW'] ) ) $startOpts .= 'DISTINCT';
-		
+
 		return array( $startOpts, $useIndex, $preLimitTail, $postLimitTail );
 	}
 
@@ -1294,7 +1294,7 @@ END;
 		wfDebug( "Function ping() not written for DatabasePostgres.php yet");
 		return true;
 	}
-	
+
 	/**
 	 * How lagged is this slave?
 	 *
@@ -1320,5 +1320,3 @@ END;
 	}
 
 } // end DatabasePostgres class
-
-

@@ -153,7 +153,7 @@ class memcached
    /**
     * At how many bytes should we compress?
     *
-    * @var     integer 
+    * @var     integer
     * @access  private
     */
    var $_compress_threshold;
@@ -193,7 +193,7 @@ class memcached
    /**
     * Total # of bit buckets we have
     *
-    * @var     integer 
+    * @var     integer
     * @access  private
     */
    var $_bucketcount;
@@ -201,7 +201,7 @@ class memcached
    /**
     * # of total servers we have
     *
-    * @var     integer 
+    * @var     integer
     * @access  private
     */
    var $_active;
@@ -457,7 +457,7 @@ class memcached
 
       $this->stats['get_multi']++;
       $sock_keys = array();
-      
+
       foreach ($keys as $key)
       {
          $sock = $this->get_sock($key);
@@ -1090,4 +1090,3 @@ class memcached
 // vim: sts=3 sw=3 et
 
 // }}}
-

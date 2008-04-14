@@ -102,7 +102,7 @@ function wfSpecialFileDuplicateSearch( $par = null ) {
 			if( $thumb ) {
 				$wgOut->addHTML( '<div style="float:' . $align . '" id="mw-fileduplicatesearch-icon">' .
 					$thumb->toHtml( array( 'desc-link' => false ) ) . '<br />' .
-					wfMsgExt( 'fileduplicatesearch-info', array( 'parse' ), 
+					wfMsgExt( 'fileduplicatesearch-info', array( 'parse' ),
 						$wgLang->formatNum( $img->getWidth() ),
 						$wgLang->formatNum( $img->getHeight() ),
 						$wgLang->formatSize( $img->getSize() ),

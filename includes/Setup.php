@@ -10,7 +10,7 @@
 if( !defined( 'MEDIAWIKI' ) ) {
 	echo "This file is part of MediaWiki, it is not a valid entry point.\n";
 	exit( 1 );
-}	
+}
 
 # The main wiki script and things like database
 # conversion and maintenance scripts all share a
@@ -63,7 +63,7 @@ if ( empty( $wgFileStore['deleted']['directory'] ) ) {
  * Initialise $wgLocalFileRepo from backwards-compatible settings
  */
 if ( !$wgLocalFileRepo ) {
-	$wgLocalFileRepo = array( 
+	$wgLocalFileRepo = array(
 		'class' => 'LocalRepo',
 		'name' => 'local',
 		'directory' => $wgUploadDirectory,
@@ -101,7 +101,7 @@ if ( $wgUseSharedUploads ) {
 			'fetchDescription' => $wgFetchCommonsDescriptions,
 		);
 	} else {
-		$wgForeignFileRepos[] = array( 
+		$wgForeignFileRepos[] = array(
 			'class' => 'FSRepo',
 			'name' => 'shared',
 			'directory' => $wgSharedUploadDirectory,
@@ -223,7 +223,7 @@ $wgLang = new StubUserLang;
 $wgOut = new StubObject( 'wgOut', 'OutputPage' );
 $wgParser = new StubObject( 'wgParser', $wgParserConf['class'], array( $wgParserConf ) );
 
-$wgMessageCache = new StubObject( 'wgMessageCache', 'MessageCache', 
+$wgMessageCache = new StubObject( 'wgMessageCache', 'MessageCache',
 	array( $parserMemc, $wgUseDatabaseMessages, $wgMsgCacheExpiry, wfWikiID() ) );
 
 wfProfileOut( $fname.'-globals' );
@@ -232,7 +232,7 @@ wfProfileIn( $fname.'-User' );
 # Skin setup functions
 # Entries can be added to this variable during the inclusion
 # of the extension file. Skins can then perform any necessary initialisation.
-# 
+#
 foreach ( $wgSkinExtensionFunctions as $func ) {
 	call_user_func( $func );
 }
@@ -286,5 +286,3 @@ wfDebug( "Fully initialised\n" );
 $wgFullyInitialised = true;
 wfProfileOut( $fname.'-extensions' );
 wfProfileOut( $fname );
-
-

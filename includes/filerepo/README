@@ -1,8 +1,8 @@
 Some quick notes on the file/repository architecture.
 
-Functionality is, as always, driven by data model. 
+Functionality is, as always, driven by data model.
 
-* The repository object stores configuration information about a file storage 
+* The repository object stores configuration information about a file storage
   method.
 
 * The file object is a process-local cache of information about a particular
@@ -28,14 +28,14 @@ even entire classes, between repositories.
 
 These rules alone still do lead to some ambiguity -- it may not be clear whether
 to implement some functionality in a repository function with a filename
-parameter, or in the file object itself. 
+parameter, or in the file object itself.
 
-So we introduce the following rule: the file subclass is smarter than the 
+So we introduce the following rule: the file subclass is smarter than the
 repository subclass. The repository should in general provide a minimal API
-needed to access the storage backend efficiently. 
+needed to access the storage backend efficiently.
 
-In particular, note that I have not implemented any database access in 
-LocalRepo.php. LocalRepo provides only file access, and LocalFile provides 
+In particular, note that I have not implemented any database access in
+LocalRepo.php. LocalRepo provides only file access, and LocalFile provides
 database access and higher-level functions such as cache management.
 
 Tim Starling, June 2007

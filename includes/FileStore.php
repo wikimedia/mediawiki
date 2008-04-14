@@ -5,13 +5,13 @@
  */
 class FileStore {
 	const DELETE_ORIGINAL = 1;
-	
+
 	/**
 	 * Fetch the FileStore object for a given storage group
 	 */
 	static function get( $group ) {
 		global $wgFileStore;
-		
+
 		if( isset( $wgFileStore[$group] ) ) {
 			$info = $wgFileStore[$group];
 			return new FileStore( $group,
@@ -22,14 +22,14 @@ class FileStore {
 			return null;
 		}
 	}
-	
+
 	private function __construct( $group, $directory, $path, $hash ) {
 		$this->mGroup = $group;
 		$this->mDirectory = $directory;
 		$this->mPath = $path;
 		$this->mHashLevel = $hash;
 	}
-	
+
 	/**
 	 * Acquire a lock; use when performing write operations on a store.
 	 * This is attached to your master database connection, so if you
@@ -47,7 +47,7 @@ class FileStore {
 		$result = $dbw->query( "SELECT GET_LOCK($lockname, 5) AS lockstatus", __METHOD__ );
 		$row = $dbw->fetchObject( $result );
 		$dbw->freeResult( $result );
-		
+
 		if( $row->lockstatus == 1 ) {
 			return true;
 		} else {
@@ -55,7 +55,7 @@ class FileStore {
 			return false;
 		}
 	}
-	
+
 	/**
 	 * Release the global file store lock.
 	 */
@@ -69,11 +69,11 @@ class FileStore {
 		$dbw->fetchObject( $result );
 		$dbw->freeResult( $result );
 	}
-	
+
 	private static function lockName() {
 		return 'MediaWiki.' . wfWikiID() . '.FileStore';
 	}
-	
+
 	/**
 	 * Copy a file into the file store from elsewhere in the filesystem.
 	 * Should be protected by FileStore::lock() to avoid race conditions.
@@ -89,7 +89,7 @@ class FileStore {
 		$destPath = $this->filePath( $key );
 		return $this->copyFile( $sourcePath, $destPath, $flags );
 	}
-	
+
 	/**
 	 * Copy a file from the file store to elsewhere in the filesystem.
 	 * Should be protected by FileStore::lock() to avoid race conditions.
@@ -105,19 +105,19 @@ class FileStore {
 		$sourcePath = $this->filePath( $key );
 		return $this->copyFile( $sourcePath, $destPath, $flags );
 	}
-	
+
 	private function copyFile( $sourcePath, $destPath, $flags=0 ) {
 		if( !file_exists( $sourcePath ) ) {
 			// Abort! Abort!
 			throw new FSException( "missing source file '$sourcePath'" );
 		}
-		
+
 		$transaction = new FSTransaction();
-		
+
 		if( $flags & self::DELETE_ORIGINAL ) {
 			$transaction->addCommit( FSTransaction::DELETE_FILE, $sourcePath );
 		}
-		
+
 		if( file_exists( $destPath ) ) {
 			// An identical file is already present; no need to copy.
 		} else {
@@ -125,17 +125,17 @@ class FileStore {
 				wfSuppressWarnings();
 				$ok = mkdir( dirname( $destPath ), 0777, true );
 				wfRestoreWarnings();
-				
+
 				if( !$ok ) {
 					throw new FSException(
 						"failed to create directory for '$destPath'" );
 				}
 			}
-			
+
 			wfSuppressWarnings();
 			$ok = copy( $sourcePath, $destPath );
 			wfRestoreWarnings();
-			
+
 			if( $ok ) {
 				wfDebug( __METHOD__." copied '$sourcePath' to '$destPath'\n" );
 				$transaction->addRollback( FSTransaction::DELETE_FILE, $destPath );
@@ -144,10 +144,10 @@ class FileStore {
 					__METHOD__." failed to copy '$sourcePath' to '$destPath'" );
 			}
 		}
-		
+
 		return $transaction;
 	}
-	
+
 	/**
 	 * Delete a file from the file store.
 	 * Caller's responsibility to make sure it's not being used by another row.
@@ -167,7 +167,7 @@ class FileStore {
 			return FileStore::deleteFile( $destPath );
 		}
 	}
-	
+
 	/**
 	 * Delete a non-managed file on a transactional basis.
 	 *
@@ -189,7 +189,7 @@ class FileStore {
 			throw new FSException( "cannot delete missing file '$path'" );
 		}
 	}
-	
+
 	/**
 	 * Stream a contained file directly to HTTP output.
 	 * Will throw a 404 if file is missing; 400 if invalid key.
@@ -201,12 +201,12 @@ class FileStore {
 			wfHttpError( 400, "Bad request", "Invalid or badly-formed filename." );
 			return false;
 		}
-		
+
 		if( file_exists( $path ) ) {
 			// Set the filename for more convenient save behavior from browsers
 			// FIXME: Is this safe?
 			header( 'Content-Disposition: inline; filename="' . $key . '"' );
-			
+
 			require_once 'StreamFile.php';
 			wfStreamFile( $path );
 		} else {
@@ -214,7 +214,7 @@ class FileStore {
 				"The requested resource does not exist." );
 		}
 	}
-	
+
 	/**
 	 * Confirm that the given file key is valid.
 	 * Note that a valid key may refer to a file that does not exist.
@@ -229,8 +229,8 @@ class FileStore {
 	static function validKey( $key ) {
 		return preg_match( '/^[0-9a-z]{31,32}(\.[0-9a-z]{1,31})?$/', $key );
 	}
-	
-	
+
+
 	/**
 	 * Calculate file storage key from a file on disk.
 	 * You must pass an extension to it, as some files may be calculated
@@ -248,14 +248,14 @@ class FileStore {
 			wfDebug( __METHOD__.": couldn't hash file '$path'\n" );
 			return false;
 		}
-		
+
 		$base36 = wfBaseConvert( $hash, 16, 36, 31 );
 		if( $extension == '' ) {
 			$key = $base36;
 		} else {
 			$key = $base36 . '.' . $extension;
 		}
-		
+
 		// Sanity check
 		if( self::validKey( $key ) ) {
 			return $key;
@@ -264,7 +264,7 @@ class FileStore {
 			return false;
 		}
 	}
-	
+
 	/**
 	 * Return filesystem path to the given file.
 	 * Note that the file may or may not exist.
@@ -278,7 +278,7 @@ class FileStore {
 			return false;
 		}
 	}
-	
+
 	/**
 	 * Return URL path to the given file, if the store is public.
 	 * @return string or false if not public
@@ -290,7 +290,7 @@ class FileStore {
 			return false;
 		}
 	}
-	
+
 	private function hashPath( $key, $separator ) {
 		$parts = array();
 		for( $i = 0; $i < $this->mHashLevel; $i++ ) {
@@ -310,7 +310,7 @@ class FileStore {
  */
 class FSTransaction {
 	const DELETE_FILE = 1;
-	
+
 	/**
 	 * Combine more items into a fancier transaction
 	 */
@@ -320,7 +320,7 @@ class FSTransaction {
 		$this->mOnRollback = array_merge(
 			$this->mOnRollback, $transaction->mOnRollback );
 	}
-	
+
 	/**
 	 * Perform final actions for success.
 	 * @return true if actions applied ok, false if errors
@@ -328,7 +328,7 @@ class FSTransaction {
 	function commit() {
 		return $this->apply( $this->mOnCommit );
 	}
-	
+
 	/**
 	 * Perform final actions for failure.
 	 * @return true if actions applied ok, false if errors
@@ -336,22 +336,22 @@ class FSTransaction {
 	function rollback() {
 		return $this->apply( $this->mOnRollback );
 	}
-	
+
 	// --- Private and friend functions below...
-	
+
 	function __construct() {
 		$this->mOnCommit = array();
 		$this->mOnRollback = array();
 	}
-	
+
 	function addCommit( $action, $path ) {
 		$this->mOnCommit[] = array( $action, $path );
 	}
-	
+
 	function addRollback( $action, $path ) {
 		$this->mOnRollback[] = array( $action, $path );
 	}
-	
+
 	private function apply( $actions ) {
 		$result = true;
 		foreach( $actions as $item ) {
@@ -375,5 +375,3 @@ class FSTransaction {
  * @addtogroup Exception
  */
 class FSException extends MWException { }
-
-

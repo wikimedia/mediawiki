@@ -304,6 +304,4 @@ class ICFile extends LocalFile{
 
 		return true;
 	}
-
 }
-

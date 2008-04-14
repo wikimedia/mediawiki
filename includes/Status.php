@@ -4,12 +4,12 @@
  * Generic operation result class
  * Has warning/error list, boolean status and arbitrary value
  *
- * "Good" means the operation was completed with no warnings or errors. 
+ * "Good" means the operation was completed with no warnings or errors.
  *
  * "OK" means the operation was partially or wholly completed.
  *
- * An operation which is not OK should have errors so that the user can be 
- * informed as to what went wrong. Calling the fatal() function sets an error 
+ * An operation which is not OK should have errors so that the user can be
+ * informed as to what went wrong. Calling the fatal() function sets an error
  * message and simultaneously switches off the OK flag.
  */
 class Status {
@@ -53,10 +53,10 @@ class Status {
 	}
 
 	function warning( $message /*, parameters... */ ) {
-		$params = array_slice( func_get_args(), 1 );		
-		$this->errors[] = array( 
-			'type' => 'warning', 
-			'message' => $message, 
+		$params = array_slice( func_get_args(), 1 );
+		$this->errors[] = array(
+			'type' => 'warning',
+			'message' => $message,
 			'params' => $params );
 	}
 
@@ -65,10 +65,10 @@ class Status {
 	 * This can be used for non-fatal errors
 	 */
 	function error( $message /*, parameters... */ ) {
-		$params = array_slice( func_get_args(), 1 );		
-		$this->errors[] = array( 
-			'type' => 'error', 
-			'message' => $message, 
+		$params = array_slice( func_get_args(), 1 );
+		$this->errors[] = array(
+			'type' => 'error',
+			'message' => $message,
 			'params' => $params );
 	}
 
@@ -76,10 +76,10 @@ class Status {
 	 * Add an error and set OK to false, indicating that the operation as a whole was fatal
 	 */
 	function fatal( $message /*, parameters... */ ) {
-		$params = array_slice( func_get_args(), 1 );		
-		$this->errors[] = array( 
-			'type' => 'error', 
-			'message' => $message, 
+		$params = array_slice( func_get_args(), 1 );
+		$this->errors[] = array(
+			'type' => 'error',
+			'message' => $message,
 			'params' => $params );
 		$this->ok = false;
 	}
@@ -97,7 +97,7 @@ class Status {
 
 	protected function getItemXML( $item ) {
 		$params = $this->cleanParams( $item['params'] );
-		$xml = "<{$item['type']}>\n" . 
+		$xml = "<{$item['type']}>\n" .
 			Xml::element( 'message', null, $item['message'] ) . "\n" .
 			Xml::element( 'text', null, wfMsgReal( $item['message'], $params ) ) ."\n";
 		foreach ( $params as $param ) {
@@ -121,7 +121,7 @@ class Status {
 
 	/**
 	 * Get the error list as a wikitext formatted list
-	 * @param string $shortContext A short enclosing context message name, to be used 
+	 * @param string $shortContext A short enclosing context message name, to be used
 	 *     when there is a single error
 	 * @param string $longContext A long enclosing context message name, for a list
 	 */
@@ -131,7 +131,7 @@ class Status {
 				$this->fatal( 'internalerror_info',
 					__METHOD__." called for a good result, this is incorrect\n" );
 			} else {
-				$this->fatal( 'internalerror_info', 
+				$this->fatal( 'internalerror_info',
 					__METHOD__.": Invalid result object: no error text but not OK\n" );
 			}
 		}
@@ -171,4 +171,3 @@ class Status {
 		$this->failCount += $other->failCount;
 	}
 }
-

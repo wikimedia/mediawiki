@@ -60,5 +60,3 @@ function wfSpecialFewestrevisions() {
 	$frp = new FewestrevisionsPage();
 	$frp->doQuery( $offset, $limit );
 }
-
-

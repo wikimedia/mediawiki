@@ -103,7 +103,7 @@ class Xml {
 		global $wgContLang;
 		$namespaces = $wgContLang->getFormattedNamespaces();
 		$options = array();
-		
+
 		// Godawful hack... we'll be frequently passed selected namespaces
 		// as strings since PHP is such a shithole.
 		// But we also don't want blanks and nulls and "all"s matching 0,
@@ -111,7 +111,7 @@ class Xml {
 		if( preg_match( '/^\d+$/', $selected ) ) {
 			$selected = intval( $selected );
 		}
-		
+
 		if( !is_null( $all ) )
 			$namespaces = array( $all => wfMsg( 'namespacesall' ) ) + $namespaces;
 		foreach( $namespaces as $index => $name ) {
@@ -121,7 +121,7 @@ class Xml {
 				$name = wfMsg( 'blanknamespace' );
 			$options[] = self::option( $name, $index, $index === $selected );
 		}
-		
+
 		return Xml::openElement( 'select', array( 'id' => 'namespace', 'name' => $element_name,
 			'class' => 'namespaceselector' ) )
 			. "\n"
@@ -129,27 +129,27 @@ class Xml {
 			. "\n"
 			. Xml::closeElement( 'select' );
 	}
-		
+
 	/**
-	* Create a date selector 	 
-	* 	 
-	* @param $selected Mixed: the month which should be selected, default '' 	 
-	* @param $allmonths String: value of a special item denoting all month. Null to not include (default) 	 
-	* @param string $id Element identifier 	 
-	* @return String: Html string containing the month selector 	 
-	*/ 	 
-	public static function monthSelector( $selected = '', $allmonths = null, $id = 'month' ) { 	 
-		global $wgLang; 	 
-		$options = array(); 	 
-	    if( is_null( $selected ) ) 	 
-			$selected = ''; 	 
-	    if( !is_null( $allmonths ) ) 	 
-			$options[] = self::option( wfMsg( 'monthsall' ), $allmonths, $selected === $allmonths ); 	 
-		for( $i = 1; $i < 13; $i++ ) 	 
-				$options[] = self::option( $wgLang->getMonthName( $i ), $i, $selected === $i ); 	 
-		return self::openElement( 'select', array( 'id' => $id, 'name' => 'month', 'class' => 'mw-month-selector' ) ) 	 
-			. implode( "\n", $options ) 	 
-			. self::closeElement( 'select' ); 	 
+	* Create a date selector
+	*
+	* @param $selected Mixed: the month which should be selected, default ''
+	* @param $allmonths String: value of a special item denoting all month. Null to not include (default)
+	* @param string $id Element identifier
+	* @return String: Html string containing the month selector
+	*/
+	public static function monthSelector( $selected = '', $allmonths = null, $id = 'month' ) {
+		global $wgLang;
+		$options = array();
+	    if( is_null( $selected ) )
+			$selected = '';
+	    if( !is_null( $allmonths ) )
+			$options[] = self::option( wfMsg( 'monthsall' ), $allmonths, $selected === $allmonths );
+		for( $i = 1; $i < 13; $i++ )
+				$options[] = self::option( $wgLang->getMonthName( $i ), $i, $selected === $i );
+		return self::openElement( 'select', array( 'id' => $id, 'name' => 'month', 'class' => 'mw-month-selector' ) )
+			. implode( "\n", $options )
+			. self::closeElement( 'select' );
 	}
 
 	/**
@@ -331,7 +331,7 @@ class Xml {
 
 	/**
 	 * Build a drop-down box from a textual list.
-	 * 
+	 *
 	 * @param mixed $name Name and id for the drop-down
 	 * @param mixed $class CSS classes for the drop-down
 	 * @param mixed $other Text for the "Other reasons" option
@@ -342,9 +342,9 @@ class Xml {
 	public static function listDropDown( $name= '', $list = '', $other = '', $selected = '', $class = '', $tabindex = Null ) {
 		$options = '';
 		$optgroup = false;
-		
+
 		$options = self::option( $other, 'other', $selected === 'other' );
-		
+
 		foreach ( explode( "\n", $list ) as $option) {
 				$value = trim( $option );
 				if ( $value == '' ) {
@@ -367,7 +367,7 @@ class Xml {
 				}
 			}
 			if( $optgroup ) $options .= self::closeElement('optgroup');
-		
+
 		$attribs = array();
 		if( $name ) {
 			$attribs['id'] = $name;
@@ -407,9 +407,9 @@ class Xml {
 			"<" => "\\x3c",
 			">" => "\\x3e",
 
-			# To avoid any complaints about bad entity refs                        
+			# To avoid any complaints about bad entity refs
 			"&" => "\\x26",
-			
+
 			# Work around https://bugzilla.mozilla.org/show_bug.cgi?id=274152
 			# Encode certain Unicode formatting chars so affected
 			# versions of Gecko don't misinterpret our strings;
@@ -422,8 +422,8 @@ class Xml {
 
 	/**
 	 * Encode a variable of unknown type to JavaScript.
-	 * Arrays are converted to JS arrays, objects are converted to JS associative 
-	 * arrays (objects). So cast your PHP associative arrays to objects before 
+	 * Arrays are converted to JS arrays, objects are converted to JS associative
+	 * arrays (objects). So cast your PHP associative arrays to objects before
 	 * passing them to here.
 	 */
 	public static function encodeJsVar( $value ) {
@@ -448,7 +448,7 @@ class Xml {
 				if ( $s != '{' ) {
 					$s .= ', ';
 				}
-				$s .= '"' . self::escapeJsString( $name ) . '": ' . 
+				$s .= '"' . self::escapeJsString( $name ) . '": ' .
 					self::encodeJsVar( $elt );
 			}
 			$s .= '}';
@@ -457,7 +457,7 @@ class Xml {
 		}
 		return $s;
 	}
-	
+
 
 	/**
 	 * Check if a string is well-formed XML.
@@ -517,4 +517,3 @@ class Xml {
 			$in );
 	}
 }
-

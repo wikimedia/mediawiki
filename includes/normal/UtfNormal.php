@@ -750,5 +750,3 @@ class UtfNormal {
 		return $out;
 	}
 }
-
-

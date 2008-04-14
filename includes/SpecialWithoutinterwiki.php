@@ -88,5 +88,3 @@ function wfSpecialWithoutinterwiki() {
 	$wip->setPrefix( $prefix );
 	$wip->doQuery( $offset, $limit );
 }
-
-

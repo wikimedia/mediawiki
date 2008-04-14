@@ -832,7 +832,7 @@ class Article {
 		}
 		if( !$outputDone ) {
 			$wgOut->setRevisionId( $this->getRevIdFetched() );
-			
+
 			 // Pages containing custom CSS or JavaScript get special treatment
 			if( $this->mTitle->isCssOrJsPage() || $this->mTitle->isCssJsSubpage() ) {
 				$wgOut->addHtml( wfMsgExt( 'clearyourcache', 'parse' ) );
@@ -846,9 +846,9 @@ class Article {
 					$wgOut->addHtml( htmlspecialchars( $this->mContent ) );
 					$wgOut->addHtml( "\n</pre>\n" );
 				}
-			
+
 			}
-			
+
 			elseif ( $rt = $this->getRedirectTarget() ) {
 				# Display redirect
 				$imageDir = $wgContLang->isRTL() ? 'rtl' : 'ltr';
@@ -1396,7 +1396,7 @@ class Article {
 
 			$lastRevision = 0;
 			$revisionId = 0;
-			
+
 			$changed = ( strcmp( $text, $oldtext ) != 0 );
 
 			if ( $changed ) {
@@ -1465,7 +1465,7 @@ class Article {
 				# Invalidate cache of this article and all pages using this article
 				# as a template. Partly deferred.
 				Article::onArticleEdit( $this->mTitle );
-				
+
 				# Update links tables, site stats, etc.
 				$this->editUpdates( $text, $summary, $isminor, $now, $revisionId, $changed );
 			}
@@ -1571,7 +1571,7 @@ class Article {
 
 		if ( !($wgUseNPPatrol || $wgUseRCPatrol)) {
 			$wgOut->showErrorPage( 'rcpatroldisabled', 'rcpatroldisabledtext' );
-			return;		
+			return;
 		}
 
 		# If we haven't been given an rc_id value, we can't do anything
@@ -1590,7 +1590,7 @@ class Article {
 			$wgOut->showErrorPage( 'rcpatroldisabled', 'rcpatroldisabledtext' );
 			return;
 		}
-		
+
 		# Check permissions
 		$permission_errors = $this->mTitle->getUserPermissionsErrors( 'patrol', $wgUser );
 
@@ -1810,10 +1810,10 @@ class Article {
 				foreach( $limit as $action => $restrictions ) {
 					# Check if the group level required to edit also can protect pages
 					# Otherwise, people who cannot normally protect can "protect" pages via transclusion
-					$cascade = ( $cascade && isset($wgGroupPermissions[$restrictions]['protect']) && 
-						$wgGroupPermissions[$restrictions]['protect'] );	
+					$cascade = ( $cascade && isset($wgGroupPermissions[$restrictions]['protect']) &&
+						$wgGroupPermissions[$restrictions]['protect'] );
 				}
-				
+
 				$cascade_description = '';
 				if ($cascade) {
 					$cascade_description = ' ['.wfMsg('protect-summary-cascade').']';
@@ -1827,7 +1827,7 @@ class Article {
 					$comment .= "$expiry_description";
 				if ( $cascade )
 					$comment .= "$cascade_description";
-				
+
 				# Update restrictions table
 				foreach( $limit as $action => $restrictions ) {
 					if ($restrictions != '' ) {
@@ -1859,8 +1859,8 @@ class Article {
 
 				# Update the protection log
 				$log = new LogPage( 'protect' );
-				
-				
+
+
 
 				if( $protect ) {
 					$log->addEntry( $modified ? 'modify' : 'protect', $this->mTitle, trim( $reason . " [$updated]$cascade_description$expiry_description" ) );
@@ -1894,7 +1894,7 @@ class Article {
 		}
 		return implode( ':', $bits );
 	}
-	
+
 	/**
 	 * Auto-generates a deletion reason
 	 * @param bool &$hasHistory Whether the page has a history
@@ -1956,7 +1956,7 @@ class Article {
 			else
 				$reason = wfMsgForContent('excontent', '$1');
 		}
-		
+
 		// Replace newlines with spaces to prevent uglyness
 		$contents = preg_replace("/[\n\r]/", ' ', $contents);
 		// Calculate the maximum amount of chars to get
@@ -1979,12 +1979,12 @@ class Article {
 
 		$confirm = $wgRequest->wasPosted() &&
 				$wgUser->matchEditToken( $wgRequest->getVal( 'wpEditToken' ) );
-		
+
 		$this->DeleteReasonList = $wgRequest->getText( 'wpDeleteReasonList', 'other' );
 		$this->DeleteReason = $wgRequest->getText( 'wpReason' );
-		
+
 		$reason = $this->DeleteReasonList;
-		
+
 		if ( $reason != 'other' && $this->DeleteReason != '') {
 			// Entry from drop down menu + additional comment
 			$reason .= ': ' . $this->DeleteReason;
@@ -2001,7 +2001,7 @@ class Article {
 			$wgOut->readOnlyPage();
 			return;
 		}
-		
+
 		# Check permissions
 		$permission_errors = $this->mTitle->getUserPermissionsErrors( 'delete', $wgUser );
 
@@ -2054,10 +2054,10 @@ class Article {
 					array( 'delete-warning-toobig', $wgLang->formatNum( $wgDeleteRevisionsLimit ) ) );
 			}
 		}
-		
+
 		return $this->confirmDelete( '', $reason );
 	}
-	
+
 	/**
 	 * @return bool whether or not the page surpasses $wgDeleteRevisionsLimit revisions
 	 */
@@ -2069,7 +2069,7 @@ class Article {
 		}
 		return false;
 	}
-	
+
 	/**
 	 * @return int approximate revision count
 	 */
@@ -2161,7 +2161,7 @@ class Article {
 				"</td>
 				<td>" .
 					Xml::listDropDown( 'wpDeleteReasonList',
-						wfMsgForContent( 'deletereason-dropdown' ), 
+						wfMsgForContent( 'deletereason-dropdown' ),
 						wfMsgForContent( 'deletereasonotherlist' ), '', 'wpReasonDropDown', 1 ) .
 				"</td>
 			</tr>
@@ -2270,7 +2270,7 @@ class Article {
 		} else {
 			$bitfield = 'rev_deleted';
 		}
-		
+
 		// For now, shunt the revision data into the archive table.
 		// Text is *not* removed from the text table; bulk storage
 		// is left intact to avoid breaking block-compression or
@@ -2339,7 +2339,7 @@ class Article {
 		if ( !$dbw->cleanupTriggers() ) {
 
 			# Clean up recentchanges entries...
-			$dbw->delete( 'recentchanges', 
+			$dbw->delete( 'recentchanges',
 				array( 'rc_namespace' => $ns, 'rc_title' => $t, 'rc_type != '.RC_LOG ),
 				__METHOD__ );
 		}
@@ -2355,7 +2355,7 @@ class Article {
 		$logtype = $suppress ? 'suppress' : 'delete';
 		$log = new LogPage( $logtype );
 		$log->addEntry( 'delete', $this->mTitle, $reason );
-		
+
 		return true;
 	}
 
@@ -2366,15 +2366,15 @@ class Article {
 	 * performs permissions checks on $wgUser, then calls commitRollback()
 	 * to do the dirty work
 	 *
-	 * @param string $fromP - Name of the user whose edits to rollback. 
+	 * @param string $fromP - Name of the user whose edits to rollback.
 	 * @param string $summary - Custom summary. Set to default summary if empty.
 	 * @param string $token - Rollback token.
 	 * @param bool   $bot - If true, mark all reverted edits as bot.
-	 * 
+	 *
 	 * @param array $resultDetails contains result-specific array of additional values
 	 *    'alreadyrolled' : 'current' (rev)
 	 *    success        : 'summary' (str), 'current' (rev), 'target' (rev)
-	 * 
+	 *
 	 * @return array of errors, each error formatted as
 	 *   array(messagekey, param1, param2, ...).
 	 * On success, the array is empty.  This array can also be passed to
@@ -2396,10 +2396,10 @@ class Article {
 		# If there were errors, bail out now
 		if(!empty($errors))
 			return $errors;
-		
+
 		return $this->commitRollback($fromP, $summary, $bot, $resultDetails);
 	}
-	
+
 	/**
 	 * Backend implementation of doRollback(), please refer there for parameter
 	 * and return value documentation
@@ -2408,7 +2408,7 @@ class Article {
 	 * rollback to the DB Therefore, you should only call this function direct-
 	 * ly if you want to use custom permissions checks. If you don't, use
 	 * doRollback() instead.
-	 */	
+	 */
 	public function commitRollback($fromP, $summary, $bot, &$resultDetails) {
 		global $wgUseRCPatrol, $wgUser;
 		$dbw = wfGetDB( DB_MASTER );
@@ -2452,7 +2452,7 @@ class Article {
 			# Only admins can see this text
 			return array(array('notvisiblerev'));
 		}
-	
+
 		$set = array();
 		if ( $bot && $wgUser->isAllowed('markbotedits') ) {
 			# Mark all reverted edits as bot
@@ -2767,14 +2767,14 @@ class Article {
 			: $sk->makeKnownLinkObj( $this->mTitle, wfMsg( 'diff' ), 'diff=next&oldid='.$oldid );
 
 		$cdel='';
-		if( $wgUser->isAllowed( 'deleterevision' ) ) {		
+		if( $wgUser->isAllowed( 'deleterevision' ) ) {
 			$revdel = SpecialPage::getTitleFor( 'Revisiondelete' );
 			if( $revision->isCurrent() ) {
 			// We don't handle top deleted edits too well
-				$cdel = wfMsgHtml('rev-delundel');	
+				$cdel = wfMsgHtml('rev-delundel');
 			} else if( !$revision->userCan( Revision::DELETED_RESTRICTED ) ) {
 			// If revision was hidden from sysops
-				$cdel = wfMsgHtml('rev-delundel');	
+				$cdel = wfMsgHtml('rev-delundel');
 			} else {
 				$cdel = $sk->makeKnownLinkObj( $revdel,
 					wfMsgHtml('rev-delundel'),
@@ -2794,7 +2794,7 @@ class Article {
 		$infomsg = $current && !wfEmptyMsg( 'revision-info-current', $m ) && $m != '-'
 			? 'revision-info-current'
 			: 'revision-info';
-			
+
 		$r = "\n\t\t\t\t<div id=\"mw-{$infomsg}\">" . wfMsg( $infomsg, $td, $userlinks ) . "</div>\n" .
 
 		     "\n\t\t\t\t<div id=\"mw-revision-nav\">" . $cdel . wfMsg( 'revision-nav', $prevdiff, $prevlink, $lnk, $curdiff, $nextlink, $nextdiff ) . "</div>\n\t\t\t";
@@ -2855,9 +2855,9 @@ class Article {
 		$printable = $wgRequest->getVal( 'printable' );
 		$page      = $wgRequest->getVal( 'page' );
 
-		//check for non-standard user language; this covers uselang, 
+		//check for non-standard user language; this covers uselang,
 		//and extensions for auto-detecting user language.
-		$ulang     = $wgLang->getCode(); 
+		$ulang     = $wgLang->getCode();
 		$clang     = $wgContLang->getCode();
 
 		$cacheable = $wgUseFileCache
@@ -3043,7 +3043,7 @@ class Article {
 		}
 		$other->invalidateCache();
 		$other->purgeSquid();
-		
+
 		$title->touchLinks();
 		$title->purgeSquid();
 
@@ -3073,7 +3073,7 @@ class Article {
 
 		// Invalidate the caches of all pages which redirect here
 		$wgDeferredUpdateList[] = new HTMLCacheUpdate( $title, 'redirect' );
-		
+
 		# Purge squid for this page only
 		$title->purgeSquid();
 
@@ -3237,7 +3237,7 @@ class Article {
 		$dbr = wfGetDB( DB_SLAVE );
 		$res = $dbr->select( array( 'categorylinks', 'page_props', 'page' ),
 			array( 'cl_to' ),
-			array( 'cl_from' => $id, 'pp_page=page_id', 'pp_propname' => 'hiddencat', 
+			array( 'cl_from' => $id, 'pp_page=page_id', 'pp_propname' => 'hiddencat',
 				'page_namespace' => NS_CATEGORY, 'page_title=cl_to'),
 			'Article:getHiddenCategories' );
 		if ( false !== $res ) {

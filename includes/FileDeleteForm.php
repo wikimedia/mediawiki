@@ -13,7 +13,7 @@ class FileDeleteForm {
 
 	private $oldfile = null;
 	private $oldimage = '';
-	
+
 	/**
 	 * Constructor
 	 *
@@ -23,7 +23,7 @@ class FileDeleteForm {
 		$this->title = $file->getTitle();
 		$this->file = $file;
 	}
-	
+
 	/**
 	 * Fulfil the request; shows the form or deletes the file,
 	 * pending authentication, confirmation, etc.
@@ -35,31 +35,31 @@ class FileDeleteForm {
 		if( wfReadOnly() ) {
 			$wgOut->readOnlyPage();
 			return;
-		} 
+		}
 		$permission_errors = $this->title->getUserPermissionsErrors('delete', $wgUser);
 		if (count($permission_errors)>0) {
 			$wgOut->showPermissionsErrorPage( $permission_errors );
 			return;
 		}
-		
+
 		$this->oldimage = $wgRequest->getText( 'oldimage', false );
 		$token = $wgRequest->getText( 'wpEditToken' );
 		# Flag to hide all contents of the archived revisions
 		$suppress = $wgRequest->getVal( 'wpSuppress' ) && $wgUser->isAllowed('deleterevision');
-		
+
 		if( $this->oldimage && !self::isValidOldSpec($this->oldimage) ) {
 			$wgOut->showUnexpectedValueError( 'oldimage', htmlspecialchars( $this->oldimage ) );
 			return;
 		}
 		if( $this->oldimage )
 			$this->oldfile = RepoGroup::singleton()->getLocalRepo()->newFromArchiveName( $this->title, $this->oldimage );
-		
+
 		if( !self::haveDeletableFile($this->file, $this->oldfile, $this->oldimage) ) {
 			$wgOut->addHtml( $this->prepareMessage( 'filedelete-nofile' ) );
 			$wgOut->addReturnTo( $this->title );
 			return;
 		}
-		
+
 		// Perform the deletion if appropriate
 		if( $wgRequest->wasPosted() && $wgUser->matchEditToken( $token, $this->oldimage ) ) {
 			$this->DeleteReasonList = $wgRequest->getText( 'wpDeleteReasonList' );
@@ -71,9 +71,9 @@ class FileDeleteForm {
 			} elseif ( $reason == 'other' ) {
 				$reason = $this->DeleteReason;
 			}
-			
+
 			$status = self::doDelete( $this->title, $this->file, $this->oldimage, $reason, $suppress );
-			
+
 			if( !$status->isGood() )
 				$wgOut->addWikiText( $status->getWikiText( 'filedeleteerror-short', 'filedeleteerror-long' ) );
 			if( $status->ok ) {
@@ -85,11 +85,11 @@ class FileDeleteForm {
 			}
 			return;
 		}
-		
+
 		$this->showForm();
 		$this->showLogEntries();
 	}
-	
+
 	public static function doDelete( &$title, &$file, &$oldimage, $reason, $suppress ) {
 		$article = null;
 		if( $oldimage ) {
@@ -106,16 +106,16 @@ class FileDeleteForm {
 			$status = $file->delete( $reason, $suppress );
 			if( $status->ok ) {
 				// Need to delete the associated article
-				$article = new Article( $title );					
-				if( wfRunHooks('ArticleDelete', array(&$article, &$wgUser, &$reason)) ) {												
+				$article = new Article( $title );
+				if( wfRunHooks('ArticleDelete', array(&$article, &$wgUser, &$reason)) ) {
 					if( $article->doDeleteArticle( $reason, $suppress ) )
 						wfRunHooks('ArticleDeleteComplete', array(&$article, &$wgUser, $reason));
 				}
 			}
 		}
-		if( $status->isGood() ) wfRunHooks('FileDeleteComplete', array( 
+		if( $status->isGood() ) wfRunHooks('FileDeleteComplete', array(
 			&$file, &$oldimage, &$article, &$wgUser, &$reason));
-		
+
 		return $status;
 	}
 
@@ -146,7 +146,7 @@ class FileDeleteForm {
 				"</td>
 				<td>" .
 					Xml::listDropDown( 'wpDeleteReasonList',
-						wfMsgForContent( 'filedelete-reason-dropdown' ), 
+						wfMsgForContent( 'filedelete-reason-dropdown' ),
 						wfMsgForContent( 'filedelete-reason-otherlist' ), '', 'wpReasonDropDown', 1 ) .
 				"</td>
 			</tr>
@@ -186,7 +186,7 @@ class FileDeleteForm {
 		$wgOut->addHtml( '<h2>' . htmlspecialchars( LogPage::logName( 'delete' ) ) . "</h2>\n" );
 		LogEventsList::showLogExtract( $wgOut, 'delete', $this->title->getPrefixedText() );
 	}
-	
+
 	/**
 	 * Prepare a message referring to the file being deleted,
 	 * showing an appropriate message depending upon whether
@@ -214,7 +214,7 @@ class FileDeleteForm {
 			);
 		}
 	}
-	
+
 	/**
 	 * Set headers, titles and other bits
 	 */
@@ -224,7 +224,7 @@ class FileDeleteForm {
 		$wgOut->setRobotPolicy( 'noindex,nofollow' );
 		$wgOut->setSubtitle( wfMsg( 'filedelete-backlink', $wgUser->getSkin()->makeKnownLinkObj( $this->title ) ) );
 	}
-	
+
 	/**
 	 * Is the provided `oldimage` value valid?
 	 *
@@ -235,7 +235,7 @@ class FileDeleteForm {
 			&& strpos( $oldimage, '/' ) === false
 			&& strpos( $oldimage, '\\' ) === false;
 	}
-	
+
 	/**
 	 * Could we delete the file specified? If an `oldimage`
 	 * value was provided, does it correspond to an
@@ -248,7 +248,7 @@ class FileDeleteForm {
 			? $oldfile && $oldfile->exists() && $oldfile->isLocal()
 			: $file && $file->exists() && $file->isLocal();
 	}
-	
+
 	/**
 	 * Prepare the form action
 	 *
@@ -261,7 +261,7 @@ class FileDeleteForm {
 			$q[] = 'oldimage=' . urlencode( $this->oldimage );
 		return $this->title->getLocalUrl( implode( '&', $q ) );
 	}
-	
+
 	/**
 	 * Extract the timestamp of the old version
 	 *
@@ -270,5 +270,5 @@ class FileDeleteForm {
 	private function getTimestamp() {
 		return $this->oldfile->getTimestamp();
 	}
-	
+
 }

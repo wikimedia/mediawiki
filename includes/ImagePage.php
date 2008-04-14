@@ -51,7 +51,7 @@ class ImagePage extends Article {
 			return Article::view();
 
 		if ($wgShowEXIF && $this->img->exists()) {
-			// FIXME: bad interface, see note on MediaHandler::formatMetadata(). 
+			// FIXME: bad interface, see note on MediaHandler::formatMetadata().
 			$formattedMetadata = $this->img->formatMetadata();
 			$showmeta = $formattedMetadata !== false;
 		} else {
@@ -121,7 +121,7 @@ class ImagePage extends Article {
 	/**
 	 * Make a table with metadata to be shown in the output page.
 	 *
-	 * FIXME: bad interface, see note on MediaHandler::formatMetadata(). 
+	 * FIXME: bad interface, see note on MediaHandler::formatMetadata().
 	 *
 	 * @access private
 	 *
@@ -148,7 +148,7 @@ class ImagePage extends Article {
 
 	/**
 	 * Overloading Article's getContent method.
-	 * 
+	 *
 	 * Omit noarticletext if sharedupload; text will be fetched from the
 	 * shared upload server if possible.
 	 */
@@ -237,7 +237,7 @@ class ImagePage extends Article {
 				if( $this->img->mustRender() ) {
 					$showLink = true;
 				} else {
-					$anchorclose .= 
+					$anchorclose .=
 						$msgsmall .
 						'<br />' . Xml::tags( 'a', $linkAttribs,  $msgbig ) . "$dirmark " . $longDesc;
 				}
@@ -247,11 +247,11 @@ class ImagePage extends Article {
 				}
 
 				if ( $thumbnail ) {
-					$options = array( 
+					$options = array(
 						'alt' => $this->img->getTitle()->getPrefixedText(),
 						'file-link' => true,
 					);
-					$wgOut->addHTML( '<div class="fullImageLink" id="file">' . 
+					$wgOut->addHTML( '<div class="fullImageLink" id="file">' .
 						$thumbnail->toHtml( $options ) .
 						$anchorclose . '</div>' );
 				}
@@ -262,7 +262,7 @@ class ImagePage extends Article {
 					if ( $page > 1 ) {
 						$label = $wgOut->parse( wfMsg( 'imgmultipageprev' ), false );
 						$link = $sk->makeKnownLinkObj( $this->mTitle, $label, 'page='. ($page-1) );
-						$thumb1 = $sk->makeThumbLinkObj( $this->mTitle, $this->img, $link, $label, 'none', 
+						$thumb1 = $sk->makeThumbLinkObj( $this->mTitle, $this->img, $link, $label, 'none',
 							array( 'page' => $page - 1 ) );
 					} else {
 						$thumb1 = '';
@@ -271,14 +271,14 @@ class ImagePage extends Article {
 					if ( $page < $count ) {
 						$label = wfMsg( 'imgmultipagenext' );
 						$link = $sk->makeKnownLinkObj( $this->mTitle, $label, 'page='. ($page+1) );
-						$thumb2 = $sk->makeThumbLinkObj( $this->mTitle, $this->img, $link, $label, 'none', 
+						$thumb2 = $sk->makeThumbLinkObj( $this->mTitle, $this->img, $link, $label, 'none',
 							array( 'page' => $page + 1 ) );
 					} else {
 						$thumb2 = '';
 					}
 
 					global $wgScript;
-					$select = '<form name="pageselector" action="' . 
+					$select = '<form name="pageselector" action="' .
 						htmlspecialchars( $wgScript ) .
 						'" method="get" onchange="document.pageselector.submit();">' .
 						Xml::hidden( 'title', $this->getTitle()->getPrefixedDbKey() );
@@ -389,9 +389,9 @@ EOT
 			return;
 
 		$sk = $wgUser->getSkin();
-		
+
 		$wgOut->addHtml( '<br /><ul>' );
-		
+
 		# "Upload a new version of this file" link
 		if( UploadForm::userCanReUpload($wgUser,$this->img->name) ) {
 			$ulink = $sk->makeExternalLink( $this->getUploadUrl(), wfMsg( 'uploadnewversion-linktext' ) );
@@ -405,7 +405,7 @@ EOT
 		# External editing link
 		$elink = $sk->makeKnownLinkObj( $this->mTitle, wfMsgHtml( 'edit-externally' ), 'action=edit&externaledit=true&mode=file' );
 		$wgOut->addHtml( '<li>' . $elink . '<div>' . wfMsgWikiHtml( 'edit-externally-help' ) . '</div></li>' );
-		
+
 		$wgOut->addHtml( '</ul>' );
 	}
 
@@ -501,7 +501,7 @@ EOT
 		$reverter = new FileRevertForm( $this->img );
 		$reverter->execute();
 	}
-	
+
 	/**
 	 * Override handling of action=purge
 	 */
@@ -569,7 +569,7 @@ class ImageHistoryList {
 
 	public function imageHistoryLine( $iscur, $file ) {
 		global $wgUser, $wgLang, $wgContLang, $wgTitle;
-		
+
 		$timestamp = wfTimestamp(TS_MW, $file->getTimestamp());
 		$img = $iscur ? $file->getName() : $file->getArchiveName();
 		$user = $file->getUser('id');
@@ -578,7 +578,7 @@ class ImageHistoryList {
 		$description = $file->getDescription();
 		$dims = $file->getDimensionsString();
 		$sha1 = $file->getSha1();
-		
+
 		$local = $this->img->isLocal();
 		$row = '';
 
@@ -603,7 +603,7 @@ class ImageHistoryList {
 				$revdel = SpecialPage::getTitleFor( 'Revisiondelete' );
 				// If file is top revision or locked from this user, don't link
 				if( $iscur || !$file->userCan(File::DELETED_RESTRICTED) ) {
-					$del = wfMsgHtml( 'rev-delundel' );			
+					$del = wfMsgHtml( 'rev-delundel' );
 				} else {
 					// If the file was hidden, link to sha-1
 					list($ts,$name) = explode('!',$img,2);
@@ -646,7 +646,7 @@ class ImageHistoryList {
 		} else if( $file->isDeleted(File::DELETED_FILE) ) {
 			$revdel = SpecialPage::getTitleFor( 'Revisiondelete' );
 			# Make a link to review the image
-			$url = $this->skin->makeKnownLinkObj( $revdel, $wgLang->timeAndDate( $timestamp, true ), 
+			$url = $this->skin->makeKnownLinkObj( $revdel, $wgLang->timeAndDate( $timestamp, true ),
 				"target=".$wgTitle->getPrefixedText()."&file=$sha1.".$this->img->getExtension() );
 			$row .= '<span class="history-deleted">'.$url.'</span>';
 		} else {
@@ -665,7 +665,7 @@ class ImageHistoryList {
 			if( $file->isDeleted(File::DELETED_USER) )
 				$row .= '<span class="history-deleted">' . wfMsgHtml( 'rev-deleted-user' ) . '</span>';
 			else
-				$row .= $this->skin->userLink( $user, $usertext ) . 
+				$row .= $this->skin->userLink( $user, $usertext ) .
 					$this->skin->userToolLinks( $user, $usertext );
 		} else {
 			$row .= htmlspecialchars( $usertext );

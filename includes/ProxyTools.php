@@ -24,7 +24,7 @@ function wfGetForwardedFor() {
 		$index = 'HTTP_X_FORWARDED_FOR';
 		$index2 = 'CLIENT-IP';
 	}
-	
+
 	#Try a couple of headers
 	if( isset( $set[$index] ) ) {
 		return $set[$index];
@@ -90,7 +90,7 @@ function wfGetIP() {
 		$xff = array_reverse( $xff );
 		$ipchain = array_merge( $ipchain, $xff );
 	}
-	
+
 	# Step through XFF list and find the last address in the list which is a trusted server
 	# Set $ip to the IP address given by that trusted server, unless the address is not sensible (e.g. private)
 	foreach ( $ipchain as $i => $curIP ) {
@@ -119,9 +119,9 @@ function wfGetIP() {
 function wfIsTrustedProxy( $ip ) {
 	global $wgSquidServers, $wgSquidServersNoPurge;
 
-	if ( in_array( $ip, $wgSquidServers ) || 
-		in_array( $ip, $wgSquidServersNoPurge ) || 
-		wfIsAOLProxy( $ip ) 
+	if ( in_array( $ip, $wgSquidServers ) ||
+		in_array( $ip, $wgSquidServersNoPurge ) ||
+		wfIsAOLProxy( $ip )
 	) {
 		$trusted = true;
 	} else {
@@ -257,7 +257,3 @@ function wfIsAOLProxy( $ip ) {
 	}
 	return false;
 }
-
-
-
-

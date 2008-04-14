@@ -156,8 +156,4 @@ class WatchedItem {
 		$dbw->replace( 'watchlist', array(array( 'wl_user', 'wl_namespace', 'wl_title')), $values, $fname );
 		return true;
 	}
-
-
 }
-
-

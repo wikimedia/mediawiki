@@ -106,5 +106,3 @@ END
 		$wgOut->addWikiMsg( "unlockdbsuccesstext", $ip );
 	}
 }
-
-

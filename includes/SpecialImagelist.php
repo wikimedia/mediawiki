@@ -103,7 +103,7 @@ class ImageListPager extends TablePager {
 		# Cache messages used in each row
 		$this->mMessages['imgdesc'] = wfMsgHtml( 'imgdesc' );
 		$this->mMessages['imgfile'] = wfMsgHtml( 'imgfile' );
-		
+
 		return parent::getStartBody();
 	}
 
@@ -121,7 +121,7 @@ class ImageListPager extends TablePager {
 				return "$link ($download)";
 			case 'img_user_text':
 				if ( $this->mCurrentRow->img_user ) {
-					$link = $this->getSkin()->makeLinkObj( Title::makeTitle( NS_USER, $value ), 
+					$link = $this->getSkin()->makeLinkObj( Title::makeTitle( NS_USER, $value ),
 						htmlspecialchars( $value ) );
 				} else {
 					$link = htmlspecialchars( $value );
@@ -167,5 +167,3 @@ class ImageListPager extends TablePager {
 		return 'imagelist_sort ' . parent::getSortHeaderClass();
 	}
 }
-
-

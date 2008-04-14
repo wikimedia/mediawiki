@@ -82,8 +82,8 @@ class LinkBatch {
 
 	/**
 	 * Add a ResultWrapper containing IDs and titles to a LinkCache object.
-	 * As normal, titles will go into the static Title cache field. 
-	 * This function *also* stores extra fields of the title used for link 
+	 * As normal, titles will go into the static Title cache field.
+	 * This function *also* stores extra fields of the title used for link
 	 * parsing to avoid extra DB queries.
 	 */
 	public function addResultToCache( $cache, $res ) {
@@ -160,7 +160,7 @@ class LinkBatch {
 			} else {
 				$sql .= ' OR ';
 			}
-			
+
 			if (count($dbkeys)==1) { // avoid multiple-reference syntax if simple equality can be used
 				$singleKey = array_keys($dbkeys);
 				$sql .= "({$prefix}_namespace=$ns AND {$prefix}_title=".
@@ -168,7 +168,7 @@ class LinkBatch {
 					")";
 			} else {
 				$sql .= "({$prefix}_namespace=$ns AND {$prefix}_title IN (";
-				
+
 				$firstTitle = true;
 				foreach( $dbkeys as $dbkey => $unused ) {
 					if ( $firstTitle ) {
@@ -189,5 +189,3 @@ class LinkBatch {
 		}
 	}
 }
-
-

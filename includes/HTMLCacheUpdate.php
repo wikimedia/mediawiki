@@ -5,19 +5,19 @@
  * Small numbers of links will be done immediately, large numbers are pushed onto
  * the job queue.
  *
- * This class is designed to work efficiently with small numbers of links, and 
+ * This class is designed to work efficiently with small numbers of links, and
  * to work reasonably well with up to ~10^5 links. Above ~10^6 links, the memory
  * and time requirements of loading all backlinked IDs in doUpdate() might become
  * prohibitive. The requirements measured at Wikimedia are approximately:
- * 
+ *
  *   memory: 48 bytes per row
  *   time: 16us per row for the query plus processing
  *
  * The reason this query is done is to support partitioning of the job
- * by backlinked ID. The memory issue could be allieviated by doing this query in 
+ * by backlinked ID. The memory issue could be allieviated by doing this query in
  * batches, but of course LIMIT with an offset is inefficient on the DB side.
  *
- * The class is nevertheless a vast improvement on the previous method of using 
+ * The class is nevertheless a vast improvement on the previous method of using
  * Image::getLinksTo() and Title::touchArray(), which uses about 2KB of memory per
  * link.
  */
@@ -67,7 +67,7 @@ class HTMLCacheUpdate
 					break;
 				}
 			}
-			
+
 			$params = array(
 				'table' => $this->mTable,
 				'start' => $start,
@@ -88,7 +88,7 @@ class HTMLCacheUpdate
 			'categorylinks' => 'cl',
 			'templatelinks' => 'tl',
 			'redirect' => 'rd',
-			
+
 			# Not needed
 			# 'externallinks' => 'el',
 			# 'langlinks' => 'll'
@@ -102,7 +102,7 @@ class HTMLCacheUpdate
 		}
 		return $this->mPrefix;
 	}
-	
+
 	function getFromField() {
 		return $this->getPrefix() . '_from';
 	}
@@ -113,7 +113,7 @@ class HTMLCacheUpdate
 			case 'pagelinks':
 			case 'templatelinks':
 			case 'redirect':
-				return array( 
+				return array(
 					"{$prefix}_namespace" => $this->mTitle->getNamespace(),
 					"{$prefix}_title" => $this->mTitle->getDBkey()
 				);
@@ -138,7 +138,7 @@ class HTMLCacheUpdate
 		$dbw = wfGetDB( DB_MASTER );
 		$timestamp = $dbw->timestamp();
 		$done = false;
-		
+
 		while ( !$done ) {
 			# Get all IDs in this query into an array
 			$ids = array();
@@ -155,10 +155,10 @@ class HTMLCacheUpdate
 			if ( !count( $ids ) ) {
 				break;
 			}
-			
+
 			# Update page_touched
-			$dbw->update( 'page', 
-				array( 'page_touched' => $timestamp ), 
+			$dbw->update( 'page',
+				array( 'page_touched' => $timestamp ),
 				array( 'page_id IN (' . $dbw->makeList( $ids ) . ')' ),
 				__METHOD__
 			);
@@ -221,4 +221,3 @@ class HTMLCacheUpdateJob extends Job {
 		return true;
 	}
 }
-

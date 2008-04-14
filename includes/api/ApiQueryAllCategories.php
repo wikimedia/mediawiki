@@ -31,7 +31,7 @@ if (!defined('MEDIAWIKI')) {
 /**
  * Query module to enumerate all categories, even the ones that don't have
  * category pages.
- * 
+ *
  * @addtogroup API
  */
 class ApiQueryAllCategories extends ApiQueryGeneratorBase {
@@ -55,7 +55,7 @@ class ApiQueryAllCategories extends ApiQueryGeneratorBase {
 
 		$this->addTables('category');
 		$this->addFields('cat_title');
-		
+
 		if (!is_null($params['from']))
 			$this->addWhere('cat_title>=' . $db->addQuotes(ApiQueryBase :: titleToKey($params['from'])));
 		if (isset ($params['prefix']))
@@ -64,7 +64,7 @@ class ApiQueryAllCategories extends ApiQueryGeneratorBase {
 		$this->addOption('LIMIT', $params['limit']+1);
 		$this->addOption('ORDER BY', 'cat_title' . ($params['dir'] == 'descending' ? ' DESC' : ''));
 		$this->addOption('DISTINCT');
-		
+
 		$prop = array_flip($params['prop']);
 		$this->addFieldsIf( array( 'cat_pages', 'cat_subcats', 'cat_files' ), isset($prop['size']) );
 		//$this->addFieldsIf( 'cat_hidden', isset($prop['hidden']) );
@@ -82,7 +82,7 @@ class ApiQueryAllCategories extends ApiQueryGeneratorBase {
 				$this->setContinueEnumParameter('from', ApiQueryBase :: keyToTitle($row->cl_to));
 				break;
 			}
-			
+
 			// Normalize titles
 			$titleObj = Title::makeTitle(NS_CATEGORY, $row->cat_title);
 			if(!is_null($resultPageSet))

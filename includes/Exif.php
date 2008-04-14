@@ -431,7 +431,7 @@ class Exif {
 		if ( is_array( $in ) ) {
 			return false;
 		}
-		
+
 		if ( preg_match( "/[^\x0a\x20-\x7e]/", $in ) ) {
 			$this->debug( $in, __FUNCTION__, 'found a character not in our whitelist' );
 			return false;
@@ -557,8 +557,8 @@ class Exif {
 	 *
 	 * @private
 	 *
-	 * @param $in Mixed: 
-	 * @param $fname String: 
+	 * @param $in Mixed:
+	 * @param $fname String:
 	 * @param $action Mixed: , default NULL.
 	 */
 	function debug( $in, $fname, $action = NULL ) {
@@ -1130,5 +1130,3 @@ define( 'MW_EXIF_RATIONAL', Exif::RATIONAL );
 define( 'MW_EXIF_UNDEFINED', Exif::UNDEFINED );
 define( 'MW_EXIF_SLONG', Exif::SLONG );
 define( 'MW_EXIF_SRATIONAL', Exif::SRATIONAL );
-
-

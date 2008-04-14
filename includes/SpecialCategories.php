@@ -8,7 +8,7 @@ function wfSpecialCategories() {
 	global $wgOut;
 
 	$cap = new CategoryPager();
-	$wgOut->addHTML( 
+	$wgOut->addHTML(
 		wfMsgExt( 'categoriespagetext', array( 'parse' ) ) .
 		$cap->getNavigationBar()
 		. '<ul>' . $cap->getBody() . '</ul>' .
@@ -32,7 +32,7 @@ class CategoryPager extends AlphabeticPager {
 			'conds' => array( 'cat_pages > 0' )
 		);
 	}
-	
+
 	function getIndexField() {
 #		return array( 'abc' => 'cat_title', 'count' => 'cat_pages' );
 		return 'cat_title';
@@ -47,16 +47,16 @@ class CategoryPager extends AlphabeticPager {
 #		return array( 'abc' => false, 'count' => true );
 		return false;
 	}
-	
+
 	/* Override getBody to apply LinksBatch on resultset before actually outputting anything. */
 	public function getBody() {
 		if (!$this->mQueryDone) {
 			$this->doQuery();
 		}
 		$batch = new LinkBatch;
-	
+
 		$this->mResult->rewind();
-		
+
 		while ( $row = $this->mResult->fetchObject() ) {
 			$batch->addObj( Title::makeTitleSafe( NS_CATEGORY, $row->cat_title ) );
 		}
@@ -64,7 +64,7 @@ class CategoryPager extends AlphabeticPager {
 		$this->mResult->rewind();
 		return parent::getBody();
 	}
-	
+
 	function formatRow($result) {
 		global $wgLang;
 		$title = Title::makeTitle( NS_CATEGORY, $result->cat_title );
@@ -74,5 +74,3 @@ class CategoryPager extends AlphabeticPager {
 		return Xml::tags('li', null, "$titleText ($count)" ) . "\n";
 	}
 }
-
-

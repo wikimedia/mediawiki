@@ -21,7 +21,7 @@
  */
 
 /**
- * TODO: Perhaps make this file into a Metadata class, with static methods (declared 
+ * TODO: Perhaps make this file into a Metadata class, with static methods (declared
  * as private where indicated), to move these functions out of the global namespace?
  */
 define('RDF_TYPE_PREFS', "application/rdf+xml,text/xml;q=0.7,application/xml;q=0.5,text/rdf;q=0.1");
@@ -364,5 +364,3 @@ function getKnownLicenses() {
 
 	return $knownLicenses;
 }
-
-

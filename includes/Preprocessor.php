@@ -29,7 +29,7 @@ interface PPFrame {
 	 * Expand a document tree node
 	 */
 	function expand( $root, $flags = 0 );
-	
+
 	/**
 	 * Implode with flags for expand()
 	 */
@@ -41,9 +41,9 @@ interface PPFrame {
 	function implode( $sep /*, ... */ );
 
 	/**
-	 * Makes an object that, when expand()ed, will be the same as one obtained 
+	 * Makes an object that, when expand()ed, will be the same as one obtained
 	 * with implode()
-	 */	
+	 */
 	function virtualImplode( $sep /*, ... */ );
 
 	/**
@@ -57,7 +57,7 @@ interface PPFrame {
 	function isEmpty();
 
 	/**
-	 * Get an argument to this frame by name 
+	 * Get an argument to this frame by name
 	 */
 	function getArgument( $name );
 
@@ -79,13 +79,13 @@ interface PPFrame {
  *     * Leaf nodes, which contain the actual data
  *
  * This interface provides access to the tree structure and to the contents of array nodes,
- * but it does not provide access to the internal structure of leaf nodes. Access to leaf 
+ * but it does not provide access to the internal structure of leaf nodes. Access to leaf
  * data is provided via two means:
  *     * PPFrame::expand(), which provides expanded text
  *     * The PPNode::split*() functions, which provide metadata about certain types of tree node
  */
 interface PPNode {
-	/** 
+	/**
 	 * Get an array-type node containing the children of this node.
 	 * Returns false if this is not a tree node.
 	 */
@@ -118,7 +118,7 @@ interface PPNode {
 	 */
 	function item( $i );
 
-	/**	
+	/**
 	 * Get the name of this node. The following names are defined here:
 	 *
 	 *    h             A heading node.
@@ -136,7 +136,7 @@ interface PPNode {
 	 * Split a <part> node into an associative array containing:
 	 *    name          PPNode name
 	 *    index         String index
-	 *    value         PPNode value 
+	 *    value         PPNode value
 	 */
 	function splitArg();
 
@@ -151,4 +151,3 @@ interface PPNode {
 	 */
 	function splitHeading();
 }
-

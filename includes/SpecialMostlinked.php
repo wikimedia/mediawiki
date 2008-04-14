@@ -89,5 +89,3 @@ function wfSpecialMostlinked() {
 
 	$wpp->doQuery( $offset, $limit );
 }
-
-

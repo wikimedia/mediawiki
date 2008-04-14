@@ -12,7 +12,7 @@ class DateFormatter
 
 	var $regexes, $pDays, $pMonths, $pYears;
 	var $rules, $xMonths, $preferences;
-	
+
 	const ALL = -1;
 	const NONE = 0;
 	const MDY = 1;
@@ -281,5 +281,3 @@ class DateFormatter
 		return $text;
 	}
 }
-
-

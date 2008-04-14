@@ -33,11 +33,11 @@ if (!defined('MEDIAWIKI')) {
  * Initially, when the client passes in titles=, pageids=, or revisions= parameter,
  * an instance of the ApiPageSet class will normalize titles,
  * determine if the pages/revisions exist, and prefetch any additional data page data requested.
- * 
+ *
  * When generator is used, the result of the generator will become the input for the
  * second instance of this class, and all subsequent actions will go use the second instance
- * for all their work. 
- * 
+ * for all their work.
+ *
  * @addtogroup API
  */
 class ApiPageSet extends ApiQueryBase {
@@ -71,7 +71,7 @@ class ApiPageSet extends ApiQueryBase {
 		$this->mResolveRedirects = $resolveRedirects;
 		if($resolveRedirects)
 			$this->mPendingRedirectIDs = array();
-			
+
 		$this->mFakePageId = -1;
 	}
 
@@ -155,7 +155,7 @@ class ApiPageSet extends ApiQueryBase {
 	public function getMissingTitles() {
 		return $this->mMissingTitles;
 	}
-	
+
 	/**
 	 * Titles that were deemed invalid by Title::newFromText()
 	 * The array's index will be unique and negative for each item
@@ -182,18 +182,18 @@ class ApiPageSet extends ApiQueryBase {
 	}
 
 	/**
-	 * Get a list of title normalizations - maps the title given 
+	 * Get a list of title normalizations - maps the title given
 	 * with its normalized version.
-	 * @return array raw_prefixed_title (string) => prefixed_title (string) 
+	 * @return array raw_prefixed_title (string) => prefixed_title (string)
 	 */
 	public function getNormalizedTitles() {
 		return $this->mNormalizedTitles;
 	}
 
 	/**
-	 * Get a list of interwiki titles - maps the title given 
+	 * Get a list of interwiki titles - maps the title given
 	 * with to the interwiki prefix.
-	 * @return array raw_prefixed_title (string) => interwiki_prefix (string) 
+	 * @return array raw_prefixed_title (string) => interwiki_prefix (string)
 	 */
 	public function getInterwikiTitles() {
 		return $this->mInterwikiTitles;
@@ -305,11 +305,11 @@ class ApiPageSet extends ApiQueryBase {
 	 * Extract all requested fields from the row received from the database
 	 */
 	public function processDbRow($row) {
-	
+
 		// Store Title object in various data structures
 		$title = Title :: makeTitle($row->page_namespace, $row->page_title);
-	
-		$pageId = intval($row->page_id);	
+
+		$pageId = intval($row->page_id);
 		$this->mAllPages[$row->page_namespace][$row->page_title] = $pageId;
 		$this->mTitles[] = $title;
 
@@ -322,26 +322,26 @@ class ApiPageSet extends ApiQueryBase {
 		foreach ($this->mRequestedPageFields as $fieldName => & $fieldValues)
 			$fieldValues[$pageId] = $row-> $fieldName;
 	}
-	
+
 	public function finishPageSetGeneration() {
 		$this->profileIn();
 		$this->resolvePendingRedirects();
 		$this->profileOut();
 	}
-	
+
 	/**
 	 * This method populates internal variables with page information
 	 * based on the given array of title strings.
-	 * 
+	 *
 	 * Steps:
 	 * #1 For each title, get data from `page` table
 	 * #2 If page was not found in the DB, store it as missing
-	 * 
+	 *
 	 * Additionally, when resolving redirects:
 	 * #3 If no more redirects left, stop.
 	 * #4 For each redirect, get its links from `pagelinks` table.
 	 * #5 Substitute the original LinkBatch object with the new list
-	 * #6 Repeat from step #1     
+	 * #6 Repeat from step #1
 	 */
 	private function initFromTitles($titles) {
 
@@ -349,7 +349,7 @@ class ApiPageSet extends ApiQueryBase {
 		$linkBatch = $this->processTitlesArray($titles);
 		if($linkBatch->isEmpty())
 			return;
-			
+
 		$db = $this->getDB();
 		$set = $linkBatch->constructSet('page', $db);
 
@@ -380,13 +380,13 @@ class ApiPageSet extends ApiQueryBase {
 		$this->profileDBIn();
 		$res = $db->select('page', $this->getPageTableFields(), $set, __METHOD__);
 		$this->profileDBOut();
-		
+
 		$this->initFromQueryResult($db, $res, array_flip($pageids), false);	// process PageIDs
 
 		// Resolve any found redirects
 		$this->resolvePendingRedirects();
 	}
-	
+
 	/**
 	 * Iterate through the result of the query on 'page' table,
 	 * and for each row create and store title object and save any extra fields requested.
@@ -402,7 +402,7 @@ class ApiPageSet extends ApiQueryBase {
 	private function initFromQueryResult($db, $res, &$remaining = null, $processTitles = null) {
 		if (!is_null($remaining) && is_null($processTitles))
 			ApiBase :: dieDebug(__METHOD__, 'Missing $processTitles parameter when $remaining is provided');
-			
+
 		while ($row = $db->fetchObject($res)) {
 
 			$pageId = intval($row->page_id);
@@ -414,12 +414,12 @@ class ApiPageSet extends ApiQueryBase {
 				else
 					unset ($remaining[$pageId]);
 			}
-			
+
 			// Store any extra fields requested by modules
 			$this->processDbRow($row);
 		}
 		$db->freeResult($res);
-		
+
 		if(isset($remaining)) {
 			// Any items left in the $remaining list are added as missing
 			if($processTitles) {
@@ -449,15 +449,15 @@ class ApiPageSet extends ApiQueryBase {
 
 		if(empty($revids))
 			return;
-			
+
 		$db = $this->getDB();
 		$pageids = array();
 		$remaining = array_flip($revids);
-		
+
 		$tables = array('revision');
 		$fields = array('rev_id','rev_page');
 		$where = array('rev_deleted' => 0, 'rev_id' => $revids);
-		
+
 		// Get pageIDs data from the `page` table
 		$this->profileDBIn();
 		$res = $db->select( $tables, $fields, $where,  __METHOD__ );
@@ -484,27 +484,27 @@ class ApiPageSet extends ApiQueryBase {
 		if($this->mResolveRedirects) {
 			$db = $this->getDB();
 			$pageFlds = $this->getPageTableFields();
-	
+
 			// Repeat until all redirects have been resolved
 			// The infinite loop is prevented by keeping all known pages in $this->mAllPages
-			while (!empty ($this->mPendingRedirectIDs)) {			
-	
+			while (!empty ($this->mPendingRedirectIDs)) {
+
 				// Resolve redirects by querying the pagelinks table, and repeat the process
 				// Create a new linkBatch object for the next pass
 				$linkBatch = $this->getRedirectTargets();
-	
+
 				if ($linkBatch->isEmpty())
 					break;
-					
+
 				$set = $linkBatch->constructSet('page', $db);
 				if(false === $set)
 					break;
-		
+
 				// Get pageIDs data from the `page` table
 				$this->profileDBIn();
 				$res = $db->select('page', $pageFlds, $set, __METHOD__);
 				$this->profileDBOut();
-			
+
 				// Hack: get the ns:titles stored in array(ns => array(titles)) format
 				$this->initFromQueryResult($db, $res, $linkBatch->data, true);
 			}
@@ -559,9 +559,9 @@ class ApiPageSet extends ApiQueryBase {
 	/**
 	 * Given an array of title strings, convert them into Title objects.
 	 * Alternativelly, an array of Title objects may be given.
-	 * This method validates access rights for the title, 
+	 * This method validates access rights for the title,
 	 * and appends normalization values to the output.
-	 * 
+	 *
 	 * @return LinkBatch of title objects.
 	 */
 	private function processTitlesArray($titles) {
@@ -569,7 +569,7 @@ class ApiPageSet extends ApiQueryBase {
 		$linkBatch = new LinkBatch();
 
 		foreach ($titles as $title) {
-			
+
 			$titleObj = is_string($title) ? Title :: newFromText($title) : $title;
 			if (!$titleObj)
 			{
@@ -583,7 +583,7 @@ class ApiPageSet extends ApiQueryBase {
 			if (!empty($iw)) {
 				// This title is an interwiki link.
 				$this->mInterwikiTitles[$titleObj->getPrefixedText()] = $iw;
-			} else { 
+			} else {
 
 				// Validation
 				if ($titleObj->getNamespace() < 0)
@@ -591,7 +591,7 @@ class ApiPageSet extends ApiQueryBase {
 
 				$linkBatch->addObj($titleObj);
 			}
-			
+
 			// Make sure we remember the original title that was given to us
 			// This way the caller can correlate new titles with the originally requested,
 			// i.e. namespace is localized or capitalization is different
@@ -602,7 +602,7 @@ class ApiPageSet extends ApiQueryBase {
 
 		return $linkBatch;
 	}
-	
+
 	protected function getAllowedParams() {
 		return array (
 			'titles' => array (
@@ -631,5 +631,3 @@ class ApiPageSet extends ApiQueryBase {
 		return __CLASS__ . ': $Id$';
 	}
 }
-
-

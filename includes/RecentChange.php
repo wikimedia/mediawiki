@@ -67,7 +67,7 @@ class RecentChange
 		$rc->numberofWatchingusers = false;
 		return $rc;
 	}
-	
+
 	/**
 	 * Obtain the recent change with a given rc_id value
 	 *
@@ -85,7 +85,7 @@ class RecentChange
 			return NULL;
 		}
 	}
-	
+
 	/**
 	 * Find the first recent change matching some specific conditions
 	 *
@@ -652,5 +652,3 @@ class RecentChange
 		}
 	}
 }
-
-

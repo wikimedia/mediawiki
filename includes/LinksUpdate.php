@@ -1,7 +1,7 @@
 <?php
 /**
  * See docs/deferred.txt
- * 
+ *
  * @todo document (e.g. one-sentence top-level class description).
  */
 class LinksUpdate {
@@ -55,8 +55,8 @@ class LinksUpdate {
 		$this->mProperties = $parserOutput->getProperties();
 
 		# Convert the format of the interlanguage links
-		# I didn't want to change it in the ParserOutput, because that array is passed all 
-		# the way back to the skin, so either a skin API break would be required, or an 
+		# I didn't want to change it in the ParserOutput, because that array is passed all
+		# the way back to the skin, so either a skin API break would be required, or an
 		# inefficient back-conversion.
 		$ill = $parserOutput->getLanguageLinks();
 		$this->mInterlangs = array();
@@ -66,7 +66,7 @@ class LinksUpdate {
 		}
 
 		$this->mRecursive = $recursive;
-		
+
 		wfRunHooks( 'LinksUpdateConstructed', array( &$this ) );
 	}
 
@@ -75,7 +75,7 @@ class LinksUpdate {
 	 */
 	function doUpdate() {
 		global $wgUseDumbLinkUpdate;
-		
+
 		wfRunHooks( 'LinksUpdate', array( &$this ) );
 		if ( $wgUseDumbLinkUpdate ) {
 			$this->doDumbUpdate();
@@ -88,7 +88,7 @@ class LinksUpdate {
 
 	function doIncrementalUpdate() {
 		wfProfileIn( __METHOD__ );
-		
+
 		# Page links
 		$existing = $this->getExistingLinks();
 		$this->incrTableUpdate( 'pagelinks', 'pl', $this->getLinkDeletions( $existing ),
@@ -144,7 +144,7 @@ class LinksUpdate {
 		if ( $this->mRecursive ) {
 			$this->queueRecursiveJobs();
 		}
-		
+
 		wfProfileOut( __METHOD__ );
 	}
 
@@ -189,13 +189,13 @@ class LinksUpdate {
 
 	function queueRecursiveJobs() {
 		wfProfileIn( __METHOD__ );
-		
+
 		$batchSize = 100;
 		$dbr = wfGetDB( DB_SLAVE );
-		$res = $dbr->select( array( 'templatelinks', 'page' ), 
+		$res = $dbr->select( array( 'templatelinks', 'page' ),
 			array( 'page_namespace', 'page_title' ),
-			array( 
-				'page_id=tl_from', 
+			array(
+				'page_id=tl_from',
 				'tl_namespace' => $this->mTitle->getNamespace(),
 				'tl_title' => $this->mTitle->getDBkey()
 			), __METHOD__
@@ -218,7 +218,7 @@ class LinksUpdate {
 		$dbr->freeResult( $res );
 		wfProfileOut( __METHOD__ );
 	}
-	
+
 	/**
 	 * Invalidate the cache of a list of pages from a single namespace
 	 *
@@ -229,7 +229,7 @@ class LinksUpdate {
 		if ( !count( $dbkeys ) ) {
 			return;
 		}
-		
+
 		/**
 		 * Determine which pages need to be updated
 		 * This is necessary to prevent the job queue from smashing the DB with
@@ -237,8 +237,8 @@ class LinksUpdate {
 		 */
 		$now = $this->mDb->timestamp();
 		$ids = array();
-		$res = $this->mDb->select( 'page', array( 'page_id' ), 
-			array( 
+		$res = $this->mDb->select( 'page', array( 'page_id' ),
+			array(
 				'page_namespace' => $namespace,
 				'page_title IN (' . $this->mDb->makeList( $dbkeys ) . ')',
 				'page_touched < ' . $this->mDb->addQuotes( $now )
@@ -250,14 +250,14 @@ class LinksUpdate {
 		if ( !count( $ids ) ) {
 			return;
 		}
-		
+
 		/**
 		 * Do the update
-		 * We still need the page_touched condition, in case the row has changed since 
+		 * We still need the page_touched condition, in case the row has changed since
 		 * the non-locking select above.
 		 */
-		$this->mDb->update( 'page', array( 'page_touched' => $now ), 
-			array( 
+		$this->mDb->update( 'page', array( 'page_touched' => $now ),
+			array(
 				'page_id IN (' . $this->mDb->makeList( $ids ) . ')',
 				'page_touched < ' . $this->mDb->addQuotes( $now )
 			), __METHOD__
@@ -444,7 +444,7 @@ class LinksUpdate {
 
 	/**
 	 * Get an array of interlanguage link insertions
-	 * @param array $existing Array mapping existing language codes to titles	 
+	 * @param array $existing Array mapping existing language codes to titles
 	 * @private
 	 */
 	function getInterlangInsertions( $existing = array() ) {
@@ -520,7 +520,7 @@ class LinksUpdate {
 		return array_diff_key( $existing, $this->mImages );
 	}
 
-	/** 
+	/**
 	 * Given an array of existing external links, returns those links which are not
 	 * in $this and thus should be deleted.
 	 * @private
@@ -538,7 +538,7 @@ class LinksUpdate {
 		return array_diff_assoc( $existing, $this->mCategories );
 	}
 
-	/** 
+	/**
 	 * Given an array of existing interlanguage links, returns those links which are not
 	 * in $this and thus should be deleted.
 	 * @private
@@ -637,12 +637,12 @@ class LinksUpdate {
 	}
 
 	/**
-	 * Get an array of existing interlanguage links, with the language code in the key and the 
+	 * Get an array of existing interlanguage links, with the language code in the key and the
 	 * title in the value.
 	 * @private
 	 */
 	function getExistingInterlangs() {
-		$res = $this->mDb->select( 'langlinks', array( 'll_lang', 'll_title' ), 
+		$res = $this->mDb->select( 'langlinks', array( 'll_lang', 'll_title' ),
 			array( 'll_from' => $this->mId ), __METHOD__, $this->mOptions );
 		$arr = array();
 		while ( $row = $this->mDb->fetchObject( $res ) ) {
@@ -666,10 +666,10 @@ class LinksUpdate {
 		return $arr;
 	}
 
-	
+
 	/**
 	 * Return the title object of the page being updated
-	 */	
+	 */
 	function getTitle() {
 		return $this->mTitle;
 	}
@@ -694,4 +694,3 @@ class LinksUpdate {
 		}
 	}
 }
-

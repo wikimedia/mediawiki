@@ -35,7 +35,7 @@ class DjVuImage {
 	function __construct( $filename ) {
 		$this->mFilename = $filename;
 	}
-	
+
 	/**
 	 * Check if the given file is indeed a valid DjVu image file
 	 * @return bool
@@ -44,27 +44,27 @@ class DjVuImage {
 		$info = $this->getInfo();
 		return $info !== false;
 	}
-	
-	
+
+
 	/**
 	 * Return data in the style of getimagesize()
 	 * @return array or false on failure
 	 */
 	public function getImageSize() {
 		$data = $this->getInfo();
-		
+
 		if( $data !== false ) {
 			$width  = $data['width'];
 			$height = $data['height'];
-			
+
 			return array( $width, $height, 'DjVu',
 				"width=\"$width\" height=\"$height\"" );
 		}
 		return false;
 	}
-	
+
 	// ---------
-	
+
 	/**
 	 * For debugging; dump the IFF chunk structure
 	 */
@@ -77,7 +77,7 @@ class DjVuImage {
 		$this->dumpForm( $file, $chunkLength, 1 );
 		fclose( $file );
 	}
-	
+
 	private function dumpForm( $file, $length, $indent ) {
 		$start = ftell( $file );
 		$secondary = fread( $file, 4 );
@@ -90,7 +90,7 @@ class DjVuImage {
 			// FIXME: Would be good to replace this extract() call with something that explicitly initializes local variables.
 			extract( unpack( 'a4chunk/NchunkLength', $chunkHeader ) );
 			echo str_repeat( ' ', $indent * 4 ) . "$chunk $chunkLength\n";
-			
+
 			if( $chunk == 'FORM' ) {
 				$this->dumpForm( $file, $chunkLength, $indent + 1 );
 			} else {
@@ -102,7 +102,7 @@ class DjVuImage {
 			}
 		}
 	}
-	
+
 	function getInfo() {
 		wfSuppressWarnings();
 		$file = fopen( $this->mFilename, 'rb' );
@@ -111,16 +111,16 @@ class DjVuImage {
 			wfDebug( __METHOD__ . ": missing or failed file read\n" );
 			return false;
 		}
-		
+
 		$header = fread( $file, 16 );
 		$info = false;
-		
+
 		if( strlen( $header ) < 16 ) {
 			wfDebug( __METHOD__ . ": too short file header\n" );
 		} else {
 			// FIXME: Would be good to replace this extract() call with something that explicitly initializes local variables.
 			extract( unpack( 'a4magic/a4form/NformLength/a4subtype', $header ) );
-			
+
 			if( $magic != 'AT&T' ) {
 				wfDebug( __METHOD__ . ": not a DjVu file\n" );
 			} elseif( $subtype == 'DJVU' ) {
@@ -136,7 +136,7 @@ class DjVuImage {
 		fclose( $file );
 		return $info;
 	}
-	
+
 	private function readChunk( $file ) {
 		$header = fread( $file, 8 );
 		if( strlen( $header ) < 8 ) {
@@ -147,16 +147,16 @@ class DjVuImage {
 			return array( $chunk, $length );
 		}
 	}
-	
+
 	private function skipChunk( $file, $chunkLength ) {
 		fseek( $file, $chunkLength, SEEK_CUR );
-		
+
 		if( $chunkLength & 0x01 == 1 && !feof( $file ) ) {
 			// padding byte
 			fseek( $file, 1, SEEK_CUR );
 		}
 	}
-	
+
 	private function getMultiPageInfo( $file, $formLength ) {
 		// For now, we'll just look for the first page in the file
 		// and report its information, hoping others are the same size.
@@ -166,7 +166,7 @@ class DjVuImage {
 			if( !$chunk ) {
 				break;
 			}
-			
+
 			if( $chunk == 'FORM' ) {
 				$subtype = fread( $file, 4 );
 				if( $subtype == 'DJVU' ) {
@@ -179,18 +179,18 @@ class DjVuImage {
 				$this->skipChunk( $file, $length );
 			}
 		} while( $length != 0 && !feof( $file ) && ftell( $file ) - $start < $formLength );
-		
+
 		wfDebug( __METHOD__ . ": multi-page DJVU file contained no pages\n" );
 		return false;
 	}
-	
+
 	private function getPageInfo( $file, $formLength ) {
 		list( $chunk, $length ) = $this->readChunk( $file );
 		if( $chunk != 'INFO' ) {
 			wfDebug( __METHOD__ . ": expected INFO chunk, got '$chunk'\n" );
 			return false;
 		}
-		
+
 		if( $length < 9 ) {
 			wfDebug( __METHOD__ . ": INFO should be 9 or 10 bytes, found $length\n" );
 			return false;
@@ -200,7 +200,7 @@ class DjVuImage {
 			wfDebug( __METHOD__ . ": INFO chunk cut off\n" );
 			return false;
 		}
-		
+
 		// FIXME: Would be good to replace this extract() call with something that explicitly initializes local variables.
 		extract( unpack(
 			'nwidth/' .
@@ -210,7 +210,7 @@ class DjVuImage {
 			'vresolution/' .
 			'Cgamma', $data ) );
 		# Newer files have rotation info in byte 10, but we don't use it yet.
-		
+
 		return array(
 			'width' => $width,
 			'height' => $height,
@@ -320,14 +320,14 @@ EOT;
 			}
 
 			if ( preg_match( '/^ *INFO *\[\d*\] *DjVu *(\d+)x(\d+), *\w*, *(\d+) *dpi, *gamma=([0-9.-]+)/', $line, $m ) ) {
-				$xml .= Xml::tags( 'OBJECT', 
+				$xml .= Xml::tags( 'OBJECT',
 					array(
 						#'data' => '',
 						#'type' => 'image/x.djvu',
 						'height' => $m[2],
 						'width' => $m[1],
 						#'usemap' => '',
-					), 
+					),
 					"\n" .
 					Xml::element( 'PARAM', array( 'name' => 'DPI', 'value' => $m[3] ) ) . "\n" .
 					Xml::element( 'PARAM', array( 'name' => 'GAMMA', 'value' => $m[4] ) ) . "\n"
@@ -340,6 +340,3 @@ EOT;
 		return false;
 	}
 }
-
-
-?>

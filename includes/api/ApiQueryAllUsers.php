@@ -30,7 +30,7 @@ if (!defined('MEDIAWIKI')) {
 
 /**
  * Query module to enumerate all registered users.
- * 
+ *
  * @addtogroup API
  */
 class ApiQueryAllUsers extends ApiQueryBase {
@@ -55,10 +55,10 @@ class ApiQueryAllUsers extends ApiQueryBase {
 
 		$limit = $params['limit'];
 		$tables = $db->tableName('user');
-		
+
 		if( !is_null( $params['from'] ) )
 			$this->addWhere( 'user_name >= ' . $db->addQuotes( self::keyToTitle( $params['from'] ) ) );
-		
+
 		if( isset( $params['prefix'] ) )
 			$this->addWhere( 'user_name LIKE "' . $db->escapeLike( self::keyToTitle( $params['prefix'] ) ) . '%"' );
 
@@ -81,7 +81,7 @@ class ApiQueryAllUsers extends ApiQueryBase {
 		} else {
 			$sqlLimit = $limit+1;
 		}
-		
+
 		if ($fld_registration)
 			$this->addFields('user_registration');
 
@@ -100,7 +100,7 @@ class ApiQueryAllUsers extends ApiQueryBase {
 		$lastUserData = false;
 		$lastUser = false;
 		$result = $this->getResult();
-				
+
 		//
 		// This loop keeps track of the last entry.
 		// For each new row, if the new row is for different user then the last, the last entry is added to results.
@@ -109,15 +109,15 @@ class ApiQueryAllUsers extends ApiQueryBase {
 		// to make sure all rows that belong to the same user are received.
 		//
 		while (true) {
-			
+
 			$row = $db->fetchObject($res);
 			$count++;
-			
+
 			if (!$row || $lastUser != $row->user_name) {
 				// Save the last pass's user data
 				if (is_array($lastUserData))
 					$data[] = $lastUserData;
-				
+
 				// No more rows left
 				if (!$row)
 					break;
@@ -135,23 +135,23 @@ class ApiQueryAllUsers extends ApiQueryBase {
 					$lastUserData['editcount'] = intval($row->user_editcount);
 				if ($fld_registration)
 					$lastUserData['registration'] = wfTimestamp(TS_ISO_8601, $row->user_registration);
-					
+
 			}
-			
+
 			if ($sqlLimit == $count) {
 				// BUG!  database contains group name that User::getAllGroups() does not return
 				// TODO: should handle this more gracefully
-				ApiBase :: dieDebug(__METHOD__, 
+				ApiBase :: dieDebug(__METHOD__,
 					'MediaWiki configuration error: the database contains more user groups than known to User::getAllGroups() function');
 			}
-								
+
 			// Add user's group info
 			if ($fld_groups && !is_null($row->ug_group2)) {
 				$lastUserData['groups'][] = $row->ug_group2;
 				$result->setIndexedTagName($lastUserData['groups'], 'g');
 			}
 		}
-		
+
 		$db->freeResult($res);
 
 		$result->setIndexedTagName($data, 'u');
@@ -166,7 +166,7 @@ class ApiQueryAllUsers extends ApiQueryBase {
 				ApiBase :: PARAM_TYPE => User::getAllGroups()
 			),
 			'prop' => array (
-				ApiBase :: PARAM_ISMULTI => true, 
+				ApiBase :: PARAM_ISMULTI => true,
 				ApiBase :: PARAM_TYPE => array (
 					'editcount',
 					'groups',

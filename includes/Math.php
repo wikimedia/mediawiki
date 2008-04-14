@@ -257,7 +257,7 @@ class MathRenderer {
 				$this->html );
 		}
 	}
-	
+
 	function _attribs( $tag, $defaults=array(), $overrides=array() ) {
 		$attribs = Sanitizer::validateTagAttributes( $this->params, $tag );
 		$attribs = Sanitizer::mergeAttributes( $defaults, $attribs );
@@ -297,4 +297,3 @@ class MathRenderer {
 		return $math->render();
 	}
 }
-

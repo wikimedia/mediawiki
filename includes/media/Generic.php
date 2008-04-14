@@ -43,7 +43,7 @@ abstract class MediaHandler {
 	abstract function getParamMap();
 
 	/*
-	 * Validate a thumbnail parameter at parse time. 
+	 * Validate a thumbnail parameter at parse time.
 	 * Return true to accept the parameter, and false to reject it.
 	 * If you return false, the parser will do something quiet and forgiving.
 	 */
@@ -60,14 +60,14 @@ abstract class MediaHandler {
 	abstract function parseParamString( $str );
 
 	/**
-	 * Changes the parameter array as necessary, ready for transformation. 
+	 * Changes the parameter array as necessary, ready for transformation.
 	 * Should be idempotent.
 	 * Returns false if the parameters are unacceptable and the transform should fail
 	 */
 	abstract function normaliseParams( $image, &$params );
 
 	/**
-	 * Get an image size array like that returned by getimagesize(), or false if it 
+	 * Get an image size array like that returned by getimagesize(), or false if it
 	 * can't be determined.
 	 *
 	 * @param Image $image The image object, or false if there isn't one
@@ -110,7 +110,7 @@ abstract class MediaHandler {
 	}
 
 	/**
-	 * Get a MediaTransformOutput object representing the transformed output. Does not 
+	 * Get a MediaTransformOutput object representing the transformed output. Does not
 	 * actually do the transform.
 	 *
 	 * @param Image $image The image object
@@ -123,7 +123,7 @@ abstract class MediaHandler {
 	}
 
 	/**
-	 * Get a MediaTransformOutput object representing the transformed output. Does the 
+	 * Get a MediaTransformOutput object representing the transformed output. Does the
 	 * transform unless $flags contains self::TRANSFORM_LATER.
 	 *
 	 * @param Image $image The image object
@@ -140,14 +140,14 @@ abstract class MediaHandler {
 	 */
 	function getThumbType( $ext, $mime ) {
 		return array( $ext, $mime );
-	}	
+	}
 
 	/**
 	 * True if the handled types can be transformed
 	 */
 	function canRender( $file ) { return true; }
 	/**
-	 * True if handled types cannot be displayed directly in a browser 
+	 * True if handled types cannot be displayed directly in a browser
 	 * but can be rendered
 	 */
 	function mustRender( $file ) { return false; }
@@ -166,7 +166,7 @@ abstract class MediaHandler {
 
 	/**
 	 * Get an associative array of page dimensions
-	 * Currently "width" and "height" are understood, but this might be 
+	 * Currently "width" and "height" are understood, but this might be
 	 * expanded in the future.
 	 * Returns false if unknown or if the document is not multi-page.
 	 */
@@ -191,7 +191,7 @@ abstract class MediaHandler {
 	 *       ...
 	 *    )
 	 * )
-	 * The UI will format this into a table where the visible fields are always 
+	 * The UI will format this into a table where the visible fields are always
 	 * visible, and the collapsed fields are optionally visible.
 	 *
 	 * The function should return false if there is no metadata to display.
@@ -199,7 +199,7 @@ abstract class MediaHandler {
 
 	/**
 	 * FIXME: I don't really like this interface, it's not very flexible
-	 * I think the media handler should generate HTML instead. It can do 
+	 * I think the media handler should generate HTML instead. It can do
 	 * all the formatting according to some standard. That makes it possible
 	 * to do things like visual indication of grouped and chained streams
 	 * in ogg container files.
@@ -354,13 +354,13 @@ abstract class ImageHandler extends MediaHandler {
 	function getTransform( $image, $dstPath, $dstUrl, $params ) {
 		return $this->doTransform( $image, $dstPath, $dstUrl, $params, self::TRANSFORM_LATER );
 	}
-	
+
 	/**
 	 * Validate thumbnail parameters and fill in the correct height
 	 *
 	 * @param integer &$width Specified width (input/output)
 	 * @param integer &$height Height (output only)
-	 * @return false to indicate that an error should be returned to the user. 
+	 * @return false to indicate that an error should be returned to the user.
 	 */
 	function validateThumbParams( &$width, &$height, $srcWidth, $srcHeight, $mimeType ) {
 		$width = intval( $width );
@@ -385,7 +385,7 @@ abstract class ImageHandler extends MediaHandler {
 		}
 		$url = $script . '&' . wfArrayToCGI( $this->getScriptParams( $params ) );
 		$page = isset( $params['page'] ) ? $params['page'] : false;
-		
+
 		if( $image->mustRender() || $params['width'] < $image->getWidth() ) {
 			return new ThumbnailImage( $image, $url, $params['width'], $params['height'], $page );
 		}
@@ -409,7 +409,7 @@ abstract class ImageHandler extends MediaHandler {
 
 	function getLongDesc( $file ) {
 		global $wgLang;
-		return wfMsgHtml('file-info-size', $wgLang->formatNum( $file->getWidth() ), $wgLang->formatNum( $file->getHeight() ), 
+		return wfMsgHtml('file-info-size', $wgLang->formatNum( $file->getWidth() ), $wgLang->formatNum( $file->getHeight() ),
 			$wgLang->formatSize( $file->getSize() ), $file->getMimeType() );
 	}
 

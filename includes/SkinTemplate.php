@@ -512,14 +512,14 @@ class SkinTemplate extends Skin {
 				'href' => $href,
 				'active' => ( $href == $pageurl )
 			);
-			
+
 			# We need to do an explicit check for Special:Contributions, as we
 			# have to match both the title, and the target (which could come
 			# from request values or be specified in "sub page" form. The plot
 			# thickens, because $wgTitle is altered for special pages, so doesn't
 			# contain the original alias-with-subpage.
 			$title = Title::newFromText( $wgRequest->getText( 'title' ) );
-			if( $title instanceof Title && $title->getNamespace() == NS_SPECIAL ) {			
+			if( $title instanceof Title && $title->getNamespace() == NS_SPECIAL ) {
 				list( $spName, $spPar ) =
 					SpecialPage::resolveAliasWithSubpage( $title->getText() );
 				$active = $spName == 'Contributions'
@@ -528,7 +528,7 @@ class SkinTemplate extends Skin {
 			} else {
 				$active = false;
 			}
-			
+
 			$href = self::makeSpecialUrlSubpage( 'Contributions', $this->username );
 			$personal_urls['mycontris'] = array(
 				'text' => wfMsg( 'mycontris' ),
@@ -594,7 +594,7 @@ class SkinTemplate extends Skin {
 			global $wgContLang;
 			$text = $wgContLang->getFormattedNsText( MWNamespace::getSubject( $title->getNamespace() ) );
 		}
-		
+
 		$result = array();
 		if( !wfRunHooks('SkinTemplateTabAction', array(&$this,
 				$title, $message, $selected, $checkEdit,
@@ -785,7 +785,7 @@ class SkinTemplate extends Skin {
 					);
 				}
 			}
-			
+
 
 			wfRunHooks( 'SkinTemplateTabs', array( &$this , &$content_actions ) )	;
 		} else {
@@ -876,7 +876,7 @@ class SkinTemplate extends Skin {
 					'href' => $wgTitle->getLocalURL( "oldid=$this->mRevisionId" )
 				);
 			}
-			
+
 			// Copy in case this undocumented, shady hook tries to mess with internals
 			$revid = $this->mRevisionId;
 			wfRunHooks( 'SkinTemplateBuildNavUrlsNav_urlsAfterPermalink', array( &$this, &$nav_urls, &$revid, &$revid ) );
@@ -913,7 +913,7 @@ class SkinTemplate extends Skin {
 			$nav_urls['contributions'] = array(
 				'href' => self::makeSpecialUrlSubpage( 'Contributions', $this->mTitle->getText() )
 			);
-			
+
 			if( $id ) {
 				$logPage = SpecialPage::getTitleFor( 'Log' );
 				$nav_urls['log'] = array( 'href' => $logPage->getLocalUrl( 'user='
@@ -1203,7 +1203,3 @@ class QuickTemplate {
 		return ($msg != '-') && ($msg != ''); # ????
 	}
 }
-
-
-
-

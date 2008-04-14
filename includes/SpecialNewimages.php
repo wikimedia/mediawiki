@@ -204,5 +204,3 @@ function wfSpecialNewimages( $par, $specialPage ) {
 		$wgOut->addWikiMsg( 'noimages' );
 	}
 }
-
-

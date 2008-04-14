@@ -31,8 +31,8 @@ class PrefixSearch {
 
 		return self::searchBackend( 0, $search, $limit );
 	}
-	
-	
+
+
 	/**
 	 * Do a prefix search of titles and return a list of matching page names.
 	 * @param string $search
@@ -45,21 +45,21 @@ class PrefixSearch {
 		} elseif( $ns == NS_SPECIAL ) {
 			return self::specialSearch( $search, $limit );
 		}
-		
+
 		$srchres = array();
 		if( wfRunHooks( 'PrefixSearchBackend', array( $ns, $search, $limit, &$srchres ) ) ) {
 			return self::defaultSearchBackend( $ns, $search, $limit );
 		}
 		return $srchres;
 	}
-	
+
 	/**
 	 * Prefix search special-case for Special: namespace.
 	 */
 	protected static function specialSearch( $search, $limit ) {
 		global $wgContLang;
 		$searchKey = $wgContLang->caseFold( $search );
-		
+
 		// Unlike SpecialPage itself, we want the canonical forms of both
 		// canonical and alias title forms...
 		SpecialPage::initList();
@@ -74,7 +74,7 @@ class PrefixSearch {
 			}
 		}
 		ksort( $keys );
-		
+
 		$srchres = array();
 		foreach( $keys as $pageKey => $page ) {
 			if( $searchKey === '' || strpos( $pageKey, $searchKey ) === 0 ) {
@@ -86,7 +86,7 @@ class PrefixSearch {
 		}
 		return $srchres;
 	}
-	
+
 	/**
 	 * Unless overridden by PrefixSearchBackend hook...
 	 * This is case-sensitive except the first letter (per $wgCapitalLinks)
@@ -98,11 +98,11 @@ class PrefixSearch {
 	 */
 	protected static function defaultSearchBackend( $ns, $search, $limit ) {
 		global $wgCapitalLinks, $wgContLang;
-		
+
 		if( $wgCapitalLinks ) {
 			$search = $wgContLang->ucfirst( $search );
 		}
-		
+
 		// Prepare nested request
 		$req = new FauxRequest(array (
 			'action' => 'query',
@@ -126,10 +126,8 @@ class PrefixSearch {
 			// because it does not support lists of unnamed items
 			$srchres[] = $pageinfo['title'];
 		}
-		
+
 		return $srchres;
 	}
 
 }
-
-?>

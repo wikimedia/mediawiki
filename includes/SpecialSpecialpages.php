@@ -54,7 +54,7 @@ function wfSpecialSpecialpages_gen($pages,$heading,$sk) {
 			ksort( $groups[$group] );
 		}
 	}
-	
+
 	/** Always move "other" to end */
 	if( array_key_exists('other',$groups) ) {
 		$other = $groups['other'];
@@ -68,14 +68,14 @@ function wfSpecialSpecialpages_gen($pages,$heading,$sk) {
 		$middle = ceil( count($sortedPages)/2 );
 		$total = count($sortedPages);
 		$count = 0;
-		
+
 		$wgOut->addHTML( "<h4 class='mw-specialpagesgroup'>".wfMsgHtml("specialpages-group-$group")."</h4>\n" );
 		$wgOut->addHTML( "<table style='width: 100%;' class='mw-specialpages-table'><tr>" );
 		$wgOut->addHTML( "<td width='30%' valign='top'><ul>\n" );
 		foreach ( $sortedPages as $desc => $title ) {
 			$link = $sk->makeKnownLinkObj( $title , htmlspecialchars( $desc ) );
 			$wgOut->addHTML( "<li>{$link}</li>\n" );
-			
+
 			# Slit up the larger groups
 			$count++;
 			if( $total > 3 && $count == $middle ) {
@@ -85,5 +85,3 @@ function wfSpecialSpecialpages_gen($pages,$heading,$sk) {
 		$wgOut->addHTML( "</ul></td><td width='30%' valign='top'></td></tr></table>\n" );
 	}
 }
-
-

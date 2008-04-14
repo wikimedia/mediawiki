@@ -14,7 +14,7 @@ abstract class FileRepo {
 	var $descBaseUrl, $scriptDirUrl, $articleUrl, $fetchDescription, $initialCapital;
 	var $pathDisclosureProtection = 'paranoid';
 
-	/** 
+	/**
 	 * Factory functions for creating new files
 	 * Override these in the base class
 	 */
@@ -23,11 +23,11 @@ abstract class FileRepo {
 	function __construct( $info ) {
 		// Required settings
 		$this->name = $info['name'];
-		
+
 		// Optional settings
 		$this->initialCapital = true; // by default
-		foreach ( array( 'descBaseUrl', 'scriptDirUrl', 'articleUrl', 'fetchDescription', 
-			'thumbScriptUrl', 'initialCapital', 'pathDisclosureProtection' ) as $var ) 
+		foreach ( array( 'descBaseUrl', 'scriptDirUrl', 'articleUrl', 'fetchDescription',
+			'thumbScriptUrl', 'initialCapital', 'pathDisclosureProtection' ) as $var )
 		{
 			if ( isset( $info[$var] ) ) {
 				$this->$var = $info[$var];
@@ -46,10 +46,10 @@ abstract class FileRepo {
 	/**
 	 * Create a new File object from the local repository
 	 * @param mixed $title Title object or string
-	 * @param mixed $time Time at which the image was uploaded. 
-	 *                    If this is specified, the returned object will be an 
+	 * @param mixed $time Time at which the image was uploaded.
+	 *                    If this is specified, the returned object will be an
 	 *                    instance of the repository's old file class instead of
-	 *                    a current file. Repositories not supporting version 
+	 *                    a current file. Repositories not supporting version
 	 *                    control should return false if this parameter is set.
 	 */
 	function newFile( $title, $time = false ) {
@@ -72,7 +72,7 @@ abstract class FileRepo {
 
 	/**
 	 * Find an instance of the named file created at the specified time
-	 * Returns false if the file does not exist. Repositories not supporting 
+	 * Returns false if the file does not exist. Repositories not supporting
 	 * version control should return false if the time is specified.
 	 *
 	 * @param mixed $title Title object or string
@@ -175,10 +175,10 @@ abstract class FileRepo {
 	function getDescBaseUrl() {
 		if ( is_null( $this->descBaseUrl ) ) {
 			if ( !is_null( $this->articleUrl ) ) {
-				$this->descBaseUrl = str_replace( '$1', 
+				$this->descBaseUrl = str_replace( '$1',
 					wfUrlencode( MWNamespace::getCanonicalName( NS_IMAGE ) ) . ':', $this->articleUrl );
 			} elseif ( !is_null( $this->scriptDirUrl ) ) {
-				$this->descBaseUrl = $this->scriptDirUrl . '/index.php?title=' . 
+				$this->descBaseUrl = $this->scriptDirUrl . '/index.php?title=' .
 					wfUrlencode( MWNamespace::getCanonicalName( NS_IMAGE ) ) . ':';
 			} else {
 				$this->descBaseUrl = false;
@@ -189,8 +189,8 @@ abstract class FileRepo {
 
 	/**
 	 * Get the URL of an image description page. May return false if it is
-	 * unknown or not applicable. In general this should only be called by the 
-	 * File class, since it may return invalid results for certain kinds of 
+	 * unknown or not applicable. In general this should only be called by the
+	 * File class, since it may return invalid results for certain kinds of
 	 * repositories. Use File::getDescriptionUrl() in user code.
 	 *
 	 * In particular, it uses the article paths as specified to the repository
@@ -206,14 +206,14 @@ abstract class FileRepo {
 	}
 
 	/**
-	 * Get the URL of the content-only fragment of the description page. For 
-	 * MediaWiki this means action=render. This should only be called by the 
-	 * repository's file class, since it may return invalid results. User code 
+	 * Get the URL of the content-only fragment of the description page. For
+	 * MediaWiki this means action=render. This should only be called by the
+	 * repository's file class, since it may return invalid results. User code
 	 * should use File::getDescriptionText().
 	 */
 	function getDescriptionRenderUrl( $name ) {
 		if ( isset( $this->scriptDirUrl ) ) {
-			return $this->scriptDirUrl . '/index.php?title=' . 
+			return $this->scriptDirUrl . '/index.php?title=' .
 				wfUrlencode( MWNamespace::getCanonicalName( NS_IMAGE ) . ':' . $name ) .
 				'&action=render';
 		} else {
@@ -235,7 +235,7 @@ abstract class FileRepo {
 	 * @param integer $flags Bitwise combination of the following flags:
 	 *     self::DELETE_SOURCE     Delete the source file after upload
 	 *     self::OVERWRITE         Overwrite an existing destination file instead of failing
-	 *     self::OVERWRITE_SAME    Overwrite the file if the destination exists and has the 
+	 *     self::OVERWRITE_SAME    Overwrite the file if the destination exists and has the
 	 *                             same contents as the source
 	 * @return FileRepoStatus
 	 */
@@ -259,7 +259,7 @@ abstract class FileRepo {
 	 * Pick a random name in the temp zone and store a file to it.
 	 * Returns a FileRepoStatus object with the URL in the value.
 	 *
-	 * @param string $originalName The base name of the file as specified 
+	 * @param string $originalName The base name of the file as specified
 	 *     by the user. The file extension will be maintained.
 	 * @param string $srcPath The current location of the file.
 	 */
@@ -280,7 +280,7 @@ abstract class FileRepo {
 	 * virtual URL, into this repository at the specified destination location.
 	 *
 	 * Returns a FileRepoStatus object. On success, the value contains "new" or
-	 * "archived", to indicate whether the file was new with that name. 
+	 * "archived", to indicate whether the file was new with that name.
 	 *
 	 * @param string $srcPath The source path or URL
 	 * @param string $dstRel The destination relative path
@@ -313,16 +313,16 @@ abstract class FileRepo {
 	/**
 	 * Move a group of files to the deletion archive.
 	 *
-	 * If no valid deletion archive is configured, this may either delete the 
+	 * If no valid deletion archive is configured, this may either delete the
 	 * file or throw an exception, depending on the preference of the repository.
 	 *
 	 * The overwrite policy is determined by the repository -- currently FSRepo
-	 * assumes a naming scheme in the deleted zone based on content hash, as 
+	 * assumes a naming scheme in the deleted zone based on content hash, as
 	 * opposed to the public zone which is assumed to be unique.
 	 *
-	 * @param array $sourceDestPairs Array of source/destination pairs. Each element 
+	 * @param array $sourceDestPairs Array of source/destination pairs. Each element
 	 *        is a two-element array containing the source file path relative to the
-	 *        public root in the first element, and the archive file path relative 
+	 *        public root in the first element, and the archive file path relative
 	 *        to the deleted zone root in the second element.
 	 * @return FileRepoStatus
 	 */
@@ -330,10 +330,10 @@ abstract class FileRepo {
 
 	/**
 	 * Move a file to the deletion archive.
-	 * If no valid deletion archive exists, this may either delete the file 
+	 * If no valid deletion archive exists, this may either delete the file
 	 * or throw an exception, depending on the preference of the repository
 	 * @param mixed $srcRel Relative path for the file to be deleted
-	 * @param mixed $archiveRel Relative path for the archive location. 
+	 * @param mixed $archiveRel Relative path for the archive location.
 	 *        Relative to a private archive directory.
 	 * @return WikiError object (wikitext-formatted), or true for success
 	 */
@@ -445,4 +445,3 @@ abstract class FileRepo {
 	function invalidateImageRedirect( $title ) {
 	}
 }
-

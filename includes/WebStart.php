@@ -1,7 +1,7 @@
 <?php
 
-# This does the initial setup for a web request. It does some security checks, 
-# starts the profiler and loads the configuration, and optionally loads 
+# This does the initial setup for a web request. It does some security checks,
+# starts the profiler and loads the configuration, and optionally loads
 # Setup.php depending on whether MW_NO_SETUP is defined.
 
 # Test for PHP bug which breaks PHP 5.0.x on 64-bit...
@@ -101,4 +101,3 @@ wfProfileOut( 'WebStart.php-ob_start' );
 if ( !defined( 'MW_NO_SETUP' ) ) {
 	require_once( './includes/Setup.php' );
 }
-

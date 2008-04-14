@@ -320,9 +320,9 @@ function wfReadOnlyReason() {
  *
  * @param $key String: lookup key for the message, usually
  *    defined in languages/Language.php
- * 
- * This function also takes extra optional parameters (not 
- * shown in the function definition), which can by used to 
+ *
+ * This function also takes extra optional parameters (not
+ * shown in the function definition), which can by used to
  * insert variable text into the predefined message.
  */
 function wfMsg( $key ) {
@@ -657,7 +657,7 @@ function wfDie( $msg='' ) {
 }
 
 /**
- * Throw a debugging exception. This function previously once exited the process, 
+ * Throw a debugging exception. This function previously once exited the process,
  * but now throws an exception instead, with similar results.
  *
  * @param string $msg Message shown when dieing.
@@ -876,7 +876,7 @@ function wfClientAcceptsGzip() {
  * @param $deflimit Default limit if none supplied
  * @param $optionname Name of a user preference to check against
  * @return array
- * 
+ *
  */
 function wfCheckLimits( $deflimit = 50, $optionname = 'rclimit' ) {
 	global $wgRequest;
@@ -1543,9 +1543,9 @@ function wfGetCachedNotice( $name ) {
 	global $wgOut, $parserMemc;
 	$fname = 'wfGetCachedNotice';
 	wfProfileIn( $fname );
-	
+
 	$needParse = false;
-	
+
 	if( $name === 'default' ) {
 		// special case
 		global $wgSiteNotice;
@@ -1561,7 +1561,7 @@ function wfGetCachedNotice( $name ) {
 			return( false );
 		}
 	}
-	
+
 	$cachedNotice = $parserMemc->get( wfMemcKey( $name ) );
 	if( is_array( $cachedNotice ) ) {
 		if( md5( $notice ) == $cachedNotice['hash'] ) {
@@ -1572,7 +1572,7 @@ function wfGetCachedNotice( $name ) {
 	} else {
 		$needParse = true;
 	}
-	
+
 	if( $needParse ) {
 		if( is_object( $wgOut ) ) {
 			$parsed = $wgOut->parse( $notice );
@@ -1583,21 +1583,21 @@ function wfGetCachedNotice( $name ) {
 			$notice = '';
 		}
 	}
-	
+
 	wfProfileOut( $fname );
 	return $notice;
 }
 
 function wfGetNamespaceNotice() {
 	global $wgTitle;
-	
+
 	# Paranoia
 	if ( !isset( $wgTitle ) || !is_object( $wgTitle ) )
 		return "";
 
 	$fname = 'wfGetNamespaceNotice';
 	wfProfileIn( $fname );
-	
+
 	$key = "namespacenotice-" . $wgTitle->getNsText();
 	$namespaceNotice = wfGetCachedNotice( $key );
 	if ( $namespaceNotice && substr ( $namespaceNotice , 0 ,7 ) != "<p>&lt;" ) {
@@ -1614,8 +1614,8 @@ function wfGetSiteNotice() {
 	global $wgUser, $wgSiteNotice;
 	$fname = 'wfGetSiteNotice';
 	wfProfileIn( $fname );
-	$siteNotice = '';	
-	
+	$siteNotice = '';
+
 	if( wfRunHooks( 'SiteNoticeBefore', array( &$siteNotice ) ) ) {
 		if( is_object( $wgUser ) && $wgUser->isLoggedIn() ) {
 			$siteNotice = wfGetCachedNotice( 'sitenotice' );
@@ -1637,7 +1637,7 @@ function wfGetSiteNotice() {
 	return $siteNotice;
 }
 
-/** 
+/**
  * BC wrapper for MimeMagic::singleton()
  * @deprecated
  */
@@ -1682,7 +1682,7 @@ function wfMkdirParents( $fullDir, $mode = 0777 ) {
  */
 function wfIncrStats( $key ) {
 	global $wgStatsMethod;
-	
+
 	if( $wgStatsMethod == 'udp' ) {
 		global $wgUDPProfilerHost, $wgUDPProfilerPort, $wgDBname;
 		static $socket;
@@ -1837,7 +1837,7 @@ function wfIniGetBool( $setting ) {
  */
 function wfShellExec( $cmd, &$retval=null ) {
 	global $IP, $wgMaxShellMemory, $wgMaxShellFileSize;
-	
+
 	if( wfIniGetBool( 'safe_mode' ) ) {
 		wfDebug( "wfShellExec can't run in safe_mode, PHP's exec functions are too broken.\n" );
 		$retval = 1;
@@ -1861,14 +1861,14 @@ function wfShellExec( $cmd, &$retval=null ) {
 		$cmd = '"' . $cmd . '"';
 	}
 	wfDebug( "wfShellExec: $cmd\n" );
-	
+
 	$retval = 1; // error by default?
 	ob_start();
 	passthru( $cmd, $retval );
 	$output = ob_get_contents();
 	ob_end_clean();
 	return $output;
-	
+
 }
 
 /**
@@ -1927,7 +1927,7 @@ function wfRegexReplacement( $string ) {
  *
  * PHP's basename() only considers '\' a pathchar on Windows and Netware.
  * We'll consider it so always, as we don't want \s in our Unix paths either.
- * 
+ *
  * @param string $path
  * @param string $suffix to remove if present
  * @return string
@@ -1957,14 +1957,14 @@ function wfRelativePath( $path, $from ) {
 	// Normalize mixed input on Windows...
 	$path = str_replace( '/', DIRECTORY_SEPARATOR, $path );
 	$from = str_replace( '/', DIRECTORY_SEPARATOR, $from );
-	
+
 	// Trim trailing slashes -- fix for drive root
 	$path = rtrim( $path, DIRECTORY_SEPARATOR );
 	$from = rtrim( $from, DIRECTORY_SEPARATOR );
-	
+
 	$pieces  = explode( DIRECTORY_SEPARATOR, dirname( $path ) );
 	$against = explode( DIRECTORY_SEPARATOR, $from );
-	
+
 	if( $pieces[0] !== $against[0] ) {
 		// Non-matching Windows drive letters?
 		// Return a full path.
@@ -2030,7 +2030,7 @@ function wfMakeUrlIndex( $url ) {
 		$delimiter = ':';
 		// parse_url detects for news: and mailto: the host part of an url as path
 		// We have to correct this wrong detection
-		if ( isset ( $bits['path'] ) ) { 
+		if ( isset ( $bits['path'] ) ) {
 			$bits['host'] = $bits['path'];
 			$bits['path'] = '';
 		}
@@ -2127,7 +2127,7 @@ function wfBaseConvert( $input, $sourceBase, $destBase, $pad=1, $lowercase=true 
 	$digitChars = ( $lowercase ) ?  '0123456789abcdefghijklmnopqrstuvwxyz' : '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 	$inDigits = array();
 	$outChars = '';
-	
+
 	// Decode and validate input string
 	$input = strtolower( $input );
 	for( $i = 0; $i < strlen( $input ); $i++ ) {
@@ -2137,18 +2137,18 @@ function wfBaseConvert( $input, $sourceBase, $destBase, $pad=1, $lowercase=true 
 		}
 		$inDigits[] = $n;
 	}
-	
+
 	// Iterate over the input, modulo-ing out an output digit
 	// at a time until input is gone.
 	while( count( $inDigits ) ) {
 		$work = 0;
 		$workDigits = array();
-		
+
 		// Long division...
 		foreach( $inDigits as $digit ) {
 			$work *= $sourceBase;
 			$work += $digit;
-			
+
 			if( $work < $destBase ) {
 				// Gonna need to pull another digit.
 				if( count( $workDigits ) ) {
@@ -2160,26 +2160,26 @@ function wfBaseConvert( $input, $sourceBase, $destBase, $pad=1, $lowercase=true 
 			} else {
 				// Finally! Actual division!
 				$workDigits[] = intval( $work / $destBase );
-				
+
 				// Isn't it annoying that most programming languages
 				// don't have a single divide-and-remainder operator,
 				// even though the CPU implements it that way?
 				$work = $work % $destBase;
 			}
 		}
-		
+
 		// All that division leaves us with a remainder,
 		// which is conveniently our next output digit.
 		$outChars .= $digitChars[$work];
-		
+
 		// And we continue!
 		$inDigits = $workDigits;
 	}
-	
+
 	while( strlen( $outChars ) < $pad ) {
 		$outChars .= '0';
 	}
-	
+
 	return strrev( $outChars );
 }
 
@@ -2213,11 +2213,11 @@ function wfCreateObject( $name, $p ){
 /**
  * Aliases for modularized functions
  */
-function wfGetHTTP( $url, $timeout = 'default' ) { 
-	return Http::get( $url, $timeout ); 
+function wfGetHTTP( $url, $timeout = 'default' ) {
+	return Http::get( $url, $timeout );
 }
-function wfIsLocalURL( $url ) { 
-	return Http::isLocalURL( $url ); 
+function wfIsLocalURL( $url ) {
+	return Http::isLocalURL( $url );
 }
 
 /**
@@ -2320,7 +2320,7 @@ function wfWikiID() {
 }
 
 /**
- * Split a wiki ID into DB name and table prefix 
+ * Split a wiki ID into DB name and table prefix
  */
 function wfSplitWikiID( $wiki ) {
 	$bits = explode( '-', $wiki, 2 );
@@ -2332,12 +2332,12 @@ function wfSplitWikiID( $wiki ) {
 
 /*
  * Get a Database object
- * @param integer $db Index of the connection to get. May be DB_MASTER for the 
- *                master (for write queries), DB_SLAVE for potentially lagged 
+ * @param integer $db Index of the connection to get. May be DB_MASTER for the
+ *                master (for write queries), DB_SLAVE for potentially lagged
  *                read queries, or an integer >= 0 for a particular server.
  *
- * @param mixed $groups Query groups. An array of group names that this query 
- *              belongs to. May contain a single string if the query is only 
+ * @param mixed $groups Query groups. An array of group names that this query
+ *              belongs to. May contain a single string if the query is only
  *              in one group.
  *
  * @param string $wiki The wiki ID, or false for the current wiki
@@ -2365,11 +2365,11 @@ function &wfGetLBFactory() {
 }
 
 /**
- * Find a file. 
+ * Find a file.
  * Shortcut for RepoGroup::singleton()->findFile()
  * @param mixed $title Title object or string. May be interwiki.
- * @param mixed $time Requested time for an archived image, or false for the 
- *                    current version. An image object will be returned which 
+ * @param mixed $time Requested time for an archived image, or false for the
+ *                    current version. An image object will be returned which
  *                    was created at the specified time.
  * @return File, or false if the file does not exist
  */
@@ -2447,7 +2447,7 @@ function wfGetNull() {
 
 /**
  * Displays a maxlag error
- * 
+ *
  * @param string $host Server that lags the most
  * @param int $lag Maxlag (actual)
  * @param int $maxLag Maxlag (requested)
@@ -2508,6 +2508,6 @@ function wfWaitForSlaves( $maxLag ) {
  */
  function wfGenerateToken( $salt = '' ) {
  	$salt = serialize($salt);
- 	
+
  	return md5( mt_rand( 0, 0x7fffffff ) . $salt );
- }
+}

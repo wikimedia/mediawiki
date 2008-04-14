@@ -77,7 +77,7 @@ class ProtectionForm {
 			}
 		}
 	}
-	
+
 	function execute() {
 		global $wgRequest, $wgOut;
 		if( $wgRequest->wasPosted() ) {
@@ -143,7 +143,7 @@ class ProtectionForm {
 
 	function save() {
 		global $wgRequest, $wgUser, $wgOut;
-		
+
 		if( $this->disabled ) {
 			$this->show();
 			return false;
@@ -185,7 +185,7 @@ class ProtectionForm {
 
 		$edit_restriction = $this->mRestrictions['edit'];
 
-		if ($this->mCascade && ($edit_restriction != 'protect') && 
+		if ($this->mCascade && ($edit_restriction != 'protect') &&
 			!(isset($wgGroupPermissions[$edit_restriction]['protect']) && $wgGroupPermissions[$edit_restriction]['protect'] ) )
 			$this->mCascade = false;
 
@@ -198,13 +198,13 @@ class ProtectionForm {
 		if( !$ok ) {
 			throw new FatalError( "Unknown error at restriction save time." );
 		}
-		
+
 		if( $wgRequest->getCheck( 'mwProtectWatch' ) ) {
 			$this->mArticle->doWatch();
 		} elseif( $this->mTitle->userIsWatching() ) {
 			$this->mArticle->doUnwatch();
 		}
-		
+
 		return $ok;
 	}
 
@@ -379,5 +379,4 @@ class ProtectionForm {
 		$out->addHTML( Xml::element( 'h2', null, LogPage::logName( 'protect' ) ) );
 		LogEventsList::showLogExtract( $out, 'protect', $this->mTitle->getPrefixedText() );
 	}
-
 }

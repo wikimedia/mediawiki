@@ -28,14 +28,14 @@ function wfSpecialRecentchangeslinked( $par = NULL ) {
 	$wgOut->setPagetitle( wfMsg( 'recentchangeslinked' ) );
 	$sk = $wgUser->getSkin();
 
-	$wgOut->addHTML( 
+	$wgOut->addHTML(
 		Xml::openElement( 'form', array( 'method' => 'get', 'action' => $wgScript ) ) .
 		Xml::openElement( 'fieldset' ) .
 		Xml::element( 'legend', array(), wfMsg( 'recentchangeslinked' ) ) . "\n" .
 		Xml::inputLabel( wfMsg( 'recentchangeslinked-page' ), 'target', 'recentchangeslinked-target', 40, $target ) .
-		"&nbsp;&nbsp;&nbsp;<span style='white-space: nowrap'>" . 
+		"&nbsp;&nbsp;&nbsp;<span style='white-space: nowrap'>" .
 		Xml::check( 'showlinkedto', $showlinkedto, array('id' => 'showlinkedto') ) . ' ' .
-		Xml::label( wfMsg("recentchangeslinked-to"), 'showlinkedto' ) . 
+		Xml::label( wfMsg("recentchangeslinked-to"), 'showlinkedto' ) .
 		"</span><br/>\n" .
 		Xml::hidden( 'title', $wgTitle->getPrefixedText() ). "\n" .
 		Xml::submitButton( wfMsg( 'allpagessubmit' ) ) . "\n" .
@@ -79,7 +79,7 @@ function wfSpecialRecentchangeslinked( $par = NULL ) {
 		$cmq = 'AND rc_minor=0';
 	} else { $cmq = ''; }
 
-	list($recentchanges, $categorylinks, $pagelinks, $watchlist) = 
+	list($recentchanges, $categorylinks, $pagelinks, $watchlist) =
 	    $dbr->tableNamesN( 'recentchanges', 'categorylinks', 'pagelinks', "watchlist" );
 
 	$uid = $wgUser->getID();
@@ -134,7 +134,7 @@ $GROUPBY
 		} else {
 			$joinConds = "AND pl_namespace=rc_namespace AND pl_title=rc_title AND pl_from=$id";
 		}
-	
+
 		$sql =
 "SELECT /* wfSpecialRecentchangeslinked */
 			rc_id,
@@ -210,11 +210,9 @@ $GROUPBY
 		$feedTitle = $wgSitename . ' - ' . wfMsgForContent( 'recentchangeslinked-title', $nt->getPrefixedText() ) . ' [' . $wgContLanguageCode . ']';
 		$feed = new $wgFeedClasses[$feedFormat]( $feedTitle,
 			htmlspecialchars( wfMsgForContent('recentchangeslinked') ), $wgTitle->getFullUrl() );
-		
+
 		require_once( "SpecialRecentchanges.php" );
 		$wgOut->disable();
 		rcDoOutputFeed( $rchanges, $feed );
 	}
 }
-
-

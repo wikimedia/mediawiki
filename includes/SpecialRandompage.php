@@ -17,24 +17,24 @@ class RandomPage extends SpecialPage {
 	private $namespace = NS_MAIN;  // namespace to select pages from
 
 	function __construct( $name = 'Randompage' ){
-		parent::__construct( $name );	
+		parent::__construct( $name );
 	}
 
 	public function getNamespace() {
 		return $this->namespace;
 	}
-	
+
 	public function setNamespace ( $ns ) {
 		if( $ns < NS_MAIN ) $ns = NS_MAIN;
 		$this->namespace = $ns;
 	}
-	
+
 	// select redirects instead of normal pages?
 	// Overriden by SpecialRandomredirect
 	public function isRedirect(){
 		return false;
 	}
-	
+
 	public function execute( $par ) {
 		global $wgOut, $wgContLang;
 
@@ -104,5 +104,3 @@ class RandomPage extends SpecialPage {
 		return $dbr->fetchObject( $res );
 	}
 }
-
-

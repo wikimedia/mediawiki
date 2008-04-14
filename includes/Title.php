@@ -33,8 +33,8 @@ class Title {
 	 */
 	static private $titleCache=array();
 	static private $interwikiCache=array();
-	
-	
+
+
 	/**
 	 * All member variables should be considered private
 	 * Please use the accessor functions
@@ -208,7 +208,7 @@ class Title {
 	}
 
 	/**
-	 * Make an array of titles from an array of IDs 
+	 * Make an array of titles from an array of IDs
 	 */
 	public static function newFromIDs( $ids ) {
 		if ( !count( $ids ) ) {
@@ -224,7 +224,7 @@ class Title {
 		}
 		return $titles;
 	}
-	
+
 	/**
 	 * Make a Title object from a DB row
 	 * @param Row $row (needs at least page_title,page_namespace)
@@ -450,7 +450,7 @@ class Title {
 
 		return $s->iw_url;
 	}
-	
+
 	/**
 	 * Fetch interwiki prefix data from local cache in constant database
 	 *
@@ -854,7 +854,7 @@ class Title {
 					$url = "{$wgScript}?title={$dbkey}&{$query}";
 				}
 			}
-			
+
 			// FIXME: this causes breakage in various places when we
 			// actually expected a local URL and end up with dupe prefixes.
 			if ($wgRequest->getVal('action') == 'render') {
@@ -968,7 +968,7 @@ class Title {
 			return true;
 
 		# Check regular protection levels
-		foreach( $wgRestrictionTypes as $type ){		
+		foreach( $wgRestrictionTypes as $type ){
 			if( $action == $type || $action == '' ) {
 				$r = $this->getRestrictions( $type );
 				foreach( $wgRestrictionLevels as $level ) {
@@ -1159,13 +1159,13 @@ class Title {
 		if( NS_SPECIAL == $this->mNamespace ) {
 			$errors[] = array('ns-specialprotected');
 		}
-		
+
 		if ( $this->isNamespaceProtected() ) {
 			$ns = $this->getNamespace() == NS_MAIN
 				? wfMsg( 'nstab-main' )
 				: $this->getNsText();
-			$errors[] = (NS_MEDIAWIKI == $this->mNamespace 
-				? array('protectedinterface') 
+			$errors[] = (NS_MEDIAWIKI == $this->mNamespace
+				? array('protectedinterface')
 				: array( 'namespaceprotected',  $ns ) );
 		}
 
@@ -1182,7 +1182,7 @@ class Title {
 			&& !preg_match('/^'.preg_quote($user->getName(), '/').'\//', $this->mTextform) ) {
 			$errors[] = array('customcssjsprotected');
 		}
-		
+
 		if ( $doExpensiveQueries && !$this->isCssJsSubpage() ) {
 			# We /could/ use the protection level on the source page, but it's fairly ugly
 			#  as we have to establish a precedence hierarchy for pages included by multiple
@@ -1205,7 +1205,7 @@ class Title {
 				}
 			}
 		}
-		
+
 		foreach( $this->getRestrictions($action) as $right ) {
 			// Backwards compatibility, rewrite sysop -> protect
 			if ( $right == 'sysop' ) {
@@ -1233,7 +1233,7 @@ class Title {
 			}
 		}
 
-		if ($action == 'create') {			
+		if ($action == 'create') {
 			$title_protection = $this->getTitleProtection();
 
 			if (is_array($title_protection)) {
@@ -1298,7 +1298,7 @@ class Title {
 		}
 
 		$dbr = wfGetDB( DB_SLAVE );
-		$res = $dbr->select( 'protected_titles', '*', 
+		$res = $dbr->select( 'protected_titles', '*',
 			array ('pt_namespace' => $this->getNamespace(), 'pt_title' => $this->getDBkey()) );
 
 		if ($row = $dbr->fetchRow( $res )) {
@@ -1358,7 +1358,7 @@ class Title {
 	public function deleteTitleProtection() {
 		$dbw = wfGetDB( DB_MASTER );
 
-		$dbw->delete( 'protected_titles', 
+		$dbw->delete( 'protected_titles',
 			array ('pt_namespace' => $this->getNamespace(), 'pt_title' => $this->getDBkey()), __METHOD__ );
 	}
 
@@ -1423,7 +1423,7 @@ class Title {
 		} else {
 			global $wgWhitelistRead;
 
-			/** 
+			/**
 			 * Always grant access to the login page.
 			 * Even anons need to be able to log in.
 			*/
@@ -1489,14 +1489,14 @@ class Title {
 	 */
 	public function isSubpage() {
 		global $wgNamespacesWithSubpages;
-		
+
 		if( isset( $wgNamespacesWithSubpages[ $this->mNamespace ] ) ) {
 			return ( strpos( $this->getText(), '/' ) !== false && $wgNamespacesWithSubpages[ $this->mNamespace ] == true );
 		} else {
 			return false;
 		}
 	}
-	
+
 	/**
 	 * Could this page contain custom CSS or JavaScript, based
 	 * on the title?
@@ -1628,7 +1628,7 @@ class Title {
 		$sources = $get_pages ? array() : false;
 		$now = wfTimestampNow();
 		$purgeExpired = false;
-		
+
 		while( $row = $dbr->fetchObject( $res ) ) {
 			$expiry = Block::decodeExpiry( $row->pr_expiry );
 			if( $expiry > $now ) {
@@ -1719,7 +1719,7 @@ class Title {
 
 			while ($row = $dbr->fetchObject( $res ) ) {
 				# Cycle through all the restrictions.
-				
+
 				// Don't take care of restrictions types that aren't in $wgRestrictionTypes
 				if( !in_array( $row->pr_type, $wgRestrictionTypes ) )
 					continue;
@@ -1848,7 +1848,7 @@ class Title {
 		}
 		return $this->mArticleID;
 	}
-	
+
 	/**
 	 * Is this an article that is a redirect page?
 	 * Uses link cache, adding it if necessary
@@ -1858,7 +1858,7 @@ class Title {
 	public function isRedirect( $flags = 0 ) {
 		if( !is_null($this->mRedirect) )
 			return $this->mRedirect;
-		# Zero for special pages. 
+		# Zero for special pages.
 		# Also, calling getArticleID() loads the field from cache!
 		if( !$this->getArticleID($flags) || $this->getNamespace() == NS_SPECIAL ) {
 			return false;
@@ -1868,7 +1868,7 @@ class Title {
 
 		return $this->mRedirect;
 	}
-	
+
 	/**
 	 * What is the length of this page?
 	 * Uses link cache, adding it if necessary
@@ -1878,7 +1878,7 @@ class Title {
 	public function getLength( $flags = 0 ) {
 		if( $this->mLength != -1 )
 			return $this->mLength;
-		# Zero for special pages. 
+		# Zero for special pages.
 		# Also, calling getArticleID() loads the field from cache!
 		if( !$this->getArticleID($flags) || $this->getNamespace() == NS_SPECIAL ) {
 			return 0;
@@ -2000,7 +2000,7 @@ class Title {
 
 		$this->mInterwiki = $this->mFragment = '';
 		$this->mNamespace = $this->mDefaultNamespace; # Usually NS_MAIN
-		
+
 		$dbkey = $this->mDbkeyform;
 
 		# Strip Unicode bidi override characters.
@@ -2008,7 +2008,7 @@ class Title {
 		# override chars get included in list displays.
 		$dbkey = str_replace( "\xE2\x80\x8E", '', $dbkey ); // 200E LEFT-TO-RIGHT MARK
 		$dbkey = str_replace( "\xE2\x80\x8F", '', $dbkey ); // 200F RIGHT-TO-LEFT MARK
-		
+
 		# Clean up whitespace
 		#
 		$dbkey = preg_replace( '/[ _]+/', '_', $dbkey );
@@ -2115,7 +2115,7 @@ class Title {
 		{
 			return false;
 		}
-		
+
 		/**
 		 * Magic tilde sequences? Nu-uh!
 		 */
@@ -2127,11 +2127,11 @@ class Title {
 		 * Limit the size of titles to 255 bytes.
 		 * This is typically the size of the underlying database field.
 		 * We make an exception for special pages, which don't need to be stored
-		 * in the database, and may edge over 255 bytes due to subpage syntax 
+		 * in the database, and may edge over 255 bytes due to subpage syntax
 		 * for long titles, e.g. [[Special:Block/Long name]]
 		 */
 		if ( ( $this->mNamespace != NS_SPECIAL && strlen( $dbkey ) > 255 ) ||
-		  strlen( $dbkey ) > 512 ) 
+		  strlen( $dbkey ) > 512 )
 		{
 			return false;
 		}
@@ -2160,18 +2160,18 @@ class Title {
 			return false;
 		}
 		// Allow IPv6 usernames to start with '::' by canonicalizing IPv6 titles.
-		// IP names are not allowed for accounts, and can only be referring to 
-		// edits from the IP. Given '::' abbreviations and caps/lowercaps, 
-		// there are numerous ways to present the same IP. Having sp:contribs scan 
-		// them all is silly and having some show the edits and others not is 
+		// IP names are not allowed for accounts, and can only be referring to
+		// edits from the IP. Given '::' abbreviations and caps/lowercaps,
+		// there are numerous ways to present the same IP. Having sp:contribs scan
+		// them all is silly and having some show the edits and others not is
 		// inconsistent. Same for talk/userpages. Keep them normalized instead.
-		$dbkey = ($this->mNamespace == NS_USER || $this->mNamespace == NS_USER_TALK) ? 
+		$dbkey = ($this->mNamespace == NS_USER || $this->mNamespace == NS_USER_TALK) ?
 			IP::sanitizeIP( $dbkey ) : $dbkey;
 		// Any remaining initial :s are illegal.
 		if ( $dbkey !== '' && ':' == $dbkey{0} ) {
 			return false;
 		}
-		
+
 		# Fill fields
 		$this->mDbkeyform = $dbkey;
 		$this->mUrlform = wfUrlencode( $dbkey );
@@ -2184,7 +2184,7 @@ class Title {
 	/**
 	 * Set the fragment for this title
 	 * This is kind of bad, since except for this rarely-used function, Title objects
-	 * are immutable. The reason this is here is because it's better than setting the 
+	 * are immutable. The reason this is here is because it's better than setting the
 	 * members directly, which is what Linker::formatComment was doing previously.
 	 *
 	 * @param string $fragment text
@@ -2509,7 +2509,7 @@ class Title {
 			$newarticle = new Article( $nt );
 			$wgMessageCache->replace( $nt->getDBkey(), $newarticle->getContent() );
 		}
-		
+
 		global $wgUser;
 		wfRunHooks( 'TitleMoveComplete', array( &$this, &$nt, &$wgUser, $pageid, $redirid ) );
 		return true;
@@ -2601,7 +2601,7 @@ class Title {
 		} else {
 			$this->resetArticleID( 0 );
 		}
-		
+
 		# Log the move
 		$log = new LogPage( 'move' );
 		$log->addEntry( 'move_redir', $this, $reason, array( 1 => $nt->getPrefixedText() ) );
@@ -2742,7 +2742,7 @@ class Title {
 		# Return true if there was no history
 		return $row === false;
 	}
-	
+
 	/**
 	 * Can this title be added to a user's watchlist?
 	 *
@@ -2880,7 +2880,7 @@ class Title {
 			&& $this->getNamespace() == $title->getNamespace()
 			&& $this->getDBkey() === $title->getDBkey();
 	}
-	
+
 	/**
 	 * Return a string representation of this title
 	 *
@@ -2918,7 +2918,7 @@ class Title {
 
 	/**
 	 * Update page_touched timestamps and send squid purge messages for
-	 * pages linking to this title.	May be sent to the job queue depending 
+	 * pages linking to this title.	May be sent to the job queue depending
 	 * on the number of links. Typically called on create and delete.
 	 */
 	public function touchLinks() {
@@ -2937,7 +2937,7 @@ class Title {
 	public function getTouched() {
 		$dbr = wfGetDB( DB_SLAVE );
 		$touched = $dbr->selectField( 'page', 'page_touched',
-			array( 
+			array(
 				'page_namespace' => $this->getNamespace(),
 				'page_title' => $this->getDBkey()
 			), __METHOD__
@@ -3030,7 +3030,7 @@ class Title {
 	}
 
 	/**
-	 * If the Title refers to a special page alias which is not the local default, 
+	 * If the Title refers to a special page alias which is not the local default,
 	 * returns a new Title which points to the local default. Otherwise, returns $this.
 	 */
 	public function fixSpecialName() {

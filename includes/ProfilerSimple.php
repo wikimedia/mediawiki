@@ -105,7 +105,7 @@ class ProfilerSimple extends Profiler {
 		if ( function_exists( 'getrusage' ) ) {
 			if ( $ru == null )
 				$ru = getrusage();
-			return ($ru['ru_utime.tv_sec'] + $ru['ru_stime.tv_sec'] + ($ru['ru_utime.tv_usec'] + 
+			return ($ru['ru_utime.tv_sec'] + $ru['ru_stime.tv_sec'] + ($ru['ru_utime.tv_usec'] +
 				$ru['ru_stime.tv_usec']) * 1e-6);
 		} else {
 			return 0;
@@ -126,4 +126,3 @@ class ProfilerSimple extends Profiler {
 		}
 	}
 }
-

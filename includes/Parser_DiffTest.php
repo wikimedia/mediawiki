@@ -63,7 +63,7 @@ class Parser_DiffTest
 		}
 		if ( $mismatch ) {
 			throw new MWException( "Parser_DiffTest: results mismatch on call to $name\n" .
-				'Arguments: ' . var_export( $args, true ) . "\n" . 
+				'Arguments: ' . var_export( $args, true ) . "\n" .
 				'Results: ' . var_export( $results, true ) . "\n" );
 		}
 		return $lastResult;
@@ -82,4 +82,3 @@ class Parser_DiffTest
 		return true;
 	}
 }
-

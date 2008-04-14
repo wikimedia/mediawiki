@@ -1,6 +1,6 @@
 <?php
 
-/** 
+/**
  * @package MediaWiki
  * @addtogroup Ajax
  */
@@ -84,7 +84,7 @@ function wfSajaxSearch( $term ) {
 	$term = trim( $term );
 	$term = $wgContLang->checkTitleEncoding( $wgContLang->recodeInput( js_unescape( $term ) ) );
 	if ( $wgCapitalLinks )
-		$term = $wgContLang->ucfirst( $term ); 
+		$term = $wgContLang->ucfirst( $term );
 	$term_title = Title::newFromText( $term );
 
 	$memckey = $term_title ? wfMemcKey( 'ajaxsearch', md5( $term_title->getFullText() ) ) : wfMemcKey( 'ajaxsearch', md5( $term ) );
@@ -97,12 +97,12 @@ function wfSajaxSearch( $term ) {
 
 	$r = $more = '';
 	$canSearch = true;
-	
+
 	$results = PrefixSearch::titleSearch( $term, $limit + 1 );
 	foreach( array_slice( $results, 0, $limit ) as $titleText ) {
 		$r .= '<li>' . $sk->makeKnownLink( $titleText ) . "</li>\n";
 	}
-	
+
 	// Hack to check for specials
 	if( $results ) {
 		$t = Title::newFromText( $results[0] );
@@ -162,7 +162,7 @@ function wfSajaxSearch( $term ) {
  * Called for AJAX watch/unwatch requests.
  * @param $pagename Prefixed title string for page to watch/unwatch
  * @param $watch String 'w' to watch, 'u' to unwatch
- * @return String '<w#>' or '<u#>' on successful watch or unwatch, 
+ * @return String '<w#>' or '<u#>' on successful watch or unwatch,
  *   respectively, followed by an HTML message to display in the alert box; or
  *   '<err#>' on error
  */
@@ -170,7 +170,7 @@ function wfAjaxWatch($pagename = "", $watch = "") {
 	if(wfReadOnly()) {
 		// redirect to action=(un)watch, which will display the database lock
 		// message
-		return '<err#>'; 
+		return '<err#>';
 	}
 
 	if('w' !== $watch && 'u' !== $watch) {
@@ -207,4 +207,3 @@ function wfAjaxWatch($pagename = "", $watch = "") {
 		return '<u#>'.wfMsgExt( 'removedwatchtext', array( 'parse' ), $title->getPrefixedText() );
 	}
 }
-

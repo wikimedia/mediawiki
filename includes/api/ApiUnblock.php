@@ -41,7 +41,7 @@ class ApiUnblock extends ApiBase {
 
 	/**
 	 * Unblocks the specified user or provides the reason the unblock failed.
-	 */	
+	 */
 	public function execute() {
 		global $wgUser;
 		$this->getMain()->requestWriteMode();
@@ -80,7 +80,7 @@ class ApiUnblock extends ApiBase {
 		$res['reason'] = $reason;
 		$this->getResult()->addValue(null, $this->getModuleName(), $res);
 	}
-	
+
 	public function mustBePosted() { return true; }
 
 	public function getAllowedParams() {

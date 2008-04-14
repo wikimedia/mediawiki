@@ -2,18 +2,18 @@
 /**
  * SpecialPage: handling special pages and lists thereof.
  *
- * To add a special page in an extension, add to $wgSpecialPages either 
- * an object instance or an array containing the name and constructor 
- * parameters. The latter is preferred for performance reasons. 
+ * To add a special page in an extension, add to $wgSpecialPages either
+ * an object instance or an array containing the name and constructor
+ * parameters. The latter is preferred for performance reasons.
  *
- * The object instantiated must be either an instance of SpecialPage or a 
- * sub-class thereof. It must have an execute() method, which sends the HTML 
- * for the special page to $wgOut. The parent class has an execute() method 
- * which distributes the call to the historical global functions. Additionally, 
- * execute() also checks if the user has the necessary access privileges 
+ * The object instantiated must be either an instance of SpecialPage or a
+ * sub-class thereof. It must have an execute() method, which sends the HTML
+ * for the special page to $wgOut. The parent class has an execute() method
+ * which distributes the call to the historical global functions. Additionally,
+ * execute() also checks if the user has the necessary access privileges
  * and bails out if not.
  *
- * To add a core special page, use the similar static list in 
+ * To add a core special page, use the similar static list in
  * SpecialPage::$mList. To remove a core static special page at runtime, use
  * a SpecialPage_initList hook.
  *
@@ -158,7 +158,7 @@ class SpecialPage
 		'Listadmins'                => array( 'SpecialRedirectToSpecial', 'Listadmins', 'Listusers', 'sysop' ),
 		'MergeHistory'              => array( 'SpecialPage', 'MergeHistory', 'mergehistory' ),
 		'Listbots'                  => array( 'SpecialRedirectToSpecial', 'Listbots', 'Listusers', 'bot' ),
-		);
+	);
 
 	static public $mAliases;
 	static public $mListInitialised = false;
@@ -192,13 +192,13 @@ class SpecialPage
 		'Newimages'                 => 'changes',
 		'Newpages'                  => 'changes',
 		'Log'                       => 'changes',
-		
+
 		'Upload'                    => 'media',
 		'Imagelist'                 => 'media',
 		'MIMEsearch'                => 'media',
 		'FileDuplicateSearch'       => 'media',
 		'Filepath'                  => 'media',
-		
+
 		'Listusers'                 => 'users',
 		'Listgrouprights'           => 'users',
 		'Ipblocklist'               => 'users',
@@ -206,23 +206,23 @@ class SpecialPage
 		'Emailuser'                 => 'users',
 		'Listadmins'                => 'users',
 		'Listbots'                  => 'users',
-		
+
 		'Wantedpages'               => 'needy',
 		'Wantedcategories'          => 'needy',
 		'Shortpages'                => 'needy',
 		'Ancientpages'              => 'needy',
 		'Deadendpages'              => 'needy',
-		
+
 		'Mostlinked'                => 'highuse',
 		'Mostlinkedcategories'      => 'highuse',
 		'Mostlinkedtemplates'       => 'highuse',
 		'Mostcategories'            => 'highuse',
 		'Mostimages'                => 'highuse',
 		'Mostrevisions'             => 'highuse',
-		
+
 		'Userrights'                => 'permissions',
 		'Blockip'                   => 'permissions',
-		
+
 		'Statistics'                => 'other',
 		'Fewestrevisions'           => 'other',
 		'Randompage'                => 'other',
@@ -252,7 +252,7 @@ class SpecialPage
 		'Mypage'                    => 'other',
 		'Mytalk'                    => 'other',
 		'Mycontributions'           => 'other',
-		);
+	);
 
 	/**#@-*/
 
@@ -268,7 +268,7 @@ class SpecialPage
 			return;
 		}
 		wfProfileIn( __METHOD__ );
-		
+
 		# Better to set this now, to avoid infinite recursion in carelessly written hooks
 		self::$mListInitialised = true;
 
@@ -332,7 +332,7 @@ class SpecialPage
 	}
 
 	/**
-	 * Given a special page name with a possible subpage, return an array 
+	 * Given a special page name with a possible subpage, return an array
 	 * where the first element is the special page name and the second is the
 	 * subpage.
 	 */
@@ -348,11 +348,11 @@ class SpecialPage
 	}
 
 	/**
-	 * Add a page to the list of valid special pages. This used to be the preferred 
-	 * method for adding special pages in extensions. It's now suggested that you add 
+	 * Add a page to the list of valid special pages. This used to be the preferred
+	 * method for adding special pages in extensions. It's now suggested that you add
 	 * an associative record to $wgSpecialPages. This avoids autoloading SpecialPage.
 	 *
-	 * @param mixed $page Must either be an array specifying a class name and 
+	 * @param mixed $page Must either be an array specifying a class name and
 	 *                    constructor parameters, or an object. The object,
 	 *                    when constructed, must have an execute() method which
 	 *                    sends HTML to $wgOut.
@@ -364,11 +364,11 @@ class SpecialPage
 		}
 		self::$mList[$page->mName] = $page;
 	}
-	
+
 	/**
 	 * Add a page to a certain display group for Special:SpecialPages
 	 *
-	 * @param mixed $page Must either be an array specifying a class name and 
+	 * @param mixed $page Must either be an array specifying a class name and
 	 *                    constructor parameters, or an object.
 	 * @param string $group
 	 * @static
@@ -379,11 +379,11 @@ class SpecialPage
 		}
 		self::$mGroupsList[$page->mName] = $group;
 	}
-	
+
 	/**
 	 * Add a page to a certain display group for Special:SpecialPages
 	 *
-	 * @param mixed $page Must either be an array specifying a class name and 
+	 * @param mixed $page Must either be an array specifying a class name and
 	 *                    constructor parameters, or an object.
 	 * @static
 	 */
@@ -391,16 +391,16 @@ class SpecialPage
 		if ( !self::$mListInitialised ) {
 			self::initList();
 		}
-		$group = isset(self::$mGroupsList[$page->mName]) ? 
+		$group = isset(self::$mGroupsList[$page->mName]) ?
 			self::$mGroupsList[$page->mName] : 'other';
 		return $group;
 	}
 
 	/**
 	 * Remove a special page from the list
-	 * Formerly used to disable expensive or dangerous special pages. The 
+	 * Formerly used to disable expensive or dangerous special pages. The
 	 * preferred method is now to add a SpecialPage_initList hook.
-	 * 
+	 *
 	 * @static
 	 */
 	static function removePage( $name ) {
@@ -564,9 +564,9 @@ class SpecialPage
 		}
 
 		# Redirect to canonical alias for GET commands
-		# Not for POST, we'd lose the post data, so it's best to just distribute 
-		# the request. Such POST requests are possible for old extensions that 
-		# generate self-links without being aware that their default name has 
+		# Not for POST, we'd lose the post data, so it's best to just distribute
+		# the request. Such POST requests are possible for old extensions that
+		# generate self-links without being aware that their default name has
 		# changed.
 		if ( !$including && $name != $page->getLocalName() && !$wgRequest->wasPosted() ) {
 			$query = $_GET;
@@ -786,7 +786,7 @@ class SpecialPage
 	 * Default execute method
 	 * Checks user permissions, calls the function given in mFunction
 	 *
-	 * This may be overridden by subclasses. 
+	 * This may be overridden by subclasses.
 	 */
 	function execute( $par ) {
 		global $wgUser;
@@ -799,7 +799,7 @@ class SpecialPage
 			if(!is_callable($func) and $this->mFile) {
 				require_once( $this->mFile );
 			}
-			# FIXME: these hooks are broken for extensions and anything else that subclasses SpecialPage. 
+			# FIXME: these hooks are broken for extensions and anything else that subclasses SpecialPage.
 			if ( wfRunHooks( 'SpecialPageExecuteBeforeHeader', array( &$this, &$par, &$func ) ) )
 				$this->outputHeader();
 			if ( ! wfRunHooks( 'SpecialPageExecuteBeforePage', array( &$this, &$par, &$func ) ) )
@@ -847,7 +847,7 @@ class SpecialPage
 	}
 
 	/**
-	 * If the special page is a redirect, then get the Title object it redirects to. 
+	 * If the special page is a redirect, then get the Title object it redirects to.
 	 * False otherwise.
 	 */
 	function getRedirect( $subpage ) {
@@ -867,7 +867,7 @@ class SpecialPage
 			if( $val = $wgRequest->getVal( $arg, false ) )
 				$params[] = $arg . '=' . $val;
 		}
-		
+
 		return count( $params ) ? implode( '&', $params ) : false;
 	}
 }

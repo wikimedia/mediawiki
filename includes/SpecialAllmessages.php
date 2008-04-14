@@ -25,7 +25,7 @@ function wfSpecialAllmessages() {
 	$navText = wfMsg( 'allmessagestext' );
 
 	# Make sure all extension messages are available
-	
+
 	$wgMessageCache->loadAllMessages();
 
 	$sortedArray = array_merge( Language::getMessagesFor( 'en' ), $wgMessageCache->getExtensionMessagesFor( 'en' ) );
@@ -43,15 +43,15 @@ function wfSpecialAllmessages() {
 	wfProfileIn( __METHOD__ . '-output' );
 	if ( $ot == 'php' ) {
 		$navText .= wfAllMessagesMakePhp( $messages );
-		$wgOut->addHTML( 'PHP | <a href="' . $wgTitle->escapeLocalUrl( 'ot=html' ) . '">HTML</a> | ' . 
-			'<a href="' . $wgTitle->escapeLocalUrl( 'ot=xml' ) . '">XML</a>' . 
+		$wgOut->addHTML( 'PHP | <a href="' . $wgTitle->escapeLocalUrl( 'ot=html' ) . '">HTML</a> | ' .
+			'<a href="' . $wgTitle->escapeLocalUrl( 'ot=xml' ) . '">XML</a>' .
 			'<pre>' . htmlspecialchars( $navText ) . '</pre>' );
 	} else if ( $ot == 'xml' ) {
 		$wgOut->disable();
 		header( 'Content-type: text/xml' );
 		echo wfAllMessagesMakeXml( $messages );
 	} else {
-		$wgOut->addHTML( '<a href="' . $wgTitle->escapeLocalUrl( 'ot=php' ) . '">PHP</a> | ' . 
+		$wgOut->addHTML( '<a href="' . $wgTitle->escapeLocalUrl( 'ot=php' ) . '">PHP</a> | ' .
 			'HTML |  <a href="' . $wgTitle->escapeLocalUrl( 'ot=xml' ) . '">XML</a>' );
 		$wgOut->addWikiText( $navText );
 		$wgOut->addHTML( wfAllMessagesMakeHTMLText( $messages ) );
@@ -178,7 +178,7 @@ function wfAllMessagesMakeHTMLText( $messages ) {
 		} else {
 			$talkLink = $sk->makeBrokenLinkObj( $talkPage, htmlspecialchars( $talk ) );
 		}
-		
+
 		$anchor = 'msg_' . htmlspecialchars( strtolower( $title ) );
 		$anchor = "<a id=\"$anchor\" name=\"$anchor\"></a>";
 
@@ -213,5 +213,3 @@ $mw
 	wfProfileOut( __METHOD__ );
 	return $txt;
 }
-
-

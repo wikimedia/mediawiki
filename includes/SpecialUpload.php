@@ -87,7 +87,7 @@ class UploadForm {
 
 		$this->mSessionKey        = $request->getInt( 'wpSessionKey' );
 		if( !empty( $this->mSessionKey ) &&
-			isset( $_SESSION['wsUploadData'][$this->mSessionKey]['version'] ) && 
+			isset( $_SESSION['wsUploadData'][$this->mSessionKey]['version'] ) &&
 			$_SESSION['wsUploadData'][$this->mSessionKey]['version'] == self::SESSION_VERSION ) {
 			/**
 			 * Confirming a temporarily stashed upload.
@@ -322,7 +322,7 @@ class UploadForm {
 
 			case self::FILETYPE_BADTYPE:
 				$finalExt = $details['finalExt'];
-				$this->uploadError( 
+				$this->uploadError(
 					wfMsgExt( 'filetype-banned-type',
 						array( 'parseinline' ),
 						htmlspecialchars( $finalExt ),
@@ -607,7 +607,7 @@ class UploadForm {
 					$file->getName(), $align, array(), false, true );
 			} elseif ( !$file->allowInlineDisplay() && $file->isSafeFile() ) {
 				$icon = $file->iconThumb();
-				$dlink2 = '<div style="float:' . $align . '" id="mw-media-icon">' . 
+				$dlink2 = '<div style="float:' . $align . '" id="mw-media-icon">' .
 					$icon->toHtml( array( 'desc-link' => true ) ) . '<br />' . $dlink . '</div>';
 			} else {
 				$dlink2 = '';
@@ -627,15 +627,15 @@ class UploadForm {
 					$nt_lc->getText(), $align, array(), false, true );
 			} elseif ( !$file_lc->allowInlineDisplay() && $file_lc->isSafeFile() ) {
 				$icon = $file_lc->iconThumb();
-				$dlink2 = '<div style="float:' . $align . '" id="mw-media-icon">' . 
+				$dlink2 = '<div style="float:' . $align . '" id="mw-media-icon">' .
 					$icon->toHtml( array( 'desc-link' => true ) ) . '<br />' . $dlink . '</div>';
 			} else {
 				$dlink2 = '';
 			}
 
-			$warning .= '<li>' . wfMsgExt( 'fileexists-extension', 'parsemag', $file->getName(), $dlink ) . '</li>' . $dlink2;				
+			$warning .= '<li>' . wfMsgExt( 'fileexists-extension', 'parsemag', $file->getName(), $dlink ) . '</li>' . $dlink2;
 
-		} elseif ( ( substr( $partname , 3, 3 ) == 'px-' || substr( $partname , 2, 3 ) == 'px-' ) 
+		} elseif ( ( substr( $partname , 3, 3 ) == 'px-' || substr( $partname , 2, 3 ) == 'px-' )
 			&& ereg( "[0-9]{2}" , substr( $partname , 0, 2) ) )
 		{
 			# Check for filenames like 50px- or 180px-, these are mostly thumbnails
@@ -645,23 +645,23 @@ class UploadForm {
 				# Check if an image without leading '180px-' (or similiar) exists
 				$dlink = $sk->makeKnownLinkObj( $nt_thb);
 				if ( $file_thb->allowInlineDisplay() ) {
-					$dlink2 = $sk->makeImageLinkObj( $nt_thb, 
+					$dlink2 = $sk->makeImageLinkObj( $nt_thb,
 						wfMsgExt( 'fileexists-thumb', 'parseinline' ),
 						$nt_thb->getText(), $align, array(), false, true );
 				} elseif ( !$file_thb->allowInlineDisplay() && $file_thb->isSafeFile() ) {
 					$icon = $file_thb->iconThumb();
-					$dlink2 = '<div style="float:' . $align . '" id="mw-media-icon">' . 
-						$icon->toHtml( array( 'desc-link' => true ) ) . '<br />' . 
+					$dlink2 = '<div style="float:' . $align . '" id="mw-media-icon">' .
+						$icon->toHtml( array( 'desc-link' => true ) ) . '<br />' .
 						$dlink . '</div>';
 				} else {
 					$dlink2 = '';
 				}
 
-				$warning .= '<li>' . wfMsgExt( 'fileexists-thumbnail-yes', 'parsemag', $dlink ) . 
-					'</li>' . $dlink2;	
+				$warning .= '<li>' . wfMsgExt( 'fileexists-thumbnail-yes', 'parsemag', $dlink ) .
+					'</li>' . $dlink2;
 			} else {
 				# Image w/o '180px-' does not exists, but we do not like these filenames
-				$warning .= '<li>' . wfMsgExt( 'file-thumbnail-no', 'parseinline' , 
+				$warning .= '<li>' . wfMsgExt( 'file-thumbnail-no', 'parseinline' ,
 					substr( $partname , 0, strpos( $partname , '-' ) +1 ) ) . '</li>';
 			}
 		}
@@ -679,7 +679,7 @@ class UploadForm {
 			# If the file existed before and was deleted, warn the user of this
 			# Don't bother doing so if the file exists now, however
 			$ltitle = SpecialPage::getTitleFor( 'Log' );
-			$llink = $sk->makeKnownLinkObj( $ltitle, wfMsgHtml( 'deletionlog' ), 
+			$llink = $sk->makeKnownLinkObj( $ltitle, wfMsgHtml( 'deletionlog' ),
 				'type=delete&page=' . $file->getTitle()->getPrefixedUrl() );
 			$warning .= '<li>' . wfMsgWikiHtml( 'filewasdeleted', $llink ) . '</li>';
 		}
@@ -708,7 +708,7 @@ class UploadForm {
 		}
 		return $s;
 	}
-	
+
 	/**
 	 * Render a preview of a given license for the AJAX preview on upload
 	 *
@@ -720,11 +720,11 @@ class UploadForm {
 		$text = '{{' . $license . '}}';
 		$title = Title::makeTitle( NS_IMAGE, 'Sample.jpg' );
 		$options = ParserOptions::newFromUser( $wgUser );
-		
+
 		// Expand subst: first, then live templates...
 		$text = $wgParser->preSaveTransform( $text, $title, $wgUser, $options );
 		$output = $wgParser->parse( $text, $title, $options );
-		
+
 		return $output->getText();
 	}
 
@@ -867,7 +867,7 @@ class UploadForm {
 		}
 
 		$wgOut->addHTML(
-			Xml::openElement( 'form', array( 'method' => 'post', 'action' => $titleObj->getLocalURL( 'action=submit' ), 
+			Xml::openElement( 'form', array( 'method' => 'post', 'action' => $titleObj->getLocalURL( 'action=submit' ),
 				 'enctype' => 'multipart/form-data', 'id' => 'uploadwarning' ) ) . "\n" .
 			Xml::hidden( 'wpIgnoreWarning', '1' ) . "\n" .
 			Xml::hidden( 'wpSessionKey', $this->mSessionKey ) . "\n" .
@@ -1029,7 +1029,7 @@ wgUploadAutoFill = {$autofill};
 				"<input type='radio' id='wpSourceTypeFile' name='wpSourceType' value='file' " .
 				   "onchange='toggle_element_activation(\"wpUploadFileURL\",\"wpUploadFile\")' checked='checked' />" .
 				 "<input tabindex='1' type='file' name='wpUploadFile' id='wpUploadFile' " .
-				   "onfocus='" . 
+				   "onfocus='" .
 				     "toggle_element_activation(\"wpUploadFileURL\",\"wpUploadFile\");" .
 				     "toggle_element_check(\"wpSourceTypeFile\",\"wpSourceTypeURL\")' " .
 				     "onchange='fillDestFilename(\"wpUploadFile\")' size='60' />" .
@@ -1060,7 +1060,7 @@ wgUploadAutoFill = {$autofill};
 		$encComment = htmlspecialchars( $this->mComment );
 
 		$wgOut->addHTML(
-			 Xml::openElement( 'form', array( 'method' => 'post', 'action' => $titleObj->getLocalURL(), 
+			 Xml::openElement( 'form', array( 'method' => 'post', 'action' => $titleObj->getLocalURL(),
 				 'enctype' => 'multipart/form-data', 'id' => 'mw-upload-form' ) ) .
 			 Xml::openElement( 'fieldset' ) .
 			 Xml::element( 'legend', null, wfMsg( 'upload' ) ) .
@@ -1086,7 +1086,7 @@ wgUploadAutoFill = {$autofill};
 					<label for='wpDestFile'>{$destfilename}</label>
 				</td>
 				<td class='mw-input'>
-					<input tabindex='2' type='text' name='wpDestFile' id='wpDestFile' size='60' 
+					<input tabindex='2' type='text' name='wpDestFile' id='wpDestFile' size='60'
 						value=\"{$encDestName}\" onchange='toggleFilenameFiller()' $destOnkeyup />
 				</td>
 			</tr>
@@ -1095,7 +1095,7 @@ wgUploadAutoFill = {$autofill};
 					<label for='wpUploadDescription'>{$summary}</label>
 				</td>
 				<td class='mw-input'>
-					<textarea tabindex='3' name='wpUploadDescription' id='wpUploadDescription' rows='6' 
+					<textarea tabindex='3' name='wpUploadDescription' id='wpUploadDescription' rows='6'
 						cols='{$cols}'{$width}>$encComment</textarea>
 					{$this->uploadFormTextAfterSummary}
 				</td>
@@ -1139,7 +1139,7 @@ wgUploadAutoFill = {$autofill};
 					<td class='mw-label' style='white-space: nowrap;'>
 						<label for='wpUploadCopyStatus'>$filestatus</label></td>
 					<td class='mw-input'>
-						<input tabindex='5' type='text' name='wpUploadCopyStatus' id='wpUploadCopyStatus' 
+						<input tabindex='5' type='text' name='wpUploadCopyStatus' id='wpUploadCopyStatus'
 							value=\"$copystatus\" size='60' />
 					</td>
 				</tr>
@@ -1148,7 +1148,7 @@ wgUploadAutoFill = {$autofill};
 						<label for='wpUploadCopyStatus'>$filesource</label>
 					</td>
 					<td class='mw-input'>
-						<input tabindex='6' type='text' name='wpUploadSource' id='wpUploadCopyStatus' 
+						<input tabindex='6' type='text' name='wpUploadSource' id='wpUploadCopyStatus'
 							value=\"$uploadsource\" size='60' />
 					</td>
 				</tr>
@@ -1322,7 +1322,7 @@ wgUploadAutoFill = {$autofill};
 		}
 	}
 
-	/** 
+	/**
 	 * Heuristic for detecting files that *could* contain JavaScript instructions or
 	 * things that may look like HTML to a browser and are thus
 	 * potentially harmful. The present implementation will produce false positives in some situations.
@@ -1420,7 +1420,7 @@ wgUploadAutoFill = {$autofill};
 		return false;
 	}
 
-	/** 
+	/**
 	 * Generic wrapper function for a virus scanner program.
 	 * This relies on the $wgAntivirus and $wgAntivirusSetup variables.
 	 * $wgAntivirusRequired may be used to deny upload if the scan fails.
@@ -1441,7 +1441,7 @@ wgUploadAutoFill = {$autofill};
 		if ( !$wgAntivirusSetup[$wgAntivirus] ) {
 			wfDebug( __METHOD__.": unknown virus scanner: $wgAntivirus\n" );
 			# @TODO: localise
-			$wgOut->addHTML( "<div class='error'>Bad configuration: unknown virus scanner: <i>$wgAntivirus</i></div>\n" ); 
+			$wgOut->addHTML( "<div class='error'>Bad configuration: unknown virus scanner: <i>$wgAntivirus</i></div>\n" );
 			return "unknown antivirus: $wgAntivirus";
 		}
 
@@ -1453,10 +1453,10 @@ wgUploadAutoFill = {$autofill};
 
 		if ( strpos( $command,"%f" ) === false ) {
 			# simple pattern: append file to scan
-			$command .= " " . wfEscapeShellArg( $file ); 
+			$command .= " " . wfEscapeShellArg( $file );
 		} else {
 			# complex pattern: replace "%f" with file to scan
-			$command = str_replace( "%f", wfEscapeShellArg( $file ), $command ); 
+			$command = str_replace( "%f", wfEscapeShellArg( $file ), $command );
 		}
 
 		wfDebug( __METHOD__.": running virus scan: $command \n" );
@@ -1476,7 +1476,7 @@ wgUploadAutoFill = {$autofill};
 
 		# map exit code to AV_xxx constants.
 		$mappedCode = $exitCode;
-		if ( $exitCodeMap ) { 
+		if ( $exitCodeMap ) {
 			if ( isset( $exitCodeMap[$exitCode] ) ) {
 				$mappedCode = $exitCodeMap[$exitCode];
 			} elseif ( isset( $exitCodeMap["*"] ) ) {
@@ -1484,16 +1484,16 @@ wgUploadAutoFill = {$autofill};
 			}
 		}
 
-		if ( $mappedCode === AV_SCAN_FAILED ) { 
+		if ( $mappedCode === AV_SCAN_FAILED ) {
 			# scan failed (code was mapped to false by $exitCodeMap)
 			wfDebug( __METHOD__.": failed to scan $file (code $exitCode).\n" );
 
-			if ( $wgAntivirusRequired ) { 
-				return "scan failed (code $exitCode)"; 
-			} else { 
-				return NULL; 
+			if ( $wgAntivirusRequired ) {
+				return "scan failed (code $exitCode)";
+			} else {
+				return NULL;
 			}
-		} else if ( $mappedCode === AV_SCAN_ABORTED ) { 
+		} else if ( $mappedCode === AV_SCAN_ABORTED ) {
 			# scan failed because filetype is unknown (probably imune)
 			wfDebug( __METHOD__.": unsupported file type $file (code $exitCode).\n" );
 			return NULL;
@@ -1605,7 +1605,7 @@ wgUploadAutoFill = {$autofill};
 			return true; // non-conditional
 		if( !$user->isAllowed( 'reupload-own' ) )
 			return false;
-		
+
 		$dbr = wfGetDB( DB_SLAVE );
 		$row = $dbr->selectRow('image',
 		/* SELECT */ 'img_user',

@@ -30,7 +30,7 @@ if (!defined('MEDIAWIKI')) {
 
 /**
  * Query action to List the log events, with optional filtering by various parameters.
- *  
+ *
  * @addtogroup API
  */
 class ApiQueryLogEvents extends ApiQueryBase {
@@ -40,7 +40,7 @@ class ApiQueryLogEvents extends ApiQueryBase {
 	}
 
 	public function execute() {
-		$params = $this->extractRequestParams();		
+		$params = $this->extractRequestParams();
 		$db = $this->getDB();
 
 		$prop = $params['prop'];
@@ -68,7 +68,7 @@ class ApiQueryLogEvents extends ApiQueryBase {
 			'log_action',
 			'log_timestamp',
 		));
-		
+
 		// FIXME: Fake out log_id for now until the column is live on Wikimedia
 		// $this->addFieldsIf('log_id', $this->fld_ids);
 		$this->addFieldsIf('page_id', $this->fld_ids);
@@ -78,7 +78,7 @@ class ApiQueryLogEvents extends ApiQueryBase {
 		$this->addFieldsIf('log_title', $this->fld_title);
 		$this->addFieldsIf('log_comment', $this->fld_comment);
 		$this->addFieldsIf('log_params', $this->fld_details);
-		
+
 
 		$this->addWhereFld('log_deleted', 0);
 		$this->addWhereFld('log_type', $params['type']);
@@ -135,21 +135,21 @@ class ApiQueryLogEvents extends ApiQueryBase {
 			$vals['logid'] = 0;
 			$vals['pageid'] = intval($row->page_id);
 		}
-		
+
 		if ($this->fld_title) {
 			$title = Title :: makeTitle($row->log_namespace, $row->log_title);
 			ApiQueryBase :: addTitleInfo($vals, $title);
 		}
-		
+
 		if ($this->fld_type) {
 			$vals['type'] = $row->log_type;
 			$vals['action'] = $row->log_action;
 		}
-		
+
 		if ($this->fld_details && $row->log_params !== '') {
 			$params = explode("\n", $row->log_params);
 			switch ($row->log_type) {
-				case 'move': 
+				case 'move':
 					if (isset ($params[0])) {
 						$title = Title :: newFromText($params[0]);
 						if ($title) {
@@ -179,7 +179,7 @@ class ApiQueryLogEvents extends ApiQueryBase {
 					$params = null;
 					break;
 			}
-			
+
 			if (isset($params)) {
 				$this->getResult()->setIndexedTagName($params, 'param');
 				$vals = array_merge($vals, $params);
@@ -197,7 +197,7 @@ class ApiQueryLogEvents extends ApiQueryBase {
 		if ($this->fld_comment && !empty ($row->log_comment)) {
 			$vals['comment'] = $row->log_comment;
 		}
-			
+
 		return $vals;
 	}
 
@@ -273,4 +273,3 @@ class ApiQueryLogEvents extends ApiQueryBase {
 		return __CLASS__ . ': $Id$';
 	}
 }
-

@@ -55,7 +55,7 @@ class SpecialListGroupRights extends SpecialPage {
 				</tr>'
 			);
 		}
-		$wgOut->addHTML( 
+		$wgOut->addHTML(
 			Xml::closeElement( 'table' ) . "\n"
 		);
 	}

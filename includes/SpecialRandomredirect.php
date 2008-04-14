@@ -9,7 +9,7 @@
  */
 class SpecialRandomredirect extends RandomPage {
 	function __construct(){
-		parent::__construct( 'Randomredirect' );	
+		parent::__construct( 'Randomredirect' );
 	}
 
 	// Override parent::isRedirect()
@@ -17,4 +17,3 @@ class SpecialRandomredirect extends RandomPage {
 		return true;
 	}
 }
-

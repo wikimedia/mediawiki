@@ -116,7 +116,4 @@ class SearchTsearch2 extends SearchEngine {
 
 		$dbw->query( $sql, __METHOD__ );
 	}
-
 }
-
-

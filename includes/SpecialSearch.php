@@ -100,7 +100,7 @@ class SpecialSearch {
 			if ( $wgGoToEdit ) {
 				$wgOut->redirect( $t->getFullURL( 'action=edit' ) );
 				return;
-			} 
+			}
 		}
 		if( $t->quickUserCan( 'create' ) && $t->quickUserCan( 'edit' ) ) {
 			$wgOut->addWikiMsg( 'noexactmatch', wfEscapeWikiText( $term ) );
@@ -142,7 +142,7 @@ class SpecialSearch {
 				return;
 			}
 			global $wgInputEncoding;
-			$wgOut->addHTML( 
+			$wgOut->addHTML(
 				Xml::openElement( 'fieldset' ) .
 				Xml::element( 'legend', null, wfMsg( 'search-external' ) ) .
 				Xml::element( 'p', array( 'class' => 'mw-searchdisabled' ), wfMsg( 'searchdisabled' ) ) .
@@ -156,15 +156,15 @@ class SpecialSearch {
 			wfProfileOut( $fname );
 			return;
 		}
-		
+
 		$wgOut->addHTML( $this->shortDialog( $term ) );
 
 		$search = SearchEngine::create();
 		$search->setLimitOffset( $this->limit, $this->offset );
 		$search->setNamespaces( $this->namespaces );
-		$search->showRedirects = $this->searchRedirects;		
+		$search->showRedirects = $this->searchRedirects;
 		$rewritten = $search->replacePrefixes($term);
-		
+
 		$titleMatches = $search->searchTitle( $rewritten );
 
 		// Sometimes the search engine knows there are too many hits
@@ -176,7 +176,7 @@ class SpecialSearch {
 			return;
 		}
 		$textMatches = $search->searchText( $rewritten );
-		
+
 		// did you mean...
 		if($textMatches && $textMatches->hasSuggestion()){
 			global $wgScript;
@@ -185,8 +185,8 @@ class SpecialSearch {
 				urlencode($textMatches->getSuggestionQuery()).'&amp;fulltext='.$fulltext.'">'
 				.$textMatches->getSuggestionSnippet().'</a>';
 			$wgOut->addHTML('<div class="searchdidyoumean">'.wfMsg('search-suggest',$suggestLink).'</div>');
-		} 
-		
+		}
+
 
 		$num = ( $titleMatches ? $titleMatches->numRows() : 0 )
 			+ ( $textMatches ? $textMatches->numRows() : 0);
@@ -231,7 +231,7 @@ class SpecialSearch {
 
 		if( $textMatches ) {
 			if( $textMatches->numRows() ) {
-				if($titleMatches) 
+				if($titleMatches)
 					$wgOut->wrapWikiMsg( "==$1==\n", 'textmatches' );
 				else // if no title matches the heading is redundant
 					$wgOut->addHTML("<hr/>");
@@ -318,7 +318,7 @@ class SpecialSearch {
 		$opt['redirs'] = $this->searchRedirects ? 1 : 0;
 		return $opt;
 	}
-	
+
 
 
 	/**
@@ -368,7 +368,7 @@ class SpecialSearch {
 		//$contextlines = $wgUser->getOption( 'contextlines',  5 );
 		$contextlines = 2; // Hardcode this. Old defaults sucked. :)
 		$contextchars = $wgUser->getOption( 'contextchars', 50 );
-		
+
 		$link = $sk->makeKnownLinkObj( $t, $result->getTitleSnippet());
 
 		//If page content is not readable, just return the title.
@@ -377,7 +377,7 @@ class SpecialSearch {
 		if (!$t->userCanRead()) {
 			return "<li>{$link}</li>\n";
 		}
-		
+
 		$revision = Revision::newFromTitle( $t );
 		// If the page doesn't *exist*... our search index is out of date.
 		// The least confusing at this point is to drop the result.
@@ -386,7 +386,7 @@ class SpecialSearch {
 			return "<!-- missing page " .
 				htmlspecialchars( $t->getPrefixedText() ) . "-->\n";
 		}
-		
+
 		if( is_null( $result->getScore() ) ) {
 			// Search engine doesn't report scoring info
 			$score = '';
@@ -395,7 +395,7 @@ class SpecialSearch {
 			$score = wfMsg( 'search-result-score', $wgLang->formatNum( $percent ) )
 				. ' - ';
 		}
-		
+
 		// try to fetch everything from the search engine backend
 		// then fill-in what couldn't be fetched
 		$extract = $result->getTextSnippet();
@@ -420,13 +420,13 @@ class SpecialSearch {
 		if( is_null($timestamp) ){
 			$timestamp = $revision->getTimestamp();
 		}
-		
-		// format description		
+
+		// format description
 		$size = wfMsgExt( 'search-result-size', array( 'parsemag', 'escape' ),
 			$sk->formatSize( $byteSize ),
 			$wordCount );
 		$date = $wgLang->timeanddate( $timestamp );
-		
+
 		// format redirects / sections
 		$redirect = '';
 		if( !is_null($redirectTitle) )
@@ -435,12 +435,12 @@ class SpecialSearch {
 				."</span>";
 		$section = '';
 		if( !is_null($sectionTitle) )
-			$section = "<span class='searchalttitle'>" 
+			$section = "<span class='searchalttitle'>"
 				.wfMsg('search-section', $sk->makeKnownLinkObj( $sectionTitle, $sectionText))
 				."</span>";
 		// wrap extract
 		$extract = "<div class='searchresult'>".$extract."</div>";
-		
+
 		// Include a thumbnail for media files...
 		if( $t->getNamespace() == NS_IMAGE ) {
 			$img = wfFindFile( $t );
@@ -477,11 +477,11 @@ class SpecialSearch {
 			"</li>\n";
 
 	}
-	
+
 	private function extractText( $text, $terms, $contextlines, $contextchars ) {
 		global $wgLang, $wgContLang;
 		$fname = __METHOD__;
-	
+
 		$lines = explode( "\n", $text );
 
 		$max = intval( $contextchars ) + 1;
@@ -519,7 +519,7 @@ class SpecialSearch {
 			$extract .= "${line}\n";
 		}
 		wfProfileOut( "$fname-extract" );
-		
+
 		return $extract;
 	}
 
@@ -538,7 +538,7 @@ class SpecialSearch {
 				$name = wfMsg( 'blanknamespace' );
 			}
 			$namespaces .= Xml::openElement( 'span', array( 'style' => 'white-space: nowrap' ) ) .
-					Xml::checkLabel( $name, "ns{$ns}", $name, in_array( $ns, $this->namespaces ) ) . 
+					Xml::checkLabel( $name, "ns{$ns}", $name, in_array( $ns, $this->namespaces ) ) .
 					Xml::closeElement( 'span' ) . "\n";
 		}
 
@@ -565,10 +565,10 @@ class SpecialSearch {
 			"document.getElementById('powerSearchText').focus();" .
 			"</script>";
 	}
-	
+
 	function shortDialog($term) {
 		global $wgScript;
-		
+
 		$out  = Xml::openElement( 'form', array(
 			'id' => 'search',
 			'method' => 'get',
@@ -583,7 +583,7 @@ class SpecialSearch {
 		}
 		$out .= Xml::submitButton( wfMsg( 'searchbutton' ), array( 'name' => 'fulltext' ) );
 		$out .= Xml::closeElement( 'form' );
-		
+
 		return $out;
 	}
 }

@@ -30,7 +30,7 @@ if (!defined('MEDIAWIKI')) {
 
 /**
  * A query action to return meta information about the wiki site.
- * 
+ *
  * @addtogroup API
  */
 class ApiQuerySiteinfo extends ApiQueryBase {
@@ -60,7 +60,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 					$this->appendSpecialPageAliases($p);
 					break;
 				case 'interwikimap' :
-					$filteriw = isset($params['filteriw']) ? $params['filteriw'] : false; 
+					$filteriw = isset($params['filteriw']) ? $params['filteriw'] : false;
 					$this->appendInterwikiMap($p, $filteriw);
 					break;
 				case 'dbrepllag' :
@@ -78,7 +78,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 
 	protected function appendGeneralInfo($property) {
 		global $wgSitename, $wgVersion, $wgCapitalLinks, $wgRightsCode, $wgRightsText, $wgLanguageCode, $IP, $wgEnableWriteAPI, $wgLang;
-		
+
 		$data = array ();
 		$mainPage = Title :: newFromText(wfMsgForContent('mainpage'));
 		$data['mainpage'] = $mainPage->getPrefixedText();
@@ -90,7 +90,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		if ( $svn ) $data['rev'] = $svn;
 
 		$data['case'] = $wgCapitalLinks ? 'first-letter' : 'case-sensitive'; // 'case-insensitive' option is reserved for future
-		
+
 		if (isset($wgRightsCode))
 			$data['rightscode'] = $wgRightsCode;
 		$data['rights'] = $wgRightsText;
@@ -99,13 +99,13 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 
 		if ( $wgEnableWriteAPI )
 			$data['writeapi'] = '';
-		
+
 		$this->getResult()->addValue('query', $property, $data);
 	}
-	
+
 	protected function appendNamespaces($property) {
 		global $wgContLang, $wgNamespacesWithSubpages;
-		
+
 		$data = array ();
 		foreach ($wgContLang->getFormattedNamespaces() as $ns => $title) {
 			$data[$ns] = array (
@@ -115,14 +115,14 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 			if(@$wgNamespacesWithSubpages[$ns])
 				$data[$ns]['subpages'] = '';
 		}
-		
+
 		$this->getResult()->setIndexedTagName($data, 'ns');
 		$this->getResult()->addValue('query', $property, $data);
 	}
-	
+
 	protected function appendNamespaceAliases($property) {
 		global $wgNamespaceAliases;
-		
+
 		$data = array ();
 		foreach ($wgNamespaceAliases as $title => $ns) {
 			$item = array (
@@ -131,11 +131,11 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 			ApiResult :: setContent($item, strtr($title, '_', ' '));
 			$data[] = $item;
 		}
-		
+
 		$this->getResult()->setIndexedTagName($data, 'ns');
 		$this->getResult()->addValue('query', $property, $data);
 	}
-	
+
 	protected function appendSpecialPageAliases($property)
 	{
 		global $wgLang;
@@ -165,7 +165,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		}
 
 		$this->addOption('ORDER BY', 'iw_prefix');
-		
+
 		$db = $this->getDB();
 		$res = $this->select(__METHOD__);
 
@@ -186,12 +186,12 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		$this->getResult()->setIndexedTagName($data, 'iw');
 		$this->getResult()->addValue('query', $property, $data);
 	}
-	
+
 	protected function appendDbReplLagInfo($property, $includeAll) {
 		global $wgShowHostnames;
 
 		$data = array();
-		
+
 		if ($includeAll) {
 			if (!$wgShowHostnames)
 				$this->dieUsage('Cannot view all servers info unless $wgShowHostnames is true', 'includeAllDenied');
@@ -208,12 +208,12 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 			$data[] = array (
 				'host' => $wgShowHostnames ? $host : '',
 				'lag' => $lag);
-		}					
+		}
 
 		$result = $this->getResult();
 		$result->setIndexedTagName($data, 'db');
 		$result->addValue('query', $property, $data);
-	}	
+	}
 
 	protected function appendStatistics($property) {
 		$data = array ();
@@ -226,7 +226,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		$data['admins'] = intval(SiteStats::admins());
 		$data['jobs'] = intval(SiteStats::jobs());
 		$this->getResult()->addValue('query', $property, $data);
-	}	
+	}
 
 	protected function appendUserGroups($property) {
 		global $wgGroupPermissions;
@@ -244,7 +244,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 
 	public function getAllowedParams() {
 		return array (
-		
+
 			'prop' => array (
 				ApiBase :: PARAM_DFLT => 'general',
 				ApiBase :: PARAM_ISMULTI => true,
@@ -264,7 +264,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 					'local',
 					'!local',
 				)),
-				
+
 			'showalldb' => false,
 		);
 	}

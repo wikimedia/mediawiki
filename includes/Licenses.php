@@ -1,7 +1,7 @@
 <?php
 /**
  * A License class for use on Special:Upload
- * 
+ *
  * @addtogroup SpecialPage
  *
  * @author Ævar Arnfjörð Bjarmason <avarab@gmail.com>
@@ -172,4 +172,3 @@ class License {
 		$this->text = strrev( $text );
 	}
 }
-

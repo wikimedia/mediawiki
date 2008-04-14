@@ -7,7 +7,7 @@
 class CoreParserFunctions {
 	static function register( $parser ) {
 		global $wgAllowDisplayTitle, $wgAllowSlowParserFunctions;
-		
+
 		# Syntax for arguments (see self::setFunctionHook):
 		#  "name for lookup in localized magic words array",
 		#  function callback,
@@ -185,7 +185,7 @@ class CoreParserFunctions {
 			return $mwRaw->match( $param );
 		}
 	}
-	
+
 	static function formatRaw( $num, $raw ) {
 		if( self::isRaw( $raw ) ) {
 			return $num;
@@ -215,7 +215,7 @@ class CoreParserFunctions {
 	static function pagesinnamespace( $parser, $namespace = 0, $raw = null ) {
 		return self::formatRaw( SiteStats::pagesInNs( intval( $namespace ) ), $raw );
 	}
-	
+
 	static function pagesincategory( $parser, $category = '', $raw = null ) {
 		global $wgExpensiveParserFunctionLimit;
 		if ($category == '') {
@@ -271,14 +271,14 @@ class CoreParserFunctions {
 			return wfMsgForContent( 'nosuchspecialpage' );
 		}
 	}
-	
+
 	public static function defaultsort( $parser, $text ) {
 		$text = trim( $text );
 		if( strlen( $text ) > 0 )
 			$parser->setDefaultSort( $text );
 		return '';
 	}
-	
+
 	public static function filepath( $parser, $name='', $option='' ) {
 		$file = wfFindFile( $name );
 		if( $file ) {
@@ -310,8 +310,8 @@ class CoreParserFunctions {
 
 		$stripList = $parser->getStripList();
 		if ( !in_array( $tagName, $stripList ) ) {
-			return '<span class="error">' . 
-				wfMsg( 'unknown_extension_tag', $tagName ) . 
+			return '<span class="error">' .
+				wfMsg( 'unknown_extension_tag', $tagName ) .
 				'</span>';
 		}
 
@@ -337,4 +337,3 @@ class CoreParserFunctions {
 		return $parser->extensionSubstitution( $params, $frame );
 	}
 }
-

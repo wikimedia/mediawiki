@@ -63,14 +63,14 @@ class DjVuHandler extends ImageHandler {
 	function doTransform( $image, $dstPath, $dstUrl, $params, $flags = 0 ) {
 		global $wgDjvuRenderer, $wgDjvuPostProcessor;
 
-		// Fetch XML and check it, to give a more informative error message than the one which 
+		// Fetch XML and check it, to give a more informative error message than the one which
 		// normaliseParams will inevitably give.
 		$xml = $image->getMetadata();
 		if ( !$xml ) {
-			return new MediaTransformError( 'thumbnail_error', @$params['width'], @$params['height'], 
+			return new MediaTransformError( 'thumbnail_error', @$params['width'], @$params['height'],
 				wfMsg( 'djvu_no_xml' ) );
 		}
-		
+
 		if ( !$this->normaliseParams( $image, $params ) ) {
 			return new TransformParameterError( $params );
 		}
@@ -81,7 +81,7 @@ class DjVuHandler extends ImageHandler {
 		if ( $page > $this->pageCount( $image ) ) {
 			return new MediaTransformError( 'thumbnail_error', $width, $height, wfMsg( 'djvu_page_error' ) );
 		}
-		
+
 		if ( $flags & self::TRANSFORM_LATER ) {
 			return new ThumbnailImage( $image, $dstUrl, $width, $height, $dstPath, $page );
 		}
@@ -90,7 +90,7 @@ class DjVuHandler extends ImageHandler {
 			return new MediaTransformError( 'thumbnail_error', $width, $height, wfMsg( 'thumbnail_dest_directory' ) );
 		}
 
-		# Use a subshell (brackets) to aggregate stderr from both pipeline commands 
+		# Use a subshell (brackets) to aggregate stderr from both pipeline commands
 		# before redirecting it to the overall stdout. This works in both Linux and Windows XP.
 		$cmd = '(' . wfEscapeShellArg( $wgDjvuRenderer ) . " -format=ppm -page={$page} -size={$width}x{$height} " .
 			wfEscapeShellArg( $srcPath );
@@ -208,5 +208,3 @@ class DjVuHandler extends ImageHandler {
 		}
 	}
 }
-
-

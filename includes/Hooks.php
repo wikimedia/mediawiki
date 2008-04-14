@@ -143,4 +143,3 @@ function wfRunHooks($event, $args = array()) {
 
 	return true;
 }
-

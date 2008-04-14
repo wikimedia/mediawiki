@@ -30,7 +30,7 @@ if (!defined('MEDIAWIKI')) {
 
 /**
  * A query module to show basic page information.
- * 
+ *
  * @addtogroup API
  */
 class ApiQueryInfo extends ApiQueryBase {
@@ -71,7 +71,7 @@ class ApiQueryInfo extends ApiQueryBase {
 		else
 			// Fix E_NOTICEs about unset variables
 			$token = $tok_edit = $tok_delete = $tok_protect = $tok_move = null;
-		
+
 		$pageSet = $this->getPageSet();
 		$titles = $pageSet->getGoodTitles();
 		$missing = $pageSet->getMissingTitles();
@@ -124,11 +124,11 @@ class ApiQueryInfo extends ApiQueryBase {
 			}
 			$db->freeResult($res);
 		}
-		
+
 		// Run the talkid/subjectid query
 		if($fld_talkid || $fld_subjectid)
 		{
-			$talktitles = $subjecttitles = 
+			$talktitles = $subjecttitles =
 				$talkids = $subjectids = array();
 			$everything = array_merge($titles, $missing);
 			foreach($everything as $t)
@@ -186,7 +186,7 @@ class ApiQueryInfo extends ApiQueryBase {
 				if ($tok_move)
 					$pageInfo['movetoken'] = $wgUser->editToken();
 			}
-			
+
 			if($fld_protection) {
 				if (isset($protections[$pageid])) {
 					$pageInfo['protection'] = $protections[$pageid];
@@ -313,4 +313,3 @@ class ApiQueryInfo extends ApiQueryBase {
 		return __CLASS__ . ': $Id$';
 	}
 }
-

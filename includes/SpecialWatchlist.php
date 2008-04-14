@@ -31,9 +31,9 @@ function wfSpecialWatchlist( $par ) {
 		$wgOut->addHtml( wfMsgWikiHtml( 'watchlistanontext', $llink ) );
 		return;
 	}
-	
+
 	$wgOut->setPageTitle( wfMsg( 'watchlist' ) );
-	
+
 	$sub  = wfMsgExt( 'watchlistfor', 'parseinline', $wgUser->getName() );
 	$sub .= '<br />' . WatchlistEditor::buildTools( $wgUser->getSkin() );
 	$wgOut->setSubtitle( $sub );
@@ -43,7 +43,7 @@ function wfSpecialWatchlist( $par ) {
 		$editor->execute( $wgUser, $wgOut, $wgRequest, $mode );
 		return;
 	}
-	
+
 	$uid = $wgUser->getId();
 	if( $wgEnotifWatchlist && $wgRequest->getVal( 'reset' ) && $wgRequest->wasPosted() ) {
 		$wgUser->clearAllNotifications( $uid );
@@ -118,7 +118,7 @@ function wfSpecialWatchlist( $par ) {
 	if( ! wfRunHooks('BeforeWatchlist', array($nondefaults, $wgUser, &$hookSql)) ) {
 		return;
 	}
-	
+
 	if($nitems == 0) {
 		$wgOut->addWikiMsg( 'nowatchlist' );
 		return;
@@ -226,7 +226,7 @@ function wfSpecialWatchlist( $par ) {
 	$label = $hideBots ? wfMsgHtml( 'watchlist-show-bots' ) : wfMsgHtml( 'watchlist-hide-bots' );
 	$linkBits = wfArrayToCGI( array( 'hideBots' => 1 - (int)$hideBots ), $nondefaults );
 	$links[] = $skin->makeKnownLinkObj( $thisTitle, $label, $linkBits );
-	
+
 	# Hide/show own edits
 	$label = $hideOwn ? wfMsgHtml( 'watchlist-show-own' ) : wfMsgHtml( 'watchlist-hide-own' );
 	$linkBits = wfArrayToCGI( array( 'hideOwn' => 1 - (int)$hideOwn ), $nondefaults );
