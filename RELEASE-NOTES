@@ -180,6 +180,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 13708) Don't set "Search results" title when loading Special:Search
   without query
 * (bug 13736) Don't show MediaWiki:Anontalkpagetext on non-existant IP addresses
+* (bug 13728) Don't trim initial whitespace during section edits
+
 
 === API changes in 1.13 ===
 
