@@ -32,13 +32,13 @@ class ProtectedTitlesForm {
 		$size = $wgRequest->getIntOrNull( 'size' );
 		$NS = $wgRequest->getIntOrNull( 'namespace' );
 
-		$pager = new ProtectedTitlesPager( $this, array(), $type, $level, $NS, $sizetype, $size );	
+		$pager = new ProtectedTitlesPager( $this, array(), $type, $level, $NS, $sizetype, $size );
 
 		$wgOut->addHTML( $this->showOptions( $NS, $type, $level, $sizetype, $size ) );
 
 		if ( $pager->getNumRows() ) {
 			$s = $pager->getNavigationBar();
-			$s .= "<ul>" . 
+			$s .= "<ul>" .
 				$pager->getBody() .
 				"</ul>";
 			$s .= $pager->getNavigationBar();
@@ -60,7 +60,7 @@ class ProtectedTitlesForm {
 
 		if( is_null( $skin ) )
 			$skin = $wgUser->getSkin();
-		
+
 		$title = Title::makeTitleSafe( $row->pt_namespace, $row->pt_title );
 		$link = $skin->makeLinkObj( $title );
 
@@ -74,17 +74,17 @@ class ProtectedTitlesForm {
 
 		if ( $row->pt_expiry != 'infinity' && strlen($row->pt_expiry) ) {
 			$expiry = Block::decodeExpiry( $row->pt_expiry );
-	
+
 			$expiry_description = wfMsgForContent( 'protect-expiring', $wgLang->timeanddate( $expiry ) );
 
 			$description_items[] = $expiry_description;
 		}
-		
+
 		wfProfileOut( __METHOD__ );
 
 		return '<li>' . wfSpecialList( $link . $stxt, implode( $description_items, ', ' ) ) . "</li>\n";
 	}
-	
+
 	/**
 	 * @param $namespace int
 	 * @param $type string
@@ -106,7 +106,7 @@ class ProtectedTitlesForm {
 			"&nbsp;" . Xml::submitButton( wfMsg( 'allpagessubmit' ) ) . "\n" .
 			"</fieldset></form>";
 	}
-	
+
 	/**
 	 * Prepare the namespace filter drop-down; standard namespace
 	 * selector, sans the MediaWiki namespace
@@ -123,7 +123,7 @@ class ProtectedTitlesForm {
 	/**
 	 * @return string Formatted HTML
 	 * @private
-	 */	
+	 */
 	function getLevelMenu( $pr_level ) {
 		global $wgRestrictionLevels;
 
@@ -182,7 +182,7 @@ class ProtectedtitlesPager extends AlphabeticPager {
 		wfProfileOut( __METHOD__ );
 		return '';
 	}
-	
+
 	function formatRow( $row ) {
 		return $this->mForm->formatRow( $row );
 	}
@@ -190,7 +190,7 @@ class ProtectedtitlesPager extends AlphabeticPager {
 	function getQueryInfo() {
 		$conds = $this->mConds;
 		$conds[] = 'pt_expiry>' . $this->mDb->addQuotes( $this->mDb->timestamp() );
-		
+
 		if( !is_null($this->namespace) )
 			$conds[] = 'pt_namespace=' . $this->mDb->addQuotes( $this->namespace );
 		return array(
@@ -214,6 +214,3 @@ function wfSpecialProtectedtitles() {
 
 	$ppForm->showList();
 }
-
-
-

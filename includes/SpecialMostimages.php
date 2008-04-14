@@ -35,7 +35,7 @@ class MostimagesPage extends ImageQueryPage {
 
 	function getCellHtml( $row ) {
 		global $wgLang;
-		return wfMsgExt( 'nlinks',  array( 'parsemag', 'escape' ), 
+		return wfMsgExt( 'nlinks',  array( 'parsemag', 'escape' ),
 			$wgLang->formatNum( $row->value ) ) . '<br />';
 	}
 
@@ -51,5 +51,3 @@ function wfSpecialMostimages() {
 
 	$wpp->doQuery( $offset, $limit );
 }
-
-

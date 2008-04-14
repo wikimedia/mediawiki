@@ -29,5 +29,3 @@ function wfSpecialLongpages() {
 
 	$lpp->doQuery( $offset, $limit );
 }
-
-

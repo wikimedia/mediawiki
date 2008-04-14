@@ -26,7 +26,7 @@ class OutputPage {
 	var $mFeedLinksAppendQuery = false;
 	var $mEnableClientCache = true;
 	var $mArticleBodyOnly = false;
-	
+
 	var $mNewSectionLink = false;
 	var $mNoGallery = false;
 	var $mPageTitleActionText = '';
@@ -59,13 +59,13 @@ class OutputPage {
 		$this->mNewSectionLink = false;
 		$this->mTemplateIds = array();
 	}
-	
+
 	public function redirect( $url, $responsecode = '302' ) {
 		# Strip newlines as a paranoia check for header injection in PHP<5.1.2
 		$this->mRedirect = str_replace( "\n", '', $url );
 		$this->mRedirectCode = $responsecode;
 	}
-	
+
 	public function getRedirect() {
 		return $this->mRedirect;
 	}
@@ -99,8 +99,8 @@ class OutputPage {
 		$this->mScripts .= "<script type=\"$wgJsMimeType\">/*<![CDATA[*/\n$script\n/*]]>*/</script>";
 	}
 
-	function getScript() { 
-		return $this->mScripts . $this->getHeadItems(); 
+	function getScript() {
+		return $this->mScripts . $this->getHeadItems();
 	}
 
 	function getHeadItems() {
@@ -168,11 +168,11 @@ class OutputPage {
 			# Wed, 20 Aug 2003 06:51:19 GMT; length=5202
 			# this breaks strtotime().
 			$modsince = preg_replace( '/;.*$/', '', $_SERVER["HTTP_IF_MODIFIED_SINCE"] );
-			
+
 			wfSuppressWarnings(); // E_STRICT system time bitching
 			$modsinceTime = strtotime( $modsince );
 			wfRestoreWarnings();
-			
+
 			$ismodsince = wfTimestamp( TS_MW, $modsinceTime ? $modsinceTime : 1 );
 			wfDebug( "$fname: -- client send If-Modified-Since: " . $modsince . "\n", false );
 			wfDebug( "$fname: --  we might send Last-Modified : $lastmod\n", false );
@@ -183,12 +183,12 @@ class OutputPage {
 				$this->sendCacheControl();
 				wfDebug( "$fname: CACHED client: $ismodsince ; user: $wgUser->mTouched ; page: $timestamp ; site $wgCacheEpoch\n", false );
 				$this->disable();
-				
+
 				// Don't output a compressed blob when using ob_gzhandler;
 				// it's technically against HTTP spec and seems to confuse
 				// Firefox when the response gets split over two packets.
 				wfClearOutputBuffers();
-				
+
 				return true;
 			} else {
 				wfDebug( "$fname: READY  client: $ismodsince ; user: $wgUser->mTouched ; page: $timestamp ; site $wgCacheEpoch\n", false );
@@ -387,7 +387,7 @@ class OutputPage {
 
 		$parserOutput = $wgParser->parse( $text, $title, $popts,
 			$linestart, true, $this->mRevisionId );
-			
+
 		$popts->setTidy( $oldTidy );
 
 		$this->addParserOutput( $parserOutput );
@@ -412,7 +412,7 @@ class OutputPage {
 		$this->mHeadItems = array_merge( $this->mHeadItems, (array)$parserOutput->mHeadItems );
 		// Versioning...
 		$this->mTemplateIds += (array)$parserOutput->mTemplateIds;
-		
+
 		// Display title
 		if( ( $dt = $parserOutput->getDisplayTitle() ) !== false )
 			$this->setPageTitle( $dt );
@@ -547,7 +547,7 @@ class OutputPage {
 		global $wgCookiePrefix, $wgCacheVaryCookies;
 		static $cookies;
 		if ( $cookies === null ) {
-			$cookies = array_merge( 
+			$cookies = array_merge(
 				array(
 					"{$wgCookiePrefix}Token",
 					"{$wgCookiePrefix}LoggedOut",
@@ -924,11 +924,11 @@ class OutputPage {
 		$this->enableClientCache( false );
 		$this->mRedirect = '';
 		$this->mBodytext = '';
-		
+
 		array_unshift( $params, 'parse' );
 		array_unshift( $params, $msg );
 		$this->addHtml( call_user_func_array( 'wfMsgExt', $params ) );
-		
+
 		$this->returnToMain( false );
 	}
 
@@ -957,7 +957,7 @@ class OutputPage {
 	public function errorpage( $title, $msg ) {
 		throw new ErrorPageError( $title, $msg );
 	}
-		
+
 	/**
 	 * Display an error page indicating that a given version of MediaWiki is
 	 * required to use it
@@ -1045,17 +1045,17 @@ class OutputPage {
 		}
 
 		$skin = $wgUser->getSkin();
-		
+
 		$this->setPageTitle( wfMsg( 'loginreqtitle' ) );
 		$this->setHtmlTitle( wfMsg( 'errorpagetitle' ) );
 		$this->setRobotPolicy( 'noindex,nofollow' );
 		$this->setArticleFlag( false );
-		
+
 		$loginTitle = SpecialPage::getTitleFor( 'Userlogin' );
 		$loginLink = $skin->makeKnownLinkObj( $loginTitle, wfMsgHtml( 'loginreqlink' ), 'returnto=' . $wgTitle->getPrefixedUrl() );
 		$this->addHtml( wfMsgWikiHtml( 'loginreqpagetext', $loginLink ) );
 		$this->addHtml( "\n<!--" . $wgTitle->getPrefixedUrl() . "-->" );
-		
+
 		# Don't return to the main page if the user can't read it
 		# otherwise we'll end up in a pointless loop
 		$mainPage = Title::newMainPage();
@@ -1169,9 +1169,9 @@ class OutputPage {
 
 	/** @deprecated */
 	public function fatalError( $message ) {
-		throw new FatalError( $message ); 
+		throw new FatalError( $message );
 	}
-	
+
 	/** @deprecated */
 	public function unexpectedValueError( $name, $val ) {
 		throw new FatalError( wfMsg( 'unexpected', $name, $val ) );
@@ -1246,11 +1246,11 @@ class OutputPage {
 	 */
 	public function returnToMain( $unused = null, $returnto = NULL ) {
 		global $wgRequest;
-		
+
 		if ( $returnto == NULL ) {
 			$returnto = $wgRequest->getText( 'returnto' );
 		}
-		
+
 		if ( '' === $returnto ) {
 			$returnto = Title::newMainPage();
 		}
@@ -1381,7 +1381,7 @@ class OutputPage {
 			}
 			$ret .= " />\n";
 		}
-		
+
 		if( $wgFeed ) {
 			foreach( $this->getSyndicationLinks() as $format => $link ) {
 				# Use the page name for the title (accessed through $wgTitle since
@@ -1389,13 +1389,13 @@ class OutputPage {
 				# with having the same name for different feeds corresponding to
 				# the same page, but we can't avoid that at this low a level.
 				global $wgTitle;
-	
+
 				$ret .= $this->feedLink(
 					$format,
 					$link,
 					wfMsg( "page-{$format}-feed", $wgTitle->getPrefixedText() ) ); # Used messages: 'page-rss-feed' and 'page-atom-feed' (for an easier grep)
 			}
-	
+
 			# Recent changes feed should appear on every page
 			# Put it after the per-page feed to avoid changing existing behavior.
 			# It's still available, probably via a menu in your browser.
@@ -1413,7 +1413,7 @@ class OutputPage {
 
 		return $ret;
 	}
-	
+
 	/**
 	 * Return URLs for each supported syndication format for this page.
 	 * @return array associating format keys with URLs
@@ -1421,7 +1421,7 @@ class OutputPage {
 	public function getSyndicationLinks() {
 		global $wgTitle, $wgFeedClasses;
 		$links = array();
-		
+
 		if( $this->isSyndicated() ) {
 			if( is_string( $this->getFeedAppendQuery() ) ) {
 				$appendQuery = "&" . $this->getFeedAppendQuery();
@@ -1435,7 +1435,7 @@ class OutputPage {
 		}
 		return $links;
 	}
-	
+
 	/**
 	 * Generate a <link rel/> for an RSS feed.
 	 */
@@ -1465,7 +1465,7 @@ class OutputPage {
 
 		$this->returnToMain( false, $wgTitle );
 	}
-	
+
 	/**
 	 * Show an "add new section" link?
 	 *
@@ -1474,7 +1474,7 @@ class OutputPage {
 	public function showNewSectionLink() {
 		return $this->mNewSectionLink;
 	}
-	
+
 	/**
 	 * Show a warning about slave lag
 	 *
@@ -1521,21 +1521,21 @@ class OutputPage {
 	}
 
 	/**
-	 * This function takes a number of message/argument specifications, wraps them in 
+	 * This function takes a number of message/argument specifications, wraps them in
 	 * some overall structure, and then parses the result and adds it to the output.
 	 *
-	 * In the $wrap, $1 is replaced with the first message, $2 with the second, and so 
-	 * on. The subsequent arguments may either be strings, in which case they are the 
+	 * In the $wrap, $1 is replaced with the first message, $2 with the second, and so
+	 * on. The subsequent arguments may either be strings, in which case they are the
 	 * message names, or an arrays, in which case the first element is the message name,
 	 * and subsequent elements are the parameters to that message.
 	 *
 	 * The special named parameter 'options' in a message specification array is passed
-	 * through to the $options parameter of wfMsgExt(). 
+	 * through to the $options parameter of wfMsgExt().
 	 *
 	 * For example:
 	 *
 	 *    $wgOut->wrapWikiMsg( '<div class="error">$1</div>', 'some-error' );
-	 * 
+	 *
 	 * Is equivalent to:
 	 *
 	 *    $wgOut->addWikiText( '<div class="error">' . wfMsgNoTrans( 'some-error' ) . '</div>' );

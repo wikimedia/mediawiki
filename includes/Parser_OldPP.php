@@ -43,7 +43,7 @@ class Parser_OldPP
 	# Persistent:
 	var $mTagHooks, $mTransparentTagHooks, $mFunctionHooks, $mFunctionSynonyms, $mVariables,
 		$mImageParams, $mImageParamsMagicArray, $mExtLinkBracketedRegex;
-	
+
 	# Cleared with clearState():
 	var $mOutput, $mAutonumber, $mDTopen, $mStripState;
 	var $mIncludeCount, $mArgStack, $mLastSection, $mInPre;
@@ -80,7 +80,7 @@ class Parser_OldPP
 		$this->mExtLinkBracketedRegex = '/\[(\b(' . wfUrlProtocols() . ')'.
 			'[^][<>"\\x00-\\x20\\x7F]+) *([^\]\\x0a\\x0d]*?)\]/S';
 	}
-	
+
 	/**
 	 * Do various kinds of initialisation on the first call of the parser
 	 */
@@ -89,12 +89,12 @@ class Parser_OldPP
 			return;
 		}
 		$this->mFirstCall = false;
-		
+
 		wfProfileIn( __METHOD__ );
 		global $wgAllowDisplayTitle, $wgAllowSlowParserFunctions;
-		
+
 		$this->setHook( 'pre', array( $this, 'renderPreTag' ) );
-		
+
 		# Syntax for arguments (see self::setFunctionHook):
 		#  "name for lookup in localized magic words array",
 		#  function callback,
@@ -342,7 +342,7 @@ class Parser_OldPP
 		# Information on include size limits, for the benefit of users who try to skirt them
 		if ( $this->mOptions->getEnableLimitReport() ) {
 			$max = $this->mOptions->getMaxIncludeSize();
-			$limitReport = 
+			$limitReport =
 				"Pre-expand include size: {$this->mIncludeSizes['pre-expand']}/$max bytes\n" .
 				"Post-expand include size: {$this->mIncludeSizes['post-expand']}/$max bytes\n" .
 				"Template argument size: {$this->mIncludeSizes['arg']}/$max bytes\n";
@@ -600,7 +600,7 @@ class Parser_OldPP
 			}
 		}
 		# Add the new items to the state
-		# We do this after the loop instead of during it to avoid slowing 
+		# We do this after the loop instead of during it to avoid slowing
 		# down the recursive unstrip
 		$state->nowiki->mergeArray( $nowikiItems );
 		$state->general->mergeArray( $generalItems );
@@ -739,7 +739,7 @@ class Parser_OldPP
 
 	/**
 	 * Use the HTML tidy PECL extension to use the tidy library in-process,
-	 * saving the overhead of spawning a new process. 
+	 * saving the overhead of spawning a new process.
 	 *
 	 * 'pear install tidy' should be able to compile the extension module.
 	 *
@@ -807,7 +807,7 @@ class Parser_OldPP
 			} else if ( count ( $td_history ) == 0 ) {
 				// Don't do any of the following
 				continue;
-			} else if ( substr ( $line , 0 , 2 ) == '|}' ) { 
+			} else if ( substr ( $line , 0 , 2 ) == '|}' ) {
 				// We are ending a table
 				$line = '</table>' . substr ( $line , 2 );
 				$last_tag = array_pop ( $last_tag_history );
@@ -2397,7 +2397,7 @@ class Parser_OldPP
 			$oldtz = getenv( 'TZ' );
 			putenv( 'TZ='.$wgLocaltimezone );
 		}
-		
+
 		wfSuppressWarnings(); // E_STRICT system time bitching
 		$localTimestamp = date( 'YmdHis', $ts );
 		$localMonth = date( 'm', $ts );
@@ -3044,7 +3044,7 @@ class Parser_OldPP
 				$titleText = $title->getPrefixedText();
 				//used by edit section links
 				$replaceHeadings = true;
-				
+
 			}
 		}
 
@@ -3151,7 +3151,7 @@ class Parser_OldPP
 				# If there are any <onlyinclude> tags, only include them
 				if ( in_string( '<onlyinclude>', $text ) && in_string( '</onlyinclude>', $text ) ) {
 					$replacer = new OnlyIncludeReplacer;
-					StringUtils::delimiterReplaceCallback( '<onlyinclude>', '</onlyinclude>', 
+					StringUtils::delimiterReplaceCallback( '<onlyinclude>', '</onlyinclude>',
 						array( &$replacer, 'replace' ), $text );
 					$text = $replacer->output;
 				}
@@ -3285,13 +3285,13 @@ class Parser_OldPP
 		$text = $skip = false;
 		$finalTitle = $title;
 		$deps = array();
-		
+
 		// Loop to fetch the article, with up to 1 redirect
 		for ( $i = 0; $i < 2 && is_object( $title ); $i++ ) {
 			# Give extensions a chance to select the revision instead
 			$id = false; // Assume current
 			wfRunHooks( 'BeforeParserFetchTemplateAndtitle', array( false, &$title, &$skip, &$id ) );
-			
+
 			if( $skip ) {
 				$text = false;
 				$deps[] = array(
@@ -3303,9 +3303,9 @@ class Parser_OldPP
 			$rev = $id ? Revision::newFromId( $id ) : Revision::newFromTitle( $title );
 			$rev_id = $rev ? $rev->getId() : 0;
 
-			$deps[] = array( 
-				'title' => $title, 
-				'page_id' => $title->getArticleID(), 
+			$deps[] = array(
+				'title' => $title,
+				'page_id' => $title->getArticleID(),
 				'rev_id' => $rev_id );
 
 			if( $rev ) {
@@ -3688,7 +3688,7 @@ class Parser_OldPP
 		if( $numVisible < 1 ) {
 			$enoughToc = false;
 		}
-		
+
 		if( $enoughToc ) {
 			if( $prevtoclevel > 0 && $prevtoclevel < $wgMaxTocLevel ) {
 				$toc .= $sk->tocUnindent( $prevtoclevel - 1 );
@@ -3842,7 +3842,7 @@ class Parser_OldPP
 		$username = $user->getName();
 		$nickname = $user->getOption( 'nickname' );
 		$nickname = $nickname === '' ? $username : $nickname;
-		
+
 		if( mb_strlen( $nickname ) > $wgMaxSigChars ) {
 			$nickname = $username;
 			wfDebug( __METHOD__ . ": $username has overlong signature.\n" );
@@ -4432,7 +4432,7 @@ class Parser_OldPP
 		if( isset( $params['heights'] ) ) {
 			$ig->setHeights( $params['heights'] );
 		}
-		
+
 		wfRunHooks( 'BeforeParserrenderImageGallery', array( &$this, &$ig ) );
 
 		$lines = explode( "\n", $text );
@@ -4485,9 +4485,9 @@ class Parser_OldPP
 			// Initialise static lists
 			static $internalParamNames = array(
 				'horizAlign' => array( 'left', 'right', 'center', 'none' ),
-				'vertAlign' => array( 'baseline', 'sub', 'super', 'top', 'text-top', 'middle', 
+				'vertAlign' => array( 'baseline', 'sub', 'super', 'top', 'text-top', 'middle',
 					'bottom', 'text-bottom' ),
-				'frame' => array( 'thumbnail', 'manualthumb', 'framed', 'frameless', 
+				'frame' => array( 'thumbnail', 'manualthumb', 'framed', 'frameless',
 					'upright', 'border' ),
 			);
 			static $internalParamMap;
@@ -4542,7 +4542,7 @@ class Parser_OldPP
 		#  * middle
 		#  * bottom
 		#  * text-bottom
-		
+
 		$parts = array_map( 'trim', explode( '|', $options) );
 		$sk = $this->mOptions->getSkin();
 
@@ -4562,14 +4562,14 @@ class Parser_OldPP
 
 		# Process the input parameters
 		$caption = '';
-		$params = array( 'frame' => array(), 'handler' => array(), 
+		$params = array( 'frame' => array(), 'handler' => array(),
 			'horizAlign' => array(), 'vertAlign' => array() );
 		foreach( $parts as $part ) {
 			list( $magicName, $value ) = $mwArray->matchVariableStartToEnd( $part );
 			if ( isset( $paramMap[$magicName] ) ) {
 				list( $type, $paramName ) = $paramMap[$magicName];
 				$params[$type][$paramName] = $value;
-				
+
 				// Special case; width and height come in one variable together
 				if( $type == 'handler' && $paramName == 'width' ) {
 					$m = array();
@@ -4684,7 +4684,7 @@ class Parser_OldPP
 		# I.... _hope_ this is right.
 		# Otherwise, sometimes we don't have things initialized properly.
 		$this->clearState();
-		
+
 		# strip NOWIKI etc. to avoid confusion (true-parameter causes HTML
 		# comments to be stripped as well)
 		$stripState = new StripState;
@@ -4867,8 +4867,8 @@ class Parser_OldPP
 	}
 
 	/**
-	 * Try to guess the section anchor name based on a wikitext fragment 
-	 * presumably extracted from a heading, for example "Header" from 
+	 * Try to guess the section anchor name based on a wikitext fragment
+	 * presumably extracted from a heading, for example "Header" from
 	 * "== Header ==".
 	 */
 	public function guessSectionNameFromWikiText( $text ) {
@@ -4891,14 +4891,14 @@ class Parser_OldPP
 
 	/**
 	 * Strips a text string of wikitext for use in a section anchor
-	 * 
+	 *
 	 * Accepts a text string and then removes all wikitext from the
 	 * string and leaves only the resultant text (i.e. the result of
 	 * [[User:WikiSysop|Sysop]] would be "Sysop" and the result of
 	 * [[User:WikiSysop]] would be "User:WikiSysop") - this is intended
 	 * to create valid section anchors by mimicing the output of the
 	 * parser when headings are parsed.
-	 * 
+	 *
 	 * @param $text string Text string to be stripped of wikitext
 	 * for use in a Section anchor
 	 * @return Filtered text string
@@ -4907,15 +4907,15 @@ class Parser_OldPP
 		# Strip internal link markup
 		$text = preg_replace('/\[\[:?([^[|]+)\|([^[]+)\]\]/','$2',$text);
 		$text = preg_replace('/\[\[:?([^[]+)\|?\]\]/','$1',$text);
-		
+
 		# Strip external link markup (FIXME: Not Tolerant to blank link text
 		# I.E. [http://www.mediawiki.org] will render as [1] or something depending
 		# on how many empty links there are on the page - need to figure that out.
 		$text = preg_replace('/\[(?:' . wfUrlProtocols() . ')([^ ]+?) ([^[]+)\]/','$2',$text);
-		
+
 		# Parse wikitext quotes (italics & bold)
 		$text = $this->doQuotes($text);
-		
+
 		# Strip HTML tags
 		$text = StringUtils::delimiterReplace( '<', '>', '', $text );
 		return $text;
@@ -4933,4 +4933,3 @@ class Parser_OldPP
 		return $text;
 	}
 }
-

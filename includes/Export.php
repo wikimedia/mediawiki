@@ -25,7 +25,7 @@
 class WikiExporter {
 	var $list_authors = false ; # Return distinct author list (when not returning full history)
 	var $author_list = "" ;
-	
+
 	var $dumpUploads = false;
 
 	const FULL = 0;
@@ -143,18 +143,18 @@ class WikiExporter {
 		$this->author_list = "<contributors>";
 		//rev_deleted
 		$nothidden = '(rev_deleted & '.Revision::DELETED_USER.') = 0';
-		
+
 		$sql = "SELECT DISTINCT rev_user_text,rev_user FROM {$page},{$revision} WHERE page_id=rev_page AND $nothidden AND " . $cond ;
 		$result = $this->db->query( $sql, $fname );
 		$resultset = $this->db->resultObject( $result );
 		while( $row = $resultset->fetchObject() ) {
-			$this->author_list .= "<contributor>" . 
-				"<username>" . 
-				htmlentities( $row->rev_user_text )  . 
-				"</username>" . 
-				"<id>" . 
+			$this->author_list .= "<contributor>" .
+				"<username>" .
+				htmlentities( $row->rev_user_text )  .
+				"</username>" .
+				"<id>" .
 				$row->rev_user .
-				"</id>" . 
+				"</id>" .
 				"</contributor>";
 		}
 		wfProfileOut( $fname );
@@ -463,12 +463,12 @@ class XmlDumpWriter {
 		wfProfileOut( $fname );
 		return $out;
 	}
-	
+
 	function writeTimestamp( $timestamp ) {
 		$ts = wfTimestamp( TS_ISO_8601, $timestamp );
 		return "      " . wfElement( 'timestamp', null, $ts ) . "\n";
 	}
-	
+
 	function writeContributor( $id, $text ) {
 		$out = "      <contributor>\n";
 		if( $id ) {
@@ -480,7 +480,7 @@ class XmlDumpWriter {
 		$out .= "      </contributor>\n";
 		return $out;
 	}
-	
+
 	/**
 	 * Warning! This data is potentially inconsistent. :(
 	 */
@@ -498,7 +498,7 @@ class XmlDumpWriter {
 		}
 		return '';
 	}
-	
+
 	function writeUpload( $file ) {
 		return "    <upload>\n" .
 			$this->writeTimestamp( $file->getTimestamp() ) .
@@ -815,5 +815,3 @@ function xmlsafe( $string ) {
 	wfProfileOut( $fname );
 	return $string;
 }
-
-

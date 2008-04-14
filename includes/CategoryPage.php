@@ -66,7 +66,7 @@ class CategoryPage extends Article {
 
 class CategoryViewer {
 	var $title, $limit, $from, $until,
-		$articles, $articles_start_char, 
+		$articles, $articles_start_char,
 		$children, $children_start_char,
 		$showGallery, $gallery,
 		$skin;
@@ -81,7 +81,7 @@ class CategoryViewer {
 		$this->limit = $wgCategoryPagingLimit;
 		$this->cat = Category::newFromName( $title->getDBKey() );
 	}
-	
+
 	/**
 	 * Format the category data list.
 	 *
@@ -140,7 +140,7 @@ class CategoryViewer {
 	function addSubcategory( $title, $sortkey, $pageLength ) {
 		global $wgContLang;
 		// Subcategory; strip the 'Category' namespace from the link text.
-		$this->children[] = $this->getSkin()->makeKnownLinkObj( 
+		$this->children[] = $this->getSkin()->makeKnownLinkObj(
 			$title, $wgContLang->convertHtml( $title->getText() ) );
 
 		$this->children_start_char[] = $this->getSubcategorySortChar( $title, $sortkey );
@@ -155,13 +155,13 @@ class CategoryViewer {
 	*/
 	function getSubcategorySortChar( $title, $sortkey ) {
 		global $wgContLang;
-		
+
 		if( $title->getPrefixedText() == $sortkey ) {
 			$firstChar = $wgContLang->firstChar( $title->getDBkey() );
 		} else {
 			$firstChar = $wgContLang->firstChar( $sortkey );
 		}
-		
+
 		return $wgContLang->convert( $firstChar );
 	}
 
@@ -223,7 +223,7 @@ class CategoryViewer {
 			#+ $pageCondition,
 			__METHOD__,
 			array( 'ORDER BY' => $this->flip ? 'cl_sortkey DESC' : 'cl_sortkey',
-			       'USE INDEX' => 'cl_sortkey', 
+			       'USE INDEX' => 'cl_sortkey',
 			       'LIMIT'    => $this->limit + 1 ) );
 
 		$count = 0;
@@ -502,6 +502,3 @@ class CategoryViewer {
 			$wgLang->formatNum( $totalcnt ) );
 	}
 }
-
-
-

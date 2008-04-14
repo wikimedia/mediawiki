@@ -11,7 +11,7 @@ class MWException extends Exception {
 	 * @return bool
 	 */
 	function useOutputPage() {
-		return !empty( $GLOBALS['wgFullyInitialised'] ) && 
+		return !empty( $GLOBALS['wgFullyInitialised'] ) &&
 			!empty( $GLOBALS['wgArticle'] ) && !empty( $GLOBALS['wgTitle'] );
 	}
 
@@ -33,7 +33,7 @@ class MWException extends Exception {
 	 */
 	function runHooks( $name, $args = array() ) {
 		global $wgExceptionHooks;
-		if( !isset( $wgExceptionHooks ) || !is_array( $wgExceptionHooks ) ) 
+		if( !isset( $wgExceptionHooks ) || !is_array( $wgExceptionHooks ) )
 			return;	// Just silently ignore
 		if( !array_key_exists( $name, $wgExceptionHooks ) || !is_array( $wgExceptionHooks[ $name ] ) )
 			return;
@@ -70,7 +70,7 @@ class MWException extends Exception {
 	}
 
 	/**
-	 * If $wgShowExceptionDetails is true, return a HTML message with a 
+	 * If $wgShowExceptionDetails is true, return a HTML message with a
 	 * backtrace to the error, otherwise show a message to ask to set it to true
 	 * to show that information.
 	 *
@@ -79,7 +79,7 @@ class MWException extends Exception {
 	function getHTML() {
 		global $wgShowExceptionDetails;
 		if( $wgShowExceptionDetails ) {
-			return '<p>' . htmlspecialchars( $this->getMessage() ) . 
+			return '<p>' . htmlspecialchars( $this->getMessage() ) .
 				'</p><p>Backtrace:</p><p>' . nl2br( htmlspecialchars( $this->getTraceAsString() ) ) .
 				"</p>\n";
 		} else {
@@ -90,7 +90,7 @@ class MWException extends Exception {
 	}
 
 	/**
-	 * If $wgShowExceptionDetails is true, return a text message with a 
+	 * If $wgShowExceptionDetails is true, return a text message with a
 	 * backtrace to the error.
 	 */
 	function getText() {
@@ -223,7 +223,7 @@ class FatalError extends MWException {
  */
 class ErrorPageError extends MWException {
 	public $title, $msg;
-	
+
 	/**
 	 * Note: these arguments are keys into wfMsg(), not text!
 	 */
@@ -299,5 +299,3 @@ function wfExceptionHandler( $e ) {
 	// Exit value should be nonzero for the benefit of shell jobs
 	exit( 1 );
 }
-
-

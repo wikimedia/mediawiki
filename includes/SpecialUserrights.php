@@ -29,9 +29,9 @@ class UserrightsPage extends SpecialPage {
 
 	public function userCanExecute( $user ) {
 		$available = $this->changeableGroups();
-		return !empty( $available['add'] ) 
+		return !empty( $available['add'] )
 			or !empty( $available['remove'] )
-			or ($this->isself and 
+			or ($this->isself and
 				(!empty( $available['add-self'] )
 				 or !empty( $available['remove-self'] )));
 	}
@@ -124,12 +124,12 @@ class UserrightsPage extends SpecialPage {
 		if( !$user ) {
 			return;
 		}
-		
+
 		$allgroups = User::getAllGroups();
 		$addgroup = array();
 		$removegroup = array();
-		
-		// This could possibly create a highly unlikely race condition if permissions are changed between 
+
+		// This could possibly create a highly unlikely race condition if permissions are changed between
 		//  when the form is loaded and when the form is saved. Ignoring it for the moment.
 		foreach ($allgroups as $group) {
 			// We'll tell it to remove all unchecked groups, and add all checked groups.
@@ -140,7 +140,7 @@ class UserrightsPage extends SpecialPage {
 				$removegroup[] = $group;
 			}
 		}
-		
+
 		// Validate input set...
 		$changeable = $this->changeableGroups();
 		if ($wgUser->getId() != 0 && $wgUser->getId() == $user->getId()) {
@@ -210,7 +210,7 @@ class UserrightsPage extends SpecialPage {
 		}
 
 		$groups = $user->getGroups();
-		
+
 		$this->showEditUserGroupsForm( $user, $groups );
 
 		// This isn't really ideal logging behavior, but let's not hide the
@@ -244,40 +244,40 @@ class UserrightsPage extends SpecialPage {
 				return null;
 			}
 		}
-		
+
 		if( $name == '' ) {
 			$wgOut->addWikiMsg( 'nouserspecified' );
 			return false;
 		}
-		
+
 		if( $name{0} == '#' ) {
 			// Numeric ID can be specified...
 			// We'll do a lookup for the name internally.
 			$id = intval( substr( $name, 1 ) );
-			
+
 			if( $database == '' ) {
 				$name = User::whoIs( $id );
 			} else {
 				$name = UserRightsProxy::whoIs( $database, $id );
 			}
-			
+
 			if( !$name ) {
 				$wgOut->addWikiMsg( 'noname' );
 				return null;
 			}
 		}
-		
+
 		if( $database == '' ) {
 			$user = User::newFromName( $name );
 		} else {
 			$user = UserRightsProxy::newFromName( $database, $name );
 		}
-		
+
 		if( !$user || $user->isAnon() ) {
 			$wgOut->addWikiMsg( 'nosuchusershort', $username );
 			return null;
 		}
-		
+
 		return $user;
 	}
 
@@ -301,7 +301,7 @@ class UserrightsPage extends SpecialPage {
 			Xml::closeElement( 'form' ) . "\n"
 		);
 	}
-	
+
 	/**
 	 * Go through used and available groups and return the ones that this
 	 * form will be able to manipulate based on the current user's system
@@ -313,14 +313,14 @@ class UserrightsPage extends SpecialPage {
 	protected function splitGroups( $groups ) {
 		global $wgGroupsAddToSelf, $wgGroupsRemoveFromSelf;
 		list($addable, $removable) = array_values( $this->changeableGroups() );
-		
+
 		$removable = array_intersect(
-				array_merge($this->isself ? $wgGroupsRemoveFromSelf : array(), $removable), 
+				array_merge($this->isself ? $wgGroupsRemoveFromSelf : array(), $removable),
 				$groups ); // Can't remove groups the user doesn't have
 		$addable   = array_diff(
 				array_merge($this->isself ? $wgGroupsAddToSelf : array(), $addable),
 				$groups ); // Can't add groups the user does have
-		
+
 		return array( $addable, $removable );
 	}
 
@@ -351,7 +351,7 @@ class UserrightsPage extends SpecialPage {
 			Xml::element( 'legend', array(), wfMsg( 'userrights-editusergroup' ) ) .
 			wfMsgExt( 'editinguser', array( 'parse' ), wfEscapeWikiText( $user->getName() ) ) .
 			$grouplist .
-			Xml::tags( 'p', null, $this->groupCheckboxes( $groups ) ) . 
+			Xml::tags( 'p', null, $this->groupCheckboxes( $groups ) ) .
 			Xml::openElement( 'table', array( 'border' => '0', 'id' => 'mw-userrights-table-outer' ) ) .
 				"<tr>
 					<td colspan='2'>" .
@@ -487,8 +487,8 @@ class UserrightsPage extends SpecialPage {
 		}
 
 		// Okay, it's not so simple, we will have to go through the arrays
-		$groups = array( 
-				'add' => array(), 
+		$groups = array(
+				'add' => array(),
 				'remove' => array(),
 				'add-self' => $wgGroupsAddToSelf,
 				'remove-self' => $wgGroupsRemoveFromSelf);
@@ -522,7 +522,7 @@ class UserrightsPage extends SpecialPage {
 		} elseif( is_array($wgAddGroups[$group]) ) {
 			$groups['add'] = $wgAddGroups[$group];
 		}
-		
+
 		// Same thing for remove
 		if( empty($wgRemoveGroups[$group]) ) {
 		} elseif($wgRemoveGroups[$group] === true ) {
@@ -532,7 +532,7 @@ class UserrightsPage extends SpecialPage {
 		}
 		return $groups;
 	}
-	
+
 	/**
 	 * Show a rights log fragment for the specified user
 	 *

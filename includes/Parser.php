@@ -9,7 +9,7 @@
 
 
 /**
- * PHP Parser - Processes wiki markup (which uses a more user-friendly 
+ * PHP Parser - Processes wiki markup (which uses a more user-friendly
  * syntax, such as "[[link]]" for making links), and provides a one-way
  * transformation of that wiki markup it into XHTML output / markup
  * (which in turn the browser understands, and can display).
@@ -139,7 +139,7 @@ class Parser
 		$this->mMarkerIndex = 0;
 		$this->mFirstCall = true;
 	}
-	
+
 	/**
 	 * Do various kinds of initialisation on the first call of the parser
 	 */
@@ -148,7 +148,7 @@ class Parser
 			return;
 		}
 		$this->mFirstCall = false;
-		
+
 		wfProfileIn( __METHOD__ );
 
 		$this->setHook( 'pre', array( $this, 'renderPreTag' ) );
@@ -197,7 +197,7 @@ class Parser
 		 * since it shouldn't match when butted up against identifier-like
 		 * string constructs.
 		 *
-		 * Must not consist of all title characters, or else it will change 
+		 * Must not consist of all title characters, or else it will change
 		 * the behaviour of <nowiki> in a link.
 		 */
 		#$this->mUniqPrefix = "\x07UNIQ" . Parser::getRandomString();
@@ -411,8 +411,8 @@ class Parser
 			global $wgExpensiveParserFunctionLimit;
 			$max = $this->mOptions->getMaxIncludeSize();
 			$PFreport = "Expensive parser function count: {$this->mExpensiveFunctionCount}/$wgExpensiveParserFunctionLimit\n";
-			$limitReport = 
-				"NewPP limit report\n" . 
+			$limitReport =
+				"NewPP limit report\n" .
 				"Preprocessor node count: {$this->mPPNodeCount}/{$this->mOptions->mMaxPPNodeCount}\n" .
 				"Post-expand include size: {$this->mIncludeSizes['post-expand']}/$max bytes\n" .
 				"Template argument size: {$this->mIncludeSizes['arg']}/$max bytes\n".
@@ -722,7 +722,7 @@ class Parser
 
 	/**
 	 * Use the HTML tidy PECL extension to use the tidy library in-process,
-	 * saving the overhead of spawning a new process. 
+	 * saving the overhead of spawning a new process.
 	 *
 	 * 'pear install tidy' should be able to compile the extension module.
 	 *
@@ -745,8 +745,8 @@ class Parser
 			$cleansource = tidy_get_output( $tidy );
 		}
 		if ( $wgDebugTidy && $tidy->getStatus() > 0 ) {
-			$cleansource .= "<!--\nTidy reports:\n" . 
-				str_replace( '-->', '--&gt;', $tidy->errorBuffer ) . 
+			$cleansource .= "<!--\nTidy reports:\n" .
+				str_replace( '-->', '--&gt;', $tidy->errorBuffer ) .
 				"\n-->";
 		}
 
@@ -796,7 +796,7 @@ class Parser
 			} else if ( count ( $td_history ) == 0 ) {
 				// Don't do any of the following
 				continue;
-			} else if ( substr ( $line , 0 , 2 ) == '|}' ) { 
+			} else if ( substr ( $line , 0 , 2 ) == '|}' ) {
 				// We are ending a table
 				$line = '</table>' . substr ( $line , 2 );
 				$last_tag = array_pop ( $last_tag_history );
@@ -2381,7 +2381,7 @@ class Parser
 			$oldtz = getenv( 'TZ' );
 			putenv( 'TZ='.$wgLocaltimezone );
 		}
-		
+
 		wfSuppressWarnings(); // E_STRICT system time bitching
 		$localTimestamp = date( 'YmdHis', $ts );
 		$localMonth = date( 'm', $ts );
@@ -2590,22 +2590,22 @@ class Parser
 
 	/**
 	 * Preprocess some wikitext and return the document tree.
-	 * This is the ghost of replace_variables(). 
+	 * This is the ghost of replace_variables().
 	 *
 	 * @param string $text The text to parse
 	 * @param integer flags Bitwise combination of:
-	 *          self::PTD_FOR_INCLUSION    Handle <noinclude>/<includeonly> as if the text is being 
-	 *                                     included. Default is to assume a direct page view. 
+	 *          self::PTD_FOR_INCLUSION    Handle <noinclude>/<includeonly> as if the text is being
+	 *                                     included. Default is to assume a direct page view.
 	 *
 	 * The generated DOM tree must depend only on the input text and the flags.
-	 * The DOM tree must be the same in OT_HTML and OT_WIKI mode, to avoid a regression of bug 4899. 
+	 * The DOM tree must be the same in OT_HTML and OT_WIKI mode, to avoid a regression of bug 4899.
 	 *
-	 * Any flag added to the $flags parameter here, or any other parameter liable to cause a 
-	 * change in the DOM tree for a given text, must be passed through the section identifier 
-	 * in the section edit link and thus back to extractSections(). 
+	 * Any flag added to the $flags parameter here, or any other parameter liable to cause a
+	 * change in the DOM tree for a given text, must be passed through the section identifier
+	 * in the section edit link and thus back to extractSections().
 	 *
-	 * The output of this function is currently only cached in process memory, but a persistent 
-	 * cache may be implemented at a later date which takes further advantage of these strict 
+	 * The output of this function is currently only cached in process memory, but a persistent
+	 * cache may be implemented at a later date which takes further advantage of these strict
 	 * dependency requirements.
 	 *
 	 * @private
@@ -2615,7 +2615,7 @@ class Parser
 		return $dom;
 	}
 
-	/* 
+	/*
 	 * Return a three-element array: leading whitespace, string contents, trailing whitespace
 	 */
 	public static function splitWhitespace( $s ) {
@@ -2721,8 +2721,8 @@ class Parser
 		# Title object, where $text came from
 		$title = NULL;
 
-		# $part1 is the bit before the first |, and must contain only title characters. 
-		# Various prefixes will be stripped from it later. 
+		# $part1 is the bit before the first |, and must contain only title characters.
+		# Various prefixes will be stripped from it later.
 		$titleWithSpaces = $frame->expand( $piece['title'] );
 		$part1 = trim( $titleWithSpaces );
 		$titleText = false;
@@ -2967,10 +2967,10 @@ class Parser
 		elseif ( is_string( $text ) && !$piece['lineStart'] && preg_match('/^(?:{\\||:|;|#|\*)/', $text)) /*}*/{
 			$text = "\n" . $text;
 		}
-		
+
 		if ( is_string( $text ) && !$this->incrementIncludeSize( 'post-expand', strlen( $text ) ) ) {
 			# Error, oversize inclusion
-			$text = "[[$originalTitle]]" . 
+			$text = "[[$originalTitle]]" .
 				$this->insertStripItem( '<!-- WARNING: template omitted, post-expand include size too large -->' );
 		}
 
@@ -2991,7 +2991,7 @@ class Parser
 	function getTemplateDom( $title ) {
 		$cacheTitle = $title;
 		$titleText = $title->getPrefixedDBkey();
-		
+
 		if ( isset( $this->mTplRedirCache[$titleText] ) ) {
 			list( $ns, $dbk ) = $this->mTplRedirCache[$titleText];
 			$title = Title::makeTitle( $ns, $dbk );
@@ -3013,7 +3013,7 @@ class Parser
 		$this->mTplDomCache[ $titleText ] = $dom;
 
 		if (! $title->equals($cacheTitle)) {
-			$this->mTplRedirCache[$cacheTitle->getPrefixedDBkey()] = 
+			$this->mTplRedirCache[$cacheTitle->getPrefixedDBkey()] =
 				array( $title->getNamespace(),$cdb = $title->getDBkey() );
 		}
 
@@ -3049,13 +3049,13 @@ class Parser
 		$text = $skip = false;
 		$finalTitle = $title;
 		$deps = array();
-		
+
 		// Loop to fetch the article, with up to 1 redirect
 		for ( $i = 0; $i < 2 && is_object( $title ); $i++ ) {
 			# Give extensions a chance to select the revision instead
 			$id = false; // Assume current
 			wfRunHooks( 'BeforeParserFetchTemplateAndtitle', array( false, &$title, &$skip, &$id ) );
-			
+
 			if( $skip ) {
 				$text = false;
 				$deps[] = array(
@@ -3067,9 +3067,9 @@ class Parser
 			$rev = $id ? Revision::newFromId( $id ) : Revision::newFromTitle( $title );
 			$rev_id = $rev ? $rev->getId() : 0;
 
-			$deps[] = array( 
-				'title' => $title, 
-				'page_id' => $title->getArticleID(), 
+			$deps[] = array(
+				'title' => $title,
+				'page_id' => $title->getArticleID(),
 				'rev_id' => $rev_id );
 
 			if( $rev ) {
@@ -3153,10 +3153,10 @@ class Parser
 		$argName = trim( $nameWithSpaces );
 		$object = false;
 		$text = $frame->getArgument( $argName );
-		if (  $text === false && $parts->getLength() > 0 
-		  && ( 
-		    $this->ot['html'] 
-		    || $this->ot['pre'] 
+		if (  $text === false && $parts->getLength() > 0
+		  && (
+		    $this->ot['html']
+		    || $this->ot['pre']
 		    || ( $this->ot['wiki'] && $frame->isTemplate() )
 		  )
 		) {
@@ -3204,7 +3204,7 @@ class Parser
 		$content = !isset( $params['inner'] ) ? null : $frame->expand( $params['inner'] );
 
 		$marker = "{$this->mUniqPrefix}-$name-" . sprintf('%08X', $this->mMarkerIndex++) . self::MARKER_SUFFIX;
-		
+
 		if ( $this->ot['html'] ) {
 			$name = strtolower( $name );
 
@@ -3542,7 +3542,7 @@ class Parser
 			# give headline the correct <h#> tag
 			if( $showEditLink && $sectionIndex !== false ) {
 				if( $isTemplate ) {
-					# Put a T flag in the section identifier, to indicate to extractSections() 
+					# Put a T flag in the section identifier, to indicate to extractSections()
 					# that sections inside <includeonly> should be counted.
 					$editlink = $sk->editSectionLinkForOther($titleText, "T-$sectionIndex");
 				} else {
@@ -3562,7 +3562,7 @@ class Parser
 		if( $numVisible < 1 ) {
 			$enoughToc = false;
 		}
-		
+
 		if( $enoughToc ) {
 			if( $prevtoclevel > 0 && $prevtoclevel < $wgMaxTocLevel ) {
 				$toc .= $sk->tocUnindent( $prevtoclevel - 1 );
@@ -3711,11 +3711,11 @@ class Parser
 	 */
 	function getUserSig( &$user ) {
 		global $wgMaxSigChars;
-		
+
 		$username = $user->getName();
 		$nickname = $user->getOption( 'nickname' );
 		$nickname = $nickname === '' ? $username : $nickname;
-		
+
 		if( mb_strlen( $nickname ) > $wgMaxSigChars ) {
 			$nickname = $username;
 			wfDebug( __METHOD__ . ": $username has overlong signature.\n" );
@@ -4300,7 +4300,7 @@ class Parser
 		if( isset( $params['heights'] ) ) {
 			$ig->setHeights( $params['heights'] );
 		}
-		
+
 		wfRunHooks( 'BeforeParserrenderImageGallery', array( &$this, &$ig ) );
 
 		$lines = explode( "\n", $text );
@@ -4347,9 +4347,9 @@ class Parser
 			// Initialise static lists
 			static $internalParamNames = array(
 				'horizAlign' => array( 'left', 'right', 'center', 'none' ),
-				'vertAlign' => array( 'baseline', 'sub', 'super', 'top', 'text-top', 'middle', 
+				'vertAlign' => array( 'baseline', 'sub', 'super', 'top', 'text-top', 'middle',
 					'bottom', 'text-bottom' ),
-				'frame' => array( 'thumbnail', 'manualthumb', 'framed', 'frameless', 
+				'frame' => array( 'thumbnail', 'manualthumb', 'framed', 'frameless',
 					'upright', 'border' ),
 			);
 			static $internalParamMap;
@@ -4402,7 +4402,7 @@ class Parser
 		#  * middle
 		#  * bottom
 		#  * text-bottom
-		
+
 		$parts = array_map( 'trim', explode( '|', $options) );
 		$sk = $this->mOptions->getSkin();
 
@@ -4422,7 +4422,7 @@ class Parser
 
 		# Process the input parameters
 		$caption = '';
-		$params = array( 'frame' => array(), 'handler' => array(), 
+		$params = array( 'frame' => array(), 'handler' => array(),
 			'horizAlign' => array(), 'vertAlign' => array() );
 		foreach( $parts as $part ) {
 			list( $magicName, $value ) = $mwArray->matchVariableStartToEnd( $part );
@@ -4565,13 +4565,13 @@ class Parser
 	 *   <flag1> - <flag2> - ... - <section number>
 	 *
 	 * Currently the only recognised flag is "T", which means the target section number
-	 * was derived during a template inclusion parse, in other words this is a template 
-	 * section edit link. If no flags are given, it was an ordinary section edit link. 
-	 * This flag is required to avoid a section numbering mismatch when a section is 
+	 * was derived during a template inclusion parse, in other words this is a template
+	 * section edit link. If no flags are given, it was an ordinary section edit link.
+	 * This flag is required to avoid a section numbering mismatch when a section is
 	 * enclosed by <includeonly> (bug 6563).
 	 *
-	 * The section number 0 pulls the text before the first heading; other numbers will 
-	 * pull the given section along with its lower-level subsections. If the section is 
+	 * The section number 0 pulls the text before the first heading; other numbers will
+	 * pull the given section along with its lower-level subsections. If the section is
 	 * not found, $mode=get will return $newtext, and $mode=replace will return $text.
 	 *
 	 * @param string $mode One of "get" or "replace"
@@ -4647,11 +4647,11 @@ class Parser
 			}
 			$node = $node->getNextSibling();
 		} while ( $node );
-		
+
 		// Write out the remainder (in replace mode only)
 		if ( $mode == 'replace' ) {
 			// Output the replacement text
-			// Add two newlines on -- trailing whitespace in $newText is conventionally 
+			// Add two newlines on -- trailing whitespace in $newText is conventionally
 			// stripped by the editor, so we need both newlines to restore the paragraph gap
 			$outText .= $newText . "\n\n";
 			while ( $node ) {
@@ -4745,8 +4745,8 @@ class Parser
 	}
 
 	/**
-	 * Try to guess the section anchor name based on a wikitext fragment 
-	 * presumably extracted from a heading, for example "Header" from 
+	 * Try to guess the section anchor name based on a wikitext fragment
+	 * presumably extracted from a heading, for example "Header" from
 	 * "== Header ==".
 	 */
 	public function guessSectionNameFromWikiText( $text ) {
@@ -4769,14 +4769,14 @@ class Parser
 
 	/**
 	 * Strips a text string of wikitext for use in a section anchor
-	 * 
+	 *
 	 * Accepts a text string and then removes all wikitext from the
 	 * string and leaves only the resultant text (i.e. the result of
 	 * [[User:WikiSysop|Sysop]] would be "Sysop" and the result of
 	 * [[User:WikiSysop]] would be "User:WikiSysop") - this is intended
 	 * to create valid section anchors by mimicing the output of the
 	 * parser when headings are parsed.
-	 * 
+	 *
 	 * @param $text string Text string to be stripped of wikitext
 	 * for use in a Section anchor
 	 * @return Filtered text string
@@ -4785,15 +4785,15 @@ class Parser
 		# Strip internal link markup
 		$text = preg_replace('/\[\[:?([^[|]+)\|([^[]+)\]\]/','$2',$text);
 		$text = preg_replace('/\[\[:?([^[]+)\|?\]\]/','$1',$text);
-		
+
 		# Strip external link markup (FIXME: Not Tolerant to blank link text
 		# I.E. [http://www.mediawiki.org] will render as [1] or something depending
 		# on how many empty links there are on the page - need to figure that out.
 		$text = preg_replace('/\[(?:' . wfUrlProtocols() . ')([^ ]+?) ([^[]+)\]/','$2',$text);
-		
+
 		# Parse wikitext quotes (italics & bold)
 		$text = $this->doQuotes($text);
-		
+
 		# Strip HTML tags
 		$text = StringUtils::delimiterReplace( '<', '>', '', $text );
 		return $text;
@@ -4911,7 +4911,7 @@ class StripState {
 class OnlyIncludeReplacer {
 	var $output = '';
 
-	function replace( $matches ) { 
+	function replace( $matches ) {
 		if ( substr( $matches[1], -1 ) == "\n" ) {
 			$this->output .= substr( $matches[1], 0, -1 );
 		} else {
@@ -4919,4 +4919,3 @@ class OnlyIncludeReplacer {
 		}
 	}
 }
-

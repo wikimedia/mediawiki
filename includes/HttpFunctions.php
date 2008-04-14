@@ -118,4 +118,3 @@ class Http {
 		return false;
 	}
 }
-

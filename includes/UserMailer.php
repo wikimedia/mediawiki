@@ -160,7 +160,7 @@ class UserMailer {
 			# In the following $headers = expression we removed "Reply-To: {$from}\r\n" , because it is treated differently
 			# (fifth parameter of the PHP mail function, see some lines below)
 
-			# Line endings need to be different on Unix and Windows due to 
+			# Line endings need to be different on Unix and Windows due to
 			# the bug described at http://trac.wordpress.org/ticket/2603
 			if ( wfIsWindows() ) {
 				$body = str_replace( "\n", "\r\n", $body );
@@ -263,7 +263,7 @@ class EmailNotification {
 	/**@}}*/
 
 	/**
-	 * Send emails corresponding to the user $editor editing the page $title. 
+	 * Send emails corresponding to the user $editor editing the page $title.
 	 * Also updates wl_notificationtimestamp.
 	 *
 	 * May be deferred via the job queue.
@@ -277,7 +277,7 @@ class EmailNotification {
 	 */
 	function notifyOnPageChange($editor, $title, $timestamp, $summary, $minorEdit, $oldid = false) {
 		global $wgEnotifUseJobQ;
-	
+
 		if( $title->getNamespace() < 0 )
 			return;
 
@@ -297,9 +297,9 @@ class EmailNotification {
 	}
 
 	/*
-	 * Immediate version of notifyOnPageChange(). 
+	 * Immediate version of notifyOnPageChange().
 	 *
-	 * Send emails corresponding to the user $editor editing the page $title. 
+	 * Send emails corresponding to the user $editor editing the page $title.
 	 * Also updates wl_notificationtimestamp.
 	 *
 	 * @param $editor User object
@@ -357,7 +357,7 @@ class EmailNotification {
 				// Send updates to watchers other than the current editor
 				$userCondition = 'wl_user <> ' . intval( $editor->getId() );
 				if ( $userTalkId !== false ) {
-					// Already sent an email to this person 
+					// Already sent an email to this person
 					$userCondition .= ' AND wl_user <> ' . intval( $userTalkId );
 				}
 				$dbr = wfGetDB( DB_SLAVE );
@@ -372,9 +372,9 @@ class EmailNotification {
 
 				foreach ( $res as $row ) {
 					$watchingUser = User::newFromId( $row->wl_user );
-					if ( $watchingUser->getOption( 'enotifwatchlistpages' ) && 
-						( !$minorEdit || $watchingUser->getOption('enotifminoredits') ) && 
-						$watchingUser->isEmailConfirmed() ) 
+					if ( $watchingUser->getOption( 'enotifwatchlistpages' ) &&
+						( !$minorEdit || $watchingUser->getOption('enotifminoredits') ) &&
+						$watchingUser->isEmailConfirmed() )
 					{
 						$this->compose( $watchingUser );
 					}
@@ -448,7 +448,7 @@ class EmailNotification {
 
 		if ($wgEnotifImpersonal && $this->oldid)
 			/*
-			 * For impersonal mail, show a diff link to the last 
+			 * For impersonal mail, show a diff link to the last
 			 * revision.
 			 */
 			$keys['$NEWPAGE'] = wfMsgForContent('enotif_lastdiff',
@@ -569,7 +569,7 @@ class EmailNotification {
 	}
 
 	/**
-	 * Same as sendPersonalised but does impersonal mail suitable for bulk 
+	 * Same as sendPersonalised but does impersonal mail suitable for bulk
 	 * mailing.  Takes an array of MailAddress objects.
 	 */
 	function sendImpersonal( $addresses ) {
@@ -584,7 +584,7 @@ class EmailNotification {
 				array(	wfMsgForContent('enotif_impersonal_salutation'),
 					$wgLang->timeanddate($this->timestamp, true, false, false)),
 				$this->body);
-		
+
 		return UserMailer::send($addresses, $this->from, $this->subject, $body, $this->replyto);
 	}
 
@@ -596,6 +596,7 @@ class EmailNotification {
 function wfRFC822Phrase( $s ) {
 	return UserMailer::rfc822Phrase( $s );
 }
+
 function userMailer( $to, $from, $subject, $body, $replyto=null ) {
 	return UserMailer::send( $to, $from, $subject, $body, $replyto );
 }

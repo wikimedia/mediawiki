@@ -61,7 +61,7 @@ class ShortPagesPage extends QueryPage {
 	function formatResult( $skin, $result ) {
 		global $wgLang, $wgContLang;
 		$dm = $wgContLang->getDirMark();
-		
+
 		$title = Title::makeTitleSafe( $result->namespace, $result->title );
 		if ( !$title ) {
 			return '<!-- Invalid title ' .  htmlspecialchars( "{$result->namespace}:{$result->title}" ). '-->';
@@ -71,7 +71,7 @@ class ShortPagesPage extends QueryPage {
 					? $skin->makeLinkObj( $title )
 					: $skin->makeKnownLinkObj( $title );
 		$size = wfMsgExt( 'nbytes', array( 'parsemag', 'escape' ), $wgLang->formatNum( htmlspecialchars( $result->value ) ) );
-		
+
 		return $title->exists()
 				? "({$hlink}) {$dm}{$plink} {$dm}[{$size}]"
 				: "<s>({$hlink}) {$dm}{$plink} {$dm}[{$size}]</s>";
@@ -88,5 +88,3 @@ function wfSpecialShortpages() {
 
 	return $spp->doQuery( $offset, $limit );
 }
-
-

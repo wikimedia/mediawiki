@@ -23,7 +23,7 @@
 
 
 /**
- * Some entry points may use this file without first enabling the 
+ * Some entry points may use this file without first enabling the
  * autoloader.
  */
 if ( !function_exists( '__autoload' ) ) {
@@ -45,18 +45,18 @@ class WebRequest {
 	var $data = array();
 	var $headers;
 	private $_response;
-	
+
 	function __construct() {
 		/// @fixme This preemptive de-quoting can interfere with other web libraries
 		///        and increases our memory footprint. It would be cleaner to do on
 		///        demand; but currently we have no wrapper for $_SERVER etc.
 		$this->checkMagicQuotes();
-		
+
 		// POST overrides GET data
 		// We don't use $_REQUEST here to avoid interference from cookies...
 		$this->data = wfArrayMerge( $_GET, $_POST );
 	}
-	
+
 	/**
 	 * Check for title, action, and/or variant data in the URL
 	 * and interpolate it into the GET variables.
@@ -80,7 +80,7 @@ class WebRequest {
 				$a = parse_url( $url );
 				if( $a ) {
 					$path = isset( $a['path'] ) ? $a['path'] : '';
-					
+
 					global $wgScript;
 					if( $path == $wgScript ) {
 						// Script inside a rewrite path?
@@ -89,17 +89,17 @@ class WebRequest {
 					}
 					// Raw PATH_INFO style
 					$matches = $this->extractTitle( $path, "$wgScript/$1" );
-					
+
 					global $wgArticlePath;
 					if( !$matches && $wgArticlePath ) {
 						$matches = $this->extractTitle( $path, $wgArticlePath );
 					}
-					
+
 					global $wgActionPaths;
 					if( !$matches && $wgActionPaths ) {
 						$matches = $this->extractTitle( $path, $wgActionPaths, 'action' );
 					}
-					
+
 					global $wgVariantArticlePath, $wgContLang;
 					if( !$matches && $wgVariantArticlePath ) {
 						$variantPaths = array();
@@ -115,7 +115,7 @@ class WebRequest {
 				// http://bugs.php.net/bug.php?id=31892
 				// Also reported when ini_get('cgi.fix_pathinfo')==false
 				$matches['title'] = substr( $_SERVER['ORIG_PATH_INFO'], 1 );
-				
+
 			} elseif ( isset( $_SERVER['PATH_INFO'] ) && ($_SERVER['PATH_INFO'] != '') ) {
 				// Regular old PATH_INFO yay
 				$matches['title'] = substr( $_SERVER['PATH_INFO'], 1 );
@@ -125,7 +125,7 @@ class WebRequest {
 			}
 		}
 	}
-	
+
 	/**
 	 * Internal URL rewriting function; tries to extract page title and,
 	 * optionally, one other fixed parameter value from a URL path.
@@ -236,8 +236,8 @@ class WebRequest {
 
 	/**
 	 * Fetch a scalar from the input or return $default if it's not set.
-	 * Returns a string. Arrays are discarded. Useful for 
-	 * non-freeform text inputs (e.g. predefined internal text keys 
+	 * Returns a string. Arrays are discarded. Useful for
+	 * non-freeform text inputs (e.g. predefined internal text keys
 	 * selected by a drop-down menu). For freeform input, see getText().
 	 *
 	 * @param string $name
@@ -273,7 +273,7 @@ class WebRequest {
 			return (array)$val;
 		}
 	}
-	
+
 	/**
 	 * Fetch an array of integers, or return $default if it's not set.
 	 * If source was scalar, will return an array with a single element.
@@ -349,7 +349,7 @@ class WebRequest {
 	 * set. \r is stripped from the text, and with some language modules there
 	 * is an input transliteration applied. This should generally be used for
 	 * form <textarea> and <input> fields. Used for user-supplied freeform text
-	 * input (for which input transformations may be required - e.g. Esperanto 
+	 * input (for which input transformations may be required - e.g. Esperanto
 	 * x-coding).
 	 *
 	 * @param string $name
@@ -578,7 +578,7 @@ class WebRequest {
 	 *
 	 * Other than this the name is not verified for being a safe filename.
 	 *
-	 * @param $key String: 
+	 * @param $key String:
 	 * @return string or NULL if no such file.
 	 */
 	function getFileName( $key ) {
@@ -594,16 +594,16 @@ class WebRequest {
 		wfDebug( "WebRequest::getFileName() '" . $_FILES[$key]['name'] . "' normalized to '$name'\n" );
 		return $name;
 	}
-	
+
 	/**
-	 * Return a handle to WebResponse style object, for setting cookies, 
+	 * Return a handle to WebResponse style object, for setting cookies,
 	 * headers and other stuff, for Request being worked on.
 	 */
 	function response() {
 		/* Lazy initialization of response object for this request */
 		if (!is_object($this->_response)) {
 			$this->_response = new WebResponse;
-		} 
+		}
 		return $this->_response;
 	}
 
@@ -688,5 +688,3 @@ class FauxRequest extends WebRequest {
 	}
 
 }
-
-

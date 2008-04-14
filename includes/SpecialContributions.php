@@ -16,14 +16,14 @@ class ContribsPager extends ReverseChronologicalPager {
 		}
 		$this->target = $target;
 		$this->namespace = $namespace;
-		
+
 		$year = intval($year);
 		$month = intval($month);
-		
+
 		$this->year = ($year > 0 && $year < 10000) ? $year : false;
 		$this->month = ($month > 0 && $month < 13) ? $month : false;
 		$this->getDateCond();
-		
+
 		$this->mDb = wfGetDB( DB_SLAVE, 'contributions' );
 	}
 
@@ -41,9 +41,9 @@ class ContribsPager extends ReverseChronologicalPager {
 
 		return array(
 			'tables' => array( 'page', 'revision' ),
-			'fields' => array( 
-				'page_namespace', 'page_title', 'page_is_new', 'page_latest', 'rev_id', 'rev_page', 
-				'rev_text_id', 'rev_timestamp', 'rev_comment', 'rev_minor_edit', 'rev_user', 
+			'fields' => array(
+				'page_namespace', 'page_title', 'page_is_new', 'page_latest', 'rev_id', 'rev_page',
+				'rev_text_id', 'rev_timestamp', 'rev_comment', 'rev_minor_edit', 'rev_user',
 				'rev_user_text', 'rev_parent_id', 'rev_deleted'
 			),
 			'conds' => $conds,
@@ -72,7 +72,7 @@ class ContribsPager extends ReverseChronologicalPager {
 			return array();
 		}
 	}
-	
+
 	function getDateCond() {
 		if ( $this->year || $this->month ) {
 			// Assume this year if only a month is given
@@ -86,7 +86,7 @@ class ContribsPager extends ReverseChronologicalPager {
 					$year_start--;
 				}
 			}
-			
+
 			if ( $this->month ) {
 				$month_end = str_pad($this->month + 1, 2, '0', STR_PAD_LEFT);
 				$year_end = $year_start;
@@ -157,7 +157,7 @@ class ContribsPager extends ReverseChronologicalPager {
 
 		$comment = $wgContLang->getDirMark() . $sk->revComment( $rev, false, true );
 		$d = $wgLang->timeanddate( wfTimestamp( TS_MW, $row->rev_timestamp ), true );
-		
+
 		if( $this->target == 'newbies' ) {
 			$userlink = ' . . ' . $sk->userLink( $row->rev_user, $row->rev_user_text );
 			$userlink .= ' (' . $sk->userTalkLink( $row->rev_user, $row->rev_user_text ) . ') ';
@@ -168,7 +168,7 @@ class ContribsPager extends ReverseChronologicalPager {
 		if( $rev->isDeleted( Revision::DELETED_TEXT ) ) {
 			$d = '<span class="history-deleted">' . $d . '</span>';
 		}
-		
+
 		if( $rev->getParentId() === 0 ) {
 			$nflag = '<span class="newpage">' . $this->messages['newpageletter'] . '</span>';
 		} else {
@@ -189,7 +189,7 @@ class ContribsPager extends ReverseChronologicalPager {
 		wfProfileOut( __METHOD__ );
 		return $ret;
 	}
-	
+
 	/**
 	 * Get the Database object in use
 	 *
@@ -198,7 +198,7 @@ class ContribsPager extends ReverseChronologicalPager {
 	public function getDatabase() {
 		return $this->mDb;
 	}
-	
+
 }
 
 /**
@@ -212,7 +212,7 @@ function wfSpecialContributions( $par = null ) {
 	global $wgUser, $wgOut, $wgLang, $wgRequest;
 
 	$options = array();
-	
+
 	if ( isset( $par ) && $par == 'newbies' ) {
 		$target = 'newbies';
 		$options['contribs'] = 'newbie';
@@ -249,7 +249,7 @@ function wfSpecialContributions( $par = null ) {
 	} else {
 		$wgOut->setSubtitle( wfMsgHtml( 'sp-contributions-newbies-sub') );
 	}
-	
+
 	if ( ( $ns = $wgRequest->getVal( 'namespace', null ) ) !== null && $ns !== '' ) {
 		$options['namespace'] = intval( $ns );
 	} else {
@@ -258,7 +258,7 @@ function wfSpecialContributions( $par = null ) {
 	if ( $wgUser->isAllowed( 'markbotedit' ) && $wgRequest->getBool( 'bot' ) ) {
 		$options['bot'] = '1';
 	}
-	
+
 	$skip = $wgRequest->getText( 'offset' ) || $wgRequest->getText( 'dir' ) == 'prev';
 	# Offset overrides year/month selection
 	if ( ( $month = $wgRequest->getIntOrNull( 'month' ) ) !== null && $month !== -1 ) {
@@ -298,15 +298,15 @@ function wfSpecialContributions( $par = null ) {
 	if( ( $lag = $pager->getDatabase()->getLag() ) > 0 )
 		$wgOut->showLagWarning( $lag );
 
-	$wgOut->addHTML( 
+	$wgOut->addHTML(
 		'<p>' . $pager->getNavigationBar() . '</p>' .
 		$pager->getBody() .
 		'<p>' . $pager->getNavigationBar() . '</p>' );
-	
+
 	# If there were contributions, and it was a valid user or IP, show
 	# the appropriate "footer" message - WHOIS tools, etc.
 	if( $target != 'newbies' ) {
-		$message = IP::isIPAddress( $target )      
+		$message = IP::isIPAddress( $target )
 			? 'sp-contributions-footer-anon'
 			: 'sp-contributions-footer';
 
@@ -387,7 +387,7 @@ function contributionsForm( $options ) {
 	if ( !isset( $options['contribs'] ) ) {
 		$options['contribs'] = 'user';
 	}
-	
+
 	if ( !isset( $options['year'] ) ) {
 		$options['year'] = '';
 	}
@@ -430,11 +430,11 @@ function contributionsForm( $options ) {
 		'</span>' .
 		Xml::submitButton( wfMsg( 'sp-contributions-submit' ) ) .
 		Xml::closeElement( 'p' );
-	
+
 	$explain = wfMsgExt( 'sp-contributions-explain', 'parseinline' );
 	if( !wfEmptyMsg( 'sp-contributions-explain', $explain ) )
 		$f .= "<p>{$explain}</p>";
-		
+
 	$f .= '</fieldset>' .
 		Xml::closeElement( 'form' );
 	return $f;

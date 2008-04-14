@@ -4,7 +4,7 @@
  * A multi-wiki, multi-master factory for Wikimedia and similar installations.
  * Ignores the old configuration globals
  *
- * Configuration: 
+ * Configuration:
  *     sectionsByDB                A map of database names to section names
  *
  *     sectionLoads                A 2-d map. For each section, gives a map of server names to load ratios.
@@ -24,7 +24,7 @@
  *
  *     externalTemplateOverrides   A set of server info keys overriding serverTemplate for external storage
  *
- *     templateOverridesByServer   A 2-d map overriding serverTemplate and externalTemplateOverrides on a 
+ *     templateOverridesByServer   A 2-d map overriding serverTemplate and externalTemplateOverrides on a
  *                                 server-by-server basis. Applies to both core and external storage.
  *
  *     templateOverridesByCluster  A 2-d map overriding the server info by external storage cluster
@@ -47,7 +47,7 @@ class LBFactory_Multi extends LBFactory {
 		$this->chronProt = new ChronologyProtector;
 		$this->conf = $conf;
 		$required = array( 'sectionsByDB', 'sectionLoads', 'serverTemplate' );
-		$optional = array( 'groupLoadsBySection', 'groupLoadsByDB', 'hostsByName', 
+		$optional = array( 'groupLoadsBySection', 'groupLoadsByDB', 'hostsByName',
 			'externalLoads', 'externalTemplateOverrides', 'templateOverridesByServer',
 			'templateOverridesByCluster', 'masterTemplateOverrides' );
 
@@ -94,7 +94,7 @@ class LBFactory_Multi extends LBFactory {
 			if ( isset( $this->groupLoadsBySection[$section] ) ) {
 				$groupLoads = array_merge_recursive( $groupLoads, $this->groupLoadsBySection[$section] );
 			}
-			$this->mainLBs[$section] = $this->newLoadBalancer( $this->serverTemplate, 
+			$this->mainLBs[$section] = $this->newLoadBalancer( $this->serverTemplate,
 				$this->sectionLoads[$section], $groupLoads, "main-$section" );
 			$this->chronProt->initLB( $this->mainLBs[$section] );
 		}
@@ -113,7 +113,7 @@ class LBFactory_Multi extends LBFactory {
 			if ( isset( $this->templateOverridesByCluster[$cluster] ) ) {
 				$template = $this->templateOverridesByCluster[$cluster] + $template;
 			}
-			$this->extLBs[$cluster] = $this->newLoadBalancer( $template, 
+			$this->extLBs[$cluster] = $this->newLoadBalancer( $template,
 				$this->externalLoads[$cluster], array(), "ext-$cluster" );
 		}
 		return $this->extLBs[$cluster];
@@ -216,4 +216,3 @@ class LBFactory_Multi extends LBFactory {
 		$this->commitMasterChanges();
 	}
 }
-

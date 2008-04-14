@@ -31,7 +31,7 @@ if (!defined('MEDIAWIKI')) {
 /**
  * This is a base class for all Query modules.
  * It provides some common functionality such as constructing various SQL queries.
- * 
+ *
  * @addtogroup API
  */
 abstract class ApiQueryBase extends ApiBase {
@@ -110,7 +110,7 @@ abstract class ApiQueryBase extends ApiBase {
 
 		if (!is_null($end))
 			$this->addWhere($field . $before . $db->addQuotes($end));
-		
+
 		$order = $field . ($isDirNewer ? '' : ' DESC');
 		if (!isset($this->options['ORDER BY']))
 			$this->addOption('ORDER BY', $order);
@@ -142,7 +142,7 @@ abstract class ApiQueryBase extends ApiBase {
 		$this->profileDBIn();
 		$rowcount = $db->estimateRowCount($this->tables, $this->fields, $this->where, __METHOD__, $this->options);
 		$this->profileDBOut();
-		
+
 		global $wgAPIMaxDBRows;
 		if($rowcount > $wgAPIMaxDBRows)
 			return false;
@@ -153,7 +153,7 @@ abstract class ApiQueryBase extends ApiBase {
 		$arr[$prefix . 'ns'] = intval($title->getNamespace());
 		$arr[$prefix . 'title'] = $title->getPrefixedText();
 	}
-	
+
 	/**
 	 * Override this method to request extra fields from the pageSet
 	 * using $pageSet->requestField('fieldName')
@@ -169,7 +169,7 @@ abstract class ApiQueryBase extends ApiBase {
 	}
 
 	/**
-	 * Add sub-element under the page element with the given pageId. 
+	 * Add sub-element under the page element with the given pageId.
 	 */
 	protected function addPageSubItems($pageId, $data) {
 		$result = $this->getResult();
@@ -180,13 +180,13 @@ abstract class ApiQueryBase extends ApiBase {
 	}
 
 	protected function setContinueEnumParameter($paramName, $paramValue) {
-		
+
 		$paramName = $this->encodeParamName($paramName);
 		$msg = array( $paramName => $paramValue );
 
 //		This is an alternative continue format as a part of the URL string
 //		ApiResult :: setContent($msg, $paramName . '=' . urlencode($paramValue));
-		
+
 		$this->getResult()->addValue('query-continue', $this->getModuleName(), $msg);
 	}
 
@@ -201,12 +201,12 @@ abstract class ApiQueryBase extends ApiBase {
 
 	/**
 	 * Selects the query database connection with the given name.
-	 * If no such connection has been requested before, it will be created. 
-	 * Subsequent calls with the same $name will return the same connection 
-	 * as the first, regardless of $db or $groups new values. 
+	 * If no such connection has been requested before, it will be created.
+	 * Subsequent calls with the same $name will return the same connection
+	 * as the first, regardless of $db or $groups new values.
 	 */
 	public function selectNamedDB($name, $db, $groups) {
-		$this->mDb = $this->getQuery()->getNamedDB($name, $db, $groups);	
+		$this->mDb = $this->getQuery()->getNamedDB($name, $db, $groups);
 	}
 
 	/**
@@ -244,7 +244,7 @@ abstract class ApiQueryBase extends ApiBase {
 		}
 		return false;
 	}
-	
+
 	public static function getBaseVersion() {
 		return __CLASS__ . ': $Id$';
 	}
@@ -282,4 +282,3 @@ abstract class ApiQueryGeneratorBase extends ApiQueryBase {
 	 */
 	public abstract function executeGenerator($resultPageSet);
 }
-

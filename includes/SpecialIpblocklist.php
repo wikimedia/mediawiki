@@ -9,7 +9,7 @@
  */
 function wfSpecialIpblocklist() {
 	global $wgUser, $wgOut, $wgRequest;
-	
+
 	$ip = $wgRequest->getVal( 'wpUnblockAddress', $wgRequest->getVal( 'ip' ) );
 	$id = $wgRequest->getVal( 'id' );
 	$reason = $wgRequest->getText( 'wpUnblockReason' );
@@ -126,7 +126,7 @@ class IPUnblockForm {
 			</tr>
 			<tr>
 				<td align='$alignRight'>" .
-					Xml::label( wfMsg( 'ipbreason' ), 'wpUnblockReason' ) . 
+					Xml::label( wfMsg( 'ipbreason' ), 'wpUnblockReason' ) .
 				"</td>
 				<td>" .
 					Xml::input( 'wpUnblockReason', 40, $this->reason, array( 'type' => 'text', 'tabindex' => '2' ) ) .
@@ -179,7 +179,7 @@ class IPUnblockForm {
 				$ip = $block->getRedactedName();
 			} else {
 				$block = Block::newFromDB( $ip );
-				if ( !$block ) { 
+				if ( !$block ) {
 					return array('ipb_cant_unblock', htmlspecialchars($id));
 				}
 				if( $block->mRangeStart != $block->mRangeEnd
@@ -324,7 +324,7 @@ class IPUnblockForm {
 			$target = $sk->userLink( $block->mUser, $block->mAddress )
 				. $sk->userToolLinks( $block->mUser, $block->mAddress, false, Linker::TOOL_LINKS_NOBLOCK );
 		}
-		
+
 		$formattedTime = $wgLang->timeanddate( $block->mTimestamp, true );
 
 		$properties = array();
@@ -357,13 +357,13 @@ class IPUnblockForm {
 			$titleObj = SpecialPage::getTitleFor( "Ipblocklist" );
 			$unblocklink = ' (' . $sk->makeKnownLinkObj($titleObj, $msg['unblocklink'], 'action=unblock&id=' . urlencode( $block->mId ) ) . ')';
 		}
-		
+
 		$comment = $sk->commentBlock( $block->mReason );
-		
-		$s = "{$line} $comment";	
+
+		$s = "{$line} $comment";
 		if ( $block->mHideName )
 			$s = '<span class="history-deleted">' . $s . '</span>';
-				
+
 		wfProfileOut( __METHOD__ );
 		return "<li>$s $unblocklink</li>\n";
 	}
@@ -410,7 +410,7 @@ class IPBlocklistPager extends ReverseChronologicalPager {
 		wfProfileOut( __METHOD__ );
 		return '';
 	}
-	
+
 	function formatRow( $row ) {
 		$block = new Block;
 		$block->initFromRow( $row );
@@ -431,5 +431,3 @@ class IPBlocklistPager extends ReverseChronologicalPager {
 		return 'ipb_timestamp';
 	}
 }
-
-

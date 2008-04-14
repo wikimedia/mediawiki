@@ -1,7 +1,7 @@
 <?php
 
 /**
- * This class stores an arbitrary value along with its dependencies. 
+ * This class stores an arbitrary value along with its dependencies.
  * Users should typically only use DependencyWrapper::getFromCache(), rather
  * than instantiating one of these objects directly.
  * @addtogroup Cache
@@ -24,7 +24,7 @@ class DependencyWrapper {
 		$this->deps = $deps;
 	}
 
-	/** 
+	/**
 	 * Returns true if any of the dependencies have expired
 	 */
 	function isExpired() {
@@ -62,24 +62,24 @@ class DependencyWrapper {
 	}
 
 	/**
-	 * Attempt to get a value from the cache. If the value is expired or missing, 
+	 * Attempt to get a value from the cache. If the value is expired or missing,
 	 * it will be generated with the callback function (if present), and the newly
-	 * calculated value will be stored to the cache in a wrapper. 
+	 * calculated value will be stored to the cache in a wrapper.
 	 *
 	 * @param object $cache A cache object such as $wgMemc
 	 * @param string $key The cache key
 	 * @param integer $expiry The expiry timestamp or interval in seconds
 	 * @param mixed $callback The callback for generating the value, or false
 	 * @param array $callbackParams The function parameters for the callback
-	 * @param array $deps The dependencies to store on a cache miss. Note: these 
+	 * @param array $deps The dependencies to store on a cache miss. Note: these
 	 *    are not the dependencies used on a cache hit! Cache hits use the stored
 	 *    dependency array.
 	 *
 	 * @return mixed The value, or null if it was not present in the cache and no
 	 *    callback was defined.
 	 */
-	static function getValueFromCache( $cache, $key, $expiry = 0, $callback = false, 
-		$callbackParams = array(), $deps = array() ) 
+	static function getValueFromCache( $cache, $key, $expiry = 0, $callback = false,
+		$callbackParams = array(), $deps = array() )
 	{
 		$obj = $cache->get( $key );
 		if ( is_object( $obj ) && $obj instanceof DependencyWrapper && !$obj->isExpired() ) {
@@ -122,11 +122,11 @@ class FileDependency extends CacheDependency {
 	 *
 	 * @param string $filename The name of the file, preferably fully qualified
 	 * @param mixed $timestamp The unix last modified timestamp, or false if the
-	 *        file does not exist. If omitted, the timestamp will be loaded from 
+	 *        file does not exist. If omitted, the timestamp will be loaded from
 	 *        the file.
 	 *
-	 * A dependency on a nonexistent file will be triggered when the file is 
-	 * created. A dependency on an existing file will be triggered when the 
+	 * A dependency on a nonexistent file will be triggered when the file is
+	 * created. A dependency on an existing file will be triggered when the
 	 * file is changed.
 	 */
 	function __construct( $filename, $timestamp = null ) {
@@ -191,7 +191,7 @@ class TitleDependency extends CacheDependency {
 	function loadDependencyValues() {
 		$this->touched = $this->getTitle()->getTouched();
 	}
-	
+
 	/**
 	 * Get rid of bulky Title object for sleep
 	 */
@@ -202,7 +202,7 @@ class TitleDependency extends CacheDependency {
 	function getTitle() {
 		if ( !isset( $this->titleObj ) ) {
 			$this->titleObj = Title::makeTitle( $this->ns, $this->dbk );
-		} 
+		}
 		return $this->titleObj;
 	}
 
@@ -235,7 +235,7 @@ class TitleDependency extends CacheDependency {
 class TitleListDependency extends CacheDependency {
 	var $linkBatch;
 	var $timestamps;
-	
+
 	/**
 	 * Construct a dependency on a list of titles
 	 */
@@ -259,7 +259,7 @@ class TitleListDependency extends CacheDependency {
 		if ( count( $timestamps ) ) {
 			$dbr = wfGetDB( DB_SLAVE );
 			$where = $this->getLinkBatch()->constructSet( 'page', $dbr );
-			$res = $dbr->select( 'page', 
+			$res = $dbr->select( 'page',
 				array( 'page_namespace', 'page_title', 'page_touched' ),
 				$where, __METHOD__ );
 			while ( $row = $dbr->fetchObject( $res ) ) {
@@ -317,7 +317,7 @@ class TitleListDependency extends CacheDependency {
  */
 class GlobalDependency extends CacheDependency {
 	var $name, $value;
-	
+
 	function __construct( $name ) {
 		$this->name = $name;
 		$this->value = $GLOBALS[$name];
@@ -343,5 +343,3 @@ class ConstantDependency extends CacheDependency {
 		return constant( $this->name ) != $this->value;
 	}
 }
-
-

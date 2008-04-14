@@ -153,5 +153,3 @@ class HTMLFileCache {
 	}
 
 }
-
-

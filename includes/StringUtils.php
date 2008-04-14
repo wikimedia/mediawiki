@@ -4,14 +4,14 @@
  */
 class StringUtils {
 	/**
-	 * Perform an operation equivalent to 
+	 * Perform an operation equivalent to
 	 *
 	 *     preg_replace( "!$startDelim(.*?)$endDelim!", $replace, $subject );
 	 *
 	 * except that it's worst-case O(N) instead of O(N^2)
 	 *
 	 * Compared to delimiterReplace(), this implementation is fast but memory-
-	 * hungry and inflexible. The memory requirements are such that I don't 
+	 * hungry and inflexible. The memory requirements are such that I don't
 	 * recommend using it on anything but guaranteed small chunks of text.
 	 */
 	static function hungryDelimiterReplace( $startDelim, $endDelim, $replace, $subject ) {
@@ -27,9 +27,9 @@ class StringUtils {
 		}
 		return $output;
 	}
-	
+
 	/**
-	 * Perform an operation equivalent to 
+	 * Perform an operation equivalent to
 	 *
 	 *   preg_replace_callback( "!$startDelim(.*)$endDelim!s$flags", $callback, $subject )
 	 *
@@ -40,9 +40,9 @@ class StringUtils {
 	 */
 	# If the start delimiter ends with an initial substring of the end delimiter,
 	# e.g. in the case of C-style comments, the behaviour differs from the model
-	# regex. In this implementation, the end must share no characters with the 
-	# start, so e.g. /*/ is not considered to be both the start and end of a 
-	# comment. /*/xy/*/ is considered to be a single comment with contents /xy/. 
+	# regex. In this implementation, the end must share no characters with the
+	# start, so e.g. /*/ is not considered to be both the start and end of a
+	# comment. /*/xy/*/ is considered to be a single comment with contents /xy/.
 	static function delimiterReplaceCallback( $startDelim, $endDelim, $callback, $subject, $flags = '' ) {
 		$inputPos = 0;
 		$outputPos = 0;
@@ -53,13 +53,13 @@ class StringUtils {
 		$strcmp = strpos( $flags, 'i' ) === false ? 'strcmp' : 'strcasecmp';
 		$endLength = strlen( $endDelim );
 		$m = array();
-		
-		while ( $inputPos < strlen( $subject ) && 
-		  preg_match( "!($encStart)|($encEnd)!S$flags", $subject, $m, PREG_OFFSET_CAPTURE, $inputPos ) ) 
+
+		while ( $inputPos < strlen( $subject ) &&
+		  preg_match( "!($encStart)|($encEnd)!S$flags", $subject, $m, PREG_OFFSET_CAPTURE, $inputPos ) )
 		{
 			$tokenOffset = $m[0][1];
 			if ( $m[1][0] != '' ) {
-				if ( $foundStart && 
+				if ( $foundStart &&
 				  $strcmp( $endDelim, substr( $subject, $tokenOffset, $endLength ) ) == 0 )
 				{
 					# An end match is present at the same location
@@ -112,13 +112,13 @@ class StringUtils {
 	}
 
 	/*
-	 * Perform an operation equivalent to 
+	 * Perform an operation equivalent to
 	 *
 	 *   preg_replace( "!$startDelim(.*)$endDelim!$flags", $replace, $subject )
 	 *
 	 * @param string $startDelim Start delimiter regular expression
 	 * @param string $endDelim End delimiter regular expression
-	 * @param string $replace Replacement string. May contain $1, which will be 
+	 * @param string $replace Replacement string. May contain $1, which will be
 	 *               replaced by the text between the delimiters
 	 * @param string $subject String to search
 	 * @return string The string with the matches replaced
@@ -138,10 +138,10 @@ class StringUtils {
 	 */
 	static function explodeMarkup( $separator, $text ) {
 		$placeholder = "\x00";
-		
+
 		// Remove placeholder instances
 		$text = str_replace( $placeholder, '', $text );
-		
+
 		// Replace instances of the separator inside HTML-like tags with the placeholder
 		$replacer = new DoubleReplacer( $separator, $placeholder );
 		$cleaned = StringUtils::delimiterReplaceCallback( '<', '>', $replacer->cb(), $text );
@@ -151,7 +151,7 @@ class StringUtils {
 		foreach( $items as $i => $str ) {
 			$items[$i] = str_replace( $placeholder, $separator, $str );
 		}
-		
+
 		return $items;
 	}
 
@@ -170,7 +170,7 @@ class StringUtils {
 }
 
 /**
- * Base class for "replacers", objects used in preg_replace_callback() and 
+ * Base class for "replacers", objects used in preg_replace_callback() and
  * StringUtils::delimiterReplaceCallback()
  */
 class Replacer {
@@ -207,7 +207,7 @@ class DoubleReplacer extends Replacer {
 		$this->to = $to;
 		$this->index = $index;
 	}
-	
+
 	function replace( $matches ) {
 		return str_replace( $this->from, $this->to, $matches[$this->index] );
 	}
@@ -299,5 +299,3 @@ class ReplacementArray {
 		return $result;
 	}
 }
-
-

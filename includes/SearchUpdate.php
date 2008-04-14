@@ -95,11 +95,11 @@ class SearchUpdate {
 		wfProfileOut( "$fname-regexps" );
 
 		wfRunHooks( 'SearchUpdate', array( $this->mId, $this->mNamespace, $this->mTitle, &$text ) );
-		
+
 		# Perform the actual update
 		$search->update($this->mId, Title::indexTitle( $this->mNamespace, $this->mTitle ),
 				$text);
-		
+
 		wfProfileOut( $fname );
 	}
 }
@@ -111,5 +111,3 @@ class SearchUpdate {
 class SearchUpdateMyISAM extends SearchUpdate {
 	# Inherits everything
 }
-
-

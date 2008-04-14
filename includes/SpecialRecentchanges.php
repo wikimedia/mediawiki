@@ -52,7 +52,7 @@ function wfSpecialRecentchanges( $par, $specialPage ) {
 
 	/* order of selection: url > preferences > default */
 	$hideminor = $wgRequest->getBool( 'hideminor', $wgUser->getOption( 'hideminor') ? true : $defaults['hideminor'] );
-	
+
 	# As a feed, use limited settings only
 	if( $feedFormat ) {
 		global $wgFeedLimit;
@@ -87,7 +87,7 @@ function wfSpecialRecentchanges( $par, $specialPage ) {
 				if ( is_numeric( $bit ) ) {
 					$limit = $bit;
 				}
-				
+
 				$m = array();
 				if ( preg_match( '/^limit=(\d+)$/', $bit, $m ) ) {
 					$limit = $m[1];
@@ -226,9 +226,9 @@ function wfSpecialRecentchanges( $par, $specialPage ) {
 
 		// And now for the content
 		$wgOut->setSyndicated( true );
-		
+
 		$list = ChangesList::newFromUser( $wgUser );
-		
+
 		if ( $wgAllowCategorizedRecentChanges ) {
 			$categories = trim ( $wgRequest->getVal ( 'categories' , "" ) ) ;
 			$categories = str_replace ( "|" , "\n" , $categories ) ;
@@ -287,7 +287,7 @@ function rcFilterByCategories ( &$rows , $categories , $any ) {
 	if( empty( $categories ) ) {
 		return;
 	}
-	
+
 	# Filter categories
 	$cats = array () ;
 	foreach ( $categories AS $cat ) {
@@ -295,7 +295,7 @@ function rcFilterByCategories ( &$rows , $categories , $any ) {
 		if ( $cat == "" ) continue ;
 		$cats[] = $cat ;
 	}
-	
+
 	# Filter articles
 	$articles = array () ;
 	$a2r = array () ;
@@ -311,16 +311,16 @@ function rcFilterByCategories ( &$rows , $categories , $any ) {
 		}
 		$a2r[$id][] = $k ;
 	}
-	
+
 	# Shortcut?
 	if ( count ( $articles ) == 0 OR count ( $cats ) == 0 )
 		return ;
-	
+
 	# Look up
 	$c = new Categoryfinder ;
 	$c->seed ( $articles , $cats , $any ? "OR" : "AND" ) ;
 	$match = $c->run () ;
-	
+
 	# Filter
 	$newrows = array () ;
 	foreach ( $match AS $id ) {
@@ -336,7 +336,7 @@ function rcOutputFeed( $rows, $feedFormat, $limit, $hideminor, $lastmod ) {
 	global $messageMemc, $wgFeedCacheTimeout;
 	global $wgFeedClasses, $wgTitle, $wgSitename, $wgContLanguageCode;
 	global $wgFeed;
-	
+
 	if ( !$wgFeed ) {
 		global $wgOut;
 		$wgOut->addWikiMsg( 'feed-unavailable' );
@@ -489,13 +489,13 @@ function rcDayLimitLinks( $days, $limit, $page='Recentchanges', $more='', $doall
 	  rcDaysLink( $limit, 14, $page, $more  ) . ' | ' .
 	  rcDaysLink( $limit, 30, $page, $more  ) .
 	  ( $doall ? ( ' | ' . rcDaysLink( $limit, 0, $page, $more ) ) : '' );
-	
+
 	$linkParts = array( 'minorLink' => 'minor', 'botLink' => 'bots', 'liuLink' => 'liu', 'patrLink' => 'patr', 'myselfLink' => 'mine' );
 	foreach( $linkParts as $linkVar => $linkMsg ) {
 		if( $$linkVar != '' )
 			$links[] = wfMsgHtml( 'rcshowhide' . $linkMsg, $$linkVar );
 	}
-	
+
 	$shm = implode( ' | ', $links );
 	$note = wfMsg( 'rclinks', $cl, $dl, $shm );
 	return $note;
@@ -566,7 +566,7 @@ function rcOptionsPanel( $defaults, $nondefaults ) {
 		array( 'hidepatrolled' => 1-$options['hidepatrolled'] ), $nondefaults);
 	$myselfLink = makeOptionsLink( $showhide[1-$options['hidemyself']],
 		array( 'hidemyself' => 1-$options['hidemyself'] ), $nondefaults);
-		
+
 	$links[] = wfMsgHtml( 'rcshowhideminor', $minorLink );
 	$links[] = wfMsgHtml( 'rcshowhidebots', $botLink );
 	$links[] = wfMsgHtml( 'rcshowhideanons', $anonsLink );
@@ -575,7 +575,7 @@ function rcOptionsPanel( $defaults, $nondefaults ) {
 		$links[] = wfMsgHtml( 'rcshowhidepatr', $patrLink );
 	$links[] = wfMsgHtml( 'rcshowhidemine', $myselfLink );
 	$hl = implode( ' | ', $links );
-		
+
 	// show from this onward link
 	$now = $wgLang->timeanddate( wfTimestampNow(), true );
 	$tl =  makeOptionsLink( $now, array( 'from' => wfTimestampNow()), $nondefaults );
@@ -607,7 +607,7 @@ function rcNamespaceForm( $namespace, $invert, $nondefaults, $categories_any ) {
 	$namespaceselect = HTMLnamespaceselector($namespace, '');
 	$submitbutton = '<input type="submit" value="' . wfMsgHtml( 'allpagessubmit' ) . "\" />\n";
 	$invertbox = "<input type='checkbox' name='invert' value='1' id='nsinvert'" . ( $invert ? ' checked="checked"' : '' ) . ' />';
-	
+
 	if ( $wgAllowCategorizedRecentChanges ) {
 		$categories = trim ( $wgRequest->getVal ( 'categories' , "" ) ) ;
 		$cb_arr = array( 'type' => 'checkbox', 'name' => 'categories_any', 'value' => "1" ) ;
@@ -621,7 +621,7 @@ function rcNamespaceForm( $namespace, $invert, $nondefaults, $categories_any ) {
 	} else {
 		$catbox = "" ;
 	}
-	
+
 	$out = "<div class='namespacesettings'><form method='get' action='{$wgScript}'>\n";
 
 	foreach ( $nondefaults as $key => $value ) {
@@ -652,7 +652,7 @@ function rcFormatDiff( $row ) {
 		if( $row->rc_deleted & LogPage::DELETED_ACTION ) {
 			$actiontext = wfMsgHtml('rev-deleted-event');
 		} else {
-			$actiontext = LogPage::actionText( $row->rc_log_type, $row->rc_log_action, 
+			$actiontext = LogPage::actionText( $row->rc_log_type, $row->rc_log_action,
 				$titleObj, $wgUser->getSkin(), LogPage::extractParams($row->rc_params,true,true) );
 		}
 	}
@@ -693,7 +693,7 @@ function rcFormatDiffRow( $title, $oldid, $newid, $timestamp, $comment, $actiont
 				wfMsg( 'previousrevision' ), // hack
 				wfMsg( 'revisionasof',
 					$wgContLang->timeanddate( $timestamp ) ) );
-				
+
 
 			if ( strlen( $diffText ) > $wgFeedDiffCutoff ) {
 				// Omit large diffs
@@ -750,13 +750,11 @@ function rcApplyDiffStyle( $text ) {
 		'diff-context'     => 'background: #eee; color:black; font-size: smaller;',
 		'diffchange'       => 'color: red; font-weight: bold; text-decoration: none;',
 	);
-	
+
 	foreach( $styles as $class => $style ) {
 		$text = preg_replace( "/(<[^>]+)class=(['\"])$class\\2([^>]*>)/",
 			"\\1style=\"$style\"\\3", $text );
 	}
-	
+
 	return $text;
 }
-
-

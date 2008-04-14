@@ -37,8 +37,8 @@ abstract class Job {
 	 */
 
 	/**
-	 * Pop a job of a certain type.  This tries less hard than pop() to 
-	 * actually find a job; it may be adversely affected by concurrent job 
+	 * Pop a job of a certain type.  This tries less hard than pop() to
+	 * actually find a job; it may be adversely affected by concurrent job
 	 * runners.
 	 */
 	static function pop_type($type) {
@@ -87,11 +87,11 @@ abstract class Job {
 
 		$dbr = wfGetDB( DB_SLAVE );
 
-		/* Get a job from the slave, start with an offset, 
+		/* Get a job from the slave, start with an offset,
 			scan full set afterwards, avoid hitting purged rows
 
-			NB: If random fetch previously was used, offset 
-				will always be ahead of few entries 
+			NB: If random fetch previously was used, offset
+				will always be ahead of few entries
 		*/
 
 		$row = $dbr->selectRow( 'job', '*', "job_id >= ${offset}", __METHOD__,
@@ -181,7 +181,7 @@ abstract class Job {
 		}
 		throw new MWException( "Invalid job command `{$command}`" );
 	}
-		
+
 	static function makeBlob( $params ) {
 		if ( $params !== false ) {
 			return serialize( $params );
@@ -287,5 +287,3 @@ abstract class Job {
 		return $this->error;
 	}
 }
-
-

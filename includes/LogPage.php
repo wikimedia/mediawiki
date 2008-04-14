@@ -146,10 +146,10 @@ class LogPage {
 		global $wgLang, $wgContLang, $wgLogActions;
 
 		$key = "$type/$action";
-		
+
 		if( $key == 'patrol/patrol' )
 			return PatrolLog::makeActionText( $title, $params, $skin );
-		
+
 		if( isset( $wgLogActions[$key] ) ) {
 			if( is_null( $title ) ) {
 				$rv=wfMsg( $wgLogActions[$key] );
@@ -272,7 +272,7 @@ class LogPage {
 			return explode( "\n", $blob );
 		}
 	}
-	
+
 	/**
 	 * Convert a comma-delimited list of block log flags
 	 * into a more readable (and translated) form
@@ -292,7 +292,7 @@ class LogPage {
 			return '';
 		}
 	}
-	
+
 	/**
 	 * Translate a block log flag if possible
 	 *

@@ -45,4 +45,3 @@ function wfSpecialUnusedCategories() {
 	$uc = new UnusedCategoriesPage();
 	return $uc->doQuery( $offset, $limit );
 }
-

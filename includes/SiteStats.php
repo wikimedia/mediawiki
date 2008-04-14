@@ -27,10 +27,10 @@ class SiteStats {
 			$dbr = wfGetDB( DB_SLAVE );
 			self::$row = $dbr->selectRow( 'site_stats', '*', false, __METHOD__ );
 		}
-		
+
 		self::$loaded = true;
 	}
-	
+
 	static function loadAndLazyInit() {
 		wfDebug( __METHOD__ . ": reading site_stats from slave\n" );
 		$row = self::doLoad( wfGetDB( DB_SLAVE ) );
@@ -40,24 +40,24 @@ class SiteStats {
 			wfDebug( __METHOD__ . ": site_stats damaged or missing on slave\n" );
 			$row = self::doLoad( wfGetDB( DB_MASTER ) );
 		}
-		
+
 		if( !self::isSane( $row ) ) {
 			// Normally the site_stats table is initialized at install time.
 			// Some manual construction scenarios may leave the table empty or
 			// broken, however, for instance when importing from a dump into a
 			// clean schema with mwdumper.
 			wfDebug( __METHOD__ . ": initializing damaged or missing site_stats\n" );
-			
+
 			global $IP;
 			require_once "$IP/maintenance/initStats.inc";
-			
+
 			ob_start();
 			wfInitStats();
 			ob_end_clean();
-			
+
 			$row = self::doLoad( wfGetDB( DB_MASTER ) );
 		}
-		
+
 		if( !self::isSane( $row ) ) {
 			wfDebug( __METHOD__ . ": site_stats persistently nonsensical o_O\n" );
 		}
@@ -92,7 +92,7 @@ class SiteStats {
 		self::load();
 		return self::$row->ss_users;
 	}
-	
+
 	static function images() {
 		self::load();
 		return self::$row->ss_images;
@@ -117,7 +117,7 @@ class SiteStats {
 		}
 		return self::$jobs;
 	}
-	
+
 	static function pagesInNs( $ns ) {
 		wfProfileIn( __METHOD__ );
 		if( !isset( self::$pageCount[$ns] ) ) {
@@ -236,4 +236,3 @@ class SiteStatsUpdate {
 		*/
 	}
 }
-

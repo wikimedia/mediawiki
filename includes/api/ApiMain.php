@@ -37,8 +37,8 @@ if (!defined('MEDIAWIKI')) {
  *
  * To use API from another application, run it using FauxRequest object, in which
  * case any internal exceptions will not be handled but passed up to the caller.
- * After successful execution, use getResult() for the resulting data.   
- *  
+ * After successful execution, use getResult() for the resulting data.
+ *
  * @addtogroup API
  */
 class ApiMain extends ApiBase {
@@ -62,7 +62,7 @@ class ApiMain extends ApiBase {
 		'help' => 'ApiHelp',
 		'paraminfo' => 'ApiParamInfo',
 	);
-	
+
 	private static $WriteModules = array (
 		'rollback' => 'ApiRollback',
 		'delete' => 'ApiDelete',
@@ -112,25 +112,25 @@ class ApiMain extends ApiBase {
 		parent :: __construct($this, $this->mInternalMode ? 'main_int' : 'main');
 
 		if (!$this->mInternalMode) {
-			
+
 			// Impose module restrictions.
-			// If the current user cannot read, 
+			// If the current user cannot read,
 			// Remove all modules other than login
 			global $wgUser;
-			
+
 			if( $request->getVal( 'callback' ) !== null ) {
 				// JSON callback allows cross-site reads.
 				// For safety, strip user credentials.
 				wfDebug( "API: stripping user credentials for JSON callback\n" );
 				$wgUser = new User();
 			}
-			
+
 			if (!$wgUser->isAllowed('read')) {
 				self::$Modules = array(
 					'login'  => self::$Modules['login'],
 					'logout' => self::$Modules['logout'],
 					'help'   => self::$Modules['help'],
-					); 
+					);
 			}
 		}
 
@@ -196,7 +196,7 @@ class ApiMain extends ApiBase {
 	public function createPrinterByName($format) {
 		return new $this->mFormats[$format] ($this, $format);
 	}
-	
+
 	/**
 	 * Schedule a database commit
 	 */
@@ -205,7 +205,7 @@ class ApiMain extends ApiBase {
 	}
 
 	/**
-	 * Execute api request. Any errors will be handled if the API was called by the remote client. 
+	 * Execute api request. Any errors will be handled if the API was called by the remote client.
 	 */
 	public function execute() {
 		$this->profileIn();
@@ -273,10 +273,10 @@ class ApiMain extends ApiBase {
 
 	/**
 	 * Replace the result data with the information about an exception.
-	 * Returns the error code 
+	 * Returns the error code
 	 */
 	protected function substituteResultWithError($e) {
-	
+
 			// Printer may not be initialized if the extractRequestParams() fails for the main module
 			if (!isset ($this->mPrinter)) {
 				// The printer has not been created yet. Try to manually get formatter value.
@@ -296,7 +296,7 @@ class ApiMain extends ApiBase {
 				$errMessage = array (
 				'code' => $e->getCodeString(),
 				'info' => $e->getMessage());
-				
+
 				// Only print the help message when this is for the developer, not runtime
 				if ($this->mPrinter->getIsHtml() || $this->mAction == 'help')
 					ApiResult :: setContent($errMessage, $this->makeHelpMsg());
@@ -330,7 +330,7 @@ class ApiMain extends ApiBase {
 
 		// Instantiate the module requested by the user
 		$module = new $this->mModules[$this->mAction] ($this, $this->mAction);
-		
+
 		if( $module->shouldCheckMaxlag() && isset( $params['maxlag'] ) ) {
 			// Check for maxlag
 			global $wgShowHostnames;
@@ -345,7 +345,7 @@ class ApiMain extends ApiBase {
 				return;
 			}
 		}
-		
+
 		if (!$this->mInternalMode) {
 			// Ignore mustBePosted() for internal calls
 			if($module->mustBePosted() && !$this->mRequest->wasPosted())
@@ -379,11 +379,11 @@ class ApiMain extends ApiBase {
 	protected function printResult($isError) {
 		$printer = $this->mPrinter;
 		$printer->profileIn();
-	
+
 		/* If the help message is requested in the default (xmlfm) format,
 		 * tell the printer not to escape ampersands so that our links do
 		 * not break. */
-		$printer->setUnescapeAmps ( ( $this->mAction == 'help' || $isError ) 
+		$printer->setUnescapeAmps ( ( $this->mAction == 'help' || $isError )
 				&& $this->getParameter('format') == ApiMain::API_DEFAULT_FORMAT );
 
 		$printer->initPrinter($isError);
@@ -455,7 +455,7 @@ class ApiMain extends ApiBase {
 			'',
 		);
 	}
-	
+
 	/**
 	 * Returns an array of strings with credits for the API
 	 */
@@ -475,7 +475,7 @@ class ApiMain extends ApiBase {
 	 * Override the parent to generate help messages for all available modules.
 	 */
 	public function makeHelpMsg() {
-		
+
 		$this->mPrinter->setHelp();
 
 		// Use parent to make default message for the main module
@@ -501,9 +501,9 @@ class ApiMain extends ApiBase {
 				$msg .= $msg2;
 			$msg .= "\n";
 		}
-		
+
 		$msg .= "\n*** Credits: ***\n   " . implode("\n   ", $this->getCredits()) . "\n";
-		
+
 
 		return $msg;
 	}
@@ -511,15 +511,15 @@ class ApiMain extends ApiBase {
 	public static function makeHelpMsgHeader($module, $paramName) {
 		$modulePrefix = $module->getModulePrefix();
 		if (!empty($modulePrefix))
-			$modulePrefix = "($modulePrefix) "; 
-		
+			$modulePrefix = "($modulePrefix) ";
+
 		return "* $paramName={$module->getModuleName()} $modulePrefix*";
-	} 
+	}
 
 	private $mIsBot = null;
 	private $mIsSysop = null;
 	private $mCanApiHighLimits = null;
-	
+
 	/**
 	 * Returns true if the currently logged in user is a bot, false otherwise
 	 * OBSOLETE, use canApiHighLimits() instead
@@ -531,7 +531,7 @@ class ApiMain extends ApiBase {
 		}
 		return $this->mIsBot;
 	}
-	
+
 	/**
 	 * Similar to isBot(), this method returns true if the logged in user is
 	 * a sysop, and false if not.
@@ -545,7 +545,7 @@ class ApiMain extends ApiBase {
 
 		return $this->mIsSysop;
 	}
-	
+
 	public function canApiHighLimits() {
 		if (!isset($this->mCanApiHighLimits)) {
 			global $wgUser;
@@ -576,7 +576,7 @@ class ApiMain extends ApiBase {
 
 	/**
 	 * Add or overwrite a module in this ApiMain instance. Intended for use by extending
-	 * classes who wish to add their own modules to their lexicon or override the 
+	 * classes who wish to add their own modules to their lexicon or override the
 	 * behavior of inherent ones.
 	 *
 	 * @access protected
@@ -598,7 +598,7 @@ class ApiMain extends ApiBase {
 	protected function addFormat( $fmtName, $fmtClass ) {
 		$this->mFormats[$fmtName] = $fmtClass;
 	}
-	
+
 	/**
 	 * Get the array mapping module names to class names
 	 */
@@ -610,7 +610,7 @@ class ApiMain extends ApiBase {
 /**
  * This exception will be thrown when dieUsage is called to stop module execution.
  * The exception handling code will print a help screen explaining how this API may be used.
- * 
+ *
  * @addtogroup API
  */
 class UsageException extends Exception {
@@ -628,6 +628,3 @@ class UsageException extends Exception {
 		return "{$this->getCodeString()}: {$this->getMessage()}";
 	}
 }
-
-
-

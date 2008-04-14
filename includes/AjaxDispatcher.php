@@ -119,5 +119,3 @@ class AjaxDispatcher {
 		$wgOut = null;
 	}
 }
-
-

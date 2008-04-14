@@ -2,17 +2,17 @@
 
 /**
  * Class to implement stub globals, which are globals that delay loading the
- * their associated module code by deferring initialisation until the first 
- * method call. 
+ * their associated module code by deferring initialisation until the first
+ * method call.
  *
- * Note on unstub loops: 
+ * Note on unstub loops:
  *
- * Unstub loops (infinite recursion) sometimes occur when a constructor calls 
- * another function, and the other function calls some method of the stub. The 
+ * Unstub loops (infinite recursion) sometimes occur when a constructor calls
+ * another function, and the other function calls some method of the stub. The
  * best way to avoid this is to make constructors as lightweight as possible,
- * deferring any initialisation which depends on other modules. As a last 
- * resort, you can use StubObject::isRealObject() to break the loop, but as a 
- * general rule, the stub object mechanism should be transparent, and code 
+ * deferring any initialisation which depends on other modules. As a last
+ * resort, you can use StubObject::isRealObject() to break the loop, but as a
+ * general rule, the stub object mechanism should be transparent, and code
  * which refers to it should be kept to a minimum.
  */
 class StubObject {
@@ -79,7 +79,7 @@ class StubObject {
 	/**
 	 * This function creates a new object of the real class and replace it in
 	 * the global variable.
-	 * This is public, for the convenience of external callers wishing to access 
+	 * This is public, for the convenience of external callers wishing to access
 	 * properties, e.g. eval.php
 	 *
 	 * @param String $name name of the method called in this object.
@@ -151,7 +151,7 @@ class StubUserLang extends StubObject {
 			$variant = $wgContLang->getPreferredVariant();
 			if( $variant != $wgContLanguageCode )
 				$code = $variant;
-		}	 
+		}
 
 		# Validate $code
 		if( empty( $code ) || !preg_match( '/^[a-z-]+$/', $code ) ) {
@@ -183,7 +183,7 @@ class StubUser extends StubObject {
 	function __call( $name, $args ) {
 		return $this->_call( $name, $args );
 	}
-	
+
 	function _newObject() {
 		global $wgCommandLineMode;
 		if( $wgCommandLineMode ) {

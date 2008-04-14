@@ -9,8 +9,8 @@
 
 require_once( dirname( __FILE__ ) . '/CBTProcessor.php' );
 
-/** 
- * Push a value onto the stack 
+/**
+ * Push a value onto the stack
  * Argument 1: value
  */
 define( 'CBT_PUSH', 1 );
@@ -51,7 +51,7 @@ class CBTOp {
 	}
 
 	function name() {
-		$opcodeNames = array( 
+		$opcodeNames = array(
 			CBT_PUSH => 'PUSH',
 			CBT_CAT => 'CAT',
 			CBT_CATS => 'CATS',
@@ -102,7 +102,7 @@ class CBTCompiler {
 		} else {
 			$text = true;
 		}
-		
+
 		return $text;
 	}
 
@@ -121,13 +121,13 @@ class CBTCompiler {
 
 	/**
 	 * Recursive workhorse for text mode.
-	 * 
-	 * Processes text mode starting from offset $p, until either $end is 
-	 * reached or a closing brace is found. If $needClosing is false, a 
-	 * closing brace will flag an error, if $needClosing is true, the lack
-	 * of a closing brace will flag an error. 
 	 *
-	 * The parameter $p is advanced to the position after the closing brace, 
+	 * Processes text mode starting from offset $p, until either $end is
+	 * reached or a closing brace is found. If $needClosing is false, a
+	 * closing brace will flag an error, if $needClosing is true, the lack
+	 * of a closing brace will flag an error.
+	 *
+	 * The parameter $p is advanced to the position after the closing brace,
 	 * or after the end. A CBTValue is returned.
 	 *
 	 * @private
@@ -136,7 +136,7 @@ class CBTCompiler {
 		$in =& $this->mText;
 		$start = $p;
 		$atStart = true;
-		
+
 		$foundClosing = false;
 		while ( $p < $end ) {
 			$matchLength = strcspn( $in, CBT_BRACE, $p, $end - $p );
@@ -162,9 +162,9 @@ class CBTCompiler {
 				$this->mOps[] = $this->op( CBT_CAT, substr( $in, $p, $matchLength ) );
 			}
 
-			// Advance the pointer 
+			// Advance the pointer
 			$p = $pToken + 1;
-			
+
 			// Check for closing brace
 			if ( $in[$pToken] == '}' ) {
 				$foundClosing = true;
@@ -184,7 +184,7 @@ class CBTCompiler {
 				$atStart = false;
 			} else {
 				$this->mOps[] = $this->op( CBT_CATS );
-			} 
+			}
 		}
 		if ( $foundClosing && !$needClosing ) {
 			$this->error( 'Errant closing brace', $p );
@@ -200,12 +200,12 @@ class CBTCompiler {
 	/**
 	 * Recursive workhorse for function mode.
 	 *
-	 * Processes function mode starting from offset $p, until either $end is 
-	 * reached or a closing brace is found. If $needClosing is false, a 
+	 * Processes function mode starting from offset $p, until either $end is
+	 * reached or a closing brace is found. If $needClosing is false, a
 	 * closing brace will flag an error, if $needClosing is true, the lack
-	 * of a closing brace will flag an error. 
+	 * of a closing brace will flag an error.
 	 *
-	 * The parameter $p is advanced to the position after the closing brace, 
+	 * The parameter $p is advanced to the position after the closing brace,
 	 * or after the end. A CBTValue is returned.
 	 *
 	 * @private
@@ -364,4 +364,3 @@ class CBTCompiler {
 			';
 	}
 }
-

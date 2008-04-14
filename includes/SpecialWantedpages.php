@@ -86,7 +86,7 @@ class WantedPagesPage extends QueryPage {
 			return "Invalid title in result set; {$tsafe}";
 		}
 	}
-	
+
 	/**
 	 * Make a "what links here" link for a specified result if required
 	 *
@@ -106,7 +106,7 @@ class WantedPagesPage extends QueryPage {
 			return null;
 		}
 	}
-	
+
 }
 
 /**
@@ -129,5 +129,3 @@ function wfSpecialWantedpages( $par = null, $specialPage ) {
 
 	$wpp->doQuery( $offset, $limit, !$inc );
 }
-
-

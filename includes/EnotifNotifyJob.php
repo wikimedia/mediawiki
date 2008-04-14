@@ -21,6 +21,5 @@ class EnotifNotifyJob extends Job {
 		);
 		return true;
 	}
-	
-}
 
+}

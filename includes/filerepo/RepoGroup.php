@@ -39,9 +39,9 @@ class RepoGroup {
 	}
 
 	/**
-	 * Construct a group of file repositories. 
-	 * @param array $data Array of repository info arrays. 
-	 *     Each info array is an associative array with the 'class' member 
+	 * Construct a group of file repositories.
+	 * @param array $data Array of repository info arrays.
+	 *     Each info array is an associative array with the 'class' member
 	 *     giving the class name. The entire array is passed to the repository
 	 *     constructor as the first parameter.
 	 */
@@ -54,7 +54,7 @@ class RepoGroup {
 	 * Search repositories for an image.
 	 * You can also use wfGetFile() to do this.
 	 * @param mixed $title Title object or string
-	 * @param mixed $time The 14-char timestamp the file should have 
+	 * @param mixed $time The 14-char timestamp the file should have
 	 *                    been uploaded, or false for the current version
 	 * @return File object or false if it is not found
 	 */
@@ -187,5 +187,3 @@ class RepoGroup {
 		}
 	}
 }
-
-

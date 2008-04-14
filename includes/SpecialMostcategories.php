@@ -55,5 +55,3 @@ function wfSpecialMostcategories() {
 
 	$wpp->doQuery( $offset, $limit );
 }
-
-

@@ -1,7 +1,7 @@
 <?php
 /**
  * Cache for article titles (prefixed DB keys) and ids linked from one source
- * 
+ *
  * @addtogroup Cache
  */
 class LinkCache {
@@ -46,9 +46,9 @@ class LinkCache {
 			return 0;
 		}
 	}
-	
+
 	/**
-	 * Get a field of a title object from cache. 
+	 * Get a field of a title object from cache.
 	 * If this link is not good, it will return NULL.
 	 * @param Title $title
 	 * @param string $field ('length','redirect')
@@ -148,7 +148,7 @@ class LinkCache {
 		}
 		# Some fields heavily used for linking...
 		$id = NULL;
-		
+
 		if( !is_integer( $id ) ) {
 			if ( $this->mForUpdate ) {
 				$db = wfGetDB( DB_MASTER );
@@ -162,7 +162,7 @@ class LinkCache {
 				$options = array();
 			}
 
-			$s = $db->selectRow( 'page', 
+			$s = $db->selectRow( 'page',
 				array( 'page_id', 'page_len', 'page_is_redirect' ),
 				array( 'page_namespace' => $ns, 'page_title' => $t ),
 				$fname, $options );
@@ -191,4 +191,3 @@ class LinkCache {
 		$this->mBadLinks = array();
 	}
 }
-

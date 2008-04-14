@@ -29,7 +29,7 @@ function showCreditsPage($article) {
 	$fname = 'showCreditsPage';
 
 	wfProfileIn( $fname );
-	
+
 	$wgOut->setPageTitle( $article->mTitle->getPrefixedText() );
 	$wgOut->setSubtitle( wfMsg( 'creditspage' ) );
 	$wgOut->setArticleFlag( false );
@@ -184,5 +184,3 @@ function creditOthersLink($article) {
 	$skin = $wgUser->getSkin();
 	return $skin->makeKnownLink($article->mTitle->getPrefixedText(), wfMsg('others'), 'action=credits');
 }
-
-

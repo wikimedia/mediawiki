@@ -162,7 +162,7 @@ class PreferencesForm {
 		global $wgLang, $wgContLang;
 		if ( $val !== false && (
 			in_array( $val, (array)$wgLang->getDatePreferences() ) ||
-			in_array( $val, (array)$wgContLang->getDatePreferences() ) ) ) 
+			in_array( $val, (array)$wgContLang->getDatePreferences() ) ) )
 		{
 			return $val;
 		} else {
@@ -224,7 +224,7 @@ class PreferencesForm {
 				$this->mainPrefsForm( 'error', wfMsg( 'wrongpassword' ) );
 				return;
 			}
-			
+
 			try {
 				$wgUser->setPassword( $this->mNewpass );
 				wfRunHooks( 'PrefsPasswordAudit', array( $wgUser, $this->mNewpass, 'success' ) );
@@ -501,7 +501,7 @@ class PreferencesForm {
 		}
 
 		return Xml::tags( 'tr', null, $td1 . $td2 ). $td3 . "\n";
-	
+
 	}
 
 	/**
@@ -703,7 +703,7 @@ class PreferencesForm {
 		}
 
 		# Password
-		if( $wgAuth->allowPasswordChange() ) {	
+		if( $wgAuth->allowPasswordChange() ) {
 			$wgOut->addHTML(
 				$this->tableRow( Xml::element( 'h2', null, wfMsg( 'changepassword' ) ) ) .
 				$this->tableRow(
@@ -927,18 +927,18 @@ class PreferencesForm {
 
 		# Recent changes
 		$wgOut->addHtml( '<fieldset><legend>' . wfMsgHtml( 'prefs-rc' ) . '</legend>' );
-		
+
 		$rc  = '<table><tr>';
 		$rc .= '<td>' . Xml::label( wfMsg( 'recentchangesdays' ), 'wpRecentDays' ) . '</td>';
-		$rc .= '<td>' . Xml::input( 'wpRecentDays', 3, $this->mRecentDays, array( 'id' => 'wpRecentDays' ) ) . '</td>';		
+		$rc .= '<td>' . Xml::input( 'wpRecentDays', 3, $this->mRecentDays, array( 'id' => 'wpRecentDays' ) ) . '</td>';
 		$rc .= '</tr><tr>';
 		$rc .= '<td>' . Xml::label( wfMsg( 'recentchangescount' ), 'wpRecent' ) . '</td>';
 		$rc .= '<td>' . Xml::input( 'wpRecent', 3, $this->mRecent, array( 'id' => 'wpRecent' ) ) . '</td>';
 		$rc .= '</tr></table>';
 		$wgOut->addHtml( $rc );
-		
+
 		$wgOut->addHtml( '<br />' );
-		
+
 		$toggles[] = 'hideminor';
 		if( $wgRCShowWatchingUsers )
 			$toggles[] = 'shownumberswatching';
@@ -949,7 +949,7 @@ class PreferencesForm {
 
 		# Watchlist
 		$wgOut->addHtml( '<fieldset><legend>' . wfMsgHtml( 'prefs-watchlist' ) . '</legend>' );
-		
+
 		$wgOut->addHtml( wfInputLabel( wfMsg( 'prefs-watchlist-days' ), 'wpWatchlistDays', 'wpWatchlistDays', 3, $this->mWatchlistDays ) );
 		$wgOut->addHtml( '<br /><br />' );
 
@@ -958,7 +958,7 @@ class PreferencesForm {
 		$wgOut->addHtml( '<br /><br />' );
 
 		$wgOut->addHtml( $this->getToggles( array( 'watchlisthideown', 'watchlisthidebots', 'watchlisthideminor' ) ) );
-		
+
 		if( $wgUser->isAllowed( 'createpage' ) || $wgUser->isAllowed( 'createtalk' ) )
 			$wgOut->addHtml( $this->getToggle( 'watchcreations' ) );
 		foreach( array( 'edit' => 'watchdefault', 'move' => 'watchmoves', 'delete' => 'watchdeletion' ) as $action => $toggle ) {
@@ -969,7 +969,7 @@ class PreferencesForm {
 		$this->mUsedToggles['watchdefault'] = true;
 		$this->mUsedToggles['watchmoves'] = true;
 		$this->mUsedToggles['watchdeletion'] = true;
-		
+
 		$wgOut->addHtml( '</fieldset>' );
 
 		# Search
@@ -1041,7 +1041,5 @@ class PreferencesForm {
 		$wgOut->addHtml( Xml::tags( 'div', array( 'class' => "prefcache" ),
 			wfMsgExt( 'clearyourcache', 'parseinline' ) )
 		);
-
 	}
 }
-

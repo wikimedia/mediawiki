@@ -77,7 +77,7 @@ class WatchlistEditor {
 				$this->showNormalForm( $output, $user );
 		}
 	}
-	
+
 	/**
 	 * Check the edit token from a form submission
 	 *
@@ -86,9 +86,9 @@ class WatchlistEditor {
 	 * @return bool
 	 */
 	private function checkToken( $request, $user ) {
-		return $user->matchEditToken( $request->getVal( 'token' ), 'watchlistedit' );	
+		return $user->matchEditToken( $request->getVal( 'token' ), 'watchlistedit' );
 	}
-	
+
 	/**
 	 * Extract a list of titles from a blob of text, returning
 	 * (prefixed) strings; unwatchable titles are ignored
@@ -113,7 +113,7 @@ class WatchlistEditor {
 		}
 		return array_unique( $titles );
 	}
-	
+
 	/**
 	 * Print out a list of linked titles
 	 *
@@ -126,7 +126,7 @@ class WatchlistEditor {
 	 */
 	private function showTitles( $titles, $output, $skin ) {
 		$talk = wfMsgHtml( 'talkpagelinktext' );
-		// Do a batch existence check		
+		// Do a batch existence check
 		$batch = new LinkBatch();
 		foreach( $titles as $title ) {
 			if( !$title instanceof Title )
@@ -149,7 +149,7 @@ class WatchlistEditor {
 		}
 		$output->addHtml( "</ul>\n" );
 	}
-	
+
 	/**
 	 * Count the number of titles on a user's watchlist, excluding talk pages
 	 *
@@ -162,7 +162,7 @@ class WatchlistEditor {
 		$row = $dbr->fetchObject( $res );
 		return ceil( $row->count / 2 ); // Paranoia
 	}
-	
+
 	/**
 	 * Prepare a list of titles on a user's watchlist (excluding talk pages)
 	 * and return an array of (prefixed) strings
@@ -171,7 +171,7 @@ class WatchlistEditor {
 	 * @return array
 	 */
 	private function getWatchlist( $user ) {
-		$list = array();	
+		$list = array();
 		$dbr = wfGetDB( DB_MASTER );
 		$res = $dbr->select(
 			'watchlist',
@@ -187,11 +187,11 @@ class WatchlistEditor {
 				if( $title instanceof Title && !$title->isTalkPage() )
 					$list[] = $title->getPrefixedText();
 			}
-			$res->free();		
+			$res->free();
 		}
 		return $list;
 	}
-	
+
 	/**
 	 * Get a list of titles on a user's watchlist, excluding talk pages,
 	 * and return as a two-dimensional array with namespace, title and
@@ -228,7 +228,7 @@ class WatchlistEditor {
 		}
 		return $titles;
 	}
-	
+
 	/**
 	 * Show a message indicating the number of items on the user's watchlist,
 	 * and return this count for additional checking
@@ -246,7 +246,7 @@ class WatchlistEditor {
 		}
 		return $count;
 	}
-	
+
 	/**
 	 * Remove all titles from a user's watchlist
 	 *
@@ -326,7 +326,7 @@ class WatchlistEditor {
 			}
 		}
 	}
-	
+
 	/**
 	 * Show the standard watchlist editing form
 	 *
@@ -356,7 +356,7 @@ class WatchlistEditor {
 			$output->addHtml( $form );
 		}
 	}
-	
+
 	/**
 	 * Get the correct "heading" for a namespace
 	 *
@@ -368,7 +368,7 @@ class WatchlistEditor {
 			? wfMsgHtml( 'blanknamespace' )
 			: htmlspecialchars( $GLOBALS['wgContLang']->getFormattedNsText( $namespace ) );
 	}
-	
+
 	/**
 	 * Build a single list item containing a check box selecting a title
 	 * and a link to that title, with various additional bits
@@ -393,7 +393,7 @@ class WatchlistEditor {
 			. Xml::check( 'titles[]', false, array( 'value' => $title->getPrefixedText() ) )
 			. $link . ' (' . implode( ' | ', $tools ) . ')' . '</li>';
 		}
-	
+
 	/**
 	 * Show a form for editing the watchlist in "raw" mode
 	 *
@@ -421,7 +421,7 @@ class WatchlistEditor {
 		$form .= '</fieldset></form>';
 		$output->addHtml( $form );
 	}
-	
+
 	/**
 	 * Determine whether we are editing the watchlist, and if so, what
 	 * kind of editing operation
@@ -443,7 +443,7 @@ class WatchlistEditor {
 				return false;
 		}
 	}
-	
+
 	/**
 	 * Build a set of links for convenient navigation
 	 * between watchlist viewing and editing modes
@@ -459,5 +459,4 @@ class WatchlistEditor {
 		}
 		return implode( ' | ', $tools );
 	}
-
 }

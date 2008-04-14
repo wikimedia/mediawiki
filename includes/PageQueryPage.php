@@ -21,5 +21,3 @@ class PageQueryPage extends QueryPage {
 			htmlspecialchars( $wgContLang->convert( $title->getPrefixedText() ) ) );
 	}
 }
-
-

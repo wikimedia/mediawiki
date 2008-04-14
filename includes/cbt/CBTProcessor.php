@@ -2,7 +2,7 @@
 
 /**
  * PHP version of the callback template processor
- * This is currently used as a test rig and is likely to be used for 
+ * This is currently used as a test rig and is likely to be used for
  * compatibility purposes later, where the C++ extension is not available.
  */
 
@@ -44,9 +44,9 @@ function cbt_value( $text = '', $deps = array(), $isTemplate = false ) {
 
 /**
  * A dependency-tracking value class
- * Callback functions should return one of these, unless they have 
+ * Callback functions should return one of these, unless they have
  * no dependencies in which case they can return a string.
- */ 
+ */
 class CBTValue {
 	var $mText, $mDeps, $mIsTemplate;
 
@@ -175,7 +175,7 @@ class CBTProcessor {
 
 	/**
 	 * Execute the template.
-	 * If $compile is true, produces an optimised template where functions with static 
+	 * If $compile is true, produces an optimised template where functions with static
 	 * dependencies have been replaced by their return values.
 	 */
 	function execute( $compile = false ) {
@@ -204,7 +204,7 @@ class CBTProcessor {
 
 			$context = rtrim( str_replace( "\t", " ", substr( $this->mText, $startLine, $endLine - $startLine ) ) );
 			$text .= htmlspecialchars( $context ) . "\n" . str_repeat( ' ', $pos - $startLine ) . "^\n</pre>\n";
-		} 
+		}
 		wfProfileOut( $fname );
 		return $text;
 	}
@@ -223,7 +223,7 @@ class CBTProcessor {
 		return $this->doOpenText( $start, $end, false );
 	}
 
-	/** 
+	/**
 	 * Escape text for a template if we are producing a template. Do nothing
 	 * if we are producing plain text.
 	 */
@@ -237,13 +237,13 @@ class CBTProcessor {
 
 	/**
 	 * Recursive workhorse for text mode.
-	 * 
-	 * Processes text mode starting from offset $p, until either $end is 
-	 * reached or a closing brace is found. If $needClosing is false, a 
-	 * closing brace will flag an error, if $needClosing is true, the lack
-	 * of a closing brace will flag an error. 
 	 *
-	 * The parameter $p is advanced to the position after the closing brace, 
+	 * Processes text mode starting from offset $p, until either $end is
+	 * reached or a closing brace is found. If $needClosing is false, a
+	 * closing brace will flag an error, if $needClosing is true, the lack
+	 * of a closing brace will flag an error.
+	 *
+	 * The parameter $p is advanced to the position after the closing brace,
 	 * or after the end. A CBTValue is returned.
 	 *
 	 * @private
@@ -254,7 +254,7 @@ class CBTProcessor {
 		$in =& $this->mText;
 		$start = $p;
 		$ret = new CBTValue( '', array(), $this->mCompiling );
-		
+
 		$foundClosing = false;
 		while ( $p < $end ) {
 			$matchLength = strcspn( $in, CBT_BRACE, $p, $end - $p );
@@ -270,15 +270,15 @@ class CBTProcessor {
 			// Output the text before the brace
 			$ret->cat( substr( $in, $p, $matchLength ) );
 
-			// Advance the pointer 
+			// Advance the pointer
 			$p = $pToken + 1;
-			
+
 			// Check for closing brace
 			if ( $in[$pToken] == '}' ) {
 				$foundClosing = true;
 				break;
 			}
-			
+
 			// Handle the "{fn}" special case
 			if ( $pToken > 0 && $in[$pToken-1] == '"' ) {
 				wfProfileOut( $fname );
@@ -290,7 +290,7 @@ class CBTProcessor {
 				$ret->cat( $val );
 			} else {
 				// Process the function mode component
-				wfProfileOut( $fname );				
+				wfProfileOut( $fname );
 				$ret->cat( $this->doOpenFunction( $p, $end ) );
 				wfProfileIn( $fname );
 			}
@@ -300,19 +300,19 @@ class CBTProcessor {
 		} elseif ( !$foundClosing && $needClosing ) {
 			$this->error( 'Unclosed text section', $start );
 		}
-		wfProfileOut( $fname );				
+		wfProfileOut( $fname );
 		return $ret;
 	}
 
 	/**
 	 * Recursive workhorse for function mode.
 	 *
-	 * Processes function mode starting from offset $p, until either $end is 
-	 * reached or a closing brace is found. If $needClosing is false, a 
+	 * Processes function mode starting from offset $p, until either $end is
+	 * reached or a closing brace is found. If $needClosing is false, a
 	 * closing brace will flag an error, if $needClosing is true, the lack
-	 * of a closing brace will flag an error. 
+	 * of a closing brace will flag an error.
 	 *
-	 * The parameter $p is advanced to the position after the closing brace, 
+	 * The parameter $p is advanced to the position after the closing brace,
 	 * or after the end. A CBTValue is returned.
 	 *
 	 * @private
@@ -383,8 +383,8 @@ class CBTProcessor {
 				}
 			}
 
-			// The dynamic parts of the string are still represented as functions, and 
-			// function invocations have no dependencies. Thus the compiled result has 
+			// The dynamic parts of the string are still represented as functions, and
+			// function invocations have no dependencies. Thus the compiled result has
 			// no dependencies.
 			$val = new CBTValue( "{{$compiled}}", array(), true );
 		}
@@ -393,7 +393,7 @@ class CBTProcessor {
 
 	/**
 	 * Execute a function, caching and returning the result value.
-	 * $tokens is an array of CBTValue objects. $tokens[0] is the function 
+	 * $tokens is an array of CBTValue objects. $tokens[0] is the function
 	 * name, the others are arguments. $p is the string position, and is used
 	 * for error messages only.
 	 */
@@ -403,12 +403,12 @@ class CBTProcessor {
 		}
 		$fname = 'CBTProcessor::doFunction';
 		wfProfileIn( $fname );
-		
+
 		$ret = new CBTValue;
-		
+
 		// All functions implicitly depend on their arguments, and the function name
-		// While this is not strictly necessary for all functions, it's true almost 
-		// all the time and so convenient to do automatically. 
+		// While this is not strictly necessary for all functions, it's true almost
+		// all the time and so convenient to do automatically.
 		$ret->addDeps( $tokens );
 
 		$this->mCurrentPos = $p;
@@ -453,25 +453,25 @@ class CBTProcessor {
 
 		// If the output was a template, execute it
 		$val->execute( $this );
-		
+
 		if ( $this->mCompiling ) {
 			// Escape any braces so that the output will be a valid template
 			$val->templateEscape();
-		} 
+		}
 		$val->removeDeps( $this->mIgnorableDeps );
 		$ret->addDeps( $val );
 		$ret->setText( $val->getText() );
 
 		if ( CBT_DEBUG ) {
-			wfDebug( "doFunction $func args = " 
-				. var_export( $tokens, true ) 
-				. "unexpanded return = " 
+			wfDebug( "doFunction $func args = "
+				. var_export( $tokens, true )
+				. "unexpanded return = "
 				. var_export( $unexpanded, true )
-				. "expanded return = " 
-				. var_export( $ret, true ) 
+				. "expanded return = "
+				. var_export( $ret, true )
 			);
 		}
-		
+
 		wfProfileOut( $fname );
 		return $ret;
 	}
@@ -500,12 +500,12 @@ class CBTProcessor {
 		}
 
 		if ( $condition->getText() != '' ) {
-			return new CBTValue( $trueBlock->getText(), 
+			return new CBTValue( $trueBlock->getText(),
 				array_merge( $condition->getDeps(), $trueBlock->getDeps() ),
 				$trueBlock->mIsTemplate );
 		} else {
 			if ( !is_null( $falseBlock ) ) {
-				return new CBTValue( $falseBlock->getText(), 
+				return new CBTValue( $falseBlock->getText(),
 					array_merge( $condition->getDeps(), $falseBlock->getDeps() ),
 		   			$falseBlock->mIsTemplate );
 			} else {
@@ -529,12 +529,11 @@ class CBTProcessor {
 		return '}';
 	}
 
-	/** 
+	/**
 	 * escape built-in.
-	 * Escape text for inclusion in an HTML attribute 
+	 * Escape text for inclusion in an HTML attribute
 	 */
 	function bi_escape( $val ) {
 		return new CBTValue( htmlspecialchars( $val->getText() ), $val->getDeps() );
 	}
 }
-

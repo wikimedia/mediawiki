@@ -57,7 +57,7 @@ function wfExportGetPagesFromCategory( $title ) {
  */
 function wfExportGetTemplates( $inputPages, $pageSet ) {
 	return wfExportGetLinks( $inputPages, $pageSet,
-		'templatelinks', 
+		'templatelinks',
 	 	array( 'tl_namespace AS namespace', 'tl_title AS title' ),
 		array( 'page_id=tl_from' ) );
 }
@@ -124,7 +124,7 @@ function wfSpecialExport( $page = '' ) {
 	if ( $wgRequest->getCheck( 'addcat' ) ) {
 		$page = $wgRequest->getText( 'pages' );
 		$catname = $wgRequest->getText( 'catname' );
-		
+
 		if ( $catname !== '' && $catname !== NULL && $catname !== false ) {
 			$t = Title::makeTitleSafe( NS_CATEGORY, $catname );
 			if ( $t ) {
@@ -168,7 +168,7 @@ function wfSpecialExport( $page = '' ) {
 				$history['dir'] = 'desc';
 			}
 		}
-		
+
 		if( $page != '' ) $doexport = true;
 	} else {
 		// Default to current-only for GET requests
@@ -179,7 +179,7 @@ function wfSpecialExport( $page = '' ) {
 		} else {
 			$history = WikiExporter::CURRENT;
 		}
-		
+
 		if( $page != '' ) $doexport = true;
 	}
 
@@ -187,13 +187,13 @@ function wfSpecialExport( $page = '' ) {
 		// Override
 		$history = WikiExporter::CURRENT;
 	}
-	
+
 	$list_authors = $wgRequest->getCheck( 'listauthors' );
 	if ( !$curonly || !$wgExportAllowListContributors ) $list_authors = false ;
-	
+
 	if ( $doexport ) {
 		$wgOut->disable();
-		
+
 		// Cancel output buffering and gzipping if set
 		// This should provide safer streaming for pages with history
 		wfResetOutputBuffers();
@@ -203,7 +203,7 @@ function wfSpecialExport( $page = '' ) {
 			$filename = urlencode( $wgSitename . '-' . wfTimestampNow() . '.xml' );
 			$wgRequest->response()->header( "Content-disposition: attachment;filename={$filename}" );
 		}
-		
+
 		/* Split up the input and look up linked pages */
 		$inputPages = array_filter( explode( "\n", $page ), 'wfFilterPage' );
 		$pageSet = array_flip( $inputPages );
@@ -218,16 +218,16 @@ function wfSpecialExport( $page = '' ) {
 			$pageSet = wfExportGetImages( $inputPages, $pageSet );
 		}
 		*/
-		
+
 		$pages = array_keys( $pageSet );
-		
+
 		/* Ok, let's get to it... */
 
 		$db = wfGetDB( DB_SLAVE );
 		$exporter = new WikiExporter( $db, $history );
 		$exporter->list_authors = $list_authors ;
 		$exporter->openStream();
-		
+
 		foreach( $pages as $page ) {
 			/*
 			if( $wgExportMaxHistory && !$curonly ) {
@@ -249,25 +249,25 @@ function wfSpecialExport( $page = '' ) {
 
 			$exporter->pageByTitle( $title );
 		}
-		
+
 		$exporter->closeStream();
 		return;
 	}
 
 	$self = SpecialPage::getTitleFor( 'Export' );
 	$wgOut->addHtml( wfMsgExt( 'exporttext', 'parse' ) );
-	
+
 	$form = Xml::openElement( 'form', array( 'method' => 'post',
 		'action' => $self->getLocalUrl( 'action=submit' ) ) );
-	
+
 	$form .= Xml::inputLabel( wfMsg( 'export-addcattext' )	, 'catname', 'catname', 40 ) . '&nbsp;';
 	$form .= Xml::submitButton( wfMsg( 'export-addcat' ), array( 'name' => 'addcat' ) ) . '<br />';
-	
+
 	$form .= Xml::openElement( 'textarea', array( 'name' => 'pages', 'cols' => 40, 'rows' => 10 ) );
 	$form .= htmlspecialchars( $page );
 	$form .= Xml::closeElement( 'textarea' );
 	$form .= '<br />';
-	
+
 	if( $wgExportAllowHistory ) {
 		$form .= Xml::checkLabel( wfMsg( 'exportcuronly' ), 'curonly', 'curonly', true ) . '<br />';
 	} else {
@@ -277,7 +277,7 @@ function wfSpecialExport( $page = '' ) {
 	// Enable this when we can do something useful exporting/importing image information. :)
 	//$form .= Xml::checkLabel( wfMsg( 'export-images' ), 'images', 'wpExportImages', false ) . '<br />';
 	$form .= Xml::checkLabel( wfMsg( 'export-download' ), 'wpDownload', 'wpDownload', true ) . '<br />';
-	
+
 	$form .= Xml::submitButton( wfMsg( 'export-submit' ) );
 	$form .= Xml::closeElement( 'form' );
 	$wgOut->addHtml( $form );

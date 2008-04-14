@@ -48,7 +48,7 @@ class ApiParse extends ApiBase {
 			$this->dieUsage("The page parameter cannot be used together with the text and title parameters", 'params');
 		$prop = array_flip($params['prop']);
 		$revid = false;
-		
+
 		global $wgParser, $wgUser;
 		if(!is_null($oldid) || !is_null($page))
 		{
@@ -128,7 +128,7 @@ class ApiParse extends ApiBase {
 		$this->setIndexedTagNames( $result_array, $result_mapping );
 		$result->addValue( null, $this->getModuleName(), $result_array );
 	}
-	
+
 	private function formatLangLinks( $links ) {
 		$result = array();
 		foreach( $links as $link ) {
@@ -140,7 +140,7 @@ class ApiParse extends ApiBase {
 		}
 		return $result;
 	}
-	
+
 	private function formatCategoryLinks( $links ) {
 		$result = array();
 		foreach( $links as $link => $sortkey ) {
@@ -151,7 +151,7 @@ class ApiParse extends ApiBase {
 		}
 		return $result;
 	}
-	
+
 	private function formatLinks( $links ) {
 		$result = array();
 		foreach( $links as $ns => $nslinks ) {
@@ -166,7 +166,7 @@ class ApiParse extends ApiBase {
 		}
 		return $result;
 	}
-	
+
 	private function setIndexedTagNames( &$array, $mapping ) {
 		foreach( $mapping as $key => $name ) {
 			if( isset( $array[$key] ) )
@@ -176,7 +176,7 @@ class ApiParse extends ApiBase {
 
 	public function getAllowedParams() {
 		return array (
-			'title' => array( 
+			'title' => array(
 				ApiBase :: PARAM_DFLT => 'API',
 			),
 			'text' => null,
@@ -226,4 +226,3 @@ class ApiParse extends ApiBase {
 		return __CLASS__ . ': $Id$';
 	}
 }
-

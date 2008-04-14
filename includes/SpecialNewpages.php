@@ -10,7 +10,7 @@
  */
 function wfSpecialNewPages( $par ) {
 	$page = new NewPagesForm();
-	
+
 	$page->showList( $par );
 }
 
@@ -53,7 +53,7 @@ class NewPagesForm {
             /* int  */ 'limit' => 50,
         );
 		$options = $defaults;
-		
+
 		// Override all values from requests, if specified
         foreach ( $defaults as $v => $t ) {
             if ( is_bool($t) ) {
@@ -64,7 +64,7 @@ class NewPagesForm {
                 $options[$v] = $wgRequest->getText( $v, $options[$v] );
             }
         }
-		
+
 		$wgOut->setSyndicated( true );
 		$wgOut->setFeedAppendQuery( "namespace={$options['namespace']}&username={$options['username']}" );
 
@@ -139,8 +139,8 @@ class NewPagesForm {
 
 		$wgOut->addHTML( $form );
 
-		$pager = new NewPagesPager( $this, array(), $options['namespace'], $options['hideliu'], 
-			$options['hidepatrolled'], $options['hidebots'], $options['username'] );	
+		$pager = new NewPagesPager( $this, array(), $options['namespace'], $options['hideliu'],
+			$options['hidepatrolled'], $options['hidebots'], $options['username'] );
 
 		if( $pager->getNumRows() ) {
 			$wgOut->addHTML( $pager->getNavigationBar() .
@@ -152,7 +152,7 @@ class NewPagesForm {
 			$wgOut->addHTML( '<p>' . wfMsgHtml( 'specialpage-empty' ) . '</p>' );
 		}
 	}
-	
+
 	/**
 	 * Format a row, providing the timestamp, links to the page/history, size, user links, and a comment
 	 *
@@ -163,7 +163,7 @@ class NewPagesForm {
 	public function formatRow( $result ) {
 		global $wgLang, $wgContLang, $wgUser;
 		$dm = $wgContLang->getDirMark();
-		
+
 		static $skin=null;
 
 		if( is_null( $skin ) )
@@ -173,9 +173,9 @@ class NewPagesForm {
 		$time = $wgLang->timeAndDate( $result->rc_timestamp, true );
 		$plink = $skin->makeKnownLinkObj( $title, '', $this->patrollable( $result ) ? 'rcid=' . $result->rc_id : '' );
 		$hist = $skin->makeKnownLinkObj( $title, wfMsgHtml( 'hist' ), 'action=history' );
-		$length = wfMsgExt( 'nbytes', array( 'parsemag', 'escape' ), 
+		$length = wfMsgExt( 'nbytes', array( 'parsemag', 'escape' ),
 			$wgLang->formatNum( htmlspecialchars( $result->length ) ) );
-		$ulink = $skin->userLink( $result->rc_user, $result->rc_user_text ) . ' ' . 
+		$ulink = $skin->userLink( $result->rc_user, $result->rc_user_text ) . ' ' .
 			$skin->userToolLinks( $result->rc_user, $result->rc_user_text );
 		$comment = $skin->commentBlock( $result->rc_comment );
 		$css = $this->patrollable( $result ) ? 'not-patrolled' : '';
@@ -193,37 +193,37 @@ class NewPagesForm {
 		global $wgUser;
 		return ( $wgUser->useNPPatrol() && !$result->rc_patrolled );
 	}
-	
+
 	/**
 	 * Output a subscription feed listing recent edits to this page.
 	 * @param string $type
 	 */
 	protected function feed( $type, $options ) {
 		require_once 'SpecialRecentchanges.php';
-		
+
 		global $wgFeed, $wgFeedClasses;
-		
+
 		if ( !$wgFeed ) {
 			global $wgOut;
 			$wgOut->addWikiMsg( 'feed-unavailable' );
 			return;
 		}
-		
+
 		if( !isset( $wgFeedClasses[$type] ) ) {
 			global $wgOut;
 			$wgOut->addWikiMsg( 'feed-invalid' );
 			return;
 		}
-		
+
 		$self = SpecialPage::getTitleFor( 'NewPages' );
 		$feed = new $wgFeedClasses[$type](
 			$this->feedTitle(),
 			wfMsg( 'tagline' ),
 			$self->getFullUrl() );
 
-		$pager = new NewPagesPager( $this, array(), $options['namespace'], $options['hideliu'], 
-			$options['hidepatrolled'], $options['hidebots'], $options['username'] );	
-		
+		$pager = new NewPagesPager( $this, array(), $options['namespace'], $options['hideliu'],
+			$options['hidepatrolled'], $options['hidebots'], $options['username'] );
+
 		$feed->outHeader();
 		if( $pager->getNumRows() > 0 ) {
 			while( $row = $pager->mResult->fetchObject() ) {
@@ -232,7 +232,7 @@ class NewPagesForm {
 		}
 		$feed->outFooter();
 	}
-	
+
 	protected function feedTitle() {
 		global $wgContLanguageCode, $wgSitename;
 		$page = SpecialPage::getPage( 'Newpages' );
@@ -257,18 +257,18 @@ class NewPagesForm {
 			return NULL;
 		}
 	}
-	
+
 	/**
 	 * Quickie hack... strip out wikilinks to more legible form from the comment.
 	 */
 	function stripComment( $text ) {
 		return preg_replace( '/\[\[([^]]*\|)?([^]]+)\]\]/', '\2', $text );
 	}
-	
+
 	function feedItemAuthor( $row ) {
 		return isset( $row->rc_user_text ) ? $row->rc_user_text : '';
 	}
-	
+
 	protected function feedItemDesc( $row ) {
 		$revision = Revision::newFromId( $row->rev_id );
 		if( $revision ) {
@@ -285,15 +285,15 @@ class NewPagesForm {
  */
 class NewPagesPager extends ReverseChronologicalPager {
 	private $hideliu, $hidepatrolled, $hidebots, $namespace, $user;
-	
+
 	function __construct( $form, $conds=array(), $namespace, $hliu=false, $hpatrolled=false, $hbots=1, $user='' ) {
 		parent::__construct();
 		$this->mForm = $form;
 		$this->mConds = $conds;
-		
+
 		$this->namespace = ($namespace === "all") ? false : intval($namespace);
 		$this->user = $user;
-		
+
 		$this->hideliu = (bool)$hliu;
 		$this->hidepatrolled = (bool)$hpatrolled;
 		$this->hidebots = (bool)$hbots;
@@ -310,7 +310,7 @@ class NewPagesPager extends ReverseChronologicalPager {
 		}
 		$conds[] = 'page_id = rc_cur_id';
 		$conds['page_is_redirect'] = 0;
-		
+
 		global $wgGroupPermissions, $wgUser;
 		# If anons cannot make new pages, don't query for it!
 		if( $wgGroupPermissions['*']['createpage'] && $this->hideliu ) {
@@ -349,7 +349,7 @@ class NewPagesPager extends ReverseChronologicalPager {
 	function formatRow( $row ) {
 		return $this->mForm->formatRow( $row );
 	}
-	
+
 	function getStartBody() {
 		# Do a batch existence check on pages
 		$linkBatch = new LinkBatch();

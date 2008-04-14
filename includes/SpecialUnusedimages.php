@@ -9,9 +9,9 @@
  * @addtogroup SpecialPage
  */
 class UnusedimagesPage extends ImageQueryPage {
-	
+
 	function isExpensive() { return true; }
-	
+
 	function getName() {
 		return 'Unusedimages';
 	}
@@ -37,7 +37,7 @@ class UnusedimagesPage extends ImageQueryPage {
 		} else {
 			list( $image, $imagelinks ) = $dbr->tableNamesN( 'image','imagelinks' );
 
-			return "SELECT 'Unusedimages' as type, 6 as namespace, img_name as title, img_timestamp as value, 
+			return "SELECT 'Unusedimages' as type, 6 as namespace, img_name as title, img_timestamp as value,
 				img_user, img_user_text,  img_description
 				FROM $image LEFT JOIN $imagelinks ON img_name=il_to WHERE il_to IS NULL ";
 		}
@@ -58,4 +58,3 @@ function wfSpecialUnusedimages() {
 
 	return $uip->doQuery( $offset, $limit );
 }
-

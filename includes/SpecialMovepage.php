@@ -186,8 +186,8 @@ class MovePageForm {
 			$wgOut->addHTML( "
 				<tr>
 					<td></td>
-					<td>" . 
-						Xml::checkLabel( wfMsg( 'movetalk' ), 'wpMovetalk', 'wpMovetalk', $moveTalkChecked ) . 
+					<td>" .
+						Xml::checkLabel( wfMsg( 'movetalk' ), 'wpMovetalk', 'wpMovetalk', $moveTalkChecked ) .
 					"</td>
 				</tr>"
 			);
@@ -235,7 +235,7 @@ class MovePageForm {
 		# Delete to make way if requested
 		if ( $wgUser->isAllowed( 'delete' ) && $this->deleteAndMove ) {
 			$article = new Article( $nt );
-			
+
 			# Disallow deletions of big articles
 			$bigHistory = $article->isBigDeletion();
 			if( $bigHistory && !$nt->userCan( 'bigdelete' ) ) {
@@ -243,7 +243,7 @@ class MovePageForm {
 				$this->showForm( array('delete-toobig', $wgLang->formatNum( $wgDeleteRevisionsLimit ) ) );
 				return;
 			}
-			
+
 			// This may output an error message and exit
 			$article->doDelete( wfMsgForContent( 'delete_and_move_reason' ) );
 		}

@@ -68,5 +68,3 @@ function memsess_gc( $maxlifetime ) {
 }
 
 session_set_save_handler( 'memsess_open', 'memsess_close', 'memsess_read', 'memsess_write', 'memsess_destroy', 'memsess_gc' );
-
-

@@ -127,7 +127,7 @@ class MessageCache {
 		wfDeprecated( __METHOD__ );
 		$this->loadFromLocal( $hash );
 	}
-	
+
 	function saveToScript($array, $hash) {
 		global $wgLocalMessageCache;
 		if ( $wgLocalMessageCache === false ) {
@@ -140,10 +140,10 @@ class MessageCache {
 		umask( $oldUmask );
 		$file = fopen( $filename.'.tmp', 'w');
 		fwrite($file,"<?php\n//$hash\n\n \$this->mCache = array(");
-		
+
 		foreach ($array as $key => $message) {
 			fwrite($file, "'". $this->escapeForScript($key).
-				"' => '" . $this->escapeForScript($message). 
+				"' => '" . $this->escapeForScript($message).
 				"',\n");
 		}
 		fwrite($file,");\n?>");
@@ -298,11 +298,11 @@ class MessageCache {
 
 		# Load titles for all oversized pages in the MediaWiki namespace
 		$res = $dbr->select( 'page', 'page_title',
-			array( 
+			array(
 				'page_len > ' . intval( $wgMaxMsgCacheEntrySize ),
 				'page_is_redirect' => 0,
 				'page_namespace' => NS_MEDIAWIKI,
-			), 
+			),
 			__METHOD__ );
 		while ( $row = $dbr->fetchObject( $res ) ) {
 			$this->mCache[$row->page_title] = '!TOO BIG';
@@ -312,12 +312,12 @@ class MessageCache {
 		# Load text for the remaining pages
 		$res = $dbr->select( array( 'page', 'revision', 'text' ),
 			array( 'page_title', 'old_text', 'old_flags' ),
-			array( 
+			array(
 				'page_is_redirect' => 0,
 				'page_namespace' => NS_MEDIAWIKI,
 				'page_latest=rev_id',
 				'rev_text_id=old_id',
-				'page_len <= ' . intval( $wgMaxMsgCacheEntrySize ) ), 
+				'page_len <= ' . intval( $wgMaxMsgCacheEntrySize ) ),
 			__METHOD__ );
 
 		for ( $row = $dbr->fetchObject( $res ); $row; $row = $dbr->fetchObject( $res ) ) {
@@ -413,7 +413,7 @@ class MessageCache {
 	 *
 	 * @param string $key The message cache key
 	 * @param bool $useDB Get the message from the DB, false to use only the localisation
-	 * @param bool $forContent Get the message from the content language rather than the 
+	 * @param bool $forContent Get the message from the content language rather than the
 	 *                         user language
 	 * @param bool $isFullKey Specifies whether $key is a two part key "lang/msg".
 	 */
@@ -500,7 +500,7 @@ class MessageCache {
 	}
 
 	/**
-	 * Get a message from the MediaWiki namespace, with caching. The key must 
+	 * Get a message from the MediaWiki namespace, with caching. The key must
 	 * first be converted to two-part lang/msg form if necessary.
 	 *
 	 * @param string $title Message cache key with initial uppercase letter

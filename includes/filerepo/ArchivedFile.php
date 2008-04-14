@@ -26,9 +26,9 @@ class ArchivedFile
 		$timestamp, # time of upload
 		$dataLoaded, # Whether or not all this has been loaded from the database (loadFromXxx)
 		$deleted; # Bitfield akin to rev_deleted
-		
-	/**#@-*/	
-		
+
+	/**#@-*/
+
 	function ArchivedFile( $title, $id=0, $key='' ) {
 		if( !is_object($title) ) {
 			throw new MWException( 'ArchivedFile constructor given bogus title.' );
@@ -84,19 +84,19 @@ class ArchivedFile
 					'fa_user_text',
 					'fa_timestamp',
 					'fa_deleted' ),
-				array( 
+				array(
 					'fa_name' => $this->title->getDBkey(),
 					$conds ),
 				__METHOD__,
 				array( 'ORDER BY' => 'fa_timestamp DESC' ) );
-				
+
 			if ( $dbr->numRows( $res ) == 0 ) {
 			// this revision does not exist?
 				return;
 			}
 			$ret = $dbr->resultObject( $res );
 			$row = $ret->fetchObject();
-	
+
 			// initialize fields for filestore image object
 			$this->id = intval($row->fa_id);
 			$this->name = $row->fa_name;
@@ -120,17 +120,17 @@ class ArchivedFile
 			return;
 		}
 		$this->dataLoaded = true;
-		
+
 		return true;
 	}
 
 	/**
 	 * Loads a file object from the filearchive table
 	 * @return ResultWrapper
-	 */	
-	public static function newFromRow( $row ) {	
+	 */
+	public static function newFromRow( $row ) {
 		$file = new ArchivedFile( Title::makeTitle( NS_IMAGE, $row->fa_name ) );
-		
+
 		$file->id = intval($row->fa_id);
 		$file->name = $row->fa_name;
 		$file->archive_name = $row->fa_archive_name;
@@ -148,41 +148,41 @@ class ArchivedFile
 		$file->user_text = $row->fa_user_text;
 		$file->timestamp = $row->fa_timestamp;
 		$file->deleted = $row->fa_deleted;
-		
+
 		return $file;
 	}
-	
+
 	/**
 	 * Return the associated title object
 	 * @public
 	 */
-	public function getTitle() { 
+	public function getTitle() {
 		return $this->title;
 	}
 
 	/**
 	 * Return the file name
-	 */	
-	public function getName() { 
+	 */
+	public function getName() {
 		return $this->name;
 	}
 
-	public function getID() { 
+	public function getID() {
 		$this->load();
 		return $this->id;
 	}
-	
+
 	/**
 	 * Return the FileStore key
-	 */	
-	public function getKey() { 
+	 */
+	public function getKey() {
 		$this->load();
 		return $this->key;
 	}
-	
+
 	/**
 	 * Return the FileStore storage group
-	 */	
+	 */
 	public function getGroup() {
 		return $file->group;
 	}
@@ -192,7 +192,7 @@ class ArchivedFile
 	 */
 	public function getWidth() {
 		$this->load();
-		return $this->width; 
+		return $this->width;
 	}
 
 	/**
@@ -200,9 +200,9 @@ class ArchivedFile
 	 */
 	public function getHeight() {
 		$this->load();
-		return $this->height; 
+		return $this->height;
 	}
-	
+
 	/**
 	 * Get handler-specific metadata
 	 */
@@ -219,7 +219,7 @@ class ArchivedFile
 		$this->load();
 		return $this->size;
 	}
-	
+
 	/**
 	 * Return the bits of the image file, in bytes
 	 * @public
@@ -228,7 +228,7 @@ class ArchivedFile
 		$this->load();
 		return $this->bits;
 	}
-	
+
 	/**
 	 * Returns the mime type of the file.
 	 */
@@ -236,7 +236,7 @@ class ArchivedFile
 		$this->load();
 		return $this->mime;
 	}
-	
+
 	/**
 	 * Return the type of the media in the file.
 	 * Use the value returned by this function with the MEDIATYPE_xxx constants.
@@ -265,7 +265,7 @@ class ArchivedFile
 			return $this->user;
 		}
 	}
-	
+
 	/**
 	 * Return the user name of the uploader.
 	 */
@@ -277,7 +277,7 @@ class ArchivedFile
 			return $this->user_text;
 		}
 	}
-	
+
 	/**
 	 * Return upload description.
 	 */
@@ -289,7 +289,7 @@ class ArchivedFile
 			return $this->description;
 		}
 	}
-	
+
 	/**
 	 * Return the user ID of the uploader.
 	 */
@@ -297,7 +297,7 @@ class ArchivedFile
 		$this->load();
 		return $this->user;
 	}
-	
+
 	/**
 	 * Return the user name of the uploader.
 	 */
@@ -305,7 +305,7 @@ class ArchivedFile
 		$this->load();
 		return $this->user_text;
 	}
-	
+
 	/**
 	 * Return upload description.
 	 */
@@ -322,11 +322,11 @@ class ArchivedFile
 	public function isDeleted( $field ) {
 		return ($this->deleted & $field) == $field;
 	}
-	
+
 	/**
 	 * Determine if the current user is allowed to view a particular
 	 * field of this FileStore image file, if it's marked as deleted.
-	 * @param int $field					
+	 * @param int $field
 	 * @return bool
 	 */
 	public function userCan( $field ) {

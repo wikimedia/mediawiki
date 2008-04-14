@@ -14,7 +14,7 @@ function wfSpecialLockdb() {
 		$wgOut->permissionRequired( 'siteadmin' );
 		return;
 	}
-	
+
 	# If the lock file isn't writable, we can do sweet bugger all
 	global $wgReadOnlyFile;
 	if( !is_writable( dirname( $wgReadOnlyFile ) ) ) {
@@ -123,12 +123,9 @@ END
 		$wgOut->setSubtitle( wfMsg( 'lockdbsuccesssub' ) );
 		$wgOut->addWikiMsg( 'lockdbsuccesstext' );
 	}
-	
+
 	public static function notWritable() {
 		global $wgOut;
 		$wgOut->showErrorPage( 'lockdb', 'lockfilenotwritable' );
 	}
-	
 }
-
-

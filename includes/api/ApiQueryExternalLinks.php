@@ -30,7 +30,7 @@ if (!defined('MEDIAWIKI')) {
 
 /**
  * A query module to list all external URLs found on a given set of pages.
- * 
+ *
  * @addtogroup API
  */
 class ApiQueryExternalLinks extends ApiQueryBase {
@@ -47,15 +47,15 @@ class ApiQueryExternalLinks extends ApiQueryBase {
 			'el_from',
 			'el_to'
 		));
-		
+
 		$this->addTables('externallinks');
 		$this->addWhereFld('el_from', array_keys($this->getPageSet()->getGoodTitles()));
 
 		$db = $this->getDB();
 		$res = $this->select(__METHOD__);
-			
+
 		$data = array();
-		$lastId = 0;	// database has no ID 0	
+		$lastId = 0;	// database has no ID 0
 		while ($row = $db->fetchObject($res)) {
 			if ($lastId != $row->el_from) {
 				if($lastId != 0) {
@@ -64,7 +64,7 @@ class ApiQueryExternalLinks extends ApiQueryBase {
 				}
 				$lastId = $row->el_from;
 			}
-			
+
 			$entry = array();
 			ApiResult :: setContent($entry, $row->el_to);
 			$data[] = $entry;
@@ -92,4 +92,3 @@ class ApiQueryExternalLinks extends ApiQueryBase {
 		return __CLASS__ . ': $Id$';
 	}
 }
-

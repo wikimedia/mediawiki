@@ -43,5 +43,3 @@ function wfSpecialUncategorizedimages() {
 	list( $limit, $offset ) = wfCheckLimits();
 	return $uip->doQuery( $offset, $limit );
 }
-
-

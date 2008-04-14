@@ -149,5 +149,3 @@ function testLine( $test, $line, &$total, &$success, &$failed ) {
 		print str_replace( "\n", "$len\n", $stripped );
 	}
 }
-
-

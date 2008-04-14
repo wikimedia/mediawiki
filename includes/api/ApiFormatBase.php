@@ -30,7 +30,7 @@ if (!defined('MEDIAWIKI')) {
 
 /**
  * This is the abstract base class for API formatters.
- * 
+ *
  * @addtogroup API
  */
 abstract class ApiFormatBase extends ApiBase {
@@ -63,7 +63,7 @@ abstract class ApiFormatBase extends ApiBase {
 	/**
 	 * If formatter outputs data results as is, the results must first be sanitized.
 	 * An XML formatter on the other hand uses special tags, such as "_element" for special handling,
-	 * and thus needs to override this function to return true.  
+	 * and thus needs to override this function to return true.
 	 */
 	public function getNeedsRawData() {
 		return false;
@@ -83,8 +83,8 @@ abstract class ApiFormatBase extends ApiBase {
 
 	/**
 	 * Returns true when an HTML filtering printer should be used.
-	 * The default implementation assumes that formats ending with 'fm' 
-	 * should be formatted in HTML. 
+	 * The default implementation assumes that formats ending with 'fm'
+	 * should be formatted in HTML.
 	 */
 	public function getIsHtml() {
 		return $this->mIsHtml;
@@ -112,7 +112,7 @@ abstract class ApiFormatBase extends ApiBase {
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<?php if ($this->mUnescapeAmps) { 
+<?php if ($this->mUnescapeAmps) {
 ?>	<title>MediaWiki API</title>
 <?php } else {
 ?>	<title>MediaWiki API Result</title>
@@ -128,7 +128,7 @@ abstract class ApiFormatBase extends ApiBase {
 <small>
 You are looking at the HTML representation of the <?php echo( $this->mFormat ); ?> format.<br/>
 HTML is good for debugging, but probably is not suitable for your application.<br/>
-See <a href='http://www.mediawiki.org/wiki/API'>complete documentation</a>, or 
+See <a href='http://www.mediawiki.org/wiki/API'>complete documentation</a>, or
 <a href='<?php echo( $script ); ?>'>API help</a> for more information.
 </small>
 <?php
@@ -186,7 +186,7 @@ See <a href='http://www.mediawiki.org/wiki/API'>complete documentation</a>, or
 	public function setHelp( $help = true ) {
 		$this->mHelp = true;
 	}
-	
+
 	/**
 	* Prety-print various elements in HTML format, such as xml tags and URLs.
 	* This method also replaces any '<' with &lt;
@@ -209,7 +209,7 @@ See <a href='http://www.mediawiki.org/wiki/API'>complete documentation</a>, or
 			// make strings inside $ italic
 			$text = ereg_replace("\\$[^<>\n]+\\$", '<b><i>\\0</i></b>', $text);
 		}
-		
+
 		/* Temporary fix for bad links in help messages. As a special case,
 		 * XML-escaped metachars are de-escaped one level in the help message
 		 * for legibility. Should be removed once we have completed a fully-html
@@ -237,7 +237,7 @@ See <a href='http://www.mediawiki.org/wiki/API'>complete documentation</a>, or
 }
 
 /**
- * This printer is used to wrap an instance of the Feed class 
+ * This printer is used to wrap an instance of the Feed class
  * @addtogroup API
  */
 class ApiFormatFeedWrapper extends ApiFormatBase {
@@ -292,7 +292,7 @@ class ApiFormatFeedWrapper extends ApiFormatBase {
 			wfHttpError(500, 'Internal Server Error', '');
 		}
 	}
-	
+
 	public function getVersion() {
 		return __CLASS__ . ': $Id$';
 	}

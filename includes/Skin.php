@@ -105,7 +105,7 @@ class Skin extends Linker {
 	 */
 	static function &newFromKey( $key ) {
 		global $wgStyleDirectory;
-		
+
 		$key = Skin::normalizeKey( $key );
 
 		$skinNames = Skin::getSkinNames();
@@ -160,14 +160,14 @@ class Skin extends Linker {
 		if( false !== $wgFavicon ) {
 			$out->addLink( array( 'rel' => 'shortcut icon', 'href' => $wgFavicon ) );
 		}
-		
+
 		if( false !== $wgAppleTouchIcon ) {
 			$out->addLink( array( 'rel' => 'apple-touch-icon', 'href' => $wgAppleTouchIcon ) );
-		} 		
+		}
 
 		# OpenSearch description link
-		$out->addLink( array( 
-			'rel' => 'search', 
+		$out->addLink( array(
+			'rel' => 'search',
 			'type' => 'application/opensearchdescription+xml',
 			'href' => "$wgScriptPath/opensearch_desc{$wgScriptExtension}",
 			'title' => wfMsgForContent( 'opensearch-desc' ),
@@ -176,7 +176,7 @@ class Skin extends Linker {
 		$this->addMetadataLinks($out);
 
 		$this->mRevisionId = $out->mRevisionId;
-		
+
 		$this->preloadExistence();
 
 		wfProfileOut( __METHOD__ );
@@ -203,7 +203,7 @@ class Skin extends Linker {
 		$lb = new LinkBatch( $titles );
 		$lb->execute();
 	}
-	
+
 	function addMetadataLinks( &$out ) {
 		global $wgTitle, $wgEnableDublinCoreRdf, $wgEnableCreativeCommonsRdf;
 		global $wgRightsPage, $wgRightsUrl;
@@ -304,7 +304,7 @@ class Skin extends Linker {
 		$ns = $wgTitle->getNamespace();
 		$nsname = isset( $wgCanonicalNamespaceNames[ $ns ] ) ? $wgCanonicalNamespaceNames[ $ns ] : $wgTitle->getNsText();
 
-		$vars = array( 
+		$vars = array(
 			'skin' => $data['skinname'],
 			'stylepath' => $wgStylePath,
 			'wgArticlePath' => $wgArticlePath,
@@ -646,7 +646,7 @@ END;
 		$colon = wfMsgExt( 'colon-separator', 'escapenoentities' );
 		if ( !empty( $allCats['normal'] ) ) {
 			$t = $embed . implode ( "{$pop} {$sep} {$embed}" , $allCats['normal'] ) . $pop;
-	
+
 			$msg = wfMsgExt( 'pagecategories', array( 'parsemag', 'escapenoentities' ), count( $allCats['normal'] ) );
 			$s .= '<div id="mw-normal-catlinks">' .
 				$this->makeLinkObj( Title::newFromText( wfMsgForContent('pagecategorieslink') ), $msg )
@@ -662,8 +662,8 @@ END;
 			} else {
 				$class = 'mw-hidden-cats-hidden';
 			}
-			$s .= "<div id=\"mw-hidden-catlinks\" class=\"$class\">" . 
-				wfMsgExt( 'hidden-categories', array( 'parsemag', 'escapenoentities' ), count( $allCats['hidden'] ) ) . 
+			$s .= "<div id=\"mw-hidden-catlinks\" class=\"$class\">" .
+				wfMsgExt( 'hidden-categories', array( 'parsemag', 'escapenoentities' ), count( $allCats['hidden'] ) ) .
 				$colon . $embed . implode( "$pop $sep $embed", $allCats['hidden'] ) . $pop .
 				"</div>";
 		}
@@ -712,13 +712,13 @@ END;
 
 	function getCategories() {
 		$catlinks=$this->getCategoryLinks();
-		
+
 		$classes = 'catlinks';
-		
+
 		if(FALSE === strpos($catlinks,'<div id="mw-normal-catlinks">')) {
 			$classes .= ' catlinks-allhidden';
 		}
-		
+
 		if(!empty($catlinks)) {
 			return "<div id='catlinks' class='$classes'>{$catlinks}</div>";
 		}
@@ -730,7 +730,7 @@ END;
 
 	/**
 	 * This gets called shortly before the \</body\> tag.
-	 * @return String HTML to be put before \</body\> 
+	 * @return String HTML to be put before \</body\>
 	 */
 	function afterContent() {
 		$printfooter = "<div class=\"printfooter\">\n" . $this->printFooter() . "</div>\n";
@@ -739,7 +739,7 @@ END;
 
 	/**
 	 * This gets called shortly before the \</body\> tag.
-	 * @return String HTML-wrapped JS code to be put before \</body\> 
+	 * @return String HTML-wrapped JS code to be put before \</body\>
 	 */
 	function bottomScripts() {
 		global $wgJsMimeType;
@@ -992,14 +992,14 @@ END;
 		}
 		# Many people don't like this dropdown box
 		#$s .= $sep . $this->specialPagesList();
-		
+
 		$s .= $this->variantLinks();
-		
+
 		$s .= $this->extensionTabLinks();
 
 		return $s;
 	}
-	
+
 	/**
 	 * Compatibility for extensions adding functionality through tabs.
 	 * Eventually these old skins should be replaced with SkinTemplate-based
@@ -1017,7 +1017,7 @@ END;
 		}
 		return $s;
 	}
-	
+
 	/**
 	 * Language/charset variant links for classic-style skins
 	 * @return string
@@ -1392,15 +1392,15 @@ END;
 	function whatLinksHere() {
 		global $wgTitle;
 
-		return $this->makeKnownLinkObj( 
-			SpecialPage::getTitleFor( 'Whatlinkshere', $wgTitle->getPrefixedDBkey() ), 
+		return $this->makeKnownLinkObj(
+			SpecialPage::getTitleFor( 'Whatlinkshere', $wgTitle->getPrefixedDBkey() ),
 			wfMsg( 'whatlinkshere' ) );
 	}
 
 	function userContribsLink() {
 		global $wgTitle;
 
-		return $this->makeKnownLinkObj( 
+		return $this->makeKnownLinkObj(
 			SpecialPage::getTitleFor( 'Contributions', $wgTitle->getDBkey() ),
 			wfMsg( 'contributions' ) );
 	}
@@ -1419,7 +1419,7 @@ END;
 	function emailUserLink() {
 		global $wgTitle;
 
-		return $this->makeKnownLinkObj( 
+		return $this->makeKnownLinkObj(
 			SpecialPage::getTitleFor( 'Emailuser', $wgTitle->getDBkey() ),
 			wfMsg( 'emailuser' ) );
 	}
@@ -1430,8 +1430,8 @@ END;
 		if ( ! $wgOut->isArticleRelated() ) {
 			return '(' . wfMsg( 'notanarticle' ) . ')';
 		} else {
-			return $this->makeKnownLinkObj( 
-				SpecialPage::getTitleFor( 'Recentchangeslinked', $wgTitle->getPrefixedDBkey() ), 
+			return $this->makeKnownLinkObj(
+				SpecialPage::getTitleFor( 'Recentchangeslinked', $wgTitle->getPrefixedDBkey() ),
 				wfMsg( 'recentchangeslinked' ) );
 		}
 	}
@@ -1534,7 +1534,7 @@ END;
 		if ( $wgTitle->getNamespace() == NS_SPECIAL ) {
 			return '';
 		}
-		
+
 		# __NEWSECTIONLINK___ changes behaviour here
 		# If it's present, the link points to this page, otherwise
 		# it points to the talk page
@@ -1545,7 +1545,7 @@ END;
 		} else {
 			$title = $wgTitle->getTalkPage();
 		}
-		
+
 		return $this->makeKnownLinkObj( $title, wfMsg( 'postcomment' ), 'action=edit&section=new' );
 	}
 
@@ -1644,7 +1644,7 @@ END;
 		$key = wfMemcKey( 'sidebar' );
 		$cacheSidebar = $wgEnableSidebarCache &&
 			($wgLang->getCode() == $wgContLang->getCode());
-		
+
 		if ($cacheSidebar) {
 			$cachedsidebar = $parserMemc->get( $key );
 			if ($cachedsidebar!="") {
@@ -1699,5 +1699,4 @@ END;
 		wfProfileOut( $fname );
 		return $bar;
 	}
-	
 }

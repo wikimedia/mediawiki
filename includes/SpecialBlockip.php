@@ -86,7 +86,7 @@ class IPBlockForm {
 
 		if ( "" != $err ) {
 			$wgOut->setSubtitle( wfMsgHtml( 'formerror' ) );
-			$wgOut->addHTML( Xml::tags( 'p', array( 'class' => 'error' ), $err ) ); 
+			$wgOut->addHTML( Xml::tags( 'p', array( 'class' => 'error' ), $err ) );
 		}
 
 		$scBlockExpiryOptions = wfMsgForContent( 'ipboptions' );
@@ -105,7 +105,7 @@ class IPBlockForm {
 		}
 
 		$reasonDropDown = Xml::listDropDown( 'wpBlockReasonList',
-			wfMsgForContent( 'ipbreason-dropdown' ), 
+			wfMsgForContent( 'ipbreason-dropdown' ),
 			wfMsgForContent( 'ipbreasonotherlist' ), '', 'wpBlockDropDown', 4 );
 
 		global $wgStylePath, $wgStyleVersion;
@@ -135,7 +135,7 @@ class IPBlockForm {
 					{$mIpbexpiry}
 				</td>
 				<td class='mw-input'>" .
-					Xml::tags( 'select', 
+					Xml::tags( 'select',
 						array(
 							'id' => 'wpBlockExpiry',
 							'name' => 'wpBlockExpiry',
@@ -270,7 +270,7 @@ class IPBlockForm {
 		$rxIP4 = '\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}';
 		$rxIP6 = '\w{1,4}:\w{1,4}:\w{1,4}:\w{1,4}:\w{1,4}:\w{1,4}:\w{1,4}:\w{1,4}';
 		$rxIP = "($rxIP4|$rxIP6)";
-		
+
 		# Check for invalid specifications
 		if ( !preg_match( "/^$rxIP$/", $this->BlockAddress ) ) {
 			$matches = array();
@@ -477,4 +477,3 @@ class IPBlockForm {
 		}
 	}
 }
-

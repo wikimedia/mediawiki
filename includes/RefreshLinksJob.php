@@ -45,4 +45,3 @@ class RefreshLinksJob extends Job {
 		return true;
 	}
 }
-

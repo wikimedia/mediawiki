@@ -95,7 +95,7 @@ class SpecialBookSources extends SpecialPage {
 		$wgOut->addHtml( '</ul>' );
 		return true;
 	}
-	
+
 	/**
 	 * Format a book source list item
 	 *
@@ -107,7 +107,4 @@ class SpecialBookSources extends SpecialPage {
 		$url = str_replace( '$1', $this->isbn, $url );
 		return '<li><a href="' . htmlspecialchars( $url ) . '">' . htmlspecialchars( $label ) . '</a></li>';
 	}
-
 }
-
-

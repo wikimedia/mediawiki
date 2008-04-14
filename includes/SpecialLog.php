@@ -47,13 +47,13 @@ function wfSpecialLog( $par = '' ) {
 	# Set title and add header
 	$loglist->showHeader( $pager->getType() );
 	# Show form options
-	$loglist->showOptions( $pager->getType(), $pager->getUser(), $pager->getPage(), $pager->getPattern(), 
+	$loglist->showOptions( $pager->getType(), $pager->getUser(), $pager->getPage(), $pager->getPattern(),
 		$pager->getYear(), $pager->getMonth() );
 	# Insert list
 	$logBody = $pager->getBody();
 	if( $logBody ) {
 		$wgOut->addHTML(
-			$pager->getNavigationBar() . 
+			$pager->getNavigationBar() .
 			$loglist->beginLogEventsList() .
 			$logBody .
 			$loglist->endLogEventsList() .
@@ -63,4 +63,3 @@ function wfSpecialLog( $par = '' ) {
 		$wgOut->addWikiMsg( 'logempty' );
 	}
 }
-

@@ -30,7 +30,7 @@ if (!defined('MEDIAWIKI')) {
 
 /**
  * Query module to enumerate all available pages.
- * 
+ *
  * @addtogroup API
  */
 class ApiQueryDeletedrevs extends ApiQueryBase {
@@ -94,9 +94,9 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 			$limit = $this->getMain()->canApiHighLimits() ? $botMax : $userMax;
 			$this->getResult()->addValue( 'limits', $this->getModuleName(), $limit );
 		}
-		
+
 		$this->validateLimit('limit', $limit, 1, $userMax, $botMax);
-		
+
 		if($fld_token)
 			// Undelete tokens are identical for all pages, so we cache one here
 			$token = $wgUser->editToken();

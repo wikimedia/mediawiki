@@ -138,7 +138,7 @@ class MediaWiki {
 			// Compatibility with old search URLs which didn't use Special:Search
 			// Just check for presence here, so blank requests still
 			// show the search page when using ugly URLs (bug 8054).
-			
+
 			// Do this above the read whitelist check for security...
 			$title = SpecialPage::getTitleFor( 'Search' );
 		}
@@ -187,7 +187,7 @@ class MediaWiki {
 				$title = SpecialPage::getTitleFor( 'Badtitle' );
 				throw new ErrorPageError( 'badtitle', 'badtitletext' );
 			}
-		} else if ( ( $action == 'view' ) && !$request->wasPosted() && 
+		} else if ( ( $action == 'view' ) && !$request->wasPosted() &&
 			(!isset( $this->GET['title'] ) || $title->getPrefixedDBKey() != $this->GET['title'] ) &&
 			!count( array_diff( array_keys( $this->GET ), array( 'action', 'title' ) ) ) )
 		{
@@ -317,7 +317,7 @@ class MediaWiki {
 	/**
 	 * Cleaning up by doing deferred updates, calling LBFactory and doing the output
 	 *
-	 * @param Array $deferredUpdates array of updates to do 
+	 * @param Array $deferredUpdates array of updates to do
 	 * @param OutputPage $output
 	 */
 	function finalCleanup ( &$deferredUpdates, &$output ) {
@@ -346,7 +346,7 @@ class MediaWiki {
 			wfProfileOut( __METHOD__ );
 			return;
 		}
-		
+
 		$dbw = wfGetDB( DB_MASTER );
 		foreach( $updates as $up ) {
 			$up->doUpdate();
@@ -511,4 +511,3 @@ class MediaWiki {
 	}
 
 }; /* End of class MediaWiki */
-

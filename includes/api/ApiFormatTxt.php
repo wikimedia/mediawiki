@@ -56,4 +56,3 @@ class ApiFormatTxt extends ApiFormatBase {
 		return __CLASS__ . ': $Id$';
 	}
 }
-

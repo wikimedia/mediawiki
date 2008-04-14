@@ -82,12 +82,11 @@ function wfSpecialStatistics( $par = '' ) {
 				$res->free();
 			}
 		}
-		
+
 		$footer = wfMsgNoTrans( 'statistics-footer' );
 		if( !wfEmptyMsg( 'statistics-footer', $footer ) && $footer != '' )
 			$text .= "\n" . $footer;
-			
-		$wgOut->addWikiText( $text );		
+
+		$wgOut->addWikiText( $text );
 	}
-	
 }

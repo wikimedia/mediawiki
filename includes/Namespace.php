@@ -132,7 +132,7 @@ class MWNamespace {
 			return NULL;
 		}
 	}
-	
+
 	/**
 	 * Can this namespace ever have a talk namespace?
 	 *
@@ -142,7 +142,7 @@ class MWNamespace {
 	 public static function canTalk( $index ) {
 	 	return $index >= NS_MAIN;
 	 }
-	 
+
 	/**
 	 * Does this namespace contain content, for the purposes
 	 * of calculating statistics, etc?
@@ -154,7 +154,7 @@ class MWNamespace {
 		global $wgContentNamespaces;
 		return $index == NS_MAIN || in_array( $index, $wgContentNamespaces );
 	}
-	
+
 	/**
 	 * Can pages in a namespace be watched?
 	 *
@@ -164,5 +164,5 @@ class MWNamespace {
 	public static function isWatchable( $index ) {
 		return $index >= NS_MAIN;
 	}
-	 
+
 }

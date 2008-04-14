@@ -122,7 +122,7 @@ function wfIsBadImage( $name, $contextTitle = false ) {
 			}
 		}
 	}
-	
+
 	$contextKey = $contextTitle ? $contextTitle->getPrefixedDBkey() : false;
 	$bad = isset( $badImages[$name] ) && !isset( $badImages[$name][$contextKey] );
 	wfProfileOut( __METHOD__ );
@@ -145,6 +145,3 @@ function wfFitBoxWidth( $boxWidth, $boxHeight, $maxHeight ) {
 	else
 		return $roundedUp;
 }
-
-
-

@@ -30,10 +30,10 @@ if (!defined('MEDIAWIKI')) {
 
 /**
  * Query module to get information about a list of users
- * 
+ *
  * @addtogroup API
  */
- 
+
  class ApiQueryUsers extends ApiQueryBase {
 
 	public function __construct($query, $moduleName) {
@@ -50,7 +50,7 @@ if (!defined('MEDIAWIKI')) {
 		} else {
 			$this->prop = array();
 		}
-	
+
 		if(is_array($params['users'])) {
 			$r = $this->getOtherUsersInfo($params['users']);
 			$result->setIndexedTagName($r, 'user');
@@ -63,7 +63,7 @@ if (!defined('MEDIAWIKI')) {
 		// Canonicalize user names
 		foreach($users as $u) {
 			$n = User::getCanonicalName($u);
-			if($n === false || $n === '') 
+			if($n === false || $n === '')
 				$retval[] = array('name' => $u, 'invalid' => '');
 			 else
 				$goodNames[] = $n;
@@ -77,7 +77,7 @@ if (!defined('MEDIAWIKI')) {
 		$this->addFields('u1.user_name');
 		$this->addWhereFld('u1.user_name', $goodNames);
 		$this->addFieldsIf('u1.user_editcount', isset($this->prop['editcount']));
-		
+
 		if(isset($this->prop['groups'])) {
 			$ug = $db->tableName('user_groups');
 			$tables = "$tables LEFT JOIN $ug ON ug_user=u1.user_id";
@@ -90,7 +90,7 @@ if (!defined('MEDIAWIKI')) {
 			$this->addFields(array('ipb_reason', 'u2.user_name AS blocker_name'));
 		}
 		$this->addTables($tables);
-		
+
 		$data = array();
 		$res = $this->select(__METHOD__);
 		while(($r = $db->fetchObject($res))) {
@@ -107,7 +107,7 @@ if (!defined('MEDIAWIKI')) {
 					$data[$r->user_name]['blockreason'] = $r->ipb_reason;
 				}
 		}
-		
+
 		// Second pass: add result data to $retval
 		foreach($goodNames as $u) {
 			if(!isset($data[$u]))
@@ -118,7 +118,7 @@ if (!defined('MEDIAWIKI')) {
 				$retval[] = $data[$u];
 			}
 		}
-		return $retval;		
+		return $retval;
 	}
 
 	public function getAllowedParams() {

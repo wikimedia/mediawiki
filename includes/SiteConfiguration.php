@@ -54,7 +54,7 @@ class SiteConfiguration {
 		}
 		return $retval;
 	}
-	
+
 	/** Type-safe string replace; won't do replacements on non-strings */
 	function doReplace( $from, $to, $in ) {
 		if( is_string( $in ) ) {
@@ -146,5 +146,3 @@ class SiteConfiguration {
 	}
 }
 }
-
-

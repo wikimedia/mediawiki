@@ -30,7 +30,7 @@ if (!defined('MEDIAWIKI')) {
 
 /**
  * A query action to get image information and upload history.
- * 
+ *
  * @addtogroup API
  */
 class ApiQueryImageInfo extends ApiQueryBase {
@@ -42,7 +42,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 	public function execute() {
 		$params = $this->extractRequestParams();
 
-		$prop = array_flip($params['prop']);		
+		$prop = array_flip($params['prop']);
 		$this->fld_timestamp = isset($prop['timestamp']);
 		$this->fld_user = isset($prop['user']);
 		$this->fld_comment = isset($prop['comment']);
@@ -51,7 +51,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 		$this->fld_sha1 = isset($prop['sha1']);
 		$this->fld_metadata = isset($prop['metadata']);
 		$this->fld_archivename = isset($prop['archivename']);
-		
+
 		if($params['urlheight'] != -1 && $params['urlwidth'] == -1)
 			$this->dieUsage("iiurlheight cannot be used without iiurlwidth", 'iiurlwidth');
 		$this->scale = ($params['urlwidth'] != -1);
@@ -61,7 +61,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 		$pageIds = $this->getPageSet()->getAllTitlesByNamespace();
 		if (!empty($pageIds[NS_IMAGE])) {
 			foreach ($pageIds[NS_IMAGE] as $dbKey => $pageId) {
-								
+
 				$title = Title :: makeTitle(NS_IMAGE, $dbKey);
 				$img = wfFindFile($title);
 
@@ -71,14 +71,14 @@ class ApiQueryImageInfo extends ApiQueryBase {
 				} else {
 
 					$repository = $img->getRepoName();
-					
+
 					// Get information about the current version first
 					// Check that the current version is within the start-end boundaries
 					if((is_null($params['start']) || $img->getTimestamp() <= $params['start']) &&
 							(is_null($params['end']) || $img->getTimestamp() >= $params['end'])) {
 						$data[] = $this->getInfo($img);
 					}
-					
+
 					// Now get the old revisions
 					// Get one more to facilitate query-continue functionality
 					$count = count($data);
@@ -91,7 +91,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 								$this->setContinueEnumParameter('start', $oldie->getTimestamp());
 							break;
 						}
-						$data[] = $this->getInfo($oldie);	
+						$data[] = $this->getInfo($oldie);
 					}
 				}
 
@@ -136,9 +136,9 @@ class ApiQueryImageInfo extends ApiQueryBase {
 			}
 			$vals['url'] = $f->getURL();
 		}
-		if($this->fld_comment) 
+		if($this->fld_comment)
 			$vals['comment'] = $f->getDescription();
-		if($this->fld_sha1) 
+		if($this->fld_sha1)
 			$vals['sha1'] = wfBaseConvert($f->getSha1(), 36, 16, 40);
 		if($this->fld_metadata) {
 			$metadata = unserialize($f->getMetadata());
@@ -147,7 +147,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 		}
 		if($this->fld_archivename && $f->isOld())
 			$vals['archivename'] = $f->getArchiveName();
-		
+
 		return $vals;
 	}
 

@@ -188,15 +188,15 @@ define( 'RC_MOVE_OVER_REDIRECT', 4);
  */
 define( 'EDIT_NEW', 1 );
 define( 'EDIT_UPDATE', 2 );
-define( 'EDIT_MINOR', 4 ); 
+define( 'EDIT_MINOR', 4 );
 define( 'EDIT_SUPPRESS_RC', 8 );
 define( 'EDIT_FORCE_BOT', 16 );
 define( 'EDIT_DEFER_UPDATES', 32 );
 define( 'EDIT_AUTOSUMMARY', 64 );
 /**#@-*/
 
-/** 
- * Flags for Database::makeList() 
+/**
+ * Flags for Database::makeList()
  * These are also available as Database class constants
  */
 define( 'LIST_COMMA', 0 );

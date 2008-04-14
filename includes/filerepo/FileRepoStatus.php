@@ -20,7 +20,7 @@ class FileRepoStatus extends Status {
 		$result->value = $value;
 		return $result;
 	}
-	
+
 	function __construct( $repo = false ) {
 		if ( $repo ) {
 			$this->cleanCallback = $repo->getErrorCleanupFunction();

@@ -89,4 +89,3 @@ class ApiFormatJson extends ApiFormatBase {
 		return __CLASS__ . ': $Id$';
 	}
 }
-

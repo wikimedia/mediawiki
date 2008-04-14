@@ -87,7 +87,7 @@ function &wfGetCache( $inputType ) {
 		}
 		$cache =& $wgCaches[CACHE_DBA];
 	}
-	
+
 	if ( $type == CACHE_DB || ( $inputType == CACHE_ANYTHING && $cache === false ) ) {
 		if ( !array_key_exists( CACHE_DB, $wgCaches ) ) {
 			$wgCaches[CACHE_DB] = new MediaWikiBagOStuff('objectcache');
@@ -122,5 +122,3 @@ function &wfGetParserCacheStorage() {
 	$ret =& wfGetCache( $wgParserCacheType );
 	return $ret;
 }
-
-

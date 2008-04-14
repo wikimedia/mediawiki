@@ -30,7 +30,7 @@ if (!defined('MEDIAWIKI')) {
 
 /**
  * Query module to enumerate all available pages.
- * 
+ *
  * @addtogroup API
  */
 class ApiQueryBlocks extends ApiQueryBase {

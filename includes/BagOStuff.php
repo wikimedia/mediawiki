@@ -247,8 +247,8 @@ abstract class SqlBagOStuff extends BagOStuff {
 		}
 		if($row=$this->_fetchobject($res)) {
 			$this->_debug("get: retrieved data; exp time is " . $row->exptime);
-			if ( $row->exptime != $this->_maxdatetime() && 
-			  wfTimestamp( TS_UNIX, $row->exptime ) < time() ) 
+			if ( $row->exptime != $this->_maxdatetime() &&
+			  wfTimestamp( TS_UNIX, $row->exptime ) < time() )
 			{
 				$this->_debug("get: key has expired, deleting");
 				$this->delete($key);
@@ -536,12 +536,12 @@ class APCBagOStuff extends BagOStuff {
 		}
 		return $val;
 	}
-	
+
 	function set($key, $value, $exptime=0) {
 		apc_store($key, serialize($value), $exptime);
 		return true;
 	}
-	
+
 	function delete($key, $time=0) {
 		apc_delete($key);
 		return true;
@@ -604,7 +604,7 @@ class XCacheBagOStuff extends BagOStuff {
 			$val = unserialize( $val );
 		return $val;
 	}
-	
+
 	/**
 	 * Store a value in the XCache object cache
 	 *
@@ -617,7 +617,7 @@ class XCacheBagOStuff extends BagOStuff {
 		xcache_set( $key, serialize( $value ), $expire );
 		return true;
 	}
-	
+
 	/**
 	 * Remove a value from the XCache object cache
 	 *
@@ -629,7 +629,7 @@ class XCacheBagOStuff extends BagOStuff {
 		xcache_unset( $key );
 		return true;
 	}
-	
+
 }
 
 /**
@@ -637,7 +637,7 @@ class XCacheBagOStuff extends BagOStuff {
  */
 class DBABagOStuff extends BagOStuff {
 	var $mHandler, $mFile, $mReader, $mWriter, $mDisabled;
-	
+
 	function __construct( $handler = 'db3', $dir = false ) {
 		if ( $dir === false ) {
 			global $wgTmpDirectory;
@@ -665,7 +665,7 @@ class DBABagOStuff extends BagOStuff {
 		if ( !is_string( $blob ) ) {
 			return array( null, 0 );
 		} else {
-			return array( 
+			return array(
 				unserialize( substr( $blob, 11 ) ),
 				intval( substr( $blob, 0, 10 ) )
 		   	);
@@ -780,5 +780,3 @@ class DBABagOStuff extends BagOStuff {
 		return $result;
 	}
 }
-	
-

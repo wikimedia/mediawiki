@@ -233,5 +233,3 @@ class OracleSearchResultSet extends SearchResultSet {
 		return new SearchResult($row);
 	}
 }
-
-

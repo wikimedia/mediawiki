@@ -37,7 +37,7 @@ class ImageGallery
 
 	private $mPerRow = 4; // How many images wide should the gallery be?
 	private $mWidths = 120, $mHeights = 120; // How wide/tall each thumbnail should be
-	
+
 	private $mAttribs = array();
 
 	/**
@@ -196,11 +196,11 @@ class ImageGallery
 	function setShowFilename( $f ) {
 		$this->mShowFilename = ( $f == true);
 	}
-	
+
 	/**
 	 * Set arbitrary attributes to go on the HTML gallery output element.
 	 * Should be suitable for a &lt;table&gt; element.
-	 * 
+	 *
 	 * Note -- if taking from user input, you should probably run through
 	 * Sanitizer::validateAttributes() first.
 	 *
@@ -240,7 +240,7 @@ class ImageGallery
 		foreach ( $this->mImages as $pair ) {
 			$nt = $pair[0];
 			$text = $pair[1];
-			
+
 			# Give extensions a chance to select the file revision for us
 			$time = false;
 			wfRunHooks( 'BeforeGalleryFindFile', array( &$this, &$nt, &$time ) );
@@ -261,7 +261,7 @@ class ImageGallery
 					. htmlspecialchars( $img->getLastError() ) . '</div>';
 			} else {
 				$vpad = floor( ( 1.25*$this->mHeights - $thumb->height ) /2 ) - 2;
-					
+
 				$thumbhtml = "\n\t\t\t".
 					'<div class="thumb" style="padding: ' . $vpad . 'px 0; width: ' .($this->mWidths+30).'px;">'
 					# Auto-margin centering for block-level elements. Needed now that we have video
@@ -328,7 +328,7 @@ class ImageGallery
 	public function count() {
 		return count( $this->mImages );
 	}
-	
+
 	/**
 	 * Set the contextual title
 	 *
@@ -337,7 +337,7 @@ class ImageGallery
 	public function setContextTitle( $title ) {
 		$this->contextTitle = $title;
 	}
-	
+
 	/**
 	 * Get the contextual title, if applicable
 	 *
@@ -350,5 +350,3 @@ class ImageGallery
 	}
 
 } //class
-
-

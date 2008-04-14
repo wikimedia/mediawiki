@@ -98,14 +98,14 @@ function wfSpecialImport( $page = '' ) {
 
 	if( $wgUser->isAllowed( 'importupload' ) ) {
 		$wgOut->addWikiMsg( "importtext" );
-		$wgOut->addHTML( 
+		$wgOut->addHTML(
 			Xml::openElement( 'fieldset' ).
 			Xml::element( 'legend', null, wfMsg( 'upload' ) ) .
 			Xml::openElement( 'form', array( 'enctype' => 'multipart/form-data', 'method' => 'post', 'action' => $action ) ) .
 			Xml::hidden( 'action', 'submit' ) .
 			Xml::hidden( 'source', 'upload' ) .
 			Xml::input( 'xmlimport', 50, '', array( 'type' => 'file' ) ) . ' ' .
-			Xml::submitButton( wfMsg( 'uploadbtn' ) ) . 
+			Xml::submitButton( wfMsg( 'uploadbtn' ) ) .
 			Xml::closeElement( 'form' ) .
 			Xml::closeElement( 'fieldset' )
 		);
@@ -158,7 +158,7 @@ function wfSpecialImport( $page = '' ) {
 				<td>
 				</td>
 				<td>" .
-					Xml::submitButton( wfMsg( 'import-interwiki-submit' ) ) . 
+					Xml::submitButton( wfMsg( 'import-interwiki-submit' ) ) .
 				"</td>
 			</tr>" .
 			Xml::closeElement( 'table' ).
@@ -291,15 +291,15 @@ class WikiRevision {
 	function setMinor( $minor ) {
 		$this->minor = (bool)$minor;
 	}
-	
+
 	function setSrc( $src ) {
 		$this->src = $src;
 	}
-	
+
 	function setFilename( $filename ) {
 		$this->filename = $filename;
 	}
-	
+
 	function setSize( $size ) {
 		$this->size = intval( $size );
 	}
@@ -331,15 +331,15 @@ class WikiRevision {
 	function getMinor() {
 		return $this->minor;
 	}
-	
+
 	function getSrc() {
 		return $this->src;
 	}
-	
+
 	function getFilename() {
 		return $this->filename;
 	}
-	
+
 	function getSize() {
 		return $this->size;
 	}
@@ -422,10 +422,10 @@ class WikiRevision {
 
 		return true;
 	}
-	
+
 	function importUpload() {
 		wfDebug( __METHOD__ . ": STUB\n" );
-		
+
 		/**
 			// from file revert...
 			$source = $this->file->getArchiveVirtualUrl( $this->oldimage );
@@ -434,7 +434,7 @@ class WikiRevision {
 			$status = $this->file->upload( $source, $comment, $comment );
 			if( $status->isGood() ) {
 		*/
-		
+
 		/**
 			// from file upload...
 		$this->mLocalFile = wfLocalFile( $nt );
@@ -445,55 +445,55 @@ class WikiRevision {
 			if ( !$status->isGood() ) {
 				$resultDetails = array( 'internal' => $status->getWikiText() );
 		*/
-		
+
 		// @fixme upload() uses $wgUser, which is wrong here
 		// it may also create a page without our desire, also wrong potentially.
 		// and, it will record a *current* upload, but we might want an archive version here
-		
+
 		$file = wfLocalFile( $this->getTitle() );
 		if( !$file ) {
 			var_dump( $file );
 			wfDebug( "IMPORT: Bad file. :(\n" );
 			return false;
 		}
-		
+
 		$source = $this->downloadSource();
 		if( !$source ) {
 			wfDebug( "IMPORT: Could not fetch remote file. :(\n" );
 			return false;
 		}
-		
+
 		$status = $file->upload( $source,
 			$this->getComment(),
 			$this->getComment(), // Initial page, if none present...
 			File::DELETE_SOURCE,
 			false, // props...
 			$this->getTimestamp() );
-		
+
 		if( $status->isGood() ) {
 			// yay?
 			wfDebug( "IMPORT: is ok?\n" );
 			return true;
 		}
-		
+
 		wfDebug( "IMPORT: is bad? " . $status->getXml() . "\n" );
 		return false;
 
 	}
-	
+
 	function downloadSource() {
 		global $wgEnableUploads;
 		if( !$wgEnableUploads ) {
 			return false;
 		}
-		
+
 		$tempo = tempnam( wfTempDir(), 'download' );
 		$f = fopen( $tempo, 'wb' );
 		if( !$f ) {
 			wfDebug( "IMPORT: couldn't write to temp file $tempo\n" );
 			return false;
 		}
-		
+
 		// @fixme!
 		$src = $this->getSrc();
 		$data = Http::get( $src );
@@ -503,10 +503,10 @@ class WikiRevision {
 			unlink( $tempo );
 			return false;
 		}
-		
+
 		fwrite( $f, $data );
 		fclose( $f );
-		
+
 		return $tempo;
 	}
 
@@ -582,7 +582,7 @@ class WikiImporter {
 			$wgOut->addHTML( "<li>" . htmlspecialchars( $data ) . "</li>\n" );
 		}
 	}
-	
+
 	/**
 	 * Set debug mode...
 	 */
@@ -626,7 +626,7 @@ class WikiImporter {
 		$this->mRevisionCallback = $callback;
 		return $previous;
 	}
-	
+
 	/**
 	 * Sets the action to perform as each file upload version is reached.
 	 * @param callable callback
@@ -662,7 +662,7 @@ class WikiImporter {
 		$dbw = wfGetDB( DB_MASTER );
 		return $dbw->deadlockLoop( array( $revision, 'importOldRevision' ) );
 	}
-	
+
 	/**
 	 * Dummy for now...
 	 */
@@ -914,7 +914,7 @@ class WikiImporter {
 		}
 		$this->appendfield = "";
 		$this->appenddata = "";
-		
+
 		$parent = $this->parentTag();
 		xml_set_element_handler( $parser, "in_$parent", "out_$parent" );
 		xml_set_character_data_handler( $parser, "donothing" );
@@ -957,7 +957,7 @@ class WikiImporter {
 			}
 		}
 	}
-	
+
 	function in_upload( $parser, $name, $attribs ) {
 		$this->debug( "in_upload $name" );
 		switch( $name ) {
@@ -979,7 +979,7 @@ class WikiImporter {
 			return $this->throwXMLerror( "Element <$name> not allowed in an <upload>." );
 		}
 	}
-	
+
 	function out_upload( $parser, $name ) {
 		$this->debug( "out_revision $name" );
 		$this->pop();
@@ -987,7 +987,7 @@ class WikiImporter {
 			return $this->throwXMLerror( "Expected </upload>, got </$name>" );
 		}
 		xml_set_element_handler( $parser, "in_page", "out_page" );
-		
+
 		if( $this->workRevision ) {
 			$ok = call_user_func_array( $this->mUploadCallback,
 				array( $this->workRevision, $this ) );
@@ -1021,18 +1021,18 @@ class WikiImporter {
 		$parent = $this->parentTag();
 		xml_set_element_handler( $parser, "in_$parent", "out_$parent" );
 	}
-	
+
 	private function push( $name ) {
 		array_push( $this->tagStack, $name );
 		$this->debug( "PUSH $name" );
 	}
-	
+
 	private function pop() {
 		$name = array_pop( $this->tagStack );
 		$this->debug( "POP $name" );
 		return $name;
 	}
-	
+
 	private function parentTag() {
 		$name = $this->tagStack[count( $this->tagStack ) - 1];
 		$this->debug( "PARENT $name" );
@@ -1098,7 +1098,7 @@ class ImportStreamSource {
 		}
 		if( !empty( $upload['error'] ) ) {
 			switch($upload['error']){
-				case 1: # The uploaded file exceeds the upload_max_filesize directive in php.ini. 
+				case 1: # The uploaded file exceeds the upload_max_filesize directive in php.ini.
 					return new WikiErrorMsg( 'importuploaderrorsize' );
 				case 2: # The uploaded file exceeds the MAX_FILE_SIZE directive that was specified in the HTML form.
 					return new WikiErrorMsg( 'importuploaderrorsize' );
@@ -1108,7 +1108,7 @@ class ImportStreamSource {
 			    	return new WikiErrorMsg( 'importuploaderrortemp' );
 			    # case else: # Currently impossible
 			}
-			
+
 		}
 		$fname = $upload['tmp_name'];
 		if( is_uploaded_file( $fname ) ) {
@@ -1139,7 +1139,7 @@ class ImportStreamSource {
 	public static function newFromInterwiki( $interwiki, $page, $history=false ) {
 		if( $page == '' ) {
 			return new WikiErrorMsg( 'import-noarticle' );
-		}			
+		}
 		$link = Title::newFromText( "$interwiki:Special:Export/$page" );
 		if( is_null( $link ) || $link->getInterwiki() == '' ) {
 			return new WikiErrorMsg( 'importbadinterwiki' );

@@ -29,7 +29,7 @@ class SearchPostgres extends SearchEngine {
 
 	/**
 	 * Perform a full text search query via tsearch2 and return a result set.
-	 * Currently searches a page's current title (page.page_title) and 
+	 * Currently searches a page's current title (page.page_title) and
 	 * latest revision article text (pagecontent.old_text)
 	 *
 	 * @param string $term - Raw search term
@@ -248,6 +248,3 @@ class PostgresSearchResultSet extends SearchResultSet {
 		}
 	}
 }
-
-
-

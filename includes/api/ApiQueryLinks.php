@@ -30,7 +30,7 @@ if (!defined('MEDIAWIKI')) {
 
 /**
  * A query module to list all wiki links on a given set of pages.
- * 
+ *
  * @addtogroup API
  */
 class ApiQueryLinks extends ApiQueryGeneratorBase {
@@ -41,7 +41,7 @@ class ApiQueryLinks extends ApiQueryGeneratorBase {
 	private $table, $prefix, $description;
 
 	public function __construct($query, $moduleName) {
-		
+
 		switch ($moduleName) {
 			case self::LINKS :
 				$this->table = 'pagelinks';
@@ -90,9 +90,9 @@ class ApiQueryLinks extends ApiQueryGeneratorBase {
 		$res = $this->select(__METHOD__);
 
 		if (is_null($resultPageSet)) {
-			
+
 			$data = array();
-			$lastId = 0;	// database has no ID 0	
+			$lastId = 0;	// database has no ID 0
 			while ($row = $db->fetchObject($res)) {
 				if ($lastId != $row->pl_from) {
 					if($lastId != 0) {
@@ -159,4 +159,3 @@ class ApiQueryLinks extends ApiQueryGeneratorBase {
 		return __CLASS__ . ': $Id$';
 	}
 }
-

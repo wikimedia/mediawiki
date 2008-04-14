@@ -20,6 +20,5 @@ class EmaillingJob extends Job {
 		);
 		return true;
 	}
-	
-}
 
+}

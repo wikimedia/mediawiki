@@ -27,7 +27,7 @@ class ChangesList {
 	# Called by history lists and recent changes
 	#
 
-	/** 
+	/**
 	* Changeslist contructor
 	* @param Skin $skin
 	*/
@@ -194,7 +194,7 @@ class ChangesList {
 
 		wfRunHooks('ChangesListInsertArticleLink',
 			array(&$this, &$articlelink, &$s, &$rc, $unpatrolled, $watched));
-		
+
 		$s .= ' '.$articlelink;
 	}
 
@@ -207,7 +207,7 @@ class ChangesList {
 	/** Insert links to user page, user talk page and eventually a blocking link */
 	protected function insertUserRelatedLinks(&$s, &$rc) {
 		if ( $this->isDeleted($rc,Revision::DELETED_USER) ) {
-		   $s .= ' <span class="history-deleted">' . wfMsgHtml('rev-deleted-user') . '</span>';   
+		   $s .= ' <span class="history-deleted">' . wfMsgHtml('rev-deleted-user') . '</span>';
 		} else {
 		  $s .= $this->skin->userLink( $rc->mAttribs['rc_user'], $rc->mAttribs['rc_user_text'] );
 		  $s .= $this->skin->userToolLinks( $rc->mAttribs['rc_user'], $rc->mAttribs['rc_user_text'] );
@@ -222,7 +222,7 @@ class ChangesList {
 			if ( $this->isDeleted($rc,LogPage::DELETED_ACTION) ) {
 				$s .= ' <span class="history-deleted">' . wfMsgHtml('rev-deleted-event') . '</span>';
 			} else {
-				$s .= ' ' . LogPage::actionText( $rc->mAttribs['rc_log_type'], $rc->mAttribs['rc_log_action'], 
+				$s .= ' ' . LogPage::actionText( $rc->mAttribs['rc_log_type'], $rc->mAttribs['rc_log_action'],
 					$rc->getTitle(), $this->skin, LogPage::extractParams($rc->mAttribs['rc_params']), true, true );
 			}
 		}
@@ -240,7 +240,7 @@ class ChangesList {
 			}
 		}
 	}
-	
+
 	/**
 	 * Check whether to enable recent changes patrol features
 	 * @return bool
@@ -266,7 +266,7 @@ class ChangesList {
 			return '';
 		}
 	}
-	
+
 	/**
 	 * Determine if said field of a revision is hidden
 	 * @param RCCacheEntry $rc
@@ -276,7 +276,7 @@ class ChangesList {
 	public static function isDeleted( $rc, $field ) {
 		return ($rc->mAttribs['rc_deleted'] & $field) == $field;
 	}
-	
+
 	/**
 	 * Determine if the current user is allowed to view a particular
 	 * field of this revision, if it's marked as deleted.
@@ -364,7 +364,7 @@ class OldChangesList extends ChangesList {
 		$this->insertAction($s, $rc);
 		# Edit or log comment
 		$this->insertComment($s, $rc);
-		
+
 		# Mark revision as deleted if so
 		if ( !$rc_log_type && $this->isDeleted($rc,Revision::DELETED_TEXT) )
 		   $s .= ' <tt>' . wfMsgHtml( 'deletedrev' ) . '</tt>';
@@ -446,7 +446,7 @@ class EnhancedChangesList extends ChangesList {
 		} else {
 			$clink = $this->skin->makeKnownLinkObj( $rc->getTitle(), '' );
 		}
-		
+
 		# Don't show unusable diff links
 		if ( !ChangesList::userCan($rc,Revision::DELETED_TEXT) ) {
 			$showdifflinks = false;
@@ -468,7 +468,7 @@ class EnhancedChangesList extends ChangesList {
 		$querydiff = $curIdEq."&diff=$rc_this_oldid&oldid=$rc_last_oldid$rcIdQuery";
 		$aprops = ' tabindex="'.$baseRC->counter.'"';
 		$curLink = $this->skin->makeKnownLinkObj( $rc->getTitle(), $this->message['cur'], $querycur, '' ,'', $aprops );
-		
+
 		# Make "diff" an "cur" links
 		if( !$showdifflinks ) {
 		   $curLink = $this->message['cur'];
@@ -481,7 +481,7 @@ class EnhancedChangesList extends ChangesList {
 		} else {
 			$diffLink = $this->skin->makeKnownLinkObj( $rc->getTitle(), $this->message['diff'], $querydiff, '' ,'', $aprops );
 		}
-		
+
 		# Make "last" link
 		if( !$showdifflinks ) {
 		    $lastLink = $this->message['last'];
@@ -491,7 +491,7 @@ class EnhancedChangesList extends ChangesList {
 			$lastLink = $this->skin->makeKnownLinkObj( $rc->getTitle(), $this->message['last'],
 			$curIdEq.'&diff='.$rc_this_oldid.'&oldid='.$rc_last_oldid . $rcIdQuery );
 		}
-		
+
 		# Make user links
 		if( $this->isDeleted($rc,Revision::DELETED_USER) ) {
 		   	$rc->userlink = ' <span class="history-deleted">' . wfMsgHtml('rev-deleted-user') . '</span>';
@@ -569,7 +569,7 @@ class EnhancedChangesList extends ChangesList {
 			if( !$currentRevision && $rcObj->mAttribs['rc_this_oldid'] ) {
 				$currentRevision = $rcObj->mAttribs['rc_this_oldid'];
 			}
-			
+
 			$bot = $rcObj->mAttribs['rc_bot'];
 			$userlinks[$u]++;
 		}
@@ -634,7 +634,7 @@ class EnhancedChangesList extends ChangesList {
 			}
 			$r .= ') . . ';
 		}
-		
+
 		# Character difference (does not apply if only log items)
 		if( $wgRCShowChangedSize && !$alllogs ) {
 			$last = 0;
@@ -649,7 +649,7 @@ class EnhancedChangesList extends ChangesList {
 			# Get net change
 			$chardiff = $rcObj->getCharacterDifference( $block[$first]->mAttribs['rc_old_len'],
 				$block[$last]->mAttribs['rc_new_len'] );
-			
+
 			if( $chardiff == '' ) {
 				$r .= ' ';
 			} else {
@@ -664,10 +664,10 @@ class EnhancedChangesList extends ChangesList {
 			$r .= '(' . $this->skin->makeKnownLinkObj( $block[0]->getTitle(),
 				$this->message['history'], $curIdEq.'&action=history' ) . ')';
 		}
-		
+
 		$r .= $users;
 		$r .=$this->numberofWatchingusers($block[0]->numberofWatchingusers);
-		
+
 		$r .= "</td></tr></table>\n";
 
 		# Sub-entries
@@ -698,7 +698,7 @@ class EnhancedChangesList extends ChangesList {
 					$link = '<span class="history-deleted">'.$link.'</span> ';
 			}
 			$r .= $link;
-			
+
 			if ( !$rc_type == RC_LOG || $rc_type == RC_NEW ) {
 				$r .= ' (';
 				$r .= $rcObj->curlink;
@@ -781,11 +781,11 @@ class EnhancedChangesList extends ChangesList {
 	protected function spacerArrow() {
 		return $this->arrow( '', ' ' );
 	}
-	
+
 	/**
 	 * Add a set of spaces
 	 * @return string HTML <td> tag
-	 */	
+	 */
 	protected function spacerIndent() {
 		return '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
 	}
@@ -805,7 +805,7 @@ class EnhancedChangesList extends ChangesList {
 		$r = '<table cellspacing="0" cellpadding="0" border="0" style="background: none"><tr>';
 
 		$r .= '<td valign="top" style="white-space: nowrap"><tt>' . $this->spacerArrow() . '&nbsp;';
-		
+
 		# Flag and Timestamp
 		if( $rc_type == RC_MOVE || $rc_type == RC_MOVE_OVER_REDIRECT ) {
 			$r .= '&nbsp;&nbsp;&nbsp;&nbsp;'; // 4 flags -> 4 spaces
@@ -813,7 +813,7 @@ class EnhancedChangesList extends ChangesList {
 			$r .= $this->recentChangesFlags( $rc_type == RC_NEW, $rc_minor, $rcObj->unpatrolled, '&nbsp;', $rc_bot );
 		}
 		$r .= '&nbsp;'.$rcObj->timestamp.'&nbsp;</tt></td><td>';
-		
+
 		# Article or log link
 		if( $rc_log_type ) {
 			$logtitle = Title::newFromText( "Log/$rc_log_type", NS_SPECIAL );
@@ -824,14 +824,14 @@ class EnhancedChangesList extends ChangesList {
 		} else {
 			$r .= $this->maybeWatchedLink( $rcObj->link, $rcObj->watched );
 		}
-		
+
 		# Diff and hist links
 		if ( $rc_type != RC_LOG ) {
 		   $r .= ' ('. $rcObj->difflink . $this->message['semicolon-separator'] . ' ';
 		   $r .= $this->skin->makeKnownLinkObj( $rcObj->getTitle(), wfMsg( 'hist' ), $curIdEq.'&action=history' ) . ')';
 		}
 		$r .= ' . . ';
-		
+
 		# Character diff
 		if( $wgRCShowChangedSize ) {
 			$r .= ( $rcObj->getCharacterDifference() == '' ? '' : '&nbsp;' . $rcObj->getCharacterDifference() . ' . . ' ) ;
@@ -846,7 +846,7 @@ class EnhancedChangesList extends ChangesList {
 				$r .= ' <span class="history-deleted">' . wfMsgHtml('rev-deleted-event') . '</span>';
 			} else {
 				$r .= ' ' . LogPage::actionText( $rc_log_type, $rc_log_action, $rcObj->getTitle(), $this->skin, LogPage::extractParams($rc_params), true, true );
-			} 
+			}
 		}
 
 		# Edit or log comment

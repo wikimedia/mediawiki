@@ -73,7 +73,7 @@ if ($wgLoadFileinfoExtension) {
 	if(!extension_loaded('fileinfo')) dl('fileinfo.' . PHP_SHLIB_SUFFIX);
 }
 
-/** 
+/**
  * Implements functions related to mime types such as detection and mapping to
  * file extension.
  *
@@ -120,7 +120,7 @@ class MimeMagic {
 		if ( $wgMimeTypeFile == 'includes/mime.types' ) {
 			$wgMimeTypeFile = "$IP/$wgMimeTypeFile";
 		}
-		
+
 		if ( $wgMimeTypeFile ) {
 			if ( is_file( $wgMimeTypeFile ) and is_readable( $wgMimeTypeFile ) ) {
 				wfDebug( __METHOD__.": loading mime types from $wgMimeTypeFile\n" );
@@ -358,10 +358,10 @@ class MimeMagic {
 			'bmp', 'tiff', 'tif', 'jpc', 'jp2',
 			'jpx', 'jb2', 'swc', 'iff', 'wbmp',
 			'xbm',
-			
+
 			// Formats we recognize magic numbers for
 			'djvu', 'ogg', 'mid', 'pdf', 'wmf', 'xcf',
-			
+
 			// XML formats we sure hope we recognize reliably
 			'svg',
 		);
@@ -374,7 +374,7 @@ class MimeMagic {
 	* or misinterpreter by the default mime detection (namely xml based formats like XHTML or SVG).
 	*
 	* @param string $file The file to check
-	* @param mixed $ext The file extension, or true to extract it from the filename. 
+	* @param mixed $ext The file extension, or true to extract it from the filename.
 	*                   Set it to false to ignore the extension.
 	*
 	* @return string the mime type of $file
@@ -394,7 +394,7 @@ class MimeMagic {
 		wfDebug(__METHOD__.": final mime type of $file: $mime\n");
 		return $mime;
 	}
-	
+
 	function doGuessMimeType( $file, $ext = true ) {
 		// Read a chunk of the file
 		wfSuppressWarnings();
@@ -409,20 +409,20 @@ class MimeMagic {
 			// Multimedia...
 			'MThd'             => 'audio/midi',
 			'OggS'             => 'application/ogg',
-			
+
 			// Image formats...
 			// Note that WMF may have a bare header, no magic number.
 			"\x01\x00\x09\x00" => 'application/x-msmetafile', // Possibly prone to false positives?
 			"\xd7\xcd\xc6\x9a" => 'application/x-msmetafile',
 			'%PDF'             => 'application/pdf',
 			'gimp xcf'         => 'image/x-xcf',
-			
+
 			// Some forbidden fruit...
 			'MZ'               => 'application/octet-stream', // DOS/Windows executable
 			"\xca\xfe\xba\xbe" => 'application/octet-stream', // Mach-O binary
 			"\x7fELF"          => 'application/octet-stream', // ELF binary
 		);
-		
+
 		foreach( $headers as $magic => $candidate ) {
 			if( strncmp( $head, $magic, strlen( $magic ) ) == 0 ) {
 				wfDebug( __METHOD__ . ": magic header in $file recognized as $candidate\n" );
@@ -451,7 +451,7 @@ class MimeMagic {
 			wfDebug( __METHOD__ . ": recognized $file as application/x-php\n" );
 			return "application/x-php";
 		}
-		
+
 		/*
 		 * look for XML formats (XHTML and SVG)
 		 */
@@ -511,11 +511,11 @@ class MimeMagic {
 				return $mime;
 			}
 		}
-		
+
 		wfSuppressWarnings();
 		$gis = getimagesize( $file );
 		wfRestoreWarnings();
-		
+
 		if( $gis && isset( $gis['mime'] ) ) {
 			$mime = $gis['mime'];
 			wfDebug( __METHOD__.": getimagesize detected $file as $mime\n" );
@@ -535,13 +535,13 @@ class MimeMagic {
 	/** Internal mime type detection, please use guessMimeType() for application code instead.
 	* Detection is done using an external program, if $wgMimeDetectorCommand is set.
 	* Otherwise, the fileinfo extension and mime_content_type are tried (in this order), if they are available.
-	* If the dections fails and $ext is not false, the mime type is guessed from the file extension, using 
+	* If the dections fails and $ext is not false, the mime type is guessed from the file extension, using
 	* guessTypesForExtension.
 	* If the mime type is still unknown, getimagesize is used to detect the mime type if the file is an image.
 	* If no mime type can be determined, this function returns "unknown/unknown".
 	*
 	* @param string $file The file to check
-	* @param mixed $ext The file extension, or true to extract it from the filename. 
+	* @param mixed $ext The file extension, or true to extract it from the filename.
 	*                   Set it to false to ignore the extension.
 	*
 	* @return string the mime type of $file
@@ -714,7 +714,7 @@ class MimeMagic {
 			if ( !$m ) return MEDIATYPE_UNKNOWN;
 
 			$m = explode( ' ', $m );
-		} else { 
+		} else {
 			# Normalize mime type
 			if ( isset( $this->mMimeTypeAliases[$extMime] ) ) {
 				$extMime = $this->mMimeTypeAliases[$extMime];
@@ -734,5 +734,3 @@ class MimeMagic {
 		return MEDIATYPE_UNKNOWN;
 	}
 }
-
-

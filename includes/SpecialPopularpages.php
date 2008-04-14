@@ -24,7 +24,7 @@ class PopularPagesPage extends QueryPage {
 		$dbr = wfGetDB( DB_SLAVE );
 		$page = $dbr->tableName( 'page' );
 
-		$query = 
+		$query =
 			"SELECT 'Popularpages' as type,
 			        page_namespace as namespace,
 			        page_title as title,
@@ -65,5 +65,3 @@ function wfSpecialPopularpages() {
 
 	return $ppp->doQuery( $offset, $limit );
 }
-
-

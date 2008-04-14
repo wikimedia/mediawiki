@@ -8,7 +8,7 @@ class ForeignDBFile extends LocalFile {
 	function getCacheKey() {
 		if ( $this->repo->hasSharedCache ) {
 			$hashedName = md5($this->name);
-			return wfForeignMemcKey( $this->repo->dbName, $this->repo->tablePrefix, 
+			return wfForeignMemcKey( $this->repo->dbName, $this->repo->tablePrefix,
 				'file', $hashedName );
 		} else {
 			return false;
@@ -39,4 +39,3 @@ class ForeignDBFile extends LocalFile {
 		return File::getDescriptionText();
 	}
 }
-

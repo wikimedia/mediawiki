@@ -17,7 +17,7 @@
 class PageHistory {
 	const DIR_PREV = 0;
 	const DIR_NEXT = 1;
-	
+
 	var $mArticle, $mTitle, $mSkin;
 	var $lastdate;
 	var $linesonpage;
@@ -39,7 +39,7 @@ class PageHistory {
 		$this->mSkin = $wgUser->getSkin();
 		$this->preCacheMessages();
 	}
-	
+
 	/**
 	 * As we use the same small set of messages in various methods and that
 	 * they are called often, we call them once and save them in $this->message
@@ -113,14 +113,14 @@ class PageHistory {
 
 		wfRunHooks( 'PageHistoryBeforeList', array( &$this->mArticle ) );
 
-		/** 
+		/**
 		 * Do the list
 		 */
 		$pager = new PageHistoryPager( $this );
 		$this->linesonpage = $pager->getNumRows();
 		$wgOut->addHTML(
-			$pager->getNavigationBar() . 
-			$this->beginHistoryList() . 
+			$pager->getNavigationBar() .
+			$this->beginHistoryList() .
 			$pager->getBody() .
 			$this->endHistoryList() .
 			$pager->getNavigationBar()
@@ -214,9 +214,9 @@ class PageHistory {
 		$lastlink = $this->lastLink( $rev, $next, $counter );
 		$arbitrary = $this->diffButtons( $rev, $firstInList, $counter );
 		$link = $this->revLink( $rev );
-		
+
 		$s .= "($curlink) ($lastlink) $arbitrary";
-		
+
 		if( $wgUser->isAllowed( 'deleterevision' ) ) {
 			$revdel = SpecialPage::getTitleFor( 'Revisiondelete' );
 			if( $firstInList ) {
@@ -224,7 +224,7 @@ class PageHistory {
 				$del = $this->message['rev-delundel'];
 			} else if( !$rev->userCan( Revision::DELETED_RESTRICTED ) ) {
 			// If revision was hidden from sysops
-				$del = $this->message['rev-delundel'];	
+				$del = $this->message['rev-delundel'];
 			} else {
 				$del = $this->mSkin->makeKnownLinkObj( $revdel,
 					$this->message['rev-delundel'],
@@ -236,7 +236,7 @@ class PageHistory {
 			}
 			$s .= " <tt>(<small>$del</small>)</tt> ";
 		}
-		
+
 		$s .= " $link";
 		$s .= " <span class='history-user'>" . $this->mSkin->revUserTools( $rev, true ) . "</span>";
 
@@ -253,7 +253,7 @@ class PageHistory {
 		}
 
 		$s .= $this->mSkin->revComment( $rev, false, true );
-		
+
 		if ($notificationtimestamp && ($row->rev_timestamp >= $notificationtimestamp)) {
 			$s .= ' <span class="updatedmarker">' .  wfMsgHtml( 'updatedmarker' ) . '</span>';
 		}
@@ -261,9 +261,9 @@ class PageHistory {
 		if( $rev->isDeleted( Revision::DELETED_TEXT ) ) {
 			$s .= ' <tt>' . wfMsgHtml( 'deletedrev' ) . '</tt>';
 		}
-		
+
 		$tools = array();
-		
+
 		if ( !is_null( $next ) && is_object( $next ) ) {
 			if( !$this->mTitle->getUserPermissionsErrors( 'rollback', $wgUser )
 			&& !$this->mTitle->getUserPermissionsErrors( 'edit', $wgUser )
@@ -282,17 +282,17 @@ class PageHistory {
 				$tools[] = "<span class=\"mw-history-undo\">{$undolink}</span>";
 			}
 		}
-		
+
 		if( $tools ) {
 			$s .= ' (' . implode( ' | ', $tools ) . ')';
 		}
-		
+
 		wfRunHooks( 'PageHistoryLineEnding', array( &$row , &$s ) );
 
 		return "<li>$s</li>\n";
 	}
-	
-	/** 
+
+	/**
 	* Create a link to view this revision of the page
 	* @param Revision $rev
 	* @returns string
@@ -312,7 +312,7 @@ class PageHistory {
 		return $link;
 	}
 
-	/** 
+	/**
 	* Create a diff-to-current link for this revision for this page
 	* @param Revision $rev
 	* @param Bool $latest, this is the latest revision of the page?
@@ -330,7 +330,7 @@ class PageHistory {
 		}
 	}
 
-	/** 
+	/**
 	* Create a diff-to-previous link for this revision for this page.
 	* @param Revision $prevRev, the previous revision
 	* @param mixed $next, the newer revision
@@ -428,7 +428,7 @@ class PageHistory {
 
 	/**
 	 * Fetch an array of revisions, specified by a given limit, offset and
-	 * direction. This is now only used by the feeds. It was previously 
+	 * direction. This is now only used by the feeds. It was previously
 	 * used by the main UI but that's now handled by the pager.
 	 */
 	function fetchRevisions($limit, $offset, $direction) {
@@ -482,7 +482,7 @@ class PageHistory {
 				'wl_user' => $wgUser->getID()
 			),
 			__METHOD__ );
-		
+
 		// Don't use the special value reserved for telling whether the field is filled
 		if ( is_null( $this->mNotificationTimestamp ) ) {
 			$this->mNotificationTimestamp = false;
@@ -490,28 +490,28 @@ class PageHistory {
 
 		return $this->mNotificationTimestamp;
 	}
-	
+
 	/**
 	 * Output a subscription feed listing recent edits to this page.
 	 * @param string $type
 	 */
 	function feed( $type ) {
 		require_once 'SpecialRecentchanges.php';
-		
+
 		global $wgFeed, $wgFeedClasses;
-		
+
 		if ( !$wgFeed ) {
 			global $wgOut;
 			$wgOut->addWikiMsg( 'feed-unavailable' );
 			return;
 		}
-		
+
 		if( !isset( $wgFeedClasses[$type] ) ) {
 			global $wgOut;
 			$wgOut->addWikiMsg( 'feed-invalid' );
 			return;
 		}
-		
+
 		$feed = new $wgFeedClasses[$type](
 			$this->mTitle->getPrefixedText() . ' - ' .
 				wfMsgForContent( 'history-feed-title' ),
@@ -529,7 +529,7 @@ class PageHistory {
 		}
 		$feed->outFooter();
 	}
-	
+
 	function feedEmpty() {
 		global $wgOut;
 		return new FeedItem(
@@ -540,7 +540,7 @@ class PageHistory {
 			'',
 			$this->mTitle->getTalkPage()->getFullUrl() );
 	}
-	
+
 	/**
 	 * Generate a FeedItem object from a given revision table row
 	 * Borrows Recent Changes' feed generation functions for formatting;
@@ -557,7 +557,7 @@ class PageHistory {
 			$rev->getId(),
 			$rev->getTimestamp(),
 			$rev->getComment() );
-		
+
 		if( $rev->getComment() == '' ) {
 			global $wgContLang;
 			$title = wfMsgForContent( 'history-feed-item-nocomment',
@@ -575,7 +575,7 @@ class PageHistory {
 			$rev->getUserText(),
 			$this->mTitle->getTalkPage()->getFullUrl() );
 	}
-	
+
 	/**
 	 * Quickie hack... strip out wikilinks to more legible form from the comment.
 	 */
@@ -590,7 +590,7 @@ class PageHistory {
  */
 class PageHistoryPager extends ReverseChronologicalPager {
 	public $mLastRow = false, $mPageHistory;
-	
+
 	function __construct( $pageHistory ) {
 		parent::__construct();
 		$this->mPageHistory = $pageHistory;
@@ -613,7 +613,7 @@ class PageHistoryPager extends ReverseChronologicalPager {
 		if ( $this->mLastRow ) {
 			$latest = $this->mCounter == 1 && $this->mIsFirst;
 			$firstInList = $this->mCounter == 1;
-			$s = $this->mPageHistory->historyLine( $this->mLastRow, $row, $this->mCounter++, 
+			$s = $this->mPageHistory->historyLine( $this->mLastRow, $row, $this->mCounter++,
 				$this->mPageHistory->getNotificationTimestamp(), $latest, $firstInList );
 		} else {
 			$s = '';
@@ -621,7 +621,7 @@ class PageHistoryPager extends ReverseChronologicalPager {
 		$this->mLastRow = $row;
 		return $s;
 	}
-	
+
 	function getStartBody() {
 		$this->mLastRow = false;
 		$this->mCounter = 1;
@@ -643,7 +643,7 @@ class PageHistoryPager extends ReverseChronologicalPager {
 				# The next row is the past-the-end row
 				$next = $this->mPastTheEndRow;
 			}
-			$s = $this->mPageHistory->historyLine( $this->mLastRow, $next, $this->mCounter++, 
+			$s = $this->mPageHistory->historyLine( $this->mLastRow, $next, $this->mCounter++,
 				$this->mPageHistory->getNotificationTimestamp(), $latest, $firstInList );
 		} else {
 			$s = '';

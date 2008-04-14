@@ -113,7 +113,7 @@ CONTROL;
 			wfProfileOut( __METHOD__ );
 			return;
 		}
-		
+
 		wfRunHooks( 'DiffViewHeader', array( $this, $this->mOldRev, $this->mNewRev ) );
 
 		if ( $this->mNewRev->isCurrent() ) {
@@ -156,7 +156,7 @@ CONTROL;
 		} else {
 			$rollback = '';
 		}
-		
+
 		// Prepare a change patrol link, if applicable
 		if( $wgUseRCPatrol && $wgUser->isAllowed( 'patrol' ) ) {
 			// If we've been given an explicit change identifier, use it; saves time
@@ -216,7 +216,7 @@ CONTROL;
 		if ($this->mNewRev->mMinorEdit == 1) {
 			$newminor = Xml::span( wfMsg( 'minoreditletter'), 'minor' ) . ' ';
 		}
-		
+
 		$rdel = ''; $ldel = '';
 		if( $wgUser->isAllowed( 'deleterevision' ) ) {
 			$revdel = SpecialPage::getTitleFor( 'Revisiondelete' );
@@ -236,10 +236,10 @@ CONTROL;
 			// We don't currently handle well changing the top revision's settings
 			if( $this->mNewRev->isCurrent() ) {
 			// If revision was hidden from sysops
-				$rdel = wfMsgHtml('rev-delundel');	
+				$rdel = wfMsgHtml('rev-delundel');
 			} else if( !$this->mNewRev->userCan( Revision::DELETED_RESTRICTED ) ) {
 			// If revision was hidden from sysops
-				$rdel = wfMsgHtml('rev-delundel');	
+				$rdel = wfMsgHtml('rev-delundel');
 			} else {
 				$rdel = $sk->makeKnownLinkObj( $revdel,
 					wfMsgHtml('rev-delundel'),
@@ -380,14 +380,14 @@ CONTROL;
 			return true;
 		}
 	}
-	
+
 	/**
 	 * Add style sheets and supporting JS for diff display.
 	 */
 	function showDiffStyle() {
 		global $wgStylePath, $wgStyleVersion, $wgOut;
 		$wgOut->addStyle( 'common/diff.css' );
-		
+
 		// JS is needed to detect old versions of Mozilla to work around an annoyance bug.
 		$wgOut->addScript( "<script type=\"text/javascript\" src=\"$wgStylePath/common/diff.js?$wgStyleVersion\"></script>" );
 	}
@@ -447,7 +447,7 @@ CONTROL;
 		}
 
 		$difftext = $this->generateDiffBody( $this->mOldtext, $this->mNewtext );
-		
+
 		// Save to cache for 7 days
 		if ( $key !== false && $difftext !== false ) {
 			wfIncrStats( 'diff_cache_miss' );
@@ -472,7 +472,7 @@ CONTROL;
 
 		$otext = str_replace( "\r\n", "\n", $otext );
 		$ntext = str_replace( "\r\n", "\n", $ntext );
-		
+
 		if ( $wgExternalDiffEngine == 'wikidiff' ) {
 			# For historical reasons, external diff engine expects
 			# input text to be HTML-escaped already
@@ -483,7 +483,7 @@ CONTROL;
 			}
 			return $wgContLang->unsegementForDiff( wikidiff_do_diff( $otext, $ntext, 2 ) );
 		}
-		
+
 		if ( $wgExternalDiffEngine == 'wikidiff2' ) {
 			# Better external diff engine, the 2 may some day be dropped
 			# This one does the escaping and segmenting itself
@@ -527,7 +527,7 @@ CONTROL;
 			unlink( $tempName2 );
 			return $difftext;
 		}
-		
+
 		# Native PHP diff
 		$ota = explode( "\n", $wgContLang->segmentForDiff( $otext ) );
 		$nta = explode( "\n", $wgContLang->segmentForDiff( $ntext ) );
@@ -535,7 +535,7 @@ CONTROL;
 		$formatter = new TableDiffFormatter();
 		return $wgContLang->unsegmentForDiff( $formatter->format( $diffs ) );
 	}
-		
+
 
 	/**
 	 * Replace line numbers with the text in the user's language
@@ -550,19 +550,19 @@ CONTROL;
 		return wfMsgExt( 'lineno', array('parseinline'), $wgLang->formatNum( $matches[1] ) );
 	}
 
-	
+
 	/**
 	 * If there are revisions between the ones being compared, return a note saying so.
 	 */
 	function getMultiNotice() {
 		if ( !is_object($this->mOldRev) || !is_object($this->mNewRev) )
 			return '';
-		
+
 		if( !$this->mOldPage->equals( $this->mNewPage ) ) {
 			// Comparing two different pages? Count would be meaningless.
 			return '';
 		}
-		
+
 		$oldid = $this->mOldRev->getId();
 		$newid = $this->mNewRev->getId();
 		if ( $oldid > $newid ) {
@@ -635,13 +635,13 @@ CONTROL;
 			: Revision::newFromTitle( $this->mTitle );
 		if( !$this->mNewRev instanceof Revision )
 			return false;
-		
+
 		// Update the new revision ID in case it was 0 (makes life easier doing UI stuff)
 		$this->mNewid = $this->mNewRev->getId();
 
 		// Check if page is editable
 		$editable = $this->mNewRev->getTitle()->userCan( 'edit' );
-		
+
 		// Set assorted variables
 		$timestamp = $wgLang->timeanddate( $this->mNewRev->getTimestamp(), true );
 		$this->mNewPage = $this->mNewRev->getTitle();
@@ -694,14 +694,14 @@ CONTROL;
 			$oldLink = $this->mOldPage->escapeLocalUrl( 'oldid=' . $this->mOldid );
 			$oldEdit = $this->mOldPage->escapeLocalUrl( 'action=edit&oldid=' . $this->mOldid );
 			$this->mOldPagetitle = htmlspecialchars( wfMsg( 'revisionasof', $t ) );
-			
+
 			$this->mOldtitle = "<a href='$oldLink'>{$this->mOldPagetitle}</a>"
 				. " (<a href='$oldEdit'>" . wfMsgHtml( $editable ? 'editold' : 'viewsourceold' ) . "</a>)";
 			// Add an "undo" link
 			$newUndo = $this->mNewPage->escapeLocalUrl( 'action=edit&undoafter=' . $this->mOldid . '&undo=' . $this->mNewid);
 			if ( $editable && $this->mNewRev->userCan(Revision::DELETED_TEXT) )
 				$this->mNewtitle .= " (<a href='$newUndo'>" . htmlspecialchars( wfMsg( 'editundo' ) ) . "</a>)";
-			
+
 			if ( !$this->mOldRev->userCan(Revision::DELETED_TEXT) ) {
 		  		$this->mOldtitle = "<span class='history-deleted'>{$this->mOldPagetitle}</span>";
 			} else if ( $this->mOldRev->isDeleted(Revision::DELETED_TEXT) ) {
@@ -1663,7 +1663,7 @@ class DiffFormatter {
 class UnifiedDiffFormatter extends DiffFormatter {
 	var $leading_context_lines = 2;
 	var $trailing_context_lines = 2;
-	
+
 	function _added($lines) {
 		$this->_lines($lines, '+');
 	}
@@ -1926,7 +1926,7 @@ class TableDiffFormatter extends DiffFormatter {
 	function contextLine( $line ) {
 		return $this->wrapLine( ' ', 'diff-context', $line );
 	}
-	
+
 	private function wrapLine( $marker, $class, $line ) {
 		if( $line !== '' ) {
 			// The <div> wrapper is needed for 'overflow: auto' style to scroll properly
@@ -1985,6 +1985,3 @@ class TableDiffFormatter extends DiffFormatter {
 		wfProfileOut( __METHOD__ );
 	}
 }
-
-
-

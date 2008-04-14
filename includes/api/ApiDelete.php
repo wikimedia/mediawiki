@@ -29,7 +29,7 @@ if (!defined('MEDIAWIKI')) {
 
 
 /**
- * API module that facilitates deleting pages. The API eqivalent of action=delete. 
+ * API module that facilitates deleting pages. The API eqivalent of action=delete.
  * Requires API write mode to be enabled.
  *
  * @addtogroup API
@@ -42,16 +42,16 @@ class ApiDelete extends ApiBase {
 
 	/**
 	 * Extracts the title, token, and reason from the request parameters and invokes
-	 * the local delete() function with these as arguments. It does not make use of 
-	 * the delete function specified by Article.php. If the deletion succeeds, the 
-	 * details of the article deleted and the reason for deletion are added to the 
+	 * the local delete() function with these as arguments. It does not make use of
+	 * the delete function specified by Article.php. If the deletion succeeds, the
+	 * details of the article deleted and the reason for deletion are added to the
 	 * result object.
 	 */
 	public function execute() {
 		global $wgUser;
 		$this->getMain()->requestWriteMode();
 		$params = $this->extractRequestParams();
-		
+
 		$titleObj = NULL;
 		if(!isset($params['title']))
 			$this->dieUsageMsg(array('missingparam', 'title'));
@@ -67,11 +67,11 @@ class ApiDelete extends ApiBase {
 		$articleObj = new Article($titleObj);
 		$reason = (isset($params['reason']) ? $params['reason'] : NULL);
 		$retval = self::delete($articleObj, $params['token'], $reason);
-		
+
 		if(!empty($retval))
 			// We don't care about multiple errors, just report one of them
 			$this->dieUsageMsg(current($retval));
-		
+
 		if($params['watch'] || $wgUser->getOption('watchdeletion'))
 			$articleObj->doWatch();
 		else if($params['unwatch'])
@@ -119,9 +119,9 @@ class ApiDelete extends ApiBase {
 			return array();
 		return array(array('cannotdelete', $article->mTitle->getPrefixedText()));
 	}
-	
+
 	public function mustBePosted() { return true; }
-	
+
 	public function getAllowedParams() {
 		return array (
 			'title' => null,

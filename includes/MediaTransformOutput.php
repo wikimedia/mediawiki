@@ -13,7 +13,7 @@ abstract class MediaTransformOutput {
 	 */
 	function getWidth() {
 		return $this->width;
-	} 
+	}
 
 	/**
 	 * Get the height of the output box
@@ -39,8 +39,8 @@ abstract class MediaTransformOutput {
 	/**
 	 * Fetch HTML for this transform output
 	 *
-	 * @param array $options Associative array of options. Boolean options 
-	 *     should be indicated with a value of true for true, and false or 
+	 * @param array $options Associative array of options. Boolean options
+	 *     should be indicated with a value of true for true, and false or
 	 *     absent for false.
 	 *
 	 *     alt          Alternate text or caption
@@ -49,8 +49,8 @@ abstract class MediaTransformOutput {
 	 *     valign       vertical-align property, if the output is an inline element
 	 *     img-class    Class applied to the <img> tag, if there is such a tag
 	 *
-	 * For images, desc-link and file-link are implemented as a click-through. For 
-	 * sounds and videos, they may be displayed in other ways. 
+	 * For images, desc-link and file-link are implemented as a click-through. For
+	 * sounds and videos, they may be displayed in other ways.
 	 *
 	 * @return string
 	 */
@@ -80,7 +80,7 @@ abstract class MediaTransformOutput {
 		if ( strval( $alt ) === '' ) {
 			$alt = $title->getText();
 		}
-		return array( 
+		return array(
 			'href' => $this->file->getTitle()->getLocalURL( $query ),
 			'class' => 'image',
 			'title' => $alt
@@ -115,9 +115,9 @@ class ThumbnailImage extends MediaTransformOutput {
 	/**
 	 * Return HTML <img ... /> tag for the thumbnail, will include
 	 * width and height attributes and a blank alt text (as required).
-	 * 
-	 * @param array $options Associative array of options. Boolean options 
-	 *     should be indicated with a value of true for true, and false or 
+	 *
+	 * @param array $options Associative array of options. Boolean options
+	 *     should be indicated with a value of true for true, and false or
 	 *     absent for false.
 	 *
 	 *     alt          Alternate text or caption
@@ -126,8 +126,8 @@ class ThumbnailImage extends MediaTransformOutput {
 	 *     valign       vertical-align property, if the output is an inline element
 	 *     img-class    Class applied to the <img> tag, if there is such a tag
 	 *
-	 * For images, desc-link and file-link are implemented as a click-through. For 
-	 * sounds and videos, they may be displayed in other ways. 
+	 * For images, desc-link and file-link are implemented as a click-through. For
+	 * sounds and videos, they may be displayed in other ways.
 	 *
 	 * @return string
 	 * @public
@@ -212,11 +212,9 @@ class MediaTransformError extends MediaTransformOutput {
  */
 class TransformParameterError extends MediaTransformError {
 	function __construct( $params ) {
-		parent::__construct( 'thumbnail_error', 
-			max( isset( $params['width']  ) ? $params['width']  : 0, 180 ), 
-			max( isset( $params['height'] ) ? $params['height'] : 0, 180 ), 
+		parent::__construct( 'thumbnail_error',
+			max( isset( $params['width']  ) ? $params['width']  : 0, 180 ),
+			max( isset( $params['height'] ) ? $params['height'] : 0, 180 ),
 			wfMsg( 'thumbnail_invalid_params' ) );
 	}
 }
-
-

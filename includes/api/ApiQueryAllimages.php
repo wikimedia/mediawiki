@@ -31,7 +31,7 @@ if (!defined('MEDIAWIKI')) {
 
 /**
  * Query module to enumerate all available pages.
- * 
+ *
  * @addtogroup API
  */
 class ApiQueryAllimages extends ApiQueryGeneratorBase {
@@ -56,7 +56,7 @@ class ApiQueryAllimages extends ApiQueryGeneratorBase {
 		$db = $this->getDB();
 
 		$params = $this->extractRequestParams();
-		
+
 		// Image filters
 		if (!is_null($params['from']))
 			$this->addWhere('img_name>=' . $db->addQuotes(ApiQueryBase :: titleToKey($params['from'])));
@@ -66,7 +66,7 @@ class ApiQueryAllimages extends ApiQueryGeneratorBase {
 		if (isset ($params['minsize'])) {
 			$this->addWhere('img_size>=' . intval($params['minsize']));
 		}
-		
+
 		if (isset ($params['maxsize'])) {
 			$this->addWhere('img_size<=' . intval($params['maxsize']));
 		}
@@ -147,7 +147,7 @@ class ApiQueryAllimages extends ApiQueryGeneratorBase {
 			'prefix' => null,
 			'minsize' => array (
 				ApiBase :: PARAM_TYPE => 'integer',
-			), 
+			),
 			'maxsize' => array (
 				ApiBase :: PARAM_TYPE => 'integer',
 			),
@@ -215,4 +215,3 @@ class ApiQueryAllimages extends ApiQueryGeneratorBase {
 		return __CLASS__ . ': $Id$';
 	}
 }
-

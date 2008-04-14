@@ -69,8 +69,8 @@ class LoadBalancer {
 		if ( $sum == 0 ) {
 			# No loads on any of them
 			# In previous versions, this triggered an unweighted random selection,
-			# but this feature has been removed as of April 2006 to allow for strict 
-			# separation of query groups. 
+			# but this feature has been removed as of April 2006 to allow for strict
+			# separation of query groups.
 			return false;
 		}
 		$max = mt_getrandmax();
@@ -133,7 +133,7 @@ class LoadBalancer {
 	 */
 	function getReaderIndex( $group = false, $wiki = false ) {
 		global $wgReadOnly, $wgDBClusterTimeout, $wgDBAvgStatusPoll, $wgDBtype;
-		
+
 		# FIXME: For now, only go through all this for mysql databases
 		if ($wgDBtype != 'mysql') {
 			return $this->getWriterIndex();
@@ -152,7 +152,7 @@ class LoadBalancer {
 		$totalElapsed = 0;
 
 		# convert from seconds to microseconds
-		$timeout = $wgDBClusterTimeout * 1e6; 
+		$timeout = $wgDBClusterTimeout * 1e6;
 
 		# Find the relevant load array
 		if ( $group !== false ) {
@@ -176,7 +176,7 @@ class LoadBalancer {
 		$found = false;
 		$laggedSlaveMode = false;
 
-		# First try quickly looking through the available servers for a server that 
+		# First try quickly looking through the available servers for a server that
 		# meets our criteria
 		do {
 			$totalThreadsConnected = 0;
@@ -250,7 +250,7 @@ class LoadBalancer {
 				throw new MWException( __METHOD__.": unexpectedly found no overloaded servers" );
 			}
 			# Back off for a while
-			# Scale the sleep time by the number of connected threads, to produce a 
+			# Scale the sleep time by the number of connected threads, to produce a
 			# roughly constant global poll rate
 			$avgThreads = $totalThreadsConnected / $overloadedServers;
 			$totalElapsed += $this->sleep( $wgDBAvgStatusPoll * $avgThreads );
@@ -365,7 +365,7 @@ class LoadBalancer {
 		}
 
 		# Query groups
-		if ( $i == DB_MASTER ) { 
+		if ( $i == DB_MASTER ) {
 			$i = $this->getWriterIndex();
 		} elseif ( !is_array( $groups ) ) {
 			$groupIndex = $this->getReaderIndex( $groups, $wiki );
@@ -414,8 +414,8 @@ class LoadBalancer {
 	}
 
 	/**
-	 * Mark a foreign connection as being available for reuse under a different 
-	 * DB name or prefix. This mechanism is reference-counted, and must be called 
+	 * Mark a foreign connection as being available for reuse under a different
+	 * DB name or prefix. This mechanism is reference-counted, and must be called
 	 * the same number of times as getConnection() to work.
 	 */
 	public function reuseConnection( $conn ) {
@@ -460,7 +460,7 @@ class LoadBalancer {
 	 * Index must be an actual index into the array.
 	 * If the server is already open, returns it.
 	 *
-	 * On error, returns false, and the connection which caused the 
+	 * On error, returns false, and the connection which caused the
 	 * error will be available via $this->mErrorConnection.
 	 *
 	 * @param integer $i Server index
@@ -498,15 +498,15 @@ class LoadBalancer {
 	/**
 	 * Open a connection to a foreign DB, or return one if it is already open.
 	 *
-	 * Increments a reference count on the returned connection which locks the 
-	 * connection to the requested wiki. This reference count can be 
+	 * Increments a reference count on the returned connection which locks the
+	 * connection to the requested wiki. This reference count can be
 	 * decremented by calling reuseConnection().
 	 *
 	 * If a connection is open to the appropriate server already, but with the wrong
 	 * database, it will be switched to the right database and returned, as long as
 	 * it has been freed first with reuseConnection().
 	 *
-	 * On error, returns false, and the connection which caused the 
+	 * On error, returns false, and the connection which caused the
 	 * error will be available via $this->mErrorConnection.
 	 *
 	 * @param integer $i Server index
@@ -530,10 +530,10 @@ class LoadBalancer {
 			// Reuse a connection from another wiki
 			$conn = reset( $this->mConns['foreignFree'][$i] );
 			$oldWiki = key( $this->mConns['foreignFree'][$i] );
-			
+
 			if ( !$conn->selectDB( $dbName ) ) {
 				global $wguname;
-				$this->mLastError = "Error selecting database $dbName on server " . 
+				$this->mLastError = "Error selecting database $dbName on server " .
 					$conn->getServer() . " from client host {$wguname['nodename']}\n";
 				$this->mErrorConnection = $conn;
 				$conn = false;
@@ -761,7 +761,7 @@ class LoadBalancer {
 			}
 		}
 	}
-	
+
 	/* Issue COMMIT only on master, only if queries were done on connection */
 	function commitMasterChanges() {
 		// Always 0, but who knows.. :)
@@ -886,5 +886,3 @@ class LoadBalancer {
 		return $this->mLagTimes;
 	}
 }
-
-

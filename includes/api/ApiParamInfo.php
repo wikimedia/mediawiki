@@ -55,7 +55,7 @@ class ApiParamInfo extends ApiBase {
 				$obj = new $modArr[$m]($this->getMain(), $m);
 				$a = $this->getClassInfo($obj);
 				$a['name'] = $m;
-				$r['modules'][] = $a;				
+				$r['modules'][] = $a;
 			}
 			$result->setIndexedTagName($r['modules'], 'module');
 		}
@@ -106,7 +106,7 @@ class ApiParamInfo extends ApiBase {
 				$retval['parameters'][] = $a;
 				continue;
 			}
-					
+
 			if(isset($p[ApiBase::PARAM_DFLT]))
 				$a['default'] = $p[ApiBase::PARAM_DFLT];
 			if(isset($p[ApiBase::PARAM_ISMULTI]))
@@ -131,7 +131,7 @@ class ApiParamInfo extends ApiBase {
 		$result->setIndexedTagName($retval['parameters'], 'param');
 		return $retval;
 	}
-	
+
 	public function getAllowedParams() {
 		return array (
 			'modules' => array(
@@ -164,4 +164,3 @@ class ApiParamInfo extends ApiBase {
 		return __CLASS__ . ': $Id$';
 	}
 }
-

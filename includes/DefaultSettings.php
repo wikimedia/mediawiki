@@ -36,8 +36,8 @@ $wgVersion			= '1.13alpha';
 /** Name of the site. It must be changed in LocalSettings.php */
 $wgSitename         = 'MediaWiki';
 
-/** 
- * Name of the project namespace. If left set to false, $wgSitename will be 
+/**
+ * Name of the project namespace. If left set to false, $wgSitename will be
  * used instead.
  */
 $wgMetaNamespace    = false;
@@ -180,11 +180,11 @@ $wgFileStore['deleted']['hash'] = 3;         // 3-level subdirectory split
  * File repository structures
  *
  * $wgLocalFileRepo is a single repository structure, and $wgForeignFileRepo is
- * a an array of such structures. Each repository structure is an associative 
- * array of properties configuring the repository. 
+ * a an array of such structures. Each repository structure is an associative
+ * array of properties configuring the repository.
  *
  * Properties required for all repos:
- *    class             The class name for the repository. May come from the core or an extension. 
+ *    class             The class name for the repository. May come from the core or an extension.
  *                      The core repository classes are LocalRepo, ForeignDBRepo, FSRepo.
  *
  *    name				A unique name for the repository.
@@ -193,25 +193,25 @@ $wgFileStore['deleted']['hash'] = 3;         // 3-level subdirectory split
  *    url               Base public URL
  *    hashLevels        The number of directory levels for hash-based division of files
  *    thumbScriptUrl    The URL for thumb.php (optional, not recommended)
- *    transformVia404   Whether to skip media file transformation on parse and rely on a 404 
+ *    transformVia404   Whether to skip media file transformation on parse and rely on a 404
  *                      handler instead.
- *    initialCapital    Equivalent to $wgCapitalLinks, determines whether filenames implicitly 
+ *    initialCapital    Equivalent to $wgCapitalLinks, determines whether filenames implicitly
  *                      start with a capital letter. The current implementation may give incorrect
- *                      description page links when the local $wgCapitalLinks and initialCapital 
+ *                      description page links when the local $wgCapitalLinks and initialCapital
  *                      are mismatched.
  *    pathDisclosureProtection
- *                      May be 'paranoid' to remove all parameters from error messages, 'none' to 
- *                      leave the paths in unchanged, or 'simple' to replace paths with 
+ *                      May be 'paranoid' to remove all parameters from error messages, 'none' to
+ *                      leave the paths in unchanged, or 'simple' to replace paths with
  *                      placeholders. Default for LocalRepo is 'simple'.
  *
  * These settings describe a foreign MediaWiki installation. They are optional, and will be ignored
  * for local repositories:
  *    descBaseUrl       URL of image description pages, e.g. http://en.wikipedia.org/wiki/Image:
- *    scriptDirUrl      URL of the MediaWiki installation, equivalent to $wgScriptPath, e.g. 
+ *    scriptDirUrl      URL of the MediaWiki installation, equivalent to $wgScriptPath, e.g.
  *                      http://en.wikipedia.org/w
  *
  *    articleUrl        Equivalent to $wgArticlePath, e.g. http://en.wikipedia.org/wiki/$1
- *    fetchDescription  Fetch the text of the remote file description page. Equivalent to 
+ *    fetchDescription  Fetch the text of the remote file description page. Equivalent to
  *                      $wgFetchCommonsDescriptions.
  *
  * ForeignDBRepo:
@@ -220,7 +220,7 @@ $wgFileStore['deleted']['hash'] = 3;         // 3-level subdirectory split
  *    tablePrefix       Table prefix, the foreign wiki's $wgDBprefix
  *    hasSharedCache    True if the wiki's shared cache is accessible via the local $wgMemc
  *
- * The default is to initialise these arrays from the MW<1.11 backwards compatible settings: 
+ * The default is to initialise these arrays from the MW<1.11 backwards compatible settings:
  * $wgUploadPath, $wgThumbnailScriptPath, $wgSharedUploadDirectory, etc.
  */
 $wgLocalFileRepo = false;
@@ -360,7 +360,7 @@ $wgMimeInfoFile= "includes/mime.info";
 #$wgMimeInfoFile= NULL; #use built-in defaults only.
 
 /** Switch for loading the FileInfo extension by PECL at runtime.
- * This should be used only if fileinfo is installed as a shared object 
+ * This should be used only if fileinfo is installed as a shared object
  * or a dynamic libary
  * @global string $wgLoadFileinfoExtension
 */
@@ -566,7 +566,7 @@ $wgDBTableOptions = 'TYPE=InnoDB';
 
 /**
  * Make all database connections secretly go to localhost. Fool the load balancer
- * thinking there is an arbitrarily large cluster of servers to connect to. 
+ * thinking there is an arbitrarily large cluster of servers to connect to.
  * Useful for debugging.
  */
 $wgAllDBsAreLocalhost = false;
@@ -612,31 +612,31 @@ $wgSharedDB = null;
  *   These and any other user-defined properties will be assigned to the mLBInfo member
  *   variable of the Database object.
  *
- * Leave at false to use the single-server variables above. If you set this 
- * variable, the single-server variables will generally be ignored (except 
- * perhaps in some command-line scripts). 
+ * Leave at false to use the single-server variables above. If you set this
+ * variable, the single-server variables will generally be ignored (except
+ * perhaps in some command-line scripts).
  *
- * The first server listed in this array (with key 0) will be the master. The 
- * rest of the servers will be slaves. To prevent writes to your slaves due to 
- * accidental misconfiguration or MediaWiki bugs, set read_only=1 on all your 
+ * The first server listed in this array (with key 0) will be the master. The
+ * rest of the servers will be slaves. To prevent writes to your slaves due to
+ * accidental misconfiguration or MediaWiki bugs, set read_only=1 on all your
  * slaves in my.cnf. You can set read_only mode at runtime using:
  *
  *     SET @@read_only=1;
  *
  * Since the effect of writing to a slave is so damaging and difficult to clean
- * up, we at Wikimedia set read_only=1 in my.cnf on all our DB servers, even 
- * our masters, and then set read_only=0 on masters at runtime. 
+ * up, we at Wikimedia set read_only=1 in my.cnf on all our DB servers, even
+ * our masters, and then set read_only=0 on masters at runtime.
  */
 $wgDBservers		= false;
 
 /**
  * Load balancer factory configuration
- * To set up a multi-master wiki farm, set the class here to something that 
+ * To set up a multi-master wiki farm, set the class here to something that
  * can return a LoadBalancer with an appropriate master on a call to getMainLB().
- * The class identified here is responsible for reading $wgDBservers, 
+ * The class identified here is responsible for reading $wgDBservers,
  * $wgDBserver, etc., so overriding it may cause those globals to be ignored.
  *
- * The LBFactory_Multi class is provided for this purpose, please see 
+ * The LBFactory_Multi class is provided for this purpose, please see
  * includes/LBFactory_Multi.php for configuration information.
  */
 $wgLBFactoryConf    = array( 'class' => 'LBFactory_Simple' );
@@ -915,7 +915,7 @@ $wgMaxPPNodeCount = 1000000;  # A complexity limit on template expansion
 
 /**
  * Maximum recursion depth for templates within templates.
- * The current parser adds two levels to the PHP call stack for each template, 
+ * The current parser adds two levels to the PHP call stack for each template,
  * and xdebug limits the call stack to 100 by default. So this should hopefully
  * stop the parser before it hits the xdebug limit.
  */
@@ -1059,7 +1059,7 @@ $wgSysopEmailBans       = true; # Allow sysops to ban users from accessing Email
 # directory name unguessable, or use .htaccess to protect it.
 $wgWhitelistRead = false;
 
-/** 
+/**
  * Should editors be required to have a validated e-mail
  * address before being allowed to edit?
  */
@@ -1271,13 +1271,13 @@ $wgAutopromote = array(
  * groups at Special:Userrights.  Example configuration:
  *
  * // Bureaucrat can add any group
- * $wgAddGroups['bureaucrat'] = true; 
+ * $wgAddGroups['bureaucrat'] = true;
  * // Bureaucrats can only remove bots and sysops
- * $wgRemoveGroups['bureaucrat'] = array( 'bot', 'sysop' ); 
+ * $wgRemoveGroups['bureaucrat'] = array( 'bot', 'sysop' );
  * // Sysops can make bots
- * $wgAddGroups['sysop'] = array( 'bot' ); 
+ * $wgAddGroups['sysop'] = array( 'bot' );
  * // Sysops can disable other sysops in an emergency, and disable bots
- * $wgRemoveGroups['sysop'] = array( 'sysop', 'bot' ); 
+ * $wgRemoveGroups['sysop'] = array( 'sysop', 'bot' );
  */
 $wgAddGroups = $wgRemoveGroups = array();
 
@@ -1393,14 +1393,14 @@ $wgEnotifMinorEdits		= true;	# UPO; false: "minor edits" on pages do not trigger
 
 $wgEnotifImpersonal = false;
 
-# Maximum number of users to mail at once when using impersonal mail.  Should 
+# Maximum number of users to mail at once when using impersonal mail.  Should
 # match the limit on your mail server.
 $wgEnotifMaxRecips = 500;
 
 # Send mails via the job queue.
 $wgEnotifUseJobQ = false;
 
-/** 
+/**
  * Array of usernames who will be sent a notification email for every change which occurs on a wiki
  */
 $wgUsersNotifiedOnAllChanges = array();
@@ -1416,7 +1416,7 @@ $wgRCTypeGroupedLogs = array( 'block', 'rights' );
 
 /**
  * If the difference between the character counts of the text
- * before and after the edit is below that value, the value will be 
+ * before and after the edit is below that value, the value will be
  * highlighted on the RC page.
  */
 $wgRCChangedSizeThreshold			= -500;
@@ -1733,7 +1733,7 @@ $wgSiteNotice = '';
 # Images settings
 #
 
-/** 
+/**
  * Plugins for media file type handling.
  * Each entry in the array maps a MIME type to a class name
  */
@@ -1826,11 +1826,11 @@ $wgThumbnailEpoch = '20030516000000';
 $wgIgnoreImageErrors = false;
 
 /**
- * Allow thumbnail rendering on page view. If this is false, a valid 
- * thumbnail URL is still output, but no file will be created at 
- * the target location. This may save some time if you have a 
- * thumb.php or 404 handler set up which is faster than the regular 
- * webserver(s).  
+ * Allow thumbnail rendering on page view. If this is false, a valid
+ * thumbnail URL is still output, but no file will be created at
+ * the target location. This may save some time if you have a
+ * thumb.php or 404 handler set up which is faster than the regular
+ * webserver(s).
  */
 $wgGenerateThumbnailOnParse = true;
 
@@ -2004,7 +2004,7 @@ $wgTidyInternal = extension_loaded( 'tidy' );
 $wgDebugTidy = false;
 
 /**
- * Validate the overall output using tidy and refuse 
+ * Validate the overall output using tidy and refuse
  * to display the page if it's not valid.
  */
 $wgValidateAllHtml = false;
@@ -2019,7 +2019,7 @@ $wgDefaultSkin = 'monobook';
  * $wgDefaultUserOptions ['editsection'] = 0;
  *
  */
-$wgDefaultUserOptions = array( 
+$wgDefaultUserOptions = array(
 	'quickbar' 		=> 1,
 	'underline' 		=> 2,
 	'cols'			=> 80,
@@ -2061,7 +2061,7 @@ $wgDefaultUserOptions = array(
 $wgAllowRealName = true;
 
 /*****************************************************************************
- *  Extensions 
+ *  Extensions
  */
 
 /**
@@ -2070,7 +2070,7 @@ $wgAllowRealName = true;
 $wgExtensionFunctions = array();
 
 /**
- * Extension functions for initialisation of skins. This is called somewhat earlier 
+ * Extension functions for initialisation of skins. This is called somewhat earlier
  * than $wgExtensionFunctions.
  */
 $wgSkinExtensionFunctions = array();
@@ -2081,7 +2081,7 @@ $wgSkinExtensionFunctions = array();
  * The file must create a variable called $messages.
  * When the messages are needed, the extension should call wfLoadExtensionMessages().
  *
- * Example: 
+ * Example:
  *    $wgExtensionMessagesFiles['ConfirmEdit'] = dirname(__FILE__).'/ConfirmEdit.i18n.php';
  *
  */
@@ -2094,7 +2094,7 @@ $wgExtensionMessagesFiles = array();
  * These will be called as an OutputPageParserOutput hook, if the relevant
  * tag has been registered with the parser output object.
  *
- * Registration is done with $pout->addOutputHook( $tag, $data ). 
+ * Registration is done with $pout->addOutputHook( $tag, $data ).
  *
  * The callback has the form:
  *    function outputHook( $outputPage, $parserOutput, $data ) { ... }
@@ -2104,7 +2104,7 @@ $wgParserOutputHooks = array();
 /**
  * List of valid skin names.
  * The key should be the name in all lower case, the value should be a display name.
- * The default skins will be added later, by Skin::getSkinNames(). Use 
+ * The default skins will be added later, by Skin::getSkinNames(). Use
  * Skin::getSkinNames() as an accessor if you wish to have access to the full list.
  */
 $wgValidSkinNames = array();
@@ -2113,7 +2113,7 @@ $wgValidSkinNames = array();
  * Special page list.
  * See the top of SpecialPage.php for documentation.
  */
-$wgSpecialPages = array(); 
+$wgSpecialPages = array();
 
 /**
  * Array mapping class names to filenames, for autoloading.
@@ -2223,14 +2223,14 @@ $wgExtraNamespaces = NULL;
 
 /**
  * Namespace aliases
- * These are alternate names for the primary localised namespace names, which 
- * are defined by $wgExtraNamespaces and the language file. If a page is 
- * requested with such a prefix, the request will be redirected to the primary 
- * name. 
+ * These are alternate names for the primary localised namespace names, which
+ * are defined by $wgExtraNamespaces and the language file. If a page is
+ * requested with such a prefix, the request will be redirected to the primary
+ * name.
  *
  * Set this to a map from namespace names to IDs.
  * Example:
- *    $wgNamespaceAliases = array( 
+ *    $wgNamespaceAliases = array(
  *        'Wikipedian' => NS_USER,
  *        'Help' => 100,
  *    );
@@ -2294,16 +2294,16 @@ $wgBrowserBlackList = array(
 	 * Netscape 2-4 detection
 	 * The minor version may contain strings such as "Gold" or "SGoldC-SGI"
 	 * Lots of non-netscape user agents have "compatible", so it's useful to check for that
-	 * with a negative assertion. The [UIN] identifier specifies the level of security 
-	 * in a Netscape/Mozilla browser, checking for it rules out a number of fakers. 
+	 * with a negative assertion. The [UIN] identifier specifies the level of security
+	 * in a Netscape/Mozilla browser, checking for it rules out a number of fakers.
 	 * The language string is unreliable, it is missing on NS4 Mac.
-	 * 
+	 *
 	 * Reference: http://www.psychedelix.com/agents/index.shtml
 	 */
 	'/^Mozilla\/2\.[^ ]+ [^(]*?\((?!compatible).*; [UIN]/',
 	'/^Mozilla\/3\.[^ ]+ [^(]*?\((?!compatible).*; [UIN]/',
 	'/^Mozilla\/4\.[^ ]+ [^(]*?\((?!compatible).*; [UIN]/',
-	
+
 	/**
 	 * MSIE on Mac OS 9 is teh sux0r, converts þ to <thorn>, ð to <eth>, Þ to <THORN> and Ð to <ETH>
 	 *
@@ -2317,7 +2317,7 @@ $wgBrowserBlackList = array(
 	 * @link http://en.wikipedia.org/wiki/Template%3AOS9
 	 */
 	'/^Mozilla\/4\.0 \(compatible; MSIE \d+\.\d+; Mac_PowerPC\)/',
-	
+
 	/**
 	 * Google wireless transcoder, seems to eat a lot of chars alive
 	 * http://it.wikipedia.org/w/index.php?title=Luciano_Ligabue&diff=prev&oldid=8857361
@@ -2556,7 +2556,7 @@ $wgNamespaceRobotPolicies = array();
 /**
  * Robot policies per article.
  * These override the per-namespace robot policies.
- * Must be in the form of an array where the key part is a properly 
+ * Must be in the form of an array where the key part is a properly
  * canonicalised text form title and the value is a robot policy.
  * Example:
  *   $wgArticleRobotPolicies = array( 'Main Page' => 'noindex' );
@@ -2681,7 +2681,7 @@ $wgExternalServers = array();
  * The place to put new revisions, false to put them in the local text table.
  * Part of a URL, e.g. DB://cluster1
  *
- * Can be an array instead of a single string, to enable data distribution. Keys 
+ * Can be an array instead of a single string, to enable data distribution. Keys
  * must be consecutive integers, starting at zero. Example:
  *
  * $wgDefaultExternalStore = array( 'DB://cluster1', 'DB://cluster2' );
@@ -2775,14 +2775,14 @@ $wgUpdateRowsPerQuery = 10;
 $wgUseAjax = true;
 
 /**
- * Enable auto suggestion for the search bar 
+ * Enable auto suggestion for the search bar
  * Requires $wgUseAjax to be true too.
  * Causes wfSajaxSearch to be added to $wgAjaxExportList
  */
 $wgAjaxSearch = false;
 
 /**
- * List of Ajax-callable functions. 
+ * List of Ajax-callable functions.
  * Extensions acting as Ajax callbacks must register here
  */
 $wgAjaxExportList = array( );
@@ -2838,7 +2838,7 @@ $wgAllowTitlesInSVG = false;
 $wgContentNamespaces = array( NS_MAIN );
 
 /**
- * Maximum amount of virtual memory available to shell processes under linux, in KB. 
+ * Maximum amount of virtual memory available to shell processes under linux, in KB.
  */
 $wgMaxShellMemory = 102400;
 
@@ -2865,7 +2865,7 @@ $wgDjvuRenderer = null;
 
 /**
  * Path of the djvutoxml executable
- * This works like djvudump except much, much slower as of version 3.5. 
+ * This works like djvudump except much, much slower as of version 3.5.
  *
  * For now I recommend you use djvudump instead. The djvuxml output is
  * probably more stable, so we'll switch back to it as soon as they fix
@@ -2930,12 +2930,12 @@ $wgParserTestFiles = array(
 
 /**
  * Break out of framesets. This can be used to prevent external sites from
- * framing your site with ads.  
+ * framing your site with ads.
  */
 $wgBreakFrames = false;
 
 /**
- * Set this to an array of special page names to prevent 
+ * Set this to an array of special page names to prevent
  * maintenance/updateSpecialPages.php from updating those pages.
  */
 $wgDisableQueryPageUpdate = false;
@@ -2951,7 +2951,7 @@ $wgEnableCascadingProtection = true;
 $wgDisableOutputCompression = false;
 
 /**
- * If lag is higher than $wgSlaveLagWarning, show a warning in some special 
+ * If lag is higher than $wgSlaveLagWarning, show a warning in some special
  * pages (like watchlist).  If the lag is higher than $wgSlaveLagCritical,
  * show a more obvious warning.
  */
@@ -2967,16 +2967,16 @@ $wgSlaveLagCritical = 30;
  *                    don't have this module, you can use Preprocessor_Hash wich
  *                    has not this depedency.
  *                    It has no effect with Parser_OldPP parser class.
- *                    
- * 
- * The entire associative array will be passed through to the constructor as 
- * the first parameter. Note that only Setup.php can use this variable -- 
- * the configuration will change at runtime via $wgParser member functions, so 
- * the contents of this variable will be out-of-date. The variable can only be 
- * changed during LocalSettings.php, in particular, it can't be changed during 
- * an extension setup function. 
+ *
+ *
+ * The entire associative array will be passed through to the constructor as
+ * the first parameter. Note that only Setup.php can use this variable --
+ * the configuration will change at runtime via $wgParser member functions, so
+ * the contents of this variable will be out-of-date. The variable can only be
+ * changed during LocalSettings.php, in particular, it can't be changed during
+ * an extension setup function.
  */
-$wgParserConf = array( 
+$wgParserConf = array(
 	'class' => 'Parser',
 	'preprocessorClass' => 'Preprocessor_DOM',
 );

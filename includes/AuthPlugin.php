@@ -242,5 +242,3 @@ class AuthPlugin {
 		return $username;
 	}
 }
-
-
