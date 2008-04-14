@@ -66,7 +66,7 @@ function wfSpecialSpecialpages_gen($pages,$heading,$sk) {
 	$wgOut->addHTML( '<h2>' . wfMsgHtml( $heading ) . "</h2>\n" );
 	foreach ( $groups as $group => $sortedPages ) {
 		$middle = ceil( count($sortedPages)/2 );
-		$max = count($sortedPages) - 1;
+		$total = count($sortedPages);
 		$count = 0;
 		
 		$wgOut->addHTML( "<h4 class='mw-specialpagesgroup'>".wfMsgHtml("specialpages-group-$group")."</h4>\n" );
@@ -78,7 +78,7 @@ function wfSpecialSpecialpages_gen($pages,$heading,$sk) {
 			
 			# Slit up the larger groups
 			$count++;
-			if( $max > 3 && $count == $middle && $count < $max ) {
+			if( $total > 3 && $count == $middle ) {
 				$wgOut->addHTML( "</ul></td><td width='10%'></td><td width='30%' valign='top'><ul>" );
 			}
 		}
