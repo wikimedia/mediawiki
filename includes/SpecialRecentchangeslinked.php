@@ -33,8 +33,10 @@ function wfSpecialRecentchangeslinked( $par = NULL ) {
 		Xml::openElement( 'fieldset' ) .
 		Xml::element( 'legend', array(), wfMsg( 'recentchangeslinked' ) ) . "\n" .
 		Xml::inputLabel( wfMsg( 'recentchangeslinked-page' ), 'target', 'recentchangeslinked-target', 40, $target ) .
-		'<p>' . Xml::check( 'showlinkedto', $showlinkedto, array('id' => 'showlinkedto') ) .
-		' ' . Xml::label( wfMsg("recentchangeslinked-to"), 'showlinkedto' ) . "</p>\n" .
+		"&nbsp;&nbsp;&nbsp;<span style='white-space: nowrap'>" . 
+		Xml::check( 'showlinkedto', $showlinkedto, array('id' => 'showlinkedto') ) .
+		Xml::label( wfMsg("recentchangeslinked-to"), 'showlinkedto' ) . 
+		"</span><br/>\n" .
 		Xml::hidden( 'title', $wgTitle->getPrefixedText() ). "\n" .
 		Xml::submitButton( wfMsg( 'allpagessubmit' ) ) . "\n" .
 		Xml::closeElement( 'fieldset' ) .
@@ -67,11 +69,11 @@ function wfSpecialRecentchangeslinked( $par = NULL ) {
 	if ( $hideminor ) {
 		$mlink = $sk->makeKnownLink( $wgContLang->specialPage( 'Recentchangeslinked' ),
 	  	  wfMsg( 'show' ), 'target=' . htmlspecialchars( $nt->getPrefixedURL() ) .
-		  "&days={$days}&limit={$limit}&hideminor=0" );
+		  "&days={$days}&limit={$limit}&hideminor=0&showlinkedto={$showlinkedto}" );
 	} else {
 		$mlink = $sk->makeKnownLink( $wgContLang->specialPage( "Recentchangeslinked" ),
 	  	  wfMsg( "hide" ), "target=" . htmlspecialchars( $nt->getPrefixedURL() ) .
-		  "&days={$days}&limit={$limit}&hideminor=1" );
+		  "&days={$days}&limit={$limit}&hideminor=1&showlinkedto={$showlinkedto}" );
 	}
 	if ( $hideminor ) {
 		$cmq = 'AND rc_minor=0';
@@ -172,7 +174,7 @@ $GROUPBY
 	$wgOut->addHTML( "<hr />\n{$note}\n<br />" );
 
 	$note = rcDayLimitlinks( $days, $limit, "Recentchangeslinked",
-				 "target=" . $nt->getPrefixedURL() . "&hideminor={$hideminor}",
+				 "target=" . $nt->getPrefixedURL() . "&hideminor={$hideminor}&showlinkedto={$showlinkedto}",
 				 false, $mlink );
 
 	$wgOut->addHTML( $note."\n" );
