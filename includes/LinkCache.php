@@ -91,7 +91,6 @@ class LinkCache {
 
 	public function clearBadLink( $title ) {
 		unset( $this->mBadLinks[$title] );
-		$this->clearLink( $title );
 	}
 
 	/* obsolete, for old $wgLinkCacheMemcached stuff */
@@ -125,14 +124,14 @@ class LinkCache {
 	 * @return integer
 	 */
 	public function addLinkObj( &$nt, $len = -1, $redirect = NULL ) {
-		global $wgAntiLockFlags;
+		global $wgAntiLockFlags, $wgProfiler;
+
 		$title = $nt->getPrefixedDBkey();
 		if ( $this->isBadLink( $title ) ) { return 0; }
 		$id = $this->getGoodLinkID( $title );
 		if ( 0 != $id ) { return $id; }
 
 		$fname = 'LinkCache::addLinkObj';
-		global $wgProfiler;
 		if ( isset( $wgProfiler ) ) {
 			$fname .= ' (' . $wgProfiler->getCurrentSection() . ')';
 		}
@@ -146,31 +145,28 @@ class LinkCache {
 			wfProfileOut( $fname );
 			return 0;
 		}
-		# Some fields heavily used for linking...
-		$id = NULL;
 
-		if( !is_integer( $id ) ) {
-			if ( $this->mForUpdate ) {
-				$db = wfGetDB( DB_MASTER );
-				if ( !( $wgAntiLockFlags & ALF_NO_LINK_LOCK ) ) {
-					$options = array( 'FOR UPDATE' );
-				} else {
-					$options = array();
-				}
+		# Some fields heavily used for linking...
+		if ( $this->mForUpdate ) {
+			$db = wfGetDB( DB_MASTER );
+			if ( !( $wgAntiLockFlags & ALF_NO_LINK_LOCK ) ) {
+				$options = array( 'FOR UPDATE' );
 			} else {
-				$db = wfGetDB( DB_SLAVE );
 				$options = array();
 			}
-
-			$s = $db->selectRow( 'page',
-				array( 'page_id', 'page_len', 'page_is_redirect' ),
-				array( 'page_namespace' => $ns, 'page_title' => $t ),
-				$fname, $options );
-			# Set fields...
-			$id = $s ? $s->page_id : 0;
-			$len = $s ? $s->page_len : -1;
-			$redirect = $s ? $s->page_is_redirect : 0;
+		} else {
+			$db = wfGetDB( DB_SLAVE );
+			$options = array();
 		}
+
+		$s = $db->selectRow( 'page', 
+			array( 'page_id', 'page_len', 'page_is_redirect' ),
+			array( 'page_namespace' => $ns, 'page_title' => $t ),
+			$fname, $options );
+		# Set fields...
+		$id = $s ? $s->page_id : 0;
+		$len = $s ? $s->page_len : -1;
+		$redirect = $s ? $s->page_is_redirect : 0;
 
 		if( 0 == $id ) {
 			$this->addBadLinkObj( $nt );
