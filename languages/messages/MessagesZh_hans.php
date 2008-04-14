@@ -1351,8 +1351,6 @@ Template:消除歧義',
 'emailccsubject'  => '将您的消息复制到 $1: $2',
 'emailsent'       => '电子邮件已发送',
 'emailsenttext'   => '您的电子邮件已经发出。',
-'emailuserfooter'	  => "--
-这封电子邮件是利用在{{SITENAME}}上的'向用户发邮件'之功能发出的",
 
 # Watchlist
 'watchlist'            => '监视列表',

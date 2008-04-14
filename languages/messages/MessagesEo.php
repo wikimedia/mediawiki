@@ -1336,8 +1336,6 @@ komprenata kiel rekomendo aŭ reklamo.',
 'emailccsubject'  => 'Kopio de via mesaĝo al $1: $2',
 'emailsent'       => 'Retmesaĝo sendita',
 'emailsenttext'   => 'Via retmesaĝo estas sendita.',
-'emailuserfooter' => "--
-Ĉi tiu retpoŝto estis sendita uzante la 'retpoŝtu uzanton' eco de {{SITENAME}}",
 
 # Watchlist
 'watchlist'            => 'Atentaro',

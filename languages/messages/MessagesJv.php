@@ -1271,8 +1271,6 @@ Panjenengan bisa ngwatesi panuduhan mawa milih jenis log, jeneng panganggo, utaw
 'emailccsubject'  => 'Salinan pesen panjenengan kanggo $1: $2',
 'emailsent'       => 'Layang e-mail wis dikirim',
 'emailsenttext'   => 'Layang e-mail panjenengan wis dikirim.',
-'emailuserfooter' => "--
-E-mail iki dikirim nganggo fitur 'kirimana panganggao e-mail' saka {{SITENAME}}",
 
 # Watchlist
 'watchlist'            => 'Daftar artikel pilihan',

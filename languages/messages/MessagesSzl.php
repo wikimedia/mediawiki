@@ -1246,8 +1246,6 @@ Možeš zawyńźić ličba wyńikůw wybjerajůnc typ rejeru, mjano užytkowńik
 'emailccsubject'  => 'Kopja Twojej wjadůmośći do $1: $2',
 'emailsent'       => 'Wjadůmość zostoua wysuano',
 'emailsenttext'   => 'Twoja wjadůmość zostoua wysuano.',
-'emailuserfooter' => "--
-Tyn e-brif wysuano užywajůnc uopcyji 'wyślij e-brif do tygo užytkowńika' na {{SITENAME}}",
 
 # Watchlist
 'watchlist'            => 'Pozorlista',

@@ -1327,8 +1327,6 @@ Template:消除歧義',
 'emailccsubject'  => '將您的訊息複製到 $1: $2',
 'emailsent'       => '電子郵件已發送',
 'emailsenttext'   => '您的電子郵件已經發出。',
-'emailuserfooter'	  => "--
-這封電子郵件是利用在{{SITENAME}}上的'E-mail用戶'之功能發出的",
 
 # Watchlist
 'watchlist'            => '監視列表',

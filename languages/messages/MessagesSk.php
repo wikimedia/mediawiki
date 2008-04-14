@@ -1458,8 +1458,6 @@ alebo sa rozhodol, že nebude prijímať e-maily od druhých používateľov.',
 'emailccsubject'  => 'Kópia správy pre $1: $2',
 'emailsent'       => 'E-mail bol odoslaný',
 'emailsenttext'   => 'Vaša e-mailová správa bola odoslaná.',
-'emailuserfooter' => '--
-Tento email bol poslaný pomocou funkcie {{GRAMMAR:genitív|{{SITENAME}}}} „E-mail používateľovi“',
 
 # Watchlist
 'watchlist'            => 'Sledované stránky',

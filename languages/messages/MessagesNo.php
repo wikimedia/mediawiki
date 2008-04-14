@@ -1392,8 +1392,6 @@ Det har vært totalt {{PLURAL:$3|'''én''' sidevisning|'''$3''' sidevisninger}},
 'emailccsubject'  => 'Kopi av din beskjed til $1: $2',
 'emailsent'       => 'E-post sendt',
 'emailsenttext'   => 'E-postbeskjeden er sendt',
-'emailuserfooter' => '--
-Denne e-posten ble sendt ved hjelp av «E-post til bruker»-funksjonen på {{SITENAME}}',
 
 # Watchlist
 'watchlist'            => 'Overvåkningsliste',

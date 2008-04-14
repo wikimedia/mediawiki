@@ -1050,8 +1050,6 @@ Inscriptio electronica qui in praeferentiis tuis dedis ut "Ab" inscriptione appa
 'emailsend'       => 'Mittere',
 'emailsent'       => 'Litterae electronicae missae sunt',
 'emailsenttext'   => 'Nuntium tuum missum est.',
-'emailuserfooter' => '--
-Hae litterae electronicae a quodam usore {{grammar:genitive|{{SITENAME}}}} missae sunt',
 
 # Watchlist
 'watchlist'            => 'Paginae custoditae',

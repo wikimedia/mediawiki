@@ -1465,8 +1465,6 @@ Il y a {{PLURAL:$7|'''$7''' article|'''$7''' articles}} dans [[meta:Help:Job_que
 'emailccsubject'  => 'Copie de votre message à $1 : $2',
 'emailsent'       => 'Message envoyé',
 'emailsenttext'   => 'Votre message a été envoyé.',
-'emailuserfooter' => "--
-Ce courriel a été envoyé en utilisant la fonction 'envoyer un courriel à l'utilisateur' de {{SITENAME}}",
 
 # Watchlist
 'watchlist'            => 'Liste de suivi',

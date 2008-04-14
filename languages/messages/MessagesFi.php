@@ -1372,8 +1372,6 @@ Ohjelmiston suorittamia ylläpitotöitä on jonossa '''$7''' {{PLURAL:$7|kappale
 'emailccsubject'  => 'Kopio lähettämästäsi viestistä osoitteeseen $1: $2',
 'emailsent'       => 'Sähköposti lähetetty',
 'emailsenttext'   => 'Sähköpostiviestisi on lähetetty.',
-'emailuserfooter' => '--
-Tämä sähköposti lähetettiin käyttäen {{GRAMMAR:genitive|{{SITENAME}}}} lähetä sähköpostia -toimintoa.',
 
 # Watchlist
 'watchlist'            => 'Tarkkailulista',

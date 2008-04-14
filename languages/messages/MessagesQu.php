@@ -1295,8 +1295,6 @@ Qampa qillqakamachisqayki imamaytaqa paqarinqa kachasqayki e-chaskipi chaskiqpa 
 'emailccsubject'  => 'Willaypa iskaychasqan $1: $2-man',
 'emailsent'       => 'Chaskiqa kachasqañam',
 'emailsenttext'   => 'Chaskiykiqa kachasqañam.',
-'emailuserfooter' => "--
-Kay e-chaskiqa {{SITENAME}}-pa 'ruraqman e-chaskita kachay' nisqa llamk'ananwanmi kachasqa karqan",
 
 # Watchlist
 'watchlist'            => "Watiqasqa p'anqakuna",
