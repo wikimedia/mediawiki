@@ -1470,7 +1470,7 @@ auf die bereits die erste Weiterleitung zeigen sollte.',
 
 # Special:Listgrouprights
 'listgrouprights'          => 'Benutzergruppen-Rechte',
-'listgrouprights-summary'  => 'Dies ist eine Liste der in diesem Wiki definierten Benutzergruppen und den damit verbundenen Rechten.',
+'listgrouprights-summary'  => 'Dies ist eine Liste der in diesem Wiki definierten Benutzergruppen und der damit verbundenen Rechte.',
 'listgrouprights-group'    => 'Gruppe',
 'listgrouprights-rights'   => 'Rechte',
 'listgrouprights-helppage' => 'Help:Gruppenrechte',
