@@ -91,9 +91,6 @@ class Linker {
 		} elseif ( $threshold > 0 && $t->getLength() < $threshold && MWNamespace::isContent( $t->getNamespace() ) ) {
 			# Page is a stub
 			$colour = 'stub';
-		} elseif ( !MWNamespace::isContent( $t->getNamespace() ) ) {
-			# Non-article page
-			$colour = 'mw-noncontent';
 		}
 		return $colour;
 	}
