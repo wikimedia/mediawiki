@@ -1862,9 +1862,6 @@ class Article {
 
 				# Update the protection log
 				$log = new LogPage( 'protect' );
-
-
-
 				if( $protect ) {
 					$log->addEntry( $modified ? 'modify' : 'protect', $this->mTitle, trim( $reason . " [$updated]$cascade_description$expiry_description" ) );
 				} else {
@@ -2274,6 +2271,7 @@ class Article {
 			$bitfield = 'rev_deleted';
 		}
 
+		$dbw->begin();
 		// For now, shunt the revision data into the archive table.
 		// Text is *not* removed from the text table; bulk storage
 		// is left intact to avoid breaking block-compression or
@@ -2320,6 +2318,11 @@ class Article {
 
 		# Now that it's safely backed up, delete it
 		$dbw->delete( 'page', array( 'page_id' => $id ), __METHOD__);
+		$ok = ( $dbw->affectedRows() > 0 ); // getArticleId() uses slave, could be laggy
+		if( !$ok ) {
+			$dbw->rollback();
+			return false;
+		}
 
 		# If using cascading deletes, we can skip some explicit deletes
 		if ( !$dbw->cascadingDeletes() ) {
@@ -2357,7 +2360,13 @@ class Article {
 		# Log the deletion, if the page was suppressed, log it at Oversight instead
 		$logtype = $suppress ? 'suppress' : 'delete';
 		$log = new LogPage( $logtype );
-		$log->addEntry( 'delete', $this->mTitle, $reason );
+		# Make sure logging got through
+		$ok = $log->addEntry( 'delete', $this->mTitle, $reason, array(), $dbw );
+		if( !$ok ) {
+			$dbw->rollback();
+			return false;
+		}
+		$dbw->commit();
 
 		return true;
 	}
