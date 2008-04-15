@@ -1496,6 +1496,11 @@ $wgCookieDomain = '';
 $wgCookiePath = '/';
 $wgCookieSecure = ($wgProto == 'https');
 $wgDisableCookieCheck = false;
+
+/**
+ * Set authentication cookies to httpOnly to prevent stealing by JS, in brow-
+ * sers that support this feature.
+ */
 $wgCookieHttpOnly = true;
 
 /** A list of cookies that vary the cache (for use by extensions) */
