@@ -16,7 +16,7 @@ $favicon = htmlspecialchars( wfExpandUrl( $wgFavicon ) );
 $title = SpecialPage::getTitleFor( 'Search' );
 $template = $title->escapeFullURL( 'search={searchTerms}' );
 
-$suggest = htmlspecialchars($wgServer . $wgScriptPath . '/api.php?action=opensearch&search={searchTerms}');
+$suggest = htmlspecialchars(SearchEngine::getOpenSearchTemplate() );
 
 
 $response = $wgRequest->response();

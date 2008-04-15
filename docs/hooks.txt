@@ -886,7 +886,7 @@ $form : PreferencesForm object
 
 'PrefixSearchBackend': Override the title prefix search used for OpenSearch and
 AJAX search suggestions. Put results into &$results outparam and return false.
-$ns : int namespace key to search in
+$ns : array of int namespace keys to search in
 $search : search term (not guaranteed to be conveniently normalized)
 $limit : maximum number of results to return
 &$results : out param: array of page names (strings)

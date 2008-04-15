@@ -670,7 +670,7 @@ class OutputPage {
 		global $wgUser, $wgOutputEncoding, $wgRequest;
 		global $wgContLanguageCode, $wgDebugRedirects, $wgMimeType;
 		global $wgJsMimeType, $wgStylePath, $wgUseAjax, $wgAjaxSearch, $wgAjaxWatch;
-		global $wgServer, $wgStyleVersion;
+		global $wgServer, $wgStyleVersion, $wgEnableMWSuggest;
 
 		if( $this->mDoNothing ){
 			return;
@@ -772,8 +772,11 @@ class OutputPage {
 			if( $wgAjaxWatch && $wgUser->isLoggedIn() ) {
 				$this->addScript( "<script type=\"{$wgJsMimeType}\" src=\"{$wgStylePath}/common/ajaxwatch.js?$wgStyleVersion\"></script>\n" );
 			}
+			
+			if ( $wgEnableMWSuggest && !$wgUser->getOption( 'disablesuggest', false ) ){
+				$this->addScript( "<script type=\"{$wgJsMimeType}\" src=\"{$wgStylePath}/common/mwsuggest.js?$wgStyleVersion\"></script>\n" );					
+			}
 		}
-
 
 
 		# Buffer output; final headers may depend on later processing
