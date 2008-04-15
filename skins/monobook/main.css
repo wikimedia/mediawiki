@@ -1167,30 +1167,12 @@ div.patrollink {
 	font-size: 75%;
 	text-align: right;
 }
-span.newpage, span.minor, span.searchmatch, span.bot {
+span.newpage, span.minor, span.bot {
 	font-weight: bold;
 }
 span.unpatrolled {
 	font-weight: bold;
 	color: red;
-}
-
-span.searchmatch {
-	font-size: 95%;	
-}
-div.searchresult {
-	font-size: 95%;
-	width:38em;
-}
-
-span.searchalttitle {
-	font-size: 95%;
-}
-
-div.searchdidyoumean {
-	font-size: 127%;
-	padding-bottom:1ex;
-	padding-top:1ex; 
 }
 
 .sharedUploadNotice {
@@ -1562,3 +1544,25 @@ div#mw-recreate-deleted-warn ul li {
 	vertical-align: middle;
 	font-size: 90%;
 }
+
+/** Special:Search stuff */
+div#mw-search-interwiki-caption {
+	text-align: center;
+	font-weight: bold;
+	font-size: 95%;
+}
+
+.mw-search-interwiki-project {
+	font-size: 97%;
+	text-align: left;
+	padding-left: 0.2em;
+	padding-right: 0.15em;
+	padding-bottom: 0.2em;
+	padding-top: 0.15em;
+	background: #cae8ff;
+}
+
+span.searchmatch {
+	font-weight: bold;
+}
+

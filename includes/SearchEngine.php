@@ -35,7 +35,7 @@ class SearchEngine {
 	function searchTitle( $term ) {
 		return null;
 	}
-
+	
 	/**
 	 * If an exact title match can be find, or a very slightly close match,
 	 * return the title. If no match, returns NULL.
@@ -222,6 +222,50 @@ class SearchEngine {
 		}
 		return $arr;
 	}
+	
+	/**
+	 * Extract default namespaces to search from the given user's
+	 * settings, returning a list of index numbers.
+	 *
+	 * @param User $user
+	 * @return array
+	 * @static 
+	 */
+	public static function userNamespaces( &$user ) {
+		$arr = array();
+		foreach( SearchEngine::searchableNamespaces() as $ns => $name ) {
+			if( $user->getOption( 'searchNs' . $ns ) ) {
+				$arr[] = $ns;
+			}
+		}
+		return $arr;
+	}
+	
+	/**
+	 * Find snippet highlight settings for a given user
+	 *
+	 * @param User $user
+	 * @return array contextlines, contextchars 
+	 * @static
+	 */
+	public static function userHighlightPrefs( &$user ){
+		//$contextlines = $user->getOption( 'contextlines',  5 );
+		$contextlines = 2; // Hardcode this. Old defaults sucked. :)
+		$contextchars = $user->getOption( 'contextchars', 50 );
+		return array($contextlines, $contextchars);
+	}
+	
+	/**
+	 * An array of namespaces indexes to be searched by default
+	 * 
+	 * @return array 
+	 * @static
+	 */
+	public static function defaultNamespaces(){
+		global $wgNamespacesToBeSearchedDefault;
+		
+		return array_keys($wgNamespacesToBeSearchedDefault, true);
+	}
 
 	/**
 	 * Return a 'cleaned up' search string
@@ -280,6 +324,37 @@ class SearchEngine {
 	 */
 	function updateTitle( $id, $title ) {
 		// no-op
+	}
+	
+	/**
+	 * Get OpenSearch suggestion template
+	 * 
+	 * @return string
+	 * @static 
+	 */
+	public static function getOpenSearchTemplate() {
+		global $wgOpenSearchTemplate, $wgServer, $wgScriptPath;
+		if($wgOpenSearchTemplate)		
+			return $wgOpenSearchTemplate;
+		else{ 
+			$ns = implode(',',SearchEngine::defaultNamespaces());
+			if(!$ns) $ns = "0";
+			return $wgServer . $wgScriptPath . '/api.php?action=opensearch&search={searchTerms}&namespace='.$ns;
+		}
+	}
+	
+	/**
+	 * Get internal MediaWiki Suggest template 
+	 * 
+	 * @return string
+	 * @static
+	 */
+	public static function getMWSuggestTemplate() {
+		global $wgMWSuggestTemplate, $wgServer, $wgScriptPath;
+		if($wgMWSuggestTemplate)		
+			return $wgMWSuggestTemplate;
+		else 
+			return $wgServer . $wgScriptPath . '/api.php?action=opensearch&search={searchTerms}&namespace={namespaces}';
 	}
 }
 
@@ -352,6 +427,35 @@ class SearchResultSet {
 	function getSuggestionSnippet(){
 		return '';
 	}
+	
+	/**
+	 * Return information about how and from where the results were fetched,
+	 * should be useful for diagnostics and debugging 
+	 *
+	 * @return string
+	 */
+	function getInfo() {
+		return null;
+	}
+	
+	/**
+	 * Return a result set of hits on other (multiple) wikis associated with this one
+	 *
+	 * @return SearchResultSet
+	 */
+	function getInterwikiResults() {
+		return null;
+	}
+	
+	/**
+	 * Check if there are results on other wikis
+	 *
+	 * @return boolean
+	 */
+	function hasInterwikiResults() {
+		return $this->getInterwikiResults() != null;
+	}
+	
 
 	/**
 	 * Fetches next search result, or false.
@@ -388,6 +492,32 @@ class SearchResult {
 
 	function SearchResult( $row ) {
 		$this->mTitle = Title::makeTitle( $row->page_namespace, $row->page_title );
+		if( !is_null($this->mTitle) )
+			$this->mRevision = Revision::newFromTitle( $this->mTitle );
+	}
+	
+	/**
+	 * Check if this is result points to an invalid title
+	 *
+	 * @return boolean
+	 * @access public
+	 */
+	function isBrokenTitle(){
+		if( is_null($this->mTitle) )
+			return true;
+		return false;
+	}
+	
+	/**
+	 * Check if target page is missing, happens when index is out of date
+	 * 
+	 * @return boolean
+	 * @access public
+	 */
+	function isMissingRevision(){
+		if( !$this->mRevision )
+			return true;
+		return false;
 	}
 
 	/**
@@ -406,23 +536,93 @@ class SearchResult {
 	}
 
 	/**
-	 * @return string highlighted text snippet, null if not supported
+	 * Lazy initialization of article text from DB
 	 */
-	function getTextSnippet(){
-		return null;
+	protected function initText(){
+		if( !isset($this->mText) ){
+			$this->mText = $this->mRevision->getText();
+		}
 	}
 
 	/**
+	 * @param array $terms terms to highlight
+	 * @return string highlighted text snippet, null (and not '') if not supported 
+	 */
+	function getTextSnippet($terms){
+		global $wgUser;
+		$this->initText();
+		list($contextlines,$contextchars) = SearchEngine::userHighlightPrefs($wgUser);
+		return $this->extractText( $this->mText, $terms, $contextlines, $contextchars); 		
+	}
+	
+	/**
+	 * Default implementation of snippet extraction
+	 *
+	 * @param string $text
+	 * @param array $terms
+	 * @param int $contextlines
+	 * @param int $contextchars
+	 * @return string
+	 */
+	protected function extractText( $text, $terms, $contextlines, $contextchars ) {
+		global $wgLang, $wgContLang;
+		$fname = __METHOD__;
+	
+		$lines = explode( "\n", $text );
+		
+		$terms = implode( '|', $terms );
+		$max = intval( $contextchars ) + 1;
+		$pat1 = "/(.*)($terms)(.{0,$max})/i";
+
+		$lineno = 0;
+
+		$extract = "";
+		wfProfileIn( "$fname-extract" );
+		foreach ( $lines as $line ) {
+			if ( 0 == $contextlines ) {
+				break;
+			}
+			++$lineno;
+			$m = array();
+			if ( ! preg_match( $pat1, $line, $m ) ) {
+				continue;
+			}
+			--$contextlines;
+			$pre = $wgContLang->truncate( $m[1], -$contextchars, ' ... ' );
+
+			if ( count( $m ) < 3 ) {
+				$post = '';
+			} else {
+				$post = $wgContLang->truncate( $m[3], $contextchars, ' ... ' );
+			}
+
+			$found = $m[2];
+
+			$line = htmlspecialchars( $pre . $found . $post );
+			$pat2 = '/(' . $terms . ")/i";
+			$line = preg_replace( $pat2,
+			  "<span class='searchmatch'>\\1</span>", $line );
+
+			$extract .= "${line}\n";
+		}
+		wfProfileOut( "$fname-extract" );
+		
+		return $extract;
+	}
+	
+	/**
+	 * @param array $terms terms to highlight
 	 * @return string highlighted title, '' if not supported
 	 */
-	function getTitleSnippet(){
+	function getTitleSnippet($terms){
 		return '';
 	}
 
 	/**
+	 * @param array $terms terms to highlight
 	 * @return string highlighted redirect name (redirect to this page), '' if none or not supported
 	 */
-	function getRedirectSnippet(){
+	function getRedirectSnippet($terms){
 		return '';
 	}
 
@@ -448,24 +648,40 @@ class SearchResult {
 	}
 
 	/**
-	 * @return string timestamp, null if not supported
+	 * @return string timestamp
 	 */
 	function getTimestamp(){
-		return null;
+		return $this->mRevision->getTimestamp();
 	}
 
 	/**
-	 * @return int number of words, null if not supported
+	 * @return int number of words
 	 */
 	function getWordCount(){
-		return null;
+		$this->initText();
+		return str_word_count( $this->mText );
 	}
 
 	/**
-	 * @return int size in bytes, null if not supported
+	 * @return int size in bytes
 	 */
 	function getByteSize(){
-		return null;
+		$this->initText();
+		return strlen( $this->mText );
+	}
+	
+	/**
+	 * @return boolean if hit has related articles
+	 */
+	function hasRelated(){
+		return false;
+	}
+	
+	/**
+	 * @return interwiki prefix of the title (return iw even if title is broken)
+	 */
+	function getInterwikiPrefix(){
+		return '';
 	}
 }
 

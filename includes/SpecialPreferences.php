@@ -66,6 +66,7 @@ class PreferencesForm {
 		$this->mWatchlistDays = $request->getVal( 'wpWatchlistDays' );
 		$this->mWatchlistEdits = $request->getVal( 'wpWatchlistEdits' );
 		$this->mUseAjaxSearch = $request->getCheck( 'wpUseAjaxSearch' );
+		$this->mDisableMWSuggest = $request->getCheck( 'wpDisableMWSuggest' );
 
 		$this->mSaveprefs = $request->getCheck( 'wpSaveprefs' ) &&
 			$this->mPosted &&
@@ -288,6 +289,7 @@ class PreferencesForm {
 		$wgUser->setOption( 'underline', $this->validateInt($this->mUnderline, 0, 2) );
 		$wgUser->setOption( 'watchlistdays', $this->validateFloat( $this->mWatchlistDays, 0, 7 ) );
 		$wgUser->setOption( 'ajaxsearch', $this->mUseAjaxSearch );
+		$wgUser->setOption( 'disablesuggest', $this->mDisableMWSuggest );
 
 		# Set search namespace options
 		foreach( $this->mSearchNs as $i => $value ) {
@@ -400,6 +402,7 @@ class PreferencesForm {
 		$this->mUnderline = $wgUser->getOption( 'underline' );
 		$this->mWatchlistDays = $wgUser->getOption( 'watchlistdays' );
 		$this->mUseAjaxSearch = $wgUser->getBoolOption( 'ajaxsearch' );
+		$this->mDisableMWSuggest = $wgUser->getBoolOption( 'disablesuggest' );
 
 		$togs = User::getToggles();
 		foreach ( $togs as $tname ) {
@@ -517,7 +520,7 @@ class PreferencesForm {
 		global $wgRCShowWatchingUsers, $wgEnotifRevealEditorAddress;
 		global $wgEnableEmail, $wgEnableUserEmail, $wgEmailAuthentication;
 		global $wgContLanguageCode, $wgDefaultSkin, $wgSkipSkins, $wgAuth;
-		global $wgEmailConfirmToEdit, $wgAjaxSearch;
+		global $wgEmailConfirmToEdit, $wgAjaxSearch, $wgEnableMWSuggest;
 
 		$wgOut->setPageTitle( wfMsg( 'preferences' ) );
 		$wgOut->setArticleRelated( false );
@@ -980,8 +983,13 @@ class PreferencesForm {
 				wfLabel( wfMsg( 'useajaxsearch' ), 'wpUseAjaxSearch' ),
 				wfCheck( 'wpUseAjaxSearch', $this->mUseAjaxSearch, array( 'id' => 'wpUseAjaxSearch' ) )
 			) : '';
+		$mwsuggest = $wgEnableMWSuggest ?
+			$this->addRow(
+				wfLabel( wfMsg( 'mwsuggest-disable' ), 'wpDisableMWSuggest' ),
+				wfCheck( 'wpDisableMWSuggest', $this->mDisableMWSuggest, array( 'id' => 'wpDisableMWSuggest' ) )
+			) : '';
 		$wgOut->addHTML( '<fieldset><legend>' . wfMsg( 'searchresultshead' ) . '</legend><table>' .
-			$ajaxsearch .
+			$ajaxsearch .			
 			$this->addRow(
 				wfLabel( wfMsg( 'resultsperpage' ), 'wpSearch' ),
 				wfInput( 'wpSearch', 4, $this->mSearch, array( 'id' => 'wpSearch' ) )
@@ -994,6 +1002,7 @@ class PreferencesForm {
 				wfLabel( wfMsg( 'contextchars' ), 'wpSearchChars' ),
 				wfInput( 'wpSearchChars', 4, $this->mSearchChars, array( 'id' => 'wpSearchChars' ) )
 			) .
+			$mwsuggest.
 		"</table><fieldset><legend>" . wfMsg( 'defaultns' ) . "</legend>$ps</fieldset></fieldset>" );
 
 		# Misc

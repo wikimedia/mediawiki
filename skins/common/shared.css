@@ -91,11 +91,44 @@ p.mw-ipb-conveniencelinks, p.mw-filedelete-editreasons, p.mw-delete-editreasons 
 }
 
 /* Search results */
+div.searchresult {
+	font-size: 95%;
+	width:38em;
+}
 .mw-search-results li {
 	padding-bottom: 1em;
 }
 .mw-search-result-data {
 	color: green;
+	font-size: 97%;
+}
+
+div#mw-search-interwiki {
+	float: right;
+	width: 18em;
+	border-style: solid;
+	border-color: #AAAAAA;
+	border-width: 1px;
+	margin-top: 2ex;
+}
+
+div#mw-search-interwiki li {
+	font-size: 95%;
+}
+
+.mw-search-interwiki-more {
+	float: right;
+	font-size: 90%;
+}
+
+span.searchalttitle {
+	font-size: 95%;
+}
+
+div.searchdidyoumean {
+	font-size: 127%;
+	padding-bottom:1ex;
+	padding-top:1ex; 
 }
 
 /*
@@ -107,6 +140,53 @@ p.mw-ipb-conveniencelinks, p.mw-filedelete-editreasons, p.mw-delete-editreasons 
 
 table.mw-userrights-groups * td,table.mw-userrights-groups * th {
 	padding-right: 1.5em;
+}
+
+/* 
+ * OpenSearch ajax suggestions
+ */
+.os-suggest {
+	overflow: auto; 
+	overflow-x: hidden; 
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 0px;
+	background-color: white; 
+	border-style: solid;
+	border-color: #AAAAAA;
+	border-width: 1px;
+	z-index:99; 
+	visibility:hidden; 
+	font-size:95%;	
+}
+
+table.os-suggest-results {
+	font-size: 95%;
+	cursor: pointer; 
+	border: 0; 
+}
+
+td.os-suggest-result, td.os-suggest-result-hl {
+	align: left; 
+	white-space: nowrap;
+	background-color: white; 
+}
+td.os-suggest-result-hl {
+	background-color: #4C59A6; 
+	color: white;
+}
+.os-suggest-toggle {
+	position: relative; 
+	left: 1ex;
+	font-size: 65%;
+}
+.os-suggest-toggle-def {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	font-size: 65%;
+	visibility: hidden;
 }
 
 /* Page history styling */

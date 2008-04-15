@@ -1597,6 +1597,32 @@ $wgDisableCounters = false;
 
 $wgDisableTextSearch = false;
 $wgDisableSearchContext = false;
+
+/**
+ * Template for OpenSearch suggestions, defaults to API action=opensearch
+ * 
+ * Sites with heavy load would tipically have these point to a custom
+ * PHP wrapper to avoid firing up mediawiki for every keystroke
+ * 
+ * Placeholders: {searchTerms}
+ * 
+ */
+$wgOpenSearchTemplate = false;
+
+/**
+ * Enable suggestions while typing in search boxes 
+ * (results are passed around in OpenSearch format) 
+ */
+$wgEnableMWSuggest = false;
+
+/**
+ *  Template for internal MediaWiki suggestion engine, defaults to API action=opensearch
+ *  
+ *  Placeholders: {searchTerms}, {namespaces}, {dbname}
+ *  
+ */
+$wgMWSuggestTemplate = false;
+
 /**
  * If you've disabled search semi-permanently, this also disables updates to the
  * table. If you ever re-enable, be sure to rebuild the search table.

@@ -300,6 +300,7 @@ class Skin extends Linker {
 		global $wgUseAjax, $wgAjaxWatch;
 		global $wgVersion, $wgEnableAPI, $wgEnableWriteAPI;
 		global $wgRestrictionTypes, $wgLivePreview;
+		global $wgMWSuggestTemplate, $wgDBname, $wgEnableMWSuggest;
 
 		$ns = $wgTitle->getNamespace();
 		$nsname = isset( $wgCanonicalNamespaceNames[ $ns ] ) ? $wgCanonicalNamespaceNames[ $ns ] : $wgTitle->getNsText();
@@ -331,6 +332,13 @@ class Skin extends Linker {
 			'wgEnableAPI' => $wgEnableAPI,
 			'wgEnableWriteAPI' => $wgEnableWriteAPI,
 		);
+		
+		if( $wgUseAjax && $wgEnableMWSuggest && !$wgUser->getOption( 'disablesuggest', false )){
+			$vars['wgMWSuggestTemplate'] = SearchEngine::getMWSuggestTemplate();
+			$vars['wgDBname'] = $wgDBname;
+			$vars['wgSearchNamespaces'] = SearchEngine::userNamespaces( $wgUser );
+			$vars['wgMWSuggestMessages'] = array( wfMsg('search-mwsuggest-enabled'), wfMsg('search-mwsuggest-disabled'));
+		}
 
 		foreach( $wgRestrictionTypes as $type )
 			$vars['wgRestriction' . ucfirst( $type )] = $wgTitle->getRestrictions( $type );
