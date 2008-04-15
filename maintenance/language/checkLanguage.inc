@@ -10,6 +10,7 @@ $checkBlacklist = array(
 'tet'          => array( 'plural' ),
 'th'           => array( 'plural' ),
 'wuu'          => array( 'plural' ),
+'xmf'          => array( 'plural' ),
 'yue'          => array( 'plural' ),
 'zh'           => array( 'plural' ),
 'zh-classical' => array( 'plural' ),
