@@ -1536,7 +1536,7 @@ eller et billede sammen med hele den tilhørende historie fra databasen. Bekræf
 'restriction-type'            => 'Beskyttelsesstatus',
 'restriction-level'           => 'Beskyttelseshøjde',
 'minimum-size'                => 'Mindste størrelse',
-'maximum-size'                => 'Største størrelse',
+'maximum-size'                => 'Største størrelse:',
 'pagesize'                    => '(bytes)',
 
 # Restrictions (nouns)

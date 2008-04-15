@@ -534,14 +534,15 @@ $messages = array(
 'sp-contributions-submit'   => 'Buka',
 
 # What links here
-'whatlinkshere'       => "Artigu sira ne'ebé bá iha ne'e",
-'whatlinkshere-title' => "Pájina sira ne'ebé bá $1",
-'whatlinkshere-page'  => 'Pájina:',
-'linklistsub'         => '(Lista ligasaun nian)',
-'linkshere'           => "Pájina sira ne'e link ba '''[[:$1]]''':",
-'whatlinkshere-prev'  => '{{PLURAL:$1|oinmai|oinmai $1}}',
-'whatlinkshere-next'  => '{{PLURAL:$1|molok|molok $1}}',
-'whatlinkshere-links' => '← ligasaun',
+'whatlinkshere'           => "Artigu sira ne'ebé bá iha ne'e",
+'whatlinkshere-title'     => "Pájina sira ne'ebé bá $1",
+'whatlinkshere-page'      => 'Pájina:',
+'linklistsub'             => '(Lista ligasaun nian)',
+'linkshere'               => "Pájina sira ne'e link ba '''[[:$1]]''':",
+'whatlinkshere-prev'      => '{{PLURAL:$1|oinmai|oinmai $1}}',
+'whatlinkshere-next'      => '{{PLURAL:$1|molok|molok $1}}',
+'whatlinkshere-links'     => '← ligasaun',
+'whatlinkshere-hidelinks' => '$1 ligasaun',
 
 # Block/unblock
 'blockip'                 => "Blokeiu uza-na'in",

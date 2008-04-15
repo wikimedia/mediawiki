@@ -2472,4 +2472,15 @@ Zapódaj datajowe mě bźez dodanka "{{ns:image}}:".',
 'fileduplicatesearch-filename' => 'Datajowe mě:',
 'fileduplicatesearch-submit'   => 'Pytaś',
 
+# Special:SpecialPages
+'specialpages-group-maintenance' => 'Wótwardowańske lisćiny',
+'specialpages-group-other'       => 'Druge specialne boki',
+'specialpages-group-login'       => 'Pśizjawjenje',
+'specialpages-group-changes'     => 'Slědne změny a protokole',
+'specialpages-group-media'       => 'Medije',
+'specialpages-group-users'       => 'Wužywarje a pšawa',
+'specialpages-group-needy'       => 'Boki, kótarež se bychu wobźěłane měli',
+'specialpages-group-highuse'     => 'Cesto wužywane boki',
+'specialpages-group-permissions' => 'Wužywaŕske pšawa',
+
 );

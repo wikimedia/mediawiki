@@ -308,6 +308,7 @@ i [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Vodič za suradnike] 
 'youhavenewmessagesmulti' => 'Imate nove poruke na $1',
 'editsection'             => 'uredi',
 'editold'                 => 'uredi',
+'viewsourceold'           => 'vidi izvor',
 'editsectionhint'         => 'Uređivanje odlomka: $1',
 'toc'                     => 'Sadržaj',
 'showtoc'                 => 'prikaži',
@@ -733,7 +734,7 @@ detalji se vjerojatno nalaze u [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}
 'revisiondelete'              => 'Izbriši/vrati izmjene',
 'revdelete-nooldid-title'     => 'Nema tražene izmjene',
 'revdelete-nooldid-text'      => 'Niste naveli željene izmjenu (izmjene).',
-'revdelete-selected'          => "{{PLURAL:$2|Odabrana je izmjena|Odabrane su izmjene|Odabrane su izmjene}} stranice '''$1''':",
+'revdelete-selected'          => '{{PLURAL:$2|Odabrana izmjena|Odabrane izmjene|Odabrane izmjene}} stranice [[$1]]:',
 'logdelete-selected'          => "{{PLURAL:$2|Odabrani zapis u evidenciji|Odabrana zapisa u evidenciji|Odabrani zapisi u evidenciji}} za '''$1:'''",
 'revdelete-text'              => 'Obrisane će se izmjene i dalje nalaziti u javnom popisu izmjena,
 ali njihov sadržaj neće biti dostupan javnosti.
@@ -756,8 +757,16 @@ postavili dodatna ograničenja.',
 'logdelete-logentry'          => 'promijenjena vidljivost uređivanja [[$1]]',
 'revdelete-success'           => "'''Vidljivost promjene uspješno postavljena.'''",
 'logdelete-success'           => "'''Vidljivost uređivanja uspješno postavljena.'''",
+'revdel-restore'              => 'Promjeni dostupnost',
 'pagehist'                    => 'Povijest stranice',
 'deletedhist'                 => 'Obrisana povijest',
+'revdelete-content'           => 'sadržaj',
+'revdelete-summary'           => 'sažetak',
+'revdelete-uname'             => 'suradničko ime',
+'revdelete-restricted'        => 'primijenjeno ograničenje za administratore',
+'revdelete-unrestricted'      => 'uklonjeno ograničenje za administratore',
+'revdelete-hid'               => 'sakrij $1',
+'revdelete-unhid'             => 'otkrij $1',
 
 # History merging
 'mergehistory'                     => 'Spoji povijesti starih izmjena stranice',
@@ -827,6 +836,7 @@ Primijetite da uporaba navigacijskih poveznica resetira vaše izbore u koloni.',
 Traženje u prostoru :<br />
 $1<br />
 $2 Popis se preusmjerava   Traženje za $3 $9',
+'search-external'       => 'Vanjski pretraživač',
 'searchdisabled'        => '<p>Oprostite! Pretraga po cjelokupnoj bazi je zbog bržeg rada projekta {{SITENAME}} trenutačno onemogućena. Možete se poslužiti tražilicom Google.</p>',
 
 # Preferences page
@@ -974,6 +984,7 @@ Neoznačena kućica pokazuje da suradnik ne pripada grupi.',
 'recentchangeslinked-title'    => 'Povezane promjene sa "$1"',
 'recentchangeslinked-noresult' => 'Nema promjena na povezanim stranicama u zadanom periodu.',
 'recentchangeslinked-summary'  => "Ova posebna stranica prikazuje promjene na povezanim stranicama. Stranice koje su na vašem popisu praćenja su '''podebljane'''.",
+'recentchangeslinked-page'     => 'Naslov stranice:',
 
 # Upload
 'upload'                      => 'Postavi datoteku',
@@ -1236,6 +1247,7 @@ koja obično ukazuje na "pravu" odredišnu stranicu, na koju bi trebalo pokaziva
 'deadendpages'            => 'Slijepe ulice',
 'deadendpagestext'        => 'Slijedeće stranice nemaju poveznice na druge stranice na ovom wikiju ({{SITENAME}}).',
 'protectedpages'          => 'Zaštićene stranice',
+'protectedpages-indef'    => 'Samo neograničene zaštite',
 'protectedpagestext'      => 'Slijedeće stranice su zaštićene od premještanja ili uređivanja',
 'protectedpagesempty'     => 'Nema zaštićenih stranica koje ispunjavaju uvjete koje ste postavili.',
 'protectedtitles'         => 'Zaštićeni naslovi',
@@ -1297,6 +1309,13 @@ Možete suziti prikaz odabirući tip evidencije, suradničko ime ili stranicu u 
 'listusersfrom'      => 'Prikaži suradnike počevši od:',
 'listusers-submit'   => 'Prikaži',
 'listusers-noresult' => 'Nema takvih suradnika.',
+
+# Special:Listgrouprights
+'listgrouprights'          => 'Prava suradničkih skupina',
+'listgrouprights-summary'  => 'Ovo je popis suradničkih skupina određenih na ovoj wiki, s njihovim pripadajućim pravima.',
+'listgrouprights-group'    => 'Skupina',
+'listgrouprights-rights'   => 'Prava',
+'listgrouprights-helppage' => 'Pomoć:Suradničke skupine',
 
 # E-mail user
 'mailnologin'     => 'Nema adrese pošiljaoca',
@@ -1559,18 +1578,20 @@ $1',
 'sp-contributions-submit'      => 'Traži',
 
 # What links here
-'whatlinkshere'       => 'Što vodi ovamo',
-'whatlinkshere-title' => 'Stranice koje vode na $1',
-'whatlinkshere-page'  => 'Stranica:',
-'linklistsub'         => '(Popis poveznica)',
-'linkshere'           => 'Sljedeće stranice povezuju ovamo ([[:$1]]):',
-'nolinkshere'         => 'Nijedna stranica ne vodi ovamo (tj. nema poveznica na stranicu [[:$1]]).',
-'nolinkshere-ns'      => "Nijedna stranica ne vodi na '''[[:$1]]''' u odabranom imenskom prostoru.",
-'isredirect'          => 'stranica za preusmjeravanje',
-'istemplate'          => 'kao predložak',
-'whatlinkshere-prev'  => '{{PLURAL:$1|prethodna|prethodne|prethodnih}} $1',
-'whatlinkshere-next'  => '{{PLURAL:$1|slijedeća|slijedeće|slijedećih}} $1',
-'whatlinkshere-links' => '← poveznice',
+'whatlinkshere'            => 'Što vodi ovamo',
+'whatlinkshere-title'      => 'Stranice koje vode na $1',
+'whatlinkshere-page'       => 'Stranica:',
+'linklistsub'              => '(Popis poveznica)',
+'linkshere'                => 'Sljedeće stranice povezuju ovamo ([[:$1]]):',
+'nolinkshere'              => 'Nijedna stranica ne vodi ovamo (tj. nema poveznica na stranicu [[:$1]]).',
+'nolinkshere-ns'           => "Nijedna stranica ne vodi na '''[[:$1]]''' u odabranom imenskom prostoru.",
+'isredirect'               => 'stranica za preusmjeravanje',
+'istemplate'               => 'kao predložak',
+'whatlinkshere-prev'       => '{{PLURAL:$1|prethodna|prethodne|prethodnih}} $1',
+'whatlinkshere-next'       => '{{PLURAL:$1|slijedeća|slijedeće|slijedećih}} $1',
+'whatlinkshere-links'      => '← poveznice',
+'whatlinkshere-hideredirs' => '$1 preusmjeravanja',
+'whatlinkshere-hidelinks'  => '$1 poveznice',
 
 # Block/unblock
 'blockip'                     => 'Blokiraj suradnika',
@@ -2423,11 +2444,22 @@ Također možete koristiti [[Special:Watchlist/edit|uređivanje popisa putem ''k
 Unesite ime datoteke bez predmetka (''prefiksa'') imenskog prostora \"{{ns:image}}:\".",
 
 # Special:FileDuplicateSearch
+'fileduplicatesearch'          => 'Traži istoimene (duple) datoteke',
 'fileduplicatesearch-summary'  => 'Traži istoimene datoteke na temelju njihove hash vrijednosti.
 
 Unesite ime datoteke bez prefiksa "{{ns:image}}:"',
 'fileduplicatesearch-legend'   => 'Traži istoimene datoteke',
 'fileduplicatesearch-filename' => 'Ime datoteke:',
 'fileduplicatesearch-submit'   => 'Traži',
+
+# Special:SpecialPages
+'specialpages-group-maintenance' => 'Izvještaji za održavanje',
+'specialpages-group-other'       => 'Ostale posebne stranice',
+'specialpages-group-login'       => 'Prijava / Otvaranje računa',
+'specialpages-group-changes'     => 'Nedavne promjene i evidencije',
+'specialpages-group-users'       => 'Suradnici i suradnička prava',
+'specialpages-group-needy'       => 'Stranice s potrebom dorade',
+'specialpages-group-highuse'     => 'Najčešće korištene stranice',
+'specialpages-group-permissions' => 'Suradnička prava',
 
 );

@@ -637,6 +637,7 @@ Puede copiar y pegar el texto a un archivo en su ordenador y grabarlo para más 
 'protectedpagewarning'      => '<strong>ADVERTENCIA: Esta página ha sido protegida de manera que sólo usuarios con permisos de administrador pueden editarla.</strong>',
 'semiprotectedpagewarning'  => "'''Nota:''' Esta página ha sido protegida para que sólo usuarios registrados puedan editarla.",
 'cascadeprotectedwarning'   => "'''Aviso:''' Esta página está protegida, sólo los administradores pueden editarla porque está incluida en  {{PLURAL:$1|la siguiente página protegida|las siguientes páginas protegidas}} en cascada:",
+'titleprotectedwarning'     => '<strong>ATENCIÓN:  Esta página está protegida de modo que sólo algunos usuarios pueden crearla.</strong>',
 'templatesused'             => 'Plantillas usadas en esta página:',
 'templatesusedpreview'      => 'Plantillas usadas en esta previsualización:',
 'templatesusedsection'      => 'Plantillas usadas en esta sección:',
@@ -743,6 +744,7 @@ Otros administradores de este wiki aún podrán acceder al contenido oculto y po
 'revdelete-hid'               => 'ocultar $1',
 'revdelete-unhid'             => 'mostrar $1',
 'revdelete-log-message'       => '$1 para $2 {{PLURAL:$2|revisión|revisiones}}',
+'logdelete-log-message'       => '$1 de $2 {{PLURAL:$2|evento|eventos}}',
 
 # History merging
 'mergehistory-from'                => 'Página origen:',
@@ -786,6 +788,7 @@ que contengan todos los términos de búsqueda aparecerán en el resultado).',
 Buscar en espacio de nombres:<br />
 $1<br />
 $2 Listar redirecciones   Buscar $3 $9',
+'search-external'       => 'Búsqueda externa',
 'searchdisabled'        => 'Las búsquedas en {{SITENAME}} está temporalmente deshabilitadas. Mientras tanto puede buscar mediante buscadores externos, pero tenga en cuenta que sus índices relativos a {{SITENAME}} pueden estar desactualizados.',
 
 # Preferences page
@@ -865,11 +868,12 @@ $2 Listar redirecciones   Buscar $3 $9',
 'userrights-unchangeable-col' => 'Grupos que no puede cambiar',
 
 # Groups
-'group'            => 'Grupo:',
-'group-bot'        => 'Bots',
-'group-sysop'      => 'Administradores',
-'group-bureaucrat' => 'Burócratas',
-'group-all'        => '(todos)',
+'group'               => 'Grupo:',
+'group-autoconfirmed' => 'Usuarios autoconfirmados',
+'group-bot'           => 'Bots',
+'group-sysop'         => 'Administradores',
+'group-bureaucrat'    => 'Burócratas',
+'group-all'           => '(todos)',
 
 'group-autoconfirmed-member' => 'Usuario autoconfirmado',
 'group-bot-member'           => 'Bot',
@@ -918,6 +922,7 @@ $2 Listar redirecciones   Buscar $3 $9',
 'recentchangeslinked-title'    => 'Cambios relacionados con "$1"',
 'recentchangeslinked-noresult' => 'No hubo cambios en las páginas enlazadas durante el periodo indicado.',
 'recentchangeslinked-summary'  => "Esta página especial lista los últimos cambios en las páginas enlazadas. Las páginas en su lista de seguimiento están en '''negrita'''.",
+'recentchangeslinked-page'     => 'Nombre de la página:',
 
 # Upload
 'upload'                      => 'Subir archivo',
@@ -985,8 +990,13 @@ Si tienes esta imagen a toda resolución súbela, si no, por favor cambia el nom
 'uploadvirus'                 => '¡El archivo contiene un virus! Detalles: $1',
 'sourcefilename'              => 'Nombre del archivo origen:',
 'destfilename'                => 'Nombre del archivo de destino:',
+'upload-maxfilesize'          => 'Tamaño máximo del archivo: $1',
 'watchthisupload'             => 'Vigilar esta página',
 'filewasdeleted'              => 'Un archivo con este nombre se subió con anterioridad y posteriormente ha sido borrado. Deberías revisar el $1 antes de subirlo de nuevo.',
+'upload-wasdeleted'           => "'''Atención: Está subiendo un archivo que ha sido borrado previamente.'''
+
+Debería considerar si resulta apropiado continuar cargándolo.
+A continuación se muestra el registro de borrado de este archivo:",
 
 'upload-proto-error'      => 'Protocolo incorrecto',
 'upload-proto-error-text' => 'Para subir archivos desde otra página la URL debe comenzar por <code>http://</code> o <code>ftp://</code>.',

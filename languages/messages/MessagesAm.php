@@ -1265,7 +1265,7 @@ $NEWPAGE
 'restriction-type'            => 'ፈቃድ፦',
 'restriction-level'           => 'የመቆለፍ ደረጃ፦',
 'minimum-size'                => 'ቢያንስ',
-'maximum-size'                => 'ቢበዛ:',
+'maximum-size'                => 'ቢበዛ፦',
 'pagesize'                    => 'byte መጠን ያለው ሁሉ',
 
 # Restrictions (nouns)

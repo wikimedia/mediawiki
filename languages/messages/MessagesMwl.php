@@ -117,22 +117,25 @@ $messages = array(
 'helppage'             => 'Help:Conteúdos',
 'mainpage'             => 'Página principal',
 'mainpage-description' => 'Página principal',
+'portal'               => 'Portal da quemunidade',
+'portal-url'           => 'Proyecto:Portal da quemunidade',
 'privacy'              => 'Política de privacidade',
 'privacypage'          => 'Projecto:Política de privacidade',
 'sitesupport'          => 'Donativos',
 
-'retrievedfrom'      => 'Obtido an "$1"',
-'youhavenewmessages' => 'Você tem $1 ($2).',
-'newmessageslink'    => 'nuobas mensages',
-'editsection'        => 'eitar',
-'editold'            => 'editar',
-'editsectionhint'    => 'Editar secção: $1',
-'toc'                => 'Tabla de contenido',
-'showtoc'            => 'mostrar',
-'hidetoc'            => 'çconder',
-'site-rss-feed'      => 'Feed RSS $1',
-'site-atom-feed'     => 'Feed Atom $1',
-'page-rss-feed'      => 'Feed RSS de "$1"',
+'retrievedfrom'       => 'Obtido an "$1"',
+'youhavenewmessages'  => 'Você tem $1 ($2).',
+'newmessageslink'     => 'nuobas mensages',
+'newmessagesdifflink' => 'comparar com la penúltima revison',
+'editsection'         => 'eitar',
+'editold'             => 'editar',
+'editsectionhint'     => 'Editar secção: $1',
+'toc'                 => 'Tabla de contenido',
+'showtoc'             => 'mostrar',
+'hidetoc'             => 'çconder',
+'site-rss-feed'       => 'Feed RSS $1',
+'site-atom-feed'      => 'Feed Atom $1',
+'page-rss-feed'       => 'Feed RSS de "$1"',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-user'     => "Página d'utilizador",
@@ -162,6 +165,7 @@ $messages = array(
 'link_sample'     => 'Título da ligação',
 'link_tip'        => 'Ligação interna',
 'extlink_sample'  => 'http://www.exemplo.pt títalu de ligaçon externa',
+'extlink_tip'     => 'Ligaçon externa (lembre-se do prefixo http://)',
 'headline_sample' => 'Testo de cabeçalho',
 'headline_tip'    => 'Secção de nível 2',
 'math_sample'     => 'Inserir fórmula aqui',
@@ -171,17 +175,18 @@ $messages = array(
 'image_tip'       => 'Ficheiro embebido',
 'media_tip'       => 'Ligação para ficheiro',
 'sig_tip'         => 'Sua assinatura, com hora e data',
+'hr_tip'          => 'Linha horizontal (utilize moderadamente)',
 
 # Edit pages
-'summary'               => 'Sumário',
-'subject'               => 'Assunto/cabeçalho',
-'minoredit'             => 'Marcar como edição mínima',
-'watchthis'             => 'Observar esta página',
-'preview'               => 'Prever',
-'showpreview'           => 'Mostrar prebison',
-'showdiff'              => 'Mostrar alterações',
-'anoneditwarning'       => "'''Atenção''': Você não se encontra autenticado. O seu endereço de IP será registado no histórico de edições desta página.",
-'blockedtext'           => '<big>O seu nome de utilizador ou endereço de IP foi bloqueado</big>
+'summary'                => 'Sumário',
+'subject'                => 'Assunto/cabeçalho',
+'minoredit'              => 'Marcar como edição mínima',
+'watchthis'              => 'Observar esta página',
+'preview'                => 'Prever',
+'showpreview'            => 'Mostrar prebison',
+'showdiff'               => 'Mostrar alterações',
+'anoneditwarning'        => "'''Atenção''': Você não se encontra autenticado. O seu endereço de IP será registado no histórico de edições desta página.",
+'blockedtext'            => '<big>O seu nome de utilizador ou endereço de IP foi bloqueado</big>
 
 O bloqueio foi realizado por $1. O motivo apresentado foi \'\'$2\'\'.
 
@@ -194,21 +199,22 @@ Você pode contactar $1 ou outro [[{{MediaWiki:Grouppage-sysop}}|administrador]]
 Note que não poderá utilizar a funcionalidade "Contactar utilizador" se não possuir uma conta neste wiki ({{SITENAME}}) com um endereço de email válido indicado nas suas [[{{ns:special}}:Preferences|preferências de utilizador]] e se tiver sido bloqueado de utilizar tal recurso.
 
 O seu endereço de IP atual é $3 e a ID de bloqueio é $5. Por favor, inclua um desses (ou ambos) dados em quaisquer tentativas de esclarecimentos.',
-'newarticle'            => '(Nuoba)',
-'newarticletext'        => "Você seguiu uma ligaçon para unhaa página que inda num existe. 
+'newarticle'             => '(Nuoba)',
+'newarticletext'         => "Você seguiu uma ligaçon para unhaa página que inda num existe. 
 Para criá-la, screva l sue conteúdo na caixa abaixo
 (veja a [[{{MediaWiki:Helppage}}|página de ajuda]] para mais detalhes).
 Se você chegou até aqui por angano, clique ne l boton '''boltar''' (o ''back'') de l sue navegador.",
-'editing'               => 'A editar $1',
-'copyrightwarning'      => 'Por fabor, note que todas las sues contribuiçons an {{SITENAME}} son consideradas cumo lhançadas ne ls termos de la lhicença $2 (ber $1 para detalhes). Se num deseija que o sue testo seija inexoravelmente editado i redistribuído de tal forma, num lo enbie.<br />
+'editing'                => 'A editar $1',
+'copyrightwarning'       => 'Por fabor, note que todas las sues contribuiçons an {{SITENAME}} son consideradas cumo lhançadas ne ls termos de la lhicença $2 (ber $1 para detalhes). Se num deseija que o sue testo seija inexoravelmente editado i redistribuído de tal forma, num lo enbie.<br />
 Você está, al mesmo tempo, a garantir-nos que isto ye algo escrito por si, o algo copiado de unha fonte de testos an domínio público o similarmente de teor libre.
 <strong>NUM ENBIE TRABALHO PROTEGIDO POR DREITOS DE AUTOR SAN A DEBIDA PERMISSON!</strong>',
-'longpagewarning'       => '<strong>AVISO: Esta página possui $1 kilobytes; alguns
+'longpagewarning'        => '<strong>AVISO: Esta página possui $1 kilobytes; alguns
 navegadores possuem problemas em editar páginas maiores que 32kb.
 Por favor, considere seccionar a página em secções de menor dimensão.</strong>',
-'templatesusedpreview'  => 'Templates usados nesta previsão:',
-'template-protected'    => '(protegida)',
-'recreate-deleted-warn' => "'''Atenção: Você está a criar uma página já anteriormente eliminada.'''
+'templatesusedpreview'   => 'Templates usados nesta previsão:',
+'template-protected'     => '(protegida)',
+'template-semiprotected' => '(semi-protegida)',
+'recreate-deleted-warn'  => "'''Atenção: Você está a criar uma página já anteriormente eliminada.'''
 
 Certifique-se de que é adequado prosseguir a edição de esta página.
 O registo de eliminação desta página é exibido a seguir, para sua comodidade:",
@@ -246,6 +252,7 @@ O registo de eliminação desta página é exibido a seguir, para sua comodidade
 'rcshowhideminor' => '$1 edições mínimas',
 'rcshowhidebots'  => '$1 robots',
 'rcshowhideliu'   => '$1 utilizadores registados',
+'rcshowhideanons' => '$1 utilizadores anónimos',
 'rcshowhidemine'  => '$1 mies ediçons',
 'rclinks'         => 'Mostrar as últimas $1 mudanças nos últimos $2 dias<br />$3',
 'diff'            => 'dif',
@@ -258,8 +265,9 @@ O registo de eliminação desta página é exibido a seguir, para sua comodidade
 
 # Recent changes linked
 'recentchangeslinked'          => 'Alterações relacionadas',
+'recentchangeslinked-title'    => 'Alterações relacionadas com "$1"',
 'recentchangeslinked-noresult' => 'Não ocorreram alterações em páginas relacionadas no intervalo de tempo fornecido.',
-'recentchangeslinked-summary'  => "Esta página especial lista as alterações mais recentes de páginas que possuam um link a outra. Páginas que estejam em sua lista de artigos vigiados são exibidas em '''negrito'''.",
+'recentchangeslinked-summary'  => "Esta página especial lista as alterações mais recentes de páginas que possuam um link a outra. Páginas que estejam em sua lista de artigos vigiados são mostradas a '''carregado'''.",
 
 # Upload
 'upload'        => 'Carregar ficheiro',
@@ -270,14 +278,15 @@ O registo de eliminação desta página é exibido a seguir, para sua comodidade
 'imagelist' => 'Lista de ficheiros',
 
 # Image description page
-'filehist'          => 'Histórico de l ficheiro',
-'filehist-current'  => 'actual',
-'filehist-datetime' => 'Data/Hora',
-'filehist-user'     => 'Utilizador',
-'filehist-filesize' => 'Tamanho de ficheiro',
-'filehist-comment'  => 'Comentário',
-'imagelinks'        => 'Ligaçons (andereços web)',
-'linkstoimage'      => 'As seguintes páginas apontam para este ficheiro:',
+'filehist'            => 'Histórico de l ficheiro',
+'filehist-current'    => 'actual',
+'filehist-datetime'   => 'Data/Hora',
+'filehist-user'       => 'Utilizador',
+'filehist-dimensions' => 'Dimensões',
+'filehist-filesize'   => 'Tamanho de ficheiro',
+'filehist-comment'    => 'Comentário',
+'imagelinks'          => 'Ligaçons (andereços web)',
+'linkstoimage'        => 'As seguintes páginas apontam para este ficheiro:',
 
 # Random page
 'randompage' => 'Página aleatória',
@@ -328,6 +337,7 @@ O registo de eliminação desta página é exibido a seguir, para sua comodidade
 'undeletebtn' => 'Restaurar',
 
 # Namespace form on various pages
+'namespace'      => 'Espaço de nomes:',
 'blanknamespace' => '(Principal)',
 
 # Contributions
@@ -335,6 +345,8 @@ O registo de eliminação desta página é exibido a seguir, para sua comodidade
 'mycontris'     => 'Mies contribuiçons',
 'contribsub2'   => 'Para $1 ($2)',
 'uctop'         => ' (revison actual)',
+'month'         => 'Mês (incluye meses anteriores):',
+'year'          => 'Anho (incluye anhos anteriores):',
 
 'sp-contributions-newbies-sub' => 'Para nuobas cuontas',
 'sp-contributions-blocklog'    => 'Registo de bloqueios',
@@ -362,6 +374,9 @@ O registo de eliminação desta página é exibido a seguir, para sua comodidade
 'movelogpage'      => 'Registo de movimentos',
 'revertmove'       => 'reverter',
 
+# Export
+'export' => 'Exportação de páginas',
+
 # Thumbnails
 'thumbnail-more'  => 'Aumentar',
 'thumbnail_error' => 'Erro ao criar miniatura: $1',
@@ -376,10 +391,12 @@ O registo de eliminação desta página é exibido a seguir, para sua comodidade
 'tooltip-pt-logout'               => 'Sair',
 'tooltip-ca-talk'                 => 'Discussão sobre o conteúdo da página',
 'tooltip-ca-edit'                 => 'Você pode editar esta página. Por favor, use o botão Mostrar Previsão antes de gravar.',
+'tooltip-ca-addsection'           => 'Adicionar comentário a yesta çcusson.',
 'tooltip-ca-viewsource'           => 'Esta página está protegida. No entanto, você pode ver o seu código.',
 'tooltip-ca-protect'              => 'Proteger esta página',
 'tooltip-ca-delete'               => 'Apagar esta página',
 'tooltip-ca-move'                 => 'Mover esta página',
+'tooltip-ca-watch'                => 'Adicionar esta página als artigos vigiados',
 'tooltip-search'                  => 'Pesquisa {{SITENAME}}',
 'tooltip-n-mainpage'              => 'Visitar la página principal',
 'tooltip-n-portal'                => 'Sobre l proyecto',
@@ -391,8 +408,10 @@ O registo de eliminação desta página é exibido a seguir, para sua comodidade
 'tooltip-t-whatlinkshere'         => 'Lista de todas las páginas que se lhigam a yesta',
 'tooltip-t-upload'                => 'Carregar imagens ou ficheiros',
 'tooltip-t-specialpages'          => 'Lista de páginas especiais',
+'tooltip-ca-nstab-project'        => 'Ber la página de l proyecto',
 'tooltip-ca-nstab-image'          => 'Ber la página de l ficheiro',
 'tooltip-ca-nstab-template'       => 'Ber l modelo',
+'tooltip-ca-nstab-category'       => 'Ber la página da categoria',
 'tooltip-save'                    => 'Grabar sues alterações',
 'tooltip-preview'                 => 'Prever as alterações, por favor utilizar antes de gravar!',
 'tooltip-diff'                    => 'Mostrar alterações que fez a este texto.',
@@ -412,14 +431,19 @@ Apenas são considerados itens de lista (linhas começadas por *). O primeiro li
 Links subsequentes na mesma linha são considerados excepções, i.e. artigos onde a imagem pode ocorrer "inline".',
 
 # Metadata
-'metadata'        => 'Metadados',
-'metadata-fields' => 'Os campos de metadados EXIF listados nesta mensagem poderão estar presente na exibição da página de imagem quando a tabela de metadados estiver no modo "expandida". Outros poderão estar escondidos por padrão.
+'metadata'          => 'Metadados',
+'metadata-expand'   => 'Mostrar restantes detalhes',
+'metadata-collapse' => 'Esconder detalhes restantes',
+'metadata-fields'   => 'Os campos de metadados EXIF listados nesta mensagem poderão estar presente na exibição da página de imagem quando a tabela de metadados estiver no modo "expandida". Outros poderão estar escondidos por padrão.
 * make
 * model
 * datetimeoriginal
 * exposuretime
 * fnumber
 * focallength', # Do not translate list items
+
+# External editor support
+'edit-externally-help' => 'Consulte as [http://meta.wikimedia.org/wiki/Help:External_editors instruções de instalação] para mais informação.',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'todas',

@@ -2474,4 +2474,15 @@ Zapodaj datajowe mjeno '''bjez''' prefiksa \"{{ns:image}}:\".",
 'fileduplicatesearch-result-1' => 'Dataja "$1" identiske duplikaty nima.',
 'fileduplicatesearch-result-n' => 'Dataja "$1" ma {{PLURAL:$2|1 identiski duplikat|$2 identiskej duplikataj|$2 identiske duplikaty|$2 identiskich duplikatow}}.',
 
+# Special:SpecialPages
+'specialpages-group-maintenance' => 'Hladanske lisćiny',
+'specialpages-group-other'       => 'Druhe specialne strony',
+'specialpages-group-login'       => 'Přizjewjenje',
+'specialpages-group-changes'     => 'Poslednje změny a protokole',
+'specialpages-group-media'       => 'Medije',
+'specialpages-group-users'       => 'Wužiwarjo a prawa',
+'specialpages-group-needy'       => 'Strony, kotrež so bychu wobdźěłane měli',
+'specialpages-group-highuse'     => 'Často wužiwane strony',
+'specialpages-group-permissions' => 'Wužiwarske prawa',
+
 );

@@ -283,6 +283,7 @@ $messages = array(
 'youhavenewmessagesmulti' => 'Ou genyen nouvo mesaj sou $1.',
 'editsection'             => 'modifye',
 'editold'                 => 'modifye',
+'viewsourceold'           => 'Wè kòd paj an',
 'editsectionhint'         => 'Modifye seksyon : $1',
 'toc'                     => 'Kontni yo',
 'showtoc'                 => 'montre',
@@ -320,14 +321,29 @@ $messages = array(
 Ou ka jwenn yon lis paj espesial ki valid yo la [[Special:Specialpages]].",
 
 # General errors
-'error'          => 'Erè',
-'databaseerror'  => '
+'error'           => 'Erè',
+'databaseerror'   => '
 Erè nan bazdata.',
-'badtitle'       => 'Tit an pa byen, li move, eseye byen ekri li',
-'badtitletext'   => 'Tit paj ou mande a pa korèk oubyen li pa egziste oubyen li nan yon lòt pwojè wiki (gade nan lòt wiki yo pou wè). Li mèt genyen tou kèk karaktè ki pa rekonèt nan sistèm an, eseye pa itilize yo nan tit ou yo.',
-'viewsource'     => 'Wè kòd tèks sa a',
-'viewsourcefor'  => 'pou $1',
-'viewsourcetext' => 'Ou kapab gade epitou modifye kontni atik sa a pou ou travay anlè li :',
+'dberrortext'     => 'Yon demann oubyen rekèt nan baz done a bay yon erè. Sa kapab vle di ke genyen yon erè ki nan lojisyèl an (gade $5) . Dènye esè a te :
+<blockquote><tt>$1</tt></blockquote>
+depi fonksyon sa « <tt>$2</tt> ». MySQL ritounen erè sa « <tt>$3 : $4</tt> ».',
+'dberrortextcl'   => 'Yon demann nan baz done a bay yon erè.
+Dènye esè nan baz done a te: « $1 » fèt pa fonksyon sa « $2 ». MySQL ritounen mesaj sa « $3 : $4 ».',
+'noconnect'       => 'Souple, eskize nou. Wiki a ap konnen kounye a yon erè, kèk pwoblèm teknik; li pa kapab jwenn sèvè a pou voye enfòmasyon ou mande a. <br />
+$1',
+'nodb'            => 'Nou pa kapab seleksyone baz done $1',
+'cachederror'     => 'Paj sa a se yon paj ki te anrejistre deja, li pa kapab mete l a jou.',
+'laggedslavemode' => 'Pòte atansyon, paj sa a pa kapab anrejistre modifikasyon ki fèk fèt yo.',
+'readonly'        => 'Baz done a fème toutbon.',
+'enterlockreason' => 'Bay yon rezon pou fème baz done a epitou yon estimasyon pou tan sa ap pran w pou l ouvri ankò',
+'readonlytext'    => 'Baz done a fème kounye a; nou pa kapab ajoute pyès done anndan l. Li sanble se pou pèmèt jesyon l; apre sa, l ap reprann sèvis li.
+
+Administratè a ki te fème l bay rezon sa a : $1',
+'badtitle'        => 'Tit an pa byen, li move, eseye byen ekri li',
+'badtitletext'    => 'Tit paj ou mande a pa korèk oubyen li pa egziste oubyen li nan yon lòt pwojè wiki (gade nan lòt wiki yo pou wè). Li mèt genyen tou kèk karaktè ki pa rekonèt nan sistèm an, eseye pa itilize yo nan tit ou yo.',
+'viewsource'      => 'Wè kòd tèks sa a',
+'viewsourcefor'   => 'pou $1',
+'viewsourcetext'  => 'Ou kapab gade epitou modifye kontni atik sa a pou ou travay anlè li :',
 
 # Login and logout pages
 'yourname'              => 'Non itilizatè ou an :',

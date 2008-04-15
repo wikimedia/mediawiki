@@ -922,6 +922,8 @@ $2',
 'revdelete-content'           => 'съдържание',
 'revdelete-summary'           => 'резюме',
 'revdelete-uname'             => 'потребителско име',
+'revdelete-restricted'        => 'добавени ограничения за администраторите',
+'revdelete-unrestricted'      => 'премахнати ограничения за администраторите',
 'revdelete-log-message'       => '$1 за $2 {{PLURAL:$2|версия|версии}}',
 
 # History merging
@@ -1071,6 +1073,8 @@ $2',
 'userrights-nodatabase'            => 'Базата данни $1 не съществува или не е на локалния сървър.',
 'userrights-nologin'               => 'За управление на потребителските права е необходимо [[Special:Userlogin|влизане]] с администраторска сметка.',
 'userrights-notallowed'            => 'Не ви е позволено да променяте потребителски права.',
+'userrights-changeable-col'        => 'Групи, които можете да променяте',
+'userrights-unchangeable-col'      => 'Групи, които не можете да променяте',
 
 # Groups
 'group'               => 'Потребителска група:',
@@ -1382,6 +1386,7 @@ $2',
 'deadendpages'            => 'Задънени страници',
 'deadendpagestext'        => 'Следните страници нямат препратки към други страници от {{SITENAME}}.',
 'protectedpages'          => 'Защитени страници',
+'protectedpages-indef'    => 'Само безсрочни защити',
 'protectedpagestext'      => 'Следните страници са защитени против редактиране или преместване',
 'protectedpagesempty'     => 'В момента няма защитени страници с тези параметри.',
 'protectedtitles'         => 'Защитени заглавия',
@@ -1443,6 +1448,8 @@ $2',
 'listusers-noresult' => 'Няма намерени потребители.',
 
 # Special:Listgrouprights
+'listgrouprights'          => 'Права по потребителски групи',
+'listgrouprights-summary'  => 'Следва списък на групите потребители в това уики с асоциираните им права за достъп.',
 'listgrouprights-group'    => 'Група',
 'listgrouprights-rights'   => 'Права',
 'listgrouprights-helppage' => 'Help:Права на групите',
@@ -1688,18 +1695,21 @@ $1',
 'sp-contributions-submit'      => 'Търсене',
 
 # What links here
-'whatlinkshere'       => 'Какво сочи насам',
-'whatlinkshere-title' => 'Страници, които сочат към $1',
-'whatlinkshere-page'  => 'Страница:',
-'linklistsub'         => '(Списък с препратки)',
-'linkshere'           => "Следните страници сочат към '''[[:$1]]''':",
-'nolinkshere'         => "Няма страници, сочещи към '''[[:$1]]'''.",
-'nolinkshere-ns'      => "Няма страници, сочещи към '''[[:$1]]''' в избраното именно пространство.",
-'isredirect'          => 'пренасочваща страница',
-'istemplate'          => 'включване',
-'whatlinkshere-prev'  => '{{PLURAL:$1|предишна|предишни $1}}',
-'whatlinkshere-next'  => '{{PLURAL:$1|следваща|следващи $1}}',
-'whatlinkshere-links' => '← препратки',
+'whatlinkshere'            => 'Какво сочи насам',
+'whatlinkshere-title'      => 'Страници, които сочат към $1',
+'whatlinkshere-page'       => 'Страница:',
+'linklistsub'              => '(Списък с препратки)',
+'linkshere'                => "Следните страници сочат към '''[[:$1]]''':",
+'nolinkshere'              => "Няма страници, сочещи към '''[[:$1]]'''.",
+'nolinkshere-ns'           => "Няма страници, сочещи към '''[[:$1]]''' в избраното именно пространство.",
+'isredirect'               => 'пренасочваща страница',
+'istemplate'               => 'включване',
+'whatlinkshere-prev'       => '{{PLURAL:$1|предишна|предишни $1}}',
+'whatlinkshere-next'       => '{{PLURAL:$1|следваща|следващи $1}}',
+'whatlinkshere-links'      => '← препратки',
+'whatlinkshere-hideredirs' => '$1 на пренасочващи страници',
+'whatlinkshere-hidetrans'  => '$1 на включени страници',
+'whatlinkshere-hidelinks'  => '$1 на препратки',
 
 # Block/unblock
 'blockip'                     => 'Блокиране',
@@ -1875,8 +1885,8 @@ $1',
 'allmessagesname'           => 'Име',
 'allmessagesdefault'        => 'Текст по подразбиране',
 'allmessagescurrent'        => 'Текущ текст',
-'allmessagestext'           => 'Тази страница съдържа списък на системните съобщения от именното пространство „МедияУики“
-Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] and [http://translatewiki.net Betawiki] if you wish to contribute to the generic MediaWiki localisation.',
+'allmessagestext'           => 'Тази страница съдържа списък на системните съобщения от именното пространство „МедияУики“.
+Посетете [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] и [http://translatewiki.net Betawiki], ако желаете да допринесете за общата локализация на софтуера МедияУики.',
 'allmessagesnotsupportedDB' => "Тази страница не може да бъде използвана, тъй като е изключена възможността '''\$wgUseDatabaseMessages'''.",
 'allmessagesfilter'         => 'Филтриране на съобщенията по име:',
 'allmessagesmodified'       => 'Показване само на променените',
@@ -2346,25 +2356,25 @@ $1',
 'monthsall'        => 'всички',
 
 # E-mail address confirmation
-'confirmemail'            => 'Потвърждаване на адрес за електронна поща',
-'confirmemail_noemail'    => 'Не сте посочили валиден адрес за електронна поща в [[{{ns:special}}:Preferences|настройки си]].',
-'confirmemail_text'       => '{{SITENAME}} изисква да потвърдите адреса си за електронна поща преди да използвате възможностите за е-поща. Натиснете долния бутон, за да ви бъде изпратено писмо, съдържащо специално генерирана препратка, чрез която ще можете да потвърдите валидността на адреса си.',
-'confirmemail_pending'    => '<div class="error">
+'confirmemail'             => 'Потвърждаване на адрес за електронна поща',
+'confirmemail_noemail'     => 'Не сте посочили валиден адрес за електронна поща в [[{{ns:special}}:Preferences|настройки си]].',
+'confirmemail_text'        => '{{SITENAME}} изисква да потвърдите адреса си за електронна поща преди да използвате възможностите за е-поща. Натиснете долния бутон, за да ви бъде изпратено писмо, съдържащо специално генерирана препратка, чрез която ще можете да потвърдите валидността на адреса си.',
+'confirmemail_pending'     => '<div class="error">
 Кодът за потвърждение вече е изпратен. Ако току-що сте се регистрирали, изчакайте няколко минути да пристигне писмото, преди да поискате нов код.
 </div>',
-'confirmemail_send'       => 'Изпращане на код за потвърждение',
-'confirmemail_sent'       => 'Кодът за потвърждение беше изпратен.',
-'confirmemail_oncreate'   => 'Код за потвърждение беше изпратен на електронната ви поща.
+'confirmemail_send'        => 'Изпращане на код за потвърждение',
+'confirmemail_sent'        => 'Кодът за потвърждение беше изпратен.',
+'confirmemail_oncreate'    => 'Код за потвърждение беше изпратен на електронната ви поща.
 Този код не е необходим за влизане, но ще ви трябва при активирането на функциите в {{SITENAME}}, изискващи валидна електронна поща.',
-'confirmemail_sendfailed' => 'Кодът за потвърждение не можа да бъде изпратен. Проверете адреса си за недопустими знаци.
+'confirmemail_sendfailed'  => 'Кодът за потвърждение не можа да бъде изпратен. Проверете адреса си за недопустими знаци.
 Изпращачът на е-поща отвърна: $1',
-'confirmemail_invalid'    => 'Грешен код за потвърждение. Възможно е кодът да е остарял.',
-'confirmemail_needlogin'  => 'Необходимо е да $1, за потвърждаване на адреса за електронна поща.',
-'confirmemail_success'    => 'Адресът ви за електронна поща беше потвърден. Вече можете да влезете и да се наслаждавате на уикито.',
-'confirmemail_loggedin'   => 'Адресът ви за електронна поща беше потвърден.',
-'confirmemail_error'      => 'Станала е грешка при потвърждаването на адреса ви.',
-'confirmemail_subject'    => '{{SITENAME}} — Потвърждаване на адрес за е-поща',
-'confirmemail_body'       => 'Някой, вероятно вие, от IP-адрес $1, е регистрирал потребител „$2“ в {{SITENAME}}, като е посочил този адрес за електронна поща.
+'confirmemail_invalid'     => 'Грешен код за потвърждение. Възможно е кодът да е остарял.',
+'confirmemail_needlogin'   => 'Необходимо е да $1, за потвърждаване на адреса за електронна поща.',
+'confirmemail_success'     => 'Адресът ви за електронна поща беше потвърден. Вече можете да влезете и да се наслаждавате на уикито.',
+'confirmemail_loggedin'    => 'Адресът ви за електронна поща беше потвърден.',
+'confirmemail_error'       => 'Станала е грешка при потвърждаването на адреса ви.',
+'confirmemail_subject'     => '{{SITENAME}} — Потвърждаване на адрес за е-поща',
+'confirmemail_body'        => 'Някой, вероятно вие, от IP-адрес $1, е регистрирал потребител „$2“ в {{SITENAME}}, като е посочил този адрес за електронна поща.
 
 За да потвърдите, че сметката в {{SITENAME}} и настоящият пощенски адрес са ваши, заредете долната препратка в браузъра си:
 
@@ -2375,6 +2385,8 @@ $3
 $5
 
 Кодът за потвърждение ще загуби валидност след $4.',
+'confirmemail_invalidated' => 'Отменено потвърждение за електронна поща',
+'invalidateemail'          => 'Отмяна на потвърждението за електронна поща',
 
 # Scary transclusion
 'scarytranscludedisabled' => '[Включването между уикита е деактивирано]',
@@ -2511,10 +2523,14 @@ $1',
 'fileduplicatesearch-result-n' => 'Файлът "$1" има {{PLURAL:$2|едно идентично копие|$2 идентични копия}}.',
 
 # Special:SpecialPages
+'specialpages-group-maintenance' => 'Доклади по поддръжката',
 'specialpages-group-other'       => 'Други специални страници',
 'specialpages-group-login'       => 'Влизане / регистриране',
 'specialpages-group-changes'     => 'Последни промени и дневници',
+'specialpages-group-media'       => 'Доклади за файловете и качванията',
 'specialpages-group-users'       => 'Потребители и права',
+'specialpages-group-needy'       => 'Страници, нуждаещи се от редакция',
+'specialpages-group-highuse'     => 'Широко използвани страници',
 'specialpages-group-permissions' => 'Потребителски права',
 
 );

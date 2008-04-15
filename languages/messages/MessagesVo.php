@@ -564,23 +564,23 @@ Kanol nedemön penedi at, üf jafam kala at binon pöl.',
 'hr_tip'          => 'Lien horitätik (no gebolös tu suvo)',
 
 # Edit pages
-'summary'                   => 'Plän brefik',
-'subject'                   => 'Subyet/tiäd',
-'minoredit'                 => 'Votükam pülik',
-'watchthis'                 => 'Galädolöd padi at',
-'savearticle'               => 'Dakipolöd padi',
-'preview'                   => 'Büologed',
-'showpreview'               => 'Jonolöd padalogoti',
-'showlivepreview'           => 'Büologed vifik',
-'showdiff'                  => 'Jonolöd votükamis',
-'anoneditwarning'           => "'''Nuned:''' No enunädol oli. Ladet-IP olik poregistaron su redakamajenotem pada at.",
-'missingsummary'            => "'''Noet:''' No epenol redakamipläni. If ovälol dönu knopi: Dakipolöd, redakam olik podakipon nen plän.",
-'missingcommenttext'        => 'Penolös, begö! küpeti dono.',
-'missingcommentheader'      => "'''Noet:''' No epenol yegädi/tiädi küpete at. If ovälol dönu knopi: Dakipolöd, redakam olik podakipon nen on.",
-'summary-preview'           => 'Büologed brefik',
-'subject-preview'           => 'Büologed yegäda/diläda',
-'blockedtitle'              => 'Geban peblokon',
-'blockedtext'               => "<big>'''Gebananam u ladet-IP olik(s) peblokon(s).'''</big>
+'summary'                           => 'Plän brefik',
+'subject'                           => 'Subyet/tiäd',
+'minoredit'                         => 'Votükam pülik',
+'watchthis'                         => 'Galädolöd padi at',
+'savearticle'                       => 'Dakipolöd padi',
+'preview'                           => 'Büologed',
+'showpreview'                       => 'Jonolöd padalogoti',
+'showlivepreview'                   => 'Büologed vifik',
+'showdiff'                          => 'Jonolöd votükamis',
+'anoneditwarning'                   => "'''Nuned:''' No enunädol oli. Ladet-IP olik poregistaron su redakamajenotem pada at.",
+'missingsummary'                    => "'''Noet:''' No epenol redakamipläni. If ovälol dönu knopi: Dakipolöd, redakam olik podakipon nen plän.",
+'missingcommenttext'                => 'Penolös, begö! küpeti dono.',
+'missingcommentheader'              => "'''Noet:''' No epenol yegädi/tiädi küpete at. If ovälol dönu knopi: Dakipolöd, redakam olik podakipon nen on.",
+'summary-preview'                   => 'Büologed brefik',
+'subject-preview'                   => 'Büologed yegäda/diläda',
+'blockedtitle'                      => 'Geban peblokon',
+'blockedtext'                       => "<big>'''Gebananam u ladet-IP olik(s) peblokon(s).'''</big>
 
 Blokam at pejenükon fa $1. Kod binon ''$2''.
 
@@ -590,7 +590,7 @@ Blokam at pejenükon fa $1. Kod binon ''$2''.
 
 Kanol penön ele $1, u [[{{MediaWiki:Grouppage-sysop}}|guvanes]], ad bespikön blokami.
 Kanol gebön yümi: 'penön gebane at' bisä ladet leäktronik verätik lonöföl patuvon in [[Special:Preferences|buükams kala]] olik. Ladet-IP nuik ola binon $3 e nüm blokama binon #$5. Mäniotolös oni pö säks valik.",
-'autoblockedtext'           => "Ladet-IP olik peblokon itjäfidiko bi pägebon fa geban, kel peblokon fa geban: $1.
+'autoblockedtext'                   => "Ladet-IP olik peblokon itjäfidiko bi pägebon fa geban, kel peblokon fa geban: $1.
 Kod blokama äbinon:
 
 :''$2''
@@ -603,88 +603,92 @@ Dalol penön gebane: $1 u balane [[{{MediaWiki:Grouppage-sysop}}|guvanas votik]]
 Küpälolös, das no dalol gebön yümi: „penön gebane at“ if no labol ladet leäktronik lonöföl in [[Special:Preferences|büukams olik]] ed if geb onik fa ol no peblokon.
 
 Blokamanüm olik binon $5. Mäniotolös, begö! oni in peneds valik olik.",
-'blockednoreason'           => 'kod nonik pegivon',
-'blockedoriginalsource'     => "Fonät pada: '''$1''' pajonon dono:",
-'blockededitsource'         => "Vödem '''redakamas olik''' pada: '''$1''' pajonon dono:",
-'whitelistedittitle'        => 'Mutol nunädön oli ad redakön',
-'whitelistedittext'         => 'Mutol $1 ad redakön padis.',
-'whitelistreadtitle'        => 'Mutol nunädön oli ad reidön',
-'whitelistreadtext'         => 'Nedol [[Special:Userlogin|nunädön oli]] ad reidön padis.',
-'whitelistacctitle'         => 'No dalol jafön kali',
-'whitelistacctext'          => 'Ad dalön jafön kalis in {{SITENAME}}, mutol [[Special:Userlogin|nunädön oli]] e mutol labön dälis zesüdik.',
-'confirmedittitle'          => 'Fümedam me pot leäktronik zesüdon ad redakön',
-'confirmedittext'           => 'Mutol fümedön ladeti leäktronik ola büä okanol redakön padis. Pladölos e lonöfükölos ladeti olik in [[Special:Preferences|buükams olik]].',
-'nosuchsectiontitle'        => 'Diläd at no dabinon',
-'nosuchsectiontext'         => 'Esteifülol ad redakön dilädi no dabinöli. Bi diläd: $1 no dabinon, redakam onik no kanon padakipön.',
-'loginreqtitle'             => 'Nunädam Paflagon',
-'loginreqlink'              => 'ninädolös obi',
-'loginreqpagetext'          => 'Mutol $1 ad logön padis votik.',
-'accmailtitle'              => 'Letavöd pesedon.',
-'accmailtext'               => 'Letavöd pro "$1" pasedon lü $2.',
-'newarticle'                => '(Nulik)',
-'newarticletext'            => "Esökol yümi lü pad, kel no nog dabinon.
+'blockednoreason'                   => 'kod nonik pegivon',
+'blockedoriginalsource'             => "Fonät pada: '''$1''' pajonon dono:",
+'blockededitsource'                 => "Vödem '''redakamas olik''' pada: '''$1''' pajonon dono:",
+'whitelistedittitle'                => 'Mutol nunädön oli ad redakön',
+'whitelistedittext'                 => 'Mutol $1 ad redakön padis.',
+'whitelistreadtitle'                => 'Mutol nunädön oli ad reidön',
+'whitelistreadtext'                 => 'Nedol [[Special:Userlogin|nunädön oli]] ad reidön padis.',
+'whitelistacctitle'                 => 'No dalol jafön kali',
+'whitelistacctext'                  => 'Ad dalön jafön kalis in {{SITENAME}}, mutol [[Special:Userlogin|nunädön oli]] e mutol labön dälis zesüdik.',
+'confirmedittitle'                  => 'Fümedam me pot leäktronik zesüdon ad redakön',
+'confirmedittext'                   => 'Mutol fümedön ladeti leäktronik ola büä okanol redakön padis. Pladölos e lonöfükölos ladeti olik in [[Special:Preferences|buükams olik]].',
+'nosuchsectiontitle'                => 'Diläd at no dabinon',
+'nosuchsectiontext'                 => 'Esteifülol ad redakön dilädi no dabinöli. Bi diläd: $1 no dabinon, redakam onik no kanon padakipön.',
+'loginreqtitle'                     => 'Nunädam Paflagon',
+'loginreqlink'                      => 'ninädolös obi',
+'loginreqpagetext'                  => 'Mutol $1 ad logön padis votik.',
+'accmailtitle'                      => 'Letavöd pesedon.',
+'accmailtext'                       => 'Letavöd pro "$1" pasedon lü $2.',
+'newarticle'                        => '(Nulik)',
+'newarticletext'                    => "Esökol yümi lü pad, kel no nog dabinon.
 Ad jafön padi at, primolös ad klavön vödemi olik in penaspad dono (logolöd [[{{MediaWiki:Helppage}}|yufapadi]] tefü nüns tefik votik).
 If binol is pölo, välolös knopi: '''geikön''' bevüresodatävöma olik.",
-'anontalkpagetext'          => "----''Bespikapad at duton lü geban nennemik, kel no nog ejafon kali, u no vilon labön u gebön oni. Sekü atos pemütobs ad gebön ladeti-IP ad dientifükön gebani at. Ladets-IP kanons pagebön fa gebans difik. If binol geban nennemik e cedol, das küpets netefik pelüodükons ole, [[Special:Userlogin|jafolös, begö! kali u nunädolös oli]] ad vitön kofudi ko gebans nennemik votik.''",
-'noarticletext'             => 'Atimo no dabinon vödem su pad at. Kanol [[Special:Search/{{PAGENAME}}|sukön padatiädi at]] su pads votik u [{{fullurl:{{FULLPAGENAME}}|action=edit}} redakön padi at].',
-'userpage-userdoesnotexist' => 'Gebanakal: "$1" no peregistaron. Fümükolös, va vilol jäfön/redakön padi at.',
-'clearyourcache'            => "'''Prudö!''' Pos dakip buükamas, mögos, das ozesüdos ad nedemön memi nelaidüpik bevüresodatävöma ad logön votükamis. '''Mozilla / Firefox / Safari:''' kipolöd klavi ''Shift'' dono e välolöd eli ''Reload'' (= dönulodön) me mugaparat, u dränolöd klävis ''Ctrl-Shift-R'' (''Cmd-Shift-R'' pö el Apple Mac); pro el '''IE:''' (Internet Explorer) kipolöd klavi ''Ctrl'' dono e välolöd eli ''Refresh'' (= flifädükön) me mugaparat, u dränolöd klavis ''Ctrl-F5''; '''Konqueror:''' välolöd eli ''Reload'' (= dönulodön) me mugaparat, u dränolöd klavi ''F5''; gebans ela '''Opera''' ba nedons vagükön lölöfiko memi nelaidüpik me ''Tools→Preferences'' (Stumem->Buükams).",
-'usercssjsyoucanpreview'    => '<strong>Mob:</strong> Välolös eli „Jonön büologedi“ ad blufön eli CSS/JS nulik olik bü dakip.',
-'usercsspreview'            => "'''Memolös, das anu te büologol eli CSS olik, no nog pedakipon!'''",
-'userjspreview'             => "'''Memolös, das anu te blufol/büologol eli JavaScript olik, no nog pedakipon!'''",
-'userinvalidcssjstitle'     => "'''Nuned:''' No dabinon fomät: \"\$1\".
+'anontalkpagetext'                  => "----''Bespikapad at duton lü geban nennemik, kel no nog ejafon kali, u no vilon labön u gebön oni. Sekü atos pemütobs ad gebön ladeti-IP ad dientifükön gebani at. Ladets-IP kanons pagebön fa gebans difik. If binol geban nennemik e cedol, das küpets netefik pelüodükons ole, [[Special:Userlogin|jafolös, begö! kali u nunädolös oli]] ad vitön kofudi ko gebans nennemik votik.''",
+'noarticletext'                     => 'Atimo no dabinon vödem su pad at. Kanol [[Special:Search/{{PAGENAME}}|sukön padatiädi at]] su pads votik u [{{fullurl:{{FULLPAGENAME}}|action=edit}} redakön padi at].',
+'userpage-userdoesnotexist'         => 'Gebanakal: "$1" no peregistaron. Fümükolös, va vilol jäfön/redakön padi at.',
+'clearyourcache'                    => "'''Prudö!''' Pos dakip buükamas, mögos, das ozesüdos ad nedemön memi nelaidüpik bevüresodatävöma ad logön votükamis. '''Mozilla / Firefox / Safari:''' kipolöd klavi ''Shift'' dono e välolöd eli ''Reload'' (= dönulodön) me mugaparat, u dränolöd klävis ''Ctrl-Shift-R'' (''Cmd-Shift-R'' pö el Apple Mac); pro el '''IE:''' (Internet Explorer) kipolöd klavi ''Ctrl'' dono e välolöd eli ''Refresh'' (= flifädükön) me mugaparat, u dränolöd klavis ''Ctrl-F5''; '''Konqueror:''' välolöd eli ''Reload'' (= dönulodön) me mugaparat, u dränolöd klavi ''F5''; gebans ela '''Opera''' ba nedons vagükön lölöfiko memi nelaidüpik me ''Tools→Preferences'' (Stumem->Buükams).",
+'usercssjsyoucanpreview'            => '<strong>Mob:</strong> Välolös eli „Jonön büologedi“ ad blufön eli CSS/JS nulik olik bü dakip.',
+'usercsspreview'                    => "'''Memolös, das anu te büologol eli CSS olik, no nog pedakipon!'''",
+'userjspreview'                     => "'''Memolös, das anu te blufol/büologol eli JavaScript olik, no nog pedakipon!'''",
+'userinvalidcssjstitle'             => "'''Nuned:''' No dabinon fomät: \"\$1\".
 Memolös, das pads: .css e .js mutons labön tiädi minudik: {{ns:user}}:Foo/monobook.css, no {{ns:user}}:Foo/Monobook.css.",
-'updated'                   => '(peatimükon)',
-'note'                      => '<strong>Penet:</strong>',
-'previewnote'               => '<strong>Is pajonon te büologed; votükams no nog pedakipons!</strong>',
-'previewconflict'           => 'Büologed at jonon vödemi in redakamaspad löpik soäsä opubon if odakipol oni.',
-'session_fail_preview'      => '<strong>Pidö! No emögos ad lasumön votükamis olik kodü per redakamanünas.<br />Steifülolös dönu. If no oplöpol, tän senunädolös e genunädolös oli, e steifülolös nogna.</strong>',
-'session_fail_preview_html' => "<strong>Liedo no eplöpos ad zepön redakami olik kodü per nünodas.</strong>
+'updated'                           => '(peatimükon)',
+'note'                              => '<strong>Penet:</strong>',
+'previewnote'                       => '<strong>Is pajonon te büologed; votükams no nog pedakipons!</strong>',
+'previewconflict'                   => 'Büologed at jonon vödemi in redakamaspad löpik soäsä opubon if odakipol oni.',
+'session_fail_preview'              => '<strong>Pidö! No emögos ad lasumön votükamis olik kodü per redakamanünas.<br />Steifülolös dönu. If no oplöpol, tän senunädolös e genunädolös oli, e steifülolös nogna.</strong>',
+'session_fail_preview_html'         => "<strong>Liedo no eplöpos ad zepön redakami olik kodü per nünodas.</strong>
 
 ''Bi {{SITENAME}} emogükon gebi kota: HTML krüdik, büologed peklänedon as jel ta tataks me el JavaScript.
 
 <strong>If evilol dunön redakami legik, steifülolös dönu. If no jäfidon, senunädolös oli e nunädolös oli dönu.</strong>",
-'editing'                   => 'Redakam pada: $1',
-'editingsection'            => 'Redakam pada: $1 (diläd)',
-'editingcomment'            => 'Redakam pada: $1 (küpet)',
-'editconflict'              => 'Redakamakonflit: $1',
-'explainconflict'           => 'Ek evotükon padi at sisä äprimol ad redakön oni. Vödem balid jonon padi soäsä dabinon anu. Votükams olik pajonons in vödem telid. Sludolös, vio fomams tel at mutons pabalön. Kanol kopiedön se vödem telid ini balid.
+'editing'                           => 'Redakam pada: $1',
+'editingsection'                    => 'Redakam pada: $1 (diläd)',
+'editingcomment'                    => 'Redakam pada: $1 (küpet)',
+'editconflict'                      => 'Redakamakonflit: $1',
+'explainconflict'                   => 'Ek evotükon padi at sisä äprimol ad redakön oni. Vödem balid jonon padi soäsä dabinon anu. Votükams olik pajonons in vödem telid. Sludolös, vio fomams tel at mutons pabalön. Kanol kopiedön se vödem telid ini balid.
 <b>Te vödem balid podakipon!</b><br />',
-'yourtext'                  => 'Vödem olik',
-'storedversion'             => 'Fomam pedakipöl',
-'nonunicodebrowser'         => '<strong>NÜNED: Bevüresodatävöm olik no kanon gebön eli Unicode.
+'yourtext'                          => 'Vödem olik',
+'storedversion'                     => 'Fomam pedakipöl',
+'nonunicodebrowser'                 => '<strong>NÜNED: Bevüresodatävöm olik no kanon gebön eli Unicode.
 Ad dälön ole ad redakön padis, malats no-ASCII opubons in redakamabog as kots degmälnumatik.</strong>',
-'editingold'                => '<strong>NUNED: Anu redakol fomami büik pada at. If dakipol oni, votükams posik onepubons.</strong>',
-'yourdiff'                  => 'Difs',
-'copyrightwarning'          => 'Demolös, das keblünots valik lü Vükiped padasumons ma el $2 (logolöd eli $1 tefü notets). If no vilol, das vödems olik poredakons nenmisero e poseagivons ma vil alana, tän no pladolös oni isio.<br />
+'editingold'                        => '<strong>NUNED: Anu redakol fomami büik pada at. If dakipol oni, votükams posik onepubons.</strong>',
+'yourdiff'                          => 'Difs',
+'copyrightwarning'                  => 'Demolös, das keblünots valik lü Vükiped padasumons ma el $2 (logolöd eli $1 tefü notets). If no vilol, das vödems olik poredakons nenmisero e poseagivons ma vil alana, tän no pladolös oni isio.<br />
 Garanol obes, das ol it epenol atosi, u das ekopiedol atosi se räyun notidik u se fon libik sümik.<br />
 <strong>NO PLADOLÖD ISIO NEN DÄL LAUTANA VÖDEMIS LABÜ KOPIEDAGITÄT!</strong>',
-'copyrightwarning2'         => 'Demolös, das keblünots valik lü {{SITENAME}} padasumons ma el $2 (logolöd eli $1 tefü notets). If no vilol, das vödems olik poredakons nenmisero e poseagivons ma vil alana, tän no pladolös onis isio.<br />
+'copyrightwarning2'                 => 'Demolös, das keblünots valik lü {{SITENAME}} padasumons ma el $2 (logolöd eli $1 tefü notets). If no vilol, das vödems olik poredakons nenmisero e poseagivons ma vil alana, tän no pladolös onis isio.<br />
 Garanol obes, das ol it epenol atosi, u das ekopiedol atosi se räyun notidik u se fon libik sümik.<br />
 <strong>NO PLADOLÖD ISIO NEN DÄL LAUTANA VÖDEMIS LABÜ KOPIEDAGITÄT!</strong>',
-'longpagewarning'           => '<strong>NUNED: Pad at labon lunoti miljölätas $1; bevüresodatävöms anik ba no fägons ad redakön nendsäkädo padis lunotü miljölats plu 32. Betikolös dilami pada at ad pads smalikum.</strong>',
-'longpageerror'             => '<strong>PÖL: Vödem fa ol pesedöl labon lunoti miljölätas $1, kelos pluon leigodü völad muik pedälöl miljölätas $2. No kanon padakipön.</strong>',
-'readonlywarning'           => '<strong>NUNED: Vük pefärmükon kodü kodididazesüd. No kanol dakipön votükamis olik anu. Kopiedolös vödemi nulik ini program votik e dakipolös oni in nünöm olik. Poso okanol dönu steifülön ad pladön oni isio.</strong>',
-'protectedpagewarning'      => '<strong>NUNED: Pad at pejelon, dat te gebans labü guvanagitäts kanons redakön oni.</strong>',
-'semiprotectedpagewarning'  => "'''Noet:''' Pad at pefärmükon. Te gebans peregistaröl kanons redakön oni.",
-'cascadeprotectedwarning'   => "'''Nuned:''' Pad at pefärmükon löko (te guvans dalons redakön oni) bi binon dil {{PLURAL:$1|pada|padas}} sököl, me sökodajel {{PLURAL:$1|pejelöla|pejelölas}}:",
-'titleprotectedwarning'     => '<strong>NUNED: Pad at pejelon, dat te gebans anik kanons jafön oni.</strong>',
-'templatesused'             => 'Samafomots su pad at pegeböls:',
-'templatesusedpreview'      => 'Samafomots in büologed at pageböls:',
-'templatesusedsection'      => 'Samafomots in diläd at pageböls:',
-'template-protected'        => '(pejelon)',
-'template-semiprotected'    => '(dilo pejelon)',
-'hiddencategories'          => 'Pad at duton lü {{PLURAL:$1|klad peklänedöl 1|klads peklänedöl $1}}:',
-'nocreatetitle'             => 'Padijafam pemiedükon',
-'nocreatetext'              => '{{SITENAME}} emiedükon mögi ad jafön padis nulik.
+'longpagewarning'                   => '<strong>NUNED: Pad at labon lunoti miljölätas $1; bevüresodatävöms anik ba no fägons ad redakön nendsäkädo padis lunotü miljölats plu 32. Betikolös dilami pada at ad pads smalikum.</strong>',
+'longpageerror'                     => '<strong>PÖL: Vödem fa ol pesedöl labon lunoti miljölätas $1, kelos pluon leigodü völad muik pedälöl miljölätas $2. No kanon padakipön.</strong>',
+'readonlywarning'                   => '<strong>NUNED: Vük pefärmükon kodü kodididazesüd. No kanol dakipön votükamis olik anu. Kopiedolös vödemi nulik ini program votik e dakipolös oni in nünöm olik. Poso okanol dönu steifülön ad pladön oni isio.</strong>',
+'protectedpagewarning'              => '<strong>NUNED: Pad at pejelon, dat te gebans labü guvanagitäts kanons redakön oni.</strong>',
+'semiprotectedpagewarning'          => "'''Noet:''' Pad at pefärmükon. Te gebans peregistaröl kanons redakön oni.",
+'cascadeprotectedwarning'           => "'''Nuned:''' Pad at pefärmükon löko (te guvans dalons redakön oni) bi binon dil {{PLURAL:$1|pada|padas}} sököl, me sökodajel {{PLURAL:$1|pejelöla|pejelölas}}:",
+'titleprotectedwarning'             => '<strong>NUNED: Pad at pejelon, dat te gebans anik kanons jafön oni.</strong>',
+'templatesused'                     => 'Samafomots su pad at pegeböls:',
+'templatesusedpreview'              => 'Samafomots in büologed at pageböls:',
+'templatesusedsection'              => 'Samafomots in diläd at pageböls:',
+'template-protected'                => '(pejelon)',
+'template-semiprotected'            => '(dilo pejelon)',
+'hiddencategories'                  => 'Pad at duton lü {{PLURAL:$1|klad peklänedöl 1|klads peklänedöl $1}}:',
+'nocreatetitle'                     => 'Padijafam pemiedükon',
+'nocreatetext'                      => '{{SITENAME}} emiedükon mögi ad jafön padis nulik.
 Kanol redakön padi dabinöl, u [[Special:Userlogin|nunädön oli u jafön kali]].',
-'nocreate-loggedin'         => 'No dalol jafön padis nulik in {{SITENAME}}.',
-'permissionserrors'         => 'Dälapöls',
-'permissionserrorstext'     => 'No dalol dunön atosi sekü {{PLURAL:$1|kod|kods}} sököl:',
-'recreate-deleted-warn'     => "'''NUNED: Dönujafol padi pemoüköl.'''
+'nocreate-loggedin'                 => 'No dalol jafön padis nulik in {{SITENAME}}.',
+'permissionserrors'                 => 'Dälapöls',
+'permissionserrorstext'             => 'No dalol dunön atosi sekü {{PLURAL:$1|kod|kods}} sököl:',
+'recreate-deleted-warn'             => "'''NUNED: Dönujafol padi pemoüköl.'''
 
 Vätälolös, va binos pötik ad lairedakön padi at.<br>
 Jenotalised moükama pada at pajonon is as yuf.",
+'expensive-parserfunction-warning'  => 'Nuned: pad at vokon „parser“-sekätis tusuvo.
+
+Muton labön vokis läs $2, ab labon anu vokis $1.',
+'expensive-parserfunction-category' => 'Pads, kels vokons tusuvo „parser“-sekätis jerik',
 
 # "Undo" feature
 'undo-success' => 'Redakam at kanon pasädunön. Reidolös leigodi dono ad fümükön, va vilol vo dunön atosi, e poso dakipolös votükamis ad fisädunön redakami.',
@@ -754,6 +758,7 @@ Ninäd peklänedöl at binon ye nog lügolovik guvanes votik vüka at: kanons no
 'revdelete-hide-comment'      => 'Klänedön redakamaküpeti',
 'revdelete-hide-user'         => 'Klänedön gebananemi u ladeti-IP redakana',
 'revdelete-hide-restricted'   => 'Gebön miedükamis at i demü guvans e lökofärmükön fometi at',
+'revdelete-suppress'          => 'Klänedön moükamakodis i de guvans (äsi de votikans)',
 'revdelete-hide-image'        => 'Klänedön ragivaninädi',
 'revdelete-unsuppress'        => 'Moükön miedükamis fomamas pegegetöl',
 'revdelete-log'               => 'Küpet jenotalisedik:',
@@ -776,6 +781,7 @@ Ninäd peklänedöl at binon ye nog lügolovik guvanes votik vüka at: kanons no
 'logdelete-log-message'       => '$1 tefü {{PLURAL:$2|jenot|jenots}} $2',
 
 # Suppression log
+'suppressionlog'     => 'Lovelogam-jenotalised',
 'suppressionlogtext' => 'Is palisedons moükams e blokams lätik, kels ätefons ninädi de guvans peklänedöli. Logolös [[Special:Ipblocklist|lisedi ladetas-IP pebloköl]], kö pajonons blokams anu lonöföls.',
 
 # History merging
@@ -990,9 +996,9 @@ Bügil vagik sinifon, das geban no duton lü grup tefik.',
 'recentchangeslinked'          => 'Votükams teföl',
 'recentchangeslinked-title'    => 'Votükams tefü pad: "$1"',
 'recentchangeslinked-noresult' => 'Pads ad pad at peyümöls no pevotükons ün period at.',
-'recentchangeslinked-summary'  => "Su pad patik at palisedons votükams padas, ad kels pad pevälöl yumon. 
+'recentchangeslinked-summary'  => "Su pad patik at palisedons votükams padas, lü kels pad pevälöl yumon. 
 If ye pad pevälöl binon klad, palisedons is votükams nulik padas in klad at.
-Pads galädaliseda olik '''pakazetons'''.",
+Pads [[Special:Watchlist|galädaliseda olik]] '''pakazetons'''.",
 'recentchangeslinked-page'     => 'Padanem:',
 'recentchangeslinked-to'       => 'Jonön güo votükamis padas, kels yumons ad pad pevälöl',
 
@@ -1131,13 +1137,20 @@ Klikolös tiädi padüla ad votükön sökaleodi at.',
 'imagepage-searchdupe'      => 'Sukön ragivis pedönuöl',
 
 # File reversion
-'filerevert-comment'    => 'Küpet:',
-'filerevert-badversion' => 'No dabinon fomam topik büik ragiva at labü timamäk pegevöl',
+'filerevert'                => 'Geükön padi: $1',
+'filerevert-legend'         => 'Geükön ragivi',
+'filerevert-intro'          => '<span class="plainlinks">Anu geükol padi: \'\'\'[[Media:$1|$1]]\'\'\' ad [fomam $4: $3, $2].</span>',
+'filerevert-comment'        => 'Küpet:',
+'filerevert-defaultcomment' => 'Pegeükon ad fomam: $2, $1',
+'filerevert-submit'         => 'Geükön',
+'filerevert-success'        => '<span class="plainlinks">Pad: \'\'\'[[Media:$1|$1]]\'\'\' pegeükon ad [fomam $4: $3, $2].</span>',
+'filerevert-badversion'     => 'No dabinon fomam topik büik ragiva at labü timamäk pegevöl',
 
 # File deletion
 'filedelete'                  => 'Moükön padi: $1',
 'filedelete-legend'           => 'Moükön ragivi',
 'filedelete-intro'            => "Moükol padi: '''[[Media:$1|$1]]'''.",
+'filedelete-intro-old'        => '<span class="plainlinks">Anu moükol fomami pada: \'\'\'[[Media:$1|$1]]\'\'\' [$4 $3, $2].</span>',
 'filedelete-comment'          => 'Küpet:',
 'filedelete-submit'           => 'Moükön',
 'filedelete-success'          => "'''$1''' pemoükon.",
@@ -1396,6 +1409,7 @@ If vilol poso moükön padi de galädalised olik, välolös lä on knopi: „neg
 'deletedtext'                 => 'Pad: "<nowiki>$1</nowiki>" pemoükon;
 $2 jonon moükamis nulik.',
 'deletedarticle'              => 'Pad: "[[$1]]" pemoükon',
+'suppressedarticle'           => 'logov pada: „[[$1]]“ pevotükon',
 'dellogpage'                  => 'Jenotalised moükamas',
 'dellogpagetext'              => 'Dono binon lised moükamas nulikün.',
 'deletionlog'                 => 'jenotalised moükamas',
@@ -1811,6 +1825,9 @@ Nüveigs vüvükik valik pajonons su [[Special:Log/import|nüveigamalised]].',
 # Scripts
 'common.js' => '/* El JavaScript isik alseimik pogebon pro gebans valik pö padilogam valik. */',
 
+# Metadata
+'notacceptable' => 'Dünanünömi vüka no fägon ad blünön nünodis ma fomät, keli nünöm olik kanon reidön.',
+
 # Attribution
 'anonymous'        => 'Geban(s) nennemik {{SITENAME}}a',
 'siteuser'         => 'Geban ela {{SITENAME}}: $1',
@@ -1925,6 +1942,7 @@ Te lisedaliens (liens me * primöl) pabevobons. Yüm balid liena muton binön y�
 'exif-gpslongitude'                => 'Lunet',
 'exif-gpsaltitude'                 => 'Geilot',
 'exif-gpstimestamp'                => 'tim-GPS (glok taumik)',
+'exif-gpsdop'                      => 'Kurat mafama',
 'exif-gpsspeedref'                 => 'Vifotastabäd',
 'exif-gpstrack'                    => 'Mufalüod',
 'exif-gpsimgdirection'             => 'Lüod magoda',
@@ -2011,6 +2029,7 @@ Te lisedaliens (liens me * primöl) pabevobons. Yüm balid liena muton binön y�
 'confirmemail_noemail'    => 'No labol ladeti leäktronik lonöföl in [[Special:Preferences|gebanabuükams olik]].',
 'confirmemail_text'       => 'Vük at flagon, das ofümedol ladeti leäktronik ola büä odälon ole ad gebön poti leäktronik.
 Välolös me mugaparat knopi dono ad sedön fümedapenedi ladete olik. Pened oninädon yümi labü fümedakot; sökolös yümi ad fümedön, das ladet olik lonöfon.',
+'confirmemail_pending'    => '<div class="error">Fümedakot ya pesedon ole medü pot leäktronik; if äjafol kali olik brefabüo, stebedolös dü minuts anik, dat fümedakot olükömon, büä osteifülol ad begön koti nulik.</div>',
 'confirmemail_send'       => 'Sedön fümedakoti me pot leäktronik',
 'confirmemail_sent'       => 'Fümedapened pesedon.',
 'confirmemail_oncreate'   => 'Fümedakot pesedon lü ladet leäktronik ola. Kot at no zesüdon ad nunädön oli, ab omutol klavön oni büä okanol gebön ladeti leäktronik ola in vük at.',
@@ -2139,6 +2158,7 @@ Penolös ragivanemi nen foyümot: „{{ns:image}}:“',
 # Special:FileDuplicateSearch
 'fileduplicatesearch-filename' => 'Ragivanem:',
 'fileduplicatesearch-submit'   => 'Sukön',
+'fileduplicatesearch-info'     => 'pixels $1 × $2 <br />Ragivagretot: $3<br />MIME-sot: $4',
 
 # Special:SpecialPages
 'specialpages-group-other'       => 'Pads patik votik',
