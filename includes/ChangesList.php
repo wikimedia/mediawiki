@@ -441,8 +441,7 @@ class EnhancedChangesList extends ChangesList {
 			$clink = $this->skin->makeKnownLinkObj( $rc->getTitle(), '', "rcid={$rc_id}" );
 		// Log entries
 		} else if( $rc_type == RC_LOG ) {
-			global $wgRCTypeGroupedLogs;
-			if( $rc_log_type && in_array($rc_log_type,$wgRCTypeGroupedLogs) ) {
+			if( $rc_log_type ) {
 				$logtitle = SpecialPage::getTitleFor( 'Log', $rc_log_type );
 				$clink = '(' . $this->skin->makeKnownLinkObj( $logtitle, LogPage::logName($rc_log_type) ) . ')';
 			} else {
@@ -519,9 +518,8 @@ class EnhancedChangesList extends ChangesList {
 			# Use an @ character to prevent collision with page names
 			$this->rc_cache['@@' . ($this->rcMoveIndex++)] = array($rc);
 		} else {
-			global $wgRCTypeGroupedLogs;
-			# Some logs are best grouped by type (block,rights)
-			if( $rc_type == RC_LOG && in_array($rc_log_type,$wgRCTypeGroupedLogs) ){
+			# Logs are grouped by type
+			if( $rc_type == RC_LOG ){
 				$secureName = SpecialPage::getTitleFor( 'Log', $rc_log_type )->getPrefixedDBkey();
 			}
 			if( !isset( $this->rc_cache[$secureName] ) ) {
