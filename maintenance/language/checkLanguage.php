@@ -221,6 +221,18 @@ ENDS;
 		return $results;
 	}
 
+	protected function formatKey( $key, $code ) {
+		if ( $this->doLinks ) {
+			$displayKey = ucfirst( $key );
+			if ( $code == $this->wikiCode ) {
+				return "[[MediaWiki:$displayKey|$key]]";
+			} else {
+				return "[[MediaWiki:$displayKey/$code|$key]]";
+			}
+		} else {
+			return $key;
+	}						}
+
 	protected function outputText( ) {
 		foreach ( $this->results as $code => $results ) {
 			$translated = $this->L->getMessages( $code );
@@ -236,16 +248,7 @@ ENDS;
 						echo "[messages are hidden]\n";
 					} else {
 						foreach ( $messages as $key => $value ) {
-							if ( $this->doLinks ) {
-								$displayKey = ucfirst( $key );
-								if ( $code == $this->wikiCode ) {
-									$displayKey = "[[MediaWiki:$displayKey|$key]]";
-								} else {
-									$displayKey = "[[MediaWiki:$displayKey/$code|$key]]";
-								}
-							} else {
-								$displayKey = $key;
-							}
+							$displayKey = $this->formatKey( $key, $code );
 							if ( $this->level == 2 ) {
 								echo "* $displayKey\n";
 							} else {
@@ -255,7 +258,7 @@ ENDS;
 					}
 				}
 			}
-		}	
+		}
 	}
 
 	/**
@@ -276,7 +279,8 @@ ENDS;
 					$problems += $count;
 					$messageDetails = array();
 					foreach ( $messages as $key => $details ) {
-						$messageDetails[] = $key;
+						$displayKey = $this->formatKey( $key, $code );
+						$messageDetails[] = $displayKey;
 					}
 					$detailTextForLangChecks[] = "===$code-$check===\n* " . implode( ', ', $messageDetails );
 					$numbers[] = "'''[[#$code-$check|$count]]'''";
