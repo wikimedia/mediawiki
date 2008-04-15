@@ -441,7 +441,14 @@ class EnhancedChangesList extends ChangesList {
 			$clink = $this->skin->makeKnownLinkObj( $rc->getTitle(), '', "rcid={$rc_id}" );
 		// Log entries
 		} else if( $rc_type == RC_LOG ) {
-			$clink = $this->skin->makeLinkObj( $rc->getTitle(), '' );
+			global $wgRCTypeGroupedLogs;
+			if( $rc_log_type && in_array($rc_log_type,$wgRCTypeGroupedLogs) ) {
+				$logtitle = SpecialPage::getTitleFor( 'Log', $rc_log_type );
+				$clink = '(' . $this->skin->makeKnownLinkObj( $logtitle, LogPage::logName($rc_log_type) ) . ')';
+			} else {
+				$clink = $this->skin->makeLinkObj( $rc->getTitle(), '' );
+			}
+			$watched = false;
 		// Edits
 		} else {
 			$clink = $this->skin->makeKnownLinkObj( $rc->getTitle(), '' );
@@ -658,7 +665,7 @@ class EnhancedChangesList extends ChangesList {
 		}
 
 		# History
-		if( $namehidden || $alllogs ) {
+		if( $namehidden || !$block[0]->getTitle()->exists() ) {
 			$r .= '(' . $this->message['history'] . ')';
 		} else {
 			$r .= '(' . $this->skin->makeKnownLinkObj( $block[0]->getTitle(),
@@ -666,7 +673,7 @@ class EnhancedChangesList extends ChangesList {
 		}
 
 		$r .= $users;
-		$r .=$this->numberofWatchingusers($block[0]->numberofWatchingusers);
+		$r .= $this->numberofWatchingusers($block[0]->numberofWatchingusers);
 
 		$r .= "</td></tr></table>\n";
 
