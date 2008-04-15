@@ -85,7 +85,7 @@ class LogPage {
 					$this->type, $this->action, $this->target, $this->comment, $this->params, $newId );
 			}
 		}
-		return true;
+		return ($dbw->affectedRows() > 0);
 	}
 
 	public function getRcComment() {
