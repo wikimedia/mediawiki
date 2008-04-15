@@ -1501,7 +1501,7 @@ $wgDisableCookieCheck = false;
  * Set authentication cookies to httpOnly to prevent stealing by JS, in brow-
  * sers that support this feature.
  */
-$wgCookieHttpOnly = true;
+$wgCookieHttpOnly = false;
 
 /** A list of cookies that vary the cache (for use by extensions) */
 $wgCacheVaryCookies = array();
