@@ -1016,8 +1016,7 @@ wgUploadAutoFill = {$autofill};
 
 		$encDestName = htmlspecialchars( $this->mDesiredDestName );
 
-		$watchChecked =
-			( $wgUser->getOption( 'watchdefault' ) || $wgUser->getOption( 'watchcreations' ) )
+		$watchChecked = $this->watchCheck()
 			? 'checked="checked"'
 			: '';
 		$warningChecked = $this->mIgnoreWarning ? 'checked' : '';
@@ -1192,6 +1191,35 @@ wgUploadAutoFill = {$autofill};
 	}
 
 	/* -------------------------------------------------------------- */
+	
+	/**
+	 * See if we should check the 'watch this page' checkbox on the form
+	 * based on the user's preferences and whether we're being asked
+	 * to create a new file or update an existing one.
+	 *
+	 * In the case where 'watch edits' is off but 'watch creations' is on,
+	 * we'll leave the box unchecked.
+	 *
+	 * Note that the page target can be changed *on the form*, so our check
+	 * state can get out of sync.
+	 */
+	function watchCheck() {
+		global $wgUser;
+		if( $wgUser->getOption( 'watchdefault' ) ) {
+			// Watch all edits!
+			return true;
+		}
+		
+		$local = wfLocalFile( $this->mDesiredDestName );
+		if( $local && $local->exists() ) {
+			// We're uploading a new version of an existing file.
+			// No creation, so don't watch it if we're not already.
+			return $local->getTitle()->userIsWatching();
+		} else {
+			// New page should get watched if that's our option.
+			return $wgUser->getOption( 'watchcreations' );
+		}
+	}
 
 	/**
 	 * Split a file into a base name and all dot-delimited 'extensions'
