@@ -448,8 +448,6 @@ class Database {
 	 */
 	public function query( $sql, $fname = '', $tempIgnore = false ) {
 		global $wgProfiler;
-		
-		echo "$sql\n\n";
 
 		$isMaster = !is_null( $this->getLBInfo( 'master' ) );
 		if ( isset( $wgProfiler ) ) {
