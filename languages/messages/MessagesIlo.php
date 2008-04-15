@@ -13,8 +13,10 @@
 
 $messages = array(
 # User preference toggles
-'tog-underline' => 'Ugedan iti baba dagiti panilpo:',
-'tog-justify'   => 'Limpiaen dagiti parapo',
+'tog-underline'        => 'Ugedan iti baba dagiti panilpo:',
+'tog-justify'          => 'Limpiaen dagiti parapo',
+'tog-rememberpassword' => 'Laglagipen ti iseserrekko kadaytoy a kompiuter',
+'tog-showhiddencats'   => 'Ipakita dagiti nakalemmeng a categoria',
 
 'underline-always' => 'Kanayon',
 
@@ -60,6 +62,7 @@ $messages = array(
 'special-categories-sort-abc'   => 'urnosen nga alfabetikal',
 'category_header'               => 'Dagiti articulo iti categoria "$1"',
 'subcategories'                 => 'Dagiti subcategoria',
+'hidden-category-category'      => 'Nailemmeng a categorias', # Name of the category where hidden categories will be listed
 
 'about'          => 'Maipapan iti',
 'article'        => 'Panid ti linaon',
@@ -102,6 +105,7 @@ $messages = array(
 'articlepage'       => 'Kitaen ti panid ti linaon',
 'talk'              => 'Pagtutungtongan',
 'toolbox'           => 'ramramit',
+'mediawikipage'     => 'Kitaen ti panid ti mensahe',
 'viewtalkpage'      => 'Kitaen ti tungtungan',
 'otherlanguages'    => 'iti sabali a pagsasao',
 'protectedpage'     => 'Nasaluadan a panid',
@@ -172,6 +176,7 @@ Pangngaasim ta mangpilika sabali a nagan.',
 'loginsuccesstitle'  => 'Balligi ti panag-login',
 'loginsuccess'       => "'''Nakastrekkan iti {{SITENAME}} a kas \"\$1\".'''",
 'nosuchuser'         => 'Awan ti agar-aramat nga agnagan iti "$1". Kitaem ti espelingmo, wenno mangaramidka iti baro nga account.',
+'nouserspecified'    => 'Nasken a mangipanka iti nagan.',
 'wrongpassword'      => 'Biddut (wenno awan) ti password nga impanmo. Padasem koma manen, apo.',
 'wrongpasswordempty' => 'Blanko ti impanmo a pasesbalikas. Padasem koma manen.',
 'passwordtooshort'   => 'Ababa unay ti impanmo a password. Masapul nga addaan iti uray la koma $1 a characters.',
@@ -403,16 +408,19 @@ Kasta met nga ikarim kadakami a bukodmo a sinurat wenno gapuanan daytoy, wenno k
 'blocklink' => 'pengdan',
 
 # Move page
-'move-page-legend' => 'Iyakar ti panid',
-'movearticle'      => 'Iyakar ti panid',
-'movepagebtn'      => 'Iyakar ti panid',
-'pagemovedsub'     => 'Balligi ti panangyakar',
-'movedto'          => 'nayakar iti',
-'1movedto2'        => '[[$1]] nayakar iti [[$2]]',
-'movereason'       => 'Rason',
+'move-page-legend'        => 'Iyakar ti panid',
+'movearticle'             => 'Iyakar ti panid',
+'movepagebtn'             => 'Iyakar ti panid',
+'pagemovedsub'            => 'Balligi ti panangyakar',
+'movedto'                 => 'nayakar iti',
+'1movedto2'               => '[[$1]] nayakar iti [[$2]]',
+'movereason'              => 'Rason',
+'delete_and_move'         => 'Ikkaten ken iyakar',
+'delete_and_move_confirm' => 'Wen, ikkatenen ti panid',
 
 # Export
-'export-addcat' => 'Inayon',
+'export-addcattext' => 'Manginayon iti pampanid manipud iti categoria:',
+'export-addcat'     => 'Inayon',
 
 # Namespace 8 related
 'allmessagesname' => 'Nagan',
@@ -421,10 +429,16 @@ Kasta met nga ikarim kadakami a bukodmo a sinurat wenno gapuanan daytoy, wenno k
 'thumbnail-more' => 'Padakkelen',
 
 # Tooltip help for the actions
-'tooltip-pt-logout'  => 'Rummuaren',
-'tooltip-ca-protect' => 'Saluadan daytoy a panid',
-'tooltip-ca-delete'  => 'Ikkaten daytoy a panid',
-'tooltip-ca-move'    => 'Iyakar daytoy a panid',
+'tooltip-pt-mytalk'      => 'Panid pakitungtongak',
+'tooltip-pt-preferences' => 'Dagiti preferenciak',
+'tooltip-pt-watchlist'   => 'Listaan dagiti panid a palpaliiwem ti panagbalbaliwda',
+'tooltip-pt-logout'      => 'Rummuaren',
+'tooltip-ca-viewsource'  => 'Nasaluadan daytoy a panid. Mabalinmo a kitaen ti taudanna.',
+'tooltip-ca-protect'     => 'Saluadan daytoy a panid',
+'tooltip-ca-delete'      => 'Ikkaten daytoy a panid',
+'tooltip-ca-move'        => 'Iyakar daytoy a panid',
+'tooltip-ca-watch'       => 'Inayon daytoy a panid kadagiti bambantayam',
+'tooltip-ca-unwatch'     => 'Ikkatem daytoy a panid kadagiti bambantayam',
 
 # Attribution
 'others' => 'dadduma pay',
@@ -433,5 +447,9 @@ Kasta met nga ikarim kadakami a bukodmo a sinurat wenno gapuanan daytoy, wenno k
 'noimages' => 'Awan ti makita.',
 'ilsubmit' => 'agbirok',
 'bydate'   => 'babaen ti petsa',
+
+# AJAX search
+'hideresults'   => 'Ilemmeng dagiti resulta',
+'useajaxsearch' => 'Agaramat iti AJAX a pagbirok',
 
 );

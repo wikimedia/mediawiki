@@ -1040,7 +1040,7 @@ $1 | $2',
 'recentchangeslinked-title'    => 'Sivulta $1 linkitettyjen sivujen muutokset',
 'recentchangeslinked-noresult' => 'Ei muutoksia linkitettyihin sivuihin annetulla aikavälillä.',
 'recentchangeslinked-summary'  => "Tämä toimintosivu näyttää muutokset sivuihin, joihin on viitattu tältä sivulta. Tarkkailulistallasi olevat sivut on '''paksunnettu'''.",
-'recentchangeslinked-page'     => 'Sivun nimi:',
+'recentchangeslinked-page'     => 'Sivu',
 
 # Upload
 'upload'                      => 'Tallenna tiedosto',

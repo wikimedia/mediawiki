@@ -1149,7 +1149,8 @@ $3 указал следующую причину: ''$2''",
 'recentchangeslinked'          => 'Связанные правки',
 'recentchangeslinked-title'    => 'Связанные правки для $1',
 'recentchangeslinked-noresult' => 'На связанных страницах не было изменений за указанный период.',
-'recentchangeslinked-summary'  => "!! На этой служебной странице представлен список последних изменений на связанных страницах. Страницы из списка наблюдения '''выделены'''.",
+'recentchangeslinked-summary'  => "Это список недавних изменений в страницах, на которые ссылается указанная страница (или входящих в указанную категорию).
+Страницы, входящие в [[Special:Watchlist|ваш список наблюдения]] '''выделены'''.",
 'recentchangeslinked-page'     => 'Название страницы:',
 'recentchangeslinked-to'       => 'Show changes to pages linked to the given page instead
 
@@ -2698,7 +2699,7 @@ $1',
 'specialpages-group-other'       => 'Другие служебные страницы',
 'specialpages-group-login'       => 'Представиться / Зарегистрироваться',
 'specialpages-group-changes'     => 'Свежие правки и журналы',
-'specialpages-group-media'       => 'Отчёты о медиа-материалах',
+'specialpages-group-media'       => 'Отчёты о медиа-материалах и загрузках',
 'specialpages-group-users'       => 'Участники и права',
 'specialpages-group-needy'       => 'Страницы, требующие обработки',
 'specialpages-group-highuse'     => 'Интенсивно использующиеся страницы',

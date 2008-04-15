@@ -1160,8 +1160,10 @@ $2 Показувати перенаправлення   Пошук на $3 $9',
 'recentchangeslinked'          => "Пов'язані редагування",
 'recentchangeslinked-title'    => "Пов'язані редагування для «$1»",
 'recentchangeslinked-noresult' => "На пов'язаних сторінках не було змін протягом зазначеного періоду.",
-'recentchangeslinked-summary'  => "На цій спеціальній сторінці представлений список останніх змін на пов'язаних сторінках. Сторінки з вашого списку спостереження виділені '''жирним шрифтом'''.",
+'recentchangeslinked-summary'  => "Це список нещодавніх змін на сторінках, на які посилається зазначена сторінка (або на сторінках, що містяться в цій категорії).
+Сторінки з [[Special:Watchlist|вашого списку спостереження]] виділені '''жирним шрифтом'''.",
 'recentchangeslinked-page'     => 'Назва сторінки:',
+'recentchangeslinked-to'       => "Показати зміни на сторінках, пов'язаних з даною",
 
 # Upload
 'upload'                      => 'Завантажити файл',
@@ -1426,6 +1428,7 @@ $2 Показувати перенаправлення   Пошук на $3 $9',
 'deadendpages'            => 'Статті без посилань',
 'deadendpagestext'        => 'Наступні сторінки не містять посилань на інші сторінки цієї вікі.',
 'protectedpages'          => 'Захищені сторінки',
+'protectedpages-indef'    => 'Тільки безстроково захищені',
 'protectedpagestext'      => 'Наступні сторінки захищені від перейменування або зміни.',
 'protectedpagesempty'     => 'Зараз нема захищених сторінок із зазначеними параметрами',
 'protectedtitles'         => 'Заборонені назви',
@@ -2632,8 +2635,14 @@ $1',
 'fileduplicatesearch-result-n' => 'Файл «$1» має {{PLURAL:$2|1 ідентичний дублікат|$2 ідентичних дублікатів}}.',
 
 # Special:SpecialPages
-'specialpages-group-other'   => 'Інші спеціальні сторінки',
-'specialpages-group-changes' => 'Останні зміни і журнали',
-'specialpages-group-users'   => 'Користувачі і права',
+'specialpages-group-maintenance' => 'Звіти технічного обслуговування',
+'specialpages-group-other'       => 'Інші спеціальні сторінки',
+'specialpages-group-login'       => 'Вхід до системи / реєстрація',
+'specialpages-group-changes'     => 'Останні зміни і журнали',
+'specialpages-group-media'       => 'Файли і їх завантаження',
+'specialpages-group-users'       => 'Користувачі і права',
+'specialpages-group-needy'       => 'Сторінки, що потребують обробки',
+'specialpages-group-highuse'     => 'Сторінки, що інтенсивно використовуються',
+'specialpages-group-permissions' => 'Права користувачів',
 
 );

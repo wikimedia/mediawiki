@@ -1031,7 +1031,8 @@ Xin hãy bảo đảm giữ vững tính liên tục của lịch sử trang.',
 'recentchangeslinked'          => 'Thay đổi liên quan',
 'recentchangeslinked-title'    => 'Những thay đổi liên quan tới “$1”',
 'recentchangeslinked-noresult' => 'Không có thay đổi nào trên trang liên kết trong khoảng thời gian đó.',
-'recentchangeslinked-summary'  => "Trang đặc biệt này liệt kê các thay đổi gần đây nhất trên các trang được liên kết. Các trang trong danh sách bạn theo dõi được '''in đậm'''.",
+'recentchangeslinked-summary'  => "Đây là danh sách các thay đổi gần đây tại những trang được liên kết từ một trang nào đó (hoặc đến các trang trong một thể loại nào đó).
+Các trang trong [[Special:Watchlist|danh sách bạn theo dõi]] được '''tô đậm'''.",
 'recentchangeslinked-page'     => 'Tên trang:',
 
 # Upload

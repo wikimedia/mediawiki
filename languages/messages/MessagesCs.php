@@ -13,6 +13,7 @@
  * @author Siebrand
  * @author לערי ריינהארט
  * @author Matěj Grabovský
+ * @author Reaperman
  */
 
 $fallback8bitEncoding = 'cp1250';
@@ -528,6 +529,7 @@ $messages = array(
 'youhavenewmessagesmulti' => 'Na $1 máte nové zprávy',
 'editsection'             => 'editovat',
 'editold'                 => 'editovat',
+'viewsourceold'           => 'zobrazit zdroj',
 'editsectionhint'         => 'Editace části $1',
 'toc'                     => 'Obsah',
 'showtoc'                 => 'zobrazit',
@@ -1200,7 +1202,9 @@ $3',
 'recentchangeslinked'          => 'Související změny',
 'recentchangeslinked-title'    => 'Související změny pro stránku "$1"',
 'recentchangeslinked-noresult' => 'V zadaném období nebyly na odkazovaných stránkách žádné změny.',
-'recentchangeslinked-summary'  => "Níže jsou poslední změny na odkazovaných stránkách. Vaše sledované stránky jsou '''zvýrazněny'''.",
+'recentchangeslinked-summary'  => "Níže je seznam nedávných změn stránek odkazovaných ze zadané stránky (nebo patřících do dané kategorie). Vaše [[Special:Watchlist|sledované stránky]] jsou '''zvýrazněny'''.",
+'recentchangeslinked-page'     => 'Název stránky:',
+'recentchangeslinked-to'       => 'Zobrazit změny na stránkach, které odkazují na zadanou stránku',
 
 # Upload
 'upload'                      => 'Načíst soubor',
@@ -1470,6 +1474,7 @@ Aktuální délka fronty údržby je '''$7'''.",
 'deadendpages'            => 'Slepé stránky',
 'deadendpagestext'        => 'Následující stránky neodkazují na žádnou jinou stránku {{grammar:2sg|{{SITENAME}}}}.',
 'protectedpages'          => 'Zamčené stránky',
+'protectedpages-indef'    => 'Pouze zámky na neurčito',
 'protectedpagestext'      => 'Následující stránky jsou zamčeny nebo polozamčeny pro editaci nebo přesun:',
 'protectedpagesempty'     => 'Žádná stránka není zamčena s těmito parametry.',
 'protectedtitles'         => 'Zamčené názvy stránek',
@@ -2660,5 +2665,16 @@ Zadejte jméno souboru bez označení "{{ns:image}}:".',
 'fileduplicatesearch-info'     => '(rozměr: $1 × $2 pixelů, velikost souboru: $3, MIME typ: $4)',
 'fileduplicatesearch-result-1' => 'Soubor „$1“ nemá žádný identický duplikát.',
 'fileduplicatesearch-result-n' => 'Soubor „$1“ má {{PLURAL:$2|jeden identický duplikát|$2 identické duplikáty|$2 identických duplikátů}}.',
+
+# Special:SpecialPages
+'specialpages-group-maintenance' => 'Údržba',
+'specialpages-group-other'       => 'Ostatní',
+'specialpages-group-login'       => 'Přihlašování / registrace',
+'specialpages-group-changes'     => 'Poslední změny a záznamy',
+'specialpages-group-media'       => 'Média',
+'specialpages-group-users'       => 'Uživatelé a skupiny',
+'specialpages-group-needy'       => 'Stránky vyžadující úpravu',
+'specialpages-group-highuse'     => 'Často používané stránky',
+'specialpages-group-permissions' => 'Uživatelská oprávnění',
 
 );

@@ -1185,7 +1185,8 @@ az üres azt, hogy nem.',
 'recentchangeslinked'          => 'Kapcsolódó változtatások',
 'recentchangeslinked-title'    => 'A(z) $1 lappal kapcsolatos változtatások',
 'recentchangeslinked-noresult' => 'Nem történt változtatás a hivatkozott lapokon a megadott időtartam alatt.',
-'recentchangeslinked-summary'  => "Ezek azoknak a lapoknak a legutóbbi változtatásai, amik be vannak linkelve erről az oldalról. Amik fenn vannak a figyelőlistádon, azok '''félkövérrel''' szerepelnek.",
+'recentchangeslinked-summary'  => "Ez a lap azon lapoknak a legutóbbi változtatásait listázza, amelyek linkelve vannak a megadott oldalról (vagy tagjai a megadott kategóriának).
+A [[Special:Watchlist|figyelőlistádon]] szereplő lapok '''félkövérrel''' vannak jelölve.",
 'recentchangeslinked-page'     => 'Lap neve:',
 
 # Upload
@@ -1451,6 +1452,7 @@ A [http://meta.wikimedia.org/wiki/Help:Job_queue szerver számára sorban álló
 'deadendpages'            => 'Zsákutcalapok',
 'deadendpagestext'        => 'Az itt található lapok nem kapcsolódnak hivatkozásokkal ezen wiki más oldalaihoz.',
 'protectedpages'          => 'Védett lapok',
+'protectedpages-indef'    => 'Csak a meghatározatlan idejű védelmek',
 'protectedpagestext'      => 'A következő lapok átnevezés vagy szerkesztés ellen védettek',
 'protectedpagesempty'     => 'Jelenleg nincsenek ilyen paraméterekkel védett lapok.',
 'protectedtitles'         => 'Létrehozás ellen védett lapok',
@@ -1690,7 +1692,7 @@ Kérjük, hogy nyomd meg a "vissza" gombot, és töltsd le újra az oldalt, ahon
 Itt vannak a(z) <strong>$1</strong> lap jelenlegi beállításai:',
 'protect-locked-access'       => 'A fiókod számára nem engedélyezett a védelmi szintek megváltoztatása.
 Itt vannak a(z) <strong>$1</strong> lap jelenlegi beállításai:',
-'protect-cascadeon'           => 'A lap le van védve, mert {{PLURAL:$1|tartalmazza az alábbi lap, amelyen|mert tartalmazzák az alábbi lapok, amelyeken}}
+'protect-cascadeon'           => 'A lap le van védve, mert {{PLURAL:$1|tartalmazza az alábbi lap, amelyen|tartalmazzák az alábbi lapok, amelyeken}}
 be van kapcsolva a kaszkád védelem.
 Megváltoztathatod ezen lap védelmi szintjét, de az nem lesz hatással a kaszkád védelemre.',
 'protect-default'             => '(alapértelmezett)',
@@ -2656,14 +2658,14 @@ Add meg a fájl nevét „{{ns:image}}:” előtag nélkül.',
 'fileduplicatesearch-submit'   => 'Keresés',
 'fileduplicatesearch-info'     => '$1 × $2 pixel<br />Fájlméret: $3<br />MIME-típus: $4',
 'fileduplicatesearch-result-1' => 'A(z) „$1“ nevű fájlnak nincs duplikátuma.',
-'fileduplicatesearch-result-n' => 'A(z) „$1” nevű fájlnak $1 duplikátuma van.',
+'fileduplicatesearch-result-n' => 'A(z) „$1” nevű fájlnak $2 duplikátuma van.',
 
 # Special:SpecialPages
 'specialpages-group-maintenance' => 'Állapotjelentések',
 'specialpages-group-other'       => 'További speciális lapok',
 'specialpages-group-login'       => 'Bejelentkezés / fiók létrehozása',
 'specialpages-group-changes'     => 'Friss változások, naplók',
-'specialpages-group-media'       => 'Médiafájlok',
+'specialpages-group-media'       => 'Médiafájlok, feltöltések',
 'specialpages-group-users'       => 'Felhasználók és jogok',
 'specialpages-group-needy'       => 'Figyelmet igénylő lapok',
 'specialpages-group-highuse'     => 'Gyakran használt lapok',

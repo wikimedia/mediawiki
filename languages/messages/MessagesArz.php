@@ -150,6 +150,7 @@ $messages = array(
 'yourpassword'          => 'الباسوورد (كلمة السر):',
 'remembermypassword'    => 'افتكر بيانات دخولى على  الكمبيوتر ده',
 'login'                 => 'دخول',
+'loginprompt'           => 'لازم تكون الكوكيز عندك مفعله علشان تقدر تدخل ل {{SITENAME}}.',
 'userlogin'             => 'دخول / فتح حساب',
 'logout'                => 'خروج',
 'userlogout'            => 'خروج',
@@ -159,14 +160,20 @@ $messages = array(
 'gotaccount'            => 'عندك حساب؟ $1.',
 'gotaccountlink'        => 'دخول',
 'yourrealname'          => 'الاسم الحقيقى:',
+'prefs-help-realname'   => 'الاسم الحقيقي اختيارى ولو اخترت تعرض اسمك هنا هايستخدم في الإشارة لمساهماتك.',
 'loginsuccesstitle'     => 'تم الدخول بشكل صحيح',
+'loginsuccess'          => "'''تم تسجيل دخولك{{SITENAME}} باسم \"\$1\".'''",
 'nosuchuser'            => 'مافيش يوزر باسم "$1".
 اتاكد من تهجية الاسم، او افتح حساب جديد.',
 'nosuchusershort'       => 'مافيش يوزر باسم <nowiki>$1</nowiki>". اتاكد من تهجية الاسم.',
 'nouserspecified'       => ' لازم تحدد اسم يوزر.',
 'wrongpassword'         => 'كلمة السر اللى كتبتها مش صحيحه. من فضلك حاول تانى.',
+'wrongpasswordempty'    => 'كلمة السر المدخله كانت فاضيه. من فضلك حاول تانى.',
+'mailmypassword'        => 'ابعتلى كلمة السر فى ايميل.',
 'passwordremindertitle' => 'كلمة سر مؤقته جديده ل {{SITENAME}}',
 'noemail'               => 'مافيش ايميل متسجل  لليوزر  "$1".',
+'passwordsent'          => '
+تم إرسال كلمة سر جديدة لعنوان الايميل المتسجل لليوزر "$1".من فضلك حاول تسجيل الدخول مره تانيه بعد استلامها.',
 'eauthentsent'          => 'فيه ايميل تأكيد اتبعت  للعنوان اللى كتبته.  علشان تبعت اي ايميل تانى للحساب ده لازم تتبع التعليمات اللى فى الايميل اللى اتبعتلك  علشان تأكد ان  الحساب ده بتاعك .',
 
 # Edit page toolbar
@@ -216,6 +223,7 @@ $messages = array(
 'viewpagelogs'        => 'عرض السجلات للصفحه دى',
 'currentrev'          => 'النسخه دلوقتى',
 'revisionasof'        => 'تعديلات من $1',
+'revision-info'       => 'نسخه $1 بواسطة $2',
 'previousrevision'    => '←نسخه اقدم',
 'nextrevision'        => 'نسخه احدث→',
 'currentrevisionlink' => 'النسخه دلوقتى',
@@ -246,6 +254,7 @@ $messages = array(
 # Preferences page
 'preferences'   => 'تفضيلات',
 'mypreferences' => 'تفضيلاتى',
+'retypenew'     => 'اكتب كلمة السر الجديده تانى:',
 
 # User rights log
 'rightslog' => 'سجل صلاحيات اليوزرز',
@@ -270,9 +279,10 @@ $messages = array(
 'boteditletter'                  => 'ب',
 
 # Recent changes linked
-'recentchangeslinked'         => 'تعديلات  ليها علاقه',
-'recentchangeslinked-title'   => 'التعديلات المرتبطه  ب "$1"',
-'recentchangeslinked-summary' => "دى صفحة مخصوصه بتعرض اخر التغييرات في الصفحات الموصوله. الصفحات اللى   فى  لسته بالصفحات اللى انت بتراقب التعديلات فيها معروضه''' بحروف عريضه'''",
+'recentchangeslinked'          => 'تعديلات  ليها علاقه',
+'recentchangeslinked-title'    => 'التعديلات المرتبطه  ب "$1"',
+'recentchangeslinked-noresult' => 'مافيش تعديلات حصلت فى الصفحات اللى ليها وصلات هنا خلال الفترة المحدده.',
+'recentchangeslinked-summary'  => "دى صفحة مخصوصه بتعرض اخر التغييرات في الصفحات الموصوله. الصفحات اللى   فى  لسته بالصفحات اللى انت بتراقب التعديلات فيها معروضه''' بحروف عريضه'''",
 
 # Upload
 'upload'        => 'حمل',
@@ -295,6 +305,9 @@ $messages = array(
 # MIME search
 'mimesearch' => 'تدوير MIME',
 
+# List redirects
+'listredirects' => 'عرض التحويلات',
+
 # Unused templates
 'unusedtemplates' => 'قوالب مش مستعمله',
 
@@ -306,6 +319,8 @@ $messages = array(
 
 # Statistics
 'statistics' => 'احصائيات',
+
+'disambiguations' => 'صفحات التوضيح',
 
 'doubleredirects' => 'تحويلات مزدوجه',
 
@@ -322,6 +337,7 @@ $messages = array(
 'lonelypages'             => 'صفحات يتيمه',
 'uncategorizedpages'      => 'صفحات مش متصنفه',
 'uncategorizedcategories' => 'تصنيفات مش متصنفه',
+'uncategorizedimages'     => 'ملفات مش متصنفه',
 'uncategorizedtemplates'  => 'قوالب مش متصنفه',
 'unusedcategories'        => 'تصانيف مش  مستعمله',
 'unusedimages'            => 'صور مش مستعمله',
@@ -329,12 +345,16 @@ $messages = array(
 'wantedpages'             => 'صفحات مطلوبه',
 'mostlinked'              => 'اكتر صفحات مرتبطه بصفحات تانيه',
 'mostlinkedcategories'    => 'اكتر التصانيف فى عدد الارتباطات',
+'mostlinkedtemplates'     => 'اكتر القوالب فى عدد الوصلات',
 'mostcategories'          => 'اكتر الصفحات فى عدد التصانيف',
 'mostimages'              => 'اكتر الملفات فى عدد الارتباطات',
 'mostrevisions'           => 'اكتر المقالات فى عدد التعديلات',
 'prefixindex'             => 'فهرس',
 'shortpages'              => 'صفحات قصيره',
 'longpages'               => 'صفحات طويله',
+'deadendpages'            => 'صفحات ما بتوصلش  لحاجه',
+'protectedpages'          => 'صفحات محميه',
+'listusers'               => 'لستة الأعضاء',
 'specialpages'            => 'صفحات مخصوصه',
 'newpages'                => 'صفحات جديده',
 'ancientpages'            => 'اقدم الصفحات',
@@ -404,6 +424,7 @@ $messages = array(
 'protect-text'                => 'ممكن هنا تعرض و تغير مستوى الحمايه للصفحه <strong><nowiki>$1</nowiki></strong>.',
 'protect-locked-access'       => 'حسابك ما لوش  صلاحية تغيير مستوى حماية الصفحه.
 الاعدادات الحالية للصفحه <strong>$1</strong> هى:',
+'protect-cascadeon'           => 'الصفحه دى محميه لكونها متضمنه فى {{PLURAL:$1|الصفحه|الصفحات}} دى، واللى  فيها اختيار حماية الصفحات المتضمنه شغال. ممكن تغير مستوى حماية الصفحه دى بدون التأثير على حماية الصفحات المتضمنه التانيه.',
 'protect-default'             => '(افتراضى)',
 'protect-fallback'            => 'محتاج  اذن "$1"',
 'protect-level-autoconfirmed' => 'منع الوزرز غير المسجلين',
@@ -460,6 +481,10 @@ $messages = array(
 'movepagebtn'      => 'نقل الصفحه',
 'pagemovedsub'     => 'تم  النقل بنجاح',
 'movepage-moved'   => '<big>\'\'\'"$1" اتنقلت ل"$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'articleexists'    => '
+
+يا اما فيه صفحه  بالاسم ده ،او ان الاسم اللى  تم اختياره مش صالح. لو سمحت اختار اسم تانى .',
+'talkexists'       => "'''الصفحه دى اتنقلت لصفحة بنجاح، ولكن صفحة المناقشه بتاعتها ما اتنقلتش  علشان فيه صفحة مناقشه تحت العنوان الجديد. من فضلك انقل محتويات صفحة المناقشه يدويا، وادمجها مع المحتويات اللى قبل كده.'''",
 'movedto'          => 'اتنقلت ل',
 'movetalk'         => 'انقل صفحة المناقشه.',
 'talkpagemoved'    => 'اتنقلت صفحة المناقشه كمان.',
@@ -531,6 +556,7 @@ $messages = array(
 # Media information
 'file-info-size'       => '($1 × $2 بكسل حجم الفايل: $3، نوع MIME: $4)',
 'file-nohires'         => '<small>مافيش  ريزوليوشن اعلى متوفر.</small>',
+'svg-long-desc'        => '(ملف SVG، اساسا $1 × $2 بكسل، حجم الملف: $3)',
 'show-big-image'       => 'الصورة بدقه كامله',
 'show-big-image-thumb' => '<small>حجم البروفه دى: $1 × $2 بكسل</small>',
 
@@ -543,6 +569,7 @@ $messages = array(
 'metadata-collapse' => 'تخبية التفاصيل الاضافيه',
 
 # External editor support
+'edit-externally'      => 'عدل هذا الملف باستخدام تطبيق خارجي',
 'edit-externally-help' => 'بص على [http://meta.wikimedia.org/wiki/Help:External_editors  تعليمات الاعداد] علشان معلومات اكتر.',
 
 # 'all' in various places, this might be different for inflected languages
@@ -551,7 +578,9 @@ $messages = array(
 'monthsall'     => 'الكل',
 
 # Watchlist editing tools
+'watchlisttools-view' => 'عرض التعديلات المرتبطه',
 'watchlisttools-edit' => 'عرض وتعديل لستة الصفحات اللى باراقبها',
+'watchlisttools-raw'  => 'عدل لستة المراقبه الخام',
 
 # Special:Version
 'version' => 'نسخه', # Not used as normal message but as header for the special page itself

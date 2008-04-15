@@ -877,6 +877,7 @@ Sich no: $3 $9',
 'mypreferences'           => 'Meng Astellungen',
 'prefs-edits'             => 'Zuel vun den Ännerungen:',
 'prefsnologin'            => 'Net ageloggt',
+'prefsnologintext'        => 'Dir musst [[Special:Userlogin|agelogged]] sinn, fir är Astellungen änneren ze kënnen.',
 'prefsreset'              => "D'Astellungen goufen zréckgesat esou wéi se ofgespäichert waren.",
 'qbsettings'              => 'Geschirläischt',
 'qbsettings-none'         => 'Keen',
@@ -1011,9 +1012,8 @@ Een ugekräizten Haischen bedeit, datt de Benotzer net Member vun dësem Grupp a
 'recentchangeslinked'          => 'Ännerungen op verlinkte Säiten',
 'recentchangeslinked-title'    => 'Ännerungen a Verbindung matt "$1"',
 'recentchangeslinked-noresult' => 'Am ausgewielten Zäitraum goufen op de verlinkte Säite keng Ännerunge gemaach.',
-'recentchangeslinked-summary'  => "Op dëser Spezialsäite stinn déi rezent Ännerungen vun de verlinkte Säiten op eng Bestëmmte Säit.
-Wann dës bestëmmte Säit eng Kategorie ass, da ginn hei déi Rezent Ännerungen vun de Membersäite vun der kategorie ugewisen.
-Säiten déi op menger Iwwerwaachungslëscht stinn si '''fett''' geschriwwen.",
+'recentchangeslinked-summary'  => "Dëst ass eng Lëscht matt Ännerungen vu verlinkte Säiten op eng Bestëmmte Säit (oder vu Membersäite vun der spetifiéierter Kategorie).
+Säiten  vun [[Special:Watchlist|ärer Iwwerwaachungslëscht]] si '''fett''' geschriwwen.",
 'recentchangeslinked-page'     => 'Säitennumm:',
 'recentchangeslinked-to'       => 'Weis Ännerungen zu de verlinkte Säiten aplaz vun der gefroter Säit',
 
@@ -1710,6 +1710,7 @@ An deene Fäll musst Dir d'Diskussiounssäit manuell réckelen oder fusionéiere
 'pagemovedsub'            => 'Gouf geréckelt',
 'movepage-moved'          => "<big>'''D'Säit \"\$1\" gouf op \"\$2\" geréckelt.'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => 'Eng Säit mat dësem Numm gëtt et schonns, oder den Numm deen Dir gewielt hutt gëtt net akzeptéiert. Wielt w.e.g. en aneren Numm.',
+'cantmove-titleprotected' => "Dir kënnt keng Säit op dës Plaz réckelen, well dee neien Titel fir d'Uleeë gespaart ass",
 'talkexists'              => "D'Säit selwer gouf erfollegräich geréckelt, mee d'Diskussiounssäit konnt net mat eriwwergeholl gi well et schonns eng ënnert deem neien Titel gëtt. W.e.g. setzt dës manuell zesummen.",
 'movedto'                 => 'geréckelt op',
 'movetalk'                => "D'Diskussiounssäit matréckelen, wa méiglich.",
@@ -2030,6 +2031,7 @@ Duerno sti Linken déi Ausnamen definéieren, a deenen hirem Kontext dat Bild aw
 
 'exif-exposureprogram-0' => 'Onbekannt',
 'exif-exposureprogram-1' => 'Manuell',
+'exif-exposureprogram-2' => 'Standardprogramm',
 'exif-exposureprogram-3' => 'Zäitautomatik',
 'exif-exposureprogram-8' => 'Landschaftsopnamen',
 
@@ -2248,6 +2250,9 @@ $1',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => 'Sich no duebele Fichieren',
+'fileduplicatesearch-summary'  => "Sich no Doublonen vu Fichieren op der Basis vun hirem ''Hash-Wert''.
+
+Gitt den Numm vum Fichier ouni de Prefix \"{{ns:image}}:\" an.",
 'fileduplicatesearch-legend'   => 'Sich no engem Doublon',
 'fileduplicatesearch-filename' => 'Numm vum Fichier:',
 'fileduplicatesearch-submit'   => 'Sichen',

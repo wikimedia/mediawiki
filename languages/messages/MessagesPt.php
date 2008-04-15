@@ -1841,11 +1841,11 @@ A página de destino ("[[$1]]") já existe. Deseja eliminá-la de modo a poder m
 
 # Export
 'export'            => 'Exportação de páginas',
-'exporttext'        => 'Você pode exportar o texto e o histórico de edições de uma página em particular para um ficheiro XML. Poderá então importar esse conteúdo noutra wiki que utilize o software MediaWiki através da [[{{ns:special}}:Import|página de imprtações]].
+'exporttext'        => 'Você pode exportar o texto e o histórico de edições de uma página em particular para um ficheiro XML. Poderá então importar esse conteúdo noutra wiki que utilize o software MediaWiki através da [[{{ns:special}}:Import|página de importações]].
 
-Para exportar páginas, introduza os títulos na caixa de texto abaixo, um título por linha, e seleccione se deseja todas as versões, com as linhas de histórico de edições, ou apenas a edição atual e informações apenas sobre a mais recente das edições.
+Para exportar páginas, introduza os títulos na caixa de texto abaixo (um título por linha) e seleccione se deseja todas as versões, com as linhas de histórico de edições, ou apenas a edição atual e informações apenas sobre a mais recente das edições.
 
-Se desejar, pode utilizar uma ligação, por exemplo [[{{ns:special}}:Export/{{Mediawiki:mainpage}}]] para a [[{{Mediawiki:mainpage}}]].',
+Se desejar, pode utilizar uma ligação (por exemplo, [[{{ns:special}}:Export/{{Mediawiki:mainpage}}]] para a [[{{Mediawiki:mainpage}}]]).',
 'exportcuronly'     => 'Incluir apenas a revisão actual, não o histórico inteiro',
 'exportnohistory'   => "----
 '''Nota:''' a exportação do histórico completo das páginas através deste formulário foi desactivada devido a motivos de performance.",
@@ -2537,7 +2537,7 @@ Entre com o nome de ficheiro sem fornecer o prefixo "{{ns:image}}:".',
 'specialpages-group-other'       => 'Outras páginas especiais',
 'specialpages-group-login'       => 'Entrar / registar-se',
 'specialpages-group-changes'     => 'Mudanças e registos recentes',
-'specialpages-group-media'       => 'Relatórios de media',
+'specialpages-group-media'       => 'Relatórios de media e carregamentos',
 'specialpages-group-users'       => 'Utilizadores e privilégios',
 'specialpages-group-needy'       => 'Páginas a necessitar de trabalho',
 'specialpages-group-highuse'     => 'Páginas muito usadas',

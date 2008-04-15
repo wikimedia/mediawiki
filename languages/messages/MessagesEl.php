@@ -2528,4 +2528,12 @@ $1',
 'fileduplicatesearch-submit'   => 'Αναζήτηση',
 'fileduplicatesearch-result-1' => 'Το αρχείο "$1" δεν έχει κανένα ταυτόσημο διπλό.',
 
+# Special:SpecialPages
+'specialpages-group-maintenance' => 'Αναφορές συντήρησης',
+'specialpages-group-other'       => 'Άλλες ειδικές σελίδες',
+'specialpages-group-login'       => 'Σύνδεση / δημιουργία λογαριασμού',
+'specialpages-group-changes'     => 'Πρόσφατες αλλαγές και καταγραφές γεγονότων',
+'specialpages-group-users'       => 'Χρήστες και δικαιώματα',
+'specialpages-group-needy'       => 'Σελίδες που χρειάζονται εργασία',
+
 );
