@@ -27,9 +27,8 @@ class NewPagesForm {
 	 * @return string
 	 */
 	public function showList( $par, $including ) {
-		global $wgScript, $wgLang, $wgContLang, $wgGroupPermissions, $wgRequest, $wgUser, $wgOut;
+		global $wgScript, $wgLang, $wgGroupPermissions, $wgRequest, $wgUser, $wgOut;
 		$sk = $wgUser->getSkin();
-		$align = $wgContLang->isRTL() ? 'left' : 'right';
 		$self = SpecialPage::getTitleFor( 'NewPages' );
 
 		// show/hide links
@@ -141,31 +140,31 @@ class NewPagesForm {
 				Xml::element( 'legend', null, wfMsg( 'newpages' ) ) .
 				Xml::openElement( 'table', array( 'id' => 'mw-newpages-table' ) ) .
 				"<tr>
-					<td align=\"$align\">" .
+					<td class='mw-label'>" .
 						Xml::label( wfMsg( 'namespace' ), 'namespace' ) .
 					"</td>
-					<td>" .
+					<td class='mw-input'>" .
 						Xml::namespaceSelector( $options['namespace'], 'all' ) .
 					"</td>
 				</tr>
 				<!--
 				<tr>
-					<td align=\"$align\">" .
+					<td class='mw-label'>" .
 						Xml::label( wfMsg( 'newpages-username' ), 'mw-np-username' ) .
 					"</td>
-					<td>" .
+					<td class='mw-input'>" .
 						Xml::input( 'username', 30, $options['username'], array( 'id' => 'mw-np-username' ) ) .
 					"</td>
 				</tr>
 				-->
 				<tr> <td></td>
-					<td>" .
+					<td class='mw-submit'>" .
 						Xml::submitButton( wfMsg( 'allpagessubmit' ) ) .
 					"</td>
 				</tr>" .
 				"<tr>
 					<td></td>
-					<td>" .
+					<td class='mw-input'>" .
 						$hl .
 					"</td>
 				</tr>" .
@@ -189,7 +188,7 @@ class NewPagesForm {
 				$pager->getEndBody() .
 				( $shownav ? $pager->getNavigationBar() : '' ) );
 		} else {
-			$wgOut->addHTML( '<p>' . wfMsgHtml( 'specialpage-empty' ) . '</p>' );
+			$wgOut->addHTML( Xml::element( 'p', null, wfMsg( 'specialpage-empty' ) ) );
 		}
 	}
 
