@@ -64,6 +64,9 @@ class NewPagesForm {
                 $options[$v] = $wgRequest->getText( $v, $options[$v] );
             }
         }
+        
+        // hack disable
+        $options['username'] = '';
 
 		$wgOut->setSyndicated( true );
 		$wgOut->setFeedAppendQuery( "namespace={$options['namespace']}&username={$options['username']}" );
@@ -113,6 +116,7 @@ class NewPagesForm {
 					Xml::namespaceSelector( $options['namespace'], 'all' ) .
 				"</td>
 			</tr>
+			<!--
 			<tr>
 				<td align=\"$align\">" .
 					Xml::label( wfMsg( 'newpages-username' ), 'mw-np-username' ) .
@@ -121,6 +125,7 @@ class NewPagesForm {
 					Xml::input( 'username', 30, $options['username'], array( 'id' => 'mw-np-username' ) ) .
 				"</td>
 			</tr>
+			-->
 			<tr> <td></td>
 				<td>" .
 					Xml::submitButton( wfMsg( 'allpagessubmit' ) ) .
@@ -304,9 +309,9 @@ class NewPagesPager extends ReverseChronologicalPager {
 		$conds['rc_new'] = 1;
 		if( $this->namespace !== false ) {
 			$conds['rc_namespace'] = $this->namespace;
-			$rcIndexes = array( 'new_name_timestamp', 'rc_user_text' );
+			$rcIndexes = array( 'new_name_timestamp' );
 		} else {
-			$rcIndexes = array( 'rc_timestamp', 'rc_user_text' );
+			$rcIndexes = array( 'rc_timestamp' );
 		}
 		$conds[] = 'page_id = rc_cur_id';
 		$conds['page_is_redirect'] = 0;
