@@ -84,15 +84,13 @@ class EmailConfirmation extends UnlistedSpecialPage {
 		global $wgUser, $wgOut;
 		$user = User::newFromConfirmationCode( $code );
 		if( is_object( $user ) ) {
-			if( $user->confirmEmail() ) {
-				$message = $wgUser->isLoggedIn() ? 'confirmemail_loggedin' : 'confirmemail_success';
-				$wgOut->addWikiMsg( $message );
-				if( !$wgUser->isLoggedIn() ) {
-					$title = SpecialPage::getTitleFor( 'Userlogin' );
-					$wgOut->returnToMain( true, $title->getPrefixedText() );
-				}
-			} else {
-				$wgOut->addWikiMsg( 'confirmemail_error' );
+			$user->confirmEmail();
+			$user->saveSettings();
+			$message = $wgUser->isLoggedIn() ? 'confirmemail_loggedin' : 'confirmemail_success';
+			$wgOut->addWikiMsg( $message );
+			if( !$wgUser->isLoggedIn() ) {
+				$title = SpecialPage::getTitleFor( 'Userlogin' );
+				$wgOut->returnToMain( true, $title->getPrefixedText() );
 			}
 		} else {
 			$wgOut->addWikiMsg( 'confirmemail_invalid' );
@@ -129,13 +127,10 @@ class EmailInvalidation extends UnlistedSpecialPage {
 		$user = User::newFromConfirmationCode( $code );
 		if( is_object( $user ) ) {
 			$user->invalidateEmail();
-			if( $user->invalidateEmail() ) {
-				$wgOut->addWikiMsg( 'confirmemail_invalidated' );
-				if( !$wgUser->isLoggedIn() ) {
-					$wgOut->returnToMain();
-				}
-			} else {
-				$wgOut->addWikiMsg( 'confirmemail_error' );
+			$user->saveSettings();
+			$wgOut->addWikiMsg( 'confirmemail_invalidated' );
+			if( !$wgUser->isLoggedIn() ) {
+				$wgOut->returnToMain();
 			}
 		} else {
 			$wgOut->addWikiMsg( 'confirmemail_invalid' );

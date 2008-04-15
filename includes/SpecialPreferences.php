@@ -310,8 +310,10 @@ class PreferencesForm {
 			if( ($newadr != '') && ($newadr != $oldadr) ) {
 				# the user has supplied a new email address on the login page
 				if( $wgUser->isValidEmailAddr( $newadr ) ) {
-					$wgUser->mEmail = $newadr; # new behaviour: set this new emailaddr from login-page into user database record
-					$wgUser->mEmailAuthenticated = null; # but flag as "dirty" = unauthenticated
+					# new behaviour: set this new emailaddr from login-page into user database record
+					$wgUser->setEmail( $newadr );
+					# but flag as "dirty" = unauthenticated
+					$wgUser->invalidateEmail();
 					if ($wgEmailAuthentication) {
 						# Mail a temporary password to the dirty address.
 						# User can come back through the confirmation URL to re-enable email.

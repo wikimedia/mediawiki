@@ -158,8 +158,7 @@ class LoginForm {
 		if( $wgLoginLanguageSelector && $this->mLanguage )
 			$u->setOption( 'language', $this->mLanguage );
 
-		# Save user settings and send out an email authentication message if needed
-		$u->saveSettings();
+		# Send out an email authentication message if needed
 		if( $wgEmailAuthentication && User::isValidEmailAddr( $u->getEmail() ) ) {
 			global $wgOut;
 			$error = $u->sendConfirmationMail();
@@ -169,6 +168,9 @@ class LoginForm {
 				$wgOut->addWikiMsg( 'confirmemail_oncreate' );
 			}
 		}
+
+		# Save settings (including confirmation token)
+		$u->saveSettings();
 
 		# If not logged in, assume the new account as the current one and set session cookies
 		# then show a "welcome" message or a "need cookies" message as needed
@@ -420,6 +422,7 @@ class LoginForm {
 				//
 				if( !$u->isEmailConfirmed() ) {
 					$u->confirmEmail();
+					$u->saveSettings();
 				}
 
 				// At this point we just return an appropriate code

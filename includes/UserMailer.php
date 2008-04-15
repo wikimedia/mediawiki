@@ -362,16 +362,17 @@ class EmailNotification {
 				}
 				$dbr = wfGetDB( DB_SLAVE );
 
-				$res = $dbr->select( 'watchlist', array( 'wl_user' ),
+				$res = $dbr->select( array( 'watchlist', 'user' ), array( 'user.*' ),
 					array(
+						'wl_user=user_id',
 						'wl_title' => $title->getDBkey(),
 						'wl_namespace' => $title->getNamespace(),
 						$userCondition,
 						'wl_notificationtimestamp IS NULL',
 					), __METHOD__ );
+				$userArray = UserArray::newFromResult( $res );
 
-				foreach ( $res as $row ) {
-					$watchingUser = User::newFromId( $row->wl_user );
+				foreach ( $userArray as $watchingUser ) {
 					if ( $watchingUser->getOption( 'enotifwatchlistpages' ) &&
 						( !$minorEdit || $watchingUser->getOption('enotifminoredits') ) &&
 						$watchingUser->isEmailConfirmed() )
