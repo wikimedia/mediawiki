@@ -96,11 +96,11 @@ class Article {
 		if(!$retval)
 			return null;
 		$dbw = wfGetDB(DB_MASTER);
-		$dbw->insert('redirect', array(
+		$dbw->replace('redirect', array('rd_from'), array(
 				'rd_from' => $this->getID(),
 				'rd_namespace' => $retval->getNamespace(),
 				'rd_title' => $retval->getDBKey()
-		));
+		), __METHOD__);
 		return $retval;
 	}
 
