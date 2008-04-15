@@ -362,7 +362,10 @@ class EmailNotification {
 				}
 				$dbr = wfGetDB( DB_SLAVE );
 
-				$res = $dbr->select( array( 'watchlist', 'user' ), array( 'user.*' ),
+				list( $user ) = $dbr->tableNamesN( 'user' );
+
+				$res = $dbr->select( array( 'watchlist', 'user' ),
+					array( "$user.*" ),
 					array(
 						'wl_user=user_id',
 						'wl_title' => $title->getDBkey(),
