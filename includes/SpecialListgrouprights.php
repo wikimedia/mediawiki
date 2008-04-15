@@ -38,11 +38,19 @@ class SpecialListGroupRights extends SpecialPage {
 		);
 
 		foreach( $wgGroupPermissions as $group => $permissions ) {
-			$groupname = htmlspecialchars( $group );
+			$groupname = ( $group == '*' ) ? 'all' : htmlspecialchars( $group ); // Replace * with a more descriptive groupname
+
+			$msg = wfMsg( 'group-' . $groupname );
+			if ( wfEmptyMsg( 'group-' . $groupname, $msg ) || $msg == '' ) {
+				$groupnameLocalized = $groupname;
+			} else {
+				$groupnameLocalized = $msg;
+			}
+
 			if ( in_array( $group, $wgImplicitGroups ) )
-				$grouplink = $groupname;
+				$grouplink = $groupnameLocalized;
 			else
-				$grouplink = $this->skin->makeKnownLinkObj( SpecialPage::getTitleFor( 'Listusers' ), $groupname, 'group=' . $group );
+				$grouplink = $this->skin->makeKnownLinkObj( SpecialPage::getTitleFor( 'Listusers' ), $groupnameLocalized, 'group=' . $group );
 
 			$wgOut->addHTML(
 				'<tr>
