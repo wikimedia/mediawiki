@@ -589,7 +589,7 @@ CONTROL;
 			<col class='diff-content' />
 			<col class='diff-marker' />
 			<col class='diff-content' />
-			<tr>
+			<tr valign='top'>
 				<td colspan='2' class='diff-otitle'>{$otitle}</td>
 				<td colspan='2' class='diff-ntitle'>{$ntitle}</td>
 			</tr>
