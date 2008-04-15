@@ -2006,17 +2006,29 @@ class User {
 		$this->load();
 		if ( 0 == $this->mId ) return;
 		$exp = time() + $wgCookieExpiration;
+		
+		$doHttpOnly = version_compare("5.2", PHP_VERSION, "<");
 
 		$_SESSION['wsUserID'] = $this->mId;
-		setcookie( $wgCookiePrefix.'UserID', $this->mId, $exp, $wgCookiePath, $wgCookieDomain, $wgCookieSecure, $wgCookieHttpOnly );
+		
+		if ($doHttpOnly) {
+			setcookie( $wgCookiePrefix.'UserID', $this->mId, $exp, $wgCookiePath, $wgCookieDomain, $wgCookieSecure, $wgCookieHttpOnly );
+			setcookie( $wgCookiePrefix.'UserName', $this->getName(), $exp, $wgCookiePath, $wgCookieDomain, $wgCookieSecure, $wgCookieHttpOnly );
+		} else {
+			setcookie( $wgCookiePrefix.'UserID', $this->mId, $exp, $wgCookiePath, $wgCookieDomain, $wgCookieSecure );
+			setcookie( $wgCookiePrefix.'UserName', $this->getName(), $exp, $wgCookiePath, $wgCookieDomain, $wgCookieSecure );
+		}
 
 		$_SESSION['wsUserName'] = $this->getName();
-		setcookie( $wgCookiePrefix.'UserName', $this->getName(), $exp, $wgCookiePath, $wgCookieDomain, $wgCookieSecure, $wgCookieHttpOnly );
 
 		$_SESSION['wsToken'] = $this->mToken;
 		if ( 1 == $this->getOption( 'rememberpassword' ) ) {
-			setcookie( $wgCookiePrefix.'Token', $this->mToken, $exp, $wgCookiePath, $wgCookieDomain, $wgCookieSecure, $wgCookieHttpOnly );
+			if ($doHttpOnly)
+				setcookie( $wgCookiePrefix.'Token', $this->mToken, $exp, $wgCookiePath, $wgCookieDomain, $wgCookieSecure, $wgCookieHttpOnly );
+			else
+				setcookie( $wgCookiePrefix.'Token', $this->mToken, $exp, $wgCookiePath, $wgCookieDomain, $wgCookieSecure );
 		} else {
+			if ($doHttpOnly)
 			setcookie( $wgCookiePrefix.'Token', '', time() - 3600 );
 		}
 	}
