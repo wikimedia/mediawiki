@@ -1017,8 +1017,7 @@ wgUploadAutoFill = {$autofill};
 		$encDestName = htmlspecialchars( $this->mDesiredDestName );
 
 		$watchChecked =
-			( $wgUser->getOption( 'watchdefault' ) ||
-				( $wgUser->getOption( 'watchcreations' ) && $this->mDesiredDestName == '' ) )
+			( $wgUser->getOption( 'watchdefault' ) || $wgUser->getOption( 'watchcreations' ) )
 			? 'checked="checked"'
 			: '';
 		$warningChecked = $this->mIgnoreWarning ? 'checked' : '';
