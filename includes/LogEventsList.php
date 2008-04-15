@@ -47,7 +47,7 @@ class LogEventsList {
 
 	/**
 	 * Set page title and show header for this log type
-	 * @param strin $type
+	 * @param string $type
 	 */
 	public function showHeader( $type ) {
 		if( LogPage::isLogType( $type ) ) {

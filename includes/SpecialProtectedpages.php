@@ -51,6 +51,8 @@ class ProtectedPagesForm {
 
 	/**
 	 * Callback function to output a restriction
+	 * @param $row object Protected title
+	 * @return string Formatted <li> element
 	 */
 	public function formatRow( $row ) {
 		global $wgUser, $wgLang, $wgContLang;
@@ -75,7 +77,8 @@ class ProtectedPagesForm {
 			$description_items[] = wfMsg( 'protect-summary-cascade' );
 		}
 
-		$expiry_description = ''; $stxt = '';
+		$expiry_description = '';
+		$stxt = '';
 
 		if ( $row->pr_expiry != 'infinity' && strlen($row->pr_expiry) ) {
 			$expiry = Block::decodeExpiry( $row->pr_expiry );
@@ -92,9 +95,18 @@ class ProtectedPagesForm {
 				$stxt = ' <small>' . wfMsgHtml('historysize', $wgLang->formatNum( $size ) ) . '</small>';
 			$stxt = $wgContLang->getDirMark() . $stxt;
 		}
+
+		# Show a link to the change protection form for allowed users otherwise a link to the protection log
+		if( $wgUser->isAllowed( 'protect' ) ) {
+			$changeProtection = ' (' . $skin->makeKnownLinkObj( $title, wfMsgHtml( 'protect_change' ), 'action=unprotect' ) . ')';
+		} else {
+			$ltitle = SpecialPage::getTitleFor( 'Log' );
+			$changeProtection = ' (' . $skin->makeKnownLinkObj( $ltitle, wfMsgHtml( 'protectlogpage' ), 'type=protect&page=' . $title->getPrefixedUrl() ) . ')';
+		}
+
 		wfProfileOut( __METHOD__ );
 
-		return '<li>' . wfSpecialList( $link . $stxt, implode( $description_items, ', ' ) ) . "</li>\n";
+		return '<li>' . wfSpecialList( $link . $stxt, implode( $description_items, ', ' ) ) . $changeProtection . "</li>\n";
 	}
 
 	/**
@@ -103,17 +115,16 @@ class ProtectedPagesForm {
 	 * @param $level string
 	 * @param $minsize int
 	 * @param $indefOnly bool
+	 * @return string Input form
 	 * @private
 	 */
 	protected function showOptions( $namespace, $type='edit', $level, $sizetype, $size, $indefOnly ) {
 		global $wgScript;
-		$action = htmlspecialchars( $wgScript );
 		$title = SpecialPage::getTitleFor( 'ProtectedPages' );
-		$special = htmlspecialchars( $title->getPrefixedDBkey() );
-		return "<form action=\"$action\" method=\"get\">\n" .
-			'<fieldset>' .
+		return Xml::openElement( 'form', array( 'method' => 'get', 'action' => $wgScript ) ) .
+			Xml::openElement( 'fieldset' ) .
 			Xml::element( 'legend', array(), wfMsg( 'protectedpages' ) ) .
-			Xml::hidden( 'title', $special ) . "&nbsp;\n" .
+			Xml::hidden( 'title', $title->getPrefixedDBkey() ) . "&nbsp;\n" .
 			$this->getNamespaceMenu( $namespace ) . "&nbsp;\n" .
 			$this->getTypeMenu( $type ) . "&nbsp;\n" .
 			$this->getLevelMenu( $level ) . "&nbsp;\n" .
@@ -122,7 +133,8 @@ class ProtectedPagesForm {
 			$this->getSizeLimit( $sizetype, $size ) . "&nbsp;\n" .
 			"</span>" .
 			"&nbsp;" . Xml::submitButton( wfMsg( 'allpagessubmit' ) ) . "\n" .
-			"</fieldset></form>";
+			Xml::closeElement( 'fieldset' ) .
+			Xml::closeElement( 'form' );
 	}
 
 	/**
