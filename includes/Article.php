@@ -71,7 +71,7 @@ class Article {
 			return $this->mRedirectTarget;
 
 		# Query the redirect table
-		$dbr = wfGetDb(DB_SLAVE);
+		$dbr = wfGetDB(DB_SLAVE);
 		$res = $dbr->select('redirect',
 				array('rd_namespace', 'rd_title'),
 				array('rd_from' => $this->getID()),
@@ -95,7 +95,7 @@ class Article {
 		$retval = Title::newFromRedirect($this->getContent());
 		if(!$retval)
 			return null;
-		$dbw = wfGetDb(DB_MASTER);
+		$dbw = wfGetDB(DB_MASTER);
 		$dbw->insert('redirect', array(
 				'rd_from' => $this->getID(),
 				'rd_namespace' => $retval->getNamespace(),
@@ -105,10 +105,18 @@ class Article {
 	}
 
 	/**
+	 * Get the Title object this page redirects to
+	 *
+	 * @param bool $getFragment should the fragment be set on the title
 	 * @return mixed false, Title of in-wiki target, or string with URL
 	 */
-	function followRedirect() {
-		$rt = $this->getRedirectTarget();
+	function followRedirect( $getFragment = false ) {
+		if( $getFragment )
+			// We'll need to use the content of this page, as Article::getRedirectTarget()
+			// now loads the data from redirect table, wich doesn't store the fragment
+			$rt = Title::newFromRedirect( $this->getContent() );
+		else
+			$rt = $this->getRedirectTarget();
 
 		# process if title object is valid and not special:userlogout
 		if( $rt ) {
