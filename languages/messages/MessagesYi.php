@@ -17,6 +17,8 @@
 
 $fallback = 'he';
 
+$rtl = true;
+
 $namespaceNames = array(
 	NS_MEDIA          => 'מעדיע',
 	NS_SPECIAL        => 'באַזונדער',
@@ -50,7 +52,60 @@ $namespaceAliases = array(
 	'באניצער_רעדן' => NS_USER_TALK,
 );
 
-$rtl = true;
+$specialPageAliases = array(
+	'DoubleRedirects'           => array( 'פארטאפלטע_ווייטערפירונגען' ),
+	'BrokenRedirects'           => array( 'צעבראכענע_ווייטערפירונגען' ),
+	'Disambiguations'           => array( 'באדייטן' ),
+	'Userlogin'                 => array( 'באניצער_איינלאגירן' ),
+	'Preferences'               => array( 'פרעפערענצן' ),
+	'Watchlist'                 => array( 'אויפֿפאסן_ליסטע', 'מיין_אויפֿפאסן_ליסטע' ),
+	'Recentchanges'             => array( 'לעצטע_ענדערונגען' ),
+	'Upload'                    => array( 'ארויפלאדן' ),
+	'Imagelist'                 => array( 'בילדער' ),
+	'Newimages'                 => array( 'נייע_בילדער' ),
+	'Listusers'                 => array( 'ליסטע_פון_באניצערס' ),
+	'Statistics'                => array( 'סטאטיסטיק' ),
+	'Randompage'                => array( 'צופעליג', 'צופעליגער_בלאט' ),
+	'Lonelypages'               => array( 'פאר\'יתומ\'טע_בלעטער' ),
+	'Uncategorizedpages'        => array( 'בלעטער_אן_קאטעגאריעס' ),
+	'Uncategorizedcategories'   => array( 'קאטעגאריעס_אן_קאטעגאריעס' ),
+	'Uncategorizedimages'       => array( 'בילדער_אן_קאטעגאריעס' ),
+	'Uncategorizedtemplates'    => array( 'מוסטערן_אן_קאטעגאריעס' ),
+	'Unusedcategories'          => array( 'אומבאניצטע_קאטעגאריעס' ),
+	'Unusedimages'              => array( 'אומבאניצטע_בילדער' ),
+	'Wantedpages'               => array( 'געזוכטע_בלעטער' ),
+	'Wantedcategories'          => array( 'געזוכטע_קאטעגאריעס' ),
+	'Mostlinked'                => array( 'מערסטע_פארבונדענע_בלעטער' ),
+	'Mostlinkedcategories'      => array( 'מערסטע_פארבונדענע_קאטעגאריעס' ),
+	'Mostlinkedtemplates'       => array( 'מערסטע_פארבונדענע_מוסטערן' ),
+	'Mostimages'                => array( 'מערסטע_פארבונדענע_בילדער' ),
+	'Shortpages'                => array( 'קורצע_בלעטער' ),
+	'Longpages'                 => array( 'לאנגע_בלעטער' ),
+	'Newpages'                  => array( 'נייע_בלעטער' ),
+	'Ancientpages'              => array( 'אוראלטע_בלעטער' ),
+	'Deadendpages'              => array( 'בלעטער_אן_פארבינדונגען' ),
+	'Protectedpages'            => array( 'געשיצטע_בלעטער' ),
+	'Protectedtitles'           => array( 'געשיצטע_קעפלעך' ),
+	'Allpages'                  => array( 'אלע_בלעטער' ),
+	'Prefixindex'               => array( 'בלעטער_וואס_הייבן_אין_מיט' ),
+	'Specialpages'              => array( 'באזונדערע_בלעטער' ),
+	'Emailuser'                 => array( 'שיקן_אן_ע-פאסט_צום_באניצער' ),
+	'Confirmemail'              => array( 'באשטעטיגן_ע-פאסט' ),
+	'Whatlinkshere'             => array( 'בלעטער_וואס_פארבונדן_אהער' ),
+	'Movepage'                  => array( 'באוועגן_בלאט' ),
+	'Categories'                => array( 'קאטעגאריעס' ),
+	'Version'                   => array( 'ווערזיע' ),
+	'Allmessages'               => array( 'סיסטעם_מעלדונגען' ),
+	'Blockip'                   => array( 'בלאקירן' ),
+	'Unwatchedpages'            => array( 'נישט_אויפגעפאסטע_בלעטער' ),
+	'Listredirects'             => array( 'ווייטערפירונגען' ),
+	'Mycontributions'           => array( 'מיינע_ביישטייערן' ),
+	'Listadmins'                => array( 'ליסטע_פון_סיסאפס' ),
+	'Listbots'                  => array( 'ליסטע_פון_באטס' ),
+	'Search'                    => array( 'זוכן' ),
+	'Withoutinterwiki'          => array( 'בלעטער_אָן_אינטערוויקי' ),
+);
+
 $defaultUserOptionOverrides = array(
 	# Swap sidebar to right side by default
 	'quickbar' => 2,

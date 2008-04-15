@@ -57,6 +57,29 @@ $namespaceNames = array(
 	NS_CATEGORY_TALK  => 'Discuţie_Categorie'
 );
 
+$specialPageAliases = array(
+	'DoubleRedirects'           => array( 'Redirectări_duble' ),
+	'BrokenRedirects'           => array( 'Redirectări_invalide' ),
+	'Disambiguations'           => array( 'Dezambiguizări' ),
+	'Userlogin'                 => array( 'Conectare', 'Autentificare' ),
+	'Userlogout'                => array( 'Deconectare', 'Ieşire' ),
+	'CreateAccount'             => array( 'Înregistrare' ),
+	'Preferences'               => array( 'Preferinţe' ),
+	'Watchlist'                 => array( 'Articole_urmărite', 'Pagini_urmărite' ),
+	'Recentchanges'             => array( 'Schimbări_recente' ),
+	'Upload'                    => array( 'Încarcă', 'Încărcare' ),
+	'Imagelist'                 => array( 'Listă_imagini', 'Lista_imaginilor' ),
+	'Newimages'                 => array( 'Imagini_noi', 'ImaginiNoi' ),
+	'Listusers'                 => array( 'Listă_utilizatori' ),
+	'Listgrouprights'           => array( 'Listă_drepturi_grup' ),
+	'Statistics'                => array( 'Statistici' ),
+	'Randompage'                => array( 'Aleatoriu', 'PaginăAleatorie' ),
+	'Lonelypages'               => array( 'Pagini_orfane', 'PaginiOrfane' ),
+	'Uncategorizedpages'        => array( 'PaginiNecategorizate' ),
+	'Uncategorizedcategories'   => array( 'CategoriiNecategorizate' ),
+	'Uncategorizedimages'       => array( 'ImaginiNecategorizate' ),
+);
+
 $datePreferences = false;
 $defaultDateFormat = 'dmy';
 $dateFormats = array(
