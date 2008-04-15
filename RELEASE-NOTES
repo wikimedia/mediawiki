@@ -184,6 +184,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 13728) Don't trim initial whitespace during section edits
 * (bug 13727) Don't delete log entries from recentchanges on page deletion
 * (bug 13752) Section redirects now works again
+* (bug 13725) Upload form watch checkbox state set correctly with wpDestFile
+
 
 === API changes in 1.13 ===
 
