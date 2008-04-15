@@ -288,7 +288,7 @@ class MediaWiki {
 
 			// Follow redirects only for... redirects
 			if( $article->mIsRedirect ) {
-				$target = $article->followRedirect( true /* getFragment */ );
+				$target = $article->followRedirect();
 				if( is_string( $target ) ) {
 					if( !$this->getVal( 'DisableHardRedirects' ) ) {
 						// we'll need to redirect
