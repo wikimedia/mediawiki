@@ -73,6 +73,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 6934) Allow separated inclusions, links, redirects on whatlinkshere
 * Cache image redirects
 * (bug 10457) Reorganize Special:Specialpages
+* Add a new hook EditPageBeforeConflictDiff to allow extensions like FCKeditor
+  to modify the output for edit conflicts.
 
 === Bug fixes in 1.13 ===
 
