@@ -175,11 +175,12 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 13690) Fix PHP notice on accessing some URLs
 * Hide (undo) link if user isn't able to edit page
 * Invalidate cache of pages that includes images via redirects on upload
-* (bug 13705) Don't show rollback link in page history if called with dir=prev
+* (bug 13705) Don't show rollback link in page history on incorrect revisions
 * (bug 13708) Don't set "Search results" title when loading Special:Search
   without query
 * (bug 13736) Don't show MediaWiki:Anontalkpagetext on non-existant IP addresses
 * (bug 13728) Don't trim initial whitespace during section edits
+* (bug 13727) Don't delete log entries from recentchanges on page deletion
 
 
 === API changes in 1.13 ===
