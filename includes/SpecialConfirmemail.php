@@ -90,7 +90,7 @@ class EmailConfirmation extends UnlistedSpecialPage {
 			$wgOut->addWikiMsg( $message );
 			if( !$wgUser->isLoggedIn() ) {
 				$title = SpecialPage::getTitleFor( 'Userlogin' );
-				$wgOut->returnToMain( true, $title->getPrefixedText() );
+				$wgOut->returnToMain( true, $title );
 			}
 		} else {
 			$wgOut->addWikiMsg( 'confirmemail_invalid' );
