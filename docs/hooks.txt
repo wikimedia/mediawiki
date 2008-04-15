@@ -1108,6 +1108,10 @@ string &$error: output: HTML error to show if upload canceled by returning false
 'UploadComplete': Upon completion of a file upload
 $uploadForm: Upload form object. File can be accessed by $uploadForm->mLocalFile.
 
+'UserArrayFromResult': called when creating an UserArray object from a database result
+&$userArray: set this to an object to override the default object returned
+$res: database result used to create the object
+
 'userCan': To interrupt/advise the "user can do X to Y article" check.
 	If you want to display an error message, try getUserPermissionsErrors.
 $title: Title object being checked against
@@ -1131,6 +1135,21 @@ $template: SimpleTemplate instance for the form
 $user: User to get groups for
 &$groups: Current effective groups
 
+'UserGetEmail': called when getting an user email address
+$user: User object
+&$email: email, change this to override local email
+
+'UserGetEmailAuthenticationTimestamp': called when getting the timestamp of email authentification
+$user: User object
+&$timestamp: timestamp, change this to override local email authentification timestamp
+
+'UserGetImplicitGroups': Called in User::getImplicitGroups()
+&$groups: List of implicit (automatically-assigned) groups
+
+'UserGetRights': Called in User::getRights()
+$user: User to get rights for
+&$rights: Current rights
+
 'UserLoginComplete': after a user has logged in
 $user: the user object that was created on login
 $inject_html: Any HTML to inject after the "logged in" message.
@@ -1149,17 +1168,21 @@ $inject_html: Any HTML to inject after the "logged out" message.
 $user  : User object that was changed
 $add   : Array of strings corresponding to groups added
 $remove: Array of strings corresponding to groups removed
-		      
-'UserGetImplicitGroups': Called in User::getImplicitGroups()
-&$groups: List of implicit (automatically-assigned) groups
-
-'UserGetRights': Called in User::getRights()
-$user: User to get rights for
-&$rights: Current rights
 
 'UserRetrieveNewTalks': called when retrieving "You have new messages!" message(s)
 $user: user retrieving new talks messages
 $talks: array of new talks page(s)
+
+'UserSaveSettings': called when saving user settings
+$user: User object
+
+'UserSetEmail': called when changing user email address
+$user: User object
+&$email: new email, change this to override new email address
+
+'UserSetEmailAuthenticationTimestamp': called when setting the timestamp of email authentification
+$user: User object
+&$timestamp: new timestamp, change this to override local email authentification timestamp
 
 'UserToggles': called when initialising User::$mToggles, use this to add new toggles
 $toggles: array of toggles to add
