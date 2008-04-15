@@ -266,6 +266,7 @@ function __autoload($className) {
 		'UploadForm' => 'includes/SpecialUpload.php',
 		'UploadFormMogile' => 'includes/SpecialUploadMogile.php',
 		'User' => 'includes/User.php',
+		'UserArray' => 'includes/UserArray.php',
 		'UserMailer' => 'includes/UserMailer.php',
 		'UserrightsPage' => 'includes/SpecialUserrights.php',
 		'UserRightsProxy' => 'includes/UserRightsProxy.php',

@@ -206,7 +206,6 @@ class User {
 				# Can't load from ID, user is anonymous
 				return false;
 			}
-
 			$this->saveToCache();
 		} else {
 			wfDebug( "Got user {$this->mId} from cache\n" );
@@ -223,6 +222,7 @@ class User {
 	 */
 	function saveToCache() {
 		$this->load();
+		$this->loadGroups();
 		if ( $this->isAnon() ) {
 			// Anonymous users are uncached
 			return;
@@ -310,6 +310,16 @@ class User {
 	static function newFromSession() {
 		$user = new User;
 		$user->mFrom = 'session';
+		return $user;
+	}
+
+	/**
+	 * Create a new user object from a user row.
+	 * The row should have all fields from the user table in it.
+	 */
+	static function newFromRow( $row ) {
+		$user = new User;
+		$user->loadFromRow( $row );
 		return $user;
 	}
 
@@ -788,23 +798,50 @@ class User {
 
 		if ( $s !== false ) {
 			# Initialise user table data
-			$this->mName = $s->user_name;
-			$this->mRealName = $s->user_real_name;
-			$this->mPassword = $s->user_password;
-			$this->mNewpassword = $s->user_newpassword;
-			$this->mNewpassTime = wfTimestampOrNull( TS_MW, $s->user_newpass_time );
-			$this->mEmail = $s->user_email;
-			$this->decodeOptions( $s->user_options );
-			$this->mTouched = wfTimestamp(TS_MW,$s->user_touched);
-			$this->mToken = $s->user_token;
-			$this->mEmailAuthenticated = wfTimestampOrNull( TS_MW, $s->user_email_authenticated );
-			$this->mEmailToken = $s->user_email_token;
-			$this->mEmailTokenExpires = wfTimestampOrNull( TS_MW, $s->user_email_token_expires );
-			$this->mRegistration = wfTimestampOrNull( TS_MW, $s->user_registration );
-			$this->mEditCount = $s->user_editcount;
+			$this->loadFromRow( $s );
+			$this->mGroups = null; // deferred
 			$this->getEditCount(); // revalidation for nulls
+			return true;
+		} else {
+			# Invalid user_id
+			$this->mId = 0;
+			$this->loadDefaults();
+			return false;
+		}
+	}
 
-			# Load group data
+	/**
+	 * Initialise the user object from a row from the user table
+	 */
+	function loadFromRow( $row ) {
+		$this->mDataLoaded = true;
+
+		if ( isset( $row->user_id ) ) {
+			$this->mId = $row->user_id;
+		}
+		$this->mName = $row->user_name;
+		$this->mRealName = $row->user_real_name;
+		$this->mPassword = $row->user_password;
+		$this->mNewpassword = $row->user_newpassword;
+		$this->mNewpassTime = wfTimestampOrNull( TS_MW, $row->user_newpass_time );
+		$this->mEmail = $row->user_email;
+		$this->decodeOptions( $row->user_options );
+		$this->mTouched = wfTimestamp(TS_MW,$row->user_touched);
+		$this->mToken = $row->user_token;
+		$this->mEmailAuthenticated = wfTimestampOrNull( TS_MW, $row->user_email_authenticated );
+		$this->mEmailToken = $row->user_email_token;
+		$this->mEmailTokenExpires = wfTimestampOrNull( TS_MW, $row->user_email_token_expires );
+		$this->mRegistration = wfTimestampOrNull( TS_MW, $row->user_registration );
+		$this->mEditCount = $row->user_editcount; 
+	}
+
+	/**
+	 * Load the groups from the database if they aren't already loaded
+	 * @private
+	 */
+	function loadGroups() {
+		if ( is_null( $this->mGroups ) ) {
+			$dbr = wfGetDB( DB_MASTER );
 			$res = $dbr->select( 'user_groups',
 				array( 'ug_group' ),
 				array( 'ug_user' => $this->mId ),
@@ -813,12 +850,6 @@ class User {
 			while( $row = $dbr->fetchObject( $res ) ) {
 				$this->mGroups[] = $row->ug_group;
 			}
-			return true;
-		} else {
-			# Invalid user_id
-			$this->mId = 0;
-			$this->loadDefaults();
-			return false;
 		}
 	}
 
@@ -1529,17 +1560,20 @@ class User {
 
 	function getEmail() {
 		$this->load();
+		wfRunHooks( 'UserGetEmail', array( $this, &$this->mEmail ) );
 		return $this->mEmail;
 	}
 
 	function getEmailAuthenticationTimestamp() {
 		$this->load();
+		wfRunHooks( 'UserGetEmailAuthenticationTimestamp', array( $this, &$this->mEmailAuthenticated ) );
 		return $this->mEmailAuthenticated;
 	}
 
 	function setEmail( $str ) {
 		$this->load();
 		$this->mEmail = $str;
+		wfRunHooks( 'UserSetEmail', array( $this, &$this->mEmail ) );
 	}
 
 	function getRealName() {
@@ -1657,10 +1691,9 @@ class User {
 	 */
 	function getEffectiveGroups( $recache = false ) {
 		if ( $recache || is_null( $this->mEffectiveGroups ) ) {
-			$this->load();
-			$this->mEffectiveGroups = $this->mGroups;
+			$this->mEffectiveGroups = $this->getGroups();
 			$this->mEffectiveGroups[] = '*';
-			if( $this->mId ) {
+			if( $this->getId() ) {
 				$this->mEffectiveGroups[] = 'user';
 
 				$this->mEffectiveGroups = array_unique( array_merge(
@@ -1695,7 +1728,6 @@ class User {
 	 * @param string $group
 	 */
 	function addGroup( $group ) {
-		$this->load();
 		$dbw = wfGetDB( DB_MASTER );
 		if( $this->getId() ) {
 			$dbw->insert( 'user_groups',
@@ -1707,6 +1739,7 @@ class User {
 				array( 'IGNORE' ) );
 		}
 
+		$this->loadGroups();
 		$this->mGroups[] = $group;
 		$this->mRights = User::getGroupPermissions( $this->getEffectiveGroups( true ) );
 
@@ -1728,6 +1761,7 @@ class User {
 			),
 			'User::removeGroup' );
 
+		$this->loadGroups();
 		$this->mGroups = array_diff( $this->mGroups, array( $group ) );
 		$this->mRights = User::getGroupPermissions( $this->getEffectiveGroups( true ) );
 
@@ -2044,9 +2078,9 @@ class User {
 				'user_id' => $this->mId
 			), __METHOD__
 		);
+		wfRunHooks( 'UserSaveSettings', array( $this ) );
 		$this->clearSharedCache();
 	}
-
 
 	/**
 	 * Checks if a user with the given name exists, returns the ID.
@@ -2398,6 +2432,9 @@ class User {
 	 * Generate a new e-mail confirmation token and send a confirmation/invalidation
 	 * mail to the user's given address.
 	 *
+	 * Call saveSettings() after calling this function to commit the confirmation
+	 * token to the database.
+	 *
 	 * @return mixed True on success, a WikiError object on failure.
 	 */
 	function sendConfirmationMail() {
@@ -2438,6 +2475,10 @@ class User {
 	/**
 	 * Generate, store, and return a new e-mail confirmation code.
 	 * A hash (unsalted since it's used as a key) is stored.
+	 *
+	 * Call saveSettings() after calling this function to commit
+	 * this change to the database.
+	 *
 	 * @param &$expiration mixed output: accepts the expiration time
 	 * @return string
 	 * @private
@@ -2451,7 +2492,6 @@ class User {
 		$this->load();
 		$this->mEmailToken = $hash;
 		$this->mEmailTokenExpires = $expiration;
-		$this->saveSettings();
 		return $token;
 	}
 
@@ -2477,26 +2517,33 @@ class User {
 	}
 
 	/**
-	 * Mark the e-mail address confirmed and save.
+	 * Mark the e-mail address confirmed.
+	 *
+	 * Call saveSettings() after calling this function to commit the change.
 	 */
 	function confirmEmail() {
-		$this->load();
-		$this->mEmailAuthenticated = wfTimestampNow();
-		$this->saveSettings();
+		$this->setEmailAuthenticationTimestamp( wfTimestampNow() );
 		return true;
 	}
 
 	/**
 	 * Invalidate the user's email confirmation, unauthenticate the email
-	 * if it was already confirmed and save.
+	 * if it was already confirmed.
+	 *
+	 * Call saveSettings() after calling this function to commit the change.
 	 */
 	function invalidateEmail() {
 		$this->load();
 		$this->mEmailToken = null;
 		$this->mEmailTokenExpires = null;
-		$this->mEmailAuthenticated = null;
-		$this->saveSettings();
+		$this->setEmailAuthenticationTimestamp( null );
 		return true;
+	}
+
+	function setEmailAuthenticationTimestamp( $timestamp ) {
+		$this->load();
+		$this->mEmailAuthenticated = $timestamp;
+		wfRunHooks( 'UserSetEmailAuthenticationTimestamp', array( $this, &$this->mEmailAuthenticated ) );
 	}
 
 	/**
