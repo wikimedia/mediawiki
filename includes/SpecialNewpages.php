@@ -304,9 +304,9 @@ class NewPagesPager extends ReverseChronologicalPager {
 		$conds['rc_new'] = 1;
 		if( $this->namespace !== false ) {
 			$conds['rc_namespace'] = $this->namespace;
-			$rcIndexes = array( 'new_name_timestamp' );
+			$rcIndexes = array( 'new_name_timestamp', 'rc_user_text' );
 		} else {
-			$rcIndexes = array( 'rc_timestamp' );
+			$rcIndexes = array( 'rc_timestamp', 'rc_user_text' );
 		}
 		$conds[] = 'page_id = rc_cur_id';
 		$conds['page_is_redirect'] = 0;
