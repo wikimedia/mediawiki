@@ -7,8 +7,6 @@
  * @author Siebrand
  */
 
-$fallback = 'ga';
-
 $messages = array(
 # User preference toggles
 'tog-showhiddencats' => 'Ronnaghyn follit y haishbyney',
