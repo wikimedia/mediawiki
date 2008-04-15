@@ -8,10 +8,10 @@
 /**
  * Start point
  */
-function wfSpecialNewPages( $par ) {
+function wfSpecialNewPages( $par, $sp ) {
 	$page = new NewPagesForm();
 
-	$page->showList( $par );
+	$page->showList( $par, $sp->including() );
 }
 
 /**
@@ -22,16 +22,18 @@ class NewPagesForm {
 	/**
 	 * Show a form for filtering namespace and username
 	 *
+	 * @param string $par
+	 * @param bool $including true if the page is being included with {{Special:Newpages}}
 	 * @return string
 	 */
-	public function showList() {
-		global $wgScript, $wgContLang, $wgGroupPermissions, $wgRequest, $wgUser, $wgOut;
+	public function showList( $par, $including ) {
+		global $wgScript, $wgLang, $wgContLang, $wgGroupPermissions, $wgRequest, $wgUser, $wgOut;
 		$sk = $wgUser->getSkin();
 		$align = $wgContLang->isRTL() ? 'left' : 'right';
 		$self = SpecialPage::getTitleFor( 'NewPages' );
 
 		// show/hide links
-		$showhide = array( wfMsgHtml( 'show' ), wfMsgHtml( 'hide' ));
+		$showhide = array( wfMsgHtml( 'show' ), wfMsgHtml( 'hide' ) );
 
 		$hidelinks = array();
 
@@ -55,104 +57,137 @@ class NewPagesForm {
 		$options = $defaults;
 
 		// Override all values from requests, if specified
-        foreach ( $defaults as $v => $t ) {
-            if ( is_bool($t) ) {
-                $options[$v] = $wgRequest->getBool( $v, $options[$v] );
-            } elseif( is_int($t) ) {
-                $options[$v] = $wgRequest->getInt( $v, $options[$v] );
-            } elseif( is_string($t) ) {
-                $options[$v] = $wgRequest->getText( $v, $options[$v] );
-            }
-        }
-        
-        // hack disable
-        $options['username'] = '';
-
-		$wgOut->setSyndicated( true );
-		$wgOut->setFeedAppendQuery( "namespace={$options['namespace']}&username={$options['username']}" );
-
-		$feedType = $wgRequest->getVal( 'feed' );
-		if( $feedType ) {
-			wfProfileOut( __METHOD__ );
-			return $this->feed( $feedType, $options );
+		foreach ( $defaults as $v => $t ) {
+			if ( is_bool($t) ) {
+				$options[$v] = $wgRequest->getBool( $v, $options[$v] );
+			} elseif( is_int($t) ) {
+				$options[$v] = $wgRequest->getInt( $v, $options[$v] );
+			} elseif( is_string($t) ) {
+				$options[$v] = $wgRequest->getText( $v, $options[$v] );
+			}
 		}
 
-		$nondefaults = array();
-        foreach ( $options as $v => $t ) {
-            if ( $v === 'offset' ) continue; # Reset offset if parameters change
-            wfAppendToArrayIfNotDefault( $v, $t, $defaults, $nondefaults );
-        }
+		$shownav = !$including;
+		if ( $par ) {
+			$bits = preg_split( '/\s*,\s*/', trim( $par ) );
+			foreach ( $bits as $bit ) {
+				if ( 'shownav' == $bit )
+					$shownav = true;
+				if ( 'hideliu' === $bit )
+					$options['hideliu'] = true;
+				if ( 'hidepatrolled' == $bit )
+					$options['hidepatrolled'] = true;
+				if ( 'hidebots' == $bit )
+					$options['hidebots'] = true;
+				if ( is_numeric( $bit ) )
+					$options['limit'] = intval( $bit );
 
-		$links = array();
-		foreach ( $hidelinks as $key => $msg ) {
-			$reversed = 1 - $options[$key];
-			$link = $sk->makeKnownLinkObj( $self, $showhide[$reversed],
-				wfArrayToCGI( array( $key => $reversed ), $nondefaults )
-			);
-			$links[$key] = wfMsgHtml( $msg, $link );
+				$m = array();
+				if ( preg_match( '/^limit=(\d+)$/', $bit, $m ) )
+					$options['limit'] = intval($m[1]);
+				if ( preg_match( '/^offset=(\d+)$/', $bit, $m ) )
+					$options['offset'] = intval($m[1]);
+				if ( preg_match( '/^namespace=(.*)$/', $bit, $m ) ) {
+					$ns = $wgLang->getNsIndex( $m[1] );
+					if( $ns !== false ) {
+						$options['namespace'] = $ns;
+					}
+				}
+			}
 		}
 
-		$hl = implode( ' | ', $links );
+		// hack disable
+		$options['username'] = '';
+		
+		if( !$including ){
+			$wgOut->setSyndicated( true );
+			$wgOut->setFeedAppendQuery( "namespace={$options['namespace']}&username={$options['username']}" );
 
-		// Store query values in hidden fields so that form submission doesn't lose them
-		$hidden = array();
-		foreach ( $nondefaults as $key => $value ) {
-			if ( $key === 'namespace' ) continue;
-			if ( $key === 'username' ) continue;
-			$hidden[] = Xml::hidden( $key, $value );
+			$feedType = $wgRequest->getVal( 'feed' );
+			if( $feedType ) {
+				wfProfileOut( __METHOD__ );
+				return $this->feed( $feedType, $options );
+			}
+
+			$nondefaults = array();
+	        foreach ( $options as $v => $t ) {
+	            if ( $v === 'offset' ) continue; # Reset offset if parameters change
+	            wfAppendToArrayIfNotDefault( $v, $t, $defaults, $nondefaults );
+	        }
+
+			$links = array();
+			foreach ( $hidelinks as $key => $msg ) {
+				$reversed = 1 - $options[$key];
+				$link = $sk->makeKnownLinkObj( $self, $showhide[$reversed],
+					wfArrayToCGI( array( $key => $reversed ), $nondefaults )
+				);
+				$links[$key] = wfMsgHtml( $msg, $link );
+			}
+
+			$hl = implode( ' | ', $links );
+
+			// Store query values in hidden fields so that form submission doesn't lose them
+			$hidden = array();
+			foreach ( $nondefaults as $key => $value ) {
+				if ( $key === 'namespace' ) continue;
+				if ( $key === 'username' ) continue;
+				$hidden[] = Xml::hidden( $key, $value );
+			}
+			$hidden = implode( "\n", $hidden );
+
+			$form = Xml::openElement( 'form', array( 'method' => 'get', 'action' => $wgScript ) ) .
+				Xml::hidden( 'title', $self->getPrefixedDBkey() ) .
+				Xml::openElement( 'fieldset' ) .
+				Xml::element( 'legend', null, wfMsg( 'newpages' ) ) .
+				Xml::openElement( 'table', array( 'id' => 'mw-newpages-table' ) ) .
+				"<tr>
+					<td align=\"$align\">" .
+						Xml::label( wfMsg( 'namespace' ), 'namespace' ) .
+					"</td>
+					<td>" .
+						Xml::namespaceSelector( $options['namespace'], 'all' ) .
+					"</td>
+				</tr>
+				<!--
+				<tr>
+					<td align=\"$align\">" .
+						Xml::label( wfMsg( 'newpages-username' ), 'mw-np-username' ) .
+					"</td>
+					<td>" .
+						Xml::input( 'username', 30, $options['username'], array( 'id' => 'mw-np-username' ) ) .
+					"</td>
+				</tr>
+				-->
+				<tr> <td></td>
+					<td>" .
+						Xml::submitButton( wfMsg( 'allpagessubmit' ) ) .
+					"</td>
+				</tr>" .
+				"<tr>
+					<td></td>
+					<td>" .
+						$hl .
+					"</td>
+				</tr>" .
+				Xml::closeElement( 'table' ) .
+				Xml::closeElement( 'fieldset' ) .
+				$hidden .
+				Xml::closeElement( 'form' );
+
+			$wgOut->addHTML( $form );
 		}
-		$hidden = implode( "\n", $hidden );
-
-		$form = Xml::openElement( 'form', array( 'method' => 'get', 'action' => $wgScript ) ) .
-			Xml::hidden( 'title', $self->getPrefixedDBkey() ) .
-			Xml::openElement( 'fieldset' ) .
-			Xml::element( 'legend', null, wfMsg( 'newpages' ) ) .
-			Xml::openElement( 'table', array( 'id' => 'mw-newpages-table' ) ) .
-			"<tr>
-				<td align=\"$align\">" .
-					Xml::label( wfMsg( 'namespace' ), 'namespace' ) .
-				"</td>
-				<td>" .
-					Xml::namespaceSelector( $options['namespace'], 'all' ) .
-				"</td>
-			</tr>
-			<!--
-			<tr>
-				<td align=\"$align\">" .
-					Xml::label( wfMsg( 'newpages-username' ), 'mw-np-username' ) .
-				"</td>
-				<td>" .
-					Xml::input( 'username', 30, $options['username'], array( 'id' => 'mw-np-username' ) ) .
-				"</td>
-			</tr>
-			-->
-			<tr> <td></td>
-				<td>" .
-					Xml::submitButton( wfMsg( 'allpagessubmit' ) ) .
-				"</td>
-			</tr>" .
-			"<tr>
-				<td></td>
-				<td>" .
-					$hl .
-				"</td>
-			</tr>" .
-			Xml::closeElement( 'table' ) .
-			Xml::closeElement( 'fieldset' ) .
-			$hidden .
-			Xml::closeElement( 'form' );
-
-		$wgOut->addHTML( $form );
 
 		$pager = new NewPagesPager( $this, array(), $options['namespace'], $options['hideliu'],
 			$options['hidepatrolled'], $options['hidebots'], $options['username'] );
+		$pager->mLimit = $options['limit'];
+		$pager->mOffset = $options['offset'];
 
 		if( $pager->getNumRows() ) {
-			$wgOut->addHTML( $pager->getNavigationBar() .
+			$wgOut->addHTML( ( $shownav ? $pager->getNavigationBar() : '' ) .
 				$pager->getStartBody() .
 				$pager->getBody() .
 				$pager->getEndBody() .
-				$pager->getNavigationBar() );
+				( $shownav ? $pager->getNavigationBar() : '' ) );
 		} else {
 			$wgOut->addHTML( '<p>' . wfMsgHtml( 'specialpage-empty' ) . '</p>' );
 		}
@@ -289,7 +324,7 @@ class NewPagesForm {
  * @addtogroup Pager
  */
 class NewPagesPager extends ReverseChronologicalPager {
-	private $hideliu, $hidepatrolled, $hidebots, $namespace, $user;
+	private $hideliu, $hidepatrolled, $hidebots, $namespace, $user, $spTitle;
 
 	function __construct( $form, $conds=array(), $namespace, $hliu=false, $hpatrolled=false, $hbots=1, $user='' ) {
 		parent::__construct();
@@ -302,6 +337,12 @@ class NewPagesPager extends ReverseChronologicalPager {
 		$this->hideliu = (bool)$hliu;
 		$this->hidepatrolled = (bool)$hpatrolled;
 		$this->hidebots = (bool)$hbots;
+	}
+
+	function getTitle(){
+		if( !isset( $this->spTitle ) )
+			$this->spTitle = SpecialPage::getTitleFor( 'Newpages' );
+		return $this->spTitle;
 	}
 
 	function getQueryInfo() {
