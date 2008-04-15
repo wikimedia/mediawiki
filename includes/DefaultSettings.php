@@ -1496,6 +1496,7 @@ $wgCookieDomain = '';
 $wgCookiePath = '/';
 $wgCookieSecure = ($wgProto == 'https');
 $wgDisableCookieCheck = false;
+$wgCookieHttpOnly = true;
 
 /** A list of cookies that vary the cache (for use by extensions) */
 $wgCacheVaryCookies = array();
