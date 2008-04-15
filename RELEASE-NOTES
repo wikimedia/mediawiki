@@ -75,6 +75,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 10457) Reorganize Special:Specialpages
 * Add a new hook EditPageBeforeConflictDiff to allow extensions like FCKeditor
   to modify the output for edit conflicts.
+* Add class="nested" for <fieldset>s so fieldsets inside fieldsets get
+  a slightly less huge margin and padding.
 
 === Bug fixes in 1.13 ===
 
