@@ -270,7 +270,6 @@ class MediaWiki {
 	 *
 	 * @param Title $title
 	 * @param Request $request
-	 * @param string $action
 	 * @return mixed an Article, or a string to redirect to another URL
 	 */
 	function initializeArticle( &$title, $request ) {
@@ -289,7 +288,7 @@ class MediaWiki {
 
 			// Follow redirects only for... redirects
 			if( $article->mIsRedirect ) {
-				$target = $article->followRedirect();
+				$target = $article->followRedirect( true /* getFragment */ );
 				if( is_string( $target ) ) {
 					if( !$this->getVal( 'DisableHardRedirects' ) ) {
 						// we'll need to redirect
