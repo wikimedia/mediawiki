@@ -107,16 +107,11 @@ class Article {
 	/**
 	 * Get the Title object this page redirects to
 	 *
-	 * @param bool $getFragment should the fragment be set on the title
 	 * @return mixed false, Title of in-wiki target, or string with URL
 	 */
-	function followRedirect( $getFragment = false ) {
-		if( $getFragment )
-			// We'll need to use the content of this page, as Article::getRedirectTarget()
-			// now loads the data from redirect table, wich doesn't store the fragment
-			$rt = Title::newFromRedirect( $this->getContent() );
-		else
-			$rt = $this->getRedirectTarget();
+	function followRedirect() {
+		$text = $this->getContent();
+		$rt = Title::newFromRedirect( $text );
 
 		# process if title object is valid and not special:userlogout
 		if( $rt ) {
@@ -857,7 +852,7 @@ class Article {
 
 			}
 
-			elseif ( $rt = $this->getRedirectTarget() ) {
+			elseif ( $rt = Title::newFromRedirect( $text ) ) {
 				# Display redirect
 				$imageDir = $wgContLang->isRTL() ? 'rtl' : 'ltr';
 				$imageUrl = $wgStylePath.'/common/images/redirect' . $imageDir . '.png';
