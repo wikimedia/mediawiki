@@ -13,6 +13,12 @@
  * @author Jon Harald Søby
  */
 
+$skinNames = array(
+	'standard'    => 'Klasiko',
+	'simple'      => 'Simple',
+	'modern'      => 'Bago',
+);
+
 $namespaceNames = array(
 	NS_MEDIA          => 'Medio',
 	NS_SPECIAL        => 'Espesyal',
@@ -32,6 +38,11 @@ $namespaceNames = array(
 	NS_HELP_TALK      => 'Olay_sa_tabang',
 	NS_CATEGORY       => 'Kategorya',
 	NS_CATEGORY_TALK  => 'Olay_sa_kategorya',
+);
+
+$specialPageAliases = array(
+	'Upload'                    => array( 'Ikarga' ),
+	'Search'                    => array( 'Hanapon' ),
 );
 
 $messages = array(

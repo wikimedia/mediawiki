@@ -59,6 +59,7 @@ $specialPageAliases = array(
 	'Imagelist'                 => array( 'Billerlëscht' ),
 	'Newimages'                 => array( 'Nei_Biller' ),
 	'Listusers'                 => array( 'Benotzer' ),
+	'Listgrouprights'           => array( 'Grupperechter' ),
 	'Statistics'                => array( 'Statistik' ),
 	'Randompage'                => array( 'Zoufälleg_Säit' ),
 	'Lonelypages'               => array( 'Weesesäiten' ),
@@ -125,6 +126,7 @@ $specialPageAliases = array(
 	'Withoutinterwiki'          => array( 'Säiten_ouni_Interwiki-Linken' ),
 	'MergeHistory'              => array( 'Versiounen_zesummeleeën' ),
 	'Filepath'                  => array( 'Pad_bäi_de_Fichier' ),
+	'Invalidateemail'           => array( 'E-Mailadress_net_confirméieren' ),
 );
 
 $messages = array(
