@@ -358,12 +358,13 @@ class Block
 
 	/**
 	* Insert a block into the block table.
-	*@return Whether or not the insertion was successful.
+	* @param Database $dbw, optional
+	* @return Whether or not the insertion was successful.
 	*/
-	function insert()
+	function insert( $dbw = NULL)
 	{
 		wfDebug( "Block::insert; timestamp {$this->mTimestamp}\n" );
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = $dbw ? $dbw : wfGetDB( DB_MASTER );
 
 		# Unset ipb_anon_only for user blocks, makes no sense
 		if ( $this->mUser ) {
@@ -410,7 +411,6 @@ class Block
 			), 'Block::insert', array( 'IGNORE' )
 		);
 		$affected = $dbw->affectedRows();
-		$dbw->commit();
 
 		if ($affected)
 			$this->doRetroactiveAutoblock();
