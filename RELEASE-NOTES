@@ -72,6 +72,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Automatically add old redirects to the redirect table when needed
 * (bug 6934) Allow separated inclusions, links, redirects on whatlinkshere
 * Cache image redirects
+* (bug 10457) Reorganize Special:Specialpages
 
 === Bug fixes in 1.13 ===
 
