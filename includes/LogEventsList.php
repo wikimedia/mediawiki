@@ -228,7 +228,7 @@ class LogEventsList {
 						'&wpMovetalk=0' ) . ')';
 				}
 			// Show undelete link
-			} else if( self::typeAction($row,'delete','delete') && $wgUser->isAllowed( 'delete' ) ) {
+			} else if( self::typeAction($row,array('delete','suppress'),'delete') && $wgUser->isAllowed( 'delete' ) ) {
 				$revert = '(' . $this->skin->makeKnownLinkObj( SpecialPage::getTitleFor( 'Undelete' ),
 					$this->message['undeletelink'], 'target='. urlencode( $title->getPrefixedDBkey() ) ) . ')';
 			// Show unblock link
@@ -243,13 +243,11 @@ class LogEventsList {
 			} else if ( self::typeAction($row,'merge','merge') ) {
 				$merge = SpecialPage::getTitleFor( 'Mergehistory' );
 				$revert = '(' .  $this->skin->makeKnownLinkObj( $merge, $this->message['revertmerge'],
-					wfArrayToCGI(
-						array('target' => $paramArray[0], 'dest' => $title->getPrefixedText(), 'mergepoint' => $paramArray[1] )
-					)
-				) . ')';
+					wfArrayToCGI( array('target' => $paramArray[0], 'dest' => urlencode( $title->getPrefixedDBkey() ), 
+						'mergepoint' => $paramArray[1] ) ) ) . ')';
 			// If an edit was hidden from a page give a review link to the history
 			} else if( self::typeAction($row,array('delete','suppress'),'revision') && $wgUser->isAllowed( 'deleterevision' ) ) {
-				if( isset($paramArray[2]) ) {
+				if( count($paramArray) == 2 ) {
 					$revdel = SpecialPage::getTitleFor( 'Revisiondelete' );
 					// Different revision types use different URL params...
 					$subtype = isset($paramArray[2]) ? $paramArray[1] : '';
@@ -257,30 +255,30 @@ class LogEventsList {
 					$Ids = explode( ',', $paramArray[2] );
 					if( count($Ids) == 1 ) {
 						$revert = $this->skin->makeKnownLinkObj( $revdel, $this->message['revdel-restore'],
-						wfArrayToCGI( array('target' => $paramArray[0], $paramArray[1] => $Ids[0] ) ) );
+						wfArrayToCGI( array('target' => urlencode( $title->getPrefixedDBkey() ), $paramArray[1] => $Ids[0] ) ) );
 					} else {
 						$revert .= $this->message['revdel-restore'].':';
 						foreach( $Ids as $n => $id ) {
 							$revert .= ' '.$this->skin->makeKnownLinkObj( $revdel, '#'.($n+1),
-								wfArrayToCGI( array('target' => $paramArray[0], $paramArray[1] => $id ) ) );
+								wfArrayToCGI( array('target' => urlencode( $title->getPrefixedDBkey() ), $paramArray[1] => $id ) ) );
 						}
 					}
 					$revert = "($revert)";
 				}
 			// Hidden log items, give review link
 			} else if( self::typeAction($row,array('delete','suppress'),'event') && $wgUser->isAllowed( 'deleterevision' ) ) {
-				if( isset($paramArray[0]) ) {
+				if( count($paramArray) == 1 ) {
 					$revdel = SpecialPage::getTitleFor( 'Revisiondelete' );
 					$revert .= $this->message['revdel-restore'];
 					$Ids = explode( ',', $paramArray[0] );
 					// Link to each hidden object ID, $paramArray[1] is the url param. List if several...
 					if( count($Ids) == 1 ) {
 						$revert = $this->skin->makeKnownLinkObj( $revdel, $this->message['revdel-restore'],
-							wfArrayToCGI( array('logid' => $Ids[0] ) ) );
+							wfArrayToCGI( array('target' => urlencode( $title->getPrefixedDBkey() ),'logid' => $Ids[0] ) ) );
 					} else {
 						foreach( $Ids as $n => $id ) {
 							$revert .= $this->skin->makeKnownLinkObj( $revdel, '#'.($n+1),
-								wfArrayToCGI( array('logid' => $id ) ) );
+								wfArrayToCGI( array('target' => urlencode( $title->getPrefixedDBkey() ),'logid' => $id ) ) );
 						}
 					}
 					$revert = "($revert)";
@@ -320,7 +318,9 @@ class LogEventsList {
 			// No one should be hiding from the oversight log
 			$del = $this->message['rev-delundel'];
 		} else {
-			$del = $this->skin->makeKnownLinkObj( $revdel, $this->message['rev-delundel'], 'logid='.$row->log_id );
+			$target = SpecialPage::getTitleFor( 'Log', $row->log_type );
+			$del = $this->skin->makeKnownLinkObj( $revdel, $this->message['rev-delundel'],
+				'target=' . urlencode( $target->getPrefixedDBkey() ) . '&logid='.$row->log_id );
 			// Bolden oversighted content
 			if( self::isDeleted( $row, LogPage::DELETED_RESTRICTED ) )
 				$del = "<strong>$del</strong>";

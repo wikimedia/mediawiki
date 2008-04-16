@@ -20,13 +20,18 @@ function wfSpecialRevisiondelete( $par = null ) {
 	$file = $wgRequest->getVal( 'file' );
 	# If this is a revision, then we need a target page
 	$page = Title::newFromUrl( $target );
-	if( is_null($page) && is_null($logid) ) {
+	if( is_null($page) ) {
 		$wgOut->addWikiText( wfMsgHtml( 'undelete-header' ) );
 		return;
 	}
 	# Only one target set at a time please!
 	$i = (bool)$file + (bool)$oldid + (bool)$logid + (bool)$artimestamp + (bool)$fileid + (bool)$img;
 	if( $i !== 1 ) {
+		$wgOut->showErrorPage( 'revdelete-nooldid-title', 'revdelete-nooldid-text' );
+		return;
+	}
+	# Logs must have a type given
+	if( $logid && !strpos($page->getDBKey(),'/') ) {
 		$wgOut->showErrorPage( 'revdelete-nooldid-title', 'revdelete-nooldid-text' );
 		return;
 	}
@@ -43,13 +48,11 @@ function wfSpecialRevisiondelete( $par = null ) {
 	}
 	# Show relevant lines from the deletion log. This will show even if said ID
 	# does not exist...might be helpful
-	if( !is_null($page) ) {
-		$wgOut->addHTML( "<h2>" . htmlspecialchars( LogPage::logName( 'delete' ) ) . "</h2>\n" );
-		LogEventsList::showLogExtract( $wgOut, 'delete', $page->getPrefixedText() );
-		if( $wgUser->isAllowed( 'suppress' ) ){
-			$wgOut->addHTML( "<h2>" . htmlspecialchars( LogPage::logName( 'suppress' ) ) . "</h2>\n" );
-			LogEventsList::showLogExtract( $wgOut, 'suppress', $page->getPrefixedText() );
-		}
+	$wgOut->addHTML( "<h2>" . htmlspecialchars( LogPage::logName( 'delete' ) ) . "</h2>\n" );
+	LogEventsList::showLogExtract( $wgOut, 'delete', $page->getPrefixedText() );
+	if( $wgUser->isAllowed( 'suppress' ) ){
+		$wgOut->addHTML( "<h2>" . htmlspecialchars( LogPage::logName( 'suppress' ) ) . "</h2>\n" );
+		LogEventsList::showLogExtract( $wgOut, 'suppress', $page->getPrefixedText() );
 	}
 }
 
@@ -271,7 +274,8 @@ class RevisionDeleteForm {
 		}
 		$special = SpecialPage::getTitleFor( 'Revisiondelete' );
 		$wgOut->addHtml(
-			Xml::openElement( 'form', array( 'method' => 'post', 'action' => $special->getLocalUrl( 'action=submit' ), 'id' => 'mw-revdel-form-revisions' ) ) .
+			Xml::openElement( 'form', array( 'method' => 'post', 'action' => $special->getLocalUrl( 'action=submit' ), 
+				'id' => 'mw-revdel-form-revisions' ) ) .
 			Xml::openElement( 'fieldset' ) .
 			xml::element( 'legend', null,  wfMsg( 'revdelete-legend' ) )
 		);
@@ -407,7 +411,8 @@ class RevisionDeleteForm {
 		}
 		$special = SpecialPage::getTitleFor( 'Revisiondelete' );
 		$wgOut->addHtml(
-			Xml::openElement( 'form', array( 'method' => 'post', 'action' => $special->getLocalUrl( 'action=submit' ), 'id' => 'mw-revdel-form-filerevisions' ) ) .
+			Xml::openElement( 'form', array( 'method' => 'post', 'action' => $special->getLocalUrl( 'action=submit' ), 
+				'id' => 'mw-revdel-form-filerevisions' ) ) .
 			Xml::openElement( 'fieldset' ) .
 			xml::element( 'legend', null,  wfMsg( 'revdelete-legend' ) )
 		);
@@ -448,7 +453,8 @@ class RevisionDeleteForm {
 		foreach( $this->events as $logid ) {
 			$where[] = intval($logid);
 		}
-		$whereClause = 'log_id IN(' . implode(',',$where) . ')';
+		list($log,$logtype) = explode( '/',$this->page->getDBKey(), 2 );
+		$whereClause = "log_type = '$logtype' AND log_id IN(" . implode(',',$where) . ")";
 		$result = $dbr->select( 'logging', '*',
 			array( $whereClause ),
 			__METHOD__ );
@@ -483,6 +489,7 @@ class RevisionDeleteForm {
 			Xml::submitButton( wfMsg( 'revdelete-submit' ) ) );
 		$hidden = array(
 			Xml::hidden( 'wpEditToken', $wgUser->editToken() ),
+			Xml::hidden( 'target', $this->page->getPrefixedText() ),
 			Xml::hidden( 'type', $this->deleteKey ) );
 		foreach( $this->events as $logid ) {
 			$hidden[] = Xml::hidden( 'logid[]', $logid );
@@ -490,7 +497,8 @@ class RevisionDeleteForm {
 
 		$special = SpecialPage::getTitleFor( 'Revisiondelete' );
 		$wgOut->addHtml(
-			Xml::openElement( 'form', array( 'method' => 'post', 'action' => $special->getLocalUrl( 'action=submit' ), 'id' => 'mw-revdel-form-logs' ) ) .
+			Xml::openElement( 'form', array( 'method' => 'post', 'action' => $special->getLocalUrl( 'action=submit' ), 
+				'id' => 'mw-revdel-form-logs' ) ) .
 			Xml::openElement( 'fieldset' ) .
 			xml::element( 'legend', null,  wfMsg( 'revdelete-legend' ) )
 		);
@@ -756,7 +764,7 @@ class RevisionDeleteForm {
 		} else if( isset($this->afiles) ) {
 			return $deleter->setArchFileVisibility( $title, $this->afiles, $bitfield, $reason );
 		} else if( isset($this->events) ) {
-			return $deleter->setEventVisibility( $this->events, $bitfield, $reason );
+			return $deleter->setEventVisibility( $title, $this->events, $bitfield, $reason );
 		}
 	}
 }
@@ -1048,22 +1056,24 @@ class RevisionDeleter {
 	}
 
 	/**
+	 * @param $title, the log page these events apply to
 	 * @param array $items list of log ID numbers
 	 * @param int $bitfield new log_deleted value
 	 * @param string $comment Comment for log records
 	 */
-	function setEventVisibility( $items, $bitfield, $comment ) {
+	function setEventVisibility( $title, $items, $bitfield, $comment ) {
 		global $wgOut;
 
 		$userAllowedAll = $success = true;
-		$logs_count = array();
-		$logs_Ids = array();
+		$count = 0;
+		$log_Ids = array();
 
 		// Run through and pull all our data in one query
 		foreach( $items as $logid ) {
 			$where[] = intval($logid);
 		}
-		$whereClause = 'log_id IN(' . implode(',',$where) . ')';
+		list($log,$logtype) = explode( '/',$title->getDBKey(), 2 );
+		$whereClause = "log_type ='$logtype' AND log_id IN(" . implode(',',$where) . ")";
 		$result = $this->dbw->select( 'logging', '*',
 			array( $whereClause ),
 			__METHOD__ );
@@ -1075,34 +1085,25 @@ class RevisionDeleter {
 			if( !isset($logRows[$logid]) ) {
 				$success = false;
 				continue; // Must exist
-			} else if( !LogEventsList::userCan($logRows[$logid], Revision::DELETED_RESTRICTED)
+			} else if( !LogEventsList::userCan($logRows[$logid], LogPage::DELETED_RESTRICTED)
 				 || $logRows[$logid]->log_type == 'suppress' ) {
 			// Don't hide from oversight log!!!
     			$userAllowedAll=false;
     			continue;
 			}
-			$logtype = $logRows[$logid]->log_type;
-			// For logging, maintain a count of events per log type
-			if( !isset( $logs_count[$logtype] ) ) {
-				$logs_count[$logtype]=0;
-				$logs_Ids[$logtype]=array();
-			}
 			// Which logs did we change anything about?
 			if( $logRows[$logid]->log_deleted != $bitfield ) {
-				$logs_Ids[$logtype][]=$logid;
-				$logs_count[$logtype]++;
+				$log_Ids[]=$logid;
+				$count++;
 
 			   	$this->updateLogs( $logRows[$logid], $bitfield );
 				$this->updateRecentChangesLog( $logRows[$logid], $bitfield, true );
 			}
 		}
-		foreach( $logs_count as $logtype => $count ) {
-			// Don't log or touch if nothing changed
-			if( $count > 0 ) {
-				$target = SpecialPage::getTitleFor( 'Log', $logtype );
-				$this->updateLog( $target, $count, $bitfield, $logRows[$logid]->log_deleted,
-				$comment, $target, 'logid', $logs_Ids[$logtype] );
-			}
+		// Don't log or touch if nothing changed
+		if( $count > 0 ) {
+			$this->updateLog( $title, $count, $bitfield, $logRows[$logid]->log_deleted,
+				$comment, $title, 'logid', $log_Ids );
 		}
 		// Where all revs allowed to be set?
 		if( !$userAllowedAll ) {
@@ -1452,7 +1453,7 @@ class RevisionDeleter {
 			$log->addEntry( 'event', $title, $reason, $params );
 		} else {
 			// Add params for effected page and ids
-			$params = array( $target->getPrefixedText(), $param, implode( ',', $items) );
+			$params = array( $param, implode( ',', $items) );
 			$log->addEntry( 'revision', $title, $reason, $params );
 		}
 	}
