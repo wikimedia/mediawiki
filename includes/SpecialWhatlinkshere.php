@@ -1,5 +1,6 @@
 <?php
 /**
+ * @TODO: Use some variant of Pager or something; the pagination here is lousy.
  *
  * @addtogroup SpecialPage
  */
@@ -275,6 +276,13 @@ class WhatLinksHerePage {
 		return $this->skin->makeKnownLinkObj( $this->selfTitle, $text, $query );
 	}
 
+	/** Get a query string to append to hide appropriate entries */
+	function getHideParams() {
+		return ($this->hidetrans  ? '&hidetrans=1'  : '')
+    	     . ($this->hidelinks  ? '&hidelinks=1'  : '')
+		     . ($this->hideredirs ? '&hideredirs=1' : '');
+	}
+
 	function getPrevNext( $limit, $prevId, $nextId ) {
 		global $wgLang;
 		$fmtLimit = $wgLang->formatNum( $limit );
@@ -286,13 +294,15 @@ class WhatLinksHerePage {
 			$nsText = "&namespace={$this->namespace}";
 		}
 
+		$hideParams = $this->getHideParams();
+
 		if ( 0 != $prevId ) {
-			$prevLink = $this->makeSelfLink( $prev, "limit={$limit}&from={$this->back}{$nsText}" );
+			$prevLink = $this->makeSelfLink( $prev, "limit={$limit}&from={$this->back}{$nsText}{$hideParams}" );
 		} else {
 			$prevLink = $prev;
 		}
 		if ( 0 != $nextId ) {
-			$nextLink = $this->makeSelfLink( $next, "limit={$limit}&from={$nextId}&back={$prevId}{$nsText}" );
+			$nextLink = $this->makeSelfLink( $next, "limit={$limit}&from={$nextId}&back={$prevId}{$nsText}{$hideParams}" );
 		} else {
 			$nextLink = $next;
 		}
@@ -310,7 +320,7 @@ class WhatLinksHerePage {
 		$query = "limit={$limit}&from={$from}";
 		if( is_int($this->namespace) ) { $query .= "&namespace={$this->namespace}";}
 		$fmtLimit = $wgLang->formatNum( $limit );
-		return $this->makeSelfLink( $fmtLimit, $query );
+		return $this->makeSelfLink( $fmtLimit, $query.$this->getHideParams() );
 	}
 
 	function whatlinkshereForm( $options = array( 'target' => '', 'namespace' => '' ) ) {
