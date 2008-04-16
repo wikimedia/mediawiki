@@ -352,7 +352,7 @@ class IPBlockForm {
 		if ( wfRunHooks('BlockIp', array(&$block, &$wgUser)) ) {
 			$dbw = wfGetDB( DB_MASTER );
 			$dbw->begin();
-			if ( !$block->insert( $dbw ) ) {
+			if ( !$block->insert() ) {
 				$dbw->rollback(); // this could be commit as well; zero rows either way
 				return array('ipb_already_blocked', htmlspecialchars($this->BlockAddress));
 			}

@@ -75,6 +75,7 @@ class LogPage {
 		$dbw->insert( 'logging', $data, $fname );
 		$newId = $dbw->insertId();
 
+		$ok = ($dbw->affectedRows() != 0);
 		# And update recentchanges
 		if( $this->updateRecentChanges ) {
 			# Don't add private logs to RC!
@@ -85,7 +86,7 @@ class LogPage {
 					$this->type, $this->action, $this->target, $this->comment, $this->params, $newId );
 			}
 		}
-		return ($dbw->affectedRows() > 0);
+		return $ok;
 	}
 
 	public function getRcComment() {

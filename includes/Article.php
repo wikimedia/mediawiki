@@ -2318,7 +2318,7 @@ class Article {
 
 		# Now that it's safely backed up, delete it
 		$dbw->delete( 'page', array( 'page_id' => $id ), __METHOD__);
-		$ok = ( $dbw->affectedRows() > 0 ); // getArticleId() uses slave, could be laggy
+		$ok = ( $dbw->affectedRows() != 0 ); // getArticleId() uses slave, could be laggy
 		if( !$ok ) {
 			$dbw->rollback();
 			return false;
