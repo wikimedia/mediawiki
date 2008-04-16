@@ -350,7 +350,9 @@ class ProtectionForm {
 
 	function buildScript() {
 		global $wgStylePath, $wgStyleVersion;
-		return Xml::tags( 'script', array( 'type' => 'text/javascript', 'src' => htmlspecialchars( $wgStylePath . "/common/protect.js?$wgStyleVersion" ) ), '' );
+		return Xml::tags( 'script', array(
+			'type' => 'text/javascript',
+			'src' => $wgStylePath . "/common/protect.js?$wgStyleVersion" ), '' );
 	}
 
 	function buildCleanupScript() {
