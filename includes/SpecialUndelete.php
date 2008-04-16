@@ -893,7 +893,7 @@ class UndeleteForm {
 	}
 
 	private function showHistory() {
-		global $wgLang, $wgContLang, $wgUser, $wgOut;
+		global $wgLang, $wgUser, $wgOut;
 
 		$sk = $wgUser->getSkin();
 		if( $this->mAllowed ) {
@@ -961,12 +961,11 @@ class UndeleteForm {
 		if( $this->mAllowed && ( $haveRevisions || $haveFiles ) ) {
 			# Format the user-visible controls (comment field, submission button)
 			# in a nice little table
-			$align = $wgContLang->isRtl() ? 'left' : 'right';
 			if( $wgUser->isAllowed( 'suppress' ) ) {
 				$unsuppressBox =
 					"<tr>
 						<td>&nbsp;</td>
-						<td>" .
+						<td class='mw-input'>" .
 							Xml::check( 'wpUnsuppress', $this->mUnsuppress, array('id' => 'mw-undelete-unsupress') ) . ' ' .
 							Xml::label( wfMsgHtml('revdelete-unsuppress'), 'mw-undelete-unsupress' ) .
 						"</td>
@@ -984,16 +983,16 @@ class UndeleteForm {
 						"</td>
 					</tr>
 					<tr>
-						<td align='$align'>" .
+						<td class='mw-label'>" .
 							Xml::label( wfMsg( 'undeletecomment' ), 'wpComment' ) .
 						"</td>
-						<td>" .
+						<td class='mw-input'>" .
 							Xml::input( 'wpComment', 50, $this->mComment ) .
 						"</td>
 					</tr>
 					<tr>
 						<td>&nbsp;</td>
-						<td>" .
+						<td class='mw-submit'>" .
 							Xml::submitButton( wfMsg( 'undeletebtn' ), array( 'name' => 'restore', 'id' => 'mw-undelete-submit' ) ) .
 							Xml::element( 'input', array( 'type' => 'reset', 'value' => wfMsg( 'undeletereset' ), 'id' => 'mw-undelete-reset' ) ) .
 						"</td>
