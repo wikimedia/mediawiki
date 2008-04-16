@@ -145,18 +145,17 @@ class OutputPage {
 	 */
 	function checkLastModified ( $timestamp ) {
 		global $wgCachePages, $wgCacheEpoch, $wgUser, $wgRequest;
-		$fname = 'OutputPage::checkLastModified';
 
 		if ( !$timestamp || $timestamp == '19700101000000' ) {
-			wfDebug( "$fname: CACHE DISABLED, NO TIMESTAMP\n" );
+			wfDebug( __METHOD__ . ": CACHE DISABLED, NO TIMESTAMP\n" );
 			return;
 		}
 		if( !$wgCachePages ) {
-			wfDebug( "$fname: CACHE DISABLED\n", false );
+			wfDebug( __METHOD__ . ": CACHE DISABLED\n", false );
 			return;
 		}
 		if( $wgUser->getOption( 'nocache' ) ) {
-			wfDebug( "$fname: USER DISABLED CACHE\n", false );
+			wfDebug( __METHOD__ . ": USER DISABLED CACHE\n", false );
 			return;
 		}
 
@@ -174,14 +173,14 @@ class OutputPage {
 			wfRestoreWarnings();
 
 			$ismodsince = wfTimestamp( TS_MW, $modsinceTime ? $modsinceTime : 1 );
-			wfDebug( "$fname: -- client send If-Modified-Since: " . $modsince . "\n", false );
-			wfDebug( "$fname: --  we might send Last-Modified : $lastmod\n", false );
+			wfDebug( __METHOD__ . ": -- client send If-Modified-Since: " . $modsince . "\n", false );
+			wfDebug( __METHOD__ . ": --  we might send Last-Modified : $lastmod\n", false );
 			if( ($ismodsince >= $timestamp ) && $wgUser->validateCache( $ismodsince ) && $ismodsince >= $wgCacheEpoch ) {
 				# Make sure you're in a place you can leave when you call us!
 				$wgRequest->response()->header( "HTTP/1.0 304 Not Modified" );
 				$this->mLastModified = $lastmod;
 				$this->sendCacheControl();
-				wfDebug( "$fname: CACHED client: $ismodsince ; user: $wgUser->mTouched ; page: $timestamp ; site $wgCacheEpoch\n", false );
+				wfDebug( __METHOD__ . ": CACHED client: $ismodsince ; user: $wgUser->mTouched ; page: $timestamp ; site $wgCacheEpoch\n", false );
 				$this->disable();
 
 				// Don't output a compressed blob when using ob_gzhandler;
@@ -191,11 +190,11 @@ class OutputPage {
 
 				return true;
 			} else {
-				wfDebug( "$fname: READY  client: $ismodsince ; user: $wgUser->mTouched ; page: $timestamp ; site $wgCacheEpoch\n", false );
+				wfDebug( __METHOD__ . ": READY  client: $ismodsince ; user: $wgUser->mTouched ; page: $timestamp ; site $wgCacheEpoch\n", false );
 				$this->mLastModified = $lastmod;
 			}
 		} else {
-			wfDebug( "$fname: client did not send If-Modified-Since header\n", false );
+			wfDebug( __METHOD__ . ": client did not send If-Modified-Since header\n", false );
 			$this->mLastModified = $lastmod;
 		}
 	}
@@ -332,6 +331,7 @@ class OutputPage {
 
 	/* @deprecated */
 	public function setParserOptions( $options ) {
+		wfDeprecated( __METHOD__ );
 		return $this->parserOptions( $options );
 	}
 
@@ -377,13 +377,12 @@ class OutputPage {
 	public function addWikiTextTitle($text, &$title, $linestart, $tidy = false) {
 		global $wgParser;
 
-		$fname = 'OutputPage:addWikiTextTitle';
-		wfProfileIn($fname);
+		wfProfileIn( __METHOD__ );
 
-		wfIncrStats('pcache_not_possible');
+		wfIncrStats( 'pcache_not_possible' );
 
 		$popts = $this->parserOptions();
-		$oldTidy = $popts->setTidy($tidy);
+		$oldTidy = $popts->setTidy( $tidy );
 
 		$parserOutput = $wgParser->parse( $text, $title, $popts,
 			$linestart, true, $this->mRevisionId );
@@ -392,7 +391,7 @@ class OutputPage {
 
 		$this->addParserOutput( $parserOutput );
 
-		wfProfileOut($fname);
+		wfProfileOut( __METHOD__ );
 	}
 
 	/**
@@ -452,6 +451,8 @@ class OutputPage {
 	public function addPrimaryWikiText( $text, $article, $cache = true ) {
 		global $wgParser, $wgUser;
 
+		wfDeprecated( __METHOD__ );
+
 		$popts = $this->parserOptions();
 		$popts->setTidy(true);
 		$parserOutput = $wgParser->parse( $text, $article->mTitle,
@@ -470,6 +471,7 @@ class OutputPage {
 	 */
 	public function addSecondaryWikiText( $text, $linestart = true ) {
 		global $wgTitle;
+		wfDeprecated( __METHOD__ );
 		$this->addWikiTextTitleTidy($text, $wgTitle, $linestart);
 	}
 
@@ -607,7 +609,6 @@ class OutputPage {
 
 	public function sendCacheControl() {
 		global $wgUseSquid, $wgUseESI, $wgUseETag, $wgSquidMaxage, $wgRequest;
-		$fname = 'OutputPage::sendCacheControl';
 
 		$response = $wgRequest->response();
 		if ($wgUseETag && $this->mETag)
@@ -628,7 +629,7 @@ class OutputPage {
 					# We'll purge the proxy cache explicitly, but require end user agents
 					# to revalidate against the proxy on each visit.
 					# Surrogate-Control controls our Squid, Cache-Control downstream caches
-					wfDebug( "$fname: proxy caching with ESI; {$this->mLastModified} **\n", false );
+					wfDebug( __METHOD__ . ": proxy caching with ESI; {$this->mLastModified} **\n", false );
 					# start with a shorter timeout for initial testing
 					# header( 'Surrogate-Control: max-age=2678400+2678400, content="ESI/1.0"');
 					$response->header( 'Surrogate-Control: max-age='.$wgSquidMaxage.'+'.$this->mSquidMaxage.', content="ESI/1.0"');
@@ -638,7 +639,7 @@ class OutputPage {
 					# to revalidate against the proxy on each visit.
 					# IMPORTANT! The Squid needs to replace the Cache-Control header with
 					# Cache-Control: s-maxage=0, must-revalidate, max-age=0
-					wfDebug( "$fname: local proxy caching; {$this->mLastModified} **\n", false );
+					wfDebug( __METHOD__ . ": local proxy caching; {$this->mLastModified} **\n", false );
 					# start with a shorter timeout for initial testing
 					# header( "Cache-Control: s-maxage=2678400, must-revalidate, max-age=0" );
 					$response->header( 'Cache-Control: s-maxage='.$this->mSquidMaxage.', must-revalidate, max-age=0' );
@@ -646,13 +647,13 @@ class OutputPage {
 			} else {
 				# We do want clients to cache if they can, but they *must* check for updates
 				# on revisiting the page.
-				wfDebug( "$fname: private caching; {$this->mLastModified} **\n", false );
+				wfDebug( __METHOD__ . ": private caching; {$this->mLastModified} **\n", false );
 				$response->header( 'Expires: ' . gmdate( 'D, d M Y H:i:s', 0 ) . ' GMT' );
 				$response->header( "Cache-Control: private, must-revalidate, max-age=0" );
 			}
 			if($this->mLastModified) $response->header( "Last-modified: {$this->mLastModified}" );
 		} else {
-			wfDebug( "$fname: no caching **\n", false );
+			wfDebug( __METHOD__ . ": no caching **\n", false );
 
 			# In general, the absence of a last modified header should be enough to prevent
 			# the client from using its cache. We send a few other things just to make sure.
@@ -675,8 +676,8 @@ class OutputPage {
 		if( $this->mDoNothing ){
 			return;
 		}
-		$fname = 'OutputPage::output';
-		wfProfileIn( $fname );
+
+		wfProfileIn( __METHOD__ );
 
 		if ( '' != $this->mRedirect ) {
 			# Standards require redirect URLs to be absolute
@@ -699,7 +700,7 @@ class OutputPage {
 			} else {
 				$wgRequest->response()->header( 'Location: '.$this->mRedirect );
 			}
-			wfProfileOut( $fname );
+			wfProfileOut( __METHOD__ );
 			return;
 		}
 		elseif ( $this->mStatusCode )
@@ -802,7 +803,7 @@ class OutputPage {
 
 		$this->sendCacheControl();
 		ob_end_flush();
-		wfProfileOut( $fname );
+		wfProfileOut( __METHOD__ );
 	}
 
 	/**
@@ -842,6 +843,7 @@ class OutputPage {
 	 * @deprecated
 	 */
 	public function reportTime() {
+		wfDeprecated( __METHOD__ );
 		$time = wfReportTime();
 		return $time;
 	}
@@ -903,8 +905,8 @@ class OutputPage {
 
 		# Don't auto-return to special pages
 		if( $return ) {
-			$return = $wgTitle->getNamespace() > -1 ? $wgTitle->getPrefixedText() : NULL;
-			$this->returnToMain( false, $return );
+			$return = $wgTitle->getNamespace() > -1 ? $wgTitle : NULL;
+			$this->returnToMain( null, $return );
 		}
 	}
 
@@ -932,7 +934,7 @@ class OutputPage {
 		array_unshift( $params, $msg );
 		$this->addHtml( call_user_func_array( 'wfMsgExt', $params ) );
 
-		$this->returnToMain( false );
+		$this->returnToMain();
 	}
 
 	/**
@@ -958,6 +960,7 @@ class OutputPage {
 
 	/** @deprecated */
 	public function errorpage( $title, $msg ) {
+		wfDeprecated( __METHOD__ );
 		throw new ErrorPageError( $title, $msg );
 	}
 
@@ -1017,7 +1020,7 @@ class OutputPage {
 				$message = wfMsgHtml( 'badaccess-groups', $groups );
 		}
 		$this->addHtml( $message );
-		$this->returnToMain( false );
+		$this->returnToMain();
 	}
 
 	/**
@@ -1063,7 +1066,7 @@ class OutputPage {
 		# otherwise we'll end up in a pointless loop
 		$mainPage = Title::newMainPage();
 		if( $mainPage->userCanRead() )
-			$this->returnToMain( true, $mainPage );
+			$this->returnToMain( null, $mainPage );
 	}
 
 	/** @deprecated */
@@ -1146,14 +1149,14 @@ class OutputPage {
 		// Show source, if supplied
 		if( is_string( $source ) ) {
 			$this->addWikiMsg( 'viewsourcetext' );
-			$text = wfOpenElement( 'textarea',
+			$text = Xml::openElement( 'textarea',
 						array( 'id'   => 'wpTextbox1',
 						       'name' => 'wpTextbox1',
 						       'cols' => $wgUser->getOption( 'cols' ),
 						       'rows' => $wgUser->getOption( 'rows' ),
 						       'readonly' => 'readonly' ) );
 			$text .= htmlspecialchars( $source );
-			$text .= wfCloseElement( 'textarea' );
+			$text .= Xml::closeElement( 'textarea' );
 			$this->addHTML( $text );
 
 			// Show templates used by this article
@@ -1166,37 +1169,43 @@ class OutputPage {
 		# link to it.  After all, you just tried editing it and couldn't, so
 		# what's there to do there?
 		if( $wgTitle->exists() ) {
-			$this->returnToMain( false, $wgTitle );
+			$this->returnToMain( null, $wgTitle );
 		}
 	}
 
 	/** @deprecated */
 	public function fatalError( $message ) {
+		wfDeprecated( __METHOD__ );
 		throw new FatalError( $message );
 	}
 
 	/** @deprecated */
 	public function unexpectedValueError( $name, $val ) {
+		wfDeprecated( __METHOD__ );
 		throw new FatalError( wfMsg( 'unexpected', $name, $val ) );
 	}
 
 	/** @deprecated */
 	public function fileCopyError( $old, $new ) {
+		wfDeprecated( __METHOD__ );
 		throw new FatalError( wfMsg( 'filecopyerror', $old, $new ) );
 	}
 
 	/** @deprecated */
 	public function fileRenameError( $old, $new ) {
+		wfDeprecated( __METHOD__ );
 		throw new FatalError( wfMsg( 'filerenameerror', $old, $new ) );
 	}
 
 	/** @deprecated */
 	public function fileDeleteError( $name ) {
+		wfDeprecated( __METHOD__ );
 		throw new FatalError( wfMsg( 'filedeleteerror', $name ) );
 	}
 
 	/** @deprecated */
 	public function fileNotFoundError( $name ) {
+		wfDeprecated( __METHOD__ );
 		throw new FatalError( wfMsg( 'filenotfound', $name ) );
 	}
 
@@ -1455,7 +1464,7 @@ class OutputPage {
 	 * for when rate limiting has triggered.
 	 */
 	public function rateLimited() {
-		global $wgOut, $wgTitle;
+		global $wgTitle;
 
 		$this->setPageTitle(wfMsg('actionthrottled'));
 		$this->setRobotPolicy( 'noindex,follow' );
@@ -1466,7 +1475,7 @@ class OutputPage {
 		$this->setStatusCode(503);
 		$this->addWikiMsg( 'actionthrottledtext' );
 
-		$this->returnToMain( false, $wgTitle );
+		$this->returnToMain( null, $wgTitle );
 	}
 
 	/**
