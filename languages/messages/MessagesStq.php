@@ -1387,7 +1387,7 @@ Ju lääste Annerenge stamt fon [[User:$3|$3]] ([[User_talk:$3|Diskussion]]).',
 'protect-cantedit'            => 'Du koast ju Speere fon disse Siede nit annerje, deer du neen Begjuchtigenge toun Beoarbaidjen fon ju Siede hääst.',
 'restriction-type'            => 'Schutsstoatus',
 'restriction-level'           => 'Schutshöchte',
-'minimum-size'                => 'Minstgrööte:',
+'minimum-size'                => 'Minstgrööte',
 'maximum-size'                => 'Maximoalgrööte:',
 'pagesize'                    => '(Bytes)',
 

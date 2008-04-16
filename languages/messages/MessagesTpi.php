@@ -8,7 +8,13 @@
  * @author לערי ריינהארט
  * @author Siebrand
  * @author Wytukaze
+ * @author Wantok
+ * @author לערי ריינהארט
+ * @author Siebrand
+ * @author Wytukaze
  */
+
+
 
 $messages = array(
 # User preference toggles

@@ -1315,7 +1315,7 @@ L'impusthazioni currenti pa la pàgina so <strong>$1</strong>:",
 'protect-cantedit'            => 'Nò è pussìbiri mudìfiggà li libelli di prutizioni pa la pàgina parchí nò si diponi di pimmissi nezzessàri pa mudìfiggà la pàgina.',
 'restriction-type'            => 'Primmissu:',
 'restriction-level'           => 'Libellu di isthrigniddura',
-'minimum-size'                => 'Misura mìnima (in byte)',
+'minimum-size'                => 'Misura mìnima',
 'maximum-size'                => 'Misura màssima (in byte):',
 'pagesize'                    => '(byte)',
 

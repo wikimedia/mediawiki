@@ -1607,7 +1607,7 @@ Tu sú aktuálne nastavenia stránky <strong>$1</strong>:',
 'protect-cantedit'            => 'Nemôžete zmeniť úrovne ochrany tejto stránky, pretože nemáte oprávnenie ju upravovať.',
 'restriction-type'            => 'Povolenie:',
 'restriction-level'           => 'Úroveň obmedzenia:',
-'minimum-size'                => 'Minimálna veľkosť:',
+'minimum-size'                => 'Minimálna veľkosť',
 'maximum-size'                => 'Maximálna veľkosť:',
 'pagesize'                    => '(bajtov)',
 

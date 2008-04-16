@@ -1533,7 +1533,7 @@ Tilbakemeldinger og videre assistanse:
 'protect-cantedit'            => 'Du kan ikke endre beskyttelsesnivået til denne siden fordi du ikke har tillatelse til å redigere den.',
 'restriction-type'            => 'Tillatelse',
 'restriction-level'           => 'Restriksjonsnivå',
-'minimum-size'                => 'Minimumstørrelse (byte)',
+'minimum-size'                => 'Minimumstørrelse',
 'maximum-size'                => 'Maksimumstørrelse:',
 'pagesize'                    => '(byte)',
 

@@ -1463,7 +1463,7 @@ De letzte Ännern is vun [[User:$3|$3]]
 'protect-cantedit'            => 'Du kannst de Sparr vun disse Siet nich ännern, du hest dor nich de nödigen Rechten för.',
 'restriction-type'            => 'Schuulstatus',
 'restriction-level'           => 'Schuulhööchd',
-'minimum-size'                => 'Minimumgrött:',
+'minimum-size'                => 'Minimumgrött',
 'maximum-size'                => 'Maximumgrött:',
 'pagesize'                    => '(Bytes)',
 

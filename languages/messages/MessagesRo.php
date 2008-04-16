@@ -542,32 +542,30 @@ Ignoraţi acest mesaj, dacă acea creare a fost o greşeală.',
 'summary-preview'           => 'Previzualizare descriere',
 'subject-preview'           => 'Previzualizare subiect/titlu:',
 'blockedtitle'              => 'Utilizatorul este blocat',
-'blockedtext'               => "Adresa IP sau contul de utilizator v-a fost blocat de către $1 pentru următorul motiv:
+'blockedtext'               => "<big>'''Adresa IP sau contul dumneavoastră de utilizator a fost blocat.'''</big>
 
-:''$2''
+Blocarea a fost făcută de $1. Motivul blocării este ''$2''.
 
-Adresa dumneavoastră IP este $3, iar identificatorul de blocare este #$5.<br />
-Blocarea expiră la: $6<br />
-Intended blockee: $7
+* Începutul blocării: $8
+* Sfârşitul blocării: $6
+* Utilizatorul vizat: $7
 
-Dacă nu înţelegeţi motivul blocării vă invităm să consultaţi [[{{MediaWiki:Policy-url}}|regulamentul de blocare]]. În cazul în care vă consideraţi nedreptăţit îl puteţi contacta pe $1 sau pe unul dintre ceilalţi [[{{MediaWiki:Grouppage-sysop}}|administratori]] pentru a explica situaţia.
-
-'''Blocarea nu se referă la citirea paginilor {{SITENAME}}, ci doar la modificarea lor.'''
-
-Pentru a afla cînd vă expiră blocarea căutaţi-vă numele de utilizator sau adresa IP în [[Special:Ipblocklist|lista de utilizatori blocaţi]].",
+Îl puteţi contacta pe $1 sau pe alt [[{{MediaWiki:Grouppage-sysop}}|administrator]] pentru a discuta blocarea.
+Nu puteţi folosi opţiunea 'trimite un e-mai utilizatorului' decât dacă o adresă de e-mail validă este specificată în [[Special:Preferences|preferinţele contului]] şi nu sunteţi blocat la folosirea ei.
+Adresa dumneavoastră IP curentă este $3, iar ID-ul blocării este $5. Vă rugăm să includeţi oricare sau ambele informaţii în orice interogări.",
 'autoblockedtext'           => 'Această adresă IP a fost blocată automat deoarece a fost folosită de către un alt utilizator, care a fost blocat de $1.
 Motivul blocării este:
 
 :\'\'$2\'\'
 
-Blcoarea expiră la: $6
+* Începutul blocării: $8
+* Sfârşitul blocării: $6
 
-Puteţi contacta pe $1 sau pe unul dintre ceilalţi
-[[{{MediaWiki:Grouppage-sysop}}|administratori]] pentru a discuta situaţia.
+Puteţi contacta pe $1 sau pe unul dintre ceilalţi [[{{MediaWiki:Grouppage-sysop}}|administratori]] pentru a discuta blocarea.
 
 Nu veţi putea folosi opţiunea de "trimite e-mail" decât dacă aveţi înregistrată o adresă de e-mail validă la [[Special:Preferences|preferinţe]] şi nu sunteţi blocat la folosirea ei.
 
-Identificatorul dumneavoastră de blocare este $5. Vă rugăm să îl includeţi în orice cerere pe care o faceţi.',
+Identificatorul dumneavoastră de blocare este $5. Vă rugăm să îl includeţi în orice interogări pe care le faceţi.',
 'blockednoreason'           => 'nici un motiv oferit',
 'blockedoriginalsource'     => "Sursa pentru '''$1''' apare mai jos:",
 'blockededitsource'         => "Textul '''modificărilor tale''' la  '''$1''' este redat mai jos:",
@@ -889,9 +887,7 @@ $3',
 'recentchangeslinked'          => 'Modificări corelate',
 'recentchangeslinked-title'    => 'Modificări legate de "$1"',
 'recentchangeslinked-noresult' => 'Nici o schimbare la paginile legate în perioada dată.',
-'recentchangeslinked-summary'  => "Lista de mai jos cuprinde ultimele modificări operate asupra paginilor cu legături ''de la'' pagina dată.
-Însă, dacă pagina dată este o categorie, afişează schimbările recente asupra paginilor conţinute în aceasta.
-
+'recentchangeslinked-summary'  => "Aceasta este o listă a schimbărilor efectuate recent asupra paginilor cu legături de la o anumită pagină (sau asupra membrilor unei anumite categorii).
 Paginile pe care le [[Special:Watchlist|urmăriţi]] apar în '''aldine'''.",
 
 # Upload
@@ -1552,8 +1548,8 @@ Articolul de destinaţie "[[$1]]" există deja. Doriţi să îl ştergeţi pentr
 'allmessagesname'           => 'Nume',
 'allmessagesdefault'        => 'Textul standard',
 'allmessagescurrent'        => 'Textul curent',
-'allmessagestext'           => 'Aceasta este lista completă a mesajelor disponibile în domeniul "MediaWiki:"
-Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] and [http://translatewiki.net Betawiki] if you wish to contribute to the generic MediaWiki localisation.',
+'allmessagestext'           => 'Aceasta este lista completă a mesajelor disponibile în domeniul MediaWiki.
+Vă rugăm să vizitaţi [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] şi [http://translatewiki.net Betawiki] dacă vreţi să contribuiţi la localizarea programului MediaWiki generic.',
 'allmessagesnotsupportedDB' => "'''{{ns:special}}:Allmessages''' nu poate fi folosit deoarece '''\$wgUseDatabaseMessages''' este închisă.",
 'allmessagesfilter'         => 'Filtrare în funcţie de titlul mesajului:',
 'allmessagesmodified'       => 'Arată doar mesajele modificate.',

@@ -1547,7 +1547,7 @@ Pšosym nawroś se na bok, wót kótaregož sy pśišeł a wopytaj hyšći raz.'
 'protect-cantedit'            => 'Njamóžoš šćitne rowniny toś tego boka změniś, dokulaž njamaš dowólnosć toś ten bok wobźěłaś.',
 'restriction-type'            => 'Status šćita',
 'restriction-level'           => 'Rownina šćita:',
-'minimum-size'                => 'Minimalna wjelikosć (bytes)',
+'minimum-size'                => 'Minimalna wjelikosć',
 'maximum-size'                => 'maksimalna wjelikosć:',
 'pagesize'                    => '(byty)',
 

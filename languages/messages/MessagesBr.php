@@ -1487,7 +1487,7 @@ Setu an doare a-vremañ evit ar bajenn-mañ <strong>$1</strong>:",
 'protect-cantedit'            => "N'oc'h ket evit cheñch live gwareziñ ar bajenn-mañ rak n'oc'h ket aotreet da zegas kemmoù enni.",
 'restriction-type'            => 'Aotre',
 'restriction-level'           => 'Live strishaat :',
-'minimum-size'                => 'Ment vihanañ (oktedoù)',
+'minimum-size'                => 'Ment vihanañ',
 'maximum-size'                => 'Ment vrasañ:',
 'pagesize'                    => '(okted)',
 

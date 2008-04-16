@@ -1456,7 +1456,7 @@ Ambelessì a-i son le regolassion corente për la pàgina <strong>$1</strong>:",
 'protect-cantedit'            => "A peul pa cambieje livel ëd protession a sta pàgina-sì, për via ch'a l'ha nen ël përmess dë modifichela.",
 'restriction-type'            => 'Përmess',
 'restriction-level'           => 'Livel ëd restrission',
-'minimum-size'                => 'Amzura mìnima (an byte)',
+'minimum-size'                => 'Amzura mìnima',
 'maximum-size'                => 'Amzura màssima:',
 'pagesize'                    => '(byte)',
 

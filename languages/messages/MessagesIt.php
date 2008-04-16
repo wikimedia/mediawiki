@@ -1539,7 +1539,7 @@ Le impostazioni correnti per la pagina sono <strong>$1</strong>:',
 'protect-cantedit'            => 'Non è possibile modificare i livelli di protezione per la pagina in quanto non si dispone dei permessi necessari per modificare la pagina stessa.',
 'restriction-type'            => 'Permesso',
 'restriction-level'           => 'Livello di restrizione',
-'minimum-size'                => 'Dimensione minima (in byte)',
+'minimum-size'                => 'Dimensione minima',
 'maximum-size'                => 'Dimensione massima:',
 'pagesize'                    => '(byte)',
 

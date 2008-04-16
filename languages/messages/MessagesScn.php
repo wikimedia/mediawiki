@@ -1290,7 +1290,7 @@ Li mpostazzioni correnti pâ pàggina sugnu <strong>$1</strong>:',
 'protect-cascade'             => 'Prutezzioni ricursiva (pruteggi tutti li pàggini nclusi nta chista).',
 'restriction-type'            => 'Pirmissu',
 'restriction-level'           => 'Liveddu di ristrizzioni:',
-'minimum-size'                => "Dimensioni minima ('n byte)",
+'minimum-size'                => 'Dimensioni minima',
 'maximum-size'                => 'Dimensioni massima:',
 
 # Restrictions (nouns)

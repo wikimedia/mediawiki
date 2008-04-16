@@ -181,12 +181,15 @@ Pangngaasim ta mangpilika sabali a nagan.',
 'wrongpasswordempty' => 'Blanko ti impanmo a pasesbalikas. Padasem koma manen.',
 'passwordtooshort'   => 'Ababa unay ti impanmo a password. Masapul nga addaan iti uray la koma $1 a characters.',
 'mailmypassword'     => 'Emailandak iti baro a password',
+'passwordsent'       => 'Naipatulod ti baro a pasesbalikas iti email address a nairehistro ken "$1".
+Ag-loginka koma manen kalpasan a maawatmo daytoy a baro a pasesbalikas.',
 'emailconfirmlink'   => 'Kompirmaem ti e-mail addressmo',
 'accountcreated'     => 'Naaramiden ti account',
 'accountcreatedtext' => 'Naaramiden ti account a pagaramat ni $1.',
 'loginlanguagelabel' => 'Lengguahe: $1',
 
 # Password reset dialog
+'resetpass_header'    => 'Sukatan ti pasesbalikas',
 'resetpass_success'   => 'Sibaballigi a nabaliwan ti pasesbalikasmo! Sumsumrekkan...',
 'resetpass_forbidden' => 'Saan a mabalin a baliwan dagiti pasesbalikas iti {{SITENAME}}',
 

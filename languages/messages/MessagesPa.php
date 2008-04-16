@@ -1,5 +1,6 @@
 <?php
-/** Punjabi (Gurmukhi)
+/** Punjabi (ਪੰਜਾਬੀ)
+ *
  * @addtogroup Language
  *
  * @author Sukh
@@ -53,7 +54,6 @@ $digitTransformTable = array(
 	'9' => '੯', # &#x0a6f;
 );
 $linkTrail = '/^([ਁਂਃਅਆਇਈਉਊਏਐਓਔਕਖਗਘਙਚਛਜਝਞਟਠਡਢਣਤਥਦਧਨਪਫਬਭਮਯਰਲਲ਼ਵਸ਼ਸਹ਼ਾਿੀੁੂੇੈੋੌ੍ਖ਼ਗ਼ਜ਼ੜਫ਼ੰੱੲੳa-z]+)(.*)$/sDu';
-
 
 $messages = array(
 # User preference toggles
@@ -167,7 +167,7 @@ $messages = array(
 'printableversion'  => 'ਪਰਿੰਟਯੋਗ ਵਰਜਨ',
 'permalink'         => 'ਪੱਕਾ ਲਿੰਕ',
 'print'             => 'ਪਰਿੰਟ ਕਰੋ',
-'edit'              => 'ਸੋਧ',
+'edit'              => 'ਬਦਲੋ',
 'editthispage'      => 'ਇਹ ਪੇਜ਼ ਸੋਧੋ',
 'delete'            => 'ਹਟਾਓ',
 'deletethispage'    => 'ਇਹ ਪੇਜ਼ ਹਟਾਓ',
@@ -954,12 +954,10 @@ to upload files.',
 'exif-subjectdistancerange-0' => 'ਅਣਜਾਣ',
 'exif-subjectdistancerange-1' => 'ਮਾਈਕਰੋ',
 'exif-subjectdistancerange-2' => 'ਝਲਕ ਬੰਦ ਕਰੋ',
-'exif-subjectdistancerange-3' => 'Distant view',
 
 # Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
 'exif-gpsspeed-k' => 'ਕਿਲੋਮੀਟਰ ਪ੍ਰਤੀ ਘੰਟਾ',
 'exif-gpsspeed-m' => 'ਮੀਲ ਪ੍ਰਤੀ ਘੰਟਾ',
-'exif-gpsspeed-n' => 'Knots',
 
 # E-mail address confirmation
 'confirmemail'          => 'ਈਮੇਲ ਐਡਰੈੱਸ ਪੁਸ਼ਟੀ',

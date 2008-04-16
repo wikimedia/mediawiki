@@ -1444,7 +1444,7 @@ Le impostazion atuali par la pagina le xe <strong>$1</strong>:',
 'protect-cantedit'            => 'No te pol modificar i livèi de protezion par la pagina, parché no te ghè mìa i parmessi necessari par modificar la pagina stessa.',
 'restriction-type'            => 'Parmesso:',
 'restriction-level'           => 'Livel de restrizion',
-'minimum-size'                => 'Dimension minima (in byte)',
+'minimum-size'                => 'Dimension minima',
 'maximum-size'                => 'Dimension massima:',
 'pagesize'                    => '(byte)',
 
