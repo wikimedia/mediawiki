@@ -580,9 +580,6 @@ class LoginForm {
 
 		$np = $u->randomPassword();
 		$u->setNewpassword( $np, $throttle );
-
-		setcookie( "{$wgCookiePrefix}Token", '', time() - 3600, $wgCookiePath, $wgCookieDomain, $wgCookieSecure );
-
 		$u->saveSettings();
 
 		$ip = wfGetIP();

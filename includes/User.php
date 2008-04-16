@@ -2000,36 +2000,55 @@ class User {
 			}
 		}
 	}
+	
+	protected function setCookie( $name, $value, $exp=0 ) {
+		global $wgCookiePrefix,$wgCookieDomain,$wgCookieSecure,$wgCookieExpiration, $wgCookieHttpOnly;
+		if( $exp == 0 ) {
+			$exp = time() + $wgCookieExpiration;
+		}
+		$httpOnlySafe = version_compare("5.2", PHP_VERSION, "<");
+		
+		if( $httpOnlySafe && isset( $wgCookieHttpOnly ) ) {
+			setcookie( $wgCookiePrefix . $name,
+				$value,
+				$exp,
+				'/',
+				$wgCookieDomain,
+				$wgCookieSecure,
+				$wgCookieHttpOnly );
+		} else {
+			// setcookie() fails on PHP 5.1 if you give it future-compat paramters.
+			// stab stab!
+			setcookie( $wgCookiePrefix . $name,
+				$value,
+				$exp,
+				'/',
+				$wgCookieDomain,
+				$wgCookieSecure );
+		}
+	}
+	
+	protected function clearCookie( $name ) {
+		global $wgCookiePrefix;
+		$this->setCookie( $name, '', time() - 86400 );
+	}
 
 	function setCookies() {
-		global $wgCookieExpiration, $wgCookiePath, $wgCookieDomain, $wgCookieSecure, $wgCookiePrefix, $wgCookieHttpOnly;;
 		$this->load();
 		if ( 0 == $this->mId ) return;
-		$exp = time() + $wgCookieExpiration;
 		
-		$doHttpOnly = version_compare("5.2", PHP_VERSION, "<");
-
 		$_SESSION['wsUserID'] = $this->mId;
 		
-		if ($doHttpOnly) {
-			setcookie( $wgCookiePrefix.'UserID', $this->mId, $exp, $wgCookiePath, $wgCookieDomain, $wgCookieSecure, $wgCookieHttpOnly );
-			setcookie( $wgCookiePrefix.'UserName', $this->getName(), $exp, $wgCookiePath, $wgCookieDomain, $wgCookieSecure, $wgCookieHttpOnly );
-		} else {
-			setcookie( $wgCookiePrefix.'UserID', $this->mId, $exp, $wgCookiePath, $wgCookieDomain, $wgCookieSecure );
-			setcookie( $wgCookiePrefix.'UserName', $this->getName(), $exp, $wgCookiePath, $wgCookieDomain, $wgCookieSecure );
-		}
+		$this->setCookie( 'UserID', $this->mId );
+		$this->setCookie( 'UserName', $this->getName() );
 
 		$_SESSION['wsUserName'] = $this->getName();
 
 		$_SESSION['wsToken'] = $this->mToken;
 		if ( 1 == $this->getOption( 'rememberpassword' ) ) {
-			if ($doHttpOnly)
-				setcookie( $wgCookiePrefix.'Token', $this->mToken, $exp, $wgCookiePath, $wgCookieDomain, $wgCookieSecure, $wgCookieHttpOnly );
-			else
-				setcookie( $wgCookiePrefix.'Token', $this->mToken, $exp, $wgCookiePath, $wgCookieDomain, $wgCookieSecure );
+			$this->setCookie( 'Token', $this->mToken );
 		} else {
-			if ($doHttpOnly)
-			setcookie( $wgCookiePrefix.'Token', '', time() - 3600 );
+			$this->clearCookie( 'Token' );
 		}
 	}
 
@@ -2048,16 +2067,15 @@ class User {
 	 * Clears the cookies and session, resets the instance cache
 	 */
 	function doLogout() {
-		global $wgCookiePath, $wgCookieDomain, $wgCookieSecure, $wgCookiePrefix;
 		$this->clearInstanceCache( 'defaults' );
 
 		$_SESSION['wsUserID'] = 0;
 
-		setcookie( $wgCookiePrefix.'UserID', '', time() - 3600, $wgCookiePath, $wgCookieDomain, $wgCookieSecure );
-		setcookie( $wgCookiePrefix.'Token', '', time() - 3600, $wgCookiePath, $wgCookieDomain, $wgCookieSecure );
+		$this->clearCookie( 'UserID' );
+		$this->clearCookie( 'Token' );
 
 		# Remember when user logged out, to prevent seeing cached pages
-		setcookie( $wgCookiePrefix.'LoggedOut', wfTimestampNow(), time() + 86400, $wgCookiePath, $wgCookieDomain, $wgCookieSecure );
+		$this->setCookie( 'LoggedOut', wfTimestampNow(), time() + 86400 );
 	}
 
 	/**
