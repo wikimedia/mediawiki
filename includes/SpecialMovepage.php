@@ -66,7 +66,7 @@ class MovePageForm {
 	}
 
 	function showForm( $err, $hookErr = '' ) {
-		global $wgOut, $wgUser, $wgContLang;
+		global $wgOut, $wgUser;
 
 		$ot = Title::newFromURL( $this->oldTitle );
 		if( is_null( $ot ) ) {
@@ -74,8 +74,6 @@ class MovePageForm {
 			return;
 		}
 
-		$start = $wgContLang->isRTL() ? 'right' : 'left';
-		$end = $wgContLang->isRTL() ? 'left' : 'right';
 		$sk = $wgUser->getSkin();
 
 		$oldTitleLink = $sk->makeLinkObj( $ot );
@@ -111,7 +109,7 @@ class MovePageForm {
 			$confirm = "
 				<tr>
 					<td></td>
-					<td>" .
+					<td class='mw-input'>" .
 						Xml::checkLabel( wfMsg( 'delete_and_move_confirm' ), 'wpConfirm', 'wpConfirm' ) .
 					"</td>
 				</tr>";
@@ -154,30 +152,28 @@ class MovePageForm {
 			 Xml::element( 'legend', null, wfMsg( 'move-page-legend' ) ) .
 			 Xml::openElement( 'table', array( 'border' => '0', 'id' => 'mw-movepage-table' ) ) .
 			 "<tr>
-			 	<td align='$end'>" .
+			 	<td class='mw-label'>" .
 					wfMsgHtml( 'movearticle' ) .
 				"</td>
-				<td align='$start'>
+				<td class='mw-input'>
 					<strong>{$oldTitleLink}</strong>
 				</td>
 			</tr>
 			<tr>
-				<td align='$end'>" .
+				<td class='mw-label'>" .
 					Xml::label( wfMsg( 'newtitle' ), 'wpNewTitle' ) .
 				"</td>
-				<td align='$start'>" .
+				<td class='mw-input'>" .
 					Xml::input( 'wpNewTitle', 40, $newTitle, array( 'type' => 'text', 'id' => 'wpNewTitle' ) ) .
 					Xml::hidden( 'wpOldTitle', $oldTitle ) .
 				"</td>
 			</tr>
 			<tr>
-				<td align='$end' valign='top'><br />" .
+				<td class='mw-label'>" .
 					Xml::label( wfMsg( 'movereason' ), 'wpReason' ) .
 				"</td>
-				<td align='$start' valign='top'><br />" .
-					Xml::openElement( 'textarea', array( 'name' => 'wpReason', 'id' => 'wpReason', 'cols' => 60, 'rows' => 2 ) ) .
-					htmlspecialchars( $this->reason ) .
-					Xml::closeElement( 'textarea' ) .
+				<td class='mw-input'>" .
+					Xml::tags( 'textarea', array( 'name' => 'wpReason', 'id' => 'wpReason', 'cols' => 60, 'rows' => 2 ), htmlspecialchars( $this->reason ) ) .
 				"</td>
 			</tr>"
 		);
@@ -186,7 +182,7 @@ class MovePageForm {
 			$wgOut->addHTML( "
 				<tr>
 					<td></td>
-					<td>" .
+					<td class='mw-input'>" .
 						Xml::checkLabel( wfMsg( 'movetalk' ), 'wpMovetalk', 'wpMovetalk', $moveTalkChecked ) .
 					"</td>
 				</tr>"
@@ -197,14 +193,14 @@ class MovePageForm {
 		$wgOut->addHTML( "
 			<tr>
 				<td></td>
-				<td>" .
+				<td class='mw-input'>" .
 					Xml::checkLabel( wfMsg( 'move-watch' ), 'wpWatch', 'watch', $watchChecked ) .
 				"</td>
 			</tr>
 				{$confirm}
 			<tr>
 				<td>&nbsp;</td>
-				<td align='$start'>" .
+				<td class='mw-submit'>" .
 					Xml::submitButton( $movepagebtn, array( 'name' => $submitVar ) ) .
 				"</td>
 			</tr>" .
