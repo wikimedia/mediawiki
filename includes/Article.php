@@ -2361,7 +2361,7 @@ class Article {
 		$logtype = $suppress ? 'suppress' : 'delete';
 		$log = new LogPage( $logtype );
 		# Make sure logging got through
-		$ok = $log->addEntry( 'delete', $this->mTitle, $reason, array(), $dbw );
+		$ok = $log->addEntry( 'delete', $this->mTitle, $reason, array() );
 		if( !$ok ) {
 			$dbw->rollback();
 			return false;

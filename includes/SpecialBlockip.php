@@ -365,8 +365,7 @@ class IPBlockForm {
 			# Make log entry, if the name is hidden, put it in the oversight log
 			$log_type = ($this->BlockHideName) ? 'suppress' : 'block';
 			$log = new LogPage( $log_type );
-			$ok = $log->addEntry( 'block', Title::makeTitle( NS_USER, $this->BlockAddress ),
-			  $reasonstr, $logParams, $dbw );
+			$ok = $log->addEntry( 'block', Title::makeTitle( NS_USER, $this->BlockAddress ), $reasonstr, $logParams );
 			# Make sure logging got through
 			if( !$ok ) {
 				$dbw->rollback();
