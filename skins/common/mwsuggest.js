@@ -515,9 +515,7 @@ function os_eventKeypress(e){
 /** Catch the key code (Firefox bug)  */
 function os_eventKeydown(e){
 	if (!e) var e = window.event;
-	if (e.target) var targ = e.target;
-	else if (e.srcElement) var targ = e.srcElement;
-	else return;
+	var targ = os_getTarget(e);
 	var r = os_map[targ.id];
 	if(r == null)
 		return; // not our event
