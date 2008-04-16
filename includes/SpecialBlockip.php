@@ -366,7 +366,7 @@ class IPBlockForm {
 			$log_type = ($this->BlockHideName) ? 'suppress' : 'block';
 			$log = new LogPage( $log_type );
 			$ok = $log->addEntry( 'block', Title::makeTitle( NS_USER, $this->BlockAddress ),
-			  $reasonstr, $logParams );
+			  $reasonstr, $logParams, $dbw );
 			# Make sure logging got through
 			if( !$ok ) {
 				$dbw->rollback();
