@@ -1557,7 +1557,7 @@ wiki: $PAGEEDITOR_WIKI
 'protect-cantedit'            => '你唔可以改呢版嘅保護等級，因為你無權限去編輯佢。',
 'restriction-type'            => '許可:',
 'restriction-level'           => '限制等級:',
-'minimum-size'                => '最小大細:',
+'minimum-size'                => '最小大細',
 'maximum-size'                => '最大大細:',
 'pagesize'                    => '(bytes)',
 

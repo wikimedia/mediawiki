@@ -1276,7 +1276,7 @@ $NEWPAGE
 'protect-cantedit'            => '汝無動頁之護也，因汝無權纂之矣。',
 'restriction-type'            => '准',
 'restriction-level'           => '緘捆',
-'minimum-size'                => '幅越：',
+'minimum-size'                => '幅越',
 'maximum-size'                => '幅弱：',
 'pagesize'                    => '（位元組）',
 
