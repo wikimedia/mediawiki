@@ -12,7 +12,8 @@ class MWException extends Exception {
 	 */
 	function useOutputPage() {
 		return !empty( $GLOBALS['wgFullyInitialised'] ) &&
-			!empty( $GLOBALS['wgArticle'] ) && !empty( $GLOBALS['wgTitle'] );
+			( !empty( $GLOBALS['wgArticle'] ) || ( !empty( $GLOBALS['wgOut'] ) && !$GLOBALS['wgOut']->isArticle() ) ) &&
+			!empty( $GLOBALS['wgTitle'] );
 	}
 
 	/**
