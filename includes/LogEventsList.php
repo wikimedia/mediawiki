@@ -243,7 +243,7 @@ class LogEventsList {
 			} else if ( self::typeAction($row,'merge','merge') ) {
 				$merge = SpecialPage::getTitleFor( 'Mergehistory' );
 				$revert = '(' .  $this->skin->makeKnownLinkObj( $merge, $this->message['revertmerge'],
-					wfArrayToCGI( array('target' => $paramArray[0], 'dest' => urlencode( $title->getPrefixedDBkey() ), 
+					wfArrayToCGI( array('target' => $paramArray[0], 'dest' => $title->getPrefixedDBkey(), 
 						'mergepoint' => $paramArray[1] ) ) ) . ')';
 			// If an edit was hidden from a page give a review link to the history
 			} else if( self::typeAction($row,array('delete','suppress'),'revision') && $wgUser->isAllowed( 'deleterevision' ) ) {
@@ -255,12 +255,12 @@ class LogEventsList {
 					$Ids = explode( ',', $paramArray[2] );
 					if( count($Ids) == 1 ) {
 						$revert = $this->skin->makeKnownLinkObj( $revdel, $this->message['revdel-restore'],
-						wfArrayToCGI( array('target' => urlencode( $title->getPrefixedDBkey() ), $paramArray[1] => $Ids[0] ) ) );
+						wfArrayToCGI( array('target' => $title->getPrefixedDBkey(), $paramArray[1] => $Ids[0] ) ) );
 					} else {
 						$revert .= $this->message['revdel-restore'].':';
 						foreach( $Ids as $n => $id ) {
 							$revert .= ' '.$this->skin->makeKnownLinkObj( $revdel, '#'.($n+1),
-								wfArrayToCGI( array('target' => urlencode( $title->getPrefixedDBkey() ), $paramArray[1] => $id ) ) );
+								wfArrayToCGI( array('target' => $title->getPrefixedDBkey(), $paramArray[1] => $id ) ) );
 						}
 					}
 					$revert = "($revert)";
@@ -274,11 +274,11 @@ class LogEventsList {
 					// Link to each hidden object ID, $paramArray[1] is the url param. List if several...
 					if( count($Ids) == 1 ) {
 						$revert = $this->skin->makeKnownLinkObj( $revdel, $this->message['revdel-restore'],
-							wfArrayToCGI( array('target' => urlencode( $title->getPrefixedDBkey() ),'logid' => $Ids[0] ) ) );
+							wfArrayToCGI( array('target' => $title->getPrefixedDBkey(),'logid' => $Ids[0] ) ) );
 					} else {
 						foreach( $Ids as $n => $id ) {
 							$revert .= $this->skin->makeKnownLinkObj( $revdel, '#'.($n+1),
-								wfArrayToCGI( array('target' => urlencode( $title->getPrefixedDBkey() ),'logid' => $id ) ) );
+								wfArrayToCGI( array('target' => $title->getPrefixedDBkey(),'logid' => $id ) ) );
 						}
 					}
 					$revert = "($revert)";
@@ -320,7 +320,7 @@ class LogEventsList {
 		} else {
 			$target = SpecialPage::getTitleFor( 'Log', $row->log_type );
 			$del = $this->skin->makeKnownLinkObj( $revdel, $this->message['rev-delundel'],
-				'target=' . urlencode( $target->getPrefixedDBkey() ) . '&logid='.$row->log_id );
+				'target=' . $target->getPrefixedUrl() . '&logid='.$row->log_id );
 			// Bolden oversighted content
 			if( self::isDeleted( $row, LogPage::DELETED_RESTRICTED ) )
 				$del = "<strong>$del</strong>";
