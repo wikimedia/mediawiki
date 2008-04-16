@@ -5,11 +5,12 @@
  *
  * @author Albonio
  * @author Artomo
- * @author SPQRobin
  * @author Malafaya
  * @author Lakaoso
+ * @author SPQRobin
  * @author לערי ריינהארט
  * @author Siebrand
+ * @author Jon Harald Søby
  */
 
 $namespaceNames = array(
@@ -105,11 +106,12 @@ $messages = array(
 'dec'           => 'dec',
 
 # Categories related messages
-'categories'      => 'Kategorii',
-'pagecategories'  => '{{PLURAL:$1|Kategorio|Kategorii}}',
-'category_header' => 'Artikli en kategorio "$1"',
-'subcategories'   => 'Subkategorii',
-'category-empty'  => "''Nuntempe existas nula pagini en ita kategorio.''",
+'categories'             => 'Kategorii',
+'pagecategories'         => '{{PLURAL:$1|Kategorio|Kategorii}}',
+'category_header'        => 'Artikli en kategorio "$1"',
+'subcategories'          => 'Subkategorii',
+'category-empty'         => "''Nuntempe existas nula pagini en ita kategorio.''",
+'listingcontinuesabbrev' => 'seq.',
 
 'mainpagetext' => "<big>'''MediaWiki instalesis sucese.'''</big>",
 
@@ -144,7 +146,9 @@ $messages = array(
 'permalink'         => 'Permananta ligilo',
 'print'             => 'Imprimar',
 'edit'              => 'Chanjez',
+'create'            => 'Krear',
 'editthispage'      => 'Redaktar ca pagino',
+'create-this-page'  => 'Kreez ca pagino',
 'delete'            => 'Efacar',
 'deletethispage'    => 'Efacar ica pagino',
 'undelete_short'    => 'Restaurar {{PLURAL:$1|1 redakto|$1 redakti}}',
@@ -418,10 +422,11 @@ Publikigante vua skribajo hike, vu asertas ke olu skribesis da vu ipsa o kopiesi
 'prevn'             => 'antea $1',
 'nextn'             => 'sequanta $1',
 'viewprevnext'      => 'Vidar ($1) ($2) ($3).',
+'searchall'         => 'omna',
 'showingresults'    => "Montrante infre {{PLURAL:$1|'''1''' rezulto|'''$1''' rezulti}}, qui komencas kun numero #'''$2'''.",
-'showingresultsnum' => "Montrante infre {{PLURAL:$1|'''1''' rezulto|'''$1''' rezulti}}, qui komencas kun numero #'''$2'''.",
+'showingresultsnum' => "Montrante infre {{PLURAL:$3|'''1''' rezulto|'''$3''' rezulti}}, qui komencas kun numero #'''$2'''.",
 'nonefound'         => 'La nesucesoza sercho ofte produktesas pro serchar vorti tro komuna quale "havar" e "di", qui ne esas indexizita, o pro serchar plu kam un vorto (En la rezulto aparos nur la pagini qui kontenas omna vorti serchata).',
-'powersearch'       => 'Serchez',
+'powersearch'       => 'Sercho',
 'powersearchtext'   => 'Serchar en nomari: <br> $1<br> $2 ridirektili-listo <br> Serchar $3 $9',
 'searchdisabled'    => 'La sercho en la kompleta texto desaktivigesis temporale pro superkargo dil servanto. Ni esperas riaktivigar ol pos facar ula proxima aktualigi. Dum ica tempo, vu povas serchar per Google.',
 
@@ -463,11 +468,16 @@ Publikigante vua skribajo hike, vu asertas ke olu skribesis da vu ipsa o kopiesi
 'servertime'         => 'La kloko en la servanto esas',
 'guesstimezone'      => 'Obtenar la kloko dil &quot;browser&quot;',
 'defaultns'          => 'Serchar en la spaco-nomi omise:',
+'files'              => 'Arkivi',
 
 # Groups
+'group'     => 'Grupo:',
 'group-all' => '(omna)',
 
 'grouppage-sysop' => '{{ns:project}}:Administranti',
+
+# User rights log
+'rightsnone' => '(nula)',
 
 # Recent changes
 'nchanges'          => '$1 {{PLURAL:$1|chanjo|chanji}}',
@@ -484,6 +494,8 @@ Publikigante vua skribajo hike, vu asertas ke olu skribesis da vu ipsa o kopiesi
 'diff'              => 'dif',
 'hide'              => 'Celar',
 'show'              => 'Montrar',
+'minoreditletter'   => 'm',
+'newpageletter'     => 'N',
 'boteditletter'     => 'r',
 
 # Recent changes linked
@@ -515,8 +527,11 @@ Publikigante vua skribajo hike, vu asertas ke olu skribesis da vu ipsa o kopiesi
 'uploaddisabled'    => 'Pardonez, la adkargo esas desaktiva.',
 
 # Special:Imagelist
-'imgdesc'   => 'desk',
-'imagelist' => 'Listo di imaji',
+'imgdesc'        => 'desk',
+'imgfile'        => 'arkivo',
+'imagelist'      => 'Listo di imaji',
+'imagelist_date' => 'Dato',
+'imagelist_name' => 'Nomo',
 
 # Image description page
 'filehist'                  => 'Historio dil arkivo',
@@ -528,6 +543,9 @@ Publikigante vua skribajo hike, vu asertas ke olu skribesis da vu ipsa o kopiesi
 'linkstoimage'              => 'Ca pagini ligas al imajo:',
 'nolinkstoimage'            => 'Nula pagino ligas a ca pagino.',
 'uploadnewversion-linktext' => 'Adkargez nova versiono dil arkivo',
+
+# File deletion
+'filedelete-submit' => 'Efacar',
 
 # Random page
 'randompage' => 'Pagino hazarde',
@@ -545,6 +563,7 @@ Publikigante vua skribajo hike, vu asertas ke olu skribesis da vu ipsa o kopiesi
 'brokenredirectstext' => 'La sequanta ridirektili ligas a ne-existanta artiklo:',
 
 # Miscellaneous special pages
+'ncategories'      => '$1 {{PLURAL:$1|kategorio|kategorii}}',
 'nlinks'           => '$1 ligili',
 'nviews'           => '$1 viziti',
 'lonelypages'      => 'Pagini sen ligili',
@@ -561,16 +580,18 @@ Publikigante vua skribajo hike, vu asertas ke olu skribesis da vu ipsa o kopiesi
 'ancientpages'     => 'Maxim anciena artikli',
 'move'             => 'Movez',
 'movethispage'     => 'Rinomizar ica pagino',
-'unusedimagestext' => 'Voluntez egardez ke altra ret-situi quale altra enciklopedii povus ligar a imajo per direta URL, e do ol povus esar enlistizita hike malgre olu havas aktiva uzo.',
+'unusedimagestext' => 'Voluntez egardez ke altra ret-situi povus ligar a arkivo per direta URL, e do ol povus esar enlistizita hike malgre olu havas aktiva uzo.',
 'notargettitle'    => 'Ne esas vakua pagino',
 'notargettext'     => 'Vu ne definis en qua pagino agar ica funciono.',
 
 # Book sources
-'booksources' => 'Fonti di libri',
+'booksources'    => 'Fonti di libri',
+'booksources-go' => 'Irar',
 
 # Special:Log
 'specialloguserlabel'  => 'Uzero:',
 'speciallogtitlelabel' => 'Titulo:',
+'log-search-submit'    => 'Irar',
 
 # Special:Allpages
 'allpages'          => 'Omna pagini',
@@ -581,6 +602,9 @@ Publikigante vua skribajo hike, vu asertas ke olu skribesis da vu ipsa o kopiesi
 'allnotinnamespace' => 'Omna pagini (ne in nomaro $1)',
 'allpagessubmit'    => 'Irez',
 'allpages-bad-ns'   => '{{SITENAME}} ne havas nomaro "$1".',
+
+# Special:Listgrouprights
+'listgrouprights-group' => 'Grupo',
 
 # E-mail user
 'mailnologin'     => 'Ne sendar adreso',
@@ -622,12 +646,15 @@ Publikigante vua skribajo hike, vu asertas ke olu skribesis da vu ipsa o kopiesi
 'watchlist-hide-own'   => 'Celez chanji da me',
 'watchlist-hide-minor' => 'Celez mikra chanji',
 
+'enotif_newpagetext' => 'Ico esas nula pagino.',
+
 # Delete/protect/revert
 'deletepage'         => 'Efacar pagino',
 'confirm'            => 'Konfirmar',
 'excontent'          => "La kontenajo esis: '$1'",
 'exbeforeblank'      => "La kontenajo ante efaco esis: '$1'",
 'exblank'            => 'La pagino esis vakua',
+'delete-legend'      => 'Efacar',
 'historywarning'     => 'Egardez: La pagino, quan vu efaceskas, havas versionaro:',
 'actioncomplete'     => 'Ago kompletigita',
 'deletedtext'        => '"<nowiki>$1</nowiki>" efacesis.
@@ -678,6 +705,7 @@ Lasta edito esis da [[User:$3|$3]] ([[User talk:$3|Talk]]).',
 # What links here
 'whatlinkshere'       => 'Quo ligas hike',
 'whatlinkshere-title' => 'Pagini qui ligas ad $1',
+'whatlinkshere-page'  => 'Pagino:',
 'linklistsub'         => '(Listo di ligili)',
 'linkshere'           => "Ca pagini esas ligilizita ad '''[[:$1]]''':",
 'nolinkshere'         => "Nula pagino ligas ad '''[[:$1]]'''.",
@@ -689,6 +717,7 @@ Lasta edito esis da [[User:$3|$3]] ([[User talk:$3|Talk]]).',
 'ipbexpiry'          => 'Expiro',
 'ipbreason'          => 'Motivo',
 'ipbsubmit'          => 'Blokusar ica uzanto',
+'ipbotheroption'     => 'altra',
 'badipaddress'       => 'IP-adreso ne esas valida',
 'blockipsuccesssub'  => 'Blokusado sucesis',
 'blockipsuccesstext' => '[[Special:Contributions/$1|$1]] blokusesis.<br />
@@ -697,6 +726,7 @@ Videz [[Special:Ipblocklist|IP-blokuslisto]] por revizor blokusadi.',
 'unblockiptext'      => 'Uzez la sequanta formularo por restaurar la skribo-aceso ad IP-adreso qua blokusesis antee.',
 'ipusubmit'          => 'Desblokusar ica IP-adreso',
 'ipblocklist'        => 'Listo di blokusita IP-adresi ed uzantonomi',
+'ipblocklist-submit' => 'Serchar',
 'blocklistline'      => '$1, $2 blokusas $3 (expiras $4)',
 'blocklink'          => 'blokusar',
 'unblocklink'        => 'Desblokusar',
@@ -750,10 +780,12 @@ Voluntez selektar altra nomo.',
 'talkpagemoved'    => 'Anke la korespondanta debato-pagino movesis.',
 'talkpagenotmoved' => 'La korespondanta debato-pagino <strong>ne</strong> movesis.',
 '1movedto2'        => '[[$1]] movita a [[$2]]',
+'movereason'       => 'Motivo:',
 
 # Export
 'export'        => 'Exportacar pagini',
 'exportcuronly' => 'On inkluzas nur la nuna revizo, ne la kompleta versionaro',
+'export-addcat' => 'Adjuntar',
 
 # Namespace 8 related
 'allmessages'     => 'Omna sistemo-mesaji',
@@ -786,6 +818,7 @@ Voluntez selektar altra nomo.',
 'tooltip-ca-delete'               => 'Efacez ica pagino',
 'tooltip-ca-move'                 => 'Movez pagino',
 'tooltip-search'                  => 'Serchez en {{SITENAME}}',
+'tooltip-p-logo'                  => 'Frontispico',
 'tooltip-n-mainpage'              => 'Vizitez la Frontispico',
 'tooltip-n-portal'                => 'Pri la projeto, quon vu facus, ube trovus utilaji',
 'tooltip-n-recentchanges'         => 'Listo di recenta chanji en la wiki.',
@@ -794,7 +827,7 @@ Voluntez selektar altra nomo.',
 'tooltip-t-whatlinkshere'         => 'Montrez omna wiki pagini qui ligas ad hike',
 'tooltip-t-contributions'         => 'Videz kontributaji di ta uzero',
 'tooltip-t-emailuser'             => 'Sendez mesajo al uzanto',
-'tooltip-t-upload'                => 'Adkargez imaji o son-arkivi',
+'tooltip-t-upload'                => 'Adkargez arkivi',
 'tooltip-t-specialpages'          => 'Montrez listo di omna specala pagini',
 'tooltip-ca-nstab-user'           => 'Videz la pagino dil uzero',
 'tooltip-minoredit'               => 'Reperar ica chanjo kom mikra',
@@ -817,13 +850,42 @@ Voluntez selektar altra nomo.',
 # Spam protection
 'spamprotectiontitle' => 'Filtrilo kontre spamo',
 
+# Patrol log
+'patrol-log-auto' => '(automata)',
+
+# Media information
+'widthheightpage' => '$1×$2, $3 pagini',
+
 # Special:Newimages
 'imagelisttext' => "Infre esas listo di '''$1''' {{PLURAL:$1|imajo|imaji}} rangizita $2.",
 'ilsubmit'      => 'Serchar',
 'bydate'        => 'per dato',
 
 # EXIF tags
+'exif-artist'              => 'Autoro',
 'exif-exposuretime-format' => '$1 sek ($2)',
+'exif-gpslatitude'         => 'Latitudo',
+'exif-gpslongitude'        => 'Longitudo',
+'exif-gpsaltitude'         => 'Altitudo',
+
+'exif-orientation-1' => 'Normala', # 0th row: top; 0th column: left
+
+'exif-exposureprogram-1' => 'Manuala',
+
+'exif-subjectdistance-value' => '$1 metri',
+
+'exif-meteringmode-1'   => 'Mez-valoro',
+'exif-meteringmode-255' => 'Altra',
+
+'exif-sensingmethod-1' => 'Nedefinita',
+
+'exif-gaincontrol-0' => 'Nula',
+
+'exif-contrast-0' => 'Normala',
+
+'exif-saturation-0' => 'Normala',
+
+'exif-sharpness-0' => 'Normala',
 
 # Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
 'exif-gpsspeed-k' => 'Kilometri per horo',
@@ -860,6 +922,16 @@ Voluntez selektar altra nomo.',
 'watchlistedit-raw-titles' => 'Tituli:',
 
 # Special:Version
-'version' => 'Versiono', # Not used as normal message but as header for the special page itself
+'version'                  => 'Versiono', # Not used as normal message but as header for the special page itself
+'version-specialpages'     => 'Specala pagini',
+'version-other'            => 'Altra',
+'version-version'          => 'Versiono',
+'version-software-version' => 'Versiono',
+
+# Special:Filepath
+'filepath-page' => 'Arkivo:',
+
+# Special:FileDuplicateSearch
+'fileduplicatesearch-submit' => 'Serchar',
 
 );

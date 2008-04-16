@@ -15,6 +15,7 @@
  * @author Dittaeva
  * @author M.M.S.
  * @author Jorunn
+ * @author H92
  */
 
 /**
@@ -1116,7 +1117,7 @@ Ver merksam på at registra deira kan vera utdaterte.',
 'rclinks'                           => 'Vis siste $1 endringar dei siste $2 dagane<br />$3',
 'diff'                              => 'skil',
 'hist'                              => 'hist',
-'hide'                              => 'Gøym',
+'hide'                              => 'gøym',
 'show'                              => 'vis',
 'minoreditletter'                   => 's',
 'newpageletter'                     => 'n',

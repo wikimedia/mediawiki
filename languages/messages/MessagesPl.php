@@ -353,7 +353,7 @@ $messages = array(
 'mypage'         => 'Moja strona',
 'mytalk'         => 'Moja dyskusja',
 'anontalk'       => 'Dyskusja tego IP',
-'navigation'     => 'Nawigacja',
+'navigation'     => 'nawigacja',
 'and'            => 'oraz',
 
 # Metadata in edit box
@@ -368,7 +368,7 @@ $messages = array(
 'go'                => 'Przejdź',
 'searcharticle'     => 'Przejdź',
 'history'           => 'Historia strony',
-'history_short'     => 'Historia',
+'history_short'     => 'historia i autorzy',
 'updatedmarker'     => 'zmienione od ostatniej wizyty',
 'info_short'        => 'Informacja',
 'printableversion'  => 'Wersja do druku',
@@ -384,7 +384,7 @@ $messages = array(
 'protect'           => 'Zabezpiecz',
 'protect_change'    => 'zmień zabezpieczenie',
 'protectthispage'   => 'Zabezpiecz tę stronę',
-'unprotect'         => 'Odbezpiecz',
+'unprotect'         => 'odbezpiecz',
 'unprotectthispage' => 'Odbezpiecz tę stronę',
 'newpage'           => 'Nowa strona',
 'talkpage'          => 'Dyskusja',
@@ -395,7 +395,7 @@ $messages = array(
 'articlepage'       => 'Artykuł',
 'talk'              => 'Dyskusja',
 'views'             => 'Widok',
-'toolbox'           => 'Narzędzia',
+'toolbox'           => 'narzędzia',
 'userpage'          => 'Strona użytkownika',
 'projectpage'       => 'Strona projektu',
 'imagepage'         => 'Strona pliku',
@@ -648,7 +648,7 @@ Po otrzymaniu go zaloguj się ponownie.',
 Zanim jakiekolwiek inne wiadomości zostaną wysłane na ten adres, należy wykonać zawarte w mailu instrukcje. Potwierdzisz w ten sposób, że ten adres e-mail należy do Ciebie.',
 'throttled-mailpassword'     => 'Przypomnienie hasła zostało już wysłane w ciągu {{PLURAL:$1|ostatniej godziny|ostatnich $1 godzin}}.
 W celu powstrzymania nadużyć możliwość wysyłania przypomnień została ograniczona do jednego na {{PLURAL:$1|godzinę|godziny|godzin}}.',
-'mailerror'                  => 'Przy wysyłaniu e-maila wystąpił błąd: $1',
+'mailerror'                  => 'Przy wysyłaniu wiadomości e-mail wystąpił błąd: $1',
 'acct_creation_throttle_hit' => 'Założyłeś już {{PLURAL:$1|konto|$1 konta|$1 kont}}.
 Nie możesz założyć kolejnego.',
 'emailauthenticated'         => 'Twój adres e-mail został uwierzytelniony o $1.',
@@ -695,7 +695,7 @@ Być może zakończyłeś już proces zmiany hasła lub poprosiłeś o nowe has�
 'nowiki_sample'   => 'Wstaw tu tekst niesformatowany',
 'nowiki_tip'      => 'Zignoruj formatowanie wiki',
 'image_sample'    => 'Przyklad.jpg',
-'image_tip'       => 'Plik osadzony',
+'image_tip'       => 'Plik osadzony (embedded)',
 'media_sample'    => 'Przyklad.ogg',
 'media_tip'       => 'Link do pliku',
 'sig_tip'         => 'Twój podpis wraz z datą i czasem',
@@ -705,7 +705,7 @@ Być może zakończyłeś już proces zmiany hasła lub poprosiłeś o nowe has�
 'summary'                           => 'Opis zmian',
 'subject'                           => 'Temat/nagłówek',
 'minoredit'                         => 'To jest drobna zmiana',
-'watchthis'                         => 'Obserwuj tę stronę',
+'watchthis'                         => 'Obserwuj',
 'savearticle'                       => 'Zapisz',
 'preview'                           => 'Podgląd',
 'showpreview'                       => 'Pokaż podgląd',
@@ -752,9 +752,9 @@ Zanotuj go i podaj administratorowi.",
 'whitelistedittitle'                => 'Przed edycją musisz się zalogować',
 'whitelistedittext'                 => 'Musisz $1 by edytować strony.',
 'whitelistreadtitle'                => 'Czytanie możliwe jest dopiero po zalogowaniu się',
-'whitelistreadtext'                 => 'Musisz się [[Special:Userlogin|zalogować]], żeby czytać strony.',
+'whitelistreadtext'                 => 'Musisz [[Special:Userlogin|zalogować się]], żeby czytać strony.',
 'whitelistacctitle'                 => 'Nie masz uprawnień do założenia konta',
-'whitelistacctext'                  => 'Zakładanie kont w {{GRAMMAR:MS.lp|{{SITENAME}}}} wymaga [[Special:Userlogin|zalogowania]] oraz posiadania odpowiednich uprawnień.',
+'whitelistacctext'                  => 'Zakładanie kont w {{GRAMMAR:MS.lp|{{SITENAME}}}} wymaga [[Special:Userlogin|zalogowania się]] oraz posiadania odpowiednich uprawnień.',
 'confirmedittitle'                  => 'Edytowanie jest możliwe dopiero po zweryfikowaniu adresu e-mail',
 'confirmedittext'                   => 'Edytowanie jest możliwe dopiero po zweryfikowaniu adresu e-mail.
 Podaj adres e-mail i potwierdź go w swoich [[Special:Preferences|ustawieniach użytkownika]].',
@@ -762,7 +762,7 @@ Podaj adres e-mail i potwierdź go w swoich [[Special:Preferences|ustawieniach u
 'nosuchsectiontext'                 => 'Próbowałeś edytować sekcję, która nie istnieje.
 Ponieważ nie ma sekcji $1, nie ma też gdzie zapisać Twojej edycji.',
 'loginreqtitle'                     => 'Musisz się zalogować',
-'loginreqlink'                      => 'zaloguj się',
+'loginreqlink'                      => 'zalogować się',
 'loginreqpagetext'                  => 'Musisz $1 żeby móc przeglądać inne strony.',
 'accmailtitle'                      => 'Hasło zostało wysłane.',
 'accmailtext'                       => 'Hasło użytkownika „$1” zostało wysłane na adres $2.',
@@ -821,9 +821,7 @@ Zapisując swoją edycję oświadczasz, że ten tekst jest Twoim dziełem lub po
 Jeśli nie chcesz, żeby Twój tekst był dowolnie zmieniany przez każdego i rozpowszechniany bez ograniczeń, nie umieszczaj go tutaj.<br />
 Zapisując swoją edycję oświadczasz, że ten tekst jest Twoim dziełem lub pochodzi z materiałów dostępnych na zasadach ''public domain'' albo kompatybilnych (zobacz także $1).
 <strong>PROSZĘ NIE UŻYWAĆ MATERIAŁÓW CHRONIONYCH PRAWEM AUTORSKIM BEZ POZWOLENIA WŁAŚCICIELA!</strong>",
-'longpagewarning'                   => '<strong>Uwaga! Ta strona ma {{PLURAL:$1|1 kilobajt|$1 kilobajty|$1 kilobajtów}}.
-W niektórych przeglądarkach mogą wystąpić problemy przy edycji stron mających więcej niż 32 kilobajty. 
-Jeśli to możliwe, spróbuj podzielić tekst na mniejsze części.</strong>',
+'longpagewarning'                   => '<strong>Ta strona ma {{PLURAL:$1|1 kilobajt|$1 kilobajty|$1 kilobajtów}}. Jeśli to możliwe, spróbuj podzielić tekst na mniejsze części.</strong>',
 'longpageerror'                     => '<strong>Błąd! Wprowadzony przez Ciebie tekst ma {{PLURAL:$1|1 kilobajt|$1 kilobajty|$1 kilobajtów}}. Długość tekstu nie może przekraczać {{PLURAL:$2|1 kilobajt|$2 kilobajty|$2 kilobajtów}}. Tekst nie może być zapisany.</strong>',
 'readonlywarning'                   => '<strong>Uwaga! Baza danych została zablokowana do celów administracyjnych. W tej chwili nie można zapisać nowej wersji strony. Zapisz jej treść do pliku używając wytnij/wklej i zachowaj na później.</strong>',
 'protectedpagewarning'              => '<strong>Uwaga! Modyfikacja tej strony została zablokowana. Mogą ją edytować jedynie użytkownicy z uprawnieniami administratora.</strong>',
@@ -1053,8 +1051,8 @@ Jednak informacje o treści {{GRAMMAR:D.lp|{{SITENAME}}}} mogą być w Google ni
 'math_unknown_function'    => 'nieznana funkcja',
 'math_lexing_error'        => 'błędna nazwa',
 'math_syntax_error'        => 'błąd składni',
-'math_image_error'         => 'konwersja do formatu PNG nie powiodła się.
-Sprawdź, czy poprawnie zainstalowane są latex, dvips, gs i convert',
+'math_image_error'         => 'Konwersja do formatu PNG nie powiodła się.
+Sprawdź, czy poprawnie zainstalowane są latex, dvips, gs i convert.',
 'math_bad_tmpdir'          => 'Nie można utworzyć lub zapisywać w tymczasowym katalogu dla wzorów matematycznych',
 'math_bad_output'          => 'Nie można utworzyć lub zapisywać w wyjściowym katalogu dla wzorów matematycznych',
 'math_notexvc'             => 'Brak programu texvc.
@@ -1165,7 +1163,7 @@ Nie zaznaczone pole oznacza, że użytkownik nie należy do danej grupy.',
 'hist'                              => 'hist.',
 'hide'                              => 'ukryj',
 'show'                              => 'pokaż',
-'minoreditletter'                   => 'd',
+'minoreditletter'                   => 'm',
 'newpageletter'                     => 'N',
 'boteditletter'                     => 'b',
 'number_of_watching_users_pageview' => '[$1 {{PLURAL:$1|obserwujący użytkownik|obserwujących użytkowników}}]',
@@ -1258,7 +1256,7 @@ Proszę sprawdzić plik i załadować poprawną wersję.',
 'sourcefilename'              => 'Nazwa oryginalna',
 'destfilename'                => 'Nazwa docelowa',
 'upload-maxfilesize'          => 'Wielkość pliku jest ograniczona do $1',
-'watchthisupload'             => 'Obserwuj tę stronę',
+'watchthisupload'             => 'Obserwuj',
 'filewasdeleted'              => 'Plik o tej nazwie istniał, ale został usunięty.
 Zanim załadujesz go ponownie, sprawdź $1.',
 'upload-wasdeleted'           => "'''Uwaga! Ładujesz plik, który był poprzednio usunięty.'''
@@ -1300,7 +1298,7 @@ Jeśli problem będzie się powtarzał skontaktuj się z administratorem systemu
 Sprawdź czy strona działa, odczekaj kilka minut i spróbuj ponownie.
 Możesz także spróbować w czasie mniejszego obciążenia serwera.',
 
-'license'            => 'Licencja:',
+'license'            => 'Licencja',
 'nolicense'          => 'Nie wybrano',
 'license-nopreview'  => '(Podgląd niedostępny)',
 'upload_source_url'  => ' (poprawny, publicznie dostępny adres URL)',
@@ -1367,7 +1365,7 @@ Kliknięcie w nagłówek kolumny zmienia sposób sortowania.',
 'filedelete-nofile-old'       => "Nie ma zarchiwizowanej wersji '''$1''' o podanych atrybutach.",
 'filedelete-iscurrent'        => 'Próbujesz usunąć najnowszą wersję tego pliku.
 Musisz najpierw przywrócić starszą wersję.',
-'filedelete-otherreason'      => 'Inna/dodatkowa przyczyna:',
+'filedelete-otherreason'      => 'Inna/dodatkowa przyczyna',
 'filedelete-reason-otherlist' => 'Inna przyczyna',
 'filedelete-reason-dropdown'  => '* Najczęstsze przyczyny usunięcia
 ** Naruszenie praw autorskich
@@ -1462,7 +1460,7 @@ Strona uznawana jest za ujednoznaczniającą jeśli zawiera ona szablon linkowan
 'unusedcategories'                => 'Nieużywane kategorie',
 'unusedimages'                    => 'Nieużywane pliki',
 'popularpages'                    => 'Najpopularniejsze strony',
-'wantedcategories'                => 'Potrzebne kategorie',
+'wantedcategories'                => 'Brakujące kategorie',
 'wantedpages'                     => 'Najpotrzebniejsze strony',
 'mostlinked'                      => 'Najczęściej linkowane strony',
 'mostlinkedcategories'            => 'Kategorie o największej liczbie stron',
@@ -1584,7 +1582,7 @@ Każda zmiana treści tej strony lub związanej z nią strony dyskusji zostanie 
 'removedwatch'         => 'Usunięto z listy obserwowanych',
 'removedwatchtext'     => 'Strona „[[:$1]]” została usunięta z Twojej listy obserwowanych.',
 'watch'                => 'Obserwuj',
-'watchthispage'        => 'Obserwuj tę stronę',
+'watchthispage'        => 'Obserwuj',
 'unwatch'              => 'Nie obserwuj',
 'unwatchthispage'      => 'Przestań obserwować',
 'notanarticle'         => 'To nie jest artykuł',
@@ -1595,10 +1593,10 @@ Każda zmiana treści tej strony lub związanej z nią strony dyskusji zostanie 
 'wlheader-showupdated' => "* Strony, które zostały zmodyfikowane od Twojej ostatniej wizyty na nich zostały '''wytłuszczone'''.",
 'watchmethod-recent'   => 'poszukiwanie ostatnich zmian wśród obserwowanych stron',
 'watchmethod-list'     => 'poszukiwanie obserwowanych stron wśród ostatnich zmian',
-'watchlistcontains'    => 'Lista obserwowanych przez Ciebie stron zawiera {{PLURAL:$1|jedną pozycję|$1 pozycje|$1 pozycji}}.',
+'watchlistcontains'    => 'Na liście obserwowanych przez Ciebie stron {{PLURAL:$1|znajduje się 1 pozycja|znajdują się $1 pozycje|znajduje się $1 pozycji}}.',
 'iteminvalidname'      => 'Problem z pozycją „$1”, niepoprawna nazwa...',
 'wlnote'               => "Poniżej pokazano {{PLURAL:$1|ostatnią zmianę wykonaną|ostatnie '''$1''' zmiany wykonane|ostatnie '''$1''' zmian wykonanych}} w ciągu {{PLURAL:$2|ostatniej godziny|ostatnich '''$2''' godzin}}.",
-'wlshowlast'           => 'Pokaż ostatnie $1 godzin $2 dni ($3)',
+'wlshowlast'           => 'Pokaż ostatnie $1 godzin, $2 dni ($3)',
 'watchlist-show-bots'  => 'pokaż edycje botów',
 'watchlist-hide-bots'  => 'ukryj edycje botów',
 'watchlist-show-own'   => 'pokaż moje edycje',
@@ -1666,7 +1664,7 @@ Zobacz na stronie $2 rejestr ostatnio wykonanych usunięć.',
 'deletionlog'                 => 'rejestr usunięć',
 'reverted'                    => 'Przywrócono poprzednią wersję',
 'deletecomment'               => 'Powód usunięcia',
-'deleteotherreason'           => 'Inna/dodatkowa przyczyna:',
+'deleteotherreason'           => 'Inna/dodatkowa przyczyna',
 'deletereasonotherlist'       => 'Inna przyczyna',
 'deletereason-dropdown'       => '* Najczęstsze przyczyny usunięcia
 ** Prośba autora
@@ -1790,7 +1788,7 @@ $1',
 
 # Namespace form on various pages
 'namespace'      => 'Przestrzeń nazw',
-'invert'         => 'Odwróć wybór',
+'invert'         => 'odwróć wybór',
 'blanknamespace' => '(główna)',
 
 # Contributions
@@ -1900,7 +1898,7 @@ By przejrzeć listę obecnie aktywnych blokad, przejdź na stronę [[Special:Ipb
 'block-log-flags-noautoblock' => 'automatyczne blokowanie wyłączone',
 'block-log-flags-noemail'     => 'e-mail zablokowany',
 'range_block_disabled'        => 'Możliwość blokowania zakresu adresów IP została wyłączona.',
-'ipb_expiry_invalid'          => 'Błędny czas blokady.',
+'ipb_expiry_invalid'          => 'Błędny czas wygaśnięcia blokady.',
 'ipb_already_blocked'         => '„$1” jest już zablokowany',
 'ipb_cant_unblock'            => 'Błąd: Blokada o ID $1 nie została znaleziona. Mogła ona zostać zdjęta wcześniej.',
 'ipb_blocked_as_range'        => 'Błąd: Adres IP $1 nie został zablokowany bezpośrednio i nie może zostać odblokowany.
@@ -1963,7 +1961,7 @@ W takich przypadkach treść dyskusji można przenieść tylko ręcznie.',
 'movenologintext'         => 'Musisz być zarejestrowanym i [[Special:Userlogin|zalogowanym]] użytkownikiem aby móc przenieść stronę.',
 'movenotallowed'          => 'Nie masz uprawnień do przenoszenia stron w {{GRAMMAR:MS.lp|{{SITENAME}}}}.',
 'newtitle'                => 'Nowy tytuł',
-'move-watch'              => 'Obserwuj tę stronę',
+'move-watch'              => 'Obserwuj',
 'movepagebtn'             => 'Przenieś stronę',
 'pagemovedsub'            => 'Przeniesienie powiodło się',
 'movepage-moved'          => "<big>'''Strona „$1” została przeniesiona do „$2”.'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
@@ -2124,7 +2122,7 @@ Wszystkie operacje importu transwiki są odnotowywane w [[Special:Log/import|rej
 'tooltip-save'                    => 'Zapisz zmiany',
 'tooltip-preview'                 => 'Obejrzyj efekt swojej edycji przed zapisaniem zmian!',
 'tooltip-diff'                    => 'Pokaż zmiany wykonane w tekście.',
-'tooltip-compareselectedversions' => 'Zobacz różnice między dwiema wybranymi wersjami strony.',
+'tooltip-compareselectedversions' => 'Pokazuje różnice między dwiema wybranymi wersjami tej strony.',
 'tooltip-watch'                   => 'Dodaj tę stronę do listy obserwowanych',
 'tooltip-recreate'                => 'Utwórz stronę pomimo jej wcześniejszego usunięcia.',
 'tooltip-upload'                  => 'Rozpoczęcie przesyłania',
@@ -2178,15 +2176,15 @@ Najprawdopodobniej zostało to spowodowane przez link do zewnętrznej strony int
 'mw_math_mathml' => 'MathML jeśli dostępny (eksperymentalne)',
 
 # Patrolling
-'markaspatrolleddiff'                 => 'Oznacz jako sprawdzone',
-'markaspatrolledtext'                 => 'Oznacz ten artykuł jako sprawdzony',
-'markedaspatrolled'                   => 'Oznaczono jako sprawdzone',
-'markedaspatrolledtext'               => 'Ta wersja została oznaczona jako sprawdzona.',
+'markaspatrolleddiff'                 => 'oznacz edycję jako „sprawdzoną”',
+'markaspatrolledtext'                 => 'Oznacz ten artykuł jako „sprawdzony”',
+'markedaspatrolled'                   => 'Sprawdzone',
+'markedaspatrolledtext'               => 'Ta wersja została oznaczona jako „sprawdzona”.',
 'rcpatroldisabled'                    => 'Wyłączono funkcjonalność patrolowania na ostatnich zmianach',
 'rcpatroldisabledtext'                => 'Patrolowanie ostatnich zmian jest obecnie wyłączone.',
-'markedaspatrollederror'              => 'Nie można oznaczyć jako sprawdzone',
-'markedaspatrollederrortext'          => 'Musisz wybrać wersję żeby oznaczyć ją jako sprawdzoną.',
-'markedaspatrollederror-noautopatrol' => 'Nie masz uprawnień wymaganych do oznaczania swoich edycji jako sprawdzone.',
+'markedaspatrollederror'              => 'Nie można oznaczyć jako „sprawdzone”',
+'markedaspatrollederrortext'          => 'Musisz wybrać wersję żeby oznaczyć ją jako „sprawdzoną”.',
+'markedaspatrollederror-noautopatrol' => 'Nie masz uprawnień wymaganych do oznaczania swoich edycji jako „sprawdzone”.',
 
 # Patrol log
 'patrol-log-page' => 'Dziennik patrolowania',
@@ -2529,7 +2527,7 @@ Otwórz ten link w przeglądarce, czym potwierdzisz, że jesteś użytkownikiem 
 'confirmemail_sent'        => 'Wiadomość e-mail z kodem uwierzytelniającym została wysłana.',
 'confirmemail_oncreate'    => 'Link z kodem potwierdzenia został wysłany na Twój adres e-mail.
 Kod ten nie jest wymagany do zalogowania się, jednak będziesz musiał go aktywować otwierając, otrzymany link, w przeglądarce przed włączeniem niektórych opcji e-mail na wiki.',
-'confirmemail_sendfailed'  => 'Nie udało się wysłać e-maila potwierdzającego.
+'confirmemail_sendfailed'  => 'Nie udało się wysłać potwierdzającej wiadomości e-mail.
 Sprawdzić czy w adresie nie ma literówki.
 
 System pocztowy zwrócił komunikat: $1',

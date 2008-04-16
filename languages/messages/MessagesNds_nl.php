@@ -5,13 +5,13 @@
  *
  * @author Ævar Arnfjörð Bjarmason <avarab@gmail.com>
  * @author Jens Frank
- * @author Erwin85
  * @author Servien
  * @author לערי ריינהארט
+ * @author Siebrand
+ * @author Slomox
  * @author SPQRobin
  * @author Nike
- * @author Slomox
- * @author Siebrand
+ * @author Erwin85
  */
 
 $fallback = 'nl';
@@ -957,6 +957,7 @@ Aandere beheerders van {{SITENAME}} kunnen de verbörgen inhoud bekieken en 't w
 # Diffs
 'history-title'           => 'Geschiedenisse van "$1"',
 'difference'              => '(Verschil tussen bewarkingen)',
+'lineno'                  => 'Regel $1:',
 'compareselectedversions' => 'Vergeliek de ekeuzen versies',
 'editundo'                => 'ongedaonmaken',
 
@@ -1088,9 +1089,11 @@ $2 Teun deurverwiespagina's &nbsp; zeuk: $3 $9",
 'rcshowhidemine'                 => '$1 mien bewarkingen',
 'rclinks'                        => 'Bekiek de leste $1 wiezigingen in de of-eleupen $2 dagen<br>$3',
 'diff'                           => 'wiezig',
+'hist'                           => 'gesch',
 'hide'                           => 'verbarg',
 'show'                           => 'teun',
 'minoreditletter'                => 'K',
+'newpageletter'                  => 'N',
 'boteditletter'                  => ' (bot)',
 'rc_categories'                  => 'Kattegeriebeparking (scheiden mit "|")',
 'rc_categories_any'              => 'alles',
@@ -1271,6 +1274,7 @@ A-j disse ofbeelding in volle grootte hemmen voeg 't dan toe, wiezig aanders de 
 'fewestrevisions' => 'Artikels mit de minste bewarkingen',
 
 # Miscellaneous special pages
+'nbytes'                  => '$1 {{PLURAL:$1|byte|bytes}}',
 'specialpage-empty'       => 'Disse pagina is leeg.',
 'lonelypagestext'         => "Naor de onderstaonde pagina's wonnen vanuut disse wiki neet verwezen.",
 'uncategorizedpages'      => "Pagina's zonder kattegerie",
@@ -1322,6 +1326,8 @@ A-j disse ofbeelding in volle grootte hemmen voeg 't dan toe, wiezig aanders de 
 # Special:Log
 'specialloguserlabel'  => 'Gebruker:',
 'speciallogtitlelabel' => 'Naam:',
+'log'                  => 'Logboeken',
+'all-logs-page'        => 'Alle logboeken',
 'log-search-legend'    => 'Logboeken deurzeuken',
 'log-search-submit'    => 'Zeuk',
 'alllogstext'          => "Dit is 't combinasielogboek. Je kunnen oek kiezen veur bepaolde logboeken en filteren op gebruker en titel.",
@@ -1331,6 +1337,7 @@ A-j disse ofbeelding in volle grootte hemmen voeg 't dan toe, wiezig aanders de 
 # Special:Allpages
 'allpages'          => "Alle pagina's",
 'alphaindexline'    => '$1 tot $2',
+'nextpage'          => 'Volgende pagina ($1)',
 'prevpage'          => 'Veurige pagina ($1)',
 'allpagesfrom'      => "Teun pagina's vanof:",
 'allarticles'       => 'Alle artikels',
@@ -1535,6 +1542,8 @@ Bekiek 't [[Special:Log/delete|logboek vort-edaone pagina's]] veur een overzicht
 'nolinkshere-ns'      => "Gien enkele pagina verwiest naor '''[[:$1]]''' in de ekeuzen naamruumte.",
 'isredirect'          => 'deurverwiezing',
 'istemplate'          => 'in-evoeg as sjabloon',
+'whatlinkshere-prev'  => '{{PLURAL:$1|veurige|veurige $1}}',
+'whatlinkshere-next'  => '{{PLURAL:$1|volgende|volgende $1}}',
 'whatlinkshere-links' => '← verwiezingen',
 
 # Block/unblock
@@ -1653,6 +1662,7 @@ Mut de databanke vrie-egeven wonnen?',
 '1movedto2_redir'         => '[[$1]] is ewiezig over de deurverwiezing [[$2]] hinne',
 'movelogpage'             => 'Titelwiezigingen',
 'movelogpagetext'         => "Hieronder steet een lieste mit pagina's dee herneumd bin.",
+'movereason'              => 'Rejen:',
 'revertmove'              => 'Weerummedreien',
 'delete_and_move'         => 'Vortdoon en herneumen',
 'delete_and_move_text'    => '==Mut vort-edaon wonnen==
@@ -1739,6 +1749,7 @@ Alle transwiki-invoerhaandelingen wonnen op-esleugen in 't [[Special:Log/import|
 'tooltip-ca-move'                 => 'Gef disse bladziede nen aandern titel',
 'tooltip-ca-watch'                => 'Voog disse bladziede too an oewe voalglieste',
 'tooltip-ca-unwatch'              => 'Smiet disse bladziede van oewe voalglieste',
+'tooltip-search'                  => '{{SITENAME}} deurzeuken',
 'tooltip-p-logo'                  => 'Vuurziede',
 'tooltip-n-mainpage'              => 'Goa noar de vuurziede',
 'tooltip-n-portal'                => 'Informoasie oaver t projekt: wel, wat, hoo en woarum',
@@ -1856,6 +1867,7 @@ Allinnig regels in een lieste (regels dee beginnen mit *) wonnen verwark. De eer
 Alle volgende verwiezingen dee op dezelfde regel staon, wonnen behaandeld as uutzundering, zoas pagina's waorop de ofbeelding in te tekse op-eneumen is.",
 
 # Metadata
+'metadata'          => 'Metadata',
 'metadata-help'     => 'Dit bestand bevat metadata mit EXIF-infermasie, dee deur een fotocamera, scanner of fotobewarkingspregramma toe-evoeg kan ween.',
 'metadata-expand'   => 'Teun uut-ebreien gegevens',
 'metadata-collapse' => 'Verbarg uut-ebreien gegevens',

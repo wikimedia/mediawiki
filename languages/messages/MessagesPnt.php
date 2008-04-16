@@ -170,6 +170,7 @@ $messages = array(
 'nosuchspecialpage' => "Αΐκον ειδικόν σελίδαν 'κ εχ'.",
 
 # General errors
+'laggedslavemode'   => "Ωρία: Η σελίδαν ίσως ξάι 'κ εχ' τα υστερνά τα αλλαγάς.",
 'badarticleerror'   => "Ατή η ενέργειαν 'κ επορεί να ίνεται σ'ατήν τη σελίδαν.",
 'viewsourcefor'     => 'για $1',
 'protectedpagetext' => "Ατή η σελίδαν εν ασπαλιγμένη και 'κ αλλάζεται.",
@@ -224,6 +225,8 @@ $messages = array(
 Τ' αλλαγάς κ' εκρατέθαν!</strong>",
 'editing'            => 'Αλλαγήν $1',
 'editingsection'     => 'Αλλαγήν $1 (τμήμα)',
+'editingold'         => "<strong>ΩΡΙΑ: Εφάτε αλλαγάς σε παλαιόν έκδοσην τη σελίδας. 
+Εάν κρατείτε τα, ούλ' τ' αλλαγάς θα χάνταν.</strong>",
 'template-protected' => '(ασπαλιγμένον)',
 
 # History pages

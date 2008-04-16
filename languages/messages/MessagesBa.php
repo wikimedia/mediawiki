@@ -1,8 +1,11 @@
 <?php
 /** Bashkir (Башҡорт)
-  *
-  * @addtogroup Language
-  */
+ *
+ * @addtogroup Language
+ *
+ * @author Рустам Нурыев
+ * @author Siebrand
+ */
 
 $fallback = 'ru';
 
@@ -30,6 +33,25 @@ $namespaceNames = array(
 $linkTrail = '/^((?:[a-z]|а|б|в|г|д|е|ё|ж|з|и|й|к|л|м|н|о|п|р|с|т|у|ф|х|ц|ч|ш|щ|ъ|ы|ь|э|ю|я|ә|ө|ү|ғ|ҡ|ң|ҙ|ҫ|һ|“|»)+)(.*)$/sDu';
 
 $messages = array(
+# User preference toggles
+'tog-underline' => 'Һылтанмалар аҫтына һыҙыу:',
+
+# Dates
+'sunday'    => 'Йәкшәмбе',
+'monday'    => 'Дүшәмбе',
+'tuesday'   => 'Шишәмбе',
+'wednesday' => 'Шаршамбы',
+'thursday'  => 'Кесеаҙна',
+'friday'    => 'Йома',
+'saturday'  => 'Шәмбе',
+'sun'       => 'Йәкшәмбе',
+'mon'       => 'Дүшәмбе',
+'tue'       => 'Шишәмбе',
+'wed'       => 'Шаршамбы',
+'thu'       => 'Кесеаҙна',
+'fri'       => 'Йома',
+'sat'       => 'Шәмбе',
+
 'about'          => 'Тасуирлау',
 'article'        => 'Мәҡәлә',
 'newwindow'      => '(яңы биттә)',

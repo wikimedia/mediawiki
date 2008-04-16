@@ -2591,4 +2591,3 @@ Entrez le nom du fichier sans le préfixe « {{ns:image}}: ».',
 'specialpages-group-permissions' => 'Permissions des utilisateurs',
 
 );
-

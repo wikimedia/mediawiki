@@ -2385,4 +2385,15 @@ $1',
 'fileduplicatesearch-result-1' => '「$1」と重複するファイルはありません。',
 'fileduplicatesearch-result-n' => '「$1」と重複するファイルが $2 個あります。',
 
+# Special:SpecialPages
+'specialpages-group-maintenance' => 'ページのメンテナンス情報',
+'specialpages-group-other'       => 'その他特別ページ',
+'specialpages-group-login'       => 'ログイン / 利用者登録',
+'specialpages-group-changes'     => '最近更新したページとログ',
+'specialpages-group-media'       => 'メディア情報とアップロード',
+'specialpages-group-users'       => '利用者と権限',
+'specialpages-group-needy'       => '編集を要するページ',
+'specialpages-group-highuse'     => 'よく利用されているページ',
+'specialpages-group-permissions' => '利用者の承認',
+
 );

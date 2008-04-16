@@ -7,6 +7,7 @@
  * @author Katimawan2005
  * @author SPQRobin
  * @author Siebrand
+ * @author Nike
  */
 
 $messages = array(
@@ -147,11 +148,11 @@ Pabusten ing pamanaliling dake kapamilatan [alilan] ning suglung',
 'copyright'            => 'Mipaintulutan ing laman na niti lalam ning $1.',
 'copyrightpage'        => '{{ns:project}}:Deng Copyright',
 'currentevents'        => 'Kasalungsungan a mengapalyari',
-'currentevents-url'    => 'Proyektu:Kasalungsungan a malilyari',
+'currentevents-url'    => 'Project:Kasalungsungan a malilyari',
 'disclaimers'          => 'Pamananggi',
 'disclaimerpage'       => 'Proyektu:Pangkabilugan a pamananggi',
 'edithelp'             => 'Saup pamanalili',
-'edithelppage'         => 'Saup:Pamag-edit',
+'edithelppage'         => 'Help:Pamag-edit',
 'helppage'             => 'Saup:Kalamnan',
 'mainpage'             => 'Pun Bulung',
 'mainpage-description' => 'Pun Bulung',

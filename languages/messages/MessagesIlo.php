@@ -200,6 +200,7 @@ Ag-loginka koma manen kalpasan a maawatmo daytoy a baro a pasesbalikas.',
 'savearticle'          => 'I-save ti panid',
 'showpreview'          => 'Ipakita ti preview',
 'showdiff'             => 'Ipakita ti balbaliw',
+'blockedtitle'         => 'Nabangenan ti agar-aramat',
 'blockednoreason'      => 'awan rason a naited',
 'whitelistedittitle'   => 'Masapul a nakastrekka tapno makaeditka',
 'whitelistedittext'    => 'Nasken a $1 ka tapno makaeditka iti pampanid.',
@@ -213,6 +214,7 @@ Ag-loginka koma manen kalpasan a maawatmo daytoy a baro a pasesbalikas.',
 'editing'              => 'Mabalbaliwan ti $1',
 'editingsection'       => 'Mabalbaliwan ti $1 (section)',
 'editingcomment'       => 'Mabalbaliwan ti $1 (comment)',
+'yourtext'             => 'Ti textom',
 'copyrightwarning'     => 'Laglagipenyo koma, apo, nga amin a kontribusion iti {{SITENAME}} ket maibilang a nairuar iti babaen ti $2 (kitaen ti $1 para kadagiti detalie). No dimo kayat a ti sinuratmo ket maedit wenno mabalbaliwan nga awanan-asi ken maiwaras nga awan sungsungbatan kenka, saanmo laengen nga ip-ipan wenno ipabpablaak ditoy.<br /><br /> Kasta met nga ikarim kadakami a bukodmo a sinurat wenno gapuanan daytoy, wenno kinopiam ngem iti maysa a nawaya a pagtagikuaan ti publiko wenno pumadmad a libre a pagtaudan. <strong>SAAN A MANGIPAN ITI ADDAAN COPYRIGHT NGA OBRA NO AWANAN PAMMALUBOS!</strong>',
 'copyrightwarning2'    => 'Pangngaasiyo, apo, ta laglagipen nga amin a kontribusion iti {{SITENAME}} ket mabalin a maedit wenno mabalbaliwan, masuktan, wenno ikkaten dagiti sabali pay a nga agar-aramat.
 No dimo kayat a ti sinuratmo ket maedit wenno mabalbaliwan nga awanan-asi ken maiwaras nga awan sungsungbatan kenka, saanmo laengen nga ip-ipan wenno ipabpablaak ditoy.<br />
@@ -223,6 +225,7 @@ Kasta met nga ikarim kadakami a bukodmo a sinurat wenno gapuanan daytoy, wenno k
 'template-protected'   => '(nasaluadan)',
 
 # History pages
+'revnotfound'         => 'Di masarakan ti panangbalbaliw',
 'currentrev'          => 'Agdama a revision',
 'revisionasof'        => 'Panangbalbaliw sipud $1',
 'revision-info'       => 'Panangbaliw sipud $1 ni $2',
@@ -233,8 +236,10 @@ Kasta met nga ikarim kadakami a bukodmo a sinurat wenno gapuanan daytoy, wenno k
 'last'                => 'naudi',
 'page_first'          => 'umuna',
 'page_last'           => 'naudi',
+'deletedrev'          => '[naikkaten]',
 'histfirst'           => 'Kaunaan',
 'histlast'            => 'Kaudian',
+'historyempty'        => '(blanko)',
 
 # Revision feed
 'history-feed-item-nocomment' => '$1 iti $2', # user at time
@@ -263,9 +268,11 @@ Kasta met nga ikarim kadakami a bukodmo a sinurat wenno gapuanan daytoy, wenno k
 'prefsnologin'   => 'Saan a naka-log in',
 'changepassword' => 'Baliwan ti password',
 'prefs-rc'       => 'Kaudian a balbaliw',
+'saveprefs'      => 'I-save',
 'oldpassword'    => 'Daan a pasesbalikas:',
 'newpassword'    => 'Baro a password:',
 'retypenew'      => 'Isurat manen ti baro a pasesbalikas:',
+'localtime'      => 'Local nga oras',
 
 # User rights
 'userrights-groupsmember' => 'Kameng ti:',

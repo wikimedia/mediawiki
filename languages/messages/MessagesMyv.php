@@ -119,6 +119,7 @@ $messages = array(
 
 # Categories related messages
 'categories'                     => 'Категорият',
+'categoriespagetext'             => 'Не категориятнесэ улить лопат эли медият.',
 'special-categories-sort-count'  => 'аравтомс цётонь коряс',
 'special-categories-sort-abc'    => 'аравтомс альфавитэнь коряс',
 'pagecategories'                 => '{{PLURAL:$1|Категория|Категорият}}',
@@ -130,7 +131,10 @@ $messages = array(
 'hidden-category-category'       => 'Кекшень категорият', # Name of the category where hidden categories will be listed
 'category-subcat-count'          => '{{PLURAL:$2|Те категориясонть вейкине явкс категория.|Те категориясонть  {{PLURAL:$1|явкс категория|$1 явкс категорият}}, $2 -тнень эйстэ.}}',
 'category-subcat-count-limited'  => 'Те категориясонть {{PLURAL:$1|алкс категория|$1 алкс категорият}}.',
+'category-article-count'         => '{{PLURAL:$2|Те категориясонть вейкине лопась вана косо.|{{PLURAL:$1|Те лопась кандови|$1 Не лопатне кандовить}} те категориянтень, категориясонть лопатнеде весемезэ $2.}}',
 'category-article-count-limited' => '{{PLURAL:$1|Те лопась|$1 Не лопатне}} те категориясонть.',
+'category-file-count'            => '{{PLURAL:$2|Те категориясонть вейкине файлась вана косо.|{{PLURAL:$1|Те файлась кандови|$1 Не файлатне кандовить}} те категориянтень, категориясонть файлатнеде весемезэ $2.}}',
+'category-file-count-limited'    => '{{PLURAL:$1|Те файлась|$1 Не файлатне}} вановиця категориянтень кандови.',
 'listingcontinuesabbrev'         => 'поладксозо моли',
 
 'mainpagetext' => "<покш>'''МедияВикинь тевс аравтомазо парсте лиссь.'''</покш>",
@@ -303,6 +307,7 @@ $messages = array(
 'badtitletext'         => 'Вешезь лопанть лемезэ аволь виде, чаво, эли аволь видестэ сюлмазь келеньйутковань эли интервикинь лем. Паряк, лемсэнть тевс нолдазь анолдавикс тешкст.',
 'viewsource'           => 'Ванномс лисьмапрянть',
 'viewsourcefor'        => ' $1 -нь юртозо',
+'actionthrottled'      => 'Тев тееманть курокксчизэ киртязь',
 'protectedpagetext'    => 'Те лопась панжома экшсэ, илязо понго витнемс - петнемс киненьгак.',
 'viewsourcetext'       => 'Те лопанть лисьмапрясь маштови ваномскак, лангстонзо саемс копияяк:',
 'ns-specialprotected'  => '{{ns:special}} лем марто лопатне а витневить-петневить.',
@@ -454,8 +459,12 @@ $messages = array(
 Васня арседе, эрява-арась полалемс ды витнем-петнемс те лопанть.
 Вант те лопанть нардома лумонть ало:",
 
+# Account creation failure
+'cantcreateaccounttitle' => 'Сёрмадома таркынесь а тееви',
+
 # History pages
 'viewpagelogs'        => 'Сёрмадомонзо салававалонть те лопасонть',
+'nohistory'           => 'Те лопанть витнемадо-петнемадо истораязо арась.',
 'currentrev'          => 'Тевате лиякстомтома',
 'revisionasof'        => '$1-це версиясь',
 'revision-info'       => '$1 -нь лиякстомтома, конань теизе $2',
@@ -486,6 +495,7 @@ $messages = array(
 'revdelete-hide-comment' => 'Кекшемс витнемадо-петнемадо арсематнень',
 'revdelete-hide-image'   => 'Кекшемс мезе файлатнесэ',
 'revdelete-log'          => 'Логто ёвтнема:',
+'pagehist'               => 'Лопанть историязо',
 
 # History merging
 'mergehistory-from'           => 'Лисьмапря лопа:',
@@ -614,6 +624,7 @@ $messages = array(
 'recentchangeslinked-title'    => 'Полавтнемат-лиякстомтомат конат кандовить теватезэнь "$1"',
 'recentchangeslinked-noresult' => 'Кодаткак полавтомат сюлмавозь лопатьнесэ те шкастонть.',
 'recentchangeslinked-summary'  => "Те башка лопасонть максозь потмокс меельцень витнематьнень-петнематнень, сулмавозь лопатнесэ. Лопатне ванома потмоксто '''эчкестэ тештезь'''",
+'recentchangeslinked-page'     => 'Лопанть лемезэ:',
 
 # Upload
 'upload'            => 'Ёкстамонзо файланть',
@@ -682,6 +693,7 @@ $messages = array(
 'filedelete-comment'          => 'Мейс нардамс:',
 'filedelete-submit'           => 'Нардамс',
 'filedelete-success'          => "'''$1'''-сь нардазь.",
+'filedelete-nofile'           => "{{SITENAME}} сайтьсэнть '''$1''' арась.",
 'filedelete-otherreason'      => 'Лия тувтал:',
 'filedelete-reason-otherlist' => 'Лия тувтал',
 'filedelete-edit-reasonlist'  => 'Витнемс-петнемс нардамонь тувталтнэсэ',
@@ -875,6 +887,7 @@ $messages = array(
 'protect-cantedit'            => 'Тынь алиякставсынк ванстомань уровнянть те лопанть, тынк арасть видечинк сонзэ лиякстоманьте.',
 'restriction-type'            => 'Нолдамо:',
 'restriction-level'           => 'Нолдавксонь покшизэ:',
+'minimum-size'                => 'Минимум кувалмозо',
 'maximum-size'                => 'Покшолмань тёкш:',
 'pagesize'                    => '(байтт)',
 
@@ -882,6 +895,11 @@ $messages = array(
 'restriction-edit'   => 'Витнемс-петнемс',
 'restriction-move'   => 'Ютавтомс лия таркас',
 'restriction-create' => 'Шкамс-теемс',
+
+# Restriction levels
+'restriction-level-sysop'         => 'ванстозь совицядо',
+'restriction-level-autoconfirmed' => 'пельс ванстозь совицядо',
+'restriction-level-all'           => 'кода мелеть виезэ',
 
 # Undelete
 'viewdeletedpage'        => 'Ваномс нардазь лопатнень',

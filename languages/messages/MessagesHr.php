@@ -768,6 +768,10 @@ postavili dodatna ograničenja.',
 'revdelete-hid'               => 'sakrij $1',
 'revdelete-unhid'             => 'otkrij $1',
 
+# Suppression log
+'suppressionlogtext' => 'Slijedi popis brisanja i blokiranja koji uključuje sadržaj skriven za administratore.<br />
+Vidi [[Special:Ipblocklist|Popis blokiranih IP adresa]] za popis trenutačno aktivnih blokiranih adresa.',
+
 # History merging
 'mergehistory'                     => 'Spoji povijesti starih izmjena stranice',
 'mergehistory-header'              => 'Na ovoj stranici spajate povijest jedne stranice u drugu (noviju) stranicu.
@@ -806,38 +810,44 @@ Primijetite da uporaba navigacijskih poveznica resetira vaše izbore u koloni.',
 'diff-multi'              => '({{plural:$1|Nije prikazana jedna međuinačica|Nisu prikazane $1 međuinačice|Nije prikazano $1 međuinačica}})',
 
 # Search results
-'searchresults'         => 'Rezultati pretrage',
-'searchresulttext'      => 'Za više obavijesti o pretraživanju projekta {{SITENAME}} vidi [[{{MediaWiki:Helppage}}|{{int:help}}]].',
-'searchsubtitle'        => "Za upit '''[[:$1]]'''",
-'searchsubtitleinvalid' => 'Za upit "$1"',
-'noexactmatch'          => "'''Ne postoji stranica naziva \"\$1\".''' Možete [[:\$1|kreirati tu stranicu]].",
-'noexactmatch-nocreate' => "'''Nema stranice s imenom: \"\$1\".'''",
-'toomanymatches'        => 'Preveliki broj rezultata, molimo probajte drukčiji upit',
-'titlematches'          => 'Pronađene stranice prema naslovu',
-'notitlematches'        => 'Nema pronađenih stranica prema naslovu',
-'textmatches'           => 'Pronađene stranice prema tekstu članka',
-'notextmatches'         => 'Nema pronađenih stranica prema tekstu članka',
-'prevn'                 => 'prethodnih $1',
-'nextn'                 => 'sljedećih $1',
-'viewprevnext'          => 'Vidi ($1) ($2) ($3).',
-'search-result-size'    => '$1 ({{PLURAL:$2|1 riječ|$2 riječi}})',
-'search-result-score'   => 'Povezanost: $1%',
-'search-redirect'       => '(preusmjeravanje $1)',
-'search-section'        => '(odlomak $1)',
-'search-suggest'        => 'Mislili ste: $1',
-'searchall'             => 'sve',
-'showingresults'        => "Dolje {{PLURAL:$1|je prikazan '''$1''' rezultat|su prikazana '''$1''' rezultata|je prikazano '''$1''' rezultata}}, počevši od '''$2'''.",
-'showingresultsnum'     => "Dolje {{PLURAL:$3|je prikazan '''$3''' rezultat|su prikazana '''$3''' rezultata|je prikazano '''$3''' rezultata}}, počevši s brojem '''$2'''.",
-'showingresultstotal'   => "Rezultati pretraživanja '''$1 - $2''' od '''$3'''",
-'nonefound'             => '<b>Napomena</b>: pretrage su neuspješne ako tražite česte riječi koje ne indeksiramo, ili u upitu navedete previše pojmova (u rezultatu se pojavlju samo stranice koje sadrže sve tražene pojmove).',
-'powersearch'           => 'Traženje',
-'powersearch-legend'    => 'Napredno pretraživanje',
-'powersearchtext'       => '
+'searchresults'             => 'Rezultati pretrage',
+'searchresulttext'          => 'Za više obavijesti o pretraživanju projekta {{SITENAME}} vidi [[{{MediaWiki:Helppage}}|{{int:help}}]].',
+'searchsubtitle'            => "Za upit '''[[:$1]]'''",
+'searchsubtitleinvalid'     => 'Za upit "$1"',
+'noexactmatch'              => "'''Ne postoji stranica naziva \"\$1\".''' Možete [[:\$1|kreirati tu stranicu]].",
+'noexactmatch-nocreate'     => "'''Nema stranice s imenom: \"\$1\".'''",
+'toomanymatches'            => 'Preveliki broj rezultata, molimo probajte drukčiji upit',
+'titlematches'              => 'Pronađene stranice prema naslovu',
+'notitlematches'            => 'Nema pronađenih stranica prema naslovu',
+'textmatches'               => 'Pronađene stranice prema tekstu članka',
+'notextmatches'             => 'Nema pronađenih stranica prema tekstu članka',
+'prevn'                     => 'prethodnih $1',
+'nextn'                     => 'sljedećih $1',
+'viewprevnext'              => 'Vidi ($1) ($2) ($3).',
+'search-result-size'        => '$1 ({{PLURAL:$2|1 riječ|$2 riječi}})',
+'search-result-score'       => 'Povezanost: $1%',
+'search-redirect'           => '(preusmjeravanje $1)',
+'search-section'            => '(odlomak $1)',
+'search-suggest'            => 'Mislili ste: $1',
+'search-interwiki-caption'  => 'Sestrinski projekti',
+'search-interwiki-more'     => '(više)',
+'search-mwsuggest-enabled'  => 's prijedlozima',
+'search-mwsuggest-disabled' => 'nema prijedloga',
+'search-relatedarticle'     => 'Povezano',
+'searchrelated'             => 'povezano',
+'searchall'                 => 'sve',
+'showingresults'            => "Dolje {{PLURAL:$1|je prikazan '''$1''' rezultat|su prikazana '''$1''' rezultata|je prikazano '''$1''' rezultata}}, počevši od '''$2'''.",
+'showingresultsnum'         => "Dolje {{PLURAL:$3|je prikazan '''$3''' rezultat|su prikazana '''$3''' rezultata|je prikazano '''$3''' rezultata}}, počevši s brojem '''$2'''.",
+'showingresultstotal'       => "Rezultati pretraživanja '''$1 - $2''' od '''$3'''",
+'nonefound'                 => '<b>Napomena</b>: pretrage su neuspješne ako tražite česte riječi koje ne indeksiramo, ili u upitu navedete previše pojmova (u rezultatu se pojavlju samo stranice koje sadrže sve tražene pojmove).',
+'powersearch'               => 'Traženje',
+'powersearch-legend'        => 'Napredno pretraživanje',
+'powersearchtext'           => '
 Traženje u prostoru :<br />
 $1<br />
 $2 Popis se preusmjerava   Traženje za $3 $9',
-'search-external'       => 'Vanjski pretraživač',
-'searchdisabled'        => '<p>Oprostite! Pretraga po cjelokupnoj bazi je zbog bržeg rada projekta {{SITENAME}} trenutačno onemogućena. Možete se poslužiti tražilicom Google.</p>',
+'search-external'           => 'Vanjski pretraživač',
+'searchdisabled'            => '<p>Oprostite! Pretraga po cjelokupnoj bazi je zbog bržeg rada projekta {{SITENAME}} trenutačno onemogućena. Možete se poslužiti tražilicom Google.</p>',
 
 # Preferences page
 'preferences'              => 'Postavke',
@@ -983,7 +993,7 @@ Neoznačena kućica pokazuje da suradnik ne pripada grupi.',
 'recentchangeslinked'          => 'Povezane stranice',
 'recentchangeslinked-title'    => 'Povezane promjene sa "$1"',
 'recentchangeslinked-noresult' => 'Nema promjena na povezanim stranicama u zadanom periodu.',
-'recentchangeslinked-summary'  => "Ova posebna stranica prikazuje promjene na povezanim stranicama. Stranice koje su na vašem popisu praćenja su '''podebljane'''.",
+'recentchangeslinked-summary'  => "Ova posebna stranica prikazuje nedavne promjene na povezanim stranicama (ili stranicama određene kategorije). Stranice koje su na [[Special:Watchlist|vašem popisu praćenja]] su '''podebljane'''.",
 'recentchangeslinked-page'     => 'Naslov stranice:',
 
 # Upload
@@ -1591,6 +1601,7 @@ $1',
 'whatlinkshere-next'       => '{{PLURAL:$1|slijedeća|slijedeće|slijedećih}} $1',
 'whatlinkshere-links'      => '← poveznice',
 'whatlinkshere-hideredirs' => '$1 preusmjeravanja',
+'whatlinkshere-hidetrans'  => '$1 transkluzije',
 'whatlinkshere-hidelinks'  => '$1 poveznice',
 
 # Block/unblock
@@ -2309,7 +2320,9 @@ pregledniku sljedeću poveznicu:
 
 $3
 
-Ako ovo *niste* vi, nemojte otvarati poveznicu.
+Ako ovo *niste* vi, slijedite ovaj link za poništavanje potvrde:
+
+$5
 
 Valjanost ovog potvrdnog koda istječe $4.',
 'confirmemail_invalidated' => 'Potvrda E-mail adrese je otkazana',
@@ -2444,19 +2457,21 @@ Također možete koristiti [[Special:Watchlist/edit|uređivanje popisa putem ''k
 Unesite ime datoteke bez predmetka (''prefiksa'') imenskog prostora \"{{ns:image}}:\".",
 
 # Special:FileDuplicateSearch
-'fileduplicatesearch'          => 'Traži istoimene (duple) datoteke',
+'fileduplicatesearch'          => 'Traži istoimene datoteke',
 'fileduplicatesearch-summary'  => 'Traži istoimene datoteke na temelju njihove hash vrijednosti.
 
 Unesite ime datoteke bez prefiksa "{{ns:image}}:"',
 'fileduplicatesearch-legend'   => 'Traži istoimene datoteke',
 'fileduplicatesearch-filename' => 'Ime datoteke:',
 'fileduplicatesearch-submit'   => 'Traži',
+'fileduplicatesearch-result-1' => 'Datoteka "$1" nema identičnih umnožavanja.',
 
 # Special:SpecialPages
 'specialpages-group-maintenance' => 'Izvještaji za održavanje',
 'specialpages-group-other'       => 'Ostale posebne stranice',
 'specialpages-group-login'       => 'Prijava / Otvaranje računa',
 'specialpages-group-changes'     => 'Nedavne promjene i evidencije',
+'specialpages-group-media'       => 'Izvještaji i postavljanje datoteka',
 'specialpages-group-users'       => 'Suradnici i suradnička prava',
 'specialpages-group-needy'       => 'Stranice s potrebom dorade',
 'specialpages-group-highuse'     => 'Najčešće korištene stranice',
