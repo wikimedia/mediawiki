@@ -647,27 +647,27 @@ Si no hi teniu cap relació i aquest compte ha estat creat per error, simplement
 
 El bloqueig l'ha dut a terme l'usuari $1, amb el següent motiu: ''$2''
 
-* Inici del blocatge: $8
-* Final del blocatge: $6
+* Inici del bloqueig: $8
+* Final del bloqueig: $6
 * Compte blocat: $7
 
-Podeu contactar $1 o un dels [[{{MediaWiki:Grouppage-sysop}}|administradors]] per a discutir el blocatge.
+Podeu contactar $1 o un dels [[{{MediaWiki:Grouppage-sysop}}|administradors]] per a discutir el bloqueig.
 
 Tingueu en compte que no podeu fer servir el formulari d'enviament de missatges de correu electrònic a cap usuari, fins que no tingueu una adreça de correu vàlida registrada a les vostres [[Special:Preferences|preferències d'usuari]].
 
-La vostra adreça IP és $3, i el núm. ID del blocatge és #$5. Si us plau, incloeu aquestes dades en totes les consultes que feu.",
-'autoblockedtext'                   => "La vostra adreça IP ha estat blocada automàticament perquè va ser usada per un usuari actualment bloquejat. Aquest usuari va ser blocat per l'administrador $1. El motiu donat per al blocatge ha estat:
+La vostra adreça IP és $3, i el núm. ID del bloqueig és #$5. Si us plau, incloeu aquestes dades en totes les consultes que feu.",
+'autoblockedtext'                   => "La vostra adreça IP ha estat blocada automàticament perquè va ser usada per un usuari actualment bloquejat. Aquest usuari va ser blocat per l'administrador $1. El motiu donat per al bloqueig ha estat:
 
 :''$2''
 
-* Inici del blocatge: $8
-* Final del blocatge: $6
+* Inici del bloqueig: $8
+* Final del bloqueig: $6
 
-Podeu contactar l'usuari $1 o algun altre dels [[{{MediaWiki:Grouppage-sysop}}|administradors]] per a discutir el blocatge.
+Podeu contactar l'usuari $1 o algun altre dels [[{{MediaWiki:Grouppage-sysop}}|administradors]] per a discutir el bloqueig.
 
 Recordeu que per a poder usar l'opció «Envia un missatge de correu electrònic a aquest usuari» haureu d'haver validat una adreça de correu electrònic a les vostres [[Special:Preferences|preferències]].
 
-La vostra adreça IP és $3, i el núm. ID del blocatge és #$5. Si us plau, incloeu aquestes dades en totes les consultes que feu.",
+La vostra adreça IP és $3, i el núm. ID del bloqueig és #$5. Si us plau, incloeu aquestes dades en totes les consultes que feu.",
 'blockednoreason'                   => "no s'ha donat cap motiu",
 'blockedoriginalsource'             => "La font de '''$1''' es mostra a sota:",
 'blockededitsource'                 => "El text de les vostres edicions a '''$1''' es mostra a continuació:",
@@ -701,11 +701,11 @@ Si sou ací per error, simplement cliqueu al botó «Enrere» del vostre navegad
 'userinvalidcssjstitle'             => "'''Atenció:''' No existeix l'aparença «$1». Recordeu que les subpàgines personalitzades amb extensions .css i .js utilitzen el títol en minúscules, per exemple, {{ns:user}}:NOM/monobook.css no és el mateix que {{ns:user}}:NOM/Monobook.css.",
 'updated'                           => '(Actualitzat)',
 'note'                              => '<strong>Nota:</strong>',
-'previewnote'                       => "<strong>Adoneu-vos que açò només és una previsualització, els canvis dels quals encara no s'han desat!</strong>",
-'previewconflict'                   => "Aquesta previsualització reflexa el text a l'ària
-d'edició superior tal i com apareixerà si escolliu gravar.",
-'session_fail_preview'              => "<strong>Ho sentim, no s'ha pogut processar, però, les vostres modificacions, a causa d'una pèrdua de la sessió de dades.
-Si us plau, intenteu-lo una altra vegada. Si continua havent-hi problemes, eixiu la sessió del vostre compte i torneu per autenticar-vos-hi.</strong>",
+'previewnote'                       => "<strong>Açò només és una previsualització, els canvis de la qual encara no s'han desat!</strong>",
+'previewconflict'                   => "Aquesta previsualització reflecteix el text a l'àrea
+d'edició superior tal i com apareixerà si trieu desar-lo.",
+'session_fail_preview'              => "<strong>No s'ha pogut processar la vostra edició a causa d'una pèrdua de dades de la sessió.
+Si us plau, proveu-ho una altra vegada. Si continués sense funcionar, finalitzeu la sessió i torneu a iniciar-ne una.</strong>",
 'session_fail_preview_html'         => "<strong>Ho sentim, no s'han pogut processar les vostres modificacions a causa d'una pèrdua de la sessió de dades.</strong>
 
 ''Com que el projecte {{SITENAME}} té habilitat l'ús de codi HTML cru, s'ha amagat la previsualització com a prevenció contra atacs mitjançant codis JavaScript.''
@@ -724,8 +724,8 @@ Haureu de fusionar els vostres canvis en el text existent.
 'yourtext'                          => 'El vostre text',
 'storedversion'                     => 'Versió emmagatzemada',
 'nonunicodebrowser'                 => "<strong>ALERTA: El vostre navegador no és compatible amb unicode, si us plau canvieu-lo abans d'editar cap pàgina: els caràcters que no són ASCII apareixeran en el quadre d'edició com a codis hexadecimals.</strong>",
-'editingold'                        => "<strong>ATENCIÓ:Esteu editant una versió antiga d'aquesta pàgina.
-Si la graveu, els canvis fets des d'eixa revisió es perdran.</strong>",
+'editingold'                        => '<strong>AVÍS:Esteu editant una revisió desactualitzada de la pàgina.
+Si la deseu, es perdran els canvis que hàgiu fet des de llavors.</strong>',
 'yourdiff'                          => 'Diferències',
 'copyrightwarning'                  => "Si us plau, tingueu en compte que totes les contribucions per al projecte {{SITENAME}} es consideren com a publicades sota els termes de la llicència $2 (vegeu-ne més detalls a $1). Si no desitgeu la modificació i distribució lliure dels vostres escrits sense el vostre consentiment, no els poseu ací.<br />
 A més a més, en enviar el vostre text, doneu fe que és vostra l'autoria, o bé de fonts en el domini públic o recursos lliures similars. Heu de saber que aquest <strong>no</strong> és el cas de la majoria de pàgines que hi ha a Internet.
@@ -897,41 +897,49 @@ Assegureu-vos que aquest canvi mantindrà la continuïtat històrica de la pàgi
 'diff-multi'              => '(Hi ha {{plural:$1|una revisió intermèdia|$1 revisions intermèdies}})',
 
 # Search results
-'searchresults'         => 'Resultats de la cerca',
-'searchresulttext'      => 'Per a més informació de les cerques del projecte {{SITENAME}}, aneu a [[{{MediaWiki:Helppage}}|{{int:help}}]].',
-'searchsubtitle'        => "Heu cercat '''[[:$1]]'''",
-'searchsubtitleinvalid' => 'Per consulta "$1"',
-'noexactmatch'          => "'''No hi ha cap pàgina anomenada «$1».''' Si voleu, podeu ajudar [[:$1|creant-la]].",
-'noexactmatch-nocreate' => "'''No hi ha cap pàgina amb títol «$1».'''",
-'toomanymatches'        => "S'han retornat masses coincidències. Proveu-ho amb una consulta diferent.",
-'titlematches'          => 'Coincidències de títol de la pàgina',
-'notitlematches'        => 'No hi ha cap coincidència de títol de pàgina',
-'textmatches'           => 'Coincidències de text de pàgina',
-'notextmatches'         => 'No hi ha cap coincidència de text de pàgina',
-'prevn'                 => '$1 anteriors',
-'nextn'                 => '$1 següents',
-'viewprevnext'          => 'Vés a ($1) ($2) ($3).',
-'search-result-size'    => '$1 ({{PLURAL:$2|1 paraula|$2 paraules}})',
-'search-result-score'   => 'Rellevància: $1%',
-'search-redirect'       => '(redirecciona $1)',
-'search-section'        => '(secció $1)',
-'search-suggest'        => 'Volíeu dir: $1',
-'searchall'             => 'tots',
-'showingresults'        => 'Tot seguit es {{PLURAL:$1|mostra el resultat|mostren els <b>$1</b> resultats començant pel número <b>$2</b>}}.',
-'showingresultsnum'     => 'Tot seguit es {{PLURAL:$3|llista el resultat|llisten els <b>$3</b> resultats començant pel número <b>$2</b>}}.',
-'showingresultstotal'   => "S'estan mostrant els resultats a continuació '''$1 - $2''' de '''$3'''",
-'nonefound'             => '<strong>Nota</strong>: les recerques sense èxit són causades tot sovint
-per recerques de paraules comunes com "la" o "de",
-que no es troben a l\'índex, o per especificar més d\'una paraula a cercar (només les pàgines
-que contenen tots els termes d\'una recerca apareixeran en el resultat).',
-'powersearch'           => 'Cerca avançada',
-'powersearch-legend'    => 'Cerca avançada',
-'powersearchtext'       => '
+'searchresults'             => 'Resultats de la cerca',
+'searchresulttext'          => 'Per a més informació de les cerques del projecte {{SITENAME}}, aneu a [[{{MediaWiki:Helppage}}|{{int:help}}]].',
+'searchsubtitle'            => "Heu cercat '''[[:$1]]'''",
+'searchsubtitleinvalid'     => 'Per consulta "$1"',
+'noexactmatch'              => "'''No hi ha cap pàgina anomenada «$1».''' Si voleu, podeu ajudar [[:$1|creant-la]].",
+'noexactmatch-nocreate'     => "'''No hi ha cap pàgina amb títol «$1».'''",
+'toomanymatches'            => "S'han retornat masses coincidències. Proveu-ho amb una consulta diferent.",
+'titlematches'              => 'Coincidències de títol de la pàgina',
+'notitlematches'            => 'No hi ha cap coincidència de títol de pàgina',
+'textmatches'               => 'Coincidències de text de pàgina',
+'notextmatches'             => 'No hi ha cap coincidència de text de pàgina',
+'prevn'                     => '$1 anteriors',
+'nextn'                     => '$1 següents',
+'viewprevnext'              => 'Vés a ($1) ($2) ($3).',
+'search-result-size'        => '$1 ({{PLURAL:$2|1 paraula|$2 paraules}})',
+'search-result-score'       => 'Rellevància: $1%',
+'search-redirect'           => '(redirecciona $1)',
+'search-section'            => '(secció $1)',
+'search-suggest'            => 'Volíeu dir: $1',
+'search-interwiki-caption'  => 'Projectes germans',
+'search-interwiki-default'  => '$1 resultats:',
+'search-interwiki-more'     => '(més)',
+'search-mwsuggest-enabled'  => 'amb suggeriments',
+'search-mwsuggest-disabled' => 'cap suggeriment',
+'search-relatedarticle'     => 'Relacionat',
+'mwsuggest-disable'         => 'Inhabilita els suggeriments en AJAX',
+'searchrelated'             => 'relacionat',
+'searchall'                 => 'tots',
+'showingresults'            => 'Tot seguit es {{PLURAL:$1|mostra el resultat|mostren els <b>$1</b> resultats començant pel número <b>$2</b>}}.',
+'showingresultsnum'         => 'Tot seguit es {{PLURAL:$3|llista el resultat|llisten els <b>$3</b> resultats començant pel número <b>$2</b>}}.',
+'showingresultstotal'       => "S'estan mostrant els resultats a continuació '''$1 - $2''' de '''$3'''",
+'nonefound'                 => "<strong>Nota</strong>: les cerques sense resultats són causades tot sovint
+per haver utilitzat paraules comunes com ara «té» o «de»,
+que no s'indexen; o bé, per haver especificat més d'un terme de cerca (només les pàgines
+que contenen tots els termes de cerca apareixeran en el resultat).",
+'powersearch'               => 'Cerca avançada',
+'powersearch-legend'        => 'Cerca avançada',
+'powersearchtext'           => '
 Cerca en espais de nom :<br />
 $1<br />
 $2 Llista redireccions   Cerca $3 $9',
-'search-external'       => 'Cerca externa',
-'searchdisabled'        => 'La cerca dins el projecte {{SITENAME}} està inhabilitada. Mentrestant, podeu cercar a través de Google, però tingueu en compte que la seua base de dades no estarà actualitzada.',
+'search-external'           => 'Cerca externa',
+'searchdisabled'            => 'La cerca dins el projecte {{SITENAME}} està inhabilitada. Mentrestant, podeu cercar a través de Google, però tingueu en compte que la seua base de dades no estarà actualitzada.',
 
 # Preferences page
 'preferences'              => 'Preferències',
@@ -2570,8 +2578,9 @@ Introduïu el nom del fitxer sense el prefix «{{ns:image}}:».",
 # Special:SpecialPages
 'specialpages-group-maintenance' => 'Informes de manteniment',
 'specialpages-group-other'       => 'Altres pàgines especials',
-'specialpages-group-login'       => 'Entrada/Registre',
+'specialpages-group-login'       => 'Inici de sessió / Registre',
 'specialpages-group-changes'     => 'Canvis recents i registres',
+'specialpages-group-media'       => 'Informes multimèdies i càrregues',
 'specialpages-group-users'       => 'Usuaris i drets',
 'specialpages-group-needy'       => 'Pàgines amb necessitat de treball',
 'specialpages-group-highuse'     => "Pàgines d'alt ús",

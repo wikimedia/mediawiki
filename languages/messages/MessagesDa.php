@@ -10,6 +10,7 @@
  * @author Peter Andersen
  * @author M.M.S.
  * @author Siebrand
+ * @author H92
  */
 
 $namespaceNames = array(
@@ -1011,7 +1012,7 @@ Vær opmæksom på at bevare kontinuiteten i sidehistorikken.
 'rclinks'                           => 'Vis seneste $1 ændringer i de sidste $2 dage<br />$3',
 'diff'                              => 'forskel',
 'hist'                              => 'historik',
-'hide'                              => 'Skjul',
+'hide'                              => 'skjul',
 'show'                              => 'vis',
 'minoreditletter'                   => 'm',
 'newpageletter'                     => 'N',

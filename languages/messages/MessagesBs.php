@@ -1264,4 +1264,15 @@ Molimo Vas da potvrdite da stvarno želite da ponovo napravite ovaj članak.",
 # Special:Version
 'version' => 'Verzija', # Not used as normal message but as header for the special page itself
 
+# Special:SpecialPages
+'specialpages-group-maintenance' => 'Izvještaji za održavanje',
+'specialpages-group-other'       => 'Ostale posebne stranice',
+'specialpages-group-login'       => 'Prijava / Otvaranje računa',
+'specialpages-group-changes'     => 'Nedavne izmjene i evidencije',
+'specialpages-group-media'       => 'Mediji i postavljanje datoteka',
+'specialpages-group-users'       => 'Korisnici i korisnička prava',
+'specialpages-group-needy'       => 'Stranice koje treba doraditi',
+'specialpages-group-highuse'     => 'Najčešće korištene stranice',
+'specialpages-group-permissions' => 'Korisnička prava',
+
 );
