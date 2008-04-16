@@ -182,11 +182,11 @@ class NewPagesForm {
 		$pager->mOffset = $options['offset'];
 
 		if( $pager->getNumRows() ) {
-			$wgOut->addHTML( ( $shownav ? $pager->getNavigationBar() : '' ) .
-				$pager->getStartBody() .
+			$wgOut->addHTML(
+				( $shownav ? $pager->getNavigationBar() : '' ) .
 				$pager->getBody() .
-				$pager->getEndBody() .
-				( $shownav ? $pager->getNavigationBar() : '' ) );
+				( $shownav ? $pager->getNavigationBar() : '' )
+			);
 		} else {
 			$wgOut->addHTML( Xml::element( 'p', null, wfMsg( 'specialpage-empty' ) ) );
 		}
@@ -219,7 +219,7 @@ class NewPagesForm {
 		$comment = $skin->commentBlock( $result->rc_comment );
 		$css = $this->patrollable( $result ) ? 'not-patrolled' : '';
 
-		return "<li class='$css'>{$time} {$dm}{$plink} ({$hist}) {$dm}[{$length}] {$dm}{$ulink} {$comment}</li>";
+		return "<li class='$css'>{$time} {$dm}{$plink} ({$hist}) {$dm}[{$length}] {$dm}{$ulink} {$comment}</li>\n";
 	}
 
 	/**
