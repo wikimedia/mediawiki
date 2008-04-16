@@ -51,13 +51,13 @@ class LogPage {
 		$this->updateRecentChanges = $rc;
 	}
 
-	function saveContent( $dbw ) {
+	function saveContent() {
 		if( wfReadOnly() ) return false;
 
 		global $wgUser, $wgLogRestrictions;
 		$fname = 'LogPage::saveContent';
 
-		$dbw = $dbw ? $dbw : wfGetDB( DB_MASTER );
+		$dbw = wfGetDB( DB_MASTER );
 		$uid = $wgUser->getID();
 		$log_id = $dbw->nextSequenceValue( 'log_log_id_seq' );
 
@@ -237,9 +237,8 @@ class LogPage {
 	 * @param object &$target A title object.
 	 * @param string $comment Description associated
 	 * @param array $params Parameters passed later to wfMsg.* functions
-	 * @param Database $dbw, optional
 	 */
-	function addEntry( $action, $target, $comment, $params = array(), $dbw = NULL ) {
+	function addEntry( $action, $target, $comment, $params = array() ) {
 		if ( !is_array( $params ) ) {
 			$params = array( $params );
 		}
@@ -251,7 +250,7 @@ class LogPage {
 
 		$this->actionText = LogPage::actionText( $this->type, $action, $target, NULL, $params );
 
-		return $this->saveContent( $dbw );
+		return $this->saveContent();
 	}
 
 	/**
