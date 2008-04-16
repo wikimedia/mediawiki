@@ -514,11 +514,13 @@ function os_eventKeypress(e){
 
 /** Catch the key code (Firefox bug)  */
 function os_eventKeydown(e){
-	var targ = os_getTarget(e);
+	if (!e) var e = window.event;
+	if (e.target) targ = e.target;
+	else if (e.srcElement) targ = e.srcElement;
 	var r = os_map[targ.id];
 	if(r == null)
 		return; // not our event
-		
+			
 	os_mouse_moved = false;
 		
 	if(os_first_focus){
