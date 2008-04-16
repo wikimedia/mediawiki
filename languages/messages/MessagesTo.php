@@ -4,13 +4,11 @@
  * @addtogroup Language
  *
  * @author SPQRobin
- * @author לערי ריינהארט
  * @author Tauʻolunga
- * @author Cbrown1023
  * @author Siebrand
+ * @author לערי ריינהארט
+ * @author Cbrown1023
  */
-
-
 
 $messages = array(
 # User preference toggles

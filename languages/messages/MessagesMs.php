@@ -8,10 +8,10 @@
  * Init - This localisation is based on a file kindly donated by the folks at MIMOS
  * http://www.asiaosc.org/enwiki/page/Knowledgebase_Home.html
  * Sep 2007 - Rewritten by the folks at ms.wikipedia.org
- * @author Aviator
- * @author Aurora
- * @author Siebrand
  * @author לערי ריינהארט
+ * @author Aviator
+ * @author Siebrand
+ * @author Aurora
  */
 
 # Uncomment line below to use space charecter as thousands separator

@@ -4,10 +4,10 @@
  * @addtogroup Language
  *
  * @author Agurzil
+ * @author Siebrand
+ * @author SPQRobin
  * @author Nike
  * @author Teak
- * @author SPQRobin
- * @author Siebrand
  * @author Jon Harald Søby
  */
 
@@ -1156,7 +1156,7 @@ G leɛnayek wekki ɣef taqeffalt "Back/Précédent" n browser/explorateur inek, 
 'protect-summary-cascade' => 'acercur',
 'protect-expiring'        => 'yemmut deg $1 (UTC)',
 'restriction-type'        => 'Turagt',
-'minimum-size'            => 'Tiddi minimum (bytes/octets)',
+'minimum-size'            => 'Tiddi minimum',
 
 # Restrictions (nouns)
 'restriction-edit' => 'Beddel',

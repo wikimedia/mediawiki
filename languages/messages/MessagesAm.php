@@ -345,7 +345,7 @@ $1',
 $2",
 'namespaceprotected'   => "በ'''$1''' ክፍለ-ዊኪ ያሉትን ገጾች ለማዘጋጀት ፈቃድ የለዎም።",
 'customcssjsprotected' => 'ይህ ገጽ የሌላ ተጠቃሚ ምርጫዎች ስላሉበት እሱን ለማዘጋጀት ፈቃድ የለዎም።',
-'ns-specialprotected'  => 'በ{{ns:special}} ክፍለ-ዊኪ ያሉትን ገጾች ለማዘጋጀት አይቻልም።',
+'ns-specialprotected'  => 'ልዩ ገጾችን ማረም አይፈቀድም።',
 'titleprotected'       => "ይህ አርዕስት እንዳይፈጠር በ[[User:$1|$1]] ተጠብቋል። የተሰጠው ምክንያት ''$2'' ነው።",
 
 # Login and logout pages
@@ -519,7 +519,7 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 
 ወደዚህ በስሕተት ከሆነ የመጡት፣ የቃኝውን «Back» ቁልፍ ይጫኑ።',
 'anontalkpagetext'          => "----''ይኸው ገጽ ገና ያልገባ ወይም ብዕር ስም የሌለው ተጠቃሚ ውይይት ገጽ ነው። መታወቂያው በ[[ቁጥር አድራሻ]] እንዲሆን ያስፈልጋል። አንዳንዴ ግን አንድ የቁጥር አድራሻ በሁለት ወይም በብዙ ተጠቃሚዎች የጋራ ሊሆን ይችላል። ስለዚህ ለርስዎ የማይገባ ውይይት እንዳይደርስልዎ፣ [[Special:Userlogin|«መግቢያ»]] በመጫን የብዕር ስም ለማውጣት ይችላሉ።''",
-'noarticletext'             => '(በዚሁ ገጽ ላይ ምንም ጽሕፈት ገና የለም።)',
+'noarticletext'             => 'በአሁኑ ወቅት በዚህ ገጽ ላይ ምንም ጽሑፍ የለም፤ በሌላ ገጾች [[Special:Search/{{PAGENAME}}|የዚህን ገጽ አርዕስት መፈለግ]] ወይም [{{fullurl:{{FULLPAGENAME}}|action=edit}} አዲስ ገፅ ማዘጋጀት ይችላሉ].',
 'userpage-userdoesnotexist' => 'የብዕር ስም «$1» አልተመዘገበም። እባክዎ ይህን ገጽ ለመፍጠር/ ለማስተካከል የፈለጉ እንደ ሆነ ያረጋግጡ።',
 'usercssjsyoucanpreview'    => "<strong>ምክር፦</strong> ሳይቆጠብ አዲስ CSS/JSዎን ለመሞከር 'ቅድመ እይታ' የሚለውን ይጫኑ።",
 'usercsspreview'            => "'''ማስታወሻ፦ CSS-ዎን ለሙከራ ብቻ እያዩ ነው፤ ገና አልተቆጠበም!'''",
@@ -613,12 +613,12 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 # Revision deletion
 'rev-deleted-comment'     => '(ማጠቃልያ ተደለዘ)',
 'rev-deleted-user'        => '(ብዕር ስም ተደለዘ)',
-'rev-deleted-event'       => '(መዝገቡ ተወገደ)',
+'rev-deleted-event'       => '(መዝገቡ ድርጊት ተወግዷል)',
 'rev-delundel'            => 'ይታይ/ይደበቅ',
 'revdelete-nooldid-title' => 'የማይሆን ግብ እትም',
 'revdelete-nooldid-text'  => 'ይህ ተግባር የሚፈጸምበት ግብ (አላማ) እትም አልወሰኑም።',
-'revdelete-selected'      => "የ'''$1''' {{PLURAL:$2|የተመረጠ ዕትም|የተመረጡ ዕትሞች}}፦",
-'logdelete-selected'      => "ለ'''$1''' {{PLURAL:$2|የተመረጠ መዝገብ ድርጊት|የተመረጡ መዝገብ ድርጊቶች}}፦",
+'revdelete-selected'      => 'ከ [[:$1]] {{PLURAL:$2|የተመረጡ ዝርያዎች|የተመረጡ ዝርያዎች}}:',
+'logdelete-selected'      => '{{PLURAL:$1|የተመረጠ መዝገብ ድርጊት|የተመረጡ መዝገብ ድርጊቶች}}፦',
 'revdelete-hide-text'     => 'የእትሙ ጽሕፈት ይደበቅ',
 'revdelete-hide-name'     => 'ድርጊትና ግቡ ይደበቅ',
 'revdelete-hide-comment'  => 'ማጠቃለያ ይደበቅ',
@@ -1912,18 +1912,7 @@ $1',
 'confirmemail_loggedin'   => 'የርስዎ ኢ-ሜል አድራሻ ተረጋግጧል። አሁን ኢ-ሜል በ{{SITENAME}} በኩል ለመላክ ወይም ለመቀበል ይችላሉ።',
 'confirmemail_error'      => 'ማረጋገጫዎን በመቆጠብ አንድ ችግር ተነሣ።',
 'confirmemail_subject'    => '{{SITENAME}} email address confirmation / እ-ሜል አድራሻ ማረጋገጫ',
-'confirmemail_body'       => 'Someone from IP address $1 (probably you), has registered an
-account with the user name "$2" with this e-mail address on {{SITENAME}}.
-
-To confirm that this account really does belong to you, and to activate e-mail features on {{SITENAME}}, open this link in your browser:
-
-$3
-
-If for some reason this is *not* you, don\'t follow the link. This confirmation code will expire at $4.
-
-Amharic text follows:
-
-ጤና ይስጥልኝ
+'confirmemail_body'       => 'ጤና ይስጥልኝ
 
 የርስዎ ኢ-ሜል አድራሻ በ$1 ለ{{SITENAME}} ብዕር ስም «$2» ቀርቧል። 
 

@@ -1426,6 +1426,9 @@ $2 Εμφάνιση ανακατευθύνσεων &nbsp; Κριτήρια αν�
 'listusers-submit'   => 'Δείξε',
 'listusers-noresult' => 'Δεν βρέθηκε χρήστης.',
 
+# Special:Listgrouprights
+'listgrouprights' => 'Δικαιώματα ομάδων χρηστών',
+
 # E-mail user
 'mailnologin'     => 'Δεν υπάρχει διεύθυνση παραλήπτη.',
 'mailnologintext' => 'Πρέπει να έχετε [[Special:Userlogin|συνδεθεί]] και να έχετε δηλώσει
@@ -2533,7 +2536,10 @@ $1',
 'specialpages-group-other'       => 'Άλλες ειδικές σελίδες',
 'specialpages-group-login'       => 'Σύνδεση / δημιουργία λογαριασμού',
 'specialpages-group-changes'     => 'Πρόσφατες αλλαγές και καταγραφές γεγονότων',
+'specialpages-group-media'       => 'Αναφορές πολυμέσων και επιφόρτωση αρχείων',
 'specialpages-group-users'       => 'Χρήστες και δικαιώματα',
 'specialpages-group-needy'       => 'Σελίδες που χρειάζονται εργασία',
+'specialpages-group-highuse'     => 'Πολυσύχναστες σελίδες',
+'specialpages-group-permissions' => 'Δικαιώματα χρηστών',
 
 );

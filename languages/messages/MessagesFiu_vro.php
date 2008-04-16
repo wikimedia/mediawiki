@@ -1263,7 +1263,7 @@ Tan ommaq lehe <strong>$1</strong> parhilladsõq säädmiseq:',
 'protect-cantedit'            => 'Sa tohe-i muutaq seo lehe kaitsmistasõt, selle et sul olõ-i õigust seod lehte muutaq.',
 'restriction-type'            => 'Luba',
 'restriction-level'           => 'Piirdmisastõq',
-'minimum-size'                => 'Kõgõ vähämb maht (baidõn)',
+'minimum-size'                => 'Kõgõ vähämb maht',
 'maximum-size'                => 'Kõgõ suurõmb lubat suurus:',
 'pagesize'                    => '(baiti)',
 

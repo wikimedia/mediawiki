@@ -2,8 +2,12 @@
 /** Ossetic (Иронау)
  *
  * @addtogroup Language
+ *
+ * @author Siebrand
+ * @author לערי ריינהארט
+ * @author Amikeco
  */
- 
+
 $fallback = 'ru';
 
 $skinNames = array(
@@ -37,7 +41,6 @@ $namespaceNames = array(
 
 $linkTrail = '/^((?:[a-z]|а|æ|б|в|г|д|е|ё|ж|з|и|й|к|л|м|н|о|п|р|с|т|у|ф|х|ц|ч|ш|щ|ъ|ы|ь|э|ю|я|“|»)+)(.*)$/sDu';
 $fallback8bitEncoding =  'windows-1251';
-
 
 $messages = array(
 # User preference toggles
@@ -196,6 +199,7 @@ $3',
 # Miscellaneous special pages
 'nbytes'       => '$1 байт(ы)',
 'nlinks'       => '$1 æрвитæн(ы)',
+'nviews'       => '$1 {{PLURAL:$1|æркаст|æркасты}}',
 'lonelypages'  => 'Сидзæр фæрстæ',
 'wantedpages'  => 'Хъæугæ фæрстæ',
 'shortpages'   => 'Цыбыр фæрстæ',

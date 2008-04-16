@@ -1390,8 +1390,8 @@ Velaquí las ocionis atualis la páhina <strong>$1</strong>:',
 'protect-cantedit'            => "Nu t'es posibri chambal el nivel de proteción desta páhina ebiu a que nu tienis los premisus nesezárius pa eitala.",
 'restriction-type'            => 'Premisus:',
 'restriction-level'           => 'Nivel de restrición:',
-'minimum-size'                => 'Grandol mén.',
-'maximum-size'                => 'Grandol mái.',
+'minimum-size'                => 'Grandol mén',
+'maximum-size'                => 'Grandol mái:',
 
 # Restrictions (nouns)
 'restriction-edit'   => 'Eital',

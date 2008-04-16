@@ -324,6 +324,7 @@ $messages = array(
 'youhavenewmessagesmulti' => 'Avètz de messatges novèls sus $1',
 'editsection'             => 'modificar',
 'editold'                 => 'modificar',
+'viewsourceold'           => 'veire la font',
 'editsectionhint'         => 'Modificar la seccion : $1',
 'toc'                     => 'Somari',
 'showtoc'                 => 'mostrar',
@@ -710,8 +711,8 @@ Pòt i aver de detalhs dins lo [{{fullurl:Special:Log/delete|page={{FULLPAGENAME
 'revisiondelete'              => 'Suprimir/Restablir de versions',
 'revdelete-nooldid-title'     => 'Cibla per la revision invalida',
 'revdelete-nooldid-text'      => 'Avètz pas precisat la o las revision(s) cibla(s) per utilizar aquesta foncion.',
-'revdelete-selected'          => "{{PLURAL:$2|Version seleccionada|Versions seleccionadas}} de '''$1''' :",
-'logdelete-selected'          => "{{PLURAL:$2|Eveniment de jornal seleccionat|Eveniments de jornal seleccionats}} per '''$1''' :",
+'revdelete-selected'          => '{{PLURAL:$2|Version seleccionada|Versions seleccionadas}} de [[:$1]] :',
+'logdelete-selected'          => '{{PLURAL:$2|Eveniment de jornal seleccionat|Eveniments de jornal seleccionats}} :',
 'revdelete-text'              => "Las versions suprimidas apareisseràn encara dins l’istoric de l’article, mas lor contengut textual serà inaccessible al public.
 
 D’autres administrators sus {{SITENAME}} poiràn totjorn accedir al contengut amagat e lo restablir tornarmai a travèrs d'aquesta meteissa interfàcia, a mens qu’una restriccion suplementària siá mesa en plaça pels operators del sit.",
@@ -720,7 +721,7 @@ D’autres administrators sus {{SITENAME}} poiràn totjorn accedir al contengut 
 'revdelete-hide-name'         => 'Amagar l’accion e la cibla',
 'revdelete-hide-comment'      => 'Amagar lo comentari de modificacion',
 'revdelete-hide-user'         => 'Amagar lo pseudonim o l’adreça IP del contributor.',
-'revdelete-hide-restricted'   => 'Aplicar aquestas restriccions als administrators e mai als autres utilizaires',
+'revdelete-hide-restricted'   => 'Aplicar aquestas restriccions als administrators e varrolhar aquesta interfàcia',
 'revdelete-suppress'          => 'Suprimir las donadas dels administrators e dels autres',
 'revdelete-hide-image'        => 'Amagar lo contengut del fichièr',
 'revdelete-unsuppress'        => 'Levar las restriccions sus las versions restablidas',
@@ -745,7 +746,7 @@ D’autres administrators sus {{SITENAME}} poiràn totjorn accedir al contengut 
 
 # Suppression log
 'suppressionlog'     => 'Jornal de las supressions',
-'suppressionlogtext' => 'Çaijós, se tròba la tièra de las supressions mai recentas e dels blocatges comprenent las revisions amagadas als administrators. Vejatz [[Special:Ipblocklist|la lista dels blocatges de las IP]] per la lista dels fòrabandiments e dels blocatges.',
+'suppressionlogtext' => 'Çaijós, se tròba la tièra de las supressions e dels blocatges que comprenon las revisions amagadas als administrators. Vejatz [[Special:Ipblocklist|la lista dels blocatges de las IP]] per la lista dels fòrabandiments e dels blocatges operacionals.',
 
 # History merging
 'mergehistory'                     => "Fusion dels istorics d'una pagina",
@@ -783,39 +784,40 @@ Asseguratz-vos qu'aqueste cambiament pòsca conservar la continuitat de l'istori
 'diff-multi'              => '({{plural:$1|Una revision intermediària amagada|$1 revisions intermediàrias amagadas}})',
 
 # Search results
-'searchresults'         => 'Resultat de la recèrca',
-'searchresulttext'      => "Per mai d'informacions sus la recèrca dins {{SITENAME}}, vejatz [[Projècte:Recèrca|Cercar dins {{SITENAME}}]].",
-'searchsubtitle'        => 'Per la requèsta "[[:$1]]"',
-'searchsubtitleinvalid' => 'Per la requèsta "$1"',
-'noexactmatch'          => 'Cap de pagina amb lo títol "$1" existís pas, ensajatz amb la recèrca complèta. Si que non, podètz [[:$1|crear aquesta pagina]]',
-'noexactmatch-nocreate' => "'''I a pas de pagina intitolada \"\$1\".'''",
-'toomanymatches'        => 'Tròp d’occuréncias son estadas trobadas, sètz pregat de sometre una requèsta diferenta.',
-'titlematches'          => 'Correspondéncias dins los títols',
-'notitlematches'        => "Cap de títol d'article conten pas lo(s) mot(s) demandat(s)",
-'textmatches'           => 'Correspondéncias dins los tèxtes',
-'notextmatches'         => "Cap de tèxt d'article conten pas lo(s) mot(s) demandat(s)",
-'prevn'                 => '$1 precedents',
-'nextn'                 => '$1 seguents',
-'viewprevnext'          => 'Veire ($1) ($2) ($3).',
-'search-result-size'    => '$1 ({{PLURAL:$2|1 mot|$2 mots}})',
-'search-result-score'   => 'Pertinéncia : $1%',
-'search-redirect'       => '(redireccion vèrs $1)',
-'search-section'        => '(seccion $1)',
-'search-suggest'        => 'Avètz volgut dire : $1',
-'searchall'             => 'Totes',
-'showingresults'        => 'Afichatge de <b>$1</b> resultats a partir del #<b>$2</b>.',
-'showingresultsnum'     => 'Afichatge de <b>$3</b> resultats a partir del #<b>$2</b>.',
-'showingresultstotal'   => "Visionament dels resultats çaijós '''$1 - $2''' de '''$3'''",
-'nonefound'             => '<strong>Nòta</strong>: l\'abséncia de resultat es sovent deguda a l\'emplec de tèrmes de recèrca tròp corrents, coma "a" o "de",
+'searchresults'            => 'Resultat de la recèrca',
+'searchresulttext'         => "Per mai d'informacions sus la recèrca dins {{SITENAME}}, vejatz [[Projècte:Recèrca|Cercar dins {{SITENAME}}]].",
+'searchsubtitle'           => 'Per la requèsta "[[:$1]]"',
+'searchsubtitleinvalid'    => 'Per la requèsta "$1"',
+'noexactmatch'             => 'Cap de pagina amb lo títol "$1" existís pas, ensajatz amb la recèrca complèta. Si que non, podètz [[:$1|crear aquesta pagina]]',
+'noexactmatch-nocreate'    => "'''I a pas de pagina intitolada \"\$1\".'''",
+'toomanymatches'           => 'Tròp d’occuréncias son estadas trobadas, sètz pregat de sometre una requèsta diferenta.',
+'titlematches'             => 'Correspondéncias dins los títols',
+'notitlematches'           => "Cap de títol d'article conten pas lo(s) mot(s) demandat(s)",
+'textmatches'              => 'Correspondéncias dins los tèxtes',
+'notextmatches'            => "Cap de tèxt d'article conten pas lo(s) mot(s) demandat(s)",
+'prevn'                    => '$1 precedents',
+'nextn'                    => '$1 seguents',
+'viewprevnext'             => 'Veire ($1) ($2) ($3).',
+'search-result-size'       => '$1 ({{PLURAL:$2|1 mot|$2 mots}})',
+'search-result-score'      => 'Pertinéncia : $1%',
+'search-redirect'          => '(redireccion vèrs $1)',
+'search-section'           => '(seccion $1)',
+'search-suggest'           => 'Avètz volgut dire : $1',
+'search-interwiki-default' => '$1 resultats :',
+'searchall'                => 'Totes',
+'showingresults'           => "Afichatge {{PLURAL:$1|d''''1''' resultat|de '''$1''' resultats}} a partir del #'''$2'''.",
+'showingresultsnum'        => "Afichatge {{PLURAL:$3|d''''1''' resultat|de '''$3''' resultats}} a partir del #'''$2'''.",
+'showingresultstotal'      => "Visionament dels resultats çaijós '''$1 - $2''' de '''$3'''",
+'nonefound'                => '<strong>Nòta</strong>: l\'abséncia de resultat es sovent deguda a l\'emplec de tèrmes de recèrca tròp corrents, coma "a" o "de",
 que son pas indexats, o a l\'emplec de mantun tèrme de recèrca (solas las paginas que
 contenon totes los tèrmes apareisson dins los resultats).',
-'powersearch'           => 'Recèrca avançada',
-'powersearch-legend'    => 'Recèrca avançada',
-'powersearchtext'       => 'Recercar dins los espacis :<br />
+'powersearch'              => 'Recèrca avançada',
+'powersearch-legend'       => 'Recèrca avançada',
+'powersearchtext'          => 'Recercar dins los espacis :<br />
 $1<br />
 $2 Enclure las paginas de redireccions   Recercar $3 $9',
-'search-external'       => 'Recèrca extèrna',
-'searchdisabled'        => 'La recèrca sus {{SITENAME}} es desactivada.
+'search-external'          => 'Recèrca extèrna',
+'searchdisabled'           => 'La recèrca sus {{SITENAME}} es desactivada.
 En esperant la reactivacion, podètz efectuar una recèrca via Google.
 Atencion, lor indexacion de contengut {{SITENAME}} benlèu es pas a jorn.',
 
@@ -966,7 +968,9 @@ Una casa pas marcada significa, al contrari, que s’i tròba pas.",
 'recentchangeslinked'          => 'Seguit dels ligams',
 'recentchangeslinked-title'    => 'Seguit dels ligams associats a "$1"',
 'recentchangeslinked-noresult' => 'Cap de cambiament sus las paginas ligadas pendent lo periòde causit.',
-'recentchangeslinked-summary'  => "Aquesta pagina especiala mòstra las modificacions recentas sus las paginas que son ligadas. Las paginas de vòstra lista de seguit son '''en gras'''.",
+'recentchangeslinked-summary'  => "Aquesta pagina especiala mòstra las modificacions recentas sus las paginas que son ligadas. Las paginas de [[Special:Watchlist|vòstra lista de seguit]] son '''en gras'''.",
+'recentchangeslinked-page'     => 'Nom de la pagina :',
+'recentchangeslinked-to'       => 'Afichar los cambiaments vèrs las paginas ligadas al luòc de la pagina donada',
 
 # Upload
 'upload'                      => 'Copiar sul serveire',
@@ -1199,12 +1203,12 @@ I a {{PLURAL:\$7|'''\$7''' article|'''\$7''' articles}} dins [[meta:Help:Job_que
 'fewestrevisions' => 'Articles amb lo mens de revisions',
 
 # Miscellaneous special pages
-'nbytes'                  => '$1 octets',
+'nbytes'                  => '$1 {{PLURAL:$1|octet|octets}}',
 'ncategories'             => '$1 {{PLURAL:$1|categoria|categorias}}',
-'nlinks'                  => '$1 referéncias',
+'nlinks'                  => '$1 {{PLURAL:$1|ligam|ligams}}',
 'nmembers'                => '$1 {{PLURAL:$1|membre|membres}}',
 'nrevisions'              => '$1 {{PLURAL:$1|revision|revisions}}',
-'nviews'                  => '$1 consultacions',
+'nviews'                  => '$1 {{PLURAL:$1|consultacion|consultacions}}',
 'specialpage-empty'       => 'Aquesta pagina es voida.',
 'lonelypages'             => 'Paginas orfanèlas',
 'lonelypagestext'         => 'Las paginas seguentas son pas ligadas a partir d’autras paginas de {{SITENAME}}.',
@@ -1229,6 +1233,7 @@ I a {{PLURAL:\$7|'''\$7''' article|'''\$7''' articles}} dins [[meta:Help:Job_que
 'deadendpages'            => "Paginas sul camin d'enlòc",
 'deadendpagestext'        => 'Las paginas seguentas contenon pas cap de ligam vèrs d’autras paginas de {{SITENAME}}.',
 'protectedpages'          => 'Paginas protegidas',
+'protectedpages-indef'    => 'Unicament las proteccions permanentas',
 'protectedpagestext'      => 'Las paginas seguentas son protegidas contra las modificacions e/o lo renomenatge :',
 'protectedpagesempty'     => 'Cap de pagina es pas protegida actualament.',
 'protectedtitles'         => 'Títols protegits',
@@ -1469,7 +1474,7 @@ Clicatz sus « Precedent » e tornatz cargar la pagina d’ont venètz, puèi en
 'protect-cantedit'            => "Podètz pas modificar los nivèls de proteccion d'aquesta pagina perque avètz pas la permission de l'editar.",
 'restriction-type'            => 'Permission :',
 'restriction-level'           => 'Nivèl de restriccion',
-'minimum-size'                => 'Talha minimom (octets)',
+'minimum-size'                => 'Talha minimom',
 'maximum-size'                => 'Talha maximala:',
 'pagesize'                    => '(octets)',
 
@@ -1491,7 +1496,7 @@ Clicatz sus « Precedent » e tornatz cargar la pagina d’ont venètz, puèi en
 'undeletepagetext'             => 'Aquestas paginas son estadas escafadas e se tròban dins la corbelha, son totjorn dins la banca de donada e pòdon èsser restablidas.
 La corbelha pòt èsser escafada periodicament.',
 'undeleteextrahelp'            => "Per restablir totas las versions d'aquesta pagina, daissatz vèrjas totas las casas de marcar, puèi clicatz sus '''''Procedir al restabliment'''''.<br />Per procedir a un restabliment selectiu, marcatz las casas correspondent a las versions que son de restablir, puèi clicatz sus '''''Procedir a la restabliment'''''.<br />En clicant sul boton '''''Reinicializar''''', la boita de resumit e las casas marcadas seràn remesas a zèro.",
-'undeleterevisions'            => '$1 revisions archivadas',
+'undeleterevisions'            => '$1 {{PLURAL:$1|revision archivada|revisions archivadas}}',
 'undeletehistory'              => "Se restablissètz la pagina, totas las revisions seràn restablidas dins l'istoric.
 
 Se una pagina novèla amb lo meteis nom es estada creada dempuèi la supression,
@@ -1506,8 +1511,8 @@ las revisions restablidas apareisseràn dins l'istoric anterior e la version cor
 'undeletereset'                => 'Reïnicializar',
 'undeletecomment'              => 'Comentari:',
 'undeletedarticle'             => 'restaurat "[[$1]]"',
-'undeletedrevisions'           => '$1 version(s) restablida(s)',
-'undeletedrevisions-files'     => '$1 versions e $2 fichièr(s) restablits',
+'undeletedrevisions'           => '{{PLURAL:$1|1 revision restablida|$1 revisions restablidas}}',
+'undeletedrevisions-files'     => '{{PLURAL:$1|1 revision|$1 revisions}} e {{PLURAL:$2|1 fichièr restablit|$2 fichièrs restablits}}',
 'undeletedfiles'               => '$1 {{PLURAL:$1|fichièr restablit|fichièrs restablits}}',
 'cannotundelete'               => 'Lo restabliment a pas capitat. Un autre utilizaire a probablament restablit la pagina abans.',
 'undeletedpage'                => "<big>'''La pagina $1 es estada restablida'''.</big>
@@ -1571,7 +1576,7 @@ Donatz çaijós una rason precisa (per exemple en indicant las paginas que son e
 'ipaddress'                   => 'Adreça IP',
 'ipadressorusername'          => 'Adreça IP o nom d’utilizaire',
 'ipbexpiry'                   => 'Durada del blocatge',
-'ipbreason'                   => 'Motiu',
+'ipbreason'                   => 'Motiu :',
 'ipbreasonotherlist'          => 'Autra rason',
 'ipbreason-dropdown'          => '* Motius de blocatge mai frequents
 ** Vandalisme
@@ -1714,7 +1719,7 @@ jol nom novèl. Se vos plai, fusionatz-las manualament.",
 '1movedto2_redir'         => 'a redirigit [[$1]] vèrs [[$2]]',
 'movelogpage'             => 'Istoric dels renomenatges',
 'movelogpagetext'         => 'Vaquí la lista de las darrièras paginas renomenadas.',
-'movereason'              => 'Rason del renomenatge',
+'movereason'              => 'Motiu :',
 'revertmove'              => 'anullar',
 'delete_and_move'         => 'Suprimir e tornar nomenar',
 'delete_and_move_text'    => '==Supression requesida==
@@ -1795,9 +1800,9 @@ Totas las accions d’importacion interwiki son conservadas dins lo [[Special:Lo
 'importlogpage'                    => 'Istoric de las importacions de paginas',
 'importlogpagetext'                => 'Impòrts administratius de paginas amb l’istoric a partir dels autres wikis.',
 'import-logentry-upload'           => 'a importat (telecargament) $1',
-'import-logentry-upload-detail'    => '$1 version(s)',
+'import-logentry-upload-detail'    => '$1 {{PLURAL:$1|version|versions}}',
 'import-logentry-interwiki'        => '$1 version(s) dempuèi $2',
-'import-logentry-interwiki-detail' => '$1 version(s) dempuèi $2',
+'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|version|versions}} dempuèi $2',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'             => "Ma pagina d'utilizaire",
@@ -1954,7 +1959,7 @@ $1",
 
 # Special:Newimages
 'newimages'             => 'Galariá de fichièrs novèls',
-'imagelisttext'         => 'Vaquí una lista de $1 imatges classats $2.',
+'imagelisttext'         => "Vaquí una lista de '''$1''' {{PLURAL:$1|fichièr|fichièrs}} classats $2.",
 'newimages-summary'     => 'Aquesta pagina especiala aficha los darrièrs fichièrs importats',
 'showhidebots'          => '($1 bòts)',
 'noimages'              => "Cap imatge d'afichar.",
@@ -2418,5 +2423,16 @@ Picatz lo nom del fichièr sens lo prefix « {{ns:image}}: ».',
 'fileduplicatesearch-info'     => '$1 × $2 pixels<br />Talha del fichièr : $3<br />MIME type : $4',
 'fileduplicatesearch-result-1' => 'Lo fichièr « $1 » a pas de doble identic.',
 'fileduplicatesearch-result-n' => 'Lo fichièr « $1 » a {{PLURAL:$2|1 doble identic|$2 dobles identics}}.',
+
+# Special:SpecialPages
+'specialpages-group-maintenance' => 'Rapòrts de mantenença',
+'specialpages-group-other'       => 'Autras paginas especialas',
+'specialpages-group-login'       => 'Se connectar / s’enregistrar',
+'specialpages-group-changes'     => 'Darrièrs cambiaments e jornals',
+'specialpages-group-media'       => 'Rapòrts dels fichièrs de mèdias e dels impòrts',
+'specialpages-group-users'       => 'Utilizaires e dreches estacats',
+'specialpages-group-needy'       => 'Paginas que necessitan de trabalhs',
+'specialpages-group-highuse'     => 'Utilizacion intensa de las paginas',
+'specialpages-group-permissions' => 'Permissions dels utilizaires',
 
 );
