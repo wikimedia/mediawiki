@@ -267,7 +267,7 @@ class Skin extends Linker {
 
 		$out->out( $this->bottomScripts() );
 
-		$out->out( $out->reportTime() );
+		$out->out( wfReportTime() );
 
 		$out->out( "\n</body></html>" );
 		wfProfileOut( __METHOD__ );
