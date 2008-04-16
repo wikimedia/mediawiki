@@ -248,39 +248,43 @@ class LogEventsList {
 					)
 				) . ')';
 			// If an edit was hidden from a page give a review link to the history
-			} else if( self::typeAction($row,'delete','revision') && $wgUser->isAllowed( 'deleterevision' ) && isset($paramArray[2]) ) {
-				$revdel = SpecialPage::getTitleFor( 'Revisiondelete' );
-				// Different revision types use different URL params...
-				$subtype = isset($paramArray[2]) ? $paramArray[1] : '';
-				// Link to each hidden object ID, $paramArray[1] is the url param. List if several...
-				$Ids = explode( ',', $paramArray[2] );
-				if( count($Ids) == 1 ) {
-					$revert = $this->skin->makeKnownLinkObj( $revdel, $this->message['revdel-restore'],
+			} else if( self::typeAction($row,array('delete','suppress'),'revision') && $wgUser->isAllowed( 'deleterevision' ) ) {
+				if( isset($paramArray[2]) ) {
+					$revdel = SpecialPage::getTitleFor( 'Revisiondelete' );
+					// Different revision types use different URL params...
+					$subtype = isset($paramArray[2]) ? $paramArray[1] : '';
+					// Link to each hidden object ID, $paramArray[1] is the url param. List if several...
+					$Ids = explode( ',', $paramArray[2] );
+					if( count($Ids) == 1 ) {
+						$revert = $this->skin->makeKnownLinkObj( $revdel, $this->message['revdel-restore'],
 						wfArrayToCGI( array('target' => $paramArray[0], $paramArray[1] => $Ids[0] ) ) );
-				} else {
-					$revert .= $this->message['revdel-restore'].':';
-					foreach( $Ids as $n => $id ) {
-						$revert .= ' '.$this->skin->makeKnownLinkObj( $revdel, '#'.($n+1),
-							wfArrayToCGI( array('target' => $paramArray[0], $paramArray[1] => $id ) ) );
+					} else {
+						$revert .= $this->message['revdel-restore'].':';
+						foreach( $Ids as $n => $id ) {
+							$revert .= ' '.$this->skin->makeKnownLinkObj( $revdel, '#'.($n+1),
+								wfArrayToCGI( array('target' => $paramArray[0], $paramArray[1] => $id ) ) );
+						}
 					}
+					$revert = "($revert)";
 				}
-				$revert = "($revert)";
 			// Hidden log items, give review link
-			} else if( self::typeAction($row,'delete','event') && $wgUser->isAllowed( 'deleterevision' ) && isset($paramArray[0]) ) {
-				$revdel = SpecialPage::getTitleFor( 'Revisiondelete' );
-				$revert .= $this->message['revdel-restore'];
-				$Ids = explode( ',', $paramArray[0] );
-				// Link to each hidden object ID, $paramArray[1] is the url param. List if several...
-				if( count($Ids) == 1 ) {
-					$revert = $this->skin->makeKnownLinkObj( $revdel, $this->message['revdel-restore'],
-						wfArrayToCGI( array('logid' => $Ids[0] ) ) );
-				} else {
-					foreach( $Ids as $n => $id ) {
-						$revert .= $this->skin->makeKnownLinkObj( $revdel, '#'.($n+1),
-							wfArrayToCGI( array('logid' => $id ) ) );
+			} else if( self::typeAction($row,array('delete','suppress'),'event') && $wgUser->isAllowed( 'deleterevision' ) ) {
+				if( isset($paramArray[0]) ) {
+					$revdel = SpecialPage::getTitleFor( 'Revisiondelete' );
+					$revert .= $this->message['revdel-restore'];
+					$Ids = explode( ',', $paramArray[0] );
+					// Link to each hidden object ID, $paramArray[1] is the url param. List if several...
+					if( count($Ids) == 1 ) {
+						$revert = $this->skin->makeKnownLinkObj( $revdel, $this->message['revdel-restore'],
+							wfArrayToCGI( array('logid' => $Ids[0] ) ) );
+					} else {
+						foreach( $Ids as $n => $id ) {
+							$revert .= $this->skin->makeKnownLinkObj( $revdel, '#'.($n+1),
+								wfArrayToCGI( array('logid' => $id ) ) );
+						}
 					}
+					$revert = "($revert)";
 				}
-				$revert = "($revert)";
 			} else {
 				wfRunHooks( 'LogLine', array( $row->log_type, $row->log_action, $title, $paramArray,
 					&$comment, &$revert, $row->log_timestamp ) );
@@ -326,12 +330,16 @@ class LogEventsList {
 
 	/**
 	 * @param Row $row
-	 * @param string $type
+	 * @param mixed $type (string/array)
 	 * @param string $action
 	 * @return bool
 	 */
 	public static function typeAction( $row, $type, $action ) {
-		return ( $row->log_type == $type && $row->log_action == $action );
+		if( is_array($type) ) {
+			return ( in_array($row->log_type,$type) && $row->log_action == $action );
+		} else {
+			return ( $row->log_type == $type && $row->log_action == $action );
+		}
 	}
 
 	/**
