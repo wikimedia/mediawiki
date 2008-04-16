@@ -2224,7 +2224,7 @@ function wfIsLocalURL( $url ) {
  * Initialise php session
  */
 function wfSetupSession() {
-	global $wgSessionsInMemcached, $wgCookiePath, $wgCookieDomain, $wgCookieSecure;
+	global $wgSessionsInMemcached, $wgCookiePath, $wgCookieDomain, $wgCookieSecure, $wgCookieHttpOnly;
 	if( $wgSessionsInMemcached ) {
 		require_once( 'MemcachedSessions.php' );
 	} elseif( 'files' != ini_get( 'session.save_handler' ) ) {
@@ -2232,7 +2232,13 @@ function wfSetupSession() {
 		# application, it will end up failing. Try to recover.
 		ini_set ( 'session.save_handler', 'files' );
 	}
-	session_set_cookie_params( 0, $wgCookiePath, $wgCookieDomain, $wgCookieSecure);
+	$httpOnlySafe = version_compare("5.2", PHP_VERSION, "<");
+	if( $httpOnlySafe && $wgCookieHttpOnly ) {
+		session_set_cookie_params( 0, $wgCookiePath, $wgCookieDomain, $wgCookieSecure, $wgCookieHttpOnly );
+	} else {
+		// PHP 5.1 throws warnings if you pass the HttpOnly parameter for 5.2.
+		session_set_cookie_params( 0, $wgCookiePath, $wgCookieDomain, $wgCookieSecure );
+	}
 	session_cache_limiter( 'private, must-revalidate' );
 	wfSuppressWarnings();
 	session_start();
