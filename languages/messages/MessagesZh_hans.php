@@ -1510,7 +1510,7 @@ $NEWPAGE
 'protect-cantedit'            => '您无法更改这个页面的保护等级，因为您没有权限去编辑它。',
 'restriction-type'            => '权限:',
 'restriction-level'           => '限制级别:',
-'minimum-size'                => '最小大小:',
+'minimum-size'                => '最小大小',
 'maximum-size'                => '最大大小:',
 'pagesize'                    => '(字节)',
 

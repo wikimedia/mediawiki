@@ -1487,7 +1487,7 @@ $NEWPAGE
 'protect-cantedit'            => '您無法更改這個頁面的保護等級，因為您沒有權限去編輯它。',
 'restriction-type'            => '權限:',
 'restriction-level'           => '限制級別:',
-'minimum-size'                => '最小大小:',
+'minimum-size'                => '最小大小',
 'maximum-size'                => '最大大小:',
 'pagesize'                    => '(位元組)',
 
