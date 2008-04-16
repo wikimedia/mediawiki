@@ -2082,7 +2082,7 @@ You can change this page's protection level, but it will not affect the cascadin
 'protect-cantedit'            => 'You cannot change the protection levels of this page, because you do not have permission to edit it.',
 'restriction-type'            => 'Permission:',
 'restriction-level'           => 'Restriction level:',
-'minimum-size'                => 'Min size:',
+'minimum-size'                => 'Min size',
 'maximum-size'                => 'Max size:',
 'pagesize'                    => '(bytes)',
 

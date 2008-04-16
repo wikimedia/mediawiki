@@ -109,6 +109,7 @@ $wgIgnoredMessages = array(
 	'trackbackexcerpt',
 	'uploadfooter',
 	'listgrouprights-link',
+	'search-interwiki-custom',
 );
 
 /** Optional messages, which may be translated only if changed in the other language. */
