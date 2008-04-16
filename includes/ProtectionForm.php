@@ -214,7 +214,7 @@ class ProtectionForm {
 	 * @return $out string HTML form
 	 */
 	function buildForm() {
-		global $wgUser, $wgContLang;
+		global $wgUser;
 
 		$out = '';
 		if( !$this->disabled ) {
@@ -258,19 +258,18 @@ class ProtectionForm {
 		if( $wgEnableCascadingProtection && $this->mTitle->exists() ) {
 			$out .= '<tr>
 					<td></td>
-					<td>' .
+					<td class="mw-input">' .
 						Xml::checkLabel( wfMsg( 'protect-cascade' ), 'mwProtect-cascade', 'mwProtect-cascade', $this->mCascade, $this->disabledAttrib ) .
 					"</td>
 				</tr>\n";
 		}
 
 		$attribs = array( 'id' => 'expires' ) + $this->disabledAttrib;
-		$align = $wgContLang->isRtl() ? 'left' : 'right';
 		$out .= "<tr>
-				<td align='$align'>" .
+				<td class='mw-label'>" .
 					Xml::label( wfMsgExt( 'protectexpiry', array( 'parseinline' ) ), 'expires' ) .
 				'</td>
-				<td>' .
+				<td class="mw-input">' .
 					Xml::input( 'mwProtect-expiry', 60, $this->mExpiry, $attribs ) .
 				'</td>
 			</tr>';
@@ -278,16 +277,16 @@ class ProtectionForm {
 		if( !$this->disabled ) {
 			$id = 'mwProtect-reason';
 			$out .= "<tr>
-					<td align='$align'>" .
+					<td class='mw-label'>" .
 						Xml::label( wfMsg( 'protectcomment' ), $id ) .
 					'</td>
-					<td>' .
+					<td class="mw-input">' .
 						Xml::input( $id, 60, $this->mReason, array( 'type' => 'text', 'id' => $id, 'maxlength' => 255 ) ) .
 					"</td>
 				</tr>
 				<tr>
 					<td></td>
-					<td>" .
+					<td class='mw-input'>" .
 						Xml::checkLabel( wfMsg( 'watchthis' ),
 							'mwProtectWatch', 'mwProtectWatch',
 							$this->mTitle->userIsWatching() || $wgUser->getOption( 'watchdefault' ) ) .
@@ -295,7 +294,7 @@ class ProtectionForm {
 				</tr>
 				<tr>
 					<td></td>
-					<td>" .
+					<td class='mw-submit'>" .
 						Xml::submitButton( wfMsg( 'confirm' ), array( 'id' => 'mw-Protect-submit' ) ) .
 					"</td>
 				</tr>\n";
@@ -351,9 +350,7 @@ class ProtectionForm {
 
 	function buildScript() {
 		global $wgStylePath, $wgStyleVersion;
-		return '<script type="text/javascript" src="' .
-			htmlspecialchars( $wgStylePath . "/common/protect.js?$wgStyleVersion" ) .
-			'"></script>';
+		return Xml::tags( 'script', array( 'type' => 'text/javascript', 'src' => htmlspecialchars( $wgStylePath . "/common/protect.js?$wgStyleVersion" ) ), '' );
 	}
 
 	function buildCleanupScript() {
@@ -367,7 +364,7 @@ class ProtectionForm {
 		}
 		$script .= "[" . implode(',',$CascadeableLevels) . "];\n";
 		$script .= 'protectInitialize("mwProtectSet","' . Xml::escapeJsString( wfMsg( 'protect-unchain' ) ) . '","' . count($this->mApplicableTypes) . '")';
-		return '<script type="text/javascript">' . $script . '</script>';
+		return Xml::tags( 'script', array( 'type' => 'text/javascript' ), $script );
 	}
 
 	/**
