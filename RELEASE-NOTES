@@ -80,6 +80,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Add class="nested" for <fieldset>s so fieldsets inside fieldsets get
   a slightly less huge margin and padding.
 * (bug 13527) Use sitemaps.org format 0.9 instead of a Google-specific format
+* Allow \C and \Q as TeX commands to match \R, \N, \Z
 
 === Bug fixes in 1.13 ===
 
