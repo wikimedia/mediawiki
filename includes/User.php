@@ -2029,7 +2029,6 @@ class User {
 	}
 	
 	protected function clearCookie( $name ) {
-		global $wgCookiePrefix;
 		$this->setCookie( $name, '', time() - 86400 );
 	}
 
