@@ -8,6 +8,8 @@
  * @author M.M.S.
  */
 
+$fallback = 'da';
+
 $messages = array(
 # Dates
 'sun'           => 'Sap',
