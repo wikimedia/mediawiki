@@ -888,10 +888,9 @@ class PreferencesForm {
 				} else {
 					$formatted = $wgLang->timeanddate( $epoch, false, $key );
 				}
-				$checked = ( $key == $this->mDate ) ? true : false;
 				$wgOut->addHTML(
 					Xml::tags( 'div', null,
-						Xml::radioLabel( $formatted, 'wpDate', $key, "wpDate$idCnt", $checked )
+						Xml::radioLabel( $formatted, 'wpDate', $key, "wpDate$idCnt", $key == $this->mDate )
 					) . "\n"
 				);
 				$idCnt++;
@@ -910,7 +909,7 @@ class PreferencesForm {
 			$this->addRow( wfMsg( 'localtime' ), $nowlocal ) .
 			$this->addRow(
 				Xml::label( wfMsg( 'timezoneoffset' ), 'wpHourDiff'  ),
-				Xml::input( 'wpHourDiff', 6, $this->mHourDiff, array( 'class' => 'wpHourDiff' ) ) ) .
+				Xml::input( 'wpHourDiff', 6, $this->mHourDiff, array( 'id' => 'wpHourDiff' ) ) ) .
 			"<tr>
 				<td></td>
 				<td class='mw-submit'>" .
