@@ -1377,7 +1377,7 @@ ID ваше блокаде је $5. Молимо вас наведите ова�
 # Special:Listgrouprights
 'listgrouprights-group'    => 'Група',
 'listgrouprights-rights'   => 'Права',
-'listgrouprights-helppage' => 'Помоћ:Права',
+'listgrouprights-helppage' => 'Help:Права',
 
 # E-mail user
 'mailnologin'     => 'Нема адресе за слање',

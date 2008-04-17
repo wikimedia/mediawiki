@@ -1279,9 +1279,10 @@ $NEWPAGE
 
 # What links here
 'whatlinkshere'       => 'სადაა მითითებული ეს გვერდი',
+'whatlinkshere-title' => 'გვერდები, რომლებიც შეიცავენ ბმულებს $1-ზე',
 'whatlinkshere-page'  => 'გვერდი:',
 'linklistsub'         => '(ბმულების სია)',
-'linkshere'           => 'მომდევნო გვერდები ებმის აქ:',
+'linkshere'           => "მომდევნო გვერდები შეიცავენ ბმულებს '''[[:$1]]'''-ზე:",
 'nolinkshere'         => 'ამ გვერდზე ბმული არ არის.',
 'isredirect'          => 'გადამისამართების გვერდი',
 'istemplate'          => 'ჩართვა',
@@ -1794,6 +1795,8 @@ $1',
 'watchlistedit-normal-title'  => 'კონტროლის სიის რედაქტირება',
 'watchlistedit-normal-legend' => 'მოხსენით სათაურები კონტროლის სიიდან',
 'watchlistedit-normal-done'   => '$1 სათაური მოიხსნა თქვენი კონტროლის სიიდან.',
+'watchlistedit-raw-title'     => 'კონტროლის სიის რედაქტირება ტექსტის ფორმატში',
+'watchlistedit-raw-legend'    => 'კონტროლის სიის რედაქტირება ტექსტის ფორმატში',
 'watchlistedit-raw-titles'    => 'სათაურები:',
 'watchlistedit-raw-submit'    => 'კონტროლის სიის განახლება',
 'watchlistedit-raw-done'      => 'თქვენი კონტროლის სია განახლდა.',
@@ -1801,6 +1804,7 @@ $1',
 # Watchlist editing tools
 'watchlisttools-view' => 'დაკავშირებული ცვლილებების ხილვა',
 'watchlisttools-edit' => 'კონტროლის სიის ხილვა და რედაქტირება',
+'watchlisttools-raw'  => 'კონტროლის სიის რედაქტირება ტექსტის ფორმატში',
 
 # Special:Version
 'version'                  => 'ვერსია', # Not used as normal message but as header for the special page itself

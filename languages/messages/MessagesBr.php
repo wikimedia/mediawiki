@@ -1312,7 +1312,7 @@ Hirder al [http://meta.wikimedia.org/wiki/Help:Job_queue lostennad labour] zo pa
 'listgrouprights-summary'  => 'War ar bajenn-mañ ez eus ur roll eus ar strolladoù implijer termenet war ar wiki-mañ, gant ar gwirioù moned stag outo.',
 'listgrouprights-group'    => 'Strollad',
 'listgrouprights-rights'   => 'Gwirioù',
-'listgrouprights-helppage' => 'Skoazell : Gwirioù ar strolladoù',
+'listgrouprights-helppage' => 'Help:Gwirioù ar strolladoù',
 
 # E-mail user
 'mailnologin'     => "Chomlec'h ebet",

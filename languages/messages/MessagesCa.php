@@ -350,7 +350,7 @@ $messages = array(
 'viewtalkpage'      => 'Visualitza la pàgina de discussió',
 'otherlanguages'    => 'En altres llengües',
 'redirectedfrom'    => "(S'ha redirigit des de $1)",
-'redirectpagesub'   => 'Pàgina de redireccionament',
+'redirectpagesub'   => 'Pàgina de redirecció',
 'lastmodifiedat'    => 'Darrera modificació de la pàgina: $2, $1.', # $1 date, $2 time
 'viewcount'         => 'Aquesta pàgina ha estat visitada {{plural:$1|una vegada|$1 vegades}}.',
 'protectedpage'     => 'Pàgina protegida',
@@ -702,8 +702,8 @@ Si sou ací per error, simplement cliqueu al botó «Enrere» del vostre navegad
 'updated'                           => '(Actualitzat)',
 'note'                              => '<strong>Nota:</strong>',
 'previewnote'                       => "<strong>Açò només és una previsualització, els canvis de la qual encara no s'han desat!</strong>",
-'previewconflict'                   => "Aquesta previsualització reflecteix el text a l'àrea
-d'edició superior tal i com apareixerà si trieu desar-lo.",
+'previewconflict'                   => "Aquesta previsualització reflecteix, a l'àrea
+d'edició superior, el text tal i com apareixerà si trieu desar-lo.",
 'session_fail_preview'              => "<strong>No s'ha pogut processar la vostra edició a causa d'una pèrdua de dades de la sessió.
 Si us plau, proveu-ho una altra vegada. Si continués sense funcionar, finalitzeu la sessió i torneu a iniciar-ne una.</strong>",
 'session_fail_preview_html'         => "<strong>Ho sentim, no s'han pogut processar les vostres modificacions a causa d'una pèrdua de la sessió de dades.</strong>
@@ -724,7 +724,7 @@ Haureu de fusionar els vostres canvis en el text existent.
 'yourtext'                          => 'El vostre text',
 'storedversion'                     => 'Versió emmagatzemada',
 'nonunicodebrowser'                 => "<strong>ALERTA: El vostre navegador no és compatible amb unicode, si us plau canvieu-lo abans d'editar cap pàgina: els caràcters que no són ASCII apareixeran en el quadre d'edició com a codis hexadecimals.</strong>",
-'editingold'                        => '<strong>AVÍS:Esteu editant una revisió desactualitzada de la pàgina.
+'editingold'                        => '<strong>AVÍS: Esteu editant una revisió desactualitzada de la pàgina.
 Si la deseu, es perdran els canvis que hàgiu fet des de llavors.</strong>',
 'yourdiff'                          => 'Diferències',
 'copyrightwarning'                  => "Si us plau, tingueu en compte que totes les contribucions per al projecte {{SITENAME}} es consideren com a publicades sota els termes de la llicència $2 (vegeu-ne més detalls a $1). Si no desitgeu la modificació i distribució lliure dels vostres escrits sense el vostre consentiment, no els poseu ací.<br />
@@ -859,7 +859,7 @@ $2',
 
 # Suppression log
 'suppressionlog'     => 'Registre de supressió',
-'suppressionlogtext' => 'A continuació hi ha una llista de les eliminacions i blocatges que impliquen un contingut amagat als administradors. Vegeu la [[Special:Ipblocklist|llista de blocatges]] per a consultar la llista de bandejos i blocatges actualment en curs.',
+'suppressionlogtext' => 'A continuació hi ha una llista de les eliminacions i bloquejos que impliquen un contingut amagat als administradors. Vegeu la [[Special:Ipblocklist|llista de bloquejos]] per a consultar la llista de bandejos i bloquejos actualment en curs.',
 
 # History merging
 'mergehistory'                     => 'Fusiona els historials de les pàgines',
@@ -913,7 +913,7 @@ Assegureu-vos que aquest canvi mantindrà la continuïtat històrica de la pàgi
 'viewprevnext'              => 'Vés a ($1) ($2) ($3).',
 'search-result-size'        => '$1 ({{PLURAL:$2|1 paraula|$2 paraules}})',
 'search-result-score'       => 'Rellevància: $1%',
-'search-redirect'           => '(redirecciona $1)',
+'search-redirect'           => '(redirigeix a $1)',
 'search-section'            => '(secció $1)',
 'search-suggest'            => 'Volíeu dir: $1',
 'search-interwiki-caption'  => 'Projectes germans',
@@ -1307,9 +1307,9 @@ La mida de la [http://meta.wikimedia.org/wiki/Help:Job_queue cua de treballs] é
 'doubleredirectstext' => '<b>Atenció:</b> aquest llistat pot contenir falsos positius. Això normalment significa que hi ha text
 
 addicional amb enllaços sota el primer #REDIRECT.<br />
-Cada fila conté enllaços al segon i tercer redireccionament, així com la primera línia del
+Cada fila conté enllaços a la segona i tercera redirecció, així com la primera línia de la
 
-segon redireccionament, la qual cosa dóna normalment l\'article "real", al que el primer redireccionamet hauria d\'apuntar.',
+segona redirecció, la qual cosa dóna normalment l\'article "real", al que el primer redirecció hauria d\'apuntar.',
 
 'brokenredirects'        => 'Redireccions rompudes',
 'brokenredirectstext'    => 'Les següents redireccions enllacen a pàgines inexistents:',
@@ -1685,7 +1685,7 @@ $1",
 
 'sp-contributions-newbies'     => 'Mostra les contribucions dels usuaris novells',
 'sp-contributions-newbies-sub' => 'Per a novells',
-'sp-contributions-blocklog'    => 'Registre de blocatges',
+'sp-contributions-blocklog'    => 'Registre de bloquejos',
 'sp-contributions-search'      => 'Cerca les contribucions',
 'sp-contributions-username'    => "Adreça IP o nom d'usuari:",
 'sp-contributions-submit'      => 'Cerca',
@@ -1708,7 +1708,7 @@ $1",
 'whatlinkshere-hidelinks'  => '$1 enllaços',
 
 # Block/unblock
-'blockip'                     => "Blocatge d'usuaris",
+'blockip'                     => "Bloqueig d'usuaris",
 'blockip-legend'              => "Bloca l'usuari",
 'blockiptext'                 => "Empreu el següent formulari per blocar l'accés
 d'escriptura des d'una adreça IP específica o des d'un usuari determinat.
@@ -1721,7 +1721,7 @@ quines pàgines en concret estan sent vandalitzades).",
 'ipbexpiry'                   => 'Venciment',
 'ipbreason'                   => 'Motiu',
 'ipbreasonotherlist'          => 'Un altre motiu',
-'ipbreason-dropdown'          => "*Motius de blocatge més freqüents
+'ipbreason-dropdown'          => "*Motius de bloqueig més freqüents
 ** Inserció d'informació falsa
 ** Supressió de contingut sense justificació
 ** Inserció d'enllaços promocionals (spam)
@@ -1771,7 +1771,7 @@ l'accés a l'escriptura a una adreça IP o un usuari prèviament bloquejat.",
 'unblocklink'                 => 'desbloca',
 'contribslink'                => 'contribucions',
 'autoblocker'                 => 'Heu estat blocat perquè compartiu adreça IP amb «$1». Motiu: «$2»',
-'blocklogpage'                => 'Registre de blocatges',
+'blocklogpage'                => 'Registre de bloquejos',
 'blocklogentry'               => "s'ha blocat «[[$1]]» per a un període de $2 $3",
 'blocklogtext'                => "Això és una relació de accions de bloqueig i desbloqueig. Les adreces IP bloquejades automàticament no apareixen. Vegeu la [[Special:Ipblocklist|llista d'usuaris actualment bloquejats]].",
 'unblocklogentry'             => 'desbloquejat $1',
@@ -1779,14 +1779,14 @@ l'accés a l'escriptura a una adreça IP o un usuari prèviament bloquejat.",
 'block-log-flags-nocreate'    => "s'ha desactivat la creació de comptes",
 'block-log-flags-noautoblock' => 'sense bloqueig automàtic',
 'block-log-flags-noemail'     => 'correu-e blocat',
-'range_block_disabled'        => 'La facultat dels administradors per crear blocatges de rang està desactivada.',
+'range_block_disabled'        => 'La facultat dels administradors per crear bloquejos de rang està desactivada.',
 'ipb_expiry_invalid'          => "Data d'acabament no vàlida.",
 'ipb_already_blocked'         => '«$1» ja és blocat',
 'ipb_cant_unblock'            => "Errada: No s'ha trobat el núm. ID de bloqueig $1. És possible que ja s'haguera desblocat.",
 'ipb_blocked_as_range'        => "Error: L'adreça IP $1 no està blocada directament i per tant no pot ésser desbloquejada. Ara bé, sí que ho està per formar part del rang $2 que sí que pot ser desblocat.",
 'ip_range_invalid'            => 'Rang de IP no vàlid.',
 'blockme'                     => "Bloca'm",
-'proxyblocker'                => 'Blocatge de proxy',
+'proxyblocker'                => 'Bloqueig de proxy',
 'proxyblocker-disabled'       => "S'ha inhabilitat la funció.",
 'proxyblockreason'            => "La vostra adreça IP ha estat bloquejada perquè és un proxy obert. Si us plau contactau el vostre proveïdor d'Internet o servei tècnic i informau-los d'aquest seriós problema de seguretat.",
 'proxyblocksuccess'           => 'Fet.',
@@ -1822,12 +1822,12 @@ Recordeu-vos de [[Special:Unlockdb|treure el bloqueig]] quan hàgiu acabat el ma
 'move-page'               => 'Mou $1',
 'move-page-legend'        => 'Reanomena la pàgina',
 'movepagetext'            => "Emprant el següent formulari reanomenareu una pàgina, movent tot el seu historial al nou nom.
-El títol anterior es convertirà en un redireccionament al nou títol.
+El títol anterior es convertirà en una redirecció al nou títol.
 Els enllaços a l'antic títol de la pàgina no es canviaran.
 Assegureu-vos de verificar que no deixeu redireccions dobles o trencades.
 Sou el responsable de fer que els enllaços segueixin apuntant on se suposa que ho facin.
 
-Tingueu en compte que la pàgina '''no''' serà traslladada si ja existeix una pàgina amb el títol nou, a no ser que sigui una pàgina buida o un ''redireccionament'' sense historial.
+Tingueu en compte que la pàgina '''no''' serà traslladada si ja existeix una pàgina amb el títol nou, a no ser que sigui una pàgina buida o una ''redirecció'' sense historial.
 Això significa que podeu reanomenar de nou una pàgina al seu títol original si cometeu un error, i que no podeu sobreescriure una pàgina existent.
 
 '''ADVERTÈNCIA!'''
@@ -2580,7 +2580,7 @@ Introduïu el nom del fitxer sense el prefix «{{ns:image}}:».",
 'specialpages-group-other'       => 'Altres pàgines especials',
 'specialpages-group-login'       => 'Inici de sessió / Registre',
 'specialpages-group-changes'     => 'Canvis recents i registres',
-'specialpages-group-media'       => 'Informes multimèdies i càrregues',
+'specialpages-group-media'       => 'Informes multimèdia i càrregues',
 'specialpages-group-users'       => 'Usuaris i drets',
 'specialpages-group-needy'       => 'Pàgines amb necessitat de treball',
 'specialpages-group-highuse'     => "Pàgines d'alt ús",

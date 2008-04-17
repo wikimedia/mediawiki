@@ -686,6 +686,7 @@ Titulus: (nov) = dissimilis ab forma novissima, (prox) = dissimilis ab forma pro
 'search-redirect'       => '(redirectio $1)',
 'search-section'        => '(pars $1)',
 'search-suggest'        => 'Nonne dicere voluisti: $1',
+'search-interwiki-more' => '(plus)',
 'searchall'             => 'omnia',
 'showingresults'        => "Subter monstrans {{PLURAL:$1|'''1''' eventu|'''$1''' eventibus}} tenus incipiens ab #'''$2'''.",
 'showingresultsnum'     => "Subter monstrans {{PLURAL:$3|'''1''' eventum|'''$3''' eventus}} incipiens ab #'''$2'''.",

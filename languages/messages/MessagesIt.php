@@ -781,7 +781,7 @@ Legenda: (corr) = differenze con la versione corrente, (prec) = differenze con l
 # Revision deletion
 'rev-deleted-comment'         => '(commento rimosso)',
 'rev-deleted-user'            => '(nome utente rimosso)',
-'rev-deleted-event'           => '(elemento rimosso)',
+'rev-deleted-event'           => '(azione del log rimossa)',
 'rev-deleted-text-permission' => '<div class="mw-warning plainlinks">
 Questa versione della pagina è stata rimossa dagli archivi visibili al pubblico.
 Consultare il [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} log di cancellazione] per ulteriori dettagli.
@@ -830,7 +830,7 @@ Gli altri amministratori del sito potranno accedere comunque ai contenuti nascos
 
 # Suppression log
 'suppressionlog'     => 'Log delle soppressioni',
-'suppressionlogtext' => "Qui sotto si trova un elenco delle cancellazioni e dei blocchi più recenti riguardanti contenuti nascosti agli amministratori. Vedi l'[[Special:Ipblocklist|elenco degli IP bloccati]] per l'elenco dei ban e dei blocchi attivi al momento.",
+'suppressionlogtext' => "Di seguito viene presentato un elenco delle cancellazioni e dei blocchi più recenti riguardanti contenuti nascosti agli amministratori. Vedi l'[[Special:Ipblocklist|elenco degli IP bloccati]] per l'elenco dei ban e dei blocchi attivi al momento.",
 
 # History merging
 'mergehistory'                     => 'Unione cronologie',
@@ -868,35 +868,43 @@ Gli altri amministratori del sito potranno accedere comunque ai contenuti nascos
 'diff-multi'              => '({{plural:$1|Una revisione intermedia non mostrata|$1 revisioni intermedie non mostrate}}.)',
 
 # Search results
-'searchresults'         => 'Risultati della ricerca',
-'searchresulttext'      => 'Per maggiori informazioni sulla ricerca interna di {{SITENAME}}, vedi [[{{MediaWiki:Helppage}}|{{int:help}}]].',
-'searchsubtitle'        => "Ricerca di '''[[:$1]]'''",
-'searchsubtitleinvalid' => "Ricerca di '''$1'''",
-'noexactmatch'          => "'''La pagina \"\$1\" non esiste.''' È possibile [[:\$1|crearla ora]].",
-'noexactmatch-nocreate' => "'''La pagina con titolo \"\$1\" non esiste.'''",
-'toomanymatches'        => 'Troppe corrispondenze. Modificare la richiesta.',
-'titlematches'          => 'Corrispondenze nel titolo delle pagine',
-'notitlematches'        => 'Nessuna corrispondenza nei titoli delle pagine',
-'textmatches'           => 'Corrispondenze nel testo delle pagine',
-'notextmatches'         => 'Nessuna corrispondenza nel testo delle pagine',
-'prevn'                 => 'precedenti $1',
-'nextn'                 => 'successivi $1',
-'viewprevnext'          => 'Vedi ($1) ($2) ($3).',
-'search-result-size'    => '$1 ({{PLURAL:$2|una parola|$2 parole}})',
-'search-result-score'   => 'Rilevanza: $1%',
-'search-redirect'       => '(redirect $1)',
-'search-section'        => '(sezione $1)',
-'search-suggest'        => 'Forse cercavi: $1',
-'searchall'             => 'tutti',
-'showingresults'        => "Di seguito {{PLURAL:$1|viene presentato al massimo '''1''' risultato|vengono presentati al massimo '''$1''' risultati}} a partire dal numero '''$2'''.",
-'showingresultsnum'     => "Di seguito {{PLURAL:$3|viene presentato '''1''' risultato|vengono presentati '''$3''' risultati}} a partire dal numero '''$2'''.",
-'showingresultstotal'   => "Di seguito vengono mostrati i risultati da '''$1''' a '''$2''' su un totale di '''$3'''",
-'nonefound'             => '<strong>Nota</strong>: alcune parole comuni nella lingua inglese, come  "zero" o "more", non sono indicizzate e possono quindi dare luogo a risultati nulli, così come l\'indicazione di più termini da ricercare (solo le pagine che contengano tutti i termini richiesti vengono visualizzate fra i risultati).',
-'powersearch'           => 'Ricerca',
-'powersearch-legend'    => 'Ricerca avanzata',
-'powersearchtext'       => 'Ricerca nei seguenti namespace:<br />$1<br />$2 Mostra i redirect<br />Criteri di ricerca: $3 $9',
-'search-external'       => 'Ricerca esterna',
-'searchdisabled'        => 'La ricerca interna di {{SITENAME}} non è attiva; nel frattempo si può provare ad usare un motore di ricerca esterno come Google. (Si noti però che i contenuti di {{SITENAME}} presenti in tali motori potrebbero non essere aggiornati.)',
+'searchresults'             => 'Risultati della ricerca',
+'searchresulttext'          => 'Per maggiori informazioni sulla ricerca interna di {{SITENAME}}, vedi [[{{MediaWiki:Helppage}}|{{int:help}}]].',
+'searchsubtitle'            => "Ricerca di '''[[:$1]]'''",
+'searchsubtitleinvalid'     => "Ricerca di '''$1'''",
+'noexactmatch'              => "'''La pagina \"\$1\" non esiste.''' È possibile [[:\$1|crearla ora]].",
+'noexactmatch-nocreate'     => "'''La pagina con titolo \"\$1\" non esiste.'''",
+'toomanymatches'            => 'Troppe corrispondenze. Modificare la richiesta.',
+'titlematches'              => 'Corrispondenze nel titolo delle pagine',
+'notitlematches'            => 'Nessuna corrispondenza nei titoli delle pagine',
+'textmatches'               => 'Corrispondenze nel testo delle pagine',
+'notextmatches'             => 'Nessuna corrispondenza nel testo delle pagine',
+'prevn'                     => 'precedenti $1',
+'nextn'                     => 'successivi $1',
+'viewprevnext'              => 'Vedi ($1) ($2) ($3).',
+'search-result-size'        => '$1 ({{PLURAL:$2|una parola|$2 parole}})',
+'search-result-score'       => 'Rilevanza: $1%',
+'search-redirect'           => '(redirect $1)',
+'search-section'            => '(sezione $1)',
+'search-suggest'            => 'Forse cercavi: $1',
+'search-interwiki-caption'  => 'Progetti fratelli',
+'search-interwiki-default'  => 'Risultati da $1:',
+'search-interwiki-more'     => '(altro)',
+'search-mwsuggest-enabled'  => 'con suggerimenti',
+'search-mwsuggest-disabled' => 'senza suggerimenti',
+'search-relatedarticle'     => 'Risultati correlati',
+'mwsuggest-disable'         => 'Disattiva suggerimenti AJAX',
+'searchrelated'             => 'correlati',
+'searchall'                 => 'tutti',
+'showingresults'            => "Di seguito {{PLURAL:$1|viene presentato al massimo '''1''' risultato|vengono presentati al massimo '''$1''' risultati}} a partire dal numero '''$2'''.",
+'showingresultsnum'         => "Di seguito {{PLURAL:$3|viene presentato '''1''' risultato|vengono presentati '''$3''' risultati}} a partire dal numero '''$2'''.",
+'showingresultstotal'       => "Di seguito vengono mostrati i risultati da '''$1''' a '''$2''' su un totale di '''$3'''",
+'nonefound'                 => '<strong>Nota</strong>: alcune parole comuni nella lingua inglese, come  "zero" o "more", non sono indicizzate e possono quindi dare luogo a risultati nulli, così come l\'indicazione di più termini da ricercare (solo le pagine che contengano tutti i termini richiesti vengono visualizzate fra i risultati).',
+'powersearch'               => 'Ricerca',
+'powersearch-legend'        => 'Ricerca avanzata',
+'powersearchtext'           => 'Ricerca nei seguenti namespace:<br />$1<br />$2 Mostra i redirect<br />Criteri di ricerca: $3 $9',
+'search-external'           => 'Ricerca esterna',
+'searchdisabled'            => 'La ricerca interna di {{SITENAME}} non è attiva; nel frattempo si può provare ad usare un motore di ricerca esterno come Google. (Si noti però che i contenuti di {{SITENAME}} presenti in tali motori potrebbero non essere aggiornati.)',
 
 # Preferences page
 'preferences'              => 'Preferenze',
@@ -991,17 +999,20 @@ Una casella di spunta selezionata indica l'appartenenza dell'utente al gruppo; u
 'group-bot'           => 'Bot',
 'group-sysop'         => 'Amministratori',
 'group-bureaucrat'    => 'Burocrati',
+'group-suppress'      => 'Oversight',
 'group-all'           => '(utenti)',
 
 'group-autoconfirmed-member' => 'Utente autoconvalidato',
 'group-bot-member'           => 'Bot',
 'group-sysop-member'         => 'Amministratore',
 'group-bureaucrat-member'    => 'Burocrate',
+'group-suppress-member'      => 'Oversight',
 
 'grouppage-autoconfirmed' => '{{ns:project}}:Utenti autoconvalidati',
 'grouppage-bot'           => '{{ns:project}}:Bot',
 'grouppage-sysop'         => '{{ns:project}}:Amministratori',
 'grouppage-bureaucrat'    => '{{ns:project}}:Burocrati',
+'grouppage-suppress'      => '{{ns:project}}:Oversight',
 
 # User rights log
 'rightslog'      => 'Diritti degli utenti',
@@ -1041,6 +1052,8 @@ Una casella di spunta selezionata indica l'appartenenza dell'utente al gruppo; u
 'recentchangeslinked-title'    => 'Modifiche correlate a "$1"',
 'recentchangeslinked-noresult' => 'Nessuna modifica alle pagine collegate nel periodo specificato.',
 'recentchangeslinked-summary'  => "Questa pagina speciale mostra le modifiche più recenti alle pagine collegate a quella specificata. Le pagine osservate sono evidenziate in '''grassetto'''.",
+'recentchangeslinked-page'     => 'Nome della pagina:',
+'recentchangeslinked-to'       => 'Mostra solo le modifiche alle pagine collegate a quella specificata',
 
 # Upload
 'upload'                      => 'Carica un file',
@@ -1308,6 +1321,7 @@ Ciascuna riga contiene i collegamenti al primo ed al secondo redirect, oltre all
 'deadendpages'            => 'Pagine senza uscita',
 'deadendpagestext'        => 'Le pagine indicate di seguito sono prive di collegamenti verso altre pagine del sito.',
 'protectedpages'          => 'Pagine protette',
+'protectedpages-indef'    => 'Solo protezioni infinite',
 'protectedpagestext'      => 'Di seguito viene presentato un elenco di pagine protette, di cui è impedita la modifica o lo spostamento',
 'protectedpagesempty'     => 'Al momento non vi sono pagine protette',
 'protectedtitles'         => 'Titoli protetti',
@@ -1328,6 +1342,7 @@ Ciascuna riga contiene i collegamenti al primo ed al secondo redirect, oltre all
 'notargettext'            => "Non è stata indicata una pagina o un utente in relazione al quale eseguire l'operazione richiesta.",
 'pager-newer-n'           => '{{PLURAL:$1|1 più recente|$1 più recenti}}',
 'pager-older-n'           => '{{PLURAL:$1|1 meno recente|$1 meno recenti}}',
+'suppress'                => 'Oversight',
 
 # Book sources
 'booksources'               => 'Fonti librarie',
@@ -1628,6 +1643,7 @@ $1',
 'whatlinkshere-next'       => '{{PLURAL:$1|successivo|successivi $1}}',
 'whatlinkshere-links'      => '← collegamenti',
 'whatlinkshere-hideredirs' => '$1 redirect',
+'whatlinkshere-hidetrans'  => '$1 inclusioni',
 'whatlinkshere-hidelinks'  => '$1 link',
 
 # Block/unblock
@@ -2483,8 +2499,10 @@ Inserire il nome del file senza il prefisso \"{{ns:image}}:\"",
 'specialpages-group-other'       => 'Altre pagine speciali',
 'specialpages-group-login'       => 'Login / registrazione',
 'specialpages-group-changes'     => 'Ultime modifiche e registri',
+'specialpages-group-media'       => 'File multimediali - caricamento e resoconti',
 'specialpages-group-users'       => 'Utenti e diritti',
+'specialpages-group-needy'       => 'Pagine in cerca di manutenzione',
 'specialpages-group-highuse'     => 'Pagine molto usate',
-'specialpages-group-permissions' => 'Attribuisci i permessi agli utenti',
+'specialpages-group-permissions' => 'Attribuzione dei permessi agli utenti',
 
 );

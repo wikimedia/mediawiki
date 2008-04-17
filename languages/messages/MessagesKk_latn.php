@@ -1692,7 +1692,7 @@ Atawda qoldanwğa bolmaýtın nışandar bolwı mümkin.',
 'listgrouprights-summary'  => 'Kelesi bette bul wïkïde belgilengen qatıswşı quqıqtarınıñ (baýlanıstı qatınaw quqıqtarımen birge) tizimi körsetiledi.',
 'listgrouprights-group'    => 'Tobı',
 'listgrouprights-rights'   => 'Quqıqtarı',
-'listgrouprights-helppage' => '{{ns:help}}:Top quqıqtarı',
+'listgrouprights-helppage' => 'Help:Top quqıqtarı',
 
 # E-mail user
 'mailnologin'     => 'Eş jiberiletin jaý joq',

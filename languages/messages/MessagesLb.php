@@ -860,6 +860,7 @@ Dir kënnt [[:\$1|déi Säit uleeën]].",
 'search-interwiki-caption'  => 'Schwesterprojeten',
 'search-interwiki-default'  => '$1 Resultater:',
 'search-interwiki-more'     => '(méi)',
+'search-mwsuggest-enabled'  => 'matt Virschléi',
 'search-mwsuggest-disabled' => 'keng Virschléi',
 'searchall'                 => 'all',
 'showingresults'            => "Hei gesitt der  {{PLURAL:$1| '''1''' Resultat|'''$1''' Resultater}}, ugefaang mat #'''$2'''.",
@@ -1463,6 +1464,8 @@ W.e.g. konfirméiert, datt Dir dëst wierklech wëllt, datt Dir d'Konsequenze ve
 ** Verletzung vun engem Copyright
 ** Vandalismus',
 'delete-edit-reasonlist'      => 'Läschgrënn änneren',
+'delete-toobig'               => "Dës Säit huet e laangen Historique, méi wéi $1 Versiounen.
+D'Läsche vun esou Säite gouf limitéiert fir ongewollte Stéierungen op {{SITENAME}} ze verhënneren.",
 'rollback'                    => 'Ännerungen zrécksetzen',
 'rollback_short'              => 'Zrécksetzen',
 'rollbacklink'                => 'Zrécksetzen',

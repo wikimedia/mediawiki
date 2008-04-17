@@ -1325,7 +1325,7 @@ Možete suziti prikaz odabirući tip evidencije, suradničko ime ili stranicu u 
 'listgrouprights-summary'  => 'Ovo je popis suradničkih skupina određenih na ovoj wiki, s njihovim pripadajućim pravima.',
 'listgrouprights-group'    => 'Skupina',
 'listgrouprights-rights'   => 'Prava',
-'listgrouprights-helppage' => 'Pomoć:Suradničke skupine',
+'listgrouprights-helppage' => 'Help:Suradničke skupine',
 
 # E-mail user
 'mailnologin'     => 'Nema adrese pošiljaoca',

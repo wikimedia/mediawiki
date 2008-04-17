@@ -16,6 +16,10 @@ $messages = array(
 'tog-underline'        => 'Ugedan iti baba dagiti panilpo:',
 'tog-justify'          => 'Limpiaen dagiti parapo',
 'tog-rememberpassword' => 'Laglagipen ti iseserrekko kadaytoy a kompiuter',
+'tog-watchcreations'   => 'Inayon dagiti inaramidko a pampanid iti listaan ti bambantayak',
+'tog-watchdefault'     => 'Inayon dagiti ed-editek a pampanid iti listaan ti bambantayak',
+'tog-watchmoves'       => 'Inayon dagiti inyakarko a pampanid iti listaan ti bambantayak',
+'tog-watchdeletion'    => 'Inayon dagiti inikkatko a pampanid iti listaan ti bambantayak',
 'tog-showhiddencats'   => 'Ipakita dagiti nakalemmeng a categoria',
 
 'underline-always' => 'Kanayon',
@@ -28,6 +32,13 @@ $messages = array(
 'thursday'      => 'Jueves',
 'friday'        => 'Viernes',
 'saturday'      => 'Sabado',
+'sun'           => 'Dom',
+'mon'           => 'Lun',
+'tue'           => 'Mar',
+'wed'           => 'Mie',
+'thu'           => 'Jue',
+'fri'           => 'Vie',
+'sat'           => 'Sab',
 'january'       => 'Enero',
 'february'      => 'Febrero',
 'march'         => 'Marso',
@@ -53,8 +64,11 @@ $messages = array(
 'november-gen'  => 'Noviembre',
 'december-gen'  => 'Deciembre',
 'jan'           => 'Ene',
+'feb'           => 'Feb',
 'apr'           => 'Abr',
+'jul'           => 'Jul',
 'aug'           => 'Ago',
+'nov'           => 'Nov',
 
 # Categories related messages
 'categories'                    => 'Dagiti Categoria',
@@ -62,6 +76,7 @@ $messages = array(
 'special-categories-sort-abc'   => 'urnosen nga alfabetikal',
 'category_header'               => 'Dagiti articulo iti categoria "$1"',
 'subcategories'                 => 'Dagiti subcategoria',
+'category-media-header'         => 'Media iti categoria "$1"',
 'hidden-category-category'      => 'Nailemmeng a categorias', # Name of the category where hidden categories will be listed
 
 'about'          => 'Maipapan iti',
@@ -69,6 +84,7 @@ $messages = array(
 'newwindow'      => '(aglukat iti sabali a tawa)',
 'cancel'         => 'Ibabawi',
 'qbfind'         => 'Biroken',
+'qbedit'         => 'Editen',
 'qbpageoptions'  => 'Daytoy a panid',
 'qbmyoptions'    => 'Pampanidko',
 'qbspecialpages' => 'Espesial a pampanid',
@@ -84,6 +100,7 @@ $messages = array(
 'search'            => 'agbirok',
 'searchbutton'      => 'Sapulen',
 'go'                => 'mapanen',
+'history'           => 'Pakasaritaan ti panid',
 'history_short'     => 'pakasaritaan',
 'printableversion'  => 'Version a maiprinta',
 'permalink'         => 'Permanente a silpo',
@@ -105,6 +122,7 @@ $messages = array(
 'articlepage'       => 'Kitaen ti panid ti linaon',
 'talk'              => 'Pagtutungtongan',
 'toolbox'           => 'ramramit',
+'userpage'          => 'Kitaen ti panid ti agar-aramat',
 'mediawikipage'     => 'Kitaen ti panid ti mensahe',
 'viewtalkpage'      => 'Kitaen ti tungtungan',
 'otherlanguages'    => 'iti sabali a pagsasao',
@@ -123,15 +141,16 @@ $messages = array(
 'portal'               => 'Pagdadanonan',
 'sitesupport'          => 'Donasion',
 
-'youhavenewmessages'  => 'Addaanka iti $1 ($2).',
-'newmessageslink'     => 'kabarbaro a mensahe',
-'newmessagesdifflink' => 'naudi a baliw',
-'editsection'         => 'baliwan',
-'editold'             => 'baliwan',
-'viewsourceold'       => 'kitaen ti taudan',
-'toc'                 => 'Linaon',
-'showtoc'             => 'ipakita',
-'hidetoc'             => 'ilemmeng',
+'youhavenewmessages'      => 'Addaanka iti $1 ($2).',
+'newmessageslink'         => 'kabarbaro a mensahe',
+'newmessagesdifflink'     => 'naudi a baliw',
+'youhavenewmessagesmulti' => 'Addada kabarbaro a mensahem iti $1',
+'editsection'             => 'baliwan',
+'editold'                 => 'baliwan',
+'viewsourceold'           => 'kitaen ti taudan',
+'toc'                     => 'Linaon',
+'showtoc'                 => 'ipakita',
+'hidetoc'                 => 'ilemmeng',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Articulo',
@@ -249,6 +268,7 @@ Kasta met nga ikarim kadakami a bukodmo a sinurat wenno gapuanan daytoy, wenno k
 'revdelete-content' => 'linaon',
 
 # History merging
+'mergehistory-from'   => 'Panid ti taudan:',
 'mergehistory-submit' => 'Pagtiponen dagiti panamalbaliw',
 
 # Diffs

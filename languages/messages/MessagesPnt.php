@@ -221,8 +221,8 @@ $messages = array(
 'showpreview'        => 'Δείξον το πρώτον τέρεμα',
 'showdiff'           => "Δείξον τ' αλλαγάς",
 'newarticle'         => '(Νέον)',
-'previewnote'        => "<strong>Ατό εν το πρώτον το τέρεμαν μαναχόν.
-Τ' αλλαγάς κ' εκρατέθαν!</strong>",
+'previewnote'        => "<strong>Ατό πα πρώτον τέρεμαν εν και μόνον.
+Τ' αλλαγάς 'κ εκρατέθαν!</strong>",
 'editing'            => 'Αλλαγήν $1',
 'editingsection'     => 'Αλλαγήν $1 (τμήμα)',
 'editingold'         => "<strong>ΩΡΙΑ: Εφάτε αλλαγάς σε παλαιόν έκδοσην τη σελίδας. 
@@ -371,6 +371,7 @@ $messages = array(
 # What links here
 'whatlinkshere'       => "Ντο δεκνίζ' αδακές",
 'whatlinkshere-title' => 'Σελίδας ντο συνδέουν σο $1',
+'whatlinkshere-page'  => 'Σελίδαν:',
 'linklistsub'         => "(Κατάλογον με τοι συνδέσμ')",
 'linkshere'           => "Αυτά τα σελίδας συνδέουν ση σελίδαν '''[[:$1]]''':",
 'istemplate'          => 'ενσωμάτωση',
@@ -397,6 +398,7 @@ $messages = array(
 'allmessages' => 'Μενέματα σύστηματη',
 
 # Thumbnails
+'thumbnail-more'  => 'Ποίσον κι άλλο τρανόν',
 'thumbnail_error' => 'Έντον λάθος ση δημιουργίαν τη μικρογραφίας: $1',
 
 # Tooltip help for the actions
