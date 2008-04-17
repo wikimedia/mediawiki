@@ -82,21 +82,18 @@ class IPUnblockForm {
 	 * @return $out string: HTML form
 	 */
 	function showForm( $err ) {
-		global $wgOut, $wgUser, $wgSysopUserBans, $wgContLang;
+		global $wgOut, $wgUser, $wgSysopUserBans;
 
 		$wgOut->setPagetitle( wfMsg( 'unblockip' ) );
 		$wgOut->addWikiMsg( 'unblockiptext' );
 
-		$ipa = wfMsgHtml( $wgSysopUserBans ? 'ipadressorusername' : 'ipaddress' );
 		$titleObj = SpecialPage::getTitleFor( "Ipblocklist" );
 		$action = $titleObj->getLocalURL( "action=submit" );
-		$alignRight = $wgContLang->isRtl() ? 'left' : 'right';
 
 		if ( "" != $err ) {
 			$wgOut->setSubtitle( wfMsg( "formerror" ) );
-			$wgOut->addWikiText( "<span class='error'>{$err}</span>\n" );
+			$wgOut->addWikiText( Xml::tags( 'span', array( 'class' => 'error' ), $err ) . "\n" );
 		}
-		$token = htmlspecialchars( $wgUser->editToken() );
 
 		$addressPart = false;
 		if ( $this->id ) {
@@ -105,42 +102,44 @@ class IPUnblockForm {
 				$encName = htmlspecialchars( $block->getRedactedName() );
 				$encId = $this->id;
 				$addressPart = $encName . Xml::hidden( 'id', $encId );
+				$ipa = wfMsgHtml( $wgSysopUserBans ? 'ipadressorusername' : 'ipaddress' );
 			}
 		}
 		if ( !$addressPart ) {
-			$addressPart = Xml::input( 'wpUnblockAddress', 20, $this->ip, array( 'type' => 'text', 'tabindex' => '1' ) );
+			$addressPart = Xml::input( 'wpUnblockAddress', 40, $this->ip, array( 'type' => 'text', 'tabindex' => '1' ) );
+			$ipa = Xml::label( wfMsg( $wgSysopUserBans ? 'ipadressorusername' : 'ipaddress' ), 'wpUnblockAddress' );
 		}
 
 		$wgOut->addHTML(
 			Xml::openElement( 'form', array( 'method' => 'post', 'action' => $action, 'id' => 'unblockip' ) ) .
 			Xml::openElement( 'fieldset' ) .
 			Xml::element( 'legend', null, wfMsg( 'ipb-unblock' ) ) .
-			Xml::openElement( 'table', array( 'border' => '0', 'id' => 'mw-unblock-table' ) ).
+			Xml::openElement( 'table', array( 'id' => 'mw-unblock-table' ) ).
 			"<tr>
-				<td align='$alignRight'>
+				<td class='mw-label'>
 					{$ipa}
 				</td>
-				<td>
+				<td class='mw-input'>
 					{$addressPart}
 				</td>
 			</tr>
 			<tr>
-				<td align='$alignRight'>" .
+				<td class='mw-label'>" .
 					Xml::label( wfMsg( 'ipbreason' ), 'wpUnblockReason' ) .
 				"</td>
-				<td>" .
+				<td class='mw-input'>" .
 					Xml::input( 'wpUnblockReason', 40, $this->reason, array( 'type' => 'text', 'tabindex' => '2' ) ) .
 				"</td>
 			</tr>
 			<tr>
 				<td>&nbsp;</td>
-				<td>" .
+				<td class='mw-submit'>" .
 					Xml::submitButton( wfMsg( 'ipusubmit' ), array( 'name' => 'wpBlock', 'tabindex' => '3' ) ) .
 				"</td>
 			</tr>" .
 			Xml::closeElement( 'table' ) .
 			Xml::closeElement( 'fieldset' ) .
-			Xml::hidden( 'wpEditToken', $token ) .
+			Xml::hidden( 'wpEditToken', $wgUser->editToken() ) .
 			Xml::closeElement( 'form' ) . "\n"
 		);
 
