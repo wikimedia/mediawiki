@@ -22,6 +22,14 @@ function populate_rev_parent_id( $db ) {
 	echo "Populating rev_parent_id column\n";
 	$start = $db->selectField( 'revision', 'MIN(rev_id)', false, __FUNCTION__ );
 	$end = $db->selectField( 'revision', 'MAX(rev_id)', false, __FUNCTION__ );
+	if( is_null( $start ) || is_null( $end ) ){
+		echo "...revision table seems to be empty.\n";
+		$db->insert( 'updatelog',
+			array( 'ul_key' => 'populate rev_parent_id' ),
+			__FUNCTION__,
+			'IGNORE' );
+		return;
+	}
 	# Do remaining chunk
 	$end += BATCH_SIZE - 1;
 	$blockStart = $start;
