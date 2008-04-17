@@ -571,6 +571,7 @@ class SearchResult {
 		$lines = explode( "\n", $text );
 		
 		$terms = implode( '|', $terms );
+		$terms = str_replace( '/', "\\/", $terms);
 		$max = intval( $contextchars ) + 1;
 		$pat1 = "/(.*)($terms)(.{0,$max})/i";
 
