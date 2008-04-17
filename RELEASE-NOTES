@@ -195,6 +195,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * When hiding things on WhatLinksHere, generated URLs should hide them too
 * Properly escape search terms with regex chars so they appear highlighted in
   search results
+* (bug 13768) pt_title field encoding fixed
 
 
 === API changes in 1.13 ===
@@ -243,7 +244,6 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 13544) Added oldid parameter to action=parse to allow for parsing of old revisions
 * (bug 13718) Return the proper continue parameter for cmsort=timestamp
 * action=login now returns the correct waiting time in the details property
-* (bug 13768) inprop=protection now honors case-insensitivity for protected titles
 
 === Languages updated in 1.13 ===
 

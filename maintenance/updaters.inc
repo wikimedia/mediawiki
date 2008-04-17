@@ -57,7 +57,7 @@ $wgMysqlUpdates = array(
 	// 1.5
 	array( 'do_schema_restructuring' ),
 	array( 'add_field', 'logging',       'log_params',       'patch-log_params.sql' ),
-	array( 'do_logging_encoding' ),
+	array( 'check_bin', 'logging',       'log_title',        'patch-logging-title.sql', ),
 	array( 'add_field', 'archive',       'ar_rev_id',        'patch-archive-rev_id.sql' ),
 	array( 'add_field', 'page',          'page_len',         'patch-page_len.sql' ),
 	array( 'do_inverse_timestamp' ),
@@ -139,6 +139,7 @@ $wgMysqlUpdates = array(
 	array( 'do_category_population' ),
 	array( 'add_field', 'archive',       'ar_parent_id',     'patch-ar_parent_id.sql'),
 	array( 'do_populate_parent_id' ),
+	array( 'check_bin', 'protected_titles', 'pt_title',      'patch-pt_title-encoding.sql', ),
 );
 
 
@@ -445,20 +446,20 @@ function do_user_update() {
  * 1.4 betas were missing the 'binary' marker from logging.log_title,
  * which causes a collation mismatch error on joins in MySQL 4.1.
  */
-function do_logging_encoding() {
+function check_bin( $table, $field, $patchFile ) {
 	global $wgDatabase, $wgDBtype;
 	if ($wgDBtype != 'mysql')
 		return;
-	$logging = $wgDatabase->tableName( 'logging' );
-	$res = $wgDatabase->query( "SELECT log_title FROM $logging LIMIT 0" );
+	$tableName = $wgDatabase->tableName( $table );
+	$res = $wgDatabase->query( "SELECT $field FROM $tableName LIMIT 0" );
 	$flags = explode( ' ', mysql_field_flags( $res->result, 0 ) );
 	$wgDatabase->freeResult( $res );
 
 	if( in_array( 'binary', $flags ) ) {
-		echo "Logging table has correct title encoding.\n";
+		echo "$table table has correct $field encoding.\n";
 	} else {
-		echo "Fixing title encoding on logging table... ";
-		dbsource( archive( 'patch-logging-title.sql' ), $wgDatabase );
+		echo "Fixing $field encoding on $table table... ";
+		dbsource( archive( $patchFile ), $wgDatabase );
 		echo "ok\n";
 	}
 }
