@@ -77,7 +77,7 @@ class LogPage {
 
 		$ok = ($dbw->affectedRows() != 0);
 		# And update recentchanges
-		if( $this->updateRecentChanges ) {
+		if( $ok && $this->updateRecentChanges ) {
 			# Don't add private logs to RC!
 			if( !isset($wgLogRestrictions[$this->type]) || $wgLogRestrictions[$this->type]=='*' ) {
 				$titleObj = SpecialPage::getTitleFor( 'Log', $this->type );
