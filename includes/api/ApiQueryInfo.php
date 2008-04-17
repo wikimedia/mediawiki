@@ -116,7 +116,8 @@ class ApiQueryInfo extends ApiQueryBase {
 			$res = $this->select(__METHOD__);
 			$prottitles = array();
 			while($row = $db->fetchObject($res)) {
-				$prottitles[$row->pt_namespace][$row->pt_title] = array(
+				// Argh, pt_title is case-insensitive
+				$prottitles[$row->pt_namespace][strtolower($row->pt_title)] = array(
 					'type' => 'create',
 					'level' => $row->pt_create_perm,
 					'expiry' => Block::decodeExpiry($row->pt_expiry, TS_ISO_8601)
@@ -249,8 +250,8 @@ class ApiQueryInfo extends ApiQueryBase {
 				{
 					// Apparently the XML formatting code doesn't like array(null)
 					// This is painful to fix, so we'll just work around it
-					if(isset($prottitles[$title->getNamespace()][$title->getDBkey()]))
-						$res['query']['pages'][$pageid]['protection'][] = $prottitles[$title->getNamespace()][$title->getDBkey()];
+					if(isset($prottitles[$title->getNamespace()][strtolower($title->getDBkey())]))
+						$res['query']['pages'][$pageid]['protection'][] = $prottitles[$title->getNamespace()][strtolower($title->getDBkey())];
 					else
 						$res['query']['pages'][$pageid]['protection'] = array();
 					$result->setIndexedTagName($res['query']['pages'][$pageid]['protection'], 'pr');
