@@ -4,8 +4,6 @@
  * Special page to allow managing user group membership
  *
  * @addtogroup SpecialPage
- * @todo Use checkboxes or something, this list thing is incomprehensible to
- *   normal human beings.
  */
 
 /**
