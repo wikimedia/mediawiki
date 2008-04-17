@@ -250,17 +250,17 @@ class LogEventsList {
 				if( count($paramArray) == 2 ) {
 					$revdel = SpecialPage::getTitleFor( 'Revisiondelete' );
 					// Different revision types use different URL params...
-					$subtype = isset($paramArray[2]) ? $paramArray[1] : '';
+					$key = $paramArray[0];
 					// Link to each hidden object ID, $paramArray[1] is the url param. List if several...
-					$Ids = explode( ',', $paramArray[2] );
+					$Ids = explode( ',', $paramArray[1] );
 					if( count($Ids) == 1 ) {
 						$revert = $this->skin->makeKnownLinkObj( $revdel, $this->message['revdel-restore'],
-						wfArrayToCGI( array('target' => $title->getPrefixedDBkey(), $paramArray[1] => $Ids[0] ) ) );
+						wfArrayToCGI( array('target' => $title->getPrefixedDBkey(), $key => $Ids[0] ) ) );
 					} else {
 						$revert .= $this->message['revdel-restore'].':';
 						foreach( $Ids as $n => $id ) {
 							$revert .= ' '.$this->skin->makeKnownLinkObj( $revdel, '#'.($n+1),
-								wfArrayToCGI( array('target' => $title->getPrefixedDBkey(), $paramArray[1] => $id ) ) );
+								wfArrayToCGI( array('target' => $title->getPrefixedDBkey(), $key => $id ) ) );
 						}
 					}
 					$revert = "($revert)";
