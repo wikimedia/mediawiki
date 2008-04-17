@@ -28,6 +28,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Removed $wgAlternateMaster, use $wgLBFactoryConf
 * (bug 13562) Misspelled option $wgUserNotifedOnAllChanges changed to
   $wgUserNotifiedOnAllChanges
+* (bug 12860) New option $wgSitemapNamespaces allows sitemaps to be generated
+  for only some namespaces
 
 === New features in 1.13 ===
 
@@ -77,6 +79,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   to modify the output for edit conflicts.
 * Add class="nested" for <fieldset>s so fieldsets inside fieldsets get
   a slightly less huge margin and padding.
+* (bug 13527) Use sitemaps.org format 0.9 instead of a Google-specific format
 
 === Bug fixes in 1.13 ===
 
