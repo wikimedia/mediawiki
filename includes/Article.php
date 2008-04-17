@@ -2231,7 +2231,7 @@ class Article {
 				$wgOut->returnToMain( false );
 				wfRunHooks('ArticleDeleteComplete', array(&$this, &$wgUser, $reason));
 			} else {
-				$wgOut->showFatalError( wfMsg( 'cannotdelete' ).'<br/>'.wfMsg('cannotdelete-merge') );
+				$wgOut->showFatalError( wfMsg( 'cannotdelete' ) );
 			}
 		}
 	}
