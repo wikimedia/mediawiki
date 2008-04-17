@@ -338,24 +338,24 @@ $wgAntivirusSetup = array(
 
 /** Determines if a failed virus scan (AV_SCAN_FAILED) will cause the file to be rejected.
  * @global boolean $wgAntivirusRequired
-*/
+ */
 $wgAntivirusRequired= true;
 
 /** Determines if the mime type of uploaded files should be checked
  * @global boolean $wgVerifyMimeType
-*/
+ */
 $wgVerifyMimeType= true;
 
 /** Sets the mime type definition file to use by MimeMagic.php.
-* @global string $wgMimeTypeFile
-*/
+ * @global string $wgMimeTypeFile
+ */
 $wgMimeTypeFile= "includes/mime.types";
 #$wgMimeTypeFile= "/etc/mime.types";
 #$wgMimeTypeFile= NULL; #use built-in defaults only.
 
 /** Sets the mime type info file to use by MimeMagic.php.
-* @global string $wgMimeInfoFile
-*/
+ * @global string $wgMimeInfoFile
+ */
 $wgMimeInfoFile= "includes/mime.info";
 #$wgMimeInfoFile= NULL; #use built-in defaults only.
 
@@ -363,21 +363,21 @@ $wgMimeInfoFile= "includes/mime.info";
  * This should be used only if fileinfo is installed as a shared object
  * or a dynamic libary
  * @global string $wgLoadFileinfoExtension
-*/
+ */
 $wgLoadFileinfoExtension= false;
 
 /** Sets an external mime detector program. The command must print only
  * the mime type to standard output.
  * The name of the file to process will be appended to the command given here.
  * If not set or NULL, mime_content_type will be used if available.
-*/
+ */
 $wgMimeDetectorCommand= NULL; # use internal mime_content_type function, available since php 4.3.0
 #$wgMimeDetectorCommand= "file -bi"; #use external mime detector (Linux)
 
 /** Switch for trivial mime detection. Used by thumb.php to disable all fance
  * things, because only a few types of images are needed and file extensions
  * can be trusted.
-*/
+ */
 $wgTrivialMimeDetection= false;
 
 /**
@@ -430,7 +430,7 @@ $wgMaxUploadSize = 1024*1024*100; # 100MB
  * Useful if you want to use a shared repository by default
  * without disabling local uploads (use $wgEnableUploads = false for that)
  * e.g. $wgUploadNavigationUrl = 'http://commons.wikimedia.org/wiki/Special:Upload';
-*/
+ */
 $wgUploadNavigationUrl = false;
 
 /**
@@ -856,13 +856,14 @@ $wgUseZhdaemon = false;
 $wgZhdaemonHost="localhost";
 $wgZhdaemonPort=2004;
 
-/** Normally you can ignore this and it will be something
-    like $wgMetaNamespace . "_talk". In some languages, you
-    may want to set this manually for grammatical reasons.
-    It is currently only respected by those languages
-    where it might be relevant and where no automatic
-    grammar converter exists.
-*/
+/**
+ * Normally you can ignore this and it will be something
+ * like $wgMetaNamespace . "_talk". In some languages, you
+ * may want to set this manually for grammatical reasons.
+ * It is currently only respected by those languages
+ * where it might be relevant and where no automatic
+ * grammar converter exists.
+ */
 $wgMetaNamespaceTalk = false;
 
 # Miscellaneous configuration settings
@@ -886,7 +887,7 @@ $wgInterwikiExpiry = 10800; # Expiry time for cache of interwiki table
 		2 - wiki and global levels
 		3 - site levels
 	$wgInterwikiFallbackSite - if unable to resolve from cache
-*/
+ */
 $wgInterwikiCache = false;
 $wgInterwikiScopes = 3;
 $wgInterwikiFallbackSite = 'wiki';
@@ -1027,7 +1028,7 @@ $wgSidebarCacheExpiry = 86400;
  *
  * Retroactively changing this variable will not affect
  * the existing count (cf. maintenance/recount.sql).
-*/
+ */
 $wgUseCommaCount = false;
 
 /**#@-*/
@@ -1038,7 +1039,7 @@ $wgUseCommaCount = false;
  * updated on every hit, any higher value n cause them to update *on average*
  * every n hits. Should be set to either 1 or something largish, eg 1000, for
  * maximum efficiency.
-*/
+ */
 $wgHitcounterUpdateFreq = 1;
 
 # Basic user rights and block settings
@@ -1214,11 +1215,11 @@ $wgNamespaceProtection = array();
 $wgNamespaceProtection[ NS_MEDIAWIKI ] = array( 'editinterface' );
 
 /**
-* Pages in namespaces in this array can not be used as templates.
-* Elements must be numeric namespace ids.
-* Among other things, this may be useful to enforce read-restrictions
-* which may otherwise be bypassed by using the template machanism.
-*/
+ * Pages in namespaces in this array can not be used as templates.
+ * Elements must be numeric namespace ids.
+ * Among other things, this may be useful to enforce read-restrictions
+ * which may otherwise be bypassed by using the template machanism.
+ */
 $wgNonincludableNamespaces = array();
 
 /**
@@ -2725,15 +2726,15 @@ $wgDefaultExternalStore = false;
 $wgRevisionCacheExpiry = 0;
 
 /**
-* list of trusted media-types and mime types.
-* Use the MEDIATYPE_xxx constants to represent media types.
-* This list is used by Image::isSafeFile
-*
-* Types not listed here will have a warning about unsafe content
-* displayed on the images description page. It would also be possible
-* to use this for further restrictions, like disabling direct
-* [[media:...]] links for non-trusted formats.
-*/
+ * list of trusted media-types and mime types.
+ * Use the MEDIATYPE_xxx constants to represent media types.
+ * This list is used by Image::isSafeFile
+ *
+ * Types not listed here will have a warning about unsafe content
+ * displayed on the images description page. It would also be possible
+ * to use this for further restrictions, like disabling direct
+ * [[media:...]] links for non-trusted formats.
+ */
 $wgTrustedMediaFormats= array(
 	MEDIATYPE_BITMAP, //all bitmap formats
 	MEDIATYPE_AUDIO,  //all audio formats
@@ -3033,7 +3034,7 @@ $wgPagePropLinkInvalidations = array(
 $wgMaxRedirectLinksRetrieved = 500;
 
 /**
-* Maximum number of calls to expensive parser functions
-* such as PAGESINCATEGORY.
-*/
+ * Maximum number of calls to expensive parser functions
+ * such as PAGESINCATEGORY.
+ */
 $wgExpensiveParserFunctionLimit = 100;
