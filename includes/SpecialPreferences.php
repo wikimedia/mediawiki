@@ -474,7 +474,7 @@ class PreferencesForm {
 	}
 
 	function addRow($td1, $td2) {
-		return "<tr><td align='right'>$td1</td><td align='left'>$td2</td></tr>";
+		return "<tr><td class='mw-label'>$td1</td><td class='mw-input'>$td2</td></tr>";
 	}
 
 	/**
@@ -870,40 +870,63 @@ class PreferencesForm {
 		# Date/Time
 		#
 
-		$wgOut->addHTML( "<fieldset>\n<legend>" . wfMsg( 'datetime' ) . "</legend>\n" );
+		$wgOut->addHTML(
+			Xml::openElement( 'fieldset' ) .
+			Xml::element( 'legend', null, wfMsg( 'datetime' ) ) . "\n"
+		);
 
 		if ($dateopts) {
-			$wgOut->addHTML( "<fieldset>\n<legend>" . wfMsg( 'dateformat' ) . "</legend>\n" );
+			$wgOut->addHTML(
+				Xml::openElement( 'fieldset' ) .
+				Xml::element( 'legend', null, wfMsg( 'dateformat' ) ) . "\n"
+			);
 			$idCnt = 0;
 			$epoch = '20010115161234'; # Wikipedia day
 			foreach( $dateopts as $key ) {
 				if( $key == 'default' ) {
-					$formatted = wfMsgHtml( 'datedefault' );
+					$formatted = wfMsg( 'datedefault' );
 				} else {
-					$formatted = htmlspecialchars( $wgLang->timeanddate( $epoch, false, $key ) );
+					$formatted = $wgLang->timeanddate( $epoch, false, $key );
 				}
-				($key == $this->mDate) ? $checked = ' checked="checked"' : $checked = '';
-				$wgOut->addHTML( "<div><input type='radio' name=\"wpDate\" id=\"wpDate$idCnt\" ".
-					"value=\"$key\"$checked /> <label for=\"wpDate$idCnt\">$formatted</label></div>\n" );
+				$checked = ( $key == $this->mDate ) ? true : false;
+				$wgOut->addHTML(
+					Xml::tags( 'div', null,
+						Xml::radioLabel( $formatted, 'wpDate', $key, "wpDate$idCnt", $checked )
+					) . "\n"
+				);
 				$idCnt++;
 			}
-			$wgOut->addHTML( "</fieldset>\n" );
+			$wgOut->addHTML( Xml::closeElement( 'fieldset' ) . "\n" );
 		}
 
 		$nowlocal = $wgLang->time( $now = wfTimestampNow(), true );
 		$nowserver = $wgLang->time( $now, false );
 
-		$wgOut->addHTML( '<fieldset><legend>' . wfMsg( 'timezonelegend' ). '</legend><table>' .
+		$wgOut->addHTML(
+			Xml::openElement( 'fieldset' ) .
+			Xml::element( 'legend', null, wfMsg( 'timezonelegend' ) ) .
+			Xml::openElement( 'table' ) .
 		 	$this->addRow( wfMsg( 'servertime' ), $nowserver ) .
 			$this->addRow( wfMsg( 'localtime' ), $nowlocal ) .
 			$this->addRow(
-				'<label for="wpHourDiff">' . wfMsg( 'timezoneoffset' ) . '</label>',
-				"<input type='text' name='wpHourDiff' id='wpHourDiff' value=\"" . htmlspecialchars( $this->mHourDiff ) . "\" size='6' />"
-			) . "<tr><td colspan='2'>
-				<input type='button' value=\"" . wfMsg( 'guesstimezone' ) ."\"
-				onclick='javascript:guessTimezone()' id='guesstimezonebutton' style='display:none;' />
-				</td></tr></table><div class='prefsectiontip'>¹" .  wfMsg( 'timezonetext' ) . "</div></fieldset>
-		</fieldset>\n\n" );
+				Xml::label( wfMsg( 'timezoneoffset' ), 'wpHourDiff'  ),
+				Xml::input( 'wpHourDiff', 6, $this->mHourDiff, array( 'class' => 'wpHourDiff' ) ) ) .
+			"<tr>
+				<td></td>
+				<td class='mw-submit'>" .
+					Xml::element( 'input',
+						array( 'type' => 'button',
+							'value' => wfMsg( 'guesstimezone' ),
+							'onclick' => 'javascript:guessTimezone()',
+							'id' => 'guesstimezonebutton',
+							'style' => 'display:none;' ) ) .
+				"</td>
+			</tr>" .
+			Xml::closeElement( 'table' ) .
+			Xml::element( 'div', array( 'class' => 'prefsectiontip' ), wfMsg( 'timezonetext' ) ).
+			Xml::closeElement( 'fieldset' ) .
+			Xml::closeElement( 'fieldset' ) . "\n\n"
+		);
 
 		# Editing
 		#
@@ -980,30 +1003,39 @@ class PreferencesForm {
 		# Search
 		$ajaxsearch = $wgAjaxSearch ?
 			$this->addRow(
-				wfLabel( wfMsg( 'useajaxsearch' ), 'wpUseAjaxSearch' ),
-				wfCheck( 'wpUseAjaxSearch', $this->mUseAjaxSearch, array( 'id' => 'wpUseAjaxSearch' ) )
+				Xml::label( wfMsg( 'useajaxsearch' ), 'wpUseAjaxSearch' ),
+				Xml::check( 'wpUseAjaxSearch', $this->mUseAjaxSearch, array( 'id' => 'wpUseAjaxSearch' ) )
 			) : '';
 		$mwsuggest = $wgEnableMWSuggest ?
 			$this->addRow(
-				wfLabel( wfMsg( 'mwsuggest-disable' ), 'wpDisableMWSuggest' ),
-				wfCheck( 'wpDisableMWSuggest', $this->mDisableMWSuggest, array( 'id' => 'wpDisableMWSuggest' ) )
+				Xml::label( wfMsg( 'mwsuggest-disable' ), 'wpDisableMWSuggest' ),
+				Xml::check( 'wpDisableMWSuggest', $this->mDisableMWSuggest, array( 'id' => 'wpDisableMWSuggest' ) )
 			) : '';
-		$wgOut->addHTML( '<fieldset><legend>' . wfMsg( 'searchresultshead' ) . '</legend><table>' .
-			$ajaxsearch .			
+		$wgOut->addHTML(
+			Xml::openElement( 'fieldset' ) .
+			Xml::element( 'legend', null, wfMsg( 'searchresultshead' ) ) .
+			Xml::openElement( 'table' ) .
+			$ajaxsearch .
 			$this->addRow(
-				wfLabel( wfMsg( 'resultsperpage' ), 'wpSearch' ),
-				wfInput( 'wpSearch', 4, $this->mSearch, array( 'id' => 'wpSearch' ) )
+				Xml::label( wfMsg( 'resultsperpage' ), 'wpSearch' ),
+				Xml::input( 'wpSearch', 4, $this->mSearch, array( 'id' => 'wpSearch' ) )
 			) .
 			$this->addRow(
-				wfLabel( wfMsg( 'contextlines' ), 'wpSearchLines' ),
-				wfInput( 'wpSearchLines', 4, $this->mSearchLines, array( 'id' => 'wpSearchLines' ) )
+				Xml::label( wfMsg( 'contextlines' ), 'wpSearchLines' ),
+				Xml::input( 'wpSearchLines', 4, $this->mSearchLines, array( 'id' => 'wpSearchLines' ) )
 			) .
 			$this->addRow(
-				wfLabel( wfMsg( 'contextchars' ), 'wpSearchChars' ),
-				wfInput( 'wpSearchChars', 4, $this->mSearchChars, array( 'id' => 'wpSearchChars' ) )
+				Xml::label( wfMsg( 'contextchars' ), 'wpSearchChars' ),
+				Xml::input( 'wpSearchChars', 4, $this->mSearchChars, array( 'id' => 'wpSearchChars' ) )
 			) .
-			$mwsuggest.
-		"</table><fieldset><legend>" . wfMsg( 'defaultns' ) . "</legend>$ps</fieldset></fieldset>" );
+			$mwsuggest .
+			Xml::closeElement( 'table' ) .
+			Xml::openElement( 'fieldset' ) .
+			Xml::element( 'legend', null, wfMsg( 'defaultns' ) ) .
+			$ps .
+			Xml::closeElement( 'fieldset' ) .
+			Xml::closeElement( 'fieldset' )
+		);
 
 		# Misc
 		#
