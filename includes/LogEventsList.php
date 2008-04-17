@@ -305,11 +305,6 @@ class LogEventsList {
 	 * @return string
 	 */
 	private function showhideLinks( $row ) {
-		global $wgAllowLogDeletion;
-
-		if( !$wgAllowLogDeletion )
-			return "";
-
 		$revdel = SpecialPage::getTitleFor( 'Revisiondelete' );
 		// If event was hidden from sysops
 		if( !self::userCan( $row, LogPage::DELETED_RESTRICTED ) ) {
@@ -572,9 +567,6 @@ class LogPager extends ReverseChronologicalPager {
 
 	function getQueryInfo() {
 		$this->mConds[] = 'user_id = log_user';
-		# Hack this until live
-		global $wgAllowLogDeletion;
-		$log_id = $wgAllowLogDeletion ? 'log_id' : '0 AS log_id';
 		# Don't use the wrong logging index
 		if( $this->title || $this->pattern || $this->user ) {
 			$index = array( 'USE INDEX' => array( 'logging' => array('page_time','user_time') ) );
@@ -586,7 +578,7 @@ class LogPager extends ReverseChronologicalPager {
 		return array(
 			'tables' => array( 'logging', 'user' ),
 			'fields' => array( 'log_type', 'log_action', 'log_user', 'log_namespace', 'log_title', 'log_params',
-				'log_comment', $log_id, 'log_deleted', 'log_timestamp', 'user_name', 'user_editcount' ),
+				'log_comment', 'log_id', 'log_deleted', 'log_timestamp', 'user_name', 'user_editcount' ),
 			'conds' => $this->mConds,
 			'options' => $index
 		);
