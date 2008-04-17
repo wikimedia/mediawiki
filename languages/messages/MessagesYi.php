@@ -111,12 +111,19 @@ $defaultUserOptionOverrides = array(
 	'quickbar' => 2,
 );
 
-/**
- * Magic words.
- * Disabling the Hebrew aliases, adding a Yiddish alias for #REDIRECT.
- */
 $magicWords = array(
-	'redirect'               => array( 0,    '#ווייטערפירן', '#REDIRECT'              ),
+	'redirect'            => array( '0', '#ווייטערפירן', '#REDIRECT' ),
+	'toc'                 => array( '0', '__אינהאלט__', '__תוכן__', '__TOC__' ),
+	'pagename'            => array( '1', 'בלאטנאמען', 'PAGENAME' ),
+	'namespace'           => array( '1', 'נאמענטייל', 'NAMESPACE' ),
+	'subst'               => array( '0', 'ס:', 'SUBST:' ),
+	'img_thumbnail'       => array( '1', 'קליין', 'ממוזער', 'thumbnail', 'thumb' ),
+	'img_manualthumb'     => array( '1', 'קליין=$1', 'ממוזער=$1', 'thumbnail=$1', 'thumb=$1' ),
+	'img_right'           => array( '1', 'רעכטס', 'right' ),
+	'img_left'            => array( '1', 'לינקס', 'left' ),
+	'img_center'          => array( '1', 'צענטער', 'center', 'centre' ),
+	'plural'              => array( '0', 'מערצאל:', 'PLURAL:' ),
+	'defaultsort'         => array( '1', 'גרונטסארטיר:', 'DEFAULTSORT:' ),
 );
 
 $messages = array(
