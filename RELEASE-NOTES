@@ -190,8 +190,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 13756) Don't show the form and navigation links of Special:Newpages if
   the page is included
 * When hiding things on WhatLinksHere, generated URLs should hide them too
-* Properly escape search terms with forward slashes so they appear highlighted 
-  in search results.
+* Properly escape search terms with regex chars so they appear highlighted in
+  search results
 
 
 === API changes in 1.13 ===
