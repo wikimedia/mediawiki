@@ -3038,3 +3038,10 @@ $wgMaxRedirectLinksRetrieved = 500;
  * such as PAGESINCATEGORY.
  */
 $wgExpensiveParserFunctionLimit = 100;
+
+/**
+ * Array of namespaces to generate a sitemap for when the
+ * maintenance/generateSitemap.php script is run, or false
+ * if one is to be generated for all namespaces.
+ */
+$wgSitemapNamespaces = false;
