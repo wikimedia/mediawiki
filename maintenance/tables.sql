@@ -166,8 +166,6 @@ CREATE TABLE /*$wgDBprefix*/user_newtalk (
   -- If the user is an anonymous user their IP address is stored here
   -- since the user_id of 0 is ambiguous
   user_ip varbinary(40) NOT NULL default '',
-  -- The lowest timestamp of revisions that user has yet to view
-  user_timestamp binary(14) NOT NULL default '',
   INDEX user_id (user_id),
   INDEX user_ip (user_ip)
 
