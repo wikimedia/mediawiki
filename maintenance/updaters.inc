@@ -138,6 +138,7 @@ $wgMysqlUpdates = array(
 	array( 'add_table', 'category',                          'patch-category.sql' ),
 	array( 'do_category_population' ),
 	array( 'add_field', 'archive',       'ar_parent_id',     'patch-ar_parent_id.sql'),
+	array( 'add_field', 'user_newtalk',  'user_last_timestamp', 'patch-user_last_timestamp.sql'),
 	array( 'do_populate_parent_id' ),
 	array( 'check_bin', 'protected_titles', 'pt_title',      'patch-pt_title-encoding.sql', ),
 );
