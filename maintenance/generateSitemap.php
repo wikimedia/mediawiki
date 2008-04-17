@@ -2,7 +2,7 @@
 define( 'GS_MAIN', -2 );
 define( 'GS_TALK', -1 );
 /**
- * Creates a Google sitemap for the site
+ * Creates a sitemap for the site
  *
  * @addtogroup Maintenance
  *
@@ -10,8 +10,8 @@ define( 'GS_TALK', -1 );
  * @copyright Copyright © 2005, Jens Frank <jeluf@gmx.de>
  * @copyright Copyright © 2005, Brion Vibber <brion@pobox.com>
  *
- * @see http://www.google.com/webmasters/sitemaps/docs/en/about.html
- * @see http://www.google.com/schemas/sitemap/0.84/sitemap.xsd
+ * @see http://www.sitemaps.org/
+ * @see http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd
  *
  * @license http://www.gnu.org/copyleft/gpl.html GNU General Public License 2.0 or later
  */
@@ -20,7 +20,7 @@ class GenerateSitemap {
 	/**
 	 * The maximum amount of urls in a sitemap file
 	 *
-	 * @link http://www.google.com/schemas/sitemap/0.84/sitemap.xsd
+	 * @link http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd
 	 *
 	 * @var int
 	 */
@@ -29,7 +29,7 @@ class GenerateSitemap {
 	/**
 	 * The maximum size of a sitemap file
 	 *
-	 * @link http://www.google.com/webmasters/sitemaps/docs/en/protocol.html#faq_sitemap_size
+	 * @link http://www.sitemaps.org/faq.php#faq_sitemap_size
 	 *
 	 * @var int
 	 */
@@ -352,7 +352,7 @@ class GenerateSitemap {
 	 * @returns string
 	 */
 	function xmlSchema() {
-		return 'http://www.google.com/schemas/sitemap/0.84';
+		return 'http://www.sitemaps.org/schemas/sitemap/0.9';
 	}
 
 	/**
