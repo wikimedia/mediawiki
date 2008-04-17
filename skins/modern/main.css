@@ -340,6 +340,7 @@ h1, h2 {
 	margin: 0 0 0 0;
 	padding: 0em 1em 1em 1em;
 	border: solid 1px #bbbbbb;
+	clear: left; /* Multi-line toc should not push data to horizontally */
 }
 
 #preferences fieldset {
@@ -352,6 +353,12 @@ h1, h2 {
 
 .mainLegend {
 	display: none;
+}
+
+.prefsectiontip {
+	font-size: x-small;
+	padding: .2em 2em;
+	color: #666;
 }
 
 #preftoc li.selected {
