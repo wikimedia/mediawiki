@@ -1027,10 +1027,11 @@ Győződj meg róla, hogy a laptörténet folytonossága megmarad.',
 'search-suggest'           => 'Keresési javaslat: $1',
 'search-interwiki-caption' => 'Társlapok',
 'search-interwiki-default' => '$1 találat',
+'search-relatedarticle'    => 'Kapcsolódó',
 'searchrelated'            => 'kapcsolódó',
 'searchall'                => 'mind',
-'showingresults'           => 'Lent látható <b>$1</b> találat, az eleje <b>$2</b>.',
-'showingresultsnum'        => 'Lent látható <b>$3</b> találat, az eleje #<b>$2</b>.',
+'showingresults'           => "Lent '''{{PLURAL:$1|egy|$1}}''' találat látható, az eleje <b>$2</b>.",
+'showingresultsnum'        => "Lent '''{{PLURAL:$3|egy|$3}}''' találat látható, az eleje '''$2'''.",
 'showingresultstotal'      => "Találatok: '''$1 - $2''' (összesen '''$3''')",
 'nonefound'                => "'''Megjegyzés''': A sikertelen keresések
 gyakori oka olyan szavak keresése (pl. \"have\" és \"from\"), amiket a
@@ -1158,7 +1159,7 @@ az üres azt, hogy nem.',
 'rightsnone'     => '(semmi)',
 
 # Recent changes
-'nchanges'                          => '$1 változtatás',
+'nchanges'                          => '{{PLURAL:$1|egy|$1}} változtatás',
 'recentchanges'                     => 'Friss változtatások',
 'recentchangestext'                 => 'A wiki legutóbbi változtatásainak követése ezen a lapon.',
 'recentchanges-feed-description'    => 'Kövesd a wiki friss változtatásait ezzel a hírcsatornával.',

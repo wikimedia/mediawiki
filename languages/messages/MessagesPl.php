@@ -351,7 +351,7 @@ $messages = array(
 'qbspecialpages' => 'Strony specjalne',
 'moredotdotdot'  => 'Więcej...',
 'mypage'         => 'Moja strona',
-'mytalk'         => 'Moja dyskusja',
+'mytalk'         => 'dyskusja',
 'anontalk'       => 'Dyskusja tego IP',
 'navigation'     => 'nawigacja',
 'and'            => 'oraz',
@@ -372,7 +372,7 @@ $messages = array(
 'updatedmarker'     => 'zmienione od ostatniej wizyty',
 'info_short'        => 'Informacja',
 'printableversion'  => 'Wersja do druku',
-'permalink'         => 'Link bezpośredni',
+'permalink'         => 'Link do tej wersji',
 'print'             => 'Drukuj',
 'edit'              => 'edytuj',
 'create'            => 'Utwórz',
@@ -380,7 +380,7 @@ $messages = array(
 'create-this-page'  => 'Utwórz tę stronę',
 'delete'            => 'usuń',
 'deletethispage'    => 'Usuń tę stronę',
-'undelete_short'    => 'Odtwórz {{PLURAL:$1|jedną wersję|$1 wersje|$1 wersji}}',
+'undelete_short'    => 'odtwórz',
 'protect'           => 'Zabezpiecz',
 'protect_change'    => 'zmień zabezpieczenie',
 'protectthispage'   => 'Zabezpiecz tę stronę',
@@ -434,8 +434,8 @@ $messages = array(
 'mainpage'             => 'Strona główna',
 'mainpage-description' => 'Strona główna',
 'policy-url'           => 'Project:Zasady',
-'portal'               => 'Portal użytkowników',
-'portal-url'           => 'Project:Portal użytkowników',
+'portal'               => 'Portal społeczności',
+'portal-url'           => 'Project:Portal społeczności',
 'privacy'              => 'Zasady ochrony prywatności',
 'privacypage'          => 'Project:Zasady ochrony prywatności',
 'sitesupport'          => 'Dary pieniężne',
@@ -476,16 +476,16 @@ $messages = array(
 'red-link-title'          => '$1 (jeszcze nie utworzona)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
-'nstab-main'      => 'Strona',
-'nstab-user'      => 'Strona użytkownika',
-'nstab-media'     => 'Media',
-'nstab-special'   => 'Strona specjalna',
-'nstab-project'   => 'Strona projektu',
-'nstab-image'     => 'Plik',
-'nstab-mediawiki' => 'Komunikat',
-'nstab-template'  => 'Szablon',
-'nstab-help'      => 'Strona pomocy',
-'nstab-category'  => 'Kategoria',
+'nstab-main'      => 'artykuł',
+'nstab-user'      => 'strona użytkownika',
+'nstab-media'     => 'pliki',
+'nstab-special'   => 'strona specjalna',
+'nstab-project'   => 'strona projektu',
+'nstab-image'     => 'plik',
+'nstab-mediawiki' => 'komunikat',
+'nstab-template'  => 'szablon',
+'nstab-help'      => 'pomoc',
+'nstab-category'  => 'kategoria',
 
 # Main script and global functions
 'nosuchaction'      => 'Nie ma takiej operacji',
@@ -611,7 +611,7 @@ Wybierz inną nazwę użytkownika.',
 'prefs-help-realname'        => 'Wpisanie imienia i nazwiska nie jest obowiązkowe.
 Jeśli zdecydujesz się je podać, zostaną użyte, aby zapewnić Twojej pracy atrybucję.',
 'loginerror'                 => 'Błąd zalogowania',
-'prefs-help-email'           => "Podanie adresu E-mail jest opcjonalne, lecz pozwala innym użytkownikom skontaktować się z Tobą poprzez odpowiedni formularz (bez znajomości Twojego adresu). Będziesz także mógł poprosić o przysłanie Ci nowego hasła. '''Twój adres nie zostanie nikomu udostępniony.'''",
+'prefs-help-email'           => "Podanie adresu e-mail nie jest obowiązkowe, lecz pozwoli innym użytkownikom skontaktować się z Tobą poprzez odpowiedni formularz (bez ujawniania Twojego adresu). Będziesz także mógł poprosić o przysłanie Ci nowego hasła. '''Twój adres nie zostanie nikomu udostępniony.'''",
 'prefs-help-email-required'  => 'Wymagany jest adres e-mail.',
 'nocookiesnew'               => 'Konto użytkownika zostało utworzone, ale nie jesteś zalogowany.
 Projekt {{SITENAME}} używa ciasteczek do przechowywania informacji o zalogowaniu się.
@@ -692,7 +692,7 @@ Być może zakończyłeś już proces zmiany hasła lub poprosiłeś o nowe has�
 'headline_tip'    => 'Nagłówek 2. poziomu',
 'math_sample'     => 'W tym miejscu wprowadź wzór',
 'math_tip'        => 'Wzór matematyczny (LaTeX)',
-'nowiki_sample'   => 'Wstaw tu tekst niesformatowany',
+'nowiki_sample'   => 'Wstaw tutaj niesformatowany tekst',
 'nowiki_tip'      => 'Zignoruj formatowanie wiki',
 'image_sample'    => 'Przyklad.jpg',
 'image_tip'       => 'Plik osadzony (embedded)',
@@ -878,8 +878,8 @@ Podany przez $3 powód to ''$2''",
 'page_first'          => 'początek',
 'page_last'           => 'koniec',
 'histlegend'          => "Wybór porównania: zaznacz kropeczkami dwie wersje do porównania i wciśnij enter lub przycisk ''Porównaj wybrane wersje''.<br />
-Legenda: (bież) – pokaż zmiany od tej wersji do bieżącej,
-(poprz) – pokaż zmiany od wersji poprzedzającej, d – drobne zmiany",
+Legenda: (bież.) – pokaż zmiany od tej wersji do bieżącej,
+(poprz.) – pokaż zmiany od wersji poprzedzającej, m – mała (drobna) zmiana",
 'deletedrev'          => '[usunięto]',
 'histfirst'           => 'od początku',
 'histlast'            => 'od końca',
@@ -983,11 +983,11 @@ Użycie linków nawigacyjnych kasuje wybór w kolumnie.',
 'lineno'                  => 'Linia $1:',
 'compareselectedversions' => 'Porównaj wybrane wersje',
 'editundo'                => 'anuluj zmianę',
-'diff-multi'              => '(Nie pokazano $1 wersji między niniejszymi.)',
+'diff-multi'              => '(Nie pokazano $1 {{PLURAL:$1|wersji|wersji}} między niniejszymi.)',
 
 # Search results
 'searchresults'             => 'Wyniki wyszukiwania',
-'searchresulttext'          => 'Więcej informacji o przeszukiwaniu {{GRAMMAR:D.lp|{{SITENAME}}}} znajdziesz na [[{{MediaWiki:Helppage}}|stronach pomocy]].',
+'searchresulttext'          => 'Więcej informacji o przeszukiwaniu {{GRAMMAR:D.lp|{{SITENAME}}}} odnajdziesz na [[{{MediaWiki:Helppage}}|stronach pomocy]].',
 'searchsubtitle'            => "Wyniki dla zapytania '''[[:$1]]'''",
 'searchsubtitleinvalid'     => "Dla zapytania '''$1'''",
 'noexactmatch'              => "'''Nie ma strony zatytułowanej „$1”.'''
@@ -1029,7 +1029,7 @@ Jednak informacje o treści {{GRAMMAR:D.lp|{{SITENAME}}}} mogą być w Google ni
 
 # Preferences page
 'preferences'              => 'Preferencje',
-'mypreferences'            => 'Moje preferencje',
+'mypreferences'            => 'preferencje',
 'prefs-edits'              => 'Liczba edycji',
 'prefsnologin'             => 'Nie jesteś zalogowany',
 'prefsnologintext'         => 'Musisz się [[Special:Userlogin|zalogować]] przed zmianą swoich preferencji.',
@@ -1062,7 +1062,7 @@ Zapoznaj się z math/README w celu konfiguracji.',
 'prefs-watchlist'          => 'Obserwowane',
 'prefs-watchlist-days'     => 'Liczba dni widocznych na liście obserwowanych',
 'prefs-watchlist-edits'    => 'Liczba edycji pokazywanych w rozszerzonej liście obserwowanych',
-'prefs-misc'               => 'Różne',
+'prefs-misc'               => 'Ustawienia różne',
 'saveprefs'                => 'Zapisz',
 'resetprefs'               => 'Cofnij niezapisane zmiany',
 'oldpassword'              => 'Stare hasło',
@@ -1151,7 +1151,7 @@ Nie zaznaczone pole oznacza, że użytkownik nie należy do danej grupy.',
 'recentchanges-feed-description'    => 'Obserwuj najświeższe zmiany w tej wiki.',
 'rcnote'                            => "Poniżej {{PLURAL:$1|znajduje się '''1''' ostatnia zmiana wykonana|znajdują się ostatnie '''$1''' zmiany wykonane|znajduje się ostatnich '''$1''' zmian wykonanych}} w ciągu {{PLURAL:$2|ostatniego dnia|ostatnich '''$2''' dni}}, licząc od $3.",
 'rcnotefrom'                        => "Poniżej pokazano zmiany wykonane po '''$2''' (nie więcej niż '''$1''' pozycji).",
-'rclistfrom'                        => 'Pokaż zmiany wykonane po $1',
+'rclistfrom'                        => 'Pokaż nowe zmiany od $1',
 'rcshowhideminor'                   => '$1 drobne zmiany',
 'rcshowhidebots'                    => '$1 boty',
 'rcshowhideliu'                     => '$1 zalogowanych',
@@ -1511,7 +1511,7 @@ Strona uznawana jest za ujednoznaczniającą jeśli zawiera ona szablon linkowan
 # Special:Log
 'specialloguserlabel'  => 'Użytkownik',
 'speciallogtitlelabel' => 'Tytuł',
-'log'                  => 'rejestry operacji',
+'log'                  => 'Rejestry operacji',
 'all-logs-page'        => 'Wszystkie operacje',
 'log-search-legend'    => 'Szukaj w rejestrze',
 'log-search-submit'    => 'Szukaj',
@@ -1570,7 +1570,7 @@ Możesz zawęzić liczbę wyników poprzez wybranie typu rejestru, nazwy użytko
 
 # Watchlist
 'watchlist'            => 'Obserwowane',
-'mywatchlist'          => 'Obserwowane',
+'mywatchlist'          => 'obserwowane',
 'watchlistfor'         => "(raport dla użytkownika '''$1''')",
 'nowatchlist'          => 'Nie ma żadnych pozycji na liście obserwowanych przez Ciebie stron.',
 'watchlistanontext'    => '$1 aby obejrzeć lub edytować elementy listy obserwowanych.',
@@ -1645,7 +1645,7 @@ Pomoc:
 # Delete/protect/revert
 'deletepage'                  => 'Usuń stronę',
 'confirm'                     => 'Potwierdź',
-'excontent'                   => 'zawartość strony „$1”',
+'excontent'                   => 'treść: „$1”',
 'excontentauthor'             => 'treść: „$1” (jedyny autor: [[Special:Contributions/$2|$2]])',
 'exbeforeblank'               => 'poprzednia zawartość, obecnie pustej strony: „$1”',
 'exblank'                     => 'Strona była pusta',
@@ -1689,10 +1689,10 @@ Autorem ostatniej zmiany jest teraz [[User:$3|$3]] ([[User talk:$3|dyskusja]]).'
 Autor przywróconej wersji to [[User:$1|$1]].', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success'            => 'Wycofano edycje użytkownika $1.
 Przywrócono ostatnią wersję autorstwa $2.',
-'sessionfailure'              => 'Błąd weryfikacji zalogowania.
+'sessionfailure'              => 'Wystąpił błąd weryfikacji czy jesteś zalogowany.
 Polecenie zostało anulowane, aby uniknąć przechwycenia sesji.
 
-Naciśnij „wstecz”, przeładuj stronę, po czym ponownie wydaj polecenie.',
+Naciśnij „wstecz” w przeglądarce, przeładuj stronę, po czym ponownie wydaj polecenie.',
 'protectlogpage'              => 'Zabezpieczone',
 'protectlogtext'              => 'Poniżej znajduje się lista blokad założonych i zdjętych z pojedynczych stron.
 Aby przejrzeć listę obecnie działających zabezpieczeń, przejdź na stronę wykazu [[Special:Protectedpages|zabezpieczonych stron]].',
@@ -1763,8 +1763,8 @@ Możesz mieć zły link lub wersja mogła zostać odtworzona lub usunięta z arc
 'undeletereset'                => 'Wyczyść',
 'undeletecomment'              => 'Powód odtworzenia:',
 'undeletedarticle'             => 'odtworzył [[$1]]',
-'undeletedrevisions'           => 'Odtworzono {{PLURAL:$1|1 wersję|$1 wersje|$1 wersji}}',
-'undeletedrevisions-files'     => 'Odtworzono $1 {{PLURAL:$1|wersję|wersje|wersji}} i $2 {{PLURAL:$2|plik|pliki|plików}}',
+'undeletedrevisions'           => 'odtworzono {{PLURAL:$1|1 wersję|$1 wersje|$1 wersji}}',
+'undeletedrevisions-files'     => 'odtworzono $1 {{PLURAL:$1|wersję|wersje|wersji}} i $2 {{PLURAL:$2|plik|pliki|plików}}',
 'undeletedfiles'               => 'odtworzył $1 {{PLURAL:$1|plik|pliki|plików}}',
 'cannotundelete'               => 'Odtworzenie nie powiodło się.
 Ktoś inny mógł odtworzyć stronę pierwszy.',
@@ -1793,7 +1793,7 @@ $1',
 
 # Contributions
 'contributions' => 'Wkład użytkownika',
-'mycontris'     => 'Moje edycje',
+'mycontris'     => 'edycje',
 'contribsub2'   => 'Dla użytkownika $1 ($2)',
 'nocontribs'    => 'Brak zmian odpowiadających tym kryteriom.',
 'uctop'         => ' (jako ostatnia)',
@@ -2203,8 +2203,8 @@ $1',
 'filedelete-archive-read-only'    => 'Serwer WWW nie może zapisywać w katalogu z archiwami „$1”.',
 
 # Browsing diffs
-'previousdiff' => '← Poprzednia edycja',
-'nextdiff'     => 'Następna edycja →',
+'previousdiff' => '← poprzednia edycja',
+'nextdiff'     => 'następna edycja →',
 
 # Media information
 'mediawarning'         => "'''Uwaga!''' Ten plik może zawierać złośliwy kod. Jeśli go otworzysz możesz zarazić swój system.<hr />",

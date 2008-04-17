@@ -554,7 +554,7 @@ The file contains a virus! Mynphoyntyn: $1",
 # Special:Listgrouprights
 'listgrouprights-group'    => 'Possan',
 'listgrouprights-rights'   => 'Kiartyn',
-'listgrouprights-helppage' => 'Cooney:Kiartyn y phossan',
+'listgrouprights-helppage' => 'Help:Kiartyn y phossan',
 
 # E-mail user
 'emailfrom'      => 'Ass',
