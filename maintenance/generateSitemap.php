@@ -164,6 +164,13 @@ class GenerateSitemap {
 	function generateNamespaces() {
 		$fname = 'GenerateSitemap::generateNamespaces';
 
+		// Only generate for specific namespaces if $wgSitemapNamespaces is an array.
+		global $wgSitemapNamespaces;
+		if( is_array( $wgSitemapNamespaces ) ) {
+			$this->namespaces = $wgSitemapNamespaces;
+			return;
+		}
+
 		$res = $this->dbr->select( 'page',
 			array( 'page_namespace' ),
 			array(),
