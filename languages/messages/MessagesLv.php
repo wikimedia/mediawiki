@@ -7,11 +7,11 @@
  * @author Yyy
  * @author Knakts
  * @author לערי ריינהארט
- * @author Nike
  * @author Siebrand
  * @author SPQRobin
- * @author M.M.S.
+ * @author Nike
  * @author Jon Harald Søby
+ * @author M.M.S.
  */
 
 /*
@@ -540,7 +540,7 @@ $2 Parādīt pāradresācijas lapas   Meklēt $3 $9',
 'recentchangescount'    => 'Virsrakstu skaits pēdējo izmaiņu lapā',
 'savedprefs'            => 'Tavas izvēles ir saglabātas.',
 'timezonelegend'        => 'Laika josla',
-'timezonetext'          => 'Ieraksti, par cik stundām tavs vietējais laiks atšķiras no servera laika (UTC).',
+'timezonetext'          => '¹Ieraksti, par cik stundām tavs vietējais laiks atšķiras no servera laika (UTC).',
 'localtime'             => 'Attēlotais vietējais laiks',
 'timezoneoffset'        => 'Starpība¹',
 'servertime'            => 'Servera laiks šobrīd',
@@ -641,7 +641,6 @@ Lūdzu, ņem vērā, ka tāpat kā citas wiki lapas arī tevis augšuplādētos 
 'license' => 'Licence',
 
 # Special:Imagelist
-'imgdesc'   => 'apraksts',
 'imagelist' => 'Attēlu uzskaitījums',
 
 # Image description page

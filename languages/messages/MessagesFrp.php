@@ -859,7 +859,7 @@ Atencion, lor endèxacion du contegnu de {{SITENAME}} pôt pas étre a jorn.',
 'recentchangescount'       => 'Nombro de modificacions a afichiér dens los dèrriérs changements :',
 'savedprefs'               => 'Les prèferences ont étâ sôvâs.',
 'timezonelegend'           => 'Fus horèro',
-'timezonetext'             => 'Nombro d’hores de dècalâjo entre-mié voutra hora locala et l’hora du sèrvior (UTC).',
+'timezonetext'             => '¹Nombro d’hores de dècalâjo entre-mié voutra hora locala et l’hora du sèrvior (UTC).',
 'localtime'                => 'Hora locala :',
 'timezoneoffset'           => 'Dècalâjo horèro¹ :',
 'servertime'               => 'Hora du sèrvior :',
@@ -1056,7 +1056,6 @@ PICT # de totes sôrtes
 
 # Special:Imagelist
 'imagelist_search_for'  => 'Rechèrche por l’émâge apelâ :',
-'imgdesc'               => 'pâge de l’émâge',
 'imgfile'               => 'fichiér',
 'imagelist'             => 'Lista de les émâges',
 'imagelist_date'        => 'Dâta',

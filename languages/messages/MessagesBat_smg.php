@@ -636,7 +636,7 @@ Kėtė admėnėstratuorē šėtom pruojekte vėsdar galės pasėiktė pasliepta 
 'recentchangescount'    => 'Kėik pakeitėmū ruodoma vielībūju kėitėmu poslapī',
 'savedprefs'            => 'Nostatīmā siekmėngā ėšsauguotė.',
 'timezonelegend'        => 'Čiesa zuona',
-'timezonetext'          => 'Iveskitė kėik adīnu Tamstas vėitins čiesos skėrės nu serverė čiesa (UTC).',
+'timezonetext'          => '¹Iveskitė kėik adīnu Tamstas vėitins čiesos skėrės nu serverė čiesa (UTC).',
 'localtime'             => 'Vėitinis čiesos',
 'timezoneoffset'        => 'Skėrtoms¹',
 'servertime'            => 'Serverė čiesos',

@@ -727,7 +727,7 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'recentchangescount'       => '최근 바뀜에 표시할 항목 수:',
 'savedprefs'               => '설정을 저장했습니다.',
 'timezonelegend'           => '시간대',
-'timezonetext'             => '현지 시각과 서버 시각(UTC) 사이의 시차를 써 주세요.',
+'timezonetext'             => '¹현지 시각과 서버 시각(UTC) 사이의 시차를 써 주세요.',
 'localtime'                => '현지 시각',
 'timezoneoffset'           => '시차¹',
 'servertime'               => '서버 시각',
@@ -876,7 +876,6 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'license-nopreview' => '(미리보기 불가능)',
 
 # Special:Imagelist
-'imgdesc'               => '설명',
 'imgfile'               => '파일',
 'imagelist'             => '그림 목록',
 'imagelist_date'        => '날짜',

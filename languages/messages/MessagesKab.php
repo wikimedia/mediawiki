@@ -718,7 +718,7 @@ i yesɛan akk awalen i banen-d).",
 'recentchangescount'       => 'Geddac n izwal deg ibeddilen imaynuten:',
 'savedprefs'               => 'Isemyifiyen inek yettusmektan.',
 'timezonelegend'           => 'Iẓḍi n ukud',
-'timezonetext'             => 'Amgirred ger akud inek d akud n server (UTC) [s swayeɛ].',
+'timezonetext'             => '¹Amgirred ger akud inek d akud n server (UTC) [s swayeɛ].',
 'localtime'                => 'Akud inek',
 'timezoneoffset'           => 'Amgirred n ukud',
 'servertime'               => 'Akud n server',
@@ -863,7 +863,6 @@ Ma tesɛiḍ tugna-nni s resolution tameqqrant, azen-it, ma ulac beddel isem-is.
 
 # Special:Imagelist
 'imagelist_search_for'  => 'Nadi ɣef yisem n tugna:',
-'imgdesc'               => 'aglam',
 'imgfile'               => 'afaylu',
 'imagelist'             => 'Umuɣ n tugniwin',
 'imagelist_date'        => 'Azemz',

@@ -151,6 +151,7 @@ $messages = array(
 'subcategories'          => 'ქვეკატეგორიები',
 'category-media-header'  => 'მედია კატეგორიაში "$1"',
 'category-empty'         => "''ეს კატეგორია ამჟამად გვერდებს ან მედიას არ შეიცავს.''",
+'hidden-categories'      => 'დამალული {{PLURAL:$1|კატეგორია|კატეგორიები}}',
 'listingcontinuesabbrev' => 'გაგრძ.',
 
 'linkprefix'        => '/^(.*?)(„|«)$/sD',
@@ -649,6 +650,7 @@ $1 საათში.',
 'revdelete-hide-text'    => 'შეცვლილი ტექსტის დამალვა',
 'revdelete-hide-comment' => 'რედაქტირების კომენტარის დამალვა',
 'revdelete-hide-user'    => 'რედაქტორის მომხ. სახელის/IP-ს დამალვა',
+'pagehist'               => 'გვერდის ისტორია',
 
 # History merging
 'mergehistory'                => 'გვერდების ისტორიის შერწყმა',
@@ -834,7 +836,7 @@ $1 საათში.',
 'filedesc'                    => 'რეზიუმე',
 'fileuploadsummary'           => 'რეზიუმე:',
 'filestatus'                  => 'საავტორო უფლებების სტატუსი:',
-'filesource'                  => 'წყარო',
+'filesource'                  => 'წყარო:',
 'uploadedfiles'               => 'ფაილების დამატება',
 'ignorewarning'               => 'გაფრთხილება უგულებელყავი და მაინც შეინახე ფაილი.',
 'ignorewarnings'              => 'უგულებელყავი ნებისმიერი გაფრთხილება',
@@ -886,7 +888,6 @@ $1 საათში.',
 
 # Special:Imagelist
 'imagelist_search_for'  => 'ძიება სურათის სახელის მიხედვით:',
-'imgdesc'               => 'აღწერა',
 'imgfile'               => 'ფაილი',
 'imagelist'             => 'სურათების სია',
 'imagelist_date'        => 'თარიღი',
@@ -970,7 +971,7 @@ $1 საათში.',
 ვიკის დაარსებიდან დღემდე გვერდები დათვალიერებულ იქნა '''$3'''-ჯერ, ხოლო რედაქტირება განხორციელდა '''$4'''-ჯერ. ეს ნიშნავს, რომ ყოველ გვერდზე საშუალოდ მოდის '''$6''' დათვალიერება და '''$5''' რედაქტირება.
 
 [http://meta.wikimedia.org/wiki/Help:Job_queue დავალებათა რიგის] სიგრძეა '''$7'''.",
-'userstatstext'          => "ქართულ ვიკიპედიას ჰყავს '''$1''' რეგისტრირებული მომხმარებელი, რომელთა შორის '''$2''' (ან '''$4%''') ადმინისტრატორია. (იხილეთ $3).",
+'userstatstext'          => "არსებობენ '''$1''' რეგისტრირებული მომხმარებელი, რომელთა შორის '''$2''' (ან '''$4%''') ადმინისტრატორია. (იხილეთ $3).",
 'statistics-mostpopular' => 'ყველზე ხშირად ხილვადი გვერდები',
 
 'disambiguations'     => 'მრავალმნიშვნელოვანი გვერდები',
@@ -1078,6 +1079,9 @@ The list is used by [[Special:Disambiguations]] to show any pages linking to dis
 # Special:Listusers
 'listusers-submit'   => 'ჩვენება',
 'listusers-noresult' => 'მომხმარებელი ვერ ვიპოვეთ.',
+
+# Special:Listgrouprights
+'listgrouprights-group' => 'ჯგუფი',
 
 # E-mail user
 'emailuser'       => 'გაუგზავნეთ იმეილი ამ მომხმარებელს',
@@ -1278,17 +1282,19 @@ $NEWPAGE
 'sp-contributions-submit'      => 'ძიება',
 
 # What links here
-'whatlinkshere'       => 'სადაა მითითებული ეს გვერდი',
-'whatlinkshere-title' => 'გვერდები, რომლებიც შეიცავენ ბმულებს $1-ზე',
-'whatlinkshere-page'  => 'გვერდი:',
-'linklistsub'         => '(ბმულების სია)',
-'linkshere'           => "მომდევნო გვერდები შეიცავენ ბმულებს '''[[:$1]]'''-ზე:",
-'nolinkshere'         => 'ამ გვერდზე ბმული არ არის.',
-'isredirect'          => 'გადამისამართების გვერდი',
-'istemplate'          => 'ჩართვა',
-'whatlinkshere-prev'  => '{{PLURAL:$1|წინა|წინა $1}}',
-'whatlinkshere-next'  => '{{PLURAL:$1|შემდეგი|შემდეგი $1}}',
-'whatlinkshere-links' => '← ბმულები',
+'whatlinkshere'            => 'სადაა მითითებული ეს გვერდი',
+'whatlinkshere-title'      => 'გვერდები, რომლებიც შეიცავენ ბმულებს $1-ზე',
+'whatlinkshere-page'       => 'გვერდი:',
+'linklistsub'              => '(ბმულების სია)',
+'linkshere'                => "მომდევნო გვერდები შეიცავენ ბმულებს '''[[:$1]]'''-ზე:",
+'nolinkshere'              => 'ამ გვერდზე ბმული არ არის.',
+'isredirect'               => 'გადამისამართების გვერდი',
+'istemplate'               => 'ჩართვა',
+'whatlinkshere-prev'       => '{{PLURAL:$1|წინა|წინა $1}}',
+'whatlinkshere-next'       => '{{PLURAL:$1|შემდეგი|შემდეგი $1}}',
+'whatlinkshere-links'      => '← ბმულები',
+'whatlinkshere-hideredirs' => 'გადამისამართების $1',
+'whatlinkshere-hidelinks'  => 'ბმულების $1',
 
 # Block/unblock
 'blockip'                  => 'მომხმარებლის ან IP მისამართის ბლოკირება',

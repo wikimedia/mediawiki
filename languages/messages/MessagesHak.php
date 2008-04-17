@@ -651,7 +651,7 @@ Ngì thùng-sṳ̀ ya-yeu hiong Wikimedia pó-chṳn ngì só thì-kâu ke nui-y
 'recentchangescount'       => 'Chui-khiûn kiên-kói chûng ke phiên-siá chúng-su:',
 'savedprefs'               => 'Ngì-ke ke-ngìn chhâm-su sat-chṳ yí-kîn pó-chhùn.',
 'timezonelegend'           => 'Sṳ̀-khî',
-'timezonetext'             => 'Sû-ngi̍p tông-thi sṳ̀-kiên lâu fu̍k-khí sṳ̀-kiên (UTC) ke sṳ̀-chhâ.',
+'timezonetext'             => '¹Sû-ngi̍p tông-thi sṳ̀-kiên lâu fu̍k-khí sṳ̀-kiên (UTC) ke sṳ̀-chhâ.',
 'localtime'                => 'Tông-thi sṳ̀-kiên',
 'timezoneoffset'           => 'Sṳ̀-chhâ¹',
 'servertime'               => 'Fu̍k-vu hi-khí sṳ̀-kiên',
@@ -800,7 +800,6 @@ Kó-yèn ngì yû liá-ke thù-hìn ke vàn-cháng thai-séu.',
 
 # Special:Imagelist
 'imagelist_search_for'  => 'On-cheu thù-chhiong miàng-chhṳ̂n sêu-chhà:',
-'imgdesc'               => 'mèu-sut',
 'imgfile'               => 'tóng-on',
 'imagelist'             => 'Tóng-on lie̍t-péu',
 'imagelist_date'        => 'Ngit-khì',

@@ -788,7 +788,7 @@ An ibang mga administrador sa ining wiki pwede pang maghiling kan mga nakatagong
 'recentchangescount'       => 'Número nin mga paghirá na ipapahiling sa mga kaaaging pa sanang pagbabâgo:',
 'savedprefs'               => 'Itinagama na an mga kabôtan mo.',
 'timezonelegend'           => 'Zona nin oras',
-'timezonetext'             => "Bilang nin mga oras na ibá an saimong oras lokal sa oras kan ''server'' (UTC).",
+'timezonetext'             => "¹Bilang nin mga oras na ibá an saimong oras lokal sa oras kan ''server'' (UTC).",
 'localtime'                => 'Lokal na oras',
 'servertime'               => "Oras kan ''server''",
 'guesstimezone'            => "Bugtakan an ''browser''",

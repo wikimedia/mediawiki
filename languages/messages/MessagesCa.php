@@ -163,7 +163,7 @@ $messages = array(
 'tog-numberheadings'          => 'Enumera automàticament els encapçalaments',
 'tog-showtoolbar'             => "Mostra la barra d'eines d'edició (cal JavaScript)",
 'tog-editondblclick'          => 'Edita les pàgines amb un doble clic (cal JavaScript)',
-'tog-editsection'             => "Activa l'edició per seccions mitjançant enllaç específic corresponent",
+'tog-editsection'             => "Activa l'edició per seccions mitjançant els enllaços [edita]",
 'tog-editsectiononrightclick' => "Habilita l'edició per seccions en clicar amb el botó dret sobre els títols de les seccions (cal JavaScript)",
 'tog-showtoc'                 => "Mostrar l'índex de continguts a les pàgines amb més de 3 seccions",
 'tog-rememberpassword'        => 'Recorda la contrasenya entre sessions',
@@ -992,7 +992,7 @@ $2 Llista redireccions   Cerca $3 $9',
 'recentchangescount'       => 'Nombre de títols en canvis recents',
 'savedprefs'               => 'Les vostres preferències han estat desades.',
 'timezonelegend'           => 'Fus horari',
-'timezonetext'             => "Introduïu el nombre d'hores de diferència entre la vostra hora local i la del servidor (UTC).",
+'timezonetext'             => "¹Introduïu el nombre d'hores de diferència entre la vostra hora local i la del servidor (UTC).",
 'localtime'                => 'Hora local',
 'timezoneoffset'           => 'Diferència',
 'servertime'               => 'Hora del servidor',
@@ -1192,7 +1192,6 @@ A continuació teniu el registre d'eliminació per a que pugueu comprovar els mo
 Per defecte, els darrers en ser carregats apareixen al principi de la llista.
 Clicant al capdamunt de les columnes podeu canviar-ne l'ordenació.",
 'imagelist_search_for'  => "Cerca el nom d'un fitxer de medis:",
-'imgdesc'               => 'desc',
 'imgfile'               => 'fitxer',
 'imagelist'             => 'Llista de fitxers',
 'imagelist_date'        => 'Data',
@@ -1304,12 +1303,8 @@ La mida de la [http://meta.wikimedia.org/wiki/Help:Job_queue cua de treballs] é
 'disambiguations-text' => "Les següents pàgines enllacen a una '''pàgina de desambiguació'''. Per això, caldria que enllacessin al tema apropiat.<br />Una pàgina es tracta com de desambiguació si utilitza una plantilla que prové de [[MediaWiki:disambiguationspage]]",
 
 'doubleredirects'     => 'Redireccions dobles',
-'doubleredirectstext' => '<b>Atenció:</b> aquest llistat pot contenir falsos positius. Això normalment significa que hi ha text
-
-addicional amb enllaços sota el primer #REDIRECT.<br />
-Cada fila conté enllaços a la segona i tercera redirecció, així com la primera línia de la
-
-segona redirecció, la qual cosa dóna normalment l\'article "real", al que el primer redirecció hauria d\'apuntar.',
+'doubleredirectstext' => '<b>Atenció:</b> aquest llistat pot contenir falsos positius. Això normalment significa que hi ha text addicional amb enllaços sota el primer #REDIRECT.<br />
+Cada fila conté enllaços a la segona i tercera redirecció, així com la primera línia de la segona redirecció, la qual cosa dóna normalment l\'article "real", al que el primer redirecció hauria d\'apuntar.',
 
 'brokenredirects'        => 'Redireccions rompudes',
 'brokenredirectstext'    => 'Les següents redireccions enllacen a pàgines inexistents:',
@@ -1779,7 +1774,7 @@ l'accés a l'escriptura a una adreça IP o un usuari prèviament bloquejat.",
 'block-log-flags-nocreate'    => "s'ha desactivat la creació de comptes",
 'block-log-flags-noautoblock' => 'sense bloqueig automàtic',
 'block-log-flags-noemail'     => 'correu-e blocat',
-'range_block_disabled'        => 'La facultat dels administradors per crear bloquejos de rang està desactivada.',
+'range_block_disabled'        => 'La facultat dels administradors per a crear bloquejos de rang està desactivada.',
 'ipb_expiry_invalid'          => "Data d'acabament no vàlida.",
 'ipb_already_blocked'         => '«$1» ja és blocat',
 'ipb_cant_unblock'            => "Errada: No s'ha trobat el núm. ID de bloqueig $1. És possible que ja s'haguera desblocat.",
@@ -1821,17 +1816,17 @@ Recordeu-vos de [[Special:Unlockdb|treure el bloqueig]] quan hàgiu acabat el ma
 # Move page
 'move-page'               => 'Mou $1',
 'move-page-legend'        => 'Reanomena la pàgina',
-'movepagetext'            => "Emprant el següent formulari reanomenareu una pàgina, movent tot el seu historial al nou nom.
-El títol anterior es convertirà en una redirecció al nou títol.
+'movepagetext'            => "Amb el formulari següent reanomenareu una pàgina, movent tot el seu historial al nou nom.
+El títol anterior es convertirà en una redirecció al títol que hàgiu creat.
 Els enllaços a l'antic títol de la pàgina no es canviaran.
 Assegureu-vos de verificar que no deixeu redireccions dobles o trencades.
-Sou el responsable de fer que els enllaços segueixin apuntant on se suposa que ho facin.
+Sou el responsable de fer que els enllaços segueixin apuntant on se suposa que ho han de fer.
 
 Tingueu en compte que la pàgina '''no''' serà traslladada si ja existeix una pàgina amb el títol nou, a no ser que sigui una pàgina buida o una ''redirecció'' sense historial.
 Això significa que podeu reanomenar de nou una pàgina al seu títol original si cometeu un error, i que no podeu sobreescriure una pàgina existent.
 
 '''ADVERTÈNCIA!'''
-Açò pot ser un canvi dràstic i inesperat per a una pàgina popular;
+Açò pot ser un canvi dràstic i inesperat en una pàgina que sigui popular;
 assegureu-vos d'entendre les conseqüències que comporta abans de seguir endavant.",
 'movepagetalktext'        => "La pàgina de discussió associada, si existeix, serà traslladada automàticament '''a menys que:'''
 *Ja existeixi una pàgina de discussió no buida amb el nom nou, o
@@ -1855,7 +1850,7 @@ Trieu-ne un altre, si us plau.',
 
 Incorporeu-les manualment, si us plau.",
 'movedto'                 => 'reanomenat a',
-'movetalk'                => 'Reanomena també la pàgina de discussió si és aplicable.',
+'movetalk'                => 'Mou la pàgina de discussió associada',
 'talkpagemoved'           => 'També ha estat reanomenada la pàgina de discussió corresponent.',
 'talkpagenotmoved'        => 'La pàgina de discussió corresponent <strong>no</strong> ha estat reanomenada.',
 '1movedto2'               => "[[$1]] s'ha reanomenat com [[$2]]",

@@ -818,7 +818,7 @@ Možyš [[:\$1|tako utwořyć]], abo sprůbować pounygo šnupańa.",
 'recentchangescount'       => 'Ličba pozycyji na liśće půmjyńanych na uostatku :',
 'savedprefs'               => 'Twoje štalowańo we preferyncyjach zostouy naškryflane.',
 'timezonelegend'           => 'Strefa časowo',
-'timezonetext'             => 'Podej uo wjela godźin růžńi śe Twůj čas uod ůńiwersalnygo (UTC).',
+'timezonetext'             => '¹Podej uo wjela godźin růžńi śe Twůj čas uod ůńiwersalnygo (UTC).',
 'localtime'                => 'Twůj čas:',
 'timezoneoffset'           => 'Dyferencyjo ¹',
 'servertime'               => 'Aktualny čas serwera',
@@ -1015,7 +1015,6 @@ Rejer wyćepań tygo plika je podany půńižej, cobyś miou wygoda:",
 # Special:Imagelist
 'imagelist-summary'     => 'To je ekstra zajta na kery sům pokazywane wšyske pliki wćepane na serwer. Důmyślńy na wiyrchu listy wyśwjetlajům śe pliki wćepane na uostatku. Coby půmjyńić sposůb sortowańo, klikńij na naguůwek kolůmny.',
 'imagelist_search_for'  => 'Šnupej za grafikům uo mjańe:',
-'imgdesc'               => 'uopis',
 'imgfile'               => 'plik',
 'imagelist'             => 'Lista plikůw',
 'imagelist_date'        => 'Data',
@@ -1604,10 +1603,24 @@ Sprawa noležy wyjaśńić s dostawcům Internetu abo půmocům techńičnům in
 Ńy možeš utwořić kůnta',
 
 # Developer tools
-'lockdb'    => 'Zawryj baza danych',
-'unlockdb'  => 'Uodymkńij baza danych',
-'lockbtn'   => 'Zawřij baza danych',
-'unlockbtn' => 'Uodymkńij baza danych',
+'lockdb'              => 'Zawryj baza danych',
+'unlockdb'            => 'Uodymkńij baza danych',
+'lockdbtext'          => 'Zawarće bazy danych ůńymožliwi wšyjstkym užytkowńikům sprowjańy zajtůw, zmjana preferyncyji, edycyjo pozorlistůw a inkše čynnośći wymagajůnce dostympu do bazy danych.
+Potwjerdź, proša, aže to je zgodne s Twoimi zamjarůma, i aže uodymkńyš baza danych, gdy ino zakůńčyš zadańa admińistracyjne.',
+'unlockdbtext'        => 'Uodymkńjyńće bazy danych ůmožliwi wšyjstkym užytkowńikům sprawjańy zajtůw, zmjano preferyncyji, štalowańe pozorlistůw a inkše čynnośći zwjůnzane s půmjyńańami we baźe danych. Potwjerdź, proša, aže to je zgodne s Twoimi zamjarůma.',
+'lockconfirm'         => 'No toć, riśtiś chca zawryć baza danych.',
+'unlockconfirm'       => 'No toć, riśtiś chca uodymknůnć baza danych.',
+'lockbtn'             => 'Zawřij baza danych',
+'unlockbtn'           => 'Uodymkńij baza danych',
+'locknoconfirm'       => 'Ńy zaznačůužeś potwjerdzyńo.',
+'lockdbsuccesssub'    => 'Baza danych zostoua půmyślńy zawarto',
+'unlockdbsuccesssub'  => 'Baza danych zostoua půmyślńy uodymkńynto',
+'lockdbsuccesstext'   => 'Baza danych zostoua zawarto.<br />
+Pamjyntej coby [[Special:Unlockdb|jům uodymknůńć]] po zakůńčyńu dźouań admińistracyjnych.',
+'unlockdbsuccesstext' => 'Baza danych zostoua uodymkńynto.',
+'lockfilenotwritable' => 'Ńy idźe naškreflać plika zawarća bazy danych.
+Zawjerańy i uodmykańy bazy danych wymogo coby plik můgu być naškreflany bez web serwer.',
+'databasenotlocked'   => 'Baza danych ńy je zawarto.',
 
 # Move page
 'move-page'               => 'Přećep $1',
@@ -1627,6 +1640,8 @@ To može być drastyčno abo i ńypřewidywalno zmjano, jak přećepńyš jako p
 W takiych razach tekst godki třa přećepać, a jak třeba to i pouůnčyć z tym co juž sam jest, rynčńe. Abo možeš sie namyślić i nie přećepywać wcale ("checkbox" půnižyi).',
 'movearticle'             => 'Přećiś artikel:',
 'movenologin'             => 'Ńy jestžeś zalůgowany',
+'movenologintext'         => 'Muśyš być zarejerowanym i [[Special:Userlogin|zalůgowanym]] užytkowńikym coby můc přećepnůńć zajta.',
+'movenotallowed'          => 'Ńy moš uprownień do přećepywańo zajtůw na {{GRAMMAR:MS.lp|{{SITENAME}}}}.',
 'newtitle'                => 'Nowy titel:',
 'move-watch'              => 'Dej pozor',
 'movepagebtn'             => 'Přećiś artikel',
@@ -1634,25 +1649,50 @@ W takiych razach tekst godki třa přećepać, a jak třeba to i pouůnčyć z t
 'movepage-moved'          => '<big>\'\'\'"$1" přećiśńjynto ku "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => 'Artikel s takym mjanym juž je, abo mjano je zue.
 Wybjer inkše mjano.',
+'cantmove-titleprotected' => 'Ńy možeš přećepnůńć zajty, bez tůž co jei nowe mjano je ńydozwolůne s kuli zabezpječyńo před utwořyńym',
 'talkexists'              => 'Zajta artikla zostaua přećepano, ale zajta godki ńy - zajta godki uo nowym mjańe juž sam jest. Poůunč, proša, teksty oubydwůch godek rynčńe.',
 'movedto'                 => 'přećiśńjynto ku',
 'movetalk'                => 'Přećiś godke, jak možno.',
 'talkpagemoved'           => 'Godka artikla zostoua přećiśńjynto.',
 'talkpagenotmoved'        => 'Godka artikla <strong>njy</strong> zostoua přećiśńjynto.',
 '1movedto2'               => '[[$1]] přećepano do [[$2]]',
+'1movedto2_redir'         => 'zajta [[$1]] přećepnůu do [[$2]] nad překerowańem',
 'movelogpage'             => 'Přećepńynte',
+'movelogpagetext'         => 'Uoto lista zajtůw, kere uostatńo zostouy přećepane.',
 'movereason'              => 'Čymu:',
 'revertmove'              => 'cofej',
 'delete_and_move'         => 'Wyćep i przećep',
+'delete_and_move_text'    => '== Přećepańy wymaga wyćepańo inkšyj zajty ==
+Zajta docelowo „[[:$1|$1]]” juž sam jest.
+Čy chceš jům wyćepać, coby zrobić plac do přećepywanej zajty?',
 'delete_and_move_confirm' => 'Toć, wyćep zajta',
+'delete_and_move_reason'  => 'Wyćepano coby zrobić plac do přećepywanyj zajty',
+'selfmove'                => 'Mjana zajtůw zdřůdowyj i docelowyj sům take same.
+Zajty ńy idźe přećepać na ńa samo.',
+'immobile_namespace'      => 'Zajta zdřůduowo abo zajta docelowo to extra zajta.
+Ńy idźe přećepać ze abo do tyi přestřyńi mjan',
 
 # Export
-'export'        => 'Export zajtůw',
-'export-addcat' => 'Dodej',
+'export'            => 'Export zajtůw',
+'exporttext'        => 'Možeš wyeksportować treść i historja sprowjyń jednyj zajty abo zestawu zajtůw we formaće XML.
+Wyeksportowane informacyje možna půźńij zaimportować do inkšej wiki, dźouajůncyj na uoprůgramowańu MediaWiki, kořistajůnc ze [[Special:Import|zajty importu]].
+
+Wyeksportowańy wjelu zajtůw wymogo wpisańo půńižej titli zajtůw, po jednym titlu we wjeršu a uokreślyńo čy mo zostać wyeksportowano bježůnco čy wšyjstke wersyje zajty s uopisůma sprawjyń abo tyž ino bježůnca wersyjo s uopisym uostatńygo sprawjyńo.
+
+Možeš tyž užyć linku, np.[[{{ns:special}}:Export/{{MediaWiki:Mainpage}}]] do zajty „[[{{MediaWiki:Mainpage}}]]”.',
+'exportcuronly'     => 'Ino bježůnco wersyjo, bes historji',
+'exportnohistory'   => "----
+'''Pozůr:''' Wůuůnčůno možliwość eksportowańo peunej historii zajtůw s užyćym tygo nařyńdźa s kuli kuopotůw s wydajnośćůn",
+'export-submit'     => 'Eksportuj',
+'export-addcattext' => 'Doćep zajty z kategorji',
+'export-addcat'     => 'Dodej',
+'export-download'   => 'Zapiš do plika',
+'export-templates'  => 'Douůnč šablůny',
 
 # Namespace 8 related
-'allmessages'     => 'Komunikaty',
-'allmessagesname' => 'Mjano',
+'allmessages'        => 'Komunikaty',
+'allmessagesname'    => 'Mjano',
+'allmessagesdefault' => 'Tekst důmyślny',
 
 # Thumbnails
 'thumbnail-more'  => 'Powjynkš',

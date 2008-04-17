@@ -810,7 +810,6 @@ ou co po les sons
 
 # Special:Imagelist
 'imagelist_search_for'  => "Cweri l' no d' imådje:",
-'imgdesc'               => 'disc.',
 'imgfile'               => 'fitchî',
 'imagelist'             => 'Djivêye des imådjes',
 'imagelist_name'        => 'No',

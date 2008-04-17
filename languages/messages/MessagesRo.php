@@ -804,7 +804,7 @@ Căutări după $3 $9',
 'recentchangescount'      => 'Numărul de articole pentru schimbări recente:',
 'savedprefs'              => 'Preferinţele tale au fost salvate.',
 'timezonelegend'          => 'Fus orar',
-'timezonetext'            => 'Introduceţi numărul de ore diferenţă între ora Dv. locală şi ora serverului (UTC, timp universal). Dacă vă aflaţi în România, diferenţa este 02:00 iarna şi 03:00 vara.',
+'timezonetext'            => '¹Introduceţi numărul de ore diferenţă între ora Dv. locală şi ora serverului (UTC, timp universal).',
 'localtime'               => 'Ora locală',
 'timezoneoffset'          => 'Diferenţa¹',
 'servertime'              => 'Ora serverului',
@@ -961,7 +961,6 @@ Te rugăm reţine că, la fel ca şi în cazul celorlalte secţiuni din {{SITENA
 
 # Special:Imagelist
 'imagelist_search_for'  => 'Caută imagine după nume:',
-'imgdesc'               => 'desc',
 'imgfile'               => 'fişier',
 'imagelist'             => 'Lista imaginilor',
 'imagelist_date'        => 'Data',

@@ -780,7 +780,7 @@ Cunsulthà lu [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} rigisthru di ca
 'recentchangescount'       => 'Nùmaru di righi i li ulthimi mudìfigghi:',
 'savedprefs'               => 'Li tó prifirènzi so isthaddi saivvaddi.',
 'timezonelegend'           => 'Fusu oràriu',
-'timezonetext'             => "Nùmaru d'ori di diffarènzia fra l'ora lucari e l'ora di l'elaburaddori sivvidori (UTC).",
+'timezonetext'             => "¹Nùmaru d'ori di diffarènzia fra l'ora lucari e l'ora di l'elaburaddori sivvidori (UTC).",
 'localtime'                => 'Ora lucari',
 'timezoneoffset'           => 'Diffarènzia¹',
 'servertime'               => "Ora di l'elaburaddori sivvidori",
@@ -960,7 +960,6 @@ Pa piazeri verifigga si vói carriggà avveru chisthu file; inogghi v'è lu rigi
 
 # Special:Imagelist
 'imagelist_search_for'  => 'Zercha immàgini pa innòmu:',
-'imgdesc'               => "pàgina di l'immàgina",
 'imgfile'               => 'file',
 'imagelist'             => 'Listha di li file',
 'imagelist_date'        => 'Data',

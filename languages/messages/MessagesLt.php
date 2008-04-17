@@ -3,14 +3,14 @@
  *
  * @addtogroup Language
  *
- * @author לערי ריינהארט
- * @author Vpovilaitis
+ * @author Garas
+ * @author Hugo.arg
  * @author Matasg
  * @author Pdxx
- * @author Garas
- * @author SPQRobin
- * @author Hugo.arg
  * @author Siebrand
+ * @author Vpovilaitis
+ * @author לערי ריינהארט
+ * @author SPQRobin
  */
 
 $namespaceNames = array(
@@ -209,7 +209,7 @@ $messages = array(
 'mypage'         => 'Mano puslapis',
 'mytalk'         => 'Mano aptarimas',
 'anontalk'       => 'Šio IP aptarimas',
-'navigation'     => 'Navigacija',
+'navigation'     => 'Naršymas',
 'and'            => 'ir',
 
 # Metadata in edit box
@@ -314,6 +314,7 @@ $messages = array(
 'youhavenewmessagesmulti' => 'Turite naujų žinučių $1',
 'editsection'             => 'redaguoti',
 'editold'                 => 'taisyti',
+'viewsourceold'           => 'žiūrėti šaltinį',
 'editsectionhint'         => 'Redaguoti skyrelį: $1',
 'toc'                     => 'Turinys',
 'showtoc'                 => 'rodyti',
@@ -774,6 +775,9 @@ Kiti administratoriai šiame projekte vis dar galės pasiekti paslėptą turinį
 'revdelete-restricted'        => 'uždėti apribojimai administratoriams',
 'revdelete-unrestricted'      => 'pašalinti apribojimai administratoriams',
 'revdelete-hid'               => 'slėpti $1',
+'revdelete-unhid'             => 'atslėpti $1',
+'revdelete-log-message'       => '$1 $2 {{PLURAL:$2|revizija|revizijas|revizijų}}',
+'logdelete-log-message'       => '$1 $2 {{PLURAL:$2|įvykis|įvykiai|įvykių}}',
 
 # History merging
 'mergehistory'                     => 'Sujungti puslapių istorijas',
@@ -812,37 +816,46 @@ Kiti administratoriai šiame projekte vis dar galės pasiekti paslėptą turinį
 'diff-multi'              => '($1 {{PLURAL:$1|tarpinis keitimas nėra rodomas|tarpiniai keitimai nėra rodomi|tarpinių keitimų nėra rodoma}}.)',
 
 # Search results
-'searchresults'         => 'Paieškos rezultatai',
-'searchresulttext'      => 'Daugiau informacijos apie paiešką projekte {{SITENAME}} rasite [[{{MediaWiki:Helppage}}|{{int:help}}]].',
-'searchsubtitle'        => 'Ieškoma „[[:$1]]“',
-'searchsubtitleinvalid' => "Ieškoma '''$1'''",
-'noexactmatch'          => "'''Nėra jokio puslapio, pavadinto „$1“.''' Jūs galite [[:$1|sukurti šį puslapį]].",
-'noexactmatch-nocreate' => "'''Nėra puslapio su pavadinimu „$1“.'''",
-'toomanymatches'        => 'Perdaug atitikmenų buvo grąžinta. Prašome pabandyti kitokią užklausą',
-'titlematches'          => 'Puslapių pavadinimų atitikmenys',
-'notitlematches'        => 'Jokių pavadinimo atitikmenų',
-'textmatches'           => 'Puslapio turinio atitikmenys',
-'notextmatches'         => 'Jokių puslapių teksto atitikmenų',
-'prevn'                 => 'ankstesnius $1',
-'nextn'                 => 'tolimesnius $1',
-'viewprevnext'          => 'Žiūrėti ($1) ($2) ($3)',
-'search-result-size'    => '$1 ({{PLURAL:$2|1 žodis|$2 žodžiai|$2 žodžių}})',
-'search-result-score'   => 'Tinkamumas: $1%',
-'search-redirect'       => '(peradresavimas $1)',
-'search-section'        => '(skyrius $1)',
-'search-suggest'        => 'Galbūt norėjote $1',
-'searchall'             => 'visi',
-'showingresults'        => "Žemiau rodoma iki '''$1''' {{PLURAL:$1|rezultato|rezultatų|rezultatų}} pradedant #'''$2'''.",
-'showingresultsnum'     => "Žemiau rodoma '''$3''' {{PLURAL:$3|rezultato|rezultatų|rezultatų}}rezultatų pradedant #'''$2'''.",
-'showingresultstotal'   => "Žemiau rodomi '''$1 - $2''' rezultatai iš '''$3'''",
-'nonefound'             => "'''Pastaba''': Nesėkminga paieška dažnai būna dėl ieškomų
+'searchresults'             => 'Paieškos rezultatai',
+'searchresulttext'          => 'Daugiau informacijos apie paiešką projekte {{SITENAME}} rasite [[{{MediaWiki:Helppage}}|{{int:help}}]].',
+'searchsubtitle'            => 'Ieškoma „[[:$1]]“',
+'searchsubtitleinvalid'     => "Ieškoma '''$1'''",
+'noexactmatch'              => "'''Nėra jokio puslapio, pavadinto „$1“.''' Jūs galite [[:$1|sukurti šį puslapį]].",
+'noexactmatch-nocreate'     => "'''Nėra puslapio su pavadinimu „$1“.'''",
+'toomanymatches'            => 'Perdaug atitikmenų buvo grąžinta. Prašome pabandyti kitokią užklausą',
+'titlematches'              => 'Puslapių pavadinimų atitikmenys',
+'notitlematches'            => 'Jokių pavadinimo atitikmenų',
+'textmatches'               => 'Puslapio turinio atitikmenys',
+'notextmatches'             => 'Jokių puslapių teksto atitikmenų',
+'prevn'                     => 'ankstesnius $1',
+'nextn'                     => 'tolimesnius $1',
+'viewprevnext'              => 'Žiūrėti ($1) ($2) ($3)',
+'search-result-size'        => '$1 ({{PLURAL:$2|1 žodis|$2 žodžiai|$2 žodžių}})',
+'search-result-score'       => 'Tinkamumas: $1%',
+'search-redirect'           => '(peradresavimas $1)',
+'search-section'            => '(skyrius $1)',
+'search-suggest'            => 'Galbūt norėjote $1',
+'search-interwiki-caption'  => 'Dukteriniai projektai',
+'search-interwiki-default'  => '$1 rezultatai:',
+'search-interwiki-more'     => '(daugiau)',
+'search-mwsuggest-enabled'  => 'su pasiūlymais',
+'search-mwsuggest-disabled' => 'nėra pasiūlymų',
+'search-relatedarticle'     => 'Susiję',
+'mwsuggest-disable'         => 'Slėpti AJAX pasiūlymus',
+'searchrelated'             => 'susiję',
+'searchall'                 => 'visi',
+'showingresults'            => "Žemiau rodoma iki '''$1''' {{PLURAL:$1|rezultato|rezultatų|rezultatų}} pradedant #'''$2'''.",
+'showingresultsnum'         => "Žemiau rodoma '''$3''' {{PLURAL:$3|rezultato|rezultatų|rezultatų}}rezultatų pradedant #'''$2'''.",
+'showingresultstotal'       => "Žemiau rodomi '''$1 - $2''' rezultatai iš '''$3'''",
+'nonefound'                 => "'''Pastaba''': Nesėkminga paieška dažnai būna dėl ieškomų
 dažnai naudojamų žodžių, tokių kaip „yra“ ar „iš“, kurie yra
 neindeksuojami, arba nurodžius daugiau nei vieną paieškos žodį (rezultatuose
 bus tik tie puslapiai, kuriuose bus visi paieškos žodžiai).",
-'powersearch'           => 'Ieškoti',
-'powersearch-legend'    => 'Išplėstinė paieška',
-'powersearchtext'       => 'Ieškoti šiose vardų srityse:<br />$1<br />$2 Rodyti peradresavimus<br />Ieškoti $3 $9',
-'searchdisabled'        => 'Projekto {{SITENAME}} paieška yra uždrausta. Galite pamėginti ieškoti Google paieškos sistemoje. Paieškos sistemoje projekto {{SITENAME}} duomenys gali būti pasenę.',
+'powersearch'               => 'Ieškoti',
+'powersearch-legend'        => 'Išplėstinė paieška',
+'powersearchtext'           => 'Ieškoti šiose vardų srityse:<br />$1<br />$2 Rodyti peradresavimus<br />Ieškoti $3 $9',
+'search-external'           => 'Išorinė paieška',
+'searchdisabled'            => 'Projekto {{SITENAME}} paieška yra uždrausta. Galite pamėginti ieškoti Google paieškos sistemoje. Paieškos sistemoje projekto {{SITENAME}} duomenys gali būti pasenę.',
 
 # Preferences page
 'preferences'              => 'Nustatymai',
@@ -917,6 +930,9 @@ teisės",
 'userrights-groupsmember'          => 'Narys:',
 'userrights-groupsremovable'       => 'Pašalinamos grupės:',
 'userrights-groupsavailable'       => 'Galimos grupės:',
+'userrights-groups-help'           => 'Jūs galite pakeisti grupes, kuriose yra šis naudotojas.
+Pažymėtas langelis reiškia, kad šis naudotojas yra toje grupėje.
+Nepažymėtas langelis reiškia, kad šis naudotojas nėra toje grupėje.',
 'userrights-reason'                => 'Keitimo priežastis:',
 'userrights-available-none'        => 'Jūs negalite keisti grupės narystės.',
 'userrights-available-add'         => 'Jūs galite pridėti naudotojus į {{PLURAL:$2|šią grupę|šias grupes}}: $1.',
@@ -936,17 +952,20 @@ teisės",
 'group-bot'           => 'Robotai',
 'group-sysop'         => 'Administratoriai',
 'group-bureaucrat'    => 'Biurokratai',
+'group-suppress'      => 'Peržiūros',
 'group-all'           => '(visi)',
 
 'group-autoconfirmed-member' => 'Automatiškai patvirtintas naudotojas',
 'group-bot-member'           => 'Robotas',
 'group-sysop-member'         => 'Administratorius',
 'group-bureaucrat-member'    => 'Biurokratas',
+'group-suppress-member'      => 'Peržiūra',
 
 'grouppage-autoconfirmed' => '{{ns:project}}:Automatiškai patvirtinti naudotojai',
 'grouppage-bot'           => '{{ns:project}}:Robotai',
 'grouppage-sysop'         => '{{ns:project}}:Administratoriai',
 'grouppage-bureaucrat'    => '{{ns:project}}:Biurokratai',
+'grouppage-suppress'      => '{{ns:project}}:Peržiūra',
 
 # User rights log
 'rightslog'      => 'Naudotojų teisių istorija',
@@ -986,6 +1005,7 @@ teisės",
 'recentchangeslinked-title'    => 'Su $1 susiję keitimai',
 'recentchangeslinked-noresult' => 'Nėra jokių pakeitimų susietuose puslapiuose duotu periodu.',
 'recentchangeslinked-summary'  => "Šiame specialiajame puslapyje rodomi paskutiniai keitimai puslapiuose, į kuriuos yra nurodoma. Puslapiai iš jūsų stebimųjų sąrašo yra '''paryškinti'''.",
+'recentchangeslinked-page'     => 'Puslapio pavadinimas:',
 
 # Upload
 'upload'                      => 'Įkelti failą',
@@ -1085,7 +1105,6 @@ Jūs turėtumėte nuspręsti, ar verta toliau įkeldinėti šį failą.
 Pagal numatymą paskutiniai įkelti failai rodomi sąrašo viršuje.
 Paspaudę ant stulpelio antraštės pakeiste išrikiavimą.',
 'imagelist_search_for'  => 'Ieškoti paveikslėlio pavadinimo:',
-'imgdesc'               => 'apr',
 'imgfile'               => 'failas',
 'imagelist'             => 'Failų sąrašas',
 'imagelist_date'        => 'Data',
@@ -1259,6 +1278,7 @@ Iš to išeina, kad vidutiniškai kiekvienas puslapis keistas '''$5''' karto, be
 'notargettext'            => 'Jūs nenurodėte norimo puslapio ar naudotojo, kuriam įvykdyti šią funkciją.',
 'pager-newer-n'           => '$1 {{PLURAL:$1|naujesnis|naujesni|naujesnių}}',
 'pager-older-n'           => '$1 {{PLURAL:$1|senesnis|senesni|senesnių}}',
+'suppress'                => 'Peržiūra',
 
 # Book sources
 'booksources'               => 'Knygų šaltiniai',
@@ -1298,6 +1318,13 @@ Galima sumažinti rezultatų skaičių patikslinant veiksmo rūšį, naudotoją 
 'listusersfrom'      => 'Rodyti naudotojus pradedant nuo:',
 'listusers-submit'   => 'Rodyti',
 'listusers-noresult' => 'Nerasta jokių naudotojų.',
+
+# Special:Listgrouprights
+'listgrouprights'          => 'Naudotojų grupių teisės',
+'listgrouprights-summary'  => 'Žemiau pateiktas naudotojų grupių, apibrėžtų šioje wiki, ir su jomis susijusių teisių sąrašas.',
+'listgrouprights-group'    => 'Grupė',
+'listgrouprights-rights'   => 'Teisės',
+'listgrouprights-helppage' => 'Pagalba:Grupės teisės',
 
 # E-mail user
 'mailnologin'     => 'Nėra adreso',
@@ -1417,6 +1444,7 @@ Prašome patvirtinti, kad jūs tikrai norite tai padaryti, žinote apie galimus 
 'deletedtext'                 => '„<nowiki>$1</nowiki>“ ištrintas.
 Paskutinių šalinimų istorija - $2.',
 'deletedarticle'              => 'ištrynė „[[$1]]“',
+'suppressedarticle'           => 'apribotas "[[$1]]"',
 'dellogpage'                  => 'Šalinimų istorija',
 'dellogpagetext'              => 'Žemiau pateikiamas paskutinių trynimų sąrašas.',
 'deletionlog'                 => 'šalinimų istorija',
@@ -1557,18 +1585,20 @@ $1',
 'sp-contributions-submit'      => 'Ieškoti',
 
 # What links here
-'whatlinkshere'       => 'Susiję puslapiai',
-'whatlinkshere-title' => 'Puslapiai, kurie nurodo į $1',
-'whatlinkshere-page'  => 'Puslapis:',
-'linklistsub'         => '(Nuorodų sąrašas)',
-'linkshere'           => "Šie puslapiai rodo į '''[[:$1]]''':",
-'nolinkshere'         => "Į '''[[:$1]]''' nuorodų nėra.",
-'nolinkshere-ns'      => "Nurodytoje vardų srityje nei vienas puslapis nenurodo į '''[[:$1]]'''.",
-'isredirect'          => 'nukreipiamasis puslapis',
-'istemplate'          => 'įterpimas',
-'whatlinkshere-prev'  => '$1 {{PLURAL:$1|ankstesnis|ankstesni|ankstesnių}}',
-'whatlinkshere-next'  => '$1 {{PLURAL:$1|kitas|kiti|kitų}}',
-'whatlinkshere-links' => '← nuorodos',
+'whatlinkshere'            => 'Susiję puslapiai',
+'whatlinkshere-title'      => 'Puslapiai, kurie nurodo į $1',
+'whatlinkshere-page'       => 'Puslapis:',
+'linklistsub'              => '(Nuorodų sąrašas)',
+'linkshere'                => "Šie puslapiai rodo į '''[[:$1]]''':",
+'nolinkshere'              => "Į '''[[:$1]]''' nuorodų nėra.",
+'nolinkshere-ns'           => "Nurodytoje vardų srityje nei vienas puslapis nenurodo į '''[[:$1]]'''.",
+'isredirect'               => 'nukreipiamasis puslapis',
+'istemplate'               => 'įterpimas',
+'whatlinkshere-prev'       => '$1 {{PLURAL:$1|ankstesnis|ankstesni|ankstesnių}}',
+'whatlinkshere-next'       => '$1 {{PLURAL:$1|kitas|kiti|kitų}}',
+'whatlinkshere-links'      => '← nuorodos',
+'whatlinkshere-hideredirs' => '$1 nukreipimus',
+'whatlinkshere-hidelinks'  => '$1 nuorodas',
 
 # Block/unblock
 'blockip'                     => 'Blokuoti naudotoją',
@@ -1977,7 +2007,7 @@ $1',
 'noimages'              => 'Nėra ką parodyti.',
 'ilsubmit'              => 'Ieškoti',
 'bydate'                => 'pagal datą',
-'sp-newimages-showfrom' => 'Rodyti naujus paveikslėlius pradedant nuo $1',
+'sp-newimages-showfrom' => 'Rodyti naujus paveikslėlius pradedant nuo $2 $1',
 
 # Bad image list
 'bad_image_list' => 'Formatas yra toks:
@@ -2437,5 +2467,15 @@ $1',
 'fileduplicatesearch-info'     => '$1 × $2 pikselių<br />Failo dydis: $3<br />MIME tipas: $4',
 'fileduplicatesearch-result-1' => 'Failas "$1" neturi identiškų dublikatų.',
 'fileduplicatesearch-result-n' => 'Šis failas "$1" turi {{PLURAL:$2|1 identišką dublikatą|$2 identiškus dublikatus|$2 identiškų dublikatų}}.',
+
+# Special:SpecialPages
+'specialpages-group-maintenance' => 'Sistemos palaikymo pranešimai',
+'specialpages-group-other'       => 'Kiti specialieji puslapiai',
+'specialpages-group-login'       => 'Prisijungti / registruotis',
+'specialpages-group-changes'     => 'Naujausi keitimai ir logai',
+'specialpages-group-users'       => 'Naudotojai ir teisės',
+'specialpages-group-needy'       => 'Trokštamiausi puslapiai',
+'specialpages-group-highuse'     => 'Plačiai naudojami puslapiai',
+'specialpages-group-permissions' => 'Naudotojų leidimai',
 
 );

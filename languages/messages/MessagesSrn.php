@@ -511,7 +511,7 @@ A kan ben trowe efu dribi.
 'recentchangescount'       => 'Teki fu peprewoysi ini bakaseywan kenki:',
 'savedprefs'               => 'Yu masi ben oponaki.',
 'timezonelegend'           => 'Gron fu ten',
-'timezonetext'             => 'A teki fu yuru taki yu presiten kenki fu a serverten (UTC).',
+'timezonetext'             => '¹A teki fu yuru taki yu presiten kenki fu a serverten (UTC).',
 'localtime'                => 'Lokali ten',
 'timezoneoffset'           => 'Ski ini ten¹',
 'servertime'               => 'Serverten',
@@ -609,7 +609,6 @@ A kan ben trowe efu dribi.
 
 # Special:Imagelist
 'imagelist_search_for'  => 'Suku na gefre:',
-'imgdesc'               => 'infru',
 'imgfile'               => 'gefre',
 'imagelist'             => 'Rey fu den gefre',
 'imagelist_date'        => 'Datum',
