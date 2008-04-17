@@ -13,6 +13,7 @@
  * @author Siebrand
  * @author SPQRobin
  * @author Yekrats
+ * @author ArnoLagrange
  */
 
 $namespaceNames = array(
@@ -903,7 +904,7 @@ loka horzono malsamas disde tiu de la servilo (UTC).
 Ekzemple, por la Centra Eŭropa Horzono, indiku "1" vintre aŭ "2" dum somertempo.',
 'localtime'                => 'Loka horzono',
 'timezoneoffset'           => 'Malsamo',
-'servertime'               => 'Loka horzono (UTC)',
+'servertime'               => 'Horzono de la servilo (UTC)',
 'guesstimezone'            => 'Plenigita el la foliumilo',
 'allowemail'               => 'Permesu retmesaĝojn de aliaj uzantoj',
 'defaultns'                => 'Traserĉu la jenajn nomspacojn:',
@@ -938,25 +939,31 @@ Nemarkita markbutono signifas ke la uzanto ne estas in tiu grupo.',
 'userrights-unchangeable-col'      => 'Grupoj kiujn vi ne povas ŝanĝi',
 
 # Groups
-'group'               => 'Grupo:',
-'group-autoconfirmed' => 'Aŭtomate konfirmitaj uzantoj',
-'group-bot'           => 'Robotoj',
-'group-sysop'         => 'Sisopoj',
-'group-bureaucrat'    => 'Burokratoj',
-'group-suppress'      => 'Superrigardoj',
-'group-all'           => '(ĉiuj)',
+'group'                => 'Grupo:',
+'group-user'           => 'Uzuloj',
+'group-emailconfirmed' => 'Uzuloj konfirmitaj per retpoŝto',
+'group-autoconfirmed'  => 'Aŭtomate konfirmitaj uzantoj',
+'group-bot'            => 'Robotoj',
+'group-sysop'          => 'Sisopoj',
+'group-bureaucrat'     => 'Burokratoj',
+'group-suppress'       => 'Superrigardoj',
+'group-all'            => '(ĉiuj)',
 
-'group-autoconfirmed-member' => 'Aŭtomate konfirmita uzanto',
-'group-bot-member'           => 'Roboto',
-'group-sysop-member'         => 'Sisopo',
-'group-bureaucrat-member'    => 'Burokrato',
-'group-suppress-member'      => 'Superrigardo',
+'group-user-member'           => 'Uzulo',
+'group-emailconfirmed-member' => 'Uzulo konfirmita per retpoŝto',
+'group-autoconfirmed-member'  => 'Aŭtomate konfirmita uzanto',
+'group-bot-member'            => 'Roboto',
+'group-sysop-member'          => 'Sisopo',
+'group-bureaucrat-member'     => 'Burokrato',
+'group-suppress-member'       => 'Superrigardo',
 
-'grouppage-autoconfirmed' => '{{ns:project}}:Aŭtomate konfirmitaj uzantoj',
-'grouppage-bot'           => '{{ns:project}}:Robotoj',
-'grouppage-sysop'         => '{{ns:project}}:Administrantoj',
-'grouppage-bureaucrat'    => '{{ns:project}}:Burokratoj',
-'grouppage-suppress'      => '{{ns:project}}:Superrigardo',
+'grouppage-user'           => '{{ns:project}}:Uzuloj',
+'grouppage-emailconfirmed' => '{{ns:project}}:Uzuloj konfirmitaj per retpoŝto',
+'grouppage-autoconfirmed'  => '{{ns:project}}:Aŭtomate konfirmitaj uzantoj',
+'grouppage-bot'            => '{{ns:project}}:Robotoj',
+'grouppage-sysop'          => '{{ns:project}}:Administrantoj',
+'grouppage-bureaucrat'     => '{{ns:project}}:Burokratoj',
+'grouppage-suppress'       => '{{ns:project}}:Superrigardo',
 
 # User rights log
 'rightslog'      => 'Loglibro de uzanto-rajtoj',
@@ -1099,7 +1106,6 @@ jen la loglibro pri forigado por ĉi dosiero por via oportuneco:",
 Defaŭlte, la lasta alŝutitaj dosieroj estas montrataj supren.
 Klaku la kolumnan titolon por ŝanĝi la direkton de ordigo.',
 'imagelist_search_for'  => 'Serĉu por dosiera nomo:',
-'imgdesc'               => 'pri',
 'imgfile'               => 'dosiero',
 'imagelist'             => 'Listo de alŝutitaj dosieroj',
 'imagelist_date'        => 'Dato',

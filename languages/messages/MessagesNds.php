@@ -420,6 +420,7 @@ un dat [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Brukerhandbook] 
 'youhavenewmessagesmulti' => 'Du hest ne’e Narichten op $1',
 'editsection'             => 'bearbeiden',
 'editold'                 => 'bearbeiden',
+'viewsourceold'           => 'Borntext wiesen',
 'editsectionhint'         => 'Ännere Afsnitt: $1',
 'toc'                     => 'Inholtsverteken',
 'showtoc'                 => 'wiesen',
@@ -510,6 +511,8 @@ Query: $2',
 Wat du hier ännerst, warkt sik op dat kumplette Wiki ut.
 Wenn du Text översetten wist, de betherto noch gornich översett is, denn maak dat opbest op [http://translatewiki.net/wiki/Main_Page?setlang=nds Betawiki], dat Översett-Projekt vun MediaWiki.",
 'sqlhidden'            => '(SQL-Affraag versteken)',
+'cascadeprotected'     => 'Disse Siet is sperrt un kann nich ännert warrn. Dat kummt dorvun dat se in disse {{PLURAL:$1|Siet|Sieden}} inbunnen is, de över Kaskadensperr schuult {{PLURAL:$1|is|sünd}}:
+$2',
 'namespaceprotected'   => "Du hest keen Rechten, Sieden in’n Naamruum '''$1''' to ännern.",
 'customcssjsprotected' => 'Du hest keen Rechten, disse Siet to ännern. Dor sünd persönliche Instellungen vun en annern Bruker in.',
 'ns-specialprotected'  => 'Spezialsieden köönt nich ännert warrn.',
@@ -654,6 +657,19 @@ Wenn du glöövst, dat Sparren weer unrecht, denn mell di bi een vun de [[{{Medi
 * IP-Adress: $3
 * Block-ID: #$5
 * Wokeen hett blockt: $1',
+'autoblockedtext'           => 'Diene IP-Adress is blockt, denn en annern Bruker hett ehr vördem bruukt un is dör $1 blockt worrn.
+As Grund is angeven: \'\'$2\'\' (<span class="plainlinks">[{{fullurl:Special:Ipblocklist|&action=search&limit=&ip=%23}}$5 Logbookindrag]</span>, de Block-ID is $5).
+
+Du dröffst aver jümmer noch lesen. Blot dat Schrieven geiht nich.
+
+Wenn du över de Sperr snacken wist, denn mell di bi $1 oder een vun de [[{{MediaWiki:Grouppage-sysop}}|Administraters]]. Geev bi Fragen jümmer ok dien IP-Adress ($3) oder de ID vun den Block (#$5) mit an.
+
+* Anfang vun’n Block: $8
+* Enn vun’n Block: $6
+* Block vun: $7
+* IP-Adress: $3
+* Block-ID: #$5
+* Wokeen hett blockt: $1',
 'blockednoreason'           => 'keen Grund angeven',
 'blockedoriginalsource'     => "De Borntext vun '''$1''' warrt hier wiest:",
 'blockededitsource'         => "De Text vun '''diene Ännern''' an '''$1''':",
@@ -788,13 +804,13 @@ Versöök [[Special:Search|dat Söken]] na annere relevante Sieden.',
 # Revision deletion
 'rev-deleted-comment'     => '(Kommentar rutnahmen)',
 'rev-deleted-user'        => '(Brukernaam rutnahmen)',
-'rev-deleted-event'       => '(Indrag rutnahmen)',
+'rev-deleted-event'       => '(Logbook-Indrag rutnahmen)',
 'rev-delundel'            => 'wiesen/versteken',
 'revisiondelete'          => 'Versionen wegsmieten/wedderhalen',
 'revdelete-nooldid-title' => 'kene Versionen dor, de passt',
 'revdelete-selected'      => "{{PLURAL:$2|wählte Version|wählte Versionen}} vun '''$1:'''",
 'logdelete-selected'      => "{{PLURAL:$2|wählt Logbook-Indrag|wählte Logbook-Indrääg}} för '''$1:'''",
-'revdelete-legend'        => 'Inschränkungen setten',
+'revdelete-legend'        => 'Inschränkungen för de Sichtborkeit setten',
 'revdelete-hide-text'     => 'Versiontext versteken',
 'revdelete-hide-name'     => 'Akschoon un Teel versteken',
 'revdelete-hide-comment'  => 'Kommentar versteken',
@@ -803,8 +819,14 @@ Versöök [[Special:Search|dat Söken]] na annere relevante Sieden.',
 'revdelete-log'           => 'Kommentar:',
 'revdelete-logentry'      => 'Sichtborkeit vun Version för [[$1]] ännert',
 'logdelete-logentry'      => 'Sichtborkeit vun Begeevnis för [[$1]] ännert',
+'revdel-restore'          => 'Sichtborkeit ännern',
 'pagehist'                => 'Versionshistorie',
 'deletedhist'             => 'wegsmetene Versionen',
+'revdelete-uname'         => 'Brukernaam',
+'revdelete-hid'           => 'hett $1 versteken',
+'revdelete-unhid'         => 'hett $1 wedder sichtbor maakt',
+'revdelete-log-message'   => '$1 för $2 {{PLURAL:$2|Version|Versionen}}',
+'logdelete-log-message'   => '$1 för $2 {{PLURAL:$2|Logbook-Indrag|Logbook-Indrääg}}',
 
 # History merging
 'mergehistory'                     => 'Versionshistorien tohoopföhren',
@@ -839,39 +861,43 @@ Versöök [[Special:Search|dat Söken]] na annere relevante Sieden.',
 'diff-multi'              => '(Twischen de beiden Versionen {{plural:$1|liggt noch ene Twischenversion|doot noch $1 Twischenversionen liggen}}.)',
 
 # Search results
-'searchresults'         => 'Söökresultaten',
-'searchresulttext'      => 'För mehr Informatschonen över {{SITENAME}}, kiek [[{{MediaWiki:Helppage}}|{{SITENAME}} dörsöken]].',
-'searchsubtitle'        => 'För de Söökanfraag „[[:$1]]“',
-'searchsubtitleinvalid' => 'För de Söökanfraag „$1“',
-'noexactmatch'          => 'Gifft kene Siet mit dissen Naam. Bruuk de Vulltextsöök oder legg de Siet [[:$1|nee]] an.',
-'noexactmatch-nocreate' => "'''Gifft kene Siet mit’n Titel „$1“.'''",
-'toomanymatches'        => 'To veel Sieden funnen för de Söök, versöök en annere Affraag.',
-'titlematches'          => 'Övereenstimmen mit Överschriften',
-'notitlematches'        => 'Kene Övereenstimmen',
-'textmatches'           => 'Övereenstimmen mit Texten',
-'notextmatches'         => 'Kene Övereenstimmen',
-'prevn'                 => 'vörige $1',
-'nextn'                 => 'tokamen $1',
-'viewprevnext'          => 'Wies ($1) ($2) ($3).',
-'search-result-size'    => '$1 ({{PLURAL:$2|een Woort|$2 Wöör}})',
-'search-result-score'   => 'Relevanz: $1 %',
-'search-redirect'       => '(Redirect $1)',
-'search-section'        => '(Afsnitt $1)',
-'searchall'             => 'all',
-'showingresults'        => "Hier {{PLURAL:$1|is een Resultat|sünd '''$1''' Resultaten}}, anfungen mit #'''$2'''.",
-'showingresultsnum'     => "Hier {{PLURAL:$3|is een Resultat|sünd '''$3''' Resultaten}}, anfungen mit #'''$2'''.",
-'showingresultstotal'   => "Dit sünd de Fundstellen '''$1–$2''' vun '''$3'''",
-'nonefound'             => '<strong>Henwies</strong>:
+'searchresults'            => 'Söökresultaten',
+'searchresulttext'         => 'För mehr Informatschonen över {{SITENAME}}, kiek [[{{MediaWiki:Helppage}}|{{SITENAME}} dörsöken]].',
+'searchsubtitle'           => 'För de Söökanfraag „[[:$1]]“',
+'searchsubtitleinvalid'    => 'För de Söökanfraag „$1“',
+'noexactmatch'             => 'Gifft kene Siet mit dissen Naam. Bruuk de Vulltextsöök oder legg de Siet [[:$1|nee]] an.',
+'noexactmatch-nocreate'    => "'''Gifft kene Siet mit’n Titel „$1“.'''",
+'toomanymatches'           => 'To veel Sieden funnen för de Söök, versöök en annere Affraag.',
+'titlematches'             => 'Övereenstimmen mit Överschriften',
+'notitlematches'           => 'Kene Övereenstimmen',
+'textmatches'              => 'Övereenstimmen mit Texten',
+'notextmatches'            => 'Kene Övereenstimmen',
+'prevn'                    => 'vörige $1',
+'nextn'                    => 'tokamen $1',
+'viewprevnext'             => 'Wies ($1) ($2) ($3).',
+'search-result-size'       => '$1 ({{PLURAL:$2|een Woort|$2 Wöör}})',
+'search-result-score'      => 'Relevanz: $1 %',
+'search-redirect'          => '(Redirect $1)',
+'search-section'           => '(Afsnitt $1)',
+'search-suggest'           => 'Hest du „$1“ meent?',
+'search-interwiki-caption' => 'Süsterprojekten',
+'search-interwiki-more'    => '(mehr)',
+'searchall'                => 'all',
+'showingresults'           => "Hier {{PLURAL:$1|is een Resultat|sünd '''$1''' Resultaten}}, anfungen mit #'''$2'''.",
+'showingresultsnum'        => "Hier {{PLURAL:$3|is een Resultat|sünd '''$3''' Resultaten}}, anfungen mit #'''$2'''.",
+'showingresultstotal'      => "Dit sünd de Fundstellen '''$1–$2''' vun '''$3'''",
+'nonefound'                => '<strong>Henwies</strong>:
 Söökanfragen ahn Spood hebbt faken de Oorsaak, dat no kotte oder gemeene Wöör söökt warrt, de nich indizeert sünd.',
-'powersearch'           => 'Betere Söök',
-'powersearch-legend'    => 'Betere Söök',
-'powersearchtext'       => '
+'powersearch'              => 'Betere Söök',
+'powersearch-legend'       => 'Betere Söök',
+'powersearchtext'          => '
 Söök in Naamrüüm:<br />
 
 
 $1<br />
 $2 Wies ok Wiederleiden   Söök no $3 $9',
-'searchdisabled'        => '<p>De Vulltextsöök is wegen Överlast en Stoot deaktiveert. In disse Tied kannst du disse Google-Söök verwennen,
+'search-external'          => 'Externe Söök',
+'searchdisabled'           => '<p>De Vulltextsöök is wegen Överlast en Stoot deaktiveert. In disse Tied kannst du disse Google-Söök verwennen,
 de aver nich jümmer den aktuellsten Stand weerspegelt.<p>',
 
 # Preferences page
@@ -1013,7 +1039,8 @@ Disse Siet warrt wiel dat Laden automatsch aktualiseert. Wiest warrn Sieten, de 
 'recentchangeslinked'          => 'Ännern an lenkte Sieden',
 'recentchangeslinked-title'    => 'Ännern an Sieden, de vun „$1“ ut lenkt sünd',
 'recentchangeslinked-noresult' => 'In disse Tiet hett nüms de lenkten Sieden ännert.',
-'recentchangeslinked-summary'  => "Disse Spezialsiet wiest de letzten Ännern an de lenkten Sieden. Sieden, de op diene Oppasslist staht, sünd '''fett''' schreven.",
+'recentchangeslinked-summary'  => "Disse List wiest de letzten Ännern an de Sieden, de vun en bestimmte Siet ut verlenkt oder in en bestimmte Kategorie in sünd. Sieden, de op diene [[Special:Watchlist|Oppasslist]] staht, sünd '''fett''' schreven.",
+'recentchangeslinked-page'     => 'Siet:',
 
 # Upload
 'upload'                     => 'Hoochladen',
@@ -1084,6 +1111,7 @@ Alle Tieden sünd UTC.",
 'uploadvirus'                => 'In de Datei stickt en Virus! Mehr: $1',
 'sourcefilename'             => 'Dateinaam op dien Reekner:',
 'destfilename'               => 'Dateinaam, so as dat hier spiekert warrn schall:',
+'upload-maxfilesize'         => 'Maximale Dateigrött: $1',
 'watchthisupload'            => 'Op disse Siet oppassen',
 
 'upload-proto-error'     => 'Verkehrt Protokoll',
@@ -1104,7 +1132,6 @@ Dat geev en internen Fehler bi dat Anleggen vun en temporäre Datei op’n Serve
 
 # Special:Imagelist
 'imagelist_search_for'  => 'Söök na Datei:',
-'imgdesc'               => 'Beschrieven',
 'imgfile'               => 'Datei',
 'imagelist'             => 'Billerlist',
 'imagelist_date'        => 'Datum',
@@ -1308,6 +1335,11 @@ Du kannst de List körter maken, wenn du den Logbook-Typ, den Brukernaam oder de
 'listusers-submit'   => 'Wiesen',
 'listusers-noresult' => 'Keen Bruker funnen.',
 
+# Special:Listgrouprights
+'listgrouprights-group'    => 'Grupp',
+'listgrouprights-rights'   => 'Rechten',
+'listgrouprights-helppage' => 'Help:Gruppenrechten',
+
 # E-mail user
 'mailnologin'     => 'Du büst nich anmellt.',
 'mailnologintext' => 'Du musst [[Spezial:Userlogin|anmellt wesen]] un en güllige E-Mail-Adress hebben, dat du en annern Bruker en E-Mail sennen kannst.',
@@ -1413,6 +1445,7 @@ Segg to, dat du över de Folgen Bescheed weetst un dat du in Övereenstimmen mit
 'actioncomplete'              => 'Akschoon trech',
 'deletedtext'                 => 'De Artikel „<nowiki>$1</nowiki>“ is nu wegsmeten. Op $2 gifft dat en Logbook vun de letzten Löschakschonen.',
 'deletedarticle'              => '„$1“ wegsmeten',
+'suppressedarticle'           => 'hett „[[$1]]“ versteken',
 'dellogpage'                  => 'Lösch-Logbook',
 'dellogpagetext'              => 'Hier is en List vun de letzten Löschen (UTC).',
 'deletionlog'                 => 'Lösch-Logbook',
@@ -1608,6 +1641,7 @@ Kiek [[Special:Ipblocklist|IP-Blocklist]] för en List vun den blockten Brukern.
 'range_block_disabled'        => 'De Mööglichkeit, ganze Adressrüüm to sparren, is nich aktiveert.',
 'ipb_expiry_invalid'          => 'De angeven Aflooptiet is nich güllig.',
 'ipb_already_blocked'         => '„$1“ is al blockt',
+'ipb_cant_unblock'            => 'Fehler: Block-ID $1 nich funnen. De Sperr is villicht al wedder ophoven.',
 'ip_range_invalid'            => 'Ungüllig IP-Addressrebeet.',
 'blockme'                     => 'Sperr mi',
 'proxyblocker'                => 'Proxyblocker',
@@ -1615,6 +1649,8 @@ Kiek [[Special:Ipblocklist|IP-Blocklist]] för en List vun den blockten Brukern.
 'proxyblockreason'            => 'Dien IP-Adress is blockt, vun wegen dat se en apenen Proxy is.
 Kontakteer dien Provider oder diene Systemtechnik un informeer se över dat möögliche Sekerheitsproblem.',
 'proxyblocksuccess'           => 'Trech.',
+'sorbsreason'                 => 'Diene IP-Adress steiht in de DNSBL vun {{SITENAME}} as apen PROXY.',
+'sorbs_create_account_reason' => 'Diene IP-Adress steiht in de DNSBL vun {{SITENAME}} as apen PROXY. Du kannst keen Brukerkonto nee opstellen.',
 
 # Developer tools
 'lockdb'              => 'Datenbank sparren',
@@ -1665,6 +1701,7 @@ In disse Fäll musst du de Siet, wenn du dat willst, vun Hand schuven.",
 'movepage-moved'          => "<big>'''„$1“ is nu na „$2“ schaven.'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => 'Ünner dissen Naam gifft dat al ene Siet.
 Bitte söök en annern Naam ut.',
+'cantmove-titleprotected' => 'Du kannst de Siet nich na dissen ne’en Naam schuven. De Naam is gegen dat nee Opstellen schuult.',
 'talkexists'              => 'Dat Schuven vun de Siet sülvst hett Spood, aver dat Schuven vun de
 Diskuschoonssiet nich, vun wegen dat dat dor al ene Siet mit dissen Titel gifft. De Inholt mutt vun Hand anpasst warrn.',
 'movedto'                 => 'schaven na',
@@ -1696,8 +1733,7 @@ Diskuschoonssiet nich, vun wegen dat dat dor al ene Siet mit dissen Titel gifft.
 'allmessagesname'           => 'Naam',
 'allmessagesdefault'        => 'Standardtext',
 'allmessagescurrent'        => 'Text nu',
-'allmessagestext'           => 'Dit is de List vun all de Systemnarichten, de dat in den Mediawiki-Naamruum gifft.
-Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] and [http://translatewiki.net Betawiki] if you wish to contribute to the generic MediaWiki localisation.',
+'allmessagestext'           => 'Dit is de List vun all de Systemnarichten, de dat in den Mediawiki-Naamruum gifft.',
 'allmessagesnotsupportedDB' => '{{ns:special}}:Allmessages is nich ünnerstütt, vun wegen dat wgUseDatabaseMessages utstellt is.',
 'allmessagesfilter'         => 'Narichtennaamfilter:',
 'allmessagesmodified'       => 'Blot ännerte wiesen',
@@ -1707,6 +1743,7 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 'filemissing'              => 'Datei fehlt',
 'thumbnail_error'          => 'Fehler bi dat Maken vun’t Duumnagel-Bild: $1',
 'djvu_page_error'          => 'DjVu-Siet buten de verföögboren Sieden',
+'djvu_no_xml'              => 'kunn de XML-Daten för de DjVu-Datei nich afropen',
 'thumbnail_invalid_params' => 'Duumnagelbild-Parameter passt nich',
 'thumbnail_dest_directory' => 'Kann Zielorner nich anleggen',
 
@@ -1720,6 +1757,7 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 'import-revision-count'      => '$1 {{PLURAL:$1|Version|Versionen}}',
 'importnopages'              => 'Gifft kene Sieden to’n Rinhalen.',
 'importfailed'               => 'Import hett kenen Spood: $1',
+'importunknownsource'        => 'Unbekannten Typ för den Importborn',
 'importcantopen'             => 'Kunn de Import-Datei nich apen maken',
 'importbadinterwiki'         => 'Verkehrt Interwiki-Lenk',
 'importnotext'               => 'Leddig oder keen Text',
@@ -2092,6 +2130,7 @@ Wat denn noch an Lenken kummt in de Reeg, dat sünd Utnahmen, bi de dat Bild lie
 'exif-gpslongitude-w' => 'Läng West',
 
 'exif-gpsstatus-a' => 'Meten löppt',
+'exif-gpsstatus-v' => 'Meetinteroperabilität',
 
 'exif-gpsmeasuremode-2' => '2-dimensional meet',
 'exif-gpsmeasuremode-3' => '3-dimensional meet',
@@ -2155,6 +2194,7 @@ Trackbacks för dissen Artikel:<br />
 $1
 </div>',
 'trackbackremove'   => '([$1 wegsmieten])',
+'trackbacklink'     => 'Trackback',
 'trackbackdeleteok' => 'Trackback mit Spood wegsmeten.',
 
 # Delete conflict
@@ -2242,8 +2282,10 @@ Versöök de normale Vörschau.',
 'version'                   => 'Version', # Not used as normal message but as header for the special page itself
 'version-extensions'        => 'Installeerte Extensions',
 'version-specialpages'      => 'Spezialsieden',
+'version-parserhooks'       => 'Parser-Hooks',
 'version-variables'         => 'Variablen',
 'version-other'             => 'Annern Kraam',
+'version-hooks'             => 'Hooks',
 'version-hook-subscribedby' => 'Opropen vun',
 'version-version'           => 'Version',
 'version-license'           => 'Lizenz',
@@ -2270,5 +2312,16 @@ Geev den Dateinaam ahn dat Präfix „{{ns:image}}:“ in.',
 'fileduplicatesearch-info'     => '$1 × $2 Pixel<br />Dateigrött: $3<br />MIME-Typ: $4',
 'fileduplicatesearch-result-1' => 'To de Datei „$1“ gifft dat keen Datei, de jüst gliek is.',
 'fileduplicatesearch-result-n' => 'To de Datei „$1“ gifft dat {{PLURAL:$2|ene Datei, de jüst gliek is|$2 Datein, de jüst gliek sünd}}.',
+
+# Special:SpecialPages
+'specialpages-group-maintenance' => 'Pleeglisten',
+'specialpages-group-other'       => 'Annere Spezialsieden',
+'specialpages-group-login'       => 'Anmellen',
+'specialpages-group-changes'     => 'Letzte Ännern un Logböker',
+'specialpages-group-media'       => 'Medien',
+'specialpages-group-users'       => 'Brukers un Rechten',
+'specialpages-group-needy'       => 'Sieden, an de wat daan warrn mutt',
+'specialpages-group-highuse'     => 'Veel bruukte Sieden',
+'specialpages-group-permissions' => 'Brukerrechten',
 
 );

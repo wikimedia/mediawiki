@@ -9,6 +9,7 @@
  * @author לערי ריינהארט
  * @author Siebrand
  * @author Nike
+ * @author Melos
  */
 
 $fallback = 'it';
@@ -162,6 +163,7 @@ $messages = array(
 'tog-nolangconversion'        => 'Disattiva la cunvirsioni tra varianti linguìstichi',
 'tog-ccmeonemails'            => "Mànnami na copia dî missaggi spiditi a l'àutri utenti",
 'tog-diffonly'                => "Nun visualizzari lu cuntinutu dâ pàggina quannu s'esequi na ''diff'' tra dui virsioni",
+'tog-showhiddencats'          => 'Ammustra li catigurìi ammucciati.',
 
 'underline-always'  => 'sempri',
 'underline-never'   => 'mai',
@@ -178,6 +180,9 @@ $messages = array(
 'friday'        => 'Venniridìa',
 'saturday'      => 'Sabbatudìa',
 'sun'           => 'dum',
+'mon'           => 'lun',
+'tue'           => 'mar',
+'wed'           => 'mer',
 'thu'           => 'jov',
 'fri'           => 'vènn',
 'sat'           => 'sabb',
@@ -207,7 +212,10 @@ $messages = array(
 'december-gen'  => 'Dicèmmiru',
 'jan'           => 'jin',
 'feb'           => 'Friv',
+'mar'           => 'mar',
+'apr'           => 'apr',
 'may'           => 'Maiu',
+'jun'           => 'giu',
 'jul'           => 'giugn',
 'aug'           => 'Au',
 'sep'           => 'Sitt',
@@ -216,14 +224,16 @@ $messages = array(
 'dec'           => 'Dic',
 
 # Categories related messages
-'categories'             => 'Catigurìi',
-'categoriespagetext'     => 'Li catigurìi ccassutta asìstinu ntâ wiki.',
-'pagecategories'         => '{{PLURAL:$1|Catigurìa|Catigurìi}}',
-'category_header'        => 'Artìculi ntâ catigurìa "$1"',
-'subcategories'          => 'Suttacatigurìi',
-'category-media-header'  => 'File multimidiali ntâ catigurìa "$1"',
-'category-empty'         => "''Chista catigurìa attuarmenti non havi artìculi o \"media\".''",
-'listingcontinuesabbrev' => ' cunt.',
+'categories'                     => 'Catigurìi',
+'categoriespagetext'             => 'Li catigurìi ccassutta asìstinu ntâ wiki.',
+'pagecategories'                 => '{{PLURAL:$1|Catigurìa|Catigurìi}}',
+'category_header'                => 'Artìculi ntâ catigurìa "$1"',
+'subcategories'                  => 'Suttacatigurìi',
+'category-media-header'          => 'File multimidiali ntâ catigurìa "$1"',
+'category-empty'                 => "''Chista catigurìa attuarmenti non havi artìculi o \"media\".''",
+'category-article-count'         => '{{PLURAL:$2|Sta catigurìa cunteni na pàggina sula, nnicata ccà sutta.|Sta catigurìa cunteni {{PLURAL:$1|la pàggina nnicata|li $1 pàggini nnicati}} di sècutu, supra nu tutali di $2.}}',
+'category-article-count-limited' => 'Stâ catiguria cunteni {{PLURAL:$1|la pàggina ndicata|li $1 pàggini ndicati}} ccà sutta.',
+'listingcontinuesabbrev'         => ' cunt.',
 
 'mainpagetext'      => 'Nstallazzioni di MediaWiki cumplitata currettamenti.',
 'mainpagedocfooter' => "Pi favuri taliari [http://meta.wikimedia.org/wiki/Help:Contents Guida utenti] pi aiutu supra l'usu e la cunfigurazzioni. == Ncignari == * [http://www.mediawiki.org/wiki/Manual:Configuration_settings Alencu di mpostazzioni di configurazzioni] *  [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ] * [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Mailing list dî rilasci di MediaWiki]",
@@ -244,6 +254,7 @@ $messages = array(
 'mytalk'         => 'la mè pàggina di discussioni',
 'anontalk'       => 'Discussione pi stu IP',
 'navigation'     => 'Navigazzioni',
+'and'            => 'e',
 
 'errorpagetitle'    => 'Erruri',
 'returnto'          => 'Ritorna a $1.',
@@ -955,7 +966,6 @@ PICT # arcuni
 
 # Special:Imagelist
 'imagelist_search_for'  => 'Ricerca dâ mmàggini di nomu:',
-'imgdesc'               => 'disc',
 'imagelist'             => 'Alencu dî file',
 'imagelist_name'        => 'Nomu',
 'imagelist_user'        => 'Utenti',

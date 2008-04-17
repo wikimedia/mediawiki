@@ -739,7 +739,7 @@ Titulus: (nov) = dissimilis ab forma novissima, (prox) = dissimilis ab forma pro
 'recentchangesdays'        => 'Quot dies in nuper mutatis monstrandi:',
 'recentchangescount'       => 'Quantum rerum in nuper mutatis:',
 'savedprefs'               => 'Praeferentiae tuae servatae sunt.',
-'timezonetext'             => 'Scribere numerum horae inter horam tuam et illam moderatri (UTC).',
+'timezonetext'             => '¹Numerus horarum inter horam tuam et illam moderatri (UTC).',
 'localtime'                => 'Hora indigena',
 'timezoneoffset'           => 'Dissimilitudo cinguli horae¹',
 'servertime'               => 'Hora moderatri nunc est',
@@ -758,16 +758,22 @@ Titulus: (nov) = dissimilis ab forma novissima, (prox) = dissimilis ab forma pro
 'userrights-available-remove-self' => 'Potes te removere ex {{PLURAL:$2|hac grege|his gregibus}}: $1.',
 
 # Groups
-'group'            => 'Grex:',
-'group-sysop'      => 'Magistratus',
-'group-bureaucrat' => 'Grapheocrates',
-'group-all'        => '(omnes)',
+'group'                => 'Grex:',
+'group-user'           => 'Usores',
+'group-emailconfirmed' => 'Usores quibus est inscriptio electronica adfirmata',
+'group-sysop'          => 'Magistratus',
+'group-bureaucrat'     => 'Grapheocrates',
+'group-all'            => '(omnes)',
 
-'group-sysop-member'      => 'Magistratus',
-'group-bureaucrat-member' => 'Grapheocrates',
+'group-user-member'           => 'Usor',
+'group-emailconfirmed-member' => 'Usor cui est inscriptio electronica adfirmata',
+'group-sysop-member'          => 'Magistratus',
+'group-bureaucrat-member'     => 'Grapheocrates',
 
-'grouppage-sysop'      => '{{ns:project}}:Magistratus',
-'grouppage-bureaucrat' => '{{ns:project}}:Grapheocrates',
+'grouppage-user'           => '{{ns:project}}:Usores',
+'grouppage-emailconfirmed' => '{{ns:project}}:Usores quibus est inscriptio electronica adfirmata',
+'grouppage-sysop'          => '{{ns:project}}:Magistratus',
+'grouppage-bureaucrat'     => '{{ns:project}}:Grapheocrates',
 
 # User rights log
 'rightslog'     => 'Index mutationum iuribus usorum',

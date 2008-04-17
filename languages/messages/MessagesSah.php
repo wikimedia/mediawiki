@@ -784,7 +784,7 @@ long, which is longer than the maximum of $2 kilobytes. It cannot be saved.</str
 'recentchangescount'       => 'Бүтэһиктэн саҕалаан хас уларытыыны көрдөрөргө:',
 'savedprefs'               => 'Эн туруорууларыҥ олохтоннулар.',
 'timezonelegend'           => 'Чаһыы пуойаһа',
-'timezonetext'             => 'Эн бириэмэҥ сиэрбэр (Гринвич, UTC) бириэмэтиттэн хас чаас уратылааҕын киллэр.',
+'timezonetext'             => '¹Эн бириэмэҥ сиэрбэр (Гринвич, UTC) бириэмэтиттэн хас чаас уратылааҕын киллэр.',
 'localtime'                => 'Олорор сириҥ бириэмэтэ',
 'timezoneoffset'           => 'Сыҕарыйыы',
 'servertime'               => 'Сиэрбэр бириэмэтэ',
@@ -978,7 +978,6 @@ PICT # misc.
 
 # Special:Imagelist
 'imagelist_search_for'  => 'Миэдьийэни (ойууну) аатынан көрдөтүү:',
-'imgdesc'               => 'быһаарыы',
 'imgfile'               => 'билэ',
 'imagelist'             => 'Билэлэр',
 'imagelist_date'        => 'Күнэ-ыйа',

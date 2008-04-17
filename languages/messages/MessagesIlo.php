@@ -14,7 +14,10 @@
 $messages = array(
 # User preference toggles
 'tog-underline'        => 'Ugedan iti baba dagiti panilpo:',
+'tog-highlightbroken'  => 'Formaten dagiti nadadael a panilpo <a href="" class="new">a kas itoy</a> (alternative: like this<a href="" class="internal">?</a>).',
 'tog-justify'          => 'Limpiaen dagiti parapo',
+'tog-hideminor'        => 'Ilemmeng dagiti babasit a panagedit iti napalpalabas a panagbaliw',
+'tog-showtoolbar'      => 'Ipakita ti edit toolbar (JavaScript)',
 'tog-rememberpassword' => 'Laglagipen ti iseserrekko kadaytoy a kompiuter',
 'tog-watchcreations'   => 'Inayon dagiti inaramidko a pampanid iti listaan ti bambantayak',
 'tog-watchdefault'     => 'Inayon dagiti ed-editek a pampanid iti listaan ti bambantayak',
@@ -66,9 +69,12 @@ $messages = array(
 'jan'           => 'Ene',
 'feb'           => 'Feb',
 'apr'           => 'Abr',
+'may'           => 'May',
 'jul'           => 'Jul',
 'aug'           => 'Ago',
+'oct'           => 'Oct',
 'nov'           => 'Nov',
+'dec'           => 'Dec',
 
 # Categories related messages
 'categories'                    => 'Dagiti Categoria',
@@ -100,6 +106,7 @@ $messages = array(
 'search'            => 'agbirok',
 'searchbutton'      => 'Sapulen',
 'go'                => 'mapanen',
+'searcharticle'     => 'Inkan',
 'history'           => 'Pakasaritaan ti panid',
 'history_short'     => 'pakasaritaan',
 'printableversion'  => 'Version a maiprinta',
@@ -110,6 +117,7 @@ $messages = array(
 'editthispage'      => 'baliwan daytoy a panid',
 'create-this-page'  => 'Partuaten daytoy a panid',
 'delete'            => 'ikkaten',
+'deletethispage'    => 'Ikkaten daytoy a panid',
 'protect'           => 'Saluadan',
 'protectthispage'   => 'Saluadan daytoy a panid',
 'unprotect'         => 'saanen a saluadan',
@@ -324,9 +332,13 @@ Kasta met nga ikarim kadakami a bukodmo a sinurat wenno gapuanan daytoy, wenno k
 'upload'            => 'Mangipan iti file',
 'uploadbtn'         => 'Ipan ti file',
 'uploadnologin'     => 'Saan a nakastrek',
+'uploaderror'       => 'Kammali iti panangipan',
 'filedesc'          => 'Pakabuklan',
 'fileuploadsummary' => 'Pakabuklan:',
 'filesource'        => 'Taudan:',
+'uploadedfiles'     => 'Naipan a files',
+'ignorewarnings'    => 'Di ikaskaso ti ania man a ballaag',
+'badfilename'       => 'Nasukatan ti nagan ti file iti "$1".',
 'successfulupload'  => 'Balligi ti panag-upload',
 
 # Special:Imagelist
@@ -409,7 +421,10 @@ Kasta met nga ikarim kadakami a bukodmo a sinurat wenno gapuanan daytoy, wenno k
 'delete-confirm'      => 'Ikkaten ti "$1"',
 'delete-legend'       => 'Ikkaten',
 'deletecomment'       => 'Rason no apay nga ikkaten',
+'rollback_short'      => 'Isubli',
+'rollbacklink'        => 'isubli',
 'revertpage'          => 'Naikkat ti panangbaliw ni [[Special:Contributions/$2|$2]] ([[User talk:$2|Pagtutungtongan]]), naisubli iti kaudian a version ni [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'protectlogpage'      => 'Log ti panangsaluad',
 'unprotectedarticle'  => 'naikkat ti saluad ti "[[$1]]"',
 'protect-legend'      => 'Pasingkedan ti panangsaluad',
 'protectcomment'      => 'Rason no apay a saluadan daytoy a panid',

@@ -1303,7 +1303,6 @@ PICT # ált.
 A legutóbb feltöltött fájlok vannak a lista elején.
 Az oszlopok címeire kattintva változtathatod meg a rendezést.',
 'imagelist_search_for'  => 'Keresés kép nevére:',
-'imgdesc'               => 'leírás',
 'imgfile'               => 'fájl',
 'imagelist'             => 'Képlista',
 'imagelist_date'        => 'Dátum',

@@ -813,7 +813,7 @@ Wan du die mäd dät Thema uutkoanst, koast du sälwen ju Siede „[[$1]]“ fer
 'recentchangescount'       => 'Antaal fon do Iendraage in "Lääste Annerengen":',
 'savedprefs'               => 'Dien Ienstaalengen wuuden spiekerd.',
 'timezonelegend'           => 'Tiedzone',
-'timezonetext'             => 'Reek ju Antaal fon Uuren ien, do twiske Jou Tiedzone un UPC lääse.',
+'timezonetext'             => '¹Reek ju Antaal fon Uuren ien, do twiske Jou Tiedzone un UPC lääse.',
 'localtime'                => 'Tied bie Jou:',
 'timezoneoffset'           => 'Unnerscheed¹:',
 'servertime'               => 'Aktuälle Tied ap dän Server:',
@@ -1007,7 +1007,6 @@ Reek ju Doatäi n Noome, die dän Inhoold beeter beschrift.',
 
 # Special:Imagelist
 'imagelist_search_for'  => 'Säik ätter Doatäi:',
-'imgdesc'               => 'Beschrieuwenge',
 'imgfile'               => 'Doatäi',
 'imagelist'             => 'Bieldelieste',
 'imagelist_date'        => 'Doatum',

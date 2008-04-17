@@ -1092,7 +1092,6 @@ PICT # misc.
 Dre ziouer e teu ar restroù enporzhiet da ziwezhañ e laez ar roll.
 Klikañ war penn ar bann a cheñch an urzh kinnig.',
 'imagelist_search_for'  => 'Klask anv ar skeudenn :',
-'imgdesc'               => 'deskr',
 'imgfile'               => 'restr',
 'imagelist'             => 'Roll ar skeudennoù',
 'imagelist_date'        => 'Deiziad',

@@ -1,14 +1,13 @@
 <?php
-/**
- * German (Deutsch)
+/** German (Deutsch)
  *
  * @addtogroup Language
  *
  * @author Jimmy Collins <jimmy.collins@web.de>
  * @author Raimond Spekking (Raymond) <raimond.spekking@gmail.com> since January 2007
  * @author Tim Bartel (avatar) <wikipedistik@computerkultur.org> small changes
+ * @author Spacebirdy
  */
-
 
 $namespaceNames = array(
 	NS_MEDIA            => 'Media',
@@ -421,7 +420,6 @@ $messages = array(
 'versionrequiredtext' => 'Version $1 von MediaWiki ist erforderlich, um diese Seite zu nutzen. Siehe die [[{{#special:version}}|Versionsseite]]',
 
 'ok'                      => 'Suchen',
-'pagetitle'               => '$1 - {{SITENAME}}',
 'retrievedfrom'           => 'Von „$1“',
 'youhavenewmessages'      => 'Du hast $2 auf deiner $1.',
 'newmessageslink'         => 'Diskussionsseite',
@@ -926,48 +924,48 @@ Stelle sicher, dass die Versionsgeschichte eines Artikels historisch korrekt ist
 'diff-multi'              => "<span style='font-size: smaller'>(Der Versionsvergleich bezieht {{plural:$1|eine dazwischen liegende Version|$1 dazwischen liegende Versionen}} mit ein.)</span>",
 
 # Search results
-'searchresults'            => 'Suchergebnisse',
-'searchresulttext'         => 'Für mehr Informationen zur Suche siehe die [[{{MediaWiki:Helppage}}|Hilfeseite]].',
-'searchsubtitle'           => 'Deine Suchanfrage: „[[:$1|$1]]“.',
-'searchsubtitleinvalid'    => 'Deine Suchanfrage: „$1“.',
-'noexactmatch'             => "'''Es existiert keine Seite mit dem Titel „$1“.'''
+'searchresults'             => 'Suchergebnisse',
+'searchresulttext'          => 'Für mehr Informationen zur Suche siehe die [[{{MediaWiki:Helppage}}|Hilfeseite]].',
+'searchsubtitle'            => 'Deine Suchanfrage: „[[:$1|$1]]“.',
+'searchsubtitleinvalid'     => 'Deine Suchanfrage: „$1“.',
+'noexactmatch'              => "'''Es existiert keine Seite mit dem Titel „$1“.'''
 
 Versuche es über die Volltextsuche.
 Alternativ kannst du auch den [[Special:Allpages|alphabetischen Index]] nach ähnlichen Begriffen durchsuchen.
 
 Wenn du dich mit dem Thema auskennst, kannst du selbst die Seite „[[$1]]“ verfassen.",
-'noexactmatch-nocreate'    => "'''Es existiert keine Seite mit dem Titel „$1“.'''",
-'toomanymatches'           => 'Die Anzahl der Suchergebnisse ist zu groß, bitte versuche eine andere Abfrage.',
-'titlematches'             => 'Übereinstimmungen mit Seitentiteln',
-'notitlematches'           => 'Keine Übereinstimmungen mit Seitentiteln',
-'textmatches'              => 'Übereinstimmungen mit Inhalten',
-'notextmatches'            => 'Keine Übereinstimmungen mit Inhalten',
-'prevn'                    => 'vorherige $1',
-'nextn'                    => 'nächste $1',
-'viewprevnext'             => 'Zeige ($1) ($2) ($3)',
-'search-result-size'       => '$1 ({{PLURAL:$2|1 Wort|$2 Wörter}})',
-'search-result-score'      => 'Relevanz: $1 %',
-'search-redirect'          => '(Weiterleitung $1)',
-'search-section'           => '(Abschnitt $1)',
-'search-suggest'           => 'Meintest du „$1“?',
-'search-interwiki-caption' => 'Schwesterprojekte',
-'search-interwiki-default' => '$1 Ergebnisse:',
-'search-interwiki-more'    => '(weitere)',
-'search-mwsuggest-enabled' => 'mit Vorschläge',
-'search-mwsuggest-disabled'=> 'keine Vorschläge',
-'search-relatedarticle'    => 'Verwandte',
-'mwsuggest-disable'        => 'Vorschläge per Ajax deaktivieren',  
-'searchall'                => 'alle',
-'searchrelated'            => 'verwandt',
-'showingresults'           => "Hier {{PLURAL:$1|ist '''1''' Ergebnis|sind '''$1''' Ergebnisse}}, beginnend mit Nummer '''$2'''.",
-'showingresultsnum'        => "Hier {{PLURAL:$3|ist '''1''' Ergebnis|sind '''$1''' Ergebnisse}}, beginnend mit Nummer '''$2'''.",
-'showingresultstotal'      => "Es folgen die Suchergebnisse '''$1–$2''' von '''$3''':",
-'nonefound'                => '<strong>Hinweis</strong>: Erfolglose Suchanfragen werden häufig dadurch verursacht, dass mehr als ein Suchbegriff angegeben wurde. Nur Seiten die alle Suchbegriffe enthalten werden hier angezeigt. Versuche in diesem Fall die Anzahl der Suchbegriffe zu verringern.',
-'powersearch'              => 'Erweiterte Suche',
-'powersearch-legend'       => 'Erweiterte Suche',
-'powersearchtext'          => 'Suche in Namensräumen:<br />$1<br />$2 Weiterleitungen anzeigen<br />Suche nach: $3 $9',
-'search-external'          => 'Externe Suche',
-'searchdisabled'           => 'Die {{SITENAME}}-Suche ist deaktiviert. Du kannst unterdessen mit Google suchen. Bitte bedenke, dass der Suchindex für {{SITENAME}} veraltet sein kann.',
+'noexactmatch-nocreate'     => "'''Es existiert keine Seite mit dem Titel „$1“.'''",
+'toomanymatches'            => 'Die Anzahl der Suchergebnisse ist zu groß, bitte versuche eine andere Abfrage.',
+'titlematches'              => 'Übereinstimmungen mit Seitentiteln',
+'notitlematches'            => 'Keine Übereinstimmungen mit Seitentiteln',
+'textmatches'               => 'Übereinstimmungen mit Inhalten',
+'notextmatches'             => 'Keine Übereinstimmungen mit Inhalten',
+'prevn'                     => 'vorherige $1',
+'nextn'                     => 'nächste $1',
+'viewprevnext'              => 'Zeige ($1) ($2) ($3)',
+'search-result-size'        => '$1 ({{PLURAL:$2|1 Wort|$2 Wörter}})',
+'search-result-score'       => 'Relevanz: $1 %',
+'search-redirect'           => '(Weiterleitung $1)',
+'search-section'            => '(Abschnitt $1)',
+'search-suggest'            => 'Meintest du „$1“?',
+'search-interwiki-caption'  => 'Schwesterprojekte',
+'search-interwiki-default'  => '$1 Ergebnisse:',
+'search-interwiki-more'     => '(weitere)',
+'search-mwsuggest-enabled'  => 'mit Vorschläge',
+'search-mwsuggest-disabled' => 'keine Vorschläge',
+'search-relatedarticle'     => 'Verwandte',
+'mwsuggest-disable'         => 'Vorschläge per Ajax deaktivieren',
+'searchrelated'             => 'verwandt',
+'searchall'                 => 'alle',
+'showingresults'            => "Hier {{PLURAL:$1|ist '''1''' Ergebnis|sind '''$1''' Ergebnisse}}, beginnend mit Nummer '''$2'''.",
+'showingresultsnum'         => "Hier {{PLURAL:$3|ist '''1''' Ergebnis|sind '''$1''' Ergebnisse}}, beginnend mit Nummer '''$2'''.",
+'showingresultstotal'       => "Es folgen die Suchergebnisse '''$1–$2''' von '''$3''':",
+'nonefound'                 => '<strong>Hinweis</strong>: Erfolglose Suchanfragen werden häufig dadurch verursacht, dass mehr als ein Suchbegriff angegeben wurde. Nur Seiten die alle Suchbegriffe enthalten werden hier angezeigt. Versuche in diesem Fall die Anzahl der Suchbegriffe zu verringern.',
+'powersearch'               => 'Erweiterte Suche',
+'powersearch-legend'        => 'Erweiterte Suche',
+'powersearchtext'           => 'Suche in Namensräumen:<br />$1<br />$2 Weiterleitungen anzeigen<br />Suche nach: $3 $9',
+'search-external'           => 'Externe Suche',
+'searchdisabled'            => 'Die {{SITENAME}}-Suche ist deaktiviert. Du kannst unterdessen mit Google suchen. Bitte bedenke, dass der Suchindex für {{SITENAME}} veraltet sein kann.',
 
 # Preferences page
 'preferences'              => 'Einstellungen',
@@ -1231,7 +1229,6 @@ Bitte gib der Datei einen Namen, der den Inhalt besser beschreibt.',
 # Special:Imagelist
 'imagelist-summary'     => 'Diese Spezialseite listet alle hochgeladenen Dateien auf. Standardmäßig werden die zuletzt hochgeladenen Dateien zuerst angezeigt. Durch einen Klick auf die Spaltenüberschriften kann die Sortierung umgedreht werden oder es kann nach einer anderen Spalte sortiert werden.',
 'imagelist_search_for'  => 'Suche nach Datei:',
-'imgdesc'               => 'Beschreibung',
 'imgfile'               => 'Datei',
 'imagelist'             => 'Dateiliste',
 'imagelist_date'        => 'Datum',
@@ -1821,7 +1818,7 @@ Zur Aufhebung der Sperre siehe die [[{{ns:special}}:Ipblocklist|Liste aller akti
 'contribslink'                => 'Beiträge',
 'autoblocker'                 => 'Automatische Sperre, da du eine gemeinsame IP-Adresse mit [[Benutzer:$1]] benutzt. Grund: „$2“.',
 'blocklogpage'                => 'Benutzersperr-Logbuch',
-'blocklogentry'               => 'sperrte „[[$1]]“ für einen Zeitraum von: $2 $3',
+'blocklogentry'               => 'sperrte „[[$1]]“ für den Zeitraum: $2 $3',
 'blocklogtext'                => 'Dies ist das Logbuch über Sperrungen und Entsperrungen von Benutzern und IP-Adressen. Automatisch gesperrte IP-Adressen werden nicht erfasst. Siehe die [[{{ns:special}}:Ipblocklist|{{int:ipblocklist}}]] für alle aktiven Sperren.',
 'unblocklogentry'             => 'hat die Sperre von „[[$1]]“ aufgehoben',
 'block-log-flags-anononly'    => 'nur Anonyme',
@@ -2483,7 +2480,7 @@ Bitte bestätige, dass du diese Seite wirklich neu erstellen möchten.",
 'redirectingto' => 'Weitergeleitet nach [[$1]]',
 
 # action=purge
-'confirm_purge'        => 'Diese Seite aus dem Server-Cache löschen? $1',
+'confirm_purge' => 'Diese Seite aus dem Server-Cache löschen? $1',
 'confirm_purge_button' => 'OK',
 
 # AJAX search

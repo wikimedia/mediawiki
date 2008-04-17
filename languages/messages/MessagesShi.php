@@ -4,6 +4,7 @@
  * @addtogroup Language
  *
  * @author Zanatos
+ * @author Siebrand
  */
 
 $fallback = 'ar';
@@ -170,7 +171,7 @@ ikhssak ola kiyi ador tnqilt ɣtamani yadni.
 'powersearch' => 'amsigl itqdmn',
 
 # Preferences page
-'timezonetext' => 'lfrq nswayЗ gr loqt n ɣilli ɣ tllit d loqt n serveur (UTC).',
+'timezonetext' => '¹lfrq nswayЗ gr loqt n ɣilli ɣ tllit d loqt n serveur (UTC).',
 'localtime'    => 'loqt n ɣilli ɣtllit',
 'servertime'   => 'loqt n serveur',
 

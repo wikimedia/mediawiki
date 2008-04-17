@@ -726,7 +726,7 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 'recentchangescount'       => 'በዝርዝርዎ ላይ ስንት ለውጥ ይታይ? (እስከ 500)',
 'savedprefs'               => 'ምርጫዎችህ ተቆጥበዋል።',
 'timezonelegend'           => 'የሰዓት ክልል',
-'timezonetext'             => 'ከ Server time (UTC) ያለው ልዩነት (በሰዓቶች ቁጥር) <br />(እንደ ኢትዮጵያ ጊዜ ለማድረግ እንደገና ስድስት ሰዓት ይጨምሩ።)',
+'timezonetext'             => '¹ከ Server time (UTC) ያለው ልዩነት (በሰዓቶች ቁጥር) (እንደ ኢትዮጵያ ጊዜ ለማድረግ እንደገና ስድስት ሰዓት ይጨምሩ።)',
 'localtime'                => 'የክልሉ ሰዓት (Local time)',
 'timezoneoffset'           => 'ኦፍ ሰት¹',
 'servertime'               => 'የሰርቨሩ ሰዓት',
@@ -901,7 +901,6 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 
 # Special:Imagelist
 'imagelist_search_for'  => 'ለMedia ፋይል ስም ፍለጋ፦',
-'imgdesc'               => 'መግለጫ',
 'imgfile'               => 'ፋይሉ',
 'imagelist'             => 'የፋይል / ሥዕሎች ዝርዝር',
 'imagelist_date'        => 'ቀን እ.ኤ.አ',

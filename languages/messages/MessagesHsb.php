@@ -929,7 +929,7 @@ Móžeš [[{{ns:special}}:Allpages|alfabetiski indeks přepytować]] abo [[:$1|s
 'recentchangescount'       => 'Ličba stron w lisćinje aktualnych změnow:',
 'savedprefs'               => 'Nastajenja buchu składowane.',
 'timezonelegend'           => 'Časowe pasmo',
-'timezonetext'             => 'Zapisaj ličbu hodźin, wo kotrež so twój lokalny čas wot časa serwera (UTC) wotchila.',
+'timezonetext'             => '¹Zapisaj ličbu hodźin, wo kotrež so twój lokalny čas wot časa serwera (UTC) wotchila.',
 'localtime'                => 'Lokalny čas',
 'timezoneoffset'           => 'Rozdźěl¹',
 'servertime'               => 'Čas serwera',
@@ -1139,7 +1139,6 @@ PICT # misc.
 # Special:Imagelist
 'imagelist-summary'     => 'Tuta specialna strona naliči wšě nahrate dataje. Standardnje so naposlědk nahrate dateje cyle horjeka pokazuja. Kliknjo na nadpisma stołpikow móžeš sortěrowanje wobroćić abo po druhich kriterijach rjadować.',
 'imagelist_search_for'  => 'Za mjenom wobraza pytać:',
-'imgdesc'               => 'wopisanje',
 'imgfile'               => 'dataja',
 'imagelist'             => 'Lisćina datajow',
 'imagelist_date'        => 'datum',

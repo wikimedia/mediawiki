@@ -5,10 +5,9 @@
  *
  * @author Warszk
  * @author Siebrand
- * @author SPQRobin
  * @author לערי ריינהארט
- * @author Nike
  * @author Jon Harald Søby
+ * @author SPQRobin
  */
 
 $namespaceNames = array(
@@ -405,7 +404,7 @@ Jeżlë jes të tuwò bez zmiłkã, le klëkni w swòjim przezérnikù knąpã '
 'recentchangescount'    => 'Wielëna pòzycëji na lësce slédnëch edicëji',
 'savedprefs'            => 'Twòjé nastôwë òstałë zapisóné.',
 'timezonelegend'        => 'Czasowô cona',
-'timezonetext'          => 'Lëczba gòdzënów różnicë midze twòjim môlowim czasã a czasã na serwerze (UTC).',
+'timezonetext'          => '¹Lëczba gòdzënów różnicë midze twòjim môlowim czasã a czasã na serwerze (UTC).',
 'localtime'             => 'Twòja czasowô cona',
 'timezoneoffset'        => 'Różnica¹',
 'servertime'            => 'Aktualny czas serwera',
@@ -460,7 +459,6 @@ Jeżlë jes të tuwò bez zmiłkã, le klëkni w swòjim przezérnikù knąpã '
 'uploaddisabled'    => 'Przeprôszómë! Mòżlëwòta wladënkù lopków na nen serwer òsta wëłączonô.',
 
 # Special:Imagelist
-'imgdesc'        => 'òpisënk',
 'imagelist'      => 'Lësta òbrôzków',
 'imagelist_user' => 'Brëkòwnik',
 

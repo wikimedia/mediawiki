@@ -1098,7 +1098,6 @@ Slijedi evidencija brisanja ove datoteke s obrazloženjem prethodnog brisanja:",
 Na vrhu popisa se nalaze najnovije postavljene datoteke.
 Poredak datoteka mijenja se pritiskom na naslov stupca.',
 'imagelist_search_for'  => 'Traži ime slike:',
-'imgdesc'               => 'opis',
 'imgfile'               => 'datoteka',
 'imagelist'             => 'Popis slika',
 'imagelist_date'        => 'Datum',
