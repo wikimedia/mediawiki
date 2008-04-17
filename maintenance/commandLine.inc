@@ -235,4 +235,4 @@ $wgShowSQLErrors = true;
 require_once( "$IP/includes/Setup.php" );
 require_once( "$IP/install-utils.inc" );
 $wgTitle = null; # Much much faster startup than creating a title object
-set_time_limit(0);
+@set_time_limit(0);
