@@ -545,7 +545,7 @@ class SearchResult {
 	}
 
 	/**
-	 * @param array $terms terms to highlight
+	 * @param array $terms Terms to highlight (unescaped)
 	 * @return string highlighted text snippet, null (and not '') if not supported 
 	 */
 	function getTextSnippet($terms){
@@ -559,7 +559,7 @@ class SearchResult {
 	 * Default implementation of snippet extraction
 	 *
 	 * @param string $text
-	 * @param array $terms
+	 * @param array $terms Terms to highlight (unescaped)
 	 * @param int $contextlines
 	 * @param int $contextchars
 	 * @return string
@@ -569,9 +569,11 @@ class SearchResult {
 		$fname = __METHOD__;
 	
 		$lines = explode( "\n", $text );
-		
+
+		foreach( $terms as $index => $term ) {
+			$terms[$index] = preg_quote( $term, '/' );
+		}
 		$terms = implode( '|', $terms );
-		$terms = str_replace( '/', "\\/", $terms);
 		$max = intval( $contextchars ) + 1;
 		$pat1 = "/(.*)($terms)(.{0,$max})/i";
 
