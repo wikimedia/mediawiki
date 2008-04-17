@@ -128,7 +128,7 @@ class ProtectedPagesForm {
 			$this->getNamespaceMenu( $namespace ) . "&nbsp;\n" .
 			$this->getTypeMenu( $type ) . "&nbsp;\n" .
 			$this->getLevelMenu( $level ) . "&nbsp;\n" .
-			"<br/><span style='white-space: nowrap'>&nbsp;&nbsp;" .
+			"<br /><span style='white-space: nowrap'>&nbsp;&nbsp;" .
 			$this->getExpiryCheck( $indefOnly ) . "&nbsp;\n" .
 			$this->getSizeLimit( $sizetype, $size ) . "&nbsp;\n" .
 			"</span>" .
@@ -154,22 +154,24 @@ class ProtectedPagesForm {
 	 * @return string Formatted HTML
 	 */
 	protected function getExpiryCheck( $indefOnly ) {
-		$out = Xml::check( 'indefonly', $indefOnly, array('id' => 'indefonly') ) . ' ';
-		$out .= Xml::label( wfMsg("protectedpages-indef"), 'indefonly' ) . "\n";
-		return $out;
+		return
+			Xml::checkLabel( wfMsg('protectedpages-indef'), 'indefonly', 'indefonly', $indefOnly ) . "\n";
 	}
 
 	/**
 	 * @return string Formatted HTML
 	 */
 	protected function getSizeLimit( $sizetype, $size ) {
-		$out = Xml::radio( 'sizetype', 'min', ($sizetype=='min'), array('id' => 'wpmin') );
-		$out .= Xml::label( wfMsg("minimum-size"), 'wpmin' );
-		$out .= "&nbsp;".Xml::radio( 'sizetype', 'max', ($sizetype=='max'), array('id' => 'wpmax') );
-		$out .= Xml::label( wfMsg("maximum-size"), 'wpmax' );
-		$out .= "&nbsp;".Xml::input('size', 9, $size, array( 'id' => 'wpsize' ) );
-		$out .= ' '.wfMsgHtml('pagesize');
-		return $out;
+		$max = $sizetype === 'max';
+
+		return
+			Xml::radioLabel( wfMsg('minimum-size'), 'sizetype', 'min', 'wpmin', !$max ) .
+			'&nbsp;' .
+			Xml::radioLabel( wfMsg('maximum-size'), 'sizetype', 'max', 'wpmax', $max ) .
+			'&nbsp;' .
+			Xml::input( 'size', 9, $size, array( 'id' => 'wpsize' ) ) .
+			'&nbsp;' .
+			Xml::label( wfMsg('pagesize'), 'wpsize' );
 	}
 
 	/**
