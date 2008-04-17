@@ -190,7 +190,7 @@ class SearchEngine {
 			return $query; // nothing to do
 
 		$parsed = $query;
-		$allkeyword = wfMsg('searchall').":";
+		$allkeyword = wfMsgForContent('searchall').":";
 		if( strncmp($query, $allkeyword, strlen($allkeyword)) == 0 ){
 			$this->namespaces = null;
 			$parsed = substr($query,strlen($allkeyword));
