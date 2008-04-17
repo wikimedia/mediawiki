@@ -428,7 +428,7 @@ class SpecialSearch {
 		if( $result->hasRelated() ){
 			$st = SpecialPage::getTitleFor( 'Search' );
 			$stParams = wfArrayToCGI( $this->powerSearchOptions(),
-				array('search'    => wfMsg('searchrelated').':'.$t->getPrefixedText(),
+				array('search'    => wfMsgForContent('searchrelated').':'.$t->getPrefixedText(),
 				      'fulltext'  => wfMsg('search') ));
 			
 			$related = ' -- <a href="'.$st->escapeLocalURL($stParams).'">'. 
