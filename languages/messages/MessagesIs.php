@@ -152,6 +152,7 @@ $specialPageAliases = array(
 	'Imagelist'                 => array( 'Skráalisti' ),
 	'Newimages'                 => array( 'Myndasafn_nýlegra_skráa' ),
 	'Listusers'                 => array( 'Notendalisti' ),
+	'Listgrouprights'           => array( 'Réttindalisti' ),
 	'Statistics'                => array( 'Tölfræði' ),
 	'Randompage'                => array( 'Handahófsvalin_grein' ),
 	'Lonelypages'               => array( 'Munaðarlausar_síður' ),
@@ -201,6 +202,7 @@ $specialPageAliases = array(
 	'Unlockdb'                  => array( 'Opna_gagnagrunn' ),
 	'Userrights'                => array( 'Notandaréttindi' ),
 	'MIMEsearch'                => array( 'MIME-leit' ),
+	'FileDuplicateSearch'       => array( 'Afritunarskráarleit' ),
 	'Unwatchedpages'            => array( 'Óvaktaðar_síður' ),
 	'Listredirects'             => array( 'Tilvísanalisti' ),
 	'Revisiondelete'            => array( 'Eyðingarendurskoðun' ),
@@ -217,6 +219,7 @@ $specialPageAliases = array(
 	'Withoutinterwiki'          => array( 'Síður_án_tungumálatengla' ),
 	'MergeHistory'              => array( 'Sameina_breytingaskrá' ),
 	'Filepath'                  => array( 'Skráarslóð' ),
+	'Invalidateemail'           => array( 'Rangt_netfang' ),
 );
 
 $separatorTransformTable = array(',' => '.', '.' => ',' );
