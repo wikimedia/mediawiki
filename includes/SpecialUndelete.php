@@ -966,8 +966,8 @@ class UndeleteForm {
 					"<tr>
 						<td>&nbsp;</td>
 						<td class='mw-input'>" .
-							Xml::check( 'wpUnsuppress', $this->mUnsuppress, array('id' => 'mw-undelete-unsupress') ) . ' ' .
-							Xml::label( wfMsgHtml('revdelete-unsuppress'), 'mw-undelete-unsupress' ) .
+							Xml::checkLabel( wfMsg('revdelete-unsuppress'), 'wpUnsuppress',
+								'mw-undelete-unsupress', $this->mUnsuppress ).
 						"</td>
 					</tr>";
 			} else {
@@ -987,7 +987,7 @@ class UndeleteForm {
 							Xml::label( wfMsg( 'undeletecomment' ), 'wpComment' ) .
 						"</td>
 						<td class='mw-input'>" .
-							Xml::input( 'wpComment', 50, $this->mComment ) .
+							Xml::input( 'wpComment', 50, $this->mComment, array( 'id' =>  'wpComment' ) ) .
 						"</td>
 					</tr>
 					<tr>
