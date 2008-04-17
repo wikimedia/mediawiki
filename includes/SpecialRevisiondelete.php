@@ -8,12 +8,12 @@
  */
 
 function wfSpecialRevisiondelete( $par = null ) {
-	global $wgOut, $wgRequest, $wgUser, $wgAllowLogDeletion;
+	global $wgOut, $wgRequest, $wgUser;
 	# Handle our many different possible input types
 	$target = $wgRequest->getText( 'target' );
 	$oldid = $wgRequest->getArray( 'oldid' );
 	$artimestamp = $wgRequest->getArray( 'artimestamp' );
-	$logid = $wgAllowLogDeletion ? $wgRequest->getArray( 'logid' ) : '';
+	$logid = $wgRequest->getArray( 'logid' );
 	$img = $wgRequest->getArray( 'oldimage' );
 	$fileid = $wgRequest->getArray( 'fileid' );
 	# For reviewing deleted files...

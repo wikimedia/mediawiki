@@ -1165,9 +1165,6 @@ $wgGroupPermissions['bureaucrat']['userrights']  = true;
 // For private log access
 #$wgGroupPermissions['suppress']['suppress'] = true;
 
-// Pending WMF schema change...temporary variable
-$wgAllowLogDeletion = false;
-
 /**
  * The developer group is deprecated, but can be activated if need be
  * to use the 'lockdb' and 'unlockdb' special pages. Those require
