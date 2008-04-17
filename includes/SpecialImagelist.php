@@ -15,12 +15,7 @@ function wfSpecialImagelist() {
 	$limit = $pager->getForm();
 	$body = $pager->getBody();
 	$nav = $pager->getNavigationBar();
-	$wgOut->addHTML(
-		$limit
-		. '<br/>'
-		. $body
-		. '<br/>'
-		. $nav );
+	$wgOut->addHTML( "$limit<br />\n$body<br />\n$nav" );
 }
 
 /**
@@ -29,7 +24,6 @@ function wfSpecialImagelist() {
  */
 class ImageListPager extends TablePager {
 	var $mFieldNames = null;
-	var $mMessages = array();
 	var $mQueryConds = array();
 
 	function __construct() {
@@ -100,10 +94,6 @@ class ImageListPager extends TablePager {
 			$lb->execute();
 		}
 
-		# Cache messages used in each row
-		$this->mMessages['imgdesc'] = wfMsgHtml( 'imgdesc' );
-		$this->mMessages['imgfile'] = wfMsgHtml( 'imgfile' );
-
 		return parent::getStartBody();
 	}
 
@@ -113,11 +103,14 @@ class ImageListPager extends TablePager {
 			case 'img_timestamp':
 				return $wgLang->timeanddate( $value, true );
 			case 'img_name':
+				static $imgfile = null;
+				if ( $imgfile === null ) $imgfile = wfMsg( 'imgfile' );
+
 				$name = $this->mCurrentRow->img_name;
 				$link = $this->getSkin()->makeKnownLinkObj( Title::makeTitle( NS_IMAGE, $name ), $value );
 				$image = wfLocalFile( $value );
 				$url = $image->getURL();
-				$download = Xml::element('a', array( "href" => $url ), $this->mMessages['imgfile'] );
+				$download = Xml::element('a', array( 'href' => $url ), $imgfile );
 				return "$link ($download)";
 			case 'img_user_text':
 				if ( $this->mCurrentRow->img_user ) {
@@ -139,16 +132,16 @@ class ImageListPager extends TablePager {
 		$search = $wgRequest->getText( 'ilsearch' );
 
 		$s = Xml::openElement( 'form', array( 'method' => 'get', 'action' => $this->getTitle()->getLocalURL(), 'id' => 'mw-imagelist-form' ) ) .
-			 Xml::openElement( 'fieldset' ) .
-			 Xml::element( 'legend', null, wfMsg( 'imagelist' ) ) .
-			 wfMsgHtml( 'table_pager_limit', $this->getLimitSelect() );
+			Xml::openElement( 'fieldset' ) .
+			Xml::element( 'legend', null, wfMsg( 'imagelist' ) ) .
+			Xml::tags( 'label', null, wfMsgHtml( 'table_pager_limit', $this->getLimitSelect() ) );
 
 		if ( !$wgMiserMode ) {
-			$s .= "<br/>\n" .
+			$s .= "<br />\n" .
 				Xml::inputLabel( wfMsg( 'imagelist_search_for' ), 'ilsearch', 'mw-ilsearch', 20, $search );
 		}
 		$s .= ' ' .
-			Xml::submitButton( wfMsg( 'table_pager_limit_submit' ) ) ." \n" .
+			Xml::submitButton( wfMsg( 'table_pager_limit_submit' ) ) ."\n" .
 			$this->getHiddenFields( array( 'limit', 'ilsearch' ) ) .
 			Xml::closeElement( 'fieldset' ) .
 			Xml::closeElement( 'form' ) . "\n";

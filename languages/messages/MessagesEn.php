@@ -1633,7 +1633,6 @@ You may want to try at a less busy time.',
 By default the last uploaded files are shown at top of the list.
 A click on a column header changes the sorting.',
 'imagelist_search_for'  => 'Search for media name:',
-'imgdesc'               => 'desc',
 'imgfile'               => 'file',
 'imagelist'             => 'File list',
 'imagelist_date'        => 'Date',
