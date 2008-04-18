@@ -218,12 +218,12 @@ class CoreParserFunctions {
 
 	static function pagesincategory( $parser, $category = '', $raw = null ) {
 		global $wgExpensiveParserFunctionLimit;
-		if ($category == '') {
+		$category = Category::newFromName($category);
+		if( !is_object( $category ) ) {
 			return 0;
 		}
 		$parser->mExpensiveFunctionCount++;
 		if ($parser->mExpensiveFunctionCount <= $wgExpensiveParserFunctionLimit) {
-			$category = Category::newFromName($category);
 			$count = $category->getPageCount();
 			if ( !$count ) {
 				$count = 0;
