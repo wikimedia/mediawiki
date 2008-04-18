@@ -200,6 +200,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 13768) pt_title field encoding fixed
 * Do not display empty columns on Special:UserRights if all groups are
   changeable or all unchangeable
+* Fix fatal error on calling PAGESINCATEGORY with invalid category name
 
 
 === API changes in 1.13 ===
