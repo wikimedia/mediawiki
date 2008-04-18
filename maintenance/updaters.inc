@@ -1407,6 +1407,7 @@ function do_postgres_updates() {
 		array("recentchanges", "rc_params",            "TEXT"),
 		array("revision",      "rev_len",              "INTEGER"),
 		array("revision",      "rev_deleted",          "SMALLINT NOT NULL DEFAULT 0"),
+		array("user_newtalk",  "user_last_timestamp",  "TIMESTAMPTZ"),
 	);
 
 
