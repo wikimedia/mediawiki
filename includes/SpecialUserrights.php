@@ -406,13 +406,21 @@ class UserrightsPage extends SpecialPage {
 
 		foreach ($allgroups as $group) {
 			$set = in_array( $group, $usergroups );
+			# Should the checkbox be disabled?
 			$disabled = !(
 				( $set && $this->canRemove( $group ) ) ||
 				( !$set && $this->canAdd( $group ) ) );
+			# Do we need to point out that this action is irreversible?
+			$irreversible = !$disabled && (
+				($set && !$this->canAdd( $group )) ||
+				(!$set && !$this->canRemove( $group ) ) );
 
 			$attr = $disabled ? array( 'disabled' => 'disabled' ) : array();
-			$checkbox = Xml::checkLabel( User::getGroupMember( $group ), "wpGroup-$group",
-					"wpGroup-$group", $set, $attr );
+			$text = $irreversible
+				? wfMsgHtml( 'userrights-irreversible-marker', User::getGroupMember( $group ) )
+				: User::getGroupMember( $group );
+			$checkbox = Xml::checkLabel( $text, "wpGroup-$group",
+				"wpGroup-$group", $set, $attr );
 			$checkbox = $disabled ? Xml::tags( 'span', array( 'class' => 'mw-userrights-disabled' ), $checkbox ) : $checkbox;
 
 			if ($disabled) {
@@ -424,19 +432,32 @@ class UserrightsPage extends SpecialPage {
 
 		if ($column) {
 			$ret .=	Xml::openElement( 'table', array( 'border' => '0', 'class' => 'mw-userrights-groups' ) ) .
-				"<tr>" .
-					xml::element( 'th', null, wfMsg( 'userrights-changeable-col' ) ) .
-					xml::element( 'th', null, wfMsg( 'userrights-unchangeable-col' ) ) .
-				"</tr>
+				"<tr>
+";
+			if( $settable_col !== '' ) {
+				$ret .= xml::element( 'th', null, wfMsg( 'userrights-changeable-col' ) );
+			}
+			if( $unsettable_col !== '' ) {
+				$ret .= xml::element( 'th', null, wfMsg( 'userrights-unchangeable-col' ) );
+			}
+			$ret.= "</tr>
 				<tr>
-					<td style='vertical-align:top;'>
+";
+			if( $settable_col !== '' ) {
+				$ret .=
+"					<td style='vertical-align:top;'>
 						$settable_col
 					</td>
-					<td style='vertical-align:top;'>
+";
+			}
+			if( $unsettable_col !== '' ) {
+				$ret .=
+"					<td style='vertical-align:top;'>
 						$unsettable_col
 					</td>
-				</tr>" .
-				Xml::closeElement( 'table' );
+				</tr>";
+			}
+			$ret .= Xml::closeElement( 'table' );
 		}
 
 		return $ret;
