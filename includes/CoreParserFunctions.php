@@ -224,15 +224,18 @@ class CoreParserFunctions {
 		static $cache = array();
 		$category = Category::newFromName( $name );
 
+		if( !is_object( $category ) ) {
+			$cache[$name] = 0;
+			return self::formatRaw( 0, $raw );
+		}
+
 		# Normalize name for cache
 		$name = $category->getName();
 
-		if( isset( $cache[$name] ) ) {
-			return self::formatRaw( $cache[$name], $raw );
-		}
-
 		$count = 0;
-		if( is_object( $category ) && $parser->incrementExpensiveFunctionCount() ) {
+		if( isset( $cache[$name] ) ) {
+			$count = $cache[$name];
+		} elseif( $parser->incrementExpensiveFunctionCount() ) {
 			$count = $cache[$name] = (int)$category->getPageCount();
 		}
 		return self::formatRaw( $count, $raw );
