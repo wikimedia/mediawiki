@@ -3285,6 +3285,20 @@ class Parser
 	}
 
 	/**
+	 * Increment the expensive function count
+	 *
+	 * @return boolean False if the limit has been exceeded
+	 */
+	function incrementExpensiveFunctionCount() {
+		global $wgExpensiveParserFunctionLimit;
+		$this->mExpensiveFunctionCount++;
+		if($this->mExpensiveFunctionCount <= $wgExpensiveParserFunctionLimit) {
+			return true;
+		}
+		return false;
+	}
+
+	/**
 	 * Strip double-underscore items like __NOGALLERY__ and __NOTOC__
 	 * Fills $this->mDoubleUnderscores, returns the modified text
 	 */
