@@ -202,6 +202,7 @@ print q{
 BEGIN;
 SET client_min_messages = 'WARNING';
 SET timezone = 'GMT';
+SET DateStyle = 'ISO, YMD';
 };
 
 warn qq{Reading in the Postgres schema information\n} if $verbose;
