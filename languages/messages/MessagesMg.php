@@ -262,6 +262,7 @@ Voaforona ny kaontinao. Aza adinoina ny manova ny mombamomba anao ao amin'ny {{S
 'externaldberror'            => "Nisy tsy fetezana angamba teo amin'ny fanamarinana anao tamin'ny sehatra ivelan'ity wiki ity, na tsy manana alalana hanova ny kaontinao ivelany ianao.",
 'loginproblem'               => "<b>Nisy olana tamin'ny fidiranao.</b><br />Andramo indray hoe!",
 'login'                      => 'Midira',
+'nav-login-createaccount'    => 'Ampidiro ny solonanarana',
 'loginprompt'                => "
 Mila manaiky cookies ianao raha te hiditra amin'ny {{SITENAME}}.",
 'userlogin'                  => 'Ampidiro ny solonanarana',
@@ -581,7 +582,6 @@ Hamarino tsara aloha dia avereno alefa indray.',
 'nolicense' => 'Tsy misy safidy',
 
 # Special:Imagelist
-'imgdesc'   => 'famaritana',
 'imagelist' => 'Lisitry ny rakitra',
 
 # Image description page

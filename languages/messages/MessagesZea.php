@@ -416,6 +416,7 @@ Jen account is anemikt. Vergeet nie je vòkeuren voe {{SITENAME}} an te passen.'
 'loginproblem'               => "<b>Der was een probleem bie 't anmelden.</b><br />
 Probeer 't asjeblieft nog een keêr.",
 'login'                      => 'Anmelden',
+'nav-login-createaccount'    => 'Anmelden / Inschrieven',
 'loginprompt'                => "Je mò cookies ineschaokeld ène om je te kunn'n anmelden bie {{SITENAME}}.",
 'userlogin'                  => 'Anmelden / Inschrieven',
 'logout'                     => 'Ofmelden',

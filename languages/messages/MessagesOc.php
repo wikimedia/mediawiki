@@ -585,6 +585,7 @@ Doblidetz pas de personalizar vòstre {{SITENAME}} en consultant la pagina Prefe
 'externaldberror'            => 'Siá una error s’es producha amb la banca de donadas d’autentificacion extèrna, siá sètz pas autorizat a metre a jorn vòstre compte extèrn.',
 'loginproblem'               => '<b>Problèma d’identificacion.</b><br />Ensajatz tornarmai !',
 'login'                      => 'Identificacion',
+'nav-login-createaccount'    => 'Identificacion',
 'loginprompt'                => 'Vos cal activar los cookies per vos connectar a {{SITENAME}}.',
 'userlogin'                  => 'Identificacion',
 'logout'                     => 'Desconnexion',

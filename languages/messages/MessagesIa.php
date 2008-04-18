@@ -196,44 +196,45 @@ horas de grande affluentia de accessos pro motivo de performance;
 retorna inter 02:00 e 14:00 UTC e tenta de nove.',
 
 # Login and logout pages
-'logouttitle'           => 'Fin de session',
-'logouttext'            => 'Tu claudeva tu session.
+'logouttitle'             => 'Fin de session',
+'logouttext'              => 'Tu claudeva tu session.
 Tu pote continuar a usar {{SITENAME}} anonymemente, o initiar un
 nove session como le mesme o como un altere usator.',
-'welcomecreation'       => '<h2>Benvenite, $1!</h2>
+'welcomecreation'         => '<h2>Benvenite, $1!</h2>
 <p>Tu conto de usator esseva create.
 Non oblida personalisar {{SITENAME}} secundo tu preferentias.',
-'loginpagetitle'        => 'Aperir session',
-'yourname'              => 'Tu nomine de usator',
-'yourpassword'          => 'Tu contrasigno',
-'yourpasswordagain'     => 'Confirmar contrasigno',
-'remembermypassword'    => 'Recordar contrasigno inter sessiones.',
-'loginproblem'          => '<b>Occurreva problemas pro initiar tu session.</b><br />Tenta de nove!',
-'login'                 => 'Aperir session',
-'userlogin'             => 'Aperir session',
-'logout'                => 'Clauder session',
-'userlogout'            => 'Clauder session',
-'createaccount'         => 'Crear nove conto',
-'badretype'             => 'Le duo contrasignos que tu scribeva non coincide.',
-'userexists'            => 'Le nomine de usator que tu selectionava ja es in uso. Per favor selectiona un nomine differente.',
-'youremail'             => 'Tu e-mail',
-'yournick'              => 'Tu pseudonymo (pro signaturas)',
-'loginerror'            => 'Error in le apertura del session',
-'noname'                => 'Tu non specificava un nomine de usator valide.',
-'loginsuccesstitle'     => 'Session aperte con successo',
-'loginsuccess'          => 'Tu es identificate in {{SITENAME}} como "$1".',
-'nosuchuser'            => 'Non existe usator registrate con le nomine "$1".
+'loginpagetitle'          => 'Aperir session',
+'yourname'                => 'Tu nomine de usator',
+'yourpassword'            => 'Tu contrasigno',
+'yourpasswordagain'       => 'Confirmar contrasigno',
+'remembermypassword'      => 'Recordar contrasigno inter sessiones.',
+'loginproblem'            => '<b>Occurreva problemas pro initiar tu session.</b><br />Tenta de nove!',
+'login'                   => 'Aperir session',
+'nav-login-createaccount' => 'Aperir session',
+'userlogin'               => 'Aperir session',
+'logout'                  => 'Clauder session',
+'userlogout'              => 'Clauder session',
+'createaccount'           => 'Crear nove conto',
+'badretype'               => 'Le duo contrasignos que tu scribeva non coincide.',
+'userexists'              => 'Le nomine de usator que tu selectionava ja es in uso. Per favor selectiona un nomine differente.',
+'youremail'               => 'Tu e-mail',
+'yournick'                => 'Tu pseudonymo (pro signaturas)',
+'loginerror'              => 'Error in le apertura del session',
+'noname'                  => 'Tu non specificava un nomine de usator valide.',
+'loginsuccesstitle'       => 'Session aperte con successo',
+'loginsuccess'            => 'Tu es identificate in {{SITENAME}} como "$1".',
+'nosuchuser'              => 'Non existe usator registrate con le nomine "$1".
 Verifica le orthographia, o usa le formulario infra pro crear un nove conto de usator.',
-'wrongpassword'         => 'Le contrasigno que tu scribeva es incorrecte. Per favor tenta de nove.',
-'mailmypassword'        => 'Demandar un nove contrasigno via e-mail',
-'passwordremindertitle' => 'Nove contrasigno in {{SITENAME}}',
-'passwordremindertext'  => 'Alcuno (probabilemente tu, con adresse de IP $1)
+'wrongpassword'           => 'Le contrasigno que tu scribeva es incorrecte. Per favor tenta de nove.',
+'mailmypassword'          => 'Demandar un nove contrasigno via e-mail',
+'passwordremindertitle'   => 'Nove contrasigno in {{SITENAME}}',
+'passwordremindertext'    => 'Alcuno (probabilemente tu, con adresse de IP $1)
 
 demandava inviar te un nove contrasigno pro {{SITENAME}}.
 Le contrasigno pro le usator "$2" ora es "$3".
 Nos consilia que tu initia un session e cambia le contrasigno le plus tosto possibile.',
-'noemail'               => 'Non existe adresse de e-mail registrate pro le usator "$1".',
-'passwordsent'          => 'Un nove contrasigno esseva inviate al adresse de e-mail
+'noemail'                 => 'Non existe adresse de e-mail registrate pro le usator "$1".',
+'passwordsent'            => 'Un nove contrasigno esseva inviate al adresse de e-mail
 registrate pro "$1".
 Per favor initia un session post reciper lo.',
 

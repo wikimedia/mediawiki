@@ -392,6 +392,7 @@ Võit ilma nimeldä edesi toimõndaq vai minnäq sisse tõõsõ nimega.',
 'externaldberror'            => 'Välitsen kimmästegemisteedüskogon om viga vai olõ-i sul lubat umma pruukjanimme muutaq.',
 'loginproblem'               => '<b>Es saaq sisse.</b><br />Prooviq vahtsõst!',
 'login'                      => 'Nimega sisseminek',
+'nav-login-createaccount'    => 'Mineq nimega sisse',
 'loginprompt'                => '{{SITENAME}} lask nimega sisse õnnõ sis, ku lubatas valmistuisi.',
 'userlogin'                  => 'Mineq nimega sisse',
 'logout'                     => 'Nime alt välläminek',
@@ -930,7 +931,6 @@ Kas olõt kimmäs, et tahat taad üles laatiq? Kaeq ka sissekirotust taa teedüs
 
 # Special:Imagelist
 'imagelist_search_for'  => 'Pildi nime otsminõ:',
-'imgdesc'               => 'seletüs',
 'imgfile'               => 'teedüstü',
 'imagelist'             => 'Pilte nimekiri',
 'imagelist_date'        => 'Kuupäiv',

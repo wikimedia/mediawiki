@@ -216,6 +216,7 @@ $messages = array(
 'yourpasswordagain'          => "Aascreeu d'ockle arrey:",
 'remembermypassword'         => "Cooinnee m'ockle arrey",
 'login'                      => 'Logail stiagh',
+'nav-login-createaccount'    => 'Logail stiagh / croo coontys',
 'userlogin'                  => 'Logail stiagh / croo coontys',
 'logout'                     => 'Logail magh',
 'userlogout'                 => 'Logail magh',

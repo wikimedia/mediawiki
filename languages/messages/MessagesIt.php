@@ -503,6 +503,7 @@ L'account è stato creato correttamente. Non dimenticare di personalizzare le pr
 'externaldberror'            => 'Si è verificato un errore con il server di autenticazione esterno, oppure non si dispone delle autorizzazioni necessarie per aggiornare il proprio accesso esterno.',
 'loginproblem'               => "<b>Si è verificato un errore durante l'accesso.</b><br />Riprovare.",
 'login'                      => 'Entra',
+'nav-login-createaccount'    => 'Entra o crea un nuovo accesso',
 'loginprompt'                => 'Per accedere a {{SITENAME}} è necessario abilitare i cookie.',
 'userlogin'                  => 'Entra o crea un nuovo accesso',
 'logout'                     => 'Esci',
@@ -1168,7 +1169,6 @@ PICT # misc.
 I file caricati più di recente vengono mostrati all'inizio della lista.
 Per modificare l'ordinamento, fare clic sull'intestazione della colonna prescelta.",
 'imagelist_search_for'  => 'Ricerca immagini per nome:',
-'imgdesc'               => 'disc',
 'imgfile'               => 'file',
 'imagelist'             => 'Elenco dei file',
 'imagelist_date'        => 'Data',

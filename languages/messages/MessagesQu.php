@@ -402,6 +402,7 @@ Rakiqunaykiqa kicharisqañam. Ama qunqaychu [[Special:Preferences|allinkachinayk
 'externaldberror'            => 'Hawa yaykuna pantasqam karqan, ichataq manam saqillasunkichu hawa rakiqunaykita musuqchayta.',
 'loginproblem'               => '<b>Manam yaykuytachu atirqunki.</b><br />Huk kutitam ruraykachay!',
 'login'                      => 'Yaykuy',
+'nav-login-createaccount'    => 'Yaykuy',
 'loginprompt'                => "{{SITENAME}}man yaykunaykipaqqa wamp'unaykipi <i>cookies</i> nisqakunaman ari ninaykim tiyan.",
 'userlogin'                  => 'Yaykuy',
 'logout'                     => 'Lluqsiy',

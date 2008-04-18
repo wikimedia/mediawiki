@@ -259,6 +259,7 @@ $messages = array(
 
 # Login and logout pages
 'yourname'                  => "Naran uza-n'in:",
+'nav-login-createaccount'   => 'Log in / kriar konta ida',
 'userlogin'                 => 'Log in / kriar konta ida',
 'nologinlink'               => 'Registrar',
 'createaccount'             => "Registrar uza-na'in",

@@ -236,10 +236,11 @@ Basin aduna kini usa o daghan pang mga karakter nga dili magamit isip titulo.',
 'perfdisabled'       => "Pasayloa, ang kini nga  ''feature'' temporaryong gihunong tungod kay gipahinay niini ang ''database'' sa punto nga dili na magamit ang wiki.",
 
 # Login and logout pages
-'login'      => 'Sulod',
-'userlogin'  => 'Rehistro / Dayon',
-'logout'     => 'Biya',
-'userlogout' => 'Biya',
+'login'                   => 'Sulod',
+'nav-login-createaccount' => 'Rehistro / Dayon',
+'userlogin'               => 'Rehistro / Dayon',
+'logout'                  => 'Biya',
+'userlogout'              => 'Biya',
 
 # Edit pages
 'summary'          => 'Mubong sugid',

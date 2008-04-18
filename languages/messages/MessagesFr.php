@@ -585,6 +585,7 @@ Votre compte a été créé. N’oubliez pas de personnaliser vos préférences 
 'externaldberror'            => 'Soit une erreur s’est produite avec la base de données d’authentification externe, soit vous n’êtes pas autorisé à mettre à jour votre compte externe.',
 'loginproblem'               => '<b>Problème d’identification.</b><br />Essayez à nouveau !',
 'login'                      => 'Identification',
+'nav-login-createaccount'    => 'Créer un compte ou se connecter',
 'loginprompt'                => "Vous devez activer les témoins (''cookies'') pour vous connecter à {{SITENAME}}.",
 'userlogin'                  => 'Créer un compte ou se connecter',
 'logout'                     => 'Se déconnecter',
@@ -1237,7 +1238,6 @@ PICT # misc.
 Par défaut, les derniers fichiers importés sont affichés en haut de la liste.
 Un clic en tête de colonne change l’ordre d’affichage.',
 'imagelist_search_for'  => 'Recherche pour l’image nommée :',
-'imgdesc'               => 'page de l’image',
 'imgfile'               => 'fichier',
 'imagelist'             => 'Liste des images',
 'imagelist_date'        => 'Date',

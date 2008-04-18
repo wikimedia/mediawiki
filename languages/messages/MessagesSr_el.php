@@ -984,7 +984,6 @@ Da biste ubacili sliku na stranu, koristite vezu u obliku
 
 # Special:Imagelist
 'imagelist_search_for'  => 'Traži ime slike:',
-'imgdesc'               => 'opis',
 'imgfile'               => 'fajl',
 'imagelist'             => 'Spisak slika',
 'imagelist_date'        => 'Datum',

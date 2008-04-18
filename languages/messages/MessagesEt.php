@@ -391,6 +391,7 @@ Võite kasutada süsteemi anonüümselt, aga ka sama või mõne teise kasutajana
 'yourdomainname'             => 'Teie domeen:',
 'loginproblem'               => '<b>Sisselogimine ei õnnestunud.</b><br />Proovige uuesti!',
 'login'                      => 'Logi sisse',
+'nav-login-createaccount'    => 'Logi sisse / registreeru kasutajaks',
 'loginprompt'                => 'Teie brauser peab nõustuma küpsistega, et saaksite {{SITENAME}} lehele sisse logida.',
 'userlogin'                  => 'Logi sisse / registreeru kasutajaks',
 'logout'                     => 'Logi välja',
@@ -782,7 +783,6 @@ võidakse sinu ligipääs sulgeda.',
 'nolicense' => 'pole valitud',
 
 # Special:Imagelist
-'imgdesc'   => 'kirj',
 'imagelist' => 'Piltide loend',
 
 # Image description page

@@ -1210,7 +1210,6 @@ Log penghapusan berkas adalah sebagai berikut:",
 # Special:Imagelist
 'imagelist-summary'     => 'Halaman istimewa ini menampilkan semua berkas yang telah dimuat. Secara baku, berkas yang terakhir dimuat berada pada urutan teratas. Klik kepala kolom untuk mengubah urutan.',
 'imagelist_search_for'  => 'Cari nama berkas:',
-'imgdesc'               => 'desk',
 'imgfile'               => 'berkas',
 'imagelist'             => 'Daftar berkas',
 'imagelist_date'        => 'Tanggal',

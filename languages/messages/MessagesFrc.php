@@ -347,6 +347,7 @@ Votre compte a été créé.  Oubliez pas de changer votre réglage sus {{SITENA
 'externaldberror'            => "Soit y avait une erreur avec la base d'information de certification extérieur, soit vous avez pas la permission de renouveler votre compte extérieur.",
 'loginproblem'               => "<b>Problème d'identification.</b><br />Assayez encore!",
 'login'                      => 'Connecter',
+'nav-login-createaccount'    => 'Connecter / créer un compte',
 'loginprompt'                => 'Il faut partir les cookies pour connecter à {{SITENAME}}.',
 'userlogin'                  => 'Connecter / créer un compte',
 'logout'                     => 'Déconnecter',

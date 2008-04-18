@@ -272,6 +272,7 @@ $messages = array(
 'yourpasswordagain'          => 'Pòwtórzë parolã',
 'yourdomainname'             => 'Twòjô domena',
 'login'                      => 'Wlogùjë mie',
+'nav-login-createaccount'    => 'Logòwanié',
 'loginprompt'                => "Brëkùjesz miec ''cookies'' (kùszczi) włączoné bë sã wlogòwac do {{SITENAME}}.",
 'userlogin'                  => 'Logòwanié',
 'logout'                     => 'Wëlogùjë mie',

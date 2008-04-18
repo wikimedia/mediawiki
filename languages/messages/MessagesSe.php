@@ -282,6 +282,7 @@ Du geavaheaddjidovddaldat lea dál anus. Ále vajáldahte rievdadit [[Special:Pr
 'yourdomainname'             => 'Fierbmenamma',
 'loginproblem'               => '<b>Sisačállin ii lihkosmuvvan.</b><br />Iska ođđasit!',
 'login'                      => 'Čálligoađe sisa',
+'nav-login-createaccount'    => 'Daga ođđa geavaheaddjidovddaldaga dahje čálligoađe sisa',
 'loginprompt'                => 'Sisačállimii darbbašuvvo geavssat (cookies).',
 'userlogin'                  => 'Daga ođđa geavaheaddjidovddaldaga dahje čálligoađe sisa',
 'logout'                     => 'Čálligoađe olggos',

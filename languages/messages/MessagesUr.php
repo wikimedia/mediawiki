@@ -209,6 +209,7 @@ $messages = array(
 'yourdomainname'             => 'آپکا ڈومین',
 'loginproblem'               => '<b>داخلے میں کوئی مسلہ درپیش ہے</b><br />دوبارہ اندراج کیجیۓ!',
 'login'                      => 'داخل ہوں',
+'nav-login-createaccount'    => 'کھاتہ بنائیں یا اندراج کریں',
 'loginprompt'                => '{{SITENAME}} میں داخلے کیلۓ آپکے پاس قند (کوکیز) مجازہوناچاہیں۔',
 'userlogin'                  => 'کھاتہ بنائیں یا اندراج کریں',
 'logout'                     => 'اخراج',

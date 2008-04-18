@@ -470,7 +470,6 @@ $messages = array(
 
 # Special:Imagelist
 'imagelist_search_for'  => '寻图片名字:',
-'imgdesc'               => '描述页',
 'imgfile'               => '源文件',
 'imagelist'             => '文件列表',
 'imagelist_date'        => '日脚',

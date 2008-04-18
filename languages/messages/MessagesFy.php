@@ -417,6 +417,7 @@ Ferjit net se oan jo foarkar oan te passen.',
 'externaldberror'           => 'Der is in fout by it oanmelden by de database of jo hawwe gjin tastimming om jo ekstern account by te wurkjen.',
 'loginproblem'              => '<b>Der wie wat mis mei jo oanmelden.</b><br />Besykje it nochris, a.j.w.',
 'login'                     => 'Oanmelde',
+'nav-login-createaccount'   => 'Oanmelde',
 'loginprompt'               => 'Jo moatte cookies ynskeakele hawwe om jo oanmelde te kinnen by {{SITENAME}}.',
 'userlogin'                 => 'Oanmelde',
 'logout'                    => 'Ofmelde',
@@ -748,7 +749,6 @@ meitsje fan it systeem..",
 'uploaddisabled'    => 'Sorry, op dizze tsjinner kin net oanbean wurde.',
 
 # Special:Imagelist
-'imgdesc'   => 'tekst',
 'imagelist' => 'Ofbyld list',
 
 # Image description page

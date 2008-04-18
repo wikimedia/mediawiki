@@ -166,37 +166,38 @@ Per favore, segnalate l\'accaduto ad un administrator, segnalando la URL e l\'or
 'perfdisabled'    => 'Siamo davvero rammaricati, ma questa funzionalità è temporaneamente disabilitata durante le ore di maggiore accesso al database per ragioni di accessibilità al resto del sito! Torna fra le 02:00 e le 14:00 UTC e riprova. Grazie.',
 
 # Login and logout pages
-'logouttitle'           => 'Logout Utente',
-'logouttext'            => 'Logout effettuato.
+'logouttitle'             => 'Logout Utente',
+'logouttext'              => 'Logout effettuato.
 Ora puoi continuare ad usare {{SITENAME}} come utente anonimo (ma il tuo indirizzo IP resterà riconoscibile), oppure puoi nuovamente richiedere il login con il precedente username, oppure come uno diverso.',
-'welcomecreation'       => '<h2>Benvenuto, $1!</h2><p>Il tuo account è stato creato con successo.<br />Grazie per aver scelto di far crescere {{SITENAME}} con il tuo aiuto.<br />Per rendere {{SITENAME}} più tua, e per usarla più scorrevolmente, non dimenticare di personalizzare le tue preferenze.',
-'loginpagetitle'        => 'Login',
-'yourname'              => 'Il tuo  user name',
-'yourpassword'          => 'La tua  password',
-'yourpasswordagain'     => 'Ripeti la password',
-'remembermypassword'    => 'Ricorda la mia password per più sessioni (richiede uso dei cookies).',
-'loginproblem'          => '<b>Si è verificato un errore durante il tuo tentativo di login.</b><br />Riprova, sarai più fortunato!',
-'userlogin'             => 'Log in',
-'createaccount'         => 'Crea nuovo account',
-'badretype'             => 'Le password che hai immesso non coincidono, sono diverse fra loro.',
-'userexists'            => 'Siamo spiacenti. Lo user name che hai scelto è già usato da un altro Utente. Ti preghiamo perciò di voler scegliere uno user name diverso.',
-'youremail'             => 'La tua e-mail',
-'yournick'              => 'Il tuo diminutivo o soprannome (per le firme)',
-'loginerror'            => 'Errore di Login',
-'noname'                => 'Lo user name indicato non è valido, non è possibile creare un account a questo nome.',
-'loginsuccesstitle'     => 'Login effettuato con successo!',
-'loginsuccess'          => 'Sei stato ammesso alla connessione al server di {{SITENAME}} con il nome utente di "$1".',
-'nosuchuser'            => 'Attenzione<br /><br />a seguito di verifica, non ci risulta alcun Utente con il nome di  "$1".<br /><br />
+'welcomecreation'         => '<h2>Benvenuto, $1!</h2><p>Il tuo account è stato creato con successo.<br />Grazie per aver scelto di far crescere {{SITENAME}} con il tuo aiuto.<br />Per rendere {{SITENAME}} più tua, e per usarla più scorrevolmente, non dimenticare di personalizzare le tue preferenze.',
+'loginpagetitle'          => 'Login',
+'yourname'                => 'Il tuo  user name',
+'yourpassword'            => 'La tua  password',
+'yourpasswordagain'       => 'Ripeti la password',
+'remembermypassword'      => 'Ricorda la mia password per più sessioni (richiede uso dei cookies).',
+'loginproblem'            => '<b>Si è verificato un errore durante il tuo tentativo di login.</b><br />Riprova, sarai più fortunato!',
+'nav-login-createaccount' => 'Log in',
+'userlogin'               => 'Log in',
+'createaccount'           => 'Crea nuovo account',
+'badretype'               => 'Le password che hai immesso non coincidono, sono diverse fra loro.',
+'userexists'              => 'Siamo spiacenti. Lo user name che hai scelto è già usato da un altro Utente. Ti preghiamo perciò di voler scegliere uno user name diverso.',
+'youremail'               => 'La tua e-mail',
+'yournick'                => 'Il tuo diminutivo o soprannome (per le firme)',
+'loginerror'              => 'Errore di Login',
+'noname'                  => 'Lo user name indicato non è valido, non è possibile creare un account a questo nome.',
+'loginsuccesstitle'       => 'Login effettuato con successo!',
+'loginsuccess'            => 'Sei stato ammesso alla connessione al server di {{SITENAME}} con il nome utente di "$1".',
+'nosuchuser'              => 'Attenzione<br /><br />a seguito di verifica, non ci risulta alcun Utente con il nome di  "$1".<br /><br />
 Controlla per favore il nome digitato, oppure usa il modulo qui sotto per creare un nuovo user account.',
-'wrongpassword'         => 'La password immessa non è corretta.<br /><br />Riprova, per favore.',
-'mailmypassword'        => 'Spediscimi una nuova password in posta elettronica',
-'passwordremindertitle' => 'Servizio Password Reminder di {{SITENAME}}',
-'passwordremindertext'  => 'Qualcuno (probabilmente tu, con indirizzo IP $1)
+'wrongpassword'           => 'La password immessa non è corretta.<br /><br />Riprova, per favore.',
+'mailmypassword'          => 'Spediscimi una nuova password in posta elettronica',
+'passwordremindertitle'   => 'Servizio Password Reminder di {{SITENAME}}',
+'passwordremindertext'    => 'Qualcuno (probabilmente tu, con indirizzo IP $1)
 ha richiesto l\'invio di una nuova password per il login a {{SITENAME}}.
 La password per l\'Utente "$2" è ora "$3".
 Per evidenti ragioni di sicurezza, dovresti fare un log in il prima possibile, e cambiare la password immediatamente.',
-'noemail'               => 'Nessuna casella e-mail risulta registrata per l\'Utente "$1".',
-'passwordsent'          => 'Una nuova password è stata inviata alla casella e-mail registrata per l\'Utente "$1".
+'noemail'                 => 'Nessuna casella e-mail risulta registrata per l\'Utente "$1".',
+'passwordsent'            => 'Una nuova password è stata inviata alla casella e-mail registrata per l\'Utente "$1".
 Per favore, fai subito un log in non appena la ricevi.',
 
 # Edit pages

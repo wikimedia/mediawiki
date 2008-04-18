@@ -430,6 +430,7 @@ Via konto estas kreita. <span style="color:#ff0000">Ne forgesu fari viajn [[spec
 'externaldberror'            => 'Aŭ estis datenbaza eraro rilate al ekstera aŭtentikigado, aŭ vi ne permesas ĝisdatigi vian eksteran konton.',
 'loginproblem'               => '<b>Okazis problemo dum via ensalutado.</b><br />Bonvolu reprovi!',
 'login'                      => 'Ensalutu',
+'nav-login-createaccount'    => 'Ensalutu / Kreu novan konton',
 'loginprompt'                => 'Necesas ke via foliumilo permesu kuketojn por ensaluti en la {{SITENAME}}.',
 'userlogin'                  => 'Ensalutu / Kreu novan konton',
 'logout'                     => 'Elsalutu',

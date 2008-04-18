@@ -590,6 +590,7 @@ Aðgangur þinn hefur verið búinn til. Ekki gleyma að breyta [[Special:Prefer
 'yourdomainname'             => 'Þitt lén:',
 'loginproblem'               => '<b>Það kom upp villa í innskráningunni.</b><br />Reyndu aftur!',
 'login'                      => 'Innskrá',
+'nav-login-createaccount'    => 'Innskrá / Búa til aðgang',
 'loginprompt'                => 'Þú verður að leyfa vefkökur til þess að geta skráð þig inn á {{SITENAME}}.',
 'userlogin'                  => 'Innskrá / Búa til aðgang',
 'logout'                     => 'Útskráning',
@@ -1072,7 +1073,6 @@ Til að tengja í skrána frá síðu, notaðu eftirfarandi aðferðir
 'upload_source_file' => '(skrá á tölvunni þinni)',
 
 # Special:Imagelist
-'imgdesc'               => 'lýsing',
 'imgfile'               => 'skrá',
 'imagelist'             => 'Skráalisti',
 'imagelist_date'        => 'Dagsetning',

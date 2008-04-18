@@ -431,6 +431,7 @@ Vaš je suradnički račun otvoren. Ne zaboravite podesiti suradničke postavke.
 'externaldberror'            => 'Došlo je do pogreške s vanjskom autorizacijom ili vam nije dopušteno osvježavanje vanjskog suradničkog računa.',
 'loginproblem'               => '<b>Došlo je do pogreške s vašom prijavom.</b><br />Pokušajte iznova!',
 'login'                      => 'Prijavi se',
+'nav-login-createaccount'    => 'Prijavi se',
 'loginprompt'                => 'Za prijavu na sustav {{SITENAME}} morate u pregledniku uključiti kolačiće (cookies).',
 'userlogin'                  => 'Prijavi se',
 'logout'                     => 'Odjavi se',

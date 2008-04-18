@@ -443,6 +443,7 @@ L'account hà statu criatu currettamenti. Nun ti scurdari di pirsunalizzari li p
 'externaldberror'            => "S'havi virificatu n'erruri cû server d'autinticazzioni sternu, oppuru nun si disponi di l'auturizzazzioni nicissari p'aggiurnari lu propiu accessu sternu.",
 'loginproblem'               => "<b>S'hà virificatu n'erruri duranti l'accessu.</b><br />Ripruvari.",
 'login'                      => 'Trasi',
+'nav-login-createaccount'    => 'Riggìstrati o trasi',
 'loginprompt'                => "Tu hai a abbilitari li ''cookies'' pi tràsiri ntâ {{SITENAME}}.",
 'userlogin'                  => 'Riggìstrati o trasi',
 'logout'                     => 'Nesci',

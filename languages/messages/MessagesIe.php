@@ -152,6 +152,7 @@ Vu posse continuar usar {{SITENAME}} anonimimen, o vu posse aperter un session d
 'remembermypassword'         => 'Memorar mi passa-parol (per cookie)',
 'loginproblem'               => '<b>Hay un problema pri vor intrada.</b><br />Pena far it denov!',
 'login'                      => 'Aperter session',
+'nav-login-createaccount'    => 'Crear un conto o intrar',
 'loginprompt'                => 'Cookies deve esser permisset por intrar in {{SITENAME}}.',
 'userlogin'                  => 'Crear un conto o intrar',
 'logout'                     => 'Surtir',

@@ -248,44 +248,45 @@ $messages = array(
 'viewsourcetext' => 'Tu pote vide e copia la orijin de esta paje:',
 
 # Login and logout pages
-'logouttitle'           => 'Sinia per retira',
-'yourname'              => 'Nom de usor:',
-'yourpassword'          => 'Sinia de entra:',
-'remembermypassword'    => 'Memora me sinia de entra a esta computador',
-'login'                 => 'Sinia per entra',
-'loginprompt'           => 'Tu debe engrana "tortetas" per entra {{SITENAME}}.',
-'userlogin'             => 'Sinia per entra',
-'logout'                => 'Sinia per retira',
-'userlogout'            => 'Sinia per retira',
-'nologin'               => 'Tu no ave un sinia per entra? $1.',
-'nologinlink'           => 'Crea  un conta',
-'createaccount'         => 'Crea un conta',
-'gotaccount'            => 'Tu ave ja un conta? $1.',
-'gotaccountlink'        => 'Sinia per entra',
-'yourrealname'          => 'Nom vera:',
-'prefs-help-realname'   => 'Tu nom vera no es obligada, ma si tu vole dona tu nom vera, el va es usada per onora tu per tu labora.',
-'loginsuccesstitle'     => 'Entra susedente',
-'loginsuccess'          => "'''Tu ia entrada aora a {{SITENAME}} como \"\$1\".'''",
-'nosuchuser'            => 'Es no usor con la nom "$1". Esamina la spele, o crea un conta nova.',
-'nosuchusershort'       => 'Es no usor con esta nom "<nowiki>$1</nowiki>". Esamina la spele.',
-'nouserspecified'       => 'Tu debe indica un nom de usor.',
-'wrongpassword'         => 'La sinia de entra no es coreta. Per favore, atenta ancora.',
-'wrongpasswordempty'    => 'La sinia de entra es vacua. Per favore, atenta ancora.',
-'passwordtooshort'      => 'Tu sinia secreta no es legal o es tro corta. El debe ave a min $1 simboles e debe difere de tu nom de usor.',
-'mailmypassword'        => 'Envia la sinia secreta par eposta',
-'passwordremindertitle' => 'Sinia secreta temporer nova per {{SITENAME}}',
-'passwordremindertext'  => 'Algun (tu, probable, de dirije IP $1)
+'logouttitle'             => 'Sinia per retira',
+'yourname'                => 'Nom de usor:',
+'yourpassword'            => 'Sinia de entra:',
+'remembermypassword'      => 'Memora me sinia de entra a esta computador',
+'login'                   => 'Sinia per entra',
+'nav-login-createaccount' => 'Sinia per entra',
+'loginprompt'             => 'Tu debe engrana "tortetas" per entra {{SITENAME}}.',
+'userlogin'               => 'Sinia per entra',
+'logout'                  => 'Sinia per retira',
+'userlogout'              => 'Sinia per retira',
+'nologin'                 => 'Tu no ave un sinia per entra? $1.',
+'nologinlink'             => 'Crea  un conta',
+'createaccount'           => 'Crea un conta',
+'gotaccount'              => 'Tu ave ja un conta? $1.',
+'gotaccountlink'          => 'Sinia per entra',
+'yourrealname'            => 'Nom vera:',
+'prefs-help-realname'     => 'Tu nom vera no es obligada, ma si tu vole dona tu nom vera, el va es usada per onora tu per tu labora.',
+'loginsuccesstitle'       => 'Entra susedente',
+'loginsuccess'            => "'''Tu ia entrada aora a {{SITENAME}} como \"\$1\".'''",
+'nosuchuser'              => 'Es no usor con la nom "$1". Esamina la spele, o crea un conta nova.',
+'nosuchusershort'         => 'Es no usor con esta nom "<nowiki>$1</nowiki>". Esamina la spele.',
+'nouserspecified'         => 'Tu debe indica un nom de usor.',
+'wrongpassword'           => 'La sinia de entra no es coreta. Per favore, atenta ancora.',
+'wrongpasswordempty'      => 'La sinia de entra es vacua. Per favore, atenta ancora.',
+'passwordtooshort'        => 'Tu sinia secreta no es legal o es tro corta. El debe ave a min $1 simboles e debe difere de tu nom de usor.',
+'mailmypassword'          => 'Envia la sinia secreta par eposta',
+'passwordremindertitle'   => 'Sinia secreta temporer nova per {{SITENAME}}',
+'passwordremindertext'    => 'Algun (tu, probable, de dirije IP $1)
 ia demanda ce nos envia a tu un sinia secreta nova per {{SITENAME}} ($4).
 La sinia secreta per usor "$2" es aora "$3".
 Tu debe sinia per entra e cambia tu sinia secreta aora.
 
 Si algun otra ce tu ia envia esta demanda a nos, o si tu ia recorda tu sinia secreta e no vole cambia el aora, tu pote iniora esta mesaje e continua usa tu sinia secreta vea.',
-'noemail'               => 'No es un dirije de eposta per usor "$1".',
-'passwordsent'          => 'Un sinia secreta ia es enviada a la dirije de eposta per \'$1".
+'noemail'                 => 'No es un dirije de eposta per usor "$1".',
+'passwordsent'            => 'Un sinia secreta ia es enviada a la dirije de eposta per \'$1".
 Per favore, sinia per entra ancora pos tu ia reseta el.',
-'eauthentsent'          => 'Un eposta de serti ia es enviada a la dirije de eposta proposada.
+'eauthentsent'            => 'Un eposta de serti ia es enviada a la dirije de eposta proposada.
 Ante alga otra eposta es enviada a la conta, tu va nesesa segue la instruis en la eposta, per serti ce la conta es vera de tu.',
-'emailconfirmlink'      => 'Aproba tu dirije de eposta',
+'emailconfirmlink'        => 'Aproba tu dirije de eposta',
 
 # Edit page toolbar
 'bold_sample'     => 'Testo en leteras forte',
