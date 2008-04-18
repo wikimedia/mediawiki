@@ -976,7 +976,6 @@ $wgMessageStructure = array(
 	'imagelist' => array(
 		'imagelist-summary',
 		'imagelist_search_for',
-		'imgdesc',
 		'imgfile',
 		'imagelist',
 		'imagelist_date',
