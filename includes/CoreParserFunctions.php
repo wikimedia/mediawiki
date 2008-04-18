@@ -42,6 +42,7 @@ class CoreParserFunctions {
 		$parser->setFunctionHook( 'defaultsort',      array( __CLASS__, 'defaultsort'      ), SFH_NO_HASH );
 		$parser->setFunctionHook( 'filepath',         array( __CLASS__, 'filepath'         ), SFH_NO_HASH );
 		$parser->setFunctionHook( 'pagesincategory',  array( __CLASS__, 'pagesincategory'  ), SFH_NO_HASH );
+		$parser->setFunctionHook( 'pagesize',         array( __CLASS__, 'pagesize'         ), SFH_NO_HASH );
 		$parser->setFunctionHook( 'tag',              array( __CLASS__, 'tagObj'           ), SFH_OBJECT_ARGS );
 
 		if ( $wgAllowDisplayTitle ) {
@@ -239,6 +240,43 @@ class CoreParserFunctions {
 			$count = $cache[$name] = (int)$category->getPageCount();
 		}
 		return self::formatRaw( $count, $raw );
+	}
+
+	/**
+	 * Return the size of the given page, or 0 if it's nonexistent.  This is an
+	 * expensive parser function and can't be called too many times per page.
+	 *
+	 * @FIXME This doesn't work correctly on preview for getting the size of
+	 *   the current page.
+	 * @FIXME Title::getLength() documentation claims that it adds things to
+	 *   the link cache, so the local cache here should be unnecessary, but in
+	 *   fact calling getLength() repeatedly for the same $page does seem to
+	 *   run one query for each call?
+	 */
+	static function pagesize( $parser, $page = '', $raw = null ) {
+		static $cache = array();
+		$title = Title::newFromText($page);
+
+		if( !is_object( $title ) ) {
+			$cache[$page] = 0;
+			return self::formatRaw( 0, $raw );
+		}
+
+		# Normalize name for cache
+		$page = $title->getPrefixedText();
+
+		$length = 0;
+		if( isset( $cache[$page] ) ) {
+			$length = $cache[$page];
+		} elseif( $parser->incrementExpensiveFunctionCount() ) {
+			$length = $cache[$page] = $title->getLength();
+	
+			// Register dependency in templatelinks
+			$id = $title->getArticleId();
+			$revid = Revision::newFromTitle($title);
+			$parser->mOutput->addTemplate($title, $id, $revid);
+		}	
+		return self::formatRaw( $length, $raw );
 	}
 
 	static function language( $parser, $arg = '' ) {
