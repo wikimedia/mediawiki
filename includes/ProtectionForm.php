@@ -54,7 +54,8 @@ class ProtectionForm {
 			} else if ( strlen($this->mTitle->mRestrictionsExpiry) == 0 ) {
 				$this->mExpiry = '';
 			} else {
-				$this->mExpiry = wfTimestamp( TS_RFC2822, $this->mTitle->mRestrictionsExpiry );
+				// FIXME: this format is not user friendly
+				$this->mExpiry = wfTimestamp( TS_ISO_8601, $this->mTitle->mRestrictionsExpiry );
 			}
 		}
 
@@ -170,6 +171,8 @@ class ProtectionForm {
 				return false;
 			}
 
+			// Fixme: non-qualified absolute times are not in users specified timezone
+			// and there isn't notice about it in the ui
 			$expiry = wfTimestamp( TS_MW, $expiry );
 
 			if ( $expiry < wfTimestampNow() ) {
