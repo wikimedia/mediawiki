@@ -220,17 +220,22 @@ class CoreParserFunctions {
 	 * tent.  This is an expensive parser function and can't be called too many
 	 * times per page.
 	 */
-	static function pagesincategory( $parser, $category = '', $raw = null ) {
-		global $wgExpensiveParserFunctionLimit;
-		$category = Category::newFromName($category);
-		if( !is_object( $category ) ) {
-			return 0;
+	static function pagesincategory( $parser, $name = '', $raw = null ) {
+		static $cache = array();
+		$category = Category::newFromName( $name );
+
+		# Normalize name for cache
+		$name = $category->getName();
+
+		if( isset( $cache[$name] ) ) {
+			return self::formatRaw( $cache[$name], $raw );
 		}
-		$parser->mExpensiveFunctionCount++;
-		if ($parser->mExpensiveFunctionCount <= $wgExpensiveParserFunctionLimit) {
-			return self::formatRaw( (int)$category->getPageCount(), $raw );
+
+		$count = 0;
+		if( is_object( $category ) && $parser->incrementExpensiveFunctionCount() ) {
+			$count = $cache[$name] = (int)$category->getPageCount();
 		}
-		return 0;
+		return self::formatRaw( $count, $raw );
 	}
 
 	static function language( $parser, $arg = '' ) {
