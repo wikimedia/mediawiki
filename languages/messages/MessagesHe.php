@@ -190,6 +190,7 @@ $magicWords = array(
 	'tag'                   => array( 0,    'תגית',                              'tag'                    ),
 	'hiddencat'             => array( 1,    '__קטגוריה_מוסתרת__',                  '__HIDDENCAT__'          ),
 	'pagesincategory'       => array( 1,    'דפים בקטגוריה',                       'PAGESINCATEGORY', 'PAGESINCAT' ),
+	'pagesize'              => array( 1,    'גודל דף',                            'PAGESIZE'               ),
 );
 
 $specialPageAliases = array(
