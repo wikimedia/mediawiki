@@ -82,6 +82,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Allow \C and \Q as TeX commands to match \R, \N, \Z
 * On Special:UserRights, when you can add a group you can't remove or remove
   one you can't add, a notice is printed to warn you
+* (bug 12698) Create PAGESIZE parser function, to return the size of a page
 
 === Bug fixes in 1.13 ===
 
