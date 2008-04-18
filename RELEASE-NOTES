@@ -34,24 +34,24 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 === New features in 1.13 ===
 
 * __HIDDENCAT__ on a category page causes the category to be hidden on the
-  article page.
+  article page
 * Don't show edit permissions errors on a red link click, just redirect to the
   article. This is so that readers who don't know what a red link is aren't
   confused when they are told they are range-blocked.
 * Add a new hook ImageBeforeProduceHTML to allow extensions to modify wikitext
-  image syntax output.
+  image syntax output
 * (bug 13100) Added 'preloadtitle' parameter to action=edit&section=new that
-  pre-fills the section title field.
-* (bug 13112) Added Special:RelatedChanges alias to Special:Recentchangeslinked
+  pre-fills the section title field
+* (bug 13112) Added Special:RelatedChanges alias to Special:RecentChangesLinked
 * (bug 13130) Moved edit token and autosummary fields above edit tools to
   reduce broken form submissions
 * Add --old-redirects-only option to maintenance/refreshLinks.php, to add old
   redirects to the redirect table
 * Add links to page and file deletion forms to edit predefined delete reasons 
 * (bug 13269) Added MediaWiki:Uploadfooter to the bottom of Special:Upload
-* (bug 2815) Search results for media now use thumb instead of text extract
+* (bug 2815) Search results for media now use thumbnail instead of text extract
 * When a page doesn't exist, the tab should say "create", not "edit"
-* (bug 12882) Added a span with class "patrollink" arround "Mark as patrolled"
+* (bug 12882) Added a span with class "patrollink" around "Mark as patrolled"
   link on diffs
 * Magic word formatnum can now take raw suffix to undo formatting
 * Add updatelog table to reliably permit updates that don't change the schema
@@ -60,25 +60,24 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 ** Use category table for more efficient display of Special:Categories
 * (bug 1459) Search for duplicate files by hash: Special:FileDuplicateSearch
 * (bug 9447) Added hooks for search result headings
-* Image redirects are now enabled
+* Image redirects are now enabled by default
 * (bug 13450) Email confirmation can now be canceled before the expiration
 * (bug 13490) Show upload/file size limit on upload form
-* Redesign of Special:Userrights
-* Make rev_deleted log entries more intelligible.
+* Redesign of Special:UserRights
+* Make rev_deleted log entries more intelligible
 * (bug 6943) Added PAGESINCATEGORY: magic word
 * (bug 13604) Added Special:ListGroupRights
-* Added message 'mainpage-description' as duplicate of 'mainpage' and added it
-  to message 'sidebar'
-** (bug 6332) Lacking entry Mainpage-url
-** (bug 8617) Separate main page url and name
+* (bug 6332, 8617) Added message 'mainpage-description' as duplicate of
+  'mainpage' and added it to message 'sidebar'
 * Automatically add old redirects to the redirect table when needed
-* (bug 6934) Allow separated inclusions, links, redirects on whatlinkshere
+* (bug 6934) Allow inclusions, links, redirects to be separately toggled on or
+  off on Special:WhatLinksHere
 * Cache image redirects
-* (bug 10457) Reorganize Special:Specialpages
+* (bug 10457) Organize Special:SpecialPages into sections
 * Add a new hook EditPageBeforeConflictDiff to allow extensions like FCKeditor
-  to modify the output for edit conflicts.
+  to modify the output for edit conflicts
 * Add class="nested" for <fieldset>s so fieldsets inside fieldsets get
-  a slightly less huge margin and padding.
+  a slightly less huge margin and padding
 * (bug 13527) Use sitemaps.org format 0.9 instead of a Google-specific format
 * Allow \C and \Q as TeX commands to match \R, \N, \Z
 * On Special:UserRights, when you can add a group you can't remove or remove
