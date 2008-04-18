@@ -151,6 +151,7 @@ $wgOptionalMessages = array(
 	'ancientpages-summary',
 	'unwatchedpages-summary',
 	'userrights-summary',
+	'userrights-irreversible-marker',
 	'brokenredirects-summary',
 	'deadendpages-summary',
 	'protectedpages-summary',

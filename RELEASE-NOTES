@@ -81,6 +81,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   a slightly less huge margin and padding.
 * (bug 13527) Use sitemaps.org format 0.9 instead of a Google-specific format
 * Allow \C and \Q as TeX commands to match \R, \N, \Z
+* On Special:UserRights, when you can add a group you can't remove or remove
+  one you can't add, a notice is printed to warn you
 
 === Bug fixes in 1.13 ===
 
@@ -197,6 +199,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Properly escape search terms with regex chars so they appear highlighted in
   search results
 * (bug 13768) pt_title field encoding fixed
+* Do not display empty columns on Special:UserRights if all groups are
+  changeable or all unchangeable
 
 
 === API changes in 1.13 ===
