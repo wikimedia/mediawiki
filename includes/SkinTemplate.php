@@ -543,6 +543,10 @@ class SkinTemplate extends Skin {
 				'active' => false
 			);
 		} else {
+			global $wgUser;
+			$loginlink = $wgUser->isAllowed( 'createaccount' )
+				? 'nav-login-createaccount'
+				: 'login';
 			if( $this->showIPinHeader() ) {
 				$href = &$this->userpageUrlDetails['href'];
 				$personal_urls['anonuserpage'] = array(
@@ -560,14 +564,14 @@ class SkinTemplate extends Skin {
 					'active' => ( $pageurl == $href )
 				);
 				$personal_urls['anonlogin'] = array(
-					'text' => wfMsg('userlogin'),
+					'text' => wfMsg( $loginlink ),
 					'href' => self::makeSpecialUrl( 'Userlogin', 'returnto=' . $this->thisurl ),
 					'active' => $wgTitle->isSpecial( 'Userlogin' )
 				);
 			} else {
 
 				$personal_urls['login'] = array(
-					'text' => wfMsg('userlogin'),
+					'text' => wfMsg( $loginlink ),
 					'href' => self::makeSpecialUrl( 'Userlogin', 'returnto=' . $this->thisurl ),
 					'active' => $wgTitle->isSpecial( 'Userlogin' )
 				);

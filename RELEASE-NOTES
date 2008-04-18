@@ -83,6 +83,10 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * On Special:UserRights, when you can add a group you can't remove or remove
   one you can't add, a notice is printed to warn you
 * (bug 12698) Create PAGESIZE parser function, to return the size of a page
+* Allow the "log in / create account" link in the toolbar to have different
+  text from Special:UserLogin title (new message 'nav-login-createaccount')
+* Say "log in / create account" if an anonymous user can create an account,
+  otherwise just "log in", consistently across skins
 
 === Bug fixes in 1.13 ===
 
