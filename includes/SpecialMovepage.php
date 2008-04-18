@@ -30,9 +30,7 @@ function wfSpecialMovepage( $par = null ) {
 
 	$f = new MovePageForm( $par );
 
-	if ( 'success' == $action ) {
-		$f->showSuccess();
-	} else if ( 'submit' == $action && $wgRequest->wasPosted()
+	if ( 'submit' == $action && $wgRequest->wasPosted()
 		&& $wgUser->matchEditToken( $wgRequest->getVal( 'wpEditToken' ) ) ) {
 		$f->doSubmit();
 	} else {
@@ -46,7 +44,7 @@ function wfSpecialMovepage( $par = null ) {
  */
 class MovePageForm {
 	var $oldTitle, $newTitle, $reason; # Text input
-	var $moveTalk, $deleteAndMove;
+	var $moveTalk, $deleteAndMove, $moveSubpages;
 
 	private $watch = false;
 
@@ -61,12 +59,13 @@ class MovePageForm {
 		} else {
 			$this->moveTalk = $wgRequest->getBool( 'wpMovetalk', true );
 		}
+		$this->moveSubpages = $wgRequest->getBool( 'wpMovesubpages', false );
 		$this->deleteAndMove = $wgRequest->getBool( 'wpDeleteAndMove' ) && $wgRequest->getBool( 'wpConfirm' );
 		$this->watch = $wgRequest->getCheck( 'wpWatch' );
 	}
 
 	function showForm( $err, $hookErr = '' ) {
-		global $wgOut, $wgUser;
+		global $wgOut, $wgUser, $wgNamespacesWithSubpages;
 
 		$ot = Title::newFromURL( $this->oldTitle );
 		if( is_null( $ot ) ) {
@@ -144,8 +143,6 @@ class MovePageForm {
 			$wgOut->addHTML( $errMsg );
 		}
 
-		$moveTalkChecked = $this->moveTalk ? ' checked="checked"' : '';
-
 		$wgOut->addHTML(
 			 Xml::openElement( 'form', array( 'method' => 'post', 'action' => $titleObj->getLocalURL( 'action=submit' ), 'id' => 'movepage' ) ) .
 			 Xml::openElement( 'fieldset' ) .
@@ -178,12 +175,26 @@ class MovePageForm {
 			</tr>"
 		);
 
-		if ( $considerTalk ) {
+		if( $considerTalk ) {
 			$wgOut->addHTML( "
 				<tr>
 					<td></td>
 					<td class='mw-input'>" .
-						Xml::checkLabel( wfMsg( 'movetalk' ), 'wpMovetalk', 'wpMovetalk', $moveTalkChecked ) .
+					Xml::checkLabel( wfMsg( 'movetalk' ), 'wpMovetalk',
+					'wpMovetalk', $this->moveTalk ? ' checked="checked"' : '').
+					"</td>
+				</tr>"
+			);
+		}
+
+		if( isset( $wgNamespacesWithSubpages[$ot->getNamespace()] ) ) {
+			$wgOut->addHTML( "
+				<tr>
+					<td></td>
+					<td class=\"mw-input\">" .
+						Xml::checkLabel( wfMsgHtml( 'move-subpages' ),
+						'wpMovesubpages', 'wpMovesubpages',
+						$this->moveSubpages ? ' checked="checked"' : '' ) .
 					"</td>
 				</tr>"
 			);
@@ -264,26 +275,98 @@ class MovePageForm {
 
 		wfRunHooks( 'SpecialMovepageAfterMove', array( &$this , &$ot , &$nt ) )	;
 
-		# Move the talk page if relevant, if it exists, and if we've been told to
-		$ott = $ot->getTalkPage();
-		if( $ott->exists() ) {
-			if( $this->moveTalk && !$ot->isTalkPage() && !$nt->isTalkPage() ) {
-				$ntt = $nt->getTalkPage();
+		$wgOut->setPagetitle( wfMsg( 'pagemovedsub' ) );
 
-				# Attempt the move
-				$error = $ott->moveTo( $ntt, true, $this->reason );
-				if ( $error === true ) {
-					$talkmoved = 1;
-					wfRunHooks( 'SpecialMovepageAfterMove', array( &$this , &$ott , &$ntt ) );
-				} else {
-					$talkmoved = $error;
-				}
+		$oldUrl = $ot->getFullUrl( 'redirect=no' );
+		$newUrl = $nt->getFullUrl();
+		$oldText = $ot->getPrefixedText();
+		$newText = $nt->getPrefixedText();
+		$oldLink = "<span class='plainlinks'>[$oldUrl $oldText]</span>";
+		$newLink = "<span class='plainlinks'>[$newUrl $newText]</span>";
+
+		$wgOut->addWikiMsg( 'movepage-moved', $oldLink, $newLink, $oldText, $newText );
+
+		# Now we move extra pages we've been asked to move: subpages and talk
+		# pages.  First, if the old page or the new page is a talk page, we
+		# can't move any talk pages: cancel that.
+		if( $ot->isTalkPage() || $nt->isTalkPage() ) {
+			$this->moveTalk = false;
+		}
+		
+		# Next make a list of id's.  This might be marginally less efficient
+		# than a more direct method, but this is not a highly performance-cri-
+		# tical code path and readable code is more important here.
+		#
+		# Note: this query works nicely on MySQL 5, but the optimizer in MySQL
+		# 4 might get confused.  If so, consider rewriting as a UNION.
+		$dbr = wfGetDB( DB_SLAVE );
+		if( $this->moveSubpages ) {
+			$conds = array(
+				'page_title LIKE '.$dbr->addQuotes( $dbr->escapeLike( $ot->getDBkey() ) . '/%' )
+					.' OR page_title = ' . $dbr->addQuotes( $ot->getDBkey() )
+			);
+			if( $this->moveTalk ) {
+				$conds['page_namespace'] = array( $ot->getNamespace(),
+					MWNamespace::getTalk($ot->getNamespace()) );
 			} else {
-				# Stay silent on the subject of talk.
-				$talkmoved = '';
+				$conds['page_namespace'] = $ot->getNamespace();
 			}
 		} else {
-			$talkmoved = 'notalkpage';
+			if( $this->moveTalk ) {
+				$conds = array(
+					'page_namespace' => MWNamespace::getTalk($ot->getNamespace()),
+					'page_title' => $ot->getDBKey()
+				);
+			} else {
+				$conds = '0 = 1';
+			}
+		}
+
+		$extrapages = $dbr->select(
+			'page',
+			array( 'page_id', 'page_namespace', 'page_title' ),
+			$conds,
+			__METHOD__
+		);
+
+		$extraOutput = '';
+		$skin =& $wgUser->getSkin();
+		foreach( $extrapages as $row ) {
+			if( $row->page_id == $ot->getArticleId() ) {
+				# Already did this one.
+				continue;
+			}
+
+			$oldPage = Title::newFromRow( $row );
+			$newPageName = preg_replace(
+				'#^'.preg_quote( $ot->getDBKey(), '#' ).'#',
+				$nt->getDBKey(),
+				$oldPage->getDBKey()
+			);
+			# The following line is an atrocious hack.  Kill it.
+			$newNs = $nt->getNamespace() + ($oldPage->getNamespace() & 1);
+			$newPage = Title::makeTitle( $newNs, $newPageName );
+
+			# This was copy-pasted from Renameuser, bleh.
+			if ( $newPage->exists() && !$oldPage->isValidMoveTarget( $newPage ) ) {
+				$link = $skin->makeKnownLinkObj( $newPage );
+				$extraOutput .= '<li>' . wfMsgHtml( 'movepage-page-exists', $link ) . '</li>';
+			} else {
+				$success = $oldPage->moveTo( $newPage, true, $this->reason );
+				if( $success === true ) {
+					$oldLink = $skin->makeKnownLinkObj( $oldPage, '', 'redirect=no' );
+					$newLink = $skin->makeKnownLinkObj( $newPage );
+					$extraOutput .= '<li>' . wfMsgHtml( 'movepage-page-moved', $oldLink, $newLink ) . '</li>';
+				} else {
+					$oldLink = $skin->makeKnownLinkObj( $oldPage );
+					$newLink = $skin->makeLinkObj( $newPage );
+					$extraOutput .= '<li>' . wfMsgHtml( 'movepage-page-unmoved', $oldLink, $newLink ) . '</li>';
+				}
+			}
+		}
+
+		if( $extraOutput !== '' ) {
+			$wgOut->addHTML( "<ul>$extraOutput</ul>" );
 		}
 
 		# Deal with watches
@@ -294,49 +377,6 @@ class MovePageForm {
 			$wgUser->removeWatch( $ot );
 			$wgUser->removeWatch( $nt );
 		}
-
-		# Give back result to user.
-		$titleObj = SpecialPage::getTitleFor( 'Movepage' );
-		$success = $titleObj->getFullURL(
-		  'action=success&oldtitle=' . wfUrlencode( $ot->getPrefixedText() ) .
-		  '&newtitle=' . wfUrlencode( $nt->getPrefixedText() ) .
-		  '&talkmoved='.$talkmoved );
-
-		$wgOut->redirect( $success );
-	}
-
-	function showSuccess() {
-		global $wgOut, $wgRequest, $wgUser;
-
-		$old = Title::newFromText( $wgRequest->getVal( 'oldtitle' ) );
-		$new = Title::newFromText( $wgRequest->getVal( 'newtitle' ) );
-
-		if( is_null( $old ) || is_null( $new ) ) {
-			throw new ErrorPageError( 'badtitle', 'badtitletext' );
-		}
-
-		$wgOut->setPagetitle( wfMsg( 'pagemovedsub' ) );
-
-		$talkmoved = $wgRequest->getVal( 'talkmoved' );
-		$oldUrl = $old->getFullUrl( 'redirect=no' );
-		$newUrl = $new->getFullUrl();
-		$oldText = $old->getPrefixedText();
-		$newText = $new->getPrefixedText();
-		$oldLink = "<span class='plainlinks'>[$oldUrl $oldText]</span>";
-		$newLink = "<span class='plainlinks'>[$newUrl $newText]</span>";
-
-		$s = wfMsgNoTrans( 'movepage-moved', $oldLink, $newLink, $oldText, $newText );
-
-		if ( $talkmoved == 1 ) {
-			$s .= "\n\n" . wfMsgNoTrans( 'talkpagemoved' );
-		} elseif( 'articleexists' == $talkmoved ) {
-			$s .= "\n\n" . wfMsgNoTrans( 'talkexists' );
-		} else {
-			if( !$old->isTalkPage() && $talkmoved != 'notalkpage' ) {
-				$s .= "\n\n" . wfMsgNoTrans( 'talkpagenotmoved', wfMsgNoTrans( $talkmoved ) );
-			}
-		}
-		$wgOut->addWikiText( $s );
 	}
 
 	function showLogFragment( $title, &$out ) {
