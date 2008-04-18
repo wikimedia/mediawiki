@@ -473,6 +473,7 @@ S'ha creyato a suya cuenta. No xublide presonalizar as [[Special:Preferences|pre
 'externaldberror'            => "Bi abió una error d'autenticazión esterna d'a base de datos u bien no tiene premisos ta esbiellar a suya cuenta esterna.",
 'loginproblem'               => '<b>Escaizió un problema con a suya autenticazión.</b><br />¡Prebe unatra begada!',
 'login'                      => 'Enzetar sesión',
+'nav-login-createaccount'    => 'Enzetar una sesión / creyar cuenta',
 'loginprompt'                => 'Ha de autibar as <i>cookies</i> en o nabegador ta rechistrar-se en {{SITENAME}}.',
 'userlogin'                  => 'Enzetar una sesión / creyar cuenta',
 'logout'                     => "Salir d'a sesión",

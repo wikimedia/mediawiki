@@ -149,13 +149,14 @@ $messages = array(
 'viewsourcefor' => 'para $1',
 
 # Login and logout pages
-'yourname'       => 'Su nome de utilizador',
-'yourpassword'   => 'Palabra-chave',
-'login'          => 'Entrar',
-'userlogin'      => 'Entrar / criar cuonta',
-'logout'         => 'Salir',
-'userlogout'     => 'Salir',
-'gotaccountlink' => 'Entrar',
+'yourname'                => 'Su nome de utilizador',
+'yourpassword'            => 'Palabra-chave',
+'login'                   => 'Entrar',
+'nav-login-createaccount' => 'Entrar / criar cuonta',
+'userlogin'               => 'Entrar / criar cuonta',
+'logout'                  => 'Salir',
+'userlogout'              => 'Salir',
+'gotaccountlink'          => 'Entrar',
 
 # Edit page toolbar
 'bold_sample'     => 'Testo carregado',

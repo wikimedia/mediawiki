@@ -426,6 +426,7 @@ Mae eich accownt wedi gael eu creu. Peidiwch ac anghofio i personaleiddio eich f
 'externaldberror'            => "Naill ai: cafwyd gwall dilysu allanol ar databas neu: ar y llaw arall efallai nad oes hawl gennych chi i ddiwygio'ch cyfrif allanol.",
 'loginproblem'               => '<b>Ni lwyddodd y mewngofnodi.</b><br />Ceisiwch eto!',
 'login'                      => 'Mewngofnodi',
+'nav-login-createaccount'    => 'Mewngofnodi',
 'loginprompt'                => "Mae'n rhaid galluogi cwcis er mwyn mewngofnodi i {{SITENAME}}.",
 'userlogin'                  => 'Mewngofnodi',
 'logout'                     => 'Allgofnodi',
@@ -984,7 +985,6 @@ Os yw'r ddelwedd ar ei lawn faint gallwch barhau i'w uwchlwytho. Os na, newidiwc
 
 # Special:Imagelist
 'imagelist_search_for'  => "Chwilio am enw'r ddelwedd:",
-'imgdesc'               => 'disg.',
 'imgfile'               => 'ffeil',
 'imagelist'             => "Rhestr o'r holl ffeiliau",
 'imagelist_date'        => 'Dyddiad',

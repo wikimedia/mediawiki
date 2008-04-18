@@ -427,6 +427,7 @@ Contul dumneavoatră a fost creat. Nu uitaţi să vă personalizaţi preferinţe
 'loginproblem'               => '<b>A apărut o problemă la autentificarea ta.</b><br />
 Încearcă din nou!',
 'login'                      => 'Autentificare',
+'nav-login-createaccount'    => 'Creare cont / Autentificare',
 'loginprompt'                => 'Trebuie să ai modulele cookie activate pentru a te autentifica la {{SITENAME}}.',
 'userlogin'                  => 'Creare cont / Autentificare',
 'logout'                     => 'Închide sesiunea',

@@ -322,6 +322,7 @@ $messages = array(
 'yourdomainname'            => 'Эсеть доменэть:',
 'loginproblem'              => '<b>Совамсто мезе-бути аволь истя лиссь.</b><br />Варчика одов!',
 'login'                     => 'Совамо',
+'nav-login-createaccount'   => 'Совамо / тейть совамотарка',
 'loginprompt'               => '{{SITENAME}}-с совамга эряви нолдамс тевс cookies.',
 'userlogin'                 => 'Совамо / тейть совамотарка',
 'logout'                    => 'Лисеме',

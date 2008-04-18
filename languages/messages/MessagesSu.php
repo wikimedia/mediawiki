@@ -388,6 +388,7 @@ Rekening anjeun geus dijieun. Tong hilap ngarobih préferénsi {{SITENAME}} anje
 'externaldberror'            => 'Aya kasalahan dina pangkalan data oténtikasi luar, atawa anjeun mémang teu diwenangkeun pikeun ngaropéa rekening luar anjeun.',
 'loginproblem'               => "<b>Aya masalah na ''login'' anjeun.</b><br />Coba deui!",
 'login'                      => 'Asup log',
+'nav-login-createaccount'    => 'Nyieun rekening atawa asup log',
 'loginprompt'                => "Anjeun kudu boga ''cookies'' sangkan bisa asup log ka {{SITENAME}}.",
 'userlogin'                  => 'Nyieun rekening atawa asup log',
 'logout'                     => 'Kaluar log',
@@ -953,7 +954,6 @@ Catet yén salaku kaca wiki, nu séjén bisa ngarobah atawa ngahapus muatan anje
 
 # Special:Imagelist
 'imagelist_search_for'  => 'Sungsi ngaran média:',
-'imgdesc'               => 'dad',
 'imgfile'               => 'koropak',
 'imagelist'             => 'Daptar gambar',
 'imagelist_date'        => 'Titimangsa',

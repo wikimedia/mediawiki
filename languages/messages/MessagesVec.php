@@ -407,6 +407,7 @@ Par rendere {{SITENAME}} più tua, e par usarla più scorrevolmente, no sta desm
 'externaldberror'            => 'Se gà verificà un erór con el server de autenticassion esterno, oppure no se dispone de łe autorixassion necessarie par agiornar el proprio açesso esterno.',
 'loginproblem'               => '<b>Si gà verificà un errore durante el to tentativo de login.</b><br />Riproa, te sarè più fortunà!',
 'login'                      => 'Entra',
+'nav-login-createaccount'    => 'Entra o crea un novo acesso',
 'loginprompt'                => 'Par acedere a {{SITENAME}} xè necessario abiłitare i cookie.',
 'userlogin'                  => 'Entra o crea un novo acesso',
 'logout'                     => 'Và fora',

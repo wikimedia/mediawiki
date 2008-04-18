@@ -401,6 +401,7 @@ moenie vergeet om jou persoonlike voorkeure te stel nie.',
 'remembermypassword'         => 'Onthou my wagwoord oor sessies.',
 'loginproblem'               => '<b>Daar was probleme met jou intekening.</b><br />Probeer weer.',
 'login'                      => 'Teken in',
+'nav-login-createaccount'    => 'Teken in',
 'loginprompt'                => 'U blaaier moet koekies toelaat om by {{SITENAME}} aan te teken.',
 'userlogin'                  => 'Teken in',
 'logout'                     => 'Teken uit',
@@ -869,7 +870,6 @@ Let asseblief op dat, soos met {{SITENAME}} bladsye, mag ander jou gelaaide lêe
 
 # Special:Imagelist
 'imagelist_search_for'  => 'Soek vir medianaam:',
-'imgdesc'               => 'beskrywing',
 'imgfile'               => 'lêer',
 'imagelist'             => 'Prentelys',
 'imagelist_date'        => 'Datum',

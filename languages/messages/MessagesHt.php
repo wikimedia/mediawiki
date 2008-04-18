@@ -346,42 +346,43 @@ Administratè a ki te fème l bay rezon sa a : $1',
 'viewsourcetext'  => 'Ou kapab gade epitou modifye kontni atik sa a pou ou travay anlè li :',
 
 # Login and logout pages
-'yourname'              => 'Non itilizatè ou an :',
-'yourpassword'          => 'Mopas ou an :',
-'remembermypassword'    => 'Anrejistre mopas mwen an nan òdinatè mwen an',
-'login'                 => 'Idantifikasyon',
-'loginprompt'           => 'Ou dwèt aksepte (aktive) koukiz (cookies) yopou ou kapab konekte nan {{SITENAME}}.',
-'userlogin'             => 'Kreye yon kont oubyen konekte ou',
-'logout'                => 'Dekonekte ou',
-'userlogout'            => 'Dekoneksyon',
-'nologin'               => 'Ou pa genyen yon kont ? $1.',
-'nologinlink'           => 'Kreye yon kont',
-'createaccount'         => 'Kreye yon kont',
-'gotaccount'            => 'Ou ja genyen yon kont ? $1.',
-'gotaccountlink'        => 'Idantifye ou',
-'yourrealname'          => 'Vre non ou:',
-'yourlanguage'          => 'Langaj:',
-'prefs-help-realname'   => '(pa enpòtan) : si ou mete li, li ke posib pou nou ba ou rekonpans pou kèk kontrisyon ou yo.',
-'loginsuccesstitle'     => 'Ou byen idantifye nan sistèm an',
-'loginsuccess'          => 'Ou konekte kounye a nan {{SITENAME}} epi idantifyan sa a « $1 ».',
-'nosuchuser'            => 'Itilizatè « $1 » pa egziste.
+'yourname'                => 'Non itilizatè ou an :',
+'yourpassword'            => 'Mopas ou an :',
+'remembermypassword'      => 'Anrejistre mopas mwen an nan òdinatè mwen an',
+'login'                   => 'Idantifikasyon',
+'nav-login-createaccount' => 'Kreye yon kont oubyen konekte ou',
+'loginprompt'             => 'Ou dwèt aksepte (aktive) koukiz (cookies) yopou ou kapab konekte nan {{SITENAME}}.',
+'userlogin'               => 'Kreye yon kont oubyen konekte ou',
+'logout'                  => 'Dekonekte ou',
+'userlogout'              => 'Dekoneksyon',
+'nologin'                 => 'Ou pa genyen yon kont ? $1.',
+'nologinlink'             => 'Kreye yon kont',
+'createaccount'           => 'Kreye yon kont',
+'gotaccount'              => 'Ou ja genyen yon kont ? $1.',
+'gotaccountlink'          => 'Idantifye ou',
+'yourrealname'            => 'Vre non ou:',
+'yourlanguage'            => 'Langaj:',
+'prefs-help-realname'     => '(pa enpòtan) : si ou mete li, li ke posib pou nou ba ou rekonpans pou kèk kontrisyon ou yo.',
+'loginsuccesstitle'       => 'Ou byen idantifye nan sistèm an',
+'loginsuccess'            => 'Ou konekte kounye a nan {{SITENAME}} epi idantifyan sa a « $1 ».',
+'nosuchuser'              => 'Itilizatè « $1 » pa egziste.
 Byen gade ke ou byen ekri non ou, oubyen kreye yon nouvo kont.',
-'nosuchusershort'       => 'Pa genyen kontribitè ak non « <nowiki>$1</nowiki> » sa a. Byen gade lòtograf ou an.',
-'nouserspecified'       => 'Ou dwèt mete non itilizatè ou an.',
-'wrongpassword'         => 'Mopas an pa korèk. Eseye ankò.',
-'wrongpasswordempty'    => 'Ou pa antre mopas ou an. Eseye ankò.',
-'passwordtooshort'      => 'Mopas ou an two kout. Li dwèt kontni $1 karaktè oubyen plis epi li dwèt diferan de non itilizatè ou an.',
-'mailmypassword'        => 'Voye yon nouvo mopas',
-'passwordremindertitle' => 'Nouvo mopas tanporè (yon kout tan) pou pajwèb sa a {{SITENAME}}',
-'passwordremindertext'  => 'Kèk moun (ou menm?) ki genyen adrès IP sa a $1 mande ke nou voye ou yon nouvo mopas pou {{SITENAME}} ($4).
+'nosuchusershort'         => 'Pa genyen kontribitè ak non « <nowiki>$1</nowiki> » sa a. Byen gade lòtograf ou an.',
+'nouserspecified'         => 'Ou dwèt mete non itilizatè ou an.',
+'wrongpassword'           => 'Mopas an pa korèk. Eseye ankò.',
+'wrongpasswordempty'      => 'Ou pa antre mopas ou an. Eseye ankò.',
+'passwordtooshort'        => 'Mopas ou an two kout. Li dwèt kontni $1 karaktè oubyen plis epi li dwèt diferan de non itilizatè ou an.',
+'mailmypassword'          => 'Voye yon nouvo mopas',
+'passwordremindertitle'   => 'Nouvo mopas tanporè (yon kout tan) pou pajwèb sa a {{SITENAME}}',
+'passwordremindertext'    => 'Kèk moun (ou menm?) ki genyen adrès IP sa a $1 mande ke nou voye ou yon nouvo mopas pou {{SITENAME}} ($4).
 Mopas itilizatè « $2 » se kounye a « $3 ».
 
 Nou konseye ou konekte ou epi modifye mopas sa a rapidman.
 
 Si se pa ou menm ki mande modifye mopas ou an oubyen si ou konnen mopas ou an e ke ou pa ta vle modifye li, pa konsidere mesaj sa a epi kontinye ak mopas ou a.',
-'noemail'               => 'Pa genyen pyès adrès imèl ki anrejistre pou itilizatè sa a « $1 ».',
-'passwordsent'          => 'Yon nouvo mopas voye ba imèl sa a pou itilizatè « $1 ». Souple, konekte ou lè ou resevwa mesaj an.',
-'eauthentsent'          => 'Nou voye yon imèl pou konfimasyon nan adrès imèl an.
+'noemail'                 => 'Pa genyen pyès adrès imèl ki anrejistre pou itilizatè sa a « $1 ».',
+'passwordsent'            => 'Yon nouvo mopas voye ba imèl sa a pou itilizatè « $1 ». Souple, konekte ou lè ou resevwa mesaj an.',
+'eauthentsent'            => 'Nou voye yon imèl pou konfimasyon nan adrès imèl an.
 Anvan yon lòt imèl voye, swiv komand ki nan mesaj imèl an epi konfime ke kont an se byen kont ou an.',
 
 # Edit page toolbar

@@ -649,6 +649,7 @@ Váš účet byl vytvořen. Nezapomeňte si upravit své [[Special:Preferences|n
 'loginproblem'               => '<strong>Nastal problém při vašem přihlášení.</strong><br />
 Zkuste to znovu!',
 'login'                      => 'Přihlaste se',
+'nav-login-createaccount'    => 'Přihlášení / vytvoření účtu',
 'loginprompt'                => 'K přihlášení do {{grammar:2sg|{{SITENAME}}}} musíte mít povoleny cookies.',
 'userlogin'                  => 'Přihlášení / vytvoření účtu',
 'logout'                     => 'Odhlásit se',

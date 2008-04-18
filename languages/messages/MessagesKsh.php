@@ -1030,7 +1030,6 @@ De Einzelheite: $1',
 
 # Special:Imagelist
 'imagelist_search_for'  => 'Sök noh däm Name vun däm Beld:',
-'imgdesc'               => 'tex',
 'imgfile'               => 'Datei',
 'imagelist'             => 'Belder, Tön, uew. (all)',
 'imagelist_date'        => 'Datum',

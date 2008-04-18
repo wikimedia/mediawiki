@@ -475,6 +475,7 @@ Bu saytnıñ ayarlarını (nastroykalarını) şahsıñızğa köre [[{{ns:speci
 'externaldberror'            => 'Oturımıñız açılğanda bir hata oldı. Bu tış esabıñızğa deñişiklik yapmağa aqqıñız olmayuvından meydanğa kelip ola.',
 'loginproblem'               => '<b>Oturımıñız açılğanda problema çıqtı.</b><br />Bir daa etiñiz!',
 'login'                      => 'Oturım aç',
+'nav-login-createaccount'    => 'Oturım aç / Qayd ol',
 'loginprompt'                => 'Oturım açmaq içün "cookies"ge izin bermelisiñiz.',
 'userlogin'                  => 'Oturım aç / Qayd ol',
 'logout'                     => 'Oturımnı qapat',
@@ -982,7 +983,6 @@ Bu fayl içün yoq etüvniñ jurnalını mında baqıp olasıñız:",
 
 # Special:Imagelist
 'imagelist_search_for'  => 'Fayl adı qıdıruv:',
-'imgdesc'               => 'tanıtuv',
 'imgfile'               => 'fayl',
 'imagelist'             => 'Resim cedveli',
 'imagelist_date'        => 'Tarih',

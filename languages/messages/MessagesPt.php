@@ -522,6 +522,7 @@ A sua conta foi criada. Não se esqueça de personalizar as suas [[{{ns:special}
 'externaldberror'            => 'Ocorreu um erro externo à base de dados durante a autenticação ou não lhe é permitido actualizar a sua conta externa.',
 'loginproblem'               => '<b>Houve um problema com a sua autenticação.</b><br />Tente novamente!',
 'login'                      => 'Entrar',
+'nav-login-createaccount'    => 'Criar uma conta ou entrar',
 'loginprompt'                => 'Você necessita de ter os <i>cookies</i> ligados para poder autenticar-se na {{SITENAME}}.',
 'userlogin'                  => 'Criar uma conta ou entrar',
 'logout'                     => 'Sair',
@@ -1206,7 +1207,6 @@ PICT # misc.
 Por defeito, os últimos ficheiros carregados são mostrados no topo da lista.
 Um clique sobre um cabeçalho de coluna altera a ordenação.',
 'imagelist_search_for'  => 'Pesquisar por nome de imagem:',
-'imgdesc'               => 'desc',
 'imgfile'               => 'ficheiro',
 'imagelist'             => 'Lista de ficheiros',
 'imagelist_date'        => 'Data',

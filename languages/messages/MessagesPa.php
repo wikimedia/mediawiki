@@ -299,6 +299,7 @@ Your account has been created. Don't forget to change your {{SITENAME}} preferen
 'yourdomainname'             => 'ਤੁਹਾਡੀ ਡੋਮੇਨ:',
 'loginproblem'               => '<b>ਤੁਹਾਡੇ ਲਾਗਇਨ ਨਾਲ ਇੱਕ ਸਮੱਸਿਆ ਹੈ।</b><br />ਮੁੜ ਕੋਸ਼ਿਸ਼ ਕਰੋ!',
 'login'                      => 'ਲਾਗ ਇਨ',
+'nav-login-createaccount'    => 'ਲਾਗ ਇਨ / ਅਕਾਊਂਟ ਬਣਾਓ',
 'loginprompt'                => 'ਤੁਹਾਨੂੰ {{SITENAME}} ਉੱਤੇ ਲਾਗਇਨ ਕਰਨ ਲਈ ਕੂਕੀਜ਼ ਯੋਗ ਕਰਨੇ ਜ਼ਰੂਰੀ ਹਨ।',
 'userlogin'                  => 'ਲਾਗ ਇਨ / ਅਕਾਊਂਟ ਬਣਾਓ',
 'logout'                     => 'ਲਾਗ ਆਉਟ',
@@ -608,7 +609,6 @@ to upload files.',
 'upload_source_file' => ' (ਤੁਹਾਡੇ ਕੰਪਿਊਟਰ ਉੱਤੇ ਇੱਕ ਫਾਇਲ)',
 
 # Special:Imagelist
-'imgdesc'               => 'ਵੇਰਵਾ',
 'imgfile'               => 'ਫਾਇਲ',
 'imagelist'             => 'ਫਾਇਲ ਲਿਸਟ',
 'imagelist_date'        => 'ਮਿਤੀ',

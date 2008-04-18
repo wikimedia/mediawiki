@@ -766,7 +766,6 @@ ali za neposredno povezavo z datoteko
 'nolicense' => 'Nobeno (opomba: datoteka bo morda izbrisana)',
 
 # Special:Imagelist
-'imgdesc'   => 'opis',
 'imagelist' => 'Seznam datotek',
 
 # Image description page

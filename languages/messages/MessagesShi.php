@@ -147,17 +147,18 @@ $messages = array(
 'nodb' => 'ornzdar annaf database $1',
 
 # Login and logout pages
-'welcomecreation'    => '== brrk darnɣ, $1! ==
+'welcomecreation'         => '== brrk darnɣ, $1! ==
 
 lcont nk ati styaqyad. ador tot atbadlt {{SITENAME}} lmЗlomat nk.',
-'loginpagetitle'     => 'ikchim o-msxdam',
-'yourname'           => 'smiyt o-msxdam:',
-'yourpassword'       => 'awal iḥdan:',
-'yourpasswordagain'  => 'Зawd ara awal iḥdan:',
-'userlogin'          => 'kchem / qiyd amskhdam amaynu',
-'userlogout'         => 'foɣ',
-'yourlanguage'       => 'tutlayt:',
-'loginlanguagelabel' => 'tutlayt: $1',
+'loginpagetitle'          => 'ikchim o-msxdam',
+'yourname'                => 'smiyt o-msxdam:',
+'yourpassword'            => 'awal iḥdan:',
+'yourpasswordagain'       => 'Зawd ara awal iḥdan:',
+'nav-login-createaccount' => 'kchem / qiyd amskhdam amaynu',
+'userlogin'               => 'kchem / qiyd amskhdam amaynu',
+'userlogout'              => 'foɣ',
+'yourlanguage'            => 'tutlayt:',
+'loginlanguagelabel'      => 'tutlayt: $1',
 
 # Edit pages
 'noarticletext'    => 'ɣila orilla walo l-ktba ɣ tawriqt ad, tzdart [[Special:Search/{{PAGENAME}}|atsiglt smiyt n tawriqt ad]] 

@@ -395,6 +395,7 @@ Llogaria juaj është hapur. Mos harroni të ndryshoni parapëlqimet e {{SITENAM
 'externaldberror'            => 'Ose kishte një gabim tek regjistri i identifikimit të jashtëm, ose nuk ju lejohet të përtërini llogarinë tuaje të jashtme.',
 'loginproblem'               => '<b>Kishte një problem me hyrjen tuaj.</b><br />Provojeni përsëri!',
 'login'                      => 'Hyni',
+'nav-login-createaccount'    => 'Hyni ose hapni një llogari',
 'loginprompt'                => 'Duhet të pranoni "biskota" për të hyrë brënda në {{SITENAME}}.',
 'userlogin'                  => 'Hyni ose hapni një llogari',
 'logout'                     => 'Dalje',
@@ -856,7 +857,6 @@ Të gjithë orët janë me orën e shërbyesit (UTC).',
 
 # Special:Imagelist
 'imagelist_search_for'  => 'Kërko për emrin e figurës:',
-'imgdesc'               => 'për',
 'imgfile'               => 'skeda',
 'imagelist'             => 'Lista e figurave',
 'imagelist_date'        => 'Data',

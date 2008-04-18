@@ -616,6 +616,7 @@ De op-egeven rejen is ''$2''.",
 'externaldberror'            => 'Der gung iets fout bie de externe authenticering, of je maggen je gebrukersprefiel neet bewarken.',
 'loginproblem'               => "<b>Der was een prebleem mit 't anmelden.</b><br />Prebleem 't opniej!",
 'login'                      => 'Anmelden',
+'nav-login-createaccount'    => 'Anmelden',
 'loginprompt'                => 'Je mutten [[cookie]]s an hemmen staon um an te kunnen melden bie {{SITENAME}}.',
 'userlogin'                  => 'Anmelden',
 'logout'                     => 'Ofmelden',
@@ -1180,7 +1181,6 @@ A-j disse ofbeelding in volle grootte hemmen voeg 't dan toe, wiezig aanders de 
 
 # Special:Imagelist
 'imagelist_search_for'  => 'Zeuk op ofbeeldingnaam:',
-'imgdesc'               => 'beschrieving',
 'imagelist'             => 'Ofbeeldingenlieste',
 'imagelist_date'        => 'Daotum',
 'imagelist_user'        => 'Gebruker',

@@ -646,6 +646,7 @@ Uw gebruiker is geregistreerd. Vergeet niet uw voorkeuren voor {{SITENAME}} aan 
 'loginproblem'               => '<b>Er was een probleem bij het aanmelden.</b><br />
 Probeer het alstublieft opnieuw.',
 'login'                      => 'Aanmelden',
+'nav-login-createaccount'    => 'Aanmelden / registreren',
 'loginprompt'                => 'U moet cookies ingeschakeld hebben om u te kunnen aanmelden bij {{SITENAME}}.',
 'userlogin'                  => 'Aanmelden / registreren',
 'logout'                     => 'Afmelden',

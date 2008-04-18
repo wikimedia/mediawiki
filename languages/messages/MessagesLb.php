@@ -490,6 +490,7 @@ Opgepasst: Op verschiddene Säite gesäit et nach esou aus, wéi wann Dir nach u
 
 Probéiert et w.e.g. nach eng Kéier!",
 'login'                      => 'Umellen',
+'nav-login-createaccount'    => 'Aloggen',
 'loginprompt'                => "Fir sech op {{SITENAME}} umellen ze kënnen, mussen d'Cookien aktivéiert sinn.",
 'userlogin'                  => 'Aloggen',
 'logout'                     => 'Ofmellen',

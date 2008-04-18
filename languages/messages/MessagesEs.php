@@ -426,6 +426,7 @@ Tu cuenta ha sido creada. No olvides personalizar [[Special:Preferences|tus pref
 'externaldberror'            => 'Hubo un error de autenticación externa de la base de datos o bien no está autorizado a actualizar su cuenta externa.',
 'loginproblem'               => '<b>Hubo un problema con su autenticación.</b><br />¡Inténtelo otra vez!',
 'login'                      => 'Registrarse/Entrar',
+'nav-login-createaccount'    => 'Registrarse/Entrar',
 'loginprompt'                => 'Necesita habilitar las <i>cookies</i> en su navegador para registrarse en {{SITENAME}}.',
 'userlogin'                  => 'Registrarse/Entrar',
 'logout'                     => 'Salir',

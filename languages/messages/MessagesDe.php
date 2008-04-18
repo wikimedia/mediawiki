@@ -541,6 +541,7 @@ Dein Benutzerkonto wurde eingerichtet. Vergiss nicht, deine Einstellungen anzupa
 'externaldberror'            => 'Entweder es liegt ein Fehler bei der externen Authentifizierung vor, oder du darfst dein externes Benutzerkonto nicht aktualisieren.',
 'loginproblem'               => "'''Es gab ein Problem mit deiner Anmeldung.'''<br />Bitte versuche es nochmal!",
 'login'                      => 'Anmelden',
+'nav-login-createaccount'    => 'Anmelden',
 'loginprompt'                => 'Um sich bei {{SITENAME}} anmelden zu können, müssen Cookies aktiviert sein.',
 'userlogin'                  => 'Anmelden',
 'logout'                     => 'Abmelden',
@@ -2480,7 +2481,7 @@ Bitte bestätige, dass du diese Seite wirklich neu erstellen möchten.",
 'redirectingto' => 'Weitergeleitet nach [[$1]]',
 
 # action=purge
-'confirm_purge' => 'Diese Seite aus dem Server-Cache löschen? $1',
+'confirm_purge'        => 'Diese Seite aus dem Server-Cache löschen? $1',
 'confirm_purge_button' => 'OK',
 
 # AJAX search

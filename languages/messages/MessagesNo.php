@@ -516,6 +516,7 @@ Brukerkontoen din har blitt opprettet. Ikke glem å endre [[Special:Preferences|
 'externaldberror'            => 'Det var en ekstern autentifiseringsfeil, eller du kan ikke oppdatere din eksterne konto.',
 'loginproblem'               => '<strong>Du ble ikke logget inn.</strong><br />Prøv igjen!',
 'login'                      => 'Logg inn',
+'nav-login-createaccount'    => 'Logg inn eller registrer deg',
 'loginprompt'                => 'Du må ha slått på cookies for å logge in på {{SITENAME}}.',
 'userlogin'                  => 'Logg inn eller registrer deg',
 'logout'                     => 'Logg ut',

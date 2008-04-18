@@ -378,6 +378,7 @@ Uotwarli my sam dlo Ćebje kůnto. Ńy zapomńij poštalować [[{{ns:special}}:P
 'externaldberror'            => 'Jest jakiś feler w zywnyntřnyj baźe autentyfikacyjnyi, abo ńy moš uprawńyń potřebnych do aktualizacji zewnyntřnego kůnta.',
 'loginproblem'               => '<b>Zdořyu sie problym při průbie zalůgowanio.</b><br />Sprůbuj zaś!',
 'login'                      => 'Zalůguj mie',
+'nav-login-createaccount'    => 'Logowańe / regišterowańe',
 'loginprompt'                => 'Muśiš mjeć zouůnčůne cookies coby můc śe sam zalůgować.',
 'userlogin'                  => 'Logowańe / regišterowańe',
 'logout'                     => 'Wyloguj mie',

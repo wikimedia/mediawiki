@@ -440,7 +440,6 @@ säxifägä isem belän [[Special:Userlogin|keräse]].',
 'uploadcorrupt'     => 'Bu birem yä üze watıq, yä quşımtası yaraqsız. Birem tikşerüdän soñ qabat yöklä zínhar.',
 
 # Special:Imagelist
-'imgdesc'   => 'añlatma',
 'imgfile'   => 'fayl',
 'imagelist' => 'Räsem tezmäse',
 

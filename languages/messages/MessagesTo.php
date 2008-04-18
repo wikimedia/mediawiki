@@ -258,6 +258,7 @@ Kuo fakatupu hoʻo tohi kau-ki-ai. ʻOua ʻe ngalo ke liliu hoʻo faʻiteliha {{
 'yourdomainname'             => 'ho ngāueʻanga',
 'loginproblem'               => '<b>Naʻe ʻi ai ha meʻafihi mo hoʻo kau-ki-ai.</b><br />Toe feinga.',
 'login'                      => 'Kau ki ai',
+'nav-login-createaccount'    => 'Kau ki ai',
 'loginprompt'                => 'ʻOku pau te ke fakamafeia ʻa e ngaahi foʻi keke kapau te ke fie kau-ki-ai ki he {{SITENAME}}.',
 'userlogin'                  => 'Kau ki ai',
 'logout'                     => 'ʻAlu mamaʻo',
@@ -560,7 +561,6 @@ Ko e konga ʻi olunga, ko e '''konga pē ʻe taha''' ʻe haofaki ʻi he lomiʻi 
 
 # Special:Imagelist
 'imagelist_search_for'  => 'Kumi ki he hingoa ʻo e faitā:',
-'imgdesc'               => 'fkmat',
 'imgfile'               => 'faile',
 'imagelist'             => 'Hokohoko faitā',
 'imagelist_date'        => 'ʻAho',

@@ -203,6 +203,7 @@ O to account o l'è stæto creoö. Non te ascordà de cangiâ e toe preferençe 
 'remembermypassword'         => "Arregordâ a mæ paròlla d'ordine",
 'yourdomainname'             => 'Indirisso do scito:',
 'login'                      => 'Intra',
+'nav-login-createaccount'    => 'Intra / Registrate',
 'loginprompt'                => "Ti deivi avéi e lesche (''cookies'') abilitæ into têu navigatô pe intrâ in {{SITENAME}}.",
 'userlogin'                  => 'Intra / Registrate',
 'logout'                     => 'Sciorti',

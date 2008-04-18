@@ -528,6 +528,7 @@ Vaše konto je vytvorené. Nezabudnite si nastaviť svoje používateľské nast
 'externaldberror'            => 'Buď nastala chyba externej autentifikačnej databázy alebo vám nie je povolené aktualizovať váš externý účet.',
 'loginproblem'               => '<b>Nastal problém pri vašom prihlasovaní.</b><br />Skúste znova!',
 'login'                      => 'Prihlásiť',
+'nav-login-createaccount'    => 'Vytvorenie konta / prihlásenie',
 'loginprompt'                => 'Na prihlásenie do {{GRAMMAR:genitív|{{SITENAME}}}} musíte mať zapnuté koláčiky (cookies).',
 'userlogin'                  => 'Vytvorenie konta / prihlásenie',
 'logout'                     => 'Odhlásiť',

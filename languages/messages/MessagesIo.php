@@ -283,6 +283,7 @@ Voluntez, ne obliviez chanjor vua preferaji.',
 'remembermypassword'         => 'Memorez mea kontrolajo inter sesioni',
 'loginproblem'               => '<b>Esis problemo kun vua eniro.</b><br />Probez altrafoye!',
 'login'                      => 'Enirar',
+'nav-login-createaccount'    => 'Enirar',
 'loginprompt'                => "Vu mustas permisar ''cookies'' por enirar a {{SITENAME}}.",
 'userlogin'                  => 'Enirar',
 'logout'                     => 'Ekirar',
@@ -527,7 +528,6 @@ Publikigante vua skribajo hike, vu asertas ke olu skribesis da vu ipsa o kopiesi
 'uploaddisabled'    => 'Pardonez, la adkargo esas desaktiva.',
 
 # Special:Imagelist
-'imgdesc'        => 'desk',
 'imgfile'        => 'arkivo',
 'imagelist'      => 'Listo di imaji',
 'imagelist_date' => 'Dato',

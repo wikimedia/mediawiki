@@ -479,7 +479,6 @@ $messages = array(
 'watchthisupload'   => 'Kàm-sī chit ia̍h',
 
 # Special:Imagelist
-'imgdesc'               => 'biô-su̍t',
 'imagelist'             => 'Iáⁿ-siōng lia̍t-toaⁿ',
 'imagelist_date'        => 'Ji̍t-kî',
 'imagelist_name'        => 'Miâ',

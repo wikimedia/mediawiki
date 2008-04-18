@@ -417,6 +417,7 @@ Akkauntın'ız jaratıldı. {{SITENAME}} sazlawların'ızdı o'zgertiwdi umıtpa
 'yourdomainname'             => "Sizin' domen:",
 'loginproblem'               => "<b>Kiriw waqtında mashaqatlar sa'dir boldı.</b><br />Qaytadan kirip ko'rin'.",
 'login'                      => 'Kiriw',
+'nav-login-createaccount'    => 'Kiriw / akkaunt jaratıw',
 'loginprompt'                => "{{SITENAME}} saytına kiriw ushın kukiler qosılg'an bolıwı kerek.",
 'userlogin'                  => 'Kiriw / akkaunt jaratıw',
 'logout'                     => "Shıg'ıw",
@@ -813,7 +814,6 @@ Sha'rtli belgiler: (ha'z.) = ha'zirgi nusqasi menen parqı,
 
 # Special:Imagelist
 'imagelist_search_for'  => 'Media atamasın izlew:',
-'imgdesc'               => 'aniqlama',
 'imgfile'               => 'fayl',
 'imagelist'             => 'Fayllar dizimi',
 'imagelist_date'        => "Sa'ne",

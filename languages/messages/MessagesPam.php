@@ -238,6 +238,7 @@ Melalang ne ing kekang account. E mo kakalingwan alilan deng kekang piniling {{S
 'yourpassword'               => 'Kekang password:',
 'remembermypassword'         => 'Tandanan me ing login ku king computer a ini',
 'login'                      => 'Mag log in',
+'nav-login-createaccount'    => 'Mag-login / maglalang account',
 'loginprompt'                => 'Kailangan mo reng cookie a makasalangi (enabled) ba kang makapag log in king {{SITENAME}}.',
 'userlogin'                  => 'Mag-login / maglalang account',
 'logout'                     => 'Mag-log out',

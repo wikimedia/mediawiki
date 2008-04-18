@@ -203,6 +203,7 @@ $messages = array(
 'yourdomainname'             => 'Þīn geweald',
 'loginproblem'               => '<b>Þīn inmeldung wearþ gescremed.</b><br />Eftrōmie!',
 'login'                      => 'Inmeldian',
+'nav-login-createaccount'    => 'Settan nīwne hordcleofan oþþe inmeldian',
 'userlogin'                  => 'Settan nīwne hordcleofan oþþe inmeldian',
 'logout'                     => 'Ūtmeldian',
 'userlogout'                 => 'Ūtmeldian',
