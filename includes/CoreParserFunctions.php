@@ -158,9 +158,8 @@ class CoreParserFunctions {
 	}
 
 	/**
-	 * Override the title of the page when viewed,
-	 * provided we've been given a title which
-	 * will normalise to the canonical title
+	 * Override the title of the page when viewed, provided we've been given a
+	 * title which will normalise to the canonical title
 	 *
 	 * @param Parser $parser Parent parser
 	 * @param string $text Desired title text
@@ -216,6 +215,11 @@ class CoreParserFunctions {
 		return self::formatRaw( SiteStats::pagesInNs( intval( $namespace ) ), $raw );
 	}
 
+	/**
+	 * Return the number of pages in the given category, or 0 if it's nonexis-
+	 * tent.  This is an expensive parser function and can't be called too many
+	 * times per page.
+	 */
 	static function pagesincategory( $parser, $category = '', $raw = null ) {
 		global $wgExpensiveParserFunctionLimit;
 		$category = Category::newFromName($category);
@@ -224,11 +228,7 @@ class CoreParserFunctions {
 		}
 		$parser->mExpensiveFunctionCount++;
 		if ($parser->mExpensiveFunctionCount <= $wgExpensiveParserFunctionLimit) {
-			$count = $category->getPageCount();
-			if ( !$count ) {
-				$count = 0;
-			}
-			return self::formatRaw( $count, $raw );
+			return self::formatRaw( (int)$category->getPageCount(), $raw );
 		}
 		return 0;
 	}
