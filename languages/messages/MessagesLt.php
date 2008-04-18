@@ -1324,7 +1324,7 @@ Galima sumažinti rezultatų skaičių patikslinant veiksmo rūšį, naudotoją 
 'listgrouprights-summary'  => 'Žemiau pateiktas naudotojų grupių, apibrėžtų šioje wiki, ir su jomis susijusių teisių sąrašas.',
 'listgrouprights-group'    => 'Grupė',
 'listgrouprights-rights'   => 'Teisės',
-'listgrouprights-helppage' => 'Pagalba:Grupės teisės',
+'listgrouprights-helppage' => 'Help:Grupės teisės',
 
 # E-mail user
 'mailnologin'     => 'Nėra adreso',
