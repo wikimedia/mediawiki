@@ -87,6 +87,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   text from Special:UserLogin title (new message 'nav-login-createaccount')
 * Say "log in / create account" if an anonymous user can create an account,
   otherwise just "log in", consistently across skins
+* Users moving a page can now have all subpages automatically moved as well
 
 === Bug fixes in 1.13 ===
 
