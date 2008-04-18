@@ -3324,6 +3324,15 @@ cat
 <a href="/wiki/Category:MediaWiki_User%27s_Guide" title="Category:MediaWiki User's Guide">MediaWiki User's Guide</a>
 !! end
 
+!! test
+PAGESINCATEGORY invalid title fatal (r33546 fix)
+!! input
+{{PAGESINCATEGORY:<bogus>}}
+!! result
+<p>0
+</p>
+!! end
+
 ###
 ### Inter-language links
 ###
