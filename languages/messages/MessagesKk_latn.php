@@ -1708,7 +1708,7 @@ Atawda qoldanwğa bolmaýtın nışandar bolwı mümkin.',
 'listgrouprights-summary'  => 'Kelesi tizimde bul wïkïde belgilengen qatıswşı quqıqtarı (baýlanıstı qatınaw quqıqtarımen birge) körsetiledi.',
 'listgrouprights-group'    => 'Top',
 'listgrouprights-rights'   => 'Quqıqtarı',
-'listgrouprights-helppage' => '{{ns:help}}:Top quqıqtarı',
+'listgrouprights-helppage' => 'Help:Top quqıqtarı',
 
 # E-mail user
 'mailnologin'     => 'Eş jiberiletin jaý joq',
