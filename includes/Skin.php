@@ -941,9 +941,12 @@ END;
 				$q = '';
 			} else { $q = "returnto={$rt}"; }
 
+			$loginlink = $wgUser->isAllowed( 'createaccount' )
+				? 'nav-login-createaccount'
+				: 'login';
 			$s .= "\n<br />" . $this->makeKnownLinkObj(
 				SpecialPage::getTitleFor( 'Userlogin' ),
-				wfMsg( 'login' ), $q );
+				wfMsg( $loginlink ), $q );
 		} else {
 			$n = $wgUser->getName();
 			$rt = $wgTitle->getPrefixedURL();

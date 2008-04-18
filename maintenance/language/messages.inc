@@ -371,6 +371,7 @@ $wgMessageStructure = array(
 		'externaldberror',
 		'loginproblem',
 		'login',
+		'nav-login-createaccount',
 		'loginprompt',
 		'userlogin',
 		'logout',
