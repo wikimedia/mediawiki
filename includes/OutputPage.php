@@ -1544,6 +1544,8 @@ class OutputPage {
 	 * The special named parameter 'options' in a message specification array is passed
 	 * through to the $options parameter of wfMsgExt().
 	 *
+	 * Don't use this for messages that are not in users interface language.
+	 *
 	 * For example:
 	 *
 	 *    $wgOut->wrapWikiMsg( '<div class="error">$1</div>', 'some-error' );
@@ -1572,6 +1574,6 @@ class OutputPage {
 			}
 			$s = str_replace( '$' . ($n+1), wfMsgExt( $name, $options, $args ), $s );
 		}
-		$this->addHTML( $this->parse( $s ) );
+		$this->addHTML( $this->parse( $s, /*linestart*/true, /*uilang*/true ) );
 	}
 }
