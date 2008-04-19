@@ -20,12 +20,16 @@ function wfSpecialWhatlinkshere($par = NULL) {
  * @addtogroup SpecialPage
  */
 class WhatLinksHerePage {
-	var $request, $par;
-	var $limit, $from, $back, $target;
-	var $selfTitle, $skin;
-	var $hideredirs, $hidetrans, $hidelinks, $fetchlinks;
+	// Stored data
+	protected $par;
 
-	private $namespace;
+	// Stored objects
+	protected $opts, $target, $selfTitle;
+
+	// Stored globals
+	protected $skin, $request;
+
+	protected $limits = array( 20, 50, 100, 250, 500 );
 
 	function WhatLinksHerePage( $request, $par = null ) {
 		global $wgUser;
@@ -37,26 +41,27 @@ class WhatLinksHerePage {
 	function execute() {
 		global $wgOut;
 
-		$this->limit = min( $this->request->getInt( 'limit', 50 ), 5000 );
-		if ( $this->limit <= 0 ) {
-			$this->limit = 50;
-		}
-		$this->from = $this->request->getInt( 'from' );
-		$this->back = $this->request->getInt( 'back' );
+		$opts = new FormOptions();
 
-		$this->hideredirs = $this->request->getInt( 'hideredirs' );
-		$this->hidetrans = $this->request->getInt( 'hidetrans' );
-		$this->hidelinks = $this->request->getInt( 'hidelinks' );
-		$this->fetchlinks = !$this->hidelinks || !$this->hideredirs;
+		$opts->add( 'target', '' );
+		$opts->add( 'namespace', '', FormOptions::INTNULL );
+		$opts->add( 'limit', 50 );
+		$opts->add( 'from', 0 );
+		$opts->add( 'back', 0 );
+		$opts->add( 'hideredirs', false );
+		$opts->add( 'hidetrans', false );
+		$opts->add( 'hidelinks', false );
 
-		$targetString = isset($this->par) ? $this->par : $this->request->getVal( 'target' );
-
-		if ( is_null( $targetString ) ) {
-			$wgOut->addHTML( $this->whatlinkshereForm() );
-			return;
+		$opts->fetchValuesFromRequest( $this->request );
+		$opts->validateIntBounds( 'limit', 0, 5000 );
+		if ( isset($this->par) ) {
+			$opts->setValue( 'target', $this->par );
 		}
 
-		$this->target = Title::newFromURL( $targetString );
+		// Bind to member variable
+		$this->opts = $opts;
+
+		$this->target = Title::newFromURL( $opts->getValue( 'target' ) );
 		if( !$this->target ) {
 			$wgOut->addHTML( $this->whatlinkshereForm() );
 			return;
@@ -69,7 +74,8 @@ class WhatLinksHerePage {
 
 		$wgOut->addHTML( wfMsgExt( 'whatlinkshere-barrow', array( 'escapenoentities') ) . ' '  .$this->skin->makeLinkObj($this->target, '', 'redirect=no' )."<br />\n");
 
-		$this->showIndirectLinks( 0, $this->target, $this->limit, $this->from, $this->back );
+		$this->showIndirectLinks( 0, $this->target, $opts->getValue( 'limit' ),
+			$opts->getValue( 'from' ), $opts->getValue( 'back' ) );
 	}
 
 	/**
@@ -85,13 +91,11 @@ class WhatLinksHerePage {
 		$dbr = wfGetDB( DB_SLAVE );
 		$options = array();
 
-		$ns = $this->request->getIntOrNull( 'namespace' );
-		if ( isset( $ns ) ) {
-			$options['namespace'] = $ns;
-			$this->setNamespace( $options['namespace'] );
-		} else {
-			$options['namespace'] = '';
-		}
+		$hidelinks = $this->opts->getValue( 'hidelinks' );
+		$hideredirs = $this->opts->getValue( 'hideredirs' );
+		$hidetrans = $this->opts->getValue( 'hidetrans' );
+
+		$fetchlinks = !$hidelinks || !$hideredirs;
 
 		// Make the query
 		$plConds = array(
@@ -99,9 +103,9 @@ class WhatLinksHerePage {
 			'pl_namespace' => $target->getNamespace(),
 			'pl_title' => $target->getDBkey(),
 		);
-		if( $this->hideredirs ) {
+		if( $hideredirs ) {
 			$plConds['page_is_redirect'] = 0;
-		} elseif( $this->hidelinks ) {
+		} elseif( $hidelinks ) {
 			$plConds['page_is_redirect'] = 1;
 		}
 
@@ -111,13 +115,14 @@ class WhatLinksHerePage {
 			'tl_title' => $target->getDBkey(),
 		);
 
-		if ( $this->namespace !== null ){
-			$plConds['page_namespace'] = (int)$this->namespace;
-			$tlConds['page_namespace'] = (int)$this->namespace;
+
+		$namespace = $this->opts->getValue( 'namespace' );
+		if ( is_int($namespace) ){
+			$plConds['page_namespace'] = $namespace;
+			$tlConds['page_namespace'] = $namespace;
 		}
 
 		if ( $from ) {
-			$from = (int)$from; // just in case
 			$tlConds[] = "tl_from >= $from";
 			$plConds[] = "pl_from >= $from";
 		}
@@ -132,54 +137,34 @@ class WhatLinksHerePage {
 		$options['LIMIT'] = $queryLimit;
 		$fields = array( 'page_id', 'page_namespace', 'page_title', 'page_is_redirect' );
 
-		if( $this->fetchlinks ) {
+		if( $fetchlinks ) {
 			$options['ORDER BY'] = 'pl_from';
 			$plRes = $dbr->select( array( 'pagelinks', 'page' ), $fields,
 				$plConds, __METHOD__, $options );
 		}
 
-		if( !$this->hidetrans ) {
+		if( !$hidetrans ) {
 			$options['ORDER BY'] = 'tl_from';
 			$tlRes = $dbr->select( array( 'templatelinks', 'page' ), $fields,
 				$tlConds, __METHOD__, $options );
 		}
 
-		if( ( !$this->fetchlinks || !$dbr->numRows( $plRes ) ) && ( $this->hidetrans || !$dbr->numRows( $tlRes ) ) ) {
+		if( ( !$fetchlinks || !$dbr->numRows( $plRes ) ) && ( $hidetrans || !$dbr->numRows( $tlRes ) ) ) {
 			if ( 0 == $level ) {
-				$options = array(); // reinitialize for a further namespace search
-				// really no links to here
-				$options['namespace'] = $this->namespace;
-				$options['target'] = $this->target->getPrefixedText();
-				list( $options['limit'], $options['offset']) = wfCheckLimits();
-				$wgOut->addHTML( $this->whatlinkshereForm( $options ) );
-				$errMsg = isset( $this->namespace ) ? 'nolinkshere-ns' : 'nolinkshere';
+				$wgOut->addHTML( $this->whatlinkshereForm() );
+				$errMsg = is_int($namespace) ? 'nolinkshere-ns' : 'nolinkshere';
 				$wgOut->addWikiMsg( $errMsg, $this->target->getPrefixedText() );
 				// Show filters only if there are links
-				if( $this->hidelinks || $this->hidetrans || $this->hideredirs )
+				if( $hidelinks || $hidetrans || $hideredirs )
 					$wgOut->addHTML( $this->getFilterPanel() );
 			}
 			return;
 		}
 
-		$options = array();
-		list( $options['limit'], $options['offset']) = wfCheckLimits();
-		if ( ( $ns = $this->request->getVal( 'namespace', null ) ) !== null && $ns !== '' && ctype_digit($ns) ) {
-			$options['namespace'] = intval( $ns );
-			$this->setNamespace( $options['namespace'] );
-		} else {
-			$options['namespace'] = '';
-			$this->setNamespace( null );
-		}
-		$options['offset'] = $this->request->getVal( 'offset' );
-		/* Offset must be an integral. */
-		if ( !strlen( $options['offset'] ) || !preg_match( '/^[0-9]+$/', $options['offset'] ) )
-			$options['offset'] = '';
-		$options['target'] = $this->target->getPrefixedText();
-
 		// Read the rows into an array and remove duplicates
 		// templatelinks comes second so that the templatelinks row overwrites the
 		// pagelinks row, so we get (inclusion) rather than nothing
-		if( $this->fetchlinks ) {
+		if( $fetchlinks ) {
 			while ( $row = $dbr->fetchObject( $plRes ) ) {
 				$row->is_template = 0;
 				$rows[$row->page_id] = $row;
@@ -187,7 +172,7 @@ class WhatLinksHerePage {
 			$dbr->freeResult( $plRes );
 
 		}
-		if( !$this->hidetrans ) {
+		if( !$hidetrans ) {
 			while ( $row = $dbr->fetchObject( $tlRes ) ) {
 				$row->is_template = 1;
 				$rows[$row->page_id] = $row;
@@ -215,11 +200,11 @@ class WhatLinksHerePage {
 		$prevId = $from;
 
 		if ( $level == 0 ) {
-			$wgOut->addHTML( $this->whatlinkshereForm( $options ) );
+			$wgOut->addHTML( $this->whatlinkshereForm( ) );
 			$wgOut->addHTML( $this->getFilterPanel() );
 			$wgOut->addWikiMsg( 'linkshere', $this->target->getPrefixedText() );
 
-			$prevnext = $this->getPrevNext( $limit, $prevId, $nextId, $options['namespace'] );
+			$prevnext = $this->getPrevNext( $prevId, $nextId );
 			$wgOut->addHTML( $prevnext );
 		}
 
@@ -303,86 +288,96 @@ class WhatLinksHerePage {
 			. ($this->hideredirs ? '&hideredirs=1' : '');
 	}
 
-	function getPrevNext( $limit, $prevId, $nextId ) {
+	function getPrevNext( $prevId, $nextId ) {
 		global $wgLang;
-		$fmtLimit = $wgLang->formatNum( $limit );
+		$currentLimit = $this->opts->getValue( 'limit' );
+		$fmtLimit = $wgLang->formatNum( $currentLimit );
 		$prev = wfMsgExt( 'whatlinkshere-prev', array( 'parsemag', 'escape' ), $fmtLimit );
 		$next = wfMsgExt( 'whatlinkshere-next', array( 'parsemag', 'escape' ), $fmtLimit );
 
-		$nsText = '';
-		if( is_int($this->namespace) ) {
-			$nsText = "&namespace={$this->namespace}";
-		}
-
-		$hideParams = $this->getHideParams();
+		$changed = $this->opts->getChangedValues();
+		unset($changed['target']); // Already in the request title
 
 		if ( 0 != $prevId ) {
-			$prevLink = $this->makeSelfLink( $prev, "limit={$limit}&from={$this->back}{$nsText}{$hideParams}" );
-		} else {
-			$prevLink = $prev;
+			$overrides = array( 'from' => $this->opts->getValue( 'back' ) );
+			$prev = $this->makeSelfLink( $prev, wfArrayToCGI( $overrides, $changed ) );
 		}
 		if ( 0 != $nextId ) {
-			$nextLink = $this->makeSelfLink( $next, "limit={$limit}&from={$nextId}&back={$prevId}{$nsText}{$hideParams}" );
-		} else {
-			$nextLink = $next;
+			$overrides = array( 'from' => $nextId, 'back' => $prevId );
+			$next = $this->makeSelfLink( $next, wfArrayToCGI( $overrides, $changed ) );
 		}
-		$nums = $this->numLink( 20, $prevId ) . ' | ' .
-		  $this->numLink( 50, $prevId ) . ' | ' .
-		  $this->numLink( 100, $prevId ) . ' | ' .
-		  $this->numLink( 250, $prevId ) . ' | ' .
-		  $this->numLink( 500, $prevId );
 
-		return wfMsgHtml( 'viewprevnext', $prevLink, $nextLink, $nums );
+		$limitLinks = array();
+		foreach ( $this->limits as $limit ) {
+			$prettyLimit = $wgLang->formatNum( $limit );
+			$overrides = array( 'limit' => $limit );
+			$limitLinks[] = $this->makeSelfLink( $prettyLimit, wfArrayToCGI( $overrides, $changed ) );
+		}
+
+		$nums = implode ( ' | ', $limitLinks );
+
+		return wfMsgHtml( 'viewprevnext', $prev, $next, $nums );
 	}
 
-	function numLink( $limit, $from, $ns = null ) {
-		global $wgLang;
-		$query = "limit={$limit}&from={$from}";
-		if( is_int($this->namespace) ) { $query .= "&namespace={$this->namespace}";}
-		$fmtLimit = $wgLang->formatNum( $limit );
-		return $this->makeSelfLink( $fmtLimit, $query.$this->getHideParams() );
-	}
-
-	function whatlinkshereForm( $options = array( 'target' => '', 'namespace' => '' ) ) {
+	function whatlinkshereForm() {
 		global $wgScript, $wgTitle;
 
-		$options['title'] = $wgTitle->getPrefixedText();
+		// We get nicer value from the title object
+		$this->opts->consumeValue( 'target' );
+		// Reset these for new requests
+		$this->opts->consumeValues( array( 'back', 'from' ) );
 
-		$f = Xml::openElement( 'form', array( 'method' => 'get', 'action' => $wgScript ) ) .
-			Xml::openElement( 'fieldset' ) .
-			Xml::element( 'legend', array(), wfMsg( 'whatlinkshere' ) ) .
-			Xml::inputLabel( wfMsg( 'whatlinkshere-page' ), 'target', 'mw-whatlinkshere-target', 40, $options['target'] ) . ' ';
+		$target = $this->target->getPrefixedText();
+		$namespace = $this->opts->consumeValue( 'namespace' );
 
-		foreach ( $options as $name => $value ) {
-			if( $name === 'namespace' || $name === 'target' )
-				continue;
-			$f .= "\t" . Xml::hidden( $name, $value ). "\n";
+		# Build up the form
+		$f = Xml::openElement( 'form', array( 'method' => 'get', 'action' => $wgScript ) );
+		
+		# Values that should not be forgotten
+		$f .= Xml::hidden( 'title', $wgTitle->getPrefixedText() );
+		foreach ( $this->opts->getUnconsumedValues() as $name => $value ) {
+			$f .= Xml::hidden( $name, $value );
 		}
 
-		$f .= Xml::label( wfMsg( 'namespace' ), 'namespace' ) . ' ' .
-			Xml::namespaceSelector( $options['namespace'], '' ) .
-			Xml::submitButton( wfMsg( 'allpagessubmit' ) ) .
-			Xml::closeElement( 'fieldset' ) .
-			Xml::closeElement( 'form' ) . "\n";
+		$f .= Xml::openElement( 'fieldset' );
+		$f .= Xml::element( 'legend', null, wfMsg( 'whatlinkshere' ) );
+
+		# Target input
+		$f .= Xml::inputLabel( wfMsg( 'whatlinkshere-page' ), 'target',
+				'mw-whatlinkshere-target', 40, $target );
+
+		$f .= ' ';
+
+		# Namespace selector
+		$f .= Xml::label( wfMsg( 'namespace' ), 'namespace' ) . '&nbsp;' .
+			Xml::namespaceSelector( $namespace, '' );
+
+		# Submit
+		$f .= Xml::submitButton( wfMsg( 'allpagessubmit' ) );
+
+		# Close
+		$f .= Xml::closeElement( 'fieldset' ) . Xml::closeElement( 'form' ) . "\n";
 
 		return $f;
-	}
-
-	/** Set the namespace we are filtering on */
-	private function setNamespace( $ns ) {
-		$this->namespace = $ns;
 	}
 
 	function getFilterPanel() {
 		$show = wfMsgHtml( 'show' );
 		$hide = wfMsgHtml( 'hide' );
+
+		$changed = $this->opts->getChangedValues();
+		unset($changed['target']); // Already in the request title
+
 		$links = array();
 		foreach( array( 'hidetrans', 'hidelinks', 'hideredirs' ) as $type ) {
-			$chosen = $this->$type;
+			$chosen = $this->opts->getValue( $type );
 			$msg = wfMsgHtml( "whatlinkshere-{$type}", $chosen ? $show : $hide );
-			$url = $this->request->appendQueryValue( $type, intval( !$chosen ), true );
-			$links[] = $this->makeSelfLink( $msg, $url );
+			$overrides = array( $type => !$chosen );
+			$links[] = $this->makeSelfLink( $msg, wfArrayToCGI( $overrides, $changed ) );
 		}
-		return '<p>' . implode( '&nbsp;|&nbsp;', $links ) . '</p>';
+		return Xml::tags( 'fieldset', null,
+			Xml::element( 'legend', null, wfMsg( 'whatlinkshere-filters' ) ) .
+			implode( '&nbsp;|&nbsp;', $links )
+		);
 	}
 }
