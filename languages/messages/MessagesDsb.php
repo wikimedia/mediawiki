@@ -1022,7 +1022,8 @@ Móžoš bok ale teke [[$1|sam załožyś]].",
 'recentchangeslinked'          => 'Změny w zwězanych bokach',
 'recentchangeslinked-title'    => 'Změny na bokach, kótarež su z „$1“ zalinkowane',
 'recentchangeslinked-noresult' => 'Zalinkowane boki njejsu we wuzwólonem casu se změnili.',
-'recentchangeslinked-summary'  => "Toś ten specialny bok pódajo slědne změny zalinkowanych bokow. Boki z twójich wobglědowankow su '''tucnje''' pisane.",
+'recentchangeslinked-summary'  => "To jo lisćina slědnych změnow, kótarež buchu na wótkazanych bokach cynjone (resp. pśi wěstych kategorijach na cłonkach kategorije).
+Boki na [[Special:Watchlist|wobglědowańce]] su '''tucne'''.",
 
 # Upload
 'upload'                      => 'Dataju pósłaś',

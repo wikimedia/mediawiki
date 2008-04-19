@@ -769,9 +769,10 @@ Wiki honetako beste administratzaileek ezkutuko eduki hau ikusteko aukera izango
 'group-sysop-member'         => 'Administratzaile',
 'group-bureaucrat-member'    => 'Burokrata',
 
-'grouppage-bot'        => '{{ns:project}}:Bot-ak',
-'grouppage-sysop'      => '{{ns:project}}:Administratzaileak',
-'grouppage-bureaucrat' => '{{ns:project}}:Burokratak',
+'grouppage-autoconfirmed' => '{{ns:project}}:Lankide autokonfirmatuak',
+'grouppage-bot'           => '{{ns:project}}:Bot-ak',
+'grouppage-sysop'         => '{{ns:project}}:Administratzaileak',
+'grouppage-bureaucrat'    => '{{ns:project}}:Burokratak',
 
 # User rights log
 'rightslog'      => 'Erabiltzaile eskubideen erregistroa',
@@ -1223,7 +1224,7 @@ Laguntza:
 'restriction-type'            => 'Baimena:',
 'restriction-level'           => 'Murrizketa maila:',
 'minimum-size'                => 'Tamaina minimoa',
-'maximum-size'                => 'Tamaina maximoa:',
+'maximum-size'                => 'Tamaina handiena, maximoa:',
 
 # Restrictions (nouns)
 'restriction-edit'   => 'Aldatu',

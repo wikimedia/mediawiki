@@ -319,7 +319,7 @@ $messages = array(
 'category_header'                => 'Strony w kategorii „$1”',
 'subcategories'                  => 'Podkategorie',
 'category-media-header'          => 'Pliki w kategorii „$1”',
-'category-empty'                 => "''W tej kategorii nie ma obecnie ani stron, ani plików.''",
+'category-empty'                 => "''W tej kategorii nie ma obecnie stron ani plików.''",
 'hidden-categories'              => '{{PLURAL:$1|Ukryta kategoria|Ukryte kategorie}}',
 'hidden-category-category'       => 'Ukryte kategorie', # Name of the category where hidden categories will be listed
 'category-subcat-count'          => '{{PLURAL:$2|Ta kategoria ma tylko jedną podkategorię.|Ta kategoria ma {{PLURAL:$1|tylko jedną podkategorię|$1 podkategorie|$1 podkategorii}} spośród ogólnej liczby $2.}}',
@@ -373,9 +373,9 @@ $messages = array(
 'info_short'        => 'Informacja',
 'printableversion'  => 'Wersja do druku',
 'permalink'         => 'Link do tej wersji',
-'print'             => 'Drukuj',
+'print'             => 'drukuj',
 'edit'              => 'edytuj',
-'create'            => 'Utwórz',
+'create'            => 'utwórz',
 'editthispage'      => 'Edytuj tę stronę',
 'create-this-page'  => 'Utwórz tę stronę',
 'delete'            => 'usuń',
@@ -700,7 +700,7 @@ Być może zakończyłeś już proces zmiany hasła lub poprosiłeś o nowe has�
 'media_sample'    => 'Przyklad.ogg',
 'media_tip'       => 'Link do pliku',
 'sig_tip'         => 'Twój podpis wraz z datą i czasem',
-'hr_tip'          => 'Pozioma linia (używaj oszczędnie)',
+'hr_tip'          => 'Linia pozioma (nie nadużywaj)',
 
 # Edit pages
 'summary'                           => 'Opis zmian',
@@ -1104,7 +1104,8 @@ Zapoznaj się z math/README w celu konfiguracji.',
 'userrights-groupsavailable'       => 'Dostępne grupy:',
 'userrights-groups-help'           => 'Możesz modyfikować przynależność tego użytkownika do podanych grup.
 Zaznaczone pole oznacza przynależność użytkownika do danej grupy.
-Nie zaznaczone pole oznacza, że użytkownik nie należy do danej grupy.',
+Nie zaznaczone pole oznacza, że użytkownik nie należy do danej grupy.
+Gwiazdka * informuje, że nie możesz usunąć z grupy po dodaniu do niej lub dodać po usunięciu z grupy.',
 'userrights-reason'                => 'Powód zmiany',
 'userrights-available-none'        => 'Nie możesz zmieniać przynależności do grup.',
 'userrights-available-add'         => 'Możesz dodać dowolnego użytkownika do {{PLURAL:$2|grupy|grup}}: $1.',
@@ -1119,25 +1120,31 @@ Nie zaznaczone pole oznacza, że użytkownik nie należy do danej grupy.',
 'userrights-unchangeable-col'      => 'Grupy, których nie możesz wybrać',
 
 # Groups
-'group'               => 'Grupa',
-'group-autoconfirmed' => 'Automatycznie zatwierdzeni użytkownicy',
-'group-bot'           => 'Boty',
-'group-sysop'         => 'Administratorzy',
-'group-bureaucrat'    => 'Biurokraci',
-'group-suppress'      => 'Rewizorzy',
-'group-all'           => '(wszyscy)',
+'group'                => 'Grupa',
+'group-user'           => 'Użytkownicy',
+'group-emailconfirmed' => 'Użytkownicy z potwierdzonym adresem e-mail',
+'group-autoconfirmed'  => 'Automatycznie zatwierdzeni użytkownicy',
+'group-bot'            => 'Boty',
+'group-sysop'          => 'Administratorzy',
+'group-bureaucrat'     => 'Biurokraci',
+'group-suppress'       => 'Rewizorzy',
+'group-all'            => '(wszyscy)',
 
-'group-autoconfirmed-member' => 'Automatycznie zatwierdzony użytkownik',
-'group-bot-member'           => 'Bot',
-'group-sysop-member'         => 'Administrator',
-'group-bureaucrat-member'    => 'Biurokrata',
-'group-suppress-member'      => 'Rewizor',
+'group-user-member'           => 'Użytkownik',
+'group-emailconfirmed-member' => 'Użytkownik z potwierdzonym adresem e-mail',
+'group-autoconfirmed-member'  => 'Automatycznie zatwierdzony użytkownik',
+'group-bot-member'            => 'Bot',
+'group-sysop-member'          => 'Administrator',
+'group-bureaucrat-member'     => 'Biurokrata',
+'group-suppress-member'       => 'Rewizor',
 
-'grouppage-autoconfirmed' => '{{ns:project}}:Automatycznie zatwierdzeni użytkownicy',
-'grouppage-bot'           => '{{ns:project}}:Boty',
-'grouppage-sysop'         => '{{ns:project}}:Administratorzy',
-'grouppage-bureaucrat'    => '{{ns:project}}:Biurokraci',
-'grouppage-suppress'      => '{{ns:project}}:Rewizorzy',
+'grouppage-user'           => '{{ns:project}}:Użytkownicy',
+'grouppage-emailconfirmed' => '{{ns:project}}:Użytkownicy z potwierdzonym adresem e-mail',
+'grouppage-autoconfirmed'  => '{{ns:project}}:Automatycznie zatwierdzeni użytkownicy',
+'grouppage-bot'            => '{{ns:project}}:Boty',
+'grouppage-sysop'          => '{{ns:project}}:Administratorzy',
+'grouppage-bureaucrat'     => '{{ns:project}}:Biurokraci',
+'grouppage-suppress'       => '{{ns:project}}:Rewizorzy',
 
 # User rights log
 'rightslog'      => 'Uprawnienia',
@@ -1207,7 +1214,7 @@ Plik pojawi się na stronie, jeśli użyjesz linku według jednego z następują
 'filedesc'                    => 'Opis',
 'fileuploadsummary'           => 'Opis',
 'filestatus'                  => 'Status prawny',
-'filesource'                  => 'Kod źródłowy',
+'filesource'                  => 'Źródło',
 'uploadedfiles'               => 'Przesłane pliki',
 'ignorewarning'               => 'Zignoruj ostrzeżenia i wymuś zapisanie pliku.',
 'ignorewarnings'              => 'Ignoruj wszystkie ostrzeżenia',
@@ -1475,7 +1482,7 @@ Strona uznawana jest za ujednoznaczniającą jeśli zawiera ona szablon linkowan
 'shortpages-summary'              => 'Poniżej znajduje się lista najkrótszych stron.',
 'longpages'                       => 'Najdłuższe strony',
 'longpages-summary'               => 'Poniżej znajduje się lista najdłuższych stron.',
-'deadendpages'                    => 'Strony bez linków',
+'deadendpages'                    => 'Strony bez linków wewnętrznych',
 'deadendpagestext'                => 'Poniższe strony nie posiadają odnośników do innych stron znajdujących się w {{GRAMMAR:MS.lp|{{SITENAME}}}}.',
 'protectedpages'                  => 'Strony zabezpieczone',
 'protectedpages-indef'            => 'Tylko zabezpieczenia nieokreślone',
@@ -1555,7 +1562,7 @@ Możesz zawęzić liczbę wyników poprzez wybranie typu rejestru, nazwy użytko
 'emailpage'       => 'Wyślij e-mail do użytkownika',
 'emailpagetext'   => 'Poniższy formularz pozwala na wysłanie jednej wiadomości do użytkownika pod warunkiem, że wpisał on poprawny adres e-mail w swoich preferencjach. Adres e-mailowy, który został przez Ciebie wprowadzony w Twoich preferencjach pojawi się w polu „Od”, dzięki czemu odbiorca będzie mógł Ci odpowiedzieć.',
 'usermailererror' => 'Moduł obsługi poczty zwrócił błąd:',
-'defemailsubject' => 'Wiadomość od {{GRAMMAR:D.lp|{{SITENAME}}}}',
+'defemailsubject' => 'Wiadomość z {{GRAMMAR:D.lp|{{SITENAME}}}}',
 'noemailtitle'    => 'Brak adresu e-mail',
 'noemailtext'     => 'Ten użytkownik nie podał poprawnego adresu e-mail, albo zadecydował, że nie chce otrzymywać wiadomości e-mail od innych użytkowników.',
 'emailfrom'       => 'Od',
@@ -1679,7 +1686,7 @@ Bądź ostrożny, ponieważ usunięcie jej może spowodować zakłócenia w prac
 'rollback_short'              => 'Cofnij',
 'rollbacklink'                => 'cofnij',
 'rollbackfailed'              => 'Nie udało się cofnąć zmiany',
-'cantrollback'                => 'Nie można cofnąć edycji, ponieważ jest tylko jedna wersja tej strony.',
+'cantrollback'                => 'Nie można cofnąć edycji tego autora, ponieważ jest jedynym autorem tej strony.',
 'alreadyrolled'               => 'Nie można dla strony [[:$1|$1]] cofnąć ostatniej zmiany, którą wykonał [[User:$2|$2]] ([[User talk:$2|dyskusja]]).
 Ktoś inny zdążył już to zrobić lub wprowadził własne poprawki do treści strony.
 
@@ -1728,7 +1735,7 @@ Aby przejrzeć listę obecnie działających zabezpieczeń, przejdź na stronę 
 # Restrictions (nouns)
 'restriction-edit'   => 'Edytuj',
 'restriction-move'   => 'Przenieś',
-'restriction-create' => 'Stwórz',
+'restriction-create' => 'Utwórz',
 
 # Restriction levels
 'restriction-level-sysop'         => 'pełne zabezpieczenie',
@@ -2523,7 +2530,7 @@ Wciśnij przycisk poniżej aby wysłać na swój adres list z linkiem do strony 
 List będzie zawierał link do strony, w którym zakodowany będzie identyfikator.
 Otwórz ten link w przeglądarce, czym potwierdzisz, że jesteś użytkownikiem tego adresu e-mail.',
 'confirmemail_pending'     => '<div class="error">Kod potwierdzenia został właśnie do Ciebie wysłany. Jeśli zarejestrowałeś się niedawno, poczekaj kilka minut na dostarczenie wiadomości przed kolejną prośbą o wysłanie kodu.</div>',
-'confirmemail_send'        => 'Wyślij kod uwierzytelniający',
+'confirmemail_send'        => 'Wyślij kod potwierdzenia',
 'confirmemail_sent'        => 'Wiadomość e-mail z kodem uwierzytelniającym została wysłana.',
 'confirmemail_oncreate'    => 'Link z kodem potwierdzenia został wysłany na Twój adres e-mail.
 Kod ten nie jest wymagany do zalogowania się, jednak będziesz musiał go aktywować otwierając, otrzymany link, w przeglądarce przed włączeniem niektórych opcji e-mail na wiki.',
@@ -2570,7 +2577,7 @@ Kod zawarty w linku straci ważność $4.',
 
 # Delete conflict
 'deletedwhileediting' => 'Uwaga! Ta strona została usunięta po tym, jak rozpocząłeś jej edycję!',
-'confirmrecreate'     => "Użytkownik [[User:$1|$1]] ([[User talk:$1|dyskusja]]) usunął ten artykuł po tym jak rozpocząłeś jego edycję, podając jako powód usunięcia:
+'confirmrecreate'     => "Użytkownik [[User:$1|$1]] ([[User talk:$1|dyskusja]]) usunął ten artykuł po tym jak rozpocząłeś(-aś) jego edycję, podając jako powód usunięcia:
 : ''$2''
 Potwierdź chęć ponownego utworzenia tego artykułu.",
 'recreate'            => 'Utwórz ponownie',
@@ -2609,8 +2616,8 @@ $1',
 'table_pager_empty'        => 'Brak wyników',
 
 # Auto-summaries
-'autosumm-blank'   => 'Uwaga! Usunięcie treści (strona pozostała pusta)!',
-'autosumm-replace' => 'Uwaga! Zastąpienie treści hasła bardzo krótkim tekstem: „$1”',
+'autosumm-blank'   => 'UWAGA! Usunięcie treści (strona pozostała pusta)!',
+'autosumm-replace' => 'UWAGA! Zastąpienie treści hasła bardzo krótkim tekstem: „$1”',
 'autoredircomment' => 'Przekierowanie do [[$1]]',
 'autosumm-new'     => 'Nowa strona: $1',
 

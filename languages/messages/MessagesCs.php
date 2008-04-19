@@ -14,6 +14,7 @@
  * @author לערי ריינהארט
  * @author Matěj Grabovský
  * @author Reaperman
+ * @author Sp5uhe
  */
 
 $fallback8bitEncoding = 'cp1250';
@@ -1161,11 +1162,12 @@ Nezaškrtnuté políčko značí, že uživatel ve skupině není.',
 'group-suppress'      => 'Dohlížitelé',
 'group-all'           => '(všechny)',
 
-'group-autoconfirmed-member' => 'schválený uživatel',
-'group-bot-member'           => 'Bot',
-'group-sysop-member'         => 'Správce',
-'group-bureaucrat-member'    => 'Byrokrat',
-'group-suppress-member'      => 'Dohlížitel',
+'group-emailconfirmed-member' => 'Użytkownik z potwierdzonym adresem e-mail',
+'group-autoconfirmed-member'  => 'schválený uživatel',
+'group-bot-member'            => 'Bot',
+'group-sysop-member'          => 'Správce',
+'group-bureaucrat-member'     => 'Byrokrat',
+'group-suppress-member'       => 'Dohlížitel',
 
 'grouppage-autoconfirmed' => '{{ns:project}}:Schválení uživatelé',
 'grouppage-bot'           => '{{ns:project}}:Boti',

@@ -1150,7 +1150,8 @@ De gegevens over {{SITENAME}} zijn mogelijk niet bijgewerkt.',
 'userrights-groupsavailable'       => 'Beschikbare groepen:',
 'userrights-groups-help'           => 'U kunt de groepen wijzigen waar deze gebruiker lid van is.
 Een aangekruisd vinkvakje betekent dat de gebruiker lid is van de groep.
-Een niet aangekruisd vinkvakje betekent dat de gebruiker geen lid is van de groep.',
+Een niet aangekruisd vinkvakje betekent dat de gebruiker geen lid is van de groep.
+Een "*" betekent dat u een gebruiker niet uit een groep kunt verwijderen nadat u die hebt toegevoegd, of vice versa.',
 'userrights-reason'                => 'Reden voor het veranderen:',
 'userrights-available-none'        => 'U mag geen gebruikersrechten veranderen.',
 'userrights-available-add'         => 'U kunt gebruikers toevoegen aan deze {{PLURAL:$2|groep|groepen}}: $1.',

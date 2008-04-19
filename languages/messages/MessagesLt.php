@@ -549,23 +549,23 @@ Jūs galite nekreipti dėmesio į laišką, jei ši paskyra buvo sukurta per kla
 'hr_tip'          => 'Horizontali linija (naudokite taupiai)',
 
 # Edit pages
-'summary'                   => 'Komentaras',
-'subject'                   => 'Tema/antraštė',
-'minoredit'                 => 'Tai smulkus pataisymas',
-'watchthis'                 => 'Stebėti šį puslapį',
-'savearticle'               => 'Įrašyti puslapį',
-'preview'                   => 'Peržiūra',
-'showpreview'               => 'Rodyti peržiūrą',
-'showlivepreview'           => 'Tiesioginė peržiūra',
-'showdiff'                  => 'Rodyti skirtumus',
-'anoneditwarning'           => "'''Dėmesio:''' Jūs nesate prisijungęs. Jūsų IP adresas bus įrašytas į šio puslapio istoriją.",
-'missingsummary'            => "'''Priminimas:''' Jūs nenurodėte keitimo komentaro. Jei vėl paspausite Įrašyti, jūsų keitimas bus įrašytas be jo.",
-'missingcommenttext'        => 'Prašome įvesti komentarą.',
-'missingcommentheader'      => "'''Priminimas:''' Jūs nenurodėte skyrelio/antraštės šiam komentarui. Jei vėl paspausite Įrašyti, jūsų keitimas bus įrašytas be jo.",
-'summary-preview'           => 'Komentaro peržiūra',
-'subject-preview'           => 'Skyrelio/antraštės peržiūra',
-'blockedtitle'              => 'Naudotojas yra užblokuotas',
-'blockedtext'               => "<big>'''Jūsų naudotojo vardas arba IP adresas yra užblokuotas.'''</big>
+'summary'                           => 'Komentaras',
+'subject'                           => 'Tema/antraštė',
+'minoredit'                         => 'Tai smulkus pataisymas',
+'watchthis'                         => 'Stebėti šį puslapį',
+'savearticle'                       => 'Įrašyti puslapį',
+'preview'                           => 'Peržiūra',
+'showpreview'                       => 'Rodyti peržiūrą',
+'showlivepreview'                   => 'Tiesioginė peržiūra',
+'showdiff'                          => 'Rodyti skirtumus',
+'anoneditwarning'                   => "'''Dėmesio:''' Jūs nesate prisijungęs. Jūsų IP adresas bus įrašytas į šio puslapio istoriją.",
+'missingsummary'                    => "'''Priminimas:''' Jūs nenurodėte keitimo komentaro. Jei vėl paspausite Įrašyti, jūsų keitimas bus įrašytas be jo.",
+'missingcommenttext'                => 'Prašome įvesti komentarą.',
+'missingcommentheader'              => "'''Priminimas:''' Jūs nenurodėte skyrelio/antraštės šiam komentarui. Jei vėl paspausite Įrašyti, jūsų keitimas bus įrašytas be jo.",
+'summary-preview'                   => 'Komentaro peržiūra',
+'subject-preview'                   => 'Skyrelio/antraštės peržiūra',
+'blockedtitle'                      => 'Naudotojas yra užblokuotas',
+'blockedtext'                       => "<big>'''Jūsų naudotojo vardas arba IP adresas yra užblokuotas.'''</big>
 
 Užblokavo $1. Nurodyta priežastis yra ''$2''.
 
@@ -577,7 +577,7 @@ Jūs galite susisiekti su $1 arba kitu
 [[{{MediaWiki:Grouppage-sysop}}|administratoriumi]], kad aptartumėte užblokavimą.
 Jūs negalite naudotis funkcija „Rašyti laišką šiam naudotojui“, jei nesate pateikę tikro savo el. pašto adreso savo [[{{ns:special}}:Preferences|paskyros nustatymuose]] ir nesate užblokuotas nuo jos naudojimo.
 Jūsų dabartinis IP adresas yra $3, o blokavimo ID yra #$5. Prašome nurodyti vieną ar abu juos, kai kreipiatės dėl blokavimo.",
-'autoblockedtext'           => "Jūsų IP adresas buvo automatiškai užblokuotas, nes jį naudojo kitas naudotojas, kurį užblokavo $1.
+'autoblockedtext'                   => "Jūsų IP adresas buvo automatiškai užblokuotas, nes jį naudojo kitas naudotojas, kurį užblokavo $1.
 Nurodyta priežastis yra ši:
 
 :''$2''
@@ -591,102 +591,106 @@ Jūs galite susisiekti su $1 arba kitu
 Jūs negalite naudotis funkcija „Rašyti laišką šiam naudotojui“, jei nesate užregistravę tikro el. pašto adreso savo [[{{ns:special}}:Preferences|naudotojo nustatymuose]] ir nesate užblokuotas nuo jos naudojimo.
 
 Jūsų blokavimo ID yra $5. Prašome nurodyti šį ID visuose prašymuose, kuriuos darote.",
-'blockednoreason'           => 'priežastis nenurodyta',
-'blockedoriginalsource'     => "Žemiau yra rodomas '''$1''' turinys:",
-'blockededitsource'         => "''Jūsų keitimų''' tekstas puslapiui '''$1''' yra rodomas žemiau:",
-'whitelistedittitle'        => 'Norint redaguoti reikia prisijungti',
-'whitelistedittext'         => 'Jūs turite $1, kad redaguotumėte puslapius.',
-'whitelistreadtitle'        => 'Norint skaityti reikia prisijungti',
-'whitelistreadtext'         => 'Jums reikia [[Special:Userlogin|prisijungti]], kad skaitytumėte puslapius.',
-'whitelistacctitle'         => 'Jums neleidžiama kurti paskyros',
-'whitelistacctext'          => 'Norėdami leisti kurti paskyras {{SITENAME}}, jums reikia [[Special:Userlogin|prisijungti]] ir turėti atitinkamas teises.',
-'confirmedittitle'          => 'Reikalingas el. pašto patvirtinimas, kad redaguotumėte',
-'confirmedittext'           => 'Jums reikia patvirtinti el. pašto adresą, prieš redaguojant puslapius.
+'blockednoreason'                   => 'priežastis nenurodyta',
+'blockedoriginalsource'             => "Žemiau yra rodomas '''$1''' turinys:",
+'blockededitsource'                 => "''Jūsų keitimų''' tekstas puslapiui '''$1''' yra rodomas žemiau:",
+'whitelistedittitle'                => 'Norint redaguoti reikia prisijungti',
+'whitelistedittext'                 => 'Jūs turite $1, kad redaguotumėte puslapius.',
+'whitelistreadtitle'                => 'Norint skaityti reikia prisijungti',
+'whitelistreadtext'                 => 'Jums reikia [[Special:Userlogin|prisijungti]], kad skaitytumėte puslapius.',
+'whitelistacctitle'                 => 'Jums neleidžiama kurti paskyros',
+'whitelistacctext'                  => 'Norėdami leisti kurti paskyras {{SITENAME}}, jums reikia [[Special:Userlogin|prisijungti]] ir turėti atitinkamas teises.',
+'confirmedittitle'                  => 'Reikalingas el. pašto patvirtinimas, kad redaguotumėte',
+'confirmedittext'                   => 'Jums reikia patvirtinti el. pašto adresą, prieš redaguojant puslapius.
 Prašome nurodyti ir patvirtinti jūsų el. pašto adresą per jūsų [[Special:Preferences|naudotojo nustatymus]].',
-'nosuchsectiontitle'        => 'Nėra tokio skyriaus',
-'nosuchsectiontext'         => 'Jūs mėginote redaguoti skyrių, kuris neegzistuoja. Kadangi nėra skyriaus „$1“, tai nėra kur įrašyti jūsų keitimo.',
-'loginreqtitle'             => 'Reikalingas prisijungimas',
-'loginreqlink'              => 'prisijungti',
-'loginreqpagetext'          => 'Jums reikia $1, kad matytumėte kitus puslapius.',
-'accmailtitle'              => 'Slaptažodis išsiųstas.',
-'accmailtext'               => 'Naudotojo „$1“ slaptažodis nusiųstas į $2.',
-'newarticle'                => '(Naujas)',
-'newarticletext'            => "Jūs patekote į dar neegzistuojantį puslapį.
+'nosuchsectiontitle'                => 'Nėra tokio skyriaus',
+'nosuchsectiontext'                 => 'Jūs mėginote redaguoti skyrių, kuris neegzistuoja. Kadangi nėra skyriaus „$1“, tai nėra kur įrašyti jūsų keitimo.',
+'loginreqtitle'                     => 'Reikalingas prisijungimas',
+'loginreqlink'                      => 'prisijungti',
+'loginreqpagetext'                  => 'Jums reikia $1, kad matytumėte kitus puslapius.',
+'accmailtitle'                      => 'Slaptažodis išsiųstas.',
+'accmailtext'                       => 'Naudotojo „$1“ slaptažodis nusiųstas į $2.',
+'newarticle'                        => '(Naujas)',
+'newarticletext'                    => "Jūs patekote į dar neegzistuojantį puslapį.
 Norėdami sukurti puslapį, pradėkite rašyti žemiau esančiame įvedimo lauke
 (plačiau [[{{MediaWiki:Helppage}}|pagalbos puslapyje]]).
 Jei patekote čia per klaidą, paprasčiausiai spustelkite  naršyklės mygtuką '''atgal'''.",
-'anontalkpagetext'          => "----''Tai yra anoniminio naudotojo, nesusikūrusio arba nenaudojančio paskyros, aptarimų puslapis. Dėl to naudojamas IP adresas jo identifikavimui. Šis IP adresas gali būti dalinamas keliems naudotojams. Jeigu Jūs esate anoniminis naudotojas ir atrodo, kad komentarai nėra skirti Jums, [[{{ns:special}}:Userlogin|sukurkite paskyrą arba prisijunkite]], ir nebūsite tapatinamas su kitais anoniminiais naudotojais.''",
-'noarticletext'             => 'Šiuo metu šiame puslapyje nėra jokio teksto, jūs galite [[Special:Search/{{PAGENAME}}|ieškoti šio puslapio pavadinimo]] kituose puslapiuose arba [{{fullurl:{{FULLPAGENAME}}|action=edit}} redaguoti šį puslapį].',
-'userpage-userdoesnotexist' => 'Naudotojo paskyra „$1“ yra neužregistruota. Prašom patikrinti, ar jūs norite kurti/redaguoti šį puslapį.',
-'clearyourcache'            => "'''Dėmesio:''' Išsaugoję jums gali prireikti išvalyti jūsų naršyklės podėlį, kad pamatytumėte pokyčius. '''Mozilla / Safari / Konqueror:''' laikydami ''Shift'' pasirinkite ''Atsiųsti iš naujo'', arba paspauskite ''Ctrl-Shift-R'' (sistemoje Apple Mac ''Cmd-Shift-R''); '''IE:''' laikydami ''Ctrl'' paspauskite ''Atnaujinti'', arba paspauskite ''Ctrl-F5''; '''Konqueror:''' tiesiog paspauskite ''Perkrauti'' mygtuką, arba paspauskite ''F5''; '''Opera''' naudotojams gali prireikti pilnai išvalyti jų podėlį ''Priemonės→Nuostatos''.",
-'usercssjsyoucanpreview'    => '<strong>Patarimas:</strong> Naudokite „Rodyti peržiūrą“ mygtuką, kad išmėgintumėte savo naująjį CSS/JS prieš išsaugant.',
-'usercsspreview'            => "'''Nepamirškite, kad jūs tik peržiūrit savo naudotojo CSS, jis dar nebuvo išsaugotas!'''",
-'userjspreview'             => "'''Nepamirškite, kad jūs tik testuojat/peržiūrit savo naudotojo JavaScript, jis dar nebuvo išsaugotas!'''",
-'userinvalidcssjstitle'     => "'''Dėmesio:''' Nėra jokios išvaizdos „$1“. Nepamirškite, kad savo .css ir .js puslapiai naudoja pavadinimą mažosiomis raidėmis, pvz., {{ns:user}}:Foo/monobook.css, o ne {{ns:user}}:Foo/Monobook.css.",
-'updated'                   => '(Atnaujinta)',
-'note'                      => '<strong>Pastaba:</strong>',
-'previewnote'               => '<strong>Nepamirškite, kad tai tik peržiūra, pakeitimai dar nėra išsaugoti!</strong>',
-'previewconflict'           => 'Ši peržiūra parodo tekstą iš viršutiniojo teksto redagavimo lauko taip, kaip jis bus rodomas, jei pasirinksite išsaugoti.',
-'session_fail_preview'      => '<strong>Atsiprašome! Mes negalime vykdyti jūsų keitimo dėl sesijos duomenų praradimo.
+'anontalkpagetext'                  => "----''Tai yra anoniminio naudotojo, nesusikūrusio arba nenaudojančio paskyros, aptarimų puslapis. Dėl to naudojamas IP adresas jo identifikavimui. Šis IP adresas gali būti dalinamas keliems naudotojams. Jeigu Jūs esate anoniminis naudotojas ir atrodo, kad komentarai nėra skirti Jums, [[{{ns:special}}:Userlogin|sukurkite paskyrą arba prisijunkite]], ir nebūsite tapatinamas su kitais anoniminiais naudotojais.''",
+'noarticletext'                     => 'Šiuo metu šiame puslapyje nėra jokio teksto, jūs galite [[Special:Search/{{PAGENAME}}|ieškoti šio puslapio pavadinimo]] kituose puslapiuose arba [{{fullurl:{{FULLPAGENAME}}|action=edit}} redaguoti šį puslapį].',
+'userpage-userdoesnotexist'         => 'Naudotojo paskyra „$1“ yra neužregistruota. Prašom patikrinti, ar jūs norite kurti/redaguoti šį puslapį.',
+'clearyourcache'                    => "'''Dėmesio:''' Išsaugoję jums gali prireikti išvalyti jūsų naršyklės podėlį, kad pamatytumėte pokyčius. '''Mozilla / Safari / Konqueror:''' laikydami ''Shift'' pasirinkite ''Atsiųsti iš naujo'', arba paspauskite ''Ctrl-Shift-R'' (sistemoje Apple Mac ''Cmd-Shift-R''); '''IE:''' laikydami ''Ctrl'' paspauskite ''Atnaujinti'', arba paspauskite ''Ctrl-F5''; '''Konqueror:''' tiesiog paspauskite ''Perkrauti'' mygtuką, arba paspauskite ''F5''; '''Opera''' naudotojams gali prireikti pilnai išvalyti jų podėlį ''Priemonės→Nuostatos''.",
+'usercssjsyoucanpreview'            => '<strong>Patarimas:</strong> Naudokite „Rodyti peržiūrą“ mygtuką, kad išmėgintumėte savo naująjį CSS/JS prieš išsaugant.',
+'usercsspreview'                    => "'''Nepamirškite, kad jūs tik peržiūrit savo naudotojo CSS, jis dar nebuvo išsaugotas!'''",
+'userjspreview'                     => "'''Nepamirškite, kad jūs tik testuojat/peržiūrit savo naudotojo JavaScript, jis dar nebuvo išsaugotas!'''",
+'userinvalidcssjstitle'             => "'''Dėmesio:''' Nėra jokios išvaizdos „$1“. Nepamirškite, kad savo .css ir .js puslapiai naudoja pavadinimą mažosiomis raidėmis, pvz., {{ns:user}}:Foo/monobook.css, o ne {{ns:user}}:Foo/Monobook.css.",
+'updated'                           => '(Atnaujinta)',
+'note'                              => '<strong>Pastaba:</strong>',
+'previewnote'                       => '<strong>Nepamirškite, kad tai tik peržiūra, pakeitimai dar nėra išsaugoti!</strong>',
+'previewconflict'                   => 'Ši peržiūra parodo tekstą iš viršutiniojo teksto redagavimo lauko taip, kaip jis bus rodomas, jei pasirinksite išsaugoti.',
+'session_fail_preview'              => '<strong>Atsiprašome! Mes negalime vykdyti jūsų keitimo dėl sesijos duomenų praradimo.
 Prašome pamėginti vėl. Jei tai nepadeda, pamėginkite atsijungti ir prisijungti atgal.</strong>',
-'session_fail_preview_html' => "<strong>Atsiprašome! Mes negalime apdoroti jūsų keitimo dėl sesijos duomenų praradimo.</strong>
+'session_fail_preview_html'         => "<strong>Atsiprašome! Mes negalime apdoroti jūsų keitimo dėl sesijos duomenų praradimo.</strong>
 
 ''Kadangi {{SITENAME}} grynasis HTML yra įjungtas, peržiūra yra paslėpta kaip atsargumo priemonė prieš JavaScript atakas.''
 
 <strong>Jei tai teisėtas keitimo bandymas, prašome pamėginti vėl. Jei tai nepadeda, pamėginkite atsijungti ir prisijungti atgal.</strong>",
-'token_suffix_mismatch'     => '<strong>Jūsų pakeitimas buvo atmestas, nes jūsų naršyklė iškraipė skyrybos ženklus keitimo žymėje. Keitimas buvo atmestas norint apsaugoti puslapio tekstą nuo sugadinimo. Taip kartais būna, kai jūs naudojate anoniminį tarpinio serverio paslaugą.</strong>',
-'editing'                   => 'Taisomas $1',
-'editingsection'            => 'Taisomas $1 (skyrelis)',
-'editingcomment'            => 'Taisomas $1 (komentaras)',
-'editconflict'              => 'Išpręskite konfliktą: $1',
-'explainconflict'           => 'Kažkas kitas jau pakeitė puslapį nuo tada, kai jūs pradėjote jį redaguoti.
+'token_suffix_mismatch'             => '<strong>Jūsų pakeitimas buvo atmestas, nes jūsų naršyklė iškraipė skyrybos ženklus keitimo žymėje. Keitimas buvo atmestas norint apsaugoti puslapio tekstą nuo sugadinimo. Taip kartais būna, kai jūs naudojate anoniminį tarpinio serverio paslaugą.</strong>',
+'editing'                           => 'Taisomas $1',
+'editingsection'                    => 'Taisomas $1 (skyrelis)',
+'editingcomment'                    => 'Taisomas $1 (komentaras)',
+'editconflict'                      => 'Išpręskite konfliktą: $1',
+'explainconflict'                   => 'Kažkas kitas jau pakeitė puslapį nuo tada, kai jūs pradėjote jį redaguoti.
 Viršutiniame tekstiniame lauke pateikta šiuo metu esanti puslapio versija.
 Jūsų keitimai pateikti žemiau esančiame lauke.
 Jums reikia sujungti jūsų pakeitimus su esančia versija.
 Paspaudus „Išsaugoti“, užsaugotas bus
 <b>tik</b> tekstas viršutiniame tekstiniame lauke.<br />',
-'yourtext'                  => 'Jūsų tekstas',
-'storedversion'             => 'Išsaugota versija',
-'nonunicodebrowser'         => '<strong>ĮSPĖJIMAS: Jūsų naršyklė nepalaiko unikodo. Kad būtų saugu redaguoti puslapį, ne ASCII simboliai redagavimo lauke bus rodomi kaip šešioliktainiai kodai.</strong>',
-'editingold'                => '<strong>ĮSPĖJIMAS: Jūs keičiate ne naujausią puslapio versiją.
+'yourtext'                          => 'Jūsų tekstas',
+'storedversion'                     => 'Išsaugota versija',
+'nonunicodebrowser'                 => '<strong>ĮSPĖJIMAS: Jūsų naršyklė nepalaiko unikodo. Kad būtų saugu redaguoti puslapį, ne ASCII simboliai redagavimo lauke bus rodomi kaip šešioliktainiai kodai.</strong>',
+'editingold'                        => '<strong>ĮSPĖJIMAS: Jūs keičiate ne naujausią puslapio versiją.
 Jei išsaugosite savo keitimus, po to daryti pakeitimai pradings.</strong>',
-'yourdiff'                  => 'Skirtumai',
-'copyrightwarning'          => 'Primename, kad viskas, kas patenka į {{SITENAME}}, yra laikoma paskelbtu pagal $2 (detaliau - $1). Jei nenorite, kad jūsų indėlis būtų be gailesčio redaguojamas ir platinamas, čia nerašykite.<br />
+'yourdiff'                          => 'Skirtumai',
+'copyrightwarning'                  => 'Primename, kad viskas, kas patenka į {{SITENAME}}, yra laikoma paskelbtu pagal $2 (detaliau - $1). Jei nenorite, kad jūsų indėlis būtų be gailesčio redaguojamas ir platinamas, čia nerašykite.<br />
 Jūs taip pat pasižadate, kad tai jūsų pačių rašytas turinys arba kopijuotas iš viešų ar panašių nemokamų šaltinių.
 <strong>NEKOPIJUOKITE AUTORINĖMIS TEISĖMIS APSAUGOTŲ DARBŲ BE LEIDIMO!</strong>',
-'copyrightwarning2'         => 'Primename, kad viskas, kas patenka į {{SITENAME}} gali būti redaguojama, perdaroma, ar pašalinama kitų naudotojų. Jei nenorite, kad jūsų indėlis būtų be gailesčio redaguojamas, čia nerašykite.<br />
+'copyrightwarning2'                 => 'Primename, kad viskas, kas patenka į {{SITENAME}} gali būti redaguojama, perdaroma, ar pašalinama kitų naudotojų. Jei nenorite, kad jūsų indėlis būtų be gailesčio redaguojamas, čia nerašykite.<br />
 Taip pat jūs pasižadate, kad tai jūsų pačių rašytas tekstas arba kopijuotas
 iš viešų ar panašių nemokamų šaltinių (detaliau - $1).
 <strong>NEKOPIJUOKITE AUTORINĖMIS TEISĖMIS APSAUGOTŲ DARBŲ BE LEIDIMO!</strong>',
-'longpagewarning'           => '<strong>DĖMESIO: Šis puslapis yra $1 kilobaitų ilgio; kai kurios
+'longpagewarning'                   => '<strong>DĖMESIO: Šis puslapis yra $1 kilobaitų ilgio; kai kurios
 naršyklės gali turėti problemų redaguojant puslapius beveik ar virš 32 KB.
 Prašome pamėginti puslapį padalinti į keletą smulkesnių dalių.</strong>',
-'longpageerror'             => '<strong>KLAIDA: Tekstas, kurį pateikėte, yra $1 kilobaitų ilgio,
+'longpageerror'                     => '<strong>KLAIDA: Tekstas, kurį pateikėte, yra $1 kilobaitų ilgio,
 kuris yra didesnis nei daugiausiai leistini $2 kilobaitai. Jis nebus išsaugotas.</strong>',
-'readonlywarning'           => '<strong>DĖMESIO: Duomenų bazė buvo užrakinta techninei profilaktikai,
+'readonlywarning'                   => '<strong>DĖMESIO: Duomenų bazė buvo užrakinta techninei profilaktikai,
 taigi negalėsite išsaugoti savo pakeitimų dabar. Jūs gali nusikopijuoti tekstą į tekstinį failą
 ir vėliau įkelti jį čia.</strong>',
-'protectedpagewarning'      => '<strong>DĖMESIO:  Šis puslapis yra užrakintas ir jį redaguoti gali tik administratoriaus teises turintys naudotojai.</strong>',
-'semiprotectedpagewarning'  => "'''Pastaba:''' Šis puslapis buvo užrakintas ir jį gali redaguoti tik registruoti naudotojai.",
-'cascadeprotectedwarning'   => "'''Dėmesio''': Šis puslapis buvo užrakintas taip, kad tik naudotojai su administratoriaus teisėmis galėtų jį redaguoti, nes jis yra įtrauktas į {{PLURAL:$1|šį puslapį, apsaugotą|šiuos puslapius, apsaugotus}} „pakopinės apsaugos“ pasirinktimi:",
-'titleprotectedwarning'     => '<strong>ĮSPĖJIMAS: Šis puslapis buvo užrakintas taip, kad tik kai kurie naudotojai galėtų jį sukurti.</strong>',
-'templatesused'             => 'Puslapyje naudojami šablonai:',
-'templatesusedpreview'      => 'Šablonai, naudoti šioje peržiūroje:',
-'templatesusedsection'      => 'Šablonai, naudoti šiame skyrelyje:',
-'template-protected'        => '(apsaugotas)',
-'template-semiprotected'    => '(pusiau apsaugotas)',
-'hiddencategories'          => 'Šis puslapis priklauso $1 {{PLURAL:$1|paslėptai kategorijai|paslėptoms kategorijoms|paslėptų kategorijų}}:',
-'edittools'                 => '<!-- Šis tekstas bus rodomas po redagavimo ir įkėlimo formomis. -->',
-'nocreatetitle'             => 'Puslapių kūrimas apribotas',
-'nocreatetext'              => '{{SITENAME}} apribojo galimybę kurti naujus puslapius.
+'protectedpagewarning'              => '<strong>DĖMESIO:  Šis puslapis yra užrakintas ir jį redaguoti gali tik administratoriaus teises turintys naudotojai.</strong>',
+'semiprotectedpagewarning'          => "'''Pastaba:''' Šis puslapis buvo užrakintas ir jį gali redaguoti tik registruoti naudotojai.",
+'cascadeprotectedwarning'           => "'''Dėmesio''': Šis puslapis buvo užrakintas taip, kad tik naudotojai su administratoriaus teisėmis galėtų jį redaguoti, nes jis yra įtrauktas į {{PLURAL:$1|šį puslapį, apsaugotą|šiuos puslapius, apsaugotus}} „pakopinės apsaugos“ pasirinktimi:",
+'titleprotectedwarning'             => '<strong>ĮSPĖJIMAS: Šis puslapis buvo užrakintas taip, kad tik kai kurie naudotojai galėtų jį sukurti.</strong>',
+'templatesused'                     => 'Puslapyje naudojami šablonai:',
+'templatesusedpreview'              => 'Šablonai, naudoti šioje peržiūroje:',
+'templatesusedsection'              => 'Šablonai, naudoti šiame skyrelyje:',
+'template-protected'                => '(apsaugotas)',
+'template-semiprotected'            => '(pusiau apsaugotas)',
+'hiddencategories'                  => 'Šis puslapis priklauso $1 {{PLURAL:$1|paslėptai kategorijai|paslėptoms kategorijoms|paslėptų kategorijų}}:',
+'edittools'                         => '<!-- Šis tekstas bus rodomas po redagavimo ir įkėlimo formomis. -->',
+'nocreatetitle'                     => 'Puslapių kūrimas apribotas',
+'nocreatetext'                      => '{{SITENAME}} apribojo galimybę kurti naujus puslapius.
 Jūs galite grįžti ir redaguoti jau esantį puslapį, arba [[Special:Userlogin|prisijungti arba sukurti paskyrą]].',
-'nocreate-loggedin'         => 'Jūs neturite teisės sukurti puslapius šiame projekte.',
-'permissionserrors'         => 'Teisių klaida',
-'permissionserrorstext'     => 'Jūs neturite teisių tai daryti dėl {{PLURAL:$1|šios priežasties|šių priežasčių}}:',
-'recreate-deleted-warn'     => "'''Dėmesio: Jūs atkuriate puslapį, kuris anksčiau buvo ištrintas.'''
+'nocreate-loggedin'                 => 'Jūs neturite teisės sukurti puslapius šiame projekte.',
+'permissionserrors'                 => 'Teisių klaida',
+'permissionserrorstext'             => 'Jūs neturite teisių tai daryti dėl {{PLURAL:$1|šios priežasties|šių priežasčių}}:',
+'recreate-deleted-warn'             => "'''Dėmesio: Jūs atkuriate puslapį, kuris anksčiau buvo ištrintas.'''
 
 Jūs turite nuspręsti, ar tinka toliau redaguoti šį puslapį.
 Šio puslapio šalinimų istorija yra pateikta čia dėl patogumo:",
+'expensive-parserfunction-warning'  => 'Įspėjimas: Šiame puslapyje yra per daug brangių kodo analizuoklio funkcijų šaukinių.
+
+Tai turėtų būti mažiau nei $2, tačiau dabar yra $1.',
+'expensive-parserfunction-category' => 'Puslapiai su per daug brangių kodo analizuoklio funkcijų šaukinių',
 
 # "Undo" feature
 'undo-success' => 'Keitimas gali būti atšauktas. Prašome patikrinti palyginimą, esantį žemiau, kad patvirtintumėte, kad jūs tai ir norite padaryti, ir tada išsaugokite pakeitimus, esančius žemiau, kad užbaigtumėte keitimo atšaukimą.',
@@ -949,6 +953,7 @@ Nepažymėtas langelis reiškia, kad šis naudotojas nėra toje grupėje.',
 
 # Groups
 'group'               => 'Grupė:',
+'group-user'          => 'Naudotojai',
 'group-autoconfirmed' => 'Automatiškai patvirtinti naudotojai',
 'group-bot'           => 'Robotai',
 'group-sysop'         => 'Administratoriai',
@@ -1259,6 +1264,7 @@ Iš to išeina, kad vidutiniškai kiekvienas puslapis keistas '''$5''' karto, be
 'deadendpages'            => 'Puslapiai-aklavietės',
 'deadendpagestext'        => 'Šie puslapiai neturi nuorodų į kitus puslapius šiame projekte.',
 'protectedpages'          => 'Apsaugoti puslapiai',
+'protectedpages-indef'    => 'Tik neapibrėžtos apsaugos',
 'protectedpagestext'      => 'Šie puslapiai yra apsaugoti nuo perkėlimo ar redagavimo',
 'protectedpagesempty'     => 'Šiuo metu nėra apsaugotas joks failas su šiais parametrais.',
 'protectedtitles'         => 'Apsaugoti pavadinimai',
@@ -1445,7 +1451,7 @@ Prašome patvirtinti, kad jūs tikrai norite tai padaryti, žinote apie galimus 
 'deletedtext'                 => '„<nowiki>$1</nowiki>“ ištrintas.
 Paskutinių šalinimų istorija - $2.',
 'deletedarticle'              => 'ištrynė „[[$1]]“',
-'suppressedarticle'           => 'apribotas "[[$1]]"',
+'suppressedarticle'           => 'apribotas „[[$1]]“',
 'dellogpage'                  => 'Šalinimų istorija',
 'dellogpagetext'              => 'Žemiau pateikiamas paskutinių trynimų sąrašas.',
 'deletionlog'                 => 'šalinimų istorija',

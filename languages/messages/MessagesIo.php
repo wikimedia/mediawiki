@@ -122,6 +122,7 @@ $messages = array(
 'qbfind'         => 'Trovez',
 'qbedit'         => 'Editar',
 'qbpageoptions'  => 'Ica pagino',
+'qbpageinfo'     => 'Kuntexto',
 'qbmyoptions'    => 'Mea pagini',
 'qbspecialpages' => 'Specala pagini',
 'moredotdotdot'  => 'Plus...',
@@ -472,10 +473,16 @@ Publikigante vua skribajo hike, vu asertas ke olu skribesis da vu ipsa o kopiesi
 'files'              => 'Arkivi',
 
 # Groups
-'group'     => 'Grupo:',
-'group-all' => '(omna)',
+'group'            => 'Grupo:',
+'group-user'       => 'Uzanti',
+'group-bureaucrat' => 'Burokrati',
+'group-all'        => '(omna)',
 
-'grouppage-sysop' => '{{ns:project}}:Administranti',
+'group-user-member'       => 'Uzanto',
+'group-bureaucrat-member' => 'Burokrato',
+
+'grouppage-sysop'      => '{{ns:project}}:Administranti',
+'grouppage-bureaucrat' => '{{ns:project}}:Burokrati',
 
 # User rights log
 'rightsnone' => '(nula)',
@@ -493,6 +500,7 @@ Publikigante vua skribajo hike, vu asertas ke olu skribesis da vu ipsa o kopiesi
 'rcshowhidemine'    => '$1 mea redakti',
 'rclinks'           => 'Montrar la lasta $1 chanji dum la lasta $2 dii<br />$3',
 'diff'              => 'dif',
+'hist'              => 'vers',
 'hide'              => 'Celar',
 'show'              => 'Montrar',
 'minoreditletter'   => 'm',
@@ -532,12 +540,14 @@ Publikigante vua skribajo hike, vu asertas ke olu skribesis da vu ipsa o kopiesi
 'imagelist'      => 'Listo di imaji',
 'imagelist_date' => 'Dato',
 'imagelist_name' => 'Nomo',
+'imagelist_user' => 'Uzanto',
 
 # Image description page
 'filehist'                  => 'Historio dil arkivo',
 'filehist-help'             => 'Klikez sur la dato/horo por vidar arkivo quale ol aparis ye ta tempo.',
 'filehist-datetime'         => 'Dato/Horo',
 'filehist-user'             => 'Uzero',
+'filehist-dimensions'       => 'Dimensioni',
 'filehist-filesize'         => 'Grandeso dil arkivo',
 'imagelinks'                => 'Ligilo al imajo',
 'linkstoimage'              => 'Ca pagini ligas al imajo:',
@@ -545,7 +555,12 @@ Publikigante vua skribajo hike, vu asertas ke olu skribesis da vu ipsa o kopiesi
 'uploadnewversion-linktext' => 'Adkargez nova versiono dil arkivo',
 
 # File deletion
-'filedelete-submit' => 'Efacar',
+'filedelete-submit'           => 'Efacar',
+'filedelete-otherreason'      => 'Altra/adjuntita motivo:',
+'filedelete-reason-otherlist' => 'Altra motivo',
+
+# Unused templates
+'unusedtemplateswlh' => 'altra ligili',
 
 # Random page
 'randompage' => 'Pagino hazarde',
@@ -562,10 +577,12 @@ Publikigante vua skribajo hike, vu asertas ke olu skribesis da vu ipsa o kopiesi
 'brokenredirects'     => 'Ridirektili nekorekta',
 'brokenredirectstext' => 'La sequanta ridirektili ligas a ne-existanta artiklo:',
 
+'withoutinterwiki-submit' => 'Montrar',
+
 # Miscellaneous special pages
 'ncategories'      => '$1 {{PLURAL:$1|kategorio|kategorii}}',
-'nlinks'           => '$1 ligili',
-'nviews'           => '$1 viziti',
+'nlinks'           => '$1 {{PLURAL:$1|ligilo|ligili}}',
+'nviews'           => '$1 {{PLURAL:$1|vizito|viziti}}',
 'lonelypages'      => 'Pagini sen ligili',
 'unusedimages'     => 'Neuzata imaji',
 'popularpages'     => 'Populara pagini',
@@ -649,35 +666,37 @@ Publikigante vua skribajo hike, vu asertas ke olu skribesis da vu ipsa o kopiesi
 'enotif_newpagetext' => 'Ico esas nula pagino.',
 
 # Delete/protect/revert
-'deletepage'         => 'Efacar pagino',
-'confirm'            => 'Konfirmar',
-'excontent'          => "La kontenajo esis: '$1'",
-'exbeforeblank'      => "La kontenajo ante efaco esis: '$1'",
-'exblank'            => 'La pagino esis vakua',
-'delete-legend'      => 'Efacar',
-'historywarning'     => 'Egardez: La pagino, quan vu efaceskas, havas versionaro:',
-'actioncomplete'     => 'Ago kompletigita',
-'deletedtext'        => '"<nowiki>$1</nowiki>" efacesis.
+'deletepage'            => 'Efacar pagino',
+'confirm'               => 'Konfirmar',
+'excontent'             => "La kontenajo esis: '$1'",
+'exbeforeblank'         => "La kontenajo ante efaco esis: '$1'",
+'exblank'               => 'La pagino esis vakua',
+'delete-legend'         => 'Efacar',
+'historywarning'        => 'Egardez: La pagino, quan vu efaceskas, havas versionaro:',
+'actioncomplete'        => 'Ago kompletigita',
+'deletedtext'           => '"<nowiki>$1</nowiki>" efacesis.
 Videz $2 por obtenar registro di recenta efaci.',
-'deletedarticle'     => 'efacita "$1"',
-'dellogpagetext'     => 'Infre esas listo di la plu recenta efaci.',
-'deletionlog'        => 'registro di efaciti',
-'reverted'           => 'Rekuperita ad antea versiono',
-'deletecomment'      => 'Motivo por la efaco',
-'rollback'           => 'Desfacar redakto',
-'rollback_short'     => 'Desfacar',
-'rollbackfailed'     => 'Desfaco ne sucesis',
-'cantrollback'       => 'Ne esas posibla desfacar la edito. La lasta kontributanto esas la nura autoro di ica pagino.',
-'alreadyrolled'      => 'Onu ne povas desfacar la lasta chanjo di [[$1]]
+'deletedarticle'        => 'efacita "$1"',
+'dellogpagetext'        => 'Infre esas listo di la plu recenta efaci.',
+'deletionlog'           => 'registro di efaciti',
+'reverted'              => 'Rekuperita ad antea versiono',
+'deletecomment'         => 'Motivo por la efaco',
+'deleteotherreason'     => 'Altra/adjuntita motivo:',
+'deletereasonotherlist' => 'Altra motivo',
+'rollback'              => 'Desfacar redakto',
+'rollback_short'        => 'Desfacar',
+'rollbackfailed'        => 'Desfaco ne sucesis',
+'cantrollback'          => 'Ne esas posibla desfacar la edito. La lasta kontributanto esas la nura autoro di ica pagino.',
+'alreadyrolled'         => 'Onu ne povas desfacar la lasta chanjo di [[$1]]
 da [[User:$2|$2]] ([[User talk:$2|Talk]]); ulu pluse ja editis o desfacis ica pagino.
 
 Lasta edito esis da [[User:$3|$3]] ([[User talk:$3|Talk]]).',
-'editcomment'        => 'La rezumo di la edito esis: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'         => 'Rekuperita redakti da [[Special:Contributions/$2|$2]] ([[User talk:$2|Debato]]); rekuperita la lasta redakto di [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
-'unprotectedarticle' => 'desprotektita [[$1]]',
-'protect-title'      => 'Protektante "$1"',
-'protect-legend'     => 'Konfirmar protekto',
-'protectcomment'     => 'Motivo por la protekto',
+'editcomment'           => 'La rezumo di la edito esis: "<i>$1</i>".', # only shown if there is an edit comment
+'revertpage'            => 'Rekuperita redakti da [[Special:Contributions/$2|$2]] ([[User talk:$2|Debato]]); rekuperita la lasta redakto di [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'unprotectedarticle'    => 'desprotektita [[$1]]',
+'protect-title'         => 'Protektante "$1"',
+'protect-legend'        => 'Konfirmar protekto',
+'protectcomment'        => 'Motivo por la protekto',
 
 # Restrictions (nouns)
 'restriction-edit' => 'Redaktar',
@@ -703,21 +722,25 @@ Lasta edito esis da [[User:$3|$3]] ([[User talk:$3|Talk]]).',
 'uctop'         => ' (lasta modifiko)',
 
 # What links here
-'whatlinkshere'       => 'Quo ligas hike',
-'whatlinkshere-title' => 'Pagini qui ligas ad $1',
-'whatlinkshere-page'  => 'Pagino:',
-'linklistsub'         => '(Listo di ligili)',
-'linkshere'           => "Ca pagini esas ligilizita ad '''[[:$1]]''':",
-'nolinkshere'         => "Nula pagino ligas ad '''[[:$1]]'''.",
-'isredirect'          => 'ridirektanta pagino',
+'whatlinkshere'           => 'Quo ligas hike',
+'whatlinkshere-title'     => 'Pagini qui ligas ad $1',
+'whatlinkshere-page'      => 'Pagino:',
+'linklistsub'             => '(Listo di ligili)',
+'linkshere'               => "Ca pagini esas ligilizita ad '''[[:$1]]''':",
+'nolinkshere'             => "Nula pagino ligas ad '''[[:$1]]'''.",
+'isredirect'              => 'ridirektanta pagino',
+'whatlinkshere-links'     => '← ligili',
+'whatlinkshere-hidelinks' => '$1 ligili',
 
 # Block/unblock
 'blockip'            => 'Blokusado di IP-adresi',
 'ipaddress'          => 'IP-adreso / uzantonomo',
 'ipbexpiry'          => 'Expiro',
 'ipbreason'          => 'Motivo',
+'ipbreasonotherlist' => 'Altra motivo',
 'ipbsubmit'          => 'Blokusar ica uzanto',
 'ipbotheroption'     => 'altra',
+'ipbotherreason'     => 'Altra/adjuntita motivo:',
 'badipaddress'       => 'IP-adreso ne esas valida',
 'blockipsuccesssub'  => 'Blokusado sucesis',
 'blockipsuccesstext' => '[[Special:Contributions/$1|$1]] blokusesis.<br />
@@ -732,7 +755,7 @@ Videz [[Special:Ipblocklist|IP-blokuslisto]] por revizor blokusadi.',
 'unblocklink'        => 'Desblokusar',
 'contribslink'       => 'kontributaji',
 'autoblocker'        => 'Autoblokusita nam vu havas la sama IP-adreso kam "[[User:$1|$1]]". Motivo: "$2"',
-'blocklogentry'      => 'Vu blokusis "[[$1]]" dum periodo de "$2"',
+'blocklogentry'      => 'blokusis [[$1]] dum periodo de $2 $3',
 'unblocklogentry'    => 'Desblokusita "$1"',
 'ipb_expiry_invalid' => 'Nevalida expiro-tempo.',
 'ip_range_invalid'   => 'Nevalida IP-rango.',
@@ -858,6 +881,7 @@ Voluntez selektar altra nomo.',
 
 # Special:Newimages
 'imagelisttext' => "Infre esas listo di '''$1''' {{PLURAL:$1|imajo|imaji}} rangizita $2.",
+'showhidebots'  => '($1 bot-i)',
 'ilsubmit'      => 'Serchar',
 'bydate'        => 'per dato',
 

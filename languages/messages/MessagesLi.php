@@ -663,7 +663,7 @@ De door $3 opgegaeve reje is ''$2''",
 'cur'                 => 'hujig',
 'next'                => 'volgende',
 'last'                => 'vörrige',
-'page_first'          => 'irste',
+'page_first'          => 'ierste',
 'page_last'           => 'litste',
 'histlegend'          => 'Verklaoring aafkortinge: (wijz) = versjil mit actueile versie, (vörrige) = versjil mit vörrige versie, K = kleine verangering',
 'deletedrev'          => '[gewis]',
@@ -774,10 +774,7 @@ Wees zeker det deze wieziging de gesjiedenisdoorloupendheid van de pagina zal be
 'nonefound'             => '<strong>Lèt op:</strong> \'n zeukopdrach kan mislökke door \'t gebroek van (in \'t Ingelsj) väöl veurkómmende wäörd wie "of" en "be", die neet geïndexeerd zint, of door versjillende zeukterme tegeliek op te gaeve (de kries dan allein pazjena\'s te zeen woerin alle opgegaeve terme veurkómme).',
 'powersearch'           => 'Zeuke',
 'powersearch-legend'    => 'Oetgebrèd zeuke',
-'powersearchtext'       => '
- Zeuk in naomroemdes :<br />
-$1<br />
-$2 Toen redirects   Zeuk: $3 $9',
+'powersearchtext'       => 'Zeuk in naamruumdes:<br />$1<br />$2 Tuin redirects<br />Zeuk nao $3 $9',
 'searchdisabled'        => '<p style="margin: 1.5em 2em 1em">Zeuke op {{SITENAME}} is oetgesjakeld vanweige gebrek aan servercapaciteit. Zoelang as de servers nog neet sjterk genog zunt kins e zeuke bie Google.
 <span style="font-size: 89%; display: block; margin-left: .2em">Mèrk op dat hun indexe van {{SITENAME}} content e bietje gedatierd kint zien.</span></p>',
 
@@ -905,8 +902,8 @@ $2 Toen redirects   Zeuk: $3 $9',
 'rclinks'                           => 'Bekiek de $1 litste verangeringe van de aafgelaupe $2 daag.<br />$3',
 'diff'                              => 'vers',
 'hist'                              => 'gesj',
-'hide'                              => 'verberg',
-'show'                              => 'toen',
+'hide'                              => 'Versjtaek',
+'show'                              => 'Tuin',
 'minoreditletter'                   => 'K',
 'newpageletter'                     => 'N',
 'boteditletter'                     => 'b',
@@ -1478,18 +1475,21 @@ $1",
 'sp-contributions-submit'      => 'Zeuk/tuun',
 
 # What links here
-'whatlinkshere'       => 'Links nao dees pazjena',
-'whatlinkshere-title' => "Pazjena's die verwieze nao $1",
-'whatlinkshere-page'  => 'Pazjena:',
-'linklistsub'         => '(lies van verwiezinge)',
-'linkshere'           => "De volgende pazjena's verwieze nao '''[[:$1]]''':",
-'nolinkshere'         => "D'r zint gein pazjena's mit links nao '''[[:$1]]''' haer.",
-'nolinkshere-ns'      => "Geine inkele pazjena link nao '''[[:$1]]''' in de gekaoze naamruumde.",
-'isredirect'          => 'redirect pazjena',
-'istemplate'          => 'ingevoeg es sjabloon',
-'whatlinkshere-prev'  => '{{PLURAL:$1|vörge|vörge $1}}',
-'whatlinkshere-next'  => '{{PLURAL:$1|volgende|volgende $1}}',
-'whatlinkshere-links' => '← links daonao',
+'whatlinkshere'            => 'Links nao dees pazjena',
+'whatlinkshere-title'      => "Pazjena's die verwieze nao $1",
+'whatlinkshere-page'       => 'Pazjena:',
+'linklistsub'              => '(lies van verwiezinge)',
+'linkshere'                => "De volgende pazjena's verwieze nao '''[[:$1]]''':",
+'nolinkshere'              => "D'r zint gein pazjena's mit links nao '''[[:$1]]''' haer.",
+'nolinkshere-ns'           => "Geine inkele pazjena link nao '''[[:$1]]''' in de gekaoze naamruumde.",
+'isredirect'               => 'redirect pazjena',
+'istemplate'               => 'ingevoeg es sjabloon',
+'whatlinkshere-prev'       => '{{PLURAL:$1|vörge|vörge $1}}',
+'whatlinkshere-next'       => '{{PLURAL:$1|volgende|volgende $1}}',
+'whatlinkshere-links'      => '← links daonao',
+'whatlinkshere-hideredirs' => '$1 redirects',
+'whatlinkshere-hidetrans'  => '$1 transclusies',
+'whatlinkshere-hidelinks'  => '$1 links',
 
 # Block/unblock
 'blockip'                     => 'Blokkeer dit IP-adres',
@@ -1858,8 +1858,8 @@ $1",
 # Bad image list
 'bad_image_list' => "De opmaak is es volg:
 
-Allein regels in 'ne lies (regels die beginne mit *) waere verwerk. De irste link op 'ne regel mot 'ne link zeen nao 'ne óngewunsjde afbeilding.
-Alle volgende links die op dezelfde regel staon, waere behanjeld es oetzönjering, wie beveurbeeld pazjena's wo op de afbeilding in de teks opgenaome is.",
+Allein regele in 'n lies (regele die mit * beginnen) waere verwirk. De ierste link op 'ne regel mót 'ne link zeen nao 'n óngewunsj plaetje.
+Alle volgende links die op dezelfde regel sjtaon, waere behanjeld es oetzunjering, zoe wie pazjena's woe-op 't plaetje in de teks opgenómme is.",
 
 # Metadata
 'metadata'          => 'Metadata',

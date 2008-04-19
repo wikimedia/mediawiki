@@ -1147,6 +1147,7 @@ az üres azt, hogy nem.',
 'group-bureaucrat-member'    => 'bürokrata',
 'group-suppress-member'      => 'adatvédelmi biztos',
 
+'grouppage-user'          => '{{ns:project}}:Felhasználók',
 'grouppage-autoconfirmed' => '{{ns:project}}:Automatikusan megerősített felhasználók',
 'grouppage-bot'           => '{{ns:project}}:Botok',
 'grouppage-sysop'         => '{{ns:project}}:Adminisztrátorok',

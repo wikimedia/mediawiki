@@ -173,6 +173,8 @@ $messages = array(
 'toc'                 => 'Περιεχόμενα',
 'showtoc'             => 'δείξον',
 'hidetoc'             => 'κρύψον',
+'site-rss-feed'       => '$1 RSS Συνδρομή',
+'site-atom-feed'      => '$1 Atom Συνδρομή',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Σελίδαν',
@@ -198,14 +200,14 @@ $messages = array(
 'yourname'                => 'Όνεμα χρήστε:',
 'yourpassword'            => 'Σημάδι:',
 'yourpasswordagain'       => "Ξαν' γράψτεν το σημάδι:",
-'login'                   => 'Είσοδος',
-'nav-login-createaccount' => 'Είσοδος / Ποίσον λογαριασμόν',
-'userlogin'               => 'Είσοδος / Ποίσον λογαριασμόν',
+'login'                   => 'Εμπάτε',
+'nav-login-createaccount' => 'Εμπάτε / Ποίστεν λογαριασμόν',
+'userlogin'               => 'Εμπάτε / Ποίστεν λογαριασμόν',
 'logout'                  => 'οξουκά',
 'userlogout'              => 'Οξουκά',
 'notloggedin'             => 'Ευρίσκεζνε οξουκά ασή Βικιπαίδειαν',
 'nologin'                 => "Λογαριασμόν 'κ έχετε; $1.",
-'nologinlink'             => 'Ποίσον λογαριασμόν',
+'nologinlink'             => 'Ποίστεν λογαριασμόν',
 'createaccount'           => 'Ποίσον λογαριασμόν',
 'gotaccount'              => 'Λογαριασμόν έχετε; $1.',
 'gotaccountlink'          => 'Είσοδος',
@@ -213,7 +215,8 @@ $messages = array(
 'username'                => 'Όνεμα χρήστε:',
 'yourlanguage'            => "Τ' εσόν η γώσσαν:",
 'loginerror'              => 'Σφάλμα εγγραφής',
-'loginsuccesstitle'       => 'Έντον η είσοδος',
+'loginsuccesstitle'       => "Έντον τ' εσέβεμαν",
+'loginsuccess'            => "'''Εσέβετεν σο {{SITENAME}} ους \"\$1\".'''",
 'mailmypassword'          => 'Αποστολή κωδικού',
 'accountcreated'          => 'Ο λογαριασμόν έντον',
 'createaccount-title'     => 'Δημιουργίαν λογαριασμού για {{SITENAME}}',
@@ -305,7 +308,7 @@ $messages = array(
 'mimesearch' => 'Αράεμαν MIME',
 
 # Random page
-'randompage' => 'Κατά τύχην σελίδα',
+'randompage' => 'Ήντιναν σελίδα',
 
 # Statistics
 'statistics' => 'Στατιστικήν',
@@ -326,8 +329,8 @@ $messages = array(
 'specialpages'            => 'Ειδικά σελίδας',
 'newpages'                => 'Καινούρεα σελίδας',
 'ancientpages'            => 'Ασ’ όλιον παλαιά σελίδας',
-'move'                    => 'Αχταρμάν',
-'movethispage'            => 'Ποίσον έναν αχταρμάν τη σελίδαν',
+'move'                    => 'Ετεροχλάεμαν',
+'movethispage'            => "Άλλαξον τ' όνεμα τη σελίδας",
 
 # Book sources
 'booksources-go' => 'Δέβα',

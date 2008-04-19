@@ -905,7 +905,7 @@ loka horzono malsamas disde tiu de la servilo (UTC).
 Ekzemple, por la Centra Eŭropa Horzono, indiku "1" vintre aŭ "2" dum somertempo.',
 'localtime'                => 'Loka horzono',
 'timezoneoffset'           => 'Malsamo',
-'servertime'               => 'Horzono de la servilo (UTC)',
+'servertime'               => 'Horo de la servilo (UTC):',
 'guesstimezone'            => 'Plenigita el la foliumilo',
 'allowemail'               => 'Permesu retmesaĝojn de aliaj uzantoj',
 'defaultns'                => 'Traserĉu la jenajn nomspacojn:',
@@ -925,7 +925,8 @@ Ekzemple, por la Centra Eŭropa Horzono, indiku "1" vintre aŭ "2" dum somertemp
 'userrights-groupsavailable'       => 'Disponeblaj grupoj:',
 'userrights-groups-help'           => 'Vi povas modifi la grupojn kiun ĉi uzanto enestas.
 Markita markbutono signifas ke la uzanto estas en tiu grupo.
-Nemarkita markbutono signifas ke la uzanto ne estas in tiu grupo.',
+Nemarkita markbutono signifas ke la uzanto ne estas in tiu grupo.
+Steleto (*) signifas ke vi ne povas forigi la grupon post vi aldonis ĝin, aŭ male.',
 'userrights-reason'                => 'Kialo por ŝanĝo:',
 'userrights-available-none'        => 'Vi ne eblas ŝanĝi membrecon de grupoj.',
 'userrights-available-add'         => 'Vi povas aldoni iujn ajn uzantojn al {{PLURAL:$2|ĉi tiu grupo|ĉi tiuj grupoj}}: $1.',
