@@ -607,7 +607,7 @@ Ditt konto har skapats. Glöm inte att justera dina inställningar.',
 'externaldberror'            => 'Antingen inträffade autentiseringsproblem med en extern databas, eller så får du inte uppdatera ditt externa konto.',
 'loginproblem'               => '<b>Det uppstod problem vid inloggningen.</b><br />Pröva igen!',
 'login'                      => 'Logga in',
-'nav-login-createaccount'    => 'Skapa ett konto eller logga in',
+'nav-login-createaccount'    => 'Logga in/skapa konto',
 'loginprompt'                => 'För att logga in måste tillåta cookies för att logga in på {{SITENAME}}.',
 'userlogin'                  => 'Skapa ett konto eller logga in',
 'logout'                     => 'Logga ut',
@@ -1087,7 +1087,8 @@ Notera dock att deras indexering av {{SITENAME}} kan vara något föråldrad.',
 'userrights-groupsavailable'       => 'Tillgängliga grupper:',
 'userrights-groups-help'           => 'Du kan ändra vilka grupper denna användare är medlem i.
 En ikryssad ruta betyder användaren är medlem i den gruppen.
-En okryssad ruta betyder att användaren inte är medlem i den gruppen.',
+En okryssad ruta betyder att användaren inte är medlem i den gruppen.
+En * markerar att du inte kan ta bort gruppen när du har lagt till den, eller vice versa.',
 'userrights-reason'                => 'Anledning till ändringen:',
 'userrights-available-none'        => 'Du kan inte ändra några grupptillhörigheter.',
 'userrights-available-add'         => 'Du kan lägga till användare i {{PLURAL:$2|denna grupp|dessa grupper}}: $1.',

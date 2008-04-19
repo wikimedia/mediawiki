@@ -278,13 +278,14 @@ $1',
 'viewsource'         => 'Aplūkot kodu',
 'viewsourcefor'      => 'Lapa: $1',
 'protectedinterface' => 'Šī lapa satur programmatūras interfeisā lietotu tekstu un ir bloķēta pret izmaiņām, lai pasargātu no bojājumiem.',
-'editinginterface'   => "'''Brīdinājums:''' Tu izmaini lapu, kuras saturu izmanto wiki programmatūras lietotāja saskarnē (''interfeisā''). Šīs lapas izmaiņas ietekmēs lietotāja saskarni citiem lietotājiem.",
+'editinginterface'   => "'''Brīdinājums:''' Tu izmaini lapu, kuras saturu izmanto wiki programmatūras lietotāja saskarnē (''interfeisā''). Šīs lapas izmaiņas ietekmēs lietotāja saskarni citiem lietotājiem. Pēc modificēšanas, šīs izmaiņas būtu lietderīgi pievienot arī [http://translatewiki.net/wiki/Main_Page?setlang=en Betawiki], kas ir MediaWiki lokalizēšanas projekts.",
 
 # Login and logout pages
 'logouttitle'                => 'Lietotāja iziešana',
-'logouttext'                 => 'Tu esi izgājis no {{grammar:ģenitīvs|{{SITENAME}}}}.
+'logouttext'                 => "'''Tu esi izgājis no {{grammar:ģenitīvs|{{SITENAME}}}}.'''
+
 Vari turpināt to izmantot anonīmi, vari atgriezties kā cits lietotājs vai varbūt tas pats.
-Ņem vērā, ka arī pēc iziešanas no {{grammar:ģenitīvs|{{SITENAME}}}} dažas lapas var tikt parādītas tā, it kā tu vēl būtu iekšā, līdz tiks iztīrīta pārlūka kešatmiņa.',
+Ņem vērā, ka arī pēc iziešanas no {{grammar:ģenitīvs|{{SITENAME}}}} dažas lapas var tikt parādītas tā, it kā tu vēl būtu iekšā, līdz tiks iztīrīta pārlūka kešatmiņa.",
 'welcomecreation'            => "== Laipni lūdzam, $1! ==
 
 Tavs lietotāja konts ir izveidots. Neaizmirsti, ka ir iespējams mainīt ''{{grammar:ģenitīvs|{{SITENAME}}}}'' izmantošanas izvēles.",
@@ -404,14 +405,14 @@ Tava IP adrese ir $3. Lūdzu iekļauj to visos turpmākajos pieprasījumos.',
 'accmailtext'              => '$1 parole tika nosūtīta uz $2.',
 'newarticle'               => '(Jauns raksts)',
 'newarticletext'           => "'''{{grammar:lokatīvs|{{SITENAME}}}} vēl nav tāda {{NAMESPACE}} raksta ar virsrakstu \"{{PAGENAME}}\".'''
-* Lai izveidotu šo lapu, raksti tekstu zemāk redzamajā logā. Kad esi pabeidzis, spied pogu \"Saglabāt lapu\". Ja viss būs kārtībā, izmaiņām vajadzētu būt tūlīt redzamām.
+* Lai izveidotu šo lapu, raksti tekstu zemāk redzamajā logā. Kad esi pabeidzis, spied pogu \"Saglabāt lapu\". Ja viss būs kārtībā, izmaiņām vajadzētu būt tūlīt redzamām (Kā to darīt, sīkāk skatīt [[{{MediaWiki:Helppage}}|palīdzības lapās]]).
 * '''Ja esi izveidojis šo lapu dažu pēdējo minūšu laikā un nekas nav parādījies, iespējams, ir aizkavējusies informācijas saglabāšana datubāzē.''' Lūdzam mazliet pagaidīt un tad vēlreiz pārbaudīt - visdrīzāk, pēc kāda brīža lapa būs redzama un nebūs jāraksta viss vēlreiz.
 * Ja šis ir raksts (nevis, piemēram, diskusiju lapa), tad
 ** lūdzam neveidot rakstu, kurā būtu reklamēts vai slavināts tu pats, kāda weblapa, produkts vai uzņēmums (skat. \"Kas {{SITENAME}} nav\").
 ** ja tie ir tavi pirmie soļi {{grammar:lokatīvs|{{SITENAME}}}}, lūdzam vispirms izlasīt pamācību un eksperimentiem izmantot tikai smilšu kasti. Paldies!
 ** [[Special:Search/{{PAGENAME}}|spied šeit]], lai meklētu {{grammar:lokatīvs|{{SITENAME}}}} informāciju par jēdzienu \"{{PAGENAME}}\".",
 'anontalkpagetext'         => "----''Šī ir diskusiju lapa anonīmam lietotājam, kurš vēl nav kļuvis par reģistrētu lietotāju vai arī neizmanto savu lietotājvārdu. Tādēļ mums ir jāizmanto skaitliskā [[IP adrese]], lai viņu identificētu. Šāda IP adrese var būt vairākiem lietotājiem. Ja tu esi anonīms lietotājs un uzskati, ka tev ir adresēti neatbilstoši komentāri, lūdzu, [[Special:Userlogin|kļūsti par lietotāju vai arī izmanto jau izveidotu lietotājvārdu]], lai izvairītos no turpmākām neskaidrībām un tu netiktu sajaukts ar citiem anonīmiem lietotājiem.''",
-'noarticletext'            => 'Šajā lapā šobrīd nav nekāda teksta',
+'noarticletext'            => 'Šajā lapā šobrīd nav nekāda teksta, tu vari [[Special:Search/{{PAGENAME}}|meklēt citās lapās pēc šīs lapas nosaukuma]], vai arī [{{fullurl:{{FULLPAGENAME}}|action=edit}} sākt rediģēt šo lapu].',
 'clearyourcache'           => "'''Piezīme:''' Pēc saglabāšanas iztīri pārlūka kešatmiņu, lai pārmaiņas būtu redzamas: Mozilla/Safari/Konqueror: turi nospiestu '''Shift''' un klikšķini '''Reload''' (vai spied '''Ctrl-Shift-r'''), IE: spied '''Ctrl-F5''', Opera: spied '''F5'''.",
 'usercssjsyoucanpreview'   => '<strong>Ieteikums:</strong> Lieto pirmsskata pogu, lai pārbaudītu savu jauno CSS/JS pirms saglabāšanas.',
 'usercsspreview'           => "'''Atceries, ka šis ir tikai tava lietotāja CSS pirmskats, lapa vēl nav saglabāta!'''",
@@ -553,7 +554,7 @@ $2 Parādīt pāradresācijas lapas   Meklēt $3 $9',
 
 # User rights
 'userrights-user-editname' => 'Ievadi lietotājvārdu:',
-'editinguser'              => "Izmainīt '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
+'editinguser'              => "Izmainīt lietotāja '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]]) statusu",
 
 # Recent changes
 'recentchanges'                     => 'Pēdējās izmaiņas',

@@ -976,6 +976,7 @@ Pass på at den nye sida også har innhald frå den innfletta sida.',
 'search-redirect'       => '(omdirigering $1)',
 'search-section'        => '(bolk $1)',
 'search-suggest'        => 'Meinte du: «$1»',
+'search-interwiki-more' => '(meir)',
 'searchall'             => 'alle',
 'showingresults'        => "Nedanfor er opp til {{PLURAL:$1|'''éitt''' resultat|'''$1''' resultat}} som byrjar med nummer '''$2''' vist.",
 'showingresultsnum'     => "Nedanfor er {{PLURAL:$3|'''éitt''' resultat|'''$3''' resultat}} som byrjar med nummer '''$2''' vist.",
@@ -1076,6 +1077,7 @@ Ver merksam på at registra deira kan vera utdaterte.',
 
 # Groups
 'group'               => 'Gruppe:',
+'group-user'          => 'Brukarar',
 'group-autoconfirmed' => 'Automatisk godkjende brukarar',
 'group-bot'           => 'Robotar',
 'group-sysop'         => 'Administratorar',
@@ -1083,12 +1085,14 @@ Ver merksam på at registra deira kan vera utdaterte.',
 'group-suppress'      => 'Historikkfjernarar',
 'group-all'           => '(alle)',
 
+'group-user-member'          => 'Brukar',
 'group-autoconfirmed-member' => 'Automatisk godkjend brukar',
 'group-bot-member'           => 'Robot',
 'group-sysop-member'         => 'Administrator',
 'group-bureaucrat-member'    => 'Byråkrat',
 'group-suppress-member'      => 'Historikkfjernar',
 
+'grouppage-user'          => '{{ns:project}}:Brukarar',
 'grouppage-autoconfirmed' => '{{ns:project}}:Automatisk godkjende brukarar',
 'grouppage-bot'           => '{{ns:project}}:Robotar',
 'grouppage-sysop'         => '{{ns:project}}:Administratorar',
@@ -1132,7 +1136,7 @@ Ver merksam på at registra deira kan vera utdaterte.',
 'recentchangeslinked'          => 'Relaterte endringar',
 'recentchangeslinked-title'    => 'Endringar relaterte til "$1"',
 'recentchangeslinked-noresult' => 'Det er ikkje gjort endringar på sidene som var lenkja hit i den oppgjevne perioden.',
-'recentchangeslinked-summary'  => "Denne spesialsida inneheld alle endringane som er gjort på sider som vert lenkja til frå denne. Dei av sidene du har på overvakingslista di er '''utheva'''.",
+'recentchangeslinked-summary'  => "Denne spesialsida inneheld alle endringane som er gjort på sider som vert ''lenkja til'' frå denne (eller på sider i ein viss kategori). Dei av sidene du har på [[Special:Watchlist|overvakingslista]] di er '''utheva'''.",
 'recentchangeslinked-page'     => 'Sidnamn:',
 
 # Upload
@@ -2002,6 +2006,7 @@ For å eksportere bruker du [[Special:Export|eksportsida]] på kjeldewikien; hug
 'markedaspatrollederror-noautopatrol' => 'Ein har ikkje høve til å merkje sine eigne endringar som godkjende.',
 
 # Patrol log
+'patrol-log-page' => 'Patruljeringslogg',
 'patrol-log-line' => 'merka $1 av $2 godkjend $3',
 'patrol-log-auto' => '(automatisk)',
 
@@ -2073,12 +2078,18 @@ Dei andre felta er gøymde som standard.
 'exif-orientation'                 => 'Retning',
 'exif-samplesperpixel'             => 'Tal komponentar',
 'exif-planarconfiguration'         => 'Dataarrangement',
+'exif-ycbcrsubsampling'            => 'Subsamplingstilhøve mellom Y og C',
 'exif-ycbcrpositioning'            => 'Y- og C-posisjon',
 'exif-xresolution'                 => 'Oppløysing i breidda',
 'exif-yresolution'                 => 'Oppløysing i høgda',
 'exif-resolutionunit'              => 'Eining for X- og Y-oppløysing',
+'exif-stripoffsets'                => 'Plassering for biletdata',
+'exif-rowsperstrip'                => 'Tal rader per stripe',
+'exif-stripbytecounts'             => 'Tal byte per kompimerte stripe',
+'exif-jpeginterchangeformat'       => 'Offset til JPEG SOI',
 'exif-jpeginterchangeformatlength' => 'Byte JPEG-data',
 'exif-transferfunction'            => 'Overføringsfunksjon',
+'exif-whitepoint'                  => 'Kvitpunktsreinleik',
 'exif-primarychromaticities'       => 'Reinheita til primærfargane',
 'exif-ycbcrcoefficients'           => 'Koeffisientar for fargeromstransformasjonsmatrise',
 'exif-referenceblackwhite'         => 'Svart og kvitt referanseverdipar',
@@ -2139,6 +2150,7 @@ Dei andre felta er gøymde som standard.
 'exif-digitalzoomratio'            => 'Digital zoom-rate',
 'exif-focallengthin35mmfilm'       => '(Tilsvarande) brennvidd ved 35 mm film',
 'exif-scenecapturetype'            => 'Motivtype',
+'exif-gaincontrol'                 => 'Scenekontroll',
 'exif-contrast'                    => 'Kontrast',
 'exif-saturation'                  => 'Metting',
 'exif-sharpness'                   => 'Skarpleik',
@@ -2168,14 +2180,19 @@ Dei andre felta er gøymde som standard.
 'exif-gpsdestlatitude'             => 'Målbreiddegrad',
 'exif-gpsdestlongituderef'         => 'Referanse for mållengdegrad',
 'exif-gpsdestlongitude'            => 'Mållengdegrad',
+'exif-gpsdestbearingref'           => 'Referanse for retning mot målet',
+'exif-gpsdestbearing'              => 'Retning mot målet',
 'exif-gpsdestdistanceref'          => 'Referanse for avstand til mål',
 'exif-gpsdestdistance'             => 'Avstand til mål',
 'exif-gpsprocessingmethod'         => 'Namn på GPS-handsamingsmetode',
 'exif-gpsareainformation'          => 'Namn på GPS-område',
 'exif-gpsdatestamp'                => 'GPS-dato',
+'exif-gpsdifferential'             => 'Differensiell GPS-retting',
 
 # EXIF attributes
 'exif-compression-1' => 'Ukomprimert',
+
+'exif-unknowndate' => 'Ukjend dato',
 
 'exif-orientation-1' => 'Normal', # 0th row: top; 0th column: left
 'exif-orientation-2' => 'Spegla vassrett', # 0th row: top; 0th column: right
@@ -2185,6 +2202,9 @@ Dei andre felta er gøymde som standard.
 'exif-orientation-6' => 'Rotert 90° medsols', # 0th row: right; 0th column: top
 'exif-orientation-7' => 'Rotert 90° medsols og spegla loddrett', # 0th row: right; 0th column: bottom
 'exif-orientation-8' => 'Rotert 90° motsols', # 0th row: left; 0th column: bottom
+
+'exif-planarconfiguration-1' => 'grovformat',
+'exif-planarconfiguration-2' => 'planærformat',
 
 'exif-componentsconfiguration-0' => 'finst ikkje',
 
@@ -2212,6 +2232,7 @@ Dei andre felta er gøymde som standard.
 'exif-lightsource-0'   => 'Ukjent',
 'exif-lightsource-1'   => 'Dagslys',
 'exif-lightsource-2'   => 'Fluorescerande',
+'exif-lightsource-3'   => 'Glødelampe',
 'exif-lightsource-4'   => 'Blits',
 'exif-lightsource-9'   => 'Fint vêr',
 'exif-lightsource-10'  => 'Overskya vêr',
@@ -2232,7 +2253,9 @@ Dei andre felta er gøymde som standard.
 'exif-sensingmethod-2' => 'Einbrikka fargeområdesensor',
 'exif-sensingmethod-3' => 'Tobrikka fargeområdesensor',
 'exif-sensingmethod-4' => 'Trebrikka fargeområdesensor',
+'exif-sensingmethod-5' => 'Fargesekvensiell områdesensor',
 'exif-sensingmethod-7' => 'Trilinær sensor',
+'exif-sensingmethod-8' => 'Fargesekvensiell lineærsensor',
 
 'exif-scenetype-1' => 'Direkte fotografert bilete',
 
@@ -2241,6 +2264,7 @@ Dei andre felta er gøymde som standard.
 
 'exif-exposuremode-0' => 'Autoeksponert',
 'exif-exposuremode-1' => 'Manuelt eksponert',
+'exif-exposuremode-2' => 'Automatisk alternativeksponering',
 
 'exif-whitebalance-0' => 'Automatisk kvitbalanse',
 'exif-whitebalance-1' => 'Manuell kvitbalanse',
@@ -2251,6 +2275,10 @@ Dei andre felta er gøymde som standard.
 'exif-scenecapturetype-3' => 'Nattscene',
 
 'exif-gaincontrol-0' => 'Ingen',
+'exif-gaincontrol-1' => 'Auke av lågnivåforsterking',
+'exif-gaincontrol-2' => 'Auke av høgnivåforsterking',
+'exif-gaincontrol-3' => 'Minking av lågnivåforsterking',
+'exif-gaincontrol-4' => 'Minking av høgnivåforsterking',
 
 'exif-contrast-0' => 'Normal',
 'exif-contrast-1' => 'Mjuk',
@@ -2278,6 +2306,7 @@ Dei andre felta er gøymde som standard.
 'exif-gpslongitude-w' => 'Vestleg lengdegrad',
 
 'exif-gpsstatus-a' => 'Måling pågår',
+'exif-gpsstatus-v' => 'Målingsinteroperabilitet',
 
 'exif-gpsmeasuremode-2' => 'todimensjonalt målt',
 'exif-gpsmeasuremode-3' => 'tredimensjonalt målt',
@@ -2330,13 +2359,17 @@ funksjonar tilknytt e-post på {{SITENAME}} må du opne denne lenkja i nettlesar
 
 $3
 
-Dersom dette *ikkje* er deg, må du ikkje opne lenkja. Denne stadfestingskoden
-blir forelda $4.',
+Dersom dette *ikkje* er deg, følg denne lenkja for avbryte stadfestinga av e-postadressa:
+
+$5
+
+Denne stadfestingskoden vert forelda $4.',
 'invalidateemail'         => 'Avbryt stadfestinga av e-postadressa',
 
 # Scary transclusion
-'scarytranscludefailed'  => '[Henting av mal for $1 gjekk ikkje, beklagar]',
-'scarytranscludetoolong' => '[Nettadressa er for lang, beklagar]',
+'scarytranscludedisabled' => '[Interwiki-tilkopling er slått av]',
+'scarytranscludefailed'   => '[Henting av mal for $1 gjekk ikkje, beklagar]',
+'scarytranscludetoolong'  => '[Nettadressa er for lang, beklagar]',
 
 # Trackbacks
 'trackbackbox'      => "<div id='mw_trackbacks'>
@@ -2462,8 +2495,12 @@ $1',
 'fileduplicatesearch-result-n' => 'Det er {{PLURAL:$2|éin kopi|$2 kopiar}} av fila «$1».',
 
 # Special:SpecialPages
-'specialpages-group-other' => 'Andre spesialsider',
-'specialpages-group-login' => 'Innlogging / registrering',
-'specialpages-group-needy' => 'Sider som trengjer arbeid',
+'specialpages-group-other'       => 'Andre spesialsider',
+'specialpages-group-login'       => 'Innlogging / registrering',
+'specialpages-group-changes'     => 'Siste endringar og loggar',
+'specialpages-group-users'       => 'Brukarar og brukartilgangar',
+'specialpages-group-needy'       => 'Sider som trengjer arbeid',
+'specialpages-group-highuse'     => 'Mykje brukte sider',
+'specialpages-group-permissions' => 'Brukartilgangar',
 
 );
