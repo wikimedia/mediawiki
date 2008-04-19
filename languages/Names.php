@@ -284,7 +284,7 @@
 	'su' => 'Basa Sunda',	# Sundanese
 	'sv' => 'Svenska',		# Swedish
 	'sw' => 'Kiswahili',	# Swahili
-	'szl' => 'ślůnski',	# Silesian
+	'szl' => 'Ślůnski',	# Silesian
 	'ta' => 'தமிழ்',	# Tamil
 	'te' => 'తెలుగు',	# Telugu
 	'tet' => 'Tetun',	# Tetun
