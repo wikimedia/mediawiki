@@ -195,6 +195,10 @@ class Xml {
 		return self::element( 'span', array( 'class' => $class ) + $attribs, $text );
 	}
 
+	public static function wrapClass( $text, $class, $tag='span', $attribs=array() ) {
+		return self::tags( $tag, array( 'class' => $class ) + $attribs, $text );
+	}
+
 	/**
 	 * Convenience function to build an HTML text input field
 	 * @return string HTML
