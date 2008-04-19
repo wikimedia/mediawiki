@@ -320,7 +320,7 @@ class WhatLinksHerePage {
 		// Reset these for new requests
 		$this->opts->consumeValues( array( 'back', 'from' ) );
 
-		$target = $this->target->getPrefixedText();
+		$target = $this->target ? $this->target->getPrefixedText() : '';
 		$namespace = $this->opts->consumeValue( 'namespace' );
 
 		# Build up the form
