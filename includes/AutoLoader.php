@@ -97,6 +97,7 @@ function __autoload($className) {
 		'FileRevertForm' => 'includes/FileRevertForm.php',
 		'FileStore' => 'includes/FileStore.php',
 		'FormatExif' => 'includes/Exif.php',
+		'FormOptions' => 'includes/FormOptions.php',
 		'FSException' => 'includes/FileStore.php',
 		'FSTransaction' => 'includes/FileStore.php',
 		'HashBagOStuff' => 'includes/BagOStuff.php',
