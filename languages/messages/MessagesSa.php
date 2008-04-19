@@ -6,6 +6,8 @@
  * @author Kaustubh
  */
 
+$fallback = 'hi';
+
 $digitTransformTable = array(
 	'0' => '०', # &#x0966;
 	'1' => '१', # &#x0967;
