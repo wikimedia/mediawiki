@@ -78,6 +78,9 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 				break;
 			}
 
+			// Silently skip broken titles
+			if ($result->isBrokenTitle()) continue;
+			
 			$title = $result->getTitle();
 			if (is_null($resultPageSet)) {
 				$data[] = array(
