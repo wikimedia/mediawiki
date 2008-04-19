@@ -82,7 +82,6 @@ class WhatLinksHerePage {
 	 */
 	function showIndirectLinks( $level, $target, $limit, $from = 0, $back = 0 ) {
 		global $wgOut, $wgMaxRedirectLinksRetrieved;
-		$fname = 'WhatLinksHerePage::showIndirectLinks';
 		$dbr = wfGetDB( DB_SLAVE );
 		$options = array();
 
@@ -131,13 +130,13 @@ class WhatLinksHerePage {
 		if( $this->fetchlinks ) {
 			$options['ORDER BY'] = 'pl_from';
 			$plRes = $dbr->select( array( 'pagelinks', 'page' ), $fields,
-				$plConds, $fname, $options );
+				$plConds, __METHOD__, $options );
 		}
 
 		if( !$this->hidetrans ) {
 			$options['ORDER BY'] = 'tl_from';
 			$tlRes = $dbr->select( array( 'templatelinks', 'page' ), $fields,
-				$tlConds, $fname, $options );
+				$tlConds, __METHOD__, $options );
 		}
 
 		if( ( !$this->fetchlinks || !$dbr->numRows( $plRes ) ) && ( $this->hidetrans || !$dbr->numRows( $tlRes ) ) ) {
@@ -219,57 +218,78 @@ class WhatLinksHerePage {
 			$wgOut->addHTML( $prevnext );
 		}
 
-		$wgOut->addHTML( '<ul>' );
+		$wgOut->addHTML( $this->listStart() );
 		foreach ( $rows as $row ) {
-			$nt = Title::makeTitle( $row->page_namespace, $row->page_title );
-
 			if( $this->hideredirs && $row->page_is_redirect )
 				continue;
 			if( $this->hidelinks && ( !$row->page_is_redirect && !$row->is_template ) )
 				continue;
 
-			if ( $row->page_is_redirect ) {
-				$extra = 'redirect=no';
-			} else {
-				$extra = '';
-			}
+			$nt = Title::makeTitle( $row->page_namespace, $row->page_title );
 
-			$link = $this->skin->makeKnownLinkObj( $nt, '', $extra );
-			$wgOut->addHTML( '<li>'.$link );
+			$wgOut->addHTML( $this->listItem( $row, $nt ) );
 
-			// Display properties (redirect or template)
-			$props = array();
-			if ( $row->page_is_redirect ) {
-				$props[] = wfMsgHtml( 'isredirect' );
+			if ( $row->page_is_redirect && $level < 2 ) {
+				$this->showIndirectLinks( $level + 1, $nt, $wgMaxRedirectLinksRetrieved );
 			}
-			if ( $row->is_template ) {
-				$props[] = wfMsgHtml( 'istemplate' );
-			}
-			if ( count( $props ) ) {
-				$list = implode( wfMsgHtml( 'semicolon-separator' ), $props );
-				$wgOut->addHTML( " ($list) " );
-			}
-
-			# Space for utilities links, with a what-links-here link provided
-			$wlh = $this->skin->makeKnownLinkObj(
-				SpecialPage::getTitleFor( 'Whatlinkshere' ),
-				wfMsgHtml( 'whatlinkshere-links' ),
-				'target=' . $nt->getPrefixedUrl()
-			);
-			$wgOut->addHtml( ' <span class="mw-whatlinkshere-tools">(' . $wlh . ')</span>' );
-
-			if ( $row->page_is_redirect ) {
-				if ( $level < 2 ) {
-					$this->showIndirectLinks( $level + 1, $nt, $wgMaxRedirectLinksRetrieved );
-				}
-			}
-			$wgOut->addHTML( "</li>\n" );
 		}
-		$wgOut->addHTML( "</ul>\n" );
+
+		$wgOut->addHTML( $this->listEnd() );
 
 		if( $level == 0 ) {
 			$wgOut->addHTML( $prevnext );
 		}
+	}
+
+	protected function listStart() {
+		return Xml::openElement( 'ul' );
+	}
+
+	protected function listItem( $row, $nt ) {
+		# local message cache
+		static $msgcache = null;
+		if ( $msgcache === null ) {
+			static $msgs = array( 'isredirect', 'istemplate', 'semicolon-separator',
+				'whatlinkshere-links' );
+			$msgcache = array();
+			foreach ( $msgs as $msg ) {
+				$msgcache[$msg] = wfMsgHtml( $msg );
+			}
+		}
+
+		$suppressRedirect = $row->page_is_redirect ? 'redirect=no' : '';
+		$link = $this->skin->makeKnownLinkObj( $nt, '', $suppressRedirect );
+
+		// Display properties (redirect or template)
+		$propsText = '';
+		$props = array();
+		if ( $row->page_is_redirect )
+			$props[] = $msgcache['isredirect'];
+		if ( $row->is_template )
+			$props[] = $msgcache['istemplate'];
+
+		if ( count( $props ) ) {
+			$propsText = '(' . implode( $msgcache['semicolon-separator'], $props ) . ')';
+		}
+
+		# Space for utilities links, with a what-links-here link provided
+		$wlhLink = $this->wlhLink( $nt, $msgcache['whatlinkshere-links'] );
+		$wlh = Xml::wrapClass( "($wlhLink)", 'mw-whatlinkshere-tools' );
+
+		return Xml::tags( 'li', null, "$link $propsText $wlh" ) . "\n";
+	}
+
+	protected function listEnd() {
+		return Xml::closeElement( 'ul' );
+	}
+
+	protected function wlhLink( Title $target, $text ) {
+		static $title = null;
+		if ( $title === null )
+			$title = SpecialPage::getTitleFor( 'Whatlinkshere' );
+
+		$targetText = $target->getPrefixedUrl();
+		return $this->skin->makeKnownLinkObj( $title, $text, 'target=' . $targetText );
 	}
 
 	function makeSelfLink( $text, $query ) {
@@ -279,8 +299,8 @@ class WhatLinksHerePage {
 	/** Get a query string to append to hide appropriate entries */
 	function getHideParams() {
 		return ($this->hidetrans  ? '&hidetrans=1'  : '')
-    	     . ($this->hidelinks  ? '&hidelinks=1'  : '')
-		     . ($this->hideredirs ? '&hideredirs=1' : '');
+			. ($this->hidelinks  ? '&hidelinks=1'  : '')
+			. ($this->hideredirs ? '&hideredirs=1' : '');
 	}
 
 	function getPrevNext( $limit, $prevId, $nextId ) {
