@@ -36,9 +36,6 @@ td.diff-context {
 	white-space: pre-wrap;
 	white-space: -moz-pre-wrap;
 }
-.diffchange-inline {
-	border: 1px dotted red;
-}
 
 table.diff {
 	border: none;
