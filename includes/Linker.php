@@ -755,27 +755,28 @@ class Linker {
 	}
 
 	/** @deprecated use Linker::makeMediaLinkObj() */
-	function makeMediaLink( $name, $unused = '', $text = '' ) {
+	function makeMediaLink( $name, $unused = '', $text = '', $time = false ) {
 		$nt = Title::makeTitleSafe( NS_IMAGE, $name );
-		return $this->makeMediaLinkObj( $nt, $text );
+		return $this->makeMediaLinkObj( $nt, $text, $time );
 	}
 
 	/**
 	 * Create a direct link to a given uploaded file.
 	 *
 	 * @param $title Title object.
-	 * @param $text  String: pre-sanitized HTML
+	 * @param $text String: pre-sanitized HTML
+	 * @param $time string: time image was created
 	 * @return string HTML
 	 *
 	 * @public
 	 * @todo Handle invalid or missing images better.
 	 */
-	function makeMediaLinkObj( $title, $text = '' ) {
+	function makeMediaLinkObj( $title, $text = '', $time = false ) {
 		if( is_null( $title ) ) {
 			### HOTFIX. Instead of breaking, return empty string.
 			return $text;
 		} else {
-			$img  = wfFindFile( $title );
+			$img  = wfFindFile( $title, $time );
 			if( $img ) {
 				$url  = $img->getURL();
 				$class = 'internal';
