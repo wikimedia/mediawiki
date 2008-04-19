@@ -99,6 +99,11 @@ class WhatLinksHerePage {
 			'pl_namespace' => $target->getNamespace(),
 			'pl_title' => $target->getDBkey(),
 		);
+		if( $this->hideredirs ) {
+			$plConds['page_is_redirect'] = 0;
+		} elseif( $this->hidelinks ) {
+			$plConds['page_is_redirect'] = 1;
+		}
 
 		$tlConds = array(
 			'page_id=tl_from',
@@ -220,11 +225,6 @@ class WhatLinksHerePage {
 
 		$wgOut->addHTML( $this->listStart() );
 		foreach ( $rows as $row ) {
-			if( $this->hideredirs && $row->page_is_redirect )
-				continue;
-			if( $this->hidelinks && ( !$row->page_is_redirect && !$row->is_template ) )
-				continue;
-
 			$nt = Title::makeTitle( $row->page_namespace, $row->page_title );
 
 			$wgOut->addHTML( $this->listItem( $row, $nt ) );
