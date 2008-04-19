@@ -281,13 +281,6 @@ class WhatLinksHerePage {
 		return $this->skin->makeKnownLinkObj( $this->selfTitle, $text, $query );
 	}
 
-	/** Get a query string to append to hide appropriate entries */
-	function getHideParams() {
-		return ($this->hidetrans  ? '&hidetrans=1'  : '')
-			. ($this->hidelinks  ? '&hidelinks=1'  : '')
-			. ($this->hideredirs ? '&hideredirs=1' : '');
-	}
-
 	function getPrevNext( $prevId, $nextId ) {
 		global $wgLang;
 		$currentLimit = $this->opts->getValue( 'limit' );
