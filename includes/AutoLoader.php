@@ -197,6 +197,7 @@ function __autoload($className) {
 		'Preprocessor' => 'includes/Preprocessor.php',
 		'Profiler' => 'includes/Profiler.php',
 		'ProfilerSimple' => 'includes/ProfilerSimple.php',
+		'ProfilerSimpleText' => 'includes/ProfilerSimpleText.php',
 		'ProfilerSimpleUDP' => 'includes/ProfilerSimpleUDP.php',
 		'ProtectionForm' => 'includes/ProtectionForm.php',
 		'ProxyTools' => 'includes/ProxyTools.php',
