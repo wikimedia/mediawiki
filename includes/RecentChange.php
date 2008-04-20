@@ -426,7 +426,7 @@ class RecentChange
 	}
 
 	# A log entry is different to an edit in that previous revisions are not kept
-	public static function notifyLog( $timestamp, &$title, &$user, $comment, $ip='',
+	public static function notifyLog( $timestamp, &$title, &$user, $actionComment, $ip='',
 	   $type, $action, $target, $logComment, $params, $newId=0 )
 	{
 		global $wgRequest;
@@ -469,11 +469,7 @@ class RecentChange
 		$rc->mExtra =  array(
 			'prefixedDBkey'	=> $title->getPrefixedDBkey(),
 			'lastTimestamp' => 0,
-			'logType' => $type,
-			'logAction' => $action,
-			'logComment' => $logComment,
-			'logTarget' => $target,
-			'logParams' => $params
+			'actionComment' => $actionComment, // the comment appended to the action, passed from LogPage
 		);
 		$rc->save();
 	}
@@ -566,7 +562,7 @@ class RecentChange
 
 		$titleObj =& $this->getTitle();
 		if ( $rc_type == RC_LOG ) {
-			$title = MWNamespace::getCanonicalName( $titleObj->getNamespace() ) . $titleObj->getText();
+			$title = MWNamespace::getCanonicalName( NS_SPECIAL ) . "Log/$rc_log_type";
 		} else {
 			$title = $titleObj->getPrefixedText();
 		}
@@ -605,9 +601,8 @@ class RecentChange
 		$user = $this->cleanupForIRC( $rc_user_text );
 
 		if ( $rc_type == RC_LOG ) {
-			$logTargetText = $logTarget->getPrefixedText();
-			$comment = $this->cleanupForIRC( str_replace( $logTargetText, "\00302$logTargetText\00310", $rc_comment ) );
-			$flag = $logAction;
+			$comment = $this->cleanupForIRC( str_replace( $title, "\00302$title\00310", $actionComment ) );
+			$flag = $rc_log_action;
 		} else {
 			$comment = $this->cleanupForIRC( $rc_comment );
 			$flag = ($rc_minor ? "M" : "") . ($rc_new ? "N" : "");
