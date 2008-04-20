@@ -3,6 +3,7 @@
  *
  * @addtogroup Language
  *
+ * @author Samuelsen
  * @author Jon Harald Søby
  * @author Nike
  * @author Teak

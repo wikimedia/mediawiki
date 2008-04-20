@@ -3,6 +3,7 @@
  *
  * @addtogroup Language
  *
+ * @author Red Winged Duck
  * @author EugeneZelenko
  * @author Siebrand
  */
