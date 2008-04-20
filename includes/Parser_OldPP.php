@@ -1770,7 +1770,14 @@ class Parser_OldPP
 
 			# Special and Media are pseudo-namespaces; no pages actually exist in them
 			if( $ns == NS_MEDIA ) {
-				$link = $sk->makeMediaLinkObj( $nt, $text );
+				# Give extensions a chance to select the file revision for us
+				$skip = $time = false;
+				wfRunHooks( 'BeforeParserMakeImageLinkObj', array( &$this, &$nt, &$skip, &$time ) );
+				if ( $skip ) {
+					$link = $sk->makeLinkObj( $nt );
+				} else {
+					$link = $sk->makeMediaLinkObj( $nt, $text, $time );
+				}
 				# Cloak with NOPARSE to avoid replacement in replaceExternalLinks
 				$s .= $prefix . $this->armorLinks( $link ) . $trail;
 				$this->mOutput->addImage( $nt->getDBkey() );
