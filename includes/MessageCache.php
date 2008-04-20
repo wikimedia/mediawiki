@@ -328,22 +328,6 @@ class MessageCache {
 		wfProfileOut( __METHOD__ );
 	}
 
-	/**
-	 * Not really needed anymore
-	 */
-	function getKeys() {
-		global $wgContLang;
-		if ( !$this->mKeys ) {
-			$this->mKeys = array();
-			$allMessages = Language::getMessagesFor( 'en' );
-			foreach ( $allMessages as $key => $unused ) {
-				$title = $wgContLang->ucfirst( $key );
-				array_push( $this->mKeys, $title );
-			}
-		}
-		return $this->mKeys;
-	}
-
 	function replace( $title, $text ) {
 		global $wgLocalMessageCache, $wgLocalMessageCacheSerialized, $parserMemc;
 		global $wgMaxMsgCacheEntrySize;
