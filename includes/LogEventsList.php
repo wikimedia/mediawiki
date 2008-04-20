@@ -255,13 +255,14 @@ class LogEventsList {
 					$Ids = explode( ',', $paramArray[1] );
 					if( count($Ids) == 1 ) {
 						$revert = $this->skin->makeKnownLinkObj( $revdel, $this->message['revdel-restore'],
-						wfArrayToCGI( array('target' => $title->getPrefixedDBkey(), $key => $Ids[0] ) ) );
+							wfArrayToCGI( array('target' => $title->getPrefixedDBkey(), $key => $Ids[0] ) ) );
 					} else {
-						$revert .= $this->message['revdel-restore'].':';
+						$revParams = '';
 						foreach( $Ids as $n => $id ) {
-							$revert .= ' '.$this->skin->makeKnownLinkObj( $revdel, '#'.($n+1),
-								wfArrayToCGI( array('target' => $title->getPrefixedDBkey(), $key => $id ) ) );
+							$revParams .= '&oldid[]=' . intval($id);
 						}
+						$revert = $this->skin->makeKnownLinkObj( $revdel, $this->message['revdel-restore'], 
+							'target=' . $title->getPrefixedUrl() . $revParams );
 					}
 					$revert = "($revert)";
 				}
@@ -269,17 +270,18 @@ class LogEventsList {
 			} else if( self::typeAction($row,array('delete','suppress'),'event') && $wgUser->isAllowed( 'deleterevision' ) ) {
 				if( count($paramArray) == 1 ) {
 					$revdel = SpecialPage::getTitleFor( 'Revisiondelete' );
-					$revert .= $this->message['revdel-restore'];
 					$Ids = explode( ',', $paramArray[0] );
 					// Link to each hidden object ID, $paramArray[1] is the url param. List if several...
 					if( count($Ids) == 1 ) {
 						$revert = $this->skin->makeKnownLinkObj( $revdel, $this->message['revdel-restore'],
 							wfArrayToCGI( array('target' => $title->getPrefixedDBkey(),'logid' => $Ids[0] ) ) );
 					} else {
+						$logParams = '';
 						foreach( $Ids as $n => $id ) {
-							$revert .= $this->skin->makeKnownLinkObj( $revdel, '#'.($n+1),
-								wfArrayToCGI( array('target' => $title->getPrefixedDBkey(),'logid' => $id ) ) );
+							$logParams .= '&logid[]=' . intval($id);
 						}
+						$revert = $this->skin->makeKnownLinkObj( $revdel, $this->message['revdel-restore'], 
+							'target=' . $title->getPrefixedUrl() . $logParams );
 					}
 					$revert = "($revert)";
 				}
