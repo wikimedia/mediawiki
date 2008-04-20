@@ -888,22 +888,28 @@ END;
 			$ptext=$wgTitle->getPrefixedText();
 			if(preg_match('/\//',$ptext)) {
 				$links = explode('/',$ptext);
+				array_pop( $links );
 				$c = 0;
 				$growinglink = '';
+				$display = '';
 				foreach($links as $link) {
-					$c++;
-					if ($c<count($links)) {
-						$growinglink .= $link;
-						$getlink = $this->makeLink( $growinglink, htmlspecialchars( $link ) );
-						if(preg_match('/class="new"/i',$getlink)) { break; } # this is a hack, but it saves time
+					$growinglink .= $link;
+					$display .= $link;
+					$linkObj = Title::newFromText( $growinglink );
+					if( $linkObj->exists() ){
+						$getlink = $this->makeKnownLinkObj( $linkObj, htmlspecialchars( $display ) );
+						$c++;
 						if ($c>1) {
 							$subpages .= ' | ';
 						} else  {
 							$subpages .= '&lt; ';
 						}
 						$subpages .= $getlink;
-						$growinglink .= '/';
+						$display = '';
+					} else {
+						$display .= '/';
 					}
+					$growinglink .= '/';
 				}
 			}
 		}
