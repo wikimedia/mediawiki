@@ -2093,7 +2093,7 @@ $1',
 'allmessagesdefault'        => 'ادەپكى ٴماتىنى',
 'allmessagescurrent'        => 'اعىمدىق ٴماتىنى',
 'allmessagestext'           => 'بۇل {{ns:mediawiki}} ەسىم اياسىندا قاتىناۋلى جۇيە حابار ٴتىزىمى.',
-'allmessagesnotsupportedDB' => "'''$wgUseDatabaseMessages''' وشىرىلگەن سەبەبىنەن '''{{ns:special}}:AllMessages''' بەتى قولدانىلمايدى.",
+'allmessagesnotsupportedDB' => "'''\$wgUseDatabaseMessages''' وشىرىلگەن سەبەبىنەن '''{{ns:special}}:AllMessages''' بەتى قولدانىلمايدى.",
 'allmessagesfilter'         => 'حابار اتاۋىمەن سۇزگىلەۋ:',
 'allmessagesmodified'       => 'تەك وزگەرتىلگەندى كورسەت',
 
