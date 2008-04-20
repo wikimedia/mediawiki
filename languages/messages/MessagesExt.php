@@ -8,7 +8,6 @@
  * @author Siebrand
  * @author SPQRobin
  * @author M.M.S.
- * @author SieBot
  * @author Jon Harald Søby
  */
 
