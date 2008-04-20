@@ -1825,6 +1825,7 @@ $1',
 'whatlinkshere-hideredirs' => '$1 הפניות',
 'whatlinkshere-hidetrans'  => '$1 הכללות',
 'whatlinkshere-hidelinks'  => '$1 קישורים',
+'whatlinkshere-filters'    => 'מסננים',
 
 # Block/unblock
 'blockip'                     => 'חסימת משתמש',
