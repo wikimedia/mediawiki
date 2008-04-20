@@ -61,6 +61,9 @@ class UsersPager extends AlphabeticPager {
 		$conds[]='ipb_deleted IS NULL OR ipb_deleted = 0';
 		if ($this->requestedGroup != "") {
 			$conds['ug_group'] = $this->requestedGroup;
+			$useIndex = '';
+		} else {
+			$useIndex = 'FORCE INDEX (user_name)';
 		}
 		if ($this->requestedUser != "") {
 			$conds[] = 'user_name >= ' . wfGetDB()->addQuotes( $this->requestedUser );
@@ -69,7 +72,7 @@ class UsersPager extends AlphabeticPager {
 		list ($user,$user_groups,$ipblocks) = wfGetDB()->tableNamesN('user','user_groups','ipblocks');
 
 		$query = array(
-			'tables' => " $user FORCE INDEX(user_name) LEFT JOIN $user_groups ON user_id=ug_user 
+			'tables' => " $user $useIndex LEFT JOIN $user_groups ON user_id=ug_user
 				LEFT JOIN $ipblocks ON user_id=ipb_user AND ipb_auto=0 ",
 			'fields' => array('user_name',
 				'MAX(user_id) AS user_id',
