@@ -19,6 +19,7 @@
  * @author Siebrand
  * @author SPQRobin
  * @author Candalua
+ * @author S.Örvarr.S
  */
 
 $namespaceNames = array(
@@ -770,7 +771,7 @@ Legenda: (corr) = differenze con la versione corrente, (prec) = differenze con l
 'deletedrev'          => '[cancellata]',
 'histfirst'           => 'Prima',
 'histlast'            => 'Ultima',
-'historysize'         => '($1 byte)',
+'historysize'         => '({{PLURAL:$1|1 byte|$1 byte}})',
 'historyempty'        => '(vuota)',
 
 # Revision feed
@@ -1298,7 +1299,7 @@ Ciascuna riga contiene i collegamenti al primo ed al secondo redirect, oltre all
 'fewestrevisions' => 'Voci con meno revisioni',
 
 # Miscellaneous special pages
-'nbytes'                  => '$1 byte',
+'nbytes'                  => '$1 {{PLURAL:$1|byte|byte}}',
 'ncategories'             => '$1 {{PLURAL:$1|categoria|categorie}}',
 'nlinks'                  => '$1 {{PLURAL:$1|collegamento|collegamenti}}',
 'nmembers'                => '$1 {{PLURAL:$1|elemento|elementi}}',

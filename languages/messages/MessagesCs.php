@@ -1137,9 +1137,10 @@ $2 Vypsat přesměrování &nbsp; Hledat $3 $9',
 'userrights-groupsmember'          => 'Člen skupin:',
 'userrights-groupsremovable'       => 'Odebratelné skupiny:',
 'userrights-groupsavailable'       => 'Dostupné skupiny:',
-'userrights-groups-help'           => 'Můžete měnit skupiny, do který je uživatel zařazen.
-Zaškrtnuté políčko znamená, že uživatel je ve skupině.
-Nezaškrtnuté políčko značí, že uživatel ve skupině není.',
+'userrights-groups-help'           => 'Můžete měnit skupiny, do nichž je uživatel zařazen.
+Zaškrtnuté políčko znamená, že uživatel je v dané skupině.
+Nezaškrtnuté políčko značí, že uživatel v dané skupině není.
+Hvězdička (*) znamená, že nemůžete danou skupinu odstranit, jakmile ji přidáte, nebo naopak.',
 'userrights-reason'                => 'Zdůvodnění:',
 'userrights-available-none'        => 'Nemůžete měnit zařazení do skupin.',
 'userrights-available-add'         => 'Kteréhokoliv uživatele můžete přidat do {{PLURAL:$2|této skupiny|těchto skupin|těchto skupin}}: $1.',
@@ -1154,26 +1155,31 @@ Nezaškrtnuté políčko značí, že uživatel ve skupině není.',
 'userrights-unchangeable-col'      => 'Skupiny, které nemůžete měnit',
 
 # Groups
-'group'               => 'Skupina:',
-'group-autoconfirmed' => 'schválení uživatelé',
-'group-bot'           => 'Boti',
-'group-sysop'         => 'Správci',
-'group-bureaucrat'    => 'Byrokraté',
-'group-suppress'      => 'Dohlížitelé',
-'group-all'           => '(všechny)',
+'group'                => 'Skupina:',
+'group-user'           => 'Uživatelé',
+'group-emailconfirmed' => 'Uživatelé s potvrzenou e-mailovou adresou',
+'group-autoconfirmed'  => 'schválení uživatelé',
+'group-bot'            => 'Boti',
+'group-sysop'          => 'Správci',
+'group-bureaucrat'     => 'Byrokraté',
+'group-suppress'       => 'Dohlížitelé',
+'group-all'            => '(všechny)',
 
-'group-emailconfirmed-member' => 'Użytkownik z potwierdzonym adresem e-mail',
+'group-user-member'           => 'Uživatel',
+'group-emailconfirmed-member' => 'Uživatel s potvrzenou e-mailovou adresou',
 'group-autoconfirmed-member'  => 'schválený uživatel',
 'group-bot-member'            => 'Bot',
 'group-sysop-member'          => 'Správce',
 'group-bureaucrat-member'     => 'Byrokrat',
 'group-suppress-member'       => 'Dohlížitel',
 
-'grouppage-autoconfirmed' => '{{ns:project}}:Schválení uživatelé',
-'grouppage-bot'           => '{{ns:project}}:Boti',
-'grouppage-sysop'         => '{{ns:project}}:Správci',
-'grouppage-bureaucrat'    => '{{ns:project}}:Byrokraté',
-'grouppage-suppress'      => '{{ns:project}}:Dohlížitelé',
+'grouppage-user'           => '{{ns:project}}:Uživatelé',
+'grouppage-emailconfirmed' => '{{ns:project}}:Uživatelé s potvrzenou e-mailovou adresou',
+'grouppage-autoconfirmed'  => '{{ns:project}}:Schválení uživatelé',
+'grouppage-bot'            => '{{ns:project}}:Boti',
+'grouppage-sysop'          => '{{ns:project}}:Správci',
+'grouppage-bureaucrat'     => '{{ns:project}}:Byrokraté',
+'grouppage-suppress'       => '{{ns:project}}:Dohlížitelé',
 
 # User rights log
 'rightslog'      => 'Kniha práv uživatelů',

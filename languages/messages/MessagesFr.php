@@ -1728,6 +1728,7 @@ $1',
 'whatlinkshere-hideredirs' => '$1 redirections',
 'whatlinkshere-hidetrans'  => '$1 transclusions',
 'whatlinkshere-hidelinks'  => '$1 liens',
+'whatlinkshere-filters'    => 'Filtres',
 
 # Block/unblock
 'blockip'                     => 'Bloquer en écriture',

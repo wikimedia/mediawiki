@@ -1532,6 +1532,7 @@ $1',
 'whatlinkshere-hideredirs' => '$1 pangalihan-pangalihan',
 'whatlinkshere-hidetrans'  => '$1 transklusi',
 'whatlinkshere-hidelinks'  => 'pranala-pranala $1',
+'whatlinkshere-filters'    => 'Filter-filter',
 
 # Block/unblock
 'blockip'                     => 'Blokir panganggo',

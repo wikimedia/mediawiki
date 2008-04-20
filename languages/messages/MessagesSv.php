@@ -1768,6 +1768,7 @@ $1',
 'whatlinkshere-hideredirs' => '$1 omdirigeringar',
 'whatlinkshere-hidetrans'  => '$1 mallinkluderingar',
 'whatlinkshere-hidelinks'  => '$1 länkar',
+'whatlinkshere-filters'    => 'Filtrera',
 
 # Block/unblock
 'blockip'                     => 'Blockera användare eller IP-adress',

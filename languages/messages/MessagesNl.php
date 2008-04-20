@@ -1843,6 +1843,7 @@ $1',
 'whatlinkshere-hideredirs' => 'doorverwijzingen $1',
 'whatlinkshere-hidetrans'  => 'transclusies $1',
 'whatlinkshere-hidelinks'  => 'verwijzigingen $1',
+'whatlinkshere-filters'    => 'Filters',
 
 # Block/unblock
 'blockip'                     => 'Gebruiker blokkeren',

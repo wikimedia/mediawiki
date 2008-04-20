@@ -1720,6 +1720,7 @@ $1',
 'whatlinkshere-hideredirs' => '$1 presmerovania',
 'whatlinkshere-hidetrans'  => '$1 transklúzie',
 'whatlinkshere-hidelinks'  => '$1 odkazy',
+'whatlinkshere-filters'    => 'Filtre',
 
 # Block/unblock
 'blockip'                     => 'Zablokovať používateľa',

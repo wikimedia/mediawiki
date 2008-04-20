@@ -226,11 +226,17 @@ $messages = array(
 # Categories related messages
 'categories'                     => 'Catigurìi',
 'categoriespagetext'             => 'Li catigurìi ccassutta asìstinu ntâ wiki.',
+'special-categories-sort-count'  => 'ordina pi nùmmuru',
+'special-categories-sort-abc'    => 'ordina alfabbeticamenti',
 'pagecategories'                 => '{{PLURAL:$1|Catigurìa|Catigurìi}}',
 'category_header'                => 'Artìculi ntâ catigurìa "$1"',
 'subcategories'                  => 'Suttacatigurìi',
 'category-media-header'          => 'File multimidiali ntâ catigurìa "$1"',
 'category-empty'                 => "''Chista catigurìa attuarmenti non havi artìculi o \"media\".''",
+'hidden-categories'              => '{{PLURAL:$1|Catigurìa ammucciata|Catigurìi ammuciati}}',
+'hidden-category-category'       => 'Catigurìi ammucciati', # Name of the category where hidden categories will be listed
+'category-subcat-count'          => '{{PLURAL:$2|Sta catigurìa cunteni na sula suttacatigurìa, nnicata ccà sutta.|Sta catigurìa cunteni {{PLURAL:$1|la suttacatigurìa|li $1 suttacatigurìi nnicati}} ccà sutta, sùpira nu tutali di $2.}}',
+'category-subcat-count-limited'  => 'Sta catigurìa cunteni {{PLURAL:$1|na suttacatigurìa, nnicata|$1 suttacatigurìi, nnicati}} ccà sutta.',
 'category-article-count'         => '{{PLURAL:$2|Sta catigurìa cunteni na pàggina sula, nnicata ccà sutta.|Sta catigurìa cunteni {{PLURAL:$1|la pàggina nnicata|li $1 pàggini nnicati}} di sècutu, supra nu tutali di $2.}}',
 'category-article-count-limited' => 'Stâ catiguria cunteni {{PLURAL:$1|la pàggina ndicata|li $1 pàggini ndicati}} ccà sutta.',
 'listingcontinuesabbrev'         => ' cunt.',

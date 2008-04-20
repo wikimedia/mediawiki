@@ -944,21 +944,31 @@ Prófaðu [[Special:Search|að leita á þessari wiki síðu]] að svipuðum sí
 
 # User rights
 'userrights'                  => 'Breyta notendaréttindum', # Not used as normal message but as header for the special page itself
-'userrights-lookup-user'      => 'Yfirlit notandaflokka',
+'userrights-lookup-user'      => 'Yfirlit notandahópa',
 'userrights-user-editname'    => 'Skráðu notandanafn:',
 'editusergroup'               => 'Breyta notendahópum',
 'editinguser'                 => "Breyti réttindum '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
-'userrights-editusergroup'    => 'Breyta notandaflokkum',
-'saveusergroups'              => 'Vista notandaflokka',
+'userrights-editusergroup'    => 'Breyta notandahópum',
+'saveusergroups'              => 'Vista notandahóp',
 'userrights-groupsmember'     => 'Meðlimur:',
+'userrights-groupsremovable'  => 'Færanlegir hópar:',
 'userrights-groupsavailable'  => 'Tiltækir flokkar:',
+'userrights-groups-help'      => 'Þú getur breytt hópunum sem að þessi notandi er í.
+Valinn reitur þýðir að notandinn er í hópnum.
+Óvalinn reitur þýðir að notandinn er ekki í hópnum.
+Stjarnan (*) þýðir að þú getur ekki fært hópinn eftir að þú hefur breytt honum, eða öfugt.',
 'userrights-reason'           => 'Ástæða fyrir breytingunni:',
 'userrights-available-none'   => 'Þú getur ekki breytt notendaréttindum.',
 'userrights-available-add'    => 'Þú getur bætt notendum við {{PLURAL:$2|þessum hóp|þessum hópum}}: $1.',
 'userrights-available-remove' => 'Þú getur fjarlægt notendur af {{PLURAL:$2|þessum hóp|þessum hópum}}: $1.',
+'userrights-nologin'          => 'Þú verður að [[Special:Userlogin|innskrá]] þig á möppudýraaðgang til að geta útdeilt notandaréttindum.',
+'userrights-notallowed'       => 'Þinn aðgangur hefur ekki réttindi til að útdeila notandaréttindum.',
+'userrights-changeable-col'   => 'Hópar sem þú getur breytt',
+'userrights-unchangeable-col' => 'Hópar sem þú getur ekki breytt',
 
 # Groups
-'group'               => 'Flokkur:',
+'group'               => 'Hópur:',
+'group-user'          => 'Notendur',
 'group-autoconfirmed' => 'Sjálfkrafa staðfesting notenda',
 'group-bot'           => 'Vélmenni',
 'group-sysop'         => 'Stjórnendur',
@@ -1214,6 +1224,7 @@ Lengdin á [http://meta.wikimedia.org/wiki/Help:Job_queue vinnsluröðinni] er '
 'listusers'               => 'Notendalisti',
 'specialpages'            => 'Kerfissíður',
 'spheading'               => 'Almennar',
+'restrictedpheading'      => 'Takmarkaðar kerfissíður',
 'newpages'                => 'Nýjustu greinar',
 'newpages-username'       => 'Notandanafn:',
 'ancientpages'            => 'Elstu síður',
@@ -1648,9 +1659,9 @@ Allir innflutningar eru skráð í [[{{ns:special}}:Log/import|innflutningsskrá
 # Import log
 'importlogpage'                    => 'Innflutningsskrá',
 'import-logentry-upload'           => 'flutti inn [[$1]] með innflutningi',
-'import-logentry-upload-detail'    => '$1 breyting(ar)',
+'import-logentry-upload-detail'    => '$1 {{PLURAL:$1|breyting|breytingar}}',
 'import-logentry-interwiki'        => 'flutti inn $1',
-'import-logentry-interwiki-detail' => '$1 breyting(ar) frá $2',
+'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|breyting|breytingar}} frá $2',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'             => 'Notendasíðan mín',
@@ -1862,13 +1873,17 @@ Póstþjónninn gaf eftirfarandi skilaboð: $1',
 'confirmemail_loggedin'   => 'Netfang þitt hefur verið staðfest.',
 'confirmemail_error'      => 'Eitthvað fór úrskeiðis við vistun staðfestingarinnar.',
 'confirmemail_subject'    => '{{SITENAME}} netfangs-staðfesting',
-'confirmemail_body'       => 'Einhver, sennilega þú, með vistfangið $1 hefur skráð sig á íslensku {{SITENAME}} undir notandanafninu „$2“ og gefið upp þetta netfang.
+'confirmemail_body'       => 'Einhver, sennilega þú, með vistfangið $1 hefur skráð sig á {{SITENAME}} undir notandanafninu „$2“ og gefið upp þetta netfang.
 
-Til að staðfesta að það hafi verið þú sem skráðir þig undir þessu nafni, og til þess að virkja póstsendingar í gegnum {{SITENAME}}, skaltu opna þennan tengil:
+Til að staðfesta að það hafi verið þú sem skráðir þig undir þessu nafni, og til þess að virkja póstsendingar í gegnum {{SITENAME}}, skaltu opna þennan tengil í vafranum þínum:
 
 $3
 
-Ef þú ert *ekki* sá sem skráði þetta notandanafn skaltu alls ekki fylgja tenglinum. Þessi staðfestingarkóði rennur út $4.',
+Ef þú ert *ekki* sá/sú sem skráði þetta notandanafn, skaltu opna þennan tengil til að ógilda staðfestinguna:
+
+$5
+
+Þessi staðfestingarkóði rennur út $4.',
 
 # Scary transclusion
 'scarytranscludefailed'  => '[Gat ekki sótt snið fyrir $1; því miður]',
@@ -1913,7 +1928,7 @@ $1',
 
 # Table pager
 'ascending_abbrev'         => 'hækkandi',
-'descending_abbrev'        => 'Lækkandi',
+'descending_abbrev'        => 'lækkandi',
 'table_pager_next'         => 'Næsta síða',
 'table_pager_prev'         => 'Fyrri síða',
 'table_pager_first'        => 'Fyrsta síðan',
@@ -1964,6 +1979,7 @@ $1',
 'version-variables'        => 'Breytur',
 'version-version'          => 'Útgáfa',
 'version-license'          => 'Leyfi',
+'version-software'         => 'Uppsettur hugbúnaður',
 'version-software-version' => 'Útgáfa',
 
 # Special:Filepath
@@ -1972,7 +1988,19 @@ $1',
 'filepath-submit' => 'Slóð',
 
 # Special:FileDuplicateSearch
+'fileduplicatesearch-legend'   => 'Leita að afriti',
 'fileduplicatesearch-filename' => 'Skráarnafn:',
 'fileduplicatesearch-submit'   => 'Leita',
+
+# Special:SpecialPages
+'specialpages-group-maintenance' => 'Viðhaldsskýrslur',
+'specialpages-group-other'       => 'Aðrar kerfissíður',
+'specialpages-group-login'       => 'Innskrá / Búa til aðgang',
+'specialpages-group-changes'     => 'Nýlegar breytingar og skrár',
+'specialpages-group-media'       => 'Miðilsskrár og innhleðslur',
+'specialpages-group-users'       => 'Notendur og réttindi',
+'specialpages-group-needy'       => 'Síður sem þarf að bæta',
+'specialpages-group-highuse'     => 'Mest notaðar síður',
+'specialpages-group-permissions' => 'Notandaréttindi',
 
 );

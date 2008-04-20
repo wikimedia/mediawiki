@@ -65,7 +65,7 @@ $messages = array(
 'tog-previewontop'            => 'Parādīt priekšskatījumu virs rediģēšanas loga, nevis zem.',
 'tog-previewonfirst'          => 'Parādīt priekšskatījumu jau sākotnējā labošanā.',
 'tog-nocache'                 => 'Neļaut pārlūkam saglabāt lapas kešatmiņā',
-'tog-enotifwatchlistpages'    => 'Paziņot pa e-pastu par rakstu izmaiņām',
+'tog-enotifwatchlistpages'    => 'Paziņot pa e-pastu par uzraugāmo rakstu sarakstā esošo rakstu izmaiņām',
 'tog-enotifusertalkpages'     => 'Paziņot pa e-pastu par izmaiņām manā diskusiju lapā',
 'tog-enotifminoredits'        => 'Paziņot pa e-pastu arī par maznozīmīgiem rakstu labojumiem',
 'tog-enotifrevealaddr'        => 'Atklāt manu e-pasta adresi paziņojumu vēstulēs',
@@ -167,7 +167,7 @@ $messages = array(
 'editthispage'      => 'Izmainīt šo lapu',
 'delete'            => 'Dzēst',
 'deletethispage'    => 'Dzēst šo lapu',
-'undelete_short'    => 'Atjaunot $1 versijas',
+'undelete_short'    => 'Atjaunot $1 {{PLURAL:$1|versiju|versijas}}',
 'protect'           => 'Aizsargāt',
 'protectthispage'   => 'Aizsargāt šo lapu',
 'unprotect'         => 'Neaizsargāt',
@@ -190,7 +190,7 @@ $messages = array(
 'redirectedfrom'    => '(Pāradresēts no $1)',
 'redirectpagesub'   => 'Pāradresācijas lapa',
 'lastmodifiedat'    => 'Šajā lapā pēdējās izmaiņas izdarītas $2, $1.', # $1 date, $2 time
-'viewcount'         => 'Šī lapa ir tikusi apskatīta $1 reizes.',
+'viewcount'         => 'Šī lapa ir tikusi apskatīta $1 {{PLURAL:$1|reizi|reizes}}.',
 'protectedpage'     => 'Aizsargāta lapa',
 'jumpto'            => 'Pārlēkt uz:',
 'jumptonavigation'  => 'navigācija',
@@ -234,7 +234,7 @@ $messages = array(
 'hidetoc'             => 'paslēpt',
 'thisisdeleted'       => 'Apskatīt vai atjaunot $1?',
 'viewdeleted'         => 'Skatīt $1?',
-'restorelink'         => '$1 dzēstās versijas',
+'restorelink'         => '$1 {{PLURAL:$1|dzēsto versiju|dzēstās versijas}}',
 'feedlinks'           => 'Barotne:',
 'red-link-title'      => '$1 (vēl nav uzrakstīts)',
 
@@ -389,11 +389,19 @@ Ludzu, nomaini paroli, kad esi veiksmigi iekluvis ieksa.',
 'missingsummary'           => "'''Atgādinājums''': Tu neesi norādījis izmaiņu kopsavilkumu. Vēlreiz klikšķinot uz \"Saglabāt lapu\", Tavas izmaiņas tiks saglabātas bez kopsavilkuma.",
 'missingcommenttext'       => 'Lūdzu, ievadi tekstu zemāk redzamajā logā!',
 'blockedtitle'             => 'Lietotājs ir bloķēts.',
-'blockedtext'              => '$1 ir nobloķējis tavu lietotāja vārdu vai IP adresi. Iemesls tam ir:<br />\'\'$2\'\'<br />. Tu vari sazināties ar $1 vai kādu citu [[{{MediaWiki:Grouppage-sysop}}|administratoru]] lai apspriestu šo bloku.
+'blockedtext'              => "<big>'''Tavs lietotāja vārds vai IP adrese ir nobloķēta.'''</big>
 
-Pievērs uzmanību, tam, ka ja tu neesi norādījis derīgu e-pasta adresi [[Special:Preferences|user preferences]], tev nedarbosies "sūtīt e-pastu" iespēja.
+\$1 ir nobloķējis tavu lietotāja vārdu vai IP adresi. Iemesls tam ir:<br />''\$2''<br />.
 
-Tava IP adrese ir $3. Lūdzu iekļauj to visos turpmākajos pieprasījumos.',
+*Bloka sākums: \$8
+*Bloka beigas: \$6
+*Ar šo mēģināja nobloķēt: \$7
+
+Tu vari sazināties ar \$1 vai kādu citu [[{{MediaWiki:Grouppage-sysop}}|administratoru]] lai apspriestu šo bloku.
+
+Pievērs uzmanību, tam, ka ja tu neesi norādījis derīgu e-pasta adresi ''[[Special:Preferences|manās izvēlēs]]'', tev nedarbosies \"sūtīt e-pastu\" iespēja.
+
+Tava IP adrese ir \$3 un bloka identifikators ir \$5. Lūdzu iekļauj vienu no tiem, vai abus, visos turpmākajos pieprasījumos.",
 'whitelistedittitle'       => 'Lai varētu rediģēt, šeit jāielogojas.',
 'whitelistedittext'        => 'Tev $1 lai varētu rediģēt lapas.',
 'whitelistreadtitle'       => 'Jāielogojas, lai varētu lasīt',
@@ -495,8 +503,8 @@ m = maznozīmīgs labojums.',
 'prevn'                 => 'iepriekšējās $1',
 'nextn'                 => 'nākamās $1',
 'viewprevnext'          => 'Skatīt ($1) ($2) ($3 vienā lapā).',
-'showingresults'        => 'Šobrīd ir redzamas <b>$1</b> lapas, sākot ar #<b>$2</b>.',
-'showingresultsnum'     => 'Šobrīd ir redzamas <b>$3</b> lapas, sākot ar #<b>$2</b>.',
+'showingresults'        => 'Šobrīd ir redzamas <b>$1</b> {{PLURAL:$1|lapa|lapas}}, sākot ar #<b>$2</b>.',
+'showingresultsnum'     => 'Šobrīd ir redzamas <b>$3</b> {{PLURAL:$1|lapa|lapas}}, sākot ar #<b>$2</b>.',
 'nonefound'             => '<strong>Piezīme:</strong> bieži vien meklēšana ir neveiksmīga, meklējot plaši izplatītus vārdus, piemēram, "un" vai "ir", jo tie netiek iekļauti meklēšanas datubāzē, vai arī meklējot vairāk par vienu vārdu (jo rezultātos parādīsies tikai lapas, kurās ir visi meklētie vārdi).',
 'powersearch'           => 'Meklēt',
 'powersearchtext'       => 'Meklēt šādās palīglapās :<br />
@@ -677,7 +685,7 @@ Kopš {{grammar:ģenitīvs|{{SITENAME}}}} izveidošanas lapas ir tikušas apskat
 Vidēji tas ir '''\$5''' labojumi uz lapu un apskatīšanas/labojumu attiecība ir '''\$6'''.
 
 The [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] length is '''\$7'''.",
-'userstatstext' => "Reģistrēto lietotāju skaits ir '''$1'''. No tiem '''$2''' (jeb '''$4%''') ir administratori (skat. $3).",
+'userstatstext' => "Reģistrēto [[Special:Listusers|lietotāju]] skaits ir '''$1'''. No tiem '''$2''' (jeb '''$4%''') ir {{PLURAL:$2|administrators|administratori}} (skat. $5).",
 
 'disambiguations'     => 'Nozīmju atdalīšanas lapas',
 'disambiguationspage' => 'Template:Disambig',
@@ -689,8 +697,8 @@ The [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] length is '''\$7''
 'brokenredirectstext' => 'Šīs ir pāradresācijas lapas uz neesošām lapām.',
 
 # Miscellaneous special pages
-'nbytes'                  => '$1 baitu',
-'ncategories'             => '$1 categories',
+'nbytes'                  => '$1 {{PLURAL:$1|baits|baitu}}',
+'ncategories'             => '$1 {{PLURAL:$1|kategorija|kategorijas}}',
 'nlinks'                  => '$1 {{PLURAL:$1|saite|saites}}',
 'nrevisions'              => '$1 {{PLURAL:$1|versija|versijas}}',
 'nviews'                  => '$1 views',
@@ -772,7 +780,7 @@ Ja vēlāk pārdomāsi un nevēlēsies vairs uzraudzīt šo lapu, klikšķini uz
 'unwatch'              => 'Neuzraudzīt',
 'unwatchthispage'      => 'Pārtraukt uzraudzīšanu',
 'watchnochange'        => 'Neviena no tevis uzraudzītajām lapām nav mainīta parādītajā laika posmā.',
-'watchlist-details'    => '(Tu uzraugi $1 lapas, neieskaitot diskusiju lapas.',
+'watchlist-details'    => '(Tu uzraugi $1 {{PLURAL:$1|lapu|lapas}}, neieskaitot diskusiju lapas.)',
 'watchlistcontains'    => 'Tavā uzraugāmo lapu sarakstā ir $1 {{PLURAL:$1|lapa|lapas}}.',
 'wlshowlast'           => 'Parādīt izmaiņas pēdējo $1 stundu laikā vai $2 dienu laikā, vai arī $3.',
 'watchlist-show-bots'  => 'Parādīt botu izmaiņas',
@@ -850,8 +858,8 @@ Ja pēc dzēšanas ir izveidota jauna lapa ar tādu pašu nosaukumu, atjaunotās
 # What links here
 'whatlinkshere'       => 'Norādes uz šo rakstu',
 'linklistsub'         => '(Saišu uzskaitījums)',
-'linkshere'           => 'Šajās lapās ir norādes uz šo lapu:',
-'nolinkshere'         => 'Nevienā lapā nav norāžu uz šo lapu.',
+'linkshere'           => "Šajās lapās ir norādes uz lapu '''[[:$1]]''':",
+'nolinkshere'         => "Nevienā lapā nav norāžu uz lapu '''[[:$1]]'''.",
 'isredirect'          => 'pāradresācijas lapa',
 'istemplate'          => 'izsaukts',
 'whatlinkshere-prev'  => '{{PLURAL:$1|iepriekšējo|iepriekšējos $1}}',
@@ -938,7 +946,7 @@ Ja tomēr vēlēsies, tad tev šī diskusiju lapa būs jāpārvieto vai jāapvie
 'allmessagesdefault'        => 'Sākotnējais teksts',
 'allmessagescurrent'        => 'Pašreizējais teksts',
 'allmessagestext'           => "Šajā lapā ir visu \"'''Mediawiki:'''\" lapās atrodamo sistēmas paziņojumu uzskaitījums.
-Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] and [http://translatewiki.net Betawiki] if you wish to contribute to the generic MediaWiki localisation.",
+Šos paziņojumus var izmainīt tikai admini. Izmainot tos šeit, tie tiks izmainīti tikai šajā mediawiki instalācijā. Lai tos izmainītu visām pārējām, apskatieties [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] un [http://translatewiki.net Betawiki].",
 'allmessagesnotsupportedDB' => '{{ns:special}}:Allmessages not supported because wgUseDatabaseMessages is off.',
 
 # Thumbnails
@@ -1023,12 +1031,12 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 
 # Special:Newimages
 'newimages'             => 'Jauno attēlu galerija',
-'imagelisttext'         => 'Šobrīd redzams $1 attēlu uzskaitījums, kas sakārtots $2.',
+'imagelisttext'         => 'Šobrīd redzams $1 {{PLURAL:$1|attēla|attēlu}} uzskaitījums, kas sakārtots $2.',
 'showhidebots'          => '($1 botus)',
 'noimages'              => 'Nav nekā ko redzēt.',
 'ilsubmit'              => 'Meklēt',
 'bydate'                => '<b>pēc datuma</b>',
-'sp-newimages-showfrom' => 'Rādīt jaunos attēlus sākot no $1',
+'sp-newimages-showfrom' => 'Rādīt jaunos attēlus sākot no $1, $2',
 
 # Metadata
 'metadata-expand'   => 'Parādīt papildu detaļas',
@@ -1067,7 +1075,9 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 'confirmemail_text'       => 'Šajā wiki ir nepieciešams apstiprināt savu e-pasta adresi, lai izmantotu e-pasta funkcijas. Spied uz zemāk esošās pogas, lai uz tavu e-pasta adresi nosūtītu apstiprināšanas e-pastu. Tajā būs saite ar kodu; spied uz tās saites vai atver to savā interneta pārlūkā, lai apstiprinātu tavas e-pasta adreses derīgumu.',
 'confirmemail_send'       => 'Nosūtīt apstiprināšanas kodu',
 'confirmemail_sent'       => 'Apstiprināšanas e-pasts nosūtīts.',
-'confirmemail_sendfailed' => 'Nevarējām nosūtīt apstiprināšanas e-pastu. Pārbaudi, vai adresē nav kāds nepareizs simbols.',
+'confirmemail_sendfailed' => 'Nevarējām nosūtīt apstiprināšanas e-pastu. Pārbaudi, vai adresē nav kāds nepareizs simbols.
+
+Nosūtīšanas programma atmeta atpakaļ: $1',
 'confirmemail_invalid'    => 'Nederīgs apstiprināšanas kods. Iespējams, beidzies tā termiņš.',
 'confirmemail_success'    => 'Tava e-pasta adrese ir apstiprināta. Tagad vari doties iekšā ar savu lietotājvārdu un pilnvērtīgi izmantot wiki iespējas.',
 'confirmemail_loggedin'   => 'Tava e-pasta adrese tagad ir apstiprināta.',
@@ -1079,7 +1089,11 @@ Lai apstiprinatu, ka so lietotaja vardu esi izveidojis tu pats, un aktivizetu e-
 
 $3
 
-Ja tu *neesi* registrejis sadu lietotaja vardu, nespied uz saites. Si apstiprinajuma kods deriguma termins ir $4.',
+Ja tu *neesi* registrejis sadu lietotaja vardu, atver sho saiti savaa interneta browserii, lai atceltu shiis e-pasta adreses apstiprinaashanu:
+
+$5
+
+Si apstiprinajuma koda deriguma termins ir $4.',
 
 # Scary transclusion
 'scarytranscludedisabled' => '[Starpviki saišu iekļaušana ir atspējota.]',

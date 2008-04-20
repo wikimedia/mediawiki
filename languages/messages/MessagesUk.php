@@ -1753,7 +1753,7 @@ $NEWPAGE
 $1',
 
 # Namespace form on various pages
-'namespace'      => 'Простір імен:',
+'namespace'      => 'Простір назв:',
 'invert'         => 'Крім вибраного',
 'blanknamespace' => '(Основний)',
 
@@ -1789,6 +1789,7 @@ $1',
 'whatlinkshere-hideredirs' => '$1 перенаправлення',
 'whatlinkshere-hidetrans'  => '$1 включення',
 'whatlinkshere-hidelinks'  => '$1 посилання',
+'whatlinkshere-filters'    => 'Фільтри',
 
 # Block/unblock
 'blockip'                     => 'Заблокувати IP-адресу',

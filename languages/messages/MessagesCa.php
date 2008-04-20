@@ -17,6 +17,7 @@
  * @author Siebrand
  * @author Smeira
  * @author Jon Harald Søby
+ * @author Spacebirdy
  */
 
 $skinNames = array(
@@ -2468,8 +2469,8 @@ $1",
 'useajaxsearch'    => 'Utilitza la cerca en AJAX',
 
 # Multipage image navigation
-'imgmultipageprev' => '&larr; pàgina anterior',
-'imgmultipagenext' => 'pàgina següent &rarr;',
+'imgmultipageprev' => '← pàgina anterior',
+'imgmultipagenext' => 'pàgina següent →',
 'imgmultigo'       => 'Vés-hi!',
 'imgmultigotopre'  => 'Vés a la pàgina',
 

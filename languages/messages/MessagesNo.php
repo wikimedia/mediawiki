@@ -1640,6 +1640,7 @@ $1',
 'whatlinkshere-hideredirs' => '$1 omdirigeringer',
 'whatlinkshere-hidetrans'  => '$1 inkluderinger',
 'whatlinkshere-hidelinks'  => '$1 lenker',
+'whatlinkshere-filters'    => 'Filtere',
 
 # Block/unblock
 'blockip'                     => 'Blokker bruker',
