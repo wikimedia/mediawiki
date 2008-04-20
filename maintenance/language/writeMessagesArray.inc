@@ -9,7 +9,6 @@ class MessageWriter {
 	static $optionalComment = 'only translate this message to other languages if you have to change it';
 	static $ignoredComment = "do not translate or duplicate this message to other languages";
 
-	static $loaded = false;
 	static $messageStructure;
 	static $blockComments;
 	static $messageComments;
@@ -66,20 +65,19 @@ class MessageWriter {
 	 *
 	 * @return Array of the PHP text and the sorted messages array.
 	 */
-	public static function writeMessagesArray( $messages, $ignoredComments = false ) {
+	public static function writeMessagesArray( $messages, $ignoredComments = false, $prefix = false ) {
 		# Load messages
-		if( !self::$loaded ) {
-			require( dirname( __FILE__ ) . '/messages.inc' );
-			self::$messageStructure = $wgMessageStructure;
-			self::$blockComments = $wgBlockComments;
-			self::$messageComments = $wgMessageComments;
+		$dir = $prefix ? $prefix : dirname( __FILE__ );
+		
+		require( $dir . '/messages.inc' );
+		self::$messageStructure = $wgMessageStructure;
+		self::$blockComments = $wgBlockComments;
+		self::$messageComments = $wgMessageComments;
 
-			require( dirname( __FILE__ ) . '/messageTypes.inc' );
-			self::$ignoredMessages = $wgIgnoredMessages;
-			self::$optionalMessages = $wgOptionalMessages;
+		require( $dir . '/messageTypes.inc' );
+		self::$ignoredMessages = $wgIgnoredMessages;
+		self::$optionalMessages = $wgOptionalMessages;
 
-			self::$loaded = true;
-		}
 
 		# Sort messages to blocks
 		$sortedMessages['unknown'] = $messages;
