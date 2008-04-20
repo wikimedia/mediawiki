@@ -259,7 +259,7 @@ class LogEventsList {
 					} else {
 						$revParams = '';
 						foreach( $Ids as $n => $id ) {
-							$revParams .= '&oldid[]=' . intval($id);
+							$revParams .= '&' . urlencode($key) . '[]=' . intval($id);
 						}
 						$revert = $this->skin->makeKnownLinkObj( $revdel, $this->message['revdel-restore'], 
 							'target=' . $title->getPrefixedUrl() . $revParams );
