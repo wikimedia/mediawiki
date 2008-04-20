@@ -174,6 +174,8 @@ class RevisionDeleteForm {
 
 		$where = $revObjs = array();
 		$dbr = wfGetDB( DB_SLAVE );
+		
+		$revisions = 0;
 		// Live revisions...
 		if( $this->deleteKey=='oldid' ) {
 			// Run through and pull all our data in one query
@@ -190,9 +192,8 @@ class RevisionDeleteForm {
 			}
 			foreach( $this->revisions as $revid ) {
 				// Hiding top revisison is bad
-				if( !is_object($revObjs[$revid]) || $revObjs[$revid]->isCurrent() ) {
-					$wgOut->showErrorPage( 'revdelete-nooldid-title', 'revdelete-nooldid-text' );
-					return;
+				if( !isset($revObjs[$revid]) || $revObjs[$revid]->isCurrent() ) {
+					continue;
 				} else if( !$revObjs[$revid]->userCan(Revision::DELETED_RESTRICTED) ) {
 				// If a rev is hidden from sysops
 					if( $action != 'submit') {
@@ -201,6 +202,7 @@ class RevisionDeleteForm {
 					}
 					$UserAllowed = false;
 				}
+				$revisions++;
 				$wgOut->addHtml( $this->historyLine( $revObjs[$revid] ) );
 				$bitfields |= $revObjs[$revid]->mDeleted;
 			}
@@ -231,13 +233,9 @@ class RevisionDeleteForm {
 				'len'        => $row->ar_len) );
 			}
 			foreach( $this->archrevs as $timestamp ) {
-				if( !is_object($revObjs[$timestamp]) ) {
-					$wgOut->showErrorPage( 'revdelete-nooldid-title', 'revdelete-nooldid-text' );
-					return;
-				}
-			}
-			foreach( $revObjs as $rev ) {
-				if( !$rev->userCan(Revision::DELETED_RESTRICTED) ) {
+				if( !isset($revObjs[$timestamp]) ) {
+					continue;
+				} else if( !$revObjs[$timestamp]->userCan(Revision::DELETED_RESTRICTED) ) {
 				// If a rev is hidden from sysops
 					if( $action != 'submit') {
 						$wgOut->permissionRequired( 'hiderevision' );
@@ -245,10 +243,16 @@ class RevisionDeleteForm {
 					}
 					$UserAllowed = false;
 				}
-				$wgOut->addHtml( $this->historyLine( $rev ) );
-				$bitfields |= $rev->mDeleted;
+				$revisions++;
+				$wgOut->addHtml( $this->historyLine( $revObjs[$timestamp] ) );
+				$bitfields |= $revObjs[$timestamp]->mDeleted;
 			}
 		}
+		if( !$revisions ) {
+			$wgOut->showErrorPage( 'revdelete-nooldid-title', 'revdelete-nooldid-text' );
+			return;
+		}
+		
 		$wgOut->addHtml( "</ul>" );
 
 		$wgOut->addWikiText( wfMsgHtml( 'revdelete-text' ) );
@@ -316,6 +320,7 @@ class RevisionDeleteForm {
 		$where = $filesObjs = array();
 		$dbr = wfGetDB( DB_SLAVE );
 		// Live old revisions...
+		$revisions = 0;
 		if( $this->deleteKey=='oldimage' ) {
 			// Run through and pull all our data in one query
 			foreach( $this->ofiles as $timestamp ) {
@@ -335,15 +340,8 @@ class RevisionDeleteForm {
 			foreach( $this->ofiles as $timestamp ) {
 				$archivename = $timestamp.'!'.$this->page->getDbKey();
 				if( !isset($filesObjs[$archivename]) ) {
-					$wgOut->showErrorPage( 'revdelete-nooldid-title', 'revdelete-nooldid-text' );
-					return;
-				}
-			}
-			foreach( $filesObjs as $file ) {
-				if( !isset($file) ) {
-					$wgOut->showErrorPage( 'revdelete-nooldid-title', 'revdelete-nooldid-text' );
-					return;
-				} else if( !$file->userCan(File::DELETED_RESTRICTED) ) {
+					continue;
+				} else if( !$filesObjs[$archivename]->userCan(File::DELETED_RESTRICTED) ) {
 					// If a rev is hidden from sysops
 					if( $action != 'submit' ) {
 						$wgOut->permissionRequired( 'hiderevision' );
@@ -351,9 +349,10 @@ class RevisionDeleteForm {
 					}
 					$UserAllowed = false;
 				}
+				$revisions++;
 				// Inject history info
-				$wgOut->addHtml( $this->fileLine( $file ) );
-				$bitfields |= $file->deleted;
+				$wgOut->addHtml( $this->fileLine( $filesObjs[$archivename] ) );
+				$bitfields |= $filesObjs[$archivename]->deleted;
 			}
 		// Archived files...
 		} else {
@@ -372,8 +371,7 @@ class RevisionDeleteForm {
 
 			foreach( $this->afiles as $fileid ) {
 				if( !isset($filesObjs[$fileid]) ) {
-					$wgOut->showErrorPage( 'revdelete-nooldid-title', 'revdelete-nooldid-text' );
-					return;
+					continue;
 				} else if( !$filesObjs[$fileid]->userCan(File::DELETED_RESTRICTED) ) {
 					// If a rev is hidden from sysops
 					if( $action != 'submit' ) {
@@ -382,11 +380,17 @@ class RevisionDeleteForm {
 					}
 					$UserAllowed = false;
 				}
+				$revisions++;
 				// Inject history info
 				$wgOut->addHtml( $this->archivedfileLine( $filesObjs[$fileid] ) );
 				$bitfields |= $filesObjs[$fileid]->deleted;
 			}
 		}
+		if( !$revisions ) {
+			$wgOut->showErrorPage( 'revdelete-nooldid-title', 'revdelete-nooldid-text' );
+			return;
+		}
+		
 		$wgOut->addHtml( "</ul>" );
 
 		$wgOut->addWikiText( wfMsgHtml( 'revdelete-text' ) );
@@ -450,6 +454,7 @@ class RevisionDeleteForm {
 		$where = $logRows = array();
 		$dbr = wfGetDB( DB_SLAVE );
 		// Run through and pull all our data in one query
+		$logItems = 0;
 		foreach( $this->events as $logid ) {
 			$where[] = intval($logid);
 		}
@@ -465,8 +470,7 @@ class RevisionDeleteForm {
 		foreach( $this->events as $logid ) {
 			// Don't hide from oversight log!!!
 			if( !isset( $logRows[$logid] ) || $logRows[$logid]->log_type=='suppress' ) {
-				$wgOut->showErrorPage( 'revdelete-nooldid-title', 'revdelete-nooldid-text' );
-				return;
+				continue;
 			} else if( !LogEventsList::userCan( $logRows[$logid],Revision::DELETED_RESTRICTED) ) {
 			// If an event is hidden from sysops
 				if( $action != 'submit') {
@@ -475,9 +479,15 @@ class RevisionDeleteForm {
 				}
 				$UserAllowed = false;
 			}
+			$logItems++;
 			$wgOut->addHtml( $this->logLine( $logRows[$logid] ) );
 			$bitfields |= $logRows[$logid]->log_deleted;
 		}
+		if( !$logItems ) {
+			$wgOut->showErrorPage( 'revdelete-nooldid-title', 'revdelete-nooldid-text' );
+			return;
+		}
+		
 		$wgOut->addHtml( "</ul>" );
 
 		$wgOut->addWikiMsg( 'revdelete-text' );
