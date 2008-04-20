@@ -1630,6 +1630,7 @@ $1',
 'whatlinkshere-hideredirs' => '$1 ohjaukset',
 'whatlinkshere-hidetrans'  => '$1 sisällytykset',
 'whatlinkshere-hidelinks'  => '$1 linkit',
+'whatlinkshere-filters'    => 'Suotimet',
 
 # Block/unblock
 'blockip'                     => 'Aseta muokkausesto',

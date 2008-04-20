@@ -295,7 +295,7 @@ $messages = array(
 'hidetoc'                 => 'gizle',
 'thisisdeleted'           => '$1 görmek veya geri getirmek istermisiniz?',
 'viewdeleted'             => '$1 gör?',
-'restorelink'             => 'silinmiş $1 değişikliği',
+'restorelink'             => '$1 silinmiş değişikliği',
 'feedlinks'               => 'Besleme:',
 'feed-invalid'            => 'Hatalı besleme tipi.',
 'feed-unavailable'        => 'Sendikalaşma beslemeleri {{SITENAME}} üzerinde geçerli değil.',
@@ -458,8 +458,8 @@ Aşağıdaki işlevlerin hiçbiri için e-posta gönderilmeyecektir.',
 'noemailprefs'               => 'Bu özelliklerin çalışması için bir e-posta adresi belirtiniz.',
 'emailconfirmlink'           => 'E-posta adresinizi doğrulayın',
 'invalidemailaddress'        => 'E-posta adresi geçersizdir. Lütfen geçerli bir adres yazın ya da metin kutusunun içeriğini silin.',
-'accountcreated'             => 'Hesap açıldı',
-'accountcreatedtext'         => '$1 için bir kullanıcı hesabı açıldı.',
+'accountcreated'             => 'Hesap yaratıldı',
+'accountcreatedtext'         => '$1 için kullanıcı hesabı yaratıldı.',
 'createaccount-title'        => '{{SITENAME}} için yeni kullanıcı hesabı oluşturulması',
 'loginlanguagelabel'         => 'Dil: $1',
 
@@ -521,18 +521,20 @@ Sizi engelleyen hizmetli: $1. Engelleme sebebi: \'\'$2\'\'.
 Belirtilen nedene göre engellenmenizin uygun olmadığını düşünüyorsanız, $1 ile ya da başka bir [[{{MediaWiki:Grouppage-sysop}}|hizmetli]] ile bu durumu görüşebilirsiniz.
 Eğer [[Special:Preferences|tercihler]] kısmında geçerli bir e-posta adresi girmediyseniz "Kullanıcıya e-posta gönder" özelliğini kullanamazsınız.
 Şu anda IP adresiniz $3 ve engellenme numaranız #$5. Lütfen sorgu yaparken bu bilgileri belirtiniz.',
-'autoblockedtext'           => 'IP adresiniz otomatik olarak engellendi çünkü başka bir kullaınıcı tarafından kullanılmaktaydı, $1 tarafından engellendi.
-Bunun için şu sebep belirtildi:
+'autoblockedtext'           => 'IP adresiniz otomatik olarak engellendi çünkü $1 tarafından engellenmiş başka bir kullanıcı tarafından kullanılmaktaydı. 
+Belirtilen sebep şudur:
+
 :\'\'$2\'\'
 
-* Engellenmenin başlangıç zamanı: $8
-* Engellenmenin bitiş zamanı: $6
+* Engellemenin başlangıcı: $8
+* Engellemenin bitişi: $6
 
 Engelleme hakkında tartışmak için $1 ile veya diğer [[{{MediaWiki:Grouppage-sysop}}|yöneticilerden]] biriyle irtibata geçebilirsiniz.
 
-Not, [[Special:Preferences|kullanıcı tercihlerinize]] geçerli bir e-mail adresi eklemediyesiniz veya onu kullandığınız engellenmediyseniz "Kullanıcıya e-posta gönder" özelliğini kullanamayabilirsiniz.
+Not, [[Special:Preferences|kullanıcı tercihlerinize]] geçerli bir e-posta adresi kaydetmediyseniz  "kullanıcıya e-posta gönder" özelliğinden faydalanamayabilirsiniz ve bu özelliği kullanmaktan engellenmediniz. 
 
-Engellenme ID\'niz $5. Lütfen yapacağınız herhangi sorgularda bu ID bulunsun.',
+Engellenme ID\'niz $5. 
+Lütfen yapacağınız herhangi bir sorguda bu ID bulunsun.',
 'blockednoreason'           => 'sebep verilmedi',
 'blockedoriginalsource'     => "'''$1''' sayfasının kaynak metni aşağıdır:",
 'blockededitsource'         => "'''$1''' sayfasında '''yaptığınız değişikliğe''' ait metin aşağıdadır:",
@@ -549,7 +551,7 @@ Engellenme ID\'niz $5. Lütfen yapacağınız herhangi sorgularda bu ID bulunsun
 'loginreqlink'              => 'oturum aç',
 'loginreqpagetext'          => 'Diğer sayfaları görmek için $1 olmalısınız.',
 'accmailtitle'              => 'Parola gönderildi.',
-'accmailtext'               => "'$1' kullanıcısına ait parola $2 adresine gönderildi.",
+'accmailtext'               => '"$1" kullanıcısına ait parola $2 adresine gönderildi.',
 'newarticle'                => '(Yeni)',
 'newarticletext'            => "Henüz varolmayan bir sayfaya konulmuş bir bağlantıya tıkladınız. Bu sayfayı yaratmak için aşağıdaki metin kutusunu kullanınız. Bilgi için [[{{MediaWiki:Helppage}}|yardım sayfasına]] bakınız. Buraya yanlışlıkla geldiyseniz, programınızın '''Geri''' tuşuna tıklayınız.",
 'anontalkpagetext'          => "----
@@ -1305,6 +1307,7 @@ Daha fazla bilgi için [[Project:Koruma altına alınmış sayfa]] sayfasına ba
 'undeletehistory'        => 'Eğer bu sayfa geri getiriyorsanız sayfanın bütün geçmişi de geri getirilecektir. Silindikten sonra aynı isimle yeni bir sayfa eklenmişse geri gelecek sayfanın geçmişi varolan sayfayı değiştirmeden halihazırdaki geçmişe eklenecektir.',
 'undeletehistorynoadmin' => 'Bu madde silinmiştir. Silinme sebebi ve silinme öncesinde maddeyi düzenleyen kullanıcıların detayları aşağıdaki özette verilmiştir. Bu silinmiş sürümlerin metinleri ise sadece yöneticiler tarafından görülebilir.',
 'undeletebtn'            => 'Geri getir!',
+'undeletelink'           => 'geri getir',
 'undeletereset'          => 'Vazgeç',
 'undeletecomment'        => 'Neden:',
 'undeletedarticle'       => '"$1" geri getirildi.',
@@ -1873,7 +1876,7 @@ Sayfayı baştan açmak isityorsanız, lütfen onaylayın.",
 
 # Auto-summaries
 'autosumm-blank'   => 'Sayfa boşaltıldı',
-'autosumm-replace' => "Sayfanın içeriği '$1' ile değiştirildi",
+'autosumm-replace' => "Sayfa içeriği '$1' ile değiştiriliyor",
 'autoredircomment' => '[[$1]] sayfasına yönlendirildi',
 'autosumm-new'     => 'Yeni sayfa: $1',
 
@@ -1889,7 +1892,7 @@ Sayfayı baştan açmak isityorsanız, lütfen onaylayın.",
 Bir başlığı çıkarmak için, yanındaki kutucuğu işaretleyin, ve Başlıkları Çıkar butonuna tıklayın
 [[Special:Watchlist/raw|Satır listesini]] de düzenleyebilirsiniz',
 'watchlistedit-normal-submit'  => 'Başlıkları kaldır',
-'watchlistedit-normal-done'    => '$1 başlık izleme listenizden silindi',
+'watchlistedit-normal-done'    => '$1 başlık izleme listenizden çıkartıldı:',
 'watchlistedit-raw-title'      => 'Ham izleme listesini düzenle',
 'watchlistedit-raw-legend'     => 'Ham izleme listesini düzenle',
 'watchlistedit-raw-explain'    => "İzleme listenizdeki başlıklar aşağıda gösterilmektedir. Her satırda bir başlık olmak üzere, başlıkları ekleyerek ya da silerek listeyi düzenleyebilirsiniz. Bittiğinde ''İzleme listesini güncelle'''ye tıklayınız. Ayrıca [[Special:Watchlist/edit|standart düzenleme sayfasını]] da kullanabilirsiniz.",
@@ -1922,5 +1925,16 @@ Bir başlığı çıkarmak için, yanındaki kutucuğu işaretleyin, ve Başlık
 'filepath'        => 'Dosyanın konumu',
 'filepath-page'   => 'Dosya adı:',
 'filepath-submit' => 'Konum',
+
+# Special:SpecialPages
+'specialpages-group-maintenance' => 'Bakım raporları',
+'specialpages-group-other'       => 'Diğer özel sayfalar',
+'specialpages-group-login'       => 'Oturum aç / hesap edin',
+'specialpages-group-changes'     => 'Son değişiklikler ve kayıtlar',
+'specialpages-group-media'       => 'Dosya raporları ve yüklemeler',
+'specialpages-group-users'       => 'Kullanıcılar ve hakları',
+'specialpages-group-needy'       => 'Üzerinde çalışılması gereken sayfalar',
+'specialpages-group-highuse'     => 'Çok kullanılan sayfalar',
+'specialpages-group-permissions' => 'Kullanıcı izinleri',
 
 );

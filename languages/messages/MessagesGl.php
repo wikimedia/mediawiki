@@ -59,7 +59,7 @@ $messages = array(
 'tog-minordefault'            => 'Marcar por omisión todas as edicións como pequenas',
 'tog-previewontop'            => 'Mostrar botón de vista previa antes da caixa de edición e non despois dela',
 'tog-previewonfirst'          => 'Mostrar a vista previa na primeira edición',
-'tog-nocache'                 => 'Deshabilitar a memoria <i>caché</i> das páxinas',
+'tog-nocache'                 => 'Deshabilitar a memoria caché das páxinas',
 'tog-enotifwatchlistpages'    => 'Envíenme unha mensaxe de correo electrónico cando unha páxina da miña listaxe de vixilancia cambie',
 'tog-enotifusertalkpages'     => 'Envíenme unha mensaxe de correo electrónico cando a miña páxina de conversa cambie',
 'tog-enotifminoredits'        => 'Envíenme tamén unha mensaxe de correo electrónico cando se produzan pequenos cambios nas páxinas',
@@ -367,7 +367,7 @@ Se cadra xa foi borrada por alguén.',
 'badtitle'             => 'Título incorrecto',
 'badtitletext'         => 'O título da páxina pedida non era válido, estaba baleiro ou proviña dunha ligazón inter-lingua ou inter-wiki incorrecta. Pode conter un ou máis caracteres dos que non se poden empregar nos títulos.',
 'perfdisabled'         => 'Sentímolo! Esta funcionalidade foi deshabilitada temporalmente porque fai moi lenta a base de datos até o punto no que non se pode usar o wiki.',
-'perfcached'           => 'A información seguinte é da memoria caché e pode ser que non estea completamente actualizada:',
+'perfcached'           => 'A información seguinte é da memoria caché e pode ser que non estea completamente actualizada.',
 'perfcachedts'         => 'Esta información é da memoria caché. Última actualización: $1.',
 'querypage-no-updates' => 'Neste momento están desactivadas as actualizacións nesta páxina. O seu contido non se modificará.',
 'wrong_wfQuery_params' => 'Parámetros Incorrectos para wfQuery()<br />
@@ -392,9 +392,9 @@ A razón dada foi ''$2''.",
 
 # Login and logout pages
 'logouttitle'                => 'Saída de usuario a anónimo',
-'logouttext'                 => "<strong>Agora está fóra do sistema.</strong>
+'logouttext'                 => '<strong>Agora está fóra do sistema.</strong>
 
-Pode continuar usando {{SITENAME}} de xeito anónimo, ou pode acceder de novo co mesmo nome de usuario ou con outro. Note que mentres se limpa a memoria ''caché'' do navegador algunhas páxinas poden continuar a ser amosadas como se estivesen aínda dentro do sistema.",
+Pode continuar usando {{SITENAME}} de xeito anónimo, ou pode acceder de novo co mesmo nome de usuario ou con outro. Note que mentres se limpa a memoria caché do navegador algunhas páxinas poden continuar a ser amosadas como se estivesen aínda dentro do sistema.',
 'welcomecreation'            => '== Reciba a nosa benvida, $1! ==
 Creouse a súa conta.
 Non esqueza [[Special:Preferences|personalizar]] as súas preferencias en {{SITENAME}}.',
@@ -582,7 +582,7 @@ Se chegou aquí por erro, simplemente prema no botón '''atrás''' do seu navega
 'anontalkpagetext'                  => "---- ''Esta é a páxina de conversa dun usuario anónimo que aínda non creou unha conta ou que non a usa. Polo tanto, empregamos o enderezo IP para a súa identificación. Este enderezo IP pódeno compartir varios usuarios distintos. Se vostede pensa que foron dirixidos contra a súa persoa comentarios inadecuados, por favor [[Special:Userlogin|cree unha conta]] para evitar futuras confusións con outros usuarios anónimos.''",
 'noarticletext'                     => 'Actualmente non existe texto nesta páxina. Pode [[Special:Search/{{PAGENAME}}|procurar polo título desta páxina]] noutras páxinas ou [{{fullurl:{{FULLPAGENAME}}|action=edit}} editala].',
 'userpage-userdoesnotexist'         => 'A conta do usuario "$1" non está rexistrada. Comprobe se desexa crear/editar esta páxina.',
-'clearyourcache'                    => "'''Nota:''' Despois de gravar, cómpre limpar a memoria ''caché'' do seu navegador para ver os cambios: '''Mozilla / Firefox / Safari:''' prema ''Maiúsculas'' á vez que en ''Recargar'' ou ''Ctrl-Shift-R'' (''Cmd-Maiúsculas-R'' nos Apple Mac); '''IE:''' prema ''Ctrl'' ao tempo que fai clic en ''Refrescar'', ou prema ''Ctrl-F5''; '''Konqueror:''' simplemente faga clic no botón ''Recargar'', ou prema ''F5''; os usuarios de '''Opera''' pode que teñan que limpar completamente a ''caché'' en ''Ferramentas→Preferencias''.",
+'clearyourcache'                    => "'''Nota:''' Despois de gravar, cómpre limpar a memoria caché do seu navegador para ver os cambios. '''Mozilla / Firefox / Safari:''' prema ''Maiúsculas'' á vez que en ''Recargar'' ou ''Ctrl-Shift-R'' (''Cmd-Maiúsculas-R'' nos Apple Mac); '''IE:''' prema ''Ctrl'' ao tempo que fai clic en ''Refrescar'' ou prema ''Ctrl-F5''; '''Konqueror:''' simplemente faga clic no botón ''Recargar'' ou prema ''F5''; os usuarios de '''Opera''' pode que teñan que limpar completamente a caché en ''Ferramentas→Preferencias''.",
 'usercssjsyoucanpreview'            => '<strong>Nota:</strong> Use o botón "Mostrar a vista previa" para verificar o novo CSS/JS antes de gardalo.',
 'usercsspreview'                    => "'''Lembre que só está avaliando o uso do css, non foi aínda gardado!'''",
 'userjspreview'                     => "'''Lembre que só está testando/previsualizando o seu javascript de usuario, non foi aínda gardado!'''",
@@ -1133,7 +1133,7 @@ Premendo nun cabezallo da columna cambia a ordenación.',
 'nolinkstoimage'            => 'Ningunha páxina liga con esta imaxe.',
 'sharedupload'              => 'Este ficheiro é un envío compartido e pode ser usado por outros proxectos.',
 'shareduploadwiki'          => 'Por favor vexa $1 para máis información.',
-'shareduploadwiki-desc'     => 'A descrición na súa $1 móstrase embaixo.',
+'shareduploadwiki-desc'     => 'A descrición na $1 móstrase embaixo.',
 'shareduploadwiki-linktext' => 'páxina de descrición do ficheiro',
 'noimage'                   => 'Non existe ningún ficheiro con ese nome, vostede pode $1.',
 'noimage-linktext'          => 'cargalo',
@@ -1199,17 +1199,17 @@ Entrada: tipodecontido/subtipo, p.ex. <tt>image/jpeg</tt>.',
 # Statistics
 'statistics'             => 'Estatísticas',
 'sitestats'              => 'Estatísticas de {{SITENAME}}',
-'userstats'              => 'Estatísticas do usuario',
-'sitestatstext'          => "Actualmente hai {{PLURAL:$1|'''1''' páxina|'''$1''' páxinas en total}} na base de datos.
-Isto inclúe as páxinas de conversa, as páxinas acerca de {{SITENAME}}, páxinas de contido mínimo, redireccións e outras que probabelmente non deberían considerarse como páxinas con contido.
-Excluíndo todo isto, hai {{PLURAL:$2|'''1''' páxina que é|'''$2''' páxinas que son}} probabelmente {{PLURAL:$2|páxina|páxinas}} con contido lexítimo.
+'userstats'              => 'Estatísticas dos usuarios',
+'sitestatstext'          => "Actualmente hai {{PLURAL:\$1|'''1''' páxina|'''\$1''' páxinas en total}} na base de datos.
+Isto inclúe as páxinas de \"conversa\", as páxinas acerca de {{SITENAME}}, as páxinas de \"contido mínimo\", as redireccións e outras que probabelmente non deberían considerarse como páxinas con contido.
+Excluíndo todo isto, hai {{PLURAL:\$2|'''1''' páxina que é|'''\$2''' páxinas que son}}, probabelmente, {{PLURAL:\$2|páxina|páxinas}} con contido lexítimo.
 
-Recibíronse '''$8''' {{PLURAL:$8|ficheiro|ficheiros}}.
+'''\$8''' {{PLURAL:\$8|ficheiro foi cargado|ficheiros foron cargados}}.
 
-Pedíronse un total de '''$3''' {{PLURAL:$3|páxina|páxinas}} e houbo '''$4''' {{PLURAL:$4|edición|edicións}} desde que se creou {{SITENAME}}.
-Isto resulta nunha media de '''$5''' edicións por páxina e '''$6''' visionados por edición.
+Houbo un total de '''\$3''' {{PLURAL:\$3|páxina vista|páxinas vistas}} e '''\$4''' {{PLURAL:\$4|edición|edicións}} desque se creou {{SITENAME}}.
+Isto resulta nunha media de '''\$5''' edicións por páxina e '''\$6''' visionados por edición.
 
-A lonxitude da [http://meta.wikimedia.org/wiki/Help:Job_queue cola de traballos] é de '''$7'''.",
+A lonxitude da [http://meta.wikimedia.org/wiki/Help:Job_queue cola de traballos] é de '''\$7'''.",
 'userstatstext'          => "Hai {{PLURAL:$1|'''1''' [[Special:Listusers|usuario]] rexistrado|'''$1''' [[Special:Listusers|usuarios]] rexistrados}}, dos cales '''$2''' (ou '''$4%''') {{PLURAL:$2|ten|teñen}} dereitos de $5.",
 'statistics-mostpopular' => 'Páxinas máis vistas',
 
@@ -1219,8 +1219,7 @@ A lonxitude da [http://meta.wikimedia.org/wiki/Help:Job_queue cola de traballos]
 desde a [[MediaWiki:Disambiguationspage|páxina de homónimos]].",
 
 'doubleredirects'     => 'Redireccións dobres',
-'doubleredirectstext' => '<b>Atención:</b> Esta lista por ter positivos falsos. Isto usualmente quere dicir que hai máis texto con ligazóns baixo o primeiro #REDIRECT.<br />
-Cada ringleira contén ligazóns cara á primeira e segunda redirección, e tamén á primeira liña da segunda redirección, usualmente dando a páxina obxectivo "real", á que a primeira redirección debería apuntar.',
+'doubleredirectstext' => 'Esta páxina contén as páxinas que redirixen cara a outras páxinas de redirección. Cada ringleira contén ligazóns cara á primeira e segunda redireccións, e tamén á primeira liña da segunda redirección, que é usualmente o artigo "real", á que a primeira redirección debería apuntar.',
 
 'brokenredirects'        => 'Redireccións rotas',
 'brokenredirectstext'    => 'Estas redireccións ligan cara a unha páxina que non existe:',
@@ -1834,7 +1833,7 @@ Todas as accións relacionadas coa importación entre wikis poden verse no [[Spe
 'tooltip-pt-login'                => 'Recoméndaselle rexistrarse, se ben non é obrigatorio.',
 'tooltip-pt-anonlogin'            => 'Recoméndaselle rexistrarse, se ben non é obrigatorio.',
 'tooltip-pt-logout'               => 'Saír do sistema',
-'tooltip-ca-talk'                 => 'Conversa acerca do contido da páxina',
+'tooltip-ca-talk'                 => 'Conversa acerca do contido desta páxina',
 'tooltip-ca-edit'                 => 'Pode modificar esta páxina. Antes de gardala utilice, por favor, o botón de vista previa.',
 'tooltip-ca-addsection'           => 'Contribúa cun comentario a esta conversa.',
 'tooltip-ca-viewsource'           => 'Esta páxina está protexida. Pode ver o código fonte.',
@@ -1869,7 +1868,7 @@ Todas as accións relacionadas coa importación entre wikis poden verse no [[Spe
 'tooltip-ca-nstab-main'           => 'Ver a páxina co contido',
 'tooltip-ca-nstab-user'           => 'Ver a páxina do usuario',
 'tooltip-ca-nstab-media'          => 'Ver a páxina de multimedia',
-'tooltip-ca-nstab-special'        => 'Esta é unha páxina especial. Non a pode editar',
+'tooltip-ca-nstab-special'        => 'Esta é unha páxina especial, polo que non a pode editar',
 'tooltip-ca-nstab-project'        => 'Ver a páxina do proxecto',
 'tooltip-ca-nstab-image'          => 'Ver a páxina do ficheiro',
 'tooltip-ca-nstab-mediawiki'      => 'Ver a mensaxe do sistema',
@@ -2330,7 +2329,7 @@ Por favor confirme que realmente quere crear o artigo de novo.",
 'redirectingto' => 'Redirixindo a [[$1]]...',
 
 # action=purge
-'confirm_purge'        => 'Está seguro de que desexa limpar a caché desta páxina?
+'confirm_purge'        => 'Está seguro de que desexa limpar a memoria caché desta páxina?
 
 $1',
 'confirm_purge_button' => 'Si',

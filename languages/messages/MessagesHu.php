@@ -10,6 +10,7 @@
  * @author SPQRobin
  * @author Dorgan
  * @author Bennó
+ * @author Cerasus
  */
 
 $namespaceNames = array(
@@ -1194,6 +1195,7 @@ az üres azt, hogy nem.',
 'recentchangeslinked-summary'  => "Ez a lap azon lapoknak a legutóbbi változtatásait listázza, amelyek linkelve vannak a megadott oldalról (vagy tagjai a megadott kategóriának).
 A [[Special:Watchlist|figyelőlistádon]] szereplő lapok '''félkövérrel''' vannak jelölve.",
 'recentchangeslinked-page'     => 'Lap neve:',
+'recentchangeslinked-to'       => 'Inkább az erre linkelő lapok változtatásait mutasd',
 
 # Upload
 'upload'                      => 'Fájl feltöltése',

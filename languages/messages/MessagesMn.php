@@ -1689,6 +1689,7 @@ $1',
 'movepage-moved'          => '<big>\'\'\'"$1" нь "$2" руу зөөгдлөө\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => 'Ийм нэртэй хуудсыг өмнө нь үүсгэсэн, эсвэл сонгосон нэр тань хүчингүй байна.
 Өөр нэр сонгоно уу.',
+'cantmove-titleprotected' => 'Шинэ гарчигтай хуудас нь үүсгэгдэхээс хамгаалагдсан тул та ийшээ хуудсыг зөөх боломжгүй.',
 'talkexists'              => "'''Хуудас өөрөө амжилттай зөөгдсөн боловч шинэ нэр дээр хэлэлцүүлэг байгаа тул хэлэлцүүлгийн хуудас нь зөөгдсөнгүй.
 Хэлэлцүүлгийн хуудсуудыг гар аргаар нэгтгэнэ үү.'''",
 'movedto'                 => 'Зөөгдсөн газар:',
@@ -1712,6 +1713,8 @@ $1',
 # Export
 'export'            => 'Хуудсыг экспортлох',
 'exportcuronly'     => 'Бүх түүхийг биш, зөвхөн одоогийн өөрчлөлтийг багтаа',
+'exportnohistory'   => "----
+'''Анхаар:''' Энэ маягтын дагуу хуудсуудын бүтэн түүхийг экспортлох үйлдэл гүйцэтгэлийн шалтгаануудын улмаас зогсоогдсон байна.",
 'export-submit'     => 'Экспортлох',
 'export-addcattext' => 'Дараах ангиллаас хуудсуудыг нэмэх:',
 'export-addcat'     => 'Нэмэх',
@@ -1739,22 +1742,40 @@ $1',
 'thumbnail_dest_directory' => 'Зорьсон санг үүсгэх боломжгүй байна',
 
 # Special:Import
-'import'                   => 'Хуудаснуудыг импортлох',
-'import-interwiki-history' => 'Энэ хуудсын бүх хувилбаруудын түүхийг хуулах',
-'import-interwiki-submit'  => 'Импортлох',
-'importstart'              => 'Хуудсыг импортлож байна...',
-'importnopages'            => 'Импортлох хуудас алга байна.',
-'importfailed'             => 'Импорт бүтэлгүйтлээ: $1',
-'importunknownsource'      => 'Мэдэгдээгүй төрлийн импортлох эх үүсвэр',
-'importcantopen'           => 'Импортлосон файлыг нээж чадсангүй',
-'importbadinterwiki'       => 'Интервикигийн хүчингүй холбоос',
-'importnotext'             => 'Хоосон эсвэл текст байхгүй',
-'importsuccess'            => 'Амжилттай импортлолоо!',
-'importhistoryconflict'    => 'Өмнөх хувилбар нь оршин байгаа эсэх нь харшилдаж байна(магадгүй өмнө нь импотлосон хуудас байж болзошгүй)',
-'importnofile'             => 'Имтортлосон файл хуулагдаагүй байна.',
+'import'                     => 'Хуудаснуудыг импортлох',
+'importinterwiki'            => 'Транс-викигийн импорт',
+'import-interwiki-text'      => 'Импортлох вики болон хуудасны нэрийг сонгоно уу.
+Засварын огноонууд болон засварлагчдын нэрс хэвээр үлдэнэ.
+[[Special:Log/import|Импортын логоос]] бүх транс-викигийн үйлдлүүд жагсаагдсан байгаа.',
+'import-interwiki-history'   => 'Энэ хуудсын бүх хувилбаруудын түүхийг хуулах',
+'import-interwiki-submit'    => 'Импортлох',
+'import-interwiki-namespace' => 'Дараах нэрний зай руу хуудсуудыг зөөх:',
+'importtext'                 => 'Special:Export багажийг ашиглан файлыг эх үүсвэр викигээс татаад, өөрийн дискэнд хадгалаж, энд оруулна уу.',
+'importstart'                => 'Хуудсыг импортлож байна...',
+'import-revision-count'      => '$1 засвар',
+'importnopages'              => 'Импортлох хуудас алга байна.',
+'importfailed'               => 'Импорт бүтэлгүйтлээ: $1',
+'importunknownsource'        => 'Мэдэгдээгүй төрлийн импортлох эх үүсвэр',
+'importcantopen'             => 'Импортлосон файлыг нээж чадсангүй',
+'importbadinterwiki'         => 'Интервикигийн хүчингүй холбоос',
+'importnotext'               => 'Хоосон эсвэл текст байхгүй',
+'importsuccess'              => 'Амжилттай импортлолоо!',
+'importhistoryconflict'      => 'Өмнөх хувилбар нь оршин байгаа эсэх нь харшилдаж байна(магадгүй өмнө нь импотлосон хуудас байж болзошгүй)',
+'importnosources'            => 'Транс-викигийн импортын эх үүсвэрүүд тодорхойлогдоогүй байгаа бөгөөд түүхийг шууд оруулах явдлыг хаасан байна.',
+'importnofile'               => 'Имтортлосон файл хуулагдаагүй байна.',
+'importuploaderrorsize'      => 'Импортлогдсон файлыг оруулж чадсангүй. Файлыг хэмжээ зөвшөөрөгдсөн хэмжээнээс том байна.',
+'importuploaderrorpartial'   => 'Импортлогдсон файлыг оруулж чадсангүй. Файлын зөвхөн нэг хэсэг нь л оруулагдсан байна.',
+'importuploaderrortemp'      => 'Импортлогдсон файлыг оруулж чадсангүй. Түр зуурын хавтас байхгүй байна.',
+'import-noarticle'           => 'Оруулах хуудас байхгүй байна!',
+'import-nonewrevisions'      => 'Бүх засварууд өмнө нь оруулагдсан байна.',
+'xml-error-string'           => '$2-р мөр, $3-р баганад $1 (байт $4): $5',
 
 # Import log
-'importlogpage' => 'Импортын лог',
+'importlogpage'                    => 'Импортын лог',
+'import-logentry-upload'           => 'файлын оруулалтаар [[$1]]-г орууллаа',
+'import-logentry-upload-detail'    => '$1 засвар',
+'import-logentry-interwiki'        => '$1-г транс-викидлээ',
+'import-logentry-interwiki-detail' => '$2-с авсан $1 засвар',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'             => 'Миний хэрэглэгчийн хуудас',
@@ -1779,6 +1800,8 @@ $1',
 'tooltip-ca-watch'                => 'Энэ хуудсыг хянах жагсаалтандаа нэмэх',
 'tooltip-ca-unwatch'              => 'Энэ хуудсыг өөрийн хянаж буй хуудсуудын жагсаалтаас хасах',
 'tooltip-search'                  => '{{SITENAME}}-с хайх',
+'tooltip-search-go'               => 'Яг ийм нэртэй хуудас байгаа бол түүн рүү явах',
+'tooltip-search-fulltext'         => 'Энэ текстийг хуудсуудаас хайх',
 'tooltip-p-logo'                  => 'Нүүр хуудас',
 'tooltip-n-mainpage'              => 'Нүүр хуудас руу зочлох',
 'tooltip-n-portal'                => 'Энэ төслийн тухай, түүн дээр юу хийж болох, ба хаана зүйлсийг мэдэж авах тухай',
@@ -1820,9 +1843,19 @@ $1',
 'anonymous'        => '{{SITENAME}} нэргүй хэрэглэгч(ид)',
 'siteuser'         => '{{SITENAME}}-н хэрэглэгч $1',
 'lastmodifiedatby' => 'Энэ хуудсыг  $3 нь хамгийн сүүлд өөрчилсөн ба өөрчилсөн нь $2, $1.', # $1 date, $2 time, $3 user
+'othercontribs'    => '$1-ий бүтээл дээр тулгуурласан.',
 'others'           => 'Бусад',
 'siteusers'        => '$1 {{SITENAME}}-н хэрэглэгч',
 'creditspage'      => 'Хуудасны кредит',
+
+# Spam protection
+'spamprotectiontitle' => 'Спамаас хамгаалах шүүлтүүр',
+'spamprotectiontext'  => 'Таны хадгалахыг хүссэн хуудас спамаас хамгаалах шүүлтүүрээр хаагдлаа.
+Энэ нь гадны сайт руух холбоосны улмаас гарсан байж магадгүй.',
+'spamprotectionmatch' => 'Дараах текст нь манай спамаас хамгаалах шүүлтүүрт баригдлаа: $1',
+'spambot_username'    => 'МедиаВикигийн спамыг цэвэрлэх',
+'spam_reverting'      => '$1 руух холбоосгүй хамгийн сүүлийн хувилбар руу буцааж байна',
+'spam_blanking'       => 'Бүх засварууд $1 руу холбоостой тул хуудсыг хоосолж байна',
 
 # Info page
 'infosubtitle'   => 'Хуудасны мэдээлэл',
@@ -1836,17 +1869,23 @@ $1',
 'mw_math_png'    => 'Байнга PNG болго',
 'mw_math_simple' => 'Хялбар бол HTML, үгүй бол PNG',
 'mw_math_html'   => 'Болвол HTML, үгүй бол PNG',
+'mw_math_source' => 'TeX хэвээр үлдээх (текстэн броузеруудад)',
 'mw_math_modern' => 'Сүүлийн үеийн браузер хэрэглэхийг зөвлөж байна/Интернет хөтлөгчийн шинэ хувилбаруудад зориулсан.',
+'mw_math_mathml' => 'Бололцоотой бол MathML (туршилт)',
 
 # Patrolling
-'markaspatrolleddiff'        => 'Хяналтанд авъя',
-'markaspatrolledtext'        => 'Үүнийг хяналтанд авъя',
-'markedaspatrolled'          => 'Хяналтанд авсан',
-'markedaspatrolledtext'      => 'Сонгосон нэмэлт/өөрчлөлтийг хяналтанд авлаа.',
-'markedaspatrollederror'     => 'Хяналтанд авч чадсангүй',
-'markedaspatrollederrortext' => 'Хяналтад авахын тулд Та нэмэлт/өөрчлөлтийг заах шаардлагатай.',
+'markaspatrolleddiff'                 => 'Хяналтанд авъя',
+'markaspatrolledtext'                 => 'Үүнийг хяналтанд авъя',
+'markedaspatrolled'                   => 'Хяналтанд авсан',
+'markedaspatrolledtext'               => 'Сонгосон нэмэлт/өөрчлөлтийг хяналтанд авлаа.',
+'rcpatroldisabled'                    => 'Сүүлийн өөрчлөлтүүдийн эргүүл хаагдсан байна',
+'rcpatroldisabledtext'                => 'Сүүлийн өөрчлөлтүүдийн эргүүл одоогоор хаагдсан байна.',
+'markedaspatrollederror'              => 'Хяналтанд авч чадсангүй',
+'markedaspatrollederrortext'          => 'Хяналтад авахын тулд Та нэмэлт/өөрчлөлтийг заах шаардлагатай.',
+'markedaspatrollederror-noautopatrol' => 'Та өөрийн өөрчлөлтүүдээ эргүүлээр хянагдсан гэж тэмдэглэж болохгүй.',
 
 # Patrol log
+'patrol-log-page' => 'Эргүүлийн лог',
 'patrol-log-auto' => '(автомат)',
 
 # Image deletion
@@ -1867,6 +1906,8 @@ $1',
 # Media information
 'mediawarning'         => "'''Анхаар''':Энэ файл нь хор нөлөөтэй код агуулсан байж болзошгүй, хэрвээ ачааллавал таны системийн аюулгүй байдал доройтож болзошгүй.<hr />",
 'imagemaxsize'         => 'Доорх шаардлагын дагуу зургын хуудсанд хязгаарлалт хийлээ:',
+'thumbsize'            => 'Жижиг зургийн хэмжээ:',
+'widthheightpage'      => '$1×$2, $3 хуудас',
 'file-info'            => '(файлын хэмжээ: $1, MIME төрөл: $2)',
 'file-info-size'       => '($1 × $2 пиксел, файлын хэмжээ: $3, MIME төрөл: $4)',
 'file-nohires'         => '<small>Илүү чанар сайтай хувилбар байхгүй байна.</small>',
@@ -1875,12 +1916,14 @@ $1',
 'show-big-image-thumb' => '<small>Файлын одоогоор харагдаж буй хэмжээ: $1 × $2 пиксел</small>',
 
 # Special:Newimages
-'newimages'     => 'Шинэ файлуудын галерэй',
-'imagelisttext' => "Доорх нь $2-р ангилсан '''$1''' файлын жагсаалт юм.",
-'showhidebots'  => '(Роботуудыг $1)',
-'noimages'      => 'Харах юмгүй.',
-'ilsubmit'      => 'Хайлт',
-'bydate'        => 'Огноогоор',
+'newimages'             => 'Шинэ файлуудын галерэй',
+'imagelisttext'         => "Доорх нь $2-р ангилсан '''$1''' файлын жагсаалт юм.",
+'newimages-summary'     => 'Энэ тусгай хуудсанд хамгийн сүүлд оруулагдсан файлуудыг үзүүлнэ',
+'showhidebots'          => '(Роботуудыг $1)',
+'noimages'              => 'Харах юмгүй.',
+'ilsubmit'              => 'Хайлт',
+'bydate'                => 'Огноогоор',
+'sp-newimages-showfrom' => '$2, $1-с эхлэж шинэ файлуудыг үзүүлэх',
 
 # Bad image list
 'bad_image_list' => 'Формат дараах байдлаар байна:
@@ -1908,41 +1951,79 @@ $1',
 'exif-imagewidth'                  => 'өргөн',
 'exif-imagelength'                 => 'өндөр',
 'exif-bitspersample'               => 'бүрэлдэхүүн хэсэг бүр дэх бит',
+'exif-photometricinterpretation'   => 'Пикселийн бүрэлдэхүүн',
+'exif-orientation'                 => 'Зүг чиг',
+'exif-stripoffsets'                => 'Зургийн мэдээллийн байршил',
+'exif-rowsperstrip'                => 'Зурвас тус бүр дэх мөрийн тоо',
+'exif-stripbytecounts'             => 'Шахагдсан зурвас тус бүр дэх байт',
 'exif-jpeginterchangeformatlength' => 'JPEG хэлбэртэй мэдээллийн байт',
 'exif-datetime'                    => 'Файл өөрчлөгдсөн огноо, цаг',
 'exif-imagedescription'            => 'Дүрсний нэр',
 'exif-make'                        => 'Зургийн аппарат үйлдвэрлэгч',
+'exif-model'                       => 'Зургийн аппаратны загвар',
+'exif-software'                    => 'Хэрэглэсэн программ(ууд)',
 'exif-artist'                      => 'зохиогч',
 'exif-copyright'                   => 'зохиогчын эрхийг эзэмшигч',
+'exif-exifversion'                 => 'Exif хувилбар',
+'exif-flashpixversion'             => 'Хэрэглэж болох Flashpix хувилбар',
 'exif-colorspace'                  => 'өнгөний зай',
 'exif-componentsconfiguration'     => 'Бүх бүрэлдэхүүн хэсгүүдийн утга',
 'exif-compressedbitsperpixel'      => 'Зургийн файлыг шахах арга',
+'exif-pixelydimension'             => 'Зургийн хүчинтэй өргөн',
+'exif-pixelxdimension'             => 'Зургийн хүчинтэй өндөр',
+'exif-usercomment'                 => 'Хэрэглэгчдийн тэмдэглэл',
+'exif-relatedsoundfile'            => 'Холбоотой дуун файл',
+'exif-datetimeoriginal'            => 'Мэдээллийг үүсгэсэн огноо ба цаг',
+'exif-datetimedigitized'           => 'Дижитал болгосон огноо ба цаг',
+'exif-exposuretime-format'         => '$1 секунд ($2)',
+'exif-isospeedratings'             => 'ISO хурдны үнэлгээ',
 'exif-aperturevalue'               => 'Дамжих хоолой',
 'exif-brightnessvalue'             => 'гэрэлтэлт',
 'exif-lightsource'                 => 'гэрэлтүүлэгч',
 'exif-filesource'                  => 'Файлыг эх үүсвэр',
+'exif-cfapattern'                  => 'CFA загвар',
 'exif-customrendered'              => 'Дурын зургийн файлыг үзүүлж байна',
 'exif-contrast'                    => 'харьцуулан үзэх',
+'exif-gpsversionid'                => 'GPS шошгоны хувилбар',
 'exif-gpslatituderef'              => 'хойд эсвэл өмнөд өргөрөг',
 'exif-gpslatitude'                 => 'өргөрөг',
 'exif-gpslongituderef'             => 'Зүүн эсвэл баруун уртраг',
 'exif-gpslongitude'                => 'уртраг',
 'exif-gpsaltitude'                 => 'далайн түвшин',
+'exif-gpstimestamp'                => 'GPS цаг (атом цаг)',
+'exif-gpssatellites'               => 'Хэмжээс хийхэд хэрэглэсэн хиймэл дагуулууд',
 'exif-gpsstatus'                   => 'Хүлээн авагчийн статус',
 'exif-gpsspeedref'                 => 'Хурдны нэгж',
+'exif-gpsspeed'                    => 'GPS харилцуурын хурд',
 'exif-gpstrack'                    => 'Хөдөлгөөний чиглэл',
+'exif-gpsimgdirection'             => 'Зургийн зүг чиг',
 'exif-gpsdestlatitude'             => 'Өргөрөгийн байршил',
 'exif-gpsdestlongitude'            => 'Уртгагийн байршил',
 'exif-gpsdestdistance'             => 'Байршил хүртэлх зай',
+'exif-gpsareainformation'          => 'GPS бүсийн нэр',
+'exif-gpsdatestamp'                => 'GPS огноо',
 
 # EXIF attributes
 'exif-compression-1' => 'Шахаагүй',
 
+'exif-unknowndate' => 'Мэдэгдэхгүй огноо',
+
 'exif-orientation-1' => 'энгийн', # 0th row: top; 0th column: left
+'exif-orientation-2' => 'Хөндлөнгөөр эргүүлэх', # 0th row: top; 0th column: right
+'exif-orientation-3' => '180° эргүүллээ', # 0th row: bottom; 0th column: right
+'exif-orientation-4' => 'Босоогоор эргүүлэх', # 0th row: bottom; 0th column: left
+'exif-orientation-5' => 'Цагийн зүүний эсрэгээр 90° эргүүлж босоогоор эргүүллээ', # 0th row: left; 0th column: top
+'exif-orientation-6' => 'Цагийн зүүний дагуу 90° эргүүллээ', # 0th row: right; 0th column: top
+'exif-orientation-7' => 'Цагийн зүүний дагуу 90° эргүүлж босоогоор эргүүллээ', # 0th row: right; 0th column: bottom
+'exif-orientation-8' => 'Цагийн зүүний эсрэгээр 90° эргүүллээ', # 0th row: left; 0th column: bottom
 
 'exif-componentsconfiguration-0' => 'байхгүй байна',
 
+'exif-exposureprogram-0' => 'Тодорхойлоогүй',
 'exif-exposureprogram-1' => 'заавар',
+'exif-exposureprogram-2' => 'Ердийн программ',
+
+'exif-subjectdistance-value' => '$1 метр',
 
 'exif-meteringmode-0'   => 'Үл мэдэх',
 'exif-meteringmode-1'   => 'Дундаж',
@@ -1963,6 +2044,13 @@ $1',
 'exif-customrendered-0' => 'Нормаль процесс',
 'exif-customrendered-1' => 'Энгийн процесс',
 
+'exif-scenecapturetype-0' => 'Стандарт',
+'exif-scenecapturetype-1' => 'Байгалийн',
+'exif-scenecapturetype-2' => 'Цээж зураг',
+'exif-scenecapturetype-3' => 'Шөнийн үзэгдэл',
+
+'exif-gaincontrol-0' => 'Байхгүй',
+
 'exif-contrast-0' => 'энгийн',
 'exif-contrast-1' => 'зөөлөн',
 'exif-contrast-2' => 'хатуу',
@@ -1970,6 +2058,8 @@ $1',
 'exif-saturation-0' => 'энгийн',
 
 'exif-sharpness-0' => 'энгийн',
+'exif-sharpness-1' => 'Зөөлөн',
+'exif-sharpness-2' => 'Хатуу',
 
 'exif-subjectdistancerange-0' => 'Үл мэдэх',
 
@@ -1986,6 +2076,7 @@ $1',
 
 # Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
 'exif-gpsspeed-k' => 'километр/цаг',
+'exif-gpsspeed-m' => 'Миль/цаг',
 
 # External editor support
 'edit-externally'      => 'Гадны программыг ашиглан энэ файлыг засварлах',
@@ -1999,25 +2090,30 @@ $1',
 'monthsall'        => 'бүгд',
 
 # E-mail address confirmation
-'confirmemail'            => 'мэйл хаягийг баталгаажуулах',
-'confirmemail_noemail'    => 'Та өөрийн [[Special:Preferences|хэрэглэгчийн тохиргоо]]нд хүчинтэй мэйл хаяг оруулаагүй байна.',
-'confirmemail_text'       => 'Вики нь мэйлийн боломжуудыг ашиглахын тулд мэйл хаягаа баталгаажуулахыг хэрэглэгчээс шаарддаг болно. Та өөрийн хаяг руу баталгаажуулах мэйл илгээхийн тулд доорх товчлуурыг идэвхжүүлнэ үү. Уг мэйл нь код бүхий холбоос агуулах бөгөөд та уг холбоос руу орсноор таны мэйл хаяг баталгаажих болно.',
-'confirmemail_send'       => 'Баталгаажуулах кодыг мэйлээр илгээх.',
-'confirmemail_sent'       => 'Баталгаажуулах мэйл илгээгдлээ.',
-'confirmemail_sendfailed' => 'Баталгаажуулах мэйлийг илгээж чадсангүй. Та хаягаа зөв бичсэн эсэхээ нягтална уу.
+'confirmemail'             => 'мэйл хаягийг баталгаажуулах',
+'confirmemail_noemail'     => 'Та өөрийн [[Special:Preferences|хэрэглэгчийн тохиргоо]]нд хүчинтэй мэйл хаяг оруулаагүй байна.',
+'confirmemail_text'        => 'Вики нь мэйлийн боломжуудыг ашиглахын тулд мэйл хаягаа баталгаажуулахыг хэрэглэгчээс шаарддаг болно. Та өөрийн хаяг руу баталгаажуулах мэйл илгээхийн тулд доорх товчлуурыг идэвхжүүлнэ үү. Уг мэйл нь код бүхий холбоос агуулах бөгөөд та уг холбоос руу орсноор таны мэйл хаяг баталгаажих болно.',
+'confirmemail_send'        => 'Баталгаажуулах кодыг мэйлээр илгээх.',
+'confirmemail_sent'        => 'Баталгаажуулах мэйл илгээгдлээ.',
+'confirmemail_sendfailed'  => 'Баталгаажуулах мэйлийг илгээж чадсангүй. Та хаягаа зөв бичсэн эсэхээ нягтална уу.
 
 Буцаж ирсэн мэйл: $1',
-'confirmemail_invalid'    => 'Баталгаажуулах код хүчингүй байна. Кодны хугацаа хэтэрсэн байж болзошгүй.',
-'confirmemail_needlogin'  => '$1-г хийхийн тулд та мэйл хаягаа баталгаажуулах шаардлагатай.',
-'confirmemail_success'    => 'Таны мэйл хаяг баталгаажлаа. Та одоо викид нэвтэрч чадна.',
-'confirmemail_loggedin'   => 'Таны мэйл хаяг баталгаажлаа.',
-'confirmemail_error'      => 'таны баталгаажуулалтыг хадгалах үед ямар нэг зүйл буруу хийгдсэн байна.',
-'confirmemail_subject'    => '{{SITENAME}}-гийн мэйл хаягийн баталгаажуулалт',
-'confirmemail_body'       => 'Та ч байж магадгүй $1 IP хаягнаас $2 гэсэн хэрэглэгчийн бүртгэлтэй энэ мэйл хаягтай хэн нэг хэрэглэгч {{SITENAME}} бүртгүүлсэн байна. 
+'confirmemail_invalid'     => 'Баталгаажуулах код хүчингүй байна. Кодны хугацаа хэтэрсэн байж болзошгүй.',
+'confirmemail_needlogin'   => '$1-г хийхийн тулд та мэйл хаягаа баталгаажуулах шаардлагатай.',
+'confirmemail_success'     => 'Таны мэйл хаяг баталгаажлаа. Та одоо викид нэвтэрч чадна.',
+'confirmemail_loggedin'    => 'Таны мэйл хаяг баталгаажлаа.',
+'confirmemail_error'       => 'таны баталгаажуулалтыг хадгалах үед ямар нэг зүйл буруу хийгдсэн байна.',
+'confirmemail_subject'     => '{{SITENAME}}-гийн мэйл хаягийн баталгаажуулалт',
+'confirmemail_body'        => 'Та ч байж магадгүй $1 IP хаягнаас $2 гэсэн хэрэглэгчийн бүртгэлтэй энэ мэйл хаягтай хэн нэг хэрэглэгч {{SITENAME}} бүртгүүлсэн байна. 
 
 Энэ хэрэглэгчийн бүртгэл нь үнэхээр таных уу гэдгийг шалгаж үзээд мэйл хаягаар хийж болох үйлдлүүдийг хүчинтэй болгохын тулд энэ холбоосыг нээнэ үү. 
 
 $3 хэрвээ биш бол нээх хэрэггүй. Баталгаажуулах код нь $4-нд хугацаа нь хэтрэх болно.',
+'confirmemail_invalidated' => 'Мэйл хаягыг баталгаажуулах үйлдлийг цуцаллаа',
+'invalidateemail'          => 'Мэйл хаягыг баталгаажуулах явдлыг цуцлах',
+
+# Scary transclusion
+'scarytranscludetoolong' => '[URL хэт урт байна; уучлаарай]',
 
 # Delete conflict
 'deletedwhileediting' => 'Анхаар: Таныг засвар хийж эхлэвэл энэ хуудас устгагдах болно!',
@@ -2046,11 +2142,26 @@ $1',
 'imgmultigo'       => 'Үргэлжлүүл!',
 'imgmultigotopre'  => 'Хуудас руу очих',
 
+# Table pager
+'table_pager_next'         => 'Дараагийн хуудас',
+'table_pager_prev'         => 'Өмнөх хуудас',
+'table_pager_first'        => 'Эхний хуудас',
+'table_pager_last'         => 'Сүүлийн хуудас',
+'table_pager_limit'        => 'Хуудас бүрт $1 зүйлийг үзүүлэх',
+'table_pager_limit_submit' => 'Явах',
+'table_pager_empty'        => 'Үр дүн байхгүй байна',
+
 # Auto-summaries
 'autosumm-blank'   => 'Хуудасны агуулгыг устгаж байна.',
 'autosumm-replace' => "Хуудсыг '$1'-р сольж байна.",
 'autoredircomment' => '[[$1]] руу автоматаар холбогдож байна',
 'autosumm-new'     => 'Шинэ хуудас: $1',
+
+# Watchlist editor
+'watchlistedit-normal-title' => 'Хянах жагсаалтаа засварлах',
+'watchlistedit-raw-title'    => 'Түүхий хянах жагсаалтыг засварлах',
+'watchlistedit-raw-legend'   => 'Түүхий хянах жагсаалтыг засварлах',
+'watchlistedit-raw-titles'   => 'Гарчигууд:',
 
 # Watchlist editing tools
 'watchlisttools-view' => 'Холбогдох өөрчлөлтүүдийг үзэх',
@@ -2058,9 +2169,21 @@ $1',
 'watchlisttools-raw'  => 'Хянаж буй хуудсуудын жагсаалтаа текстээр засварлах',
 
 # Special:Version
-'version' => 'Хувилбар', # Not used as normal message but as header for the special page itself
+'version'                  => 'Хувилбар', # Not used as normal message but as header for the special page itself
+'version-software'         => 'Суулгасан программ',
+'version-software-version' => 'Хувилбар',
 
 # Special:Filepath
-'filepath' => 'файлын зам',
+'filepath'      => 'файлын зам',
+'filepath-page' => 'Файл:',
+
+# Special:FileDuplicateSearch
+'fileduplicatesearch-filename' => 'Файлын нэр:',
+'fileduplicatesearch-submit'   => 'Хайх',
+'fileduplicatesearch-info'     => '$1 × $2 пиксэл<br />Файлын хэмжээ: $3<br />MIME төрөл: $4',
+
+# Special:SpecialPages
+'specialpages-group-login'       => 'Нэвтрэх / бүртгүүлэх',
+'specialpages-group-permissions' => 'Хэрэглэгчийн зөвшөөрлүүд',
 
 );

@@ -646,9 +646,10 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'historyempty'        => '(비었음)',
 
 # Revision feed
-'history-feed-title'       => '편집 역사',
-'history-feed-description' => '이 문서의 편집 역사',
-'history-feed-empty'       => '요청한 문서가 존재하지 않습니다.
+'history-feed-title'          => '편집 역사',
+'history-feed-description'    => '이 문서의 편집 역사',
+'history-feed-item-nocomment' => '$2에 대한 1의 편집', # user at time
+'history-feed-empty'          => '요청한 문서가 존재하지 않습니다.
 해당 문서가 삭제되었거나, 문서 이름이 바뀌었을 수 있습니다.
 [[Special:Search|위키 검색 기능]]을 이용해 관련 문서를 찾아보세요.',
 
@@ -755,6 +756,8 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'saveusergroups'             => '사용자 권한 저장',
 'userrights-groupsmember'    => '현재 권한:',
 'userrights-groupsavailable' => '가능한 권한:',
+'userrights-no-interwiki'    => '다른 위키의 사용자 권한을 바꿀 권한이 없습니다.',
+'userrights-nologin'         => '사용자의 권한을 바꾸기 위해서는 반드시 관리자 계정으로 [[Special:Userlogin|로그인]]해야 합니다.',
 
 # Groups
 'group'            => '권한:',
@@ -781,6 +784,7 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'nchanges'                          => '$1개 바뀜',
 'recentchanges'                     => '최근 바뀜',
 'recentchangestext'                 => '위키의 최근 바뀜 내역이 나와 있습니다.',
+'recentchanges-feed-description'    => '위키의 최근 바뀜',
 'rcnote'                            => '다음은 $3까지 <strong>$2</strong>일간 바뀐 <strong>$1</strong>개의 문서입니다.',
 'rcnotefrom'                        => "다음은 '''$2'''에서부터 바뀐 '''$1'''개의 문서입니다.",
 'rclistfrom'                        => '$1 이래로 바뀐 문서',
@@ -804,9 +808,11 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'newsectionsummary'                 => '새 주제: /* $1 */',
 
 # Recent changes linked
-'recentchangeslinked'         => '가리키는 글의 바뀜',
-'recentchangeslinked-title'   => '"$1" 문서에 관련된 문서 바뀜',
-'recentchangeslinked-summary' => "해당 문서를 링크한 문서에 대한 최근 바뀜이 나와 있습니다. 주시하는 문서의 경우에는 '''굵은''' 글씨로 나타납니다.",
+'recentchangeslinked'          => '가리키는 글의 바뀜',
+'recentchangeslinked-title'    => '"$1" 문서에 관련된 문서 바뀜',
+'recentchangeslinked-noresult' => '여기를 가리키는 글 중에는 주어진 기간 동안의 최근 바뀜이 없습니다.',
+'recentchangeslinked-summary'  => "여기를 가리키는 문서(분류일 경우 이 분류에 포함된 문서)에 대한 최근 바뀜이 나와 있습니다.
+[[Special:Watchlist|주시하는 문서]]는 '''굵은''' 글씨로 나타납니다.",
 
 # Upload
 'upload'                      => '파일 올리기',
@@ -1228,7 +1234,7 @@ $NEWPAGE
 'protect-locked-blocked'      => "차단된 동안에는 보호 설정을 바꿀 수 없습니다. '''$1''' 문서의 보호 설정은 다음과 같습니다:",
 'protect-locked-dblock'       => "데이터베이스가 잠겨 문서 보호 설정을 바꿀 수 없습니다. '''$1''' 문서의 현재 설정은 다음과 같습니다:",
 'protect-locked-access'       => '문서 보호 수준을 변경할 권한이 없습니다. <strong>$1</strong> 문서의 권한은 다음과 같습니다.',
-'protect-cascadeon'           => '다음의 틀에서 이 문서를 사용하고 있고 그 틀에 연쇄적 보호가 걸려 있어 이 문서도 자동으로 보호됩니다. 이 문서의 보호 설정을 바꾸어도 연쇄적 보호에 영향을 받지 않습니다.',
+'protect-cascadeon'           => '{{PLURAL:$1|}}다음의 틀에서 이 문서를 사용하고 있고 그 틀에 연쇄적 보호가 걸려 있어 이 문서도 자동으로 보호됩니다. 이 문서의 보호 설정을 바꾸어도 연쇄적 보호에 영향을 받지 않습니다.',
 'protect-default'             => '(기본값)',
 'protect-fallback'            => '‘$1’ 권한 필요',
 'protect-level-autoconfirmed' => '등록된 사용자만 가능',
@@ -1639,6 +1645,13 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 'ilsubmit'              => '찾기',
 'bydate'                => '날짜',
 'sp-newimages-showfrom' => '$1 $2부터 올라온 그림 목록 보기',
+
+# Bad image list
+'bad_image_list' => '형식은 아래와 같습니다.
+
+"*"로 시작하는 목록의 내용만 적용됩니다.
+매 줄의 첫번째 고리는 부적절한 파일을 가리켜야 합니다.
+같은 줄에 따라오는 모든 고리는 예외로 봅니다. (예: 파일이 사용되어야 하는 문서)',
 
 # Metadata
 'metadata'          => '메타데이터',

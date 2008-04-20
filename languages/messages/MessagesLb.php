@@ -789,6 +789,7 @@ Prezisiounen iwwert d\'Läschen esou wéi de Grond fannt Dir am [{{fullurl:Speci
 'revdelete-unsuppress'        => 'Limitatiounen fir restauréiert Versiounen ophiewen',
 'revdelete-log'               => "Bemierkung (fir d'Logbicher/Lëschten):",
 'revdelete-submit'            => 'Op déi gewielte Versioun uwenden',
+'revdelete-logentry'          => 'Sichtbarkeet vun der Versioun gouf geännert fir [[$1]]',
 'revdelete-success'           => "'''Sichtbarkeet vun de Versioune geännert.''''",
 'revdel-restore'              => 'Sichtbarkeet änneren',
 'pagehist'                    => 'Versioune vun dëser Säit',
@@ -828,7 +829,8 @@ Passt op, datt d'Versiounsgeschicht der Säit historesch korrekt ass.
 'mergehistory-comment'             => '[[:$1]] zesummegeluecht an [[:$2]]: $3',
 
 # Merge log
-'mergelog' => 'Fusiouns-Logbuch',
+'mergelog'           => 'Fusiouns-Logbuch',
+'pagemerge-logentry' => '[[$1]] zesummegeluecht an [[$2]] (Versioune bis $3)',
 
 # Diffs
 'history-title'           => 'Versiounshistorique vun „$1“',
@@ -865,6 +867,7 @@ Dir kënnt [[:\$1|déi Säit uleeën]].",
 'search-interwiki-more'     => '(méi)',
 'search-mwsuggest-enabled'  => 'matt Virschléi',
 'search-mwsuggest-disabled' => 'keng Virschléi',
+'mwsuggest-disable'         => 'Ajax-Virschléi ausschalten',
 'searchall'                 => 'all',
 'showingresults'            => "Hei gesitt der  {{PLURAL:$1| '''1''' Resultat|'''$1''' Resultater}}, ugefaang mat #'''$2'''.",
 'showingresultsnum'         => "Hei gesitt der  {{PLURAL:$3|'''1''' Resultat|'''$1''' Resultater}}, ugefaange mat #'''$2'''.",
@@ -1103,16 +1106,18 @@ gitt w.e.g. zréck a lued dëse Fichier ënner engem anere Numm erop. [[Image:$1
 'filewasdeleted'              => 'E Fichier matt dësem Numm gouf schonn eemol eropgelueden an duerno nees geläscht. kuckt w.e.g op $1 no, ier Dir dee Fichier nach eng Kéier eroplued.',
 'filename-bad-prefix'         => 'Den Numm vum Fichier fänkt mat <strong>„$1“</strong> un. Dësen Numm ass automatesch vun der Kamera gi ginn a seet näischt iwwert dat aus, wat drop ass. Gitt dem Fichier w.e.gl. en Numm, deen den Inhalt besser beschreift, an deen net verwiesselt ka ginn.',
 
-'upload-proto-error'     => 'Falsche Protokoll',
-'upload-file-error'      => 'Interne Feeler',
-'upload-file-error-text' => 'Beim Erstelle vun engem temporäre Fichier um Server ass een interne Feeler geschitt. Informéiert w.e.g. e vun de System-Administrateuren.',
-'upload-misc-error'      => 'Onbekannte Feeler beim Eroplueden',
+'upload-proto-error'      => 'Falsche Protokoll',
+'upload-proto-error-text' => "D'URL muss matt <code>http://</code> oder <code>ftp://</code> ufänken.",
+'upload-file-error'       => 'Interne Feeler',
+'upload-file-error-text'  => 'Beim Erstelle vun engem temporäre Fichier um Server ass een interne Feeler geschitt. Informéiert w.e.g. e vun de System-Administrateuren.',
+'upload-misc-error'       => 'Onbekannte Feeler beim Eroplueden',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
-'upload-curl-error6'      => "URL ass net z'erreechen",
-'upload-curl-error6-text' => 'Déi URL déi Dir uginn hutt kann net erreecht ginn.
+'upload-curl-error6'       => "URL ass net z'erreechen",
+'upload-curl-error6-text'  => 'Déi URL déi Dir uginn hutt kann net erreecht ginn.
 Kuckt w.e.g. no op kee Feeler an der URL ass an op de Site och online ass.',
-'upload-curl-error28'     => "D'Eroplueden huet ze laang gedauert (timeout)",
+'upload-curl-error28'      => "D'Eroplueden huet ze laang gedauert (timeout)",
+'upload-curl-error28-text' => "Dëse Site huet ze laang gebraucht fir z'äntwerten. Kuckt w. e. g. no, ob dëse Site online ass, waart een Ament a probéiert et dann nach eng Kéier. Et ka sënnvoll sinn, et nach eng Kéier méi spéit ze versichen.",
 
 'license'            => 'Lizenzéiert:',
 'nolicense'          => 'Keng Lizenz ausgewielt',
@@ -1376,6 +1381,7 @@ An all Rei sti Linken zur éischter an zweeter Viruleedung, souwéi déi éischt
 'listgrouprights-helppage' => 'Help:Grupperechter',
 
 # E-mail user
+'mailnologin'     => 'Keng E-Mailadress',
 'mailnologintext' => 'Dir musst [[Special:Userlogin|ugemellt]] sinn an eng gülteg E-Mail Adress an äre [[Special:Preferences|Asteelunge]] aginn hunn, fir engem anere Benotzer eng E-Mail ze schécken.',
 'emailuser'       => 'Dësem Benotzer eng E-Mail schécken',
 'emailpage'       => 'Dem Benotzer eng E-Mail schécken',
@@ -1597,6 +1603,7 @@ $1',
 'whatlinkshere-links'      => '← Linken',
 'whatlinkshere-hideredirs' => '$1 Viruleedungen',
 'whatlinkshere-hidelinks'  => '$1 Linken',
+'whatlinkshere-filters'    => 'Filteren',
 
 # Block/unblock
 'blockip'                     => 'Benotzer spären',
@@ -1673,6 +1680,7 @@ Kuckt d'[[Special:Ipblocklist|IP Spär-Lëscht]] fir all Spären ze gesin.",
 Si ass awer als Deel vun der Rei $2 gespaart, an dës Spär kann opgehuewe ginn.",
 'ip_range_invalid'            => 'Ongëltegen IP Block.',
 'blockme'                     => 'Spär mech',
+'proxyblocker'                => 'Proxy blocker',
 'proxyblocker-disabled'       => 'Dës Funktioun ass ausgeschalt.',
 'proxyblocksuccess'           => 'Gemaach.',
 'sorbsreason'                 => 'Är IP Adress steet als oppene Proxy an der schwaarzer Lëscht (DNSBL) déi vu {{SITENAME}} benotzt gëtt.',
@@ -1778,6 +1786,7 @@ Besicht w.e.g. [http://translatewiki.net Betawiki] an [http://translatewiki.net 
 
 # Special:Import
 'import'                     => 'Säiten importéieren',
+'importinterwiki'            => 'Transwiki-Import',
 'import-interwiki-history'   => "Importéier all d'Versioune vun dëser Säit",
 'import-interwiki-submit'    => 'Import',
 'import-interwiki-namespace' => 'Kopéier Säiten an den Nummraum:',
@@ -1987,6 +1996,8 @@ Duerno sti Linken déi Ausnamen definéieren, a deenen hirem Kontext dat Bild aw
 'exif-colorspace'                  => 'Faarfraum',
 'exif-componentsconfiguration'     => 'Bedeitung vun eenzelne Komponenten',
 'exif-compressedbitsperpixel'      => 'Kompriméiert Bite pro Pixel',
+'exif-pixelydimension'             => 'Gültëg Bildbreet',
+'exif-pixelxdimension'             => 'Gültëg Bildhéicht',
 'exif-makernote'                   => 'Notize vum Fabrikant',
 'exif-usercomment'                 => 'Bemierkunge vum Benotzer',
 'exif-relatedsoundfile'            => 'Tounfichier deen dozou gehéiert',
@@ -2026,6 +2037,10 @@ Duerno sti Linken déi Ausnamen definéieren, a deenen hirem Kontext dat Bild aw
 'exif-sharpness'                   => 'Schäerft',
 'exif-subjectdistancerange'        => 'Motivdistanz',
 'exif-imageuniqueid'               => 'Bild-ID',
+'exif-gpslatituderef'              => 'nördlech oder südlech Breet',
+'exif-gpslatitude'                 => 'Geografesch Breet',
+'exif-gpslongitude'                => 'Geografesch Längt',
+'exif-gpsaltituderef'              => 'Referenzhéicht',
 'exif-gpsaltitude'                 => 'Héicht',
 'exif-gpstimestamp'                => 'GPS-Zäit',
 'exif-gpssatellites'               => "Satelitten déi fir d'Moosse benotzt goufen",
@@ -2033,11 +2048,13 @@ Duerno sti Linken déi Ausnamen definéieren, a deenen hirem Kontext dat Bild aw
 'exif-gpsdop'                      => 'Prezisioun vun der Miessung',
 'exif-gpsspeedref'                 => 'Eenheet vun der Vitesse',
 'exif-gpsspeed'                    => 'Vitesse vum GPS-Empfänger',
+'exif-gpstrack'                    => 'Bewegungsrichtung',
 'exif-gpsdestlatituderef'          => "Referenz fir d'Breet",
 'exif-gpsdestlatitude'             => 'Breet',
 'exif-gpsdestlongituderef'         => "Referenz fir d'Längt",
 'exif-gpsdestlongitude'            => 'Längt',
 'exif-gpsdestdistance'             => 'Motivdistanz',
+'exif-gpsareainformation'          => 'Numm vun der GPS-Géigend',
 'exif-gpsdatestamp'                => 'GPS-Datum',
 
 # EXIF attributes
@@ -2072,6 +2089,9 @@ Duerno sti Linken déi Ausnamen definéieren, a deenen hirem Kontext dat Bild aw
 'exif-lightsource-9'   => 'Schéint Wieder',
 'exif-lightsource-10'  => 'Wollekeg',
 'exif-lightsource-11'  => 'Schiet',
+'exif-lightsource-17'  => 'Standardluucht A',
+'exif-lightsource-18'  => 'Standardluucht B',
+'exif-lightsource-19'  => 'Standardluucht C',
 'exif-lightsource-255' => 'Aner Liichtquell',
 
 'exif-focalplaneresolutionunit-2' => 'Zoll/Inchen',
@@ -2109,6 +2129,9 @@ Duerno sti Linken déi Ausnamen definéieren, a deenen hirem Kontext dat Bild aw
 'exif-subjectdistancerange-1' => 'Makro',
 'exif-subjectdistancerange-2' => 'No',
 'exif-subjectdistancerange-3' => 'wäit ewech',
+
+'exif-gpsmeasuremode-2' => '2-dimensional Miessung',
+'exif-gpsmeasuremode-3' => '3-dimensional Miessung',
 
 # Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
 'exif-gpsspeed-k' => 'Kilometer pro Stonn',

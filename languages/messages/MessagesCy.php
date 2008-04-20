@@ -182,7 +182,7 @@ $messages = array(
 'hidden-category-category'       => 'Categorïau cuddiedig', # Name of the category where hidden categories will be listed
 'category-subcat-count'          => "{{PLURAL:$1|Nid oes dim is-gategorïau|Dim ond yr is-gategori sy'n dilyn sydd|Mae'r $1 is-gategori sy'n dilyn ymhlith cyfanswm o $2|Mae'r $1 is-gategori sy'n dilyn ymhlith cyfanswm o $2|Mae'r $1 is-gategori sy'n dilyn ymhlith cyfanswm o $2|Mae'r $1 is-gategori sy'n dilyn ymhlith cyfanswm o $2}} yn y categori hwn.",
 'category-subcat-count-limited'  => 'Mae gan y categori hwn $1 {{PLURAL:$1|is-gategori|is-gategori|is-gategori|is-gategori|is-gategori|is-gategori|}}.',
-'category-article-count'         => "{{PLURAL:$1|Nid oes dim tudalennau|Dim ond y dudalen sy'n dilyn sydd|Mae'r $1 dudalen|Mae'r $1 tudalen|Mae'r $1 thudalen|Mae'r $1 tudalen}} sy'n dilyn ymlith cyfanswm o $2 yn y categori hwn.",
+'category-article-count'         => "{{PLURAL:$2|Nid oes dim tudalennau|Dim ond y dudalen sy'n dilyn sydd|Dangosir isod y $1 dudalen sydd|Dangosir isod y $1 tudalen sydd|Dangosir isod y $1 thudalen sydd|Dangosir isod $1 {{PLURAL:$1|Dim|dudalen|dudalen|tudalen|thudalen|tudalen}} ymhlith cyfanswm o $2 sydd}} yn y categori hwn.",
 'category-article-count-limited' => "Mae'r {{PLURAL:$1|tudalen|dudalen|$1 dudalen|$1 tudalen|$1 thudalen|$1 tudalen}} sy'n dilyn yn y categori hwn.",
 'category-file-count'            => "{{PLURAL:$2|Nid oes dim ffeiliau|Dim ond y ffeil sy'n dilyn sydd|Mae'r $1 ffeil sy'n dilyn ymlith cyfanswm o $2|Mae'r $1 ffeil sy'n dilyn ymlith cyfanswm o $2|Mae'r $1 ffeil sy'n dilyn ymlith cyfanswm o $2|Mae'r $1 ffeil sy'n dilyn ymlith cyfanswm o $2}} yn y categori hwn.",
 'listingcontinuesabbrev'         => ' parh.',
@@ -743,31 +743,38 @@ Pan yn gwneud hyn dylid sicrhau nad yw dilyniant hanes tudalennau yn cael ei ddi
 'diff-multi'              => '(Ni ddangosir {{PLURAL:$1|yr $1 diwygiad|yr $1 diwygiad|y $1 ddiwygiad|y $1 diwygiad|y $1 diwygiad|y $1 diwygiad}} rhyngol.)',
 
 # Search results
-'searchresults'         => 'Canlyniadau chwiliad',
-'searchresulttext'      => 'Am mwy o hysbys amdano chwilio {{SITENAME}}, gwelwch [[{{MediaWiki:Helppage}}|{{int:help}}]].',
-'searchsubtitle'        => 'Am gofyniad "[[:$1]]"',
-'searchsubtitleinvalid' => "Chwiliwyd am '''$1'''",
-'noexactmatch'          => "'''Nid oes tudalen a'r enw '$1' yn bod.''' Gallwch [[:$1|greu'r dudalen]].",
-'noexactmatch-nocreate' => "'''Does dim tudalen a'r enw '$1' yn bod.'''",
-'titlematches'          => 'Teitlau erthygl yn cyfateb',
-'notitlematches'        => 'Does dim teitl yn cyfateb',
-'textmatches'           => 'Testun erthygl yn cyfateb',
-'notextmatches'         => 'Does dim testun yn cyfateb',
-'prevn'                 => 'y $1 cynt',
-'nextn'                 => 'y $1 nesaf',
-'viewprevnext'          => 'Dangos ($1) ($2) ($3).',
-'search-result-size'    => '$1 ({{PLURAL:$2|dim geiriau|$2 gair|$2 air|$2 gair|$2 gair|$2 gair|}})',
-'search-result-score'   => 'Perthnasedd: $1%',
-'searchall'             => 'oll',
-'showingresults'        => "Yn dangos hyd at $1 {{PLURAL:$1|canlyniad|canlyniad|ganlyniad|chanlyniad|chanlyniad|canlyniad}} isod gan ddechrau gyda rhif '''$2'''.",
-'showingresultsnum'     => "Yn dangos $3 {{PLURAL:$3|canlyniad|canlyniad|ganlyniad|chanlyniad|chanlyniad|canlyniad}} isod gan ddechrau gyda rhif '''$2'''.",
-'showingresultstotal'   => "Yn dangos canlyniadau '''$1 - $2''' o '''$3'''",
-'nonefound'             => "'''Nodyn''': Mae'r rhesymau bod chwiliad yn aflwyddiannus yn cynnwys chwilio am fwy nag un gair ar y tro (dim ond tudalennau sy'n cynnwys holl eiriau'r chwiliad a gaiff eu dychwelyd os na fydd OR rhyngddynt).",
-'powersearch'           => 'Chwilio',
-'powersearchtext'       => 'Chwilio yn y parthau:<br />
+'searchresults'             => 'Canlyniadau chwiliad',
+'searchresulttext'          => 'Am mwy o hysbys amdano chwilio {{SITENAME}}, gwelwch [[{{MediaWiki:Helppage}}|{{int:help}}]].',
+'searchsubtitle'            => 'Am gofyniad "[[:$1]]"',
+'searchsubtitleinvalid'     => "Chwiliwyd am '''$1'''",
+'noexactmatch'              => "'''Nid oes tudalen a'r enw '$1' yn bod.''' Gallwch [[:$1|greu'r dudalen]].",
+'noexactmatch-nocreate'     => "'''Does dim tudalen a'r enw '$1' yn bod.'''",
+'titlematches'              => 'Teitlau erthygl yn cyfateb',
+'notitlematches'            => 'Does dim teitl yn cyfateb',
+'textmatches'               => 'Testun erthygl yn cyfateb',
+'notextmatches'             => 'Does dim testun yn cyfateb',
+'prevn'                     => 'y $1 cynt',
+'nextn'                     => 'y $1 nesaf',
+'viewprevnext'              => 'Dangos ($1) ($2) ($3).',
+'search-result-size'        => '$1 ({{PLURAL:$2|dim geiriau|$2 gair|$2 air|$2 gair|$2 gair|$2 gair|}})',
+'search-result-score'       => 'Perthnasedd: $1%',
+'search-interwiki-caption'  => 'Chwaer-brosiectau',
+'search-interwiki-default'  => 'Y canlyniadau o $1:',
+'search-interwiki-more'     => '(rhagor)',
+'search-mwsuggest-enabled'  => 'gydag awgrymiadau',
+'search-mwsuggest-disabled' => 'dim awgrymiadau',
+'mwsuggest-disable'         => 'Analluogi awgrymiadau AJAX',
+'searchall'                 => 'oll',
+'showingresults'            => "Yn dangos hyd at $1 {{PLURAL:$1|canlyniad|canlyniad|ganlyniad|chanlyniad|chanlyniad|canlyniad}} isod gan ddechrau gyda rhif '''$2'''.",
+'showingresultsnum'         => "Yn dangos $3 {{PLURAL:$3|canlyniad|canlyniad|ganlyniad|chanlyniad|chanlyniad|canlyniad}} isod gan ddechrau gyda rhif '''$2'''.",
+'showingresultstotal'       => "Yn dangos canlyniadau '''$1 - $2''' o '''$3'''",
+'nonefound'                 => "'''Nodyn''': Mae'r rhesymau bod chwiliad yn aflwyddiannus yn cynnwys chwilio am fwy nag un gair ar y tro (dim ond tudalennau sy'n cynnwys holl eiriau'r chwiliad a gaiff eu dychwelyd os na fydd OR rhyngddynt).",
+'powersearch'               => 'Chwilio',
+'powersearchtext'           => 'Chwilio yn y parthau:<br />
 $1<br />
 $2 Rhestri ailgyfeiriadau<br />Chwilio am $3 $9',
-'searchdisabled'        => "Mae'r teclyn chwilio ar {{SITENAME}} wedi'i analluogi dros dro.
+'search-external'           => 'Chwiliad allanol',
+'searchdisabled'            => "Mae'r teclyn chwilio ar {{SITENAME}} wedi'i analluogi dros dro.
 Yn y cyfamser gallwch chwilio drwy Google.
 Cofiwch y gall mynegeion Google o gynnwys {{SITENAME}} fod ar ei hôl hi.",
 
@@ -899,7 +906,7 @@ Cofiwch y gall mynegeion Google o gynnwys {{SITENAME}} fod ar ei hôl hi.",
 'recentchangeslinked'          => 'Newidiadau perthnasol',
 'recentchangeslinked-title'    => 'Newidiadau cysylltiedig â "$1"',
 'recentchangeslinked-noresult' => 'Ni chafwyd unrhyw newidiadau i dudalennau cysylltiedig yn ystod cyfnod yr ymholiad.',
-'recentchangeslinked-summary'  => "Mae'r dudalen arbennig hon yn dangos y newidiadau diweddaraf i'r tudalennau sy'n cysylltu â'r dudalen a enwir. Dangosir tudalennau sydd ar eich rhestr gwylio mewn print '''trwm'''.",
+'recentchangeslinked-summary'  => "Mae'r dudalen arbennig hon yn dangos y newidiadau diweddaraf i'r tudalennau sy'n cysylltu â'r dudalen a enwir (neu newidiadau i dudalennau sy'n aelodau o'r categori a enwir). Dangosir tudalennau sydd ar [[Special:Watchlist|eich rhestr gwylio]] mewn print '''trwm'''.",
 
 # Upload
 'upload'                      => 'Llwytho ffeil i fynu',
@@ -1438,6 +1445,7 @@ Ceir cofnod o'r tudalennau a ddilëwyd neu a adferwyd yn ddiweddar ar y [[Specia
 ** Ymddwyn yn fygythiol/tarfu
 ** Camddefnyddio cyfrifon niferus
 ** Enw defnyddiwr annerbyniol',
+'ipbanononly'                 => 'Blocio defnyddwyr anhysbys yn unig',
 'ipbcreateaccount'            => 'Atal y gallu i greu cyfrif',
 'ipbemailban'                 => 'Atal y defnyddiwr rhag anfon e-bost',
 'ipbenableautoblock'          => "Blocio'n awtomatig y cyfeiriad IP diwethaf y defnyddiodd y defnyddiwr hwn, ac unrhyw gyfeiriad IP arall y bydd yn ceisio defnyddio i olygu ohono.",
@@ -1706,7 +1714,7 @@ Edrychwch drwy'r canlynol am batrymau sy'n cael eu blocio:",
 
 # Patrol log
 'patrol-log-page' => 'Lòg patrolio',
-'patrol-log-line' => 'wedi marcio bod fersiwn $1 o $2 wedi derbyn ymweliad patrôl',
+'patrol-log-line' => 'wedi marcio bod fersiwn $1 o $2 wedi derbyn ymweliad patrôl $3',
 'patrol-log-auto' => '(awtomatig)',
 
 # Image deletion
@@ -1886,5 +1894,16 @@ Gallwch hefyd [[Special:Watchlist/edit|ddefnyddio'r rhestr arferol]].",
 'fileduplicatesearch-submit'   => 'Chwilier',
 'fileduplicatesearch-result-1' => 'Nid oes yr un ffeil i gael sydd yn union yr un fath â\'r ffeil "$1".',
 'fileduplicatesearch-result-n' => '{{PLURAL:$2|Nid oes yr un ffeil|Mae $2 ffeil|Mae $2 ffeil|Mae $2 ffeil|Mae $2 ffeil|Mae $2 ffeil|}} i gael sydd yn union yr un fath â\'r ffeil "$1".',
+
+# Special:SpecialPages
+'specialpages-group-maintenance' => 'Adroddiadau cynnal a chadw',
+'specialpages-group-other'       => 'Eraill',
+'specialpages-group-login'       => 'Mewngofnodi / creu cyfrif',
+'specialpages-group-changes'     => 'Newidiadau diweddar a logiau',
+'specialpages-group-media'       => 'Ffeiliau - adroddiadau ac uwchlwytho',
+'specialpages-group-users'       => "Defnyddwyr a'u galluoedd",
+'specialpages-group-needy'       => 'Tudalennau ag angen gweithio arnynt',
+'specialpages-group-highuse'     => 'Tudalennau aml eu defnydd',
+'specialpages-group-permissions' => 'Cyfyngiadau ar ddefnyddwyr',
 
 );

@@ -42,6 +42,8 @@ $messages = array(
 'tog-usenewrc'        => 'Һуңғы үҙгәртеүҙәрҙәрҙең сифатлыраҡ исемлеге (JavaScript)',
 'tog-watchcreations'  => 'Мин төҙөгән биттәрҙе күҙәтеү исемлегенә яҙырға',
 
+'underline-always' => 'Һәрваҡыт',
+
 # Dates
 'sunday'        => 'Йәкшәмбе',
 'monday'        => 'Дүшәмбе',

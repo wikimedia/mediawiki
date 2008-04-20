@@ -1593,6 +1593,7 @@ $1',
 'whatlinkshere-hideredirs' => '$1 alidirektiloj',
 'whatlinkshere-hidetrans'  => '$1 transinkluzivaĵoj',
 'whatlinkshere-hidelinks'  => '$1 ligiloj',
+'whatlinkshere-filters'    => 'Filtriloj',
 
 # Block/unblock
 'blockip'                     => 'Forbaru uzanton/IP-adreson',

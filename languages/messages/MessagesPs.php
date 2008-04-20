@@ -111,12 +111,13 @@ $defaultUserOptionOverrides = array(
 $messages = array(
 # User preference toggles
 'tog-hideminor'            => 'په وروستيو بدلونو کې وړې سمادېدنې پټول',
+'tog-showtoolbar'          => 'د سمادولو توکپټه ښکاره کول (جاواسکرېپټ)',
 'tog-rememberpassword'     => 'زما پټنوم پدې کمپيوټر په ياد ولره!',
 'tog-watchcreations'       => 'هغه مخونه چې زه يې جوړوم، زما کتلي لړليک کې ورګډ کړه',
 'tog-watchdefault'         => 'هغه مخونه چې زه يې سمادوم، زما کتلي لړليک کې ورګډ کړه',
 'tog-watchmoves'           => 'هغه مخونه چې زه يې لېږدوم، زما کتلي لړليک کې ورګډ کړه',
 'tog-watchdeletion'        => 'هغه مخونه چې زه يې ړنګوم، زما کتلي لړليک کې ورګډ کړه',
-'tog-enotifwatchlistpages' => 'په مخونو کې د بدلون سره دې ما ته برېښليک ولېږلای شي.',
+'tog-enotifwatchlistpages' => 'هر کله چې زما په کتلي لړليک کې يو مخ بدلون مومي نو ما ته دې برېښليک راشي.',
 'tog-enotifusertalkpages'  => 'کله چې زما د خبرو اترو په مخ کې بدلون پېښېږي نو ما ته دې يو برېښليک ولېږلی شي.',
 'tog-enotifminoredits'     => 'که په مخونو کې وړې سمادېدنې هم کېږي نو ماته دې برېښليک ولېږل شي.',
 'tog-ccmeonemails'         => 'هغه برېښليکونه چې زه يې نورو ته لېږم، د هغو يوه کاپي دې ماته هم راشي',
@@ -202,8 +203,9 @@ $messages = array(
 'qbfind'         => 'موندل',
 'qbedit'         => 'سمادول',
 'qbpageoptions'  => 'همدا مخ',
+'qbpageinfo'     => 'متن',
 'qbmyoptions'    => 'زما پاڼې',
-'qbspecialpages' => 'ځانګړي پاڼې',
+'qbspecialpages' => 'ځانګړي مخونه',
 'moredotdotdot'  => 'نور ...',
 'mypage'         => 'زما پاڼه',
 'mytalk'         => 'زما خبرې اترې',
@@ -211,12 +213,15 @@ $messages = array(
 'navigation'     => 'ګرځېدنه',
 'and'            => 'او',
 
+# Metadata in edit box
+'metadata_help' => 'مېټاډاټا:',
+
 'errorpagetitle'    => 'تېروتنه',
 'returnto'          => 'بېرته $1 ته وګرځه.',
 'tagline'           => 'د {{SITENAME}} لخوا',
 'help'              => 'لارښود',
-'search'            => 'لټون',
-'searchbutton'      => 'لټون',
+'search'            => 'پلټل',
+'searchbutton'      => 'پلټل',
 'go'                => 'ورځه',
 'searcharticle'     => 'ورځه',
 'history'           => 'د مخ پېښليک',
@@ -255,13 +260,14 @@ $messages = array(
 'categorypage'      => 'د وېشنيزې مخ کتل',
 'viewtalkpage'      => 'خبرې اترې کتل',
 'otherlanguages'    => 'په نورو ژبو کې',
+'redirectedfrom'    => '(له $1 نه راګرځول شوی)',
 'redirectpagesub'   => 'ورګرځېدلی مخ',
 'lastmodifiedat'    => 'دا مخ وروستی ځل په $2، $1 بدلون موندلی.', # $1 date, $2 time
 'viewcount'         => 'همدا مخ {{PLURAL:$1|يو وار|$1 واره}} کتل شوی.',
 'protectedpage'     => 'ژغورلی مخ',
 'jumpto'            => 'ورټوپ کړه:',
 'jumptonavigation'  => 'ګرځېدنه',
-'jumptosearch'      => 'لټون',
+'jumptosearch'      => 'پلټل',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'د {{SITENAME}} په اړه',
@@ -297,10 +303,12 @@ $messages = array(
 'youhavenewmessagesmulti' => 'ستاسو لپاره په $1 کې نوي پېغام راغلي.',
 'editsection'             => 'سمادول',
 'editold'                 => 'سمادول',
+'viewsourceold'           => 'سرچينې کتل',
 'editsectionhint'         => 'د سمادلو برخه: $1',
 'toc'                     => 'نيوليک',
 'showtoc'                 => 'ښکاره کول',
 'hidetoc'                 => 'پټول',
+'viewdeleted'             => '$1 کتل؟',
 'site-rss-feed'           => '$1 د آر اس اس کتنه',
 'site-atom-feed'          => '$1 د اټوم کتنه',
 'page-rss-feed'           => '"$1" د آر اس اس کتنه',
@@ -452,6 +460,17 @@ $messages = array(
 'summary-preview'          => 'د لنډيز مخکتنه',
 'subject-preview'          => 'موضوع/سرليک مخکتنه',
 'blockedtitle'             => 'د کارونکي مخه نيول شوې',
+'blockedtext'              => "<big>'''ستاسو د کارن-نوم يا IP پتې مخنيوی شوی.'''</big>
+
+همدا بنديز د $1 له خوا پر تاسو لږېدلی. او د همدې کړنې سبب دی ''$2''.
+
+* د مخنيوي د پېل نېټه: $8
+* د مخنيوي د پای نېټه: $6
+* بنديزونه دي پر: $7
+
+تاسو کولای شی چې د $1 او يا هم د يو بل [[{{MediaWiki:Grouppage-sysop}}|پازوال]] سره اړيکې ټينګې کړی او د بنديز ستونزې مو هوارې کړی.
+تاسو نه شی کولای چې د 'همدې کارونکي ته برېښلک لېږل ' کړنې نه ګټه پورته کړی تر څو چې تاسو د خپل کارن-حساب په [[Special:Preferences|غوره توبونو]] کې يوه کره برېښليک پته نه وي ځانګړې کړې او تر دې بريده چې پر تاسو د هغې د کارولو بنديز نه وي لګېدلی.
+ستاسو د دم مهال IP پته ده $3، او ستاسو د مخنيوي پېژند #$5 دی. مهرباني وکړۍ د خپلې يادونې پر مهال د دغو دوو څخه د يوه او يا هم د دواړو ورکول مه هېروۍ.",
 'blockednoreason'          => 'هېڅ سبب نه دی ورکړ شوی',
 'blockedoriginalsource'    => "د '''$1''' سرچينې لاندې ښودل شوي:",
 'whitelistedittitle'       => 'که د سمادولو تکل لری نو بايد غونډال ته ورننوځۍ.',
@@ -465,6 +484,9 @@ $messages = array(
 'accmailtitle'             => 'پټنوم ولېږل شو.',
 'accmailtext'              => 'د "$1" لپاره پټنوم $2 ته ولېږل شو.',
 'newarticle'               => '(نوی)',
+'newarticletext'           => "تاسو د يوه داسې تړنې څارنه کړې چې لا تر اوسه پورې شتون نه لري.
+که همدا مخ ليکل غواړۍ، نو په لانديني چوکاټ کې خپل متن وټاپۍ (د لا نورو مالوماتو لپاره د [[{{MediaWiki:Helppage}}|لارښود مخ]] وګورۍ).
+که چېرته تاسو دلته په غلطۍ سره راغلي ياست، نو يواځې د خپل د کتنمل '''مخ پر شا''' تڼۍ مو وټوکۍ.",
 'anontalkpagetext'         => "----''دا د بې نومه کارونکو لپاره چې کارن نوم يې نه دی جوړ کړی او يا هم خپل کارن نوم نه دی کارولی، د سکالو پاڼه ده. نو ددې پخاطر مونږ د هغه کارونکي/هغې کارونکې د انټرنېټ شمېره يا IP پته د نوموړي/نوموړې د پېژندلو لپاره کاروو. داسې يوه IP پته د ډېرو کارونکو لخوا هم کارېدلی شي. که تاسو يو بې نومه کارونکی ياست او تاسو ته نااړونده پېغامونه او تبصرې اشاره شوي، نو لطفاً د نورو بې نومو کارونکو او ستاسو ترمېنځ د ټکنتوب مخ نيونې لپاره [[Special:Userlogin|کارن-حساب جوړول يا ننوتنه]] وټوکۍ.''",
 'clearyourcache'           => "'''يادونه:''' د غوره توبونو د خوندي کولو وروسته، ددې لپاره چې تاسو خپل سر ته رسولي ونجونه وګورۍ نو پکار ده چې د خپل بروزر ساتل شوې حافظه تازه کړی. د '''Mozilla / Firefox / Safari:''' لپاره د ''Shift'' تڼۍ نيولې وساتی کله مو چې په ''Reload''، ټک واهه، او يا هم ''Ctrl-Shift-R'' تڼۍ کېښکاږۍ (په Apple Mac کمپيوټر باندې ''Cmd-Shift-R'' کېښکاږۍ); '''IE:''' د ''Ctrl'' تڼۍ کېښکاږۍ کله مو چې په ''Refresh'' ټک واهه، او يا هم د ''Ctrl-F5'' تڼۍ کېښکاږۍ; '''Konqueror:''' بروزر کې يواځې ''Reload'' ته ټک ورکړۍ، او يا په ''F5''; د '''Opera''' کارونکو ته پکار ده چې په بشپړه توګه د خپل کمپيوټر ساتل شوې حافظه تازه کړي چې پدې توګه کېږي ''Tools→Preferences''.",
 'updated'                  => '(تازه)',
@@ -559,7 +581,7 @@ $messages = array(
 'newpassword'           => 'نوی پټنوم:',
 'retypenew'             => 'نوی پټنوم بيا وليکه:',
 'textboxsize'           => 'سمادېدنه',
-'searchresultshead'     => 'لټون',
+'searchresultshead'     => 'پلټل',
 'recentchangesdays'     => 'د هغو ورځو شمېر وټاکی چې په وروستي بدلونو کې يې ليدل غواړی:',
 'recentchangescount'    => 'د هغو سمادونو شمېر چې په وروستي بدلونو کې يې ليدل غواړی:',
 'savedprefs'            => 'ستاسو غوره توبونه خوندي شوه.',
@@ -594,7 +616,7 @@ $messages = array(
 'recentchangestext'              => 'په همدې مخ باندې د ويکي ترټولو تازه وروستي بدلونونه وڅارۍ.',
 'recentchanges-feed-description' => 'همدلته د ويکي ترټولو تازه وروستي بدلونونه وڅارۍ او وګورۍ چې څه پېښ شوي.',
 'rcnote'                         => "دلته لاندې {{PLURAL:$1|وروستی '''1''' بدلون دی|وروستي '''$1''' بدلونونه دي}} چې په {{PLURAL:$2|يوې ورځ|'''$2''' ورځو}}، کې تر $3 پېښ شوي.",
-'rcnotefrom'                     => "په همدې ځای کې لاندې هغه بدلونونه دي چې د '''2$''' نه راپدېخوا پېښ شوي(تر '''1$''' پورې ښکاره شوي).",
+'rcnotefrom'                     => "په همدې ځای کې لاندې هغه بدلونونه دي چې د '''$2''' نه راپدېخوا پېښ شوي (تر '''$1''' پورې ښکاره شوي).",
 'rclistfrom'                     => 'هغه بدلونونه ښکاره کړی چې له $1 نه پيلېږي',
 'rcshowhideminor'                => 'وړې سمادېدنې $1',
 'rcshowhidebots'                 => 'bots $1',
@@ -765,7 +787,7 @@ $messages = array(
 'protectedpages'          => 'ژغورلي مخونه',
 'protectedtitles'         => 'ژغورلي سرليکونه',
 'listusers'               => 'د کارونکو لړليک',
-'specialpages'            => 'ځانګړې پاڼې',
+'specialpages'            => 'ځانګړي مخونه',
 'restrictedpheading'      => 'بنديز لګېدلي ځانګړي مخونه',
 'newpages'                => 'نوي مخونه',
 'newpages-username'       => 'کارن نوم:',
@@ -912,7 +934,7 @@ $messages = array(
 'undeletedarticle'       => '"[[$1]]" بېرته پرځای شو',
 'undelete-search-box'    => 'ړنګ شوي مخونه لټول',
 'undelete-search-prefix' => 'هغه مخونه ښکاره کړه چې پېلېږي په:',
-'undelete-search-submit' => 'لټون',
+'undelete-search-submit' => 'پلټل',
 
 # Namespace form on various pages
 'namespace'      => 'نوم-تشيال:',
@@ -932,7 +954,7 @@ $messages = array(
 'sp-contributions-blocklog'    => 'د مخنيوي يادښت',
 'sp-contributions-search'      => 'د ونډو لټون',
 'sp-contributions-username'    => 'IP پته يا کارن-نوم:',
-'sp-contributions-submit'      => 'لټون',
+'sp-contributions-submit'      => 'پلټل',
 
 # What links here
 'whatlinkshere'       => 'د همدې پاڼې تړنونه',
@@ -961,7 +983,7 @@ $messages = array(
 <br />د مخنيول شويو خلکو د کتنې لپاره، د [[Special:Ipblocklist|مخنيول شويو IP لړليک]] وګورۍ.',
 'ipblocklist'              => 'د مخنيول شويو IP پتو او کارن نومونو لړليک',
 'ipblocklist-username'     => 'کارن-نوم يا IP پته:',
-'ipblocklist-submit'       => 'لټون',
+'ipblocklist-submit'       => 'پلټل',
 'infiniteblock'            => 'لامحدوده',
 'anononlyblock'            => 'يواځې ورکنومی',
 'blocklink'                => 'مخه نيول',
@@ -994,7 +1016,7 @@ please be sure you understand the consequences of this before proceeding.",
 'move-watch'              => 'همدا مخ کتل',
 'movepagebtn'             => 'مخ لېږدول',
 'pagemovedsub'            => 'لېږدېدنه په برياليتوب سره ترسره شوه',
-'movepage-moved'          => '<big>\'\'\'د "1$" په نامه دوتنه، "1$" ته ولېږدېده\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'          => '<big>\'\'\'د "1$" په نامه دوتنه، "2$" ته ولېږدېده\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => 'په همدې نوم يوه بله پاڼه د پخوا نه شته او يا خو دا نوم چې تاسو ټاکلی سم نه دی. لطفاً يو بل نوم وټاکۍ.',
 'movedto'                 => 'ته ولېږل شو',
 'movetalk'                => 'د خبرو اترو اړونده مخ ورسره لېږدول',
@@ -1050,6 +1072,7 @@ please be sure you understand the consequences of this before proceeding.",
 'tooltip-p-logo'                  => 'لومړی مخ',
 'tooltip-n-mainpage'              => 'لومړي مخ ته ورتلل',
 'tooltip-n-portal'                => 'د پروژې په اړه، تاسو څه کولای شی، چېرته کولای شی چې شيان ومومۍ',
+'tooltip-n-currentevents'         => 'د اوسنيو پېښو اړونده د هغوی د شاليد مالومات موندل',
 'tooltip-n-recentchanges'         => 'په ويکي کې د وروستي بدلونو لړليک.',
 'tooltip-n-randompage'            => 'يو ناټاکلی مخ ښکاره کوي',
 'tooltip-n-help'                  => 'هغه ځای چېرته چې راڅرګندولای شو.',
@@ -1099,7 +1122,7 @@ please be sure you understand the consequences of this before proceeding.",
 # Special:Newimages
 'newimages'             => 'د نوو دوتنو نندارتون',
 'noimages'              => 'د کتلو لپاره څه نشته.',
-'ilsubmit'              => 'لټون',
+'ilsubmit'              => 'پلټل',
 'bydate'                => 'د نېټې له مخې',
 'sp-newimages-showfrom' => 'هغه نوې دوتنې چې په $1 په $2 بجو پيلېږي ښکاره کول',
 
@@ -1221,9 +1244,13 @@ $1',
 'iranian-calendar-m12' => 'کب',
 
 # Special:Version
-'version' => 'بڼه', # Not used as normal message but as header for the special page itself
+'version'              => 'بڼه', # Not used as normal message but as header for the special page itself
+'version-specialpages' => 'ځانګړي مخونه',
 
 # Special:Filepath
 'filepath-page' => 'دوتنه:',
+
+# Special:FileDuplicateSearch
+'fileduplicatesearch-submit' => 'پلټل',
 
 );

@@ -923,13 +923,14 @@ za podešavanje suradničkih postavki.',
 'userrights-groupsmember'          => 'Član:',
 'userrights-groupsremovable'       => 'Uklonjive grupe:',
 'userrights-groupsavailable'       => 'Dostupne skupine:',
-'userrights-groups-help'           => 'Možete promjeniti grupe za ovog suradnika.
-Označena kućica pokazuje da suradnik pripada grupi.
-Neoznačena kućica pokazuje da suradnik ne pripada grupi.',
+'userrights-groups-help'           => 'Možete promjeniti skupine za ovog suradnika.
+Označena kućica pokazuje da suradnik pripada skupini.
+Neoznačena kućica pokazuje da suradnik ne pripada skupini.
+Zvjezdica * označava da ne možete ukloniti skupinu kad ju jednom dodate, ili obratno.',
 'userrights-reason'                => 'Razlog za promjenu:',
 'userrights-available-none'        => 'Ne možete mijenjati prava grupe.',
 'userrights-available-add'         => 'Možete dodavati suradnike {{PLURAL:$2|grupi|grupama}}: $1.',
-'userrights-available-remove'      => 'Možete uklanjati suradnike iz {{PLURAL:$2|grupe|grupa|grupa}}: $1.',
+'userrights-available-remove'      => 'Možete ukloniti bilo kojeg suradnika iz {{PLURAL:$2|ove skupine|ovih skupina}}: $1.',
 'userrights-available-add-self'    => 'Možete dodati sebe u {{PLURAL:$2|ovu grupu|ove grupe}}: $1.',
 'userrights-available-remove-self' => 'Možete isključiti sebe iz {{PLURAL:$2|ove grupe|ovih grupa}}: $1.',
 'userrights-no-interwiki'          => 'Nemate prava da uređujete prava suradnika na drugim wikijima.',
@@ -940,22 +941,28 @@ Neoznačena kućica pokazuje da suradnik ne pripada grupi.',
 'userrights-unchangeable-col'      => 'Grupe koje nemožete promjeniti',
 
 # Groups
-'group'               => 'Grupa:',
-'group-autoconfirmed' => 'Suradnici prijavljeni duže od 4 dana',
-'group-bot'           => 'Botovi',
-'group-sysop'         => 'Administratori',
-'group-bureaucrat'    => 'Birokrati',
-'group-all'           => '(svi)',
+'group'                => 'Grupa:',
+'group-user'           => 'Suradnici',
+'group-emailconfirmed' => 'Suradnici s potvrđenom E-mail adresom',
+'group-autoconfirmed'  => 'Suradnici prijavljeni duže od 4 dana',
+'group-bot'            => 'Botovi',
+'group-sysop'          => 'Administratori',
+'group-bureaucrat'     => 'Birokrati',
+'group-all'            => '(svi)',
 
-'group-autoconfirmed-member' => 'Suradnik prijavljen duže od 4 dana',
-'group-bot-member'           => 'Bot',
-'group-sysop-member'         => 'Administrator',
-'group-bureaucrat-member'    => 'Birokrat',
+'group-user-member'           => 'Suradnik',
+'group-emailconfirmed-member' => 'Suradnik s potvrđenom E-mail adresom',
+'group-autoconfirmed-member'  => 'Suradnik prijavljen duže od 4 dana',
+'group-bot-member'            => 'Bot',
+'group-sysop-member'          => 'Administrator',
+'group-bureaucrat-member'     => 'Birokrat',
 
-'grouppage-autoconfirmed' => '{{ns:project}}:Suradnici prijavljeni duže od 4 dana',
-'grouppage-bot'           => '{{ns:project}}:Botovi',
-'grouppage-sysop'         => '{{ns:project}}:Administrators',
-'grouppage-bureaucrat'    => '{{ns:project}}:Birokrati',
+'grouppage-user'           => '{{ns:project}}:Suradnici',
+'grouppage-emailconfirmed' => '{{ns:project}}:Suradnici s potvrđenom E-mail adresom',
+'grouppage-autoconfirmed'  => '{{ns:project}}:Suradnici prijavljeni duže od 4 dana',
+'grouppage-bot'            => '{{ns:project}}:Botovi',
+'grouppage-sysop'          => '{{ns:project}}:Administrators',
+'grouppage-bureaucrat'     => '{{ns:project}}:Birokrati',
 
 # User rights log
 'rightslog'      => 'Evidencija suradničkih prava',
@@ -994,8 +1001,9 @@ Neoznačena kućica pokazuje da suradnik ne pripada grupi.',
 'recentchangeslinked'          => 'Povezane stranice',
 'recentchangeslinked-title'    => 'Povezane promjene sa "$1"',
 'recentchangeslinked-noresult' => 'Nema promjena na povezanim stranicama u zadanom periodu.',
-'recentchangeslinked-summary'  => "Ova posebna stranica prikazuje nedavne promjene na povezanim stranicama (ili stranicama određene kategorije). Stranice koje su na [[Special:Watchlist|vašem popisu praćenja]] su '''podebljane'''.",
+'recentchangeslinked-summary'  => "Ova posebna stranica pokazuje nedavne promjene na povezanim stranicama (ili stranicama određene kategorije). Stranice koje su na [[Special:Watchlist|vašem popisu praćenja]] su '''podebljane'''.",
 'recentchangeslinked-page'     => 'Naslov stranice:',
+'recentchangeslinked-to'       => 'Pokaži promjene na stranicama s poveznicom na ovu stranicu',
 
 # Upload
 'upload'                      => 'Postavi datoteku',
@@ -1531,8 +1539,7 @@ Slijede trenutačne postavke stranice <strong>$1</strong>:',
 'undeleterevisions'            => '$1 {{PLURAL:$1|inačica je arhivirana|inačice su arhivirane|inačica je arhivirano}}',
 'undeletehistory'              => 'Ako vratite izbrisanu stranicu, bit će vraćene i sve prijašnje promjene. Ako je u međuvremenu stvorena nova stranica s istim imenom, vraćena stranica bit će upisana kao prijašnja promjena sadašnje. Sadašnja stranica neće biti zamijenjena.',
 'undeleterevdel'               => 'Vraćanje stranice neće biti izvršeno ako je rezultat toga djelomično brisanje zadnjeg uređivanja.
-U takvim slučajevima morate isključiti ili otkriti najnovije obrisane promjene.
-Promjene datoteka koje ne možete vidjeti neće biti vraćene.',
+U takvim slučajevima morate isključiti ili otkriti najnovije obrisane promjene.',
 'undeletehistorynoadmin'       => 'Ovaj je članak izbrisan. Razlog za brisanje prikazan je u donjem sažetku, zajedno s
 detaljima o suradnicima koji su uređivali ovu stranicu prije brisanja.
 Tekst izbrisanih inačica dostupan je samo administratorima.',
@@ -1788,7 +1795,7 @@ U potonjem slučaju možete koristiti i poveznicu, npr. [[{{ns:special}}:Export/
 'allmessagesdefault'        => 'Prvotni tekst',
 'allmessagescurrent'        => 'Trenutačni tekst',
 'allmessagestext'           => 'Ovo je popis svih sistemskih poruka u prostoru MediaWiki: .',
-'allmessagesnotsupportedDB' => "Uređivanje '''{{ns:special}}:AllMessages''' trenutačno nije podržano jer je isključen parametar '''\$wgUseDatabaseMessages'''.",
+'allmessagesnotsupportedDB' => "Ova stranica ne može biti korištena jer je isključen parametar '''\$wgUseDatabaseMessages'''.",
 'allmessagesfilter'         => 'Filter imena poruka:',
 'allmessagesmodified'       => 'Prikaži samo promijenjene',
 
@@ -2457,14 +2464,16 @@ Također možete koristiti [[Special:Watchlist/edit|uređivanje popisa putem ''k
 Unesite ime datoteke bez predmetka (''prefiksa'') imenskog prostora \"{{ns:image}}:\".",
 
 # Special:FileDuplicateSearch
-'fileduplicatesearch'          => 'Traži istoimene datoteke',
-'fileduplicatesearch-summary'  => 'Traži istoimene datoteke na temelju njihove hash vrijednosti.
+'fileduplicatesearch'          => 'Traži kopije datoteka',
+'fileduplicatesearch-summary'  => 'Traži kopije datoteka na temelju njihove hash vrijednosti.
 
 Unesite ime datoteke bez prefiksa "{{ns:image}}:"',
-'fileduplicatesearch-legend'   => 'Traži istoimene datoteke',
+'fileduplicatesearch-legend'   => 'Traži kopije datoteka',
 'fileduplicatesearch-filename' => 'Ime datoteke:',
 'fileduplicatesearch-submit'   => 'Traži',
-'fileduplicatesearch-result-1' => 'Datoteka "$1" nema identičnih umnožavanja.',
+'fileduplicatesearch-info'     => '$1 × $2 piksela<br />Veličina datoteke: $3<br />MIME tip: $4',
+'fileduplicatesearch-result-1' => 'Datoteka "$1" nema identičnih kopija.',
+'fileduplicatesearch-result-n' => 'Datoteka "$1" ima {{PLURAL:$2|1 identičnu kopiju|$2 identične kopije}}.',
 
 # Special:SpecialPages
 'specialpages-group-maintenance' => 'Izvještaji za održavanje',

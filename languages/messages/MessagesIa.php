@@ -5,6 +5,7 @@
  *
  * @author לערי ריינהארט
  * @author Siebrand
+ * @author Malafaya
  */
 
 $skinNames = array(
@@ -125,7 +126,7 @@ $messages = array(
 'otherlanguages'    => 'Altere linguas',
 'redirectedfrom'    => '(Redirigite de $1)',
 'lastmodifiedat'    => 'Ultime modification: $2, $1.', # $1 date, $2 time
-'viewcount'         => 'Iste pagina esseva accessate $1 vices.',
+'viewcount'         => 'Iste pagina esseva accessate {{PLURAL:$1|un vice|$1 vices}}.',
 'protectedpage'     => 'Pagina protegite',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
@@ -143,6 +144,9 @@ $messages = array(
 'helppage'             => 'Help:Adjuta',
 'mainpage'             => 'Frontispicio',
 'mainpage-description' => 'Frontispicio',
+'portal'               => 'Portal del communitate',
+'portal-url'           => 'Project:Portal del communitate',
+'sitesupport'          => 'Donationes',
 
 'retrievedfrom'   => 'Recuperate de "$1"',
 'newmessageslink' => 'messages nove',
@@ -311,7 +315,7 @@ Verifica le URL que tu ha usate pro accessar iste pagina.',
 'prevn'                 => '$1 precedentes',
 'nextn'                 => '$1 sequentes',
 'viewprevnext'          => 'Vider ($1) ($2) ($3).',
-'showingresults'        => 'Monstra de <b>$1</b> resultatos a partir de nº <b>$2</b>.',
+'showingresults'        => "Monstra de {{PLURAL:$1|'''1''' resultato|'''$1''' resultatos}} a partir de nº '''$2'''.",
 'nonefound'             => '<strong>Nota</strong>: recercas frustrate frequentemente
 es causate per le inclusion de vocabulos commun como "que" e "illo",
 que non es includite in le indice, o per le specification de plure
@@ -453,16 +457,16 @@ Tote le tempores monstrate es in le fuso horari del servitor (UCT).',
 'statistics'    => 'Statisticas',
 'sitestats'     => 'Statisticas de accesso',
 'userstats'     => 'Statisticas de usator',
-'sitestatstext' => 'Le base de datos contine un total de <b>$1</b> paginas.
-Iste numero include paginas de "discussion", paginas super {{SITENAME}}, paginas de "residuo"
+'sitestatstext' => "Le base de datos contine un total de {{PLURAL:\$1|'''1''' pagina|'''\$1''' paginas}}.
+Iste numero include paginas de \"discussion\", paginas super {{SITENAME}}, paginas de \"residuo\"
 minime, paginas de redirection, e alteres que probabilemente non se qualifica como articulos.
-A parte de istes, il ha <b>$2</b> paginas que probabilemente es
-articulos legitime.<p>
-Il habeva un total de <b>$3</b> visitas a paginas, e <b>$4</b> modificationes de paginas
-desde le actualisation del systema (20 de julio 2002).
-Isto representa un media de <b>$5</b> modificationes per pagina, e <b>$6</b> visitas per modification.',
-'userstatstext' => 'Il ha <b>$1</b> usatores registrate,
-del quales <b>$2</b> es administratores (vide $3).',
+A parte de istes, il ha {{PLURAL:\$2|'''1''' pagina|'''\$2''' paginas}} que probabilemente es
+articulos legitime.
+
+Il habeva un total de '''\$3''' {{PLURAL:\$3|visita a paginas|visitas a paginas}}, e '''\$4''' {{PLURAL:\$4|modification|modificationes}} de paginas
+desde le actualisation de {{SITENAME}}.
+Isto representa un media de '''\$5''' modificationes per pagina, e '''\$6''' visitas per modification.",
+'userstatstext' => "Il ha {{PLURAL:$1|'''1''' [[{{ns:Special}}:Listusers|usator]]|'''$1''' [[{{ns:Special}}:Listusers|usatores]]}} registrate, del quales '''$2''' (o '''$4%''') ha derectos de $5.",
 
 'disambiguations'     => 'Paginas de disambiguation',
 'disambiguationspage' => '{{ns:project}}:Ligamines_a_paginas_de_disambiguation',
@@ -479,8 +483,8 @@ al qual le prime redirection deberea referer se.',
 
 # Miscellaneous special pages
 'nbytes'                 => '$1 bytes',
-'nlinks'                 => '$1 ligamines',
-'nviews'                 => '$1 visitas',
+'nlinks'                 => '$1 {{PLURAL:$1|ligamine|ligamines}}',
+'nviews'                 => '$1 {{PLURAL:$1|visita|visitas}}',
 'lonelypages'            => 'Paginas orphanas',
 'uncategorizedpages'     => 'Paginas non classificate',
 'uncategorizedtemplates' => 'Patronos non classificate',
@@ -576,7 +580,7 @@ Tote le horas es in le fuso horari del servitor (UTC).',
 'undeletepage'      => 'Vider e restaurar paginas eliminate',
 'undeletepagetext'  => 'Le paginas sequente ha essite eliminate mais ancora es in le archivo e
 pote esser restaurate. Le archivo pote esser evacuate periodicamente.',
-'undeleterevisions' => '$1 revisiones archivate',
+'undeleterevisions' => '$1 {{PLURAL:$1|revision|revisiones}} archivate',
 'undeletehistory'   => 'Si tu restaura un pagina, tote le revisiones essera restaurate al chronologia.
 Si un nove pagina con le mesme nomine ha essite create post le elimination, le revisiones
 restaurate apparera in le chronologia anterior, e le revision currente del pagina in vigor
@@ -696,7 +700,8 @@ nove titulo. Per favor fusiona los manualmente.',
 '1movedto2_redir'  => '[[$1]] movite a [[$2]] trans redirection',
 
 # Namespace 8 related
-'allmessages' => 'Tote le messages del systema',
+'allmessages'     => 'Messages del systema',
+'allmessagesname' => 'Nomine',
 
 # Tooltip help for the actions
 'tooltip-pt-preferences' => 'Mi preferentias',
@@ -718,7 +723,7 @@ nove titulo. Per favor fusiona los manualmente.',
 'mw_math_mathml' => 'MathML',
 
 # Special:Newimages
-'imagelisttext' => 'Infra es un lista de $1 imagines ordinate $2.',
+'imagelisttext' => "Infra es un lista de '''$1''' {{PLURAL:$1|imagine|imagines}} ordinate $2.",
 'ilsubmit'      => 'Recercar',
 'bydate'        => 'per data',
 

@@ -1,5 +1,5 @@
 <?php
-/** Silesian (ślůnski)
+/** Silesian (Ślůnski)
  *
  * @addtogroup Language
  *
@@ -1518,6 +1518,7 @@ $1',
 'whatlinkshere-hideredirs' => '$1 {{PLURAL:$1|překerowańe|překerowańa|překerowań}}',
 'whatlinkshere-hidetrans'  => '$1 {{PLURAL:$1|douůnčyńe|douůnčyńa|douůnčyń}}',
 'whatlinkshere-hidelinks'  => '$1 {{PLURAL:$1|link|linki|linkůw}}',
+'whatlinkshere-filters'    => 'Filtry',
 
 # Block/unblock
 'blockip'                     => 'Zawřij sprowjyńo užytkowńikowi',
@@ -1736,28 +1737,49 @@ Wšyjstke uoperacyje importu transwiki sům uodnotowywane w [[Special:Log/import
 'importnotext'               => 'Brak tekstu abo zawartośći',
 'importsuccess'              => 'Import zakůńčůny powodzyńym!',
 'importhistoryconflict'      => 'Wystůmpiu kůnflikt wersyji (ta zajta můgua zostać importowano juž wčeśńij)',
+'importnosources'            => 'Možliwość bezpośredńygo importu historii zostoua wůuůnčůna, s kuli tygo co ńy zdefińowano zdřudua.',
+'importnofile'               => 'Importowany plik ńy zostou sam wćepńynty.',
+'importuploaderrorsize'      => 'Wćepańy sam importowanygo plika śe ńy udouo. Je uůn wjynkšy kej dopuščalny rozmjor do wćepywanych plikůw.',
+'importuploaderrorpartial'   => 'Wćepańy sam importowanygo plika śe ńy udouo. Zostou wćepany ino w tajli.',
+'importuploaderrortemp'      => 'Wćepańy sam importowanygo plika śe ńy udouo. Ńy ma sam katalogu do plikůw tymčasowych.',
+'import-parse-failure'       => 'ńyudano analiza skuadńi importowanygo XML',
+'import-noarticle'           => 'Ńy ma zajtůw do zaimportowańo!',
+'import-nonewrevisions'      => 'Wšyjstke wersyje zostouy juž wčeśńij zaimportowane.',
+'xml-error-string'           => '$1 lińa $2, kolůmna $3 (bajt $4): $5',
 
 # Import log
-'importlogpage' => 'Rejer importa',
+'importlogpage'                    => 'Rejer importa',
+'importlogpagetext'                => 'Rejer přeprowadzůnych importůw zajtůw s inkšych serwisůw wiki.',
+'import-logentry-upload'           => 'zaimportowou [[$1]] bez wćepańe sam plika',
+'import-logentry-upload-detail'    => '$1 {{PLURAL:$1|wersyja|wersyje|wersyji}}',
+'import-logentry-interwiki'        => 'zaimportowou $1 užywajůnc transwiki',
+'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|wersyja|wersyje|wersyji}} ze $2',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'             => 'Mojo osobisto zajta',
+'tooltip-pt-anonuserpage'         => 'Zajta užytkowńika do adresu IP spod kerygo sprowjoš',
 'tooltip-pt-mytalk'               => 'Mojo godka',
+'tooltip-pt-anontalk'             => 'Godka užytkowńika do adresu IP spod kerygo sprowjoš',
 'tooltip-pt-preferences'          => 'Moje preferéncyje',
 'tooltip-pt-watchlist'            => 'Lista artiklůw na kere daješ pozor',
 'tooltip-pt-mycontris'            => 'Lista bezy mje sprowjônych',
 'tooltip-pt-login'                => 'My by chćeli cobyś śe zalůgowou, ale to ńy je uobowjůnzek.',
+'tooltip-pt-anonlogin'            => 'Zachyncůmy do zalůgowańo śe, nale to ńy je uobowjůnzek',
 'tooltip-pt-logout'               => 'Wyloguj sie z wiki',
 'tooltip-ca-talk'                 => 'Godej uo tym artiklu',
 'tooltip-ca-edit'                 => 'Možeš sprowjać ta zajta. Ńim naškryfloš půmjyńańo, klikńij we knefel "podglůnd".',
 'tooltip-ca-addsection'           => 'Dodej kůmyntoř do godki',
 'tooltip-ca-viewsource'           => 'Ta zajta je zabezpječůno. Možeš śe uofilować tekst źrůduowy.',
+'tooltip-ca-history'              => 'Starše wersyje tyi zajty.',
 'tooltip-ca-protect'              => 'Zawřij ta zajta',
 'tooltip-ca-delete'               => 'Wyćep ta zajta',
+'tooltip-ca-undelete'             => 'Přiwrůć wersyja tyi zajty spřed wyćepańo',
 'tooltip-ca-move'                 => 'Přećepnij ta zajta kaj indziy.',
 'tooltip-ca-watch'                => 'Dodej artikel do pozorlisty',
 'tooltip-ca-unwatch'              => 'Wyciep ten artikel z pozorlisty',
 'tooltip-search'                  => 'Šnupej we serwisie {{SITENAME}}',
+'tooltip-search-go'               => 'Přyńdź do zajty uo gynau takym titlu, uo ile sam je',
+'tooltip-search-fulltext'         => 'Šnupej za wprowadzůnym tekstym na zajtach',
 'tooltip-p-logo'                  => 'Přodńo zajta',
 'tooltip-n-mainpage'              => 'Přelyź na Přodńo zajta',
 'tooltip-n-portal'                => 'Uo projekće, co sam možeš majštrować, kaj idźe znolyźć informacyje',
@@ -1767,7 +1789,9 @@ Wšyjstke uoperacyje importu transwiki sům uodnotowywane w [[Special:Log/import
 'tooltip-n-help'                  => 'Zapoznej sie z obsůgą wiki',
 'tooltip-n-sitesupport'           => 'Wspůmůž nas',
 'tooltip-t-whatlinkshere'         => 'Pokož lista zajtůw kere sam sům adrésowane',
+'tooltip-t-recentchangeslinked'   => 'Půmjyńane na uostatku w zajtach adresowanych do tyi zajty',
 'tooltip-feed-rss'                => 'Kanau RSS do tyj zajty',
+'tooltip-feed-atom'               => 'Kanau Atom do tyi zajty',
 'tooltip-t-contributions'         => 'Pokož lista sprowjyń tygo užytkowńika',
 'tooltip-t-emailuser'             => 'Wyślij e-brif do tygo užytkowńika',
 'tooltip-t-upload'                => 'Wćepńij plik na serwer',

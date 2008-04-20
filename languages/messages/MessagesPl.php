@@ -351,7 +351,7 @@ $messages = array(
 'qbspecialpages' => 'strony specjalne',
 'moredotdotdot'  => 'Więcej...',
 'mypage'         => 'Moja strona',
-'mytalk'         => 'dyskusja',
+'mytalk'         => 'moja dyskusja',
 'anontalk'       => 'Dyskusja tego IP',
 'navigation'     => 'nawigacja',
 'and'            => 'oraz',
@@ -681,10 +681,10 @@ Być może zakończyłeś już proces zmiany hasła lub poprosiłeś o nowe has�
 'resetpass_missing'       => 'Brak danych formularza.',
 
 # Edit page toolbar
-'bold_sample'     => 'Tekst wytłuszczony',
-'bold_tip'        => 'Tekst wytłuszczony',
-'italic_sample'   => 'Tekst pochylony',
-'italic_tip'      => 'Tekst pochylony',
+'bold_sample'     => 'Tekst tłustą czcionką',
+'bold_tip'        => 'Tekst tłustą czcionką',
+'italic_sample'   => 'Tekst pochyłą czcionką',
+'italic_tip'      => 'Tekst pochyłą czcionką',
 'link_sample'     => 'Tytuł linku',
 'link_tip'        => 'Link wewnętrzny',
 'extlink_sample'  => 'http://www.przyklad.pl nazwa linku',
@@ -696,7 +696,7 @@ Być może zakończyłeś już proces zmiany hasła lub poprosiłeś o nowe has�
 'nowiki_sample'   => 'Wstaw tutaj niesformatowany tekst',
 'nowiki_tip'      => 'Zignoruj formatowanie wiki',
 'image_sample'    => 'Przyklad.jpg',
-'image_tip'       => 'Plik osadzony (embedded)',
+'image_tip'       => 'Grafika lub inny plik osadzony w stronie',
 'media_sample'    => 'Przyklad.ogg',
 'media_tip'       => 'Link do pliku',
 'sig_tip'         => 'Twój podpis wraz z datą i czasem',
@@ -730,11 +730,11 @@ Blokada została nałożona przez $1. Podany powód to: ''$2''.
 * Wygaśnięcie blokady: $6
 * Cel blokady: $7
 
-W celu wyjaśnienia przyczyn zablokowania możesz się skontaktować z $1 lub innym [[{{MediaWiki:Grouppage-sysop}}|administratorem]].
+W celu wyjaśnienia przyczyny zablokowania możesz się skontaktować z $1 lub innym [[{{MediaWiki:Grouppage-sysop}}|administratorem]].
 Nie możesz użyć funkcji „Wyślij e-mail do tego użytkownika” jeśli nie podałeś poprawnego adresu e-mail w swoich [[Special:Preferences|preferencjach]] lub jeśli taka możliwość została Ci zablokowana.
 Twój obecny adres IP to $3, a numer identyfikacyjny blokady to $5. Prosimy o podanie jednego lub obu tych numerów przy wyjaśnianiu tej blokady.",
 'autoblockedtext'                   => "Ten adres IP został zablokowany automatycznie, gdyż korzysta z niego inny użytkownik, zablokowany przez administratora $1.
-Przyczyna blokady:
+Powód blokady:
 
 :''$2''
 
@@ -1376,7 +1376,7 @@ Musisz najpierw przywrócić starszą wersję.',
 'filedelete-reason-otherlist' => 'Inna przyczyna',
 'filedelete-reason-dropdown'  => '* Najczęstsze przyczyny usunięcia
 ** Naruszenie praw autorskich
-** Kopia istniejącego już pliku',
+** Kopia już istniejącego pliku',
 'filedelete-edit-reasonlist'  => 'Edycja listy powodów usunięcia pliku',
 
 # MIME search
@@ -1671,9 +1671,9 @@ Zobacz na stronie $2 rejestr ostatnio wykonanych usunięć.',
 'deletionlog'                 => 'rejestr usunięć',
 'reverted'                    => 'Przywrócono poprzednią wersję',
 'deletecomment'               => 'Powód usunięcia',
-'deleteotherreason'           => 'Inna/dodatkowa przyczyna',
-'deletereasonotherlist'       => 'Inna przyczyna',
-'deletereason-dropdown'       => '* Najczęstsze przyczyny usunięcia
+'deleteotherreason'           => 'Inny/dodatkowy powód',
+'deletereasonotherlist'       => 'Inny powód',
+'deletereason-dropdown'       => '* Najczęstsze powody usunięcia
 ** Prośba autora
 ** Naruszenie praw autorskich
 ** Wandalizm',
@@ -1800,7 +1800,7 @@ $1',
 
 # Contributions
 'contributions' => 'Wkład użytkownika',
-'mycontris'     => 'edycje',
+'mycontris'     => 'moje edycje',
 'contribsub2'   => 'Dla użytkownika $1 ($2)',
 'nocontribs'    => 'Brak zmian odpowiadających tym kryteriom.',
 'uctop'         => ' (jako ostatnia)',
@@ -1842,7 +1842,7 @@ Podaj powód (np. umieszczając nazwy stron, na których dopuszczono się wandal
 'ipbexpiry'                   => 'Czas blokady',
 'ipbreason'                   => 'Powód',
 'ipbreasonotherlist'          => 'Inny powód',
-'ipbreason-dropdown'          => '*Najczęstsze powody blokad
+'ipbreason-dropdown'          => '*Najczęstsze przyczyny blokad
 ** Ataki na innych użytkowników
 ** Naruszenie praw autorskich
 ** Niedozwolona nazwa użytkownika
@@ -1893,7 +1893,7 @@ Przejdź do [[Special:Ipblocklist|listy zablokowanych adresów IP]] by przejrze�
 'unblocklink'                 => 'odblokuj',
 'contribslink'                => 'wkład',
 'autoblocker'                 => 'Zablokowano Cię automatycznie, ponieważ używasz tego samego adresu IP, co użytkownik „[[User:$1|$1]]”.
-Powód blokady $1 to: „$2”',
+Przyczyna blokady $1 to: „$2”',
 'blocklogpage'                => 'Historia blokad',
 'blocklogentry'               => 'zablokował [[$1]], czas blokady: $2 $3',
 'blocklogtext'                => 'Poniżej znajduje się lista blokad założonych i zdjętych z poszczególnych adresów IP.
@@ -2636,14 +2636,14 @@ $1',
 
 # Watchlist editor
 'watchlistedit-numitems'       => 'Twoja lista obserwowanych zawiera {{PLURAL:$1|1 tytuł|$1 tytuły|$1 tytułów}}, nieuwzględniając stron dyskusji.',
-'watchlistedit-noitems'        => 'Twoja lista obserwowanych nie zawiera żadnych tytułów.',
+'watchlistedit-noitems'        => 'Twoja lista obserwowanych jest pusta.',
 'watchlistedit-normal-title'   => 'Edytuj listę obserwowanych stron',
-'watchlistedit-normal-legend'  => 'Usuń tytuły z listy obserwowanych',
+'watchlistedit-normal-legend'  => 'Usuń strony z listy obserwowanych',
 'watchlistedit-normal-explain' => 'Poniżej znajduje się lista obserwowanych przez Ciebie stron.
 Aby usunąć obserwowaną stronę z listy zaznacz znajdujące się obok niej pole i naciśnij „Usuń zaznaczone pozycje”.
 Możesz także skorzystać z [[Special:Watchlist/raw|tekstowego edytora listy obserwowanych]].',
-'watchlistedit-normal-submit'  => 'Usuń tytuły',
-'watchlistedit-normal-done'    => '{{PLURAL:$1|1 tytuł został usunięty|$1 tytuły zostały usunięte|$1 tytułów zostało usuniętych}} z twojej listy obserwowanych:',
+'watchlistedit-normal-submit'  => 'Usuń z listy',
+'watchlistedit-normal-done'    => 'Z Twojej listy obserwowanych {{PLURAL:$1|została usunięta 1 strona|zostały usunięte $1 strony|zostało usuniętych $1 stron}}:',
 'watchlistedit-raw-title'      => 'Tekstowy edytor listy obserwowanych',
 'watchlistedit-raw-legend'     => 'Tekstowy edytor listy obserwowanych',
 'watchlistedit-raw-explain'    => 'Poniżej znajduje się lista obserwowanych artykułów. W każdej linii znajduje się tytuł jednego artykułu. Listę możesz modyfikować poprzez dodawanie nowych i usuwanie obecnych. Gdy zakończysz, kliknij przycisk „Uaktualnij listę obserwowanych”.
