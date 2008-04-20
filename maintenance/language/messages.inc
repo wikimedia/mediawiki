@@ -1469,6 +1469,7 @@ $wgMessageStructure = array(
 		'whatlinkshere-hideredirs',
 		'whatlinkshere-hidetrans',
 		'whatlinkshere-hidelinks',
+		'whatlinkshere-filters',
 	),
 	'block' => array(
 		'blockip',
