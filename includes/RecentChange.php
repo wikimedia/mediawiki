@@ -560,18 +560,13 @@ class RecentChange
 		extract($this->mAttribs);
 		extract($this->mExtra);
 
-		$titleObj =& $this->getTitle();
 		if ( $rc_type == RC_LOG ) {
-			$title = MWNamespace::getCanonicalName( NS_SPECIAL ) . "Log/$rc_log_type";
+			$titleObj = Title::newFromText( "Log/$rc_log_type", NS_SPECIAL );
 		} else {
-			$title = $titleObj->getPrefixedText();
+			$titleObj =& $this->getTitle();
 		}
-		$title = $this->cleanupForIRC( $title );
-
-		$bad = array("\n", "\r");
-		$empty = array("", "");
 		$title = $titleObj->getPrefixedText();
-		$title = str_replace($bad, $empty, $title);
+		$title = $this->cleanupForIRC( $title );
 
 		// FIXME: *HACK* these should be getFullURL(), hacked for SSL madness --brion 2005-12-26
 		if ( $rc_type == RC_LOG ) {
