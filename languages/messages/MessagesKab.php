@@ -8,6 +8,7 @@
  * @author Teak
  * @author SPQRobin
  * @author Siebrand
+ * @author Jon Harald Søby
  */
 
 $namespaceNames = array(
@@ -521,11 +522,11 @@ G leɛnayek ɛreḍ tikelt nniḍen. Lukan mazal yella ugur, ffeɣ umbeɛd kcem.
 'editingsection'            => 'Abeddel n $1 (amur)',
 'editingcomment'            => 'Abeddel n $1 (awennit)',
 'editconflict'              => 'Amennuɣ deg ubeddel: $1',
-'explainconflict'           => 'Amdan nniḍen ibeddel asebter-agi asmi telliḍ tettbeddileḍ.
+'explainconflict'           => "Amdan nniḍen ibeddel asebter-agi asmi telliḍ tettbeddileḍ.
 Aḍris deg usawen yesɛa asebter am yella tura.
 Ibeddlen inek ahaten deg ukessar.
 Yesfek ad txelṭeḍ ibeddlen inek akk d usebter i yellan.
-<b>Ala</b> aḍris deg usawen i yettusmekta asmi twekkiḍ "Smekti asebter".<br />',
+'''Ala''' aḍris deg usawen i yettusmekta asmi twekkiḍ \"Smekti asebter\".",
 'yourtext'                  => 'Aḍris inek',
 'storedversion'             => 'Tasiwelt yettusmketen',
 'nonunicodebrowser'         => '<strong>AƔTAL: Browser/Explorateur inek ur yebil ara unicode. Nexdem akken ad tzemreḍ ad tbeddleḍ mebla amihi: isekkilin i mačči ASCII ttbanen deg tankult ubeddel s ungilen hexadecimal.</strong>',
@@ -624,7 +625,7 @@ Waqila yella kter n talɣut [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}
 meɛna imuren seg-sen zemren imdanen a ten-ẓren.
 
 Inedbalen wiyaḍ deg wiki-yagi zemren ad ẓren imuren i yettwafren u zemren a ten-mḥan, ḥaca ma llan icekkilen.',
-'revdelete-legend'            => 'Eg icekkilen:',
+'revdelete-legend'            => 'Eg icekkilen',
 'revdelete-hide-text'         => 'Ffer aḍris n tsiwelt',
 'revdelete-hide-name'         => 'Ffer tigawt d nnican',
 'revdelete-hide-comment'      => 'Ffer abeddel n uwennit',
@@ -639,8 +640,8 @@ Inedbalen wiyaḍ deg wiki-yagi zemren ad ẓren imuren i yettwafren u zemren a 
 'logdelete-logentry'          => 'asekkud n tamirt tettubeddel i [[$1]]',
 'revdelete-logaction'         => '$1 {{plural:$1|tasiwelt tettuxdem|tisiwal ttuxedment}} i anaw $2',
 'logdelete-logaction'         => '$1 {{plural:$1|tamirt|isallen}} n [[$3]] {{plural:$1|tettuxdem|ttuxedmen}} i anaw $2',
-'revdelete-success'           => 'Asekkud n tasiwelt yettuxdem.',
-'logdelete-success'           => 'Asekkud n tamirt yettuxdem.',
+'revdelete-success'           => "'''Asekkud n tasiwelt yettuxdem.'''",
+'logdelete-success'           => "'''Asekkud n tamirt yettuxdem.'''",
 
 # Oversight log
 'oversightlog'    => 'Aɣmis n oversight',
@@ -769,7 +770,7 @@ Iderman ayen ur ten-textareḍ ara ur ttbeddlen ara. Tzemreḍ ad tekkseḍ adru
 'recentchangestext'                 => 'Ḍfer ibeddilen imaynuten n {{SITENAME}}.',
 'recentchanges-feed-description'    => 'Ḍfer ibeddilen imaynuten n wiki-yagi deg usuddem-agi.',
 'rcnote'                            => "Deg ukessar {{PLURAL:$1|yella '''yiwen''' ubeddel aneggaru|llan '''$1''' n yibeddlen ineggura}} deg {{PLURAL:$2|wass aneggaru|'''$2''' wussan ineggura}}, deg uzemz $3.",
-'rcnotefrom'                        => 'Deg ukessar llan ibeddlen seg wasmi <b>$2</b> (ar <b>$1</b>).',
+'rcnotefrom'                        => "Deg ukessar llan ibeddlen seg wasmi '''$2''' (ar '''$1''').",
 'rclistfrom'                        => 'Ssken ibeddlen imaynuten seg $1',
 'rcshowhideminor'                   => '$1 ibeddlen ifessasen',
 'rcshowhideliu'                     => '$1 n yimseqdacen i ikecmen',
@@ -811,7 +812,7 @@ Akken ad tessekcmeḍ tugna deg usebter, seqdec azay am wagi
 'filename'                    => 'Isem n ufaylu',
 'filedesc'                    => 'Agzul',
 'fileuploadsummary'           => 'Agzul:',
-'filestatus'                  => 'Aẓayer n copyright',
+'filestatus'                  => 'Aẓayer n copyright:',
 'filesource'                  => 'Seg way yekka',
 'uploadedfiles'               => 'Ifayluwen yettwaznen',
 'ignorewarning'               => 'Ttu aɣtal u smekti afaylu',
@@ -996,7 +997,7 @@ Ihi, {{PLURAL:\$5|yella|llan}} '''\$5''' n {{PLURAL:\$5|ubeddel|ibeddlen}} i mku
 'intl'                    => 'Izdayen ar tutlayin nniḍen zdaxel wikipedia',
 'move'                    => 'Smimeḍ',
 'movethispage'            => 'Smimeḍ asebter-agi',
-'unusedimagestext'        => '<p>Ssen belli ideggen n internet sɛan izdayen ɣer tugna-agi s URL n qbala, ɣas akken tugna-nni hatt da.</p>',
+'unusedimagestext'        => 'Ssen belli ideggen n internet sɛan izdayen ɣer tugna-agi s URL n qbala, ɣas akken tugna-nni hatt da.',
 'unusedcategoriestext'    => 'Taggayin-agi weǧden meɛna ulac isebtar neɣ taggayin i sseqdacen-iten.',
 'notargettitle'           => 'Ulac nnican',
 'notargettext'            => 'Ur textareḍ ara asebter d nnican neɣ asebter n wemseqdac d nnican.',
@@ -1175,7 +1176,7 @@ G leɛnayek wekki ɣef taqeffalt "Back/Précédent" n browser/explorateur inek, 
 'protect-summary-cascade' => 'acercur',
 'protect-expiring'        => 'yemmut deg $1 (UTC)',
 'restriction-type'        => 'Turagt',
-'minimum-size'            => 'Tiddi minimum (bytes/octets)',
+'minimum-size'            => 'Tiddi minimum',
 
 # Restrictions (nouns)
 'restriction-edit' => 'Beddel',
@@ -1247,15 +1248,13 @@ G leɛnayek wekki ɣef taqeffalt "Back/Précédent" n browser/explorateur inek, 
 
 # Move page
 'movepage'                => 'Smimeḍ asebter',
-'movepagetext'            => "Mi tedsseqdceḍ talɣa deg ukessar ad ibddel isem n usebter, yesmimeḍ akk
-umezruy-is ɣer isem amaynut.
+'movepagetext'            => "Mi tedsseqdceḍ talɣa deg ukessar ad ibddel isem n usebter, yesmimeḍ akk umezruy-is ɣer isem amaynut.
 Azwel aqdim ad yuɣal azady n wesmimeḍ ɣer azwel amaynut.
-Izdayen ɣer azwel aqdim ur ttubeddlen ara; ssenqd-iten
-u ssenqed izdayen n snat d tlata tikkwal.
+Izdayen ɣer azwel aqdim ur ttubeddlen ara;
+ssenqd-iten u ssenqed izdayen n snat d tlata tikkwal.
 D kečč i yessefk a ten-yessenqed.
 
-Meɛna, ma yella amagrad deg azwel amaynut neɣ azday n wamsmimeḍ
-mebla amezruy, asebter-inek '''ur''' yettusmimeḍ '''ara'''.
+Meɛna, ma yella amagrad deg azwel amaynut neɣ azday n wamsmimeḍ mebla amezruy, asebter-inek '''ur''' yettusmimeḍ '''ara'''.
 Yernu, tzemreḍ ad tesmimeḍ asebter ɣer isem-is aqdim ma tɣelṭeḍ.",
 'movepagetalktext'        => "Asebter \"Amyannan\" yettusmimeḍ ula d netta '''ma ulac:'''
 *Yella asebter \"Amyannan\" deg isem amaynut, neɣ
@@ -1305,7 +1304,8 @@ Anda tebɣiḍ tesmimeḍ "[[$1]]" yella yagi. tebɣiḍ ad temḥuḍ iwakken y
 'allmessagesname'           => 'Isem',
 'allmessagesdefault'        => 'Aḍris ameslugen',
 'allmessagescurrent'        => 'Aḍris n tura',
-'allmessagestext'           => 'Wagi d umuɣ n izen n system i yellan deg yisem n taɣult.',
+'allmessagestext'           => 'Wagi d umuɣ n izen n system i yellan deg yisem n taɣult.
+Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] and [http://translatewiki.net Betawiki] if you wish to contribute to the generic MediaWiki localisation.',
 'allmessagesnotsupportedDB' => "'''{{ns:special}}:Allmessages''' ut yezmir ara ad yettuseqdac axaṭer '''\$wgUseDatabaseMessages''' yettwakkes.",
 'allmessagesfilter'         => 'Tastayt n yisem n izen:',
 'allmessagesmodified'       => 'Ssken win yettubeddlen kan',

@@ -9,6 +9,7 @@
  * @author Teak
  * @author לערי ריינהארט
  * @author SPQRobin
+ * @author Jon Harald Søby
  */
 
 
@@ -464,7 +465,7 @@ Du geavaheaddjidovddaldat lea dál anus. Ále vajáldahte rievdadit [[Special:Pr
 'revdelete-text'          => 'Sihkojuvvon veršuvnnat oidnojit siiddu siidohistorjjás, muhto daid sisdoallu ii leat álmmolaš.
 
 Eará bajasdoallit sáhtet lohkat čihkojuvvon sisdoalu ja máhcahit dan.',
-'revdelete-legend'        => 'Veršuvnna rádjehusat:',
+'revdelete-legend'        => 'Veršuvnna rádjehusat',
 'revdelete-hide-text'     => 'Čiega veršuvnna sisdoalu',
 'revdelete-hide-name'     => 'Čiega doaibma ja mearri',
 'revdelete-hide-comment'  => 'Čiega čoahkkáigeasu',
@@ -587,7 +588,7 @@ $1 | $2',
 'recentchangestext'                 => 'Dán siiddus sáhtat čuovvut varas rievdadusaid {{GRAMMAR:illative|{{SITENAME}}}}.',
 'recentchanges-feed-description'    => 'Dán siiddus sáhtat čuovvut varas {{GRAMMAR:illative|{{SITENAME}}}} rievdadusaid.',
 'rcnote'                            => 'Vuollin {{PLURAL:$1|lea okta rievdadus|leat $1 varas rievdadusa}} {{PLURAL:$2|ovtta beaivvi|$2 maŋimus jándora}} áigge gitta $3 rádjái.',
-'rcnotefrom'                        => 'Vuolábealde leat rievdadusat <b>$2</b> rájes. Eanemusta <b>$1</b> mearkkastaga čájehuvvo.',
+'rcnotefrom'                        => "Vuolábealde leat rievdadusat '''$2''' rájes. Eanemusta '''$1''' mearkkastaga čájehuvvo.",
 'rclistfrom'                        => 'Čájet ođđa rievdadusat $1 rájes',
 'rcshowhideminor'                   => '$1 unna rievdádusat',
 'rcshowhidebots'                    => '$1 bohtat',
@@ -608,7 +609,7 @@ $1 | $2',
 
 # Recent changes linked
 'recentchangeslinked'       => 'Dán siiddu varas rievdadusat',
-'recentchangeslinked-title' => '$1 laktaseaddji rievdadusat',
+'recentchangeslinked-title' => '"$1" laktaseaddji rievdadusat',
 
 # Upload
 'upload'             => 'Lasit fiilla',
@@ -625,7 +626,7 @@ $1 | $2',
 'fileuploadsummary'  => 'Čoahkkáigeassu',
 'filesource'         => 'Gáldu:',
 'uploadedfiles'      => 'Lasihuvvon fiillat',
-'ignorewarning'      => 'Vurke fuolatkeahttá varuhusas.',
+'ignorewarning'      => 'Vurke fuolatkeahttá varuhusas',
 'minlength1'         => 'Fiilla namas ferte leat unnimustá okta mearka.',
 'badfilename'        => 'Fiilla nama rievdaduvvui: $1.',
 'filetype-missing'   => 'Fiillas vailui fiilageažus – ovdamearkkan <tt>.jpg</tt>.',
@@ -963,7 +964,7 @@ $1 | $2',
 'restriction-type'            => 'Rádjehus',
 'restriction-level'           => 'Suodjálus',
 'minimum-size'                => 'Min. sturrodat',
-'maximum-size'                => 'Maks. sturrodat',
+'maximum-size'                => 'Maks. sturrodat:',
 'pagesize'                    => 'stávvala',
 
 # Restrictions (nouns)

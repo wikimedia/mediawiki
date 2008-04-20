@@ -9,6 +9,7 @@
  * @author Ergon
  * @author SPQRobin
  * @author Cradel
+ * @author Jon Harald Søby
  */
 
 $skinNames = array(
@@ -537,11 +538,15 @@ Numri idendifikues i bllokimit tuaj është $5. Ju lutemi përfshijeni këtë Nu
 'previewconflict'          => 'Kjo parapamje reflekton tekstin sipër kutisë së redaktimit siç do të duket kur të kryeni ndryshimin.',
 'session_fail_preview'     => '<strong>Ju kërkoj ndjesë. Nuk munda të kryej redaktimin tuaj sepse humba disa të dhëna. Provojeni përsëri dhe nëse nuk punon provoni të dilni dhe të hyni përsëri.</strong>',
 'editing'                  => 'Duke redaktuar $1',
-'editinguser'              => 'Duke redaktuar $1',
+'editinguser'              => "Duke redaktuar '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
 'editingsection'           => 'Duke redaktuar $1 (seksion)',
 'editingcomment'           => 'Duke redaktuar $1 (koment)',
 'editconflict'             => 'Konflikt redaktimi: $1',
-'explainconflict'          => 'Dikush tjetër ka ndryshuar këtë faqe kur ju po e redaktonit. Kutiza e redaktimit mësipërme tregon tekstin e faqes siç ekziston tani. Ndryshimet juaja janë treguar poshtë kutisë së redaktimit. Ju duhet të përputhni ndryshimet tuaja me tekstin ekzistues. <b>Vetëm</b> teksti në kutinë e sipërme të redaktimit do të ruhet kur të shtypni "Ruaje faqen".',
+'explainconflict'          => "Dikush tjetër ka ndryshuar këtë faqe kur ju po e redaktonit.
+Kutiza e redaktimit mësipërme tregon tekstin e faqes siç ekziston tani.
+Ndryshimet juaja janë treguar poshtë kutisë së redaktimit.
+Ju duhet të përputhni ndryshimet tuaja me tekstin ekzistues.
+'''Vetëm''' teksti në kutinë e sipërme të redaktimit do të ruhet kur të shtypni \"Ruaje faqen\".",
 'yourtext'                 => 'Teksti juaj',
 'storedversion'            => 'Versioni i ruajtur',
 'nonunicodebrowser'        => '<strong>KUJDES: Shfletuesi juaj nuk përdor dot unikode, ju lutem ndryshoni shfletues para se të redaktoni artikuj.</strong>',
@@ -784,7 +789,7 @@ $2 Lidhje përcjellëse &nbsp; Kërko për $3 $9',
 
 # Recent changes linked
 'recentchangeslinked'       => 'Ndryshimet fqinje',
-'recentchangeslinked-title' => 'Ndryshimet në lidhje me $1',
+'recentchangeslinked-title' => 'Ndryshimet në lidhje me "$1"',
 
 # Upload
 'upload'                      => 'Ngarkoni skeda',
@@ -795,7 +800,7 @@ $2 Lidhje përcjellëse &nbsp; Kërko për $3 $9',
 'uploadnologintext'           => 'Duhet të keni [[Special:Userlogin|hyrë brenda]] për të dhënë skeda.',
 'upload_directory_read_only'  => 'Skedari i ngarkimit ($1) nuk mund të shkruhet nga shërbyesi.',
 'uploaderror'                 => 'Gabim dhënie',
-'uploadtext'                  => " '''NDALO!''' Përpara se të jepni këtu skedë, lexoni dhe ndiqni [[Project:Rregullat e përdorimit të figurave|Rregullat e përdorimit të figurave]] të {{SITENAME}}-s. Mos jepni skeda për të cilat autori (ose ju) nuk ka dhënë të drejtë për përdorim nën licencat e përdorura nga {{SITENAME}}.
+'uploadtext'                  => "'''NDALO!''' Përpara se të jepni këtu skedë, lexoni dhe ndiqni Rregullat e përdorimit të figurave të {{SITENAME}}-s. Mos jepni skeda për të cilat autori (ose ju) nuk ka dhënë të drejtë për përdorim nën licencat e përdorura nga {{SITENAME}}.
 
 Për të parë ose për të kërkuar figurat e dhëna më parë,
 shkoni tek [[Special:Imagelist|lista e figurave të dhëna]].
@@ -978,8 +983,8 @@ Gjatësia e [http://meta.wikimedia.org/wiki/Help:Job_queue radhës së punëve] 
 'intl'                    => 'Gjuhë-lidhje',
 'move'                    => 'Zhvendose',
 'movethispage'            => 'Zhvendose faqen',
-'unusedimagestext'        => '<p>Ju lutem, vini re se hapësira të tjera si p.sh ato që kanë të bëjnë me gjuhë të ndryshme mund të lidhin
-një figurë me një URL në mënyrë direkte, kështuqë ka mundësi që këto figura të rreshtohen këtu megjithëse janë në përdorim.</p>',
+'unusedimagestext'        => 'Ju lutem, vini re se hapësira të tjera si p.sh ato që kanë të bëjnë me gjuhë të ndryshme mund të lidhin
+një figurë me një URL në mënyrë direkte, kështuqë ka mundësi që këto figura të rreshtohen këtu megjithëse janë në përdorim.',
 'unusedcategoriestext'    => 'Kategoritë në vazhdim ekzistojnë edhe pse asnjë artikull ose kategori nuk i përdor ato.',
 'notargettitle'           => 'Asnjë artikull',
 'notargettext'            => 'Nuk keni dhënë asnjë artikull ose përdorues mbi të cilin të përdor këtë funksion.',
@@ -1149,6 +1154,7 @@ Redaktimi i fundit është bërë nga [[User:$3|$3]] ([[User talk:$3|Diskutim]])
 'protect-level-autoconfirmed' => 'Blloko përdoruesit pa llogari',
 'protect-level-sysop'         => 'Lejo vetëm administruesit',
 'protect-cascade'             => 'Mbrojtje e ndërlidhur - mbro çdo faqe që përfshihet në këtë faqe.',
+'protect-cantedit'            => 'Nuk mund ta ndryshoni nivelin e mbrojtjes të kësaj faqeje sepse nuk keni leje për këtë.',
 'restriction-type'            => 'Lejet:',
 'restriction-level'           => 'Mbrojtjet:',
 'minimum-size'                => 'Madhësia minimale',

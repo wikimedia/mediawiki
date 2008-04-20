@@ -398,8 +398,7 @@ ilay bokotra \"Tehirizo\" ianao. <br />",
 'yourtext'               => 'Lahatsoratrao',
 'storedversion'          => 'Votoatiny voatahiry',
 'nonunicodebrowser'      => "<strong>FAMPITANDREMANA: Tsy mifanaraka tanteraka amin'ny unicode ny navigateur-nao. Misy ihany anefa fika napetraka hahafahanao manova ny lahatsoratra: Ny litera tsy ASCII dia hiseho amin'ny fango isa ta-enina ambin'ny folo.</strong>",
-'editingold'             => "
-<strong>FAMPITANDREMANA: Ity pejy ity dia efa lany daty io votoatiny ovainao io.
+'editingold'             => "<strong>FAMPITANDREMANA: Ity pejy ity dia efa lany daty io votoatiny ovainao io.
 Raha io no tahirizinao, dia ho very ny fanovana ity pejy ity rehetra taorian'io fanovana io.</strong>",
 'yourdiff'               => 'Fampitahana',
 'longpagewarning'        => "

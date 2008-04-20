@@ -18,6 +18,8 @@
  * @author לערי ריינהארט
  * @author Siebrand
  * @author SPQRobin
+ * @author S.Örvarr.S
+ * @author Candalua
  */
 
 $namespaceNames = array(
@@ -463,8 +465,9 @@ Query: $2',
 $2',
 'namespaceprotected'   => "Non si dispone dei permessi necessari per modificare le pagine del namespace '''$1'''.",
 'customcssjsprotected' => 'Non si dispone dei permessi necessari alla modifica della pagina, in quanto contiene le impostazioni personali di un altro utente.',
-'ns-specialprotected'  => 'Non è possibile modificare le pagine del namespace {{ns:special}}.',
-'titleprotected'       => 'La creazione di una pagina con questo titolo è stata bloccata da [[User:$1|$1]]. La motivazione è la seguente: <i>$2</i>.',
+'ns-specialprotected'  => 'Non è possibile modificare le pagine speciali.',
+'titleprotected'       => "La creazione di una pagina con questo titolo è stata bloccata da [[User:$1|$1]].
+La motivazione è la seguente: ''$2''.",
 
 # Login and logout pages
 'logouttitle'                => 'Logout utente',
@@ -525,7 +528,7 @@ L'account è stato creato correttamente. Non dimenticare di personalizzare le pr
 'mailmypassword'             => 'Invia password via e-mail',
 'passwordremindertitle'      => 'Servizio Password Reminder di {{SITENAME}}',
 'passwordremindertext'       => 'Qualcuno (probabilmente tu, con indirizzo IP $1) ha richiesto l\'invio di una nuova password di accesso a {{SITENAME}} ($4).
-La password per l\'utente "$2" è stata impostata a "$3". 
+La password per l\'utente "$2" è stata impostata a "$3".
 È opportuno eseguire un accesso quanto prima e cambiare la password immediatamente.
 
 Se non sei stato tu a fare la richiesta, oppure hai ritrovato la password e non desideri più cambiarla, puoi ignorare questo messaggio e continuare a usare la vecchia password.',
@@ -670,7 +673,7 @@ Se il collegamento è stato seguito per errore, è sufficiente fare clic sul pul
 <strong>Se il problema persiste, si può provare a scollegarsi ed effettuare un nuovo accesso.</strong>",
 'token_suffix_mismatch'     => "<strong>La modifica non è stata salvata perché il client ha mostrato di gestire in modo errato i caratteri di punteggiatura nel token associato alla stessa. Per evitare una possibile corruzione del testo della pagina, è stata rifiutata l'intera modifica. Questa situazione può verificarsi, talvolta, quando vengono usati alcuni servizi di proxy anonimi via web che presentano dei bug.</strong>",
 'editing'                   => 'Modifica di $1',
-'editinguser'               => 'Modifica di $1',
+'editinguser'               => "Modifica dei diritti assegnati all'utente '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
 'editingsection'            => 'Modifica di $1 (sezione)',
 'editingcomment'            => 'Modifica di $1 (commento)',
 'editconflict'              => 'Conflitto di edizione su $1',
@@ -719,7 +722,7 @@ L'elenco delle relative cancellazioni viene riportato di seguito per comodità:"
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Impossibile registrare un utente',
-'cantcreateaccount-text' => "La creazione di nuovi account a partire da questo indirizzo IP (<b>$1</b>) è stata bloccata da [[User:$3|$3]].
+'cantcreateaccount-text' => "La creazione di nuovi account a partire da questo indirizzo IP ('''$1''') è stata bloccata da [[User:$3|$3]].
 
 La motivazione del blocco fornita da $3 è la seguente: ''$2''",
 
@@ -739,7 +742,6 @@ Verificare la URL usata per accedere a questa pagina.',
 'cur'                 => 'corr',
 'next'                => 'succ',
 'last'                => 'prec',
-'orig'                => 'orig',
 'page_first'          => 'prima',
 'page_last'           => 'ultima',
 'histlegend'          => "Confronto tra versioni: selezionare le caselle corrispondenti alle versioni desiderate e premere Invio o il pulsante in basso.
@@ -748,7 +750,7 @@ Legenda: (corr) = differenze con la versione corrente, (prec) = differenze con l
 'deletedrev'          => '[cancellata]',
 'histfirst'           => 'Prima',
 'histlast'            => 'Ultima',
-'historysize'         => '($1 byte)',
+'historysize'         => '({{PLURAL:$1|1 byte|$1 byte}})',
 'historyempty'        => '(vuota)',
 
 # Revision feed
@@ -760,7 +762,7 @@ Legenda: (corr) = differenze con la versione corrente, (prec) = differenze con l
 # Revision deletion
 'rev-deleted-comment'         => '(commento rimosso)',
 'rev-deleted-user'            => '(nome utente rimosso)',
-'rev-deleted-event'           => '(elemento rimosso)',
+'rev-deleted-event'           => '(azione del log rimossa)',
 'rev-deleted-text-permission' => '<div class="mw-warning plainlinks">
 Questa versione della pagina è stata rimossa dagli archivi visibili al pubblico.
 Consultare il [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} log di cancellazione] per ulteriori dettagli.
@@ -794,8 +796,8 @@ Gli altri amministratori del sito potranno accedere comunque ai contenuti nascos
 'logdelete-logentry'          => "ha modificato la visibilità dell'evento [[$1]]",
 'revdelete-logaction'         => 'ha impostato la modalità $2 per {{plural:$1|una revisione|$1 revisioni}}',
 'logdelete-logaction'         => 'ha impostato la modalità $2 per {{plural:$1|un evento relativo|$1 eventi relativi}} a [[$3]]',
-'revdelete-success'           => 'Visibilità della revisione impostata correttamente.',
-'logdelete-success'           => "Visibilità dell'evento impostata correttamente.",
+'revdelete-success'           => "'''Visibilità della revisione impostata correttamente.'''",
+'logdelete-success'           => "'''Visibilità dell'evento impostata correttamente.'''",
 
 # Oversight log
 'oversightlog'    => 'Registro azioni di oversight',
@@ -813,8 +815,8 @@ Gli altri amministratori del sito potranno accedere comunque ai contenuti nascos
 'mergehistory-merge'               => 'È possibile unire le revisioni di [[:$1]] indicate di seguito alla cronologia di [[:$2]]. Usare la colonna con i pulsanti di opzione per unire tutte le revisioni fino alla data e ora indicate. Si noti che se vengono usati i pulsanti di navigazione, la colonna con i pulsanti di opzione viene azzerata.',
 'mergehistory-go'                  => 'Mostra le modifiche che possono essere unite',
 'mergehistory-submit'              => 'Unisci le revisioni',
-'mergehistory-empty'               => 'Nessuna revisione da unire',
-'mergehistory-success'             => '$3 revisioni di [[:$1]] sono state unite alla cronologia di [[:$2]].',
+'mergehistory-empty'               => 'Nessuna revisione da unire.',
+'mergehistory-success'             => '{{PLURAL:$3|Una revisione di [[:$1]] è stata unita|$3 revisioni di [[:$1]] sono state unite}} alla cronologia di [[:$2]].',
 'mergehistory-fail'                => 'Impossibile unire le cronologie. Verificare la pagina e i parametri temporali.',
 'mergehistory-no-source'           => 'La pagina di origine $1 non esiste.',
 'mergehistory-no-destination'      => 'La pagina di destinazione $1 non esiste.',
@@ -992,7 +994,7 @@ Gli altri amministratori del sito potranno accedere comunque ai contenuti nascos
 
 # Recent changes linked
 'recentchangeslinked'          => 'Modifiche correlate',
-'recentchangeslinked-title'    => 'Modifiche correlate a $1',
+'recentchangeslinked-title'    => 'Modifiche correlate a "$1"',
 'recentchangeslinked-noresult' => 'Nessuna modifica alle pagine collegate nel periodo specificato.',
 'recentchangeslinked-summary'  => "Questa pagina speciale mostra le modifiche più recenti alle pagine collegate a quella specificata. Le pagine osservate sono evidenziate in '''grassetto'''.",
 
@@ -1070,7 +1072,7 @@ Verifica per favore l'opportunità di continuare con il caricamento di questo fi
 Per tua comodità qui c'è la registrazione della cancellazione:",
 'filename-bad-prefix'         => 'Il nome del file che stai caricando inizia con <strong>"$1"</strong>, che è un nome non-descrittivo tipicamente assegnato automaticamente dalle fotocamere digitali. Per favore scegli un nome più descrittivo per il tuo file.',
 'filename-prefix-blacklist'   => ' #<!-- lascia questa riga esattamente com\'è --> <pre>
-# La sintassi è la seguente: 
+# La sintassi è la seguente:
 #   * Tutto ciò che segue il carattere "#" sino alla fine della riga è un commento
 #   * Ogni riga non vuota è un prefisso per nomi di file tipici assegnati automaticamente da fotocamere digitali
 CIMG # Casio
@@ -1105,6 +1107,9 @@ PICT # misc.
 
 # Image list
 'imagelist'                 => 'Elenco dei file',
+'imagelist-summary'         => "Questa pagina speciale mostra tutti i file caricati.
+I file caricati più di recente vengono mostrati all'inizio della lista.
+Per modificare l'ordinamento, fare clic sull'intestazione della colonna prescelta.",
 'imagelisttext'             => "La lista presentata di seguito, costituita da {{PLURAL:$1|un file|'''$1''' file}}, è ordinata per $2.",
 'getimagelist'              => 'caricamento elenco file',
 'ilsubmit'                  => 'Ricerca',
@@ -1232,7 +1237,7 @@ Ciascuna riga contiene i collegamenti al primo ed al secondo redirect, oltre all
 'fewestrevisions' => 'Voci con meno revisioni',
 
 # Miscellaneous special pages
-'nbytes'                  => '$1 byte',
+'nbytes'                  => '$1 {{PLURAL:$1|byte|byte}}',
 'ncategories'             => '$1 {{PLURAL:$1|categoria|categorie}}',
 'nlinks'                  => '$1 {{PLURAL:$1|collegamento|collegamenti}}',
 'nmembers'                => '$1 {{PLURAL:$1|elemento|elementi}}',
@@ -1278,7 +1283,7 @@ Ciascuna riga contiene i collegamenti al primo ed al secondo redirect, oltre all
 'intl'                    => 'Collegamenti tra lingue diverse',
 'move'                    => 'Sposta',
 'movethispage'            => 'Sposta questa pagina',
-'unusedimagestext'        => "<p>Si noti che è possibile realizzare collegamenti ai file da altri siti, usando direttamente la URL; questi potrebbero quindi essere utilizzati anche se compaiono nell'elenco.</p>",
+'unusedimagestext'        => "Si noti che è possibile realizzare collegamenti ai file da altri siti, usando direttamente la URL; questi potrebbero quindi essere utilizzati anche se compaiono nell'elenco.",
 'unusedcategoriestext'    => 'Le pagine delle categorie indicate di seguito sono state create ma non contengono nessuna pagina né sottocategoria.',
 'notargettitle'           => 'Dati mancanti',
 'notargettext'            => "Non è stata indicata una pagina o un utente in relazione al quale eseguire l'operazione richiesta.",
@@ -1358,8 +1363,9 @@ Ciascuna riga contiene i collegamenti al primo ed al secondo redirect, oltre all
 'watchnologin'         => 'Accesso non effettuato',
 'watchnologintext'     => "Per modificare la lista degli osservati speciali è necessario prima eseguire l'[[Special:Userlogin|accesso al sito]].",
 'addedwatch'           => 'Pagina aggiunta alla lista degli osservati speciali',
-'addedwatchtext'       => "La pagina  \"[[:\$1]]\" è stata aggiunta alla propria [[Special:Watchlist|lista degli osservati speciali]]. 
-D'ora in poi, le modifiche apportate alla pagina e alla sua discussione verranno elencate in quella sede; il titolo della pagina apparirà in '''grassetto''' nella pagina delle [[Special:Recentchanges|ultime modifiche]] per renderlo più visibile.",
+'addedwatchtext'       => "La pagina  \"[[:\$1]]\" è stata aggiunta alla propria [[Special:Watchlist|lista degli osservati speciali]].
+D'ora in poi, le modifiche apportate alla pagina e alla sua discussione verranno elencate in quella sede;
+il titolo della pagina apparirà in '''grassetto''' nella pagina delle [[Special:Recentchanges|ultime modifiche]] per renderlo più visibile.",
 'removedwatch'         => 'Pagina eliminata dalla lista degli osservati speciali',
 'removedwatchtext'     => 'La pagina  "[[:$1]]" è stata eliminata dalla lista degli osservati speciali.',
 'watch'                => 'Segui',
@@ -1490,8 +1496,8 @@ Le impostazioni correnti per la pagina sono <strong>$1</strong>:',
 'protect-cantedit'            => 'Non è possibile modificare i livelli di protezione per la pagina in quanto non si dispone dei permessi necessari per modificare la pagina stessa.',
 'restriction-type'            => 'Permesso',
 'restriction-level'           => 'Livello di restrizione',
-'minimum-size'                => 'Dimensione minima (in byte)',
-'maximum-size'                => 'Dimensione massima',
+'minimum-size'                => 'Dimensione minima',
+'maximum-size'                => 'Dimensione massima:',
 'pagesize'                    => '(byte)',
 
 # Restrictions (nouns)
@@ -1566,7 +1572,7 @@ $1',
 'sp-contributions-username'    => 'Indirizzo IP o nome utente:',
 'sp-contributions-submit'      => 'Ricerca',
 
-'sp-newimages-showfrom' => 'Mostra i file più recenti a partire da $1',
+'sp-newimages-showfrom' => 'Mostra i file più recenti a partire dalle ore $2 del $1',
 
 # What links here
 'whatlinkshere'       => 'Puntano qui',
@@ -1607,7 +1613,7 @@ $1',
 'ipboptions'                  => '2 ore:2 hours,1 giorno:1 day,3 giorni:3 days,1 settimana:1 week,2 settimane:2 weeks,1 mese:1 month,3 mesi:3 months,6 mesi:6 months,1 anno:1 year,infinito:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'              => 'altro',
 'ipbotherreason'              => 'Altri motivi/dettagli:',
-'ipbhidename'                 => "Nascondi il nome utente o l'indirizzo IP dal log dei blocchi, dall'elenco dei blocchi attivi e dall'elenco utenti.",
+'ipbhidename'                 => "Nascondi il nome utente dal log dei blocchi, dall'elenco dei blocchi attivi e dall'elenco utenti.",
 'badipaddress'                => 'Indirizzo IP non valido.',
 'blockipsuccesssub'           => 'Blocco eseguito',
 'blockipsuccesstext'          => '[[Special:Contributions/$1|$1]] è stato bloccato.

@@ -5,6 +5,7 @@
  *
  * @author Mohau
  * @author Siebrand
+ * @author Jon Harald Søby
  */
 
 
@@ -184,8 +185,8 @@ $messages = array(
 'disclaimers'       => 'Hlapa-matsogo',
 'disclaimerpage'    => 'Project:Hlapa-Matsogo',
 'edithelp'          => 'Thušo ya go fetola',
-'edithelppage'      => 'Thušo:Fetola',
-'helppage'          => 'Thušo:Mateng',
+'edithelppage'      => 'Help:Fetola',
+'helppage'          => 'Help:Mateng',
 'mainpage'          => 'Letlakala la Pele',
 'policy-url'        => 'Project:Melao',
 'portal'            => "''Portal'' ya badudi",
@@ -532,7 +533,7 @@ Leka [[Special:Search|go fetleka wikii]] go humana matlakala a mapsha.',
 'recentchanges'                  => 'Diphetogo tša bjale',
 'recentchanges-feed-description' => "Lebalana diphetogo tše di mphsa-mphsa go wiki  ka ''feed'' ye.",
 'rcnote'                         => "Go latela {{PLURAL:$1|phetogo ye '''1'''|diphetogo tša bofelo tše '''$1'''}} ka {{PLURAL:$2|letšatši|matšatši a '''$2'''}} a go feta, go tloga $3.",
-'rcnotefrom'                     => 'Tlase ke diphetogo go tloga ka <b>$2</b> (go  fihla ka <b>$1</b>).',
+'rcnotefrom'                     => "Tlase ke diphetogo go tloga ka '''$2''' (go  fihla ka '''$1''').",
 'rclistfrom'                     => 'Laêtša dipheto tše mfsa go thoma go $1',
 'rcshowhideminor'                => '$1 ya diphetogo tše nnyenyane',
 'rcshowhidebots'                 => '$1 bots',
@@ -552,7 +553,7 @@ Leka [[Special:Search|go fetleka wikii]] go humana matlakala a mapsha.',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Diphetogo tša go tswalana',
-'recentchangeslinked-title'    => 'Diphetogo tša go tswalana le $1',
+'recentchangeslinked-title'    => 'Diphetogo tša go tswalana le "$1"',
 'recentchangeslinked-noresult' => 'Gago na diphetogo go matlakala a hlomaganya ka sebaka/sekga seo o se kgethilego.',
 'recentchangeslinked-summary'  => "Letlakala le le laetša diphetogo tša bjale matlakaleng a go hlomaganya. Matlakala ago ba lenanong la gago la matlakala ditlhapetšo a '''ngwadilwe ka bogolo'''.",
 
@@ -863,16 +864,15 @@ Seemo sa go lota ga letlakala <strong>$1</strong>:',
 
 # Move page
 'movepage'                => 'Huduša letlakala',
-'movepagetext'            => "Ge o šomiša fomo ye mo tlase, letlakala le kgale le history ya lona 
-di tla huduga go ya letlakaleng le lemphsa.
+'movepagetext'            => "Ge o šomiša fomo ye mo tlase, letlakala le kgale le history ya lona di tla huduga go ya letlakaleng le lemphsa.
 Letlakala la kgale le ba ''redirect'' go ya letlakaleng le lemphsa.
 Dihlomaganyo goya letlakaleng la kgale ga di fetolwe; gopola go sekaseka di ''redirect'' tša go ya go ''redirect'' (''double redirects'').
-Ke boikarabela ba gago go kgonthišisa gore dihlomaganyo di tšhwela pele go šupa mowe 
-di swanetšego goya.
+Ke boikarabela ba gago go kgonthišisa gore dihlomaganyo di tšhwela pele go šupa mowe di swanetšego goya.
 
-Ela hloko gpre letlakala le ka se hudušwe gaeba go ena letlakala la leina le lemphsa, ntle ga le sa selo goba ele ''redirect'' ebile le sa na histori. Se sera gore o ka huduša letlakala morago ge o direle phošo gape o ka se ngwale godimo (''overwrite'') ga letlakala leo le lego gona.
+Ela hloko gpre letlakala le ka se hudušwe gaeba go ena letlakala la leina le lemphsa, ntle ga le sa selo goba ele ''redirect'' ebile le sa na histori.
+Se sera gore o ka huduša letlakala morago ge o direle phošo gape o ka se ngwale godimo (''overwrite'') ga letlakala leo le lego gona.
 
-<b>TEMOŠO!</b>
+'''TEMOŠO!'''
 Se sekapa le dipheto tšeo di sa letelwago go matlakala atumilego;
 Ka kgopelo kgontišiša gore o kwešiša ditla morago tša se, pele o tšwelapele.",
 'movepagetalktext'        => "Letlakala la dipoledišano lago hlobana le letlakala le le tla hudušwa '''ntle le ge''':

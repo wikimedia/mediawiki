@@ -7,6 +7,7 @@
  * @author Jordi
  * @author Siebrand
  * @author Ooswesthoesbes
+ * @author Jon Harald Søby
  */
 
 $fallback = 'nl';
@@ -237,6 +238,7 @@ $messages = array(
 'site-atom-feed'          => '$1 Atom-nyan',
 'page-rss-feed'           => '“$1” RSS-nyan',
 'page-atom-feed'          => '“$1” Atom-nyan',
+'red-link-title'          => '$1 (e ben no na da)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Papira',
@@ -561,7 +563,7 @@ A kan ben trowe efu dribi.
 'recentchanges'                  => 'Bakaseywan kenki',
 'recentchanges-feed-description' => 'Nanga disi papira kan yu den bakaseywan kenki fu disi wiki libi si.',
 'rcnote'                         => "Dyaso {{PLURAL:$1|ben a bakaseywan kenki|ben den bakaseywan '''$1''' kenki}} ini {{PLURAL:$2|a bakaseywan dey|den bakaseywan '''$2''' dey}}, opo $3.",
-'rcnotefrom'                     => 'Kenki fu <b>$2</b> (nanga wan maksimum fu <b>$1</b> kenki libi si).',
+'rcnotefrom'                     => "Kenki fu '''$2''' (nanga wan maksimum fu '''$1''' kenki libi si).",
 'rclistfrom'                     => 'Libi a kenki si fu $1',
 'rcshowhideminor'                => '$1 den pikin kenki',
 'rcshowhidebots'                 => '$1 den bot',
@@ -581,7 +583,7 @@ A kan ben trowe efu dribi.
 
 # Recent changes linked
 'recentchangeslinked'          => 'Saamga kenki',
-'recentchangeslinked-title'    => 'Saamga kenki nanga $1',
+'recentchangeslinked-title'    => 'Saamga kenki nanga "$1"',
 'recentchangeslinked-noresult' => 'Da ben no kenki ini a gi ten opo den peprewoysi dy fu dyaso skaki sey.',
 'recentchangeslinked-summary'  => "Disi spesyal papira libi den bakaseywan kenki opo peprewoysi dy ben skaki fu disi papira si. Peprewoysi opo [[Special:Watchlist|yu sirey]] ben '''deki'''.",
 
@@ -758,7 +760,6 @@ A gran fu a [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] ben '''$7'
 'booksources'    => 'Bukuinfrumasi',
 'booksources-go' => 'Suku',
 
-'data'           => 'Data',
 'groups'         => 'Masyinguru',
 'alphaindexline' => '$1 te $2',
 'version'        => 'Si fu a softwer',
@@ -902,14 +903,20 @@ Disi ben a tapunivo fu a papira <strong>[[$1]]</strong> now:",
 
 # Move page
 'movepage'         => 'Dribi papira',
-'movepagetext'     => "Nanaga a ondroben box kan yu wan papira dribi. A stori go na a nyun papira. A owru nen sey wan stir na a nyun papira sey. Stir na a owru papira ben no kenki. Luku na a dribi efu da no tustir efu broko stir ben e kon. Yu ben risponsibu fu den stir.
+'movepagetext'     => "Nanaga a ondroben box kan yu wan papira dribi.
+A stori go na a nyun papira.
+A owru nen sey wan stir na a nyun papira sey.
+Stir na a owru papira ben no kenki.
+Luku na a dribi efu da no tustir efu broko stir ben e kon.
+Yu ben risponsibu fu den stir.
 
 A papira kan '''wawan''' dribi sey leki a nyun papiranen:
 * no da ben, efu
 * a stirpapira nanga no stori ben.
 
-<b>ATESSI!</b>
-Fu poppelari peprewoysi kan a drabi drastiki nanga ofusi folo abi. Ben suri taki den folo abrasi ben pre yu disi aksi du.",
+'''ATESSI!'''
+Fu poppelari peprewoysi kan a drabi drastiki nanga ofusi folo abi.
+Ben suri taki den folo abrasi ben pre yu disi aksi du.",
 'movepagetalktext' => "A takipapira sey a trawan nen, '''iksi''':
 * A takipapira ondro a nyun nen da ala ben;
 * Yu a ondroben box odu.",

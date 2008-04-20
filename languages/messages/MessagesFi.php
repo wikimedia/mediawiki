@@ -8,6 +8,7 @@
  * @author Cimon Avaro
  * @author לערי ריינהארט
  * @author Siebrand
+ * @author Jack Phoenix
  */
 
 $separatorTransformTable = array(',' => "\xc2\xa0", '.' => ',' );
@@ -342,8 +343,8 @@ Taivutusmuodot: {{GRAMMAR:genitive|{{SITENAME}}}} (yön) — {{GRAMMAR:partitive
 'protect'           => 'Suojaa',
 'protect_change'    => 'muuta suojausta',
 'protectthispage'   => 'Suojaa tämä sivu',
-'unprotect'         => 'Poista suojaus',
-'unprotectthispage' => 'Poista tämän sivun suojaus',
+'unprotect'         => 'Muuta suojausta',
+'unprotectthispage' => 'Muuta tämän sivun suojauksia',
 'newpage'           => 'Uusi sivu',
 'talkpage'          => 'Keskustele tästä sivusta',
 'talkpagelinktext'  => 'keskustelu',
@@ -497,7 +498,7 @@ $2',
 'namespaceprotected'   => "Et voi muokata sivuja nimiavaruudessa '''$1'''.",
 'customcssjsprotected' => 'Sinulla ei ole oikeuksia muuttaa toisten käyttäjien henkilökohtaisia asetuksia.',
 'ns-specialprotected'  => 'Toimintosivuja ei voi muokata.',
-'titleprotected'       => 'Käyttäjä [[User:$1|$1]] on asettanut tämän sivun luontikieltoon: <i>$2</i>.',
+'titleprotected'       => "Käyttäjä [[User:$1|$1]] on asettanut tämän sivun luontikieltoon: ''$2''.",
 
 # Login and logout pages
 'logouttitle'                => 'Uloskirjautuminen',
@@ -663,8 +664,9 @@ Jos olet sitä mieltä, että sinut on estetty syyttä, voit keskustella asiasta
 'newarticletext'            => 'Linkki toi sivulle, jota ei vielä ole. Voit luoda sivun kirjoittamalla alla olevaan tilaan. Jos et halua luoda sivua, käytä selaimen paluutoimintoa.',
 'anontalkpagetext'          => "----''Tämä on nimettömän käyttäjän keskustelusivu. Hän ei ole joko luonut itselleen käyttäjätunnusta tai ei käytä sitä. Siksi hänet tunnistetaan nyt numeerisella IP-osoitteella. Kyseinen IP-osoite voi olla useamman henkilön käytössä. Jos olet nimetön käyttäjä, ja sinusta tuntuu, että aiheettomia kommentteja on ohjattu sinulle, [[Special:Userlogin|luo itsellesi käyttäjätunnus tai kirjaudu sisään]] välttääksesi jatkossa sekaannukset muiden nimettömien käyttäjien kanssa.''",
 'noarticletext'             => "<big>'''{{GRAMMAR:inessive|{{SITENAME}}}} ei ole tämän nimistä sivua.'''</big>
+* Voit [[Special:Search/{{PAGENAME}}|etsiä sivun nimellä]] muilta sivuilta.
 * Voit kirjoittaa uuden sivun '''<span class=\"plainlinks\">[{{fullurl:{{FULLPAGENAME}}|action=edit}} {{PAGENAME}}]</span>.'''
-* Jos olet luonut sivun tällä nimellä, se on saatettu poistaa — katso [[Special:Log/delete|poistoloki]].",
+* Jos olet luonut sivun tällä nimellä, se on saatettu poistaa – katso [[Special:Log/delete|poistoloki]].",
 'userpage-userdoesnotexist' => 'Käyttäjätunnusta $1 ei ole rekisteröity. Varmista haluatko muokata tätä sivua.',
 'clearyourcache'            => "'''Huomautus:''' Selaimen välimuisti pitää tyhjentää asetusten tallentamisen jälkeen, jotta muutokset tulisivat voimaan:
 *'''Mozilla, Konqueror ja Safari:''' napsauta ''Shift''-näppäin pohjassa päivitä tai paina ''Ctrl-Shift-R'' (''Cmd-Shift-R'' Applella)
@@ -674,7 +676,7 @@ Jos olet sitä mieltä, että sinut on estetty syyttä, voit keskustella asiasta
 'usercssjsyoucanpreview'    => 'Voit testata uutta CSS:ää tai JavaScriptiä ennen tallennusta esikatselulla.',
 'usercsspreview'            => "'''Tämä on CSS:n esikatselu.'''",
 'userjspreview'             => "'''Tämä on JavaScriptin esikatselu.'''",
-'userinvalidcssjstitle'     => 'Tyyliä nimeltä ”$1” ei ole olemassa. Käyttäjän määrittelemät .css- ja .js-sivut alkavat pienellä alkukirjaimella.',
+'userinvalidcssjstitle'     => "'''Varoitus:''' Tyyliä nimeltä ”$1” ei ole olemassa. Muista, että käyttäjän määrittelemät .css- ja .js-sivut alkavat pienellä alkukirjaimella, esim. {{ns:user}}:Matti Meikäläinen/monobook.css eikä {{ns:user}}:Matti Meikäläinen/Monobook.css.",
 'updated'                   => '(Päivitetty)',
 'note'                      => 'Huomautus:',
 'previewnote'               => '<strong>Tämä on vasta sivun esikatselu. Sivua ei ole vielä tallennettu!</strong>',
@@ -687,7 +689,7 @@ Esikatselu on piilotettu varokeinona JavaScript-hyökkäyksiä vastaan – täss
 Yritä uudelleen. Jos ongelma ei katoa, yritä kirjautua ulos ja takaisin sisään.',
 'token_suffix_mismatch'     => '<strong>Muokkauksesi on hylätty, koska asiakasohjelmasi ei osaa käsitellä välimerkkejä muokkaustarkisteessa. Syynä voi olla viallinen välityspalvelin.</strong>',
 'editing'                   => 'Muokataan sivua $1',
-'editinguser'               => 'Muokataan sivua $1',
+'editinguser'               => "Käyttäjän '''[[User:$1|$1]]''' oikeudet ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
 'editingsection'            => 'Muokataan osiota sivusta $1',
 'editingcomment'            => 'Muokataan kommenttia sivulla $1',
 'editconflict'              => 'Päällekkäinen muokkaus: $1',
@@ -695,7 +697,7 @@ Yritä uudelleen. Jos ongelma ei katoa, yritä kirjautua ulos ja takaisin sisä�
 'yourtext'                  => 'Oma tekstisi',
 'storedversion'             => 'Tallennettu versio',
 'nonunicodebrowser'         => "'''Selaimesi ei ole Unicode-yhteensopiva. Ole hyvä ja vaihda selainta, ennen kuin muokkaat sivua.'''",
-'editingold'                => '<center><strong>Varoitus</strong>: Olet muokkaamassa vanhaa versiota tämän sivun tekstistä. Jos tallennat sen, kaikki tämän version jälkeen tehdyt muutokset katoavat.</center>',
+'editingold'                => '<strong>Varoitus: Olet muokkaamassa vanhaa versiota tämän sivun tekstistä. Jos tallennat sen, kaikki tämän version jälkeen tehdyt muutokset katoavat.</strong>',
 'yourdiff'                  => 'Eroavaisuudet',
 'copyrightwarning'          => '<strong>Muutoksesi astuvat voimaan välittömästi.</strong> Kaikki {{GRAMMAR:illative|{{SITENAME}}}} tehtävät tuotokset katsotaan julkaistuksi $2 -lisenssin mukaisesti ($1). Jos et halua, että kirjoitustasi muokataan armottomasti ja uudelleenkäytetään vapaasti, älä tallenna kirjoitustasi. Tallentamalla muutoksesi lupaat, että kirjoitit tekstisi itse, tai kopioit sen jostain vapaasta lähteestä. <strong>ÄLÄ KÄYTÄ TEKIJÄNOIKEUDEN ALAISTA MATERIAALIA ILMAN LUPAA!</strong>',
 'copyrightwarning2'         => 'Huomaa, että kuka tahansa voi muokata, muuttaa ja poistaa kaikkia sivustolle tekemiäsi lisäyksiä ja muutoksia. Muokkaamalla sivustoa luovutat sivuston käyttäjille tämän oikeuden ja takaat, että lisäämäsi aineisto on joko itse kirjoittamaasi tai peräisin jostain vapaasta lähteestä. Lisätietoja sivulla $1. <strong>TEKIJÄNOIKEUDEN ALAISEN MATERIAALIN KÄYTTÄMINEN ILMAN LUPAA ON EHDOTTOMASTI KIELLETTYÄ!</strong>',
@@ -768,7 +770,7 @@ Kokeile [[Special:Search|hakua]] löytääksesi asiaan liittyviä sivuja.',
 # Revision deletion
 'rev-deleted-comment'         => '(kommentti poistettu)',
 'rev-deleted-user'            => '(käyttäjänimi poistettu)',
-'rev-deleted-event'           => '(tapahtuma poistettu)',
+'rev-deleted-event'           => '(lokitapahtuma poistettu)',
 'rev-deleted-text-permission' => '<div class="mw-warning plainlinks">Tämä versio on poistettu julkisesta arkistosta. [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} Poistolokissa] saattaa olla lisätietoja.</div>',
 'rev-deleted-text-view'       => '<div class="mw-warning plainlinks">Tämä versio on poistettu julkisesta arkistosta.</div>',
 'rev-delundel'                => 'näytä tai piilota',
@@ -945,13 +947,13 @@ $1 | $2',
 
 # Groups
 'group'               => 'Ryhmä',
-'group-autoconfirmed' => 'Automaattisesti hyväksytyt käyttäjät',
+'group-autoconfirmed' => 'automaattisesti hyväksytyt käyttäjät',
 'group-bot'           => 'botit',
 'group-sysop'         => 'ylläpitäjät',
 'group-bureaucrat'    => 'byrokraatit',
 'group-all'           => '(kaikki)',
 
-'group-autoconfirmed-member' => 'Automaattisesti hyväksytty käyttäjä',
+'group-autoconfirmed-member' => 'automaattisesti hyväksytty käyttäjä',
 'group-bot-member'           => 'botti',
 'group-sysop-member'         => 'ylläpitäjä',
 'group-bureaucrat-member'    => 'byrokraatti',
@@ -1024,8 +1026,8 @@ Voit käyttää tiedostoja wikisivuilla seuraavilla tavoilla:
 'filename'                    => 'Tiedoston nimi:',
 'filedesc'                    => 'Yhteenveto',
 'fileuploadsummary'           => 'Yhteenveto',
-'filestatus'                  => 'Tiedoston tekijänoikeudet:',
-'filesource'                  => 'Lähde:',
+'filestatus'                  => 'Tiedoston tekijänoikeudet',
+'filesource'                  => 'Lähde',
 'uploadedfiles'               => 'Lisätyt tiedostot',
 'ignorewarning'               => 'Tallenna tiedosto varoituksesta huolimatta.',
 'ignorewarnings'              => 'Ohita kaikki varoitukset',
@@ -1057,7 +1059,7 @@ Jos sinulla on tämän kuvan alkuperäinen versio, tallenna se. Muussa tapaukses
 'savefile'                    => 'Tallenna',
 'uploadedimage'               => 'tallensi tiedoston [[$1]]',
 'overwroteimage'              => 'tallensi uuden version tiedostosta [[$1]]',
-'uploaddisabled'              => '{{GRAMMAR:genitive|{{SITENAME}}}} ei voi lisätä tiedostoja.',
+'uploaddisabled'              => 'Tiedostojen tallennus ei ole käytössä.',
 'uploaddisabledtext'          => 'Tiedostojen tallennus on poistettu käytöstä.',
 'uploadscripted'              => 'Tämä tiedosto sisältää HTML-koodia tai skriptejä, jotka selain saattaa virheellisesti suorittaa.',
 'uploadcorrupt'               => 'Tiedosto on vioittunut tai sillä on väärä tiedostopääte. Tarkista tiedosto ja lähetä se uudelleen.',
@@ -1092,6 +1094,7 @@ Harkitse, haluatko jatkaa tämän tiedoston tallentamista. Tiedoston poistoloki 
 
 # Image list
 'imagelist'                 => 'Tiedostoluettelo',
+'imagelist-summary'         => 'Tämä toimintosivu näyttää kaikki tallennetut tiedostot. Viimeisin tallennettu tiedosto on listalla ensimmäisenä. Ryhmittelyperustetta voi vaihtaa napsauttamalla sarakenimeä.',
 'imagelisttext'             => 'Alla on {{PLURAL:$1|1 tiedosto|$1 tiedostoa}} lajiteltuna <strong>$2</strong>.',
 'getimagelist'              => 'noudetaan tiedostoluetteloa',
 'ilsubmit'                  => 'Hae',
@@ -1205,7 +1208,7 @@ Ohjelmiston suorittamia ylläpitotöitä on jonossa '''$7''' {{PLURAL:$7|kappale
 'doubleredirectstext' => '<b>Huomio:</b> Tässä listassa saattaa olla virheitä. Yleensä kyseessä on sivu, jossa ensimmäisen #REDIRECT- tai #OHJAUS-komennon jälkeen on tekstiä.<br />Jokaisella rivillä on linkit ensimmäiseen ja toiseen ohjaukseen sekä toisen ohjauksen kohteen ensimmäiseen riviin, eli yleensä ”oikeaan” kohteeseen, johon ensimmäisen ohjauksen pitäisi osoittaa.',
 
 'brokenredirects'        => 'Virheelliset ohjaukset',
-'brokenredirectstext'    => 'Seuraavat ohjaukset on osoittavat sivuihin, joita ei ole olemassa.',
+'brokenredirectstext'    => 'Seuraavat ohjaukset osoittavat sivuihin, joita ei ole olemassa.',
 'brokenredirects-edit'   => '(muokkaa)',
 'brokenredirects-delete' => '(poista)',
 
@@ -1277,7 +1280,6 @@ Ohjelmiston suorittamia ylläpitotöitä on jonossa '''$7''' {{PLURAL:$7|kappale
 'booksources-text'          => 'Alla linkkejä ulkopuolisiin sivustoihin, joilla myydään uusia ja käytettyjä kirjoja. Sivuilla voi myös olla lisätietoa kirjoista.',
 
 'categoriespagetext' => '{{GRAMMAR:inessive|{{SITENAME}}}} on seuraavat luokat:',
-'data'               => 'Data',
 'userrights'         => 'Käyttöoikeuksien hallinta',
 'groups'             => 'Ryhmät',
 'alphaindexline'     => '$1…$2',
@@ -1311,7 +1313,7 @@ Ohjelmiston suorittamia ylläpitotöitä on jonossa '''$7''' {{PLURAL:$7|kappale
 # Special:Listusers
 'listusersfrom'      => 'Katkaisuhaku',
 'listusers-submit'   => 'Hae',
-'listusers-noresult' => 'Käyttäjiä ei löytynyt. Tarkista myös eri kirjainkoot.',
+'listusers-noresult' => 'Käyttäjiä ei löytynyt.',
 
 # E-mail user
 'mailnologin'     => 'Lähettäjän osoite puuttuu',
@@ -1448,13 +1450,13 @@ Palaute ja lisäapu osoitteessa:
 'unprotectedarticle'          => 'poisti suojauksen sivulta $1',
 'protectsub'                  => 'Sivun $1 suojaus',
 'confirmprotect'              => 'Vahvista suojaus',
-'protectcomment'              => 'Suojauksen syy:',
+'protectcomment'              => 'Perustelu',
 'protectexpiry'               => 'Vanhenee',
 'protect_expiry_invalid'      => 'Vanhenemisaika ei kelpaa.',
 'protect_expiry_old'          => 'Vanhenemisaika on menneisyydessä.',
 'unprotectsub'                => 'Suojauksen poisto sivulta $1',
 'protect-unchain'             => 'Käytä siirtosuojausta',
-'protect-text'                => 'Voit katsoa ja muuttaa sivun ”<strong><nowiki>$1</nowiki></strong>” suojauksia.',
+'protect-text'                => 'Voit katsoa ja muuttaa sivun <strong><nowiki>$1</nowiki></strong> suojauksia.',
 'protect-locked-blocked'      => 'Et voi muuttaa sivun suojauksia, koska sinut on estetty. Alla on sivun ”<strong>$1</strong>” nykyiset suojaukset:',
 'protect-locked-dblock'       => 'Sivun suojauksia ei voi muuttaa, koska tietokanta on lukittu. Alla on sivun ”<strong>$1</strong>” nykyiset suojaukset:',
 'protect-locked-access'       => 'Sinulla ei ole tarvittavia oikeuksia sivujen suojauksen muuttamiseen. Alla on sivun ”<strong>$1</strong>” nykyiset suojaukset:',
@@ -1545,7 +1547,7 @@ $1',
 'sp-contributions-username'    => 'IP-osoite tai käyttäjätunnus',
 'sp-contributions-submit'      => 'Hae',
 
-'sp-newimages-showfrom' => 'Näytä uudet tiedostot alkaen $1',
+'sp-newimages-showfrom' => 'Näytä uudet tiedostot alkaen $1 kello $2',
 
 # What links here
 'whatlinkshere'       => 'Tänne viittaavat sivut',
@@ -1659,7 +1661,15 @@ $1',
 
 # Move page
 'movepage'                => 'Siirrä sivu',
-'movepagetext'            => "Alla olevalla lomakkeella voit nimetä uudelleen sivuja, jolloin niiden koko historia siirtyy uuden nimen alle. Vanhasta sivusta tulee ohjaussivu, joka osoittaa uuteen sivuun. Vanhaan sivuun suunnattuja linkkejä ei muuteta, joten muista tehdä tarkistukset kaksinkertaisten tai rikkinäisten ohjausten varalta. '''Olet vastuussa siitä, että linkit osoittavat sinne, mihin niiden on tarkoituskin osoittaa.'''<br />Huomaa, että sivua '''ei''' siirretä mikäli uusi otsikko on olemassa olevan sivun käytössä, paitsi milloin kyseessä on tyhjä sivu tai ohjaus, jolla ei ole muokkaushistoriaa. Tämä tarkoittaa sitä, että voit siirtää sivun takaisin vanhalle nimelleen mikäli teit virheen, mutta et voi kirjoittaa olemassa olevan sivun päälle. Jos sivu tarvitsee siirtää olemassa olevan sivun päälle, ota yhteyttä [[Special:Listusers/sysop|ylläpitäjään]].",
+'movepagetext'            => "Alla olevalla lomakkeella voit nimetä uudelleen sivuja, jolloin niiden koko historia siirtyy uuden nimen alle.
+Vanhasta sivusta tulee ohjaussivu, joka osoittaa uuteen sivuun.
+Vanhaan sivuun suunnattuja linkkejä ei muuteta, joten muista tehdä tarkistukset kaksinkertaisten tai rikkinäisten ohjausten varalta.
+Olet vastuussa siitä, että linkit osoittavat sinne, mihin niiden on tarkoituskin osoittaa.
+
+Huomaa, että sivua '''ei''' siirretä mikäli uusi otsikko on olemassa olevan sivun käytössä, paitsi milloin kyseessä on tyhjä sivu tai ohjaus, jolla ei ole muokkaushistoriaa.
+Tämä tarkoittaa sitä, että voit siirtää sivun takaisin vanhalle nimelleen mikäli teit virheen, mutta et voi kirjoittaa olemassa olevan sivun päälle.
+
+Tämä saattaa olla suuri ja odottamaton muutos suositulle sivulle. Varmista, että tiedät seuraukset ennen kuin siirrät sivun.",
 'movepagetalktext'        => "Sivuun mahdollisesti kytketty keskustelusivu siirretään automaattisesti, '''paitsi jos''':
 *Siirrät sivua nimiavaruudesta toiseen
 *Kohdesivulla on olemassa keskustelusivu, joka ei ole tyhjä, tai
@@ -1919,9 +1929,9 @@ $1',
 'show-big-image-thumb' => '<small>Esikatselun koko: $1×$2 px</small>',
 
 # Special:Newimages
-'newimages'    => 'Uudet kuvat',
+'newimages'    => 'Uudet tiedostot',
 'showhidebots' => '($1 botit)',
-'noimages'     => 'Ei uusia kuvia.',
+'noimages'     => 'Ei uusia tiedostoja.',
 
 # Bad image list
 'bad_image_list' => 'Listan muoto on seuraava:
@@ -2278,7 +2288,7 @@ $1',
 'table_pager_first'        => 'Ensimmäinen sivu',
 'table_pager_last'         => 'Viimeinen sivu',
 'table_pager_limit'        => 'Näytä $1 nimikettä sivulla',
-'table_pager_limit_submit' => 'Mene',
+'table_pager_limit_submit' => 'Hae',
 'table_pager_empty'        => 'Ei tuloksia',
 
 # Auto-summaries

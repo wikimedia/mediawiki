@@ -15,6 +15,7 @@
  * @author לערי ריינהארט
  * @author Kkkdc
  * @author JtFuruhata
+ * @author Mzm5zbC3
  */
 
 $skinNames = array(
@@ -166,7 +167,7 @@ $messages = array(
 'category-empty'        => 'このカテゴリにはページまたはメディアがひとつもありません。',
 
 'mainpagetext'      => 'MediaWikiが正常にインストールされました。',
-'mainpagedocfooter' => '使い方・設定に関しては[http://meta.wikimedia.org/wiki/ヘルプ:目次 ユーザーズガイド]を参照してください。
+'mainpagedocfooter' => '使い方・設定に関しては[http://meta.wikimedia.org/wiki/%E3%83%98%E3%83%AB%E3%83%97:%E7%9B%AE%E6%AC%A1 ユーザーズガイド]を参照してください。
 
 == はじめましょう ==
 
@@ -281,7 +282,7 @@ $messages = array(
 'badaccess-groups' => 'この処理は $1 のうちいずれかの権限を持った利用者のみが実行できます。',
 
 'versionrequired'     => 'MediaWiki バージョン $1 が必要',
-'versionrequiredtext' => 'このページの利用には MediaWiki バージョン $1 が必要です。[[Special:Version|{{int:version}}]]を確認してください。',
+'versionrequiredtext' => 'このページの利用には MediaWiki バージョン $1 が必要です。[[Special:Version|バージョン情報]]を確認してください。',
 
 'ok'                      => 'OK',
 'retrievedfrom'           => ' "$1" より作成',
@@ -388,7 +389,8 @@ $2',
 'namespaceprotected'   => "'''$1''' 名前空間に属するページを編集する権限がありません。",
 'customcssjsprotected' => 'このページはユーザーの環境設定を記録するページです。ユーザー本人以外は編集できません。',
 'ns-specialprotected'  => '{{ns:special}}名前空間内にあるページは編集できません。',
-'titleprotected'       => 'このページは [[User:$1|$1]] により白紙状態で保護されています。保護の理由は次の通りです。: <i>$2</i>',
+'titleprotected'       => "このページは [[User:$1|$1]] によりページの作成が保護されています。
+保護の理由は次の通りです。: ''$2''",
 
 # Login and logout pages
 'logouttitle'                => 'ログアウト',
@@ -527,23 +529,25 @@ $2',
 'summary-preview'           => '要約のプレビュー',
 'subject-preview'           => '題名・見出しのプレビュー',
 'blockedtitle'              => '投稿ブロック',
-'blockedtext'               => 'ご使用の利用者名またはIPアドレスは $1 によって投稿をブロックされています。その理由は次の通りです。
-:$2
+'blockedtext'               => 'ご使用の利用者名またはIPアドレスは $1 によって投稿をブロックされています。ブロックの理由は $2 です。
 
-ブロック解除予定: $6
+*ブロック開始時期: $8
+*ブロック解除予定: $6
+*ブロック対象: $7
 
-$1 または他の[[{{int:grouppage-sysop}}|{{int:group-sysop}}]]にこの件についてメールで問い合わせることができます。ただし、[[Special:Preferences|オプション]]に正しいメールアドレスが登録されていない場合、「{{int:emailuser}}」機能が使えないことに注意してください。
+$1 または他の[[{{MediaWiki:grouppage-sysop}}|{{int:group-sysop}}]]にこの件についてメールで問い合わせることができます。ただし、[[Special:Preferences|オプション]]に正しいメールアドレスが登録されていない場合、「{{int:emailuser}}」機能が使えないことに注意してください。
 
 あなたのIPアドレスは「$3」、ブロックIDは &#x23;$5 です。問い合わせを行う際には、この情報を必ず書いてください。',
-'autoblockedtext'           => 'ご利用のIPアドレスは $1 によって投稿をブロックされています。その理由は次の通りです。
+'autoblockedtext'           => 'ご利用のIPアドレスは $1 によって投稿をブロックされています。理由は次の通りです。
+
 :$2
 
 ブロック解除予定: $6<br />
-ブロック対象: $7
+ブロック対象: $8
 
-$1 または他の[[{{int:grouppage-sysop}}|{{int:group-sysop}}]]にこの件について問い合わせることができます。
+$1 または他の[[{{MediaWiki:grouppage-sysop}}|管理者]]にこの件について問い合わせることができます。
 
-ただし、[[Special:Preferences|オプション]]に正しいメールアドレスが登録されていない場合、「{{int:emailuser}}」機能が使えないことに注意してください。
+ただし、[[Special:Preferences|オプション]]に正しいメールアドレスが登録されていない場合、メール送信機能が使えないことに注意してください。
 
 あなたのブロックIDは &#x23;$5 です。問い合わせを行う際には、この情報を必ず書いてください。',
 'blockednoreason'           => '理由が設定されていません',
@@ -568,7 +572,7 @@ $1 または他の[[{{int:grouppage-sysop}}|{{int:group-sysop}}]]にこの件に
 'newarticletext'            => 'ページを新規に作成するには新しい内容を書き込んでください。',
 'anontalkpagetext'          => "----
 ''これはアカウントをまだ作成していないか、あるいは使っていない匿名利用者のための会話ページです。{{SITENAME}}では匿名利用者の識別は利用者名のかわりにIPアドレスを用います。IPアドレスは何人かで共有されることがあります。もしも、あなたが匿名利用者で無関係なコメントがここに寄せられる場合は、[[Special:Userlogin|アカウントを作成するかログインして]]他の匿名利用者と間違えられないようにしてくださるようお願いします。",
-'noarticletext'             => '現在このページには内容がありません。他のページから[[{{ns:special}}:Search/{{PAGENAME}}|このページタイトルを検索する]]か、[{{fullurl:{{FULLPAGENAME}}|action=edit}} このページを編集]できます。',
+'noarticletext'             => '現在このページには内容がありません。他のページから[[Special:Search/{{PAGENAME}}|このページタイトルを検索する]]か、[{{fullurl:{{FULLPAGENAME}}|action=edit}} このページを編集]できます。',
 'userpage-userdoesnotexist' => '"$1" という名前のアカウントは登録されていません。このページを編集することが適切かどうか確認してください。',
 'clearyourcache'            => "'''お知らせ:''' 保存した後、ブラウザのキャッシュをクリアする必要があります。
 * '''Mozilla / Firefox / Safari:''' [Shift] を押しながら [再読み込み] をクリック、または [Shift]-[Ctrl]-[R] （Macでは [Cmd]-[Shift]-[R]）
@@ -593,7 +597,7 @@ $1 または他の[[{{int:grouppage-sysop}}|{{int:group-sysop}}]]にこの件に
 このページの文章が破損するのを防ぐため、あなたの編集は反映されません。
 問題のある匿名プロキシサービスを利用していると、この問題が起こることがあります。</strong>',
 'editing'                   => '$1 を編集中',
-'editinguser'               => '$1 を編集中',
+'editinguser'               => "利用者 [[User:$1|$1]]'''（[[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]]）の権限を編集中",
 'editingsection'            => '$1 を編集中（節単位編集）',
 'editingcomment'            => '$1 を編集中（新規コメント）',
 'editconflict'              => '編集競合: $1',
@@ -687,7 +691,7 @@ $1 または他の[[{{int:grouppage-sysop}}|{{int:group-sysop}}]]にこの件に
 'revisiondelete'              => '版の削除と復帰',
 'revdelete-nooldid-title'     => '対象版がありません',
 'revdelete-nooldid-text'      => '操作の完了に必要な版が指定されていません。',
-'revdelete-selected'          => '[[:$1]]の、以下の選択された版に対する操作:',
+'revdelete-selected'          => "'''$1'''の、以下の選択された版に対する操作:",
 'logdelete-selected'          => '[[:$1]]の、以下の選択されたログに対する操作:',
 'revdelete-text'              => '版の削除ではページの履歴にその版は表示されます。しかしその版に含まれるテキストにはアクセスできなくなります。
 
@@ -727,8 +731,8 @@ $1 または他の[[{{int:grouppage-sysop}}|{{int:group-sysop}}]]にこの件に
 'mergehistory-merge'               => '[[:$2]] へ統合可能な [[:$1]] の履歴を以下に表示しています。ラジオボタンで版を選択してから統合操作を行うと指定した時間までの版が自動的に統合されます。また、ナビゲーションリンクを使うことでフォームをリセットできます。',
 'mergehistory-go'                  => '統合可能な版の表示',
 'mergehistory-submit'              => '統合する版',
-'mergehistory-empty'               => '統合できる過去の版がありません',
-'mergehistory-success'             => '[[:$1]] の過去版 $3 を [[:$2]] へ統合しました。',
+'mergehistory-empty'               => '統合できる過去の版がありません.',
+'mergehistory-success'             => '[[:$1]] の過去版 $3 を [[:$2]] へ統合する作業に成功しました。',
 'mergehistory-fail'                => '履歴の統合を行うことが出来ません。統合を行うページと過去の版を再確認してください。',
 'mergehistory-no-source'           => '統合元となるページ $1 が存在しません。',
 'mergehistory-no-destination'      => '統合先のページ $1 が存在しません。',
@@ -868,10 +872,10 @@ $2リダイレクトを含める &nbsp; &nbsp; &nbsp; $3 $9',
 'group-sysop-member'         => '{{int:group-sysop}}',
 'group-bureaucrat-member'    => '{{int:group-bureaucrat}}',
 
-'grouppage-autoconfirmed' => '{{ns:project}}:{{int:group-autoconfirmed}}',
-'grouppage-bot'           => '{{ns:project}}:{{int:group-bot}}',
-'grouppage-sysop'         => '{{ns:project}}:{{int:group-sysop}}',
-'grouppage-bureaucrat'    => '{{ns:project}}:{{int:group-bureaucrat}}',
+'grouppage-autoconfirmed' => '{{ns:project}}:自動承認された利用者',
+'grouppage-bot'           => '{{ns:project}}:ボット',
+'grouppage-sysop'         => '{{ns:project}}:管理者',
+'grouppage-bureaucrat'    => '{{ns:project}}:ビューロクラット',
 
 # User rights log
 'rightslog'      => '利用者権限変更記録',
@@ -908,7 +912,7 @@ $2リダイレクトを含める &nbsp; &nbsp; &nbsp; $3 $9',
 
 # Recent changes linked
 'recentchangeslinked'          => 'リンク先の更新状況',
-'recentchangeslinked-title'    => '$1 からリンクされているページの更新状況',
+'recentchangeslinked-title'    => '"$1" からリンクされているページの更新状況',
 'recentchangeslinked-noresult' => '指定期間中に指定ページのリンク先に更新はありませんでした。',
 'recentchangeslinked-summary'  => "この特別ページはリンク先の更新状況です。あなたのウォッチリストにあるページは'''太字'''で表示されます。",
 
@@ -1006,6 +1010,9 @@ $2リダイレクトを含める &nbsp; &nbsp; &nbsp; $3 $9',
 
 # Image list
 'imagelist'                 => 'ファイルリスト',
+'imagelist-summary'         => 'この特別ページではすべてのアップロードされたファイルの一覧を表示します。
+
+ソートのデフォルトでは新しい順です。ヘッダのクリックでソート順と種類を変更できます。',
 'imagelisttext'             => "'''$1''' {{PLURAL:$1|個|個}}のファイルを $2 に表示しています",
 'getimagelist'              => 'ファイルリストを取得',
 'ilsubmit'                  => '検索',
@@ -1052,7 +1059,7 @@ $2リダイレクトを含める &nbsp; &nbsp; &nbsp; $3 $9',
 'filerevert-defaultcomment' => '$1 $2 の版へ差し戻し',
 'filerevert-submit'         => '差し戻す',
 'filerevert-success'        => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\'は[$4 $3, $2]の版に差し戻されました。</span>',
-'filerevert-badversion'     => '与えられたタイムスタンプより前の版のファイルはありません。',
+'filerevert-badversion'     => '指定されたタイムスタンプより前の版のファイルはありません。',
 
 # File deletion
 'filedelete'                  => '$1の削除',
@@ -1098,7 +1105,7 @@ $2リダイレクトを含める &nbsp; &nbsp; &nbsp; $3 $9',
 'randomredirect-nopages' => 'この名前空間にはリダイレクトはありません。',
 
 # Statistics
-'statistics'             => 'アクセス統計',
+'statistics'             => 'サイトの統計',
 'sitestats'              => 'サイト全体の統計',
 'userstats'              => '利用者登録統計',
 'sitestatstext'          => "データベース内には'''$1'''ページのデータがあります。この数字には「ノートページ」や「{{SITENAME}}関連のページ」、「書きかけのページ」、「リダイレクト」など、記事とはみなせないページが含まれています。これらを除いた、記事とみなされるページ数は約'''$2'''ページになります。
@@ -1164,9 +1171,9 @@ $2リダイレクトを含める &nbsp; &nbsp; &nbsp; $3 $9',
 'protectedpages'          => '保護されているページ',
 'protectedpagestext'      => '以下のページは移動や編集が禁止されています。',
 'protectedpagesempty'     => '現在保護中のページがありません。',
-'protectedtitles'         => '白紙化保護されているページ',
+'protectedtitles'         => '作成保護されているページ名',
 'protectedtitlestext'     => '以下のページは新規作成が禁止されています',
-'protectedtitlesempty'    => '現在白紙化保護されているページはありません。',
+'protectedtitlesempty'    => '現在作成保護されているページはありません。',
 'listusers'               => '登録利用者の一覧',
 'specialpages'            => '特別ページ',
 'spheading'               => '特別ページ',
@@ -1427,7 +1434,7 @@ $NEWPAGE
 'undeleterevdel'               => 'トップページの版が一時的に削除されているものに対しては、復帰処理を実行できません。このような場合、まずは最新の削除履歴に対するチェックまたは隠蔽を解除する必要があります。
 ファイル履歴を表示する権限がない場合も、復帰させることはできません。',
 'undeletehistorynoadmin'       => '過去にこのページの全てもしくは一部が削除されています。以下に示すのは削除記録と削除された版の履歴です。削除された各版の内容は{{int:group-sysop}}のみが閲覧できます。',
-'undelete-revision'            => '$1 の削除された版 $2 :',
+'undelete-revision'            => '$1 の削除された $2 の版 投稿者 $3 :',
 'undeleterevision-missing'     => '無効、あるいは誤った版です。当該版は既に復帰されたか、アーカイブから削除された可能性があります。',
 'undelete-nodiff'              => 'これより前の版はありません。',
 'undeletebtn'                  => '復帰',
@@ -1477,7 +1484,7 @@ $NEWPAGE
 'sp-contributions-username'    => '利用者名または IPアドレス:',
 'sp-contributions-submit'      => '検索',
 
-'sp-newimages-showfrom' => '$1 以後現在までの新着ファイルを表示',
+'sp-newimages-showfrom' => '$1 $2 以後現在までの新着ファイルを表示',
 
 # What links here
 'whatlinkshere'       => 'リンク元',
@@ -1585,19 +1592,25 @@ $NEWPAGE
 'locknoconfirm'       => 'チェックボックスにチェックされていません。',
 'lockdbsuccesssub'    => 'データベースはロックされました。',
 'unlockdbsuccesssub'  => 'データベースのロックは解除されました',
-'lockdbsuccesstext'   => 'データベースをロックしました。メンテナンスが終了したら忘れずにロックを解除してください。',
+'lockdbsuccesstext'   => 'データベースをロックしました。<br />
+メンテナンスが終了したら忘れずに[[Special:Unblockdb|ロックを解除]]してください。',
 'unlockdbsuccesstext' => 'データベースのロックは解除されました。',
 'lockfilenotwritable' => 'データベースのロックファイルに書き込めません。データベースのロック・解除をするには、サーバー上のロックファイルに書き込める必要があります。',
 'databasenotlocked'   => 'データベースはロックされていません。',
 
 # Move page
 'movepage'                => 'ページの移動',
-'movepagetext'            => '下のフォームを利用すると、ページ名を変更し、その履歴も変更先へ移動することができます。古いページは変更先へのリダイレクトページとなります。ページの中身と変更前のページに張られたリンクは変わりません。ですから、二重になったり壊れてしまったリダイレクトをチェックする必要があります。
+'movepagetext'            => "下のフォームを利用すると、ページ名を変更し、その履歴も変更先へ移動することができます。
+古いページは変更先へのリダイレクトページとなります。
+ページの中身と変更前のページに張られたリンクは変わりません。
+ですから、二重になったり壊れてしまったリダイレクトをチェックする必要があります。
 
-移動先がすでに存在する場合には、履歴が移動元ページへのリダイレクトただ一つである場合を除いて移動できません。つまり、間違えてページ名を変更した場合には元に戻せます。
+移動先がすでに存在する場合には、履歴が移動元ページへのリダイレクトただ一つである場合を除いて移動できません。
+つまり、間違えてページ名を変更した場合には元に戻せます。
 
-<strong>注意！</strong>
-よく閲覧されるページや、他の多くのページからリンクされているページを移動すると予期せぬ結果が起こるかもしれません。ページの移動に伴う影響をよく考えてから踏み切るようにしてください。',
+'''注意！'''
+よく閲覧されるページや、他の多くのページからリンクされているページを移動すると予期せぬ結果が起こるかもしれません。
+ページの移動に伴う影響をよく考えてから踏み切るようにしてください。",
 'movepagetalktext'        => '付随するノートのページがある場合には、基本的には、一緒に移動されることになります。
 
 但し、以下の場合については別です。
@@ -1656,8 +1669,9 @@ $NEWPAGE
 'allmessagesname'           => 'メッセージ名',
 'allmessagesdefault'        => '既定の文章',
 'allmessagescurrent'        => '現在の文章',
-'allmessagestext'           => 'これは{{ns:mediawiki}}名前空間にある全てのシステムメッセージの一覧です。',
-'allmessagesnotsupportedDB' => 'wgUseDatabaseMessages が無効のため、[[{{ns:special}}:Allmessages]] はサポートされません。',
+'allmessagestext'           => 'これは{{ns:mediawiki}}名前空間にある全てのシステムメッセージの一覧です。
+Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] and [http://translatewiki.net Betawiki] if you wish to contribute to the generic MediaWiki localisation.',
+'allmessagesnotsupportedDB' => "'''\$wgUseDatabaseMessages''' が無効のため、'''{{ns:special}}:Allmessages''' はサポートされません。",
 'allmessagesfilter'         => 'メッセージ名フィルタ:',
 'allmessagesmodified'       => '条件に当てはまるものを表示',
 
@@ -2327,20 +2341,20 @@ $1',
 'iranian-calendar-m12' => 'イラン歴第12月',
 
 # Core parser functions
-'unknown_extension_tag' => 'エクステンションタグ "$1" は登録されていません',
+'unknown_extension_tag' => '拡張機能タグ "$1" は登録されていません',
 
 # Special:Version
-'version-extensions'               => 'インストール済みエクステンション',
+'version-extensions'               => 'インストール済み拡張機能',
 'version-specialpages'             => '特別ページ',
 'version-parserhooks'              => 'パーサーフック',
 'version-variables'                => '変数',
 'version-other'                    => 'その他',
 'version-mediahandlers'            => 'メディアハンドラ',
 'version-hooks'                    => 'フック',
-'version-extension-functions'      => 'エクステンション関数',
-'version-parser-extensiontags'     => 'パーサーエクステンションタグ',
+'version-extension-functions'      => '拡張機能関数',
+'version-parser-extensiontags'     => 'パーサー拡張機能タグ',
 'version-parser-function-hooks'    => 'パーサー関数フック',
-'version-skin-extension-functions' => 'スキンエクステンション関数',
+'version-skin-extension-functions' => 'スキン拡張機能関数',
 'version-hook-name'                => 'フック名',
 'version-hook-subscribedby'        => 'フックが記述されている場所',
 'version-version'                  => 'バージョン',

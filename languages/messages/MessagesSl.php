@@ -5,6 +5,8 @@
  *
  * @author XJamRastafire
  * @author romanm
+ * @author Siebrand
+ * @author Nike
  */
 
 $namespaceNames = array(
@@ -318,7 +320,7 @@ Kadar to ni tako, ste morda odkrili hrošč v programju. Prosimo, obvestite kate
 'badarticleerror'      => 'Na tej strani dejanja ne morem izvesti. Morda je bila stran med predložitvijo vaše zahteve že izbrisana.',
 'cannotdelete'         => 'Navedene strani ali datoteke ni mogoče izbrisati. Morda jo je izbrisal že kdo drug.',
 'badtitle'             => 'Nepravilen naslov',
-'badtitletext'         => 'Navedeni naslov strani je neveljaven, prazen, napačno povezan k drugim jezikom oziroma wikiprojektom ali pa vsebuje [[Project:Dogovori o poimenovanjih#Previdno s posebnimi znaki|nepodprte znake]].',
+'badtitletext'         => 'Navedeni naslov strani je neveljaven, prazen, napačno povezan k drugim jezikom oziroma wikiprojektom ali pa vsebuje nepodprte znake.',
 'perfdisabled'         => 'Naveden je shranjeni prepis $1:',
 'perfcached'           => 'Navedeni podatki morda niso popolnoma posodobljeni.',
 'perfcachedts'         => 'Prikazani podatki so shranjeni v predpomnilniku. Čas zadnje osvežitve: $1.',
@@ -498,7 +500,8 @@ Da bi stran ustvarili, vnesite v spodnji obrazec besedilo
 'yourtext'                  => 'Vaše besedilo',
 'storedversion'             => 'Shranjena različica',
 'nonunicodebrowser'         => '<strong>OPOMBA</strong>: Vaš brskalnik ne podpira Unicode, zato boste pri urejanju strani z nelatiničnimi znaki morda imeli težave. Za obhod te težave se bodo <strong>ne-ASCII-znaki v urejevalnem polju spodaj pojavili kot šestnajstiške kode</strong>.',
-'editingold'                => 'Urejate staro redakcijo strani. Če jo boste shranili, bodo vse poznejše spremembe [[Help:Vračanje|razveljavljene]].',
+'editingold'                => '<strong>Urejate staro redakcijo strani.
+Če jo boste shranili, bodo vse poznejše spremembe razveljavljene.</strong>',
 'yourdiff'                  => 'Primerjava',
 'copyrightwarning'          => 'Vsi prispevki k {{GRAMMAR:dajalnik|{{SITENAME}}}} se obravnavajo kot objave pod pogoji $2 (za podrobnosti glej $1). Če niste pripravljeni na neusmiljeno urejanje in prosto razširjanje vašega gradiva, ga ne prispevajte.
 
@@ -1192,7 +1195,7 @@ Ciljna stran »[[$1]]« že obstaja. Ali jo želite, da bi pripravili prostor za
 'allmessagesdefault'        => 'Prednastavljeno besedilo',
 'allmessagescurrent'        => 'Trenutno besedilo',
 'allmessagestext'           => 'Navedena so v imenskem prostoru MediaWiki dostopna sistemska sporočila. Urejajo jih lahko [[{{MediaWiki:Grouppage-sysop}}|administratorji]] in drugi sodelavci z vzdrževalnimi pravicami.',
-'allmessagesnotsupportedDB' => 'Ker je wgUseDatabaseMessages izključeno, {{ns:special}}:Allmessages ni podprto.',
+'allmessagesnotsupportedDB' => "Ker je '''\$wgUseDatabaseMessages''' izključeno, '''{{ns:special}}:Allmessages''' ni podprto.",
 'allmessagesfilter'         => 'Filter pogostih izrazov:',
 'allmessagesmodified'       => 'Prikaži le spremenjeno',
 

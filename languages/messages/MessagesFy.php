@@ -396,7 +396,8 @@ Query: $2',
 'namespaceprotected'   => "Jo hawwe gjin rjochten om siden yn'e nammerûmte '''$1''' te bewurkjen.",
 'customcssjsprotected' => "Jo kinne dizze side net bewurkje, om't er persoanlike ynstellings fan in oare brûker befettet.",
 'ns-specialprotected'  => "Siden yn'e nammerûmte {{ns:special}} kinne net bewurke wurde.",
-'titleprotected'       => 'It oanmeitsjen fan dizze side is befeilige troch [[User:$1|$1]]. De oanfierde reden is <i>$2</i>.',
+'titleprotected'       => "It oanmeitsjen fan dizze side is befeilige troch [[User:$1|$1]].
+De oanfierde reden is ''$2''.",
 
 # Login and logout pages
 'logouttitle'               => 'Ofmelde',
@@ -595,7 +596,7 @@ Gean nei of de keppeling dy jo brûkt hawwe wol goed is.",
 
 # Search results
 'searchresults'         => 'Sykresultaat',
-'searchresulttext'      => '"[[Project:Syk-rie|Ynformaasje oer it sykjen|Sykje troch de {{SITENAME}}]]" troch de {{SITENAME}}.',
+'searchresulttext'      => '[[{{MediaWiki:Helppage}}|{{int:help}}]]; Ynformaasje oer it sykjen troch de {{SITENAME}}.',
 'searchsubtitle'        => 'Foar fraach "[[:$1]]"',
 'searchsubtitleinvalid' => 'Foar fraach "$1"',
 'noexactmatch'          => 'Der is gjin side mei krekt dizze titel. Faaks is it better en Sykje nei dizze tekst.',
@@ -624,7 +625,7 @@ mooglik. Foar now kinne jo sykje fia Google:</p>",
 'preferences'              => 'Ynstellings',
 'mypreferences'            => 'Myn foarkarynstellings',
 'prefsnologin'             => 'Net oanmeld',
-'prefsnologintext'         => 'Jo moatte [[{{ns:special}}:Userlogin|oanmeld]] wêze om jo ynstellings te feroarjen.',
+'prefsnologintext'         => 'Jo moatte [[Special:Userlogin|oanmeld]] wêze om jo ynstellings te feroarjen.',
 'prefsreset'               => "De ynstellings binne tebek set sa't se fêstlein wienen.",
 'qbsettings'               => 'Menu',
 'qbsettings-none'          => 'Ut',
@@ -693,7 +694,7 @@ mooglik. Foar now kinne jo sykje fia Google:</p>",
 
 # Recent changes linked
 'recentchangeslinked'          => 'Folgje keppelings',
-'recentchangeslinked-title'    => 'Feroarings yn ferbân mei $1',
+'recentchangeslinked-title'    => 'Feroarings yn ferbân mei "$1"',
 'recentchangeslinked-noresult' => "Der hawwe gjin bewurkings yn 'e bedoelde perioade west op'e siden dy't hjirwei linke wurde.",
 'recentchangeslinked-summary'  => "Dizze spesjale side lit de lêste bewurkings sjen op siden dy't linke wurde fan dizze side ôf. Siden dy't op [[Special:Watchlist|jo folchlist]] steane, wurde '''tsjûk''' werjûn.",
 
@@ -703,7 +704,7 @@ mooglik. Foar now kinne jo sykje fia Google:</p>",
 'reupload'          => "Op 'e nij oanbiede",
 'reuploaddesc'      => 'Werom nei oanbied-side.',
 'uploadnologin'     => 'Net oanmelde',
-'uploadnologintext' => 'Jo moatte [[{{ns:special}}:Userlogin|oanmeld]] wêze om in bestân oanbieden te kinnen.',
+'uploadnologintext' => 'Jo moatte [[Special:Userlogin|oanmeld]] wêze om in bestân oanbieden te kinnen.',
 'uploaderror'       => 'Oanbied-fout',
 'uploadtext'        => "'''STOP!''' Lês ear't jo eat oanbiede
 de regels foar ôfbyldbrûk foar de {{SITENAME}}.

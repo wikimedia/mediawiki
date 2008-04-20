@@ -5,6 +5,7 @@
  *
  * @author Cuman
  * @author Nike
+ * @author Siebrand
  */
 
 $fallback = 'tr';
@@ -521,7 +522,7 @@ Nışannar: (bitki) = şindiki versiyalan aradaki fark,
 'recentchanges'                  => 'Bitki diişikmäklär',
 'recentchanges-feed-description' => 'Bu lentalan en bitki diişmäkleri vikiyä yaz.',
 'rcnote'                         => '$3 (UTC) datasında bitki <strong>$2</strong> gündä yapılan <strong>$1</strong> diişmäk:',
-'rcnotefrom'                     => '<b>$2</b> datasınnan büüne kadar yapılan diişmäkler aşaada (en çok <b>$1</b> yazı gösteriler).',
+'rcnotefrom'                     => "'''$2''' datasınnan büüne kadar yapılan diişmäkler aşaada (en çok '''$1''' yazı gösteriler).",
 'rclistfrom'                     => 'Göster diişmäkleri ani $1 datasından beeri yapıldı',
 'rcshowhideminor'                => 'küçük diişilmäkläri $1',
 'rcshowhidebots'                 => 'botları $1',
@@ -540,7 +541,7 @@ Nışannar: (bitki) = şindiki versiyalan aradaki fark,
 
 # Recent changes linked
 'recentchangeslinked'          => 'İlgili diişilmäklär',
-'recentchangeslinked-title'    => '$1 ilgili diişmäklär',
+'recentchangeslinked-title'    => '"$1" ilgili diişmäklär',
 'recentchangeslinked-noresult' => 'Baalantılı sayfalarda verilmiş devirde diişmäk olmadı.',
 'recentchangeslinked-summary'  => "Bu maasus sayfa baalantılı sayfalardaki diişmäkleri sayêr. Sizin bakmaa listasındaki sayfalar verildi '''kalın''' bukvalarnan.",
 
@@ -757,12 +758,18 @@ Burada bitki seçimner <strong>$1</strong> yazı diiştirmää deyni:',
 
 # Move page
 'movepage'         => 'Ad diişmäklii',
-'movepagetext'     => "Aşaadaki formayı kullanılarak var nicä sayfanın adın diiştirin, onnan bilä hepsi diiştirmää jurnalı eni ada aktarılacêk. Eski ad eni ada yönnendirmäk olacêk. Eski başlaa baalantılar diişmeycek; [[Special:Maintenance|kontrol ediniz.]] [[{{ns:special}}:DoubleRedirects|çift]] yaki [[{{ns:special}}:BrokenRedirects|yannış]] yönnendirmäkleri. Läazım inanmaa ani baalantılar genä dä gösterer orayı nerä läazım göstersin.
+'movepagetext'     => "Aşaadaki formayı kullanılarak var nicä sayfanın adın diiştirin, onnan bilä hepsi diiştirmää jurnalı eni ada aktarılacêk.
+Eski ad eni ada yönnendirmäk olacêk.
+Eski başlaa baalantılar diişmeycek;
+[[Special:DoubleRedirects|çift]] yaki [[Special:BrokenRedirects|yannış]] yönnendirmäkleri.
+Läazım inanmaa ani baalantılar genä dä gösterer orayı nerä läazım göstersin.
 
-Herliim ilerdän eni adda sayfa vardı, ad diişmää '''yapılmaycêk'''. Bu o maana verer ani eer yannış olarak adını diiştirdiniz siz var nicä döndürün sayfayı eski adına.
+Herliim ilerdän eni adda sayfa vardı, ad diişmää '''yapılmaycêk'''.
+Bu o maana verer ani eer yannış olarak adını diiştirdiniz siz var nicä döndürün sayfayı eski adına.
  
-<b>BAK!</b>
-Bu ad diişmää var nicä duursun masştablı hem beklenmeyän rezultatlar ''populyar'' sayfalar için ; onuştan devam etmedän ileri läazım inanmaa ani annêêrsiniz hepsi olacêk rezultatları.",
+'''BAK!'''
+Bu ad diişmää var nicä duursun masştablı hem beklenmeyän rezultatlar ''populyar'' sayfalar için ;
+onuştan devam etmedän ileri läazım inanmaa ani annêêrsiniz hepsi olacêk rezultatları.",
 'movepagetalktext' => "Birleştirilmiş konuşmaa sayfasın, herliim varsa,
 avtomatik adı diiştirilecek, '''o haller dışında, ne zaman:'''
 

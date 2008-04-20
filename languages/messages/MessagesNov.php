@@ -200,6 +200,7 @@ Proba [[Special:Search|sercho sur li wiki]] por relatet pagines.',
 'rcshowhideanons' => '$1 anonimi useres',
 'rcshowhidemine'  => '$1 men modifikos',
 'rclinks'         => 'Montra lasti $1 chanjes in lasti $2 dies<br />$3',
+'hist'            => 'hist',
 'hide'            => 'Kasha',
 'show'            => 'Montra',
 

@@ -6,6 +6,7 @@
  * @author Roozbeh Pournader <roozbeh at gmail.com>
  * @author Huji <huji.huji at gmail.com>
  * @author לערי ריינהארט
+ * @author Huji
  */
 
 $skinNames = array(
@@ -1266,6 +1267,9 @@ $2 تغییرمسیرها فهرست شوند &nbsp; جستجو برای $3 $9',
 
 # Image list
 'imagelist'                 => 'فهرست تصاویر',
+'imagelist-summary'         => 'این صفحهٔ ویژه تمام پرونده‌های بارگذاری شده را نشان می‌دهد.
+به طور پیش‌فرض آخرین پرونده‌های بازگذاری شده بالاتر نمایش داده می‌شوند.
+کلیک کردن روی عنوان ستون‌ها باعث تغییر ترتیب نمایش پرونده‌ها می‌شود.',
 'imagelisttext'             => 'در زیر فهرست $1 {{PLURAL:$1|تصویری|تصویری}} که $2 مرتب شده است آمده است.',
 'getimagelist'              => 'در حال اخذ فهرست تصاویر',
 'ilsubmit'                  => 'جستجو',

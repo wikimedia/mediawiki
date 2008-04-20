@@ -2071,7 +2071,7 @@ Soñğı jağdaýda siltemeni de, mısalı «{{{{ns:mediawiki}}:Mainpage}}» bet
 'allmessagesdefault'        => 'Ädepki mätini',
 'allmessagescurrent'        => 'Ağımdıq mätini',
 'allmessagestext'           => 'Bul {{ns:mediawiki}} esim ayasında qatınawlı jüýe xabar tizimi.',
-'allmessagesnotsupportedDB' => "'''wgUseDatabaseMessages''' öşirilgen sebebinen '''{{ns:special}}:AllMessages''' beti qoldanılmaýdı.",
+'allmessagesnotsupportedDB' => "'''$wgUseDatabaseMessages''' öşirilgen sebebinen '''{{ns:special}}:AllMessages''' beti qoldanılmaýdı.",
 'allmessagesfilter'         => 'Xabar atawımen süzgilew:',
 'allmessagesmodified'       => 'Tek özgertilgendi körset',
 

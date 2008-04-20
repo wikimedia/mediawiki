@@ -8,6 +8,7 @@
  * @author Teak
  * @author Siebrand
  * @author SPQRobin
+ * @author Jon Harald Søby
  */
 
 
@@ -568,7 +569,7 @@ Me pos-coccebj revertöx ö ticpatlöx janpáhinám jöx [[Special:Userlogin|ca�
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Nexuatláminop',
-'cantcreateaccount-text' => "Creacionde caitomde jan adressade IP (<b>$1</b>) coccebj blockom [[User:$3|$3]] mii.
+'cantcreateaccount-text' => "Creacionde caitomde jan adressade IP ('''$1''') coccebj blockom [[User:$3|$3]] mii.
 
 Rae' zo xuniim $3 mii coccebj ''$2''",
 
@@ -612,7 +613,7 @@ Informacion: (curt) = quiíxde vercion currentua,
 'revisiondelete'          => 'Delatom/diidelatom revición',
 'revdelete-nooldid-title' => 'Necoccebj aimde revicion',
 'revdelete-selected'      => "{{PLURAL:$2|Revicion selectonde|Revición selectónde}} '''$1:'''",
-'revdelete-legend'        => 'Xuniim restricción:',
+'revdelete-legend'        => 'Xuniim restricción',
 'revdelete-hide-text'     => 'Camaát textuade revicion',
 'revdelete-hide-name'     => 'Camaát accion öjaim',
 'revdelete-hide-comment'  => 'Camaát commentuade ticpatlöx',
@@ -726,7 +727,7 @@ Informacion: (curt) = quiíxde vercion currentua,
 'recentchangestext'                 => 'Caitom camjöx cmaa quiíx zode Wiki zo jan páhina iti.',
 'recentchanges-feed-description'    => 'Caitom camjöx cmaa quiíx zode Wiki zo jan fiiyt iti.',
 'rcnote'                            => "!-cmaa coccebj {{PLURAL:$1|'''1''' quiixde|'''$1''' hunquiíxde}} {{PLURAL:$2|'''1''' hunzaah|'''$2''' hunixaáp}} zo iti, $3 'de.",
-'rcnotefrom'                        => '!-cmaa coccebj quiíx zode <b>$2</b> (plusöxiti <b>$1</b> visi).',
+'rcnotefrom'                        => "!-cmaa coccebj quiíx zode '''$2''' (plusöxiti '''$1''' visi).",
 'rclistfrom'                        => "Cohuatlöx hunquiix startom $1 'de",
 'rcshowhideminor'                   => '$1 editám bajlöxám',
 'rcshowhidebots'                    => '$1 cibotám',
@@ -749,7 +750,7 @@ Informacion: (curt) = quiíxde vercion currentua,
 
 # Recent changes linked
 'recentchangeslinked'       => 'Quiix hámíigonix',
-'recentchangeslinked-title' => 'Quiix hámíigonixde $1',
+'recentchangeslinked-title' => 'Quiix hámíigonixde "$1"',
 
 # Upload
 'upload'            => 'Ciúchan uploadan',
@@ -763,7 +764,7 @@ Informacion: (curt) = quiíxde vercion currentua,
 'filename'          => 'IDde ciúchan',
 'filedesc'          => 'Abvuatl',
 'fileuploadsummary' => 'Abvuatl:',
-'filesource'        => 'Sourcenam',
+'filesource'        => 'Sourcenam:',
 'uploadedfiles'     => 'Ciúchán uploadöxán',
 'filetype-missing'  => 'Ciúchan zo necoccebj extencion (pac\' ".jpg").',
 'uploadwarning'     => 'Attencionde uploadan',
@@ -771,8 +772,8 @@ Informacion: (curt) = quiíxde vercion currentua,
 'uploadedimage'     => 'uploadöx "[[$1]]"',
 'overwroteimage'    => 'uploadöx hunvercion zode "[[$1]]"',
 'uploadvirus'       => 'Jan ciúchan coccebj virusde PC zo! Detailám: $1',
-'sourcefilename'    => 'Sourcenam IDde ciúchan',
-'destfilename'      => 'Destinacion IDde ciúchan',
+'sourcefilename'    => 'Sourcenam IDde ciúchan:',
+'destfilename'      => 'Destinacion IDde ciúchan:',
 'watchthisupload'   => 'Cáminot jan páhina',
 
 'upload-proto-error' => 'Protocolam incorrectam',
@@ -782,7 +783,7 @@ Informacion: (curt) = quiíxde vercion currentua,
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error28' => 'Time-outde uploadan',
 
-'license'           => 'Licenciónom',
+'license'           => 'Licenciónom:',
 'nolicense'         => 'Seleccion coccebj hun',
 'license-nopreview' => '(Necuáxiit)',
 

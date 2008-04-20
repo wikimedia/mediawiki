@@ -5,6 +5,7 @@
  *
  * @author Behzod Saidov <behzodsaidov@gmail.com>
  * @author Abdulla
+ * @author Siebrand
  */
 
 $fallback8bitEncoding = 'windows-1252';
@@ -327,7 +328,7 @@ Bu yerda: (joriy) = hozirgi koʻrinish bilan farq,
 # Recent changes
 'recentchanges'     => "Yangi o'zgartirishlar",
 'recentchangestext' => "Bu sahifada siz oxirgi o'zgartirishlarni ko'rishingiz mumkin.",
-'rcnote'            => "Quyida oxirgi '''$2''' kun davomida sodir bo'lgan $1 o'zgartirishlar ko'rsatilgan. ($3)<!--Below are the last <strong>$1</strong> changes in the last <strong>$2</strong> days, as of $3.-->",
+'rcnote'            => "Quyida oxirgi '''$2''' kun davomida sodir bo'lgan $1 o'zgartirishlar ko'rsatilgan. ($3)",
 'rclistfrom'        => "$1dan boshlab yangi o'zgartirishlarni ko'rsat.",
 'rcshowhideminor'   => 'Kichik tahrirlarni $1',
 'rcshowhidebots'    => 'Botlarni $1',
@@ -345,7 +346,7 @@ Bu yerda: (joriy) = hozirgi koʻrinish bilan farq,
 
 # Recent changes linked
 'recentchangeslinked'          => "Bog'langan o'zgarishlar",
-'recentchangeslinked-title'    => '$1 ga aloqador oʻzgarishlar',
+'recentchangeslinked-title'    => '"$1" ga aloqador oʻzgarishlar',
 'recentchangeslinked-noresult' => 'Berilgan davrda bogʻlangan sahifalarda oʻzgarishlar boʻlmagan.',
 'recentchangeslinked-summary'  => "Ushbu maxsus sahifa unga bogʻlangan sahifalardagi soʻnggi oʻzgarishlarni koʻrsatadi. Kuzatuv roʻyxatingizdagi sahifalar '''qalin''' qilib koʻrsatilgan.",
 

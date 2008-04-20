@@ -5,6 +5,7 @@
  *
  * @author Nike
  * @author לערי ריינהארט
+ * @author Siebrand
  */
 
 $namespaceNames = array(
@@ -308,7 +309,7 @@ per poter personalizzare le tue preferenze.',
 'rcnote'          => 'Qui di seguito sono elencate le ultime <strong>$1</strong> pagine modificate negli ultimi <strong>$2</strong> giorni.',
 'rcnotefrom'      => ' Qui di seguito sono elencate le modifiche da <b>$2</b> (fino a <b>$1</b>).',
 'rclistfrom'      => 'Mostra modifiche a partire da $1',
-'rclinks'         => ' Mostra le ultime $1 modifiche negli ultimi $2 giorni.',
+'rclinks'         => 'Mostra le ultime $1 modifiche negli ultimi $2 giorni.',
 'hist'            => 'cron',
 'hide'            => 'nascondi',
 'show'            => 'mostra',
@@ -325,11 +326,11 @@ per poter personalizzare le tue preferenze.',
 per fare lo upload di files.',
 'uploaderror'       => 'Errore di Upload',
 'uploadtext'        => "'''FERMA!''' Prima di effettuare un upload su {{SITENAME}}, accertati di avere ben letto e soprattutto compreso
-[[Project:Image_use_policy|le regole di {{SITENAME}} sull'uso delle immagini]].
+le regole di {{SITENAME}} sull'uso delle immagini.
 
 Per visualizzare o cercare immagini precedentemente caricate su {{SITENAME}}, vai alla [[Special:Imagelist|lista delle immagini già caricate]].
 Uploads e cancellazioni delle immagini sono registrati nello
-[[Project:Upload_log|upload log]].
+upload log.
 
 Usa il modulo sottostante per caricare nuovi files immagine da utilizzare per arricchire ed illustrare i tuoi articoli.
 Sulla maggior parte dei browsers, dovresti vedere un bottone con la scritta \"Browse...\" (oppure \"Sfoglia...\", che aprirà una comune finestra di dialogo.

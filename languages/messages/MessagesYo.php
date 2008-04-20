@@ -4,15 +4,43 @@
  * @addtogroup Language
  *
  * @author Demmy
+ * @author SPQRobin
+ * @author Siebrand
  */
 
 $messages = array(
 # User preference toggles
-'tog-underline'        => 'Underline links:',
-'tog-rememberpassword' => "Sè'rántí ọ̀rọ̀ìpamí mi lórí kọmputa yi",
-'tog-previewontop'     => "Se àyẹ̀wò kí ẹ tó s'àtúnṣe",
+'tog-underline'            => 'Underline links:',
+'tog-justify'              => "S'àlàyé gbólóhùn ọ̀rọ̀",
+'tog-hideminor'            => "Bo àtúnse kékékèé mọ́'lẹ̀ nínú àtúnse tuntun",
+'tog-rememberpassword'     => "Sè'rántí ọ̀rọ̀ìpamí mi lórí kọmputa yi",
+'tog-watchcreations'       => "S'àfikún ojúewé tí mo dá mọ́ ìmójútó mi",
+'tog-watchdefault'         => "S'àfikún ojúewé tí mo s'àtúnse mọ́ ìmójútó mi",
+'tog-watchmoves'           => "S'àfikún ojúewé tí mo kó kúrò mọ́ ìmójútó mi",
+'tog-watchdeletion'        => "S'àfikún ojúewé tí mo parẹ́ mọ́ ìmójútó mi",
+'tog-minordefault'         => "Se àmì sí gbogbo àtúnse gẹ́gẹ́ bi kékeré lát'ìbẹ̀rẹ̀.",
+'tog-previewontop'         => "Se àyẹ̀wò kí ẹ tó s'àtúnṣe",
+'tog-previewonfirst'       => "S'àfihàn àgbéwò fún àtúnse àkọ́kọ́",
+'tog-nocache'              => "D'ènà fífi ojúewé pamọ́",
+'tog-enotifwatchlistpages' => 'Fi e-mail ránsẹ́ sími tí ojúewé tí mò ún mójútó bá yípadà',
+'tog-enotifusertalkpages'  => 'Fi e-mail ránsẹ́ sími tí ojúewé ẹnitínse mi bá yípadà',
+'tog-enotifminoredits'     => 'Fi e-mail ránsẹ́ sími bákannà fún àtúnse kékékèé sí ojúewé',
+'tog-shownumberswatching'  => "S'àfihàn iye àwọn ẹnitínse tí wọn ún mójútó",
 
+'underline-always' => 'Nígbà gbogbo',
+
+# Dates
+'sunday'    => 'Ọjọ́àìkú',
+'monday'    => 'Ọjọ́ajé',
+'tuesday'   => 'Ọjọ́ìsẹ́gun',
+'wednesday' => 'Ọjọ́rú',
+'thursday'  => 'Ọjọ́bọ̀',
+'friday'    => 'Ọjọ́ẹtì',
+'saturday'  => 'Ọjọ́àbámẹ́ta',
+
+'about'          => 'Nípa',
 'cancel'         => "Fa'gilé",
+'qbfind'         => 'Wá rí',
 'qbedit'         => 'Àtúnṣe',
 'qbpageoptions'  => 'Ojúewé yi',
 'qbmyoptions'    => 'Àwọn ojúewé mi',
@@ -23,6 +51,8 @@ $messages = array(
 'navigation'     => 'Atọ́ka',
 'and'            => 'àti',
 
+'errorpagetitle'   => 'Àsìse',
+'tagline'          => "Lát'ọwọ́ {{SITENAME}}",
 'help'             => 'Ìrànlọ́wọ́',
 'search'           => 'Ṣe àwáàrí',
 'searchbutton'     => 'Ṣe àwáàrí',
@@ -32,11 +62,12 @@ $messages = array(
 'editthispage'     => "S'àtúnṣe ojúewé yi",
 'delete'           => 'Paarẹ́',
 'deletethispage'   => 'Pa ojúewé yi rẹ́',
+'protect'          => 'Dábòbò',
 'newpage'          => 'Ojúewé tuntun',
 'talkpage'         => 'Kábárawasọ̀rọ̀ nípa ojúewé yi',
 'talkpagelinktext' => 'Kábárawasọ̀rọ̀',
 'specialpage'      => 'Ojúewé Pàtàkì',
-'talk'             => 'Kábárawasọ̀rọ̀',
+'talk'             => 'Ìfọ̀rọ̀wérọ̀',
 'toolbox'          => 'Àpótí irinṣẹ',
 'otherlanguages'   => 'Àwọn èdè míràn',
 'lastmodifiedat'   => 'Ọjọ́ tí a ṣe àtunṣe ojúewé yi gbẹ̀yìn ni $2, $1.', # $1 date, $2 time
@@ -70,7 +101,7 @@ $messages = array(
 'viewsource'        => 'Àfihàn ọ̀rọ̀àmì',
 'protectedpagetext' => 'A ti se àtìpa ojúewé yi. Ẹ kò le se àtúnṣe.',
 'viewsourcetext'    => 'Ẹ lè wo ati ẹ lè se àwòkọ ọ̀rọ̀àmì ojúewé yi:',
-'titleprotected'    => 'This title has been protected from creation by [[User:$1|$1]]. The reason given is <i>$2</i>.',
+'titleprotected'    => "This title has been protected from creation by [[User:$1|$1]]. The reason given is ''$2''.",
 
 # Login and logout pages
 'logouttitle'        => 'Ẹnitínṣe tibọsóde',
@@ -103,6 +134,9 @@ A ti fi orúkọ yín s'ílẹ̀. Ẹ mọ́ gbàgbé l'áti s'àtúnṣe àwọ
 'showdiff'    => 'Àfihàn àwọn àyípadà',
 'newarticle'  => '(Tuntun)',
 
+# Search results
+'powersearch' => 'Ṣe àwáàrí',
+
 # Preferences page
 'preferences'   => 'Àwọn ìfẹ́ràn',
 'mypreferences' => 'Àwọn ìfẹ́ràn mi',
@@ -114,9 +148,20 @@ A ti fi orúkọ yín s'ílẹ̀. Ẹ mọ́ gbàgbé l'áti s'àtúnṣe àwọ
 'imagelist_name' => 'Orúkọ',
 'imagelist_user' => 'Ẹnitínṣe',
 
+# File deletion
+'filedelete'        => 'Paarẹ́ $1',
+'filedelete-submit' => 'Paarẹ́',
+
 # Miscellaneous special pages
 'allpages'          => 'Gbogbo ojúewé',
+'specialpages'      => 'Àwọn ojúewé pàtàkì',
+'spheading'         => 'Àwọn ojúewé Pàtàkì fún gbogbo àwọn ẹnitínṣe',
+'newpages'          => 'Àwọn ojúewé tuntun',
 'newpages-username' => 'Orúkọ Ẹnitínṣe:',
+
+# Special:Log
+'specialloguserlabel'  => 'Ẹnitínṣe:',
+'speciallogtitlelabel' => 'Àkọlé:',
 
 # Special:Allpages
 'allarticles'       => 'Gbogbo ojúewé',
@@ -129,9 +174,15 @@ A ti fi orúkọ yín s'ílẹ̀. Ẹ mọ́ gbàgbé l'áti s'àtúnṣe àwọ
 'unwatch'         => "Já'wọ́ ìmójútó",
 'unwatchthispage' => "Já'wọ́ ìmójútó ojúewé yi",
 
+# Namespace form on various pages
+'blanknamespace' => '(Gbangba)',
+
 # Contributions
 'contributions' => 'Àwọn àfikún ẹnitínṣe',
 'mycontris'     => 'Àwọn àfikún mi',
+
+# What links here
+'whatlinkshere-page' => 'Ojúewé:',
 
 # Namespace 8 related
 'allmessagesname' => 'Orúkọ',

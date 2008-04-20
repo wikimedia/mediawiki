@@ -4,43 +4,88 @@
  * @addtogroup Language
  *
  * @author SPQRobin
+ * @author Kurniasan
  */
 
 $fallback = "id";
 
 $messages = array(
-'about'    => 'Atajangeng',
-'qbedit'   => 'Sunting',
-'anontalk' => 'Bicara IP',
-'and'      => 'éréngé',
+# Dates
+'sunday'    => 'ᨕᨕᨖ',
+'monday'    => 'ᨕᨔᨛᨙᨊ',
+'tuesday'   => 'ᨔᨒᨔ',
+'wednesday' => 'ᨕᨑᨅ',
+'thursday'  => 'ᨀᨆᨗᨔᨗ',
+'friday'    => 'ᨍᨘᨆᨕ',
+'saturday'  => 'ᨔᨈᨘ',
+'january'   => 'ᨙᨍᨊᨘᨕᨑᨗ',
+'february'  => 'ᨙᨄᨅᨛᨑᨘᨕᨑᨗ',
 
-'help'          => 'Panginring',
-'search'        => 'Sappa',
-'history_short' => 'Sejarah',
-'edit'          => 'Sunting',
-'specialpage'   => 'Halamang Istimewa',
-'imagepage'     => 'Ita halamang rapang',
+# Bits of text used by many pages
+'category_header' => 'ᨒᨛᨄ ᨑᨗᨒᨒᨛ ᨙᨀᨈᨛᨁᨚᨑᨗ "$1"',
+'subcategories'   => 'ᨔᨅᨛᨙᨀᨈᨛᨁᨚᨈᨗ',
+
+'about'      => 'Atajangeng',
+'qbedit'     => 'Sunting',
+'mytalk'     => 'ᨕᨄᨅᨗᨌᨑᨊ ᨕᨗᨐ',
+'anontalk'   => 'Bicara IP',
+'navigation' => 'ᨊᨄᨗᨁᨔᨗ',
+'and'        => 'éréngé',
+
+'help'             => 'ᨄᨂᨗᨋᨗ',
+'search'           => 'ᨔᨄ',
+'searchbutton'     => 'ᨔᨄ',
+'go'               => 'ᨒᨕᨚ',
+'searcharticle'    => 'ᨒᨕᨚ',
+'history_short'    => 'ᨔᨛᨍᨑ',
+'edit'             => 'ᨙᨕᨉᨗ',
+'editthispage'     => 'ᨙᨕᨉᨗ ᨙᨕᨙᨉ ᨒᨛᨄ',
+'delete'           => 'ᨄᨛᨙᨉ',
+'talkpagelinktext' => 'ᨅᨗᨌᨑ',
+'specialpage'      => 'ᨒᨛᨄ ᨔᨛᨙᨄᨔᨗᨕᨒ',
+'imagepage'        => 'Ita halamang rapang',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite' => 'Tentang {{SITENAME}}',
-'mainpage'  => 'Halamang Utama',
+'mainpage'  => 'ᨒᨛᨄ ᨕᨗᨉᨚᨙᨕ',
 'portal'    => 'Portal komunitas',
 
+'editsection' => 'ᨙᨕᨉᨗ',
+
 # Short words for each namespace, by default used in the namespace tab in monobook
-'nstab-special' => 'Istimewa',
-'nstab-image'   => 'Rapang',
-'nstab-help'    => 'Panginring',
+'nstab-main'     => 'ᨒᨛᨄ',
+'nstab-user'     => 'ᨒᨛᨄ ᨄᨁᨘᨊ',
+'nstab-special'  => 'ᨔᨛᨙᨄᨔᨗᨕᨒ',
+'nstab-image'    => 'Rapang',
+'nstab-help'     => 'ᨄᨂᨗᨋᨗ',
+'nstab-category' => 'ᨙᨀᨈᨛᨁᨚᨑᨗ',
 
 # General errors
-'badtitle' => 'Judul dek essa',
+'badtitle'   => 'Judul dek essa',
+'viewsource' => 'ᨕᨗᨈ ᨔᨚᨑᨛᨔᨛ',
+
+# Login and logout pages
+'login'      => 'ᨒᨚᨁᨛ ᨕᨈᨆ',
+'userlogin'  => 'ᨒᨚᨁᨛ ᨕᨈᨆ / ᨕᨛᨅᨘ ᨕᨀᨕᨘᨊᨛ',
+'logout'     => 'ᨒᨚᨁᨛ ᨕᨛᨔᨘ',
+'userlogout' => 'ᨒᨚᨁᨛ ᨕᨛᨔᨘ',
+'nologin'    => 'ᨙᨉᨄ ᨆᨄᨘᨊ ᨕᨀᨕᨘᨊᨛ? $1.',
+'gotaccount' => 'ᨄᨘᨑᨊᨗ ᨕᨛᨃ ᨕᨀᨘᨊᨛᨛ? $1.',
+'username'   => 'ᨕᨔᨛ ᨄᨁᨘᨊ:',
+
+# Edit page toolbar
+'bold_tip'   => 'ᨙᨈᨀᨛᨔᨛ ᨆᨕᨘᨇᨛ',
+'italic_tip' => 'ᨙᨈᨀᨛᨔᨛ ᨕᨗᨈᨒᨗᨀᨛ',
 
 # Edit pages
+'preview'          => 'ᨄᨛᨑᨗᨅᨗᨐᨘ',
 'accmailtitle'     => 'Ada sandi ni riantarak.',
 'accmailtext'      => 'Ada sandi "$1" riantarak ri $2.',
 'anontalkpagetext' => "----''Ini adalah halaman diskusi untuk pengguna anonim yang belum membuat rekening atau tidak menggunakannya. Karena tidak membuat rekening, kami terpaksa memakai alamat IP untuk mengenalinya. Alamat IP seperti ini dapat dipakai oleh beberapa pengguna yang berbeda. Jika Anda adalah pengguna anonim dan merasa mendapatkan komentar-komentar yang tidak berkaitan dengan anda, kami anjurkan untuk [[Special:Userlogin|membuat rekening atau masuk log]] untuk menghindari kerancuan dengan pengguna anonim lain.''",
+'editing'          => 'ᨙᨕᨉᨗᨈᨗ $1',
 
 # Recent changes
-'recentchanges' => 'Pappakapinra tanappa',
+'recentchanges' => 'ᨄᨄᨀᨗᨋ ᨈᨊᨄ',
 
 # Recent changes linked
 'recentchangeslinked' => 'Pappakapinra terkait',
@@ -49,6 +94,9 @@ $messages = array(
 'upload'    => 'Lureng berkas',
 'uploadbtn' => 'Lureng berkas',
 
+# Image list
+'ilsubmit' => 'ᨔᨄ',
+
 # Random page
 'randompage' => 'Halamang rawak',
 
@@ -56,6 +104,8 @@ $messages = array(
 'allpages'     => 'Maneng halamang',
 'specialpages' => 'Halamang Istimewa',
 'ancientpages' => 'Artikel talloa',
+'move'         => 'ᨙᨕᨔᨘ',
+'movethispage' => 'ᨙᨕᨔᨘᨀᨗ ᨕᨗᨙᨐᨙᨉ ᨒᨛᨄ',
 
 'alphaindexline' => '$1 ri $2',
 

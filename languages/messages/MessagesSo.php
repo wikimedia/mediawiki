@@ -7,6 +7,7 @@
  * @author Nike
  * @author Siebrand
  * @author Yariiska
+ * @author Jon Harald Søby
  */
 
 $messages = array(
@@ -276,8 +277,8 @@ Gudagalahaaga waa la sameeyey. Ha' hilmaamin in aad wax ka bedesho {{SITENAME}} 
 'mailerror'                  => 'Waxaa dhacay qalad markii loo diraayey E-boosto: $1',
 'acct_creation_throttle_hit' => 'Waan ka xunahay, waxaad horey u sameysay $1 akoon. Ma sameynkartid midkale.',
 'emailauthenticated'         => 'Cinwaankaaga e-boostada waxaa loo xaqiijiyey $1.',
-'emailnotauthenticated'      => 'Cinwaankaaga e-boostada weli lama xaqiijinin. Wax e-boosto ah 
-oo ku saabsan arrimaha soo socdo looma soo diridoono',
+'emailnotauthenticated'      => 'Cinwaankaaga e-boostada weli lama xaqiijinin.
+Wax e-boosto ah oo ku saabsan arrimaha soo socdo looma soo diridoono.',
 'accountcreated'             => "Akoonka waa la'sameeyay",
 'accountcreatedtext'         => "Akoonka isticmaalaha $1 waa la'sameeyay.",
 'loginlanguagelabel'         => 'Luqada: $1',
@@ -394,7 +395,7 @@ Iskuday in aad [[Special:Search|karaadiso wikigan]] beyjaj laxiira oo cusub.',
 
 # Upload
 'uploadnologin'   => 'Gudaha kuma jirtid',
-'ignorewarning'   => 'Iska dhagooley digniinta ee faylka keedi.',
+'ignorewarning'   => 'Iska dhagooley digniinta ee faylka keedi',
 'ignorewarnings'  => 'Iska dhagooley digkiinwalba',
 'minlength1'      => 'Faylka magaciisa waa in uu ugu yaraan noqdaa hal xaraf.',
 'badfilename'     => 'Faylka magaciisa waxaa lagu badalay "$1".',
@@ -562,8 +563,9 @@ Hadii aad rabootid in aad boggan ka saartid wardiyeynta, dhagsii \"Ha' wardiyeyn
 'allmessagesname'           => 'Magac',
 'allmessagesdefault'        => "Qoraalka la'isku ogyahay",
 'allmessagescurrent'        => 'Qoraalka hada qoran',
-'allmessagestext'           => 'Liiskan waxaa ku qoran dhamaan fariimaha lagahelikaro xarun magaceedka MediaWiki.',
-'allmessagesnotsupportedDB' => "'''{{ns:special}}:Fariimaha oo dhan''' la'ma isticmaalikaro, '''\$wgUseDatabaseMessages''' oo dansan daraadeed.",
+'allmessagestext'           => 'Liiskan waxaa ku qoran dhamaan fariimaha lagahelikaro xarun magaceedka MediaWiki.
+Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] and [http://translatewiki.net Betawiki] if you wish to contribute to the generic MediaWiki localisation.',
+'allmessagesnotsupportedDB' => "'''{{ns:special}}:Allmessages''' la'ma isticmaalikaro, '''\$wgUseDatabaseMessages''' oo dansan daraadeed.",
 'allmessagesfilter'         => 'Kalasoocaha fariimaha:',
 'allmessagesmodified'       => 'Itus kuwa wax laga bedelay',
 

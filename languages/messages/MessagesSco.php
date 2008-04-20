@@ -333,7 +333,8 @@ $2',
 'namespaceprotected'   => "Ye dinna hae permeession tae edit pages in the '''$1''' namespace.",
 'customcssjsprotected' => "Ye dinna hae permeession tae edit this page, sin it hauds anither uiser's personal settins.",
 'ns-specialprotected'  => 'Pages in the {{ns:special}} namespace cannae be editit.',
-'titleprotected'       => 'This teetle haes been protectit frae bein makkit by [[User:$1|$1]]. The grunds for this are: <i>$2</i>.',
+'titleprotected'       => "This teetle haes been protectit frae bein makkit by [[User:$1|$1]].
+The grunds for this are: ''$2''.",
 
 # Login and logout pages
 'logouttitle'                => 'Uiser logoot',
@@ -523,7 +524,7 @@ Yer block ID is $5. Please include this ID in ony argies ye mak.',
 'newarticle'                => '(New)',
 'newarticletext'            => "Ye'v follaed an airtin til a page that disna exist yet. Tae create the page, stert typin in the box ablo (see the [[{{MediaWiki:Helppage}}|help page]] for mair info). Gin ye'r here by mistak, juist dab yer brouser's '''back''' button.",
 'anontalkpagetext'          => "----''This is the collogue page for a nameless uiser that haesna made an accoont yet or that disna uise it. We syne hiv tae uise the numerical IP address tae identifee thaim. Sic an IP address can be shared bi a wheen o uisers. Gin you ar a nameless uiser an feel that irrelevant comments haes been directit at ye, please [[Special:Userlogin|mak an accoont or log in]] tae evyte futur confusion wi ither nameless uisers.''",
-'noarticletext'             => "The'r nae text on this page the nou. Ye can [[{{ns:special}}:Search/{{PAGENAME}}|rake for this page teitle]] in ither pages or [{{fullurl:{{NAMESPACE}}:{{PAGENAME}}|action=edit}} edit this page].",
+'noarticletext'             => "The'r nae text on this page the nou. Ye can [[Special:Search/{{PAGENAME}}|rake for this page teitle]] in ither pages or [{{fullurl:{{FULLPAGENAME}}|action=edit}} edit this page].",
 'userpage-userdoesnotexist' => 'Uiser accoont "$1" hasnae been registerit. Please check gin ye wint tae mak or edit this page.',
 'clearyourcache'            => "'''Tak tent:''' Efter hainin, ye micht hae tae bypass yer brouser's cache for tae see the chynges. '''Mozilla / Firefox / Safari:''' haud doun ''Shift'' while dabbin on ''Reload'', or press ''Ctrl-Shift-R'' (''Cmd-Shift-R'' on Apple Mac); '''IE:''' haud doun ''Ctrl'' while dabbin on ''Refresh'', or press ''Ctrl-F5''; '''Konqueror:''' juist dab on the ''Reload'' button, or press ''F5''; '''Opera''' users micht hae tae haillie dicht thair cache in ''Tools&rarr;Preferences''.",
 'usercssjsyoucanpreview'    => "<strong>Tip:</strong> Uise the 'Show preview' button tae proof yer new CSS/JS afore savin.",
@@ -591,7 +592,7 @@ The deletion log for this page is providit here:",
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Canna mak accoont',
-'cantcreateaccount-text' => "Accoont makkin frae this IP address (<b>$1</b>) haes been blockit by [[User:$3|$3]].
+'cantcreateaccount-text' => "Accoont makkin frae this IP address ('''$1''') haes been blockit by [[User:$3|$3]].
 
 The grund for this, given by $3 is ''$2''",
 

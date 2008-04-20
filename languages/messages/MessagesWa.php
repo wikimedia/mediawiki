@@ -6,6 +6,7 @@
  * @author Srtxg
  * @author Siebrand
  * @author לערי ריינהארט
+ * @author SPQRobin
  */
 
 $fallback = 'fr';
@@ -307,7 +308,7 @@ $messages = array(
 # General errors
 'error'                => 'Aroke',
 'databaseerror'        => "Åk n' a nén stî avou l' båze di dnêyes",
-'dberrortext'          => "Åk n' a nén stî avou l' sintacse do cweraedje del båze di dnêyes. 
+'dberrortext'          => "Åk n' a nén stî avou l' sintacse do cweraedje del båze di dnêyes.
 Çoula pout esse cåze d' on bug dins l' programe.
 Li dierin cweraedje del båze di dnêyes di sayî esteut:
 <blockquote><tt>$1</tt></blockquote>
@@ -510,7 +511,7 @@ Rissayîz s' i vs plait. Si çoula n' va todi nén, sayîz di vs dislodjî eyet 
 
 <strong>Si c' est ene saye oniesse di candjî l' pådje, rissayîz s' i vs plait. Si çoula n' va todi nén, sayîz di vs dislodjî eyet di vs relodjî.</strong>",
 'editing'                   => 'Candjant $1',
-'editinguser'               => 'Candjant $1',
+'editinguser'               => "Candjant '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
 'editingsection'            => 'Candjant $1 (seccion)',
 'editingcomment'            => 'Candjant $1 (comintaire)',
 'editconflict'              => 'Conflit inte deus candjmints: $1',
@@ -528,25 +529,13 @@ boton «Schaper l' pådje».<br />",
 Si vos l' schapez, tos les candjmints k' ont stî fwaits
 dispoy adon si vont piede.</strong>",
 'yourdiff'                  => 'Diferinces',
-'copyrightwarning'          => "Notez ki tos les contribouwaedjes fwaits po {{SITENAME}}
-dvèt esse dizo l' licince $2 (loukîz $1 po pus di racsegnes).
-Si vos n' voloz nén ki vosse tecse poye esse candjî eyet
-spårdou pa tot l' minme kî, adon nel evoyîz nén chal.
-<br />
-Vos nos acertinez eto ki vos avoz scrît l' tecse 
-vos-minme, oudonbén l' avoz copyî d' on sourdant libe 
-(dominne publik ou on sourdant pareymint libe).
-<br />
+'copyrightwarning'          => "Notez ki tos les contribouwaedjes fwaits po {{SITENAME}} dvèt esse dizo l' licince $2 (loukîz $1 po pus di racsegnes).
+Si vos n' voloz nén ki vosse tecse poye esse candjî eyet spårdou pa tot l' minme kî, adon nel evoyîz nén chal.<br />
+Vos nos acertinez eto ki vos avoz scrît l' tecse vos-minme, oudonbén l' avoz copyî d' on sourdant libe (dominne publik ou on sourdant pareymint libe).
 <strong>N' EVOYÎZ NÉN DES TECSES DIZO ABONDROETS SINS PERMISSION!</strong>",
-'copyrightwarning2'         => "Notez ki tos les contribouwaedjes fwaits po {{SITENAME}}
-polèt esse esse candjîs ou disfacés pa des ôtes contribouweus.
-Si vos n' voloz nén scrire des årtikes ki polèt esse
-candjîs pa des ôtes, adon nels evoyîz nén chal.
-<br />
-Vos nos acertinez eto ki vos avoz scrît l' tecse 
-vos-minme, oudonbén l' avoz copyî d' on sourdant libe 
-(voeyoz $1 po pus di racsegnes).
-<br />
+'copyrightwarning2'         => "Notez ki tos les contribouwaedjes fwaits po {{SITENAME}} polèt esse esse candjîs ou disfacés pa des ôtes contribouweus.
+Si vos n' voloz nén scrire des årtikes ki polèt esse candjîs pa des ôtes, adon nels evoyîz nén chal.<br />
+Vos nos acertinez eto ki vos avoz scrît l' tecse vos-minme, oudonbén l' avoz copyî d' on sourdant libe (voeyoz $1 po pus di racsegnes).
 <strong>N' EVOYÎZ NÉN DES TECSES DIZO ABONDROETS SINS PERMISSION!</strong>",
 'longpagewarning'           => "<strong>ASTEME: Cisse pådje fwait $1 kilo-octets; des
 betchteus waibes k' i gn a polèt aveut des rujhes po-z aspougnî
@@ -613,7 +602,7 @@ Come manaedjeu so ç\' wiki ci, vos avoz l\' droet del vey; i gn a motoit des de
 'revdelete-text'              => "Les disfacêyès modêyes vont continouwer d' aparexhe dins l' pådje di l' istwere, mins leu contnou n' serè nén veyåve do publik.
 
 Les ôtes manaedjeus so ç' wiki ci pôront todi vey li contnou catchî eyet l' rapexhî åd triviè di cisse minme eterface ci, a moens k' ene restriccion di pus ni soeye metowe en alaedje pås mwaisses-manaedjeus del waibe.",
-'revdelete-legend'            => 'Defini des restriccions sol modêye:',
+'revdelete-legend'            => 'Defini des restriccions sol modêye',
 'revdelete-hide-text'         => "Catchî l' tecse del modêye",
 'revdelete-hide-comment'      => "Catchî l' comintaire di candjmint",
 'revdelete-hide-user'         => "Catchî l' no d' uzeu/adresse IP do candjeu",
@@ -953,7 +942,7 @@ Li longueur del [http://meta.wikimedia.org/wiki/Help:Job_queue cawêye des bouye
 'intl'                    => 'Loyéns eterlingaedjes',
 'move'                    => 'Displaecî',
 'movethispage'            => 'Displaecî cisse pådje',
-'unusedimagestext'        => "<p>Notez tot l' minme ki d' ôtès waibes polèt aveur des loyéns viè ces imådjes la gråcès a ene direke hårdêye. Do côp, ces imådjes aparexhèt chal, mågré k' ele soeyexhe eployeyes.</p>",
+'unusedimagestext'        => "Notez tot l' minme ki d' ôtès waibes polèt aveur des loyéns viè ces imådjes la gråcès a ene direke hårdêye. Do côp, ces imådjes aparexhèt chal, mågré k' ele soeyexhe eployeyes.",
 'unusedcategoriestext'    => "Les pådjes di categoreye shuvantes egzistént, mins i n' a nol årtike ni categoreye å dvins.",
 
 # Book sources
@@ -1097,9 +1086,8 @@ djivêye des dierins disfaçaedjes.',
 'reverted'                    => 'Rimetou ene modêye di dvant',
 'deletecomment'               => 'Råjhon do disfaçaedje',
 'cantrollback'                => "Dji n' sai disfé les candjmints; li dierin contribouweu est li seu oteur po cist årtike ci.",
-'alreadyrolled'               => "Dji n' sai disfé li dierin candjmint di [[$1]]
-fwait pa [[User:$2|$2]] ([[User talk:$2|Copene]]); 
-ene sakî d' ôte a ddja candjî l' årtike ou ddja rmetou l' modêye di dvant. 
+'alreadyrolled'               => "Dji n' sai disfé li dierin candjmint di [[$1]] fwait pa [[User:$2|$2]] ([[User talk:$2|Copene]]); 
+ene sakî d' ôte a ddja candjî l' årtike ou ddja rmetou l' modêye di dvant.
 
 Li dierin candjmint a stî fwait pa [[User:$3|$3]] ([[User talk:$3|Copene]]).",
 'editcomment'                 => 'Li comintaire do candjmint esteut: «<i>$1</i>».', # only shown if there is an edit comment
@@ -1225,27 +1213,19 @@ stî vandalijheyes).",
 
 # Move page
 'movepage'                => "Displaecî l' pådje",
-'movepagetext'            => "Chal vos ploz candjî l' no d' ene pådje,
-dj' ô bén displaecî l' pådje, eyet si istwere, viè l' novea no.
+'movepagetext'            => "Chal vos ploz candjî l' no d' ene pådje, dj' ô bén displaecî l' pådje, eyet si istwere, viè l' novea no.
 Li vî tite divénrè-st ene pådje di redjiblaedje viè l' novele.
-Les loyéns viè l' viye pådje èn seront nén candjîs; acertinez vs di
-[[Special:DoubleRedirects|verifyî]] s' i n' a nén des dobes
+Les loyéns viè l' viye pådje èn seront nén candjîs; acertinez vs di [[Special:DoubleRedirects|verifyî]] s' i n' a nén des dobes
 ou crons redjiblaedjes.
-Vos estoz responsåve di fé çou k' i fåt po k' les loyéns
-continouwexhe di moenner la k' i fåt.
+Vos estoz responsåve di fé çou k' i fåt po k' les loyéns continouwexhe di moenner la k' i fåt.
 
-Notez k' el pådje èn serè '''nén''' displaeceye s' i gn a ddja ene
-pådje avou l' novea tite, a moens k' ele soeye vude, ou ene pådje
-di redjiblaedje, et k' ele n' åye nole istwere.
-Çoula vout dire ki vos ploz ri-displaecî ene pådje viè l' no k' ele
-aveut djusse divant, et insi disfé vosse prumî displaeçaedje, å cas ou vos vs
-rindrîz conte ki vos avoz fwait ene flotche; ey eto ki vos n' poloz nén
-spotchî par accidint ene pådje k' egzistêye dedja.
+Notez k' el pådje èn serè '''nén''' displaeceye s' i gn a ddja ene pådje avou l' novea tite, a moens k' ele soeye vude, ou ene pådje di redjiblaedje, et k' ele n' åye nole istwere.
+Çoula vout dire ki vos ploz ri-displaecî ene pådje viè l' no k' ele aveut djusse divant, et insi disfé vosse prumî displaeçaedje, å cas ou vos vs rindrîz conte ki vos avoz fwait ene flotche;
+ey eto ki vos n' poloz nén spotchî par accidint ene pådje k' egzistêye dedja.
 
-<b>ASTEME!</b>
-On displaeçaedje pout esse on consecant et nén atindou candjmint po ene
-pådje foirt léjhowe; s' i vs plait tuzez bén åzès consecwinces divant
-d' continouwer.",
+'''ASTEME!'''
+On displaeçaedje pout esse on consecant et nén atindou candjmint po ene pådje foirt léjhowe;
+s' i vs plait tuzez bén åzès consecwinces divant d' continouwer.",
 'movepagetalktext'        => "Li pådje di copene associeye serè
 displaeceye otomaticmint avou, '''a moens ki:'''
 *Ene pådje di copene nén vude egzistêye dedja dizo l' novea no,

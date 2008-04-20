@@ -11,6 +11,7 @@
  * @author SPQRobin
  * @author Nike
  * @author Spacebirdy
+ * @author Jon Harald Søby
  */
 
 $skinNames = array(
@@ -405,7 +406,8 @@ Iarratas: $2',
 'viewsourcefor'        => 'le haghaidh $1',
 'editinginterface'     => "'''Rabhadh:''' Tá tú ag déanamh eagarthóireachta ar leathanach a chuireann téacs an chomhéadain do na bogearraí. Cuirfear athruithe ar an leathanach seo i bhfeidhm ar an gcomhéadan úsáideora.",
 'sqlhidden'            => '(Iarratas SQL folaithe)',
-'titleprotected'       => 'Tá an teideal seo cosanta ar chruthú le [[User:$1|$1]]. An fáth ná <i>$2</i>.',
+'titleprotected'       => "Tá an teideal seo cosanta ar chruthú le [[User:$1|$1]].
+An fáth ná ''$2''.",
 
 # Login and logout pages
 'logouttitle'                => 'Logáil amach',
@@ -648,6 +650,7 @@ Treoir: (rth) = difríocht ón leagan reatha, (rmh) = difríocht ón leagan roim
 'histfirst'           => 'An ceann is luaithe',
 'histlast'            => 'An ceann is déanaí',
 'historysize'         => '({{PLURAL:$1|1 beart|$1 bheart}})',
+'historyempty'        => '(folamh)',
 
 # Revision feed
 'history-feed-item-nocomment' => '$1 ag $2', # user at time
@@ -792,7 +795,7 @@ Ní bheidh aon athrú le grúpaí neamhroghnaithe. Is féidir leat grúpa a dír
 
 # Recent changes linked
 'recentchangeslinked'       => 'Athruithe gaolmhara',
-'recentchangeslinked-title' => 'Athruithe gaolmhar le $1',
+'recentchangeslinked-title' => 'Athruithe gaolmhar le "$1"',
 
 # Upload
 'upload'            => 'Uaslódáil comhad',
@@ -802,11 +805,11 @@ Ní bheidh aon athrú le grúpaí neamhroghnaithe. Is féidir leat grúpa a dír
 'uploadnologin'     => 'Nil tú logáilte isteach',
 'uploadnologintext' => 'Ní mór duit [[Special:Userlogin|logáil isteach]] chun comhaid a huaslódáil.',
 'uploaderror'       => 'Earráid uaslódála',
-'uploadtext'        => "'''STOP!''' Sul má dhéanann tú uaslódáil anseo, bí cinnte an [[{{MediaWiki:Policy-url}}|polasaí úsáide íomhá]] atá ag {{SITENAME}} a léamh agus géilleadh dó.
+'uploadtext'        => "'''STOP!''' Sul má dhéanann tú uaslódáil anseo, bí cinnte an polasaí úsáide íomhá atá ag {{SITENAME}} a léamh agus géilleadh dó.
 
 Má tá comhad ann cheana leis an ainm céanna atá tú ag tabhairt don chomhad nua, cuirfear an comhad nua in áit an sean-chomhaid gan fógra. Mar sin, muna roghnaíonn tú comhad, is fearr féachaint an bhfuil comhad leis an ainm chéanna ann cheana féin.
 
-Le breathnú nó cuardach a dhéanamh ar íomhánna a uaslódáladh cheana féin, téigh go dtí an [[Special:Imagelist|liosta íomhánna]] uaslódáilte. Déantar liosta de uaslódála agus scriosaidh ar an [[{{ns:project}}:Special:Log/upload|liosta uaslódála]].
+Le breathnú nó cuardach a dhéanamh ar íomhánna a uaslódáladh cheana féin, téigh go dtí an [[Special:Imagelist|liosta íomhánna]] uaslódáilte. Déantar liosta de uaslódála agus scriosaidh ar an [[Special:Log/upload|liosta uaslódála]].
 
 Bain úsáid as an bhfoirm thíos chun íomhá-chomhaid nua a uaslódáil. Is féidir leat na h-íomhánna a úsáid i do chuid alt. Ar an gcuid is mó de na líonléitheoirí, feicfidh tú cnaipe \"Brabhsáil...\" nó rud éigin mar sin. Lé brú ar an gcnaipe seo, gheobhaigh tú an ghnáthbhosca dialóige comhad-oscailte dod'chóras oibriúcháin. Nuair a roghnaíonn tú comhad, líonfar ainm an chomhaid sa téacsbhosca in aice leis an gcnaipe. Caithfidh tú dearfú le brú sa bhosca beag nach bhfuil tú ag sárú aon chóipcheart leis an suaslódáil seo. Brúigh an cnaipe \"Uaslódáil\" chun an uaslódáil a chríochnú. Mura bhfuil nasc Idirlín tapaidh agat, beidh roinnt ama uait leis seo.
 
@@ -1281,13 +1284,16 @@ Cinntigh go bhfuil an scéal seo d'intinn agat.",
 
 # Move page
 'movepage'                => 'Athainmnigh an leathanach',
-'movepagetext'            => "Úsáid an foirm seo thíos chun leathanach a hathainmniú. Aistreofar a chuid stair go léir chuig an teideal nua.
-Déanfar leathanach athsheolaidh den sean-theideal chuig an teideal nua. Ní athreofar naisc chuig sean-teidil an leathanaigh. Bí cinnte go ndéanfá
-[[Special:Maintenance|cuardach]] ar athsheolaidh dubáilte nó briste. Tá tú freagrach i cinnteach go leanann naisc chuig an pointe a bhfuil siad ag aimsiú ar.
+'movepagetext'            => "Úsáid an foirm seo thíos chun leathanach a hathainmniú.
+Aistreofar a chuid stair go léir chuig an teideal nua.
+Déanfar leathanach athsheolaidh den sean-theideal chuig an teideal nua.
+Ní athreofar naisc chuig sean-teidil an leathanaigh. Bí cinnte go ndéanfá [[Special:Maintenance|cuardach]] ar athsheolaidh dubáilte nó briste.
+Tá tú freagrach i cinnteach go leanann naisc chuig an pointe a bhfuil siad ag aimsiú ar.
 
-Tabhair faoi deara '''nach''' n-athainmneofar an leathanach má tá leathanach ann cheana féin faoin teideal nua, mura bhfuil sé folamh nó athsheoladh nó mura bhfuil aon stair athraithe aige cheana. Ciallaíonn sé sin go féidir leat leathanach a athainmniú ar ais chuig an áit ina raibh sé roimhe má dhéanfá botún, agus ní féidir leat leathanach atá ann a fhorscriobh ar.
+Tabhair faoi deara '''nach''' n-athainmneofar an leathanach má tá leathanach ann cheana féin faoin teideal nua, mura bhfuil sé folamh nó athsheoladh nó mura bhfuil aon stair athraithe aige cheana.
+Ciallaíonn sé sin go féidir leat leathanach a athainmniú ar ais chuig an áit ina raibh sé roimhe má dhéanfá botún, agus ní féidir leat leathanach atá ann a fhorscriobh ar.
 
-<b>AIRE!</b>
+'''AIRE!'''
 Is athrú tábhachtach é athainmniú má tá leathanach coitianta i gceist; cinntigh go dtuigeann tú na iarmhairtí go léir roimh a leanfá.",
 'movepagetalktext'        => "Aistreofar an leathanach phlé leis, má tá sin ann:
 *'''muna''' bhfuil tú ag aistriú an leathanach trasna ainmspásanna,
@@ -1344,7 +1350,7 @@ air, nó is féidir leat é a coinniú do do chuid shiamsa féin.',
 'allmessagesdefault'        => 'Téacs réamhshocraithe',
 'allmessagescurrent'        => 'Téacs reatha',
 'allmessagestext'           => 'Liosta is ea seo de theachtaireachtaí córais atá le fáil san ainmspás MediaWiki: .',
-'allmessagesnotsupportedDB' => "Níl aon tacaíocht anseo do {{ns:special}}:Allmessages dá bharr go bhfuil '''\$wgUseDatabaseMessages''' druidte.",
+'allmessagesnotsupportedDB' => "Níl aon tacaíocht anseo do '''{{ns:special}}:Allmessages''' dá bharr go bhfuil '''\$wgUseDatabaseMessages''' druidte.",
 'allmessagesfilter'         => "Scagaire teachtaireacht d'ainm:",
 
 # Thumbnails

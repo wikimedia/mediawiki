@@ -9,6 +9,8 @@
  * @author Borgx
  * @author Nike
  * @author SPQRobin
+ * @author Meursault2004
+ * @author Siebrand
  */
 
 /**
@@ -595,7 +597,8 @@ $2',
 'namespaceprotected'   => "Anda tak memiliki hak untuk menyunting halaman di ruang nama '''$1'''.",
 'customcssjsprotected' => 'Anda tak memiliki hak menyunting halaman ini karena mengandung pengaturan pribadi pengguna lain.',
 'ns-specialprotected'  => 'Halaman pada ruang nama {{ns:special}} tidak dapat disunting.',
-'titleprotected'       => 'Judul ini dilindungi dari pembuatan oleh [[User:$1|$1]]. Alasan yang diberikan adalah <i>$2</i>.',
+'titleprotected'       => "Judul ini dilindungi dari pembuatan oleh [[User:$1|$1]].
+Alasan yang diberikan adalah ''$2''.",
 
 # Login and logout pages
 'logouttitle'                => 'Keluar log pengguna',
@@ -607,7 +610,7 @@ Akun Anda telah dibuat. Jangan lupa mengatur konfigurasi {{SITENAME}} Anda.',
 'yourname'                   => 'Nama pengguna:',
 'yourpassword'               => 'Kata sandi:',
 'yourpasswordagain'          => 'Ulangi kata sandi:',
-'remembermypassword'         => 'Ingat kata sandi',
+'remembermypassword'         => 'Ingat kata sandi saya di komputer ini',
 'yourdomainname'             => 'Domain Anda:',
 'externaldberror'            => 'Telah terjadi kesalahan otentikasi basis data eksternal atau Anda tidak diizinkan melakukan kemaskini terhadap akun eksternal Anda.',
 'loginproblem'               => '<strong>Ada masalah dengan proses masuk log Anda.</strong><br />Silakan coba lagi!',
@@ -797,7 +800,9 @@ ID pemblokiran Anda adalah $5. Tolong sertakan ID ini dalam setiap pertanyaan An
 'yourtext'                  => 'Teks Anda',
 'storedversion'             => 'Versi tersimpan',
 'nonunicodebrowser'         => '<strong>PERINGATAN: Penjelajah web Anda tidak mendukung Unicode, silakan ganti penjelajah web Anda sebelum menyunting artikel.</strong>',
-'editingold'                => "'''Peringatan:''' Anda menyunting revisi lama suatu halaman. Jika Anda menyimpannya, perubahan-perubahan yang dibuat sejak revisi ini akan hilang.",
+'editingold'                => '<strong>Peringatan:
+Anda menyunting revisi lama suatu halaman.
+Jika Anda menyimpannya, perubahan-perubahan yang dibuat sejak revisi ini akan hilang.</strong>',
 'yourdiff'                  => 'Perbedaan',
 'copyrightwarning'          => 'Perhatikan bahwa semua kontribusi terhadap {{SITENAME}} dianggap dilisensikan sesuai dengan $2 (lihat $1 untuk informasi lebih lanjut). Jika Anda tidak ingin tulisan Anda disunting dan disebarkan ke halaman web yang lain, jangan kirimkan artikel Anda ke sini.<br />Anda juga berjanji bahwa ini adalah hasil karya Anda sendiri, atau disalin dari sumber milik umum atau sumber bebas yang lain. <strong>JANGAN KIRIMKAN KARYA YANG DILINDUNGI HAK CIPTA TANPA IZIN!</strong>',
 'copyrightwarning2'         => 'Perhatikan bahwa semua kontribusi terhadap {{SITENAME}} dapat disunting, diubah, atau dihapus oleh penyumbang lainnya. Jika Anda tidak ingin tulisan Anda disunting orang lain, jangan kirimkan artikel Anda ke sini.<br />Anda juga berjanji bahwa ini adalah hasil karya Anda sendiri, atau disalin dari sumber milik umum atau sumber bebas yang lain (lihat $1 untuk informasi lebih lanjut). <strong>JANGAN KIRIMKAN KARYA YANG DILINDUNGI HAK CIPTA TANPA IZIN!</strong>',
@@ -915,12 +920,12 @@ Pengurus lain akan dapat mengakses isi tersebunyi dan dapat membatalkan penghapu
 'mergehistory-merge'               => 'Revisi-revisi berikut dari [[:$1]] dapat digabungkan ke [[:$2]]. Gunakan tombol radio untuk menggabungkan revisi-revisi yang dibuat sebelum waktu tertentu. Perhatikan, menggunakan pranala navigasi akan mengeset ulang kolom.',
 'mergehistory-go'                  => 'Tampilkan suntingan-suntingan yang dapat digabung',
 'mergehistory-submit'              => 'Gabung revisi',
-'mergehistory-empty'               => 'Tidak ada revisi yang dapat digabung',
+'mergehistory-empty'               => 'Tidak ada revisi yang dapat digabung.',
 'mergehistory-success'             => '$3 {{PLURAL:$1|revisi|revisi}} dari [[:$1]] sukses digabung ke [[:$2]].',
 'mergehistory-fail'                => 'Tidak dapat melakukan penggabungan, harap periksa kembali halaman dan parameter waktu.',
 'mergehistory-no-source'           => 'Halaman sumber $1 tidak ada.',
 'mergehistory-no-destination'      => 'Halaman tujuan $1 tidak ada.',
-'mergehistory-invalid-source'      => 'Judul halaman sumber haruslah judul yang valid.',
+'mergehistory-invalid-source'      => 'Judul halaman sumber haruslah judul yang berlaku.',
 'mergehistory-invalid-destination' => 'Judul halaman tujuan haruslah judul yang valid.',
 
 # Merge log
@@ -1031,10 +1036,10 @@ Pengurus lain akan dapat mengakses isi tersebunyi dan dapat membatalkan penghapu
 'userrights-groupsavailable'       => 'Grup yang dapat diberikan:',
 'userrights-groupshelp'            => 'Pilih kelompok yang Anda ingin hapus dari atau tambahkan pada pengguna. Kelompok yang tak dipilih tak akan diganti. Anda dapat membatalkan pilihan dengan menekan tombol CTRL + Klik kiri',
 'userrights-reason'                => 'Alasan pengubahan:',
-'userrights-available-none'        => 'Anda tak dapat mengganti keangotaan kelompok.',
+'userrights-available-none'        => 'Anda tak dapat mengganti keanggotaan kelompok.',
 'userrights-available-add'         => 'Anda dapat memasukkan pengguna ke {{PLURAL:$2|grup|grup-grup}}: $1.',
 'userrights-available-remove'      => 'Anda dapat mengeluarkan pengguna dari {{PLURAL:$2|grup|grup-grup}}: $1.',
-'userrights-available-add-self'    => 'Anda dapat menambahkan Anda sendiri ke {{PLURAL:$2|grup|grup-group}}: $1.',
+'userrights-available-add-self'    => 'Anda dapat menambahkan Anda sendiri ke {{PLURAL:$2|grup|grup-grup}}: $1.',
 'userrights-available-remove-self' => 'Anda dapat mengeluarkan Anda sendiri dari {{PLURAL:$2|grup|grup-grup}}: $1.',
 'userrights-no-interwiki'          => 'Anda tidak memiliki hak untuk mengubah hak pengguna di wiki yang lain.',
 'userrights-nodatabase'            => 'Basis data $1 tidak ada atau bukan lokal.',
@@ -1374,7 +1379,6 @@ Telah dimuat sejumlah '''$8''' berkas dan sedang terjadi '''$7''' [http://meta.w
 'booksources-text'          => 'Di bawah ini adalah daftar pranala ke situs lain yang menjual buku baru dan bekas, dan mungkin juga mempunyai informasi lebih lanjut mengenai buku yang sedang Anda cari:',
 
 'categoriespagetext' => 'Kategori-kategori berikut ada dalam wiki.',
-'data'               => 'Data',
 'userrights'         => 'Manajemen hak pengguna',
 'groups'             => 'Kelompok pengguna',
 'alphaindexline'     => '$1 ke $2',
@@ -1561,7 +1565,7 @@ Umpan balik dan bantuan lanjutan:
 'protect-level-autoconfirmed' => 'Hanya pengguna terdaftar',
 'protect-level-sysop'         => 'Hanya pengurus',
 'protect-summary-cascade'     => 'runtun',
-'protect-expiring'            => 'kadalawarsa $1 (UTC)',
+'protect-expiring'            => 'kadaluwarsa $1 (UTC)',
 'protect-cascade'             => 'Lindungi semua halaman yang termasuk dalam halaman ini (perlindungan runtun ).',
 'protect-cantedit'            => 'Anda tidak dapat mengubah tingkatan perlindungan halaman ini karena Anda tidak memiliki hak untuk itu.',
 'restriction-type'            => 'Perlindungan:',
@@ -1585,7 +1589,7 @@ Umpan balik dan bantuan lanjutan:
 'undeletepage'                 => 'Pembatalan penghapusan',
 'viewdeletedpage'              => 'Lihat halaman yang telah dihapus',
 'undeletepagetext'             => 'Halaman-halaman berikut ini telah dihapus tapi masih ada di dalam arsip dan dapat dikembalikan. Arsip tersebut mungkin akan dibersihkan secara berkala.',
-'undeleteextrahelp'            => "Untuk mengembalikan keseruhan halaman, biarkan seluruh kotak cek tidak terpilih dan klik '''Kembalikan'''. Untuk melakukan pengembalian selektif, cek kotak revisi yang diinginkan dan klik '''Kembalikan'''. Menekan tombol '''Reset''' akan mengosongkan isian komentar dan semua kotak cek",
+'undeleteextrahelp'            => "Untuk mengembalikan keseluruhan halaman, biarkan seluruh kotak cek tidak terpilih dan klik '''''Kembalikan'''''. Untuk melakukan pengembalian selektif, cek kotak revisi yang diinginkan dan klik '''''Kembalikan'''''. Menekan tombol '''''Reset''''' akan mengosongkan isian komentar dan semua kotak cek.",
 'undeleterevisions'            => '$1 {{PLURAL:$1|revisi|revisi}} diarsipkan',
 'undeletehistory'              => 'Jika Anda mengembalikan halaman tersebut, semua revisi akan dikembalikan ke dalam sejarah. Jika sebuah halaman baru dengan nama yang sama telah dibuat sejak penghapusan, revisi yang telah dikembalikan akan kelihatan dalam sejarah dahulu, dan revisi terkini halaman tersebut tidak akan ditimpa secara otomatis. Ingat pula bahwa pembatasan revisi berkas terhapus sewaktu pemulihan',
 'undeleterevdel'               => 'Pembatalan penghapusan tidak akan dilakukan jika hal tersebut akan mengakibatkan revisi terkini halaman terhapus sebagian. Pada kondisi tersebut, Anda harus menghilangkan cek atau menghilangkan penyembunyian revisi yang dihapus terakhir. Revisi berkas yang tidak dapat Anda lihat tidak akan dipulihkan.',
@@ -1729,7 +1733,7 @@ $1',
 'ipb_cant_unblock'            => 'Kesalahan: Blokir dengan ID $1 tidak ditemukan. Blokir tersebut kemungkinan telah dibuka.',
 'ipb_blocked_as_range'        => 'Kesalahan: IP $1 tidak diblok secara langsung dan tidak dapat dilepaskan. IP $1 diblok sebagai bagian dari pemblokiran kelompok IP $2, yang dapat dilepaskan.',
 'ip_range_invalid'            => 'Blok IP tidak sah.',
-'blockme'                     => 'Blok saya',
+'blockme'                     => 'Blokir saya',
 'proxyblocker'                => 'Pemblokir proxy',
 'proxyblocker-disabled'       => 'Fitur ini sedang tidak diakfifkan.',
 'proxyblockreason'            => 'Alamat IP Anda telah diblokir karena alamat IP Anda adalah proxy terbuka. Silakan hubungi penyedia jasa internet Anda atau dukungan teknis dan beritahukan mereka masalah keamanan serius ini.',
@@ -2171,7 +2175,7 @@ Pranala-pranala selanjutnya pada baris yang sama dianggap sebagai pengecualian, 
 
 'exif-unknowndate' => 'Tanggal tak diketahui',
 
-'exif-orientation-2' => 'Dibalik horizontal', # 0th row: top; 0th column: right
+'exif-orientation-2' => 'Dibalik horisontal', # 0th row: top; 0th column: right
 'exif-orientation-3' => 'Diputar 180°', # 0th row: bottom; 0th column: right
 'exif-orientation-4' => 'Dibalik vertikal', # 0th row: bottom; 0th column: left
 'exif-orientation-5' => 'Diputar 90° CCW dan dibalik vertikal', # 0th row: left; 0th column: top
@@ -2190,8 +2194,8 @@ Pranala-pranala selanjutnya pada baris yang sama dianggap sebagai pengecualian, 
 'exif-exposureprogram-4' => 'Prioritas penutup',
 'exif-exposureprogram-5' => 'Program kreatif (condong ke kedalaman ruang)',
 'exif-exposureprogram-6' => 'Program aksi (condong ke kecepatan rana)',
-'exif-exposureprogram-7' => 'Mode potret (untuk foto closeup dengan latar belakang tak fokus)',
-'exif-exposureprogram-8' => 'Mode pemandangan (untuk foto pemandangan dengan latar belakang fokus)',
+'exif-exposureprogram-7' => 'Modus potret (untuk foto closeup dengan latar belakang tak fokus)',
+'exif-exposureprogram-8' => 'Modus pemandangan (untuk foto pemandangan dengan latar belakang fokus)',
 
 'exif-subjectdistance-value' => '$1 meter',
 

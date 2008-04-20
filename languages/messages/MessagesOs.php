@@ -196,6 +196,7 @@ $3',
 # Miscellaneous special pages
 'nbytes'       => '$1 байт(ы)',
 'nlinks'       => '$1 æрвитæн(ы)',
+'nviews'       => '$1 {{PLURAL:$1|æркаст|æркасты}}',
 'lonelypages'  => 'Сидзæр фæрстæ',
 'wantedpages'  => 'Хъæугæ фæрстæ',
 'allpages'     => 'Æппæт фæрстæ',

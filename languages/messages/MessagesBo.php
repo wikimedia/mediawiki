@@ -3,6 +3,7 @@
  *
  * @addtogroup Language
  *
+ * @author M.M.S.
  */
 
 $digitTransformTable = array(
@@ -18,3 +19,21 @@ $digitTransformTable = array(
 	'9' => '༩', # &#x0f29;
 );
 
+$messages = array(
+'about' => 'ཨཱབོཨུཏ་',
+
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+'aboutsite' => 'ཨཱབོཨུཏ་ {{SITENAME}}',
+'aboutpage' => 'Project:ཨཱབོཨུཏ་',
+
+# Edit pages
+'newarticle' => '(ཎེཝ་)',
+
+# Recent changes
+'minoreditletter' => 'ཨཾི',
+'newpageletter'   => 'ཎེ',
+
+# Tooltip help for the actions
+'tooltip-ca-move' => 'ཨཾོབེ༹་ ཐིས་ པགེ་',
+
+);

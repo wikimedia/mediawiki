@@ -3,6 +3,9 @@
  *
  * @addtogroup Language
  *
+ * @author Malafaya
+ * @author לערי ריינהארט
+ * @author Siebrand
  */
 
 $skinNames = array(
@@ -55,6 +58,13 @@ $messages = array(
 'thursday'  => 'jovedi',
 'friday'    => 'venerdi',
 'saturday'  => 'sabbato',
+'sun'       => 'dom',
+'mon'       => 'lun',
+'tue'       => 'mar',
+'wed'       => 'mer',
+'thu'       => 'jov',
+'fri'       => 'ven',
+'sat'       => 'sab',
 'january'   => 'januario',
 'february'  => 'februario',
 'march'     => 'martio',
@@ -90,6 +100,7 @@ $messages = array(
 'qbmyoptions'   => 'Mi optiones',
 'mypage'        => 'Mi pagina',
 'mytalk'        => 'Mi discussion',
+'and'           => 'e',
 
 'returnto'          => 'Retornar a $1.',
 'help'              => 'Adjuta',
@@ -106,7 +117,9 @@ $messages = array(
 'unprotectthispage' => 'Disproteger iste pagina',
 'newpage'           => 'Nove pagina',
 'talkpage'          => 'Discuter iste pagina',
+'talkpagelinktext'  => 'Discussion',
 'articlepage'       => 'Vider article',
+'talk'              => 'Discussion',
 'userpage'          => 'Vider pagina del usator',
 'projectpage'       => 'Vider metapagina',
 'imagepage'         => 'Vider pagina de imagine',
@@ -114,7 +127,7 @@ $messages = array(
 'otherlanguages'    => 'Altere linguas',
 'redirectedfrom'    => '(Redirigite de $1)',
 'lastmodifiedat'    => 'Ultime modification: $2, $1.', # $1 date, $2 time
-'viewcount'         => 'Iste pagina esseva accessate $1 vices.',
+'viewcount'         => 'Iste pagina esseva accessate {{PLURAL:$1|un vice|$1 vices}}.',
 'protectedpage'     => 'Pagina protegite',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
@@ -125,12 +138,16 @@ $messages = array(
 'copyrightpagename' => '{{SITENAME}} e derectos de autor (copyright)',
 'copyrightpage'     => '{{ns:project}}:Copyright',
 'currentevents'     => 'Actualitates',
+'currentevents-url' => 'Project:Actualitates',
 'edithelp'          => 'Adjuta al edition',
 'edithelppage'      => 'Help:Como_editar_un_pagina',
 'faq'               => 'Questiones frequente',
 'faqpage'           => 'Project:Questiones_frequente',
 'helppage'          => 'Help:Adjuta',
 'mainpage'          => 'Frontispicio',
+'portal'            => 'Portal del communitate',
+'portal-url'        => 'Project:Portal del communitate',
+'sitesupport'       => 'Donationes',
 
 'retrievedfrom'   => 'Recuperate de "$1"',
 'newmessageslink' => 'messages nove',
@@ -224,6 +241,7 @@ Nos consilia que tu initia un session e cambia le contrasigno le plus tosto poss
 'passwordsent'          => 'Un nove contrasigno esseva inviate al adresse de e-mail
 registrate pro "$1".
 Per favor initia un session post reciper lo.',
+'loginlanguagelabel'    => 'Lingua: $1',
 
 # Edit pages
 'summary'          => 'Summario',
@@ -300,7 +318,7 @@ Verifica le URL que tu ha usate pro accessar iste pagina.',
 'prevn'                 => '$1 precedentes',
 'nextn'                 => '$1 sequentes',
 'viewprevnext'          => 'Vider ($1) ($2) ($3).',
-'showingresults'        => 'Monstra de <b>$1</b> resultatos a partir de nº <b>$2</b>.',
+'showingresults'        => "Monstra de {{PLURAL:$1|'''1''' resultato|'''$1''' resultatos}} a partir de nº '''$2'''.",
 'nonefound'             => '<strong>Nota</strong>: recercas frustrate frequentemente
 es causate per le inclusion de vocabulos commun como "que" e "illo",
 que non es includite in le indice, o per le specification de plure
@@ -314,6 +332,7 @@ $2 Listar redireciones &nbsp; Recercar pro $3 $9',
 
 # Preferences page
 'preferences'              => 'Preferentias',
+'mypreferences'            => 'Mi preferentias',
 'prefsnologin'             => 'Session non aperte',
 'prefsnologintext'         => 'Tu debe [[Special:Userlogin|aperir un session]]
 pro definir tu preferentias.',
@@ -354,10 +373,10 @@ e illo del servitor (UTC).',
 # Recent changes
 'recentchanges'     => 'Modificationes recente',
 'recentchangestext' => 'Seque le plus recente modificationes a {{SITENAME}} in iste pagina.',
-'rcnote'            => 'Infra es le <strong>$1</strong> ultime modificationes in le <strong>$2</strong> ultime dies.',
+'rcnote'            => "Infra es le {{PLURAL:$1|ultime modification|'''$1''' ultime modificationes}} in le {{PLURAL:$2|ultime die|'''$2''' ultime dies}}, in $3.",
 'rcnotefrom'        => 'infra es le modificationes a partir de <b>$2</b> (usque a <b>$1</b>).',
 'rclistfrom'        => 'Monstrar nove modificationes a partir de $1',
-'rclinks'           => 'Monstrar le $1 ultime modificationes in le $2 ultime days.',
+'rclinks'           => 'Monstrar le $1 ultime modificationes in le $2 ultime dies<br />$3',
 'hist'              => 'prec',
 'hide'              => 'occultar',
 'show'              => 'monstrar',
@@ -425,7 +444,7 @@ Tote le tempores monstrate es in le fuso horari del servitor (UCT).',
 
 # Image list
 'imagelist'      => 'Lista de imagines',
-'imagelisttext'  => 'Infra es un lista de $1 imagines ordinate $2.',
+'imagelisttext'  => "Infra es un lista de '''$1''' {{PLURAL:$1|imagine|imagines}} ordinate $2.",
 'getimagelist'   => 'recuperation del lista de imagines',
 'ilsubmit'       => 'Recercar',
 'showlast'       => 'Monstrar le ultime $1 imagines ordinate $2.',
@@ -444,16 +463,16 @@ Tote le tempores monstrate es in le fuso horari del servitor (UCT).',
 'statistics'    => 'Statisticas',
 'sitestats'     => 'Statisticas de accesso',
 'userstats'     => 'Statisticas de usator',
-'sitestatstext' => 'Le base de datos contine un total de <b>$1</b> paginas.
-Iste numero include paginas de "discussion", paginas super {{SITENAME}}, paginas de "residuo"
+'sitestatstext' => "Le base de datos contine un total de {{PLURAL:\$1|'''1''' pagina|'''\$1''' paginas}}.
+Iste numero include paginas de \"discussion\", paginas super {{SITENAME}}, paginas de \"residuo\"
 minime, paginas de redirection, e alteres que probabilemente non se qualifica como articulos.
-A parte de istes, il ha <b>$2</b> paginas que probabilemente es
-articulos legitime.<p>
-Il habeva un total de <b>$3</b> visitas a paginas, e <b>$4</b> modificationes de paginas
-desde le actualisation del systema (20 de julio 2002).
-Isto representa un media de <b>$5</b> modificationes per pagina, e <b>$6</b> visitas per modification.',
-'userstatstext' => 'Il ha <b>$1</b> usatores registrate,
-del quales <b>$2</b> es administratores (vide $3).',
+A parte de istes, il ha {{PLURAL:\$2|'''1''' pagina|'''\$2''' paginas}} que probabilemente es
+articulos legitime.
+
+Il habeva un total de '''\$3''' {{PLURAL:\$3|visita a paginas|visitas a paginas}}, e '''\$4''' {{PLURAL:\$4|modification|modificationes}} de paginas
+desde le actualisation de {{SITENAME}}.
+Isto representa un media de '''\$5''' modificationes per pagina, e '''\$6''' visitas per modification.",
+'userstatstext' => "Il ha {{PLURAL:$1|'''1''' [[{{ns:Special}}:Listusers|usator]]|'''$1''' [[{{ns:Special}}:Listusers|usatores]]}} registrate, del quales '''$2''' (o '''$4%''') ha derectos de $5.",
 
 'disambiguations'     => 'Paginas de disambiguation',
 'disambiguationspage' => '{{ns:project}}:Ligamines_a_paginas_de_disambiguation',
@@ -469,27 +488,29 @@ al qual le prime redirection deberea referer se.',
 'brokenredirectstext' => 'Le redirectiones sequente se liga a articulos inexistente.',
 
 # Miscellaneous special pages
-'nbytes'           => '$1 bytes',
-'nlinks'           => '$1 ligamines',
-'nviews'           => '$1 visitas',
-'lonelypages'      => 'Paginas orphanas',
-'unusedimages'     => 'Imagines non usate',
-'popularpages'     => 'Paginas popular',
-'wantedpages'      => 'Paginas plus demandate',
-'allpages'         => 'Tote le paginas',
-'shortpages'       => 'Paginas curte',
-'longpages'        => 'Paginas longe',
-'listusers'        => 'Lista de usatores',
-'specialpages'     => 'Paginas special',
-'spheading'        => 'Paginas special',
-'newpages'         => 'Nove paginas',
-'movethispage'     => 'Mover iste pagina',
-'unusedimagestext' => '<p>Nota que altere sitos del web
+'nbytes'                 => '$1 {{PLURAL:$1|byte|bytes}}',
+'nlinks'                 => '$1 {{PLURAL:$1|ligamine|ligamines}}',
+'nviews'                 => '$1 {{PLURAL:$1|visita|visitas}}',
+'lonelypages'            => 'Paginas orphanas',
+'uncategorizedpages'     => 'Paginas non classificate',
+'uncategorizedtemplates' => 'Patronos non classificate',
+'unusedimages'           => 'Imagines non usate',
+'popularpages'           => 'Paginas popular',
+'wantedpages'            => 'Paginas plus demandate',
+'allpages'               => 'Tote le paginas',
+'shortpages'             => 'Paginas curte',
+'longpages'              => 'Paginas longe',
+'listusers'              => 'Lista de usatores',
+'specialpages'           => 'Paginas special',
+'spheading'              => 'Paginas special',
+'newpages'               => 'Nove paginas',
+'movethispage'           => 'Mover iste pagina',
+'unusedimagestext'       => '<p>Nota que altere sitos del web
 tal como le {{SITENAME}}s international pote ligar se a un imagine
 con un URL directe, e consequentemente illos pote esser listate
 hic malgrado esser in uso active.',
-'notargettitle'    => 'Sin scopo',
-'notargettext'     => 'Tu non ha specificate un pagina o usator super le qual
+'notargettitle'          => 'Sin scopo',
+'notargettext'           => 'Tu non ha specificate un pagina o usator super le qual
 executar iste function.',
 
 # Book sources
@@ -563,13 +584,17 @@ Tote le horas es in le fuso horari del servitor (UTC).',
 'undeletepage'      => 'Vider e restaurar paginas eliminate',
 'undeletepagetext'  => 'Le paginas sequente ha essite eliminate mais ancora es in le archivo e
 pote esser restaurate. Le archivo pote esser evacuate periodicamente.',
-'undeleterevisions' => '$1 revisiones archivate',
+'undeleterevisions' => '$1 {{PLURAL:$1|revision|revisiones}} archivate',
 'undeletehistory'   => 'Si tu restaura un pagina, tote le revisiones essera restaurate al chronologia.
 Si un nove pagina con le mesme nomine ha essite create post le elimination, le revisiones
 restaurate apparera in le chronologia anterior, e le revision currente del pagina in vigor
 non essera automaticamente substituite.',
 'undeletebtn'       => 'Restautar!',
 'undeletedarticle'  => '"$1" restaurate',
+
+# Namespace form on various pages
+'namespace'      => 'Spatio de nomine:',
+'blanknamespace' => '(Principal)',
 
 # Contributions
 'contributions' => 'Contributiones de usator',
@@ -583,8 +608,8 @@ non essera automaticamente substituite.',
 # What links here
 'whatlinkshere' => 'Referentias a iste pagina',
 'linklistsub'   => '(Lista de ligamines)',
-'linkshere'     => 'Le paginas sequente se liga a iste pagina:',
-'nolinkshere'   => 'Necun pagina se liga a iste.',
+'linkshere'     => "Le paginas sequente se liga a '''[[:$1]]''':",
+'nolinkshere'   => "Necun pagina se liga a '''[[:$1]]'''.",
 'isredirect'    => 'pagina de redirection',
 
 # Block/unblock
@@ -604,7 +629,7 @@ specific que ha essite vandalisate).',
 <br />Vide [[Special:Ipblocklist|Lista de IPs blocate]] pro revider le blocages.',
 'unblockip'          => 'Disblocar adresse IP',
 'unblockiptext'      => 'Usa le formulario infra pro restaurar le accesso de scriptura
-a un adresse de IP blocate previemente.',
+a un adresse IP blocate previemente.',
 'ipusubmit'          => 'Disbloca iste adresse',
 'ipblocklist'        => 'Lista de adresses IP blocate',
 'blocklistline'      => '$1, $2 ha blockate $3 ($4)',
@@ -677,9 +702,23 @@ nove titulo. Per favor fusiona los manualmente.',
 'movetalk'         => 'Mover le pagina de "discussion" tamben, si applicabile.',
 'talkpagemoved'    => 'Le pagina de discussion correspondente tamben ha essite movite.',
 'talkpagenotmoved' => 'Le pagina de discussion correspondente <strong>non</strong> ha essite movite.',
+'1movedto2'        => '[[$1]] movite a [[$2]]',
+'1movedto2_redir'  => '[[$1]] movite a [[$2]] trans redirection',
 
 # Namespace 8 related
-'allmessages' => 'Tote le messages del systema',
+'allmessages'     => 'Messages del systema',
+'allmessagesname' => 'Nomine',
+
+# Tooltip help for the actions
+'tooltip-pt-preferences' => 'Mi preferentias',
+'tooltip-search'         => 'Recercar {{SITENAME}}',
+'tooltip-p-logo'         => 'Frontispicio',
+'tooltip-n-mainpage'     => 'Visitar le Frontispicio',
+'tooltip-n-portal'       => 'A proposito del projecto, que vos pote facer, ubi trovar cosas',
+'tooltip-n-sitesupport'  => 'Sustene nos',
+'tooltip-save'           => 'Salvar tu modificationes',
+'tooltip-preview'        => 'Previsualisar tu cambios, per favor usa isto ante salvar!',
+'tooltip-watch'          => 'Adder iste pagina a tu lista de paginas sub observation',
 
 # Math options
 'mw_math_png'    => 'Sempre produce PNG',

@@ -8,6 +8,7 @@
  * @author Siebrand
  * @author לערי ריינהארט
  * @author SPQRobin
+ * @author Jon Harald Søby
  */
 
 $fallback = 'fr';
@@ -404,7 +405,8 @@ $2',
 'namespaceprotected'   => "Vos avéd pas la pèrmission de modifiar les pâges de l’èspâço de nom '''« $1 »'''.",
 'customcssjsprotected' => 'Vos avéd pas la pèrmission d’èditar ceta pâge perce que contint des prèferences d’ôtros utilisators.',
 'ns-specialprotected'  => 'Les pâges dens l’èspâço de nom « {{ns:special}} » pôvont pas étre modifiâs.',
-'titleprotected'       => 'Cél titro at étâ protègiê a la crèacion per [[User:$1|$1]]. La rêson avanciê est <i>« $2 »</i>.',
+'titleprotected'       => "Cél titro at étâ protègiê a la crèacion per [[User:$1|$1]].
+La rêson avanciê est « ''$2'' ».",
 
 # Login and logout pages
 'logouttitle'                => 'Dèconèccion',
@@ -606,7 +608,11 @@ Voutra adrèce IP est $3 et voutron identifiant de blocâjo est #$5. Volyéd los
 'editingsection'            => 'Modificacion de $1 (sèccion)',
 'editingcomment'            => 'Modificacion de $1 (comentèro)',
 'editconflict'              => 'Conflit de modificacion : $1',
-'explainconflict'           => '<b>Ceta pâge at étâ sôvâ aprés que vos èyâd comenciê a la modifiar. La zona d’èdicion de d’amont contint lo tèxte tâl qu’il est enregistrâ ora dens la bâsa de balyês. Voutres modificacions aparèssont dens la zona d’èdicion de desot. Vos voléd devêr aduire voutres modificacions u tèxte ègzistent. Solèt lo tèxte de la zona de d’amont serat sôvâ.</b><br />',
+'explainconflict'           => "Ceta pâge at étâ sôvâ aprés que vos èyâd comenciê a la modifiar.
+La zona d’èdicion de d’amont contint lo tèxte tâl qu’il est enregistrâ ora dens la bâsa de balyês.
+Voutres modificacions aparèssont dens la zona d’èdicion de desot.
+Vos voléd devêr aduire voutres modificacions u tèxte ègzistent.
+'''Solèt''' lo tèxte de la zona de d’amont serat sôvâ.",
 'yourtext'                  => 'Voutron tèxte',
 'storedversion'             => 'Vèrsion enregistrâ',
 'nonunicodebrowser'         => '<strong>ATENCION : voutron navigator supôrte pas l’unicode. Una solucion temporèra at étâ trovâ por vos pèrmetre de modifiar en tota suretât un articllo : los caractèros nan-ASCII aparètront dens voutra bouèta d’èdicion a titro de codes hèxadècimâls. Vos devriâd utilisar un navigator ples novél.</strong>',
@@ -652,7 +658,7 @@ Demandâd-vos s’o est verément convegnâblo de la recrèar en vos refèrent u
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Vos pouede pas crèar un compto.',
-'cantcreateaccount-text' => "La crèacion de compto dês ceta adrèce IP (<b>$1</b>) at étâ blocâ per [[User:$3|$3]].
+'cantcreateaccount-text' => "La crèacion de compto dês ceta adrèce IP ('''$1''') at étâ blocâ per [[User:$3|$3]].
 
 La rêson balyê per $3 ére ''$2''.",
 
@@ -660,7 +666,7 @@ La rêson balyê per $3 ére ''$2''.",
 'viewpagelogs'        => 'Vêde lo jornal de ceta pâge',
 'nohistory'           => 'Ègziste pas d’historico por ceta pâge.',
 'revnotfound'         => 'Vèrsion entrovâbla',
-'revnotfoundtext'     => 'La vèrsion prècèdenta de cela pâge at pas possu étre retrovâ. 
+'revnotfoundtext'     => 'La vèrsion prècèdenta de cela pâge at pas possu étre retrovâ.
 Volyéd controlar l’URL que vos éd utilisâ por arrevar a ceta pâge.',
 'loadhist'            => 'Chargement de l’historico de la pâge',
 'currentrev'          => 'Vèrsion d’ora',
@@ -672,7 +678,6 @@ Volyéd controlar l’URL que vos éd utilisâ por arrevar a ceta pâge.',
 'cur'                 => 'ora',
 'next'                => 'siuv',
 'last'                => 'dif',
-'orig'                => 'orig',
 'page_first'          => 'prem',
 'page_last'           => 'dèrr',
 'histlegend'          => 'Lègenda : (ora) = difèrence avouéc la vèrsion d’ora,
@@ -715,7 +720,7 @@ mas lor contegnu tèxtuèl serat pas accèssiblo u publico.
 
 D’ôtros administrators de {{SITENAME}} porront tojorn arrevar u contegnu cachiê et lo tornar rèstorar
 a travèrs de cela méma entèrface, a muens qu’una rèstriccion suplèmentèra seye betâ en place per los opèrators du seto.',
-'revdelete-legend'            => 'Betar en place des rèstriccions de vèrsion :',
+'revdelete-legend'            => 'Betar en place des rèstriccions de vèrsion',
 'revdelete-hide-text'         => 'Mâscar lo tèxte de la vèrsion',
 'revdelete-hide-name'         => 'Mâscar l’accion et la ciba',
 'revdelete-hide-comment'      => 'Mâscar lo comentèro de modificacion',
@@ -730,8 +735,8 @@ a travèrs de cela méma entèrface, a muens qu’una rèstriccion suplèmentèr
 'logdelete-logentry'          => 'La visibilitât de l’èvènement at étâ modifiâ por [[$1]]',
 'revdelete-logaction'         => '$1 {{PLURAL:$1|vèrsion changiê|vèrsions changiês}} en môdo $2',
 'logdelete-logaction'         => '$1 {{PLURAL:$1|èvènement de [[$3]] changiê|èvènements de [[$3]] changiês}} en môdo $2',
-'revdelete-success'           => 'Visibilitât de les vèrsions changiê avouéc reusséta.',
-'logdelete-success'           => 'Visibilitât des èvènements changiê avouéc reusséta.',
+'revdelete-success'           => "'''Visibilitât de les vèrsions changiê avouéc reusséta.'''",
+'logdelete-success'           => "'''Visibilitât des èvènements changiê avouéc reusséta.'''",
 
 # Oversight log
 'oversightlog'    => 'Jornal de survelyence',
@@ -751,7 +756,7 @@ Assurâd-vos que cél changement pouesse consèrvar la continuitât de l’histo
 'mergehistory-merge'               => 'Les vèrsions siuventes de [[:$1]] pôvont étre fusionâs avouéc [[:$2]]. Utilisâd lo boton de chouèx de la colona por fusionar ren que les vèrsions crèâs du comencement tant qu’a la dâta endicâ. Notâd bien que l’usâjo des lims de navigacion tornerat inicialisar la colona.',
 'mergehistory-go'                  => 'Vêre les èdicions fusionâbles',
 'mergehistory-submit'              => 'Fusionar les vèrsions',
-'mergehistory-empty'               => 'Niona vèrsion pôt étre fusionâ',
+'mergehistory-empty'               => 'Niona vèrsion pôt étre fusionâ.',
 'mergehistory-success'             => '$3 {{PLURAL:$3|vèrsion|vèrsions}} de [[:$1]] {{PLURAL:$3|fusionâ|fusionâs}} avouéc reusséta avouéc [[:$2]].',
 'mergehistory-fail'                => 'Empossiblo de fâre la fusion des historicos. Tornâd sèlèccionar la pâge et pués los paramètres de dâta.',
 'mergehistory-no-source'           => 'La pâge d’origina $1 ègziste pas.',
@@ -793,7 +798,7 @@ Assurâd-vos que cél changement pouesse consèrvar la continuitât de l’histo
 'nonefound'             => '<strong>Nota :</strong> l’absence de rèsultat est sovent diua a l’usâjo de tèrmos de rechèrche trop corents,
 coment « a » ou « de », que sont pas endèxâs, ou ben a l’usâjo de plusiors tèrmos de rechèrche
 (solètes les pâges contegnent tôs los tèrmos aparèssont dens los rèsultats).',
-'powersearch'           => 'Rechèrchiér',
+'powersearch'           => 'Rechèrche avanciê',
 'powersearchtext'       => 'Rechèrchiér dens los èspâços de nom :<br />
 $1<br />
 $2 Encllure les pâges de redirèccion<br /> Rechèrchiér $3 $9',
@@ -913,7 +918,7 @@ Les tropes pas sèlèccionâs seront pas modifiâs. Vos pouede dèsèlèccionar 
 'recentchangestext'                 => 'Siude sur ceta pâge los dèrriérs changements de {{SITENAME}}.',
 'recentchanges-feed-description'    => 'Siude los dèrriérs changements de ceti vouiqui dens un flux.',
 'rcnote'                            => 'Vê-que {{PLURAL:$1|la dèrriére modificacion|les <b>$1</b> dèrriéres modificacions}} dês {{PLURAL:$2|lo jorn passâ|los <b>$2</b> jorns passâs}}, dètèrmenâ{{PLURAL:$1||s}} ceti $3.',
-'rcnotefrom'                        => 'Vê-que les modificacions fêtes dês lo <strong>$2</strong> (<b>$1</b> u fin ples).',
+'rcnotefrom'                        => "Vê-que les modificacions fêtes dês lo '''$2''' ('''$1''' u fin ples).",
 'rclistfrom'                        => 'Afichiér les novèles modificacions dês lo $1.',
 'rcshowhideminor'                   => '$1 les modificacions minores',
 'rcshowhidebots'                    => '$1 los bots',
@@ -936,7 +941,7 @@ Les tropes pas sèlèccionâs seront pas modifiâs. Vos pouede dèsèlèccionar 
 
 # Recent changes linked
 'recentchangeslinked'          => 'Siuvu des lims',
-'recentchangeslinked-title'    => 'Siuvu des lims liyês a $1',
+'recentchangeslinked-title'    => 'Siuvu des lims liyês a "$1"',
 'recentchangeslinked-noresult' => 'Nion changement sur les pâges liyês pendent la pèrioda chouèsia/cièrdua.',
 'recentchangeslinked-summary'  => "Ceta pâge spèciâla montre los dèrriérs changements sur les pâges que sont liyês. Les pâges de voutra lista de siuvu sont '''en grâs'''.",
 
@@ -965,10 +970,10 @@ ou ben por liyér tot drêt vers lo fichiér :
 'filename'                    => 'Nom du fichiér',
 'filedesc'                    => 'Dèscripcion',
 'fileuploadsummary'           => 'Dèscripcion, sôrsa (ôtor, seto Malyâjo...) :',
-'filestatus'                  => 'Statut du drêt d’ôtor',
-'filesource'                  => 'Sôrsa',
+'filestatus'                  => 'Statut du drêt d’ôtor&nbsp;:',
+'filesource'                  => 'Sôrsa&nbsp;:',
 'uploadedfiles'               => 'Fichiérs copiyês',
-'ignorewarning'               => 'Ignorar l’avèrtissement et sôvar lo fichiér.',
+'ignorewarning'               => 'Ignorar l’avèrtissement et sôvar lo fichiér',
 'ignorewarnings'              => 'Ignorar los avèrtissements pendent l’impôrt',
 'minlength1'                  => 'Los noms de fichiér dêvont comprendre u muens yona lètra.',
 'illegalfilename'             => 'Lo nom de fichiér « $1 » contint des caractèros dèfendus dens los titros de pâges. Marci de lo renomar et de lo relevar.',
@@ -1004,8 +1009,8 @@ Se vos disposâd du fichiér en rèsolucion hôta, importâd-lo, ôtrament voly�
 'uploadcorrupt'               => 'Ceti fichiér est corrompu, il at una talye nula ou ben una èxtension envalida.
 Volyéd controlar lo fichiér.',
 'uploadvirus'                 => 'Ceti fichiér contint un virus ! Por més de dètalys, consultâd : $1',
-'sourcefilename'              => 'Nom du fichiér a emmandar ',
-'destfilename'                => 'Nom desot loquint lo fichiér serat enregistrâ ',
+'sourcefilename'              => 'Nom du fichiér a importar&nbsp;:',
+'destfilename'                => 'Nom desot loquint lo fichiér serat enregistrâ&nbsp;:',
 'watchthisupload'             => 'Siuvre ceti fichiér',
 'filewasdeleted'              => 'Un fichiér avouéc ceti nom at ja étâ copiyê, et pués suprimâ. Vos devriâd controlar lo $1 devant que fâre una novèla copia.',
 'upload-wasdeleted'           => "'''Atencion : vos éte aprés importar un fichiér qu’at ja étâ suprimâ dês devant.'''
@@ -1040,7 +1045,7 @@ PICT # de totes sôrtes
 'upload-curl-error28'      => 'Dèpassement du dèlê pendent l’impôrt',
 'upload-curl-error28-text' => 'Lo seto at betâ trop grant-temps a rèpondre. Controlâd que lo seto est en legne, atendéd un pou et pués tornâd èprovar. Vos pouede asse-ben tornar èprovar a una hora de muendra afluence.',
 
-'license'            => 'Licence ',
+'license'            => 'Licence&nbsp;:',
 'nolicense'          => 'Niona licence sèlèccionâ',
 'license-nopreview'  => '(Prèvisualisacion empossibla)',
 'upload_source_url'  => ' (una URL valida et accèssibla publicament)',
@@ -1223,7 +1228,7 @@ Cen reprèsente una moyena de {{PLURAL:$5|'''1''' modificacion|'''$5''' modifica
 'intl'                    => 'Lims entèrlengoues',
 'move'                    => 'Renomar',
 'movethispage'            => 'Renomar la pâge',
-'unusedimagestext'        => '<p>Oubliâd pas que d’ôtros setos pôvont contegnir un lim drêt vers cela émâge, et que ceta pôt étre placiê dens ceta lista pendent qu’el est en rèalitât utilisâ.</p>',
+'unusedimagestext'        => 'Oubliâd pas que d’ôtros setos pôvont contegnir un lim drêt vers cela émâge, et que ceta pôt étre placiê dens ceta lista pendent qu’el est en rèalitât utilisâ.',
 'unusedcategoriestext'    => 'Les catègories siuventes ègzistont mas nion articllo ou ben niona catègorie les utilise.',
 'notargettitle'           => 'Pas de ciba',
 'notargettext'            => 'Endicâd una pâge ciba ou ben un utilisator ciba.',
@@ -1237,7 +1242,7 @@ Cen reprèsente una moyena de {{PLURAL:$5|'''1''' modificacion|'''$5''' modifica
 'booksources-go'            => 'Validar',
 'booksources-text'          => 'Vê-que una lista de lims vers d’ôtros setos que vendont des lévros nôfs et d’ocasion et sur losquints vos troveréd pôt-étre des enformacions sur les ôvres que vos chèrchiéd. {{SITENAME}} étent pas liyê a gins de celes sociètâts, el at pas du tot l’entencion de nen fâre la recllâma.',
 
-'categoriespagetext' => 'Les catègories siuventes ègzistont dens lo vouiqui.',
+'categoriespagetext' => 'Les catègories siuventes contegnont des pâges ou des fichiérs multimèdia.',
 'data'               => 'Balyês',
 'userrights'         => 'Maneyance des drêts d’utilisator',
 'groups'             => 'Tropes d’utilisators',
@@ -1450,7 +1455,7 @@ Vê-que los règllâjos d’ora de la pâge <strong>$1</strong> :',
 'restriction-type'            => 'Pèrmission :',
 'restriction-level'           => 'Nivô de rèstriccion :',
 'minimum-size'                => 'Talye la ples petiôta',
-'maximum-size'                => 'Talye la ples granta',
+'maximum-size'                => 'Talye la ples granta:',
 'pagesize'                    => '(octèts)',
 
 # Restrictions (nouns)
@@ -1574,7 +1579,7 @@ Balyéd ce-desot una rêson cllâra (per ègzemplo en endiquent les pâges qu’
 'ipboptions'                  => '2 hores:2 hours,1 jorn:1 day,3 jorns:3 days,1 semana:1 week,2 semanes:2 weeks,1 mês:1 month,3 mês:3 months,6 mês:6 months,1 an:1 year,sen fin:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'              => 'ôtra',
 'ipbotherreason'              => 'Rêson difèrenta ou suplèmentèra :',
-'ipbhidename'                 => 'Mâscar lo nom d’utilisator ou l’IP de l’historico des blocâjos, de la lista des blocâjos actifs et de la lista des utilisators',
+'ipbhidename'                 => 'Mâscar lo nom d’utilisator de l’historico des blocâjos, de la lista des blocâjos actifs et de la lista des utilisators',
 'badipaddress'                => 'L’adrèce IP est fôssa.',
 'blockipsuccesssub'           => 'Blocâjo reussi',
 'blockipsuccesstext'          => '[[Special:Contributions/$1|$1]] at étâ blocâ.
@@ -1654,19 +1659,16 @@ Volyéd confirmar qu’o est franc cen que vos voléd fâre.',
 
 # Move page
 'movepage'                => 'Renomar una pâge',
-'movepagetext'            => "Utilisâd lo formulèro ce-desot por renomar una pâge, en dèplacient
-tot son historico vers lo novél nom.
+'movepagetext'            => "Utilisâd lo formulèro ce-desot por renomar una pâge, en dèplacient tot son historico vers lo novél nom.
 Lo viely titro vindrat una pâge de redirèccion vers lo novél titro.
-Los lims vers lo titro de la vielye pâge seront pas changiês ; volyéd controlar que
-cél dèplacement at pas crèâ una redirèccion dobla ou câssa.
+Los lims vers lo titro de la vielye pâge seront pas changiês ;
+volyéd controlar que cél dèplacement at pas crèâ una redirèccion dobla ou câssa.
 Vos dête vos assurar que los lims continuont de pouentar vers lor dèstinacion suposâ.
 
-Una pâge serat '''pas''' dèplaciê s’y at ja una pâge avouéc lo novél titro,
-a muens que la pâge seye voueda, ou ben una redirèccion, et qu’el èye pas d’historico.
-Cen vôt dére que vos pouede renomar una pâge vers sa posicion d’origina
-se vos éd fêt una èrror, et que vos pouede pas èfaciér una pâge ja ègzistenta per cela mètoda.
+Una pâge serat '''pas''' dèplaciê s’y at ja una pâge avouéc lo novél titro, a muens que la pâge seye voueda, ou ben una redirèccion, et qu’el èye pas d’historico.
+Cen vôt dére que vos pouede renomar una pâge vers sa posicion d’origina se vos éd fêt una èrror, et que vos pouede pas èfaciér una pâge ja ègzistenta per cela mètoda.
 
-<b>ATENCION !</b>
+'''ATENCION !'''
 Pôt s’ag·ir d’un changement radicâl et emprèvu por un articllo sovent consultâ ;
 volyéd vos assurar que vos en compregnéd bien les consèquences devant que procèdar.",
 'movepagetalktext'        => 'La pâge de discussion associyê, se presente, serat ôtomaticament renomâ avouéc, <b>a muens que :</b>
@@ -1718,7 +1720,7 @@ Por èxportar des pâges, entrâd lors titros dens la bouèta de tèxte ce-desot
 
 Dens cél dèrriér câs, vos pouede asse-ben utilisar un lim, coment [[Special:Export/{{MediaWiki:Mainpage}}]] por la pâge {{MediaWiki:Mainpage}}.',
 'exportcuronly'     => 'Èxportar ren que la vèrsion corenta sen l’historico complèt',
-'exportnohistory'   => "---- 
+'exportnohistory'   => "----
 '''Nota :''' l’èxportacion complèta de l’historico de les pâges avouéc ceti formulèro at étâ dèsactivâ por des rêsons de pèrformences.",
 'export-submit'     => 'Èxportar',
 'export-addcattext' => 'Apondre les pâges de la catègorie :',
@@ -1731,7 +1733,8 @@ Dens cél dèrriér câs, vos pouede asse-ben utilisar un lim, coment [[Special:
 'allmessagesname'           => 'Nom du champ',
 'allmessagesdefault'        => 'Mèssâjo per dèfôt',
 'allmessagescurrent'        => 'Mèssâjo d’ora',
-'allmessagestext'           => 'Cen est la lista de tôs los mèssâjos sistèmo disponiblos dens l’èspâço MediaWiki.',
+'allmessagestext'           => 'Cen est la lista de tôs los mèssâjos sistèmo disponiblos dens l’èspâço MediaWiki.
+Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] and [http://translatewiki.net Betawiki] if you wish to contribute to the generic MediaWiki localisation.',
 'allmessagesnotsupportedDB' => "'''{{ns:special}}:Allmessages''' est pas disponiblo perce que '''\$wgUseDatabaseMessages''' est dèsactivâ.",
 'allmessagesfilter'         => 'Filtro d’èxprèssion racionèla :',
 'allmessagesmodified'       => 'Afichiér ren que les modificacions',

@@ -8,6 +8,7 @@
  * @author Aviator
  * @author Aurora
  * @author לערי ריינהארט
+ * @author Siebrand
  */
 
 # Uncomment line below to use space charecter as thousands separator
@@ -184,46 +185,59 @@ $messages = array(
 'skinpreview' => '(Pratonton)',
 
 # Dates
-'sunday'       => 'Ahad',
-'monday'       => 'Isnin',
-'tuesday'      => 'Selasa',
-'wednesday'    => 'Rabu',
-'thursday'     => 'Khamis',
-'friday'       => 'Jumaat',
-'saturday'     => 'Sabtu',
-'sun'          => 'Aha',
-'mon'          => 'Isn',
-'tue'          => 'Sel',
-'wed'          => 'Rab',
-'thu'          => 'Kha',
-'fri'          => 'Jum',
-'sat'          => 'Sab',
-'january'      => 'Januari',
-'february'     => 'Februari',
-'march'        => 'Mac',
-'may_long'     => 'Mei',
-'june'         => 'Jun',
-'july'         => 'Julai',
-'august'       => 'Ogos',
-'october'      => 'Oktober',
-'december'     => 'Disember',
-'january-gen'  => 'Januari',
-'february-gen' => 'Februari',
-'march-gen'    => 'Mac',
-'may-gen'      => 'Mei',
-'june-gen'     => 'Jun',
-'july-gen'     => 'Julai',
-'august-gen'   => 'Ogos',
-'october-gen'  => 'Oktober',
-'december-gen' => 'Disember',
-'mar'          => 'Mac',
-'may'          => 'Mei',
-'aug'          => 'Ogo',
-'oct'          => 'Okt',
-'dec'          => 'Dis',
+'sunday'        => 'Ahad',
+'monday'        => 'Isnin',
+'tuesday'       => 'Selasa',
+'wednesday'     => 'Rabu',
+'thursday'      => 'Khamis',
+'friday'        => 'Jumaat',
+'saturday'      => 'Sabtu',
+'sun'           => 'Aha',
+'mon'           => 'Isn',
+'tue'           => 'Sel',
+'wed'           => 'Rab',
+'thu'           => 'Kha',
+'fri'           => 'Jum',
+'sat'           => 'Sab',
+'january'       => 'Januari',
+'february'      => 'Februari',
+'march'         => 'Mac',
+'april'         => 'April',
+'may_long'      => 'Mei',
+'june'          => 'Jun',
+'july'          => 'Julai',
+'august'        => 'Ogos',
+'september'     => 'September',
+'october'       => 'Oktober',
+'november'      => 'November',
+'december'      => 'Disember',
+'january-gen'   => 'Januari',
+'february-gen'  => 'Februari',
+'march-gen'     => 'Mac',
+'april-gen'     => 'April',
+'may-gen'       => 'Mei',
+'june-gen'      => 'Jun',
+'july-gen'      => 'Julai',
+'august-gen'    => 'Ogos',
+'september-gen' => 'September',
+'october-gen'   => 'Oktober',
+'november-gen'  => 'November',
+'december-gen'  => 'Disember',
+'jan'           => 'Jan',
+'feb'           => 'Feb',
+'mar'           => 'Mac',
+'apr'           => 'Apr',
+'may'           => 'Mei',
+'jun'           => 'Jun',
+'jul'           => 'Jul',
+'aug'           => 'Ogo',
+'sep'           => 'Sep',
+'oct'           => 'Okt',
+'nov'           => 'Nov',
+'dec'           => 'Dis',
 
 # Bits of text used by many pages
-'categories'            => '{{PLURAL:$1|Kategori|Kategori}}',
+'categories'            => 'Kategori',
 'pagecategories'        => 'Kategori',
 'category_header'       => 'Laman-laman dalam kategori "$1"',
 'subcategories'         => 'Subkategori',
@@ -256,6 +270,9 @@ $messages = array(
 'anontalk'       => 'Perbincangan bagi IP ini',
 'navigation'     => 'Navigasi',
 'and'            => 'dan',
+
+# Metadata in edit box
+'metadata_help' => 'Metadata:',
 
 'errorpagetitle'    => 'Ralat',
 'returnto'          => 'Kembali ke $1.',
@@ -295,7 +312,7 @@ $messages = array(
 'userpage'          => 'Lihat laman pengguna',
 'projectpage'       => 'Lihat laman projek',
 'imagepage'         => 'Lihat laman imej',
-'mediawikipage'     => 'Lihat laman mesej',
+'mediawikipage'     => 'Lihat laman pesanan',
 'templatepage'      => 'Lihat laman templat',
 'viewhelppage'      => 'Lihat laman bantuan',
 'categorypage'      => 'Lihat laman kategori',
@@ -345,11 +362,12 @@ $messages = array(
 'versionrequired'     => 'MediaWiki versi $1 diperlukan',
 'versionrequiredtext' => 'MediaWiki versi $1 diperlukan untuk menggunakan laman ini. Sila lihat [[Special:Version|laman versi]].',
 
+'ok'                      => 'OK',
 'retrievedfrom'           => 'Diambil daripada "$1"',
 'youhavenewmessages'      => 'Anda mempunyai $1 ($2).',
-'newmessageslink'         => 'mesej baru',
+'newmessageslink'         => 'pesanan baru',
 'newmessagesdifflink'     => 'perubahan terakhir',
-'youhavenewmessagesmulti' => 'Anda mempunyai mesej baru pada $1',
+'youhavenewmessagesmulti' => 'Anda telah menerima pesanan baru pada $1',
 'editsection'             => 'sunting',
 'editold'                 => 'sunting',
 'editsectionhint'         => 'Sunting bahagian: $1',
@@ -361,10 +379,12 @@ $messages = array(
 'restorelink'             => '{{PLURAL:$1|satu|$1}} suntingan dihapuskan',
 'feedlinks'               => 'Suapan:',
 'feed-invalid'            => 'Jenis suapan langganan tidak sah.',
+'feed-unavailable'        => 'Tiada suapan pensindiketan di {{SITENAME}}',
 'site-rss-feed'           => 'Suapan RSS $1',
 'site-atom-feed'          => 'Suapan Atom $1',
 'page-rss-feed'           => 'Suapan RSS "$1"',
 'page-atom-feed'          => 'Suapan Atom "$1"',
+'red-link-title'          => '$1 (belum ditulis)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Laman',
@@ -373,7 +393,7 @@ $messages = array(
 'nstab-special'   => 'Khas',
 'nstab-project'   => 'Laman projek',
 'nstab-image'     => 'Imej',
-'nstab-mediawiki' => 'Mesej',
+'nstab-mediawiki' => 'Pesanan',
 'nstab-template'  => 'Templat',
 'nstab-help'      => 'Laman bantuan',
 'nstab-category'  => 'Kategori',
@@ -396,7 +416,7 @@ Pertanyaan pangkalan data yang terakhir ialah:
 <blockquote><tt>$1</tt></blockquote> 
 dari dalam fungsi "<tt>$2</tt>".
 MySQL memulangkan ralat "<tt>$3: $4</tt>".',
-'dberrortextcl'        => 'Ada kesalahan sintaksis pada pertanyaan pangkalan data. Pertanyaan terakhir adalah: "$1" dari dalam fungsi "$2". MySQL mengembalikan ralat "$3: $4".',
+'dberrortextcl'        => 'Terdapat kesalahan sintaks pada pertanyaan pangkalan data. Pertanyaan terakhir ialah: "$1" dari dalam fungsi "$2". MySQL memulangkan ralat "$3: $4".',
 'noconnect'            => 'Maaf! Wiki ini menghadapi masalah teknikal dan tidak dapat menghubungi pelayan pangkalan data. <br />$1',
 'nodb'                 => 'Tidak dapat memilih pangkalan data $1',
 'cachederror'          => 'Berikut ialah salinan simpanan bagi laman yang diminta, dan barangkali bukan yang terkini.',
@@ -453,7 +473,9 @@ Pertanyaan: $2',
 
 # Login and logout pages
 'logouttitle'                => 'Log keluar',
-'logouttext'                 => 'Anda telah keluar dari sistem. Anda masih boleh menggunakan {{SITENAME}} sebagai pengguna tanpa nama jika anda tidak ingin masuk semula. Perhatikan bahawa beberapa halaman mungkin masih kelihatan seperti anda belum log keluar sehingga anda membersihkan ingatan cache pelayar anda.',
+'logouttext'                 => "<strong>Anda telah log keluar.</strong>
+
+Anda boleh terus menggunakan {{SITENAME}} sebagai pengguna tanpa nama, atau anda boleh log masuk sekali lagi sebagai pengguna lain. Sila ambil perhatian bahawa sesetengah laman mungkin dipaparkan seolah-olah anda masih log masuk. Anda boleh menyelesaikan masalah ini dengan mengosongkan data simpanan (''cache'') pelayar anda.",
 'welcomecreation'            => '== Selamat datang, $1! ==
 
 Akaun anda telah dibuka. Jangan lupa untuk mengubah keutamaan {{SITENAME}} anda.',
@@ -619,7 +641,7 @@ ID sekatan anda ialah $5. Sila sertakan ID ini dalam pertanyaan anda.',
 ditunjukkan di bawah:",
 'blockededitsource'         => "Teks bagi '''suntingan anda''' terhadap '''$1''' ditunjukkan di bawah:",
 'whitelistedittitle'        => 'Log masuk dahulu untuk menyunting',
-'whitelistedittext'         => 'Anda harus $1 untuk dapat menyunting rencana.',
+'whitelistedittext'         => 'Anda hendaklah $1 terlebih dahulu untuk menyunting laman.',
 'whitelistreadtitle'        => 'Log masuk dahulu untuk membaca',
 'whitelistreadtext'         => 'Anda perlu [[Special:Userlogin|log masuk]] terlebih dahulu untuk membaca laman.',
 'whitelistacctitle'         => 'Anda tidak dibenarkan membuka akaun.',
@@ -728,7 +750,7 @@ Sebab yang diberikan oleh $3 ialah ''$2''",
 'viewpagelogs'        => 'Lihat log bagi laman ini',
 'nohistory'           => 'Tiada sejarah suntingan bagi laman ini.',
 'revnotfound'         => 'Semakan tidak dijumpai.',
-'revnotfoundtext'     => 'Semakan lama untuk halaman yang anda pinta tidak dapat dijumpai. Sila semak URL yang anda gunakan untuk mencapai halaman ini.',
+'revnotfoundtext'     => 'Semakan lama untuk laman yang anda minta tidak dapat dijumpai. Sila semak URL yang anda gunakan untuk mencapai laman ini.',
 'loadhist'            => 'Memuat sejarah laman',
 'currentrev'          => 'Semakan semasa',
 'revisionasof'        => 'Semakan pada $1',
@@ -846,8 +868,9 @@ Sila pastikan bahawa perubahan ini akan mengekalkan kesinambungan sejarah laman.
 'searchresulttext'      => 'Untuk maklumat lanjut tentang carian dalam {{SITENAME}}, sila lihat [[{{MediaWiki:Helppage}}|{{int:help}}]].',
 'searchsubtitle'        => 'Anda mencari "[[$1]]"',
 'searchsubtitleinvalid' => 'Untuk pertanyaan "$1"',
-'noexactmatch'          => "'''Tiada halaman bertajuk \"\$1\".''' Anda boleh [[:\$1|menciptanya]].",
+'noexactmatch'          => "'''Tiada laman bertajuk \"\$1\".''' Anda boleh [[:\$1|menciptanya]].",
 'noexactmatch-nocreate' => "'''Tiada laman bertajuk \"\$1\".'''",
+'toomanymatches'        => 'Terlalu banyak padanan dipulangkan, sila cuba pertanyaan lain',
 'titlematches'          => 'Padanan tajuk laman',
 'notitlematches'        => 'Tiada tajuk laman yang sepadan',
 'textmatches'           => 'Padanan teks laman',
@@ -911,6 +934,7 @@ daripada satu kata kunci (hanya laman yang mengandungi kesemua kata kunci akan d
 'resultsperpage'           => 'Jumlah padanan bagi setiap halaman:',
 'contextlines'             => 'Bilangan baris untuk dipaparkan bagi setiap capaian:',
 'contextchars'             => 'Bilangan askara konteks bagi setiap baris:',
+'stub-threshold'           => 'Ambang bagi pemformatan <a href="#" class="stub">pautan ke rencana ringkas</a> (bait):',
 'recentchangesdays'        => 'Bilangan hari dalam perubahan terkini:',
 'recentchangescount'       => 'Bilangan suntingan dalam perubahan terkini:',
 'savedprefs'               => 'Keutamaan anda disimpan.',
@@ -956,6 +980,7 @@ Kumpulan yang tidak dipilih tidak akan diubah. Anda boleh mengecualikan sebarang
 'group-all'           => '(semua)',
 
 'group-autoconfirmed-member' => 'Pengguna yang disahkan secara automatik',
+'group-bot-member'           => 'Bot',
 'group-sysop-member'         => 'Penyelia',
 'group-bureaucrat-member'    => 'Birokrat',
 
@@ -975,22 +1000,23 @@ Kumpulan yang tidak dipilih tidak akan diubah. Anda boleh mengecualikan sebarang
 'recentchanges'                     => 'Perubahan terkini',
 'recentchangestext'                 => 'Jejaki perubahan terkini dalam {{SITENAME}} pada laman ini.',
 'recentchanges-feed-description'    => 'Jejaki perubahan terkini dalam {{SITENAME}} pada suapan ini.',
-'rcnote'                            => 'Di bawah adalah <strong>$1</strong> perubahan terbaru pada <strong>$2</strong> hari yang lalu sehingga $3.',
+'rcnote'                            => "Berikut ialah '''$1''' perubahan terakhir sejak '''$2''' hari yang lalu sehingga $3.",
 'rcnotefrom'                        => 'Berikut ialah semua perubahan sejak <b>$2</b> (sehingga <b>$1</b>).',
 'rclistfrom'                        => 'Tunjukkan perubahan terbaru bermula dari $1',
 'rcshowhideminor'                   => '$1 suntingan kecil',
 'rcshowhidebots'                    => '$1 bot',
-'rcshowhideliu'                     => '$1 pengguna berdaftar',
+'rcshowhideliu'                     => '$1 pengguna log masuk',
 'rcshowhideanons'                   => '$1 pengguna tanpa nama',
 'rcshowhidepatr'                    => '$1 suntingan dirondai',
 'rcshowhidemine'                    => '$1 suntingan saya',
-'rclinks'                           => 'Paparkan $1 perubahan pada $2 hari yang lalu<br />$3',
+'rclinks'                           => 'Paparkan $1 perubahan terakhir sejak $2 hari yang lalu<br />$3',
 'diff'                              => 'beza',
 'hist'                              => 'sej',
 'hide'                              => 'Sembunyi',
 'show'                              => 'Papar',
 'minoreditletter'                   => 'k',
 'newpageletter'                     => 'B',
+'boteditletter'                     => 'b',
 'number_of_watching_users_pageview' => '[$1 pemantau]',
 'rc_categories'                     => 'Hadkan kepada kategori (asingkan dengan "|")',
 'rc_categories_any'                 => 'Semua',
@@ -1096,6 +1122,8 @@ Untuk rujukan, berikut ialah log penghapusan bagi fail ini:",
 
 # Image list
 'imagelist'                 => 'Senarai fail',
+'imagelist-summary'         => 'Laman khas ini memaparkan senarai fail yang telah dimuat naik.
+Klik di atas mana-mana lajur yang berkenaan untuk menukar tertib susunan.',
 'imagelisttext'             => "Berikut ialah senarai bagi '''$1''' fail yang disusun secara $2.",
 'getimagelist'              => 'mengambil senarai imej',
 'ilsubmit'                  => 'Cari',
@@ -1122,6 +1150,7 @@ Untuk rujukan, berikut ialah log penghapusan bagi fail ini:",
 'nolinkstoimage'            => 'Tiada laman yang mengandungi pautan ke fail ini.',
 'sharedupload'              => 'Fail ini adalah fail muat naik kongsi dan boleh digunakan oleh projek lain.',
 'shareduploadwiki'          => 'Sila lihat $1 untuk maklumat lanjut.',
+'shareduploadwiki-desc'     => 'Berikut ialah keterangannya dalam $1 di sana.',
 'shareduploadwiki-linktext' => 'laman huraian fail',
 'noimage'                   => 'Tiada fail dengan nama ini. Anda boleh $1.',
 'noimage-linktext'          => 'memuat naik fail baru',
@@ -1141,6 +1170,7 @@ Untuk rujukan, berikut ialah log penghapusan bagi fail ini:",
 'filerevert-defaultcomment' => 'Dibalikkan kepada versi pada $2, $1',
 'filerevert-submit'         => 'Balikkan',
 'filerevert-success'        => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\' telah dibalikkan kepada [$4 versi pada $3, $2].</span>',
+'filerevert-badversion'     => 'Tiada versi tempatan bagi fail ini dengan cap waktu yang dinyatakan.',
 
 # File deletion
 'filedelete'                  => 'Hapuskan $1',
@@ -1190,15 +1220,19 @@ Untuk rujukan, berikut ialah log penghapusan bagi fail ini:",
 'statistics'             => 'Statistik',
 'sitestats'              => 'Statistik {{SITENAME}}',
 'userstats'              => 'Statistik pengguna',
-'sitestatstext'          => "Ketika ini, {{SITENAME}} mempunyai '''$2''' buah rencana. Selain itu, terdapat juga laman perbualan, laman penerangan imej, laman pengguna, laman {{SITENAME}}, laman ringkas/buntu, laman pengalihan dan templat. Kesemua laman ini menjadikan jumlah keseluruhan halaman sebanyak '''$1''' halaman.
+'sitestatstext'          => "Terdapat sejumlah '''\$1''' laman dalam pangkalan data kami. Jumlah ini termasuklah laman \"perbincangan\", laman mengenai {{SITENAME}}, laman ringkas,
+pelencongan, dan lain-lain yang tidak layak menjadi laman kandungan. Dengan mengecualikan laman-laman ini, terdapat sejumlah '''\$2''' laman yang barangkali dianggap sah.
 
-Terdapat '''$3''' paparan laman dan sebanyak '''$4''' suntingan telah dilakukan sejak wiki ini bermula; iaitu purata '''$5''' suntingan bagi setiap halaman, dan '''$6''' paparan bagi setiap suntingan.
+'''\$8''' buah fail telah dimuat naik.
 
-Sebanyak '''$8''' fail telah dimuat naik. Bilangan kerja tertunggak ialah '''$7'''.",
-'userstatstext'          => "Terdapat '''$1''' pengguna berdaftar. '''$2''' (atau '''$4''') daripadanya adalah penyelia (lihat $3).",
+Terdapat sejumlah '''\$3''' paparan laman dan '''\$4''' penyuntingan dilakukan sejak {{SITENAME}} dimulakan. Secara purata, terdapat '''\$5''' suntingan bagi setiap laman, dan '''\$6''' paparan bagi setiap suntingan.
+
+Jumlah [http://meta.wikimedia.org/wiki/Help:Job_queue tugas yang tertunggak] ialah '''\$7'''.",
+'userstatstext'          => "Terdapat '''$1''' pengguna berdaftar. '''$2''' (atau '''$4''') daripadanya mempunyai hak $5.",
 'statistics-mostpopular' => 'Laman dilihat terbanyak',
 
 'disambiguations'      => 'Laman penyahtaksaan',
+'disambiguationspage'  => 'Template:disambig',
 'disambiguations-text' => "Laman-laman berikut mengandungi pautan ke '''laman penyahtaksaan'''. Pautan ini sepatutnya ditujukan kepada topik yang sepatutnya.<br />Sesebuah laman dianggap sebagai laman penyahtaksaan jika ia menggunakan templat yang dipaut dari [[MediaWiki:Disambiguationspage]]",
 
 'doubleredirects'     => 'Pelencongan berganda',
@@ -1335,7 +1369,7 @@ atau telah memilih untuk tidak menerima e-mel daripada pengguna lain.',
 'emailfrom'       => 'Daripada',
 'emailto'         => 'Kepada',
 'emailsubject'    => 'Perkara',
-'emailmessage'    => 'Mesej',
+'emailmessage'    => 'Pesanan',
 'emailsend'       => 'Kirim',
 'emailccme'       => 'Kirim salinan mesej ini kepada saya.',
 'emailccsubject'  => 'Salinan bagi mesej anda kepada $1: $2',
@@ -1460,7 +1494,7 @@ oleh [[User:$2|$2]] ([[User talk:$2|Perbincangan]]); terdapat pengguna yang tela
 
 Suntingan terakhir telah dibuat oleh [[User:$3|$3]] ([[User talk:$3|Perbincangan]]).',
 'editcomment'                 => 'Komen suntingan: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'                  => 'Suntingan [[Istimewa:Contributions/$2|$2]] dikembalikan ke versi terakhir oleh $1', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'revertpage'                  => 'Membalikkan suntingan oleh [[Special:Contributions/$2|$2]] ([[User talk:$2|Perbincangan]]) kepada versi terakhir oleh [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success'            => 'Membalikkan suntingan oleh $1 kepada versi terakhir oleh $2.',
 'sessionfailure'              => 'Terdapat sedikit masalah pada sesi log masuk anda.
 Tindakan ini telah dibatalkan untuk mencegah perampasan sesi.
@@ -1536,9 +1570,10 @@ sebelum penghapusan. Teks sebenar bagi semua semakan yang dihapuskan hanya boleh
 atau semakan tersebut telah dipulihkan atau dibuang daripada arkib.',
 'undelete-nodiff'              => 'Tiada semakan sebelumnya.',
 'undeletebtn'                  => 'Pulihkan',
+'undeletelink'                 => 'pulih',
 'undeletereset'                => 'set semula',
 'undeletecomment'              => 'Komen:',
-'undeletedarticle'             => '"[[$1]]" telah dipulih',
+'undeletedarticle'             => '"[[$1]]" telah dipulihkan',
 'undeletedrevisions'           => '$1 semakan dipulihkan',
 'undeletedrevisions-files'     => '$1 semakan dan $2 fail dipulihkan',
 'undeletedfiles'               => '$1 fail dipulihkan',
@@ -1794,7 +1829,8 @@ Dalam pilihan kedua tadi, anda juga boleh menggunakan pautan, umpamanya [[{{ns:s
 'allmessagesname'           => 'Nama',
 'allmessagesdefault'        => 'Teks lalai',
 'allmessagescurrent'        => 'Teks semasa',
-'allmessagestext'           => 'Ini ialah senarai mesej sistem yang tersedia dalam ruang nama MediaWiki.',
+'allmessagestext'           => 'Ini ialah senarai pesanan sistem yang tersedia dalam ruang nama MediaWiki.
+Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] and [http://translatewiki.net Betawiki] if you wish to contribute to the generic MediaWiki localisation.',
 'allmessagesnotsupportedDB' => "'''{{ns:special}}:Allmessages''' tidak boleh digunakan kerana '''\$wgUseDatabaseMessages''' dipadamkan.",
 'allmessagesfilter'         => 'Tapis nama mesej:',
 'allmessagesmodified'       => 'Hanya tunjukkan yang telah diubah',
@@ -1803,6 +1839,8 @@ Dalam pilihan kedua tadi, anda juga boleh menggunakan pautan, umpamanya [[{{ns:s
 'thumbnail-more'           => 'Besarkan',
 'filemissing'              => 'Fail hilang',
 'thumbnail_error'          => 'Berlaku ralat ketika mencipta imej ringkas: $1',
+'djvu_page_error'          => 'Laman DjVu di luar julat',
+'djvu_no_xml'              => 'Gagal mendapatkan data XML bagi fail DjVu',
 'thumbnail_invalid_params' => 'Parameter imej ringkas tidak sah',
 'thumbnail_dest_directory' => 'Direktori destinasi gagal diciptakans',
 
@@ -1813,6 +1851,7 @@ Dalam pilihan kedua tadi, anda juga boleh menggunakan pautan, umpamanya [[{{ns:s
 Semua tarikh semakan dan nama penyunting akan dikekalkan.
 Semua tindakan import transwiki dicatatkan dalam [[Special:Log/import|log import]].',
 'import-interwiki-history'   => 'Salin semua versi sejarah bagi laman ini',
+'import-interwiki-submit'    => 'Import',
 'import-interwiki-namespace' => 'Pindahkan laman ke dalam ruang nama:',
 'importtext'                 => 'Sila eksport fail daripada sumber wiki menggunakan kemudahan Special:Export, simpan dalam komputer anda dan muat naik di sini.',
 'importstart'                => 'Mengimport laman...',
@@ -1840,6 +1879,7 @@ Semua tindakan import transwiki dicatatkan dalam [[Special:Log/import|log import
 'importlogpagetext'                => 'Senarai tindakan import laman dengan keseluruhan sejarah suntingannya daripada wiki lain.',
 'import-logentry-upload'           => 'mengimport [[$1]] dengan memuat naik fail',
 'import-logentry-upload-detail'    => '$1 semakan',
+'import-logentry-interwiki'        => '$1 dipindahkan ke wiki lain',
 'import-logentry-interwiki-detail' => '$1 semakan daripada $2',
 
 # Tooltip help for the actions
@@ -1891,7 +1931,7 @@ Semua tindakan import transwiki dicatatkan dalam [[Special:Log/import|log import
 'tooltip-ca-nstab-special'        => 'Ini adalah sebuah laman khas, anda tidak boleh menyunting laman ini secara terus.',
 'tooltip-ca-nstab-project'        => 'Lihat laman projek',
 'tooltip-ca-nstab-image'          => 'Lihat laman imej',
-'tooltip-ca-nstab-mediawiki'      => 'Lihat mesej sistem',
+'tooltip-ca-nstab-mediawiki'      => 'Lihat pesanan sistem',
 'tooltip-ca-nstab-template'       => 'Lihat templat',
 'tooltip-ca-nstab-help'           => 'Lihat laman bantuan',
 'tooltip-ca-nstab-category'       => 'Lihat laman kategori',
@@ -2006,6 +2046,7 @@ Hanya item senarai (baris yang dimulakan dengan *) diambil kira. Pautan pertama 
 Sebarang pautan berikutnya pada baris yang sama dikira sebagai pengecualian (rencana yang dibenarkan disertakan imej).',
 
 # Metadata
+'metadata'          => 'Metadata',
 'metadata-help'     => 'Fail ini mengandungi maklumat tambahan daripada kamera digital atau pengimbas yang digunakan untuk menghasilkannya. Jika fail ini telah diubah suai daripada rupa asalnya, beberapa butiran dalam maklumat ini mungkin sudah tidak relevan.',
 'metadata-expand'   => 'Tunjukkan butiran penuh',
 'metadata-collapse' => 'Sembunyikan butiran penuh',
@@ -2036,9 +2077,11 @@ Ruangan lain akan disembunyikan.
 'exif-stripoffsets'                => 'Lokasi data imej',
 'exif-rowsperstrip'                => 'Baris sejalur',
 'exif-stripbytecounts'             => 'Bait sejalur termampat',
+'exif-jpeginterchangeformat'       => 'Ofset ke SOI JPEG',
 'exif-jpeginterchangeformatlength' => 'Jumlah bait bagi data JPEG',
 'exif-transferfunction'            => 'Fungsi pindah',
 'exif-whitepoint'                  => 'Kekromatan takat putih',
+'exif-primarychromaticities'       => 'Kekromatan warna primer',
 'exif-ycbcrcoefficients'           => 'Pekali matriks penukaran ruang warna',
 'exif-referenceblackwhite'         => 'Nilai rujukan pasangan hitam dan putih',
 'exif-datetime'                    => 'Tarikh dan waktu fail diubah',
@@ -2142,6 +2185,7 @@ Ruangan lain akan disembunyikan.
 
 'exif-unknowndate' => 'Tarikh tidak diketahui',
 
+'exif-orientation-1' => 'Normal', # 0th row: top; 0th column: left
 'exif-orientation-2' => 'Dibalikkan secara mengufuk', # 0th row: top; 0th column: right
 'exif-orientation-3' => 'Diputar 180°', # 0th row: bottom; 0th column: right
 'exif-orientation-4' => 'Dibalikkan secara menegak', # 0th row: bottom; 0th column: left
@@ -2156,6 +2200,7 @@ Ruangan lain akan disembunyikan.
 'exif-componentsconfiguration-0' => 'tiada',
 
 'exif-exposureprogram-0' => 'Tidak ditentukan',
+'exif-exposureprogram-1' => 'Manual',
 'exif-exposureprogram-2' => 'Atur cara normal',
 'exif-exposureprogram-3' => 'Mengutamakan bukaan',
 'exif-exposureprogram-4' => 'Mengutamakan pengatup',
@@ -2215,6 +2260,7 @@ Ruangan lain akan disembunyikan.
 'exif-whitebalance-0' => 'Imbangan warna putih automatik',
 'exif-whitebalance-1' => 'Imbangan warna putih manual',
 
+'exif-scenecapturetype-0' => 'Standard',
 'exif-scenecapturetype-1' => 'Landskap',
 'exif-scenecapturetype-2' => 'Potret',
 'exif-scenecapturetype-3' => 'Malam',
@@ -2225,12 +2271,15 @@ Ruangan lain akan disembunyikan.
 'exif-gaincontrol-3' => 'Gandaan rendah bawah',
 'exif-gaincontrol-4' => 'Gandaan tinggi bawah',
 
+'exif-contrast-0' => 'Normal',
 'exif-contrast-1' => 'Lembut',
 'exif-contrast-2' => 'Keras',
 
+'exif-saturation-0' => 'Normal',
 'exif-saturation-1' => 'Kepekatan rendah',
 'exif-saturation-2' => 'Kepekatan tinggi',
 
+'exif-sharpness-0' => 'Normal',
 'exif-sharpness-1' => 'Lembut',
 'exif-sharpness-2' => 'Keras',
 
@@ -2335,9 +2384,10 @@ Sila sahkan bahawa anda mahu mencipta semula laman ini.",
 'redirectingto' => 'Melencong ke [[$1]]...',
 
 # action=purge
-'confirm_purge' => 'Kosongkan fail simpanan bagi laman ini?
+'confirm_purge'        => 'Kosongkan fail simpanan bagi laman ini?
 
 $1',
+'confirm_purge_button' => 'OK',
 
 # AJAX search
 'searchcontaining' => "Cari laman mengandungi ''$1''.",

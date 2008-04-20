@@ -7,6 +7,7 @@
  * @author לערי ריינהארט
  * @author Tauʻolunga
  * @author Cbrown1023
+ * @author Siebrand
  */
 
 
@@ -356,7 +357,7 @@ Kapau naʻe kole ia ʻe he tokotaha kehe, pea ʻosi hoʻo manatuʻi ʻo e leatap
 'newarticle'              => '(Foʻou)',
 'newarticletext'          => "Naʻa ke muimui ha fehokotaki ki he peesi ʻoku teʻeki fakatupu. Kapau te ke fiefakatupi he pēsí ni, kamata hoʻo tohi ʻi he puha ʻi lalo. (Vakai ki he [[{{MediaWiki:Helppage}}|tokoni]] mo hano ongoongo lahi ange.) Kapau ʻoku hala pē heni, lomiʻi pē he meʻa-lolomi 'ki mui' ʻo ho palausa.",
 'anontalkpagetext'        => "----''Ko e peesi ʻeni ko e peesi alea ia maʻa e ʻetita taʻehingoa teʻeki ʻene fakatupu ʻo e tohi kau-ki-ai pe ʻoku ʻikai ngāueʻaki mo ia. Ko ia ai ʻoku fakapapauʻi ia ʻe he tuʻasila IP fakafika pē. Ka ʻe lava ʻoku vahevahe ʻa e tuʻasila IP pehē ʻe he kau ʻetita tokolahi. Kapau ko koe ko e ʻetita taʻehingoa, ʻoku ke tui ko e ngaahi fakamatala ʻi heni ʻoku ʻikai maʻau, mahalo pē ʻoku sai ange ke ke [[Special:Userlogin|fai ha tohi kau-ki-ai, pe kau-ki-ai]] he taimí ni pea fakaʻehiʻehi ha ngaahi meʻafihi ē ʻi he kahaʻu.''",
-'noarticletext'           => 'Ko e pēsi ni, ʻoku ʻikai haʻane tohi ʻi ai he taimi ni. ʻE lava koe ʻo [[{{ns:special}}:Search/{{PAGENAME}}|kumi ki heʻene hingoa]] ʻi ha ngaahi peesi ʻe taha, pe [{{fullurl:{{FULLPAGENAME}}|action=edit}} ʻetita ʻi ai.]',
+'noarticletext'           => 'Ko e pēsi ni, ʻoku ʻikai haʻane tohi ʻi ai he taimi ni. ʻE lava koe ʻo [[Special:Search/{{PAGENAME}}|kumi ki heʻene hingoa]] ʻi ha ngaahi peesi ʻe taha, pe [{{fullurl:{{FULLPAGENAME}}|action=edit}} ʻetita ʻi ai.]',
 'clearyourcache'          => "'''Tokanga''', ʻosi he haofaki e peesi, mahalo pē ʻoku pau te ke fakaʻatā ʻa e fafaʻo ʻo ho palausa, naʻa ʻikai te ke sio ʻa e paaki foʻou.",
 'updated'                 => '(Fakafoʻou)',
 'note'                    => '<strong>Tohi nounou:</strong>',
@@ -366,7 +367,11 @@ Kapau naʻe kole ia ʻe he tokotaha kehe, pea ʻosi hoʻo manatuʻi ʻo e leatap
 'editingsection'          => 'ʻOku fatuʻi $1 (vahe)',
 'editingcomment'          => 'ʻOku fatuʻi $1 (fakamatala)',
 'editconflict'            => 'Fepaki fatu: $1',
-'explainconflict'         => 'Naʻe liliu ʻa e pēsí ni ʻe he ʻetita ʻe taha lolotonga he taimi kuo ke kamata hoʻo fatu. Ko e konga ʻi olunga, ko e kupu ia he onopooni. Ko e konga ʻi lalo, ko hoʻo ngaahi liliu ia. ʻE pau te ke fakataha hoʻo liliu ʻi loto ʻo e kupu ʻoku tuʻu. Ko e konga ʻi olunga, ko e <b>konga pē ʻe taha</b> ʻe haofaki ʻi he lomiʻi ʻo e meʻalolomi "haofaki e pēsí".<br />',
+'explainconflict'         => "Naʻe liliu ʻa e pēsí ni ʻe he ʻetita ʻe taha lolotonga he taimi kuo ke kamata hoʻo fatu.
+Ko e konga ʻi olunga, ko e kupu ia he onopooni.
+Ko e konga ʻi lalo, ko hoʻo ngaahi liliu ia.
+ʻE pau te ke fakataha hoʻo liliu ʻi loto ʻo e kupu ʻoku tuʻu.
+Ko e konga ʻi olunga, ko e '''konga pē ʻe taha''' ʻe haofaki ʻi he lomiʻi ʻo e meʻalolomi \"haofaki e pēsí\".",
 'yourtext'                => 'tohi ʻaʻau',
 'storedversion'           => 'Ko e paaki kuo tuku',
 'editingold'              => '<strong>FAKATOKANGA: ʻOku ke fatu ʻi he paaki fakaonoʻaho ʻo e pēsi. Kapau te ke haofaki ia, ʻe mole ʻa e ngaahi liliu kotoa talu mei ai.</strong>',
@@ -490,7 +495,7 @@ Kapau naʻe kole ia ʻe he tokotaha kehe, pea ʻosi hoʻo manatuʻi ʻo e leatap
 'recentchanges'     => 'Ngaahi toki liliu',
 'recentchangestext' => 'Fakatotolo ʻa e ngaahi toki liliu ki he wiki ʻi he pēsí ni.',
 'rcnote'            => 'ʻOku ʻasi ʻi lalo ʻa e liliu fakamuimui ʻe <strong>$1</strong> lolotonga ʻa e ʻaho fakamuimui ʻe <strong>$2</strong> mei he taimi: $3',
-'rcnotefrom'        => 'ʻOku ʻasi ʻi lalo ʻa e liliu talu mei <b>$2</b> (aʻu ki he <b>$1</b>).',
+'rcnotefrom'        => "ʻOku ʻasi ʻi lalo ʻa e liliu talu mei '''$2''' (aʻu ki he '''$1''').",
 'rclistfrom'        => 'ʻAsi mai ha ngaahi liliu foʻou ʻo kamata mei he $1',
 'rcshowhideminor'   => '$1 fatu siʻi',
 'rcshowhidebots'    => '$1 fatu fakamīsini',
@@ -671,7 +676,7 @@ Kapau naʻe kole ia ʻe he tokotaha kehe, pea ʻosi hoʻo manatuʻi ʻo e leatap
 'intl'                    => 'Fehokotaki fakalea kehe',
 'move'                    => 'ʻunu',
 'movethispage'            => 'ʻUnu e pēsí ni',
-'unusedimagestext'        => '<p>Kātaki, manatuʻi ʻoku lava ʻe ʻi ai ha ngaahi feituʻu fakamatamatakupenga mo honau fehokotaki ki heni, ko ia ai mahalo pē ʻoku moʻui ʻaupito ia, neongo ʻene hā ʻi he hokohoko ko ʻeni.</p>',
+'unusedimagestext'        => 'Kātaki, manatuʻi ʻoku lava ʻe ʻi ai ha ngaahi feituʻu fakamatamatakupenga mo honau fehokotaki ki heni, ko ia ai mahalo pē ʻoku moʻui ʻaupito ia, neongo ʻene hā ʻi he hokohoko ko ʻeni.',
 'unusedcategoriestext'    => 'ʻOku ʻi ai ha ngaahi faʻahinga ʻoku ʻikai ngāueʻaki ʻi ha kupu ʻe taha pe faʻahinga ʻe taha.',
 
 # Book sources

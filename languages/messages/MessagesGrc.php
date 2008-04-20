@@ -10,6 +10,7 @@
  * @author SPQRobin
  * @author Nike
  * @author Yannos
+ * @author Siebrand
  */
 
 $dateFormats = array(
@@ -40,7 +41,7 @@ $messages = array(
 'tog-editsection'             => 'Τμῆμα διὰ συνδέσμου [μεταγράφειν] μεταγράφειν παρέχειν',
 'tog-editsectiononrightclick' => 'Τμῆμα μεταγράφειν παρέχειν <br /> διὰ τίτλον δεξιῷ ὀμφαλῷ θλίβειν (JavaScript)',
 'tog-showtoc'                 => 'Δεικνύναι πίνακα περιεχομένων (ἐν δέλτοις περιεχούσαις πλείους τῶν 3 ἐπικεφαλίδων)',
-'tog-rememberpassword'        => 'ἐνθυμεῖσθαι ἐγγραφήν μου ἐν τῷδε ὑπολογιστῇ',
+'tog-rememberpassword'        => 'Ἐνθυμεῖσθαι σύνδεσίν μου ἐν τῷδε ὑπολογιστῇ',
 'tog-editwidth'               => 'Πλαίσιον ἐπιμελείας εἰς πλήρες πλάτος',
 'tog-watchcreations'          => 'Προστινθέναι τὰς δέλτους ἃς ποιῶ τοῖς ἐφορώμενοῖς ἔμου',
 'tog-watchdefault'            => 'Προστινθέναι τὰς δέλτους ἃς μεταγράφω τοῖς ἐφορώμενοῖς ἔμου',
@@ -171,6 +172,7 @@ $messages = array(
 'categorypage'      => 'Ὁρᾶν γένους δέλτον',
 'viewtalkpage'      => 'Ὁρᾶν διάλεκτον',
 'otherlanguages'    => 'Βαρβαριστὶ',
+'lastmodifiedat'    => 'Ἥδε ἡ δέλτος ὕστατον μετεβλήθη $2, $1.', # $1 date, $2 time
 'protectedpage'     => 'Πεφυλαγμένη δέλτος',
 'jumpto'            => 'Πηδᾶν πρὸς:',
 'jumptonavigation'  => 'περιήγησις',
@@ -217,7 +219,7 @@ $messages = array(
 
 # General errors
 'error'        => 'Σφάλμα',
-'filenotfound' => '"$1" οὐχ ηὑρέθη',
+'filenotfound' => 'Γραφὴ "$1" οὐχ ηὑρέθη',
 
 # Login and logout pages
 'welcomecreation'   => '== Χαῖρε, $1! ==
@@ -225,14 +227,14 @@ $messages = array(
 Λογισμὸν σὸν πεποίηται. Ἔχε μνήμην μεταβάλλειν τὰς τοῦ {{SITENAME}} αἱρέσεις σὰς.',
 'yourname'          => 'Ὄνομα χρωμένου:',
 'yourpassword'      => 'Σῆμα:',
-'login'             => 'Ἐγγράφεσθαι',
-'userlogin'         => 'ἐγγράφειν/λογισμὸν ποιεῖν',
+'login'             => 'Συνδεῖσθαι',
+'userlogin'         => 'Συνδεῖσθαι/λογισμὸν ποιεῖν',
 'logout'            => 'Ἐξέρχεσθαι',
 'userlogout'        => 'Ἐξέρχεσθαι',
-'notloggedin'       => 'Οὐκ ἐγγέγραψαι',
+'notloggedin'       => 'Οὐ συνδεδεμένος',
 'nologinlink'       => 'Λογισμὸν ποιεῖν',
 'createaccount'     => 'Λογισμὸν ποιεῖν',
-'gotaccountlink'    => 'Ἐγγράφειν',
+'gotaccountlink'    => 'Συνδεῖσθαι',
 'createaccountmail' => 'ἠλεκτρονικῇ ἐπιστολῇ',
 'youremail'         => 'Ἠλεκτρονικαὶ ἐπιστολαὶ:',
 'username'          => 'Ὄνομα χρωμένου:',
@@ -240,9 +242,9 @@ $messages = array(
 'yourlanguage'      => 'Γλῶττά σου:',
 'yournick'          => 'Ἐπωνυμία:',
 'email'             => 'ἠλεκτρονική ἐπιστολή',
-'loginerror'        => 'Ἡμάρτηκας περὶ τοῦ ἐγγεγράφεναι',
-'loginsuccesstitle' => 'Καλῶς ἐγγέγραφας',
-'loginsuccess'      => "'''ἐγγέγραψαι ἤδη ἐν {{SITENAME}} ὡς \"\$1\".'''",
+'loginerror'        => 'Ἡμάρτηκας περὶ τοῦ συνδεδεκαῖναι',
+'loginsuccesstitle' => 'Καλῶς συνδέδεσαι',
+'loginsuccess'      => "'''συνδέδεσαι ἤδη τῷ {{SITENAME}} ὡς \"\$1\".'''",
 
 # Edit page toolbar
 'bold_sample' => 'Γράμματα παχέα',
@@ -257,8 +259,8 @@ $messages = array(
 'showpreview'        => 'Προεπισκοπεῖν',
 'showdiff'           => 'Δεικνύναι τὰς μεταβολάς',
 'blockedtitle'       => 'Ἀποκεκλεισμένος ὁ χρώμενος',
-'loginreqtitle'      => 'Δεῖ ἐγγράφειν',
-'loginreqlink'       => 'Ἐγγράφειν',
+'loginreqtitle'      => 'Δεῖ συνδεῖσθαι',
+'loginreqlink'       => 'συνδεῖσθαι',
 'newarticle'         => '(νέα)',
 'editing'            => 'Μεταγράφων $1',
 'editingsection'     => 'Μεταγράφων $1 (μέρος)',
@@ -288,6 +290,7 @@ $messages = array(
 'preferences'        => 'Αἱρέσεις',
 'mypreferences'      => 'Αἱρέσεις μου',
 'prefs-edits'        => 'Τοσοῦται αἱ μεταβολαί:',
+'prefsnologin'       => 'Οὐ συνδεδεμένος',
 'qbsettings-none'    => 'Οὐδέν',
 'math'               => 'Τὰ μαθηματικά',
 'math_unknown_error' => 'ἄγνωστον σφάλμα',
@@ -313,7 +316,7 @@ $messages = array(
 # Recent changes
 'recentchanges'   => 'Αἱ νέαι μεταβολαί',
 'rcshowhideminor' => '$1 μικραὶ μεταβολαὶ',
-'rcshowhideliu'   => '$1 χρωμένους ἐγγεγραμμένους',
+'rcshowhideliu'   => '$1 χρωμένους συνδεδεμένους',
 'rcshowhidemine'  => '$1 μεταβολὰς μου',
 'diff'            => 'διαφ.',
 'hist'            => 'Προτ.',
@@ -323,10 +326,12 @@ $messages = array(
 'newpageletter'   => 'Ν',
 
 # Recent changes linked
-'recentchangeslinked-title' => 'Μεταβολαὶ οἰκεῖαι $1',
+'recentchangeslinked'       => 'Οἰκεῖαι μεταβολαί',
+'recentchangeslinked-title' => 'Μεταβολαὶ οἰκεῖαι "$1"',
 
 # Upload
-'uploadnologin'     => 'Οὐκ ἐγγεγραμμένος',
+'upload'            => 'Ἀνάγειν γραφήν',
+'uploadnologin'     => 'Οὐ συνδεδεμένος',
 'filedesc'          => 'Τὸ κεφάλαιον',
 'fileuploadsummary' => 'Τὸ κεφάλαιον:',
 'watchthisupload'   => 'Ἐφορᾶν τήνδε τὴν δέλτον',
@@ -357,6 +362,8 @@ $messages = array(
 'ncategories'  => '$1 {{PLURAL:$1|Γένος|Γένη}}',
 'allpages'     => 'Πᾶσαι αἱ δέλτοι',
 'shortpages'   => 'Δέλτοι μικραί',
+'longpages'    => 'Δέλτοι μακραί',
+'specialpages' => ' Εἰδικαὶ δέλτοι',
 'newpages'     => 'Δέλτοι νέαι',
 'move'         => 'κινεῖν',
 'movethispage' => 'Κινεῖν τήνδε τὴν δέλτον',
@@ -380,6 +387,7 @@ $messages = array(
 'watchlist'            => 'Τὰ ἐφορώμενά μου',
 'mywatchlist'          => 'Τὰ ἐφορώμενά μου',
 'watchlistfor'         => "(πρό '''$1''')",
+'watchnologin'         => 'Οὐ συνδεδεμένος',
 'watch'                => 'Ἐφορᾶν',
 'watchthispage'        => 'Ἐφορᾶν τήνδε τὴν δέλτον',
 'unwatch'              => 'Ἀνεφορᾶν',
@@ -429,6 +437,7 @@ $messages = array(
 # Move page
 'movepage'    => 'Κινεῖν τὴν δέλτον',
 'movearticle' => 'Κινεῖν τὴν δέλτον:',
+'movenologin' => 'Οὐ συνδεδεμένος',
 'move-watch'  => 'Ἑφορᾶν τήνδε τὴν δέλτον',
 'movereason'  => 'Ἀπολογία:',
 

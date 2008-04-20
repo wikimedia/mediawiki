@@ -9,6 +9,7 @@
  * @author Siebrand
  * @author SPQRobin
  * @author Dorgan
+ * @author Dani
  */
 
 $namespaceNames = array(
@@ -278,7 +279,7 @@ $messages = array(
 'tog-previewontop'            => 'Előnézet megjelenítése a szerkesztőablak előtt',
 'tog-previewonfirst'          => 'Előnézet első szerkesztésnél',
 'tog-nocache'                 => 'A lapok gyorstárazásának letiltása',
-'tog-enotifwatchlistpages'    => 'Értesítés e-mailben, ha egy általam figyelt lap megváltozik',
+'tog-enotifwatchlistpages'    => 'Értesítés küldése e-mailben, ha egy általam figyelt lap megváltozik',
 'tog-enotifusertalkpages'     => 'Értesítés e-mailben, ha megváltozik a vitalapom',
 'tog-enotifminoredits'        => 'Értesítés e-mailben a lapok apró változtatásairól',
 'tog-enotifrevealaddr'        => 'Jelenítse meg az e-mail címemet a figyelmeztető e-mailekben',
@@ -310,7 +311,7 @@ $messages = array(
 'thursday'      => 'csütörtök',
 'friday'        => 'péntek',
 'saturday'      => 'szombat',
-'sun'           => 'Vas',
+'sun'           => 'vas',
 'mon'           => 'hét',
 'tue'           => 'kedd',
 'wed'           => 'sze',
@@ -411,7 +412,7 @@ $messages = array(
 'editthispage'      => 'Lap szerkesztése',
 'delete'            => 'Törlés',
 'deletethispage'    => 'Lap törlése',
-'undelete_short'    => '$1 szerkesztés helyreállítása',
+'undelete_short'    => '{{PLURAL:$1|Egy|$1}} szerkesztés helyreállítása',
 'protect'           => 'Lapvédelem',
 'protect_change'    => 'védelem módosítása',
 'protectthispage'   => 'Lap védelme',
@@ -446,7 +447,7 @@ $messages = array(
 'jumptosearch'      => 'keresés',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
-'aboutsite'         => 'A {{SITENAME}}ről',
+'aboutsite'         => 'A {{SITENAME}} wikiről',
 'aboutpage'         => 'Project:Rólunk',
 'bugreports'        => 'Hibabejelentések',
 'bugreportspage'    => 'Project:Hibabejelentések',
@@ -497,6 +498,7 @@ $messages = array(
 'restorelink'             => '{{PLURAL:$1|egy|$1}} törölt szerkesztés',
 'feedlinks'               => 'Hírcsatorna:',
 'feed-invalid'            => 'Érvénytelen a figyelt hírcsatorna típusa.',
+'feed-unavailable'        => 'Nincs elérhető hírcsatorna a(z) {{SITENAME}} wikin',
 'site-rss-feed'           => '$1 RSS csatorna',
 'site-atom-feed'          => '$1 Atom hírcsatorna',
 'page-rss-feed'           => '„$1” RSS hírcsatorna',
@@ -505,9 +507,9 @@ $messages = array(
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Szócikk',
-'nstab-user'      => 'Userlap',
+'nstab-user'      => 'Felhasználói lap',
 'nstab-media'     => 'Média',
-'nstab-special'   => 'Speciális',
+'nstab-special'   => 'Speciális lap',
 'nstab-project'   => 'Projektlap',
 'nstab-image'     => 'Kép',
 'nstab-mediawiki' => 'Üzenet',
@@ -516,11 +518,11 @@ $messages = array(
 'nstab-category'  => 'Kategória',
 
 # Main script and global functions
-'nosuchaction'      => 'Nincs ilyen tevékenység',
-'nosuchactiontext'  => 'Az URL-ben megadott tevékenységet
-a wiki nem ismeri föl',
-'nosuchspecialpage' => 'Nincs ilyen speciális lap',
-'nospecialpagetext' => "<big>'''Olyan speciális lapot akartál megtekinteni, amely nem létezik.'''</big>
+'nosuchaction'      => 'Nincs ilyen művelet',
+'nosuchactiontext'  => 'Az URL-ben megadott műveletet
+a wiki nem ismeri fel',
+'nosuchspecialpage' => 'Nem létezik ilyen speciális lap',
+'nospecialpagetext' => "<big>'''Érvénytelen speciális lapot akartál megtekinteni.'''</big>
 
 Az érvényes speciális lapok listáját a [[Special:Specialpages|Speciális lapok]] címen találod.",
 
@@ -538,9 +540,9 @@ Az utoljára megkísérelt adatbázis lekérdezés
 „$1” volt
 a „<tt>$2</tt>” függvényből.
 A MySQL ezzel a hibával tért vissza: „<tt>$3: $4</tt>”.',
-'noconnect'            => 'Technikai problémák miatt nem tudok az adatbázisgépre csatlakozni. <br />
+'noconnect'            => 'Technikai problémák miatt nem sikerült az adatbázisgépre csatlakozni. <br />
 $1',
-'nodb'                 => 'Nem választható ki a(z) $1 adatbázis',
+'nodb'                 => 'Nem sikerült kiválasztani a(z) $1 adatbázist',
 'cachederror'          => 'Ez a kért lap gyorsítótáras változata, ezért lehet, hogy nem tartalmazza a legújabb módosításokat.',
 'laggedslavemode'      => 'Figyelem: Ez a lap nem feltétlenül tartalmazza a legfrissebb változtatásokat!',
 'readonly'             => 'Az adatbázis le van zárva',
@@ -588,8 +590,8 @@ Lekérdezés: $2',
 $2',
 'namespaceprotected'   => "Nincs jogosultságod a(z) '''$1''' névtérbeli lapok szerkesztésére.",
 'customcssjsprotected' => 'Nincs jogosultságod a lap szerkesztéséhez, mert egy másik felhasználó személyes beállításait tartalmazza.',
-'ns-specialprotected'  => 'A {{ns:special}} névtérben található lapok nem szerkeszthetőek.',
-'titleprotected'       => 'A cikk elkészítését [[User:$1|$1]] blokkolta, oka: <i>$2</i>.',
+'ns-specialprotected'  => 'A speciális lapok nem szerkeszthetőek.',
+'titleprotected'       => "A cikk elkészítését [[User:$1|$1]] blokkolta, oka: ''$2''.",
 
 # Login and logout pages
 'logouttitle'                => 'Kijelentkezés',
@@ -612,7 +614,7 @@ A felhasználói környezetedet létrehoztuk. Ne felejtsd el átnézni a személ
 'userlogin'                  => 'Bejelentkezés / fiók létrehozása',
 'logout'                     => 'Kijelentkezés',
 'userlogout'                 => 'Kijelentkezés',
-'notloggedin'                => 'Nincs bejelentkezve',
+'notloggedin'                => 'Nem vagy bejelentkezve',
 'nologin'                    => 'Nem rendelkezel még felhasználói fiókkal? $1.',
 'nologinlink'                => 'Itt regisztrálhatsz',
 'createaccount'              => 'Regisztráció',
@@ -629,31 +631,31 @@ A felhasználói környezetedet létrehoztuk. Ne felejtsd el átnézni a személ
 'yourvariant'                => 'Változó',
 'yournick'                   => 'Az aláírásokban használni kívánt névformád:',
 'badsig'                     => 'Érvénytelen aláírás; ellenőrizd a HTML-formázást.',
-'badsiglength'               => 'Túl hosszú a neved; $1 karakternél kevesebbnek kell lennie.',
+'badsiglength'               => 'A megadott név túl hosszú; $1 karakternél rövidebbnek kell lennie.',
 'email'                      => 'E-mail',
-'prefs-help-realname'        => 'A valódi név nem kötelező, de ha úgy döntesz, hogy megadod, így leszel jelezve, mint a munkád szerzője.',
+'prefs-help-realname'        => 'A valódi nevet nem kötelező megadni, de ha úgy döntesz, hogy megadod, így leszel feltüntetve a munkád szerzőjeként.',
 'loginerror'                 => 'Belépési hiba',
-'prefs-help-email'           => 'Az e-mail cím nem kötelező, de lehetővé teszi, hogy más szerkesztők kapcsolatba lépjenek veled a felhasználói vagy vitalapodon keresztül, anélkül, hogy névtelenséged feladnád.',
-'prefs-help-email-required'  => 'Szükséges az e-mail cím megadása.',
-'nocookiesnew'               => 'A felhasználói fiókod létrejött, de nem vagy bejelentkezve. A wiki cookie-kat („süti”) használ a felhasználók azonosítására, és lehetséges, hogy te ezeket letiltottad. Kérlek, engedélyezd a cookie-kat, majd lépj be az új azonosítóddal és jelszavaddal.',
-'nocookieslogin'             => 'A wiki cookie-kat („süti”) használ az azonosításhoz, de te ezeket letiltottad. Engedélyezd őket, majd próbálkozz ismét.',
+'prefs-help-email'           => 'Az e-mail címet nem kötelező, de lehetővé teszi, hogy más szerkesztők kapcsolatba lépjenek veled a felhasználói vagy vitalapodon keresztül, anélkül, hogy névtelenséged feladnád.',
+'prefs-help-email-required'  => 'Meg kell adnod az e-mail címedet.',
+'nocookiesnew'               => 'A felhasználói fiókod létrejött, de nem vagy bejelentkezve. A wiki cookie-kat („süti”) használ a felhasználók azonosítására. Nálad ezek le vannak tiltva. Kérlek, engedélyezd őket, majd lépj be új azonosítóddal és jelszavaddal.',
+'nocookieslogin'             => 'A wiki cookie-kat („süti”) használ az azonosításhoz. Nálad ezek le vannak tiltva. Engedélyezd őket, majd próbáld meg újra.',
 'noname'                     => 'Nem érvényes felhasználónevet adtál meg.',
-'loginsuccesstitle'          => 'Sikeres belépés',
-'loginsuccess'               => 'Beléptél a(z) {{grammar:ba|{{SITENAME}}}} „$1” néven.',
+'loginsuccesstitle'          => 'Sikeres bejelentkezés',
+'loginsuccess'               => 'Most már be vagy jelentkezve a(z) {{grammar:ba|{{SITENAME}}}} „$1” néven.',
 'nosuchuser'                 => 'Nem létezik „$1” nevű felhasználó. Ellenőrizd, hogy helyesen írtad-e be, vagy hozz létre egy új fiókot.',
 'nosuchusershort'            => 'Nem létezik „<nowiki>$1</nowiki>” nevű felhasználó. Ellenőrizd, hogy helyesen írtad-e be, vagy hozz létre egy új fiókot.',
-'nouserspecified'            => 'Meg kell adnod egy felhasználói nevet.',
+'nouserspecified'            => 'Meg kell adnod a felhasználói nevet.',
 'wrongpassword'              => 'A megadott jelszó érvénytelen. Próbáld meg újra.',
-'wrongpasswordempty'         => 'Nem adtál meg jelszót. Próbáld újra.',
-'passwordtooshort'           => 'Túl rövid a jelszavad. Legalább $1 karakterből kell állnia, és nem egyezhet meg a felhasználói névvel.',
+'wrongpasswordempty'         => 'Nem adtál meg jelszót. Próbáld meg újra.',
+'passwordtooshort'           => 'Az általad megadott jelszó érvénytelen vagy túl rövid. Legalább $1 karakterből kell állnia, és nem egyezhet meg a felhasználói neveddel.',
 'mailmypassword'             => 'Jelszó elküldése e-mailben',
-'passwordremindertitle'      => '{{SITENAME}} jelszó emlékeztető',
+'passwordremindertitle'      => '{{SITENAME}} jelszóemlékeztető',
 'passwordremindertext'       => 'Valaki (vélhetően te, a(z) $1 IP-címről)
-azt kérte, hogy küldjünk neked új {{SITENAME}} ($4) jelszót.
+azt kérte, hogy küldjünk neked új {{SITENAME}}-jelszót ($4).
 A "$2" felhasználó jelszava jelenleg "$3".
 Lépj be, és változtasd meg.
 
-Ha nem kértél új jelszót, vagy közben eszedbe jutott a régi, és már nem akarod megváltoztatni, nyugodtan figyelmen kívül hagyhatod ezt az értesítést, és használhatod tovább a régi jelszavadat.',
+Ha nem kértél új jelszót, vagy közben eszedbe jutott a régi, és már nem akarod megváltoztatni, nyugodtan hagyd figyelmen kívül ezt az értesítést, és használd továbbra is a régi jelszavadat.',
 'noemail'                    => '„$1” e-mail címe nincs megadva.',
 'passwordsent'               => 'Az új jelszót elküldtük „$1” e-mail címére.
 Lépj be a levélben található adatokkal.',
@@ -662,16 +664,15 @@ Lépj be a levélben található adatokkal.',
 'throttled-mailpassword'     => 'Már elküldtünk egy jelszóemlékeztetőt az utóbbi $1 órában. A visszaélések elkerülése végett $1 óránként csak egy jelszó-emlékeztetőt küldünk.',
 'mailerror'                  => 'Hiba történt az e-mail küldése közben: $1',
 'acct_creation_throttle_hit' => 'Már létrehoztál $1 felhasználói azonosítót. Sajnáljuk, de többet nem hozhatsz létre.',
-'emailauthenticated'         => 'Az e-mail címedet megerősítetted $1-kor.',
+'emailauthenticated'         => '$1-kor megerősítetted az e-mail címedet.',
 'emailnotauthenticated'      => 'Az e-mail címed még <strong>nincs megerősítve</strong>. E-mailek küldése és fogadása nem engedélyezett.',
-'noemailprefs'               => 'Ennek a funkciónak a működéséhez meg kell adnod az e-mail címedet.',
-'emailconfirmlink'           => 'Erősítsd meg az e-mail címedet',
-'invalidemailaddress'        => 'Az e-mail cím nem fogadható el, mert érvénytelen a formátuma.
-Kérlek, adj meg egy helyesen formázott e-mail címet vagy hagyd üresen a mezőt.',
-'accountcreated'             => 'Fiók létrehozva',
+'noemailprefs'               => 'Az alábbi funkciók használatához meg kell adnod az e-mail címedet.',
+'emailconfirmlink'           => 'E-mail cím megerősítése',
+'invalidemailaddress'        => 'A megadott e-mail cím érvénytelen formátumú. Kérlek, adj meg egy helyesen formázott e-mail címet vagy hagyd üresen azt a mezőt.',
+'accountcreated'             => 'Felhasználói fiók létrehozva',
 'accountcreatedtext'         => '$1 felhasználói fiókja sikeresen létrejött.',
 'createaccount-title'        => 'Új {{SITENAME}}-fiók létrehozása',
-'createaccount-text'         => '$1 létrehozott számodra egy „$2” nevű {{SITENAME}}-azonosítót ($4). A hozzátartozó jelszó "$3". Jelentkezz be és változtasd meg a jelszót minél előbb.
+'createaccount-text'         => '$1 létrehozott számodra egy „$2” nevű {{SITENAME}}-azonosítót ($4). A hozzátartozó jelszó "$3", melyet minél előbb változtass meg.
 
 Ha nem kértél új azonosítót, és tévedésből kaptad ezt a levelet, nyugodtan hagyd figyelmen kívül.',
 'loginlanguagelabel'         => 'Nyelv: $1',
@@ -694,20 +695,20 @@ Ha nem kértél új azonosítót, és tévedésből kaptad ezt a levelet, nyugod
 'italic_tip'      => 'Dőlt szöveg',
 'link_sample'     => 'Belső hivatkozás',
 'link_tip'        => 'Belső hivatkozás',
-'extlink_sample'  => 'http://www.példa-hivatkozás.hu hivatkozás címe',
-'extlink_tip'     => 'Külső hivatkozás (ne felejtsd a http:// előtagot)',
+'extlink_sample'  => 'http://www.példa.hu hivatkozás címe',
+'extlink_tip'     => 'Külső hivatkozás (ne felejtsd el a http:// előtagot)',
 'headline_sample' => 'Alfejezet címe',
 'headline_tip'    => 'Alfejezetcím',
-'math_sample'     => 'TeX-képlet ide',
+'math_sample'     => 'Ide írd a képletet',
 'math_tip'        => 'Matematikai képlet (LaTeX)',
-'nowiki_sample'   => 'Ide írd a nem formázott szöveget',
+'nowiki_sample'   => 'Ide írd a nem-formázott szöveget',
 'nowiki_tip'      => 'Wiki formázás kikapcsolása',
 'image_sample'    => 'Pelda.jpg',
 'image_tip'       => 'Kép beszúrása',
 'media_sample'    => 'Peldaegyketto.ogg',
 'media_tip'       => 'Fájlhivatkozás',
 'sig_tip'         => 'Aláírás időponttal',
-'hr_tip'          => 'Vízszintes vonal (módjával használd)',
+'hr_tip'          => 'Vízszintes vonal (ritkán használd)',
 
 # Edit pages
 'summary'                   => 'Összefoglaló',
@@ -738,7 +739,7 @@ Kapcsolatba léphetsz $1 felhasználóval, vagy egy másik [[{{MediaWiki:Grouppa
 Az 'E-mail küldése ennek a felhasználónak' funkciót nem használhatod, ha a megadott e-mail cím a
 [[Special:Preferences|fiókbeállításaidban]] nem érvényes, és nem blokkolták annak a használatát.
 Jelenlegi IP-címed: $3, a blokkolás azonosítószáma: #$5. Kérjük, hogy érdeklődés esetén lehetőleg mindkettőt add meg.",
-'autoblockedtext'           => "Erről az IP-címről nem lehet szerkeszteni, mert egy blokkolt felhasználó korábban szerkeszteni próbált róla, ezért a Wikipédia szoftvere automatikusan blokkolta. A felhasználót $1 blokkolta az alábbi indoklással:
+'autoblockedtext'           => "Az IP-címről automatikusan blokkolva lett, mert korábban egy olyan felhasználó használta, akit $1 blokkolt, az alábbi indoklással:
 
 :''$2''
 
@@ -757,10 +758,10 @@ A blokkolás azonosítószáma: $5. Kérjük, hogy érdeklődés esetén ezt add
 'whitelistedittitle'        => 'A szerkesztéshez be kell jelentkezned',
 'whitelistedittext'         => 'A szócikkek szerkesztéséhez $1.',
 'whitelistreadtitle'        => 'Az olvasáshoz be kell lépned',
-'whitelistreadtext'         => '[[Special:Userlogin|Be kell lépned]] ahhoz, hogy cikkeket tudj olvasni.',
+'whitelistreadtext'         => 'A lapok olvasásához [[Special:Userlogin|be kell lépned]].',
 'whitelistacctitle'         => 'Nem készíthetsz új felhasználói fiókot',
 'whitelistacctext'          => 'Felhasználói fiókok létrehozásához [[Special:Userlogin|be kell jelentkezned]] a szükséges jogosultságokkal.',
-'confirmedittitle'          => 'E-mail cím megerősítése szükséges a szerkesztéshez',
+'confirmedittitle'          => 'Szerkesztéshez az e-mail cím megerősítése szükséges',
 'confirmedittext'           => 'A lapok szerkesztése előtt meg kell erősítened az e-mail címedet. Kérjük, hogy a [[Special:Preferences|felhasználói beállításaidban]] írd be, majd erősítsd meg az e-mail címedet.',
 'nosuchsectiontitle'        => 'Nincs ilyen szakasz',
 'nosuchsectiontext'         => 'Egy olyan szakaszt próbáltál meg szerkeszteni, amely nem létezik.  Mivel nincs $1. szakasz, ezért nem lehet elmenteni.',
@@ -777,18 +778,18 @@ A [[{{MediaWiki:Helppage}}|súgó]] lapon további információkat találsz, mel
 
 Ha tévedésből jöttél ide, csak nyomd meg a böngésző '''Vissza/Back'''
 gombját.",
-'anontalkpagetext'          => "----''Ez egy olyan anonim szerkesztő vitalapja, aki még nem regisztrált, vagy csak nem jelentkezett be. Ezért az IP-címét (<tt>{{PAGENAME}}</tt>) használjuk az azonosítására. Ugyanazon az IP-címen egy sor szerkesztő osztozhat az idők folyamán, ahogy a netszolgáltatók kiosztják a címeket. Ha úgy látod, hogy az üzenetek, amiket ide kapsz, nem neked szólnak, regisztrálj vagy ha már regisztráltál, lépj be, hogy ne keverjenek össze másokkal.''",
+'anontalkpagetext'          => "----''Ez egy olyan anonim szerkesztő vitalapja, aki még nem regisztrált, vagy csak nem jelentkezett be. Ezért az IP-címét (<tt>{{PAGENAME}}</tt>) használjuk az azonosítására. Ugyanazon az IP-címen egy sor szerkesztő osztozhat az idők folyamán. Ha úgy látod, hogy az üzenetek, amiket ide kapsz, nem neked szólnak, regisztrálj vagy ha már regisztráltál, lépj be, hogy ne keverjenek össze másokkal.''",
 'noarticletext'             => 'Ez a lap jelenleg nem tartalmaz szöveget. [[Special:Search/{{PAGENAME}}|Rákereshetsz erre a címszóra]], vagy [{{fullurl:{{FULLPAGENAME}}|action=edit}} szerkesztheted a lapot].',
-'userpage-userdoesnotexist' => 'Nincs regisztrálva „$1” nevű felhasználó. Nézd meg, hogy valóban ezt a lapot szeretnéd létrehozni vagy szerkeszteni.',
+'userpage-userdoesnotexist' => 'Nincs „$1” nevű regisztrált felhasználó. Nézd meg, hogy valóban ezt a lapot szeretnéd létrehozni vagy szerkeszteni.',
 'clearyourcache'            => "'''Megjegyzés:''' A beállítások elmentése után frissítened kell a böngésződ gyorsítótárát, hogy a változások érvénybe lépjenek. '''Mozilla''' / '''Firefox''' / '''Safari:''' tartsd lenyomva a Shift gombot és kattints a ''Reload'' / ''Frissítés'' gombra az eszköztáron, vagy használd a ''Ctrl–F5'' billentyűkombinációt (Apple Mac-en ''Cmd–Shift–R''); '''Internet Explorer:''' tartsd nyomva a ''Ctrl''-t, és kattints a ''Reload'' / ''Frissítés'' gombra, vagy nyomj ''Ctrl–F5''-öt; '''Konqueror:''' egyszerűen csak kattints a ''Reload'' / ''Frissítés'' gombra (vagy ''Ctrl–R'' vagy ''F5''); '''Opera''' felhasználóknak teljesen ki kell üríteniük a gyorsítótárat a ''Tools→Preferences'' menüben.",
-'usercssjsyoucanpreview'    => '<strong>Tipp:</strong> Használd az „Előnézet megtekintése” gombot az új css/js teszteléséhez mentés előtt.',
+'usercssjsyoucanpreview'    => '<strong>Tipp:</strong> Használd az „Előnézet megtekintése” gombot az új CSS/JS teszteléséhez mentés előtt.',
 'usercsspreview'            => "'''Ne felejtsd el, hogy ez csak a CSS előnézete és még nincs elmentve!'''",
 'userjspreview'             => "'''Ne felejtsd el, hogy még csak teszteled a felhasználói JavaScriptedet, és még nincs elmentve!'''",
-'userinvalidcssjstitle'     => "'''Figyelem:''' Nincs „$1” nevű felület. Lehet, hogy nagy kezdőbetűt használtál olyan helyen, ahol nem kellene? A felületekhez tartozó .css/.js oldalak kisbetűvel kezdődnek. (Például ''{{ns:user}}:Gipsz Jakab/monobook.css'' és nem ''{{ns:user}}:Gipsz Jakab/Monobook.css''.)",
+'userinvalidcssjstitle'     => "'''Figyelem:''' Nincs „$1” nevű felület. A felületekhez tartozó .css/.js oldalak kisbetűvel kezdődnek, például ''{{ns:user}}:Gipsz Jakab/monobook.css'' és nem ''{{ns:user}}:Gipsz Jakab/Monobook.css''.",
 'updated'                   => '(Frissítve)',
 'note'                      => '<strong>Megjegyzés:</strong>',
 'previewnote'               => '<strong>Ne feledd, hogy ez csak előnézet, a munkád még nincs elmentve!</strong>',
-'previewconflict'           => 'Ez az előnézet a felső szerkesztőablakban levő szövegnek megfelelő képet mutatja, ahogy a mentés után kinézne.',
+'previewconflict'           => 'Ez az előnézet a felső szerkesztőablakban levő szöveg mentés utáni megfelelőjét mutatja.',
 'session_fail_preview'      => '<strong>Sajnos nem tudtuk feldolgozni a szerkesztésedet, mert elveszett a session-adat. Kérjük próbálkozz újra! Amennyiben továbbra sem sikerül, próbálj meg kijelentkezni, majd ismét bejelentkezni!</strong>',
 'session_fail_preview_html' => "<strong>Elnézést! A munkamenet adatainak megsemmisülése miatt nem tudtuk feldolgozni a szerkesztésedet.</strong>
 
@@ -798,25 +799,23 @@ gombját.",
 'token_suffix_mismatch'     => '<strong>A szerkesztésedet elutasítottuk, mert az ügyfeled megváltoztatta az írásjeleket
 a szerkesztési vezérjelben. A szerkesztést azért utasítottuk vissza, hogy megelőzzük a cikk szövegének sérülését.
 Ez olyankor fordul elő, ha az általad használt webalapú névtelen proxy szolgáltatás hibás.</strong>',
-'editing'                   => '$1 szerkesztés alatt',
-'editinguser'               => '$1 szerkesztés alatt',
-'editingsection'            => '$1 szerkesztés alatt (szakasz)',
-'editingcomment'            => '$1 szerkesztés alatt (üzenet)',
+'editing'                   => '$1 szerkesztése',
+'editinguser'               => "'''[[User:$1|$1]]''' jogainak megváltoztatása ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
+'editingsection'            => '$1 szerkesztése (szakasz)',
+'editingcomment'            => '$1 szerkesztése (üzenet)',
 'editconflict'              => 'Szerkesztési ütközés: $1',
 'explainconflict'           => "Valaki megváltoztatta a lapot azóta, hogy szerkeszteni kezdted.
-# A felső szövegablak tartalmazza az oldal jelenlegi állapotát, ahogy utánad érkezett szerkesztőtársad módosította.
-# A te módosításaid az alsó ablakban láthatóak.
-# Át kell vezetned a módosításaidat a felső szövegbe, és csak utána menteni.
-
-'''Csak''' a felső ablakban levő szöveg lesz elmentve, amikor a ''Lap mentése'' gombra kattintasz.",
+A felső szövegablak tartalmazza az oldal jelenlegi állapotát.
+A te módosításaid az alsó ablakban láthatóak.
+Át kell vezetned a módosításaidat a felső szövegbe.
+'''Csak''' a felső ablakban levő szöveg lesz elmentve, amikor a „Lap mentése” gombra kattintasz.",
 'yourtext'                  => 'A te változatod',
 'storedversion'             => 'A tárolt változat',
-'nonunicodebrowser'         => '<strong>Figyelem: A böngésződ nem unicode kompatibilis. Egy programozási trükk segítségével biztonságban szerkesztheted a cikkeket: a nem ASCII karakterek a szerkesztőablakban hexadeciális kódokként jelennek meg..</strong>',
-'editingold'                => '<strong>FIGYELMEZTETÉS: A lap egy elavult változatát
-szerkeszted.
-Ha mented, akkor az ezen változat után végzett összes módosítás elvész.</strong>',
+'nonunicodebrowser'         => '<strong>Figyelem: A böngésződ nem Unicode kompatibilis. Egy programozási trükk segítségével biztonságban szerkesztheted a cikkeket: a nem ASCII karakterek a szerkesztőablakban hexadeciális kódokként jelennek meg.</strong>',
+'editingold'                => '<strong>FIGYELMEZTETÉS: A lap egy elavult változatát szerkeszted.
+Ha elmented, akkor az ezen változat után végzett összes módosítás elvész.</strong>',
 'yourdiff'                  => 'Eltérések',
-'copyrightwarning'          => 'A szöveg elküldésével tanúsítod, hogy nem sért szerzői jogokat, és engedélyezed a(z) $2 szerinti felhasználását. Ha nem akarod, hogy az írásodat módosítsák vagy továbbterjesszék, akkor ne küldd itt be.<br />
+'copyrightwarning'          => 'A szöveg elküldésével tanúsítod, hogy nem sért szerzői jogokat, és engedélyezed a(z) $2 szerinti felhasználását (lásd $1). Ha nem akarod, hogy az írásodat módosítsák vagy továbbterjesszék, akkor ne küldd be.<br />
 <strong>Ne küldj be engedély nélkül szerzői jogilag védett munkákat!</strong>',
 'copyrightwarning2'         => 'A {{SITENAME}} tartalmát, így az általad beküldött szövegeket is más résztvevők átírhatják vagy törölhetik. Ha nem akarod, hogy a művedet átírják, ne küldd be ide.<br />
 A beküldéssel egyben azt is tanúsítod, hogy a beküldött szöveget magad írtad, vagy közkincsből vagy más szabadon felhasználható forrásból másoltad (a részletekért lásd: $1).
@@ -830,7 +829,7 @@ ezért sajnos nem tudod majd elmenteni a szerkesztéseidet. A lap szöveget kim�
 egy szövegfájlba, amit elmenthetsz későbbre.</strong>',
 'protectedpagewarning'      => '<strong>FIGYELEM: Ez a lap védett, csak adminisztrátorok szerkeszthetik.</strong>',
 'semiprotectedpagewarning'  => "'''Megjegyzés:''' ez a lap védett, nem vagy újonnan regisztrált felhasználók nem szerkeszthetik.",
-'cascadeprotectedwarning'   => "'''Figyelmeztetés:''' Ezt az oldalt zárolták, ezért csak a rendszerfelelősi jogokkal rendelkező felhasználók szerkeszthetik, mert a következő lépcsőzetes védelmű {{PLURAL:$1|page|oldalak}} közé tartozik:",
+'cascadeprotectedwarning'   => "'''Figyelem:''' ez a lap le van zárva, csak adminisztrátorok szerkeszthetik, mert a következő kaszkádvédelemmel ellátott {{PLURAL:$1|lapon|lapokon}} szerepel beillesztve:",
 'titleprotectedwarning'     => '<strong>FIGYELEM:  Ez a lap úgy van levédve, hogy csak néhány felhasználó hozhatja létre.</strong>',
 'templatesused'             => 'Sablonok ezen a lapon:',
 'templatesusedpreview'      => 'Az előnézetben használt sablonok:',
@@ -843,23 +842,22 @@ egy szövegfájlba, amit elmenthetsz későbbre.</strong>',
 Visszamehetsz és szerkeszthetsz egy létező lapot, ill. [[Special:Userlogin|bejelentkezhetsz vagy létrehozhatod a fiókodat]].',
 'nocreate-loggedin'         => 'Az új lapok készítése nem engedélyezett ebben a wikiben a számodra.',
 'permissionserrors'         => 'Engedélyezési hibák',
-'permissionserrorstext'     => 'Végrehajtása nem engedélyezett a számodra, a következő {{PLURAL:$1|ok|okok}} miatt:',
-'recreate-deleted-warn'     => "'''Vigyázat: egy olyan lapot akarsz létrehozni, amit korábban már töröltünk.'''
+'permissionserrorstext'     => 'A művelet elvégzése nem engedélyezett a számodra, a következő {{PLURAL:$1|ok|okok}} miatt:',
+'recreate-deleted-warn'     => "'''Vigyázat: egy olyan lapot akarsz létrehozni, amelyet korábban már töröltünk.'''
 
-Mielőtt létrehoznád a lapot nézd meg, miért került korábban törlésre és ellenőrizd,
+Mielőtt létrehoznád, nézd meg, miért került korábban törlésre és ellenőrizd,
 hogy a törlés indoka nem érvényes-e még. A törlési naplóban a lapról az alábbi bejegyzések szerepelnek:",
 
 # "Undo" feature
-'undo-success' => 'A szerkesztés visszavonható. Kérlek ellenőrizd a változásokat alább, hogy valóban ezt szeretnéd-e tenni, majd kattints a lap mentése gombra a visszavonás véglegesítéséhez.',
+'undo-success' => 'A szerkesztés visszavonható. Kérlek ellenőrizd alább a változásokat, hogy valóban ezt szeretnéd-e tenni, majd kattints a lap mentése gombra a visszavonás véglegesítéséhez.',
 'undo-failure' => 'A szerkesztést nem lehet automatikusan visszavonni vele ütköző későbbi szerkesztések miatt.',
 'undo-summary' => 'Visszavontam [[Special:Contributions/$2|$2]] ([[User talk:$2|vita]]) szerkesztését (oldid: $1)',
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Felhasználói fiók létrehozása sikertelen',
-'cantcreateaccount-text' => "Erről az IP-címről (<b>$1</b>) átmenetileg nem lehet regisztrálni, mert [[User:$3|$3]] blokkolta az alábbi indokkal:
-:''$2''
+'cantcreateaccount-text' => "Erről az IP-címről ('''$1''') nem lehet regisztrálni, mert [[User:$3|$3]] blokkolta az alábbi indokkal:
 
-Egy IP-címet gyakran több különböző ember is használ; lehetséges, hogy egy másnak szánt blokkba futottál bele. Ebben az esetben (vagy ha kifogásod van a blokk ellen) vedd fel velünk a kapcsolatot! '''A blokkal kapcsolatos üzenetekben írd meg az IP-címedet ($1), a blokkoló admin nevét, és a blokk indokát!''' Ha szeretnéd, hogy létrehozzunk neked egy új felhasználót, adj meg egy e-mail címet, és mondd meg, milyen felhasználónevet szeretnél. Érdemes magadról is írnod pár szót, így elkerülheted, hogy összetévesszünk azzal, akinek a blokkot szántuk.",
+:''$2''",
 
 # History pages
 'viewpagelogs'        => 'A lap a rendszernaplókban',
@@ -874,7 +872,7 @@ Egy IP-címet gyakran több különböző ember is használ; lehetséges, hogy e
 'nextrevision'        => 'Újabb változat→',
 'currentrevisionlink' => 'legfrissebb változat',
 'cur'                 => 'akt',
-'next'                => 'köv',
+'next'                => 'következő',
 'last'                => 'előző',
 'orig'                => 'eredeti',
 'page_first'          => 'első',
@@ -884,7 +882,7 @@ Jelmagyarázat: (akt) = eltérés az aktuális változattól, (előző) = eltér
 'deletedrev'          => '[törölve]',
 'histfirst'           => 'legkorábbi',
 'histlast'            => 'legutolsó',
-'historysize'         => '($1 byte)',
+'historysize'         => '($1 bájt)',
 'historyempty'        => '(üres)',
 
 # Revision feed
@@ -892,25 +890,22 @@ Jelmagyarázat: (akt) = eltérés az aktuális változattól, (előző) = eltér
 'history-feed-description'    => 'Az oldal laptörténete a wikiben',
 'history-feed-item-nocomment' => '$1, $2-n', # user at time
 'history-feed-empty'          => 'A kért oldal nem létezik.
-Lehet, hogy törölték a wikiből, vagy átnevezhették.
-Próbálkozz meg a témával kapcsolatos wikilapok [[Special:Search|keresésével]].',
+Lehet, hogy törölték a wikiből, vagy átnevezték.
+Próbálkozhatsz a témával kapcsolatos lapok [[Special:Search|keresésével]].',
 
 # Revision deletion
 'rev-deleted-comment'         => '(megjegyzés eltávolítva)',
-'rev-deleted-user'            => '(felhazsnálónév eltávolítva)',
+'rev-deleted-user'            => '(felhasználónév eltávolítva)',
 'rev-deleted-event'           => '(bejegyzés eltávolítva)',
 'rev-deleted-text-permission' => '<div class="mw-warning plainlinks">
-Ezt a lapjavítást eltávolították a nyilvános archívumokból.
-A részletek benne lehetnek a [{{fullurl:Special:Napló/delete|page={{FULLPAGENAMEE}}}} törlési naplóban].
-</div>',
+Ezt a változatot eltávolítottuk a nyilvános archívumokból.
+További információkat a [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} törlési naplóban] találhatsz.</div>',
 'rev-deleted-text-view'       => '<div class="mw-warning plainlinks">
-Ezt a lapváltozatot eltávolították a nyilvános archívumokból.
-Mivel adminisztrátor vagy ezen a webhelyen, te megtekintheted;
-a részletek benne lehetnek a [{{fullurl:Special:Napló/delete|page={{FULLPAGENAMEE}}}} törlési naplóban].
-</div>',
+Ezt a változatot eltávolították a nyilvános archívumokból.
+Mivel adminisztrátor vagy ezen a webhelyen, te megtekintheted; további részleteket a [{{fullurl:Special:Napló/delete|page={{FULLPAGENAMEE}}}} törlési naplóban] találhatsz.</div>',
 'rev-delundel'                => 'megjelenítés/elrejtés',
-'revisiondelete'              => 'Javítások törlése/visszaállítása',
-'revdelete-nooldid-title'     => 'Nincs célváltozat',
+'revisiondelete'              => 'Változatok törlése/helyreállítása',
+'revdelete-nooldid-title'     => 'Érvénytelen célváltozat',
 'revdelete-nooldid-text'      => 'Nem adtad meg a célváltozatot vagy változatokat, melyeken el akarod végezni ezt a funkciót.',
 'revdelete-selected'          => "{{PLURAL:$2|Kiválasztott változat|Kiválasztott változatok}} - '''$1:'''",
 'logdelete-selected'          => "{{PLURAL:$2|Kiválasztott naplóesemény|Kiválasztott naplóesemények}} - '''$1:'''",
@@ -925,22 +920,21 @@ vissza tudja ugyanezen a kezelőfelületen keresztül állítani, ha nincs megad
 'revdelete-hide-comment'      => 'Megjegyzés módosításának elrejtése',
 'revdelete-hide-user'         => 'A szerkesztő felhasználónevének/IP-címének elrejtése',
 'revdelete-hide-restricted'   => 'Ezen korlátozások alkalmazása a rendszerfelelősökre is, és a többiekre is',
-'revdelete-suppress'          => 'Adatok letiltása a rendszerfelelősöktől is, és a többiektől is',
-'revdelete-hide-image'        => 'Fájltartalom elrejtése',
-'revdelete-unsuppress'        => 'A visszaállított változatok korlátozásainak eltávolítása',
-'revdelete-log'               => 'Naplómegjegyzés:',
+'revdelete-suppress'          => 'Adatok elrejtése az adminisztrátorok és a többi felhasználó elöl is',
+'revdelete-hide-image'        => 'A fájl tartalomának elrejtése',
+'revdelete-unsuppress'        => 'Korlátozások eltávolítása a visszaállított változatokról',
+'revdelete-log'               => 'Megjegyzés:',
 'revdelete-submit'            => 'Alkalmazás a kiválasztott változatra',
-'revdelete-logentry'          => 'megváltozott változat láthatóság [[$1]]',
-'logdelete-logentry'          => 'megváltozott esemény láthatóság [[$1]]',
-'revdelete-logaction'         => '$1 {{PLURAL:$1|revision|revíziók}} átállítva $2. módra',
+'revdelete-logentry'          => '[[$1]] változatának láthatóságának módosítása',
+'logdelete-logentry'          => '[[$1]] eseményének láthatóságának módosítása',
+'revdelete-logaction'         => '$1 változat átállítva $2 módra',
 'logdelete-logaction'         => '$1 {{PLURAL:$1|event|események}} to [[$3]] átállítva $2. módra',
-'revdelete-success'           => 'A változat láthatóságának beállítása sikerült.',
-'logdelete-success'           => 'Az esemény láthatóságának beállítása sikerült.',
+'revdelete-success'           => "'''A változat láthatóságának beállítása sikeresen elvégezve.'''",
+'logdelete-success'           => "'''Az esemény láthatóságának beállítása sikeresen elvégezve.'''",
 
 # Oversight log
 'oversightlog'    => 'Tévedésnapló',
-'overlogpagetext' => 'Az alábbiakban látható a rendszerfelelősök elől elrejtett legutóbbi törlések listája.
- A jelenleg érvényben lévő kitiltásokat és blokkolásokat lásd az [[Special:Ipblocklist|IP blokkolási listában]].',
+'overlogpagetext' => 'Az alábbiakban látható az adminisztrátorok elől legutóbb elrejtett törlések és blokkok listája. A jelenleg érvényben lévő kitiltásokat és blokkolásokat lásd az [[Special:Ipblocklist|Blokkolt IP-címek listáján]].',
 
 # History merging
 'mergehistory'                     => 'Laptörténetek egyesítése',
@@ -955,9 +949,9 @@ Győződj meg róla, hogy a laptörténet folytonossága megmarad.
 'mergehistory-merge'               => '[[:$1]] és [[:$2]] következő változatai vonhatóak össze. A gombok segítségével választhatod ki, ha csak egy adott idő előttieket szeretnél feldolgozni.',
 'mergehistory-go'                  => 'Egyesíthető szerkesztések mutatása',
 'mergehistory-submit'              => 'Változatok egyesítése',
-'mergehistory-empty'               => 'Nincs egyesíthető változás',
-'mergehistory-success'             => '[[:$1]] $3 változata sikeresen egyesítve lett a(z) [[:$2]] lappal.',
-'mergehistory-fail'                => 'Nem sikerült a laptörténetek egyesítése, kérlek ellenőrízd újra az oldalt és a megadott időparamétereket.',
+'mergehistory-empty'               => 'Nincs egyesíthető változás.',
+'mergehistory-success'             => '[[:$1]] {{PLURAL:$3|egy|$3}} változata sikeresen egyesítve lett a(z) [[:$2]] lappal.',
+'mergehistory-fail'                => 'Nem sikerült a laptörténetek egyesítése. Kérlek, ellenőrizd újra az oldalt és a megadott időparamétereket.',
 'mergehistory-no-source'           => 'Nem létezik forráslap $1 néven.',
 'mergehistory-no-destination'      => 'Nem létezik céllap $1 néven.',
 'mergehistory-invalid-source'      => 'A forráslapnak érvényes címet kell megadni.',
@@ -992,13 +986,13 @@ Győződj meg róla, hogy a laptörténet folytonossága megmarad.
 'prevn'                 => 'előző $1',
 'nextn'                 => 'következő $1',
 'viewprevnext'          => '($1) ($2) ($3)',
-'showingresults'        => 'Lent látható <b>$1</b> találat, az eleje <b>$2</b>.',
-'showingresultsnum'     => 'Lent látható <b>$3</b> találat, az eleje #<b>$2</b>.',
+'showingresults'        => "Lent '''{{PLURAL:$1|egy|$1}}''' találat látható, az eleje <b>$2</b>.",
+'showingresultsnum'     => "Lent '''{{PLURAL:$3|egy|$3}}''' találat látható, az eleje '''$2'''.",
 'nonefound'             => "'''Megjegyzés''': A sikertelen keresések
 gyakori oka olyan szavak keresése (pl. \"have\" és \"from\"), amiket a
 rendszer nem indexel, vagy több független keresési kifejezés megadása
 (csak minden megadott szót tartalmazó találatok jelennek meg az eredményben).",
-'powersearch'           => 'Keresés',
+'powersearch'           => 'Részletes keresés',
 'powersearchtext'       => 'Keresés a névterekben:<br />$1<br />$2 Átirányítások listája &nbsp; Keresés:$3 $9',
 'searchdisabled'        => 'Elnézésed kérjük, de a teljes szöveges keresés terhelési okok miatt átmenetileg nem használható. Ezidő alatt használhatod a lenti Google keresést, mely viszont lehetséges, hogy nem teljesen friss adatokkal dolgozik.',
 
@@ -1087,18 +1081,18 @@ A kijelöletlen csportok változatlanok maradnak. CTRL + bal kattintással tudod
 
 # Groups
 'group'               => 'Csoport:',
-'group-autoconfirmed' => 'Automatikus megerősítésű felhasználók',
+'group-autoconfirmed' => 'automatikusan megerősített felhasználók',
 'group-bot'           => 'botok',
 'group-sysop'         => 'adminisztrátorok',
 'group-bureaucrat'    => 'bürokraták',
 'group-all'           => '(mind)',
 
-'group-autoconfirmed-member' => 'Automatikus megerősítésű felhasználó',
-'group-bot-member'           => 'Bot',
+'group-autoconfirmed-member' => 'automatikusan megerősített felhasználó',
+'group-bot-member'           => 'bot',
 'group-sysop-member'         => 'adminisztrátor',
 'group-bureaucrat-member'    => 'bürokrata',
 
-'grouppage-autoconfirmed' => '{{ns:project}}:Automatikus megerősítésű felhasználók',
+'grouppage-autoconfirmed' => '{{ns:project}}:Automatikusan megerősített felhasználók',
 'grouppage-bot'           => '{{ns:project}}:Botok',
 'grouppage-sysop'         => '{{ns:project}}:Adminisztrátorok',
 'grouppage-bureaucrat'    => '{{ns:project}}:Bürokraták',
@@ -1110,7 +1104,7 @@ A kijelöletlen csportok változatlanok maradnak. CTRL + bal kattintással tudod
 'rightsnone'     => '(semmi)',
 
 # Recent changes
-'nchanges'                          => '$1 változtatás',
+'nchanges'                          => '{{PLURAL:$1|egy|$1}} változtatás',
 'recentchanges'                     => 'Friss változtatások',
 'recentchangestext'                 => 'A wiki legutóbbi változtatásainak követése ezen a lapon.',
 'recentchanges-feed-description'    => 'Kövesd a wiki friss változtatásait ezzel a hírcsatornával.',
@@ -1118,7 +1112,7 @@ A kijelöletlen csportok változatlanok maradnak. CTRL + bal kattintással tudod
 'rcnotefrom'                        => 'Alább láthatóak a <b>$2</b> óta történt változások (<b>$1</b>-ig).',
 'rclistfrom'                        => 'Az új változtatások kijelzése $1 után',
 'rcshowhideminor'                   => 'apró módosítások $1',
-'rcshowhidebots'                    => 'robotok szerkesztéseinek $1',
+'rcshowhidebots'                    => 'botok szerkesztéseinek $1',
 'rcshowhideliu'                     => 'bejelentkezett felhasználók szerkesztéseinek $1',
 'rcshowhideanons'                   => 'névtelen szerkesztések $1',
 'rcshowhidepatr'                    => 'ellenőrzött szerkesztések $1',
@@ -1131,7 +1125,7 @@ A kijelöletlen csportok változatlanok maradnak. CTRL + bal kattintással tudod
 'minoreditletter'                   => 'A',
 'newpageletter'                     => 'Ú',
 'boteditletter'                     => 'b',
-'number_of_watching_users_pageview' => '[$1 figyelő felhasználó]',
+'number_of_watching_users_pageview' => '[Jelenleg $1 felhasználó nézi]',
 'rc_categories'                     => 'Korlátozás kategóriákra ("|" jellel elválasztva)',
 'rc_categories_any'                 => 'Bármi',
 'newsectionsummary'                 => '/* $1 */ (új szakasz)',
@@ -1169,7 +1163,7 @@ Képet a következő módon illeszhetsz be egy oldalra: '''<nowiki>[[</nowiki>{{
 'filestatus'                  => 'Szerzői jogi állapot',
 'filesource'                  => 'Forrás',
 'uploadedfiles'               => 'Feltöltött fájlok',
-'ignorewarning'               => 'Biztosan így akarom feltölteni.',
+'ignorewarning'               => 'Biztosan így akarom feltölteni',
 'ignorewarnings'              => 'Hagyd figyelmen kívül a figyelmeztetéseket',
 'minlength1'                  => 'A fájlnévnek legalább egy betűből kell állnia.',
 'illegalfilename'             => 'A „$1” lap neve olyan karaktereket tartalmaz, melyek nincsenek megengedve lapcímben. Kérlek, változtasd meg a nevet, és próbálkozz a mentéssel újra.',
@@ -1198,7 +1192,7 @@ Ha megvan neked a teljes felbontású kép, akkor töltsd fel azt, egyéb esetbe
 'uploadwarning'               => 'Feltöltési figyelmeztetés',
 'savefile'                    => 'Fájl mentése',
 'uploadedimage'               => '„[[$1]]” felküldve',
-'overwroteimage'              => 'feltöltötték a(z) "[[$1]]" kép új változatát',
+'overwroteimage'              => 'feltöltötte a(z) „[[$1]]” kép új változatát',
 'uploaddisabled'              => 'Feltöltések kikapcsolva',
 'uploaddisabledtext'          => 'A fájlfeltöltés ebben a wikiben letiltott.',
 'uploadscripted'              => 'Ez a fájl olyan HTML- vagy parancsfájlkódot tartalmaz, melyet tévedésből egy webböngésző esetleg értelmezni próbálhatna.',
@@ -1248,6 +1242,9 @@ PICT # ált.
 
 # Image list
 'imagelist'                 => 'Képlista',
+'imagelist-summary'         => 'Ezen a speciális lapon látható az összes feltöltött fájl.
+A legutóbb feltöltött fájlok vannak a lista elején.
+Az oszlopok címeire kattintva változtathatod meg a rendezést.',
 'imagelisttext'             => 'Lentebb $1 kép látható, $2 rendezve.',
 'getimagelist'              => 'képlista lehívása',
 'ilsubmit'                  => 'Keresés',
@@ -1365,7 +1362,7 @@ A [http://meta.wikimedia.org/wiki/Help:Job_queue szerver számára sorban álló
 
 'brokenredirects'        => 'Nem létező lapra mutató átirányítások',
 'brokenredirectstext'    => 'Az alábbi átirányítások nem létező lapokra mutatnak.',
-'brokenredirects-edit'   => '(szerkeszt)',
+'brokenredirects-edit'   => '(szerkesztés)',
 'brokenredirects-delete' => '(törlés)',
 
 'withoutinterwiki'        => 'Interwikilink nélküli lapok',
@@ -1437,7 +1434,7 @@ ellenére, hogy aktívan használják.</p>',
 'booksources-text'          => 'Alább látható a másik webhelyekre mutató hivatkozások listája, ahol új és használt könyveket árulnak, és
 további információkat lelhetsz ott az általad keresett könyvekről:',
 
-'categoriespagetext' => 'A wikiben az alábbi kategóriák találhatóak.',
+'categoriespagetext' => 'A következő kategóriák tartalmaznak lapokat vagy fájlokat.',
 'data'               => 'Adatok',
 'userrights'         => 'Felhasználói jogok kezelése',
 'groups'             => 'Felhasználói csoportok',
@@ -1508,13 +1505,11 @@ nem kíván másoktól leveleket kapni.',
 'watchlistfor'         => "('''$1''' részére)",
 'nowatchlist'          => 'Nincs lap a figyelőlistádon.',
 'watchlistanontext'    => 'A figyelőlistád megtekintéséhez és szerkesztéséhez $1.',
-'watchnologin'         => 'Nincs belépve',
+'watchnologin'         => 'Nem vagy bejelentkezve',
 'watchnologintext'     => 'Ahhoz, hogy figyelőlistád lehessen, [[Special:Userlogin|be kell lépned]].',
 'addedwatch'           => 'Figyelőlistához hozzáfűzve',
-'addedwatchtext'       => "A(z) „<nowiki>$1</nowiki>” lapot hozzáadtam a [[Special:Watchlist|figyelőlistádhoz]].
-Ezután minden, a lapon vagy annak vitalapján történő változást ott fogsz látni, és a lap '''vastagon''' fog szerepelni a [[Special:Recentchanges|friss változtatások]] lapon, hogy könnyen észrevehető legyen.
-
-Ha később el akarod távolítani a lapot a figyelőlistádról, akkor ezt az oldalmenü „{{MediaWiki:Unwatchthispage}}” pontjával (vagy a „{{MediaWiki:Unwatch}}” füllel) teheted meg.",
+'addedwatchtext'       => "A(z) „[[:$1]]” lapot hozzáadtam a [[Special:Watchlist|figyelőlistádhoz]].
+Ezután minden, a lapon vagy annak vitalapján történő változást ott fogsz látni, és a lap '''vastagon''' fog szerepelni a [[Special:Recentchanges|friss változtatások]] lapon, hogy könnyen észrevehető legyen.",
 'removedwatch'         => 'Figyelőlistáról eltávolítva',
 'removedwatchtext'     => 'A „<nowiki>$1</nowiki>” lapot eltávolítottam a figyelőlistáról.',
 'watch'                => 'Lap figyelése',
@@ -1643,12 +1638,14 @@ Kérjük, hogy nyomd meg a "vissza" gombot, és töltsd le újra az oldalt, ahon
 Itt vannak a(z) <strong>$1</strong> lap jelenlegi beállításai:',
 'protect-locked-access'       => 'A fiókod számára nem engedélyezett a védelmi szintek megváltoztatása.
 Itt vannak a(z) <strong>$1</strong> lap jelenlegi beállításai:',
-'protect-cascadeon'           => 'A lap le van védve, mert tartalmazzák az alábbi lapok, amelyeken be van kapcsolva a kaszkád védelem. Ezen lap védelmi szintjének a megváltoztatása a kaszkád védelemre nincs hatással.',
+'protect-cascadeon'           => 'A lap le van védve, mert {{PLURAL:$1|tartalmazza az alábbi lap, amelyen|tartalmazzák az alábbi lapok, amelyeken}}
+be van kapcsolva a kaszkád védelem.
+Megváltoztathatod ezen lap védelmi szintjét, de az nem lesz hatással a kaszkád védelemre.',
 'protect-default'             => '(alapértelmezett)',
 'protect-fallback'            => '"$1" engedély szükséges hozzá',
 'protect-level-autoconfirmed' => 'Csak regisztrált felhasználók',
 'protect-level-sysop'         => 'Csak adminisztrátorok',
-'protect-summary-cascade'     => 'részben fedő',
+'protect-summary-cascade'     => 'kaszkád védelem',
 'protect-expiring'            => 'lejár: $1 (UTC)',
 'protect-cascade'             => 'Kaszkád védelem – védjen le minden lapot, amit ez a lap tartalmaz.',
 'protect-cantedit'            => 'Nem változtathatod meg a lap védelmi szintjét, mert nincs jogod a szerkesztéséhez.',
@@ -1736,9 +1733,9 @@ $1',
 'sp-contributions-blocklog'    => 'Blokkolási napló',
 'sp-contributions-search'      => 'Közreműködések szűrése',
 'sp-contributions-username'    => 'IP-cím vagy felhasználónév:',
-'sp-contributions-submit'      => 'Szűrés',
+'sp-contributions-submit'      => 'Keresés',
 
-'sp-newimages-showfrom' => 'Új képek mutatása $1 után',
+'sp-newimages-showfrom' => 'Új fájlok mutatása $1 $2 után',
 
 # What links here
 'whatlinkshere'       => 'Mi hivatkozik erre',
@@ -1782,8 +1779,8 @@ $1',
 'ipbhidename'                 => 'A felhasználónév/IP elrejtése a blokkolási naplóból, az aktív blokkolási listából és a felhasználólistából',
 'badipaddress'                => 'Érvénytelen IP-cím',
 'blockipsuccesssub'           => 'Sikeres blokkolás',
-'blockipsuccesstext'          => '„[[{{ns:Special}}:Contributions/$1|$1]]” felhasználót blokkoltad.
-<br />Lásd a [[{{ns:Special}}:Ipblocklist|blokkolt IP-címek listáját]] az érvényben lévő blokkok áttekintéséhez.',
+'blockipsuccesstext'          => '„[[Special:Contributions/$1|$1]]” felhasználót blokkoltad.
+<br />Lásd a [[Special:Ipblocklist|blokkolt IP-címek listáját]] az érvényben lévő blokkok áttekintéséhez.',
 'ipb-edit-dropdown'           => 'Blokkolási okok szerkesztése',
 'ipb-unblock-addr'            => '$1 blokkjának feloldása',
 'ipb-unblock'                 => 'Felhasználónév vagy IP-cím blokkolásának feloldása',
@@ -1813,7 +1810,7 @@ $1',
 'contribslink'                => 'Szerkesztései',
 'autoblocker'                 => "Az általad használt IP-cím autoblokkolva van, mivel korábban a kitiltott „[[User:$1|$1]]” használta. ($1 blokkolásának indoklása: „'''$2'''”) Ha nem te vagy $1, lépj kapcsolatba valamelyik adminisztrátorral, és kérd az autoblokk feloldását. Ne felejtsd el megírni neki, hogy kinek szóló blokkba ütköztél bele!",
 'blocklogpage'                => 'Blokkolási_napló',
-'blocklogentry'               => '„$1” blokkolva $2 időtartamra',
+'blocklogentry'               => '„$1” blokkolva $2 $3 időtartamra',
 'blocklogtext'                => 'Ez a felhasználókra helyezett blokkoknak és azok feloldásának listája. Az IP-autoblokkok nem szerepelnek a listában. Lásd még [[Special:Ipblocklist|a jelenleg életben lévő blokkok listáját]].',
 'unblocklogentry'             => '"$1" blokkolása feloldva',
 'block-log-flags-anononly'    => 'csak névtelen felhasználók',
@@ -1861,26 +1858,20 @@ változtatni. Kérjük, erősítsd meg, hogy ezt kívánod tenni.',
 
 # Move page
 'movepage'                => 'Lap átnevezése',
-'movepagetext'            => "Az alábbi űrlap használatával nevezhetsz át egy lapot, és 
-helyezheted át előzményeit az új névre. 
-A régi cím az új címre átirányító lap lesz. A régi lapcímre 
-mutató hivatkozások változatlanok maradnak; a rossz 
-átirányításokat ellenőrizd. Te vagy a felelős annak biztosításáért, 
-hogy a hivatkozások továbbítsanak ahhoz a ponthoz, 
-ahová feltehetőleg vinniük kell.
+'movepagetext'            => "Az alábbi űrlap használatával nevezhetsz át egy lapot, és helyezheted át előzményeit az új névre.
+A régi cím az új címre átirányító lap lesz.
+A régi lapcímre mutató hivatkozások változatlanok maradnak;
+a rossz átirányításokat ellenőrizd.
+Te vagy a felelős annak biztosításáért, hogy a hivatkozások továbbítsanak ahhoz a ponthoz, ahová feltehetőleg vinniük kell.
 
-A lap '''nem''' kerül áthelyezésre, ha már van olyan című új lap, 
-hacsak nem üres vagy átirányítás, és nincs szerkesztési előzménye. 
-Ez azt jelenti, hogy visszanevezheted az oldalt az eredeti nevére, 
-ha hibázol, létező oldalt pedig 
-nem tudsz felülírni.
+A lap '''nem''' kerül áthelyezésre, ha már van olyan című új lap, hacsak nem üres vagy átirányítás, és nincs szerkesztési előzménye.
+Ez azt jelenti, hogy visszanevezheted az oldalt az eredeti nevére, ha hibázol, létező oldalt pedig nem tudsz felülírni.
 
-<b>FIGYELEM!</b>
+'''FIGYELEM!'''
 Népszerű oldalak esetén ez drasztikus és nem várt változtatás lehet;
-győződj meg róla a folytatás előtt, hogy tisztában vagy-e 
-a következményekkel.",
+győződj meg róla a folytatás előtt, hogy tisztában vagy-e a következményekkel.",
 'movepagetalktext'        => "A laphoz tartozó vitalap automatikusan átneveződik, '''kivéve, ha:'''
-*már létezik egy nem üres vitalap az új helyen, 
+*már létezik egy nem üres vitalap az új helyen,
 *nem jelölöd be a lenti pipát.
 
 Ezen esetekben a vitalapot külön, kézzel kell átnevezned a kívánságaid szerint.",
@@ -1896,8 +1887,7 @@ Ezen esetekben a vitalapot külön, kézzel kell átnevezned a kívánságaid sz
 'articleexists'           => 'Ilyen névvel már létezik lap, vagy az általad választott név érvénytelen.
 Kérlek, válassz egy másik nevet.',
 'cantmove-titleprotected' => 'Nem nevezheted át a lapot, mert az új cím le van védve a létrehozás ellen.',
-'talkexists'              => 'A lap áthelyezése sikerült, de a hozzá tartozó vitalapot nem tudtam áthelyezni mert már létezik egy egyező nevű
-lap az új helyen. Kérjük gondoskodj a két lap összefűzéséről.',
+'talkexists'              => 'A lap átnevezése sikerült, de a hozzá tartozó vitalapot nem tudtam átnevezni, mert már létezik egy egyező nevű lap az új helyen. Kérjük, gondoskodj a két lap összefűzéséről.',
 'movedto'                 => 'átnevezve',
 'movetalk'                => 'Nevezd át a vitalapot is, ha lehetséges',
 'talkpagemoved'           => 'Az oldal vitalapját is átmozgattam.',
@@ -1942,7 +1932,8 @@ Az utóbbi esetben közvetlen hivatkozást is használhatsz, például a [[Speci
 'allmessagesname'           => 'Név',
 'allmessagesdefault'        => 'Alapértelmezett szöveg',
 'allmessagescurrent'        => 'Jelenlegi szöveg',
-'allmessagestext'           => 'Ez a MediaWiki-névtérben elérhető összes üzenet listája.',
+'allmessagestext'           => 'Ez a MediaWiki-névtérben elérhető összes rendszerüzenet listája.
+Ha részt szeretnél venni a MediaWiki fordításában, látogass el a [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] és a [http://translatewiki.net Betawiki] oldalakra.',
 'allmessagesnotsupportedDB' => "A '''''{{ns:special}}:Allmessages''''' lap nem használható, mert a '''\$wgUseDatabaseMessages''' ki van kapcsolva.",
 'allmessagesfilter'         => 'Üzenetnevek szűrése:',
 'allmessagesmodified'       => 'Csak a módosítottak mutatása',
@@ -2081,7 +2072,7 @@ Valamennyi transwiki importálási művelet az [[Special:Log/import|importálás
 
 # Spam protection
 'spamprotectiontitle'    => 'Spamszűrő',
-'spamprotectiontext'     => 'Az általad elmenteni kívánt lap egyik külső hivatkozása fennakadt a spamszűrőn, a hivatkozást lehet, hogy te helyezted el a cikkben, de lehet, hogy már korábban is ott volt. Csak úgy tudod elmenteni, ha eltávolítod belőle, ehhez és a szerkesztéshez a böngésző „vissza” gombjával tudsz visszatérni.',
+'spamprotectiontext'     => 'Az általad elmenteni kívánt lap egyik külső hivatkozása fennakadt a spamszűrőn. A hivatkozást lehet, hogy te helyezted el a cikkben, de lehet, hogy már korábban is ott volt. Csak úgy tudod a lapot elmenteni, ha eltávolítod belőle a problémás külső hivatkozást. Ehhez és a szerkesztéshez a böngésző „vissza” gombjával tudsz visszatérni.',
 'spamprotectionmatch'    => 'A spamszűrőn az alábbi szöveg fennakadt: $1',
 'subcategorycount'       => 'Ebben a kategóriában $1 alkategória található.',
 'categoryarticlecount'   => 'A kategória lenti listájában {{PLURAL:$1|egy lap|$1 lap}} található.',
@@ -2441,14 +2432,8 @@ tartalmazni fogja. A többi alapértelmezésként rejtett marad.
 # E-mail address confirmation
 'confirmemail'            => 'E-mail cím megerősítése',
 'confirmemail_noemail'    => 'Nincs érvényes e-mail cím megadva a [[Special:Preferences|beállításaidnál]].',
-'confirmemail_text'       => 'Ennek a wikinek a használatához meg kell erősítened az e-mail címed,
-mielőtt használni kezded a levelezési rendszerét. Nyomd meg az alsó gombot, hogy kaphass egy e-mailt,
-melyben megtalálod a megerősítéshez szükséges kódot. Töltsd be a kódot a böngésződbe, hogy aktiválhasd az e-mail címedet. Köszönjük!',
-'confirmemail_pending'    => '<div class="error">
-A megerősítő kódot már megküldtük neked e-mailben; ha nemrég hoztad
-létre a fiókodat, akkor várhatnál néhány percet, amíg megérkezik,
-mielőtt új kódot kérnél.
-</div>',
+'confirmemail_text'       => 'Meg kell erősítened az e-mail címed, mielőtt használhatnád a(z) {{SITENAME}} levelezési rendszerét. Nyomd meg az alsó gombot, hogy kaphass egy e-mailt, melyben megtalálod a megerősítéshez szükséges kódot. Töltsd be a kódot a böngésződbe, hogy aktiválhasd az e-mail címedet.',
+'confirmemail_pending'    => '<div class="error">A megerősítő kódot már elküldtük neked e-mailben, kérjük, várj türelemmel, amíg a szükséges adatok megérkeznek az e-mailcímedre, és csak akkor kérj új kódot, ha valami technikai malőr folytán értelmes időn belül nem kapod meg a levelet.</div>',
 'confirmemail_send'       => 'Küldd el a kódot',
 'confirmemail_sent'       => 'Kaptál egy e-mailt, melyben megtalálod a megerősítéshez szükséges kódot.',
 'confirmemail_oncreate'   => 'A megerősítő kódot elküldtük az e-mail címedre.

@@ -68,10 +68,12 @@ $messages = array(
 'retrievedfrom'   => 'Адус де ла "$1"',
 'editsection'     => 'едитязэ',
 'editsectionhint' => 'Едитязэ секциуня: $1',
+'toc'             => 'Таблэ де материй',
 'site-rss-feed'   => '$1 Агрегат RSS',
 'site-atom-feed'  => '$1 Агрегат Atom',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
+'nstab-user'  => 'Паӂина утилизаторулуй',
 'nstab-image' => 'Фишиер',
 
 # Login and logout pages
@@ -79,7 +81,9 @@ $messages = array(
 'userlogout' => 'Ынкиде сесиуня',
 
 # Edit pages
-'summary' => 'Резумат',
+'summary'     => 'Резумат',
+'watchthis'   => 'Привеште ачастэ паӂинэ',
+'showpreview' => 'Аратэ превизуализаре',
 
 # History pages
 'cur'  => 'акт',
@@ -98,6 +102,7 @@ $messages = array(
 # Recent changes
 'hist'            => 'ист',
 'minoreditletter' => 'м',
+'newpageletter'   => 'Н',
 
 # Recent changes linked
 'recentchangeslinked' => 'Скимбарь корелате',
@@ -106,13 +111,19 @@ $messages = array(
 'upload' => 'Тримите фишиер',
 
 # Image list
+'filehist'      => 'Историкул фишиерулуй',
 'filehist-user' => 'Утилизатор',
+'imagelinks'    => 'Легэтурь',
 
 # Miscellaneous special pages
 'nbytes'       => '{{PLURAL:$1|ун октет|$1 октець}}',
 'specialpages' => 'Сервичий',
 
 'alphaindexline' => '$1 пынэ ла $2',
+
+# Watchlist
+'watchlist' => 'Паӂинь привите',
+'watch'     => 'Привеште',
 
 # Namespace form on various pages
 'blanknamespace' => '(Принчиал)',
