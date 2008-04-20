@@ -251,39 +251,27 @@ class LogEventsList {
 					$revdel = SpecialPage::getTitleFor( 'Revisiondelete' );
 					// Different revision types use different URL params...
 					$key = $paramArray[0];
-					// Link to each hidden object ID, $paramArray[1] is the url param. List if several...
+					// Link to each hidden object ID, $paramArray[1] is the url param
 					$Ids = explode( ',', $paramArray[1] );
-					if( count($Ids) == 1 ) {
-						$revert = $this->skin->makeKnownLinkObj( $revdel, $this->message['revdel-restore'],
-							wfArrayToCGI( array('target' => $title->getPrefixedDBkey(), $key => $Ids[0] ) ) );
-					} else {
-						$revParams = '';
-						foreach( $Ids as $n => $id ) {
-							$revParams .= '&' . urlencode($key) . '[]=' . intval($id);
-						}
-						$revert = $this->skin->makeKnownLinkObj( $revdel, $this->message['revdel-restore'], 
-							'target=' . $title->getPrefixedUrl() . $revParams );
+					$revParams = '';
+					foreach( $Ids as $n => $id ) {
+						$revParams .= '&' . urlencode($key) . '[]=' . urlencode($id);
 					}
-					$revert = "($revert)";
+					$revert = '(' . $this->skin->makeKnownLinkObj( $revdel, $this->message['revdel-restore'], 
+						'target=' . $title->getPrefixedUrl() . $revParams ) . ')';
 				}
 			// Hidden log items, give review link
 			} else if( self::typeAction($row,array('delete','suppress'),'event') && $wgUser->isAllowed( 'deleterevision' ) ) {
 				if( count($paramArray) == 1 ) {
 					$revdel = SpecialPage::getTitleFor( 'Revisiondelete' );
 					$Ids = explode( ',', $paramArray[0] );
-					// Link to each hidden object ID, $paramArray[1] is the url param. List if several...
-					if( count($Ids) == 1 ) {
-						$revert = $this->skin->makeKnownLinkObj( $revdel, $this->message['revdel-restore'],
-							wfArrayToCGI( array('target' => $title->getPrefixedDBkey(),'logid' => $Ids[0] ) ) );
-					} else {
-						$logParams = '';
-						foreach( $Ids as $n => $id ) {
-							$logParams .= '&logid[]=' . intval($id);
-						}
-						$revert = $this->skin->makeKnownLinkObj( $revdel, $this->message['revdel-restore'], 
-							'target=' . $title->getPrefixedUrl() . $logParams );
+					// Link to each hidden object ID, $paramArray[1] is the url param
+					$logParams = '';
+					foreach( $Ids as $n => $id ) {
+						$logParams .= '&logid[]=' . intval($id);
 					}
-					$revert = "($revert)";
+					$revert = '(' . $this->skin->makeKnownLinkObj( $revdel, $this->message['revdel-restore'], 
+						'target=' . $title->getPrefixedUrl() . $logParams ) . ')';
 				}
 			} else {
 				wfRunHooks( 'LogLine', array( $row->log_type, $row->log_action, $title, $paramArray,
