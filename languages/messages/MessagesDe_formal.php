@@ -228,7 +228,10 @@ Wenn Sie sich mit dem Thema auskennen, können Sie selbst die Seite „[[$1]]“
 'timezonetext'        => 'Geben Sie die Anzahl der Stunden ein, die zwischen Ihrer Zeitzone und UTC liegen.',
 
 # User rights
-'userrights-groups-help'           => 'Sie können die Gruppenzugehörigkeit für diesen Benutzer ändern. Ein markiertes Kästchen bedeutet, dass der Benutzer Mitglied dieser Gruppe ist. Ein unmarkiertes Kästchen, dass er kein Mitglied ist.',
+'userrights-groups-help'           => 'Sie können die Gruppenzugehörigkeit für diesen Benutzer ändern.
+	Ein markiertes Kästchen bedeutet, dass der Benutzer Mitglied dieser Gruppe ist.
+	Ein unmarkiertes Kästchen, dass er kein Mitglied ist.
+	Ein * bedeutet, dass Sie das Benutzerrecht nach Erteilung nicht wieder zurücknehmen können (oder umgekehrt).',
 'userrights-available-none'        => 'Sie dürfen keine Benutzerrechte verändern.',
 'userrights-available-add'         => 'Sie können Benutzer {{PLURAL:$2|der folgenden Gruppe|den folgenden $2 Gruppen}} hinzufügen: $1.',
 'userrights-available-remove'      => 'Sie können Benutzer aus {{PLURAL:$2|der folgenden Gruppe|den folgenden $2 Gruppen}} entfernen: $1.',
