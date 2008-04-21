@@ -781,6 +781,7 @@ Lu motivu è ''$2''",
 'mergehistory-from'                => 'Pàggina di origgini:',
 'mergehistory-into'                => 'Pàggina di distinazioni:',
 'mergehistory-list'                => "Storia a cui è applicabili l'unioni",
+'mergehistory-fail'                => 'Impossibbili junciri li storii. Virificari la pàggina e li parametri temporali.',
 'mergehistory-no-source'           => 'La pàggina di origgini $1 nun esisti.',
 'mergehistory-no-destination'      => 'La pàggina di distinazzioni $1 nun esisti.',
 'mergehistory-invalid-source'      => 'La pàggina di origgini havi aviri nu titulu currettu.',
@@ -903,33 +904,47 @@ Lu motivu è ''$2''",
 'files'                    => 'Mmàggini',
 
 # User rights
-'userrights'                  => 'Gistioni dî dritti utenti', # Not used as normal message but as header for the special page itself
-'userrights-lookup-user'      => "Gistisci li gruppi di l'utenti",
-'userrights-user-editname'    => "Trasi nu nomu d'utenti:",
-'editusergroup'               => 'Cancia gruppi utenti',
-'editinguser'                 => "Canciamentu dî dritti di l'utenti '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
-'userrights-editusergroup'    => "Cancia li gruppi di l'utenti",
-'saveusergroups'              => 'Sarva gruppi utenti',
-'userrights-groupsmember'     => 'Membru di:',
-'userrights-groupsremovable'  => 'Gruppi eliminabili:',
-'userrights-groupsavailable'  => 'Gruppi dispunìbbili:',
-'userrights-reason'           => 'Mutivu dû canciu:',
-'userrights-available-none'   => "Nun è cunzintitu canciari l'appartinenza a li gruppi.",
-'userrights-available-add'    => "Poi assuciari l'utenti {{PLURAL:$2|a lu gruppu|a li gruppi}}: $1.",
-'userrights-available-remove' => "È pussìbbili cancillari l'utenti {{PLURAL:$2|dû gruppu|dî gruppi}}: $1.",
+'userrights'                       => 'Gistioni dî dritti utenti', # Not used as normal message but as header for the special page itself
+'userrights-lookup-user'           => "Gistisci li gruppi di l'utenti",
+'userrights-user-editname'         => "Trasi nu nomu d'utenti:",
+'editusergroup'                    => 'Cancia gruppi utenti',
+'editinguser'                      => "Canciamentu dî dritti di l'utenti '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
+'userrights-editusergroup'         => "Cancia li gruppi di l'utenti",
+'saveusergroups'                   => 'Sarva gruppi utenti',
+'userrights-groupsmember'          => 'Membru di:',
+'userrights-groupsremovable'       => 'Gruppi eliminabili:',
+'userrights-groupsavailable'       => 'Gruppi dispunìbbili:',
+'userrights-groups-help'           => "È pussibili canciari li gruppi cui è assegnatu l'utenti.
+Na casedda di spunta silizzionata ndica l'appartinenza dill'utenti ô gruppu; na casedda di spunta nun silizzionata ndica la sou mancata appartinenza ô gruppu.
+Lu simbulu * ndica ca nun è pussibili livari l'appartinenza ô gruppo dopo avirla junciuta (o vici versa).",
+'userrights-reason'                => 'Mutivu dû canciu:',
+'userrights-available-none'        => "Nun è cunzintitu canciari l'appartinenza a li gruppi.",
+'userrights-available-add'         => "Poi assuciari l'utenti {{PLURAL:$2|a lu gruppu|a li gruppi}}: $1.",
+'userrights-available-remove'      => "È pussìbbili cancillari l'utenti {{PLURAL:$2|dû gruppu|dî gruppi}}: $1.",
+'userrights-available-add-self'    => 'È possibili junciri lu propriu account {{PLURAL:$2|ô gruppu ndicato |ê gruppi ndicati}} ccà: $1.',
+'userrights-available-remove-self' => 'È possibili livari lu propriu account {{PLURAL:$2|dô gruppu ndicatu|dê gruppi ndicati}} ccà: $1.',
+'userrights-no-interwiki'          => "Nun si disponi di li pirmessi nicissari pi canciari li diritti di l'utenti ni autri siti.",
+'userrights-nodatabase'            => 'Lu database $1 nu esisti o nun è lu database locali.',
+'userrights-changeable-col'        => 'Gruppi canciabili',
+'userrights-unchangeable-col'      => 'Gruppi nun canciabili',
 
 # Groups
 'group'               => 'Gruppu:',
+'group-user'          => 'Utenti',
 'group-autoconfirmed' => 'Utenti autocunfirmati',
+'group-bot'           => 'Bot',
 'group-sysop'         => 'Amministratura',
 'group-bureaucrat'    => 'Buròcrati',
+'group-suppress'      => 'Oversight',
 'group-all'           => 'Utenti',
 
-'group-autoconfirmed-member' => 'Utenti autocunfirmatu',
-'group-bot-member'           => 'Bot',
-'group-sysop-member'         => 'Amministraturi',
-'group-bureaucrat-member'    => 'Buròcrati',
-'group-suppress-member'      => 'Oversight',
+'group-user-member'           => 'Utenti',
+'group-emailconfirmed-member' => 'Utenti cu e-mail virificata',
+'group-autoconfirmed-member'  => 'Utenti autocunfirmatu',
+'group-bot-member'            => 'Bot',
+'group-sysop-member'          => 'Amministraturi',
+'group-bureaucrat-member'     => 'Buròcrati',
+'group-suppress-member'       => 'Oversight',
 
 'grouppage-user'          => '{{ns:project}}:Utenti',
 'grouppage-autoconfirmed' => '{{ns:project}}:Utenti autocunfirmati',
@@ -966,7 +981,7 @@ Lu motivu è ''$2''",
 'minoreditletter'                   => 'n',
 'newpageletter'                     => 'N',
 'boteditletter'                     => 'b',
-'number_of_watching_users_pageview' => '[ossirvata di $1 utenti]',
+'number_of_watching_users_pageview' => '[ossirvata di {{PLURAL:$1|nu utenti|$1 utenti}}]',
 'rc_categories'                     => 'Lìmita a li catigurìi (siparati di "|")',
 'rc_categories_any'                 => 'Qualisiasi',
 'newsectionsummary'                 => '/* $1 */ sizzioni nova',
@@ -975,7 +990,8 @@ Lu motivu è ''$2''",
 'recentchangeslinked'          => 'Canciamenti culligati',
 'recentchangeslinked-title'    => 'Canciamenti culligati a "$1"',
 'recentchangeslinked-noresult' => 'Nuddu canciamentu ê pàggini culligati ntô pirìudu spicificatu.',
-'recentchangeslinked-summary'  => "Chista pàggina spiciali ammustra li canci cchiù ricenti ê pàggini culligati a chidda spicificata. Li pàggini taliati sugnu evidenziati 'n '''grassettu'''.",
+'recentchangeslinked-summary'  => "Chista pàggina spiciali ammustra li canciamenti cchiù ricenti ê pàggini culligati a chidda spicificata. Li pàggini taliati ni la tou [[Special:Watchlist|lista taliata]] sunu evidenziati 'n '''grassettu'''.",
+'recentchangeslinked-page'     => 'Nnomu dâ pàggina:',
 
 # Upload
 'upload'                      => 'Càrrica nu file',
@@ -1081,7 +1097,9 @@ PICT # arcuni
 
 # Special:Imagelist
 'imagelist_search_for'  => 'Ricerca dâ mmàggini di nomu:',
+'imgfile'               => 'file',
 'imagelist'             => 'Alencu dî file',
+'imagelist_date'        => 'Data',
 'imagelist_name'        => 'Nomu',
 'imagelist_user'        => 'Utenti',
 'imagelist_size'        => 'Diminzioni (bytes)',
@@ -1096,6 +1114,7 @@ PICT # arcuni
 'filehist-current'          => 'correnti',
 'filehist-datetime'         => 'Data/Ura',
 'filehist-user'             => 'Utenti',
+'filehist-dimensions'       => 'Diminsioni',
 'filehist-filesize'         => 'Dimensioni dû file',
 'filehist-comment'          => 'Oggettu',
 'imagelinks'                => "Pàggini c'ùsanu sta mmàggini",
@@ -1103,10 +1122,12 @@ PICT # arcuni
 'nolinkstoimage'            => 'Nudda pàggina cunteni sta mmàggini.',
 'sharedupload'              => "Chistu file è n'upload condivisu; pò èssiri quinni utilizzatu di cchiù pruggetti wiki.",
 'shareduploadwiki'          => 'Si preja di taliari $1 pi ultiriuri nfurmazzioni.',
+'shareduploadwiki-desc'     => 'La discrizzioni ca appari ni dda sedi, supra la rilativa $1, veni ammustrata ccà.',
 'shareduploadwiki-linktext' => "pàggina di discrizzioni dû ''file''",
 'noimage'                   => 'Un file cu stu nomu nun esisti, voi $1 tu?',
 'noimage-linktext'          => 'carricàrilu',
 'uploadnewversion-linktext' => 'Càrrica na virsioni nova di stu file',
+'imagepage-searchdupe'      => 'Ricerca di file duplicati',
 
 # File reversion
 'filerevert'                => 'Riprìstina $1',
@@ -1119,17 +1140,23 @@ PICT # arcuni
 'filerevert-badversion'     => 'Nun esistanu virsiona locali pricidenti dô file cû timestamp richiestu.',
 
 # File deletion
-'filedelete'             => 'Cancella $1',
-'filedelete-legend'      => 'Cancella lu file',
-'filedelete-intro'       => "Stai pi cancillari '''[[Mèdia:$1|$1]]'''.",
-'filedelete-intro-old'   => '<span class="plainlinks">Stai cancillannu la virsioni di \'\'\'[[Mèdia:$1|$1]]\'\'\' dô [$4 $3, $2].</span>',
-'filedelete-comment'     => 'Mutivu:',
-'filedelete-submit'      => 'Cancella',
-'filedelete-success'     => "Lu file '''$1''' hà statu cancillatu.",
-'filedelete-success-old' => '<span class="plainlinks">La virsioni dô $3, $2 dô file \'\'\'[[Mèdia:$1|$1]]\'\'\' hà stata cancillata.</span>',
-'filedelete-nofile'      => "Nta {{SITENAME}} nun c'è nuddu file $1",
-'filedelete-nofile-old'  => "'N archiviu nun ci sugnu virsioni di '''$1''' cu li carattiristichi nnicati.",
-'filedelete-iscurrent'   => 'Sta pruvannu a cancillari la virsioni cchiù ricenti di chistu file. Pi favuri, prima riturnàrilu a na virsioni pricidenti.',
+'filedelete'                  => 'Cancella $1',
+'filedelete-legend'           => 'Cancella lu file',
+'filedelete-intro'            => "Stai pi cancillari '''[[Mèdia:$1|$1]]'''.",
+'filedelete-intro-old'        => '<span class="plainlinks">Stai cancillannu la virsioni di \'\'\'[[Mèdia:$1|$1]]\'\'\' dô [$4 $3, $2].</span>',
+'filedelete-comment'          => 'Mutivu:',
+'filedelete-submit'           => 'Cancella',
+'filedelete-success'          => "Lu file '''$1''' hà statu cancillatu.",
+'filedelete-success-old'      => '<span class="plainlinks">La virsioni dô $3, $2 dô file \'\'\'[[Mèdia:$1|$1]]\'\'\' hà stata cancillata.</span>',
+'filedelete-nofile'           => "Nta {{SITENAME}} nun c'è nuddu file $1",
+'filedelete-nofile-old'       => "'N archiviu nun ci sugnu virsioni di '''$1''' cu li carattiristichi nnicati.",
+'filedelete-iscurrent'        => 'Sta pruvannu a cancillari la virsioni cchiù ricenti di chistu file. Pi favuri, prima riturnàrilu a na virsioni pricidenti.',
+'filedelete-otherreason'      => 'Autra mutivazioni o mutivazioni n più:',
+'filedelete-reason-otherlist' => 'Autra mutivazioni',
+'filedelete-reason-dropdown'  => '*Mutivazzioni cchiù cumuni
+** Viulazzioni di copyright
+** File duplicatu',
+'filedelete-edit-reasonlist'  => 'Cancia li mutivazioni pi la cancillazzioni',
 
 # MIME search
 'mimesearch'         => "Circata 'n basi a lu tipu MIME",
@@ -1172,17 +1199,20 @@ La coda dî processi a esequiri 'n background cunteni {{PLURAL:\$7|'''1''' eleme
 'statistics-mostpopular' => 'Pàggini cchiù visitati',
 
 'disambiguations'      => 'Pàggini cu liami ambìgui',
+'disambiguationspage'  => 'Template:Disambigua',
 'disambiguations-text' => "Li pàggini ntâ lista ca sequi cuntèninu dî culligamenti a '''pàggini di disambiguazzioni''' e nun a l'argumentu cui avìssiru a fari rifirimentu.<br />Vèninu cunzidirati pàggini di disambiguazzioni tutti chiddi ca cuntèninu li template alincati 'n [[MediaWiki:disambiguationspage]]",
 
 'doubleredirects'     => 'Rinnirizzamenti duppi',
 'doubleredirectstext' => 'Chista pàggina alenca li pàggini chi rinnirizzanu a àutri pàggini di rinnirizzamentu. Ognuna riga cunteni li culligamenti a lu primu e a lu secunnu redirect, oltri â prima riga di testu dû secunnu redirect ca di sòlitu cunteni la pàggina di distinazzioni "curretta" â quali avissi a puntari macari lu primu redirect.',
 
-'brokenredirects'      => "Riinnirizzamenti (''redirects'') rumputi.",
-'brokenredirectstext'  => 'Li rinnirizzamenti siquenti pùntanu a pàggini ca nun asìstinu:',
-'brokenredirects-edit' => '(cancia)',
+'brokenredirects'        => "Riinnirizzamenti (''redirects'') rumputi.",
+'brokenredirectstext'    => 'Li rinnirizzamenti siquenti pùntanu a pàggini ca nun asìstinu:',
+'brokenredirects-edit'   => '(cancia)',
+'brokenredirects-delete' => '(cancella)',
 
 'withoutinterwiki'        => 'Pàggini senza interwiki',
 'withoutinterwiki-header' => 'Li pàggini nnicati ccà nun hànnu liami ê virsioni nta àutri lingui:',
+'withoutinterwiki-submit' => 'Ammustra',
 
 'fewestrevisions' => 'Pàggini cu menu rivisioni',
 
@@ -1233,11 +1263,13 @@ La coda dî processi a esequiri 'n background cunteni {{PLURAL:\$7|'''1''' eleme
 chisti putìssiru quinni èssiri utilizzati puru siddu cumpàrinu nta l'alencu.",
 'unusedcategoriestext'    => 'Li siquenti pàggini dî catigurìi esìstinu, sibbeni li catigurìi currispunnenti sunnu vacanti.',
 'notargettext'            => "Nun hà statu innicata na pàggina o un utenti 'n rilazzioni a lu quali esèquiri l'opirazzioni addumannata.",
+'suppress'                => 'Oversight',
 
 # Book sources
 'booksources'               => 'Libbra secunnu lu còdici ISBN',
 'booksources-search-legend' => 'Ricerca di fonti libbrari',
 'booksources-isbn'          => 'Còdici ISBN:',
+'booksources-go'            => 'Vai',
 'booksources-text'          => "Di sèquitu veni prisintatu n'alencu di culligamenti versu siti sterni ca vìnninu libbra novi e usati, attraversu li quali è pussìbbili ottèniri maiuri nfurmazzioni supra lu testu circatu:",
 
 # Special:Log
@@ -1889,7 +1921,7 @@ $1',
 'noimages'              => 'Nenti a vìdiri.',
 'ilsubmit'              => "Va' cerca",
 'bydate'                => 'pi data',
-'sp-newimages-showfrom' => 'Ammustra li mmàggini cchiù ricenti a pàrtiri di $1',
+'sp-newimages-showfrom' => "Ammustra li mmàggini cchiù ricenti a pàrtiri d'uri $2 dô $1",
 
 # Bad image list
 'bad_image_list' => "Lu furmatu è lu siquenti:
@@ -1937,6 +1969,7 @@ Li lijami succissivi, supra la stissa riga, sunnu cunzidirati comu eccizzioni (p
 'exif-imagedescription'            => 'Discrizzioni dâ mmàggini',
 'exif-make'                        => 'Prudutturi fotucàmira',
 'exif-model'                       => 'Mudellu fotucàmira',
+'exif-software'                    => 'Software',
 'exif-artist'                      => 'Auturi',
 'exif-copyright'                   => 'Nfurmazzioni supra lu copyright',
 'exif-exifversion'                 => 'Virsioni dû furmatu Exif',
@@ -2275,6 +2308,22 @@ Stu còdici di cunferma scadi automaticamenti a li $4.',
 'watchlisttools-raw'  => "Cancia la lista 'n forma testuali",
 
 # Special:Version
-'version' => 'virsioni', # Not used as normal message but as header for the special page itself
+'version'                  => 'virsioni', # Not used as normal message but as header for the special page itself
+'version-license'          => 'Licenza',
+'version-software'         => 'Software nstallatu',
+'version-software-product' => 'Prodottu',
+'version-software-version' => 'Virsioni',
+
+# Special:Filepath
+'filepath'        => 'Pircorsu di nu file',
+'filepath-page'   => 'Nnomu dô file:',
+'filepath-submit' => 'Pircorsu',
+
+# Special:SpecialPages
+'specialpages-group-maintenance' => 'Resocunti di manutinzioni',
+'specialpages-group-other'       => 'Autri pàggini spiciali',
+'specialpages-group-login'       => 'Trasi / riggìstrazzioni',
+'specialpages-group-users'       => 'Utenti e diritti',
+'specialpages-group-permissions' => "Attribuzioni dî pirmessi pi l'utenti",
 
 );

@@ -1901,6 +1901,7 @@ $1',
 'whatlinkshere-hideredirs' => '$1 التحويلات',
 'whatlinkshere-hidetrans'  => '$1 التضمينات',
 'whatlinkshere-hidelinks'  => '$1 الوصلات',
+'whatlinkshere-filters'    => 'مرشحات',
 
 # Block/unblock
 'blockip'                     => 'منع مستخدم',

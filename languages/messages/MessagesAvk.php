@@ -43,6 +43,7 @@ $messages = array(
 'tog-fancysig'                => 'Rilaf sugdaks (a mivaskafi gluyasiki)',
 'tog-externaleditor'          => 'Omavafa favera va divefi betasiki',
 'tog-externaldiff'            => 'Omavafa favera va divefa "diff" xeka',
+'tog-showjumplinks'           => 'Tutegirara va "grablera" vansarafi gluyasiki',
 'tog-forceeditsummary'        => 'Zo walzé viele betaravildeks tir vlardaf !',
 'tog-watchlisthideown'        => 'Palsera va jinaf suzdasikif betakseem',
 'tog-watchlisthidebots'       => 'Palsera va suzdasikif stiernaf betakseem',
@@ -791,21 +792,25 @@ contenant tous les termes apparaissent dans les résultats).",
 
 # Groups
 'group'               => 'Lospa :',
+'group-user'          => 'Favesikeem',
 'group-autoconfirmed' => 'Miv gruyeyen favesik yo',
 'group-bot'           => 'Stiernikeem',
 'group-sysop'         => 'Ristusikeem',
 'group-bureaucrat'    => 'Stujesikeem',
 'group-all'           => '(kot)',
 
-'group-autoconfirmed-member' => 'Miv gruyeyen favesik',
-'group-bot-member'           => 'Stiernik',
-'group-sysop-member'         => 'Ristusik',
-'group-bureaucrat-member'    => 'Stujesik',
+'group-emailconfirmed-member' => "Favesik dem gruyeyene 'email' mane",
+'group-autoconfirmed-member'  => 'Miv gruyeyen favesik',
+'group-bot-member'            => 'Stiernik',
+'group-sysop-member'          => 'Ristusik',
+'group-bureaucrat-member'     => 'Stujesik',
 
-'grouppage-autoconfirmed' => '{{ns:project}}:Miv gruyeyen favesik yo',
-'grouppage-bot'           => '{{ns:project}} : Stiernikeem',
-'grouppage-sysop'         => '{{ns:project}} : Ristusikeem',
-'grouppage-bureaucrat'    => '{{ns:project}} : Stujesikeem',
+'grouppage-user'           => '{{ns:project}}:Favesikeem',
+'grouppage-emailconfirmed' => "{{ns:project}}:Favesik dem gruyeyene 'email' mane",
+'grouppage-autoconfirmed'  => '{{ns:project}}:Miv gruyeyen favesik yo',
+'grouppage-bot'            => '{{ns:project}} : Stiernikeem',
+'grouppage-sysop'          => '{{ns:project}} : Ristusikeem',
+'grouppage-bureaucrat'     => '{{ns:project}} : Stujesikeem',
 
 # User rights log
 'rightslog'     => '"Log" bu va favesikrokeem',
@@ -1388,6 +1393,7 @@ $1',
 'whatlinkshere-next'      => '{{PLURAL:$1|radimef|radimef $1}}',
 'whatlinkshere-links'     => '← gluyasiki se',
 'whatlinkshere-hidelinks' => '$1 gluyasiki',
+'whatlinkshere-filters'   => 'Espasiki',
 
 # Block/unblock
 'blockip'                  => 'Elekara va IP mane ok favesik',
@@ -1427,6 +1433,7 @@ male abdion elekayane IP mane.',
 'ipblocklist-username'     => 'Favesikyolt ok IP mane :',
 'ipblocklist-submit'       => 'Aneyara',
 'blocklistline'            => '$1 (tenuwer ba $4): $2 va $3 al elekar',
+'infiniteblock'            => 'parmaf',
 'expiringblock'            => 'tenuwer ba $1',
 'anononlyblock'            => 'anton yoltiskik',
 'createaccountblock'       => 'pataredura zo elekar',
@@ -1512,6 +1519,7 @@ Dans ce cas, vous devrez renommer ou fusionner la page manuellement si vous le d
 'revertmove'              => 'dimplekura',
 'delete_and_move'         => 'Sulara is arplekura',
 'delete_and_move_confirm' => 'En, va bu sulal !',
+'delete_and_move_reason'  => 'Sulayan ta dark ta arrundara',
 
 # Export
 'export'            => 'Budivburera',
@@ -1741,10 +1749,13 @@ Kotari milconhafi gluyasiki roklon zo krafiar.',
 'exif-imagewidth'                  => 'Mantuca',
 'exif-imagelength'                 => 'Ontinuca',
 'exif-compression'                 => 'Raxivaracave',
+'exif-photometricinterpretation'   => "'Pixel' ponara",
 'exif-orientation'                 => 'Woyok',
 'exif-samplesperpixel'             => 'Spertota',
+'exif-ycbcrpositioning'            => 'Y is C tirka',
 'exif-xresolution'                 => "Résolution de l'image en largeur",
 'exif-yresolution'                 => "Résolution de l'image en hauteur",
+'exif-stripoffsets'                => 'Xo ke ewavorigeem',
 'exif-jpeginterchangeformat'       => 'Position du SOI JPEG',
 'exif-jpeginterchangeformatlength' => 'Taille en octet des données JPEG',
 'exif-transferfunction'            => 'Arburerafli',
@@ -1757,21 +1768,28 @@ Kotari milconhafi gluyasiki roklon zo krafiar.',
 'exif-copyright'                   => 'Digisik va copyright',
 'exif-exifversion'                 => 'Version exif',
 'exif-colorspace'                  => 'Ksevaxo',
+'exif-compressedbitsperpixel'      => 'Ewavaraxivaracave',
 'exif-pixelydimension'             => 'Mante ke enafa ewava',
 'exif-pixelxdimension'             => 'Ontine ke enafa ewava',
 'exif-makernote'                   => 'Notes du fabricant',
 'exif-usercomment'                 => 'Favesikaf sebuks',
 'exif-relatedsoundfile'            => 'Fichier audio lié',
 'exif-fnumber'                     => 'F Ota',
+'exif-isospeedratings'             => 'ISO kalieka',
 'exif-brightnessvalue'             => 'Afiuca',
+'exif-subjectdistance'             => 'Soluma va plek',
 'exif-lightsource'                 => 'Afiklita',
 'exif-flash'                       => 'Divafira',
+'exif-subjectarea'                 => 'Lizuxo ke plek',
 'exif-flashenergy'                 => 'Divafirafa',
+'exif-subjectlocation'             => 'Xo ke plek',
 'exif-exposureindex'               => 'Konedireka',
 'exif-filesource'                  => 'Iyeltakklita',
 'exif-scenetype'                   => 'Nakilord',
+'exif-cfapattern'                  => 'CFA fum',
 'exif-exposuremode'                => 'Konedirinda',
 'exif-whitebalance'                => 'Balance des blancs',
+'exif-gaincontrol'                 => 'Stujera va nakila',
 'exif-contrast'                    => 'Kevaxanuca',
 'exif-saturation'                  => 'Keldelanuca',
 'exif-gpslatituderef'              => 'Lentef ok geef laksiwak',
@@ -1809,16 +1827,30 @@ Kotari milconhafi gluyasiki roklon zo krafiar.',
 
 'exif-componentsconfiguration-0' => "n'existe pas",
 
+'exif-exposureprogram-0' => 'Metentuyun',
+'exif-exposureprogram-1' => 'Nubedaf',
+'exif-exposureprogram-2' => 'Preksaf talpey',
+
 'exif-subjectdistance-value' => '$1 metrolk',
 
+'exif-meteringmode-0'   => 'Megrupen',
+'exif-meteringmode-1'   => 'Mialuk',
+'exif-meteringmode-5'   => 'Fum',
 'exif-meteringmode-6'   => 'Pakaf',
 'exif-meteringmode-255' => 'Ar',
 
-'exif-lightsource-0'  => 'Megrupen',
-'exif-lightsource-4'  => 'Divafira',
-'exif-lightsource-17' => 'A preksayafi afi',
-'exif-lightsource-18' => 'B preksayafi afi',
-'exif-lightsource-19' => 'C preksayafi afi',
+'exif-lightsource-0'   => 'Megrupen',
+'exif-lightsource-1'   => 'Afiz',
+'exif-lightsource-4'   => 'Divafira',
+'exif-lightsource-9'   => 'Sazanh',
+'exif-lightsource-10'  => 'Rujodaf saz',
+'exif-lightsource-11'  => 'Izga',
+'exif-lightsource-17'  => 'A preksayafi afi',
+'exif-lightsource-18'  => 'B preksayafi afi',
+'exif-lightsource-19'  => 'C preksayafi afi',
+'exif-lightsource-255' => 'Ara afiklita',
+
+'exif-focalplaneresolutionunit-2' => "'inch'",
 
 'exif-sensingmethod-1' => 'Metentun',
 
@@ -1849,6 +1881,7 @@ Kotari milconhafi gluyasiki roklon zo krafiar.',
 
 'exif-subjectdistancerange-0' => 'Megrupenon',
 'exif-subjectdistancerange-2' => 'Budera va wira',
+'exif-subjectdistancerange-3' => 'Solumawira',
 
 # Pseudotags used for GPSLatitudeRef and GPSDestLatitudeRef
 'exif-gpslatitude-n' => 'Lentelaksiwak',
@@ -1860,6 +1893,7 @@ Kotari milconhafi gluyasiki roklon zo krafiar.',
 
 # Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
 'exif-gpsspeed-k' => 'Bartivon decitmetrolk se',
+'exif-gpsspeed-m' => "Bartivon 'mile'",
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Ageltania',
@@ -1877,21 +1911,21 @@ Kotari milconhafi gluyasiki roklon zo krafiar.',
 'monthsall'        => 'kot',
 
 # E-mail address confirmation
-'confirmemail'            => 'Va e-mail gruyel',
-'confirmemail_noemail'    => 'Bazene "email" mane koe rinaf [[Special:Preferences|favesikaf lodamaceem]] me tir enafe.',
-'confirmemail_text'       => "Ce wiki nécessite la vérification de votre adresse email avant de pouvoir utiliser toute fonction de messagerie. Utilisez le bouton ci dessous pour envoyer un email de confirmation à votre adresse. L'email contiendra un lien contenant un code, chargez ce lien dans votre navigateur pour valider votre adresse.",
-'confirmemail_send'       => 'Envoyer un code de confirmation',
-'confirmemail_sent'       => 'Email de confirmation envoyé',
-'confirmemail_sendfailed' => 'Staksara va gruyes e-mail tir merotisa. Va rinafe mane ageltal !
+'confirmemail'             => 'Va e-mail gruyel',
+'confirmemail_noemail'     => 'Bazene "email" mane koe rinaf [[Special:Preferences|favesikaf lodamaceem]] me tir enafe.',
+'confirmemail_text'        => "Ce wiki nécessite la vérification de votre adresse email avant de pouvoir utiliser toute fonction de messagerie. Utilisez le bouton ci dessous pour envoyer un email de confirmation à votre adresse. L'email contiendra un lien contenant un code, chargez ce lien dans votre navigateur pour valider votre adresse.",
+'confirmemail_send'        => 'Envoyer un code de confirmation',
+'confirmemail_sent'        => 'Email de confirmation envoyé',
+'confirmemail_sendfailed'  => 'Staksara va gruyes e-mail tir merotisa. Va rinafe mane ageltal !
 
 Rodjeyesi staksasiki : $1',
-'confirmemail_invalid'    => 'Code de confirmation incorrect. Le code a peut être expiré',
-'confirmemail_needlogin'  => 'Ta gruyera va "email" mane rin va $1 olegal.',
-'confirmemail_success'    => 'Votre email est confirmée. Vous pouvez maintenant vous connecter et profiter du wiki.',
-'confirmemail_loggedin'   => 'Votre adresse est maintenant confirmée',
-'confirmemail_error'      => 'Un problème est survenu en voulant enregistrer votre confirmation',
-'confirmemail_subject'    => "Confirmation d'email pour {{SITENAME}}",
-'confirmemail_body'       => 'Someone, probably you, from IP address $1,
+'confirmemail_invalid'     => 'Code de confirmation incorrect. Le code a peut être expiré',
+'confirmemail_needlogin'   => 'Ta gruyera va "email" mane rin va $1 olegal.',
+'confirmemail_success'     => 'Votre email est confirmée. Vous pouvez maintenant vous connecter et profiter du wiki.',
+'confirmemail_loggedin'    => 'Votre adresse est maintenant confirmée',
+'confirmemail_error'       => 'Un problème est survenu en voulant enregistrer votre confirmation',
+'confirmemail_subject'     => "Confirmation d'email pour {{SITENAME}}",
+'confirmemail_body'        => 'Someone, probably you, from IP address $1,
 has registered an account "$2" with this e-mail address on {{SITENAME}}.
 
 To confirm that this account really does belong to you and activate
@@ -1905,6 +1939,8 @@ to cancel the e-mail address confirmation:
 $5
 
 This confirmation code will expire at $4.',
+'confirmemail_invalidated' => "Waljoana gruyera va 'e-mail' mane",
+'invalidateemail'          => "Kuidera va 'email' gruyera",
 
 # Scary transclusion
 'scarytranscludetoolong' => '[URL tir abrotcarsaf; rotaxe]',
@@ -1941,6 +1977,8 @@ $1',
 'imgmultigotopre'  => 'Grablera kal bu',
 
 # Table pager
+'ascending_abbrev'         => 'tid-',
+'descending_abbrev'        => 'tit-',
 'table_pager_next'         => 'Radimefu bu',
 'table_pager_prev'         => 'Abduefu bu',
 'table_pager_first'        => 'Taneafu bu',
@@ -1958,6 +1996,8 @@ $1',
 # Live preview
 'livepreview-loading' => 'Vajas…',
 'livepreview-ready'   => 'Vajas... Gadion !',
+'livepreview-failed'  => 'Geltrafa abdiwira keluyuna ! Va preksafa abdiwira lwil !',
+'livepreview-error'   => 'Keluyuna dogluyara va : $1 "$2". Va preksafa abdiwira lwil !',
 
 # Friendlier slave lag warnings
 'lag-warn-normal' => 'Betaks skuyun weti le $1 verast batliz me zo kovexalatar.',
@@ -1982,14 +2022,20 @@ $1',
 'watchlisttools-edit' => 'Wira va suzdasiki isu betara',
 'watchlisttools-raw'  => 'Betara va suzdasiki',
 
+# Core parser functions
+'unknown_extension_tag' => '"$1" megrupena divatcenafa tcala',
+
 # Special:Version
 'version'                          => 'Siatos', # Not used as normal message but as header for the special page itself
 'version-extensions'               => 'Inkeyeni divatcesiki se',
 'version-specialpages'             => 'Aptaf bueem',
+'version-parserhooks'              => 'Exulerademi',
 'version-variables'                => 'Remvodeem',
 'version-other'                    => 'Ar',
 'version-hooks'                    => 'Demi se',
 'version-extension-functions'      => 'Divatces fliok se',
+'version-parser-extensiontags'     => 'Exulerafa divatcenafa tcala',
+'version-parser-function-hooks'    => 'Exuleraflidemi',
 'version-skin-extension-functions' => 'Wiatezaf divatces fliok se',
 'version-hook-name'                => 'Demiyolt',
 'version-hook-subscribedby'        => 'Wimpayan gan',
@@ -2005,11 +2051,15 @@ $1',
 'filepath-submit' => 'Kelda',
 
 # Special:FileDuplicateSearch
+'fileduplicatesearch'          => 'Aneyara va jontolaf iyeltak',
+'fileduplicatesearch-legend'   => 'Aneyara va jontolaca',
 'fileduplicatesearch-filename' => 'Iyeltakyolt :',
 'fileduplicatesearch-submit'   => 'Aneyara',
+'fileduplicatesearch-result-1' => '"$1" iyeltak va miltafa jontoloca me digir.',
 
 # Special:SpecialPages
 'specialpages-group-other'       => 'Ar aptabueem',
+'specialpages-group-login'       => 'Figara / dimfigara',
 'specialpages-group-changes'     => 'Noeltaf betakseem isu "log"',
 'specialpages-group-users'       => 'Favesikeem is rokeem',
 'specialpages-group-needy'       => 'Gonhofanu bu',

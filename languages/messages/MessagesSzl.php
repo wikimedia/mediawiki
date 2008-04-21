@@ -1796,9 +1796,15 @@ Wšyjstke uoperacyje importu transwiki sům uodnotowywane w [[Special:Log/import
 'tooltip-t-emailuser'             => 'Wyślij e-brif do tygo užytkowńika',
 'tooltip-t-upload'                => 'Wćepńij plik na serwer',
 'tooltip-t-specialpages'          => 'Lista wšyskich extra zajtów',
+'tooltip-t-print'                 => 'Wersyja do wydruku',
+'tooltip-t-permalink'             => 'Stouy link do tyi wersyji zajty',
+'tooltip-ca-nstab-main'           => 'Uobejřij zajta artikla',
 'tooltip-ca-nstab-user'           => 'Pokož uosobisto zajta užytkowńika',
+'tooltip-ca-nstab-media'          => 'Uobejřij zajta artikla',
+'tooltip-ca-nstab-special'        => 'To je extra zajta. Ńy možeš jei sprowjać.',
 'tooltip-ca-nstab-project'        => 'Uobejřij zajta projektu',
 'tooltip-ca-nstab-image'          => 'Pokož zajta grafiki',
+'tooltip-ca-nstab-mediawiki'      => 'Zoboč komunikat systymowy',
 'tooltip-ca-nstab-template'       => 'Uobejřij šablôna',
 'tooltip-ca-nstab-help'           => 'Pokož zajte s půmocą',
 'tooltip-ca-nstab-category'       => 'Pokož zajta kategorji',
@@ -1808,9 +1814,28 @@ Wšyjstke uoperacyje importu transwiki sům uodnotowywane w [[Special:Log/import
 'tooltip-diff'                    => 'Pokozuje kere dyferéncyje žeś zrobjou artiklowi.',
 'tooltip-compareselectedversions' => 'Zoboč růžńica mjyndzy wybranymi wersyjami zajty.',
 'tooltip-watch'                   => 'Dodej tyn artikel do pozorlisty',
+'tooltip-recreate'                => 'Wćepej nazod zajta mimo aže bůua wčeśńij wyćepano.',
+'tooltip-upload'                  => 'Rozpočyńće wćepywańa',
+
+# Metadata
+'nodublincore'      => 'Metadane zgodne s Dublin Core RDF zostouy wůuůnčůne do tygo serwera.',
+'nocreativecommons' => 'Metadane zgodne s Creative Commons RDF zostouy wůuůnčůne do tygo serwera.',
+'notacceptable'     => 'Serwer wiki ńy je w stańy dostarčyć danych we formaće, kerygo Twoja přyglůndarka uočekuje.',
 
 # Attribution
-'others' => 'inkśi',
+'anonymous'        => 'Anůńimowe užytkowńiki {{GRAMMAR:D.lp|{{SITENAME}}}}',
+'siteuser'         => 'Užytkowńik {{GRAMMAR:D.lp|{{SITENAME}}}} – $1',
+'lastmodifiedatby' => 'Uostatńy sprowjyńy tej zajty: $2, $1 (autor půmjyńań: $3)', # $1 date, $2 time, $3 user
+'othercontribs'    => 'Inkše autory: $1.',
+'others'           => 'inkśi',
+'siteusers'        => 'Ůžytkowńiki {{GRAMMAR:D.lp|{{SITENAME}}}}: $1',
+'creditspage'      => 'Autořy',
+'nocredits'        => 'Brak informacyji uo autorach tyi zajty.',
+
+# Spam protection
+'spamprotectiontitle' => 'Filter antyspamowy',
+'spamprotectiontext'  => 'Zajta, kero žeś průbowou naškryflać, zostoua zawarta bez filter antyspamowy.
+Nojprawdopodobńij zostouo to spowodowane bez link do zewnyntřnej zajty internetowyj.',
 
 # Browsing diffs
 'previousdiff' => '← Popředńy sprowjyńy',

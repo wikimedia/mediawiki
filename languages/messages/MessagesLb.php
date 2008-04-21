@@ -2128,6 +2128,7 @@ Duerno sti Linken déi Ausnamen definéieren, a deenen hirem Kontext dat Bild aw
 'exif-saturation-2' => 'Héich',
 
 'exif-sharpness-0' => 'Normal',
+'exif-sharpness-1' => 'Douce',
 'exif-sharpness-2' => 'Stark',
 
 'exif-subjectdistancerange-0' => 'Onbekannt',

@@ -706,7 +706,7 @@ d'r kinne details aanwezig zeen in 't [{{fullurl:Special:Log/delete|page={{PAGEN
 'revdelete-nooldid-title'     => 'Geine doelverzie',
 'revdelete-nooldid-text'      => "Doe höbs gein(e) doelverzie(s) veur deze hanjeling opgegaeve, d'n aangaeving besteit neet, of doe perbeers de letste versie te verberge.",
 'revdelete-selected'          => "Geselecteerde {{PLURAL:$2|bewerking|bewerkinge}} van '''[[:$1]]''':",
-'logdelete-selected'          => '{{PLURAL:$2|Geselecteerde log gebeurtenis|Geselecteerde log gebeurtenisse}}:',
+'logdelete-selected'          => '{{PLURAL:$1|Geselecteerde log gebeurtenis|Geselecteerde log gebeurtenisse}}:',
 'revdelete-text'              => "Gewisjde bewerkinge zeen zichbaar in de gesjiedenis, maar de inhoud is neet langer publiek toegankelik.
 
 Anger beheerders van {{SITENAME}} kinne de verborge inhoud benäöjere en de verwiedering ongedaon make mit behölp van dit sjerm, tenzij d'r additionele restricties gelje die zeen ingesteld door de systeembeheerder.",

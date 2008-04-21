@@ -250,7 +250,9 @@ Cur streean er dty lettraghey, ny croo coontys noa.',
 Cur streean er dty lettraghey.',
 'nouserspecified'            => 'Shegin dhyt ennym ymmydeyr y honraghey.',
 'wrongpassword'              => 'Va fockle arrey neuchiart screeuit. Screeu eh reesht eh.',
+'wrongpasswordempty'         => "Va'n fockle arrey screeuit bane. Aascreeu, my sailliu.",
 'mailmypassword'             => "Cur dou m'ockle arrey er post-L",
+'passwordremindertitle'      => 'Fockle arrey noa shallidagh gys {{SITENAME}}',
 'acct_creation_throttle_hit' => 'Gow my leshtal, ta $1 coontysyn crooit ayd.<br>
 Cha nod oo ny smoo y chroo.',
 'accountcreated'             => 'Coontys crooit',
@@ -333,6 +335,8 @@ cha nel ny caghlaaghyn sauailt foast!</strong>',
 
 # History pages
 'currentrev'          => 'Aavriwnys immeeaght',
+'revisionasof'        => 'Aavriwnys veih $1',
+'revision-info'       => 'Aavriwnys veih $1 ec $2',
 'previousrevision'    => '←Aavriwnys ny shinney',
 'nextrevision'        => 'Aavriwnys ny saa→',
 'currentrevisionlink' => 'Jeeagh er yn aavriwnys immeeaght',
@@ -452,11 +456,14 @@ Foddee oo [[:\$1|croo yn duillag shoh]].",
 # Recent changes
 'nchanges'        => '$1 {{PLURAL:$1|caghlaa|caghlaaghyn}}',
 'recentchanges'   => "Caghlaaghyn s'noa",
+'rcnotefrom'      => "Shoh heese ny caghlaaghyn veih '''$2''' (gys '''$1''' taishbynit).",
+'rclistfrom'      => "Taishbyney caghlaaghyn s'noa veih $1",
 'rcshowhideminor' => '$1 myn-arraghyn',
-'rcshowhidebots'  => '$1 botyn',
+'rcshowhidebots'  => '$1 robotyn',
 'rcshowhideliu'   => '$1 ymmydeyryn ta logailt stiagh',
 'rcshowhideanons' => '$1 ymmydeyryn neuenmyssit',
-'rcshowhidemine'  => '$1 my reaghyn',
+'rcshowhidepatr'  => '$1 arraghyn patrolaghit',
+'rcshowhidemine'  => "$1 m'arraghyn",
 'diff'            => 'anch',
 'hist'            => 'shen',
 'hide'            => 'Follaghey',
@@ -517,6 +524,7 @@ The file contains a virus! Mynphoyntyn: $1",
 'nolinkstoimage'            => 'Cha nel duillag erbee kianglt lesh y coadan shoh.',
 'shareduploadwiki-linktext' => 'duillag huarastyl y choadan',
 'noimage-linktext'          => 'dy lughtaghey',
+'uploadnewversion-linktext' => "Lughtaghey seose lhieggan noa jeh'n coadan shoh",
 
 # File reversion
 'filerevert-comment' => 'Cohaggloo:',
@@ -537,16 +545,26 @@ The file contains a virus! Mynphoyntyn: $1",
 # Unwatched pages
 'unwatchedpages' => 'Duillagyn gyn arrey',
 
+# List redirects
+'listredirects' => 'Rolley duillagyn aa-enmyssit',
+
 # Unused templates
 'unusedtemplateswlh' => 'kianglaghyn elley',
 
 # Random page
 'randompage' => 'Duillag gyn tort',
 
+# Random redirect
+'randomredirect' => 'Aa-enmys gyn tort',
+
 # Statistics
 'statistics' => 'Staydraa',
 'sitestats'  => 'Staydraa dy {{SITENAME}}',
 'userstats'  => 'Staydraa yn ymmydeyr',
+
+'disambiguations' => 'Duillagyn reddaghyn',
+
+'doubleredirects' => 'Aa-enmysyn dooblagh',
 
 'brokenredirects'        => 'Aaenmysyn brisht',
 'brokenredirects-edit'   => '(reaghey)',
@@ -554,6 +572,8 @@ The file contains a virus! Mynphoyntyn: $1",
 
 'withoutinterwiki'        => 'Duillagyn gyn kianglaghyn hengey',
 'withoutinterwiki-submit' => 'Taishbyney',
+
+'fewestrevisions' => 'Duillagyn lesh y chooid by loo jeh dy chooilley arraghey',
 
 # Miscellaneous special pages
 'ncategories'             => '$1 {{PLURAL:$1|ronney|ronnaghyn}}',
@@ -563,6 +583,7 @@ The file contains a virus! Mynphoyntyn: $1",
 'uncategorizedpages'      => 'Duillagyn gyn ronney',
 'uncategorizedcategories' => 'Ronnaghyn gyn ronney',
 'uncategorizedimages'     => 'Coadanyn gyn ronney',
+'uncategorizedtemplates'  => 'Clowanyn gyn ronney',
 'unusedcategories'        => 'Ronnaghyn neuymmydit',
 'unusedimages'            => 'Coadanyn neuymmydit',
 'popularpages'            => 'Duillagyn cadjin',
@@ -641,6 +662,8 @@ Bee caghlaaghyn jeant er y duillag shoh as e ghuillag resoonaght ry-akin ayns y 
 'watchlist-details'    => '{{PLURAL:$1|$1 duillag|$1 duillagyn}} er dty rolley arrey faagail magh ny duillagyn resoonaght.',
 'watchlistcontains'    => 'Ta $1 {{PLURAL:$1|duillag|duillagyn}} ayns dty rolley arrey.',
 'wlshowlast'           => "Taishbyney ny $1 ooryn $2 laaghyn $3 s'jerree",
+'watchlist-hide-bots'  => 'Follaghey arraghyn robotyn',
+'watchlist-hide-own'   => "Follaghey m'arraghyn",
 'watchlist-hide-minor' => 'Follaghey ny myn-arraghyn',
 
 # Displayed when you click the "watch" button and it is in the process of watching
@@ -654,28 +677,32 @@ Bee caghlaaghyn jeant er y duillag shoh as e ghuillag resoonaght ry-akin ayns y 
 'enotif_anon_editor'           => 'ymmydeyr $1 neuenmyssit',
 
 # Delete/protect/revert
-'deletepage'              => 'Scryss y duillag',
-'confirm'                 => 'Feeraghey',
-'excontent'               => "v'eh ny chummal ny: '$1'",
-'exblank'                 => "va'n duillag follym",
-'delete-confirm'          => 'Scryss "$1"',
-'delete-legend'           => 'Scryss',
-'actioncomplete'          => 'Obbraghey creaghnit',
-'deletedarticle'          => '"[[$1]]" scryssit',
-'deleteotherreason'       => 'Fa elley/tooilley:',
-'deletereasonotherlist'   => 'Fa elley',
-'deletereason-dropdown'   => '*Fa scryssey cadjin
+'deletepage'                  => 'Scryss y duillag',
+'confirm'                     => 'Feeraghey',
+'excontent'                   => "v'eh ny chummal ny: '$1'",
+'exblank'                     => "va'n duillag follym",
+'delete-confirm'              => 'Scryss "$1"',
+'delete-legend'               => 'Scryss',
+'actioncomplete'              => 'Obbraghey creaghnit',
+'deletedarticle'              => '"[[$1]]" scryssit',
+'deletecomment'               => 'Fa son scryssey magh:',
+'deleteotherreason'           => 'Fa elley/tooilley:',
+'deletereasonotherlist'       => 'Fa elley',
+'deletereason-dropdown'       => '*Fa scryssey cadjin
 ** Aghin yn ughtar
 ** Brishey choip-chiart
 ** Cragheydys',
-'editcomment'             => 'Va "<i>$1</i>" ny chohaggloo yn reaghey.', # only shown if there is an edit comment
-'protectedarticle'        => '"[[$1]]" glast',
-'protectcomment'          => 'Cohaggloo:',
-'protect-default'         => '(cadjinit)',
-'protect-level-sysop'     => 'Reireyderyn ynrican',
-'protect-summary-cascade' => 'spooytey',
-'restriction-type'        => 'Kied:',
-'restriction-level'       => 'Rea teorey:',
+'editcomment'                 => 'Va "<i>$1</i>" ny chohaggloo yn reaghey.', # only shown if there is an edit comment
+'protectedarticle'            => '"[[$1]]" glast',
+'protectcomment'              => 'Cohaggloo:',
+'protectexpiry'               => 'Jerrey:',
+'protect-default'             => '(cadjinit)',
+'protect-level-autoconfirmed' => 'Cur fo ghlass ymmydeyryn neurecortit',
+'protect-level-sysop'         => 'Reireyderyn ynrican',
+'protect-summary-cascade'     => 'spooytey',
+'protect-expiring'            => 'jerrey jeant ec $1 (UTC)',
+'restriction-type'            => 'Kied:',
+'restriction-level'           => 'Rea teorey:',
 
 # Restrictions (nouns)
 'restriction-edit'   => 'Reaghey',
@@ -749,6 +776,7 @@ Bee caghlaaghyn jeant er y duillag shoh as e ghuillag resoonaght ry-akin ayns y 
 'infiniteblock'            => 'neuyerrinagh',
 'createaccountblock'       => 'crooaght coontys glasst',
 'blocklink'                => 'glassey magh',
+'unblocklink'              => 'foshley',
 'contribslink'             => 'cohortysyn',
 'block-log-flags-anononly' => 'ymmydeyryn neuenmyssit ynrican',
 'proxyblocksuccess'        => 'Jeant.',
@@ -797,6 +825,7 @@ Bee caghlaaghyn jeant er y duillag shoh as e ghuillag resoonaght ry-akin ayns y 
 'tooltip-pt-preferences'          => 'My hosheeaghtyn',
 'tooltip-pt-watchlist'            => 'Rolley duillagyn ta er dty rolley arrey',
 'tooltip-pt-mycontris'            => 'Rolley my chohortysyn',
+'tooltip-pt-login'                => 'Ta greinnaghey shiu gys logail stiagh, cha nel eh anneydagh, ansherbee.',
 'tooltip-pt-logout'               => 'Logail magh',
 'tooltip-ca-talk'                 => 'Resoonaght mychione y ghuillag cummal',
 'tooltip-ca-edit'                 => 'Foddee oo reaghey yn duillah shoh. Click er y cramman roie-haishbynys roish eh y sauail.',
