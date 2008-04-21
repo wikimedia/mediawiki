@@ -317,12 +317,24 @@ Kasta met nga ikarim kadakami a bukodmo a sinurat wenno gapuanan daytoy, wenno k
 'localtime'      => 'Local nga oras',
 
 # User rights
-'userrights-groupsmember' => 'Kameng ti:',
-'userrights-reason'       => 'Rason ti panangbaliw:',
+'userrights-groupsmember'     => 'Kameng ti:',
+'userrights-reason'           => 'Rason ti panangbaliw:',
+'userrights-changeable-col'   => 'Dagiti grupo a mabalinmo a baliwan',
+'userrights-unchangeable-col' => 'Dagiti grupo a dimo mabalin a baliwan',
 
 # Groups
-'group'     => 'Grupo:',
-'group-all' => '(amin)',
+'group'       => 'Grupo:',
+'group-user'  => 'Dagiti agar-aramat',
+'group-bot'   => 'Dagiti bots',
+'group-sysop' => 'Dagiti sysops',
+'group-all'   => '(amin)',
+
+'group-user-member'       => 'Agar-aramat',
+'group-bot-member'        => 'Bot',
+'group-sysop-member'      => 'Sysop',
+'group-bureaucrat-member' => 'Bureaucrat',
+
+'grouppage-user' => '{{ns:project}}:Dagiti agar-aramat',
 
 # User rights log
 'rightsnone' => '(awan)',
@@ -334,19 +346,22 @@ Kasta met nga ikarim kadakami a bukodmo a sinurat wenno gapuanan daytoy, wenno k
 'rcshowhidebots'    => '$1 a bots',
 'rcshowhideliu'     => '$1 ti nakastrek nga agar-aramat',
 'rcshowhideanons'   => '$1 a di am-ammo nga agar-aramat',
+'rcshowhidemine'    => '$1 dagiti panangbalbaliwko',
 'rclinks'           => 'Ipakita dagiti naudi a $1 a balbaliw iti kallabes a $2 nga al-aldaw<br />$3',
 'hide'              => 'Ilemmeng',
 'show'              => 'Ipakita',
 'newpageletter'     => 'B',
 
 # Recent changes linked
-'recentchangeslinked' => 'Mainaig a balbaliw',
+'recentchangeslinked'       => 'Mainaig a balbaliw',
+'recentchangeslinked-title' => 'Panangbalbaliw a mainaig iti "$1"',
 
 # Upload
 'upload'            => 'Mangipan iti file',
 'uploadbtn'         => 'Ipan ti file',
 'uploadnologin'     => 'Saan a nakastrek',
 'uploaderror'       => 'Kammali iti panangipan',
+'filename'          => 'Nagan ti file',
 'filedesc'          => 'Pakabuklan',
 'fileuploadsummary' => 'Pakabuklan:',
 'filesource'        => 'Taudan:',
@@ -360,10 +375,14 @@ Kasta met nga ikarim kadakami a bukodmo a sinurat wenno gapuanan daytoy, wenno k
 'upload_source_file' => ' (file iti kompiutermo)',
 
 # Special:Imagelist
+'imagelist'      => 'Listaan ti file',
+'imagelist_date' => 'Petsa',
 'imagelist_name' => 'Nagan',
+'imagelist_user' => 'Agar-aramat',
 
 # Image description page
-'linkstoimage' => 'Dagiti sumaganad a panid ket nakasilpo itoy a file:',
+'filehist-deleteall' => 'ikkaten amin',
+'linkstoimage'       => 'Dagiti sumaganad a panid ket nakasilpo itoy a file:',
 
 # File deletion
 'filedelete-comment' => 'Rason nga ikkaten:',
@@ -470,15 +489,27 @@ Kasta met nga ikarim kadakami a bukodmo a sinurat wenno gapuanan daytoy, wenno k
 # Block/unblock
 'blocklink' => 'pengdan',
 
+# Developer tools
+'unlockconfirm'     => 'Wen, talaga a kayatko a balunetan ti database.',
+'lockbtn'           => 'Balunetan ti database',
+'unlockbtn'         => 'Luktan ti database',
+'lockdbsuccesssub'  => 'Balligi ti pannakabalunet ti database',
+'databasenotlocked' => 'Saan a nabalunetan ti database.',
+
 # Move page
+'move-page'               => 'Iyakar ti $1',
 'move-page-legend'        => 'Iyakar ti panid',
 'movearticle'             => 'Iyakar ti panid',
+'movenologin'             => 'Saan a nakastrek',
+'movenologintext'         => 'Nasken a nakarehistroka nga agar-aramat ken [[Special:Userlogin|nakastrek]] tapno makaiyakarka iti panid.',
+'move-watch'              => 'Bantayan daytoy a panid',
 'movepagebtn'             => 'Iyakar ti panid',
 'pagemovedsub'            => 'Balligi ti panangyakar',
 'movedto'                 => 'nayakar iti',
 '1movedto2'               => '[[$1]] nayakar iti [[$2]]',
 'movelogpagetext'         => 'Adda iti baba ti listaan dagiti naiyakar a pampanid.',
 'movereason'              => 'Rason',
+'revertmove'              => 'isubli',
 'delete_and_move'         => 'Ikkaten ken iyakar',
 'delete_and_move_confirm' => 'Wen, ikkatenen ti panid',
 

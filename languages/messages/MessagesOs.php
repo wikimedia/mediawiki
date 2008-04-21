@@ -80,6 +80,7 @@ $messages = array(
 'edit'             => 'Баив æй',
 'newpage'          => 'Ног фарс',
 'talkpage'         => 'Ацы фарсы тыххæй ныхас',
+'talkpagelinktext' => 'Дискусси',
 'specialpage'      => 'Сæрмагонд фарс',
 'articlepage'      => 'Фен статья',
 'talk'             => 'Дискусси',
@@ -90,15 +91,18 @@ $messages = array(
 <br /> Ацы фарс фæстаг хатт ивд æрцыд: $1.</span>', # $1 date, $2 time
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+'aboutsite'            => '{{grammar:genitive|{{SITENAME}}}} тыххæй',
 'currentevents'        => 'Ног хабæрттæ',
 'currentevents-url'    => 'Project:Xabar',
 'mainpage'             => 'Сæйраг фарс',
 'mainpage-description' => 'Сæйраг фарс',
 'portal'               => 'Архайджыты æхсæнад',
+'privacy'              => 'Хибардзинады политикæ',
 
 'newmessageslink' => 'ног фыстæгтæ',
 'editsection'     => 'баив æй',
 'editold'         => 'баив æй',
+'editsectionhint' => 'Баив æй: $1',
 'toc'             => 'Сæргæндтæ',
 'showtoc'         => 'равдис',
 'hidetoc'         => 'бамбæхс',
@@ -253,7 +257,8 @@ $3',
 'linklistsub'   => '(Æрвитæнты номхыгъд)',
 
 # Block/unblock
-'ipbreason' => 'Аххос',
+'ipbreason'    => 'Аххос',
+'contribslink' => 'бавæрд',
 
 # Move page
 'movearticle' => 'Статьяйы ном баив',
@@ -265,6 +270,9 @@ $3',
 
 # Special:Import
 'importnotext' => 'Афтид у кæнæ текст дзы нæй',
+
+# Tooltip help for the actions
+'tooltip-n-mainpage' => 'Сæйраг фарсмæ рацу',
 
 # Attribution
 'others' => 'æндæртæ',

@@ -1594,6 +1594,7 @@ $1',
 'whatlinkshere-hideredirs' => '$1 as redireccións',
 'whatlinkshere-hidetrans'  => '$1 as inclusións',
 'whatlinkshere-hidelinks'  => '$1 as ligazóns',
+'whatlinkshere-filters'    => 'Filtros',
 
 # Block/unblock
 'blockip'                     => 'Bloqueo de usuario',

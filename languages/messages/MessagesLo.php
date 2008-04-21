@@ -480,8 +480,8 @@ $messages = array(
 'hist'                           => 'ປະຫວັດ',
 'hide'                           => 'ເຊື່ອງ',
 'show'                           => 'ສະແດງ',
-'minoreditletter'                => 'ໃໝ່',
-'newpageletter'                  => 'ໃໝ່',
+'minoreditletter'                => 'ລ',
+'newpageletter'                  => 'ມ',
 
 # Recent changes linked
 'recentchangeslinked'          => 'ການດັດແກ້ທີ່ກ່ຽວຂ້ອງ',

@@ -1812,6 +1812,7 @@ $1',
 'whatlinkshere-hideredirs' => '$1 přesměrování',
 'whatlinkshere-hidetrans'  => '$1 vložení',
 'whatlinkshere-hidelinks'  => '$1 odkazy',
+'whatlinkshere-filters'    => 'Filtry',
 
 # Block/unblock
 'blockip'                     => 'Zablokovat uživatele',

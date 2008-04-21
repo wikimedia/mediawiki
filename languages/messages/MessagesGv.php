@@ -83,6 +83,7 @@ $messages = array(
 'category_header'               => 'Duillagyn ayns ronney "$1"',
 'subcategories'                 => 'Fo-ronnaghyn',
 'hidden-category-category'      => 'Ronnaghyn follit', # Name of the category where hidden categories will be listed
+'listingcontinuesabbrev'        => 'tooil.',
 
 'about'          => 'Mychione',
 'article'        => 'Duillag y chummal',
@@ -147,6 +148,7 @@ $messages = array(
 'redirectedfrom'   => '(Aa-enmyssit ass $1)',
 'redirectpagesub'  => 'Duillag aa-enmys',
 'protectedpage'    => 'Duillag coadit',
+'jumpto'           => 'Gow gys:',
 'jumptonavigation' => 'stiureydys',
 'jumptosearch'     => 'ronsaghey',
 
@@ -172,6 +174,7 @@ $messages = array(
 'privacy'              => 'Polasee preevaadjys',
 'privacypage'          => 'Project:Polasee preevaadjys',
 'sitesupport'          => 'Toyrtysyn',
+'sitesupport-url'      => 'Shalee:Cooney yn ynnyd',
 
 'badaccess' => 'Marranys y chied',
 
@@ -184,11 +187,14 @@ $messages = array(
 'editsection'             => 'reaghey',
 'editold'                 => 'reaghey',
 'viewsourceold'           => 'jeeagh er bun',
-'editsectionhint'         => 'Rheynn y reaghey: $1',
+'editsectionhint'         => 'Reaghey rheynn: $1',
 'toc'                     => 'Cummal',
 'showtoc'                 => 'taishbyney',
 'hidetoc'                 => 'follaghey',
 'viewdeleted'             => 'Jeeagh er $1?',
+'site-rss-feed'           => 'Scoltey RSS $1',
+'site-atom-feed'          => 'Scoltey Atom $1',
+'page-rss-feed'           => 'Scoltey RSS "$1"',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Duillag',
@@ -197,6 +203,7 @@ $messages = array(
 'nstab-project'   => 'Duillag shalee',
 'nstab-image'     => 'Coadan',
 'nstab-mediawiki' => 'Çhaghteraght',
+'nstab-template'  => 'Clowan',
 'nstab-help'      => 'Duillag chooney',
 'nstab-category'  => 'Ronney',
 
@@ -207,6 +214,7 @@ $messages = array(
 'badtitle'           => 'Drogh-ennym',
 'viewsource'         => 'Jeeagh er bun',
 'viewsourcefor'      => 'dy $1',
+'viewsourcetext'     => 'Foddee oo jeeagh er as jean aascreeuyn bun y ghuillag shoh:',
 
 # Login and logout pages
 'logouttitle'                => 'Logail magh yn ymmydeyr',
@@ -263,11 +271,13 @@ Cha nod oo ny smoo y chroo.',
 'extlink_sample'  => 'http://www.sambyl.com ennym chianglee',
 'extlink_tip'     => 'Kiangley mooie (cooiney roie-ockle http://)',
 'headline_sample' => 'Teks y chione-linney',
+'headline_tip'    => 'Kione-linney corrym 2',
 'math_sample'     => 'Cur formley stiagh ayns shoh',
 'math_tip'        => 'Formley maddaghtoil (LaTeX)',
 'image_tip'       => 'Coadan jingit',
 'media_tip'       => 'Kiangley yn choadan',
 'sig_tip'         => "Dt'ennym screeuit lesh clouag am",
+'hr_tip'          => 'Linney cochruinnagh (ymmyd dy spaarailagh)',
 
 # Edit pages
 'summary'                => 'Giare-choontey',
@@ -279,10 +289,23 @@ Cha nod oo ny smoo y chroo.',
 'showpreview'            => 'Roie-haishbynys y haishbyney',
 'showlivepreview'        => 'Roie-haishbynys bio',
 'showdiff'               => 'Caghlaaghyn y haishbyney',
+'anoneditwarning'        => "'''Raaue:''' Cha nel ou logailt stiagh.<br>
+Bee dt'enmys IP recortyssit ayns shennaghys reaghey yn duillag shoh.",
 'missingcommenttext'     => 'Taggloo er heese, my sailt.',
 'summary-preview'        => 'Roie-haishbynys y ghiare-choontey',
 'subject-preview'        => 'Roie-haishbynys cooish/kione-linney',
 'blockedtitle'           => "Ta'n ymmydeyr glast magh",
+'blockedtext'            => "<big>'''Ta dt'ennym ymmydeyr ny dt'enmys IP currit fo ghlass.'''</big>
+
+V'ou glassit magh ec $1. She yn fa ny ''$2''.
+
+* Toshiaght y ghlass: $8
+* Jerrey yn ghlass: $6
+* Currit da: $7
+
+Foddee oo cur fys er $1 ny [[{{MediaWiki:Grouppage-sysop}}|reireyder]] elley dy resooney magh y ghlass.
+Cha nod oo jannoo ymmyd jeh'n cummey 'cur post-L da'n ymmydeyr shoh' mannagh vel eh sonrit ayns dty [[Special:Preferences|choontys tosheeaghtyn]] as mannagh vel ou glasst magh.<br />
+She $3 dt'enmys IP troa, as she dt'enney ghlass ny #$5. Cur ad lesh dagh ooilley eysht.",
 'blockednoreason'        => 'cha nel fa currit',
 'whitelistacctitle'      => 'Cha nel kied ayd coontys y chroo',
 'loginreqlink'           => 'Logail stiagh',
@@ -290,12 +313,16 @@ Cha nod oo ny smoo y chroo.',
 'accmailtitle'           => 'Fockle yn arrey currit.',
 'accmailtext'            => 'Ta fockle yn arrey da "$1" currit dy $2.',
 'newarticle'             => '(Noa)',
+'previewnote'            => '<strong>Ta shoh roie-haishbynys;<br>
+cha nel ny caghlaaghyn sauailt foast!</strong>',
 'editing'                => 'Reaghey $1',
 'editingsection'         => 'Reaghey $1 (rheynn)',
 'editingcomment'         => 'Reaghey $1 (cohaggloo)',
 'yourtext'               => 'Dty heks',
 'storedversion'          => 'Lhieggan stoyrit',
 'yourdiff'               => 'Anchaslysyn',
+'templatesused'          => 'Clowanyn ymmydit er y duillag shoh:',
+'templatesusedpreview'   => 'Clowanyn ymmydit ayns y roie-haishbynys shoh:',
 'template-protected'     => '(glast)',
 'template-semiprotected' => '(lieh-ghlast)',
 'nocreatetitle'          => 'Crooaght duillag jeorit',
@@ -344,12 +371,16 @@ Cha nod oo ny smoo y chroo.',
 'mergehistory-comment'     => 'Ta [[:$1]] cochianglit stiagh ayns [[:$2]]: $3',
 
 # Diffs
-'history-title' => 'Shennaghys aavriwnys dy "$1"',
-'difference'    => '(Anchaslys eddyr aavriwnysyn)',
-'lineno'        => 'Linney $1:',
+'history-title'           => 'Shennaghys aavriwnys dy "$1"',
+'difference'              => '(Anchaslys eddyr aavriwnysyn)',
+'lineno'                  => 'Linney $1:',
+'compareselectedversions' => 'Cosoylaghey ny lhiegganyn reiht',
+'editundo'                => 'rassey',
 
 # Search results
 'searchresults'       => 'Eiyrtysyn y ronsaghey',
+'noexactmatch'        => "'''Cha nel duillag lesh yn ennym \"\$1\".'''<br>
+Foddee oo [[:\$1|croo yn duillag shoh]].",
 'prevn'               => 'ny $1 roish',
 'nextn'               => 'yn chied $1 elley',
 'viewprevnext'        => 'Jeeagh er ($1) ($2) ($3)',
@@ -413,12 +444,19 @@ Cha nod oo ny smoo y chroo.',
 'group-bureaucrat-member' => 'Oikreilleyder',
 'group-suppress-member'   => 'Meehastid',
 
+'grouppage-sysop' => '{{ns:project}}:Reireyderyn',
+
 # User rights log
 'rightsnone' => '(veg)',
 
 # Recent changes
+'nchanges'        => '$1 {{PLURAL:$1|caghlaa|caghlaaghyn}}',
 'recentchanges'   => "Caghlaaghyn s'noa",
+'rcshowhideminor' => '$1 myn-arraghyn',
 'rcshowhidebots'  => '$1 botyn',
+'rcshowhideliu'   => '$1 ymmydeyryn ta logailt stiagh',
+'rcshowhideanons' => '$1 ymmydeyryn neuenmyssit',
+'rcshowhidemine'  => '$1 my reaghyn',
 'diff'            => 'anch',
 'hist'            => 'shen',
 'hide'            => 'Follaghey',
@@ -428,6 +466,7 @@ Cha nod oo ny smoo y chroo.',
 'boteditletter'   => 'b',
 
 # Recent changes linked
+'recentchangeslinked'      => 'Caghlaaghyn-vooinjerys',
 'recentchangeslinked-page' => 'Ennym y duillag:',
 
 # Upload
@@ -474,6 +513,8 @@ The file contains a virus! Mynphoyntyn: $1",
 'filehist-filesize'         => 'Mooadys y choadan',
 'filehist-comment'          => 'Cohaggloo',
 'imagelinks'                => 'Kianglaghyn',
+'linkstoimage'              => 'Ta ny duillagyn eiyrtyssagh kianglt lesh y coadan shoh:',
+'nolinkstoimage'            => 'Cha nel duillag erbee kianglt lesh y coadan shoh.',
 'shareduploadwiki-linktext' => 'duillag huarastyl y choadan',
 'noimage-linktext'          => 'dy lughtaghey',
 
@@ -507,6 +548,7 @@ The file contains a virus! Mynphoyntyn: $1",
 'sitestats'  => 'Staydraa dy {{SITENAME}}',
 'userstats'  => 'Staydraa yn ymmydeyr',
 
+'brokenredirects'        => 'Aaenmysyn brisht',
 'brokenredirects-edit'   => '(reaghey)',
 'brokenredirects-delete' => '(scryss)',
 
@@ -516,6 +558,7 @@ The file contains a virus! Mynphoyntyn: $1",
 # Miscellaneous special pages
 'ncategories'             => '$1 {{PLURAL:$1|ronney|ronnaghyn}}',
 'nlinks'                  => '$1 {{PLURAL:$1|kiangley|kianglaghyn}}',
+'nmembers'                => '$1 {{PLURAL:$1|oltey|olteynyn}}',
 'lonelypages'             => 'Duillagyn treoghe',
 'uncategorizedpages'      => 'Duillagyn gyn ronney',
 'uncategorizedcategories' => 'Ronnaghyn gyn ronney',
@@ -525,6 +568,7 @@ The file contains a virus! Mynphoyntyn: $1",
 'popularpages'            => 'Duillagyn cadjin',
 'wantedcategories'        => 'Ronnaghyn ry-laccal',
 'wantedpages'             => 'Duillagyn ry-laccal',
+'prefixindex'             => 'Ayndagh roie-ockle',
 'shortpages'              => 'Duillagyn giarey',
 'longpages'               => 'Duillagyn liauyr',
 'deadendpages'            => 'Duillagyn kione kyagh',
@@ -542,6 +586,7 @@ The file contains a virus! Mynphoyntyn: $1",
 'suppress'                => 'Meehastid',
 
 # Book sources
+'booksources'    => 'Bun-gheillyn lioar',
 'booksources-go' => 'Gow',
 
 # Special:Log
@@ -556,6 +601,7 @@ The file contains a virus! Mynphoyntyn: $1",
 'prevpage'       => 'Yn duillag roish shen ($1)',
 'allarticles'    => 'Dagh ooilley ghuillag',
 'allpagessubmit' => 'Gow',
+'allpagesprefix' => 'Taishbyney duillagyn lesh roie-ockle:',
 
 # Special:Listusers
 'listusers-submit' => 'Taishbyney',
@@ -566,6 +612,7 @@ The file contains a virus! Mynphoyntyn: $1",
 'listgrouprights-helppage' => 'Help:Kiartyn y phossan',
 
 # E-mail user
+'emailuser'      => "Cur post-L da'n ymmydeyr shoh",
 'emailfrom'      => 'Ass',
 'emailto'        => 'Da',
 'emailsubject'   => 'Cooish',
@@ -576,20 +623,25 @@ The file contains a virus! Mynphoyntyn: $1",
 'emailsenttext'  => 'Ta dty phost-L currit.',
 
 # Watchlist
-'watchlist'         => 'My rolley arrey',
-'mywatchlist'       => 'My rolley arrey',
-'watchlistfor'      => "(son '''$1''')",
-'watchnologin'      => 'Cha nel ou logailt stiagh',
-'addedwatch'        => 'Currit rish y rolley arrey',
-'removedwatch'      => 'Gowit ass y rolley arrey',
-'removedwatchtext'  => 'Ta\'n duillag "[[:$1]]" gowit ass dty rolley arrey.',
-'watch'             => 'Freill arrey',
-'watchthispage'     => 'Freill arrey er y duillag shoh',
-'unwatch'           => 'Cur stap er arrey',
-'unwatchthispage'   => 'Cur stap er arrey',
-'notanarticle'      => 'Cha nel eh shoh ny ghuillag cummal',
-'notvisiblerev'     => "Va'n aavriwnys scryssit",
-'watchlistcontains' => 'Ta $1 {{PLURAL:$1|duillag|duillagyn}} ayns dty rolley arrey.',
+'watchlist'            => 'My rolley arrey',
+'mywatchlist'          => 'My rolley arrey',
+'watchlistfor'         => "(son '''$1''')",
+'watchnologin'         => 'Cha nel ou logailt stiagh',
+'addedwatch'           => 'Currit rish y rolley arrey',
+'addedwatchtext'       => "Va'n duillag \"[[:\$1]]\" currit lesh dty [[Special:Watchlist|rolley arrey]].<br />
+Bee caghlaaghyn jeant er y duillag shoh as e ghuillag resoonaght ry-akin ayns y rolley shoh, as bee '''clou trome''' er ayns rolley ny [[Special:Recentchanges|caghlaaghyn s'noa]].",
+'removedwatch'         => 'Gowit ass y rolley arrey',
+'removedwatchtext'     => 'Ta\'n duillag "[[:$1]]" gowit ass dty rolley arrey.',
+'watch'                => 'Freill arrey',
+'watchthispage'        => 'Freill arrey er y duillag shoh',
+'unwatch'              => 'Cur stap er arrey',
+'unwatchthispage'      => 'Cur stap er arrey',
+'notanarticle'         => 'Cha nel eh shoh ny ghuillag cummal',
+'notvisiblerev'        => "Va'n aavriwnys scryssit",
+'watchlist-details'    => '{{PLURAL:$1|$1 duillag|$1 duillagyn}} er dty rolley arrey faagail magh ny duillagyn resoonaght.',
+'watchlistcontains'    => 'Ta $1 {{PLURAL:$1|duillag|duillagyn}} ayns dty rolley arrey.',
+'wlshowlast'           => "Taishbyney ny $1 ooryn $2 laaghyn $3 s'jerree",
+'watchlist-hide-minor' => 'Follaghey ny myn-arraghyn',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Jannoo arrey...',
@@ -623,6 +675,7 @@ The file contains a virus! Mynphoyntyn: $1",
 'protect-level-sysop'     => 'Reireyderyn ynrican',
 'protect-summary-cascade' => 'spooytey',
 'restriction-type'        => 'Kied:',
+'restriction-level'       => 'Rea teorey:',
 
 # Restrictions (nouns)
 'restriction-edit'   => 'Reaghey',
@@ -646,11 +699,13 @@ The file contains a virus! Mynphoyntyn: $1",
 'undelete-search-submit' => 'Ronsaghey',
 
 # Namespace form on various pages
+'invert'         => 'Teiy y chur bun ry-skyn',
 'blanknamespace' => '(Cadjin)',
 
 # Contributions
 'contributions' => 'Cohortysyn yn ymmydeyr',
 'mycontris'     => 'My chohortysyn',
+'contribsub2'   => 'Da $1 ($2)',
 'uctop'         => ' (baare)',
 'month'         => "Veih mee (as ny s'aa):",
 'year'          => "Veih blein (as ny s'aa):",
@@ -665,6 +720,7 @@ The file contains a virus! Mynphoyntyn: $1",
 'whatlinkshere-page'       => 'Duillag:',
 'linklistsub'              => '(Rolley kianglaghyn)',
 'linkshere'                => "Ta ny kied duillagyn elley kianglt lesh '''[[:$1]]''':",
+'nolinkshere'              => "Cha nel duillag erbee kianglt lesh '''[[:$1]]'''.",
 'isredirect'               => 'duillag aa-enmyssit',
 'istemplate'               => 'goaill stiagh',
 'whatlinkshere-links'      => '← kianglaghyn',
@@ -687,6 +743,7 @@ The file contains a virus! Mynphoyntyn: $1",
 'ipbotheroption'           => 'elley',
 'ipbotherreason'           => 'Fa elley/tooilley:',
 'badipaddress'             => 'Enmys IP gyn vree',
+'ipblocklist'              => 'Rolley enmysyn IP as enmyn ymmydeyr fo ghlass',
 'ipblocklist-username'     => 'Ennym yn ymmydeyr ny enmys IP:',
 'ipblocklist-submit'       => 'Ronsaghey',
 'infiniteblock'            => 'neuyerrinagh',
@@ -701,8 +758,14 @@ The file contains a virus! Mynphoyntyn: $1",
 'move-page-legend'        => 'Duillag y scughey',
 'movearticle'             => 'Duillag y scughey:',
 'movenologin'             => 'Cha nel ou logailt stiagh',
+'newtitle'                => 'Gys ard-ennym noa:',
 'move-watch'              => 'Freill arrey er y duillag shoh',
 'movepagebtn'             => 'Yn duillag y scughey',
+'pagemovedsub'            => "Va'n scughey rahoil",
+'movepage-moved'          => '<big>Va \'\'\'"$1" aa-enmyssit myr "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movedto'                 => 'aa-enmyssit myr',
+'movetalk'                => 'Scughey yn duillag resoonaght ta cochianglt lesh',
+'1movedto2'               => '[[$1]] scughit gys [[$2]]',
 'movelogpage'             => 'Lioar y scughey',
 'movereason'              => 'Fa',
 'revertmove'              => 'goll er ash',
@@ -710,6 +773,7 @@ The file contains a virus! Mynphoyntyn: $1",
 'delete_and_move_confirm' => 'Ta, scryss magh y duillag',
 
 # Export
+'export'          => 'Assphurtal duillagyn',
 'export-submit'   => 'Assphurtal',
 'export-download' => 'Sauail myr coadan',
 
@@ -728,37 +792,47 @@ The file contains a virus! Mynphoyntyn: $1",
 'importnotext'       => 'Follym ny gyn teks',
 
 # Tooltip help for the actions
-'tooltip-pt-userpage'        => 'My ghuillag ymmydeyr',
-'tooltip-pt-mytalk'          => 'My ghuillag resoonaght',
-'tooltip-pt-preferences'     => 'My hosheeaghtyn',
-'tooltip-pt-mycontris'       => 'Rolley my chohortysyn',
-'tooltip-pt-logout'          => 'Logail magh',
-'tooltip-ca-talk'            => 'Resoonaght mychione y ghuillag cummal',
-'tooltip-ca-protect'         => 'Coadee yn duillag shoh',
-'tooltip-ca-delete'          => 'Scryss y duillag shoh',
-'tooltip-ca-move'            => 'Yn duillag y scughey',
-'tooltip-ca-watch'           => 'Cur y duillag shoh lesh dty rolley arrey',
-'tooltip-ca-unwatch'         => 'Scughey y duillag shoh ass dty rolley arrey',
-'tooltip-search'             => '{{SITENAME}} y ronsaghey',
-'tooltip-p-logo'             => 'Ard-ghuillag',
-'tooltip-n-mainpage'         => 'Cur keayrt er yn Ard-ghuillag',
-'tooltip-n-portal'           => "Mychione y çhalee, jean dty chooid share, c'raad reddyn dy feddyn",
-'tooltip-n-recentchanges'    => "Rolley caghlaaghyn s'noa ayns y wiki.",
-'tooltip-n-randompage'       => 'Duillag gyn tort y lughtaghey',
-'tooltip-n-help'             => 'Boayl gys feddyn magh.',
-'tooltip-n-sitesupport'      => 'Cooin lhien',
-'tooltip-t-whatlinkshere'    => 'Rolley dagh ooilley ghuillag wiki ta kianglt lesh shoh',
-'tooltip-t-upload'           => 'Coadanyn y lughtaghey seose',
-'tooltip-t-specialpages'     => 'Rolley dagh ooilley ghuillag er lheh',
-'tooltip-ca-nstab-main'      => 'Jeeagh er duillag y chummal',
-'tooltip-ca-nstab-user'      => 'Jeeagh er duillag yn ymmydeyr',
-'tooltip-ca-nstab-project'   => 'Jeeagh er duillag y halee',
-'tooltip-ca-nstab-image'     => 'Jeeagh er duillag y choadan',
-'tooltip-ca-nstab-mediawiki' => 'Jeeagh er çhaghteraght y chorys',
-'tooltip-ca-nstab-help'      => 'Jeeagh er duillag y chooney',
-'tooltip-ca-nstab-category'  => 'Jeeagh er duillag y ronney',
-'tooltip-save'               => 'Sauail dty chaghlaaghyn',
-'tooltip-watch'              => 'Cur y duillag shoh lesh dty rolley arrey',
+'tooltip-pt-userpage'             => 'My ghuillag ymmydeyr',
+'tooltip-pt-mytalk'               => 'My ghuillag resoonaght',
+'tooltip-pt-preferences'          => 'My hosheeaghtyn',
+'tooltip-pt-watchlist'            => 'Rolley duillagyn ta er dty rolley arrey',
+'tooltip-pt-mycontris'            => 'Rolley my chohortysyn',
+'tooltip-pt-logout'               => 'Logail magh',
+'tooltip-ca-talk'                 => 'Resoonaght mychione y ghuillag cummal',
+'tooltip-ca-edit'                 => 'Foddee oo reaghey yn duillah shoh. Click er y cramman roie-haishbynys roish eh y sauail.',
+'tooltip-ca-addsection'           => 'Cur baght er y resoonaght shoh.',
+'tooltip-ca-viewsource'           => "Ta'n duillag shoh fo ghlass. Foddee oo jeeagh er e vun.",
+'tooltip-ca-protect'              => 'Coadee yn duillag shoh',
+'tooltip-ca-delete'               => 'Scryss y duillag shoh',
+'tooltip-ca-move'                 => 'Yn duillag y scughey',
+'tooltip-ca-watch'                => 'Cur y duillag shoh lesh dty rolley arrey',
+'tooltip-ca-unwatch'              => 'Scughey y duillag shoh ass dty rolley arrey',
+'tooltip-search'                  => '{{SITENAME}} y ronsaghey',
+'tooltip-p-logo'                  => 'Ard-ghuillag',
+'tooltip-n-mainpage'              => 'Cur keayrt er yn Ard-ghuillag',
+'tooltip-n-portal'                => "Mychione y çhalee, jean dty chooid share, c'raad reddyn dy feddyn",
+'tooltip-n-recentchanges'         => "Rolley caghlaaghyn s'noa ayns y wiki.",
+'tooltip-n-randompage'            => 'Duillag gyn tort y lughtaghey',
+'tooltip-n-help'                  => 'Boayl gys feddyn magh.',
+'tooltip-n-sitesupport'           => 'Cooin lhien',
+'tooltip-t-whatlinkshere'         => 'Rolley dagh ooilley ghuillag wiki ta kianglt lesh shoh',
+'tooltip-t-contributions'         => 'Jeeagh er cohortysyn yn ymmydeyr shoh',
+'tooltip-t-emailuser'             => "Cur post-L da'n ymmydeyr shoh",
+'tooltip-t-upload'                => 'Coadanyn y lughtaghey seose',
+'tooltip-t-specialpages'          => 'Rolley dagh ooilley ghuillag er lheh',
+'tooltip-ca-nstab-main'           => 'Jeeagh er duillag y chummal',
+'tooltip-ca-nstab-user'           => 'Jeeagh er duillag yn ymmydeyr',
+'tooltip-ca-nstab-project'        => 'Jeeagh er duillag y halee',
+'tooltip-ca-nstab-image'          => 'Jeeagh er duillag y choadan',
+'tooltip-ca-nstab-mediawiki'      => 'Jeeagh er çhaghteraght y chorys',
+'tooltip-ca-nstab-template'       => 'Jeeagh er y clowan',
+'tooltip-ca-nstab-help'           => 'Jeeagh er duillag y chooney',
+'tooltip-ca-nstab-category'       => 'Jeeagh er duillag y ronney',
+'tooltip-minoredit'               => 'She myn-arraghey eh shoh',
+'tooltip-save'                    => 'Sauail dty chaghlaaghyn',
+'tooltip-diff'                    => 'Taishbyney caghlaaghyn y teks ta jeant ayd.',
+'tooltip-compareselectedversions' => 'Jeeagh er ny caghlaaghyn eddyr y daa lhieggan reiht y ghuillag shoh.',
+'tooltip-watch'                   => 'Cur y duillag shoh lesh dty rolley arrey',
 
 # Attribution
 'anonymous' => 'Ymmeyder(yn) neuenmyssit dy {{SITENAME}}',
@@ -775,16 +849,28 @@ The file contains a virus! Mynphoyntyn: $1",
 # Patrol log
 'patrol-log-auto' => '(seyr-obbragh)',
 
+# Browsing diffs
+'previousdiff' => "← Yn caghlaa s'jerree",
+'nextdiff'     => 'Yn chied caghlaa elley →',
+
 # Media information
-'widthheightpage' => '$1×$2, $3 duillagyn',
+'widthheightpage'      => '$1×$2, $3 duillagyn',
+'file-info-size'       => '($1 × $2 pixel, mooadys y choadan: $3, sorçh MIME: $4)',
+'file-nohires'         => '<small>Cha nel jeeskeaylley ny smoo ry-gheddyn.</small>',
+'svg-long-desc'        => '(coadan SVG, $1 × $2 pixelyn dy ennymagh, mooadys y choadan: $3)',
+'show-big-image'       => 'Jeeskeaylley ymlane',
+'show-big-image-thumb' => '<small>Mooadys y roie-haishbynys shoh: $1 × $2 pixelyn</small>',
 
 # Special:Newimages
+'newimages'    => 'Laaragh coadanyn noa',
 'showhidebots' => '($1 botyn)',
 'ilsubmit'     => 'Ronsaghey',
 'bydate'       => 'rere date',
 
 # Metadata
-'metadata' => 'Metadata',
+'metadata'          => 'Metadata',
+'metadata-expand'   => 'Taishbyney ny mynphointyn sheeynt',
+'metadata-collapse' => 'Follaghey ny mynphointyn sheeynt',
 
 # EXIF tags
 'exif-imagewidth'       => 'Lheead',
@@ -833,6 +919,10 @@ The file contains a virus! Mynphoyntyn: $1",
 'exif-gpsspeed-k' => "Kilometeryn 'syn oor",
 'exif-gpsspeed-m' => "Meeillaghyn 'syn oor",
 
+# External editor support
+'edit-externally'      => 'Reaghey yn coadan shoh lesh sheeyntagh mooie',
+'edit-externally-help' => 'Jeeagh er [http://meta.wikimedia.org/wiki/Help:External_editors saraghyn soiaghey seose] son tooilley oayllys.',
+
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'yn clane',
 'imagelistall'     => 'yn clane',
@@ -867,6 +957,10 @@ The file contains a virus! Mynphoyntyn: $1",
 'watchlistedit-normal-submit' => 'Enmyn y scughey',
 'watchlistedit-normal-done'   => 'Va {{PLURAL:$1|1 ard-ennym|$1 ard-enmyn}} scrysst ass dty rolley arrey:',
 'watchlistedit-raw-titles'    => 'Enmyn:',
+
+# Watchlist editing tools
+'watchlisttools-view' => 'Jeeagh er caghlaaghyn bentynagh',
+'watchlisttools-edit' => 'Jeeagh er as reaghey yn rolley arrey',
 
 # Special:Version
 'version'                  => 'Lhieggan', # Not used as normal message but as header for the special page itself

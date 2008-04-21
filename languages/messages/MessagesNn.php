@@ -756,7 +756,7 @@ Du kan kontakte $1 eller ein annan [[{{MediaWiki:Grouppage-sysop}}|administrator
 'nosuchsectiontitle'                => 'Ingen slik bolk',
 'nosuchsectiontext'                 => 'Du prøvde å endre ein bolk som ikkje finst. Sidan det ikkje er {{PLURAL:bolkar|$1 bolkar}} i teksten, er det ingen stad å lagre endringa di.',
 'loginreqtitle'                     => 'Innlogging trengst',
-'loginreqlink'                      => 'logge inn',
+'loginreqlink'                      => 'logg inn',
 'loginreqpagetext'                  => 'Du lyt $1 for å lesa andre sider.',
 'accmailtitle'                      => 'Passord er sendt.',
 'accmailtext'                       => 'Passordet for «$1» er vorte sendt til $2.',
