@@ -455,9 +455,9 @@ class UserrightsPage extends SpecialPage {
 "					<td style='vertical-align:top;'>
 						$unsettable_col
 					</td>
-				</tr>";
+";
 			}
-			$ret .= Xml::closeElement( 'table' );
+			$ret .= Xml::closeElement( 'tr' ) . Xml::closeElement( 'table' );
 		}
 
 		return $ret;
