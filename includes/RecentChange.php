@@ -596,7 +596,7 @@ class RecentChange
 		$user = $this->cleanupForIRC( $rc_user_text );
 
 		if ( $rc_type == RC_LOG ) {
-			$comment = $this->cleanupForIRC( str_replace( $title, "\00302$title\00310", $actionComment ) );
+			$comment = $this->cleanupForIRC( str_replace($titleObj->getPrefixedText(),"\00302$title\00310",$actionComment) );
 			$flag = $rc_log_action;
 		} else {
 			$comment = $this->cleanupForIRC( $rc_comment );
