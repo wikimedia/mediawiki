@@ -41,6 +41,7 @@ $messages = array(
 'underline-always' => 'Яланах',
 
 # Dates
+'sunday'    => 'вырсарникун',
 'monday'    => 'Тунтикун',
 'tuesday'   => 'Ытларикун',
 'thursday'  => 'Кĕçнерникун',

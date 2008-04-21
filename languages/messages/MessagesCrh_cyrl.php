@@ -1459,8 +1459,8 @@ e-mail: $PAGEEDITOR_EMAIL
 'allmessagesname'     => 'Исим',
 'allmessagesdefault'  => 'Оригиналь метин',
 'allmessagescurrent'  => 'Къулланымдаки метин',
-'allmessagestext'     => 'Бу джедвель MediaWiki-де мевджут олгъан бутюн терминлернинъ джедвелидир.
-Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] and [http://translatewiki.net Betawiki] if you wish to contribute to the generic MediaWiki localisation.',
+'allmessagestext'     => 'Ишбу джедвель MediaWiki-де мевджут олгъан бутюн система беянатларынынъ джедвелидир.
+MediaWiki интерфейсининъ чешит тиллерге терджиме этювде иштирак этмеге истесенъиз [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] ве [http://translatewiki.net Betawiki] саифелерине зиярет этинъиз.',
 'allmessagesfilter'   => 'Метин айрыштырыджы фильтры:',
 'allmessagesmodified' => 'Тек денъиштирильгенлерни косьтер',
 

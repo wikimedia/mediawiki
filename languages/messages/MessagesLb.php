@@ -658,6 +658,7 @@ D\'Nummer vun ärer Spär ass $5. Gitt dës Nummer w.e.g bei allen Ufroen zu dë
 'noarticletext'                     => 'Dës Säit huet momentan nach keen Text, Dir kënnt op anere Säiten no [[Special:Search/{{PAGENAME}}|dësem Säitentitel sichen]] oder [{{fullurl:{{FULLPAGENAME}}|action=edit}} esou eng Säit uleeën].',
 'userpage-userdoesnotexist'         => 'De Benotzerkont "$1" gëtt et net. Iwwerpréift w.e.g. op Dir dës Säit erschafe/ännere wëllt.',
 'clearyourcache'                    => "'''Opgepasst:''' Nom Späichere muss der Ärem Browser seng Cache eidel maachen, fir d'Ännerungen ze gesinn: '''Mozilla/Firefox:''' klickt ''reload'' (oder ''ctrl-R''), '''IE / Opera:''' ''ctrl-f5'', '''Safari:''' ''cmd-r'', '''Konqueror''' ''ctrl-r''.",
+'usercssjsyoucanpreview'            => "<strong>Tipp:</strong> Benotzt de ''Kucken ouni ze späichere''-Button, fir äre neien CSS/JS virum Späicheren ze testen.",
 'usercsspreview'                    => "'''Bedenkt:''' Dir kuckt just är Benotzer CSS, si gouf nach net gepäichert!",
 'userjspreview'                     => "'''Denkt drun datt Dir äre Javascript nëmmen test, nach ass näischt gespäichert!'''",
 'updated'                           => '(Geännert)',
@@ -1306,6 +1307,7 @@ An all Rei sti Linken zur éischter an zweeter Viruleedung, souwéi déi éischt
 'deadendpages-summary'            => 'Op dëser Spezialsäit stinn all déi Säiten, déi keng Linken op aner Säiten oder nëmme Linken op Säiten, déi et nach net gëtt, hunn.',
 'deadendpagestext'                => 'Dës Säite si mat kenger anerer Säit op {{SITENAME}} verlinkt.',
 'protectedpages'                  => 'Protegéiert Säiten',
+'protectedpages-indef'            => 'Nëmme onbegrenzt-gespaarte Säite weisen',
 'protectedpages-summary'          => 'Op dëser Spezialsäit stinn all déi Säiten déi esou protegéiert sinn, datt se net vun alle Benotzer geréckelt oder geännert kënne ginn.',
 'protectedpagestext'              => 'Dës Säite si gespaart esou datt si weder geännert nach geréckelt kënne ginn',
 'protectedpagesempty'             => 'Elo si keng Säite mat dëse Parameteren protegéiert.',
@@ -1885,11 +1887,13 @@ Besicht w.e.g. [http://translatewiki.net Betawiki] an [http://translatewiki.net 
 'others'           => 'anerer',
 'siteusers'        => '{{SITENAME}}-Benotzer $1',
 'creditspage'      => 'Quellen',
+'nocredits'        => "Fir dës Säit si keng Informatiounen iwwert d'Mataarbechter vun der Säit disponibel.",
 
 # Spam protection
 'spamprotectiontitle' => 'Spamfilter',
 'spamprotectiontext'  => "D'Säit déi dir späichere wollt gouf vum Spamfilter gespaart. Dëst warscheinlech duerch en externe Link.",
 'spamprotectionmatch' => "'''Dësen Text gouf vum Spamfilter fonnt: ''$1'''''",
+'spambot_username'    => 'Botz vum Spam duerch MediaWiki',
 'spam_reverting'      => 'Déi lescht Versioun ouni Linken op $1 restauréieren.',
 'spam_blanking'       => 'An alle Versioune ware Linken op $1, et ass elo alles gebotzt.',
 
@@ -2039,6 +2043,7 @@ Duerno sti Linken déi Ausnamen definéieren, a deenen hirem Kontext dat Bild aw
 'exif-imageuniqueid'               => 'Bild-ID',
 'exif-gpslatituderef'              => 'nördlech oder südlech Breet',
 'exif-gpslatitude'                 => 'Geografesch Breet',
+'exif-gpslongituderef'             => 'östlech oder westlech geografesch Längt',
 'exif-gpslongitude'                => 'Geografesch Längt',
 'exif-gpsaltituderef'              => 'Referenzhéicht',
 'exif-gpsaltitude'                 => 'Héicht',

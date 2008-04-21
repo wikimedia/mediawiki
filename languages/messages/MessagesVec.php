@@ -1550,6 +1550,7 @@ $1',
 'whatlinkshere-hideredirs' => '$1 i redirect',
 'whatlinkshere-hidetrans'  => '$1 le inclusion',
 'whatlinkshere-hidelinks'  => '$1 i colegamenti',
+'whatlinkshere-filters'    => 'Filtri',
 
 # Block/unblock
 'blockip'                     => 'Bloca indirisso IP',

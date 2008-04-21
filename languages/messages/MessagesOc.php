@@ -1731,6 +1731,7 @@ $1",
 'whatlinkshere-hideredirs' => '$1 redireccions',
 'whatlinkshere-hidetrans'  => '$1 transclusions',
 'whatlinkshere-hidelinks'  => '$1 ligams',
+'whatlinkshere-filters'    => 'Filtres',
 
 # Block/unblock
 'blockip'                     => 'Blocar una adreça IP',

@@ -87,6 +87,7 @@ $messages = array(
 'tog-fancysig'                => '서명에 링크를 걸지 않기',
 'tog-externaleditor'          => '외부 입력기를 기본값으로 사용하기',
 'tog-externaldiff'            => '외부 비교 툴을 기본값으로 사용하기',
+'tog-showjumplinks'           => '접근성을 위한 "이동" 링크 쓰기 (일부 스킨에서만 작동)',
 'tog-uselivepreview'          => '실시간 미리 보기 사용하기 (자바스크립트) (실험적 기능)',
 'tog-forceeditsummary'        => '편집 요약을 쓰지 않았을 때 알려주기',
 'tog-watchlisthideown'        => '주시문서 목록에서 내 편집을 숨기기',
@@ -157,16 +158,19 @@ $messages = array(
 # Categories related messages
 'categories'                     => '분류',
 'categoriespagetext'             => '문서나 자료를 담고 있는 분류 목록입니다.',
-'pagecategories'                 => '분류',
+'pagecategories'                 => '{{PLURAL:$1|분류|분류}}',
 'category_header'                => '‘$1’ 분류에 속하는 문서',
 'subcategories'                  => '하위 분류',
 'category-media-header'          => '‘$1’ 분류에 속하는 자료',
 'category-empty'                 => '이 분류에 속하는 문서나 자료가 없습니다.',
-'hidden-categories'              => '{{PLURAL:$1|}}숨겨진 분류',
+'hidden-categories'              => '숨겨진 분류',
 'hidden-category-category'       => '숨겨진 분류', # Name of the category where hidden categories will be listed
 'category-subcat-count'          => '이 분류에는 하위 분류가 $1개 있고, 그 중 $2개를 보여주고 있습니다.',
 'category-subcat-count-limited'  => '이 분류에는 하위 분류가 $1개 있습니다.',
+'category-article-count'         => '{{PLURAL:$2|이 분류에는 아래의 문서만 있습니다.|이 분류에는 아래의 $2개의 문서가 있습니다.}}',
 'category-article-count-limited' => '이 분류에는 문서가 $1개 있습니다.',
+'category-file-count'            => '{{PLURAL:$2|이 분류에는 아래의 파일만 있습니다.|이 분류에는 아래의 $2개의 파일이 있습니다.}}',
+'category-file-count-limited'    => '아래의 파일이 이 분류에 있습니다.',
 'listingcontinuesabbrev'         => ' (계속)',
 
 'mainpagetext'      => "<big>'''미디어위키가 성공적으로 설치되었습니다.'''</big>",
@@ -309,6 +313,7 @@ $messages = array(
 'site-rss-feed'           => '$1 RSS 피드',
 'site-atom-feed'          => '$1 Atom 피드',
 'page-rss-feed'           => '‘$1’ RSS 피드',
+'page-atom-feed'          => '"$1" Atom 피드',
 'red-link-title'          => '$1 (없는 문서)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
@@ -600,6 +605,7 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'templatesusedsection'      => '이 부분에서 사용하고 있는 틀:',
 'template-protected'        => '(보호됨)',
 'template-semiprotected'    => '(준보호됨)',
+'hiddencategories'          => '이 문서는 아래의 $1개의 숨겨진 분류에 속해 있습니다.',
 'edittools'                 => '<!-- 이 문서는 편집 창과 파일 올리기 창에 출력됩니다. -->',
 'nocreatetitle'             => '문서 생성 제한',
 'nocreatetext'              => '{{SITENAME}}에서 새로운 문서를 생성하는 것은 제한되어 있습니다. 이미 존재하는 다른 문서를 편집하거나, [[Special:Userlogin|로그인하거나 계정을 만들 수 있습니다]].',
@@ -648,7 +654,7 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 # Revision feed
 'history-feed-title'          => '편집 역사',
 'history-feed-description'    => '이 문서의 편집 역사',
-'history-feed-item-nocomment' => '$2에 대한 1의 편집', # user at time
+'history-feed-item-nocomment' => '$2에 대한 $1의 편집', # user at time
 'history-feed-empty'          => '요청한 문서가 존재하지 않습니다.
 해당 문서가 삭제되었거나, 문서 이름이 바뀌었을 수 있습니다.
 [[Special:Search|위키 검색 기능]]을 이용해 관련 문서를 찾아보세요.',
@@ -813,6 +819,8 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'recentchangeslinked-noresult' => '여기를 가리키는 글 중에는 주어진 기간 동안의 최근 바뀜이 없습니다.',
 'recentchangeslinked-summary'  => "여기를 가리키는 문서(분류일 경우 이 분류에 포함된 문서)에 대한 최근 바뀜이 나와 있습니다.
 [[Special:Watchlist|주시하는 문서]]는 '''굵은''' 글씨로 나타납니다.",
+'recentchangeslinked-page'     => '문서 이름:',
+'recentchangeslinked-to'       => '여기를 가리키는 문서의 최근 바뀜',
 
 # Upload
 'upload'                      => '파일 올리기',
@@ -823,9 +831,14 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'uploadnologintext'           => '파일을 올리려면 [[Special:Userlogin|로그인]]해야 합니다.',
 'upload_directory_read_only'  => '파일 저장 디렉토리($1)에 쓰기 권한이 없습니다.',
 'uploaderror'                 => '올리기 오류',
-'uploadtext'                  => "파일을 올리기 위해서는 아래의 양식을 채워주세요. 또는 예전에 올라온 그림을 찾으려면 [[Special:Imagelist|파일 목록]]을 사용할 수 있습니다. [[Special:Log/upload|올리기 기록]]에서 파일이 올라온 기록과 삭제된 기록을 볼 수 있습니다.
+'uploadtext'                  => "파일을 올리기 위해서는 아래의 양식을 채워주세요.
+[[Special:Imagelist|파일 목록]]에서 이전에 올라온 파일을 찾을 수 있습니다.
+[[Special:Log/upload|올리기 기록]]에도 파일이 올라오거나 지워진 기록이 남습니다.
 
-문서에 그림을 집어넣으려면 '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:File.jpg]]</nowiki>''', '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:File.png|대체 설명]]</nowiki>'''과 같이 사용합니다. 또는 파일에 직접 링크하려면 '''<nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki>'''와 같이 씁니다.",
+문서에 그림을 넣으려면
+'''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:File.jpg]]</nowiki>''',
+'''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:File.png|대체 설명]]</nowiki>'''와 같이 씁니다.
+파일에 직접 링크하려면 '''<nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki>'''와 같이 씁니다.",
 'upload-permitted'            => '허용하는 파일 확장자: $1',
 'upload-preferred'            => '권장하는 파일 확장자: $1',
 'upload-prohibited'           => '금지하는 파일 확장자: $1',
@@ -870,6 +883,7 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'uploadvirus'                 => '파일이 바이러스를 포함하고 있습니다! 상세 설명: $1',
 'sourcefilename'              => '원본 파일 이름:',
 'destfilename'                => '파일의 새 이름:',
+'upload-maxfilesize'          => '파일의 최대 크기: $1',
 'watchthisupload'             => '이 문서 주시하기',
 'filewasdeleted'              => '같은 이름을 가진 파일이 올라온 적이 있었고, 그 후에 삭제되었습니다. 올리기 전에 $1을 확인해 주시기 바랍니다.',
 
@@ -890,6 +904,9 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'license-nopreview' => '(미리보기 불가능)',
 
 # Special:Imagelist
+'imagelist-summary'     => '이 특수문서는 올라온 모든 파일의 목록입니다.
+기본적으로 마지막으로 올라온 파일이 맨 위에 보입니다.
+다르게 정렬하려면 원하는 기준 열의 첫 칸을 누르세요.',
 'imgfile'               => '파일',
 'imagelist'             => '그림 목록',
 'imagelist_date'        => '날짜',
@@ -946,6 +963,7 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'filedelete-reason-dropdown'  => '*일반적인 삭제 이유
 ** 저작권 침해
 ** 중복된 파일',
+'filedelete-edit-reasonlist'  => '지운 이유 고치기',
 
 # MIME search
 'mimesearch' => 'MIME 검색',
@@ -999,6 +1017,7 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 
 'withoutinterwiki'        => '언어 인터위키 링크가 없는 문서 목록',
 'withoutinterwiki-header' => '다른 언어로의 연결이 없는 문서의 목록입니다:',
+'withoutinterwiki-submit' => '보이기',
 
 'fewestrevisions' => '편집 역사가 짧은 문서 목록',
 
@@ -1234,7 +1253,7 @@ $NEWPAGE
 'protect-locked-blocked'      => "차단된 동안에는 보호 설정을 바꿀 수 없습니다. '''$1''' 문서의 보호 설정은 다음과 같습니다:",
 'protect-locked-dblock'       => "데이터베이스가 잠겨 문서 보호 설정을 바꿀 수 없습니다. '''$1''' 문서의 현재 설정은 다음과 같습니다:",
 'protect-locked-access'       => '문서 보호 수준을 변경할 권한이 없습니다. <strong>$1</strong> 문서의 권한은 다음과 같습니다.',
-'protect-cascadeon'           => '{{PLURAL:$1|}}다음의 틀에서 이 문서를 사용하고 있고 그 틀에 연쇄적 보호가 걸려 있어 이 문서도 자동으로 보호됩니다. 이 문서의 보호 설정을 바꾸어도 연쇄적 보호에 영향을 받지 않습니다.',
+'protect-cascadeon'           => '다음의 틀에서 이 문서를 사용하고 있고 그 틀에 연쇄적 보호가 걸려 있어 이 문서도 자동으로 보호됩니다. 이 문서의 보호 설정을 바꾸어도 연쇄적 보호에 영향을 받지 않습니다.',
 'protect-default'             => '(기본값)',
 'protect-fallback'            => '‘$1’ 권한 필요',
 'protect-level-autoconfirmed' => '등록된 사용자만 가능',
@@ -1245,11 +1264,14 @@ $NEWPAGE
 'protect-cantedit'            => '이 문서의 보호 설정을 바꿀 권한이 없습니다.',
 'restriction-type'            => '권한:',
 'restriction-level'           => '보호 수준:',
+'minimum-size'                => '최소 크기',
+'maximum-size'                => '최대 크기:',
 'pagesize'                    => '(바이트)',
 
 # Restrictions (nouns)
-'restriction-edit' => '편집',
-'restriction-move' => '이동',
+'restriction-edit'   => '편집',
+'restriction-move'   => '이동',
+'restriction-create' => '만들기',
 
 # Restriction levels
 'restriction-level-sysop'         => '보호됨',

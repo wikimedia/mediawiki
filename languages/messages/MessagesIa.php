@@ -90,6 +90,9 @@ $messages = array(
 'nov'       => 'nov',
 'dec'       => 'dec',
 
+# Categories related messages
+'categories' => 'Categorias',
+
 'about'         => 'A proposito',
 'cancel'        => 'Cancellar',
 'qbfind'        => 'Trovar',
@@ -100,6 +103,7 @@ $messages = array(
 'qbmyoptions'   => 'Mi optiones',
 'mypage'        => 'Mi pagina',
 'mytalk'        => 'Mi discussion',
+'and'           => 'e',
 
 'returnto'          => 'Retornar a $1.',
 'help'              => 'Adjuta',
@@ -137,6 +141,7 @@ $messages = array(
 'copyrightpagename'    => '{{SITENAME}} e derectos de autor (copyright)',
 'copyrightpage'        => '{{ns:project}}:Copyright',
 'currentevents'        => 'Actualitates',
+'currentevents-url'    => 'Project:Actualitates',
 'edithelp'             => 'Adjuta al edition',
 'edithelppage'         => 'Help:Como_editar_un_pagina',
 'faq'                  => 'Questiones frequente',
@@ -148,8 +153,14 @@ $messages = array(
 'portal-url'           => 'Project:Portal del communitate',
 'sitesupport'          => 'Donationes',
 
-'retrievedfrom'   => 'Recuperate de "$1"',
-'newmessageslink' => 'messages nove',
+'retrievedfrom'      => 'Recuperate de "$1"',
+'youhavenewmessages' => 'Tu ha $1 ($2).',
+'newmessageslink'    => 'messages nove',
+
+# Short words for each namespace, by default used in the namespace tab in monobook
+'nstab-image'    => 'Archivo',
+'nstab-template' => 'Patrono',
+'nstab-category' => 'Categoria',
 
 # Main script and global functions
 'nosuchaction'      => 'Action inexistente',
@@ -198,6 +209,7 @@ un titulo interlinguistic o interwiki incorrectemente ligate.',
 'perfdisabled'    => 'Pardono! Iste functionalitate es temporarimente inactivate durante
 horas de grande affluentia de accessos pro motivo de performance;
 retorna inter 02:00 e 14:00 UTC e tenta de nove.',
+'viewsource'      => 'Vider codice fonte',
 
 # Login and logout pages
 'logouttitle'             => 'Fin de session',
@@ -241,6 +253,7 @@ Nos consilia que tu initia un session e cambia le contrasigno le plus tosto poss
 'passwordsent'            => 'Un nove contrasigno esseva inviate al adresse de e-mail
 registrate pro "$1".
 Per favor initia un session post reciper lo.',
+'loginlanguagelabel'      => 'Lingua: $1',
 
 # Edit pages
 'summary'          => 'Summario',
@@ -373,10 +386,10 @@ e illo del servitor (UTC).',
 # Recent changes
 'recentchanges'     => 'Modificationes recente',
 'recentchangestext' => 'Seque le plus recente modificationes a {{SITENAME}} in iste pagina.',
-'rcnote'            => 'Infra es le <strong>$1</strong> ultime modificationes in le <strong>$2</strong> ultime dies.',
+'rcnote'            => "Infra es le {{PLURAL:$1|ultime modification|'''$1''' ultime modificationes}} in le {{PLURAL:$2|ultime die|'''$2''' ultime dies}}, in $3.",
 'rcnotefrom'        => 'infra es le modificationes a partir de <b>$2</b> (usque a <b>$1</b>).',
 'rclistfrom'        => 'Monstrar nove modificationes a partir de $1',
-'rclinks'           => 'Monstrar le $1 ultime modificationes in le $2 ultime days.',
+'rclinks'           => 'Monstrar le $1 ultime modificationes in le $2 ultime dies<br />$3',
 'hist'              => 'prec',
 'hide'              => 'occultar',
 'show'              => 'monstrar',
@@ -446,7 +459,8 @@ Tote le tempores monstrate es in le fuso horari del servitor (UCT).',
 'imagelist' => 'Lista de imagines',
 
 # Image description page
-'imagelinks'     => 'Ligamines al imagine',
+'filehist-user'  => 'Usator',
+'imagelinks'     => 'Ligamines',
 'linkstoimage'   => 'Le paginas sequente se liga a iste imagine:',
 'nolinkstoimage' => 'Necun pagina se liga a iste imagine.',
 
@@ -482,14 +496,17 @@ al qual le prime redirection deberea referer se.',
 'brokenredirectstext' => 'Le redirectiones sequente se liga a articulos inexistente.',
 
 # Miscellaneous special pages
-'nbytes'                 => '$1 bytes',
+'nbytes'                 => '$1 {{PLURAL:$1|byte|bytes}}',
+'ncategories'            => '$1 {{PLURAL:$1|categoria|categorias}}',
 'nlinks'                 => '$1 {{PLURAL:$1|ligamine|ligamines}}',
+'nmembers'               => '$1 {{PLURAL:$1|membro|membros}}',
 'nviews'                 => '$1 {{PLURAL:$1|visita|visitas}}',
 'lonelypages'            => 'Paginas orphanas',
 'uncategorizedpages'     => 'Paginas non classificate',
 'uncategorizedtemplates' => 'Patronos non classificate',
 'unusedimages'           => 'Imagines non usate',
 'popularpages'           => 'Paginas popular',
+'wantedcategories'       => 'Categorias plus demandate',
 'wantedpages'            => 'Paginas plus demandate',
 'shortpages'             => 'Paginas curte',
 'longpages'              => 'Paginas longe',
@@ -509,8 +526,14 @@ executar iste function.',
 # Book sources
 'booksources' => 'Fornitores de libros',
 
+# Special:Log
+'specialloguserlabel'  => 'Usator:',
+'speciallogtitlelabel' => 'Titulo:',
+
 # Special:Allpages
-'allpages' => 'Tote le paginas',
+'allpages'       => 'Tote le paginas',
+'alphaindexline' => '$1 a $2',
+'allarticles'    => 'Tote le paginas',
 
 # E-mail user
 'mailnologin'     => 'Necun adresse de invio',
@@ -600,11 +623,13 @@ non essera automaticamente substituite.',
 'uctop'         => ' (alto)',
 
 # What links here
-'whatlinkshere' => 'Referentias a iste pagina',
-'linklistsub'   => '(Lista de ligamines)',
-'linkshere'     => 'Le paginas sequente se liga a iste pagina:',
-'nolinkshere'   => 'Necun pagina se liga a iste.',
-'isredirect'    => 'pagina de redirection',
+'whatlinkshere'       => 'Referentias a iste pagina',
+'whatlinkshere-page'  => 'Pagina:',
+'linklistsub'         => '(Lista de ligamines)',
+'linkshere'           => "Le paginas sequente se liga a '''[[:$1]]''':",
+'nolinkshere'         => "Necun pagina se liga a '''[[:$1]]'''.",
+'isredirect'          => 'pagina de redirection',
+'whatlinkshere-links' => '← ligamines',
 
 # Block/unblock
 'blockip'            => 'Blocar adresse IP',
@@ -726,5 +751,9 @@ nove titulo. Per favor fusiona los manualmente.',
 'imagelisttext' => "Infra es un lista de '''$1''' {{PLURAL:$1|imagine|imagines}} ordinate $2.",
 'ilsubmit'      => 'Recercar',
 'bydate'        => 'per data',
+
+# 'all' in various places, this might be different for inflected languages
+'namespacesall' => 'tote',
+'monthsall'     => 'tote',
 
 );
