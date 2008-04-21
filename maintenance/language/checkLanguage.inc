@@ -7,6 +7,7 @@ $checkBlacklist = array(
 'hak'          => array( 'plural' ),
 'ja'           => array( 'plural' ), // Does not use plural
 'ko'           => array( 'plural' ),
+'mn'           => array( 'plural' ),
 'my'           => array( 'chars' ),  // Uses a lot zwnj
 'tet'          => array( 'plural' ),
 'th'           => array( 'plural' ),
