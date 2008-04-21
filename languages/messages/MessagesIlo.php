@@ -369,6 +369,7 @@ Kasta met nga ikarim kadakami a bukodmo a sinurat wenno gapuanan daytoy, wenno k
 'ignorewarnings'    => 'Di ikaskaso ti ania man a ballaag',
 'badfilename'       => 'Nasukatan ti nagan ti file iti "$1".',
 'successfulupload'  => 'Balligi ti panag-upload',
+'sourcefilename'    => 'Taudan a nagan ti file:',
 'watchthisupload'   => 'Bantayan daytoy a panid',
 
 'nolicense'          => 'Awan ti napili',
@@ -381,12 +382,21 @@ Kasta met nga ikarim kadakami a bukodmo a sinurat wenno gapuanan daytoy, wenno k
 'imagelist_user' => 'Agar-aramat',
 
 # Image description page
+'filehist'           => 'Pakasaritaan ti file',
 'filehist-deleteall' => 'ikkaten amin',
+'filehist-datetime'  => 'Petsa/Oras',
 'linkstoimage'       => 'Dagiti sumaganad a panid ket nakasilpo itoy a file:',
 
 # File deletion
-'filedelete-comment' => 'Rason nga ikkaten:',
-'filedelete-success' => "Naikkaten ti '''$1'''.",
+'filedelete'                  => 'Ikkaten ti $1',
+'filedelete-comment'          => 'Rason nga ikkaten:',
+'filedelete-submit'           => 'Ikkaten',
+'filedelete-success'          => "Naikkaten ti '''$1'''.",
+'filedelete-otherreason'      => 'Sabali/nayon a rason:',
+'filedelete-reason-otherlist' => 'Sabali a rason',
+
+# Unwatched pages
+'unwatchedpages' => 'Di mabambantayan a pampanid',
 
 # Random page
 'randompage' => 'Pugto a panid',
@@ -394,16 +404,26 @@ Kasta met nga ikarim kadakami a bukodmo a sinurat wenno gapuanan daytoy, wenno k
 # Statistics
 'statistics-mostpopular' => 'Kanayon a mabuya a pampanid',
 
+'disambiguations' => 'Dagiti panid ti panangilawlawag',
+
+'withoutinterwiki-submit' => 'Ipakita',
+
 # Miscellaneous special pages
-'popularpages'     => 'Popular a pampanid',
-'wantedcategories' => 'Dagiti masapul a categoria',
-'wantedpages'      => 'Kiddaw a pampanid',
-'mostrevisions'    => 'Dagiti articulo a kaaduan iti pannakabalbaliwna',
-'listusers'        => 'Listaan dagiti agar-aramat',
-'specialpages'     => 'Naiduma a pampanid',
-'newpages'         => 'Baro a pampanid',
-'move'             => 'Iyakar',
-'movethispage'     => 'Iyakar daytoy a panid',
+'lonelypages'        => 'Naulila a pampanid',
+'uncategorizedpages' => 'Saan a nacategoria a pampanid',
+'unusedcategories'   => 'Saan a maar-aramat a catcategoria',
+'unusedimages'       => 'Saan a maar-aramat a files',
+'popularpages'       => 'Popular a pampanid',
+'wantedcategories'   => 'Dagiti masapul a categoria',
+'wantedpages'        => 'Kiddaw a pampanid',
+'mostrevisions'      => 'Dagiti articulo a kaaduan iti pannakabalbaliwna',
+'shortpages'         => 'Ababa a pampanid',
+'listusers'          => 'Listaan dagiti agar-aramat',
+'specialpages'       => 'Naiduma a pampanid',
+'newpages'           => 'Baro a pampanid',
+'ancientpages'       => 'Kadaanan a pampanid',
+'move'               => 'Iyakar',
+'movethispage'       => 'Iyakar daytoy a panid',
 
 # Special:Allpages
 'allpages'       => 'Amin a panid',
@@ -534,6 +554,7 @@ Kasta met nga ikarim kadakami a bukodmo a sinurat wenno gapuanan daytoy, wenno k
 'tooltip-ca-move'        => 'Iyakar daytoy a panid',
 'tooltip-ca-watch'       => 'Inayon daytoy a panid kadagiti bambantayam',
 'tooltip-ca-unwatch'     => 'Ikkatem daytoy a panid kadagiti bambantayam',
+'tooltip-t-upload'       => 'Agipan iti files',
 
 # Attribution
 'others' => 'dadduma pay',

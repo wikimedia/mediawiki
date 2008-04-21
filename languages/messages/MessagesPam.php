@@ -124,7 +124,7 @@ Pabusten ing pamanaliling dake kapamilatan [alilan] ning suglung',
 'hidden-categories'              => '{{PLURAL:$1|Makasalikut a kategoriya|Makasalikut a kategoriya}}',
 'hidden-category-category'       => 'Pakasalikut a categoria', # Name of the category where hidden categories will be listed
 'category-subcat-count'          => '{{PLURAL:$2|Bukud mung ing makatuking subkategoriya ing atyu kaniting kategoriya.|Deng makatuking subkategoriya ing kayabe kaniting kategoriya {{PLURAL:$1|subkategoriya|$1 subkategoriya}}, ibat king $2 kabilugan.}}',
-'category-subcat-count-limited'  => 'Ining kategoriya bibilugan de reng makatuking {PLURAL:$1|subkategoriya|$1 subkategoriya}}.',
+'category-subcat-count-limited'  => 'Ining kategoriya bibilugan de reng makatuking {{PLURAL:$1|subkategoriya|$1 subkategoriya}}.',
 'category-article-count'         => '{{PLURAL:$2|Bukud mung ing makatuking bulung ing kayabe king kategoriyang iti.| {{PLURAL:$1|bulung ing kayabe|$1 bulung ding kayabe}} king kategoriyang iti, ibat king $2 pangkabilugan.}}',
 'category-article-count-limited' => '{{PLURAL:$1| yang bulung ing kayabe|$1 lang bulung ding kayabe}} king salukuyan a kategoriya.',
 'category-file-count'            => '{{PLURAL:$2|Bukud mung ing makatuking simpan (file) ing kayabe king kategoriyang iti.|{{PLURAL:$1|ya ing simpan a kayabe|$1 la reng simpan a kayabe}} king kategoriyang ini, ibat king $2 pangkabilugan.}}',
@@ -579,8 +579,25 @@ Tandanan mung deng pasadiang bulung (custom pages) a .css ampong .js, gagamit la
 'previewnote'               => '<strong>Preview ya mu ini;
 e la pa me-save detang miyalilan!</strong>',
 'previewconflict'           => 'Ing ayus ning makasulat king dake nang babo ning lugal a pipag-edit-an (upper text editing area) ing magi nang itsura ning kekang gagawan nung i-save me iti.',
+'session_fail_preview'      => '<strong>Pasensia na ka! E mi ya apalub ing kekang in-edit uling mewala ing session data.
+Pakisubukan mung pasibayu. Nung ala pa muring miliari, subukan mung mag-logout at mag-login pasibayu.</strong>',
+'session_fail_preview_html' => "<strong> Pasensia na ka! E mi ya apalub ing kekang in-edit uling mewala ing session data.</strong>
+
+''Uling ing {{SITENAME}} maki makasalangi yang HTML a e me-prosesu (raw HTML), makasalikut ya ing preview bang panyagka kareng ataking JavaScript.''
+
+<strong>Nung seriosu yang tangkang mag-edit ini, pakisubukan mung pasibayu. Nung ala pa muring miliari, subukan mung mag-logout at mag-login pasibayu.</strong>",
+'token_suffix_mismatch'     => '<strong>Your edit has been rejected because your client mangled the punctuation characters in the edit token.
+The edit has been rejected to prevent corruption of the page text.
+This sometimes happens when you are using a buggy web-based anonymous proxy service.</strong>',
 'editing'                   => 'Manalili $1',
 'editingsection'            => 'Alilan (e-edit) ya ing $1 (dake)',
+'editingcomment'            => 'I-edit ya ing $1 (komentu)',
+'editconflict'              => 'Misasalungat a edit: $1',
+'explainconflict'           => 'Ating aliwang minalili king bulung a ini manibat aniang inumpisan meng i-edit. 
+Makabili ya king espasiung pirinan sulat king babo (upper text area)  ing kasalungsungan nang itsura niti. 
+Atyu la king espasiung pirinan sulat king lalam (lower text area) deng kekang elilan.
+Kailangan mong piyabe deng elilan mu ketang kasalungsungan a makasulat. 
+Bukud mung ing makasulat king babo ing ma-save katimid mu ketang   "I-save ya ining bulung" ("Save page").',
 'editingold'                => '<strong>BABALA: Laun neng pamagbayu ning bulung a ini ing
 kekang alilan.
 Nung i-save me, mawala la ngan deng miyalilan manibat ketang pamagbayung ini.</strong>',

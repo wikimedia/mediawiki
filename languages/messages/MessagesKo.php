@@ -377,6 +377,8 @@ $messages = array(
 'wrong_wfQuery_params' => 'wfQuery()에서 잘못된 매개변수 발생<br />함수: $1<br />쿼리: $2',
 'viewsource'           => '내용 보기',
 'viewsourcefor'        => '$1의 문서 내용',
+'actionthrottledtext'  => '스팸을 막기 위해 이 작업을 짧은 시간에 너무 많이 하는 것을 막고 있습니다.
+제한을 넘었으니 몇 분 후에 새로 시도하세요.',
 'protectedpagetext'    => '이 문서는 문서 편집이 불가능하도록 보호되어 있습니다.',
 'viewsourcetext'       => '문서의 원본을 보거나 복사할 수 있습니다:',
 'protectedinterface'   => '이 문서는 소프트웨어 인터페이스에 쓰이는 문서로, 잠겨 있습니다.',
@@ -688,6 +690,7 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'showingresultsnum'     => "'''$2'''번 부터 '''$3'''개의 결과입니다.",
 'nonefound'             => "'''참고''': ‘have’, ‘from’과 같은 일반적인 단어는 검색 색인에 들어가지 않아서, 이런 단어를 포함한 경우 검색이 효과적이지 않을 수 있습니다. 또는 여러 단어를 동시에 검색한 경우에도 효과적인 검색이 되지 않습니다(검색하려는 단어가 모두 들어 있는 문서만이 결과에 나타납니다).",
 'powersearch'           => '찾기',
+'powersearch-legend'    => '더 찾아보기',
 'powersearchtext'       => '다음의 네임스페이스에서 찾기:<br />$1<br />$2 넘겨주기 표시<br />$3를 $9',
 'searchdisabled'        => '{{SITENAME}} 검색 기능이 비활성화되어 있습니다. 기능이 작동하지 않는 동안에는 구글(Google)을 이용해 검색할 수 있습니다. 검색 엔진의 내용은 최근 것이 아닐 수 있다는 점을 주의해주세요.',
 
@@ -753,17 +756,24 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'files'                    => '파일',
 
 # User rights
-'userrights'                 => '사용자 권한 관리', # Not used as normal message but as header for the special page itself
-'userrights-lookup-user'     => '사용자 권한 관리',
-'userrights-user-editname'   => '사용자 이름:',
-'editusergroup'              => '사용자 그룹 편집',
-'editinguser'                => "'''[[User:$1|$1]]'''([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]]) 사용자의 권한 변경",
-'userrights-editusergroup'   => '사용자 그룹 편집',
-'saveusergroups'             => '사용자 권한 저장',
-'userrights-groupsmember'    => '현재 권한:',
-'userrights-groupsavailable' => '가능한 권한:',
-'userrights-no-interwiki'    => '다른 위키의 사용자 권한을 바꿀 권한이 없습니다.',
-'userrights-nologin'         => '사용자의 권한을 바꾸기 위해서는 반드시 관리자 계정으로 [[Special:Userlogin|로그인]]해야 합니다.',
+'userrights'                  => '사용자 권한 관리', # Not used as normal message but as header for the special page itself
+'userrights-lookup-user'      => '사용자 권한 관리',
+'userrights-user-editname'    => '사용자 이름:',
+'editusergroup'               => '사용자 그룹 편집',
+'editinguser'                 => "'''[[User:$1|$1]]'''([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]]) 사용자의 권한 변경",
+'userrights-editusergroup'    => '사용자 그룹 편집',
+'saveusergroups'              => '사용자 권한 저장',
+'userrights-groupsmember'     => '현재 권한:',
+'userrights-groupsavailable'  => '가능한 권한:',
+'userrights-groups-help'      => '이 사용자의 권한을 바꿀 수 있습니다.
+표시가 된 것은 갖는 권한이고 표시가 없는 것은 갖지 않는 권한입니다.
+<nowiki>*</nowiki>표시는 은 권한을 주거나 거두는 것 중 하나만 할 수 있다는 뜻입니다.',
+'userrights-reason'           => '바꾸는 이유:',
+'userrights-no-interwiki'     => '다른 위키의 사용자 권한을 바꿀 권한이 없습니다.',
+'userrights-nologin'          => '사용자의 권한을 바꾸기 위해서는 반드시 관리자 계정으로 [[Special:Userlogin|로그인]]해야 합니다.',
+'userrights-notallowed'       => '다른 사용자의 권한을 조정할 권한이 없습니다.',
+'userrights-changeable-col'   => '바꿀 수 있는 권한',
+'userrights-unchangeable-col' => '바꿀 수 없는 권한',
 
 # Groups
 'group'            => '권한:',
@@ -886,6 +896,13 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'upload-maxfilesize'          => '파일의 최대 크기: $1',
 'watchthisupload'             => '이 문서 주시하기',
 'filewasdeleted'              => '같은 이름을 가진 파일이 올라온 적이 있었고, 그 후에 삭제되었습니다. 올리기 전에 $1을 확인해 주시기 바랍니다.',
+'upload-wasdeleted'           => "'''경고: 삭제된 적이 있는 파일을 다시 올리려 하고 있습니다.'''
+
+이 파일을 올리는 것이 적절한지 다시 한번 생각해주십시오.
+편의를 위해 삭제 기록을 제공합니다.",
+'filename-bad-prefix'         => '올리려고 하는 파일 이름이 <strong>"$1"</strong>로 시작합니다.
+"$1"은 디지털 사진기가 자동으로 붙이는 의미없는 이름입니다.
+파일에 대해 알기 쉬운 이름을 골라주세요.',
 
 'upload-proto-error'      => '잘못된 프로토콜',
 'upload-proto-error-text' => '파일을 URL로 올리려면 <code>http://</code>이나 <code>ftp://</code>로 시작해야 합니다.',
@@ -936,6 +953,7 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'noimage'                   => '파일이 없습니다. $1할 수 있습니다.',
 'noimage-linktext'          => '업로드',
 'uploadnewversion-linktext' => '이 파일의 새로운 버전을 올리기',
+'imagepage-searchdupe'      => '중복 파일 찾기',
 
 # File reversion
 'filerevert'                => '$1 되돌리기',
@@ -1052,6 +1070,7 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'deadendpages'            => '막다른 문서 목록',
 'deadendpagestext'        => '{{SITENAME}}에서, 다른 문서로 연결하는 링크가 없는 문서의 목록입니다.',
 'protectedpages'          => '보호된 문서 목록',
+'protectedpages-indef'    => '오른쪽 조건에 맞는 보호만 보기',
 'protectedpagestext'      => '다음의 문서는 이동/편집이 불가능하도록 보호되어 있습니다.',
 'protectedpagesempty'     => '보호되어 있는 문서가 없습니다.',
 'protectedtitles'         => '생성 보호된 표제어 목록',
@@ -1280,6 +1299,7 @@ $NEWPAGE
 # Undelete
 'undelete'                 => '삭제된 문서 보기',
 'undeletepage'             => '삭제된 문서를 보거나 되살리기',
+'undeletepagetitle'        => "'''아래는 [[:$1|$1]]의 삭제된 판입니다.'''.",
 'viewdeletedpage'          => '삭제된 문서 보기',
 'undeletepagetext'         => '다음의 문서는 삭제되었지만 보관되어 있고, 되살릴 수 있습니다. 보관된 문서들은 주기적으로 삭제될 것입니다.',
 'undeleteextrahelp'        => "문서 역사 전체를 복구하려면 모든 체크박스를 선택 해제한 뒤 '''복구'''를 누르세요.
@@ -1288,7 +1308,9 @@ $NEWPAGE
 'undeletehistory'          => '문서를 되살리면 모든 역사가 같이 복구됩니다. 문서가 삭제된 후에 같은 이름의 문서가 만들어졌다면, 복구되는 버전들은 역사의 과거 부분에 나타날 것입니다. 문서 보호 등의 설정은 역사를 복구하는 과정에서 사라진다는 점을 유의해 주세요.',
 'undeletehistorynoadmin'   => '이 문서는 삭제되어 있습니다. 삭제된 이유와 삭제되기 전에 이 문서를 편집한 사용자들이 아래에 나와 있습니다. 삭제된 문서를 보려면 관리자 권한이 필요합니다.',
 'undeletebtn'              => '복구',
+'undeletelink'             => '되살리기',
 'undeletereset'            => '초기화',
+'undeletecomment'          => '설명:',
 'undeletedarticle'         => '"[[$1]]" 복구됨',
 'undeletedrevisions'       => '$1개의 버전이 복구되었습니다.',
 'undeletedrevisions-files' => '$1개의 버전과 $2개의 파일이 복구되었습니다.',
@@ -1382,6 +1404,7 @@ $1',
 'unblocked'                   => '[[User:$1|$1]] 사용자 차단 해제됨',
 'unblocked-id'                => '차단 $1 해제됨',
 'ipblocklist'                 => '현재 차단 중인 IP 주소와 사용자 이름 목록',
+'ipblocklist-submit'          => '찾기',
 'blocklistline'               => '$1, $2 사용자는 $3을 차단함 ($4)',
 'infiniteblock'               => '무기한',
 'expiringblock'               => '$1에 해제',
@@ -1497,7 +1520,7 @@ $1',
 'allmessagesdefault'        => '기본 내용',
 'allmessagescurrent'        => '현재 내용',
 'allmessagestext'           => 'MediaWiki 네임스페이스에 있는 모든 시스템 메시지의 목록입니다.
-Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] and [http://translatewiki.net Betawiki] if you wish to contribute to the generic MediaWiki localisation.',
+미디어위키를 번역하려면 [http://www.mediawiki.org/wiki/Localisation 미디어위키 지역화(영어)] 문서나 [http://translatewiki.net 베타위키(영어)]를 찾아주세요.',
 'allmessagesnotsupportedDB' => "'''\$wgUseDatabaseMessages'''가 해제되어 있어서 '''{{ns:special}}:Allmessages'''를 사용할 수 없습니다.",
 'allmessagesfilter'         => '다음 메시지만 보이기:',
 'allmessagesmodified'       => '변경된 것만 보여주기',
@@ -1700,22 +1723,22 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 'monthsall'        => '모든 달',
 
 # E-mail address confirmation
-'confirmemail'            => '이메일 주소 확인',
-'confirmemail_noemail'    => '[[Special:Preferences|환경 설정]]에 이메일을 설정하지 않았습니다.',
-'confirmemail_text'       => '{{SITENAME}}에서는 이메일 기능을 사용하기 전에, 이메일 인증을 받아야 합니다. 아래의 버튼을 누르면 인증 메일을 보냅니다. 메일에는 인증 코드가 들어있는 링크가 있습니다. 그 링크를 웹 브라우저로 열면 인증이 완료됩니다.',
-'confirmemail_pending'    => '<div class="error">이미 확인 이메일을 보냈습니다. 계정을 최근에 만들었다면 이메일을 보내는 데에 몇 분이 걸릴 수 있으므로 잠시 후에 다시 확인해 주세요.</div>',
-'confirmemail_send'       => '인증 코드를 메일로 보내기',
-'confirmemail_sent'       => '인증 이메일을 보냈습니다.',
-'confirmemail_sendfailed' => '인증 이메일을 보낼 수 없습니다. 이메일 주소를 잘못 입력했는지 확인해주세요.
+'confirmemail'             => '이메일 주소 확인',
+'confirmemail_noemail'     => '[[Special:Preferences|환경 설정]]에 이메일을 설정하지 않았습니다.',
+'confirmemail_text'        => '{{SITENAME}}에서는 이메일 기능을 사용하기 전에, 이메일 인증을 받아야 합니다. 아래의 버튼을 누르면 인증 메일을 보냅니다. 메일에는 인증 코드가 들어있는 링크가 있습니다. 그 링크를 웹 브라우저로 열면 인증이 완료됩니다.',
+'confirmemail_pending'     => '<div class="error">이미 확인 이메일을 보냈습니다. 계정을 최근에 만들었다면 이메일을 보내는 데에 몇 분이 걸릴 수 있으므로 잠시 후에 다시 확인해 주세요.</div>',
+'confirmemail_send'        => '인증 코드를 메일로 보내기',
+'confirmemail_sent'        => '인증 이메일을 보냈습니다.',
+'confirmemail_sendfailed'  => '인증 이메일을 보낼 수 없습니다. 이메일 주소를 잘못 입력했는지 확인해주세요.
 
 메일 서버로부터의 응답: $1',
-'confirmemail_invalid'    => '인증 코드가 올바르지 않습니다. 코드가 소멸되었을 수도 있습니다.',
-'confirmemail_needlogin'  => '이메일 주소를 인증하려면 $1이 필요합니다.',
-'confirmemail_success'    => '이메일 주소가 인증되었습니다. 이제 로그인해서 위키를 사용하세요.',
-'confirmemail_loggedin'   => '이메일 주소가 인증되었습니다.',
-'confirmemail_error'      => '당신의 인증을 저장하는 도중 오류가 발생했습니다.',
-'confirmemail_subject'    => '{{SITENAME}} 이메일 주소 인증',
-'confirmemail_body'       => '$1 아이피 주소를 사용하는 사용자가 {{SITENAME}}의 ‘$2’ 계정에 이메일 인증 신청을 했습니다.
+'confirmemail_invalid'     => '인증 코드가 올바르지 않습니다. 코드가 소멸되었을 수도 있습니다.',
+'confirmemail_needlogin'   => '이메일 주소를 인증하려면 $1이 필요합니다.',
+'confirmemail_success'     => '이메일 주소가 인증되었습니다. 이제 로그인해서 위키를 사용하세요.',
+'confirmemail_loggedin'    => '이메일 주소가 인증되었습니다.',
+'confirmemail_error'       => '당신의 인증을 저장하는 도중 오류가 발생했습니다.',
+'confirmemail_subject'     => '{{SITENAME}} 이메일 주소 인증',
+'confirmemail_body'        => '$1 아이피 주소를 사용하는 사용자가 {{SITENAME}}의 ‘$2’ 계정에 이메일 인증 신청을 했습니다.
 
 이 계정이 당신의 계정이라면, 아래 주소를 열어서 이메일 인증을 해 주세요.
 
@@ -1726,6 +1749,8 @@ $3
 $5
 
 인증 코드는 $4에 만료됩니다.',
+'confirmemail_invalidated' => '이메일 확인이 취소됨',
+'invalidateemail'          => '이메일 확인 취소',
 
 # Scary transclusion
 'scarytranscludedisabled' => '[인터위키가 비활성되어 있습니다]',
@@ -1780,6 +1805,9 @@ $1',
 'autoredircomment' => '[[$1]](으)로 넘겨주기',
 'autosumm-new'     => '새 문서: $1',
 
+# Live preview
+'livepreview-loading' => '불러오는 중...',
+
 # Watchlist editor
 'watchlistedit-numitems'       => '주시문서 목록에는 토론 문서를 제외하고 $1개의 문서가 들어 있습니다.',
 'watchlistedit-noitems'        => '주시문서 목록이 비어 있습니다.',
@@ -1804,16 +1832,50 @@ $1',
 'watchlisttools-raw'  => '주시문서 목록 직접 편집하기',
 
 # Special:Version
-'version'                  => '버전', # Not used as normal message but as header for the special page itself
-'version-extensions'       => '설치된 확장 기능',
-'version-specialpages'     => '특수 문서',
-'version-parserhooks'      => '파서 훅',
-'version-other'            => '기타',
-'version-hook-name'        => '훅 이름',
-'version-version'          => '버전',
-'version-license'          => '라이센스',
-'version-software'         => '설치된 프로그램',
-'version-software-product' => '제품',
-'version-software-version' => '버전',
+'version'                      => '버전', # Not used as normal message but as header for the special page itself
+'version-extensions'           => '설치된 확장 기능',
+'version-specialpages'         => '특수 문서',
+'version-parserhooks'          => '파서 훅',
+'version-other'                => '기타',
+'version-extension-functions'  => '확장 함수',
+'version-parser-extensiontags' => '파서 확장 태그',
+'version-hook-name'            => '훅 이름',
+'version-version'              => '버전',
+'version-license'              => '라이센스',
+'version-software'             => '설치된 프로그램',
+'version-software-product'     => '제품',
+'version-software-version'     => '버전',
+
+# Special:Filepath
+'filepath'         => '파일 주소',
+'filepath-page'    => '파일:',
+'filepath-submit'  => '주소',
+'filepath-summary' => '파일의 전체 주소를 알려줍니다.
+그림은 최고 해상도로 보여주고 다른 파일은 연결된 프로그램으로 바로 실행합니다.
+
+"{{ns:image}}:" 접두어를 빼고 파일 이름만 넣으세요.',
+
+# Special:FileDuplicateSearch
+'fileduplicatesearch'          => '중복 파일 찾기',
+'fileduplicatesearch-summary'  => '해시 값으로 중복 파일을 찾습니다.
+
+"{{ns:image}}:" 접두어를 빼고 파일 이름만 넣으세요.',
+'fileduplicatesearch-legend'   => '중복 찾기',
+'fileduplicatesearch-filename' => '파일이름:',
+'fileduplicatesearch-submit'   => '찾기',
+'fileduplicatesearch-info'     => '$1 × $2 픽셀<br />파일 크기: $3<br />MIME 유형: $4',
+'fileduplicatesearch-result-1' => '"$1"은 중복 파일이 없습니다.',
+'fileduplicatesearch-result-n' => '"$1"파일은 $2개의 중복 파일이 있습니다.',
+
+# Special:SpecialPages
+'specialpages-group-maintenance' => '관리용 목록',
+'specialpages-group-other'       => '다른 특수문서',
+'specialpages-group-login'       => '로그인 / 등록',
+'specialpages-group-changes'     => '최근 바뀜과 기록',
+'specialpages-group-media'       => '파일 관리',
+'specialpages-group-users'       => '사용자와 권한',
+'specialpages-group-needy'       => '정리가 필요한 문서 목록',
+'specialpages-group-highuse'     => '많이 쓰이는 문서 목록',
+'specialpages-group-permissions' => '사용자 권한',
 
 );

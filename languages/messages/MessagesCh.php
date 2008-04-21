@@ -129,12 +129,15 @@ $messages = array(
 'protect_change'   => 'tulaika proteksion-ña',
 'protectthispage'  => 'Protehi i påhina este',
 'unprotect'        => "Na'suha proteksion-ña",
+'newpage'          => 'Nuebu na påhina',
+'talkpage'         => 'Diskuti i påhina',
 'talkpagelinktext' => 'Adingan',
 'personaltools'    => 'Ramientan petsonat',
 'talk'             => 'Diskuti',
 'views'            => "Mali'e'-ña",
 'toolbox'          => 'Kåhon ramienta',
 'redirectedfrom'   => '(Madirihi ginen $1)',
+'redirectpagesub'  => "Na'dirihi i påhina",
 'jumpto'           => "Ta'yuki guatu:",
 'jumptonavigation' => 'nabegasion',
 'jumptosearch'     => 'aligao',
@@ -142,30 +145,53 @@ $messages = array(
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'Pot {{SITENAME}}',
 'aboutpage'            => 'Project:Pot',
+'currentevents'        => 'Estorian modetnu siha',
+'currentevents-url'    => 'Project:Estorian modetnu siha',
 'edithelp'             => 'Ayudo tumulaika',
 'edithelppage'         => 'Ayudo:Tumulaika',
+'helppage'             => 'Ayudo:Guinaha',
 'mainpage'             => 'Fanhaluman',
 'mainpage-description' => 'Fanhaluman',
+'portal'               => 'Fanhaluman komunida',
+'portal-url'           => 'Project:Fanhaluman Komunida',
+'sitesupport'          => "Nina'i siha",
+'sitesupport-url'      => 'Project:Supotta website',
 
-'retrievedfrom'   => 'Ginen "$1"',
-'editsection'     => 'tulaika',
-'editold'         => 'tulaika',
-'editsectionhint' => 'Tulaika i patte: $1',
-'toc'             => 'Guihana',
-'showtoc'         => "na'anok",
-'hidetoc'         => 'homme',
+'retrievedfrom'       => 'Ginen "$1"',
+'youhavenewmessages'  => 'Guåha $1 ($2).',
+'newmessageslink'     => 'mannuebu na mensåhe',
+'newmessagesdifflink' => 'tinilaika mas nuebu',
+'editsection'         => 'tulaika',
+'editold'             => 'tulaika',
+'editsectionhint'     => 'Tulaika i patte: $1',
+'toc'                 => 'Guihana',
+'showtoc'             => "na'anok",
+'hidetoc'             => 'homme',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
+'nstab-user'     => "Påhina ni muna'sesetbi",
+'nstab-project'  => 'Påhinan proyekto',
 'nstab-image'    => 'Atkibu',
 'nstab-category' => 'Katigoria',
 
 # General errors
-'viewsource' => 'Atan i code',
+'badtitle'       => 'Båba na titulo',
+'viewsource'     => 'Atan i code',
+'viewsourcefor'  => 'para $1',
+'viewsourcetext' => "Siña un li'e' yan kopia i code ni påhina:",
 
 # Login and logout pages
+'yourname'                => "Nå'an ni muna'setbi:",
+'yourpassword'            => 'Password:',
+'remembermypassword'      => "Na'hasso iyo-ku login gi este na komputer",
+'login'                   => 'Log in',
 'nav-login-createaccount' => "Log in/ fa'tinas kuenta-mu",
 'userlogin'               => "Hålom / fa'tinas kuenta-mu",
+'logout'                  => 'Log out',
 'userlogout'              => 'Log out',
+'nologin'                 => "Tåya' iyo-mu login? $1.",
+'nologinlink'             => "Fama'tinas kuenta",
+'createaccount'           => "Fa'tinas kuenta-hu",
 
 # Edit page toolbar
 'bold_sample'     => "Tinige' potpot",
@@ -183,29 +209,44 @@ $messages = array(
 'sig_tip'         => 'Fitma-mu yan i ora',
 
 # Edit pages
-'summary'            => 'Sumaria',
-'subject'            => "Suhetu/titulo mo'na",
-'minoredit'          => "Dikike' este na tiniliaka",
-'watchthis'          => 'Pulan este na påhina',
-'showpreview'        => "Fa'nu'i para manripasa",
-'showdiff'           => "Na'annok tinilaika",
-'anoneditwarning'    => "'''Adahi:''' Ti ma log-in hao.
+'summary'               => 'Sumaria',
+'subject'               => "Suhetu/titulo mo'na",
+'minoredit'             => "Dikike' este na tiniliaka",
+'watchthis'             => 'Pulan este na påhina',
+'showpreview'           => "Fa'nu'i para manripasa",
+'showdiff'              => "Na'annok tinilaika",
+'anoneditwarning'       => "'''Adahi:''' Ti ma log-in hao.
 Mausa iyo-mu IP address sempre para tumulaika i historian påhina este.",
-'editing'            => 'Tumulaika $1',
-'editingsection'     => 'Tumulaika $1 (patte)',
-'template-protected' => '(maprotehi)',
+'newarticle'            => '(Nuebu)',
+'editing'               => 'Tumulaika $1',
+'editingsection'        => 'Tumulaika $1 (patte)',
+'template-protected'    => '(maprotehi)',
+'recreate-deleted-warn' => "'''Adahi: Esta mana'suha i påhina ni para un fa'tinas ta'lo.'''
+
+Konsidera fan anggen maolek ha' kumontinua tumulaika i påhina.
+Estague' i historian muna'suha ni påhina:",
 
 # History pages
-'revisionasof'     => 'Maribisa ginen $1',
-'previousrevision' => "←Ribision mas amko'",
-'cur'              => "på'go",
-'last'             => 'halacha',
-'histfirst'        => 'I mas bihu',
-'histlast'         => 'I mas nuebu',
+'viewpagelogs'        => 'Atan i historian påhina',
+'currentrev'          => 'Tinilaika modetnu',
+'revisionasof'        => 'Maribisa ginen $1',
+'revision-info'       => 'Tinilaika ginen $1 as $2',
+'previousrevision'    => "←Ribision mas amko'",
+'nextrevision'        => 'Mas nuebu na tinilaika→',
+'currentrevisionlink' => 'I mas nuebu na tinilaika',
+'cur'                 => "på'go",
+'last'                => 'halacha',
+'page_first'          => "fine'nena",
+'page_last'           => 'uttimo',
+'histfirst'           => 'I mas bihu',
+'histlast'            => 'I mas nuebu',
 
 # Diffs
-'lineno'   => 'Liña $1:',
-'editundo' => 'funas',
+'history-title'           => 'Historian tinilaika nu "$1"',
+'difference'              => '(Diferensia siha gi tinilaika)',
+'lineno'                  => 'Liña $1:',
+'compareselectedversions' => "Akompara i tinilaika siha ma'ayek",
+'editundo'                => 'funas',
 
 # Search results
 'noexactmatch' => "'''Taya' na påhina mafa'na'an \"\$1\".'''
@@ -214,16 +255,24 @@ Siña un [[:\$1|fa'tinas i påhina]].",
 'powersearch'  => 'Finu na inaligao',
 
 # Preferences page
+'preferences'   => "I ga'ña-mu",
 'mypreferences' => "I ga'ña-hu",
 
 # Recent changes
+'nchanges'        => '$1 {{PLURAL:$1|na tinilaika|na tinilaika siha}}',
 'recentchanges'   => 'Tinilaika siha gi halacha',
 'rcnote'          => "Guåha {{PLURAL:$1|'''1''' na tinilaika|'''$1''' na tinilaika siha}} gi {{PLURAL:$2|diha|'''$2''' dihas}}, ginen $3.",
+'rcnotefrom'      => "Gi papa' guåha i tinilaika siha ginen '''$2''' (fa'na'an '''$1''' ma'annok).",
+'rclistfrom'      => "Na'annok i mannuebun tinilaika siha ginen $1",
 'rcshowhideminor' => "$1 na mandikike' na tinilaika siha",
+'rcshowhidebots'  => '$1 na bots siha',
+'rcshowhideliu'   => "$1 na muna'sesetbi ni ma log in",
+'rcshowhidemine'  => '$1 na tinilaika-hu',
 'rclinks'         => "Na'annok na $1 tinilaika siha ginen $2 na dihas manmaloffan<br />$3",
 'diff'            => 'dif',
 'hist'            => 'hist',
 'hide'            => 'Homme',
+'show'            => "Na'annok",
 'minoreditletter' => 'm',
 'newpageletter'   => 'N',
 'boteditletter'   => 'b',
@@ -234,102 +283,191 @@ Siña un [[:\$1|fa'tinas i påhina]].",
 'recentchangeslinked-summary' => "Lista este ni tinilaika siha gi halacha ginen un påhina ma'ayek (pat ni miembro siha ginen un katigoria ma'ayek).
 '''Potpot''' i påhina siha ginen [[Special:Watchlist|Listan pinilan-mu]].",
 
+# Upload
+'upload'        => "Na'kåtga hulu' i atkibu",
+'uploadbtn'     => "Na'kåtga hulu' atkibu",
+'uploadlogpage' => "Na'kåtga i log",
+'uploadedimage' => 'mana\'kåtga hulu\' "[[$1]]"',
+
+# Special:Imagelist
+'imagelist' => 'Listan atkibu',
+
 # Image description page
-'filehist'            => 'Historian atkibu',
-'filehist-current'    => "pa'go",
-'filehist-datetime'   => 'Fecha/Ora',
-'filehist-user'       => "Muna'sesetbi",
-'filehist-dimensions' => 'Mineddong',
-'filehist-filesize'   => 'Mineddong atkibu',
-'filehist-comment'    => 'Komentu',
-'imagelinks'          => 'Inachetton',
-'linkstoimage'        => 'Umachetton i sigiente na påhina siha yan este na atkibu:',
+'filehist'                  => 'Historian atkibu',
+'filehist-current'          => "pa'go",
+'filehist-datetime'         => 'Fecha/Ora',
+'filehist-user'             => "Muna'sesetbi",
+'filehist-dimensions'       => 'Mineddong',
+'filehist-filesize'         => 'Mineddong atkibu',
+'filehist-comment'          => 'Komentu',
+'imagelinks'                => 'Inachetton',
+'linkstoimage'              => 'Umachetton i sigiente na påhina siha yan este na atkibu:',
+'nolinkstoimage'            => "Tåya' na påhina siha umachetton yan este na atkibu.",
+'sharedupload'              => "Ma'apatte este na atkibu ya buente ha' ma'usa gi otru proyektu siha.",
+'noimage'                   => "Tåya' atkibu mafa'na'an enao, siña un $1.",
+'noimage-linktext'          => "na'kåtga hulu'",
+'uploadnewversion-linktext' => "Na'kåtga hulu' un tinilaikan atkibu mas nuebu",
+
+# List redirects
+'listredirects' => "Na'lista eyu i manmadirihi ta'lo",
 
 # Random page
 'randompage' => 'Maseha håfa na påhina',
 
 # Miscellaneous special pages
-'nbytes'       => '$1 {{PLURAL:$1|byte|bytes}}',
-'nmembers'     => '$1 {{PLURAL:$1|na miembro|na miembro siha}}',
-'specialpages' => 'Manespesiat na påhina',
-'move'         => 'Suha',
+'nbytes'         => '$1 {{PLURAL:$1|byte|bytes}}',
+'nmembers'       => '$1 {{PLURAL:$1|na miembro|na miembro siha}}',
+'protectedpages' => 'Påhina siha ni manmaprotehi',
+'listusers'      => "Listan muna'sesetbi",
+'specialpages'   => 'Manespesiat na påhina',
+'newpages'       => 'Mannuebu na påhina siha',
+'ancientpages'   => 'I mas manbihu na påhina siha',
+'move'           => 'Suha',
+'movethispage'   => 'Suha i påhina este',
+
+# Special:Log
+'specialloguserlabel'  => "Muna'sesetbi:",
+'speciallogtitlelabel' => 'Titulo:',
+'log'                  => 'Logs',
+'all-logs-page'        => 'Todu i logs siha',
 
 # Special:Allpages
+'allpages'       => 'Todu i påhina siha',
+'allpagesfrom'   => "Fa'nu'i i påhina siha tumutuhon gi:",
+'allarticles'    => 'Todu i påhina siha',
 'allpagessubmit' => 'Hånao',
 
+# E-mail user
+'emailuser' => "Na'e-mail i muna'sesetbi este",
+
 # Watchlist
-'mywatchlist' => 'Listan pinilan-hu',
-'watch'       => 'Pulan',
-'unwatch'     => 'Basta mapulan',
+'watchlist'            => 'Listan pinilan-hu',
+'mywatchlist'          => 'Listan pinilan-hu',
+'watchlistfor'         => "(para '''$1''')",
+'watch'                => 'Pulan',
+'watchthispage'        => 'Pulan este na påhina',
+'unwatch'              => 'Basta mapulan',
+'watchlist-details'    => '{{PLURAL:$1|$1 påhina|$1 na påhina siha}} un pupulan, sin i påhinan kombetsasion siha.',
+'wlshowlast'           => "Na'annok $1 na ora yan $2 na diha siha gi halacha $3",
+'watchlist-hide-bots'  => 'Homme i tinilaikan bot',
+'watchlist-hide-own'   => 'Homme i tinilaika-hu',
+'watchlist-hide-minor' => "Homme i tinilaika siha ni mandikike'",
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Mamulan...',
 'unwatching' => 'Pumapara mamulan...',
+
+# Delete/protect/revert
+'deletedarticle' => 'Mana\'suha "[[$1]]"',
+'dellogpage'     => "Historian muna'suha",
+'rollbacklink'   => 'tulaika tatte',
+'protectlogpage' => 'I historian proteksion',
+
+# Undelete
+'undeletebtn' => "Fa'tinas ta'lo",
 
 # Namespace form on various pages
 'namespace'      => "Sågan nå'an:",
 'blanknamespace' => '(Fanhaluman)',
 
 # Contributions
-'mycontris' => 'Kontribusion-hu',
+'contributions' => "Kotribusion siha ni muna'sesetbi",
+'mycontris'     => 'Kontribusion-hu',
+'contribsub2'   => 'Para $1 ($2)',
+'uctop'         => "(sanhilo')",
+'month'         => 'Ginen i mes (yan eståba):',
+'year'          => 'Ginen i sakkan (yan eståba):',
+
+'sp-contributions-newbies-sub' => 'Para i mannuebu na kuenta siha',
+'sp-contributions-blocklog'    => "Na'påra i log",
 
 # What links here
 'whatlinkshere'       => "Håfa ha na'chetton guini",
 'whatlinkshere-title' => "I påhina siha ni mana'chetton yan $1",
 'linklistsub'         => '(Listan inachetton siha)',
 'linkshere'           => "Umachetton i sigienten påhina siha yan '''[[:$1]]''':",
+'nolinkshere'         => "Taya' umachetton yan '''[[:$1]]'''.",
 'isredirect'          => 'dirihi i påhina',
 'whatlinkshere-links' => '← inachetton',
 
 # Block/unblock
+'ipboptions'   => "2 oras:2 hours,1 diha:1 day,3 na diha siha:3 days,1 simana:1 week,2 na simana siha:2 weeks,1 mes:1 month,3 na mes siha:3 months,6 na mes siha:6 months,1 sakkan:1 year,taifinakpo':infinite", # display1:time1,display2:time2,...
 'blocklink'    => 'futot',
 'contribslink' => 'kontrib',
+'blocklogpage' => "Na'påra i log",
+
+# Move page
+'1movedto2'   => 'Masuha ginen [[$1]] påra [[$2]]',
+'movelogpage' => 'Suha i log',
+'revertmove'  => 'tulaika tatte',
+
+# Export
+'export' => 'Manekspotta påhina',
 
 # Thumbnails
 'thumbnail-more' => "Na'lamoddong",
 
 # Tooltip help for the actions
-'tooltip-pt-userpage'       => "Påhina-hu muna'setbi",
-'tooltip-pt-mytalk'         => 'Kometsasion-hu',
-'tooltip-pt-preferences'    => "I ga'ña-hu",
-'tooltip-pt-watchlist'      => 'I listan påhina siha ni un pupulan.',
-'tooltip-pt-mycontris'      => 'Listan kontribusion-hu',
-'tooltip-pt-login'          => "Maolek-ña mohon yanggen humålom hao kuenta-mu, lao ti nesisariu ha'.",
-'tooltip-pt-logout'         => 'Log out',
-'tooltip-ca-talk'           => 'Diskuti i infotmasion i påhina',
-'tooltip-ca-edit'           => 'Siña un tulaika este na påhina. Pot fabot usa i batunes ni manchek åntes di un satba.',
-'tooltip-ca-viewsource'     => "Maprotehi i påhina. Siña un li'e' iyo-ña code.",
-'tooltip-ca-move'           => 'Suha i påhina este',
-'tooltip-ca-watch'          => "Po'lu i påhina este gi listan pinilan-hu",
-'tooltip-ca-unwatch'        => "Na'suha i påhina gi i listan pinilan-mu",
-'tooltip-search'            => 'Aligao gi {{SITENAME}}',
-'tooltip-n-mainpage'        => 'Bisita i Fanhaluman',
-'tooltip-n-portal'          => "Pot i proyektu, håfa siña hao chumo'gue, månu na siña masodda' kosas",
-'tooltip-n-currentevents'   => 'Aligao infotmasion ni estorian modetnu siha',
-'tooltip-n-recentchanges'   => "I listan ina'go i wiki gi halacha.",
-'tooltip-n-randompage'      => "Ta'yoki guatu maseha håfa na påhina",
-'tooltip-n-help'            => "Estegue' siña hao kumunprende.",
-'tooltip-n-sitesupport'     => 'Supotta ham',
-'tooltip-t-whatlinkshere'   => "Listan todu i påhinan wiki siha ni ma na'chetton guini",
-'tooltip-t-upload'          => "Na'makatga hulu' atkibu",
-'tooltip-t-specialpages'    => 'Lista ni manespesiat na påhina',
-'tooltip-ca-nstab-image'    => 'Atan i påhinan atkibu',
-'tooltip-ca-nstab-category' => 'Atan i påhinan katigoria',
-'tooltip-save'              => 'Satba tinilaika-mu',
-'tooltip-preview'           => 'Chek håfa un tulaika, usa este fan åntes di un såtba i pahina!',
-'tooltip-diff'              => "Na'annok håfa i tinilaika-mu gi tinige'",
+'tooltip-pt-userpage'             => "Påhina-hu muna'setbi",
+'tooltip-pt-mytalk'               => 'Kometsasion-hu',
+'tooltip-pt-preferences'          => "I ga'ña-hu",
+'tooltip-pt-watchlist'            => 'I listan påhina siha ni un pupulan.',
+'tooltip-pt-mycontris'            => 'Listan kontribusion-hu',
+'tooltip-pt-login'                => "Maolek-ña mohon yanggen humålom hao kuenta-mu, lao ti nesisariu ha'.",
+'tooltip-pt-logout'               => 'Log out',
+'tooltip-ca-talk'                 => 'Diskuti i infotmasion i påhina',
+'tooltip-ca-edit'                 => 'Siña un tulaika este na påhina. Pot fabot usa i batunes ni manchek åntes di un satba.',
+'tooltip-ca-addsection'           => "Nå'ye komentu gi kometsasion.",
+'tooltip-ca-viewsource'           => "Maprotehi i påhina. Siña un li'e' iyo-ña code.",
+'tooltip-ca-protect'              => 'Protehi i påhina este',
+'tooltip-ca-delete'               => "Na'suha i påhina",
+'tooltip-ca-move'                 => 'Suha i påhina este',
+'tooltip-ca-watch'                => "Po'lu i påhina este gi listan pinilan-hu",
+'tooltip-ca-unwatch'              => "Na'suha i påhina gi i listan pinilan-mu",
+'tooltip-search'                  => 'Aligao gi {{SITENAME}}',
+'tooltip-n-mainpage'              => 'Bisita i Fanhaluman',
+'tooltip-n-portal'                => "Pot i proyektu, håfa siña hao chumo'gue, månu na siña masodda' kosas",
+'tooltip-n-currentevents'         => 'Aligao infotmasion ni estorian modetnu siha',
+'tooltip-n-recentchanges'         => "I listan ina'go i wiki gi halacha.",
+'tooltip-n-randompage'            => "Ta'yoki guatu maseha håfa na påhina",
+'tooltip-n-help'                  => "Estegue' siña hao kumunprende.",
+'tooltip-n-sitesupport'           => 'Supotta ham',
+'tooltip-t-whatlinkshere'         => "Listan todu i påhinan wiki siha ni ma na'chetton guini",
+'tooltip-t-contributions'         => "Atan i listan kontribusion siha ni este na muna'sesetbi",
+'tooltip-t-emailuser'             => "Na'hanague i muna'sesetbi ni e-mail",
+'tooltip-t-upload'                => "Na'makatga hulu' atkibu",
+'tooltip-t-specialpages'          => 'Lista ni manespesiat na påhina',
+'tooltip-ca-nstab-user'           => "Atan i påhina ni muna'sesetbi",
+'tooltip-ca-nstab-project'        => 'Atan i påhinan proyekto',
+'tooltip-ca-nstab-image'          => 'Atan i påhinan atkibu',
+'tooltip-ca-nstab-category'       => 'Atan i påhinan katigoria',
+'tooltip-minoredit'               => "Na'matka este kalan dikike' na tinilaika",
+'tooltip-save'                    => 'Satba tinilaika-mu',
+'tooltip-preview'                 => 'Chek håfa un tulaika, usa este fan åntes di un såtba i pahina!',
+'tooltip-diff'                    => "Na'annok håfa i tinilaika-mu gi tinige'",
+'tooltip-compareselectedversions' => "Na'annok i diferensia siha gi i dos ma'ayek na tinilaika ni påhina.",
+'tooltip-watch'                   => "Po'lo i påhina gi listan pinilan-mu",
 
 # Media information
 'file-info-size' => '($1 × $2 na pixel, mineddong atkibu: $3, MIME klåsi: $4)',
+'file-nohires'   => "<small>Tåya' mas takhilo' na risolusion.</small>",
+'show-big-image' => 'Magåhet mineddong-ña',
 
 # Metadata
-'metadata' => 'Metadata',
+'metadata'          => 'Metadata',
+'metadata-expand'   => "Na'annok todu i infotmasion-ña",
+'metadata-collapse' => "Na'atok patte i infotmasion-ña",
 
 # External editor support
 'edit-externally'      => 'Tulaika i atkibu yan un aplikasion sanhiyong',
 'edit-externally-help' => 'Hånao para [http://meta.wikimedia.org/wiki/Help:External_editors i plantan chinachalani] para mas infotmasion.',
 
 # 'all' in various places, this might be different for inflected languages
+'watchlistall2' => 'todu',
 'namespacesall' => 'todu',
+'monthsall'     => 'todu',
+
+# Watchlist editing tools
+'watchlisttools-edit' => 'Atan ya tulaika i listan pinilan',
 
 );

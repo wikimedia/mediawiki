@@ -1168,9 +1168,7 @@ $3 указал следующую причину: ''$2''",
 'recentchangeslinked-summary'  => "Это список недавних изменений в страницах, на которые ссылается указанная страница (или входящих в указанную категорию).
 Страницы, входящие в [[Special:Watchlist|ваш список наблюдения]] '''выделены'''.",
 'recentchangeslinked-page'     => 'Название страницы:',
-'recentchangeslinked-to'       => 'Show changes to pages linked to the given page instead
-
-Показать изменения на страницах, связанных с указанной',
+'recentchangeslinked-to'       => 'Наоборот, показать изменения на страницах, которые ссылаются на указанную страницу',
 
 # Upload
 'upload'                      => 'Загрузить файл',
@@ -1770,6 +1768,7 @@ $1',
 'whatlinkshere-hideredirs' => '$1 перенаправления',
 'whatlinkshere-hidetrans'  => '$1 включения',
 'whatlinkshere-hidelinks'  => '$1 ссылки',
+'whatlinkshere-filters'    => 'Фильтры',
 
 # Block/unblock
 'blockip'                     => 'Заблокировать',

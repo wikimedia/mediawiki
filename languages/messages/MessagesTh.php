@@ -2355,7 +2355,7 @@ $1',
 'specialpages-group-other'   => 'หน้าพิเศษอื่น ๆ',
 'specialpages-group-login'   => 'ล็อกอิน / สร้างบัญชีผู้ใช้ใหม่',
 'specialpages-group-changes' => 'ปรับปรุงล่าสุดและปูมต่าง ๆ',
-'specialpages-group-media'   => 'รายงานเรื่องสื่อ',
+'specialpages-group-media'   => 'รายงานเรื่องสื่อและการอัปโหลด',
 'specialpages-group-users'   => 'ผู้ใช้และสิทธิ์',
 'specialpages-group-highuse' => 'หน้าที่มีการใช้สูง',
 

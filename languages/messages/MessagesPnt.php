@@ -132,7 +132,7 @@ $messages = array(
 'editthispage'      => 'Άλλαξον τη σελίδαν ατέν',
 'create-this-page'  => 'Ποίσον τη σελίδαν',
 'delete'            => 'Σβήσον',
-'deletethispage'    => 'Σβήσον τη σελίδαν',
+'deletethispage'    => 'Σβήσεμαν τη σελίδας',
 'protect'           => 'Ασπάλιγμα',
 'protect_change'    => "Άλλαγμα τ' ασπάλιγματη",
 'protectthispage'   => 'Ασπάλιγμα ατουνού τη σελίδας',
@@ -151,7 +151,8 @@ $messages = array(
 'otherlanguages'    => "Σ' άλλα γλώσσας",
 'protectedpage'     => 'Ασπαλιζμένον σελίδαν',
 'jumpto'            => 'Δέβα σο:',
-'jumptosearch'      => 'αράεμαν',
+'jumptonavigation'  => 'Πλοήγησην',
+'jumptosearch'      => 'Αράεμαν',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutpage'            => 'Project:Σχετικά',
@@ -234,22 +235,23 @@ $messages = array(
 'sig_tip'         => 'Η υπογραφήν εσούν με ώραν κι ημερομηνίαν',
 
 # Edit pages
-'summary'            => 'Σύνοψη',
-'subject'            => 'Θέμα/επικεφαλίδα',
-'minoredit'          => 'Μικρόν αλλαγήν',
-'watchthis'          => 'Ωρία τη σελίδαν ατέν',
-'savearticle'        => 'Κρα τη σελίδαν',
-'preview'            => 'Πρώτον τέρεμα',
-'showpreview'        => 'Δείξον το πρώτον τέρεμα',
-'showdiff'           => "Δείξον τ' αλλαγάς",
-'newarticle'         => '(Νέον)',
-'previewnote'        => "<strong>Ατό πα πρώτον τέρεμαν εν και μόνον.
+'summary'                => 'Σύνοψη',
+'subject'                => 'Θέμα/επικεφαλίδα',
+'minoredit'              => 'Μικρόν αλλαγήν',
+'watchthis'              => 'Ωρία τη σελίδαν ατέν',
+'savearticle'            => 'Κρα τη σελίδαν',
+'preview'                => 'Πρώτον τέρεμα',
+'showpreview'            => 'Δείξον το πρώτον τέρεμα',
+'showdiff'               => "Δείξον τ' αλλαγάς",
+'newarticle'             => '(Νέον)',
+'previewnote'            => "<strong>Ατό πα πρώτον τέρεμαν εν και μόνον.
 Τ' αλλαγάς 'κ εκρατέθαν!</strong>",
-'editing'            => 'Αλλαγήν $1',
-'editingsection'     => 'Αλλαγήν $1 (τμήμα)',
-'editingold'         => "<strong>ΩΡΙΑ: Εφτάτε αλλαγάς σε παλαιόν έκδοσην τη σελίδας. 
+'editing'                => 'Αλλαγήν $1',
+'editingsection'         => 'Αλλαγήν $1 (τμήμα)',
+'editingold'             => "<strong>ΩΡΙΑ: Εφτάτε αλλαγάς σε παλαιόν έκδοσην τη σελίδας. 
 Εάν θα κρατείτε ατά, ούλ' τ' επεκεί αλλαγάς θα χάνταν.</strong>",
-'template-protected' => '(ασπαλιγμένον)',
+'template-protected'     => '(ασπαλιγμένον)',
+'template-semiprotected' => '(ημψά-ασπαλιγμένον)',
 
 # History pages
 'revisionasof'     => 'Μορφήν τη $1',
@@ -440,11 +442,12 @@ $messages = array(
 'tooltip-pt-login'                => "Μπορείτε νε εφτάτε έναν λογαριασμόν αλλά 'κ πρεπ'.",
 'tooltip-pt-logout'               => 'Απιδεβένετεν τη Βικιπαίδειαν',
 'tooltip-ca-talk'                 => "Γονούσεμαν γι' αβούτον τ' άρθρον",
-'tooltip-ca-edit'                 => "Εμπορείτε ν' αλλάζετε τη σελίδαν, άμαν τερέστεν τ' αλλαγάς πριν θα κρατείτε ατά.",
+'tooltip-ca-edit'                 => "Άλλαγμαν τη σελίδας. Άμαν τερέστεν τ' αλλαγάς πριν θα κρατείτε ατά.",
 'tooltip-ca-addsection'           => "Βαλέστε σχόλιον σ' αβούτο το γουνούσεμα.",
 'tooltip-ca-viewsource'           => "Ατό η σελίδαν εν ασπαλιγμένον. Άμαν μπορείτε να τερείτε το κείμενον ατ'ς.",
+'tooltip-ca-history'              => 'Παλαιά εκδώσεις τη σελίδας.',
 'tooltip-ca-protect'              => 'Ασπάλιγμα τη σελίδας',
-'tooltip-ca-delete'               => 'Σβήσον τη σελίδαν',
+'tooltip-ca-delete'               => 'Σβήσεμαν τη σελίδας',
 'tooltip-ca-move'                 => "Κότζεμαν τη σελίδας ας έναν τίτλον σ' άλλον.",
 'tooltip-search'                  => 'Εύρον σο {{SITENAME}}',
 'tooltip-n-mainpage'              => 'Τερέστεν το αρχικόν τη σελίδαν',
@@ -458,6 +461,7 @@ $messages = array(
 'tooltip-t-specialpages'          => 'Κατάλογον με τα ειδικά σελίδας',
 'tooltip-ca-nstab-user'           => 'Τέρεν τη σελίδαν τη χρήστε',
 'tooltip-ca-nstab-image'          => 'Τερέστεν την εικόναν',
+'tooltip-ca-nstab-mediawiki'      => 'Τέρεμαν τη μενεματίων τη σύστηματι',
 'tooltip-ca-nstab-template'       => 'Τερέστεν τα πρότυπα',
 'tooltip-ca-nstab-help'           => 'Τερέστεν τη σελίδα βοήθειας',
 'tooltip-ca-nstab-category'       => 'Τέρεν το σελίδαν τη κατηγορίας',
@@ -467,10 +471,39 @@ $messages = array(
 'tooltip-diff'                    => "Δείξον τ' αλλαγάς ντ' εποίκες σο κείμενον.",
 'tooltip-compareselectedversions' => "Τερέστε τα διαφοράς τ' εκδωσίων τη σελίδας",
 
+# Media information
+'file-nohires'   => "<small>'Κ εχ κι άλλο ψηλόν ανάλυσην.</small>",
+'show-big-image' => 'Τζιπ ψηλόν ανάλυση',
+
+# Special:Newimages
+'ilsubmit' => 'Αράεμαν',
+'bydate'   => 'ημερομηνίας',
+
 # Metadata
 'metadata'          => 'Μεταδεδομένα',
 'metadata-expand'   => 'Δείξον τα λεπτομέρειας',
 'metadata-collapse' => 'Κρύψον τα λεπτομέρειας',
+
+# EXIF tags
+'exif-imagewidth'                  => 'Πλάτος',
+'exif-imagelength'                 => 'Ύψηλος',
+'exif-bitspersample'               => 'Bits ανά στοιχείο',
+'exif-compression'                 => 'Σχήμα συμπίεσης',
+'exif-photometricinterpretation'   => 'Σύνθεση τη pixel',
+'exif-orientation'                 => 'Προσανατολισμός',
+'exif-samplesperpixel'             => 'Αριθμός στοιχείων',
+'exif-ycbcrsubsampling'            => 'Αναλογικόν δείγμαν σε φωτεινότητα και χρώμαν',
+'exif-ycbcrpositioning'            => 'Ρύθμιση φωτεινότητας και χρώματι',
+'exif-xresolution'                 => 'Οριζόντιον ανάλυση',
+'exif-yresolution'                 => 'Κατακόρυφον ανάλυση',
+'exif-resolutionunit'              => 'Μονάδα μέτρησης ανάλυσης X και Y',
+'exif-stripoffsets'                => 'Τοποθέτηση δεδομενίων εικόνας',
+'exif-stripbytecounts'             => 'Bytes ανά συμπιεσμένον λωρίδα',
+'exif-jpeginterchangeformat'       => 'Μετάθεση σε JPEG SOI',
+'exif-jpeginterchangeformatlength' => 'Bytes δεδομενίων JPEG',
+'exif-transferfunction'            => 'Λειτουργία μεταφοράς',
+'exif-whitepoint'                  => "Χρωματικόν προσδιορισμός τ' άσπρου",
+'exif-primarychromaticities'       => 'Πρωτεύοντες χρωματισμοί',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'ούλαι',

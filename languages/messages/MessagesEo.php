@@ -878,7 +878,7 @@ indekso pro troŝarĝita servilo. Intertempe, vi povas serĉi per <i>guglo</i> a
 'math_bad_output'          => 'Ne eblas enskribi aŭ krei matematikan eligan dosierujon',
 'math_notexvc'             => 'Programo texvc ne ekzistas; bonvolu vidi math/README por konfiguri.',
 'prefs-personal'           => 'Uzantodatumoj',
-'prefs-rc'                 => 'Lastaj ŝanĝoj kaj elmontro de stumpoj',
+'prefs-rc'                 => 'Lastaj ŝanĝoj',
 'prefs-watchlist'          => 'Atentaro',
 'prefs-watchlist-days'     => 'Nombro de tagoj montri en la atentaro:',
 'prefs-watchlist-edits'    => 'Maksimuma nombro de ŝanĝoj montrendaj en ekspandita atentaro:',
