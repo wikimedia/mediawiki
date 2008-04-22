@@ -290,11 +290,11 @@ $messages = array(
 'category-empty'                 => "''Diese Kategorie enthält zur Zeit keine Seiten oder Medien.''",
 'hidden-categories'              => '{{PLURAL:$1|Versteckte Kategorie|Versteckte Kategorien}}',
 'hidden-category-category'       => 'Versteckte Kategorien', # Name of the category where hidden categories will be listed
-'category-subcat-count'          => '{{PLURAL:$2|Diese Kategorie enthält folgende Unterkategorie:|{{PLURAL:$1|Folgende Unterkategorie ist eine von insgesamt $2 Unterkategorien in dieser Kategorie:|Diese Kategorie enthält insgesamt $2 Unterkategorien. Hier werden $1 Unterkategorien dieser Kategorie angezeigt:}}}}',
+'category-subcat-count'          => '{{PLURAL:$2|Diese Kategorie enthält folgende Unterkategorie:|{{PLURAL:$1|Folgende Unterkategorie ist eine von insgesamt $2 Unterkategorien in dieser Kategorie:|Es werden $1 von insgesamt $2 Unterkategorien in dieser Kategorie angezeigt:}}}}',
 'category-subcat-count-limited'  => 'Diese Kategorie enthält folgende {{PLURAL:$1|Unterkategorie|$1 Unterkategorien}}:',
-'category-article-count'         => '{{PLURAL:$2|Diese Kategorie enthält folgende Seite:|{{PLURAL:$1|Folgende Seite ist eine von insgesamt $2 Seiten in dieser Kategorie:|Diese Kategorie enthält insgesamt $2 Seiten. Hier werden $1 Seiten dieser Kategorie angezeigt:}}}}',
-'category-article-count-limited' => 'Folgende{{PLURAL:$1|Seite ist|$1 Seiten sind}} in dieser Kategorie enthalten:',
-'category-file-count'            => '{{PLURAL:$2|Diese Kategorie enthält folgende Datei:|{{PLURAL:$1|Folgende Datei ist eine von insgesamt $2 Dateien in dieser Kategorie:|Diese Kategorie enthält insgesamt $2 Dateien. Hier werden $1 Dateien dieser Kategorie angezeigt:}}}}',
+'category-article-count'         => '{{PLURAL:$2|Diese Kategorie enthält folgende Seite:|{{PLURAL:$1|Folgende Seite ist eine von insgesamt $2 Seiten in dieser Kategorie:|Es werden $1 von insgesamt $2 Seiten in dieser Kategorie angezeigt:}}}}',
+'category-article-count-limited' => 'Folgende {{PLURAL:$1|Seite ist|$1 Seiten sind}} in dieser Kategorie enthalten:',
+'category-file-count'            => '{{PLURAL:$2|Diese Kategorie enthält folgende Datei:|{{PLURAL:$1|Folgende Datei ist eine von insgesamt $2 Dateien in dieser Kategorie:|Es werden $1 von insgesamt $2 Dateien in dieser Kategorie angezeigt:}}}}',
 'category-file-count-limited'    => 'Folgende {{PLURAL:$1|Datei ist|$1 Dateien sind}} in dieser Kategorie enthalten:',
 'listingcontinuesabbrev'         => '(Fortsetzung)',
 
