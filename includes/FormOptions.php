@@ -154,7 +154,7 @@ class FormOptions {
 					throw new MWException( 'Unsupported datatype' );
 			}
 
-			if ( $value !== $default && $value != null ) {
+			if ( $value !== $default && $value !== null ) {
 				$this->options[$name]['value'] = $value;
 			}
 		}

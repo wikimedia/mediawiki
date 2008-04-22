@@ -208,6 +208,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Fix fatal error on calling PAGESINCATEGORY with invalid category name
 * (bug 13793) Special:Whatlinkshere filters wrong - after paginating instead of before
 * (bug 13796) Show links to parent pages even if some of them are missing
+* (bug 13816) Filter by main namespace doesn't work on WhatLinksHere
 
 === API changes in 1.13 ===
 
