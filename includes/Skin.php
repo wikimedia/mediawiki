@@ -896,7 +896,7 @@ END;
 					$growinglink .= $link;
 					$display .= $link;
 					$linkObj = Title::newFromText( $growinglink );
-					if( $linkObj->exists() ){
+					if( is_object( $linkObj ) && $linkObj->exists() ){
 						$getlink = $this->makeKnownLinkObj( $linkObj, htmlspecialchars( $display ) );
 						$c++;
 						if ($c>1) {
