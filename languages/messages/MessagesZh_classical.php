@@ -367,6 +367,8 @@ $1',
 'enterlockreason'      => '何以鎖之？何日啟之？',
 'readonlytext'         => '鎖者曰：「$1」，庫藏鎖矣，撰纂謝焉。',
 'missingarticle'       => '或舊、或刪，未見昔者"$1"。若非此故，恐有瑕焉，惠呈此址也。',
+'missingarticle-rev'   => '（審號：$1）',
+'missingarticle-diff'  => '（異：$1，$2）',
 'internalerror'        => '家誤',
 'internalerror_info'   => '家誤：$1',
 'filecopyerror'        => '"$1"謄"$2"，未可為也。',
@@ -1130,6 +1132,7 @@ $2',
 'listgrouprights-group'    => '組',
 'listgrouprights-rights'   => '權',
 'listgrouprights-helppage' => 'Help:組權',
+'listgrouprights-members'  => '（社員表）',
 
 # E-mail user
 'mailnologin'     => '無驛',
@@ -1369,6 +1372,7 @@ $NEWPAGE
 'whatlinkshere-hideredirs' => '$1轉',
 'whatlinkshere-hidetrans'  => '$1含',
 'whatlinkshere-hidelinks'  => '$1佐',
+'whatlinkshere-filters'    => '濾',
 
 # Block/unblock
 'blockip'                     => '禁簿',

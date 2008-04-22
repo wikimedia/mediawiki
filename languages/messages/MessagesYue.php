@@ -451,6 +451,8 @@ MySQL 嘅錯誤回應 "$3: $4"',
 
 如果唔係，你可能係搵到軟件裏面嘅臭蟲。
 請記低 URL 地址，向管理員報告。',
+'missingarticle-rev'   => '(修訂#: $1)',
+'missingarticle-diff'  => '(差異: $1, $2)',
 'readonly_lag'         => '當從伺服器追緊主伺服器時，資料庫會自動被鎖',
 'internalerror'        => '內部錯誤',
 'internalerror_info'   => '內部錯誤: $1',
@@ -1395,6 +1397,7 @@ Template:搞清楚',
 'listgrouprights-group'    => '組',
 'listgrouprights-rights'   => '權',
 'listgrouprights-helppage' => 'Help:組權限',
+'listgrouprights-members'  => '(成員名單)',
 
 # E-mail user
 'mailnologin'     => '冇傳送地址',
@@ -1654,6 +1657,7 @@ $1',
 'whatlinkshere-hideredirs' => '$1跳轉',
 'whatlinkshere-hidetrans'  => '$1包含',
 'whatlinkshere-hidelinks'  => '$1連結',
+'whatlinkshere-filters'    => '過濾器',
 
 # Block/unblock
 'blockip'                     => '封鎖用戶',

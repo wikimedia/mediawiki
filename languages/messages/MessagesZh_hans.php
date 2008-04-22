@@ -397,6 +397,8 @@ MySQL返回错误“$3: $4”。',
 
 如果情况不是这样，您可能找到了软件内的一个错误。
 请记录下 URL 地址，并向管理员报告。',
+'missingarticle-rev'   => '(修订#: $1)',
+'missingarticle-diff'  => '(差异: $1, $2)',
 'readonly_lag'         => '附属数据库服务器正在将缓存更新到主服务器，数据库已被自动锁定',
 'internalerror'        => '内部错误',
 'internalerror_info'   => '内部错误: $1',
@@ -1341,6 +1343,8 @@ Template:消除歧義',
 'listgrouprights-group'    => '群组',
 'listgrouprights-rights'   => '权限',
 'listgrouprights-helppage' => 'Help:群组权限',
+'listgrouprights-members'  => '(成员列表)',
+'whatlinkshere-filters'    => '过滤器',
 
 # E-mail user
 'mailnologin'     => '无电邮地址',

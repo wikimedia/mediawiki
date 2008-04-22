@@ -379,6 +379,8 @@ MySQL返回錯誤「$3: $4」。',
 
 <p>如果情況不是這樣，您可能找到了軟體內的一個臭蟲。
 請記錄下URL地址，並向管理員報告。</p>',
+'missingarticle-rev'   => '(修訂#: $1)',
+'missingarticle-diff'  => '(差異: $1, $2)',
 'readonly_lag'         => '附屬資料庫伺服器正在將快取更新到主伺服器，資料庫已被自動鎖定',
 'internalerror'        => '內部錯誤',
 'internalerror_info'   => '內部錯誤: $1',
@@ -1317,6 +1319,7 @@ Template:消除歧義',
 'listgrouprights-group'    => '群組',
 'listgrouprights-rights'   => '權限',
 'listgrouprights-helppage' => 'Help:群組權限',
+'listgrouprights-members'  => '(成員清單)',
 
 # E-mail user
 'mailnologin'     => '無電郵地址',
@@ -1584,6 +1587,7 @@ $1',
 'whatlinkshere-hideredirs' => '$1重定向',
 'whatlinkshere-hidetrans'  => '$1包含',
 'whatlinkshere-hidelinks'  => '$1連結',
+'whatlinkshere-filters'    => '過濾器',
 
 # Block/unblock
 'blockip'                     => '查封用戶',
