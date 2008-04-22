@@ -63,7 +63,7 @@ class SpecialListGroupRights extends SpecialPage {
 			}
 
 			if ( !in_array( $group, $wgImplicitGroups ) ) {
-				$grouplink = '<br />' . $this->skin->makeKnownLinkObj( SpecialPage::getTitleFor( 'Listusers' ), wfMsg( 'listgrouprights-members' ), 'group=' . $group );
+				$grouplink = '<br />' . $this->skin->makeKnownLinkObj( SpecialPage::getTitleFor( 'Listusers' ), wfMsgHtml( 'listgrouprights-members' ), 'group=' . $group );
 			} else {
 				// No link to Special:listusers for implicit groups as they are unlistable
 				$grouplink = '';
