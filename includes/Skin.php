@@ -17,6 +17,8 @@ class Skin extends Linker {
 	 * @private
 	 */
 	var $mWatchLinkNum = 0; // Appended to end of watch link id's
+	// How many search boxes have we made?  Avoid duplicate id's.
+	protected $searchboxes = '';
 	/**#@-*/
 	protected $mRevisionId; // The revision ID we're looking at, null if not applicable.
 	protected $skinname = 'standard' ;
@@ -986,13 +988,16 @@ END;
 		global $wgRequest;
 		$search = $wgRequest->getText( 'search' );
 
-		$s = '<form name="search" class="inline" method="post" action="'
+		$s = '<form id="searchform'.$this->searchboxes.'" name="search" class="inline" method="post" action="'
 		  . $this->escapeSearchLink() . "\">\n"
-		  . '<input type="text" name="search" size="19" value="'
+		  . '<input type="text" id="searchInput'.$this->searchboxes.'" name="search" size="19" value="'
 		  . htmlspecialchars(substr($search,0,256)) . "\" />\n"
 		  . '<input type="submit" name="go" value="' . wfMsg ('searcharticle') . '" />&nbsp;'
 		  . '<input type="submit" name="fulltext" value="' . wfMsg ('searchbutton') . "\" />\n</form>";
 
+		// Ensure unique id's for search boxes made after the first
+		$this->searchboxes = $this->searchboxes == '' ? 2 : $this->searchboxes + 1;
+		
 		return $s;
 	}
 

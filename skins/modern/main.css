@@ -12,7 +12,8 @@ body {
 
 #mw_main,
 #p-personal,
-#mw_header {
+#mw_header,
+.os-suggest {
 	font-size: 130%;
 }
 

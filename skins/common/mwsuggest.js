@@ -25,8 +25,8 @@ var os_mouse_moved = false;
 // delay between keypress and suggestion (in ms)
 var os_search_timeout = 250;
 // these pairs of inputs/forms will be autoloaded at startup
-var os_autoload_inputs = new Array('searchInput', 'powerSearchText', 'searchText');
-var os_autoload_forms = new Array('searchform', 'powersearch', 'search' );
+var os_autoload_inputs = new Array('searchInput', 'searchInput2', 'powerSearchText', 'searchText');
+var os_autoload_forms = new Array('searchform', 'searchform2', 'powersearch', 'search' );
 // if we stopped the service
 var os_is_stopped = false;
 // max lines to show in suggest table
@@ -178,10 +178,9 @@ function os_createContainer(r){
 	var pos = os_getElementPosition(r.searchbox);	
 	var left = pos.left;
 	var top = pos.top + s.offsetHeight;
-	var body = document.getElementById("globalWrapper");
 	c.className = "os-suggest";
 	c.setAttribute("id", r.container);	
-	body.appendChild(c); 
+	document.body.appendChild(c); 
 	
 	// dynamically generated style params	
 	// IE workaround, cannot explicitely set "style" attribute

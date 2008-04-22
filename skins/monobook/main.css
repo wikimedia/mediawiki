@@ -1566,3 +1566,7 @@ span.searchmatch {
 	font-weight: bold;
 }
 
+/* God-damned hack for the crappy layout */
+.os-suggest {
+	font-size: 127%;
+}
