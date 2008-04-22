@@ -210,6 +210,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 13796) Show links to parent pages even if some of them are missing
 * (bug 13816) Filter by main namespace doesn't work on WhatLinksHere
 * (bug 13822) Fatal error on some pages when calculating subpage subtitle
+* (bug 13824) AJAX search suggestion now works with non-SkinTemplate skins
+
 
 === API changes in 1.13 ===
 

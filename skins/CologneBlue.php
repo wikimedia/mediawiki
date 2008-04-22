@@ -15,9 +15,6 @@ if( !defined( 'MEDIAWIKI' ) )
  */
 class SkinCologneBlue extends Skin {
 
-	private $searchboxes = '';
-	// How many search boxes have we made?  Avoid duplicate id's.
-
 	function getStylesheet() {
 		return 'common/cologneblue.css';
 	}
