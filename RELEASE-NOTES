@@ -257,6 +257,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 13718) Return the proper continue parameter for cmsort=timestamp
 * action=login now returns the correct waiting time in the details property
 * (bug 13792) Broken titles are now silently skipped in search results.
+* (bug 13819) exturlusage paging skipped an item
 
 === Languages updated in 1.13 ===
 
