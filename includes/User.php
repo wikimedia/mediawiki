@@ -2461,8 +2461,8 @@ class User {
 	 * Generate a new e-mail confirmation token and send a confirmation/invalidation
 	 * mail to the user's given address.
 	 *
-	 * Call saveSettings() after calling this function to commit the confirmation
-	 * token to the database.
+	 * Calls saveSettings() internally; as it has side effects, not committing changes
+	 * would be pretty silly.
 	 *
 	 * @return mixed True on success, a WikiError object on failure.
 	 */
@@ -2472,6 +2472,8 @@ class User {
 		$token = $this->confirmationToken( $expiration );
 		$url = $this->confirmationTokenUrl( $token );
 		$invalidateURL = $this->invalidationTokenUrl( $token );
+		$this->saveSettings();
+		
 		return $this->sendMail( wfMsg( 'confirmemail_subject' ),
 			wfMsg( 'confirmemail_body',
 				wfGetIP(),
