@@ -238,7 +238,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'Wyślij e-mail także w przypadku drobnych zmian na stronach',
 'tog-enotifrevealaddr'        => 'Nie ukrywaj mojego adresu e-mail w powiadomieniach',
 'tog-shownumberswatching'     => 'Pokaż liczbę obserwujących użytkowników',
-'tog-fancysig'                => 'Podpis bez automatycznego linku',
+'tog-fancysig'                => 'Podpis z kodami wiki (nie linkuj automatycznie całości)',
 'tog-externaleditor'          => 'Domyślnie używaj zewnętrznego edytora',
 'tog-externaldiff'            => 'Domyślnie używaj zewnętrznego programu pokazującego zmiany',
 'tog-showjumplinks'           => 'Włącz odnośniki „skocz do”',
@@ -381,7 +381,7 @@ $messages = array(
 'delete'            => 'usuń',
 'deletethispage'    => 'Usuń tę stronę',
 'undelete_short'    => 'odtwórz {{PLURAL:$1|1 wersję|$1 wersje|$1 wersji}}',
-'protect'           => 'Zabezpiecz',
+'protect'           => 'zabezpiecz',
 'protect_change'    => 'zmień zabezpieczenie',
 'protectthispage'   => 'Zabezpiecz tę stronę',
 'unprotect'         => 'odbezpiecz',
@@ -389,11 +389,11 @@ $messages = array(
 'newpage'           => 'Nowa strona',
 'talkpage'          => 'Dyskusja',
 'talkpagelinktext'  => 'dyskusja',
-'specialpage'       => 'Strona specjalna',
+'specialpage'       => 'strona specjalna',
 'personaltools'     => 'osobiste',
 'postcomment'       => 'Skomentuj',
 'articlepage'       => 'Artykuł',
-'talk'              => 'Dyskusja',
+'talk'              => 'dyskusja',
 'views'             => 'Widok',
 'toolbox'           => 'narzędzia',
 'userpage'          => 'Strona użytkownika',
@@ -489,7 +489,7 @@ $messages = array(
 
 # Main script and global functions
 'nosuchaction'      => 'Nie ma takiej operacji',
-'nosuchactiontext'  => 'Oprogramowanie nie rozpoznaje operacji takiej jak podana w URL',
+'nosuchactiontext'  => 'Oprogramowanie wiki nie rozpoznało polecenia zawartego w adresie URL',
 'nosuchspecialpage' => 'Nie ma takiej strony specjalnej',
 'nospecialpagetext' => "<big>'''Brak żądanej strony specjalnej.'''</big>
 
@@ -509,7 +509,8 @@ Ostatnie, nieudane zapytanie to:
 „$1”
 wywołane zostało przez funkcję „$2”.
 MySQL zgłosił błąd „$3: $4”',
-'noconnect'            => 'Przepraszamy! Projekt {{SITENAME}} ma chwilowe problemy techniczne. Brak połączenia z serwerem bazy danych.<br />$1',
+'noconnect'            => 'UWAGA! Projekt {{SITENAME}} ma chwilowe problemy techniczne. Brak połączenia z serwerem bazy danych.<br />
+$1',
 'nodb'                 => 'Nie można odnaleźć bazy danych $1',
 'cachederror'          => 'Poniższy tekst strony jest kopią znajdującą się w pamięci podręcznej i może być już nieaktualny.',
 'laggedslavemode'      => 'Uwaga! Ta strona może nie zawierać najnowszych aktualizacji.',
@@ -524,6 +525,8 @@ Zazwyczaj zdarza się to, gdy zostanie wybrane łącze do usuniętej strony, np.
 
 Inne okoliczności świadczyłyby o tym, że w oprogramowaniu jest błąd.
 W takim przypadku zgłoś, proszę, ten fakt administratorowi, koniecznie podając adres URL tej strony.',
+'missingarticle-rev'   => '(wersja: $1)',
+'missingarticle-diff'  => '(różnica: $1, $2)',
 'readonly_lag'         => 'Baza danych została automatycznie zablokowana na czas potrzebny do wykonania synchronizacji zmian między serwerem głównym i serwerami pośredniczącymi.',
 'internalerror'        => 'Błąd wewnętrzny',
 'internalerror_info'   => 'Błąd wewnętrzny: $1',
@@ -691,9 +694,9 @@ Być może zakończyłeś już proces zmiany hasła lub poprosiłeś o nowe has�
 'extlink_tip'     => 'Link zewnętrzny (pamiętaj o prefiksie http:// )',
 'headline_sample' => 'Tekst nagłówka',
 'headline_tip'    => 'Nagłówek 2. poziomu',
-'math_sample'     => 'W tym miejscu wprowadź wzór',
+'math_sample'     => 'Tutaj wprowadź wzór',
 'math_tip'        => 'Wzór matematyczny (LaTeX)',
-'nowiki_sample'   => 'Wstaw tutaj niesformatowany tekst',
+'nowiki_sample'   => 'Tutaj wstaw niesformatowany tekst',
 'nowiki_tip'      => 'Zignoruj formatowanie wiki',
 'image_sample'    => 'Przyklad.jpg',
 'image_tip'       => 'Grafika lub inny plik osadzony w stronie',
@@ -842,10 +845,10 @@ Możesz edytować istniejące strony, bądź też [[Special:Userlogin|zalogować
 'nocreate-loggedin'                 => 'Nie masz uprawnień do tworzenia stron w {{GRAMMAR:MS.lp|{{SITENAME}}}}.',
 'permissionserrors'                 => 'Błędy uprawnień',
 'permissionserrorstext'             => 'Nie masz uprawnień do tego działania z {{PLURAL:$1|następującej przyczyny|następujących przyczyn}}:',
-'recreate-deleted-warn'             => "'''Uwaga! Próbujesz odtworzyć uprzednio usuniętą stronę.'''
+'recreate-deleted-warn'             => "'''Uwaga! Zamierzasz utworzyć stroną, która została wcześniej usunięta.'''
 
-Upewnij się, czy ponowne edytowanie tej strony jest uzasadnione.
-Poniżej, dla wygody przedstawiony jest rejestr usunięć niniejszej strony:",
+Upewnij się, czy ponowne utworzenie tej strony jest uzasadnione.
+Poniżej znajduje się rejestr usunięć tej strony:",
 'expensive-parserfunction-warning'  => 'Uwaga! Ta strona zawiera zbyt wiele wywołań złożonych obliczeniowo funkcji parsera.
 
 Powinno ich być mniej niż $2, a jest obecnie $1.',
@@ -1472,10 +1475,10 @@ Strona uznawana jest za ujednoznaczniającą jeśli zawiera ona szablon linkowan
 'mostlinked'                      => 'Najczęściej linkowane strony',
 'mostlinkedcategories'            => 'Kategorie o największej liczbie stron',
 'mostlinkedtemplates'             => 'Najczęściej linkowane szablony',
-'mostcategories'                  => 'Strony z największą liczbą kategorii',
+'mostcategories'                  => 'Artykuły z największą liczbą kategorii',
 'mostcategories-summary'          => 'Poniżej znajduje się lista stron zawierających największą liczbę kategorii.',
 'mostimages'                      => 'Najczęściej linkowane pliki',
-'mostrevisions'                   => 'Strony o największej liczbie wersji',
+'mostrevisions'                   => 'Artykuły o największej liczbie wersji',
 'mostrevisions-summary'           => 'Poniżej znajduje się lista najczęściej edytowanych stron.',
 'prefixindex'                     => 'Wszystkie strony według prefiksu',
 'shortpages'                      => 'Najkrótsze strony',
@@ -1554,6 +1557,7 @@ Możesz zawęzić liczbę wyników poprzez wybranie typu rejestru, nazwy użytko
 'listgrouprights-group'    => 'Grupa',
 'listgrouprights-rights'   => 'Uprawnienia',
 'listgrouprights-helppage' => 'Help:Uprawnienia grup użytkowników',
+'listgrouprights-members'  => '(lista członków grupy)',
 
 # E-mail user
 'mailnologin'     => 'Brak adresu',
@@ -1686,7 +1690,7 @@ Bądź ostrożny, ponieważ usunięcie jej może spowodować zakłócenia w prac
 'rollback_short'              => 'Cofnij',
 'rollbacklink'                => 'cofnij',
 'rollbackfailed'              => 'Nie udało się cofnąć zmiany',
-'cantrollback'                => 'Nie można cofnąć edycji tego autora, ponieważ jest jedynym autorem tej strony.',
+'cantrollback'                => 'Nie można cofnąć edycji, ponieważ jest tylko jedna wersja tej strony.',
 'alreadyrolled'               => 'Nie można dla strony [[:$1|$1]] cofnąć ostatniej zmiany, którą wykonał [[User:$2|$2]] ([[User talk:$2|dyskusja]]).
 Ktoś inny zdążył już to zrobić lub wprowadził własne poprawki do treści strony.
 
@@ -1830,6 +1834,7 @@ $1',
 'whatlinkshere-hideredirs' => '$1 {{PLURAL:$1|przekierowanie|przekierowania|przekierowań}}',
 'whatlinkshere-hidetrans'  => '$1 {{PLURAL:$1|dołączenie|dołączenia|dołączeń}}',
 'whatlinkshere-hidelinks'  => '$1 {{PLURAL:$1|link|linki|linków}}',
+'whatlinkshere-filters'    => 'Filtry',
 
 # Block/unblock
 'blockip'                     => 'Zablokuj użytkownika',
@@ -1916,7 +1921,7 @@ Należy on do zablokowanego zakresu adresów $2. Odblokować można tylko cały 
 'proxyblocker-disabled'       => 'Ta funkcja jest wyłączona.',
 'proxyblockreason'            => 'Twój adres IP został zablokowany, ponieważ jest to adres otwartego proxy.
 Należy to wyjaśnić z dostawcą Internetu lub pomocą techniczną informując o poważnym problemie z bezpieczeństwem.',
-'proxyblocksuccess'           => 'Wykonane.',
+'proxyblocksuccess'           => 'Wykonano.',
 'sorbsreason'                 => 'Twój adres IP znajduje się na liście serwerów open proxy w DNSBL, używanej przez {{GRAMMAR:B.lp|{{SITENAME}}}}.',
 'sorbs_create_account_reason' => 'Twój adres IP znajduje się na liście serwerów open proxy w DNSBL, używanej przez {{GRAMMAR:B.lp|{{SITENAME}}}}.
 Nie możesz utworzyć konta',
@@ -2101,7 +2106,7 @@ Wszystkie operacje importu transwiki są odnotowywane w [[Special:Log/import|rej
 'tooltip-n-mainpage'              => 'Zobacz stronę główną',
 'tooltip-n-portal'                => 'O projekcie, co możesz zrobić, gdzie możesz znaleźć informacje',
 'tooltip-n-currentevents'         => 'Informacje o aktualnych wydarzeniach',
-'tooltip-n-recentchanges'         => 'Lista ostatnich zmian na wiki',
+'tooltip-n-recentchanges'         => 'Lista ostatnich zmian na {{GRAMMAR:D.lp|{{SITENAME}}}}.',
 'tooltip-n-randompage'            => 'Pokaż losowo wybraną stronę',
 'tooltip-n-help'                  => 'Tutaj możesz się wielu rzeczy dowiedzieć.',
 'tooltip-n-sitesupport'           => 'Wesprzyj nas',
@@ -2145,7 +2150,7 @@ Wszystkie operacje importu transwiki są odnotowywane w [[Special:Log/import|rej
 # Metadata
 'nodublincore'      => 'Metadane zgodne z Dublin Core RDF zostały wyłączone dla tego serwera.',
 'nocreativecommons' => 'Metadane zgodne z Creative Commons RDF zostały wyłączone dla tego serwera.',
-'notacceptable'     => 'Serwer wiki nie jest w stanie dostarczyć danych w formacie, którego Twoja przeglądarka oczekuje.',
+'notacceptable'     => 'Serwer wiki nie może dostarczyć danych w formacie, którego Twoja przeglądarka oczekuje.',
 
 # Attribution
 'anonymous'        => 'Anonimowi użytkownicy {{GRAMMAR:D.lp|{{SITENAME}}}}',

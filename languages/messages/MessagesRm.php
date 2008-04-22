@@ -6,48 +6,78 @@
  * @author SPQRobin
  * @author Siebrand
  * @author לערי ריינהארט
+ * @author לערי ריינהארט
+ * @author SPQRobin
+ * @author Gion-andri
  */
 
 $messages = array(
 # User preference toggles
+'tog-underline'        => 'suttastritgar colliaziuns:',
+'tog-highlightbroken'  => 'Formatar links betg existents <a href="" class="new">uschia</a> (alternativa: uschia<a href="" class="internal">?</a>)',
+'tog-justify'          => "Text en furma da 'bloc'",
+'tog-hideminor'        => 'Zuppentar pitschnas midadas en las ultimas midadas',
+'tog-numberheadings'   => 'Numerar automaticamain ils titels',
 'tog-rememberpassword' => "S'annunziar permanantamain (be sch'il pled-clav n'è batg vegnì generà da la software da MediaWiki)",
 'tog-fancysig'         => 'Suttascripziun senza linc automatic tar la pagina dal utilisader.',
+
+'underline-always'  => 'adina suttastritgar',
+'underline-never'   => 'mai suttastritgar',
+'underline-default' => 'surprender standard dal browser',
 
 'skinpreview' => '(Prevista)',
 
 # Dates
-'sunday'    => 'Dumengia',
-'monday'    => 'Glindesdi',
-'tuesday'   => 'mardi',
-'wednesday' => 'mesemna',
-'thursday'  => 'Gievgia',
-'friday'    => 'Venderdi',
-'saturday'  => 'sonda',
-'wed'       => 'mes',
-'january'   => 'schaner',
-'february'  => 'favrer',
-'march'     => 'mars',
-'april'     => 'avril',
-'may_long'  => 'matg',
-'june'      => 'zercladur',
-'july'      => 'fanadur',
-'august'    => 'avust',
-'september' => 'Settember',
-'october'   => 'october',
-'november'  => 'november',
-'december'  => 'december',
-'jan'       => 'schan',
-'feb'       => 'favr',
-'mar'       => 'mars',
-'apr'       => 'avr',
-'may'       => 'matg',
-'jun'       => 'zercl',
-'jul'       => 'fan',
-'aug'       => 'avu',
-'sep'       => 'sett',
-'oct'       => 'oct',
-'nov'       => 'nov',
-'dec'       => 'dec',
+'sunday'        => 'Dumengia',
+'monday'        => 'Glindesdi',
+'tuesday'       => 'mardi',
+'wednesday'     => 'mesemna',
+'thursday'      => 'Gievgia',
+'friday'        => 'Venderdi',
+'saturday'      => 'sonda',
+'sun'           => 'du',
+'mon'           => 'Gli',
+'tue'           => 'ma',
+'wed'           => 'mes',
+'thu'           => 'gie',
+'fri'           => 've',
+'sat'           => 'so',
+'january'       => 'schaner',
+'february'      => 'favrer',
+'march'         => 'mars',
+'april'         => 'avril',
+'may_long'      => 'matg',
+'june'          => 'zercladur',
+'july'          => 'fanadur',
+'august'        => 'avust',
+'september'     => 'Settember',
+'october'       => 'october',
+'november'      => 'november',
+'december'      => 'december',
+'january-gen'   => 'schaner',
+'february-gen'  => 'favrer',
+'march-gen'     => 'mars',
+'april-gen'     => 'avril',
+'may-gen'       => 'matg',
+'june-gen'      => 'zercladur',
+'july-gen'      => 'fanadur',
+'august-gen'    => 'avust',
+'september-gen' => 'settember',
+'october-gen'   => 'october',
+'november-gen'  => 'november',
+'december-gen'  => 'december',
+'jan'           => 'schan',
+'feb'           => 'favr',
+'mar'           => 'mars',
+'apr'           => 'avr',
+'may'           => 'matg',
+'jun'           => 'zercl',
+'jul'           => 'fan',
+'aug'           => 'avu',
+'sep'           => 'sett',
+'oct'           => 'oct',
+'nov'           => 'nov',
+'dec'           => 'dec',
 
 # Categories related messages
 'categories'            => 'Categorias',
@@ -145,7 +175,7 @@ $messages = array(
 'perfcached'       => 'Las suandantas datas vegnan ord il cache ed èn eventualmain betg cumplettamain actualas:',
 'viewsource'       => 'guardar fontaunas',
 'viewsourcefor'    => 'per $1',
-'editinginterface' => "'''Attenziun:''' Questa pagina cuntegn text che vegn duvra da software da mediawiki. Midadas influenzeschan directamain l'interface da l'utilisader.",
+'editinginterface' => "'''Attenziun:''' Questa pagina cuntegn text che vegn duvra da software da mediawiki. Midadas influenzeschan directamain l'interface da l'utilisader. Sche ti vuls far translaziuns u correcturas: Studegia da far quai sin [http://translatewiki.net/wiki/Main_Page?setlang=rm Betawiki], per che las midadas pon vegnidas surprendidas da tut ils projects.",
 
 # Login and logout pages
 'logouttitle'                => "Log-out d'utilisaders",
@@ -234,7 +264,7 @@ Perquei è anc nagin retschaiver e trametter dad emails per las suandantas funcz
 'accmailtext'          => 'Il pled-clav da "$1" è vegnì tramess a $2.',
 'newarticletext'       => "Ti as clicca in link ad ina pagina che exista anc betg. Per crear ina pagina, entschaiva a tippar en la stgaffa sutvart (guarda [[{{MediaWiki:Helppage}}|la pagina d'agid]] per s'infurmar).",
 'anontalkpagetext'     => "---- ''Questa pagina serva a l'intenziun da laschar anavos ina novitad per in utilisader betg annunzià. Sche ti na pos entschaiver nagut cun ils commentaris sin questa pagina èn ellas probabalamain drizzadas ad in possesur precedent da tia adressa dad IP e ti pos ignorar ellas.''",
-'noarticletext'        => "(Quest artitgel cuntign anc nagin text. Sche ti vuls, pos ti scriver in artitgel davart quest tema. Clicca ''editar'' ed entschaiva.)",
+'noarticletext'        => "Quest artitgel cuntegna actualmain nagin text. Ti pos [[Special:Search/{{PAGENAME}}|tschertgar il term]] sin in'autra pagina, u [{{fullurl:{{FULLPAGENAME}}|action=edit}} crear questa pagina].",
 'clearyourcache'       => "'''Remartga''' Svida il chache da tes browser suenter avair arcunà, per vesair las midadas: '''Mozilla/Firefox:''' ''Shift-Strg-R'', '''Internet Explorer''' ''Strg-F5'', '''Opera:''' ''F5'', '''Safari:''' ''⌘-R'', '''Konqueror:''' ''Strg-R''.",
 'previewnote'          => "<strong>Quai è be ina prevista; midadas n'èn anc betg vegnidas arcunadas!</strong>",
 'editing'              => 'Editar $1',
@@ -283,7 +313,7 @@ Ponderai per plaschair da divider quest artitgel en pli pitschnas parts. </stron
 'viewprevnext'      => 'Mussar ($1) ($2) ($3).',
 'showingresults'    => 'Qua èn <b>$1</b> resultats, cumenzond cun il number <b>$2</b>.',
 'showingresultsnum' => 'Qua èn <b>$3</b> resultats, cumenzond cun il number <b>$2</b>.',
-'powersearch'       => 'Tschertgar',
+'powersearch'       => 'retschertgar',
 
 # Preferences page
 'preferences'           => 'Preferenzas',
@@ -327,7 +357,7 @@ Ponderai per plaschair da divider quest artitgel en pli pitschnas parts. </stron
 
 # Recent changes
 'recentchanges'                     => 'Ultimas midadas',
-'rcnote'                            => 'Qua sut èn las ultimas <strong>$1</strong> midadas dals ultims <strong>$2</strong> dis.',
+'rcnote'                            => "Sutvart {{PLURAL:$1|la '''davosa''' midada|ein las davosas '''$1''' midadas}} {{PLURAL:$2|l'ultim di|ils ultims '''$2''' dis}} davent dals $3.",
 'rclinks'                           => 'Mussar las davosas $1 midadas dals ultims $2 dis<br />$3',
 'hide'                              => 'zuppar',
 'show'                              => 'mussar',
@@ -540,9 +570,9 @@ L\'artitgel da destinaziun "[[$1]]" exista gia. Vul ti stidar el per far plaz pe
 'allmessagesname'           => 'num',
 'allmessagesdefault'        => 'text original',
 'allmessagescurrent'        => 'text actual',
-'allmessagestext'           => 'Quai è ina glista da tut las communicaziuns dals differents tips da paginas (namespace) da MediaWiki che vegnan utilisadas da la software da MediaWiki.
-Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] and [http://translatewiki.net Betawiki] if you wish to contribute to the generic MediaWiki localisation.',
-'allmessagesnotsupportedDB' => "'''{{ns:special}}:Allmessages''' è en il mument betg accessibel perquai che la datoteca è offline.",
+'allmessagestext'           => 'Quai è ina glista da tut las communicaziuns dals differents tips da paginas da MediaWiki che vegnan utilisadas da la software da MediaWiki.
+Fai ina visita sin [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] e [http://translatewiki.net Betawiki] sche ti vuls gidar da translatar la software da MediaWiki.',
+'allmessagesnotsupportedDB' => "Questa pagina na po betg vegnir mussada, perquai che '''\$wgUseDatabaseMessages''' è vegnì deactivà.",
 'allmessagesfilter'         => 'filter dals nums da las novitads:',
 'allmessagesmodified'       => 'Be mussar modifitgads',
 
@@ -610,11 +640,15 @@ Mailer returned: $1',
 'confirmemail_subject'    => "Confermaziun da l'adressa d'email tar {{SITENAME}}",
 'confirmemail_body'       => 'Olla, insatgi cun l\'adressa dad IP $1,probablamain ti, ha pretendì ina confermaziun da questa adressa ad mail per il conto d\'utilisader "$2" sin {{SITENAME}}.
 
-Per confermar che quest conta tutga propi tar tia adress da mail, avra per plaschair il suandant link, che è valaivel enfin ils $4, en tes browser: 
+Per confermar che quest conta tutga propi tar tia adress da mail, avra per plaschair la suandanta colliaziun, che è valaivel enfin ils $4, en tes browser: 
 
 $3
 
-Sche l\'adressa na tutga *betg* tar il conto numnà, na suanda per plaschair *betg* a quest link.',
+Sche l\'adressa na tutga *betg* tar il conto numnà, suanda per plaschair *betg* a questa colliaziun: 
+
+$5
+
+Bler divertiment!',
 
 # Delete conflict
 'deletedwhileediting' => "'''Attenziun:''' Questa pagina è vegnida stidada suenter che ti has cumanzà a la editar. Sche ti arcuneschas questa pagina vign l'artitgel creà danovamain.",

@@ -470,6 +470,8 @@ MySQL returned error "$3: $4".',
 
 पण तसे नसेलतर आपणास संचेतनातील क्षितिजन्तु आढळला असण्याची शक्यता आहे.
 ही बाब URL नोंदीसह प्रबंधकांच्या  निदर्शनास आणा.',
+'missingarticle-rev'   => '(आवृत्ती#: $1)',
+'missingarticle-diff'  => '(फरक: $1, $2)',
 'readonly_lag'         => 'मुख्य विदागार दात्याच्या (master database server) बरोबरीने पोहचण्यास पराधीन-विदागारदात्यास (slave server) वेळ लागल्यामुळे, विदागार आपोआप बंद झाला आहे.',
 'internalerror'        => 'अंतर्गत त्रूटी',
 'internalerror_info'   => 'अंतर्गत त्रूटी: $1',
@@ -1405,6 +1407,7 @@ Input:contenttype/subtype, e.g. <tt>image/jpeg</tt>.',
 'listgrouprights-group'    => 'गट',
 'listgrouprights-rights'   => 'अधिकार',
 'listgrouprights-helppage' => 'Help:गट अधिकार',
+'listgrouprights-members'  => '(सदस्यांची यादी)',
 
 # E-mail user
 'mailnologin'     => 'पाठविण्याचा पत्ता नाही',

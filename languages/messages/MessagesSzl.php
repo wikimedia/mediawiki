@@ -324,6 +324,8 @@ np. do staršej wersji inkšyi z zajtów.
 
 Jak to ńy je powůd, to možeś znod feler w uoprogramowańu. W takiym raźe zguoś, proša, tyn fakt
 administratorowi, końečńe podej w zguošyńu adres URL tyi zajty.',
+'missingarticle-rev'   => '(wersyjo#: $1)',
+'missingarticle-diff'  => '(dyferencyjo: $1, $2)',
 'readonly_lag'         => 'Baza danych zostoua automatyčnie zawarto na čas potřebny na synchronizacja zmian miyndzy serwerem guůwnym i serwerami pośredničůncymi.',
 'internalerror'        => 'Wewnyntřny feler',
 'internalerror_info'   => 'Wewnytřny feler: $1',
@@ -1241,6 +1243,7 @@ Možeš zawyńźić ličba wyńikůw wybjerajůnc typ rejeru, mjano užytkowńik
 'listgrouprights-group'    => 'Grupa',
 'listgrouprights-rights'   => 'Uprawńyńo',
 'listgrouprights-helppage' => 'Help:Uprawńyńo grup užytkowńikůw',
+'listgrouprights-members'  => '(lista čuůnkůw grupy)',
 
 # E-mail user
 'mailnologin'     => 'Brak adresu',
@@ -1836,13 +1839,64 @@ Wšyjstke uoperacyje importu transwiki sům uodnotowywane w [[Special:Log/import
 'spamprotectiontitle' => 'Filter antyspamowy',
 'spamprotectiontext'  => 'Zajta, kero žeś průbowou naškryflać, zostoua zawarta bez filter antyspamowy.
 Nojprawdopodobńij zostouo to spowodowane bez link do zewnyntřnej zajty internetowyj.',
+'spamprotectionmatch' => 'Filtr antyspamowy śe zouůnčůu s kuli tygo co znod tekst: $1',
+'spambot_username'    => 'MediaWiki – wyćepywańe spamu',
+'spam_reverting'      => 'Přiwracańy uostatńij wersyji we kerej ńy bůuo linkůw do $1',
+'spam_blanking'       => 'Wšyjstke wersyje zawjerouy uodnośńiki do $1. Čyščyńy zajty.',
+
+# Info page
+'infosubtitle'   => 'Informacyja uo zajće',
+'numedits'       => 'Ličba sprowjyń (artikel): $1',
+'numtalkedits'   => 'Ličba sprowjyń (zajta godki): $1',
+'numwatchers'    => 'Ličba dowajůncych pozůr: $1',
+'numauthors'     => 'Ličba autorůw (artikel) $1',
+'numtalkauthors' => 'Ličba autorůw (zajta godki): $1',
+
+# Math options
+'mw_math_png'    => 'Zawše gyneruj grafika PNG',
+'mw_math_simple' => 'HTML dla prostych, do pozostouych grafika PNG',
+'mw_math_html'   => 'Sprůbuj HTML, a jak ńy idźe užyj grafiki PNG',
+'mw_math_source' => 'Uostow w TeXu (dla přyglůndarek tekstowych)',
+'mw_math_modern' => 'HTML – zalecane do nowych přyglůndarek',
+'mw_math_mathml' => 'MathML jak dostympny (eksperymyntalne)',
+
+# Patrolling
+'markaspatrolleddiff'                 => 'uoznoč sprawjyńy kej „sprawdzůne”',
+'markaspatrolledtext'                 => 'Uoznoč tyn artikel kej „sprawdzůny”',
+'markedaspatrolled'                   => 'Sprawdzůne',
+'markedaspatrolledtext'               => 'Ta wersyjo zostoua uoznačůna kej „sprawdzůno”.',
+'rcpatroldisabled'                    => 'Wůuůnčůno fůnkcjůnalność patrolowańo we půmjyńanych na uostatku',
+'rcpatroldisabledtext'                => 'Patrolowańy půmjyńanych na uostatku je terozki wůuůnčůne.',
+'markedaspatrollederror'              => 'Ńy idźe uoznačyć kej „sprawdzůne”',
+'markedaspatrollederrortext'          => 'Muśyš wybrać wersyja coby uoznačyć jům kej „sprawdzůna”.',
+'markedaspatrollederror-noautopatrol' => 'Ńy moš uprawńyń wymaganych do uoznačańo swojich sprawjyń kej „sprawdzůne”.',
+
+# Patrol log
+'patrol-log-page' => 'Dźynńik patrolowańo',
+'patrol-log-line' => 'označůu wersyja $1 artikla $2 kej sprawdzůno $3',
+'patrol-log-auto' => '(autůmatyčńy)',
+
+# Image deletion
+'deletedrevision'                 => 'Wyćepano popředńy wersyje $1',
+'filedeleteerror-short'           => 'Feler při wyćepywańu plika $1',
+'filedeleteerror-long'            => 'Wystůmpiuy felery při wyćepywańu pliku:
+
+$1',
+'filedelete-missing'              => 'Plika „$1” ńy idźe wyćepać, bo ńy istńije.',
+'filedelete-old-unregistered'     => 'Žůndanyj wersyji plika „$1” ńy ma w baźe danych.',
+'filedelete-current-unregistered' => 'Plika „$1” ńy ma w baźe danych.',
+'filedelete-archive-read-only'    => 'Serwer WWW ńy može naškryflać w katalůgu s archiwůma „$1”.',
 
 # Browsing diffs
 'previousdiff' => '← Popředńy sprowjyńy',
 'nextdiff'     => 'Nostympno dyferéncyjo →',
 
 # Media information
+'mediawarning'         => "'''Pozůr!''' Tyn plik može zawjerać zuośliwy kod. Jak go uodymkńyš možeš zaraźić swůj systym.<hr />",
+'imagemaxsize'         => 'Na zajtach uopisu plikůw uůgrańič rozmjar uobrazkůw do:',
+'thumbsize'            => 'Rozmjar mińjatůrki',
 'widthheightpage'      => '$1×$2, $3 zajt',
+'file-info'            => '(rozmjor plika: $1, typ MIME: $2)',
 'file-info-size'       => '($1 × $2 pikseli, rozmior plika: $3, typ MIME: $4)',
 'file-nohires'         => '<small>Uobrozek we wjynkšej rozdźelčośći ńy je dostympny.</small>',
 'svg-long-desc'        => '(Plik SVG, nůminalńe $1 × $2 pixelůw, rozmior plika: $3)',
@@ -1850,9 +1904,14 @@ Nojprawdopodobńij zostouo to spowodowane bez link do zewnyntřnej zajty interne
 'show-big-image-thumb' => '<small>Rozmiar podglůndu: $1 × $2 pikseli</small>',
 
 # Special:Newimages
-'newimages'    => 'Galerjo nowych uobrozkůw',
-'showhidebots' => '($1 boty)',
-'ilsubmit'     => 'Šnupej',
+'newimages'             => 'Galerjo nowych uobrozkůw',
+'imagelisttext'         => "Půnižyj na {{PLURAL:$1||posortowanyj $2}} liśće {{PLURAL:$1|znojdowo|znojdujům|znojdowo}} śe '''$1''' {{PLURAL:$1|plik|pliki|plikůw}}.",
+'newimages-summary'     => 'Na tyi ekstra zajće prezyntowane sům uostatńo wćepńjynte pliki.',
+'showhidebots'          => '($1 boty)',
+'noimages'              => 'Brak plikůw do pokozańo.',
+'ilsubmit'              => 'Šnupej',
+'bydate'                => 'wedle daty',
+'sp-newimages-showfrom' => 'pokož nowe pliki začynajůnc uod $2, $1',
 
 # Bad image list
 'bad_image_list' => 'Dane noležy prowadźić we formaće:
@@ -1875,9 +1934,19 @@ Nostympne linki w lińii uwažůmy za wyjůntki, to sům nazwy zajtůw, kaj plik
 * focallength', # Do not translate list items
 
 # EXIF tags
-'exif-imagedescription'    => 'Titel uobrozka',
-'exif-artist'              => 'Autor',
-'exif-exposuretime-format' => '$1 s ($2)',
+'exif-imagewidth'                => 'Šyrokość',
+'exif-imagelength'               => 'Wysokość',
+'exif-bitspersample'             => 'Bitůw na průbka',
+'exif-compression'               => 'Metoda kompresyji',
+'exif-photometricinterpretation' => 'Interpretacyjo fotůmetryčno',
+'exif-orientation'               => 'Uorjyntacyjo uobrozu',
+'exif-samplesperpixel'           => 'Průbek na piksel',
+'exif-planarconfiguration'       => 'Rozkuod danych',
+'exif-ycbcrsubsampling'          => 'Podprůbkowańe Y do C',
+'exif-ycbcrpositioning'          => 'Rozmješčyńy Y i C',
+'exif-imagedescription'          => 'Titel uobrozka',
+'exif-artist'                    => 'Autor',
+'exif-exposuretime-format'       => '$1 s ($2)',
 
 'exif-meteringmode-255' => 'inkšy',
 

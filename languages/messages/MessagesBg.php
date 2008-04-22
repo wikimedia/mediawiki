@@ -1473,6 +1473,7 @@ $2',
 'listgrouprights-group'    => 'Група',
 'listgrouprights-rights'   => 'Права',
 'listgrouprights-helppage' => 'Help:Права на групите',
+'listgrouprights-members'  => '(списък на членовете)',
 
 # E-mail user
 'mailnologin'     => 'Няма електронна поща',
@@ -2537,6 +2538,7 @@ $1',
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => 'Търсене на повтарящи се файлове',
 'fileduplicatesearch-summary'  => 'Въведете име на файл (без представката „{{ns:image}}:“), за да потърсите повтарящи го файлове въз основа на неговата хеш стойност.',
+'fileduplicatesearch-legend'   => 'Търсене на повтарящ се файл',
 'fileduplicatesearch-filename' => 'Име на файл:',
 'fileduplicatesearch-submit'   => 'Търсене',
 'fileduplicatesearch-info'     => '$1 × $2 пиксела<br />Размер на файла: $3<br />MIME тип: $4',

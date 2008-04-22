@@ -588,6 +588,8 @@ Dit wordt meestal veroorzaakt door het volgen van een link in een vergelijkings-
 
 Als dit niet het geval is, dan hebt u een fout in de software gevonden.
 Rapporteer dit alstublieft aan een beheerder met vermelding van de URL.',
+'missingarticle-rev'   => '(versienummer: $1)',
+'missingarticle-diff'  => '(Wijziging: $1, $2)',
 'readonly_lag'         => 'De database is automatisch vergrendeld terwijl de ondergeschikte databaseservers synchroniseren met de hoofdserver.',
 'internalerror'        => 'Interne fout',
 'internalerror_info'   => 'Interne fout: $1',
@@ -1149,8 +1151,8 @@ De gegevens over {{SITENAME}} zijn mogelijk niet bijgewerkt.',
 'userrights-groupsremovable'       => 'Verwijderbare groepen:',
 'userrights-groupsavailable'       => 'Beschikbare groepen:',
 'userrights-groups-help'           => 'U kunt de groepen wijzigen waar deze gebruiker lid van is.
-Een aangekruisd vinkvakje betekent dat de gebruiker lid is van de groep.
-Een niet aangekruisd vinkvakje betekent dat de gebruiker geen lid is van de groep.
+Een aangekruist vakje betekent dat de gebruiker lid is van de groep.
+Een niet aangekruist vakje betekent dat de gebruiker geen lid is van de groep.
 Een "*" betekent dat u een gebruiker niet uit een groep kunt verwijderen nadat u die hebt toegevoegd, of vice versa.',
 'userrights-reason'                => 'Reden voor het veranderen:',
 'userrights-available-none'        => 'U mag geen gebruikersrechten veranderen.',
@@ -1582,6 +1584,7 @@ U kunt ook kiezen voor specifieke logboeken en filteren op gebruiker en paginana
 'listgrouprights-group'    => 'Groep',
 'listgrouprights-rights'   => 'Rechten',
 'listgrouprights-helppage' => 'Help:Gebruikersrechten',
+'listgrouprights-members'  => '(ledenlijst)',
 
 # E-mail user
 'mailnologin'     => 'Geen verzendadres beschikbaar',

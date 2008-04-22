@@ -373,6 +373,8 @@ La ŝlosinto lasis la jenan mesaĝon:
 artikolo, kiun ĝi devus trovi, nomita "$1".
 Ĉi tio ne estas eraro de la datumbazo, sed probable cimo en la programo.
 Bonvolu raporti ĉi tion al iu sistemestro, kaj rimarkigi la retadreson (URL).',
+'missingarticle-rev'   => '(revizio#: $1)',
+'missingarticle-diff'  => '(Diferenco inter versioj: $1, $2)',
 'readonly_lag'         => 'La datumbazo estis aŭtomate ŝlosita dum la subdatumbazo atingas la ĉefan datumbazon.',
 'internalerror'        => 'Interna eraro',
 'internalerror_info'   => 'Interna eraro: $1',
@@ -1332,6 +1334,7 @@ komprenata kiel rekomendo aŭ reklamo.',
 'listgrouprights-group'    => 'Grupo',
 'listgrouprights-rights'   => 'Rajtoj',
 'listgrouprights-helppage' => 'Help:Grupaj rajtoj',
+'listgrouprights-members'  => '(listo de anoj)',
 
 # E-mail user
 'mailnologin'     => 'Neniu alsendota adreso',

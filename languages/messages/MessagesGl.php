@@ -1331,6 +1331,7 @@ Pode precisar máis a vista seleccionando o tipo de rexistro, o nome de usuario 
 'listgrouprights-group'    => 'Grupo',
 'listgrouprights-rights'   => 'Dereitos',
 'listgrouprights-helppage' => 'Help:Dereiros do grupo',
+'listgrouprights-members'  => '(listaxe de membros)',
 
 # E-mail user
 'mailnologin'     => 'Non existe enderezo para o envío',

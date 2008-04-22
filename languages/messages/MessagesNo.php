@@ -462,6 +462,8 @@ som er blitt slettet.
 Hvis dette ikke er tilfelle er det mulig du har støtt på en programfeil.
 Send en rapport om dette til en administrator, og ta med adressen (URL-en)
 til siden.',
+'missingarticle-rev'   => '(versjon $1)',
+'missingarticle-diff'  => '(diff: $1, $2)',
 'readonly_lag'         => 'Databasen er automatisk skrivebeskyttet så slavetjenerne kan ta igjen mestertjeneren',
 'internalerror'        => 'Intern feil',
 'internalerror_info'   => 'Intern feil: $1',
@@ -1390,6 +1392,7 @@ Det har vært totalt {{PLURAL:$3|'''én''' sidevisning|'''$3''' sidevisninger}},
 'listgrouprights-group'    => 'Gruppe',
 'listgrouprights-rights'   => 'Rettigheter',
 'listgrouprights-helppage' => 'Help:Grupperettigheter',
+'listgrouprights-members'  => '(liste over medlemmer)',
 
 # E-mail user
 'mailnologin'     => 'Ingen avsenderadresse',

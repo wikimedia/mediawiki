@@ -820,6 +820,9 @@ Administratorer kan dog fortsat se og gendanne det fjernede indhold, medmindre d
 'logdelete-success'           => 'Logbogs-aktion er indstillet.',
 'pagehist'                    => 'Sidehistorik',
 'deletedhist'                 => 'Slettet historik',
+'revdelete-content'           => 'indhold',
+'revdelete-summary'           => 'beskrivelse',
+'revdelete-uname'             => 'brugernavn',
 
 # History merging
 'mergehistory'                     => 'Sammenflet sidehistorikker',
@@ -974,17 +977,20 @@ Vær opmæksom på at bevare kontinuiteten i sidehistorikken.
 
 # Groups
 'group'               => 'Gruppe:',
+'group-user'          => 'Brugere',
 'group-autoconfirmed' => 'Registrerede brugere',
 'group-bot'           => 'Robotter',
 'group-sysop'         => 'Administratorer',
 'group-bureaucrat'    => 'Bureaukrater',
 'group-all'           => '(alle)',
 
+'group-user-member'          => 'Bruger',
 'group-autoconfirmed-member' => 'Registreret bruger',
 'group-bot-member'           => 'Robot',
 'group-sysop-member'         => 'Administrator',
 'group-bureaucrat-member'    => 'Bureaukrat',
 
+'grouppage-user'          => '{{ns:project}}:Brugere',
 'grouppage-autoconfirmed' => '{{ns:project}}:Registrerede brugere',
 'grouppage-bot'           => '{{ns:project}}:Robotter',
 'grouppage-sysop'         => '{{ns:project}}:Administratorer',
@@ -1029,6 +1035,7 @@ Vær opmæksom på at bevare kontinuiteten i sidehistorikken.
 'recentchangeslinked-title'    => 'Ændringer der relaterer til $1',
 'recentchangeslinked-noresult' => 'I det udvalgte tidsrum blev der ikke foretaget ændringer på siderne der henvises til.',
 'recentchangeslinked-summary'  => "Denne specialside viser de seneste ændringer på de sider der henvises til. Sider på din overvågningsliste er vist med '''fed''' skrift.",
+'recentchangeslinked-page'     => 'Sidnavn:',
 
 # Upload
 'upload'                      => 'Læg en fil op',
