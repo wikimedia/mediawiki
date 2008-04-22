@@ -158,8 +158,9 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 
 	private function run($resultPageSet = null) {
 		$this->params = $this->extractRequestParams(false);
-		$userMax = ( $this->params['redirect'] ? ApiBase::LIMIT_BIG1/2 : ApiBase::LIMIT_BIG1 );
-		$botMax  = ( $this->params['redirect'] ? ApiBase::LIMIT_BIG2/2 : ApiBase::LIMIT_BIG2 );
+		$this->redirect = isset($this->params['redirect']) && $this->params['redirect'];
+		$userMax = ( $this->redirect ? ApiBase::LIMIT_BIG1/2 : ApiBase::LIMIT_BIG1 );
+		$botMax  = ( $this->redirect ? ApiBase::LIMIT_BIG2/2 : ApiBase::LIMIT_BIG2 );
 		if( $this->params['limit'] == 'max' ) {
 			$this->params['limit'] = $this->getMain()->canApiHighLimits() ? $botMax : $userMax;
 			$this->getResult()->addValue( 'limits', $this->getModuleName(), $this->params['limit'] );
@@ -194,7 +195,7 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 		}
 		$db->freeResult($res);
 
-		if($this->params['redirect'] && !empty($this->redirTitles))
+		if($this->redirect && !empty($this->redirTitles))
 		{
 			$this->resetQueryParams();
 			$this->prepareSecondQuery($resultPageSet);
