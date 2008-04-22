@@ -1049,7 +1049,7 @@ Ujistěte se, že tato změna udrží souvislost a posloupnost verzí v historii
 'search-mwsuggest-enabled'  => 's návrhy',
 'search-mwsuggest-disabled' => 'bez návrhů',
 'search-relatedarticle'     => 'Související',
-'mwsuggest-disable'         => 'Vypnout Ajaxové návrhy',
+'mwsuggest-disable'         => 'Vypnout ajaxové napovídání',
 'searchrelated'             => 'související',
 'searchall'                 => 'vše',
 'showingresults'            => 'Zobrazuji <strong>$1</strong> {{plural:$1|výsledek|výsledky|výsledků}} počínaje od <strong>$2</strong>.',

@@ -530,6 +530,8 @@ $1',
 'missingarticle'       => 'La banca de donadas a pas pogut trobar lo tèxt d\'una pagina existenta, que lo títol es "$1".
 Es pas una error de la banca de donadas, mas mai probablament un bog del logicial {{SITENAME}}.
 Raportatz aquesta error a un administrator, en li indicant l\'adreça de la pagina fautiva.',
+'missingarticle-rev'   => '(revision#: $1)',
+'missingarticle-diff'  => '(Diff: $1, $2)',
 'readonly_lag'         => 'La banca de donadas es estada automaticament clavada pendent que los serveires segondaris ratrapan lor retard sul serveire principal.',
 'internalerror'        => 'Error intèrna',
 'internalerror_info'   => 'Error intèrna: $1',
@@ -1050,9 +1052,10 @@ per modificar vòstras preferéncias d'utilizaire.",
 'userrights-groupsmember'          => 'Membre de :',
 'userrights-groupsremovable'       => 'Gropes suprimibles :',
 'userrights-groupsavailable'       => 'Gropes disponibles :',
-'userrights-groups-help'           => "Podètz remanegar los gropes alsquals aparten aqueste utilizaire.
+'userrights-groups-help'           => "Podètz modificar los gropes alsquals aparten aqueste utilizaire.
 Una casa marcada significa que l'utilizaire se tròba dins aqueste grop.
-Una casa pas marcada significa, al contrari, que s’i tròba pas.",
+Una casa pas marcada significa, al contrari, que s’i tròba pas.
+Una * indica que podretz pas levar aqueste grop un còp que l'auretz apondut e vice-versa.",
 'userrights-reason'                => 'Motiu del cambiament :',
 'userrights-available-none'        => 'Podètz pas cambiar l’apartenéncia als diferents gropes.',
 'userrights-available-add'         => "Podètz apondre d'utilizaires a {{PLURAL:$2|aqueste grop|aquestes gropes}} : $1.",
@@ -1462,6 +1465,7 @@ I a {{PLURAL:\$7|'''\$7''' article|'''\$7''' articles}} dins [[meta:Help:Job_que
 'listgrouprights-group'    => 'Grop',
 'listgrouprights-rights'   => 'Dreches associats',
 'listgrouprights-helppage' => 'Help:Dreches dels gropes',
+'listgrouprights-members'  => '(lista de membres)',
 
 # E-mail user
 'mailnologin'     => "Pas d'adreça",

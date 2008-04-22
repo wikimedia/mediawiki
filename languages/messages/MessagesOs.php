@@ -44,8 +44,18 @@ $fallback8bitEncoding =  'windows-1251';
 
 $messages = array(
 # User preference toggles
-'tog-underline' => 'Æрвитæнты бын хахх',
-'tog-hideminor' => 'Чысыл ивддзинæдтæ фæстаг ивддзинæдты номхыгъды мауал æвдис',
+'tog-underline'               => 'Æрвитæнты бын хахх',
+'tog-hideminor'               => 'Чысыл ивддзинæдтæ фæстаг ивддзинæдты номхыгъды мауал æвдис',
+'tog-editondblclick'          => 'Фæрстæ дыкъæппæй ив (JavaScript)',
+'tog-editsectiononrightclick' => 'Сæргондыл рахиз æркъæппæй фарсы хæйттæ ив (JavaScript)',
+'tog-watchcreations'          => 'Æз цы фæрстæ райдайын, уыдонмæ мæ цæст дарын мæ фæнды',
+'tog-watchdefault'            => 'Æз цы фæрстæ ивын, уыдонмæ мæ цæст дарын мæ фæнды',
+'tog-watchmoves'              => 'Æз цы фæрсты нæмттæ ивын, уыдонмæ мæ цæст дарын мæ фæнды',
+'tog-watchdeletion'           => 'Æз цы фæрстæ аппарын, уыдонмæ мæ цæст дарын мæ фæнды',
+'tog-enotifwatchlistpages'    => 'Электронон постæй мæм хъуысынгæнинаг æрвыст уа, æз цы фæрстæм мæ цæст дарын, уыдонæй иу куы ивд æрцæуа, уæд',
+'tog-enotifusertalkpages'     => 'Электронон постæй мæм хъуысынгæнинаг æрвыст уа, мæ дискусси куы ивд æрцæуа, уæд',
+'tog-enotifminoredits'        => 'Кæд ивддзинад чысыл у, уæддæр мæм электронон фыстæг æрбацæуа',
+'tog-shownumberswatching'     => 'Цал архайæджы фарсмæ сæ цæст дарынц, уый равдис',
 
 # Dates
 'sunday'        => 'Хуыцаубон',
@@ -211,14 +221,16 @@ $messages = array(
 # Edit page toolbar
 'bold_sample'     => 'Ацы текст бæзджын суыдзæн',
 'bold_tip'        => 'Бæзджын текст',
+'link_sample'     => 'Æрвитæны текст',
 'headline_sample' => 'Ам сæргонды текст уæд',
 
 # Edit pages
-'minoredit'   => 'Ай чысыл ивддзинад у.',
-'watchthis'   => 'Ацы фарсмæ дæ цæст æрдар',
-'savearticle' => 'Афтæ уæд!',
-'showpreview' => 'Фен уал æй',
-'newarticle'  => '(Ног)',
+'minoredit'          => 'Ай чысыл ивддзинад у.',
+'watchthis'          => 'Ацы фарсмæ дæ цæст æрдар',
+'savearticle'        => 'Афтæ уæд!',
+'showpreview'        => 'Фен уал æй',
+'newarticle'         => '(Ног)',
+'template-protected' => '(æхгæд)',
 
 # History pages
 'last'       => 'раздæры',
@@ -356,6 +368,7 @@ $3',
 'importnotext' => 'Афтид у кæнæ текст дзы нæй',
 
 # Tooltip help for the actions
+'tooltip-pt-mycontris'    => 'Мæ бавæрд',
 'tooltip-ca-protect'      => 'Ацы фарс ивддзинæдтæй сæхгæн',
 'tooltip-ca-delete'       => 'Аппар ацы фарс',
 'tooltip-n-mainpage'      => 'Сæйраг фарсмæ рацу',

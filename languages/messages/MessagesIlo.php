@@ -425,6 +425,12 @@ Kasta met nga ikarim kadakami a bukodmo a sinurat wenno gapuanan daytoy, wenno k
 'move'               => 'Iyakar',
 'movethispage'       => 'Iyakar daytoy a panid',
 
+# Book sources
+'booksources-go' => 'Inkan',
+
+# Special:Log
+'log-search-submit' => 'Inkan',
+
 # Special:Allpages
 'allpages'       => 'Amin a panid',
 'nextpage'       => 'sumaruno a panid ($1)',
@@ -470,22 +476,24 @@ Kasta met nga ikarim kadakami a bukodmo a sinurat wenno gapuanan daytoy, wenno k
 'enotif_anon_editor' => 'di am-ammo nga agar-aramat $1',
 
 # Delete/protect/revert
-'deletepage'          => 'Ikkaten ti panid',
-'confirm'             => 'pasingkedan',
-'excontent'           => "ti linaon ket: '$1'",
-'excontentauthor'     => "ti linaonna ket: '$1' (ket ti laeng contributor ket ni '[[Special:Contributions/$1|$2]]')",
-'exblank'             => 'blanko ti panid',
-'delete-confirm'      => 'Ikkaten ti "$1"',
-'delete-legend'       => 'Ikkaten',
-'deletecomment'       => 'Rason no apay nga ikkaten',
-'rollback_short'      => 'Isubli',
-'rollbacklink'        => 'isubli',
-'revertpage'          => 'Naikkat ti panangbaliw ni [[Special:Contributions/$2|$2]] ([[User talk:$2|Pagtutungtongan]]), naisubli iti kaudian a version ni [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
-'protectlogpage'      => 'Log ti panangsaluad',
-'unprotectedarticle'  => 'naikkat ti saluad ti "[[$1]]"',
-'protect-legend'      => 'Pasingkedan ti panangsaluad',
-'protectcomment'      => 'Rason no apay a saluadan daytoy a panid',
-'protect-level-sysop' => 'Sysops laeng',
+'deletepage'            => 'Ikkaten ti panid',
+'confirm'               => 'pasingkedan',
+'excontent'             => "ti linaon ket: '$1'",
+'excontentauthor'       => "ti linaonna ket: '$1' (ket ti laeng contributor ket ni '[[Special:Contributions/$1|$2]]')",
+'exblank'               => 'blanko ti panid',
+'delete-confirm'        => 'Ikkaten ti "$1"',
+'delete-legend'         => 'Ikkaten',
+'deletecomment'         => 'Rason no apay nga ikkaten',
+'deletereasonotherlist' => 'Sabali a rason',
+'rollback_short'        => 'Isubli',
+'rollbacklink'          => 'isubli',
+'rollbackfailed'        => 'Napaay ti panangisubli',
+'revertpage'            => 'Naikkat ti panangbaliw ni [[Special:Contributions/$2|$2]] ([[User talk:$2|Pagtutungtongan]]), naisubli iti kaudian a version ni [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'protectlogpage'        => 'Log ti panangsaluad',
+'unprotectedarticle'    => 'naikkat ti saluad ti "[[$1]]"',
+'protect-legend'        => 'Pasingkedan ti panangsaluad',
+'protectcomment'        => 'Rason no apay a saluadan daytoy a panid',
+'protect-level-sysop'   => 'Sysops laeng',
 
 # Restrictions (nouns)
 'restriction-edit'   => 'Baliwan',
@@ -507,14 +515,18 @@ Kasta met nga ikarim kadakami a bukodmo a sinurat wenno gapuanan daytoy, wenno k
 'linklistsub'         => '(Listaan dagiti panilpo)',
 
 # Block/unblock
-'blocklink' => 'pengdan',
+'ipbotheroption' => 'sabali',
+'blocklink'      => 'pengdan',
 
 # Developer tools
-'unlockconfirm'     => 'Wen, talaga a kayatko a balunetan ti database.',
-'lockbtn'           => 'Balunetan ti database',
-'unlockbtn'         => 'Luktan ti database',
-'lockdbsuccesssub'  => 'Balligi ti pannakabalunet ti database',
-'databasenotlocked' => 'Saan a nabalunetan ti database.',
+'lockdb'             => 'Balunetan ti database',
+'unlockdb'           => 'Lukatan ti database',
+'unlockconfirm'      => 'Wen, talaga a kayatko a balunetan ti database.',
+'lockbtn'            => 'Balunetan ti database',
+'unlockbtn'          => 'Luktan ti database',
+'lockdbsuccesssub'   => 'Balligi ti pannakabalunet ti database',
+'unlockdbsuccesssub' => 'Naikkaten ti balunet ti database',
+'databasenotlocked'  => 'Saan a nabalunetan ti database.',
 
 # Move page
 'move-page'               => 'Iyakar ti $1',
@@ -534,6 +546,7 @@ Kasta met nga ikarim kadakami a bukodmo a sinurat wenno gapuanan daytoy, wenno k
 'delete_and_move_confirm' => 'Wen, ikkatenen ti panid',
 
 # Export
+'export-submit'     => 'Angkaten',
 'export-addcattext' => 'Manginayon iti pampanid manipud iti categoria:',
 'export-addcat'     => 'Inayon',
 
@@ -542,11 +555,14 @@ Kasta met nga ikarim kadakami a bukodmo a sinurat wenno gapuanan daytoy, wenno k
 
 # Thumbnails
 'thumbnail-more' => 'Padakkelen',
+'filemissing'    => 'Mapukpukaw ti file',
 
 # Tooltip help for the actions
+'tooltip-pt-userpage'    => 'Ti panidko kas agar-aramat',
 'tooltip-pt-mytalk'      => 'Panid pakitungtongak',
 'tooltip-pt-preferences' => 'Dagiti preferenciak',
 'tooltip-pt-watchlist'   => 'Listaan dagiti panid a palpaliiwem ti panagbalbaliwda',
+'tooltip-pt-mycontris'   => 'Listaan dagiti naaramidak',
 'tooltip-pt-logout'      => 'Rummuaren',
 'tooltip-ca-viewsource'  => 'Nasaluadan daytoy a panid. Mabalinmo a kitaen ti taudanna.',
 'tooltip-ca-protect'     => 'Saluadan daytoy a panid',

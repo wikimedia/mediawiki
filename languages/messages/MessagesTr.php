@@ -15,6 +15,7 @@
  * @author Nike
  * @author Suelnur
  * @author Myildirim2007
+ * @author Mach
  */
 
 $namespaceNames = array(
@@ -680,6 +681,8 @@ Bu sayfa değişikiliği kamu arşivlerinden silinmiştir.
 'revdelete-submit'            => 'Seçilen sürüme uygula',
 'pagehist'                    => 'Sayfa geçmişi',
 'deletedhist'                 => 'Silinmiş geçmiş',
+'revdelete-summary'           => 'değişiklik özeti',
+'revdelete-uname'             => 'kullanıcı adı',
 
 # History merging
 'mergehistory'                     => 'Sayfa geçmişlerini takas et.',
@@ -710,32 +713,33 @@ Bu sayfa değişikiliği kamu arşivlerinden silinmiştir.
 'diff-multi'              => '(Gösterilmeyen $1 ara değişiklik bulunmaktadır)',
 
 # Search results
-'searchresults'         => 'Arama sonuçları',
-'searchresulttext'      => '{{SITENAME}} içinde arama yapmak konusunda bilgi almak için [[{{MediaWiki:Helppage}}|{{int:help}}]] sayfasına bakabilirsiniz.',
-'searchsubtitle'        => 'Aranan: "[[:$1]]" [[Special:Allpages/$1|&#x5B;Indeks&#x5D;]]',
-'searchsubtitleinvalid' => 'Aranan: "$1"',
-'noexactmatch'          => "''Başlığı \"\$1\" olan bir madde bulunamadı.''' Bu sayfayı siz [[:\$1|oluşturabilirsiniz]].",
-'noexactmatch-nocreate' => "'''\"\$1\" başlıklı sayfa bulunmamaktadır.'''",
-'titlematches'          => 'Madde adı eşleşiyor',
-'notitlematches'        => 'Hiçbir başlıkta bulunamadı',
-'textmatches'           => 'Sayfa metni eşleşiyor',
-'notextmatches'         => 'Hiçbir sayfada bulunamadı',
-'prevn'                 => 'önceki $1',
-'nextn'                 => 'sonraki $1',
-'viewprevnext'          => '($1) ($2) ($3).',
-'search-result-size'    => '$1 ({{PLURAL:$2|1 kelime|$2 kelime}})',
-'search-result-score'   => 'Uygunluk: $1%',
-'search-redirect'       => '(yönlendirme $1)',
-'search-suggest'        => 'Bunu mu demek istediniz: $1',
-'searchall'             => 'hepsi',
-'showingresults'        => '<b>$2.</b> sonuçtan başlayarak <b>$1</b> sonuç aşağıdadır:',
-'showingresultsnum'     => '<b>$2.</b> sonuçtan başlayarak <b>$3</b> sonuç aşağıdadır:',
-'powersearch'           => 'Gelişmiş arama',
-'powersearch-legend'    => 'Gelişmiş arama',
-'powersearchtext'       => 'Arama yapılacak alanları seçin :<br />
+'searchresults'            => 'Arama sonuçları',
+'searchresulttext'         => '{{SITENAME}} içinde arama yapmak konusunda bilgi almak için [[{{MediaWiki:Helppage}}|{{int:help}}]] sayfasına bakabilirsiniz.',
+'searchsubtitle'           => 'Aranan: "[[:$1]]" [[Special:Allpages/$1|&#x5B;Indeks&#x5D;]]',
+'searchsubtitleinvalid'    => 'Aranan: "$1"',
+'noexactmatch'             => "''Başlığı \"\$1\" olan bir madde bulunamadı.''' Bu sayfayı siz [[:\$1|oluşturabilirsiniz]].",
+'noexactmatch-nocreate'    => "'''\"\$1\" başlıklı sayfa bulunmamaktadır.'''",
+'titlematches'             => 'Madde adı eşleşiyor',
+'notitlematches'           => 'Hiçbir başlıkta bulunamadı',
+'textmatches'              => 'Sayfa metni eşleşiyor',
+'notextmatches'            => 'Hiçbir sayfada bulunamadı',
+'prevn'                    => 'önceki $1',
+'nextn'                    => 'sonraki $1',
+'viewprevnext'             => '($1) ($2) ($3).',
+'search-result-size'       => '$1 ({{PLURAL:$2|1 kelime|$2 kelime}})',
+'search-result-score'      => 'Uygunluk: $1%',
+'search-redirect'          => '(yönlendirme $1)',
+'search-suggest'           => 'Bunu mu demek istediniz: $1',
+'search-interwiki-caption' => 'Kardeş projeler',
+'searchall'                => 'hepsi',
+'showingresults'           => '<b>$2.</b> sonuçtan başlayarak <b>$1</b> sonuç aşağıdadır:',
+'showingresultsnum'        => '<b>$2.</b> sonuçtan başlayarak <b>$3</b> sonuç aşağıdadır:',
+'powersearch'              => 'Gelişmiş arama',
+'powersearch-legend'       => 'Gelişmiş arama',
+'powersearchtext'          => 'Arama yapılacak alanları seçin :<br />
 $1<br />
 $2 yönlendirmeleri listele &nbsp; Aranacak: $3 $9',
-'searchdisabled'        => '{{SITENAME}} sitesinde arama yapma geçici olarak durdurulmuştur. Bu arada Google kullanarak {{SITENAME}} içinde arama yapabilirsiniz. Arama sitelerinde indekslemelerinin biraz eski kalmış olabileceğini göz önünde bulundurunuz.',
+'searchdisabled'           => '{{SITENAME}} sitesinde arama yapma geçici olarak durdurulmuştur. Bu arada Google kullanarak {{SITENAME}} içinde arama yapabilirsiniz. Arama sitelerinde indekslemelerinin biraz eski kalmış olabileceğini göz önünde bulundurunuz.',
 
 # Preferences page
 'preferences'              => 'Tercihler',
@@ -816,11 +820,13 @@ $2 yönlendirmeleri listele &nbsp; Aranacak: $3 $9',
 
 # Groups
 'group'            => 'Grup:',
+'group-user'       => 'Kullanıcılar',
 'group-bot'        => 'Botlar',
 'group-sysop'      => 'Yöneticiler',
 'group-bureaucrat' => 'Bürokratlar',
 'group-all'        => '(hepsi)',
 
+'group-user-member'       => 'Kullanıcı',
 'group-bot-member'        => 'Bot',
 'group-sysop-member'      => 'Yönetici',
 'group-bureaucrat-member' => 'Bürokrat',
@@ -866,6 +872,7 @@ $2 yönlendirmeleri listele &nbsp; Aranacak: $3 $9',
 'recentchangeslinked-title'    => '"$1" ile ilişkili değişiklikler',
 'recentchangeslinked-noresult' => 'Verilen süre içerisinde belirtilen sayfaya bağlı diğer sayfalarda değişikilik bulunmamaktadır.',
 'recentchangeslinked-summary'  => "Bu özel sayfa belirtilen sayfaya bağlı olan sayfalarda yapılan değişiklikleri listeler. İzleme listenizde olan sayfalar '''kalın''' yazıyla gösterilir.",
+'recentchangeslinked-page'     => 'Sayfa adı:',
 
 # Upload
 'upload'                      => 'Dosya yükle',
@@ -1106,6 +1113,7 @@ Toplam sayfa görüntülenme sayısı '''\$3''', değişiklik başına görünt�
 'log'                  => 'Kayıtlar',
 'all-logs-page'        => 'Tüm kayıtlar',
 'log-search-legend'    => 'Kayıtları ara',
+'log-search-submit'    => 'Git',
 'alllogstext'          => '[[Special:Log/upload|Yükleme]], [[Special:Log/delete|silme]], [[Special:Log/move|taşıma]], [[Special:Log/protect|koruma altına alma]], [[Special:Log/newusers|yeni kullanıcı]], [[Special:Log/renameuser|kullanıcıların yeniden adlandırmaları]], [[Special:Log/block|erişim engelleme]], [[Special:Log/rights|yönetici hareketlerinin]] ve [[Special:Log/makebot|botların durumunun]] tümünün kayıtları. 
 
 Kayıt tipini, kullanıcı ismini, sayfa ismini girerek listeyi daraltabilirsiniz.',
@@ -1925,6 +1933,10 @@ Bir başlığı çıkarmak için, yanındaki kutucuğu işaretleyin, ve Başlık
 'filepath'        => 'Dosyanın konumu',
 'filepath-page'   => 'Dosya adı:',
 'filepath-submit' => 'Konum',
+
+# Special:FileDuplicateSearch
+'fileduplicatesearch-filename' => 'Dosya adı:',
+'fileduplicatesearch-submit'   => 'Ara',
 
 # Special:SpecialPages
 'specialpages-group-maintenance' => 'Bakım raporları',

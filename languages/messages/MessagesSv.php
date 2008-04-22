@@ -549,11 +549,14 @@ MySQL returnerade felen "$3<tt>: $4</tt>".',
 'readonly'             => 'Databasen är skrivskyddad',
 'enterlockreason'      => 'Ange varför sidan skrivskyddats, och ge en uppskattning av hur länge skrivskyddet bör behållas.',
 'readonlytext'         => 'Databasen är tillfälligt låst för ändringar, förmodligen på grund av rutinmässigt underhåll. Efter avslutat arbete kommer den att återgå till normalläge. Den utvecklare som skrivskyddade den har angivit följande anledning: <p>$1',
-'missingarticle'       => 'Databasen borde ha funnit sidan "$1", men det gjorde den inte.
+'missingarticle'       => 'Databasen borde ha funnit texten till en sida med namnet $1, men det gjorde den inte.
 
-Den vanligaste orsaken till denna typ av fel är en utdaterad jämförelse mellan sidversioner (diff) eller en länk från versionshistoriken till en sida som raderats.
+Den vanligaste orsaken till denna typ av fel är en länk till en jämförelse mellan versioner (diff) eller till en gammal version av en sida som raderats.
 
-Om inte så är fallet, kan du ha hittat en bugg i mjukvaran. Rapportera gärna problemet till någon administratör, ange då URL:en (webbadressen).',
+Om inte så är fallet, kan du ha hittat en bugg i mjukvaran.
+Rapportera gärna problemet till någon administratör, ange då URL:en (webbadressen).',
+'missingarticle-rev'   => '(version $1)',
+'missingarticle-diff'  => '(jämförelse mellan version $1 och $2)',
 'readonly_lag'         => 'Databasen har automatiskt skrivskyddats medan slavdatabasservrarna synkroniseras med huvudservern.',
 'internalerror'        => 'Internt fel',
 'internalerror_info'   => 'Internt fel: $1',
@@ -1503,6 +1506,7 @@ Sedan denna wiki startades har sidor visats totalt <b>$3</b> {{PLURAL:$3|gång|g
 'listgrouprights-group'    => 'Grupp',
 'listgrouprights-rights'   => 'Behörigheter',
 'listgrouprights-helppage' => 'Help:Gruppbehörigheter',
+'listgrouprights-members'  => '(lista över medlemmar)',
 
 # E-mail user
 'mailnologin'     => 'Ingen adress att skicka till',

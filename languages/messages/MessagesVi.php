@@ -437,6 +437,8 @@ Người quản lý khóa nó đã đưa ra lời giải thích sau: $1',
 Điều này thường xảy ra do liên kết so sánh hoặc lịch sử bị lỗi thời đối với trang đã bị xóa.
 
 Nếu trường hợp này không phải như vậy, bạn có thể đã tìm thấy một lỗi của phần mềm. Xin hãy báo việc này lên người quản lý, ghi chú lại địa chỉ URL.',
+'missingarticle-rev'   => '(số phiên bản: $1)',
+'missingarticle-diff'  => '(Khác: $1, $2)',
 'readonly_lag'         => 'Cơ sở dữ liệu bị khóa tự động trong khi các máy chủ cập nhật thông tin của nhau.',
 'internalerror'        => 'Lỗi nội bộ',
 'internalerror_info'   => 'Lỗi nội bộ: $1',
@@ -1385,6 +1387,7 @@ Bạn có thể thu hẹp kết quả bằng cách chọn loại nhật trình, 
 'listgrouprights-group'    => 'Nhóm',
 'listgrouprights-rights'   => 'Khả năng',
 'listgrouprights-helppage' => 'Help:Khả năng của nhóm thành viên',
+'listgrouprights-members'  => '(danh sách thành viên)',
 
 # E-mail user
 'mailnologin'     => 'Không có địa chỉ gửi thư',
@@ -1654,6 +1657,7 @@ $1',
 'whatlinkshere-hideredirs' => '$1 trang đổi hướng',
 'whatlinkshere-hidetrans'  => '$1 trang nhúng',
 'whatlinkshere-hidelinks'  => '$1 liên kết',
+'whatlinkshere-filters'    => 'Bộ lọc',
 
 # Block/unblock
 'blockip'                     => 'Cấm thành viên',

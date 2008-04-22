@@ -861,6 +861,7 @@ Sí $2 fyri fulla skráseting av strikingum.',
 'protect-title'      => 'Friðar "$1"',
 'protect-legend'     => 'Vátta friðing',
 'protectcomment'     => 'Orsøk til friðing:',
+'protect-default'    => '(fyridømi)',
 'restriction-type'   => 'Verndstøða:',
 'pagesize'           => '(být)',
 

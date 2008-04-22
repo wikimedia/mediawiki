@@ -157,6 +157,8 @@ $messages = array(
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutpage'            => 'Project:Σχετικά',
 'copyrightpage'        => '{{ns:project}}:Δικαιώματα Πνευματή',
+'currentevents'        => 'Ατωριζνά γεγονότα',
+'currentevents-url'    => 'Project:Ατωριζνά γεγονότα',
 'helppage'             => 'Help:Περιεχόμενα',
 'mainpage'             => 'Αρχικόν σελίδα',
 'mainpage-description' => 'Αρχικόν σελίδα',
@@ -176,6 +178,7 @@ $messages = array(
 'hidetoc'             => 'κρύψον',
 'site-rss-feed'       => '$1 RSS Συνδρομή',
 'site-atom-feed'      => '$1 Atom Συνδρομή',
+'page-rss-feed'       => '"$1" RSS Συνδρομή',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Σελίδαν',
@@ -250,10 +253,12 @@ $messages = array(
 'editingsection'         => 'Αλλαγήν $1 (τμήμα)',
 'editingold'             => "<strong>ΩΡΙΑ: Εφτάτε αλλαγάς σε παλαιόν έκδοσην τη σελίδας. 
 Εάν θα κρατείτε ατά, ούλ' τ' επεκεί αλλαγάς θα χάνταν.</strong>",
+'templatesused'          => "Πρότυπα το μεταχειρίσκουνταν σ' αβούτεν την σελίδαν:",
 'template-protected'     => '(ασπαλιγμένον)',
 'template-semiprotected' => '(ημψά-ασπαλιγμένον)',
 
 # History pages
+'currentrev'       => 'Ατωριζνόν μορφήν',
 'revisionasof'     => 'Μορφήν τη $1',
 'previousrevision' => '←Παλαιόν μορφήν',
 'histfirst'        => "Ασ' όλεα παλαιόν",
@@ -263,6 +268,7 @@ $messages = array(
 'history-feed-item-nocomment' => '$1 σο $2', # user at time
 
 # Diffs
+'history-title'           => 'Ιστορικόν εκδοσίων για τη σελίδαν "$1"',
 'lineno'                  => 'Γραμμή $1:',
 'compareselectedversions' => 'Γαρσουλαεύτε τα εκδώσεις',
 
@@ -279,16 +285,17 @@ $messages = array(
 'mypreferences' => "Τ' εμά τα προτιμήσεις",
 
 # Recent changes
-'recentchanges'   => 'Υστερνά αλλαγάς',
-'rcshowhideminor' => '$1 τα μικρά αλλαγάς',
-'rclinks'         => "Δείξον τα $1 υστερνά τ' αλλαγάς α σα $2 υστερνά τα ημέρας<br />$3",
-'diff'            => 'διαφορά',
-'hist'            => 'ιστ.',
-'hide'            => 'Κρύψον',
-'show'            => 'Δείξον',
-'minoreditletter' => 'μ',
-'newpageletter'   => 'Ν',
-'boteditletter'   => 'b',
+'recentchanges'                  => 'Υστερνά αλλαγάς',
+'recentchanges-feed-description' => "Τ' ασ' όλεα καινούρεα αλλαγάς τη wiki ωρία σ' αβούτεν την περίληψην.",
+'rcshowhideminor'                => '$1 τα μικρά αλλαγάς',
+'rclinks'                        => "Δείξον τα $1 υστερνά τ' αλλαγάς α σα $2 υστερνά τα ημέρας<br />$3",
+'diff'                           => 'διαφορά',
+'hist'                           => 'ιστ.',
+'hide'                           => 'Κρύψον',
+'show'                           => 'Δείξον',
+'minoreditletter'                => 'μ',
+'newpageletter'                  => 'Ν',
+'boteditletter'                  => 'b',
 
 # Recent changes linked
 'recentchangeslinked-title' => 'Αλλαγάς τη "$1"',
@@ -311,7 +318,7 @@ $messages = array(
 'mimesearch' => 'Αράεμαν MIME',
 
 # Random page
-'randompage' => 'Ήντιναν σελίδα',
+'randompage' => 'Τυχαίον σελίδα',
 
 # Statistics
 'statistics' => 'Στατιστικήν',
@@ -358,6 +365,7 @@ $messages = array(
 'watchlist'            => "Σελίδας ντ' ωριάζω",
 'mywatchlist'          => "Σελίδας ντ' ωριάζω",
 'watchlistfor'         => "(για '''$1''')",
+'removedwatch'         => 'Αση λίσταν επάρθεν',
 'removedwatchtext'     => 'Η σελίδαν "[[:$1]]" νεβζινέθεν ασ\' τ\'εσόν τον κατάλογον.',
 'watch'                => 'Ωρίαγμαν',
 'watchthispage'        => 'Ωρίαν τη σελίδαν',
@@ -378,6 +386,7 @@ $messages = array(
 'deleteotherreason'       => 'Άλλον/αλλομίαν λόγον:',
 'deletereasonotherlist'   => 'Άλλον λόγον',
 'protectcomment'          => 'Σχόλιον:',
+'protect-unchain'         => 'Άνοιξον τα δικαιώματα ετεροχλάεματι',
 'protect-default'         => '(προεπιλεγμένον)',
 'protect-summary-cascade' => 'διαδοχικόν',
 'protect-expiring'        => 'λήγει στις $1 (UTC)',
@@ -401,7 +410,8 @@ $messages = array(
 'whatlinkshere-title' => 'Σελίδας ντο συνδέουν σο $1',
 'whatlinkshere-page'  => 'Σελίδαν:',
 'linklistsub'         => "(Κατάλογον με τοι συνδέσμ')",
-'linkshere'           => "Αυτά τα σελίδας συνδέουν ση σελίδαν '''[[:$1]]''':",
+'linkshere'           => "Αβούτα τα σελίδας δεκνίζνε σο '''[[:$1]]''':",
+'nolinkshere'         => "'Κ ευρέθεν σελίδα το δεκνίζ' ση σελίδαν '''[[:$1]]'''.",
 'istemplate'          => 'ενσωμάτωση',
 'whatlinkshere-prev'  => '{{PLURAL:$1|προτεσνή|προτεσνά $1}}',
 'whatlinkshere-links' => '← σύνδεσμοι',
@@ -449,6 +459,8 @@ $messages = array(
 'tooltip-ca-protect'              => 'Ασπάλιγμα τη σελίδας',
 'tooltip-ca-delete'               => 'Σβήσεμαν τη σελίδας',
 'tooltip-ca-move'                 => "Κότζεμαν τη σελίδας ας έναν τίτλον σ' άλλον.",
+'tooltip-ca-watch'                => 'Ωρίαγμαν τη σελίδας',
+'tooltip-ca-unwatch'              => 'Έπαρ αβούτεν τη σελίδαν αση λίσταν ωρίαγματι.',
 'tooltip-search'                  => 'Εύρον σο {{SITENAME}}',
 'tooltip-n-mainpage'              => 'Τερέστεν το αρχικόν τη σελίδαν',
 'tooltip-n-portal'                => 'Σχετικά με το Wiκi - πώς μπορείτε να εφτάτε γιαρτήμ, πού θα ευρίετε πράγματα',
@@ -457,6 +469,7 @@ $messages = array(
 'tooltip-n-help'                  => "Αδά θα ευρίετε τα απαντήσεις ντ' αραεύετε.",
 'tooltip-n-sitesupport'           => 'Βοηθέστεν το έργον.',
 'tooltip-t-whatlinkshere'         => "Ούλ' τ' άρθρα ντο δεκνίζνε σο παρόν το άρθρον",
+'tooltip-t-contributions'         => 'Τερέστεν τη λίσταν με τα συνεισφοράντας τη χρήστε',
 'tooltip-t-upload'                => 'Φόρτωμα αρχείων',
 'tooltip-t-specialpages'          => 'Κατάλογον με τα ειδικά σελίδας',
 'tooltip-ca-nstab-user'           => 'Τέρεν τη σελίδαν τη χρήστε',
@@ -470,6 +483,7 @@ $messages = array(
 'tooltip-preview'                 => "Τέρεν τ' αλλαγάς πριχού να κρατείς τη σελίδαν!",
 'tooltip-diff'                    => "Δείξον τ' αλλαγάς ντ' εποίκες σο κείμενον.",
 'tooltip-compareselectedversions' => "Τερέστε τα διαφοράς τ' εκδωσίων τη σελίδας",
+'tooltip-watch'                   => "Βαλέστεν αβούτεν τη σελίδαν σην τ' εσέτερον λίσταν ωριάγματι",
 
 # Media information
 'file-nohires'   => "<small>'Κ εχ κι άλλο ψηλόν ανάλυσην.</small>",

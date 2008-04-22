@@ -781,6 +781,10 @@ Lu motivu è ''$2''",
 'mergehistory-from'                => 'Pàggina di origgini:',
 'mergehistory-into'                => 'Pàggina di distinazioni:',
 'mergehistory-list'                => "Storia a cui è applicabili l'unioni",
+'mergehistory-go'                  => 'Vidi li canciamenti ca ponu essiri junciuti',
+'mergehistory-submit'              => 'Junci li rivisioni',
+'mergehistory-empty'               => 'Nudda rivisioni da junciri.',
+'mergehistory-success'             => '{{PLURAL:$3|Na rivisioni di [[:$1]] fu junciuta|$3 rivisioni di [[:$1]] sunu stati junciuti}} â storia di [[:$2]].',
 'mergehistory-fail'                => 'Impossibbili junciri li storii. Virificari la pàggina e li parametri temporali.',
 'mergehistory-no-source'           => 'La pàggina di origgini $1 nun esisti.',
 'mergehistory-no-destination'      => 'La pàggina di distinazzioni $1 nun esisti.',
@@ -925,6 +929,7 @@ Lu simbulu * ndica ca nun è pussibili livari l'appartinenza ô gruppo dopo avir
 'userrights-available-remove-self' => 'È possibili livari lu propriu account {{PLURAL:$2|dô gruppu ndicatu|dê gruppi ndicati}} ccà: $1.',
 'userrights-no-interwiki'          => "Nun si disponi di li pirmessi nicissari pi canciari li diritti di l'utenti ni autri siti.",
 'userrights-nodatabase'            => 'Lu database $1 nu esisti o nun è lu database locali.',
+'userrights-notallowed'            => "L'utenti nun disponi dê pirmessi nicissari pi assignari diritti all'utenti.",
 'userrights-changeable-col'        => 'Gruppi canciabili',
 'userrights-unchangeable-col'      => 'Gruppi nun canciabili',
 
@@ -1262,6 +1267,7 @@ La coda dî processi a esequiri 'n background cunteni {{PLURAL:\$7|'''1''' eleme
 'unusedimagestext'        => "Accura, è pussìbbili fari lijami a li file d'àutri siti, usannu direttamenti la URL; 
 chisti putìssiru quinni èssiri utilizzati puru siddu cumpàrinu nta l'alencu.",
 'unusedcategoriestext'    => 'Li siquenti pàggini dî catigurìi esìstinu, sibbeni li catigurìi currispunnenti sunnu vacanti.',
+'notargettitle'           => 'Dati mancanti',
 'notargettext'            => "Nun hà statu innicata na pàggina o un utenti 'n rilazzioni a lu quali esèquiri l'opirazzioni addumannata.",
 'suppress'                => 'Oversight',
 
@@ -1426,6 +1432,10 @@ Talìa $2 pi na lista di cancillazzioni ricenti.',
 'deletecomment'               => 'Mutivazzioni pi cancillari',
 'deleteotherreason'           => 'Autra mutivazioni o mutivazioni in più:',
 'deletereasonotherlist'       => 'Autra mutivazioni',
+'deletereason-dropdown'       => "*Mutivazzioni cchiù cumuni pi la cancillazzioni
+** Dumanna di l'auturi
+** Viulazzioni di copyright
+** Vannalismu",
 'delete-edit-reasonlist'      => 'Cancia li mutivazzioni pi la cancillazioni',
 'delete-warning-toobig'       => 'La storia di sta pàggina è assai longa (oltre $1 rivisioni). La sò cancillazioni po causari prublemi di funzionamentu ô database di {{SITENAME}}; procediri attentamenti.',
 'rollback'                    => 'Annulla li canciamenti',
@@ -2324,6 +2334,7 @@ Stu còdici di cunferma scadi automaticamenti a li $4.',
 'specialpages-group-other'       => 'Autri pàggini spiciali',
 'specialpages-group-login'       => 'Trasi / riggìstrazzioni',
 'specialpages-group-users'       => 'Utenti e diritti',
+'specialpages-group-highuse'     => 'Pàggini cchiù usati',
 'specialpages-group-permissions' => "Attribuzioni dî pirmessi pi l'utenti",
 
 );

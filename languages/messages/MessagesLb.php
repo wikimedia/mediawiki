@@ -432,6 +432,8 @@ Den Administrateur huet folgend Erklärung uginn: $1',
 Dëst geschitt meeschtens andeems en alen diff oder Historique Link op eng Säit hiweist déi geläscht ginn ass.
 
 Wann dëst net de Fall ass, hutt dir vläicht e Feeler an der Software fonnt. Sot w.e.g. engem Administrateur Bescheed an deelt him och d\'URL mat.',
+'missingarticle-rev'   => '(Versiounsnummer: $1)',
+'missingarticle-diff'  => '(Ënnerscheed tësche Versiounen: $1, $2)',
 'readonly_lag'         => "D'Datebank gouf automatesch gespaart fir datt d'Zweetserveren (slaves) nees mat dem Haaptserver (master) synchron geschalt kënne ginn.",
 'internalerror'        => 'Interne Feeler',
 'internalerror_info'   => 'Interne Feeler: $1',
@@ -1381,6 +1383,7 @@ An all Rei sti Linken zur éischter an zweeter Viruleedung, souwéi déi éischt
 'listgrouprights-group'    => 'Grupp',
 'listgrouprights-rights'   => 'Rechter',
 'listgrouprights-helppage' => 'Help:Grupperechter',
+'listgrouprights-members'  => '(Lëscht vun de Memberen)',
 
 # E-mail user
 'mailnologin'     => 'Keng E-Mailadress',

@@ -468,6 +468,8 @@ Správca, ktorý nariadil uzamknutie, uvádza tento dôvod: $1',
 Toto je zvyčajne zapríčinené odkazovaním na staršie verzie alebo odkazom na stránku, ktorý bol zmazaný.
 
 Ak to nie je ten prípad, možno ste našli chybu s softvéri. Prosím ohláste túto chybu správcovi, uveďte aj názov stránky - odkaz (URL).',
+'missingarticle-rev'   => '(č. revízie: $1)',
+'missingarticle-diff'  => '(rozdiel: $1, $2)',
 'readonly_lag'         => 'Databáza bola automaticky zamknutá pokým záložné databázové servery nedoženú hlavný server',
 'internalerror'        => 'Vnútorná chyba',
 'internalerror_info'   => 'Vnútorná chyba: $1',
@@ -1448,6 +1450,7 @@ Môžete zmenšiť rozsah, ak zvolíte typ záznamu, používateľské meno aleb
 'listgrouprights-group'    => 'Skupina',
 'listgrouprights-rights'   => 'Práva',
 'listgrouprights-helppage' => 'Help:Práva skupiny',
+'listgrouprights-members'  => '(zoznam členov)',
 
 # E-mail user
 'mailnologin'     => 'Žiadna adresa na zaslanie',
