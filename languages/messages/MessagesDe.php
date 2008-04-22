@@ -1491,6 +1491,7 @@ auf die bereits die erste Weiterleitung zeigen sollte.',
 'listgrouprights-group'    => 'Gruppe',
 'listgrouprights-rights'   => 'Rechte',
 'listgrouprights-helppage' => 'Help:Gruppenrechte',
+'listgrouprights-members'  => '(Mitgliederliste)',
 
 # E-mail user
 'mailnologin'     => 'Fehler beim E-Mail-Versand',

@@ -1238,6 +1238,7 @@ $wgMessageStructure = array(
 		'listgrouprights-rights',
 		'listgrouprights-link',
 		'listgrouprights-helppage',
+		'listgrouprights-members',
 	),
 	'emailuser' => array(
 		'mailnologin',

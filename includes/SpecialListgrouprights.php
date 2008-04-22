@@ -48,15 +48,31 @@ class SpecialListGroupRights extends SpecialPage {
 				$groupnameLocalized = $msg;
 			}
 
-			if ( in_array( $group, $wgImplicitGroups ) )
-				$grouplink = $groupnameLocalized;
-			else
-				$grouplink = $this->skin->makeKnownLinkObj( SpecialPage::getTitleFor( 'Listusers' ), $groupnameLocalized, 'group=' . $group );
+			$msg = wfMsgForContent( 'grouppage-' . $groupname );
+			if ( wfEmptyMsg( 'grouppage-' . $groupname, $msg ) || $msg == '' ) {
+				$grouppageLocalized = $groupname;
+			} else {
+				$grouppageLocalized = $msg;
+			}
+
+			if( $group == '*' ) {
+				// Do not make a link for the generic * group
+				$grouppage = $groupnameLocalized;
+			} else {
+				$grouppage = $this->skin->makeLink( $grouppageLocalized, $groupnameLocalized );
+			}
+
+			if ( !in_array( $group, $wgImplicitGroups ) ) {
+				$grouplink = '<br />' . $this->skin->makeKnownLinkObj( SpecialPage::getTitleFor( 'Listusers' ), wfMsg( 'listgrouprights-members' ), 'group=' . $group );
+			} else {
+				// No link to Special:listusers for implicit groups as they are unlistable
+				$grouplink = '';
+			}
 
 			$wgOut->addHTML(
 				'<tr>
 					<td>' .
-						$grouplink .
+						$grouppage . $grouplink .
 					'</td>
 					<td>' .
 						self::formatPermissions( $permissions ) .
