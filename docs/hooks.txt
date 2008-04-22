@@ -919,6 +919,12 @@ $user: the User object to load preferences from
 'RevisionInsertComplete': called after a revision is inserted into the DB
 $revision: the Revision
 
+'SanitizerAfterFixTagAttributes': called after the sanitizer normalises tag attributes.
+$text: The original text which had the tag attributes fixed in it.
+$element: The name of the element in which tag attributes are being fixed
+&$attribs: A reference to an array of the source for the attributes to be added,
+	in the form "$encAttribute=\"$encValue\""
+
 'SavePreferences': called at the end of PreferencesForm::savePreferences; 
                    returning false prevents the preferences from being saved.
 $form: the PreferencesForm
