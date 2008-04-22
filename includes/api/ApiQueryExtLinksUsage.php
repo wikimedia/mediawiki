@@ -108,7 +108,7 @@ class ApiQueryExtLinksUsage extends ApiQueryGeneratorBase {
 		while ($row = $db->fetchObject($res)) {
 			if (++ $count > $limit) {
 				// We've reached the one extra which shows that there are additional pages to be had. Stop here...
-				$this->setContinueEnumParameter('offset', $offset+$limit+1);
+				$this->setContinueEnumParameter('offset', $offset+$limit);
 				break;
 			}
 
