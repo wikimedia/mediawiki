@@ -592,6 +592,8 @@ $messages = array(
 
 <p>اگر مورد شما این نیست، ممکن است اشکالی در نرم‌افزار پیدا کرده باشید.
 لطفاً این مسئله را، با ذکر URL، به یکی از مدیران گزارش کنید.',
+'missingarticle-rev'   => '(نسخهٔ شماره: $1)',
+'missingarticle-diff'  => '(تفاوت: $1، $2)',
 'readonly_lag'         => 'پایگاه داده به طور خودکار قفل شده‌است تا نسخه‌های پشتیبان با نسخهٔ اصلی هماهنگ شوند.',
 'internalerror'        => 'خطای داخلی',
 'internalerror_info'   => 'خطای داخلی: $1',
@@ -1575,6 +1577,7 @@ $2 تغییرمسیرها فهرست شوند &nbsp; جستجو برای $3 $9',
 'listgrouprights-group'    => 'گروه',
 'listgrouprights-rights'   => 'دسترسی‌ها',
 'listgrouprights-helppage' => 'Help:دسترسی‌های گروهی',
+'listgrouprights-members'  => '(فهرست اعضا)',
 
 # E-mail user
 'mailnologin'     => 'نشانی‌ای از فرستنده وجود ندارد.',
