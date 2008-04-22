@@ -394,7 +394,7 @@ class Article {
 		# fails we'll have something telling us what we intended.
 		$t = $this->mTitle->getPrefixedText();
 		if( $oldid ) {
-			$t .= ',oldid='.$oldid;
+			$t .= ' ' . wfMsgExt( 'missingarticle-rev', array( 'escape' ), $oldid );
 		}
 		$this->mContent = wfMsg( 'missingarticle', $t ) ;
 
@@ -797,10 +797,10 @@ class Article {
 				# Failed to load, replace text with error message
 				$t = $this->mTitle->getPrefixedText();
 				if( $oldid ) {
-					$t .= ',oldid='.$oldid;
+					$t .= ' ' . wfMsgExt( 'missingarticle-rev', array( 'escape' ), $oldid );
 					$text = wfMsg( 'missingarticle', $t );
 				} else {
-					$text = wfMsg( 'noarticletext', $t );
+					$text = wfMsg( 'noarticletext' );
 				}
 			}
 

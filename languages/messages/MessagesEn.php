@@ -794,6 +794,8 @@ This is usually caused by following an outdated diff or history link to a page t
 
 If this is not the case, you may have found a bug in the software.
 Please report this to an administrator, making note of the URL.',
+'missingarticle-rev'   => '(revision#: $1)',
+'missingarticle-diff'  => '(Diff: $1, $2)',
 'readonly_lag'         => 'The database has been automatically locked while the slave database servers catch up to the master',
 'internalerror'        => 'Internal error',
 'internalerror_info'   => 'Internal error: $1',

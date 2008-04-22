@@ -107,7 +107,7 @@ CONTROL;
 
 		$wgOut->setArticleFlag( false );
 		if ( ! $this->loadRevisionData() ) {
-			$t = $this->mTitle->getPrefixedText() . " (Diff: {$this->mOldid}, {$this->mNewid})";
+			$t = $this->mTitle->getPrefixedText() . ' ' . wfMsgExt( 'missingarticle-diff', array( 'escape' ), $this->mOldid, $this->mNewid );
 			$wgOut->setPagetitle( wfMsg( 'errorpagetitle' ) );
 			$wgOut->addWikiMsg( 'missingarticle', "<nowiki>$t</nowiki>" );
 			wfProfileOut( __METHOD__ );
@@ -326,8 +326,7 @@ CONTROL;
 		# Get article text from the DB
 		#
 		if ( ! $this->loadNewText() ) {
-			$t = $this->mTitle->getPrefixedText() . " (Diff: {$this->mOldid}, " .
-			  "{$this->mNewid})";
+			$t = $this->mTitle->getPrefixedText() . ' ' . wfMsgExt( 'missingarticle-diff', array( 'escape' ), $this->mOldid, $this->mNewid );
 			$wgOut->setPagetitle( wfMsg( 'errorpagetitle' ) );
 			$wgOut->addWikiMsg( 'missingarticle', "<nowiki>$t</nowiki>" );
 			wfProfileOut( __METHOD__ );
