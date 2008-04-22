@@ -641,6 +641,8 @@ $messages = array(
 אם זה אינו המקרה, כנראה שמצאת באג בתוכנה.
 
 אנא דווח על כך למפתח תוך שמירת פרטי כתובת ה־URL.',
+'missingarticle-rev'   => '(מספר גרסה: $1)',
+'missingarticle-diff'  => '(השוואת הגרסאות: $1, $2)',
 'readonly_lag'         => 'בסיס הנתונים ננעל אוטומטית כדי לאפשר לבסיסי הנתונים המשניים להתעדכן מהבסיס הראשי.',
 'internalerror'        => 'שגיאה פנימית',
 'internalerror_info'   => 'שגיאה פנימית: $1',
@@ -1563,6 +1565,7 @@ $2',
 'listgrouprights-group'    => 'קבוצה',
 'listgrouprights-rights'   => 'הרשאות',
 'listgrouprights-helppage' => 'Help:הרשאות',
+'listgrouprights-members'  => '(רשימת חברים)',
 
 # E-mail user
 'mailnologin'     => 'אין כתובת לשליחה',
