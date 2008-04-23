@@ -1264,9 +1264,9 @@ to den vun den tweeten Wiederleiden wiest warrt, un to den de eerste Wiederleide
 'brokenredirects-edit'   => '(ännern)',
 'brokenredirects-delete' => '(wegsmieten)',
 
-'withoutinterwiki'        => 'Sieden ahn Spraaklenken',
-'withoutinterwiki-header' => 'Disse Sieden hebbt keen Lenken na annere Spraakversionen:',
-'withoutinterwiki-submit' => 'Wies',
+'withoutinterwiki'         => 'Sieden ahn Spraaklenken',
+'withoutinterwiki-summary' => 'Disse Sieden hebbt keen Lenken na annere Spraakversionen:',
+'withoutinterwiki-submit'  => 'Wies',
 
 'fewestrevisions' => 'Sieden mit de wenigsten Versionen',
 

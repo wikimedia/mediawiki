@@ -1285,8 +1285,8 @@ $3 մասնակիցը տվել է հետևյալ պատճառը. ''$2''",
 'brokenredirects-edit'    => '(խմբագրել)',
 'brokenredirects-delete'  => '(ջնջել)',
 
-'withoutinterwiki'        => 'Լեզվային հղումներ չպարունակող էջեր',
-'withoutinterwiki-header' => 'Հետևյալ էջերը չունեն լեզվական հղումներ.',
+'withoutinterwiki'         => 'Լեզվային հղումներ չպարունակող էջեր',
+'withoutinterwiki-summary' => 'Հետևյալ էջերը չունեն լեզվական հղումներ.',
 
 'fewestrevisions' => 'Ամենաքիչ վերափոխումներով հոդվածներ',
 

@@ -1186,9 +1186,9 @@ Vira riga a l'ha andrinta j'anliure a la prima e a la sconda rediression, ant s�
 'brokenredirects-edit'   => '(modìfica)',
 'brokenredirects-delete' => '(scancela)',
 
-'withoutinterwiki'        => "Pàgine ch'a l'han gnun-a anliura interwiki",
-'withoutinterwiki-header' => "Le pàgine ambelessì sota a l'han gnun-a anliura a dj'àotre lenghe:",
-'withoutinterwiki-submit' => 'Smon',
+'withoutinterwiki'         => "Pàgine ch'a l'han gnun-a anliura interwiki",
+'withoutinterwiki-summary' => "Le pàgine ambelessì sota a l'han gnun-a anliura a dj'àotre lenghe:",
+'withoutinterwiki-submit'  => 'Smon',
 
 'fewestrevisions' => 'Artìcoj con manch ëd modìfiche',
 

@@ -716,9 +716,9 @@ Hvørt rað inniheldur slóðir til fyrstu og aðru ávísing, umframt tekstin �
 'brokenredirects-edit'   => '(rætta)',
 'brokenredirects-delete' => '(strika)',
 
-'withoutinterwiki'        => 'Síður uttan mál slóðir',
-'withoutinterwiki-header' => 'Fylgjandi síður slóða ikki til útgávur á øðrum málum:',
-'withoutinterwiki-submit' => 'Skoða',
+'withoutinterwiki'         => 'Síður uttan mál slóðir',
+'withoutinterwiki-summary' => 'Fylgjandi síður slóða ikki til útgávur á øðrum málum:',
+'withoutinterwiki-submit'  => 'Skoða',
 
 'fewestrevisions' => 'Greinir við minst útgávum',
 

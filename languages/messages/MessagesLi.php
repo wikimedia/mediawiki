@@ -1191,9 +1191,9 @@ Op eder raegel vings te de ierste redirectpazjena, de twiede redirectpazjena en 
 'brokenredirects-edit'   => '(bewerke)',
 'brokenredirects-delete' => '(wisse)',
 
-'withoutinterwiki'        => 'Interwikiloze pazjenas',
-'withoutinterwiki-header' => "De volgende pagina's linke neet nao versies in 'n anger taal:",
-'withoutinterwiki-submit' => 'Toean',
+'withoutinterwiki'         => 'Interwikiloze pazjenas',
+'withoutinterwiki-summary' => "De volgende pagina's linke neet nao versies in 'n anger taal:",
+'withoutinterwiki-submit'  => 'Toean',
 
 'fewestrevisions' => 'Artikele met de minste bewerkinge',
 

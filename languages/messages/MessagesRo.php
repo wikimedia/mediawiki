@@ -1065,8 +1065,8 @@ Mărimea [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] este <b>$7</b
 'brokenredirects-edit'   => '(modifică)',
 'brokenredirects-delete' => '(şterge)',
 
-'withoutinterwiki'        => 'Pagini fără legături interwiki',
-'withoutinterwiki-header' => 'Următoarele pagini nu se leagă la versiuni ale lor în alte limbi:',
+'withoutinterwiki'         => 'Pagini fără legături interwiki',
+'withoutinterwiki-summary' => 'Următoarele pagini nu se leagă la versiuni ale lor în alte limbi:',
 
 'fewestrevisions' => 'Articole cu cele mai puţine revizii',
 

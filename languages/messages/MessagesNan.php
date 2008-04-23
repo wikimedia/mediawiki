@@ -528,8 +528,8 @@ Template:Khu-pia̍t-ia̍h',
 'brokenredirects'     => 'Choán-ia̍h kò·-chiòng',
 'brokenredirectstext' => 'Í-hā ê choán-ia̍h liân kàu bô chûn-chāi ê ia̍h:',
 
-'withoutinterwiki'        => 'Bô gí-giân liân-kiat ê ia̍h',
-'withoutinterwiki-header' => 'Ē-kha ê ia̍h bô kî-thaⁿ gí-giân pán-pún ê liân-kiat:',
+'withoutinterwiki'         => 'Bô gí-giân liân-kiat ê ia̍h',
+'withoutinterwiki-summary' => 'Ē-kha ê ia̍h bô kî-thaⁿ gí-giân pán-pún ê liân-kiat:',
 
 'fewestrevisions' => 'Siōng bô siu-tēng ê bûn-chiuⁿ',
 

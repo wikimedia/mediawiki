@@ -1128,9 +1128,9 @@ Lääste schällen dan wächhoald wäide.',
 'brokenredirects-edit'   => '(beoarbaidje)',
 'brokenredirects-delete' => '(läskje)',
 
-'withoutinterwiki'        => 'Sieden sunner Ferbiendengen tou uur Sproaken',
-'withoutinterwiki-header' => 'Do foulgjende Sieden ferlinkje nit ap uur Sproakversionen:',
-'withoutinterwiki-submit' => 'Wies',
+'withoutinterwiki'         => 'Sieden sunner Ferbiendengen tou uur Sproaken',
+'withoutinterwiki-summary' => 'Do foulgjende Sieden ferlinkje nit ap uur Sproakversionen:',
+'withoutinterwiki-submit'  => 'Wies',
 
 'fewestrevisions' => 'Sieden mäd do minste Versione',
 

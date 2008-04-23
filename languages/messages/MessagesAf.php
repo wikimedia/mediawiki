@@ -961,9 +961,9 @@ Elke ry bevat skakels na die eerste en die tweede aanstuur, asook die eerste reÃ
 'brokenredirects-edit'   => '(wysig)',
 'brokenredirects-delete' => '(skrap)',
 
-'withoutinterwiki'        => 'Bladsye sonder taalskakels',
-'withoutinterwiki-header' => 'Die volgende bladsye het nie skakels na weergawes in ander tale nie:',
-'withoutinterwiki-submit' => 'Wys',
+'withoutinterwiki'         => 'Bladsye sonder taalskakels',
+'withoutinterwiki-summary' => 'Die volgende bladsye het nie skakels na weergawes in ander tale nie:',
+'withoutinterwiki-submit'  => 'Wys',
 
 'fewestrevisions' => 'Artikels met die minste wysigings',
 

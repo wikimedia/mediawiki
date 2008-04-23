@@ -1270,9 +1270,9 @@ d'os que '''$2''' (o '''$4%''') {{PLURAL:$1|en ye $5|en son $5}}.",
 'brokenredirects-edit'   => '(editar)',
 'brokenredirects-delete' => '(borrar)',
 
-'withoutinterwiki'        => "Pachinas sin d'interwikis",
-'withoutinterwiki-header' => 'As siguients pachinas no tienen binclos ta bersions en atras luengas:',
-'withoutinterwiki-submit' => 'Amostrar',
+'withoutinterwiki'         => "Pachinas sin d'interwikis",
+'withoutinterwiki-summary' => 'As siguients pachinas no tienen binclos ta bersions en atras luengas:',
+'withoutinterwiki-submit'  => 'Amostrar',
 
 'fewestrevisions' => 'Articlos con menos edizions',
 

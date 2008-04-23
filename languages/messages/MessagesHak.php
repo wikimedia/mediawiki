@@ -864,8 +864,8 @@ Kó-yèn ngì yû liá-ke thù-hìn ke vàn-cháng thai-séu.',
 'brokenredirects-edit'   => '(phiên-chho)',
 'brokenredirects-delete' => '(Chhù-thet)',
 
-'withoutinterwiki'        => 'Mò-yû ngî-ngièn lièn-chiap ke vùn-chông',
-'withoutinterwiki-header' => 'Yî-ha ke vùn-chông he hàn-mò ngî-ngièn lièn-chiap to khì-thâ ngî-ngièn pán-pún:',
+'withoutinterwiki'         => 'Mò-yû ngî-ngièn lièn-chiap ke vùn-chông',
+'withoutinterwiki-summary' => 'Yî-ha ke vùn-chông he hàn-mò ngî-ngièn lièn-chiap to khì-thâ ngî-ngièn pán-pún:',
 
 'fewestrevisions' => 'Chui-séu siù-chho ke vùn-chông',
 

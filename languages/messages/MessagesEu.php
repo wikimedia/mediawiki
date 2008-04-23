@@ -988,8 +988,8 @@ The [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] length is '''$7'''
 'brokenredirects-edit'   => '(aldatu)',
 'brokenredirects-delete' => '(ezabatu)',
 
-'withoutinterwiki'        => 'Hizkuntza loturarik gabeko orrialdeak',
-'withoutinterwiki-header' => 'Orrialde hauek ez daukate beste hizkuntzetarako loturarik:',
+'withoutinterwiki'         => 'Hizkuntza loturarik gabeko orrialdeak',
+'withoutinterwiki-summary' => 'Orrialde hauek ez daukate beste hizkuntzetarako loturarik:',
 
 'fewestrevisions' => 'Berrikusketa gutxien dituzten artikuluak',
 

@@ -1215,9 +1215,9 @@ La coda dî processi a esequiri 'n background cunteni {{PLURAL:\$7|'''1''' eleme
 'brokenredirects-edit'   => '(cancia)',
 'brokenredirects-delete' => '(cancella)',
 
-'withoutinterwiki'        => 'Pàggini senza interwiki',
-'withoutinterwiki-header' => 'Li pàggini nnicati ccà nun hànnu liami ê virsioni nta àutri lingui:',
-'withoutinterwiki-submit' => 'Ammustra',
+'withoutinterwiki'         => 'Pàggini senza interwiki',
+'withoutinterwiki-summary' => 'Li pàggini nnicati ccà nun hànnu liami ê virsioni nta àutri lingui:',
+'withoutinterwiki-submit'  => 'Ammustra',
 
 'fewestrevisions' => 'Pàggini cu menu rivisioni',
 

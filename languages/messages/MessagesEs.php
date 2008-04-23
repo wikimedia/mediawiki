@@ -1167,9 +1167,9 @@ Cada fila contiene enlaces al segundo y tercer redirect, así como la primera l�
 'brokenredirects-edit'   => '(editar)',
 'brokenredirects-delete' => '(borrar)',
 
-'withoutinterwiki'        => 'Páginas sin interwikis',
-'withoutinterwiki-header' => 'Las siguientes páginas no enlazan a versiones en otros idiomas:',
-'withoutinterwiki-submit' => 'Mostrar',
+'withoutinterwiki'         => 'Páginas sin interwikis',
+'withoutinterwiki-summary' => 'Las siguientes páginas no enlazan a versiones en otros idiomas:',
+'withoutinterwiki-submit'  => 'Mostrar',
 
 'fewestrevisions' => 'Artículos con menos ediciones',
 

@@ -1228,9 +1228,9 @@ koja obično ukazuje na "pravu" odredišnu stranicu, na koju bi trebalo pokaziva
 'brokenredirects-edit'   => '(uredi)',
 'brokenredirects-delete' => '(obriši)',
 
-'withoutinterwiki'        => 'Stranice bez međuwiki poveznica',
-'withoutinterwiki-header' => 'Sljedeće stranice nemaju poveznice na projekte na drugim jezicima:',
-'withoutinterwiki-submit' => 'Prikaži',
+'withoutinterwiki'         => 'Stranice bez međuwiki poveznica',
+'withoutinterwiki-summary' => 'Sljedeće stranice nemaju poveznice na projekte na drugim jezicima:',
+'withoutinterwiki-submit'  => 'Prikaži',
 
 'fewestrevisions' => 'Članci s najmanje izmjena',
 

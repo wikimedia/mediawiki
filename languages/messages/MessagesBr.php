@@ -1226,9 +1226,9 @@ Hirder al [http://meta.wikimedia.org/wiki/Help:Job_queue lostennad labour] zo pa
 'brokenredirects-edit'   => '(kemmañ)',
 'brokenredirects-delete' => '(diverkañ)',
 
-'withoutinterwiki'        => 'Pajennoù hep liammoù yezh',
-'withoutinterwiki-header' => "Ar pajennoù da-heul n'int ket liammet ouzh yezh all ebet :",
-'withoutinterwiki-submit' => 'Diskouez',
+'withoutinterwiki'         => 'Pajennoù hep liammoù yezh',
+'withoutinterwiki-summary' => "Ar pajennoù da-heul n'int ket liammet ouzh yezh all ebet :",
+'withoutinterwiki-submit'  => 'Diskouez',
 
 'fewestrevisions' => 'Pennadoù nebeutañ reizhet',
 

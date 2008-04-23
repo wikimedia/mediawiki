@@ -1026,9 +1026,9 @@ $2',
 'brokenredirects-edit'   => '(編寫)',
 'brokenredirects-delete' => '(刪吥)',
 
-'withoutinterwiki'        => '冇語言連結嗰頁面',
-'withoutinterwiki-header' => '底下嗰頁面係冇語言連結到別嗰語言版本:',
-'withoutinterwiki-submit' => '顯到',
+'withoutinterwiki'         => '冇語言連結嗰頁面',
+'withoutinterwiki-summary' => '底下嗰頁面係冇語言連結到別嗰語言版本:',
+'withoutinterwiki-submit'  => '顯到',
 
 'fewestrevisions' => '改得最少嗰文章',
 

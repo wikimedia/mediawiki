@@ -1266,9 +1266,9 @@ deraf har '''$2''' (=$4%) $5-rettigheder.",
 'brokenredirects-edit'    => '(redigér)',
 'brokenredirects-delete'  => '(slet)',
 
-'withoutinterwiki'        => 'Sider uden henvisninger til andre sprog',
-'withoutinterwiki-header' => 'De følgende sider henviser ikke til andre sprogversioner:',
-'withoutinterwiki-submit' => 'Vis',
+'withoutinterwiki'         => 'Sider uden henvisninger til andre sprog',
+'withoutinterwiki-summary' => 'De følgende sider henviser ikke til andre sprogversioner:',
+'withoutinterwiki-submit'  => 'Vis',
 
 'fewestrevisions'         => 'Sider med de færreste versioner',
 'fewestrevisions-summary' => 'Denne specialside viser en liste med sider med de færreste ændringer.',

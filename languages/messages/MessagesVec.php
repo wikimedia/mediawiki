@@ -1188,9 +1188,9 @@ La [http://meta.wikimedia.org/wiki/Help:Job_queue coa] la contien '''\$7''' pro�
 'brokenredirects-edit'   => '(modifica)',
 'brokenredirects-delete' => '(scancela)',
 
-'withoutinterwiki'        => 'Pagine che no gà interwiki',
-'withoutinterwiki-header' => 'Le pagine indicà de seguito no le gà colegamenti a le version in altre lengue:',
-'withoutinterwiki-submit' => 'Mostra',
+'withoutinterwiki'         => 'Pagine che no gà interwiki',
+'withoutinterwiki-summary' => 'Le pagine indicà de seguito no le gà colegamenti a le version in altre lengue:',
+'withoutinterwiki-submit'  => 'Mostra',
 
 'fewestrevisions' => 'Voçi con manco revision',
 

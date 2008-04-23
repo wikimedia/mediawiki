@@ -1164,9 +1164,9 @@ La [http://meta.wikimedia.org/wiki/Help:Job_queue cola de xeres] ye de '''\$7'''
 'brokenredirects-edit'   => '(editar)',
 'brokenredirects-delete' => '(borrar)',
 
-'withoutinterwiki'        => 'Páxines ensin interwikis',
-'withoutinterwiki-header' => "Les páxines siguientes nun enllacien a versiones n'otres llingües:",
-'withoutinterwiki-submit' => 'Amosar',
+'withoutinterwiki'         => 'Páxines ensin interwikis',
+'withoutinterwiki-summary' => "Les páxines siguientes nun enllacien a versiones n'otres llingües:",
+'withoutinterwiki-submit'  => 'Amosar',
 
 'fewestrevisions' => "Páxines col menor númberu d'ediciones",
 

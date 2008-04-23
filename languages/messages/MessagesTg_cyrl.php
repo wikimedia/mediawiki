@@ -1189,9 +1189,9 @@ $1',
 'brokenredirects-edit'   => '(вироиш)',
 'brokenredirects-delete' => '(ҳазф)',
 
-'withoutinterwiki'        => 'Саҳифаҳои бидуни пайвандҳои забонӣ',
-'withoutinterwiki-header' => 'Саҳифаҳои зерин пайванде ба забони дигар надоранд:',
-'withoutinterwiki-submit' => 'Намоиш',
+'withoutinterwiki'         => 'Саҳифаҳои бидуни пайвандҳои забонӣ',
+'withoutinterwiki-summary' => 'Саҳифаҳои зерин пайванде ба забони дигар надоранд:',
+'withoutinterwiki-submit'  => 'Намоиш',
 
 'fewestrevisions' => 'Саҳифаҳое, ки шумораи ками нусхаҳо доранд',
 

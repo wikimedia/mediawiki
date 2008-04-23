@@ -1088,9 +1088,9 @@ $3 макссь туфталсь - ''$2''",
 'brokenredirects-edit'   => '(петнемс)',
 'brokenredirects-delete' => '(нардамс)',
 
-'withoutinterwiki'        => 'Кялень сюлмафксфтома лопат',
-'withoutinterwiki-header' => 'Ся лопатне аф сюлмафт иля кялень верзиетнень мархта:',
-'withoutinterwiki-submit' => 'Няфтемс',
+'withoutinterwiki'         => 'Кялень сюлмафксфтома лопат',
+'withoutinterwiki-summary' => 'Ся лопатне аф сюлмафт иля кялень верзиетнень мархта:',
+'withoutinterwiki-submit'  => 'Няфтемс',
 
 'fewestrevisions' => 'Лопат сяда кържа верзиеснон мархта',
 

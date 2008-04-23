@@ -1402,9 +1402,9 @@ Sedan denna wiki startades har sidor visats totalt <b>$3</b> {{PLURAL:$3|gång|g
 'brokenredirects-edit'   => '(redigera)',
 'brokenredirects-delete' => '(radera)',
 
-'withoutinterwiki'        => 'Sidor utan språklänkar',
-'withoutinterwiki-header' => 'Följande sidor innehåller inte några länkar till andra språkversioner:',
-'withoutinterwiki-submit' => 'Visa',
+'withoutinterwiki'         => 'Sidor utan språklänkar',
+'withoutinterwiki-summary' => 'Följande sidor innehåller inte några länkar till andra språkversioner:',
+'withoutinterwiki-submit'  => 'Visa',
 
 'fewestrevisions' => 'Sidor med minst antal ändringar',
 

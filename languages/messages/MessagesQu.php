@@ -1169,9 +1169,9 @@ Kay p'anqapiqa huk pusapuna p'anqaman pusapuq p'anqakunap sutinkunatam rikunki. 
 'brokenredirects-edit'   => "(llamk'apuy)",
 'brokenredirects-delete' => '(qulluy)',
 
-'withoutinterwiki'        => "Interwiki t'inkinnaq p'anqakuna",
-'withoutinterwiki-header' => "Kay p'anqakunaqa manam huk rimaykunapi p'anqakunaman t'inkinchu:",
-'withoutinterwiki-submit' => 'Rikuchiy',
+'withoutinterwiki'         => "Interwiki t'inkinnaq p'anqakuna",
+'withoutinterwiki-summary' => "Kay p'anqakunaqa manam huk rimaykunapi p'anqakunaman t'inkinchu:",
+'withoutinterwiki-submit'  => 'Rikuchiy',
 
 'fewestrevisions' => "Aslla kuti llamk'apusqa p'anqakuna",
 

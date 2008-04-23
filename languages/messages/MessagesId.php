@@ -1320,9 +1320,9 @@ Telah dimuat sejumlah '''$8''' berkas dan sedang terjadi '''$7''' [http://meta.w
 'brokenredirects-edit'   => '(sunting)',
 'brokenredirects-delete' => '(hapus)',
 
-'withoutinterwiki'        => 'Halaman tanpa interwiki',
-'withoutinterwiki-header' => 'Halaman-halaman berikut tidak memiliki pranala ke versi dalam bahasa lain:',
-'withoutinterwiki-submit' => 'Tampilkan',
+'withoutinterwiki'         => 'Halaman tanpa interwiki',
+'withoutinterwiki-summary' => 'Halaman-halaman berikut tidak memiliki pranala ke versi dalam bahasa lain:',
+'withoutinterwiki-submit'  => 'Tampilkan',
 
 'fewestrevisions' => 'Artikel dengan perubahan tersedikit',
 

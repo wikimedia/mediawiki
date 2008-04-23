@@ -1225,9 +1225,9 @@ La nuna longeco de la [http://meta.wikimedia.org/wiki/Help:Job_queue laborenda v
 'brokenredirects-edit'   => '(redaktu)',
 'brokenredirects-delete' => '(forigu)',
 
-'withoutinterwiki'        => 'Paĝoj sen lingvaj ligiloj',
-'withoutinterwiki-header' => 'Jenaj paĝoj ne ligas al aliaj lingvoversioj:',
-'withoutinterwiki-submit' => 'Montri',
+'withoutinterwiki'         => 'Paĝoj sen lingvaj ligiloj',
+'withoutinterwiki-summary' => 'Jenaj paĝoj ne ligas al aliaj lingvoversioj:',
+'withoutinterwiki-submit'  => 'Montri',
 
 'fewestrevisions' => 'Artikoloj kun la plej malmultaj revizioj',
 

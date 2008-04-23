@@ -1369,9 +1369,9 @@ $2',
 'brokenredirects-edit'   => '(редактиране)',
 'brokenredirects-delete' => '(изтриване)',
 
-'withoutinterwiki'        => 'Страници без междуезикови препратки',
-'withoutinterwiki-header' => 'Следните страници не препращат към версии на други езици:',
-'withoutinterwiki-submit' => 'Показване',
+'withoutinterwiki'         => 'Страници без междуезикови препратки',
+'withoutinterwiki-summary' => 'Следните страници не препращат към версии на други езици:',
+'withoutinterwiki-submit'  => 'Показване',
 
 'fewestrevisions' => 'Страници с най-малко версии',
 

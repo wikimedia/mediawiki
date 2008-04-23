@@ -331,7 +331,7 @@ $messages = array(
 'brokenredirects'     => 'टुटेका रिडाइरेक्टहरू',
 'brokenredirectstext' => 'तलका लिङ्कहरु ले हुदै नभएका पृष्ठहरुलाइ जोड्न खोज्छन्:',
 
-'withoutinterwiki-header' => 'यी पानाहरूले अन्य भाषाका संस्करणहरूमा संबन्ध राखेका छैनन्:',
+'withoutinterwiki-summary' => 'यी पानाहरूले अन्य भाषाका संस्करणहरूमा संबन्ध राखेका छैनन्:',
 
 # Miscellaneous special pages
 'specialpage-empty' => 'यो पृष्ठ खाली छ।',

@@ -1162,9 +1162,9 @@ $3 చెప్పిన కారణం: ''$2''",
 'brokenredirects-edit'   => '(మార్చు)',
 'brokenredirects-delete' => '(తొలగించు)',
 
-'withoutinterwiki'        => 'భాషా లింకులు లేని పేజీలు',
-'withoutinterwiki-header' => 'క్రింది పేజీల నుండి ఇతర భాషా వికీలకు లింకులు లేవు:',
-'withoutinterwiki-submit' => 'చూపించు',
+'withoutinterwiki'         => 'భాషా లింకులు లేని పేజీలు',
+'withoutinterwiki-summary' => 'క్రింది పేజీల నుండి ఇతర భాషా వికీలకు లింకులు లేవు:',
+'withoutinterwiki-submit'  => 'చూపించు',
 
 'fewestrevisions' => 'అతి తక్కువ కూర్పులు కలిగిన వ్యాసాలు',
 

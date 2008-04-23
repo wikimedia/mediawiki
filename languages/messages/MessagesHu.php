@@ -1422,9 +1422,9 @@ A [http://meta.wikimedia.org/wiki/Help:Job_queue szerver számára sorban álló
 'brokenredirects-edit'   => '(szerkesztés)',
 'brokenredirects-delete' => '(törlés)',
 
-'withoutinterwiki'        => 'Interwikilink nélküli lapok',
-'withoutinterwiki-header' => 'A következő lapok nem hivatkoznak más nyelvű változatokra:',
-'withoutinterwiki-submit' => 'Megjelenítés',
+'withoutinterwiki'         => 'Interwikilink nélküli lapok',
+'withoutinterwiki-summary' => 'A következő lapok nem hivatkoznak más nyelvű változatokra:',
+'withoutinterwiki-submit'  => 'Megjelenítés',
 
 'fewestrevisions' => 'Legrövidebb laptörténetű lapok',
 

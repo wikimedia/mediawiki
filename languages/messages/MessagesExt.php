@@ -1124,9 +1124,9 @@ El longol de la [http://meta.wikimedia.org/wiki/Help:Job_queue cola e tareas] es
 'brokenredirects-edit'   => '(eital)',
 'brokenredirects-delete' => '(esborral)',
 
-'withoutinterwiki'        => 'Páhinas sin atihus "EntelGüiqui"',
-'withoutinterwiki-header' => 'Las siguientis páhinas nu atihan a velsionis en otras palras:',
-'withoutinterwiki-submit' => 'Muestral',
+'withoutinterwiki'         => 'Páhinas sin atihus "EntelGüiqui"',
+'withoutinterwiki-summary' => 'Las siguientis páhinas nu atihan a velsionis en otras palras:',
+'withoutinterwiki-submit'  => 'Muestral',
 
 'fewestrevisions' => 'Páhinas con menus revisionis',
 

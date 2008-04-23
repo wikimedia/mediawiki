@@ -1138,9 +1138,9 @@ Duůgość [http://meta.wikymedja.org/wiki/Help:Job_queue kolejki zadań] je '''
 'brokenredirects-edit'   => '(sprowjéj)',
 'brokenredirects-delete' => '(wyćep)',
 
-'withoutinterwiki'        => 'Artikle bez interwiki',
-'withoutinterwiki-header' => 'Zajty půńižej ńy majům uodwouań do wersjůw w inkšych godkach.',
-'withoutinterwiki-submit' => 'Pokož',
+'withoutinterwiki'         => 'Artikle bez interwiki',
+'withoutinterwiki-summary' => 'Zajty půńižej ńy majům uodwouań do wersjůw w inkšych godkach.',
+'withoutinterwiki-submit'  => 'Pokož',
 
 'fewestrevisions' => 'Zajty z nojmńijšom ilośćům wersyji',
 

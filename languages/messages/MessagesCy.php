@@ -1091,9 +1091,9 @@ Mae gan '''$2''' (neu '''$4%''') ohonynt alluoedd $5.",
 'brokenredirects-edit'   => '(golygu)',
 'brokenredirects-delete' => '(dileu)',
 
-'withoutinterwiki'        => 'Tudalennau heb gysylltiadau ag ieithoedd eraill',
-'withoutinterwiki-header' => 'Nid oes gysylltiad rhwng y tudalennau canlynol a thudalennau mewn ieithoedd eraill:',
-'withoutinterwiki-submit' => 'Dangos',
+'withoutinterwiki'         => 'Tudalennau heb gysylltiadau ag ieithoedd eraill',
+'withoutinterwiki-summary' => 'Nid oes gysylltiad rhwng y tudalennau canlynol a thudalennau mewn ieithoedd eraill:',
+'withoutinterwiki-submit'  => 'Dangos',
 
 'fewestrevisions' => "Erthyglau â'r nifer lleiaf o olygiadau iddynt",
 

@@ -1444,9 +1444,9 @@ Strona uznawana jest za ujednoznaczniającą jeśli zawiera ona szablon linkowan
 'brokenredirects-edit'   => '(edytuj)',
 'brokenredirects-delete' => '(usuń)',
 
-'withoutinterwiki'        => 'Strony bez odnośników językowych',
-'withoutinterwiki-header' => 'Poniższe strony nie odwołują się do innych wersji językowych:',
-'withoutinterwiki-submit' => 'Pokaż',
+'withoutinterwiki'         => 'Strony bez odnośników językowych',
+'withoutinterwiki-summary' => 'Poniższe strony nie odwołują się do innych wersji językowych:',
+'withoutinterwiki-submit'  => 'Pokaż',
 
 'fewestrevisions' => 'Strony z najmniejszą liczbą wersji',
 

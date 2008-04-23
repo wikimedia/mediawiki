@@ -1253,8 +1253,7 @@ An all Rei sti Linken zur éischter an zweeter Viruleedung, souwéi déi éischt
 'brokenredirects-delete'  => '(läschen)',
 
 'withoutinterwiki'         => 'Säiten ouni Interwiki-Linken',
-'withoutinterwiki-header'  => 'Dës Säiten hu keng Interwiki-Linken:',
-'withoutinterwiki-summary' => 'Op dëser Spezialsäit stinn all déi Säiten déi keng Interwikilinken hunn.',
+'withoutinterwiki-summary' => 'Dës Säiten hu keng Interwiki-Linken:',
 'withoutinterwiki-submit'  => 'Weisen',
 
 'fewestrevisions'         => 'Säite mat de mannsten Ännerungen',

@@ -1233,9 +1233,9 @@ Lunot [http://meta.wikimedia.org/wiki/Help:Job_queue vobodapoodkeda] binon '''\$
 'brokenredirects-edit'   => '(redakön)',
 'brokenredirects-delete' => '(moükön)',
 
-'withoutinterwiki'        => 'Pads nen yüms bevüpükik',
-'withoutinterwiki-header' => 'Pads sököl no yumons lü fomams in püks votik.',
-'withoutinterwiki-submit' => 'Jonolöd',
+'withoutinterwiki'         => 'Pads nen yüms bevüpükik',
+'withoutinterwiki-summary' => 'Pads sököl no yumons lü fomams in püks votik.',
+'withoutinterwiki-submit'  => 'Jonolöd',
 
 'fewestrevisions' => 'Yegeds labü revids nemödikün',
 

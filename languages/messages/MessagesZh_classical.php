@@ -1037,9 +1037,9 @@ $2',
 'brokenredirects-edit'   => '(替)',
 'brokenredirects-delete' => '(刪)',
 
-'withoutinterwiki'        => '孤語',
-'withoutinterwiki-header' => '頁下無鏈他語：',
-'withoutinterwiki-submit' => '示',
+'withoutinterwiki'         => '孤語',
+'withoutinterwiki-summary' => '頁下無鏈他語：',
+'withoutinterwiki-submit'  => '示',
 
 'fewestrevisions' => '鮮察',
 

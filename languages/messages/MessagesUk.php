@@ -1407,9 +1407,9 @@ $3 зазначив наступну причину: ''$2''",
 'brokenredirects-edit'   => '(редагувати)',
 'brokenredirects-delete' => '(вилучити)',
 
-'withoutinterwiki'        => 'Сторінки без міжмовних посилань',
-'withoutinterwiki-header' => 'Наступні сторінки не мають інтервікі-посилань:',
-'withoutinterwiki-submit' => 'Показати',
+'withoutinterwiki'         => 'Сторінки без міжмовних посилань',
+'withoutinterwiki-summary' => 'Наступні сторінки не мають інтервікі-посилань:',
+'withoutinterwiki-submit'  => 'Показати',
 
 'fewestrevisions' => 'Сторінки з найменшою кількістю змін',
 

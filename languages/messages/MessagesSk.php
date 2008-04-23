@@ -1344,9 +1344,9 @@ z čoho '''$2''' (alebo '''$4 %''') {{PLURAL:$2|je správca|sú správcovia}} (p
 'brokenredirects-edit'   => '(upraviť)',
 'brokenredirects-delete' => '(zmazať)',
 
-'withoutinterwiki'        => 'Stránky bez jazykových odkazov',
-'withoutinterwiki-header' => 'Nasledujúce stránky neodkazujú na iné jazykové verzie:',
-'withoutinterwiki-submit' => 'Zobraziť',
+'withoutinterwiki'         => 'Stránky bez jazykových odkazov',
+'withoutinterwiki-summary' => 'Nasledujúce stránky neodkazujú na iné jazykové verzie:',
+'withoutinterwiki-submit'  => 'Zobraziť',
 
 'fewestrevisions' => 'Stránky s najmenším počtom revízií',
 

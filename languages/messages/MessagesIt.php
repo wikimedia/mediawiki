@@ -1292,9 +1292,9 @@ Ciascuna riga contiene i collegamenti al primo ed al secondo redirect, oltre all
 'brokenredirects-edit'   => '(modifica)',
 'brokenredirects-delete' => '(cancella)',
 
-'withoutinterwiki'        => 'Pagine prive di interwiki',
-'withoutinterwiki-header' => 'Le pagine indicate di seguito sono prive di collegamenti alle versioni in altre lingue:',
-'withoutinterwiki-submit' => 'Mostra',
+'withoutinterwiki'         => 'Pagine prive di interwiki',
+'withoutinterwiki-summary' => 'Le pagine indicate di seguito sono prive di collegamenti alle versioni in altre lingue:',
+'withoutinterwiki-submit'  => 'Mostra',
 
 'fewestrevisions' => 'Voci con meno revisioni',
 

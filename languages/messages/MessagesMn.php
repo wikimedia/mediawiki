@@ -1211,9 +1211,9 @@ URL нь зөв болон сайт ажиллагаатай байгаа эсэ
 'brokenredirects-edit'   => '(засварлах)',
 'brokenredirects-delete' => '(устгах)',
 
-'withoutinterwiki'        => 'Бусад хэлтэйх холбоосгүй хуудсууд',
-'withoutinterwiki-header' => 'Дараах хуудсууд бусад хэлний хувилбаруудад холбогддоггүй:',
-'withoutinterwiki-submit' => 'Үзүүлэх',
+'withoutinterwiki'         => 'Бусад хэлтэйх холбоосгүй хуудсууд',
+'withoutinterwiki-summary' => 'Дараах хуудсууд бусад хэлний хувилбаруудад холбогддоггүй:',
+'withoutinterwiki-submit'  => 'Үзүүлэх',
 
 'fewestrevisions' => 'Хамгийн бага засварлагдсан хуудсууд',
 

@@ -1238,9 +1238,9 @@ Template:消除歧義',
 'brokenredirects-edit'   => '(编辑)',
 'brokenredirects-delete' => '(删除)',
 
-'withoutinterwiki'        => '未有语言链接的页面',
-'withoutinterwiki-header' => '以下的页面是未有语言链接到其它语言版本:',
-'withoutinterwiki-submit' => '显示',
+'withoutinterwiki'         => '未有语言链接的页面',
+'withoutinterwiki-summary' => '以下的页面是未有语言链接到其它语言版本:',
+'withoutinterwiki-submit'  => '显示',
 
 'fewestrevisions' => '最少修订的页面',
 
@@ -1344,7 +1344,6 @@ Template:消除歧義',
 'listgrouprights-rights'   => '权限',
 'listgrouprights-helppage' => 'Help:群组权限',
 'listgrouprights-members'  => '(成员列表)',
-'whatlinkshere-filters'    => '过滤器',
 
 # E-mail user
 'mailnologin'     => '无电邮地址',
@@ -1613,6 +1612,7 @@ $1',
 'whatlinkshere-hideredirs' => '$1重定向',
 'whatlinkshere-hidetrans'  => '$1包含',
 'whatlinkshere-hidelinks'  => '$1链接',
+'whatlinkshere-filters'    => '过滤器',
 
 # Block/unblock
 'blockip'                     => '查封用户',
