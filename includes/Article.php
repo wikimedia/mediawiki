@@ -660,7 +660,7 @@ class Article {
 	 * This is the default action of the script: just view the page of
 	 * the given title.
 	*/
-	function view()	{
+	function view() {
 		global $wgUser, $wgOut, $wgRequest, $wgContLang;
 		global $wgEnableParserCache, $wgStylePath, $wgParser;
 		global $wgUseTrackbacks, $wgNamespaceRobotPolicies, $wgArticleRobotPolicies;

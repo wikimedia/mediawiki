@@ -565,6 +565,7 @@ $wgMessageStructure = array(
 	'undo' => array(
 		'undo-success',
 		'undo-failure',
+		'undo-norev',
 		'undo-summary',
 	),
 	'cantcreateaccount' => array(

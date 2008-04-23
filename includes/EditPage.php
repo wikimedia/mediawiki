@@ -153,39 +153,43 @@ class EditPage {
 					$oldrev = $undorev ? $undorev->getPrevious() : null;
 				}
 
-				#Sanity check, make sure it's the right page.
+				# Sanity check, make sure it's the right page,
+				# the revisions exist and they were not deleted.
 				# Otherwise, $text will be left as-is.
-				if ( !is_null($undorev) && !is_null($oldrev) && $undorev->getPage()==$oldrev->getPage() && $undorev->getPage()==$this->mArticle->getID() ) {
+				if( !is_null( $undorev ) && !is_null( $oldrev ) &&
+					$undorev->getPage() == $oldrev->getPage() &&
+					$undorev->getPage() == $this->mArticle->getID() &&
+					!$undorev->isDeleted( Revision::DELETED_TEXT ) &&
+					!$oldrev->isDeleted( Revision::DELETED_TEXT ) ) {
 					$undorev_text = $undorev->getText();
 					$oldrev_text = $oldrev->getText();
 					$currev_text = $text;
 
-					#No use doing a merge if it's just a straight revert.
 					if ( $currev_text != $undorev_text ) {
-						$result = wfMerge($undorev_text, $oldrev_text, $currev_text, $text);
+						$result = wfMerge( $undorev_text, $oldrev_text, $currev_text, $text );
 					} else {
+						# No use doing a merge if it's just a straight revert.
 						$text = $oldrev_text;
 						$result = true;
+					}
+					if( $result ) {
+						# Inform the user of our success and set an automatic edit summary
+						$this->editFormPageTop .= $wgOut->parse( wfMsgNoTrans( 'undo-success' ) );
+						$firstrev = $oldrev->getNext();
+						# If we just undid one rev, use an autosummary
+						if( $firstrev->mId == $undo ) {
+							$this->summary = wfMsgForContent('undo-summary', $undo, $undorev->getUserText());
+						}
+						$this->formtype = 'diff';
+					} else {
+						# Warn the user that something went wrong
+						$this->editFormPageTop .= $wgOut->parse( wfMsgNoTrans( 'undo-failure' ) );
 					}
 				} else {
 					// Failed basic sanity checks.
 					// Older revisions may have been removed since the link
 					// was created, or we may simply have got bogus input.
-					$result = false;
-				}
-
-				if( $result ) {
-					# Inform the user of our success and set an automatic edit summary
-					$this->editFormPageTop .= $wgOut->parse( wfMsgNoTrans( 'undo-success' ) );
-					$firstrev = $oldrev->getNext();
-					# If we just undid one rev, use an autosummary
-					if ( $firstrev->mId == $undo ) {
-						$this->summary = wfMsgForContent('undo-summary', $undo, $undorev->getUserText());
-					}
-					$this->formtype = 'diff';
-				} else {
-					# Warn the user that something went wrong
-					$this->editFormPageTop .= $wgOut->parse( wfMsgNoTrans( 'undo-failure' ) );
+					$this->editFormPageTop .= $wgOut->parse( wfMsgNoTrans( 'undo-norev' ) );
 				}
 			} else if( $section != '' ) {
 				if( $section == 'new' ) {
