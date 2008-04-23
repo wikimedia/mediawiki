@@ -264,7 +264,9 @@ class PageHistory {
 
 		$tools = array();
 
-		if ( !is_null( $next ) && is_object( $next ) ) {
+		if ( !is_null( $next ) && is_object( $next ) &&
+			!$rev->isDeleted( Revision::DELETED_TEXT ) &&
+			!$next->rev_deleted & Revision::DELETED_TEXT ) {
 			if( !$this->mTitle->getUserPermissionsErrors( 'rollback', $wgUser )
 			&& !$this->mTitle->getUserPermissionsErrors( 'edit', $wgUser )
 			&& $latest ) {
