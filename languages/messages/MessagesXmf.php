@@ -201,6 +201,7 @@ $messages = array(
 'link_sample'     => 'ბუნილიშ სახელ',
 'link_tip'        => 'დინახალენ ბუნილ',
 'extlink_sample'  => 'http://www.example.com ბუნილიშ სათაურ',
+'extlink_tip'     => 'გალე ბუნილ (ქორშუდათი http:// პრეფიქს)',
 'headline_sample' => 'სათაურიშ ტექსტ',
 'headline_tip'    => 'ქვესათაურ',
 'math_tip'        => 'მათემატიკურ ფორმულა (LaTeX)',

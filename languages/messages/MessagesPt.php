@@ -466,6 +466,8 @@ Isto é geralmente causado ao se acessar um diff ou link de histórico que leva 
 
 Se este não for o caso, você pode ter encontrado um "bug" no software.
 Por favor, tome nota do URL e comunique o erro a um administrador do sistema.',
+'missingarticle-rev'   => '(revisão#: $1)',
+'missingarticle-diff'  => '(Dif.: $1, $2)',
 'readonly_lag'         => 'A base de dados foi automaticamente bloqueada enquanto os servidores secundários se sincronizam com o principal',
 'internalerror'        => 'Erro interno',
 'internalerror_info'   => 'Erro interno: $1',
@@ -1434,6 +1436,7 @@ Você pode diminuir a lista escolhendo um tipo de registo, um nome de utilizador
 'listgrouprights-group'    => 'Grupo',
 'listgrouprights-rights'   => 'Privilégios',
 'listgrouprights-helppage' => 'Help:Privilégios de grupo',
+'listgrouprights-members'  => '(lista de membros)',
 
 # E-mail user
 'mailnologin'     => 'Nenhum endereço de envio',

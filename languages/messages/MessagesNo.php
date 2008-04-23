@@ -568,7 +568,7 @@ Dersom denne forespørselen ble utført av noen andre, eller om du kom på passo
 'eauthentsent'               => 'En bekreftelsesmelding ble sendt til gitte e-postadresse. Før andre e-poster kan sendes til kontoen må du følge instruksjonene i e-posten for å bekrefte at kontoen faktisk er din.',
 'throttled-mailpassword'     => 'En passordpåminnelse ble sendt for mindre enn $1 timer siden. For å forhindre misbruk kan kun én passordpåminnelse sendes per $1 timer.',
 'mailerror'                  => 'Feil under sending av e-post: $1',
-'acct_creation_throttle_hit' => 'Beklager, du har allerede opprettet $1 kontoer. Du kan ikke opprette flere.',
+'acct_creation_throttle_hit' => 'Beklager, du har allerede opprettet {{PLURAL:$1|én konto|$1 kontoer}}. Du kan ikke opprette flere.',
 'emailauthenticated'         => 'Din e-postadresse ble bekreftet $1.',
 'emailnotauthenticated'      => 'Din e-postadresse er ikke bekreftet. Du vil ikke kunne motta e-post for noen av følgende egenskaper.',
 'noemailprefs'               => 'Oppgi en e-postadresse for at disse funksjonene skal fungere.',

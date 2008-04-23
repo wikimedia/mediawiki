@@ -538,6 +538,7 @@ $1',
 
 Ако не това е причината, възможно е да сте открили грешка в системата.
 Съобщете за това на администратор, като включите и името на страницата.',
+'missingarticle-rev'   => '(версия#: $1)',
 'readonly_lag'         => 'Базата от данни беше автоматично заключена, докато подчинените сървъри успеят да се съгласуват с основния сървър.',
 'internalerror'        => 'Вътрешна грешка',
 'internalerror_info'   => 'Вътрешна грешка: $1',
@@ -2137,8 +2138,8 @@ $1',
 'metadata-fields'   => 'EXIF данните, показани в това съобщение, ще бъдат включени на медийната страница, когато информационната таблица е сгъната. Останалите данни ще са скрити по подразбиране.
 * производител
 * модел
-* дата и време на създаване
-* време за експозиция
+* дата и час на създаване
+* време за експонация
 * F (бленда)
 * фокусно разстояние', # Do not translate list items
 
@@ -2151,6 +2152,7 @@ $1',
 'exif-orientation'               => 'Ориентация',
 'exif-samplesperpixel'           => 'Редица от компоненти',
 'exif-planarconfiguration'       => 'Принцип на организация на данните',
+'exif-ycbcrpositioning'          => 'Y и C позициониране',
 'exif-xresolution'               => 'Хоризонтална резолюция',
 'exif-yresolution'               => 'Вертикална резолюция',
 'exif-rowsperstrip'              => 'Брой редове на ивица',
@@ -2158,7 +2160,7 @@ $1',
 'exif-transferfunction'          => 'Функция по пренос',
 'exif-whitepoint'                => 'Хроматичност на бялото',
 'exif-ycbcrcoefficients'         => 'Коефициенти в матрицата на трансформацията на цветовото пространство',
-'exif-datetime'                  => 'Дата и време на изменението на файла',
+'exif-datetime'                  => 'Дата и час на изменението на файла',
 'exif-imagedescription'          => 'Название на изображението',
 'exif-make'                      => 'Производител',
 'exif-model'                     => 'Модел на фотоапарата',
@@ -2175,9 +2177,9 @@ $1',
 'exif-makernote'                 => 'Допълнителни данни на производителя',
 'exif-usercomment'               => 'Допълнителни коментари',
 'exif-relatedsoundfile'          => 'Свързан звуков файл',
-'exif-datetimeoriginal'          => 'Дата и време на създаване',
+'exif-datetimeoriginal'          => 'Дата и час на създаване',
 'exif-datetimedigitized'         => 'Дата и час на записа',
-'exif-exposuretime'              => 'Време на експозиция',
+'exif-exposuretime'              => 'Време на експонация',
 'exif-exposuretime-format'       => '$1 сек ($2)',
 'exif-fnumber'                   => 'F (бленда)',
 'exif-exposureprogram'           => 'Програма на експонацията',
@@ -2308,8 +2310,8 @@ $1',
 'exif-customrendered-0' => 'нормален процес',
 'exif-customrendered-1' => 'нестандартна обработка',
 
-'exif-exposuremode-0' => 'автоматична експозиция',
-'exif-exposuremode-1' => 'ръчна експозиция',
+'exif-exposuremode-0' => 'автоматична експонация',
+'exif-exposuremode-1' => 'ръчна експонация',
 'exif-exposuremode-2' => 'Автоматичен клин',
 
 'exif-whitebalance-0' => 'Автоматичен баланс на бялото',
@@ -2326,19 +2328,19 @@ $1',
 'exif-gaincontrol-3' => 'Неголямо намаление',
 'exif-gaincontrol-4' => 'Силно намаление',
 
-'exif-contrast-0' => 'Нормално',
+'exif-contrast-0' => 'Нормален',
 'exif-contrast-1' => 'Слабо повишение',
 'exif-contrast-2' => 'Силно повишение',
 
-'exif-saturation-0' => 'Нормално',
+'exif-saturation-0' => 'Нормална',
 'exif-saturation-1' => 'Неголяма наситеност',
 'exif-saturation-2' => 'Голяма наситеност',
 
-'exif-sharpness-0' => 'Нормално',
+'exif-sharpness-0' => 'Нормална',
 'exif-sharpness-1' => 'по-меко',
 'exif-sharpness-2' => 'по-остро',
 
-'exif-subjectdistancerange-0' => 'Неизвестно',
+'exif-subjectdistancerange-0' => 'Неизвестен',
 'exif-subjectdistancerange-1' => 'Макро',
 'exif-subjectdistancerange-2' => 'Близко',
 'exif-subjectdistancerange-3' => 'Далечно',

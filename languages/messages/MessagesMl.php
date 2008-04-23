@@ -904,7 +904,7 @@ $3 അതിനു കാണിച്ചിരിക്കുന്ന കാര
 'prefs-rc'              => 'പുതിയ മാറ്റങ്ങള്‍',
 'prefs-watchlist'       => 'ശ്രദ്ധിക്കുന്നവ',
 'prefs-watchlist-days'  => 'ശ്രദ്ധിക്കുന്ന താളുകളുടെ പട്ടികയില്‍ പ്രദര്‍ശിപ്പിക്കേണ്ട പരമാവധി ദിവസങ്ങള്‍:',
-'prefs-watchlist-edits' => 'ശ്രദ്ധിക്കുന്ന താളുകളുടെ പട്ടികയുടെ വികസിത രൂപത്തില്‍ പ്രദര്‍ശിപ്പിക്കേണ്ട പരമാവധി മാറ്റങ്ങള്‍:‍',
+'prefs-watchlist-edits' => 'ശ്രദ്ധിക്കുന്ന താളുകളുടെ പട്ടികയുടെ വികസിത രൂപത്തില്‍ പ്രദര്‍ശിപ്പിക്കേണ്ട പരമാവധി മാറ്റങ്ങള്‍:',
 'prefs-misc'            => 'പലവക',
 'saveprefs'             => 'സേവ് ചെയ്യുക',
 'resetprefs'            => 'സേവ് ചെയ്തിട്ടില്ലാത്ത മാറ്റങ്ങള്‍ പുനഃക്രമീകരിക്കുക',
@@ -2205,5 +2205,15 @@ $1',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch-submit' => 'തിരയൂ',
+
+# Special:SpecialPages
+'specialpages-group-maintenance' => 'പരിചരണം വേണ്ടവ',
+'specialpages-group-other'       => 'മറ്റു പ്രത്യേക താളുകള്‍',
+'specialpages-group-login'       => 'ലോഗിന്‍ ചെയ്യുക / അംഗത്വം എടുക്കുക',
+'specialpages-group-changes'     => 'പുതിയ മാറ്റങ്ങളും രേഖകളും',
+'specialpages-group-media'       => 'മീഡിയ രേഖകളും അപ്‌ലോഡുകളും',
+'specialpages-group-needy'       => 'പണികള്‍ വേണ്ട താളുകള്‍',
+'specialpages-group-highuse'     => 'കൂടുതല്‍ ഉപയോഗിക്കപ്പെട്ട താളുകള്‍',
+'specialpages-group-permissions' => 'ഉപയോക്തൃ അവകാശങ്ങള്‍',
 
 );

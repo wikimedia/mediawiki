@@ -28,6 +28,7 @@
  * @author Dvortygirl
  * @author Cvmontuy
  * @author Drini
+ * @author Jatrobat
  */
 
 $skinNames = array(
@@ -915,12 +916,14 @@ $2 Listar redirecciones   Buscar $3 $9',
 
 # Groups
 'group'               => 'Grupo:',
+'group-user'          => 'Usuarios',
 'group-autoconfirmed' => 'Usuarios autoconfirmados',
 'group-bot'           => 'Bots',
 'group-sysop'         => 'Administradores',
 'group-bureaucrat'    => 'Burócratas',
 'group-all'           => '(todos)',
 
+'group-user-member'          => 'Usuario',
 'group-autoconfirmed-member' => 'Usuario autoconfirmado',
 'group-bot-member'           => 'Bot',
 'group-sysop-member'         => 'Administrador',
@@ -1458,6 +1461,7 @@ A continuación se muestran las opciones actuales de la página <strong>$1</stro
 o a que la revisión haya sido restaurada o eliminada del archivo.',
 'undelete-nodiff'          => 'No existe una revisión previa.',
 'undeletebtn'              => '¡Restaurar!',
+'undeletelink'             => 'restaurar',
 'undeletereset'            => 'Nada',
 'undeletecomment'          => 'Razón para restaurar:',
 'undeletedarticle'         => 'restauró "$1"',
@@ -2287,6 +2291,7 @@ Intenta la previsualización normal.',
 'version'                  => 'Versión', # Not used as normal message but as header for the special page itself
 'version-specialpages'     => 'Páginas especiales',
 'version-parserhooks'      => "Lligams de l'analitzador",
+'version-version'          => 'Versión',
 'version-license'          => 'Licencia',
 'version-software-version' => 'Versión',
 
@@ -2298,5 +2303,8 @@ Intenta la previsualización normal.',
 # Special:FileDuplicateSearch
 'fileduplicatesearch-filename' => 'Nombre del fichero:',
 'fileduplicatesearch-submit'   => 'Buscar',
+
+# Special:SpecialPages
+'specialpages-group-other' => 'Otras páginas especiales',
 
 );

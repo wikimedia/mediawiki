@@ -306,6 +306,7 @@ $messages = array(
 'youhavenewmessagesmulti' => '$1 に新しいメッセージが届いています',
 'editsection'             => '編集',
 'editold'                 => '編集',
+'viewsourceold'           => 'ソースを表示',
 'editsectionhint'         => '節を編集: $1',
 'toc'                     => '目次',
 'showtoc'                 => '表示',

@@ -344,7 +344,8 @@ $messages = array(
 'movethispage'            => "Άλλαξον τ' όνεμα τη σελίδας",
 
 # Book sources
-'booksources-go' => 'Δέβα',
+'booksources-search-legend' => 'Αράεμαν τη βιβλίων',
+'booksources-go'            => 'Δέβα',
 
 # Special:Log
 'specialloguserlabel'  => 'Χρήστες:',

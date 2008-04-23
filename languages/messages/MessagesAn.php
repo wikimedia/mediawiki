@@ -420,6 +420,8 @@ L'almenistrador que la bloqueyó dió ista esplicazión:
 Isto gosa pasar si se sigue un binclo enta una esferenzia de bersions zircunduzita, u enta un istorial d'una pachina que ha estato borrata.
 
 Si ista no ye a causa, podría aber trobato una error en o programa. Por fabor, informe d'isto á un almenistrador, endicando-le l'adreza URL.",
+'missingarticle-rev'   => '(bersión#: $1)',
+'missingarticle-diff'  => '(Esf: $1, $2)',
 'readonly_lag'         => 'A base de datos ye bloqueyata temporalment entre que os serbidors se sincronizan.',
 'internalerror'        => 'Error interna',
 'internalerror_info'   => 'Error interna: $1',
@@ -974,26 +976,29 @@ Un * endica que bustet no puede sacar a colla dimpués d'adibir-la, u bize-bersa
 'userrights-unchangeable-col'      => 'Collas que no puede cambiar',
 
 # Groups
-'group'               => 'Colla:',
-'group-user'          => 'Usuarios',
-'group-autoconfirmed' => 'Usuarios Autoconfirmatos',
-'group-sysop'         => 'Almenistradors',
-'group-bureaucrat'    => 'Burocratas',
-'group-suppress'      => 'Superbisors',
-'group-all'           => '(toz)',
+'group'                => 'Colla:',
+'group-user'           => 'Usuarios',
+'group-emailconfirmed' => 'Usuarios con adreza eletronica',
+'group-autoconfirmed'  => 'Usuarios Autoconfirmatos',
+'group-sysop'          => 'Almenistradors',
+'group-bureaucrat'     => 'Burocratas',
+'group-suppress'       => 'Superbisors',
+'group-all'            => '(toz)',
 
-'group-user-member'          => 'Usuario',
-'group-autoconfirmed-member' => 'Usuario autoconfirmato',
-'group-sysop-member'         => 'Almenistrador',
-'group-bureaucrat-member'    => 'Burocrata',
-'group-suppress-member'      => 'Superbisor',
+'group-user-member'           => 'Usuario',
+'group-emailconfirmed-member' => 'Usuario con adreza eletronica',
+'group-autoconfirmed-member'  => 'Usuario autoconfirmato',
+'group-sysop-member'          => 'Almenistrador',
+'group-bureaucrat-member'     => 'Burocrata',
+'group-suppress-member'       => 'Superbisor',
 
-'grouppage-user'          => '{{ns:project}}:Usuarios',
-'grouppage-autoconfirmed' => '{{ns:project}}:Usuarios autoconfirmatos',
-'grouppage-bot'           => '{{ns:project}}:Bots',
-'grouppage-sysop'         => '{{ns:project}}:Almenistradors',
-'grouppage-bureaucrat'    => '{{ns:project}}:Burocratas',
-'grouppage-suppress'      => '{{ns:project}}:Superbisors',
+'grouppage-user'           => '{{ns:project}}:Usuarios',
+'grouppage-emailconfirmed' => '{{ns:project}}:Usuarios con adreza eletronica',
+'grouppage-autoconfirmed'  => '{{ns:project}}:Usuarios autoconfirmatos',
+'grouppage-bot'            => '{{ns:project}}:Bots',
+'grouppage-sysop'          => '{{ns:project}}:Almenistradors',
+'grouppage-bureaucrat'     => '{{ns:project}}:Burocratas',
+'grouppage-suppress'       => '{{ns:project}}:Superbisors',
 
 # User rights log
 'rightslog'      => "Rechistro de premisos d'os usuarios",
@@ -1375,6 +1380,7 @@ Ta reduzir o listau puede trigar un tipo de rechistro, o nombre de l'usuario u a
 'listgrouprights-group'    => 'Colla',
 'listgrouprights-rights'   => 'Dreitos',
 'listgrouprights-helppage' => "Help:Dreitos d'a colla",
+'listgrouprights-members'  => '(listau de miembros)',
 
 # E-mail user
 'mailnologin'     => "No nimbiar l'adreza",
@@ -1633,6 +1639,7 @@ $1',
 'whatlinkshere-links'      => '← binclos',
 'whatlinkshere-hideredirs' => '$1 reendrezeras',
 'whatlinkshere-hidelinks'  => '$1 binclos',
+'whatlinkshere-filters'    => 'Filtros',
 
 # Block/unblock
 'blockip'                     => 'bloqueyar usuario',
@@ -1646,7 +1653,7 @@ as pachinas que s'han bandalizatas).",
 'ipaddress'                   => 'Adreza IP',
 'ipadressorusername'          => "Adreza IP u nombre d'usuario",
 'ipbexpiry'                   => 'Zircunduzión:',
-'ipbreason'                   => 'Razón',
+'ipbreason'                   => 'Razón:',
 'ipbreasonotherlist'          => 'Atra razón',
 'ipbreason-dropdown'          => "*Razons comuns de bloqueyo
 ** Meter informazión falsa

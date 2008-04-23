@@ -212,7 +212,7 @@ $messages = array(
 'create-this-page'  => 'Bu sayfayı oluştur',
 'delete'            => 'Sil',
 'deletethispage'    => 'Sayfayı sil',
-'undelete_short'    => '$1 değişikliği geri getir',
+'undelete_short'    => '{{PLURAL:$1|değişikliği|$1 değişiklikleri}} geri getir',
 'protect'           => 'Korumaya al',
 'protect_change'    => 'Korumayı değiştir',
 'protectthispage'   => 'Sayfayı koruma altına al',
@@ -240,7 +240,7 @@ $messages = array(
 'redirectedfrom'    => '($1 sayfasından yönlendirildi)',
 'redirectpagesub'   => 'Yönlendirme sayfası',
 'lastmodifiedat'    => 'Bu sayfa son olarak $2, $1 tarihinde güncellenmiştir.', # $1 date, $2 time
-'viewcount'         => 'Bu sayfaya $1 defa erişilmiş.',
+'viewcount'         => 'Bu sayfaya {{PLURAL:$1|bir|$1 }} defa erişilmiş.',
 'protectedpage'     => 'Korumalı sayfa',
 'jumpto'            => 'Git ve:',
 'jumptonavigation'  => 'kullan',
@@ -290,6 +290,7 @@ $messages = array(
 'youhavenewmessagesmulti' => "$1'de yeni mesajınız var.",
 'editsection'             => 'değiştir',
 'editold'                 => 'değiştir',
+'viewsourceold'           => 'kaynağı gör',
 'editsectionhint'         => 'Değiştirilen bölüm: $1',
 'toc'                     => 'Konu başlıkları',
 'showtoc'                 => 'göster',
@@ -348,6 +349,8 @@ $1',
 'readonlytext'         => 'Veritabanı olağan bakım/onarım çalışmaları sebebiyle, geçici olarak giriş ve değişiklik yapmaya kapatılmıştır. Kısa süre sonra normale dönecektir.
 
 Veritabanını kilitleyen operatörün açıklaması: $1',
+'missingarticle-rev'   => '(sürüm#: $1)',
+'missingarticle-diff'  => '(Fark: $1, $2)',
 'internalerror'        => 'Yazılım hatası',
 'internalerror_info'   => 'İç hata: $1',
 'filecopyerror'        => '"$1"  "$2" dosyasına kopyalanamıyor.',
@@ -393,7 +396,7 @@ Verilen sebep: ''$2''.",
 
 Hesabınız açıldı. {{SITENAME}} tercihlerinizi değiştirmeyi unutmayın.',
 'loginpagetitle'             => 'Oturum aç',
-'yourname'                   => 'Kullanıcı adınız',
+'yourname'                   => 'Kullanıcı adınız:',
 'yourpassword'               => 'Parolanız',
 'yourpasswordagain'          => 'Parolayı yeniden yaz',
 'remembermypassword'         => 'Parolayı hatırla.',
@@ -729,8 +732,10 @@ Bu sayfa değişikiliği kamu arşivlerinden silinmiştir.
 'search-result-size'       => '$1 ({{PLURAL:$2|1 kelime|$2 kelime}})',
 'search-result-score'      => 'Uygunluk: $1%',
 'search-redirect'          => '(yönlendirme $1)',
+'search-section'           => '(bölüm $1)',
 'search-suggest'           => 'Bunu mu demek istediniz: $1',
 'search-interwiki-caption' => 'Kardeş projeler',
+'search-interwiki-default' => '$1 sonuçlar:',
 'searchall'                => 'hepsi',
 'showingresults'           => '<b>$2.</b> sonuçtan başlayarak <b>$1</b> sonuç aşağıdadır:',
 'showingresultsnum'        => '<b>$2.</b> sonuçtan başlayarak <b>$3</b> sonuç aşağıdadır:',
@@ -898,7 +903,7 @@ veya doğrudan bağlantı için
 'uploadlog'                   => 'yükleme kaydı',
 'uploadlogpage'               => 'Dosya yükleme kayıtları',
 'uploadlogpagetext'           => 'Aşağıda en son eklenen dosyaların bir listesi bulunmaktadır.',
-'filename'                    => 'Dosya',
+'filename'                    => 'Dosya adı',
 'filedesc'                    => 'Dosya ile ilgili açıklama',
 'fileuploadsummary'           => 'Açıklama:',
 'filestatus'                  => 'Telif hakkı durumu:',
@@ -999,6 +1004,10 @@ Bu dosyanın silme kayıtları kolaylık olması için burada sunulmuştur:",
 'filedelete-success'          => "'''$1''' silindi.",
 'filedelete-nofile'           => "{{SITENAME}} üzerinde '''$1''' mevcut değildir.",
 'filedelete-reason-otherlist' => 'Başka sebeb',
+'filedelete-reason-dropdown'  => '*Genel silme gerekçeleri
+** Telif hakları ihlali
+** Çift/kopya dosya',
+'filedelete-edit-reasonlist'  => 'Silme nedenlerini değiştir',
 
 # MIME search
 'mimesearch' => 'MIME araması',
@@ -1037,7 +1046,7 @@ Site kurulduğundan bu güne kadar toplam '''\$4''' sayfa değişikliği ve sayf
 Toplam sayfa görüntülenme sayısı '''\$3''', değişiklik başına görüntüleme sayısı '''\$6''' olmuştur.
 
 Şu andaki [http://meta.wikimedia.org/wiki/Help:Job_queue iş kuyruğu] sayısı '''\$7'''.",
-'userstatstext' => "Şu anda '''$1''' kayıtlı kullanıcımız var. Bunlardan <b>$2</b> tanesi (ya da %$4) yöneticidir. (bakın $3)",
+'userstatstext' => "'''$1''' kayıtlı [[Special:Listusers|kullanıcı]] var. Bunlardan '''$2''' tanesi (ya da '''$4%''') $5 haklarına sahiptir.",
 
 'disambiguations'      => 'Anlam ayrım sayfaları',
 'disambiguationspage'  => 'Template:Anlam ayrımı',
@@ -1058,12 +1067,12 @@ Toplam sayfa görüntülenme sayısı '''\$3''', değişiklik başına görünt�
 'fewestrevisions' => 'En az düzenleme yapılmış sayfalar',
 
 # Miscellaneous special pages
-'nbytes'                  => '$1 bayt',
-'ncategories'             => '$1 kategori',
-'nlinks'                  => '$1 bağlantı',
-'nmembers'                => '$1 üye',
-'nrevisions'              => '$1 değişiklik',
-'nviews'                  => '$1 görünüm',
+'nbytes'                  => '{{PLURAL:$1|bayt|bayt}}',
+'ncategories'             => '{{PLURAL:$1|kategori|kategoriler}}',
+'nlinks'                  => '{{PLURAL:$1|bağlantı|bağlantılar}}',
+'nmembers'                => '{{PLURAL:$1|üye|üyeler}}',
+'nrevisions'              => '{{PLURAL:$1|değişiklik|değişiklikler}}',
+'nviews'                  => '$1 {{PLURAL:$1|görünüm|görünüm}}',
 'lonelypages'             => 'Kendisine hiç bağlantı olmayan sayfalar',
 'uncategorizedpages'      => 'Herhangi bir kategoride olmayan sayfalar',
 'uncategorizedcategories' => 'Herhangi bir kategoride olmayan kategoriler',
@@ -1093,7 +1102,7 @@ Toplam sayfa görüntülenme sayısı '''\$3''', değişiklik başına görünt�
 'spheading'               => 'Tüm kullanıcıları ilgilendirebilecek özel sayfalar',
 'restrictedpheading'      => 'Yöneticilerin yetkileri ile ilgili özel sayfalar',
 'newpages'                => 'Yeni sayfalar',
-'newpages-username'       => 'Kullanıcı:',
+'newpages-username'       => 'Kullanıcı adı:',
 'ancientpages'            => 'En son değişiklik tarihi en eski olan maddeler',
 'ancientpages-summary'    => 'En son değişiklik yapıldığından bu yana en fazla zaman geçmiş, geliştirilmesi unutulmuş sayfaların listesi.',
 'move'                    => 'Adını değiştir',
@@ -1256,6 +1265,11 @@ Yakın zamanda silinenleri görmek için: $2.',
 'deletecomment'               => 'Silme nedeni',
 'deleteotherreason'           => 'Diğer/ilave neden:',
 'deletereasonotherlist'       => 'Diğer nedenler',
+'deletereason-dropdown'       => '*Genel silme gerekçeleri
+** Yazarın talebi
+** Telif hakları ihlali
+** Vandalizm',
+'delete-edit-reasonlist'      => 'Silme nedenlerini değiştir',
 'rollback'                    => 'değişiklikleri geri al',
 'rollback_short'              => 'geri al',
 'rollbacklink'                => 'eski haline getir',
@@ -1319,7 +1333,7 @@ Daha fazla bilgi için [[Project:Koruma altına alınmış sayfa]] sayfasına ba
 'undeletereset'          => 'Vazgeç',
 'undeletecomment'        => 'Neden:',
 'undeletedarticle'       => '"$1" geri getirildi.',
-'undeletedrevisions'     => 'Toplam $1 kayıt geri getirildi.',
+'undeletedrevisions'     => 'Toplam {{PLURAL:$1|1 kayıt|$1 kayıt}} geri getirildi.',
 'cannotundelete'         => 'Sayfayı ya da medyayı sizden önce bir başka kullanıcı geri getirdiğinden dolayı sizin geri getirme işleminiz geçersiz.',
 'undeletedpage'          => "<big>'''$1 sayfası geri getirildi'''</big>
 
@@ -1354,17 +1368,18 @@ $1',
 'sp-contributions-submit'      => 'Ara',
 
 # What links here
-'whatlinkshere'       => 'Sayfaya bağlantılar',
-'whatlinkshere-title' => '$1 maddesine bağlantısı olan sayfalar',
-'whatlinkshere-page'  => 'Sayfa:',
-'linklistsub'         => '(Bağlantı listesi)',
-'linkshere'           => "'''[[:$1]]''' sayfasına bağlantısı olan sayfalar:",
-'nolinkshere'         => "'''[[:$1]]''' sayfasına bağlantı yapan sayfa yok.",
-'isredirect'          => 'yönlendirme sayfası',
-'istemplate'          => 'ekleme',
-'whatlinkshere-prev'  => '{{PLURAL:$1|önceki|önceki $1}}',
-'whatlinkshere-next'  => '{{PLURAL:$1|sonraki|sonraki $1}}',
-'whatlinkshere-links' => '← linkler',
+'whatlinkshere'         => 'Sayfaya bağlantılar',
+'whatlinkshere-title'   => '$1 maddesine bağlantısı olan sayfalar',
+'whatlinkshere-page'    => 'Sayfa:',
+'linklistsub'           => '(Bağlantı listesi)',
+'linkshere'             => "'''[[:$1]]''' sayfasına bağlantısı olan sayfalar:",
+'nolinkshere'           => "'''[[:$1]]''' sayfasına bağlantı yapan sayfa yok.",
+'isredirect'            => 'yönlendirme sayfası',
+'istemplate'            => 'ekleme',
+'whatlinkshere-prev'    => '{{PLURAL:$1|önceki|önceki $1}}',
+'whatlinkshere-next'    => '{{PLURAL:$1|sonraki|sonraki $1}}',
+'whatlinkshere-links'   => '← linkler',
+'whatlinkshere-filters' => 'Filtreler',
 
 # Block/unblock
 'blockip'                     => "Bu IP'den erişimi engelle",
@@ -1583,6 +1598,7 @@ In the latter case you can also use a link, e.g. [[Special:Export/{{int:Mainpage
 'tooltip-compareselectedversions' => 'Seçilmiş iki sürüm arasındaki farkları göster.',
 'tooltip-watch'                   => 'Sayfayı izleme listene ekle',
 'tooltip-recreate'                => 'Silinmiş olmasına rağmen sayfayı geri getir',
+'tooltip-upload'                  => 'Yüklemeyi başlat',
 
 # Stylesheets
 'common.css'   => '/* Buraya konulacak CSS kodu tüm temalarda etkin olur */',
@@ -1777,8 +1793,11 @@ Ondan sonraki link(ler) kural dışı olarak kabul edilir, örneğin: resim sayf
 
 'exif-gaincontrol-0' => 'Hiçbiri',
 
+'exif-contrast-0' => 'Normal',
 'exif-contrast-1' => 'Yumuşak',
 'exif-contrast-2' => 'Sert',
+
+'exif-saturation-0' => 'Normal',
 
 'exif-subjectdistancerange-0' => 'Bilinmiyor',
 'exif-subjectdistancerange-1' => 'Makro',

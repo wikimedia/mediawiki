@@ -11,6 +11,7 @@
  * @author M.M.S.
  * @author Siebrand
  * @author H92
+ * @author S.Örvarr.S
  */
 
 $namespaceNames = array(
@@ -2014,7 +2015,7 @@ $1',
 'noimages'              => 'Ingen filer fundet.',
 'ilsubmit'              => 'Søg',
 'bydate'                => 'efter dato',
-'sp-newimages-showfrom' => 'Vis nye filer fra $1',
+'sp-newimages-showfrom' => 'Vis nye filer fra $2, $1',
 
 # Video information, used by Language::formatTimePeriod() to format lengths in the above messages
 'hours-abbrev' => 't',

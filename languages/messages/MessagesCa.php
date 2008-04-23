@@ -18,6 +18,7 @@
  * @author Smeira
  * @author Jon Harald Søby
  * @author Spacebirdy
+ * @author Paucabot
  */
 
 $skinNames = array(
@@ -468,6 +469,7 @@ Això acostuma a passar a quan se segueix un enllaç a una pàgina que ha estat 
 
 Si aquest no és el cas, probablement es tracta d'un error del programari.
 Informeu-ne a un administrador, fent-li arribar l'adreça URL.",
+'missingarticle-rev'   => '(revisió#: $1)',
 'readonly_lag'         => "La base de dades s'ha bloquejat automàticament mentre els servidors esclaus se sincronitzen amb el mestre",
 'internalerror'        => 'Error intern',
 'internalerror_info'   => 'Error intern: $1',
@@ -1425,6 +1427,7 @@ Podeu reduir l'extensió seleccionant el tipus de identificació, el nom del usu
 'listgrouprights-group'    => 'Grup',
 'listgrouprights-rights'   => 'Drets',
 'listgrouprights-helppage' => 'Help:Drets del grup',
+'listgrouprights-members'  => '(llista de membres)',
 
 # E-mail user
 'mailnologin'     => "No enviïs l'adreça",
