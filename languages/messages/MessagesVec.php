@@ -348,6 +348,8 @@ L'aministrador de sistema che gà messo el bloco el gà lassà sta spiegassion: 
 Sto qua no'l xe un eror del database, ma più probabilmente un problema del software.
 
 Par piaser, segnala l'acaduto ad un aministrador de sistema, segnalando la URL e l'ora de l'incidente.",
+'missingarticle-rev'   => '(revision n°: $1)',
+'missingarticle-diff'  => '(Dif.: $1, $2)',
 'readonly_lag'         => 'El database el xe stà blocà automaticamente par consentirghe ai server coi database slave de sincronizarse col master',
 'internalerror'        => 'Eròr interno',
 'internalerror_info'   => 'Eror interno: $1',
@@ -1292,6 +1294,7 @@ La [http://meta.wikimedia.org/wiki/Help:Job_queue coa] la contien '''\$7''' pro�
 'listgrouprights-group'    => 'Grupo',
 'listgrouprights-rights'   => 'Diriti',
 'listgrouprights-helppage' => 'Help:Diriti dei grupi',
+'listgrouprights-members'  => '(lista dei menbri)',
 
 # E-mail user
 'mailnologin'     => 'Nissun indirizo a cui mandarghe el messagio',

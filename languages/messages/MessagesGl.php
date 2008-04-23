@@ -350,6 +350,8 @@ O administrador que a fechou deu esta explicación: $1',
 Xeralmente isto é causado por seguir unha ligazón cara a un cambio anterior ou a unha páxina que foi borrada.
 
 Se non é o caso, pode ter atopado un erro no programa. Por favor, informe a un administrador, tomando nota do URL.',
+'missingarticle-rev'   => '(revisión#: $1)',
+'missingarticle-diff'  => '(Dif: $1, $2)',
 'readonly_lag'         => 'A base de datos bloqueouse automaticamente mentres os servidores escravos da base de datos se actualizan desde o máster',
 'internalerror'        => 'Erro interno',
 'internalerror_info'   => 'Erro interno: $1',

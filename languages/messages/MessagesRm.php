@@ -6,8 +6,6 @@
  * @author SPQRobin
  * @author Siebrand
  * @author לערי ריינהארט
- * @author לערי ריינהארט
- * @author SPQRobin
  * @author Gion-andri
  */
 
@@ -17,6 +15,7 @@ $messages = array(
 'tog-highlightbroken'  => 'Formatar links betg existents <a href="" class="new">uschia</a> (alternativa: uschia<a href="" class="internal">?</a>)',
 'tog-justify'          => "Text en furma da 'bloc'",
 'tog-hideminor'        => 'Zuppentar pitschnas midadas en las ultimas midadas',
+'tog-usenewrc'         => "Activar la versiun extendida da las ''Ulimas midadas'' (JavaScript)",
 'tog-numberheadings'   => 'Numerar automaticamain ils titels',
 'tog-rememberpassword' => "S'annunziar permanantamain (be sch'il pled-clav n'è batg vegnì generà da la software da MediaWiki)",
 'tog-fancysig'         => 'Suttascripziun senza linc automatic tar la pagina dal utilisader.',
@@ -85,16 +84,17 @@ $messages = array(
 'category_header'       => 'Artitgels en la categoria "$1"',
 'category-media-header' => 'Datotecas en la categoria "$1"',
 
-'about'      => 'Surda',
-'article'    => 'artitgel',
-'newwindow'  => '(avra ina nova fanestra)',
-'cancel'     => 'refusar las midadas',
-'qbedit'     => 'Editar',
-'mypage'     => 'mia pagina',
-'mytalk'     => 'Mia pagina da discussiun',
-'anontalk'   => 'Pagina da discussiun da questa IP',
-'navigation' => 'Navigaziun',
-'and'        => 'e',
+'about'         => 'Surda',
+'article'       => 'artitgel',
+'newwindow'     => '(avra ina nova fanestra)',
+'cancel'        => 'refusar las midadas',
+'qbedit'        => 'Editar',
+'moredotdotdot' => 'Dapli...',
+'mypage'        => 'mia pagina',
+'mytalk'        => 'Mia pagina da discussiun',
+'anontalk'      => 'Pagina da discussiun da questa IP',
+'navigation'    => 'Navigaziun',
+'and'           => 'e',
 
 'returnto'         => 'Enavos tar $1.',
 'help'             => 'Agid',
@@ -149,6 +149,7 @@ $messages = array(
 'versionrequired'     => 'Versiun $1 da MediaWiki vegn duvrada',
 'versionrequiredtext' => 'Ti dovras versiun $1 da mediawiki per duvrar questa pagina. Guarda [[Special:Version| qua!]]',
 
+'ok'                      => "D'accord",
 'retrievedfrom'           => 'Da "$1"',
 'youhavenewmessages'      => 'Ti as $1 ($2).',
 'youhavenewmessagesmulti' => 'Ti as novs messadis en $1',

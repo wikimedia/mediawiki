@@ -148,10 +148,10 @@ $messages = array(
 'special-categories-sort-count'  => 'sorteer volgens getal',
 'special-categories-sort-abc'    => 'sorteer alfabeties',
 'pagecategories'                 => '{{PLURAL:$1|Kategorie|Kategorieë}}',
-'category_header'                => 'Artikels in "$1"-kategorie',
+'category_header'                => 'Bladsye in kategorie "$1"',
 'subcategories'                  => 'Subkategorieë',
 'category-media-header'          => 'Media in kategorie "$1"',
-'category-empty'                 => "''Hierdie kategorie bevat geen artikels of media nie.''",
+'category-empty'                 => "''Hierdie kategorie bevat geen bladsye of media nie.''",
 'hidden-categories'              => '{{PLURAL:$1|Versteekte kategorie|Versteekte kategorië}}',
 'hidden-category-category'       => 'Versteekte kategorië', # Name of the category where hidden categories will be listed
 'category-subcat-count'          => "{{PLURAL:$2|Hierdie kategorie het slegs die volgende subkategorie.|Hierdie kategorie het die volgende {{PLURAL:$1|subkategorie|$1 subkategorië}}, uit 'n totaal van $2.}}",
@@ -301,7 +301,7 @@ $messages = array(
 'red-link-title'          => '$1 (nog nie geskryf nie)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
-'nstab-main'      => 'Artikel',
+'nstab-main'      => 'Bladsy',
 'nstab-user'      => 'Gebruikerblad',
 'nstab-media'     => 'Mediablad',
 'nstab-special'   => 'Spesiaal',

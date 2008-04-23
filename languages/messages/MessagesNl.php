@@ -908,6 +908,7 @@ Nu zijn het er $1, terwijl het er minder dan $2 moeten zijn.',
 # "Undo" feature
 'undo-success' => 'Hieronder staat de tekst waarin de wijziging ongedaan is gemaakt. Controleer voor het opslaan of het resultaat gewenst is.',
 'undo-failure' => 'De wijziging kan niet ongedaan gemaakt worden vanwege andere strijdige wijzigingen.',
+'undo-norev'   => 'De bewerking kon niet ongedaan gemaakt worden, omdat die niet bestaat of is verwijderd.',
 'undo-summary' => 'Versie $1 van [[Special:Contributions/$2|$2]] ([[User talk:$2|overleg]]) ongedaan gemaakt.',
 
 # Account creation failure
@@ -1481,6 +1482,7 @@ De lengte van de [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] is ''
 
 'withoutinterwiki'         => "Pagina's zonder links naar andere talen",
 'withoutinterwiki-summary' => "De volgende pagina's linken niet naar versies in een andere taal:",
+'withoutinterwiki-legend'  => 'Voorvoegsel',
 'withoutinterwiki-submit'  => 'Bekijken',
 
 'fewestrevisions' => "Pagina's met de minste bewerkingen",

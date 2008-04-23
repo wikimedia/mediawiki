@@ -421,6 +421,8 @@ Di solitu ciò si virifica quannu veni sequitu, dâ cronoluggìa o dô cunfruntu
 
 'N casu cuntrariu, si è prubbabirmenti scopertu n'erruri dô software MediaWiki.
 Si prega di signalari l'accadutu a n'amministraturi spicificannu la URL in quistioni.",
+'missingarticle-rev'   => '(rivisioni#: $1)',
+'missingarticle-diff'  => '(Diff: $1, $2)',
 'readonly_lag'         => 'Lu database hà statu bluccatu automaticamenti, mentri li server cu li database slave si sincrunìzzanu cu lu master',
 'internalerror'        => 'Erruri nternu',
 'internalerror_info'   => 'Errori nternu: $1',
@@ -778,6 +780,9 @@ Lu motivu è ''$2''",
 
 # History merging
 'mergehistory'                     => 'Unioni storie',
+'mergehistory-header'              => "Sta pàggina fa junciri li rivisioni dâ storia di na pàggina (ditta macari pàggina d'origini) cu na pàggina cchiù ricenti.
+S'havi accirtari ca la cuntinuità storica di la pàggina nun veni altirata.",
+'mergehistory-box'                 => 'Junci li storii di dui pàggini:',
 'mergehistory-from'                => 'Pàggina di origgini:',
 'mergehistory-into'                => 'Pàggina di distinazioni:',
 'mergehistory-list'                => "Storia a cui è applicabili l'unioni",
@@ -934,14 +939,15 @@ Lu simbulu * ndica ca nun è pussibili livari l'appartinenza ô gruppo dopo avir
 'userrights-unchangeable-col'      => 'Gruppi nun canciabili',
 
 # Groups
-'group'               => 'Gruppu:',
-'group-user'          => 'Utenti',
-'group-autoconfirmed' => 'Utenti autocunfirmati',
-'group-bot'           => 'Bot',
-'group-sysop'         => 'Amministratura',
-'group-bureaucrat'    => 'Buròcrati',
-'group-suppress'      => 'Oversight',
-'group-all'           => 'Utenti',
+'group'                => 'Gruppu:',
+'group-user'           => 'Utenti',
+'group-emailconfirmed' => "Utenti cu l'e-mail virificata",
+'group-autoconfirmed'  => 'Utenti autocunfirmati',
+'group-bot'            => 'Bot',
+'group-sysop'          => 'Amministratura',
+'group-bureaucrat'     => 'Buròcrati',
+'group-suppress'       => 'Oversight',
+'group-all'            => 'Utenti',
 
 'group-user-member'           => 'Utenti',
 'group-emailconfirmed-member' => 'Utenti cu e-mail virificata',
@@ -951,12 +957,13 @@ Lu simbulu * ndica ca nun è pussibili livari l'appartinenza ô gruppo dopo avir
 'group-bureaucrat-member'     => 'Buròcrati',
 'group-suppress-member'       => 'Oversight',
 
-'grouppage-user'          => '{{ns:project}}:Utenti',
-'grouppage-autoconfirmed' => '{{ns:project}}:Utenti autocunfirmati',
-'grouppage-bot'           => '{{ns:project}}:Bot',
-'grouppage-sysop'         => '{{ns:project}}:Amministratura',
-'grouppage-bureaucrat'    => '{{ns:project}}:Buròcrati',
-'grouppage-suppress'      => '{{ns:project}}:Oversight',
+'grouppage-user'           => '{{ns:project}}:Utenti',
+'grouppage-emailconfirmed' => '{{ns:project}}:Utenti cu e-mail virificata',
+'grouppage-autoconfirmed'  => '{{ns:project}}:Utenti autocunfirmati',
+'grouppage-bot'            => '{{ns:project}}:Bot',
+'grouppage-sysop'          => '{{ns:project}}:Amministratura',
+'grouppage-bureaucrat'     => '{{ns:project}}:Buròcrati',
+'grouppage-suppress'       => '{{ns:project}}:Oversight',
 
 # User rights log
 'rightslog'      => "Dritti di l'utenti",
@@ -997,6 +1004,7 @@ Lu simbulu * ndica ca nun è pussibili livari l'appartinenza ô gruppo dopo avir
 'recentchangeslinked-noresult' => 'Nuddu canciamentu ê pàggini culligati ntô pirìudu spicificatu.',
 'recentchangeslinked-summary'  => "Chista pàggina spiciali ammustra li canciamenti cchiù ricenti ê pàggini culligati a chidda spicificata. Li pàggini taliati ni la tou [[Special:Watchlist|lista taliata]] sunu evidenziati 'n '''grassettu'''.",
 'recentchangeslinked-page'     => 'Nnomu dâ pàggina:',
+'recentchangeslinked-to'       => 'Vidi sulu li canciamenti ê pàggini culligati a chidda spicificata',
 
 # Upload
 'upload'                      => 'Càrrica nu file',
@@ -1624,6 +1632,7 @@ $1',
 'emailblock'                  => 'email bluccati',
 'ipblocklist-empty'           => "L'alencu dî blocchi è vacanti.",
 'ipblocklist-no-results'      => 'Lu nnirizzu IP o nomu utenti richiestu nun è bluccatu.',
+'blocklink'                   => 'blocca',
 'contribslink'                => 'cuntribbuti',
 'autoblocker'                 => 'Bluccatu automaticamenti pirchì lu ndirizzu IP è cundivisu cu l\'utenti "[[User:$1|$1]]". Lu bloccu di l\'utenti $1 fu mpostu pi lu siquenti mutivu: "\'\'\'$2\'\'\'".',
 'blocklogentry'               => 'hà bluccatu [[$1]]; scadenza $2 $3',

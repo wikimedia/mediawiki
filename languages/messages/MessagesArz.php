@@ -6,7 +6,7 @@
  * @author Ghaly
  * @author Alnokta
  * @author Nike
-  * @author Meno25
+ * @author Meno25
  */
 
 $fallback = 'ar';
@@ -254,6 +254,9 @@ $specialPageAliases = array(
 );
 
 $messages = array(
+# User preference toggles
+'tog-underline' => 'حط خط تحت الوصلات:',
+
 # Dates
 'sun'           => 'الحد',
 'mon'           => 'الاتنين',

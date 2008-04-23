@@ -341,6 +341,8 @@ $messages = array(
 Iki biasané amarga pangowahan sing kadaluwarsa utawa merga pranala lawa menyang kaca iku wis dibusak.
 
 Menawa dudu iki sebabé, panjenengan mbokmenawa nemokaké bug ing software. Mangga dilaporaké ing para pangurus, mawa nulis URL kaca sing nduwé masalah iku',
+'missingarticle-rev'   => '(révisi#: $1)',
+'missingarticle-diff'  => '(Béda: $1, $2)',
 'readonly_lag'         => 'Database wis dikunci mawa otomatis sawetara database sékundhèr lagi nglakoni sinkronisasi mawa database utama',
 'internalerror'        => 'Kasalahan internal',
 'internalerror_info'   => 'Kaluputan internal: $1',
@@ -1265,6 +1267,7 @@ Panjenengan bisa ngwatesi panuduhan mawa milih jenis log, jeneng panganggo, utaw
 'listgrouprights-group'    => 'Grup',
 'listgrouprights-rights'   => 'Hak-hak',
 'listgrouprights-helppage' => 'Help:Hak-hak grup',
+'listgrouprights-members'  => '(daftar anggota)',
 
 # E-mail user
 'mailnologin'     => 'Ora ana alamat layang e-mail',

@@ -369,6 +369,9 @@ Kasta met nga ikarim kadakami a bukodmo a sinurat wenno gapuanan daytoy, wenno k
 'ignorewarnings'    => 'Di ikaskaso ti ania man a ballaag',
 'badfilename'       => 'Nasukatan ti nagan ti file iti "$1".',
 'successfulupload'  => 'Balligi ti panag-upload',
+'uploadwarning'     => 'Ballaag iti panagipan',
+'savefile'          => 'Idulin ti file',
+'uploadedimage'     => 'naipanen ti "[[$1]]"',
 'sourcefilename'    => 'Taudan a nagan ti file:',
 'watchthisupload'   => 'Bantayan daytoy a panid',
 
@@ -385,10 +388,16 @@ Kasta met nga ikarim kadakami a bukodmo a sinurat wenno gapuanan daytoy, wenno k
 'filehist'           => 'Pakasaritaan ti file',
 'filehist-deleteall' => 'ikkaten amin',
 'filehist-datetime'  => 'Petsa/Oras',
+'filehist-comment'   => 'Komento',
+'imagelinks'         => 'Dagiti kasilpo',
 'linkstoimage'       => 'Dagiti sumaganad a panid ket nakasilpo itoy a file:',
+
+# File reversion
+'filerevert-submit' => 'Isubli',
 
 # File deletion
 'filedelete'                  => 'Ikkaten ti $1',
+'filedelete-legend'           => 'ikkaten ti file',
 'filedelete-comment'          => 'Rason nga ikkaten:',
 'filedelete-submit'           => 'Ikkaten',
 'filedelete-success'          => "Naikkaten ti '''$1'''.",
@@ -406,6 +415,8 @@ Kasta met nga ikarim kadakami a bukodmo a sinurat wenno gapuanan daytoy, wenno k
 
 'disambiguations' => 'Dagiti panid ti panangilawlawag',
 
+'brokenredirects-edit' => '(baliwan)',
+
 'withoutinterwiki-submit' => 'Ipakita',
 
 # Miscellaneous special pages
@@ -418,6 +429,7 @@ Kasta met nga ikarim kadakami a bukodmo a sinurat wenno gapuanan daytoy, wenno k
 'wantedpages'        => 'Kiddaw a pampanid',
 'mostrevisions'      => 'Dagiti articulo a kaaduan iti pannakabalbaliwna',
 'shortpages'         => 'Ababa a pampanid',
+'protectedpages'     => 'Nasaluadan a pampanid',
 'listusers'          => 'Listaan dagiti agar-aramat',
 'specialpages'       => 'Naiduma a pampanid',
 'newpages'           => 'Baro a pampanid',

@@ -596,6 +596,8 @@ Správce, který databázi zamkl, zanechal následující zprávu: $1',
 Důvodem je obvykle zastaralý odkaz do historie smazané stránky.
 
 V jiném případě jste možná narazil(a) na chybu v programu. Oznamte to prosím správci systému (zapamatujte si použité URL).',
+'missingarticle-rev'   => '(číslo revize: $1)',
+'missingarticle-diff'  => '(Rozdíl: $1, $2)',
 'readonly_lag'         => 'Databáze byla automaticky dočasně uzamčena kvůli zpoždění ostatních databázových servery proti hlavnímu',
 'internalerror'        => 'Vnitřní chyba',
 'internalerror_info'   => 'Vnitřní chyba: $1',
@@ -1558,6 +1560,7 @@ Zobrazení můžete zúžit výběrem typu záznamu, uživatelského jména nebo
 'listgrouprights-group'    => 'Skupina',
 'listgrouprights-rights'   => 'Práva',
 'listgrouprights-helppage' => 'Help:Práva skupiny',
+'listgrouprights-members'  => '(seznam členů)',
 
 # E-mail user
 'mailnologin'     => 'Bez odesílací adresy',

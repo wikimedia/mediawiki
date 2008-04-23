@@ -560,6 +560,8 @@ Dowéinst ass et bis ewell net méiglech, fir déi folgend Funktiounen E-Mailen 
 
 # Password reset dialog
 'resetpass'               => 'Passwuert fir Benotzerkont zrécksetzen',
+'resetpass_announce'      => 'Dir sidd mat engem temporären , per E-Mail geschéckte Code ageloggt.
+Fir är Umeldung ofzeschléissen, musst Dir elo hei een neit Passwuert uginn:',
 'resetpass_text'          => '<!-- Schreiwt ären Text heihin-->',
 'resetpass_header'        => 'Passwuert zrécksetzen',
 'resetpass_submit'        => 'Passwuert aginn an umellen',
@@ -1253,7 +1255,7 @@ An all Rei sti Linken zur éischter an zweeter Viruleedung, souwéi déi éischt
 'brokenredirects-delete'  => '(läschen)',
 
 'withoutinterwiki'         => 'Säiten ouni Interwiki-Linken',
-'withoutinterwiki-summary' => 'Dës Säiten hu keng Interwiki-Linken:',
+'withoutinterwiki-summary' => 'Op dëser Spezialsäit stinn all déi Säiten déi keng Interwikilinken hunn.',
 'withoutinterwiki-submit'  => 'Weisen',
 
 'fewestrevisions'         => 'Säite mat de mannsten Ännerungen',

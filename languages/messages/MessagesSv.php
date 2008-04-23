@@ -846,6 +846,7 @@ Antalet anrop borde vara mindre än $2, det är nu $1.',
 # "Undo" feature
 'undo-success' => 'Sidan kan återställas till tidigare version. Var god och kontrollera jämförelsen nedan för att bekräfta att detta är vad du avser att göra och slutför återställningen genom att spara.',
 'undo-failure' => 'Ändringen kunde inte avlägsnas på grund av motstridande ändringar som gjorts sedan dess.',
+'undo-norev'   => 'Ändringen kan inte avlägsnas eftersom den inte finns eller har raderats.',
 'undo-summary' => 'Ta bort version $1 av [[Special:Contributions/$2|$2]] ([[Användardiskussion:$2|diskussion]])',
 
 # Account creation failure
@@ -1404,6 +1405,7 @@ Sedan denna wiki startades har sidor visats totalt <b>$3</b> {{PLURAL:$3|gång|g
 
 'withoutinterwiki'         => 'Sidor utan språklänkar',
 'withoutinterwiki-summary' => 'Följande sidor innehåller inte några länkar till andra språkversioner:',
+'withoutinterwiki-legend'  => 'Prefix',
 'withoutinterwiki-submit'  => 'Visa',
 
 'fewestrevisions' => 'Sidor med minst antal ändringar',

@@ -1380,6 +1380,7 @@ Ohjelmiston suorittamia ylläpitotöitä on jonossa '''$7''' {{PLURAL:$7|kappale
 'listgrouprights-group'    => 'Ryhmä',
 'listgrouprights-rights'   => 'Oikeudet',
 'listgrouprights-helppage' => 'Help:Käyttöoikeudet',
+'listgrouprights-members'  => '(jäsenlista)',
 
 # E-mail user
 'mailnologin'     => 'Lähettäjän osoite puuttuu',

@@ -751,7 +751,7 @@ Vòstre identificant de blocatge es $5. Precizatz-lo dins tota requèsta.',
 'userpage-userdoesnotexist'         => "Lo compte d'utilizaire « $1 » es pas enregistrat. Indicatz se volètz crear o editar aquesta pagina.",
 'clearyourcache'                    => 'Nòta : Aprèp aver salvagardat, vos cal forçar lo recargament de la pagina per veire los cambiaments : Mozilla / Konqueror / Firefox : ctrl-shift-r, IE / Opera : ctrl-f5, Safari : cmd-r.',
 'usercssjsyoucanpreview'            => "'''Astúcia :''' utilizatz lo boton '''Previsualizacion''' per testar vòstre fuèlh novèl css/js abans de l'enregistrar.<br />Per importar vòstre fuèlh monobook dempuèi una URL, utilizatz ''@import url (VÒSTRA_URL_AICÍ&action=raw&ctype=text/css)''",
-'usercsspreview'                    => "'''Remembratz-vos que sètz a previsualizar vòstre pròpri fuèlh CSS e qu’es pas encara estat enregistrat !'''",
+'usercsspreview'                    => "'''Remembratz-vos que sètz a previsualizar vòstre pròpri fuèlh CSS e qu’encara es pas estat enregistrat !'''",
 'userjspreview'                     => "'''Remembrat-vos que sètz a visualizar o testar vòstre còde JavaScript e qu’es pas encara estat enregistrat !'''",
 'userinvalidcssjstitle'             => "'''Atencion :''' existís pas d'estil « $1 ». Remembratz-vos que las paginas personalas amb extensions .css e .js utilizan de títols en minusculas aprèp lo nom d'utilizaire e la barra de fraccion /.<br />Atal, {{ns:user}}:Foo/monobook.css es valid, alara que {{ns:user}}:Foo/Monobook.css serà una fuèlha d'estil invalida.",
 'updated'                           => '(Mes a jorn)',
@@ -861,7 +861,7 @@ Pòt i aver de detalhs dins lo [{{fullurl:Special:Log/delete|page={{FULLPAGENAME
 'rev-delundel'                => 'afichar/amagar',
 'revisiondelete'              => 'Suprimir/Restablir de versions',
 'revdelete-nooldid-title'     => 'Cibla per la revision invalida',
-'revdelete-nooldid-text'      => 'Avètz pas precisat la o las revision(s) cibla(s) per utilizar aquesta foncion.',
+'revdelete-nooldid-text'      => "Avètz pas precisat la o las revision(s) cibla(s) per utilizar aquesta foncion, la revision cibla existís pas, o alara la revision cibla es la qu'es en cors.",
 'revdelete-selected'          => '{{PLURAL:$2|Version seleccionada|Versions seleccionadas}} de [[:$1]] :',
 'logdelete-selected'          => '{{PLURAL:$1|Eveniment de jornal seleccionat|Eveniments de jornal seleccionats}} :',
 'revdelete-text'              => "Las versions suprimidas apareisseràn encara dins l’istoric de l’article, mas lor contengut textual serà inaccessible al public.
@@ -1921,8 +1921,8 @@ Dins aqueste darrièr cas, podètz tanben utilizar un ligam, coma [[{{ns:special
 'allmessagesname'           => 'Nom del camp',
 'allmessagesdefault'        => 'Messatge per defaut',
 'allmessagescurrent'        => 'Messatge actual',
-'allmessagestext'           => 'Aquò es la lista de totes los messatges disponibles dins l’espaci MediaWiki
-Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] and [http://translatewiki.net Betawiki] if you wish to contribute to the generic MediaWiki localisation.',
+'allmessagestext'           => 'Aquò es la lista de totes los messatges disponibles dins l’espaci MediaWiki.
+Visitatz la [http://www.mediawiki.org/wiki/Localisation Localizacion MèdiaWiki] e [http://translatewiki.net Betawiki] se desiratz contribuir a la localizacion MèdiaWiki generica.',
 'allmessagesnotsupportedDB' => "'''{{ns:special}}:Allmessages''' es pas disponible perque '''\$wgUseDatabaseMessages''' es desactivat.",
 'allmessagesfilter'         => 'Filtre d’expression racionala :',
 'allmessagesmodified'       => 'Afichar pas que las modificacions',

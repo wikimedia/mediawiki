@@ -245,7 +245,7 @@ $messages = array(
 'tog-previewontop'            => 'Montrer la prévisualisation au-dessus de la zone de modification',
 'tog-previewonfirst'          => 'Montrer la prévisualisation lors de la première édition',
 'tog-nocache'                 => 'Désactiver le cache des pages',
-'tog-enotifwatchlistpages'    => 'Autoriser l’envoi de courriel lorsqu’une page de votre liste de suivi est modifiée',
+'tog-enotifwatchlistpages'    => 'M’avertir par courriel lorsqu’une page de ma liste de suivi est modifiée',
 'tog-enotifusertalkpages'     => 'M’avertir par courriel en cas de modification de ma page de discussion',
 'tog-enotifminoredits'        => 'M’avertir par courriel même en cas de modification mineure',
 'tog-enotifrevealaddr'        => 'Afficher mon adresse électronique dans les courriels d’avertissement',
@@ -385,7 +385,7 @@ $messages = array(
 'updatedmarker'     => 'modifié depuis ma dernière visite',
 'info_short'        => 'Informations',
 'printableversion'  => 'Version imprimable',
-'permalink'         => 'Lien permanent',
+'permalink'         => 'Lien historique',
 'print'             => 'Imprimer',
 'edit'              => 'Modifier',
 'create'            => 'Créer',
@@ -530,6 +530,8 @@ Cela est généralement dû à un diff désuet ou un lien vers l’historique d�
 Si ce n’est pas le cas, vous avez peut-être trouvé un bogue du logiciel.
 
 Veuillez rapporter cette erreur à un administrateur, en lui indiquant l’adresse de la page fautive.',
+'missingarticle-rev'   => '(révision # : $1)',
+'missingarticle-diff'  => '(Diff : $1, $2)',
 'readonly_lag'         => 'La base de donnée a été automatiquement verrouillée pendant que les serveurs secondaires rattrapent leur retard sur le serveur principal.',
 'internalerror'        => 'Erreur interne',
 'internalerror_info'   => 'Erreur interne : $1',
@@ -859,7 +861,7 @@ La raison donnée par $3 était ''$2''.",
 'rev-delundel'                => 'afficher/masquer',
 'revisiondelete'              => 'Supprimer/Restaurer des versions',
 'revdelete-nooldid-title'     => 'Pas de cible pour la révision',
-'revdelete-nooldid-text'      => 'Vous n’avez pas précisé la ou les révision(s) cible(s) pour utiliser cette fonction.',
+'revdelete-nooldid-text'      => 'Vous n’avez pas précisé la(es) révision(s) cible(s) de cette fonction, la révision cible n’existe pas, ou encore la révision cible est celle en cours.',
 'revdelete-selected'          => "{{PLURAL:$2|Version sélectionnée|Versions sélectionnées}} de '''$1''' :",
 'logdelete-selected'          => '{{PLURAL:$1|Événement d’historique sélectionné|Événements d’historique sélectionnés}} :',
 'revdelete-text'              => 'Les révisions et événements supprimés apparaîtront encore dans l’historique de l’article, mais leur contenu textuel sera inaccessible au public.
@@ -1465,6 +1467,7 @@ Il y a {{PLURAL:$7|'''$7''' article|'''$7''' articles}} dans [[meta:Help:Job_que
 'listgrouprights-group'    => 'Groupe',
 'listgrouprights-rights'   => 'Droits associés',
 'listgrouprights-helppage' => 'Help:Droits des groupes',
+'listgrouprights-members'  => '(liste des membres)',
 
 # E-mail user
 'mailnologin'     => 'Pas d’adresse',
@@ -1912,7 +1915,8 @@ Dans ce dernier cas, vous pouvez aussi utiliser un lien, comme [[{{ns:special}}:
 'allmessagesname'           => 'Nom du champ',
 'allmessagesdefault'        => 'Message par défaut',
 'allmessagescurrent'        => 'Message actuel',
-'allmessagestext'           => 'Ceci est la liste de tous les messages disponibles dans l’espace MediaWiki',
+'allmessagestext'           => 'Ceci est la liste de tous les messages disponibles dans l’espace MediaWiki.
+Veuillez visiter la [http://www.mediawiki.org/wiki/Localisation Localisation MédiaWiki] et [http://translatewiki.net Betawiki] si vous désirez contribuer à la localisation MédiaWiki générique.',
 'allmessagesnotsupportedDB' => "'''{{ns:special}}:Allmessages''' n’est pas disponible car '''\$wgUseDatabaseMessages''' est désactivé.",
 'allmessagesfilter'         => 'Filtre d’expression rationnelle :',
 'allmessagesmodified'       => 'N’afficher que les modifications',
@@ -2027,8 +2031,8 @@ Toutes les actions d’importation interwiki sont consignées dans l’[[Special
 'tooltip-upload'                  => 'Commencer l’envoi',
 
 # Stylesheets
-'common.css'   => '/** Le CSS placé ici sera appliqué à toutes les apparences. */',
-'monobook.css' => '/* Le CSS placé ici affectera les utilisateurs du skin Monobook */',
+'common.css'   => '/** Le CSS placé ici sera appliqué à tous les habillages. */',
+'monobook.css' => '/* Le CSS placé ici affectera les utilisateurs de l’habillage Monobook */',
 
 # Scripts
 'common.js'   => '/* N’importe quel JavaScript ici sera chargé pour n’importe quel utilisateur et pour chaque page accédée. */',

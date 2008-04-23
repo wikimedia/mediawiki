@@ -70,6 +70,7 @@ $messages = array(
 # Categories related messages
 'categories'             => 'Categories',
 'category_header'        => 'Páginas na categoria "$1"',
+'subcategories'          => 'Subcategories',
 'listingcontinuesabbrev' => 'cont.',
 
 'about'     => 'Sobre',
@@ -110,6 +111,7 @@ $messages = array(
 'aboutpage'            => 'Project:Sobre',
 'copyrightpage'        => '{{ns:project}}:Direitos de autor',
 'currentevents'        => 'Amboras actuais',
+'currentevents-url'    => 'Proyecto:Amboras actuales',
 'disclaimers'          => 'Alerta de Conteúdo',
 'disclaimerpage'       => 'Project:Aviso geral',
 'edithelp'             => 'Ajuda de edição',
@@ -228,13 +230,17 @@ O registo de eliminação desta página é exibido a seguir, para sua comodidade
 'last'             => 'último',
 'page_first'       => 'purmeira',
 'page_last'        => 'última',
+'histlegend'       => 'Selecção de diferença: marque as caixas em uma das versões que deseja comparar e carregue no botão.<br />
+Legenda: (actu) = diferenças da versão actual,
+(ult) = diferença da versão precedente, m = edição menor',
 
 # Revision feed
 'history-feed-item-nocomment' => '$1 a $2', # user at time
 
 # Diffs
-'lineno'   => 'Linha $1:',
-'editundo' => 'desfazer',
+'lineno'                  => 'Linha $1:',
+'compareselectedversions' => 'Compare as versões seleccionadas',
+'editundo'                => 'desfazer',
 
 # Search results
 'prevn'        => 'anteriores $1',
@@ -288,9 +294,13 @@ O registo de eliminação desta página é exibido a seguir, para sua comodidade
 'filehist-comment'    => 'Comentário',
 'imagelinks'          => 'Ligaçons (andereços web)',
 'linkstoimage'        => 'As seguintes páginas apontam para este ficheiro:',
+'sharedupload'        => 'Este ficheiro encontra-se partilhado i puode ser usado por otros proyectos.',
 
 # Random page
 'randompage' => 'Página aleatória',
+
+# Statistics
+'statistics' => 'Çtatísticas',
 
 # Miscellaneous special pages
 'nbytes'       => '$1 {{PLURAL:$1|byte|bytes}}',
@@ -315,11 +325,12 @@ O registo de eliminação desta página é exibido a seguir, para sua comodidade
 'allpagessubmit' => 'Ir',
 
 # Watchlist
-'mywatchlist'  => 'Artigos vigiados',
-'watchlistfor' => "(para '''$1''')",
-'watch'        => 'Bigiar',
-'unwatch'      => 'Desinteressar-se',
-'wlshowlast'   => 'Ber últimas $1 horas $2 dias $3',
+'mywatchlist'        => 'Artigos vigiados',
+'watchlistfor'       => "(para '''$1''')",
+'watch'              => 'Bigiar',
+'unwatch'            => 'Desinteressar-se',
+'wlshowlast'         => 'Ber últimas $1 horas $2 dias $3',
+'watchlist-hide-own' => 'çconder mies ediçons',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Vigiando...',
@@ -359,9 +370,12 @@ O registo de eliminação desta página é exibido a seguir, para sua comodidade
 'linkshere'           => "As seguintes páginas possuem ligações para '''[[:$1]]''':",
 'isredirect'          => 'página de redireccionamento',
 'istemplate'          => 'incluson',
+'whatlinkshere-prev'  => '{{PLURAL:$1|anterior|$1 anteriores}}',
+'whatlinkshere-next'  => '{{PLURAL:$1|próximo|próximos $1}}',
 'whatlinkshere-links' => '← andereços da anternet',
 
 # Block/unblock
+'ipboptions'   => '2 horas:2 hours,1 dia:1 day,3 dias:3 days,1 semana:1 week,2 semanas:2 weeks,1 mês:1 month,3 meses:3 months,6 meses:6 months,1 anho:1 year,indefinido:infinite', # display1:time1,display2:time2,...
 'blocklink'    => 'bloquear',
 'contribslink' => 'contribs',
 
@@ -409,6 +423,7 @@ O registo de eliminação desta página é exibido a seguir, para sua comodidade
 'tooltip-t-whatlinkshere'         => 'Lista de todas las páginas que se lhigam a yesta',
 'tooltip-t-upload'                => 'Carregar imagens ou ficheiros',
 'tooltip-t-specialpages'          => 'Lista de páginas especiais',
+'tooltip-ca-nstab-user'           => 'Ber a página de l utilizador',
 'tooltip-ca-nstab-project'        => 'Ber la página de l proyecto',
 'tooltip-ca-nstab-image'          => 'Ber la página de l ficheiro',
 'tooltip-ca-nstab-template'       => 'Ber l modelo',
@@ -417,6 +432,9 @@ O registo de eliminação desta página é exibido a seguir, para sua comodidade
 'tooltip-preview'                 => 'Prever as alterações, por favor utilizar antes de gravar!',
 'tooltip-diff'                    => 'Mostrar alterações que fez a este texto.',
 'tooltip-compareselectedversions' => 'Ber las diferenças antre las dues versons seleccionadas desta página.',
+
+# Browsing diffs
+'previousdiff' => '← Ber la alteraçom anterior',
 
 # Media information
 'file-info-size'       => '($1 × $2 pixel, tamanho: $3, tipo MIME: $4)',

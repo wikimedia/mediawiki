@@ -285,7 +285,7 @@ $messages = array(
 'portal-url'           => 'Project:Komunuma portalo',
 'privacy'              => 'Regularo pri respekto de la privateco',
 'privacypage'          => 'Project:Respekto de la privateco',
-'sitesupport'          => 'Subteno',
+'sitesupport'          => 'Donacu',
 'sitesupport-url'      => 'Project:Subteno',
 
 'badaccess'        => 'Vi ne havas sufiĉe da redaktorajtoj por tiu paĝo.',
