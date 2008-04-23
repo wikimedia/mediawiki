@@ -1099,8 +1099,8 @@ $wgMessageStructure = array(
 	),
 	'withoutinterwiki' => array(
 		'withoutinterwiki',
-		'withoutinterwiki-legend',
 		'withoutinterwiki-summary',
+		'withoutinterwiki-legend',
 		'withoutinterwiki-submit',
 	),
 	'fewestrevisions' => array(

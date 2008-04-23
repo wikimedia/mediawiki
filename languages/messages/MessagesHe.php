@@ -1460,9 +1460,10 @@ $2',
 'brokenredirects-edit'   => '(עריכה)',
 'brokenredirects-delete' => '(מחיקה)',
 
-'withoutinterwiki'        => 'דפים ללא קישורי שפה',
-'withoutinterwiki-header' => 'הדפים הבאים אינם מקשרים לגרסאות שלהם בשפות אחרות:',
-'withoutinterwiki-submit' => 'הצגה',
+'withoutinterwiki'         => 'דפים ללא קישורי שפה',
+'withoutinterwiki-summary' => 'הדפים הבאים אינם מקשרים לגרסאות שלהם בשפות אחרות:',
+'withoutinterwiki-legend'  => 'הדפים המתחילים ב…',
+'withoutinterwiki-submit'  => 'הצגה',
 
 'fewestrevisions' => 'הדפים בעלי מספר העריכות הנמוך ביותר',
 
