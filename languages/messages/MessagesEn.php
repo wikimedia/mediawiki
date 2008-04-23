@@ -1771,8 +1771,8 @@ A page is treated as disambiguation page if it uses a template which is linked f
 'brokenredirects-delete'  => '(delete)',
 
 'withoutinterwiki'         => 'Pages without language links',
-'withoutinterwiki-header'  => 'The following pages do not link to other language versions:',
-'withoutinterwiki-summary' => '', # only translate this message to other languages if you have to change it
+'withoutinterwiki-summary' => 'The following pages do not link to other language versions:',
+'withoutinterwiki-legend'  => 'Prefix',
 'withoutinterwiki-submit'  => 'Show',
 
 'fewestrevisions'         => 'Pages with the fewest revisions',

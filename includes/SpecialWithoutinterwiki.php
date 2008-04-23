@@ -14,34 +14,18 @@ class WithoutInterwikiPage extends PageQueryPage {
 	}
 
 	function getPageHeader() {
-		global $wgScript, $wgContLang;
+		global $wgScript;
 		$prefix = $this->prefix;
 		$t = SpecialPage::getTitleFor( $this->getName() );
-		$align = $wgContLang->isRtl() ? 'left' : 'right';
 
-		$s = '<p>' . wfMsgExt( 'withoutinterwiki-header', array( 'parseinline' ) ) . '</p>';
-		$s .= Xml::openElement( 'div', array( 'class' => 'namespaceoptions' ) );
-		$s .= Xml::openElement( 'form', array( 'method' => 'get', 'action' => $wgScript ) );
-		$s .= Xml::hidden( 'title', $t->getPrefixedText() );
-		$s .= Xml::openElement( 'table', array( 'id' => 'nsselect', 'class' => 'withoutinterwiki' ) );
-		$s .= "<tr>
-				<td align='$align'>" .
-					Xml::label( wfMsg( 'allpagesprefix' ), 'wiprefix' ) .
-				"</td>
-				<td>" .
-					Xml::input( 'prefix', 20, htmlspecialchars ( $prefix ), array( 'id' => 'wiprefix' ) ) .
-				"</td>
-			</tr>
-			<tr>
-				<td align='$align'></td>
-				<td>" .
-					Xml::submitButton( wfMsgHtml( 'withoutinterwiki-submit' ) ) .
-				"</td>
-			</tr>";
-		$s .= Xml::closeElement( 'table' );
-		$s .= Xml::closeElement( 'form' );
-		$s .= Xml::closeElement( 'div' );
-		return $s;
+		return 	Xml::openElement( 'form', array( 'method' => 'get', 'action' => $wgScript ) ) .
+			Xml::openElement( 'fieldset' ) .
+			Xml::element( 'legend', null, wfMsg( 'withoutinterwiki-legend' ) ) .
+			Xml::hidden( 'title', $t->getPrefixedText() ) .
+			Xml::inputLabel( wfMsg( 'allpagesprefix' ), 'prefix', 'wiprefix', 20, $prefix ) . ' ' .
+			Xml::submitButton( wfMsg( 'withoutinterwiki-submit' ) ) .
+			Xml::closeElement( 'fieldset' ) .
+			Xml::closeElement( 'form' );
 	}
 
 	function sortDescending() {
@@ -81,9 +65,13 @@ class WithoutInterwikiPage extends PageQueryPage {
 }
 
 function wfSpecialWithoutinterwiki() {
-	global $wgRequest;
+	global $wgRequest, $wgContLang, $wgCapitalLinks;
 	list( $limit, $offset ) = wfCheckLimits();
-	$prefix = $wgRequest->getVal( 'prefix' );
+	if( $wgCapitalLinks ) {
+		$prefix = $wgContLang->ucfirst( $wgRequest->getVal( 'prefix' ) );
+	} else {
+		$prefix = $wgRequest->getVal( 'prefix' );
+	}
 	$wip = new WithoutInterwikiPage();
 	$wip->setPrefix( $prefix );
 	$wip->doQuery( $offset, $limit );

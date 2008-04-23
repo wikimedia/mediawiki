@@ -160,7 +160,6 @@ $wgOptionalMessages = array(
 	'lonelypages-summary',
 	'unusedtemplates-summary',
 	'fewestrevisions-summary',
-	'withoutinterwiki-summary',
 	'upload-summary',
 	'tog-nolangconversion',
 	'yourvariant',

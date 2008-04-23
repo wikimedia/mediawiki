@@ -1361,9 +1361,10 @@ auf die bereits die erste Weiterleitung zeigen sollte.',
 'brokenredirects-edit'    => '(bearbeiten)',
 'brokenredirects-delete'  => '(löschen)',
 
-'withoutinterwiki'        => 'Seiten ohne Links zu anderen Sprachen',
-'withoutinterwiki-header' => 'Die folgenden Seiten verlinken nicht auf andere Sprachversionen:',
-'withoutinterwiki-submit' => 'Zeige',
+'withoutinterwiki'         => 'Seiten ohne Links zu anderen Sprachen',
+'withoutinterwiki-summary' => 'Die folgenden Seiten verlinken nicht auf andere Sprachversionen:',
+'withoutinterwiki-legend'  => 'Präfix',
+'withoutinterwiki-submit'  => 'Zeige',
 
 'fewestrevisions'         => 'Seiten mit den wenigsten Versionen',
 'fewestrevisions-summary' => 'Diese Spezialseite zeigt eine Liste von Seiten mit den wenigsten Bearbeitungen.',
