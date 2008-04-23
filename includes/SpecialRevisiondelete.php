@@ -1115,7 +1115,7 @@ class RevisionDeleter {
 			$this->updateLog( $title, $count, $bitfield, $logRows[$logid]->log_deleted,
 				$comment, $title, 'logid', $log_Ids );
 		}
-		// Where all revs allowed to be set?
+		// Were all revs allowed to be set?
 		if( !$userAllowedAll ) {
 			$wgOut->permissionRequired( 'hiderevision' );
 			return false;
