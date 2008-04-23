@@ -1099,7 +1099,7 @@ $wgMessageStructure = array(
 	),
 	'withoutinterwiki' => array(
 		'withoutinterwiki',
-		'withoutinterwiki-header',
+		'withoutinterwiki-legend',
 		'withoutinterwiki-summary',
 		'withoutinterwiki-submit',
 	),
