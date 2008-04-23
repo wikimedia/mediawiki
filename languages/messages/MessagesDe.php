@@ -802,6 +802,7 @@ Es dürfen nicht mehr als $2 Aufrufe sein, aktuell sind es $1 Aufrufe.',
 # "Undo" feature
 'undo-success' => 'Die Änderung konnte erfolgreich rückgängig gemacht werden. Bitte die Bearbeitung in der Vergleichsansicht kontrollieren und dann auf „Seite speichern“ klicken, um sie zu speichern.',
 'undo-failure' => '<span class="error">Die Änderung konnte nicht rückgängig gemacht werden, da der betroffene Abschnitt zwischenzeitlich verändert wurde.</span>',
+'undo-norev'   => 'Die Bearbeitung konnte nicht rückgängig gemacht werden, da sie nicht vorhanden ist oder gelöscht wurde.',
 'undo-summary' => 'Änderung $1 von [[{{#special:Contributions}}/$2|$2]] ([[{{ns:User talk}}:$2|Diskussion]]) wurde rückgängig gemacht.',
 
 # Account creation failure
