@@ -264,9 +264,7 @@ class PageHistory {
 
 		$tools = array();
 
-		if ( !is_null( $next ) && is_object( $next ) &&
-			!$rev->isDeleted( Revision::DELETED_TEXT ) &&
-			!$next->rev_deleted & Revision::DELETED_TEXT ) {
+		if ( !is_null( $next ) && is_object( $next ) ) {
 			if( !$this->mTitle->getUserPermissionsErrors( 'rollback', $wgUser )
 			&& !$this->mTitle->getUserPermissionsErrors( 'edit', $wgUser )
 			&& $latest ) {
@@ -275,7 +273,9 @@ class PageHistory {
 					. '</span>';
 			}
 
-			if( $this->mTitle->quickUserCan( 'edit' ) ) {
+			if( $this->mTitle->quickUserCan( 'edit' ) &&
+				!$rev->isDeleted( Revision::DELETED_TEXT ) &&
+				!$next->rev_deleted & Revision::DELETED_TEXT ) {
 				$undolink = $this->mSkin->makeKnownLinkObj(
 					$this->mTitle,
 					wfMsgHtml( 'editundo' ),
