@@ -698,13 +698,14 @@ CONTROL;
 				. " (<a href='$oldEdit'>" . wfMsgHtml( $editable ? 'editold' : 'viewsourceold' ) . "</a>)";
 			// Add an "undo" link
 			$newUndo = $this->mNewPage->escapeLocalUrl( 'action=edit&undoafter=' . $this->mOldid . '&undo=' . $this->mNewid);
-			if ( $editable && $this->mNewRev->userCan(Revision::DELETED_TEXT) )
+			if( $editable && !$this->mOldRev->isDeleted( Revision::DELETED_TEXT ) && !$this->mNewRev->isDeleted( Revision::DELETED_TEXT ) ) {
 				$this->mNewtitle .= " (<a href='$newUndo'>" . htmlspecialchars( wfMsg( 'editundo' ) ) . "</a>)";
+			}
 
-			if ( !$this->mOldRev->userCan(Revision::DELETED_TEXT) ) {
-		  		$this->mOldtitle = "<span class='history-deleted'>{$this->mOldPagetitle}</span>";
-			} else if ( $this->mOldRev->isDeleted(Revision::DELETED_TEXT) ) {
-		  		$this->mOldtitle = '<span class="history-deleted">'.$this->mOldtitle.'</span>';
+			if( !$this->mOldRev->userCan( Revision::DELETED_TEXT ) ) {
+		  		$this->mOldtitle = '<span class="history-deleted">' . $this->mOldPagetitle . '</span>';
+			} else if( $this->mOldRev->isDeleted( Revision::DELETED_TEXT ) ) {
+		  		$this->mOldtitle = '<span class="history-deleted">' . $this->mOldtitle . '</span>';
 			}
 		}
 
