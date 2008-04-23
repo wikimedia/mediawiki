@@ -1494,10 +1494,13 @@ $wgCookieSecure = ($wgProto == 'https');
 $wgDisableCookieCheck = false;
 
 /**
- * Set authentication cookies to httpOnly to prevent stealing by JS, in brow-
- * sers that support this feature.
+ * Set authentication cookies to HttpOnly to prevent access by JavaScript,
+ * in browsers that support this feature. This can mitigates some classes of
+ * XSS attack.
+ *
+ * Only supported on PHP 5.2 or higher.
  */
-$wgCookieHttpOnly = false;
+$wgCookieHttpOnly = version_compare("5.2", PHP_VERSION, "<");
 
 /** A list of cookies that vary the cache (for use by extensions) */
 $wgCacheVaryCookies = array();
