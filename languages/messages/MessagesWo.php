@@ -821,8 +821,8 @@ $2 boole ci xëti yoonalaat yi<br /> Seet $3 $9',
 'brokenredirects-edit'   => '(Soppi)',
 'brokenredirects-delete' => '(dindi)',
 
-'withoutinterwiki'        => 'Xët yi amul lëkkalekaay diggantey-làkk',
-'withoutinterwiki-header' => 'Xët yii amu ñu ay lëkkalekaay jëm yeneeni làkk:',
+'withoutinterwiki'         => 'Xët yi amul lëkkalekaay diggantey-làkk',
+'withoutinterwiki-summary' => 'Xët yii amu ñu ay lëkkalekaay jëm yeneeni làkk:',
 
 'fewestrevisions' => 'Jukki yi gën a néewi coppite',
 

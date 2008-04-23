@@ -1044,9 +1044,9 @@ Abrotcuca ke [http://meta.wikimedia.org/wiki/Help:Job_queue "job queue"] tir \'\
 'brokenredirects-edit'   => '(betara)',
 'brokenredirects-delete' => '(sulara)',
 
-'withoutinterwiki'        => 'Avagluyasikiiskaf bueem',
-'withoutinterwiki-header' => 'Batu bu se va aravaf siatos me skedad :',
-'withoutinterwiki-submit' => 'Nedira',
+'withoutinterwiki'         => 'Avagluyasikiiskaf bueem',
+'withoutinterwiki-summary' => 'Batu bu se va aravaf siatos me skedad :',
+'withoutinterwiki-submit'  => 'Nedira',
 
 'fewestrevisions' => 'Tel lebetayan bueem',
 

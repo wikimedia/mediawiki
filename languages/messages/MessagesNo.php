@@ -1288,9 +1288,9 @@ Det har vært totalt {{PLURAL:$3|'''én''' sidevisning|'''$3''' sidevisninger}},
 'brokenredirects-edit'   => '(rediger)',
 'brokenredirects-delete' => '(slett)',
 
-'withoutinterwiki'        => 'Sider uten lenker til andre språk',
-'withoutinterwiki-header' => 'Følgende sider lenker ikke til andre språkversjoner:',
-'withoutinterwiki-submit' => 'Vis',
+'withoutinterwiki'         => 'Sider uten lenker til andre språk',
+'withoutinterwiki-summary' => 'Følgende sider lenker ikke til andre språkversjoner:',
+'withoutinterwiki-submit'  => 'Vis',
 
 'fewestrevisions' => 'Artikler med færrest revisjoner',
 

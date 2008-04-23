@@ -1125,9 +1125,9 @@ $1 பயனரையோ அல்லது வேறு [[{{MediaWiki:Grouppage
 'brokenredirects-edit'   => '(தொகு)',
 'brokenredirects-delete' => '(நீக்கு)',
 
-'withoutinterwiki'        => 'பிற மொழி இணைப்பற்ற பக்கங்கள்',
-'withoutinterwiki-header' => 'பின்வரும் பக்கங்கள் வேறு மொழிப் பதிப்புக்களுக்கு இணைக்கப்படவில்லை:',
-'withoutinterwiki-submit' => 'காட்டு',
+'withoutinterwiki'         => 'பிற மொழி இணைப்பற்ற பக்கங்கள்',
+'withoutinterwiki-summary' => 'பின்வரும் பக்கங்கள் வேறு மொழிப் பதிப்புக்களுக்கு இணைக்கப்படவில்லை:',
+'withoutinterwiki-submit'  => 'காட்டு',
 
 'fewestrevisions' => 'மிகக் குறைந்த திருத்தங்களைக் கொண்டப் பக்கங்கள்',
 

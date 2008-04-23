@@ -1071,9 +1071,9 @@ Jumlah-jamléh geus aya '''\$3''' kaca ulasan sarta '''\$4''' éditan ti saprak 
 'brokenredirects-edit'   => '(édit)',
 'brokenredirects-delete' => '(hapus)',
 
-'withoutinterwiki'        => 'Kaca-kaca tanpa tumbu basa',
-'withoutinterwiki-header' => 'Kaca-kaca di handap ieu teu numbu ka vérsi basa séjén:',
-'withoutinterwiki-submit' => 'Témbongkeun',
+'withoutinterwiki'         => 'Kaca-kaca tanpa tumbu basa',
+'withoutinterwiki-summary' => 'Kaca-kaca di handap ieu teu numbu ka vérsi basa séjén:',
+'withoutinterwiki-submit'  => 'Témbongkeun',
 
 'fewestrevisions' => 'Artikel nu pangjarangna dirévisi',
 

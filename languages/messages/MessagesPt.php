@@ -1329,9 +1329,9 @@ O tamanho da [http://meta.wikimedia.org/wiki/Help:Job_queue fila de tarefas] é 
 'brokenredirects-edit'   => '(editar)',
 'brokenredirects-delete' => '(eliminar)',
 
-'withoutinterwiki'        => 'Páginas sem interwikis de idiomas',
-'withoutinterwiki-header' => 'As seguintes páginas não possuem links para versões em outros idiomas:',
-'withoutinterwiki-submit' => 'Exibir',
+'withoutinterwiki'         => 'Páginas sem interwikis de idiomas',
+'withoutinterwiki-summary' => 'As seguintes páginas não possuem links para versões em outros idiomas:',
+'withoutinterwiki-submit'  => 'Exibir',
 
 'fewestrevisions' => 'Páginas de conteúdo com menos edições',
 

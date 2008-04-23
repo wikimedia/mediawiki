@@ -1320,9 +1320,9 @@ Cada fila conté enllaços a la segona i tercera redirecció, així com la prime
 'brokenredirects-edit'   => '(edita)',
 'brokenredirects-delete' => '(elimina)',
 
-'withoutinterwiki'        => 'Pàgines sense enllaços a altres llengües',
-'withoutinterwiki-header' => "Les pàgines següents no enllacen a versions d'altres llengües:",
-'withoutinterwiki-submit' => 'Mostra',
+'withoutinterwiki'         => 'Pàgines sense enllaços a altres llengües',
+'withoutinterwiki-summary' => "Les pàgines següents no enllacen a versions d'altres llengües:",
+'withoutinterwiki-submit'  => 'Mostra',
 
 'fewestrevisions' => 'Pàgines amb menys revisions',
 

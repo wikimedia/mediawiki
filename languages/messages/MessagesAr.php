@@ -1531,9 +1531,9 @@ PICT # misc.
 'brokenredirects-edit'   => '(تحرير)',
 'brokenredirects-delete' => '(حذف)',
 
-'withoutinterwiki'        => 'صفحات بدون وصلات لغات أخرى',
-'withoutinterwiki-header' => 'الصفحات التالية لا تصل إلى نسخ بلغات أخرى:',
-'withoutinterwiki-submit' => 'عرض',
+'withoutinterwiki'         => 'صفحات بدون وصلات لغات أخرى',
+'withoutinterwiki-summary' => 'الصفحات التالية لا تصل إلى نسخ بلغات أخرى:',
+'withoutinterwiki-submit'  => 'عرض',
 
 'fewestrevisions' => 'المقالات ذات أقل تعديل',
 

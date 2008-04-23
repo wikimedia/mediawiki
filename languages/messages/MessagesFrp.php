@@ -1173,9 +1173,9 @@ Cen reprèsente una moyena de {{PLURAL:$5|'''1''' modificacion|'''$5''' modifica
 'brokenredirects-edit'   => '(modifiar)',
 'brokenredirects-delete' => '(suprimar)',
 
-'withoutinterwiki'        => 'Pâges sen lims entèrlengoues',
-'withoutinterwiki-header' => 'Les pâges siuventes ont pas de lims vers d’ôtres lengoues :',
-'withoutinterwiki-submit' => 'Afichiér',
+'withoutinterwiki'         => 'Pâges sen lims entèrlengoues',
+'withoutinterwiki-summary' => 'Les pâges siuventes ont pas de lims vers d’ôtres lengoues :',
+'withoutinterwiki-submit'  => 'Afichiér',
 
 'fewestrevisions' => 'Articllos los muens modifiâs',
 

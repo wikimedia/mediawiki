@@ -1303,9 +1303,9 @@ Input:contenttype/subtype, e.g. <tt>image/jpeg</tt>.',
 'brokenredirects-edit'   => '(संपादा)',
 'brokenredirects-delete' => '(वगळा)',
 
-'withoutinterwiki'        => 'आंतरविकि दुवे नसलेली पाने',
-'withoutinterwiki-header' => 'खालील लेखात इतर भाषांमधील आवृत्तीला दुवे नाहीत:',
-'withoutinterwiki-submit' => 'दाखवा',
+'withoutinterwiki'         => 'आंतरविकि दुवे नसलेली पाने',
+'withoutinterwiki-summary' => 'खालील लेखात इतर भाषांमधील आवृत्तीला दुवे नाहीत:',
+'withoutinterwiki-submit'  => 'दाखवा',
 
 'fewestrevisions' => 'सगळ्यात कमी बदल असलेले लेख',
 

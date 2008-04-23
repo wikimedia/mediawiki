@@ -1033,9 +1033,9 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'brokenredirects-edit'   => '(편집)',
 'brokenredirects-delete' => '(삭제)',
 
-'withoutinterwiki'        => '언어 인터위키 링크가 없는 문서 목록',
-'withoutinterwiki-header' => '다른 언어로의 연결이 없는 문서의 목록입니다:',
-'withoutinterwiki-submit' => '보이기',
+'withoutinterwiki'         => '언어 인터위키 링크가 없는 문서 목록',
+'withoutinterwiki-summary' => '다른 언어로의 연결이 없는 문서의 목록입니다:',
+'withoutinterwiki-submit'  => '보이기',
 
 'fewestrevisions' => '편집 역사가 짧은 문서 목록',
 

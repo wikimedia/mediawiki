@@ -1360,9 +1360,9 @@ I a {{PLURAL:\$7|'''\$7''' article|'''\$7''' articles}} dins [[meta:Help:Job_que
 'brokenredirects-edit'   => '(modificar)',
 'brokenredirects-delete' => '(suprimir)',
 
-'withoutinterwiki'        => 'Paginas sens ligams interlengas',
-'withoutinterwiki-header' => "Aquesta pagina a pas de ligams vèrs las versions dins d'autras lengas:",
-'withoutinterwiki-submit' => 'Afichar',
+'withoutinterwiki'         => 'Paginas sens ligams interlengas',
+'withoutinterwiki-summary' => "Aquesta pagina a pas de ligams vèrs las versions dins d'autras lengas:",
+'withoutinterwiki-submit'  => 'Afichar',
 
 'fewestrevisions' => 'Articles amb lo mens de revisions',
 

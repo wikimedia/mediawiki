@@ -1088,9 +1088,9 @@ PICT # misc.
 'brokenredirects-edit'   => '(уларытыы)',
 'brokenredirects-delete' => '(сотуу)',
 
-'withoutinterwiki'        => 'Атын тылынан суруллубут ыстатыйаларга сигэммэт ыстатыйалар',
-'withoutinterwiki-header' => 'Бу сирэйдэр атын тылынан суруллубут ыстатыйаларга сигэммэттэр:',
-'withoutinterwiki-submit' => 'Көрдөрүү',
+'withoutinterwiki'         => 'Атын тылынан суруллубут ыстатыйаларга сигэммэт ыстатыйалар',
+'withoutinterwiki-summary' => 'Бу сирэйдэр атын тылынан суруллубут ыстатыйаларга сигэммэттэр:',
+'withoutinterwiki-submit'  => 'Көрдөрүү',
 
 'fewestrevisions' => 'Саамай аҕыйах көннөрүүлээх ыстатыйалар',
 

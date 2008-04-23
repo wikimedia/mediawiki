@@ -1006,9 +1006,9 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 'brokenredirects-edit'   => '(ለማስተካከል)',
 'brokenredirects-delete' => '(ለማጥፋት)',
 
-'withoutinterwiki'        => 'በሌሎች ቋንቋዎች ያልተያያዙ',
-'withoutinterwiki-header' => 'እነዚህ ጽሑፎች «በሌሎች ቋንቋዎች» ሥር ወደሆኑት ሌሎች ትርጉሞች ገና አልተያያዙም።',
-'withoutinterwiki-submit' => 'ይታዩ',
+'withoutinterwiki'         => 'በሌሎች ቋንቋዎች ያልተያያዙ',
+'withoutinterwiki-summary' => 'እነዚህ ጽሑፎች «በሌሎች ቋንቋዎች» ሥር ወደሆኑት ሌሎች ትርጉሞች ገና አልተያያዙም።',
+'withoutinterwiki-submit'  => 'ይታዩ',
 
 'fewestrevisions' => 'ለውጦች ያነሱላቸው መጣጥፎች',
 

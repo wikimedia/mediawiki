@@ -1275,9 +1275,9 @@ Ohjelmiston suorittamia ylläpitotöitä on jonossa '''$7''' {{PLURAL:$7|kappale
 'brokenredirects-edit'   => '(muokkaa)',
 'brokenredirects-delete' => '(poista)',
 
-'withoutinterwiki'        => 'Sivut, joilla ei ole kielilinkkejä',
-'withoutinterwiki-header' => 'Seuraavat sivut eivät viittaa erikielisiin versioihin:',
-'withoutinterwiki-submit' => 'Näytä',
+'withoutinterwiki'         => 'Sivut, joilla ei ole kielilinkkejä',
+'withoutinterwiki-summary' => 'Seuraavat sivut eivät viittaa erikielisiin versioihin:',
+'withoutinterwiki-submit'  => 'Näytä',
 
 'fewestrevisions' => 'Sivut, joilla on vähiten muutoksia',
 

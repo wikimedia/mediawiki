@@ -199,8 +199,8 @@ $messages = array(
 'randompage'         => 'Random ya bolong',
 'randompage-nopages' => 'Anggapoy bolong ya wadya ed ayan namespace.',
 
-'withoutinterwiki'        => 'Saray bolobolong ya anggapoy gawing ya language',
-'withoutinterwiki-header' => 'Anggapoy gawin paulad version na arum ran salita so ontombok ran bolobolong:',
+'withoutinterwiki'         => 'Saray bolobolong ya anggapoy gawing ya language',
+'withoutinterwiki-summary' => 'Anggapoy gawin paulad version na arum ran salita so ontombok ran bolobolong:',
 
 # Miscellaneous special pages
 'shortpages'     => 'Antikey ran bolong',

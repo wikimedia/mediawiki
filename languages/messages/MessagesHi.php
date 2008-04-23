@@ -1254,9 +1254,9 @@ PICT # misc.
 'brokenredirects-edit'   => '(संपादित करें)',
 'brokenredirects-delete' => '(हटायें)',
 
-'withoutinterwiki'        => 'आंतरविकि कड़ियाँ न होनेवाले लेख',
-'withoutinterwiki-header' => 'नीचे दिये गये पन्नोंमें अन्य भाषाओंके अवतरणोंसे जुडने वाली कड़ियाँ नहीं हैं:',
-'withoutinterwiki-submit' => 'दिखायें',
+'withoutinterwiki'         => 'आंतरविकि कड़ियाँ न होनेवाले लेख',
+'withoutinterwiki-summary' => 'नीचे दिये गये पन्नोंमें अन्य भाषाओंके अवतरणोंसे जुडने वाली कड़ियाँ नहीं हैं:',
+'withoutinterwiki-submit'  => 'दिखायें',
 
 'fewestrevisions' => 'सबसे कम अवतरण होने वाले लेख',
 

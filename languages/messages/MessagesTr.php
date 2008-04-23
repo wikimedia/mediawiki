@@ -1051,9 +1051,9 @@ Toplam sayfa görüntülenme sayısı '''\$3''', değişiklik başına görünt�
 'brokenredirects-edit'   => '(değiştir)',
 'brokenredirects-delete' => '(sil)',
 
-'withoutinterwiki'        => 'Diğer dillere bağlantısı olmayan sayfalar',
-'withoutinterwiki-header' => 'Aşağıda listelenen sayfalar diğer dillere bağlantı içermemektedir:',
-'withoutinterwiki-submit' => 'Göster',
+'withoutinterwiki'         => 'Diğer dillere bağlantısı olmayan sayfalar',
+'withoutinterwiki-summary' => 'Aşağıda listelenen sayfalar diğer dillere bağlantı içermemektedir:',
+'withoutinterwiki-submit'  => 'Göster',
 
 'fewestrevisions' => 'En az düzenleme yapılmış sayfalar',
 

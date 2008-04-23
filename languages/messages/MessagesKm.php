@@ -1162,9 +1162,9 @@ $2',
 'brokenredirects-edit'   => '(កែប្រែ)',
 'brokenredirects-delete' => '(លុបចេញ)',
 
-'withoutinterwiki'        => 'ទំព័រ​គ្មានតំនភ្ជាប់ភាសា',
-'withoutinterwiki-header' => 'ទំព័រទាំងនេះ​មិនតភ្ជាប់​ទៅទំរង់ជាភាសាដទៃ៖',
-'withoutinterwiki-submit' => 'បង្ហាញ',
+'withoutinterwiki'         => 'ទំព័រ​គ្មានតំនភ្ជាប់ភាសា',
+'withoutinterwiki-summary' => 'ទំព័រទាំងនេះ​មិនតភ្ជាប់​ទៅទំរង់ជាភាសាដទៃ៖',
+'withoutinterwiki-submit'  => 'បង្ហាញ',
 
 'fewestrevisions' => 'ទំព័រដែលត្រូវបានកែប្រែតិច​បំផុត',
 

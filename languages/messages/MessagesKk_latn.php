@@ -1604,9 +1604,9 @@ Eger [[{{ns:mediawiki}}:Disambiguationspage]] tizimindegi ülgi qoldanılsa, bet
 'brokenredirects-edit'   => '(öñdew)',
 'brokenredirects-delete' => '(joyw)',
 
-'withoutinterwiki'        => 'Eş tilge siltemegen better',
-'withoutinterwiki-header' => 'Kelesi better basqa tilderge siltemeýdi:',
-'withoutinterwiki-submit' => 'Körset',
+'withoutinterwiki'         => 'Eş tilge siltemegen better',
+'withoutinterwiki-summary' => 'Kelesi better basqa tilderge siltemeýdi:',
+'withoutinterwiki-submit'  => 'Körset',
 
 'fewestrevisions' => 'Eñ az tüzetilgen better',
 

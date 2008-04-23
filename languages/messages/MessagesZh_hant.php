@@ -1215,9 +1215,9 @@ Template:消除歧義',
 'brokenredirects-edit'   => '(編輯)',
 'brokenredirects-delete' => '(刪除)',
 
-'withoutinterwiki'        => '未有語言鏈接的頁面',
-'withoutinterwiki-header' => '以下的頁面是未有語言鏈接到其它語言版本:',
-'withoutinterwiki-submit' => '顯示',
+'withoutinterwiki'         => '未有語言鏈接的頁面',
+'withoutinterwiki-summary' => '以下的頁面是未有語言鏈接到其它語言版本:',
+'withoutinterwiki-submit'  => '顯示',
 
 'fewestrevisions' => '最少修訂的頁面',
 

@@ -1258,9 +1258,9 @@ Wót togo {{PLURAL:$2|ma|matej|maju}} (=$4%) $5-pšawa.",
 'brokenredirects-edit'    => '(wobźěłaś)',
 'brokenredirects-delete'  => '(wulašowaś)',
 
-'withoutinterwiki'        => 'Boki na kótarychž njejsu žedne wótkaze na druge rěcy',
-'withoutinterwiki-header' => 'Slědujuce boki njewótkazuju na druge rěcne wersije:',
-'withoutinterwiki-submit' => 'Pokazaś',
+'withoutinterwiki'         => 'Boki na kótarychž njejsu žedne wótkaze na druge rěcy',
+'withoutinterwiki-summary' => 'Slědujuce boki njewótkazuju na druge rěcne wersije:',
+'withoutinterwiki-submit'  => 'Pokazaś',
 
 'fewestrevisions'         => 'Boki z nejmjenjej wersijami',
 'fewestrevisions-summary' => 'Toś ten specialny bok pokazujo lisćinu bokow z nejmjenjej wobźěłanjami.',

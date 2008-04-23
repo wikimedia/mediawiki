@@ -1066,8 +1066,8 @@ Maabot sa '''\$5''' na hira kada páhina sa medio, asin '''\$6''' na paghiling k
 'brokenredirects-edit'   => '(hirahón)',
 'brokenredirects-delete' => '(parâon)',
 
-'withoutinterwiki'        => 'Mga páhinang warang takód sa mga ibang tataramón',
-'withoutinterwiki-header' => 'An mga nagsusunod na páhina dai nakatakód sa mga bersión na ibang tataramón:',
+'withoutinterwiki'         => 'Mga páhinang warang takód sa mga ibang tataramón',
+'withoutinterwiki-summary' => 'An mga nagsusunod na páhina dai nakatakód sa mga bersión na ibang tataramón:',
 
 'fewestrevisions' => 'Mga artikulong may pinakadikit na pagpakarhay',
 

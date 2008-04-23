@@ -1137,9 +1137,9 @@ $2リダイレクトを含める &nbsp; &nbsp; &nbsp; $3 $9',
 'brokenredirects-edit'   => '(編集)',
 'brokenredirects-delete' => '(削除)',
 
-'withoutinterwiki'        => '言語間リンクを持たないページ',
-'withoutinterwiki-header' => '以下のページには多言語版へのリンクがありません:',
-'withoutinterwiki-submit' => '表示',
+'withoutinterwiki'         => '言語間リンクを持たないページ',
+'withoutinterwiki-summary' => '以下のページには多言語版へのリンクがありません:',
+'withoutinterwiki-submit'  => '表示',
 
 'fewestrevisions' => '編集履歴の少ないページ',
 

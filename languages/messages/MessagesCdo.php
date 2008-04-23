@@ -511,8 +511,8 @@ Téng buōng câng kiū siék gáu gĭng-dáng, ĭ ī-gĭng ké̤ṳk nè̤ng si
 'brokenredirects-edit'   => '(gāi)',
 'brokenredirects-delete' => '(chēng)',
 
-'withoutinterwiki'        => 'Mò̤ kuá wiki gì hiĕk',
-'withoutinterwiki-header' => 'Â-dā̤ hiĕk-miêng mò̤ lièng gáu gì-tă ngṳ̄-ngiòng bēng-buōng gì kuá wiki lièng-giék:',
+'withoutinterwiki'         => 'Mò̤ kuá wiki gì hiĕk',
+'withoutinterwiki-summary' => 'Â-dā̤ hiĕk-miêng mò̤ lièng gáu gì-tă ngṳ̄-ngiòng bēng-buōng gì kuá wiki lièng-giék:',
 
 'fewestrevisions' => 'Ké̤ṳk siŭ-gāi guó dék ciēu làu gì ùng-ciŏng',
 

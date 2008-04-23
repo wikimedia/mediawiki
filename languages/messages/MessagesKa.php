@@ -1008,9 +1008,9 @@ The list is used by [[Special:Disambiguations]] to show any pages linking to dis
 'brokenredirects-edit'   => '(რედაქტირება)',
 'brokenredirects-delete' => '(წაშლა)',
 
-'withoutinterwiki'        => 'გვერდები ენის ბმულების გარეშე',
-'withoutinterwiki-header' => 'შემდეგ გვერდებს სხვა ენების ვერსიებზე არ აქვთ ბმულები:',
-'withoutinterwiki-submit' => 'ჩვენება',
+'withoutinterwiki'         => 'გვერდები ენის ბმულების გარეშე',
+'withoutinterwiki-summary' => 'შემდეგ გვერდებს სხვა ენების ვერსიებზე არ აქვთ ბმულები:',
+'withoutinterwiki-submit'  => 'ჩვენება',
 
 'fewestrevisions' => 'ყველაზე ნაკლებად რედაქტირებული სტატიები',
 

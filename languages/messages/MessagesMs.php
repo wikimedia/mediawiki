@@ -1258,9 +1258,9 @@ Jumlah [http://meta.wikimedia.org/wiki/Help:Job_queue tugas yang tertunggak] ial
 'brokenredirects-edit'   => '(sunting)',
 'brokenredirects-delete' => '(hapus)',
 
-'withoutinterwiki'        => 'Laman tanpa pautan bahasa',
-'withoutinterwiki-header' => 'Laman-laman berikut tidak mempunyai pautan ke versi bahasa lain:',
-'withoutinterwiki-submit' => 'Tunjuk',
+'withoutinterwiki'         => 'Laman tanpa pautan bahasa',
+'withoutinterwiki-summary' => 'Laman-laman berikut tidak mempunyai pautan ke versi bahasa lain:',
+'withoutinterwiki-submit'  => 'Tunjuk',
 
 'fewestrevisions' => 'Laman dengan semakan tersedikit',
 

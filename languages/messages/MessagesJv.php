@@ -1160,9 +1160,9 @@ Dawané [http://meta.wikimedia.org/wiki/Help:Job_queue antrian tugas] ana '''\$7
 'brokenredirects-edit'   => '(sunting)',
 'brokenredirects-delete' => '(busak)',
 
-'withoutinterwiki'        => 'Kaca tanpa pranala antarbasa',
-'withoutinterwiki-header' => 'Kaca-kaca iki ora nduwé pranala menyang vèrsi ing  basa liyané:',
-'withoutinterwiki-submit' => 'Tuduhna',
+'withoutinterwiki'         => 'Kaca tanpa pranala antarbasa',
+'withoutinterwiki-summary' => 'Kaca-kaca iki ora nduwé pranala menyang vèrsi ing  basa liyané:',
+'withoutinterwiki-submit'  => 'Tuduhna',
 
 'fewestrevisions' => 'Artikel mawa owah-owahan sithik dhéwé',
 

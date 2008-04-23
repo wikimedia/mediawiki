@@ -1330,9 +1330,9 @@ $2 Εμφάνιση ανακατευθύνσεων &nbsp; Κριτήρια αν�
 'brokenredirects-edit'   => '(επεξεργασία)',
 'brokenredirects-delete' => '(διαγραφή)',
 
-'withoutinterwiki'        => 'Σελίδες χωρίς διαγλωσσικούς συνδέσμους',
-'withoutinterwiki-header' => 'Οι ακόλουθες σελίδες δεν συνδέεουν σε εκδόσεις σε άλλες γλώσσες:',
-'withoutinterwiki-submit' => 'Εμφάνιση',
+'withoutinterwiki'         => 'Σελίδες χωρίς διαγλωσσικούς συνδέσμους',
+'withoutinterwiki-summary' => 'Οι ακόλουθες σελίδες δεν συνδέεουν σε εκδόσεις σε άλλες γλώσσες:',
+'withoutinterwiki-submit'  => 'Εμφάνιση',
 
 'fewestrevisions' => 'Άρθρα με τις λιγότερες αναθεωρήσεις',
 

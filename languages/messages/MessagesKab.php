@@ -938,8 +938,8 @@ Ihi, {{PLURAL:\$5|yella|llan}} '''\$5''' n {{PLURAL:\$5|ubeddel|ibeddlen}} i mku
 'brokenredirects-edit'   => '(beddel)',
 'brokenredirects-delete' => '(mḥu)',
 
-'withoutinterwiki'        => 'isebtar mebla izdayen ar isebtar n wikipedia s tutlayin tiyaḍ',
-'withoutinterwiki-header' => 'isebtar-agi ur sɛan ara izdayen ar isebtar n wikipedia s tutlayin tiyaḍ:',
+'withoutinterwiki'         => 'isebtar mebla izdayen ar isebtar n wikipedia s tutlayin tiyaḍ',
+'withoutinterwiki-summary' => 'isebtar-agi ur sɛan ara izdayen ar isebtar n wikipedia s tutlayin tiyaḍ:',
 
 # Miscellaneous special pages
 'nbytes'                  => '$1 {{PLURAL:$1|byte/octet|bytes/octets}}',

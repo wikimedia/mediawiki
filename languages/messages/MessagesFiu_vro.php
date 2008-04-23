@@ -1035,8 +1035,8 @@ Taa numbri seen ommaq ka arotusküleq, abiartikliq, väega lühkeseq leheküleq,
 'brokenredirects-edit'   => '(toimõndaq)',
 'brokenredirects-delete' => '(kistudaq ärq)',
 
-'withoutinterwiki'        => 'Keelelingeldä leheq',
-'withoutinterwiki-header' => 'Nail lehil olõ-i linke tõisi kiili lehti pääle:',
+'withoutinterwiki'         => 'Keelelingeldä leheq',
+'withoutinterwiki-summary' => 'Nail lehil olõ-i linke tõisi kiili lehti pääle:',
 
 'fewestrevisions' => 'Kõgõ veidemb kõrdo toimõndõduq leheq',
 

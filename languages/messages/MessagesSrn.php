@@ -706,9 +706,9 @@ A gran fu a [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] ben '''$7'
 'brokenredirects-edit'   => '(kenki)',
 'brokenredirects-delete' => '(trowe)',
 
-'withoutinterwiki'        => 'Peprewoysi nanga no skaki na trawan tongo',
-'withoutinterwiki-header' => 'Disi peprewoysi skaki no na si ini wan trawan tongo:',
-'withoutinterwiki-submit' => 'Libi si',
+'withoutinterwiki'         => 'Peprewoysi nanga no skaki na trawan tongo',
+'withoutinterwiki-summary' => 'Disi peprewoysi skaki no na si ini wan trawan tongo:',
+'withoutinterwiki-submit'  => 'Libi si',
 
 'fewestrevisions' => 'Peprewoysi nanga a mena kenki',
 

@@ -1453,9 +1453,9 @@ Aktuální délka fronty údržby je '''$7'''.",
 'brokenredirects-edit'   => '(editovat)',
 'brokenredirects-delete' => '(smazat)',
 
-'withoutinterwiki'        => 'Stránky bez mezijazykových odkazů (interwiki)',
-'withoutinterwiki-header' => 'Tyto stránky neobsahují žádný mezijazykový odkaz:',
-'withoutinterwiki-submit' => 'Zobrazit',
+'withoutinterwiki'         => 'Stránky bez mezijazykových odkazů (interwiki)',
+'withoutinterwiki-summary' => 'Tyto stránky neobsahují žádný mezijazykový odkaz:',
+'withoutinterwiki-submit'  => 'Zobrazit',
 
 'fewestrevisions' => 'Stránky s nejméně verzemi',
 

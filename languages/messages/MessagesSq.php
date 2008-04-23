@@ -931,8 +931,8 @@ Gjatësia e [http://meta.wikimedia.org/wiki/Help:Job_queue radhës së punëve] 
 'brokenredirects-edit'   => '(redakto)',
 'brokenredirects-delete' => '(grise)',
 
-'withoutinterwiki'        => 'Artikuj pa lidhje interwiki',
-'withoutinterwiki-header' => 'Artikujt në vazhdim nuk kanë asnjë lidhje te wikit në gjuhët tjera:',
+'withoutinterwiki'         => 'Artikuj pa lidhje interwiki',
+'withoutinterwiki-summary' => 'Artikujt në vazhdim nuk kanë asnjë lidhje te wikit në gjuhët tjera:',
 
 'fewestrevisions' => 'Artikuj më të paredaktuar',
 

@@ -1226,9 +1226,9 @@ desde a [[MediaWiki:Disambiguationspage|páxina de homónimos]].",
 'brokenredirects-edit'   => '(editar)',
 'brokenredirects-delete' => '(borrar)',
 
-'withoutinterwiki'        => 'Páxinas sen ligazóns interwiki',
-'withoutinterwiki-header' => 'Estas páxinas non enlazan coas versións noutras linguas:',
-'withoutinterwiki-submit' => 'Amosar',
+'withoutinterwiki'         => 'Páxinas sen ligazóns interwiki',
+'withoutinterwiki-summary' => 'Estas páxinas non enlazan coas versións noutras linguas:',
+'withoutinterwiki-submit'  => 'Amosar',
 
 'fewestrevisions' => 'Artigos con menos revisións',
 

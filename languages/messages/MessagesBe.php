@@ -1173,9 +1173,9 @@ $2',
 'brokenredirects-edit'   => '(правіць)',
 'brokenredirects-delete' => '(выдаліць)',
 
-'withoutinterwiki'        => 'Старонкі без адпаведных іншамоўных',
-'withoutinterwiki-header' => 'Спіс артыкулаў без спасылак на іншамоўныя версіі:',
-'withoutinterwiki-submit' => 'Паказаць',
+'withoutinterwiki'         => 'Старонкі без адпаведных іншамоўных',
+'withoutinterwiki-summary' => 'Спіс артыкулаў без спасылак на іншамоўныя версіі:',
+'withoutinterwiki-submit'  => 'Паказаць',
 
 'fewestrevisions' => 'Артыкулы з найменшай колькасцю версій',
 

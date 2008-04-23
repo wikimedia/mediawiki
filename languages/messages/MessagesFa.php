@@ -1471,9 +1471,9 @@ $2 تغییرمسیرها فهرست شوند &nbsp; جستجو برای $3 $9',
 'brokenredirects-edit'   => '(ویرایش)',
 'brokenredirects-delete' => '(حذف)',
 
-'withoutinterwiki'        => 'صفحه‌های بدون پیوند میان‌ویکی',
-'withoutinterwiki-header' => 'این صفحه‌ها پیوندی به صفحه‌ای به زبان دیگر نمی‌دارند:',
-'withoutinterwiki-submit' => 'نمایش',
+'withoutinterwiki'         => 'صفحه‌های بدون پیوند میان‌ویکی',
+'withoutinterwiki-summary' => 'این صفحه‌ها پیوندی به صفحه‌ای به زبان دیگر نمی‌دارند:',
+'withoutinterwiki-submit'  => 'نمایش',
 
 'fewestrevisions' => 'مقاله‌های دارای کمترین شمار ویرایش',
 

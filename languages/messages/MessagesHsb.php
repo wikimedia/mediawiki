@@ -1278,9 +1278,9 @@ Dołhosć [http://meta.wikimedia.org/wiki/Help:Job_queue rynka nadawkow] je '''$
 'brokenredirects-edit'    => '(wobdźěłać)',
 'brokenredirects-delete'  => '(wušmórnyć)',
 
-'withoutinterwiki'        => 'Strony bjez mjezyrěčnych wotkazow',
-'withoutinterwiki-header' => 'Sćěhowace strony njewotkazuja na druhe rěčne wersije:',
-'withoutinterwiki-submit' => 'Pokazać',
+'withoutinterwiki'         => 'Strony bjez mjezyrěčnych wotkazow',
+'withoutinterwiki-summary' => 'Sćěhowace strony njewotkazuja na druhe rěčne wersije:',
+'withoutinterwiki-submit'  => 'Pokazać',
 
 'fewestrevisions'         => 'Strony z najmjenje wersijemi',
 'fewestrevisions-summary' => 'Tuta specialna strona naliči strony z najmjenje wobdźěłanjemi.',

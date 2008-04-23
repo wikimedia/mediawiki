@@ -842,8 +842,8 @@ Kėtė admėnėstratuorē šėtom pruojekte vėsdar galės pasėiktė pasliepta 
 'brokenredirects-edit'   => '(redagoutė)',
 'brokenredirects-delete' => '(trintė)',
 
-'withoutinterwiki'        => 'Poslapē ba kalbū nūruodu',
-'withoutinterwiki-header' => 'Šėtė poslapē neruod i kėtū kalbū versėjės:',
+'withoutinterwiki'         => 'Poslapē ba kalbū nūruodu',
+'withoutinterwiki-summary' => 'Šėtė poslapē neruod i kėtū kalbū versėjės:',
 
 'fewestrevisions' => 'Straipsnē so mažiausė pakeitėmu',
 

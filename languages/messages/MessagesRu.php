@@ -1399,9 +1399,9 @@ PICT # различные
 'brokenredirects-edit'   => '(править)',
 'brokenredirects-delete' => '(удалить)',
 
-'withoutinterwiki'        => 'Страницы без межъязыковых ссылок',
-'withoutinterwiki-header' => 'Следующие страницы не имеют интервики-ссылок:',
-'withoutinterwiki-submit' => 'Показать',
+'withoutinterwiki'         => 'Страницы без межъязыковых ссылок',
+'withoutinterwiki-summary' => 'Следующие страницы не имеют интервики-ссылок:',
+'withoutinterwiki-submit'  => 'Показать',
 
 'fewestrevisions' => 'Статьи с наименьшим количеством изменений',
 

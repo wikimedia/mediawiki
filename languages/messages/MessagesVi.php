@@ -1282,9 +1282,9 @@ Có '''$8''' đã được tải lên.
 'brokenredirects-edit'   => '(sửa)',
 'brokenredirects-delete' => '(xóa)',
 
-'withoutinterwiki'        => 'Trang chưa có liên kết ngoại ngữ',
-'withoutinterwiki-header' => 'Các trang sau đây không có liên kết đến các phiên bản ngoại ngữ khác:',
-'withoutinterwiki-submit' => 'Xem',
+'withoutinterwiki'         => 'Trang chưa có liên kết ngoại ngữ',
+'withoutinterwiki-summary' => 'Các trang sau đây không có liên kết đến các phiên bản ngoại ngữ khác:',
+'withoutinterwiki-submit'  => 'Xem',
 
 'fewestrevisions' => 'Trang có ít sửa đổi nhất',
 

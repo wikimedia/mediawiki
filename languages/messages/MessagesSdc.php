@@ -1066,8 +1066,8 @@ La [http://meta.wikimedia.org/wiki/Help:Job_queue coda di li pruzzessi] è longa
 'brokenredirects-edit'   => '(mudifigga)',
 'brokenredirects-delete' => '(canzella)',
 
-'withoutinterwiki'        => "Pàgini chena cullegamenti p'althri linghi",
-'withoutinterwiki-header' => 'Li sighenti pàgini so chena cullegamenti a versioni in althri linghi (interwiki):',
+'withoutinterwiki'         => "Pàgini chena cullegamenti p'althri linghi",
+'withoutinterwiki-summary' => 'Li sighenti pàgini so chena cullegamenti a versioni in althri linghi (interwiki):',
 
 'fewestrevisions' => 'Pàgini cun mancu ribisioni',
 

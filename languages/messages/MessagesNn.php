@@ -1352,9 +1352,9 @@ Alle sidene er vortne viste {{PLURAL:$3|'''éin''' gong|'''$3''' gonger}} og end
 'brokenredirects-edit'   => '(endre)',
 'brokenredirects-delete' => '(slett)',
 
-'withoutinterwiki'        => 'Sider utan lenkjer til andre språk',
-'withoutinterwiki-header' => 'Desse sidene manglar lenkjer til sider på andre språk:',
-'withoutinterwiki-submit' => 'Vis',
+'withoutinterwiki'         => 'Sider utan lenkjer til andre språk',
+'withoutinterwiki-summary' => 'Desse sidene manglar lenkjer til sider på andre språk:',
+'withoutinterwiki-submit'  => 'Vis',
 
 'fewestrevisions' => 'Sidene med færrast endringar',
 

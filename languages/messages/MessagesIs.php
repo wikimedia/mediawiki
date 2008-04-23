@@ -1182,9 +1182,9 @@ Lengdin á [http://meta.wikimedia.org/wiki/Help:Job_queue vinnsluröðinni] er '
 'brokenredirects-edit'   => '(breyta)',
 'brokenredirects-delete' => '(eyða)',
 
-'withoutinterwiki'        => 'Síður án tungumálatengla',
-'withoutinterwiki-header' => 'Eftirfarandi síður tengja ekki í önnur tungumál:',
-'withoutinterwiki-submit' => 'Sýna',
+'withoutinterwiki'         => 'Síður án tungumálatengla',
+'withoutinterwiki-summary' => 'Eftirfarandi síður tengja ekki í önnur tungumál:',
+'withoutinterwiki-submit'  => 'Sýna',
 
 'fewestrevisions' => 'Greinar með fæstar breytingar',
 

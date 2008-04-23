@@ -1227,9 +1227,9 @@ Iš to išeina, kad vidutiniškai kiekvienas puslapis keistas '''$5''' karto, be
 'brokenredirects-edit'   => '(redaguoti)',
 'brokenredirects-delete' => '(trinti)',
 
-'withoutinterwiki'        => 'Puslapiai be kalbų nuorodų',
-'withoutinterwiki-header' => 'Šie puslapiai nenurodo į kitų kalbų versijas:',
-'withoutinterwiki-submit' => 'Rodyti',
+'withoutinterwiki'         => 'Puslapiai be kalbų nuorodų',
+'withoutinterwiki-summary' => 'Šie puslapiai nenurodo į kitų kalbų versijas:',
+'withoutinterwiki-submit'  => 'Rodyti',
 
 'fewestrevisions' => 'Puslapiai su mažiausiai keitimų',
 

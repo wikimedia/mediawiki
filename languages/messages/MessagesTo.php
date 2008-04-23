@@ -627,8 +627,8 @@ Ko e konga ʻi olunga, ko e '''konga pē ʻe taha''' ʻe haofaki ʻi he lomiʻi 
 'brokenredirects'     => 'Ngaahi leʻei maumau',
 'brokenredirectstext' => 'ʻOku leʻei ʻa e ngaahi fehokotakí ni ki he peesi taʻetuʻu:',
 
-'withoutinterwiki'        => 'Ngaahi kupu taʻefehokotaki fakalea',
-'withoutinterwiki-header' => 'Ko e ngaahi peesi ʻoku ʻasi ʻi lalo ʻoku ʻikai ʻi ai haʻanau fehokotaki fakalea:',
+'withoutinterwiki'         => 'Ngaahi kupu taʻefehokotaki fakalea',
+'withoutinterwiki-summary' => 'Ko e ngaahi peesi ʻoku ʻasi ʻi lalo ʻoku ʻikai ʻi ai haʻanau fehokotaki fakalea:',
 
 'fewestrevisions' => 'Kupu mo e ngaahi paaki siʻi taha',
 

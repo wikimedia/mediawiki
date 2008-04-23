@@ -1080,9 +1080,9 @@ $3-এর দেয়া কারণ হল ''$2''",
 'brokenredirects-edit'   => '(সম্পাদনা)',
 'brokenredirects-delete' => '(মুছে ফেলুন)',
 
-'withoutinterwiki'        => 'ভাষার সংযোগহীন পাতাসমূহ',
-'withoutinterwiki-header' => 'এই পাতা সমূহ অন্য ভাষার সংস্করণের সাথে সংযুক্ত নয়:',
-'withoutinterwiki-submit' => 'দেখাও',
+'withoutinterwiki'         => 'ভাষার সংযোগহীন পাতাসমূহ',
+'withoutinterwiki-summary' => 'এই পাতা সমূহ অন্য ভাষার সংস্করণের সাথে সংযুক্ত নয়:',
+'withoutinterwiki-submit'  => 'দেখাও',
 
 'fewestrevisions' => 'সবচেয়ে কমসংখ্যক সংশোধিত পাতাগুলি',
 
