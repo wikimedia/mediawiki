@@ -460,10 +460,20 @@ function wfMsgGetKey( $key, $useDB, $langCode = false, $transform = true ) {
 			$message = $wgMessageCache->transform( $message );
 		}
 	} else {
-		if( $forContent ) {
+		if( $langCode === true ) {
 			$lang = &$wgContLang;
-		} else {
+		} elseif( $langCode === false ) {
 			$lang = &$wgLang;
+		} else {
+			$validCodes = array_keys( Language::getLanguageNames() );
+			if( in_array( $langCode, $validCodes ) ) {
+				# $langcode corresponds to a valid language.
+				$lang = Language::factory( $langCode );
+			} else {
+				# $langcode is a string, but not a valid language code; use content language.
+				$lang =& $wgContLang;
+				wfDebug( 'Invalid language code passed to wfMsgGetKey, falling back to content language.' );
+			}
 		}
 
 		# MessageCache::get() does this already, Language::getMessage() doesn't

@@ -411,28 +411,25 @@ class MessageCache {
 	function get( $key, $useDB = true, $langcode = true, $isFullKey = false ) {
 		global $wgContLanguageCode, $wgContLang, $wgLang;
 
-		$validCodes = array_keys( Language::getLanguageNames() );
-
 		# Identify which language to get or create a language object for.
-		if( $langcode === $wgContLang->getCode() ) {
+		if( $langcode === $wgContLang->getCode() || $langcode === true ) {
 			# $langcode is the language code of the wikis content language object.
+			# or it is a boolean and value is true
 			$lang =& $wgContLang;
-		} elseif( $langcode === $wgLang->getCode() ) {
+		} elseif( $langcode === $wgLang->getCode() || $langcode === false ) {
 			# $langcode is the language code of user language object.
-			$lang =& $wgLang;
-		} elseif( in_array( $langcode, $validCodes ) ) {
-			# $langcode corresponds to a valid language.
-			$lang = Language::factory( $langcode );
-		} elseif( is_string( $langcode ) ) {
-			# $langcode is a string, but not a valid language code; use content language.
-			$lang =& $wgContLang;
-			wfDebug( 'Invalid language code passed to MessageCache::get, falling back to content language.' );
-		} elseif( !$langcode ) {
-			# $langcode is set to false, use the user language (fallback for old parameters).
+			# or it was a boolean and value is false
 			$lang =& $wgLang;
 		} else {
-			# $language is set to true, use the content language (fallback for old parameters).
-			$lang =& $wgContLang;
+			$validCodes = array_keys( Language::getLanguageNames() );
+			if( in_array( $langcode, $validCodes ) ) {
+				# $langcode corresponds to a valid language.
+				$lang = Language::factory( $langcode );
+			} else {
+				# $langcode is a string, but not a valid language code; use content language.
+				$lang =& $wgContLang;
+				wfDebug( 'Invalid language code passed to MessageCache::get, falling back to content language.' );
+			}
 		}
 
 		$langcode = $lang->getCode();
