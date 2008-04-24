@@ -612,6 +612,9 @@ $fileVersions: array of undeleted versions. Empty if all versions were restored
 $user: user who performed the undeletion
 $reason: reason
 
+'GetAvailableRights': after calculating a list of all available rights
+&$rights: Array of rights, which may be added to.
+
 'GetBlockedStatus': after loading blocking status of an user from the database
 $user: user (object) being checked
 
