@@ -95,8 +95,8 @@ class SpecialListGroupRights extends SpecialPage {
 		$r = array();
 		foreach( $permissions as $permission => $granted ) {
 			if ( $granted ) {
-				$permission = htmlspecialchars( $permission );
-				$r[] = wfMsgExt( 'listgrouprights-link', array( 'parseinline', 'content' ), $permission );
+				$description = User::getRightDescription($permission);
+				$r[] = wfMsgExt( 'listgrouprights-link', array( 'parseinline', 'content' ), $description, $permission );
 			}
 		}
 		sort( $r );

@@ -2825,4 +2825,14 @@ class User {
 		// edit count in user cache too
 		$this->invalidateCache();
 	}
+	
+	static function getRightDescription( $right ) {
+		global $wgMessageCache;
+		$wgMessageCache->loadAllMessages();
+		$key = "right-$right";
+		$name = wfMsg( $key );
+		return $name == '' || wfEmptyMsg( $key, $name )
+			? $right
+			: $name;
+	}
 }
