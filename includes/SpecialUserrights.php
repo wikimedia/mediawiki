@@ -393,7 +393,7 @@ class UserrightsPage extends SpecialPage {
 	 * Returns an array of all groups that may be edited
 	 * @return array Array of groups that may be edited.
 	 */
-	 private function getAllGroups() {
+	 protected static function getAllGroups() {
 	 	return User::getAllGroups();
 	 }
 
@@ -405,7 +405,7 @@ class UserrightsPage extends SpecialPage {
 	 * @return string XHTML <select> element
 	 */
 	private function groupCheckboxes( $usergroups ) {
-		$allgroups = self::getAllGroups();
+		$allgroups = $this->getAllGroups();
 		$ret = '';
 
 		$column = 1;
