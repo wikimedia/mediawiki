@@ -893,6 +893,7 @@ $wgMessageStructure = array(
 		'right-trackback',
 		'right-mergehistory',
 		'right-userrights',
+		'right-userrights-interwiki',
 		'right-siteadmin',
 	),
 	'rightslog' => array(
