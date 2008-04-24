@@ -533,8 +533,8 @@ class Xml {
 		$form .= "<table><tbody>";
 	
 		foreach( $fields as $labelmsg => $input ) {
-			$id = "mw-gb-$labelmsg";
-			$form .= Xml::openElement( 'tr' );
+			$id = "mw-$labelmsg";
+			$form .= Xml::openElement( 'tr', array( 'id' => $id ) );
 	
 			$form .= Xml::element( 'td', array('valign' => 'top'), wfMsg( $labelmsg ) );
 	
