@@ -290,7 +290,7 @@ class UserrightsPage extends SpecialPage {
 		global $wgOut, $wgScript;
 		$wgOut->addHTML(
 			Xml::openElement( 'form', array( 'method' => 'get', 'action' => $wgScript, 'name' => 'uluser', 'id' => 'mw-userrights-form1' ) ) .
-			Xml::hidden( 'title',  'Special:Userrights' ) .
+			Xml::hidden( 'title',  $this->getTitle() ) .
 			Xml::openElement( 'fieldset' ) .
 			Xml::element( 'legend', array(), wfMsg( 'userrights-lookup-user' ) ) .
 			Xml::inputLabel( wfMsg( 'userrights-user-editname' ), 'user', 'username', 30, $this->mTarget ) . ' ' .
@@ -388,6 +388,14 @@ class UserrightsPage extends SpecialPage {
 			$cache[$group] = User::makeGroupLinkHtml( $group, User::getGroupName( $group ) );
 		return $cache[$group];
 	}
+	
+	/**
+	 * Returns an array of all groups that may be edited
+	 * @return array Array of groups that may be edited.
+	 */
+	 private function getAllGroups() {
+	 	return User::getAllGroups();
+	 }
 
 	/**
 	 * Adds the <select> thingie where you can select what groups to add/remove
@@ -397,7 +405,7 @@ class UserrightsPage extends SpecialPage {
 	 * @return string XHTML <select> element
 	 */
 	private function groupCheckboxes( $usergroups ) {
-		$allgroups = User::getAllGroups();
+		$allgroups = self::getAllGroups();
 		$ret = '';
 
 		$column = 1;
