@@ -2517,3 +2517,52 @@ function wfWaitForSlaves( $maxLag ) {
 
  	return md5( mt_rand( 0, 0x7fffffff ) . $salt );
 }
+
+/**
+ * Generate a list of all available rights.
+ * @todo Doesn't list any rights which aren't assigned to a group.
+ */
+function wfGetAvailableRights() {
+	global $wgGroupPermissions;
+	
+	$rights = array();
+	
+	foreach( $wgGroupPermissions as $permissions ) {
+		$rights = array_merge( array_keys($permissions),$rights );
+	}
+	
+	$rights = array_unique($rights);
+	
+	wfRunHooks( 'GetAvailableRights', array( &$rights ) );
+	
+	return $rights;
+}
+
+/**
+ * Generate a form (without the opening form element).
+ * Output DOES include a submit button.
+ * @param array $fields Associative array, key is message corresponding to a description for the field (colon is in the message), value is appropriate input.
+ * @param string $submitLable A message containing a label for the submit button.
+ * @return string HTML form.
+ */
+function wfBuildForm( $fields, $submitLabel ) {
+	$form = '';
+	$form .= "<table><tbody>";
+
+	foreach( $fields as $labelmsg => $input ) {
+		$id = "mw-gb-$labelmsg";
+		$form .= Xml::openElement( 'tr', array( 'class' => $id ) );
+
+		$form .= Xml::element( 'td', array('valign' => 'top'), wfMsg( $labelmsg ) );
+
+		$form .= Xml::openElement( 'td' ) . $input . Xml::closeElement( 'td' );
+
+		$form .= Xml::closeElement( 'tr' );
+	}
+
+	$form .= "</tbody></table>";
+
+	$form .= wfSubmitButton( wfMsg($submitLabel) );
+
+	return $form;
+}
