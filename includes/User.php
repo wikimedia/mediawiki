@@ -96,6 +96,7 @@ class User {
 		'mOptions',
 		'mTouched',
 		'mToken',
+		'mEmail',
 		'mEmailAuthenticated',
 		'mEmailToken',
 		'mEmailTokenExpires',
@@ -103,6 +104,7 @@ class User {
 		'mEditCount',
 		# user_group table
 		'mGroups',
+		'mRights',
 	);
 
 	/**
