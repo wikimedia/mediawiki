@@ -36,7 +36,7 @@ class ShortPagesPage extends QueryPage {
 		$forceindex = $dbr->useIndexClause("page_len");
 
 		if ($wgContentNamespaces)
-			$nsclause = "page_namespace IN (" . implode(',', $wgContentNamespaces) . ")";
+			$nsclause = "page_namespace IN (" . $dbr->makeList($wgContentNamespaces) . ")";
 		else
 			$nsclause = "page_namespace = " . NS_MAIN;
 
