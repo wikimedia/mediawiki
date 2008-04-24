@@ -812,6 +812,7 @@ Ne deurià aver mens de $2 sul nombre actual $1.',
 # "Undo" feature
 'undo-success' => 'Aquesta modificacion es estada desfacha. Confirmatz, e salvagardatz los cambiaments çaijós.',
 'undo-failure' => 'Aquesta modificacion a pas pogut èsser desfacha a causa de conflictes amb de modificacions intermediàrias.',
+'undo-norev'   => 'La modificacion a pas pogut èsser desfacha perque siá es inexistenta siá es estada suprimida.',
 'undo-summary' => 'Anullacion de las modificacions $1 de [[Special:Contributions/$2|$2]] ([[User talk:$2|discutir]])',
 
 # Account creation failure
@@ -1048,7 +1049,7 @@ per modificar vòstras preferéncias d'utilizaire.",
 'editusergroup'                    => "Modificacion dels gropes d'utilizaires",
 'editinguser'                      => "Cambiament dels dreches de l'utilizaire '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
 'userrights-editusergroup'         => 'Modificar los gropes de l’utilizaire',
-'saveusergroups'                   => "Salvagardar los gropes d'utilizaire",
+'saveusergroups'                   => "Salvagardar los gropes d'utilizaires",
 'userrights-groupsmember'          => 'Membre de :',
 'userrights-groupsremovable'       => 'Gropes suprimibles :',
 'userrights-groupsavailable'       => 'Gropes disponibles :',
@@ -1362,6 +1363,7 @@ I a {{PLURAL:\$7|'''\$7''' article|'''\$7''' articles}} dins [[meta:Help:Job_que
 
 'withoutinterwiki'         => 'Paginas sens ligams interlengas',
 'withoutinterwiki-summary' => "Aquesta pagina a pas de ligams vèrs las versions dins d'autras lengas:",
+'withoutinterwiki-legend'  => 'Prefix',
 'withoutinterwiki-submit'  => 'Afichar',
 
 'fewestrevisions' => 'Articles amb lo mens de revisions',
@@ -1411,7 +1413,7 @@ I a {{PLURAL:\$7|'''\$7''' article|'''\$7''' articles}} dins [[meta:Help:Job_que
 'newpages-username'       => "Nom d'utilizaire :",
 'ancientpages'            => 'Articles mai ancians',
 'move'                    => 'Tornar nomenar',
-'movethispage'            => 'Desplaçar la pagina',
+'movethispage'            => 'Tornar nomenar la pagina',
 'unusedimagestext'        => "Doblidetz pas que d'autres sits pòdon conténer un ligam dirèct vèrs aqueste imatge, e qu'aqueste pòt èsser plaçat dins aquesta lista alara qu'es en realitat utilizada.",
 'unusedcategoriestext'    => "Las categorias seguentas existisson mas cap d'article o de categoria los utilizan pas.",
 'notargettitle'           => 'Pas de cibla',
@@ -1598,10 +1600,10 @@ L'ora indicada es la del serveire (UTC).
 'delete-edit-reasonlist'      => 'Modifica los motius de la supression',
 'delete-toobig'               => "Aquesta pagina dispausa d'un istoric important, depassant $1 versions. La supression de talas paginas es estada limitada per evitar de perturbacions accidentalas de {{SITENAME}}.",
 'delete-warning-toobig'       => "Aquesta pagina dispausa d'un istoric important, depassant $1 versions. La suprimir pòt perturbar lo foncionament de la banca de donada de {{SITENAME}}. D'efectuar amb prudéncia.",
-'rollback'                    => 'revocar las modificacions',
-'rollback_short'              => 'Revocar',
-'rollbacklink'                => 'revocar',
-'rollbackfailed'              => 'La revocacion a pas capitat',
+'rollback'                    => 'Anullar las modificacions',
+'rollback_short'              => 'Anullar',
+'rollbacklink'                => 'anullar',
+'rollbackfailed'              => "L'anullacion a pas capitat",
 'cantrollback'                => "Impossible de revocar : l'autor es la sola persona a aver efectuat de modificacions sus aqueste article",
 'alreadyrolled'               => "Impossible de revocar la darrièra modificacion de [[:$1]]
 per  [[User:$2|$2]] ([[User talk:$2|Discussion]]); qualqu'un d'autre ja a modificat o revocat l'article.
@@ -1609,7 +1611,7 @@ per  [[User:$2|$2]] ([[User talk:$2|Discussion]]); qualqu'un d'autre ja a modifi
 La darrièra modificacion èra de [[User:$3|$3]] ([[User talk:$3|Discussion]]).",
 'editcomment'                 => 'Lo resumit de la modificacion èra: "<i>$1</i>".', # only shown if there is an edit comment
 'revertpage'                  => 'restitucion de la darrièra modificacion de [[Special:Contributions/$2|$2]] ([[User talk:$2|Discussion]]); retorn a la darrièra version de [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
-'rollback-success'            => 'Revocacion de las modificacions de $1 ; retorn a la version de $2.',
+'rollback-success'            => 'Anullacion de las modificacions de $1 ; retorn a la version de $2.',
 'sessionfailure'              => 'Vòstra sesilha de connexion sembla aver de problèmas ;
 aquesta accion es estada anullada en prevencion d’un piratatge de sesilha.
 Clicatz sus « Precedent » e tornatz cargar la pagina d’ont venètz, puèi ensajatz tornarmai.',
@@ -1846,7 +1848,7 @@ Doblidetz pas de la desvarrolhar quand auretz acabat vòstra operacion de manten
 
 # Move page
 'move-page'               => 'Desplaçar $1',
-'move-page-legend'        => 'Desplaçar un article',
+'move-page-legend'        => 'Tornar nomenar un article',
 'movepagetext'            => "Utilizatz lo formulari çaijós per tornar nomenar una pagina, en desplaçant tot son istoric cap al nom novèl.
 Lo títol vendrà una pagina de redireccion cap al títol novèl.
 Los ligams vèrs lo títol de la pagina anciana seràn pas cambiats ;
@@ -1865,14 +1867,14 @@ Asseguratz-vos de n'avoir compres las consequéncias abans de contunhar.",
 *Avètz deseleccionat lo boton çaijós.
 
 Dins aqueste cas, deuretz desplaçar o fusionar la pagina manualament se o volètz.",
-'movearticle'             => "Desplaçar l'article",
+'movearticle'             => "Tornar nomenar l'article",
 'movenologin'             => 'Vos sètz pas identificat(ada)',
-'movenologintext'         => "Per poder desplaçar un article, vos cal èsser [[Special:Userlogin|connectat(ada)]]
+'movenologintext'         => "Per poder tornar nomenar un article, vos cal èsser [[Special:Userlogin|connectat(ada)]]
 en tant qu'utilizaire enregistrat.",
 'movenotallowed'          => 'Avètz pas la permission de tornar nomenar de paginas sus {{SITENAME}}.',
 'newtitle'                => 'Títol novèl',
 'move-watch'              => 'Seguir aquesta pagina',
-'movepagebtn'             => "Desplaçar l'article",
+'movepagebtn'             => "Tornar nomenar l'article",
 'pagemovedsub'            => 'Renomenatge capitat',
 'movepage-moved'          => 'La pagina « $1 » <small>([[Special:Whatlinkshere/$3|ligams]])</small> es estada renomenada en « $2 » <small>([[Special:Whatlinkshere/$4|ligams]])</small>. Verificatz qu’existís pas cap de redireccion dobla, e corregissetz-las se mestièr fa.', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => "Existís ja un article que pòrta aqueste títol, o lo títol qu'avètz causit es pas valid.
@@ -1882,7 +1884,7 @@ Causissètz-ne un autre.",
 la pagina de discussion a pas pogut èsser desplaçada perque n'existissiá ja una
 jol nom novèl. Se vos plai, fusionatz-las manualament.",
 'movedto'                 => 'renomenat en',
-'movetalk'                => 'Desplaçar tanben la pagina "discussion", se fa mestièr.',
+'movetalk'                => 'Tornar nomenar tanben la pagina "discussion", se fa mestièr.',
 'talkpagemoved'           => 'La pagina de discussion correspondenta tanben es estada desplaçada.',
 'talkpagenotmoved'        => 'La pagina de discussion correspondenta es <strong>pas</strong> estada desplaçada.',
 '1movedto2'               => 'a renomenat [[$1]] en [[$2]]',
@@ -2495,7 +2497,8 @@ $1",
 'useajaxsearch'    => 'Utilizar la recèrca AJAX',
 
 # Separators for various lists, etc.
-'colon-separator' => '&nbsp;:&#32;',
+'colon-separator'    => '&nbsp;:&#32;',
+'autocomment-prefix' => '-',
 
 # Multipage image navigation
 'imgmultipageprev' => '&larr; pagina precedenta',

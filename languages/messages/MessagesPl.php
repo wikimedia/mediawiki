@@ -338,7 +338,7 @@ $messages = array(
 * [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ]
 * [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Komunikaty o nowych wersjach MediaWiki]',
 
-'about'          => 'O&nbsp;{{GRAMMAR:MS.lp|{{SITENAME}}}}',
+'about'          => 'O {{GRAMMAR:MS.lp|{{SITENAME}}}}',
 'article'        => 'artykuł',
 'newwindow'      => '(otwiera się w nowym oknie)',
 'cancel'         => 'Anuluj',
@@ -415,7 +415,7 @@ $messages = array(
 'jumptosearch'      => 'wyszukiwania',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
-'aboutsite'            => 'O&nbsp;{{GRAMMAR:MS.lp|{{SITENAME}}}}',
+'aboutsite'            => 'O {{GRAMMAR:MS.lp|{{SITENAME}}}}',
 'aboutpage'            => 'Project:O {{GRAMMAR:MS.lp|{{SITENAME}}}}',
 'bugreports'           => 'Raport o błędach',
 'bugreportspage'       => 'Project:Błędy',

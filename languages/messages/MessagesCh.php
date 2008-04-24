@@ -6,6 +6,7 @@
  * @author Gadao01
  * @author Magalahi
  * @author Nike
+ * @author Jatrobat
  */
 
 $messages = array(
@@ -203,7 +204,7 @@ $messages = array(
 'yourpassword'            => 'Password:',
 'remembermypassword'      => "Na'hasso iyo-ku login gi este na komputer",
 'login'                   => 'Log in',
-'nav-login-createaccount' => "Log in/ fa'tinas kuenta-mu",
+'nav-login-createaccount' => "Hålom / fa'tinas kuenta-mu",
 'userlogin'               => "Hålom / fa'tinas kuenta-mu",
 'logout'                  => 'Log out',
 'userlogout'              => 'Log out',
@@ -286,17 +287,19 @@ Estague' i historian muna'suha ni påhina:",
 'editundo'                => 'funas',
 
 # Search results
-'noexactmatch' => "'''Taya' na påhina mafa'na'an \"\$1\".'''
+'noexactmatch'       => "'''Taya' na påhina mafa'na'an \"\$1\".'''
 Siña un [[:\$1|fa'tinas i påhina]].",
-'prevn'        => "$1 ni manmå'pos",
-'nextn'        => "$1 ni manmamaila'",
-'viewprevnext' => 'Atan i ($1) ($2) ($3)',
-'powersearch'  => 'Finu na inaligao',
+'prevn'              => "$1 ni manmå'pos",
+'nextn'              => "$1 ni manmamaila'",
+'viewprevnext'       => 'Atan i ($1) ($2) ($3)',
+'powersearch'        => 'Finu na inaligao',
+'powersearch-legend' => 'Finu na inaligao',
 
 # Preferences page
-'preferences'   => "I ga'ña-mu",
-'mypreferences' => "I ga'ña-hu",
-'retypenew'     => "Na'tekla nuebu na password:",
+'preferences'       => "I ga'ña-mu",
+'mypreferences'     => "I ga'ña-hu",
+'retypenew'         => "Na'tekla nuebu na password:",
+'searchresultshead' => 'Aligao',
 
 'grouppage-sysop' => '{{ns:project}}:Atministradot siha',
 
@@ -364,7 +367,8 @@ Siña un [[:\$1|fa'tinas i påhina]].",
 
 'doubleredirects' => "Mandoble na inachetton ma'dirihi siha",
 
-'brokenredirects' => "Manmayulang na muna'dirihi siha",
+'brokenredirects'      => "Manmayulang na muna'dirihi siha",
+'brokenredirects-edit' => '(tulaika)',
 
 'withoutinterwiki' => "Påhina siha tai'inachetton ni lengguahe",
 
@@ -398,11 +402,15 @@ Siña un [[:\$1|fa'tinas i påhina]].",
 'move'                    => 'Suha',
 'movethispage'            => 'Suha i påhina este',
 
+# Book sources
+'booksources-go' => 'Hånao',
+
 # Special:Log
 'specialloguserlabel'  => "Muna'sesetbi:",
 'speciallogtitlelabel' => 'Titulo:',
 'log'                  => 'Logs',
 'all-logs-page'        => 'Todu i logs siha',
+'log-search-submit'    => 'Hånao',
 
 # Special:Allpages
 'allpages'       => 'Todu i påhina siha',
@@ -448,8 +456,12 @@ Chek $2 para i historian muna\'suha gi halacha.',
 'rollbacklink'          => 'tulaika tatte',
 'protectlogpage'        => 'I historian proteksion',
 
+# Restrictions (nouns)
+'restriction-edit' => 'Tulaika',
+
 # Undelete
-'undeletebtn' => "Fa'tinas ta'lo",
+'undeletebtn'            => "Fa'tinas ta'lo",
+'undelete-search-submit' => 'Aligao',
 
 # Namespace form on various pages
 'namespace'      => "Sågan nå'an:",
@@ -465,6 +477,7 @@ Chek $2 para i historian muna\'suha gi halacha.',
 
 'sp-contributions-newbies-sub' => 'Para i mannuebu na kuenta siha',
 'sp-contributions-blocklog'    => "Na'påra i log",
+'sp-contributions-submit'      => 'Aligao',
 
 # What links here
 'whatlinkshere'       => "Håfa ha na'chetton guini",
@@ -478,13 +491,14 @@ Chek $2 para i historian muna\'suha gi halacha.',
 'whatlinkshere-links' => '← inachetton',
 
 # Block/unblock
-'blockip'      => "Chomma' i muna'sesetbi",
-'ipboptions'   => "2 oras:2 hours,1 diha:1 day,3 na diha siha:3 days,1 simana:1 week,2 na simana siha:2 weeks,1 mes:1 month,3 na mes siha:3 months,6 na mes siha:6 months,1 sakkan:1 year,taifinakpo':infinite", # display1:time1,display2:time2,...
-'ipblocklist'  => "Listan i manmachomma' ni IP yan na'an muna'sesetbi siha",
-'blocklink'    => 'futot',
-'unblocklink'  => "båsta machomma'",
-'contribslink' => 'kontrib',
-'blocklogpage' => "Chomma' i log",
+'blockip'            => "Chomma' i muna'sesetbi",
+'ipboptions'         => "2 oras:2 hours,1 diha:1 day,3 na diha siha:3 days,1 simana:1 week,2 na simana siha:2 weeks,1 mes:1 month,3 na mes siha:3 months,6 na mes siha:6 months,1 sakkan:1 year,taifinakpo':infinite", # display1:time1,display2:time2,...
+'ipblocklist'        => "Listan i manmachomma' ni IP yan na'an muna'sesetbi siha",
+'ipblocklist-submit' => 'Aligao',
+'blocklink'          => 'futot',
+'unblocklink'        => "båsta machomma'",
+'contribslink'       => 'kontrib',
+'blocklogpage'       => "Chomma' i log",
 
 # Move page
 'movepagetext' => "Anggen un usa i sigiente fotma, para un tulaika i na'an i påhina, kontodu historia-ña.
@@ -529,6 +543,7 @@ na'seguro fan na un komprende i hiniyong i bida-mu sempre.",
 'tooltip-ca-watch'                => "Po'lu i påhina este gi listan pinilan-hu",
 'tooltip-ca-unwatch'              => "Na'suha i påhina gi i listan pinilan-mu",
 'tooltip-search'                  => 'Aligao gi {{SITENAME}}',
+'tooltip-p-logo'                  => 'Fanhaluman',
 'tooltip-n-mainpage'              => 'Bisita i Fanhaluman',
 'tooltip-n-portal'                => "Pot i proyektu, håfa siña hao chumo'gue, månu na siña masodda' kosas",
 'tooltip-n-currentevents'         => 'Aligao infotmasion ni estorian modetnu siha',
@@ -562,6 +577,9 @@ na'seguro fan na un komprende i hiniyong i bida-mu sempre.",
 'file-nohires'   => "<small>Tåya' mas takhilo' na risolusion.</small>",
 'show-big-image' => 'Magåhet mineddong-ña',
 
+# Special:Newimages
+'ilsubmit' => 'Aligao',
+
 # Metadata
 'metadata'          => 'Metadata',
 'metadata-expand'   => "Na'annok todu i infotmasion-ña",
@@ -576,10 +594,20 @@ na'seguro fan na un komprende i hiniyong i bida-mu sempre.",
 'namespacesall' => 'todu',
 'monthsall'     => 'todu',
 
+# Multipage image navigation
+'imgmultigo' => 'Hånao!',
+
+# Table pager
+'table_pager_limit_submit' => 'Hånao',
+
 # Watchlist editing tools
 'watchlisttools-edit' => 'Atan ya tulaika i listan pinilan',
 
 # Special:Version
-'version' => 'Tinilaika', # Not used as normal message but as header for the special page itself
+'version'              => 'Tinilaika', # Not used as normal message but as header for the special page itself
+'version-specialpages' => 'Manespesiat na påhina',
+
+# Special:FileDuplicateSearch
+'fileduplicatesearch-submit' => 'Aligao',
 
 );

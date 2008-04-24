@@ -48,7 +48,9 @@ $messages = array(
 'tog-hideminor'               => 'Чысыл ивддзинæдтæ фæстаг ивддзинæдты номхыгъды мауал æвдис',
 'tog-numberheadings'          => 'Сæргæндты автоматикон нумераци',
 'tog-editondblclick'          => 'Фæрстæ дыкъæппæй ив (JavaScript)',
+'tog-editsection'             => 'Равдис «баив æй» æрвитæн тексты алы хайы дæр',
 'tog-editsectiononrightclick' => 'Сæргондыл рахиз æркъæппæй фарсы хæйттæ ив (JavaScript)',
+'tog-rememberpassword'        => 'Системæ бахъуыды кæнæд мæ пароль ацы компьютерыл.',
 'tog-watchcreations'          => 'Æз цы фæрстæ райдайын, уыдонмæ мæ цæст дарын мæ фæнды',
 'tog-watchdefault'            => 'Æз цы фæрстæ ивын, уыдонмæ мæ цæст дарын мæ фæнды',
 'tog-watchmoves'              => 'Æз цы фæрсты нæмттæ ивын, уыдонмæ мæ цæст дарын мæ фæнды',
@@ -57,6 +59,11 @@ $messages = array(
 'tog-enotifusertalkpages'     => 'Электронон постæй мæм хъуысынгæнинаг æрвыст уа, мæ дискусси куы ивд æрцæуа, уæд',
 'tog-enotifminoredits'        => 'Кæд ивддзинад чысыл у, уæддæр мæм электронон фыстæг æрбацæуа',
 'tog-shownumberswatching'     => 'Цал архайæджы фарсмæ сæ цæст дарынц, уый равдис',
+'tog-watchlisthideown'        => 'Мæ цæстдарды номхыгъды, мæхæдæг цы ивддзинæдтæ бахæстон, уыдон бамбæхс',
+'tog-watchlisthidebots'       => 'Мæ цæстдарды номхыгъды роботты куыст бамбæхс',
+'tog-watchlisthideminor'      => 'Мæ цæстдарды номхыгъды чысыл ивддзинæдтæ бамбæхс',
+'tog-ccmeonemails'            => 'Æз электронон фыстæг æндæр архайæгæн куы рарвитын, уæд уыцы иу фыстæг мæхи адрисмæ дæр æрбацæуæд.',
+'tog-showhiddencats'          => 'Æмбæхст категоритæ æвдис',
 
 'underline-always' => 'Æдзух',
 'underline-never'  => 'Никуы',
@@ -69,7 +76,13 @@ $messages = array(
 'thursday'      => 'Цыппарæм',
 'friday'        => 'майрæмбон',
 'saturday'      => 'Сабат',
+'sun'           => 'Хц',
+'mon'           => 'Къ',
+'tue'           => 'Дц',
 'wed'           => 'Æр',
+'thu'           => 'Цп',
+'fri'           => 'Мрм',
+'sat'           => 'Сбт',
 'january'       => 'январь',
 'february'      => 'февраль',
 'march'         => 'мартъи',
@@ -122,6 +135,7 @@ $messages = array(
 'category-file-count-limited'   => 'Ацы категорийы {{PLURAL:$1|$1 файл|$1 файлы}} ис.',
 'listingcontinuesabbrev'        => '(дарддæрдзу)',
 
+'about'          => 'Афыст',
 'newwindow'      => '(ног рудзынджы)',
 'qbfind'         => 'Агур',
 'qbedit'         => 'Баив æй',
@@ -144,6 +158,7 @@ $messages = array(
 'history_short'    => 'Истори',
 'printableversion' => 'Мыхурмæ верси',
 'permalink'        => 'Ацы версимæ æрвитæн',
+'print'            => 'Мыхуыр',
 'edit'             => 'Баив æй',
 'editthispage'     => 'Ацы фарс баив',
 'delete'           => 'Аппар',
@@ -166,6 +181,7 @@ $messages = array(
 'templatepage'     => 'Шаблоны фарс фен',
 'viewhelppage'     => 'Æххуысы фарс фен',
 'categorypage'     => 'Категорийы фарс фен',
+'viewtalkpage'     => 'Дискусси фен',
 'otherlanguages'   => 'Æндæр æвзæгтыл',
 'lastmodifiedat'   => 'Ацы фарс фæстаг хатт ивд æрцыд: $1, $2.', # $1 date, $2 time
 'protectedpage'    => 'Æхгæд фарс',
@@ -184,6 +200,7 @@ $messages = array(
 
 'versionrequired' => 'Хъæуы MediaWiki-йы версии $1',
 
+'ok'                  => 'Афтæ уæд!',
 'youhavenewmessages'  => 'Райстай $1 ($2).',
 'newmessageslink'     => 'ног фыстæгтæ',
 'newmessagesdifflink' => 'фæстаг ивддзинад',
@@ -200,6 +217,7 @@ $messages = array(
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Статья',
 'nstab-user'      => 'Архайæджы фарс',
+'nstab-media'     => 'Мультимеди',
 'nstab-special'   => 'Сæрмагонд фарс',
 'nstab-project'   => 'Проекты тыххæй',
 'nstab-image'     => 'Ныв',
@@ -215,10 +233,15 @@ $messages = array(
 Кæс [[{{ns:special}}:Specialpages|æппæт сæрмагонд фæрсты номхыгъд]].",
 
 # General errors
-'error'              => 'Рæдыд',
-'internalerror'      => 'Мидæг рæдыд',
-'internalerror_info' => 'Мидæг рæдыд: $1',
-'viewsource'         => 'Йæ код фен',
+'error'               => 'Рæдыд',
+'internalerror'       => 'Мидæг рæдыд',
+'internalerror_info'  => 'Мидæг рæдыд: $1',
+'filedeleteerror'     => 'Нæй аппарæн файл «$1».',
+'filenotfound'        => 'Нæй ссарæн файл «$1».',
+'unexpected'          => 'Æнæмбæлон æмиасад: «$1»=«$2».',
+'badtitle'            => 'Æнæмбæлон сæргонд',
+'viewsource'          => 'Йæ код фен',
+'ns-specialprotected' => 'Сæрмагонд фæрстæ ({{ns:special}}) баивæн нæй.',
 
 # Login and logout pages
 'logouttitle'             => 'Номсусæг суын',
@@ -226,6 +249,7 @@ $messages = array(
 'loginpagetitle'          => 'Дæхи бацамон системæйæн',
 'yourname'                => 'Архайæджы ном:',
 'yourpassword'            => 'Пароль:',
+'remembermypassword'      => 'Системæ бахъуыды кæнæд мæ пароль ацы компьютерыл',
 'login'                   => 'Дæхи бавдис системæйæн',
 'nav-login-createaccount' => 'Системæйæн дæхи бавдис',
 'userlogin'               => 'Системæйæн дæхи бавдис',
@@ -237,6 +261,8 @@ $messages = array(
 'username'                => 'Регистрацигонд ном:',
 'yourrealname'            => 'Дæ æцæг ном*',
 'yourlanguage'            => 'Техникон фыстыты æвзаг:',
+'yournick'                => 'Фæсномыг (къухæрфыстытæм):',
+'badsiglength'            => 'Æгæр даргъ къухæрфыст, хъуамæ $1 дамгъæйæ къаддæр уа.',
 'email'                   => 'Эл. посты адрис',
 'loginsuccess'            => 'Ныр та Википедийы архайыс $1, зæгъгæ, ахæм номæй.',
 'wrongpasswordempty'      => 'Пароль афтид уыд. Афтæ нæ баззы, ныффыс-ма исты пароль.',
@@ -463,6 +489,9 @@ $3',
 'watchlistall2'    => 'æппæт',
 'namespacesall'    => 'æппæт',
 'monthsall'        => 'æппæт',
+
+# action=purge
+'confirm_purge_button' => 'Афтæ уæд!',
 
 # Watchlist editor
 'watchlistedit-noitems'      => 'Иу фарсмæ дæр нæ дарыс дæ цæст, ацы номхыгъд афтид у.',

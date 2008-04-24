@@ -618,6 +618,7 @@ Considera paginam in partes minores frangere.',
 'permissionserrors'         => 'Errores permissionis',
 
 # "Undo" feature
+'undo-norev'   => 'Recensio abrogari non potuit quia non est aut deleta est.',
 'undo-summary' => 'abrogans recensionem $1 ab usore [[User:$2|$2]] ([[User talk:$2|Disputatio]] | [[Special:Contributions/$2|conlationes]])',
 
 # Account creation failure
@@ -958,8 +959,10 @@ Pagina discretivam esse putatur si formulam adhibet ad quem [[MediaWiki:Disambig
 'brokenredirects-edit'   => '(recensere)',
 'brokenredirects-delete' => '(delere)',
 
-'withoutinterwiki'        => 'Paginae sine nexibus ad linguas alias',
-'withoutinterwiki-submit' => 'Monstrare',
+'withoutinterwiki'         => 'Paginae sine nexibus ad linguas alias',
+'withoutinterwiki-summary' => 'Paginae sequentes non ad paginas in linguis aliis nectunt:',
+'withoutinterwiki-legend'  => 'Praefixum',
+'withoutinterwiki-submit'  => 'Monstrare',
 
 'fewestrevisions' => 'Paginae minime mutatae',
 

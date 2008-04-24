@@ -184,6 +184,7 @@ $messages = array(
 'nstab-main'      => 'Σελίδαν',
 'nstab-user'      => 'Σελίδα χρήστε',
 'nstab-special'   => 'Ειδικόν',
+'nstab-project'   => 'Σχετικά με',
 'nstab-image'     => 'Εικόναν',
 'nstab-mediawiki' => 'Μένεμα',
 'nstab-template'  => 'Πρότυπον',
@@ -261,6 +262,10 @@ $messages = array(
 'currentrev'       => 'Ατωριζνόν μορφήν',
 'revisionasof'     => 'Μορφήν τη $1',
 'previousrevision' => '←Παλαιόν μορφήν',
+'cur'              => 'τρέχουσα',
+'last'             => 'τελευταία',
+'page_first'       => 'πρώτη',
+'page_last'        => 'τελευταία',
 'histfirst'        => "Ασ' όλεα παλαιόν",
 'histlast'         => "Ασ' όλεα καινούρ'",
 
@@ -271,6 +276,7 @@ $messages = array(
 'history-title'           => 'Ιστορικόν εκδοσίων για τη σελίδαν "$1"',
 'lineno'                  => 'Γραμμή $1:',
 'compareselectedversions' => 'Γαρσουλαεύτε τα εκδώσεις',
+'editundo'                => 'αναίρεση',
 
 # Search results
 'noexactmatch' => "'''Η Βικιπαίδειαν 'κ εχ' σελίδαν με τ' όνεμα \"\$1\".'''
@@ -301,7 +307,9 @@ $messages = array(
 'recentchangeslinked-title' => 'Αλλαγάς τη "$1"',
 
 # Upload
-'upload' => 'Φόρτωμα αρχείου',
+'upload'        => 'Φόρτωμα αρχείου',
+'uploadbtn'     => 'Φόρτωμα αρχείου',
+'uploadedimage' => 'Έντον το φόρτωμαν τη "[[$1]]"',
 
 # Image description page
 'filehist'            => 'Ιστορικό αρχείου',
@@ -332,6 +340,7 @@ $messages = array(
 'wantedcategories'        => 'Κατηγορίας το θέλουμε',
 'wantedpages'             => 'Σελίδας το θέλουμε',
 'mostcategories'          => "Σελίδας με τ' ασ' όλτς πολλά κατηγορίας",
+'prefixindex'             => 'Κατάλογος κατά πρόθεμαν',
 'shortpages'              => 'Μικρά σελίδας',
 'longpages'               => 'Τρανά σελίδας',
 'deadendpages'            => 'Αδιέξοδα σελίδας',

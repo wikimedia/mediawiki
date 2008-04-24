@@ -1692,7 +1692,7 @@ En el último caso también puedes usar un enlace, por ejemplo [[Special:Export/
 'allmessagesdefault'        => 'Texto predeterminado',
 'allmessagescurrent'        => 'Texto actual',
 'allmessagestext'           => 'Esta es una lista de mensajes del sistema disponibles en el espacio de nombres MediaWiki:',
-'allmessagesnotsupportedDB' => "'''{{ns:special}}:AllMessages''' no está disponible porque '''\$wgUseDatabaseMessages''' está deshabilitado.",
+'allmessagesnotsupportedDB' => "Esta página no está disponible porque '''\$wgUseDatabaseMessages''' está deshabilitado.",
 'allmessagesfilter'         => 'Filtrar por nombre del mensaje:',
 'allmessagesmodified'       => 'Mostrar sólo los modificados',
 
