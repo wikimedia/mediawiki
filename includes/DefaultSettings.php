@@ -1174,7 +1174,7 @@ $wgGroupPermissions['bureaucrat']['userrights']  = true;
 /**
  * Implicit groups, aren't shown on Special:Listusers or somewhere else
  */
-$wgImplicitGroups = array( '*', 'user', 'autoconfirmed', 'emailconfirmed' );
+$wgImplicitGroups = array( '*', 'user', 'autoconfirmed' );
 
 /**
  * These are the groups that users are allowed to add to or remove from
