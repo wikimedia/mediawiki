@@ -40,11 +40,11 @@ function wfSpecialRevisiondelete( $par = null ) {
 	if( $wgRequest->wasPosted() ) {
 		$form->submit( $wgRequest );
 	} else if( $oldid || $artimestamp ) {
-		$form->showRevs( $wgRequest );
+		$form->showRevs();
 	} else if( $fileid || $img ) {
-		$form->showImages( $wgRequest );
+		$form->showImages();
 	} else if( $logid ) {
-		$form->showLogItems( $wgRequest );
+		$form->showLogItems();
 	}
 	# Show relevant lines from the deletion log. This will show even if said ID
 	# does not exist...might be helpful
@@ -133,8 +133,10 @@ class RevisionDeleteForm {
 		$this->checks = array(
 			$hide_content_name,
 			array( 'revdelete-hide-comment', 'wpHideComment', Revision::DELETED_COMMENT ),
-			array( 'revdelete-hide-user', 'wpHideUser', Revision::DELETED_USER ),
-			array( 'revdelete-hide-restricted', 'wpHideRestricted', Revision::DELETED_RESTRICTED ) );
+			array( 'revdelete-hide-user', 'wpHideUser', Revision::DELETED_USER ) );
+		if( $wgUser->isAllowed('hiderevision') ) {
+			$this->checks[] = array( 'revdelete-hide-restricted', 'wpHideRestricted', Revision::DELETED_RESTRICTED );
+		}
 	}
 
 	/**
@@ -158,9 +160,8 @@ class RevisionDeleteForm {
 
 	/**
 	 * This lets a user set restrictions for live and archived revisions
-	 * @param WebRequest $request
 	 */
-	function showRevs( $request ) {
+	function showRevs() {
 		global $wgOut, $wgUser, $action;
 
 		$UserAllowed = true;
@@ -303,9 +304,8 @@ class RevisionDeleteForm {
 
 	/**
 	 * This lets a user set restrictions for archived images
-	 * @param WebRequest $request
 	 */
-	function showImages( $request ) {
+	function showImages() {
 		global $wgOut, $wgUser, $action;
 
 		$UserAllowed = true;
@@ -440,9 +440,8 @@ class RevisionDeleteForm {
 
 	/**
 	 * This lets a user set restrictions for log items
-	 * @param WebRequest $request
 	 */
-	function showLogItems( $request ) {
+	function showLogItems() {
 		global $wgOut, $wgUser, $action, $wgMessageCache;
 
 		$UserAllowed = true;
@@ -704,40 +703,45 @@ class RevisionDeleteForm {
 	 * @param WebRequest $request
 	 */
 	function submit( $request ) {
+		global $wgUser, $wgOut;
+
 		$bitfield = $this->extractBitfield( $request );
 		$comment = $request->getText( 'wpReason' );
-
-		$this->target = $request->getText( 'target' );
-		$this->title = Title::newFromURL( $this->target );
-
-		if( $this->save( $bitfield, $comment, $this->title ) ) {
-			$this->success( $request );
+		# Can the user set this field?
+		if( $bitfield & Revision::DELETED_RESTRICTED && !$wgUser->isAllowed('hiderevision') ) {
+			$wgOut->permissionRequired( 'hiderevision' );
+			return false;
+		}
+		# If the save went through, go to success message. Otherwise
+		# bounce back to form...
+		if( $this->save( $bitfield, $comment, $this->page ) ) {
+			$this->success();
 		} else if( $request->getCheck( 'oldid' ) || $request->getCheck( 'artimestamp' ) ) {
-			return $this->showRevs( $request );
+			return $this->showRevs();
 		} else if( $request->getCheck( 'logid' ) ) {
-			return $this->showLogs( $request );
+			return $this->showLogs();
 		} else if( $request->getCheck( 'oldimage' ) || $request->getCheck( 'fileid' ) ) {
-			return $this->showImages( $request );
+			return $this->showImages();
 		}
 	}
 
-	private function success( $request ) {
+	private function success() {
 		global $wgOut;
 
 		$wgOut->setPagetitle( wfMsgHtml( 'actioncomplete' ) );
 
 		if( $this->deleteKey=='logid' ) {
 			$wgOut->addWikiText( Xml::element( 'span', array( 'class' => 'success' ), wfMsg( 'logdelete-success' ) ), false );
-			$this->showLogItems( $request );
+			$this->showLogItems();
 		} else if( $this->deleteKey=='oldid' || $this->deleteKey=='artimestamp' ) {
 		  	$wgOut->addWikiText( Xml::element( 'span', array( 'class' => 'success' ), wfMsg( 'revdelete-success' ) ), false );
-		  	$this->showRevs( $request );
+		  	$this->showRevs();
 		} else if( $this->deleteKey=='fileid' ) {
 			$wgOut->addWikiText( Xml::element( 'span', array( 'class' => 'success' ), wfMsg( 'revdelete-success' ) ), false );
-		  	$this->showImages( $request );
+		  	$this->showImages();
 		} else if( $this->deleteKey=='oldimage' ) {
 			$wgOut->addWikiText( Xml::element( 'span', array( 'class' => 'success' ), wfMsg( 'revdelete-success' ) ), false );
-			$this->showImages( $request );
+			$this->showImages();
 		}
 	}
 
