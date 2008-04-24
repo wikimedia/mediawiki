@@ -915,10 +915,10 @@ $3
 'permissionserrors'                 => 'خطای سطح دسترسی',
 'permissionserrorstext'             => 'شما اجازهٔ انجام این کار را به {{PLURAL:$1|دلیل|دلایل}} زیر ندارید:',
 'recreate-deleted-warn'             => "'''هشدار: شما در حال ایجاد کردن دوبارهٔ صفحه‌ای هستید که قبلاً حذف شده‌است.''' در نظر داشته باشید که آیا ادامهٔ ویرایش این صفحه کار مناسبی هست یا نه. سیاههٔ حذف مربوط به این صفحه برای راحتی در ادامه آمده‌است:",
-'expensive-parserfunction-warning'  => 'هشدار: این صفحه حاوی تعدادی زیادی فراخوانی دستورهای تجزیه‌کننده است.
+'expensive-parserfunction-warning'  => 'هشدار: این صفحه حاوی تعدادی زیادی فراخوانی دستورهای تجزیه‌گر است.
 
 تعداد آن باید از $2 کمتر باشد، و اینک $1 است.',
-'expensive-parserfunction-category' => 'صفحه‌هایی که حاوی تعداد زیادی فراخوانی دستورهای تجزیه‌کننده هستند',
+'expensive-parserfunction-category' => 'صفحه‌هایی که حاوی تعداد زیادی فراخوانی دستورهای تجزیه‌گر هستند',
 
 # "Undo" feature
 'undo-success' => 'این ویرایش خنثی شده‌است. لطفاً پس از کسب اطمینان تغییرات نشان‌دا‌ده‌شده را ذخیره کنید.',
@@ -1466,7 +1466,7 @@ $2 تغییرمسیرها فهرست شوند &nbsp; جستجو برای $3 $9',
 'filedelete-edit-reasonlist'  => 'ویرایش فهرست دلایل',
 
 # MIME search
-'mimesearch'         => 'جستجوی MIMEی',
+'mimesearch'         => 'جستجوی بر اساس MIME',
 'mimesearch-summary' => 'با کمک این صفحه شما می‌توانید پرونده‌هایی که یک نوع MIME به خصوص دارند را پیدا کنید. باید اطلاعات MIME را به صورت contenttype/subtype وارد کنید، نظیر <tt>image/jpeg</tt>.',
 'mimetype'           => 'نوع MIME:',
 'download'           => 'بارگیری',
@@ -2120,7 +2120,7 @@ $1',
 'importuploaderrorsize'      => 'در بارگذاری پروندهٔ ورود، اشکال رخ داد. اندازهٔ پرونده بیشتر از حداکثر اندازهٔ مجاز است.',
 'importuploaderrorpartial'   => 'در بارگذاری پروندهٔ ورود، اشکال رخ داد. پرونده به طور ناقص بارگذاری شده‌است.',
 'importuploaderrortemp'      => 'در بارگذاری پروندهٔ ورود، اشکال رخ داد. پوشهٔ موقت پیدا نشد.',
-'import-parse-failure'       => 'خطا در تحلیل XML بارگذاری‌شده',
+'import-parse-failure'       => 'خطا در تجزیهٔ XML بارگذاری‌شده',
 'import-noarticle'           => 'صفحه‌ای برای بارگذاری وجود ندارد!',
 'import-nonewrevisions'      => 'تمام نسخه‌ها قبلاً بارگذاری شده‌اند.',
 'xml-error-string'           => '$1 در سطر $2، ستون $3 (بایت $4): $5',
@@ -2831,7 +2831,7 @@ $1',
 'fileduplicatesearch-result-n' => 'پروندهٔ «$1» دارای {{PLURAL:$2|یک مورد تکراری|$2 مورد تکراری}} است.',
 
 # Special:SpecialPages
-'specialpages-group-maintenance' => 'گزارش نگهداری',
+'specialpages-group-maintenance' => 'گزارش‌های نگهداری',
 'specialpages-group-other'       => 'صفحه‌های ویژهٔ دیگر',
 'specialpages-group-login'       => 'ورود / ثبت نام',
 'specialpages-group-changes'     => 'تغییرات اخیر و سیاهه‌ها',
