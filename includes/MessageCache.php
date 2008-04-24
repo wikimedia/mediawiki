@@ -397,18 +397,46 @@ class MessageCache {
 	 *
 	 * @param string $key The message cache key
 	 * @param bool $useDB Get the message from the DB, false to use only the localisation
-	 * @param bool $forContent Get the message from the content language rather than the
-	 *                         user language
+	 * @param string $langcode Code of the language to get the message for, if
+	 *                         it is a valid code create a language for that
+	 *                         language, if it is a string but not a valid code
+	 *                         then make a basic language object, if it is a
+	 *                         false boolean then use the current users
+	 *                         language (as a fallback for the old parameter
+	 *                         functionality), or if it is a true boolean then
+	 *                         use the wikis content language (also as a
+	 *                         fallback).
 	 * @param bool $isFullKey Specifies whether $key is a two part key "lang/msg".
 	 */
-	function get( $key, $useDB = true, $forContent = true, $isFullKey = false ) {
+	function get( $key, $useDB = true, $langcode = true, $isFullKey = false ) {
 		global $wgContLanguageCode, $wgContLang, $wgLang;
-		if( $forContent ) {
+
+		$validCodes = array_keys( Language::getLanguageNames() );
+
+		# Identify which language to get or create a language object for.
+		if( $langcode === $wgContLang->getCode() ) {
+			# $langcode is the language code of the wikis content language object.
 			$lang =& $wgContLang;
-		} else {
+		} elseif( $langcode === $wgLang->getCode() ) {
+			# $langcode is the language code of user language object.
 			$lang =& $wgLang;
+		} elseif( in_array( $langcode, $validCodes ) ) {
+			# $langcode corresponds to a valid language.
+			$lang = Language::factory( $langcode );
+		} elseif( is_string( $langcode ) ) {
+			# $langcode is a string, but not a valid language code; use content language.
+			$lang =& $wgContLang;
+			wfDebug( 'Invalid language code passed to MessageCache::get, falling back to content language.' );
+		} elseif( !$langcode ) {
+			# $langcode is set to false, use the user language (fallback for old parameters).
+			$lang =& $wgLang;
+		} else {
+			# $language is set to true, use the content language (fallback for old parameters).
+			$lang =& $wgContLang;
 		}
+
 		$langcode = $lang->getCode();
+
 		# If uninitialised, someone is trying to call this halfway through Setup.php
 		if( !$this->mInitialised ) {
 			return '&lt;' . htmlspecialchars($key) . '&gt;';
@@ -687,29 +715,30 @@ class MessageCache {
 
 	/**
 	 * Load messages from a given file
+	 * 
+	 * @param string $filename Filename of file to load.
+	 * @param boolean $all Whether or not to load all languages.
 	 */
-	function loadMessagesFile( $filename ) {
+	function loadMessagesFile( $filename, $all = false ) {
 		global $wgLang, $wgContLang;
 		$messages = $magicWords = false;
 		require( $filename );
 
-		/*
-		 * Load only languages that are usually used, and merge all fallbacks,
-		 * except English.
-		 */
-		$langs = array_unique( array( 'en', $wgContLang->getCode(), $wgLang->getCode() ) );
-		foreach( $langs as $code ) {
-			$fbcode = $code;
-			$mergedMessages = array();
-			do {
-				if ( isset($messages[$fbcode]) ) {
-					$mergedMessages += $messages[$fbcode];
+		if( $all ) {
+			# Load all messages, regardless of language.
+			$validCodes = array_keys( Language::getLanguageNames() );
+			foreach( $messages as $code => $array ) {
+				if( in_array( $code, $validCodes ) ) {
+					$this->processMessagesArray( $messages, $code );
 				}
-				$fbcode = Language::getFallbackfor( $fbcode );
-			} while( $fbcode && $fbcode !== 'en' );
-
-			if ( !empty($mergedMessages) )
-				$this->addMessages( $mergedMessages, $code );
+			}
+		} else {
+			# Load only languages that are usually used, and merge all
+			# fallbacks, except English.
+			$langs = array_unique( array( 'en', $wgContLang->getCode(), $wgLang->getCode() ) );
+			foreach( $langs as $code ) {
+				$this->processMessagesArray( $messages, $code );
+			}
 		}
 
 		if ( $magicWords !== false ) {
@@ -717,4 +746,25 @@ class MessageCache {
 			$wgContLang->addMagicWordsByLang( $magicWords );
 		}
 	}
+
+	/**
+	 * Process an array of messages, loading it into the message cache.
+	 *
+	 * @param array $messages Messages array.
+	 * @param string $language Language code to process.
+	 */
+	function processMessagesArray( $messages, $language ) {
+		$fallbackCode = $language;
+		$mergedMessages = array();
+		do {
+			if ( isset($messages[$fallbackCode]) ) {
+				$mergedMessages += $messages[$fallbackCode];
+			}
+			$fallbackCode = Language::getFallbackfor( $fallbackCode );
+		} while( $fallbackCode && $fallbackCode !== 'en' );
+		
+		if ( !empty($mergedMessages) )
+			$this->addMessages( $mergedMessages, $language );
+	}
+
 }

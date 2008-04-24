@@ -444,16 +444,18 @@ function wfMsgWeirdKey ( $key ) {
  * Fetch a message string value, but don't replace any keys yet.
  * @param string $key
  * @param bool $useDB
- * @param bool $forContent
+ * @param string $langcode Code of the language to get the message for, or
+ *                         behaves as a content language switch if it is a 
+ *                         boolean.
  * @return string
  * @private
  */
-function wfMsgGetKey( $key, $useDB, $forContent = false, $transform = true ) {
+function wfMsgGetKey( $key, $useDB, $langCode = false, $transform = true ) {
 	global $wgParser, $wgContLang, $wgMessageCache, $wgLang;
 
 	# If $wgMessageCache isn't initialised yet, try to return something sensible.
 	if( is_object( $wgMessageCache ) ) {
-		$message = $wgMessageCache->get( $key, $useDB, $forContent );
+		$message = $wgMessageCache->get( $key, $useDB, $langCode );
 		if ( $transform ) {
 			$message = $wgMessageCache->transform( $message );
 		}
@@ -552,6 +554,8 @@ function wfMsgWikiHtml( $key ) {
  *  <i>replaceafter</i>: parameters are substituted after parsing or escaping
  *  <i>parsemag</i>: transform the message using magic phrases
  *  <i>content</i>: fetch message for content language instead of interface
+ *  <i>language</i>: language code to fetch message for (overriden by <i>content</i>), its behaviour
+ *                   with parser, parseinline and parsemag is undefined.
  * Behavior for conflicting options (e.g., parse+parseinline) is undefined.
  */
 function wfMsgExt( $key, $options ) {
@@ -565,12 +569,22 @@ function wfMsgExt( $key, $options ) {
 		$options = array($options);
 	}
 
-	$forContent = false;
 	if( in_array('content', $options) ) {
 		$forContent = true;
+		$langCode = true;
+	} elseif( array_key_exists('language', $options) ) {
+		$forContent = false;
+		$langCode = $options['language'];
+		$validCodes = array_keys( Language::getLanguageNames() );
+		if( !in_array($options['language'], $validCodes) ) {
+			$langCode = false;
+		}
+	} else {
+		$forContent = false;
+		$langCode = false;
 	}
 
-	$string = wfMsgGetKey( $key, /*DB*/true, $forContent, /*Transform*/false );
+	$string = wfMsgGetKey( $key, /*DB*/true, $langCode, /*Transform*/false );
 
 	if( !in_array('replaceafter', $options) ) {
 		$string = wfMsgReplaceArgs( $string, $args );
@@ -2429,13 +2443,18 @@ function wfBoolToStr( $value ) {
 
 /**
  * Load an extension messages file
+ *
+ * @param string $extensionName Name of extension to load messages from\for.
+ * @param boolean $all Whether or not to load all languages.
  */
-function wfLoadExtensionMessages( $extensionName ) {
+function wfLoadExtensionMessages( $extensionName, $all = false ) {
 	global $wgExtensionMessagesFiles, $wgMessageCache;
 	if ( !empty( $wgExtensionMessagesFiles[$extensionName] ) ) {
-		$wgMessageCache->loadMessagesFile( $wgExtensionMessagesFiles[$extensionName] );
-		// Prevent double-loading
-		$wgExtensionMessagesFiles[$extensionName] = false;
+		$wgMessageCache->loadMessagesFile( $wgExtensionMessagesFiles[$extensionName], $all );
+		// Prevent double-loading if all the messages have been loaded.
+		if( $all ) {
+			$wgExtensionMessagesFiles[$extensionName] = false;
+		}
 	}
 }
 
