@@ -123,7 +123,7 @@ class UserrightsPage extends SpecialPage {
 			return;
 		}
 
-		$allgroups = User::getAllGroups();
+		$allgroups = $this->getAllGroups();
 		$addgroup = array();
 		$removegroup = array();
 
@@ -182,17 +182,24 @@ class UserrightsPage extends SpecialPage {
 		}
 
 		if( $newGroups != $oldGroups ) {
-			$log = new LogPage( 'rights' );
-
-			$log->addEntry( 'rights',
-				$user->getUserPage(),
-				$wgRequest->getText( 'user-reason' ),
-				array(
-					$this->makeGroupNameList( $oldGroups ),
-					$this->makeGroupNameList( $newGroups )
-				)
-			);
+			$this->addLogEntry( $user, $oldGroups, $newGroups );
 		}
+	}
+	
+	/**
+	 * Add a rights log entry for an action.
+	 */
+	function addLogEntry( $user, $oldGroups, $newGroups ) {
+		$log = new LogPage( 'rights' );
+
+		$log->addEntry( 'rights',
+			$user->getUserPage(),
+			$wgRequest->getText( 'user-reason' ),
+			array(
+				$this->makeGroupNameList( $oldGroups ),
+				$this->makeGroupNameList( $newGroups )
+			)
+		);
 	}
 
 	/**
