@@ -30,6 +30,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   $wgUserNotifiedOnAllChanges
 * (bug 12860) New option $wgSitemapNamespaces allows sitemaps to be generated
   for only some namespaces
+* Removed the emailconfirmed implicit group by default. To re-add it, use:
+    $wgAutopromote['emailconfirmed'] = APCOND_EMAILCONFIRMED;
+  in your LocalSettings.php.
 
 === New features in 1.13 ===
 
