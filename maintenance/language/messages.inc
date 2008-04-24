@@ -849,6 +849,7 @@ $wgMessageStructure = array(
 	),
 	'right' => array(
 		'right-createpage',
+		'right-createtalk',
 		'right-editprotected',
 		'right-move',
 		'right-bot',
@@ -873,7 +874,6 @@ $wgMessageStructure = array(
 		'right-protect',
 		'right-edit',
 		'right-markbotedits',
-		'right-createtalk',
 		'right-rollback',
 		'right-userrights',
 		'right-suppressredirect',
