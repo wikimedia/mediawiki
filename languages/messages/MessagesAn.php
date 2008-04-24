@@ -1024,6 +1024,8 @@ Un * endica que bustet no puede sacar a colla dimpués d'adibir-la, u bize-bersa
 'hist'                              => 'ist',
 'hide'                              => 'amagar',
 'show'                              => 'Amostrar',
+'newpageletter'                     => 'N',
+'boteditletter'                     => 'b',
 'number_of_watching_users_pageview' => '[$1 {{PLURAL:$1|usuario|usuarios}} cosirando]',
 'rc_categories'                     => 'Limite d\'as categorías (deseparatas por "|")',
 'rc_categories_any'                 => 'Todas',

@@ -349,7 +349,7 @@ $1',
 'readonlytext'         => 'Veritabanı olağan bakım/onarım çalışmaları sebebiyle, geçici olarak giriş ve değişiklik yapmaya kapatılmıştır. Kısa süre sonra normale dönecektir.
 
 Veritabanını kilitleyen operatörün açıklaması: $1',
-'missingarticle-rev'   => '(sürüm#: $1)',
+'missingarticle-rev'   => '(revizyon#: $1)',
 'missingarticle-diff'  => '(Fark: $1, $2)',
 'internalerror'        => 'Yazılım hatası',
 'internalerror_info'   => 'İç hata: $1',
@@ -713,7 +713,7 @@ Bu sayfa değişikiliği kamu arşivlerinden silinmiştir.
 'lineno'                  => '$1. satır:',
 'compareselectedversions' => 'Seçilen sürümleri karşılaştır',
 'editundo'                => 'geriye al',
-'diff-multi'              => '(Gösterilmeyen $1 ara değişiklik bulunmaktadır)',
+'diff-multi'              => '(Gösterilmeyen {{PLURAL:$1|$1 ara değişiklik|$1 ara değişiklik}} bulunmaktadır.)',
 
 # Search results
 'searchresults'            => 'Arama sonuçları',
@@ -847,7 +847,7 @@ $2 yönlendirmeleri listele &nbsp; Aranacak: $3 $9',
 'rightsnone'     => '(yok)',
 
 # Recent changes
-'nchanges'                          => '$1 değişiklik',
+'nchanges'                          => '$1 {{PLURAL:$1|değişiklik|değişiklik}}',
 'recentchanges'                     => 'Son değişiklikler',
 'recentchangestext'                 => 'Yapılan en son değişiklikleri bu sayfadan izleyin.',
 'recentchanges-feed-description'    => "Bu beslemedeki viki'de yapılan en son değişiklikleri takip edin.",
@@ -864,7 +864,7 @@ $2 yönlendirmeleri listele &nbsp; Aranacak: $3 $9',
 'diff'                              => 'fark',
 'hist'                              => 'geçmiş',
 'hide'                              => 'gizle',
-'show'                              => 'göster',
+'show'                              => 'Göster',
 'minoreditletter'                   => 'K',
 'newpageletter'                     => 'Y',
 'boteditletter'                     => 'b',
@@ -1069,7 +1069,7 @@ Toplam sayfa görüntülenme sayısı '''\$3''', değişiklik başına görünt�
 # Miscellaneous special pages
 'nbytes'                  => '{{PLURAL:$1|bayt|bayt}}',
 'ncategories'             => '{{PLURAL:$1|kategori|kategoriler}}',
-'nlinks'                  => '{{PLURAL:$1|bağlantı|bağlantılar}}',
+'nlinks'                  => '$1 {{PLURAL:$1|bağlantı|bağlantı}}',
 'nmembers'                => '{{PLURAL:$1|üye|üyeler}}',
 'nrevisions'              => '{{PLURAL:$1|değişiklik|değişiklikler}}',
 'nviews'                  => '$1 {{PLURAL:$1|görünüm|görünüm}}',
@@ -1148,6 +1148,9 @@ Kayıt tipini, kullanıcı ismini, sayfa ismini girerek listeyi daraltabilirsini
 'listusers-submit'   => 'Göster',
 'listusers-noresult' => 'Kullanıcı bulunamadı.',
 
+# Special:Listgrouprights
+'listgrouprights-members' => '(üyelerin listesi)',
+
 # E-mail user
 'mailnologin'     => 'Gönderi adresi yok.',
 'mailnologintext' => 'Diğer kullanıcılara e-posta gönderebilmeniz için [[Special:Userlogin|oturum aç]]malısınız ve [[Special:Preferences|tercihler]] sayfasında geçerli bir e-posta adresiniz olmalı.',
@@ -1193,7 +1196,7 @@ Sayfayı izleme listenizden çıkarmak istediğinizde "sayfayı izlemeyi durdur"
 'unwatchthispage'      => 'Sayfa izlemeyi durdur',
 'notanarticle'         => 'İçerik sayfası değil',
 'watchnochange'        => 'Gösterilen zaman aralığında izleme listenizdeki sayfaların hiçbiri güncellenmemiş.',
-'watchlist-details'    => 'Tartışma sayfaları hariç $1 sayfa izleme listenizdedir.',
+'watchlist-details'    => 'Tartışma sayfaları hariç {{PLURAL:$1|$1 sayfa|$1 sayfa}} izlenmektedir.',
 'wlheader-enotif'      => '* E-mail ile haber verme açılmıştır.',
 'wlheader-showupdated' => "* Son ziyaretinizden sonraki sayfa değişikleri '''kalın''' olarak gösterilmiştir.",
 'watchmethod-recent'   => 'son değişiklikler arasında izledğiniz sayfalar aranıyor',

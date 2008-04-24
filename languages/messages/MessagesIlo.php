@@ -379,6 +379,7 @@ Kasta met nga ikarim kadakami a bukodmo a sinurat wenno gapuanan daytoy, wenno k
 'upload_source_file' => ' (file iti kompiutermo)',
 
 # Special:Imagelist
+'imgfile'        => 'file',
 'imagelist'      => 'Listaan ti file',
 'imagelist_date' => 'Petsa',
 'imagelist_name' => 'Nagan',
@@ -387,12 +388,18 @@ Kasta met nga ikarim kadakami a bukodmo a sinurat wenno gapuanan daytoy, wenno k
 # Image description page
 'filehist'           => 'Pakasaritaan ti file',
 'filehist-deleteall' => 'ikkaten amin',
+'filehist-deleteone' => 'ikkaten daytoy',
+'filehist-revert'    => 'isubli',
 'filehist-datetime'  => 'Petsa/Oras',
+'filehist-user'      => 'Agar-aramat',
 'filehist-comment'   => 'Komento',
 'imagelinks'         => 'Dagiti kasilpo',
 'linkstoimage'       => 'Dagiti sumaganad a panid ket nakasilpo itoy a file:',
+'noimage-linktext'   => 'ipanen',
 
 # File reversion
+'filerevert'        => 'Isubli ti $1',
+'filerevert-legend' => 'Isubli ti file',
 'filerevert-submit' => 'Isubli',
 
 # File deletion
@@ -407,6 +414,9 @@ Kasta met nga ikarim kadakami a bukodmo a sinurat wenno gapuanan daytoy, wenno k
 # Unwatched pages
 'unwatchedpages' => 'Di mabambantayan a pampanid',
 
+# Unused templates
+'unusedtemplates' => 'Di maus-usar a templates',
+
 # Random page
 'randompage' => 'Pugto a panid',
 
@@ -415,33 +425,38 @@ Kasta met nga ikarim kadakami a bukodmo a sinurat wenno gapuanan daytoy, wenno k
 
 'disambiguations' => 'Dagiti panid ti panangilawlawag',
 
-'brokenredirects-edit' => '(baliwan)',
+'brokenredirects-edit'   => '(baliwan)',
+'brokenredirects-delete' => '(ikkaten)',
 
 'withoutinterwiki-submit' => 'Ipakita',
 
 # Miscellaneous special pages
-'lonelypages'        => 'Naulila a pampanid',
-'uncategorizedpages' => 'Saan a nacategoria a pampanid',
-'unusedcategories'   => 'Saan a maar-aramat a catcategoria',
-'unusedimages'       => 'Saan a maar-aramat a files',
-'popularpages'       => 'Popular a pampanid',
-'wantedcategories'   => 'Dagiti masapul a categoria',
-'wantedpages'        => 'Kiddaw a pampanid',
-'mostrevisions'      => 'Dagiti articulo a kaaduan iti pannakabalbaliwna',
-'shortpages'         => 'Ababa a pampanid',
-'protectedpages'     => 'Nasaluadan a pampanid',
-'listusers'          => 'Listaan dagiti agar-aramat',
-'specialpages'       => 'Naiduma a pampanid',
-'newpages'           => 'Baro a pampanid',
-'ancientpages'       => 'Kadaanan a pampanid',
-'move'               => 'Iyakar',
-'movethispage'       => 'Iyakar daytoy a panid',
+'lonelypages'             => 'Naulila a pampanid',
+'uncategorizedpages'      => 'Saan a nacategoria a pampanid',
+'uncategorizedcategories' => 'Saan a nacategoria a catcategoria',
+'uncategorizedimages'     => 'Saan a nacategoria a files',
+'unusedcategories'        => 'Saan a maar-aramat a catcategoria',
+'unusedimages'            => 'Saan a maar-aramat a files',
+'popularpages'            => 'Popular a pampanid',
+'wantedcategories'        => 'Dagiti masapul a categoria',
+'wantedpages'             => 'Kiddaw a pampanid',
+'mostrevisions'           => 'Dagiti articulo a kaaduan iti pannakabalbaliwna',
+'shortpages'              => 'Ababa a pampanid',
+'longpages'               => 'Atitiddog a pampanid',
+'protectedpages'          => 'Nasaluadan a pampanid',
+'listusers'               => 'Listaan dagiti agar-aramat',
+'specialpages'            => 'Naiduma a pampanid',
+'newpages'                => 'Baro a pampanid',
+'ancientpages'            => 'Kadaanan a pampanid',
+'move'                    => 'Iyakar',
+'movethispage'            => 'Iyakar daytoy a panid',
 
 # Book sources
 'booksources-go' => 'Inkan',
 
 # Special:Log
-'log-search-submit' => 'Inkan',
+'specialloguserlabel' => 'Agar-aramat:',
+'log-search-submit'   => 'Inkan',
 
 # Special:Allpages
 'allpages'       => 'Amin a panid',
@@ -457,6 +472,10 @@ Kasta met nga ikarim kadakami a bukodmo a sinurat wenno gapuanan daytoy, wenno k
 # Special:Listusers
 'listusers-submit' => 'Ipakita',
 
+# Special:Listgrouprights
+'listgrouprights-group'  => 'Grupo',
+'listgrouprights-rights' => 'Dagiti Karbengan',
+
 # E-mail user
 'emailuser'    => 'Emailan daytoy nga agar-aramat',
 'emailpage'    => 'E-mailan ti agar-aramat',
@@ -466,21 +485,24 @@ Kasta met nga ikarim kadakami a bukodmo a sinurat wenno gapuanan daytoy, wenno k
 'emailsend'    => 'Ipatulod',
 
 # Watchlist
-'watchlist'          => 'Dagiti bambantayak',
-'mywatchlist'        => 'Dagiti bambantayak',
-'nowatchlist'        => 'Awan ti pampanid iti listaan dagiti bambantayam.',
-'watchnologin'       => 'Saan a nakastrek',
-'watchnologintext'   => 'Nasken a [[Special:Userlogin|naka-loginka]] tapno mabaliwam dagiti bambantayam a panid.',
-'addedwatch'         => 'Nainayon kadagiti bambantayan',
-'removedwatch'       => 'Naikkaten kadagiti bambantayan',
-'watch'              => 'bantayan',
-'watchthispage'      => 'Bantayan daytoy a panid',
-'unwatch'            => 'saanen a bantayan',
-'unwatchthispage'    => 'Isardeng a bantayan daytoy a panid',
-'notvisiblerev'      => 'Naikkaten ti panangbalbaliw',
-'wlshowlast'         => 'Ipakita dagiti naudi a $1 nga or-oras $2 nga al-aldaw $3',
-'watchlist-show-own' => 'Ipakita dagiti panangbalbaliwko',
-'watchlist-hide-own' => 'Ilemmeng dagiti panangbalbaliwko',
+'watchlist'            => 'Dagiti bambantayak',
+'mywatchlist'          => 'Dagiti bambantayak',
+'nowatchlist'          => 'Awan ti pampanid iti listaan dagiti bambantayam.',
+'watchnologin'         => 'Saan a nakastrek',
+'watchnologintext'     => 'Nasken a [[Special:Userlogin|naka-loginka]] tapno mabaliwam dagiti bambantayam a panid.',
+'addedwatch'           => 'Nainayon kadagiti bambantayan',
+'removedwatch'         => 'Naikkaten kadagiti bambantayan',
+'watch'                => 'bantayan',
+'watchthispage'        => 'Bantayan daytoy a panid',
+'unwatch'              => 'saanen a bantayan',
+'unwatchthispage'      => 'Isardeng a bantayan daytoy a panid',
+'notvisiblerev'        => 'Naikkaten ti panangbalbaliw',
+'wlshowlast'           => 'Ipakita dagiti naudi a $1 nga or-oras $2 nga al-aldaw $3',
+'watchlist-hide-bots'  => 'Ilemmeng dagiti bot edits',
+'watchlist-show-own'   => 'Ipakita dagiti panangbalbaliwko',
+'watchlist-hide-own'   => 'Ilemmeng dagiti panangbalbaliwko',
+'watchlist-show-minor' => 'Ipakita dagiti babassit a baliw',
+'watchlist-hide-minor' => 'Ilemmeng dagiti babassit a baliw',
 
 'enotif_newpagetext' => 'Baro daytoy a panid.',
 'changed'            => 'nabaliwan',
@@ -495,13 +517,16 @@ Kasta met nga ikarim kadakami a bukodmo a sinurat wenno gapuanan daytoy, wenno k
 'exblank'               => 'blanko ti panid',
 'delete-confirm'        => 'Ikkaten ti "$1"',
 'delete-legend'         => 'Ikkaten',
+'deletedarticle'        => 'naikkaten ti "[[$1]]"',
 'deletecomment'         => 'Rason no apay nga ikkaten',
 'deletereasonotherlist' => 'Sabali a rason',
+'rollback'              => 'Isubli dagiti panangbaliw',
 'rollback_short'        => 'Isubli',
 'rollbacklink'          => 'isubli',
 'rollbackfailed'        => 'Napaay ti panangisubli',
 'revertpage'            => 'Naikkat ti panangbaliw ni [[Special:Contributions/$2|$2]] ([[User talk:$2|Pagtutungtongan]]), naisubli iti kaudian a version ni [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'protectlogpage'        => 'Log ti panangsaluad',
+'protectedarticle'      => 'nasaluadanen ti "[[$1]]"',
 'unprotectedarticle'    => 'naikkat ti saluad ti "[[$1]]"',
 'protect-legend'        => 'Pasingkedan ti panangsaluad',
 'protectcomment'        => 'Rason no apay a saluadan daytoy a panid',

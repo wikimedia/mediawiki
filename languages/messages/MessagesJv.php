@@ -623,6 +623,7 @@ Sajatiné kuduné duwé kurang saka $2, saiki ana $1.",
 # "Undo" feature
 'undo-success' => 'Suntingan iki bisa dibatalaké. Tulung priksa prabandhingan ing ngisor iki kanggo mesthèkaké yèn prakara iki pancèn sing bener panjenengan pèngin lakoni, banjur simpenen pangowahan iku kanggo ngrampungaké pambatalan suntingan.',
 'undo-failure' => 'Suntingan iki ora bisa dibatalakén amerga ana konflik panyuntingan antara.',
+'undo-norev'   => 'Suntingan iki ora bisa dibatalaké amerga ora ana utawa wis dibusak.',
 'undo-summary' => '←Mbatalaké revisi $1 déning [[Special:Contributions/$2|$2]] ([[User talk:$2|Dhiskusi]])',
 
 # Account creation failure
@@ -901,6 +902,14 @@ Tandha bintang * tegesé panjenengan ora bisa ngilangi grup iku yèn wis tau nam
 'grouppage-bureaucrat'     => '{{ns:project}}:Birokrat',
 'grouppage-suppress'       => '{{ns:project}}:Oversight',
 
+# Rights
+'right-read'         => 'Maca kaca-kaca',
+'right-edit'         => 'Nyunting kaca-kaca',
+'right-move'         => 'Pindhahna kaca',
+'right-upload'       => 'Ngunggahaké berkas-berkas',
+'right-reupload'     => 'Timpanana sawijining berkas sing wis ana',
+'right-mergehistory' => 'Gabungna sajarah kaca-kaca',
+
 # User rights log
 'rightslog'      => 'Log pangowahan hak aksès',
 'rightslogtext'  => 'Ing ngisor iki kapacak log pangowahan marang hak-hak panganggo.',
@@ -1164,6 +1173,7 @@ Dawané [http://meta.wikimedia.org/wiki/Help:Job_queue antrian tugas] ana '''\$7
 
 'withoutinterwiki'         => 'Kaca tanpa pranala antarbasa',
 'withoutinterwiki-summary' => 'Kaca-kaca iki ora nduwé pranala menyang vèrsi ing  basa liyané:',
+'withoutinterwiki-legend'  => 'Préfiks',
 'withoutinterwiki-submit'  => 'Tuduhna',
 
 'fewestrevisions' => 'Artikel mawa owah-owahan sithik dhéwé',

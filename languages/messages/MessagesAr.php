@@ -971,6 +971,7 @@ $1 ساعة.',
 # "Undo" feature
 'undo-success' => 'يمكن استرجاع التعديل. من فضلك تحقق من المقارنة بالأسفل للتأكد من أن هذا هو ما تريد أن تفعله، وبعد ذلك احفظ التغييرات بالأسفل للانتهاء من استرجاع التعديل.',
 'undo-failure' => 'لم يمكن استرجاع التعديل بسبب تعديلات متعارضة تمت على الصفحة.',
+'undo-norev'   => 'التعديل لم يمكن الرجوع عنه لأنه غير موجود أو تم حذفه.',
 'undo-summary' => 'الرجوع عن التعديل $1 بواسطة [[Special:Contributions/$2|$2]] ([[User talk:$2|نقاش]])',
 
 # Account creation failure
@@ -1535,6 +1536,7 @@ PICT # misc.
 
 'withoutinterwiki'         => 'صفحات بدون وصلات لغات أخرى',
 'withoutinterwiki-summary' => 'الصفحات التالية لا تصل إلى نسخ بلغات أخرى:',
+'withoutinterwiki-legend'  => 'بادئة',
 'withoutinterwiki-submit'  => 'عرض',
 
 'fewestrevisions' => 'المقالات ذات أقل تعديل',

@@ -728,6 +728,7 @@ Et däerfen net méi wéi $2 ufroe sinn, aktuell sinn et $1 Ufroen.',
 # "Undo" feature
 'undo-success' => "D'Ännerung gëtt réckgängeg gemaach. Iwwerpréift w.e.g. de Verglach ënnedrënner fir nozekuckeen ob et esou richteg ass, duerno späichert w.e.g d'Ännerungen of fir dës Aktioun ofzeschléissen.",
 'undo-failure' => '<span class="error">D\'Ännerung konnt net réckgängeg gemaach ginn, wëll de betraffenen Abschnitt an der Tëschenzäit geännert gouf.</span>',
+'undo-norev'   => "D'Ännerung kann net zréckgesat ginn, well et se net gëtt oder well se scho geläscht ass.",
 'undo-summary' => 'Ännerung $1 vu(n) [[Special:Contributions/$2|$2]] ([[User_talk:$2|Diskussioun]]) gouf annulléiert.',
 
 # Account creation failure
@@ -997,6 +998,20 @@ E * bedeit datt Dir de Grupp net méi ewech huele kënnt wann e bis eemol derbä
 'grouppage-sysop'          => '{{ns:project}}:Administrateuren',
 'grouppage-bureaucrat'     => '{{ns:project}}:Bürokraten',
 'grouppage-suppress'       => '{{ns:project}}:Iwwersiicht',
+
+# Rights
+'right-read'          => 'Säite liesen',
+'right-edit'          => 'Säiten änneren',
+'right-minoredit'     => 'Ännerungen als kleng markéieren',
+'right-move'          => 'Säite réckelen',
+'right-upload'        => 'Fichieren eroplueden',
+'right-reupload'      => 'E Fichier iwwerschreiwen',
+'right-delete'        => 'Säite läschen',
+'right-browsearchive' => 'Geläschte Säite sichen',
+'right-undelete'      => 'Eng Säit restauréieren',
+'right-hideuser'      => 'E Benotzernumm spären, an deem e virun der Ëffentlechkeet verstoppt gëtt',
+'right-import'        => 'Säite vun anere Wikien importéieren',
+'right-userrights'    => 'All Benotzerrechter änneren',
 
 # User rights log
 'rightslog'      => 'Logbuch vun de Benotzerrechter',
@@ -1380,7 +1395,8 @@ An all Rei sti Linken zur éischter an zweeter Viruleedung, souwéi déi éischt
 
 # Special:Listgrouprights
 'listgrouprights'          => 'Rechter vun de Benotzergruppen',
-'listgrouprights-summary'  => 'Dëst ass eng Lëscht vun den op dëser Wiki definéierte Benotzergruppen an den domatt verbonnene Rechter.',
+'listgrouprights-summary'  => 'Dëst ass eng Lëscht vun den op dëser Wiki definéierte Benotzergruppen an den domatt verbonnene Rechter.
+Zousätzlech Informatiounen iwwer individuell Benotzerrechter fannt Dir [[{{MediaWiki:Listgrouprights-helppage}}|hei]].',
 'listgrouprights-group'    => 'Grupp',
 'listgrouprights-rights'   => 'Rechter',
 'listgrouprights-helppage' => 'Help:Grupperechter',
@@ -1457,6 +1473,27 @@ Wann dir dës Säit net iwwerwaache wëllt, klickt op \"Net méi iwwerwaachen\" 
 'enotif_lastvisited'           => 'All Ännerungen op ee Bléck: $1',
 'enotif_lastdiff'              => 'Kuckt $1 fir dës Ännerung.',
 'enotif_anon_editor'           => 'Anonyme Benotzer $1',
+'enotif_body'                  => 'Léiwe $WATCHINGUSERNAME,
+
+d\'{{SITENAME}}-Säit "$PAGETITLE" gouf vum $PAGEEDITOR den $PAGEEDITDATE $CHANGEDORCREATED.
+
+Aktuell Versioun: $PAGETITLE_URL
+
+$NEWPAGE
+
+Zusammefaassung vuun dem Mataarbechter: $PAGESUMMARY $PAGEMINOREDIT
+
+Dëse Mataarbechter kontaktéieren:
+E-Mail: $PAGEEDITOR_EMAIL
+Wiki: $PAGEEDITOR_WIKI
+
+Et gi soulaang keng weider Maile geschéckt, bis Dir d\'Säit nees emol besicht hutt. Op ärer Iwwerwaachungslëscht kënnt Dir all Benoorichtigungsmarkeren zesummen zrécksetzen. 
+
+
+             Äre freëdleche {{SITENAME}} Benaoriichtigungssystem
+
+--
+Fir d\'Astellungen op ärer Iwwerwaachungslëscht unzupassen, besicht w.e.g.: {{fullurl:Special:Watchlist/edit}}',
 
 # Delete/protect/revert
 'deletepage'                  => 'Säit läschen',

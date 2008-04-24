@@ -749,6 +749,7 @@ Kutsuja pitäisi olla vähemmän kuin $2, mutta nyt niitä on $1.',
 # "Undo" feature
 'undo-success' => 'Kumoaminen onnistui. Valitse <em>tallenna</em> toteuttaaksesi muutokset.',
 'undo-failure' => 'Muokkausta ei voitu kumota välissä olevien ristiriistaisten muutosten vuoksi. Kumoa muutokset käsin.',
+'undo-norev'   => 'Muokkausta ei voitu perua, koska sitä ei ole olemassa tai se on poistettu.',
 'undo-summary' => 'Kumottu muokkaus #$1, jonka teki [[Special:Contributions/$2|$2]] ([[User talk:$2|keskustelu]])',
 
 # Account creation failure
@@ -1027,6 +1028,22 @@ Merkkaamaton valintaruutu tarkoittaa, että käyttäjä ei ole kyseisessä ryhm�
 'grouppage-sysop'          => '{{ns:project}}:Ylläpitäjät',
 'grouppage-bureaucrat'     => '{{ns:project}}:Byrokraatit',
 'grouppage-suppress'       => '{{ns:project}}:Häivytysoikeudet',
+
+# Rights
+'right-read'          => 'Lukea sivuja',
+'right-edit'          => 'Muokata sivuja',
+'right-createpage'    => 'Luoda sivuja (jotka eivät ole keskustelusivuja)',
+'right-createtalk'    => 'Luoda keskustelusivuja',
+'right-createaccount' => 'Luoda uusia käyttäjiä',
+'right-minoredit'     => 'Merkitä muokkauksensa pieniksi',
+'right-move'          => 'Siirtää sivuja',
+'right-reupload'      => 'Olemassaolevan tiedoston päällekirjoittaminen',
+'right-reupload-own'  => 'Itse ladattujen tiedostojen päällekirjoitus',
+'right-delete'        => 'Poistaa sivuja',
+'right-bigdelete'     => 'Poistaa sivuja joilla on pitkä historia',
+'right-block'         => 'Asettaa toiselle käyttäjälle muokkausesto',
+'right-blockemail'    => 'Estää käyttäjää lähettämästä sähköpostia',
+'right-userrights'    => 'Muuttaa kaikkia käyttäjäoikeuksia',
 
 # User rights log
 'rightslog'      => 'Käyttöoikeusloki',
@@ -1376,7 +1393,8 @@ Ohjelmiston suorittamia ylläpitotöitä on jonossa '''$7''' {{PLURAL:$7|kappale
 
 # Special:Listgrouprights
 'listgrouprights'          => 'Käyttäjäryhmien oikeudet',
-'listgrouprights-summary'  => 'Seuraava on lista tässä wikissä määritellyistä käyttäjäryhmistä ja kyseisten ryhmien käyttäjäoikeuksista.',
+'listgrouprights-summary'  => 'Tässä on lista käyttäjäryhmistä jotka on muodostettu tätä wikiä varten, ja niihin liittyvät käyttäjäoikeudet.
+Lisätietoa yksittäisistä käyttäjäoikeuksista voi löytää [[{{MediaWiki:Listgrouprights-helppage}}|täältä]].',
 'listgrouprights-group'    => 'Ryhmä',
 'listgrouprights-rights'   => 'Oikeudet',
 'listgrouprights-helppage' => 'Help:Käyttöoikeudet',

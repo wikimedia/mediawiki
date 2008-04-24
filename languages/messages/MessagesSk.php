@@ -783,6 +783,7 @@ Je ich $1. Malo by ich byť menej ako $2.',
 # "Undo" feature
 'undo-success' => 'Úpravu nie je možné vrátiť. Prosím skontrolujte tento rozdiel, čím overíte, že táto úprava je tá, ktorú chcete, a následne uložte zmeny, čím ukončíte vrátenie.',
 'undo-failure' => 'Úpravu nie je možné vrátiť kvôli konfliktným medziľahlým úpravám.',
+'undo-norev'   => 'Túto úpravu nie je možné vrátiť, pretože neexistuje alebo bola zmazaná.',
 'undo-summary' => 'Revízia $1 používateľa [[Special:Contributions/$2|$2]] ([[User talk:$2|diskusia]]) bola vrátená',
 
 # Account creation failure
@@ -1346,6 +1347,7 @@ z čoho '''$2''' (alebo '''$4 %''') {{PLURAL:$2|je správca|sú správcovia}} (p
 
 'withoutinterwiki'         => 'Stránky bez jazykových odkazov',
 'withoutinterwiki-summary' => 'Nasledujúce stránky neodkazujú na iné jazykové verzie:',
+'withoutinterwiki-legend'  => 'Predpona',
 'withoutinterwiki-submit'  => 'Zobraziť',
 
 'fewestrevisions' => 'Stránky s najmenším počtom revízií',
