@@ -525,7 +525,7 @@ class Xml {
 	* Generate a form (without the opening form element).
 	* Output DOES include a submit button.
 	* @param array $fields Associative array, key is message corresponding to a description for the field (colon is in the message), value is appropriate input.
-	* @param string $submitLable A message containing a label for the submit button.
+	* @param string $submitLabel A message containing a label for the submit button.
 	* @return string HTML form.
 	*/
 	function buildForm( $fields, $submitLabel ) {
