@@ -27,18 +27,26 @@ class ShortPagesPage extends QueryPage {
 	}
 
 	function getSQL() {
+		global $wgContentNamespaces;
+
 		$dbr = wfGetDB( DB_SLAVE );
 		$page = $dbr->tableName( 'page' );
 		$name = $dbr->addQuotes( $this->getName() );
 
 		$forceindex = $dbr->useIndexClause("page_len");
+
+		if ($wgContentNamespaces)
+			$nsclause = "page_namespace IN (" . implode(',', $wgContentNamespaces) . ")";
+		else
+			$nsclause = "page_namespace = " . NS_MAIN;
+
 		return
 			"SELECT $name as type,
 				page_namespace as namespace,
 			        page_title as title,
 			        page_len AS value
 			FROM $page $forceindex
-			WHERE page_namespace=".NS_MAIN." AND page_is_redirect=0";
+			WHERE $nsclause AND page_is_redirect=0";
 	}
 
 	function preprocessResults( $db, $res ) {
