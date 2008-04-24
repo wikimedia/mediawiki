@@ -1955,10 +1955,9 @@ It may contain one or more characters which cannot be used in titles.',
 
 # Special:Listgrouprights
 'listgrouprights'          => 'User group rights',
-'listgrouprights-summary'  => 'The following is a list of user groups defined on this wiki, with their associated access rights.',
+'listgrouprights-summary'  => 'The following is a list of user groups defined on this wiki, with their associated access rights. Additional information about individual rights can be found [[{{int:Listgrouprights-helppage}}|here]].',
 'listgrouprights-group'    => 'Group',
 'listgrouprights-rights'   => 'Rights',
-'listgrouprights-link'     => '[[{{MediaWiki:Listgrouprights-helppage}}#$2|$1]]', # do not translate or duplicate this message to other languages
 'listgrouprights-helppage' => 'Help:Group rights',
 'listgrouprights-members'  => '(list of members)',
 
