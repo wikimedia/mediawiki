@@ -1155,11 +1155,11 @@ $wgGroupPermissions['bureaucrat']['userrights']  = true;
 #$wgGroupPermissions['bureaucrat']['userrights-interwiki'] = true;
 
 #$wgGroupPermissions['sysop']['deleterevision']  = true;
-// To hide usernames
+// To hide usernames from users and Sysops
 #$wgGroupPermissions['suppress']['hideuser'] = true;
-// To see hidden revs and unhide revs hidden from Sysops
+// To hide revisions/log items from users and Sysops
 #$wgGroupPermissions['suppress']['hiderevision'] = true;
-// For private log access
+// For private suppression log access
 #$wgGroupPermissions['suppress']['suppress'] = true;
 
 /**
