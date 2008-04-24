@@ -1474,7 +1474,7 @@ A * indicates that you cannot remove the group once you have added it, or vice v
 'right-reupload' => 'Overwrite an existing file',
 'right-autoconfirmed' => 'Be treated as autoconfirmed',
 'right-nominornewtalk' => 'Not have minor edits to discussion pages trigger the new messages prompt',
-'right-unwatchedpages' => 'View Special:Unwatchedpages',
+'right-unwatchedpages' => 'View a list of unwatched pages',
 'right-importupload' => 'Import pages from a file upload',
 'right-editusercssjs' => "Edit other users' CSS and JS files",
 'right-mergehistory' => 'Merge the history of pages',
