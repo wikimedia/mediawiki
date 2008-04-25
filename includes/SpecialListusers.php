@@ -140,8 +140,8 @@ class UsersPager extends AlphabeticPager {
 		$out .= Xml::label( wfMsg( 'group' ), 'group' ) . ' ' .
 			Xml::openElement('select',  array( 'name' => 'group', 'id' => 'group' ) ) .
 			Xml::option( wfMsg( 'group-all' ), '' );
-		foreach( User::getAllGroups() as $group )
-			$out .= Xml::option( User::getGroupName( $group ), $group, $group == $this->requestedGroup );
+		foreach( $this->getAllGroups() as $group => $groupText )
+			$out .= Xml::option( $groupText, $group, $group == $this->requestedGroup );
 		$out .= Xml::closeElement( 'select' ) . ' ';
 
 		wfRunHooks( 'SpecialListusersHeaderForm', array( $this, &$out ) );
@@ -155,6 +155,14 @@ class UsersPager extends AlphabeticPager {
 			Xml::closeElement( 'form' );
 
 		return $out;
+	}
+
+	function getAllGroups() {
+		$result = array();
+		foreach( User::getAllGroups() as $group ) {
+			$result[$group] = User::getGroupName( $group );
+		}
+		return $result;
 	}
 
 	/**
@@ -195,7 +203,7 @@ class UsersPager extends AlphabeticPager {
 	 * @param string $group
 	 * @return string
 	 */
-	private static function buildGroupLink( $group ) {
+	protected static function buildGroupLink( $group ) {
 		static $cache = array();
 		if( !isset( $cache[$group] ) )
 			$cache[$group] = User::makeGroupLinkHtml( $group, User::getGroupMember( $group ) );
