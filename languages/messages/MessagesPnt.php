@@ -28,6 +28,23 @@ $namespaceNames = array(
 	NS_CATEGORY_TALK  => 'Καλάτσεμαν_κατηγορίας',
 );
 
+$datePreferences = array(
+	'default',
+	'pnt',
+	'ISO 8601',
+);
+
+$defaultDateFormat = 'pnt';
+
+
+
+$dateFormats = array(
+	'pnt time' => 'H:i',
+	'pnt date' => 'j xg Y',
+	'pnt both' => 'H:i, j xg Y',
+);
+
+
 $messages = array(
 # User preference toggles
 'tog-showhiddencats' => 'Δείξον κρυμμένα κατηγορίας',
