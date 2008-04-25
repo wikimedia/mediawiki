@@ -1135,8 +1135,6 @@ class RevisionDeleter {
 	 * @returns mixed, timestamp string on success, false on failure
 	 */
 	function makeOldImagePrivate( $oimage ) {
-		global $wgFileStore, $wgUseSquid;
-
 		$transaction = new FSTransaction();
 		if( !FileStore::lock() ) {
 			wfDebug( __METHOD__.": failed to acquire file store lock, aborting\n" );
@@ -1188,8 +1186,6 @@ class RevisionDeleter {
 	 * @returns mixed, string timestamp on success, false on failure
 	 */
 	function makeOldImagePublic( $oimage ) {
-		global $wgFileStore;
-
 		$transaction = new FSTransaction();
 		if( !FileStore::lock() ) {
 			wfDebug( __METHOD__." could not acquire filestore lock\n" );
