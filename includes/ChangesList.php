@@ -663,7 +663,9 @@ class EnhancedChangesList extends ChangesList {
 		}
 
 		# History
-		if( $namehidden || !$block[0]->getTitle()->exists() ) {
+		if( $alllogs ) {
+			// don't show history link for logs
+		} else if( $namehidden || !$block[0]->getTitle()->exists() ) {
 			$r .= '(' . $this->message['history'] . ')';
 		} else {
 			$r .= '(' . $this->skin->makeKnownLinkObj( $block[0]->getTitle(),
