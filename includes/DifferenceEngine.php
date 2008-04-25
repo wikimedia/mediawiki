@@ -480,7 +480,8 @@ CONTROL;
 			if( !function_exists( 'wikidiff_do_diff' ) ) {
 				dl('php_wikidiff.so');
 			}
-			return $wgContLang->unsegementForDiff( wikidiff_do_diff( $otext, $ntext, 2 ) );
+			return $wgContLang->unsegementForDiff( wikidiff_do_diff( $otext, $ntext, 2 ) ) .
+				$this->debug( 'wikidiff1' );
 		}
 
 		if ( $wgExternalDiffEngine == 'wikidiff2' ) {
@@ -494,6 +495,7 @@ CONTROL;
 			if ( function_exists( 'wikidiff2_do_diff' ) ) {
 				wfProfileIn( 'wikidiff2_do_diff' );
 				$text = wikidiff2_do_diff( $otext, $ntext, 2 );
+				$text .= $this->debug( 'wikidiff2' );
 				wfProfileOut( 'wikidiff2_do_diff' );
 				return $text;
 			}
@@ -521,6 +523,7 @@ CONTROL;
 			$cmd = wfEscapeShellArg( $wgExternalDiffEngine, $tempName1, $tempName2 );
 			wfProfileIn( __METHOD__ . "-shellexec" );
 			$difftext = wfShellExec( $cmd );
+			$difftext .= $this->debug( "external $wgExternalDiffEngine" );
 			wfProfileOut( __METHOD__ . "-shellexec" );
 			unlink( $tempName1 );
 			unlink( $tempName2 );
@@ -532,9 +535,28 @@ CONTROL;
 		$nta = explode( "\n", $wgContLang->segmentForDiff( $ntext ) );
 		$diffs = new Diff( $ota, $nta );
 		$formatter = new TableDiffFormatter();
-		return $wgContLang->unsegmentForDiff( $formatter->format( $diffs ) );
+		return $wgContLang->unsegmentForDiff( $formatter->format( $diffs ) ) .
+			$this->debug();
 	}
-
+	
+	/**
+	 * Generate a debug comment indicating diff generating time,
+	 * server node, and generator backend.
+	 */
+	protected function debug( $generator="internal" ) {
+		global $wgShowHostnames, $wgNodeName;
+		$data = array( $generator );
+		if( $wgShowHostnames ) {
+			$data[] = $wgNodeName;
+		}
+		$data[] = wfTimestamp( TS_DB );
+		return "<!-- diff generator: " .
+			implode( " ",
+				array_map(
+					"htmlspecialchars",
+						$data ) ) .
+			" -->\n";
+	}
 
 	/**
 	 * Replace line numbers with the text in the user's language
