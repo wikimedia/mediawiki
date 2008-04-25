@@ -1473,7 +1473,7 @@ A * indicates that you cannot remove the group once you have added it, or vice v
 'right-upload'               => 'Upload files',
 'right-reupload'             => 'Overwrite an existing file',
 'right-reupload-own'         => 'Overwrite an existing file uploaded by the same user',
-'right-reupload-shared'      => 'Override files on the shared image repository locally',
+'right-reupload-shared'      => 'Override files on the shared media repository locally',
 'right-upload_by_url'        => 'Upload a file from a URL address',
 'right-purge'                => 'Purge the site cache for a page without a confirmation page',
 'right-autoconfirmed'        => 'Edit semi-protected pages',
