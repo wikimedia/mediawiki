@@ -31,6 +31,10 @@ $namespaceNames = array(
 	NS_CATEGORY_TALK  => 'نقاش_التصنيف',
 );
 
+$namespaceAliases = array(
+	'ملف'             => NS_MEDIA,
+);
+
 $magicWords = array(
 	'redirect'            => array( '0', '#تحويل', '#REDIRECT' ),
 	'notoc'               => array( '0', '__لافهرس__', '__NOTOC__' ),

@@ -116,7 +116,6 @@ $namespaceNames = array(
 
 $namespaceAliases = array(
 	'ملف'             => NS_MEDIA,
-	'نقاش_قالب'       => NS_TEMPLATE_TALK,
 );
 
 $magicWords = array(
