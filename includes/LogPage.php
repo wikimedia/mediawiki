@@ -75,7 +75,7 @@ class LogPage {
 		$dbw->insert( 'logging', $data, $fname );
 		$newId = $dbw->insertId();
 
-		$ok = ($dbw->affectedRows() != 0);
+		$ok = ($dbw->affectedRows() > 0);
 		# And update recentchanges
 		if( $ok && $this->updateRecentChanges ) {
 			# Don't add private logs to RC!
