@@ -2506,7 +2506,15 @@ function wfMaxlagError( $host, $lag, $maxLag ) {
  * @return null
  */
 function wfDeprecated( $function ) {
-	trigger_error( "Use of $function is deprecated", E_USER_NOTICE );
+	$callers = debug_backtrace();
+	$file = @$callers[2]['file'];
+	$line = @$callers[2]['line'];
+	$func = @$callers[2]['function'];
+	if ( $func && $file ) {
+		trigger_error( "Use of $function is deprecated. Called from $func at $file:$line", E_USER_NOTICE );
+	} else {
+		trigger_error( "Use of $function is deprecated.", E_USER_NOTICE );
+	}
 }
 
 /**
