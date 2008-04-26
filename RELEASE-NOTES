@@ -267,6 +267,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 13792) Broken titles are now silently skipped in search results.
 * (bug 13819) exturlusage paging skipped an item
 * Fixed handling of usernames containing spaces in list=block
+* (bug 13836) Fixed fatal errors resulting from combining iiprop=metadata with
+  format=xml
 
 === Languages updated in 1.13 ===
 

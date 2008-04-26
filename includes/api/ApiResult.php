@@ -147,7 +147,7 @@ class ApiResult extends ApiBase {
 	{
 			if(!is_array($arr))
 					return;
-			foreach($arr as $a)
+			foreach($arr as &$a)
 			{
 					if(!is_array($a))
 							continue;
