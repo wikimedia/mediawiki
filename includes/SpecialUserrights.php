@@ -190,6 +190,7 @@ class UserrightsPage extends SpecialPage {
 	 * Add a rights log entry for an action.
 	 */
 	function addLogEntry( $user, $oldGroups, $newGroups ) {
+		global $wgRequest;
 		$log = new LogPage( 'rights' );
 
 		$log->addEntry( 'rights',
