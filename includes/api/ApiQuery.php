@@ -55,6 +55,7 @@ class ApiQuery extends ApiBase {
 		'templates' => 'ApiQueryLinks',
 		'categories' => 'ApiQueryCategories',
 		'extlinks' => 'ApiQueryExternalLinks',
+		'categoryinfo' => 'ApiQueryCategoryInfo',
 	);
 
 	private $mQueryListModules = array (

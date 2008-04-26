@@ -269,6 +269,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Fixed handling of usernames containing spaces in list=block
 * (bug 13836) Fixed fatal errors resulting from combining iiprop=metadata with
   format=xml
+* (bug 13735) Added prop=categoryinfo module
 
 === Languages updated in 1.13 ===
 
