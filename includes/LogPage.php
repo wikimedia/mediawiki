@@ -85,6 +85,8 @@ class LogPage {
 				RecentChange::notifyLog( $now, $titleObj, $wgUser, $rcComment, '',
 					$this->type, $this->action, $this->target, $this->comment, $this->params, $newId );
 			}
+		} else {
+			wfDebug( "LogPage::saveContent failed to insert row - Error {$dbw->lastErrno()}: {$dbw->lastError()}" );
 		}
 		return $ok;
 	}
