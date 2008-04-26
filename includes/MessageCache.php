@@ -407,8 +407,10 @@ class MessageCache {
 	 *                         use the wikis content language (also as a
 	 *                         fallback).
 	 * @param bool $isFullKey Specifies whether $key is a two part key "lang/msg".
+	 * @param bool $fallback Whether or not to fallback to a different language if
+	 *                       it is not found in the selected one.
 	 */
-	function get( $key, $useDB = true, $langcode = true, $isFullKey = false ) {
+	function get( $key, $useDB = true, $langcode = true, $isFullKey = false, $fallback = true ) {
 		global $wgContLanguageCode, $wgContLang, $wgLang;
 
 		# Identify which language to get or create a language object for.
@@ -474,6 +476,11 @@ class MessageCache {
 			if ( is_null( $message ) ) {
 				$message = false;
 			}
+		}
+
+		# Don't fall back if asked not to.
+		if( !$fallback ) {
+			return '&lt;' . htmlspecialchars($key) . '&gt;';
 		}
 
 		# Try the array of another language
