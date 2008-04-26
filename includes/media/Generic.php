@@ -224,14 +224,14 @@ abstract class MediaHandler {
 		);
 	}
 
-	function getShortDesc( $file ) {
+	static function getShortDesc( $file ) {
 		global $wgLang;
 		$nbytes = '(' . wfMsgExt( 'nbytes', array( 'parsemag', 'escape' ),
 			$wgLang->formatNum( $file->getSize() ) ) . ')';
 		return "$nbytes";
 	}
 
-	function getLongDesc( $file ) {
+	static function getLongDesc( $file ) {
 		global $wgUser;
 		$sk = $wgUser->getSkin();
 		return wfMsg( 'file-info', $sk->formatSize( $file->getSize() ), $file->getMimeType() );
@@ -398,7 +398,7 @@ abstract class ImageHandler extends MediaHandler {
 		return $gis;
 	}
 
-	function getShortDesc( $file ) {
+	static function getShortDesc( $file ) {
 		global $wgLang;
 		$nbytes = wfMsgExt( 'nbytes', array( 'parsemag', 'escape' ),
 			$wgLang->formatNum( $file->getSize() ) );
@@ -407,7 +407,7 @@ abstract class ImageHandler extends MediaHandler {
 		return "$widthheight ($nbytes)";
 	}
 
-	function getLongDesc( $file ) {
+	static function getLongDesc( $file ) {
 		global $wgLang;
 		return wfMsgHtml('file-info-size', $wgLang->formatNum( $file->getWidth() ), $wgLang->formatNum( $file->getHeight() ),
 			$wgLang->formatSize( $file->getSize() ), $file->getMimeType() );
