@@ -7,7 +7,7 @@ class FileRepoStatus extends Status {
 	/**
 	 * Factory function for fatal errors
 	 */
-	static function newFatal( $repo /*, $message , parameters...*/ ) {
+	static function newFatal( $repo, $message /*, parameters...*/ ) {
 		$params = array_slice( func_get_args(), 1 );
 		$result = new self( $repo );
 		call_user_func_array( array( &$result, 'error' ), $params );
