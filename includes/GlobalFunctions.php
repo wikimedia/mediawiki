@@ -447,15 +447,17 @@ function wfMsgWeirdKey ( $key ) {
  * @param string $langcode Code of the language to get the message for, or
  *                         behaves as a content language switch if it is a 
  *                         boolean.
+ * @param bool $fallback Whether or not to fallback to a different language if
+ *                       it is not found in the selected one.
  * @return string
  * @private
  */
-function wfMsgGetKey( $key, $useDB, $langCode = false, $transform = true ) {
+function wfMsgGetKey( $key, $useDB, $langCode = false, $transform = true, $fallback = true ) {
 	global $wgParser, $wgContLang, $wgMessageCache, $wgLang;
 
 	# If $wgMessageCache isn't initialised yet, try to return something sensible.
 	if( is_object( $wgMessageCache ) ) {
-		$message = $wgMessageCache->get( $key, $useDB, $langCode );
+		$message = $wgMessageCache->get( $key, $useDB, $langCode, false, $fallback );
 		if ( $transform ) {
 			$message = $wgMessageCache->transform( $message );
 		}
@@ -564,6 +566,7 @@ function wfMsgWikiHtml( $key ) {
  *  <i>replaceafter</i>: parameters are substituted after parsing or escaping
  *  <i>parsemag</i>: transform the message using magic phrases
  *  <i>content</i>: fetch message for content language instead of interface
+ *  <i>nofallback</i>: do not fallback to a different language
  *  <i>language</i>: language code to fetch message for (overriden by <i>content</i>), its behaviour
  *                   with parser, parseinline and parsemag is undefined.
  * Behavior for conflicting options (e.g., parse+parseinline) is undefined.
@@ -594,7 +597,9 @@ function wfMsgExt( $key, $options ) {
 		$langCode = false;
 	}
 
-	$string = wfMsgGetKey( $key, /*DB*/true, $langCode, /*Transform*/false );
+	$fallback = !in_array('nofallback', $options);
+
+	$string = wfMsgGetKey( $key, /*DB*/true, $langCode, /*Transform*/false, /*Fallback*/$fallback );
 
 	if( !in_array('replaceafter', $options) ) {
 		$string = wfMsgReplaceArgs( $string, $args );
