@@ -300,11 +300,11 @@ class NewPagesForm {
 	/**
 	 * Quickie hack... strip out wikilinks to more legible form from the comment.
 	 */
-	function stripComment( $text ) {
+	protected function stripComment( $text ) {
 		return preg_replace( '/\[\[([^]]*\|)?([^]]+)\]\]/', '\2', $text );
 	}
 
-	function feedItemAuthor( $row ) {
+	protected function feedItemAuthor( $row ) {
 		return isset( $row->rc_user_text ) ? $row->rc_user_text : '';
 	}
 
