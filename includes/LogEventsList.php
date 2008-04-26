@@ -232,7 +232,7 @@ class LogEventsList {
 				$revert = '(' . $this->skin->makeKnownLinkObj( SpecialPage::getTitleFor( 'Undelete' ),
 					$this->message['undeletelink'], 'target='. urlencode( $title->getPrefixedDBkey() ) ) . ')';
 			// Show unblock link
-			} else if( self::typeAction($row,'block','block') && $wgUser->isAllowed( 'block' ) ) {
+			} else if( self::typeAction($row,array('block','suppress'),'block') && $wgUser->isAllowed( 'block' ) ) {
 				$revert = '(' .  $this->skin->makeKnownLinkObj( SpecialPage::getTitleFor( 'Ipblocklist' ),
 					$this->message['unblocklink'],
 					'action=unblock&ip=' . urlencode( $row->log_title ) ) . ')';
