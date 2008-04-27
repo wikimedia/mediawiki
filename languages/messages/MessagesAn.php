@@ -233,6 +233,7 @@ $messages = array(
 'category-article-count-limited' => "{{PLURAL:$1|A pachina siguient fa parte|As $1 pachinas siguients fan parte}} d'ista categoría.",
 'category-file-count'            => "{{PLURAL:$2|Ista categoría nomás contiene l'archibo siguient.|{{PLURAL:$1|L'archibo siguient fa parte|Os $1 archibos siguients fan parte}} d'ista categoría, d'un total de $2.}}",
 'category-file-count-limited'    => "{{PLURAL:$1|L'archibo siguient fa parte|Os $1 archibos siguients fan parte}} d'ista categoría.",
+'listingcontinuesabbrev'         => 'cont.',
 
 'mainpagetext'      => "O programa MediaWiki s'ha instalato correutament.",
 'mainpagedocfooter' => "Consulta a [http://meta.wikimedia.org/wiki/Help:Contents Guía d'usuario] ta mirar informazión sobre cómo usar o software wiki.
@@ -397,6 +398,7 @@ $messages = array(
 Puede trobar una lista de pachinas espezials en [[Special:Specialpages]].",
 
 # General errors
+'error'                => 'Error',
 'databaseerror'        => "Error d'a base de datos",
 'dberrortext'          => 'Ha escaizito una error de sintacsis en una consulta á la base de datos.
 Isto podría endicar una error en o programa.
@@ -717,6 +719,7 @@ Abría de tener-ne menos de $2, por agora en tiene $1.',
 # "Undo" feature
 'undo-success' => "A edizión puede esfer-se. Antis d'esfer a edizión, mire-se a siguient comparanza ta comprebar que ye ixo o que quiere fer reyalment. Alabez, puede alzar os cambeos ta esfer a edizión.",
 'undo-failure' => 'No se puede esfer a edizión pues un atro usuario ha feito una edizión intermeya.',
+'undo-norev'   => "No s'ha puesto esfer a edizión porque no esistiba u ya s'eba borrato.",
 'undo-summary' => 'Esfeita la edizión $1 de [[Special:Contributions/$2|$2]] ([[User talk:$2|desc.]])',
 
 # Account creation failure
@@ -747,6 +750,7 @@ Por fabor, rebise l'adreza que fazió serbir t'aczeder á ista pachina.",
 'deletedrev'          => '[borrato]',
 'histfirst'           => 'Primeras contrebuzions',
 'histlast'            => 'Zagueras',
+'historysize'         => '({{PLURAL:$1|1 byte|$1 bytes}})',
 'historyempty'        => '(buedo)',
 
 # Revision feed
@@ -980,6 +984,7 @@ Un * endica que bustet no puede sacar a colla dimpués d'adibir-la, u bize-bersa
 'group-user'           => 'Usuarios',
 'group-emailconfirmed' => 'Usuarios con adreza eletronica',
 'group-autoconfirmed'  => 'Usuarios Autoconfirmatos',
+'group-bot'            => 'Bots',
 'group-sysop'          => 'Almenistradors',
 'group-bureaucrat'     => 'Burocratas',
 'group-suppress'       => 'Superbisors',
@@ -988,6 +993,7 @@ Un * endica que bustet no puede sacar a colla dimpués d'adibir-la, u bize-bersa
 'group-user-member'           => 'Usuario',
 'group-emailconfirmed-member' => 'Usuario con adreza eletronica',
 'group-autoconfirmed-member'  => 'Usuario autoconfirmato',
+'group-bot-member'            => 'Bot',
 'group-sysop-member'          => 'Almenistrador',
 'group-bureaucrat-member'     => 'Burocrata',
 'group-suppress-member'       => 'Superbisor',
@@ -999,6 +1005,44 @@ Un * endica que bustet no puede sacar a colla dimpués d'adibir-la, u bize-bersa
 'grouppage-sysop'          => '{{ns:project}}:Almenistradors',
 'grouppage-bureaucrat'     => '{{ns:project}}:Burocratas',
 'grouppage-suppress'       => '{{ns:project}}:Superbisors',
+
+# Rights
+'right-read'                 => 'Leyer pachinas',
+'right-edit'                 => 'Editar pachinas',
+'right-createpage'           => 'Creyar pachinas (que no sían pachinas de descusión)',
+'right-createtalk'           => 'Creyar pachinas de descusión',
+'right-createaccount'        => "Creyar nuebas cuentas d'usuario",
+'right-minoredit'            => 'Siñalar como edizions menors',
+'right-move'                 => 'Tresladar pachinas',
+'right-suppressredirect'     => 'No creyar una reendrezera dende o nombre antigo cuan se treslade una pachina',
+'right-upload'               => 'Cargar archibos',
+'right-upload_by_url'        => 'Cargar un archibo dende una adreza URL',
+'right-autoconfirmed'        => 'Editar pachinas semiprotechitas',
+'right-bot'                  => 'Ser tratato como un prozeso automatico (bot)',
+'right-nominornewtalk'       => 'Fer que as edizions menors en pachinas de descusión no cheneren l\'abiso de "nuebos mensaches"',
+'right-apihighlimits'        => "Usar os mayors limites de l'API",
+'right-delete'               => 'Borrar pachinas',
+'right-bigdelete'            => 'Borrar pachinas con istorials largos',
+'right-deleterevision'       => "Borrar y recuperar bersions espezificas d'una pachina",
+'right-browsearchive'        => 'Mirar pachinas borratas',
+'right-undelete'             => 'Recuperar una pachina',
+'right-hiderevision'         => 'Rebisar y recuperar bersions amagatas ta os Almenistradors',
+'right-suppress'             => 'Beyer os rechistros pribatos',
+'right-block'                => "Bloqueyar á atros usuarios ta pribar-les d'editar",
+'right-blockemail'           => 'Bloqueyar á un usuario ta pribar-le de nimbiar correus',
+'right-hideuser'             => "Bloqueyar un nombre d'usuario, amagando-lo d'o publico",
+'right-protect'              => 'Cambiar os libels de protezión y editar pachinas protechitas',
+'right-editprotected'        => 'Editar pachinas protechitas (sin de protezión en cascada)',
+'right-editinterface'        => "Editar a interfizie d'usuario",
+'right-editusercssjs'        => "Editar os archibos CSS y JS d'atros usuarios",
+'right-rollback'             => "Esfer á escape a edizión d'a zaguer usuario que cambió una pachina",
+'right-markbotedits'         => 'Siñalar as edizions esfeitas como edizions de bot',
+'right-import'               => 'Importar pachinas dende atros wikis',
+'right-importupload'         => "Importar pacihnas d'archibos cargatos",
+'right-unwatchedpages'       => 'Amostrar una lista de pachinas sin cosirar',
+'right-mergehistory'         => "Combinar l'istorial d'as pachinas",
+'right-userrights'           => "Editar toz os dreitos d'usuario",
+'right-userrights-interwiki' => "Editar os dreitos d'usuario d'os usuarios d'atros wikis",
 
 # User rights log
 'rightslog'      => "Rechistro de premisos d'os usuarios",
@@ -1015,6 +1059,7 @@ Un * endica que bustet no puede sacar a colla dimpués d'adibir-la, u bize-bersa
 'rcnotefrom'                        => "Contino s'amuestran os cambeos dende '''$2''' (dica '''$1''').",
 'rclistfrom'                        => 'Amostrar cambeos rezients dende $1',
 'rcshowhideminor'                   => '$1 edizions menors',
+'rcshowhidebots'                    => '$1 bots',
 'rcshowhideliu'                     => '$1 usuarios rechistraus',
 'rcshowhideanons'                   => '$1 usuarios anonimos',
 'rcshowhidepatr'                    => '$1 edizions controlatas',
@@ -1024,6 +1069,7 @@ Un * endica que bustet no puede sacar a colla dimpués d'adibir-la, u bize-bersa
 'hist'                              => 'ist',
 'hide'                              => 'amagar',
 'show'                              => 'Amostrar',
+'minoreditletter'                   => 'm',
 'newpageletter'                     => 'N',
 'boteditletter'                     => 'b',
 'number_of_watching_users_pageview' => '[$1 {{PLURAL:$1|usuario|usuarios}} cosirando]',
@@ -1279,6 +1325,7 @@ d'os que '''$2''' (o '''$4%''') {{PLURAL:$1|en ye $5|en son $5}}.",
 
 'withoutinterwiki'         => "Pachinas sin d'interwikis",
 'withoutinterwiki-summary' => 'As siguients pachinas no tienen binclos ta bersions en atras luengas:',
+'withoutinterwiki-legend'  => 'Prefixo',
 'withoutinterwiki-submit'  => 'Amostrar',
 
 'fewestrevisions' => 'Articlos con menos edizions',
@@ -1378,7 +1425,7 @@ Ta reduzir o listau puede trigar un tipo de rechistro, o nombre de l'usuario u a
 
 # Special:Listgrouprights
 'listgrouprights'          => "Dreitos d'a colla d'usuarios",
-'listgrouprights-summary'  => "A siguent ye una lista de collas d'usuario definitas en iste wiki, con os suyos dreitos d'aczeso asoziatos.",
+'listgrouprights-summary'  => "Contino bi ye una lista de collas d'usuario definitas en iste wiki, con os suyos dreitos d'aczeso asoziatos. [[{{MediaWiki:Listgrouprights-helppage}}|Aquí]] puede trobar informazión adizional sobre os dreitos indibiduals.",
 'listgrouprights-group'    => 'Colla',
 'listgrouprights-rights'   => 'Dreitos',
 'listgrouprights-helppage' => "Help:Dreitos d'a colla",
@@ -1554,6 +1601,7 @@ Contino se i amuestran as opzions autuals d'a pachina <strong>$1</strong>:",
 'restriction-level'           => 'Libel de restrizión:',
 'minimum-size'                => 'Grandaria menima',
 'maximum-size'                => 'Grandaria maisima:',
+'pagesize'                    => '(bytes)',
 
 # Restrictions (nouns)
 'restriction-edit'   => 'Editar',

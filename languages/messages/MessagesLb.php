@@ -106,7 +106,7 @@ $specialPageAliases = array(
 	'Undelete'                  => array( 'Restauréieren' ),
 	'Import'                    => array( 'Importéieren' ),
 	'Lockdb'                    => array( 'Datebank_spären' ),
-	'Unlockdb'                  => array( 'Spär_vun_der_Datebank_annulléieren' ),
+	'Unlockdb'                  => array( 'Spär_vun_der_Datebank_ophiewen' ),
 	'Userrights'                => array( 'Benotzerrechter' ),
 	'MIMEsearch'                => array( 'Sich_no_MIME-Zorten' ),
 	'FileDuplicateSearch'       => array( 'Sich_no_duebele_Fichieren' ),
@@ -649,6 +649,8 @@ D\'Nummer vun ärer Spär ass $5. Gitt dës Nummer w.e.g bei allen Ufroen zu dë
 'whitelistacctitle'                 => 'Dir däerft kee Benotzerkont uleeën.',
 'whitelistacctext'                  => 'Fir Konten op {{SITENAME}} kënnen opzemaachen musst Dir [[Special:Userlogin|ageloggt]] sinn an déi noutwänneg Rechter hunn.',
 'confirmedittitle'                  => "Konfirmatioun vun ärer E-Mailadress ass erfuederlech fir z'änneren.",
+'confirmedittext'                   => 'Dir musst är E-Mail-Adress conirméieren, ier Dir ännerunge maache kënnt.
+Gitt w.e.g. Eng E-Mailadrss a validéiert se op äre [[Special:Preferences|Benotzerastellungen]].',
 'nosuchsectiontitle'                => 'Et gëtt keen Abschnitt mat dem Numm',
 'nosuchsectiontext'                 => "Dir hutt versicht een Abschnitt z'änneren den et net gëtt. Well et den Abschnitt $1 net gëtt, gëtt et keng Plaz fir är Ännerung ze späicheren.",
 'loginreqtitle'                     => 'Umeldung néideg',
@@ -873,7 +875,9 @@ Dir kënnt [[:\$1|déi Säit uleeën]].",
 'search-interwiki-more'     => '(méi)',
 'search-mwsuggest-enabled'  => 'matt Virschléi',
 'search-mwsuggest-disabled' => 'keng Virschléi',
+'search-relatedarticle'     => 'A Verbindung',
 'mwsuggest-disable'         => 'Ajax-Virschléi ausschalten',
+'searchrelated'             => 'a Verbindng',
 'searchall'                 => 'all',
 'showingresults'            => "Hei gesitt der  {{PLURAL:$1| '''1''' Resultat|'''$1''' Resultater}}, ugefaang mat #'''$2'''.",
 'showingresultsnum'         => "Hei gesitt der  {{PLURAL:$3|'''1''' Resultat|'''$1''' Resultater}}, ugefaange mat #'''$2'''.",
@@ -1000,18 +1004,40 @@ E * bedeit datt Dir de Grupp net méi ewech huele kënnt wann e bis eemol derbä
 'grouppage-suppress'       => '{{ns:project}}:Iwwersiicht',
 
 # Rights
-'right-read'          => 'Säite liesen',
-'right-edit'          => 'Säiten änneren',
-'right-minoredit'     => 'Ännerungen als kleng markéieren',
-'right-move'          => 'Säite réckelen',
-'right-upload'        => 'Fichieren eroplueden',
-'right-reupload'      => 'E Fichier iwwerschreiwen',
-'right-delete'        => 'Säite läschen',
-'right-browsearchive' => 'Geläschte Säite sichen',
-'right-undelete'      => 'Eng Säit restauréieren',
-'right-hideuser'      => 'E Benotzernumm spären, an deem e virun der Ëffentlechkeet verstoppt gëtt',
-'right-import'        => 'Säite vun anere Wikien importéieren',
-'right-userrights'    => 'All Benotzerrechter änneren',
+'right-read'                 => 'Säite liesen',
+'right-edit'                 => 'Säiten änneren',
+'right-createpage'           => 'Säiten uleeën (déi keng Diskussiounssäite sinn)',
+'right-createtalk'           => 'Diskussiounssäiten uleeën',
+'right-createaccount'        => 'Nei Benotzerkonten uleeën',
+'right-minoredit'            => 'Ännerungen als kleng markéieren',
+'right-move'                 => 'Säite réckelen',
+'right-suppressredirect'     => 'Kee Redirect vum ale Numm aus uleeë wann eng Säit eréckelt gëtt',
+'right-upload'               => 'Fichieren eroplueden',
+'right-reupload'             => 'E Fichier iwwerschreiwen',
+'right-reupload-own'         => 'E Fichier iwwerschreiwen dee vum selweschte Benotzer eropgeluede gouf',
+'right-upload_by_url'        => 'E Fichier vun enger URL-Adress eroplueden',
+'right-autoconfirmed'        => 'Hallef-protegéiert Säiten änneren',
+'right-nominornewtalk'       => 'Kleng Ännerungen op Diskussiounssäite léisen de Banner vun de neie Messagen net aus',
+'right-delete'               => 'Säite läschen',
+'right-bigdelete'            => 'Säite mat engem groussen Historique läschen',
+'right-deleterevision'       => 'Spezifesch Versioune vu Säite läschen a restauréieren',
+'right-browsearchive'        => 'Geläschte Säite sichen',
+'right-undelete'             => 'Eng Säit restauréieren',
+'right-hiderevision'         => 'Virun den Administrateure verstoppte Versiounen nokucken a restauréieren',
+'right-suppress'             => 'Privat Lëschte kucken',
+'right-block'                => 'Aner Benotzer fir Ännerunge spären',
+'right-blockemail'           => 'E Benotzer spären esou datt hie keng Maile verschécke kann',
+'right-hideuser'             => 'E Benotzernumm spären, an deem e virun der Ëffentlechkeet verstoppt gëtt',
+'right-protect'              => 'Protectiounsniveauen änneren a protegéiert Säiten änneren',
+'right-editprotected'        => 'Protegéiert Säiten (ouni Kaskadeprotectioun) änneren',
+'right-editinterface'        => 'De Benotzerinterface änneren',
+'right-editusercssjs'        => 'Anere Benotzer hir CSS a JS Fichieren änneren',
+'right-markbotedits'         => 'Annuléiert Ännerungen als Botännerungen uweisen',
+'right-import'               => 'Säite vun anere Wikien importéieren',
+'right-unwatchedpages'       => 'Lëscht vun den net iwwerwaachte Säite weisen',
+'right-userrights'           => 'All Benotzerrechter änneren',
+'right-userrights-interwiki' => 'Benotzerrechter vu Benotzer op anere Wiki-Siten änneren',
+'right-siteadmin'            => "Datebank spären an d'Spär ophiewen",
 
 # User rights log
 'rightslog'      => 'Logbuch vun de Benotzerrechter',
@@ -2108,9 +2134,12 @@ Duerno sti Linken déi Ausnamen definéieren, a deenen hirem Kontext dat Bild aw
 
 'exif-unknowndate' => 'Onbekannten Datum',
 
+'exif-orientation-1' => 'Normal', # 0th row: top; 0th column: left
 'exif-orientation-2' => 'Horizontal gedréit', # 0th row: top; 0th column: right
 'exif-orientation-3' => 'Ëm 180° gedréit', # 0th row: bottom; 0th column: right
 'exif-orientation-4' => 'Vertikal gedréit', # 0th row: bottom; 0th column: left
+'exif-orientation-6' => "Ëm 90° an d'Richtung vun den Zäre vun der Auer gedréint", # 0th row: right; 0th column: top
+'exif-orientation-8' => "Ëm 90° géint d'Richtung vun den Zäre vun der Auer gedréint", # 0th row: left; 0th column: bottom
 
 'exif-componentsconfiguration-0' => 'Gëtt et net',
 
@@ -2157,6 +2186,7 @@ Duerno sti Linken déi Ausnamen definéieren, a deenen hirem Kontext dat Bild aw
 'exif-whitebalance-0' => 'Automatesche Wäissofgläich',
 'exif-whitebalance-1' => 'Manuelle Wäissofgläich',
 
+'exif-scenecapturetype-0' => 'Standard',
 'exif-scenecapturetype-3' => 'Nuetszeen',
 
 'exif-gaincontrol-0' => 'Keng',
@@ -2176,6 +2206,16 @@ Duerno sti Linken déi Ausnamen definéieren, a deenen hirem Kontext dat Bild aw
 'exif-subjectdistancerange-1' => 'Makro',
 'exif-subjectdistancerange-2' => 'No',
 'exif-subjectdistancerange-3' => 'wäit ewech',
+
+# Pseudotags used for GPSLatitudeRef and GPSDestLatitudeRef
+'exif-gpslatitude-n' => 'nërdlech Breet',
+'exif-gpslatitude-s' => 'südlech Breet',
+
+# Pseudotags used for GPSLongitudeRef and GPSDestLongitudeRef
+'exif-gpslongitude-e' => 'ëstlech Längt',
+'exif-gpslongitude-w' => 'westlech Längt',
+
+'exif-gpsstatus-a' => 'Miessung am gaang',
 
 'exif-gpsmeasuremode-2' => '2-dimensional Miessung',
 'exif-gpsmeasuremode-3' => '3-dimensional Miessung',

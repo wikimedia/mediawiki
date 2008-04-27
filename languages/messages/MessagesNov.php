@@ -6,8 +6,6 @@
  * @author nov.wikipedia.org sysops
  * @author Malafaya
  * @author SPQRobin
- * @author Malafaya
- * @author SPQRobin
  */
 
 $messages = array(
@@ -92,8 +90,8 @@ $messages = array(
 'aboutsite'            => 'Pri {{SITENAME}}',
 'aboutpage'            => 'Project:Pri',
 'currentevents'        => 'Nuni eventes',
-'edithelp'             => 'Help pri modifiko de pagines',
-'helppage'             => 'Help:Kontenaje',
+'edithelp'             => 'Helpo pri modifiko de pagines',
+'helppage'             => 'Helpo:Kontenaje',
 'mainpage'             => 'Chefi pagine',
 'mainpage-description' => 'Chefi pagine',
 'portal'               => 'Li komun chambre',
@@ -105,6 +103,7 @@ $messages = array(
 'newmessageslink'         => 'novi mesajes',
 'newmessagesdifflink'     => 'lasti chanjo',
 'youhavenewmessagesmulti' => 'Vu have novi mesajes pri $1',
+'restorelink'             => '{{PLURAL:$1|unu ekartati modifiko|$1 ekartati modifikos}}',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Artikle',
@@ -183,11 +182,14 @@ Proba [[Special:Search|sercho sur li wiki]] por relatet pagines.',
 
 # Search results
 'searchresults'         => 'Resultes de sercho',
+'searchresulttext'      => 'Por plu multi informatione pri sercho {{SITENAME}}, vida [[{{MediaWiki:Helppage}}|{{int:help}}]].',
 'searchsubtitle'        => "Vu serchad '''[[:$1]]'''",
 'searchsubtitleinvalid' => "Vu serchad '''$1'''",
 'prevn'                 => 'lasti $1',
 'nextn'                 => 'sekuenti $1',
 'viewprevnext'          => 'Vida ($1) ($2) ($3).',
+'showingresults'        => "Montrant subu {{PLURAL:$1|'''1''' resulte|'''$1''' resultes}} amaxim komensant fro #'''$2'''.",
+'showingresultsnum'     => "Montrant subu {{PLURAL:$3|'''1''' result|'''$3''' results}} komensant fro #'''$2'''.",
 'powersearch'           => 'Sercha',
 
 # Preferences page
@@ -200,6 +202,7 @@ Proba [[Special:Search|sercho sur li wiki]] por relatet pagines.',
 
 # Recent changes
 'recentchanges'   => 'Resenti chanjos',
+'rcnote'          => "Subu es {{PLURAL:$1| '''1''' chanje|li lasti '''$1''' chanjes}} in li lasti {{PLURAL:$2|die|'''$2''' dies}}, fro $3.",
 'rcshowhideminor' => '$1 minori modifikos',
 'rcshowhideanons' => '$1 anonimi useres',
 'rcshowhidemine'  => '$1 men modifikos',
@@ -322,6 +325,7 @@ Si vu voli plu tardim ekarta li pagine fro vun observa-liste, klikta \"Desobserv
 'whatlinkshere' => 'Tum kel kupla hir',
 
 # Block/unblock
+'badipaddress' => 'Non-valid IP adrese',
 'contribslink' => 'Kontributiones',
 
 # Move page

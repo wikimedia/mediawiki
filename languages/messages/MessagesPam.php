@@ -650,6 +650,7 @@ Kailangan, mas ditak la king $2 deti; $1 na la reng atyu ngeni.',
 # "Undo" feature
 'undo-success' => 'E maliaring iurung ing pamag-edit a ini. Pakilawe mo reng pikumparang bersion king lalam ba mung akit nung ini pin ing buri mung gawan, at kaibat, i-save mo retang miyalilan bang mayari ing pamanurung king edit.',
 'undo-failure' => 'E maliaring iurung ing edit a ini uling e la mipapareu deng minunang me-edit.',
+'undo-norev'   => 'E maliaring iurung ing edit a ini uling ala yu o mebura ya.',
 'undo-summary' => 'Iurung ya ing miyalilan $1 nang [[Special:Contributions/$2|$2]] ([[User talk:$2|Talk]])',
 
 # Account creation failure
@@ -742,26 +743,34 @@ Abusni da pa murin deng aliwang talapanibala (admin) king {{SITENAME}} itang lam
 'suppressionlogtext' => 'Oini ing tala da reng mebura ampong mesabat a maki kaugnayan kareng kasulatang makasalikut kareng sysop. Lon ya ing [[Special:Ipblocklist|IP block list]] para king tala da reng kasalungsungan a mimiral a pamagbawal ampong pamaniabat.',
 
 # History merging
-'mergehistory'             => 'Piyabe/pisanib la reng amlat ding bulung',
-'mergehistory-header'      => 'This page lets you merge revisions of the history of one source page into a newer page.
+'mergehistory'                     => 'Piyabe/pisanib la reng amlat ding bulung',
+'mergehistory-header'              => 'This page lets you merge revisions of the history of one source page into a newer page.
 Make sure that this change will maintain historical page continuity.
 
 Maliari mu lang isanib deng mibayu king amlat ning metung a bulung a pikuanan ketang mas bayung bulung. Siguraduan mung manatili ing ustu rang pamituki-tuki ding amlat kaibat ning pamisanib.',
-'mergehistory-box'         => 'Pisanib la reng pamagbayu/pamanalili da reng aduang bulung:',
-'mergehistory-from'        => 'Penibatan a bulung:',
-'mergehistory-into'        => 'Pupuntalan a bulung:',
-'mergehistory-list'        => 'Amlat ding miyalilan a maliaring pisanib (mergeable edit history)',
-'mergehistory-merge'       => 'Maliari lang isanib king [[:$2]] deng makatuking miyalilan king [[:$1]].
+'mergehistory-box'                 => 'Pisanib la reng pamagbayu/pamanalili da reng aduang bulung:',
+'mergehistory-from'                => 'Penibatan a bulung:',
+'mergehistory-into'                => 'Pupuntalan a bulung:',
+'mergehistory-list'                => 'Amlat ding miyalilan a maliaring pisanib (mergeable edit history)',
+'mergehistory-merge'               => 'Maliari lang isanib king [[:$2]] deng makatuking miyalilan king [[:$1]].
 Gamitan me ing radio button column bang bukud mung detang miyalilan aniang o bayu ing mesabing oras ing misanib. Tandanan mung misubli (ma-reset) ya ining kolum nung gamitan la reng suglung a paglibut (navigational links).',
-'mergehistory-go'          => 'Pakit la reng mibayung maliaring pisanib (mergeable edits(',
-'mergehistory-submit'      => 'Pisamut la reng meyalili',
-'mergehistory-empty'       => 'Alang mibayu/miyalilan a maliaring pisanib.',
-'mergehistory-no-source'   => 'Penibatan a bulung $1 ala yu.',
-'mergehistory-autocomment' => 'Pisamut ing [[:$1]] keng  [[:$2]]',
+'mergehistory-go'                  => 'Pakit la reng mibayung maliaring pisanib (mergeable edits(',
+'mergehistory-submit'              => 'Pisamut la reng meyalili',
+'mergehistory-empty'               => 'Alang mibayu/miyalilan a maliaring pisanib.',
+'mergehistory-success'             => 'Melaus ing pamisanib ning/da ring $3 {{PLURAL:$3|pamagbayu|pamagbayu}} ning [[:$1]] king [[:$2]].',
+'mergehistory-fail'                => 'E miliari ing pamisanib ning amlat; pakilawe mong pasibayu deng sukad king bulung ampong panaun (page and time parameters).',
+'mergehistory-no-source'           => 'Penibatan a bulung $1 ala yu.',
+'mergehistory-no-destination'      => 'Ala yu ing bulung a puntalan a $1.',
+'mergehistory-invalid-source'      => 'Kailangan yang maging bansag a matatanggap (valid title) ing bulung a penibatan.',
+'mergehistory-invalid-destination' => 'Kailangan yang maging bansag a matatanggap (valid title) ing bulung a puntalan (destination page).',
+'mergehistory-autocomment'         => 'Pisamut ing [[:$1]] keng  [[:$2]]',
+'mergehistory-comment'             => 'Misanib ya ing [[:$1]] king [[:$2]]: $3',
 
 # Merge log
-'mergelog'    => 'Piyabe ing log',
-'revertmerge' => 'Episamut',
+'mergelog'           => 'Piyabe ing log',
+'pagemerge-logentry' => 'misanib ya ing [[$1]] king [[$2]] (deng pamagbayu angga king $3)',
+'revertmerge'        => 'Episamut',
+'mergelogpagetext'   => 'Makabili la king lalam deng pekabayung pamisanib da reng amlat bulung (page history).',
 
 # Diffs
 'history-title'           => 'Amlat ning pamagbayu king "$1"',

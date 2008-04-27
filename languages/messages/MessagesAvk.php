@@ -44,6 +44,7 @@ $messages = array(
 'tog-externaleditor'          => 'Omavafa favera va divefi betasiki',
 'tog-externaldiff'            => 'Omavafa favera va divefa "diff" xeka',
 'tog-showjumplinks'           => 'Tutegirara va "grablera" vansarafi gluyasiki',
+'tog-uselivepreview'          => 'Favera va abdiwira (JavaScript) (bagalon)',
 'tog-forceeditsummary'        => 'Zo walzé viele betaravildeks tir vlardaf !',
 'tog-watchlisthideown'        => 'Palsera va jinaf suzdasikif betakseem',
 'tog-watchlisthidebots'       => 'Palsera va suzdasikif stiernaf betakseem',
@@ -565,6 +566,7 @@ Sulara \"log\" va batu bu krafiason batlize zo nedir :",
 # "Undo" feature
 'undo-success' => 'Betaks tir rodimaskin. Va vlevefa dolunhera vay stujel nume ageltal da batcoba tir rinafa djumaskina aze ta tenukera va dimaskira va betara va vlevef betakseem giwal.',
 'undo-failure' => 'Betaks me zo rodimaskir golde kobodas walif betaks yo.',
+'undo-norev'   => 'Dimbetara tir merotisa golde metira ok sulara.',
 'undo-summary' => 'Dimaskira va $1 betaks gan [[Special:Contributions/$2|$2]] ([[User talk:$2|Prilara]])',
 
 # Account creation failure
@@ -656,6 +658,7 @@ Ta ropasusu warzafu bu yo va [[Special:Search|aneyara ko wiki]] yawal.',
 'mergehistory-submit'              => 'Joara va betakseem',
 'mergehistory-empty'               => 'Mek rojoan betaks.',
 'mergehistory-success'             => '$3 betaks va [[:$1]] joanhayan ko [[:$2]].',
+'mergehistory-fail'                => 'Skura va jera va izvot tir merotisa, va bu is evladoreem vay tolstujel !',
 'mergehistory-no-source'           => '$1 klitabu me tir.',
 'mergehistory-no-destination'      => '$1 jalabu me tir.',
 'mergehistory-invalid-source'      => 'Klitabu gotir vergumveltanh.',
@@ -810,6 +813,7 @@ contenant tous les termes apparaissent dans les résultats).",
 'group-bot'            => 'Stiernikeem',
 'group-sysop'          => 'Ristusikeem',
 'group-bureaucrat'     => 'Stujesikeem',
+'group-suppress'       => 'Rokla',
 'group-all'            => '(kot)',
 
 'group-user-member'           => 'Favesik',
@@ -818,6 +822,7 @@ contenant tous les termes apparaissent dans les résultats).",
 'group-bot-member'            => 'Stiernik',
 'group-sysop-member'          => 'Ristusik',
 'group-bureaucrat-member'     => 'Stujesik',
+'group-suppress-member'       => 'Rokla',
 
 'grouppage-user'           => '{{ns:project}}:Favesikeem',
 'grouppage-emailconfirmed' => "{{ns:project}}:Favesik dem gruyeyene 'email' mane",
@@ -825,6 +830,45 @@ contenant tous les termes apparaissent dans les résultats).",
 'grouppage-bot'            => '{{ns:project}} : Stiernikeem',
 'grouppage-sysop'          => '{{ns:project}} : Ristusikeem',
 'grouppage-bureaucrat'     => '{{ns:project}} : Stujesikeem',
+'grouppage-suppress'       => '{{ns:project}}:Rokla',
+
+# Rights
+'right-read'                 => 'Bubelira',
+'right-edit'                 => 'Bubetara',
+'right-createpage'           => 'Buredura (me prilarabu)',
+'right-createtalk'           => 'Prilaraburedura',
+'right-createaccount'        => 'Pataredura ke warzaf favesik',
+'right-minoredit'            => 'Tcalara wetce betamaks',
+'right-move'                 => 'Buarrundara',
+'right-upload'               => 'Iyeltakkalvajara',
+'right-reupload'             => 'Selura va kruldes iyeltak',
+'right-reupload-own'         => 'Selura va kruldes iyeltak kalvajayan gan mil favesik',
+'right-upload_by_url'        => 'Iyeltakkalvajara male URL mane',
+'right-autoconfirmed'        => 'Betara va mialon nendanu bu',
+'right-bot'                  => 'Skura wetce mivaskafa diotetca',
+'right-apihighlimits'        => 'Favera va API kimapa',
+'right-delete'               => 'Busulara',
+'right-bigdelete'            => 'Sulara va izkotapkirafu bu',
+'right-deleterevision'       => 'Sulara va aptaf bubetaks iku dimsulara',
+'right-browsearchive'        => 'Aneyara va sulayanu bu',
+'right-undelete'             => 'Budimsulara',
+'right-hiderevision'         => 'Tolwira va betaks palseyen gan ristusik numu dimsulara',
+'right-suppress'             => "Wira va ilaf 'log' eem",
+'right-block'                => 'Elekara va betara ke ar favesik',
+'right-blockemail'           => "Elekara va favesikafa 'email' staksara",
+'right-hideuser'             => 'Elekara va favesikyolt, palseson dolge saneg',
+'right-editprotected'        => 'Betara va nendanu bu (a stoyakorafa nendara)',
+'right-editinterface'        => 'Betara va favesikafi walasiki',
+'right-editusercssjs'        => 'Betara va CSS ik JS iyeltak ke ar favesik',
+'right-rollback'             => 'Kaliafa dimsulara va ironokaf favesik betayas va aptafu bu',
+'right-import'               => 'Bukoburera mal ari wiki',
+'right-importupload'         => 'Bukoburera mal iyeltakkalvajara',
+'right-patrol'               => 'Tcalara va fieyen betaks',
+'right-unwatchedpages'       => 'Wira va medisukeyenu bu',
+'right-mergehistory'         => 'Jera va buizvot',
+'right-userrights'           => 'Betara va favesikrokeem',
+'right-userrights-interwiki' => "Betara va favesikrokeem koe aro 'wiki' xo",
+'right-siteadmin'            => 'Origakelekara is dimelekara',
 
 # User rights log
 'rightslog'     => '"Log" bu va favesikrokeem',
@@ -1060,6 +1104,7 @@ Abrotcuca ke [http://meta.wikimedia.org/wiki/Help:Job_queue "job queue"] tir \'\
 
 'withoutinterwiki'         => 'Avagluyasikiiskaf bueem',
 'withoutinterwiki-summary' => 'Batu bu se va aravaf siatos me skedad :',
+'withoutinterwiki-legend'  => 'Abdueosta',
 'withoutinterwiki-submit'  => 'Nedira',
 
 'fewestrevisions' => 'Tel lebetayan bueem',
@@ -1115,6 +1160,7 @@ Abrotcuca ke [http://meta.wikimedia.org/wiki/Help:Job_queue "job queue"] tir \'\
 'notargettext'            => 'Va jalafu bu oku favesik bazel.',
 'pager-newer-n'           => '{{PLURAL:$1|lowarzaf 1|lowarzaf $1}}',
 'pager-older-n'           => '{{PLURAL:$1|loguazaf 1|loguazaf $1}}',
+'suppress'                => 'Rokla',
 
 # Book sources
 'booksources'               => 'Vuestes suteks yo',
@@ -1905,6 +1951,10 @@ Kotari milconhafi gluyasiki roklon zo krafiar.',
 'exif-scenecapturetype-3' => 'Mielnakila',
 
 'exif-gaincontrol-0' => 'Mek',
+'exif-gaincontrol-1' => 'Lopoamara',
+'exif-gaincontrol-2' => 'Lopoapara',
+'exif-gaincontrol-3' => 'Lepoamara',
+'exif-gaincontrol-4' => 'Lepoapara',
 
 'exif-contrast-0' => 'Prekson',
 'exif-contrast-1' => 'Omon',
@@ -1929,6 +1979,11 @@ Kotari milconhafi gluyasiki roklon zo krafiar.',
 # Pseudotags used for GPSLongitudeRef and GPSDestLongitudeRef
 'exif-gpslongitude-e' => 'Ronewak',
 'exif-gpslongitude-w' => 'Taltewak',
+
+'exif-gpsstatus-a' => 'Dun sabeson',
+
+'exif-gpsmeasuremode-2' => '2-lumafa sabera',
+'exif-gpsmeasuremode-3' => '3-lumafa sabera',
 
 # Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
 'exif-gpsspeed-k' => 'Bartivon decitmetrolk se',
@@ -1956,6 +2011,8 @@ Kotari milconhafi gluyasiki roklon zo krafiar.',
 'confirmemail_text'        => "Ce wiki nécessite la vérification de votre adresse email avant de pouvoir utiliser toute fonction de messagerie. Utilisez le bouton ci dessous pour envoyer un email de confirmation à votre adresse. L'email contiendra un lien contenant un code, chargez ce lien dans votre navigateur pour valider votre adresse.",
 'confirmemail_send'        => 'Envoyer un code de confirmation',
 'confirmemail_sent'        => 'Email de confirmation envoyé',
+'confirmemail_oncreate'    => "Gruyerafa beksa pu rinafe 'email' mane su zo staksar.
+Ta pilkomodara bata beksa tir mevrebafa vexe ta tutegirara va 'email' fli koe wiki zo godafur.",
 'confirmemail_sendfailed'  => 'Staksara va gruyes e-mail tir merotisa. Va rinafe mane ageltal !
 
 Rodjeyesi staksasiki : $1',

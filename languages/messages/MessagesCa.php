@@ -470,6 +470,7 @@ Això acostuma a passar a quan se segueix un enllaç a una pàgina que ha estat 
 Si aquest no és el cas, probablement es tracta d'un error del programari.
 Informeu-ne a un administrador, fent-li arribar l'adreça URL.",
 'missingarticle-rev'   => '(revisió#: $1)',
+'missingarticle-diff'  => '(dif: $1, $2)',
 'readonly_lag'         => "La base de dades s'ha bloquejat automàticament mentre els servidors esclaus se sincronitzen amb el mestre",
 'internalerror'        => 'Error intern',
 'internalerror_info'   => 'Error intern: $1',
@@ -771,6 +772,7 @@ Actualment hi ha $1 crides i n'haurien $2 com a molt.",
 # "Undo" feature
 'undo-success' => "Pot desfer-se la modificació. Si us plau, reviseu la comparació de sota per a assegurar-vos que és el que voleu fer; llavors deseu els canvis per a finalitzar la desfeta de l'edició.",
 'undo-failure' => 'No pot desfer-se la modificació perquè hi ha edicions entre mig que hi entren en conflicte.',
+'undo-norev'   => "No s'ha pogut desfer l'edició perquè no existeix o ha estat esborrada.",
 'undo-summary' => 'Es desfà la revisió $1 de [[Special:Contributions/$2|$2]] ([[User talk:$2|Discussió]])',
 
 # Account creation failure
@@ -1061,6 +1063,54 @@ Un asterisc (*) indica que no el podeu treure del grup una vegada l'hàgiu afegi
 'grouppage-bureaucrat'     => '{{ns:project}}:Buròcrates',
 'grouppage-suppress'       => '{{ns:project}}:Oversight',
 
+# Rights
+'right-read'                 => 'Llegir pàgines',
+'right-edit'                 => 'Editar pàgines',
+'right-createpage'           => 'Crear pàgines (que no són de discussió)',
+'right-createtalk'           => 'Crear pàgines de discussió',
+'right-createaccount'        => 'Crear nous comptes',
+'right-minoredit'            => 'Marcar les edicions com a menors',
+'right-move'                 => 'Moure pàgines',
+'right-suppressredirect'     => 'No crear redireccions quan es reanomena una pàgina',
+'right-upload'               => 'Carregar fitxers',
+'right-reupload'             => "Carregar al damunt d'un fitxer existent",
+'right-reupload-own'         => "Carregar al damunt d'un fitxer que havia carregat el propi usuari",
+'right-reupload-shared'      => 'Carregar localment fitxers amb un nom usat en el repostori multimèdia compartit',
+'right-upload_by_url'        => "Carregar un fitxer des de l'adreça URL",
+'right-purge'                => 'Purgar la memòria cau del lloc web sense pàgina de confirmació',
+'right-autoconfirmed'        => 'Editar pàgines semiprotegides',
+'right-bot'                  => 'Ésser tractat com a procés automatitzat',
+'right-nominornewtalk'       => "Les edicions menors en pàgines de discussió d'usuari no generen l'avís de nous missatges",
+'right-apihighlimits'        => "Usar els majors límits de l'API",
+'right-delete'               => 'Esborrar pàgines',
+'right-bigdelete'            => 'Esborrar pàgines amb historials grans',
+'right-deleterevision'       => 'Esborrar i restaurar versions específiques de pàgines',
+'right-deletedhistory'       => 'Veure els historials esborrats sense consultar-ne el text',
+'right-browsearchive'        => 'Cercar pàgines esborrades',
+'right-undelete'             => 'Restaurar pàgines esborrades',
+'right-hiderevision'         => 'Revisar i restaurar les versions amagades als administradors',
+'right-suppress'             => 'Veure registres privats',
+'right-block'                => "Blocar altres usuaris per a impedir-los l'edició",
+'right-blockemail'           => 'Impedir que un usuari envii correu electrònic',
+'right-hideuser'             => "Blocar un nom d'usuari amagant-lo del públic",
+'right-ipblock-exempt'       => "Evitar blocatges d'IP, de rang i automàtics",
+'right-proxyunbannable'      => 'Evitar els blocatges automàtics a proxies',
+'right-protect'              => 'Canviar el nivell de protecció i editar pàgines protegides',
+'right-editprotected'        => 'Editar pàgines protegides (sense protecció de cascada)',
+'right-editinterface'        => "Editar la interfície d'usuari",
+'right-editusercssjs'        => "Editar els fitxer de configuració CSS i JS d'altres usuaris",
+'right-rollback'             => "Revertir ràpidament l'últim editor d'una pàgina particular",
+'right-markbotedits'         => 'Marcar les reversions com a edicions de bot',
+'right-import'               => "Importar pàgines d'altres wikis",
+'right-importupload'         => "Importar pàgines carregant-les d'un fitxer",
+'right-patrol'               => 'Marcar com a patrullades les edicions',
+'right-unwatchedpages'       => 'Veure la llista de les pàgines no vigilades',
+'right-trackback'            => 'Trametre un trackback',
+'right-mergehistory'         => "Fusionar l'historial de les pàgines",
+'right-userrights'           => 'Editar els drets dels usuaris',
+'right-userrights-interwiki' => "Editar els drets dels usuaris d'altres wikis",
+'right-siteadmin'            => 'Blocar i desblocar la base de dades',
+
 # User rights log
 'rightslog'      => "Registre dels permisos d'usuari",
 'rightslogtext'  => "Aquest és un registre de canvis dels permisos d'usuari.",
@@ -1324,6 +1374,7 @@ Cada fila conté enllaços a la segona i tercera redirecció, així com la prime
 
 'withoutinterwiki'         => 'Pàgines sense enllaços a altres llengües',
 'withoutinterwiki-summary' => "Les pàgines següents no enllacen a versions d'altres llengües:",
+'withoutinterwiki-legend'  => 'Prefix',
 'withoutinterwiki-submit'  => 'Mostra',
 
 'fewestrevisions' => 'Pàgines amb menys revisions',
@@ -1423,7 +1474,8 @@ Podeu reduir l'extensió seleccionant el tipus de identificació, el nom del usu
 
 # Special:Listgrouprights
 'listgrouprights'          => "Drets dels grups d'usuaris",
-'listgrouprights-summary'  => "A continuació hi ha una llista dels grups d'usuaris definits al wiki, així com dels seus drets d'accés associats.",
+'listgrouprights-summary'  => "A continuació hi ha una llista dels grups d'usuaris definits al wiki, així com dels seus drets d'accés associats.
+Trobareu més informació d'aquest drets individuals [[{{MediaWiki:Listgrouprights-helppage}}|aquí]].",
 'listgrouprights-group'    => 'Grup',
 'listgrouprights-rights'   => 'Drets',
 'listgrouprights-helppage' => 'Help:Drets del grup',

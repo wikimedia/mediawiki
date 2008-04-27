@@ -1,9 +1,12 @@
 <?php
-/**
- * This is the default Ripuarian localisation file for ksh
- * Version: 17. January 2007
- * The majority of users are bilingual in Kölsch plus German, so use German as fallback.
+/** Ripoarisch (Ripoarisch)
+ *
+ * @addtogroup Language
+ *
+ * @author Caesius noh en Idee vum Manes
+ * @author Purodha
  */
+
 /**
  * Sources:
  * The following expressions are based on the Kölsch dictionaries: 
@@ -121,6 +124,7 @@ $messages = array(
 'tog-editwidth'               => 'Maach dat Feld zom Tex enjevve su breid wie et jeiht',
 'tog-watchcreations'          => 'Dun de Sigge, die ich neu aanläje, för ming Oppassliss vürschlage',
 'tog-watchdefault'            => 'Dun de Sigge för ming Oppassliss vürschlage, die ich aanpacke un ändere',
+'tog-watchmoves'              => 'Selfs oemjenante Sick automatisch foer drop optopasse fuerschlare',
 'tog-minordefault'            => 'Dun all ming Änderunge jedes Mol als klein Mini-Änderunge vürschlage',
 'tog-previewontop'            => 'Zeich de Vör-Aansich üvver däm Feld för dä Tex enzejevve aan.',
 'tog-previewonfirst'          => 'Zeich de Vör-Aansich tirek för et eetste Mol beim Bearbeide aan',
@@ -138,64 +142,50 @@ $messages = array(
 'tog-forceeditsummary'        => 'Froch noh, wann en däm Feld „Koot zosammejefass, Quell“ beim Avspeichere nix dren steiht',
 'tog-watchlisthideown'        => 'Dun ming eije Änderunge <strong>nit</strong> en minger Oppassliss aanzeije',
 'tog-watchlisthidebots'       => 'Dun jedes Mol dä Bots ehr Änderunge <strong>nit</strong> en minger Oppassliss zeije',
-'tog-nolangconversion'        => 'Disable variants conversion',
 
 'underline-always'  => 'jo, jedes Mol',
 'underline-never'   => 'nä',
 'underline-default' => 'nemm dem Brauser sing Enstellung',
 
-'skinpreview' => '(Preview)',
-
 # Dates
-'sunday'        => 'Sonndaach',
-'monday'        => 'Mondaach',
-'tuesday'       => 'Dingsdaach',
-'wednesday'     => 'Meddwoch',
-'thursday'      => 'Donnersdaach',
-'friday'        => 'Friedaach',
-'saturday'      => 'Samsdaach',
-'sun'           => 'So.',
-'mon'           => 'Mo.',
-'tue'           => 'Di.',
-'wed'           => 'Me.',
-'thu'           => 'Do.',
-'fri'           => 'Fr.',
-'sat'           => 'Sa.',
-'january'       => 'Janewar',
-'february'      => 'Febrewar',
-'march'         => 'Määz',
-'april'         => 'Aprel',
-'may_long'      => 'Mai',
-'june'          => 'Juni',
-'july'          => 'Juli',
-'august'        => 'Aujuss',
-'september'     => 'September',
-'october'       => 'Oktober',
-'november'      => 'November',
-'december'      => 'Dezember',
-'january-gen'   => 'Janewar',
-'february-gen'  => 'Febrewar',
-'march-gen'     => 'Määz',
-'april-gen'     => 'Aprel',
-'june-gen'      => 'Juni',
-'july-gen'      => 'Juli',
-'august-gen'    => 'Aujuss',
-'september-gen' => 'September',
-'october-gen'   => 'Oktober',
-'november-gen'  => 'November',
-'december-gen'  => 'Dezember',
-'jan'           => 'Jan',
-'feb'           => 'Feb',
-'mar'           => 'Mäz',
-'apr'           => 'Apr',
-'may'           => 'Mai',
-'jun'           => 'Jun',
-'jul'           => 'Jul',
-'aug'           => 'Auj',
-'sep'           => 'Sep',
-'oct'           => 'Okt',
-'nov'           => 'Nov',
-'dec'           => 'Dez',
+'sunday'       => 'Sonndaach',
+'monday'       => 'Mondaach',
+'tuesday'      => 'Dingsdaach',
+'wednesday'    => 'Meddwoch',
+'thursday'     => 'Donnersdaach',
+'friday'       => 'Friedaach',
+'saturday'     => 'Samsdaach',
+'sun'          => 'So.',
+'mon'          => 'Mo.',
+'tue'          => 'Di.',
+'wed'          => 'Me.',
+'thu'          => 'Do.',
+'fri'          => 'Fr.',
+'sat'          => 'Sa.',
+'january'      => 'Janewar',
+'february'     => 'Febrewar',
+'march'        => 'Määz',
+'april'        => 'Aprel',
+'may_long'     => 'Mai',
+'june'         => 'Juni',
+'july'         => 'Juli',
+'august'       => 'Aujuss',
+'october'      => 'Oktober',
+'december'     => 'Dezember',
+'january-gen'  => 'Janewar',
+'february-gen' => 'Febrewar',
+'march-gen'    => 'Määz',
+'april-gen'    => 'Aprel',
+'june-gen'     => 'Juni',
+'july-gen'     => 'Juli',
+'august-gen'   => 'Aujuss',
+'october-gen'  => 'Oktober',
+'december-gen' => 'Dezember',
+'mar'          => 'Mäz',
+'may'          => 'Mai',
+'aug'          => 'Auj',
+'oct'          => 'Okt',
+'dec'          => 'Dez',
 
 # Categories related messages
 'categories'             => 'Saachjruppe',
@@ -247,7 +237,6 @@ $messages = array(
 'history'           => 'Versione',
 'history_short'     => 'Versione',
 'updatedmarker'     => '(verändert)',
-'info_short'        => 'Information',
 'printableversion'  => 'För ze Drocke',
 'permalink'         => 'Als Permalink',
 'print'             => 'För ze Drocke',
@@ -300,8 +289,6 @@ $messages = array(
 'disclaimerpage'       => 'Project:Impressum',
 'edithelp'             => 'Hölp för et Bearbeide',
 'edithelppage'         => 'Help:Hölp',
-'faq'                  => 'FAQ',
-'faqpage'              => 'Project:FAQ',
 'helppage'             => 'Help:Hölp',
 'mainpage'             => 'Haupsigg',
 'mainpage-description' => 'Haupsigg',
@@ -322,8 +309,6 @@ $messages = array(
 'versionrequired'     => 'De Version $1 vun MediaWiki Soffwär es nüdich',
 'versionrequiredtext' => 'De Version $1 vun MediaWiki Soffwär es nüdich, öm die Sigg hee bruche ze künne. Süch op [[Special:Version|de Versionssigg]], wat mer hee för ene Soffwärstand han.',
 
-'ok'                      => 'OK',
-'pagetitle'               => '$1 - {{SITENAME}}',
 'retrievedfrom'           => 'Die Sigg hee stamp us „$1“.',
 'youhavenewmessages'      => 'Do häs $1 ($2).',
 'newmessageslink'         => 'neu Metdeilunge op Dinger Klaafsigg',
@@ -338,7 +323,6 @@ $messages = array(
 'thisisdeleted'           => '$1 - aanluure oder widder zeröckholle?',
 'viewdeleted'             => '$1 aanzeije?',
 'restorelink'             => '{{PLURAL:$1|eije fottjeschmesse Änderung|$1 fottjeschmesse Änderunge}}',
-'feedlinks'               => 'Feed:',
 'feed-invalid'            => 'Esu en Zoot Abonnemang jitt et nit.',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
@@ -718,7 +702,6 @@ op die URL, die Dich herjebraht hät, die weed verkihrt sin, oder se es villeich
 fottjeschmesse hät?',
 'currentrev'          => 'Neuste Version',
 'revisionasof'        => 'Version vum $1',
-'revision-info'       => 'Revision as of $1 by $2',
 'previousrevision'    => 'â† De Revision dovör zeije',
 'nextrevision'        => 'De Version donoh zeije â†’',
 'currentrevisionlink' => 'De neuste Version',
@@ -773,7 +756,6 @@ dem Wiki singe Installation dat anders fassjelaht woode es.',
 'difference'              => '(Ungerscheed zwesche de Versione)',
 'lineno'                  => 'Reih $1:',
 'compareselectedversions' => 'Dun de markeete Version verjliche',
-'editundo'                => 'undo',
 
 # Search results
 'searchresults'         => 'Wat beim Söke eruskom',
@@ -807,7 +789,6 @@ dat dänne ihr Daate topaktuell sin,
 
 # Preferences page
 'preferences'              => 'ming Enstellunge',
-'mypreferences'            => 'My preferences',
 'prefsnologin'             => 'Nit Enjelogg',
 'prefsnologintext'         => 'Do mööts ald [[Special:Userlogin|enjelogg]] sin, öm Ding Enstellunge ze ändere.',
 'prefsreset'               => 'De Enstellunge woodte jetz op Standard zeröck jesatz.',
@@ -884,16 +865,12 @@ Wiki-Köbes, enem Sörver-Minsch, oder luur ens en de
 
 # Groups
 'group'            => 'Jrupp:',
-'group-bot'        => 'Bots',
 'group-sysop'      => 'Wiki Köbese',
 'group-bureaucrat' => 'Bürrokrade',
-'group-all'        => '(all)',
 
-'group-bot-member'        => 'Bot',
 'group-sysop-member'      => 'Wiki Köbes',
 'group-bureaucrat-member' => 'Bürrokrad',
 
-'grouppage-bot'        => '{{ns:project}}:Bots',
 'grouppage-sysop'      => '{{ns:project}}:Wiki Köbes',
 'grouppage-bureaucrat' => '{{ns:project}}:Bürrokrad',
 
@@ -923,7 +900,6 @@ Bürrokrade, Stewards, â€¦ kanns De nohlese, wat domet es.',
 'hide'                              => 'Usblende:',
 'show'                              => 'Zeije:',
 'minoreditletter'                   => 'M',
-'newpageletter'                     => 'N',
 'boteditletter'                     => 'B',
 'number_of_watching_users_pageview' => '[$1 Oppasser]',
 'rc_categories'                     => 'Nor de Saachjruppe (met „|“ dozwesche):',
@@ -1007,20 +983,16 @@ En dä Datei stich e Kompjutervirus!
 De Einzelheite: $1',
 'sourcefilename'              => 'Datei zem huhlade:',
 'destfilename'                => 'Unger däm Dateiname avspeichere:',
-'watchthisupload'             => 'Watch this page',
 'filewasdeleted'              => 'Unger däm Name wood ald ens en Datei huhjelade. Die es enzwesche ävver widder fottjeschmesse woode. Luur leever eets ens en et $1 ih dat De se dann avspeichere deis.',
 
-'upload-proto-error'      => 'Verkihrt Protokoll',
-'upload-proto-error-text' => 'Remote upload requires URLs beginning with <code>http://</code> or <code>ftp://</code>.',
-'upload-file-error'       => 'Internal error',
-'upload-file-error-text'  => 'Ene internal error es passeet beim Aanläje vun en Datei om Server.  Verzäll et enem system administrator.',
-'upload-misc-error'       => 'Dat Huhlaade jing donevve',
-'upload-misc-error-text'  => 'Dat Huhlaade jing donevve. Mer wesse nit woröm.  Pröf de URL un versök et noch ens.  Wann et nit flupp, verzäll et enem system administrator.',
+'upload-proto-error'     => 'Verkihrt Protokoll',
+'upload-file-error-text' => 'Ene internal error es passeet beim Aanläje vun en Datei om Server.  Verzäll et enem system administrator.',
+'upload-misc-error'      => 'Dat Huhlaade jing donevve',
+'upload-misc-error-text' => 'Dat Huhlaade jing donevve. Mer wesse nit woröm.  Pröf de URL un versök et noch ens.  Wann et nit flupp, verzäll et enem system administrator.',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => "Couldn't reach URL",
 'upload-curl-error6-text'  => 'The URL provided could not be reached.  Please double-check that the URL is correct and the site is up.',
-'upload-curl-error28'      => 'Upload timeout',
 'upload-curl-error28-text' => 'The site took too long to respond. Please check the site is up, wait a short while and try again. You may want to try at a less busy time.',
 
 'license'            => 'Lizenz:',
@@ -1033,13 +1005,11 @@ De Einzelheite: $1',
 'imgfile'               => 'Datei',
 'imagelist'             => 'Belder, Tön, uew. (all)',
 'imagelist_date'        => 'Datum',
-'imagelist_name'        => 'Name',
 'imagelist_user'        => 'Metmaacher',
 'imagelist_size'        => 'Byte',
 'imagelist_description' => 'Wat es op däm Beld drop?',
 
 # Image description page
-'imagelinks'                => 'Links',
 'linkstoimage'              => 'Hee kumme de Sigge, die op die Datei linke dun:',
 'nolinkstoimage'            => 'Nix link op hee die Datei.',
 'sharedupload'              => 'De Datei es esu parat jelaht, dat se en diverse, ungerscheedlije Projekte jebruch wääde kann.',
@@ -1523,7 +1493,6 @@ zo jroße Lass för dä Sörver.',
 
 # Namespace 8 related
 'allmessages'               => 'All Tex, Baustein un Aanzeije vum Wiki-System',
-'allmessagesname'           => 'Name',
 'allmessagesdefault'        => 'Dä standaadmäßije Tex',
 'allmessagescurrent'        => 'Esu es dä Tex jetz',
 'allmessagestext'           => 'Hee kütt en Liss met Texte, Texstöck, un Nachrichte em Appachtemeng „MediaWiki:“',
@@ -1580,9 +1549,6 @@ Metmaacher Name vun de Schriever wääde dobei metjenomme. All de Trans Wiki Emp
 # Stylesheets
 'common.css'   => '/** CSS hee aan dä Stell hät Uswirkunge op alle Skins */',
 'monobook.css' => '/** CSS hee aan dä Stell hät Uswirkunge op alle Monobook Skins vun de janze Site */',
-
-# Scripts
-'common.js' => '/* Any JavaScript here will be loaded for all users on every page load. */',
 
 # Metadata
 'nodublincore'      => 'De RDF_Meta_Daate vun de „Dublin Core“ Aat sin avjeschalt.',
@@ -1677,10 +1643,7 @@ is collapsed. Others will be hidden by default.
 'edit-externally-help' => 'Luur op [http://meta.wikimedia.org/wiki/Help:External_editors Installationsanweisungen] noh Hinwies, wie mer esu en extern Projramm opsetz un installeere deit.',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'all',
-'imagelistall'     => 'all',
-'watchlistall2'    => 'Alles',
-'namespacesall'    => 'all',
+'watchlistall2' => 'Alles',
 
 # E-mail address confirmation
 'confirmemail'            => 'E-Mail Adress bestätije',
@@ -1747,7 +1710,6 @@ Trackbacks för dä Atikkel hee:<br />
 „<strong>$1</strong>“
 </div>',
 'trackbackremove'   => ' ([$1 Fottschmieße])',
-'trackbacklink'     => 'Trackback',
 'trackbackdeleteok' => 'Trackback es fottjeschmesse.',
 
 # Delete conflict
@@ -1792,7 +1754,6 @@ $1',
 
 # Auto-summaries
 'autosumm-blank'   => 'Dä janze Enhald vun dä Sigg fottjemaht',
-'autosumm-replace' => "Replacing page with '$1'",
 'autoredircomment' => 'Leit öm op „[[$1]]“',
 'autosumm-new'     => 'Neu Sigg: $1',
 

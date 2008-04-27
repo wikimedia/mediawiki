@@ -220,7 +220,12 @@ Chek fan i dineletrea, pat fa\'tinas un kuenta nuebu.',
 'nosuchusershort'         => 'Tåya\' na muna\'sesetbi as "<nowiki>$1</nowiki>".
 Chek fan i dineletrea.',
 'nouserspecified'         => "Un nesita manayek i na'an muna'sesetbi.",
+'wrongpassword'           => "Lachi i password ni tinige'-mu. Pot fabot, chagi fan ta'lo.",
+'wrongpasswordempty'      => "Ti mamo'lu hao password. Pot fabot, chagi fan ta'lo.",
+'passwordtooshort'        => "Lachi pat mampos kadada' iyo-mu password.
+Na'seguro na mas ki $1 letras ha' ya ti parehu ha' yan i na'an-mu ni muna'setbi.",
 'mailmypassword'          => "Na'e-mail password",
+'passwordremindertitle'   => 'I nuebu na password temporårio para {{SITENAME}}',
 'noemail'                 => "Tåya' e-mail address tinige' papa' ni muna'sesetbi as \"\$1\".",
 'passwordsent'            => 'Mana\'hanague hao ni password nuebu gi iyo-mu e-mail address ni marehistra nu "$1".
 Pot fabot na\'log in despues di un recibi ha\'.',
@@ -238,6 +243,7 @@ Pot fabot na\'log in despues di un recibi ha\'.',
 'extlink_tip'     => 'Inachetton sanhiyong (munga mamalefa ni http://)',
 'headline_sample' => "Tinige' i titulo mo'na",
 'headline_tip'    => "Titulon nibet mina'dos",
+'math_sample'     => "Po'lo i fotmula mågi",
 'math_tip'        => 'Fotmulan matematika (LaTeX)',
 'image_tip'       => "Mana'halom na atkibu",
 'media_tip'       => 'Inachetton atkibu',
@@ -391,7 +397,7 @@ Siña un [[:\$1|fa'tinas i påhina]].",
 'mostcategories'          => 'Påhina siha ni mas meggai na katigoria',
 'mostimages'              => 'Aktibu siha ni mas umachetton',
 'mostrevisions'           => 'Påhina siha ni mas meggai na tinilaika',
-'shortpages'              => 'Mangisot na påhina siha',
+'shortpages'              => "Mankadada' na påhina siha",
 'longpages'               => "I mananåkko' na påhina siha",
 'deadendpages'            => 'Påhina siha ni taiinachetton',
 'protectedpages'          => 'Påhina siha ni manmaprotehi',
@@ -501,7 +507,7 @@ Chek $2 para i historian muna\'suha gi halacha.',
 'blocklogpage'       => "Chomma' i log",
 
 # Move page
-'movepagetext' => "Anggen un usa i sigiente fotma, para un tulaika i na'an i påhina, kontodu historia-ña.
+'movepagetext'   => "Anggen un usa i sigiente fotma, para un tulaika i na'an i påhina, kontodu historia-ña.
 Madirihi i na'an orihinat para i nuebu.
 Ti matulaika i inachetton siha ni umachetton yan i na'an orihinat;
 na'seguro na un chek kao guåha i mandopble pat manmayulang na inachetton.
@@ -512,9 +518,14 @@ Na'nota fan na anggen guåha esta otru påhina mafa'na'an i titulo nuebu, '''ti'
 '''Adahi!'''
 Fa'na'an tinilaika dinidok yan ti maekspekta sempre anggen mageftungo' i påhina;
 na'seguro fan na un komprende i hiniyong i bida-mu sempre.",
-'1movedto2'    => 'Masuha ginen [[$1]] påra [[$2]]',
-'movelogpage'  => 'Suha i log',
-'revertmove'   => 'tulaika tatte',
+'movearticle'    => 'Suha i påhina:',
+'newtitle'       => 'Para i nuebu na titulo:',
+'move-watch'     => 'Pulan este na påhina',
+'movepagebtn'    => 'Suha i påhina',
+'movepage-moved' => '<big>\'\'\'Masuha "$1" para "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'1movedto2'      => 'Masuha ginen [[$1]] påra [[$2]]',
+'movelogpage'    => 'Suha i log',
+'revertmove'     => 'tulaika tatte',
 
 # Export
 'export' => 'Manekspotta påhina',

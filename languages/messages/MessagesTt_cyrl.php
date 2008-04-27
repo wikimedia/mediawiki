@@ -280,6 +280,9 @@ $messages = array(
 # Main script and global functions
 'nosuchaction'      => 'Шулай гамәл юк',
 'nosuchspecialpage' => 'Андый махсус бит юк',
+'nospecialpagetext' => "<big>'''Сез сорый торган махсус бит юк.'''</big>
+
+[[Special:Specialpages|Махсус битләр исемлеге]] кара.",
 
 # General errors
 'error'                => 'Хата',

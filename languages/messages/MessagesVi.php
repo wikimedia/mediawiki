@@ -1032,6 +1032,7 @@ Dấu * có nghĩa là bạn sẽ không thể loại thành viên ra khỏi nh�
 'right-purge'                => 'Tẩy bộ đệm của trang mà không có trang xác nhận',
 'right-autoconfirmed'        => 'Sửa trang bị nửa khóa',
 'right-bot'                  => 'Được đối xử như tác vụ tự động',
+'right-nominornewtalk'       => 'Không báo về tin nhắn mới khi trang thảo luận chỉ được sửa đổi nhỏ',
 'right-apihighlimits'        => 'Sửa dụng giới hạn cao API',
 'right-delete'               => 'Xóa trang',
 'right-bigdelete'            => 'Xóa trang có lịch sử lớn',

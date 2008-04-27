@@ -696,11 +696,13 @@ Bee caghlaaghyn jeant er y duillag shoh as e ghuillag resoonaght ry-akin ayns y 
 'protectedarticle'            => '"[[$1]]" glast',
 'protectcomment'              => 'Cohaggloo:',
 'protectexpiry'               => 'Jerrey:',
+'protect-text'                => 'Foddee oo jeeagh er as arraghey yn rea choadee ayns shoh son y duillag <strong><nowiki>$1</nowiki></strong>.',
 'protect-default'             => '(cadjinit)',
 'protect-level-autoconfirmed' => 'Cur fo ghlass ymmydeyryn neurecortit',
 'protect-level-sysop'         => 'Reireyderyn ynrican',
 'protect-summary-cascade'     => 'spooytey',
 'protect-expiring'            => 'jerrey jeant ec $1 (UTC)',
+'protect-cascade'             => "Cur fo ghlass ny duillagyn t'ayns y duillag shoh (coadee spooytal)",
 'restriction-type'            => 'Kied:',
 'restriction-level'           => 'Rea teorey:',
 
@@ -793,6 +795,8 @@ Bee caghlaaghyn jeant er y duillag shoh as e ghuillag resoonaght ry-akin ayns y 
 'movepage-moved'          => '<big>Va \'\'\'"$1" aa-enmyssit myr "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'movedto'                 => 'aa-enmyssit myr',
 'movetalk'                => 'Scughey yn duillag resoonaght ta cochianglt lesh',
+'talkpagemoved'           => "Va'n duillag resoonaght co`reggyrtagh scughit myrgeddin.",
+'talkpagenotmoved'        => '<strong>Cha</strong> row yn duillag resoonaght co`reggyrtagh scughit.',
 '1movedto2'               => '[[$1]] scughit gys [[$2]]',
 'movelogpage'             => 'Lioar y scughey',
 'movereason'              => 'Fa',

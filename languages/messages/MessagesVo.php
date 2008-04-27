@@ -411,6 +411,8 @@ Guvan, kel äfärmükon vüki, äplänon osi ön mod sököl: $1',
 'missingarticle'       => 'Vödem pada tiädü „"$1"“ no petuvon. Kod atosa nomöfiko binon, das yüm bäldik päsökon ad pad ya pemoüköl.
 
 If ye pad at dabinon, ba etuvol säkädi in nünömasit. Nunolös, begö! osi guvanes, ed i ladeti (URL) tefik.',
+'missingarticle-rev'   => '(fomamanüm: $1)',
+'missingarticle-diff'  => '(Dif: $1, $2)',
 'readonly_lag'         => 'Vük pefärmükon itjäfidiko du dünanünöms slafik kosädons ko mastanünöm.',
 'internalerror'        => 'Pöl ninik',
 'internalerror_info'   => 'Pöl ninik: $1',
@@ -694,6 +696,7 @@ Muton labön vokis läs $2, ab labon anu vokis $1.',
 # "Undo" feature
 'undo-success' => 'Redakam at kanon pasädunön. Reidolös leigodi dono ad fümükön, va vilol vo dunön atosi, e poso dakipolös votükamis ad fisädunön redakami.',
 'undo-failure' => 'No eplöpos ad sädunön redakami at sekü konflits vü redakams vüik.',
+'undo-norev'   => 'No eplöpos ad sädunön redakami at, bi no dabinon u pämoükon.',
 'undo-summary' => 'Äsädunon votükami $1 fa geban: [[Special:Contributions/$2|$2]] ([[User talk:$2|Bespikapad]])',
 
 # Account creation failure
@@ -975,6 +978,33 @@ El * sinifon, das no kanol moükön grupi posä iläükol oni, u güo.',
 'grouppage-bureaucrat'     => '{{ns:project}}:Bürans',
 'grouppage-suppress'       => '{{ns:project}}:Lovelogam',
 
+# Rights
+'right-read'             => 'Reidön padis',
+'right-edit'             => 'Redakön padis',
+'right-createpage'       => 'Jafön padis (no bespikapadis)',
+'right-createtalk'       => 'Jafön bespikapadis',
+'right-createaccount'    => 'Jafön gebanakalis nulik',
+'right-minoredit'        => 'Malön redakamis as püliks.',
+'right-move'             => 'Topätükön padis',
+'right-suppressredirect' => 'No jafön lüodükömi de nem büik posä pad petopätükon',
+'right-upload'           => 'Löpükön ragivis',
+'right-upload_by_url'    => 'Löpükön ragivi se ladet-URL.',
+'right-autoconfirmed'    => 'Redakön padis dilo pejelölis',
+'right-bot'              => 'Palelogön as dun itjäfidik',
+'right-delete'           => 'Moükön padis',
+'right-bigdelete'        => 'Moükön padis labü jenotems lunik',
+'right-deleterevision'   => 'Moükön u sädunön moükami padafomamas pevälöl',
+'right-browsearchive'    => 'Sukön padis pemoüköl',
+'right-undelete'         => 'Sädunön padimoükami',
+'right-block'            => 'Blokön redakamagitäti gebanas votik',
+'right-blockemail'       => 'Blokön gitäti gebana ad sedön penedis leäktronik',
+'right-hideuser'         => 'Blokön gebananemi, klänedölo oni de votikans',
+'right-protect'          => 'Votükön jelanivodis e redakön padis pejelöl',
+'right-editusercssjs'    => 'Redakön ragivis-CSS e -JS gebanas votik',
+'right-patrol'           => 'Zepön redakamis',
+'right-mergehistory'     => 'Kobükön padajenotemis',
+'right-userrights'       => 'Redakön gebanagitätis valik',
+
 # User rights log
 'rightslog'      => 'Jenotalised gebanagitätas',
 'rightslogtext'  => 'Is palisedons votükams gebanagitätas.',
@@ -1235,6 +1265,7 @@ Lunot [http://meta.wikimedia.org/wiki/Help:Job_queue vobodapoodkeda] binon '''\$
 
 'withoutinterwiki'         => 'Pads nen yüms bevüpükik',
 'withoutinterwiki-summary' => 'Pads sököl no yumons lü fomams in püks votik.',
+'withoutinterwiki-legend'  => 'Foyümot',
 'withoutinterwiki-submit'  => 'Jonolöd',
 
 'fewestrevisions' => 'Yegeds labü revids nemödikün',
@@ -1333,10 +1364,12 @@ Ad brefükam lisedi, kanoy välön lisedasoti, gebananemi, u padi tefik.',
 
 # Special:Listgrouprights
 'listgrouprights'          => 'Gitäts gebanagrupa',
-'listgrouprights-summary'  => 'Is palisedons gebanagrups in vük at dabinöls, sa gitäts tefik onsik.',
+'listgrouprights-summary'  => 'Is palisedons gebanagrups in vük at dabinöls, sa gitäts tefik onsik.
+Nüns pluik tefü gebanagitäts patuvons [[{{MediaWiki:Listgrouprights-helppage}}|is]].',
 'listgrouprights-group'    => 'Grup',
 'listgrouprights-rights'   => 'Gitäts',
 'listgrouprights-helppage' => 'Help:Grupagitäts',
+'listgrouprights-members'  => '(lised limanas)',
 
 # E-mail user
 'mailnologin'     => 'Ladet nonik ad sedön',

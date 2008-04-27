@@ -604,9 +604,9 @@ Por favor, ténteo de novo. Se segue sen funcionar, probe a saír do sistema e v
 'token_suffix_mismatch'             => "<strong>Rexeitouse a súa edición porque o seu cliente confundiu os signos de puntuación na edición.
 Rexeitouse a edición para evitar que se corrompa o texto do artigo. Isto pode acontecer porque estea a
 empregar un servizo de ''proxy'' anónimo defectuoso baseado na web.</strong>",
-'editing'                           => 'Editando $1',
-'editingsection'                    => 'Editando sección de "$1"',
-'editingcomment'                    => 'Editando $1 (comentario)',
+'editing'                           => 'Editando "$1"',
+'editingsection'                    => 'Editando unha sección de "$1"',
+'editingcomment'                    => 'Deixando un comentario en "$1"',
 'editconflict'                      => 'Conflito de edición: $1',
 'explainconflict'                   => "Alguén cambiou esta páxina desque comezou a editala.
 A área de texto superior contén o texto da páxina tal e como existe na actualidade.
@@ -662,6 +662,7 @@ Debe ter menos de $2, e agora hai $1.',
 # "Undo" feature
 'undo-success' => 'A edición desfíxose. Por favor a continuación confirme e garde os cambios.',
 'undo-failure' => 'A edición non se pode desfacer debido a un conflito con algunha das edicións intermedias.',
+'undo-norev'   => 'A edición non se pode desfacer porque non existe ou foi eliminada.',
 'undo-summary' => 'Desfíxose a edición $1 de [[Special:Contributions/$2|$2]] ([[User talk:$2|disc.]])',
 
 # Account creation failure
@@ -954,6 +955,17 @@ Un asterisco (*) indica que non pode eliminar o grupo unha vez que o engadiu, e 
 'grouppage-bureaucrat'     => '{{ns:project}}:Burócratas',
 'grouppage-suppress'       => '{{ns:project}}:Supervisor',
 
+# Rights
+'right-read'          => 'Ler páxinas',
+'right-edit'          => 'Editar páxinas',
+'right-createpage'    => 'Crear páxinas (que non son de conversa)',
+'right-createtalk'    => 'Crear páxinas de conversa',
+'right-createaccount' => 'Crear novas contas de usuario',
+'right-minoredit'     => 'Marcar as edicións como pequenas',
+'right-move'          => 'Mover páxinas',
+'right-upload'        => 'Cargar ficheiros',
+'right-delete'        => 'Borrar páxinas',
+
 # User rights log
 'rightslog'      => 'Rexistro de burócrata',
 'rightslogtext'  => 'Este é un rexistro de permisos dos usuarios.',
@@ -1230,6 +1242,7 @@ desde a [[MediaWiki:Disambiguationspage|páxina de homónimos]].",
 
 'withoutinterwiki'         => 'Páxinas sen ligazóns interwiki',
 'withoutinterwiki-summary' => 'Estas páxinas non enlazan coas versións noutras linguas:',
+'withoutinterwiki-legend'  => 'Prefixo',
 'withoutinterwiki-submit'  => 'Amosar',
 
 'fewestrevisions' => 'Artigos con menos revisións',
@@ -1329,7 +1342,8 @@ Pode precisar máis a vista seleccionando o tipo de rexistro, o nome de usuario 
 
 # Special:Listgrouprights
 'listgrouprights'          => 'Dereitos dun usuario segundo o seu grupo',
-'listgrouprights-summary'  => 'A seguinte listaxe mostra os grupos de usuario definidos neste wiki, cos seus dereitos de acceso asociados.',
+'listgrouprights-summary'  => 'A seguinte listaxe mostra os grupos de usuario definidos neste wiki, cos seus dereitos de acceso asociados.
+Información adicional acerca dos dereitos individuais pode ser atopado [[{{MediaWiki:Listgrouprights-helppage}}|aquí]].',
 'listgrouprights-group'    => 'Grupo',
 'listgrouprights-rights'   => 'Dereitos',
 'listgrouprights-helppage' => 'Help:Dereiros do grupo',
