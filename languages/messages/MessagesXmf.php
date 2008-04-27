@@ -128,6 +128,7 @@ $messages = array(
 'otherlanguages'   => 'შხვა ნინეფს',
 'redirectedfrom'   => '(გინოღალულ რე $1-იშე)',
 'redirectpagesub'  => 'გადამისამართ გვერდი',
+'jumpto'           => 'გეგნორთ:',
 'jumptonavigation' => 'ნავიგაცია',
 'jumptosearch'     => 'გორუა',
 
@@ -432,6 +433,7 @@ $messages = array(
 'tooltip-pt-mycontris'            => 'ჩქიმ არძა ხანდა',
 'tooltip-pt-login'                => 'ჯგირი იჸუაფუ თქვან რეგისტრაცია, მორო აუცილებელი ვარე.',
 'tooltip-pt-logout'               => 'გუმულა',
+'tooltip-ca-talk'                 => 'შინაარსიშ გვერდიშ განხილვა',
 'tooltip-ca-edit'                 => 'თქვა შეგილებნა თე გვერდიშ რედაქტირება. რთხიინთ გეუნჭირით ოწმახ რწყებაშ ღილაკიშ გვერდიშ შენახაშა.',
 'tooltip-ca-delete'               => 'თე გვერდიშ შალუა',
 'tooltip-ca-move'                 => 'თე გვერდიშ გინოღალა',
@@ -441,9 +443,12 @@ $messages = array(
 'tooltip-n-portal'                => 'პროექტიშენი, მუშ ქიმინუა შეგილებჷნა, სოდეთ ძირჷნთ',
 'tooltip-n-currentevents'         => 'ქიჩინით რსული ინფორმაცია ასეიან მოვლენეფიშენი',
 'tooltip-n-recentchanges'         => 'ვიკის ბოლო თირუეფ',
+'tooltip-n-randompage'            => 'ქუმოძირ ნებისმიერ გვერდ',
 'tooltip-n-help'                  => 'გვერდ, სოდეთ ძირჷნთ.',
 'tooltip-n-sitesupport'           => 'ხუჯ დომკინით',
+'tooltip-t-whatlinkshere'         => 'არძო ვიკი გვერდიშ სია ნამუდგა მიკოკირილ რე თაქ.',
 'tooltip-t-contributions'         => 'ქოძირეთ თე მომხმარებელიშ ხანდა',
+'tooltip-t-upload'                => 'ქიმკაკირ ფაილ',
 'tooltip-t-specialpages'          => 'ირ სპეციალურ გვერდ',
 'tooltip-ca-nstab-user'           => 'მომხმარებელიშ გვერდიშ ძირაფა',
 'tooltip-ca-nstab-project'        => 'პროექტიშ გვერდ',
@@ -464,6 +469,13 @@ $messages = array(
 
 # Special:Newimages
 'newimages' => 'ახალ სურათეფ',
+
+# Bad image list
+'bad_image_list' => 'ფორმატ რე უკულიანიშნერო:
+
+ხვალე გიშნაგორეფს (ბჭკარეფ ნამდგა იჭყაფუ *) მიკიჯინუ.
+ბწკარიშ პირლველ ბუნილ ოკო რდას ლინკ გლახა ფალიშა.
+ნებისმიერ უკულიან ბუნილეფ კინ თი ბწკარს გენიხილებ მუჭოთ გამონაკლის, მუდგა ნიშნენს ნამუდა გვერდეფ სოდგა ფაილეფ შილებე რდას ინლაინს.',
 
 # Metadata
 'metadata'        => 'მეტამონაცემეფ',

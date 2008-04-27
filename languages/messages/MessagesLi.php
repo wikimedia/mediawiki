@@ -11,6 +11,7 @@
  * @author Nike
  * @author לערי ריינהארט
  * @author Tibor
+ * @author Matthias
  */
 
 $fallback = 'nl';
@@ -373,6 +374,8 @@ MySQL brach fout "$3" nao veure: "$4"',
 De verantwoordelijke systeembeheerder gaf hiervoor volgende reden op:
 <p>$1',
 'missingarticle'       => 'De database haet \'n pazjenatèks ("$1") die \'t zou motte vinge neet gevonge. Dit is gein fout in de database, mer waarscjienlik in de software. Meld dit estebleef aan inne adminstrator, mit vermèlding van de URL.',
+'missingarticle-rev'   => '(versienummer: $1)',
+'missingarticle-diff'  => '(Wijziging: $1, $2)',
 'readonly_lag'         => 'De database is automatisch vergrendeld wiele de slave databaseservers synchronisere mèt de master.',
 'internalerror'        => 'Interne fout',
 'internalerror_info'   => 'Interne fout: $1',
@@ -649,6 +652,7 @@ Noe zeen 't d'r $1, terwiel 't d'r minder es $2 motte zeen.",
 # "Undo" feature
 'undo-success' => "Hiej onger stuit de teks wo in de verangering ongedaon gemaak is. Controleer veur 't opslaon of 't resultaot gewins is.",
 'undo-failure' => 'De verangering kòs neet ongedaon gemaak waere waeges angere striedige verangeringe.',
+'undo-norev'   => 'De bewerking kon neet ongedaan gemaak waere, omdat die neet besteet of is verwijderd.',
 'undo-summary' => 'Versie $1 van [[Special:Contributions/$2|$2]] ([[User talk:$2|euverlèk]]) ongedaon gemaak',
 
 # Account creation failure
@@ -934,6 +938,55 @@ Een "*" beteikent detse \'ne gebroeker neet oet \'ne groep kans verwiederen naod
 'grouppage-bureaucrat'     => '{{ns:project}}:Bureaucrate',
 'grouppage-suppress'       => '{{ns:project}}:Euverzich',
 
+# Rights
+'right-read'                 => "Pagina's bekieke",
+'right-edit'                 => "Pagina's bewerke",
+'right-createpage'           => "Pagina's aanmake",
+'right-createtalk'           => "Euverlegpagina's aanmake",
+'right-createaccount'        => 'Nuwe gebroekers aanmake',
+'right-minoredit'            => 'Bewerkinge markere as klein',
+'right-move'                 => "Pagina's hernaome",
+'right-suppressredirect'     => "Een doorverwijzing op de doelpagina verwijdere bie 't hernaome van 'n pagina",
+'right-upload'               => 'Bestande uploade',
+'right-reupload'             => "'n bestaond bestand euversjrieve",
+'right-reupload-own'         => 'Eige bestandsuploads euversjrieve',
+'right-reupload-shared'      => 'Euverride files on the shared media repository locally',
+'right-upload_by_url'        => 'Bestande uploade via een URL',
+'right-purge'                => "De cache veur 'n pagina lege",
+'right-autoconfirmed'        => "Behandeld waere as 'n geregistreerde gebroeker",
+'right-bot'                  => "Behandeld waere as 'n geautomatiseerd proces",
+'right-nominornewtalk'       => "Kleine bewerkinge aan 'n euverlegpagina leide neet tot 'n melding 'nuwe berichte'",
+'right-apihighlimits'        => 'Hoge API-limiete gebroeke',
+'right-delete'               => "Pagina's verwijdere",
+'right-bigdelete'            => "Pagina's mit 'n grote gesjiedenis verwijdere",
+'right-deleterevision'       => "Versies van pagina's verberge",
+'right-deletedhistory'       => 'Verwijderde versies bekieke, zonder te kinne zeen wat verwijderd is',
+'right-browsearchive'        => "Verwijderde pagina's bekieke",
+'right-undelete'             => "Verwijderde pagina's terugplaatse",
+'right-hiderevision'         => 'Verborge versies bekijke en terugplaatse',
+'right-suppress'             => 'Neet-publieke logboke bekieke',
+'right-block'                => 'Angere gebroekers de mogelijkheid te bewerke ontnaeme',
+'right-blockemail'           => "'ne gebroeker 't rech ontnaeme om e-mail te versture",
+'right-hideuser'             => "'ne gebroeker veur de euverige gebroekers verberge",
+'right-ipblock-exempt'       => 'IP-blokkades omzeile',
+'right-proxyunbannable'      => "Blokkades veur proxy's gelde neet",
+'right-protect'              => 'Beveiligingsniveaus wijzige',
+'right-editprotected'        => "Beveiligde pagina's bewerke",
+'right-editinterface'        => 'De gebroekersinterface bewerke',
+'right-editusercssjs'        => 'De CSS- en JS-bestande van angere gebroekers bewerke',
+'right-rollback'             => "Snel de letste bewerking(e) van 'n gebroeker van 'n pagina terugdraaie",
+'right-markbotedits'         => 'Teruggedraaide bewerkinge markere es botbewerkinge',
+'right-import'               => "Pagina's oet angere wiki's importere",
+'right-importupload'         => "Pagina's importere oet 'n bestandsupload",
+'right-patrol'               => 'Bewerkinge es gecontroleerd markere',
+'right-autopatrol'           => 'Bewerkinge waere automatisch es gecontroleerd gemarkeerd',
+'right-unwatchedpages'       => "'n lies mit pagina's die neet op 'n volglies staon bekieke",
+'right-trackback'            => "'n trackback opgeve",
+'right-mergehistory'         => "De gesjiedenis van pagina's samevoege",
+'right-userrights'           => 'Alle gebroekersrechte bewerke',
+'right-userrights-interwiki' => "Gebroekersrechte van gebroekers in angere wiki's wijzige",
+'right-siteadmin'            => 'De database blokkere en weer vriegaeve',
+
 # User rights log
 'rightslog'      => 'Gebroekersrechtelogbook',
 'rightslogtext'  => 'Hiej onger staon de wieziginge in gebroekersrechte.',
@@ -1193,6 +1246,7 @@ Op eder raegel vings te de ierste redirectpazjena, de twiede redirectpazjena en 
 
 'withoutinterwiki'         => 'Interwikiloze pazjenas',
 'withoutinterwiki-summary' => "De volgende pagina's linke neet nao versies in 'n anger taal:",
+'withoutinterwiki-legend'  => 'Veurvoegsel',
 'withoutinterwiki-submit'  => 'Toean',
 
 'fewestrevisions' => 'Artikele met de minste bewerkinge',
@@ -1291,10 +1345,12 @@ Op eder raegel vings te de ierste redirectpazjena, de twiede redirectpazjena en 
 
 # Special:Listgrouprights
 'listgrouprights'          => 'Rechte van gebroekersgruup',
-'listgrouprights-summary'  => 'Op dees pazjena staon de gebroekersgruup in deze wiki besjreve, mit häör biebeheurende rechte.',
+'listgrouprights-summary'  => 'Op dees pazjena staon de gebroekersgruup in deze wiki besjreve, mit häör biebeheurende rechte.
+Infermasie daoreuver vinjse [[{{MediaWiki:Listgrouprights-helppage}}|hiej]].',
 'listgrouprights-group'    => 'Groep',
 'listgrouprights-rights'   => 'Rechte',
 'listgrouprights-helppage' => 'Help:Gebroekersrechte',
+'listgrouprights-members'  => '(lejjerlies)',
 
 # E-mail user
 'mailnologin'     => 'Gein e-mailadres bekènd veur deze gebroeker',

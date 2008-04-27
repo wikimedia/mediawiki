@@ -50,6 +50,7 @@ $messages = array(
 'tog-editondblclick'          => 'Фæрстæ дыкъæппæй ив (JavaScript)',
 'tog-editsection'             => 'Равдис «баив æй» æрвитæн тексты алы хайы дæр',
 'tog-editsectiononrightclick' => 'Сæргондыл рахиз æркъæппæй фарсы хæйттæ ив (JavaScript)',
+'tog-showtoc'                 => 'Сæргæндты номхыгъд æвдис (æртæ сæргондæй фылдæр цы фарсы ис, уым)',
 'tog-rememberpassword'        => 'Системæ бахъуыды кæнæд мæ пароль ацы компьютерыл.',
 'tog-watchcreations'          => 'Æз цы фæрстæ райдайын, уыдонмæ мæ цæст дарын мæ фæнды',
 'tog-watchdefault'            => 'Æз цы фæрстæ ивын, уыдонмæ мæ цæст дарын мæ фæнды',
@@ -201,6 +202,7 @@ $messages = array(
 'versionrequired' => 'Хъæуы MediaWiki-йы версии $1',
 
 'ok'                  => 'Афтæ уæд!',
+'pagetitle'           => '$1 — {{SITENAME}}',
 'youhavenewmessages'  => 'Райстай $1 ($2).',
 'newmessageslink'     => 'ног фыстæгтæ',
 'newmessagesdifflink' => 'фæстаг ивддзинад',
@@ -261,12 +263,16 @@ $messages = array(
 'username'                => 'Регистрацигонд ном:',
 'yourrealname'            => 'Дæ æцæг ном*',
 'yourlanguage'            => 'Техникон фыстыты æвзаг:',
+'yourvariant'             => 'Æвзаджы вариант:',
 'yournick'                => 'Фæсномыг (къухæрфыстытæм):',
 'badsiglength'            => 'Æгæр даргъ къухæрфыст, хъуамæ $1 дамгъæйæ къаддæр уа.',
 'email'                   => 'Эл. посты адрис',
 'loginsuccess'            => 'Ныр та Википедийы архайыс $1, зæгъгæ, ахæм номæй.',
 'wrongpasswordempty'      => 'Пароль афтид уыд. Афтæ нæ баззы, ныффыс-ма исты пароль.',
 'loginlanguagelabel'      => 'Æвзаг: $1',
+
+# Password reset dialog
+'resetpass_text' => '<!-- Бахæсс дæ текст ам -->',
 
 # Edit page toolbar
 'bold_sample'     => 'Ацы текст бæзджын суыдзæн',
@@ -280,6 +286,7 @@ $messages = array(
 'math_tip'        => 'Математикон формулæ (формат LaTeX)',
 
 # Edit pages
+'subject'            => 'Темæ/сæргонд',
 'minoredit'          => 'Ай чысыл ивддзинад у.',
 'watchthis'          => 'Ацы фарсмæ дæ цæст æрдар',
 'savearticle'        => 'Афтæ уæд!',
@@ -406,18 +413,18 @@ $3',
 'emailpage'       => 'Электронон фыстæг йæм барвит',
 
 # Watchlist
-'watchlist'            => 'Дæ цæст кæмæ дарыс, уыцы фæрстæ',
+'watchlist'            => 'Цæстдарды номхыгъд',
 'mywatchlist'          => 'Дæ цæст кæмæ дарыс, уыцы фæрстæ',
 'nowatchlist'          => 'Иу статьямæ дæр дæ цæст нæ дарыс.',
 'watchnologin'         => 'Системæйæн дæхи нæ бацамыдтай',
-'watchnologintext'     => 'Ацы номхыгъд ивынмæ <a href="{{localurle:Специальные:Userlogin}}">хъуамæ дæхи бавдисай системæйæн</a>.',
+'watchnologintext'     => 'Ацы номхыгъд ивынмæ [[{{ns:special}}:Userlogin|хъуамæ дæхи бацамонай системæйæн]].',
 'addedwatch'           => 'Дæ цæст кæмæ дарыс, уыцы статьятæм бафтыд.',
 'watch'                => 'Дæ цæст æрдар',
 'watchthispage'        => 'Ацы фарсмæ дæ цæст æрдар',
 'unwatch'              => 'Мауал дæ цæст дар',
 'watchlist-details'    => '$1 фарсмæ дæ цæст дарыс, дискусситы фæстæмæ.',
 'watchlistcontains'    => 'Дæ цæст $1 фарсмæ дарыс.',
-'wlnote'               => 'Дæлæ афæстаг <b>$2</b> сахаты дæргъы цы $1 ивддзинад(ы) æрцыди, уыдон.',
+'wlnote'               => "Дæлæ афæстаг '''$2 сахаты дæргъы''' цы $1 {{PLURAL:$1|ивддзинад|ивддзинады}} æрцыди.",
 'wlshowlast'           => 'Фæстæг $1 сахаты, $2 боны дæргъы; $3.',
 'watchlist-show-bots'  => 'Роботты куыст равдис',
 'watchlist-hide-bots'  => 'Роботты куыст бамбæхс',
@@ -492,6 +499,12 @@ $3',
 
 # action=purge
 'confirm_purge_button' => 'Афтæ уæд!',
+
+# Size units
+'size-bytes'     => '$1 байт(ы)',
+'size-kilobytes' => '$1 КБ',
+'size-megabytes' => '$1 МБ',
+'size-gigabytes' => '$1 ГБ',
 
 # Watchlist editor
 'watchlistedit-noitems'      => 'Иу фарсмæ дæр нæ дарыс дæ цæст, ацы номхыгъд афтид у.',

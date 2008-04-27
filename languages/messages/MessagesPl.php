@@ -424,7 +424,7 @@ $messages = array(
 'copyrightpage'        => '{{ns:project}}:Prawa_autorskie',
 'currentevents'        => 'Bieżące wydarzenia',
 'currentevents-url'    => 'Project:Bieżące wydarzenia',
-'disclaimers'          => 'Informacje&nbsp;prawne',
+'disclaimers'          => 'Informacje prawne',
 'disclaimerpage'       => 'Project:Informacje prawne',
 'edithelp'             => 'Pomoc w edycji',
 'edithelppage'         => 'Help:Jak edytować stronę',
@@ -857,6 +857,7 @@ Powinno ich być mniej niż $2, a jest obecnie $1.',
 # "Undo" feature
 'undo-success' => 'Edycja może zostać wycofana. Proszę porównać ukazane poniżej różnice między wersjami w celu ich zweryfikowania poprawności, a następnie zapisać zmiany w celu zakończenia operacji.',
 'undo-failure' => 'Edycja nie może zostać wycofana z powodu konfliktu z wersjami pośrednimi.',
+'undo-norev'   => 'Edycja nie może być cofnięta, ponieważ nie istnieje lub została usunięta.',
 'undo-summary' => 'Wycofanie wersji $1 utworzonej przez [[Special:Contributions/$2|$2]] ([[User talk:$2|dyskusja]])',
 
 # Account creation failure
@@ -1148,6 +1149,55 @@ Gwiazdka * informuje, że nie możesz usunąć z grupy po dodaniu do niej lub do
 'grouppage-sysop'          => '{{ns:project}}:Administratorzy',
 'grouppage-bureaucrat'     => '{{ns:project}}:Biurokraci',
 'grouppage-suppress'       => '{{ns:project}}:Rewizorzy',
+
+# Rights
+'right-read'                 => 'Czytanie treści stron',
+'right-edit'                 => 'Edycja stron',
+'right-createpage'           => 'Tworzenie stron (nie będących stronami dyskusji)',
+'right-createtalk'           => 'Tworzenie stron dyskusji',
+'right-createaccount'        => 'Tworzenie kont użytkowników',
+'right-minoredit'            => 'Oznaczanie edycji jako drobnych',
+'right-move'                 => 'Zmiana nazwy stron',
+'right-suppressredirect'     => 'Nie twórz przekierowania ze starej nazwy przy zmianie nazwy strony',
+'right-upload'               => 'Przesyłanie plików na serwer',
+'right-reupload'             => 'Nadpisywanie istniejącego pliku',
+'right-reupload-own'         => 'Nadpisywanie istniejącego pliku przesyłanego przez tego samego użytkownika',
+'right-reupload-shared'      => 'Nadpisywanie lokalne pliku istniejącego we współdzielonych zasobach',
+'right-upload_by_url'        => 'Przesłanie pliku z adresu URL',
+'right-purge'                => 'Czyszczenie pamięci podręcznej stron bez pytania o potwierdzenie',
+'right-autoconfirmed'        => 'Edycja stron częściowo zabezpieczonych',
+'right-bot'                  => 'Użytkownik automatyczny (bot)',
+'right-nominornewtalk'       => 'Dla nowej wiadomości na stronie dyskusji nie oznaczaj edycji jako drobnej',
+'right-apihighlimits'        => 'Użyj ograniczeń wielkości API',
+'right-delete'               => 'Usuwanie stron',
+'right-bigdelete'            => 'Usuwanie stron z długą historią edycji',
+'right-deleterevision'       => 'Usuwanie i odtwarzanie określonej wersji strony',
+'right-deletedhistory'       => 'Podgląd usuniętych wersji, bez przypisanego im tekstu',
+'right-browsearchive'        => 'Przeszukiwanie usuniętych stron',
+'right-undelete'             => 'Odtwarzanie usuniętych stron',
+'right-hiderevision'         => 'Podgląd i odtwarzanie wersji ukrytych przed Administratorami',
+'right-suppress'             => 'Podgląd poufnych rejestrów',
+'right-block'                => 'Blokowanie użytkowników na stronie WWW',
+'right-blockemail'           => 'Blokowanie użytkowników poprzez wysłanie wiadomości e-mail',
+'right-hideuser'             => 'Blokowanie użytkownika, niewidoczne publicznie',
+'right-ipblock-exempt'       => 'Obejście blokad, automatycznych blokad i blokad zakresów, adresów IP',
+'right-proxyunbannable'      => 'Obejście automatycznych blokad proxy',
+'right-protect'              => 'Zmiana poziomu zabezpieczenia i dostęp do edycji zabezpieczonych stron',
+'right-editprotected'        => 'Dostęp do edycji zabezpieczonych stron (bez zabezpieczenia dziedziczonego)',
+'right-editinterface'        => 'Edycja interfejsu użytkowników',
+'right-editusercssjs'        => 'Dostęp do edycji plików CSS i JS innych użytkowników',
+'right-rollback'             => 'Szybkie cofnięcie edycji użytkownika, który jako ostatni edytował jakąś stronę',
+'right-markbotedits'         => 'Oznacz cofnięcie wersji jako edycję bota',
+'right-import'               => 'Import stron z innych wiki',
+'right-importupload'         => 'Import stron poprzez przesłanie pliku',
+'right-patrol'               => 'Oznaczanie edycji jako „sprawdzone”',
+'right-autopatrol'           => 'Edycje zostaną automatycznie oznaczone jako „sprawdzone”',
+'right-unwatchedpages'       => 'Podgląd listy stron nieobserwowanych',
+'right-trackback'            => 'Wysyłanie trackback',
+'right-mergehistory'         => 'Łączenie historii edycji stron',
+'right-userrights'           => 'Edycja uprawnień wszystkich użytkowników',
+'right-userrights-interwiki' => 'Edycja uprawnień użytkowników innych witryn wiki',
+'right-siteadmin'            => 'Blokowanie i odblokowanie bazy danych',
 
 # User rights log
 'rightslog'      => 'Uprawnienia',
@@ -1446,6 +1496,7 @@ Strona uznawana jest za ujednoznaczniającą jeśli zawiera ona szablon linkowan
 
 'withoutinterwiki'         => 'Strony bez odnośników językowych',
 'withoutinterwiki-summary' => 'Poniższe strony nie odwołują się do innych wersji językowych:',
+'withoutinterwiki-legend'  => 'Prefiks',
 'withoutinterwiki-submit'  => 'Pokaż',
 
 'fewestrevisions' => 'Strony z najmniejszą liczbą wersji',
@@ -1521,7 +1572,7 @@ Strona uznawana jest za ujednoznaczniającą jeśli zawiera ona szablon linkowan
 # Special:Log
 'specialloguserlabel'  => 'Użytkownik',
 'speciallogtitlelabel' => 'Tytuł',
-'log'                  => 'Rejestry operacji',
+'log'                  => 'Rejestr operacji',
 'all-logs-page'        => 'Wszystkie operacje',
 'log-search-legend'    => 'Szukaj w rejestrze',
 'log-search-submit'    => 'Szukaj',
@@ -1553,7 +1604,8 @@ Możesz zawęzić liczbę wyników poprzez wybranie typu rejestru, nazwy użytko
 
 # Special:Listgrouprights
 'listgrouprights'          => 'Uprawnienia grup użytkowników',
-'listgrouprights-summary'  => 'Poniżej znajduje się spis grup użytkowników zdefiniowanych na tej wiki, z wyszczególnieniem przydzielonych im praw dostępu.',
+'listgrouprights-summary'  => 'Poniżej znajduje się spis zdefiniowanych na tej wiki grup użytkowników, z wyszczególnieniem przydzielonych im praw dostępu.
+Szczegółową informację o uprawnieniach odnajdziesz [[{{MediaWiki:Listgrouprights-helppage}}|tutaj]].',
 'listgrouprights-group'    => 'Grupa',
 'listgrouprights-rights'   => 'Uprawnienia',
 'listgrouprights-helppage' => 'Help:Uprawnienia grup użytkowników',
@@ -2582,7 +2634,7 @@ Kod zawarty w linku straci ważność $4.',
 
 # Delete conflict
 'deletedwhileediting' => 'Uwaga! Ta strona została usunięta po tym, jak rozpocząłeś jej edycję!',
-'confirmrecreate'     => "Użytkownik [[User:$1|$1]] ([[User talk:$1|dyskusja]]) usunął ten artykuł po tym jak rozpocząłeś(-aś) jego edycję, podając jako powód usunięcia:
+'confirmrecreate'     => "Użytkownik [[User:$1|$1]] ([[User talk:$1|dyskusja]]) usunął ten artykuł po tym jak rozpocząłeś jego edycję, podając jako powód usunięcia:
 : ''$2''
 Potwierdź chęć ponownego utworzenia tego artykułu.",
 'recreate'            => 'Utwórz ponownie',

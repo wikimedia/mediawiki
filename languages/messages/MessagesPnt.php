@@ -44,7 +44,6 @@ $dateFormats = array(
 	'pnt both' => 'H:i, j xg Y',
 );
 
-
 $messages = array(
 # User preference toggles
 'tog-showhiddencats' => 'Δείξον κρυμμένα κατηγορίας',
@@ -89,10 +88,10 @@ $messages = array(
 'june-gen'      => 'Κερασινού',
 'july-gen'      => 'Χορτοθερί',
 'august-gen'    => 'Αύγουστονος',
-'september-gen' => 'Σταυρίτ',
+'september-gen' => 'Σταυρί',
 'october-gen'   => 'Τρυγομηνά',
-'november-gen'  => 'Αεργίτ',
-'december-gen'  => 'Χριστουγενάρτ',
+'november-gen'  => 'Αεργί',
+'december-gen'  => 'Χριστουγεναρί',
 'jan'           => 'Καλαντ',
 'feb'           => 'Κουντ',
 'mar'           => 'Μάρ',
@@ -112,14 +111,14 @@ $messages = array(
 'pagecategories'                 => '{{PLURAL:$1|Κατηγορίαν|Κατηγορίας}}',
 'category_header'                => 'Σελίδας τη κατηγορίας "$1"',
 'subcategories'                  => 'Υποκατηγορίας',
-'category-media-header'          => 'Μέσα απές σην κατηγορίαν "$1"',
-'category-empty'                 => "''Ατή η κατηγορίαν πα 'κ εχ' νέ σελίδας νέ μέσα.''",
+'category-media-header'          => 'Τα μέσα σην κατηγορίαν "$1" απές',
+'category-empty'                 => "''Αβούτη κατηγορίαν πα 'κ εχ' νέ σελίδας νέ μέσα.''",
 'hidden-categories'              => '{{PLURAL:$1|Κρυμμένον κατηγορίαν|Κρυμμένα κατηγορίας}}',
 'hidden-category-category'       => 'Κρυμμέν κατηγορίας', # Name of the category where hidden categories will be listed
 'category-subcat-count-limited'  => "Η κατηγορίαν ατή έχ' αφκά καικά {{PLURAL:$1|την υποκατηγορίαν|$1 τα υποκατηγορίας}}.",
-'category-article-count'         => "{{PLURAL:$2|Αυτή η κατηγορίαν έχ' την αφκά καικά σελίδαν μαναχόν.| Αφκά καικά {{PLURAL:$1|η σελίδαν εν|$1 τα σελίδας είναι}} σην κατηγορίαν ατέν, απές σο σύνολον τη $2.}}",
+'category-article-count'         => "{{PLURAL:$2|Αβούτη κατηγορίαν έχ' την αφκά καικά σελίδαν μαναχόν.| Αφκά καικά {{PLURAL:$1|η σελίδαν εν|$1 τα σελίδας είναι}} σην κατηγορίαν ατέν, απές σο σύνολον τη $2.}}",
 'category-article-count-limited' => 'Αφκά καικά {{PLURAL:$1|η σελίδαν εν|$1 τα σελίδας είναι}} σην κατηγορίαν ατέν.',
-'category-file-count'            => "{{PLURAL:$2|Αυτή η κατηγορίαν έχ' το αφκά καικά αρχείον μαναχόν.| Αφκά καικά {{PLURAL:$1|το αρχείον εν|$1 τα αρχεία είναι}} σην κατηγορίαν ατέν, απές σο σύνολον τη $2.}}",
+'category-file-count'            => "{{PLURAL:$2|Αβούτη κατηγορίαν έχ' το αφκά καικά αρχείον μαναχόν.| Αφκά καικά {{PLURAL:$1|το αρχείον εν|$1 τα αρχεία είναι}} σην κατηγορίαν ατέν, απές σο σύνολον τη $2.}}",
 'category-file-count-limited'    => "{{PLURAL:$1|Τ' αρχείον|$1 Τ' αρχεία}} αφκά καικά είν' σην κατηγορίαν.",
 'listingcontinuesabbrev'         => 'συνεχίζεται...',
 
@@ -176,6 +175,8 @@ $messages = array(
 'copyrightpage'        => '{{ns:project}}:Δικαιώματα Πνευματή',
 'currentevents'        => 'Ατωριζνά γεγονότα',
 'currentevents-url'    => 'Project:Ατωριζνά γεγονότα',
+'edithelp'             => "Βοήθειαν για τ' αλλαγμαν",
+'edithelppage'         => 'Help:Άλλαγμαν',
 'helppage'             => 'Help:Περιεχόμενα',
 'mainpage'             => 'Αρχικόν σελίδα',
 'mainpage-description' => 'Αρχικόν σελίδα',
@@ -223,15 +224,16 @@ $messages = array(
 'yourpassword'            => 'Σημάδι:',
 'yourpasswordagain'       => "Ξαν' γράψτεν το σημάδι:",
 'login'                   => 'Εμπάτε',
-'nav-login-createaccount' => 'Εμπάτε / Ποίστεν λογαριασμόν',
-'userlogin'               => 'Εμπάτε / Ποίστεν λογαριασμόν',
+'nav-login-createaccount' => 'Εμπάτε / Ποίστεν λογαρίαν',
+'loginprompt'             => "Πρέπ' να έχετε ενεργοποιήσει τα cookies για εμπείτε σο {{SITENAME}}.",
+'userlogin'               => 'Εμπάτε / Ποίστεν λογαρίαν',
 'logout'                  => 'οξουκά',
 'userlogout'              => 'Οξουκά',
 'notloggedin'             => 'Ευρίσκεζνε οξουκά ασή Βικιπαίδειαν',
-'nologin'                 => "Λογαριασμόν 'κ έχετε; $1.",
-'nologinlink'             => 'Ποίστεν λογαριασμόν',
-'createaccount'           => 'Ποίσον λογαριασμόν',
-'gotaccount'              => 'Λογαριασμόν έχετε; $1.',
+'nologin'                 => "Λογαρίαν 'κ έχετε; $1.",
+'nologinlink'             => 'Ποίστεν λογαρίαν',
+'createaccount'           => 'Ποίσον λογαρίαν',
+'gotaccount'              => 'Λογαρίαν έχετε; $1.',
 'gotaccountlink'          => 'Εμπάτε',
 'badretype'               => "Τα σημάδε ντ' εγράψετεν 'κ ταιριάζνε.",
 'username'                => 'Όνεμα χρήστε:',
@@ -240,8 +242,8 @@ $messages = array(
 'loginsuccesstitle'       => "Έντον τ' εσέβεμαν",
 'loginsuccess'            => "'''Εσήβετεν σο {{SITENAME}} ους \"\$1\".'''",
 'mailmypassword'          => 'Αποστολή κωδικού',
-'accountcreated'          => 'Ο λογαριασμόν έντον',
-'createaccount-title'     => 'Δημιουργίαν λογαριασμού για {{SITENAME}}',
+'accountcreated'          => 'Έντον η λογαρίαν',
+'createaccount-title'     => 'Δημιουργίαν λογαρίας για {{SITENAME}}',
 'loginlanguagelabel'      => 'Γλώσσαν: $1',
 
 # Edit page toolbar
@@ -250,9 +252,13 @@ $messages = array(
 'extlink_sample'  => 'http://www.paradeigma.com τίτλος σύνδεσμονος',
 'extlink_tip'     => 'Εξωτερικόν σύνδεσμος (να μην ανασπάλλετε το πρόθεμαν http:// )',
 'headline_sample' => 'Κείμενον τίτλονος',
+'headline_tip'    => 'Δεύτερον τίτλος (επίπεδον 2)',
 'math_sample'     => 'Αδά εισάγετε την φόρμουλαν',
+'math_tip'        => 'Μαθεματικόν φόρμουλα (LaTeX)',
 'nowiki_sample'   => 'Αδακά πα να εισάγετε το μη μορφοποιημένον κείμενον.',
 'nowiki_tip'      => "Ξάι 'κ να τερείται η μορφοποίηση Wiki.",
+'image_tip'       => 'Ενσωματωμένον εικόνα',
+'media_tip'       => 'Σύνδεσμος αρχείατι πολυμεσίων',
 'sig_tip'         => 'Η υπογραφήν εσούν με ώραν κι ημερομηνίαν',
 
 # Edit pages
@@ -276,15 +282,18 @@ $messages = array(
 'template-semiprotected' => '(ημψά-ασπαλιγμένον)',
 
 # History pages
-'currentrev'       => 'Ατωριζνόν μορφήν',
-'revisionasof'     => 'Μορφήν τη $1',
-'previousrevision' => '←Παλαιόν μορφήν',
-'cur'              => 'τρέχουσα',
-'last'             => 'τελευταία',
-'page_first'       => 'πρώτη',
-'page_last'        => 'τελευταία',
-'histfirst'        => "Ασ' όλεα παλαιόν",
-'histlast'         => "Ασ' όλεα καινούρ'",
+'currentrev'          => 'Ατωριζνόν μορφήν',
+'revisionasof'        => 'Μορφήν τη $1',
+'revision-info'       => 'Έκδοση σα $1 ασόν/ασήν $2',
+'previousrevision'    => '←Παλαιόν μορφήν',
+'nextrevision'        => 'Κι άλλο καινούρεον έκδοση→',
+'currentrevisionlink' => 'Ατωριζνόν έκδοση',
+'cur'                 => 'τρέχουσα',
+'last'                => 'τελευταία',
+'page_first'          => 'πρώτη',
+'page_last'           => 'τελευταία',
+'histfirst'           => "Ασ' όλεα παλαιόν",
+'histlast'            => "Ασ' όλεα καινούρ'",
 
 # Revision feed
 'history-feed-item-nocomment' => '$1 σο $2', # user at time
@@ -296,8 +305,8 @@ $messages = array(
 'editundo'                => 'αναίρεση',
 
 # Search results
-'noexactmatch' => "'''Η Βικιπαίδειαν 'κ εχ' σελίδαν με τ' όνεμα \"\$1\".'''
-Μπορείτε να [[:\$1|εφτάτε τη σελίδαν]].",
+'noexactmatch' => "'''Η Βικιπαίδειαν 'κ εχ' σελίδαν με τ' όνεμαν \"\$1\".'''
+Εμπορείτε να [[:\$1|εφτάτε ατέν]].",
 'prevn'        => '$1 προηγουμένων',
 'nextn'        => '$1 επομένων',
 'viewprevnext' => 'Τέρεν ($1) ($2) ($3)',
@@ -326,7 +335,7 @@ $messages = array(
 # Upload
 'upload'        => 'Φόρτωμα αρχείου',
 'uploadbtn'     => 'Φόρτωμα αρχείου',
-'uploadedimage' => 'Έντον το φόρτωμαν τη "[[$1]]"',
+'uploadedimage' => 'Εγέντον το φόρτωμαν τη "[[$1]]"',
 
 # Image description page
 'filehist'            => 'Ιστορικό αρχείου',
@@ -349,6 +358,7 @@ $messages = array(
 'statistics' => 'Στατιστικήν',
 
 # Miscellaneous special pages
+'nlinks'                  => '$1 {{PLURAL:$1|σύνδεσμος|συνδέσμ}}',
 'nmembers'                => '$1 {{PLURAL:$1|μέλος|μέλη}}',
 'lonelypages'             => 'Ορφανά σελίδας',
 'uncategorizedpages'      => "Σελίδας ντο 'κ έχνε κατηγορίαν",
@@ -397,6 +407,7 @@ $messages = array(
 'watch'                => 'Ωρίαγμαν',
 'watchthispage'        => 'Ωρίαν τη σελίδαν',
 'unwatch'              => 'Τέλος τη ωρίαγματη',
+'watchlist-details'    => '{{PLURAL:$1|$1 σελίδα|$1 σελίδας}} ωριάσκουνταν, θέγα τα σελίδας καλάτσεματι.',
 'watchlist-hide-bots'  => "Κρύψον τ' αλλαγάς τη bots",
 'watchlist-hide-own'   => "Κρύψον τ' αλλαγάς 'ιμ",
 'watchlist-hide-minor' => 'Κρύψον τα μικρά αλλαγάς',
@@ -430,7 +441,7 @@ $messages = array(
 'contribsub2'   => 'Για τον/την $1 ($2)',
 'uctop'         => '(υστερνά)',
 
-'sp-contributions-newbies-sub' => 'Για τα καινούρεα τοι λογαριασμούς',
+'sp-contributions-newbies-sub' => 'Για τα καινούρεα τοι λογαρίας',
 
 # What links here
 'whatlinkshere'       => "Ντο δεκνίζ' αδακές",
@@ -476,7 +487,7 @@ $messages = array(
 'tooltip-pt-preferences'          => "Τ' εμά τα προτιμήσεις",
 'tooltip-pt-watchlist'            => "Λίστα με τα σελίδας ντ' ωριάζω",
 'tooltip-pt-mycontris'            => "Λίστα με τα δουλείας ντ' εποίκα",
-'tooltip-pt-login'                => "Μπορείτε νε εφτάτε έναν λογαριασμόν αλλά 'κ πρεπ'.",
+'tooltip-pt-login'                => "Μπορείτε νε εφτάτε λογαρίαν αλλά 'κ πρεπ'.",
 'tooltip-pt-logout'               => 'Απιδεβένετεν τη Βικιπαίδειαν',
 'tooltip-ca-talk'                 => "Γονούσεμαν γι' αβούτον τ' άρθρον",
 'tooltip-ca-edit'                 => "Άλλαγμαν τη σελίδας. Άμαν τερέστεν τ' αλλαγάς πριν θα κρατείτε ατά.",
@@ -497,6 +508,7 @@ $messages = array(
 'tooltip-n-sitesupport'           => 'Βοηθέστεν το έργον.',
 'tooltip-t-whatlinkshere'         => "Ούλ' τ' άρθρα ντο δεκνίζνε σο παρόν το άρθρον",
 'tooltip-t-contributions'         => 'Τερέστεν τη λίσταν με τα συνεισφοράντας τη χρήστε',
+'tooltip-t-emailuser'             => "E-mail σ' αβούτον χρήστεν",
 'tooltip-t-upload'                => 'Φόρτωμα αρχείων',
 'tooltip-t-specialpages'          => 'Κατάλογον με τα ειδικά σελίδας',
 'tooltip-ca-nstab-user'           => 'Τέρεν τη σελίδαν τη χρήστε',

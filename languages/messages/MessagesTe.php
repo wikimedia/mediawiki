@@ -308,6 +308,7 @@ $messages = array(
 'youhavenewmessagesmulti' => '$1లో మీకో సందేశం ఉంది',
 'editsection'             => 'మార్చు',
 'editold'                 => 'మార్చు',
+'viewsourceold'           => 'మూలాన్ని చూడండి',
 'editsectionhint'         => 'విభాగాన్ని మార్చు: $1',
 'toc'                     => 'విషయ సూచిక',
 'showtoc'                 => 'చూపించు',
@@ -375,6 +376,7 @@ $1',
 
 ఒకవేళ ఇప్పుడు జరిగింది ఇవి కాకపోతే, సాఫ్టువేరులో ఏదో లోపాన్ని మీరు కనుక్కున్నట్టే.
 దీన్ని URL తో సహా ఎవరైనా నిర్వాహకునికి తెలియజేయండి.",
+'missingarticle-rev'   => '(కూర్పు#: $1)',
 'readonly_lag'         => 'అనుచర (స్లేవ్) డేటాబేసు సర్వర్లు, ప్రధాన (మాస్టరు) సర్వరును అందుకునేందుకుగాను, డేటాబేసు ఆటోమాటిక్‌గా లాకు అయింది.',
 'internalerror'        => 'అంతర్గత లోపం',
 'internalerror_info'   => 'అంతర్గత లోపం: $1',
@@ -897,11 +899,13 @@ $3 చెప్పిన కారణం: ''$2''",
 'group-bureaucrat'    => 'అధికారులు',
 'group-all'           => '(అందరూ)',
 
+'group-user-member'          => 'వాడుకరి',
 'group-autoconfirmed-member' => 'ఆటోమాటిగ్గా నిర్థారించబడిన వాడుకరి',
 'group-bot-member'           => 'బాట్',
 'group-sysop-member'         => 'నిర్వాహకుడు',
 'group-bureaucrat-member'    => 'అధికారి',
 
+'grouppage-user'          => '{{ns:project}}:వాడుకరులు',
 'grouppage-autoconfirmed' => '{{ns:project}}:ఆటోమాటిగ్గా నిర్థారించబడిన వాడుకరులు',
 'grouppage-bot'           => '{{ns:project}}:బాట్లు',
 'grouppage-sysop'         => '{{ns:project}}:నిర్వాహకులు',
@@ -1258,6 +1262,9 @@ $3 చెప్పిన కారణం: ''$2''",
 'listusersfrom'      => 'ఇక్కడ మొదలుపెట్టి సభ్యులను చూపించు:',
 'listusers-submit'   => 'చూపించు',
 'listusers-noresult' => 'వాడుకరి దొరకలేదు.',
+
+# Special:Listgrouprights
+'listgrouprights-members' => '(సభ్యుల జాబితా)',
 
 # E-mail user
 'mailnologin'     => 'పంపించవలసిన చిరునామా లేదు',
@@ -2369,6 +2376,7 @@ $1',
 
 # Special:SpecialPages
 'specialpages-group-other'       => 'ఇతర ప్రత్యేక పేజీలు',
+'specialpages-group-changes'     => 'ఇటీవలి మార్పులు మరియు దినచర్యలు',
 'specialpages-group-users'       => 'వాడుకర్లు మరియు హక్కులు',
 'specialpages-group-permissions' => 'వాడుకరి అనుమతులు',
 

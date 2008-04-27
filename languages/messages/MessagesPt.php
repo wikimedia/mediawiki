@@ -691,7 +691,7 @@ Por favor, introduza um e valide-o através das suas [[Special:Preferences|prefe
 'accmailtitle'                      => 'Palavra-chave enviada.',
 'accmailtext'                       => "A palavra-chave para '$1' foi enviada para $2.",
 'newarticle'                        => '(Nova)',
-'newarticletext'                    => "Você seguiu um link para uma página que ainda não existe.
+'newarticletext'                    => "Você seguiu uma ligação para uma página que ainda não existe.
 Para criá-la, escreva o seu conteúdo na caixa abaixo
 (veja a [[{{MediaWiki:Helppage}}|página de ajuda]] para mais detalhes).
 Se você chegou até aqui por engano, clique no botão '''voltar''' (ou ''back'') do seu navegador.",

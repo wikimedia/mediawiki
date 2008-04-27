@@ -531,6 +531,7 @@ Kasta met nga ikarim kadakami a bukodmo a sinurat wenno gapuanan daytoy, wenno k
 'protect-legend'        => 'Pasingkedan ti panangsaluad',
 'protectcomment'        => 'Rason no apay a saluadan daytoy a panid',
 'protect-level-sysop'   => 'Sysops laeng',
+'restriction-type'      => 'Pammalubos:',
 
 # Restrictions (nouns)
 'restriction-edit'   => 'Baliwan',
@@ -538,8 +539,9 @@ Kasta met nga ikarim kadakami a bukodmo a sinurat wenno gapuanan daytoy, wenno k
 'restriction-create' => 'Aramiden',
 
 # Undelete
-'undelete'     => 'Kitaen dagiti naikkat a pampanid',
-'undeletepage' => 'Kitaen ken isubli dagiti naikkat a panid',
+'undelete'        => 'Kitaen dagiti naikkat a pampanid',
+'undeletepage'    => 'Kitaen ken isubli dagiti naikkat a panid',
+'viewdeletedpage' => 'Kitaen dagiti naikkat a pampanid',
 
 # Contributions
 'mycontris' => 'dagiti naaramidak',
@@ -552,8 +554,9 @@ Kasta met nga ikarim kadakami a bukodmo a sinurat wenno gapuanan daytoy, wenno k
 'linklistsub'         => '(Listaan dagiti panilpo)',
 
 # Block/unblock
-'ipbotheroption' => 'sabali',
-'blocklink'      => 'pengdan',
+'ipbotheroption'    => 'sabali',
+'blocklink'         => 'pengdan',
+'proxyblocksuccess' => 'Nalpasen.',
 
 # Developer tools
 'lockdb'             => 'Balunetan ti database',
@@ -595,22 +598,40 @@ Kasta met nga ikarim kadakami a bukodmo a sinurat wenno gapuanan daytoy, wenno k
 'filemissing'    => 'Mapukpukaw ti file',
 
 # Tooltip help for the actions
-'tooltip-pt-userpage'    => 'Ti panidko kas agar-aramat',
-'tooltip-pt-mytalk'      => 'Panid pakitungtongak',
-'tooltip-pt-preferences' => 'Dagiti preferenciak',
-'tooltip-pt-watchlist'   => 'Listaan dagiti panid a palpaliiwem ti panagbalbaliwda',
-'tooltip-pt-mycontris'   => 'Listaan dagiti naaramidak',
-'tooltip-pt-logout'      => 'Rummuaren',
-'tooltip-ca-viewsource'  => 'Nasaluadan daytoy a panid. Mabalinmo a kitaen ti taudanna.',
-'tooltip-ca-protect'     => 'Saluadan daytoy a panid',
-'tooltip-ca-delete'      => 'Ikkaten daytoy a panid',
-'tooltip-ca-move'        => 'Iyakar daytoy a panid',
-'tooltip-ca-watch'       => 'Inayon daytoy a panid kadagiti bambantayam',
-'tooltip-ca-unwatch'     => 'Ikkatem daytoy a panid kadagiti bambantayam',
-'tooltip-t-upload'       => 'Agipan iti files',
+'tooltip-pt-userpage'       => 'Ti panidko kas agar-aramat',
+'tooltip-pt-mytalk'         => 'Panid pakitungtongak',
+'tooltip-pt-preferences'    => 'Dagiti preferenciak',
+'tooltip-pt-watchlist'      => 'Listaan dagiti panid a palpaliiwem ti panagbalbaliwda',
+'tooltip-pt-mycontris'      => 'Listaan dagiti naaramidak',
+'tooltip-pt-logout'         => 'Rummuaren',
+'tooltip-ca-viewsource'     => 'Nasaluadan daytoy a panid. Mabalinmo a kitaen ti taudanna.',
+'tooltip-ca-protect'        => 'Saluadan daytoy a panid',
+'tooltip-ca-delete'         => 'Ikkaten daytoy a panid',
+'tooltip-ca-move'           => 'Iyakar daytoy a panid',
+'tooltip-ca-watch'          => 'Inayon daytoy a panid kadagiti bambantayam',
+'tooltip-ca-unwatch'        => 'Ikkatem daytoy a panid kadagiti bambantayam',
+'tooltip-t-upload'          => 'Agipan iti files',
+'tooltip-ca-nstab-category' => 'Kitaen ti panid ti categoria',
+'tooltip-minoredit'         => 'Markaan daytoy a kas bassit a panangbaliw',
+'tooltip-save'              => 'Idulin dagiti panangbalbaliwmo',
+'tooltip-watch'             => 'Inayon daytoy a panid iti listaan dagiti bambantayam',
 
 # Attribution
-'others' => 'dadduma pay',
+'anonymous'        => 'Di am-ammo nga agar-aramat iti {{SITENAME}}',
+'lastmodifiedatby' => 'Daytoy a panid ket naudi a binalbaliwan idi $2, $1 ni $3.', # $1 date, $2 time, $3 user
+'othercontribs'    => 'Naibasar iti obra ni $1.',
+'others'           => 'dadduma pay',
+
+# Info page
+'numedits' => 'Bilang ti panangbaliw (panid): $1',
+
+# Browsing diffs
+'previousdiff' => '← Napalabas a diff',
+'nextdiff'     => 'Sumaruno a diff →',
+
+# Media information
+'thumbsize'       => 'Kakasla kuko a rukod:',
+'widthheightpage' => '$1×$2, $3 a pampanid',
 
 # Special:Newimages
 'noimages' => 'Awan ti makita.',
@@ -620,5 +641,13 @@ Kasta met nga ikarim kadakami a bukodmo a sinurat wenno gapuanan daytoy, wenno k
 # AJAX search
 'hideresults'   => 'Ilemmeng dagiti resulta',
 'useajaxsearch' => 'Agaramat iti AJAX a pagbirok',
+
+# Special:Version
+'version-license'          => 'Lisensia',
+'version-software-product' => 'Produkto',
+
+# Special:SpecialPages
+'specialpages-group-users'       => 'Dagiti agar-aramat ken karkarbengan',
+'specialpages-group-permissions' => 'Dagiti pammalubos ti agar-aramat',
 
 );

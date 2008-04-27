@@ -4,9 +4,10 @@
  * @addtogroup Language
  *
  * @author Asiri wiki
- * @author Nike
  * @author Chandana
  * @author Siebrand
+ * @author Jon Harald Søby
+ * @author Nike
  */
 
 $namespaceNames = array(
@@ -234,6 +235,7 @@ $messages = array(
 'yourpassword'               => 'මුරපදය:',
 'yourpasswordagain'          => 'මුරපදය නැවත ලියන්න:',
 'yourdomainname'             => 'ඔබගේ වසම:',
+'userlogin'                  => 'Log in / ගිණුමක් තනන්න',
 'logout'                     => 'පිටවන්න',
 'nologinlink'                => 'ගිණුමක් තනන්න',
 'createaccount'              => 'ගිණුමක් තනන්න',
@@ -258,8 +260,10 @@ $messages = array(
 'bold_sample'   => 'තදකුරු',
 'bold_tip'      => 'තදකුරු',
 'italic_sample' => 'ඇලකුරු',
+'italic_tip'    => 'ඇලකුරු',
 'link_tip'      => 'අභ්‍යන්තර සබැඳිය',
 'math_tip'      => 'ගණිත සුත්‍ර(LaTeX)',
+'media_tip'     => 'ගොනු සබැඳිය',
 
 # Edit pages
 'summary'           => 'සාරාංශය',
@@ -279,6 +283,10 @@ $messages = array(
 # Revision deletion
 'rev-delundel' => 'පෙන්වන්න/සඟවන්න',
 
+# Search results
+'viewprevnext' => '($1) ($2) ($3) බලන්න',
+'powersearch'  => 'ගැඹුරින් සොයන්න',
+
 # Preferences page
 'mypreferences'  => 'මගේ අභිරුචි',
 'changepassword' => 'මුරපදය වෙනස් කරන්න',
@@ -290,8 +298,11 @@ $messages = array(
 'files'          => 'ගොනු',
 
 # Recent changes
-'recentchanges' => '‍නව වෙනස්වීම්',
-'show'          => 'පෙන්වන්න',
+'recentchanges'   => '‍නව වෙනස්වීම්',
+'rcshowhideminor' => 'සුළු සංස්කරණ $1',
+'rcshowhideanons' => 'නිර්නාමික පරිශීලකයෝ $1',
+'hide'            => 'සඟවන්න',
+'show'            => 'පෙන්වන්න',
 
 # Recent changes linked
 'recentchangeslinked' => 'සබැඳි වෙනස්වීම්',
@@ -300,13 +311,16 @@ $messages = array(
 'upload' => 'ගොනුවක් උඩුගත කිරීම',
 
 # Image description page
+'filehist'          => 'ගොනු ඉතිහාසය',
 'filehist-datetime' => 'දිනය/කාලය',
+'filehist-user'     => 'පරිශීලක',
 
 # Random page
 'randompage' => 'අහඹු පිටුව',
 
 # Miscellaneous special pages
 'specialpages' => 'විශේෂ පිටු',
+'newpages'     => 'අලුත් පිටු',
 'move'         => 'ගෙනයන්න',
 
 # Book sources
@@ -317,6 +331,8 @@ $messages = array(
 'log-search-submit' => 'යන්න',
 
 # Special:Allpages
+'allpages'       => 'සියලු පිටු',
+'alphaindexline' => '$1 සි‍ට $2',
 'allpagessubmit' => 'යන්න',
 
 # Special:Listusers
@@ -329,6 +345,9 @@ $messages = array(
 
 # Undelete
 'undelete-search-submit' => 'සොයන්න',
+
+# Namespace form on various pages
+'namespace' => 'නාමඅවකාශය:',
 
 # Contributions
 'contributions' => 'මේ පරිශීලකයාගේ දායකත්වය',
@@ -344,11 +363,19 @@ $messages = array(
 'allmessagesname' => 'නම',
 
 # Tooltip help for the actions
-'tooltip-ca-delete'  => 'මේ පිටුව මකන්න',
-'tooltip-n-mainpage' => 'මුල් පිටුව‍ට යන්න',
+'tooltip-pt-preferences' => 'මගේ අභිරුචි',
+'tooltip-ca-edit'        => 'ඔබ‍ට මෙම පිටුව සංස්කරණය කල හැක. කරුණාකර සුරැකීමට පෙර පෙරදසුන බොත්තම භාවිතා කරන්න.',
+'tooltip-ca-delete'      => 'මේ පිටුව මකන්න',
+'tooltip-search'         => 'සොයන්න {{SITENAME}}',
+'tooltip-n-mainpage'     => 'මුල් පිටුව‍ට යන්න',
+'tooltip-t-specialpages' => 'සියලු විශේෂ පිටු ලැයිස්තුව',
+'tooltip-save'           => 'ඔබගේ වෙනස් කිරීම් සුරකින්න',
 
 # Special:Newimages
 'ilsubmit' => 'සොයන්න',
+
+# Metadata
+'metadata' => 'පාරදත්ත',
 
 # EXIF tags
 'exif-imagewidth'   => 'පළල',
@@ -360,6 +387,9 @@ $messages = array(
 'exif-subjectdistance-value' => 'මීටර $1',
 
 'exif-focalplaneresolutionunit-2' => 'අඟල්',
+
+# 'all' in various places, this might be different for inflected languages
+'namespacesall' => 'සියල්ල',
 
 # action=purge
 'confirm_purge_button' => 'හරි',

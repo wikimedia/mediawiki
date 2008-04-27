@@ -44,11 +44,11 @@ $linkTrail = '/^([a-zÇĞçğİıÖöŞşÜüÂâÎîÛû]+)(.*)$/sDu';
 
 $messages = array(
 # User preference toggles
-'tog-underline'               => 'Bağlantıların altını çiz',
+'tog-underline'               => 'Bağlantıların altını çiz:',
 'tog-highlightbroken'         => 'Boş bağlantıları <a href="" class="new">bu şekilde</a> (alternatif: bu şekilde<a href="" class="internal">?</a>) göster.',
-'tog-justify'                 => 'Paragraf iki yana yaslayarak ayarla',
-'tog-hideminor'               => 'Küçük değişiklikleri "Son değişiklikler" sayfasında gizle',
-'tog-extendwatchlist'         => 'Gelişmiş izleme listesi',
+'tog-justify'                 => 'Paragrafları iki yana yasla',
+'tog-hideminor'               => '"Son değişiklikler" sayfasında küçük değişiklikleri gizle',
+'tog-extendwatchlist'         => 'İzleme listesini genişlet',
 'tog-usenewrc'                => 'Gelişmiş son değişiklikler listesi (her tarayıcı için uygun değil)',
 'tog-numberheadings'          => 'Başlıkları otomatik numaralandır',
 'tog-showtoolbar'             => 'Değişiklik yaparken yardımcı düğmeleri göster. (JavaScript)',
@@ -1283,6 +1283,8 @@ Yakın zamanda silinenleri görmek için: $2.',
 Son değişikliği yapan: [[User:$3|$3]] ([[User talk:$3|Talk]]).',
 'editcomment'                 => 'Değiştirme notu: "<i>$1</i>" idi.', # only shown if there is an edit comment
 'revertpage'                  => '[[User:$2|$2]] tarafından yapılan değişiklikler geri alınarak, [[User:$1|$1]] tarafından değiştirilmiş önceki sürüm geri getirildi.', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'rollback-success'            => '$1 tarafından yapılan değişiklikler geri alınarak;
+$2 tarafından değiştirilmiş önceki sürüme geri dönüldü.',
 'protectlogpage'              => 'Koruma kayıtları',
 'protectlogtext'              => 'Korumaya alma/kaldırma ile ilgili değişiklikleri görmektesiniz.
 Daha fazla bilgi için [[Project:Koruma altına alınmış sayfa]] sayfasına bakabilirsiniz.',

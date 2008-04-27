@@ -1506,6 +1506,7 @@ $NEWPAGE
 'whatlinkshere-hideredirs' => 'リダイレクトを$1',
 'whatlinkshere-hidetrans'  => 'テンプレート呼出を$1',
 'whatlinkshere-hidelinks'  => 'リンクを$1',
+'whatlinkshere-filters'    => 'フィルタ',
 
 # Block/unblock
 'blockip'                     => '投稿ブロック',
