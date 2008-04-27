@@ -463,8 +463,9 @@ class LoginForm {
 					/* Replace the language object to provide user interface in correct
 					 * language immediately on this first page load.
 					 */
-					global $wgLang;
-					$wgLang = Language::factory( $wgUser->getOption( 'language' ) );
+					global $wgLang, $wgRequest;
+					$code = $wgRequest->getVal( 'uselang', $wgUser->getOption( 'language' ) );
+					$wgLang = Language::factory( $code );
 					return $this->successfulLogin( wfMsg( 'loginsuccess', $wgUser->getName() ) );
 				} else {
 					return $this->cookieRedirectCheck( 'login' );
