@@ -2148,7 +2148,7 @@ class Language {
 		self::$mLocalisationCache[$code] = $cache;
 		if ( !$disableCache ) {
 			$wgMemc->set( $memcKey, $cache );
-			$wgMemc->set( $fbMemcKey, $cache['fallback'] );
+			$wgMemc->set( $fbMemcKey, (string) $cache['fallback'] );
 		}
 
 		wfProfileOut( __METHOD__ );
@@ -2183,17 +2183,18 @@ class Language {
 	 */
 	static function getFallbackFor( $code ) {
 		global $wgMemc;
-		$memcKey = wfMemcKey('fallback', $code );
+		$memcKey = wfMemcKey( 'fallback', $code );
 		$fbcode = $wgMemc->get( $memcKey );
 
-		if ( $fbcode !== null ) {
-			wfDebug( __METHOD__ . ": got fallback for $code from memc: $fbcode\n" );
+		if ( $fbcode !== false ) {
+			wfDebug( __METHOD__ . ": got fallback for $code from memc: '$fbcode'\n" );
+			if ( $fbcode === '' ) $fbcode = false;
 			return $fbcode;
 		}
 		
 		self::loadLocalisation( $code );
 		$fbcode = self::$mLocalisationCache[$code]['fallback'];
-		$wgMemc->set( $memcKey, $fbcode );
+		$wgMemc->set( $memcKey, (string) $fbcode );
 		return $fbcode;
 	}
 
