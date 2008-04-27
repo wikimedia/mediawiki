@@ -349,13 +349,13 @@ class IPBlockForm {
 			$this->BlockCreateAccount, $this->BlockEnableAutoblock, $this->BlockHideName,
 			$this->BlockEmail);
 
-		if ( wfRunHooks('BlockIp', array(&$block, &$wgUser)) ) {
-			$dbw = wfGetDB( DB_MASTER );
-			$dbw->begin();
+		if (wfRunHooks('BlockIp', array(&$block, &$wgUser))) {
+
 			if ( !$block->insert() ) {
-				$dbw->rollback(); // this could be commit as well; zero rows either way
 				return array('ipb_already_blocked', htmlspecialchars($this->BlockAddress));
 			}
+
+			wfRunHooks('BlockIpComplete', array($block, $wgUser));
 
 			# Prepare log parameters
 			$logParams = array();
@@ -365,19 +365,14 @@ class IPBlockForm {
 			# Make log entry, if the name is hidden, put it in the oversight log
 			$log_type = ($this->BlockHideName) ? 'suppress' : 'block';
 			$log = new LogPage( $log_type );
-			$ok = $log->addEntry( 'block', Title::makeTitle( NS_USER, $this->BlockAddress ), $reasonstr, $logParams );
-			# Make sure logging got through
-			if( !$ok ) {
-				$dbw->rollback();
-				return array('databaseerror');
-			}
-			$dbw->commit();
-			wfRunHooks('BlockIpComplete', array($block, $wgUser));
+			$log->addEntry( 'block', Title::makeTitle( NS_USER, $this->BlockAddress ),
+			  $reasonstr, $logParams );
+
 			# Report to the user
 			return array();
-		} else {
-			return array('hookaborted');
 		}
+		else
+			return array('hookaborted');
 	}
 
 	/**

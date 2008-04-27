@@ -73,9 +73,8 @@ class LogPage {
 		$dbw->insert( 'logging', $data, $fname );
 		$newId = $dbw->insertId();
 
-		$ok = ($dbw->affectedRows() > 0);
 		# And update recentchanges
-		if( $ok && $this->updateRecentChanges ) {
+		if( $this->updateRecentChanges ) {
 			# Don't add private logs to RC!
 			if( !isset($wgLogRestrictions[$this->type]) || $wgLogRestrictions[$this->type]=='*' ) {
 				$titleObj = SpecialPage::getTitleFor( 'Log', $this->type );
@@ -83,10 +82,8 @@ class LogPage {
 				RecentChange::notifyLog( $now, $titleObj, $wgUser, $rcComment, '',
 					$this->type, $this->action, $this->target, $this->comment, $this->params, $newId );
 			}
-		} else {
-			wfDebug( "LogPage::saveContent failed to insert row - Error {$dbw->lastErrno()}: {$dbw->lastError()}" );
 		}
-		return $ok;
+		return true;
 	}
 
 	public function getRcComment() {

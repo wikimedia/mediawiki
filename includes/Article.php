@@ -2318,7 +2318,7 @@ class Article {
 
 		# Now that it's safely backed up, delete it
 		$dbw->delete( 'page', array( 'page_id' => $id ), __METHOD__);
-		$ok = ( $dbw->affectedRows() != 0 ); // getArticleId() uses slave, could be laggy
+		$ok = ( $dbw->affectedRows() > 0 ); // getArticleId() uses slave, could be laggy
 		if( !$ok ) {
 			$dbw->rollback();
 			return false;
@@ -2349,6 +2349,7 @@ class Article {
 				array( 'rc_namespace' => $ns, 'rc_title' => $t, 'rc_type != '.RC_LOG ),
 				__METHOD__ );
 		}
+		$dbw->commit();
 
 		# Clear caches
 		Article::onArticleDelete( $this->mTitle );
@@ -2360,13 +2361,9 @@ class Article {
 		# Log the deletion, if the page was suppressed, log it at Oversight instead
 		$logtype = $suppress ? 'suppress' : 'delete';
 		$log = new LogPage( $logtype );
+
 		# Make sure logging got through
-		$ok = $log->addEntry( 'delete', $this->mTitle, $reason, array() );
-		if( !$ok ) {
-			$dbw->rollback();
-			return false;
-		}
-		$dbw->commit();
+		$log->addEntry( 'delete', $this->mTitle, $reason, array() );
 
 		return true;
 	}
