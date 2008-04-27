@@ -216,7 +216,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 13816) Filter by main namespace doesn't work on WhatLinksHere
 * (bug 13822) Fatal error on some pages when calculating subpage subtitle
 * (bug 13824) AJAX search suggestion now works with non-SkinTemplate skins
-* Added 'application/x-dia-diagram' to XML MIME types
+* Added 'application/x-dia-diagram' MediaWiki's known MIME types
 
 === API changes in 1.13 ===
 
