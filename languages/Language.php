@@ -2182,6 +2182,8 @@ class Language {
 	 * Get the fallback for a given language
 	 */
 	static function getFallbackFor( $code ) {
+		if ( $code === 'en' ) return false;
+
 		global $wgMemc;
 		$memcKey = wfMemcKey( 'fallback', $code );
 		$fbcode = $wgMemc->get( $memcKey );
