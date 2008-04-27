@@ -52,8 +52,6 @@ class LogPage {
 	}
 
 	function saveContent() {
-		if( wfReadOnly() ) return false;
-
 		global $wgUser, $wgLogRestrictions;
 		$fname = 'LogPage::saveContent';
 
