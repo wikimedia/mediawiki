@@ -1,9 +1,9 @@
-#Mime type info file.
-#the first mime type in each line is the "main" mime type,
-#the others are aliases for this type
-#the media type is given in upper case and square brackets,
-#like [BITMAP], and must indicate a media type as defined by
-#the MEDIATYPE_xxx constants in Defines.php
+# Mime type info file.
+# the first mime type in each line is the "main" mime type,
+# the others are aliases for this type
+# the media type is given in upper case and square brackets,
+# like [BITMAP], and must indicate a media type as defined by
+# the MEDIATYPE_xxx constants in Defines.php
 
 
 image/gif	[BITMAP]
@@ -24,6 +24,7 @@ image/svg+xml application/svg+xml application/svg image/svg	[DRAWING]
 application/postscript	[DRAWING]
 application/x-latex	[DRAWING]
 application/x-tex	[DRAWING]
+application/x-dia-diagram [DRAWING]
 
 
 audio/mp3 audio/mpeg3 audio/mpeg	[AUDIO]

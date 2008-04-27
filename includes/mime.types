@@ -25,6 +25,7 @@ application/x-cdlink vcd
 application/x-chess-pgn pgn
 application/x-cpio cpio
 application/x-csh csh
+application/x-dia-diagram dia
 application/x-director dcr dir dxr
 application/x-dvi dvi
 application/x-futuresplash spl
