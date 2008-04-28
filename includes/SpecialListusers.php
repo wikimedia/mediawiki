@@ -185,7 +185,7 @@ class UsersPager extends AlphabeticPager {
 	 * @param int $uid
 	 * @return array
 	 */
-	private static function getGroups( $uid ) {
+	protected static function getGroups( $uid ) {
 		$dbr = wfGetDB( DB_SLAVE );
 		$groups = array();
 		$res = $dbr->select( 'user_groups', 'ug_group', array( 'ug_user' => $uid ), __METHOD__ );
