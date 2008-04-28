@@ -73,6 +73,9 @@ class LogPage {
 		$dbw->insert( 'logging', $data, $fname );
 		$newId = $dbw->insertId();
 
+		if( !($dbw->affectedRows() > 0) ) {
+			wfDebugLog( "logging", "LogPage::saveContent failed to insert row - Error {$dbw->lastErrno()}: {$dbw->lastError()}" );
+		}
 		# And update recentchanges
 		if( $this->updateRecentChanges ) {
 			# Don't add private logs to RC!
