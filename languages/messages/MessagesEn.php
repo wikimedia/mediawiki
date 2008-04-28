@@ -2156,6 +2156,7 @@ You can change this page's protection level, but it will not affect the cascadin
 'restriction-edit'   => 'Edit',
 'restriction-move'   => 'Move',
 'restriction-create' => 'Create',
+'restriction-upload' => 'Upload',
 
 # Restriction levels
 'restriction-level-sysop'         => 'full protected',
