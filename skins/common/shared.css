@@ -224,3 +224,6 @@ h4.mw-specialpagesgroup {
 	margin: .3em 0em 0em 0em;
 }
 
+#shared-image-dup, #shared-image-conflict {
+	font-style: italic;
+}
