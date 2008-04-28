@@ -823,6 +823,7 @@ class Article {
 						if( !$this->mRevision->userCan( Revision::DELETED_TEXT ) ) {
 							$wgOut->addWikiMsg( 'rev-deleted-text-permission' );
 							$wgOut->setPageTitle( $this->mTitle->getPrefixedText() );
+							wfProfileOut( __METHOD__ );
 							return;
 						} else {
 							$wgOut->addWikiMsg( 'rev-deleted-text-view' );
