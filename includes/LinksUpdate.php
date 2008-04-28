@@ -47,6 +47,7 @@ class LinksUpdate {
 		$this->mTitle = $title;
 		$this->mId = $title->getArticleID();
 
+		$this->mParserOutput = $parserOutput;
 		$this->mLinks = $parserOutput->getLinks();
 		$this->mImages = $parserOutput->getImages();
 		$this->mTemplates = $parserOutput->getTemplates();
