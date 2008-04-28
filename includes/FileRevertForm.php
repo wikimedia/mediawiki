@@ -38,7 +38,7 @@ class FileRevertForm {
 		} elseif( !$wgUser->isLoggedIn() ) {
 			$wgOut->showErrorPage( 'uploadnologin', 'uploadnologintext' );
 			return;
-		} elseif( !$this->title->userCan( 'edit' ) ) {
+		} elseif( !$this->title->userCan( 'edit' ) || !$this->title->userCan( 'upload' ) ) {
 			// The standard read-only thing doesn't make a whole lot of sense
 			// here; surely it should show the image or something? -- RC
 			$article = new Article( $this->title );

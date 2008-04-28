@@ -436,7 +436,9 @@ class UploadForm {
 		 * If the image is protected, non-sysop users won't be able
 		 * to modify it by uploading a new revision.
 		 */
-		if( !$nt->userCan( 'edit' ) || !$nt->userCan( 'create' ) ) {
+		if( !$nt->userCan( 'edit' ) || 
+				!$nt->userCan( 'create' ) || 
+				!$nt->userCan( 'upload' ) ){
 			return self::PROTECTED_PAGE;
 		}
 
