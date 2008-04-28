@@ -1440,6 +1440,7 @@ $wgMessageStructure = array(
 		'restriction-edit',
 		'restriction-move',
 		'restriction-create',
+		'restriction-upload',
 	),
 	'restriction-levels' => array(
 		'restriction-level-sysop',

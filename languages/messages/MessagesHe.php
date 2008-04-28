@@ -1800,6 +1800,7 @@ $NEWPAGE
 'restriction-edit'   => 'עריכה',
 'restriction-move'   => 'העברה',
 'restriction-create' => 'יצירה',
+'restriction-upload' => 'העלאה',
 
 # Restriction levels
 'restriction-level-sysop'         => 'הגנה מלאה',
