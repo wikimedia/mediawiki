@@ -2217,6 +2217,8 @@ class Article {
 	function doDelete( $reason, $suppress = false ) {
 		global $wgOut, $wgUser;
 		wfDebug( __METHOD__."\n" );
+		
+		$id = $this->getId();
 
 		if (wfRunHooks('ArticleDelete', array(&$this, &$wgUser, &$reason))) {
 			if ( $this->doDeleteArticle( $reason, $suppress ) ) {
@@ -2229,7 +2231,7 @@ class Article {
 
 				$wgOut->addWikiMsg( 'deletedtext', $deleted, $loglink );
 				$wgOut->returnToMain( false );
-				wfRunHooks('ArticleDeleteComplete', array(&$this, &$wgUser, $reason));
+				wfRunHooks('ArticleDeleteComplete', array(&$this, &$wgUser, $reason, $id));
 			} else {
 				$wgOut->showFatalError( wfMsg( 'cannotdelete' ) );
 			}
