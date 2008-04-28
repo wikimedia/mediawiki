@@ -168,7 +168,7 @@ table.os-suggest-results {
 }
 
 td.os-suggest-result, td.os-suggest-result-hl {
-	align: left; 
+	text-align: left; 
 	white-space: nowrap;
 	background-color: white; 
 }

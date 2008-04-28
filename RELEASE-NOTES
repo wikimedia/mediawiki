@@ -217,6 +217,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 13822) Fatal error on some pages when calculating subpage subtitle
 * (bug 13824) AJAX search suggestion now works with non-SkinTemplate skins
 * Added 'application/x-dia-diagram' MediaWiki's known MIME types
+* (bug 13866) skins/common/shared.css - invalid attribute fixing
 
 === API changes in 1.13 ===
 
