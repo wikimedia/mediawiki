@@ -81,6 +81,8 @@ class ImagePage extends Article {
 				$wgOut->addWikiText( $fol );
 			}
 			$wgOut->addHTML( '<div id="shared-image-desc">' . $this->mExtraDescription . '</div>' );
+		} else {
+			$this->checkSharedConflict();
 		}
 
 		$this->closeShowImage();
@@ -370,6 +372,36 @@ EOT
 
 		if ( $descText ) {
 			$this->mExtraDescription = $descText;
+		}
+	}
+
+	function checkSharedConflict() {
+		global $wgOut, $wgUser, $wgUseSharedUploads;
+		if( !$wgUseSharedUploads ) {
+			return;
+		}
+		if( $this->repo->getName() != 'local' ) {
+			return;
+		}
+
+		$repo = RepoGroup::singleton()->getRepoByName( 'shared' );
+		$dupfile = $repo->newFile( $this->img->getTitle() );
+		if( !$dupfile->exists() ) {
+			return;
+		}
+		$same = (
+			($this->img->getSha1() == $dupfile->getSha1()) &&
+			($this->img->getSize() == $dupfile->getSize())
+		);
+
+		$sk = $wgUser->getSkin();
+		$descUrl = $dupfile->getDescriptionUrl();
+		if( $same ) {
+			$link = $sk->makeExternalLink( $descUrl, wfMsg( 'shareduploadduplicate-linktext' ) );
+			$wgOut->addHTML( '<div id="shared-image-dup">' . wfMsgWikiHtml( 'shareduploadduplicate', $link ) . '</div>' );
+		} else {
+			$link = $sk->makeExternalLink( $descUrl, wfMsg( 'shareduploadconflict-linktext' ) );
+			$wgOut->addHTML( '<div id="shared-image-conflict">' . wfMsgWikiHtml( 'shareduploadconflict', $link ) . '</div>' );
 		}
 	}
 

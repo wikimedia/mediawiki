@@ -92,6 +92,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   otherwise just "log in", consistently across skins
 * Special:Shortpages and Special:Longpages now returns pages in all content 
   namespaces, not just NS_MAIN.
+* (bug 889) Improve conflict-handling between shared upload repository (commons) and local one
 
 === Bug fixes in 1.13 ===
 
