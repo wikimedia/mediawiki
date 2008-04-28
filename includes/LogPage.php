@@ -61,6 +61,7 @@ class LogPage {
 
 		$this->timestamp = $now = wfTimestampNow();
 		$data = array(
+			'log_id' => $log_id,
 			'log_type' => $this->type,
 			'log_action' => $this->action,
 			'log_timestamp' => $dbw->timestamp( $now ),
@@ -71,7 +72,7 @@ class LogPage {
 			'log_params' => $this->params
 		);
 		$dbw->insert( 'logging', $data, $fname );
-		$newId = $dbw->insertId();
+		$newId = !is_null($log_id) ? $log_id : $dbw->insertId();
 
 		if( !($dbw->affectedRows() > 0) ) {
 			wfDebugLog( "logging", "LogPage::saveContent failed to insert row - Error {$dbw->lastErrno()}: {$dbw->lastError()}" );
