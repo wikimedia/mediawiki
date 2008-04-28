@@ -1109,7 +1109,8 @@ class Title {
 
 			$intended = $user->mBlock->mAddress;
 
-			$errors[] = array ( ($block->mAuto ? 'autoblockedtext' : 'blockedtext'), $link, $reason, $ip, $name, $blockid, $blockExpiry, $intended, $blockTimestamp );
+			$errors[] = array( ($block->mAuto ? 'autoblockedtext' : 'blockedtext'), $link, $reason, $ip, $name, 
+				$blockid, $blockExpiry, $intended, $blockTimestamp );
 		}
 
 		return $errors;
@@ -1132,6 +1133,7 @@ class Title {
 
 		// Use getUserPermissionsErrors instead
 		if ( !wfRunHooks( 'userCan', array( &$this, &$user, $action, &$result ) ) ) {
+			wfProfileOut( __METHOD__ );
 			return $result ? array() : array( array( 'badaccess-group0' ) );
 		}
 
