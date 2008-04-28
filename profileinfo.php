@@ -44,7 +44,7 @@
 <body>
 <?php
 
-$wgDBadminuser = $wgDBadminpassword = $wgDBserver = $wgDBname = $wgEnableProfileInfo = false;
+$wgDBadminuser = $wgDBadminpassword = $wgDBserver = $wgDBname = $wgEnableProfileInfo = $wgDBprefix = false;
 
 define( 'MW_NO_SETUP', 1 );
 require_once( './includes/WebStart.php' );
@@ -161,7 +161,7 @@ $dbh = mysql_connect($wgDBserver, $wgDBadminuser, $wgDBadminpassword)
 mysql_select_db($wgDBname, $dbh) or die(mysql_error($dbh));
 $res = mysql_query("
 	SELECT pf_count, pf_time, pf_name
-	FROM profiling
+	FROM {$wgDBprefix}profiling
 	ORDER BY pf_name ASC
 ", $dbh) or die("query failed: " . mysql_error());
 
