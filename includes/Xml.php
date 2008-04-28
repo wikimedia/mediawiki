@@ -528,7 +528,7 @@ class Xml {
 	* @param string $submitLabel A message containing a label for the submit button.
 	* @return string HTML form.
 	*/
-	function buildForm( $fields, $submitLabel ) {
+	public static function buildForm( $fields, $submitLabel ) {
 		$form = '';
 		$form .= "<table><tbody>";
 	
@@ -545,7 +545,7 @@ class Xml {
 	
 		$form .= "</tbody></table>";
 	
-		$form .= wfSubmitButton( wfMsg($submitLabel) );
+		$form .= Xml::submitButton( wfMsg($submitLabel) );
 	
 		return $form;
 	}

@@ -862,7 +862,7 @@ class Article {
 				if( !$wasRedirected && $this->isCurrent() ) {
 					$wgOut->setSubtitle( wfMsgHtml( 'redirectpagesub' ) );
 				}
-				$link = $sk->makeLinkObj( $rt, $rt->getFullText() );
+				$link = $sk->makeLinkObj( $rt, htmlspecialchars( $rt->getFullText() ) );
 
 				$wgOut->addHTML( '<img src="'.$imageUrl.'" alt="#REDIRECT " />' .
 				  '<span class="redirectText">'.$link.'</span>' );
