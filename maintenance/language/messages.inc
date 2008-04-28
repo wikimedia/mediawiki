@@ -821,7 +821,6 @@ $wgMessageStructure = array(
 	'group' => array(
 		'group',
 		'group-user',
-		'group-emailconfirmed',
 		'group-autoconfirmed',
 		'group-bot',
 		'group-sysop',
@@ -831,7 +830,6 @@ $wgMessageStructure = array(
 	),
 	'group-member' => array(
 		'group-user-member',
-		'group-emailconfirmed-member',
 		'group-autoconfirmed-member',
 		'group-bot-member',
 		'group-sysop-member',
@@ -840,7 +838,6 @@ $wgMessageStructure = array(
 	),
 	'grouppage' => array(
 		'grouppage-user',
-		'grouppage-emailconfirmed',
 		'grouppage-autoconfirmed',
 		'grouppage-bot',
 		'grouppage-sysop',

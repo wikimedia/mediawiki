@@ -1437,7 +1437,6 @@ A * indicates that you cannot remove the group once you have added it, or vice v
 # Groups
 'group'                => 'Group:',
 'group-user'           => 'Users',
-'group-emailconfirmed' => 'Emailconfirmed Users',
 'group-autoconfirmed'  => 'Autoconfirmed users',
 'group-bot'            => 'Bots',
 'group-sysop'          => 'Sysops',
@@ -1446,7 +1445,6 @@ A * indicates that you cannot remove the group once you have added it, or vice v
 'group-all'            => '(all)',
 
 'group-user-member'           => 'User',
-'group-emailconfirmed-member' => 'Emailconfirmed user',
 'group-autoconfirmed-member'  => 'Autoconfirmed user',
 'group-bot-member'            => 'Bot',
 'group-sysop-member'          => 'Sysop',
@@ -1454,7 +1452,6 @@ A * indicates that you cannot remove the group once you have added it, or vice v
 'group-suppress-member'       => 'Oversight',
 
 'grouppage-user'           => '{{ns:project}}:Users',
-'grouppage-emailconfirmed' => '{{ns:project}}:Emailconfirmed users',
 'grouppage-autoconfirmed'  => '{{ns:project}}:Autoconfirmed users',
 'grouppage-bot'            => '{{ns:project}}:Bots',
 'grouppage-sysop'          => '{{ns:project}}:Administrators',

@@ -1064,7 +1064,6 @@ Wenn du dich mit dem Thema auskennst, kannst du selbst die Seite „[[$1]]“ ve
 # Groups
 'group'                => 'Gruppe:',
 'group-user'           => 'Benutzer',
-'group-emailconfirmed' => 'Benutzer mit bestätigter E-Mail-Adresse',
 'group-autoconfirmed'  => 'Bestätigte Benutzer',
 'group-bot'            => 'Bots',
 'group-sysop'          => 'Administratoren',
@@ -1073,7 +1072,6 @@ Wenn du dich mit dem Thema auskennst, kannst du selbst die Seite „[[$1]]“ ve
 'group-all'            => '(alle)',
 
 'group-user-member'           => 'Benutzer',
-'group-emailconfirmed-member' => 'Benutzer mit bestätigter E-Mail-Adresse',
 'group-autoconfirmed-member'  => 'Bestätigter Benutzer',
 'group-bot-member'            => 'Bot',
 'group-sysop-member'          => 'Administrator',
@@ -1081,7 +1079,6 @@ Wenn du dich mit dem Thema auskennst, kannst du selbst die Seite „[[$1]]“ ve
 'group-suppress-member'       => 'Oversighter',
 
 'grouppage-user'           => '{{ns:project}}:Benutzer',
-'grouppage-emailconfirmed' => '{{ns:project}}:Benutzer mit bestätigter E-Mail-Adresse',
 'grouppage-autoconfirmed'  => '{{ns:project}}:Bestätigte Benutzer',
 'grouppage-bot'            => '{{ns:project}}:Bots',
 'grouppage-sysop'          => '{{ns:project}}:Administratoren',
