@@ -1520,6 +1520,8 @@ class Parser
 		}
 
 		if( is_null( $this->mTitle ) ) {
+			wfProfileOut( $fname );
+			wfProfileOut( $fname.'-setup' );
 			throw new MWException( __METHOD__.": \$this->mTitle is null\n" );
 		}
 		$nottalk = !$this->mTitle->isTalkPage();
@@ -1609,6 +1611,7 @@ class Parser
 			# should be external links.
 			if (preg_match('/^\b(?:' . wfUrlProtocols() . ')/', $m[1])) {
 				$s .= $prefix . '[[' . $line ;
+				wfProfileOut( "$fname-misc" );
 				continue;
 			}
 
