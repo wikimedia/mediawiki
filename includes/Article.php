@@ -808,6 +808,7 @@ class Article {
 			if ( !$this->mTitle->userCanRead() ) {
 				$wgOut->loginToUse();
 				$wgOut->output();
+				wfProfileOut( __METHOD__ );
 				exit;
 			}
 
