@@ -36,7 +36,7 @@
 		padding-right: 0.5em;
 	}
 
-	td.time, td.timep, td.count, td.cpr {
+	td.time, td.timep, td.memory, td.memoryp, td.count, td.cpr {
 		text-align: right;
 	}
 </style>
@@ -74,10 +74,11 @@ class profile_point {
 	var $time;
 	var $children;
 
-	function profile_point($name, $count, $time) {
+	function profile_point($name, $count, $time, $memory ) {
 		$this->name = $name;
 		$this->count = $count;
 		$this->time = $time;
+		$this->memory = $memory;
 		$this->children = array();
 	}
 
@@ -86,7 +87,7 @@ class profile_point {
 	}
 
 	function display($indent = 0.0) {
-		global $expand, $totaltime, $totalcount;
+		global $expand, $totaltime, $totalmemory, $totalcount;
 		usort($this->children, "compare_point");
 
 		$extet = '';
@@ -108,13 +109,16 @@ class profile_point {
 		}
 		?>
 		<tr>
-		<td class="time"><tt><?php echo $this->fmttime() ?></tt></td>
-		<td class="timep"><?php echo wfPercent( $this->time() / $totaltime * 100 ) ?></td>
-		<td class="count"><?php echo $this->count() ?></td>
-		<td class="cpr"><?php echo round( sprintf( '%.2f',$this->count() / 	$totalcount ), 2 ) ?>
 		<td class="name" style="padding-left: <?php echo $indent ?>em">
 			<?php echo htmlspecialchars($this->name()) . $extet ?>
 		</td>
+		<td class="time"><tt><?php echo $this->fmttime() ?></tt></td>
+		<td class="timep"><?php echo @wfPercent( $this->time() / $totaltime * 100 ) ?></td>
+		<td class="memoryp"><?php echo @wfPercent( $this->memory() / $totalmemory * 100 ) ?></td>
+		<td class="count"><?php echo $this->count() ?></td>
+		<td class="cpr"><?php echo @round( sprintf( '%.2f', $this->count() / $totalcount ), 2 ) ?>
+		<td class="tpc"><?php echo @round( sprintf( '%.2f', $this->time() / $this->count() ), 2 ) ?>
+		<td class="mpr"><?php echo @round( sprintf( '%.2f' ,$this->memory() / $this->count() / 1048576 ), 2 ) ?>
 		</tr>
 		<?php
 		if ($ex)
@@ -133,6 +137,10 @@ class profile_point {
 	function time() {
 		return $this->time;
 	}
+	
+	function memory() {
+		return $this->memory;
+	}
 
 	function fmttime() {
 		return sprintf("%5.02f", $this->time);
@@ -146,12 +154,14 @@ function compare_point($a, $b) {
 		return strcmp($a->name(), $b->name());
 	case "time":
 		return $a->time() > $b->time() ? -1 : 1;
+	case "memory":
+		return $a->memory() > $b->memory() ? -1 : 1;
 	case "count":
 		return $a->count() > $b->count() ? -1 : 1;
 	}
 }
 
-$sorts = array("time", "count", "name");
+$sorts = array("time", "memory", "count", "name");
 $sort = 'time';
 if (isset($_REQUEST['sort']) && in_array($_REQUEST['sort'], $sorts))
 	$sort = $_REQUEST['sort'];
@@ -160,7 +170,7 @@ $dbh = mysql_connect($wgDBserver, $wgDBadminuser, $wgDBadminpassword)
 	or die("mysql server failed: " . mysql_error());
 mysql_select_db($wgDBname, $dbh) or die(mysql_error($dbh));
 $res = mysql_query("
-	SELECT pf_count, pf_time, pf_name
+	SELECT pf_count, pf_time, pf_memory, pf_name
 	FROM {$wgDBprefix}profiling
 	ORDER BY pf_name ASC
 ", $dbh) or die("query failed: " . mysql_error());
@@ -181,15 +191,19 @@ else	$filter = '';
 
 <table cellspacing="0">
 <tr id="top">
-<th><a href="<?php echo makeurl(false, "time") ?>">Time</a></th>
-<th>Time (%)</th>
-<th><a href="<?php echo makeurl(false, "count") ?>">Count</a></th>
-<th>Avg calls per request</th>
 <th><a href="<?php echo makeurl(false, "name") ?>">Name</a></th>
+<th><a href="<?php echo makeurl(false, "time") ?>">Time (ms)</a></th>
+<th>Time (%)</th>
+<th><a href="<?php echo makeurl(false, "memory") ?>">Memory (%)</a></th>
+<th><a href="<?php echo makeurl(false, "count") ?>">Count</a></th>
+<th>Calls/request</th>
+<th>ms/call</th>
+<th>kb/call</th>
 </tr>
 <?php
 $totaltime = 0.0;
 $totalcount = 0;
+$totalmemory = 0.0;
 
 function makeurl($_filter = false, $_sort = false, $_expand = false) {
 	global $filter, $sort, $expand;
@@ -209,10 +223,11 @@ $sqltotal = 0.0;
 
 $last = false;
 while (($o = mysql_fetch_object($res)) !== false) {
-	$next = new profile_point($o->pf_name, $o->pf_count, $o->pf_time);
+	$next = new profile_point($o->pf_name, $o->pf_count, $o->pf_time, $o->pf_memory);
 	if( $next->name() == '-total' ) {
 		$totaltime = $next->time();
 		$totalcount = $next->count();
+		$totalmemory = $next->memory();
 	}
 	if ($last !== false) {
 		if (preg_match("/^".preg_quote($last->name(), "/")."/", $next->name())) {
@@ -229,7 +244,7 @@ while (($o = mysql_fetch_object($res)) !== false) {
 	}
 }
 
-$s = new profile_point("SQL Queries", 0, $sqltotal);
+$s = new profile_point("SQL Queries", 0, $sqltotal, 0, 0);
 foreach ($queries as $q)
 	$s->add_child($q);
 $points[] = $s;
