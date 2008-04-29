@@ -235,7 +235,7 @@ else	$filter = '';
 </p>
 </form>
 
-<table cellspacing="0">
+<table cellspacing="0" border="1px">
 <tr id="top">
 <th><a href="<?php echo makeurl(false, "name") ?>">Name</a></th>
 <th><a href="<?php echo makeurl(false, "time") ?>">Time (%)</a></th>
