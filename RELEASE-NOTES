@@ -222,6 +222,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Added 'application/x-dia-diagram' MediaWiki's known MIME types
 * (bug 13866) skins/common/shared.css - invalid attribute fixing
 * Hide edit section links on Special:Undelete
+* (bug 13860) Fix "Justify paragraphs" option for Modern skin
+
 
 === API changes in 1.13 ===
 
