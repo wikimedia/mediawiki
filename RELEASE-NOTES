@@ -223,6 +223,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 13866) skins/common/shared.css - invalid attribute fixing
 * Hide edit section links on Special:Undelete
 * (bug 13860) Fix "Justify paragraphs" option for Modern skin
+* (bug 11659) Urldecode image names in galleries
 
 
 === API changes in 1.13 ===
