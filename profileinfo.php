@@ -283,7 +283,7 @@ while (($o = mysql_fetch_object($res)) !== false) {
 		}
 	}
 	$last = $next;
-	if (preg_match("/^query: /", $next->name())) {
+	if (preg_match("/^query: /", $next->name()) || preg_match("/^query-m: /", $next->name())) {
 		$sqltotal += $next->time();
 		$queries[] = $next;
 	} else {
