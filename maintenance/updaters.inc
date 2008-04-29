@@ -141,6 +141,7 @@ $wgMysqlUpdates = array(
 	array( 'add_field', 'user_newtalk',  'user_last_timestamp', 'patch-user_last_timestamp.sql'),
 	array( 'do_populate_parent_id' ),
 	array( 'check_bin', 'protected_titles', 'pt_title',      'patch-pt_title-encoding.sql', ),
+	array( 'maybe_do_profiling_memory_update' ),
 );
 
 
@@ -977,6 +978,19 @@ function do_categorylinks_indices_update() {
 	if (!index_has_field('categorylinks', 'cl_sortkey', 'cl_from'))
 	{	
 		dbsource( archive( 'patch-categorylinksindex.sql' ) );
+	}
+}
+
+function maybe_do_profiling_memory_update() {
+	global $wgDatabase;
+	if ( !$wgDatabase->tableExists( 'profiling' ) ) {
+		// Simply ignore
+	} elseif ( $wgDatabase->fieldExists( 'profiling', 'pf_memory' ) ) {
+		echo "profiling table has pf_memory field.\n";
+	} else {
+		echo "Adding pf_memory field to table profiling...";
+		dbsource( archive( 'patch-profiling-memory.sql' ), $wgDatabase );
+		echo "ok\n";
 	}
 }
 
