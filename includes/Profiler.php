@@ -271,7 +271,7 @@ class Profiler {
 
 			global $wgProfileToDatabase;
 			if ($wgProfileToDatabase) {
-				Profiler :: logToDB($fname, (float) ($elapsed * 1000), $calls, (float) ($memory * 1000) );
+				Profiler :: logToDB($fname, (float) ($elapsed * 1000), $calls, (float) ($memory) );
 			}
 		}
 		$prof .= "\nTotal: $total\n\n";
