@@ -271,7 +271,7 @@ class Profiler {
 
 			global $wgProfileToDatabase;
 			if ($wgProfileToDatabase) {
-				Profiler :: logToDB($fname, (float) ($elapsed * 1000), $calls);
+				Profiler :: logToDB($fname, (float) ($elapsed * 1000), $calls, (float) ($memory * 1000) );
 			}
 		}
 		$prof .= "\nTotal: $total\n\n";
@@ -300,7 +300,7 @@ class Profiler {
 	/**
 	 * @static
 	 */
-	function logToDB($name, $timeSum, $eventCount) {
+	function logToDB($name, $timeSum, $eventCount, $memory) {
 		# Do not log anything if database is readonly (bug 5375)
 		if( wfReadOnly() ) { return; }
 
@@ -323,7 +323,7 @@ class Profiler {
 			$pfhost = '';
 		}
 
-		$sql = "UPDATE $profiling "."SET pf_count=pf_count+{$eventCount}, "."pf_time=pf_time + {$timeSum} ".
+		$sql = "UPDATE $profiling "."SET pf_count=pf_count+{$eventCount}, pf_time=pf_time+{$timeSum}, pf_memory=pf_memory+{$memory} ".
 			"WHERE pf_name='{$encname}' AND pf_server='{$pfhost}'";
 		$dbw->query($sql);
 
