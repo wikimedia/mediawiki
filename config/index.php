@@ -1576,6 +1576,9 @@ function writeLocalSettings( $conf ) {
 # See includes/DefaultSettings.php for all configurable settings
 # and their default values, but don't forget to make changes in _this_
 # file, not there.
+#
+# Further documentation for configuration settings may be found at:
+# http://www.mediawiki.org/wiki/Manual:Configuration_settings
 
 # If you customize your file layout, set \$IP to the directory that contains
 # the other MediaWiki files. It will be used as a base to locate files.
@@ -1617,11 +1620,6 @@ if ( \$wgCommandLineMode ) {
 \$wgEmergencyContact = \"{$slconf['EmergencyContact']}\";
 \$wgPasswordSender = \"{$slconf['PasswordSender']}\";
 
-## For a detailed description of the following switches see
-## http://www.mediawiki.org/wiki/Extension:Email_notification 
-## and http://www.mediawiki.org/wiki/Extension:Email_notification
-## There are many more options for fine tuning available see
-## /includes/DefaultSettings.php
 ## UPO means: this is also a user preference option
 \$wgEnotifUserTalk = $enotifusertalk; # UPO
 \$wgEnotifWatchlist = $enotifwatchlist; # UPO
