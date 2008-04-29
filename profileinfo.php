@@ -124,14 +124,14 @@ class profile_point {
 		<td class="name" style="padding-left: <?php echo $indent ?>em">
 			<?php echo htmlspecialchars($this->name()) . $extet ?>
 		</td>
-		<td class="timep"><?php echo wfPercent( $this->time() / $totaltime * 100 ) ?></td>
-		<td class="memoryp"><?php echo wfPercent( $this->memory() / $totalmemory * 100 ) ?></td>
+		<td class="timep"><?php echo @wfPercent( $this->time() / $totaltime * 100 ) ?></td>
+		<td class="memoryp"><?php echo @wfPercent( $this->memory() / $totalmemory * 100 ) ?></td>
 		<td class="count"><?php echo $this->count() ?></td>
 		<td class="cpr"><?php echo round( sprintf( '%.2f', $this->callsPerRequest() ), 2 ) ?></td>
 		<td class="tpc"><?php echo round( sprintf( '%.2f', $this->timePerCall() ), 2 ) ?></td>
-		<td class="mpc"><?php echo round( sprintf( '%.2f' ,$this->memoryPerCall() / 1048576 ), 2 ) ?></td>
-		<td class="tpr"><?php echo round( sprintf( '%.2f', $this->time() / $totalcount ), 2 ) ?></td>
-		<td class="mpr"><?php echo round( sprintf( '%.2f' ,$this->memory() / $totalcount / 1048576 ), 2 ) ?></td>
+		<td class="mpc"><?php echo round( sprintf( '%.2f' ,$this->memoryPerCall() / 1024 ), 2 ) ?></td>
+		<td class="tpr"><?php echo @round( sprintf( '%.2f', $this->time() / $totalcount ), 2 ) ?></td>
+		<td class="mpr"><?php echo @round( sprintf( '%.2f' ,$this->memory() / $totalcount / 1024 ), 2 ) ?></td>
 		</tr>
 		<?php
 		if ($ex)
@@ -308,7 +308,7 @@ foreach ($points as $point) {
 </table>
 
 <p>Total time: <tt><?php printf("%5.02f", $totaltime) ?></tt></p>
-<p>Total memory: <tt><?php printf("%5.02f", $totalmemory / 1048576 ) ?></tt></p>
+<p>Total memory: <tt><?php printf("%5.02f", $totalmemory / 1024 ) ?></tt></p>
 <?php
 
 mysql_free_result($res);
