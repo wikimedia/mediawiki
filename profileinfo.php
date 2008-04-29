@@ -36,8 +36,20 @@
 		padding-right: 0.5em;
 	}
 
-	td.time, td.timep, td.memoryp, td.count, td.cpr, td.tpc, td.mpc, td.tpr, td.mpr {
+	td.timep, td.memoryp, td.count, td.cpr, td.tpc, td.mpc, td.tpr, td.mpr {
 		text-align: right;
+	}
+	td.timep, td.tpc, td.tpr {
+		background-color: #fffff0;
+	}
+	td.memoryp, td.mpc, td.mpr {
+		background-color: #f0f8ff;
+	}
+	td.count, td,cpr {
+		background-color: #f0fff0;
+	}
+	td.name {
+		background-color: #f9f9f9;
 	}
 </style>
 </head>
@@ -115,11 +127,11 @@ class profile_point {
 		<td class="timep"><?php echo wfPercent( $this->time() / $totaltime * 100 ) ?></td>
 		<td class="memoryp"><?php echo wfPercent( $this->memory() / $totalmemory * 100 ) ?></td>
 		<td class="count"><?php echo $this->count() ?></td>
-		<td class="cpr"><?php echo round( sprintf( '%.2f', $this->callsPerRequest() ), 2 ) ?>
-		<td class="tpc"><?php echo round( sprintf( '%.2f', $this->timePerCall() ), 2 ) ?>
-		<td class="mpc"><?php echo round( sprintf( '%.2f' ,$this->memoryPerCall() / 1048576 ), 2 ) ?>
-		<td class="tpr"><?php echo round( sprintf( '%.2f', $this->time() / $totalcount ), 2 ) ?>
-		<td class="mpr"><?php echo round( sprintf( '%.2f' ,$this->memory() / $totalcount / 1048576 ), 2 ) ?>
+		<td class="cpr"><?php echo round( sprintf( '%.2f', $this->callsPerRequest() ), 2 ) ?></td>
+		<td class="tpc"><?php echo round( sprintf( '%.2f', $this->timePerCall() ), 2 ) ?></td>
+		<td class="mpc"><?php echo round( sprintf( '%.2f' ,$this->memoryPerCall() / 1048576 ), 2 ) ?></td>
+		<td class="tpr"><?php echo round( sprintf( '%.2f', $this->time() / $totalcount ), 2 ) ?></td>
+		<td class="mpr"><?php echo round( sprintf( '%.2f' ,$this->memory() / $totalcount / 1048576 ), 2 ) ?></td>
 		</tr>
 		<?php
 		if ($ex)
