@@ -296,7 +296,7 @@ foreach ($points as $point) {
 </table>
 
 <p>Total time: <tt><?php printf("%5.02f", $totaltime) ?></tt></p>
-<p>Total memory: <tt><?php printf("%5.02f", $totalmemory) ?></tt></p>
+<p>Total memory: <tt><?php printf("%5.02f", $totalmemory / 1048576 ) ?></tt></p>
 <?php
 
 mysql_free_result($res);
