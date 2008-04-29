@@ -14,7 +14,13 @@ class WithoutInterwikiPage extends PageQueryPage {
 	}
 
 	function getPageHeader() {
-		global $wgScript;
+		global $wgScript, $wgMiserMode;
+
+		# Do not show useless input form if wiki is running in misermode
+		if( $wgMiserMode ) {
+			return '';
+		}
+
 		$prefix = $this->prefix;
 		$t = SpecialPage::getTitleFor( $this->getName() );
 
