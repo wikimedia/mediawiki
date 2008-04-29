@@ -300,7 +300,7 @@ class Profiler {
 	/**
 	 * @static
 	 */
-	function logToDB($name, $timeSum, $eventCount, $memory) {
+	function logToDB($name, $timeSum, $eventCount, $memorySum) {
 		# Do not log anything if database is readonly (bug 5375)
 		if( wfReadOnly() ) { return; }
 
@@ -322,15 +322,20 @@ class Profiler {
 		} else {
 			$pfhost = '';
 		}
+		
+		// Kludge
+		$timeSum = ($timeSum >= 0) ? $timeSum : 0;
+		$memorySum = ($memorySum >= 0) ? $memorySum : 0;
 
-		$sql = "UPDATE $profiling "."SET pf_count=pf_count+{$eventCount}, pf_time=pf_time+{$timeSum}, pf_memory=pf_memory+{$memory} ".
+		$sql = "UPDATE $profiling SET pf_count=pf_count+{$eventCount}, pf_time=pf_time+{$timeSum}, pf_memory=pf_memory+{$memorySum} ".
 			"WHERE pf_name='{$encname}' AND pf_server='{$pfhost}'";
 		$dbw->query($sql);
 
 		$rc = $dbw->affectedRows();
 		if ($rc == 0) {
 			$dbw->insert('profiling', array ('pf_name' => $name, 'pf_count' => $eventCount,
-				'pf_time' => $timeSum, 'pf_server' => $pfhost ), $fname, array ('IGNORE'));
+				'pf_time' => $timeSum, 'pf_memory' => $memorySum, 'pf_server' => $pfhost ), 
+				$fname, array ('IGNORE'));
 		}
 		// When we upgrade to mysql 4.1, the insert+update
 		// can be merged into just a insert with this construct added:
