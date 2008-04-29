@@ -7,7 +7,7 @@
 
 # Stub message file for converter code "kk"
 
-$fallback = 'kk-kz';
+$fallback = 'kk-cyrl';
 
 $linkTrail = '/^([a-zäçéğıïñöşüýʺʹа-яёәғіқңөұүһٴابپتجحدرزسشعفقكلمنڭەوۇۋۆىيچھ“»]+)(.*)$/sDu';
 

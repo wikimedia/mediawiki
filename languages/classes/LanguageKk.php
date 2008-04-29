@@ -374,7 +374,7 @@ class LanguageKk extends LanguageKk_cyrl {
 
 		$variants = array( 'kk', 'kk-cyrl', 'kk-latn', 'kk-arab', 'kk-kz', 'kk-tr', 'kk-cn' );
 		$variantfallbacks = array(
-			'kk'      => 'kk-kz',
+			'kk'      => 'kk-cyrl',
 			'kk-cyrl' => 'kk',
 			'kk-latn' => 'kk',
 			'kk-arab' => 'kk',
