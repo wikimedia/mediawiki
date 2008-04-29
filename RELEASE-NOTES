@@ -221,6 +221,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 13824) AJAX search suggestion now works with non-SkinTemplate skins
 * Added 'application/x-dia-diagram' MediaWiki's known MIME types
 * (bug 13866) skins/common/shared.css - invalid attribute fixing
+* Hide edit section links on Special:Undelete
 
 === API changes in 1.13 ===
 

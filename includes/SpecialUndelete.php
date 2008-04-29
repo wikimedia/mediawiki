@@ -770,6 +770,11 @@ class UndeleteForm {
 
 		if( $this->mPreview ) {
 			$wgOut->addHtml( "<hr />\n" );
+
+			//Hide [edit]s
+			$popts = $wgOut->parserOptions();
+			$popts->setEditSection( false );
+			$wgOut->parserOptions( $popts );
 			$wgOut->addWikiTextTitleTidy( $rev->revText(), $this->mTargetObj, false );
 		}
 
