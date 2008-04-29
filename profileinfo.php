@@ -36,7 +36,7 @@
 		padding-right: 0.5em;
 	}
 
-	td.time, td.timep, td.memory, td.memoryp, td.count, td.cpr {
+	td.time, td.timep, td.memoryp, td.count, td.cpr, td.tpc, td.mpc, td.tpr, td.mpr {
 		text-align: right;
 	}
 </style>
@@ -112,13 +112,14 @@ class profile_point {
 		<td class="name" style="padding-left: <?php echo $indent ?>em">
 			<?php echo htmlspecialchars($this->name()) . $extet ?>
 		</td>
-		<td class="time"><tt><?php echo $this->fmttime() ?></tt></td>
-		<td class="timep"><?php echo @wfPercent( $this->time() / $totaltime * 100 ) ?></td>
-		<td class="memoryp"><?php echo @wfPercent( $this->memory() / $totalmemory * 100 ) ?></td>
+		<td class="timep"><?php echo wfPercent( $this->time() / $totaltime * 100 ) ?></td>
+		<td class="memoryp"><?php echo wfPercent( $this->memory() / $totalmemory * 100 ) ?></td>
 		<td class="count"><?php echo $this->count() ?></td>
-		<td class="cpr"><?php echo @round( sprintf( '%.2f', $this->count() / $totalcount ), 2 ) ?>
-		<td class="tpc"><?php echo @round( sprintf( '%.2f', $this->time() / $this->count() ), 2 ) ?>
-		<td class="mpr"><?php echo @round( sprintf( '%.2f' ,$this->memory() / $this->count() / 1048576 ), 2 ) ?>
+		<td class="cpr"><?php echo round( sprintf( '%.2f', $this->callsPerRequest() ), 2 ) ?>
+		<td class="tpc"><?php echo round( sprintf( '%.2f', $this->timePerCall() ), 2 ) ?>
+		<td class="mpc"><?php echo round( sprintf( '%.2f' ,$this->memoryPerCall() / 1048576 ), 2 ) ?>
+		<td class="tpr"><?php echo round( sprintf( '%.2f', $this->time() / $totalcount ), 2 ) ?>
+		<td class="mpr"><?php echo round( sprintf( '%.2f' ,$this->memory() / $totalcount / 1048576 ), 2 ) ?>
 		</tr>
 		<?php
 		if ($ex)
@@ -141,6 +142,29 @@ class profile_point {
 	function memory() {
 		return $this->memory;
 	}
+	
+	function timePerCall() {
+		return @($this->time / $this->count);
+	}
+	
+	function memoryPerCall() {
+		return @($this->memory / $this->count);
+	}
+	
+	function callsPerRequest() {
+		global $totalcount;
+		return @($this->count / $totalcount);
+	}
+	
+	function timePerRequest() {
+		global $totalcount;
+		return @($this->time / $totalcount);
+	}
+	
+	function memoryPerRequest() {
+		global $totalcount;
+		return @($this->memory / $totalcount);
+	}
 
 	function fmttime() {
 		return sprintf("%5.02f", $this->time);
@@ -158,10 +182,20 @@ function compare_point($a, $b) {
 		return $a->memory() > $b->memory() ? -1 : 1;
 	case "count":
 		return $a->count() > $b->count() ? -1 : 1;
+	case "time_per_call":
+		return $a->timePerCall() > $b->timePerCall() ? -1 : 1;
+	case "memory_per_call":
+		return $a->memoryPerCall() > $b->memoryPerCall() ? -1 : 1;
+	case "calls_per_req":
+		return $a->callsPerRequest() > $b->callsPerRequest() ? -1 : 1;
+	case "time_per_req":
+		return $a->timePerRequest() > $b->timePerRequest() ? -1 : 1;
+	case "memory_per_req":
+		return $a->memoryPerRequest() > $b->memoryPerRequest() ? -1 : 1;
 	}
 }
 
-$sorts = array("time", "memory", "count", "name");
+$sorts = array("time","memory","count","calls_per_req","name","time_per_call","memory_per_call","time_per_req","memory_per_req");
 $sort = 'time';
 if (isset($_REQUEST['sort']) && in_array($_REQUEST['sort'], $sorts))
 	$sort = $_REQUEST['sort'];
@@ -192,13 +226,14 @@ else	$filter = '';
 <table cellspacing="0">
 <tr id="top">
 <th><a href="<?php echo makeurl(false, "name") ?>">Name</a></th>
-<th><a href="<?php echo makeurl(false, "time") ?>">Time (ms)</a></th>
-<th>Time (%)</th>
+<th><a href="<?php echo makeurl(false, "time") ?>">Time (%)</a></th>
 <th><a href="<?php echo makeurl(false, "memory") ?>">Memory (%)</a></th>
 <th><a href="<?php echo makeurl(false, "count") ?>">Count</a></th>
-<th>Calls/request</th>
-<th>ms/call</th>
-<th>kb/call</th>
+<th><a href="<?php echo makeurl(false, "calls_per_req") ?>">Calls/request</a></th>
+<th><a href="<?php echo makeurl(false, "time_per_call") ?>">ms/call</a></th>
+<th><a href="<?php echo makeurl(false, "memory_per_call") ?>">kb/call</a></th>
+<th><a href="<?php echo makeurl(false, "time_per_req") ?>">ms/request</a></th>
+<th><a href="<?php echo makeurl(false, "memory_per_req") ?>">kb/request</a></th>
 </tr>
 <?php
 $totaltime = 0.0;
@@ -260,7 +295,8 @@ foreach ($points as $point) {
 ?>
 </table>
 
-<p>Total time: <tt><?php printf("%5.02f", $totaltime) ?></p>
+<p>Total time: <tt><?php printf("%5.02f", $totaltime) ?></tt></p>
+<p>Total memory: <tt><?php printf("%5.02f", $totalmemory) ?></tt></p>
 <?php
 
 mysql_free_result($res);
