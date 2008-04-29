@@ -1435,28 +1435,28 @@ A * indicates that you cannot remove the group once you have added it, or vice v
 'userrights-irreversible-marker'   => '$1*', # only translate this message to other languages if you have to change it
 
 # Groups
-'group'                => 'Group:',
-'group-user'           => 'Users',
-'group-autoconfirmed'  => 'Autoconfirmed users',
-'group-bot'            => 'Bots',
-'group-sysop'          => 'Sysops',
-'group-bureaucrat'     => 'Bureaucrats',
-'group-suppress'       => 'Oversights',
-'group-all'            => '(all)',
+'group'               => 'Group:',
+'group-user'          => 'Users',
+'group-autoconfirmed' => 'Autoconfirmed users',
+'group-bot'           => 'Bots',
+'group-sysop'         => 'Sysops',
+'group-bureaucrat'    => 'Bureaucrats',
+'group-suppress'      => 'Oversights',
+'group-all'           => '(all)',
 
-'group-user-member'           => 'User',
-'group-autoconfirmed-member'  => 'Autoconfirmed user',
-'group-bot-member'            => 'Bot',
-'group-sysop-member'          => 'Sysop',
-'group-bureaucrat-member'     => 'Bureaucrat',
-'group-suppress-member'       => 'Oversight',
+'group-user-member'          => 'User',
+'group-autoconfirmed-member' => 'Autoconfirmed user',
+'group-bot-member'           => 'Bot',
+'group-sysop-member'         => 'Sysop',
+'group-bureaucrat-member'    => 'Bureaucrat',
+'group-suppress-member'      => 'Oversight',
 
-'grouppage-user'           => '{{ns:project}}:Users',
-'grouppage-autoconfirmed'  => '{{ns:project}}:Autoconfirmed users',
-'grouppage-bot'            => '{{ns:project}}:Bots',
-'grouppage-sysop'          => '{{ns:project}}:Administrators',
-'grouppage-bureaucrat'     => '{{ns:project}}:Bureaucrats',
-'grouppage-suppress'       => '{{ns:project}}:Oversight',
+'grouppage-user'          => '{{ns:project}}:Users',
+'grouppage-autoconfirmed' => '{{ns:project}}:Autoconfirmed users',
+'grouppage-bot'           => '{{ns:project}}:Bots',
+'grouppage-sysop'         => '{{ns:project}}:Administrators',
+'grouppage-bureaucrat'    => '{{ns:project}}:Bureaucrats',
+'grouppage-suppress'      => '{{ns:project}}:Oversight',
 
 # Rights
 'right-read'                 => 'Read pages',
@@ -3128,7 +3128,9 @@ This confirmation code will expire at $4.',
 'scarytranscludetoolong'  => '[URL is too long; sorry]',
 
 # Trackbacks
-'trackbackbox'      => '<div id="mw_trackbacks">Trackbacks for this page:<br />$1</div>',
+'trackbackbox'      => '<div id="mw_trackbacks">Trackbacks for this page:<br />
+$1
+</div>',
 'trackback'         => '; $4$5 : [$2 $1]', # do not translate or duplicate this message to other languages
 'trackbackexcerpt'  => '; $4$5 : [$2 $1]: <nowiki>$3</nowiki>', # do not translate or duplicate this message to other languages
 'trackbackremove'   => ' ([$1 Delete])',
