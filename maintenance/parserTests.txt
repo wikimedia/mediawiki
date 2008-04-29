@@ -3847,7 +3847,7 @@ Image link to nonexistent file (bug 1850 - good)
 !! input
 [[:Image:No such.jpg]]
 !! result
-<p><a href="/index.php?title=Image:No_such.jpg&amp;action=edit&amp;redlink=1" class="new" title="No such.jpg (not yet written)">Image:No such.jpg</a>
+<p><a href="/index.php?title=Image:No_such.jpg&amp;action=edit&amp;redlink=1" class="new" title="Image:No such.jpg (not yet written)">Image:No such.jpg</a>
 </p>
 !! end
 
