@@ -61,6 +61,8 @@ if ($wgTitle == NULL) {
 	unset( $wgTitle );
 }
 
+wfProfileOut( 'main-misc-setup' );
+
 #
 # Send Ajax requests to the Ajax dispatcher.
 #
@@ -72,8 +74,6 @@ if ( $wgUseAjax && $action == 'ajax' ) {
 	$mediaWiki->restInPeace();
 	exit;
 }
-
-wfProfileOut( 'main-misc-setup' );
 
 # Setting global variables in mediaWiki
 $mediaWiki->setVal( 'action', $action );
