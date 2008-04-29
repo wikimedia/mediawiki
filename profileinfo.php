@@ -121,7 +121,7 @@ class profile_point {
 		}
 		?>
 		<tr>
-		<td class="name" style="padding-left: <?php echo $indent ?>em">
+		<td class="name" style="padding-left: <?php echo $indent ?>em;">
 			<?php echo htmlspecialchars($this->name()) . $extet ?>
 		</td>
 		<td class="timep"><?php echo @wfPercent( $this->time() / $totaltime * 100 ) ?></td>
@@ -134,9 +134,11 @@ class profile_point {
 		<td class="mpr"><?php echo @round( sprintf( '%.2f' ,$this->memory() / $totalcount / 1024 ), 2 ) ?></td>
 		</tr>
 		<?php
-		if ($ex)
-			foreach ($this->children as $child)
+		if ($ex) {
+			foreach ($this->children as $child) {
 				$child->display($indent + 2);
+			}
+		}
 	}
 
 	function name() {
@@ -241,11 +243,11 @@ else	$filter = '';
 <th><a href="<?php echo makeurl(false, "time") ?>">Time (%)</a></th>
 <th><a href="<?php echo makeurl(false, "memory") ?>">Memory (%)</a></th>
 <th><a href="<?php echo makeurl(false, "count") ?>">Count</a></th>
-<th><a href="<?php echo makeurl(false, "calls_per_req") ?>">Calls/request</a></th>
+<th><a href="<?php echo makeurl(false, "calls_per_req") ?>">Calls/req</a></th>
 <th><a href="<?php echo makeurl(false, "time_per_call") ?>">ms/call</a></th>
 <th><a href="<?php echo makeurl(false, "memory_per_call") ?>">kb/call</a></th>
-<th><a href="<?php echo makeurl(false, "time_per_req") ?>">ms/request</a></th>
-<th><a href="<?php echo makeurl(false, "memory_per_req") ?>">kb/request</a></th>
+<th><a href="<?php echo makeurl(false, "time_per_req") ?>">ms/req</a></th>
+<th><a href="<?php echo makeurl(false, "memory_per_req") ?>">kb/req</a></th>
 </tr>
 <?php
 $totaltime = 0.0;
