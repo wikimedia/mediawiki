@@ -78,19 +78,22 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 		if($params['sort'] == 'timestamp')
 		{
 			$this->addOption('USE INDEX', 'cl_timestamp');
-			$this->addOption('ORDER BY', 'cl_to, cl_timestamp' . ($params['dir'] == 'desc' ? ' DESC' : ''));
+			// cl_timestamp will be added by addWhereRange() later
+			$this->addOption('ORDER BY', 'cl_to');
 		}
 		else
 		{
+			$dir = ($params['dir'] == 'desc' ? ' DESC' : '');
 			$this->addOption('USE INDEX', 'cl_sortkey');
-			$this->addOption('ORDER BY', 'cl_to, cl_sortkey' . ($params['dir'] == 'desc' ? ' DESC' : '') . ', cl_from');
+			$this->addOption('ORDER BY', 'cl_to, cl_sortkey' . $dir . ', cl_from' . $dir);
 		}
 
 		$this->addWhere('cl_from=page_id');
-		$this->setContinuation($params['continue']);
+		$this->setContinuation($params['continue'], $params['dir']);
 		$this->addWhereFld('cl_to', $categoryTitle->getDBkey());
 		$this->addWhereFld('page_namespace', $params['namespace']);
-		$this->addWhereRange('cl_timestamp', ($params['dir'] == 'asc' ? 'newer' : 'older'), $params['start'], $params['end']);
+		if($params['sort'] == 'timestamp')
+			$this->addWhereRange('cl_timestamp', ($params['dir'] == 'asc' ? 'newer' : 'older'), $params['start'], $params['end']);
 
 		$limit = $params['limit'];
 		$this->addOption('LIMIT', $limit +1);
@@ -106,7 +109,7 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 				// We've reached the one extra which shows that there are additional pages to be had. Stop here...
 				// TODO: Security issue - if the user has no right to view next title, it will still be shown
 				if ($params['sort'] == 'timestamp')
-					$this->setContinueEnumParameter('start', $row->cl_timestamp);
+					$this->setContinueEnumParameter('start', wfTimestamp(TS_ISO_8601, $row->cl_timestamp));
 				else
 					$this->setContinueEnumParameter('continue', $this->getContinueStr($row, $lastSortKey));
 				break;
@@ -150,7 +153,7 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 	/**
 	 * Add DB WHERE clause to continue previous query based on 'continue' parameter
 	 */
-	private function setContinuation($continue) {
+	private function setContinuation($continue, $dir) {
 		if (is_null($continue))
 			return;	// This is not a continuation request
 
@@ -167,12 +170,14 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 
 		$encSortKey = $this->getDB()->addQuotes($continueList[0]);
 		$encFrom = $this->getDB()->addQuotes($from);
+		
+		$op = ($dir == 'desc' ? '<' : '>');
 
 		if ($from != 0) {
 			// Duplicate sort key continue
-			$this->addWhere( "cl_sortkey>$encSortKey OR (cl_sortkey=$encSortKey AND cl_from>=$encFrom)" );
+			$this->addWhere( "cl_sortkey$op$encSortKey OR (cl_sortkey=$encSortKey AND cl_from$op=$encFrom)" );
 		} else {
-			$this->addWhere( "cl_sortkey>=$encSortKey" );
+			$this->addWhere( "cl_sortkey$op=$encSortKey" );
 		}
 	}
 
@@ -231,8 +236,8 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 			'namespace' => 'Only include pages in these namespaces',
 			'sort' => 'Property to sort by',
 			'dir' => 'In which direction to sort',
-			'start' => 'Timestamp to start listing from',
-			'end' => 'Timestamp to end listing at',
+			'start' => 'Timestamp to start listing from. Can only be used with cmsort=timestamp',
+			'end' => 'Timestamp to end listing at. Can only be used with cmsort=timestamp',
 			'continue' => 'For large categories, give the value retured from previous query',
 			'limit' => 'The maximum number of pages to return.',
 		);

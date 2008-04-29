@@ -63,7 +63,6 @@ class ApiQueryAllCategories extends ApiQueryGeneratorBase {
 
 		$this->addOption('LIMIT', $params['limit']+1);
 		$this->addOption('ORDER BY', 'cat_title' . ($params['dir'] == 'descending' ? ' DESC' : ''));
-		$this->addOption('DISTINCT');
 
 		$prop = array_flip($params['prop']);
 		$this->addFieldsIf( array( 'cat_pages', 'cat_subcats', 'cat_files' ), isset($prop['size']) );
@@ -79,7 +78,7 @@ class ApiQueryAllCategories extends ApiQueryGeneratorBase {
 			if (++ $count > $params['limit']) {
 				// We've reached the one extra which shows that there are additional cats to be had. Stop here...
 				// TODO: Security issue - if the user has no right to view next title, it will still be shown
-				$this->setContinueEnumParameter('from', ApiQueryBase :: keyToTitle($row->cl_to));
+				$this->setContinueEnumParameter('from', ApiQueryBase :: keyToTitle($row->cat_title));
 				break;
 			}
 
