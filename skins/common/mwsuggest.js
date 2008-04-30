@@ -437,10 +437,10 @@ function os_HighlightClass() {
 	var match = navigator.userAgent.match(/AppleWebKit\/(\d+)/);
 	if (match) {
 		var webKitVersion = parseInt(match[1]);
-		if (webKitVersion < 525) {
+		if (webKitVersion < 523) {
 			// CSS system highlight colors broken on old Safari
 			// https://bugs.webkit.org/show_bug.cgi?id=6129
-			// Safari 3.1 known ok
+			// Safari 3.0.4, 3.1 known ok
 			return "os-suggest-result-hl-webkit";
 		}
 	}
