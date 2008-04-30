@@ -56,6 +56,7 @@ class UsersPager extends AlphabeticPager {
 	}
 
 	function getQueryInfo() {
+		$dbr = wfGetDB( DB_SLAVE );
 		$conds=array();
 		// don't show hidden names
 		$conds[]='ipb_deleted IS NULL OR ipb_deleted = 0';
@@ -63,13 +64,13 @@ class UsersPager extends AlphabeticPager {
 			$conds['ug_group'] = $this->requestedGroup;
 			$useIndex = '';
 		} else {
-			$useIndex = 'FORCE INDEX (user_name)';
+			$useIndex = $dbr->useIndexClause('user_name');
 		}
 		if ($this->requestedUser != "") {
-			$conds[] = 'user_name >= ' . wfGetDB()->addQuotes( $this->requestedUser );
+			$conds[] = 'user_name >= ' . $dbr->addQuotes( $this->requestedUser );
 		}
 
-		list ($user,$user_groups,$ipblocks) = wfGetDB()->tableNamesN('user','user_groups','ipblocks');
+		list ($user,$user_groups,$ipblocks) = $dbr->tableNamesN('user','user_groups','ipblocks');
 
 		$query = array(
 			'tables' => " $user $useIndex LEFT JOIN $user_groups ON user_id=ug_user
