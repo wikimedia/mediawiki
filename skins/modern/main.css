@@ -1045,6 +1045,7 @@ dl {
 
 span.subpages {
 	font-size: 80%;
+	display: block;
 }
 
 pre {
