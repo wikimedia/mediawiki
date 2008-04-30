@@ -1892,6 +1892,11 @@ $wgRC2UDPAddress = false;
 $wgRC2UDPPort = false;
 $wgRC2UDPPrefix = '';
 
+# Enable user search in Special:Newpages
+# This is really a temporary hack around an index install bug on some Wikipedias.
+# Kill it once fixed.
+$wgEnableNewpagesUserFilter = true;
+
 #
 # Copyright and credits settings
 #

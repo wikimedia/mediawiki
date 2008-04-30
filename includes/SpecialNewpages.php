@@ -28,6 +28,7 @@ class NewPagesForm {
 	 */
 	public function showList( $par, $including ) {
 		global $wgScript, $wgLang, $wgGroupPermissions, $wgRequest, $wgUser, $wgOut;
+		global $wgEnableNewpagesUserFilter;
 		$sk = $wgUser->getSkin();
 		$self = SpecialPage::getTitleFor( 'NewPages' );
 
@@ -95,8 +96,10 @@ class NewPagesForm {
 			}
 		}
 
-		// hack disable
-		$options['username'] = '';
+		if( !$wgEnableNewpagesUserFilter ) {
+			// hack disable
+			$options['username'] = '';
+		}
 		
 		if( !$including ){
 			$wgOut->setSyndicated( true );
@@ -146,18 +149,17 @@ class NewPagesForm {
 					<td class='mw-input'>" .
 						Xml::namespaceSelector( $options['namespace'], 'all' ) .
 					"</td>
-				</tr>
-				<!--
-				<tr>
+				</tr>" .
+				($wgEnableNewpagesUserFilter ?
+				"<tr>
 					<td class='mw-label'>" .
 						Xml::label( wfMsg( 'newpages-username' ), 'mw-np-username' ) .
 					"</td>
 					<td class='mw-input'>" .
 						Xml::input( 'username', 30, $options['username'], array( 'id' => 'mw-np-username' ) ) .
 					"</td>
-				</tr>
-				-->
-				<tr> <td></td>
+				</tr>" : "" ) .
+				"<tr> <td></td>
 					<td class='mw-submit'>" .
 						Xml::submitButton( wfMsg( 'allpagessubmit' ) ) .
 					"</td>
@@ -345,6 +347,7 @@ class NewPagesPager extends ReverseChronologicalPager {
 	}
 
 	function getQueryInfo() {
+		global $wgEnableNewpagesUserFilter;
 		$conds = $this->mConds;
 		$conds['rc_new'] = 1;
 		if( $this->namespace !== false ) {
@@ -352,6 +355,9 @@ class NewPagesPager extends ReverseChronologicalPager {
 			$rcIndexes = array( 'new_name_timestamp' );
 		} else {
 			$rcIndexes = array( 'rc_timestamp' );
+		}
+		if( $wgEnableNewpagesUserFilter ) {
+			$rcIndex[] = 'rc_user_text';
 		}
 		$conds[] = 'page_id = rc_cur_id';
 		$conds['page_is_redirect'] = 0;
