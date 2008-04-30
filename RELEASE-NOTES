@@ -229,6 +229,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 13185) No line break after 'subpages' class in Modern skin
 * (bug 13583) No "poweredby" in Modern skin
 * (bug 13880) "Printable" link in Modern skin now formats as print mode
+* (bug 13885) Bump default $wgSVGMaxSize from 1024 to 2048 pixels
 
 
 === API changes in 1.13 ===
