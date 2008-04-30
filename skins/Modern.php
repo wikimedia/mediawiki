@@ -15,6 +15,15 @@ if( !defined( 'MEDIAWIKI' ) )
  * @addtogroup Skins
  */
 class SkinModern extends SkinTemplate {
+	/*
+	 * We don't like the default getPoweredBy, the icon clashes with the 
+	 * skin L&F.
+	 */
+	function getPoweredBy() {
+	global	$wgVersion;
+		return "<div class='mw_poweredby'>Powered by MediaWiki $wgVersion</div>";
+	}
+
 	function initPage( &$out ) {
 		SkinTemplate::initPage( $out );
 		$this->skinname  = 'modern';
@@ -276,6 +285,7 @@ class ModernTemplate extends QuickTemplate {
 		}
 ?>
 			</ul>
+		<?php echo $this->html("poweredbyico"); ?>
 	</div>
 
 	<?php $this->html('bottomscripts'); /* JS call to runBodyOnloadHook */ ?>

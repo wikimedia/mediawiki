@@ -226,6 +226,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 11659) Urldecode image names in galleries
 * (bug 13168) accessibility links in Modern skin link to wrong anchor id
 * (bug 13185) No line break after 'subpages' class in Modern skin
+* (bug 13583) No "poweredby" in Modern skin
 
 === API changes in 1.13 ===
 
