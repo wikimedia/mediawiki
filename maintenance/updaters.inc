@@ -1412,6 +1412,7 @@ function do_postgres_updates() {
 		array("oldimage",      "oi_minor_mime",        "TEXT NOT NULL DEFAULT 'unknown'"),
 		array("oldimage",      "oi_sha1",              "TEXT NOT NULL DEFAULT ''"),
 		array("page_restrictions", "pr_id",            "INTEGER NOT NULL UNIQUE DEFAULT nextval('pr_id_val')"),
+		array("profiling",     "pf_memory",            "NUMERIC(18,10) NOT NULL DEFAULT 0"),
 		array("recentchanges", "rc_deleted",           "SMALLINT NOT NULL DEFAULT 0"),
 		array("recentchanges", "rc_log_action",        "TEXT"),
         array("recentchanges", "rc_log_type",          "TEXT"),
