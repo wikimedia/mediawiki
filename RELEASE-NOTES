@@ -230,6 +230,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 13583) No "poweredby" in Modern skin
 * (bug 13880) "Printable" link in Modern skin now formats as print mode
 * (bug 13885) Bump default $wgSVGMaxSize from 1024 to 2048 pixels
+* (bug 13891) Show categories box even if all categories are hidden and user has
+  "show hidden categories" option on
 
 
 === API changes in 1.13 ===

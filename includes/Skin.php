@@ -725,11 +725,12 @@ END;
 
 		$classes = 'catlinks';
 
-		if(FALSE === strpos($catlinks,'<div id="mw-normal-catlinks">')) {
+		if( strpos( $catlinks, '<div id="mw-normal-catlinks">' ) === false &&
+			strpos( $catlinks, '<div id="mw-hidden-catlinks" class="mw-hidden-cats-hidden">' ) !== false ) {
 			$classes .= ' catlinks-allhidden';
 		}
 
-		if(!empty($catlinks)) {
+		if( !empty( $catlinks ) ){
 			return "<div id='catlinks' class='$classes'>{$catlinks}</div>";
 		}
 	}
