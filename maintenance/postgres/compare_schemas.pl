@@ -67,7 +67,7 @@ my ($table,%old);
 my %xinfo;
 for my $xfile (@xfile) {
 	print "Loading $xfile\n";
-	my $info = &parse_sql($xfile);
+	my $info = parse_sql($xfile);
 	for (keys %$info) {
 		$xinfo{$_} = $info->{$_};
 	}
@@ -75,7 +75,7 @@ for my $xfile (@xfile) {
 
 for my $oldfile (@old) {
 	print "Loading $oldfile\n";
-	my $info = &parse_sql($oldfile);
+	my $info = parse_sql($oldfile);
 	for (keys %xinfo) {
 		$info->{$_} = $xinfo{$_};
 	}
@@ -100,7 +100,7 @@ sub parse_sql {
 			$table = $1;
 			$info{$table}{name}=$table;
 		}
-		elsif (m#^\) /\*\$wgDBTableOptions\*/#) {
+		elsif (m{^\) /\*\$wgDBTableOptions\*/}) {
 			$info{$table}{engine} = 'TYPE';
 			$info{$table}{type} = 'variable';
 		}
@@ -127,7 +127,7 @@ sub parse_sql {
 		}
 
 	}
-	close $oldfh;
+	close $oldfh or die qq{Could not close "$oldfile": $!\n};
 
 	return \%info;
 
@@ -145,10 +145,10 @@ while (<$pfh>) {
 		}
 		next;
 	}
-	$ptable{$1}=2 while /'(\w+)'/g;
+	$ptable{$1}=2 while m{'(\w+)'}g;
 	last if /\);/;
 }
-close $pfh;
+close $pfh or die qq{Could not close "$parsefile": $!\n};
 
 my $OK_NOT_IN_PTABLE = '
 filearchive
@@ -461,7 +461,7 @@ sub check_includes_dir {
 	## Check for some common errors in the files in the includes directory
 
 	print "Checking files in includes directory...\n";
-	my $dir = "../../includes";
+	my $dir = '../../includes';
 	opendir my $dh, $dir or die qq{Could not opendir $dir: $!\n};
 	for my $file (grep { -f "$dir/$_" and /\.php$/ } readdir $dh) {
 		$file = "$dir/$file";
@@ -484,8 +484,7 @@ sub check_includes_dir {
 	}
 	closedir $dh or die qq{Closedir failed?!\n};
 
-
-
+	return;
 
 } ## end of check_includes_dir
 
