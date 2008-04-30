@@ -4337,7 +4337,7 @@ class Parser
 			if ( count( $matches ) == 0 ) {
 				continue;
 			}
-			$tp = Title::newFromText( urldecode( $matches[1] ) );
+			$tp = Title::newFromText( $matches[1] );
 			$nt =& $tp;
 			if( is_null( $nt ) ) {
 				# Bogus title. Ignore these so we don't bomb out later.
