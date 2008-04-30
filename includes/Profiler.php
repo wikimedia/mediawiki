@@ -307,7 +307,6 @@ class Profiler {
 		# Warning: $wguname is a live patch, it should be moved to Setup.php
 		global $wguname, $wgProfilePerHost;
 
-		$fname = 'Profiler::logToDB';
 		$dbw = wfGetDB(DB_MASTER);
 		if (!is_object($dbw))
 			return false;
@@ -315,7 +314,6 @@ class Profiler {
 		$profiling = $dbw->tableName('profiling');
 
 		$name = substr($name, 0, 255);
-		$encname = $dbw->strencode($name);
 
 		if ($wgProfilePerHost) {
 			$pfhost = $wguname['nodename'];
@@ -327,15 +325,24 @@ class Profiler {
 		$timeSum = ($timeSum >= 0) ? $timeSum : 0;
 		$memorySum = ($memorySum >= 0) ? $memorySum : 0;
 
-		$sql = "UPDATE $profiling SET pf_count=pf_count+{$eventCount}, pf_time=pf_time+{$timeSum}, pf_memory=pf_memory+{$memorySum} ".
-			"WHERE pf_name='{$encname}' AND pf_server='{$pfhost}'";
-		$dbw->query($sql);
+		$dbw->update( 'profiling',
+			array(
+				"pf_count=pf_count+{$eventCount}",
+				"pf_time=pf_time+{$timeSum}",
+				"pf_memory=pf_memory+{$memorySum}",
+			),
+			array(
+				'pf_name' => $name,
+				'pf_server' => $pfhost,
+			),
+			__METHOD__ );
+				
 
 		$rc = $dbw->affectedRows();
 		if ($rc == 0) {
 			$dbw->insert('profiling', array ('pf_name' => $name, 'pf_count' => $eventCount,
 				'pf_time' => $timeSum, 'pf_memory' => $memorySum, 'pf_server' => $pfhost ), 
-				$fname, array ('IGNORE'));
+				__METHOD__, array ('IGNORE'));
 		}
 		// When we upgrade to mysql 4.1, the insert+update
 		// can be merged into just a insert with this construct added:
