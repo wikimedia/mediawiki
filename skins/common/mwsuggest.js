@@ -411,7 +411,7 @@ function os_changeHighlight(r, cur, next, updateSearchBox){
     if(next >= 0){
     	var nextRow = document.getElementById(r.resultTable + next);
     	if(nextRow != null)
-    		nextRow.className = "os-suggest-result-hl";
+    		nextRow.className = os_HighlightClass();
     	newText = r.results[next];
     } else
     	newText = r.original;
@@ -431,6 +431,20 @@ function os_changeHighlight(r, cur, next, updateSearchBox){
     if(updateSearchBox){
     	os_updateSearchQuery(r,newText);	
     }
+}
+
+function os_HighlightClass() {
+	var match = navigator.userAgent.match(/AppleWebKit\/(\d+)/);
+	if (match) {
+		var webKitVersion = parseInt(match[1]);
+		if (webKitVersion < 525) {
+			// CSS system highlight colors broken on old Safari
+			// https://bugs.webkit.org/show_bug.cgi?id=6129
+			// Safari 3.1 known ok
+			return "os-suggest-result-hl-webkit";
+		}
+	}
+	return "os-suggest-result-hl";
 }
 
 function os_updateSearchQuery(r,newText){
