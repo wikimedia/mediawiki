@@ -311,7 +311,6 @@ class Profiler {
 		if (!is_object($dbw))
 			return false;
 		$errorState = $dbw->ignoreErrors( true );
-		$profiling = $dbw->tableName('profiling');
 
 		$name = substr($name, 0, 255);
 
