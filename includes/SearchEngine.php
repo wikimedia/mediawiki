@@ -489,6 +489,7 @@ class SearchResultTooMany {
  * @addtogroup Search
  */
 class SearchResult {
+	var $mRevision = null;
 
 	function SearchResult( $row ) {
 		$this->mTitle = Title::makeTitle( $row->page_namespace, $row->page_title );
