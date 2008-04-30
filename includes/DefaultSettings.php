@@ -1823,7 +1823,7 @@ $wgSVGConverter = 'ImageMagick';
 /** If not in the executable PATH, specify */
 $wgSVGConverterPath = '';
 /** Don't scale a SVG larger than this */
-$wgSVGMaxSize = 1024;
+$wgSVGMaxSize = 2048;
 /**
  * Don't thumbnail an image if it will use too much working memory
  * Default is 50 MB if decompressed to RGBA form, which corresponds to
