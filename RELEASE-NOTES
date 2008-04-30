@@ -95,6 +95,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 889) Improve conflict-handling between shared upload repository
   and local one
 * Update documentation links in auto-generated LocalSettings.php
+* (bug 13584) The new hook SkinTemplateToolboxEnd was added.
 
 === Bug fixes in 1.13 ===
 

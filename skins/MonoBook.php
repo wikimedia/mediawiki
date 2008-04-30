@@ -223,6 +223,7 @@ class MonoBookTemplate extends QuickTemplate {
 		}
 
 		wfRunHooks( 'MonoBookTemplateToolboxEnd', array( &$this ) );
+		wfRunHooks( 'SkinTemplateToolboxEnd', array( &$this ) );
 ?>
 			</ul>
 		</div>

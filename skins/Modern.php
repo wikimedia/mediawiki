@@ -224,8 +224,9 @@ class ModernTemplate extends QuickTemplate {
 		} elseif ($this->data['nav_urls']['permalink']['href'] === '') { ?>
 				<li id="t-ispermalink"<?php echo $skin->tooltip('t-ispermalink') ?>><?php $this->msg('permalink') ?></li><?php
 		}
-?>
-			</ul>
+
+		wfRunHooks( 'SkinTemplateToolboxEnd', array( &$this ) );
+?>			</ul>
 		</div><!-- pBody -->
 	</div><!-- portlet -->
 

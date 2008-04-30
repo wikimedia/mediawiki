@@ -791,6 +791,9 @@ $title: title of the message (string)
 $message: value (string), change it to the message you want to define
 
 'MonoBookTemplateToolboxEnd': Called by Monobook skin after toolbox links have been rendered (useful for adding more)
+Note: this is only run for the Monobook skin.  To add items to the toolbox
+for all 'SkinTemplate'-type skins, use the SkinTemplateToolboxEnd hook
+instead.
 $tools: array of tools
 
 'OutputPageBeforeHTML': a page has been processed by the parser and
@@ -1004,6 +1007,9 @@ $checkEdit: Whether or not the action=edit query should be added if appropriate.
 'SkinTemplateTabs': called when finished to build the actions tabs
 $sktemplate: SkinTemplate object
 $content_actions: array of tabs
+
+'SkinTemplateToolboxEnd': Called by SkinTemplate skins after toolbox links have been rendered (useful for adding more)
+$tools: array of tools
 
 'SpecialContributionsBeforeMainOutput': Before the form on Special:Contributions
 $id: User identifier
