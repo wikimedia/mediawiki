@@ -138,7 +138,7 @@ class NewPagesForm {
 			$hidden = implode( "\n", $hidden );
 			
 			$ut = Title::makeTitleSafe( NS_USER, $options['username'] );
-			$encUser = $ut ? $ut->getText() : '';
+			$userText = $ut ? $ut->getText() : '';
 
 			$form = Xml::openElement( 'form', array( 'method' => 'get', 'action' => $wgScript ) ) .
 				Xml::hidden( 'title', $self->getPrefixedDBkey() ) .
@@ -159,7 +159,7 @@ class NewPagesForm {
 						Xml::label( wfMsg( 'newpages-username' ), 'mw-np-username' ) .
 					"</td>
 					<td class='mw-input'>" .
-						Xml::input( 'username', 30, $encUser, array( 'id' => 'mw-np-username' ) ) .
+						Xml::input( 'username', 30, $userText, array( 'id' => 'mw-np-username' ) ) .
 					"</td>
 				</tr>" : "" ) .
 				"<tr> <td></td>
