@@ -1176,7 +1176,7 @@ function do_populate_parent_id() {
 		echo "...rev_parent_id column already populated.\n";
 		return;
 	}
-	require_once( 'populateParentId.php' );
+	require_once( 'populateParentId.inc' );
 	
 	global $wgDatabase;
 	populate_rev_parent_id( $wgDatabase );
