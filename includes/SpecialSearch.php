@@ -336,7 +336,7 @@ class SpecialSearch {
 			
 		
 		$off = $this->offset + 1;
-		$out .= "<ul start='{$off}' class='mw-search-results'>\n";
+		$out .= "<ul class='mw-search-results'>\n";
 
 		while( $result = $matches->next() ) {
 			$out .= $this->showHit( $result, $terms );
