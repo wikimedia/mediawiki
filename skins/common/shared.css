@@ -170,7 +170,6 @@ table.os-suggest-results {
 }
 
 td.os-suggest-result, td.os-suggest-result-hl {
-	text-align: left; 
 	white-space: nowrap;
 	background-color: white; 
 	background-color: Window;
