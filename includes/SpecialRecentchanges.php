@@ -300,7 +300,7 @@ function rcFilterByCategories ( &$rows , $categories , $any ) {
 	$articles = array () ;
 	$a2r = array () ;
 	foreach ( $rows AS $k => $r ) {
-		$nt = Title::makeTitle( $r->rc_title , $r->rc_namespace );
+		$nt = Title::makeTitle( $r->rc_namespace, $r->rc_title );
 		$id = $nt->getArticleID() ;
 		if ( $id == 0 ) continue ; # Page might have been deleted...
 		if ( !in_array ( $id , $articles ) ) {
