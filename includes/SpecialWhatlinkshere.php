@@ -212,10 +212,12 @@ class WhatLinksHerePage {
 		foreach ( $rows as $row ) {
 			$nt = Title::makeTitle( $row->page_namespace, $row->page_title );
 
-			$wgOut->addHTML( $this->listItem( $row, $nt ) );
-
 			if ( $row->page_is_redirect && $level < 2 ) {
+				$wgOut->addHTML( $this->listItem( $row, $nt, true ) );
 				$this->showIndirectLinks( $level + 1, $nt, $wgMaxRedirectLinksRetrieved );
+				$wgOut->addHTML( Xml::closeElement( 'li' ) );
+			} else {
+				$wgOut->addHTML( $this->listItem( $row, $nt ) );
 			}
 		}
 
@@ -230,7 +232,7 @@ class WhatLinksHerePage {
 		return Xml::openElement( 'ul' );
 	}
 
-	protected function listItem( $row, $nt ) {
+	protected function listItem( $row, $nt, $notClose = false ) {
 		# local message cache
 		static $msgcache = null;
 		if ( $msgcache === null ) {
@@ -261,7 +263,9 @@ class WhatLinksHerePage {
 		$wlhLink = $this->wlhLink( $nt, $msgcache['whatlinkshere-links'] );
 		$wlh = Xml::wrapClass( "($wlhLink)", 'mw-whatlinkshere-tools' );
 
-		return Xml::tags( 'li', null, "$link $propsText $wlh" ) . "\n";
+		return $notClose ?
+			Xml::openElement( 'li' ) . "$link $propsText $wlh\n" :
+			Xml::tags( 'li', null, "$link $propsText $wlh" ) . "\n";
 	}
 
 	protected function listEnd() {
