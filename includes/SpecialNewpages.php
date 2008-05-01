@@ -63,7 +63,7 @@ class NewPagesForm {
 			} elseif( is_int($t) ) {
 				$options[$v] = $wgRequest->getInt( $v, $options[$v] );
 			} elseif( is_string($t) ) {
-				$options[$v] = $wgRequest->getText( $v, $options[$v] );
+				$options[$v] = trim( $wgRequest->getVal( $v, $options[$v] ) );
 			}
 		}
 
@@ -136,6 +136,9 @@ class NewPagesForm {
 				$hidden[] = Xml::hidden( $key, $value );
 			}
 			$hidden = implode( "\n", $hidden );
+			
+			$ut = Title::makeTitleSafe( NS_USER, $options['username'] );
+			$encUser = $ut ? $ut->getText() : '';
 
 			$form = Xml::openElement( 'form', array( 'method' => 'get', 'action' => $wgScript ) ) .
 				Xml::hidden( 'title', $self->getPrefixedDBkey() ) .
@@ -156,7 +159,7 @@ class NewPagesForm {
 						Xml::label( wfMsg( 'newpages-username' ), 'mw-np-username' ) .
 					"</td>
 					<td class='mw-input'>" .
-						Xml::input( 'username', 30, $options['username'], array( 'id' => 'mw-np-username' ) ) .
+						Xml::input( 'username', 30, $encUser, array( 'id' => 'mw-np-username' ) ) .
 					"</td>
 				</tr>" : "" ) .
 				"<tr> <td></td>
