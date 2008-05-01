@@ -1177,6 +1177,9 @@ function do_populate_parent_id() {
 		return;
 	}
 	require_once( 'populateParentId.php' );
+	
+	global $wgDatabase;
+	populate_rev_parent_id( $wgDatabase );
 }
 
 function
