@@ -356,9 +356,6 @@ class NewPagesPager extends ReverseChronologicalPager {
 		} else {
 			$rcIndexes = array( 'rc_timestamp' );
 		}
-		if( $wgEnableNewpagesUserFilter ) {
-			$rcIndexes[] = 'rc_user_text';
-		}
 		$conds[] = 'page_id = rc_cur_id';
 		$conds['page_is_redirect'] = 0;
 
@@ -379,9 +376,10 @@ class NewPagesPager extends ReverseChronologicalPager {
 		if( $this->hidebots ) {
 			$conds['rc_bot'] = 0;
 		}
-
-		if( $this->user ) {
+		# $wgEnableNewpagesUserFilter - temp WMF hack
+		if( $wgEnableNewpagesUserFilter && $this->user ) {
 			$conds['rc_user_text'] = $this->user;
+			$rcIndexes = 'rc_user_text';
 		}
 
 		return array(
