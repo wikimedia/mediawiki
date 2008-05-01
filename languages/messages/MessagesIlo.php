@@ -642,12 +642,17 @@ Kasta met nga ikarim kadakami a bukodmo a sinurat wenno gapuanan daytoy, wenno k
 'hideresults'   => 'Ilemmeng dagiti resulta',
 'useajaxsearch' => 'Agaramat iti AJAX a pagbirok',
 
+# Watchlist editor
+'watchlistedit-normal-submit' => 'Ikkaten dagiti Titulo',
+
 # Special:Version
+'version-other'            => 'Sabali',
 'version-license'          => 'Lisensia',
 'version-software-product' => 'Produkto',
 
 # Special:SpecialPages
 'specialpages-group-users'       => 'Dagiti agar-aramat ken karkarbengan',
+'specialpages-group-needy'       => 'Pampanid a masapul a matrabaho',
 'specialpages-group-permissions' => 'Dagiti pammalubos ti agar-aramat',
 
 );

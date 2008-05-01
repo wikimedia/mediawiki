@@ -294,6 +294,7 @@ $messages = array(
 'youhavenewmessagesmulti' => '$1 இல் உங்களுக்கு புதிய செய்திகள் காத்திருக்கின்றன',
 'editsection'             => 'தொகு',
 'editold'                 => 'தொகு',
+'viewsourceold'           => 'மூலத்தை காட்டுக',
 'editsectionhint'         => '$1 பகுதியை தொகு',
 'toc'                     => 'பொருளடக்கம்',
 'showtoc'                 => 'காட்டு',
@@ -305,9 +306,9 @@ $messages = array(
 'feed-invalid'            => 'பிழையான ஓடை வகை.',
 'feed-unavailable'        => '{{SITENAME}} தளத்தில் தகவல் ஓடைகள் வழங்கப்படுவதில்லை',
 'site-rss-feed'           => '$1 RSS ஓடை',
-'site-atom-feed'          => '$1 Atom உள்ளீடு',
-'page-rss-feed'           => '"$1" RSS உள்ளீடு',
-'page-atom-feed'          => '"$1" Atom உள்ளீடு',
+'site-atom-feed'          => '$1 Atom ஓடை',
+'page-rss-feed'           => '"$1" RSS ஓடை',
+'page-atom-feed'          => '"$1" Atom ஓடை',
 'red-link-title'          => '$1 (இன்னமும் எழுதப்படவில்லை)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
@@ -359,6 +360,8 @@ $1',
 நீக்கப்பட்ட பக்கமொன்றுக்கு வழக்கிழந்த வேறுபாடு அல்லது வரலாறு இணைப்பைப் பின்பற்றுவதன் மூலம் இது வழக்கமாக ஏற்படுகிறது.
 
 அப்படியில்லாவிட்டால், இது ஒரு மென்பொருள் வழுவாகவும் இருக்கக்கூடும். அருள் கூர்ந்து இணைய முகவரியைக் குறித்துக் கொண்டு அதை ஒரு நிர்வாகிக்கு அறிவிக்கவும்.',
+'missingarticle-rev'   => '(திருத்தம்#: $1)',
+'missingarticle-diff'  => '(வேறுபாடு: $1, $2)',
 'readonly_lag'         => 'இரண்டாம் நிலை தரவுத்தளங்கள் தலைமை தரவுத்தளத்துடன் இணைந்துக் கொள்ளும் வரை தரவுத்தளம் தானியகக்மாக பூட்டப்பட்டுள்ளது',
 'internalerror'        => 'உள்ளகத் தவறு',
 'internalerror_info'   => 'உள்ளகத் தவறு: $1',
@@ -637,6 +640,7 @@ $1 பயனரையோ அல்லது வேறு [[{{MediaWiki:Grouppage
 # "Undo" feature
 'undo-success' => 'இத்தொக்குப்பை மீளமைக்க முடியும். அருள் கூர்ந்து கீழே காட்டப்பட்டுள்ள ஒப்பீட்டைப் பார்த்து நீங்கள் செய்ய விழைவது இதுவா என்பதை உறுதிப் படுத்தியப்பின் பக்கத்தை சேமி என்பதன் மேல் சொடுகவும்.',
 'undo-failure' => 'முரண்பாடான இடைப்பட்டத் தொகுப்புகள் காரணமாக இத்தொகுப்பை மீளமைக்க முடியாது.',
+'undo-norev'   => 'நீங்கள் குறித்தவாரான தொகுப்பு இல்லாத படியாலோ அல்லது நீக்கப்பட்ட படியாலோ இத்தொகுப்பை மீளமைக்க முடியாது.',
 'undo-summary' => '[[Special:Contributions/$2|$2]] ([[User talk:$2|பேச்சு]]) பயனரால் செய்யப்பட்ட திருத்தம் $1 இல்லாது செய்யப்பட்டது',
 
 # Account creation failure
@@ -697,7 +701,7 @@ $1 பயனரையோ அல்லது வேறு [[{{MediaWiki:Grouppage
 'revdelete-text'              => 'நீக்கப்பட்ட நிகழ்வுகள் மற்றும் திருத்தங்கள் பக்க வரலாற்றுப் பக்கத்தில் காணப்படும் எனினும் அவற்றின் உள்ளடக்கம் பயனர்களுக்கு காட்டப்படமாட்டது.
 
 மேலதிக கட்டுப்பாடுகள் விதிகப்பட்டிருக்காத போது {{SITENAME}} தளத்தின் நீர்வாகிகள் மறைக்கப்பட்ட உள்ளடக்கங்களைப் பார்பதுடன் அவற்றை மீட்டெடுக்கவும் முடியும்.',
-'revdelete-legend'            => 'கட்டுப்பாடுகளை ஏற்படுத்து',
+'revdelete-legend'            => 'பார்வையியழுமைக் கட்டுப்பாடுகளை ஏற்படுத்துக',
 'revdelete-hide-text'         => 'திருத்த உரையை மறை',
 'revdelete-hide-name'         => 'செயற்பாட்டையும் இலக்கையும் மறை',
 'revdelete-hide-comment'      => 'தொகுப்புச் சுருக்கத்தை மறை',
@@ -712,10 +716,17 @@ $1 பயனரையோ அல்லது வேறு [[{{MediaWiki:Grouppage
 'logdelete-logentry'          => '[[$1]] பக்கத்துக்கான நிகழ்வு பார்வையியலுமை மாற்றப்பட்டது',
 'revdelete-success'           => "'''திருத்த பார்வையியலுமை வெற்றிகரமாக அமைக்கப்பட்டது.'''",
 'logdelete-success'           => "'''நிகழ்வு பார்வையியலுமை வெற்றிகரமாக அமைக்கப்பட்டது.'''",
+'revdel-restore'              => 'பார்வையியலுமையை மாற்றுக',
 'pagehist'                    => 'பக்க வரலாறு',
 'deletedhist'                 => 'நீக்கப்பட்ட வரலாறு',
-'revdelete-content'           => 'உள்ளடக்கம்',
-'revdelete-uname'             => 'பயனர் பெயர்',
+'revdelete-content'           => 'உள்ளடக்கத்தை',
+'revdelete-summary'           => 'தொகுப்பு சுருக்கத்தை',
+'revdelete-uname'             => 'பயனர் பெயரை',
+'revdelete-restricted'        => 'நிர்வாகிகளுக்கு கட்டுப்பாடுகள் விதிக்கப்பட்டது',
+'revdelete-unrestricted'      => 'நிர்வாகிகளின் கட்டுப்பாடுகள் நீக்கப்பட்டது',
+'revdelete-hid'               => '$1 மறைக்க',
+'revdelete-unhid'             => '$1 காட்டுக',
+'revdelete-log-message'       => '$2 {{PLURAL:$2|திருத்தத்திற்கு|திருத்தங்களிற்கு}} $1',
 
 # History merging
 'mergehistory'                     => 'பக்க வரலாறுகளை இணை',
@@ -735,6 +746,8 @@ $1 பயனரையோ அல்லது வேறு [[{{MediaWiki:Grouppage
 'mergehistory-no-destination'      => 'இலக்குப் பக்கம் $1 இல்லை.',
 'mergehistory-invalid-source'      => 'மூலப் பக்கம் செல்லுபடியான பக்கமாக இருக்க வேண்டும்.',
 'mergehistory-invalid-destination' => 'இலக்குக் கட்டுரையின் தலைப்பு செல்லுபடியானதாக இருக்க வேண்டும்.',
+'mergehistory-autocomment'         => '[[:$1]]பக்கம் [[:$2]] பக்கத்துடன் இணைக்கப்பட்டது',
+'mergehistory-comment'             => '[[:$1]]பக்கம் [[:$2]] பக்கத்துடன் இணைக்கப்பட்டது: $3',
 
 # Merge log
 'mergelog'           => 'இணைப்புப் பதிகை',
@@ -771,7 +784,10 @@ $1 பயனரையோ அல்லது வேறு [[{{MediaWiki:Grouppage
 'search-section'           => '(பிரிவு $1)',
 'search-suggest'           => 'நீங்கள் கருதியது இதையா: $1',
 'search-interwiki-caption' => 'சகோதர திட்டங்கள்',
+'search-interwiki-default' => '$1 தளத்தின் முடிவுகள்:',
 'search-interwiki-more'    => '(மேலும்)',
+'search-relatedarticle'    => 'தொடர்புடையவை',
+'searchrelated'            => 'தொடர்புடையவை',
 'searchall'                => 'அனைத்து',
 'showingresults'           => "'''$2''' இலிருந்து தொடங்கும்  {{PLURAL:$1|'''1''' முடிவு கீழே காட்டப்பட்டுள்ளது|'''$1''' முடிவுகள் கீழே காட்டப்பட்டுள்ளன}}.",
 'showingresultsnum'        => "'''$2''' இலிருந்து தொடங்கும்  {{PLURAL:$3|'''1''' முடிவு கீழே காட்டப்பட்டுள்ளது|'''$3''' முடிவுகள் கீழே காட்டப்பட்டுள்ளன}}.",
@@ -780,6 +796,7 @@ $1 பயனரையோ அல்லது வேறு [[{{MediaWiki:Grouppage
 'powersearch'              => 'மேம்படுத்தப்பட்ட தேடல்',
 'powersearch-legend'       => 'மேம்பட்ட தேடல்',
 'powersearchtext'          => 'பெயர்வெளிகளில் தேடுக:<br />$1<br />$2 வழிமாற்றுகளை பட்டியிலிடுக<br />தேட வேண்டியச் சொல் $3 $9',
+'search-external'          => 'வெளித்தேடல்',
 'searchdisabled'           => '{{SITENAME}} தளத்தின் தேடல் வசதிகள் தற்காலிகமாக முடக்கப்பட்டுள்ளது. அதுவரை நீங்கள் கீழேயுள்ள கூகிள் தேடலைப் பயன்படுத்தலாம். இது சில சமயம் இற்றைப்படுத்தப்படாததாய் இருக்கக்கூடும்.',
 
 # Preferences page
@@ -862,24 +879,63 @@ $1 பயனரையோ அல்லது வேறு [[{{MediaWiki:Grouppage
 'userrights-nodatabase'            => '$1 தரவுத்தளம் கிடையாது அல்லது உள்ளக விக்கியில் கிடையாது.',
 'userrights-nologin'               => 'பயனர் உரிமைகளை வழங்குவதற்கு நீங்கள் நிர்வாகி கணக்கில் [[Special:Userlogin|புகுபதிகை]] செய்ய வேண்டும்.',
 'userrights-notallowed'            => 'பயனர் உரிமைகளை மாற்றும் அனுமதி உங்கள் பயனர் கணக்குக் கிடையாது.',
+'userrights-changeable-col'        => 'நீங்கள் மாற்றக்கூடிய குழுக்கள்',
+'userrights-unchangeable-col'      => 'நீங்கள் மாற்ற முடியாத குழுக்கள்',
 
 # Groups
 'group'               => 'குழு:',
+'group-user'          => 'பயனர்',
 'group-autoconfirmed' => 'தானாக உறுதியளிக்கப்பட்ட பயனர்கள்',
 'group-bot'           => 'தானியங்கிகள்',
 'group-sysop'         => 'நிர்வாகிகள்',
 'group-bureaucrat'    => 'அதிகாரிகள்',
 'group-all'           => '(அனைத்து)',
 
+'group-user-member'          => 'பயனர்',
 'group-autoconfirmed-member' => 'தானாக உறுதியளிக்கப்பட்ட பயனர்கள்',
 'group-bot-member'           => 'தானியங்கி',
 'group-sysop-member'         => 'நிர்வாகி',
 'group-bureaucrat-member'    => 'அதிகாரி',
 
+'grouppage-user'          => '{{ns:project}}:பயனர்கள்',
 'grouppage-autoconfirmed' => '{{ns:project}}:தானாக உறுதியளிக்கப்பட்ட பயனர்கள்',
 'grouppage-bot'           => '{{ns:project}}:தானியங்கிகள்',
 'grouppage-sysop'         => '{{ns:project}}:நிர்வாகிகள்',
 'grouppage-bureaucrat'    => '{{ns:project}}:அதிகாரிகள்',
+
+# Rights
+'right-read'                 => 'பக்கங்களை வாசிக்க',
+'right-edit'                 => 'பக்கங்களை தொகு',
+'right-createpage'           => 'பக்கங்களை உருவாக்கல் (உரையாடல் பக்கங்கள் அல்லாதவை)',
+'right-createtalk'           => 'உரையாடல் பக்கங்களைத் தொடங்கல்',
+'right-createaccount'        => 'புதிய பயனர் கணக்குகளை தொடங்கல்',
+'right-minoredit'            => 'தொகுப்புகளை சிறியதாக குறிக்க',
+'right-move'                 => 'பக்கத்தை நகர்த்து',
+'right-upload'               => 'கோப்புகளைப் பதிவேற்றுக',
+'right-reupload'             => 'தற்போதுள்ள கோப்பை மேழெழுழுதுக',
+'right-upload_by_url'        => 'யூ.ஆர்.எல். ஒன்றிலிருந்து கோப்பை பதிவேற்றல்',
+'right-purge'                => 'உறுதிப்படுத்தல் பக்கமெதுவுமின்றி பக்க இடைமாற்றை நீக்கல்',
+'right-autoconfirmed'        => 'பகுதியாக காக்கப்பட்ட பக்கங்களை தொகுத்தல்',
+'right-delete'               => 'பக்கங்களை நீக்குக',
+'right-bigdelete'            => 'பெரிய வரலாற்றைக் கொண்ட பக்கங்களை நீக்கல்',
+'right-deleterevision'       => 'பக்கமொன்றின் குறித்த திருத்தங்களை நிக்கல் மீட்டல்',
+'right-browsearchive'        => 'நீக்கப்பட்ட பக்கங்களை தேடுக',
+'right-undelete'             => 'பக்கமொன்றை மீட்டெடுக்கவும்',
+'right-suppress'             => 'தனிப்பட்ட பதிவுகளை பார்க்க',
+'right-block'                => 'ஏனைய பயனர்கள் தொகுப்பதை தடுக்கவும்',
+'right-blockemail'           => 'பயனர் மின்னஞ்சல் அனுப்புவதை தடுக்கவும்',
+'right-hideuser'             => 'பயனர்பெயரை தடுத்து, மறைக்கவும்',
+'right-editinterface'        => 'பயனர் இடைமுகப்பை தொகுக்கவும்',
+'right-rollback'             => 'கடைசி தொகுப்பை விரைவாக முன்னிலையாக்கல்',
+'right-markbotedits'         => 'முந்நிலையாக்கல்களை தானியக்க தொகுப்பாக குறிக்கவும்',
+'right-import'               => 'ஏனைய விக்கிகளிலிருந்து பக்கங்களை இறக்கவும்',
+'right-importupload'         => 'கோப்பு பதிவேற்றத்திலிருந்து பக்கங்களை இறக்கவும்',
+'right-patrol'               => 'தொகுப்புகளை ரோந்திட்டதாக குறிக்கவும்',
+'right-autopatrol'           => 'தொகுப்புகளை தானியக்கமாக ரோந்திடப்பட்டதாக குறித்தல்',
+'right-unwatchedpages'       => 'கவனிக்கப்படாத பக்கங்களின் பட்டியலைப் பார்த்தல்',
+'right-mergehistory'         => 'பக்கங்களின் வரலாற்றை இணைத்தல்',
+'right-userrights-interwiki' => 'ஏனைய விக்கி தளங்களின் பயனர் உரிமைகளை தொகுத்தல்',
+'right-siteadmin'            => 'தரவுத்தளத்தை பூட்டல் திறத்தல்',
 
 # User rights log
 'rightslog'      => 'பயனர் உரிமைகள் பதிகை',
@@ -918,7 +974,8 @@ $1 பயனரையோ அல்லது வேறு [[{{MediaWiki:Grouppage
 'recentchangeslinked'          => 'தொடர்பான மாற்றங்கள்',
 'recentchangeslinked-title'    => '"$1" பக்கத்துடன் தொடர்புடைய மாற்றங்கள்',
 'recentchangeslinked-noresult' => 'குறித்த நேரத்தில் இப்பக்கத்துடன் இணைக்கப்பட்ட பக்கங்களில் மாற்றங்கள் ஏதுமில்லை.',
-'recentchangeslinked-summary'  => "இணைக்கப்பட்டப் பக்கங்களின் கடைசி மாற்றங்களை இச்சிறப்புப் பக்கம் பட்டியலிடுகிறது. உங்கள் கவணிப்புப் பட்டியலில் உள்ளப் பக்கங்கள் '''தடித்த எழுத்துக்களில்''' உள்ளன.",
+'recentchangeslinked-summary'  => "இணைக்கப்பட்டப் பக்கங்களுக்கு (அல்லது பகுப்பொன்றின் அங்கத்தர்வர்களுக்கு) செய்யபட்ட அண்மைய மாற்றங்களை இச்சிறப்புப் பக்கம் பட்டியலிடுகிறது. [[Special:Watchlist|உங்கள் கவணிப்புப் பட்டியலில்]] உள்ளப் பக்கங்கள் '''தடித்த எழுத்துக்களில்''' உள்ளன.",
+'recentchangeslinked-page'     => 'பக்க பெயர்:',
 
 # Upload
 'upload'                      => 'கோப்பைப் பதிவேற்று',
@@ -1022,27 +1079,33 @@ $1 பயனரையோ அல்லது வேறு [[{{MediaWiki:Grouppage
 'imagelist_description' => 'விளக்கம்',
 
 # Image description page
-'filehist'                  => 'கோப்பு வரலாறு',
-'filehist-help'             => 'குறித்த நேரத்தில் இருந்த படிமத்தைப் பார்க்க அந்நேரத்தின் மீது சொடுகவும்.',
-'filehist-deleteall'        => 'சகலதையும் நீக்கு',
-'filehist-deleteone'        => 'இதை நீக்கு',
-'filehist-revert'           => 'முன்நிலையாக்கு',
-'filehist-current'          => 'தற்போதைய',
-'filehist-datetime'         => 'நாள்/நேரம்',
-'filehist-user'             => 'பயனர்',
-'filehist-dimensions'       => 'பரிமாணங்கள்',
-'filehist-filesize'         => 'கோப்பின் அளவு',
-'filehist-comment'          => 'குறிப்பு',
-'imagelinks'                => 'படிம இணைப்புகள்',
-'linkstoimage'              => 'பின்வரும் பக்கங்கள் இப் படிமத்துக்கு இணைக்கப்பட்டுள்ளன:',
-'nolinkstoimage'            => 'இப் படிமத்துக்கு இணைக்கப்பட்டுள்ள பக்கங்கள் எதுவும் இல்லை.',
-'sharedupload'              => 'இக்கோப்பு ஒரு பகிரப்பட்ட பதிவேற்றமாகும். ஏனைய திட்டங்களிலும் பயன்படுத்தப்படலாம்.',
-'shareduploadwiki'          => 'மேலதிகத் தகவல்களுக்கு $1 பக்கத்தைப் பார்க்கவும்.',
-'shareduploadwiki-desc'     => 'அங்கே காணப்படும் $1 பக்கத்தைப் இங்கே கீழே காணலாம்.',
-'shareduploadwiki-linktext' => 'படிம விளக்கப்',
-'noimage'                   => 'இப்பெயருடைய கோப்பு எதுவும் இல்லை. நீங்கள் அதை $1',
-'noimage-linktext'          => 'பதிவேற்றம் செய்யலாம்',
-'uploadnewversion-linktext' => 'இப்படிமத்தின் புதிய பதிப்பை பதிவேற்று',
+'filehist'                       => 'கோப்பு வரலாறு',
+'filehist-help'                  => 'குறித்த நேரத்தில் இருந்த படிமத்தைப் பார்க்க அந்நேரத்தின் மீது சொடுகவும்.',
+'filehist-deleteall'             => 'சகலதையும் நீக்கு',
+'filehist-deleteone'             => 'இதை நீக்கு',
+'filehist-revert'                => 'முன்நிலையாக்கு',
+'filehist-current'               => 'தற்போதைய',
+'filehist-datetime'              => 'நாள்/நேரம்',
+'filehist-user'                  => 'பயனர்',
+'filehist-dimensions'            => 'பரிமாணங்கள்',
+'filehist-filesize'              => 'கோப்பின் அளவு',
+'filehist-comment'               => 'குறிப்பு',
+'imagelinks'                     => 'படிம இணைப்புகள்',
+'linkstoimage'                   => 'பின்வரும் பக்கங்கள் இப் படிமத்துக்கு இணைக்கப்பட்டுள்ளன:',
+'nolinkstoimage'                 => 'இப் படிமத்துக்கு இணைக்கப்பட்டுள்ள பக்கங்கள் எதுவும் இல்லை.',
+'sharedupload'                   => 'இக்கோப்பு ஒரு பகிரப்பட்ட பதிவேற்றமாகும். ஏனைய திட்டங்களிலும் பயன்படுத்தப்படலாம்.',
+'shareduploadwiki'               => 'மேலதிகத் தகவல்களுக்கு $1 பக்கத்தைப் பார்க்கவும்.',
+'shareduploadwiki-desc'          => 'அங்கே காணப்படும் $1 பக்கத்தைப் இங்கே கீழே காணலாம்.',
+'shareduploadwiki-linktext'      => 'படிம விளக்கப்',
+'shareduploadduplicate'          => '
+இந்தக் கோப்பு பகிரப்பட்ட சேமிப்பில் உள்ள $1 கோப்பின் நகலாகும்.',
+'shareduploadduplicate-linktext' => 'வேறொரு கோப்பு',
+'shareduploadconflict'           => 'இந்தக் கோப்பு பகிரப்பட்ட சேமிப்பில் உள்ள $1 கோப்பின் பெயரையே கொண்டுள்ளது',
+'shareduploadconflict-linktext'  => 'வேறொரு கோப்பு',
+'noimage'                        => 'இப்பெயருடைய கோப்பு எதுவும் இல்லை. நீங்கள் அதை $1',
+'noimage-linktext'               => 'பதிவேற்றம் செய்யலாம்',
+'uploadnewversion-linktext'      => 'இப்படிமத்தின் புதிய பதிப்பை பதிவேற்று',
+'imagepage-searchdupe'           => 'நகல் கோப்புகளைத் தேடுக',
 
 # File reversion
 'filerevert'                => '$1 ஐ முன்நிலையாக்கு',
@@ -1129,6 +1192,7 @@ $1 பயனரையோ அல்லது வேறு [[{{MediaWiki:Grouppage
 
 'withoutinterwiki'         => 'பிற மொழி இணைப்பற்ற பக்கங்கள்',
 'withoutinterwiki-summary' => 'பின்வரும் பக்கங்கள் வேறு மொழிப் பதிப்புக்களுக்கு இணைக்கப்படவில்லை:',
+'withoutinterwiki-legend'  => 'முன்னொட்டு',
 'withoutinterwiki-submit'  => 'காட்டு',
 
 'fewestrevisions' => 'மிகக் குறைந்த திருத்தங்களைக் கொண்டப் பக்கங்கள்',
@@ -1222,6 +1286,13 @@ $1 பயனரையோ அல்லது வேறு [[{{MediaWiki:Grouppage
 'listusersfrom'      => 'பின்வரும் எழுத்துடன் தொடங்கும் பயனர்களைக் காட்டு:',
 'listusers-submit'   => 'காட்டு',
 'listusers-noresult' => 'ஒரு பயனரும் இல்லை.',
+
+# Special:Listgrouprights
+'listgrouprights'          => 'பயனர் குழு உரிமைகள்',
+'listgrouprights-group'    => 'குழு',
+'listgrouprights-rights'   => 'உரிமைகள்',
+'listgrouprights-helppage' => 'Help:குழு உரிமைகள்',
+'listgrouprights-members'  => '(அங்கத்தவர் பட்டியல்)',
 
 # E-mail user
 'mailnologin'     => 'அனுப்பும் முகவரி இல்லை',
@@ -1397,6 +1468,7 @@ $NEWPAGE
 'restriction-edit'   => 'தொகு',
 'restriction-move'   => 'நகர்த்து',
 'restriction-create' => 'உருவாக்கு',
+'restriction-upload' => 'பதிவேற்றம்',
 
 # Restriction levels
 'restriction-level-sysop'         => 'முழுமையாக காக்கப்பட்டது',
@@ -1644,9 +1716,9 @@ $1',
 'allmessagesname'           => 'பெயர்',
 'allmessagesdefault'        => 'இயல்பிருப்பு உரை',
 'allmessagescurrent'        => 'தற்போதைய உரை',
-'allmessagestext'           => 'இது மீடியாவிக்கி பெயர்வெளியிலுள்ள எல்லா முறைமை சார் தகவல்களினதும் பட்டியலாகும்.
-மொழிபெயர்ப்பில் உதவ விரும்பின் அருள்கூர்ந்து [http://translatewiki.net பீட்டாவிக்கி] தளத்துக்கு செல்லவும்.',
-'allmessagesnotsupportedDB' => "'''\$wgUseDatabaseMessages''' பூட்டப்பட்டுள்ளப் படியால் '''{{ns:special}}:Allmessages''' என்பதை பயன்படுத்த முடியாது.",
+'allmessagestext'           => 'இது மீடியாவிக்கி பெயர்வெளியிலுள்ள எல்லா முறைமை தகவல்களினதும் பட்டியலாகும்.
+மொழிபெயர்ப்பில் உதவ விரும்பின் அருள்கூர்ந்து [http://translatewiki.net பீட்டாவிக்கி], [http://www.mediawiki.org/wiki/Localisation மீடியாவிக்கி மொழியாக்க]  தளங்களுக்குச் செல்லவும்.',
+'allmessagesnotsupportedDB' => "'''\$wgUseDatabaseMessages''' முடக்கப்பட்டுள்ளப் படியால் இப்பக்கததை பயன்படுத்த முடியாது.",
 'allmessagesfilter'         => 'தகவல் பெயர் வடி:',
 'allmessagesmodified'       => 'மாற்றம் செய்யப்பட்டவற்றை மட்டும் காட்டு',
 
@@ -2225,8 +2297,22 @@ $1',
 "{{ns:image}}:" போன்ற முன்னொட்டு எதுவுமில்லாமல் கோப்பின் பெயரை இடுக.',
 
 # Special:FileDuplicateSearch
+'fileduplicatesearch-legend'   => 'நகல்களைத் தேடுக',
 'fileduplicatesearch-filename' => 'கோப்பின் பெயர்:',
 'fileduplicatesearch-submit'   => 'தேடுக',
 'fileduplicatesearch-info'     => '$1 × $2 பிக்சல்<br />கோப்பின் அளவு: $3<br />MIME வகை: $4',
+'fileduplicatesearch-result-1' => '"$1" கோப்பை ஒத்த நகலொன்றில்லை.',
+'fileduplicatesearch-result-n' => '"$1" கோப்பையொத்த {{PLURAL:$2|1 ஒரு நகலொன்று|$2 நகல்கள்}} உண்டு.',
+
+# Special:SpecialPages
+'specialpages-group-maintenance' => 'பராமரிப்பு அறிக்கைகள்',
+'specialpages-group-other'       => 'ஏனைய சிறப்பு பக்கங்கள்',
+'specialpages-group-login'       => 'புகுபதிகை / கணக்கு தொடக்கம்',
+'specialpages-group-changes'     => 'அண்மைய மாற்றங்களும் பதிகைகளும்',
+'specialpages-group-media'       => 'ஊடக அறிக்கைகளும் பதிவேற்றங்களும்',
+'specialpages-group-users'       => 'பயனர்களும் உரிமைகளும்',
+'specialpages-group-needy'       => 'கவனம் தேவையான பக்கங்கள்',
+'specialpages-group-highuse'     => 'உயர் பயன்பாட்டு பக்கங்கள்',
+'specialpages-group-permissions' => 'பயனர் அனுமதிகள்',
 
 );

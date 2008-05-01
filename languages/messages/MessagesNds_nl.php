@@ -504,6 +504,7 @@ $messages = array(
 'youhavenewmessagesmulti' => 'Je hemmen een niej berich op $1',
 'editsection'             => 'bewark',
 'editold'                 => 'bewark',
+'viewsourceold'           => 'brontekse bekieken',
 'editsectionhint'         => 'Bewarkingsveld: $1',
 'toc'                     => 'Onderwarpen',
 'showtoc'                 => 'Teun',
@@ -564,6 +565,8 @@ $1',
 'enterlockreason'      => "Geef een rejen veur de blokkering op en hoelange 't geet duren. De op-egeven rejen zal an de gebrukers eteund wonnen.",
 'readonlytext'         => "De databanke van {{SITENAME}} is noen esleuten veur nieje bewarkingen en wiezigingen, werschienlijk veur bestansonderhoud. De verantwoordelijke systeembeheerder gaf hierveur de volgende rejen op: '''$1'''",
 'missingarticle'       => "De tekse veur de pagina '$1' kon neet in de databanke evunnen wonnen. Dit is werschienlijk een fout in de pregrammetuur. Meld dit an een beheerder en geef oek de naam van de pagina op.",
+'missingarticle-rev'   => '(versienummer: $1)',
+'missingarticle-diff'  => '(Wieziging: $1, $2)',
 'readonly_lag'         => 'De databanke is autematisch beveilig, zodat de onder-eschikken servers zich kunnen synchroniseren mit de centrale server.',
 'internalerror'        => 'Interne fout',
 'internalerror_info'   => 'Interne fout: $1',
@@ -713,23 +716,23 @@ Negeer dit berich as disse gebruker zonder joew toestemming an-emaak is.',
 'hr_tip'          => 'Horizontale liende',
 
 # Edit pages
-'summary'                   => 'Samenvatting',
-'subject'                   => 'Onderwarp',
-'minoredit'                 => 'kleine wieziging / spelling',
-'watchthis'                 => 'volg disse pagina',
-'savearticle'               => 'Pagina opslaon',
-'preview'                   => 'Naokieken',
-'showpreview'               => 'Pagina naokieken',
-'showlivepreview'           => 'Drekte weergave',
-'showdiff'                  => 'Teun wiezigingen',
-'anoneditwarning'           => 'Je bin neet an-emeld. As annenieme gebruker zal joew IP-adres bie elke bewarking veur iederene zichbaor ween. Je kunnen joew eigen kosteloos [[special:Userlogin|inschrieven of anmelden]].',
-'missingsummary'            => "'''Herinnering:''' je hemmen gien samenvatting op-egeven veur de bewarking. A-j noen weer op ''Pagina opslaon'' klikken wonnen de bewarking zonder samenvatting op-esleugen.",
-'missingcommenttext'        => 'Plaos joew opmarking hieronder.',
-'missingcommentheader'      => "'''Let wel:''' je hemmen gien onderwarptitel toe-evoeg. A-j opniej op Pagina opslaon klikken wonnen de bewarking op-esleugen zonder onderwarptitel.",
-'summary-preview'           => 'Samenvatting naokieken',
-'subject-preview'           => 'Onderwarp/kop naokieken',
-'blockedtitle'              => 'Gebruker is eblokkeerd',
-'blockedtext'               => "<big>'''Joew gebrukersnaam of IP-adres is eblokkeerd.'''</big>
+'summary'                           => 'Samenvatting',
+'subject'                           => 'Onderwarp',
+'minoredit'                         => 'kleine wieziging / spelling',
+'watchthis'                         => 'volg disse pagina',
+'savearticle'                       => 'Pagina opslaon',
+'preview'                           => 'Naokieken',
+'showpreview'                       => 'Pagina naokieken',
+'showlivepreview'                   => 'Drekte weergave',
+'showdiff'                          => 'Teun wiezigingen',
+'anoneditwarning'                   => 'Je bin neet an-emeld. As annenieme gebruker zal joew IP-adres bie elke bewarking veur iederene zichbaor ween. Je kunnen joew eigen kosteloos [[special:Userlogin|inschrieven of anmelden]].',
+'missingsummary'                    => "'''Herinnering:''' je hemmen gien samenvatting op-egeven veur de bewarking. A-j noen weer op ''Pagina opslaon'' klikken wonnen de bewarking zonder samenvatting op-esleugen.",
+'missingcommenttext'                => 'Plaos joew opmarking hieronder.',
+'missingcommentheader'              => "'''Let wel:''' je hemmen gien onderwarptitel toe-evoeg. A-j opniej op Pagina opslaon klikken wonnen de bewarking op-esleugen zonder onderwarptitel.",
+'summary-preview'                   => 'Samenvatting naokieken',
+'subject-preview'                   => 'Onderwarp/kop naokieken',
+'blockedtitle'                      => 'Gebruker is eblokkeerd',
+'blockedtext'                       => "<big>'''Joew gebrukersnaam of IP-adres is eblokkeerd.'''</big>
 
 Je bin eblokkeerd deur: $1.
 De op-egeven rejen is: ''$2''.
@@ -741,7 +744,7 @@ De op-egeven rejen is: ''$2''.
 Je kunnen kontak opnemen mit $1 of een aandere [[{{MediaWiki:Grouppage-sysop}}|beheerder]] um de blokkering te bepraoten.
 Je kunnen gien gebruukmaken van de functie 'een berich sturen', behalven a-j een geldig e-mailadres op-egeven hemmen in joew [[Special:Preferences|veurkeuren]] en 't gebruuk van disse functie neet eblokkeerd is.
 't IP-adres da-j noen gebruken is $3 en 't blokkeringsnummer is #$5. Vermeld ze allebeie a-j argens op disse blokkering reageren.",
-'autoblockedtext'           => 'Joew IP-adres is autematisch eblokkeerd umdat \'t gebruuk wönnen deur een aandere gebruker, dee eblokkeerd wönnen deur $1.
+'autoblockedtext'                   => 'Joew IP-adres is autematisch eblokkeerd umdat \'t gebruuk wönnen deur een aandere gebruker, dee eblokkeerd wönnen deur $1.
 De rejen hierveur was:
 
 :\'\'$2\'\'
@@ -755,32 +758,32 @@ Je kunnen kontak opnemen mit $1 of een van de aandere
 NB: je kunnen de optie "een berich sturen" neet gebruken, behalven a-j een geldig e-mailadres op-egeven hemmen in de [[Special:Preferences|gebrukersveurkeuren]].
 
 Joew blokkeer-ID is $5. Geef dit nummer deur a-j kontak mit ene opnemen over de blokkering.',
-'blockednoreason'           => 'gien rejen op-egeven',
-'blockedoriginalsource'     => "De brontekse van '''$1''' wonnen hieronder weer-egeven:",
-'blockededitsource'         => "De tekse van '''joew eigen bewarkingen''' an '''$1''' wonnen hieronder weer-egeven:",
-'whitelistedittitle'        => 'Anmelden is verplich',
-'whitelistedittext'         => "Um pagina's te kunnen wiezigen, mu-j $1 ween",
-'whitelistreadtitle'        => 'Anmelden is verplich',
-'whitelistreadtext'         => 'Um dit artikel te kunnen lezen, mu-j [[Special:Userlogin|an-emeld]] ween.',
-'whitelistacctitle'         => 'Nieje gebrukersnaam anmaken neet toe-estaon',
-'whitelistacctext'          => 'Nieje gebrukersprefielen op {{SITENAME}} kunnen allinnig an-emaak wonnen deur [[Special:Userlogin|an-emelde]] gebrukers mit de juuste rechten.',
-'confirmedittitle'          => 'Berichbevestiging is neudig um te bewarken.',
-'confirmedittext'           => "Je mutten je e-mailadres bevestigen veurda-j bewarken kunnen. Vul je adres in en bevestig 't via [[Special:Preferences|mien veurkeuren]].",
-'nosuchsectiontitle'        => 'Disse sectie besteet neet',
-'nosuchsectiontext'         => 'Je preberen een sectie te bewarken dat neet besteet. Umdat der gien sectie $1 is, is der gien plaos um joew bewarking op te slaon.',
-'loginreqtitle'             => 'Anmelden verplich',
-'loginreqlink'              => 'Anmelden',
-'loginreqpagetext'          => 'Je mutten $1 um disse pagina te bekieken.',
-'accmailtitle'              => 'Wachwoord is verzunnen.',
-'accmailtext'               => "Wachwoord veur '$1' is verzunnen naor $2.",
-'newarticle'                => '(Niej)',
-'newarticletext'            => '<div class=plainlinks style="border: 1px solid #ccc; padding: .2em 1em; margin-bottom: .8em; color: #000;"><div align=right style="font-size:110%; float:right; border:none; width:40%;">[[Special:Prefixindex/{{PAGENAME}}|Prefixindex]] | [[Special:Search/{{PAGENAME}}|Zeuken]]</div><div style="font-size:110%;">Je bin de pagina "{{FULLPAGENAME}}" an \'t schrieven...</div></div>',
-'anontalkpagetext'          => "<hr style=\"margin-top:2em;\">
+'blockednoreason'                   => 'gien rejen op-egeven',
+'blockedoriginalsource'             => "De brontekse van '''$1''' wonnen hieronder weer-egeven:",
+'blockededitsource'                 => "De tekse van '''joew eigen bewarkingen''' an '''$1''' wonnen hieronder weer-egeven:",
+'whitelistedittitle'                => 'Anmelden is verplich',
+'whitelistedittext'                 => "Um pagina's te kunnen wiezigen, mu-j $1 ween",
+'whitelistreadtitle'                => 'Anmelden is verplich',
+'whitelistreadtext'                 => 'Um dit artikel te kunnen lezen, mu-j [[Special:Userlogin|an-emeld]] ween.',
+'whitelistacctitle'                 => 'Nieje gebrukersnaam anmaken neet toe-estaon',
+'whitelistacctext'                  => 'Nieje gebrukersprefielen op {{SITENAME}} kunnen allinnig an-emaak wonnen deur [[Special:Userlogin|an-emelde]] gebrukers mit de juuste rechten.',
+'confirmedittitle'                  => 'Berichbevestiging is neudig um te bewarken.',
+'confirmedittext'                   => "Je mutten je e-mailadres bevestigen veurda-j bewarken kunnen. Vul je adres in en bevestig 't via [[Special:Preferences|mien veurkeuren]].",
+'nosuchsectiontitle'                => 'Disse sectie besteet neet',
+'nosuchsectiontext'                 => 'Je preberen een sectie te bewarken dat neet besteet. Umdat der gien sectie $1 is, is der gien plaos um joew bewarking op te slaon.',
+'loginreqtitle'                     => 'Anmelden verplich',
+'loginreqlink'                      => 'Anmelden',
+'loginreqpagetext'                  => 'Je mutten $1 um disse pagina te bekieken.',
+'accmailtitle'                      => 'Wachwoord is verzunnen.',
+'accmailtext'                       => "Wachwoord veur '$1' is verzunnen naor $2.",
+'newarticle'                        => '(Niej)',
+'newarticletext'                    => '<div class=plainlinks style="border: 1px solid #ccc; padding: .2em 1em; margin-bottom: .8em; color: #000;"><div align=right style="font-size:110%; float:right; border:none; width:40%;">[[Special:Prefixindex/{{PAGENAME}}|Prefixindex]] | [[Special:Search/{{PAGENAME}}|Zeuken]]</div><div style="font-size:110%;">Je bin de pagina "{{FULLPAGENAME}}" an \'t schrieven...</div></div>',
+'anontalkpagetext'                  => "<hr style=\"margin-top:2em;\">
 <em>Disse overlegpagina heurt bie een annenieme gebruker dee: óf gien gebrukersnaam hef, óf 't neet gebruuk. We gebruken daorumme 't IP-adres ter herkenning, mar 't kan oek ween dat meerdere personen 'tzelfde IP-adres gebruken, en da-j hiermee berichen ontvangen dee neet veur joe bedoeld bin. A-j dit veurkoemen willen, dan ku-j 't bes [[Special:Userlogin|een gebrukersnaam anmaken of anmelden]].</em>",
-'noarticletext'             => 'Disse pagina besteet nog neet.
+'noarticletext'                     => 'Disse pagina besteet nog neet.
 Je kunnen \'t woord [[Special:Search/{{PAGENAME}}|opzeuken]] in aandere pagina\'s of <span class="plainlinks">[{{fullurl:{{FULLPAGENAME}}|action=edit}} disse pagina bewarken]</span>.',
-'userpage-userdoesnotexist' => 'Je bewarken een gebrukerspagina van een gebruker dee neet besteet (gebruker "$1"). Kiek effen nao o-j disse pagina wel anmaken/bewarken willen.',
-'clearyourcache'            => "'''NB:''' naodat de wiezigingen op-esleugen bin, mut de kas van de webblaojeraar nog leeg-emaak wonnen um 't daodwarkelijk te zien.
+'userpage-userdoesnotexist'         => 'Je bewarken een gebrukerspagina van een gebruker dee neet besteet (gebruker "$1"). Kiek effen nao o-j disse pagina wel anmaken/bewarken willen.',
+'clearyourcache'                    => "'''NB:''' naodat de wiezigingen op-esleugen bin, mut de kas van de webblaojeraar nog leeg-emaak wonnen um 't daodwarkelijk te zien.
 
 {| border=\"1\" cellpadding=\"3\" class=toccolours style=\"border: 1px #AAAAAA solid; border-collapse: collapse;\"
 | Mozilla (oek Firefox) || ctrl-shift-r
@@ -793,68 +796,73 @@ Je kunnen \'t woord [[Special:Search/{{PAGENAME}}|opzeuken]] in aandere pagina\'
 |-
 | Konqueror || f5
 |}",
-'usercssjsyoucanpreview'    => "<strong>Tip:</strong> gebruuk de knoppe 'Pagina naokieken' um joew nieje css/js nao te kieken veurda-j 't opslaon.",
-'usercsspreview'            => "'''Dit is allinnig een controle van joew persoonlijke CSS, 't is nog neet op-esleugen!'''",
-'userjspreview'             => "'''Denk deran da-j joew nieje gebrukersspecifieke JavaScript allinnig an 't tessen bin, 't is nog neet op-esleugen!'''",
-'userinvalidcssjstitle'     => "'''Waorschuwing:''' der is gien uutvoering mit de naam \"\$1\". Vergeet neet dat joew eigen .css- en .js-pagina's beginnen mit een kleine letter, bv. \"{{ns:user}}:Naam/'''m'''onobook.css\" in plaose van \"{{ns:user}}:Naam/'''M'''onobook.css\".",
-'updated'                   => '(Bewark)',
-'note'                      => '<strong>Opmarking:</strong>',
-'previewnote'               => '<div style="font-size:110%">NB: je bin de pagina allinnig nog mar an \'t naokieken; de tekse is nog neet op-esleugen!</div>',
-'previewconflict'           => "Disse versie laot zien ho de tekse in 't bovenste veld deruut kump te zien a-j de tekse opslaon.",
-'session_fail_preview'      => "<strong>De bewarking kan neet verwark wonnen wegens een verlies an data. Prebeer 't laoter weer, as 't prebleem dan nog steeds veurkump, prebeer dan opniej an te melden.</strong>",
-'session_fail_preview_html' => "<strong>Joew wieziging kon neet verwark wonnen wegens een verlies an sessiedata.</strong>
+'usercssjsyoucanpreview'            => "<strong>Tip:</strong> gebruuk de knoppe 'Pagina naokieken' um joew nieje css/js nao te kieken veurda-j 't opslaon.",
+'usercsspreview'                    => "'''Dit is allinnig een controle van joew persoonlijke CSS, 't is nog neet op-esleugen!'''",
+'userjspreview'                     => "'''Denk deran da-j joew nieje gebrukersspecifieke JavaScript allinnig an 't tessen bin, 't is nog neet op-esleugen!'''",
+'userinvalidcssjstitle'             => "'''Waorschuwing:''' der is gien uutvoering mit de naam \"\$1\". Vergeet neet dat joew eigen .css- en .js-pagina's beginnen mit een kleine letter, bv. \"{{ns:user}}:Naam/'''m'''onobook.css\" in plaose van \"{{ns:user}}:Naam/'''M'''onobook.css\".",
+'updated'                           => '(Bewark)',
+'note'                              => '<strong>Opmarking:</strong>',
+'previewnote'                       => '<div style="font-size:110%">NB: je bin de pagina allinnig nog mar an \'t naokieken; de tekse is nog neet op-esleugen!</div>',
+'previewconflict'                   => "Disse versie laot zien ho de tekse in 't bovenste veld deruut kump te zien a-j de tekse opslaon.",
+'session_fail_preview'              => "<strong>De bewarking kan neet verwark wonnen wegens een verlies an data. Prebeer 't laoter weer, as 't prebleem dan nog steeds veurkump, prebeer dan opniej an te melden.</strong>",
+'session_fail_preview_html'         => "<strong>Joew wieziging kon neet verwark wonnen wegens een verlies an sessiedata.</strong>
 
 ''Umdat disse wiki HTML in-eschakeld hef, is de weergave dervan verbörgen um te veurkoemen dat 't JavaScript an-evuilen wonnen.''
 
 <strong>As dit een legetieme wieziging is, prebeer 't dan opniej. As 't nog steeds preblemen geef, prebeer dan um opniej an te melden.</strong>",
-'token_suffix_mismatch'     => "<strong>De bewarking is eweigerd umdat joew webblaojeraar de leestekens in 't bewarkingstoken verkeerd behaandeld hef. De bewarking is eweigerd um verminking van de paginatekse te veurkoemen. Dit gebeurt soms as der een web-ebaseren proxydiens gebruuk wonnen dee fouten bevat.</strong>",
-'editing'                   => 'Bewark: $1',
-'editingsection'            => 'Bewark: $1 (deelpagina)',
-'editingcomment'            => 'Bewark: $1 (niej berich)',
-'editconflict'              => 'Bewarkingskonflik: $1',
-'explainconflict'           => "'''NB:''' een aander hef disse pagina ewiezig naoda-j an disse bewarking begunnen bin.
+'token_suffix_mismatch'             => "<strong>De bewarking is eweigerd umdat joew webblaojeraar de leestekens in 't bewarkingstoken verkeerd behaandeld hef. De bewarking is eweigerd um verminking van de paginatekse te veurkoemen. Dit gebeurt soms as der een web-ebaseren proxydiens gebruuk wonnen dee fouten bevat.</strong>",
+'editing'                           => 'Bewark: $1',
+'editingsection'                    => 'Bewark: $1 (deelpagina)',
+'editingcomment'                    => 'Bewark: $1 (niej berich)',
+'editconflict'                      => 'Bewarkingskonflik: $1',
+'explainconflict'                   => "'''NB:''' een aander hef disse pagina ewiezig naoda-j an disse bewarking begunnen bin.
 
 't Bovenste bewarkingsveld laot de pagina zien zoas 't noen is. Daoronder (bie \"Wiezigingen\") staon de verschillen tussen joew versie en de op-esleugen pagina. Helemaole onderan (bie \"Joew tekse\") steet nog een bewarkingsveld mit joew versie.
 
 Je zullen je eigen wiezigingen in de nieje tekse in mutten passen. Allinnig de tekse in 't bovenste veld wonnen beweerd a-j noen kiezen veur \"Pagina opslaon\".",
-'yourtext'                  => 'Joew tekse',
-'storedversion'             => 'Op-esleugen versie',
-'nonunicodebrowser'         => '<strong>Waorschuwing: joew webblaojeraar kan neet goed overweg mit unicode, schakel over op een aandere webblaojeraar um de wiezigingen an te brengen!</strong>',
-'editingold'                => "<strong>Waorschuwing: je bin een ouwere versie van disse pagina an 't bewarken. A-j de veraandering opslaon, wonnen alle niejere versies over-eschreven.</strong>",
-'yourdiff'                  => 'Wiezigingen',
-'copyrightwarning'          => "NB: Alle biedragen an {{SITENAME}} mutten vrie-egeven wonnen onder de $2 (zie $1 veur infermasie).
+'yourtext'                          => 'Joew tekse',
+'storedversion'                     => 'Op-esleugen versie',
+'nonunicodebrowser'                 => '<strong>Waorschuwing: joew webblaojeraar kan neet goed overweg mit unicode, schakel over op een aandere webblaojeraar um de wiezigingen an te brengen!</strong>',
+'editingold'                        => "<strong>Waorschuwing: je bin een ouwere versie van disse pagina an 't bewarken. A-j de veraandering opslaon, wonnen alle niejere versies over-eschreven.</strong>",
+'yourdiff'                          => 'Wiezigingen',
+'copyrightwarning'                  => "NB: Alle biedragen an {{SITENAME}} mutten vrie-egeven wonnen onder de $2 (zie $1 veur infermasie).
 A-j neet willen dat joew tekse deur aandere gebrukers an-epas en verspreid kan wonnen, kies dan neet veur 'Pagina opslaon'.<br />
 Deur op 'Pagina opslaon' te klikken beleuf je da-j disse tekse zelf eschreven hemmen, of over-eneumen hemmen uut een vrieje, openbaore bron.<br />
 <strong>GEBRUUK GIEN MATERIAAL DAT BESCHARMP WONNEN DEUR AUTEURSRECHEN, BEHALVEN A-J DAOR TOESTEMMING VEUR HEMMEN!</strong>",
-'copyrightwarning2'         => "Let wel dat alle biedragen an {{SITENAME}} deur aandere gebrukers ewiezig of vort-edaon kunnen wonnen. A-j neet willen dat joew tekse veraanderd wonnen, plaos 't hier dan neet.<br />
+'copyrightwarning2'                 => "Let wel dat alle biedragen an {{SITENAME}} deur aandere gebrukers ewiezig of vort-edaon kunnen wonnen. A-j neet willen dat joew tekse veraanderd wonnen, plaos 't hier dan neet.<br />
 De tekse mut auteursrechvrie ween (zie $1 veur details).
 <strong>GIEN WARK VAN AANDERE LUUI TOEVOEGEN ZONDER TOESTEMMING VAN DE AUTEUR!</strong>",
-'longpagewarning'           => "Disse pagina is $1 KB groot. 't Bewarken van grote pagina's kan veur preblemen zörgen bie iezelig ouwe webblaojeraars.",
-'longpageerror'             => "<strong>Foutmelding: de tekse dee-j opslaon willen is $1 kilobytes. Dit is groter as 't toe-estaone maximum van $2 kilobytes. Joew tekse kan neet op-esleugen wonnen.</strong>",
-'readonlywarning'           => "<strong>Waorschuwing! De databanke is op dit mement in onderhoud; 't is daorumme neet meugelijk um pagina's te wiezigen. Je kunnen de tekse 't beste op de computer opslaon en laoter opniej preberen de pagina te bewarken.</strong>",
-'protectedpagewarning'      => "<strong>Waorschuwing! Disse pagina is beveilig zodat allinnig beheerders 't kunnen wiezigen.</strong>",
-'semiprotectedpagewarning'  => "'''Let op:''' disse pagina is allinnig te bewarken deur gebrukers dee tenminsen 4 dagen in-eschreven bin.",
-'cascadeprotectedwarning'   => "'''Waorschuwing:''' disse pagina is beveilig zodat allinnig beheerders disse pagina kunnen bewarken, dit wonnen edaon umdat disse pagina veurkump in de volgende {{PLURAL:$1|cascade-beveilige pagina|cascade-beveiligen pagina's}}:",
-'titleprotectedwarning'     => "<strong>Waorschuwing: disse pagina is beveilig zodat allinnig bepaolde gebrukers 't an kunnen maken.</strong>",
-'templatesused'             => 'Gebruken sjablonen op disse pagina:',
-'templatesusedpreview'      => 'Gebruken sjablonen in disse sectie:',
-'templatesusedsection'      => 'Gebruken sjablonen in disse sectie:',
-'template-protected'        => '(beveilig)',
-'template-semiprotected'    => '(semibeveilig)',
-'hiddencategories'          => 'Disse pagina vuilt in de volgende verbörgen {{PLURAL:$1|kattegerie|kattegerieën}}:',
-'nocreatetitle'             => "'t Anmaken van pagina's is beteund",
-'nocreatetext'              => "Disse webstee hef de meugelijkheid um nieje pagina's an te maken beteund. Je kunnen pagina's dee al bestaon wiezigen of je kunnen je [[Special:Userlogin|anmelden of een gebrukerspagina anmaken]].",
-'nocreate-loggedin'         => "Je maggen gien nieje pagina's anmaken op disse wiki.",
-'permissionserrors'         => 'Fouten mit de rechen',
-'permissionserrorstext'     => 'Je maggen of kunnen dit neet doon. De {{PLURAL:$1|rejen|rejens}} daoveur {{PLURAL:$1|is|bin}}:',
-'recreate-deleted-warn'     => "'''Waorschuwing: je maken een pagina an dee eerder al vort-edaon is.'''
+'longpagewarning'                   => "Disse pagina is $1 KB groot. 't Bewarken van grote pagina's kan veur preblemen zörgen bie iezelig ouwe webblaojeraars.",
+'longpageerror'                     => "<strong>Foutmelding: de tekse dee-j opslaon willen is $1 kilobytes. Dit is groter as 't toe-estaone maximum van $2 kilobytes. Joew tekse kan neet op-esleugen wonnen.</strong>",
+'readonlywarning'                   => "<strong>Waorschuwing! De databanke is op dit mement in onderhoud; 't is daorumme neet meugelijk um pagina's te wiezigen. Je kunnen de tekse 't beste op de computer opslaon en laoter opniej preberen de pagina te bewarken.</strong>",
+'protectedpagewarning'              => "<strong>Waorschuwing! Disse pagina is beveilig zodat allinnig beheerders 't kunnen wiezigen.</strong>",
+'semiprotectedpagewarning'          => "'''Let op:''' disse pagina is allinnig te bewarken deur gebrukers dee tenminsen 4 dagen in-eschreven bin.",
+'cascadeprotectedwarning'           => "'''Waorschuwing:''' disse pagina is beveilig zodat allinnig beheerders disse pagina kunnen bewarken, dit wonnen edaon umdat disse pagina veurkump in de volgende {{PLURAL:$1|cascade-beveilige pagina|cascade-beveiligen pagina's}}:",
+'titleprotectedwarning'             => "<strong>Waorschuwing: disse pagina is beveilig zodat allinnig bepaolde gebrukers 't an kunnen maken.</strong>",
+'templatesused'                     => 'Gebruken sjablonen op disse pagina:',
+'templatesusedpreview'              => 'Gebruken sjablonen in disse sectie:',
+'templatesusedsection'              => 'Gebruken sjablonen in disse sectie:',
+'template-protected'                => '(beveilig)',
+'template-semiprotected'            => '(semibeveilig)',
+'hiddencategories'                  => 'Disse pagina vuilt in de volgende verbörgen {{PLURAL:$1|kattegerie|kattegerieën}}:',
+'nocreatetitle'                     => "'t Anmaken van pagina's is beteund",
+'nocreatetext'                      => "Disse webstee hef de meugelijkheid um nieje pagina's an te maken beteund. Je kunnen pagina's dee al bestaon wiezigen of je kunnen je [[Special:Userlogin|anmelden of een gebrukerspagina anmaken]].",
+'nocreate-loggedin'                 => "Je maggen gien nieje pagina's anmaken op disse wiki.",
+'permissionserrors'                 => 'Fouten mit de rechen',
+'permissionserrorstext'             => 'Je maggen of kunnen dit neet doon. De {{PLURAL:$1|rejen|rejens}} daoveur {{PLURAL:$1|is|bin}}:',
+'recreate-deleted-warn'             => "'''Waorschuwing: je maken een pagina an dee eerder al vort-edaon is.'''
 
 Bedenk eers of 't neudig is um disse pagina veerder te bewarken.
 't Logboek mit de rejen(s) waorumme as disse pagina vort-edaon is, wonnen veur de dudelijkheid eteund:",
+'expensive-parserfunction-warning'  => "Waorschuwing: disse pagina gebruuk te veule kosbaore parserfuncties.
+
+Noen bin 't der $1, terwiel 't der minder as $2 mutten ween.",
+'expensive-parserfunction-category' => "Pagina's dee te veule kosbaore parserfuncties gebruken",
 
 # "Undo" feature
 'undo-success' => 'De bewarking kan ongedaon-emaak wonnen. Controleer de vergelieking hieronder um vaste te stellen da-j disse haandeling uutvoeren willen, en slao vervolgens de pagina op um de bewarking ongedaon te maken.',
 'undo-failure' => 'De wieziging kon neet ongedaon emaak wonnen vanwegen aandere striejige wiezigingen.',
+'undo-norev'   => "De bewarking kon neet ongedaon-emaak wonnen, umdat 't neet besteet of vort-edaon is.",
 'undo-summary' => 'Versie $1 van [[Special:Contributions/$2|$2]] ongedaon-emaak.',
 
 # Account creation failure
@@ -935,23 +943,39 @@ Aandere beheerders van {{SITENAME}} kunnen de verbörgen inhoud bekieken en 't w
 'revdelete-content'           => 'inhoud',
 'revdelete-summary'           => 'samenvatting bewarken',
 'revdelete-uname'             => 'gebrukersnaam',
+'revdelete-restricted'        => 'hef beparkingen an beheerders op-eleg',
+'revdelete-unrestricted'      => 'hef beparkingen veur beheerders derof ehaold',
 'revdelete-hid'               => 'hef $1 verbörgen',
 'revdelete-unhid'             => 'hef $1 zichbaor emaak',
 'revdelete-log-message'       => '$1 veur $2 {{PLURAL:$2|versie|versies}}',
 'logdelete-log-message'       => '$1 veur $2 {{PLURAL:$2|logboekregel|logboekregels}}',
 
 # Suppression log
-'suppressionlog' => 'Verbargingslogboek',
+'suppressionlog'     => 'Verbargingslogboek',
+'suppressionlogtext' => 'De onderstaande lieste bevat de pagina dee vort-edaon bin en blokkeringen dee veur beheerders verbörgen bin. In de [[Special:Ipblocklist|IP-blokkeerlieste]] bin de blokkeringen dee noen van toepassing bin te bekieken.',
 
 # History merging
-'mergehistory'        => "Geschiedenisse van pagina's bie mekaar doon",
-'mergehistory-from'   => 'Bronpagina:',
-'mergehistory-into'   => 'Bestemmingspagina:',
-'mergehistory-list'   => 'Samenvoegbaore bewarkingsgeschiedenisse',
-'mergehistory-go'     => 'Samenvoegbaore bewarkingen bekieken',
-'mergehistory-submit' => 'Versies bie mekaar doon',
+'mergehistory'                     => "Geschiedenisse van pagina's bie mekaar doon",
+'mergehistory-header'              => 'Via disse pagina ku-j versies uut de geschiedenisse van een bronpagina mit een niejere pagina samenvoegen. Zörg derveur dat disse versies uut de geschiedenisse historisch juustement bin.',
+'mergehistory-box'                 => "Versies van twee pagina's samenvoegen:",
+'mergehistory-from'                => 'Bronpagina:',
+'mergehistory-into'                => 'Bestemmingspagina:',
+'mergehistory-list'                => 'Samenvoegbaore bewarkingsgeschiedenisse',
+'mergehistory-merge'               => "De volgende versies van [[:$1]] kunnen samen-evoeg wonnen naor [[:$2]]. Gebruuk de kelom mit keuzerondjes um allinnig de versies emaak op en veur de an-egeven tied samen te voegen. Let op dat 't gebruken van de navigasieverwiezingen disse kelom zal herinstellen.",
+'mergehistory-go'                  => 'Samenvoegbaore bewarkingen bekieken',
+'mergehistory-submit'              => 'Versies bie mekaar doon',
+'mergehistory-empty'               => 'Der bin gien versies dee samen-evoeg kunnen wonnen.',
+'mergehistory-success'             => '$3 {{PLURAL:$3|versie|versies}} van [[:$1]] bin succesvol samen-evoeg naor [[:$2]].',
+'mergehistory-fail'                => 'Kan gien geschiedenisse samenvoegen, controleer opniej de pagina- en tiedparremeters.',
+'mergehistory-no-source'           => 'Bronpagina $1 besteet neet.',
+'mergehistory-no-destination'      => 'Bestemmingspagina $1 besteet neet.',
+'mergehistory-invalid-source'      => 'De bronpagina mut een geldige titel ween.',
+'mergehistory-invalid-destination' => 'De bestemmingspagina mut een geldige titel ween.',
+'mergehistory-autocomment'         => '[[:$1]] samen-evoeg naor [[:$2]]',
+'mergehistory-comment'             => '[[:$1]] samen-evoeg naor [[:$2]]: $3',
 
 # Merge log
+'mergelog'           => 'Samenvoegingslogboek',
 'pagemerge-logentry' => 'voegen [[$1]] naor [[$2]] samen (versies tot en mit $3)',
 'revertmerge'        => 'Samenvoeging ongedaonmaken',
 

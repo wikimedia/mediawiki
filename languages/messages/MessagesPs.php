@@ -272,6 +272,8 @@ $messages = array(
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'د {{SITENAME}} په اړه',
 'aboutpage'            => 'Project:په اړه',
+'bugreports'           => 'د ستونزو راپورونه',
+'bugreportspage'       => 'Project:د ستونزو راپور',
 'copyright'            => 'دا مېنځپانګه د $1 له مخې ستاسو لاس رسي لپاره دلته ده.',
 'copyrightpage'        => '{{ns:project}}:د رښتو حق',
 'currentevents'        => 'اوسنۍ پېښې',
@@ -297,6 +299,7 @@ $messages = array(
 'badaccess-groups' => 'د کومې کړنې غوښتنه چې تاسو کړې د هغو کارونکو پورې محدوده ده کوم چې يو د $1 د ډلې څخه دي.',
 
 'ok'                      => 'هو',
+'retrievedfrom'           => 'همدا مخ له "$1" څخه رااخيستل شوی',
 'youhavenewmessages'      => 'تاسو $1 لری  ($2).',
 'newmessageslink'         => 'نوي پيغامونه',
 'newmessagesdifflink'     => 'وروستی بدلون',
@@ -337,6 +340,7 @@ $messages = array(
 # General errors
 'error'                => 'تېروتنه',
 'databaseerror'        => 'د ډاټابېز تېروتنه',
+'missingarticle-diff'  => '(توپير: $1، $2)',
 'internalerror'        => 'کورنۍ تېروتنه',
 'internalerror_info'   => 'کورنۍ تېروتنه: $1',
 'filecopyerror'        => 'د "$1" په نامه دوتنه مو "$2" ته و نه لمېسلای شوه.',
@@ -348,6 +352,8 @@ $messages = array(
 'badarticleerror'      => 'دا کړنه پدې مخ نه شي ترسره کېدلای.',
 'cannotdelete'         => 'د اړونده مخ يا دوتنې ړنګېدنه ترسره نه شوه.  (کېدای شي چې دا د بل چا لخوا نه پخوا ړنګه شوې وي.)',
 'badtitle'             => 'ناسم سرليک',
+'badtitletext'         => 'ستاسو د غوښتل شوي مخ سرليک يا سم نه وو، د سرليک ځای تش وو او يا هم د ژبو خپلمنځي تړنې څخه يا د ويکي ګانو خپلمنځي سرليکونو څخه يو ناسم توری پکې کارول شوی.
+کېدای شي چې ستاسو په ورکړ شوي سرليک کې يو يا ګڼ شمېر داسې توري وي چې د سرليک په توګه بايد و نه کارېږي.',
 'viewsource'           => 'سرچينې کتل',
 'viewsourcefor'        => 'د $1 لپاره',
 'protectedpagetext'    => 'همدا مخ د سمادولو د مخنيوي په تکل تړل شوی دی.',
@@ -507,6 +513,12 @@ $messages = array(
 'templatesusedsection'     => 'په دې برخه کارېدلي کينډۍ:',
 'template-protected'       => '(ژغورل شوی)',
 'template-semiprotected'   => '(نيم-ژغورلی)',
+'nocreatetext'             => '{{SITENAME}} د نوو مخونو د جوړولو وړتيا محدوده کړې.
+تاسو بېرته پر شا تللای شی او په شته مخونو کې سمادېدنې ترسره کولای شی، او يا هم [[Special:Userlogin|غونډال ته ننوتلای او يو کارن-حساب جوړولای شی]].',
+'recreate-deleted-warn'    => "'''ګواښ: تاسو د يو داسې مخ بياجوړونه کوی کوم چې يو ځل پخوا ړنګ شوی وو.'''
+
+پکار ده چې تاسو په دې ځان پوه کړی چې ايا دا تاسو ته وړ ده چې د همدې مخ سمادېدنه په پرله پسې توګه وکړی.
+ستاسو د اسانتياوو لپاره د همدې مخ د ړنګېدلو يادښت هم ورکړ شوی:",
 
 # Account creation failure
 'cantcreateaccounttitle' => 'کارن-حساب نه شي جوړېدای',
@@ -524,6 +536,9 @@ $messages = array(
 'last'                => 'وروستنی',
 'page_first'          => 'لومړنی',
 'page_last'           => 'وروستنی',
+'histlegend'          => 'د توپير ټاکنه: د هرې هغې بڼې پرتلنه چې تاسو غواړۍ نو د هماغې بڼې چوکاټک په نښه کړی او بيا په لاندينۍ تڼۍ وټوکۍ.<br />
+لنډيز: (اوس) = د اوسنۍ بڼې سره توپير،
+(وروست) = د وروستۍ بڼې سره توپير، و = وړه سمادېدنه.',
 'deletedrev'          => '[ړنګ شو]',
 'histfirst'           => 'پخواني',
 'histlast'            => 'تازه',
@@ -634,9 +649,10 @@ $messages = array(
 'newsectionsummary'              => '/* $1 */ نوې برخه',
 
 # Recent changes linked
-'recentchangeslinked'       => 'اړونده بدلونونه',
-'recentchangeslinked-title' => '"$1" ته اړونده بدلونونه',
-'recentchangeslinked-page'  => 'د مخ نوم:',
+'recentchangeslinked'          => 'اړونده بدلونونه',
+'recentchangeslinked-title'    => '"$1" ته اړونده بدلونونه',
+'recentchangeslinked-noresult' => 'په ورکړ شوي موده کې هېڅ کوم بدلونونه په تړل شويو مخونو کې نه دي راپېښ شوي.',
+'recentchangeslinked-page'     => 'د مخ نوم:',
 
 # Upload
 'upload'               => 'دوتنه پورته کول',
@@ -705,6 +721,7 @@ $messages = array(
 'imagelinks'                => 'تړنونه',
 'linkstoimage'              => 'دغه لانديني مخونه د همدې دوتنې سره تړنې لري:',
 'nolinkstoimage'            => 'داسې هېڅ کوم مخ نه شته چې د دغې دوتنې سره تړنې ولري.',
+'sharedupload'              => 'دا يوه ګډه دوتنه ده او کېدای شي چې په نورو پروژو کې به هم کارېږي.',
 'shareduploadwiki'          => 'لطفاً د لا نورو مالوماتو لپاره $1 وګورۍ.',
 'shareduploadwiki-linktext' => 'د دوتنې د څرګندونې مخ',
 'noimage'                   => 'په دې نوم هېڅ کومه دوتنه نه شته، تاسو کولای شی چې $1.',
@@ -748,6 +765,8 @@ $messages = array(
 # Statistics
 'statistics'             => 'شمار',
 'statistics-mostpopular' => 'تر ټولو ډېر کتل شوي مخونه',
+
+'disambiguations' => 'د څرګندونې مخونه',
 
 'doubleredirects' => 'دوه ځلي ورګرځېدنې',
 
@@ -867,6 +886,7 @@ $messages = array(
 'watch'                => 'کتل',
 'watchthispage'        => 'همدا مخ کتل',
 'unwatch'              => 'نه کتل',
+'watchlist-details'    => '{{PLURAL:$1|$1 مخ|$1 مخونه}} کتل شوي په دې کې د خبرواترو مخونه نه دي شمېر شوي.',
 'wlheader-enotif'      => 'د برېښليک له لارې خبرول چارن شوی.*',
 'wlheader-showupdated' => "* هغه مخونه چې وروستی ځل ستاسو د کتلو نه وروسته بدلون موندلی په '''روڼ''' ليک نښه شوي.",
 'wlshowlast'           => 'وروستي $1 ساعتونه $2 ورځې $3 ښکاره کړه',
@@ -910,6 +930,8 @@ $messages = array(
 'protect-legend'              => 'د ژغورلو پخلی کول',
 'protectcomment'              => 'تبصره:',
 'protectexpiry'               => 'د پای نېټه:',
+'protect_expiry_invalid'      => 'د پای وخت ناسم دی.',
+'protect_expiry_old'          => 'د پای وخت په تېرمهال کې دی.',
 'protect-text'                => 'تاسو کولای شی چې د <strong><nowiki>$1</nowiki></strong> مخ لپاره د ژغورلو کچه همدلته وګورۍ او بدلون پکې راولی.',
 'protect-locked-access'       => 'ستاسو کارن-حساب دا اجازه نه لري چې د پاڼو د ژغورنې په کچه کې بدلون راولي.
 دلته د <strong>$1</strong> مخ لپاره اوسني شته امستنې دي:',
@@ -917,6 +939,8 @@ $messages = array(
 'protect-fallback'            => 'د "$1" اجازه پکار ده',
 'protect-level-autoconfirmed' => 'د ناثبته کارونکو مخنيوی کول',
 'protect-level-sysop'         => 'يواځې پازوالان',
+'protect-summary-cascade'     => 'ځوړاوبيز',
+'protect-cascade'             => 'په همدې مخ کې د ټولو ګډو مخونو نه ژغورنه کېږي (ځوړاوبيزه ژغورنه)',
 'protect-cantedit'            => 'تاسو نه شی کولای چې د همدغه مخ د ژغورنې په کچه کې بدلون راولی، دا ځکه چې تاسو د همدغه مخ د سمادولو اجازه نه لری.',
 'restriction-type'            => 'اجازه:',
 'restriction-level'           => 'د بنديز کچه:',
@@ -973,7 +997,7 @@ $messages = array(
 'blockip'                  => 'د کاروونکي مخه نيول',
 'ipaddress'                => 'IP پته',
 'ipadressorusername'       => 'IP پته يا کارن نوم',
-'ipbreason'                => 'لامل',
+'ipbreason'                => 'سبب',
 'ipbreasonotherlist'       => 'بل لامل',
 'ipbother'                 => 'بل وخت:',
 'ipboptions'               => '2 ساعتونه:2 hours,1 ورځ:1 day,3 ورځې:3 days,1 اوونۍ:1 week,2 اوونۍ:2 weeks,1 مياشت:1 month,3 مياشتې:3 months,6 مياشتې:6 months,1 کال:1 year,لامحدوده:infinite', # display1:time1,display2:time2,...
@@ -1019,12 +1043,16 @@ $messages = array(
 'pagemovedsub'            => 'لېږدېدنه په برياليتوب سره ترسره شوه',
 'movepage-moved'          => '<big>\'\'\'د "1$" په نامه دوتنه، "2$" ته ولېږدېده\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => 'په همدې نوم يوه بله پاڼه د پخوا نه شته او يا خو دا نوم چې تاسو ټاکلی سم نه دی. لطفاً يو بل نوم وټاکۍ.',
+'talkexists'              => "'''همدا مخ په برياليتوب سره نوي سرليک ته ولېږدېده، خو د خبرواترو مخ يې و نه لېږدول شو دا ځکه چې نوی سرليک له پخوا نه ځانته د خبرواترو يو مخ لري.
+مهرباني وکړۍ د خبرواترو دا دواړه مخونه په لاسي توګه سره يو ځای کړی.'''",
 'movedto'                 => 'ته ولېږل شو',
 'movetalk'                => 'د خبرو اترو اړونده مخ ورسره لېږدول',
+'talkpagemoved'           => 'د خبرواترو اړونده مخ هم ولېږدول شو.',
+'talkpagenotmoved'        => 'د خبرواترو اړونده مخ و <strong>نه</strong> لېږدول شو.',
 '1movedto2'               => '[[$1]]، [[$2]] ته ولېږدېده',
 'movelogpage'             => 'د لېږدولو يادښت',
 'movelogpagetext'         => 'دا لاندې د لېږدول شوو مخونو لړليک دی.',
-'movereason'              => 'لامل',
+'movereason'              => 'سبب',
 'delete_and_move'         => 'ړنګول او لېږدول',
 'delete_and_move_confirm' => 'هو, دا مخ ړنګ کړه',
 
@@ -1118,6 +1146,7 @@ $messages = array(
 # Media information
 'widthheightpage'      => '$1×$2, $3 مخونه',
 'file-info-size'       => '($1 × $2 پېکسل, د دوتنې کچه: $3, MIME بڼه: $4)',
+'svg-long-desc'        => '(SVG دوتنه، نومېنلي $1 × $2 پېکسل، د دوتنې کچه: $3)',
 'show-big-image-thumb' => '<small>د همدې مخکتنې کچه: $1 × $2 pixels</small>',
 
 # Special:Newimages
@@ -1132,8 +1161,17 @@ $messages = array(
 
 # Metadata
 'metadata'          => 'مېټاډاټا',
+'metadata-help'     => 'همدا دوتنه نور اضافه مالومات هم لري، چې کېدای شي ستاسو د ګڼياليزې کامرې او يا هم د ځيرڅار په کارولو سره د ګڼيالېدنې په وخت کې ورسره مل شوي.
+که همدا دوتنه د خپل آرني دريځ څخه بدله شوې وي نو ځينې تفصيلونه به په بدل شوي دوتنه کې په بشپړه توګه نه وي.',
 'metadata-expand'   => 'غځېدلی تفصيل ښکاره کړی',
 'metadata-collapse' => 'غځېدلی تفصيل پټ کړی',
+'metadata-fields'   => 'د EXIF ميټاډاټا ډګرونه چې لړليک يې په همدې پيغام کې په لاندې توګه راغلی د انځوريز مخ په ښکارېدنه کې به هغه وخت ورګډ شي کله چې د مېټاډاټا چوکاټ پرانيستل کېږي.
+* make
+* model
+* datetimeoriginal
+* exposuretime
+* fnumber
+* focallength', # Do not translate list items
 
 # EXIF tags
 'exif-imagedescription' => 'د انځور سرليک',

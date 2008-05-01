@@ -71,7 +71,7 @@ $messages = array(
 'tog-previewontop'            => "Amosar previsualización enantes de la caxa d'edición",
 'tog-previewonfirst'          => 'Amosar previsualización na primer edición',
 'tog-nocache'                 => 'Desactivar la caché de les páxines',
-'tog-enotifwatchlistpages'    => 'Mandame un corréu cuando cambie una páxina que toi vixilando',
+'tog-enotifwatchlistpages'    => 'Mandame un corréu cuando cambie una páxina de la mio llista de vixilancia',
 'tog-enotifusertalkpages'     => "Mandame un corréu cuando camude la mio páxina d'alderique",
 'tog-enotifminoredits'        => 'Mandame tamién un corréu pa les ediciones menores',
 'tog-enotifrevealaddr'        => 'Amosar el mio corréu electrónicu nos correos de notificación',
@@ -400,7 +400,7 @@ Consulta: $2',
 $2',
 'namespaceprotected'   => "Nun tienes permisu pa editar páxines nel espaciu de nomes '''$1'''.",
 'customcssjsprotected' => "Nun tienes permisu pa editar esta páxina porque contién preferencies personales d'otru usuariu.",
-'ns-specialprotected'  => 'Les páxines del espaciu de nomes {{ns:special}} nun puen ser editaes.',
+'ns-specialprotected'  => 'Les páxines especiales nun puen ser editaes.',
 'titleprotected'       => "Esti títulu foi protexíu de la so creación por [[User:$1|$1]]. El motivu conseñáu ye ''$2''.",
 
 # Login and logout pages
@@ -761,7 +761,7 @@ Asegúrate de qu'esti cambéu caltenga la continuidá del históricu de la páxi
 'mergehistory-go'                  => 'Amosar ediciones fusionables',
 'mergehistory-submit'              => 'Fusionar revisiones',
 'mergehistory-empty'               => 'Nun se pue fusionar nenguna revisión.',
-'mergehistory-success'             => '$3 revisiones de [[:$1]] fusionaes correutamente en [[:$2]].',
+'mergehistory-success'             => '$3 {{PLURAL:$3|revisión|revisiones}} de [[:$1]] fusionaes correutamente en [[:$2]].',
 'mergehistory-fail'                => "Nun se pudo facer la fusión d'historiales, por favor verifica la páxina y los parámetros temporales.",
 'mergehistory-no-source'           => "La páxina d'orixe $1 nun esiste.",
 'mergehistory-no-destination'      => 'La páxina de destín $1 nun esiste.',
@@ -809,6 +809,7 @@ resultáu les páxines que contengan tolos términos de la busca).",
 'powersearch'           => 'Buscar',
 'powersearch-legend'    => 'Busca avanzada',
 'powersearchtext'       => 'Buscar nel espaciu de nomes:<br />$1<br />$2 Llistar redireiciones<br />Buscar $3 $9',
+'search-external'       => 'Busca esterna',
 'searchdisabled'        => "La busca en {{SITENAME}} ta desactivada. Mentanto, pues buscar en Google. Has fixate en que'l conteníu de los sos índices de {{SITENAME}} pue tar desfasáu.",
 
 # Preferences page
@@ -883,30 +884,39 @@ resultáu les páxines que contengan tolos términos de la busca).",
 'userrights-groupsmember'          => 'Miembru de:',
 'userrights-groupsremovable'       => "Grupos d'onde pue ser elimináu:",
 'userrights-groupsavailable'       => 'Grupos disponibles:',
+'userrights-groups-help'           => "Pues camudar los grupos a los que pertenez esti usuariu.
+Un caxellu marcáu significa que l'usuariu ta nesi grupu.
+Un caxellu non marcáu significa que l'usuariu nun ta nesi grupu.
+Un * indica que nun pues eliminalu del grupu una vegada tea inxeríu, o viceversa.",
 'userrights-reason'                => 'Motivu del cambéu:',
 'userrights-available-none'        => 'Nun pues modificar la pertenencia a un grupu.',
-'userrights-available-add'         => 'Pues añader usuarios a {{PLURAL:$2|esti grupu|estos grupos}}: $1.',
-'userrights-available-remove'      => "Pues eliminar usuarios d'{{PLURAL:$2|esti grupu|estos grupos}}: $1.",
+'userrights-available-add'         => 'Pues añader cualesquier usuariu a {{PLURAL:$2|esti grupu|estos grupos}}: $1.',
+'userrights-available-remove'      => "Pues eliminar cualesquier usuariu d'{{PLURAL:$2|esti grupu|estos grupos}}: $1.",
 'userrights-available-add-self'    => 'Pues añadete tu mesmu a {{PLURAL:$2|esti grupu|estos grupos}}: $1.',
 'userrights-available-remove-self' => "Pues eliminate tu mesmu d'{{PLURAL:$2|esti grupu|estos grupos}}: $1.",
 'userrights-no-interwiki'          => "Nun tienes permisu pa editar los derechos d'usuariu n'otres wikis.",
 'userrights-nodatabase'            => 'La base de datos $1 nun esiste o nun ye llocal.',
 'userrights-nologin'               => "Has tar [[Special:Userlogin|identificáu]] con una cuenta d'alministrador p'asignar derechos d'usuariu.",
 'userrights-notallowed'            => "La to cuenta nun tien permisos p'asignar derechos d'usuariu.",
+'userrights-changeable-col'        => 'Grupos que pues camudar',
+'userrights-unchangeable-col'      => 'Grupos que nun pues camudar',
 
 # Groups
 'group'               => 'Grupu:',
+'group-user'          => 'Usuarios',
 'group-autoconfirmed' => 'Usuarios autoconfirmaos',
 'group-bot'           => 'Bots',
 'group-sysop'         => 'Alministradores',
 'group-bureaucrat'    => 'Burócrates',
 'group-all'           => '(toos)',
 
+'group-user-member'          => 'Usuariu',
 'group-autoconfirmed-member' => 'Usuariu autoconfirmáu',
 'group-bot-member'           => 'Bot',
 'group-sysop-member'         => 'Alministrador',
 'group-bureaucrat-member'    => 'Burócrata',
 
+'grouppage-user'          => '{{ns:project}}:Usuarios',
 'grouppage-autoconfirmed' => '{{ns:project}}:Usuarios autoconfirmaos',
 'grouppage-bot'           => '{{ns:project}}:Bots',
 'grouppage-sysop'         => '{{ns:project}}:Alministradores',
@@ -949,13 +959,13 @@ resultáu les páxines que contengan tolos términos de la busca).",
 'recentchangeslinked'          => 'Cambeos rellacionaos',
 'recentchangeslinked-title'    => 'Cambeos rellacionaos con "$1"',
 'recentchangeslinked-noresult' => 'Nun hebo cambeos nes páxines enllaciaes nel periodu conseñáu.',
-'recentchangeslinked-summary'  => "Esta páxina especial llista los caberos cambeos nes páxines enllacies. Les páxines de la to llista de vixilancia tán en '''negrina'''.",
+'recentchangeslinked-summary'  => "Esta ye una llista de los caberos cambeos fechos nes páxines enllaciaes dende una páxina determinada (o nos miembros d'una categoría determinada). Les páxines de [[Special:Watchlist|la to llista de vixilancia]] tán en '''negrina'''.",
 
 # Upload
 'upload'                      => 'Xubir imaxe',
 'uploadbtn'                   => 'Xubir',
 'reupload'                    => 'Volver a xubir',
-'reuploaddesc'                => 'Tornar al formulariu de xubíes.',
+'reuploaddesc'                => 'Cancelar la xubida y tornar al formulariu de xubíes',
 'uploadnologin'               => 'Nun tas identificáu',
 'uploadnologintext'           => 'Tienes que tar [[Special:Userlogin|identificáu]] pa poder xubir archivos.',
 'upload_directory_read_only'  => "El servidor nun pue modificar el direutoriu de xubida d'archivos ($1).",
@@ -1718,8 +1728,8 @@ Por último, tamién pues usar un enllaz: p.e. [[{{ns:special}}:Export/{{MediaWi
 'allmessagesname'           => 'Nome',
 'allmessagesdefault'        => 'Testu por defeutu',
 'allmessagescurrent'        => 'Testu actual',
-'allmessagestext'           => 'Esta ye una llista de tolos mensaxes disponibles nel espaciu de nomes de MediaWiki.
-Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] and [http://translatewiki.net Betawiki] if you wish to contribute to the generic MediaWiki localisation.',
+'allmessagestext'           => 'Esta ye una llista de los mensaxes de sistema disponibles nel espaciu de nomes de MediaWiki.
+Por favor visita [http://www.mediawiki.org/wiki/Localisation Llocalización de MediaWiki] y [http://translatewiki.net Betawiki] si quies contribuyer a la llocalización xenérica de MediaWiki.',
 'allmessagesnotsupportedDB' => "Nun pue usase '''{{ns:special}}:Allmessages''' porque '''\$wgUseDatabaseMessages''' ta deshabilitáu.",
 'allmessagesfilter'         => 'Filtru pal nome del mensax:',
 'allmessagesmodified'       => 'Amosar solo modificaos',
@@ -2239,7 +2249,12 @@ de corréu en {{SITENAME}}, abri esti enllaz nel to navegador:
 
 $3
 
-Si esti *nun* yes tú, nun abras l\'enllaz. Esti códigu de confirmación caduca en $4.',
+Si *nun* rexistrasti tu la cuenta, da-y a esti enllaz pa cancelar
+la confirmación de la direición de corréu electrónicu:
+
+$5
+
+Esti códigu de confirmación caduca\'l $4.',
 
 # Scary transclusion
 'scarytranscludedisabled' => '[La tresclusión interwiki ta desactivada]',

@@ -961,6 +961,7 @@ Nepažymėtas langelis reiškia, kad šis naudotojas nėra toje grupėje.',
 'group-suppress'      => 'Peržiūros',
 'group-all'           => '(visi)',
 
+'group-user-member'          => 'Naudotojas',
 'group-autoconfirmed-member' => 'Automatiškai patvirtintas naudotojas',
 'group-bot-member'           => 'Robotas',
 'group-sysop-member'         => 'Administratorius',

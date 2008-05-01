@@ -341,7 +341,7 @@ $messages = array(
 'portal-url'           => 'Project:Porth y Gymuned',
 'privacy'              => 'Polisi preifatrwydd',
 'privacypage'          => 'Project:Polisi preifatrwydd',
-'sitesupport'          => 'Rhoi',
+'sitesupport'          => 'Rhoi arian',
 'sitesupport-url'      => 'Project:Codi_arian',
 
 'badaccess'        => 'Gwall caniatâd',
@@ -814,9 +814,9 @@ Pan yn gwneud hyn dylid sicrhau nad yw dilyniant hanes tudalennau yn cael ei ddi
 'search-mwsuggest-disabled' => 'dim awgrymiadau',
 'mwsuggest-disable'         => 'Analluogi awgrymiadau AJAX',
 'searchall'                 => 'oll',
-'showingresults'            => "Yn dangos hyd at $1 {{PLURAL:$1|canlyniad|canlyniad|ganlyniad|chanlyniad|chanlyniad|canlyniad}} isod gan ddechrau gyda rhif '''$2'''.",
+'showingresults'            => "Yn dangos $1 {{PLURAL:$1|canlyniad|canlyniad|ganlyniad|chanlyniad|chanlyniad|canlyniad}} isod gan ddechrau gyda rhif '''$2'''.",
 'showingresultsnum'         => "Yn dangos $3 {{PLURAL:$3|canlyniad|canlyniad|ganlyniad|chanlyniad|chanlyniad|canlyniad}} isod gan ddechrau gyda rhif '''$2'''.",
-'showingresultstotal'       => "Yn dangos canlyniadau '''$1 - $2''' o '''$3'''",
+'showingresultstotal'       => "Yn dangos canlyniadau '''$1 - $2''' o'r cyfanswm '''$3'''",
 'nonefound'                 => "'''Nodyn''': Mae'r rhesymau bod chwiliad yn aflwyddiannus yn cynnwys chwilio am fwy nag un gair ar y tro (dim ond tudalennau sy'n cynnwys holl eiriau'r chwiliad a gaiff eu dychwelyd os na fydd OR rhyngddynt).",
 'powersearch'               => 'Chwilio',
 'powersearch-legend'        => 'Chwiliad uwch',
@@ -943,7 +943,7 @@ Cofiwch y gall mynegeion Google o gynnwys {{SITENAME}} fod ar ei hôl hi.",
 'diff'                              => 'gwahan',
 'hist'                              => 'hanes',
 'hide'                              => 'Cuddio',
-'show'                              => 'dangos',
+'show'                              => 'Dangos',
 'minoreditletter'                   => 'B',
 'newpageletter'                     => 'N',
 'boteditletter'                     => 'b',
@@ -1065,8 +1065,9 @@ Os yw'r ddelwedd ar ei lawn faint gallwch barhau i'w uwchlwytho. Os na, newidiwc
 'imagelinks'                => "Cysylltiadau'r ffeil",
 'linkstoimage'              => "Mae'r tudalennau isod yn cysylltu i'r ddelwedd hon:",
 'nolinkstoimage'            => 'Nid oes cyswllt ar unrhyw dudalen yn arwain at y ffeil hon.',
-'sharedupload'              => "Mae'r ffeil hon ar gael i'w rannu, felly mae'n bosib ei bod ar waith ar brosiectau eraill.",
+'sharedupload'              => "Mae'r ffeil hon ar gael i'w rannu, felly gall fod ar waith ar brosiectau eraill.",
 'shareduploadwiki'          => 'Gwelwch y [$1 tudalen disgrifiad ffeil] am fwy o fanylion.',
+'shareduploadwiki-desc'     => 'Dangosir isod y disgrifiad ar y $1 yno.',
 'shareduploadwiki-linktext' => 'tudalen disgrifiad ffeil',
 'noimage'                   => "Does dim ffeil a'r enw hwn i gael; gallwch $1.",
 'noimage-linktext'          => 'ei uwchlwytho',
@@ -1116,7 +1117,7 @@ Os yw'r ddelwedd ar ei lawn faint gallwch barhau i'w uwchlwytho. Os na, newidiwc
 
 # Statistics
 'statistics'    => 'Ystadegau',
-'sitestats'     => "Ystadegau'r seit",
+'sitestats'     => 'Ystadegau {{SITENAME}}',
 'userstats'     => 'Ystadegau defnyddwyr',
 'sitestatstext' => "Mae '''\$1''' {{PLURAL:\$1|tudalen i gyd|tudalen|dudalen i gyd|tudalen i gyd|thudalen i gyd|o dudalennau i gyd}} ar y databas.
 Mae hyn yn cynnwys tudalennau \"sgwrs\", tudalennau ynglŷn â {{SITENAME}}, egin erthyglau cwta, ailgyfeiriadau, a thudalennau eraill nad ydynt yn erthyglau go iawn. Ag eithrio'r rhain, mae'n debyg bod yna '''\$2''' {{PLURAL:\$2|erthygl|erthygl|erthygl|erthygl|erthygl|erthygl}} yn y wici.
@@ -1728,9 +1729,11 @@ Os ydych am gyfrannu at y gwaith o gyfieithu ar gyfer holl prosiectau Mediawiki 
 
 # Attribution
 'anonymous'        => 'Defnyddwyr anhysbys {{SITENAME}}',
+'siteuser'         => 'Defnyddiwr {{SITENAME}} $1',
 'lastmodifiedatby' => 'Newidiwyd y dudalen hon ddiwethaf $2, $1 gan $3', # $1 date, $2 time, $3 user
 'othercontribs'    => 'Yn seiliedig ar waith gan $1.',
 'others'           => 'eraill',
+'siteusers'        => 'Defnyddwyr {{SITENAME}} $1',
 'creditspage'      => "Cydnabyddiaethau'r dudalen",
 'nocredits'        => "Does dim cydnabyddiaethau i'r dudalen hon.",
 

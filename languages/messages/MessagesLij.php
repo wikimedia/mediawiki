@@ -10,6 +10,7 @@
  * @author ZeneizeForesto
  * @author Nike
  * @author Siebrand
+ * @author Malafaya
  */
 
 $fallback = 'it';
@@ -175,9 +176,10 @@ $messages = array(
 'site-atom-feed'          => 'Feed Atom de $1',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
-'nstab-user'    => 'Ûtente',
-'nstab-project' => 'Paggina de servissio',
-'nstab-image'   => 'Archivvio',
+'nstab-user'     => 'Ûtente',
+'nstab-project'  => 'Paggina de servissio',
+'nstab-image'    => 'Archivvio',
+'nstab-category' => 'Categorîa',
 
 # General errors
 'databaseerror'   => 'Errô da a base de i dæti',

@@ -437,17 +437,21 @@ Foddee oo [[:\$1|croo yn duillag shoh]].",
 
 # Groups
 'group'            => 'Possan:',
+'group-user'       => 'Ymmydeyryn',
 'group-bot'        => 'Botyn',
 'group-sysop'      => 'Reireyderyn',
 'group-bureaucrat' => 'Oikreilleyderyn',
 'group-suppress'   => 'Meehastidyn',
 'group-all'        => '(yn clane)',
 
+'group-user-member'       => 'Ymmydeyr',
 'group-bot-member'        => 'Bot',
 'group-sysop-member'      => 'Reireyder',
 'group-bureaucrat-member' => 'Oikreilleyder',
 'group-suppress-member'   => 'Meehastid',
 
+'grouppage-user'  => '{{ns:project}}:Ymmydeyryn',
+'grouppage-bot'   => '{{ns:project}}:Robotyn',
 'grouppage-sysop' => '{{ns:project}}:Reireyderyn',
 
 # User rights log
@@ -541,6 +545,7 @@ The file contains a virus! Mynphoyntyn: $1",
 
 # MIME search
 'mimesearch' => 'Sorçh MIME',
+'mimetype'   => 'sorçh MIME:',
 
 # Unwatched pages
 'unwatchedpages' => 'Duillagyn gyn arrey',
@@ -692,6 +697,8 @@ Bee caghlaaghyn jeant er y duillag shoh as e ghuillag resoonaght ry-akin ayns y 
 ** Aghin yn ughtar
 ** Brishey choip-chiart
 ** Cragheydys',
+'rollback_short'              => 'Aaymmyd',
+'rollbacklink'                => 'aaymmyd',
 'editcomment'                 => 'Va "<i>$1</i>" ny chohaggloo yn reaghey.', # only shown if there is an edit comment
 'protectedarticle'            => '"[[$1]]" glast',
 'protectcomment'              => 'Cohaggloo:',
@@ -797,7 +804,7 @@ Bee caghlaaghyn jeant er y duillag shoh as e ghuillag resoonaght ry-akin ayns y 
 'movetalk'                => 'Scughey yn duillag resoonaght ta cochianglt lesh',
 'talkpagemoved'           => "Va'n duillag resoonaght co`reggyrtagh scughit myrgeddin.",
 'talkpagenotmoved'        => '<strong>Cha</strong> row yn duillag resoonaght co`reggyrtagh scughit.',
-'1movedto2'               => '[[$1]] scughit gys [[$2]]',
+'1movedto2'               => '[[$1]] aa-enmyssit myr [[$2]]',
 'movelogpage'             => 'Lioar y scughey',
 'movereason'              => 'Fa',
 'revertmove'              => 'goll er ash',
@@ -844,6 +851,7 @@ Bee caghlaaghyn jeant er y duillag shoh as e ghuillag resoonaght ry-akin ayns y 
 'tooltip-p-logo'                  => 'Ard-ghuillag',
 'tooltip-n-mainpage'              => 'Cur keayrt er yn Ard-ghuillag',
 'tooltip-n-portal'                => "Mychione y çhalee, jean dty chooid share, c'raad reddyn dy feddyn",
+'tooltip-n-currentevents'         => 'Fow oayllys shaghadys fo chooishyn yn laa',
 'tooltip-n-recentchanges'         => "Rolley caghlaaghyn s'noa ayns y wiki.",
 'tooltip-n-randompage'            => 'Duillag gyn tort y lughtaghey',
 'tooltip-n-help'                  => 'Boayl gys feddyn magh.',

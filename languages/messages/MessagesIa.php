@@ -288,6 +288,7 @@ Nos consilia que tu initia un session e cambia le contrasigno le plus tosto poss
 'passwordsent'            => 'Un nove contrasigno esseva inviate al adresse de e-mail
 registrate pro "$1".
 Per favor initia un session post reciper lo.',
+'accountcreated'          => 'Conto create',
 'loginlanguagelabel'      => 'Lingua: $1',
 
 # Edit page toolbar
@@ -568,6 +569,8 @@ al qual le prime redirection deberea referer se.',
 'brokenredirects'     => 'Redirectiones van',
 'brokenredirectstext' => 'Le redirectiones sequente se liga a articulos inexistente.',
 
+'withoutinterwiki' => 'Paginas sin ligamines de lingua',
+
 # Miscellaneous special pages
 'nbytes'                  => '$1 {{PLURAL:$1|byte|bytes}}',
 'ncategories'             => '$1 {{PLURAL:$1|categoria|categorias}}',
@@ -589,6 +592,7 @@ al qual le prime redirection deberea referer se.',
 'specialpages'            => 'Paginas special',
 'spheading'               => 'Paginas special',
 'newpages'                => 'Nove paginas',
+'ancientpages'            => 'Paginas le plus ancian',
 'move'                    => 'Mover',
 'movethispage'            => 'Mover iste pagina',
 'unusedimagestext'        => '<p>Nota que altere sitos del web

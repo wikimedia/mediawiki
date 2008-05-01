@@ -79,11 +79,11 @@ $messages = array(
 'september'     => 'Σταυρίτες',
 'october'       => 'Τρυγομηνάς',
 'november'      => 'Αεργίτες',
-'december'      => 'Χριστουγενάρτς',
+'december'      => 'Χριστουγεννάρτς',
 'january-gen'   => 'Καλανταρί',
 'february-gen'  => 'Κούντουρονος',
 'march-gen'     => 'Μαρτ',
-'april-gen'     => 'Απρίλτ',
+'april-gen'     => 'Απρίλ',
 'may-gen'       => 'Καλομηνά',
 'june-gen'      => 'Κερασινού',
 'july-gen'      => 'Χορτοθερί',
@@ -91,7 +91,7 @@ $messages = array(
 'september-gen' => 'Σταυρί',
 'october-gen'   => 'Τρυγομηνά',
 'november-gen'  => 'Αεργί',
-'december-gen'  => 'Χριστουγεναρί',
+'december-gen'  => 'Χριστουγενναρί',
 'jan'           => 'Καλαντ',
 'feb'           => 'Κουντ',
 'mar'           => 'Μάρ',
@@ -128,6 +128,7 @@ $messages = array(
 'qbpageoptions'  => 'Ατή η σελίδαν',
 'qbmyoptions'    => "Τ' εμά τα σελίδας",
 'qbspecialpages' => 'Ειδικά σελίδας',
+'moredotdotdot'  => 'Πλέα...',
 'mypage'         => "Τ' εμόν η σελίδαν",
 'mytalk'         => "Τ' εμόν το καλάτσεμαν",
 'anontalk'       => "Καλάτσεμα για τ'ατό το IP",
@@ -167,7 +168,7 @@ $messages = array(
 'otherlanguages'    => "Σ' άλλα γλώσσας",
 'protectedpage'     => 'Ασπαλιζμένον σελίδαν',
 'jumpto'            => 'Δέβα σο:',
-'jumptonavigation'  => 'Πλοήγησην',
+'jumptonavigation'  => 'Πορπάτεμαν',
 'jumptosearch'      => 'Αράεμαν',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
@@ -175,6 +176,8 @@ $messages = array(
 'copyrightpage'        => '{{ns:project}}:Δικαιώματα Πνευματή',
 'currentevents'        => 'Ατωριζνά γεγονότα',
 'currentevents-url'    => 'Project:Ατωριζνά γεγονότα',
+'disclaimers'          => 'Ιμπρέσουμ',
+'disclaimerpage'       => 'Project:Ιμπρέσουμ',
 'edithelp'             => "Βοήθειαν για τ' αλλαγμαν",
 'edithelppage'         => 'Help:Άλλαγμαν',
 'helppage'             => 'Help:Περιεχόμενα',
@@ -182,6 +185,7 @@ $messages = array(
 'mainpage-description' => 'Αρχικόν σελίδα',
 'portal'               => 'Πύλην τη κοινότητας',
 'portal-url'           => 'Project:Πύλη κοινότητας',
+'privacy'              => 'Ωρίαγμαν δογμενίων',
 'sitesupport'          => 'Δωρεάς',
 
 'retrievedfrom'       => 'Ασο "$1"',
@@ -194,6 +198,7 @@ $messages = array(
 'toc'                 => 'Περιεχόμενα',
 'showtoc'             => 'δείξον',
 'hidetoc'             => 'κρύψον',
+'feedlinks'           => 'Ροή δογμενίων:',
 'site-rss-feed'       => '$1 RSS Συνδρομή',
 'site-atom-feed'      => '$1 Atom Συνδρομή',
 'page-rss-feed'       => '"$1" RSS Συνδρομή',
@@ -215,6 +220,7 @@ $messages = array(
 # General errors
 'laggedslavemode'   => "Ωρία: Η σελίδαν ίσως ξάι 'κ εχ' τα υστερνά τα αλλαγάς.",
 'badarticleerror'   => "Ατή η ενέργειαν 'κ επορεί να ίνεται σ'ατήν τη σελίδαν.",
+'viewsource'        => 'Τέρεν κωδικόν',
 'viewsourcefor'     => 'για $1',
 'protectedpagetext' => "Ατή η σελίδαν εν ασπαλιγμένη και 'κ αλλάζεται.",
 'viewsourcetext'    => "Μπορείτε να τερείτε και να αντιγράφετε το κείμενον τ' ατεινές τη σελίδας:",
@@ -282,6 +288,7 @@ $messages = array(
 'template-semiprotected' => '(ημψά-ασπαλιγμένον)',
 
 # History pages
+'viewpagelogs'        => "Τέρεν πρωτόκολλα γι' αβούτεν τη σελίδαν",
 'currentrev'          => 'Ατωριζνόν μορφήν',
 'revisionasof'        => 'Μορφήν τη $1',
 'revision-info'       => 'Έκδοση σα $1 ασόν/ασήν $2',
@@ -320,6 +327,7 @@ $messages = array(
 'recentchanges'                  => 'Υστερνά αλλαγάς',
 'recentchanges-feed-description' => "Τ' ασ' όλεα καινούρεα αλλαγάς τη wiki ωρία σ' αβούτεν την περίληψην.",
 'rcshowhideminor'                => '$1 τα μικρά αλλαγάς',
+'rcshowhidemine'                 => "$1 τ' επεξεργασίων ιμ",
 'rclinks'                        => "Δείξον τα $1 υστερνά τ' αλλαγάς α σα $2 υστερνά τα ημέρας<br />$3",
 'diff'                           => 'διαφορά',
 'hist'                           => 'ιστ.',
@@ -408,6 +416,7 @@ $messages = array(
 'watchthispage'        => 'Ωρίαν τη σελίδαν',
 'unwatch'              => 'Τέλος τη ωρίαγματη',
 'watchlist-details'    => '{{PLURAL:$1|$1 σελίδα|$1 σελίδας}} ωριάσκουνταν, θέγα τα σελίδας καλάτσεματι.',
+'wlshowlast'           => "Φανέρωμαν τ' υστερναίων $1 ωρίων $2 ημερίων $3",
 'watchlist-hide-bots'  => "Κρύψον τ' αλλαγάς τη bots",
 'watchlist-hide-own'   => "Κρύψον τ' αλλαγάς 'ιμ",
 'watchlist-hide-minor' => 'Κρύψον τα μικρά αλλαγάς',
@@ -420,9 +429,11 @@ $messages = array(
 'deletepage'              => 'Σβήσον τη σελίδαν',
 'actioncomplete'          => 'Η ενέργειαν ετελέθεν',
 'deletedarticle'          => 'νεβζινέθεν η "[[$1]]"',
+'dellogpage'              => "Κατάλογος με τ' ατά το νεβζίναν",
 'deletecomment'           => 'Λόγον για το σβήσιμο:',
 'deleteotherreason'       => 'Άλλον/αλλομίαν λόγον:',
 'deletereasonotherlist'   => 'Άλλον λόγον',
+'rollbacklink'            => 'φέρον ξαν σην υστερναίαν',
 'protectcomment'          => 'Σχόλιον:',
 'protect-unchain'         => 'Άνοιξον τα δικαιώματα ετεροχλάεματι',
 'protect-default'         => '(προεπιλεγμένον)',
@@ -431,8 +442,12 @@ $messages = array(
 'restriction-type'        => 'Δικαίωμαν:',
 'restriction-level'       => 'Επίπεδον περιορισμού:',
 
+# Undelete
+'undeletebtn' => 'Ποίσον ξαν',
+
 # Namespace form on various pages
 'namespace'      => 'Περιοχήν:',
+'invert'         => "Αντιστροφή τ' επιλογής",
 'blanknamespace' => '(Αρχικόν περιοχή)',
 
 # Contributions
@@ -452,6 +467,7 @@ $messages = array(
 'nolinkshere'         => "'Κ ευρέθεν σελίδα το δεκνίζ' ση σελίδαν '''[[:$1]]'''.",
 'istemplate'          => 'ενσωμάτωση',
 'whatlinkshere-prev'  => '{{PLURAL:$1|προτεσνή|προτεσνά $1}}',
+'whatlinkshere-next'  => '{{PLURAL:$1|υστερνή|υστερναία $1}}',
 'whatlinkshere-links' => '← σύνδεσμοι',
 
 # Block/unblock
@@ -487,7 +503,7 @@ $messages = array(
 'tooltip-pt-preferences'          => "Τ' εμά τα προτιμήσεις",
 'tooltip-pt-watchlist'            => "Λίστα με τα σελίδας ντ' ωριάζω",
 'tooltip-pt-mycontris'            => "Λίστα με τα δουλείας ντ' εποίκα",
-'tooltip-pt-login'                => "Μπορείτε νε εφτάτε λογαρίαν αλλά 'κ πρεπ'.",
+'tooltip-pt-login'                => "Μπορείτε νε εφτάτε λογαρίαν άμα 'κ πρεπ'.",
 'tooltip-pt-logout'               => 'Απιδεβένετεν τη Βικιπαίδειαν',
 'tooltip-ca-talk'                 => "Γονούσεμαν γι' αβούτον τ' άρθρον",
 'tooltip-ca-edit'                 => "Άλλαγμαν τη σελίδας. Άμαν τερέστεν τ' αλλαγάς πριν θα κρατείτε ατά.",
@@ -502,7 +518,7 @@ $messages = array(
 'tooltip-search'                  => 'Εύρον σο {{SITENAME}}',
 'tooltip-n-mainpage'              => 'Τερέστεν το αρχικόν τη σελίδαν',
 'tooltip-n-portal'                => 'Σχετικά με το Wiκi - πώς μπορείτε να εφτάτε γιαρτήμ, πού θα ευρίετε πράγματα',
-'tooltip-n-recentchanges'         => 'Η λίστα με τα υστερνά αλλαγάς σο wiki.',
+'tooltip-n-recentchanges'         => "Κατάλογος με τ' υστερνά αλλαγάς σο wiki.",
 'tooltip-n-randompage'            => 'Κατά τύχην εύρον σελίδαν και δείξον ατέν',
 'tooltip-n-help'                  => "Αδά θα ευρίετε τα απαντήσεις ντ' αραεύετε.",
 'tooltip-n-sitesupport'           => 'Βοηθέστεν το έργον.',
@@ -512,17 +528,21 @@ $messages = array(
 'tooltip-t-upload'                => 'Φόρτωμα αρχείων',
 'tooltip-t-specialpages'          => 'Κατάλογον με τα ειδικά σελίδας',
 'tooltip-ca-nstab-user'           => 'Τέρεν τη σελίδαν τη χρήστε',
+'tooltip-ca-nstab-project'        => 'Τέρεν σελίδαν σύστηματι',
 'tooltip-ca-nstab-image'          => 'Τερέστεν την εικόναν',
 'tooltip-ca-nstab-mediawiki'      => 'Τέρεμαν τη μενεματίων τη σύστηματι',
 'tooltip-ca-nstab-template'       => 'Τερέστεν τα πρότυπα',
 'tooltip-ca-nstab-help'           => 'Τερέστεν τη σελίδα βοήθειας',
-'tooltip-ca-nstab-category'       => 'Τέρεν το σελίδαν τη κατηγορίας',
+'tooltip-ca-nstab-category'       => 'Τέρεν σελίδαν κατηγορίας',
 'tooltip-minoredit'               => 'Όντες εφτάτε μικρόν αλλαγήν',
 'tooltip-save'                    => "Κρα τ' αλλαγάς",
 'tooltip-preview'                 => "Τέρεν τ' αλλαγάς πριχού να κρατείς τη σελίδαν!",
 'tooltip-diff'                    => "Δείξον τ' αλλαγάς ντ' εποίκες σο κείμενον.",
 'tooltip-compareselectedversions' => "Τερέστε τα διαφοράς τ' εκδωσίων τη σελίδας",
 'tooltip-watch'                   => "Βαλέστεν αβούτεν τη σελίδαν σην τ' εσέτερον λίσταν ωριάγματι",
+
+# Browsing diffs
+'nextdiff' => "Αϊτέστε σ' υστερναίον διαφορά →",
 
 # Media information
 'file-nohires'   => "<small>'Κ εχ κι άλλο ψηλόν ανάλυσην.</small>",
@@ -533,7 +553,7 @@ $messages = array(
 'bydate'   => 'ημερομηνίας',
 
 # Metadata
-'metadata'          => 'Μεταδεδομένα',
+'metadata'          => 'Μεταδογμένα',
 'metadata-expand'   => 'Δείξον τα λεπτομέρειας',
 'metadata-collapse' => 'Κρύψον τα λεπτομέρειας',
 
@@ -568,6 +588,9 @@ $messages = array(
 
 # Table pager
 'table_pager_limit_submit' => 'Δέβα',
+
+# Watchlist editing tools
+'watchlisttools-edit' => 'Τέρεν κι άλλαξον κατάλογον ωρίαγματι',
 
 # Special:Version
 'version' => 'Έκδοση', # Not used as normal message but as header for the special page itself

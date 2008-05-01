@@ -6,6 +6,10 @@
  * @author Макѕе
  * @author Кумулај Маркус
  * @author Siebrand
+ * @author Макѕе
+ * @author Кумулај Маркус
+ * @author Приетен тев
+ * @author Siebrand
  */
 
 $fallback = 'mk';
@@ -134,10 +138,11 @@ $messages = array(
 'viewsourcefor' => 'пентру $1',
 
 # Login and logout pages
-'yourname'   => 'Ном дутилизатору:',
-'login'      => 'Приласнаере',
-'userlogin'  => 'Приласнаере / креаре нутилизатору',
-'userlogout' => 'отластаере',
+'yourname'                => 'Ном дутилизатору:',
+'login'                   => 'Приласнаере',
+'nav-login-createaccount' => 'Приласнаере / Нажбе',
+'userlogin'               => 'Приласнаере / креаре нутилизатору',
+'userlogout'              => 'отластаере',
 
 # Edit page toolbar
 'bold_sample'     => 'Ескрире алдин',
@@ -154,13 +159,14 @@ $messages = array(
 'math_tip'        => 'Формула с-математикс (LaTeX)',
 'nowiki_sample'   => 'Интродуца но-Вики иси',
 'nowiki_tip'      => 'Но-Бики клашу',
-'image_tip'       => 'Сантигул',
+'image_tip'       => 'Сантигул инсерат',
 'media_tip'       => 'Легајтул фиширул де медиа',
 'sig_tip'         => 'Утилизаторуном ет дата ет темп',
 'hr_tip'          => 'Линеа оризонтала (еснидивале)',
 
 # Edit pages
 'summary'                => 'Сумар',
+'subject'                => 'Субјект / титлур',
 'watchthis'              => 'Клајаере це пажу',
 'showdiff'               => 'Аратај шумбајрае',
 'newarticle'             => '(Нова)',
@@ -184,7 +190,7 @@ $messages = array(
 # Search results
 'noexactmatch' => "'''Нпажу вец лном \"\$1\" н-ќсистст.''' Путе [[:\$1|креаре це пажу]].",
 'viewprevnext' => 'Ву ($1) ($2) ($3)',
-'powersearch'  => 'каутај',
+'powersearch'  => 'каутај авансата',
 
 # Preferences page
 'mypreferences' => 'Мај префиренћу',
@@ -225,6 +231,9 @@ $messages = array(
 'specialpages' => 'Пажи спецалус',
 'newpages'     => 'Пажи нови',
 
+# Book sources
+'booksources' => 'Сурсе де цајрћи',
+
 # Special:Allpages
 'allpages'       => 'Тоатс пажи',
 'alphaindexline' => '$1 во $2',
@@ -247,6 +256,7 @@ $messages = array(
 'rollbacklink'   => 'ревенире',
 
 # Namespace form on various pages
+'namespace'      => 'лСпаћи:',
 'invert'         => 'Ќсклуда спаћул',
 'blanknamespace' => '(Принципу)',
 
@@ -291,9 +301,11 @@ $messages = array(
 'tooltip-n-mainpage'        => 'Вижита лпажу принципу',
 'tooltip-n-portal'          => 'Дајпул лпројецту, љуелљуес путе фараере, о трувес саби.',
 'tooltip-n-recentchanges'   => 'Листа дес шумбајрае рецентае ен лБики.',
+'tooltip-n-randompage'      => 'Донаре нпажу алаетоаре',
 'tooltip-n-help'            => 'Ајутор трувес иси.',
 'tooltip-n-sitesupport'     => 'Супора-ностре',
 'tooltip-t-contributions'   => 'Ву листа де контрибући де цутилизатору',
+'tooltip-t-upload'          => 'Тремер фиширул',
 'tooltip-t-specialpages'    => 'Листа де тоат пажи специалус',
 'tooltip-ca-nstab-user'     => 'Ву лпажу дутилизатору',
 'tooltip-ca-nstab-project'  => 'Ву лпажу де пројекту',
