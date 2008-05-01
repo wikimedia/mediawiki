@@ -1,9 +1,6 @@
 <?php
 
-# Copyright (C) 2004 Brion Vibber, lcrocker, Tim Starling,
-# Domas Mituzas, Ashar Voultoiz, Jens Frank, Zhengzhu.
-#
-# © 2006 Rob Church <robchur@gmail.com>
+# Copyright (C) 2008 Aaron Schulz
 #
 # http://www.mediawiki.org/
 #
@@ -34,11 +31,10 @@
  * @addtogroup SpecialPage
  */
 
-class UsersPager extends AlphabeticPager {
+class ActiveUsersPager extends AlphabeticPager {
 
 	function __construct($group=null) {
 		global $wgRequest;
-		$this->requestedGroup = $group != "" ? $group : $wgRequest->getVal( 'group' );
 		$un = $wgRequest->getText( 'username' );
 		$this->requestedUser = '';
 		if ( $un != '' ) {
@@ -52,7 +48,7 @@ class UsersPager extends AlphabeticPager {
 
 
 	function getIndexField() {
-		return 'user_name';
+		return 'rc_user_text';
 	}
 
 	function getQueryInfo() {
@@ -60,69 +56,56 @@ class UsersPager extends AlphabeticPager {
 		$conds=array();
 		// don't show hidden names
 		$conds[]='ipb_deleted IS NULL OR ipb_deleted = 0';
-		if ($this->requestedGroup != "") {
-			$conds['ug_group'] = $this->requestedGroup;
-			$useIndex = '';
-		} else {
-			$useIndex = $dbr->useIndexClause('user_name');
-		}
+		$useIndex = $dbr->useIndexClause('rc_user_text');
 		if ($this->requestedUser != "") {
-			$conds[] = 'user_name >= ' . $dbr->addQuotes( $this->requestedUser );
+			$conds[] = 'rc_user_text >= ' . $dbr->addQuotes( $this->requestedUser );
 		}
 
-		list ($user,$user_groups,$ipblocks) = $dbr->tableNamesN('user','user_groups','ipblocks');
+		list ($recentchanges,$ipblocks) = $dbr->tableNamesN('recentchanges','ipblocks');
 
 		$query = array(
-			'tables' => " $user $useIndex LEFT JOIN $user_groups ON user_id=ug_user
-				LEFT JOIN $ipblocks ON user_id=ipb_user AND ipb_auto=0 ",
-			'fields' => array('user_name',
-				'MAX(user_id) AS user_id',
-				'COUNT(ug_group) AS numgroups',
-				'MAX(ug_group) AS singlegroup',
+			'tables' => " $recentchanges $useIndex 
+				LEFT JOIN $ipblocks ON rc_user=ipb_user AND ipb_auto=0 ",
+			'fields' => array('rc_user_text',
+				'MAX(rc_user) AS user_id',
+				'COUNT(*) AS recentedits',
 				'MAX(ipb_user) AS blocked'),
-			'options' => array('GROUP BY' => 'user_name'),
+			'options' => array('GROUP BY' => 'rc_user_text'),
 			'conds' => $conds
 		);
 
-		wfRunHooks( 'SpecialListusersQueryInfo', array( $this, &$query ) );
 		return $query;
 	}
 
 	function formatRow( $row ) {
-		$userPage = Title::makeTitle( NS_USER, $row->user_name );
+		$userPage = Title::makeTitle( NS_USER, $row->rc_user_text );
 		$name = $this->getSkin()->makeLinkObj( $userPage, htmlspecialchars( $userPage->getText() ) );
 
-		if( $row->numgroups > 1 || ( $this->requestedGroup && $row->numgroups == 1 ) ) {
-			$list = array();
-			foreach( self::getGroups( $row->user_id ) as $group )
-				$list[] = self::buildGroupLink( $group );
-			$groups = implode( ', ', $list );
-		} elseif( $row->numgroups == 1 ) {
-			$groups = self::buildGroupLink( $row->singlegroup );
-		} else {
-			$groups = '';
-		}
+		$list = array();
+		foreach( self::getGroups( $row->user_id ) as $group )
+			$list[] = self::buildGroupLink( $group );
+		$groups = implode( ', ', $list );
 
 		$item = wfSpecialList( $name, $groups );
+		$count = wfMsgHtml( 'activeusers-count', $row->recentedits );
 		$blocked = $row->blocked ? ' '.wfMsg('listusers-blocked') : '';
-		
-		wfRunHooks( 'SpecialListusersFormatRow', array( &$item, $row ) );
-		return "<li>{$item}{$blocked}</li>";
+
+		return "<li>{$item} [{$count}]{$blocked}</li>";
 	}
 
 	function getBody() {
 		if (!$this->mQueryDone) {
 			$this->doQuery();
 		}
-		$batch = new LinkBatch;
+		$batch = new LinkBatch();
 
 		$this->mResult->rewind();
-
 		while ( $row = $this->mResult->fetchObject() ) {
-			$batch->addObj( Title::makeTitleSafe( NS_USER, $row->user_name ) );
+			$batch->addObj( Title::makeTitleSafe( NS_USER, $row->rc_user_text ) );
 		}
 		$batch->execute();
 		$this->mResult->rewind();
+
 		return parent::getBody();
 	}
 
@@ -133,28 +116,18 @@ class UsersPager extends AlphabeticPager {
 		# Form tag
 		$out  = Xml::openElement( 'form', array( 'method' => 'get', 'action' => $wgScript ) ) .
 			'<fieldset>' .
-			Xml::element( 'legend', array(), wfMsg( 'listusers' ) );
+			Xml::element( 'legend', array(), wfMsg( 'activeusers' ) );
 		$out .= Xml::hidden( 'title', $self->getPrefixedDbKey() );
 
 		# Username field
-		$out .= Xml::label( wfMsg( 'listusersfrom' ), 'offset' ) . ' ' .
+		$out .= Xml::label( wfMsg( 'activeusers-from' ), 'offset' ) . ' ' .
 			Xml::input( 'username', 20, $this->requestedUser, array( 'id' => 'offset' ) ) . ' ';
-
-		# Group drop-down list
-		$out .= Xml::label( wfMsg( 'group' ), 'group' ) . ' ' .
-			Xml::openElement('select',  array( 'name' => 'group', 'id' => 'group' ) ) .
-			Xml::option( wfMsg( 'group-all' ), '' );
-		foreach( $this->getAllGroups() as $group => $groupText )
-			$out .= Xml::option( $groupText, $group, $group == $this->requestedGroup );
-		$out .= Xml::closeElement( 'select' ) . ' ';
-
-		wfRunHooks( 'SpecialListusersHeaderForm', array( $this, &$out ) );
 
 		# Submit button and form bottom
 		if( $this->mLimit )
 			$out .= Xml::hidden( 'limit', $this->mLimit );
 		$out .= Xml::submitButton( wfMsg( 'allpagessubmit' ) );
-		wfRunHooks( 'SpecialListusersHeader', array( $this, &$out ) );
+
 		$out .= '</fieldset>' .
 			Xml::closeElement( 'form' );
 
@@ -175,11 +148,8 @@ class UsersPager extends AlphabeticPager {
 	 */
 	function getDefaultQuery() {
 		$query = parent::getDefaultQuery();
-		if( $this->requestedGroup != '' )
-			$query['group'] = $this->requestedGroup;
 		if( $this->requestedUser != '' )
 			$query['username'] = $this->requestedUser;
-		wfRunHooks( 'SpecialListusersDefaultQuery', array( $this, &$query ) );
 		return $query;
 	}
 
@@ -219,10 +189,10 @@ class UsersPager extends AlphabeticPager {
  * constructor
  * $par string (optional) A group to list users from
  */
-function wfSpecialListusers( $par = null ) {
+function wfSpecialActiveusers( $par = null ) {
 	global $wgRequest, $wgOut;
 
-	$up = new UsersPager($par);
+	$up = new ActiveUsersPager();
 
 	# getBody() first to check, if empty
 	$usersbody = $up->getBody();
@@ -232,7 +202,7 @@ function wfSpecialListusers( $par = null ) {
 		$s .=	'<ul>' . $usersbody . '</ul>';
 		$s .=	$up->getNavigationBar() ;
 	} else {
-		$s .=	'<p>' . wfMsgHTML('listusers-noresult') . '</p>';
+		$s .=	'<p>' . wfMsgHTML('activeusers-noresult') . '</p>';
 	};
 
 	$wgOut->addHTML( $s );

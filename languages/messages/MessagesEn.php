@@ -1888,6 +1888,8 @@ A page is treated as disambiguation page if it uses a template which is linked f
 'protectedtitlesempty'            => 'No titles are currently protected with these parameters.',
 'listusers'                       => 'User list',
 'listusers-summary'               => '', # only translate this message to other languages if you have to change it
+'activeusers'                     => 'Active user list',
+'activeusers-summary'             => '', # only translate this message to other languages if you have to change it
 'specialpages'                    => 'Special pages',
 'specialpages-summary'            => '', # only translate this message to other languages if you have to change it
 'spheading'                       => 'Special pages for all users',
@@ -1951,8 +1953,15 @@ It may contain one or more characters which cannot be used in titles.',
 
 # Special:Listusers
 'listusersfrom'      => 'Display users starting at:',
+'listusers-blocked'   => '(account blocked)',
 'listusers-submit'   => 'Show',
 'listusers-noresult' => 'No user found.',
+
+# Special:Activeusers
+'activeusers-count'    => '$1 recent edits',
+'activeusers-from'     => 'Display users starting at:',
+'activeusers-submit'   => 'Show',
+'activeusers-noresult' => 'No user found.',
 
 # Special:Listgrouprights
 'listgrouprights'          => 'User group rights',
