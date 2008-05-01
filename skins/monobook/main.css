@@ -1564,6 +1564,7 @@ div#mw-search-interwiki-caption {
 
 span.searchmatch {
 	font-weight: bold;
+	color: red;
 }
 
 /* God-damned hack for the crappy layout */
