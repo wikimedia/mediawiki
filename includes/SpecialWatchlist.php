@@ -184,7 +184,9 @@ function wfSpecialWatchlist( $par ) {
 			"\n\n" );
 	}
 	if ( $wgShowUpdatedMarker ) {
-		$wltsfield=", ${watchlist}.wl_notificationtimestamp ";
+		$wltsfield = ", ${watchlist}.wl_notificationtimestamp ";
+	} else {
+		$wltsfield = '';
 	}
 	$sql = "SELECT ${recentchanges}.* ${wltsfield}
 	  FROM $watchlist,$recentchanges
