@@ -586,7 +586,7 @@ class SpecialSearch {
 				$name = wfMsg( 'blanknamespace' );
 			}
 			$namespaces .= Xml::openElement( 'span', array( 'style' => 'white-space: nowrap' ) ) .
-					Xml::checkLabel( $name, "ns{$ns}", $name, in_array( $ns, $this->namespaces ) ) .
+					Xml::checkLabel( $name, "ns{$ns}", "mw-search-ns{$ns}", in_array( $ns, $this->namespaces ) ) .
 					Xml::closeElement( 'span' ) . "\n";
 		}
 
