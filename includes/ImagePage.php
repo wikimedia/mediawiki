@@ -376,19 +376,21 @@ EOT
 	}
 
 	function checkSharedConflict() {
-		global $wgOut, $wgUser, $wgUseSharedUploads;
-		if( !$wgUseSharedUploads ) {
+		global $wgOut, $wgUser;
+		$repoGroup = RepoGroup::singleton();
+		if( !$repoGroup->hasForeignRepos() ) {
 			return;
 		}
-		if( $this->repo->getName() != 'local' ) {
+		if( !$this->img->isLocal() ) {
 			return;
 		}
 
-		$repo = RepoGroup::singleton()->getRepoByName( 'shared' );
-		$dupfile = $repo->newFile( $this->img->getTitle() );
-		if( !$dupfile->exists() ) {
+		$this->dupFile = null;
+		$repoGroup->forEachForeignRepo( array( $this, 'checkSharedConflictCallback' ) );
+		
+		if( !$this->dupFile )
 			return;
-		}
+		$dupfile = $this->dupFile;
 		$same = (
 			($this->img->getSha1() == $dupfile->getSha1()) &&
 			($this->img->getSize() == $dupfile->getSize())
@@ -403,6 +405,13 @@ EOT
 			$link = $sk->makeExternalLink( $descUrl, wfMsg( 'shareduploadconflict-linktext' ) );
 			$wgOut->addHTML( '<div id="shared-image-conflict">' . wfMsgWikiHtml( 'shareduploadconflict', $link ) . '</div>' );
 		}
+	}
+
+	function checkSharedConflictCallback( $repo ) {
+		$dupfile = $repo->newFile( $this->img->getTitle() );
+		if( $dupfile->exists() )
+			$this->dupFile = $dupfile;
+		return $dupfile->exists();
 	}
 
 	function getUploadUrl() {

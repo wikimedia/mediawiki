@@ -134,6 +134,20 @@ class RepoGroup {
 		return $this->getRepo( 'local' );
 	}
 
+	function forEachForeignRepo( $callback, $params = array() ) {
+		foreach( $this->foreignRepos as $repo ) {
+			$args = array_merge( array( $repo ), $params );
+			if( call_user_func_array( $callback, $args ) ) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	function hasForeignRepos() {
+		return !empty( $this->foreignRepos );
+	}
+
 	/**
 	 * Initialise the $repos array
 	 */
