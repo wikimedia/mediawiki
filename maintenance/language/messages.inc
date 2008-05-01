@@ -1218,9 +1218,6 @@ $wgMessageStructure = array(
 		'protectedtitlesempty',
 		'listusers',
 		'listusers-summary',
-		'ativeusers',
-		'ativeusers-summary',
-		
 		'specialpages',
 		'specialpages-summary',
 		'spheading',
@@ -1284,13 +1281,6 @@ $wgMessageStructure = array(
 		'listusersfrom',
 		'listusers-submit',
 		'listusers-noresult',
-		'listusers-blocked'
-	),
-	'activeusers' => array(
-		'activeusers-count',
-		'activeusers-from',
-		'activeusers-submit',
-		'activeusers-noresult',
 	),
 	'listgrouprights' => array(
 		'listgrouprights',

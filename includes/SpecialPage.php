@@ -93,7 +93,6 @@ class SpecialPage
 		'Imagelist'                 => array( 'SpecialPage', 'Imagelist' ),
 		'Newimages'                 => array( 'IncludableSpecialPage', 'Newimages' ),
 		'Listusers'                 => array( 'SpecialPage', 'Listusers' ),
-		'Activeusers'               => array( 'SpecialPage', 'Activeusers' ),
 		'Listgrouprights'           => 'SpecialListGroupRights',
 		'Statistics'                => array( 'SpecialPage', 'Statistics' ),
 		'Randompage'                => 'Randompage',
