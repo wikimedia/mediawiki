@@ -96,30 +96,34 @@ class SpecialPrefixindex extends SpecialAllpages {
 			### FIXME: side link to previous
 
 			$n = 0;
-			$out = '<table style="background: inherit;" border="0" width="100%">';
-
-			while( ($n < $this->maxPerPage) && ($s = $dbr->fetchObject( $res )) ) {
-				$t = Title::makeTitle( $s->page_namespace, $s->page_title );
-				if( $t ) {
-					$link = ($s->page_is_redirect ? '<div class="allpagesredirect">' : '' ) .
-						$sk->makeKnownLinkObj( $t, htmlspecialchars( $t->getText() ), false, false ) .
-						($s->page_is_redirect ? '</div>' : '' );
-				} else {
-					$link = '[[' . htmlspecialchars( $s->page_title ) . ']]';
+			if( $res->numRows() > 0 ) {
+				$out = '<table style="background: inherit;" border="0" width="100%">';
+	
+				while( ($n < $this->maxPerPage) && ($s = $dbr->fetchObject( $res )) ) {
+					$t = Title::makeTitle( $s->page_namespace, $s->page_title );
+					if( $t ) {
+						$link = ($s->page_is_redirect ? '<div class="allpagesredirect">' : '' ) .
+							$sk->makeKnownLinkObj( $t, htmlspecialchars( $t->getText() ), false, false ) .
+							($s->page_is_redirect ? '</div>' : '' );
+					} else {
+						$link = '[[' . htmlspecialchars( $s->page_title ) . ']]';
+					}
+					if( $n % 3 == 0 ) {
+						$out .= '<tr>';
+					}
+					$out .= "<td>$link</td>";
+					$n++;
+					if( $n % 3 == 0 ) {
+						$out .= '</tr>';
+					}
 				}
-				if( $n % 3 == 0 ) {
-					$out .= '<tr>';
-				}
-				$out .= "<td>$link</td>";
-				$n++;
-				if( $n % 3 == 0 ) {
+				if( ($n % 3) != 0 ) {
 					$out .= '</tr>';
 				}
+				$out .= '</table>';
+			} else {
+				$out = '';
 			}
-			if( ($n % 3) != 0 ) {
-				$out .= '</tr>';
-			}
-			$out .= '</table>';
 		}
 
 		if ( $including ) {
