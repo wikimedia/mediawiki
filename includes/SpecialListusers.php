@@ -78,8 +78,7 @@ class UsersPager extends AlphabeticPager {
 			'fields' => array('user_name',
 				'MAX(user_id) AS user_id',
 				'COUNT(ug_group) AS numgroups',
-				'MAX(ug_group) AS singlegroup',
-				'MAX(ipb_user) AS blocked'),
+				'MAX(ug_group) AS singlegroup'),
 			'options' => array('GROUP BY' => 'user_name'),
 			'conds' => $conds
 		);
@@ -104,10 +103,8 @@ class UsersPager extends AlphabeticPager {
 		}
 
 		$item = wfSpecialList( $name, $groups );
-		$blocked = $row->blocked ? ' '.wfMsg('listusers-blocked') : '';
-		
 		wfRunHooks( 'SpecialListusersFormatRow', array( &$item, $row ) );
-		return "<li>{$item}{$blocked}</li>";
+		return "<li>{$item}</li>";
 	}
 
 	function getBody() {
