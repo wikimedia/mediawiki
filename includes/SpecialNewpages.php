@@ -357,7 +357,7 @@ class NewPagesPager extends ReverseChronologicalPager {
 			$rcIndexes = array( 'rc_timestamp' );
 		}
 		if( $wgEnableNewpagesUserFilter ) {
-			$rcIndex[] = 'rc_user_text';
+			$rcIndexes[] = 'rc_user_text';
 		}
 		$conds[] = 'page_id = rc_cur_id';
 		$conds['page_is_redirect'] = 0;
